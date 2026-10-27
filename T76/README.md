@@ -1,4 +1,6 @@
-# raw/T76: stall detector runs (hp/stall_margin.py on main), coordinator, 2026-10-27
+# T76: the stall detector's runs (hp/stall_margin.py), D 40-73
+
+Machine: mac
 
 - states.jsonl, kappa_states.jsonl, smoke*.jsonl: converged states, D 40-67.74 (hp/data/states, seeds, large_d/up70_*)
 - seeds.jsonl, seeds.log: T48's attempted steps (hp/data/large_d/up70_attempts.jsonl) in D_from 62.0-62.2, 64.0-64.2,

@@ -1,4 +1,6 @@
-# raw/T81: the quad-double solver (feat/qd-solver), coordinator on the Mac, 2026-10-27
+# T81: the quad-double solver: precision tests, convergence and continuation at D 72.8-73.3
+
+Machine: mac
 
 Built from feat/qd-solver (dfaec36; multidouble 1.7.0's sources) into ~/venv-qds.
 

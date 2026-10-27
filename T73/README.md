@@ -1,4 +1,7 @@
-# raw/T73: run output of T72 and T73 (large D, D 67.74 to 70.98)
+# T73: large D: T72 and T73's pinned double-double runs, D 67.74 to 70.98
+
+Machine: mac
+Task: comms.txt line 6130 of the code repository.
 
 Copied from wip/qd-mac at f75a607 (hp/data/large_d/t72 and t73) on 2026-10-27, unchanged. The runs and their
 settings are in comms.txt on main (T72 18:24 UTC, T73 18:28 UTC, 2026-10-26); the code is wip/qd-horizon f41d622.

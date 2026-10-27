@@ -1,4 +1,6 @@
-# raw output of T11, run on win
+# T11-win: kc 47 RK checks at D 4.5-5.0 (T11a) and an x_K 0.65 chain near D 29-30 (T11b, T11c)
+
+Task: comms.txt line 703 of the code repository.
 
 Uploaded 2026-10-27 14:40 UTC from the Windows runner, copied unchanged from its disk.
 Worktree files keep their path relative to the worktree. Files under `scratch/` are relative to the runner scratchpad.
