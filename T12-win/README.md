@@ -1,4 +1,6 @@
-# raw output of T12, run on win
+# T12-win: the double-double climb past D = 60
+
+Task: comms.txt line 773 of the code repository.
 
 Uploaded 2026-10-27 14:41 UTC from the Windows runner, copied unchanged from its disk.
 Worktree files keep their path relative to the worktree. Files under `scratch/` are relative to the runner scratchpad.

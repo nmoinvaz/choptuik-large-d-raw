@@ -1,4 +1,7 @@
-# raw output of win-misc, run on win
+# win-misc: win's outputs tied to no task (cert-m5 checkpoints, hp_val, junk, dd, bw_run, worktree logs)
+
+Machine: win
+The negative-mass/ files listed below were another project's and were removed (2026-10-27).
 
 Uploaded 2026-10-27 14:43 UTC from the Windows runner, copied unchanged from its disk.
 Worktree files keep their path relative to the worktree. Files under `scratch/` are relative to the runner scratchpad.
