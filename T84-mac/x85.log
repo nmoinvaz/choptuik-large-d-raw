@@ -1,0 +1,35 @@
+(re-)converged start D=73.265722 M=32 nodes=[0.3, 0.4, 0.5, 0.6, 0.7, 0.85]: Delta 1.7807570807351616 ok True (15s)
+history point D=73.260817: ok True, Delta 1.7807659583445139
+history point D=73.262218: ok True, Delta 1.7807634225421158
+history point D=73.26397: ok True, Delta 1.7807602515665184
+D=73.2707 Delta=1.7807480151235469+7.25e-17 its 5 |F| 1.5e-23 26s piv 8.2e-15..7.0e+03 dDelta/dF max 3.6e+22 tails 8e-43 2e-67 pin: |F_full| 1.5e-23 dDelta_pin +2.2e-08
+   D=73.276972: Newton stopped at |F| 1.5e-19; Levenberg-Marquardt from the predictor
+D=73.2770 Delta=1.7807367091107498+6.10e-18 its 9 |F| 1.5e-28 44s piv 4.6e-10..7.1e+03 dDelta/dF max 1.1e+25 tails 6e-39 3e-67 pin: |F_full| 1.1e-27 dDelta_pin -1.6e-07
+   D=73.283222: Newton stopped at |F| 1.6e-04; Levenberg-Marquardt from the predictor
+D=73.2832 Delta=1.7756196707992109+2.65e-17 its 21 |F| 3.0e-25 119s piv 5.2e-07..7.1e+03 dDelta/dF max 4.1e+22 tails 3e-13 2e-58 pin: |F_full| 3.0e-25 dDelta_pin +5.2e-03
+   centre series tail 2.6e-13: kc -> 184
+/Users/nathan/venv-qd/lib/python3.13/site-packages/hpkernel/driver.py:272: RuntimeWarning: overflow encountered in square
+  return float(np.sqrt(np.sum((Fh + Fl) ** 2)))
+Traceback (most recent call last):
+  File "/Users/nathan/Source/choptuik-mac-qd2/hp/scan_hp.py", line 516, in <module>
+    main()
+    ~~~~^^
+  File "/Users/nathan/Source/choptuik-mac-qd2/hp/scan_hp.py", line 392, in main
+    s, zh2, zl2, hist, ok, dt = solve_at(Dn, zp, zpl, a, nodes, M, a.it_max, pin=pin)
+                                ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nathan/Source/choptuik-mac-qd2/hp/scan_hp.py", line 142, in solve_at
+    zh2, zl2, hist = deflated_newton(s, zh, zl, tol=a.tol, it_max=it_max, w=a.w, verbose=a.verbose,
+                     ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                     junk_only=a.junk_only, delta_tol=a.delta_tol, accept_stall=accept_stall(a), **jkw)
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nathan/venv-qd/lib/python3.13/site-packages/hpkernel/driver.py", line 826, in deflated_newton
+    Th, Tl = s.residual(th, tl)
+             ~~~~~~~~~~^^^^^^^^
+  File "/Users/nathan/Source/choptuik-mac-qd2/hp/pinning.py", line 66, in residual
+    return self._sub(*self.s.residual(zh, zl))
+                      ~~~~~~~~~~~~~~~^^^^^^^^
+  File "/Users/nathan/venv-qd/lib/python3.13/site-packages/hpkernel/driver.py", line 200, in residual
+    return self.s.residual_qdh(c(zh), c(zl), c(z2), c(z3), refine=self.refine)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: singular or non-finite pivot at column 0 (NaN)
+exit 1

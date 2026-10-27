@@ -1,0 +1,25 @@
+# T84-mac: large D past 73 in the layout with the last node at 0.85: the pinned pilot, the jump residuals, the jump ladder
+
+Machine: mac (coordinator). scan_hp.py at wip/qd-horizon dd0186e (~/Source/choptuik-mac-qd2, ~/venv-qd), T80's settings
+(comms.txt, T75 and T80 entries), from T75's pin 7 frontier D 73.2657 with its three newest states as history, and
+--nodes 0.3,0.4,0.5,0.6,0.7,0.85 (x85) or ...,0.7,0.8 (x80): the horizon series is matched at u0 = 0.15 or 0.2, inside
+the radius of about 0.22 that notes/QUAD_DOUBLE.md 12.2 estimates for generic horizon data; with u0 = 0.3, T80 failed
+every step from this start (raw/T80, folder T80).
+
+Pass criteria, fixed before the run (T80's pilot rule): within the hour, at least 3 converged points and a median step
+in D of at least 0.002 (T75's last steps were 0.0013-0.0018), each point with F_full <= 1e-19 and |dDelta_pin| <=
+1e-10. Reported either way: the re-converged start's Delta in the new layout against T75's Delta_full1 at 73.2657.
+
+Files: x85.jsonl, x85_attempts.jsonl, x85.log, pin7_x85_D*.npz; the same for x80. dlist.txt: waypoints 73.30 to 200.00.
+
+## Results (2026-10-27)
+
+- Pilot (x85.log, x80.log, stopped by the coordinator after two and one converged points): the pinned Newton converges
+  in both layouts, but the full-system sensitivity dDelta/dF is 1e22-1e25 (T75: 1.3e11) and dDelta_pin 2e-8 to 1.6e-7
+  (T75: 1e-12), above the 1e-10 criterion: Delta is undetermined in double-double in these layouts.
+- jump_resid.log (jump_resid.py): the residual at D + dD with the state held. Old layout: 2e39 at dD 0.05. New layout:
+  14 at 0.05, 1e9 at 0.2, 2e20 at 1, 1e37 at 5. No jump of any size lands from the state held.
+- Jump ladder (run_jump.sh; jump*.log, jump*.jsonl, jump*_attempts.jsonl, jump*_D*.npz): one step of 0.5, 1, 2 and 5
+  from 73.2657 with the cubic predictor through T75's waypoints 70.65, 71.5, 72.4 and the frontier, x85 layout. All
+  four converge (|F| 1e-27 to 6e-21) at D 73.77, 74.27, 75.27 and 78.27, with dDelta_pin -1.7e-6, -9.4e-7, -2.1e-5
+  and -4.3e-4: the points are on the branch, their Delta is not determined past about 1e-6 in double-double.
