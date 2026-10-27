@@ -12,8 +12,10 @@ every folder and what it holds.
 - Every folder starts with a `README.md` whose first line is `# <folder>: <what it holds>`, followed by the machine,
   the source directory or worktree, and the comms.txt entry or commands that produced it.
 - The folders imported from the code repository's `raw/<name>` branches on 2026-10-27 keep the branch's name (`T75/`
-  from `raw/T75`) and its commits: a citation such as "raw/T75 7ca90fe" resolves here as commit `7ca90fe`, and
-  `git log -- T75` shows that history.
+  from `raw/T75`) and its commits: a citation such as "raw/T76 7ca90fe" resolves here as commit `7ca90fe` (with the
+  files at that commit's root). Each branch came in by a merge commit, "Import raw/<name> (<last commit>)", whose
+  second parent is the branch: `git log <merge>^2` shows the branch's history. `git log -- T75` starts at that merge,
+  since the branch's own commits hold the files at the root, not under `T75/`.
 
 ## Adding output
 
