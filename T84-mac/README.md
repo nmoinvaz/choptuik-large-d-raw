@@ -11,3 +11,6 @@ in D of at least 0.002 (T75's last steps were 0.0013-0.0018), each point with F_
 1e-10. Reported either way: the re-converged start's Delta in the new layout against T75's Delta_full1 at 73.2657.
 
 Files: x85.jsonl, x85_attempts.jsonl, x85.log, pin7_x85_D*.npz; the same for x80. dlist.txt: waypoints 73.30 to 200.00.
+- qd_leg.sh (qd_leg_pin7.log, qd_leg_pin5.log, pin{5,7}_D*_pinned*_dz.npz, *_fullcorr.jsonl): the quad-double leg,
+  both pins at the waypoints 71-73.1, notes 12.4. qd_fullleg.py (fullleg_pin*.jsonl, logs): the full system from the
+  polished states.
