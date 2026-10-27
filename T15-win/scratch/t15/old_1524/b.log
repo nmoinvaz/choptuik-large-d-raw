@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "C:\Users\nathan\AppData\Local\Temp\claude\C--Users-nathan-Source-dss-residual-kernel\86d2c1d2-48f9-41c1-9045-dff6a2020bf5\scratchpad\t15-wt\solver\scan_ne.py", line 238, in <module>
+    z, rec = solve(D, z0, lam_g, t0, f, Delta_old=float(z0[-1]))
+  File "C:\Users\nathan\AppData\Local\Temp\claude\C--Users-nathan-Source-dss-residual-kernel\86d2c1d2-48f9-41c1-9045-dff6a2020bf5\scratchpad\t15-wt\solver\scan_ne.py", line 187, in solve
+    S, R = make(D, z0[-1], nodes=NODES, threads=THREADS, kc=KC, Ks=KS)
+  File "C:\Users\nathan\AppData\Local\Temp\claude\C--Users-nathan-Source-dss-residual-kernel\86d2c1d2-48f9-41c1-9045-dff6a2020bf5\scratchpad\t15-wt\solver\rust_solver.py", line 38, in make
+    R = RustResidual(S, threads=threads, backend="simd")
+  File "C:\Users\nathan\AppData\Local\Programs\Python\Python310\lib\site-packages\rustkernel\__init__.py", line 120, in __init__
+    self.kernel = (kernel_cls or Kernel)(*kernel_args(S, folded, match_node))
+ValueError: nh must be <= 72
