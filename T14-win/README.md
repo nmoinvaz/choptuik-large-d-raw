@@ -8,3 +8,10 @@ Worktree files keep their path relative to the worktree. Files under `scratch/` 
 | source | files |
 |---|---|
 | scratchpad dir t14_smoke | 1 |
+
+Added by the disk sweep of 2026-10-27 15:07 UTC (3 files, same layout as above; a name that already existed with other content is under `sweep-2026-10-27/`):
+
+| source | files |
+|---|---|
+| scratchpad dir t14 | 2 |
+| scratchpad dir t14b | 1 |
