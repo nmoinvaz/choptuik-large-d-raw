@@ -9,3 +9,9 @@ Worktree files keep their path relative to the worktree. Files under `scratch/` 
 |---|---|
 | scratchpad dir t36 | 8 |
 | worktree t36-wt (modified) | 6 |
+
+Added by the disk sweep of 2026-10-27 15:07 UTC (6 files, same layout as above; a name that already existed with other content is under `sweep-2026-10-27/`):
+
+| source | files |
+|---|---|
+| scratchpad dir t36 | 6 |

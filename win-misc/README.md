@@ -19,3 +19,10 @@ Worktree files keep their path relative to the worktree. Files under `scratch/` 
 | worktree t-wt (untracked) | 1 |
 | scratchpad dir bw_run | 1 |
 | scratchpad root | 1 |
+
+Added by the disk sweep of 2026-10-27 15:07 UTC (20 files, same layout as above; a name that already existed with other content is under `sweep-2026-10-27/`):
+
+| source | files |
+|---|---|
+| worktree hp-wt | 19 |
+| worktree cert-m5 | 1 |
