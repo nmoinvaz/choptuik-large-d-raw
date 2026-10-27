@@ -1,0 +1,30 @@
++ cd /Users/nathan/Source/choptuik-qd-solver/hp
++ git log -1 --oneline
+086a95e QUAD_DOUBLE 12.2: the horizon block stops the quad-double continuation
++ PATH='/Users/nathan/venv-qds/bin:/Users/nathan/.grok/bin:/Users/nathan/.nvm/versions/node/v24.14.0/bin:/Users/nathan/.local/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/pkg/env/global/bin:/Library/Apple/usr/bin:/usr/local/share/dotnet:~/.dotnet/tools:/opt/homebrew/bin:/opt/homebrew/sbin:/Users/nathan/.cargo/bin:/Applications/Ghostty.app/Contents/MacOS:/Applications/010 Editor.app/Contents/CmdLine'
++ nice -n 10 bash build.sh
+🍹 Building a mixed python/rust project
+🐍 Found CPython 3.13 at /Users/nathan/venv-qds/bin/python3
+🔗 Found pyo3 bindings
+📡 Using build options features from pyproject.toml
+💻 Using `MACOSX_DEPLOYMENT_TARGET=11.0` for aarch64-apple-darwin by default
+   Compiling multidouble v1.7.0
+   Compiling hpkernel v0.1.0 (/Users/nathan/Source/choptuik-qd-solver/hp)
+    Finished `release` profile [optimized] target(s) in 9m 45s
+📦 Built wheel for CPython 3.13 to /Users/nathan/Source/choptuik-qd-solver/hp/dist/hpkernel-0.1.0-cp313-cp313-macosx_11_0_arm64.whl
+Processing ./dist/hpkernel-0.1.0-cp313-cp313-macosx_11_0_arm64.whl
+Installing collected packages: hpkernel
+  Attempting uninstall: hpkernel
+    Found existing installation: hpkernel 0.1.0
+    Uninstalling hpkernel-0.1.0:
+      Successfully uninstalled hpkernel-0.1.0
+Successfully installed hpkernel-0.1.0
+Collecting multidouble @ git+https://github.com/nmoinvaz/multidouble@cb221113d1cf4aac62564f6ab1d69f3de19297ae#subdirectory=python
+  Using cached multidouble-0.1.0-cp313-cp313-macosx_11_0_arm64.whl
+Installing collected packages: multidouble
+  Attempting uninstall: multidouble
+    Found existing installation: multidouble 0.1.0
+    Uninstalling multidouble-0.1.0:
+      Successfully uninstalled multidouble-0.1.0
+Successfully installed multidouble-0.1.0
+hpkernel neon multidouble neon
