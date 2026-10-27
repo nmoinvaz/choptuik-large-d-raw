@@ -3,7 +3,8 @@
 Raw run output of [choptuik-large-d](https://github.com/nmoinvaz/choptuik-large-d): solver states (npz), per-point
 records (jsonl), attempts files, checkpoints and logs, one folder per task. The code repository keeps only what is
 derived from them (CSVs, graphs, notes), naming the folder and commit where it uses them. [INDEX.md](INDEX.md) lists
-every folder and what it holds.
+every folder and what it holds. [MOVED_FROM_MAIN.md](MOVED_FROM_MAIN.md) lists the files removed from the code
+repository's main because this repository holds the same content.
 
 ## Layout
 
