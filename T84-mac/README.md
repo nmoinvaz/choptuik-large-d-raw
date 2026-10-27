@@ -11,3 +11,6 @@ in D of at least 0.002 (T75's last steps were 0.0013-0.0018), each point with F_
 1e-10. Reported either way: the re-converged start's Delta in the new layout against T75's Delta_full1 at 73.2657.
 
 Files: x85.jsonl, x85_attempts.jsonl, x85.log, pin7_x85_D*.npz; the same for x80. dlist.txt: waypoints 73.30 to 200.00.
+- qd_inward.py (qd_inward_pin7_D73.2657.log, *_inward0.85_0.95.jsonl): the kernel's inward match (match_node) with
+  nodes 0.85 and 0.95 beyond the match at 0.7, the series summed at u = 0.05: residual 11 before any step, 47 at
+  dD 1e-8, Newton step 2.6e4, no trial accepted. The inward integration amplifies by about 1e9 per unit of D.
