@@ -1,0 +1,25 @@
+$ python hp/modecount_wind.py hp/data/seeds/local/up23_D61.0264.npz --M=48 --h0=0.6 --lam=2.043532530673195 --fmax=1e-15
+  resampled state from modecount_state_D61.0264_M48_kf13.npz
+Traceback (most recent call last):
+  File "C:\Users\nathan\AppData\Local\Temp\claude\C--Users-nathan-Source-dss-residual-kernel\86d2c1d2-48f9-41c1-9045-dff6a2020bf5\scratchpad\t37-wt\hp\modecount_wind.py", line 315, in <module>
+    main()
+  File "C:\Users\nathan\AppData\Local\Temp\claude\C--Users-nathan-Source-dss-residual-kernel\86d2c1d2-48f9-41c1-9045-dff6a2020bf5\scratchpad\t37-wt\hp\modecount_wind.py", line 291, in main
+    st = setup(path, M=int(opts["M"]) if "M" in opts else None, threads=threads, kf=kf, log=log,
+  File "C:\Users\nathan\AppData\Local\Temp\claude\C--Users-nathan-Source-dss-residual-kernel\86d2c1d2-48f9-41c1-9045-dff6a2020bf5\scratchpad\t37-wt\hp\modecount_common.py", line 78, in setup
+    s, c = build_pair(meta, zh, zl, M, kf, threads)
+  File "C:\Users\nathan\AppData\Local\Temp\claude\C--Users-nathan-Source-dss-residual-kernel\86d2c1d2-48f9-41c1-9045-dff6a2020bf5\scratchpad\t37-wt\hp\modecount_common.py", line 45, in build_pair
+    c = modecount_cx.CSolver(M, float(nh[0]), float(nl[0]), dh, dl, ph, pl, list(meta["nodes"]), s.get_segs(),
+AttributeError: module 'modecount_cx' has no attribute 'CSolver'
+$ python hp/modecount_wind.py hp/data/seeds/local/up23_D61.0264.npz --M=48 --h0=0.6 --lam=2.043532530673195 --fmax=1e-15
+  resampled state from modecount_state_D61.0264_M48_kf13.npz
+  |F| 2.7e-15 in this layout: Newton
+  |F| 2.7e-15 after Newton: Levenberg-Marquardt
+  |F| 2.7e-15; saved modecount_state_D61.0264_M48_kf13.npz
+Traceback (most recent call last):
+  File "C:\Users\nathan\AppData\Local\Temp\claude\C--Users-nathan-Source-dss-residual-kernel\86d2c1d2-48f9-41c1-9045-dff6a2020bf5\scratchpad\t37-wt\hp\modecount_wind.py", line 315, in <module>
+    main()
+  File "C:\Users\nathan\AppData\Local\Temp\claude\C--Users-nathan-Source-dss-residual-kernel\86d2c1d2-48f9-41c1-9045-dff6a2020bf5\scratchpad\t37-wt\hp\modecount_wind.py", line 291, in main
+    st = setup(path, M=int(opts["M"]) if "M" in opts else None, threads=threads, kf=kf, log=log,
+  File "C:\Users\nathan\AppData\Local\Temp\claude\C--Users-nathan-Source-dss-residual-kernel\86d2c1d2-48f9-41c1-9045-dff6a2020bf5\scratchpad\t37-wt\hp\modecount_common.py", line 95, in setup
+    raise RuntimeError(f"background not converged in this layout: |F| = {F:.1e} > {fmax:.0e} (M = {M})")
+RuntimeError: background not converged in this layout: |F| = 2.7e-15 > 1e-15 (M = 48)

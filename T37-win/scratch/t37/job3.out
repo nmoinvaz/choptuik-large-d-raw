@@ -1,0 +1,31 @@
+$ python hp/modecount_lowD.py solver/data/neB_kc39_D4.0000.npy --kc=39 --M=32,48
+Traceback (most recent call last):
+  File "C:\Users\nathan\AppData\Local\Temp\claude\C--Users-nathan-Source-dss-residual-kernel\86d2c1d2-48f9-41c1-9045-dff6a2020bf5\scratchpad\t37-wt\hp\modecount_lowD.py", line 58, in <module>
+    main()
+  File "C:\Users\nathan\AppData\Local\Temp\claude\C--Users-nathan-Source-dss-residual-kernel\86d2c1d2-48f9-41c1-9045-dff6a2020bf5\scratchpad\t37-wt\hp\modecount_lowD.py", line 39, in main
+    D, zh, zl = seed_from_f64(path, Ms[0], kc=kc, nodes=NL)
+  File "C:\Users\nathan\AppData\Local\Programs\Python\Python310\lib\site-packages\hpkernel\driver.py", line 130, in seed_from_f64
+    from spec_long import make_long
+ModuleNotFoundError: No module named 'spec_long'
+$ python hp/modecount_lowD.py solver/data/neB_kc39_D4.0000.npy --kc=39 --M=32,48
+D 4.0: seeded at M 32 from neB_kc39_D4.0000.npy (f64 Delta 3.445455489194)
+  newton 0: |F| 1.74e-03 |dz| 1.21e-01 lam 1 dDelta +3.28e-05 Delta 3.445488257781839 piv 3.6e-03..4.6e+00  t 8.0s
+  newton 1: |F| 1.69e-06 |dz| 1.69e-04 lam 1 dDelta +2.63e-06 Delta 3.445490888641033 piv 3.6e-03..4.6e+00  t 15.3s
+  newton 2: |F| 1.84e-11 |dz| 4.75e-09 lam 1 dDelta +1.47e-12 Delta 3.445490888642500 piv 3.6e-03..4.6e+00  t 22.4s
+  newton 3: |F| 9.37e-22 |dz| 5.86e-19 lam 1 dDelta +7.12e-22 Delta 3.445490888642500 piv 3.6e-03..4.6e+00  t 30.2s
+  newton 4: |F| 1.92e-30 converged (last |dz| 8.7e-27) Delta 3.445490888642500
+D 4.0 M 32: Delta 3.445490888642500, minus f64 +3.54e-05, |F| 1.9e-30, 5 Newton steps, 39 s
+  newton 0: |F| 2.30e-03 |dz| 1.43e-01 lam 1 dDelta -4.16e-05 Delta 3.445449299651045 piv 2.5e-03..5.5e+00  t 23.5s
+  newton 1: |F| 1.57e-03 |dz| 6.91e-02 lam 0.5 dDelta +8.05e-07 Delta 3.445450104486273 piv 2.5e-03..6.0e+02  t 45.1s
+  newton 2: |F| 9.40e-04 |dz| 1.85e-01 lam 0.5 dDelta -1.52e-05 Delta 3.445434888748889 piv 2.5e-03..3.6e+02  t 67.4s
+  newton 3: |F| 5.68e-04 |dz| 1.59e-01 lam 0.5 dDelta +3.81e-05 Delta 3.445473013246573 piv 3.0e-03..2.0e+02  t 89.3s
+  newton 4: |F| 6.64e-04 |dz| 2.72e-01 lam 0.25 dDelta -8.39e-07 Delta 3.445472174610786 piv 2.5e-03..1.3e+02  t 109.5s
+  newton 5: |F| 5.63e-04 |dz| 3.76e-01 lam 0.125 dDelta +1.40e-05 Delta 3.445486195475367 piv 2.7e-03..1.3e+02  t 132.3s
+  newton 6: |F| 5.41e-04 |dz| 1.04e-01 lam 0.5 dDelta -4.83e-05 Delta 3.445437915857418 piv 3.0e-03..1.5e+02  t 157.1s
+  newton 7: |F| 3.21e-04 |dz| 6.95e-02 lam 1 dDelta +3.32e-05 Delta 3.445471154821777 piv 2.6e-03..1.2e+02  t 180.5s
+  newton 8: |F| 2.68e-04 |dz| 1.12e-01 lam 0.125 dDelta +3.65e-06 Delta 3.445474809130670 piv 2.8e-03..7.1e+01  t 203.1s
+  newton 9: |F| 1.97e-04 |dz| 2.28e-01 lam 0.0625 dDelta -8.54e-07 Delta 3.445473954652647 piv 3.2e-03..6.0e+01  t 227.1s
+  newton 10: |F| 1.73e-04 |dz| 1.30e-01 lam 0.25 dDelta +1.41e-05 Delta 3.445488083150042 piv 3.1e-03..6.1e+01  t 248.7s
+  newton 11: |F| 1.30e-04 |dz| 4.88e-02 lam 0.25 dDelta +6.40e-07 Delta 3.445488723217442 piv 3.6e-03..5.0e+01  t 272.7s
+D 4.0 M 48: Delta 3.445488723217442, minus f64 +3.32e-05, |F| 1.3e-04, 12 Newton steps, 314 s
+saved C:\Users\nathan\AppData\Local\Temp\claude\C--Users-nathan-Source-dss-residual-kernel\86d2c1d2-48f9-41c1-9045-dff6a2020bf5\scratchpad\t37-wt\hp\data\modecount_state_D4.0000_M48.npz
