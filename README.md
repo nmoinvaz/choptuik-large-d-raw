@@ -14,3 +14,8 @@ Built from feat/qd-solver (dfaec36; multidouble 1.7.0's sources) into ~/venv-qds
   tangent scales like h^2; blocks_dD_D72.8.log (blocks_dD.py): only the horizon block explodes as D moves, worse with ks;
   pred2.log (pred2.py): linear interpolation between the two solutions leaves the horizon block at 1e18
 - bitid.sh and its logs: highm_check.py ref and scaled, main (1.5.1) against feat/qd-solver (1.7.0)
+- layout_test.py, layout_test.jsonl, .log, layout_x*_D73*.npz: the D 73.0 quad-double state with one node added at
+  0.75, 0.8, 0.85 or 0.9, converged by newton_qd, the blocks' response to D, Newton at D + dD (notes/QUAD_DOUBLE.md 12.3);
+  0.9 was stopped by hand at its 7th step (|F| 2.6e-3, wandering)
+- frontier.log, frontier_*.jsonl: T75's states at D 73.10 (both runs) and the frontiers 73.2657 (pin 7), 73.1211
+  (pin 5) converged in quad-double by scan_qd.py
