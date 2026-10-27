@@ -1,0 +1,61 @@
+  PASS  C15-W1 regenerated: zero at 1.000181904 (stored 1.000181904)
+  PASS  C15-W2 regenerated: zero at 1.000434139 (stored 1.000434139)
+  PASS  C15-W3 regenerated: zero at 1.000375605 (stored 1.000375605)
+  PASS  C15-ARC arc regenerated: zero at 1.000338396 (stored 1.000338396)
+  PASS  C15-ARC chord regenerated: zero at 1.000276396 (stored 1.000276396)
+  PASS  C15-ARC mirror regenerated: zero at 1.000040463 (stored 1.000040463)
+  PASS  C15-ARC beta2 regenerated: zero at 1.000222343 (stored 1.000222343)
+  PASS  C15-BP [3/12] regenerated: zero at 1.000014142 (stored 1.000014142)
+  PASS  C15-BP [4/11] regenerated: zero at 0.999991740 (stored 0.999991740)
+  PASS  C15-BP [5/10] regenerated: zero at 0.999992430 (stored 0.999992430)
+  PASS  C15-BP [6/9] regenerated: zero at 0.999998998 (stored 0.999998998)
+  PASS  C15-BP [7/8] regenerated: zero at 1.000001760 (stored 1.000001760)
+  PASS  C14-BP [4/10] regenerated: zero at 0.999991257 (stored 0.999991257)
+  PASS  C14-BP [5/9] regenerated: zero at 0.999982831 (stored 0.999982831)
+  PASS  C14-BP [6/8] regenerated: zero at 0.999993145 (stored 0.999993145)
+  PASS  C13-BP [5/8] regenerated: zero at 0.999957436 (stored 0.999957436)
+  PASS  C13-BP [6/7] regenerated: zero at 0.999981605 (stored 0.999981605)
+real: sigma_16 / tau_16 at the nodes: 0.99: (4.9643413e-13 + 4.0468033e-14j) / (-8.4385987e-16 + 1.420049e-16j); 1.0: (4.8777399e-13 + 1.2580017e-14j) / (-7.8295927e-16 + 1.3505036e-19j); 1.01: (4.7770854e-13 - 1.4262222e-14j) / (-7.0726077e-16 - 1.1852481e-16j)
+real arg_16 = 1.0000104; real K = 16 detectors: ['D-ratio', 'D-ratiolaw']
+
+| completion | its zero | zeros in |x| < 7.3 / 12 / 16 | sigma_16 rel. error (0.99 / 1.00 / 1.01) | tau_16 rel. error | its arg_16 | K = 16 detectors beyond the real data's | survives |
+|---|---|---|---|---|---|---|---|
+| simple-zero law from tau_14, tau_15 | - | - | - | 4.6e-05 / 4.8e-05 / 7.3e-05 | - | - | - |
+| C15-W1 | 1.000182 | 7 / 15 / - | 6.2e-03 / 5.7e-03 / 5.1e-03 | 3.6e+00 / 3.5e+00 / 3.4e+00 | none | D-G, D-arg, D-bracket, D-pade | no |
+  PASS  C15-W1: its K = 15 estimates are the real ones (difference 0.0e+00)
+| C15-W2 | 1.000434 | 7 / 15 / - | 5.3e-03 / 5.2e-03 / 5.1e-03 | 3.1e+00 / 3.2e+00 / 3.4e+00 | none | D-G, D-arg, D-bracket, D-pade | no |
+  PASS  C15-W2: its K = 15 estimates are the real ones (difference 0.0e+00)
+| C15-W3 | 1.000376 | 7 / 14 / - | 4.3e-03 / 4.3e-03 / 4.3e-03 | 2.5e+00 / 2.7e+00 / 2.9e+00 | none | D-G, D-arg, D-bracket, D-pade | no |
+  PASS  C15-W3: its K = 15 estimates are the real ones (difference 0.0e+00)
+| C15-ARC arc | 1.000338 | 5 / 13 / - | 9.3e-04 / 8.2e-04 / 6.6e-04 | 5.4e-01 / 5.1e-01 / 4.4e-01 | 0.992463 | D-G, D-bracket, D-pade | no |
+  PASS  C15-ARC arc: its K = 15 estimates are the real ones (difference 0.0e+00)
+| C15-ARC chord | 1.000276 | 5 / 13 / - | 7.4e-04 / 6.4e-04 / 5.2e-04 | 4.3e-01 / 4.0e-01 / 3.5e-01 | 0.987448 | D-G, D-bracket, D-pade | no |
+  PASS  C15-ARC chord: its K = 15 estimates are the real ones (difference 0.0e+00)
+| C15-ARC mirror | 1.000040 | 5 / 13 / - | 3.8e-04 / 3.3e-04 / 2.7e-04 | 2.2e-01 / 2.1e-01 / 1.8e-01 | 0.989776 | D-G, D-bracket, D-pade | no |
+  PASS  C15-ARC mirror: its K = 15 estimates are the real ones (difference 0.0e+00)
+| C15-ARC beta2 | 1.000222 | 5 / 13 / - | 7.8e-04 / 7.6e-04 / 7.0e-04 | 4.5e-01 / 4.7e-01 / 4.7e-01 | 1.010311 | D-G, D-arg, D-bracket, D-pade | no |
+  PASS  C15-ARC beta2: its K = 15 estimates are the real ones (difference 0.0e+00)
+| C15-BP [3/12] | 1.000014 | 0 / 9 / 13 | 7.2e-06 / 7.2e-06 / 7.3e-06 | 4.2e-03 / 4.5e-03 / 4.8e-03 | 0.999887 | D-G, D-bracket, D-pade | no |
+  PASS  C15-BP [3/12]: its K = 15 estimates are the real ones (difference 0.0e+00)
+| C15-BP [4/11] | 0.999992 | 0 / 4 / 11 | 4.8e-07 / 5.6e-07 / 6.1e-07 | 2.8e-04 / 3.5e-04 / 4.1e-04 | 0.999993 | - | yes |
+  PASS  C15-BP [4/11]: its K = 15 estimates are the real ones (difference 0.0e+00)
+  FINDING: C15-BP [4/11] carries a ring (0 / 4 / 11 zeros) and survives at K = 16
+| C15-BP [5/10] | 0.999992 | 0 / 2 / 10 | 5.0e-07 / 4.6e-07 / 4.3e-07 | 2.9e-04 / 2.9e-04 / 2.8e-04 | 0.999998 | - | yes |
+  PASS  C15-BP [5/10]: its K = 15 estimates are the real ones (difference 0.0e+00)
+  FINDING: C15-BP [5/10] carries a ring (0 / 2 / 10 zeros) and survives at K = 16
+| C15-BP [6/9] | 0.999999 | 0 / 1 / 11 | 9.8e-08 / 8.8e-08 / 7.9e-08 | 5.7e-05 / 5.5e-05 / 5.3e-05 | 1.000013 | - | yes |
+  PASS  C15-BP [6/9]: its K = 15 estimates are the real ones (difference 0.0e+00)
+| C15-BP [7/8] | 1.000002 | 0 / 1 / 5 | 1.9e-08 / 1.9e-08 / 1.9e-08 | 1.1e-05 / 1.2e-05 / 1.3e-05 | 1.000011 | D-bracket | no |
+  PASS  C15-BP [7/8]: its K = 15 estimates are the real ones (difference 0.0e+00)
+| C14-BP [4/10] | 0.999991 | 0 / 4 / 10 | 3.5e-06 / 3.5e-06 / 3.8e-06 | 4.6e-04 / 3.2e-04 / 2.4e-04 | 1.000024 | D-G, D-arg, D-bracket | no |
+  PASS  C14-BP [4/10]: its K = 14 estimates are the real ones (difference 0.0e+00)
+| C14-BP [5/9] | 0.999983 | 0 / 1 / 8 | 4.2e-06 / 3.8e-06 / 3.4e-06 | 4.3e-04 / 3.8e-04 / 3.3e-04 | 0.999988 | - | yes |
+  PASS  C14-BP [5/9]: its K = 14 estimates are the real ones (difference 0.0e+00)
+| C14-BP [6/8] | 0.999993 | 0 / 1 / 7 | 1.5e-06 / 1.4e-06 / 1.3e-06 | 1.8e-04 / 1.8e-04 / 1.8e-04 | 1.000003 | D-bracket | no |
+  PASS  C14-BP [6/8]: its K = 14 estimates are the real ones (difference 0.0e+00)
+| C13-BP [5/8] | 0.999957 | - / 1 / - | 3.3e-05 / 2.5e-05 / 2.0e-05 | 9.8e-04 / 7.0e-04 / 5.3e-04 | 0.999988 | D-arg, D-bracket | no |
+  PASS  C13-BP [5/8]: its K = 14, 15 estimates reproduce the stored K = 15 record (difference 5.6e-16)
+| C13-BP [6/7] | 0.999982 | - / 1 / - | 8.5e-06 / 8.1e-06 / 7.7e-06 | 3.2e-04 / 3.0e-04 / 2.7e-04 | 0.999995 | D-bracket | no |
+  PASS  C13-BP [6/7]: its K = 14, 15 estimates reproduce the stored K = 15 record (difference 5.6e-16)
+
+C14-BP [4/10], the ring that survived sigma_15: survives sigma_16: False (extra detectors ['D-G', 'D-arg', 'D-bracket']; its sigma_16 is off by 3.8e-06 relative)
