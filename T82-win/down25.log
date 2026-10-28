@@ -2,3 +2,36 @@
 00:27:14 --- D 3.0475 (from 3.05), M 320 / 384, nodes 0.000157..0.975
 00:27:42   D 3.0475 M 256: start 'predictor' |F| 8.27e-02 (1557 steps)
 00:27:54 D 3.0475 M 256: L 22529, steps 1557, start |F| 8.3e-02
+  newton 0: |F| 8.27e-02 |dz| 3.42e+00 lam 1 dDelta -1.46e-04 Delta 2.465886010470386 piv 6.5e-05..3.3e+01  t 1180.1s
+  newton 0: |F| 3.77e-04 |dz| 3.42e+00 lam 1 dDelta +1.26e-04 Delta 2.466011918927566 piv 6.5e-05..3.2e+01  t 1216.8s
+  newton 0: |F| 1.63e-05 |dz| 2.18e-02 lam 1 dDelta +2.30e-07 Delta 2.466012148427839 piv 6.5e-05..3.3e+01  t 1201.4s
+  newton 0: |F| 5.92e-10 |dz| 3.86e-05 lam 1 dDelta +7.94e-11 Delta 2.466012148507288 piv 6.5e-05..3.3e+01  t 1204.5s
+  newton 0: |F| 1.20e-15 |dz| 6.92e-11 lam 1 dDelta +1.05e-17 Delta 2.466012148507288 piv 6.5e-05..3.3e+01  t 1215.4s
+  newton 0: |F| 2.72e-26 |dz| 3.47e-21 lam 1 dDelta -2.02e-28 Delta 2.466012148507288 piv 6.5e-05..3.3e+01  t 1206.5s
+  newton 0: |F| 5.68e-28 |dz| 1.89e-24 lam 0.5 dDelta +1.70e-31 Delta 2.466012148507288 piv 6.5e-05..3.3e+01  t 1214.0s
+  newton 0: |F| 3.85e-28 |dz| 2.13e-24 lam 1 dDelta +7.52e-31 Delta 2.466012148507288 piv 6.5e-05..3.3e+01  t 1197.0s
+03:08:29 D 3.0475 M 256: |F| 5.7e-28 -> 3.9e-28: below 1e-27 and no longer falling (the residual floor); stopping
+03:28:36 D 3.0475 M 256: Delta 2.4660121485072883 (-1.03e-16) |F| 3.0e-28 its 8 10852s dDelta/dF max 1.3e+00 tails 1e-78 5e-84 dDelta_est +3.0e-31
+03:29:26   D 3.0475 M 320: start 'predictor' |F| 8.27e-02 (2035 steps)
+03:29:36   D 3.0475 M 320: start 'lift of M_c' |F| 7.99e-05 (2035 steps)
+03:29:36   D 3.0475 M 320: best start 'lift of M_c' is a lift (|F| 8.0e-05 on the reused plan); two passes
+03:30:29   D 3.0475 M 320: start 'predictor' |F| 8.27e-02 on its own plan (3797 steps)
+03:31:26   D 3.0475 M 320: start 'lift of M_c' |F| 7.99e-05 on its own plan (3850 steps)
+03:31:57   D 3.0475 M 320: start 'lift of M_c' |F| 7.99e-05 (3850 steps)
+03:32:26 D 3.0475 M 320: L 28161, steps 3850, start |F| 8.0e-05
+  newton 0: |F| 7.99e-05 |dz| 2.89e-01 lam 1 dDelta -7.57e-10 Delta 2.466012147750151 piv 5.0e-05..4.5e+01  t 5567.3s
+  newton 0: |F| 6.23e-09 |dz| 2.95e-06 lam 1 dDelta -1.19e-09 Delta 2.466012146559423 piv 5.0e-05..4.5e+01  t 5676.3s
+  newton 0: |F| 1.20e-16 converged (last |dz| 2.8e-11) Delta 2.466012146559423; last step taken, |F| 4.42e-27
+08:11:46 D 3.0475 M 320: Delta 2.4660121465594229 (-7.13e-17) |F| 4.4e-27 its 3 16786s dDelta/dF max 1.1e+00 tails 2e-76 1e-76 dDelta_est -5.9e-31
+08:12:31   D 3.0475 M 320: start 'pass 1' |F| 4.41e-27 (1619 steps)
+08:12:49 D 3.0475 M 320: L 28161, steps 1619, start |F| 4.4e-27
+  newton 0: |F| 4.41e-27 |dz| 1.75e-14 lam 1 dDelta -3.20e-29 Delta 2.466012146559423 piv 3.7e-11..4.5e+01  t 2260.8s
+  newton 0: |F| 1.69e-28 |dz| 1.25e-14 lam 1 dDelta -3.08e-29 Delta 2.466012146559423 piv 3.5e-11..4.5e+01  t 2264.7s
+  newton 0: |F| 9.56e-29 converged (last |dz| 2.9e-15) Delta 2.466012146559423
+10:04:26 D 3.0475 M 320: Delta 2.4660121465594229 (-7.13e-17) |F| 9.6e-29 its 3 6712s dDelta/dF max 3.4e+02 tails 7e-67 1e-76 dDelta_est -5.7e-31
+10:04:57   D 3.0475 M 320: the solution's own plan has 2096 steps, more than the 1619 used
+10:06:11   D 3.0475 M 384: start 'lift of M_w' |F| 7.71e-06 (2216 steps)
+10:06:11   D 3.0475 M 384: best start 'lift of M_w' is a lift (|F| 7.7e-06 on the reused plan); two passes
+10:07:40   D 3.0475 M 384: start 'lift of M_w' |F| 7.71e-06 on its own plan (4383 steps)
+10:08:25   D 3.0475 M 384: start 'lift of M_w' |F| 7.71e-06 (4383 steps)
+10:09:12 D 3.0475 M 384: L 33793, steps 4383, start |F| 7.7e-06
