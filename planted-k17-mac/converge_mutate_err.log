@@ -1,0 +1,26 @@
+files: 960 bits at wf [0.99, 1.0, 1.01]; pilot (b) at wf [1.0]; scan33J1000 at wf [0.99, 1.0, 1.01]
+  wf 0.99: K 35 J 1000 prec 960 fit phys mf [6, 12], 18 coefficients
+  wf 1.0: K 35 J 1000 prec 960 fit phys mf [6, 12], 18 coefficients
+  wf 1.01: K 35 J 1000 prec 960 fit phys mf [6, 12], 18 coefficients
+(a) err17 against the 1e-10 relative requirement (section 3.6):
+  PASS  wf 0.99: sigma_17 = (2.7351243334556598802e-14 + 3.156300745876207894e-14j), err17 4.96e-26 (1.19e-12 relative)
+  FAIL  wf 1.0: sigma_17 = (2.8468173979361812918e-14 + 2.9335336047966674292e-14j), err17 5.44e-12 (1.33e+02 relative)
+  PASS  wf 1.01: sigma_17 = (2.9434600330414006322e-14 + 2.7089922226794287657e-14j), err17 5.95e-26 (1.49e-12 relative)
+(b) sigma_0..16 against scan33J1000 (960 bits):
+  PASS  wf 0.99: sigma_0..16 bitwise equal (17/17); sigma_err_0..16 equal (17/17)
+  PASS  wf 1.0: sigma_0..16 bitwise equal (17/17); sigma_err_0..16 equal (17/17)
+  PASS  wf 1.01: sigma_0..16 bitwise equal (17/17); sigma_err_0..16 equal (17/17)
+(c) pilot (b) at wf 1.00 (J 1250, 1280 bits) against (a):
+  PASS  sigma_17: |a - b| = 1.59e-27 against err17 5.44e-12
+  PASS  sigma_14..16 of (b) against scan33J1000: k 14: 1.8e-25 (err 1.8e-23), k 15: 2.7e-26 (err 2.9e-24), k 16: 2.7e-26 (err 4.1e-25)
+  note: (b)'s own sigma_err is inf at every k (its order-1 fit has residual 0), so (b) checks (a)'s values, not their error
+(d) the ratio law through sigma_17: second difference of sigma_k/sigma_{k+1}, k = 7..15 (D-ratiolaw <= 0.05):
+  PASS  wf 0.99: |d2| k = 7..15: 0.0366 0.0125 0.0020 0.0087 0.0112 0.0115 0.0108 0.0099 0.0091; sigma_16/sigma_17 = 8.5165-8.3483j
+  PASS  wf 1.0: |d2| k = 7..15: 0.0418 0.0157 0.0027 0.0084 0.0112 0.0116 0.0109 0.0099 0.0091; sigma_16/sigma_17 = 8.5309-8.3488j
+  PASS  wf 1.01: |d2| k = 7..15: 0.0476 0.0195 0.0048 0.0083 0.0113 0.0118 0.0111 0.0100 0.0091; sigma_16/sigma_17 = 8.5454-8.3492j
+spread in wf (context): the change of sigma_k across the nodes, against its error
+  k = 15: |sigma_k(1.01) - sigma_k(0.99)|/2 = 0.0581 |sigma_k(1.00)|; second difference / first = 0.0596; max err_k / first difference = 9.7e-12
+  k = 16: |sigma_k(1.01) - sigma_k(0.99)|/2 = 0.0593 |sigma_k(1.00)|; second difference / first = 0.0606; max err_k / first difference = 1.6e-11
+  k = 17: |sigma_k(1.01) - sigma_k(0.99)|/2 = 0.0604 |sigma_k(1.00)|; second difference / first = 0.0614; max err_k / first difference = 2.2e+03
+
+1 check(s) failed
