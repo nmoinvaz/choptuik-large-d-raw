@@ -52,3 +52,20 @@
 23:09:50 --- D 3.045 (from 3.0475), M 320 / 384, nodes 0.000157..0.975
 23:10:22   D 3.045 M 256: start 'predictor' |F| 3.46e-02 (1759 steps)
 23:10:35 D 3.045 M 256: L 22529, steps 1759, start |F| 3.5e-02
+C:\Users\nathan\AppData\Local\Temp\claude\C--Users-nathan-Source-dss-residual-kernel\86d2c1d2-48f9-41c1-9045-dff6a2020bf5\scratchpad\t79\pkg\hpkernel\driver.py:149: RuntimeWarning: overflow encountered in square
+  return float(np.sqrt(np.sum((Fh + Fl) ** 2)))
+C:\Users\nathan\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\_core\fromnumeric.py:86: RuntimeWarning: overflow encountered in reduce
+  return ufunc.reduce(obj, axis, dtype, out, **passkwargs)
+  newton 0: |F| 3.46e-02: no decrease along the f64-Jacobian step; retrying with the dd4 Jacobian (M > 128: no exact dense Jacobian)
+  newton 0: |F| 3.46e-02: no decrease along the Newton step, giving up
+00:16:34 D 3.045 M 256: NOT converged, |F| 3.5e-02 after 1 iterations (3973s); stopping
+00:16:34 D 3.045: the M 256 helper failed; M 320 from its own predictor in two passes (--helper_fallback)
+00:17:32   D 3.045 M 320: start 'predictor' |F| 3.46e-02 (2392 steps)
+00:17:32   D 3.045 M 320: best start |F| 3.5e-02 > 1e-03 on the reused plan; two passes
+00:18:51   D 3.045 M 320: start 'predictor' |F| 3.46e-02 on its own plan (5082 steps)
+00:19:27   D 3.045 M 320: start 'predictor' |F| 3.46e-02 (5082 steps)
+00:20:04 D 3.045 M 320: L 28161, steps 5082, start |F| 3.5e-02
+  newton 0: |F| 3.46e-02 |dz| 5.65e-01 lam 1 dDelta -3.66e-05 Delta 2.446447392609217 piv 5.1e-05..3.9e+01  t 7451.7s
+--- interrupted by the Windows update restart 2026-10-29 10:39 UTC; resumed ---
+07:26:27 resuming: M 320/384, last D 3.0475, 22.71 h used
+07:26:27 --- D 3.045 (from 3.0475), M 320 / 384, nodes 0.000157..0.975
