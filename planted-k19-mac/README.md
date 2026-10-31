@@ -32,4 +32,4 @@ difference is at most 0.61 of its rms); the third amendment (05:01 UTC, code rep
 3 rms of that reference, `real_mutate_real.log` is its mutation (fires), and `real.log` is the rerun (05:04 UTC, passes).
 `ring.log` first fired the K = 17, 18 completions' reproduction check against the 1280-bit record (fourth amendment,
 05:09 UTC, ff66864: the reference is the 960-bit record they carry); the rerun at 05:10 UTC and `calib.log`,
-`recomplete.log`, `project.log`, `combine.log` (05:10-05:12 UTC) pass every check. Sections 11.2-11.9 of the notes.
+`recomplete.log`, `project.log`, `combine.log` (05:10-05:12 UTC) pass every check. Sections 11.1-11.9 of the notes.
