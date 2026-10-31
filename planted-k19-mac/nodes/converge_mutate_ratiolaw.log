@@ -1,0 +1,23 @@
+node data: J 1250 / 1280-bit files at wf [0.99, 1.0, 1.01] from /Users/nathan/Source/choptuik-large-d/solver/inner_amp/scan41J1250: K 41 at wf 0.99, K 41 at wf 1.0, K 41 at wf 1.01
+  960-bit scan39J1000 at wf [0.99, 1.0, 1.01] (a1 and the sigma_0..18 comparison); scan39J1250's pilot (b) at wf [1.0]; J 1500 at wf [1.0]
+(a'') err19 = the recomputed plateau error + the J 1500 pilot difference at wf 1.00, 1.566e-30, against the 1e-10 relative requirement:
+  PASS  wf 0.99: sigma_19 = (-1.8854371908881486933e-16 + 1.7574120026504357237e-16j), err19 1.16e-28 = plateau 1.14e-28 + pilot difference 1.57e-30 (4.49e-13 relative, margin 222.73)
+  PASS  wf 1.0: sigma_19 = (-1.7398705530218642941e-16 + 1.8204762245576625758e-16j), err19 1.26e-28 = plateau 1.25e-28 + pilot difference 1.57e-30 (5.01e-13 relative, margin 199.43)
+  PASS  wf 1.01: sigma_19 = (-1.7532795753206394203e-16 + 2.0610527489867207541e-16j), err19 1.38e-28 = plateau 1.36e-28 + pilot difference 1.57e-30 (5.09e-13 relative, margin 196.47)
+(b'') at wf 1.00, sigma_0..19 against scan39J1250's pilot (b) (K 39, J 1250, 1280 bits), bitwise:
+  PASS  wf 1.0: sigma_0..19 bitwise equal (20/20)
+  at wf 0.99 and 1.01 (no second file at J 1250 / 1280 bits): sigma_0..18 against the 960-bit scan39J1000 values, |difference| / that file's plateau error, with the S_1 family's Mf picks (960, 1280); recorded, not a check:
+  wf 0.99: k0:0.00 k1:0.00 k2:0.00 k3:0.00 k4:0.00 k5:0.00 k6:0.00 k7:0.00 k8:0.01 k9:0.02 k10:0.74 k11:1.00 k12:0.01 k13:0.01 k14:0.01 k15:0.01 k16:0.01 k17:0.02 k18:0.01; over 1: none
+  wf 1.0: k0:0.00 k1:0.00 k2:0.00 k3:0.00 k4:0.00 k5:0.00 k6:0.00 k7:0.00 k8:0.01 k9:0.02 k10:0.14 k11:0.99 k12:0.01 k13:0.01 k14:0.01 k15:0.01 k16:0.06 k17:0.03 k18:0.07; over 1: none
+  wf 1.01: k0:0.00 k1:0.00 k2:0.00 k3:0.00 k4:0.00 k5:0.00 k6:0.00 k7:0.01 k8:1.01 k9:0.02 k10:0.03 k11:1.17 k12:0.01 k13:0.01 k14:0.01 k15:0.01 k16:0.01 k17:0.10 k18:0.07; over 1: k 8 (1.01, Mf 9 and 10), k 11 (1.17, Mf 8 and 8)
+(c) pilot (b): not evaluated (failed 2026-10-28, section 11.1); under (b'') it is the node data's bitwise copy at sigma_0..19, wf 1.00
+(d) the ratio law through sigma_19: second difference of sigma_k/sigma_{k+1}, k = 7..17 (D-ratiolaw <= 0.05):
+  PASS  wf 0.99: |d2| k = 7..17: 0.0366 0.0125 0.0020 0.0087 0.0112 0.0115 0.0108 0.0099 0.0091 0.0084 0.0079; sigma_18/sigma_19 = 9.3803-8.9987j
+  PASS  wf 1.0: |d2| k = 7..17: 0.0418 0.0157 0.0027 0.0084 0.0112 0.0116 0.0109 0.0099 0.0091 0.0084 0.0078; sigma_18/sigma_19 = 9.3948-9.0006j
+  FAIL  wf 1.01: |d2| k = 7..17: 0.0476 0.0195 0.0048 0.0083 0.0113 0.0118 0.0111 0.0100 0.0091 0.0083 1.1910; sigma_18/sigma_19 = 8.5539-8.1839j
+spread in wf (context): the change of sigma_k across the nodes, against its error
+  k = 17: |sigma_k(1.01) - sigma_k(0.99)|/2 = 0.0604 |sigma_k(1.00)|; second difference / first = 0.0614; max err_k / first difference = 3.7e-12
+  k = 18: |sigma_k(1.01) - sigma_k(0.99)|/2 = 0.0614 |sigma_k(1.00)|; second difference / first = 0.0622; max err_k / first difference = 6.0e-12
+  k = 19: |sigma_k(1.01) - sigma_k(0.99)|/2 = 0.0658 |sigma_k(1.00)|; second difference / first = 1.4392; max err_k / first difference = 8.3e-12
+
+1 check(s) failed
