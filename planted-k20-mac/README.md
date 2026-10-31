@@ -6,4 +6,6 @@ records are not kept, the script regenerates them), started 05:4x UTC after the 
 557dca2 of 2026-10-30, amended ff66864) and the scripts (7f96edd) were committed. `generate.log` is the
 generator's output, `converge.log` and `converge_mutate_<err|low|pilot|ratiolaw|amend>.log` the first stage and its five
 mutations (each firing), `stages.log` the start and exit of each later stage. `real/`: the stages on the real sigma_20
-(T89-mac's scan41J1250 and scan41J1500 files), after the dry run.
+(T89-mac's scan41J1250 and scan41J1500 files), 06:00-06:26 UTC after the dry run: `converge.log` (margins 123-154, every
+check passing) and its five mutations (each firing), then `plants.log`, `real.log`, `ring.log`, `calib.log`,
+`recomplete.log`, `project.log`, `combine.log`, all exit 0; `stages.log` has the times. Sections 12.1-12.9 of the notes.
