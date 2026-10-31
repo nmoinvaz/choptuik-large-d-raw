@@ -11,3 +11,19 @@
 --- stopped by hand 2026-10-31 08:23 UTC to cap the helper (--helper_it_max 1), cloud 08:22 ---
 01:23:40 resuming: M 320/384, last D 3.045, 0.00 h used
 01:23:40 --- D 3.0425 (from 3.045), M 320 / 384, nodes 0.000157..0.975
+01:24:13   D 3.0425 M 256: start 'predictor' |F| nan (1759 steps)
+01:24:20   D 3.0425 M 256: start 'last state' |F| nan (1759 steps)
+01:24:51   D 3.0425 M 256: no start with a finite |F| on the reused plan; plan from the last converged state instead: 4543 steps
+01:25:07   D 3.0425 M 256: start 'predictor' |F| nan on that plan
+01:25:23   D 3.0425 M 256: start 'last state' |F| 6.54e-01 on that plan
+01:25:23 resuming from checkpoint ../../choptuik-large-d-raw/T82-win/states\lowDhm_x0.000157-0.975_D3.0425_M256_ckpt.npz (iteration 2)
+01:25:46 D 3.0425 M 256: L 22529, steps 4543, start |F| 4.7e-01
+  newton 0: |F| 4.75e-01 |dz| 3.80e+03 lam 0.0156 dDelta -4.18e-04 Delta 2.455207024541112 piv 5.5e-05..1.9e+01  t 3706.9s
+02:28:06 D 3.0425 M 256: NOT converged, |F| 4.7e-01 after 1 iterations (3763s); stopping
+02:28:06 D 3.0425: the M 256 helper failed; M 320 from its own predictor in two passes (--helper_fallback)
+02:29:13   D 3.0425 M 320: start 'predictor' |F| nan (2959 steps)
+02:29:29   D 3.0425 M 320: start 'last state' |F| nan (2959 steps)
+02:30:50   D 3.0425 M 320: no start with a finite |F| on the reused plan; plan from the last converged state instead: 7640 steps
+02:31:32   D 3.0425 M 320: start 'predictor' |F| nan on that plan
+02:32:16   D 3.0425 M 320: start 'last state' |F| 3.37e-01 on that plan
+02:32:16   D 3.0425 M 320: best start |F| 3.4e-01 > 1e-03 on the reused plan; two passes
