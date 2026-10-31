@@ -8,4 +8,4 @@ generator's output, `converge.log` and `converge_mutate_<err|low|pilot|ratiolaw|
 mutations (each firing), `stages.log` the start and exit of each later stage. `real/`: the stages on the real sigma_20
 (T89-mac's scan41J1250 and scan41J1500 files), 06:00-06:26 UTC after the dry run: `converge.log` (margins 123-154, every
 check passing) and its five mutations (each firing), then `plants.log`, `real.log`, `ring.log`, `calib.log`,
-`recomplete.log`, `project.log`, `combine.log`, all exit 0; `stages.log` has the times. Sections 12.1-12.9 of the notes.
+`recomplete.log`, `project.log`, `combine.log`, all exit 0; `stages.log` has the times. Sections 12.1-12.10 of the notes.
