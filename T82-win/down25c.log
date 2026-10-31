@@ -27,3 +27,23 @@
 02:31:32   D 3.0425 M 320: start 'predictor' |F| nan on that plan
 02:32:16   D 3.0425 M 320: start 'last state' |F| 3.37e-01 on that plan
 02:32:16   D 3.0425 M 320: best start |F| 3.4e-01 > 1e-03 on the reused plan; two passes
+--- stopped by hand 2026-10-31 11:21 UTC, the two-pass hang (cloud fix 934226a), rerun ---
+04:21:21 resuming: M 320/384, last D 3.045, 0.00 h used
+04:21:21 --- D 3.0425 (from 3.045), M 320 / 384, nodes 0.000157..0.975
+04:21:53   D 3.0425 M 256: start 'predictor' |F| nan (1759 steps)
+04:21:59   D 3.0425 M 256: start 'last state' |F| nan (1759 steps)
+04:22:30   D 3.0425 M 256: no start with a finite |F| on the reused plan; plan from the last converged state instead: 4543 steps
+04:22:47   D 3.0425 M 256: start 'predictor' |F| nan on that plan
+04:23:04   D 3.0425 M 256: start 'last state' |F| 6.54e-01 on that plan
+04:23:27 D 3.0425 M 256: L 22529, steps 4543, start |F| 6.5e-01
+  newton 0: |F| 6.54e-01 |dz| 1.32e+02 lam 0.25 dDelta -9.47e-03 Delta 2.456545821831259 piv 6.5e-05..4.3e+01  t 3495.5s
+05:22:15 D 3.0425 M 256: NOT converged, |F| 4.9e-01 after 1 iterations (3552s); stopping
+05:22:15 D 3.0425: the M 256 helper failed; M 320 from its own predictor in two passes (--helper_fallback)
+05:23:22   D 3.0425 M 320: start 'predictor' |F| nan (2959 steps)
+05:23:39   D 3.0425 M 320: start 'last state' |F| nan (2959 steps)
+05:25:02   D 3.0425 M 320: no start with a finite |F| on the reused plan; plan from the last converged state instead: 7640 steps
+05:25:44   D 3.0425 M 320: start 'predictor' |F| nan on that plan
+05:26:27   D 3.0425 M 320: start 'last state' |F| 3.37e-01 on that plan
+05:26:27   D 3.0425 M 320: best start |F| 3.4e-01 > 1e-03 on the reused plan; two passes
+05:27:09   D 3.0425 M 320: start 'predictor' |F| nan on the plan; no own plan from it
+05:29:58   D 3.0425 M 320: start 'last state' |F| 3.37e-01 on its own plan (7640 steps)
