@@ -1,0 +1,23 @@
+node data: J 1250 / 1280-bit files at wf [0.99, 1.0, 1.01] from /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/43f19197-40d3-4ad8-aa26-db5322fa8689/scratchpad/k21/dry/scan43J1250: K 41 at wf 0.99, 22 coefficients, stored errors finite, K 41 at wf 1.0, 22 coefficients, stored errors finite, K 41 at wf 1.01, 22 coefficients, stored errors finite
+  pilot (b), J 1500 at wf [1.0] from /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/43f19197-40d3-4ad8-aa26-db5322fa8689/scratchpad/k21/dry/scan43J1500; scan41J1250 (K 41, J 1250, 1280 bits) at wf [0.99, 1.0, 1.01]
+(a) err21 = plateau error + the wf 1.00 pilot difference |sigma_21(a) - sigma_21(b)| = 0.000e+00, against the 1e-10 relative requirement:
+  PASS  wf 0.99: sigma_21 = (-9.7972272866184933448e-19 - 9.3866035467956755016e-19j), err21 1.36e-30 = plateau 1.36e-30 + pilot difference 0 (1.00e-12 relative, margin 100.00)
+  FAIL  wf 1.0: sigma_21 = (-1.0076600346392835748e-18 - 8.5754513955857828769e-19j), err21 1.32e-16 = plateau 1.32e-16 + pilot difference 0 (1.00e+02 relative, margin 0.00)
+  PASS  wf 1.01: sigma_21 = (-1.0301779339416870564e-18 - 7.7674060608582537683e-19j), err21 1.29e-30 = plateau 1.29e-30 + pilot difference 0 (1.00e-12 relative, margin 100.00)
+(b) sigma_0..20 at every node against the scan41J1250 file at that wf (K 41, J 1250, 1280 bits), bitwise:
+  PASS  wf 0.99: sigma_0..20 bitwise equal (21/21)
+  PASS  wf 1.0: sigma_0..20 bitwise equal (21/21)
+  PASS  wf 1.01: sigma_0..20 bitwise equal (21/21)
+(c) pilot (b) at wf 1.00 (J 1500, 1280 bits) against (a): sigma_18..20 within (a)'s plateau errors; the sigma_21 difference is the term of (a), recorded:
+  PASS  sigma_18..20 of (b) against (a): k 18: 1.2e-29 (err 1.1e-27, ratio 0.01), k 19: 1.6e-30 (err 1.2e-28, ratio 0.01), k 20: 1.5e-31 (err 1.3e-29, ratio 0.01)
+  sigma_21: |a - b| = 0.000e+00, 0.000 of (a)'s plateau err21 1.323e-30 (recorded; ruling 2)
+(d) the ratio law through sigma_21: second difference of sigma_k/sigma_{k+1}, k = 7..19 (D-ratiolaw <= 0.05):
+  PASS  wf 0.99: |d2| k = 7..19: 0.0366 0.0125 0.0020 0.0087 0.0112 0.0115 0.0108 0.0099 0.0091 0.0084 0.0079 0.0074 0.0070; sigma_20/sigma_21 = 10.2317-9.6220j
+  PASS  wf 1.0: |d2| k = 7..19: 0.0418 0.0157 0.0027 0.0084 0.0112 0.0116 0.0109 0.0099 0.0091 0.0084 0.0078 0.0074 0.0070; sigma_20/sigma_21 = 10.2464-9.6254j
+  PASS  wf 1.01: |d2| k = 7..19: 0.0476 0.0195 0.0048 0.0083 0.0113 0.0118 0.0111 0.0100 0.0091 0.0083 0.0078 0.0073 0.0069; sigma_20/sigma_21 = 10.2612-9.6286j
+spread in wf (context): the change of sigma_k across the nodes, against its error
+  k = 19: |sigma_k(1.01) - sigma_k(0.99)|/2 = 0.0623 |sigma_k(1.00)|; second difference / first = 0.0629; max err_k / first difference = 8.7e-12
+  k = 20: |sigma_k(1.01) - sigma_k(0.99)|/2 = 0.0632 |sigma_k(1.00)|; second difference / first = 0.0635; max err_k / first difference = 1.2e-11
+  k = 21: |sigma_k(1.01) - sigma_k(0.99)|/2 = 0.0641 |sigma_k(1.00)|; second difference / first = 0.0640; max err_k / first difference = 1.6e+03
+
+1 check(s) failed
