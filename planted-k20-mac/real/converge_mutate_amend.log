@@ -1,0 +1,24 @@
+node data: J 1250 / 1280-bit files at wf [0.99, 1.0, 1.01] from /Users/nathan/Source/choptuik-large-d/solver/inner_amp/scan41J1250: K 41 at wf 0.99, 21 coefficients, stored errors inf (recomputed), K 41 at wf 1.0, 21 coefficients, stored errors inf (recomputed), K 41 at wf 1.01, 21 coefficients, stored errors inf (recomputed)
+  pilot (b), J 1500 at wf [1.0] from /Users/nathan/Source/choptuik-large-d/solver/inner_amp/scan41J1500; scan39J1250 (K 39, J 1250, 1280 bits) at wf [1.0]; scan39J1000 (960 bits) at wf [0.99, 1.0, 1.01]
+(a) err20 = plateau error + the wf 1.00 pilot difference |sigma_20(a) - sigma_20(b)| = 1.858e-26, against the 1e-10 relative requirement:
+  FAIL  wf 0.99: sigma_20 = (-1.9056066566181458225e-17 - 1.771869806514332509e-19j), err20 1.86e-26 = plateau 1.22e-29 + pilot difference 1.86e-26 (9.76e-10 relative, margin 0.10)
+  FAIL  wf 1.0: sigma_20 = (-1.857916119116969641e-17 + 9.1236163749049758769e-19j), err20 1.86e-26 = plateau 1.33e-29 + pilot difference 1.86e-26 (1.00e-09 relative, margin 0.10)
+  FAIL  wf 1.01: sigma_20 = (-1.804973102108868983e-17 + 1.9488798967780413342e-18j), err20 1.86e-26 = plateau 1.46e-29 + pilot difference 1.86e-26 (1.02e-09 relative, margin 0.10)
+(b) sigma_0..19 at wf 1.00 against scan39J1250's pilot (b) (K 39, J 1250, 1280 bits), bitwise:
+  PASS  wf 1.0: sigma_0..19 bitwise equal (20/20)
+  at wf 0.99 and 1.01: sigma_0..18 against the 960-bit scan39J1000 values, |difference| / that file's plateau error, with the S_1 family's Mf picks (960, 1280); recorded, not a check (the amendment of item 1(b)):
+  wf 0.99: k0:0.00 k1:0.00 k2:0.00 k3:0.00 k4:0.00 k5:0.00 k6:0.00 k7:0.00 k8:0.01 k9:0.02 k10:0.74 k11:1.00 k12:0.01 k13:0.01 k14:0.01 k15:0.01 k16:0.01 k17:0.02 k18:0.01; over 1: none
+  wf 1.01: k0:0.00 k1:0.00 k2:0.00 k3:0.00 k4:0.00 k5:0.00 k6:0.00 k7:0.01 k8:1.01 k9:0.02 k10:0.03 k11:1.17 k12:0.01 k13:0.01 k14:0.01 k15:0.01 k16:0.01 k17:0.10 k18:0.07; over 1: k 8 (1.01, Mf 9 and 10), k 11 (1.17, Mf 8 and 8)
+(c) pilot (b) at wf 1.00 (J 1500, 1280 bits) against (a): sigma_17..19 within (a)'s plateau errors; the sigma_20 difference is the term of (a), recorded:
+  PASS  sigma_17..19 of (b) against (a): k 17: 9.6e-29 (err 9.0e-27, ratio 0.01), k 18: 1.2e-29 (err 1.1e-27, ratio 0.01), k 19: 1.6e-30 (err 1.2e-28, ratio 0.01)
+  sigma_20: |a - b| = 1.858e-26, 1391.976 of (a)'s plateau err20 1.335e-29 (recorded; ruling 2)
+(d) the ratio law through sigma_20: second difference of sigma_k/sigma_{k+1}, k = 7..18 (D-ratiolaw <= 0.05):
+  PASS  wf 0.99: |d2| k = 7..18: 0.0366 0.0125 0.0020 0.0087 0.0112 0.0115 0.0108 0.0099 0.0091 0.0084 0.0079 0.0074; sigma_19/sigma_20 = 9.8076-9.3135j
+  PASS  wf 1.0: |d2| k = 7..18: 0.0418 0.0157 0.0027 0.0084 0.0112 0.0116 0.0109 0.0099 0.0091 0.0084 0.0078 0.0074; sigma_19/sigma_20 = 9.8221-9.3162j
+  PASS  wf 1.01: |d2| k = 7..18: 0.0476 0.0195 0.0048 0.0083 0.0113 0.0118 0.0111 0.0100 0.0091 0.0083 0.0078 0.0073; sigma_19/sigma_20 = 9.8367-9.3186j
+spread in wf (context): the change of sigma_k across the nodes, against its error
+  k = 18: |sigma_k(1.01) - sigma_k(0.99)|/2 = 0.0614 |sigma_k(1.00)|; second difference / first = 0.0622; max err_k / first difference = 6.0e-12
+  k = 19: |sigma_k(1.01) - sigma_k(0.99)|/2 = 0.0623 |sigma_k(1.00)|; second difference / first = 0.0629; max err_k / first difference = 8.7e-12
+  k = 20: |sigma_k(1.01) - sigma_k(0.99)|/2 = 0.0632 |sigma_k(1.00)|; second difference / first = 0.0635; max err_k / first difference = 1.6e-08
+
+3 check(s) failed
