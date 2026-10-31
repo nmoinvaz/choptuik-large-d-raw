@@ -1,0 +1,11 @@
+real arg crossings k = 10..20: 1.0002993, 1.0001971, 1.0001089, 1.0000458, 1.0000261, 1.0000190, 1.0000104, 1.0000046, 1.0000024, 1.0000015, 1.0000009
+real arg_20 - 1 = +8.997e-07
+  zero at 1.0: predicted arg_20 - 1 = +9.599e-07; real - predicted = -6.02e-08; back-test (real - predicted) at k = 17, 18, 19: -1.1e-06, +4.0e-07, +2.5e-07
+  zero at 0.999996: predicted arg_20 - 1 = +7.557e-07; real - predicted = +1.44e-07; back-test (real - predicted) at k = 17, 18, 19: -4.2e-07, +1.3e-06, +7.3e-07
+  zero at 0.999975: predicted arg_20 - 1 = +6.614e-07; real - predicted = +2.38e-07; back-test (real - predicted) at k = 17, 18, 19: +1.1e-06, +2.7e-06, +1.1e-06
+  log-linear trend of arg_k - 1 (zero at 1) over k = 4-19: x0.540 per order; at k = 20: 7.423e-07
+  log-linear trend of arg_k - 1 (zero at 1) over k = 4-20: x0.542 per order; at k = 20: 7.738e-07
+  Aitken on k-2..k, k = 6..20: 1.000068, 1.000662, 1.000168, 0.999762, 1.000044, 1.000135, 0.999559, 0.999886, 1.000017, 1.000015, 1.000060, 0.999993, 1.000001, 1.000001, 0.999999
+  arc plants (28): model through k = 18, 19 with the true w_t misses arg_20 by -1.7e-05 ... +1.0e-06
+  favoured: zero at 1 (|arg_20 - prediction|: zero at 1 6.0e-08, lower 1.4e-07); model error 1.7e-05; decisive: False
+  arg_20 under sigma_err noise (20 seeds): shift -4.2e-10 ... +3.0e-10
