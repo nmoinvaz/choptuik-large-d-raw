@@ -1,0 +1,26 @@
+files: 960 bits at wf [0.99, 1.0, 1.01]; pilot (b) at wf [1.0]; scan37J1000 at wf [0.99, 1.0, 1.01]
+  wf 0.99: K 39 J 1000 prec 960 fit phys mf [6, 12], 20 coefficients
+  wf 1.0: K 39 J 1000 prec 960 fit phys mf [6, 12], 20 coefficients
+  wf 1.01: K 39 J 1000 prec 960 fit phys mf [6, 12], 20 coefficients
+amendment of item 1 (section 11.0, 2026-10-29): J 1250 / 1280-bit files at wf [0.99, 1.0, 1.01] from /Users/nathan/Source/choptuik-large-d/solver/inner_amp/scan41J1250, K 41 at wf 0.99, K 41 at wf 1.0, K 41 at wf 1.01
+(a') err19 = plateau error + pilot difference at the node, against the 1e-10 relative requirement:
+  FAIL  wf 0.99: sigma_19 = (-1.8854371907076884952e-16 + 1.7574120025598862231e-16j), err19 4.09e-26 = plateau 2.07e-26 + pilot difference 2.02e-26 (1.59e-10 relative, margin 0.63)
+  PASS  wf 1.0: sigma_19 = (-1.7398705529980921796e-16 + 1.8204762245817697829e-16j), err19 6.17e-27 = plateau 2.79e-27 + pilot difference 3.39e-27 (2.45e-11 relative, margin 4.08)
+  PASS  wf 1.01: sigma_19 = (-1.5938905230179470051e-16 + 1.873684317258626926e-16j), err19 1.41e-27 = plateau 1.2e-27 + pilot difference 2.19e-28 (5.75e-12 relative, margin 17.39)
+(b) sigma_0..18 against scan37J1000 (960 bits):
+  PASS  wf 0.99: sigma_0..18 bitwise equal (19/19); sigma_err_0..18 equal (19/19)
+  PASS  wf 1.0: sigma_0..18 bitwise equal (19/19); sigma_err_0..18 equal (19/19)
+  PASS  wf 1.01: sigma_0..18 bitwise equal (19/19); sigma_err_0..18 equal (19/19)
+(c) pilot (b) at wf 1.00 (J 1250, 1280 bits) against (a):
+  as written, not evaluated (failed 2026-10-28, section 11.1): |a - b| = 3.39e-27 against the plateau err19 2.79e-27, ratio 1.21; the difference is part of err19 under (a'). sigma_16..18 of (b) against scan37J1000: k 16: 2.7e-26 (err 4.1e-25), k 17: 1.6e-27 (err 5.4e-26), k 18: 4.5e-28 (err 6.7e-27)
+  note: (b)'s own sigma_err is inf at every k (its order-1 fit has residual 0), so (b) checks (a)'s values, not their error
+(d) the ratio law through sigma_19: second difference of sigma_k/sigma_{k+1}, k = 7..17 (D-ratiolaw <= 0.05):
+  PASS  wf 0.99: |d2| k = 7..17: 0.0366 0.0125 0.0020 0.0087 0.0112 0.0115 0.0108 0.0099 0.0091 0.0084 0.0079; sigma_18/sigma_19 = 9.3803-8.9987j
+  PASS  wf 1.0: |d2| k = 7..17: 0.0418 0.0157 0.0027 0.0084 0.0112 0.0116 0.0109 0.0099 0.0091 0.0084 0.0078; sigma_18/sigma_19 = 9.3948-9.0006j
+  PASS  wf 1.01: |d2| k = 7..17: 0.0476 0.0195 0.0048 0.0083 0.0113 0.0118 0.0111 0.0100 0.0091 0.0083 0.0078; sigma_18/sigma_19 = 9.4093-9.0023j
+spread in wf (context): the change of sigma_k across the nodes, against its error
+  k = 17: |sigma_k(1.01) - sigma_k(0.99)|/2 = 0.0604 |sigma_k(1.00)|; second difference / first = 0.0614; max err_k / first difference = 2.4e-11
+  k = 18: |sigma_k(1.01) - sigma_k(0.99)|/2 = 0.0614 |sigma_k(1.00)|; second difference / first = 0.0622; max err_k / first difference = 3.6e-11
+  k = 19: |sigma_k(1.01) - sigma_k(0.99)|/2 = 0.0623 |sigma_k(1.00)|; second difference / first = 0.0629; max err_k / first difference = 2.6e-09
+
+1 check(s) failed
