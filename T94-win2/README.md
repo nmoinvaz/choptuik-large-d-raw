@@ -5,4 +5,4 @@ Comms entry: 2026-11-01 18:17 UTC cloud to win2.
 
 Settings: `amp_flint_par.py WF 43 J 1280 --procs 4 --fit phys --mf 6:12 --fit-step 1`.
 - `scan43J1250`: wf 0.99 and 1.01 at J 1250 / 1280 bits (K 43), both at once (95.6 GB RAM, the 64 GB+ rule).
-- `scan43J1500`: follow-on, the same two nodes at J 1500 / 1280 bits (the hedge: they replace the J 1250 nodes if the wf 1.00 gate fails, otherwise recorded as context).
+- `scan43J1500`: the same two nodes at J 1500 / 1280 bits, started 2026-11-01 20:15 UTC beside the J 1250 pair (per the 20:11 UTC entry), `--procs 2` each under a memory guard (`util_report.py --guard 10`, log `mem_guard.log`). The hedge: they replace the J 1250 nodes if the wf 1.00 gate fails, otherwise recorded as context. No early control (no K 41 reference at these nodes).
