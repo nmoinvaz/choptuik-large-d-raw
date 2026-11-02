@@ -51,3 +51,11 @@ double-double system's Newton basin (notes/QUAD_DOUBLE.md 12.4), not the step ru
 (76.6075, 77.9442, 78.6126) are double-double points of the pinned system in layout B and carry its 1e-6..1e-3
 uncertainty; they are not added to any table. The ladders ran 7.4 min of wall time at 4 threads each (the --max_hours
 0.13 cap was not reached; both ended on their step rule).
+
+## Newton's basin in layouts A and B (2026-11-02 23:34 to 23:52 UTC, `basin_x80.jsonl`, `basin_x85.jsonl`)
+
+T84's `qd_basin.py` (folder T84-mac, run with ~/venv-qds, 4 threads each, both at once) on T85's layout-A states
+(74, 75, 76, 77, 77.512, 77.8806, 78, 78.1049) and the layout-B states (T85's 74, 75, 76, 76.4, 76.48 and this
+folder's ladder points 76.6075, 77.9442, 78.6126): the LU's smallest pivot, |F| at the state, the Newton step, |F|
+after it, c and the basin sigma^2/c, for the pinned (kfreeze 7) and the full (kfreeze 13) system in quad-double. Logs
+`basin_x80.log`, `basin_x85.log`. Read in notes/QUAD_DOUBLE.md 12.7 (`hp/wall_model.py`).
