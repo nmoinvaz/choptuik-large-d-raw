@@ -5,3 +5,5 @@ Comms entry: 2026-11-01 18:17 UTC cloud to mac (follow-on after T94's (b)). Star
 
 Settings: `amp_flint_par.py 0.99 43 1500 1280 --procs 2 --fit phys --mf 6:12 --fit-step 1`, file `scan43J1500/sigF_w0.9900_K43_J1500_p1280.json`, log `scan43J1500/w0.9900.log`.
 No gate. Post: sigma_18..21, the errs from sigma_err_fit.py with the scan39J1000 a1 file, the count of sigma_0..20 strings equal to scan41J1250's wf 0.99 file, fit_info 1_1 and 43_1, minutes.
+
+Done 2026-11-02 21:46 UTC, 61893 s (1031.6 min) on the script clock. sigF_w0.9900_K43_J1500_p1280.json and w0.9900.log. sigma_err_fit.py with the T88-mac scan39J1000 wf 0.99 a1 file: exit 0, err21 2.856e-31.
