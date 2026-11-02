@@ -9,3 +9,5 @@ Settings: `amp_flint_par.py WF 43 J 1280 --procs 2 --fit phys --mf 6:12 --fit-st
 Gate for (a): sigma_err_fit.py exit 0 (err21 <= 1e-10 |sigma_21|, --a1-from scan39J1000/sigF_w1.0000_K39_J1000_p960.json) and sigma_0..20 string-equal to T89-mac/scan41J1250/sigF_w1.0000_K41_J1250_p1280.json. Ruling 2 for (b) as in T89.
 
 (a) J 1250 / 1280 bits done 2026-11-02 02:18 UTC (140246 s of the script clock): sigma_err_fit.py exit 0, err21 1.351e-30 = 1.02e-12 |sigma_21|; sigma_0..20 21 of 21 strings equal to T89-mac/scan41J1250.
+
+(b) J 1500 / 1280 bits done 2026-11-02 03:26 UTC (144358 s of the script clock): sigma_err_fit.py exit 0, err21 1.389e-31 = 1.05e-13 |sigma_21|; |sigma_21(b) - sigma_21(a)| = 1.591e-31, inside (a) err21 1.351e-30. T96 started after it.
