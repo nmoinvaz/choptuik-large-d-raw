@@ -1,0 +1,102 @@
+t4 D 40.02: Delta(dd) 1.888451664491; series f64 polish: |F| 5.6e-09, Delta - dd -3.7e-11
+   collocation Nu 16: |F| 6.4e-10, Delta - dd -1.3e-06
+   collocation Nu 24: |F| 3.4e-12, Delta - dd -4.2e-07
+   collocation Nu 32: |F| 3.0e-12, Delta - dd -2.0e-08
+   collocation Nu 48: |F| 5.0e-12, Delta - dd +5.7e-08
+   mutation p0sign: start |F| 1.1e+01, end |F| 3.7e-01, iterations exhausted, Delta - dd +4.3e-01, smin 1.9289980078135766e-10
+   mutation nogauge: start |F| 6.6e-10, end |F| 6.6e-10, converged, Delta - dd +0.0e+00, smin 6.550629386740583e-17
+/Users/nathan/Source/choptuik-large-d/solver/dss.py:110: RuntimeWarning: overflow encountered in multiply
+  xpx = sum(X[j] * (k - j + 1) * P[k - j + 1] for j in range(1, k + 1))
+/Users/nathan/Source/choptuik-large-d/solver/dss.py:111: RuntimeWarning: overflow encountered in multiply
+  xmx = sum(Y[j] * (k - j + 1) * M[k - j + 1] for j in range(1, k + 1))
+/Users/nathan/Source/choptuik-large-d/solver/dss.py:112: RuntimeWarning: overflow encountered in multiply
+  xcxp = sum(j * C[j] * P[k - j] for j in range(1, k + 1))
+/Users/nathan/Source/choptuik-large-d/solver/dss.py:112: RuntimeWarning: overflow encountered in add
+  xcxp = sum(j * C[j] * P[k - j] for j in range(1, k + 1))
+/Users/nathan/Source/choptuik-large-d/solver/dss.py:113: RuntimeWarning: overflow encountered in multiply
+  xcxm = sum(j * C[j] * M[k - j] for j in range(1, k + 1))
+/Users/nathan/Source/choptuik-large-d/solver/dss.py:113: RuntimeWarning: overflow encountered in add
+  xcxm = sum(j * C[j] * M[k - j] for j in range(1, k + 1))
+/Users/nathan/Source/choptuik-large-d/solver/dss.py:86: RuntimeWarning: overflow encountered in multiply
+  s = s + A[j] * B[k - j]
+/Users/nathan/Source/choptuik-large-d/solver/dss.py:115: RuntimeWarning: invalid value encountered in add
+  r3 = Dp + xpx - xcxp + cp - 0.5 * n * cpm
+/Users/nathan/Source/choptuik-large-d/solver/dss.py:116: RuntimeWarning: invalid value encountered in subtract
+  r4 = Dm + xmx + xcxm - cm + 0.5 * n * cpm
+/Users/nathan/Source/choptuik-large-d/solver/dss.py:121: RuntimeWarning: overflow encountered in multiply
+  P[k] = (-r3 * m22 + r4 * m12) / det
+/Users/nathan/Source/choptuik-large-d/solver/dss.py:122: RuntimeWarning: overflow encountered in multiply
+  M[k] = (-r4 * m11 + r3 * m21) / det
+/Users/nathan/Source/choptuik-large-d/solver/dss.py:97: RuntimeWarning: invalid value encountered in add
+  PM = [P[j] + M[j] for j in range(K + 1)]
+/Users/nathan/Source/choptuik-large-d/solver/dss.py:86: RuntimeWarning: invalid value encountered in multiply
+  s = s + A[j] * B[k - j]
+/Users/nathan/Source/choptuik-large-d/solver/dss.py:86: RuntimeWarning: overflow encountered in add
+  s = s + A[j] * B[k - j]
+/Users/nathan/Source/choptuik-large-d/solver/dss.py:102: RuntimeWarning: overflow encountered in multiply
+  A[k] = (0.5 * s - 0.5 * (n - 1) * t3) / (k + n - 1)
+/Users/nathan/Source/choptuik-large-d/.venv/lib/python3.13/site-packages/numpy/fft/_pocketfft.py:101: RuntimeWarning: invalid value encountered in rfft_n_even
+  return ufunc(a, fct, axes=[(axis,), (), (axis,)], out=out)
+/Users/nathan/Source/choptuik-large-d/solver/dss.py:112: RuntimeWarning: invalid value encountered in multiply
+  xcxp = sum(j * C[j] * P[k - j] for j in range(1, k + 1))
+/Users/nathan/Source/choptuik-large-d/solver/dss.py:113: RuntimeWarning: invalid value encountered in multiply
+  xcxm = sum(j * C[j] * M[k - j] for j in range(1, k + 1))
+/Users/nathan/Source/choptuik-large-d/solver/dss.py:110: RuntimeWarning: invalid value encountered in multiply
+  xpx = sum(X[j] * (k - j + 1) * P[k - j + 1] for j in range(1, k + 1))
+/Users/nathan/Source/choptuik-large-d/solver/dss.py:111: RuntimeWarning: invalid value encountered in multiply
+  xmx = sum(Y[j] * (k - j + 1) * M[k - j + 1] for j in range(1, k + 1))
+/Users/nathan/Source/choptuik-large-d/solver/dss.py:181: RuntimeWarning: overflow encountered in multiply
+  a2 = a * a
+/Users/nathan/Source/choptuik-large-d/solver/dss.py:182: RuntimeWarning: overflow encountered in multiply
+  cx = c * (n - 1) * (a2 - 1) / x
+/Users/nathan/Source/choptuik-large-d/solver/dss.py:183: RuntimeWarning: overflow encountered in multiply
+  ax = a * ((p * p + m * m) + (n - 1) * (1 - a2)) / (2 * x)
+/Users/nathan/Source/choptuik-large-d/solver/dss.py:183: RuntimeWarning: invalid value encountered in add
+  ax = a * ((p * p + m * m) + (n - 1) * (1 - a2)) / (2 * x)
+/Users/nathan/Source/choptuik-large-d/solver/dss.py:184: RuntimeWarning: overflow encountered in multiply
+  pc = n * c * (p + m) / (2 * x)
+/Users/nathan/Source/choptuik-large-d/solver/dss.py:185: RuntimeWarning: overflow encountered in multiply
+  px = (-self.D(p, omega) + cx * p - c * p / x + pc) / (x - c)
+/Users/nathan/Source/choptuik-large-d/solver/dss.py:185: RuntimeWarning: invalid value encountered in subtract
+  px = (-self.D(p, omega) + cx * p - c * p / x + pc) / (x - c)
+/Users/nathan/Source/choptuik-large-d/solver/dss.py:186: RuntimeWarning: overflow encountered in multiply
+  mx = (-self.D(m, omega) - cx * m + c * m / x - pc) / (x + c)
+/Users/nathan/Source/choptuik-large-d/solver/dss.py:186: RuntimeWarning: invalid value encountered in add
+  mx = (-self.D(m, omega) - cx * m + c * m / x - pc) / (x + c)
+/Users/nathan/Source/choptuik-large-d/solver/dss.py:184: RuntimeWarning: invalid value encountered in add
+  pc = n * c * (p + m) / (2 * x)
+/Users/nathan/Source/choptuik-large-d/solver/dss.py:183: RuntimeWarning: overflow encountered in add
+  ax = a * ((p * p + m * m) + (n - 1) * (1 - a2)) / (2 * x)
+/Users/nathan/Source/choptuik-large-d/solver/dss.py:185: RuntimeWarning: overflow encountered in divide
+  px = (-self.D(p, omega) + cx * p - c * p / x + pc) / (x - c)
+/Users/nathan/Source/choptuik-large-d/solver/dss.py:186: RuntimeWarning: overflow encountered in divide
+  mx = (-self.D(m, omega) - cx * m + c * m / x - pc) / (x + c)
+/Users/nathan/Source/choptuik-large-d/solver/dss.py:46: RuntimeWarning: invalid value encountered in multiply
+  F = F * (1j * self.k)
+/Users/nathan/Source/choptuik-large-d/solver/dss.py:185: RuntimeWarning: invalid value encountered in add
+  px = (-self.D(p, omega) + cx * p - c * p / x + pc) / (x - c)
+/Users/nathan/Source/choptuik-large-d/solver/dss.py:186: RuntimeWarning: invalid value encountered in subtract
+  mx = (-self.D(m, omega) - cx * m + c * m / x - pc) / (x + c)
+/Users/nathan/Source/choptuik-large-d/solver/dss.py:110: RuntimeWarning: overflow encountered in add
+  xpx = sum(X[j] * (k - j + 1) * P[k - j + 1] for j in range(1, k + 1))
+/Users/nathan/Source/choptuik-large-d/solver/dss.py:111: RuntimeWarning: overflow encountered in add
+  xmx = sum(Y[j] * (k - j + 1) * M[k - j + 1] for j in range(1, k + 1))
+/Users/nathan/Source/choptuik-large-d/solver/dss.py:115: RuntimeWarning: overflow encountered in subtract
+  r3 = Dp + xpx - xcxp + cp - 0.5 * n * cpm
+/Users/nathan/Source/choptuik-large-d/solver/dss.py:116: RuntimeWarning: overflow encountered in add
+  r4 = Dm + xmx + xcxm - cm + 0.5 * n * cpm
+/Users/nathan/Source/choptuik-large-d/solver/dss.py:110: RuntimeWarning: invalid value encountered in add
+  xpx = sum(X[j] * (k - j + 1) * P[k - j + 1] for j in range(1, k + 1))
+/Users/nathan/Source/choptuik-large-d/solver/dss.py:111: RuntimeWarning: invalid value encountered in add
+  xmx = sum(Y[j] * (k - j + 1) * M[k - j + 1] for j in range(1, k + 1))
+/Users/nathan/Source/choptuik-large-d/solver/dss.py:112: RuntimeWarning: invalid value encountered in add
+  xcxp = sum(j * C[j] * P[k - j] for j in range(1, k + 1))
+/Users/nathan/Source/choptuik-large-d/solver/dss.py:113: RuntimeWarning: invalid value encountered in add
+  xcxm = sum(j * C[j] * M[k - j] for j in range(1, k + 1))
+/Users/nathan/Source/choptuik-large-d/solver/dss.py:86: RuntimeWarning: invalid value encountered in add
+  s = s + A[j] * B[k - j]
+/Users/nathan/Source/choptuik-large-d/solver/dss.py:182: RuntimeWarning: overflow encountered in divide
+  cx = c * (n - 1) * (a2 - 1) / x
+/Users/nathan/Source/choptuik-large-d/solver/dss.py:183: RuntimeWarning: overflow encountered in divide
+  ax = a * ((p * p + m * m) + (n - 1) * (1 - a2)) / (2 * x)
+   mutation dut: start |F| 9.0e+03, end |F| inf, no decrease, Delta - dd -1.2e+01, smin None

@@ -1,0 +1,25 @@
+t3p D 40.02 last node 0.7 (u0 0.30): series smin 7.9e-06 (751 rows), below 1e-10/1e-8/1e-6: 0/0/0, Delta - dd +4.0e-11; collocation smin 1.3e-13 (2735 rows), below 1e-10/1e-8/1e-6: 7/14/14, Delta - dd -2.0e-09
+t3p D 40.02 last node 0.6 (u0 0.40): series smin 1.5e-05 (623 rows), below 1e-10/1e-8/1e-6: 0/0/0, Delta - dd -1.3e-10; collocation smin 2.5e-12 (2607 rows), below 1e-10/1e-8/1e-6: 6/14/14, Delta - dd +1.7e-06
+/Users/nathan/Source/choptuik-large-d/solver/dss.py:182: RuntimeWarning: overflow encountered in multiply
+  cx = c * (n - 1) * (a2 - 1) / x
+/Users/nathan/Source/choptuik-large-d/solver/dss.py:183: RuntimeWarning: overflow encountered in multiply
+  ax = a * ((p * p + m * m) + (n - 1) * (1 - a2)) / (2 * x)
+/Users/nathan/Source/choptuik-large-d/solver/dss.py:183: RuntimeWarning: invalid value encountered in add
+  ax = a * ((p * p + m * m) + (n - 1) * (1 - a2)) / (2 * x)
+/Users/nathan/Source/choptuik-large-d/.venv/lib/python3.13/site-packages/numpy/fft/_pocketfft.py:101: RuntimeWarning: invalid value encountered in rfft_n_even
+  return ufunc(a, fct, axes=[(axis,), (), (axis,)], out=out)
+/Users/nathan/Source/choptuik-large-d/solver/dss.py:46: RuntimeWarning: invalid value encountered in multiply
+  F = F * (1j * self.k)
+/Users/nathan/Source/choptuik-large-d/solver/dss.py:185: RuntimeWarning: overflow encountered in multiply
+  px = (-self.D(p, omega) + cx * p - c * p / x + pc) / (x - c)
+/Users/nathan/Source/choptuik-large-d/solver/dss.py:186: RuntimeWarning: overflow encountered in multiply
+  mx = (-self.D(m, omega) - cx * m + c * m / x - pc) / (x + c)
+/Users/nathan/Source/choptuik-large-d/solver/dss.py:181: RuntimeWarning: overflow encountered in multiply
+  a2 = a * a
+/Users/nathan/Source/choptuik-large-d/solver/dss.py:184: RuntimeWarning: overflow encountered in multiply
+  pc = n * c * (p + m) / (2 * x)
+/Users/nathan/Source/choptuik-large-d/solver/dss.py:185: RuntimeWarning: invalid value encountered in subtract
+  px = (-self.D(p, omega) + cx * p - c * p / x + pc) / (x - c)
+/Users/nathan/Source/choptuik-large-d/solver/dss.py:186: RuntimeWarning: invalid value encountered in add
+  mx = (-self.D(m, omega) - cx * m + c * m / x - pc) / (x + c)
+t3p D 40.02 last node 0.5 (u0 0.50): series the series does not converge at this u0; collocation smin 1.5e-10 (2479 rows), below 1e-10/1e-8/1e-6: 0/13/14, Delta - dd +2.4e-03
