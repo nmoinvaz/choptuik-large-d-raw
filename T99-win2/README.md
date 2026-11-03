@@ -7,3 +7,5 @@ Settings: `amp_flint_par.py WF 45 J 1280 --procs P --fit phys --mf 6:12 --fit-st
 - Stage 1, four runs at once at `--procs 3`: wf 1.00, 0.99, 1.01 at J 1250 (`scan45J1250`), and the pilot (b) wf 1.00 at J 1500 (`scan45J1500`). Memory guard on (b) only (`util_report.py --guard 10`, log `scan45J1500/mem_guard.log`).
 - Stage 2, when stage 1 ends: the wf 0.99 and 1.01 nodes at J 1500, `--procs 4`, into `scan45J1500`.
 - Machine control (K does not enter below the top order, so every common order up to 43 must be identical): J 1250 wf 1.00 vs T94-mac/scan43J1250/w1.0000.log, wf 0.99 and 1.01 vs T94-win2/scan43J1250, J 1500 wf 1.00 vs T94-mac/scan43J1500/w1.0000.log.
+
+2026-11-03 04:20 UTC: the J 1500 pilot (b) was stopped by the coordinator at k 31 for memory (free had fallen to 13.7 GB with the K 45 workers still growing); its stage-1 log is `w1.0000_stage1_k31.log` and it restarts in stage 2. A second guard (`--guard 5`, log `scan45J1250/mem_guard_a.log`) watches run (a); the two J 1500 nodes are never stopped. Stage 2 amended (comms 2026-11-03 04:20 UTC): (b) at --procs 3 first, then the two nodes at --procs 2, all under the mask.
