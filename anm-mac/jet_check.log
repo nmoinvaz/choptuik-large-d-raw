@@ -1,0 +1,27 @@
+T75/pin7_D73.2657.npz: D 73.265722, M 32, nodes [0.3, 0.4, 0.5, 0.6, 0.7], |F| 5.77e-21; residual 0.01 s
+jet residual, 17 coefficients: 2.83 s (263 residuals); |F_k|: 5.77e-21 1.07e+07 8.73e+13 8.76e+20 8.47e+27 3.51e+34 8.18e+39 9.63e+43 9.33e+46 1.33e+50 2.40e+52 7.35e+53 1.27e+55 3.53e+56 2.55e+57 6.36e+57 7.43e+57
+coefficient 0 against the plain residual: 0.0e+00 relative
+  jet h -1.0e-07: |sum - F(D+h)| 1.20e-07, |F_1 h| 1.07e+00, ratio 1.1e-07, last term 7.4e-55
+  jet h -1.0e-08: |sum - F(D+h)| 6.70e-08, |F_1 h| 1.07e-01, ratio 6.2e-07, last term 7.4e-71
+  jet h -1.0e-09: |sum - F(D+h)| 3.89e-08, |F_1 h| 1.07e-02, ratio 3.6e-06, last term 7.4e-87
+  jet h +1.0e-09: |sum - F(D+h)| 3.90e-08, |F_1 h| 1.07e-02, ratio 3.6e-06, last term 7.4e-87
+  jet h +1.0e-08: |sum - F(D+h)| 6.94e-08, |F_1 h| 1.07e-01, ratio 6.5e-07, last term 7.4e-71
+  jet h +1.0e-07: |sum - F(D+h)| 4.48e-07, |F_1 h| 1.07e+00, ratio 4.2e-07, last term 7.4e-55
+worst ratio 3.6e-06 against 1e-20: FAIL
+central differences at eps 1e-09: order 1 relative 8.2e-05 (eps^2 |F_3|/|F_1| 8.2e-05), order 2 relative 1.0e-04 (eps^2 |F_4|/|F_2| 9.7e-05)
+  kappa_frozen h -1.0e-07: |sum - F(D+h)| 7.34e-01, |F_1 h| 5.19e-01, ratio 1.4e+00, last term 1.2e-59
+  kappa_frozen h -1.0e-08: |sum - F(D+h)| 5.52e-02, |F_1 h| 5.19e-02, ratio 1.1e+00, last term 1.2e-75
+  kappa_frozen h -1.0e-09: |sum - F(D+h)| 5.53e-03, |F_1 h| 5.19e-03, ratio 1.1e+00, last term 1.2e-91
+  kappa_frozen h +1.0e-09: |sum - F(D+h)| 5.55e-03, |F_1 h| 5.19e-03, ratio 1.1e+00, last term 1.2e-91
+  kappa_frozen h +1.0e-08: |sum - F(D+h)| 5.65e-02, |F_1 h| 5.19e-02, ratio 1.1e+00, last term 1.2e-75
+  kappa_frozen h +1.0e-07: |sum - F(D+h)| 2.13e+00, |F_1 h| 5.19e-01, ratio 4.1e+00, last term 1.2e-59
+control kappa_frozen: worst ratio 4.1e+00: fires
+  n_frozen h -1.0e-07: |sum - F(D+h)| 1.21e+00, |F_1 h| 0.00e+00, ratio inf, last term 0.0e+00
+  n_frozen h -1.0e-08: |sum - F(D+h)| 1.07e-01, |F_1 h| 0.00e+00, ratio inf, last term 0.0e+00
+  n_frozen h -1.0e-09: |sum - F(D+h)| 1.07e-02, |F_1 h| 0.00e+00, ratio inf, last term 0.0e+00
+  n_frozen h +1.0e-09: |sum - F(D+h)| 1.07e-02, |F_1 h| 0.00e+00, ratio inf, last term 0.0e+00
+  n_frozen h +1.0e-08: |sum - F(D+h)| 1.08e-01, |F_1 h| 0.00e+00, ratio inf, last term 0.0e+00
+  n_frozen h +1.0e-07: |sum - F(D+h)| 2.58e+00, |F_1 h| 0.00e+00, ratio inf, last term 0.0e+00
+control n_frozen: worst ratio inf: fires
+J2 FAIL
+exit 1
