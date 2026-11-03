@@ -51,3 +51,19 @@ double-double system's Newton basin (notes/QUAD_DOUBLE.md 12.4), not the step ru
 (76.6075, 77.9442, 78.6126) are double-double points of the pinned system in layout B and carry its 1e-6..1e-3
 uncertainty; they are not added to any table. The ladders ran 7.4 min of wall time at 4 threads each (the --max_hours
 0.13 cap was not reached; both ended on their step rule).
+
+## Newton's basin in layouts A and B (2026-11-02 23:34 to 23:52 UTC, `basin_x80.jsonl`, `basin_x85.jsonl`)
+
+T84's `qd_basin.py` (folder T84-mac, run with ~/venv-qds, 4 threads each, both at once) on T85's layout-A states
+(74, 75, 76, 77, 77.512, 77.8806, 78, 78.1049) and the layout-B states (T85's 74, 75, 76, 76.4, 76.48 and this
+folder's ladder points 76.6075, 77.9442, 78.6126): the LU's smallest pivot, |F| at the state, the Newton step, |F|
+after it, c and the basin sigma^2/c, for the pinned (kfreeze 7) and the full (kfreeze 13) system in quad-double. Logs
+`basin_x80.log`, `basin_x85.log`. Read in notes/QUAD_DOUBLE.md 12.7 (`hp/wall_model.py`).
+
+## The stall detector at the states around the 35.2 stall (2026-11-03 00:06 UTC, `stall_up6.jsonl`)
+
+`hp/stall_margin.py` (main, with its import repaired to run on main's driver) on the saved states up6_D33.0327,
+up6_D34.0521, up6_D35.0248 (every harmonic solved, the weakest direction p1's harmonic 31) and up7_D36.0732
+(harmonics above 13 frozen): u·κ, the basin measure κ = c F0 / σ² along the weakest direction, θ, the floor and |F|.
+Read in the README ("Where the drop-offs are"): the 35.2 stall is the basin's (κ 26 at 35.02 with u·κ 0.01), the
+60.96 stall is precision's (u·κ 1.7).
