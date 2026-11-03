@@ -16,3 +16,12 @@ worktree `choptuik-anm` (branch `anm` of the code repository) against multidoubl
   by a wrong offset (superseded), then pins 5, 3, 1, then the re-planned pins 5 and 3 that 13.16 quotes, and the
   frozen-dimension control).
 - `anm_J4.jsonl`, `anm_J4_pin5.log`, `anm_J4_pin3.log`: J4 from T75's last state at D 73.27, pins 5 and 3.
+- `newton_diag_h*.log`, `newton_diag2_h*.log`, `pred_pin3_D71_h*.npz`: the corrector diagnosis from the saved predictions
+  at D 71.5 and 72 (`hp/anm_newton_diag.py`): plain Newton creeps in the horizon block's weak directions, the deflated
+  phase reaches 2-4e-18, the junk-only phases have nothing to freeze.
+- `run_pin3_float.log`: the chained pilot's first run (`hp/anm_run.py`), with D + a in float64: every prediction off by
+  about 3e-8 (the rounding of D times the residual's 2e6 per unit of D); superseded.
+- `run_pin3/`, `run_pin3.log`: the pilot with the deflated corrector: stalls at 1e-16 at every step size.
+- `run_pin3_newton/`, `run_pin3_newton.log`: plain Newton, eps 1e-16 (steps of 1.67): 73.27 -> 77.87 in four steps,
+  then stalls. `run_pin3_newton_e14/`, `.log`: eps 1e-14 (steps of 2): 73.27 -> 75.27 -> 77.27 -> 79.27 converged,
+  then the predictions at 79.5-80.3 sit at 1e-14 and Newton takes no step. The converged states are the npz files.
