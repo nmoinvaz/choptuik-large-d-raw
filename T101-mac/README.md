@@ -59,3 +59,11 @@ T84's `qd_basin.py` (folder T84-mac, run with ~/venv-qds, 4 threads each, both a
 folder's ladder points 76.6075, 77.9442, 78.6126): the LU's smallest pivot, |F| at the state, the Newton step, |F|
 after it, c and the basin sigma^2/c, for the pinned (kfreeze 7) and the full (kfreeze 13) system in quad-double. Logs
 `basin_x80.log`, `basin_x85.log`. Read in notes/QUAD_DOUBLE.md 12.7 (`hp/wall_model.py`).
+
+## The stall detector at the states around the 35.2 stall (2026-11-03 00:06 UTC, `stall_up6.jsonl`)
+
+`hp/stall_margin.py` (main, with its import repaired to run on main's driver) on the saved states up6_D33.0327,
+up6_D34.0521, up6_D35.0248 (every harmonic solved, the weakest direction p1's harmonic 31) and up7_D36.0732
+(harmonics above 13 frozen): u·κ, the basin measure κ = c F0 / σ² along the weakest direction, θ, the floor and |F|.
+Read in the README ("Where the drop-offs are"): the 35.2 stall is the basin's (κ 26 at 35.02 with u·κ 0.01), the
+60.96 stall is precision's (u·κ 1.7).
