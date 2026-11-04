@@ -1,0 +1,46 @@
+trend exponents (a, b) per held harmonic 5: -1.21/+0.07, 7: -1.61/-0.71, 9: -1.99/-1.30, 11: +0.00/+0.00, 13: +0.00/+0.00
+base anm-mac/run_trend_pin3_qd7/anm_pin3_D83.4688.npz: D 83.468847, M 32, pin 3 (held [5, 7, 9, 11, 13]), |F| 3.0e-19; N 24, eps 1e-14, h_max 0.5, corrector qd (junk_only False), tol 1.0e-18 x 1.45^(D - 83.468847), stalls accepted below 1e-17
+step 0: D 83.468847, pivots 2.1e-07..3.9e+10, |z_1| 2.00e-03, |z_N| 1.92e-21, ratios 2-5 100.7 25.5 4.5 1.5, a_max 1.495, 38 s
+  probe: jet-model residual norms, order 1 (7.529055922893432e-13, 3.4703569713076455e-13), order 2 (1.501302866307532e-14, 3.835564707629919e-15), order N (1.6148654552602841e-31, 4.650224670832488e-33)
+  probe: a 0.015625: |F_pred| dd 4.8832e-14 (3.1253e-12 per unit a), qd 4.8832e-14 (3.1253e-12)
+  probe: a 0.03125: |F_pred| dd 9.7639e-14 (3.1244e-12 per unit a), qd 9.7639e-14 (3.1244e-12)
+  probe: a 0.0625: |F_pred| dd 1.9518e-13 (3.1228e-12 per unit a), qd 1.9518e-13 (3.1228e-12)
+  probe: quad-double order-1 residual of z_1, central step 9.313e-10: max 3.6658e-12
+  probe: quad-double order-1 residual of z_1, central step 1.164e-10: max 3.1248e-12
+  probe: the two steps differ by 2.023e-12
+  probe: z_1 corrected (1): |dz_1| 5.020e-07, quad-double order-1 residual 1.3397e-17
+  probe: z_1 corrected (2): |dz_1| 7.345e-13, quad-double order-1 residual 2.2739e-22
+  probe: corrected series, a 0.015625: |F_pred| dd 4.9739e-16 (3.1833e-14 per unit a), qd 4.9753e-16 (3.1842e-14)
+  probe: corrected series, a 0.0625: |F_pred| dd 1.9622e-15 (3.1396e-14 per unit a), qd 1.9623e-15 (3.1397e-14)
+  probe: corrected series, a 0.25: |F_pred| dd 8.8278e-15 (3.5311e-14 per unit a), qd 8.8278e-15 (3.5311e-14)
+  probe: corrected series, a 0.5: |F_pred| dd 2.5086e-14 (5.0173e-14 per unit a), qd 2.5086e-14 (5.0173e-14)
+  probe: corrected series, a 1: |F_pred| dd 9.2709e-14 (9.2709e-14 per unit a), qd 9.2709e-14 (9.2709e-14)
+  probe: z_1 corrected by the Richardson residual, its norms [3.126076905166848e-12, 1.3977697284030705e-17, 1.2100839741545806e-22]
+  probe: Richardson series, a 0.015625: |F_pred| dd 1.1581e-17 (7.4116e-16 per unit a), qd 1.1574e-17 (7.4074e-16)
+  probe: Richardson series, a 0.0625: |F_pred| dd 1.8371e-16 (2.9394e-15 per unit a), qd 1.8370e-16 (2.9393e-15)
+  probe: Richardson series, a 0.25: |F_pred| dd 2.9142e-15 (1.1657e-14 per unit a), qd 2.9142e-15 (1.1657e-14)
+  probe: Richardson series, a 0.5: |F_pred| dd 1.1523e-14 (2.3045e-14 per unit a), qd 1.1523e-14 (2.3045e-14)
+  probe: Richardson series, a 1: |F_pred| dd 4.5673e-14 (4.5673e-14 per unit a), qd 4.5673e-14 (4.5673e-14)
+  probe: Richardson series, a 1.5: |F_pred| dd 1.4446e-10 (9.6305e-11 per unit a), qd 1.4446e-10 (9.6305e-11)
+  probe: Richardson series, a 2: |F_pred| dd 2.2770e-07 (1.1385e-07 per unit a), qd 2.2770e-07 (1.1385e-07)
+/Users/nathan/Source/venv-anm/lib/python3.13/site-packages/hpkernel/driver.py:149: RuntimeWarning: overflow encountered in square
+  return float(np.sqrt(np.sum((Fh + Fl) ** 2)))
+Traceback (most recent call last):
+  File "/Users/nathan/Source/choptuik-large-d/hp/anm_run.py", line 465, in <module>
+    main()
+    ~~~~^^
+  File "/Users/nathan/Source/choptuik-large-d/hp/anm_run.py", line 408, in main
+    sys.exit(probe(D, zh, zl, Zh, Zl, refine, held_arg))
+             ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nathan/Source/choptuik-large-d/hp/anm_run.py", line 361, in probe
+    z2h, z2l, out["order2"] = fix_z2(D0, zq, (z1h, z1l), np.array(Zr_h[2]), np.array(Zr_l[2]))
+                              ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nathan/Source/choptuik-large-d/hp/anm_run.py", line 314, in fix_z2
+    x = r(z2h, z2l)
+  File "/Users/nathan/Source/choptuik-large-d/hp/anm_run.py", line 307, in r
+    a1, a2 = order2_q(D0, zq, Z1, (z2h_, z2l_), 2.0 ** -8), order2_q(D0, zq, Z1, (z2h_, z2l_), 2.0 ** -9)
+             ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nathan/Source/choptuik-large-d/hp/anm_run.py", line 294, in order2_q
+    Ks.append(sx.residual_q(*(np.ascontiguousarray(np.asarray(p)) for p in zz)))
+              ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: singular or non-finite pivot at column 0 (NaN)
