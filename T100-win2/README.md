@@ -4,3 +4,5 @@ Machine: win2 (Windows desktop, Intel Core Ultra 7 265K, 20 cores: 8 P + 12 E, n
 Comms entry: 2026-11-02 22:34 UTC cloud to win2.
 
 The leg `down25d` from T82-win's `down25c.jsonl.progress.json` (targets 3.04375, 3.0425, ..., 3.005), with the history states from the worktree's `data/lowD_states` and `T82-win/states`. Output here: `down25d.jsonl`, `down25d_points.jsonl`, `down25d.log`, and `states/`.
+
+down25e ran at --threads 4 (comms 2026-11-03 02:15 UTC), not 6.
