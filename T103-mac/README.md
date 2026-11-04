@@ -4,3 +4,5 @@ Machine: mac (Apple M5, 4 physical cores, 32 GB), checkout ~/Source/choptuik-t83
 Comms entry: 2026-11-03 13:40 UTC cloud to mac
 Command: nice -n 10 python -u amp_flint_par.py 1.0 45 1500 1280 --procs 2 --fit phys --mf 6:12 --fit-step 1
 Started 2026-11-03 13:42 UTC.
+
+Stopped 2026-11-04 00:40 UTC by the runner under the cloud 23:18 rule (used swap over 16 GB, 16884 MB), last line "k 41" at 37410 s (order 42 under way), run clock about 10 h 58 min. No JSON written. A hp release build in choptuik-anm (not the runner's) pushed swap from 11.6 to 16.9 GB in 5 minutes. A stopped replica is recorded, not replaced.
