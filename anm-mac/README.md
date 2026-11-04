@@ -35,6 +35,11 @@ worktree `choptuik-anm` (branch `anm` of the code repository) against multidoubl
 - `run_trend_pin3/`, `.log`, `run_trend_pin5.log`: the trend-held chains (`anm_run.py --trend T75`): pin 3 converges at
   75.27 and 77.27 with Delta within 1e-7 of the formula, then Newton takes no step from 1e-14 residuals at 77.5-79.3; pin 5's
   coefficients are polluted by its free harmonic 5 (pivot 4e-9). `run_trend_pin3_cont/`: continued with stalls accepted.
+- `run_trend_pin3_qd.log`, `run_trend_pin3_qd2.log`: the quad-double corrector's failed forms (the pinned kernel's
+  raw residual is the offset; the unpinned kernel with frozen directions diverges), notes/QUAD_DOUBLE.md 13.19 (a).
+- `run_trend_pin3_qd3/`, `.log`: the pinned quad-double corrector (`pinning.PinnedQ`) from the 79.27 stall: the base
+  to 2e-29 in two steps, then 79.77, 80.02, 80.27 converged (1e-30 to 1e-43) at h 0.5 and 0.25; h 1 stalls at 1e-9.
+- `run_trend_pin3_qd4/`, `.log`: the chain continued from 80.27 with h_max 0.5 and 12 quad-double steps per attempt.
 - `hopf/`: the Hopf tests (`hp/hopf_amp_mode.py`). `hopf_amp_mode.jsonl` and `.log`: the amplitude law and the
   real-axis scan of det M(λ) on [−1.2, 0.5] in steps of 0.025 at six states; `hopf_fine.jsonl` and `.log`: the same
   on the geometric grid −0.025·2^−i down to −3.9e-4 (`--fine`); `hopf_law.jsonl`: the amplitude law with its fits
