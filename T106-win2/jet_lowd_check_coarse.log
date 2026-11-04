@@ -1,0 +1,15 @@
+base T82-win/states/lowDhm_x0.000157-0.975_D3.0450_M320.npz: D 3.045, M 320, L 28161, 2348 steps, |F| 5.86e-29, residual 14.1 s
+(a) jet order 0 against the residual: |c0 - F| 0.00e+00 (|F| 5.86e-29), bound 1e-3 |F|: PASS
+    dF/dD by central differences, eps 1e-06: |d1 - F_1| / |F_1| 2.72e-10
+    dF/dD by central differences, eps 1e-08: |d1 - F_1| / |F_1| 2.72e-14
+    dF/dD by central differences, eps 1e-10: |d1 - F_1| / |F_1| 8.97e-17
+(b) jet order 1 against central differences in D: best 8.97e-17 (|F_1| 1.744e+03, jet 198 s), bound 1e-6: PASS
+(c) jvp(cut=False) along a random u against central differences (eps 1e-8, 1e-9, 1e-10): 2.3e-07, 2.3e-09, 2.3e-11, 28.3 s, bound 1e-6: PASS
+(c_cut) jvp(cut=True) along a random u against central differences (eps 1e-8, 1e-9, 1e-10): 2.3e-07, 2.3e-09, 2.3e-11, 25.2 s, bound 1e-6: PASS
+    tangent from D 3.04375, 3.04438, 3.045, 3.0475: |t| 4.7981e+04, dDelta/dD 7.945113, |t4 - t3| / |t4| 1.9e-04
+(d) |J t + F_1| / |F_1| 2.54e-04 against the interpolation's |J (t4 - t3)| / |F_1| 1.34e-03: PASS
+(e_lu) f64 LU solve (pivots 3.8e-11..5.2e+01, 1834 s): |x| 4.6204e+09, dDelta/dD 7.945128, |J x + F_1| / |F_1| 3.0e-09, |x - t| / |t| 9.6e+04, bound 2e-03: FAIL
+(e_gmres_cut_1e-26) gmres_refine cut=True step_tol 1e-26 (40 products, converged False, 607 s, changes [1.0, 2.8, 0.12, 0.073, 0.032, 0.062]..[0.0015, 0.32]): |x| 1.2226e+09, dDelta/dD 7.945125, |J x + F_1| / |F_1| 9.6e-12, |x - t| / |t| 2.5e+04, bound 2e-03: FAIL
+(e_gmres_cut_1e-20) gmres_refine cut=True step_tol 1e-20 (40 products, converged False, 530 s, changes [1.0, 2.8, 0.12, 0.073, 0.032, 0.062]..[0.0015, 0.32]): |x| 1.2226e+09, dDelta/dD 7.945125, |J x + F_1| / |F_1| 9.6e-12, |x - t| / |t| 2.5e+04, bound 2e-03: FAIL
+(e_gmres_1e-20) gmres_refine cut=False step_tol 1e-20 (40 products, converged False, 528 s, changes [1.0, 2.8, 0.12, 0.073, 0.032, 0.062]..[0.0028, 0.0028]): |x| 7.2388e+08, dDelta/dD 7.945125, |J x + F_1| / |F_1| 1.0e-11, |x - t| / |t| 1.5e+04, bound 2e-03: FAIL
+failed links: e_lu, e_gmres_cut_1e-26, e_gmres_cut_1e-20, e_gmres_1e-20
