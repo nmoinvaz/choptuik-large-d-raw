@@ -32,3 +32,7 @@ worktree `choptuik-anm` (branch `anm` of the code repository) against multidoubl
   1.2e-19, then no progress; Delta differs from the pin-3 chain by 5e-6 at 80.5 (the stale held harmonics).
 - `run_t101_pin13.log`, `run_t101_pin3/`, `.log`: the 0.85 layout from T101's last state (78.61): pivots 1e-19..1e-20,
   the coefficients unusable (z_1 ten times the tangent); section 13.17.
+- `run_trend_pin3/`, `.log`, `run_trend_pin5.log`: the trend-held chains (`anm_run.py --trend T75`): pin 3 converges at
+  75.27 and 77.27 with Delta within 1e-7 of the formula, then Newton takes no step from 1e-14 residuals at 77.5-79.3; pin 5's
+  coefficients are polluted by its free harmonic 5 (pivot 4e-9). `run_trend_pin3_cont/`: continued with stalls accepted.
+- `hopf/`: the Hopf tests (`hp/hopf_amp_mode.py`): the amplitude law and the growth-rate scans per state.
