@@ -28,3 +28,7 @@ worktree `choptuik-anm` (branch `anm` of the code repository) against multidoubl
 - `run_pin3_cont/`, `.log` and `run_pin3_cont_dnp/`, `.log`: the chain continued from the 79.27 state with stalls
   accepted below 1e-13: plain Newton takes no step from the predictions (1e-14..1e-13) past 80.5; the deflated
   corrector crawls to 82.12 on accepted stalls whose linearised Delta corrections are 6e-9 to 2e-8.
+- `run_pin1_cont/`, `.log`: pin 1 (harmonics 3-13 held) from the 79.27 state: 80.52 and 81.86 accepted at 7e-20 and
+  1.2e-19, then no progress; Delta differs from the pin-3 chain by 5e-6 at 80.5 (the stale held harmonics).
+- `run_t101_pin13.log`, `run_t101_pin3/`, `.log`: the 0.85 layout from T101's last state (78.61): pivots 1e-19..1e-20,
+  the coefficients unusable (z_1 ten times the tangent); section 13.17.
