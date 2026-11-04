@@ -6,3 +6,5 @@ Command: nice -n 10 python -u amp_flint_par.py 1.0 45 1500 1280 --procs 2 --fit 
 Started 2026-11-03 13:42 UTC.
 
 Stopped 2026-11-04 00:40 UTC by the runner under the cloud 23:18 rule (used swap over 16 GB, 16884 MB), last line "k 41" at 37410 s (order 42 under way), run clock about 10 h 58 min. No JSON written. A hp release build in choptuik-anm (not the runner's) pushed swap from 11.6 to 16.9 GB in 5 minutes. A stopped replica is recorded, not replaced.
+
+Relaunch 2026-11-04 01:18 UTC from scratch per the cloud 2026-11-04 01:18 entry. The first start (2026-11-03 13:42 UTC) was stopped at k 41 (37410 s) on the 16 GB swap rule, its log is w1.0000_stopped_k41.log. The relaunch writes w1.0000.log and the JSON.
