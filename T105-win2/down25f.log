@@ -25,3 +25,28 @@
 00:48:07 D 3.04375 M 320: L 28161, steps 3975, start |F| 1.3e-27
   newton 0: |F| 1.29e-27 |dz| 1.49e-15 lam 1 dDelta -8.82e-30 Delta 2.436459113360827 piv 7.0e-11..4.9e+01  t 878.3s
   newton 0: |F| 1.48e-28 |dz| 6.07e-16 lam 0.25 dDelta -3.06e-31 Delta 2.436459113360827 piv 1.2e-09..4.9e+01  t 918.6s
+  newton 0: |F| 1.09e-28 |dz| 3.25e-16 lam 0.00195 dDelta +1.47e-33 Delta 2.436459113360827 piv 1.2e-09..4.9e+01  t 1001.3s
+01:34:45 D 3.04375 M 320: |F| 1.5e-28 -> 1.1e-28: below 1e-27 and no longer falling (the residual floor); stopping
+01:56:15 D 3.04375 M 320: Delta 2.4364591133608267 (-6.83e-17) |F| 6.4e-29 its 3 4101s dDelta/dF max 2.8e+01 tails 4e-63 2e-71 dDelta_est -9.6e-31
+01:56:42   D 3.04375 M 320: the solution's own plan has 4047 steps, more than the 3975 used
+01:57:39   D 3.04375 M 384: start 'predictor' |F| 6.56e-04 (4034 steps)
+01:57:54   D 3.04375 M 384: start 'lift of M_w' |F| 1.30e-05 (4034 steps)
+01:58:10   D 3.04375 M 384: start 'last state' |F| 8.30e-02 (4034 steps)
+01:58:10   D 3.04375 M 384: best start 'lift of M_w' is a lift (|F| 1.3e-05 on the reused plan); two passes
+02:00:20   D 3.04375 M 384: start 'predictor' |F| 6.56e-04 on its own plan (7452 steps)
+02:02:02   D 3.04375 M 384: start 'lift of M_w' |F| 1.30e-05 on its own plan (8319 steps)
+02:03:02   D 3.04375 M 384: start 'last state' |F| 8.30e-02 on its own plan (5667 steps)
+02:03:39   D 3.04375 M 384: start 'lift of M_w' |F| 1.30e-05 (8319 steps)
+02:04:14 D 3.04375 M 384: L 33793, steps 8319, start |F| 1.3e-05
+  newton 0: |F| 1.30e-05 |dz| 5.51e-02 lam 1 dDelta -4.97e-11 Delta 2.436459113311106 piv 4.2e-05..2.9e+01  t 3469.1s
+  newton 0: |F| 1.99e-10 |dz| 8.06e-07 lam 1 dDelta -3.84e-11 Delta 2.436459113272686 piv 4.2e-05..2.9e+01  t 3377.1s
+  newton 0: |F| 7.54e-18 converged (last |dz| 9.4e-11) Delta 2.436459113272686; last step taken, |F| 1.13e-25
+04:55:07 D 3.04375 M 384: Delta 2.4364591132726861 (+1.94e-16) |F| 1.1e-25 its 3 10286s dDelta/dF max 9.6e-01 tails 3e-62 5e-66 dDelta_est +3.4e-29
+04:56:02   D 3.04375 M 384: start 'pass 1' |F| 1.13e-25 (3978 steps)
+04:56:22 D 3.04375 M 384: L 33793, steps 3978, start |F| 1.1e-25
+  newton 0: |F| 1.13e-25 |dz| 9.93e-14 lam 1 dDelta +3.44e-29 Delta 2.436459113272686 piv 1.7e-12..2.9e+01  t 1666.5s
+  newton 0: |F| 1.05e-27 |dz| 9.97e-13 lam 0.25 dDelta -1.34e-29 Delta 2.436459113272686 piv 2.3e-12..2.9e+01  t 1912.8s
+  newton 0: |F| 2.34e-28: no decrease along the f64-Jacobian step; retrying with the dd4 Jacobian (M > 128: no exact dense Jacobian)
+  newton 0: |F| 2.34e-28 |dz| 2.49e-13 lam 0.5 dDelta -3.17e-30 Delta 2.436459113272686 piv 2.7e-12..2.9e+01  t 4960.1s
+  newton 0: |F| 4.94e-28 |dz| 7.46e-13 lam 0.25 dDelta -2.01e-29 Delta 2.436459113272686 piv 8.5e-13..2.9e+01  t 1532.5s
+07:44:14 D 3.04375 M 384: |F| 2.3e-28 -> 4.9e-28: below 1e-27 and no longer falling (the residual floor); stopping
