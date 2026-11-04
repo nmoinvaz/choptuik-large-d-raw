@@ -1,0 +1,17 @@
+trend exponents (a, b) per held harmonic 5: -1.21/+0.07, 7: -1.61/-0.71, 9: -1.99/-1.30, 11: +0.00/+0.00, 13: +0.00/+0.00
+  qn 0 [full]: |F| 5.32e-20 -> 1.12e-39, |dz| 1.0e-30 -> 5.8e-31, lam 1, dDelta +1.75e-31, piv 3.0e-07..5.9e+10, 18.6 s
+  qn 1: |F| 1.12e-39 converged, Delta 1.76276018019759850 +1.0042e-16
+      quad-double Newton: 2 steps, max|F| 1.1e-39, converged; double-double |F| of its first two parts 4.0e-19
+base anm-mac/run_trend_pin3_qd7/anm_pin3_D84.7188.npz: D 84.718847, M 32, pin 3 (held [5, 7, 9, 11, 13]), |F| 4.0e-19; N 24, eps 1e-14, h_max 1.0, corrector qd (junk_only False), tol 1.0e-20 x 1.45^(D - 84.718847), stalls accepted below 1e-17
+step 0: D 84.718847, pivots 3.0e-07..5.9e+10, |z_1| 1.95e-03, |z_N| 9.47e-24, ratios 2-5 102.6 93.2 60.9 0.5, a_max 1.881, 59 s
+    a 1.0000: predicted |F| 6.02e-14 above 1.4e-14, not corrected
+    a 0.4341: predicted |F| 6.04e-11 above 1.4e-14, not corrected
+    a 0.1085: predicted |F| 3.40e-12 above 1.4e-14, not corrected
+    a 0.0271: predicted |F| 2.07e-13 above 1.4e-14, not corrected
+  qn 0 [full]: |F| 2.92e-15 -> 1.41e-16, |dz| 4.6e-14 -> 2.4e-20, lam 1, dDelta +3.25e-14, piv 3.0e-07..5.9e+10, 112.26 s
+  qn 1 [full]: |F| 1.41e-16 -> 1.46e-29, |dz| 2.4e-20 -> 7.1e-24, lam 1, dDelta +3.98e-21, piv 3.0e-07..5.9e+10, 19.56 s
+  qn 2: |F| 1.46e-29 converged, Delta 1.76275092627126440 +1.5628e-17
+      quad-double Newton: 3 steps, max|F| 1.5e-29, converged; double-double |F| of its first two parts 4.5e-19
+    a 0.007 -> D 84.7256300562: predicted |F| 1.28e-14, qd 3 steps -> 4.45e-19 (tol 1.0e-20, stall accepted, Delta correction +0.0e+00), Delta 1.762750926271 (formula diff -2.7e-07), moved 4.6e-14, 152 s
+step 1: D 84.7256300562, pivots 3.0e-07..5.9e+10, |z_1| 1.95e-03, |z_N| 8.61e-23, ratios 2-5 102.6 91.1 28.7 0.3, a_max 1.709, 197 s
+    a 0.0136: predicted |F| 5.16e-14 above 1.4e-14, not corrected
