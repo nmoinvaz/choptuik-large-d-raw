@@ -25,3 +25,6 @@ worktree `choptuik-anm` (branch `anm` of the code repository) against multidoubl
 - `run_pin3_newton/`, `run_pin3_newton.log`: plain Newton, eps 1e-16 (steps of 1.67): 73.27 -> 77.87 in four steps,
   then stalls. `run_pin3_newton_e14/`, `.log`: eps 1e-14 (steps of 2): 73.27 -> 75.27 -> 77.27 -> 79.27 converged,
   then the predictions at 79.5-80.3 sit at 1e-14 and Newton takes no step. The converged states are the npz files.
+- `run_pin3_cont/`, `.log` and `run_pin3_cont_dnp/`, `.log`: the chain continued from the 79.27 state with stalls
+  accepted below 1e-13: plain Newton takes no step from the predictions (1e-14..1e-13) past 80.5; the deflated
+  corrector crawls to 82.12 on accepted stalls whose linearised Delta corrections are 6e-9 to 2e-8.
