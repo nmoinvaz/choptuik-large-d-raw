@@ -1,0 +1,8 @@
+trend exponents (a, b) per held harmonic 5: -1.21/+0.07, 7: -1.61/-0.71, 9: -1.99/-1.30, 11: +0.00/+0.00, 13: +0.00/+0.00
+base anm-mac/run_trend_pin3_cont/anm_pin3_D79.2657.npz: D 79.265722, M 32, pin 3 (held [5, 7, 9, 11, 13]), |F| 2.1e-15; N 24, eps 1e-14, h_max 1.0, corrector qd (junk_only False), tol 1.0e-20 x 1.45^(D - 79.265722), stalls accepted below 1e-17
+step 0: D 79.265722, pivots 3.4e-07..9.4e+09, |z_1| 2.18e-03, |z_N| 4.85e-25, ratios 2-5 95.4 86.2 53.2 1.2, a_max 2.151, 54 s
+  qn 0 [sel]: |F| 3.79e-14 -> 9.98e-06, |dz| 9.3e-04 -> 8.4e-03, lam 0.0078125, dDelta +1.85e-08, piv 6.3e-06..1.3e+10, 160.65 s
+  qn 1: |F| 9.98e-06, |dz| 7.1e-04: no trial step accepted, stopping
+      quad-double Newton: 2 steps, max|F| 1.0e-05, not converged; double-double |F| of its first two parts 3.8e-05
+    a 1.000 -> D 80.265722: predicted |F| 1.32e-13, qd 2 steps -> 3.81e-05 (tol 1.4e-20), Delta 1.769163833264 (formula diff -1.5e-07), moved 7.3e-06, 402 s
+stopped by the coordinator at 2026-11-04 03:17 UTC: on the unpinned kernel (kfreeze 13) with the held harmonics frozen as directions, the first quad-double step at the prediction diverged (|F| 3.8e-14 -> 1.0e-05 at lam 1/128, |dz| 9.3e-04 -> 8.4e-03): freezing the columns keeps the rows the pinning drops. Rerun on the pinned system in run_trend_pin3_qd3.
