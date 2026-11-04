@@ -1,0 +1,21 @@
+K=28 ns=-9: identity ['D=5: +1.2e-33', 'D=20: -4.2e-34']; first moment 10.37529 (1/n coefficient); max|a_k| 8.3e+08
+   rho changes sign 23 times, at D = [ 3.    2.65  2.52  2.29  2.04  1.72  1.33  0.89  0.39 -0.16 -0.75 -1.39
+ -2.05 -2.72 -3.4  -4.06 -4.69 -5.26 -5.77 -6.21 -6.55 -6.8  -6.95]; rho near D = 3 end (theta = 0.05): -1.051e-01, near D_s end (theta = pi - 0.05): -3.199e+09; max |rho| 3.55e+09 at D = -6.99
+K=28 ns=-11: identity ['D=5: -1.0e-33', 'D=20: +5.7e-33']; first moment 10.37529 (1/n coefficient); max|a_k| 7.1e+09
+   rho changes sign 23 times, at D = [ 3.    2.62  2.46  2.21  1.91  1.54  1.1   0.59  0.01 -0.63 -1.34 -2.09
+ -2.88 -3.69 -4.5  -5.3  -6.06 -6.77 -7.41 -7.96 -8.4  -8.73 -8.93]; rho near D = 3 end (theta = 0.05): -1.553e-01, near D_s end (theta = pi - 0.05): -3.317e+10; max |rho| 3.80e+10 at D = -8.98
+K=32 ns=-9: identity ['D=5: +1.1e-32', 'D=20: -9.5e-34']; first moment 10.37529 (1/n coefficient); max|a_k| 1.7e+12
+   rho changes sign 28 times, at D = [ 3.    2.87  2.86  2.74  2.63  2.47  2.27  2.03  1.74  1.4   1.02  0.59
+  0.11 -0.4  -0.95 -1.52 -2.12 -2.72 -3.32 -3.91 -4.48 -5.01 -5.5  -5.94
+ -6.31 -6.61 -6.82 -6.96]; rho near D = 3 end (theta = 0.05): -1.190e-01, near D_s end (theta = pi - 0.05): +9.417e+12; max |rho| 1.01e+13 at D = -6.99
+K=32 ns=-11: identity ['D=5: -7.3e-34', 'D=20: -3.6e-34']; first moment 10.37529 (1/n coefficient); max|a_k| 1.0e+12
+   rho changes sign 27 times, at D = [ 3.    2.75  2.65  2.49  2.29  2.04  1.74  1.39  0.98  0.51 -0.01 -0.58
+ -1.2  -1.85 -2.54 -3.24 -3.96 -4.67 -5.37 -6.04 -6.67 -7.25 -7.76 -8.19
+ -8.54 -8.79 -8.95]; rho near D = 3 end (theta = 0.05): -1.971e-01, near D_s end (theta = pi - 0.05): -5.508e+12; max |rho| 5.90e+12 at D = -8.99
+rho(D) on the cut, by fit (D = t + 2):
+   D              -6         -4         -2          0          1          2        2.5        2.9       2.99
+   K28 ns-9 -2.082e+09 -9.198e+07  5.738e+06 -4.736e+05 -3.033e+04 -3.284e+02 -1.162e+01 -1.841e+00 -2.721e-01
+   K28 ns-11  7.373e+08  3.124e+08 -8.466e+06 -2.525e+04 -2.487e+04  6.237e+02  1.786e+01 -1.860e+00 -2.627e-01
+   K32 ns-9  1.488e+12  1.098e+11  5.371e+09 -6.169e+07 -4.193e+05  7.614e+03 -2.817e+02 -1.410e+00 -3.055e-01
+   K32 ns-11 -6.761e+10 -4.529e+09  7.794e+08  1.089e+06  1.398e+05  3.604e+03 -5.120e+01 -1.166e+00 -3.164e-01
+nice -n 10 /Users/nathan/Source/choptuik-large-d/.venv/bin/python density.py  20.26s user 0.55s system 87% cpu 23.874 total
