@@ -35,4 +35,7 @@ worktree `choptuik-anm` (branch `anm` of the code repository) against multidoubl
 - `run_trend_pin3/`, `.log`, `run_trend_pin5.log`: the trend-held chains (`anm_run.py --trend T75`): pin 3 converges at
   75.27 and 77.27 with Delta within 1e-7 of the formula, then Newton takes no step from 1e-14 residuals at 77.5-79.3; pin 5's
   coefficients are polluted by its free harmonic 5 (pivot 4e-9). `run_trend_pin3_cont/`: continued with stalls accepted.
-- `hopf/`: the Hopf tests (`hp/hopf_amp_mode.py`): the amplitude law and the growth-rate scans per state.
+- `hopf/`: the Hopf tests (`hp/hopf_amp_mode.py`). `hopf_amp_mode.jsonl` and `.log`: the amplitude law and the
+  real-axis scan of det M(λ) on [−1.2, 0.5] in steps of 0.025 at six states; `hopf_fine.jsonl` and `.log`: the same
+  on the geometric grid −0.025·2^−i down to −3.9e-4 (`--fine`); `hopf_law.jsonl`: the amplitude law with its fits
+  (`--law`).
