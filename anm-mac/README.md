@@ -44,3 +44,7 @@ worktree `choptuik-anm` (branch `anm` of the code repository) against multidoubl
   real-axis scan of det M(λ) on [−1.2, 0.5] in steps of 0.025 at six states; `hopf_fine.jsonl` and `.log`: the same
   on the geometric grid −0.025·2^−i down to −3.9e-4 (`--fine`); `hopf_law.jsonl`: the amplitude law with its fits
   (`--law`).
+- `release200/`: hp on multidouble 2.0.0 with the quad-double jet (code repository branch `feat/qd-jet`, 76c1065;
+  venv-qdjet, NEON): `highm_ref.log` and `highm_scaled.log`, the bit-identity checks against T81's references (both
+  pass); `qjet_check_v1.log`, `qjet_check_v2.log` and `qjet_check.jsonl`, hp/qjet_check.py's two versions at
+  the 85.7473 base (both fail their order-1 criterion as written; notes/QUAD_DOUBLE.md 13.20).
