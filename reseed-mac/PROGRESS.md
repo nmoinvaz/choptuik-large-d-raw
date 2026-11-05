@@ -11,3 +11,4 @@
 - 2026-11-05 05:56 UTC: elim basin at 84.91 family B seed 1: 1e-12 (fails 1e-11). Family P (along the series' error) added; family A plain back to 1e-15 so far; h 10 jump (elim) running from a re-seeded |F| 1.3e-8. Machine load average 70-110 from other jobs, so runs take 2-3x longer.
 - 2026-11-05 06:04 UTC: jump 91.12 -> 101.12 (h 10, series to order 6, 7.8e-7 off): elim converges in 7 steps, Delta 8.2e-7 below the formula, on the chain's drift. Pilot anm_run.py --reseed 2 from 96.12 with h 5 next, which lands at 101.12 too (independent check).
 - 2026-11-05 06:29 UTC: family A at 84.91 (node and centre errors only), plain: back to 1e-10, creeping at 1e-9 (the task's 'about 1e-10'). Pilot anm_run.py --reseed 2 computing its series. Controls C1/C2 queued.
+- 2026-11-05 06:45 UTC: pilot anm_run.py --reseed 2 from 96.12, step of 5 to 101.12: converged (5 qd steps, 11 min); its Delta agrees with the h 10 jump from 91.12 to 2.6e-21 (PASS). Second pilot step running.
