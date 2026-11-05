@@ -1,0 +1,7 @@
+check /Users/nathan/Source/choptuik-large-d-raw/reseed-mac/anm_reseed_pilot/anm_pin3_D101.1184.npz: D 101.118364981, G 1.58e+15, truth max|F| (pinned, quad-double) 1.41e-30, double-double |F|_2 phi 1.46e-16; start: horizon data off by 1e-06; rungs [0.3], rows ma, mutate skip, plan_tol 1e-32
+    rung u 0.300000: 3 its, |R| 2.25e+54 -> 1.54e+53, converged, data moved m_h 6.3e-03 a_h 3.1e-05, 4.01 s
+  re-seeded: |m_h - truth| 6.26e-03 (bound 2.9e-15), |a_h - truth| 2.98e-05 (bound 9.3e-31); pinned quad-double max|F| 2.24e+54 (bound 1.5e-15; horizon rows p 2.2e+54, m 1.5e+53, a 1.3e+51, c 2.3e+50); 4.01 s
+  3.1 {'ok': True, 'err_ah': False, 'err_mh': False, 'F': False}: FAIL
+  3.2 {'agree': True, 'err_est': True, 'sonic': True}: PASS
+  3.2b {'agree': False, 'err_est': True, 'sonic': True}: FAIL
+exit 1

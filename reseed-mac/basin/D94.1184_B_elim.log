@@ -20,3 +20,16 @@ basin /Users/nathan/Source/choptuik-large-d-raw/anm-mac/run_trend_pin3_qdj1/anm_
     rung u 0.300000: 3 its, |R| 3.14e-14 -> 4.58e-18, converged, data moved m_h 2.8e-17 a_h 2.2e-16, 3.58 s
     re-seeded (ok, dropped []): max|F| 3.70e-17, |m_h - truth| 1.1e-18, |a_h - truth| 5.1e-21, 15.35 s
   qn 0 [full]: |F| 3.70e-17 -> 2.79e-24, |dz| 1.0e-17 -> 4.5e-19, lam 1, dDelta +1.05e-17, piv 2.4e-07..1.4e+12, 29.76 s
+  qn 1 [full]: |F| 2.79e-24 -> 1.45e-27, |dz| 4.5e-19 -> 9.7e-36, lam 1, dDelta -4.49e-19, piv 2.4e-07..1.4e+12, 30.55 s
+  qn 2 [full]: |F| 1.45e-27 -> 7.46e-50, |dz| 9.7e-36 -> 1.1e-45, lam 1, dDelta +9.25e-38, piv 2.4e-07..1.4e+12, 31.35 s
+  qn 3: |F| 7.46e-50 converged, Delta 1.75118631185411644 -5.2555e-17
+    corrector: 4 steps, converged, max|z - truth| 2.06e-30, |Delta - truth| 7.90e-32 -> BACK; 121.4 s
+  seed 1, delta 1e-16: start max|F| 2.57e-02, max|z - truth| 1.00e-16
+    rung u 0.009375: 2 its, |R| 2.33e-16 -> 2.47e-32, converged, data moved m_h 2.8e-17 a_h 2.2e-16, 2.32 s
+    rung u 0.018750: 2 its, |R| 1.18e-18 -> 1.11e-31, converged, data moved m_h 2.8e-17 a_h 2.2e-16, 2.43 s
+    rung u 0.037500: 2 its, |R| 2.64e-18 -> 6.78e-31, converged, data moved m_h 2.8e-17 a_h 2.2e-16, 2.5 s
+    rung u 0.075000: 2 its, |R| 6.31e-18 -> 2.06e-29, converged, data moved m_h 2.8e-17 a_h 2.2e-16, 2.46 s
+    rung u 0.150000: 2 its, |R| 1.70e-17 -> 4.14e-26, converged, data moved m_h 2.8e-17 a_h 2.2e-16, 2.47 s
+    rung u 0.300000: 5 its, |R| 3.16e-13 -> 1.90e-18, NOT converged, data moved m_h 2.8e-17 a_h 2.2e-16, 6.41 s
+    re-seeded (FAILED, dropped []): max|F| 2.57e-02, |m_h - truth| 2.3e-17, |a_h - truth| 9.9e-17, 18.71 s
+stopped at 08:47 UTC: past D ~ 94 the re-seed's u0 rung can fail its floor test at the floor (here at 1e-16 for elim, |R| 1.9e-18 after 5 steps), so this arm measures that test, not the basin (notes/RESEED.md amendment 9 and 10)
