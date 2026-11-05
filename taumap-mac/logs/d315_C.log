@@ -24,3 +24,20 @@
 === 2026-11-05 06:35:45 M 96 L 0.25 s0 0.2192 
 22:36:05 D 3.15 M 96 map s0 0.2192 L 0.25 mutate None: start |F| 3.47e+16 on its own plan, 2810 steps (plan 19s)
 22:36:13 D 3.15 M 96: L 7297, steps 2810, start |F| 3.5e+16
+  newton 0: |F| 3.47e+16: no decrease along the f64-Jacobian step; retrying with the exact Jacobian
+=== 2026-11-05 07:05:31 M 96 L 0.25 s0 1.79 pert
+--- 2026-11-05 07:05:33 C2 stopped by hand (SIGTERM) during the exact-Jacobian retry: no decrease along the f64-Jacobian Newton step from |F| 3.47e+16; recorded as a failed solve (notes)
+23:05:37 D 3.15 M 96 map s0 1.79 L 0.25 mutate None: start |F| 1.95e-05 on its own plan, 1296 steps (plan 5s)
+23:05:39 D 3.15 M 96: L 7297, steps 1296, start |F| 2.0e-05
+  newton 0: |F| 1.95e-05 |dz| 4.85e-04 lam 1 dDelta -1.02e-06 Delta 2.961319642455395 piv 3.5e-04..7.7e+00  t 314.2s
+  newton 0: |F| 7.15e-12 |dz| 2.60e-08 lam 1 dDelta +6.10e-13 Delta 2.961319642456004 piv 3.5e-04..7.7e+00  t 355.6s
+  newton 0: |F| 4.35e-20 converged (last |dz| 3.2e-18) Delta 2.961319642456004; last step taken, |F| 1.18e-28
+23:22:29 D 3.15 M 96: Delta 2.9613196424560044 (+5.81e-17) |F| 1.2e-28 its 3 1010s dDelta/dF max 1.4e+00 tails 5e-76 3e-38 dDelta_est +7.9e-31
+23:22:33 D 3.15 M 96: L 7297, steps 408, start |F| 1.2e-28
+  newton 0: |F| 1.18e-28 |dz| 1.12e-25 lam 1 dDelta +6.12e-31 Delta 2.961319642456004 piv 3.5e-04..7.7e+00  t 95.0s
+  newton 0: |F| 3.78e-29 converged (last |dz| 1.9e-25) Delta 2.961319642456004; last step taken, |F| 1.56e-29
+23:25:30 D 3.15 M 96: Delta 2.9613196424560044 (+5.81e-17) |F| 1.6e-29 its 2 178s dDelta/dF max 1.4e+00 tails 5e-76 3e-38 dDelta_est -1.1e-31
+23:25:31 D 3.15 M 96 L 0.25 s0 1.79 mutate None: converged True, |F| 1.6e-29, Delta 2.9613196424560044, diff +1.38e-15 (tolerance 9.26557341196274e-12), pass True; calls 3 + 2, steps 1296 / 408, 1200s
+=== 2026-11-05 07:25:31 M 80 L 0.25 s0 1.79 
+23:25:34 D 3.15 M 80 map s0 1.79 L 0.25 mutate None: start |F| 3.83e-05 on its own plan, 1002 steps (plan 3s)
+23:25:35 D 3.15 M 80: L 6081, steps 1002, start |F| 3.8e-05
