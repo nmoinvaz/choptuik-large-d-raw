@@ -1,0 +1,33 @@
+base T82-win/states/lowDhm_x0.000157-0.975_p1_D3.0450_M320.npz: D 3.045, M 320, |F| 8.8e-28, pivots 5.1e-05..5.2e+01, 1196 s
+  z_1: |z| 1.355e+04, |rhs| 1.29e+02, 4 products, converged True, 270 + 88 s
+  z_2: |z| 2.630e+05, |rhs| 7.33e+03, 4 products, converged True, 287 + 97 s
+  z_3: |z| 5.332e+06, |rhs| 4.47e+05, 4 products, converged True, 255 + 91 s
+  z_4: |z| 1.120e+08, |rhs| 4.41e+07, 4 products, converged True, 254 + 96 s
+  z_5: |z| 1.020e+13, |rhs| 3.28e+09, 4 products, converged True, 248 + 95 s
+  z_6: |z| 6.855e+18, |rhs| 1.91e+14, 4 products, converged True, 253 + 94 s
+  z_7: |z| 2.791e+24, |rhs| 1.50e+20, 4 products, converged True, 276 + 93 s
+  z_8: |z| 1.481e+30, |rhs| 5.34e+25, 4 products, converged True, 705 + 89 s
+  z_9: |z| 4.530e+35, |rhs| 3.22e+31, 4 products, converged True, 745 + 100 s
+  z_10: |z| 1.971e+41, |rhs| 8.75e+36, 4 products, converged True, 807 + 95 s
+  z_11: |z| 4.865e+46, |rhs| 4.24e+42, 4 products, converged True, 696 + 94 s
+  z_12: |z| 1.781e+52, |rhs| 9.38e+47, 4 products, converged True, 764 + 87 s
+  z_13: |z| 3.704e+57, |rhs| 3.79e+53, 4 products, converged True, 679 + 93 s
+  z_14: |z| 1.166e+63, |rhs| 7.06e+58, 4 products, converged True, 740 + 94 s
+  z_15: |z| 2.100e+68, |rhs| 2.45e+64, 4 products, converged True, 693 + 90 s
+control (dimension frozen): |[F]_1| 0.00e+00, 0.0e+00 of the real one (fires); radii |z_k-1|/|z_k| 0.0515, 0.0493, 0.0476, 1.1e-05, 1.49e-06, 2.46e-06, 1.88e-06, 3.27e-06, 2.3e-06, 4.05e-06, 2.73e-06, 4.81e-06, 3.18e-06, 5.55e-06
+check T100-win2/states/lowDhm_x0.000157-0.975_p1_D3.0444_M320.npz: h -0.000625, max |z(h) - state| 1.83e+20, Delta +4.72e+05, |F| of the prediction nan on the state's plan (the state's own 8.8e-28)
+check T82-win/states/lowDhm_x0.000157-0.975_p1_D3.0475_M320.npz: h +0.002500, max |z(h) - state| 1.95e+29, Delta -5.08e+14, |F| of the prediction nan on the state's plan (the state's own 4.4e-27)
+target D 3.04375: h -0.001250, |F| of the prediction nan on its own plan (31 steps)
+Traceback (most recent call last):
+  File "C:\Users\nathan\source\choptuik-t106\hp\anm_lowd.py", line 169, in <module>
+    main()
+  File "C:\Users\nathan\source\choptuik-t106\hp\anm_lowd.py", line 154, in main
+    nh, nl, hist = newton_solve(st, ph, pl, tol=1e-28, it_max=a.newton_its, verbose=True, jac="f64")
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nathan\Source\venv-t106\Lib\site-packages\hpkernel\driver.py", line 272, in newton_solve
+    dh, dl, Fh, Fl, pmin, pmax, info = newton_step(s, zh, zl, cur, mixed, gmres)
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nathan\Source\venv-t106\Lib\site-packages\hpkernel\driver.py", line 203, in newton_step
+    dh, dl, Fh, Fl, pmin, pmax = s.newton_mixed(zh, zl, **kw)
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: singular or non-finite pivot at column 0 (0)

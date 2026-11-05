@@ -1,0 +1,19 @@
+import sys, json, numpy as np, time
+sys.path.insert(0, "/Users/nathan/Source/choptuik-large-d/hp")
+from hpkernel.driver import load, save, make_solver, newton_solve
+out = sys.argv[1]
+zh, zl, m = load("/Users/nathan/Source/choptuik-large-d/hp/data/lowD_states/lowD_D4.0000_M48.npz")
+print({k: (v if not isinstance(v, list) or len(v) < 25 else f"[{len(v)}]") for k, v in m.items()}, len(zh))
+s = make_solver(float(m["D"]), m["M"], nodes=m["nodes"], kt=m["kt"], kc=m["kc"], ks=m["ks"], segs=m.get("segs"), threads=1)
+if not m.get("segs"):
+    m["segs"] = s.plan(zh, zl, 1e-32, 0.05)
+    s.set_segs(m["segs"])
+from hpkernel.driver import rnorm
+print("base |F|", rnorm(*s.residual(zh, zl)), "steps", sum(len(g) - 1 for g in m["segs"]), flush=True)
+save(f"{out}/D4.0000.npz", zh, zl, m)
+for D in (3.9975, 4.0025):
+    t0 = time.time()
+    s = make_solver(D, m["M"], nodes=m["nodes"], kt=m["kt"], kc=m["kc"], ks=m["ks"], segs=m["segs"], threads=1)
+    h, l, hist = newton_solve(s, zh, zl, tol=1e-26, it_max=10, verbose=False, jac="f64")
+    print(D, "|F|", rnorm(*s.residual(h, l)), "Delta", h[-1], round(time.time() - t0, 1), "s", flush=True)
+    save(f"{out}/D{D:.4f}.npz", h, l, dict(m, D=D))

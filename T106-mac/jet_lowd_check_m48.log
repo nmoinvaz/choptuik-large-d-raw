@@ -1,0 +1,21 @@
+base T106-mac/m48_states/D4.0000.npz: D 4.0, M 48, L 1921, 192 steps, |F| 4.29e-30, residual 0.4 s
+(a) jet order 0 against the residual: |c0 - F| 0.00e+00 (|F| 4.29e-30), bound 1e-3 |F|: PASS
+    dF/dD by central differences, eps 1e-06: |d1 - F_1| / |F_1| 7.19e-13
+    dF/dD by central differences, eps 1e-08: |d1 - F_1| / |F_1| 1.18e-16
+    dF/dD by central differences, eps 1e-10: |d1 - F_1| / |F_1| 9.04e-17
+(b) jet order 1 against central differences in D: best 9.04e-17 (|F_1| 6.121e+00, jet 6 s), bound 1e-6: PASS
+(c) jvp(cut=False) along a random u against central differences (eps 1e-8, 1e-9, 1e-10): 2.9e-06, 2.9e-08, 2.9e-10, 0.5 s, bound 1e-6: PASS
+(c_cut) jvp(cut=True) along a random u against central differences (eps 1e-8, 1e-9, 1e-10): 2.9e-06, 2.9e-08, 2.9e-10, 0.5 s, bound 1e-6: PASS
+    tangent from D 3.995, 3.9975, 4, 4.0025: |t| 8.5188e+01, dDelta/dD -0.152314, |t4 - t3| / |t4| 1.8e-05
+(d) |J t + F_1| / |F_1| 4.68e-07 against the interpolation's |J (t4 - t3)| / |F_1| 2.24e-05: PASS
+(e_lu) f64 LU solve (pivots 2.4e-03..4.0e+00, 18 s): |x| 8.5188e+01, dDelta/dD -0.152314, |J x + F_1| / |F_1| 1.7e-10, |x - t| / |t| 8.5e-07, bound 2e-04: PASS
+/Users/nathan/Source/venv-anm/lib/python3.13/site-packages/multidouble/__init__.py:64: RuntimeWarning: overflow encountered in multiply
+  p = a * b
+/Users/nathan/Source/venv-anm/lib/python3.13/site-packages/multidouble/__init__.py:67: RuntimeWarning: overflow encountered in multiply
+  return p, ((ah * bh - p) + ah * bl + al * bh) + al * bl
+/Users/nathan/Source/venv-anm/lib/python3.13/site-packages/multidouble/__init__.py:67: RuntimeWarning: invalid value encountered in subtract
+  return p, ((ah * bh - p) + ah * bl + al * bh) + al * bl
+(e_gmres_cut_1e-26) gmres_refine cut=True step_tol 1e-26 (40 products, converged False, 20 s, changes [1.0, 6.9e-08, 6.4e-16, 3.1e-24, 3.1e-25, 2.3e-23]..[nan, nan]): |x| nan, dDelta/dD nan, |J x + F_1| / |F_1| nan, |x - t| / |t| nan, bound 2e-04: FAIL
+(e_gmres_cut_1e-20) gmres_refine cut=True step_tol 1e-20 (4 products, converged True, 2 s, changes [1.0, 6.9e-08, 6.4e-16, 3.1e-24]..[6.4e-16, 3.1e-24]): |x| 8.5188e+01, dDelta/dD -0.152314, |J x + F_1| / |F_1| 4.3e-16, |x - t| / |t| 8.6e-07, bound 2e-04: PASS
+(e_gmres_1e-20) gmres_refine cut=False step_tol 1e-20 (4 products, converged True, 2 s, changes [1.0, 6.9e-08, 6.4e-16, 3.1e-24]..[6.4e-16, 3.1e-24]): |x| 8.5188e+01, dDelta/dD -0.152314, |J x + F_1| / |F_1| 4.3e-16, |x - t| / |t| 8.6e-07, bound 2e-04: PASS
+failed links: e_gmres_cut_1e-26

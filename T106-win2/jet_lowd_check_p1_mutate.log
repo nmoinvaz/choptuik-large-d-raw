@@ -1,0 +1,11 @@
+base T82-win/states/lowDhm_x0.000157-0.975_p1_D3.0450_M320.npz: D 3.045, M 320, L 28161, 5082 steps, |F| 8.85e-28, residual 28.7 s
+(a) jet order 0 against the residual: |c0 - F| 0.00e+00 (|F| 8.85e-28), bound 1e-3 |F|: PASS
+    dF/dD by central differences, eps 1e-06: |d1 - F_1| / |F_1| 1.74e+303
+    dF/dD by central differences, eps 1e-08: |d1 - F_1| / |F_1| 1.74e+303
+    dF/dD by central differences, eps 1e-10: |d1 - F_1| / |F_1| 1.74e+303
+(b) jet order 1 against central differences in D: best 1.74e+303 (|F_1| 0.000e+00, jet 560 s), bound 1e-6: FAIL
+(c) jvp(cut=False) along a random u against central differences (eps 1e-8, 1e-9, 1e-10): 6.8e-02, 6.8e-02, 6.8e-02, 47.8 s, bound 1e-6: FAIL
+(c_cut) jvp(cut=True) along a random u against central differences (eps 1e-8, 1e-9, 1e-10): 6.8e-02, 6.8e-02, 6.8e-02, 39.3 s, bound 1e-6: FAIL
+    tangent from D 3.04375, 3.04438, 3.045, 3.0475: |t| 4.7981e+04, dDelta/dD 7.945113, |t4 - t3| / |t4| 1.9e-04
+(d) |J t + F_1| / |F_1| 2.69e-01 against the interpolation's |J (t4 - t3)| / |F_1| 1.34e-03: FAIL
+failed links: b, c, c_cut, d

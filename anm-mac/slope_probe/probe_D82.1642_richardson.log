@@ -1,0 +1,26 @@
+trend exponents (a, b) per held harmonic 5: -1.21/+0.07, 7: -1.61/-0.71, 9: -1.99/-1.30, 11: +0.00/+0.00, 13: +0.00/+0.00
+base anm-mac/run_trend_pin3_qd6/anm_pin3_D82.1642.npz: D 82.1641595, M 32, pin 3 (held [5, 7, 9, 11, 13]), |F| 1.8e-19; N 24, eps 1e-14, h_max 0.0625, corrector qd (junk_only False), tol 1.0e-18 x 1.45^(D - 82.164159), stalls accepted below 1e-17
+step 0: D 82.1641595, pivots 2.3e-07..2.5e+10, |z_1| 2.05e-03, |z_N| 9.34e-23, ratios 2-5 99.4 86.4 9.7 0.5, a_max 1.707, 45 s
+  probe: jet-model residual norms, order 1 (2.958519065084926e-13, 1.4930893749391862e-13), order 2 (1.5524919774090524e-15, 6.23899013728444e-15), order N (5.063505464447744e-33, 7.649090484140247e-35)
+  probe: a 0.015625: |F_pred| dd 1.6395e-14 (1.0493e-12 per unit a), qd 1.6395e-14 (1.0493e-12)
+  probe: a 0.03125: |F_pred| dd 3.2789e-14 (1.0492e-12 per unit a), qd 3.2789e-14 (1.0492e-12)
+  probe: a 0.0625: |F_pred| dd 6.5576e-14 (1.0492e-12 per unit a), qd 6.5576e-14 (1.0492e-12)
+  probe: quad-double order-1 residual of z_1, central step 9.313e-10: max 1.7695e-12
+  probe: quad-double order-1 residual of z_1, central step 1.164e-10: max 1.0506e-12
+  probe: the two steps differ by 1.351e-12
+  probe: z_1 corrected (1): |dz_1| 2.158e-07, quad-double order-1 residual 2.2415e-18
+  probe: z_1 corrected (2): |dz_1| 2.823e-13, quad-double order-1 residual 1.1850e-23
+  probe: corrected series, a 0.015625: |F_pred| dd 3.3593e-16 (2.1500e-14 per unit a), qd 3.3599e-16 (2.1503e-14)
+  probe: corrected series, a 0.0625: |F_pred| dd 1.3585e-15 (2.1736e-14 per unit a), qd 1.3586e-15 (2.1737e-14)
+  probe: corrected series, a 0.25: |F_pred| dd 5.8794e-15 (2.3518e-14 per unit a), qd 5.8795e-15 (2.3518e-14)
+  probe: corrected series, a 0.5: |F_pred| dd 1.3780e-14 (2.7561e-14 per unit a), qd 1.3780e-14 (2.7561e-14)
+  probe: corrected series, a 1: |F_pred| dd 3.8744e-14 (3.8744e-14 per unit a), qd 3.8744e-14 (3.8744e-14)
+  probe: z_1 corrected by the Richardson residual, its norms [1.049273380684235e-12, 1.2982076533085329e-18, 1.176256194380622e-24]
+  probe: Richardson series, a 0.015625: |F_pred| dd 6.7685e-18 (4.3318e-16 per unit a), qd 6.7647e-18 (4.3294e-16)
+  probe: Richardson series, a 0.0625: |F_pred| dd 1.0693e-16 (1.7109e-15 per unit a), qd 1.0693e-16 (1.7109e-15)
+  probe: Richardson series, a 0.25: |F_pred| dd 1.7057e-15 (6.8228e-15 per unit a), qd 1.7057e-15 (6.8228e-15)
+  probe: Richardson series, a 0.5: |F_pred| dd 6.7942e-15 (1.3588e-14 per unit a), qd 6.7942e-15 (1.3588e-14)
+  probe: Richardson series, a 1: |F_pred| dd 2.7020e-14 (2.7020e-14 per unit a), qd 2.7020e-14 (2.7020e-14)
+  probe: Richardson series, a 1.5: |F_pred| dd 3.5432e-11 (2.3621e-11 per unit a), qd 3.5432e-11 (2.3621e-11)
+  probe: Richardson series, a 2: |F_pred| dd 5.5828e-08 (2.7914e-08 per unit a), qd 5.5828e-08 (2.7914e-08)
+  probe: dd |F_pred| / a at 1/16 1.0492e-12 against the chain's 1.0492e-12: reproduced

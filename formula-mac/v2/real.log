@@ -1,0 +1,14 @@
+real Z-poly  Dinf 1.64389375218 +- 7.5e-09 D3 1.9092 +- 0.0374 ns -15.23..-8.78 | best H1 2.6e-13 H2 4.7e-06 H3 8.0e-10 thin/sigma 2.3e+04 | full max|r|/s 2.5e+00  (38 s)
+real Z-rat   Dinf 1.64389374528 +- 1.5e-10 D3 2.0379 +- 0.0767 | best H1 8.1e-14 H2 6.9e-07 H3 5.2e-11 thin/sigma 5.5e+02 | full max|r|/s 2.7e+00  (78 s)
+real Z-log   Dinf 1.64389374499 +- 1.3e-10 D3 2.0545 +- 0.0774 | best H1 2.6e-12 H2 5.0e-08 H3 2.7e-10 thin/sigma 1.6e+04 | full max|r|/s 2.6e+00  (80 s)
+real E-rat   Dinf 1.64389388746 +- 1.4e-07 | best H1 9.6e-11 H3 5.9e-06 thin/sigma 6.8e+07 | full max|r|/s 2.1e+03  (81 s)
+real N-poly  Dinf 1.64389375983 +- 1.4e-08 | best H1 3.3e-12 | full max|r|/s 2.7e+00  (81 s)
+real W-poly  Dinf 1.64389374713 +- 4.3e-09 | best H1 5.2e-13 | full max|r|/s 2.4e+00  (81 s)
+G5  A = best H1 of N-poly / best H1 of W-poly (and / Z-poly):
+  P0: A_W = 12.0  A_Z = 6.0
+  Pe: A_W = 3.3  A_Z = nan
+  P7: A_W = 9.3  A_Z = 6.9
+  P8: A_W = 5.1  A_Z = 7.3
+  Pz: A_W = 5.8  A_Z = 2.0
+  real: A_W = 6.4  A_Z = 12.7
+nice -n 10 /Users/nathan/Source/choptuik-large-d/.venv/bin/python real.py  75.20s user 1.01s system 93% cpu 1:21.91 total

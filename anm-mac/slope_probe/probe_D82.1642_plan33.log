@@ -1,0 +1,18 @@
+trend exponents (a, b) per held harmonic 5: -1.21/+0.07, 7: -1.61/-0.71, 9: -1.99/-1.30, 11: +0.00/+0.00, 13: +0.00/+0.00
+base anm-mac/run_trend_pin3_qd6/anm_pin3_D82.1642.npz: D 82.1641595, M 32, pin 3 (held [5, 7, 9, 11, 13]), |F| 1.8e-19; N 24, eps 1e-14, h_max 0.0625, corrector qd (junk_only False), tol 1.0e-18 x 1.45^(D - 82.164159), stalls accepted below 1e-17
+step 0: D 82.1641595, pivots 2.3e-07..2.5e+10, |z_1| 2.05e-03, |z_N| 4.12e-22, ratios 2-5 99.5 81.7 7.1 0.4, a_max 1.600, 52 s
+  probe: jet-model residual norms, order 1 (4.1725146261436327e-13, 1.1213592919295715e-13), order 2 (1.0398153663525356e-15, 1.1420643104094861e-15), order N (4.911867303955618e-33, 1.5441416027144628e-33)
+  probe: a 0.015625: |F_pred| dd 2.3922e-14 (1.5310e-12 per unit a), qd 2.3922e-14 (1.5310e-12)
+  probe: a 0.03125: |F_pred| dd 4.7847e-14 (1.5311e-12 per unit a), qd 4.7847e-14 (1.5311e-12)
+  probe: a 0.0625: |F_pred| dd 9.5700e-14 (1.5312e-12 per unit a), qd 9.5700e-14 (1.5312e-12)
+  probe: quad-double order-1 residual of z_1, central step 9.313e-10: max 2.1497e-12
+  probe: quad-double order-1 residual of z_1, central step 1.164e-10: max 1.5331e-12
+  probe: the two steps differ by 1.351e-12
+  probe: z_1 corrected (1): |dz_1| 3.413e-07, quad-double order-1 residual 3.0665e-18
+  probe: z_1 corrected (2): |dz_1| 3.759e-13, quad-double order-1 residual 2.0459e-23
+  probe: corrected series, a 0.015625: |F_pred| dd 3.3489e-16 (2.1433e-14 per unit a), qd 3.3495e-16 (2.1437e-14)
+  probe: corrected series, a 0.0625: |F_pred| dd 1.3386e-15 (2.1418e-14 per unit a), qd 1.3386e-15 (2.1418e-14)
+  probe: corrected series, a 0.25: |F_pred| dd 5.3409e-15 (2.1364e-14 per unit a), qd 5.3409e-15 (2.1364e-14)
+  probe: corrected series, a 0.5: |F_pred| dd 1.0658e-14 (2.1316e-14 per unit a), qd 1.0658e-14 (2.1316e-14)
+  probe: corrected series, a 1: |F_pred| dd 2.1484e-14 (2.1484e-14 per unit a), qd 2.1484e-14 (2.1484e-14)
+  probe: dd |F_pred| / a at 1/16 1.5312e-12 against the chain's 9.7722e-13: NOT reproduced

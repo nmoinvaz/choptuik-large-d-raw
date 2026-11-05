@@ -1,0 +1,27 @@
+pred_pin3_D71_h1.npz: D 72.0, pin 3 (held [5, 7, 9, 11, 13]), predicted |F|_2 8.03e-17; block max 8.3e-28 9.6e-28 1.4e-27 1.8e-27 2.1e-27 2.1e-17 5.8e-30
+--- newton_solve
+  newton 0: |F| 2.13e-17 |dz| 1.07e-12 lam 0.0625 dDelta -6.71e-14 Delta 1.783087243401621 piv 4.0e-07..7.9e+08  t 1.4s
+  newton 1: |F| 2.04e-17 |dz| 1.01e-12 lam 0.0625 dDelta -6.29e-14 Delta 1.783087243401558 piv 4.0e-07..7.9e+08  t 2.9s
+  newton 2: |F| 1.96e-17 |dz| 9.43e-13 lam 0.0625 dDelta -5.89e-14 Delta 1.783087243401499 piv 4.0e-07..7.9e+08  t 4.2s
+  newton 3: |F| 1.88e-17 |dz| 8.84e-13 lam 0.0625 dDelta -5.53e-14 Delta 1.783087243401444 piv 4.0e-07..7.9e+08  t 5.5s
+    newton_solve: |F|_2 7.57e-17 after 4 records, 6 s; block max 1.4e-27 1.1e-27 1.7e-27 2.1e-27 2.6e-27 1.8e-17 3.7e-28; moved 2.44e-13, Delta 1.783087243401444
+--- deflated_newton
+  dn 0 [all]: |F| 2.13e-17 -> 4.37e-18 lam 1 Delta 1.783087243401688 t 2s
+  dn: phase 'all' stalled at |F| 4.4e-18; phase 'full'
+  dn 1 [full]: |F| 4.37e-18 -> 4.40e-18 lam 0.0625 Delta 1.783087243401621 t 3s
+  dn 2 [full]: |F| 4.40e-18 -> 4.34e-18 lam 0.0312 Delta 1.783087243401589 t 4s
+  dn 3 [full]: |F| 4.34e-18 -> 4.28e-18 lam 0.0312 Delta 1.783087243401559 t 6s
+  dn 4 [full]: |F| 4.28e-18 -> 4.24e-18 lam 0.0312 Delta 1.783087243401529 t 7s
+  dn 5 [full]: |F| 4.24e-18 -> 4.19e-18 lam 0.0312 Delta 1.783087243401501 t 8s
+  dn 6 [full]: |F| 4.19e-18 -> 4.13e-18 lam 0.0312 Delta 1.783087243401473 t 10s
+  dn 7 [full]: |F| 4.13e-18 -> 4.28e-18 lam 0.0312 Delta 1.783087243401446 t 11s
+  dn 8 [full]: |F| 4.28e-18 -> 4.48e-18 lam 0.0312 Delta 1.783087243401420 t 12s
+  dn 9 [full]: |F| 4.48e-18 -> 4.65e-18 lam 0.0312 Delta 1.783087243401395 t 14s
+  dn 10 [full]: |F| 4.65e-18 -> 4.79e-18 lam 0.0312 Delta 1.783087243401371 t 15s
+  dn 11 [full]: |F| 4.79e-18 -> 4.92e-18 lam 0.0312 Delta 1.783087243401347 t 16s
+    deflated_newton: |F|_2 3.25e-17 after 12 records, 16 s; block max 1.5e-19 2.2e-19 2.8e-19 3.2e-19 3.0e-18 4.9e-18 2.4e-20; moved 3.41e-13, Delta 1.783087243401347
+--- lm_solve
+  lm 0: |F|_2 1.07e-02 -> 4.46e-03 (mu 1, |dz| 1.3e-03) Delta 1.783087243401687 t 2s
+  lm 1: |F|_2 6.46e-03: no mu decreases it
+    lm_solve: |F|_2 4.46e-03 after 2 records, 3 s; block max 2.2e-04 7.7e-05 2.5e-05 7.9e-06 2.5e-06 1.1e-03 1.9e-06; moved 1.31e-03, Delta 1.783087243401687
+exit 0

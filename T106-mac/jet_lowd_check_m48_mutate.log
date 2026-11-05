@@ -1,0 +1,11 @@
+base T106-mac/m48_states/D4.0000.npz: D 4.0, M 48, L 1921, 192 steps, |F| 4.29e-30, residual 0.4 s
+(a) jet order 0 against the residual: |c0 - F| 0.00e+00 (|F| 4.29e-30), bound 1e-3 |F|: PASS
+    dF/dD by central differences, eps 1e-06: |d1 - F_1| / |F_1| 6.12e+300
+    dF/dD by central differences, eps 1e-08: |d1 - F_1| / |F_1| 6.12e+300
+    dF/dD by central differences, eps 1e-10: |d1 - F_1| / |F_1| 6.12e+300
+(b) jet order 1 against central differences in D: best 6.12e+300 (|F_1| 0.000e+00, jet 6 s), bound 1e-6: FAIL
+(c) jvp(cut=False) along a random u against central differences (eps 1e-8, 1e-9, 1e-10): 3.8e-01, 3.8e-01, 3.8e-01, 0.5 s, bound 1e-6: FAIL
+(c_cut) jvp(cut=True) along a random u against central differences (eps 1e-8, 1e-9, 1e-10): 3.8e-01, 3.8e-01, 3.8e-01, 0.5 s, bound 1e-6: FAIL
+    tangent from D 3.995, 3.9975, 4, 4.0025: |t| 8.5188e+01, dDelta/dD -0.152314, |t4 - t3| / |t4| 1.8e-05
+(d) |J t + F_1| / |F_1| 7.59e-01 against the interpolation's |J (t4 - t3)| / |F_1| 2.24e-05: FAIL
+failed links: b, c, c_cut, d

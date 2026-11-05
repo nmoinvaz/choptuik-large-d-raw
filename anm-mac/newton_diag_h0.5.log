@@ -1,0 +1,29 @@
+pred_pin3_D71_h0.5.npz: D 71.5, pin 3 (held [5, 7, 9, 11, 13]), predicted |F|_2 3.70e-17; block max 2.3e-29 5.4e-30 3.2e-30 3.2e-30 8.4e-29 1.1e-17 5.8e-30
+--- newton_solve
+  newton 0: |F| 1.06e-17 |dz| 2.54e-12 lam 0.25 dDelta +6.35e-13 Delta 1.784029441991343 piv 4.0e-07..6.6e+08  t 1.2s
+  newton 1: |F| 8.61e-18 |dz| 1.91e-12 lam 0.25 dDelta +4.76e-13 Delta 1.784029441991819 piv 4.0e-07..6.6e+08  t 2.4s
+  newton 2: |F| 6.83e-18 |dz| 1.43e-12 lam 0.25 dDelta +3.57e-13 Delta 1.784029441992176 piv 4.0e-07..6.6e+08  t 3.6s
+  newton 3: |F| 5.33e-18 |dz| 1.07e-12 lam 0.5 dDelta +5.36e-13 Delta 1.784029441992712 piv 4.0e-07..6.6e+08  t 4.8s
+    newton_solve: |F|_2 2.42e-17 after 4 records, 5 s; block max 4.0e-27 1.7e-27 1.8e-27 2.3e-27 4.5e-27 4.9e-18 9.2e-29; moved 2.00e-12, Delta 1.784029441992712
+--- deflated_newton
+  dn 0 [all]: |F| 1.06e-17 -> 2.33e-18 lam 1 Delta 1.784029441990708 t 1s
+  dn: phase 'all' stalled at |F| 2.3e-18; phase 'full'
+  dn 1 [full]: |F| 2.33e-18 -> 2.21e-18 lam 0.125 Delta 1.784029441991025 t 3s
+  dn 2 [full]: |F| 2.21e-18 -> 2.08e-18 lam 0.125 Delta 1.784029441991303 t 4s
+  dn 3 [full]: |F| 2.08e-18 -> 1.94e-18 lam 0.125 Delta 1.784029441991546 t 5s
+  dn 4 [full]: |F| 1.94e-18 -> 2.01e-18 lam 0.125 Delta 1.784029441991759 t 6s
+  dn 5 [full]: |F| 2.01e-18 -> 2.07e-18 lam 0.125 Delta 1.784029441991945 t 8s
+  dn 6 [full]: |F| 2.07e-18 -> 2.04e-18 lam 0.125 Delta 1.784029441992108 t 9s
+  dn 7 [full]: |F| 2.04e-18 -> 2.25e-18 lam 0.25 Delta 1.784029441992393 t 10s
+  dn 8 [full]: |F| 2.25e-18 -> 2.09e-18 lam 0.25 Delta 1.784029441992607 t 11s
+  dn 9 [full]: |F| 2.09e-18 -> 1.96e-18 lam 0.5 Delta 1.784029441992927 t 12s
+  dn 10 [full]: |F| 1.96e-18 -> 9.11e-19 lam 1 Delta 1.784029441993248 t 14s
+  dn 11 [full]: |F| 9.11e-19 -> 2.10e-21 lam 1 Delta 1.784029441993248 t 15s
+    deflated_newton: |F|_2 5.05e-21 after 12 records, 15 s; block max 5.6e-27 2.3e-27 1.3e-27 6.7e-28 1.1e-26 2.1e-21 2.4e-28; moved 2.54e-12, Delta 1.784029441993248
+--- lm_solve
+/Users/nathan/Source/venv-anm/lib/python3.13/site-packages/hpkernel/driver.py:149: RuntimeWarning: overflow encountered in square
+  return float(np.sqrt(np.sum((Fh + Fl) ** 2)))
+  lm 0: |F|_2 1.07e-02 -> 4.45e-03 (mu 1, |dz| 1.3e-03) Delta 1.784029441990707 t 2s
+  lm 1: |F|_2 6.45e-03: no mu decreases it
+    lm_solve: |F|_2 4.45e-03 after 2 records, 3 s; block max 2.2e-04 4.9e-05 3.6e-05 7.9e-06 2.5e-06 1.1e-03 1.9e-06; moved 1.31e-03, Delta 1.784029441990707
+exit 0
