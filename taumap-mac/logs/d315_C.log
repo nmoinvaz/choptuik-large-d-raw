@@ -1,0 +1,26 @@
+=== 2026-11-05 06:03:41 M 96 L 1 s0 1.79 
+22:03:44 D 3.15 M 96 map s0 1.79 L 1.0 mutate None: start |F| 3.73e-02 on its own plan, 641 steps (plan 2s)
+22:03:45 D 3.15 M 96: L 7297, steps 641, start |F| 3.7e-02
+  newton 0: |F| 3.73e-02 |dz| 1.33e+00 lam 1 dDelta +1.05e-06 Delta 2.961320692590941 piv 3.1e-04..2.3e+01  t 254.4s
+  newton 0: |F| 1.12e-06 |dz| 1.43e-03 lam 1 dDelta +6.17e-07 Delta 2.961321309195144 piv 3.1e-04..2.3e+01  t 303.7s
+  newton 0: |F| 1.22e-11 |dz| 6.00e-09 lam 1 dDelta +1.52e-12 Delta 2.961321309196662 piv 3.1e-04..2.3e+01  t 201.2s
+  newton 0: |F| 1.22e-21 converged (last |dz| 1.8e-18) Delta 2.961321309196662; last step taken, |F| 5.03e-29
+22:21:56 D 3.15 M 96: Delta 2.9613213091966619 (-1.98e-16) |F| 5.0e-29 its 4 1091s dDelta/dF max 1.1e+00 tails 1e-89 1e-118 dDelta_est +1.0e-30
+22:22:00 D 3.15 M 96: L 7297, steps 235, start |F| 5.0e-29
+  newton 0: |F| 5.03e-29 converged (last |dz| 1.1e-26) Delta 2.961321309196662; last step taken, |F| 4.12e-30
+22:23:34 D 3.15 M 96: Delta 2.9613213091966619 (-1.98e-16) |F| 4.1e-30 its 1 94s dDelta/dF max 1.1e+00 tails 1e-89 1e-118 dDelta_est +6.5e-31
+22:23:35 D 3.15 M 96 L 1.0 s0 1.79 mutate None: converged True, |F| 4.1e-30, Delta 2.9613213091966619, diff +1.67e-06 (tolerance 9.26557341196274e-12), pass False; calls 4 + 1, steps 641 / 235, 1194s
+=== 2026-11-05 06:23:35 M 96 L 0.25 s0 1.79 gp
+22:23:40 D 3.15 M 96 map s0 1.79 L 0.25 mutate gp: start |F| 1.79e+00 on its own plan, 594 steps (plan 3s)
+22:23:43 D 3.15 M 96: L 7297, steps 594, start |F| 1.8e+00
+  newton 0: |F| 1.79e+00 |dz| 1.03e+03 lam 0.25 dDelta -3.92e-01 Delta 2.569694631300460 piv 2.4e-04..9.3e+00  t 191.3s
+  newton 0: |F| 1.22e+00 |dz| 1.15e+04 lam 0.0312 dDelta -4.30e-02 Delta 2.526739899383859 piv 2.8e-04..8.4e+00  t 292.5s
+/Users/nathan/Source/venv-qdjet/lib/python3.13/site-packages/hpkernel/driver.py:149: RuntimeWarning: overflow encountered in square
+  return float(np.sqrt(np.sum((Fh + Fl) ** 2)))
+  newton 0: |F| 1.19e+00 |dz| 1.24e+05 lam 0.00195 dDelta +2.01e-03 Delta 2.528751982776257 piv 2.7e-04..9.1e+00  t 236.0s
+22:35:43 D 3.15 M 96: two steps with line-search factors 0.03125, 0.00195312 <= 0.125; giving up
+22:35:45 D 3.15 M 96: NOT converged, |F| 1.2e+00 after 3 iterations (724s); stopping
+22:35:45 D 3.15 M 96 L 0.25 s0 1.79 mutate gp: converged False, |F| nan, Delta nan, diff +nan (tolerance 9.26557341196274e-12), pass None; calls 3 + 0, steps 594 / None, 729s
+=== 2026-11-05 06:35:45 M 96 L 0.25 s0 0.2192 
+22:36:05 D 3.15 M 96 map s0 0.2192 L 0.25 mutate None: start |F| 3.47e+16 on its own plan, 2810 steps (plan 19s)
+22:36:13 D 3.15 M 96: L 7297, steps 2810, start |F| 3.5e+16

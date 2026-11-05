@@ -1,0 +1,18 @@
+trend exponents (a, b) per held harmonic 5: -1.21/+0.07, 7: -1.61/-0.71, 9: -1.99/-1.30, 11: +0.00/+0.00, 13: +0.00/+0.00
+  qn 0 [full]: |F| 3.17e-18 -> 1.28e-35, |dz| 6.0e-28 -> 6.1e-28, lam 1, dDelta -1.06e-28, piv 1.9e-07..2.8e+12, 52.11 s
+  qn 1: |F| 1.28e-35 converged, Delta 1.74900894286811881 +6.8049e-17
+      quad-double Newton: 2 steps, max|F| 1.3e-35, converged; double-double |F| of its first two parts 1.8e-17
+base anm-mac/run_trend_pin3_qdj1/anm_pin3_D96.1184.npz: D 96.1183649808, M 32, pin 3 (held [5, 7, 9, 11, 13]), |F| 1.8e-17; N 24, eps 1e-05, h_max 5.0, corrector qd (junk_only False), tol 1.0e-20 x 1.45^(D - 96.118365), stalls accepted below 1e-17
+step 0: D 96.1183649808, pivots 1.9e-07..2.8e+12, |z_1| 1.58e-03, |z_N| 1.95e-25, ratios 2-5 117.5 106.3 101.0 85.6, a_max 5.435, 1049 s
+    a 5.0000: re-seeded (ok), 60.06 s
+  qn 0 [full]: |F| 4.43e-11 -> 2.22e-11, |dz| 6.0e-09 -> 3.0e-09, lam 0.5, dDelta +1.83e-12, piv 1.9e-07..1.5e+13, 322.19 s
+  qn 1 [full]: |F| 2.22e-11 -> 6.51e-17, |dz| 3.0e-09 -> 2.2e-13, lam 1, dDelta +7.96e-13, piv 1.9e-07..1.5e+13, 99.62 s
+  qn 2 [full]: |F| 6.51e-17 -> 7.36e-17, |dz| 2.2e-13 -> 3.9e-22, lam 1, dDelta -3.97e-14, piv 1.9e-07..1.5e+13, 75.01 s
+  qn 3 [full]: |F| 7.36e-17 -> 1.41e-30, |dz| 3.9e-22 -> 2.8e-25, lam 1, dDelta +7.42e-23, piv 1.9e-07..1.5e+13, 68.33 s
+  qn 4: |F| 1.41e-30 converged, Delta 1.74393393120727103 +8.4428e-17
+      elim projections {'u0': 3, 'ladder': 1, 'failed': 1, 'skipped': 1}
+      quad-double Newton: 5 steps, max|F| 1.4e-30, converged; double-double |F| of its first two parts 1.5e-16
+    a 5.000 -> D 101.118364981: predicted |F| 3.59e-10, qd 5 steps -> 1.46e-16 (tol 6.4e-20, stall accepted, Delta correction +0.0e+00), Delta 1.743933931207 (formula diff -8.2e-07), moved 6.0e-09, 659 s
+step 1: D 101.118364981, pivots 1.9e-07..1.5e+13, |z_1| 1.46e-03, |z_N| 2.55e-25, ratios 2-5 124.1 112.3 107.4 80.4, a_max 5.353, 1096 s
+    a 5.0000: re-seeded (FAILED, prediction kept), 38.31 s
+stopped at 07:10 UTC in step 1 (the re-seed failed at a = 5 from 101.1184; its rung convergence test, notes/RESEED.md amendment 9)
