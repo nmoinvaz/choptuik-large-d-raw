@@ -52,3 +52,6 @@ worktree `choptuik-anm` (branch `anm` of the code repository) against multidoubl
   86.9494 state, one step each: A with the quad-double jet (`--jet_q 1`), B with the double-double jet and `--fix1 1`.
 - `run_trend_pin3_qdj1/`, `.log`: the chain with the quad-double jet from A's state at 87.1184 (2026-11-05 02:00 UTC);
   `run_trend_pin3_qd9` was stopped then, its last base 87.0224.
+  It reached 96.1184 in 9 steps of 1.0 (2026-11-05 03:17 UTC) and was stopped there: the double-double floor of its
+  predictions (1.2e-14) had reached the pre-screen's --F_pred_max 1.4e-14. The chain continues on win (T110-win) from
+  that state, without the pre-screen.
