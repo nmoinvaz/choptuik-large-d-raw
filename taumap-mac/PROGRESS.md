@@ -1,0 +1,2 @@
+- 2026-11-05 03:15 UTC: procedure written (notes, commit 68b04f3 on wip/tau-map); tau_map_check.py identity control rerun, PASS.
+- 2026-11-05 03:17 UTC: study at D 3.15 (study_D3.15_M256.json): arctan L 0.25 at s0 1.79 needs 3.0x fewer modes; D 3.15 solves started (L 1, 0.5, 0.35, 0.25 at M 96, 128; L 1 at 192), 2 queues x 2 threads, code ed2c72e.
