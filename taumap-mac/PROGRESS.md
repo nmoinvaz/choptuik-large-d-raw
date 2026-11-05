@@ -1,0 +1,4 @@
+- 2026-11-05 03:15 UTC: procedure written (notes, commit 68b04f3 on wip/tau-map); tau_map_check.py identity control rerun, PASS.
+- 2026-11-05 03:17 UTC: study at D 3.15 (study_D3.15_M256.json): arctan L 0.25 at s0 1.79 needs 3.0x fewer modes; D 3.15 solves started (L 1, 0.5, 0.35, 0.25 at M 96, 128; L 1 at 192), 2 queues x 2 threads, code ed2c72e.
+- 2026-11-05 03:34 UTC: D 3.15, arctan L 0.25 at s0 1.79, M 96: converged |F| 1.1e-29, Delta 2.9613196424560044, +1.4e-15 from the M 256 reference (tolerance 9.3e-12); pass-2 plan 408 steps (uniform M 256: 626). Controls and the other maps running; machine load 10-30 from other jobs.
+- 2026-11-05 04:19 UTC: D 3.15 at M 96: L 0.35 (s0 1.88) +3.1e-14, L 0.5 (s0 1.83) +8.7e-12, both converged and inside the 9.3e-12 tolerance; the uniform M 128 control has moved Delta by +4.5e-8 so far (fails, as it must). Load 30-35 from other jobs slows every call.
