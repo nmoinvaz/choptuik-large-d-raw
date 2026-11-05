@@ -1,0 +1,7 @@
+check /Users/nathan/Source/choptuik-large-d-raw/anm-mac/run_trend_pin3_qd9/anm_pin3_D84.9073.npz: D 84.9073448317, G 4.87e+12, truth max|F| (pinned, quad-double) 1.51e-35, double-double |F|_2 phi 3.52e-19; start: horizon data off by 1e-06; rungs [0.3], rows ma, mutate skip, plan_tol 1e-32
+    rung u 0.300000: 30 its, |R| 1.19e+44 -> 3.00e+43, NOT converged, data moved m_h 1.0e-02 a_h 5.0e-05, 113.87 s
+  re-seeded: |m_h - truth| 2.54e-07 (bound 7.0e-18), |a_h - truth| 9.59e-07 (bound 7.2e-31); pinned quad-double max|F| 1.55e+45 (bound 3.5e-18; horizon rows p 1.6e+45, m 1.2e+44, a 1.5e+42, c 2.5e+41); 113.87 s
+  3.1 {'ok': False, 'err_ah': False, 'err_mh': False, 'F': False}: FAIL
+  3.2 {'agree': True, 'err_est': True, 'sonic': True}: PASS
+  3.2b {'agree': False, 'err_est': True, 'sonic': True}: FAIL
+exit 1
