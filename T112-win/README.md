@@ -10,3 +10,7 @@ Logs: highm_ref.log, highm_scaled.log, highm_jets.log, highm_jets_mutate_kappa.l
 Second jets check (cloud 18:55 UTC), the stored-plan reference anm-mac/jets_plans/jets_plans.json, main b1b844c0 highm_check.py, 2 threads:
 jets_plans exit 1 (FAIL: 12 of 28 differ, again all at M = 32; M = 48 and 64 bit-identical), jets_plans_kappa exit 1 (28 of 28 differ, control).
 Logs: jets_plans.log, jets_plans_kappa.log, run2.sh. With the Mac's plan given, jet_dd_n8_hi at M = 32 is unchanged (409e5906d12cf89d) and jet_dd_n8_lo changed (02e5e6919bf6c081 own plan, 64ad38f32a68762f given plan).
+
+Third jets check (cloud 19:59 UTC), stored-input reference anm-mac/jets_inputs/jets_inputs.json, highm_check.py from main 5cbc0fa5, 2 threads: jets_inputs exit 0, PASS: 28 outputs bit-identical.
+Inputs: M 32 DIFFERENT (this machine 21b5b25909166e13, the reference 710ec9904d60d5ac), M 48 same (3ea9b762941f6ae2), M 64 same (b517e36067313555). Log jets_inputs.log, run3.sh.
+So the first two jets failures were the M 32 start state, resampled from the M 48 state with numpy; given the reference's input and plan, all 28 outputs are bit-identical.
