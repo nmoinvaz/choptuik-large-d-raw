@@ -1,0 +1,2 @@
+- 2026-11-05 02:42 UTC: started; worktree feat/reseed from origin/feat/qd-jet 76c1065; reading the solver
+- 2026-11-05 02:57 UTC: unit check (RESEED.md 3.1) and planted stepper check (3.2b) pass at D 84.91, 87.02, 94.12; controls skip, wrongu, plan_tol 1e-12 fire; 3.2 as written fails (the freeze leaves the node off the family by 9e-18 in p harmonic 5); rows all fails 3.1 (a_h off by 1e-20). Next: the basin test.
