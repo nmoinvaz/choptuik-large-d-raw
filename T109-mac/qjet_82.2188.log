@@ -1,0 +1,13 @@
+anm-mac/run_trend_pin3_qd6/anm_pin3_D82.2188.npz: D 82.218847, M 32, nodes [0.3, 0.4, 0.5, 0.6, 0.7], kfreeze 3
+order 0 vs residual_q (max |F_q| 2.41e-03): quad-double jet 2.12e-35, double-double jet 7.79e-20; times: residual_q 0.1 s, qd jet (2 orders) 1.9 s, dd jet 0.2 s
+quad-double LU 14.8 s; |z1d| 2.018e-03
+order 1 along (z1d, 1) vs central differences (max |R| 3.43e-13, spread dR 8.99e-24, 1 s): quad-double jet 9.59e-24, double-double jet 2.78e-20
+z_1 against the fixed one: quad-double jet 8.92e-16, double-double jet 3.38e-07 (|z_1| 2.018e-03)
+controls, order 1 against R: kappa 2.16e+07, freeze_n 4.19e+07; horizon solves unrefined (recorded) 5.75e-23
+  pass  order 0: e0q <= 1e-4 e0d
+  pass  order 1: e1q <= 1e-3 e1d
+  pass  order 1: e1q <= 10 dR + 1e-30
+  pass  z_1: |z1q - z1f| <= 1e-3 |z1d - z1f|
+  pass  control kappa fires: e1 >= 100 e1q
+  pass  control freeze_n fires: e1 >= 100 e1q
+PASS
