@@ -6,3 +6,7 @@ Build: 13:26 to 14:18 UTC (52 min), exit 0, peak about 15.9 GB (sum of build-pro
 Checks (run.sh, exits.txt): ref exit 0 (72 outputs bit-identical), scaled exit 0 (control fires), jets exit 1 (FAIL: 12 of 28 differ,
 all 12 at M = 32; M = 48 and M = 64 outputs bit-identical to the Mac's), jets --mutate=kappa exit 1 (28 of 28 differ, the control).
 Logs: highm_ref.log, highm_scaled.log, highm_jets.log, highm_jets_mutate_kappa.log.
+
+Second jets check (cloud 18:55 UTC), the stored-plan reference anm-mac/jets_plans/jets_plans.json, main b1b844c0 highm_check.py, 2 threads:
+jets_plans exit 1 (FAIL: 12 of 28 differ, again all at M = 32; M = 48 and 64 bit-identical), jets_plans_kappa exit 1 (28 of 28 differ, control).
+Logs: jets_plans.log, jets_plans_kappa.log, run2.sh. With the Mac's plan given, jet_dd_n8_hi at M = 32 is unchanged (409e5906d12cf89d) and jet_dd_n8_lo changed (02e5e6919bf6c081 own plan, 64ad38f32a68762f given plan).
