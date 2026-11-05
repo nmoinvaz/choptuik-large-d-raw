@@ -1,0 +1,21 @@
+check /Users/nathan/Source/choptuik-large-d-raw/reseed-mac/anm_reseed_pilot/anm_pin3_D101.1184.npz: D 101.118364981, G 1.58e+15, truth max|F| (pinned, quad-double) 1.41e-30, double-double |F|_2 phi 1.46e-16; start: horizon data off by 1e-06; rungs [0.009375, 0.01875, 0.0375, 0.075, 0.15, 0.3], rows ma, mutate none, plan_tol 1e-32
+    rung u 0.009375: 4 its, |R| 2.42e-06 -> 3.70e-32, converged, data moved m_h 2.4e-07 a_h 9.6e-07, 4.76 s
+    rung u 0.018750: 2 its, |R| 3.62e-22 -> 8.63e-32, converged, data moved m_h 2.4e-07 a_h 9.6e-07, 2.38 s
+    rung u 0.037500: 2 its, |R| 7.29e-22 -> 8.38e-31, converged, data moved m_h 2.4e-07 a_h 9.6e-07, 2.57 s
+    rung u 0.075000: 2 its, |R| 1.52e-21 -> 4.27e-29, converged, data moved m_h 2.4e-07 a_h 9.6e-07, 2.49 s
+    rung u 0.150000: 2 its, |R| 2.15e-20 -> 1.65e-25, converged, data moved m_h 2.4e-07 a_h 9.6e-07, 2.51 s
+    rung u 0.300000: 4 its, |R| 8.21e-16 -> 3.98e-17, converged, data moved m_h 2.4e-07 a_h 9.6e-07, 4.94 s
+    plan to x 0.850000: 6 steps (smallest 1.5e-02), max (x - c) -1.33e-01, stepper error estimate 1.9e-31, against the truth's series 1.7e-18
+    plan to x 0.925000: 6 steps (smallest 8.3e-03), max (x - c) -6.65e-02, stepper error estimate 2.8e-31, against the truth's series 1.4e-18
+    plan to x 0.962500: 6 steps (smallest 4.1e-03), max (x - c) -3.32e-02, stepper error estimate 2.7e-31, against the truth's series 1.3e-18
+    plan to x 0.981250: 6 steps (smallest 2.1e-03), max (x - c) -1.66e-02, stepper error estimate 2.8e-31, against the truth's series 1.3e-18
+    plan to x 0.990625: 6 steps (smallest 1.1e-03), max (x - c) -8.28e-03, stepper error estimate 2.8e-31, against the truth's series 1.3e-18
+    3.2b: node on the family at u 0.1500 integrated to u 0.075000: 6 steps, against the series 3.1e-31 (p 4e-32 m 3e-32 a 2e-32 c 3e-31), error estimate 1.1e-31
+    3.2b: node on the family at u 0.1500 integrated to u 0.037500: 6 steps, against the series 4.5e-31 (p 4e-32 m 4e-32 a 2e-32 c 4e-31), error estimate 1.8e-31
+    3.2b: node on the family at u 0.1500 integrated to u 0.018750: 6 steps, against the series 5.1e-31 (p 4e-32 m 3e-32 a 5e-32 c 5e-31), error estimate 1.6e-31
+    3.2b: node on the family at u 0.1500 integrated to u 0.009375: 6 steps, against the series 5.4e-31 (p 4e-32 m 3e-32 a 2e-32 c 5e-31), error estimate 1.6e-31
+  re-seeded: |m_h - truth| 5.51e-32 (bound 2.9e-15), |a_h - truth| 2.63e-32 (bound 9.3e-31); pinned quad-double max|F| 8.26e-17 (bound 1.5e-15; horizon rows p 5.2e-18, m 1.5e-17, a 4.3e-17, c 8.3e-17); 20.3 s
+  3.1 {'ok': True, 'err_ah': True, 'err_mh': True, 'F': True}: PASS
+  3.2 {'agree': False, 'err_est': True, 'sonic': True}: FAIL
+  3.2b {'agree': True, 'err_est': True, 'sonic': True}: PASS
+exit 0
