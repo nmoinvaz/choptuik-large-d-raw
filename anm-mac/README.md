@@ -48,3 +48,7 @@ worktree `choptuik-anm` (branch `anm` of the code repository) against multidoubl
   venv-qdjet, NEON): `highm_ref.log` and `highm_scaled.log`, the bit-identity checks against T81's references (both
   pass); `qjet_check_v1.log`, `qjet_check_v2.log` and `qjet_check.jsonl`, hp/qjet_check.py's two versions at
   the 85.7473 base (both fail their order-1 criterion as written; notes/QUAD_DOUBLE.md 13.20).
+- `pilot_qdjet_A/`, `pilot_qdjet_A.log`, `pilot_qdjet_B/`, `pilot_qdjet_B.log`: the A/B pilot of 13.20 from qd9's
+  86.9494 state, one step each: A with the quad-double jet (`--jet_q 1`), B with the double-double jet and `--fix1 1`.
+- `run_trend_pin3_qdj1/`, `.log`: the chain with the quad-double jet from A's state at 87.1184 (2026-11-05 02:00 UTC);
+  `run_trend_pin3_qd9` was stopped then, its last base 87.0224.
