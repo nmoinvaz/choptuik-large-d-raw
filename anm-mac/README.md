@@ -55,3 +55,7 @@ worktree `choptuik-anm` (branch `anm` of the code repository) against multidoubl
   It reached 96.1184 in 9 steps of 1.0 (2026-11-05 03:17 UTC) and was stopped there: the double-double floor of its
   predictions (1.2e-14) had reached the pre-screen's --F_pred_max 1.4e-14. The chain continues on win (T110-win) from
   that state, without the pre-screen.
+- `release210/`: hp on multidouble 2.1.0 (branch `feat/multidouble-2.1`, merged into main 2026-11-05; venv-md21, NEON):
+  `jets_200.json` (the jet residuals' hashes on the 2.0.0 build, `highm_check.py jets --save`) and on the 2.1.0 build
+  `highm_ref.log`, `highm_scaled.log`, `jets_compare.log` (all bit-identical), `jets_control_kappa.log` (the control,
+  28 of 28 differ), `qjet_check.log` / `.jsonl`, `cargo_test_qsolve.log` and `build.log`.

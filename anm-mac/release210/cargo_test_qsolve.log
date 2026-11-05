@@ -1,0 +1,32 @@
+   Compiling crossbeam-utils v0.8.23
+   Compiling crossbeam-epoch v0.9.21
+   Compiling crossbeam-deque v0.8.8
+   Compiling rayon-core v1.13.0
+   Compiling either v1.19.0
+   Compiling rayon v1.12.0
+   Compiling multidouble v2.1.0
+   Compiling hpkernel v0.1.0 (/Users/nathan/Source/choptuik-md21/hp)
+    Finished `release` profile [optimized] target(s) in 7m 17s
+     Running unittests src/lib.rs (target/release/deps/_hpkernel-5ceef29120efe5ff)
+
+running 8 tests
+quad-double vs double-double: residual 5.5e-32, Jacobian 5.9e-31 (relative to the largest entry)
+test qsolve::tests::qsolve_agrees_with_double_double ... ok
+Jacobian, default refinement vs four steps: 3.3e-63
+test qsolve::tests::qsolve_refinement_converged ... ok
+quad-double jet vs double-double jet, 24 orders: 1.1e-30 (relative to max(1, |F_k|))
+test qsolve::tests::qsolve_jet_agrees_with_double_double_jet ... ok
+Jacobian vs central differences of the quad-double residual: 1.5e-41; horizon solves unrefined: 6.6e-4
+test qsolve::tests::qsolve_jacobian_matches_differences ... ok
+change of 2^-180: response error 1.6e-11 of J d, Newton leaves 8.9e-8 of it; state read in double-double: 1.0e0, 1.0e0
+test qsolve::tests::qsolve_resolves_sub_double_double_changes ... ok
+quad-double jet summed vs the quad-double residual at n + h: h = 2^-6 6.0e-27, 2^-7 3.5e-34, 2^-8 4.2e-39; dimension frozen: 5.5e-3, 1.4e-3, 3.4e-4
+test qsolve::tests::qsolve_jet_sums_to_the_residual ... ok
+jet order 1, change of 2^-180 in v: response error 7.5e-9 of J d; v read in double-double: 9.4e-1; unrefined: 6.8e-2
+test qsolve::tests::qsolve_jet_resolves_sub_double_double_changes ... ok
+planted root from 1e-6, |z - z*| per step: 1.0e-6, 6.4e-8, 1.2e-14, 3.5e-28, 2.6e-55, 3.5e-62
+test qsolve::tests::qsolve_newton_converges ... ok
+
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 6 filtered out; finished in 6.67s
+
+exit 0
