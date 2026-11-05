@@ -1,0 +1,16 @@
+trend exponents (a, b) per held harmonic 5: -1.21/+0.07, 7: -1.61/-0.71, 9: -1.99/-1.30, 11: +0.00/+0.00, 13: +0.00/+0.00
+  qn 0 [full]: |F| 1.70e-13 -> 8.50e-14, |dz| 1.1e-17 -> 2.8e-18, lam 0.5, dDelta +2.55e-19, piv 8.2e-08..1.2e+17, 19.18 s
+  qn 1 [full]: |F| 8.50e-14 -> 6.83e-19, |dz| 2.8e-18 -> 2.8e-18, lam 1, dDelta -6.37e-20, piv 8.2e-08..1.2e+17, 8.92 s
+  qn 2 [full]: |F| 6.83e-19 -> 6.83e-19, |dz| 2.8e-18 -> 1.4e-27, lam 1, dDelta -6.37e-20, piv 8.2e-08..1.2e+17, 8.92 s
+  qn 3 [full]: |F| 6.83e-19 -> 1.50e-36, |dz| 1.4e-27 -> 9.6e-29, lam 1, dDelta -5.17e-29, piv 8.2e-08..1.2e+17, 9.57 s
+  qn 4: |F| 1.50e-36 converged, Delta 1.72386299643087293 -3.4750e-18
+      quad-double Newton: 5 steps, max|F| 1.5e-36, converged; double-double |F| of its first two parts 1.3e-12
+base T110-win/chain/anm_pin3_D127.1184.npz: D 127.118364981, M 32, pin 3 (held [5, 7, 9, 11, 13]), |F| 1.3e-12; N 24, eps 1e-14, h_max 0.5, corrector qd (junk_only False), tol 1.0e-20 x 1.45^(D - 127.11836), stalls accepted below 1e-17
+step 0: D 127.118364981, pivots 8.2e-08..1.2e+17, |z_1| 1.01e-03, |z_N| 5.87e-25, ratios 2-5 158.3 143.1 138.0 45.7, a_max 2.063, 229 s
+  qn 0 [full]: |F| 4.50e-13 -> 2.25e-13, |dz| 4.5e-18 -> 1.2e-18, lam 0.5, dDelta +8.85e-19, piv 9.8e-08..1.4e+17, 18.64 s
+  qn 1 [full]: |F| 2.25e-13 -> 1.50e-19, |dz| 1.2e-18 -> 1.1e-18, lam 1, dDelta -2.22e-19, piv 9.8e-08..1.4e+17, 9.75 s
+  qn 2 [full]: |F| 1.50e-19 -> 1.50e-19, |dz| 1.1e-18 -> 1.1e-28, lam 1, dDelta -2.22e-19, piv 9.8e-08..1.4e+17, 9.59 s
+  qn 3 [full]: |F| 1.50e-19 -> 7.69e-39, |dz| 1.1e-28 -> 3.5e-30, lam 1, dDelta -2.28e-29, piv 9.8e-08..1.4e+17, 9.19 s
+  qn 4: |F| 7.69e-39 converged, Delta 1.72355569984257029 -4.2802e-17
+      quad-double Newton: 5 steps, max|F| 7.7e-39, converged; double-double |F| of its first two parts 1.6e-12
+    a 0.500 -> D 127.618364981: predicted |F| 1.82e-12, qd 5 steps -> 1.62e-12 (tol 1.2e-20, stall accepted, Delta correction +0.0e+00), Delta 1.723555699843 (formula diff -1.9e-06), moved 1.0e-19, 57 s
