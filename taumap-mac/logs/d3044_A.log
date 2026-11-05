@@ -5,3 +5,34 @@
   newton 0: |F| 1.49e-07 |dz| 5.28e-04 lam 0.5 dDelta -8.76e-11 Delta 2.441488095905861 piv 1.0e-04..1.6e+01  t 2015.9s
   newton 0: |F| 1.04e-07 |dz| 6.26e-05 lam 1 dDelta -7.38e-11 Delta 2.441488095832101 piv 1.0e-04..1.6e+01  t 1548.8s
   newton 0: |F| 4.24e-09 |dz| 3.23e-06 lam 1 dDelta +2.64e-12 Delta 2.441488095834742 piv 1.0e-04..1.6e+01  t 1407.5s
+  newton 0: |F| 1.13e-11 |dz| 1.56e-08 lam 1 dDelta -1.44e-15 Delta 2.441488095834741 piv 1.0e-04..1.6e+01  t 1375.5s
+  newton 0: |F| 2.23e-16 converged (last |dz| 2.5e-13) Delta 2.441488095834741; last step taken, |F| 3.66e-25
+01:17:13 D 3.044375 M 160: Delta 2.4414880958347411 (+9.85e-17) |F| 3.7e-25 its 6 9673s dDelta/dF max 5.1e+00 tails 3e-73 7e-07 dDelta_est -1.4e-27
+01:17:27 D 3.044375 M 160: L 14081, steps 2918, start |F| 3.7e-25
+  newton 0: |F| 3.66e-25 |dz| 6.34e-22 lam 1 dDelta -1.42e-27 Delta 2.441488095834741 piv 1.0e-04..1.6e+01  t 1007.5s
+  newton 0: |F| 6.63e-29 converged (last |dz| 1.4e-24) Delta 2.441488095834741; last step taken, |F| 3.16e-29
+01:51:24 D 3.044375 M 160: Delta 2.4414880958347411 (+9.85e-17) |F| 3.2e-29 its 2 2042s dDelta/dF max 5.1e+00 tails 3e-73 7e-07 dDelta_est +4.0e-30
+01:51:28 D 3.044375 M 160 L 0.25 s0 1.83 mutate None: converged True, |F| 3.2e-29, Delta 2.4414880958347411, diff -1.60e-10 (tolerance 7.665270381084268e-11), pass False; calls 6 + 2, steps 2806 / 2918, 11764s
+=== 2026-11-05 09:51:28 queue done
+=== 2026-11-05 10:19:29 M 160 L 0.2 s0 1.83 
+02:19:43 D 3.044375 M 160 map s0 1.83 L 0.2 mutate None: start |F| 3.23e-04 on its own plan, 3333 steps (plan 13s)
+02:19:49 D 3.044375 M 160: L 14081, steps 3333, start |F| 3.2e-04
+  newton 0: |F| 3.23e-04: no decrease along the f64-Jacobian step; retrying with the dd4 Jacobian (M > 128: no exact dense Jacobian)
+  newton 0: |F| 3.23e-04: no decrease along the Newton step, giving up
+03:04:24 D 3.044375 M 160: NOT converged, |F| 3.2e-04 after 1 iterations (2681s); stopping
+03:04:24 D 3.044375 M 160 L 0.2 s0 1.83 mutate None: converged False, |F| nan, Delta nan, diff +nan (tolerance 7.665270381084268e-11), pass None; calls 1 + 0, steps 3333 / None, 2695s
+=== 2026-11-05 11:04:24 M 160 L 0.35 s0 1.92 
+03:04:34 D 3.044375 M 160 map s0 1.92 L 0.35 mutate None: start |F| 1.87e-04 on its own plan, 2376 steps (plan 9s)
+03:04:38 D 3.044375 M 160: L 14081, steps 2376, start |F| 1.9e-04
+  newton 0: |F| 1.87e-04 |dz| 1.38e-01 lam 1 dDelta +5.15e-12 Delta 2.441488095999391 piv 9.8e-05..2.1e+01  t 784.5s
+  newton 0: |F| 1.11e-08 |dz| 3.92e-05 lam 1 dDelta +1.17e-10 Delta 2.441488096116761 piv 9.8e-05..2.1e+01  t 804.7s
+  newton 0: |F| 5.19e-14 |dz| 1.95e-08 lam 1 dDelta +4.58e-17 Delta 2.441488096116761 piv 9.8e-05..2.1e+01  t 763.7s
+  newton 0: |F| 2.53e-22 converged (last |dz| 6.4e-18) Delta 2.441488096116761; last step taken, |F| 3.54e-28
+03:57:01 D 3.044375 M 160: Delta 2.4414880961167613 (-3.90e-17) |F| 3.5e-28 its 4 3146s dDelta/dF max 1.7e+00 tails 2e-61 8e-24 dDelta_est -5.9e-32
+03:57:11 D 3.044375 M 160: L 14081, steps 1723, start |F| 1.6e-24
+  newton 0: |F| 1.64e-24 |dz| 2.21e-21 lam 1 dDelta +1.65e-27 Delta 2.441488096116761 piv 9.8e-05..2.1e+01  t 578.0s
+  newton 0: |F| 1.40e-28 |dz| 2.33e-22 lam 0.25 dDelta -1.51e-31 Delta 2.441488096116761 piv 9.8e-05..2.1e+01  t 577.2s
+  newton 0: |F| 6.86e-29 converged (last |dz| 4.2e-23) Delta 2.441488096116761
+04:27:20 D 3.044375 M 160: Delta 2.4414880961167613 (-3.90e-17) |F| 6.9e-29 its 3 1812s dDelta/dF max 1.7e+00 tails 2e-61 8e-24 dDelta_est -4.0e-31
+04:27:23 D 3.044375 M 160 L 0.35 s0 1.92 mutate None: converged True, |F| 6.9e-29, Delta 2.4414880961167613, diff +1.23e-10 (tolerance 7.665270381084268e-11), pass False; calls 4 + 3, steps 2376 / 1723, 4978s
+=== 2026-11-05 12:27:23 queue done

@@ -1,0 +1,25 @@
+=== 2026-11-05 10:53:38 M 192 L 0.25 s0 1.83 
+02:53:57 D 3.044375 M 192 map s0 1.83 L 0.25 mutate None: start |F| 2.44e-04 on its own plan, 3352 steps (plan 17s)
+02:54:04 D 3.044375 M 192: L 16897, steps 3352, start |F| 2.4e-04
+  newton 0: |F| 2.44e-04 |dz| 7.87e-03 lam 0.0625 dDelta -1.98e-14 Delta 2.441488095994222 piv 9.3e-05..1.3e+01  t 1698.4s
+  newton 0: |F| 2.29e-04 |dz| 6.82e-03 lam 1 dDelta -1.01e-09 Delta 2.441488094981581 piv 9.3e-05..1.1e+02  t 1637.8s
+  newton 0: |F| 5.28e-05 |dz| 1.89e-04 lam 1 dDelta -2.23e-09 Delta 2.441488092747420 piv 9.3e-05..1.3e+02  t 1660.5s
+  newton 0: |F| 2.42e-05 |dz| 4.36e-04 lam 0.25 dDelta +6.55e-10 Delta 2.441488093402619 piv 9.3e-05..7.0e+01  t 1430.8s
+  newton 0: |F| 1.58e-05 |dz| 7.58e-05 lam 0.5 dDelta +1.17e-09 Delta 2.441488094574703 piv 9.3e-05..3.9e+01  t 1191.8s
+  newton 0: |F| 8.59e-06 |dz| 9.27e-05 lam 1 dDelta +9.11e-10 Delta 2.441488095485845 piv 9.3e-05..2.2e+01  t 1183.1s
+  newton 0: |F| 3.84e-06 |dz| 1.60e-04 lam 0.25 dDelta +3.30e-10 Delta 2.441488095815907 piv 9.3e-05..1.5e+01  t 1406.5s
+  newton 0: |F| 2.61e-06 |dz| 9.82e-04 lam 0.0312 dDelta -1.63e-10 Delta 2.441488095653358 piv 9.3e-05..2.4e+01  t 1205.0s
+  newton 0: |F| 2.71e-06: no decrease along the f64-Jacobian step; retrying with the dd4 Jacobian (M > 128: no exact dense Jacobian)
+  newton 0: |F| 2.71e-06: no decrease along the Newton step, giving up
+07:02:29 D 3.044375 M 192: NOT converged, |F| 2.7e-06 after 9 iterations (14913s); stopping
+07:02:29 D 3.044375 M 192 L 0.25 s0 1.83 mutate None: converged False, |F| nan, Delta nan, diff +nan (tolerance 7.665270381084268e-11), pass None; calls 9 + 0, steps 3352 / None, 14932s
+=== 2026-11-05 15:02:29 M 192 L 0.2 s0 1.83 
+07:02:45 D 3.044375 M 192 map s0 1.83 L 0.2 mutate None: start |F| 3.63e+08 on its own plan, 3982 steps (plan 15s)
+07:02:52 D 3.044375 M 192: L 16897, steps 3982, start |F| 3.6e+08
+  newton 0: |F| 3.63e+08: no decrease along the f64-Jacobian step; retrying with the dd4 Jacobian (M > 128: no exact dense Jacobian)
+/Users/nathan/Source/venv-qdjet/lib/python3.13/site-packages/hpkernel/driver.py:149: RuntimeWarning: overflow encountered in square
+  return float(np.sqrt(np.sum((Fh + Fl) ** 2)))
+  newton 0: |F| 3.63e+08: no decrease along the Newton step, giving up
+08:39:14 D 3.044375 M 192: NOT converged, |F| 3.6e+08 after 1 iterations (5789s); stopping
+08:39:14 D 3.044375 M 192 L 0.2 s0 1.83 mutate None: converged False, |F| nan, Delta nan, diff +nan (tolerance 7.665270381084268e-11), pass None; calls 1 + 0, steps 3982 / None, 5805s
+=== 2026-11-05 16:39:14 queue done
