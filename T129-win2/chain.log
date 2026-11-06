@@ -85,3 +85,19 @@ step 11: D 186.524614981, pivots 2.3e-10..1.1e+26, |z_1| 5.47e-04, |z_N| 3.25e-2
   qn 1 [full]: |F| 2.40e-28 -> 1.46e-29, |dz| 2.9e-20 -> 3.1e-20, lam 1, dDelta -2.85e-20, piv 2.6e-11..1.5e+26, 5.17 s
   qn 2: |F| 1.46e-29 converged, Delta 1.69844544592241453 -9.3987e-17
       elim projections {'u0': 0, 'u0q': 2, 'ladder': 0, 'failed': 0, 'skipped': 1}
+      quad-double Newton: 3 steps, max|F| 1.5e-29, converged; double-double |F| of its first two parts 3.6e-03
+    a 1.000 -> D 187.524614981: predicted |F| 3.73e-03, qd 3 steps -> 3.56e-03 (tol 8.6e-19, stall accepted, Delta correction +0.0e+00), Delta 1.698445445922 (formula diff -4.0e-06), moved 1.4e-19, 16 s
+step 12: D 187.524614981, pivots 1.9e-10..1.5e+26, |z_1| 5.43e-04, |z_N| 3.18e-25, ratios 2-5 238.1 215.7 115.4 4.4, a_max 2.063, 398 s
+    a 1.0000: re-seeded (FAILED, prediction kept), 1.08 s; rung u 0.1500 not converged at |R| 1.44e-19 after 1 steps
+  qn 0: |F| 3.40e-01, |dz| 1.9e-01: no trial step accepted, stopping
+      elim projections {'u0': 0, 'u0q': 0, 'ladder': 0, 'failed': 10, 'skipped': 0}
+      quad-double Newton: 1 steps, max|F| 3.4e-01, not converged; double-double |F| of its first two parts 1.2e+00
+    a 1.000 -> D 188.524614981: predicted |F| 1.20e+00, qd 1 steps -> 1.20e+00 (tol 1.3e-18), Delta 1.698159949967 (formula diff -4.1e-06), moved 0.0e+00, 71 s
+    a 0.5000: re-seeded (FAILED, prediction kept), 1.1 s; rung u 0.1500 not converged at |R| 1.27e-19 after 1 steps
+  qn 0 [full]: |F| 1.34e-19 -> 9.75e-29, |dz| 1.4e-19 -> 6.6e-20, lam 1, dDelta -1.25e-19, piv 6.4e-12..1.8e+26, 5.22 s
+  qn 1: |F| 9.75e-29 converged, Delta 1.69830232333060005 -9.2048e-17
+      elim projections {'u0': 0, 'u0q': 2, 'ladder': 0, 'failed': 0, 'skipped': 0}
+      quad-double Newton: 2 steps, max|F| 9.7e-29, converged; double-double |F| of its first two parts 3.1e-03
+    a 0.500 -> D 188.024614981: predicted |F| 3.13e-03, qd 2 steps -> 3.14e-03 (tol 1.0e-18, stall accepted, Delta correction +0.0e+00), Delta 1.698302323331 (formula diff -4.1e-06), moved 1.4e-19, 13 s
+step 13: D 188.024614981, pivots 1.5e-10..1.8e+26, |z_1| 5.40e-04, |z_N| 3.34e-25, ratios 2-5 238.8 216.8 118.3 4.1, a_max 2.058, 402 s
+    a 1.0000: re-seeded (FAILED, prediction kept), 1.07 s; rung u 0.1500 not converged at |R| 1.63e-19 after 1 steps
