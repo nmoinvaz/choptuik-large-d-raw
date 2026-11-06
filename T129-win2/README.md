@@ -29,3 +29,21 @@ chain2/ restarts from chain/anm_pin3_D188.0246.npz with h_max 0.5 (a=1.0 oversho
 projection work) plus --save_pred 1. 18 threads. Steps of 0.5 from 188.0246 land on the Mac's T130 points. Stop at
 D_max 200, after 3 restarts, or after 8 h. New hang rule: if the log gains no line for 20 min while one core is busy,
 take one py-spy dump, kill the tree, restart from the last state with h_max halved (0.25, then 0.125), and post.
+
+chain2 climbed cleanly to D 193.7746 (no hang), then self-stopped at three halvings: the next step failed at a 0.5,
+0.25, 0.125, 0.0625, each "no trial step accepted", the kept prediction's double-double |F| ~3.4e-02 (the octo wall at
+condition ~1.4e27). Last clean Delta 1.69752838546306850.
+
+chain3/ is the next restart (restart 2 of the 3-restart budget) from chain2/anm_pin3_D193.7746.npz with h_max 0.25
+(0.03125 floor), the rest as chain2 (--save_pred 1, 18 threads). Per the coordinator's restart ladder (0.25, then
+0.125). chain3 broke through to D 194.2746 at a=0.25, but was superseded: the coordinator diagnosed the D 193.77 stop
+as the quad-double corrector stalling at max|F| ~1.0-1.1e-28 against tol_qd 1e-28 (a precision floor that rises with D),
+not a step-size problem. stopped at 2026-11-06 13:36 UTC for chain4.
+
+chain4/ restarts from chain2/anm_pin3_D193.7746.npz (realigned to the Mac T130 grid) on fc636e7 (Python-only past
+4eac02b, no rebuild) with --accept_stall_qd 1e-24 (d898c15: accepts a quad-double stall below the given level, so the
+~1e-28 floor no longer blocks), h_max back to 0.5, D_max 1000 (Nathan wants the chain as far as it can go). 18 threads,
+--save_pred 1. Stop on its own three-halvings stop, a degenerate series, or after 12 h; the hang rule stands with a
+fresh 3-restart budget. Per post: D, steps, halvings, re-seed ok/failed, stalls accepted ("quad-double stall at max|F|
+... accepted") with the largest accepted max|F|, and Delta; flag if the largest accepted max|F| passes 1e-26 (floor
+then two orders from the 1e-24 level, octo-double corrector takes over).
