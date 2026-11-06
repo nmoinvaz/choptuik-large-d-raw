@@ -2,3 +2,19 @@ trend exponents (a, b) per held harmonic 5: -1.21/+0.07, 7: -1.61/-0.71, 9: -1.9
   qn 0: |F| 9.75e-29 converged, Delta 1.69830232333060005 -9.2048e-17
       quad-double Newton: 1 steps, max|F| 9.7e-29, converged; double-double |F| of its first two parts 3.1e-03
 base T129-win2/chain/anm_pin3_D188.0246.npz: D 188.024614981, M 32, pin 3 (held [5, 7, 9, 11, 13]), |F| 3.1e-03; N 24, eps 1e-14, h_max 0.5, corrector qd (junk_only False), tol 1.0e-20 x 1.45^(D - 188.02461), stalls accepted below 1e-17
+step 0: D 188.024614981, pivots 1.5e-10..1.8e+26, |z_1| 5.40e-04, |z_N| 3.34e-25, ratios 2-5 238.8 216.8 118.3 4.1, a_max 2.058, 395 s
+    a 0.5000: re-seeded (ok), 5.96 s
+  qn 0 [full]: |F| 5.56e-20 -> 2.78e-20, |dz| 8.1e-19 -> 6.2e-19, lam 0.5, dDelta -8.11e-19, piv 2.1e-12..2.2e+26, 10.48 s
+  qn 1 [full]: |F| 2.78e-20 -> 1.21e-28, |dz| 6.2e-19 -> 3.6e-19, lam 1, dDelta +6.21e-19, piv 6.3e-12..2.2e+26, 5.2 s
+  qn 2 [full]: |F| 1.21e-28 -> 2.69e-29, |dz| 3.6e-19 -> 5.6e-20, lam 1, dDelta -3.63e-19, piv 1.6e-11..2.2e+26, 5.27 s
+  qn 3: |F| 2.69e-29 converged, Delta 1.69815994996672259 -4.7611e-17
+      elim projections {'u0': 0, 'u0q': 4, 'ladder': 0, 'failed': 0, 'skipped': 1}
+      quad-double Newton: 4 steps, max|F| 2.7e-29, converged; double-double |F| of its first two parts 3.9e-03
+    a 0.500 -> D 188.524614981: predicted |F| 3.29e-03, qd 4 steps -> 3.86e-03 (tol 1.2e-20, stall accepted, Delta correction +0.0e+00), Delta 1.698159949967 (formula diff -4.1e-06), moved 1.5e-19, 26 s
+step 1: D 188.524614981, pivots 1.2e-10..2.2e+26, |z_1| 5.38e-04, |z_N| 3.32e-25, ratios 2-5 239.4 216.1 132.9 3.6, a_max 2.058, 395 s
+    a 0.5000: re-seeded (ok), 6.2 s
+  qn 0 [full]: |F| 4.72e-20 -> 9.50e-30, |dz| 1.2e-19 -> 3.8e-20, lam 1, dDelta +1.23e-19, piv 6.9e-12..2.6e+26, 5.25 s
+  qn 1: |F| 9.50e-30 converged, Delta 1.69801831995653751 +1.0399e-16
+      elim projections {'u0': 0, 'u0q': 1, 'ladder': 0, 'failed': 0, 'skipped': 1}
+      quad-double Newton: 2 steps, max|F| 9.5e-30, converged; double-double |F| of its first two parts 6.9e-03
+    a 0.500 -> D 189.024614981: predicted |F| 6.44e-03, qd 2 steps -> 6.90e-03 (tol 1.4e-20, stall accepted, Delta correction +0.0e+00), Delta 1.698018319957 (formula diff -4.1e-06), moved 1.2e-19, 10 s
