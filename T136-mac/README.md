@@ -17,3 +17,10 @@ Order and criteria (fixed before the run):
    minus the pinned Delta is the bias at that D.
 
   python3 full_release.py <raw> <state> --kfreeze 13 --octo 1 --it 10 --threads 3   (log release.log)
+
+Result (2026-11-06 22:20 UTC). The control passed: the chain's own system polished in octo-double moved Delta by
+-1.7e-26, and pinned minus series was -5.002e-8 as expected. The planted truth failed: the full-system release in
+octo-double took the same first step as the quad-double release of 13.19, a correction of 0.51 along a near-null
+direction (|dz| 5.1e-1 -> 4.3e-1), damped to 1/128, with max|F| rising 4.28e-18 -> 5.86e-4 (dDelta +1.15e-7 at that
+step, 3219 s). Octo-double precision does not remove the obstacle, which is the full system's conditioning, not the
+arithmetic. Stopped after that step; the large-D releases were not run, as the criteria say.
