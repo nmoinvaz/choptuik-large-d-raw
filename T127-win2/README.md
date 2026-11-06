@@ -8,3 +8,8 @@ T122 stopped at D 162.306 because the re-seed's u0 polish no longer converged fr
 The chain from T122-win2/chain/anm_pin3_D162.3059.npz toward D 200:
   anm_run.py <raw> T127-win2\chain --state T122-win2/chain/anm_pin3_D162.3059.npz --kfreeze 3 --N 24 --eps 1e-14 --h_max 0.5 --steps 300 --D_max 200 --threads 12 --corrector qd --tol_qd 1e-28 --qd_it 12 --trend T75 --jet_q 1 --pred_q 1 --reseed 2 --reseed_q 1 --save_pred 1
 Stops: base polish not converging at once (first qd |F| >= 1e-25); a degenerate series (a_max < 1.0 or |z_N| > 1e-15, post at once); three halvings. --save_pred keeps each prediction (pred_pin3_D*.npz).
+
+chain2/ is the restart on ba1637c (the 1e12 re-seed guard) from chain/anm_pin3_D171.2746.npz, same flags into the
+chain2 output folder. It took full 0.5 steps again where the old re-seed had crawled, reaching D 176.7746 before the
+quad-double series was spent (a_max down to ~1.3, ratios 3-5 collapsed to single digits). stopped at D 176.7746 for T129
+(the octo-double continuation; see T129-win2/).
