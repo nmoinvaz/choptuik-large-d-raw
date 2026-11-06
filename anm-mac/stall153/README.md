@@ -15,3 +15,5 @@ Machine: the Mac (Apple M5), coordinator session, 2026-11-06, main's kernel (mul
   double-double stalls at 2.43e-16 under both rules.
 - `pred_pin3_D153.4309.npz`: the prediction at 152.93 + 0.5 before its re-seed (anm_run.py --save_pred 1 on main
   effab02), the input of `reseed.py checkq`.
+- `stepE.log`, `stepE/`: main effab02 in memory from T118's 152.93 state, two steps at a 0.5 to 153.43 and 153.93
+  with healthy series (the fixed chain), and the stored predictions.
