@@ -16,3 +16,4 @@ octo-double comparison, the od-jets build. notes/QUAD_DOUBLE.md 13.27 says what 
   control (13.26's rule) at 162.81.
 - `am162.log`, `am162/`: main 5423d2b from 162.31, two steps at a 0.5 to 162.81 and 163.31 (corrector 1.5e-39,
   2.3e-39), with the states and the stored predictions.
+- `guard_test.py`, `guard_test.log`: the u0 polish on T127-win2's predictions with its divergence guard at 1e6 and 1e12.
