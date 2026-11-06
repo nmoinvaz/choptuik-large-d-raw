@@ -1,0 +1,17 @@
+trend exponents (a, b) per held harmonic 5: -1.21/+0.07, 7: -1.61/-0.71, 9: -1.99/-1.30, 11: +0.00/+0.00, 13: +0.00/+0.00
+  qn 0: |F| 9.47e-36 converged, Delta 1.71058365167278104 -9.5689e-17
+      quad-double Newton: 1 steps, max|F| 9.5e-36, converged; double-double |F| of its first two parts 1.5e-08
+base T118-win2/chain/anm_pin3_D152.9309.npz: D 152.930864981, M 32, pin 3 (held [5, 7, 9, 11, 13]), |F| 1.5e-08; N 24, eps 1e-14, h_max 0.5, corrector qd (junk_only False), tol 1.0e-20 x 1.45^(D - 152.93086), stalls accepted below 1e-17
+step 0: D 152.930864981, pivots 5.6e-08..8.9e+20, |z_1| 7.49e-04, |z_N| 4.31e-25, ratios 2-5 192.3 173.9 154.8 17.0, a_max 2.064, 347 s
+      invert_q (refactor on stall): 4.35e-09 2.70e-13 1.05e-13 6.95e-18 2.11e-18 1.38e-22 3.60e-23 1.78e-27 3.69e-28 2.17e-32 3.79e-33 2.25e-37 3.36e-38; 0 refactors, 9 s, converged
+    a 0.5000: re-seeded (ok), 19.87 s
+      invert_q (refactor on stall): 2.80e-09 6.96e-15 6.87e-15 J 1.50e-26 4.78e-31 4.03e-41; 1 refactors, 17 s, converged
+  qn 0 [full]: |F| 1.22e-19 -> 5.55e-32, |dz| 1.1e-15 -> 7.3e-28, lam 1, dDelta +1.12e-15, piv 6.1e-08..1.1e+21, 35.58 s
+  qn 1: |F| 5.55e-32 converged, Delta 1.71036984709616080 -5.8000e-17
+      elim projections {'u0': 0, 'u0q': 1, 'ladder': 0, 'failed': 0, 'skipped': 1}
+      quad-double Newton: 2 steps, max|F| 5.5e-32, converged; double-double |F| of its first two parts 1.9e-08
+    a 0.500 -> D 153.430864981: predicted |F| 2.54e-08, qd 2 steps -> 1.91e-08 (tol 1.2e-20, stall accepted, Delta correction +0.0e+00), Delta 1.710369847096 (formula diff -2.9e-06), moved 1.1e-15, 53 s
+step 1: D 153.430864981, pivots 6.6e-08..1.1e+21, |z_1| 8.48e-04, |z_N| 6.46e-11, ratios 2-5 6.1 1.7 2.8 1.9, a_max 0.502, 340 s
+      invert_q (refactor on stall): 7.40e-07 3.02e-04x J 3.02e-04x J 3.02e-04x J 3.02e-04x; 3 refactors, 27 s, NOT converged
+    a 0.5000: re-seeded (FAILED, prediction kept), 36.46 s; rung u 0.3000 not converged at |R| 7.40e-07 after 5 steps
+      invert_q (refactor on stall): 7.48e+01 nanx J nanx J nanx J nanx; 3 refactors, 27 s, NOT converged
