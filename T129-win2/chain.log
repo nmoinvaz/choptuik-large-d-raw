@@ -2,3 +2,17 @@ trend exponents (a, b) per held harmonic 5: -1.21/+0.07, 7: -1.61/-0.71, 9: -1.9
   qn 0: |F| 6.57e-32 converged, Delta 1.70212157215780335 +8.1737e-17
       quad-double Newton: 1 steps, max|F| 6.6e-32, converged; double-double |F| of its first two parts 3.3e-05
 base T127-win2/chain2/anm_pin3_D175.5246.npz: D 175.524614981, M 32, pin 3 (held [5, 7, 9, 11, 13]), |F| 3.3e-05; N 24, eps 1e-14, h_max 1.0, corrector qd (junk_only False), tol 1.0e-20 x 1.45^(D - 175.52461), stalls accepted below 1e-17
+step 0: D 175.524614981, pivots 3.7e-09..2.3e+24, |z_1| 6.02e-04, |z_N| 3.35e-25, ratios 2-5 222.2 200.8 138.3 6.6, a_max 2.067, 396 s
+    a 1.0000: re-seeded (ok), 6.15 s
+  qn 0 [full]: |F| 8.51e-20 -> 2.02e-31, |dz| 8.3e-20 -> 4.1e-24, lam 1, dDelta +1.36e-21, piv 2.8e-09..3.3e+24, 4.67 s
+  qn 1: |F| 2.02e-31 converged, Delta 1.70179640496301254 -1.4798e-17
+      elim projections {'u0': 0, 'u0q': 1, 'ladder': 0, 'failed': 0, 'skipped': 1}
+      quad-double Newton: 2 steps, max|F| 2.0e-31, converged; double-double |F| of its first two parts 7.5e-05
+    a 1.000 -> D 176.524614981: predicted |F| 6.73e-05, qd 2 steps -> 7.49e-05 (tol 1.4e-20, stall accepted, Delta correction +0.0e+00), Delta 1.701796404963 (formula diff -3.7e-06), moved 8.3e-20, 9 s
+step 1: D 176.524614981, pivots 2.8e-09..3.3e+24, |z_1| 5.97e-04, |z_N| 3.44e-25, ratios 2-5 223.5 201.9 162.1 5.4, a_max 2.064, 399 s
+    a 1.0000: re-seeded (ok), 6.08 s
+  qn 0 [full]: |F| 1.46e-19 -> 3.42e-31, |dz| 1.4e-19 -> 1.3e-23, lam 1, dDelta +2.17e-21, piv 3.2e-09..4.7e+24, 4.57 s
+  qn 1: |F| 3.42e-31 converged, Delta 1.70147485037007695 +8.8564e-17
+      elim projections {'u0': 0, 'u0q': 1, 'ladder': 0, 'failed': 0, 'skipped': 1}
+      quad-double Newton: 2 steps, max|F| 3.4e-31, converged; double-double |F| of its first two parts 1.1e-04
+    a 1.000 -> D 177.524614981: predicted |F| 1.05e-04, qd 2 steps -> 1.12e-04 (tol 2.1e-20, stall accepted, Delta correction +0.0e+00), Delta 1.701474850370 (formula diff -3.7e-06), moved 1.4e-19, 9 s
