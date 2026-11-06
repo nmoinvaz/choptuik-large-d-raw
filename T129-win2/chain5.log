@@ -1,0 +1,36 @@
+trend exponents (a, b) per held harmonic 5: -1.21/+0.07, 7: -1.61/-0.71, 9: -1.99/-1.30, 11: +0.00/+0.00, 13: +0.00/+0.00
+  on 0: |F| 4.87e-26 -> 6.67e-28, |dz| 6.5e-13 -> 4.4e-24, lam 1, dDelta -6.51e-13, piv 4.0e-14..1.9e+29, 31.66 s
+  on 1: |F| 6.67e-28 -> 3.33e-28, |dz| 4.4e-24 -> 2.2e-24, lam 0.5, dDelta -1.78e-24, piv 4.0e-14..1.9e+29, 46.86 s
+  on 2: |F| 3.33e-28 -> 1.35e-18, |dz| 2.2e-24 -> 1.0e-24, lam 1, dDelta -8.92e-25, piv 4.0e-14..1.9e+29, 15.4 s
+  on 3: |F| 1.35e-18 -> 2.98e-19, |dz| 1.0e-24 -> 1.0e-24, lam 1, dDelta +2.32e-25, piv 4.0e-14..1.9e+29, 15.64 s
+  on 4: |F| 2.98e-19 -> 2.92e-19, |dz| 1.0e-24 -> 8.9e-28, lam 1, dDelta -2.32e-25, piv 4.0e-14..1.9e+29, 15.87 s
+  on 5: |F| 2.92e-19, |dz| 8.9e-28: no trial step accepted, stopping
+      elim projections {'u0': 0, 'u0q': 0, 'ladder': 2, 'failed': 0, 'skipped': 14}
+      octo-double Newton: 6 steps, max|F| 2.9e-19, not converged; double-double |F| of its first two parts 4.0e+00
+base T129-win2/chain4/anm_pin3_D207.8996.npz: D 207.899614981, M 32, pin 3 (held [5, 7, 9, 11, 13]), |F| 4.0e+00; N 24, eps 1e-14, h_max 0.5, corrector od (junk_only False), tol 1.0e-20 x 1.45^(D - 207.89961), stalls accepted below 1e-17
+step 0: D 207.899614981, pivots 4.0e-14..1.9e+29, |z_1| 4.62e-04, |z_N| 7.49e-24, ratios 2-5 268.5 48.6 2.6 2.9, a_max 1.785, 403 s
+    a 0.5000: re-seeded (ok), 13.59 s
+  on 0: |F| 2.45e-20 -> 2.74e-17, |dz| 1.9e-08 -> 9.7e-09, lam 0.5, dDelta -2.60e-09, piv 3.5e-14..2.3e+29, 52.64 s
+  on 1: |F| 2.74e-17 -> 2.74e-17, |dz| 9.7e-09 -> 9.5e-12, lam 1, dDelta -1.30e-09, piv 3.5e-14..2.3e+29, 30.89 s
+  on 2: |F| 2.74e-17 -> 2.78e-23, |dz| 9.5e-12 -> 2.0e-14, lam 1, dDelta -2.37e-12, piv 3.5e-14..2.3e+29, 30.79 s
+  on 3: |F| 2.78e-23 -> 1.39e-23, |dz| 2.0e-14 -> 1.0e-14, lam 0.5, dDelta +5.79e-15, piv 3.5e-14..2.3e+29, 53.59 s
+  on 4: |F| 1.39e-23 -> 3.16e-29, |dz| 1.0e-14 -> 9.3e-24, lam 1, dDelta +2.90e-15, piv 3.5e-14..2.3e+29, 31.1 s
+  on 5: |F| 3.16e-29 -> 2.37e-29, |dz| 9.3e-24 -> 7.0e-24, lam 0.25, dDelta -1.16e-24, piv 3.5e-14..2.3e+29, 68.77 s
+  on 6: |F| 2.37e-29 -> 1.19e-29, |dz| 7.0e-24 -> 3.5e-24, lam 0.5, dDelta -8.72e-25, piv 3.5e-14..2.3e+29, 47.09 s
+  on 7: |F| 1.19e-29 -> 5.93e-30, |dz| 3.5e-24 -> 1.7e-24, lam 0.5, dDelta -4.36e-25, piv 3.5e-14..2.3e+29, 47.0 s
+  on 8: |F| 5.93e-30 -> 9.90e-19, |dz| 1.7e-24 -> 2.8e-25, lam 1, dDelta -2.18e-25, piv 3.5e-14..2.3e+29, 15.29 s
+  on 9: |F| 9.90e-19 -> 2.55e-20, |dz| 2.8e-25 -> 2.8e-25, lam 1, dDelta +7.68e-26, piv 3.5e-14..2.3e+29, 15.34 s
+  on 10: |F| 2.55e-20 -> 2.55e-20, |dz| 2.8e-25 -> 1.4e-29, lam 1, dDelta -7.68e-26, piv 3.5e-14..2.3e+29, 15.23 s
+  on 11: |F| 2.55e-20, |dz| 1.4e-29: no trial step accepted, stopping
+      elim projections {'u0': 0, 'u0q': 0, 'ladder': 8, 'failed': 3, 'skipped': 16}
+      octo-double Newton: 12 steps, max|F| 2.6e-20, not converged; double-double |F| of its first two parts 7.0e+00
+    a 0.500 -> D 208.399614981: predicted |F| 5.91e+00, od 12 steps -> 7.03e+00 (tol 1.2e-20), Delta 1.693047319694 (formula diff -4.7e-06), moved 1.9e-08, 560 s
+    a 0.2500: re-seeded (ok), 13.99 s
+  on 0: |F| 1.49e-19 -> 2.05e-17, |dz| 8.5e-09 -> 7.3e-16, lam 1, dDelta -3.69e-10, piv 4.4e-14..2.1e+29, 31.42 s
+  on 1: |F| 2.05e-17 -> 1.58e-31, |dz| 7.3e-16 -> 9.1e-19, lam 1, dDelta +1.86e-16, piv 4.4e-14..2.1e+29, 28.42 s
+  on 2: |F| 1.58e-31 -> 1.37e-32, |dz| 9.1e-19 -> 8.1e-36, lam 1, dDelta -2.11e-19, piv 4.4e-14..2.1e+29, 28.16 s
+  on 3: |F| 1.37e-32 -> 2.01e-41, |dz| 8.1e-36 -> 5.1e-53, lam 1, dDelta +8.83e-37, piv 4.4e-14..2.1e+29, 14.97 s
+  on 4: |F| 2.01e-41 converged, Delta 1.69310563909611678 +9.8552e-17
+      elim projections {'u0': 0, 'u0q': 2, 'ladder': 1, 'failed': 0, 'skipped': 2}
+      octo-double Newton: 5 steps, max|F| 2.0e-41, converged; double-double |F| of its first two parts 4.8e+00
+    a 0.250 -> D 208.149614981: predicted |F| 6.81e+00, od 5 steps -> 4.81e+00 (tol 1.1e-20, stall accepted, Delta correction +0.0e+00), Delta 1.693105639096 (formula diff -4.6e-06), moved 8.5e-09, 118 s
