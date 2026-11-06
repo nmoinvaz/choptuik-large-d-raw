@@ -6,7 +6,10 @@ arXiv:2611.07007's table by an amount that grows to 7.4e-6 at D 200 (hp/data/del
 and sign of the held harmonics' bias measured at D 79-96 (notes/QUAD_DOUBLE.md 13.19). Releasing them measures it.
 
 Order and criteria (fixed before the run):
-1. Control, the chain's own system (--kfreeze 3) at 79.7657: residual at the floor, Delta moved by less than 1e-30.
+1. Control, the chain's own system (--kfreeze 3) at 79.7657: converged, Delta moved by less than 1e-15.
+   (Amended 2026-11-06 20:24 UTC, before its result: the first text said 1e-30, but the state's quad-double residual
+   is 3.1e-30, which an octo-double polish may move Delta by up to about 1e-20; 1e-15 still separates it from the
+   5e-8 bias by seven orders.)
 2. Planted truth, the release (--kfreeze 13) at 79.7657 (anm-mac/run_trend_pin3_qd3): converged, and Delta within
    1e-9 of the 1/D series (degree 20, D <= 67.77), which lies 5.0e-8 above the chain there. The quad-double release
    stalled on a near-null direction (13.19). If this fails, the large-D runs below are not read.
