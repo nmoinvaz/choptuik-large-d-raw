@@ -11,4 +11,4 @@ T129's D values and hp/export_delta_all.py compares the two there.
     --eps 1e-14 --h_max 0.5 --steps 300 --D_max 200 --threads 6 --corrector qd --tol_qd 1e-28 --qd_it 12 --trend T75
     --jet_o 1 --reseed 2 --reseed_q 1
 
-Log chain.log, states and anm_run.jsonl in chain/. Stop at D_max, on a degenerate series, or after 14 h.
+Log chain.log, states and anm_run.jsonl in chain/. Stop at D_max, on a degenerate series, or after 16 h (about 1070 s per step of 0.5 here, 49 steps).
