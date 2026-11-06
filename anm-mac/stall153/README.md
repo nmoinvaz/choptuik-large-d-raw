@@ -13,3 +13,5 @@ Machine: the Mac (Apple M5), coordinator session, 2026-11-06, main's kernel (mul
 - `diag.log` (`rung_diag.py`): a first proxy (the base state at D + a), out of the basin, not used.
 - `checkq.log`, `truth_res.py`, `step_vs_exact.py`: the polish from a converged state's horizon data rounded to
   double-double stalls at 2.43e-16 under both rules.
+- `pred_pin3_D153.4309.npz`: the prediction at 152.93 + 0.5 before its re-seed (anm_run.py --save_pred 1 on main
+  effab02), the input of `reseed.py checkq`.
