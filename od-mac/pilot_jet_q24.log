@@ -1,0 +1,13 @@
+anm_run.py --jet_q 1 --pred_q 1, N 24, h_max 0.225: is the N 8 failure the order? (f18d27b, 2026-11-06T04:09Z)
+trend exponents (a, b) per held harmonic 5: -1.21/+0.07, 7: -1.61/-0.71, 9: -1.99/-1.30, 11: +0.00/+0.00, 13: +0.00/+0.00
+  qn 0: |F| 1.05e-35 converged, Delta 1.72298584321596504 -9.8633e-17
+      quad-double Newton: 1 steps, max|F| 1.0e-35, converged; double-double |F| of its first two parts 2.0e-12
+base anm-mac/pred_q/A2/anm_pin3_D128.5559.npz: D 128.555864981, M 32, pin 3 (held [5, 7, 9, 11, 13]), |F| 2.0e-12; N 24, eps 1e-14, h_max 0.225, corrector qd (junk_only False), tol 1.0e-20 x 1.45^(D - 128.55586), stalls accepted below 1e-17
+step 0: D 128.555864981, pivots 9.7e-08..1.9e+17, |z_1| 9.89e-04, |z_N| 6.15e-25, ratios 2-5 160.2 144.8 134.9 46.1, a_max 2.057, 321 s
+  qn 0 [full]: |F| 5.36e-19 -> 7.59e-21, |dz| 5.2e-19 -> 1.2e-32, lam 1, dDelta -6.51e-21, piv 8.0e-08..2.1e+17, 22.43 s
+  qn 1 [full]: |F| 7.59e-21 -> 2.09e-41, |dz| 1.2e-32 -> 1.2e-32, lam 1, dDelta +7.58e-34, piv 8.0e-08..2.1e+17, 22.15 s
+  qn 2: |F| 2.09e-41 converged, Delta 1.72285028955588038 -6.1381e-17
+      quad-double Newton: 3 steps, max|F| 2.1e-41, converged; double-double |F| of its first two parts 2.8e-12
+    a 0.225 -> D 128.780864981: predicted |F| 2.83e-12, qd 3 steps -> 2.82e-12 (tol 1.1e-20, stall accepted, Delta correction +0.0e+00), Delta 1.722850289556 (formula diff -1.9e-06), moved 5.2e-19, 66 s
+done
+exit 0
