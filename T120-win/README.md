@@ -1,0 +1,5 @@
+# T120-win: replay of T118 step 1 and its failing step, elimination corrector, record for record against win2
+
+Cloud task 2026-11-06 03:04 UTC. A: stepA from T117-win/chain/anm_pin3_D152.3059.npz (T118 started here on win2), B: stepB from T118-win2/chain/anm_pin3_D152.9309.npz, one step each, --reseed 2 --reseed_q 1, h_max 0.5, 4 threads, below normal, same build as T119 (hpkernel multidouble 2.1.0, anm_run.py, reseed.py, pinning.py from main 48adb33b, Python multidouble 78efd7e). Commands in t120.cmd, logs stepA.log and stepB.log, states and anm_run.jsonl in stepA/ and stepB/.
+
+Stopped by the cloud's 03:48 UTC entry (T123 replaces T120, "do not run T120"). Run A ended by itself (exit 0, stepA.log, stepA/). Run B was killed mid-step 03:5x UTC after its base polish (first qd |F| 9.5e-36, converged) and series (ratios 2-5 192.3 173.9 154.8 17.0, a_max 2.064) and its first re-seed attempt (FAILED, prediction kept, rung u 0.3 at |R| 3.32e-09 after 1 step); stepB.log is partial. Neither run was compared with T118 record for record.
