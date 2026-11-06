@@ -32,7 +32,8 @@ take one py-spy dump, kill the tree, restart from the last state with h_max halv
 
 chain2 climbed cleanly to D 193.7746 (no hang), then self-stopped at three halvings: the next step failed at a 0.5,
 0.25, 0.125, 0.0625, each "no trial step accepted", the kept prediction's double-double |F| ~3.4e-02 (the octo wall at
-condition ~1.4e27). Last clean Delta 1.69752838546306850.
+condition ~1.4e27). Last clean Delta at D 193.7746 is 1.6967088229859815 (the 1.69752838546306850 noted earlier was
+chain2's base polish Delta at D 188.02, not the D 193.7746 value).
 
 chain3/ is the next restart (restart 2 of the 3-restart budget) from chain2/anm_pin3_D193.7746.npz with h_max 0.25
 (0.03125 floor), the rest as chain2 (--save_pred 1, 18 threads). Per the coordinator's restart ladder (0.25, then
