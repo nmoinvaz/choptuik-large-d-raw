@@ -1,0 +1,17 @@
+omega = 4.0; sigma_1 = (0.7761446008011309569061718969029495386352 + 0.5041569474253416537273588144862269651299j)
+two fit windows (J = [2400, 3000]) agree to 44.77 digits; using d = 42
+basket A (polygamma): 1, ln2, pi, pi^2, psi(1+z), psi(a), psi'(1+z), pi coth(pi w), pi coth(pi w/2)
+   planted (height 30): height 35.5, residual 3.16e-42, stable at d-6: True, involves target: True -> RELATION
+   random: height 1.62e+04, residual 1.87e-38, stable at d-6: False, involves target: True -> none
+   sigma_1: height 1.43e+04, residual 8.27e-39, stable at d-6: False, involves target: True -> none
+   a random target gives LLL height ~ 10^4.2 at d = 42; the null covers heights up to 1000
+basket B (Gamma ratios): 1, ln2, pi, psi(1+z), G(1-z)/G(1+z), 2^z G(a)/G(b), G(1-z)/G(1+z) psi(1-z), 2^z G(a)/G(b) psi(a)
+   planted (height 30): height 39.7, residual 3.61e-41, stable at d-6: True, involves target: True -> RELATION
+   random: height 3.02e+04, residual 3.91e-38, stable at d-6: False, involves target: True -> none
+   sigma_1: height 3.29e+04, residual 2.81e-38, stable at d-6: False, involves target: True -> none
+   a random target gives LLL height ~ 10^4.666666666666667 at d = 42; the null covers heights up to 1000
+linear-multiplier control: log S^(1) from the late-order fit
+   linear: height 8, residual 1.1e-42, stable at d-6: True, involves target: True -> RELATION
+      relation [(-2+0j), 0j, (-1+0j), 8j, (-1+0j), (-2+0j)]  (exact: 2 log S1 = -i pi + 2 z ln2 - ln pi - 2 lnGamma(1+z), up to 2 pi i k)
+sigma_1 relations accepted: 0
+controls misbehaving: 0
