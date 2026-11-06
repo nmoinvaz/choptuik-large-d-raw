@@ -15,3 +15,14 @@ below 1.0 or |z_N| above 1e-15), or after 16 h. Hang rule: no log line for 30 mi
 or for 90 min at any load (the coordinator's 30 min alone would fire inside every step: a 24-order octo-double series at
 4 threads here takes about 31 min without a line, T133's t_series_o 1884 s); then kill, restart from the last state with
 h_max 0.25 (chain_r1/, chain_r1.log, then chain_r2), at most 2 restarts, a native stack sample in <run>_hang_sample.txt.
+
+chain/ stopped at D 195.5246 for T134b (18:55:45 UTC, at the step boundary right after that state was saved): 4 steps
+from 193.7746 (194.2746, 194.7746, 195.0246, 195.5246), 1 halving (the a 0.5 step to 195.2746 failed, 0.25 converged),
+4 quad-double stalls accepted, max|F| 1.3e-28, 3.9e-28, 2.3e-28, 2.5e-28. Delta against T129-win2/chain4 at the shared
+points: 194.2746 -2.0e-18, 195.0246 +2.8e-18, 195.5246 +1.1e-17 (four-part states summed in mpmath).
+
+T134b (comms 2026-11-06 18:44 UTC cloud to macm3): the octo-double corrector (main c496ac8, Python only, no rebuild)
+from chain/anm_pin3_D195.5246.npz, the same command with --corrector od --tol_od 1e-40 in place of --corrector qd
+--tol_qd 1e-28 --accept_stall_qd 1e-24 (chain_od.cmd), log chain_od.log, states in chain_od/. Same hang rule, 90 min
+at any load the outer limit, at most 2 restarts (chain_od_r1, chain_od_r2, h_max 0.25). Stop on three halvings, a
+degenerate series, or after 16 h.
