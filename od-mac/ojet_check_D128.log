@@ -1,0 +1,28 @@
+ojet_check.py --state anm-mac/pred_q/A2/anm_pin3_D128.5559.npz --N 8 --alpha_o 1 --threads 2 (2dcd7a5 + working tree, 2026-11-06T03:03Z, load { 31.78 51.82 69.24 })
+anm-mac/pred_q/A2/anm_pin3_D128.5559.npz: D 128.555864981, M 32, nodes [0.3, 0.4, 0.5, 0.6, 0.7], kfreeze 3, N 8; G = 0.7^-(D-3) = 2.81e+19, eps_qd G^2 = 9.6e-25
+  lu_q: 36 s
+  series_q: 54 s
+  lu_q1: 38 s
+  series_q1: 57 s
+  series_d: 6 s
+  lu_o: 414 s
+  series_o: 676 s
+  lu_o1: 305 s
+  series_o1: 518 s
+ k   |z_k^o|     d_oq       d_qa       d_dq       d_oa
+ 1  9.777e-04  2.14e-18  2.14e-18  8.56e+02  1.14e-87
+ 2  6.077e-06  5.19e-16  5.19e-16  2.40e+05  3.65e-85
+ 3  4.210e-08  5.48e-14  5.49e-14  4.71e+07  3.16e-83
+ 4  3.151e-10  3.68e-12  3.68e-12  1.38e+10  2.74e-81
+ 5  7.099e-12  5.98e-11  5.99e-11  2.01e+12  3.71e-80
+ 6  2.418e-12  5.30e-11  5.30e-11  3.41e+13  4.18e-80
+ 7  1.018e-12  3.07e-11  3.08e-11  1.49e+14  2.05e-80
+ 8  3.781e-13  1.79e-11  1.79e-11  4.90e+14  1.49e-80
+control, z_1 with the dimension frozen: 1.00e+00
+  pass  d_oq(k) <= 30 d_qa(k), every k
+  pass  median d_oq / d_qa in [1/30, 30]
+  pass  control: the double-double series fails, d_dq(k) > 30 d_qa(k) for some k
+  pass  control: z_1 with the dimension frozen fails, > 1e3 d_qa(1)
+  pass  d_oa(k) <= 1e-6 d_qa(k), every k
+PASS
+exit 0
