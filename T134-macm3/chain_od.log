@@ -1,1 +1,24 @@
 trend exponents (a, b) per held harmonic 5: -1.21/+0.07, 7: -1.61/-0.71, 9: -1.99/-1.30, 11: +0.00/+0.00, 13: +0.00/+0.00
+  on 0: |F| 2.47e-28 -> 1.75e-34, |dz| 3.9e-19 -> 8.0e-34, lam 1, dDelta +2.46e-19, piv 9.4e-12..2.5e+27, 131.42 s
+  on 1: |F| 1.75e-34 -> 1.92e-39, |dz| 8.0e-34 -> 5.9e-56, lam 1, dDelta -1.88e-34, piv 9.4e-12..2.5e+27, 102.05 s
+  on 2: |F| 1.92e-39 -> 2.97e-80, |dz| 5.9e-56 -> 3.8e-68, lam 1, dDelta -9.20e-57, piv 9.4e-12..2.5e+27, 100.93 s
+  on 3: |F| 2.97e-80 converged, Delta 1.69624221190251978 -9.3809e-17
+      elim projections {'u0': 0, 'u0q': 1, 'ladder': 0, 'failed': 0, 'skipped': 3}
+      octo-double Newton: 4 steps, max|F| 3.0e-80, converged; double-double |F| of its first two parts 6.1e-02
+base T134-macm3/chain/anm_pin3_D195.5246.npz: D 195.524614981, M 32, pin 3 (held [5, 7, 9, 11, 13]), |F| 6.1e-02; N 24, eps 1e-14, h_max 0.5, corrector od (junk_only False), tol 1.0e-20 x 1.45^(D - 195.52461), stalls accepted below 1e-17
+step 0: D 195.524614981, pivots 9.4e-12..2.5e+27, |z_1| 5.08e-04, |z_N| 3.31e-25, ratios 2-5 248.7 225.9 99.8 3.2, a_max 2.053, 1825 s
+    a 0.5000: re-seeded (ok), 56.98 s
+  on 0: |F| 3.10e-20 -> 3.27e-34, |dz| 3.0e-20 -> 3.8e-40, lam 1, dDelta -4.65e-22, piv 1.2e-11..3.0e+27, 207.76 s
+  on 1: |F| 3.27e-34 -> 7.21e-54, |dz| 3.8e-40 -> 6.0e-58, lam 1, dDelta +9.89e-43, piv 1.2e-11..3.0e+27, 102.38 s
+  on 2: |F| 7.21e-54 converged, Delta 1.69611040533790147 -1.0162e-16
+      elim projections {'u0': 0, 'u0q': 1, 'ladder': 0, 'failed': 0, 'skipped': 2}
+      octo-double Newton: 3 steps, max|F| 7.2e-54, converged; double-double |F| of its first two parts 7.7e-02
+    a 0.500 -> D 196.024614981: predicted |F| 9.25e-02, od 3 steps -> 7.67e-02 (tol 1.2e-20, stall accepted, Delta correction +0.0e+00), Delta 1.696110405338 (formula diff -4.3e-06), moved 3.0e-20, 417 s
+step 1: D 196.024614981, pivots 1.2e-11..3.0e+27, |z_1| 5.06e-04, |z_N| 3.21e-25, ratios 2-5 249.3 224.0 101.6 3.1, a_max 2.056, 1874 s
+    a 0.5000: re-seeded (ok), 129.16 s
+  on 0: |F| 8.45e-20 -> 1.74e-34, |dz| 8.3e-20 -> 3.1e-39, lam 1, dDelta +1.53e-21, piv 1.1e-11..3.6e+27, 220.39 s
+  on 1: |F| 1.74e-34 -> 8.88e-52, |dz| 3.1e-39 -> 1.9e-58, lam 1, dDelta +1.75e-42, piv 1.1e-11..3.6e+27, 118.49 s
+  on 2: |F| 8.88e-52 converged, Delta 1.69597926098512963 +5.0989e-17
+      elim projections {'u0': 0, 'u0q': 1, 'ladder': 0, 'failed': 0, 'skipped': 2}
+      octo-double Newton: 3 steps, max|F| 8.9e-52, converged; double-double |F| of its first two parts 8.0e-02
+    a 0.500 -> D 196.524614981: predicted |F| 7.70e-02, od 3 steps -> 7.98e-02 (tol 1.4e-20, stall accepted, Delta correction +0.0e+00), Delta 1.695979260985 (formula diff -4.3e-06), moved 8.3e-20, 456 s
