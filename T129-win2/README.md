@@ -29,3 +29,11 @@ chain2/ restarts from chain/anm_pin3_D188.0246.npz with h_max 0.5 (a=1.0 oversho
 projection work) plus --save_pred 1. 18 threads. Steps of 0.5 from 188.0246 land on the Mac's T130 points. Stop at
 D_max 200, after 3 restarts, or after 8 h. New hang rule: if the log gains no line for 20 min while one core is busy,
 take one py-spy dump, kill the tree, restart from the last state with h_max halved (0.25, then 0.125), and post.
+
+chain2 climbed cleanly to D 193.7746 (no hang), then self-stopped at three halvings: the next step failed at a 0.5,
+0.25, 0.125, 0.0625, each "no trial step accepted", the kept prediction's double-double |F| ~3.4e-02 (the octo wall at
+condition ~1.4e27). Last clean Delta 1.69752838546306850.
+
+chain3/ is the next restart (restart 2 of the 3-restart budget) from chain2/anm_pin3_D193.7746.npz with h_max 0.25
+(0.03125 floor), the rest as chain2 (--save_pred 1, 18 threads). Per the coordinator's restart ladder (0.25, then
+0.125).
