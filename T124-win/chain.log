@@ -16,3 +16,8 @@ step 1: D 153.180864981, pivots 5.5e-08..9.7e+20, |z_1| 7.47e-04, |z_N| 4.24e-25
       elim projections {'u0': 0, 'u0q': 1, 'ladder': 0, 'failed': 0, 'skipped': 1}
       quad-double Newton: 2 steps, max|F| 5.4e-31, converged; double-double |F| of its first two parts 1.8e-08
     a 0.250 -> D 153.430864981: predicted |F| 1.82e-08, qd 2 steps -> 1.79e-08 (tol 1.2e-20, stall accepted, Delta correction +0.0e+00), Delta 1.710369847096 (formula diff -2.9e-06), moved 1.5e-15, 40 s
+--- resumed 2026-11-06 05:55:27 UTC on the T125 build
+trend exponents (a, b) per held harmonic 5: -1.21/+0.07, 7: -1.61/-0.71, 9: -1.99/-1.30, 11: +0.00/+0.00, 13: +0.00/+0.00
+  qn 0: |F| 5.39e-31 converged, Delta 1.71036984709616080 -5.7997e-17
+      quad-double Newton: 1 steps, max|F| 5.4e-31, converged; double-double |F| of its first two parts 1.8e-08
+base T124-win/chain/anm_pin3_D153.4309.npz: D 153.430864981, M 32, pin 3 (held [5, 7, 9, 11, 13]), |F| 1.8e-08; N 24, eps 1e-14, h_max 0.25, corrector qd (junk_only False), tol 1.0e-20 x 1.45^(D - 153.43086), stalls accepted below 1e-17
