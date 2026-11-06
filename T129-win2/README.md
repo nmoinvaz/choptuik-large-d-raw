@@ -48,3 +48,12 @@ chain4/ restarts from chain2/anm_pin3_D193.7746.npz (realigned to the Mac T130 g
 fresh 3-restart budget. Per post: D, steps, halvings, re-seed ok/failed, stalls accepted ("quad-double stall at max|F|
 ... accepted") with the largest accepted max|F|, and Delta; flag if the largest accepted max|F| passes 1e-26 (floor
 then two orders from the 1e-24 level, octo-double corrector takes over).
+
+chain4 climbed to D 207.8996 on the stall rule (floor held 6-7e-28 across D 199-207 then rose); the accepted stall
+passed 1e-26 at that step (4.9e-26), the self-switch trigger. switched to chain5 at 2026-11-06 19:33 UTC.
+
+chain5/ is the octo-double corrector (--corrector od --tol_od 1e-40) on 80d928f (Python-only past fc636e7, no rebuild;
+octo_corrector.py / newton_od, OCTO_DOUBLE.md 5), from chain4/anm_pin3_D207.8996.npz, h_max 0.5, D_max 1000, --jet_o 1,
+--save_pred 1, 18 threads. Past D 185 the quad-double Newton step errs in the mass mode's weak direction (the stall
+floor); the octo corrector converges to ~1e-41. Expect each step slower (an octo Newton step was 145-360 s at 3
+threads on the Mac). Stop on three-halvings, degenerate, or 12 h; hang rule stands.
