@@ -12,3 +12,5 @@ T129's D values and hp/export_delta_all.py compares the two there.
     --jet_o 1 --reseed 2 --reseed_q 1
 
 Log chain.log, states and anm_run.jsonl in chain/. Stop at D_max, on a degenerate series, or after 16 h (about 1070 s per step of 0.5 here, 49 steps).
+
+Stopped at D 183.5246 (2026-11-06 18:24 UTC, last state chain/anm_pin3_D183.5246.npz) to give this Mac's cores to T132's probe; T134-macm3 is the second path for the rows past 193.77.
