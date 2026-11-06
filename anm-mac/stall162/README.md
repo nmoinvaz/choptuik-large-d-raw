@@ -14,3 +14,5 @@ octo-double comparison, the od-jets build. notes/QUAD_DOUBLE.md 13.27 says what 
   `ah162.log` its run; `polish_variants.py` the rules compared on it.
 - `checkq3.log`: reseed.py checkq with the a_h, m_h steps and Newton on the predictions at 153.43 and 162.81, and the
   control (13.26's rule) at 162.81.
+- `am162.log`, `am162/`: main 5423d2b from 162.31, two steps at a 0.5 to 162.81 and 163.31 (corrector 1.5e-39,
+  2.3e-39), with the states and the stored predictions.
