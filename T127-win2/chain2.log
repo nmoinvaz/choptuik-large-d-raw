@@ -65,3 +65,53 @@ step 6: D 174.274614981, pivots 4.4e-09..1.5e+24, |z_1| 6.09e-04, |z_N| 1.15e-23
     a 0.5000: re-seeded (FAILED, prediction kept), 8.11 s; rung u 0.3000 not converged at |R| 9.68e-06 after 1 steps
   qn 0 [full]: |F| 3.33e-09 -> 1.48e-15, |dz| 1.5e-07 -> 9.8e-08, lam 0.5, dDelta +1.08e-08, piv 6.0e-09..1.8e+24, 40.47 s
   qn 1 [full]: |F| 1.48e-15 -> 2.71e-15, |dz| 9.8e-08 -> 8.7e-12, lam 1, dDelta -2.40e-08, piv 6.0e-09..1.8e+24, 18.92 s
+  qn 2 [full]: |F| 2.71e-15 -> 6.84e-25, |dz| 8.7e-12 -> 3.3e-18, lam 1, dDelta +8.73e-12, piv 6.0e-09..1.8e+24, 16.32 s
+  qn 3 [full]: |F| 6.84e-25 -> 1.20e-30, |dz| 3.3e-18 -> 8.3e-23, lam 1, dDelta +3.29e-18, piv 6.0e-09..1.8e+24, 8.25 s
+  qn 4: |F| 1.20e-30 converged, Delta 1.70236785511958844 +6.0372e-17
+      elim projections {'u0': 0, 'u0q': 1, 'ladder': 4, 'failed': 1, 'skipped': 0}
+      quad-double Newton: 5 steps, max|F| 1.2e-30, converged; double-double |F| of its first two parts 3.6e-05
+    a 0.500 -> D 174.774614981: predicted |F| 4.13e-05, qd 5 steps -> 3.63e-05 (tol 3.7e-20, stall accepted, Delta correction +0.0e+00), Delta 1.702367855120 (formula diff -3.6e-06), moved 3.4e-08, 106 s
+step 7: D 174.774614981, pivots 6.0e-09..1.8e+24, |z_1| 6.07e-04, |z_N| 1.37e-22, ratios 2-5 219.0 8.2 4.1 1.5, a_max 1.592, 43 s
+    a 0.5000: re-seeded (FAILED, prediction kept), 6.74 s; rung u 0.3000 not converged at |R| 6.32e-06 after 1 steps
+  qn 0: |F| 4.66e-08, |dz| 2.6e-07: no trial step accepted, stopping
+      elim projections {'u0': 0, 'u0q': 0, 'ladder': 0, 'failed': 10, 'skipped': 0}
+      quad-double Newton: 1 steps, max|F| 4.7e-08, not converged; double-double |F| of its first two parts 4.2e-05
+    a 0.500 -> D 175.274614981: predicted |F| 4.18e-05, qd 1 steps -> 4.18e-05 (tol 4.4e-20), Delta 1.702203562699 (formula diff -3.5e-06), moved 0.0e+00, 150 s
+    a 0.2500: re-seeded (FAILED, prediction kept), 8.64 s; rung u 0.3000 not converged at |R| 8.79e-06 after 1 steps
+  qn 0 [full]: |F| 1.27e-15 -> 1.66e-17, |dz| 7.4e-08 -> 4.0e-13, lam 1, dDelta -7.44e-08, piv 4.4e-09..1.9e+24, 17.97 s
+  qn 1 [full]: |F| 1.66e-17 -> 3.10e-26, |dz| 4.0e-13 -> 2.1e-18, lam 1, dDelta +3.98e-13, piv 4.4e-09..1.9e+24, 11.15 s
+  qn 2 [full]: |F| 3.10e-26 -> 1.31e-31, |dz| 2.1e-18 -> 9.0e-24, lam 1, dDelta +2.09e-18, piv 4.4e-09..1.9e+24, 18.88 s
+  qn 3: |F| 1.31e-31 converged, Delta 1.70228552956999302 +3.3779e-17
+      elim projections {'u0': 0, 'u0q': 1, 'ladder': 2, 'failed': 1, 'skipped': 0}
+      quad-double Newton: 4 steps, max|F| 1.3e-31, converged; double-double |F| of its first two parts 3.3e-05
+    a 0.250 -> D 175.024614981: predicted |F| 4.75e-05, qd 4 steps -> 3.26e-05 (tol 4.0e-20, stall accepted, Delta correction +0.0e+00), Delta 1.702285529570 (formula diff -3.6e-06), moved 7.4e-08, 81 s
+step 8: D 175.024614981, pivots 4.4e-09..1.9e+24, |z_1| 6.05e-04, |z_N| 1.37e-23, ratios 2-5 230.6 21.9 2.8 1.8, a_max 1.759, 44 s
+    a 0.5000: re-seeded (FAILED, prediction kept), 9.32 s; rung u 0.3000 not converged at |R| 6.70e-06 after 1 steps
+  qn 0: |F| 5.56e-09, |dz| 3.0e-08: no trial step accepted, stopping
+      elim projections {'u0': 0, 'u0q': 0, 'ladder': 2, 'failed': 8, 'skipped': 0}
+      quad-double Newton: 1 steps, max|F| 5.6e-09, not converged; double-double |F| of its first two parts 4.8e-05
+    a 0.500 -> D 175.524614981: predicted |F| 4.78e-05, qd 1 steps -> 4.78e-05 (tol 4.9e-20), Delta 1.702121538910 (formula diff -3.7e-06), moved 0.0e+00, 183 s
+    a 0.2500: re-seeded (ok), 14.38 s
+  qn 0 [full]: |F| 3.39e-16 -> 1.41e-16, |dz| 2.4e-08 -> 4.9e-12, lam 1, dDelta +2.42e-08, piv 3.8e-09..2.1e+24, 18.09 s
+  qn 1 [full]: |F| 1.41e-16 -> 7.53e-25, |dz| 4.9e-12 -> 4.1e-18, lam 1, dDelta +4.88e-12, piv 3.8e-09..2.1e+24, 17.26 s
+  qn 2 [full]: |F| 7.53e-25 -> 4.66e-30, |dz| 4.1e-18 -> 7.7e-23, lam 1, dDelta -4.15e-18, piv 3.8e-09..2.1e+24, 8.06 s
+  qn 3: |F| 4.66e-30 converged, Delta 1.70220343557449283 -3.2338e-17
+      elim projections {'u0': 0, 'u0q': 1, 'ladder': 2, 'failed': 0, 'skipped': 1}
+      quad-double Newton: 4 steps, max|F| 4.7e-30, converged; double-double |F| of its first two parts 4.1e-05
+    a 0.250 -> D 175.274614981: predicted |F| 4.29e-05, qd 4 steps -> 4.11e-05 (tol 4.4e-20, stall accepted, Delta correction +0.0e+00), Delta 1.702203435574 (formula diff -3.6e-06), moved 2.4e-08, 52 s
+step 9: D 175.274614981, pivots 3.8e-09..2.1e+24, |z_1| 6.04e-04, |z_N| 4.88e-24, ratios 2-5 216.1 36.1 0.9 7.9, a_max 1.840, 44 s
+    a 0.5000: re-seeded (FAILED, prediction kept), 7.71 s; rung u 0.3000 not converged at |R| 1.29e-05 after 1 steps
+  qn 0: |F| 1.90e-09, |dz| 3.9e-07: no trial step accepted, stopping
+      elim projections {'u0': 0, 'u0q': 0, 'ladder': 0, 'failed': 10, 'skipped': 0}
+      quad-double Newton: 1 steps, max|F| 1.9e-09, not converged; double-double |F| of its first two parts 6.5e-05
+    a 0.500 -> D 175.774614981: predicted |F| 6.49e-05, qd 1 steps -> 6.49e-05 (tol 5.3e-20), Delta 1.702039871639 (formula diff -3.7e-06), moved 0.0e+00, 148 s
+    a 0.2500: re-seeded (FAILED, prediction kept), 8.77 s; rung u 0.3000 not converged at |R| 1.16e-05 after 1 steps
+  qn 0 [full]: |F| 5.53e-16 -> 3.14e-16, |dz| 2.3e-08 -> 1.1e-08, lam 0.5, dDelta +2.27e-08, piv 3.7e-09..2.3e+24, 30.34 s
+  qn 1 [full]: |F| 3.14e-16 -> 1.57e-16, |dz| 1.1e-08 -> 5.7e-09, lam 0.5, dDelta +1.13e-08, piv 3.7e-09..2.3e+24, 29.69 s
+  qn 2 [full]: |F| 1.57e-16 -> 3.92e-18, |dz| 5.7e-09 -> 1.1e-12, lam 1, dDelta +5.67e-09, piv 3.7e-09..2.3e+24, 16.34 s
+  qn 3 [full]: |F| 3.92e-18 -> 1.34e-26, |dz| 1.1e-12 -> 5.5e-19, lam 1, dDelta -1.09e-12, piv 3.7e-09..2.3e+24, 10.22 s
+  qn 4 [full]: |F| 1.34e-26 -> 6.57e-32, |dz| 5.5e-19 -> 2.3e-24, lam 1, dDelta +5.50e-19, piv 3.7e-09..2.3e+24, 7.69 s
+  qn 5: |F| 6.57e-32 converged, Delta 1.70212157215780335 +8.1737e-17
+      elim projections {'u0': 0, 'u0q': 2, 'ladder': 3, 'failed': 2, 'skipped': 1}
+      quad-double Newton: 6 steps, max|F| 6.6e-32, converged; double-double |F| of its first two parts 3.3e-05
+    a 0.250 -> D 175.524614981: predicted |F| 5.05e-05, qd 6 steps -> 3.31e-05 (tol 4.9e-20, stall accepted, Delta correction +0.0e+00), Delta 1.702121572158 (formula diff -3.6e-06), moved 2.3e-08, 102 s
