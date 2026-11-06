@@ -1,0 +1,14 @@
+anm_run.py --jet_q 1 --pred_q 1, the A/B of pilot2_jet_o: one step, N 8, h_max 0.0125 (f18d27b, 2026-11-06T04:42Z)
+trend exponents (a, b) per held harmonic 5: -1.21/+0.07, 7: -1.61/-0.71, 9: -1.99/-1.30, 11: +0.00/+0.00, 13: +0.00/+0.00
+  qn 0: |F| 1.05e-35 converged, Delta 1.72298584321596504 -9.8633e-17
+      quad-double Newton: 1 steps, max|F| 1.0e-35, converged; double-double |F| of its first two parts 2.0e-12
+base anm-mac/pred_q/A2/anm_pin3_D128.5559.npz: D 128.555864981, M 32, pin 3 (held [5, 7, 9, 11, 13]), |F| 2.0e-12; N 8, eps 1e-06, h_max 0.0125, corrector qd (junk_only False), tol 1.0e-20 x 1.45^(D - 128.55586), stalls accepted below 1e-17
+step 0: D 128.555864981, pivots 9.7e-08..1.9e+17, |z_1| 9.89e-04, |z_N| 3.43e-13, ratios 2-5 160.2 144.8 134.9 46.1, a_max 3.120, 53 s
+  qn 0 [full]: |F| 3.00e-15 -> 2.04e-22, |dz| 8.7e-20 -> 4.4e-21, lam 1, dDelta -8.81e-23, piv 9.5e-08..1.9e+17, 21.84 s
+  qn 1 [full]: |F| 2.04e-22 -> 3.23e-24, |dz| 4.4e-21 -> 3.9e-34, lam 1, dDelta -9.75e-22, piv 9.5e-08..1.9e+17, 22.04 s
+  qn 2 [full]: |F| 3.23e-24 -> 1.75e-44, |dz| 3.9e-34 -> 1.5e-39, lam 1, dDelta +2.25e-35, piv 9.5e-08..1.9e+17, 19.27 s
+  qn 3: |F| 1.75e-44 converged, Delta 1.72297830023887233 +1.0726e-16
+      quad-double Newton: 4 steps, max|F| 1.8e-44, converged; double-double |F| of its first two parts 3.2e-12
+    a 0.013 -> D 128.568364981: predicted |F| 3.44e-12, qd 4 steps -> 3.22e-12 (tol 1.0e-20, stall accepted, Delta correction +0.0e+00), Delta 1.722978300239 (formula diff -1.9e-06), moved 8.5e-20, 84 s
+done
+exit 0

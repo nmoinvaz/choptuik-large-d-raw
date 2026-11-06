@@ -1,0 +1,13 @@
+anm_run.py --jet_q 1 --pred_q 1, N 8, h_max 0.225 (a forced to 0.225; with its own a_max 0.2245641 it predicted 2.2e-3) (f18d27b, 2026-11-06T04:20Z)
+trend exponents (a, b) per held harmonic 5: -1.21/+0.07, 7: -1.61/-0.71, 9: -1.99/-1.30, 11: +0.00/+0.00, 13: +0.00/+0.00
+  qn 0: |F| 1.05e-35 converged, Delta 1.72298584321596504 -9.8633e-17
+      quad-double Newton: 1 steps, max|F| 1.0e-35, converged; double-double |F| of its first two parts 2.0e-12
+base anm-mac/pred_q/A2/anm_pin3_D128.5559.npz: D 128.555864981, M 32, pin 3 (held [5, 7, 9, 11, 13]), |F| 2.0e-12; N 8, eps 1e-06, h_max 0.225, corrector qd (junk_only False), tol 1.0e-20 x 1.45^(D - 128.55586), stalls accepted below 1e-17
+step 0: D 128.555864981, pivots 9.7e-08..1.9e+17, |z_1| 9.89e-04, |z_N| 3.43e-13, ratios 2-5 160.2 144.8 134.9 46.1, a_max 3.120, 54 s
+  qn 0: |F| 6.40e-04, |dz| 3.5e-01: no trial step accepted, stopping
+      quad-double Newton: 1 steps, max|F| 6.4e-04, not converged; double-double |F| of its first two parts 2.3e-03
+    a 0.225 -> D 128.780864981: predicted |F| 2.27e-03, qd 1 steps -> 2.27e-03 (tol 1.1e-20), Delta 1.722850289556 (formula diff -1.9e-06), moved 0.0e+00, 179 s
+  qn 0: |F| 1.20e-06, |dz| 4.9e-05: no trial step accepted, stopping
+      quad-double Newton: 1 steps, max|F| 1.2e-06, not converged; double-double |F| of its first two parts 4.3e-06
+    a 0.113 -> D 128.668364981: predicted |F| 4.27e-06, qd 1 steps -> 4.27e-06 (tol 1.0e-20), Delta 1.722918008214 (formula diff -1.9e-06), moved 0.0e+00, 229 s
+exit 143
