@@ -18,3 +18,14 @@ second path T130 (h_max 0.5) starts there too and every other of its points land
 Log T129-win2\chain.log. Post after the first two steps (series seconds at 18 threads vs T128's 694 s at 6, accepted a,
 re-seed, qd steps, max |F|, Delta), then hourly. Stop at D_max 200, on a degenerate series, when two steps in a row
 need a of 0.125 or less, or after 10 h. Push T129-win2/ at each post.
+
+chain reached D 188.0246 cleanly in 13 full a=1.0 steps (series healthy, a_max ~2.06, re-seed 12 ok / 3 failed), then
+the step above it hung: the a 1.0 re-seed failed at rung u 0.15 (double-double floor now ~1e-19), the kept prediction's
+horizon was off by the mass-mode gain (~1.8e26), and each corrector projection ran a full single-core quad-double
+polish (py-spy: Reseeder.integrate via ElimQ.newton_q inside newton_qd), ~1 h per a=1.0 attempt. hung above D 188.0246,
+killed at 2026-11-06 11:21 UTC for chain2.
+
+chain2/ restarts from chain/anm_pin3_D188.0246.npz with h_max 0.5 (a=1.0 overshoots here; a=0.5 lets the warm
+projection work) plus --save_pred 1. 18 threads. Steps of 0.5 from 188.0246 land on the Mac's T130 points. Stop at
+D_max 200, after 3 restarts, or after 8 h. New hang rule: if the log gains no line for 20 min while one core is busy,
+take one py-spy dump, kill the tree, restart from the last state with h_max halved (0.25, then 0.125), and post.
