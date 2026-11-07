@@ -1,0 +1,25 @@
+planted: BCG k(r) = j, gamma 5/3
+  j=2: roots ['(1.05012562893 + 1.80126521795e-62j)']  real root = r_2: True
+  j=3: roots ['(1.10102051443 + 3.12106934548e-64j)']  real root = r_3: True
+  j=4: roots ['(1.13475637539 - 5.19770488282e-113j)']  real root = r_4: True
+ours (a): exponents at x = 1: [0, n/2 - s - 1]; paper's {0, n/2-1-s}: True
+  n=  2 mu=1: roots of Lambda(omega)=j, j=0..5: ['(0.0 + 0.0j)', '(0.0 + 1.0j)', '(0.0 + 2.0j)']... real ones: 0; min_j |Lambda(omega_inf) - j| = 3.82214
+  n=  2 mu=3: roots of Lambda(omega)=j, j=0..5: ['(0.0 + 0.0j)', '(-3.85987e-97 + 0.333333j)', '(7.47305e-97 + 0.666667j)']... real ones: 0; min_j |Lambda(omega_inf) - j| = 11.4664
+  n= 18 mu=1: roots of Lambda(omega)=j, j=0..5: ['(0.0 - 8.0j)', '(0.0 - 7.0j)', '(0.0 - 6.0j)']... real ones: 0; min_j |Lambda(omega_inf) - j| = 3.82214
+  n= 18 mu=3: roots of Lambda(omega)=j, j=0..5: ['(4.24711e-96 - 2.66667j)', '(4.08864e-96 - 2.33333j)', '(0.0 - 2.0j)']... real ones: 0; min_j |Lambda(omega_inf) - j| = 11.4664
+  n= 58 mu=1: roots of Lambda(omega)=j, j=0..5: ['(0.0 - 28.0j)', '(0.0 - 27.0j)', '(0.0 - 26.0j)']... real ones: 0; min_j |Lambda(omega_inf) - j| = 3.82214
+  n= 58 mu=3: roots of Lambda(omega)=j, j=0..5: ['(0.0 - 9.33333j)', '(0.0 - 9.0j)', '(0.0 - 8.66667j)']... real ones: 0; min_j |Lambda(omega_inf) - j| = 11.4664
+  n=198 mu=1: roots of Lambda(omega)=j, j=0..5: ['(0.0 - 98.0j)', '(0.0 - 97.0j)', '(0.0 - 96.0j)']... real ones: 0; min_j |Lambda(omega_inf) - j| = 3.82214
+  n=198 mu=3: roots of Lambda(omega)=j, j=0..5: ['(0.0 - 32.6667j)', '(0.0 - 32.3333j)', '(0.0 - 32.0j)']... real ones: 0; min_j |Lambda(omega_inf) - j| = 11.4664
+ours (b): |C(n, i mu omega)| on omega in [0.05, 12], 2400 points
+  n= 18 mu=1: min |C| 7.002e-6  max |C| 33.32
+  n= 18 mu=3: min |C| 6.133e-10  max |C| 10.94
+  n= 58 mu=1: min |C| 1.662e-7  max |C| 60.38
+  n= 58 mu=3: min |C| 5.357e-17  max |C| 19.81
+  n=200 mu=1: min |C| 5.465e-8  max |C| 112.5
+  n=200 mu=3: min |C| 3.826e-22  max |C| 36.89
+  |C(18, i omega_inf)| = 0.01214 (paper: 0.0121)
+  control: |C(19, s=-1)| (omega = i): 0.0 (zero expected); |C(18, s=8+1e-20)| (omega = -8i): 4.27e+22 (pole expected)
+  K'(s) zeros: s = -1, -2, ... i.e. omega = i j/mu; |K'(i omega_inf)| = 32.9673
+RESULT PASS
+nice -n 10 /Users/nathan/venv-qd/bin/python -I ours_resonance.py  4.62s user 0.05s system 99% cpu 4.679 total
