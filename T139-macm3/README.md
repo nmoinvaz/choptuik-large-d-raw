@@ -25,3 +25,9 @@ each, max|F| 6.9e-31, 1.5e-30, 1.7e-30, 6.9e-32; the held-fit line printed. Delt
 chain/ started 04:21:54 UTC, supervised by a script that applies the rules above (the order-4 ratio is read from each
 "step k:" line, printed right after the series at the base, and the run is stopped there, before a step is taken on
 that series).
+
+chain/ stopped for T142 (comms 2026-11-07 10:20 and 11:19 UTC cloud to macm3: T139 stops at D 165, here its first
+state past it) at 11:36:35 UTC, right after anm_pin3_D165.2500.npz was saved (11:36:14 UTC), before the next series.
+123 steps from D 73, every one a 0.75: 0 halvings, 1 re-seed failed (prediction kept, the step from 163.75), no
+quad-double stall, no restart, no hang. The order-4 ratio rule never applied (above 165 no series was computed).
+Last state chain/anm_pin3_D165.2500.npz, Delta 1.705689422908068474515 (four parts summed in mpmath).
