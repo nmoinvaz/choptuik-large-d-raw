@@ -1,0 +1,11 @@
+T138-win2/chain/anm_pin3_D150.0000.npz: D 150.0, M 32, K 5, kfreeze 3, Delta 1.711867026613456141111107
+  round trip 32 -> 48 -> 32: p1 relative 2.7e-80 (pass)
+M 32: start |F| 1.11e-31, the first Newton step's |dz| 9.0e-29 and dDelta +9.048e-29 (linear estimate of Delta(M) - Delta of the start)
+  qn 0: |F| 1.11e-31 converged, Delta 1.71186702661345613 +8.0338e-18
+M 32: converged in 1 steps, |F| 1.11e-31, pivots 5.9e-08..3.2e+20, Delta 1.711867026613456141111107, minus M 32's state +0.000e+00
+M 48: start |F| 5.99e+01, the first Newton step's |dz| 2.6e+01 and dDelta +3.098e+00 (linear estimate of Delta(M) - Delta of the start)
+  qn: 3 junk directions frozen (sigma 2e-02..6e-02), 1 weak ones with Delta content solved (sigma 2e-03..2e-03)
+  qn 0: |F| 5.99e+01, |dz| 2.6e+01: no trial step accepted, stopping
+M 48: NOT converged in 1 steps, |F| 5.99e+01, pivots 2.9e-01..3.0e+21, Delta 1.711867026613456141111107, minus M 32's state +0.000e+00
+Delta(M 48) - Delta(M 32) = +0.000e+00
+FAIL: D 150.0, Ms [32, 48]

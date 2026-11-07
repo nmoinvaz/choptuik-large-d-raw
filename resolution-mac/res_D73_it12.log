@@ -1,0 +1,15 @@
+T81/conv_pin5_D73.0000_D73.000000.npz: D 73.0, M 32, K 5, kfreeze 13, Delta 1.78123968193092619260736
+  round trip 32 -> 48 -> 32: p1 relative 2.8e-80 (pass)
+M 32: start |F| 1.18e-35, the first Newton step's |dz| 1.3e-20 and dDelta -8.387e-28 (linear estimate of Delta(M) - Delta of the start)
+  qn 0: |F| 1.18e-35 converged, Delta 1.78123968193092619 +3.9941e-18
+M 32: converged in 1 steps, |F| 1.18e-35, pivots 2.9e-16..1.1e+09, Delta 1.78123968193092619260736, minus M 32's state +0.000e+00
+M 48: start |F| 1.89e-10, the first Newton step's |dz| 2.5e-05 and dDelta -7.784e-10 (linear estimate of Delta(M) - Delta of the start)
+  qn 0 [full]: |F| 1.89e-10 -> 8.74e-07, |dz| 2.5e-05 -> 1.9e-05, lam 1, dDelta -7.78e-10, piv 3.3e-05..5.1e+08, 40.31 s
+  qn 1 [full]: |F| 8.74e-07 -> 8.30e-07, |dz| 1.9e-05 -> 1.0e-05, lam 0.0625, dDelta -4.69e-07, piv 3.7e-05..5.1e+08, 193.02 s
+  qn 2 [full]: |F| 8.30e-07 -> 8.18e-07, |dz| 1.0e-05 -> 9.2e-06, lam 0.03125, dDelta -4.64e-07, piv 3.0e-05..5.1e+08, 206.07 s
+  qn 3 [full]: |F| 8.18e-07 -> 9.82e-07, |dz| 9.2e-06 -> 8.8e-06, lam 0.0625, dDelta -4.41e-07, piv 3.2e-05..5.1e+08, 166.26 s
+  qn 4: |F| 9.82e-07, |dz| 8.8e-06: no trial step accepted, stopping
+M 48: NOT converged in 5 steps, |F| 9.82e-07, pivots 3.2e-05..5.1e+08, Delta 1.781239609805931247719153, minus M 32's state -7.212e-08
+Delta(M 48) - Delta(M 32) = -7.212e-08
+FAIL: D 73.0, Ms [32, 48]
+exit 1

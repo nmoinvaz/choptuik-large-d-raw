@@ -1,0 +1,14 @@
+up70_D67.7899.npz: D 67.789872, M 32, K 5, kfreeze 13, Delta 1.791442860168614257191283
+  round trip 32 -> 48 -> 32: p1 relative 2.8e-80 (pass)
+M 32: start |F| 8.41e-22, the first Newton step's |dz| 4.7e-09 and dDelta -1.325e-16 (linear estimate of Delta(M) - Delta of the start)
+  qn: 4 junk directions frozen (sigma 7e-24..1e-21), 0 weak ones with Delta content solved (sigma 0e+00..0e+00)
+  qn 0 [sel]: |F| 8.41e-22 -> 4.94e-21, |dz| 3.6e-13 -> 4.6e-09, lam 1, dDelta -7.38e-18, piv 1.4e-15..1.8e+08, 12.68 s
+  qn 1: |F| 4.94e-21, |dz| 3.4e-16: no trial step accepted, stopping
+M 32: NOT converged in 2 steps, |F| 4.94e-21, pivots 1.4e-15..1.8e+08, Delta 1.791442860168614249807686, minus M 32's state -7.384e-18
+M 48: start |F| 3.61e-11, the first Newton step's |dz| 5.8e-07 and dDelta -1.235e-11 (linear estimate of Delta(M) - Delta of the start)
+  qn: 4 junk directions frozen (sigma 5e-20..5e-19), 0 weak ones with Delta content solved (sigma 0e+00..0e+00)
+  qn 0 [sel]: |F| 3.61e-11 -> 3.52e-13, |dz| 3.5e-09 -> 7.8e-10, lam 1, dDelta -1.69e-12, piv 4.9e-10..8.1e+07, 35.76 s
+  qn 1: |F| 3.52e-13, |dz| 6.1e-10: no trial step accepted, stopping
+M 48: NOT converged in 2 steps, |F| 3.52e-13, pivots 4.9e-10..8.1e+07, Delta 1.791442860166926666377056, minus M 32's state -1.688e-12
+Delta(M 48) - Delta(M 32) = -1.688e-12
+FAIL: D 67.789872, Ms [32, 48]

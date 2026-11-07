@@ -1,0 +1,19 @@
+T138-win2/chain/anm_pin3_D100.0000.npz: D 100.0, M 32, K 5, kfreeze 3, Delta 1.745026484432601419351703
+  round trip 32 -> 48 -> 32: p1 relative 2.7e-80 (pass)
+  round trip 32 -> 64 -> 32: p1 relative 7.8e-81 (pass)
+M 32: start |F| 9.30e-36
+  qn 0: |F| 9.30e-36 converged, Delta 1.74502648443260133 +8.6866e-17
+M 32: converged in 1 steps, |F| 9.30e-36, pivots 1.5e-07..1.1e+13, Delta 1.745026484432601419351703, minus M 32's state +0.000e+00
+M 48: start |F| 9.17e-07
+  qn 0: |F| 9.17e-07, |dz| 4.0e-05: no trial step accepted, stopping
+M 48: NOT converged in 1 steps, |F| 9.17e-07, pivots 3.0e-07..9.6e+12, Delta 1.745026484432601419351703, minus M 32's state +0.000e+00
+Traceback (most recent call last):
+  File "/Users/nathan/Source/choptuik-large-d/hp/resolution_check.py", line 131, in <module>
+    sys.exit(main(sys.argv[1:]))
+             ~~~~^^^^^^^^^^^^^^
+  File "/Users/nathan/Source/choptuik-large-d/hp/resolution_check.py", line 113, in main
+    F0 = sq.residual_q(*z4)
+  File "/Users/nathan/Source/choptuik-large-d/hp/pinning.py", line 97, in residual_q
+    F = self.s.residual_q(z0, z1, z2, z3, mutate=mutate)
+ValueError: the quad-double solver is built for M = 32 and 48 only
+exit 1

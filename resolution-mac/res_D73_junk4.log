@@ -1,0 +1,13 @@
+T81/conv_pin5_D73.0000_D73.000000.npz: D 73.0, M 32, K 5, kfreeze 13, Delta 1.78123968193092619260736
+  round trip 32 -> 48 -> 32: p1 relative 2.8e-80 (pass)
+M 48: start |F| 1.89e-10, the first Newton step's |dz| 2.5e-05 and dDelta -7.784e-10 (linear estimate of Delta(M) - Delta of the start)
+  qn: 4 junk directions frozen (sigma 1e-19..6e-19), 0 weak ones with Delta content solved (sigma 0e+00..0e+00)
+  qn 0 [sel]: |F| 1.89e-10 -> 2.74e-10, |dz| 1.3e-07 -> 5.2e-08, lam 0.125, dDelta -9.53e-11, piv 3.5e-08..5.1e+08, 126.35 s
+  qn 1 [sel]: |F| 2.74e-10 -> 1.82e-11, |dz| 5.3e-08 -> 3.7e-08, lam 1, dDelta +4.55e-14, piv 1.4e-09..5.1e+08, 30.9 s
+  qn 2 [sel]: |F| 1.82e-11 -> 6.93e-12, |dz| 3.8e-08 -> 1.4e-08, lam 0.5, dDelta +3.50e-14, piv 4.0e-10..5.1e+08, 63.5 s
+  qn 3 [sel]: |F| 6.93e-12 -> 4.77e-12, |dz| 1.4e-08 -> 9.1e-09, lam 1, dDelta +3.28e-14, piv 1.0e-09..5.1e+08, 31.07 s
+  qn 4 [sel]: |F| 4.77e-12 -> 3.64e-12, |dz| 9.5e-09 -> 5.5e-09, lam 1, dDelta +1.02e-13, piv 6.9e-10..5.1e+08, 31.08 s
+  qn 5: |F| 3.64e-12, |dz| 5.8e-09: no trial step accepted, stopping
+M 48: NOT converged in 6 steps, |F| 3.64e-12, pivots 6.9e-10..5.1e+08, Delta 1.781239681919212621281701, minus M 32's state -1.171e-11
+FAIL: D 73.0, Ms [48]
+exit 1
