@@ -1,0 +1,3 @@
+# T151-win: hp from main with the octo-double kernel (multidouble 4.0.0), x86 build on win, bit identity checks
+
+Worktree ..\choptuik-t151 at origin/main (22daddc8), venv venv-t151 (numpy 2.2.6, scipy 1.15.3, mpmath 1.3.0, sympy 1.14.0, python-flint 0.9.0, maturin 1.16.0). Cloud task 2026-11-07 16:21 UTC, so this laptop can run octo-double work (T152: T140's chains past D 165). `bash hp/build.sh` with CARGO_PROFILE_RELEASE_LTO=false and CARGO_PROFILE_RELEASE_CODEGEN_UNITS=16, detached, below normal, 4 cargo jobs, log build.log (command in build.cmd). The T125 build (choptuik-t125, venv-t125, quad-double only) stays.
