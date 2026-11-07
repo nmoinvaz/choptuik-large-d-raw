@@ -9,3 +9,9 @@ evidence. Procedure and criteria: notes/LOW_D.md 16.
     --targets 3.0425,3.043,3.0434 --N 3 --threads 7 --cap 900
 
 Log probe.log; probe/ holds probe.jsonl, coeffs.npz and each case's plan trace.
+
+Stopped 2026-11-07 01:20 UTC. The base's Jacobian and LU took 15989 s (pivots 4.3e-05..4.9e+01, as T115's on win2), but
+z_1's GMRES diverged: |z_1| nan after 40 products (960 + 7515 s), with overflow warnings in multidouble's Python
+double-double helpers. On win2 (T115) the same base gave |z_1| 1.410e+04 in 5 products. A discrepancy between this
+Mac's build (the octo-double venv, NEON) and win2's at M 320, not yet explained; T135 on the laptop (x86) runs the same
+probe at M 384.
