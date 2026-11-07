@@ -14,3 +14,10 @@ anm_pin3_D<D>.npz at D 130, 180, 110, 160, 205, 90, 120, 140, 170, 190, 209. Eac
 and exits.txt has how each ended. Control: the first line must read "residual at the pinned state 4.28e-18, Delta
 1.7699262589377422" (as T141-win2/release_D79.7657.log), and the first step's dDelta +5.03e-8 within 2%. A state stops
 after 6 steps or 1.5 h; T142 stops if swap use passes 2 GB.
+
+What ran (comms 2026-11-07 13:19 UTC: win2 takes the rest of the grid as T145, so here only the control and D 130):
+- release_D79.7657.log, the control, --it 6, main 8efbfee6 (full_release.py before a2f632f8's refactor): passed, every
+  line equal to T141-win2's apart from timings; stopped by the 1.5 h limit inside on 4, so no final line.
+- release_D130.0000.log, --it 1 (main 84fd066b, full_release.py as at ecf6f6c), the coordinator's rerun: it replaced
+  the cut --it 6 run of the same state (13:08:16 to 13:27:32 UTC, which had printed only its first and od lines, the
+  same as here). 981 s, exit 0.
