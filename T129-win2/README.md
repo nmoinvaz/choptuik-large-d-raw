@@ -57,3 +57,18 @@ octo_corrector.py / newton_od, OCTO_DOUBLE.md 5), from chain4/anm_pin3_D207.8996
 --save_pred 1, 18 threads. Past D 185 the quad-double Newton step errs in the mass mode's weak direction (the stall
 floor); the octo corrector converges to ~1e-41. Expect each step slower (an octo Newton step was 145-360 s at 3
 threads on the Mac). Stop on three-halvings, degenerate, or 12 h; hang rule stands.
+
+chain5 climbed to D 214.8840 but hit a conditioning wall near D 214.8 (the octo LU's smallest pivot falls ~0.6x/unit D,
+8.2e-16 at 214.8): big steps only half-converge, the re-seed fails outright (|R| ~10), so the step size collapsed to
+a=0.03125 then 0.015625, ~1 h/step wasted on doomed a=0.5/0.25/0.125 attempts. Per the coordinator, after two steps
+needing a<=0.0625, restarted as chain6 with --h_max 0.0625 from chain5/anm_pin3_D214.8840.npz (the last converged step,
+octo 1.1e-47). Stopped chain5 at 2026-11-06 23:52 UTC.
+
+chain6/ is chain5 with --h_max 0.0625 (skip the doomed big-step attempts), rest unchanged. NOTE: chain5's last step
+actually needed a=0.015625, so chain6 at h_max 0.0625 still halves to 0.015625 (two wasted attempts/step); dropping to
+--h_max 0.03125 or 0.015625 would remove them. Awaiting the Mac's octo stall rule (inverse iteration on the octo LU's
+weak direction).
+
+chain6 did not advance past its base (step 1 failed at a=0.0625 and 0.03125 at the conditioning wall). The goal then
+changed (00:18 UTC): Nathan wants more digits of Delta, not higher D, and the digits are bias-limited past D 75. stopped
+at D 214.8840 for T137 (the bias measurement with full_release.py; see T137-win2/).
