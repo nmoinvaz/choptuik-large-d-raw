@@ -18,3 +18,7 @@ has the exact line, exits.txt how it ended; a run stops after 2 h.
    T140-win/chain_d10/anm_pin3_D100.0000.npz (d10)
 In part 1 each run's first release is compared with T141-win2/release_D100.0000.log's first, od and on 0 lines apart
 from timings, and exits.txt says whether they match.
+
+Part 2 was not run here: the 16:37 UTC entry moved it to win2. Both part 1 runs ended with exit 1, the delta failing,
+which is a result: 11b ratio 1.394 (bias -3.06e-17), 13b ratio 0.644 (bias +7.24e-18). Both first releases matched
+T141-win2's. 11b's first release spent 1771.82 s on its on 0 step; the other three releases here took 442-450 s.
