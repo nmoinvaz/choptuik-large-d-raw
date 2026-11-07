@@ -1,0 +1,19 @@
+planted T129-win2/chain/anm_pin3_D180.5246.npz: D 180.524614981, start = truth moved by 1e-12 relative in [0, 576); pinned max|F| (octo) truth 2.83e-30, start 3.39e-12; mutate_offset '', mutate 0
+  on 0: |F| 3.39e-12 -> 5.92e-16, |dz| 1.0e-12 -> 7.7e-16, lam 1, dDelta -3.09e-17, piv 1.3e-09..1.3e+25, 312.98 s
+  on 1: |F| 5.92e-16 -> 1.63e-31, |dz| 7.7e-16 -> 6.8e-24, lam 1, dDelta +3.09e-17, piv 1.3e-09..1.3e+25, 310.18 s
+  on 2: |F| 1.63e-31 -> 7.61e-22, |dz| 6.8e-24 -> 6.4e-34, lam 1, dDelta +4.55e-25, piv 1.3e-09..1.3e+25, 253.54 s
+  on 3: |F| 7.61e-22 -> 6.86e-42, |dz| 6.4e-34 -> 6.4e-34, lam 1, dDelta +1.18e-34, piv 1.3e-09..1.3e+25, 265.7 s
+  on 4: |F| 6.86e-42 converged, Delta 1.70053126981816227 -6.7759e-17
+  od: 5 steps, converged, pinned max|F| (octo) 6.86e-42, Delta 1.700531269818162204386381037834122353007, projections {'u0': 0, 'u0q': 3, 'ladder': 0, 'failed': 0, 'skipped': 3}, 1559 s
+  od against the truth: dDelta 8.5478e-22
+Traceback (most recent call last):
+  File "/Users/nathan/Source/choptuik-large-d/.claude/worktrees/agent-a74f73ca27245af7e/hp/octo_corrector.py", line 398, in <module>
+    sys.exit((planted if sys.argv[1] == "planted" else wall)(sys.argv[2:]))
+             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/Users/nathan/Source/choptuik-large-d/.claude/worktrees/agent-a74f73ca27245af7e/hp/octo_corrector.py", line 320, in planted
+    zq, hq, cq, Fq, cntq = _run_qd(sq, so, rs, q4_of_o(zs), 1e-45, 12)
+                                               ~~~~~~~^^^^
+  File "/Users/nathan/Source/choptuik-large-d/.claude/worktrees/agent-a74f73ca27245af7e/hp/octo_corrector.py", line 45, in q4_of_o
+    tail = zo[4] + (zo[5] + (zo[6] + zo[7]))
+           ~~^^^
+IndexError: tuple index out of range
