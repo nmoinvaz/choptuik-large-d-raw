@@ -26,3 +26,8 @@ from chain/anm_pin3_D195.5246.npz, the same command with --corrector od --tol_od
 --tol_qd 1e-28 --accept_stall_qd 1e-24 (chain_od.cmd), log chain_od.log, states in chain_od/. Same hang rule, 90 min
 at any load the outer limit, at most 2 restarts (chain_od_r1, chain_od_r2, h_max 0.25). Stop on three halvings, a
 degenerate series, or after 16 h.
+
+chain_od/ stopped for T139 (comms 2026-11-07 04:05 UTC cloud to macm3) at 04:06:29 UTC, killed about a minute into
+step 12's series, which is lost. Last state chain_od/anm_pin3_D201.5246.npz (saved 04:05 UTC), Delta
+1.69470316737833128 (eight parts summed in mpmath). 12 steps from 195.5246, every one a 0.5: 0 halvings, 0 stalls,
+0 restarts; final octo-double max|F| 3.4e-54 to 1.3e-50.
