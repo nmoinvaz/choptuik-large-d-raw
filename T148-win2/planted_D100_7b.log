@@ -1,0 +1,14 @@
+T138-win2/chain/anm_pin3_D100.0000.npz: held harmonic 7 sin +1.65813771246764132e-05; deltas [1e-11]; mutate 0
+T138-win2/chain/anm_pin3_D100.0000.npz: D 100.0, M 32, kfreeze 13, octo-double: residual at the pinned state 4.32e-23, Delta 1.7450264844326014
+  od: 4 junk directions frozen (sigma 6e-27..5e-24), 0 weak ones with Delta content kept
+  on 0: |F| 4.32e-23 -> 2.61e-09, |dz| 1.9e-08 -> 5.7e-09, lam 0.0625, dDelta +2.16e-13, piv 7.8e-08..1.1e+13, 71.89 s
+  not converged in 1 steps; Delta 1.7450264844326149, moved +1.349e-14 (first step's dDelta +2.158e-13); series 1/D 20 1.7450264844342319: pinned - series -1.630e-12, released - series -1.617e-12
+pinned solve (qd, ls dz), harmonic 7 sin moved by +1.000000e-11 in 1 steps:
+  move 1/1, +1.000000e-11: 6 Newton steps, |F| 3.61e-35, converged
+T138-win2/chain/anm_pin3_D100.0000.npz moved +1.0e-11: D 100.0, M 32, kfreeze 13, octo-double: residual at the pinned state 4.34e-23, Delta 1.745026484432592
+  od: 4 junk directions frozen (sigma 6e-27..5e-24), 0 weak ones with Delta content kept
+  on 0: |F| 4.34e-23 -> 2.61e-09, |dz| 1.9e-08 -> 5.7e-09, lam 0.0625, dDelta +2.25e-13, piv 7.7e-08..1.1e+13, 70.12 s
+  not converged in 1 steps; Delta 1.745026484432606, moved +1.408e-14 (first step's dDelta +2.253e-13); series 1/D 20 1.7450264844342319: pinned - series -1.640e-12, released - series -1.626e-12
+result {"state": "T138-win2/chain/anm_pin3_D100.0000.npz", "D": 100.0, "harm": 7, "part": "sin", "delta": 1.0000000000699553e-11, "bias": -9.462476869904043e-15, "s": -0.0009462476869242092, "step0": 2.1580524913404656e-13, "step": 2.2526769673178203e-13, "response": 9.46244759773547e-15, "ratio": 0.999996906500383, "mutate": 0, "pass_": true}
+  planted bias -9.4625e-15 (s -9.4625e-04); step +2.2527e-13 - step at 0 +2.1581e-13 = +9.4624e-15; ratio to -bias 1.0000: pass
+pass: 1 deltas at D 100.0
