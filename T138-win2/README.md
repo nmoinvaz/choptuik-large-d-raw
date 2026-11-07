@@ -16,3 +16,11 @@ Pilot pass: all 3 steps converge (qd max|F| < 1e-28), and the log prints "held v
 Then the same command into T138-win2\chain with --steps 300, hourly posts. Runner rules: above D 165, when the order-4
 series ratio falls below 30, restart with --jet_o 1 (drop --jet_q/--pred_q); when the quad corrector stalls above 1e-28
 twice in a row, restart with --corrector od --tol_od 1e-40; hang rule stands; stop after 24 h or three-halvings.
+
+chain/ (quad jet, bias-free) climbed D 73 -> 173.5 cleanly in ~101 full a=1.0 steps (re-seed ~96/5, series far
+healthier than the pinned chain: ratios grew to ~210/190 through D 165). Above D 165 the order-4 ratio then fell below
+30 (166 at D 165 -> 15.3 at D 170 -> 2.3 at D 173), the escalation trigger. Stopped at 2026-11-07 03:00 UTC.
+
+chain_o/ restarts from chain/anm_pin3_D173.5000.npz with --jet_o 1 (octo jet; drop --jet_q/--pred_q), --corrector qd
+unchanged, rest as chain. The octo jet rebuilds the high-order series the quad jet lost. Same stop/escalation rules;
+if the qd corrector stalls above 1e-28 twice, next escalate to --corrector od --tol_od 1e-40.
