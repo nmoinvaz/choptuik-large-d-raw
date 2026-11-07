@@ -1,0 +1,1 @@
+cd ~/Source/choptuik-large-d/hp && caffeinate -i nice -n 10 /Users/nathan/Source/venv-macm3/bin/python -u full_release.py ../../choptuik-large-d-raw anm-mac/run_trend_pin3_qd3/anm_pin3_D79.7657.npz --kfreeze 13 --octo 1 --junk 4 --it 6 --threads 6 > ../../choptuik-large-d-raw/T142-macm3/release_D79.7657.log 2>&1
