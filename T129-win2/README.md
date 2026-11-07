@@ -68,3 +68,7 @@ chain6/ is chain5 with --h_max 0.0625 (skip the doomed big-step attempts), rest 
 actually needed a=0.015625, so chain6 at h_max 0.0625 still halves to 0.015625 (two wasted attempts/step); dropping to
 --h_max 0.03125 or 0.015625 would remove them. Awaiting the Mac's octo stall rule (inverse iteration on the octo LU's
 weak direction).
+
+chain6 did not advance past its base (step 1 failed at a=0.0625 and 0.03125 at the conditioning wall). The goal then
+changed (00:18 UTC): Nathan wants more digits of Delta, not higher D, and the digits are bias-limited past D 75. stopped
+at D 214.8840 for T137 (the bias measurement with full_release.py; see T137-win2/).
