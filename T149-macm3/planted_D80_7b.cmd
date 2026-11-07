@@ -1,0 +1,1 @@
+cd ~/Source/choptuik-large-d/hp && caffeinate -i nice -n 10 /Users/nathan/Source/venv-macm3/bin/python -u release_planted.py ../../choptuik-large-d-raw T138-win2/chain/anm_pin3_D80.0000.npz --harm 7 --part sin --delta 1e-11 --octo 1 --junk 4 --it 1 --threads 6 > ../../choptuik-large-d-raw/T149-macm3/planted_D80_7b.log 2>&1
