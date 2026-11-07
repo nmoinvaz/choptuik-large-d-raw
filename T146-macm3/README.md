@@ -10,3 +10,7 @@ From hp/ with venv-macm3, nice 10 under caffeinate -i, 6 threads, one run at a t
   2. release_planted.py <raw> T138-win2/chain/anm_pin3_D100.0000.npz --delta 3e-11,1e-10 --sub 1e-11 --octo 1 --junk 4 --it 1 --threads 6
 A run stops after 3 h. Its first release (the state itself) must print the same first line, od line and on 0 line as
 T141-win2/release_D<D>.log, apart from timings; the runner compares them when on 0 is out and stops the run if not.
+
+Both runs ended with exit 0 and passed: run 1 (D 80, delta 1e-10) with ratio 0.9999998, run 2 (D 100, deltas 3e-11
+and 1e-10, moves of 1e-11, 7 Newton steps each) with ratios 1.0000061 and 1.0000071. Each first release matched
+T141-win2's. The "result" lines in the logs have every number.
