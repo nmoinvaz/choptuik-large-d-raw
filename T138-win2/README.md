@@ -24,3 +24,10 @@ healthier than the pinned chain: ratios grew to ~210/190 through D 165). Above D
 chain_o/ restarts from chain/anm_pin3_D173.5000.npz with --jet_o 1 (octo jet; drop --jet_q/--pred_q), --corrector qd
 unchanged, rest as chain. The octo jet rebuilds the high-order series the quad jet lost. Same stop/escalation rules;
 if the qd corrector stalls above 1e-28 twice, next escalate to --corrector od --tol_od 1e-40.
+chain_o climbed D 173.5 -> 215.0 cleanly (octo jet + qd corrector, series healthy a_max ~3.4). It was stopped at D 215
+for T141, then resumed; at D 215 the resume three-halvings-stopped because the quad corrector stalls above 1e-28
+(8.9e-10, 2.4e-17, 3.5e-20 at a=0.5/0.25/0.125), the rule-2 trigger.
+
+chain_od/ restarts from chain_o/anm_pin3_D215.0000.npz with --corrector od --tol_od 1e-40 (the octo-double corrector),
+keeping --jet_o 1, rest unchanged. Full octo (octo jet + octo corrector), as T129 chain5. Same stop rules (24 h,
+three-halvings, degenerate; hang rule).
