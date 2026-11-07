@@ -1,0 +1,29 @@
+B1 exponents (anm_run.py's log: 5 -1.21/+0.07, 7 -1.61/-0.71, 9 -1.99/-1.30, 11 and 13 0): 5a -1.21, 5b +0.07, 7a -1.61, 7b -0.71, 9a -1.99, 9b -1.30, 11a +0.00, 11b +0.00, 13a +0.00, 13b +0.00
+degree 8 (11 and 13: 4), mutate 'scale5'; bias = s . (h - h_full), s from the nearest of SENS.json
+| method | D | bias in Delta | pass | s at D |
+|---|---|---|---|---|
+| P1 fit D <= 71.0 | 71.5 | +2.08e-11 | NO | 71.0 |
+| P1 fit D <= 71.0 | 72.8 | +2.09e-11 | NO | 73.0 |
+| P1 fit D <= 71.0 | 73.0 | +2.08e-11 | NO | 73.0 |
+| P2 fit on dd D <= 61.03 | 68.5 | +2.12e-11 | yes | 68.5 |
+| P2 fit on dd D <= 61.03 | 69.5 | +2.07e-11 | yes | 68.5 |
+| P2 fit on dd D <= 61.03 | 70.5 | +2.10e-11 | yes | 71.0 |
+| P2 fit on dd D <= 61.03 | 71.0 | +2.08e-11 | yes | 71.0 |
+| P2 fit on dd D <= 61.03 | 71.5 | +2.06e-11 | yes | 71.0 |
+| P2 fit on dd D <= 61.03 | 72.8 | +2.06e-11 | yes | 73.0 |
+| P2 fit on dd D <= 61.03 | 73.0 | +2.05e-11 | yes | 73.0 |
+| B1 chain's trend (T75) | 68.5 | -1.21e-08 |  | 68.5 |
+| B1 chain's trend (T75) | 69.5 | -5.30e-09 |  | 68.5 |
+| B1 chain's trend (T75) | 70.5 | -1.00e-09 |  | 71.0 |
+| B1 chain's trend (T75) | 71.0 | +3.52e-10 |  | 71.0 |
+| B1 chain's trend (T75) | 71.5 | +1.16e-09 |  | 71.0 |
+| B1 chain's trend (T75) | 72.8 | +8.99e-10 |  | 73.0 |
+| B1 chain's trend (T75) | 73.0 | +5.61e-10 |  | 73.0 |
+| B2 trend's rule on dd 58.01-61.03 | 68.5 | -9.68e-08 |  | 68.5 |
+| B2 trend's rule on dd 58.01-61.03 | 69.5 | -1.18e-07 |  | 68.5 |
+| B2 trend's rule on dd 58.01-61.03 | 70.5 | -1.44e-07 |  | 71.0 |
+| B2 trend's rule on dd 58.01-61.03 | 71.0 | -1.55e-07 |  | 71.0 |
+| B2 trend's rule on dd 58.01-61.03 | 71.5 | -1.67e-07 |  | 71.0 |
+| B2 trend's rule on dd 58.01-61.03 | 72.8 | -2.04e-07 |  | 73.0 |
+| B2 trend's rule on dd 58.01-61.03 | 73.0 | -2.09e-07 |  | 73.0 |
+planted truth: FAIL
