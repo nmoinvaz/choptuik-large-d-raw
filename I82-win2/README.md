@@ -34,3 +34,15 @@ running and accept the fault risk. Node 1.10 was relaunched from k 1 at 07:05:49
 priority, to `w1.10.log` (`_launch_utc_w1.10_run3.txt`). Nodes 1.09 and 1.11 are unchanged since 05:24:49 UTC.
 Results from this period are accepted only after cross-checks against other machines: sigma_0..sigma_16 against
 T153-macm3 and T155-win2's K33 values at the same nodes, and the agreement between nodes.
+
+## Memory guards (history)
+
+Until 2026-11-08 13:30 UTC the 1.11 main (PID 12852) had a guard, `util_report.py --guard 10` (kills its process tree when
+free memory is under 10 GB), launched at 2026-11-08 05:25 UTC with the runs. On the coordinator's decision it was replaced at
+13:29:51 UTC by `util_report.py --guard 6` (PIDs 22912 shim, 18504) and `commit_guard.py` (`commit_guard.py 10`, kills the tree
+when the commit charge comes within 10 GB of the limit; PIDs 9428, 27888); the 10 GB guard (shim 10624, python 13968) was
+stopped at about 13:30:20. On Nathan's instruction (relayed by the coordinator) every guard that kills a process was then
+removed: both new guards were stopped at 13:31:21 UTC (`taskkill /T /F` on their own trees only; all 12 #82 processes were
+untouched). No process is killed for its memory use from then on. `mem_guard.log` is the guard-era log (to 13:29 UTC);
+`mem_log.txt` (written by `mem_log.py`, which kills nothing) continues the same report line every 5 min. `commit_guard.py`
+stays here as the record of what ran for 90 s.
