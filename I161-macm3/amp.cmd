@@ -1,0 +1,1 @@
+cd ~/Source/choptuik-large-d/solver/inner_amp && PATH=/Users/nathan/Source/venv-macm3/bin:$PATH caffeinate -is nice -n 10 python3 -u amp_flint_par.py 1.10 15 750 640 --procs 1 --fit phys --mf 6:12 --out ../../../choptuik-large-d-raw/I161-macm3/amp_macm3.json > ../../../choptuik-large-d-raw/I161-macm3/amp_macm3.log 2>&1
