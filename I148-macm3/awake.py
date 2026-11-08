@@ -11,6 +11,7 @@ import subprocess
 
 RUNS = [  # name, start UTC, end UTC, wall seconds (from this folder's exits.txt)
     ("M 48 kf13 circle, fresh", "2026-11-08 07:48:13", "2026-11-08 07:56:59", 526),
+    ("job 5, full M 48 kf13 count, fresh", "2026-11-08 08:00:58", "2026-11-08 08:37:47", 2209),
 ]
 
 log = subprocess.run(["/usr/bin/pmset", "-g", "log"], capture_output=True, text=True).stdout

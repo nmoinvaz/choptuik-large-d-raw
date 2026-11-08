@@ -20,3 +20,16 @@ Results (macm3, main d967f7a4). Awake time equals wall time (awake.log).
   non-CR lines the circle's points (|lam - c| 0.35 and the two beta points at 0.70): the ending marks the job as much as the machine.
   hp/data: four tracked files changed (the kf13 log, evals cache, circles.jsonl and state), copied to hp_data_after/ (with the diff of the text
   ones) and restored; they equal october_inputs/. hp/data is clean.
+
+Round 2 (the coordinator's go for job 5, 2026-11-08 07:58 UTC; main d967f7a4; the saved kf13 state moved to october_inputs_full/ so that it is
+re-converged here, data_full empty). Provenance given by the coordinator: the non-CR October lines were written by the cloud session (Linux, glibc
+libm, 2026-10-22), the CR lines by win's T37 on Windows.
+  wind_M48_kf13_fresh.log: exit 0, 2209 s (awake 2209 s), 82 new determinants (cache data_full/, 82 lines). |F| 2.5e-08 in the layout, 8.9e-28 after Newton.
+  compare_by_origin_full.txt: 80 of the 82 fresh points are October's CR lines (the other 2 are in neither group, the 18 non-CR points were not visited):
+    ln|det| differs by at most 3.4e-13 (median 1.1e-13), arg by at most 1.06e-11 (median 1.4e-12), pivot minimum by at most 2.9e-14 relative.
+  box lines (october_inputs/modecount_D30.0688_M48_kf13.log, 40 of 42 lines with CR, against data_full/): 6 of 8 identical; U0 and U differ only in the
+    sign of the printed zero "winding of g" (+0.000000 against -0.000000); winding of det M identical in all 8 (1, -1, 1, 1, 0, 2, -7, -12).
+  state_fresh_vs_october.txt: both re-converged kf13 states (circle run and full count run) differ from October's by at most 1.1e-16 (1125 of 1153
+    entries identical). state_nocut_fresh_vs_october.txt (from I68-macm3's files): the no-cut fresh state differs from October's by up to 1.09e-14
+    (626 of 1153 identical, the largest differences at indices 1, 2, 45, 46, 47 of the first 3M block), with the same |F| (9.0063e-18, 9.0060e-18).
+  hp/data: the kf13 state (rewritten) copied to hp_data_after_full/ and restored; hp/data is clean.
