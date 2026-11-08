@@ -58,8 +58,31 @@ solved there at the same D. The resampled starts have an f64 residual of 5e-14 t
   32x93 (`roots/d93_32x95*`) resampled. Why: 95 is the only grid within 1e-12 at D 60, its neighbours lie on the other
   side of hp (93 at +2.4e-12 and +2.8e-12, 97 at +8e-14 and +1.1e-12), and 99 is the one odd N between 97 and 101 not
   run. The verdict stays the criterion's.
-- `run_checks.sh` (`fit/`): rt_grids.py per grid (`verdict_32xN.log` at D 60, `table_32xN.log` at both D),
-  rt_roots.py per pair of roots (`roots_32xN_<D>.log`), and the controls `--mutate=shift` and `--mutate=same`.
+- `run_extra_a.sh` (`extra_a.stdout`): worker a's part of `run_extra.sh` (32x99 from start a, 32x95 from the 97
+  root), started when worker a's queue ended, since its 48x95 solve took 26 min (12 Newton steps). `run_extra.sh a`
+  was stopped while it was still waiting, before it ran anything.
+- `run_checks.sh` (`checks.stdout`, `fit/`): rt_grids.py per grid (`verdict_32xN.log` at D 60, `table_32xN.log` at
+  both D), rt_roots.py per pair of roots with its new pair test (`roots_32xN_<D>.log`, code at wip/i164 487de4a), the
+  controls `--mutate=shift`, `--mutate=same` and `--mutate=mid`, and the time-resolution check `nt_check.py`. Two
+  parts were redone. The first nt_check.py took 32x95's last record, at D 55, and failed (difference 1.45e-2, the
+  "exit 1 nt" lines of `checks.stdout`); it now takes the record at the same D, and `fit/nt_48x95*.log` are its reruns.
+  The c97 part reached the 97-start solve before it had finished; `run_checks_c97.sh` (`checks_c97.stdout`) redid it.
+
+## Results (the reading is section 11 of notes/RT_FORMULATION.md on wip/i164)
+
+- Verdict of #164: yes. 32x95 at D 60.001952: -6.38e-13 (start a), -5.85e-13 (start b), spread 5.3e-14,
+  `fit/verdict_32x95.log` exit 0. No other grid of 85-97 passes. Outside the criteria: 32x99 at -3.45e-13 and
+  -2.70e-13 (exit 0), and 32x95 from the 97 and 93 roots at -6.37e-13 and -6.39e-13.
+- Delta_RT - Delta_hp at D 60.001952 (start a, start b): 85 -3.42e-11, -3.42e-11; 87 -5.24e-11, -5.24e-11; 89
+  +2.58e-11, +2.51e-11; 91 -8.37e-12, -8.37e-12; 93 +2.35e-12, +2.81e-12; 95 -6.38e-13, -5.85e-13; 97 +8.4e-14,
+  +1.08e-12. At D 54.996085 (both starts agree to 2e-14): 85 +1.89e-10, 87 -8.65e-11, 89 +2.88e-11, 91 -8.32e-12,
+  93 +2.20e-12, 95 -5.46e-13, 97 +1.25e-13.
+- The first prediction held on all five of its named results. The second held in sign and spread for 32x99, not in
+  size (-2.7e-13 to -3.5e-13 against about -5e-14 to -1e-13).
+- Pair test at D 60.001952: two distinct roots on 89, 93, 95, 97 and 99 (max|F(zm)| 1.8e-28 to 8.6e-25 against about
+  2e-31 at the roots); hidden by the floor on 85, 87, 91, and on every grid at D 54.996085.
+- Controls: coef on 32x91 at D 60 moved Delta by 1.31e-2, exit 1 (20 Newton steps, not converged); `--mutate=shift`
+  exit 1; `--mutate=same` exit 1; `--mutate=mid` exit 1; 48x95 - 32x95 = +1.5e-16 (exit 0), with --tol 1e-17 exit 1.
 
 ## A prediction, written at 2026-11-08 14:02 UTC before the results it names (outside the criteria)
 

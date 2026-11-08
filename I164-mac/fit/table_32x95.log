@@ -1,0 +1,16 @@
+grids A [32, 95] (/Users/nathan/Source/choptuik-large-d-raw/I164-mac/roots/a101_32x95.jsonl), B [32, 95] (/Users/nathan/Source/choptuik-large-d-raw/I164-mac/roots/b121_32x95.jsonl), tol 1e-12, mutate None
+| D | Delta_RT (A) | A - hp | B - hp | A - B | verdict |
+|---|---|---|---|---|---|
+| 54.996085 | 1.824394337272080 | -5.46e-13 | -5.46e-13 | +1.07e-16 | ok |
+| 60.001952 | 1.809884258001077 | -6.38e-13 | -5.85e-13 | -5.35e-14 | ok |
+
+totals per file:
+  a101_32x95.jsonl: 2 D, 9 min, 11 Newton steps, 701 products, 1 rebuilds (0 min), LU pivot ratio 6.4e+14 to 1.1e+15, final max|F| at most 1.2e-40
+  b121_32x95.jsonl: 2 D, 6 min, 8 Newton steps, 492 products, 0 rebuilds (0 min), LU pivot ratio 1.2e+15 to 2.6e+15, final max|F| at most 5.8e-42
+
+every D in both files:
+| D | A - hp | B - hp | A - B | Newton steps A, B | products A | products B | s per Newton step A, B | s per D A, B |
+|---|---|---|---|---|---|---|---|---|
+| 54.996085 | -5.46e-13 | -5.46e-13 | +1.07e-16 | 4, 4 | [51, 65, 68, 53] | [51, 65, 68, 56] | 48.9, 47.0 | 214, 206 |
+| 60.001952 | -6.38e-13 | -5.85e-13 | -5.35e-14 | 7, 4 | [53, 68, 76, 80, 54, 71, 62] | [53, 69, 72, 58] | 41.2, 35.4 | 316, 153 |
+exit 0

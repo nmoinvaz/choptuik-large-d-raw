@@ -27,3 +27,26 @@ echo "== exit $? verdict 32x95 --mutate=shift (must be 1)"
 nice -n 10 $PY solver/rt/rt_roots.py "$R/a101_32x95_D60.0020_32x95.npz" "$R/b121_32x95_D60.0020_32x95.npz" \
     --mutate=same > "$HERE/fit/roots_32x95_D60.0020_mutate_same.log" 2>&1
 echo "== exit $? roots 32x95 D60.0020 --mutate=same (must be 1)"
+nice -n 10 $PY solver/rt/rt_roots.py "$R/a101_32x97_D60.0020_32x97.npz" "$R/b121_32x97_D60.0020_32x97.npz" \
+    --mutate=mid > "$HERE/fit/roots_32x97_D60.0020_mutate_mid.log" 2>&1
+echo "== exit $? roots 32x97 D60.0020 --mutate=mid (must be 1)"
+# the additions outside the verdict (run_extra.sh, run_extra_a.sh): 32x99 at D 60 and 32x95 from two more starts
+$PY solver/rt/rt_grids.py "$R/a101_32x99.jsonl" "$R/b121_32x99.jsonl" --D 60.001952 --tol 1e-12 \
+    > "$HERE/fit/verdict_32x99.log" 2>&1
+echo "== exit $? verdict 32x99 D 60.001952"
+nice -n 10 $PY solver/rt/rt_roots.py "$R/a101_32x99_D60.0020_32x99.npz" "$R/b121_32x99_D60.0020_32x99.npz" \
+    > "$HERE/fit/roots_32x99_D60.0020.log" 2>&1
+echo "== exit $? roots 32x99 D60.0020"
+for T in c97 d93; do
+    $PY solver/rt/rt_grids.py "$R/a101_32x95.jsonl" "$R/${T}_32x95.jsonl" --D 60.001952 --tol 1e-12 \
+        > "$HERE/fit/verdict_32x95_a_$T.log" 2>&1
+    echo "== exit $? verdict 32x95 a and $T D 60.001952"
+    nice -n 10 $PY solver/rt/rt_roots.py "$R/a101_32x95_D60.0020_32x95.npz" "$R/${T}_32x95_D60.0020_32x95.npz" \
+        > "$HERE/fit/roots_32x95_D60.0020_a_$T.log" 2>&1
+    echo "== exit $? roots 32x95 a and $T D60.0020"
+done
+# time resolution: 48x95 against 32x95, both from start a at D 60.001952 (criterion |difference| < 1e-13)
+$PY "$HERE/nt_check.py" "$R/a101_48x95.jsonl" "$R/a101_32x95.jsonl" > "$HERE/fit/nt_48x95.log" 2>&1
+echo "== exit $? nt 48x95 - 32x95"
+$PY "$HERE/nt_check.py" "$R/a101_48x95.jsonl" "$R/a101_32x95.jsonl" --tol 1e-17 > "$HERE/fit/nt_48x95_tol1e-17.log" 2>&1
+echo "== exit $? nt 48x95 - 32x95 with --tol 1e-17 (must be 1)"

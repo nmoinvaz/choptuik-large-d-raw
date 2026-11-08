@@ -1,0 +1,11 @@
+planted e = 1e-20 along mu: max|e| 1.000e-20, Delta difference 1.2566e-19 (4 pi 1e-20 = 1.2566e-19): ok
+planted pair z, z (1 + 1e-12): max|B(e, e)| 4.545e-26, against 1e-24 B(z, z) 4.545e-26, relative error 1.3e-30: ok
+D 60.001952 grid 32x93: max|F(z1)| 2.40e-31, max|F(z2)| 1.67e-31, max|z2 - z1| 4.652e-14, Delta_1 1.809884258004067077201, Delta_2 1.809884258004528968448, Delta_2 - Delta_1 +4.619e-13
+  max|J(zm) e| / max|e| <= (max|F(z1)| + max|F(z2)|) / max|e| = 8.7e-18
+  pair: max|F(zm)| 1.13e-25, max|B(e, e)| 4.51e-25, max|B(e, e)| / max|e| 9.7e-12 (J at either root along e, up to the residuals): the residual rises between them, two distinct roots
+  mu: +4.652e-14
+  omega_1: max 2.03e-15; harmonics 0-3 1.6e-15, 2.0e-16, 1.6e-17, 1.2e-18; at xi = 1 2.0e-15, xi near 0 5.7e-17, xi = -1 2.0e-15
+  omega_2: max 1.18e-14; harmonics 0-3 1.1e-14, 6.2e-16, 8.8e-17, 9.2e-18; at xi = 1 1.1e-14, xi near 0 1.1e-14, xi = -1 4.7e-15
+  omega_3: max 1.30e-14; harmonics 0-3 1.2e-14, 6.2e-16, 8.8e-17, 9.2e-18; at xi = 1 1.1e-14, xi near 0 1.1e-14, xi = -1 2.0e-15
+  omega_4: max 2.17e-14; harmonics 0-3 1.5e-14, 4.5e-15, 2.6e-15, 1.6e-15; at xi = 1 1.6e-14, xi near 0 2.1e-14, xi = -1 7.0e-15
+exit 0
