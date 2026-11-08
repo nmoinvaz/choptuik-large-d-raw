@@ -16,3 +16,8 @@ control --mutate=partial on the stored B, which must return 0 (3 if it wrongly p
   lemma6_jump_M.py --M=5 --box=data/A_M2_6a_M5_1e-10.json --rp=0.08 --k=20 --save-B=<raw>/I36-macm3/B_M5.json --json=<raw>/I36-macm3/lemma6a_M5_cert.json
   lemma6_jump_M.py --M=5 --box=data/A_M2_6a_M5_1e-10.json --rp=0.08 --k=20 --load-B=<raw>/I36-macm3/B_M5.json --mutate=partial
 to lemma6a_M5_cert.log and lemma6a_M5_partial.log (each .cmd has the exact line); the main run stops after 6 h.
+
+The corrected run ended with exit 2 after 150 s (01:57:02 to 01:59:32 UTC): lemma S and the flat estimate closed
+(contraction 0.7247, Lambda 0.4233), then "backward integration failed (step size underflow at t =
+0.41552823781967163)", t the real leg's parameter (xi = 0.3 + (0.067 - 0.3) t, so xi = 0.2032). No B_M5.json and no
+JSON were written, so the --mutate=partial control, which loads that B, was not run. Stopped there.
