@@ -48,4 +48,15 @@ solved there at the same D. The resampled starts have an f64 residual of 5e-14 t
 
 ## What ran
 
-(filled in as the runs go)
+- `run_main.sh a|b "32x85 32x91 32x95"`, `main_a.stdout`, `main_b.stdout`, `roots/a101_32xN*`, `roots/b121_32xN*`:
+  the main runs, 13:31-13:52 UTC. Every solve converged (4 to 7 Newton steps).
+- The D 60 results gave min E = 6.4e-13 (32x95) and E(95) < E(101), so by the rule above `run_queue.sh a|b`
+  (`queue_*.stdout`) runs 93, 97, 89 and 87 at both D from both starts, then 48x95 at D 60 from start a and the
+  coefficient mutation on 32x91 (`controls/coef_32x91_mutcoef*`). The smallest E is not at 85, so 81 is not run.
+- `run_extra.sh a|b` (`extra_*.stdout`), added after the D 60 results of 93 and 97 and outside the verdict: 32x99 at
+  D 60 from both starts, and 32x95 at D 60 from two more starts, the start-b roots of 32x97 (`roots/c97_32x95*`) and
+  32x93 (`roots/d93_32x95*`) resampled. Why: 95 is the only grid within 1e-12 at D 60, its neighbours lie on the other
+  side of hp (93 at +2.4e-12 and +2.8e-12, 97 at +8e-14 and +1.1e-12), and 99 is the one odd N between 97 and 101 not
+  run. The verdict stays the criterion's.
+- `run_checks.sh` (`fit/`): rt_grids.py per grid (`verdict_32xN.log` at D 60, `table_32xN.log` at both D),
+  rt_roots.py per pair of roots (`roots_32xN_<D>.log`), and the controls `--mutate=shift` and `--mutate=same`.
