@@ -24,4 +24,4 @@ Results (macm3, main e04d6f17). Awake time equals wall time (awake.log: no sleep
   compare_boxes.txt: the boxes of the three counts side by side, and the 82 shared points of kf 21 and kf 13 at M 32 (the two determinants are different functions:
   ln|det| differs by 404 to 478 and arg by a median 0.33 rad, so only the windings are compared). compare_repeats.txt: the corner points evaluated twice differ by
   up to 1.2e-4 rad (kf 21 M 32), 9e-6 (kf 21 M 48) and 1e-8 (kf 13 M 32), and the pivot minima are 3.0e-16..1.0e-10 (kf 21 M 32), 6.0e-15..2.0e-10 (kf 21 M 48),
-  2.1e-14..8.6e-9 (kf 13 M 32): the evaluation is noisier at kf 21 M 32 than in the other two, still four orders below the 0.06 to 0.38 rad phase steps.
+  2.1e-14..8.6e-9 (kf 13 M 32): the evaluation is noisier at kf 21 M 32 than in the other two, 2.6 to 3.5 orders below the largest step of each edge (0.05 to 0.38 rad), so no winding moves; the 2e-5 to 4e-5 winding residuals are the same size, consistent with it (not separately tested).
