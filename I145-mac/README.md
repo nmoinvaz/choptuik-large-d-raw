@@ -76,3 +76,6 @@ same run as the predictor's history.
   by about 1e-15.
 - `run_roots_logs.sh`: rt_roots.py on each pair of roots (`controls/roots_*.log`). `fit/roots101_second.jsonl` joins
   the second 32x101 roots (`controls/` and `fol/from121_32x101.jsonl`) for rt_grids.py.
+- `fol/from141_32x121*` at D = 54.996: 32x121 from the 32x141 root (itself 3.0e-7 off hp) wandered for 6 Newton steps,
+  max|F| between 8e-25 and 8e-13 with steps up to 1.2e-7, and was stopped by hand at 12:21 UTC to free the slot for
+  the coefficient mutation (`run_coef.sh`, `controls/coef_*`).
