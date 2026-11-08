@@ -1,0 +1,1 @@
+cd ~/Source/choptuik-large-d && PATH=/Users/nathan/Source/venv-macm3/bin:$PATH caffeinate -is nice -n 10 python3 hp/modecount_wind.py hp/data/states/up2_D16.7600.npz --lam=2.127809048219261 --h0=0.6 --data=../choptuik-large-d-raw/I69-macm3/data_B > ../choptuik-large-d-raw/I69-macm3/B_job1_D16.76.log 2>&1

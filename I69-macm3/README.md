@@ -16,3 +16,19 @@ write: "hp/data/modecount_D16.7600_M32.log: not in a task folder of the raw-data
 holds the cache, the log and the record and must lie in a raw-data task folder. Neither --data nor --allow_unraw is in the
 issue's commands, and either changes the command, so nothing was run beyond the refusal. hp/data is unchanged (git status
 clean), job1_D16.76.log and job2_D8.25.log hold the refusal, job 2's also "resampled state from modecount_state_D8.2500_M32.npz".
+
+Second attempt (the coordinator chose option a on 2026-11-08 07:29 UTC: --data=<raw folder>/I69-macm3/data_A or data_B; main d9fab0bc).
+The two python lines of jobs 1 and 2 of modecount_local.sh, in parallel, 1 thread each, nice 10, caffeinate -is. Awake time equals wall
+time in every run (awake.log).
+  Round A (data_A holds copies of the October caches): both exit 0 in 0 s. "done: 73 evaluations in the cache (0 new)" and "68 ... (0 new)".
+    The 8 box lines of each log equal October's (october_logs/, which have Windows line endings, so a byte diff flags every line).
+  Round B (data_B empty; for D 8.25 the saved hp/data/modecount_state_D8.2500_M32.npz kept in october_inputs/): D 16.76 exit 0, 267 s,
+    73 new determinants; D 8.25 exit 0, 711 s, re-converged from the M 48 state (|F| 7.5e-08 in the layout, 8.6e-28 after Newton, as in October),
+    68 new determinants. compare_B_october.py against the October caches (data_A) and logs:
+      D 16.76: 73 of 73 points shared, ln|det|, arg and pivot minimum differ by exactly 0; 8 of 8 box lines identical.
+      D 8.25: 68 of 68 points shared, ln|det| differs by at most 2.8e-14 (relative 1.7e-16, one ulp), arg by 0, pivot minimum by 0; 8 of 8 box
+        lines identical. The re-converged state equals October's saved one in all 1409 entries (state_B_vs_october.txt).
+  hp/data: the only tracked file changed was modecount_state_D8.2500_M32.npz (rewritten by round B), copied to hp_data_after_B/ and
+  restored; hp/data is clean.
+  Provenance of the October files, from line endings: the D 16.76 and D 8.25 caches and logs were written on Windows (every line ends in CR),
+  the D 30 M 48 cache, circles and log were not (no CR), and the D 30 M 48 kf13 cache is mixed (80 of 98 lines).
