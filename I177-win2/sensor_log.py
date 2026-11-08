@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """LOG ONLY, kills nothing. Every 300 s appends one line of CPU clock, load and package power (sensors.py) to
 sensor_log.txt: the baseline against which each crash reading (crash_temps.txt) is set. The CPU temperature is n/a on this
-machine (no built-in source, issue #177). Exits when the file STOP exists beside this script.
+machine (no built-in source, issue #177). Exits when the file STOP_LOG exists beside this script (the loop's own stop file is STOP, so a pause of the
+loop does not stop this log).
 
     python sensor_log.py [INTERVAL_S]"""
 import datetime as dt, os, sys, time
@@ -14,7 +15,7 @@ import sensors
 def main():
     interval = float(sys.argv[1]) if len(sys.argv) > 1 else 300
     path = os.path.join(HERE, "sensor_log.txt")
-    while not os.path.exists(os.path.join(HERE, "STOP")):
+    while not os.path.exists(os.path.join(HERE, "STOP_LOG")):
         t0 = time.time()
         try:
             line = sensors.fmt(sensors.read())
