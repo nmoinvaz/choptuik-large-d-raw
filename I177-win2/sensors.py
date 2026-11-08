@@ -43,16 +43,30 @@ def read():
             pp0 = v / 1000.0
         elif path.startswith("free_gb"):
             free = v
-    return dict(freq_min=min(freq) if freq else None, freq_mean=sum(freq) / len(freq) if freq else None,
-                freq_max=max(freq) if freq else None, perf_mean=sum(perf) / len(perf) if perf else None,
-                util=util, pkg_w=pkg, core_w=pp0, free_gb=free, temp="n/a", n_threads=len(freq))
+    d = dict(freq_min=min(freq) if freq else None, freq_mean=sum(freq) / len(freq) if freq else None,
+             freq_max=max(freq) if freq else None, perf_mean=sum(perf) / len(perf) if perf else None,
+             util=util, pkg_w=pkg, core_w=pp0, free_gb=free, temp="n/a", n_threads=len(freq), ct=None)
+    try:  # Core Temp's shared memory, read only (coretemp.py); without it the temperature stays n/a
+        import coretemp
+        d["ct"] = coretemp.read()
+        d["temp"] = "max %.0f" % max(d["ct"]["temps"])
+    except Exception as e:
+        d["temp"] = f"n/a (Core Temp: {e})"
+    return d
 
 
 def fmt(r):
     f = lambda x, p=0: "n/a" if x is None else f"{x:.{p}f}"
-    return (f"clock MHz min/mean/max {f(r['freq_min'])}/{f(r['freq_mean'])}/{f(r['freq_max'])} "
-            f"perf% {f(r['perf_mean'])} util% {f(r['util'])} pkgW {f(r['pkg_w'], 1)} coreW {f(r['core_w'], 1)} "
-            f"free_GB {f(r['free_gb'], 1)} temp {r['temp']} threads {r['n_threads']}")
+    s = (f"clock MHz min/mean/max {f(r['freq_min'])}/{f(r['freq_mean'])}/{f(r['freq_max'])} "
+         f"perf% {f(r['perf_mean'])} util% {f(r['util'])} pkgW {f(r['pkg_w'], 1)} coreW {f(r['core_w'], 1)} "
+         f"free_GB {f(r['free_gb'], 1)} temp {r['temp']} threads {r['n_threads']}")
+    c = r.get("ct")
+    if c:
+        t = c["temps"]
+        s += (f" | CoreTemp {c['cpu_name']} TjMax {'/'.join(f'{x:.0f}' for x in c['tjmax'])} C, core temps C "
+              f"min/mean/max {min(t):.0f}/{sum(t) / len(t):.1f}/{max(t):.0f} [{','.join(f'{x:.0f}' for x in t)}] "
+              f"core load% [{','.join(str(x) for x in c['load'])}] VID {c['vid']:.3f} V speed {c['speed_mhz']:.0f} MHz")
+    return s
 
 
 if __name__ == "__main__":
