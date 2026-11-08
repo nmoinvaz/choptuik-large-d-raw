@@ -1,0 +1,8 @@
+Predictions of #118's additive floor model, written before the rays at h = 1e-16 and 1e-17 ran (I125-macm3).
+Model: radius over h = a (1 + (F/a)/h), a = radius(1e-9)/1e-9, F/a = (radius(1e-18) - a 1e-18)/a, from I37-macm3/ray.log.
+row     |u|        a        F/a  pred 1e-16     +%  pred 1e-17     +%
+  1  378.36     2.58  1.043e-18       2.607    1.0       2.849   10.4
+  6  245.16     5.16  6.422e-18       5.491    6.4       8.474   64.2
+  9  165.24     11.1  6.649e-18       11.84    6.6       18.48   66.5
+ 11  111.96     29.6  8.358e-18       32.07    8.4       54.34   83.6
+Acceptance (#125): at rows 1, 6, 9, 11 the measured radius over h within 10% of each prediction, at both h; else the model is refuted.

@@ -14,3 +14,9 @@ T141-win2/release_D<D>.log, apart from timings; the runner compares them when on
 Both runs ended with exit 0 and passed: run 1 (D 80, delta 1e-10) with ratio 0.9999998, run 2 (D 100, deltas 3e-11
 and 1e-10, moves of 1e-11, 7 Newton steps each) with ratios 1.0000061 and 1.0000071. Each first release matched
 T141-win2's. The "result" lines in the logs have every number.
+
+Sleep note (added 2026-11-08, from I125-macm3/pmset_sleep.log): the Mac was asleep during parts of some runs, so wall times
+in this folder overstate compute time where it says so below. caffeinate -i did not prevent these sleeps ("Maintenance
+Sleep", "Dark Wake Thermal Emergency", and once a clamshell sleep).
+  Run 1 (D 80): wall 1352 s, asleep 915 s, awake 437 s, so the 18 min to its on 0 line was 15 min asleep. Run 2 (D 100): wall
+  3521 s, asleep 943 s, awake 2578 s.

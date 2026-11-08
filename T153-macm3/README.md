@@ -11,3 +11,8 @@ for wf = 1.08, 1.10, 1.12.
 All three ended with exit 0 at k 33, started 17:11:11 UTC: 1.10 at 20:41:08 (12597 s), 1.12 at 20:41:12 (12601 s), 1.08
 at 20:46:12 (12901 s). Last order's sigma_err (a spread over fit choices): 1.08 1.11e-26, 1.10 1.32e-26, 1.12 1.58e-26.
 Comms 2026-11-07 20:35 UTC made this task issue #3 (https://github.com/nmoinvaz/choptuik-large-d/issues/3).
+
+Sleep note (added 2026-11-08, from I125-macm3/pmset_sleep.log): the Mac was asleep during parts of some runs, so wall times
+in this folder overstate compute time where it says so below. caffeinate -i did not prevent these sleeps ("Maintenance
+Sleep", "Dark Wake Thermal Emergency", and once a clamshell sleep).
+  The three nodes: 12597 to 12901 s wall each, 2108 s of it asleep, so about 10.8 ks awake.

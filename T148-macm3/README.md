@@ -22,3 +22,8 @@ from timings, and exits.txt says whether they match.
 Part 2 was not run here: the 16:37 UTC entry moved it to win2. Both part 1 runs ended with exit 1, the delta failing,
 which is a result: 11b ratio 1.394 (bias -3.06e-17), 13b ratio 0.644 (bias +7.24e-18). Both first releases matched
 T141-win2's. 11b's first release spent 1771.82 s on its on 0 step; the other three releases here took 442-450 s.
+
+Sleep note (added 2026-11-08, from I125-macm3/pmset_sleep.log): the Mac was asleep during parts of some runs, so wall times
+in this folder overstate compute time where it says so below. caffeinate -i did not prevent these sleeps ("Maintenance
+Sleep", "Dark Wake Thermal Emergency", and once a clamshell sleep).
+  11b: wall 2770 s, asleep 1680 s, awake 1090 s, so its 1771.82 s on 0 step was mostly sleep. 13b: no sleep, 1161 s awake.

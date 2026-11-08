@@ -21,3 +21,9 @@ What ran (comms 2026-11-07 13:19 UTC: win2 takes the rest of the grid as T145, s
 - release_D130.0000.log, --it 1 (main 84fd066b, full_release.py as at ecf6f6c), the coordinator's rerun: it replaced
   the cut --it 6 run of the same state (13:08:16 to 13:27:32 UTC, which had printed only its first and od lines, the
   same as here). 981 s, exit 0.
+
+Sleep note (added 2026-11-08, from I125-macm3/pmset_sleep.log): the Mac was asleep during parts of some runs, so wall times
+in this folder overstate compute time where it says so below. caffeinate -i did not prevent these sleeps ("Maintenance
+Sleep", "Dark Wake Thermal Emergency", and once a clamshell sleep).
+  The control release_D79.7657: wall 5415 s, asleep 2317 s, awake 3098 s when the 1.5 h cap stopped it. The D 130 --it 6 run:
+  wall 1187 s, asleep 1041 s, awake 146 s when stopped. The --it 1 rerun: no sleep, 981 s awake.

@@ -16,3 +16,9 @@ All three runs ended with exit 0 and passed: 5b ratio 1.0000001, 7b 1.0000048, 7
 T141-win2's, and every release, of the state and of the three moved ones, ends at the same Delta, 1.7695679142833771.
 Run 1 took 1553 s, 21 min of it before its first release's on 0 line; runs 2 and 3 took 440 s and 460 s, about 3 min
 to that line, with the same code and state. No cache file was written, and the cause is not known.
+
+Sleep note (added 2026-11-08, from I125-macm3/pmset_sleep.log): the Mac was asleep during parts of some runs, so wall times
+in this folder overstate compute time where it says so below. caffeinate -i did not prevent these sleeps ("Maintenance
+Sleep", "Dark Wake Thermal Emergency", and once a clamshell sleep).
+  5b: wall 1553 s, asleep 1117 s, awake 436 s, against 440 s and 460 s awake for 7b and 7a, which did not sleep. This
+  replaces "the cause is not known" above.
