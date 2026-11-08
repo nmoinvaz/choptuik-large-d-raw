@@ -1,0 +1,1 @@
+cd ~/Source/choptuik-large-d/solver/proof && caffeinate -i nice -n 10 /Users/nathan/Source/venv-macm3/bin/python -u certify_M2.py krawczyk --box=data/A_M2_box_M5_1e-10.json --sub=1e-16,1e-24,1e-25 > ../../../choptuik-large-d-raw/I97-macm3/krawczyk_sub1e-16.log 2>&1
