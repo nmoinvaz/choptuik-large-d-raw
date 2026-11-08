@@ -62,3 +62,33 @@ hp is the double-double row of `hp/data/delta_all.csv` (err 2e-15).
    hp and start b within 1e-13 of +4.5e-12, the root #145's 32x121 re-solve found from the same start without rows,
    since the rows keep the collocation's analytic roots. (P2) In criterion 4 the rows change max|z2 - z1| by less than
    a factor 10 on every grid. The issue's premise predicts the opposite of both: one root per grid within 1e-14 of hp.
+
+## Results (after the runs; the criteria above are unchanged)
+
+The write-up is section 13 of notes/RT_FORMULATION.md (branch wip/i163). Verdicts, from `fit/`:
+
+| criterion | result | verdict |
+|---|---|---|
+| 1, 32x121 K = 7 | a -1.86e-12, b -1.97e-12 from hp, a - b +1.12e-13 (`fit/acc_32x121.log`, exit 1) | fails |
+| 2, 32x121 no rows | a -2.89e-12, b -2.90e-12 (`fit/acc_32x121_norows.log`, exit 1) | control fires |
+| 3, 32x123 K = 7 | a -4.29e-12, b -4.14e-12, a - b -1.43e-13 (exit 1) | fails |
+| 3, 32x123 no rows | a -5.74e-12, b -5.73e-12 (exit 1) | control fires |
+| 4, pairs at D 60 | 93 removed (4.65e-14 -> 2.2e-16, hidden); 95 7.7e-15 -> 5.2e-14; 97 7.0e-14 -> 8.0e-14; 99 4.9e-15 -> 5.7e-14 (`fit/pair_*.log`) | the rows remove 1 of 4 pairs |
+| P1 | start a jumped to -1.86e-12 | fails |
+| P2 | factors 210 (93, the other way), 6.7, 1.1, 11.7 | fails on 93 and 99 |
+
+The acceptance of #163 fails. Every main solve converged (final max|F| at most 6.4e-43 at D 50, 7.7e-40 at D 60).
+
+Further folders:
+
+- `acc/`: the D 50.007491 solves (queues A, B). `pair/`: the D 60.001952 solves (queues C, D).
+- `fit/`: `rt_grids.py` and `rt_roots.py` verdicts (`run_verdicts.sh`), with the controls `fit/*mutate*`.
+- `checks/`: `rt_horizon.py symbolic` (exit 0; `--mutate=a4` exit 1), `exponents`, `planted` (exit 0;
+  `--mutate=taylor` exit 1).
+- `diag/` (outside the criteria): `rt_resample_res.py` (roots on finer grids, control `--mutate=perturb` exit 1),
+  `rt_pair_fine.py` (J along pair differences on finer grids, control `--mutate=f64` exit 1), `rt_constraint.py`,
+  `rt_branch_cheb.py` (branch coefficients, `--planted` exit 0), `rt_sigma.py` (bounds on the smallest gain;
+  `sigma_*.log` are the first, inverse-iteration version at code 2862224, of which only the first solve is used;
+  `sigma2_*` and `sigma3_*` the bound version, planted exit 0 and its `--mutate=shift` exit 1), `again_*` (Newton from
+  a stored root on its own grid: one step of 1-3e-24, no jump), `exponents_crossings.log` (lambda_2 = 4 at D 21.5, 5
+  between 33 and 34).
