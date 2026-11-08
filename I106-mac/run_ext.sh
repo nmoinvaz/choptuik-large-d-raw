@@ -1,6 +1,8 @@
 #!/bin/bash
-# Issue #106, outside the criteria: the 40x79 continuation past D = 60 on the hp rows nearest each integer from 61 to
-# 100 (dd to 67, pinned or qd to 73, chain_fit from 74), as a test of the fits' extrapolation, which use D <= 60 only.
+# Issue #106, outside the criteria: the 40x79 continuation past D = 60 on the hp rows nearest each even integer from 62
+# to 100 (dd to 66, pinned to 72, chain_fit from 74), as a test of the fits' extrapolation, which use D <= 60 only.
+# Steps of 2 from 16:09 UTC (the first start, at 16:08 with steps of 1, was stopped during its first step to save time;
+# cont/ext_step1_stopped.stdout).
 # It waits for run_cont2.sh's path to end at 60.001952, then continues by rounds as run_cont2.sh does (newest saved
 # state, the three before it as the cubic predictor's history, newton_tol 1e-36). There is no 32x101 state past 60 to
 # restart from, so a failed step is retried once with the quadratic predictor, and a second failure stops the run.
@@ -11,8 +13,7 @@ export MULTIDOUBLE_SITE=/Users/nathan/Source/venv-anm/lib/python3.13/site-packag
 PY=/Users/nathan/venv-qd/bin/python
 OPTS="--solver mp --tol 1e-3 --max_products 250 --refresh_dz 1e-5 --patient --it_max 20 --full_below 1e-4"
 OPTS="$OPTS --newton_tol 1e-36"
-PATHD="58.00599 58.99805 60.001952 61.001363 62.009781 63.003281 64.009633 64.994829 66.001705 66.996228 68 69 70 71 72
-73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100"
+PATHD="54.996085 56.01171 58.00599 60.001952 62.009781 64.009633 66.001705 68 70 72 74 76 78 80 82 84 86 88 90 92 94 96 98 100"
 S="$HERE/cont"
 cd "$CODE" || exit 2
 st() { printf "%s/cont_40x79_D%.4f_40x79.npz" "$S" "$1"; }

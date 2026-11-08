@@ -100,3 +100,26 @@ Exit codes: the 40x79 runs use `--tol 1e-4` (a sanity bound, converged and near 
   #91's maps of hp's states at 60.0020 and 40.0201.
 - `run_cont2.sh`, `cont/cont2.stdout` (from 14:06 UTC): the continuation with restarts, from the 23.043278 root, with
   only 40x79 roots in the predictor's history; a step that fails is solved directly from the nearest 32x101 state.
+
+## The pre-registered fit, and a prediction for the extension (16:12 UTC, before any data past D = 60.0)
+
+`fit/trunc_fit.log` (rt_trunc_fit.py on `cont/cont_40x79.jsonl`, exit 0) applies criteria 3 and 6 as written. delta
+changes sign between D = 46.0 and 47.0, so all four windows reduce to the 11-14 points from 47.0 to 60.0. The log fits
+there measure the climb out of the zero crossing, not the growth (rms 0.9 in ln|delta| for E and P on [20-40, 60]), and
+their extrapolations to D = 100-190 span 1e-45 to 1e13. Verdict as written: "between" at 60 (+5.80e-8 against d_EEG
++2.1e-7), "far above" at 100, 150 and 190 for the primary set, and "not decided" overall. This is a flaw of the
+pre-registered method (a log fit of a quantity that crosses zero), reported, not repaired.
+
+Outside the criteria, delta itself (signed) is smooth in D. Polynomials of degree 2 and 3 fit it on [40, 60], [47, 60]
+and [50, 60] to an rms of 5e-10 down to 2e-12 (`fit/signed_prediction.log`). Their predictions for the extension
+(`run_ext.sh`, 40x79 past 60, steps of 2) are written here before its data:
+
+| D | 70 | 80 | 90 | 100 | 150 | 190 |
+|---|---|---|---|---|---|---|
+| degree 2-3, all three windows | 1.43e-7 to 1.61e-7 | 2.65e-7 to 3.33e-7 | 4.23e-7 to 5.91e-7 | 6.17e-7 to 9.50e-7 | 2.1e-6 to 4.9e-6 | 4.0e-6 to 1.15e-5 |
+| d_EEG (criterion 5) | | | | 9.4e-7 | 2.8e-6 | 4.1e-6 |
+
+Test (can fail): the measured delta at the hp rows 70, 80, 90 and 100 lies within [0.5 x the lower end, 2 x the upper
+end] of the row above. If it does, the quadratic-to-cubic growth holds to D = 100 and its range at 150 and 190 stands
+as an extrapolation over a factor of 2 in D. If it does not, that extrapolation is rejected. At 100 the measured delta
+is also classified against d_EEG by the rule of criterion 6.
