@@ -1,0 +1,79 @@
+check.py mutate=none  mpmath 1.3.0, sympy 1.14.0, numpy 2.5.4
+I. forms A-E and the ellipse
+  [PASS] I.A form A = Eq.(16) (mpmath): max rel diff 2.29e-51 (tol 1e-40)
+  [PASS] I.ell h on the ellipse x^2/(1+q)^2 + y^2/(1-q)^2 = 1 (rotated by d/2): max |residual| 5.35e-51
+  [PASS] I.ell semi-axes = max, min |h| = 1 + q, 1 - q: max deviation 2.67e-51
+  [PASS] I.ell h'' + h = 0: max |h''+h| 2.99e-51
+  [PASS] I.B form B = Eq.(16) (mpmath): max rel diff 4.44e-51
+  [PASS] I.C form C = Eq.(16) (mpmath, |Im th| < 0.9 ln(1/q)/2): max rel diff 4.76e-51
+  [PASS] I.D (d^2/dth^2 + 1)[(1 + q^2 + 2q cos(2th+d)) bt] = 0 (mpmath): max |residual|/A 2.78e-51
+  [PASS] I.E d/dth of form E = Eq.(16), and its definite integral (mpmath): max rel diff 4.11e-51
+  [PASS] I.sym forms A, B, C (with exact remainder), D, E by sympy on rational functions of z: A True, B True, C True, D True, E True
+P. poles, ratios, time asymmetry
+  [PASS] P.pole Eq.(16) is singular at (pi - d)/2 + k pi +- (i/2) ln(1/q): max |denominator| 1.92e-50
+  [PASS] P.pole these are simple poles with nonzero residue: eps*f(th0+eps) constant to 1e-9 for eps = 1e-12, 1e-24
+  [PASS] P.pole the only singularities (rational in z, 4 simple roots z^2 = -1/w, -conj(w), z = 0 regular): denominator 2*(q + u*z**2)*(q*u*z**2 + 1)
+  [PASS] P.ratio Eq.(16): c_{nu+2}/c_nu = -w for nu = 1..17, c_1 = A*: max |ratio + w|/q 5.46e-40, |c_1/A* - 1| 8.09e-54
+  [PASS] P.ratio converse: the series with c_1 = A*, ratios -w sums to Eq.(16): max diff 5.35e-51
+  [PASS] P.delta time reversal th -> -th maps d -> -d: max diff 0
+  [PASS] P.delta no time shift makes Eq.(16) even or odd (d = 0.0985): arg(c3 conj(c1)^3) = -3.04309 (pi + d = 3.24009); min over shifts of rms asymmetry/A = 7.556e-03
+N. numbers from solver/eeg_profile/data/tuned_profile_A2.72.txt
+    blocks read: 2, rows in block 1: 13, A = 2.72
+  [FAIL (expected: documented discrepancy)] N.r1 |F3/F1| = 0.05509 at 4 significant digits (write-up): |F3/F1| = 0.05508456 -> 0.05508
+  [PASS] N.r1 arg(F3/F1) = 0.0988 at 4 decimals (write-up): arg = 0.098790
+  [PASS] N.r1 |F3/F1| within the paper q = 0.0551 +- 5e-5: |F3/F1| - q = -1.54e-05
+  [FAIL (expected: documented discrepancy)] N.frame data F3/F1 equals -w (the paper frame, S57: phi_1 ~ pi + d) without a frame map: F3/F1 + w = 1.102e-01; F3/F1 - w = 2.222e-05
+  [PASS] N.A A = |F_1|: (A^2/2) sum |F_nu/F_1|^2 = <F^2> of the header: 3.7104614 vs 3.710461 (rel 9.9e-08)
+  [PASS] N.A header <bt^2> = 2 <F^2>, so bt = sqrt2 F and the bt fundamental is sqrt2 A: 7.420923 / (2 x 3.710461)
+  [PASS] N.A sqrt2 A within 1e-3 of the paper A* = 3.8455: sqrt2 A = 3.84666, ratio - 1 = +3.02e-04; (S61) on the printed inputs gives 3.84533, range over their rounding [3.84442, 3.84623]
+  [FAIL (expected: documented discrepancy)] N.A sqrt2 A inside the rounding range of the paper (S61) inputs: 3.84666 vs [3.84442, 3.84623]
+  [PASS] N.N0 data <bt^2> vs paper N0 = (D1 - 4 pi mu1)/(4 pi mu0): 7.420923 vs 7.415787 (rel +6.93e-04)
+    (S62) fit, N0 = data <bt^2>: q = 0.055097, d = 0.098664, A* = 3.84666, residual 5.09e-04
+    (S62) fit, N0 = paper: q = 0.055097, d = 0.098664, A* = 3.84533, residual 1.43e-03
+  [PASS] N.S62 the paper fit (S61)-(S62) on the data gives q, d within 2e-4 of 0.0551, 0.0985: q = 0.055097, d = 0.098664
+    Eq.(16) deviation |C/C_16| - 1, arg(C/C_16):
+     nu   paper (q, d, A*)        w = F3/F1, A* = sqrt2 A
+      1   +3.0188e-04 +0.00000   -1.1102e-16 +0.00000
+      3   +2.1580e-05 +0.00029   -1.1102e-16 -0.00000
+      5   +3.8198e-02 -0.01941   +3.8467e-02 -0.01999
+      7   +8.1384e-02 -0.04307   +8.1967e-02 -0.04394
+      9   +1.2713e-01 -0.06787   +1.2806e-01 -0.06903
+     11   +1.7507e-01 -0.09309   +1.7636e-01 -0.09454
+     13   +2.2514e-01 -0.11851   +2.2684e-01 -0.12025
+     15   +2.7741e-01 -0.14402   +2.7953e-01 -0.14605
+     17   +3.3193e-01 -0.16960   +3.3452e-01 -0.17192
+     19   +3.8880e-01 -0.19521   +3.9189e-01 -0.19782
+  [PASS] N.dev16 Eq.(16) deviation grows with nu: 5, 7, 13, 19: nu 5: +0.0382, nu 7: +0.0814, nu 13: +0.2251, nu 19: +0.3888
+    one-zero form |F_nu|/|C_nu| - 1 (A* = sqrt2 A): 7: +3.30e-03, 9: +7.29e-03, 11: +1.15e-02, 13: +1.58e-02, 15: +2.02e-02, 17: +2.47e-02, 19: +2.91e-02
+  [PASS] N.onezero within 3% of every |F_nu|, nu <= 19 (A* = sqrt2 A): max 0.0291
+  [PASS] N.onezero within 3% of every |F_nu|, nu <= 19 (A* = 3.8455): max 0.0294
+    ratio-modulus drift D_nu, nu = [5, 7, 9, 11, 13, 15]: 3.90e-05, 1.23e-05, 4.98e-06, 2.35e-06, 1.27e-06, 6.93e-07
+    straight-line fits of log D: vs log nu rms 0.020 (slope p+1 = 4.088), vs nu rms 0.178 (lam = 0.6732 per unit nu); class pow
+    r_inf = 0.057453 e^(+0.07286 i) (1/nu^3 fit, nu = 5..17); 1/nu content gamma = -0.0005 (0 for a pole)
+    profile singularity (paper frame): th = 1.5344 +- 1.4284 i; model (paper q, d): 1.5215 +- 1.4493 i
+  [PASS] N.sing the leading singularity is a simple pole (|gamma| < 0.02): gamma = -0.0005
+  [PASS] N.sing the ratio drift is a power law (branch point at the pole), not one exponential (second pole): class pow, p+1 = 4.09
+    Pade [L/M] of sum F_{2k+1}/F_1 z^k, k <= 9: max rel error on the unused coefficients
+      [0/1] 3.28e-01
+      [1/1] 4.69e-02
+      [2/1] 1.16e-02
+      [3/1] 3.70e-03
+      [4/1] 1.35e-03
+      [5/1] 4.75e-04
+      [6/1] 1.79e-04
+      [7/1] 3.23e-05
+      [0/2] 5.84e-02
+      [1/2] 7.79e-03
+      [2/2] 1.59e-03
+      [3/2] 4.52e-04
+      [4/2] 6.33e-05
+      [5/2] 7.14e-05
+      [6/2] 2.37e-05
+      [0/3] 1.47e-02
+      [1/3] 1.80e-03
+      [2/3] 3.69e-04
+      [3/3] 6.23e-05
+      [4/3] 7.34e-05
+      [5/3] 1.04e-04
+    spread between the two blocks (J 1250, J 1500), nu <= 19: 1.1e-16
+verdict: all checks as expected (28 pass, 3 fail, 0 unexpected)

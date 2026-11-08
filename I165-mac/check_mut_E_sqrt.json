@@ -1,0 +1,254 @@
+{
+ "mutate": "E_sqrt",
+ "checks": [
+  {
+   "name": "I.A form A = Eq.(16) (mpmath)",
+   "ok": true,
+   "expect": true,
+   "good": true,
+   "detail": "max rel diff 2.29e-51 (tol 1e-40)",
+   "section": "I"
+  },
+  {
+   "name": "I.ell h on the ellipse x^2/(1+q)^2 + y^2/(1-q)^2 = 1 (rotated by d/2)",
+   "ok": true,
+   "expect": true,
+   "good": true,
+   "detail": "max |residual| 5.35e-51",
+   "section": "I"
+  },
+  {
+   "name": "I.ell semi-axes = max, min |h| = 1 + q, 1 - q",
+   "ok": true,
+   "expect": true,
+   "good": true,
+   "detail": "max deviation 2.67e-51",
+   "section": "I"
+  },
+  {
+   "name": "I.ell h'' + h = 0",
+   "ok": true,
+   "expect": true,
+   "good": true,
+   "detail": "max |h''+h| 2.99e-51",
+   "section": "I"
+  },
+  {
+   "name": "I.B form B = Eq.(16) (mpmath)",
+   "ok": true,
+   "expect": true,
+   "good": true,
+   "detail": "max rel diff 4.44e-51",
+   "section": "I"
+  },
+  {
+   "name": "I.C form C = Eq.(16) (mpmath, |Im th| < 0.9 ln(1/q)/2)",
+   "ok": true,
+   "expect": true,
+   "good": true,
+   "detail": "max rel diff 4.76e-51",
+   "section": "I"
+  },
+  {
+   "name": "I.D (d^2/dth^2 + 1)[(1 + q^2 + 2q cos(2th+d)) bt] = 0 (mpmath)",
+   "ok": true,
+   "expect": true,
+   "good": true,
+   "detail": "max |residual|/A 2.78e-51",
+   "section": "I"
+  },
+  {
+   "name": "I.E d/dth of form E = Eq.(16), and its definite integral (mpmath)",
+   "ok": false,
+   "expect": true,
+   "good": false,
+   "detail": "max rel diff 4.58",
+   "section": "I"
+  },
+  {
+   "name": "I.sym forms A, B, C (with exact remainder), D, E by sympy on rational functions of z",
+   "ok": false,
+   "expect": true,
+   "good": false,
+   "detail": "A True, B True, C True, D True, E False",
+   "section": "I"
+  },
+  {
+   "name": "P.pole Eq.(16) is singular at (pi - d)/2 + k pi +- (i/2) ln(1/q)",
+   "ok": true,
+   "expect": true,
+   "good": true,
+   "detail": "max |denominator| 1.92e-50",
+   "section": "P"
+  },
+  {
+   "name": "P.pole these are simple poles with nonzero residue",
+   "ok": true,
+   "expect": true,
+   "good": true,
+   "detail": "eps*f(th0+eps) constant to 1e-9 for eps = 1e-12, 1e-24",
+   "section": "P"
+  },
+  {
+   "name": "P.pole the only singularities (rational in z, 4 simple roots z^2 = -1/w, -conj(w), z = 0 regular)",
+   "ok": true,
+   "expect": true,
+   "good": true,
+   "detail": "denominator 2*(q + u*z**2)*(q*u*z**2 + 1)",
+   "section": "P"
+  },
+  {
+   "name": "P.ratio Eq.(16): c_{nu+2}/c_nu = -w for nu = 1..17, c_1 = A*",
+   "ok": true,
+   "expect": true,
+   "good": true,
+   "detail": "max |ratio + w|/q 5.46e-40, |c_1/A* - 1| 8.09e-54",
+   "section": "P"
+  },
+  {
+   "name": "P.ratio converse: the series with c_1 = A*, ratios -w sums to Eq.(16)",
+   "ok": true,
+   "expect": true,
+   "good": true,
+   "detail": "max diff 5.35e-51",
+   "section": "P"
+  },
+  {
+   "name": "P.delta time reversal th -> -th maps d -> -d",
+   "ok": true,
+   "expect": true,
+   "good": true,
+   "detail": "max diff 0",
+   "section": "P"
+  },
+  {
+   "name": "P.delta no time shift makes Eq.(16) even or odd (d = 0.0985)",
+   "ok": true,
+   "expect": true,
+   "good": true,
+   "detail": "arg(c3 conj(c1)^3) = -3.04309 (pi + d = 3.24009); min over shifts of rms asymmetry/A = 7.556e-03",
+   "section": "P"
+  },
+  {
+   "name": "N.r1 |F3/F1| = 0.05509 at 4 significant digits (write-up)",
+   "ok": false,
+   "expect": false,
+   "good": true,
+   "detail": "|F3/F1| = 0.05508456 -> 0.05508",
+   "section": "N"
+  },
+  {
+   "name": "N.r1 arg(F3/F1) = 0.0988 at 4 decimals (write-up)",
+   "ok": true,
+   "expect": true,
+   "good": true,
+   "detail": "arg = 0.098790",
+   "section": "N"
+  },
+  {
+   "name": "N.r1 |F3/F1| within the paper q = 0.0551 +- 5e-5",
+   "ok": true,
+   "expect": true,
+   "good": true,
+   "detail": "|F3/F1| - q = -1.54e-05",
+   "section": "N"
+  },
+  {
+   "name": "N.frame data F3/F1 equals -w (the paper frame, S57: phi_1 ~ pi + d) without a frame map",
+   "ok": false,
+   "expect": false,
+   "good": true,
+   "detail": "F3/F1 + w = 1.102e-01; F3/F1 - w = 2.222e-05",
+   "section": "N"
+  },
+  {
+   "name": "N.A A = |F_1|: (A^2/2) sum |F_nu/F_1|^2 = <F^2> of the header",
+   "ok": true,
+   "expect": true,
+   "good": true,
+   "detail": "3.7104614 vs 3.710461 (rel 9.9e-08)",
+   "section": "N"
+  },
+  {
+   "name": "N.A header <bt^2> = 2 <F^2>, so bt = sqrt2 F and the bt fundamental is sqrt2 A",
+   "ok": true,
+   "expect": true,
+   "good": true,
+   "detail": "7.420923 / (2 x 3.710461)",
+   "section": "N"
+  },
+  {
+   "name": "N.A sqrt2 A within 1e-3 of the paper A* = 3.8455",
+   "ok": true,
+   "expect": true,
+   "good": true,
+   "detail": "sqrt2 A = 3.84666, ratio - 1 = +3.02e-04; (S61) on the printed inputs gives 3.84533, range over their rounding [3.84442, 3.84623]",
+   "section": "N"
+  },
+  {
+   "name": "N.A sqrt2 A inside the rounding range of the paper (S61) inputs",
+   "ok": false,
+   "expect": false,
+   "good": true,
+   "detail": "3.84666 vs [3.84442, 3.84623]",
+   "section": "N"
+  },
+  {
+   "name": "N.N0 data <bt^2> vs paper N0 = (D1 - 4 pi mu1)/(4 pi mu0)",
+   "ok": true,
+   "expect": true,
+   "good": true,
+   "detail": "7.420923 vs 7.415787 (rel +6.93e-04)",
+   "section": "N"
+  },
+  {
+   "name": "N.S62 the paper fit (S61)-(S62) on the data gives q, d within 2e-4 of 0.0551, 0.0985",
+   "ok": true,
+   "expect": true,
+   "good": true,
+   "detail": "q = 0.055097, d = 0.098664",
+   "section": "N"
+  },
+  {
+   "name": "N.dev16 Eq.(16) deviation grows with nu: 5, 7, 13, 19",
+   "ok": true,
+   "expect": true,
+   "good": true,
+   "detail": "nu 5: +0.0382, nu 7: +0.0814, nu 13: +0.2251, nu 19: +0.3888",
+   "section": "N"
+  },
+  {
+   "name": "N.onezero within 3% of every |F_nu|, nu <= 19 (A* = sqrt2 A)",
+   "ok": true,
+   "expect": true,
+   "good": true,
+   "detail": "max 0.0291",
+   "section": "N"
+  },
+  {
+   "name": "N.onezero within 3% of every |F_nu|, nu <= 19 (A* = 3.8455)",
+   "ok": true,
+   "expect": true,
+   "good": true,
+   "detail": "max 0.0294",
+   "section": "N"
+  },
+  {
+   "name": "N.sing the leading singularity is a simple pole (|gamma| < 0.02)",
+   "ok": true,
+   "expect": true,
+   "good": true,
+   "detail": "gamma = -0.0005",
+   "section": "N"
+  },
+  {
+   "name": "N.sing the ratio drift is a power law (branch point at the pole), not one exponential (second pole)",
+   "ok": true,
+   "expect": true,
+   "good": true,
+   "detail": "class pow, p+1 = 4.09",
+   "section": "N"
+  }
+ ],
+ "good": false
+}
