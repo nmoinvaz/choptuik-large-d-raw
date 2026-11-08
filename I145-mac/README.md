@@ -36,3 +36,7 @@ same run as the predictor's history.
   for the grid above the continuation's was then changed to the follower below. The criteria above are unchanged.
 - `run_follow.sh`, `fol/fol_32x121*`: the follower. Each state the 32x101 continuation saves is resampled to 32x121 and
   re-solved there at the same D (rt_run.py --start STATE --grids 32x121), the check D first, otherwise the newest.
+- The 32x101 run was restarted twice from its D = 33 state (same tag, appended): with the cubic predictor
+  (`run_cont.sh ... 100 3`), and then with `--patient --it_max 20`, after #105's stall rule ended D = 34 unconverged at
+  max|F| = 1.2e-26 (record with ok false). The follower's D = 32 solve stopped the same way at 1.5e-26 and was redone
+  with --patient.

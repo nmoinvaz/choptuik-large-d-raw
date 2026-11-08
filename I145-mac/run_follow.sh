@@ -24,7 +24,7 @@ while [ ! -e "$HERE/STOP_$TAG" ]; do
     d=$(basename "$pick" | sed -E 's/.*_(D[0-9.]+)_32x[0-9]+\.npz/\1/')
     echo "== $(date -u '+%Y-%m-%d %H:%M:%S') UTC follow $pick on 32x$N"
     nice -n 10 /Users/nathan/venv-qd/bin/python solver/rt/rt_run.py --start "$pick" --grids "32x$N" --solver mp \
-        --tol 1e-12 --max_products 250 --refresh_dz 1e-5 --out "$HERE/fol" --tag "$TAG"
+        --tol 1e-12 --max_products 250 --refresh_dz 1e-5 --patient --it_max 20 --out "$HERE/fol" --tag "$TAG"
     echo "== exit $? for $d"
     touch "$HERE/fol/done_${TAG}_$d"
 done
