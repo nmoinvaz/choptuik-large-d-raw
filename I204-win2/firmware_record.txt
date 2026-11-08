@@ -1,0 +1,42 @@
+I204-win2 firmware record, read only, taken 2026-11-08 23:46 UTC (boot 23:40:29 UTC, the second boot after the update)
+
+BIOS (Win32_BIOS and HKLM\HARDWARE\DESCRIPTION\System\BIOS)
+  vendor            American Megatrends International, LLC.
+  version           3.40   (BIOSVersion {ALASKA - 1072009, 3.40, American Megatrends - 50020})
+  release date      09/18/2026 (registry BIOSReleaseDate; Win32_BIOS shows 9/17/2026 5:00 PM, the same instant in local time)
+  board             ASRock Z890I Nova WiFi
+  before (#177)     1.38, 2024-09-08
+
+Microcode, registry value "Update Revision" of HKLM\HARDWARE\DESCRIPTION\System\CentralProcessor\N, N = 0..19
+  CPU 0             4 bytes  22 01 00 00 -> 0x122
+  CPU 1..19         8 bytes  00 00 00 00 22 01 00 00 -> 0x122 (upper dword)
+  all 20 CPUs       0x122
+  "Previous Update Revision" of CPU 0 is also 22 01 00 00, so Windows loaded nothing newer than the BIOS's own microcode
+  before (#177)     0x110 on all 20
+  DISCREPANCY       #204's text and #177's plan say 0x121; the machine reports 0x122.
+
+Intel ME and MEI
+  ME firmware       19.0.11.2289   (WMI root/Intel_ME ME_System.FWVersion, and DEVPKEY_Device_FirmwareVersion of the MEI device
+                                    PCI\VEN_8086&DEV_7F68)
+  MEI driver        2552.8.10.0 (2025-12-22), "Intel(R) Management Engine Interface #1", oem33.inf
+  ME WMI provider   2544.8.3.0 (2025-10-27), oem34.inf
+  before (#177)     ME firmware 19.0.0.1726, MEI driver 2433.6.3.0 (2024-08-14), WMI provider 2428.6.4.0 (2024-07-09)
+
+Memory (Win32_PhysicalMemory)
+  2 x 48 GiB Corsair CMP96GX5M2B6400C32 (a DDR5-6400 C32 XMP kit), Controller0-ChannelA-DIMM0 and ChannelB-DIMM0
+  Speed 4800, ConfiguredClockSpeed 4800, ConfiguredVoltage 1100 mV (MinVoltage 1100, MaxVoltage 1400) on both modules
+  XMP: OFF. The modules run at the JEDEC 4800 MT/s and 1.10 V, not the kit's 6400 MT/s profile (which needs about 1.35 V).
+  This is read from the OS (SMBIOS configured speed and voltage); the BIOS setup screen was not looked at.
+  before (#177)     the same: 4800 MT/s at 1.10 V, so XMP was off before the update as well.
+
+Memory test after the update (evidence the OS can show)
+  Boots (System log): shutdown 23:17:43, boot 23:26:03 (8.3 min later, the flash), shutdown 23:39:46, boot 23:40:30 (44 s later).
+  No Microsoft-Windows-MemoryDiagnostics-Results event, no memtest file in Downloads, Desktop or Documents.
+  A memory test from a USB stick would leave no trace here, and 96 GB takes hours per pass, so neither gap (8.3 min, 44 s) holds one.
+  Verdict: none seen. Only Nathan can say.
+
+Watchers (alert-only, restarted 23:44 UTC after the update; Core Temp started 23:44)
+  crash_watch.py --state crash_state.json   writes crashes.txt, crash_temps.txt; exits 18 on a new event
+  sensor_log.py 300                         writes sensor_log.txt every 300 s
+  both on C:\Users\nathan\Source\venv-t177 (Python 3.14.10), launched from this folder; each appears as two processes (the venv
+  launcher and its child).
