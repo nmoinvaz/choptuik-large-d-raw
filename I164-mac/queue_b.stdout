@@ -52,3 +52,35 @@
 == exit 1 b121_32x93 D54.9961
 == 2026-11-08 14:06:25 UTC b121_32x97 D54.9961
 == 2026-11-08 14:06:26 UTC  start /Users/nathan/Source/choptuik-large-d-raw/I145-mac/fol/fol_32x121_D54.9961_32x121.npz (D 54.996085, 32x121) D_start 54.996085 grids [(32, 97)] solver mp prec 192 mutate None
+    newton_mp it 0: max|F| 5.298e-14 -> 4.794e-28, 52 products to 1.1e-36, step 1, max|dz| 4.3e-15, 46.68 s (products 33.0 s, precond 7.8 s)
+    newton_mp it 1: max|F| 4.794e-28 -> 4.929e-27, 67 products to 3.1e-37, step 1, max|dz| 8.8e-15, 59.02 s (products 40.7 s, precond 9.6 s)
+    newton_mp it 2: max|F| 4.929e-27 -> 5.747e-24, 69 products to 2.6e-40, step 1, max|dz| 5.5e-13, 62.42 s (products 42.9 s, precond 10.0 s)
+    newton_mp it 3: max|F| 5.747e-24 -> 1.917e-45, 57 products to 5.5e-31, step 1, max|dz| 4.5e-24, 52.09 s (products 36.6 s, precond 8.5 s)
+  start D 54.996085 grid 32x97 L 10977: 4 Newton steps, max|F| 5.3e-14 -> 1.9e-45, products [52, 67, 69, 57], mu 0.129247570034256, Delta 1.8243943372727507492 (xi=1: 1.824394337272751), hp 1.824394337272626, diff 1.25e-13, LU pivot ratio 1.6e+15, J 14 s, LU 6 s, Newton 220 s (rebuilds 0, 0 s)
+  CHECK D = 54.996085 grid 32x97: |Delta_RT - Delta_hp| = 1.25e-13 <= 1e-12 ok
+== exit 0
+== exit 0 b121_32x97 D54.9961
+== 2026-11-08 14:10:26 UTC b121_32x89 D54.9961
+== 2026-11-08 14:10:26 UTC  start /Users/nathan/Source/choptuik-large-d-raw/I145-mac/fol/fol_32x121_D54.9961_32x121.npz (D 54.996085, 32x121) D_start 54.996085 grids [(32, 89)] solver mp prec 192 mutate None
+    newton_mp it 0: max|F| 5.405e-14 -> 1.029e-27, 48 products to 4.9e-33, step 1, max|dz| 6.3e-15, 34.56 s (products 24.4 s, precond 5.9 s)
+    newton_mp it 1: max|F| 1.029e-27 -> 2.675e-27, 62 products to 6.0e-33, step 1, max|dz| 1.0e-14, 48.06 s (products 33.3 s, precond 7.8 s)
+    newton_mp it 2: max|F| 2.675e-27 -> 4.350e-22, 64 products to 1.0e-41, step 1, max|dz| 1.6e-12, 48.12 s (products 33.1 s, precond 7.8 s)
+    newton_mp it 3: max|F| 4.350e-22 -> 2.910e-43, 52 products to 2.7e-32, step 1, max|dz| 4.1e-23, 40.2 s (products 28.2 s, precond 6.7 s)
+  start D 54.996085 grid 32x89 L 10081: 4 Newton steps, max|F| 5.4e-14 -> 2.9e-43, products [48, 62, 64, 52], mu 0.129247570035802, Delta 1.8243943373014462116 (xi=1: 1.824394337301446), hp 1.824394337272626, diff 2.88e-11, LU pivot ratio 3.5e+14, J 11 s, LU 4 s, Newton 171 s (rebuilds 0, 0 s)
+  CHECK D = 54.996085 grid 32x89: |Delta_RT - Delta_hp| = 2.88e-11 > 1e-12 FAIL
+== exit 1
+== exit 1 b121_32x89 D54.9961
+== 2026-11-08 14:13:32 UTC b121_32x87 D54.9961
+== 2026-11-08 14:13:32 UTC  start /Users/nathan/Source/choptuik-large-d-raw/I145-mac/fol/fol_32x121_D54.9961_32x121.npz (D 54.996085, 32x121) D_start 54.996085 grids [(32, 87)] solver mp prec 192 mutate None
+    newton_mp it 0: max|F| 6.213e-14 -> 6.702e-28, 47 products to 8.8e-37, step 1, max|dz| 5.0e-15, 32.02 s (products 22.5 s, precond 5.5 s)
+    newton_mp it 1: max|F| 6.702e-28 -> 3.294e-27, 61 products to 1.5e-39, step 1, max|dz| 1.1e-14, 44.43 s (products 30.5 s, precond 7.3 s)
+    newton_mp it 2: max|F| 3.294e-27 -> 1.285e-20, 62 products to 1.1e-36, step 1, max|dz| 8.3e-12, 46.97 s (products 32.4 s, precond 7.7 s)
+    newton_mp it 3: max|F| 1.285e-20 -> 5.868e-42, 51 products to 1.3e-31, step 1, max|dz| 4.6e-22, 36.26 s (products 25.6 s, precond 6.0 s)
+  start D 54.996085 grid 32x87 L 9857: 4 Newton steps, max|F| 6.2e-14 -> 5.9e-42, products [47, 61, 62, 51], mu 0.129247570030466, Delta 1.8243943371861363726 (xi=1: 1.824394337186136), hp 1.824394337272626, diff -8.65e-11, LU pivot ratio 1.3e+15, J 12 s, LU 5 s, Newton 160 s (rebuilds 0, 0 s)
+  CHECK D = 54.996085 grid 32x87: |Delta_RT - Delta_hp| = 8.65e-11 > 1e-12 FAIL
+== exit 1
+== exit 1 b121_32x87 D54.9961
+== 2026-11-08 14:16:29 UTC done
+== 2026-11-08 14:16:29 UTC coef_32x91 D60.0020
+== 2026-11-08 14:16:29 UTC  start /Users/nathan/Source/choptuik-large-d-raw/I164-mac/roots/a101_32x91_D60.0020_32x91.npz (D 60.001952, 32x91) D_start 60.001952 grids [(32, 91)] solver mp prec 192 mutate coef
+    newton_mp it 0: max|F| 4.131e-04 -> 1.291e-04, 54 products to 1.9e-31, step 1, max|dz| 7.3e-04, 40.06 s (products 27.9 s, precond 6.8 s)
