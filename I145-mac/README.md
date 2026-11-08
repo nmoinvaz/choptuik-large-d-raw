@@ -46,3 +46,6 @@ same run as the predictor's history.
 - `controls/planted*`: solver/rt/rt_mpsolve.py --selftest at the code of these runs (exit 0, error 6.9e-40).
 - `fit/`: solver/rt/rt_cost_fit.py --planted and its mutations `rate`, `slope` (exit 0, 1, 1); solver/rt/rt_pred_check.py
   on #105's 32x101 states (`pred_check.log`, exit 0) and its `--mutate=order` (exit 1).
+- `run_worker.sh`, `worker.stdout` (from 08:58 UTC, replacing `run_follow.sh`): one queue for the second process,
+  32x121 re-solves of the continuation's states at the check D first, then 32x141 re-solves of the 32x121 states at the
+  check D (`fol/fol_32x141*`), then 32x121 at the newest other D.
