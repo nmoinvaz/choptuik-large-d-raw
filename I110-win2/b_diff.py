@@ -22,6 +22,7 @@ def balls(obj, path=()):
 
 def diff(a, b, out=print):
     first, worst, disjoint, n, rr = None, (Decimal(0), None), 0, 0, []
+    nmid = nrad = 0
     for f in ("X", "B"):
         ea, eb = list(balls(a[f], (f,))), list(balls(b[f], (f,)))
         if [p for p, _, _ in ea] != [p for p, _, _ in eb]:
@@ -31,6 +32,8 @@ def diff(a, b, out=print):
             n += 1
             if rb > 0:
                 rr.append(ra / rb)
+            nmid += ma != mb
+            nrad += ra != rb
             if (ma, ra) != (mb, rb) and first is None:
                 first = (p, ma, ra, mb, rb)
             d = abs(ma - mb)
@@ -44,8 +47,11 @@ def diff(a, b, out=print):
         out("identical in every entry")
         return 0
     p, ma, ra, mb, rb = first
-    out(f"first differing entry {p}: mid {ma:.25e} rad {ra:.6e} | mid {mb:.25e} rad {rb:.6e}")
-    out(f"largest |mid_a - mid_b| / max(rad_a, rad_b) = {worst[0]:.3e} at {worst[1]}")
+    out(f"entries with different midpoints: {nmid}; with different radii: {nrad}")
+    out(f"first differing entry {p}: {'mid' if ma != mb else 'radius only'}")
+    out(f"  a: mid {ma} rad {ra}")
+    out(f"  b: mid {mb} rad {rb}")
+    out(f"largest |mid_a - mid_b| / max(rad_a, rad_b) = {float(worst[0]):.3e}" + (f" at {worst[1]}" if worst[1] else ""))
     out(f"disjoint balls: {disjoint}")
     if rr:
         rr.sort()

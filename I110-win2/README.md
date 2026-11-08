@@ -6,3 +6,12 @@ Issue: https://github.com/nmoinvaz/choptuik-large-d/issues/110
 
 Worktree `..\choptuik-i104` at origin/main 700da3a, run from `solver/proof/`, 1 thread, Normal priority.
 `b_diff.py` is the entry-by-entry diff of two `--save-B` files (`--selftest` plants one changed digit and finds it).
+
+Results:
+- `lemma6a_loadB_macm3.log` (exit 0, 3 s): win2 with I103-macm3's B prints macm3's numbers. Max radius of B is
+  3.24e-05, |H| <= 7.30e+01, G_slow^-1 <= 5.92e+00 and rho_6a = 2.310e-01 < 1, against win2's own 3.36e-05, 67.8, 5.48
+  and 2.181e-01 (I104-win2). The command has no `--json`, so rho_6a is compared only at the 4 digits printed.
+- `b_diff_win2_vs_macm3.log`: across the 760 balls of X and B (I104-win2's B against I103-macm3's), the midpoints are
+  identical in every entry to all stored digits, and the radii differ in 748. The first difference is the radius of
+  X[1][0]: 2.982435555e-11 on win2 against 2.982435582e-11 on macm3. The win2/macm3 radius ratios run from 0.840
+  through 1.0017 (median) to 1.223. No ball pair is disjoint.
