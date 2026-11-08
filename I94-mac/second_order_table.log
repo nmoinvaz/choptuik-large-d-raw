@@ -1,0 +1,30 @@
+Delta_2 (1/n) by run:
+  M = 1  xi1 = 0.2  rtol = 1e-12:  omega_2 = 213.602  Delta_1 = 14.99769  Delta_2 = -45.8587  (all gauge data 0: -14.6998)  lambda_2 = -141.0537  (gauge 0: lambda_1 0.7396, lambda_2 -20.8702)
+  M = 3  xi1 = 0.2  rtol = 1e-12:  omega_2 = 251.340  Delta_1 = 9.88625  Delta_2 = -44.4221  (all gauge data 0: -36.0950)  lambda_2 = -43.7628  (gauge 0: lambda_1 2.8268, lambda_2 -38.8628)
+  M = 3  xi1 = 0.175  rtol = 1e-12:  omega_2 = 251.340  Delta_1 = 9.88625  Delta_2 = -44.4221  lambda_2 = -43.7628
+  M = 5  xi1 = 0.2  rtol = 1e-12:  omega_2 = 269.077  Delta_1 = 10.40240  Delta_2 = -50.1338  (all gauge data 0: -49.8162)  lambda_2 = -33.6907  (gauge 0: lambda_1 3.0471, lambda_2 -33.6882)
+  M = 5  xi1 = 0.19  rtol = 1e-12:  omega_2 = 269.216  Delta_1 = 10.40229  Delta_2 = -50.1949  lambda_2 = -33.4784
+  M = 5  xi1 = 0.2  rtol = 1e-13:  omega_2 = 268.383  Delta_1 = 10.40213  Delta_2 = -49.8380  lambda_2 = -32.9416
+
+Delta_2: mean over runs, +- half the spread of the runs (numerical error of the model value)
+  M = 1: -45.859 +- 0.000   difference from the fit +3.310 (+6.73%)
+  M = 3: -44.422 +- 0.000   difference from the fit +4.746 (+9.65%)
+  M = 5: -50.056 +- 0.178   difference from the fit -0.887 (-1.80%)
+  fit (spread over fit choices): -49.1685 [-49.16867, -49.1678]
+  error ratios: M3/M1 +1.43, M5/M3 -0.19
+  M -> infinity reading with r = -0.05: -49.787
+  M -> infinity reading with r = -0.2: -49.117
+  the fit lies 16% of the way from M = 5 to M = 3
+
+conventions (M = 5, mean of the runs): Delta_2 (1/n) -50.056;  in eps_E = 1/(D-1): -39.653;  in 1/D: -29.251;  fit: -38.793 (eps_E), -28.418 (1/D)
+
+lambda_2 by M (light-cone gauge):
+  M = 1: -141.054 +- 0.000 (1 runs)   difference from the fit -106.678
+  M = 3: -43.763 +- 0.000 (2 runs)   difference from the fit -9.387
+  M = 5: -33.370 +- 0.375 (3 runs)   difference from the fit +1.006
+  fit (estimator range, its planted test failed at 0.02; section 5): -34.376 [-34.3788, -34.3738]
+  error ratios: M3/M1 +0.088, M5/M3 -0.107
+  M -> infinity reading with r = -0.05: -33.865
+  M -> infinity reading with r = -0.2: -35.102
+
+fit in omega: omega_1 = -24.1230, omega_2 = 2 pi (Delta_1^2/Delta_inf^3 - Delta_2/Delta_inf^2) = 266.570
