@@ -1,0 +1,18 @@
+venv create exit 0
+pip install exit 0
+pip uninstall multidouble exit 0
+hp/build.sh exit 1 wall 1774 s
+check_numbers --selftest exit 1 wall 8 s
+amp_flint_par exit 0 wall 343 s
+check_ref exit 1 wall 0 s
+check_scaled exit 1 wall 0 s
+check_jets exit 1 wall 0 s
+check_jets --mutate=kappa exit 1 wall 0 s
+--- attempt 2 (stale cp313 wheel moved to ~/Source/hp-dist-stale-cp313/)
+hp/build.sh exit 0 wall 18 s
+check_numbers --selftest exit 1 wall 13 s
+check_ref exit 0 wall 74 s
+check_scaled exit 0 wall 818 s
+check_jets exit 0 wall 118 s
+check_jets --mutate=kappa exit 1 wall 118 s
+check_numbers --selftest on 3.13 exit 1
