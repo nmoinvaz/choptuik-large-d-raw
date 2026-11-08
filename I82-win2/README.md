@@ -15,3 +15,8 @@ Memory guard on the 1.11 main (the run to lose first): util_report.py --guard 10
 Pilot at 1 h: each log's last order + time vs T99-win2/scan45J1500/w1.0000.log (log_compare.py); stop if any run is
 >3x slower per order than T99, or a worker exceeds 3 GB at k 31. Stops: guard fires (free mem < 10 GB, kills 1.11, keep
 1.09/1.10); no new order line for 3 h -> py-spy the main, post, wait; 36 h wall.
+
+Run 1 stopped at 04:29:05 UTC, about 58 min in. Windows Update (MoUsoCoreWorker.exe, "Operating System: Service pack
+(Planned)", System event 1074) restarted win2, which came back on build 26300 at 04:30:06 UTC. The three logs end at
+k 19 (3002 s, 3013 s, 3010 s, against T99's 3224 s), with no traceback and no JSON written. mem_guard.log ends at
+04:28 UTC with 37.2 GB free.
