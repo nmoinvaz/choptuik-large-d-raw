@@ -1,0 +1,1 @@
+cd ~/Source/choptuik-large-d/solver/proof && caffeinate -i nice -n 10 /Users/nathan/Source/venv-macm3/bin/python -u lemma6_jump_M.py --M=5 --box=data/A_M2_6a_M5_1e-10.json --json=../../../choptuik-large-d-raw/I36-macm3/lemma6a_M5_cert.json > ../../../choptuik-large-d-raw/I36-macm3/lemma6a_M5_cert.log 2>&1
