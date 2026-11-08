@@ -1,0 +1,11 @@
+== 2026-11-08 21:57:00 UTC python3 hp/modecount_lowD.py solver/data/neB_kc39_D4.0000.npy --kc=39 --M=32,48
+Traceback (most recent call last):
+  File "/Users/nathan/Source/choptuik-large-d/hp/modecount_lowD.py", line 58, in <module>
+    main()
+    ~~~~^^
+  File "/Users/nathan/Source/choptuik-large-d/hp/modecount_lowD.py", line 39, in main
+    D, zh, zl = seed_from_f64(path, Ms[0], kc=kc, nodes=NL)
+                ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nathan/Source/venv-macm3-314/lib/python3.14/site-packages/hpkernel/driver.py", line 116, in seed_from_f64
+    from spec_long import make_long
+ModuleNotFoundError: No module named 'spec_long'
