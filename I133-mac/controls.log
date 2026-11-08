@@ -1,0 +1,10 @@
+ok   rational_fit.py --plant=rational: exit 0, expected 0; must pass ['P1 pade', 'P2 pade', 'P3 pade', 'P1 ls', 'P2 ls', 'P3 ls']
+ok   rational_fit.py --plant=rational --mutate=gauge: exit 1, expected non-zero; must pass ['P1 pade', 'P2 pade', 'P1 ls', 'P2 ls']; must fail ['P3 pade', 'P3 ls']
+ok   rational_fit.py --plant=rational --mutate=drop: exit 1, expected non-zero; must fail ['P2 pade', 'P2 ls']
+ok   rational_fit.py --plant=branch: exit 0, expected 0; must pass ['M branch']
+ok   rational_fit.py --plant=poles: exit 1, not used; must pass ['M poles, not marching']
+ok   rational_fit.py --fast: exit 0, expected 0; must pass ['S', 'D']
+ok   rational_fit.py --fast --mutate=gauge: exit 1, expected non-zero; must fail ['S']
+ok   rational_fit.py --fast --mutate=A: exit 1, expected non-zero; must fail ['D']
+
+all controls behave
