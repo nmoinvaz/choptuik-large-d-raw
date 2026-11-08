@@ -15,3 +15,8 @@ Results:
   identical in every entry to all stored digits, and the radii differ in 748. The first difference is the radius of
   X[1][0]: 2.982435555e-11 on win2 against 2.982435582e-11 on macm3. The win2/macm3 radius ratios run from 0.840
   through 1.0017 (median) to 1.223. No ball pair is disjoint.
+- `lemma6a_loadB_macm3.json` and `lemma6a_loadB_macm3_json.log` (the cross-load rerun with `--json`, exit 0, 2 s; the
+  log is identical to the first cross-load's apart from the seconds): rho_6a = [0.2309898806 +/- 4.01e-11] against
+  I103-macm3's [0.2309898799 +/- 4.42e-13]. The balls are **disjoint**, although B and the box are the same files.
+  Lambda's radius differs too (6.92e-12 against 6.91e-12). H_max and Gslow_inv_max are equal as doubles. win2's
+  python-flint 0.9.0 bundles FLINT 3.6.0 (`flint.__FLINT_VERSION__`); macm3's is not recorded.
