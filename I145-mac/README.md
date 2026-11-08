@@ -62,3 +62,7 @@ same run as the predictor's history.
   9 min and landed 3.8e-12 from hp): 32x121 at each check D, then the root tests 32x121 -> 32x101
   (`fol/from121_32x101*`) and a second start for 32x121 from the 32x101 state at the integer D below the check D
   (`fol/fromint_32x121*`, rt_run.py --D_start), then 32x141 at the check D, then 32x121 at the newest D.
+- `run_worker4.sh`, `run_worker4_start.sh`, `worker4.stdout` (from 10:56 UTC, replacing `run_worker3.sh`, whose rule 3
+  started 32x121 a whole unit of D below the check D, from max|F| = 3.2e-3, and diverged; stopped by hand, its record
+  in `fol/fromint_32x121*` has ok false): the second 32x121 start is the second 32x101 root (`fol/from101b_32x121*`) or
+  the 32x141 root (`fol/from141_32x121*`).
