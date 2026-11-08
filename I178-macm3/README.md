@@ -28,5 +28,5 @@ Locating at kf 21 (run_locate.sh, round 1: two circles of R 0.06 at 1.05 and 1.1
   (22 points, max step 0.609 rad), 0 mismatches in both. The zero is in the disc |lam - 1.14| < 0.03, which meets the real axis in (1.11, 1.17), inside #170's sign change (1.0, 1.221).
 
 Final (macm3, main e04d6f17; awake time equals wall time in every run, awake.log): the extra zero is absent at kf 13, 15, 17 and 19 (7 to 10 odd harmonics in the set), present at kf 21
-  (11), at lambda = 1.14 +- 0.03; the 2.057 control winds +1 at every K; the two setups run twice agree bit for bit (kf 13 with #70 job 7, kf 21 in three runs: #170's, round 1, round 2).
+  (11), at lambda = 1.14 +- 0.03; the 2.057 control winds +1 at every K; the two setups run twice agree bit for bit (kf 13 with #70 job 7, kf 21 in four runs: #170's, the scan's, round 1 and round 2).
   hp/data unchanged by the whole task (hp_data_before.txt). summarize.txt: every circle.
