@@ -70,3 +70,9 @@ same run as the predictor's history.
   --newton_tol; --patient then accepts a stall below 1e-32). The D = 54 step had bounced for 15 Newton steps between
   max|F| = 6e-35 and 1.2e-33 with max|dz| of 1e-18 to 3e-18 each, above the old acceptance of 1e-34, and was stopped
   by hand. A step of 3e-18 moves Delta by about 1e-17.
+- A fifth restart, from D = 56 (prev 53-55) at 12:14 UTC, with `NEWTON_TOL=1e-36` (stalls accepted below 1e-30). The
+  D = 57 step reached max|F| = 3.3e-35 at its seventh Newton step, then bounced for 7 steps between 1.2e-32 and 1.0e-31
+  at max|dz| of 8e-18 to 1.2e-16, above the acceptance of 1e-32, and was stopped by hand. A step of 1e-16 moves Delta
+  by about 1e-15.
+- `run_roots_logs.sh`: rt_roots.py on each pair of roots (`controls/roots_*.log`). `fit/roots101_second.jsonl` joins
+  the second 32x101 roots (`controls/` and `fol/from121_32x101.jsonl`) for rt_grids.py.
