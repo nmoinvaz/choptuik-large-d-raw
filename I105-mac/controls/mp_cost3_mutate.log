@@ -1,0 +1,5 @@
+dd_solve n 500: 0.034 s, 2.73e-10 s/L^3, error 6.2e-12 (FAIL)
+RT 32x81 L 9185: f64 residual 0.0005 s, arb residual (192 bits) 0.143 s, f64 Jacobian 6.64 s, f64 LU 2.33 s, dd triangular solves 0.083 s (backward error 1.2e-17, FAIL), product J u 0.340 s, LU pivot ratio 1.5e+15
+  dd_solve at L 9185, estimated from n 500 by L^3: 212 s (4 min)
+exit 1
+rt_mp_cost --mutate=perturb exit 1

@@ -1,0 +1,6 @@
+dd_solve n 500: 0.034 s, 2.74e-10 s/L^3, error 6.9e-31 (ok)
+dd_solve n 1000: 0.264 s, 2.64e-10 s/L^3, error 2.4e-30 (ok)
+dd_solve n 2000: 2.177 s, 2.72e-10 s/L^3, error 4.0e-29 (ok)
+RT 32x101 L 11425: f64 residual 0.0005 s, arb residual (192 bits) 0.229 s, f64 Jacobian 10.42 s, f64 LU 5.43 s, dd triangular solves 0.111 s (|J x - b| / |b| = 1.2e-14, FAIL), product J u 0.431 s
+exit 1
+rt_mp_cost 32x101 exit 1

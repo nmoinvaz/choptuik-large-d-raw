@@ -1,0 +1,10 @@
+dd_solve n 500: 0.030 s, 2.42e-10 s/L^3, error 6.9e-31 (ok)
+dd_solve n 1000: 0.253 s, 2.53e-10 s/L^3, error 2.4e-30 (ok)
+dd_solve n 2000: 2.305 s, 2.88e-10 s/L^3, error 4.0e-29 (ok)
+arb_mat solve n 150 at 192 bits: 0.021 s, 6.22e-09 s/L^3
+arb_mat solve n 300 at 192 bits: 0.104 s, 3.84e-09 s/L^3
+RT 32x81 L 9185: f64 residual 0.0005 s, arb residual (192 bits) 0.153 s, f64 Jacobian 6.76 s, f64 LU 2.51 s, dd triangular solves 0.073 s (backward error 3.5e-36, ok), product J u 0.354 s, LU pivot ratio 1.5e+15
+  dd_solve at L 9185, estimated from n 2000 by L^3: 223 s (4 min)
+  arb_solve at L 9185, estimated from n 300 by L^3: 2972 s (50 min)
+exit 0
+rt_mp_cost 32x81 exit 0
