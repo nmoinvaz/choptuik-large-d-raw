@@ -2,7 +2,7 @@
 
 Machine: the Apple M5 Mac (`mac`). Issue: https://github.com/nmoinvaz/choptuik-large-d/issues/176
 
-Code: `solver/independent_eeg_effect/` of nmoinvaz/choptuik-large-d, branch `wip/i176` at commit 4c2a6c4. Inputs: arXiv:2611.07007v1
+Code: `solver/independent_eeg_effect/` of nmoinvaz/choptuik-large-d, branch `wip/i176` at commit 1aceb79. Inputs: arXiv:2611.07007v1
 (main.tex of the arXiv e-print, supplement (S35)-(S51) and Eq. (16)) and the correction formulas stated in #176.
 
 | File | Command, from `solver/independent_eeg_effect/` | Exit |
@@ -16,4 +16,5 @@ Code: `solver/independent_eeg_effect/` of nmoinvaz/choptuik-large-d, branch `wip
 | mutate_xrange.log | `python3 effect.py --mutate=xrange --check planted` (control) | 1 |
 | effect_fine.log | `python3 effect.py --nth 4096 --nx 40` (quadrature convergence) | 1 |
 | crosscheck.log | `python3 crosscheck.py 25 50 200` (second route, mpmath) | 0 |
+| alt_period.log | `python3 alt_period.py` (tau over the fitted Delta(D), an alternative reading) | 0 |
 | versions.txt | Python and package versions | |
