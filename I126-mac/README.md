@@ -55,6 +55,28 @@ O(sqrt eps) for Pi, the corrected residual is O(eps^3) for all three. Both readi
 Fig. 5's measure: the relative rms deviation rms(F_sol - F_model)/rms(F_sol) over the (tau, x) grid (for f also
 relative to rms(1 - f_sol)), printed, corrected, and the change printed - corrected, at each D.
 
+## Results (2026-11-08, written after the runs)
+
+Write-up: notes/SECOND_ORDER.md 1.1 of the main repository. Exits in exits.txt (the last block is the final code).
+
+| criterion | verdict |
+|---|---|
+| C1 corrected NNLO: p = 3.971, 3.967, 3.442, 3.473 (f, Omega, Pi, Psi) | pass |
+| C2 printed NNLO: p = 3.044, 2.986, 2.484, 3.473 | pass |
+| C3 LO 1.986, 1.982, 1.493, 2.490; NLO 2.957, 2.975, 2.484, 3.473 | pass |
+| C4 Pi_3 x 1.01: Pi 3.386, Omega 3.942 (within 0.25 of 3.5, 4) | FAIL, the control did not fire |
+| C5 planted: recovers 4.008, 4.006, 3.491, 3.492; plant_pi=3 gives 2.991; mutation breaks the plant | pass |
+| C6 floors at most 1e-6 of R; chain spread 2.7% and 6.8% of R at D 150 and 180 | D 150, 180 left the fit |
+
+C4's cause: the true eps^(7/2) term's coefficient is about 30 times Pi_3's, so 1% of Pi_3 is only 2-7% of R over D
+40-215. planted_big_mut (plant 1000 times larger, as large as the real residual) stays silent the same way. The test
+resolves Pi_3 x 1.05 (Pi 3.22) and x 1.2 (Pi 2.94, Omega 3.63); compare_mut1.*.log.
+
 ## Files
 
-(filled in as the runs land)
+- extract.cmd, extract.log: fields of every state (fields/, fields_t140_d6/, fields_t140_d10/: one npz per state with
+  D, Delta, xs, f, Om, Pi, Psi on (x, tau) and the continuity diagnostics in info).
+- planted.cmd: planted.log/json, planted_pi3.*, planted_mut.*; control_scan.cmd: compare_mut1.02-1.5.*,
+  planted_big_mut.*, compare_dmax140.*, compare_dmin73.*.
+- compare.cmd: compare.log/json (main run with the spread), compare_mut.* (C4), figs.log/json.
+- figs.cmd: figs.log/json alone (Figs. 4-5 measures, exact, Eq. (16) and D = infinity profiles, centre profiles).
