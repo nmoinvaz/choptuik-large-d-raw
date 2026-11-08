@@ -1,2 +1,20 @@
 == 2026-11-08 12:48:11 UTC the D 60.0020 state exists; stopping the continuation
 == 2026-11-08 12:48:16 UTC  start /Users/nathan/Source/choptuik-large-d-raw/I145-mac/cont/cont_32x101_D60.0020_32x101.npz (D 60.001952, 32x101) D_start 60.001952 grids [(32, 121)] solver mp prec 192 mutate None
+    newton_mp it 0: max|F| 8.696e-14 -> 9.360e-26, 63 products to 1.1e-32, step 1, max|dz| 5.7e-14, 53.81 s (products 37.7 s, precond 9.2 s)
+    newton_mp it 1: max|F| 9.360e-26 -> 4.382e-23, 83 products to 1.2e-33, step 1, max|dz| 1.3e-12, 76.81 s (products 52.4 s, precond 12.6 s)
+    newton_mp it 2: max|F| 4.382e-23 -> 8.130e-22, 80 products to 5.2e-31, step 1, max|dz| 3.2e-12, 73.27 s (products 50.4 s, precond 12.1 s)
+    newton_mp it 3: max|F| 8.130e-22 -> 6.269e-42, 66 products to 7.2e-31, step 1, max|dz| 5.0e-22, 58.24 s (products 41.0 s, precond 9.7 s)
+  start D 60.001952 grid 32x121 L 13665: 4 Newton steps, max|F| 8.7e-14 -> 6.3e-42, products [63, 83, 80, 66], mu 0.129308021086986, Delta 1.8098842580362856929 (xi=1: 1.809884258036286), hp 1.809884258001715, diff 3.46e-11, LU pivot ratio 2.5e+15, J 17 s, LU 7 s, Newton 262 s (rebuilds 0, 0 s)
+  CHECK D = 60.001952 grid 32x121: |Delta_RT - Delta_hp| = 3.46e-11 > 1e-12 FAIL
+== exit 1
+== exit 1 fol_32x121 D60.0020
+== 2026-11-08 12:53:02 UTC  start /Users/nathan/Source/choptuik-large-d-raw/I145-mac/fol/fol_32x121_D60.0020_32x121.npz (D 60.001952, 32x121) D_start 60.001952 grids [(32, 101)] solver mp prec 192 mutate None
+    newton_mp it 0: max|F| 7.018e-14 -> 5.285e-28, 56 products to 1.6e-36, step 1, max|dz| 4.3e-15, 36.16 s (products 25.2 s, precond 6.2 s)
+    newton_mp it 1: max|F| 5.285e-28 -> 1.102e-26, 73 products to 1.8e-42, step 1, max|dz| 2.7e-14, 48.65 s (products 33.3 s, precond 7.9 s)
+    newton_mp it 2: max|F| 1.102e-26 -> 1.065e-21, 76 products to 6.5e-31, step 1, max|dz| 3.3e-12, 51.67 s (products 35.2 s, precond 8.4 s)
+    newton_mp it 3: max|F| 1.065e-21 -> 5.282e-43, 59 products to 8.7e-32, step 1, max|dz| 1.5e-22, 38.9 s (products 27.3 s, precond 6.5 s)
+  start D 60.001952 grid 32x101 L 11425: 4 Newton steps, max|F| 7.0e-14 -> 5.3e-43, products [56, 73, 76, 59], mu 0.129308021083670, Delta 1.8098842579993842847 (xi=1: 1.809884257999384), hp 1.809884258001715, diff -2.33e-12, LU pivot ratio 1.6e+15, J 11 s, LU 4 s, Newton 175 s (rebuilds 0, 0 s)
+  CHECK D = 60.001952 grid 32x101: |Delta_RT - Delta_hp| = 2.33e-12 > 1e-12 FAIL
+== exit 1
+== exit 1 from121_32x101 D60.0020
+== 2026-11-08 13:06:46 UTC done

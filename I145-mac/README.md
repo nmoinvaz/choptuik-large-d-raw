@@ -83,3 +83,15 @@ same run as the predictor's history.
   max|F| 4.0e-4 -> 1.5e-9, not converged, Delta 3.8e-2 from hp).
 - `run_final60.sh`, `final60.stdout`: at D = 60.001952 it stops the continuation, then runs the coefficient mutation
   there (`controls/coef_D60.0020*`) beside the 32x121 re-solve, then the second 32x101 root.
+
+## Results (the reading is section 10 of notes/RT_FORMULATION.md on wip/i145)
+
+- Delta_RT - Delta_hp on 32x101: +3.5e-15 (D 40.020065), +3.3e-15 (50.007491), -2.1e-14 (54.996085), -1.27e-12
+  (60.001952, misses 1e-12). 32x121: +1.5e-15, -2.9e-12, +8.5e-12, +3.5e-11. 32x141: +1.0e-14 (40.02), +3.8e-12
+  (44.96), -4.1e-11 (50.01), -3.0e-7 (54.996).
+- Root spread of 32x101 (two starts): 5.5e-23 (D 40), 1.9e-20 (45), 4.2e-15 (50), 3.6e-14 (55), 1.1e-12 (60).
+- The coefficient mutation exits 1 at D 54.996 and 60.002 (Delta moved 3.8e-2 and 5.3e-4; neither converged in 20
+  Newton steps).
+- `fit/cost_fit.log`: rt_cost_fit.py on all records (tables, fits, projection); `fit/grids_*.log`: rt_grids.py.
+- `final60.stdout`, `controls/coef_D60.0020*`, `fol/*D60.0020*`: the runs at D = 60.001952. The continuation was
+  stopped there at 12:48 UTC; its last saved main-path state is D = 60.

@@ -19,3 +19,4 @@ one 121_D50a "$HERE/fol/fol_32x121_D50.0075_32x121.npz" "$HERE/fol/from101b_32x1
 one 121_D50b "$HERE/fol/fol_32x121_D50.0075_32x121.npz" "$HERE/fol/from141_32x121_D50.0075_32x121.npz"
 one 101_D55 "$HERE/cont/cont_32x101_D54.9961_32x101.npz" "$HERE/fol/from121_32x101_D54.9961_32x101.npz"
 one 121_D55 "$HERE/fol/fol_32x121_D54.9961_32x121.npz" "$HERE/fol/from101b_32x121_D54.9961_32x121.npz"
+one 101_D60 "$HERE/cont/cont_32x101_D60.0020_32x101.npz" "$HERE/fol/from121_32x101_D60.0020_32x101.npz"
