@@ -1,0 +1,1 @@
+cd ~/Source/choptuik-large-d && PATH=/Users/nathan/Source/venv-macm3/bin:$PATH CARGO_PROFILE_RELEASE_LTO=false CARGO_PROFILE_RELEASE_CODEGEN_UNITS=16 CARGO_PROFILE_RELEASE_STRIP=false /usr/bin/time -l caffeinate -is bash hp/modecount_build.sh > ../choptuik-large-d-raw/I68-macm3/build.log 2>&1
