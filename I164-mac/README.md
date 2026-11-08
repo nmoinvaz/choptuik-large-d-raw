@@ -60,3 +60,12 @@ solved there at the same D. The resampled starts have an f64 residual of 5e-14 t
   run. The verdict stays the criterion's.
 - `run_checks.sh` (`fit/`): rt_grids.py per grid (`verdict_32xN.log` at D 60, `table_32xN.log` at both D),
   rt_roots.py per pair of roots (`roots_32xN_<D>.log`), and the controls `--mutate=shift` and `--mutate=same`.
+
+## A prediction, written at 2026-11-08 14:02 UTC before the results it names (outside the criteria)
+
+At D 60.001952 the sign of Delta_N - Delta_hp is (-1)^((N-1)/2) on 89, 91, 93, 95 and 97 (+, -, +, -, +), and at
+54.996085 on 85, 91 and 95 (+, -, -). That is the sign of -T_{N+1}(0), the leading neglected Chebyshev term at
+xi = 0, where the equations are divided by xi; it flips with each step of 2 in N. If the pattern is that, then before
+their results: 87 at D 60 is negative, and at D 54.996085 87 is negative, 89 positive, 93 positive and 97 positive.
+85 at D 60 (negative) already breaks it, and 99 and 101 at D 60 are expected to be set by the spread of their roots
+(1e-12 at 97 and 101), not by this sign.
