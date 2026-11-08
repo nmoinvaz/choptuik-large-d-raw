@@ -38,6 +38,10 @@ Results (2026-11-08; the closing summary on #189 has the full tables).
   All 1053 of the review's enclosures lie inside the stored ones, with radii 0.12 to 0.95 of the stored radii and
   midpoints within 6.0e-08 of the summed radii. CAPD takes 363 steps (236 on the ray, 127 on the arc) in 4877 s; the
   original took 2520 + 1838.
+- Lemma 6b1(5), rows 0 and 9 (beyond the issue's scope, against I39-mac's regenerated disc inputs, since #39 found
+  rows 0-2 differing from the stored radii by up to 6%): row 0's 38 discs (1482/1482 components) and row 9's 9 ray legs
+  and 17 discs (1014/1014) overlap, and every review enclosure lies inside the stored one. At the real axis the review's
+  radius is 1/1500 of row 0's stored radius (1.06e-18 against 1.57e-15) and 1/200 of row 9's.
 - Lemma 6a(5): 1482/1482 components (X and the four real enclosures of each B entry) overlap I103's at x^ and I184's at
   p^. Each centre's run misses the other centre's X on 15 of 38 components, while B overlaps.
 - Mutations: the sign of [[C E] P], the coefficient 2 of -(2 + s) Q scaled by 1 + 1e-9 (6b1) or 1 + 1e-5 (6a), and a
