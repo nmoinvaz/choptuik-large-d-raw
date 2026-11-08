@@ -1,4 +1,4 @@
-# I19-win2: crawl past D 215 with tiny octo-double steps (T129's crawl)
+# I19-win2: chain_fit crawled past D 215 in small octo-double steps
 
 Machine: win2 (Intel Core Ultra 7 265K, 20 cores, AVX2). Worktree `..\choptuik-t126` at origin/main e743608 (octo-double
 build, Python only, no rebuild). venv-t126. 18 threads, below normal. Issue: https://github.com/nmoinvaz/choptuik-large-d/issues/19
