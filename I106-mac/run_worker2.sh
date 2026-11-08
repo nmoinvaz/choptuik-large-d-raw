@@ -1,5 +1,5 @@
 #!/bin/bash
-# Issue #106: the second process's queue from 13:55 UTC, replacing run_worker.sh (stopped between jobs; its running job,
+# Issue #106: the second process's queue from 13:51 UTC, replacing run_worker.sh (stopped between jobs; its running job,
 # C_32x121_D20.0437, finishes first). Added, outside the criteria: 40x79 at D = 100 from #91's map of the pinned chain
 # state there (I91-mac/profiles/gg_D100_M32pin_Ng64.npz), a direct test of the extrapolation, and third starts at
 # D 60.0020 and 40.0201 from #91's maps of hp's double-double states (profiles of up13 and up7). The rest is

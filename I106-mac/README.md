@@ -94,9 +94,9 @@ Exit codes: the 40x79 runs use `--tol 1e-4` (a sanity bound, converged and near 
 - `run_diag.sh`, `diag/d23_from101*`: 40x79 at 23.043278 solved directly from I105-mac's 32x101 state at D = 23
   (`--D_start`): 9 Newton steps from max|F| 3.2e-4, converged, Delta 1.29e-9 below hp. So the 40x79 root near the true
   solution exists there; the failure was the start.
-- `run_worker.sh`, `worker.stdout` (13:39-13:55 UTC): B at 60.001952, 40.020065, 20.043653 and the control
+- `run_worker.sh`, `worker.stdout` (13:39-13:51 UTC): B at 60.001952, 40.020065, 20.043653 and the control
   C_32x121_D20.0437. Stopped between jobs and replaced by `run_worker2.sh`, `worker2.stdout`, which adds, outside the
   criteria, 40x79 at D = 100 from #91's map of the pinned chain state (`res/X_40x79_D100*`) and third starts M from
   #91's maps of hp's states at 60.0020 and 40.0201.
-- `run_cont2.sh`, `cont/cont2.stdout` (from 14:20 UTC): the continuation with restarts, from the 23.043278 root, with
+- `run_cont2.sh`, `cont/cont2.stdout` (from 14:06 UTC): the continuation with restarts, from the 23.043278 root, with
   only 40x79 roots in the predictor's history; a step that fails is solved directly from the nearest 32x101 state.

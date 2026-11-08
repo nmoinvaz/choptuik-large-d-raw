@@ -1,5 +1,5 @@
 #!/bin/bash
-# Issue #106: the 40x79 continuation with restarts, replacing run_cont.sh from 14:20 UTC. run_cont.sh leg 1's step
+# Issue #106: the 40x79 continuation with restarts, replacing run_cont.sh from 14:06 UTC. run_cont.sh leg 1's step
 # 21.912601 -> 23.043278 did not converge; its cubic predictor ran through a resampled 32x81 state (D = 19), and the
 # 40x79 root at 23.043278 exists (diag/d23_from101: from I105-mac's 32x101 state at D = 23, Delta 1.29e-9 below hp).
 # Each round continues from the newest saved path state, with the three before it as the predictor's history (40x79
