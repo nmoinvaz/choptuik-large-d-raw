@@ -13,4 +13,4 @@ cd "$CODE" || exit 2
 export MULTIDOUBLE_SITE=/Users/nathan/Source/venv-anm/lib/python3.13/site-packages
 exec nice -n 10 /Users/nathan/venv-qd/bin/python solver/rt/rt_run.py --start "$START" --start_prev "$PREV" \
     --grids "32x$N" --solver mp --D_to "$DTO" --dD 1 --pred_order "$ORDER" --D_extra "$EXTRA" --extras_off_path \
-    --check_D "$CHECK" --tol 1e-12 --max_products 250 --refresh_dz 1e-5 --patient --it_max 20 --full_below 1e-4 --out "$HERE/cont" --tag "$TAG"
+    --check_D "$CHECK" --tol 1e-12 --max_products 250 --refresh_dz 1e-5 --patient --it_max 20 --full_below 1e-4 --newton_tol "${NEWTON_TOL:-1e-40}" --out "$HERE/cont" --tag "$TAG"

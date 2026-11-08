@@ -66,3 +66,7 @@ same run as the predictor's history.
   started 32x121 a whole unit of D below the check D, from max|F| = 3.2e-3, and diverged; stopped by hand, its record
   in `fol/fromint_32x121*` has ok false): the second 32x121 start is the second 32x101 root (`fol/from101b_32x121*`) or
   the 32x141 root (`fol/from141_32x121*`).
+- A fourth restart of the 32x101 run, from D = 53 (prev 50-52) at 11:21 UTC, with `NEWTON_TOL=1e-38` (rt_run.py
+  --newton_tol; --patient then accepts a stall below 1e-32). The D = 54 step had bounced for 15 Newton steps between
+  max|F| = 6e-35 and 1.2e-33 with max|dz| of 1e-18 to 3e-18 each, above the old acceptance of 1e-34, and was stopped
+  by hand. A step of 3e-18 moves Delta by about 1e-17.
