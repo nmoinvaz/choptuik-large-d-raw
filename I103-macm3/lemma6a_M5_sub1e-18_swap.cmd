@@ -1,0 +1,1 @@
+cd ~/Source/choptuik-large-d/solver/proof && caffeinate -i nice -n 10 /Users/nathan/Source/venv-macm3/bin/python -u lemma6_jump_M.py --M=5 --box=../../../choptuik-large-d-raw/I103-macm3/A_M2_6a_M5_sub1e-18.json --rp=0.08 --k=20 --mutate=swap > ../../../choptuik-large-d-raw/I103-macm3/lemma6a_M5_sub1e-18_swap.log 2>&1

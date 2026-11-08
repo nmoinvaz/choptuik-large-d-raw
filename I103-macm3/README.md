@@ -17,3 +17,13 @@ Results so far (1e-20w still running when this was written):
       there (krawczyk_sub1e-20.log and .cmd are kept).
   sub 1e-20w (1e-20,1e-27,1e-28), the rerun the coordinator asked for by Remote Control: Krawczyk exit 0 (margins +0.999
       +1.000 +0.801 +0.801 +0.320 +0.320), export6a exit 0 (max radius 5.23e-13), lemma 6a running.
+
+Final results.
+  sub 1e-20w: lemma 6a exit 0 after 542 s (04:06:26 UTC): 615 steps, start box radius 5.23e-13, final state radius 1.24e-10,
+      max radius of B 3.89e-06, |H| <= 1.50e+01, |G_slow^-1| <= 1.56e+00, rho_6a [0.08801448685 +/- 2.00e-12] < 1.
+  Controls on the 1e-18 result (the coordinator's Remote Control message), each to its own log, exits in exits.txt:
+    partial (--load-B=B_M5_sub1e-18.json --mutate=partial): exit 0, "G_slow is 13 x 17: not square ... [MUTATION partial:
+        failure expected]", reload prints the saving run's radii (final state 1.07e-09, B 3.24e-05).
+    coords (--load-B=B_M5_sub1e-18.json --mutate=coords): exit 2, rho_6a 3.412 (not < 1), |H| <= 1.56e+03, so caught.
+    swap (full run, --mutate=swap, no --save-B or --json): exit 0 after 232 s, start box radius 3.48e-01 and "backward
+        integration failed (step size underflow at t = 0.058581030927598476) ... [MUTATION swap: failure expected]".
