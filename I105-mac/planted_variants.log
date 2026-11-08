@@ -1,0 +1,49 @@
+== inner gcr precond lu_f64
+    newton_mp it 0: max|F| 2.163e+00 -> 2.897e-18, 80 products to 2.4e-18, step 1, max|dz| 1.5e+02, 2.09 s (products 0.7 s, precond 0.1 s)
+    newton_mp it 1: max|F| 2.897e-18 -> 2.897e-18, 80 products to 9.7e-01, step 0.0078125, max|dz| 4.0e-05, 2.13 s (products 0.7 s, precond 0.1 s)
+    newton_mp it 2: max|F| 2.897e-18 -> 2.897e-18, 80 products to 9.6e-01, step 0.0078125, max|dz| 2.6e-05, 2.16 s (products 0.7 s, precond 0.1 s)
+    newton_mp it 3: max|F| 2.897e-18 -> 2.851e-18, 80 products to 9.5e-01, step 1, max|dz| 4.8e-03, 2.1 s (products 0.7 s, precond 0.1 s)
+planted L 1500 kappa 1e20 prec 192 inner gcr precond lu_f64 mutate None: error 4.70e+01 (< 1e-30: False), 4 Newton steps (<= 8: True), products [80, 80, 80, 80], f64 LU alone 6.63e+01 (> 1e-6: True); preconditioner 0.0 s, solve 8.5 s
+FAIL
+inner gcr precond lu_f64 exit 1
+== inner gcr precond inv_dd
+    newton_mp it 0: max|F| 2.163e+00 -> 1.641e-09, 80 products to 9.9e-10, step 1, max|dz| 4.9e+03, 2.14 s (products 0.7 s, precond 0.1 s)
+    newton_mp it 1: max|F| 1.641e-09 -> 3.939e-16, 80 products to 2.3e-07, step 1, max|dz| 4.9e+03, 2.15 s (products 0.7 s, precond 0.1 s)
+    newton_mp it 2: max|F| 3.939e-16 -> 6.716e-22, 80 products to 1.5e-06, step 1, max|dz| 1.5e-04, 2.15 s (products 0.7 s, precond 0.1 s)
+    newton_mp it 3: max|F| 6.716e-22 -> 2.006e-27, 80 products to 3.4e-06, step 1, max|dz| 8.0e-10, 2.16 s (products 0.7 s, precond 0.1 s)
+    newton_mp it 4: max|F| 2.006e-27 -> 1.130e-32, 80 products to 5.2e-06, step 1, max|dz| 2.9e-15, 2.15 s (products 0.7 s, precond 0.1 s)
+    newton_mp it 5: max|F| 1.130e-32 -> 2.287e-38, 80 products to 2.0e-06, step 1, max|dz| 2.7e-21, 2.15 s (products 0.7 s, precond 0.1 s)
+    newton_mp it 6: max|F| 2.287e-38 -> 9.379e-44, 80 products to 3.8e-06, step 1, max|dz| 1.4e-25, 2.14 s (products 0.7 s, precond 0.1 s)
+    newton_mp it 7: max|F| 9.379e-44 -> 5.293e-49, 80 products to 6.5e-06, step 1, max|dz| 9.7e-34, 2.14 s (products 0.7 s, precond 0.1 s)
+planted L 1500 kappa 1e20 prec 192 inner gcr precond inv_dd mutate None: error 9.27e-37 (< 1e-30: True), 8 Newton steps (<= 8: True), products [80, 80, 80, 80, 80, 80, 80, 80], f64 LU alone 6.63e+01 (> 1e-6: True); preconditioner 0.0 s, solve 17.2 s
+PASS
+inner gcr precond inv_dd exit 0
+== inner gcr precond lu_dd
+    newton_mp it 0: max|F| 2.163e+00 -> 5.887e-37, 11 products to 3.5e-37, step 1, max|dz| 3.2e+00, 0.19 s (products 0.1 s, precond 0.0 s)
+    newton_mp it 1: max|F| 5.887e-37 -> 1.593e-57, 11 products to 1.5e-32, step 1, max|dz| 9.1e-18, 0.18 s (products 0.1 s, precond 0.0 s)
+    newton_mp it 2: max|F| 1.593e-57 -> 1.274e-57, 11 products to 6.9e-32, step 1, max|dz| 2.6e-39, 0.18 s (products 0.1 s, precond 0.0 s)
+    newton_mp it 3: max|F| 1.274e-57 -> 6.372e-58, 11 products to 8.0e-32, step 0.5, max|dz| 7.5e-40, 0.18 s (products 0.1 s, precond 0.0 s)
+    newton_mp it 4: max|F| 6.372e-58 -> 7.965e-58, 11 products to 5.1e-32, step 0.0078125, max|dz| 7.5e-42, 0.21 s (products 0.1 s, precond 0.0 s)
+planted L 1500 kappa 1e20 prec 192 inner gcr precond lu_dd mutate None: error 6.11e-41 (< 1e-30: True), 5 Newton steps (<= 8: True), products [11, 11, 11, 11, 11], f64 LU alone 6.63e+01 (> 1e-6: True); preconditioner 0.0 s, solve 0.9 s
+PASS
+inner gcr precond lu_dd exit 0
+== inner fgmres precond lu_f64
+    newton_mp it 0: max|F| 2.163e+00 -> 7.500e-31, 45 products to 5.1e-31, step 1, max|dz| 3.2e+00, 0.72 s (products 0.4 s, precond 0.1 s)
+    newton_mp it 1: max|F| 7.500e-31 -> 1.274e-57, 57 products to 9.5e-31, step 1, max|dz| 2.4e-12, 1.0 s (products 0.5 s, precond 0.1 s)
+    newton_mp it 2: max|F| 1.274e-57 -> 2.230e-57, 59 products to 4.2e-31, step 0.0078125, max|dz| 6.6e-41, 1.09 s (products 0.5 s, precond 0.1 s)
+    newton_mp it 3: max|F| 2.230e-57 -> 1.274e-57, 58 products to 5.9e-31, step 1, max|dz| 1.1e-38, 1.02 s (products 0.5 s, precond 0.1 s)
+planted L 1500 kappa 1e20 prec 192 inner fgmres precond lu_f64 mutate None: error 1.36e-39 (< 1e-30: True), 4 Newton steps (<= 8: True), products [45, 57, 59, 58], f64 LU alone 6.63e+01 (> 1e-6: True); preconditioner 0.0 s, solve 3.8 s
+PASS
+inner fgmres precond lu_f64 exit 0
+== inner fgmres precond inv_dd
+    newton_mp it 0: max|F| 2.163e+00 -> 1.641e-09, 80 products to 9.9e-10, step 1, max|dz| 4.9e+03, 1.7 s (products 0.7 s, precond 0.1 s)
+    newton_mp it 1: max|F| 1.641e-09 -> 3.939e-16, 80 products to 2.3e-07, step 1, max|dz| 4.9e+03, 1.69 s (products 0.7 s, precond 0.1 s)
+    newton_mp it 2: max|F| 3.939e-16 -> 6.716e-22, 80 products to 1.5e-06, step 1, max|dz| 1.5e-04, 1.69 s (products 0.7 s, precond 0.1 s)
+    newton_mp it 3: max|F| 6.716e-22 -> 2.006e-27, 80 products to 3.4e-06, step 1, max|dz| 8.0e-10, 1.69 s (products 0.7 s, precond 0.1 s)
+    newton_mp it 4: max|F| 2.006e-27 -> 1.130e-32, 80 products to 5.2e-06, step 1, max|dz| 2.9e-15, 1.69 s (products 0.7 s, precond 0.1 s)
+    newton_mp it 5: max|F| 1.130e-32 -> 2.287e-38, 80 products to 2.0e-06, step 1, max|dz| 2.7e-21, 1.69 s (products 0.7 s, precond 0.1 s)
+    newton_mp it 6: max|F| 2.287e-38 -> 9.379e-44, 80 products to 3.8e-06, step 1, max|dz| 1.4e-25, 1.73 s (products 0.7 s, precond 0.1 s)
+    newton_mp it 7: max|F| 9.379e-44 -> 5.293e-49, 80 products to 6.5e-06, step 1, max|dz| 9.7e-34, 1.7 s (products 0.7 s, precond 0.1 s)
+planted L 1500 kappa 1e20 prec 192 inner fgmres precond inv_dd mutate None: error 9.29e-37 (< 1e-30: True), 8 Newton steps (<= 8: True), products [80, 80, 80, 80, 80, 80, 80, 80], f64 LU alone 6.63e+01 (> 1e-6: True); preconditioner 0.0 s, solve 13.6 s
+PASS
+inner fgmres precond inv_dd exit 0

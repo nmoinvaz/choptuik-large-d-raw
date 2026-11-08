@@ -1,0 +1,17 @@
+    newton_mp it 0: max|F| 2.163e+00 -> 2.516e-06, gcr 73 products to 1.3e-18, step 1, 1.8 s
+Traceback (most recent call last):
+  File "/Users/nathan/Source/choptuik-large-d/.claude/worktrees/agent-a712af3d7e179233b/solver/rt/rt_mpsolve.py", line 259, in <module>
+    main()
+    ~~~~^^
+  File "/Users/nathan/Source/choptuik-large-d/.claude/worktrees/agent-a712af3d7e179233b/solver/rt/rt_mpsolve.py", line 254, in main
+    sys.exit(0 if selftest(a.mutate, a.out) else 1)
+                  ~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/nathan/Source/choptuik-large-d/.claude/worktrees/agent-a712af3d7e179233b/solver/rt/rt_mpsolve.py", line 222, in selftest
+    x, ok, info = newton_mp(None, obj(np.zeros(L)), lu, tol=1e-300, it_max=8, residual=residual, apply=apply,
+                  ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                            log=print)
+                            ^^^^^^^^^^
+  File "/Users/nathan/Source/choptuik-large-d/.claude/worktrees/agent-a712af3d7e179233b/solver/rt/rt_mpsolve.py", line 163, in newton_mp
+    f"{info['inner_res'][-1]:.1e}, step {float(lam.mid()):g}, {info['secs'][-1]} s")
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: unsupported format string passed to NoneType.__format__
