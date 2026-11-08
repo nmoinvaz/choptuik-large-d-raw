@@ -2,3 +2,7 @@
   start resampled exactly in xi (arb) from 32x101
     newton_mp it 0: max|F| 2.974e-29 -> 3.633e-35, 96 products to 8.9e-38, step 1, max|dz| 1.4e-18, 134.38 s (products 92.9 s, precond 20.0 s)
     newton_mp it 1: max|F| 3.633e-35 -> 1.033e-24, 97 products to 1.9e-34, step 1, max|dz| 1.5e-13, 142.13 s (products 97.3 s, precond 21.4 s)
+    newton_mp it 2: max|F| 1.033e-24 -> 1.030e-48, 75 products to 3.2e-31, step 1, max|dz| 1.7e-25, 105.24 s (products 74.4 s, precond 16.6 s)
+  start D 50.007491 grid 32x121 L 13665: 3 Newton steps, max|F| 3.0e-29 -> 1.0e-48, products [96, 97, 75], mu 0.129189625720957, Delta 1.8416311332004091180 (xi=1: 1.841631133200409), hp 1.8416311332022643, diff -1.86e-12, LU pivot ratio 7.8e+13, J 25 s, LU 10 s, Newton 382 s (rebuilds 0, 0 s)
+  CHECK D = 50.007491 grid 32x121: |Delta_RT - Delta_hp| = 1.86e-12 > 1e-12 FAIL
+== exit 1

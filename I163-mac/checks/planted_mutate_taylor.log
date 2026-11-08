@@ -1,0 +1,10 @@
+== 2026-11-08 22:09:28 UTC nice -n 10 /Users/nathan/venv-qd/bin/python solver/rt/rt_horizon.py planted --raw /Users/nathan/Source/choptuik-large-d-raw --mutate=taylor --out /Users/nathan/Source/choptuik-large-d-raw/I163-mac/checks/planted.jsonl (code 74973fd)
+(a) horizon rows against sympy's Taylor coefficients (orders 0..7, three t): arb 7.8e-04 (< 1e-30: False), f64 rows as scaled in the residual, relative to N^2 8.2e-06 (< 1e-12: False)
+(c) order-0 row against the collocated row at xi = -1: 3.2e-03 (< 1e-40: False)
+    newton_mp it 0: max|F| 5.054e-04 -> 1.198e-08, 13 products to 3.4e-31, step 1, max|dz| 2.0e-06, 1.38 s (products 1.1 s, precond 0.2 s)
+    newton_mp it 1: max|F| 1.198e-08 -> 7.066e-16, 15 products to 3.9e-32, step 1, max|dz| 1.5e-08, 1.55 s (products 1.2 s, precond 0.2 s)
+    newton_mp it 2: max|F| 7.066e-16 -> 1.597e-27, 15 products to 6.3e-32, step 1, max|dz| 4.1e-14, 1.53 s (products 1.2 s, precond 0.2 s)
+    newton_mp it 3: max|F| 1.597e-27 -> 6.583e-54, 15 products to 2.8e-31, step 1, max|dz| 3.6e-27, 1.58 s (products 1.2 s, precond 0.2 s)
+(b) forced system at D = 50.007491 on 16x41 with K = 7: max|z - z*| 1.9e-44 after 4 Newton steps (< 1e-30 within 10: True); products [13, 15, 15, 15]
+FAIL
+== exit 1

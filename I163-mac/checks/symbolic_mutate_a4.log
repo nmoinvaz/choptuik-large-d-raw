@@ -1,0 +1,17 @@
+== 2026-11-08 22:08:52 UTC nice -n 10 /Users/nathan/venv-qd/bin/python solver/rt/rt_horizon.py symbolic /Users/nathan/Source/choptuik-large-d-raw/I145-mac/cont/cont_32x101_D50.0075_32x101.npz --mutate=a4 (code 74973fd)
+  Omega_2^+ / xi = D^+ omega_2^- + G_2: ok
+  Omega_3^+ / xi = D^+ omega_3^- + G_3: ok
+  Omega_4^+ / xi = D^+ omega_4^- + G_4: ok
+  A = dG/dm at xi = -1, rows and columns in the order (omega_2, omega_4, omega_3):
+    [-D*a1/2 + D*m2/2 - D*p2/2 + 3*a1/2 - 3*m2/2 + p2/2,  0,  0]
+    [p4*(2 - D)/2,  -D*mu/2 - D*p2/2 + 2*mu + p2,  0]
+    [D**2*a1/4 - D**2*m2/4 + D**2*p2/4 - 5*D*a1/4 + 5*D*m2/4 - 5*D*p2/4 + 3*a1/2 - 3*m2/2 + 3*p2/2,  p4*(2 - D)/2,  mu]
+  lower triangular: ok
+  a_2 = -(D*a1 - D*m2 + D*p2 - 3*a1 + 3*m2 - p2)/2
+  a_4 = -1001*(D*mu + D*p2 - 4*mu - 2*p2)/2000
+  a_3 = mu (ok, lambda_3 = -1)
+  lambda_j = -(<a_j> + i k)/mu; order n of the series: (d_t + mu n + A) c_n = (lower orders)
+  order-n operator d_t + mu n + A on the series (orders 1..3): ok
+  A against rt_model's Jacobian at xi = -1 (cont_32x101_D50.0075_32x101.npz, 16x41, all t): max relative difference 7.7e-04 (< 1e-12: FAIL)
+exit 1 ['A vs Jacobian']
+== exit 1
