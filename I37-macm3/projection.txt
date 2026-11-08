@@ -1,0 +1,27 @@
+Projection of lemma 6b1(5)'s full run (macm3, p^ +- 1e-18), from the ray log and design_M5.txt.
+Model: Lohner steps of row j = arc length of row j times the ray's steps per unit |u| at |u|_j (mean of the two
+neighbouring ray segments); 0.192 s per step, row 17's 353 s over its 1838 steps (the ray: 476 s over 2520 steps).
+row  |u|      discs  arc   steps/unit  steps   hours
+  0   405.00    38   954       3.04    2901    0.15
+  1   378.36    35   891       3.10    2759    0.15
+  2   351.72    33   829       3.21    2661    0.14
+  3   325.08    31   766       3.36    2573    0.14
+  4   298.44    28   703       3.57    2507    0.13
+  5   271.80    26   640       3.81    2438    0.13
+  6   245.16    24   578       4.09    2365    0.13
+  7   218.52    21   515       4.43    2281    0.12
+  8   191.88    19   452       4.88    2206    0.12
+  9   165.24    17   389       5.44    2117    0.11
+ 10   138.60    14   327       6.23    2038    0.11
+ 11   111.96    12   264       7.39    1952    0.10
+ 12    89.40    14   211       8.93    1885    0.10
+ 13    71.64    12   169      11.12    1879    0.10
+ 14    53.88     9   127      14.76    1874    0.10
+ 15    39.18    10    92      20.95    1928    0.10
+ 16    30.12    13    71      28.56    2028    0.11
+ 17    23.46    10    55      32.28    1776    0.09
+row 17: predicted 1776 steps, measured 1838 steps (3.4% below the measurement)
+total 40168 steps = 2.1 h of process time (upper, steeper neighbour 2.3 h), 366 discs
+rows 0 to 11: 28798 steps, M = 3's rows 0 to 11 took 11676
+Not measured: any row but 17, and the disc certificates of the n = 70, r = 24 rows (row 17 has n = 50, r = 6, and its
+discs cost under a second each). The box radius along an arc grows 3e7-fold in row 17 and may cost more steps elsewhere.
