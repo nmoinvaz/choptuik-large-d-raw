@@ -20,3 +20,8 @@ Run 1 stopped at 04:29:05 UTC, about 58 min in. Windows Update (MoUsoCoreWorker.
 (Planned)", System event 1074) restarted win2, which came back on build 26300 at 04:30:06 UTC. The three logs end at
 k 19 (3002 s, 3013 s, 3010 s, against T99's 3224 s), with no traceback and no JSON written. mem_guard.log ends at
 04:28 UTC with 37.2 GB free.
+
+Run 2, relaunched 2026-11-08 05:24:49 UTC (coordinator's go on #82): the issue's three commands at Normal priority,
+from the same worktree `..\choptuik-t126` at c691ae3 (solver/inner_amp and util_report.py unchanged at 700da3a) and
+venv-t126, through `run_i82_one.cmd <wf>`, which appends the exit code to `w<wf>_done.txt`. The memory guard watches
+the new 1.11 main. Run 1's files are `w<wf>_run1.log`, `mem_guard_run1.log` and `_launch_utc_run1.txt`.
