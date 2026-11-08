@@ -83,4 +83,20 @@ Exit codes: the 40x79 runs use `--tol 1e-4` (a sanity bound, converged and near 
 
 ## What ran
 
-(filled in as the runs go)
+- `fit/planted*.log`: `rt_trunc_fit.py --planted` (exit 0) and `--mutate=rate` (exit 1), before any real data was
+  fitted. The first run (`fit/planted_first_run.log`, exit 1) had a wrong planted expectation: a negative delta planted
+  as "between", while the rule of criterion 6 as written makes it "far below" (its upper end is below d/10). The planted
+  case was corrected; the rule is unchanged.
+- `run_cont.sh 1`, `cont/leg1.stdout`, `cont/cont_40x79.*` (13:39 UTC): the continuation A from the 32x81 state at
+  20.043653. It converged at 20.043653, 20.991519 and 21.912601. The step to 23.043278 did not: after the first Newton
+  step (max|F| 2.7e-4 -> 7e-8) the steps were halved to 1/128 and max|F| crept up to 1e-6 in 20 steps, with Delta
+  1.8e-2 off (exit 1). Its cubic predictor ran through the resampled 32x81 state at D = 19, which is not a 40x79 root.
+- `run_diag.sh`, `diag/d23_from101*`: 40x79 at 23.043278 solved directly from I105-mac's 32x101 state at D = 23
+  (`--D_start`): 9 Newton steps from max|F| 3.2e-4, converged, Delta 1.29e-9 below hp. So the 40x79 root near the true
+  solution exists there; the failure was the start.
+- `run_worker.sh`, `worker.stdout` (13:39-13:55 UTC): B at 60.001952, 40.020065, 20.043653 and the control
+  C_32x121_D20.0437. Stopped between jobs and replaced by `run_worker2.sh`, `worker2.stdout`, which adds, outside the
+  criteria, 40x79 at D = 100 from #91's map of the pinned chain state (`res/X_40x79_D100*`) and third starts M from
+  #91's maps of hp's states at 60.0020 and 40.0201.
+- `run_cont2.sh`, `cont/cont2.stdout` (from 14:20 UTC): the continuation with restarts, from the 23.043278 root, with
+  only 40x79 roots in the predictor's history; a step that fails is solved directly from the nearest 32x101 state.
