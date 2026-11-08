@@ -58,3 +58,7 @@ same run as the predictor's history.
   state) and 32x121 (from the 32x141 state). Both reproduce their first roots' Delta to all 20 printed digits.
 - `run_worker2.sh`, `worker2.stdout` (from 10:20 UTC, replacing `run_worker.sh`): the queue with these root tests
   added at each check D (`fol/from121_32x101*`, `fol/from141_32x121*`). The 34.99 and 40.02 tests are marked done.
+- `run_worker3.sh`, `worker3.stdout` (from 10:44 UTC, replacing `run_worker2.sh`, whose 32x141 solve at D 44.96 took
+  9 min and landed 3.8e-12 from hp): 32x121 at each check D, then the root tests 32x121 -> 32x101
+  (`fol/from121_32x101*`) and a second start for 32x121 from the 32x101 state at the integer D below the check D
+  (`fol/fromint_32x121*`, rt_run.py --D_start), then 32x141 at the check D, then 32x121 at the newest D.
