@@ -1,0 +1,14 @@
+$ python3 check.py --set=claimed --mutate=S49
+mutation active: S49: c2: 3/16 -> 1/16; enters (S37) at eps^3 (printed and claimed sets)
+
+== set claimed ==
+  S36  eps^0:0  eps^1/2:0  eps^1:0  eps^3/2:0  eps^2:0  eps^5/2:0  eps^3:open(56)
+  S37  eps^0:0  eps^1/2:0  eps^1:0  eps^3/2:0  eps^2:0  eps^5/2:0  eps^3:FAIL(1)  eps^7/2:0  eps^4:open(49)
+  S38  eps^0:0  eps^1/2:0  eps^1:0  eps^3/2:0  eps^2:0  eps^5/2:open(35)
+  S39  eps^0:0  eps^1/2:0  eps^1:0  eps^3/2:0  eps^2:0  eps^5/2:0  eps^3:0  eps^7/2:open(31)
+  key: 0 = coefficient vanishes; FAIL(n) = nonzero at or below the last order the tested terms fix
+       (n terms); open(n) = nonzero at an order that needs a term not given or not tested.
+
+verdict claimed: FAIL, first at eps^3 of (S37)
+
+exit 1
