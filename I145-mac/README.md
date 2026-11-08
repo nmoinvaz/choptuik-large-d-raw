@@ -40,3 +40,9 @@ same run as the predictor's history.
   (`run_cont.sh ... 100 3`), and then with `--patient --it_max 20`, after #105's stall rule ended D = 34 unconverged at
   max|F| = 1.2e-26 (record with ok false). The follower's D = 32 solve stopped the same way at 1.5e-26 and was redone
   with --patient.
+- A third restart, from D = 34 (prev 31-33): `--full_below 1e-10` let D = 34 converge, but at D = 35 a full step of
+  3.4e-9 was halved to 1/128 for 8 steps while max|F| grew from 4.4e-19 to 2.2e-18. From 08:46 UTC the runs take every
+  step below 1e-4 in full (`--full_below 1e-4`, `EXTRA=` without 34.993266, already done).
+- `controls/planted*`: solver/rt/rt_mpsolve.py --selftest at the code of these runs (exit 0, error 6.9e-40).
+- `fit/`: solver/rt/rt_cost_fit.py --planted and its mutations `rate`, `slope` (exit 0, 1, 1); solver/rt/rt_pred_check.py
+  on #105's 32x101 states (`pred_check.log`, exit 0) and its `--mutate=order` (exit 1).
