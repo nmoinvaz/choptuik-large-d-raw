@@ -101,7 +101,7 @@ Exit codes: the 40x79 runs use `--tol 1e-4` (a sanity bound, converged and near 
 - `run_cont2.sh`, `cont/cont2.stdout` (from 14:06 UTC): the continuation with restarts, from the 23.043278 root, with
   only 40x79 roots in the predictor's history; a step that fails is solved directly from the nearest 32x101 state.
 
-## The pre-registered fit, and a prediction for the extension (16:12 UTC, before any data past D = 60.0)
+## The pre-registered fit, and a prediction for the extension (16:10 UTC, before any data past D = 60.0)
 
 `fit/trunc_fit.log` (rt_trunc_fit.py on `cont/cont_40x79.jsonl`, exit 0) applies criteria 3 and 6 as written. delta
 changes sign between D = 46.0 and 47.0, so all four windows reduce to the 11-14 points from 47.0 to 60.0. The log fits
