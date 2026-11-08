@@ -71,3 +71,24 @@
 == 2026-11-08 14:16:27 UTC a101_32x87 D54.9961
 == 2026-11-08 14:16:28 UTC  start /Users/nathan/Source/choptuik-large-d-raw/I145-mac/cont/cont_32x101_D54.9961_32x101.npz (D 54.996085, 32x101) D_start 54.996085 grids [(32, 87)] solver mp prec 192 mutate None
     newton_mp it 0: max|F| 4.535e-14 -> 1.132e-26, 47 products to 1.8e-34, step 1, max|dz| 2.1e-14, 32.33 s (products 22.8 s, precond 5.4 s)
+    newton_mp it 1: max|F| 1.132e-26 -> 3.250e-22, 61 products to 2.5e-39, step 1, max|dz| 1.3e-12, 47.54 s (products 32.8 s, precond 7.7 s)
+    newton_mp it 2: max|F| 3.250e-22 -> 8.617e-21, 63 products to 5.0e-34, step 1, max|dz| 7.7e-12, 49.89 s (products 34.4 s, precond 8.1 s)
+    newton_mp it 3: max|F| 8.617e-21 -> 3.235e-40, 51 products to 8.2e-31, step 1, max|dz| 1.3e-21, 37.48 s (products 26.6 s, precond 6.1 s)
+  start D 54.996085 grid 32x87 L 9857: 4 Newton steps, max|F| 4.5e-14 -> 3.2e-40, products [47, 61, 63, 51], mu 0.129247570030465, Delta 1.8243943371861163829 (xi=1: 1.824394337186116), hp 1.824394337272626, diff -8.65e-11, LU pivot ratio 2.3e+14, J 14 s, LU 9 s, Newton 167 s (rebuilds 0, 0 s)
+  CHECK D = 54.996085 grid 32x87: |Delta_RT - Delta_hp| = 8.65e-11 > 1e-12 FAIL
+== exit 1
+== exit 1 a101_32x87 D54.9961
+== 2026-11-08 14:19:38 UTC done
+== 2026-11-08 14:19:38 UTC a101_48x95 D60.0020
+== 2026-11-08 14:19:38 UTC  start /Users/nathan/Source/choptuik-large-d-raw/I145-mac/cont/cont_32x101_D60.0020_32x101.npz (D 60.001952, 32x101) D_start 60.001952 grids [(48, 95)] solver mp prec 192 mutate None
+    newton_mp it 0: max|F| 7.620e-10 -> 1.010e-16, 55 products to 1.3e-37, step 1, max|dz| 1.9e-09, 76.25 s (products 52.0 s, precond 15.3 s)
+    newton_mp it 1: max|F| 1.010e-16 -> 4.635e-13, 73 products to 2.4e-37, step 1, max|dz| 1.6e-07, 108.11 s (products 72.2 s, precond 20.6 s)
+    newton_mp it 2: max|F| 4.635e-13 -> 6.455e-13, 89 products to 1.5e-34, step 1, max|dz| 1.5e-07, 136.17 s (products 88.9 s, precond 25.1 s)
+    newton_mp: preconditioner rebuilt at step 3 (44.9 s)
+    newton_mp it 3: max|F| 6.455e-13 -> 6.792e-11, 66 products to 5.6e-31, step 1, max|dz| 8.8e-07, 99.33 s (products 66.9 s, precond 19.1 s)
+    newton_mp it 4: max|F| 6.792e-11 -> 3.870e-12, 94 products to 9.8e-31, step 1, max|dz| 2.1e-07, 145.73 s (products 94.5 s, precond 26.6 s)
+    newton_mp it 5: max|F| 3.870e-12 -> 3.925e-11, 100 products to 2.2e-31, step 1, max|dz| 6.7e-07, 157.39 s (products 100.7 s, precond 28.4 s)
+    newton_mp: preconditioner rebuilt at step 6 (45.4 s)
+    newton_mp it 6: max|F| 3.925e-11 -> 6.296e-21, 57 products to 8.2e-33, step 1, max|dz| 1.1e-11, 85.75 s (products 58.5 s, precond 17.1 s)
+    newton_mp it 7: max|F| 6.296e-21 -> 9.134e-14, 79 products to 9.2e-36, step 1, max|dz| 9.1e-08, 118.31 s (products 78.7 s, precond 22.2 s)
+    newton_mp it 8: max|F| 9.134e-14 -> 6.443e-25, 74 products to 8.4e-31, step 1, max|dz| 9.8e-14, 103.53 s (products 69.2 s, precond 19.7 s)
