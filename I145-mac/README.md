@@ -49,3 +49,12 @@ same run as the predictor's history.
 - `run_worker.sh`, `worker.stdout` (from 08:58 UTC, replacing `run_follow.sh`): one queue for the second process,
   32x121 re-solves of the continuation's states at the check D first, then 32x141 re-solves of the 32x121 states at the
   check D (`fol/fol_32x141*`), then 32x121 at the newest other D.
+- `controls/nt_48x141*`: the 32x141 state at D = 40.020065 re-solved on 48x141 (time resolution). Delta moved by
+  1.3e-20, so N_t = 32 is not what sets 32x141's Delta there.
+- `controls/from101_32x141*`: 32x141 at D = 40.020065 re-solved from the 32x101 state (the follower started from the
+  32x121 state). Both converge (max|F| 2.5e-47 and 5.4e-52), yet their Delta differ by 6.4e-15 and max|z1 - z2| is
+  4.3e-16 (mostly mu and harmonic 0). So the 32x141 root there is not unique to that level.
+- `run_roots.sh`, `controls/from121_32x101*`, `controls/from141_32x121*`: the same test for 32x101 (from the 32x121
+  state) and 32x121 (from the 32x141 state). Both reproduce their first roots' Delta to all 20 printed digits.
+- `run_worker2.sh`, `worker2.stdout` (from 10:20 UTC, replacing `run_worker.sh`): the queue with these root tests
+  added at each check D (`fol/from121_32x101*`, `fol/from141_32x121*`). The 34.99 and 40.02 tests are marked done.
