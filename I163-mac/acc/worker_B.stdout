@@ -32,3 +32,10 @@
 == 2026-11-08 22:06:54 UTC  start /Users/nathan/Source/choptuik-large-d-raw/I145-mac/fol/fol_32x141_D50.0075_32x141.npz (D 50.007491, 32x141) D_start 50.007491 grids [(32, 123)] solver mp prec 192 mutate norows horizon 0
   start resampled exactly in xi (arb) from 32x141
     newton_mp it 0: max|F| 9.369e-31 -> 1.727e-35, 78 products to 2.7e-41, step 1, max|dz| 8.9e-19, 95.68 s (products 66.3 s, precond 15.7 s)
+    newton_mp it 1: max|F| 1.727e-35 -> 2.765e-22, 80 products to 4.4e-39, step 1, max|dz| 2.9e-12, 101.39 s (products 69.7 s, precond 16.6 s)
+    newton_mp it 2: max|F| 2.765e-22 -> 9.900e-44, 61 products to 2.3e-31, step 1, max|dz| 4.6e-23, 75.28 s (products 53.8 s, precond 12.5 s)
+  start D 50.007491 grid 32x123 L 13889: 3 Newton steps, max|F| 9.4e-31 -> 9.9e-44, products [78, 80, 61], mu 0.129189625720650, Delta 1.8416311331965336380 (xi=1: 1.841631133196534), hp 1.8416311332022643, diff -5.73e-12, LU pivot ratio 2.4e+15, J 22 s, LU 10 s, Newton 272 s (rebuilds 0, 0 s)
+  CHECK D = 50.007491 grid 32x123: |Delta_RT - Delta_hp| = 5.73e-12 > 1e-12 FAIL
+== exit 1
+== 2026-11-08 22:12:00 UTC exit 1 b_32x123
+== 2026-11-08 22:12:00 UTC queue queue_B.txt done
