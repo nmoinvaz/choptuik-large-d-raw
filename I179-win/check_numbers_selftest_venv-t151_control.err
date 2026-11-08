@@ -1,0 +1,15 @@
+Traceback (most recent call last):
+  File "C:\Users\nathan\Source\choptuik-i179\check_numbers.py", line 1877, in <module>
+    main()
+  File "C:\Users\nathan\Source\choptuik-i179\check_numbers.py", line 1850, in main
+    groups = [(fn.__name__, fn()) for fn in CHECKS]
+  File "C:\Users\nathan\Source\choptuik-i179\check_numbers.py", line 1850, in <listcomp>
+    groups = [(fn.__name__, fn()) for fn in CHECKS]
+  File "C:\Users\nathan\Source\choptuik-i179\check_numbers.py", line 152, in lowD_limits
+    from plot_lowD_values import C_DELTA, formula
+  File "C:\Users\nathan\Source\choptuik-i179\hp\plot_lowD_values.py", line 24, in <module>
+    from plot_delta import INK, INK_SOFT, SERIES, Panel, Svg, marker  # noqa: E402
+  File "C:\Users\nathan\Source\choptuik-i179\hp\..\solver\plot_delta.py", line 407
+    f'<title>{esc(f"D = {D0:g} to {D1:g}: Δ known to {abs(med):.1e} (" + ("the median" if med > 0 else "below the estimator's resolution: the median difference is 0") + f"; the largest error is {big:.1e}, at D = {bigD:g}). {name}; {kind}")}</title></rect>')
+                                                                                                                                                                                                        ^
+SyntaxError: invalid decimal literal

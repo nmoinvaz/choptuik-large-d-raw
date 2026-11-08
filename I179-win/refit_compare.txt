@@ -1,0 +1,11 @@
+formula_all.refit_distance() on the i7-1185G7 (AVX-512), worktree choptuik-i179 at 45771b3b; thresholds of check_numbers.formula_refit:
+delta_fit_range <= 1e-9, gamma_fit_range <= 1e-8, delta_80 in [0.5e-7, 2e-7]
+
+3.14.10 numpy 2.5.4 scipy 1.18.1, default OpenBLAS kernel
+   delta_fit_range 3.1224e-09 (FAIL)  gamma_fit_range 1.4739e-09 (pass)  delta_80 9.6948e-08 (pass)
+3.10.0 numpy 2.2.6 scipy 1.15.3, default OpenBLAS kernel
+   delta_fit_range 9.3504e-09 (FAIL)  gamma_fit_range 3.0539e-09 (pass)  delta_80 3.1576e-07 (FAIL)
+3.14.10 numpy 2.5.4 scipy 1.18.1, OPENBLAS_CORETYPE=Haswell
+   delta_fit_range 1.3228e-09 (FAIL)  gamma_fit_range 2.5152e-08 (FAIL)  delta_80 9.5960e-09 (FAIL)
+3.10.0 numpy 2.2.6 scipy 1.15.3, OPENBLAS_CORETYPE=Haswell
+   delta_fit_range 7.0493e-09 (FAIL)  gamma_fit_range 2.5685e-08 (FAIL)  delta_80 2.4166e-07 (FAIL)
