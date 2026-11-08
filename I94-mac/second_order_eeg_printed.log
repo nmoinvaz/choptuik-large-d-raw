@@ -1,0 +1,33 @@
+no mutation
+NNLO: as printed (--printed)
+Printed NNLO (S44)-(S51) as printed; check A and B then fail where the printed Pi_3 enters
+A. EEG's NLO and NNLO against Proposition 1's outer expansion (e = 1/n)
+   outer expansion done [0 s]
+   EEG's series re-expanded [11 s]
+   f = c, order e^0: PASS (1 terms in ours)
+   f = c, order e^1: PASS (2 terms in ours)
+   f = c, order e^2: PASS (12 terms in ours)
+   f = c, order e^3: FAIL difference -F0*(x - 1)*(x + 1)*(-12*F0**5*x**4 - 12*F0**5*x**2 - 12*F0**5 - 16*F0**3*x**4 - 160*F0**3*x**2 - 160*F0**3 - 80*F0**2*F1*w0*x**4 - 116*F0**2*F1*w0*x**2 - 116*F0**2*F1*w0 - 16*F0**2*F2*w0**2*x**4 - 16*F0**2*F2*w0**2*x**2 - 16*F0**2*F2*w0**2 - 48*F0*F1**2*w0**2*x**4 - 12*F0*F1**2*w0**2*x**2 - 12*F0*F1**2*w0**2 + 24*F0*x**4 + 24*F0*x**2 + 24*F0 + 62*F1*w0*x**4 + 62*F1*w0*x**2 + 62*F1*w0 + 57*F2*w0**2*x**4 + 57*F2*w0**2*x**2 + 57*F2*w0**2 + 22*F3*w0**3*x**4 + 22*F3*w0**3*x**2 + 22*F3*w0**3 + 3*F4*w0**4*x**4 + 3*F4*w0**4*x**2 + 3*F4*w0**4)/36
+   Omega = u/x^2, order e^0: PASS (1 terms in ours)
+   Omega = u/x^2, order e^1: PASS (1 terms in ours)
+   Omega = u/x^2, order e^2: PASS (6 terms in ours)
+   Omega = u/x^2, order e^3: FAIL difference -F0*x**2*(-12*F0**5*x**2 - 16*F0**3*x**2 - 96*F0**3 - 80*F0**2*F1*w0*x**2 - 24*F0**2*F1*w0 - 16*F0**2*F2*w0**2*x**2 - 48*F0*F1**2*w0**2*x**2 + 24*F0*F1**2*w0**2 + 24*F0*x**2 + 62*F1*w0*x**2 + 57*F2*w0**2*x**2 + 22*F3*w0**3*x**2 + 3*F4*w0**4*x**2)/6
+   Pi = y/(sqrt2 x), / sqrt(e), order e^0: PASS (1 terms in ours)
+   Pi = y/(sqrt2 x), / sqrt(e), order e^1: PASS (5 terms in ours)
+   Pi = y/(sqrt2 x), / sqrt(e), order e^2: FAIL difference -sqrt(2)*x**2*(-12*F0**5*x**2 - 16*F0**3*x**2 - 96*F0**3 - 80*F0**2*F1*w0*x**2 - 24*F0**2*F1*w0 - 16*F0**2*F2*w0**2*x**2 - 48*F0*F1**2*w0**2*x**2 + 24*F0*F1**2*w0**2 + 24*F0*x**2 + 62*F1*w0*x**2 + 57*F2*w0**2*x**2 + 22*F3*w0**3*x**2 + 3*F4*w0**4*x**2)/24
+   Psi = (p+m)/(sqrt2 x^2), / sqrt(e), order e^0: PASS (1 terms in ours)
+   Psi = (p+m)/(sqrt2 x^2), / sqrt(e), order e^1: PASS (2 terms in ours)
+   Psi = (p+m)/(sqrt2 x^2), / sqrt(e), order e^2: PASS (13 terms in ours)
+B. EEG's series in their equations (S36)-(S39)
+   (S36) vanishes through eps^2: PASS 
+   (S37) vanishes through eps^3: PASS 
+   (S38) vanishes through eps^3/2: PASS 
+   (S39) vanishes through eps^5/2: FAIL first nonzero at eps^5/2: -(3*x**2*b(tau)**5 + 8*x**2*b(tau)**3 + 40*x**2*b(tau)**2*Derivative(b(tau), tau) + 8*x**2*b(tau)**2*Derivative(b(tau), (tau, 2)) + 24*x**2*b(tau)*Derivative(b(tau), tau)**2 - 24*x**2*b(tau) - 62*x**2*Derivative(b(tau), tau) - 57*x**2*Derivative(b(tau), (tau, 2)) - 22*x**2*Derivative(b(tau), (tau, 3)) - 3*x**2*Derivative(b(tau), (tau, 4)) + 24*b(tau)**3 + 6*b(tau)**2*Derivative(b(tau), tau) - 6*b(tau)*Derivative(b(tau), tau)**2)/6
+C. The gauge map Delta = 4 pi mu/(1 - <Omega(1)>), in eps_E
+   4 pi mu_0 = Delta0
+   4 pi mu_1 = -Delta0*N0 + Delta1   (EEG (S59): N0 = (Delta1 - 4 pi mu1)/(4 pi mu0))
+   4 pi mu_2 = -Delta0*N01 - Delta0*W2 - Delta1*N0 + Delta2
+   EEG's (S59) N0 = (Delta1 - 4 pi mu1)/(4 pi mu0) = <beta~_0^2>: PASS 
+   Omega_2(tau, 1) = -b(tau)**4 + 3*b(tau)*Derivative(b(tau), tau) + b(tau)*Derivative(b(tau), (tau, 2))  ->  <Omega_2(1)> = -<beta~'^2> - <beta~^4>
+
+FAILED: f = c, order e^3, Omega = u/x^2, order e^3, Pi = y/(sqrt2 x), / sqrt(e), order e^2, (S39) vanishes through eps^5/2  [13 s]

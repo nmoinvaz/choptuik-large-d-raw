@@ -1,0 +1,41 @@
+mutation: Psi2
+NNLO: with the correction of check D (default)
+A. EEG's NLO and NNLO against Proposition 1's outer expansion (e = 1/n)
+   outer expansion done [0 s]
+   EEG's series re-expanded [16 s]
+   f = c, order e^0: PASS (1 terms in ours)
+   f = c, order e^1: PASS (2 terms in ours)
+   f = c, order e^2: PASS (12 terms in ours)
+   f = c, order e^3: PASS (62 terms in ours)
+   Omega = u/x^2, order e^0: PASS (1 terms in ours)
+   Omega = u/x^2, order e^1: PASS (1 terms in ours)
+   Omega = u/x^2, order e^2: PASS (6 terms in ours)
+   Omega = u/x^2, order e^3: PASS (33 terms in ours)
+   Pi = y/(sqrt2 x), / sqrt(e), order e^0: PASS (1 terms in ours)
+   Pi = y/(sqrt2 x), / sqrt(e), order e^1: PASS (5 terms in ours)
+   Pi = y/(sqrt2 x), / sqrt(e), order e^2: PASS (24 terms in ours)
+   Psi = (p+m)/(sqrt2 x^2), / sqrt(e), order e^0: PASS (1 terms in ours)
+   Psi = (p+m)/(sqrt2 x^2), / sqrt(e), order e^1: PASS (2 terms in ours)
+   Psi = (p+m)/(sqrt2 x^2), / sqrt(e), order e^2: FAIL difference -sqrt(2)*F1*w0*x**2/2
+B. EEG's series in their equations (S36)-(S39)
+   (S36) vanishes through eps^2: PASS 
+   (S37) vanishes through eps^3: PASS 
+   (S38) vanishes through eps^3/2: FAIL first nonzero at eps^3/2: x**2*Derivative(b(tau), tau)/2
+   (S39) vanishes through eps^5/2: FAIL first nonzero at eps^5/2: -x**2*(4*Derivative(b(tau), tau) + Derivative(b(tau), (tau, 2)))/2
+C. The gauge map Delta = 4 pi mu/(1 - <Omega(1)>), in eps_E
+   4 pi mu_0 = Delta0
+   4 pi mu_1 = -Delta0*N0 + Delta1   (EEG (S59): N0 = (Delta1 - 4 pi mu1)/(4 pi mu0))
+   4 pi mu_2 = -Delta0*N01 - Delta0*W2 - Delta1*N0 + Delta2
+   EEG's (S59) N0 = (Delta1 - 4 pi mu1)/(4 pi mu0) = <beta~_0^2>: PASS 
+   Omega_2(tau, 1) = -b(tau)**4 + 3*b(tau)*Derivative(b(tau), tau) + b(tau)*Derivative(b(tau), (tau, 2))  ->  <Omega_2(1)> = -<beta~'^2> - <beta~^4>
+D. The printed NNLO in (S39) at eps^(5/2), and the correction it requires
+   printed: residual at eps^(5/2) = -4*b0**3 - b0**2*b1 + b0*b1**2 + x**2*(-b0**5/2 - 4*b0**3/3 - 20*b0**2*b1/3 - 4*b0**2*b2/3 - 4*b0*b1**2 + 4*b0 + 25*b1/3 + 9*b2 + 11*b3/3 + b4/2)
+   the printed NNLO violates (S39) at eps^(5/2): PASS 
+   (1/x) d_x delta_Pi3 equals that residual: FAIL 
+   corrected Pi_3 = b0*x**2*(4*b0**2 + 4*b0*b1 + b0*b2 + b1**2)/2 + x**4*(3*b0**5 - 24*b0**3 - 40*b0**2*b1 - 8*b0**2*b2 - 8*b0*b1**2 + 24*b0 + 50*b1 + 35*b2 + 10*b3 + b4)/8
+   corrected c_0 = -5*b0**6/16 - 13*b0**4/12 + 31*b0**3*b1/24 + 7*b0**3*b2/24 + b0**2*b1**2/12 + 7*b0**2/12 - b0*b1/12 - 5*b0*b2/8 - 5*b0*b3/12 - b0*b4/24 - 5*b1**2/8 - b1*b2/4 - b2**2/24
+   corrected c_2 = 3*b0**6/16 + 3*b0**4/4 - 3*b0**3*b1/8 - b0**3*b2/8
+   corrected c_4 = b0**6/16 + 5*b0**4/4 + 5*b0**3*b1/8 + b0**3*b2/8 + b0**2*b1**2/4 - 7*b0**2/4 - 5*b0*b1/2 - b0*b2 + b1**2/4
+   corrected c_6 = b0**6/16 - 11*b0**4/12 - 37*b0**3*b1/24 - 7*b0**3*b2/24 - b0**2*b1**2/3 + 7*b0**2/6 + 31*b0*b1/12 + 13*b0*b2/8 + 5*b0*b3/12 + b0*b4/24 + 3*b1**2/8 + b1*b2/4 + b2**2/24
+
+FAILED: Psi = (p+m)/(sqrt2 x^2), / sqrt(e), order e^2, (S38) vanishes through eps^3/2, (S39) vanishes through eps^5/2, (1/x) d_x delta_Pi3 equals that residual  [20 s]

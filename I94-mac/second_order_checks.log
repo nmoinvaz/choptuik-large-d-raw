@@ -1,0 +1,29 @@
+outer: order 0: 1/n: y 0.0e+00 sigma 1.2e-14 c 5.6e-16 (scale 2.0e+01);  1/n^2: y 0.0e+00 sigma 2.6e-13 c 1.4e-14 (scale 2.7e+02)
+outer: order 1: 1/n: y 1.9e-13 sigma 5.7e-12 c 5.5e-15 (scale 2.2e+03);  1/n^2: y 3.5e-12 sigma 1.0e-10 c 1.3e-13 (scale 2.6e+04)
+outer: order 2: 1/n: y 4.4e-11 sigma 1.3e-09 c 1.0e-13 (scale 1.2e+05);  1/n^2: y 7.2e-10 sigma 2.4e-08 c 4.6e-12 (scale 1.4e+06)
+outer: order 3: 1/n: y 6.5e-09 sigma 1.9e-07 c 1.9e-11 (scale 5.2e+06);  1/n^2: y 1.4e-07 sigma 4.7e-06 c 7.9e-10 (scale 5.9e+07)
+outer: order 4: 1/n: y 7.1e-07 sigma 2.1e-05 c 2.2e-09 (scale 3.8e+08);  1/n^2: y 2.1e-05 sigma 7.3e-04 c 1.0e-07 (scale 2.7e+09)
+outer: order 5: 1/n: y 6.4e-05 sigma 1.9e-03 c 2.1e-07 (scale 2.1e+10);  1/n^2: y 2.6e-03 sigma 9.8e-02 c 1.1e-05 (scale 2.6e+11)
+outer: order 6: 1/n: y 4.9e-03 sigma 1.4e-01 c 1.7e-05 (scale 1.2e+12);  1/n^2: y 3.0e-01 sigma 1.2e+01 c 1.1e-03 (scale 1.9e+13)
+outer: order 7: 1/n: y 3.4e-01 sigma 1.1e+01 c 1.3e-03 (scale 9.4e+13);  1/n^2: y 3.1e+01 sigma 1.3e+03 c 1.0e-01 (scale 1.9e+15)
+outer: the O(1/n) inner series (e_1 component) against the next-to-top outer coefficients
+   worst relative deviation: 1.2e-13 (threshold 1e-10) PASS
+outer: the O(1/n^2) inner series (e_1 e_2 component / 2) against the next-to-next-to-top coefficients
+   worst relative deviation: 6.5e-13 (threshold 1e-10) PASS
+   (outer: 0 s)
+
+rhs: component  0: y' 8.7e-16  sigma' 7.4e-14  c' 3.9e-16
+rhs: component  1: y' 2.8e-15  sigma' 1.8e-13  c' 4.0e-16
+rhs: component  2: y' 2.7e-12  sigma' 3.3e-11  c' 6.3e-16
+rhs: component  4: y' 2.7e-12  sigma' 3.3e-11  c' 6.3e-16
+rhs: component  6: y' 2.1e-10  sigma' 4.2e-09  c' 1.1e-15
+rhs: component  3: y' 2.6e-12  sigma' 2.3e-11  c' 3.2e-16
+rhs: component  5: y' 2.6e-12  sigma' 2.2e-11  c' 3.0e-16
+rhs: component  7: y' 2.2e-10  sigma' 2.2e-09  c' 1.9e-15
+rhs: component  9: y' 1.2e-14  sigma' 8.7e-14  c' 3.5e-16
+rhs: component 16: y' 8.0e-16  sigma' 2.0e-13  c' 2.1e-16
+rhs: right-hand side against the derivative of the summed series
+   worst relative deviation: 4.2e-09 (threshold 1e-08) PASS
+   (rhs: 0 s)
+
+ALL PASS

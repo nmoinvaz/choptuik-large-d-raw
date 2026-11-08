@@ -1,0 +1,20 @@
+mutation: phi
+(a) the exact equations in inner variables
+   c equation exact in inner variables: PASS
+   u equation exact in inner variables: PASS
+   y equation exact in inner variables: PASS
+   sigma equation exact in inner variables: PASS
+(b) the slaved u to O(e^2)
+   u = E + e Psi + e^2 Phi solves the u equation to O(e^3): FAIL
+(c) the O(e^2) system = the exact system expanded to O(nu^4), no odd powers
+   y equation to O(nu^4) equals the stated form: PASS
+   y equation: no odd powers of nu through nu^3 (found []): PASS
+   c equation to O(nu^4) equals the stated form: FAIL
+   c equation: no odd powers of nu through nu^3 (found []): PASS
+   sigma equation = L sigma - (xi d_xi - 1)(c y) + y (xi c_xi - c u), exactly: PASS
+(d) the time reparametrization is exact for the exact system
+   y equation covariant under t -> T(t), c -> T' c: PASS
+   sigma equation covariant under t -> T(t), c -> T' c: PASS
+   c equation covariant under t -> T(t), c -> T' c: PASS
+   u equation covariant under t -> T(t), c -> T' c: PASS
+FAILED: u = E + e Psi + e^2 Phi solves the u equation to O(e^3), c equation to O(nu^4) equals the stated form
