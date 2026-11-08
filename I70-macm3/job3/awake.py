@@ -13,6 +13,7 @@ RUNS = [  # name, start UTC, end UTC, wall seconds (driver.txt, exits.txt)
     ("modecount_cx rebuild for 3.14", "2026-11-08 21:55:23", "2026-11-08 21:55:55", 32),
     ("pilot on 3.14 (attempt 2)", "2026-11-08 21:57:48", "2026-11-08 21:59:52", 124),
     ("pilot control on 3.13", "2026-11-08 22:00:33", "2026-11-08 22:02:42", 129),
+    ("count from the stored M 48 state", "2026-11-08 22:08:33", "2026-11-08 22:37:29", 1736),
 ]
 
 log = subprocess.run(["/usr/bin/pmset", "-g", "log"], capture_output=True, text=True).stdout
