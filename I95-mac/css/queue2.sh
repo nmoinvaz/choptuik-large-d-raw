@@ -17,3 +17,5 @@ run boxes 20 0.47996049+6.06909284j --out=$O
 run boxes 40 0.50779164+6.84526018j --out=$O
 run root 20 2.0973 --out=$R/roots_k0.jsonl
 run root 40 2.0565 --out=$R/roots_k0.jsonl
+run boxes 80 0.52199898+7.33689470j --out=$O
+run root 80 2.0312 --out=$R/roots_k0.jsonl
