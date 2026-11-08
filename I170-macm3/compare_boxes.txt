@@ -1,0 +1,19 @@
+wind(g) / wind(det M) / max step
+| box | D45 M48 kf21 (#170) | D45 M48 kf13 (#70) | D61 M48 kf21 (#159) |
+|---|---|---|---|
+| B0 | +0.000000 / 1 / 0.387 | +0.000000 / 1 / 0.223 | -0.000002 / 1 / 0.381 |
+| U0 | +0.000000 / 0 / 0.356 | +0.000000 / 0 / 0.381 | -0.000000 / 0 / 0.387 |
+| B1a | +1.000000 / 2 / 0.380 | -0.000000 / 1 / 0.167 | -0.000001 / 1 / 0.381 |
+| B1b | -0.000000 / 1 / 0.366 | -0.000000 / 1 / 0.068 | +4.000000 / 5 / 0.390 |
+| B1c | -0.000000 / 0 / 0.387 | -0.000000 / 0 / 0.050 | +2.000000 / 2 / 0.390 |
+| B1 | +1.000000 / 3 / 0.387 | -0.000000 / 2 / 0.167 | +5.999999 / 8 / 0.381 |
+| U | +1.000000 / -6 / 0.387 | -0.000000 / -7 / 0.379 | +9.000001 / 2 / 0.388 |
+| full | +3.000000 / -9 / 0.380 | -0.000000 / -12 / 0.379 | +24.000002 / 12 / 0.388 |
+
+D45 M48 kf21 (#170): 14 edges, largest step 0.387 rad, verification mismatches 0, most passes 3; real-axis sign changes [(0.5, 1.0), (1.0, 1.221), (2.0, 2.5)]
+D45 M48 kf13 (#70): 14 edges, largest step 0.381 rad, verification mismatches 0, most passes 2; real-axis sign changes [(0.5, 1.0), (2.0, 2.5)]
+D61 M48 kf21 (#159): 14 edges, largest step 0.390 rad, verification mismatches 9, most passes 4; real-axis sign changes [(0.5, 1.0), (2.0, 2.5)]
+
+D45 M48 kf21 (#170): 129 lines, 127 distinct points, pivot minimum 4.9e-14..2.0e-06, 2 repeated points, max |d arg| 1.3e-08
+D45 M48 kf13 (#70): 81 lines, 79 distinct points, pivot minimum 5.3e-11..1.5e-05, 2 repeated points, max |d arg| 2.4e-10
+D61 M48 kf21 (#159): 707 lines, 703 distinct points, pivot minimum 6.0e-15..2.0e-10, 4 repeated points, max |d arg| 9.2e-06
