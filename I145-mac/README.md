@@ -79,3 +79,7 @@ same run as the predictor's history.
 - `fol/from141_32x121*` at D = 54.996: 32x121 from the 32x141 root (itself 3.0e-7 off hp) wandered for 6 Newton steps,
   max|F| between 8e-25 and 8e-13 with steps up to 1.2e-7, and was stopped by hand at 12:21 UTC to free the slot for
   the coefficient mutation (`run_coef.sh`, `controls/coef_*`).
+- `run_coef.sh`, `controls/coef_D54.9961*`: the coefficient mutation at D = 54.996085 (exit 1: 20 Newton steps,
+  max|F| 4.0e-4 -> 1.5e-9, not converged, Delta 3.8e-2 from hp).
+- `run_final60.sh`, `final60.stdout`: at D = 60.001952 it stops the continuation, then runs the coefficient mutation
+  there (`controls/coef_D60.0020*`) beside the 32x121 re-solve, then the second 32x101 root.
