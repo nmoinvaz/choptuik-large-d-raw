@@ -22,7 +22,7 @@ Attempt 1 (20:53 to 21:29 UTC; logs kept as attempt1_*): venv, pins and the ampl
 check_numbers --selftest and the three highm_check runs failed on `No module named 'hpkernel'` (exit 1). The amplitude copy does not use hpkernel: exit 0, hash equal (compare_amp.txt).
 Attempt 2 (run_i179_b.sh): the stale wheel is moved (not deleted) from the ignored hp/dist to ~/Source/hp-dist-stale-cp313/, then hp/build.sh again as written and the checks. No code changed.
 
-Results (macm3, main 9286b05b, Python 3.14.3 from Homebrew, python-flint 0.9.0, FLINT 3.6.0; awake time equals wall time in both attempts, awake.log).
+Results (macm3, main 9286b05b, Python 3.14.3 from Homebrew, python-flint 0.9.0, FLINT 3.6.0; awake.log: attempt 2 awake = wall (1159 s); attempt 1 had 870 s asleep (a clamshell sleep and maintenance sleeps from 12:54 to 13:11 PST, inside its hp/build.sh), 1293 s awake. run_i179.sh and run_i179_b.sh did not use caffeinate (my omission, the earlier tasks' scripts did), so the lid closing slept the Mac. Sleep changes no result, only wall times: cargo's own "15m 09s" is awake time and the build's wall 1774 s includes the sleep).
   Attempt 2 (21:31:48 to 21:51:07 UTC): hp/build.sh exit 0 in 18 s (cargo reused attempt 1's 15m09s compile; maturin built the cp314 wheel, multidouble 0.1.0 at git f092018 built as cp314), last line
   "hpkernel neon multidouble neon" (as T133's build). freeze_venv-macm3-314_after_build.txt has the two added packages. build_time.txt is attempt 2's; attempt1_build_time.txt: peak 10.9 GB.
   amplitude copy (attempt 1, exit 0, 343 s): hash fd6b5ef2f90d4f559a1a1ab68a7e85fe7c9b8538cc7e50ac41d2fb5510eb47d8 EQUAL to win2's six copies and macm3's 3.13 run (#161); changed-digit control differs (compare_amp.txt).
