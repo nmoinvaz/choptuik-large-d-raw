@@ -18,3 +18,13 @@ At most 2 processes, nice 10.
   is the first version, which fired because it carried interval widths grown by wrapping).
 - orig_cover_*.log: the original covering check, clean and mutated (controls.py orig_cover).
 - mut_sign_row*.log, rscale_row*.log and orig_*: the disc mutations in the review and in the original.
+- summary_6b1.md: the per-row table. cover_6b1.{log,json}, cover_6b1_mut_*.log: the review's C1-C8, clean and mutated.
+- scripts/: the shell scripts that ran everything (worker.sh ran two workers over the rows; the others the controls and
+  mutations); paths to the session's scratch directory are where ray.json was linked and helper logs went.
+
+Results (2026-11-08, closing summary on #39). 6b1(5): the review's disc lemma certifies all 366 discs of rows 0-17;
+the review's C1-C8 pass (366 tiles, 1188 pieces, 957 links, as the original); drop 9,5, row 9 r x 1.01 and G0 x 1.01
+fail in both codes; the sign mutation certifies no disc in either code. The regenerated boxes equal the stored radii bit
+for bit on 274 of 366 discs; on rows 0-2 they differ by up to 6% from disc 3-4 on, with the same step counts. 6a(5):
+rho_6a <= 0.0790076 from I103's B (original 0.231, loose acb_mat.inv); the run used w centred at x^ = ZEROS[5], not p^
+(7.9e-10 away), so B is not proven at the certificate's parameters; b_float puts the p^ flow at 0.178 of B's radius.
