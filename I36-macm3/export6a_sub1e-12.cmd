@@ -1,0 +1,1 @@
+cd ~/Source/choptuik-large-d/solver/proof && caffeinate -i nice -n 10 /Users/nathan/Source/venv-macm3/bin/python -u certify_M2.py export6a --box=data/A_M2_box_M5_1e-10.json --sub=1e-12,1e-20,1e-21 --out=../../../choptuik-large-d-raw/I36-macm3/A_M2_6a_M5_sub1e-12.json > ../../../choptuik-large-d-raw/I36-macm3/export6a_sub1e-12.log 2>&1
