@@ -13,3 +13,20 @@ and three copies of `amp_flint_par.py 1.10 15 750 640 --procs 1` (`amp_copy<i>`)
 Deviation from the issue's rule for timing keys, fixed before the run: `compare.py` drops `sec`, `timing`, any key
 ending in `_s` or `time`, and also `seconds` and `order_times`, which the amplitude JSON uses for its timings and which
 the issue's rule would have kept. It prints every key it drops.
+
+Control: the issue's `--rp=0.079` is refused by `lemma6_jump_M.py` after 1 s (`ValueError: Z beyond the real reach of D`,
+`lemma6_sector_M.py` line 95; log `l6a_control_rp0.079_refused.log`), because Z = xi_a^2 = 0.004489 is fixed and rp = 0.08
+just reaches it. The control runs with `--rp=0.081` instead (`run_i140_control.sh`, started 07:30:51 UTC), which the
+coordinator approved on 2026-11-08. Probes of `--rp=0.081` (accepted) and `--rp=0.0795` (refused) are not kept.
+
+Results (exits.txt: all seven processes exit 0; the lemma copies take 565-573 s, the control 553 s, the amplitude copies
+607-611 s):
+- `compare.txt`: the three lemma 6a copies hash identically in the rho_6a JSON and in the stored B, and both equal
+  I104-win2's. The three amplitude copies hash identically. The rp = 0.081 control's JSON hashes differently (only the
+  radius of Lambda differs, [0.4233267068 +/- 6.76e-12] against +/- 6.92e-12; rho_6a is the same ball), so the comparison
+  can fail. The control's B is identical to the copies' B, as it must be, because B is computed from the box alone;
+  macm3's B (I103-macm3) differs from the copies', and that is B's own control.
+- `compare_first_run.txt` is the output of the first run of `compare.py`, which exited 2 because it also demanded that
+  the control's B differ. That demand was wrong (rp does not enter B); the script was changed to use macm3's B for B's
+  control and rerun on the same files. The hashes did not change.
+- No crash and no traceback in any copy; no Application Error event in the Windows log since 07:00:18 UTC.

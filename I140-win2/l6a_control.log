@@ -1,10 +1,5 @@
-Traceback (most recent call last):
-  File "C:\Users\nathan\Source\choptuik-i140\solver\proof\lemma6_jump_M.py", line 273, in <module>
-    sys.exit(main())
-             ^^^^^^
-  File "C:\Users\nathan\Source\choptuik-i140\solver\proof\lemma6_jump_M.py", line 171, in main
-    R = L6SM.flat_estimate_M(S, Z, diag=False, verbose=False)
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\nathan\Source\choptuik-i140\solver\proof\lemma6_sector_M.py", line 95, in flat_estimate_M
-    raise ValueError("Z beyond the real reach of D")
-ValueError: Z beyond the real reach of D
+lemma S (M = 5, rp = 0.081, k = 20): contraction 0.7429; flat estimate on 0 < z <= Z = 0.004489: Lambda = 0.4233
+start box at xi1 = 0.3 (y+ and sigma(y+)): radius 4.39e-12
+backward along the real axis 0.3 -> 0.067: 615 steps, 552 s; final state radius 1.07e-09; max radius of B 3.36e-05
+|H| = |G_fast G_slow^-1| entries <= 6.78e+01; G_slow^-1 entries <= 5.48e+00
+rho_6a = 2.181e-01 < 1: True  => all J_D,mu(0.3) = 0 implies psi = 0 (whole jump): True

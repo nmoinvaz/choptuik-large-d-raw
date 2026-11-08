@@ -1,0 +1,40 @@
+
+== lemma 6a(5), rho_6a JSON (--json)
+  l6a_copy1      3fd0dba9e72ca8f6b539fd3f81b5ec1a8aa4073465e1d8cd1368a45de072311e   dropped keys: sec
+  l6a_copy2      3fd0dba9e72ca8f6b539fd3f81b5ec1a8aa4073465e1d8cd1368a45de072311e   dropped keys: sec
+  l6a_copy3      3fd0dba9e72ca8f6b539fd3f81b5ec1a8aa4073465e1d8cd1368a45de072311e   dropped keys: sec
+  control_rp0.081 1a507cd75a393f3fdfc1e6271c692dc6fce95326ff4b2a7fc56a81e8308304c3   dropped keys: sec
+  copies: all identical
+  control control_rp0.081 hash differs from the copies' hash
+  first entry where the control differs: ('/Lambda', "'[0.4233267068 +/- 6.92e-12]'", "'[0.4233267068 +/- 6.76e-12]'")
+  I104-win2 lemma6a: equal to l6a_copy1, l6a_copy2, l6a_copy3 (3fd0dba9e72ca8f6...)
+
+== lemma 6a(5), stored B (--save-B)
+  B_copy1        0eeb3ffce4507f763d5c0c71d47a283580da89305c2acd56babc34d1a46360f9   dropped keys: sec
+  B_copy2        0eeb3ffce4507f763d5c0c71d47a283580da89305c2acd56babc34d1a46360f9   dropped keys: sec
+  B_copy3        0eeb3ffce4507f763d5c0c71d47a283580da89305c2acd56babc34d1a46360f9   dropped keys: sec
+  control_rp0.081 0eeb3ffce4507f763d5c0c71d47a283580da89305c2acd56babc34d1a46360f9   dropped keys: sec
+  copies: all identical
+  control control_rp0.081 hash EQUALS the copies' hash
+  I104-win2 B: equal to B_copy1, B_copy2, B_copy3 (0eeb3ffce4507f76...)
+
+== amp_flint_par 1.10 K 15 J 750 640 bits, --procs 1
+  amp_copy1      fd6b5ef2f90d4f559a1a1ab68a7e85fe7c9b8538cc7e50ac41d2fb5510eb47d8   dropped keys: order_times, seconds, timing
+  amp_copy2      fd6b5ef2f90d4f559a1a1ab68a7e85fe7c9b8538cc7e50ac41d2fb5510eb47d8   dropped keys: order_times, seconds, timing
+  amp_copy3      fd6b5ef2f90d4f559a1a1ab68a7e85fe7c9b8538cc7e50ac41d2fb5510eb47d8   dropped keys: order_times, seconds, timing
+  copies: all identical
+
+== exits.txt
+start 2026-11-08 07:28:38 UTC
+l6a_control exit 1 wall 1s 2026-11-08 07:28:39 UTC
+l6a_control started with rp=0.081 at 2026-11-08 07:30:43 UTC (rp=0.079 refused at 07:28:39, log l6a_control_rp0.079_refused.log)
+l6a_copy1 exit 0 wall 565s 2026-11-08 07:38:03 UTC
+l6a_copy2 exit 0 wall 566s 2026-11-08 07:38:04 UTC
+l6a_copy3 exit 0 wall 573s 2026-11-08 07:38:12 UTC
+amp_copy3 exit 0 wall 607s 2026-11-08 07:38:45 UTC
+amp_copy1 exit 0 wall 609s 2026-11-08 07:38:47 UTC
+amp_copy2 exit 0 wall 611s 2026-11-08 07:38:49 UTC
+all end 2026-11-08 07:38:49 UTC
+l6a_control_rp0.081 exit 0 wall 553s 2026-11-08 07:39:58 UTC
+
+exit 2: control hashes like the copies
