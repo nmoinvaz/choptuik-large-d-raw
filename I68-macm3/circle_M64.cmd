@@ -1,0 +1,1 @@
+cd ~/Source/choptuik-large-d && PATH=/Users/nathan/Source/venv-macm3/bin:$PATH caffeinate -is nice -n 10 python3 hp/modecount_circle.py hp/data/modecount_state_D30.0688_M48.npz 4.267,1.324,0.35 --M=64 --fmax=1e-15 > ../choptuik-large-d-raw/I68-macm3/circle_M64.log 2>&1

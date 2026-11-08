@@ -12,7 +12,10 @@ import subprocess
 RUNS = [  # name, start UTC, end UTC, wall seconds (from this folder's exits.txt)
     ("build modecount_cx", "2026-11-08 06:55:50", "2026-11-08 06:56:36", 46),
     ("planted test", "2026-11-08 06:57:06", "2026-11-08 06:57:07", 1),
-    ("circles (job 4)", "2026-11-08 06:57:25", "2026-11-08 06:58:36", 71),
+    ("circles job 4 (M 32 to 64)", "2026-11-08 06:57:25", "2026-11-08 06:58:36", 71),
+    ("M 48 control as written (replay)", "2026-11-08 07:03:10", "2026-11-08 07:03:10", 0),
+    ("M 48 control fresh", "2026-11-08 07:03:49", "2026-11-08 07:20:13", 984),
+    ("M 64 circle from the M 48 state", "2026-11-08 07:21:53", "2026-11-08 07:23:03", 70),
 ]
 
 log = subprocess.run(["/usr/bin/pmset", "-g", "log"], capture_output=True, text=True).stdout

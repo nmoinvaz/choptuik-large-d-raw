@@ -25,3 +25,22 @@ Results (macm3, main 58b048ce). Exits and wall times are in exits.txt, awake tim
      command (with the cut) did not run. hp/data/modecount_circles.jsonl is unchanged (2 lines).
   4. hp/data: one new file, modecount_state_D30.0688_M64.npz (|F| 2.09e+05 in its meta), moved to hp_data_after/. No tracked
      hp/data file changed. hp_data_before.txt is the listing before the run.
+
+Second round (the coordinator's amended commands, 2026-11-08 07:02 UTC; main 58b048ce). Awake time equals wall time in every
+step (awake.log).
+  A. circle_M48_control.log, as written: exit 0, 0 s. setup loaded the saved October state modecount_state_D30.0688_M48.npz and
+     all 24 points came from the cache (modecount_D30.0688_M48_evals.jsonl, 174 lines before and after): winding +1.000000.
+     That is a replay of October, not a test of this build. Its two changed tracked files (modecount_circles.jsonl,
+     modecount_D30.0688_M48.log) are in hp_data_after_control_replay/ (with diffs) and were restored.
+  B. circle_M48_control_fresh.log, the same command with the October state and cache moved to october_inputs/, so that this build
+     re-converges and re-evaluates: exit 0, 984 s. |F| 1.6e-11 in the resampled layout, 9.0e-18 after Levenberg-Marquardt
+     (October 9.00597e-18, here 9.00628e-18), winding +1.000000 on 23 points, max step 0.392 rad, verification mismatches 0.
+     All 25 evaluated points are in October's cache; control_vs_october.txt compares them: ln|det| is lower here by 0.04 to
+     0.15 at every point (smoothly along the circle) and arg differs by up to 0.068 rad. Changed files in
+     hp_data_after_control_fresh/; the tracked ones restored, equal to october_inputs/.
+  C. circle_M64.log, M = 64 from modecount_state_D30.0688_M48.npz: exit 1, 70 s, |F| 3.4e+05 in the resampled layout, 3.4e+05
+     after Newton, 3.4e+05 after Levenberg-Marquardt, RuntimeError "background not converged in this layout". The unconverged
+     state (meta F 3.4e+05) is in hp_data_after_M64_from_M48/. hp/data/modecount_circles.jsonl unchanged (2 lines).
+  D. The _kf13 circle was not run: the amended commands stop at a non-zero exit.
+  The first attempt (job 4, from the M = 32 state) failed the same way with |F| 2.1e+05, so the failure does not depend on the
+  seed being M = 32. The working M = 48 control also prints the overflow RuntimeWarning, so that warning is not the cause.
