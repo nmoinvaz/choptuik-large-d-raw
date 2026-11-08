@@ -25,3 +25,12 @@ Run 2, relaunched 2026-11-08 05:24:49 UTC (coordinator's go on #82): the issue's
 from the same worktree `..\choptuik-t126` at c691ae3 (solver/inner_amp and util_report.py unchanged at 700da3a) and
 venv-t126, through `run_i82_one.cmd <wf>`, which appends the exit code to `w<wf>_done.txt`. The memory guard watches
 the new 1.11 main. Run 1's files are `w<wf>_run1.log`, `mem_guard_run1.log` and `_launch_utc_run1.txt`.
+
+Node 1.10, 2026-11-08 07:00-07:06 UTC: a spawn worker (PID 15108) died with an access violation in libflint
+(Application Error 1000, c0000005, offset 0x6830c4). The main then exited with BrokenPipeError / EOFError at its next
+receive (S_many, amp_flint_par.py line 498), so `w1.10_run2.log` ends in a traceback after `k 23` at 4745 s, with
+`w1.10_run2_done.txt` recording the exit. Nathan's decision, relayed by the coordinator (2026-11-08): keep everything
+running and accept the fault risk. Node 1.10 was relaunched from k 1 at 07:05:49 UTC with the same command at Normal
+priority, to `w1.10.log` (`_launch_utc_w1.10_run3.txt`). Nodes 1.09 and 1.11 are unchanged since 05:24:49 UTC.
+Results from this period are accepted only after cross-checks against other machines: sigma_0..sigma_16 against
+T153-macm3 and T155-win2's K33 values at the same nodes, and the agreement between nodes.
