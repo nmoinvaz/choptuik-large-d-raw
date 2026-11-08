@@ -11,7 +11,7 @@ The rows' JSON are copied here as lemma6b1_runs_M5_cert/row_00.json and row_09.j
 Results (macm3, main ed429084; the lemma 6b1 code is unchanged since I37-macm3). Exits and wall times are in exits.txt.
   row 9: exit 0, 463 s, all 17 discs certified, Lam 0.191 to 0.222, box radius 8.5e-17 to 3.6e-16, 1936 Lohner steps
       (predicted 2117, 8.5% below).
-  row 0: exit 0, 626 s, all 38 discs certified, Lam 0.173 to 0.182, box radius 2.4e-18 to 1.5e-15, 2576 Lohner steps
+  row 0: exit 0, 626 s, all 38 discs certified, Lam 0.173 to 0.187, box radius 2.4e-18 to 1.5e-15, 2576 Lohner steps
       (predicted 2901, 11.2% below).
   Both ran beside #112's ray, three processes at once: 0.23 s per Lohner step after taking 1 s per disc, against row 17's
   0.192 s per step when it ran alone.
