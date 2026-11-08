@@ -2,3 +2,7 @@
     newton_mp it 0: max|F| 4.532e-14 -> 1.560e-27, 50 products to 8.5e-36, step 1, max|dz| 7.3e-15, 36.99 s (products 25.9 s, precond 6.3 s)
     newton_mp it 1: max|F| 1.560e-27 -> 2.823e-26, 64 products to 1.5e-35, step 1, max|dz| 2.6e-14, 49.31 s (products 33.9 s, precond 8.0 s)
     newton_mp it 2: max|F| 2.823e-26 -> 1.827e-20, 66 products to 5.3e-35, step 1, max|dz| 8.7e-12, 51.48 s (products 35.2 s, precond 8.3 s)
+    newton_mp it 3: max|F| 1.827e-20 -> 1.394e-40, 55 products to 2.2e-33, step 1, max|dz| 9.5e-22, 41.08 s (products 28.7 s, precond 6.8 s)
+  start D 60.001952 grid 32x87 L 9857: 4 Newton steps, max|F| 4.5e-14 -> 1.4e-40, products [50, 64, 66, 55], mu 0.129308021083406, Delta 1.8098842579493369133 (xi=1: 1.809884257949337), hp 1.809884258001715, diff -5.24e-11, LU pivot ratio 2.6e+14, J 12 s, LU 5 s, Newton 179 s (rebuilds 0, 0 s)
+  CHECK D = 60.001952 grid 32x87: |Delta_RT - Delta_hp| = 5.24e-11 > 1e-12 FAIL
+== exit 1

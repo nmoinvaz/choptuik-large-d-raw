@@ -69,3 +69,13 @@ xi = 0, where the equations are divided by xi; it flips with each step of 2 in N
 their results: 87 at D 60 is negative, and at D 54.996085 87 is negative, 89 positive, 93 positive and 97 positive.
 85 at D 60 (negative) already breaks it, and 99 and 101 at D 60 are expected to be set by the spread of their roots
 (1e-12 at 97 and 101), not by this sign.
+
+## A second prediction, written at 2026-11-08 14:06 UTC, before 32x99's results (outside the criteria)
+
+The D 60.001952 roots of 85 to 97 fall into two families by N mod 4. For N = 3 mod 4 (87, 91, 95), the half grid
+xi > 0 has an even number of points (N + 1)/2. Their errors are -5.24e-11, -8.37e-12 and -6.1e-13, falling about a
+decade per step of 4 in N, and the two roots agree to 2.2e-15, 2.3e-15 and 5.4e-14. For N = 1 mod 4 (89, 93, 97, 101)
+the errors are +2.5e-11, +2.6e-12, +8e-14 to +1.1e-12 and -1.3e-12 to -2.3e-12, and the roots spread by 7.1e-13,
+4.6e-13, 1.0e-12 and 1.1e-12 (85 is the exception there, 1.0e-15). If that holds, 32x99 (3 mod 4) at D 60 is
+negative and smaller than 95's 6e-13, about -5e-14 to -1e-13, with its two roots within 1e-13 of each other, so it
+would hold 1e-12 too.
