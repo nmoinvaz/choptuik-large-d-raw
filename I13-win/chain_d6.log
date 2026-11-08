@@ -13,3 +13,7 @@ step 0: D 167.0, pivots 2.0e-08..1.2e+23, |z_1| 6.51e-04, |z_N| 4.19e-30, ratios
       elim projections {'u0': 0, 'u0q': 0, 'ladder': 0, 'failed': 0, 'skipped': 7}
       quad-double Newton: 6 steps, max|F| 8.1e-39, converged; double-double |F| of its first two parts 3.2e-06
     a 1.000 -> D 168.0: predicted |F| 2.29e-06, qd 6 steps -> 3.20e-06 (tol 1.4e-20, stall accepted, Delta correction +0.0e+00), Delta 1.704693060433 (formula diff -9.9e-07), moved 3.2e-20, 221 s
+^Cheld values from the fit data/held_fit_d6.json (degree 6, 138 full-system states, D 38.020417-73.0), relative to the base
+  qn 0: |F| 7.28e-36 converged, Delta 1.70469306043261248 +1.6798e-17
+      quad-double Newton: 1 steps, max|F| 7.3e-36, converged; double-double |F| of its first two parts 3.2e-06
+base I13-win/chain_d6/anm_pin3_D168.0000.npz: D 168.0, M 32, pin 3 (held [5, 7, 9, 11, 13]), |F| 3.2e-06; N 24, eps 1e-14, h_max 1.0, corrector qd (junk_only False), tol 1.0e-20 x 1.45^(D - 168.0), stalls accepted below 1e-17
