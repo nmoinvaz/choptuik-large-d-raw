@@ -123,3 +123,37 @@ Test (can fail): the measured delta at the hp rows 70, 80, 90 and 100 lies withi
 end] of the row above. If it does, the quadratic-to-cubic growth holds to D = 100 and its range at 150 and 190 stands
 as an extrapolation over a factor of 2 in D. If it does not, that extrapolation is rejected. At 100 the measured delta
 is also classified against d_EEG by the rule of criterion 6.
+
+## What ran after 14:06 UTC
+
+- `run_worker2.sh` (from 13:51 UTC): `res/X_40x79_D100*` did not converge (20 Newton steps, max|F| 8e-14 after one step,
+  then a jump of 6.7e-5 along the weak direction, Delta 3e-2 off, exit 1). The controls `controls/C_32x121_D40.0201*`
+  (+1.54e-15) and `controls/C_32x101_D60.0020*` (-2.33e-12) exit 0. `controls/coef_40x79_D20.0437_mutcoef*` moves Delta
+  by -1.14e-4 and exits 1. `res/M_40x79_D60.0020*` lands 1.6e-20 from A. `res/M_40x79_D40.0201*` did not converge (20
+  steps, 8.4e-4 off, exit 1). It also ran the neighbours `res/N_40x77_*` and `res/N_40x81_*` at D 20.04, 40.02 and 60.00,
+  and `res/Nt_32x79_*` at 40.02 and 60.00 (equal to 40x79 to 20 digits and to 5e-18).
+- `run_worker3.sh`: `res/N_40x75_*` and `res/N_40x83_*` at D 20.04, 40.02 and 60.00.
+- `run_worker4.sh`: `res/P_40x77_*` and `res/P_40x81_*` along the path at D 25.08, 29.98, 34.99, 44.96, 50.01 and 55.00.
+- `run_cont2.sh`: the path reached 60.001952 at 16:08 UTC, every step converged (4-8 Newton steps), and the
+  `cont/cont2.stdout` ends "path done".
+- `run_ext.sh` (`cont/ext.stdout`, `cont/ext_40x79.*`): its first start at 16:08 UTC, with steps of 1, was stopped in its
+  first step (`cont/ext_step1_stopped.stdout`). From 16:09 it ran with steps of 2 and reached D = 84 at about 19:03. From
+  16:45 to 17:25, and again from 19:00, the shared Mac's load slowed a Newton step from about 1 min to 5-10 min. The
+  step to 86 ran for about 40 min without finishing and was stopped at 19:40 UTC. Its states, named `ext_40x79_*` while
+  a round runs, were renamed `cont_40x79_*` by hand, as the script does at the end of a round, so `run_ext.sh` resumes
+  from `cont/cont_40x79_D84.0000_40x79.npz`.
+- `run_worker5.sh`: `res/Q_40x77_D70*`, `Q_40x81_D70*`, `Q_40x77_D80*`, `Q_40x81_D80*`, and the second start
+  `res/R_40x79_from81_D80*`, which lands 7.9e-11 from A. `res/R_40x79_from77_D80*` was stopped at 19:40 UTC,
+  unconverged, with no record.
+- `fit/beyond.log`: rt_trunc_fit.py with `--beyond cont/ext_40x79.jsonl`, the extension against the fits and EEG.
+
+## Results (the reading is section 12 of notes/RT_FORMULATION.md on wip/i106)
+
+- Criterion 1 (controls): pass, 1.68e-20, 1.54e-15 and -2.33e-12.
+- Criterion 2: delta = Delta(40x79) - Delta_hp is -5.56e-10 at 20.043653, -7.13e-9 at 40.020065 and +5.80e-8 at
+  60.001952. Starts A and B agree to 0 in 30 figures, 4.9e-27 and 9.9e-21.
+- Criteria 3 and 6: "not decided" (see above).
+- Criterion 4: planted pass, mutation fires. Criterion 7: fires.
+- The registered test of the extension at D = 70 and 80 passes: +1.57e-7 and +3.08e-7, inside 1.43-1.61e-7 and
+  2.65-3.33e-7. D = 90 and 100 were not reached.
+- delta / d_EEG, with d_EEG averaged over EEG's rows within D +- 5, is 0.64 to 1.35 from D = 66 to 84, 0.8 on average.

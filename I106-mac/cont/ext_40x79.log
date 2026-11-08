@@ -181,3 +181,12 @@
   cont D 84.000000 grid 40x79 L 11201: 9 Newton steps, max|F| 1.1e-05 -> 4.6e-41, products [57, 104, 64, 89, 84, 111, 58, 79, 59], mu 0.129573199084576, Delta 1.7637496277766946025 (xi=1: 1.763749627776695), hp 1.763749245335952, diff 3.82e-07, LU pivot ratio 5.1e+14, J 15 s, LU 7 s, Newton 857 s (rebuilds 2, 45 s)
   CHECK D = 84.0 grid 40x79: |Delta_RT - Delta_hp| = 3.82e-07 <= 0.001 ok
     newton_mp it 0: max|F| 9.751e-06 -> 3.256e-11, 54 products to 2.6e-31, step 1, max|dz| 5.6e-07, 84.47 s (products 57.3 s, precond 14.0 s)
+    newton_mp it 1: max|F| 3.256e-11 -> 4.542e-12, 111 products to 2.7e-35, step 1, max|dz| 3.3e-07, 211.71 s (products 124.6 s, precond 30.8 s)
+    newton_mp: preconditioner rebuilt at step 2 (46.4 s)
+    newton_mp it 2: max|F| 4.542e-12 -> 5.650e-16, 65 products to 2.1e-32, step 1, max|dz| 3.0e-09, 112.52 s (products 73.0 s, precond 18.9 s)
+    newton_mp it 3: max|F| 5.650e-16 -> 1.318e-10, 92 products to 5.9e-37, step 1, max|dz| 5.5e-07, 195.84 s (products 118.3 s, precond 29.9 s)
+    newton_mp it 4: max|F| 1.318e-10 -> 6.702e-21, 85 products to 2.7e-31, step 1, max|dz| 7.1e-12, 183.97 s (products 112.6 s, precond 27.8 s)
+    newton_mp it 5: max|F| 6.702e-21 -> 1.560e-13, 112 products to 4.2e-31, step 1, max|dz| 2.8e-07, 427.0 s (products 229.4 s, precond 82.4 s)
+    newton_mp: preconditioner rebuilt at step 6 (54.4 s)
+    newton_mp it 6: max|F| 1.560e-13 -> 7.561e-25, 57 products to 9.1e-31, step 1, max|dz| 7.5e-14, 382.06 s (products 215.2 s, precond 102.2 s)
+    newton_mp it 7: max|F| 7.561e-25 -> 3.447e-24, 71 products to 6.4e-31, step 1, max|dz| 1.5e-13, 323.13 s (products 199.9 s, precond 69.1 s)
