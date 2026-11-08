@@ -27,3 +27,21 @@ These are fixed here and are not changed afterwards.
 
 The method finds a sign change of Im x1 between w = 1.09 and 1.11, or it does not. Its crossing is compared with
 the claimed 1.0988-1.0989, and its x1 at 1.10 with the claimed 13.465 - 0.013i.
+
+## Method (code `solver/independent_second_zero/`, docstrings of `lapl.py` and `second_zero.py`)
+
+F(t) = sum n! sigma_n t^n, the Laplace transform of S at 1/t, has a finite radius. It is continued by quadratic
+Hermite-Pade approximants (P F^2 + Q F + R = O(t^{p+q+r+2}), degrees 5-9, primary) and by linear Pade of F in t
+(cross-check). The approximant's Taylor coefficients c~_n (n <= 220) give S~(x) = sum c~_n x^n/n!, and x1 is the
+Newton zero of that series from x = 13.5. Approximants are admitted by fixed rules (`lapl.admissible`).
+
+## Runs
+
+- `fit_kummer.log`: the Kummer fit that sets the planted family's parameters (no zero computed).
+- `dev_wp1.105_seed99.log`: development family (w_p 1.105, seed 99, not a control), used to fix the estimator.
+- `v1/`: estimator v1 (code 0d352f4, primary = the 23-coefficient qhp set). **P1 and P2 both FAILED at seed 3**:
+  at w = 1.11 (noise seed 2003) every 23-coefficient qhp approximant had a far singularity (growth 2.7-6.3 against
+  the A2 bound 2.3), so the primary set was empty there. Seeds 1, 2, 4, 5 passed (P1 crossings 1.09500 +- 1e-5).
+  The real-data step of `v1/run_all.sh` was stopped before it ran, so v1 never saw the real data.
+- `v2/`: estimator v2 (code 3af9d9b), which pools the qhp sets of 21, 22 and 23 coefficients; the admission rules and
+  the criteria above are unchanged. Seeds 1-5 are the controls; seeds 6-10 are extra, not seen before.
