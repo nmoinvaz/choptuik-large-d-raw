@@ -10,3 +10,11 @@ At most 2 processes, nice 10.
   I38-macm3/lemma6b1_runs_M5_cert/ray.json (the stored rows keep only the verdicts), with the original certify's
   verdict on them. dump_inputs_*.log: its output.
 - check_6b1/row_JJ.json, check_6b1_*.log: the review's own disc lemma (mpmath intervals) on those inputs.
+- check_6a_*.{log,json}, flat_6a_M5.json (export_6a_flat.py), orig_6a_*.log, B_M5_sub1e-18_<mutation>.json: lemma 6a(5)'s
+  final step re-evaluated from I103-macm3's (and I104-win2's) B, its mutations, and the original on the mutated B.
+- b_float*.log: the double-precision control of B (w at x^ and at p^). lohner_float*.log: the double-precision control
+  of the arc boxes (the _v1_with_ray logs are the first version, which fired because its own double-precision error
+  along the ray exceeded the ray box). ray_hp*.log: the 192-bit Taylor control of the ray boxes (ray_hp_v1_intervals.log
+  is the first version, which fired because it carried interval widths grown by wrapping).
+- orig_cover_*.log: the original covering check, clean and mutated (controls.py orig_cover).
+- mut_sign_row*.log, rscale_row*.log and orig_*: the disc mutations in the review and in the original.
