@@ -1,0 +1,28 @@
+1. warped-product curvature against brute force (D = 4, 5)
+  ok   n = 2: R_ab, R_th th, R_a th
+  ok   n = 3: R_ab, R_th th, R_a th
+2. the ten Omega^s_i as combinations of the covariant equations, general n
+  coupling Ric = (D - 2) dphi dphi, the normalization under which EEG Eq. (5) holds as printed:
+  rank of the second-derivative matrix of the covariant equations: 5
+  ok   Omega_1^+ = combination of E++, E_S; remainder 0
+  ok   Omega_2^+ = combination of E_S; remainder 0
+  ok   Omega_3^+ = combination of E+-, E_S; remainder 0
+  ok   Omega_4^+ = combination of W; remainder 0
+  ok   Omega_5^+ = combination of E++; remainder 0
+  ok   Omega_1^- = combination of E--, E_S; remainder 0
+  ok   Omega_2^- = combination of E_S; remainder 0
+  ok   Omega_3^- = combination of E+-, E_S; remainder 0
+  ok   Omega_4^- = combination of W; remainder 0
+  ok   Omega_5^- = combination of E--; remainder 0
+  coupling Ric = 2 dphi dphi (EEG Eq. (1) with 4 pi G = 1): the printed Eq. (5) fails off D = 4, by
+    Omega_1^+: remainder -xi*(n - 2)*(f_t + f_x*mu*xi + f_x*mu)**2/n
+    Omega_3^+: remainder xi*(n - 2)*(f_t + f_x*mu*xi - f_x*mu)*(f_t + f_x*mu*xi + f_x*mu)/2
+    Omega_5^+: remainder -xi*(n - 2)*(f_t + f_x*mu*xi + f_x*mu)**2/n
+    Omega_1^-: remainder -xi*(n - 2)*(f_t + f_x*mu*xi - f_x*mu)**2/n
+    Omega_3^-: remainder xi*(n - 2)*(f_t + f_x*mu*xi - f_x*mu)*(f_t + f_x*mu*xi + f_x*mu)/2
+    Omega_5^-: remainder -xi*(n - 2)*(f_t + f_x*mu*xi - f_x*mu)**2/n
+  ok   with Ric = 2 dphi dphi every nonzero remainder carries the factor (n - 2) = (D - 4)
+3. at D = 4 the equations are RT's Eq. (11)
+  ok   EEG Eq. (5) at D = 4 equals RT Eq. (11) (the Omega_5 of EEG is RT's Omega_2#)
+
+ALL CHECKS PASS

@@ -1,0 +1,21 @@
+First run of solver/rt/rt_planted.py (worktree commit after 77a01bc, criteria as first written: start z* + 1e-2,
+(c) max|F_k| < 1e-6 and max|F_{k+1}| < 1e-3 max|F_k|^1.5), 2026-11-08 ~03:05 UTC, exit 1:
+
+(a) third difference / max|F| = 1.22e-14  ok
+(b) D = 4.0: max|z - z*| = 2.67e-14, |mu - mu*| = 2.22e-16, its 4, max|F| 1.9e-01 2.9e-02 9.8e-05 6.5e-09 4.6e-14  ok
+(c) D = 4.0: quadratic convergence FAIL
+(b) D = 10.0: max|z - z*| = 3.15e-01, |mu - mu*| = 2.43e-04, its 10, max|F| 1.1e+00 9.8e-01 5.6e-01 4.6e-01 4.4e-01 4.2e-01 4.1e-01 2.7e-01 2.2e-01 2.6e-01 2.1e-01  FAIL
+(c) D = 10.0: quadratic convergence FAIL
+(b) D = 20.0: max|z - z*| = 1.06e-11, |mu - mu*| = 1.44e-15, its 6, max|F| 5.5e+00 2.3e-01 1.4e-02 1.1e-03 8.9e-06 7.8e-10 1.1e-13  ok
+(c) D = 20.0: quadratic convergence FAIL
+
+FAILED: c4.0, b10.0, c10.0, c20.0
+
+Diagnosis (scratch script, same planted D = 10 state): cond J(z*) = 8.9e7, smallest singular values
+1.1e-4 8.7e-5 6.6e-5 7.4e-6. Newton from z* + eps * perturbation:
+  eps 1e-2: not converged in 12 its (1.1e+00 ... 2.0e-02)
+  eps 1e-3: converged, |z - z*| 5.8e-11, max|F| 1.1e-01 7.4e-04 4.2e-04 1.6e-05 5.7e-08 7.3e-13
+  eps 1e-4: converged, |z - z*| 3.3e-11, max|F| 1.2e-02 3.4e-06 3.7e-08 1.8e-13
+  eps 1e-6: converged, |z - z*| 2.3e-11, max|F| 1.2e-04 3.4e-10 5.3e-14
+The D = 4 history is quadratic with constant 0.7 (6.5e-9 vs (9.8e-5)^2 = 9.6e-9); criterion (c) as written asked for
+more. Revised: start 1e-3, (c) max|F_k| < 1e-4 and max|F_{k+1}| < 10 max|F_k|^2 for some k.

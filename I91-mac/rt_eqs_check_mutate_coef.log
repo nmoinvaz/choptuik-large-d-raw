@@ -1,0 +1,30 @@
+1. warped-product curvature against brute force (D = 4, 5)
+  ok   n = 2: R_ab, R_th th, R_a th
+  ok   n = 3: R_ab, R_th th, R_a th
+2. the ten Omega^s_i as combinations of the covariant equations, general n
+  coupling Ric = (D - 2) dphi dphi, the normalization under which EEG Eq. (5) holds as printed:
+  rank of the second-derivative matrix of the covariant equations: 5
+  ok   Omega_1^+ = combination of E++, E_S; remainder 0
+  ok   Omega_2^+ = combination of E_S; remainder 0
+  FAIL Omega_3^+ = combination of E+-, E_S; remainder -n*xi*(n - 1)*(mu**2*z_x + mu*q*xi**2*z_x + 3*mu*q*xi + mu*q_x*xi**2 + q**2*xi**3)**2/(2000*(mu + q*xi**2)**2)
+  ok   Omega_4^+ = combination of W; remainder 0
+  ok   Omega_5^+ = combination of E++; remainder 0
+  ok   Omega_1^- = combination of E--, E_S; remainder 0
+  ok   Omega_2^- = combination of E_S; remainder 0
+  FAIL Omega_3^- = combination of E+-, E_S; remainder -n*xi*(n - 1)*(mu**2*z_x + mu*q*xi**2*z_x + 3*mu*q*xi + mu*q_x*xi**2 + q**2*xi**3)**2/(2000*(mu + q*xi**2)**2)
+  ok   Omega_4^- = combination of W; remainder 0
+  ok   Omega_5^- = combination of E--; remainder 0
+  coupling Ric = 2 dphi dphi (EEG Eq. (1) with 4 pi G = 1): the printed Eq. (5) fails off D = 4, by
+    Omega_1^+: remainder -xi*(n - 2)*(f_t + f_x*mu*xi + f_x*mu)**2/n
+    Omega_3^+: remainder -xi*(-1000*f_t**2*mu**2*n + 2000*f_t**2*mu**2 - 2000*f_t**2*mu*n*q*xi**2 + 4000*f_t**2*mu*q*xi**2 - 1000*f_t**2*n*q**2*xi**4 + 2000*f_t**2*q**2*xi**4 - 2000*f_t*f_x*mu**3*n*xi + 4000*f_t*f_x*mu**3*xi - 4000*f_t*f_x*mu**2*n*q*xi**3 + 8000*f_t*f_x*mu**2*q*xi**3 - 2000*f_t*f_x*mu*n*q**2*xi**5 + 4000*f_t*f_x*mu*q**2*xi**5 - 1000*f_x**2*mu**4*n*xi**2 + 1000*f_x**2*mu**4*n + 2000*f_x**2*mu**4*xi**2 - 2000*f_x**2*mu**4 - 2000*f_x**2*mu**3*n*q*xi**4 + 2000*f_x**2*mu**3*n*q*xi**2 + 4000*f_x**2*mu**3*q*xi**4 - 4000*f_x**2*mu**3*q*xi**2 - 1000*f_x**2*mu**2*n*q**2*xi**6 + 1000*f_x**2*mu**2*n*q**2*xi**4 + 2000*f_x**2*mu**2*q**2*xi**6 - 2000*f_x**2*mu**2*q**2*xi**4 + mu**4*n**2*z_x**2 - mu**4*n*z_x**2 + 2*mu**3*n**2*q*xi**2*z_x**2 + 6*mu**3*n**2*q*xi*z_x + 2*mu**3*n**2*q_x*xi**2*z_x - 2*mu**3*n*q*xi**2*z_x**2 - 6*mu**3*n*q*xi*z_x - 2*mu**3*n*q_x*xi**2*z_x + mu**2*n**2*q**2*xi**4*z_x**2 + 8*mu**2*n**2*q**2*xi**3*z_x + 9*mu**2*n**2*q**2*xi**2 + 2*mu**2*n**2*q*q_x*xi**4*z_x + 6*mu**2*n**2*q*q_x*xi**3 + mu**2*n**2*q_x**2*xi**4 - mu**2*n*q**2*xi**4*z_x**2 - 8*mu**2*n*q**2*xi**3*z_x - 9*mu**2*n*q**2*xi**2 - 2*mu**2*n*q*q_x*xi**4*z_x - 6*mu**2*n*q*q_x*xi**3 - mu**2*n*q_x**2*xi**4 + 2*mu*n**2*q**3*xi**5*z_x + 6*mu*n**2*q**3*xi**4 + 2*mu*n**2*q**2*q_x*xi**5 - 2*mu*n*q**3*xi**5*z_x - 6*mu*n*q**3*xi**4 - 2*mu*n*q**2*q_x*xi**5 + n**2*q**4*xi**6 - n*q**4*xi**6)/(2000*(mu + q*xi**2)**2)
+    Omega_5^+: remainder -xi*(n - 2)*(f_t + f_x*mu*xi + f_x*mu)**2/n
+    Omega_1^-: remainder -xi*(n - 2)*(f_t + f_x*mu*xi - f_x*mu)**2/n
+    Omega_3^-: remainder -xi*(-1000*f_t**2*mu**2*n + 2000*f_t**2*mu**2 - 2000*f_t**2*mu*n*q*xi**2 + 4000*f_t**2*mu*q*xi**2 - 1000*f_t**2*n*q**2*xi**4 + 2000*f_t**2*q**2*xi**4 - 2000*f_t*f_x*mu**3*n*xi + 4000*f_t*f_x*mu**3*xi - 4000*f_t*f_x*mu**2*n*q*xi**3 + 8000*f_t*f_x*mu**2*q*xi**3 - 2000*f_t*f_x*mu*n*q**2*xi**5 + 4000*f_t*f_x*mu*q**2*xi**5 - 1000*f_x**2*mu**4*n*xi**2 + 1000*f_x**2*mu**4*n + 2000*f_x**2*mu**4*xi**2 - 2000*f_x**2*mu**4 - 2000*f_x**2*mu**3*n*q*xi**4 + 2000*f_x**2*mu**3*n*q*xi**2 + 4000*f_x**2*mu**3*q*xi**4 - 4000*f_x**2*mu**3*q*xi**2 - 1000*f_x**2*mu**2*n*q**2*xi**6 + 1000*f_x**2*mu**2*n*q**2*xi**4 + 2000*f_x**2*mu**2*q**2*xi**6 - 2000*f_x**2*mu**2*q**2*xi**4 + mu**4*n**2*z_x**2 - mu**4*n*z_x**2 + 2*mu**3*n**2*q*xi**2*z_x**2 + 6*mu**3*n**2*q*xi*z_x + 2*mu**3*n**2*q_x*xi**2*z_x - 2*mu**3*n*q*xi**2*z_x**2 - 6*mu**3*n*q*xi*z_x - 2*mu**3*n*q_x*xi**2*z_x + mu**2*n**2*q**2*xi**4*z_x**2 + 8*mu**2*n**2*q**2*xi**3*z_x + 9*mu**2*n**2*q**2*xi**2 + 2*mu**2*n**2*q*q_x*xi**4*z_x + 6*mu**2*n**2*q*q_x*xi**3 + mu**2*n**2*q_x**2*xi**4 - mu**2*n*q**2*xi**4*z_x**2 - 8*mu**2*n*q**2*xi**3*z_x - 9*mu**2*n*q**2*xi**2 - 2*mu**2*n*q*q_x*xi**4*z_x - 6*mu**2*n*q*q_x*xi**3 - mu**2*n*q_x**2*xi**4 + 2*mu*n**2*q**3*xi**5*z_x + 6*mu*n**2*q**3*xi**4 + 2*mu*n**2*q**2*q_x*xi**5 - 2*mu*n*q**3*xi**5*z_x - 6*mu*n*q**3*xi**4 - 2*mu*n*q**2*q_x*xi**5 + n**2*q**4*xi**6 - n*q**4*xi**6)/(2000*(mu + q*xi**2)**2)
+    Omega_5^-: remainder -xi*(n - 2)*(f_t + f_x*mu*xi - f_x*mu)**2/n
+  FAIL with Ric = 2 dphi dphi every nonzero remainder carries the factor (n - 2) = (D - 4)
+3. at D = 4 the equations are RT's Eq. (11)
+    Omega_3^+1: EEG(D = 4) - RT = -w1**2*xi/4000
+    Omega_3^-1: EEG(D = 4) - RT = -w1**2*xi/4000
+  FAIL EEG Eq. (5) at D = 4 equals RT Eq. (11) (the Omega_5 of EEG is RT's Omega_2#)
+
+4 CHECK(S) FAILED (mutation coef)
