@@ -7,7 +7,13 @@ Scripts (main repository, branch wip/i95): `solver/matter/complex_css.py` (the C
 counted), `solver/matter/complex_imag_eqs.py` (sympy derivation of the imaginary sector), `solver/matter/complex_imag.py`
 (det M of the imaginary sector on hp states, and its winding counts). The note is matter/COMPLEX_CRITICAL.md.
 
-- `css/`: jsonl records and logs of complex_css.py (follow, count, controls).
-- `imag/`: jsonl records and logs of complex_imag.py (checks, counts, controls).
+- `css/`: complex_css.py records and logs: `follow_k0` (fixed steps, lost the oscillatory root at D = 5), `track_k0`,
+  `track_k0_b` (the adaptive track to D = 80), `boxes_k0` (box counts with trend removal; `boxes_k0_v1_notrend`, the
+  first version, stopped), `locate_k0` (the strip's zeros at two radii), `roots_k0`, `scan_k0` (css_scan.py collocation
+  at D = 4-8), and the queue scripts `queue2.sh`, `queue5.sh` with their logs.
+- `imag/`: complex_imag.py records and logs: `checks.jsonl` (first round, with D = 60) and `checks2.jsonl` (second round,
+  with the tolerance test), `counts.jsonl`, `roots.jsonl`, the determinant caches `evals_*.jsonl`, the sympy log
+  `complex_imag_eqs.log`, the queue scripts and logs (`queue1.sh` was stopped at D = 60, where det M in double precision
+  is noise), and `crate/`: the D = 60 count with hp/modecount_test.py (double-double).
 - `states/`: copies of the hp states used that were not in any repository (the D = 4 lowDn states of the main
   checkout's untracked hp/data/lowD_states).

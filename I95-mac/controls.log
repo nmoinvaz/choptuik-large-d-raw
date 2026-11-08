@@ -1,0 +1,190 @@
+== 04:41:49 /Users/nathan/venv-qd/bin/python /Users/nathan/Source/choptuik-large-d/.claude/worktrees/agent-a5ed9e8693e16e014/solver/matter/complex_imag_eqs.py --mutate
+1. Box psi, explicit sphere (D = 4) - general-n form                   0
+1. Box psi, explicit sphere (D = 5) - general-n form                   0
+2. T_00: coefficient of eps                                            0
+2. T_01: coefficient of eps                                            0
+2. T_02: coefficient of eps                                            0
+2. T_10: coefficient of eps                                            0
+2. T_11: coefficient of eps                                            0
+2. T_12: coefficient of eps                                            0
+2. T_20: coefficient of eps                                            0
+2. T_21: coefficient of eps                                            0
+2. T_22: coefficient of eps                                            0
+   p equation / Box psi = x**2*(2*n*c(tau, x)**3*Derivative(Psi(tau, x), x) - x**3*c(tau, x)*Derivative(Psi(tau, x), (x, 2)) + x**3*Derivative(Psi(tau, x), x)*Derivative(c(tau, x), x) - 2*x**2*c(tau, x)*Derivative(Psi(tau, x), x) - 2*x**2*c(tau, x)*Derivative(Psi(tau, x), tau, x) + x**2*Derivative(Psi(tau, x), tau)*Derivative(c(tau, x), x) + x**2*Derivative(Psi(tau, x), x)*Derivative(c(tau, x), tau) + x*c(tau, x)**3*Derivative(Psi(tau, x), (x, 2)) + x*c(tau, x)**2*Derivative(Psi(tau, x), x)*Derivative(c(tau, x), x) - x*c(tau, x)*Derivative(Psi(tau, x), tau) - x*c(tau, x)*Derivative(Psi(tau, x), (tau, 2)) + x*Derivative(Psi(tau, x), tau)*Derivative(c(tau, x), tau))/(-n*c(tau, x)**3*Derivative(Psi(tau, x), x) + x**3*c(tau, x)*Derivative(Psi(tau, x), (x, 2)) - x**3*Derivative(Psi(tau, x), x)*Derivative(c(tau, x), x) + 2*x**2*c(tau, x)*Derivative(Psi(tau, x), x) + 2*x**2*c(tau, x)*Derivative(Psi(tau, x), tau, x) - x**2*Derivative(Psi(tau, x), tau)*Derivative(c(tau, x), x) - x**2*Derivative(Psi(tau, x), x)*Derivative(c(tau, x), tau) - x*c(tau, x)**3*Derivative(Psi(tau, x), (x, 2)) - x*c(tau, x)**2*Derivative(Psi(tau, x), x)*Derivative(c(tau, x), x) + x*c(tau, x)*Derivative(Psi(tau, x), tau) + x*c(tau, x)*Derivative(Psi(tau, x), (tau, 2)) - x*Derivative(Psi(tau, x), tau)*Derivative(c(tau, x), tau))
+3. p equation is a multiple of Box psi (no Psi left in the ratio)      NONZERO: 1
+   m equation / Box psi = x**2
+3. m equation is a multiple of Box psi (no Psi left in the ratio)      0
+3. Box psi in (tau, x) contains only c (not a)                         0
+4. e^{lam tau} P in the p equation = e^{lam tau} x (d_tau + lam) form  0
+4. homogeneous of degree one in (p, m)                                 0
+4. frozen equations at lam = 0 with (P, M) = background (p, m) = model.rs rows 0
+5. centre: det of the order-k matrix + c0^2 (k-1)(k-1+n)               0
+5. centre: k = 1 null vector is P_1 = -M_1                             0
+5. light cone: u^k coefficient of the p equation = -(lam + (1+c1)(k+1) - n/2) P_k + (n/2) M_k 0
+5. light cone: u^(k-1) coefficient of the m equation = 2 k M_k (so M_k is explicit) 0
+FAILED: ['3. p equation is a multiple of Box psi (no Psi left in the ratio)']
+exit 1
+== 04:41:50 /Users/nathan/venv-qd/bin/python /Users/nathan/Source/choptuik-large-d/.claude/worktrees/agent-a5ed9e8693e16e014/solver/matter/complex_css.py selftest
+selftest: winding 3.000000 (expect 3, largest step 0.50, 69 intervals); control (no refinement) 1.000000
+selftest PASS, control fires
+exit 0
+== 04:41:50 /Users/nathan/Source/venv-anm/bin/python /Users/nathan/Source/choptuik-large-d/.claude/worktrees/agent-a5ed9e8693e16e014/solver/matter/complex_imag.py selftest
+selftest plant=None: B0, U0, FULL = [1.0, 0.0, 4.0], expected (1, 0, 4); control (one sample per edge) [1.0, 0.0, 2.0] -> fires
+selftest plant=(2+1j): B0, U0, FULL = [1.0, 0.0, 6.0], expected (1, 0, 6); control (one sample per edge) [1.0, 0.0, 2.0] -> fires
+selftest PASS
+exit 0
+== 04:41:50 /Users/nathan/venv-qd/bin/python /Users/nathan/Source/choptuik-large-d/.claude/worktrees/agent-a5ed9e8693e16e014/solver/matter/complex_osc_fit.py /Users/nathan/Source/choptuik-large-d-raw/I95-mac
+Re lambda_osc at 1/n = 0: D>=15 K=3: 0.5364, D>=15 K=4: 0.5365, D>=20 K=3: 0.5365, D>=20 K=4: 0.5365, D>=30 K=3: 0.5365, D>=30 K=4: 0.5365
+   range 0.5364 .. 0.5365 (spread over fit choices)
+   planted control: largest deviation of the fits from 0.53: 1.0e-05
+Im lambda_osc / omega at 1/n = 0: D>=15 K=3: 1.9935, D>=15 K=4: 1.9935, D>=20 K=3: 1.9935, D>=20 K=4: 1.9935, D>=30 K=3: 1.9935, D>=30 K=4: 1.9935
+   range 1.9935 .. 1.9935 (spread over fit choices)
+   planted control: largest deviation of the fits from 2.00: 1.3e-06
+planted control PASS
+exit 0
+== 04:41:50 python3 /Users/nathan/Source/choptuik-large-d/.claude/worktrees/agent-a5ed9e8693e16e014/solver/matter/complex_table.py /Users/nathan/Source/choptuik-large-d-raw/I95-mac
+CSS kappa = 0, along the track (complex_css.py track): D, omega, lambda_osc, Im lambda_osc / omega, radius spread, lambda_phys
+| D | ω | λ_osc | Im λ_osc / ω | radius spread | λ_phys |
+|---|---|---|---|---|---|
+| 4.1000 | 1.922890 | 0.26548619 + 3.52348307i | 1.8324 | 3e-11 | 2.5420759349 |
+| 4.8125 | 2.010121 | 0.30586077 + 3.73046691i | 1.8558 | 2e-11 | 2.3757546939 |
+| 6.0781 | 2.186683 | 0.35406091 + 4.12059626i | 1.8844 | 1e-10 | 2.2653161011 |
+| 8.0781 | 2.420035 | 0.39904816 + 4.62645238i | 1.9117 | 6e-10 | 2.1973951429 |
+| 10.0781 | 2.599557 | 0.42599540 + 5.01267114i | 1.9283 | 5e-10 | 2.1635873275 |
+| 15.3281 | 2.916317 | 0.46320361 + 5.68992169i | 1.9511 | 2e-09 | 2.1187091738 |
+| 20.3281 | 3.104878 | 0.48085224 + 6.09087669i | 1.9617 | 7e-10 | 2.0961158712 |
+| 29.1953 | 3.312619 | 0.49742283 + 6.53091086i | 1.9715 | 8e-09 | 2.0727746422 |
+| 39.1953 | 3.452773 | 0.50721444 + 6.82684981i | 1.9772 | 6e-09 | 2.0574658506 |
+| 50.1172 | 3.550802 | 0.51349657 + 7.03342138i | 1.9808 | 6e-09 | 2.0468389353 |
+| 60.9902 | 3.617682 | 0.51754131 + 7.17416570i | 1.9831 | 4e-09 | 2.0395953299 |
+| 70.9902 | 3.663022 | 0.52017954 + 7.26949585i | 1.9846 | 9e-09 | 2.0346793610 |
+| 80.0000 | 3.695097 | 0.52199898 + 7.33689470i | 1.9856 | 6e-07 | 2.0311970219 |
+
+CSS box counts (complex_css.py boxes): D, box, R/x_h, winding, largest step, evaluations, plant, mutate
+    4 C R=0.85 wind +2.0000 step 0.50 ev 92 plant [1.0, 3.0] mutate None osc 0.25866983+3.50224880i
+    4 B R=0.85 wind -0.0000 step 0.44 ev 72 plant None mutate nometric osc -0.89011549+1.91544469i
+    4 C R=0.85 wind -0.0000 step 0.48 ev 54 plant None mutate nometric osc -0.89011549+1.91544469i
+    4 A R=0.85 wind -0.0000 step 0.46 ev 92 plant None mutate None osc 0.25866983+3.50224880i
+    4 B R=0.85 wind +2.0000 step 0.49 ev 92 plant None mutate None osc 0.25866983+3.50224880i
+    4 C R=0.85 wind +1.0000 step 0.48 ev 80 plant None mutate None osc 0.25866983+3.50224880i
+    4 S R=0.85 wind +6.0000 step 0.50 ev 280 plant None mutate None osc 0.25866983+3.50224880i
+    4 A R=0.60 wind +0.0000 step 0.46 ev 92 plant None mutate None osc 0.25866983+3.50224880i
+    4 B R=0.60 wind +2.0000 step 0.43 ev 96 plant None mutate None osc 0.25866983+3.50224880i
+    4 C R=0.60 wind +1.0000 step 0.49 ev 80 plant None mutate None osc 0.25866983+3.50224880i
+    4 S R=0.60 wind +6.0000 step 0.50 ev 280 plant None mutate None osc 0.25866983+3.50224880i
+    5 A R=0.85 wind -0.0000 step 0.49 ev 100 plant None mutate None osc 0.31456395+3.79011718i
+    5 B R=0.85 wind +2.0000 step 0.49 ev 108 plant None mutate None osc 0.31456395+3.79011718i
+    5 C R=0.85 wind +1.0000 step 0.47 ev 78 plant None mutate None osc 0.31456395+3.79011718i
+    5 S R=0.85 wind +5.0000 step 0.50 ev 256 plant None mutate None osc 0.31456395+3.79011718i
+    5 A R=0.60 wind +0.0000 step 0.49 ev 100 plant None mutate None osc 0.31456395+3.79011718i
+    5 B R=0.60 wind +2.0000 step 0.49 ev 104 plant None mutate None osc 0.31456395+3.79011718i
+    5 C R=0.60 wind +1.0000 step 0.49 ev 80 plant None mutate None osc 0.31456395+3.79011718i
+    5 S R=0.60 wind +5.0000 step 0.50 ev 246 plant None mutate None osc 0.31456395+3.79011718i
+    6 A R=0.85 wind +0.0000 step 0.50 ev 100 plant None mutate None osc 0.35168333+4.09789715i
+    6 B R=0.85 wind +2.0000 step 0.48 ev 128 plant None mutate None osc 0.35168333+4.09789715i
+    6 C R=0.85 wind +1.0000 step 0.50 ev 78 plant None mutate None osc 0.35168333+4.09789715i
+    6 S R=0.85 wind +4.0000 step 0.50 ev 212 plant None mutate None osc 0.35168333+4.09789715i
+    6 A R=0.60 wind -0.0000 step 0.49 ev 104 plant None mutate None osc 0.35168333+4.09789715i
+    6 B R=0.60 wind +2.0000 step 0.49 ev 132 plant None mutate None osc 0.35168333+4.09789715i
+    6 C R=0.60 wind +1.0000 step 0.50 ev 76 plant None mutate None osc 0.35168333+4.09789715i
+    6 S R=0.60 wind +4.0000 step 0.49 ev 212 plant None mutate None osc 0.35168333+4.09789715i
+    8 A R=0.85 wind +0.0000 step 0.49 ev 116 plant None mutate None osc 0.39771899+4.60920800i
+    8 B R=0.85 wind +2.0000 step 0.50 ev 148 plant None mutate None osc 0.39771899+4.60920800i
+    8 C R=0.85 wind +1.0000 step 0.48 ev 82 plant None mutate None osc 0.39771899+4.60920800i
+    8 S R=0.85 wind +3.0000 step 0.50 ev 154 plant None mutate None osc 0.39771899+4.60920800i
+    8 A R=0.60 wind -0.0000 step 0.49 ev 116 plant None mutate None osc 0.39771899+4.60920800i
+    8 B R=0.60 wind +2.0000 step 0.47 ev 128 plant None mutate None osc 0.39771899+4.60920800i
+    8 C R=0.60 wind +1.0000 step 0.49 ev 88 plant None mutate None osc 0.39771899+4.60920800i
+    8 S R=0.60 wind +3.0000 step 0.50 ev 144 plant None mutate None osc 0.39771899+4.60920800i
+   10 A R=0.85 wind +0.0000 step 0.49 ev 116 plant None mutate None osc 0.42514655+4.99934510i
+   10 B R=0.85 wind +2.0000 step 0.48 ev 132 plant None mutate None osc 0.42514655+4.99934510i
+   10 C R=0.85 wind +1.0000 step 0.50 ev 80 plant None mutate None osc 0.42514655+4.99934510i
+   10 S R=0.85 wind +2.0000 step 0.47 ev 128 plant None mutate None osc 0.42514655+4.99934510i
+   10 A R=0.60 wind -0.0000 step 0.49 ev 116 plant None mutate None osc 0.42514655+4.99934510i
+   10 B R=0.60 wind +2.0000 step 0.48 ev 152 plant None mutate None osc 0.42514655+4.99934510i
+   10 C R=0.60 wind +1.0000 step 0.50 ev 90 plant None mutate None osc 0.42514655+4.99934510i
+   10 S R=0.60 wind +2.0000 step 0.47 ev 122 plant None mutate None osc 0.42514655+4.99934510i
+   20 A R=0.85 wind -0.0000 step 0.49 ev 124 plant None mutate None osc 0.47996170+6.06910951i
+   20 B R=0.85 wind +2.0000 step 0.49 ev 156 plant None mutate None osc 0.47996170+6.06910951i
+   20 C R=0.85 wind +1.0000 step 0.49 ev 84 plant None mutate None osc 0.47996170+6.06910951i
+   20 S R=0.85 wind +1.0000 step 0.46 ev 90 plant None mutate None osc 0.47996170+6.06910951i
+   20 A R=0.60 wind +0.0000 step 0.49 ev 124 plant None mutate None osc 0.47996170+6.06910951i
+   20 B R=0.60 wind +2.0000 step 0.50 ev 124 plant None mutate None osc 0.47996170+6.06910951i
+   20 C R=0.60 wind +1.0000 step 0.49 ev 82 plant None mutate None osc 0.47996170+6.06910951i
+   20 S R=0.60 wind -0.0000 step 0.39 ev 68 plant None mutate None osc 0.47996170+6.06910951i
+   40 A R=0.85 wind +0.0000 step 0.47 ev 136 plant None mutate None osc 0.50779248+6.84527998i
+   40 B R=0.85 wind +2.0000 step 0.50 ev 128 plant None mutate None osc 0.50779248+6.84527998i
+   40 C R=0.85 wind +1.0000 step 0.50 ev 74 plant None mutate None osc 0.50779248+6.84527998i
+   40 S R=0.85 wind -0.0000 step 0.37 ev 68 plant None mutate None osc 0.50779248+6.84527998i
+   40 A R=0.60 wind -0.0000 step 0.47 ev 136 plant None mutate None osc 0.50779248+6.84527998i
+   40 B R=0.60 wind +2.0000 step 0.49 ev 136 plant None mutate None osc 0.50779248+6.84527998i
+   40 C R=0.60 wind +1.0000 step 0.48 ev 74 plant None mutate None osc 0.50779248+6.84527998i
+   40 S R=0.60 wind -0.0000 step 0.37 ev 68 plant None mutate None osc 0.50779248+6.84527998i
+   80 A R=0.85 wind -0.0000 step 0.47 ev 144 plant None mutate None osc 0.52199905+7.33689421i
+   80 B R=0.85 wind +2.0000 step 0.48 ev 140 plant None mutate None osc 0.52199905+7.33689421i
+   80 C R=0.85 wind +1.0000 step 0.48 ev 74 plant None mutate None osc 0.52199905+7.33689421i
+   80 S R=0.85 wind +0.0000 step 0.37 ev 68 plant None mutate None osc 0.52199905+7.33689421i
+   80 A R=0.60 wind +0.0000 step 0.47 ev 144 plant None mutate None osc 0.52199905+7.33689421i
+   80 B R=0.60 wind +2.0000 step 0.48 ev 140 plant None mutate None osc 0.52199905+7.33689421i
+   80 C R=0.60 wind +1.0000 step 0.48 ev 74 plant None mutate None osc 0.52199905+7.33689421i
+   80 S R=0.60 wind +0.0000 step 0.40 ev 68 plant None mutate None osc 0.52199905+7.33689421i
+
+| D | A | B | C | S (R = 0.85 x_h) | S (R = 0.6 x_h) | largest step | determinants |
+|---|---|---|---|---|---|---|---|
+| 4 | 0 | 2 | 1 | 6 | 6 | 0.50 rad | 1092 |
+| 5 | 0 | 2 | 1 | 5 | 5 | 0.50 rad | 1072 |
+| 6 | 0 | 2 | 1 | 4 | 4 | 0.50 rad | 1042 |
+| 8 | 0 | 2 | 1 | 3 | 3 | 0.50 rad | 976 |
+| 10 | 0 | 2 | 1 | 2 | 2 | 0.50 rad | 936 |
+| 20 | 0 | 2 | 1 | 1 | 0 | 0.50 rad | 852 |
+| 40 | 0 | 2 | 1 | 0 | 0 | 0.50 rad | 820 |
+| 80 | 0 | 2 | 1 | 0 | 0 | 0.48 rad | 852 |
+
+Strip S located (complex_css.py locate): D, zeros found at R = 0.85 x_h / winding, displacement at R = 0.6 x_h
+D 4: winding 6, located 6: 1.5439+1.9272i, 2.1982+1.8927i, 2.8172+1.9316i, 3.4079+1.9086i, 4.0167+1.9174i, 4.6165+1.9151i; displacement at 0.6 x_h min 9.4e-04 max 1.3e-02
+D 5: winding 5, located 5: 1.9119+2.0403i, 2.6219+2.0272i, 3.3434+2.0424i, 3.8766+2.0400i, 4.5119+2.0303i; displacement at 0.6 x_h min 1.0e-02 max 3.3e-02
+D 6: winding 4, located 5: 2.2328+2.1592i, 3.0434+2.1982i, 3.8715+2.1519i, 4.3724+1.9728i, 4.3997+2.2125i; displacement at 0.6 x_h min 3.1e-02 max 4.8e+00
+D 8: winding 3, located 3: 2.7500+2.3618i, 3.8278+2.4651i, 4.8050+2.3629i; displacement at 0.6 x_h min 3.9e-02 max 1.4e-01
+D 10: winding 2, located 2: 3.1744+2.5287i, 4.4853+2.6353i; displacement at 0.6 x_h min 1.8e-01 max 4.1e+00
+D 20: winding 1, located 1: 4.8196+3.0275i; displacement at 0.6 x_h min 4.9e+00 max 4.9e+00
+D 40: winding 0, located 0: ; displacement at 0.6 x_h min nan max nan
+D 80: winding 0, located 0: ; displacement at 0.6 x_h min nan max nan
+collocation D=4: {'D': 4.0, 'n': 2.0, 'kappa': 0.0, 'N': [40, 56], 'A': 5.0, 'omega': 1.9154446853779883, 'omega_N1': 1.9154447089101838, 'X': 5.003538261719603, 'X_N1': 5.0035377520182, 'f0': 1.2439879262984959, 'fh': 0.32897662550872236, 'uh': 0.397072045109963, 'res': [2.8546054409162025e-12, 9.399592215686425e-12], 'kfmax': 0.0, 'b_h': 5.003538261719603, 'lam': 2.583275174089687, 'gamma_r': 0.3871054891983728, 'modes': [[2.583275174089687, 0.0, 1.1001859601122987e-07, ''], [1.0000000002187253, 0.0, 5.902168309646072e-09, 'time translation (lambda=1)'], [0.25866985453126184, 3.5022488060368424, 3.1832328045
+collocation D=5: {'D': 5.0, 'n': 3.0, 'kappa': 0.0, 'N': [40, 56], 'A': 5.0, 'omega': 2.036666545642552, 'omega_N1': 2.036666178746375, 'X': 2.8883630247514938, 'X_N1': 2.888362373745252, 'f0': 1.0846478135710254, 'fh': 0.3802458447011936, 'uh': 0.1999160021504495, 'res': [4.1033842990145786e-12, 1.8765045073365627e-11], 'kfmax': 0.0, 'b_h': 2.8883630247514938, 'lam': 2.351057388377385, 'gamma_r': 0.42534053185752474, 'modes': [[2.351057388377385, 0.0, 4.597358564950582e-07, ''], [1.000000023927134, 0.0, 2.7104772315489356e-08, 'time translation (lambda=1)'], [0.31456382415025685, 3.790117834143724, 1.06987891
+collocation D=6: {'D': 6.0, 'n': 4.0, 'kappa': 0.0, 'N': [40, 56], 'A': 5.0, 'omega': 2.1762867209889767, 'omega_N1': 2.1762867209889767, 'X': 2.221786142407153, 'X_N1': 2.221786142407153, 'f0': 0.9876527135571246, 'fh': 0.4062669135369286, 'uh': 0.13028783977331052, 'res': [1.9238832749124413e-11, 2.8097524307213462e-11], 'kfmax': 0.0, 'b_h': 2.221786142407153, 'lam': 2.26957636461929, 'gamma_r': 0.44061086270950167, 'modes': [[2.26957636461929, 0.0, 9.840128711857687e-12, ''], [0.9999998599321122, 0.0, 1.4683861382369656e-07, 'time translation (lambda=1)']], 'unconverged_positive': [[0.35168292526489814, 4.0
+collocation D=8: {'D': 8.0, 'n': 6.0, 'kappa': 0.0, 'N': [40, 56], 'A': 5.0, 'omega': 2.4120454320011637, 'omega_N1': 2.412048902785582, 'X': 1.7179823184902856, 'X_N1': 1.7179783071133845, 'f0': 0.870974182791705, 'fh': 0.4338196697456284, 'uh': 0.07299585286773479, 'res': [1.4910828127767672e-10, 1.7416379449741726e-10], 'kfmax': 0.0, 'b_h': 1.7179823184902856, 'lam': nan, 'gamma_r': nan, 'modes': [], 'unconverged_positive': [[0.39875224841503937, 4.608243666607513], [0.39875224841503926, -4.608243666607513], [2.199155616165211, 0.0], [0.052018762164728165, 2.4324937913502316], [0.05201876216472818, -2.43249
+root D=20 R=0.85 lambda = 2.0973011405 -0.0000000000i converged True
+root D=20 R=0.60 lambda = 2.0973011405 -0.0000000000i converged True
+root D=40 R=0.85 lambda = 2.0565169094 -0.0000000000i converged True
+root D=40 R=0.60 lambda = 2.0565169094 +0.0000000000i converged True
+root D=80 R=0.85 lambda = 2.0311970597 -0.0000000000i converged True
+root D=80 R=0.60 lambda = 2.0311970823 -0.0000000009i converged True
+
+Imaginary sector checks (complex_imag.py check):
+D 20.0437 M 32: background mismatch <= 2.8e-15, series at last node 4.4e-16, null residual of (p, m) 7.0e-11, sv min/next/max 8.5e-17 2.2e-16 4.9e+00, Cauchy-Riemann 1.2e-02 (control 2.0), conj symmetry 2.7e-13
+D 10.0000 M 48: background mismatch <= 1.1e-13, series at last node 2.2e-16, null residual of (p, m) 1.7e-09, sv min/next/max 6.6e-12 6.9e-12 3.0e+00, Cauchy-Riemann 2.3e-05 (control 2.0), conj symmetry 5.0e-13
+D 4.0000 M 48: background mismatch <= 3.0e-12, series at last node 4.4e-16, null residual of (p, m) 1.2e-12, sv min/next/max 1.2e-14 6.0e-07 3.1e+00, Cauchy-Riemann 2.8e-09 (control 2.0), conj symmetry 7.1e-15
+D 60.0020 M 32: background mismatch <= 9.1e-15, series at last node 4.4e-16, null residual of (p, m) 1.5e-03, sv min/next/max 6.1e-17 2.3e-16 1.6e+02, Cauchy-Riemann 2.4e+00 (control 1.2), conj symmetry 1.8e-13
+
+Imaginary sector counts (complex_imag.py count): D, kf, box, plant, mutate, winding of g, largest step, evaluations, candidate poles inside
+  20.0437 None B0   plant None         mutate None     wind +1.0000 step 0.65 hits 0 ev 35 poles 0
+  20.0437 None U0   plant None         mutate None     wind +0.0000 step 0.14 hits 0 ev 56 poles 0
+  20.0437 None FULL plant None         mutate None     wind -0.0000 step 0.64 hits 0 ev 119 poles 16
+  20.0437 None B0   plant [3.1, 1.0]   mutate None     wind +1.0000 step 0.64 hits 0 ev 35 poles 0
+  20.0437 None FULL plant [3.1, 1.0]   mutate None     wind +2.0000 step 0.43 hits 0 ev 119 poles 16
+  20.0437 None B0   plant None         mutate coupling wind +2.0000 step 0.73 hits 0 ev 39 poles 0
+  20.0437 None B0   plant None         mutate noG      wind +0.0000 step 0.09 hits 0 ev 29 poles 0
+  10.0000 None B0   plant None         mutate None     wind +1.0000 step 0.72 hits 0 ev 31 poles 0
+  10.0000 None U0   plant None         mutate None     wind +0.0000 step 0.18 hits 0 ev 48 poles 0
+  10.0000 None FULL plant None         mutate None     wind +0.0000 step 0.63 hits 0 ev 107 poles 10
+  10.0000 None B0   plant None         mutate coupling wind -0.0000 step 0.70 hits 0 ev 37 poles 0
+   4.0000 None B0   plant None         mutate None     wind +1.0000 step 0.73 hits 0 ev 31 poles 0
+   4.0000 None U0   plant None         mutate None     wind +0.0000 step 0.21 hits 0 ev 40 poles 0
+   4.0000 None FULL plant None         mutate None     wind -0.0000 step 0.61 hits 0 ev 91 poles 2
+   4.0000 None U0   plant [0.05, 1.5]  mutate None     wind +1.0000 step 0.59 hits 0 ev 48 poles 0
+   4.0000 None B0   plant None         mutate noG      wind +0.0000 step 0.05 hits 0 ev 21 poles 0
+root D 4.0000 from [-0.36, 0.0]: lambda = -0.3651202704 +0.0000000000i
+root D 20.0437 from [0.03, 0.02]: lambda = 0.0000000383 +0.0000000542i
+crate D 60.0020 M 32 kfreeze 13 plant None: {'B0': (0.0, 1, 0.16), 'full': (-0.0, 0, 0.13)}
+crate D 60.0020 M 32 kfreeze 13 plant [3.1, 1.0]: {'B0': (0.0, 1, 0.36), 'full': (2.0, 2, 0.37)}
+exit 0
