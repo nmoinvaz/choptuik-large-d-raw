@@ -1,0 +1,73 @@
+mutate = xrange
+Fourier vs sympy derivatives of Eq. (16), max rel err 1.25e-15
+
+Table, rms(change)/rms(corrected NNLO), and max|change|/max|1-f| at x = 0, in %.
+d is recomputed/claimed - 1. r is whether the recomputed value rounds to the claimed digits.
+D   25   f: recomputed    22.05  claimed 22     d  +0.24%  within 2%   r True
+D   25  Om: recomputed    10.46  claimed 15     d -30.26%  OUTSIDE 2%  r False
+D   25  Pi: recomputed    6.498  claimed 9.6    d -32.31%  OUTSIDE 2%  r False
+D   25  f0: recomputed    20.04  claimed 20     d  +0.21%  within 2%   r True
+D   50   f: recomputed     4.56  claimed 4.6    d  -0.88%  within 2%   r True
+D   50  Om: recomputed    2.209  claimed 3.2    d -30.97%  OUTSIDE 2%  r False
+D   50  Pi: recomputed    1.466  claimed 2.2    d -33.37%  OUTSIDE 2%  r False
+D   50  f0: recomputed    4.125  claimed 4.1    d  +0.62%  within 2%   r True
+D  200   f: recomputed   0.2206  claimed 0.22   d  +0.25%  within 2%   r True
+D  200  Om: recomputed   0.1198  claimed 0.17   d -29.54%  OUTSIDE 2%  r False
+D  200  Pi: recomputed   0.0848  claimed 0.12   d -29.33%  OUTSIDE 2%  r False
+D  200  f0: recomputed   0.2039  claimed 0.2    d  +1.97%  within 2%   r True
+worst |d| 33.37% (pass <= 2%)
+
+Alternative readings, in %:
+D 25: over printed NNLO  f 19.84  Om 10.16  Pi 6.453  f0 16.95
+       over LO             f 13.93  Om 7.915  Pi 5.739
+       over NLO            f 41.73  Om 11.14  Pi 6.512
+       over printed-delta  f 17.61  Om 9.79  Pi 6.383
+       max/max           f 20.04  Om 37.15  Pi 36.94
+       x = 0, rms/rms 17.87, max of pointwise ratio 58.22
+D 50: over printed NNLO  f 4.452  Om 2.194  Pi 1.464  f0 3.972
+       over LO             f 3.342  Om 1.899  Pi 1.377
+       over NLO            f 5.102  Om 2.247  Pi 1.467
+       over printed-delta  f 4.343  Om 2.178  Pi 1.462
+       max/max           f 4.125  Om 8.517  Pi 8.862
+       x = 0, rms/rms 3.742, max of pointwise ratio 37.82
+D 200: over printed NNLO  f 0.2203  Om 0.1197  Pi 0.0848  f0 0.2035
+       over LO             f 0.2027  Om 0.1151  Pi 0.08348
+       over NLO            f 0.2217  Om 0.1199  Pi 0.08481
+       over printed-delta  f 0.2201  Om 0.1197  Pi 0.08479
+       max/max           f 0.2039  Om 0.5003  Pi 0.5373
+       x = 0, rms/rms 0.1843, max of pointwise ratio 11.07
+D 25: x weight 2 x^1  f 25.35  Om 15.42  Pi 9.235
+D 50: x weight 2 x^1  f 5.198  Om 3.105  Pi 2.009
+D 200: x weight 2 x^1  f 0.248  Om 0.161  Pi 0.1134
+D 25: x weight 3 x^2  f 28.02  Om 19.02  Pi 11.16
+D 50: x weight 3 x^2  f 5.711  Om 3.725  Pi 2.374
+D 200: x weight 3 x^2  f 0.2697  Om 0.1879  Pi 0.1319
+
+x = 0, max|change| over max|change| anywhere:
+D 25: Om 0.00e+00  Pi 0.00e+00
+D 200: Om 0.00e+00  Pi 0.00e+00
+D 1600: Om 0.00e+00  Pi 0.00e+00
+pass < 1e-14
+
+Scaling, rel(D 400)/rel(D 1600), target ((1/399)/(1/1599))^2 = 16.0602:
+  f: 16.5815  (+3.25%)  pass
+ Om: 16.3019  (+1.50%)  pass
+ Pi: 16.1553  (+0.59%)  pass
+ f0: 16.5273  (+2.91%)  pass
+
+Planted dPi3 = 0.37 x^2 and its df3, predicted rms of the change against measured:
+D 25  f: predicted 3.0732990194e-05  measured 3.2298227038e-05  rel diff 5.1e-02
+D 25 Om: predicted 6.5194517317e-05  measured 5.2807559027e-05  rel diff 1.9e-01
+D 25 Pi: predicted 5.8639278437e-05  measured 4.7497815534e-05  rel diff 1.9e-01
+D 400  f: predicted 6.6883633044e-09  measured 7.0290028779e-09  rel diff 5.1e-02
+D 400 Om: predicted 1.4188161143e-08  measured 1.1492410526e-08  rel diff 1.9e-01
+D 400 Pi: predicted 5.2033672920e-08  measured 4.2147275065e-08  rel diff 1.9e-01
+pass rel diff < 1e-10
+
+Verdicts:
+  beta     pass
+  table    FAIL
+  x0       pass
+  scaling  pass
+  planted  FAIL
+exit code from check "planted": 1
