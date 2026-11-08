@@ -24,3 +24,15 @@ same run as the predictor's history.
 - Continuation: steps of 1 in D with the quadratic predictor (--dD 1 --pred_order 2), which starts at the residual of
   #105's linear predictor at steps of 1/2 (1.8e-4 at D = 30 on 32x101, measured from #105's states). The check D are
   solved off the path (--extras_off_path).
+
+## What ran
+
+- `pilot/`: one step from D = 30 to 30.5 on 32x101 with #105's linear predictor (exit 1 only from the end check: hp has
+  no row at 30.5).
+- `run_cont.sh`, `cont/cont_32x101*`: the continuation on 32x101 from D = 30 (prev 28, 29).
+- `cont/cont_32x121*`: the continuation on 32x121 from the same states resampled. Its start at D = 30 converged; its
+  first step, to D = 31 from the quadratic predictor (max|F| 1.5e-4, the same as on 32x101), did not: the first Newton
+  step was 6.6e-3 (halved to 3.3e-3), and after 4 steps and 3 rebuilds max|F| was still 3.6e-5 (exit 1). The protocol
+  for the grid above the continuation's was then changed to the follower below. The criteria above are unchanged.
+- `run_follow.sh`, `fol/fol_32x121*`: the follower. Each state the 32x101 continuation saves is resampled to 32x121 and
+  re-solved there at the same D (rt_run.py --start STATE --grids 32x121), the check D first, otherwise the newest.
