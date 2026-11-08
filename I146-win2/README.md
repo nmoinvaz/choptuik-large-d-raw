@@ -11,3 +11,18 @@ into `round<k>/`. Worktree `..\choptuik-i140` at origin/main d9fab0b, Normal pri
 against round 1, I140-win2 and I104-win2, appends to `rounds.csv`, and writes `round<k>/compare.txt`. An anomaly copies
 that to `ALERT_round<k>.txt`. `driver.txt` has the round start and end times. A memory guard (`util_report.py --guard 15`,
 `mem_guard.log`) kills this loop, and only this loop, if free memory falls under 15 GB.
+
+## Result (loop ended 2026-11-08 11:52:32 UTC)
+
+The loop ran from 07:44:38 to 11:52:32 UTC (247.9 min), 25 rounds of 7 processes (175 runs). Every process exited 0 and
+every `compare_round.py` exited 0. All 25 rounds hash like round 1, I140-win2 and I104-win2 (`rounds.csv`):
+
+| family | hash (16 hex) |
+|---|---|
+| lemma 6a(5) rho_6a JSON | 3fd0dba9e72ca8f6 |
+| lemma 6a(5) stored B | 0eeb3ffce4507f76 |
+| amplitude 1.10 K 15 J 750 640 bits | fd6b5ef2f90d4f55 |
+| rp = 0.081 control (rho_6a JSON, must differ) | 1a507cd75a393f3f |
+
+No ALERT file, no crash. The memory guard (15 GB free) never fired; the lowest free memory was 33.5 GB (480 samples at
+30 s). P(no fault in 247.9 min) at the issue's rate of 2 process faults per 68 min is exp(-247.9/34) = 6.8e-4.
