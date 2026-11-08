@@ -46,3 +46,14 @@ removed: both new guards were stopped at 13:31:21 UTC (`taskkill /T /F` on their
 untouched). No process is killed for its memory use from then on. `mem_guard.log` is the guard-era log (to 13:29 UTC);
 `mem_log.txt` (written by `mem_log.py`, which kills nothing) continues the same report line every 5 min. `commit_guard.py`
 stays here as the record of what ran for 90 s.
+
+## Final state (2026-11-08 22:55 UTC)
+
+All three nodes finished with exit 0: 1.09 at 21:14:33 UTC (56982 s), 1.11 at 21:14:39 (56988 s), 1.10 at 22:52:17 (56786 s,
+the relaunch of 07:05:49). Files: `sigF_w1.09_K45_J1500_p1280.json`, `sigF_w1.10_K45_J1500_p1280.json`,
+`sigF_w1.11_K45_J1500_p1280.json`, `w1.09.log`, `w1.10.log`, `w1.11.log`, `w1.09_done.txt`, `w1.10_done.txt`,
+`w1.11_done.txt`, `worker_mem.csv`, `mem_log.txt` (5-min cpu and memory, log only, still being appended).
+
+`sigma_err` is `inf` in all 23 entries of each JSON: `fit_info["1_1"]` is `[12, inf, 0.0]` (the plateau pick finds no falling
+residual pair because the residual is exactly 0.0 at every Mf), and `sigma_err[n]` adds `|sigma_n| * S1_err[1] / |S_1^(1)|`.
+The per-Mf values of S are not stored. Details and substitute estimates are in the closing comment of the issue.
