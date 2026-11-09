@@ -19,3 +19,13 @@ Part 1 result (macm3, 00:02 UTC, exit 0, seconds, awake): the cache has 707 line
   The edge Im = y2, Re aR to aL resolves under --resolve=last: 350 points, max step 0.388 rad, "verified 183 (mismatch 9, last pass 0) in 4 passes"; no UNRESOLVED line (reeval159/reeval.log).
   Windings: B0 0, U0 0, B1a 0, B1b +4, B1c +2, B1 +6 (the same as #159's, a control that held), U +9 (winding of det M 2, 7 poles inside), full +24 (winding of det M 12, 14 poles inside).
   Additivity: full 24 = B1 6 + U 9 + the mirror strip 9. Nine extra zeros per strip at D 61 kf 21 (D 45 kf 21, #170: one per strip).
+
+Part 2 result (macm3, main d72280ff, venv-macm3-314 = Python 3.14.3, python-flint 0.9.0, FLINT 3.6.0; awake.log: awake = wall, 22209 s = 6 h 10 min, caffeinate -is; the first 1 h 45 min shared the machine with I211's count).
+  count.log: exit 0 at 06:13:24 UTC. Setup |F| 1.3e-06 in the layout, 1.3e-06 after Newton, 1.3e-19 after Levenberg-Marquardt (below 1e-15; the saved state is in hp_data_after/, hp/data back to hp_data_before.txt).
+  776 evaluations (772 distinct points, four corners twice, equal to 8.8e-06 rad), 28.1 s on average, pivot minima 2.0e-15 to 1.3e-10.
+  All 14 edges resolve under both rules: mismatches 0 in any pass and 0 in the last pass, largest step 0.392 rad, at most 4 passes (the long edge Im = y2, Re aR to aL has 307 points, phase change of g +97.2).
+  wind(g) is NOT 0: B1b +6, B1c +2, B1 +8, U +8, full +24 (B0, U0, B1a 0). Windings add: full 24 = B1 8 + U 8 + the mirror strip 8. kf 21 re-evaluated (#159): B1b +4, B1c +2, B1 +6, U +9, full +24.
+  The real axis has only the two expected sign changes ((0.5, 1.0) and (2.0, 2.5)), as at kf 21, so the extras are off the axis (the boxes are symmetric about it: they come in conjugate pairs).
+  Reading rule fixed before the run: nonzero wind(g) in B1b and B1c means the D 61 extras persist at a cut past 21. They do (B1b +6, B1c +2). The total in the full box is 24 at both cuts; 4 of the
+  six B1 zeros of kf 21 are in B1b and two in B1c, now 6 and 2 in B1b, B1c with U and the mirror strip going from 9 to 8 each: two zeros moved from the strips (one per strip) into B1b between the two cuts.
+  No cause is tested here.
