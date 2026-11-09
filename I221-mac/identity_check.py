@@ -6,7 +6,9 @@
 #        beta = A*/(2 sqrt q) Re[e^{-id/2} sec(phi + i sigma)]
 #             = A*/(2 sqrt q) sum_k (-1)^(k+1) [cos(d/2)(phi - c_k) - sin(d/2) sigma] / ((phi - c_k)^2 + sigma^2),
 #      c_k = (k + 1/2) pi, so each pole pair is a dispersive Lorentzian rotated toward an absorptive one by d/2. The FP
-#      field t1 t2 e^{-i x}/(1 - rho e^{-2ix}) is (t1 t2/(2i sqrt rho)) sum_q (-1)^q/(x - pi q - i sigma) likewise.
+#      field t1 t2 e^{-i x}/(1 - rho e^{-2ix}) is (t1 t2/(2i sqrt rho)) sum_q (-1)^q/(x - pi q - i sigma) likewise,
+#      and the coherent field sum has the Airy shape too: |sum_q (-1)^q/(x - pi q - i sigma)|^2 equals
+#      (2 sigma/sinh 2 sigma) sum_q 1/((x - pi q)^2 + sigma^2), so the cross terms add a constant factor, not zero.
 #   2. The norm. <beta^2> = (A*^2/2) A_circ,FSR with R1 R2 e^{-2 alpha l} = q^2 (PE Eq. (62)), = A*^2/(2(1 - q^2)),
 #      EEG's (S60), for every d.
 #   3. Reading check of PE Eqs. (114), (117), (118): Delta nu_Airy/Delta nu_c = 1.001, 1.022, 1.132, 1.717 at
@@ -66,9 +68,12 @@ d1c = max(abs(ft(x) - fs(x)) for x in [mp.mpf(j) / 7 for j in range(-5, 6)])
 airy = lambda x: (1 - rho ** 2) / ((1 - rho) ** 2 + 4 * rho * mp.sin(x) ** 2)
 lor = lambda x: mp.nsum(lambda m: (2 * sr) / ((2 * sr) ** 2 + (2 * x - 2 * mp.pi * m) ** 2), [-mp.inf, mp.inf]) * 2
 d1d = max(abs(airy(x) - lor(x)) for x in [mp.mpf(j) / 7 for j in range(-5, 6)])
-ok.append(d1a < mp.mpf('1e-25') and d1b < mp.mpf('1e-20') and d1c < mp.mpf('1e-20') and d1d < mp.mpf('1e-20'))
+# the coherent sum of the alternating field terms against the incoherent sum of their intensities
+d1e = max(abs(abs(fs(x) * 2j * mp.sqrt(rho)) ** 2 - 2 * lor(x) / mp.sinh(2 * sr)) for x in [mp.mpf(j) / 7 for j in range(-5, 6)])
+ok.append(d1a < mp.mpf('1e-25') and d1b < mp.mpf('1e-20') and d1c < mp.mpf('1e-20') and d1d < mp.mpf('1e-20')
+          and d1e < mp.mpf('1e-20'))
 print(f"1. sec form {mp.nstr(d1a, 3)}; alternating pole-pair sum {mp.nstr(d1b, 3)}; FP field as csc sum"
-      f" {mp.nstr(d1c, 3)}; PE Eq. (108) cot sum {mp.nstr(d1d, 3)}")
+      f" {mp.nstr(d1c, 3)}; PE Eq. (108) cot sum {mp.nstr(d1d, 3)}; coherent/incoherent factor {mp.nstr(d1e, 3)}")
 
 # 2. the norm is the FSR-integrated generic Airy distribution, PE Eq. (62)
 A = mp.mpf('3.8455')
