@@ -4,3 +4,5 @@ load start 2026-11-09 01:30:41 UTC: loop COPIES 13, #202 (3 procs) and #196 (1 t
 2026-11-09 01:46:55 UTC: COPIES back to 13 (briefly 14 after #196 ended); readings at 104 C reported to the coordinator, load kept as is until told otherwise
 2026-11-09 01:47:17 UTC: COPIES 7 from round 3 (coordinator: option 2, utilization near the old baseline of about 85%, median 83%); #202, negative-mass and the rest unchanged
 2026-11-09 02:00:04 UTC: COPIES 8 from round 4 (readings after the change: util 77% and 62%, mean 70%, below the old median of 83%)
+2026-11-09 02:03:27 UTC: COPIES 13 from the next round (Nathan, via the coordinator: full load, the CPU may sit near TjMax; BIOS power limits unchanged)
+2026-11-09 02:05:30 UTC: STOP created (Nathan's rule via the coordinator: no crash test unless it does work we need; the loop stops after the running round, the watchers keep running passively)
