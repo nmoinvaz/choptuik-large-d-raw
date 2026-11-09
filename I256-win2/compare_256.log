@@ -1,0 +1,30 @@
+table 1: relative steps at the issue's orders (step1 = K 33 -> K 39, step2 = K 39 -> K 45)
+  n | 1.09 step1  step2 | 1.10 step1  step2 | 1.11 step1  step2
+  6 |         0         0 |         0  9.72e-21 |         0         0
+  7 |         0  6.68e-20 |         0   1.2e-18 |         0  3.63e-19
+ 15 |         0  2.48e-16 |         0  4.03e-16 |         0  2.76e-16
+ 16 |  3.11e-18  3.49e-16 |  7.89e-19  1.23e-15 |  9.37e-20  4.42e-16
+table 2: n = 1 to 16, step1 / step2 per node
+  1 |         0         0 |         0         0 |         0         0
+  2 |         0         0 |         0         0 |         0         0
+  3 |         0         0 |         0         0 |         0         0
+  4 |         0         0 |         0         0 |         0         0
+  5 |         0         0 |         0         0 |         0         0
+  6 |         0         0 |         0  9.72e-21 |         0         0
+  7 |         0  6.68e-20 |         0   1.2e-18 |         0  3.63e-19
+  8 |         0  8.53e-20 |         0  6.14e-20 |         0  9.88e-20
+  9 |         0  3.18e-17 |         0  9.37e-18 |         0  3.32e-18
+ 10 |         0  7.83e-18 |         0  8.87e-18 |         0  1.01e-17
+ 11 |         0  4.62e-18 |         0  5.16e-18 |         0  5.74e-18
+ 12 |         0  7.49e-18 |         0  9.02e-18 |         0  1.06e-17
+ 13 |         0  3.78e-17 |         0  4.39e-17 |         0  4.81e-17
+ 14 |         0   9.3e-17 |         0  1.26e-16 |         0  1.27e-16
+ 15 |         0  2.48e-16 |         0  4.03e-16 |         0  2.76e-16
+ 16 |  3.11e-18  3.49e-16 |  7.89e-19  1.23e-15 |  9.37e-20  4.42e-16
+acceptance: step2 of 1.10 against the larger of step2 of 1.09 and 1.11
+  n  6: step2 1.10  9.72e-21, larger neighbour         0, ratio    inf  ABOVE
+  n  7: step2 1.10   1.2e-18, larger neighbour  3.63e-19, ratio    3.3  ABOVE
+  n 15: step2 1.10  4.03e-16, larger neighbour  2.76e-16, ratio   1.46  ABOVE
+  n 16: step2 1.10  1.23e-15, larger neighbour  4.42e-16, ratio   2.79  ABOVE
+step2 of 1.10 above the neighbours' at n = [6, 7, 15, 16]
+exit 1
