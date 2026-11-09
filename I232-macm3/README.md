@@ -17,7 +17,7 @@ D 50.01 result (macm3, main d28566c0, venv-macm3-314; D50/count.log, exit 0 at 0
   All 14 edges resolve: mismatches 0 in any pass and 0 in the last pass, largest step 0.377 rad, at most 2 passes. Real axis: sign changes only in (0.5, 1.0) and (2.0, 2.5). So the extras are absent at D 50.
 
 D 55.04 result (D55/count.log, exit 0 at 07:59:23 UTC, 5473 s from 06:28:10; awake.log: awake = wall for both counts): setup |F| 1.1e-07 in the layout, 1.1e-07 after Newton, 1.6e-19 after Levenberg-Marquardt (gate passed; state moved to
-  D55/hp_data_after/). 177 evaluations (173 distinct points, four corners twice, equal to 4.2e-05 rad), 30 s each, pivot minima 4.5e-15 to 4.2e-09. All 14 edges resolve: mismatches 0 in any pass and 0 in the last pass, largest
+  D55/hp_data_after/). 177 evaluations (173 distinct points, four corners twice, equal to 4.2e-05 rad), 28.5 s on average, pivot minima 4.5e-15 to 4.2e-09. All 14 edges resolve: mismatches 0 in any pass and 0 in the last pass, largest
   step 0.392 rad, at most 4 passes. wind(g) is NOT 0: B0 +2, U0 +1, U +1, full +2 (B1a, B1b, B1c, B1 0). Winding of det M: B0 3, U0 1, B1a 1, B1b 1, B1c 0, B1 2, U -6, full -10. Real axis: only the two expected sign changes.
   The extras sit elsewhere than at D 61: B0 and U0 are the left column Re (-0.096, 0.300) (B0 holds the expected zero at 0, it winds 3 = 1 + 2), the strips U (+1, with the mirror +1 inside the full box's +2) and none in B1.
   The full box here starts at Re = 0.300, so it does not contain B0 and U0 (and their mirror strips are not counted).
