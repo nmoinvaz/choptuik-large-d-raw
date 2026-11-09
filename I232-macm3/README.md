@@ -11,3 +11,7 @@ Written before the run. Table: the 8 boxes at each D beside #211 (D 45: all 0) a
 |F| reported, the state it saves moved out of hp/data). Both mismatch counts per edge (all passes and the last pass). Onset reading, fixed now: the extras are "absent" at a D when wind(g) is 0 in every resolved box,
 "present" when any box is nonzero; the outcomes are absent at both, present at both, or present at D 55 only (the issue's list); anything else (present at D 50 only) is reported as it is. An unresolved edge is "not a count"
 and its boxes are not read. A zero with Re lambda > 0 beyond the expected ones would be an extra growth rate: this task counts, it does not locate.
+
+D 50.01 result (macm3, main d28566c0, venv-macm3-314; D50/count.log, exit 0 at 07:18:28 UTC, 3018 s from 06:28:10, ran beside D 55's count and #220's 16 s run, awake): setup |F| 2.1e-08 in the layout, 2.1e-08 after Newton,
+  2.3e-19 after Levenberg-Marquardt (gate passed; state moved to D50/hp_data_after/). 85 evaluations. wind(g) is 0 in all 8 boxes (winding of det M B0 1, U0 0, B1a 1, B1b 1, B1c 0, B1 2, U -7, full -12).
+  All 14 edges resolve: mismatches 0 in any pass and 0 in the last pass, largest step 0.377 rad, at most 2 passes. Real axis: sign changes only in (0.5, 1.0) and (2.0, 2.5). So the extras are absent at D 50.
