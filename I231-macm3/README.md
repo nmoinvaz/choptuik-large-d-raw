@@ -45,3 +45,13 @@ Third attempt (coordinator's message after main 8bdb7937 "modecount_cx: accept M
 
 Second control result (control2_D55_M32/, exit 0 at 11:32:00 UTC, 28 min with six processes running; compare_control2.txt, exit 0): the evals cache has 85 lines equal to I237-macm3's in re, im, lnabs, arg, pmin and pmax, bit for bit, the one-digit
   change to a copy is detected, and the 8 boxes are all 0. So the modecount_cx rebuild with B = 5 changes nothing at M 32, and the M 40 results are read.
+
+D 55.04 at M 40 (D55_M40/count.log, exit 0 at 13:26:03 UTC, 293 determinants at about 28 s, 2 h 22 min from 11:03:39; awake = wall): setup |F| 1.2e-07 in the layout, 1.2e-07 after Newton, 3.3e-19 after Levenberg-Marquardt (gate 1e-15 passed); 14 edges, mismatches 0 in any pass and 0 in the last pass,
+  largest step 0.392 rad, at most 4 passes; real axis only the two expected sign changes. wind(g): B0 +2, U0 +1, B1a +2, B1b 0, B1c 0, B1 +2, U +3, full +8 (winding of det M: 3, 1, 3, 1, 0, 4, -4, -4). Reading rule (above): the extras at M 40 are PRESENT ELSEWHERE than at M 48
+  (M 48: B0 +2, U0 +1, U +1, full +2): B1a is nonzero at M 40 and 0 at M 48. Not monotone in M: M 32 none, M 40 eight in the full box, M 48 two.
+  Moments, no new determinant (D55_M40/moments.log; evals file 293 lines before and after): B0 0.24271 +0.92524i (spread 2.9e-2), B1a 0.47109 +1.44349i (2.9e-2), U0 0.09923 +4.48036i (2.8e-3), U 0.34863 +2.61221i, 0.36031 +2.16089i, 0.59532 +5.03932i. The M 48 pair is at 0.1996 +0.2548i (I238).
+Added to the issue's list, because its "why" asks whether a zero stays at the same lambda: circles on the M 40 state (circles_M40.cmd): at M 48's positions (pair 0.19957 +0.25475i R 0.2; U 0.31895 +3.33140i R 0.2; U0 0.06118 +3.85263i R 0.3), at M 40's own B1a position (0.47109 +1.44349i R 0.2), and lam_phys (2.04768412771239, R 0.2, must wind +1;
+  if it does not, none of these circles is read). A circle at an M 48 position that winds 1 with its zero within 0.05 of the M 48 position: "stays"; winding 0: "does not exist at M 40 there".
+
+Circles on the D 55.04 M 40 state (circles_M40.log, exit 0 at 14:56:22 UTC, 66 min; awake): lam_phys (2.04768412771239, R 0.2) winds +1 and returns 2.047684 -0.000000i (estimate 4.6e-08): the circles are read. At M 48's positions the winding is 0: pair (0.19957, 0.25475, R 0.2) 0, U (0.31895, 3.33140, R 0.2) 0,
+  U0 (0.06118, 3.85263, R 0.3) 0: none of the three zeros that I238 located at M 48 exists at M 40 there. M 40's own B1a pair (moment 0.47109 +1.44349i) is confirmed: winding +1, zero 0.477308 +1.453280i (estimate 1.8e-06). 0 verification mismatches in all five.
