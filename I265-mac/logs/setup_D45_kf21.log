@@ -1,0 +1,21 @@
+# 2026-11-09 22:39:52 UTC, nathansairm53, code 27a258c: hp/modecount_probe.py hp/data/states/up7_D45.0507.npz --M=48 --kf=21 --setup --fmax=1e-15 --data=/Users/nathan/Source/choptuik-large-d-raw/I265-mac/states --setup_json=/Users/nathan/Source/choptuik-large-d-raw/I265-mac/setup_D45_kf21.json
+up7_D45.0507.npz: D 45.050722, M 32 -> 48, kf 21, kc 420, ks 100
+  state nodes [0.3, 0.4, 0.5, 0.6, 0.7]
+    |F| 3.285e-09   Taylor steps per segment [5, 6, 7, 9]   kc 420 ks 100
+    0       centre: p 2.3e-15@30  k33   m 1.9e-15@39  k33   a 5.5e-16@21  k32   c 1.1e-14@31  k32 
+    1  seg 0.3-0.4: p 1.9e-15@30  k33   m 1.5e-15@39  k33   a 4.4e-16@18  k32   c 7.2e-15@26  k32 
+    2  seg 0.4-0.5: p 8.8e-16@27  k33   m 6.5e-16@36  k33   a 4.7e-16@18  k16   c 4.6e-15@29  k32 
+    3  seg 0.5-0.6: p 3.0e-16@30  k33   m 2.0e-16@4   k33   a 5.7e-16@15  k0    c 1.9e-15@37  k32 
+    4  seg 0.6-0.7: p 1.4e-16@15  k1    m 1.3e-16@2   k1    a 4.9e-16@18  k0    c 9.7e-16@15  k0  
+    5      horizon: p 6.1e-10@44  k1    m 7.4e-10@44  k1    a 1.8e-09@45  k0    c 3.3e-09@45  k0  
+    phase row 1.2e-15
+    largest rows: horizon c[45] -3.3e-09, horizon c[40] -2.8e-09, horizon c[12] -2.5e-09, horizon c[0] -2.3e-09, horizon c[27] +2.1e-09, horizon c[19] -2.1e-09
+    centre  series at x = 0.3: truncation 7.4e-74, last term 3.6e-74, ratio 0.6700 per order, radius 0.448
+    horizon series at u = 0.3: truncation 1.3e-27, last term 1.1e-27, ratio 0.5538 per order, radius 0.542
+setup up7_D45.0507.npz M 48 kf 21 fmax 1e-15 fit True:
+  |F| 3.3e-09 in this layout: Newton
+  |F| 3.2e-09 after Newton: Levenberg-Marquardt
+  |F| 8.2e-17; saved modecount_state_D45.0507_M48_kf21.npz
+  series truncation (solution): centre 2.4e-08 (ratio 0.967 at 0.3), horizon 1.5e-28 (ratio 0.560 at 0.3)
+  setup raised: series not converged in this layout (solution; M = 48, nodes [0.3, 0.4, 0.5, 0.6, 0.7]): centre 2.4e-08 (ratio 0.967 at 0.3), horizon 1.5e-28 (ratio 0.560 at 0.3); more than 1e-15
+# exit 1, 1570 s, 2026-11-09 23:06:03 UTC
