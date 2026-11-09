@@ -22,3 +22,22 @@ step 1: D 192.5, pivots 3.9e-11..8.7e+26, |z_1| 5.20e-04, |z_N| 2.76e-29, ratios
 step 2: D 193.5, pivots 2.2e-11..1.2e+27, |z_1| 5.16e-04, |z_N| 2.76e-29, ratios 2-5 246.2 222.0 211.7 207.2, a_max 3.091, 2622 s
     a 1.0000: re-seeded (ok), 70.01 s
   qn 0 [full]: |F| 5.16e-20 -> 2.87e-28, |dz| 4.4e-18 -> 6.7e-19, lam 1, dDelta -4.39e-18, piv 5.2e-14..1.7e+27, 77.26 s
+  qn 1 [full]: |F| 2.87e-28 -> 2.70e-28, |dz| 6.7e-19 -> 6.4e-19, lam 0.5, dDelta +6.68e-19, piv 7.0e-14..1.7e+27, 133.15 s
+  qn 2 [full]: |F| 2.70e-28 -> 2.38e-28, |dz| 6.4e-19 -> 3.0e-19, lam 1, dDelta +6.38e-19, piv 1.9e-14..1.7e+27, 71.46 s
+  qn 3 [full]: |F| 2.38e-28 -> 2.37e-28, |dz| 3.0e-19 -> 2.4e-19, lam 0.0625, dDelta +2.95e-19, piv 2.9e-14..1.7e+27, 293.84 s
+  qn 4 [full]: |F| 2.37e-28 -> 2.38e-28, |dz| 2.4e-19 -> 7.8e-20, lam 0.0625, dDelta -2.42e-19, piv 5.6e-14..1.7e+27, 408.3 s
+  qn 5: |F| 2.38e-28, |dz| 7.8e-20: no trial step accepted, stopping
+      elim projections {'u0': 0, 'u0q': 23, 'ladder': 0, 'failed': 0, 'skipped': 1}
+      quad-double Newton: 6 steps, max|F| 2.4e-28, not converged; double-double |F| of its first two parts 3.6e-02
+    a 1.000 -> D 194.5: predicted |F| 5.45e-02, qd 6 steps -> 3.57e-02 (tol 3.0e-20), Delta 1.696517437744 (formula diff -1.2e-06), moved 3.4e-18, 1738 s
+    a 0.5000: re-seeded (ok), 55.65 s
+  qn 0 [full]: |F| 2.30e-20 -> 1.15e-20, |dz| 2.6e-18 -> 1.2e-18, lam 0.5, dDelta +2.60e-18, piv 5.3e-14..1.5e+27, 113.79 s
+  qn 1 [full]: |F| 1.15e-20 -> 1.11e-20, |dz| 1.2e-18 -> 3.7e-19, lam 0.03125, dDelta +1.22e-18, piv 7.3e-14..1.5e+27, 362.31 s
+  qn 2 [full]: |F| 1.11e-20 -> 1.16e-28, |dz| 3.7e-19 -> 1.7e-19, lam 1, dDelta -3.68e-19, piv 6.0e-14..1.5e+27, 57.31 s
+  qn 3 [full]: |F| 1.16e-28 -> 1.17e-28, |dz| 1.7e-19 -> 1.0e-19, lam 0.125, dDelta +1.67e-19, piv 7.2e-14..1.5e+27, 225.9 s
+  qn 4 [full]: |F| 1.17e-28 -> 1.17e-28, |dz| 1.0e-19 -> 5.5e-20, lam 1, dDelta -9.99e-20, piv 7.0e-14..1.5e+27, 58.06 s
+  qn 5: |F| 1.17e-28, |dz| 5.5e-20: no trial step accepted, stopping
+      elim projections {'u0': 0, 'u0q': 23, 'ladder': 0, 'failed': 0, 'skipped': 1}
+      quad-double Newton: 6 steps, max|F| 1.2e-28, not converged; double-double |F| of its first two parts 3.1e-02
+    a 0.500 -> D 194.0: predicted |F| 2.88e-02, qd 6 steps -> 3.13e-02 (tol 2.5e-20), Delta 1.696651283839 (formula diff -1.2e-06), moved 8.9e-19, 1426 s
+held values from the fit data/held_fit_d10.json (degree 10, 138 full-system states, D 38.020417-73.0), relative to the base
