@@ -1,0 +1,50 @@
+1. The M 48 solves from the M 32 state (gamma_m48_gap.py solve)
+   D 58.0060 r2    : |F| start 1.5e-12, end 1.4e-23; Delta(48) - Delta(32) -1.447e-18
+   D 50.0075 gamma : |F| start 2.1e-08, end 2.2e-24; Delta(48) - Delta(32) +1.198e-11
+   D 50.0075 r2    : |F| start 9.9e-14, end 5.4e-25; Delta(48) - Delta(32) +9.332e-20
+
+2. Both M 48 states on one solver (analyze; A = gamma path, B = R2 path)
+   A up8_D50.0075_M48_kf13.npz: |F| dd 2.11e-24 qd 2.15e-24, linearised dDelta -1.200e-11; B: |F| dd 5.39e-25 qd 4.65e-25, linearised dDelta -2.357e-19
+     |A - B| 8.22e-05, Delta part +1.200e-11; Newton step at A vs -(A - B): cosine 0.9999999999999, length ratio 1.00000004; outside the 24 weakest directions 3.9e-07 of |A - B|
+     lam(A) 2.0518437564341356, lam(B) 2.0518437564334424, difference +6.932e-13
+   A up8_D50.0075_M48_gamma.npz: |F| dd 2.18e-24 qd 2.21e-24, linearised dDelta -1.198e-11; B: |F| dd 5.39e-25 qd 4.65e-25, linearised dDelta -2.357e-19
+     |A - B| 8.23e-05, Delta part +1.198e-11; Newton step at A vs -(A - B): cosine 0.9999999999999, length ratio 0.99999995; outside the 24 weakest directions 3.9e-07 of |A - B|
+     direction 0: sigma 4.973e-21, p1 harmonic 13, Delta component +3.19e-08, coefficient of A - B -4.645e-05, its Delta -1.48e-12
+     direction 1: sigma 4.973e-21, p1 harmonic 13, Delta component -5.14e-11, coefficient of A - B +6.444e-05, its Delta -3.31e-15
+     direction 2: sigma 2.710e-19, p1 harmonic 11, Delta component -5.21e-07, coefficient of A - B -1.917e-05, its Delta +1.00e-11
+     direction 3: sigma 2.710e-19, p1 harmonic 11, Delta component -7.06e-08, coefficient of A - B -9.790e-06, its Delta +6.91e-13
+     direction 4: sigma 2.550e-17, p1 harmonic 9, Delta component +1.73e-07, coefficient of A - B +2.544e-07, its Delta +4.40e-14
+     direction 5: sigma 2.550e-17, p1 harmonic 9, Delta component +8.07e-06, coefficient of A - B +3.257e-07, its Delta +2.63e-12
+
+3. Quad-double polish (qd); Delta(start) - Delta(qd)
+   up8_D50.0075_M48_r2.npz          M 48 mutate 0: converged True, |F| qd 1.8e-46, Newton steps 2; 9.29e-20
+   up8_D50.0075.npz                 M 32 mutate 0: converged True, |F| qd 9.5e-57, Newton steps 3; -4.18e-22
+   up8_D50.0075_M48_kf13.npz        M 48 mutate 0: converged True, |F| qd 8.3e-49, Newton steps 5; 1.2e-11
+   up8_D50.0075_M48_r2.npz          M 48 mutate 9: converged False, |F| qd 2.1e-25, Newton steps 3; 9.29e-20
+   up12_D58.0060.npz                M 32 mutate 0: converged True, |F| qd 1.2e-52, Newton steps 3; 1.18e-18
+   up12_D58.0060_M48_r2.npz         M 48 mutate 0: converged True, |F| qd 3.1e-54, Newton steps 3; -2.62e-19
+   D 50: Delta(48) - Delta(32), both quad-double: -2.43e-24
+   D 58: Delta(48) - Delta(32), both quad-double: -3.91e-24
+   D 50: gamma path's polish minus R2 path's, Delta: 0.0
+
+4. lam (lam: find_lam, then refined in double-double lam)
+   up8_D50.0075_qd.npz              M 32: |F| 4.5e-25, linearised dDelta -1.6e-20, lam 2.051843756433441061408189
+   up8_D50.0075_M48_r2_qd.npz       M 48: |F| 8.6e-25, linearised dDelta -9.3e-20, lam 2.051843756433439434093956
+   up8_D50.0075_M48_r2.npz          M 48: |F| 5.4e-25, linearised dDelta -2.4e-19, lam 2.051843756433447248364492
+   up12_D58.0060_qd.npz             M 32: |F| 1.4e-23, linearised dDelta -1.6e-18, lam 2.045529761477790996178603
+   up12_D58.0060.npz                M 32: |F| 1.4e-23, linearised dDelta -2.7e-18, lam 2.045529761477777364618363
+   up8_D50.0075.npz                 M 32: |F| 9.7e-25, linearised dDelta +1.9e-20, lam 2.051843756433441025380776
+   up12_D58.0060_M48_r2_qd.npz      M 48: |F| 1.3e-23, linearised dDelta -7.5e-19, lam 2.045529761477880408010124
+   up12_D58.0060_M48_r2.npz         M 48: |F| 1.4e-23, linearised dDelta -4.9e-18, lam 2.045529761477892682154914
+   D 50: lam(48) - lam(32), quad-double solutions: -1.63e-15
+   D 50: lam on the dd M 48 state minus on its qd polish: 7.81e-15
+   D 50: lam on the saved dd M 32 state minus on its qd polish: -3.6e-17
+   D 58: lam(48) - lam(32), quad-double solutions: 8.94e-14
+   D 58: lam on the dd M 48 state minus on its qd polish: 1.23e-14
+   D 58: lam on the saved dd M 32 state minus on its qd polish: -1.36e-14
+
+5. The root's resolution (lamres: root inside base +- h on the state and on copies with relative noise eps)
+   up8_D50.0075_M48_r2_qd.npz       M 48 base 2.0518437564334393, h 5e-14: eps 0e+00 -4.5e-15; eps 1e-30 +3.8e-15; eps 1e-26 -4.9e-11 (outside +-h); eps 1e-30 -1.0e-14; eps 1e-26 +4.6e-11 (outside +-h)
+   up12_D58.0060_qd.npz             M 32 base 2.045529761477791, h 5e-14: eps 0e+00 -6.7e-17; eps 1e-30 +2.1e-12 (outside +-h); eps 1e-28 -3.2e-10 (outside +-h); eps 1e-30 +5.0e-12 (outside +-h); eps 1e-28 +4.5e-10 (outside +-h)
+   up12_D58.0060_M48_r2_qd.npz      M 48 base 2.0455297614778805, h 2e-13: eps 0e+00 -5.1e-13 (outside +-h); eps 1e-32 -3.2e-13 (outside +-h); eps 1e-32 +1.5e-13; eps 1e-32 -1.2e-13
+   up12_D58.0060_qd.npz             M 32 base 2.045529761477791, h 2e-13: eps 0e+00 -8.7e-16; eps 1e-32 -9.2e-15; eps 1e-32 -6.7e-14; eps 1e-32 -3.0e-14
