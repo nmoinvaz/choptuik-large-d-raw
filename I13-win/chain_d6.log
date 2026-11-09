@@ -181,3 +181,12 @@ step 21: D 189.0, pivots 1.0e-10..2.6e+26, |z_1| 5.35e-04, |z_N| 4.66e-30, ratio
       elim projections {'u0': 0, 'u0q': 1, 'ladder': 0, 'failed': 0, 'skipped': 1}
       quad-double Newton: 2 steps, max|F| 4.3e-29, converged; double-double |F| of its first two parts 6.8e-03
     a 1.000 -> D 190.0: predicted |F| 8.43e-03, qd 2 steps -> 6.80e-03 (tol 3.5e-17, stall accepted, Delta correction +0.0e+00), Delta 1.697747082756 (formula diff -1.2e-06), moved 1.6e-19, 125 s
+step 22: D 190.0, pivots 6.8e-11..3.6e+26, |z_1| 5.31e-04, |z_N| 4.69e-30, ratios 2-5 241.5 217.8 207.8 202.2, a_max 3.343, 3003 s
+    a 1.0000: re-seeded (ok), 61.24 s
+  qn 0 [full]: |F| 3.83e-20 -> 2.87e-20, |dz| 2.0e-19 -> 6.9e-20, lam 0.25, dDelta +2.03e-19, piv 1.6e-12..5.1e+26, 191.77 s
+  qn 1 [full]: |F| 2.87e-20 -> 2.82e-20, |dz| 6.9e-20 -> 6.1e-20, lam 0.015625, dDelta -6.87e-20, piv 3.6e-13..5.1e+26, 456.73 s
+  qn 2 [full]: |F| 2.82e-20 -> 7.54e-29, |dz| 6.1e-20 -> 5.1e-19, lam 1, dDelta +6.08e-20, piv 1.5e-12..5.1e+26, 63.01 s
+  qn 3: |F| 7.54e-29 converged, Delta 1.69746888586068323 +9.9694e-18
+      elim projections {'u0': 0, 'u0q': 11, 'ladder': 0, 'failed': 0, 'skipped': 1}
+      quad-double Newton: 4 steps, max|F| 7.5e-29, converged; double-double |F| of its first two parts 1.2e-02
+    a 1.000 -> D 191.0: predicted |F| 1.27e-02, qd 4 steps -> 1.24e-02 (tol 5.1e-17, stall accepted, Delta correction +0.0e+00), Delta 1.697468885861 (formula diff -1.2e-06), moved 1.1e-19, 777 s
