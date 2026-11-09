@@ -17,3 +17,22 @@ STOP (macm3, 09:11 UTC, both runs, exit 1 within seconds; D55_M40/count.log, D61
   ValueError: M must be one of 8, 16, 32, 48, 64, 80, 96, 128, 160, 192, 256, 320, 384, 512 (hp/src/python.rs:498, raised by hpkernel.driver.make_solver -> Solver(M, ...), called from modecount_common.build_pair).
   Nothing was evaluated or written: the --data folders are empty, hp/data is unchanged. Per the issue, both runs stop here and are reported. A kernel that accepts M 40 needs a build with that size added to the list in
   hp/src/python.rs (the binding dispatches on a fixed set of M), a code change for the coordinator. The next resolution above 48 that the kernel accepts is M 64 (#141) and M 80.
+
+Second attempt (coordinator's message, 2026-11-09: hp now accepts M = 40, main 1bad14fd "hp: accept M = 40 in the solver binding", B = 5 added to the block list; after #240 ended so the rebuild does not replace a module a running count has loaded):
+  1. git pull (1bad14fd), bash hp/build.sh with venv-macm3-314 (rebuild.sh: LTO off, 16 codegen units as in #179; build.log, build_time.txt, freeze_before/after_rebuild.txt), and bash hp/modecount_build.sh
+     (build_cx.log): the binding change is in hp/src/python.rs, and modecount_cx links the hp crate, so it is rebuilt with the same venv active so that the control and the M 40 runs use one set of modules (an addition to the message).
+  2. Control for the rebuild, written before the run: control_D55_M32/ reruns #237's (c) into a fresh folder: python3 hp/modecount_wind.py hp/data/states/up10_D55.0351.npz --M=32 --kf=23 --h0=0.6 --lam=2.04768412771239
+     --fmax=1e-15 --resolve=last --tag=D55.0351_M32_kf23 --data=<raw>/I231-macm3/control_D55_M32/data (control.cmd). Pass: its evals cache equals I237-macm3/D55_M32/data's bit for bit, line by line (compare_control.py:
+     re, im, lnabs, arg, pmin, pmax equal; the timings are excluded), and the 8 boxes' windings equal. If they differ, stop and report: the M 40 runs do not start. The check can fail: compare_control.py also compares against
+     a deliberately altered copy (one digit of one lnabs) and must report it as different.
+  3. The two M 40 counts as above, both at once, if the control passes (the readings above unchanged). If M 40 is rejected again at the CSolver or a setup misses 1e-15, that run stops and is reported.
+
+Rebuild and control result (macm3, awake = wall): hp/build.sh exit 0 in 885 s (peak 10.55 GB, LTO off, 16 codegen units; freeze_after_rebuild.txt differs from freeze_before_rebuild.txt only in the hpkernel wheel's sha256), final line "hpkernel neon multidouble neon";
+  hp/modecount_build.sh exit 0, "Finished in 0.06s" (modecount_cx links hp without its python feature, so python.rs is not part of it: nothing recompiled). Control (control_D55_M32/, exit 0 at 10:57:53 UTC, 735 s): the evals cache has
+  85 lines equal to I237-macm3's in re, im, lnabs, arg, pmin and pmax, bit for bit (compare_control.txt, exit 0), the one-digit change to the control copy is detected, and the 8 boxes are all 0 as in I237. So the rebuild changes nothing at M 32.
+  The two M 40 counts started at 10:58 UTC.
+
+STOP again (macm3, 10:58:41 UTC, both M 40 runs, exit 1 within seconds): hp's Solver now accepts M = 40 (make_solver passed), but the complex-lambda determinant solver modecount_cx does not:
+  hp/modecount_cx/src/lib.rs:720: ValueError: M must be one of 16, 32, 48, 64 (raised by modecount_cx.CSolver(...), modecount_common.build_pair line 45, reached after make_solver). The macro make_ctx! there dispatches on
+  B = M / 8 in {2, 4, 6, 8} (lib.rs:795). B = 5 is the missing entry (hp/src/python.rs got it in 1bad14fd). Nothing was evaluated or written to --data; hp/data is unchanged by these two runs. modecount_cx needs the same one-line
+  change, a code change for the coordinator, then hp/modecount_build.sh (32 s) and the two counts rerun. The rebuild control passed (above); only the CSolver blocks M 40.

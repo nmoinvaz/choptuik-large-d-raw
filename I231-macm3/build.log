@@ -1,0 +1,31 @@
+== 2026-11-09 10:29:49 UTC bash hp/build.sh (venv-macm3-314, main 1bad14fd)
+🍹 Building a mixed python/rust project
+🐍 Found CPython 3.14 at /Users/nathan/Source/venv-macm3-314/bin/python
+🔗 Found pyo3 bindings
+📡 Using build options features from pyproject.toml
+💻 Using `MACOSX_DEPLOYMENT_TARGET=11.0` for aarch64-apple-darwin by default
+   Compiling hpkernel v0.1.0 (/Users/nathan/Source/choptuik-large-d/hp)
+    Finished `release` profile [optimized] target(s) in 14m 42s
+📦 Built wheel for CPython 3.14 to /Users/nathan/Source/choptuik-large-d/hp/dist/hpkernel-0.1.0-cp314-cp314-macosx_11_0_arm64.whl
+Processing ./dist/hpkernel-0.1.0-cp314-cp314-macosx_11_0_arm64.whl
+Installing collected packages: hpkernel
+  Attempting uninstall: hpkernel
+    Found existing installation: hpkernel 0.1.0
+    Uninstalling hpkernel-0.1.0:
+      Successfully uninstalled hpkernel-0.1.0
+Successfully installed hpkernel-0.1.0
+
+[notice] A new release of pip is available: 26.0 -> 26.3
+[notice] To update, run: pip install --upgrade pip
+Collecting multidouble @ git+https://github.com/nmoinvaz/multidouble@f092018db2c449820ded3f62899ac4672b3440e5#subdirectory=python
+  Using cached multidouble-0.1.0-cp314-cp314-macosx_11_0_arm64.whl
+Installing collected packages: multidouble
+  Attempting uninstall: multidouble
+    Found existing installation: multidouble 0.1.0
+    Uninstalling multidouble-0.1.0:
+      Successfully uninstalled multidouble-0.1.0
+Successfully installed multidouble-0.1.0
+
+[notice] A new release of pip is available: 26.0 -> 26.3
+[notice] To update, run: pip install --upgrade pip
+hpkernel neon multidouble neon

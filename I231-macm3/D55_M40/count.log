@@ -8,9 +8,7 @@ Traceback (most recent call last):
   File "/Users/nathan/Source/choptuik-large-d/hp/modecount_common.py", line 78, in setup
     s, c = build_pair(meta, zh, zl, M, kf, threads)
            ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/nathan/Source/choptuik-large-d/hp/modecount_common.py", line 35, in build_pair
-    s = make_solver(D, M, nodes=meta["nodes"], kt=meta.get("kt", 36), kc=meta.get("kc", 420), ks=meta.get("ks", 100),
-                    threads=threads, kfreeze=kf)
-  File "/Users/nathan/Source/venv-macm3-314/lib/python3.14/site-packages/hpkernel/driver.py", line 94, in make_solver
-    s = Solver(M, float(nh[0]), float(nl[0]), dh, dl, ph, pl, nodes, segs or [], kt, kc, ks, threads, a, b, match_node)
-ValueError: M must be one of 8, 16, 32, 48, 64, 80, 96, 128, 160, 192, 256, 320, 384, 512
+  File "/Users/nathan/Source/choptuik-large-d/hp/modecount_common.py", line 45, in build_pair
+    c = modecount_cx.CSolver(M, float(nh[0]), float(nl[0]), dh, dl, ph, pl, list(meta["nodes"]), s.get_segs(),
+                             meta.get("kt", 36), meta.get("kc", 420), meta.get("ks", 100), threads, a, b, None)
+ValueError: M must be one of 16, 32, 48, 64
