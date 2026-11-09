@@ -9,6 +9,9 @@
         Part 2: |dsigma_n|/|sigma_n| (n = 1..16, from the 20 stored digits, mpmath 50 digits) of the new file against win2's K 33
         J 1000 file at 1.10 (../I202-win2), next to #82's same-machine rows (1.09 and 1.11, K 45 against T155-win2's K 33) and the
         old 1.10 file against the same K 33 file; per n whether the new row is at most the larger of the 1.09 and 1.11 rows.
+        Part 0 (also with `--log [NEW.log [OLD.log]]`): the two logs line by line with the elapsed-time suffix `[...s]` removed: every
+        `k <order>:` line (S_1, fit Mf/err/resid, sigma) and every `   k <order> nu <nu>:` line. Prints "identical through order K" for
+        the orders both logs have, or the first differing line with both texts.
         Exit 0: bit for bit equal. Exit 1: not equal (the issue then asks for second_zero_nodes.py --k45 and #203's
         second_zero.py real on the new file). Exit 2: a file is missing.
     python -I compare_228.py --selftest
@@ -50,6 +53,35 @@ def part1(new, old, out=print):
     return 1
 
 
+def log_lines(path):
+    import re
+    out = []
+    for line in open(path, encoding="utf-8", errors="replace"):
+        line = line.rstrip(chr(10))
+        if re.match(r"^k \d+:", line) or re.match(r"^   k \d+ nu ", line):
+            out.append(re.sub(r"\s*\[\d+s\]$", "", line))
+    return out
+
+
+def part0(new_lines, old_lines, out=print):
+    """compare the common prefix of orders; returns 0 if identical"""
+    import re
+    last = max((int(re.match(r"^k (\d+):", l).group(1)) for l in new_lines if re.match(r"^k \d+:", l)), default=0)
+
+    def upto(lines):
+        return [l for l in lines if int(re.match(r"^(?:   )?k (\d+)", l).group(1)) <= last]
+    a, b = upto(new_lines), upto(old_lines)
+    for i, (x, y) in enumerate(zip(a, b)):
+        if x != y:
+            out(f"part 0: first differing log line (line {i + 1} of {len(a)}):" + chr(10) + f"   new {x}" + chr(10) + f"   old {y}")
+            return 1
+    if len(a) != len(b):
+        out(f"part 0: the logs have {len(a)} and {len(b)} lines up to order {last}, the first {min(len(a), len(b))} are identical")
+        return 1
+    out(f"part 0: identical through order {last} ({len(a)} lines: S_1, fit Mf/err/resid, sigma and every nu line, elapsed times removed)")
+    return 0
+
+
 def sig(*p):
     return json.load(open(os.path.join(RAW, *p)))["sigma_str"]
 
@@ -85,6 +117,14 @@ def selftest():
     rows, above = part2(old["sigma_str"], out=q)
     ok &= [mp.nstr(rows["1.10 old K45 vs I202-win2 K33"][n - 1], 2) for n in (7, 9, 16)] == ["1.2e-18", "9.4e-18", "1.2e-15"] \
         and above == [6, 7, 15, 16]
+    lo = log_lines(os.path.join(RAW, "I82-win2", "w1.10.log"))
+    ok &= part0(list(lo), lo, out=q) == 0
+    bad = list(lo)
+    i = next(j for j, l in enumerate(bad) if l.startswith("k 21:"))
+    bad[i] = bad[i].replace("S_1^(21) = (", "S_1^(21) = (9", 1)
+    log = []
+    ok &= part0(bad, lo, out=log.append) == 1 and any("first differing log line" in x for x in log) and any("k 21:" in x for x in log)
+    ok &= part0(lo[:40], lo, out=q) == 0
     print("selftest:", "ok" if ok else "FAILED")
     return 0 if ok else 1
 
@@ -100,4 +140,7 @@ if __name__ == "__main__":
     new, old = C.canon(n)[0], C.canon(o)[0]
     rc = part1(new, old)
     part2(new["sigma_str"])
+    ln, lo = os.path.join(HERE, "w1.10.log"), os.path.join(RAW, "I82-win2", "w1.10.log")
+    if os.path.exists(ln) and os.path.exists(lo):
+        rc |= part0(log_lines(ln), log_lines(lo))
     sys.exit(rc)
