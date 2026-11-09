@@ -12,4 +12,4 @@ Final state (2026-11-09 01:32 UTC). Nathan asked for the stop early ("Give it 15
 | chain_d6 | chain_d6/anm_pin3_D192.0000.npz | 2026-11-09 01:30:25 | 01:30:51 | 1.697193549539 |
 | chain_d10 | chain_d10/anm_pin3_D191.5000.npz | 2026-11-09 01:26:09 | 01:32:26 | 1.697330862868 |
 
-chain_d10 halved once: its qd corrector stalled at |F| 1.6e-20 for D 192 ("no trial step accepted", not converged), the step was halved and D 191.5 converged at 6.4e-29. Counts over the chain logs: halvings d6 0, d10 1; re-seeds ok / failed d6 22 / 2, d10 25 / 0 (the failed ones keep the prediction).
+chain_d10 halved once: its qd corrector stalled at |F| 1.6e-20 for D 192 ("no trial step accepted", not converged), the step was halved and D 191.5 converged at 6.4e-29. Counts over the chain logs: halvings d6 0, d10 1; re-seeds ok / failed d6 23 / 2, d10 26 / 0, quad-double corrections not converged d6 0 of 27, d10 1 of 28 (the D 192 attempt) (the failed ones keep the prediction).
