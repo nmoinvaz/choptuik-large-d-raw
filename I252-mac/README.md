@@ -118,3 +118,30 @@ matrix entries at steps 2^-40 and 2^-46; `--ks` rebuilds the solvers with anothe
 The probe's control (D 61 M 48) failed its B criterion (1e-6), so the probe is not read as a pass or fail. Its numbers
 are measurements. The matrix check's JSON write failed on a numpy bool (fixed afterwards), and its logs are the record.
 The JSON of `matrix_cr_D55_M64` and `matrix_cr_D61_M48_control` is missing for that reason.
+
+## Restated gate (option (c), Nathan via the coordinator, 18:30 UTC; written before any circle under it)
+
+Reason: the cause of the fired controls is measured. The M 64 series blocks carry non-smooth entry error (table above),
+which limits positions to about R x the ln h floor, while windings are unaffected. The science criterion, "keeps its
+lambda" (criterion 5), is 0.01. The original gate (zero within 1e-5 of lambda_phys) **fired at both D** (17:26 and 17:28
+UTC, `D55/gate_phys.log`, `D61/gate_phys.log`), and that result stays on record.
+
+**New gate** (`scripts/gate_phys_v2.py`): the lambda_phys circle winds +1 with every step below pi/4 and 0 verification
+mismatches, and its located zero lies within 3 times the circle's own estimate and within 1e-3 of lambda_phys. If either
+D fails it, the circles stop and are reported. The controls are the same circles, replayed from their caches (no new
+determinants), then gated.
+
+**Circles** (n0 20, tol pi/4), one slot per D:
+- D 61, M 48 zeros (#230, kf 23): 1.306478 + 1.415783i, 2.007279 + 0.972720i, 2.558385 + 0.582474i (R 0.2), and the
+  pair 3.019571 +- 0.095819i by one circle on the axis (R 0.2, winding 2 if present).
+- D 61, M 40 moments (#231, macm3, 17:23 UTC): 2.7626 + 0.6308i and 2.9141 + 1.5885i (spreads 7.5e-3 and 6.8e-3; R 0.2),
+  1.98 + 1.20i and 1.83 + 0.49i (spreads 0.11 and 0.20; R 0.3), 0.032 + 3.086i (R 0.2).
+- D 55, M 48 zeros (#238): 0.19957 + 0.25475i, 0.31895 + 3.33140i (R 0.2), 0.06118 + 3.85263i (R 0.3), -0.226688 +
+  4.280040i (R 0.2).
+- D 55, M 40 zeros (#231): 0.477308 + 1.453280i, and the moments 0.24271 + 0.92524i, 0.09923 + 4.48036i, 0.34863 +
+  2.61221i, 0.36031 + 2.16089i, 0.59532 + 5.03932i (R 0.2).
+
+Reading: as criteria 4 and 5. For a winding of +1 the located zero is reported with the **measured position noise** as its
+error bar: the lambda_phys control's distance from lambda_phys at that D (5.4e-4 at D 61, 2.3e-5 at D 55; about 1e-3 and
+2e-5), named as such, beside the circle's own estimate. "Keeps its lambda" stays: within 0.01 of the lower-M position.
+The full M 64 counts stay held.
