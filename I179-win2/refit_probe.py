@@ -2,6 +2,7 @@
 (limits 1e-9, 1e-8, and a window of 0.5e-7 to 2e-7). Run from anywhere: python refit_probe.py OUT.json"""
 import sys, os, json
 import numpy as np
+OUT = os.path.abspath(sys.argv[1])
 ROOT = r"D:\choptuik-large-d"
 sys.path.insert(0, os.path.join(ROOT, "solver"))
 os.chdir(os.path.join(ROOT, "solver", "data"))

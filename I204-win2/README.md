@@ -1,4 +1,4 @@
-# I204-win2: 24 h full-load crash test on win2 after the BIOS update (BIOS 3.40, microcode 0x121)
+# I204-win2: 24 h full-load crash test on win2 after the BIOS update (BIOS 3.40, microcode 0x122)
 
 Machine: win2 (Windows 11 desktop, Intel Core Ultra 7 265K, 20 threads, ASRock Z890I Nova WiFi).
 Issue: https://github.com/nmoinvaz/choptuik-large-d/issues/204
