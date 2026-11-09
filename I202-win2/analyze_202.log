@@ -1,0 +1,71 @@
+== part 1: win2 (this folder) against T153-macm3, K 33 J 1000, omega 1.10; 115 differing leaves
+   J          equal
+   K          equal
+   f          6 differ
+   fit        equal
+   fit_info   105 differ
+   fit_step   equal
+   mf         equal
+   phys_prec  equal
+   prec       equal
+   procs      1 differ
+   sigma      equal
+   sigma_err  1 differ
+   sigma_rad  equal
+   sigma_str  2 differ
+   wf         equal
+   sigma_str, index: relative difference (the strings carry 20 digits)
+   sigma_16: 1.48e-19  win2 ['3.3878621466602032849e-13', '-2.0036709659677382538e-13']  macm3 ['3.3878621466602032852e-13', '-2.0036709659677382543e-13']
+   sigma_str equal for n = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+   sigma_err[16] win2 1.3203952298801322e-26 macm3 1.3203896150376752e-26
+   fit_info: 153 families, same keys True; (Mf, err, resid) triples
+   Mf equal in all families: True
+   order 21: 2 of 11 families differ in err or resid
+   order 23: 5 of 12 families differ in err or resid
+   order 25: 4 of 13 families differ in err or resid
+   order 27: 11 of 14 families differ in err or resid
+   order 29: 8 of 15 families differ in err or resid
+   order 31: 12 of 16 families differ in err or resid
+   order 33: 14 of 17 families differ in err or resid
+   orders below 21 equal in every triple: True
+   f entries differing (3 of 136): ['33_3', '33_5', '33_7']
+      33_3: win2 [-6.607337464172256e-27, -9.980369766747876e-28]  macm3 [-6.60733747128514e-27, -9.980369849958098e-28]
+      33_5: win2 [1.5437233540867022e-27, -7.362060645428699e-28]  macm3 [1.5437233540763073e-27, -7.362060645583398e-28]
+      33_7: win2 [-9.032409742759341e-28, 4.714428357873741e-28]  macm3 [-9.032409742759343e-28, 4.714428357873731e-28]
+
+== part 2: |dsigma_n|/|sigma_n| of the K 45 J 1500 nodes of #82 against the K 33 J 1000 files
+n                                            1        2        3        4        5        6        7        8        9       10       11       12       13       14       15       16
+1.09 K45 vs T155-win2 K33                  0.0      0.0      0.0      0.0      0.0      0.0  6.7e-20  8.5e-20  3.2e-17  7.8e-18  4.6e-18  7.5e-18  3.8e-17  9.3e-17  2.5e-16  3.5e-16
+1.11 K45 vs T155-win2 K33                  0.0      0.0      0.0      0.0      0.0      0.0  3.6e-19  9.9e-20  3.3e-18  1.0e-17  5.7e-18  1.1e-17  4.8e-17  1.3e-16  2.8e-16  4.4e-16
+1.10 K45 vs T153-macm3 K33                 0.0      0.0      0.0      0.0      0.0  9.7e-21  1.2e-18  6.1e-20  9.4e-18  8.9e-18  5.2e-18  9.0e-18  4.4e-17  1.3e-16  4.0e-16  1.2e-15
+1.10 K45 vs I202-win2 K33                  0.0      0.0      0.0      0.0      0.0  9.7e-21  1.2e-18  6.1e-20  9.4e-18  8.9e-18  5.2e-18  9.0e-18  4.4e-17  1.3e-16  4.0e-16  1.2e-15
+I202-win2 vs T153-macm3                    0.0      0.0      0.0      0.0      0.0      0.0      0.0      0.0      0.0      0.0      0.0      0.0      0.0      0.0      0.0  1.5e-19
+   control 1.09 K45 vs T155-win2 K33 n 7: posted 6.7e-20, here 6.7e-20 ok
+   control 1.09 K45 vs T155-win2 K33 n 9: posted 3.2e-17, here 3.2e-17 ok
+   control 1.09 K45 vs T155-win2 K33 n 16: posted 3.5e-16, here 3.5e-16 ok
+   control 1.11 K45 vs T155-win2 K33 n 7: posted 3.6e-19, here 3.6e-19 ok
+   control 1.11 K45 vs T155-win2 K33 n 9: posted 3.3e-18, here 3.3e-18 ok
+   control 1.11 K45 vs T155-win2 K33 n 16: posted 4.4e-16, here 4.4e-16 ok
+   control 1.10 K45 vs T153-macm3 K33 n 7: posted 1.2e-18, here 1.2e-18 ok
+   control 1.10 K45 vs T153-macm3 K33 n 9: posted 9.4e-18, here 9.4e-18 ok
+   control 1.10 K45 vs T153-macm3 K33 n 16: posted 1.2e-15, here 1.2e-15 ok
+
+   n   1.10 (win2 K33)   larger of 1.09/1.11   ratio   verdict
+    1             0.0                 0.0        0   within
+    2             0.0                 0.0        0   within
+    3             0.0                 0.0        0   within
+    4             0.0                 0.0        0   within
+    5             0.0                 0.0        0   within
+    6         9.7e-21                 0.0      inf   ABOVE
+    7         1.2e-18             3.6e-19      3.3   ABOVE
+    8         6.1e-20             9.9e-20    0.621   within
+    9         9.4e-18             3.2e-17    0.294   within
+   10         8.9e-18             1.0e-17    0.882   within
+   11         5.2e-18             5.7e-18      0.9   within
+   12         9.0e-18             1.1e-17    0.853   within
+   13         4.4e-17             4.8e-17    0.911   within
+   14         1.3e-16             1.3e-16    0.987   within
+   15         4.0e-16             2.8e-16     1.46   ABOVE
+   16         1.2e-15             4.4e-16     2.79   ABOVE
+   above the larger same-machine row at n = [6, 7, 15, 16]
+exit 1
