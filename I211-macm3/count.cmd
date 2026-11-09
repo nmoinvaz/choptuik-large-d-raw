@@ -1,0 +1,2 @@
+cd ~/Source/choptuik-large-d && PATH=/Users/nathan/Source/venv-macm3-314/bin:$PATH caffeinate -is nice -n 10 python3 hp/modecount_wind.py hp/data/states/up7_D45.0507.npz --M=48 --kf=23 --h0=0.6 --lam=2.056738610147195 --fmax=1e-15 --resolve=last --tag=D45.0507_M48_kf23 --data=../choptuik-large-d-raw/I211-macm3/data > ../choptuik-large-d-raw/I211-macm3/count.log 2>&1
+echo "count_kf23 exit $? at $(date -u +%Y-%m-%dT%H:%M:%SZ)" >> ../choptuik-large-d-raw/I211-macm3/exits.txt
