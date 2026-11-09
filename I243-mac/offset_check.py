@@ -84,13 +84,14 @@ def check(rec, gfun, phi=PHI, resample_flags=True, mutate=None):
         z0, z1 = complex(*e["z0"]), complex(*e["z1"])
         L = abs(z1 - z0)
         S = e["samples"]
-        flags, change = [], 0.0
+        flags, change, max_piece, max_sum = [], 0.0, 0.0, 0.0
         for a, b in zip(S[:-1], S[1:]):
             s = wrap(b[2] - a[2])
             tm = a[0] + phi * (b[0] - a[0])
             # mutate=interp (the control): no new sample, the golden point's phase interpolated from the endpoints
             pm = a[2] + phi * s if mutate == "interp" else gfun(z0 + tm * (z1 - z0)).imag
             s1, s2 = wrap(pm - a[2]), wrap(b[2] - pm)
+            max_piece, max_sum = max(max_piece, abs(s1), abs(s2)), max(max_sum, abs(s1 + s2 - s))
             if abs(s1) > tol or abs(s2) > tol or abs(s1 + s2 - s) > 1e-6:
                 f = dict(t=[a[0], b[0]], re_im=[[(z0 + a[0] * (z1 - z0)).real, (z0 + a[0] * (z1 - z0)).imag],
                                                 [(z0 + b[0] * (z1 - z0)).real, (z0 + b[0] * (z1 - z0)).imag]],
@@ -101,7 +102,8 @@ def check(rec, gfun, phi=PHI, resample_flags=True, mutate=None):
                     f.update(resampled=new, points=npts, mismatches=bad, turns=(new - s) / (2 * math.pi))
                     change += new - s
                 flags.append(f)
-        out[name] = dict(intervals=len(S) - 1, flags=flags, dphi_old=e["dphi"], dphi_new=e["dphi"] + change)
+        out[name] = dict(intervals=len(S) - 1, flags=flags, dphi_old=e["dphi"], dphi_new=e["dphi"] + change,
+                         max_piece=max_piece, max_sum_error=max_sum)
         dphi[name] = e["dphi"] + change
     boxes = {}
     for b, (eds, div) in BOX.items():
@@ -181,6 +183,8 @@ def main():
             print(f"  {n}: flagged {f['re_im']}, step {f['step']:+.3f}, pieces {f['pieces'][0]:+.3f} {f['pieces'][1]:+.3f}"
                   + (f", re-sampled {f['resampled']:+.4f} ({f['points']} points, {f['mismatches']} mismatches, "
                      f"{f['turns']:+.4f} turns)" if "resampled" in f else ""))
+    print(f"{name}: largest piece {max(v['max_piece'] for v in out.values()):.3f} rad, largest sum error "
+          f"{max(v['max_sum_error'] for v in out.values()):.1e}")
     print(f"{name}: {nflag} of {res['intervals']} intervals flagged, {nnew[0]} new determinants; boxes "
           + ", ".join(f"{b} {x['old']:+.4f} -> {x['new']:+.4f}" for b, x in boxes.items()))
 

@@ -28,5 +28,15 @@ for name in sorted(os.listdir(HERE)):
               f"  {'CORRECTED ' + ', '.join(changed) if changed else 'unchanged'}; new rule: {nal} alias bisections, "
               f"{new['sweeps']} sweeps, max step {mx:.3f} rad, verification mismatches {mm} (last pass {mml}), "
               f"unresolved boxes {unres or 'none'}"]
+    po = os.path.join(HERE, name, "offset.json")
+    if os.path.exists(po):
+        o = json.load(open(po))
+        p1 = os.path.join(HERE, name, "offset_run1.json")
+        nd = json.load(open(p1))["new_determinants"] if os.path.exists(p1) else o["new_determinants"]
+        bx = [b for b, x in o["boxes"].items() if abs(x["new"] - x["old"]) > 1e-6]
+        lines.append(f"  second-scale check: {o['flags']} of {o['intervals']} intervals flagged, {nd} new determinants, "
+                     f"largest piece {max(v['max_piece'] for v in o['edges'].values()):.3f} rad, largest sum error "
+                     f"{max(v['max_sum_error'] for v in o['edges'].values()):.1e}; boxes "
+                     + (f"changed: {bx}" if bx else "unchanged"))
 open(os.path.join(HERE, "summary.txt"), "w").write("\n".join(lines) + "\n")
 print("\n".join(lines))

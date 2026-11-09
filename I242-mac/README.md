@@ -2,8 +2,9 @@
 
 Machine: mac (Apple M5, 10 cores, macOS 27, shared with #208's two CAPD processes), venv-314 (Python 3.14, hpkernel and
 multidouble NEON, python-flint 0.9.0). Issue: https://github.com/nmoinvaz/choptuik-large-d/issues/242. Code: branch
-wip/i242 of the main repository (hp/modecount_wind.py 01f6c59, hp/modecount_planted.py bc9fd22). No determinants: the
-tests run on synthetic det M.
+wip/i242 of the main repository (hp/modecount_wind.py 01f6c59, hp/modecount_planted.py 43b2b9a; bc9fd22 was the same
+test before its docstring's run time was corrected and hp/data/modecount_planted.log was regenerated). No determinants:
+the tests run on synthetic det M.
 
 ## The rule
 
@@ -17,12 +18,20 @@ h * scale > pi/2 (--alias). The edges are sampled in sweeps until no corner scal
 
 ## Files
 
-- planted/planted_controls_bc9fd22.log: `python3 hp/modecount_planted.py --controls` at bc9fd22, exit 0. The test
-  and its three mutations, in this order: the test (all 39 cases pass, 16353 evaluations), --mutate=flat (the old
-  rule: 27 cases fail, 11586 evaluations), --mutate=nolng (8 fail, the pairs), --mutate=nocorner (6 fail, the long
-  rows).
-- planted/moment_planted_controls_bc9fd22.log: `python3 hp/modecount_moment_planted.py --controls` with the new rule
-  (the moment code's test calls modecount_wind.count): test passes, nok and shift fail, exit 0.
+- planted/planted_controls_bc9fd22.log: `python3 hp/modecount_planted.py --controls` at bc9fd22, exit 0, the first
+  run of the held-out cases. The test and its three mutations, in this order: the test (all 39 cases pass, 16353
+  evaluations), --mutate=flat (the old rule: 27 cases fail, 11586 evaluations), --mutate=nolng (8 fail, the pairs),
+  --mutate=nocorner (6 fail, the long rows).
+- planted/planted_controls_43b2b9a.log: the same at 43b2b9a, with identical verdicts and evaluation counts. The plain
+  test takes 2.2 s here.
+- planted/moment_planted_controls_43b2b9a.log: `python3 hp/modecount_moment_planted.py --controls` with the new rule
+  (the moment code's test calls modecount_wind.count): test passes, nok and shift fail, exit 0. Its U windings, which
+  it prints but does not test, are now right in every case, and 74 of 84 planted zeros are located with spread < 0.05
+  (#230 reported 57 of 76 on its third version's 23 cases, a different set, so not a like-for-like comparison).
+
+The real-data control is in I243-mac/I212_D61.0264_M48_kf23/: the rule, re-run on #212's kf 23 cache, finds T's 3
+hidden turns by itself (U +8 to +11, full +24 to +30, T +116.058 rad as #230's t_check.py), with 147 new determinants
+and 0 mismatches.
 
 ## Results
 

@@ -8,3 +8,33 @@
   real axis, sign of det M: 0.300:+, 0.500:+, 1.000:-, 1.269:-, 1.500:-, 2.000:-, 2.500:+, 2.644:+, 3.000:+, 3.500:+, 4.000:+, 4.500:+, 5.000:+, 5.500:+, 6.000:+, 6.500:+, 6.585:+
   sign changes of det M on the real axis: [(np.float64(0.5), np.float64(1.0)), (np.float64(2.0), np.float64(2.5))]
   512 candidate poles multiplied out, 9 expected zeros divided out; trend p(lam) = 0.8613 lam^2 + 43.4817 lam + 1986.309 (residual on the real axis max 2.327)
+    10 evaluations, 47.6 s each
+    20 evaluations, 46.9 s each
+  edge Re=aR, Im 0->y1: 25 points, phase change of g -7.785201, max step 0.324 rad (det M itself: 3.008), spacing 7.24e-02..7.24e-02, ln|g| -1.94..1.57, verified 12 (mismatch 0, last pass 0) in 2 passes, alias bisections 0
+  edge Re=a2, Im 0->y1: 28 points, phase change of g +1.682850, max step 0.390 rad (det M itself: 3.026), spacing 1.81e-02..7.24e-02, ln|g| -3.70..2.23, verified 7 (mismatch 0, last pass 0) in 2 passes, alias bisections 8
+  edge Re=a1, Im 0->y1: 21 points, phase change of g -5.099825, max step 0.378 rad (det M itself: 2.950), spacing 1.81e-02..1.45e-01, ln|g| -2.34..-0.56, verified 6 (mismatch 0, last pass 0) in 3 passes, alias bisections 4
+  edge Re=aL, Im 0->y1: 23 points, phase change of g -5.312235, max step 0.381 rad (det M itself: 2.691), spacing 7.24e-02..1.45e-01, ln|g| 1.30..1.92, verified 10 (mismatch 0, last pass 0) in 2 passes, alias bisections 2
+  edge Re=aLL, Im 0->y1: 21 points, phase change of g -4.331955, max step 0.363 rad (det M itself: 2.515), spacing 7.24e-02..1.45e-01, ln|g| 1.84..3.27, verified 8 (mismatch 0, last pass 0) in 2 passes, alias bisections 3
+  edge Im=y1, Re aR->a2: 57 points, phase change of g +15.751236, max step 0.284 rad (det M itself: 0.144), spacing 7.04e-02..7.04e-02, ln|g| 1.57..5.90, verified 28 (mismatch 0, last pass 0) in 2 passes, alias bisections 0
+  edge Im=y1, Re a2->a1: 25 points, phase change of g +5.783696, max step 0.333 rad (det M itself: 0.248), spacing 5.73e-02..5.73e-02, ln|g| -0.56..2.23, verified 12 (mismatch 0, last pass 0) in 2 passes, alias bisections 0
+  edge Im=y1, Re a1->aL: 12 points, phase change of g -0.212415, max step 0.381 rad (det M itself: 0.497), spacing 3.03e-02..1.21e-01, ln|g| -1.26..1.33, verified 3 (mismatch 0, last pass 0) in 3 passes, alias bisections 4
+  edge Im=y1, Re aL->aLL: 6 points, phase change of g +0.980274, max step 0.322 rad (det M itself: 0.173), spacing 4.76e-02..9.51e-02, ln|g| 1.33..3.27, verified 1 (mismatch 0, last pass 0) in 2 passes, alias bisections 2
+  edge Re=aR, Im y1->y2: 49 points, phase change of g -15.584313, max step 0.325 rad (det M itself: 3.009), spacing 7.24e-02..7.24e-02, ln|g| 1.57..29.69, verified 14 (mismatch 0, last pass 0) in 2 passes, alias bisections 10
+  edge Re=aL, Im y1->y2: 54 points, phase change of g -13.885696, max step 0.381 rad (det M itself: 2.635), spacing 9.05e-03..1.45e-01, ln|g| 1.21..29.72, verified 11 (mismatch 0, last pass 0) in 3 passes, alias bisections 17
+  edge Re=aLL, Im y1->y2: 36 points, phase change of g -9.538382, max step 0.366 rad (det M itself: 2.589), spacing 7.24e-02..1.45e-01, ln|g| 3.27..31.79, verified 5 (mismatch 0, last pass 0) in 2 passes, alias bisections 12
+  edge Im=y2, Re aR->aL: 350 points, phase change of g +79.569812, max step 0.388 rad (det M itself: 0.186), spacing 8.93e-03..3.57e-02, ln|g| 26.84..34.05, verified 174 (mismatch 0, last pass 0) in 3 passes, alias bisections 9
+  edge Im=y2, Re aL->aLL: 19 points, phase change of g +5.327585, max step 0.387 rad (det M itself: 0.084), spacing 1.19e-02..2.38e-02, ln|g| 29.72..31.79, verified 9 (mismatch 0, last pass 0) in 2 passes, alias bisections 0
+  edges sampled in 3 sweeps (alias rule h * scale <= 1.5708)
+  box B0   Re (-0.080, 0.300) Im (-1.738, +1.738): winding of g -0.000002 -> 0; expected zeros inside 1, candidate poles inside 0 -> winding of det M 1, zeros of det M <= 1; max phase step 0.381 rad, nearest pole / expected zero to the edge 1.740 / 0.080
+  box U0   Re (-0.080, 0.300) Im (+1.738, +5.215): winding of g -0.000000 -> 0; expected zeros inside 0, candidate poles inside 0 -> winding of det M 0, zeros of det M <= 0; max phase step 0.387 rad, nearest pole / expected zero to the edge 0.081 / 1.738
+  box B1a  Re (0.300, 1.269) Im (-1.738, +1.738): winding of g -0.000001 -> 0; expected zeros inside 1, candidate poles inside 0 -> winding of det M 1, zeros of det M <= 1; max phase step 0.381 rad, nearest pole / expected zero to the edge 1.738 / 0.300
+  box B1b  Re (1.269, 2.644) Im (-1.738, +1.738): winding of g +4.000000 -> 4; expected zeros inside 1, candidate poles inside 0 -> winding of det M 5, zeros of det M <= 5; max phase step 0.390 rad, nearest pole / expected zero to the edge 1.738 / 0.370
+  box B1c  Re (2.644, 6.585) Im (-1.738, +1.738): winding of g +2.000000 -> 2; expected zeros inside 0, candidate poles inside 0 -> winding of det M 2, zeros of det M <= 2; max phase step 0.390 rad, nearest pole / expected zero to the edge 1.738 / 0.600
+  box B1   Re (0.300, 6.585) Im (-1.738, +1.738): winding of g +5.999999 -> 6; expected zeros inside 2, candidate poles inside 0 -> winding of det M 8, zeros of det M <= 8; max phase step 0.381 rad, nearest pole / expected zero to the edge 1.738 / 0.300
+  box U    Re (0.300, 6.585) Im (+1.738, +5.215): winding of g +9.000001 -> 9; expected zeros inside 0, candidate poles inside 7 -> winding of det M 2, zeros of det M <= 9; max phase step 0.388 rad, nearest pole / expected zero to the edge 0.438 / 1.738
+  box full Re (0.300, 6.585) Im (-5.215, +5.215): winding of g +24.000002 -> 24; expected zeros inside 2, candidate poles inside 14 -> winding of det M 12, zeros of det M <= 26; max phase step 0.388 rad, nearest pole / expected zero to the edge 0.438 / 0.300
+  done: 728 evaluations in the cache (21 new)
+source /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/43f19197-40d3-4ad8-aa26-db5322fa8689/scratchpad/raw/I212-macm3/reeval159/data/modecount_D61.0264_M48_kf21_evals.jsonl: 707 lines, sha256 79d093b72931b1eb9227d17b6e848b14e047e8f21614dad7d83b15b1995cabce
+after: 728 lines (21 new); old lines unchanged: True
+modecount_wind exit 0
+
