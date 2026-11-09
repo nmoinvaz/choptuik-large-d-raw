@@ -26,6 +26,6 @@ Part 2 result (macm3, main d72280ff, venv-macm3-314 = Python 3.14.3, python-flin
   All 14 edges resolve under both rules: mismatches 0 in any pass and 0 in the last pass, largest step 0.392 rad, at most 4 passes (the long edge Im = y2, Re aR to aL has 307 points, phase change of g +97.2).
   wind(g) is NOT 0: B1b +6, B1c +2, B1 +8, U +8, full +24 (B0, U0, B1a 0). Windings add: full 24 = B1 8 + U 8 + the mirror strip 8. kf 21 re-evaluated (#159): B1b +4, B1c +2, B1 +6, U +9, full +24.
   The real axis has only the two expected sign changes ((0.5, 1.0) and (2.0, 2.5)), as at kf 21, so the extras are off the axis (the boxes are symmetric about it: they come in conjugate pairs).
-  Reading rule fixed before the run: nonzero wind(g) in B1b and B1c means the D 61 extras persist at a cut past 21. They do (B1b +6, B1c +2). The total in the full box is 24 at both cuts; 4 of the
-  six B1 zeros of kf 21 are in B1b and two in B1c, now 6 and 2 in B1b, B1c with U and the mirror strip going from 9 to 8 each: two zeros moved from the strips (one per strip) into B1b between the two cuts.
-  No cause is tested here.
+  Reading rule fixed before the run: nonzero wind(g) in B1b and B1c means the D 61 extras persist at a cut past 21. They do (B1b +6, B1c +2). The total in the full box is 24 at both cuts; B1 went
+  from +6 to +8 (B1b +4 to +6, B1c +2 unchanged) while U and the mirror strip went from +9 to +8 each: consistent with one zero per strip entering B1b across the edge Im = +-1.738 (a conjugate pair), an
+  inference from the counts, not a tracked zero. No cause is tested here.
