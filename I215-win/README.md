@@ -1,0 +1,12 @@
+# I215-win: #13's degree-6 and degree-10 held-fit chains continued from D 192 (d6) and D 191.5 (d10) toward 215
+
+Machine win (Surface Laptop 4, i7-1185G7, 4 cores/8 threads, 31.8 GB), issue https://github.com/nmoinvaz/choptuik-large-d/issues/215 (continues https://github.com/nmoinvaz/choptuik-large-d/issues/13). Worktree choptuik-t151 at origin/main 22daddc8, venv-t151, 3 threads per chain, below normal. Commands in chain_d6.cmd and chain_d10.cmd (the issue's commands; log in chain_*.log, exit code in chain_*.exit).
+
+The issue expected the start near D 194 at #13's 24 h cap (03:54 UTC). Nathan asked for the stop earlier (2026-11-09 00:53 UTC, "Give it 15 more minutes and then do the recommended thing"), the coordinator agreed, and each chain was stopped right after a save, so the start states are the last saved ones of #13:
+
+| chain | start state | saved (UTC) | stopped (UTC) |
+|---|---|---|---|
+| chain_d6 | I13-win/chain_d6/anm_pin3_D192.0000.npz | 2026-11-09 01:30:25 | 01:30:51 |
+| chain_d10 | I13-win/chain_d10/anm_pin3_D191.5000.npz | 2026-11-09 01:26:09 | 01:32:26 |
+
+chain_d10 halved its step once (its qd corrector stalled at |F| 1.6e-20 for D 192, then converged at D 191.5), so it starts at D 191.5. Rules as #13: a qd stall above 1e-28 twice in a row means a restart of that chain from its last state with --corrector od --tol_od 1e-40; stop on three halvings, after 24 h, at D 215, or on the hang rule.
