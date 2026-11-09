@@ -1,0 +1,4 @@
+cd ~/Source/choptuik-large-d && P=/Users/nathan/Source/venv-macm3-314/bin:$PATH && R=../choptuik-large-d-raw/I238-macm3
+PATH=$P nice -n 10 python3 hp/modecount_moment.py D55.0351_M48_kf23 hp/data/states/up10_D55.0351.npz B0 U0 U --data=$R/D55/data --out=$R/D55/moments.json > $R/D55/moments.log 2>&1; echo "moments D55 exit $?" >> $R/exits.txt
+PATH=$P nice -n 10 python3 hp/modecount_moment.py D54.0414_M48_kf23 hp/data/states/up10_D54.0414.npz B0 U0 --data=$R/D54/data --out=$R/D54/moments.json > $R/D54/moments.log 2>&1; echo "moments D54 exit $?" >> $R/exits.txt
+PATH=$P nice -n 10 python3 hp/modecount_moment.py D55.0351_M48_kf23 hp/data/states/up10_D55.0351.npz B1a --data=$R/D55fixed/data --out=$R/D55fixed/moments.json > $R/D55fixed/moments.log 2>&1; echo "moments D55fixed exit $?" >> $R/exits.txt
