@@ -69,3 +69,15 @@ Im x1 changes sign between 1.09 and 1.11. The crossing (quadratic through the me
 1.09873-1.09894 over the degree spread, and all 52 approximants' own crossings lie in 1.09875-1.09894. The order sets
 give 1.09884 (23 coefficients), 1.09884 (22) and 1.09880 (21). The Laplace-plane linear Pade cross-check gives
 1.09894, envelope 1.09863-1.09923. The +- values are spreads over approximant choices, not error bounds.
+
+Sensitivity to the coefficients' accuracy (information only; `sens_noise.py`, `coef_err.py`):
+
+| relative noise added to the real sigma_n | primary crossing | envelope | per-node Im spread |
+|---|---|---|---|
+| 0 (the data) | 1.09884 | 1.09873-1.09894 | 1e-3 |
+| 1e-9 | 1.09872 | 1.0934-1.1005 | 9e-3 to 0.36 |
+| 1e-6 | 1.10080 | 1.0904-1.1059 | 0.07 to 0.14 |
+
+So the crossing needs sigma_n to about 1e-10 relative or better. The fit plateaus in the JSONs' `fit_info` (with
+|S_1^(1)| from the runs' logs) put the relative fit error of sigma_1..sigma_22 at 1.3e-14 or less (`v2/coef_err.txt`).
+The JSONs' own `sigma_err` is DBL_MAX for every n, because the k = 1 fit has err inf, so it cannot be used.
