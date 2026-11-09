@@ -40,4 +40,29 @@ does not miss would mean the comparison against the disc inputs cannot fail, and
   identity check (criterion 3).
 - mut_sign_row01.log, cmp_mut_sign_row01.{log,json}, rayid_mut_sign_row01.log: the sign mutation on row 1.
 - scripts/: prep.sh, b1_row.sh (one row, `J` or `J:sign`), ray_identity.sh, pool.sh (the job list jobs.txt, 2 at a
-  time).
+  time), table.py (the per-row table, saved as table.md). pool.log is pool.sh's output.
+
+## Results (2026-11-09 13:32 UTC)
+
+All 48 runs in exits.txt exit 0. The pool ran from 2026-11-08 23:32 to 2026-11-09 13:31 UTC.
+
+1. **Clean rows: every criterion passes.** All 15 rows pass `compare.py b1 --expect=overlap`. Over their 428 stops,
+   16692 of 16692 components overlap the stored boxes, and all 16692 of the review's enclosures lie inside the stored
+   ones. At the last disc of rows 1-13 the review's radius is about 1e-18 against stored radii of 3e-16 to 1.5e-15.
+   The worst midpoint gap is 1.3e-05 of the summed radii (row 3). The gaps are largest on the outer rows 1-5, beside
+   rows 0-2, where #39 found the regenerated radii differing from the stored ones by up to 6%. On rows 10-16 the gap
+   is 6.0e-08, set by the ray legs. table.md has the per-row numbers.
+2. **Sign mutation: it misses, as it must.** On row 1's 36 stops, 36 of 1404 components overlap. The one component that
+   overlaps at each stop is w, which is constant along the flow, so every state component misses at every ray stop and
+   at every disc.
+3. **Determinism: it holds.** Every clean row's ray stops equal #189's b1_clean.log byte for byte (39 to 624 lines). The
+   mutated row 1's differ on 38 of 39 lines.
+4. **Inputs: identical to I189-mac/inputs.** That covers start6b1.txt and the paths of rows 0 and 9.
+
+With #189's rows 0, 9 and 17, every row of lemma 6b1(5)'s flow has now been reproduced by CAPD, with every component
+overlapping and every enclosure inside the stored one. The disc lemma itself was checked by #39, not here.
+
+With its lid closed from 04:03 UTC, the Mac slept during 04:03-06:23, 07:25-07:41, 08:41-08:55, 09:55-10:26,
+11:29-11:41 and 12:42-13:12 UTC, waking only briefly within those times (`pmset -g log`). It stayed awake for about an
+hour between them. The runs advanced only while it was awake, so the wall times of rows 3, 11, 4, 5, 10, 6, 7 and 8
+(7300-11800 s) include sleep. The CAPD step counts are 287-345 per row.
