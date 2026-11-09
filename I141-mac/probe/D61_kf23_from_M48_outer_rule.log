@@ -1,0 +1,72 @@
+D61.0264_M48_kf23.npz: D 61.026449, M 48 -> 48, kf 23, kc 420, ks 127
+  state nodes [0.3, 0.4, 0.5, 0.6, 0.7]
+    |F| 1.346e-19   Taylor steps per segment [3, 3, 4, 5]
+    0       centre: p 3.2e-24@24  k1    m 5.9e-24@24  k1    a 1.2e-24@13  k2    c 1.6e-26@19  k0  
+    1  seg 0.3-0.4: p 2.1e-24@24  k1    m 4.8e-24@24  k1    a 1.2e-24@13  k2    c 2.8e-26@19  k0  
+    2  seg 0.4-0.5: p 1.4e-24@24  k1    m 4.1e-24@24  k1    a 1.2e-24@35  k2    c 4.3e-26@19  k0  
+    3  seg 0.5-0.6: p 9.3e-25@23  k1    m 3.7e-24@23  k1    a 1.3e-24@35  k2    c 6.1e-26@19  k0  
+    4  seg 0.6-0.7: p 1.1e-19@5   k1    m 1.1e-19@6   k1    a 1.3e-19@4   k0    c 2.0e-21@26  k2  
+    5      horizon: p 1.1e-19@5   k1    m 1.1e-19@6   k1    a 1.3e-19@4   k0    c 2.0e-21@26  k2  
+    phase row 2.7e-24
+    largest rows: seg 0.6-0.7 a[4] -1.3e-19, horizon a[4] +1.3e-19, horizon a[5] +1.3e-19, seg 0.6-0.7 a[5] -1.3e-19, seg 0.6-0.7 a[3] -1.3e-19, horizon a[3] +1.3e-19
+    centre  series at x = 0.3: truncation 1.4e-107, last term 1.1e-107, ratio 0.5626 per order, radius 0.533
+    horizon series at u = 0.3: truncation 6.1e-38, last term 6.8e-38, ratio 0.4732 per order, radius 0.634
+D61.0264_M48_kf23.npz: D 61.026449, M 48 -> 64, kf 23, kc 420, ks 127
+  state nodes [0.3, 0.4, 0.5, 0.6, 0.7]
+    |F| 1.021e-06   Taylor steps per segment [6, 8, 9, 11]
+    0       centre: p 3.4e-17@2   k49   m 5.1e-17@30  k1    a 5.3e-16@61  k0    c 3.1e-16@51  k40 
+    1  seg 0.3-0.4: p 7.4e-17@58  k1    m 5.4e-17@9   k13   a 4.9e-16@14  k48   c 1.0e-15@61  k48 
+    2  seg 0.4-0.5: p 1.3e-16@5   k1    m 8.8e-17@30  k1    a 4.4e-16@42  k48   c 1.2e-15@14  k0  
+    3  seg 0.5-0.6: p 7.7e-17@30  k47   m 7.8e-17@3   k3    a 3.5e-16@2   k0    c 8.4e-16@42  k48 
+    4  seg 0.6-0.7: p 1.3e-16@48  k1    m 1.2e-16@11  k1    a 5.0e-16@18  k56   c 8.5e-16@2   k0  
+    5      horizon: p 1.7e-07@56  k1    m 1.7e-07@56  k1    a 5.3e-07@50  k0    c 1.0e-06@50  k0  
+    phase row 8.7e-16
+    largest rows: horizon c[50] -1.0e-06, horizon c[2] -6.9e-07, horizon c[15] -6.8e-07, horizon c[56] -6.3e-07, horizon c[57] -6.2e-07, horizon c[31] -6.2e-07
+    centre  series at x = 0.3: truncation 3.4e-39, last term 7.5e-40, ratio 0.8201 per order, radius 0.366
+    horizon series at u = 0.3: truncation 6.2e-15, last term 1.1e-15, ratio 0.8491 per order, radius 0.353
+    horizon series at u = 0.3: truncation 6.2e-15, ratio 0.849 per order (radius 0.353); adding a node
+    nodes [0.3, 0.4, 0.5, 0.6, 0.7, 0.85]
+  fitted nodes [0.3, 0.4, 0.5, 0.6, 0.7, 0.85]
+    |F| 1.306e-11   Taylor steps per segment [6, 8, 9, 11, 23]
+    0       centre: p 3.4e-17@2   k49   m 5.1e-17@30  k1    a 5.3e-16@61  k0    c 3.1e-16@51  k40 
+    1  seg 0.3-0.4: p 7.4e-17@58  k1    m 5.4e-17@9   k13   a 4.9e-16@14  k48   c 1.0e-15@61  k48 
+    2  seg 0.4-0.5: p 1.3e-16@5   k1    m 8.8e-17@30  k1    a 4.4e-16@42  k48   c 1.2e-15@14  k0  
+    3  seg 0.5-0.6: p 7.7e-17@30  k47   m 7.8e-17@3   k3    a 3.5e-16@2   k0    c 8.4e-16@42  k48 
+    4  seg 0.6-0.7: p 1.3e-16@48  k1    m 1.2e-16@11  k1    a 5.0e-16@18  k56   c 8.5e-16@2   k0  
+    5 seg 0.7-0.85: p 2.1e-12@56  k1    m 2.1e-12@56  k1    a 6.7e-12@50  k0    c 1.3e-11@50  k0  
+    6      horizon: p 5.3e-17@50  k43   m 2.8e-17@60  k17   a 1.1e-16@55  k10   c 5.5e-17@42  k28 
+    phase row 8.7e-16
+    largest rows: seg 0.7-0.85 c[50] +1.3e-11, seg 0.7-0.85 c[2] +8.9e-12, seg 0.7-0.85 c[15] +8.7e-12, seg 0.7-0.85 c[56] +8.0e-12, seg 0.7-0.85 c[57] +7.9e-12, seg 0.7-0.85 c[31] +7.9e-12
+    centre  series at x = 0.3: truncation 3.4e-39, last term 7.5e-40, ratio 0.8201 per order, radius 0.366
+    horizon series at u = 0.15: truncation 9.6e-54, last term 1.3e-53, ratio 0.4245 per order, radius 0.353
+D61.0264_M48_kf23.npz: D 61.026449, M 48 -> 80, kf 23, kc 420, ks 127
+  state nodes [0.3, 0.4, 0.5, 0.6, 0.7]
+    |F| 8.445e-02   Taylor steps per segment [8, 9, 12, 15]
+    0       centre: p 8.4e-02@77  k65   m 6.9e-02@79  k65   a 2.1e-02@0   k14   c 7.4e-03@77  k14 
+    1  seg 0.3-0.4: p 8.5e-17@78  k1    m 6.2e-17@77  k1    a 3.9e-16@74  k16   c 1.2e-15@77  k24 
+    2  seg 0.4-0.5: p 8.4e-17@11  k47   m 8.4e-17@47  k47   a 4.1e-16@4   k24   c 1.1e-15@18  k0  
+    3  seg 0.5-0.6: p 7.3e-17@44  k47   m 1.0e-16@47  k3    a 4.1e-16@54  k0    c 8.9e-16@43  k24 
+    4  seg 0.6-0.7: p 1.4e-16@49  k1    m 1.5e-16@14  k1    a 4.4e-16@6   k8    c 1.1e-15@54  k0  
+    5      horizon: p 8.3e-06@22  k1    m 4.7e-04@65  k77   a 3.8e-06@62  k76   c 2.1e-06@62  k76 
+    phase row 1.3e-15
+    largest rows: centre p[77] +8.4e-02, centre p[1] +7.5e-02, centre m[79] +6.9e-02, centre m[75] -5.2e-02, centre p[3] +4.7e-02, centre p[75] +4.6e-02
+    centre  series at x = 0.3: truncation inf, last term 5.8e-02, ratio 1.0194 per order, radius 0.294
+    horizon series at u = 0.3: truncation inf, last term 6.2e-04, ratio 1.0600 per order, radius 0.283
+    centre series at x = 0.3: truncation inf, ratio 1.019 per order (radius 0.294); adding a node
+    nodes [0.15, 0.3, 0.4, 0.5, 0.6, 0.7]
+    horizon series at u = 0.3: truncation inf, ratio 1.060 per order (radius 0.283); adding a node
+    nodes [0.15, 0.3, 0.4, 0.5, 0.6, 0.7, 0.85]
+  fitted nodes [0.15, 0.3, 0.4, 0.5, 0.6, 0.7, 0.85]
+    |F| 1.163e-11   Taylor steps per segment [9, 8, 9, 12, 15, 29]
+    0       centre: p 6.9e-18@9   k15   m 6.5e-18@9   k19   a 1.1e-16@5   k60   c 5.5e-17@15  k30 
+    1 seg 0.15-0.3: p 4.3e-17@59  k1    m 4.3e-17@47  k47   a 6.1e-16@77  k0    c 5.3e-16@41  k36 
+    2  seg 0.3-0.4: p 8.5e-17@78  k1    m 6.2e-17@77  k1    a 3.9e-16@74  k16   c 1.2e-15@77  k24 
+    3  seg 0.4-0.5: p 8.4e-17@11  k47   m 8.4e-17@47  k47   a 4.1e-16@4   k24   c 1.1e-15@18  k0  
+    4  seg 0.5-0.6: p 7.3e-17@44  k47   m 1.0e-16@47  k3    a 4.1e-16@54  k0    c 8.9e-16@43  k24 
+    5  seg 0.6-0.7: p 1.4e-16@49  k1    m 1.5e-16@14  k1    a 4.4e-16@6   k8    c 1.1e-15@54  k0  
+    6 seg 0.7-0.85: p 2.1e-12@1   k1    m 2.0e-12@1   k1    a 5.9e-12@18  k0    c 1.2e-11@18  k0  
+    7      horizon: p 6.0e-17@79  k55   m 2.8e-17@2   k1    a 1.1e-16@20  k64   c 5.5e-17@23  k80 
+    phase row 1.3e-15
+    largest rows: seg 0.7-0.85 c[18] +1.2e-11, seg 0.7-0.85 c[38] +1.0e-11, seg 0.7-0.85 c[62] +9.9e-12, seg 0.7-0.85 c[2] +9.2e-12, seg 0.7-0.85 c[78] +8.1e-12, seg 0.7-0.85 c[77] +8.0e-12
+    centre  series at x = 0.15: truncation 7.6e-128, last term 7.3e-128, ratio 0.5097 per order, radius 0.294
+    horizon series at u = 0.15: truncation 8.2e-42, last term 7.3e-42, ratio 0.5310 per order, radius 0.282

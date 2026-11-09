@@ -1,0 +1,30 @@
+modecount_state_D30.0688_M48.npz: D 30.068824, M 48 -> 64, kf None, kc 414, ks 100
+  state nodes [0.3, 0.4, 0.5, 0.6, 0.7]
+    |F| 3.353e+05   Taylor steps per segment [7, 8, 11, 14]
+    0       centre: p 3.4e+05@61  k45   m 2.6e+05@59  k45   a 1.4e+04@62  k44   c 2.2e+03@60  k16 
+    1  seg 0.3-0.4: p 1.3e-16@41  k1    m 1.2e-16@60  k47   a 3.9e-16@26  k48   c 1.1e-15@39  k32 
+    2  seg 0.4-0.5: p 1.3e-16@61  k47   m 1.2e-16@22  k1    a 5.0e-16@54  k24   c 1.1e-15@26  k24 
+    3  seg 0.5-0.6: p 1.5e-16@7   k7    m 1.1e-16@22  k1    a 4.8e-16@19  k24   c 1.1e-15@10  k0  
+    4  seg 0.6-0.7: p 2.2e-16@1   k1    m 2.0e-16@49  k47   a 5.7e-16@47  k0    c 9.8e-16@15  k24 
+    5      horizon: p 3.4e-12@53  k11   m 3.4e-12@53  k11   a 8.9e-12@54  k30   c 1.6e-11@54  k30 
+    phase row 1.2e-15
+    largest rows: centre p[61] +3.4e+05, centre p[60] -3.2e+05, centre p[58] +2.6e+05, centre m[59] -2.6e+05, centre m[62] -2.5e+05, centre p[63] -2.1e+05
+    centre  series at x = 0.3: truncation inf, last term 1.0e+00, ratio 1.0797 per order, radius 0.278
+    horizon series at u = 0.3: truncation 2.1e-16, last term 8.8e-17, ratio 0.7083 per order, radius 0.424
+    centre series at x = 0.3: truncation inf, ratio 1.080 per order (radius 0.278); adding a node
+    nodes [0.15, 0.3, 0.4, 0.5, 0.6, 0.7]
+  fitted nodes [0.15, 0.3, 0.4, 0.5, 0.6, 0.7]
+    |F| 1.632e-11   Taylor steps per segment [8, 7, 8, 11, 14]
+    0       centre: p 9.3e-18@61  k13   m 1.3e-17@11  k51   a 1.1e-16@54  k6    c 5.6e-17@4   k6  
+    1 seg 0.15-0.3: p 8.7e-17@30  k47   m 9.0e-17@56  k1    a 4.8e-16@54  k0    c 5.9e-16@35  k0  
+    2  seg 0.3-0.4: p 1.3e-16@41  k1    m 1.2e-16@60  k47   a 3.9e-16@26  k48   c 1.1e-15@39  k32 
+    3  seg 0.4-0.5: p 1.3e-16@61  k47   m 1.2e-16@22  k1    a 5.0e-16@54  k24   c 1.1e-15@26  k24 
+    4  seg 0.5-0.6: p 1.5e-16@7   k7    m 1.1e-16@22  k1    a 4.8e-16@19  k24   c 1.1e-15@10  k0  
+    5  seg 0.6-0.7: p 2.2e-16@1   k1    m 2.0e-16@49  k47   a 5.7e-16@47  k0    c 9.8e-16@15  k24 
+    6      horizon: p 3.4e-12@53  k11   m 3.4e-12@53  k11   a 8.9e-12@54  k30   c 1.6e-11@54  k30 
+    phase row 1.2e-15
+    largest rows: horizon c[54] +1.6e-11, horizon c[11] +1.0e-11, horizon c[52] -1.0e-11, horizon c[22] -9.6e-12, horizon c[21] -9.3e-12, horizon a[54] -8.9e-12
+    centre  series at x = 0.15: truncation 2.4e-119, last term 2.0e-119, ratio 0.5399 per order, radius 0.278
+    horizon series at u = 0.3: truncation 2.1e-16, last term 8.8e-17, ratio 0.7083 per order, radius 0.424
+setup modecount_state_D30.0688_M48.npz M 64 kf default fmax 1e-15 fit False:
+  setup raised: series not converged in this layout (M = 64, nodes [0.3, 0.4, 0.5, 0.6, 0.7]): centre inf (ratio 1.080 at 0.3), horizon 2.1e-16 (ratio 0.708 at 0.3); more than 1e-15

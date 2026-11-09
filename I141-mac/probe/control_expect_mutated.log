@@ -1,0 +1,15 @@
+up6_D30.0688.npz: D 30.068824, M 32 -> 48, kf None, kc 414, ks 100
+  state nodes [0.3, 0.4, 0.5, 0.6, 0.7]
+    |F| 1.632e-11   Taylor steps per segment [5, 7, 8, 10]   kc 414 ks 100
+    0       centre: p 8.6e-13@12  k1    m 8.8e-13@13  k1    a 1.0e-14@38  k0    c 4.0e-12@28  k0  
+    1  seg 0.3-0.4: p 3.9e-14@24  k33   m 2.8e-14@42  k33   a 3.2e-15@26  k32   c 1.8e-13@29  k32 
+    2  seg 0.4-0.5: p 1.2e-14@21  k33   m 7.5e-15@1   k33   a 1.8e-15@35  k32   c 7.8e-14@29  k32 
+    3  seg 0.5-0.6: p 2.4e-15@18  k33   m 1.2e-15@1   k33   a 7.0e-16@47  k32   c 2.3e-14@29  k32 
+    4  seg 0.6-0.7: p 3.6e-16@12  k31   m 5.4e-16@42  k33   a 5.1e-16@39  k0    c 4.6e-15@25  k32 
+    5      horizon: p 4.5e-12@42  k1    m 4.4e-12@42  k1    a 9.0e-12@45  k0    c 1.6e-11@45  k0  
+    phase row 1.4e-15
+    largest rows: horizon c[45] -1.6e-11, horizon c[18] -1.4e-11, horizon c[33] -1.3e-11, horizon c[17] -1.2e-11, horizon c[43] -1.2e-11, horizon c[19] -1.2e-11
+    centre  series at x = 0.3: truncation 1.6e-43, last term 3.7e-44, ratio 0.8113 per order, radius 0.370
+    horizon series at u = 0.3: truncation 3.4e-29, last term 2.9e-29, ratio 0.5376 per order, radius 0.558
+expect |F| 1.632e-09 at M 48: 1.632e-11 -> FAIL
+exit 1
