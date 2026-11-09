@@ -57,3 +57,64 @@ step exited 1 at once; its logs are in `failed_import/`.
 After #250 both slots run circles: D 61 in one (`scripts/run_circles_D61.sh`), D 55 in the other
 (`scripts/run_circles_D55.sh`), each with its lambda_phys control. Both full M 64 counts (`scripts/run_count_D61.sh`, and
 the D 55 count of criterion 3) are held until the circles are in; the coordinator decides where they run.
+
+Rebalanced at 16:30 UTC (D 55 has 11 circles, D 61 has 5): the shell of `run_circles_D55.sh` was stopped during its
+lambda_phys circle, which ran on. `scripts/run_circles_D55_part1.sh` waits for it, gates on it, and runs the M 48 circles
+and three M 40 circles. `scripts/run_circles_D55_part2.sh` runs the other three M 40 circles in the D 61 slot after the
+D 61 circles, under its own tag (`D55.0351_M64_kf23_b`, its own cache), if the D 55 gate passed. The circles, their
+order and their parameters are unchanged.
+
+## Both lambda_phys gates fired (17:26 and 17:28 UTC)
+
+| D | winding | max step | zero located | distance from lambda_phys | circle's own estimate |
+|---|---|---|---|---|---|
+| 61.03 | +1 | 0.342 rad | 2.043995 - 0.000281i | 5.4e-4 | 1.1e-3 |
+| 55.04 | +1 | 0.334 rad | 2.047662 - 0.000005i | 2.3e-5 | 1.4e-5 |
+
+Both exceed the 1e-5 of criterion 4, so no position circle ran (`run_circles_D55_part1.sh` and `_part2.sh` stopped at the
+gate; the D 61 script likewise). `scripts/circle_spectrum.py` (cache only) gives the Fourier coefficients of ln h on each
+circle: past k = 3 to 4 they sit on a white floor at every |k|, about 5e-3 at D 61 and 1e-4 at D 55, where the M 48 and
+M 40 lambda_phys circles of D 55 (#238, #231) have about 3e-7 and 1e-7. A floor of e in a_-1 moves the zero by about
+R e. The criterion is not loosened (coordinator, 17:40 UTC).
+
+## Smoothness probe (criteria written before the runs)
+
+`scripts/smooth_probe.py`: five modecount_cx determinants per state. A = the change of ln|det M| from x0 = lambda_phys -
+0.015 to x0 + 1e-9 i (it should be O(1e-18); a large A means the li != 0 path, the 2M x 2M horizon solves, changes det M
+by itself). B = |f(z + 2d) - 2 f(z + d) + f(z)| with f = ln det M, z the lambda_phys circle's second base point and
+d = 1e-7 (it should be about 1e-13). The probe passes (smooth) when A < 1e-6 and B < 1e-6. Runs: D 61 M 64 and D 55
+M 64, and as its control the D 61 M 48 kf 23 state of #212 (`states/modecount_state_D61.0264_M48_kf23_from_I212.npz`),
+which must pass, since its lambda_phys circle located the zero to 5.5e-7 (#230). If the control fails, the probe is not
+read.
+
+## Matrix check (criterion in the script's docstring, written before its runs)
+
+`scripts/matrix_cr.py`: the complex mode matrix (modecount_cx `mode_matrix`, no LU) at x0, x0 + eps and x0 + i eps,
+eps = 1e-9. Each entry is analytic in lambda, so M(x0 + i eps) - M(x0) = i (M(x0 + eps) - M(x0)) to O(eps^2). Passes when
+the largest departure is at most 1e-6 of the largest real difference. A failure names the row blocks (centre, segments,
+horizon) and fields where the complex path departs. Run on D 55 M 64 first. The D 61 M 48 state is its control, which
+must pass.
+
+Further diagnostics, each with its reading in the script's docstring before its runs: `scripts/cdet_sensitivity.py` (the
+LU on M, on M^T and on M with 1e-30 entry perturbations; its random-matrix control used 1e-20, which the f64 summation of
+ln|u_kk| in clu_logdet cannot meet, 8.7e-12, so its numbers are measurements, not a passed test), `scripts/cdet_equil.py`
+(exact power-of-two equilibration; control passed at 1.5e-11), `scripts/matrix_noise.py` (second differences of the
+matrix entries at steps 2^-40 and 2^-46; `--ks` rebuilds the solvers with another horizon order on the same state).
+
+## Diagnosis results (18:20 UTC)
+
+| test | D 61 M 48 (ks 127) | D 55 M 64 (ks 150) | D 61 M 64 (ks 191) |
+|---|---|---|---|
+| probe A: ln\|det\| change x0 -> x0 + 1e-9 i | 9.5e-7 | 2.7e-4 | 1.7e-2 |
+| probe B: second difference of ln det, d 1e-7 | 3.6e-5 | 8.6e-4 | 1.7e-2 |
+| matrix analytic across the axis (departure / real difference) | 8e-8, pass | 8e-8, pass | not run |
+| LU of M^T against M, ln det | 25 | 6.6 | 35 |
+| M with 1e-30 entry perturbations, ln det | 5e-5 ... 6e-4 | 2e-5 ... 4e-5 | 5e-4 ... 8e-4 |
+| equilibrated, 1e-30 perturbations | | 4e-2 ... 7e-2 | |
+| entry error, centre block | 3e-25 | 3e-19 | 5e-20 |
+| entry error, segments | <= 2e-28 | <= 2e-28 | <= 2e-28 |
+| entry error, horizon block | 3e-24 | 5e-22 | 2e-21 |
+
+The probe's control (D 61 M 48) failed its B criterion (1e-6), so the probe is not read as a pass or fail. Its numbers
+are measurements. The matrix check's JSON write failed on a numpy bool (fixed afterwards), and its logs are the record.
+The JSON of `matrix_cr_D55_M64` and `matrix_cr_D61_M48_control` is missing for that reason.

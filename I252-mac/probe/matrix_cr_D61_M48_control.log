@@ -1,0 +1,61 @@
+  series truncation: centre 1.4e-107 (ratio 0.563 at 0.3), horizon 6.1e-38 (ratio 0.473 at 0.3)
+D 61.026449 M 48 K 5 ks 127 kf 23
+  matrix at 2.028532530673195 + 0.0i: (1152, 1152) (63 s)
+  matrix at 2.028532531673195 + 0.0i: (1152, 1152) (57 s)
+  matrix at 2.028532530673195 + 1e-09i: (1152, 1152) (45 s)
+  rows   centre p: max |dC - i dR| 1.40e-19, max |dR| 1.70e-12
+  rows   centre m: max |dC - i dR| 1.17e-19, max |dR| 1.41e-12
+  rows   centre a: max |dC - i dR| 4.19e-22, max |dR| 5.07e-15
+  rows   centre c: max |dC - i dR| 1.77e-20, max |dR| 2.14e-13
+  rows    seg 1 p: max |dC - i dR| 3.90e-19, max |dR| 4.72e-12
+  rows    seg 1 m: max |dC - i dR| 4.38e-19, max |dR| 5.30e-12
+  rows    seg 1 a: max |dC - i dR| 1.70e-21, max |dR| 2.05e-14
+  rows    seg 1 c: max |dC - i dR| 3.35e-20, max |dR| 4.05e-13
+  rows    seg 2 p: max |dC - i dR| 3.97e-19, max |dR| 4.80e-12
+  rows    seg 2 m: max |dC - i dR| 4.74e-19, max |dR| 5.73e-12
+  rows    seg 2 a: max |dC - i dR| 2.19e-21, max |dR| 2.64e-14
+  rows    seg 2 c: max |dC - i dR| 3.38e-20, max |dR| 4.09e-13
+  rows    seg 3 p: max |dC - i dR| 4.23e-19, max |dR| 5.12e-12
+  rows    seg 3 m: max |dC - i dR| 6.10e-19, max |dR| 7.38e-12
+  rows    seg 3 a: max |dC - i dR| 2.78e-21, max |dR| 3.36e-14
+  rows    seg 3 c: max |dC - i dR| 3.42e-20, max |dR| 4.13e-13
+  rows    seg 4 p: max |dC - i dR| 4.47e-19, max |dR| 5.40e-12
+  rows    seg 4 m: max |dC - i dR| 7.65e-19, max |dR| 9.25e-12
+  rows    seg 4 a: max |dC - i dR| 3.57e-21, max |dR| 4.32e-14
+  rows    seg 4 c: max |dC - i dR| 3.46e-20, max |dR| 4.19e-13
+  rows  horizon p: max |dC - i dR| 3.02e-10, max |dR| 3.65e-03
+  rows  horizon m: max |dC - i dR| 3.86e-10, max |dR| 4.66e-03
+  rows  horizon a: max |dC - i dR| 6.96e-12, max |dR| 8.41e-05
+  rows  horizon c: max |dC - i dR| 1.32e-11, max |dR| 1.59e-04
+  entry (1054, 1151): |dC - i dR| 3.86e-10, |dR| 4.66e-03, |dC| 4.66e-03
+  entry (1055, 1104): |dC - i dR| 3.85e-10, |dR| 4.66e-03, |dC| 4.66e-03
+  entry (1053, 1150): |dC - i dR| 3.85e-10, |dR| 4.65e-03, |dC| 4.65e-03
+  entry (1008, 1105): |dC - i dR| 3.84e-10, |dR| 4.64e-03, |dC| 4.64e-03
+  entry (1052, 1149): |dC - i dR| 3.83e-10, |dR| 4.63e-03, |dC| 4.63e-03
+  entry (1009, 1106): |dC - i dR| 3.82e-10, |dR| 4.62e-03, |dC| 4.62e-03
+  entry (1051, 1148): |dC - i dR| 3.81e-10, |dR| 4.60e-03, |dC| 4.60e-03
+  entry (1010, 1107): |dC - i dR| 3.79e-10, |dR| 4.58e-03, |dC| 4.58e-03
+  entry (1050, 1147): |dC - i dR| 3.77e-10, |dR| 4.56e-03, |dC| 4.56e-03
+  entry (1011, 1108): |dC - i dR| 3.75e-10, |dR| 4.53e-03, |dC| 4.53e-03
+  entry (1049, 1146): |dC - i dR| 3.73e-10, |dR| 4.50e-03, |dC| 4.50e-03
+  entry (1012, 1109): |dC - i dR| 3.69e-10, |dR| 4.46e-03, |dC| 4.46e-03
+Traceback (most recent call last):
+  File "/Users/nathan/Source/choptuik-large-d-raw/I252-mac/scripts/matrix_cr.py", line 70, in <module>
+    json.dump(dict(state=path, D=st.D, M=M, K=K, ks=st.ks, x0=x0, eps=eps, n=n, max_dev=float(E.max()), max_dR=scale,
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                   rows=rows, worst=worst, passed=ok), open(out, "w"), indent=1)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nathan/.local/share/uv/python/cpython-3.14.7-macos-aarch64-none/lib/python3.14/json/__init__.py", line 181, in dump
+    for chunk in iterable:
+                 ^^^^^^^^
+  File "/Users/nathan/.local/share/uv/python/cpython-3.14.7-macos-aarch64-none/lib/python3.14/json/encoder.py", line 444, in _iterencode
+    yield from _iterencode_dict(o, _current_indent_level)
+  File "/Users/nathan/.local/share/uv/python/cpython-3.14.7-macos-aarch64-none/lib/python3.14/json/encoder.py", line 413, in _iterencode_dict
+    yield from chunks
+  File "/Users/nathan/.local/share/uv/python/cpython-3.14.7-macos-aarch64-none/lib/python3.14/json/encoder.py", line 451, in _iterencode
+    newobj = _default(o)
+  File "/Users/nathan/.local/share/uv/python/cpython-3.14.7-macos-aarch64-none/lib/python3.14/json/encoder.py", line 182, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+                    f'is not JSON serializable')
+TypeError: Object of type bool is not JSON serializable
+when serializing dict item 'passed'
