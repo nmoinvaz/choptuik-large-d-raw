@@ -184,3 +184,60 @@ environment. Dates are UTC, all 2026-11-09.
   hydrodynamics; no threshold); Rein–Rendall–Schaeffer gr-qc/9804040, PRD 58, 044007 (1998) ("most of the matter falls
   into the black hole whenever a black hole is formed", "a discontinuity in the mass"); Olabarrieta–Choptuik
   gr-qc/0107076, PRD 65, 024007 (2002) ("the critical behavior in this model is Type I", "unstable, static spacetimes").
+
+## Round 2
+
+- R21. **D. Maison**, *Non-universality of critical behaviour in spherically symmetric gravitational collapse*, PLB
+  366, 82 (1996), gr-qc/9504008, https://ar5iv.labs.arxiv.org/html/gr-qc/9504008, all.
+  - p = kρ; the Evans–Coleman type "exists only up to a certain maximal value k_max ≈ 0.888"; Table 1: γ = 0.1143
+    (k = 0.01), 0.3558 (k = 1/3), 0.8157 (k = 0.888); "the critical index depends rather strongly on the value of k,
+    hence it is not universal". One unstable mode assumed, not counted. No viscosity.
+- R22. **T. Koike, T. Hara, S. Adachi**, PRL 74, 5170 (1995), gr-qc/9503007, https://ar5iv.labs.arxiv.org/html/gr-qc/9503007,
+  all.
+  - "β = 1/Re κ" (Eq. 15), κ ≃ 2.81055255, β ≃ 0.35580192; a unique relevant mode assumed; "checked that there are no
+    other relevant (or marginal) eigenmodes in the range 0≤Re κ≤15, |Im κ|≤14" (method not stated).
+- R23. **C. R. Evans, J. S. Coleman**, PRL 72, 1782 (1994), gr-qc/9402041, https://ar5iv.labs.arxiv.org/html/gr-qc/9402041,
+  all.
+  - Perfect fluid, p = ρ/3; M_BH ≃ K(η − η_c)^β, β = 0.36 (Eq. 7); "The system is over-determined unless n is taken as an
+    eigenvalue of the nonlinear system", n ≃ 1.1485; regularity at ξ = 0, ξ = ∞ and the sonic point. No viscosity,
+    no statistical mechanics; the analogies are "intermediate asymptotics" and Guderley's implosion.
+- R24. **P. Kovtun, D. T. Son, A. O. Starinets**, PRL 94, 111601 (2005), hep-th/0405231,
+  https://arxiv.org/abs/hep-th/0405231 and https://ar5iv.labs.arxiv.org/html/hep-th/0405231, all.
+  - η = σ_abs(0)/(16πG) (Eq. 7), σ_abs = a, s = a/4G (Eq. 4); the bound Eq. (15), "saturated by theories with gravity
+    duals"; superfluids have finite shear viscosity from the normal component; helium exceeds the bound by about 9.
+- R25. **A. Schmitt**, *Introduction to superfluidity*, Lect. Notes Phys. 888 (2015), arXiv:1404.1284,
+  https://ar5iv.labs.arxiv.org/html/1404.1284, characters 0–100000 of 244179.
+  - Eq. (2), dissipation if ε_p + p·v_s < 0; Eq. (3), v_c = min_p ε_p/p; "it is only the superfluid component that can
+    flow through the thin tube"; "only the normal fluid carries entropy"; "A superconductor can be said to break a local
+    symmetry spontaneously". No dynamical instability at the critical velocity.
+- R26. **S. D. Glazek, K. G. Wilson**, PRL 89, 230401 (2002), hep-th/0203088, abstract: limit cycles "may be common" for
+  quantum Hamiltonians that require renormalization; a discrete two-coupling model whose RG changes one coupling.
+- R27. **C. Gundlach, D. Hilditch, J. M. Martín-García**, arXiv:2507.07636v1, https://arxiv.org/html/2507.07636v1,
+  characters 0–100000 of 317589 (keyword search and Secs. II.5–II.7).
+  - II.5: "the critical solution must be a fixed point (CSS) or limit cycle (DSS) in these coordinates".
+  - II.6: dimensionful parameters "become irrelevant"; "Examples of dimensionless parameters which do change the
+    universality class are" k in P = kρ, the sigma model's κ and probably a conformal coupling; equation-of-state
+    changes that "do not affect the limit of high density" keep the class.
+  - II.7: "a fixed point of the renormalisation group cannot have a preferred length scale".
+  - No hit for viscous, viscosity, dissipat, Israel-Stewart, mean field, Landau, superconduct or Efimov in the part read.
+- R28. **F. Marsiglio, K. S. D. Beach, R. J. Gooding**, *The BCS pairing instability in the thermodynamic limit*, Can. J.
+  Phys. 90, 889 (2012), arXiv:1203.5122, https://ar5iv.labs.arxiv.org/html/1203.5122, all.
+  - Thouless "tracked the BCS instability from above (in temperature) by monitoring the two particle propagator" (Ann.
+    Phys. 10, 553 (1960)); g₂ = χ₀/(1 − |U|χ₀) (Eq. 1); "a single pole passes from the lower half-plane to the
+    upper-half-plane in complex frequency"; "For the BCS instability we can focus on q=0".
+- R29. **R. Emparan, J. Rafecas-Ventosa, B. Way**, *General effective theories of black holes in the large D limit*, JHEP
+  04 (2026) 034, arXiv:2512.14186, https://arxiv.org/abs/2512.14186 and https://arxiv.org/html/2512.14186, characters
+  0–100000 of 197383.
+  - "they form a parabolic system with a well-posed initial value problem"; the near-horizon region "has a thickness of
+    order 1/D"; "Time-dependent horizon fluctuations with amplitudes of O(D⁰) lie outside the regime of applicability";
+    Rozali–Way cited only for "boson stars or oscillatons". No collapse, no horizon formation, no viscosity.
+- R30. Abstracts or records only: Mariño–Reis, *Three roads to the energy gap*, PRB 106, 125142 (2022), arXiv:2010.16174
+  (the gap from the Bethe ansatz, from resurgence of the perturbative series, and from the RG; "The three methods lead to
+  the same answer"); Chavanis, EPJB 85, 229 (2012), arXiv:1002.0291 (the Nyquist method for self-gravitating systems);
+  Silveira, EPL 149, 49001 (2025) (Jeans-type collapse with shear viscosity).
+- R31. Wikipedia, *Ginzburg criterion* (a secondary source): "the value of the upper critical dimension comes out to be
+  4"; "If the dimension of the space is greater than 4, the mean-field results are good and self-consistent"; cites
+  Ginzburg (1961), Amit (1974), Als-Nielsen–Birgeneau (1977), Pathria–Beale (2011), not opened.
+- R32. Beekman–Rademaker–van Wezel, arXiv:1909.01820, characters 0–250000 of 269318 (title, Chapters 1–3); Chapter 5
+  (Landau theory) not reached by the extraction. FULL-TEXT-UNREAD for the part that matters.
+- R33. B. Kol, hep-th/0502033v3: also pp. 3–5 and 14–17 (Table 1, the "Note added", Eqs. (3.13)–(3.21), Table 2).

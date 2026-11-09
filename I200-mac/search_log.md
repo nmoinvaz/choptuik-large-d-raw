@@ -65,3 +65,47 @@ and what it surfaced.
 - I4. `q=refersto:recid:371808 and (t viscous or t viscosity or t dissipative or t heat or t kinetic or t Vlasov or t
   collisionless or t anisotropic)`: 2 records, Rein–Rendall–Schaeffer gr-qc/9804040 and Yuwen–Joana–Wang–Cai
   arXiv:2606.26532 (*Primordial black hole formation in bulk-viscous cosmology*, PRD 114, L081309 (2026)). Both opened.
+
+## Round 2 (2026-11-09)
+
+- S12. "dynamical formation of hairy black hole holographic superconductor critical behavior threshold scaling law
+  Choptuik-like time evolution charged scalar AdS": Hartnoll–Horowitz–Kruthoff–Santos arXiv:2008.12786 (opened);
+  arXiv:2107.11282, 2401.09846, 1405.1806 and the Bai et al. condensation records (exponential growth and saturation,
+  no threshold scaling; not opened).
+- S13. "\"beyond all orders\" OR \"exponential asymptotics\" superconductivity gap equation Stokes phenomenon trans-series
+  BCS essential singularity resummation": the Mariño–Reis line (2006.05131, 2209.15386), Aniceto–Başar–Schiappa
+  arXiv:1802.10441 (primer), Burgers exponential asymptotics arXiv:2307.10508; nothing on the gap equation itself.
+- S14. "upper critical dimension mean-field exponents exact above d=4 Ginzburg criterion large-N saddle point exponent
+  1/2 order parameter beta=1/2 why": Wikipedia, *Ginzburg criterion* (opened); Beekman–Rademaker–van Wezel
+  arXiv:1909.01820 (opened, Chapter 5 not reached); arXiv:2404.09190; arXiv:1212.0390.
+- S15. "Penrose criterion plasma instability argument principle winding number Nyquist count unstable modes dielectric
+  function zeros upper half plane": Chavanis arXiv:1002.0291 (abstract opened); hep-ph/0307325; arXiv:1904.08520;
+  Fitzpatrick's lecture notes; Penrose (1960) itself did not surface.
+
+## INSPIRE, round 2 (2026-11-09)
+
+- I5. `q=(t Choptuik or t "critical collapse" or t "critical gravitational collapse" or t "critical phenomena") and (t
+  superconductor or t superconducting or t superfluid or t hairy or t hair)`: 2 records, recid 930475 (Rashba
+  superconductor edge states) and 1670643 (*Critical phenomena of charged Einstein–Gauss–Bonnet black holes with charged
+  scalar hair*, CQG 35, 175008 (2018), thermodynamic; not opened). No dynamical threshold study.
+- I6. `q=(t "limit cycle" or t "limit cycles" or t "discrete scale invariance" or t Efimov or t "Russian doll") and (t
+  superconductor or t superconductivity or t BCS or t "Cooper pair" or t "Cooper pairs")`: 5 records, the Russian-doll
+  line (cond-mat/0211338, PRB 69, 020505 (2004); cond-mat/0406234; cond-mat/0503014; 1412.1016) and arXiv:1904.01939
+  (Efimov trimers and Cooper pairs, NJP 21, 073051 (2019); not opened).
+- I7. `q=arxiv 1312.1108 or ... or arxiv cond-mat/0410417` (11 identifiers): the bibliographic records of the sources
+  read (recids in the addendum's reference table).
+- I8. `q=refersto:recid:1267488` (Emparan–Tanabe): 45 records. By title, the large-D holographic-superconductor
+  follow-ups are arXiv:1502.03616 (conductivity and entanglement entropy) and 2001.08358; the rest are membrane and
+  holography papers. Not opened.
+- I9. `q=refersto:recid:1684230` (Rozali–Way): 13 records, the list of #172 plus Emparan–Rafecas-Ventosa–Way
+  arXiv:2512.14186 (opened).
+- I10. `q=arxiv gr-qc/9503007 or ... or arxiv gr-qc/0107076` (13 identifiers): 11 records; cond-mat/0109177 and
+  cond-mat/9510091 have none.
+- I11. `q=(t "large D" or t "large dimension" or t "infinite dimensions" or t "1/D expansion") and (t collapse or t
+  "horizon formation" or t "mean field" or t threshold or t critical)`: 7 records: the large-D critical-collapse papers
+  already in §1, Georges et al.'s RMP (recid 439061, RMP 68, 13–125 (1996), doi:10.1103/RevModPhys.68.13), a gauge
+  theory and a random-anisotropy model (titles only).
+- I12. `q=refersto:recid:1736509` (Mariño–Reis): 38 records; none about gravity, selection or Stokes multipliers by
+  title. Opened: Mariño–Reis arXiv:2010.16174 (abstract).
+- I13. recid 2896111 (Silveira, EPL 149, 49001 (2025)), abstract: Jeans-type collapse with shear viscosity, not a
+  black-hole threshold.
