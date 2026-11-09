@@ -36,3 +36,12 @@ STOP again (macm3, 10:58:41 UTC, both M 40 runs, exit 1 within seconds): hp's So
   hp/modecount_cx/src/lib.rs:720: ValueError: M must be one of 16, 32, 48, 64 (raised by modecount_cx.CSolver(...), modecount_common.build_pair line 45, reached after make_solver). The macro make_ctx! there dispatches on
   B = M / 8 in {2, 4, 6, 8} (lib.rs:795). B = 5 is the missing entry (hp/src/python.rs got it in 1bad14fd). Nothing was evaluated or written to --data; hp/data is unchanged by these two runs. modecount_cx needs the same one-line
   change, a code change for the coordinator, then hp/modecount_build.sh (32 s) and the two counts rerun. The rebuild control passed (above); only the CSolver blocks M 40.
+
+Third attempt (coordinator's message after main 8bdb7937 "modecount_cx: accept M = 40"): modecount_cx rebuilt (build_cx2.sh, cargo 57 s, build_cx2.log). hp/modecount_build.sh's last step is `cp lib build/modecount_cx<EXT>`, which writes into the
+  module file that I241's three running counts have loaded, so build_cx2.sh does the same cargo build with the same flags and installs the result by rename (the old file keeps its inode for the running processes); sha256 before and
+  after in modecount_cx_sha256_*.txt. smoke_cx.py (one D 61 M 32 determinant): bit-identical to I160's record, its control differs (smoke_cx_M40build.log). The M 32 control is rerun after this rebuild because the determinant comes from
+  modecount_cx (control2_D55_M32/, compare_control2.py, same pass rule as the first control, written above: 85 lines bit for bit equal to I237-macm3's, the one-digit change detected). The two M 40 counts start at the same time as the
+  control (the readings of the first attempt unchanged); if the control fails, the M 40 results are not read and the failure is reported. They run beside I241's three counts (3 + 3 threads).
+
+Second control result (control2_D55_M32/, exit 0 at 11:32:00 UTC, 28 min with six processes running; compare_control2.txt, exit 0): the evals cache has 85 lines equal to I237-macm3's in re, im, lnabs, arg, pmin and pmax, bit for bit, the one-digit
+  change to a copy is detected, and the 8 boxes are all 0. So the modecount_cx rebuild with B = 5 changes nothing at M 32, and the M 40 results are read.
