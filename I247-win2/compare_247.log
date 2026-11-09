@@ -1,0 +1,35 @@
+== the two fixed-order runs
+  fixsum procs2 vs fixsum procs3: EQUAL (bit for bit, timing keys and procs dropped)
+== fixed-order procs2 against the original-code files
+  I202 (original, 3 workers): differ
+      sigma_str: first at sigma_16, relative 1.3e-18; n of 1 differ
+      sigma_err: first at index 16 (1 differ)
+      f: first at 33_3 (3 of 136 differ)
+      fit_info: first at 21_19 in err/resid (57 of 153 differ)
+  I229 (original, 2 workers): differ
+      sigma_str: first at sigma_16, relative 1.41e-18; n of 1 differ
+      sigma_err: first at index 16 (1 differ)
+      f: first at 33_3 (3 of 136 differ)
+      fit_info: first at 21_19 in err/resid (56 of 153 differ)
+  T153 macm3 (original, 2 workers): differ
+      sigma_str: first at sigma_16, relative 1.41e-18; n of 1 differ
+      sigma_err: first at index 16 (1 differ)
+      f: first at 33_3 (3 of 136 differ)
+      fit_info: first at 21_19 in err/resid (56 of 153 differ)
+== fixed-order procs3 against the original-code files
+  I202 (original, 3 workers): differ
+      sigma_str: first at sigma_16, relative 1.3e-18; n of 1 differ
+      sigma_err: first at index 16 (1 differ)
+      f: first at 33_3 (3 of 136 differ)
+      fit_info: first at 21_19 in err/resid (57 of 153 differ)
+  I229 (original, 2 workers): differ
+      sigma_str: first at sigma_16, relative 1.41e-18; n of 1 differ
+      sigma_err: first at index 16 (1 differ)
+      f: first at 33_3 (3 of 136 differ)
+      fit_info: first at 21_19 in err/resid (56 of 153 differ)
+  T153 macm3 (original, 2 workers): differ
+      sigma_str: first at sigma_16, relative 1.41e-18; n of 1 differ
+      sigma_err: first at index 16 (1 differ)
+      f: first at 33_3 (3 of 136 differ)
+      fit_info: first at 21_19 in err/resid (56 of 153 differ)
+exit 0
