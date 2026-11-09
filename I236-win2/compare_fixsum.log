@@ -1,0 +1,17 @@
+# fixed-summation runs (amp_flint_par_fixsum.py), K 25 J 1000 at 1.10; timing keys and procs dropped
+fixsum procs1 vs fixsum procs2: EQUAL
+fixsum procs1 vs fixsum procs3: EQUAL
+fixsum procs1 vs fixsum procs4: EQUAL
+fixsum procs2 vs fixsum procs3: EQUAL
+fixsum procs2 vs fixsum procs4: EQUAL
+fixsum procs3 vs fixsum procs4: EQUAL
+fixsum procs1 vs original procs1 (r1, r2): ['EQUAL', 'EQUAL']
+fixsum procs1 vs original procs1 (r1, r2): ['EQUAL', 'EQUAL']
+fixsum procs2 vs original procs1 (r1, r2): ['EQUAL', 'EQUAL']
+fixsum procs2 vs original procs2 (r1, r2): ['differ', 'differ']
+fixsum procs3 vs original procs1 (r1, r2): ['EQUAL', 'EQUAL']
+fixsum procs3 vs original procs3 (r1, r2): ['differ', 'differ']
+fixsum procs4 vs original procs1 (r1, r2): ['EQUAL', 'EQUAL']
+fixsum procs4 vs original procs4 (r1, r2): ['differ', 'differ']
+all four fixed-summation runs equal: True
+all four equal the original procs1 (both runs): True

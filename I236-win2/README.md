@@ -15,3 +15,32 @@ Batch r1 done, exits and walls in `exits.txt` (`--procs` 4: 2719 s, 3: 3292 s, 2
 in `fit_info` only: Mf equal, err and resid differ in 11 of 91 families (21_19, 21_21, 23_15 to 23_23, 25_19 to 25_25), four
 different triples in each; `sigma_str`, `sigma_err`, `f` and the other keys are equal. Equal counts (r1 against r2) come with batch r2.
 `smoke/` holds a K 13 test of `amp_flint_par_fixsum.py` (original `--procs 1` and the variant at 1, 2, 3 all equal).
+
+## Results (2026-11-09 13:18 UTC)
+
+All twelve runs ended with exit 0 (`exits.txt`, `exits_fixsum.txt`). Walls, beside #213 (not a clean timing; the load differed between batches):
+
+| `--procs` | r1 | r2 | fixed summation |
+|---|---|---|---|
+| 1 | 7450 s | 7387 s | 7459 s |
+| 2 | 4369 s | 4319 s | 4894 s |
+| 3 | 3292 s | 3235 s | 3939 s |
+| 4 | 2719 s | 2672 s | 3407 s |
+
+`compare_236.py` (`compare_236.log`, exit 0; `compare_236_selftest.log` ok, it plants a changed digit in one sigma string, one `f`
+entry, one `fit_info` entry and one `sigma_err` entry, and a differing pair of equal counts that must give exit 1):
+
+- Equal counts give equal bits: r1 against r2 is bit for bit equal for counts 1, 2, 3 and 4 (4 of 4 pairs), after dropping the
+  timing keys and `procs`.
+- Different counts: all six pairs of counts differ (24 run pairs), the same way each time. `sigma_str` (13 strings of 20
+  digits), `sigma_err`, `f` (78 entries) and every other key are equal; `fit_info` (Mf, err, resid) has Mf equal in all 91
+  families and err and resid different in 11 of them, the first at `21_19`, the others 21_21, 23_15, 23_17, 23_19, 23_21,
+  23_23, 25_19, 25_21, 25_23, 25_25. In each of the 11 the four counts have four different triples. Largest relative
+  difference between two runs: 1.29 in err, 0.095 in resid. So no two counts reproduce each other at K 25, J 1000.
+
+Mechanism test (`amp_flint_par_fixsum.py`, one run per count, `compare_fixsum.log`): `_products` of the module in
+`solver/inner_amp` (main, unchanged) is replaced so that every task of an order is a chunk of its own and the main adds the single
+products per group in task order, the association of the serial path. The four runs (counts 1 to 4) are bit for bit equal to each
+other (six pairs) and to the original `--procs 1` runs (r1 and r2), while the variant with 2, 3 or 4 workers differs from the
+original run with the same count in the same 11 `fit_info` families. So the summation order of the workers' partial products
+is the source of the dependence at K 25. `smoke/` holds the K 13 test (variant at 1, 2, 3 equal to the original at 1).
