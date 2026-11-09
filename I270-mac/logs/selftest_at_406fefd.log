@@ -1,0 +1,74 @@
+# 2026-11-09 23:08:33 UTC, nathansairm53, code 406fefd: hp/modecount_probe.py --selftest
+up6_D30.0688.npz: D 30.068824, M 32 -> 48, kf None, kc 414, ks 100
+  state nodes [0.3, 0.4, 0.5, 0.6, 0.7]
+    |F| 1.632e-11   Taylor steps per segment [5, 7, 8, 10]   kc 414 ks 100
+    0       centre: p 8.6e-13@12  k1    m 8.8e-13@13  k1    a 1.0e-14@38  k0    c 4.0e-12@28  k0  
+    1  seg 0.3-0.4: p 3.9e-14@24  k33   m 2.8e-14@42  k33   a 3.2e-15@26  k32   c 1.8e-13@29  k32 
+    2  seg 0.4-0.5: p 1.2e-14@21  k33   m 7.5e-15@1   k33   a 1.8e-15@35  k32   c 7.8e-14@29  k32 
+    3  seg 0.5-0.6: p 2.4e-15@18  k33   m 1.2e-15@1   k33   a 7.0e-16@47  k32   c 2.3e-14@29  k32 
+    4  seg 0.6-0.7: p 3.6e-16@12  k31   m 5.4e-16@42  k33   a 5.1e-16@39  k0    c 4.6e-15@25  k32 
+    5      horizon: p 4.5e-12@42  k1    m 4.4e-12@42  k1    a 9.0e-12@45  k0    c 1.6e-11@45  k0  
+    phase row 1.4e-15
+    largest rows: horizon c[45] -1.6e-11, horizon c[18] -1.4e-11, horizon c[33] -1.3e-11, horizon c[17] -1.2e-11, horizon c[43] -1.2e-11, horizon c[19] -1.2e-11
+    centre  series at x = 0.3: truncation 1.6e-43, last term 3.7e-44, ratio 0.8113 per order, radius 0.370
+    horizon series at u = 0.3: truncation 3.4e-29, last term 2.9e-29, ratio 0.5376 per order, radius 0.558
+  PASS  (1) control: D 30, M 32 -> 48, state nodes: |F| 1.632e-11, expect 1.632e-11
+  PASS  (4) the M 48 resample keeps its nodes: layouts ['state nodes']
+modecount_state_D30.0688_M48.npz: D 30.068824, M 48 -> 64, kf None, kc 414, ks 100
+  state nodes [0.3, 0.4, 0.5, 0.6, 0.7]
+    |F| 3.353e+05   Taylor steps per segment [7, 8, 11, 14]   kc 414 ks 100
+    0       centre: p 3.4e+05@61  k45   m 2.6e+05@59  k45   a 1.4e+04@62  k44   c 2.2e+03@60  k16 
+    1  seg 0.3-0.4: p 1.3e-16@41  k1    m 1.2e-16@60  k47   a 3.9e-16@26  k48   c 1.1e-15@39  k32 
+    2  seg 0.4-0.5: p 1.3e-16@61  k47   m 1.2e-16@22  k1    a 5.0e-16@54  k24   c 1.1e-15@26  k24 
+    3  seg 0.5-0.6: p 1.5e-16@7   k7    m 1.1e-16@22  k1    a 4.8e-16@19  k24   c 1.1e-15@10  k0  
+    4  seg 0.6-0.7: p 2.2e-16@1   k1    m 2.0e-16@49  k47   a 5.7e-16@47  k0    c 9.8e-16@15  k24 
+    5      horizon: p 3.4e-12@53  k11   m 3.4e-12@53  k11   a 8.9e-12@54  k30   c 1.6e-11@54  k30 
+    phase row 1.2e-15
+    largest rows: centre p[61] +3.4e+05, centre p[60] -3.2e+05, centre p[58] +2.6e+05, centre m[59] -2.6e+05, centre m[62] -2.5e+05, centre p[63] -2.1e+05
+    centre  series at x = 0.3: truncation inf, last term 1.0e+00, ratio 1.0797 per order, radius 0.278
+    horizon series at u = 0.3: truncation 2.1e-16, last term 8.8e-17, ratio 0.7083 per order, radius 0.424
+    centre series at x = 0.3: truncation inf, ratio 1.080 per order (radius 0.278); nodes [0.15, 0.3, 0.4, 0.5, 0.6, 0.7]
+  fitted nodes [0.15, 0.3, 0.4, 0.5, 0.6, 0.7], ks 100
+    |F| 1.632e-11   Taylor steps per segment [8, 7, 8, 11, 14]   kc 414 ks 100
+    0       centre: p 9.3e-18@61  k13   m 1.3e-17@11  k51   a 1.1e-16@54  k6    c 5.6e-17@4   k6  
+    1 seg 0.15-0.3: p 8.7e-17@30  k47   m 9.0e-17@56  k1    a 4.8e-16@54  k0    c 5.9e-16@35  k0  
+    2  seg 0.3-0.4: p 1.3e-16@41  k1    m 1.2e-16@60  k47   a 3.9e-16@26  k48   c 1.1e-15@39  k32 
+    3  seg 0.4-0.5: p 1.3e-16@61  k47   m 1.2e-16@22  k1    a 5.0e-16@54  k24   c 1.1e-15@26  k24 
+    4  seg 0.5-0.6: p 1.5e-16@7   k7    m 1.1e-16@22  k1    a 4.8e-16@19  k24   c 1.1e-15@10  k0  
+    5  seg 0.6-0.7: p 2.2e-16@1   k1    m 2.0e-16@49  k47   a 5.7e-16@47  k0    c 9.8e-16@15  k24 
+    6      horizon: p 3.4e-12@53  k11   m 3.4e-12@53  k11   a 8.9e-12@54  k30   c 1.6e-11@54  k30 
+    phase row 1.2e-15
+    largest rows: horizon c[54] +1.6e-11, horizon c[11] +1.0e-11, horizon c[52] -1.0e-11, horizon c[22] -9.6e-12, horizon c[21] -9.3e-12, horizon a[54] -8.9e-12
+    centre  series at x = 0.15: truncation 2.4e-119, last term 2.0e-119, ratio 0.5399 per order, radius 0.278
+    horizon series at u = 0.3: truncation 2.1e-16, last term 8.8e-17, ratio 0.7083 per order, radius 0.424
+  PASS  (2) M 48 -> 64 on the state nodes: centre series divergent, |F| > 1: |F| 3.4e+05, centre ratio 1.0797
+  PASS  (3) fitted layout at M 64: layout fitted, nodes [0.15, 0.3, 0.4, 0.5, 0.6, 0.7], |F| 1.6e-11, truncations 2.4e-119 2.1e-16
+up23_D61.0264.npz: D 61.026449, M 32 -> 64, kf 23, kc 420, ks 127
+  state nodes [0.3, 0.4, 0.5, 0.6, 0.7]
+    |F| 1.320e-06   Taylor steps per segment [6, 8, 9, 12]   kc 420 ks 127
+    0       centre: p 2.4e-16@44  k33   m 2.1e-16@48  k33   a 5.4e-16@20  k0    c 1.2e-15@41  k32 
+    1  seg 0.3-0.4: p 2.9e-16@42  k33   m 2.8e-16@6   k33   a 5.0e-16@15  k16   c 1.3e-15@41  k32 
+    2  seg 0.4-0.5: p 1.9e-16@50  k33   m 1.4e-16@44  k33   a 5.2e-16@9   k16   c 1.2e-15@15  k16 
+    3  seg 0.5-0.6: p 1.1e-16@34  k33   m 1.2e-16@58  k1    a 4.6e-16@41  k8    c 1.1e-15@41  k16 
+    4  seg 0.6-0.7: p 9.7e-17@50  k7    m 1.0e-16@5   k7    a 5.3e-16@59  k0    c 1.1e-15@49  k24 
+    5      horizon: p 2.4e-07@5   k1    m 2.4e-07@5   k1    a 6.7e-07@24  k0    c 1.3e-06@24  k0  
+    phase row 1.3e-15
+    largest rows: horizon c[24] -1.3e-06, horizon c[23] -1.3e-06, horizon c[41] -1.2e-06, horizon c[56] -1.1e-06, horizon c[40] -1.0e-06, horizon c[22] -1.0e-06
+    centre  series at x = 0.3: truncation 7.9e-39, last term 1.6e-39, ratio 0.8338 per order, radius 0.360
+    horizon series at u = 0.3: truncation 2.4e-15, last term 4.5e-16, ratio 0.8435 per order, radius 0.356
+    horizon series at u = 0.3: truncation 2.4e-15, ratio 0.844 per order (radius 0.356); ks 191
+  fitted nodes [0.3, 0.4, 0.5, 0.6, 0.7], ks 191
+    |F| 1.320e-06   Taylor steps per segment [6, 8, 9, 12]   kc 420 ks 191
+    0       centre: p 2.4e-16@44  k33   m 2.1e-16@48  k33   a 5.4e-16@20  k0    c 1.2e-15@41  k32 
+    1  seg 0.3-0.4: p 2.9e-16@42  k33   m 2.8e-16@6   k33   a 5.0e-16@15  k16   c 1.3e-15@41  k32 
+    2  seg 0.4-0.5: p 1.9e-16@50  k33   m 1.4e-16@44  k33   a 5.2e-16@9   k16   c 1.2e-15@15  k16 
+    3  seg 0.5-0.6: p 1.1e-16@34  k33   m 1.2e-16@58  k1    a 4.6e-16@41  k8    c 1.1e-15@41  k16 
+    4  seg 0.6-0.7: p 9.7e-17@50  k7    m 1.0e-16@5   k7    a 5.3e-16@59  k0    c 1.1e-15@49  k24 
+    5      horizon: p 2.4e-07@5   k1    m 2.4e-07@5   k1    a 6.7e-07@24  k0    c 1.3e-06@24  k0  
+    phase row 1.3e-15
+    largest rows: horizon c[24] -1.3e-06, horizon c[23] -1.3e-06, horizon c[41] -1.2e-06, horizon c[56] -1.1e-06, horizon c[40] -1.0e-06, horizon c[22] -1.0e-06
+    centre  series at x = 0.3: truncation 7.9e-39, last term 1.6e-39, ratio 0.8338 per order, radius 0.360
+    horizon series at u = 0.3: truncation 3.0e-24, last term 1.1e-24, ratio 0.7317 per order, radius 0.410
+  PASS  (5) D 61, kf 23, M 32 -> 64: horizon fitted by ks, nodes kept: layout fitted, nodes [0.3, 0.4, 0.5, 0.6, 0.7], ks 127 -> 191, truncations 7.9e-39 3.0e-24
+self-test: 5/5 passed
+# exit 0, 4 s, 2026-11-09 23:08:37 UTC
