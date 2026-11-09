@@ -53,8 +53,14 @@ better than about 0.04. Its next zero inward is near 7.75 - 0.80i at w = 1.10.
 
 **Planting.** The planted family with crossing w_p is the fitted one shifted in w, S_p(x; w) = S(x; w - (w_p - w_nat)).
 Its zero is real at w_p exactly, and its parameters move with w as the fit does. For P1 (w_p = 1.095) the shift is
--0.0003, so the P1 family matches the data to about 1e-4 at the nodes. For P2 (w_p = 1.15) the shift is +0.0547, a
-linear extrapolation of the parameters, so the P2 family is the fitted family at w = 1.035-1.055.
+-0.0003. For P2 (w_p = 1.15) the shift is +0.0547, a linear extrapolation of the parameters, so the P2 family is the
+fitted family at w = 1.035-1.055.
+
+*Correction (03:20 UTC, from `family_check.txt`; the criteria below are unchanged).* An earlier version of this
+paragraph said that the P1 family matches the data to about 1e-4 at the nodes. That was wrong. The sigma_n change
+fast with w, about 7% per 0.01 at n = 22, so even P1's shift of 0.0003 moves them. The P1 family is 2.1e-3 from the
+data at the nodes (max over n), and the P2 family is 0.36 from it. Any family whose crossing is moved away from the
+fitted family's own w_nat must leave the data by about this much.
 
 ## Acceptance criteria (written 2026-11-09 03:05 UTC, before any control ran)
 
