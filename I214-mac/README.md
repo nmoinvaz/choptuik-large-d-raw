@@ -93,4 +93,61 @@ Information runs, not controls:
 
 ## Runs
 
-(filled in as they finish)
+Exit codes are in `exits.txt`. The scripts `run_fit.sh`, `run_pilot.sh`, `run_all.sh`, `run_info2.sh` and
+`run_info3.sh` are run from `solver/independent_second_zero` of `wip/i214` 895ac75. The first `family_check exit 1`
+in `exits.txt` is a missing `sys.path` entry under `python -I`, fixed in 895ac75 and rerun.
+
+- `fit_arc.txt`, `arc_fit.json`: the fit. `family_check.txt`: the family's exact zero, w_nat, the quadrature check,
+  and the planted families' distance from the data.
+- `pilot_*`: w_p 1.105, seed 99, not a control. Crossing error 5.9e-6.
+- `P1_*`, `P2_*`: the controls. `M1_*`, `M2_*`: the mutations.
+- `info_noise0_*`, `info_noise1e-14_*`: the information runs named above.
+- `spread_compare.md`: the pre-set spread comparison (`spread_compare.py`).
+- Added after the controls (information only, not in the criteria):
+  - `info_noise3e-12_*`: the P1 family at noise 3e-12, seeds 1-5.
+  - `info_noise1e-11_stdout.txt`: stopped by hand during its first node.
+  - `real_sens_noise1e-12_seed1.txt`: #203's `sens_noise.py` on the real data with 1e-12 added; the later runs of
+    `run_info3.sh` were stopped, and `real_sens_noise1e-12_seed2.txt` is a partial log.
+  - `spread_compare_all.md`: the comparison with every run.
+  - From 04:03 UTC the Mac was in clamshell and maintenance sleep (pmset log). Wall times after that are not compute
+    times, and the 1e-11 stop was caused by that, not by the noise.
+
+## Results
+
+| control | verdict | detail |
+|---|---|---|
+| P1, crossing at 1.095 | **pass**, 10/10 seeds | primary crossings 1.094990-1.094997 (error <= 1.0e-5); per-node \|x1 error\| <= 1.9e-4 |
+| P2, crossing at 1.15 | **pass**, 10/10 seeds | primary median Im x1 +0.5823, +0.4909, +0.3973 (true +0.58234, +0.49098, +0.39736); no sign change; P1's criterion fails on it |
+| M1, partial sum only | **fires** | zeros near -3.3 + 5.4i, no crossing; exit 0 |
+| M2, crossing planted at 1.105, tested at 1.095 | **fires** | crossing 1.10500, P1 fails; exit 1 |
+| spread match (pre-set rule) | **does not match** | real/arc primary ratios Re 1.9, 1.6, 1.4 and Im 3.8, 4.2, 2.8; Im exceeds 3 at 1.09 and 1.10 |
+
+On the same metric the Kummer family of #203 gives ratios of 4.9-12, so the arc family closes most of the gap. The
+P1 accuracy is still not offered as the real crossing's error bar.
+
+Spread against noise. These are primary per-node half-ranges for the P1 family, with the real data's for comparison:
+
+| input | Re | Im | real/planted | crossing error | admitted per node |
+|---|---|---|---|---|---|
+| arc, no noise | 1.4e-5 | 1.6e-5 | 48-83 | 4.5e-8 | 64/70 |
+| arc, 1e-14 | 5.7e-5 to 9.8e-5 | 6.6e-5 to 1.3e-4 | 7.5-20 | <= 1.8e-6 | 45-64 |
+| arc, 1e-12 (P1) | 4.1e-4 to 5.0e-4 | 2.7e-4 to 3.6e-4 | 1.4-4.2 | <= 1.0e-5 | 43-69 |
+| arc, 3e-12 | 6.2e-4 to 1.0e-3 | 6.6e-4 to 1.0e-3 | 0.72-2.0 | <= 1.3e-5 | 40-68 |
+| real data | 6.9e-4 to 7.8e-4 | 1.0e-3 to 1.3e-3 | 1 | | 70/70 |
+| real data + 1e-12 | 5.4e-3 to 8.7e-3 | 1.8e-3 to 4.0e-3 | | crossing 1.09879 | 59-64 |
+
+Reading:
+- The arc structure needs about 3e-12 of added noise to reach the real data's spread, in the pooled set and in each of
+  qhp23/22/21.
+- The same 1e-12 noise added to the real data multiplies its spread by about 7 and costs it 6-11 approximants per
+  node. The clean data has all 70. So the real sigma do not carry random errors at 1e-12, which agrees with the fit
+  plateaus' 1.3e-14.
+- The real data's spread therefore comes from its structure, or from smooth errors, that no planted family here
+  reproduces at the data's noise level. Without noise the arc family is about 60 times easier than the data, and
+  even then it rejects 6 approximants that the data admits.
+
+What each figure is:
+- Every spread is a half-range over approximant choices.
+- Every crossing error is |w_c - w_p| on a planted family, an estimator error under that family.
+- None is a bound. The real crossing 1.09884 keeps #203's spread envelope 1.09873-1.09894 as its stated uncertainty,
+  and that too is a spread.

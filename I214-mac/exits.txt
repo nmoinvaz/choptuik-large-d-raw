@@ -12,3 +12,6 @@ spread_compare exit 2 (0 = matches, 2 = does not)
 info 3e-12 exit 0
 info 1e-11 stopped by hand at 04:42 UTC: one node took 1680 s (35 s at lower noise), so 15 nodes would take about 7 h; its partial log is info_noise1e-11_stdout.txt
 spread_compare_all exit 2 (verdict line is P1's, as before; 1e-11 omitted)
+real sens_noise 1e-12 seed 1 exit 0
+real sens_noise: the runs after 1e-12 seed 1 stopped by hand (the Mac was in maintenance-sleep cycles, so one run took about an hour of wall time); 1e-12 seed 1 is the information kept
+correction (06:00 UTC): the slowness that stopped the 1e-11 run was the Mac's sleep, not the noise. pmset's log shows a clamshell sleep at 04:03 UTC and maintenance-sleep cycles after it, so the 1680 s was wall time while asleep. real_sens_noise1e-12_seed2.txt is the partial log of the stopped run.
