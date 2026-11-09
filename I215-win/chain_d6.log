@@ -20,3 +20,16 @@ step 0: D 192.0, pivots 4.7e-11..7.3e+26, |z_1| 5.22e-04, |z_N| 4.76e-30, ratios
     a 0.2500: re-seeded (ok), 58.63 s
 held values from the fit data/held_fit_d6.json (degree 6, 138 full-system states, D 38.020417-73.0), relative to the base
   on 0: |F| 7.06e-29 -> 4.16e-35, |dz| 4.5e-19 -> 1.3e-36, lam 1, dDelta +4.48e-19, piv 4.7e-11..7.3e+26, 192.28 s
+  on 1: |F| 4.16e-35 -> 1.53e-44, |dz| 1.3e-36 -> 2.1e-59, lam 1, dDelta -1.26e-36, piv 4.7e-11..7.3e+26, 161.42 s
+  on 2: |F| 1.53e-44 converged, Delta 1.69719354953899559 -4.2493e-17
+      elim projections {'u0': 0, 'u0q': 1, 'ladder': 0, 'failed': 0, 'skipped': 2}
+      octo-double Newton: 3 steps, max|F| 1.5e-44, converged; double-double |F| of its first two parts 1.6e-02
+base I13-win/chain_d6/anm_pin3_D192.0000.npz: D 192.0, M 32, pin 3 (held [5, 7, 9, 11, 13]), |F| 1.6e-02; N 24, eps 1e-14, h_max 1.0, corrector od (junk_only False), tol 1.0e-20 x 1.45^(D - 192.0), stalls accepted below 1e-17
+step 0: D 192.0, pivots 4.7e-11..7.3e+26, |z_1| 5.22e-04, |z_N| 4.76e-30, ratios 2-5 244.2 220.2 210.1 204.2, a_max 3.338, 2623 s
+    a 1.0000: re-seeded (ok), 61.06 s
+  on 0: |F| 1.17e-20 -> 1.46e-34, |dz| 1.2e-20 -> 5.8e-41, lam 1, dDelta +1.94e-22, piv 2.3e-11..1.0e+27, 176.6 s
+  on 1: |F| 1.46e-34 -> 2.45e-43, |dz| 5.8e-41 -> 5.3e-58, lam 1, dDelta -2.65e-43, piv 2.3e-11..1.0e+27, 157.65 s
+  on 2: |F| 2.45e-43 converged, Delta 1.69692102987946813 -7.4019e-17
+      elim projections {'u0': 0, 'u0q': 1, 'ladder': 0, 'failed': 0, 'skipped': 2}
+      octo-double Newton: 3 steps, max|F| 2.4e-43, converged; double-double |F| of its first two parts 3.0e-02
+    a 1.000 -> D 193.0: predicted |F| 2.05e-02, od 3 steps -> 3.00e-02 (tol 1.4e-20, stall accepted, Delta correction +0.0e+00), Delta 1.696921029879 (formula diff -1.2e-06), moved 1.2e-20, 479 s
