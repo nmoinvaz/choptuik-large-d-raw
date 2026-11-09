@@ -3,5 +3,7 @@
 3. Airy = (1-q)/(1+q) sum of Lorentzians, a = 1.4493028: max deviation 0.099
 4. 2a = pi at q = e^(-pi) = 0.043213918: deviation 1.57
    Eq. (16) at the paper's q = 0.0551: F = 0.246854, 2a = 2.89861, Lorentzian finesse pi/(2a) = 1.08383
-FAIL [False, False, False, False]
+5. phase spread, finite-edge density: |r_(k+1) - r_k| ~ k^-3.9856 (expected 3)
+6. loss spread, linear-edge density:  |r_(k+1) - r_k| ~ k^-2.9769 (expected 4); phase spread with a linear edge gives k^-3.9856
+FAIL [False, False, False, False, False, False]
 exit 1

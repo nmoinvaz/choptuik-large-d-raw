@@ -1,4 +1,4 @@
-# Check of four identities that tie the #198 addendum's cavity sources to Eq. (16) of arXiv:2611.07007
+# Check of four identities and two asymptotic laws that tie the #198 addendum's cavity sources to Eq. (16) of arXiv:2611.07007
 # (inferred, not quoted from a source). B is Eq. (16)'s real form with A* = 1 and delta = 0,
 #   B(t; q) = Re[e^{it}/(1 + q e^{2it})] = (1 + q) cos t / (1 + q^2 + 2q cos 2t).
 #   1. B = (1+q)/(1-q)^2 * cos t * A(t + pi/2), with the Airy distribution A(phi) = 1/(1 + F sin^2 phi) and the
@@ -11,8 +11,14 @@
 #      over all m is evaluated by mpmath's nsum (series acceleration).
 #   4. The Lorentzian linewidth equals the free spectral range, 2a = pi, at q = e^{-pi} (Pollnau-Eichhorn, Eq. (114),
 #      R1 R2 = e^{-2 pi}).
-# Any command-line argument applies a mutation: q -> -q in 1, F -> F/2 in 2, a -> 2a in 3, pi -> pi/2 in 4, so every
-# check must then fail. Run: python3 identity_check.py [mutate]   (mpmath; exit 0 when all pass)
+#   5. A pole smeared over a one-sided spread of round-trip phase with a density that is finite at the edge (the
+#      paraxial Gaussian beam of the angular Airy function, Marques et al. Eq. (3)) has coefficients
+#      c_k = w^k [1 + b s0/(1 + 2iks0)], and |r_{k+1} - r_k| falls like k^-3 (r_k = c_{k+1}/c_k).
+#   6. A spread of round-trip loss with a density that vanishes linearly at the edge has c_k = w^k [1 + b/((k+1)(k+2))],
+#      and |r_{k+1} - r_k| falls like k^-4, the law EEG_PROFILE.md 8.5 reads from the tuned profile.
+#   The exponents are measured between k = 200 and 400 and must be within 0.05 of 3 and 4.
+# Any command-line argument applies a mutation: q -> -q in 1, F -> F/2 in 2, a -> 2a in 3, pi -> pi/2 in 4, the
+# linear-edge density in 5 and the finite-edge density in 6, so every check must then fail. Run: python3 identity_check.py [mutate]   (mpmath; exit 0 when all pass)
 import sys
 import mpmath as mp
 
@@ -77,6 +83,30 @@ ok.append(d4 < mp.mpf('1e-25'))
 print(f"4. 2a = pi at q = e^(-pi) = {mp.nstr(mp.exp(-mp.pi), 8)}: deviation {mp.nstr(d4, 3)}")
 print(f"   Eq. (16) at the paper's q = 0.0551: F = {mp.nstr(F, 6)}, 2a = {mp.nstr(2 * a, 6)},"
       f" Lorentzian finesse pi/(2a) = {mp.nstr(mp.pi / (2 * a), 6)}")
+
+
+
+# 5, 6. the decay of the ratio differences for a pole smeared by a one-sided spread
+def exponent(c):
+    def d(k):
+        return abs(c(k + 2) / c(k + 1) - c(k + 1) / c(k))
+    return -mp.log(d(400) / d(200)) / mp.log(2)
+
+
+w = mp.mpf('0.0551') * mp.exp(1j * mp.mpf('0.0985'))
+s0, b = mp.mpf('0.5'), mp.mpf('0.3')
+finite_edge = lambda k: w ** k * (1 + b * s0 / (1 + 2j * k * s0))
+linear_phase = lambda k: w ** k * (1 + b * s0 ** 2 / (1 + 2j * k * s0) ** 2)
+linear_loss = lambda k: w ** k * (1 + b / ((k + 1) * (k + 2)))
+finite_loss = lambda k: w ** k * (1 + b / (k + 1))
+p5 = exponent(linear_phase if mut else finite_edge)
+p6 = exponent(finite_loss if mut else linear_loss)
+pl = exponent(linear_phase)
+ok.append(abs(p5 - 3) < mp.mpf('0.05'))
+ok.append(abs(p6 - 4) < mp.mpf('0.05'))
+print(f"5. phase spread, finite-edge density: |r_(k+1) - r_k| ~ k^-{mp.nstr(p5, 5)} (expected 3)")
+print(f"6. loss spread, linear-edge density:  |r_(k+1) - r_k| ~ k^-{mp.nstr(p6, 5)} (expected 4);"
+      f" phase spread with a linear edge gives k^-{mp.nstr(pl, 5)}")
 
 print("all pass" if all(ok) else f"FAIL {ok}")
 sys.exit(0 if all(ok) else 1)

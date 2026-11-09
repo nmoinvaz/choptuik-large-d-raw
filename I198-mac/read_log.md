@@ -77,8 +77,8 @@ fetch that failed is listed with the reason.
 ## Q2, nonlinear cavities
 
 - **N1. T. Hansson, S. Wabnitz**, *Frequency comb generation beyond the Lugiato–Lefever equation: multi-stability and
-  super cavity solitons*, JOSA B 32(7), 1259–1266 (2015), DOI 10.1364/JOSAB.32.001259 (journal fields from the
-  Chalmers record and the search listing; arXiv:1503.03274). Full text, [ar5iv](https://ar5iv.arxiv.org/html/1503.03274),
+  super cavity solitons*, JOSA B 32(7), 1259–1266 (2015), DOI 10.1364/JOSAB.32.001259 (the DOI from the related-DOI
+  field of the [arXiv page](https://arxiv.org/abs/1503.03274); volume, issue and pages from the Chalmers record). Full text, [ar5iv](https://ar5iv.arxiv.org/html/1503.03274),
   two fetches, Secs. II–V.
   - Eqs. (1)–(2), the Ikeda map: "E^{m+1}(t,0) = √θ E_in + √(1−θ) e^{iφ₀} E^m(t,L)" and a damped NLS in z.
   - Eq. (4), the fixed point: "E = ρe^{iφ}E + √θ E_in", with φ = δ₀ − γL_eff|E|², so the stationary field is the
@@ -95,16 +95,16 @@ fetch that failed is listed with the reason.
   - Not contained: Newton or continuation for the fixed points (they are found from (5) and a geometric construction),
     harmonic balance.
 - **N2. M. Conforti, A. Mussot, A. Kudlinski, S. Trillo**, *Modulational instability in dispersion oscillating fiber
-  ring cavities*, arXiv:1405.6041 ([ar5iv](https://ar5iv.arxiv.org/html/1405.6041); no journal-ref on that page,
-  *(unverified)* journal). Full text.
+  ring cavities*, arXiv:1405.6041; the [arXiv page](https://arxiv.org/abs/1405.6041) gives no journal-ref but the
+  related DOI 10.1364/OL.39.004200 (Opt. Lett. 39, 4200 (2014)). Full text, [ar5iv](https://ar5iv.arxiv.org/html/1405.6041).
   - The perturbation obeys "d ε/dz = M(z) ε" (2×2); the round-trip matrix is "the 2×2 fundamental matrix solution
     evaluated at z=Λ"; its eigenvalues λ are the Floquet multipliers, unstable when "|λ|>1", with gain ln|λ|/Λ. For
     piecewise-constant dispersion: "We have MI if |Δ|>(1+W)", Δ the Floquet discriminant, W = e^{−2αΛ} the Wronskian.
   - A period-two state: "the pulse train is reproduced identical after two round-trips".
   - Not contained: harmonic balance, Hill's method, continuation.
 - **N3. P. Parra-Rivas, E. Knobloch, L. Gelens, D. Gomila**, *Origin, bifurcation structure and stability of localized
-  states in Kerr dispersive optical cavities*, arXiv:2010.03375 (IMA J. Appl. Math. per the search listing,
-  *(unverified)*). Full text, [ar5iv](https://ar5iv.labs.arxiv.org/html/2010.03375), characters 0–193242 in two
+  states in Kerr dispersive optical cavities*, arXiv:2010.03375 (no journal-ref on the
+  [arXiv page](https://arxiv.org/abs/2010.03375); IMA J. Appl. Math. per the search listing, *(unverified)*). Full text, [ar5iv](https://ar5iv.labs.arxiv.org/html/2010.03375), characters 0–193242 in two
   fetches.
   - Eq. (1), the LLE "∂tA = −(1+iΔ)A + iν∂x²A + i|A|²A + S". Stationary states by "numerical path continuation
     algorithms" with "a predictor-corrector approach" (citing Allgower–Georg and Doedel et al.); stability from
@@ -114,9 +114,9 @@ fetch that failed is listed with the reason.
     infinite-dimensional saddle corresponding to the unstable spike".
   - Not contained: continuation of the periodic orbits or their Floquet multipliers, software, a scaling law at the
     saddle.
-- **N4. D. Gomila, M. A. Matías, P. Colet**, *Excitability mediated by localized structures in a dispersive nonlinear
-  optical cavity*, arXiv:nlin/0411047 ([ar5iv](https://ar5iv.labs.arxiv.org/html/nlin/0411047); journal-ref not shown,
-  PRL 94, 063905 (2005) per the citing literature, *(unverified)*). Full text.
+- **N4. D. Gomila, M. A. Matías, P. Colet**, *Excitability mediated by localized structures*, arXiv:nlin/0411047,
+  journal-ref PRL 94, 063905 (2005), DOI 10.1103/PhysRevLett.94.063905 (from the
+  [arXiv page](https://arxiv.org/abs/nlin/0411047)). Full text, [ar5iv](https://ar5iv.labs.arxiv.org/html/nlin/0411047).
   - Eq. (1), the 2D LLE. "The unstable branch (the so-called lower or middle branch) has a single unstable
     direction." Near the saddle-loop bifurcation the period obeys T ∝ −(1/λ₁) ln(θ_c − θ), λ₁ "the unstable
     eigenvalue of the saddle point", λ₁ = 0.17713581; predicted slope 1/λ₁ ≈ 5.65 against 5.60 from simulations.

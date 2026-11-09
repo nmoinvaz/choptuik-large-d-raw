@@ -27,6 +27,9 @@ through `WebFetch`. Dates are UTC. Each entry gives the query verbatim and what 
 - S8. "Madsen Zhao \"Optical Filter Design and Analysis: A Signal Processing Approach\" Fabry-Perot z-transform
   autoregressive moving average ARMA poles zeros coupled cavities": publisher and catalogue records only (Wiley 1999,
   ISBN 978-0-471-18373-0; chapters on MA, AR and ARMA architectures).
+- S25. "multilayer thin film stack equal optical thickness layers transmission coefficient all-pole z-transform
+  digital filter analogy reflection ARMA polynomial in z = exp(-2i delta)": general digital-filter pages only (Wikipedia
+  *Z-transform*, DSP course notes); nothing on thin films. Not opened.
 
 ## Q2, nonlinear cavities (2026-11-09)
 
