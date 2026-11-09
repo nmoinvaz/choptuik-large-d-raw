@@ -41,3 +41,17 @@ step 2: D 193.5, pivots 2.2e-11..1.2e+27, |z_1| 5.16e-04, |z_N| 2.76e-29, ratios
       quad-double Newton: 6 steps, max|F| 1.2e-28, not converged; double-double |F| of its first two parts 3.1e-02
     a 0.500 -> D 194.0: predicted |F| 2.88e-02, qd 6 steps -> 3.13e-02 (tol 2.5e-20), Delta 1.696651283839 (formula diff -1.2e-06), moved 8.9e-19, 1426 s
 held values from the fit data/held_fit_d10.json (degree 10, 138 full-system states, D 38.020417-73.0), relative to the base
+  on 0: |F| 9.81e-29 -> 7.64e-35, |dz| 2.1e-18 -> 5.9e-35, lam 1, dDelta -2.07e-18, piv 2.2e-11..1.2e+27, 188.03 s
+  on 1: |F| 7.64e-35 -> 5.19e-42, |dz| 5.9e-35 -> 2.7e-57, lam 1, dDelta -1.02e-35, piv 2.2e-11..1.2e+27, 142.26 s
+  on 2: |F| 5.19e-42 converged, Delta 1.69678581279467089 +3.2579e-17
+      elim projections {'u0': 0, 'u0q': 1, 'ladder': 0, 'failed': 0, 'skipped': 2}
+      octo-double Newton: 3 steps, max|F| 5.2e-42, converged; double-double |F| of its first two parts 2.6e-02
+base I215-win/chain_d10/anm_pin3_D193.5000.npz: D 193.5, M 32, pin 3 (held [5, 7, 9, 11, 13]), |F| 2.6e-02; N 24, eps 1e-14, h_max 1.0, corrector od (junk_only False), tol 1.0e-20 x 1.45^(D - 193.5), stalls accepted below 1e-17
+step 0: D 193.5, pivots 2.2e-11..1.2e+27, |z_1| 5.16e-04, |z_N| 2.76e-29, ratios 2-5 246.2 222.0 211.7 207.2, a_max 3.091, 2648 s
+    a 1.0000: re-seeded (ok), 59.1 s
+  on 0: |F| 5.16e-20 -> 1.24e-34, |dz| 5.1e-20 -> 1.1e-39, lam 1, dDelta -8.56e-22, piv 2.3e-11..1.7e+27, 187.17 s
+  on 1: |F| 1.24e-34 -> 5.12e-53, |dz| 1.1e-39 -> 1.4e-59, lam 1, dDelta -7.30e-43, piv 2.3e-11..1.7e+27, 149.24 s
+  on 2: |F| 5.12e-53 converged, Delta 1.69651743774429620 -7.6691e-17
+      elim projections {'u0': 0, 'u0q': 1, 'ladder': 0, 'failed': 0, 'skipped': 2}
+      octo-double Newton: 3 steps, max|F| 5.1e-53, converged; double-double |F| of its first two parts 4.9e-02
+    a 1.000 -> D 194.5: predicted |F| 3.59e-02, od 3 steps -> 4.86e-02 (tol 1.4e-20, stall accepted, Delta correction +0.0e+00), Delta 1.696517437744 (formula diff -1.2e-06), moved 5.1e-20, 480 s
