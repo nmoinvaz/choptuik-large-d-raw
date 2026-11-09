@@ -16,3 +16,11 @@ main checkout's build of 2026-11-08 16:26 PST (PYTHONPATH). nice 10, caffeinate 
   backgrounds; `live/<name>/` holds each extended cache and `live_circles.jsonl`; `logs/live_*.log`.
 - `first_try/`: the first replay script, which gave a missing point its nearest cached value; its counts of missing
   points cascade from those stand-ins and are not used. Superseded by the version that stops at the first missing point.
+
+## Results (closing summary on the issue)
+
+- Planted: `logs/planted.log` exit 0; `logs/planted_controls.log` exit 0 (flat counts the inside pairs +1, not +2).
+- 68 circle records (55 distinct circles) replayed exactly under the old rule. Under the new rule 49 are unchanged from
+  their caches alone, and 4 more (#178's R 0.03 at 1.14 and 1.20, #230 kf 23 B at 3.019, #238 D 55 at 0.073+3.839i)
+  are unchanged with 1-2 new determinants each (`live/`). Two M 40 circles of #231 need determinants this Mac's
+  hpkernel cannot compute (no M 40); `logs/which_part.log` shows which part of the rule asks for them.

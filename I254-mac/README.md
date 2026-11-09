@@ -40,3 +40,16 @@ to 2e-30. (The p rows' 1.3e-3 and 9.6e-4 are the held harmonics, which the pinne
 `sweep_chains.jsonl` is not a measurement of the chains' truncation above D ~ 150, and the kernel has no quad-double
 series accessor to make one. The I19-win2 crawl's states (D 214.6 to 215.03) give |F| 2.6e23 in all three precisions on
 the plain layout: that crawl ran with --reseed 2 and --od_junk 4 (its README), a different system, and is not measured.
+
+## Results (closing summary on the issue)
+
+- Control: `logs/selftest.log` 3/3 (exit 0), `logs/selftest_mutate_half.log` 1/3 (exit 1).
+- Above 1e-15 on the large-D layout and fed a result: the D 45.05 M 48 kf 21 mode-count background (I170-macm3 and its
+  copies), centre 2.4e-8 (ratio 0.967). Refitted with a node at 0.15 (`logs/fit_D45_kf21.log`) its centre converges
+  but the solve stalls again at |F| 1.4e-16, Delta -1.4e-10; `logs/delta_D45_compare.log` compares the D 45 states' Delta.
+- Above but fed nothing: #68's and T37's D 30 M 64 states (centre divergent).
+- gamma_dd --M48 (`gamma_m48.jsonl`, `logs/gamma_m48_*.log`): all four records reproduced, worst M 48 tail 1.0e-22.
+  Its D 50 Delta change, +1.2e-11, is not truncation.
+- `logs/gate_gap_D45_kf21.log`: the resampled D 45 kf 21 start passes #141's gate (7.4e-74) though its solution does
+  not (2.4e-8).
+- Low D (first node 0.01-0.02): the 9-node D 4 layout and lowDn_D3.7000_M64, both already in notes/LOW_D.md.
