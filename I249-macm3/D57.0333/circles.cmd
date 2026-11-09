@@ -1,0 +1,2 @@
+cd ~/Source/choptuik-large-d && PATH=/Users/nathan/Source/venv-macm3-314/bin:$PATH caffeinate -is nice -n 10 python3 hp/modecount_circle.py hp/data/states/up12_D57.0333.npz 0.38466,0.53575,0.2 0.83213,1.08648,0.2 0.01061,3.79963,0.3 2.0462130949637243,0,0.2 --M=48 --kf=23 --n0=20 --fmax=1e-15 --tag=D57.0333_M48_kf23 --data=../choptuik-large-d-raw/I249-macm3/D57.0333/data > ../choptuik-large-d-raw/I249-macm3/D57.0333/circles.log 2>&1
+echo "D57.0333 circles exit $? at $(date -u +%Y-%m-%dT%H:%M:%SZ)" >> ../choptuik-large-d-raw/I249-macm3/exits.txt
