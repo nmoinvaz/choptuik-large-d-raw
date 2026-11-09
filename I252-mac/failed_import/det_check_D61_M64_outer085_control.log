@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/Users/nathan/Source/choptuik-large-d-raw/I252-mac/scripts/det_check.py", line 25, in <module>
+    st = mc.setup(path, M=None, kf=kf, fmax=1e-15, threads=int(opts.get("threads", 1)))
+  File "/Users/nathan/Source/choptuik-large-d/.claude/worktrees/agent-af41abeb756ed7275/hp/modecount_common.py", line 197, in setup
+    s, c = build_pair(meta, zh, zl, M, kf, threads)
+           ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nathan/Source/choptuik-large-d/.claude/worktrees/agent-af41abeb756ed7275/hp/modecount_common.py", line 70, in build_pair
+    c = modecount_cx.CSolver(M, float(nh[0]), float(nl[0]), dh, dl, ph, pl, list(meta["nodes"]), s.get_segs(),
+        ^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'modecount_cx' has no attribute 'CSolver'

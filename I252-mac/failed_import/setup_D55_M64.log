@@ -1,0 +1,44 @@
+modecount_state_D55.0351_M48_kf23_from_I232.npz: D 55.035148, M 48 -> 64, kf 23, kc 420, ks 100
+  state nodes [0.3, 0.4, 0.5, 0.6, 0.7]
+    |F| 1.413e-07   Taylor steps per segment [6, 8, 10, 12]   kc 420 ks 100
+    0       centre: p 6.7e-17@17  k1    m 5.8e-17@42  k47   a 5.7e-16@57  k0    c 6.1e-16@52  k0  
+    1  seg 0.3-0.4: p 1.0e-16@61  k1    m 1.3e-16@3   k1    a 5.4e-16@44  k24   c 1.2e-15@54  k0  
+    2  seg 0.4-0.5: p 8.0e-17@6   k23   m 7.5e-17@17  k35   a 5.0e-16@25  k0    c 8.2e-16@40  k24 
+    3  seg 0.5-0.6: p 1.6e-16@56  k1    m 1.2e-16@46  k1    a 4.6e-16@44  k0    c 1.1e-15@46  k0  
+    4  seg 0.6-0.7: p 1.2e-16@57  k1    m 1.5e-16@4   k1    a 4.9e-16@22  k0    c 1.0e-15@44  k0  
+    5      horizon: p 1.7e-08@63  k17   m 2.4e-08@0   k17   a 7.2e-08@11  k56   c 1.4e-07@30  k56 
+    phase row 1.7e-15
+    largest rows: horizon c[30] +1.4e-07, horizon c[11] -1.4e-07, horizon c[23] +1.1e-07, horizon c[1] +1.0e-07, horizon c[59] -9.9e-08, horizon c[17] +9.0e-08
+    centre  series at x = 0.3: truncation 4.2e-33, last term 6.8e-34, ratio 0.8615 per order, radius 0.348
+    horizon series at u = 0.3: truncation 1.3e-13, last term 4.5e-14, ratio 0.7476 per order, radius 0.401
+    horizon series at u = 0.3: truncation 1.3e-13, ratio 0.748 per order (radius 0.401); ks 150
+  fitted nodes [0.3, 0.4, 0.5, 0.6, 0.7], ks 150
+    |F| 1.413e-07   Taylor steps per segment [6, 8, 10, 12]   kc 420 ks 150
+    0       centre: p 6.7e-17@17  k1    m 5.8e-17@42  k47   a 5.7e-16@57  k0    c 6.1e-16@52  k0  
+    1  seg 0.3-0.4: p 1.0e-16@61  k1    m 1.3e-16@3   k1    a 5.4e-16@44  k24   c 1.2e-15@54  k0  
+    2  seg 0.4-0.5: p 8.0e-17@6   k23   m 7.5e-17@17  k35   a 5.0e-16@25  k0    c 8.2e-16@40  k24 
+    3  seg 0.5-0.6: p 1.6e-16@56  k1    m 1.2e-16@46  k1    a 4.6e-16@44  k0    c 1.1e-15@46  k0  
+    4  seg 0.6-0.7: p 1.2e-16@57  k1    m 1.5e-16@4   k1    a 4.9e-16@22  k0    c 1.0e-15@44  k0  
+    5      horizon: p 1.7e-08@63  k17   m 2.4e-08@0   k17   a 7.2e-08@11  k56   c 1.4e-07@30  k56 
+    phase row 1.7e-15
+    largest rows: horizon c[30] +1.4e-07, horizon c[11] -1.4e-07, horizon c[23] +1.1e-07, horizon c[1] +1.0e-07, horizon c[59] -9.9e-08, horizon c[17] +9.0e-08
+    centre  series at x = 0.3: truncation 4.2e-33, last term 6.8e-34, ratio 0.8615 per order, radius 0.348
+    horizon series at u = 0.3: truncation 4.6e-19, last term 1.8e-19, ratio 0.7170 per order, radius 0.418
+setup modecount_state_D55.0351_M48_kf23_from_I232.npz M 64 kf 23 fmax 1e-15 fit True:
+  horizon series at u = 0.3: truncation 1.3e-13, ratio 0.748 per order (radius 0.401); ks 150
+Traceback (most recent call last):
+  File "/Users/nathan/Source/choptuik-large-d/.claude/worktrees/agent-af41abeb756ed7275/hp/modecount_probe.py", line 202, in <module>
+    sys.exit(main())
+             ~~~~^^
+  File "/Users/nathan/Source/choptuik-large-d/.claude/worktrees/agent-af41abeb756ed7275/hp/modecount_probe.py", line 171, in main
+    return run_setup(args[0], Ms, kf, float(opts.get("fmax", 1e-15)), "nofit" not in opts,
+                     int(opts.get("threads", 1)), opts.get("setup_json"))
+  File "/Users/nathan/Source/choptuik-large-d/.claude/worktrees/agent-af41abeb756ed7275/hp/modecount_probe.py", line 185, in run_setup
+    st = mc.setup(path, M=M, threads=threads, kf=kf, fmax=fmax, log=lambda m: print(m, flush=True), fit=fit)
+  File "/Users/nathan/Source/choptuik-large-d/.claude/worktrees/agent-af41abeb756ed7275/hp/modecount_common.py", line 197, in setup
+    s, c = build_pair(meta, zh, zl, M, kf, threads)
+           ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nathan/Source/choptuik-large-d/.claude/worktrees/agent-af41abeb756ed7275/hp/modecount_common.py", line 70, in build_pair
+    c = modecount_cx.CSolver(M, float(nh[0]), float(nl[0]), dh, dl, ph, pl, list(meta["nodes"]), s.get_segs(),
+        ^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'modecount_cx' has no attribute 'CSolver'
