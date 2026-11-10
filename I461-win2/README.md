@@ -29,3 +29,9 @@ Every number agrees with the Mac's to the digits the issue gives, except the D 2
 quad-double floor (the limit is 1e-24). The build: worktree `D:\choptuik-i446` at d9e7f78, `venv-t126`, `hpkernel` `_hpkernel.cp312-win_amd64.pyd` built
 2026-11-05 22:51 local, multidouble Python package f092018. Logs `A_*.log` print every rung (the first pass at u 0.3 reads NOT converged and the repeated
 block steps bring it to the floor).
+
+## Part B (running since 2026-11-10 10:23:39 UTC)
+
+`run_i461_b.sh` writes `crawlB.log` and `crawlB/` (predictions `pred_pin3_D*.npz`; `anm_run.jsonl` appears with the first accepted step).
+`compare_461_b.py` reads them. This folder holds a partial copy pushed at 12:2x UTC while the run is still going, results follow
+at the end of the run.
