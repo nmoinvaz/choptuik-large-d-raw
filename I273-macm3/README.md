@@ -12,3 +12,6 @@ not read as a measurement of the cut.
 
 ## Results
 
+All six runs finished (kf 13 and kf 15 at D 40.02, 50.01, 58.01; last exit 07:22:14 UTC; the first was throttled on battery until 06:04 UTC). Exits: all 0 except D 58 kf 15 (1, floor check ABOVE).
+lam(48, kf 15) - lam(48, kf 13): D 40 +1.33e-15, D 50 -1.60e-14, D 58 -4.93e-13. Floor checks: ok at both cuts at D 40 and D 50 (kf 15 est -8.4e-16 at D 50), ok at kf 13 and ABOVE at kf 15
+(est -2.36e-15) at D 58. M 32 lam of each record equals the old record's bit for bit. Details are in the closing comment of the issue.
