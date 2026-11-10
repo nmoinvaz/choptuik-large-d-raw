@@ -1,0 +1,35 @@
+### method check on earlier D (I215 reported 3.6e-13 to 4.9e-13)
+  d10 D     209.5: previous six D 203.5..208.5, |Delta - extrapolation| 5.25e-13
+  d10 D     210.5: previous six D 204.5..209.5, |Delta - extrapolation| 3.55e-13
+  d10 D     211.5: previous six D 205.5..210.5, |Delta - extrapolation| 4.02e-13
+  d10 D     212.5: previous six D 206.5..211.5, |Delta - extrapolation| 4.56e-13
+  d10 D     213.5: previous six D 207.5..212.5, |Delta - extrapolation| 2.62e-13
+  d10 D     214.5: previous six D 208.5..213.5, |Delta - extrapolation| 4.85e-13
+  d6 D     209.0: previous six D 203.0..208.0, |Delta - extrapolation| 4.38e-13
+  d6 D     210.0: previous six D 204.0..209.0, |Delta - extrapolation| 4.32e-13
+  d6 D     211.0: previous six D 205.0..210.0, |Delta - extrapolation| 3.91e-13
+  d6 D     212.0: previous six D 206.0..211.0, |Delta - extrapolation| 4.16e-13
+  d6 D     213.0: previous six D 207.0..212.0, |Delta - extrapolation| 3.66e-13
+  d6 D     214.0: previous six D 208.0..213.0, |Delta - extrapolation| 3.75e-13
+  d6 D     214.5: previous six D 209.0..214.0, |Delta - extrapolation| 8.38e-14
+
+### d10 D 215.0, previous six saved states
+d10 D 215.0: Delta 1.691559557516578762604339 (I276-win/chain_d10/anm_pin3_D215.0000.npz, 8 parts)
+  previous six D: 211.5, 212.5, 213.5, 214.5, 214.625, 214.875
+  degree-5 extrapolation 1.6915595575165784909394
+  |Delta - extrapolation| 2.72e-16 < 1e-12: ok
+exit=0
+
+### d10 D 215.0, six at unit spacing ending at 214.5 (extrapolation distance 0.5)
+d10 D 215.0: Delta 1.691559557516578762604339 (I276-win/chain_d10/anm_pin3_D215.0000.npz, 8 parts)
+  previous six D: 209.5, 210.5, 211.5, 212.5, 213.5, 214.5
+  degree-5 extrapolation 1.691559557516517990737315
+  |Delta - extrapolation| 6.08e-14 < 1e-12: ok
+exit=0
+
+### control: --mutate=shift=1e-11 (must FAIL)
+d10 D 215.0: Delta 1.691559557526578762604339 (I276-win/chain_d10/anm_pin3_D215.0000.npz, 8 parts)
+  previous six D: 211.5, 212.5, 213.5, 214.5, 214.625, 214.875
+  degree-5 extrapolation 1.6915595575165784909394
+  |Delta - extrapolation| 1.0e-11 >= 1e-12: FAIL  (mutate shift 1.0e-11)
+exit=1
