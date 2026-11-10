@@ -12,3 +12,11 @@ disc, not that none exists elsewhere. Estimates are the circles' own ranges, not
 
 ## Results
 
+Exit 0 at 06:23:33 UTC (started 04:47 UTC; the Mac was on battery 01:40 to 06:04 UTC and the jobs were throttled, so wall time is not compute time).
+Run from the main checkout at bfe5fd54. 118 determinants, setup |F| 1.7e-19 (series 2.9e-125 and 4.1e-30). All five circles (R 0.2, n0 20) have
+0 verification mismatches and 0 alias bisections.
+  lam_phys 2.045529761478: winding +1, zero 2.0455297798 +0.0000000047i (estimate 2.6e-07), miss 1.9e-08 (control passes, < 1e-6).
+  0.637104 +0.235732i: winding 0 (20 points, largest step 0.371).   1.364189 +0.695633i: winding 0 (0.176).
+  1.902373 +1.057636i: winding 0 (0.077).                          2.224900 +1.497907i: winding 0 (0.024).
+Reading: no zero of the M 40 determinant lies in any of the four R 0.2 discs around the M 48 zeros. It says nothing about zeros elsewhere. The state is in
+hp_data_after/ and hp/data is back without it.
