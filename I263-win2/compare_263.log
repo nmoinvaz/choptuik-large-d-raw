@@ -1,0 +1,47 @@
+== acceptance 1: the two runs of main's code
+  main procs2 vs main procs3: EQUAL (bit for bit, timing keys and procs dropped)
+== acceptance 2: sigma_16 against the spread of the earlier three values (1.41e-18 relative)
+  main procs2: sigma_16 ['3.3878621466602032849e-13', '-2.0036709659677382538e-13']
+  vs original, 3 workers (#202): differ
+      sigma_err: first at index 16 (1 differ)
+      f: first at 33_3 (2 of 136 differ)
+      fit_info: first at 21_19 in err/resid (52 of 153 differ)
+      sigma_16 relative difference 0.0  within the spread
+  vs original, 2 workers (#229): differ
+      sigma_str: first at sigma_16, relative 1.48e-19; n of 1 differ
+      sigma_err: first at index 16 (1 differ)
+      f: first at 33_3 (3 of 136 differ)
+      fit_info: first at 21_19 in err/resid (57 of 153 differ)
+      sigma_16 relative difference 1.48e-19  within the spread
+  vs per-task order, 2 workers (#247): differ
+      sigma_str: first at sigma_16, relative 1.3e-18; n of 1 differ
+      sigma_err: first at index 16 (1 differ)
+      f: first at 33_3 (3 of 136 differ)
+      fit_info: first at 21_19 in err/resid (58 of 153 differ)
+      sigma_16 relative difference 1.3e-18  within the spread
+  main procs3: sigma_16 ['3.3878621466602032849e-13', '-2.0036709659677382538e-13']
+  vs original, 3 workers (#202): differ
+      sigma_err: first at index 16 (1 differ)
+      f: first at 33_3 (2 of 136 differ)
+      fit_info: first at 21_19 in err/resid (52 of 153 differ)
+      sigma_16 relative difference 0.0  within the spread
+  vs original, 2 workers (#229): differ
+      sigma_str: first at sigma_16, relative 1.48e-19; n of 1 differ
+      sigma_err: first at index 16 (1 differ)
+      f: first at 33_3 (3 of 136 differ)
+      fit_info: first at 21_19 in err/resid (57 of 153 differ)
+      sigma_16 relative difference 1.48e-19  within the spread
+  vs per-task order, 2 workers (#247): differ
+      sigma_str: first at sigma_16, relative 1.3e-18; n of 1 differ
+      sigma_err: first at index 16 (1 differ)
+      f: first at 33_3 (3 of 136 differ)
+      fit_info: first at 21_19 in err/resid (58 of 153 differ)
+      sigma_16 relative difference 1.3e-18  within the spread
+== acceptance 3: wall times (seconds in the JSON), the load beside each run differed
+  main procs2: 11103.7 s
+  main procs3: 8814.3 s
+  #202 original, 3 workers: 8453.7 s
+  #229 original, 2 workers: 11033.4 s
+  #247 per-task order, 3 workers: 10530.6 s
+  #247 per-task order, 2 workers: 13283.3 s
+exit 0
