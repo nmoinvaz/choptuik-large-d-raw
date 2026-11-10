@@ -114,4 +114,13 @@ if __name__ == "__main__":
         print("   agree in every printed field" if not bad else "   DIFFERENCES:\n      " + "\n      ".join(bad))
         if bad:
             rc = max(rc, 1)
+        a, b = rec["converged_line"], ours["converged_line"]
+        if b is None and ours["octo"] is None:
+            print("   VERDICT: not finished (no octo-double Newton line yet)")
+        elif b is None:
+            print(f"   VERDICT: not reproduced, the load check does not reach convergence (max|F| {ours['octo']['maxF']} after {ours['octo']['steps']} steps)")
+        elif (a["Delta"], a["correction"]) == (b["Delta"], b["correction"]):
+            print("   VERDICT: converged, Delta and its junk-projected correction equal the crawl's to the printed digits; |F|, steps and dd |F| differ only as listed")
+        else:
+            print(f"   VERDICT: converged, but Delta/correction differ: recorded {a['Delta']} {a['correction']}, this run {b['Delta']} {b['correction']}")
     sys.exit(rc)
