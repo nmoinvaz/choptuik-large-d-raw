@@ -29,4 +29,28 @@ The reading rule was fixed before the runs, in the issue's "started" comment:
 
 ## Results
 
-RESULTS
+The work was stopped early at the coordinator's word (no subagents, to save tokens), so it ends after the control
+circle. The four circles at #230's positions were not run to the end, and there is no reading.
+
+The state (states/modecount_state_D61.0264_M48_kf23_ct1e-150.npz) was built by setup inside the control run
+(logs/circle_control.log):
+
+    hp/modecount_circle.py hp/data/seeds/local/up23_D61.0264.npz 2.043532530673195,0,0.2 --M=48 --kf=23 --centre_tol=1e-150 --fmax=1e-15 --n0=20 --data=<this folder>/circles --tag=D61.0264_M48_kf23_inner015
+
+| D 61.03, M 48, kf 23 | nodes | ks | \|F\| | centre series | horizon series |
+|---|---|---|---|---|---|
+| this state | 0.15, 0.3 ... 0.7 | 127 | 1.3e-19 | 3.6e-234 (ratio 0.281 at 0.15) | 6.1e-38 (ratio 0.473 at 0.3) |
+
+The start had \|F\| 1.3e-6, in the horizon block. Newton did not lower it (numpy printed an overflow warning in the
+driver's norm), and Levenberg-Marquardt converged. Setup took about 7.5 min.
+
+| circle (R 0.2, n0 20, tol pi/4, alias rule) | winding | points | max step | mismatches | resolved | zero inside (estimate) |
+|---|---|---|---|---|---|---|
+| lambda_phys 2.043532530673195 (control) | +1 | 28 + 2 | 0.376 | 0 | yes | 2.0435325241 + 1.2e-7 i (6.7e-7) |
+| 1.3065 + 1.4158i | stopped | 24 determinants cached | | | | |
+| 2.0073 + 0.9727i, 2.5584 + 0.5825i, 3.0196 (real axis) | not run | | | | | |
+
+logs/circle_four.log is the stopped run (exit 143, from SIGTERM, after 1542 s). Its 24 determinants are in
+circles/modecount_D61.0264_M48_kf23_inner015_evals.jsonl, which a rerun with the same --tag and --data reuses. The
+state must first be copied into the code repository's hp/data, or rebuilt (setup looks for
+modecount_state_D61.0264_M48_kf23_ct1e-150.npz there).
