@@ -1,0 +1,17 @@
+### real data
+state                                         qd max|F|  od max|F| steps taken  od |dz|0   D_od-D_qd  sum dDelta  F<1e-40  |dD|<1e-18  consistent
+I13-win/chain_d6/anm_pin3_D192.0000.npz        7.06e-29   1.53e-44           2   4.5e-19  +4.480e-19  +4.480e-19  ok      ok          ok
+I215-win/chain_d10/anm_pin3_D193.5000.npz      9.81e-29   5.19e-42           2   2.1e-18  -2.068e-18  -2.070e-18  ok      FAIL        ok
+2 pairs, 1 failed checks
+exit=1
+
+### control --mutate=shift=5e-18 (must trip d6)
+state                                         qd max|F|  od max|F| steps taken  od |dz|0   D_od-D_qd  sum dDelta  F<1e-40  |dD|<1e-18  consistent
+I13-win/chain_d6/anm_pin3_D192.0000.npz        7.06e-29   1.53e-44           2   4.5e-19  +5.448e-18  +4.480e-19  ok      FAIL        FAIL
+I215-win/chain_d10/anm_pin3_D193.5000.npz      9.81e-29   5.19e-42           2   2.1e-18  +2.932e-18  -2.070e-18  ok      FAIL        FAIL
+2 pairs, 4 failed checks (mutate shift 5E-18)
+exit=1
+
+### selftest
+selftest planted/control: [True, True, True, True]
+exit=0
