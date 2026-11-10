@@ -1,0 +1,4 @@
+start 2026-11-10 00:22:07 UTC, states [214.6000 214.7000 214.8000 214.9000 215.0000 215.0250 215.0312]
+driver 1 (run_i268.sh) stopped by hand 2026-11-10 00:31:02 UTC: its python for D214.6000 (pid 25356) goes on alone; the other states run under run_i268_par.sh with 4 threads each, two drivers (forward 214.7 to 214.9, reverse 215.0312 to 215.0), because each iteration takes about 3 min and there is room on the cores
+driver start 2026-11-10 00:31:03 UTC, threads 4, states [214.7000 214.8000 214.9000]
+driver start 2026-11-10 00:31:03 UTC, threads 4, states [215.0312 215.0250 215.0000]
