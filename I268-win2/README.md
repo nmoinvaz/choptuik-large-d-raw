@@ -16,3 +16,12 @@ added `hp/data/delta_all.csv`), venv-t126 (Python 3.12.8, hpkernel 0.1.0, multid
 `run_i268.sh` runs the seven states one after the other (logs `load_D<D>.log`, exits in `exits.txt`). `compare_268.py` parses the
 crawl log's block of each accepted state and this folder's log and compares: the converged line (|F| and the Delta with its correction),
 the "octo-double Newton" line (steps, max|F|, double-double |F| of the first two parts); `--selftest`.
+
+## Results (2026-11-10 04:20 UTC)
+
+All seven load checks ended with exit 0 (`exits.txt`). `compare_268.py` (`compare_268.log`, selftest ok) against `../I19-win2/crawl.log`: D 214.7 converges with
+the Delta (1.69162536484306658) and the junk-projected correction (-1.0772e-16) the crawl recorded, to the printed digits (|F| 5.38e-56 in 3 steps against 5.44e-60 in
+4 steps recorded); D 214.6, 214.8, 214.9, 215.0, 215.025 and 215.03125 do not converge in 12 iterations (max|F| 7.8e-19, 4.6e-19, 1.9e-18, 3.4e-19, 1.3e-18, 1.5e-18),
+while the crawl recorded convergence in 3 to 5 steps. The loaded states start at |F| 4 to 6e-36 and the first Newton steps get line-search factors of 0.0625 to 0.0039.
+ElimO counters: no projection (`u0q` 0, `skipped` 79 to 103) in the six failing runs, `u0q` 1 in the converging one; the crawl's accepted steps all have `u0q` 1 or 2.
+Extra check on the crawl's saved predictions (`pred_pin3_D<D>.npz`): `run_i268_pred.sh`, logs `load_pred_D*.log`.
