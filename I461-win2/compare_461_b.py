@@ -60,7 +60,7 @@ def describe(a, status, rung, seg):
             f"last lam {lam}\n    {nt}\n    {pr}")
 
 
-def sum_q(row): return sum(mpf(row[k]) for k in ("Delta_q0", "Delta_q1", "Delta_q2", "Delta_q3"))
+def sum_q(row): return sum((mpf(float(row[k])) for k in ("Delta_q0", "Delta_q1", "Delta_q2", "Delta_q3") if row[k] != ""), mpf(0))  # exact sum of the doubles, as hp/export_delta_all.py total()
 
 
 def chain_six(path):
