@@ -13,3 +13,9 @@ The runner is `../I271-macm3/scripts/run_all.sh`, after #271's runs. Every exit 
 
 ## Results
 
+First attempt (gamma_planted.jsonl, gamma_no_gate.jsonl, gamma_override.jsonl; 05:02:42 to 05:03:32 UTC): all three exit 0 with no M 48 record. With
+--polish=4 the planted state's M 32 residual ends at 1.2e-20, above --fmax 1e-20, so it is skipped before the gate. The gate was not tested.
+
+Second attempt (coordinator, 05:06 UTC, chosen after seeing the first): the same three with --fmax=1e-19, into gamma_planted_fmax.jsonl,
+gamma_no_gate_fmax.jsonl and gamma_override_fmax.jsonl (`../I271-macm3/scripts/run_second.sh`). The criteria of I267-mac/README.md are unchanged.
+
