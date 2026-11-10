@@ -17,3 +17,5 @@ Each record's M 32 lam must equal 2.043532530673195 bit for bit. The root's reso
 
 ## Results
 
+All five cuts finished (last exit 07:51:46 UTC; the first two were throttled on battery until 06:04 UTC). Every M 48 solve stopped above the floor (floor check ABOVE, exit 1). kf 13, 21 and 23 located lam(48);
+kf 25 and 27 stopped at |F(48)| 8.0e-20 and 1.5e-19, above gamma_dd's --fmax 1e-20, so no lam(48) was located there. Table and reading are in the closing summary of the issue.
