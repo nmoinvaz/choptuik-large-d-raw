@@ -12,8 +12,7 @@ separate from the pinned checkout `D:\choptuik-large-d` (188853c, for #228 and #
 
 ## Results (2026-11-10 01:50 UTC)
 
-Both runs ended with exit 0 (`exits.txt`): `--procs` 3 after 8816 s (21:42:06 UTC, started 19:15:09 beside #228, #256 and for 3/4 of the time #247's
-neighbours), `--procs` 2 stopped by hand at 20:43:57 (order 25 of 33, memory, `main_procs2_stopped_at_k25.log`) and rerun alone from 22:43:13 to
+Both runs ended with exit 0 (`exits.txt`): `--procs` 3 after 8816 s (21:42:06 UTC, started 19:15:09 beside #228 and #256), `--procs` 2 stopped by hand at 20:43:57 (order 25 of 33, memory, `main_procs2_stopped_at_k25.log`) and rerun alone from 22:43:13 to
 01:48:18 beside #228 and #268, 11 105 s. `compare_263.py` (`compare_263.log`, exit 0; its selftest ok):
 
 - the two runs of main's code are bit for bit equal (timing keys and `procs` dropped);
