@@ -82,13 +82,16 @@ def extrapolate(pts, D):
 
 
 def run(log, jsonl, csv_path=CSV, out=print):
-    for p in (log, jsonl, csv_path):
+    for p in (log, csv_path):
         if not os.path.exists(p):
             out(f"MISSING {p}")
             return 2
     lines = [ln.rstrip("\n") for ln in open(log, encoding="utf-8")]
     segs = segments(lines)
-    recs = [json.loads(ln) for ln in open(jsonl, encoding="utf-8") if ln.strip()]
+    # anm_run.jsonl is written with the first accepted step, so a run that refuses every step has none
+    recs = [json.loads(ln) for ln in open(jsonl, encoding="utf-8") if ln.strip()] if os.path.exists(jsonl) else []
+    if not os.path.exists(jsonl):
+        out(f"{jsonl} does not exist, so no step was accepted")
     acc = [(a["D_str"], a["Delta"], a["a"]) for r in recs for a in r["attempts"] if a["accepted"]]
     out(f"{len(segs)} attempts in the log, {len(acc)} accepted steps in anm_run.jsonl")
     allok = bool(segs) and all(s[1] == "ok" for s in segs)
@@ -133,6 +136,13 @@ def selftest():
         rc = run(lg, os.path.join(RAW, "I19-win2", "crawl", "anm_run.jsonl"), out=sink.append)
         if rc != 1 or not any("accepted past" not in s for s in sink):
             fails.append(f"the crawl's data with ok re-seeds but no step past 215.03125 should exit 1: rc {rc}")
+        sink = []
+        rc = run(lg, os.path.join(td, "none.jsonl"), out=sink.append)
+        if rc != 1 or not any("no step was accepted" in s for s in sink):
+            fails.append(f"all re-seeds ok and no anm_run.jsonl at all (every step refused) should exit 1 and say so: rc {rc}")
+        rc = run(os.path.join(td, "none.log"), os.path.join(td, "none.jsonl"), out=lambda s: None)
+        if rc != 2:
+            fails.append(f"a missing log should exit 2: rc {rc}")
     print("selftest: ok" if not fails else "selftest FAILED:\n  " + "\n  ".join(fails))
     return 0 if not fails else 1
 
