@@ -1,0 +1,49 @@
+
+== mutation shift: A_inf moves by +1.000e-05 .. +1.000e-05 over the grid (median +1.000e-05)
+   C shift 1e-05: every choice moves by 1e-05 within 20%: 5.87e-09  PASS
+
+== mutation slope: A_inf moves by -8.882e-15 .. +6.350e-14 over the grid (median +6.661e-15)
+   slope 0.001/n: every choice moves by <= 1e-08: 6.35e-14  PASS
+
+== mutation step: A_inf moves by -2.231e-05 .. +1.372e-04 over the grid (median +7.140e-06); step fitted +1.000e-05, plain reference fit moves +8.322e-06
+   step 1e-05 at D >= 76.5: the step fit recovers it within 20%: 1.04e-10  PASS
+
+== Pm: planted truth compared against the truth + 5e-6 (P1 must fail)
+
+== planted alt12: A_inf over the grid minus the truth 2.718
+   kmax       D>=15 held       D>=15 all      D>=20 held       D>=20 all      D>=30 held       D>=30 all
+      5        4.505e-05       4.324e-05       1.555e-05       1.521e-05       3.776e-06       3.838e-06
+      6        9.749e-06       9.507e-06       3.195e-06       3.165e-06       5.920e-07       5.919e-07
+      7        2.205e-06       2.179e-06       6.680e-07       6.761e-07       1.005e-07       9.849e-08
+      8        5.105e-07       5.133e-07       1.342e-07       1.335e-07       1.514e-08       1.557e-08
+      9        1.140e-07       1.145e-07       2.766e-08       2.709e-08       2.452e-09       2.467e-09
+   median 5.91943386e-07  spread s = max |A - median| 4.45e-05  range 2.4518596e-09 .. 4.50499238e-05
+   alt12: median - truth -4.41e-06, spread s 4.45e-05; P2 (information): s covers the error; max |A_n - planted| 1.3e-15
+
+== planted cpx7: A_inf over the grid minus the truth 2.718
+   kmax       D>=15 held       D>=15 all      D>=20 held       D>=20 all      D>=30 held       D>=30 all
+      5        6.843e-05       6.436e-05       4.462e-06       4.230e-06      -6.032e-07      -6.137e-07
+      6       -1.828e-05      -1.770e-05      -3.570e-06      -3.509e-06      -2.614e-07      -2.610e-07
+      7       -6.539e-07      -6.210e-07       2.608e-07       2.645e-07       3.561e-08       3.476e-08
+      8        8.427e-07       8.432e-07       8.050e-08       7.978e-08       8.306e-10       8.543e-10
+      9       -6.378e-08      -6.415e-08      -1.658e-08      -1.617e-08      -5.809e-10      -5.842e-10
+   median -5.82550008e-10  spread s = max |A - median| 6.84e-05  range -1.82788937e-05 .. 6.84286734e-05
+   cpx7: median - truth -5.00e-06, spread s 6.84e-05; P2 (information): s covers the error; max |A_n - planted| 1.3e-15
+
+== planted verdicts (mutation offset: compared against the truth + 5e-06)
+   Pz alt12: planted A_n recovered by profile within 1e-12         1.33e-15  PASS
+   P1 alt12: |median - truth| <= 2e-06                             4.41e-06  FAIL
+   Pz cpx7: planted A_n recovered by profile within 1e-12          1.33e-15  PASS
+   P1 cpx7: |median - truth| <= 2e-06                              5.00e-06  FAIL
+
+mutation offset: P1 fails, the control fires (exit 0)
+
+== controls
+   C shift 1e-05: every choice moves by 1e-05 within 20%               5.87e-09  PASS
+   slope 0.001/n: every choice moves by <= 1e-08                       6.35e-14  PASS
+   step 1e-05 at D >= 76.5: the step fit recovers it within 20%        1.04e-10  PASS
+   Pm planted offset 5e-6: P1 fails                                         nan  PASS
+
+wrote /Users/nathan/Source/choptuik-large-d-raw-staging/AC54-mac/controls.json
+
+every control behaves (exit 0)

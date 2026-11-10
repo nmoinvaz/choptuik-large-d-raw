@@ -1,0 +1,41 @@
+
+== planted alt12: A_inf over the grid minus the truth 2.718
+   kmax       D>=15 held       D>=15 all      D>=20 held       D>=20 all      D>=30 held       D>=30 all
+      5        4.505e-05       4.324e-05       1.555e-05       1.521e-05       3.776e-06       3.838e-06
+      6        9.749e-06       9.507e-06       3.195e-06       3.165e-06       5.920e-07       5.919e-07
+      7        2.205e-06       2.179e-06       6.680e-07       6.761e-07       1.005e-07       9.849e-08
+      8        5.105e-07       5.133e-07       1.342e-07       1.335e-07       1.514e-08       1.557e-08
+      9        1.140e-07       1.145e-07       2.766e-08       2.709e-08       2.452e-09       2.467e-09
+   median 5.91943386e-07  spread s = max |A - median| 4.45e-05  range 2.4518596e-09 .. 4.50499238e-05
+   alt12: median - truth +5.92e-07, spread s 4.45e-05; P2 (information): s covers the error; max |A_n - planted| 1.3e-15
+
+== planted cpx7: A_inf over the grid minus the truth 2.718
+   kmax       D>=15 held       D>=15 all      D>=20 held       D>=20 all      D>=30 held       D>=30 all
+      5        6.843e-05       6.436e-05       4.462e-06       4.230e-06      -6.032e-07      -6.137e-07
+      6       -1.828e-05      -1.770e-05      -3.570e-06      -3.509e-06      -2.614e-07      -2.610e-07
+      7       -6.539e-07      -6.210e-07       2.608e-07       2.645e-07       3.561e-08       3.476e-08
+      8        8.427e-07       8.432e-07       8.050e-08       7.978e-08       8.306e-10       8.543e-10
+      9       -6.378e-08      -6.415e-08      -1.658e-08      -1.617e-08      -5.809e-10      -5.842e-10
+   median -5.82550008e-10  spread s = max |A - median| 6.84e-05  range -1.82788937e-05 .. 6.84286734e-05
+   cpx7: median - truth -5.83e-10, spread s 6.84e-05; P2 (information): s covers the error; max |A_n - planted| 1.3e-15
+
+== planted alt20: A_inf over the grid minus the truth 2.718
+   kmax       D>=15 held       D>=15 all      D>=20 held       D>=20 all      D>=30 held       D>=30 all
+      5        1.194e-04       1.151e-04       4.876e-05       4.784e-05       1.445e-05       1.468e-05
+      6        3.659e-05       3.581e-05       1.441e-05       1.431e-05       3.373e-06       3.373e-06
+      7        1.172e-05       1.162e-05       4.314e-06       4.367e-06       8.470e-07       8.320e-07
+      8        3.829e-06       3.855e-06       1.248e-06       1.242e-06       1.901e-07       1.953e-07
+      9        1.210e-06       1.215e-06       3.704e-07       3.638e-07       4.583e-08       4.612e-08
+   median 3.84202086e-06  spread s = max |A - median| 1.16e-04  range 4.58270906e-08 .. 0.000119389082
+   alt20: median - truth +3.84e-06, spread s 1.16e-04; P2 (information): s covers the error; max |A_n - planted| 1.3e-15
+
+== planted verdicts
+   Pz alt12: planted A_n recovered by profile within 1e-12         1.33e-15  PASS
+   P1 alt12: |median - truth| <= 2e-06                             5.92e-07  PASS
+   Pz cpx7: planted A_n recovered by profile within 1e-12          1.33e-15  PASS
+   P1 cpx7: |median - truth| <= 2e-06                              5.83e-10  PASS
+   Pz alt20: planted A_n recovered by profile within 1e-12         1.33e-15  PASS
+
+wrote /Users/nathan/Source/choptuik-large-d-raw-staging/AC54-mac/planted.json
+
+ALL PASS

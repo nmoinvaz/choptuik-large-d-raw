@@ -1,0 +1,20 @@
+
+== the selection's A (conditional on Conjecture 1): the M = 7 zero and the truncation sequence
+   M = 7 affine-fit zero (6 solves with |r_3| < 1e-6): A_7 = 2.719219254, w/w_inf = 1.000021738
+   R1: B_tail_M7.md's 2.719219, 1.000022 within 1e-06: PASS
+   noise: +-2e-05 (B_tail_M7.md 2); the A row of J^-1 times the scatter 0.1: 1.56e-05 (information)
+   A        M = 1, 3, 5, 7: 2.542148048, 2.726475886, 2.718579189, 2.719219254;  d_3, d_5, d_7 = +1.8433e-01, -7.8967e-03, +6.4006e-04
+            ratio d_5/d_3 -0.0428, d_7/d_5 -0.0811 (drift e +0.892);  geometric limit L 2.719171263, tail L - c_7 -4.80e-05, estimator formula 4.9e-05
+   w/w_inf  M = 1, 3, 5, 7: 0.776994014, 1.015603095, 0.999228403, 1.000021738;  d_3, d_5, d_7 = +2.3861e-01, -1.6375e-02, +7.9333e-04
+            ratio d_5/d_3 -0.0686, d_7/d_5 -0.0484 (drift e -0.294);  geometric limit L 0.999985078, tail L - c_7 -3.67e-05, estimator formula 1.3e-05
+   R2: the omega limit 0.999985 against B_tail_M7.md's 0.999985 within 2e-06: PASS
+   A's limit under scenarios for the ratios past M = 7 (information), against L and its formula:
+      held at k_7                    limit 2.719171263  tail -4.80e-05  L - limit +0.00e+00  covered by 4.9e-05
+      back to k_5                    limit 2.719192959  tail -2.63e-05  L - limit -2.17e-05  covered by 4.9e-05
+      the other sequence's k_7       limit 2.719189676  tail -2.96e-05  L - limit -1.84e-05  covered by 4.9e-05
+      drift continued, |k| <= 1/4    limit 2.719140727  tail -7.85e-05  L - limit +3.05e-05  covered by 4.9e-05
+      -1/4 throughout                limit 2.719091241  tail -1.28e-04  L - limit +8.00e-05  NOT covered by 4.9e-05
+
+wrote /Users/nathan/Source/choptuik-large-d-raw-staging/AC54-mac/selection.json
+
+R1, R2 PASS

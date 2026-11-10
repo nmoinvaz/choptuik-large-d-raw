@@ -1,0 +1,60 @@
+
+== R0: kmax 6, D >= 20, test held out: 2.7192088 (#42: 2.7192088); #42's nine choices 2.7192055 .. 2.7192530 (#42: 2.7192055 .. 2.719253); max dev 4.3e-08  PASS
+
+== the states (numerical evidence): A_inf over the grid
+   kmax       D>=15 held       D>=15 all      D>=20 held       D>=20 all      D>=30 held       D>=30 all
+      5      2.719252969     2.719251064     2.719221873     2.719221520     2.719209429     2.719209496
+      6      2.719215744     2.719215490     2.719208843     2.719208812     2.719206017     2.719206017
+      7      2.719207822     2.719207794     2.719206127     2.719206136     2.719205463     2.719205460
+      8      2.719205967     2.719205970     2.719205512     2.719205511     2.719205355     2.719205356
+      9      2.719205494     2.719205494     2.719205376     2.719205375     2.719205337     2.719205338
+   median 2.71920602  spread s = max |A - median| 4.70e-05  range 2.71920534 .. 2.71925297
+
+== reference fit (kmax 8, D >= 20, all states): A_inf 2.719205511, 58 states, residual rms 8.85e-10, max 2.21e-09
+   D <= 60     41 states: mean residual +5.45e-11, max |residual| 2.21e-09
+   D = 73       1 states: mean residual +1.25e-10, max |residual| 1.25e-10
+   D 80-170    10 states: mean residual -9.99e-11, max |residual| 1.46e-09
+   D 180-215    6 states: mean residual -2.27e-10, max |residual| 1.44e-09
+
+== sensitivities (information): one factor at a time around the reference
+   reference (kmax 8, D >= 20, all states)      2.719205511  +0.00e+00
+   variable 1/(D - 1)                           2.719205425  -8.67e-08
+   prefactor sqrt2 (A_n sqrt(1 + 1/n))          2.719205505  -6.48e-09
+   dlo 40                                       2.719205338  -1.73e-07
+   kmax 4                                       2.719291052  +8.55e-05
+   kmax 10                                      2.719205343  -1.69e-07
+   kmax 11                                      2.719205335  -1.76e-07
+   kmax 12                                      2.719205334  -1.77e-07
+   grid median, variable 1/(D - 1)              2.719205745  +2.33e-07
+   grid median, prefactor sqrt2                 2.719205990  +4.78e-07
+
+== step diagnostic: a step at D >= 76.5 fitted with the reference: -4.481e-09; A_inf with it 2.719205515 (+3.73e-09 against the reference)
+
+== the selection's A (conditional on Conjecture 1): the M = 7 zero and the truncation sequence
+   M = 7 affine-fit zero (6 solves with |r_3| < 1e-6): A_7 = 2.719219254, w/w_inf = 1.000021738
+   R1: B_tail_M7.md's 2.719219, 1.000022 within 1e-06: PASS
+   noise: +-2e-05 (B_tail_M7.md 2); the A row of J^-1 times the scatter 0.1: 1.56e-05 (information)
+   A        M = 1, 3, 5, 7: 2.542148048, 2.726475886, 2.718579189, 2.719219254;  d_3, d_5, d_7 = +1.8433e-01, -7.8967e-03, +6.4006e-04
+            ratio d_5/d_3 -0.0428, d_7/d_5 -0.0811 (drift e +0.892);  geometric limit L 2.719171263, tail L - c_7 -4.80e-05, estimator formula 4.9e-05
+   w/w_inf  M = 1, 3, 5, 7: 0.776994014, 1.015603095, 0.999228403, 1.000021738;  d_3, d_5, d_7 = +2.3861e-01, -1.6375e-02, +7.9333e-04
+            ratio d_5/d_3 -0.0686, d_7/d_5 -0.0484 (drift e -0.294);  geometric limit L 0.999985078, tail L - c_7 -3.67e-05, estimator formula 1.3e-05
+   R2: the omega limit 0.999985 against B_tail_M7.md's 0.999985 within 2e-06: PASS
+   A's limit under scenarios for the ratios past M = 7 (information), against L and its formula:
+      held at k_7                    limit 2.719171263  tail -4.80e-05  L - limit +0.00e+00  covered by 4.9e-05
+      back to k_5                    limit 2.719192959  tail -2.63e-05  L - limit -2.17e-05  covered by 4.9e-05
+      the other sequence's k_7       limit 2.719189676  tail -2.96e-05  L - limit -1.84e-05  covered by 4.9e-05
+      drift continued, |k| <= 1/4    limit 2.719140727  tail -7.85e-05  L - limit +3.05e-05  covered by 4.9e-05
+      -1/4 throughout                limit 2.719091241  tail -1.28e-04  L - limit +8.00e-05  NOT covered by 4.9e-05
+
+== the gap: selection minus the states' median 2.719206017 (s = 4.70e-05); combined = sqrt(s^2 + noise^2 + tail^2)
+   A_7 = 2.719219254: gap +1.32e-05 = +0.28 s; combined 7.01e-05, gap +0.19 of it: consistent
+   L_A = 2.719171263: gap -3.48e-05 = -0.74 s; combined 7.09e-05, gap -0.49 of it: consistent
+   the A sequence's next ratio that puts its limit on the median: -0.0211 (-0.0530 .. +0.0108 with A_7 +- its noise), against the last A ratio -0.0811 and omega's -0.0484
+   sqrt2 x median = 3.845538 (EEG's A_* is printed as 3.8455); median minus the tuned profile's 2.71918: +2.60e-05
+
+== mutation slope: A_inf moves by -8.882e-15 .. +6.350e-14 over the grid (median +6.661e-15, reference +1.066e-14); the step fit's step moves +4.943e-16
+   slope 0.001/n: every choice moves by <= 1e-08: 6.35e-14  PASS
+
+wrote /Users/nathan/Source/choptuik-large-d-raw-staging/AC54-mac/states_mut_slope.json
+
+mutation slope: its criterion holds (exit 0)
