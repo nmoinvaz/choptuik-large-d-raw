@@ -163,7 +163,10 @@ def table(runs, frm=1, out=print, csv_path=CSV):
 
 
 # the runs whose accepted steps come before a run's own in the Delta sequence of its extrapolations (crawlB3 starts from crawlB2's step)
-PRIOR = {"crawlB3": [("crawlB2.log", "crawlB2/anm_run.jsonl")]}
+PRIOR = {"crawlB3": [("crawlB2.log", "crawlB2/anm_run.jsonl")],
+         "crawlB4": [("crawlB2.log", "crawlB2/anm_run.jsonl"), ("crawlB3.log", "crawlB3/anm_run.jsonl")]}
+NEWTON_FLAG = 25      # the coordinator's order of 15:49 UTC: report at once the first step that needs more than this many Newton steps
+SERIES = re.compile(r"^step (\d+): D (\S+), pivots (\S+?)\.\.(\S+?), \|z_1\| \S+, \|z_N\| (\S+), ratios 2-5 (.*), a_max (\S+),")
 
 
 def events(state_path, log, jsonl, out=print, csv_path=CSV, quiet=False):
@@ -202,16 +205,28 @@ def events(state_path, log, jsonl, out=print, csv_path=CSV, quiet=False):
         flags = []
         if k == 0:
             flags.append("FIRST ACCEPTED STEP OF THIS RUN")
-        if s["steps"] is not None and s["steps"] > 5:
-            flags.append(f"MORE THAN 5 NEWTON STEPS ({s['steps']})")
-        if not (s["conv"] and s["lam1"]):
-            flags.append("NOT CONVERGED AT LAM 1" + ("" if s["conv"] else " (corrector not converged)"))
+        if s["steps"] is not None and s["steps"] > NEWTON_FLAG:
+            flags.append(f"MORE THAN {NEWTON_FLAG} NEWTON STEPS ({s['steps']})")
+        if not s["conv"]:
+            flags.append("ACCEPTED WITH A CORRECTOR THAT DID NOT CONVERGE")
+        elif not s["lam1"] and not quiet:
+            flags.append("NOT CONVERGED AT LAM 1")
         diff = mp.nstr(s["delta"] - e, 3) if s["delta"] is not None else "-"
         if quiet and not flags:
             continue
         out(f"ACCEPTED step {k + 1}: D {mp.nstr(s['D'], 12)}, a {s['a']:g}, start {s['start']}, {s['steps']} Newton steps, final {s['final']}, "
             f"Delta {mp.nstr(s['delta'], 18) if s['delta'] is not None else '-'}, minus extrapolation {diff}" + ("  <<< " + "; ".join(flags) if flags else ""))
     st["acc"] = len(acc)
+    ser = [m for m in (SERIES.match(ln) for ln in lines) if m]
+    for m in ser[st.get("ser", 0):]:
+        zN, amax = float(m.group(5)), float(m.group(7))
+        if zN >= 1e-27 or amax <= 3:
+            out(f"SERIES RULE BROKEN at the base of step {m.group(1)} (D {m.group(2)}): |z_N| {m.group(5)} (must be below 1e-27), a_max {m.group(7)} (must be above 3), "
+                f"pivots {m.group(3)}..{m.group(4)}, ratios 2-5 {m.group(6)}: stop and report")
+        elif amax < 3.15 and not st.get("amax_warned"):
+            out(f"SERIES WATCH: a_max {m.group(7)} at the base of step {m.group(1)} (D {m.group(2)}), the rule stops the run at 3")
+            st["amax_warned"] = True
+    st["ser"] = len(ser)
     if stop and not st["stop"]:
         out("STOP: " + stop)
         st["stop"] = True
