@@ -1,0 +1,15 @@
+# I275-macm3: one lam_phys circle at D 55.04, M 64, kf 23 with a centre node at 0.15 (does the node cure M 64's determinant noise?)
+
+Machine: macm3 (Apple M3, 24 GB RAM), venv-macm3-314 (Python 3.14.3, python-flint 0.9.0, FLINT 3.6.0, hpkernel cp314 neon on 1bad14fd, modecount_cx with B = 5), main bfe5fd54 (--centre_tol). Issue #275. Beside I244, I249 (D 59 count) and the end of I270.
+
+Command (circle.cmd, caffeinate -is, nice 10, one thread): python3 hp/modecount_circle.py hp/data/states/up10_D55.0351.npz 2.04768412771239,0,0.2 --M=64 --kf=23 --centre_tol=1e-150 --fmax=1e-15 --n0=20 --tag=D55.0351_M64_kf23_inner015 --data=<raw>/I275-macm3/data.
+The state is M 32 native, so setup resamples to M 64, adds the node(s) that --centre_tol forces (fit_nodes) and re-converges (Newton, then Levenberg-Marquardt). An M 64 determinant takes about 2 min here (coordinator), so about 1 h after the setup.
+
+Written before the run. Stop rules (coordinator): if setup adds no node at 0.15, or misses the gate (|F| <= 1e-15, both series <= 1e-15 on the solution), report and stop; the process is stopped after its setup lines then. If the setup gives the layout, the circle runs and is read:
+the lam_phys circle (R 0.2, n0 20) winds +1 and its zero is compared with the given lam_phys 2.04768412771239: the miss is |zero - lam_phys|, against #252's 2.3e-5 at M 64 without the node. "Cured" if the miss is below 1e-6 (the circle's own estimate and the M 40/M 48 controls), "not cured" if it is of the order of #252's 2.3e-5 or larger, in between reported as it is. The estimate of the circle is its own range, not a bound.
+
+Result (macm3, main bfe5fd54; started 01:43:48 UTC, exit 0 at 02:42:21 UTC, 3513 s wall; the Mac's power service could not hold a sleep assertion from about 01:41 UTC on (caffeinate failed), the Mac stayed awake; hp/data back to its states, the M 64 state in hp_data_after/):
+  Setup (circle.log): the centre series at x = 0.3 had truncation 4.2e-32, ratio 0.863 per order (radius 0.348); fit_nodes with --centre_tol=1e-150 added the node: nodes [0.15, 0.3, 0.4, 0.5, 0.6, 0.7]. |F| 1.1e-07 in the layout, 1.1e-07 after Newton, 3.6e-20 after Levenberg-Marquardt (gate 1e-15 passed);
+  series truncation on the solution: centre 1.6e-189 (ratio 0.368 at 0.15), horizon 3.2e-32 (ratio 0.694 at 0.3): both below 1e-15. The setup added the node at 0.15 and passed the gate, so the circle ran.
+  Circle (R 0.2, n0 20): winding +1, 28 points (+2 for beta), largest step 0.334 rad, 0 mismatches, 0 alias bisections; zero 2.0476949319 -0.0000017809i, the circle's own estimate 1.6e-05. 30 determinants at 79 s, pivot minima 3.9e-13 to 1.8e-12.
+  The miss from lam_phys 2.04768412771239: |delta| = 1.095e-05 (Re +1.080e-05, Im -1.78e-06), against #252's 2.3e-05 at M 64 without the node: 2.1 times smaller, still 11 times the 1e-6 of the "cured" threshold written above, and inside the circle's own estimate (1.6e-05). By the rule: between "cured" (< 1e-6) and "not cured" (~2.3e-5 or more): reported as it is, the node halves the miss and does not remove it.
