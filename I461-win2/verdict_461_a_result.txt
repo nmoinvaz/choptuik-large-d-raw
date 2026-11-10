@@ -1,0 +1,8 @@
+run                                          must  got   exit  win2                                   on the M5 Mac
+checkq d6 D 215.0                            PASS  PASS  0     8.78e-32                               u0 residual 8.78e-32
+the same, --sweeps 1 (control)               FAIL  FAIL  1     1.21e-06                               stops at 1.21e-06
+checkq d6 D 209.0                            PASS  PASS  0     1.07e-32                               1.08e-32
+checkq the crawl's D 215.0344 prediction     PASS  PASS  0     6.89e-32                               not run there
+truthq d6 D 214.5                            PASS  PASS  0     m_h 5.62e-63, a_h 1.14e-64             error left 5.6e-63 in m_h, 1.1e-64 in a_h
+the same, --sweeps 1 (control)               FAIL  FAIL  1     m_h 1.20e-32, a_h 1.83e-32             error left 1.2e-32
+PART A PASSES
