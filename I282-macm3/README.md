@@ -14,3 +14,11 @@ the two misses is called resolved only if the misses differ by more than the sum
 
 ## Results
 
+Both exit 0 (nonode 05:33:35 UTC, node 05:36:09 UTC; started 04:40 UTC, awake under caffeinate). Both states loaded with no Newton or LM line and
+are unchanged (sha256 as before); they are in hp_data_after/ and hp/data is back without them. 30 determinants each.
+  (a) node (nodes 0.15, 0.3 ... 0.7, |F| 3.6e-20): winding +1, 28 points, max step 0.351, 0 mismatches, 0 alias bisections; zero
+      2.0476801581 +0.0000020922i, estimate 5.2e-06; miss from 2.04768412771239: 4.49e-06 (Re -3.97e-06, Im +2.09e-06).
+  (b) no node (innermost 0.3, |F| 2.1e-20): winding +1, 28 points, max step 0.351, 0 mismatches, 0 alias bisections; zero
+      2.0476818248 +0.0000045415i, estimate 8.6e-06; miss 5.09e-06 (Re -2.30e-06, Im +4.54e-06).
+Acceptance: both wind +1; both estimates (5.2e-06, 8.6e-06) are above 3e-6, so it fails. By the rule written before the run the misses differ by
+6.0e-07, far less than the sum of the estimates (1.4e-05): the factor between them (1.13) is not resolved.
