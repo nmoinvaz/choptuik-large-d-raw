@@ -44,4 +44,10 @@ its floor check passes.
 
 ## Results
 
-(filled in after the runs)
+The subagent's session ended at about 02:10 UTC on 2026-11-10, before the other runs (coordinator's note).
+
+- (a) D 50, the new path: exit 0. |F(48)| 4.4e-25 at the floor, the Newton step's Delta component -9.2e-20, floor check
+  ok. Delta(48) - Delta(32) = -1.5e-20 (the old record: +1.19e-11), lam(48) - lam(32) = +1.0e-14 (`gamma_dd.jsonl`,
+  `logs/gamma_D50.log`). The comparison with the quad-double reference was not tabulated.
+- (b) the control was running when the session ended (`logs/gamma_D50_mut_old_rule.log` is partial). Not done.
+- (c), (d), (e): not run. They are rerun on macm3 (folder I271-macm3).
