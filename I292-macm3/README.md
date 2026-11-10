@@ -13,3 +13,7 @@ with R times the determinant's relative noise. A miss that stops falling is a fl
 
 ## Results
 
+Both layouts exit 0 (node 06:57:22 to 09:01:23 UTC, nonode to 10:20:10 UTC; the first hour on battery, throttled). Both states loaded without a refit, gates pass (series 1.6e-189 and 3.2e-32 with the node, 5.9e-64 and 7.0e-33 without).
+Every circle winds +1 with 28 points, 0 mismatches, 0 alias bisections; 60 determinants each. Miss is from lam(64, kf 23) = 2.047684127603771 (I291-macm3):
+  node:    R 0.0125 zero 2.0476855961 +0.0000010248i, miss 1.79e-06, estimate 8.5e-07;  R 0.003 zero 2.0476844838 -0.0000000961i, miss 3.69e-07, estimate 4.4e-07.
+  no node: R 0.0125 zero 2.0476835179 -0.0000010845i, miss 1.24e-06, estimate 2.4e-06;  R 0.003 zero 2.0476840026 +0.0000000851i, miss 1.51e-07, estimate 1.0e-07.
