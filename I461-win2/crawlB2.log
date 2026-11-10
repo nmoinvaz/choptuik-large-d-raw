@@ -30,3 +30,22 @@ step 1: D 215.13125, pivots 7.0e-16..2.4e+30, |z_1| 4.37e-04, |z_N| 2.55e-30, ra
     a 0.1000: re-seeded (ok), 18.0 s
   od: 1 junk directions frozen (sigma 3e-18..3e-18), 3 weak ones with Delta content kept
   on 0: |F| 4.88e-20 -> 1.04e-31, |dz| 7.2e-20 -> 2.5e-35, lam 1, dDelta -7.68e-21, piv 6.9e-16..2.5e+30, 33.61 s
+  on 1: |F| 1.04e-31 -> 9.72e-32, |dz| 2.5e-35 -> 3.0e-36, lam 0.5, dDelta +6.44e-36, piv 6.9e-16..2.5e+30, 66.96 s
+  on 2: |F| 9.72e-32 -> 9.14e-32, |dz| 3.0e-36 -> 2.6e-36, lam 0.0625, dDelta -5.86e-37, piv 6.9e-16..2.5e+30, 165.41 s
+  on 3: |F| 9.14e-32, |dz| 2.6e-36: no trial step accepted, stopping
+      elim projections {'u0': 0, 'u0q': 17, 'ladder': 0, 'failed': 0, 'skipped': 1}
+      octo-double Newton: 4 steps, max|F| 9.1e-32, not converged; double-double |F| of its first two parts 6.2e+01
+    a 0.100 -> D 215.23125: predicted |F| 6.33e+01, od 4 steps -> 6.16e+01 (tol 1.1e-20), Delta 1.691508954770 (formula diff -1.4e-06), moved 7.2e-20, 602 s
+    a 0.0500: re-seeded (ok), 18.3 s
+  od: 1 junk directions frozen (sigma 3e-18..3e-18), 3 weak ones with Delta content kept
+  on 0: |F| 5.30e-20 -> 4.11e-31, |dz| 6.8e-20 -> 8.3e-35, lam 1, dDelta -3.32e-21, piv 6.9e-16..2.4e+30, 32.93 s
+  on 1: |F| 4.11e-31 -> 1.68e-31, |dz| 8.3e-35 -> 5.6e-35, lam 1, dDelta -2.36e-35, piv 6.9e-16..2.4e+30, 33.85 s
+  on 2: |F| 1.68e-31 -> 1.80e-31, |dz| 5.6e-35 -> 8.5e-36, lam 1, dDelta +1.60e-35, piv 6.9e-16..2.4e+30, 33.12 s
+  on 3: |F| 1.80e-31 -> 2.43e-31, |dz| 8.5e-36 -> 4.9e-36, lam 0.25, dDelta +1.90e-36, piv 6.9e-16..2.4e+30, 99.43 s
+  on 4: |F| 2.43e-31 -> 2.63e-31, |dz| 4.9e-36 -> 4.0e-36, lam 0.00390625, dDelta +1.20e-36, piv 6.9e-16..2.4e+30, 296.27 s
+  on 5: |F| 2.63e-31, |dz| 4.0e-36: no trial step accepted, stopping
+      elim projections {'u0': 0, 'u0q': 24, 'ladder': 0, 'failed': 0, 'skipped': 1}
+      octo-double Newton: 6 steps, max|F| 2.6e-31, not converged; double-double |F| of its first two parts 5.3e+01
+    a 0.050 -> D 215.18125: predicted |F| 6.01e+01, od 6 steps -> 5.33e+01 (tol 1.1e-20), Delta 1.691519886793 (formula diff -1.4e-06), moved 6.8e-20, 831 s
+    a 0.0250: re-seeded (ok), 18.07 s
+  od: 1 junk directions frozen (sigma 3e-18..3e-18), 3 weak ones with Delta content kept
