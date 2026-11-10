@@ -1,0 +1,17 @@
+planted 0
+planted --mutate=k1x0 0
+planted --mutate=k2x-1 0
+planted --mutate=k2x1.1 0
+planted --plant_scale=740 1 (information)
+compare 0
+controls 0
+compare --mutate=k1x0 0
+compare --mutate=k2x-1 0
+compare --mutate=k2x0.5 1 (resolution scan)
+compare --mutate=k2x1.1 1 (resolution scan)
+compare --mutate=k2x1.5 1 (resolution scan)
+compare --mutate=k2x2 0 (resolution scan)
+compare --mutate=k1x0.99 0 (resolution scan)
+compare --mutate=k1x1.01 1 (resolution scan)
+compare --mutate=k1x1.02 0 (resolution scan)
+compare --mutate=k1x1.05 0 (resolution scan)
