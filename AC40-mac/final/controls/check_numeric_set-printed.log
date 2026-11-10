@@ -1,0 +1,7 @@
+$ python3 check.py --numeric --set=printed
+numeric (S39) residual scaling at tau = 0.3, x = 0.8, bt = 0.7 sin tau + 0.4 cos 2tau + 0.2
+  printed  |R39| at eps=1e-3..1e-6: 1.112e-7, 3.517e-10, 1.112e-12, 3.517e-15   local exponents: 2.500, 2.500, 2.500
+
+verdict numeric printed: FAIL, residual not O(eps^(7/2)) for printed
+
+exit 1

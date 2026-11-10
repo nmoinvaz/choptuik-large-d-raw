@@ -1,0 +1,11 @@
+ok  --mutate=None  exit 0 (expected 0)  failed []
+ok  --mutate=Psi3  exit 1 (expected 1)  failed [('Psi', 3)]
+ok  --mutate=Pi4  exit 1 (expected 1)  failed [('Pi', 3)]
+ok  --mutate=Omega4  exit 1 (expected 1)  failed [('Om', 4)]
+ok  --mutate=f4  exit 1 (expected 1)  failed [('f', 4)]
+ok  --mutate=K3  exit 1 (expected 1)  failed [('Om', 4), ('Pi', 3), ('f', 4)]
+ok  --mutate=map  exit 1 (expected 1)  failed [('Om', 2), ('Om', 3), ('Om', 4), ('Pi', 1), ('Pi', 2), ('Pi', 3), ('Psi', 2), ('Psi', 3), ('f', 2), ('f', 3), ('f', 4)]
+ok  --mutate=Psi2  exit 1 (expected 1)  failed [('Psi', 2), ('Psi', 3)]
+
+8 of 8 controls as expected
+nice -n 10 /Users/nathan/venv-314/bin/python third_order_eeg.py --controls  69.66s user 0.68s system 96% cpu 1:12.67 total

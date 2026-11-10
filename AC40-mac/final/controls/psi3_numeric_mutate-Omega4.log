@@ -1,0 +1,15 @@
+$ python3 psi3.py --numeric --mutate=Omega4
+mutation active: Omega4: Omega4: x^2 coefficient of b0^4, -23 -> -22; enters (S36) at eps^3
+numeric residual scaling at tau = 0.3, x = 0.8, bt = 0.7 sin tau + 0.4 cos 2tau + 0.2
+  new    S36  |R| at eps = 1e-3..1e-6: 2.209e-10, 1.92e-13, 1.891e-16, 1.889e-19   local exponents: 3.061, 3.007, 3.001
+  new    S37  |R| at eps = 1e-3..1e-6: 1.872e-13, 1.887e-17, 1.888e-21, 1.888e-25   local exponents: 3.997, 4.000, 4.000
+  new    S38  |R| at eps = 1e-3..1e-6: 7.116e-10, 2.25e-13, 7.115e-17, 2.25e-20   local exponents: 3.500, 3.500, 3.500
+  new    S39  |R| at eps = 1e-3..1e-6: 8.629e-14, 2.729e-18, 8.631e-23, 2.729e-27   local exponents: 4.500, 4.500, 4.500
+  nnlo   S36  |R| at eps = 1e-3..1e-6: 2.298e-9, 2.296e-12, 2.296e-15, 2.296e-18   local exponents: 3.000, 3.000, 3.000
+  nnlo   S37  |R| at eps = 1e-3..1e-6: 6.714e-14, 6.695e-18, 6.693e-22, 6.693e-26   local exponents: 4.001, 4.000, 4.000
+  nnlo   S38  |R| at eps = 1e-3..1e-6: 1.182e-8, 3.731e-11, 1.179e-13, 3.73e-16   local exponents: 2.501, 2.500, 2.500
+  nnlo   S39  |R| at eps = 1e-3..1e-6: 3.269e-13, 1.06e-16, 3.359e-20, 1.062e-23   local exponents: 3.489, 3.499, 3.500
+
+verdict numeric: FAIL: new S36 3.001 < 3.9; new S37 4.000 < 4.9
+
+exit 1  [6 s]

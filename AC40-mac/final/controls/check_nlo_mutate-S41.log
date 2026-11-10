@@ -1,0 +1,14 @@
+$ python3 check.py --nlo --mutate=S41
+mutation active: S41: Omega2: 3 b' -> 4 b'; enters (S36) at eps^1
+
+== set nlo ==
+  S36  eps^0:0  eps^1/2:0  eps^1:FAIL(1)  eps^3/2:0  eps^2:open(15)  eps^5/2:0  eps^3:open(19)
+  S37  eps^0:0  eps^1/2:0  eps^1:0  eps^3/2:0  eps^2:FAIL(1)  eps^5/2:0  eps^3:open(12)  eps^7/2:0  eps^4:open(31)
+  S38  eps^0:0  eps^1/2:0  eps^1:0  eps^3/2:0  eps^2:0  eps^5/2:open(25)
+  S39  eps^0:0  eps^1/2:0  eps^1:0  eps^3/2:0  eps^2:0  eps^5/2:open(14)  eps^3:0  eps^7/2:open(24)
+  key: 0 = coefficient vanishes; FAIL(n) = nonzero at or below the last order the tested terms fix
+       (n terms); open(n) = nonzero at an order that needs a term not given or not tested.
+
+verdict nlo: FAIL, first at eps^1 of (S36)
+
+exit 1

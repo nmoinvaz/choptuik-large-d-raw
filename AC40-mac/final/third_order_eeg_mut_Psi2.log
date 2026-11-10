@@ -1,0 +1,36 @@
+mutation: Psi2
+   outer order 1: B_2, G_1 [0 s]
+   outer order 1: S_1, D_1 [0 s]
+   outer order 2: B_3, G_2 [0 s]
+   outer order 2: S_2, D_2 [1 s]
+   outer order 3: B_4, G_3 [1 s]
+   outer order 3: S_3, D_3 [4 s]
+   outer order 4: B_5, G_4 [6 s]
+   outer expansion done [6 s]
+O. this recursion against second_order_eeg.outer(3)
+   S_1..2, D_0..2, G_1..3, B_2..4 equal second_order_eeg.outer(3): PASS 
+A. EEG's series with the new terms against Proposition 1 (e = 1/n)
+   EEG's series re-expanded [7 s]
+   f = c, order e^0: PASS (1 terms in ours)
+   f = c, order e^1: PASS (2 terms in ours)
+   f = c, order e^2: PASS (12 terms in ours)
+   f = c, order e^3: PASS (62 terms in ours)
+   f = c, order e^4 (new order): PASS (250 terms in ours)
+   Omega = u/x^2, order e^0: PASS (1 terms in ours)
+   Omega = u/x^2, order e^1: PASS (1 terms in ours)
+   Omega = u/x^2, order e^2: PASS (6 terms in ours)
+   Omega = u/x^2, order e^3: PASS (33 terms in ours)
+   Omega = u/x^2, order e^4 (new order): PASS (141 terms in ours)
+   Pi = y/(sqrt2 x), / sqrt(e), order e^0: PASS (1 terms in ours)
+   Pi = y/(sqrt2 x), / sqrt(e), order e^1: PASS (5 terms in ours)
+   Pi = y/(sqrt2 x), / sqrt(e), order e^2: PASS (24 terms in ours)
+   Pi = y/(sqrt2 x), / sqrt(e), order e^3 (new order): PASS (102 terms in ours)
+   Psi = (p+m)/(sqrt2 x^2), / sqrt(e), order e^0: PASS (1 terms in ours)
+   Psi = (p+m)/(sqrt2 x^2), / sqrt(e), order e^1: PASS (2 terms in ours)
+   Psi = (p+m)/(sqrt2 x^2), / sqrt(e), order e^2: FAIL difference has 1 terms
+   Psi = (p+m)/(sqrt2 x^2), / sqrt(e), order e^3 (new order): FAIL difference has 3 terms
+I. the lower orders against check.py's claimed set
+   f2, Omega2, Pi2, Psi2, f3, Omega3, Pi3 equal check.py's: FAIL equal only ['f2', 'O2', 'P2', 'f3', 'O3', 'P3']
+failed orders: [('Psi', 2), ('Psi', 3)]
+
+FAILED: Psi = (p+m)/(sqrt2 x^2), / sqrt(e), order e^2, Psi = (p+m)/(sqrt2 x^2), / sqrt(e), order e^3 (new order), f2, Omega2, Pi2, Psi2, f3, Omega3, Pi3 equal check.py's  [7 s]

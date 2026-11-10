@@ -1,0 +1,92 @@
+{
+ "mutations": [],
+ "psi3": {
+  "fails": [],
+  "open_zero": [],
+  "boundary": {
+   "P4_at_0": "0",
+   "f4_at_1": "0"
+  },
+  "linear": {
+   "S3": true,
+   "P4": true
+  },
+  "same": {
+   "S3": true,
+   "P4": true,
+   "O4": true,
+   "f4": true
+  },
+  "regular": {
+   "S3": {
+    "polynomial": true,
+    "even": true,
+    "x_powers": [
+     0,
+     2,
+     4
+    ]
+   },
+   "P4": {
+    "polynomial": true,
+    "even": true,
+    "x_powers": [
+     2,
+     4,
+     6
+    ]
+   },
+   "O4": {
+    "polynomial": true,
+    "even": true,
+    "x_powers": [
+     2,
+     4,
+     6
+    ]
+   },
+   "f4": {
+    "polynomial": true,
+    "even": true,
+    "x_powers": [
+     0,
+     2,
+     4,
+     6,
+     8
+    ]
+   }
+  },
+  "uniqueness": {
+   "S3": {
+    "eq": "S38",
+    "order": "eps^5/2",
+    "operator": "identity",
+    "factor": "-1",
+    "linear": true
+   },
+   "P4": {
+    "eq": "S39",
+    "order": "eps^7/2",
+    "operator": "(1/x) d/dx",
+    "factor": "-1",
+    "linear": true
+   },
+   "O4": {
+    "eq": "S36",
+    "order": "eps^3",
+    "operator": "identity",
+    "factor": "1",
+    "linear": true
+   },
+   "f4": {
+    "eq": "S37",
+    "order": "eps^4",
+    "operator": "(1/x) d/dx",
+    "factor": "1",
+    "linear": true
+   }
+  }
+ },
+ "exit": 0
+}

@@ -1,0 +1,21 @@
+residuals with Psi_3, Pi_4, Omega_4, f_4 (closed forms) [1 s]
+  S36  eps^0:0  eps^1/2:0  eps^1:0  eps^3/2:0  eps^2:0  eps^5/2:0  eps^3:0  eps^7/2:0  eps^4:open(166)
+  S37  eps^0:0  eps^1/2:0  eps^1:0  eps^3/2:0  eps^2:0  eps^5/2:0  eps^3:0  eps^7/2:0  eps^4:0  eps^9/2:0  eps^5:open(160)
+  S38  eps^0:0  eps^1/2:0  eps^1:0  eps^3/2:0  eps^2:0  eps^5/2:0  eps^3:0  eps^7/2:open(113)
+  S39  eps^0:0  eps^1/2:0  eps^1:0  eps^3/2:0  eps^2:0  eps^5/2:0  eps^3:0  eps^7/2:0  eps^4:0  eps^9/2:open(119)
+  key: 0 = coefficient vanishes; FAIL(n) = nonzero at a fixed order; open(n) = nonzero at the next
+       order, which needs a term not given (it must be nonzero).
+boundary: Pi4(tau,0) = 0   f4(tau,1) = 0
+linear parts against the hand derivation: {'S3': True, 'P4': True}
+
+derived == closed form: {'S3': True, 'P4': True, 'O4': True, 'f4': True} [3 s]
+regularity of the derived terms: {'S3': {'polynomial': True, 'even': True, 'x_powers': [0, 2, 4]}, 'P4': {'polynomial': True, 'even': True, 'x_powers': [2, 4, 6]}, 'O4': {'polynomial': True, 'even': True, 'x_powers': [2, 4, 6]}, 'f4': {'polynomial': True, 'even': True, 'x_powers': [0, 2, 4, 6, 8]}}
+uniqueness (residual affine in the unknown):
+  S3 at (S38) eps^5/2: R(U+delta)-R(U) = -1 * identity[delta]  linear=True
+  P4 at (S39) eps^7/2: R(U+delta)-R(U) = -1 * (1/x) d/dx[delta]  linear=True
+  O4 at (S36) eps^3: R(U+delta)-R(U) = 1 * identity[delta]  linear=True
+  f4 at (S37) eps^4: R(U+delta)-R(U) = 1 * (1/x) d/dx[delta]  linear=True
+
+verdict: PASS
+
+exit 0  [3 s]

@@ -1,0 +1,42 @@
+ok   check    --nlo                                    exit 0 (expected 0)  fails []
+ok   check    --nlo --mutate=S40                       exit 1 (expected 1)  fails [('eps^2', 'S37')]
+ok   check    --nlo --mutate=S41                       exit 1 (expected 1)  fails [('eps^1', 'S36'), ('eps^2', 'S37')]
+ok   check    --nlo --mutate=S42                       exit 1 (expected 1)  fails [('eps^1', 'S36'), ('eps^3/2', 'S38'), ('eps^3/2', 'S39')]
+ok   check    --nlo --mutate=S43                       exit 1 (expected 1)  fails [('eps^3/2', 'S38')]
+ok   check    --set=claimed                            exit 0 (expected 0)  fails []
+ok   check    --set=claimed --mutate=claimPi3          exit 1 (expected 1)  fails [('eps^3', 'S37'), ('eps^5/2', 'S39')]
+ok   check    --set=claimed --mutate=claimC4           exit 1 (expected 1)  fails [('eps^3', 'S37')]
+ok   check    --set=claimed --mutate=S49               exit 1 (expected 1)  fails [('eps^3', 'S37')]
+ok   check    --set=claimed --mutate=S45               exit 1 (expected 1)  fails [('eps^2', 'S36'), ('eps^3', 'S37')]
+ok   check    --set=printed                            exit 1 (expected 1)  fails [('eps^5/2', 'S39')]
+ok   check    --set=printed --mutate=S45               exit 1 (expected 1)  fails [('eps^2', 'S36'), ('eps^3', 'S37'), ('eps^5/2', 'S39')]
+ok   check    --set=printed --mutate=S46               exit 1 (expected 1)  fails [('eps^3', 'S37'), ('eps^5/2', 'S39')]
+ok   check    --set=printed --mutate=S49               exit 1 (expected 1)  fails [('eps^3', 'S37'), ('eps^5/2', 'S39')]
+ok   check    --set=printedB                           exit 1 (expected 1)  fails [('eps^2', 'S36'), ('eps^3', 'S37'), ('eps^3/2', 'S38'), ('eps^5/2', 'S39')]
+ok   check    --set=derived                            exit 0 (expected 0)  fails []
+ok   check    --numeric                                exit 0 (expected 0)  fails -
+ok   check    --numeric --set=printed                  exit 1 (expected 1)  fails -
+ok   check    --numeric --mutate=claimPi3              exit 1 (expected 1)  fails -
+ok   check    (summary)                                exit 0 (expected 0)  fails -
+ok   check    --mutate=claimPi3                        exit 6 (expected 6)  fails -
+ok   psi3     (summary)                                exit 0 (expected 0)  fails []
+ok   psi3     --quick                                  exit 0 (expected 0)  fails []
+ok   psi3     --quick --mutate=Psi3                    exit 1 (expected 1)  fails [('eps^5/2', 'S38'), ('eps^7/2', 'S39')]
+ok   psi3     --quick --mutate=Psi3c                   exit 1 (expected 1)  fails [('eps^5/2', 'S38'), ('eps^7/2', 'S39')]
+ok   psi3     --quick --mutate=Pi4                     exit 1 (expected 1)  fails [('eps^3', 'S36'), ('eps^7/2', 'S39')]
+ok   psi3     --quick --mutate=Pi4b                    exit 1 (expected 1)  fails [('eps^3', 'S36'), ('eps^7/2', 'S39')]
+ok   psi3     --quick --mutate=Pi4c                    exit 1 (expected 1)  fails [('eps^3', 'S36')]
+ok   psi3     --quick --mutate=Omega4                  exit 1 (expected 1)  fails [('eps^3', 'S36'), ('eps^4', 'S37')]
+ok   psi3     --quick --mutate=f4                      exit 1 (expected 1)  fails [('eps^4', 'S37')]
+ok   psi3     --quick --mutate=f4c                     exit 1 (expected 1)  fails []
+ok   psi3     --mutate=Psi3                            exit 1 (expected 1)  fails [('eps^5/2', 'S38'), ('eps^7/2', 'S39')]
+ok   psi3     --quick --mutate=eqS36                   exit 1 (expected 1)  fails [('eps^1', 'S36'), ('eps^2', 'S36'), ('eps^3', 'S36')]
+ok   psi3     --crosscheck                             exit 0 (expected 0)  fails []
+ok   psi3     --crosscheck --mutate=eqS36              exit 1 (expected 1)  fails [('eps^1', 'S36'), ('eps^2', 'S36'), ('eps^3', 'S36')]
+ok   psi3     --numeric                                exit 0 (expected 0)  fails -
+ok   psi3     --numeric --mutate=Psi3                  exit 1 (expected 1)  fails -
+ok   psi3     --numeric --mutate=Pi4                   exit 1 (expected 1)  fails -
+ok   psi3     --numeric --mutate=Omega4                exit 1 (expected 1)  fails -
+ok   psi3     --numeric --mutate=f4                    exit 1 (expected 1)  fails -
+
+40 of 40 controls as expected

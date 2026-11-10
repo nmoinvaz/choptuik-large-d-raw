@@ -1,0 +1,10 @@
+$ python3 check.py --numeric --mutate=claimPi3
+mutation active: claimPi3: claimed Pi3: 50 b1 -> 49 b1; enters (S39) at eps^(5/2)
+numeric (S39) residual scaling at tau = 0.3, x = 0.8, bt = 0.7 sin tau + 0.4 cos 2tau + 0.2
+  printed  |R39| at eps=1e-3..1e-6: 1.112e-7, 3.517e-10, 1.112e-12, 3.517e-15   local exponents: 2.500, 2.500, 2.500
+  claimed  |R39| at eps=1e-3..1e-6: 2.196e-9, 6.945e-12, 2.196e-14, 6.945e-17   local exponents: 2.500, 2.500, 2.500
+  derived  |R39| at eps=1e-3..1e-6: 3.269e-13, 1.06e-16, 3.359e-20, 1.062e-23   local exponents: 3.489, 3.499, 3.500
+
+verdict numeric claimed,derived: FAIL, residual not O(eps^(7/2)) for claimed
+
+exit 1
