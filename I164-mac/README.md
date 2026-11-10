@@ -5,7 +5,7 @@ Issue: https://github.com/nmoinvaz/choptuik-large-d/issues/164
 Code: main b4d401f of nmoinvaz/choptuik-large-d (solver/rt/, #145's code, unchanged), worktree agent-a3f8a38336503b3e7;
 the reading is section 11 of notes/RT_FORMULATION.md on branch wip/i164. python-flint 0.9.0.
 
-Starts (raw commits 62b275a for D 60.0020, e613720 for D 54.9961):
+Starts (raw commits 74bc4b7 for D 60.0020, a4701e0 for D 54.9961):
 
 - a: `I145-mac/cont/cont_32x101_<D>_32x101.npz`, the 32x101 continuation's state (Delta - Delta_hp = -1.27e-12 at
   D 60.001952, -2.1e-14 at 54.996085).

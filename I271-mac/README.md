@@ -18,7 +18,7 @@ otherwise). `--mutate=old_rule` restores the old resampling and stopping rule.
 
 ## Pass and fail criteria (written before the runs)
 
-References: #266's quad-double solutions (`I266-mac/states/qd.jsonl`, `I266-mac/lam.jsonl` at 7b04cb4).
+References: #266's quad-double solutions (`I266-mac/states/qd.jsonl`, `I266-mac/lam.jsonl` at cc8bcfa).
 D 50.0075: Delta_qd(48) = 1.84163113320226444156341815006, lam_qd(48) = 2.051843756433439434 (lam_fine).
 D 58.006: Delta_qd(48) = 1.81537990111591269548046122778, lam_qd(48) = 2.045529761477880408.
 

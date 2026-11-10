@@ -5,7 +5,7 @@ Issue: https://github.com/nmoinvaz/choptuik-large-d/issues/145
 Code: branch wip/i145 of nmoinvaz/choptuik-large-d, solver/rt/ (rt_run.py --solver mp with --start_prev, --pred_order,
 --extras_off_path); the reading is a new section of notes/RT_FORMULATION.md there.
 
-Start state: I105-mac/cont/cont_32x101_D30.0000_32x101.npz (raw commit 6c9d697), with the D = 28 and 29 states of the
+Start state: I105-mac/cont/cont_32x101_D30.0000_32x101.npz (raw commit c6944d9), with the D = 28 and 29 states of the
 same run as the predictor's history.
 
 ## Criteria, written before the runs

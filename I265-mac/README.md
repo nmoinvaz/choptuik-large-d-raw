@@ -11,7 +11,7 @@ Every run is from the worktree root, one process at a time, 1 thread, `nice -n 1
 that writes the command, the code commit, the exit code and the wall time into each log (first and last lines).
 
 Inputs from this repository were extracted with `git archive origin/main <paths> | tar -x` into a scratch directory
-laid out as this repository (the `--raw` of the commands below), at b60ff3bb. They are not copied here:
+laid out as this repository (the `--raw` of the commands below), at 12b4cb66. They are not copied here:
 I170-macm3/hp_data_after/modecount_state_D45.0507_M48_kf21.npz (#170's solution) and the 9 raw states of #141's
 list (I141-mac/inputs/SOURCES.txt). The other 13 of the 22 are in the code repository's hp/data.
 

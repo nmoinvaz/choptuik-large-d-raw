@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 """Writes INDEX.md: one row per task folder, from the first line of the folder's README.md ("# <folder>: <what it
 holds>"), the machine (the folder's -win / -mac suffix, else its README's "Machine:" line) and, for the folders
-imported from the code repository's raw/<name> branches, that branch and its last commit (from the import commit's
-message). The rows change only when a folder is added or its title changes, so two machines rarely edit it at once.
+imported from the code repository's raw/<name> branches, that branch and its last commit here (IMPORTS.csv). The rows change only when a folder is added or its title changes, so two machines rarely edit it at once.
 
     python3 make_index.py [--check] [--stats]
 
@@ -10,6 +9,7 @@ message). The rows change only when a folder is added or its title changes, so t
 or does not start with "# <folder>: ". --stats: print each folder's files, MB and first and last commit (not part of
 INDEX.md, which would then change on every push).
 """
+import csv
 import os
 import re
 import subprocess
@@ -48,8 +48,11 @@ def machine(name):
 
 
 def source(name):
-    m = re.search(r"^Import raw/(\S+) \((\w+)\)", git("log", "--format=%s", "--", name), re.M)
-    return f"raw/{m.group(1)} {m.group(2)}" if m else ""
+    with open(os.path.join(ROOT, "IMPORTS.csv"), encoding="utf-8") as fh:
+        for r in csv.DictReader(fh):
+            if r["folder"] == name:
+                return f"raw/{r['branch']} {r['new'][:8]}"
+    return ""
 
 
 def index():

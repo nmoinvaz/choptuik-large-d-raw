@@ -10,7 +10,7 @@ processes, `nice -n 10`, `caffeinate -i`.
 ## Inputs
 
 - `states/modecount_state_D61.0264_M64_kf23.npz`: #141's D 61 M 64 kf 23 state (nodes 0.3 ... 0.7, ks 191, |F| 8.5e-21;
-  raw `I141-mac/states/`, 76fbf9b).
+  raw `I141-mac/states/`, 5eff98e).
 - `states/modecount_state_D61.0264_M64_kf23_outer085.npz`: #141's state with the node at 0.85, whose det M failed (the
   control of the determinant check).
 - `states/modecount_state_D55.0351_M48_kf23_from_I232.npz`: the D 55 M 48 kf 23 state of #232 (raw

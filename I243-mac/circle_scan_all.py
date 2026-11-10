@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """I243-mac: circle_scan.py on every circle of #178, #190 and I68, writing circles/circle_scan.log.
 
-    python3 circle_scan_all.py RAW_EXTRACT HP_DATA     (RAW_EXTRACT: the git archive of raw 6d8007f; HP_DATA: main's hp/data)
+    python3 circle_scan_all.py RAW_EXTRACT HP_DATA     (RAW_EXTRACT: the git archive of raw 9d469d6; HP_DATA: main's hp/data)
 """
 import os
 import subprocess

@@ -6,7 +6,7 @@ Code: worktree branch `wip/i259` of the main repository (from main bfe5fd5). mod
 `hp/modecount_build.sh`; hpkernel not rebuilt. Python /Users/nathan/venv-314/bin/python. One process at a time, 2
 threads, `nice -n 10`, `caffeinate -i`.
 
-Inputs: the states of `I252-mac/states/` at raw 940d3f0c (D 55.04 M 64 kf 23, ks 150; D 55.04 M 48 kf 23 from #232;
+Inputs: the states of `I252-mac/states/` at raw 5d6cbab2 (D 55.04 M 64 kf 23, ks 150; D 55.04 M 48 kf 23 from #232;
 D 61.03 M 64 kf 23, ks 191; D 61.03 M 48 kf 23 from #212). lambda_phys = 2.04768412771239 (D 55.04) and
 2.043532530673195 (D 61.03).
 

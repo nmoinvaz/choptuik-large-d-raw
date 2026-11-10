@@ -1,6 +1,6 @@
 #!/bin/zsh
 # the closed form against the stored solutions, its controls and mutations; from solver/inner_pert/ of the worktree
-R=/Users/nathan/Source/choptuik-large-d-raw/I126-mac      # raw-data clone at 5762066d
+R=/Users/nathan/Source/choptuik-large-d-raw/I126-mac      # raw-data clone at 07a860b6
 PY=/Users/nathan/venv-314/bin/python
 F=($R/fields/fields_D*.npz)
 nice -n 10 $PY nnlo_closed_form.py compare $F --figs=$R/figs.json --spread=$R/fields_t140_d6,$R/fields_t140_d10 \

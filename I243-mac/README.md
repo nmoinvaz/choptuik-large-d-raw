@@ -4,7 +4,7 @@ Machine: mac (Apple M5, 10 cores, macOS 27, shared with #208's two CAPD processe
 multidouble NEON, python-flint 0.9.0, modecount_cx cp314 build of 2026-11-08 16:26 from the main checkout). Issue:
 https://github.com/nmoinvaz/choptuik-large-d/issues/243. Code: branch wip/i242 of the main repository (the #242 rule,
 hp/modecount_wind.py 01f6c59). Inputs read from the raw-data repository by git archive into a scratch directory (nothing
-pulled here): 6d8007f for every folder, 9ef605c for I241-macm3. All runs single-threaded under nice 10 and caffeinate -i,
+pulled here): 9d469d6 for every folder, b2d1c68 for I241-macm3. All runs single-threaded under nice 10 and caffeinate -i,
 at most two count processes at a time.
 
 ## Method

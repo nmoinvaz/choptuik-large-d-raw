@@ -9,7 +9,7 @@ modecount_cx as installed, not rebuilt). Single-threaded, `nice -n 10`, `caffein
 ## Inputs
 
 - `states/modecount_state_D30.0688_M48_inner015.npz`: #141's M 48 no-cut state on the layout with a node at 0.15
-  (raw `I141-mac/states/`, 76fbf9b; |F| 2.4e-26).
+  (raw `I141-mac/states/`, 5eff98e; |F| 2.4e-26).
 - `states/modecount_state_D30.0688_M48_october.npz`: October's M 48 no-cut state, `hp/data/modecount_state_D30.0688_M48.npz`
   of main (2ef5022, 2026-10-22; |F| 9e-18), the background of the count that found the pair.
 - `october/data/modecount_D30.0688_M48_october_evals.jsonl`: October's cache, `hp/data/modecount_D30.0688_M48_evals.jsonl`

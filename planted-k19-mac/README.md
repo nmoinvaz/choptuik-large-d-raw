@@ -15,7 +15,7 @@ sigma_19 against (a)'s err19 2.79e-27); `converge_mutate_<err|low|pilot|ratiolaw
 firing. The later stages wait for T91 (the J-or-bits attribution) and the dated amendment of item 1.
 
 `real/converge_amend.log`: the `converge` stage under the amendment of item 1 (`--amend scan41J1250`, section 11.0's
-amendment of 2026-10-29), run 2026-10-31 04:23 UTC once T89's node files had landed (raw T89-mac d9d0c01): (a') fails at
+amendment of 2026-10-29), run 2026-10-31 04:23 UTC once T89's node files had landed (raw T89-mac d6fc05e): (a') fails at
 wf 0.99 (plateau 2.07e-26 + pilot difference 2.02e-26 = 1.59e-10 of |sigma_19|, margin 0.63) and passes at 1.00 and 1.01;
 (b) and (d) pass. The work stopped there and the fallback named in that amendment was taken (the second amendment,
 2026-10-31 04:32 UTC, code repository fcfeb4a).

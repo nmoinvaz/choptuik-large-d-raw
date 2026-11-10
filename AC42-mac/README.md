@@ -2,7 +2,7 @@
 
 Machine mac (Apple M5), subagent of the coordinator. Issue https://github.com/nmoinvaz/agent-comms/issues/42.
 Code: `solver/inner_pert/nnlo_closed_form.py` of the main repository (merge of wip/ac42-closed-form). Inputs: the
-field files of `I126-mac/fields/`, at commit 5762066d of this repository. Python: /Users/nathan/venv-314/bin/python.
+field files of `I126-mac/fields/`, at commit 07a860b6 of this repository. Python: /Users/nathan/venv-314/bin/python.
 One process, nice -n 10. The write-up is notes/SECOND_ORDER.md section 1.2 of the main repository.
 
 - `planted.cmd`, `compare.cmd`: the commands as run, from `solver/inner_pert/` of the worktree, with this Mac's

@@ -5,7 +5,7 @@ Issue: https://github.com/nmoinvaz/choptuik-large-d/issues/203
 
 Code: `solver/independent_second_zero/` of nmoinvaz/choptuik-large-d, branch `wip/i203`.
 Inputs: `I82-win2/sigF_w1.09_K45_J1500_p1280.json`, `sigF_w1.10_...` and `sigF_w1.11_...` of this repository
-(commit 3e4a94f and earlier on origin/main), field `sigma_str` only.
+(commit c956995 and earlier on origin/main), field `sigma_str` only.
 
 ## Planted-truth criteria (written 2026-11-08 23:07 UTC, before any zero of S1 was computed from the real data)
 

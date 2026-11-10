@@ -4,7 +4,7 @@ Machine: mac (Apple M5, 10 cores, macOS 27, shared with #208's two CAPD processe
 hpkernel and multidouble NEON, python-flint 0.9.0, modecount_cx cp314 build of 2026-11-08 16:26 from the main
 checkout). Issue: https://github.com/nmoinvaz/choptuik-large-d/issues/230. Code: branch wip/i230 of the main
 repository (hp/modecount_moment.py, hp/modecount_moment_planted.py, hp/modecount_circle.py,
-hp/modecount_circle_planted.py). Inputs, read from the raw-data repository at 6e2e394 (git archive into a scratch
+hp/modecount_circle_planted.py). Inputs, read from the raw-data repository at ecdd11a (git archive into a scratch
 directory, nothing pulled here): I212-macm3/data (kf 23 count, 776 determinants), I212-macm3/reeval159/data (#159's
 kf 21 count re-evaluated, 707 determinants), the saved states I212-macm3/hp_data_after/ (kf 23) and
 I159-macm3/hp_data_after_kf21/ (kf 21, byte-identical to reeval159's copy), copied into the worktree's hp/data for the
