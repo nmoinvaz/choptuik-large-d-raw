@@ -11,3 +11,7 @@ Report: each winding and position as a kf 27 column of #244's table. Estimates a
 
 ## Results
 
+Stopped under the stop rule (macm3, 2026-11-10 05:34:19 UTC, exit 143 from the kill). Setup passed (|F| 1.3e-19, series 1.0e-104 and 6.1e-38).
+The lam_phys circle winds +1 with 0 mismatches and 0 alias bisections, zero 2.043502736 -0.000013053i, estimate 1.3e-05: 3.25e-05 from the kf 23
+value 2.043532530673, outside 1e-5. The four other circles are not read; 12 determinants of the second circle are in the cache (42 lines).
+The kf 27 state is in hp_data_after/ and hp/data is back without it.
