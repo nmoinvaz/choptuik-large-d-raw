@@ -1,0 +1,35 @@
+  newton 0: |F| 9.66e-25 |dz| 5.99e-13 lam 1 dDelta +1.93e-20 Delta 1.841631133202264 piv 1.0e-12..4.9e+05  t 5.0s
+  newton 1: |F| 6.64e-25 |dz| 6.11e-13 lam 1 dDelta -4.63e-20 Delta 1.841631133202264 piv 1.0e-12..4.9e+05  t 10.0s
+  newton 2: |F| 6.27e-25 |dz| 9.44e-13 lam 0.25 dDelta +3.36e-20 Delta 1.841631133202264 piv 1.0e-12..4.9e+05  t 15.0s
+  newton 3: |F| 4.22e-25: no decrease along the Newton step, giving up
+D 50.007491: |F| 4.2e-25 (kfreeze 13), formula lam 2.051844014
+    lam 2.051544014445: sign -1 ln|det| 269.133729 pivots 1.64e-10..3.25e+05 (4.9 s)
+    lam 2.051844014445: sign +1 ln|det| 262.086290 pivots 8.60e-13..3.25e+05 (4.9 s)
+    lam 2.052144014445: sign +1 ln|det| 269.155918 pivots 2.32e-10..3.25e+05 (4.9 s)
+    lam 2.051843753782: sign -1 ln|det| 257.508549 pivots 8.83e-15..3.25e+05 (4.9 s)
+    lam 2.051843756433: sign -1 ln|det| 245.871686 pivots 7.80e-20..3.25e+05 (4.9 s)
+    lam 2.051843756433: sign +1 ln|det| 240.535152 pivots 3.76e-22..3.25e+05 (4.9 s)
+    lam 2.051843756433: sign -1 ln|det| 244.527022 pivots 2.03e-20..3.25e+05 (5.0 s)
+  M = 48: resampled (f64) |F| 2.1e-08 (kfreeze 13); series truncation centre 6.2e-77 (ratio 0.670 at 0.3), horizon 5.3e-26 (ratio 0.608 at 0.3)
+  newton 0: |F| 2.12e-08 |dz| 1.82e-05 lam 1 dDelta +9.67e-10 Delta 1.841631134168895 piv 8.8e-07..1.6e+05  t 14.7s
+  newton 1: |F| 5.17e-12 |dz| 9.86e-06 lam 1 dDelta -9.61e-10 Delta 1.841631133207933 piv 9.2e-10..1.6e+05  t 29.4s
+  newton 2: |F| 4.25e-12 |dz| 3.27e-06 lam 1 dDelta -9.69e-13 Delta 1.841631133206964 piv 8.0e-10..1.6e+05  t 44.2s
+  newton 3: |F| 1.85e-13 |dz| 9.17e-06 lam 0.125 dDelta +7.62e-13 Delta 1.841631133207725 piv 3.6e-11..1.6e+05  t 59.2s
+  newton 4: |F| 1.90e-13 |dz| 5.70e-06 lam 0.25 dDelta +1.50e-12 Delta 1.841631133209220 piv 3.9e-11..1.6e+05  t 74.1s
+  newton 5: |F| 1.87e-13 |dz| 2.31e-06 lam 1 dDelta +5.20e-12 Delta 1.841631133214422 piv 5.2e-11..1.6e+05  t 88.9s
+  newton 6: |F| 1.19e-13 |dz| 4.01e-07 lam 1 dDelta -1.62e-13 Delta 1.841631133214261 piv 1.7e-10..1.6e+05  t 103.7s
+  newton 7: |F| 2.90e-15: no decrease along the Newton step, giving up
+  Newton stalled; Levenberg-Marquardt
+  lm 0: |F|_2 1.07e-14 -> 1.40e-21 (mu 0, |dz| 1.5e-10) Delta 1.841631133214260 t 17s
+  lm 1: |F|_2 1.40e-21 -> 1.39e-23 (mu 1e-08, |dz| 2.6e-18) Delta 1.841631133214260 t 33s
+  newton 0: |F| 2.11e-24 converged (last |dz| 1.8e-05) Delta 1.841631133214260
+  M = 48: |F| 2.1e-24 (tol); Newton step at the solution: Delta -1.20e-11, max 1.8e-05; floor check ABOVE (|est| <= 1e-15)
+  M = 48: series truncation at the solution centre 1.2e-92 (ratio 0.585 at 0.3), horizon 3.2e-39 (ratio 0.481 at 0.3)
+    lam 2.051544014445: sign -1 ln|det| 612.918148 pivots 3.23e-10..1.59e+05 (14.7 s)
+    lam 2.051844014445: sign +1 ln|det| 605.871525 pivots 1.41e-12..1.59e+05 (14.8 s)
+    lam 2.052144014445: sign +1 ln|det| 612.941973 pivots 5.14e-10..1.59e+05 (14.7 s)
+    lam 2.051843753569: sign -1 ln|det| 601.371053 pivots 1.56e-14..1.59e+05 (14.6 s)
+    lam 2.051843756434: sign -1 ln|det| 589.816517 pivots 1.50e-19..1.59e+05 (14.7 s)
+    lam 2.051843756434: sign -1 ln|det| 588.540539 pivots 4.18e-20..1.59e+05 (14.6 s)
+    lam 2.051843756434: sign +1 ln|det| 589.159529 pivots 7.77e-20..1.59e+05 (14.7 s)
+{"D": 50.007491, "M": 32, "kfreeze": 13, "F": 4.223201861803356e-25, "F_in": 9.66254472864583e-25, "lam": 2.051843756433441, "gamma": 0.4873665438045933, "lam_formula": 2.051844014445049, "n_signchanges": 1, "n_det": 7, "state": "up8_D50.0075.npz", "seconds": 55.0, "Delta": 1.8416311332022643, "Delta_lo": 9.391044259908876e-17, "M48": {"M": 48, "kfreeze": 13, "resample": "f64", "F_start": 2.1203720254248406e-08, "tails_start": [{"tail": 6.179206424832934e-77, "ratio": 0.6700733731618597, "last": 3.0424798446501466e-77, "x": 0.3, "radius": 0.4477121640939066}, {"tail": 5.27297156760344e-26, "ratio": 0.6080624679494142, "last": 3.398788071477109e-26, "x": 0.30000000000000004, "radius": 0.49337036211377805}], "mutate": "old_rule", "F": 2.1065416924869216e-24, "solve": {"tol": 4.223201861803356e-24, "newton": 7, "lm": 2, "newton_after_lm": 0, "stop": "tol", "step": 1.7934799620091042e-05}, "est": -1.1995877553486842e-11, "floor": "ABOVE", "tails": [{"tail": 1.2252508947833094e-92, "ratio": 0.5850545733085362, "last": 8.689997113685331e-93, "x": 0.3, "radius": 0.5127726774332744}, {"tail": 3.150993660698478e-39, "ratio": 0.48087623066320245, "last": 3.401614806459011e-39, "x": 0.30000000000000004, "radius": 0.6238611535992407}], "Delta": 1.8416311332142603, "Delta_lo": 1.1627513034173005e-17, "Delta_diff": 1.1995877498145252e-11, "lam": 2.0518437564341294, "lam_diff": 6.883382752675971e-13, "seconds": 285.0}}
