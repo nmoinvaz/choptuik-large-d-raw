@@ -97,6 +97,9 @@ def accepted(log, jsonl):
             raise ValueError(f"attempt {i} of {jsonl} (a {a['a']}) does not match the log's attempt (a {segs[i]['a'] if i < len(segs) else '-'})")
         if a["accepted"]:
             inf = info(segs[i])
+            if inf["steps"] is None:
+                # the log lines of this attempt are lost (crawlB4.log was replaced under its run at 17:12:27 UTC); use what anm_run.jsonl keeps
+                inf.update(steps=a["steps"], lamtxt="(log lines lost)", final="?", conv=bool(r.get("converged", False)), lam1=True)
             sd = state_delta(os.path.dirname(os.path.abspath(jsonl)), a["D"])
             out.append(dict(D=mpf(a["D_str"]), a=a["a"], seg=segs[i], **{**inf, "delta_log": inf["delta"], "delta": sd if sd is not None else inf["delta"],
                                                                           "from_state": sd is not None}))
@@ -164,7 +167,8 @@ def table(runs, frm=1, out=print, csv_path=CSV):
 
 # the runs whose accepted steps come before a run's own in the Delta sequence of its extrapolations (crawlB3 starts from crawlB2's step)
 PRIOR = {"crawlB3": [("crawlB2.log", "crawlB2/anm_run.jsonl")],
-         "crawlB4": [("crawlB2.log", "crawlB2/anm_run.jsonl"), ("crawlB3.log", "crawlB3/anm_run.jsonl")]}
+         "crawlB4": [("crawlB2.log", "crawlB2/anm_run.jsonl"), ("crawlB3.log", "crawlB3/anm_run.jsonl")],
+         "crawlB5": [("crawlB2.log", "crawlB2/anm_run.jsonl"), ("crawlB3.log", "crawlB3/anm_run.jsonl"), ("crawlB4.log", "crawlB4/anm_run.jsonl")]}
 NEWTON_FLAG = 25      # the coordinator's order of 15:49 UTC: report at once the first step that needs more than this many Newton steps
 SERIES = re.compile(r"^step (\d+): D (\S+), pivots (\S+?)\.\.(\S+?), \|z_1\| \S+, \|z_N\| (\S+), ratios 2-5 (.*), a_max (\S+),")
 

@@ -58,3 +58,13 @@ without converging and `anm_run.py` adopted it as the base; this run is the cont
 `hp/anm_run.py` only), worktree `D:\choptuik-i446` detached at d84cc51, output `crawlB2/`, log `crawlB2.log`, 18 threads, no `--base_adopt`. Two lines
 must print before the first attempt: `base polish not adopted (max|F| 4.4e-36 -> 1.5e-18): the stored state is the base` and the step 0 line
 `pivots 7.2e-16..2.3e+30, |z_1| 4.37e-04, |z_N| 2.37e-30, ratios 2-5 274.8 247.7 236.2 229.7, a_max 3.414`. Results follow at the end of the run.
+
+## Parts B3, B4, B5 (the chain, running)
+
+B3 (`run_i461_b3.sh`, `--od_junk 0 --h_max 1.0`, 14:13:54 to 15:51:07 UTC, stopped by the coordinator to raise `--qd_it`), B4 (`run_i461_b4.sh`, `--qd_it 40`, 15:51:31 to 17:14:41 UTC) and B5
+(`run_i461_b5.sh`, 17:14:59 UTC on, from B4's last state) are one chain from D 215.13125, each starting from the previous run's last saved state, all at d84cc51 (see `exits.txt`).
+`table_461_c.py` makes the step tables and the watcher events (its selftest checks the crawl's accepted steps against `delta_all.csv`).
+
+**`crawlB4.log` is incomplete after 17:12:27 UTC.** A `git pull --rebase --autostash` of mine in this clone replaced the file under the running process, which went on writing to the
+replaced file. The lost log lines are those of the last attempt of B4 (a 0.5 from D 231.13125 to D 231.63125: Newton iterations 6 to 7, the Newton and result lines). The run, its states and
+`crawlB4/anm_run.jsonl` were not affected; the jsonl has that attempt (8 Newton steps, accepted). B4 was killed at 17:14:41 UTC and B5 started from its last state with a fresh log.
