@@ -154,6 +154,10 @@ def table(runs, frm=1, out=print, csv_path=CSV):
     return len(rows)
 
 
+# the runs whose accepted steps come before a run's own in the Delta sequence of its extrapolations (crawlB3 starts from crawlB2's step)
+PRIOR = {"crawlB3": [("crawlB2.log", "crawlB2/anm_run.jsonl")]}
+
+
 def events(state_path, log, jsonl, out=print, csv_path=CSV, quiet=False):
     st = dict(acc=0, reseed=0, stop=False, ended=False, notok=0)
     if os.path.exists(state_path):
@@ -168,6 +172,10 @@ def events(state_path, log, jsonl, out=print, csv_path=CSV, quiet=False):
     st["reseed"] = len(segs)
     acc = accepted(log, jsonl)
     pts = chain_six(csv_path)
+    for pl, pj in PRIOR.get(os.path.basename(os.path.dirname(os.path.abspath(jsonl))), []):
+        for s in accepted(os.path.join(os.path.dirname(os.path.abspath(jsonl)), "..", pl), os.path.join(os.path.dirname(os.path.abspath(jsonl)), "..", pj)):
+            if s["delta"] is not None:
+                pts.append((s["D"], s["delta"]))
     for k, s in enumerate(acc):
         e = extrapolate(pts[-6:], s["D"])
         if s["delta"] is not None:
