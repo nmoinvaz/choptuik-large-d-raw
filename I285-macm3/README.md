@@ -15,3 +15,6 @@ Report: B0's and U0's windings with their last-pass mismatches, the zero against
 
 ## Results
 
+Circles exit 0 at 16:01:00 UTC (started 15:18 UTC; 989 lines in the cache, 62 more than after the moments). All three wind +1 with 0 mismatches and 0 alias bisections:
+  -0.08962 +0.03276i (R 0.04): zero -0.089555 +0.032884i (estimate 5.2e-05), 29 points, largest step 0.379.   -0.08962 -0.03276i (R 0.04): zero -0.089554 -0.032884i (5.2e-05), 29 points, 0.379.
+  lambda_phys 2.046953490259203 (R 0.2): zero 2.0469534991 +0.0000000602i (estimate 2.7e-08), 28 points, 0.340. #249's circle for the upper zero: -0.089555 +0.032884i.
