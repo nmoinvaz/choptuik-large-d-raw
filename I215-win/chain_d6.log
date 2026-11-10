@@ -202,3 +202,14 @@ step 21: D 213.0, pivots 4.3e-15..1.1e+30, |z_1| 4.44e-04, |z_N| 4.34e-30, ratio
       elim projections {'u0': 0, 'u0q': 2, 'ladder': 0, 'failed': 0, 'skipped': 2}
       octo-double Newton: 4 steps, max|F| 1.5e-69, converged; double-double |F| of its first two parts 3.6e+01
     a 1.000 -> D 214.0: predicted |F| 5.36e+01, od 4 steps -> 3.59e+01 (tol 3.5e-17, stall accepted, Delta correction +0.0e+00), Delta 1.691779624476 (formula diff -1.4e-06), moved 4.0e-20, 884 s
+step 22: D 214.0, pivots 1.9e-15..1.6e+30, |z_1| 4.41e-04, |z_N| 5.00e-30, ratios 2-5 273.4 246.4 235.0 227.2, a_max 3.306, 2725 s
+    a 1.0000: re-seeded (FAILED, prediction kept), 41.92 s; rung u 0.3000 not converged at |R| 1.36e+01 after 1 steps
+      elim projections {'u0': 0, 'u0q': 0, 'ladder': 0, 'failed': 1, 'skipped': 0}: the start's projection failed, attempt stopped
+    a 1.000 -> D 215.0: predicted |F| 5.89e+01, od 0 steps -> 5.89e+01 (tol 5.1e-17), Delta 1.691559557540 (formula diff -1.4e-06), moved 0.0e+00, 90 s
+    a 0.5000: re-seeded (FAILED, prediction kept), 42.73 s; rung u 0.3000 not converged at |R| 8.92e+00 after 1 steps
+  on 0: |F| 2.46e-20 -> 1.89e-31, |dz| 3.3e-20 -> 3.5e-36, lam 1, dDelta +1.97e-21, piv 9.3e-16..1.9e+30, 308.37 s
+  on 1: |F| 1.89e-31 -> 3.45e-41, |dz| 3.5e-36 -> 8.7e-50, lam 1, dDelta +2.65e-37, piv 9.3e-16..1.9e+30, 154.65 s
+  on 2: |F| 3.45e-41 converged, Delta 1.69166933750768123 +3.6026e-17
+      elim projections {'u0': 0, 'u0q': 2, 'ladder': 0, 'failed': 0, 'skipped': 1}
+      octo-double Newton: 3 steps, max|F| 3.5e-41, converged; double-double |F| of its first two parts 3.6e+01
+    a 0.500 -> D 214.5: predicted |F| 4.81e+01, od 3 steps -> 3.61e+01 (tol 4.3e-17, stall accepted, Delta correction +0.0e+00), Delta 1.691669337508 (formula diff -1.4e-06), moved 3.3e-20, 761 s
