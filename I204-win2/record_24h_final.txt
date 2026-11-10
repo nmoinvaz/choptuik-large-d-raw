@@ -1,0 +1,28 @@
+window 2026-11-09 01:30:41 to 2026-11-10 01:30:00 UTC: 288 readings, first 01:34:35, last 01:29:35
+gaps above 5.5 min between readings: none
+utilization %   mean 76.4, min 15, max 135
+package power W mean 117.3, min 32.8, max 194.1
+free memory GB  mean 43.5, min 16.9, max 80.7
+hottest core C  mean 88.0, min 52, max 104
+mean of 20 cores C mean 74.5, min 46.7, max 99.9
+readings with the hottest core >= 100 C: 53
+readings with the hottest core >= 102 C: 44
+readings with the hottest core >= 104 C: 22 at 09 01:34 (104 C, 178.2 W), 09 01:39 (104 C, 150.9 W), 09 01:44 (104 C, 175.7 W), 09 07:09 (104 C, 150.0 W), 09 07:24 (104 C, 194.1 W), 09 07:34 (104 C, 162.4 W), 09 09:19 (104 C, 177.9 W), 09 09:29 (104 C, 162.2 W), 09 11:39 (104 C, 169.2 W), 09 11:44 (104 C, 164.0 W), 09 11:49 (104 C, 184.1 W), 09 16:09 (104 C, 171.3 W), 09 16:24 (104 C, 186.8 W), 09 17:29 (104 C, 187.6 W), 09 18:04 (104 C, 177.2 W), 09 19:34 (104 C, 167.2 W), 09 20:34 (104 C, 184.0 W), 10 00:34 (104 C, 181.7 W), 10 00:39 (104 C, 188.8 W), 10 00:44 (104 C, 186.7 W), 10 00:49 (104 C, 186.3 W), 10 00:59 (104 C, 181.6 W)
+readings with the hottest core >= 105 C: 0
+readings with utilization >= 100%: 61 of 288, about 5.1 h of 24.0 h
+peak package power 194.1 W at 2026-11-09 07:24:35 (hottest core then 104 C, utilization 123%)
+
+crashes.txt entries (all, with their dates):
+  # crashes of any process on win2, from the Application and System logs; temperature n/a (no built-in source)
+  before watcher: 2026-11-01 18:00:29Z  event 1000  process CrossDeviceService.exe 1.26092.74.0  module KERNELBASE.dll  offset 0x00000000000c408a  code e0434352  pid 24696 
+  before watcher: 2026-11-04 21:38:47Z  event 1000  process bad_module_info 0.0.0.0  module unknown  offset 0x700f94e0  code c00001a5  pid 6100  path bad_module_info
+  before watcher: 2026-11-07 18:37:19Z  event 1000  process python.exe 3.12.8150.1013  module python312.dll  offset 0x0000000000045d80  code c0000005  pid 37972  path C:\Us
+  before watcher: 2026-11-08 07:00:18Z  event 1000  process python.exe 3.12.8150.1013  module libflint.24.0.0-9b2d98b6da8eded35def7bc3b288ff65.dll  offset 0x00000000006830c
+  before watcher: 2026-11-08 14:40:02Z  event 1000  process python.exe 3.12.8150.1013  module python312.dll  offset 0x00000000001a71fc  code c0000005  pid 21016  path C:\Us
+  before watcher: 2026-11-08 16:31:55Z  event 1000  process python.exe 3.12.8150.1013  module python312.dll  offset 0x00000000000cb5c8  code c0000005  pid 19272  path C:\Us
+  before watcher: 2026-11-08 17:02:24Z  event 1000  process python.exe 3.12.8150.1013  module _multiarray_umath.cp312-win_amd64.pyd  offset 0x00000000001a6f3e  code c000000
+  before watcher: 2026-11-08 17:13:00Z  event 1000  process python.exe 3.12.8150.1013  module _multiarray_umath.cp312-win_amd64.pyd  offset 0x0000000000104deb  code c000000
+  before watcher: 2026-11-08 17:28:17Z  event 1000  process python.exe 3.12.8150.1013  module unknown  offset 0x0000000000000004  code c0000005  pid 23528  path C:\Users\na
+  before watcher: 2026-11-08 18:01:16Z  event 1000  process python.exe 3.12.8150.1013  module python312.dll  offset 0x000000000003b6b5  code c0000005  pid 9360  path C:\Use
+crash_temps.txt: empty or absent (no event since the watchers' restart)
+windows of the 13-copy loop (driver.txt): round 1 start 2026-11-09 01:30:41 UTC, 13 copies; round 2 start 2026-11-09 01:41:02 UTC, 13 copies
