@@ -23,3 +23,21 @@ ImportError: cannot import name 'newton_qd' from 'hpkernel.driver' (C:\Users\nat
 held values from the fit data/held_fit_d10.json (degree 10, 138 full-system states, D 38.020417-73.0), relative to the base
 base polish skipped (--base_polish 0): the stored state is the base
 base I462-win/chain_d10/anm_pin3_D215.1312.npz: D 215.13125, M 32, pin 3 (held [5, 7, 9, 11, 13]), |F| 7.0e+01; N 24, eps 1e-14, h_max 1.0, corrector od (junk_only False), tol 1.0e-20 x 1.45^(D - 215.13125), stalls accepted below 1e-17
+step 0: D 215.13125, pivots 7.0e-16..2.4e+30, |z_1| 4.37e-04, |z_N| 2.55e-29, ratios 2-5 274.9 247.8 236.4 224.2, a_max 3.079, 2941 s
+    a 1.0000: re-seeded (ok), 202.78 s
+  on 0: |F| 4.42e-20 -> 2.04e-31, |dz| 1.5e-19 -> 5.0e-34, lam 1, dDelta +3.31e-20, piv 3.6e-16..3.4e+30, 373.58 s
+  on 1: |F| 2.04e-31 -> 1.33e-36, |dz| 5.0e-34 -> 1.6e-48, lam 1, dDelta +9.92e-35, piv 3.6e-16..3.4e+30, 166.95 s
+  on 2: |F| 1.33e-36 -> 1.22e-65, |dz| 1.6e-48 -> 6.8e-60, lam 1, dDelta +1.29e-49, piv 3.6e-16..3.4e+30, 167.41 s
+  on 3: |F| 1.22e-65 converged, Delta 1.69131303328294447 +7.8617e-17
+      elim projections {'u0': 0, 'u0q': 1, 'ladder': 0, 'failed': 0, 'skipped': 3}
+      octo-double Newton: 4 steps, max|F| 1.2e-65, converged; double-double |F| of its first two parts 9.4e+01
+    a 1.000 -> D 216.13125: predicted |F| 7.28e+01, od 4 steps -> 9.38e+01 (tol 1.4e-20, stall accepted, Delta correction +0.0e+00), Delta 1.691313033283 (formula diff -1.4e-06), moved 1.5e-19, 866 s
+step 1: D 216.13125, pivots 3.6e-16..3.4e+30, |z_1| 4.34e-04, |z_N| 2.43e-29, ratios 2-5 276.2 249.0 237.3 228.3, a_max 3.085, 2196 s
+    a 1.0000: re-seeded (ok), 166.82 s
+  on 0: |F| 3.24e-20 -> 4.90e-31, |dz| 1.4e-19 -> 1.2e-33, lam 1, dDelta -1.28e-20, piv 2.3e-16..4.8e+30, 275.74 s
+  on 1: |F| 4.90e-31 -> 1.11e-35, |dz| 1.2e-33 -> 3.9e-47, lam 1, dDelta +3.25e-34, piv 2.3e-16..4.8e+30, 113.79 s
+  on 2: |F| 1.11e-35 -> 1.13e-62, |dz| 3.9e-47 -> 1.2e-57, lam 1, dDelta +9.13e-48, piv 2.3e-16..4.8e+30, 114.43 s
+  on 3: |F| 1.13e-62 converged, Delta 1.69109722568442233 -8.1548e-17
+      elim projections {'u0': 0, 'u0q': 1, 'ladder': 0, 'failed': 0, 'skipped': 3}
+      octo-double Newton: 4 steps, max|F| 1.1e-62, converged; double-double |F| of its first two parts 1.5e+02
+    a 1.000 -> D 217.13125: predicted |F| 1.49e+02, od 4 steps -> 1.48e+02 (tol 2.1e-20, stall accepted, Delta correction +0.0e+00), Delta 1.691097225684 (formula diff -1.4e-06), moved 1.4e-19, 618 s
