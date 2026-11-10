@@ -98,10 +98,10 @@ def part_b(new_ls, new_rec, old_rec, csv_path, out=print):
     q0, q1 = csv_row(csv_path)
     if float(x) != q0:
         out(f"part B: Delta {x} differs from delta_all.csv {q0!r}"); ok = False
-    if f"{q1:.4e}" != y:
-        out(f"part B: correction {y} differs from delta_all.csv {q1:.4e}"); ok = False
+    if f"{q1:+.4e}" != y:
+        out(f"part B: correction {y} differs from delta_all.csv {q1:+.4e}"); ok = False
     if ok:
-        out(f"part B: Delta {x} and correction {y} equal delta_all.csv row 214.6 ({q0!r}, {q1:.4e})")
+        out(f"part B: Delta {x} and correction {y} equal delta_all.csv row 214.6 ({q0!r}, {q1:+.4e})")
     d = diff_path(new_rec, old_rec)
     out("part B: step-0 record of anm_run.jsonl equal to the crawl's (timing keys dropped)" if d is None
         else f"part B: step-0 record differs at {d}")
