@@ -14,3 +14,9 @@ Machine win (Surface Laptop 4, i7-1185G7, 4 cores/8 threads, 31.8 GB), issue htt
 **Criteria, fixed before the results** (the issue's): the table reproduces each logged start residual within a factor 2, and the D 205.0 control gives about 1e-20 at a = 1. The comparison script's control scales the logged values by 10 and must fail. A projection that fails at the start (`StartNotProjected`) prints no `start:` line, so such an attempt is recorded as its failure, with the `elim projections` counts. Where the logged and the new start residual differ by more than a factor 2 the work stops until the cause is known.
 
 `laneA.cmd`: d6_D214.5, then d6_D205.0, then #218's D 191.5 od polish (`../I218-win/d10_D191.5_od.cmd`). `laneB.cmd`: d10_D214.5, then d6_D214.0. Expected 1 to 1.5 h per job (the series is 45 to 50 min).
+
+## Stopped at the coordinator's word (2026-11-10 15:29 UTC)
+
+The coordinator's message of 15:19 UTC (agent-comms `choptuik-large-d/2026-11-10/151949Z-coordinator-7a2d.md`): #277's question is answered by #446 and #461 (the D 215 wall had three causes), so it is superseded, and if it has started it is to be stopped with what it wrote kept. The win session had not read that message before it launched the lanes at 15:22:40 UTC, because its channel watch was not running. Both lane shells and their children were killed at 15:29:17 UTC (taskkill), 6.5 min in.
+
+What exists: `d6_D214.5.log` and `d10_D214.5.log`, each up to the series computation, which did not finish, so no attempt ran and there are no `.exit` files. The zero-iteration base polish printed `start: |F| 6.32e-36` (d6) and `6.31e-36` (d10). The d10 value equals the start of #276's d10 base polish at the same stored state (6.31e-36, |dz| 2.3e-23), the same computation by two routes. The table of criteria above was not evaluated. `job_d6_D205.0.cmd` and `job_d6_D214.0.cmd` were never launched.
