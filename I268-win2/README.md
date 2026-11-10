@@ -25,3 +25,10 @@ the Delta (1.69162536484306658) and the junk-projected correction (-1.0772e-16) 
 while the crawl recorded convergence in 3 to 5 steps. The loaded states start at |F| 4 to 6e-36 and the first Newton steps get line-search factors of 0.0625 to 0.0039.
 ElimO counters: no projection (`u0q` 0, `skipped` 79 to 103) in the six failing runs, `u0q` 1 in the converging one; the crawl's accepted steps all have `u0q` 1 or 2.
 Extra check on the crawl's saved predictions (`pred_pin3_D<D>.npz`): `run_i268_pred.sh`, logs `load_pred_D*.log`.
+
+## Extra checks (2026-11-10 05:30 UTC)
+
+Load checks on the crawl's saved predictions `../I19-win2/crawl/pred_pin3_D<D>.npz` (`run_i268_pred.sh`, 5 threads, `load_pred_D*.log`): D 214.6 converges in 6 steps
+(|F| 6.26e-49) with the Delta and correction the crawl recorded (1.69164734103273950, -9.3636e-17); D 214.8 and D 215.03125 do not (12 steps, max|F| 2.2e-22 and
+1.3e-21). Thread-count test: the D 214.8 prediction rerun with the crawl's 18 threads (`run_i268_pred18.sh`, `load_pred18_D214.8000.log`) gives the same iteration lines
+as the 5-thread run (|F|, |dz|, line-search factor, dDelta, ElimO counters identical; only the times differ), so the threads do not decide the convergence.
