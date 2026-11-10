@@ -41,6 +41,10 @@ Point the run's output paths into its folder (the code's writers refuse a path o
 The rebase keeps the history linear. If it stops on a conflict in `INDEX.md`, run `python3 make_index.py`,
 `git add INDEX.md` and `git rebase --continue`; the index is generated, so that resolves it.
 
+A pull, rebase or reset rewrites files on disk. While a job writes into the clone, commit and push from a separate
+worktree of it (`git worktree add ../choptuik-large-d-raw-push`), with the job's files copied in, and leave the live
+folder alone until the job ends.
+
 ## Rules
 
 - Only the output of this project's tasks. Nothing from another project's directories, no credentials, keys, tokens,
