@@ -5,10 +5,14 @@ machine and not by a session).
 
 stdout and stderr are the caller's (a .cmd redirects them to the chain's log). Exits with the command's code, or 124
 when the cap killed it, after printing a `run_capped: cap ... reached` line."""
+import shutil
 import subprocess
 import sys
 
 cap, cmd = float(sys.argv[1]), sys.argv[2:]
+# A bare "python.exe" would be searched first in the directory of the running image, which for a venv's launcher is the
+# base interpreter's, so the command's first word is resolved against PATH here (the venv first, as the .cmd sets it).
+cmd[0] = shutil.which(cmd[0]) or cmd[0]
 p = subprocess.Popen(cmd)
 try:
     rc = p.wait(timeout=cap)

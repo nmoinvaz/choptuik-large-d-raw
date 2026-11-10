@@ -7,3 +7,19 @@ base polish skipped (--base_polish 0): the stored state is the base
 base I276-win/chain_d10/anm_pin3_D215.0000.npz: D 215.0, M 32, pin 3 (held [5, 7, 9, 11, 13]), |F| 5.4e+01; N 24, eps 1e-14, h_max 0.13125, corrector od (junk_only False), tol 1.0e-20 x 1.45^(D - 215.0), stalls accepted below 1e-17
 step 0: D 215.0, pivots 7.2e-16..2.3e+30, |z_1| 4.37e-04, |z_N| 2.47e-29, ratios 2-5 274.7 247.6 236.3 221.7, a_max 3.084, 3027 s
     a 0.1313: re-seeded (ok), 208.67 s
+  on 0: |F| 1.27e-20 -> 3.15e-31, |dz| 2.7e-20 -> 5.9e-35, lam 1, dDelta -4.10e-21, piv 7.0e-16..2.4e+30, 407.08 s
+  on 1: |F| 3.15e-31 -> 1.31e-38, |dz| 5.9e-35 -> 8.6e-50, lam 1, dDelta -1.66e-35, piv 7.0e-16..2.4e+30, 172.15 s
+  on 2: |F| 1.31e-38 -> 2.73e-68, |dz| 8.6e-50 -> 6.5e-64, lam 1, dDelta +2.09e-50, piv 7.0e-16..2.4e+30, 170.16 s
+  on 3: |F| 2.73e-68 converged, Delta 1.69153082384977149 -9.6951e-17
+      elim projections {'u0': 0, 'u0q': 1, 'ladder': 0, 'failed': 0, 'skipped': 3}
+      octo-double Newton: 4 steps, max|F| 2.7e-68, converged; double-double |F| of its first two parts 7.0e+01
+    a 0.131 -> D 215.13125: predicted |F| 6.56e+01, od 4 steps -> 7.02e+01 (tol 1.0e-20, stall accepted, Delta correction +0.0e+00), Delta 1.691530823850 (formula diff -1.4e-06), moved 2.7e-20, 925 s
+done
+Traceback (most recent call last):
+  File "C:\Users\nathan\Source\choptuik-t151\hp\anm_run.py", line 113, in <module>
+    from hpkernel.driver import make_solver, newton_solve, deflated_newton, delta_correction, newton_qd, qparts, rnorm, save, save_q, load_q  # noqa: E402
+ImportError: cannot import name 'newton_qd' from 'hpkernel.driver' (C:\Users\nathan\AppData\Local\Programs\Python\Python310\lib\site-packages\hpkernel\driver.py)
+=== 17:22:51 UTC: the first launch of d10_long.cmd (17:20:52) failed at import, because run_capped.py started the base Python and not the venv's (fixed: the command is resolved against PATH); this is the relaunch, cap 79694 s
+held values from the fit data/held_fit_d10.json (degree 10, 138 full-system states, D 38.020417-73.0), relative to the base
+base polish skipped (--base_polish 0): the stored state is the base
+base I462-win/chain_d10/anm_pin3_D215.1312.npz: D 215.13125, M 32, pin 3 (held [5, 7, 9, 11, 13]), |F| 7.0e+01; N 24, eps 1e-14, h_max 1.0, corrector od (junk_only False), tol 1.0e-20 x 1.45^(D - 215.13125), stalls accepted below 1e-17
