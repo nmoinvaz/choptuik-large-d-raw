@@ -12,3 +12,5 @@ kf 25 (2.043535 +0.000004i, estimate 9.5e-7) and kf 27 (2.043502736 -0.000013053
 
 ## Results
 
+
+Issue: https://github.com/nmoinvaz/choptuik-large-d/issues/460 (was project item 1006; the coordinator moved it back to an issue at 08:15 UTC).
