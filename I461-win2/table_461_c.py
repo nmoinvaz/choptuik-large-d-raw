@@ -35,11 +35,13 @@ NEWT = re.compile(r"octo-double Newton: (\d+) steps, max\|F\| (\S+), (converged|
 
 def segments(lines):
     """one dict per attempt of the log, in order"""
-    out, cur = [], None
+    out, cur, series = [], None, ""
     for ln in lines:
+        if ln.startswith("step "):
+            series = ln
         m = ATT.match(ln)
         if m:
-            cur = dict(a=m.group(1), status=m.group(2), rung=m.group(3) or "", on=[], conv=None, newton=None, end=None, proj="", lines=[ln])
+            cur = dict(a=m.group(1), status=m.group(2), rung=m.group(3) or "", on=[], conv=None, newton=None, end=None, proj="", series=series, lines=[ln])
             out.append(cur)
             continue
         if cur is None:
@@ -64,10 +66,15 @@ def segments(lines):
 def info(seg):
     """start residual, lam list, whether all lam are 1, final max|F|, Newton steps, converged, Delta (mpf or None)"""
     first = ON.match(seg["on"][0]).group(2) if seg["on"] else "?"
+    m1 = re.search(r"\|F\| \S+ -> (\S+?),", seg["on"][0]) if seg["on"] else None
+    after1 = m1.group(1) if m1 else "?"
     lams = [float(m.group(1)) for m in (re.search(r"lam (\S+),", ln) for ln in seg["on"]) if m]
     n = seg["newton"]
     delta = mpf(seg["conv"][0]) + mpf(seg["conv"][1]) if seg["conv"] else None
-    return dict(start=first, lams=lams, lam1=bool(lams) and all(x == 1 for x in lams), steps=n[0] if n else None, final=n[1] if n else "?",
+    pv = re.search(r"pivots (\S+?)\.\.(\S+?),", seg.get("series", ""))
+    pivots = f"{pv.group(1)}..{pv.group(2)}" if pv else "?"
+    lamtxt = " ".join(m.group(1) for m in (re.search(r"lam (\S+),", ln) for ln in seg["on"]) if m)
+    return dict(start=first, after1=after1, pivots=pivots, lamtxt=lamtxt, lams=lams, lam1=bool(lams) and all(x == 1 for x in lams), steps=n[0] if n else None, final=n[1] if n else "?",
                 conv=bool(n and n[2]), delta=delta)
 
 
@@ -142,15 +149,16 @@ def table(runs, frm=1, out=print, csv_path=CSV):
             rows.append((s, d, e))
             if d is not None:
                 pts.append((s["D"], d))
-    out("| step | D | a | start residual | Newton steps | final residual | converged, lam 1 | Delta | Delta minus degree-5 extrapolation |")
-    out("|---|---|---|---|---|---|---|---|---|")
+    out("| step | D | a | smallest..largest pivot of the base | start residual | max\\|F\\| after the first Newton step | Newton steps | lam per iteration | final residual "
+        "| converged, lam 1 | Delta | Delta minus degree-5 extrapolation |")
+    out("|---|---|---|---|---|---|---|---|---|---|---|---|")
     for k, (s, d, e) in enumerate(rows, 1):
         if k < frm:
             continue
         ok = "yes" if s["conv"] and s["lam1"] else ("NO, converged" if s["conv"] else "NO, not converged")
         dd = mp.nstr(d, 18) if d is not None else "-"
         df = mp.nstr(d - e, 3) if d is not None else "-"
-        out(f"| {k} | {mp.nstr(s['D'], 12)} | {s['a']:g} | {s['start']} | {s['steps']} | {s['final']} | {ok} | {dd} | {df} |")
+        out(f"| {k} | {mp.nstr(s['D'], 12)} | {s['a']:g} | {s['pivots']} | {s['start']} | {s['after1']} | {s['steps']} | {s['lamtxt']} | {s['final']} | {ok} | {dd} | {df} |")
     return len(rows)
 
 
@@ -159,10 +167,19 @@ PRIOR = {"crawlB3": [("crawlB2.log", "crawlB2/anm_run.jsonl")]}
 
 
 def events(state_path, log, jsonl, out=print, csv_path=CSV, quiet=False):
-    st = dict(acc=0, reseed=0, stop=False, ended=False, notok=0)
+    st = dict(acc=0, reseed=0, stop=False, ended=False, notok=0, ref=0)
     if os.path.exists(state_path):
         st.update(json.load(open(state_path, encoding="utf-8")))
     segs, flat, stop, lines = load(log, jsonl)
+    nref = 0
+    for i, (r, a) in enumerate(flat):
+        if a["accepted"]:
+            continue
+        nref += 1
+        if nref > st["ref"] and i < len(segs):
+            body = [ln.rstrip()[:230] for ln in segs[i]["lines"] if ON.match(ln) or "no trial step" in ln or "octo-double Newton" in ln or "elim projections" in ln or END.match(ln)]
+            out(f"REFUSED attempt a {a['a']:g} to D {a['D_str'][:12]} (a halving follows, the Newton lines of the attempt):\n" + "\n".join(body))
+    st["ref"] = nref
     for j in range(st["reseed"], len(segs)):
         s = segs[j]
         if s["status"] != "ok":
@@ -185,6 +202,8 @@ def events(state_path, log, jsonl, out=print, csv_path=CSV, quiet=False):
         flags = []
         if k == 0:
             flags.append("FIRST ACCEPTED STEP OF THIS RUN")
+        if s["steps"] is not None and s["steps"] > 5:
+            flags.append(f"MORE THAN 5 NEWTON STEPS ({s['steps']})")
         if not (s["conv"] and s["lam1"]):
             flags.append("NOT CONVERGED AT LAM 1" + ("" if s["conv"] else " (corrector not converged)"))
         diff = mp.nstr(s["delta"] - e, 3) if s["delta"] is not None else "-"
@@ -240,6 +259,8 @@ def selftest():
         events(os.path.join(td, "st.json"), log, jsonl, out=sink.append)
         if not any(x.startswith("ACCEPTED step 1") and "FIRST ACCEPTED STEP" in x for x in sink) or not any(x.startswith("RE-SEED NOT OK") for x in sink):
             fails.append("events on the crawl's log did not report a first accepted step and the failed re-seeds")
+        if not any(x.startswith("REFUSED attempt") and "octo-double Newton" in x for x in sink):
+            fails.append("events on the crawl's log did not report a refused attempt with its Newton lines")
         sink2 = []
         events(os.path.join(td, "st.json"), log, jsonl, out=sink2.append)
         if any(x.startswith("ACCEPTED") or x.startswith("RE-SEED") for x in sink2):
