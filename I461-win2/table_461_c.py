@@ -184,8 +184,11 @@ def events(state_path, log, jsonl, out=print, csv_path=CSV, quiet=False):
             continue
         nref += 1
         if nref > st["ref"] and i < len(segs):
-            body = [ln.rstrip()[:230] for ln in segs[i]["lines"] if ON.match(ln) or "no trial step" in ln or "octo-double Newton" in ln or "elim projections" in ln or END.match(ln)]
-            out(f"REFUSED attempt a {a['a']:g} to D {a['D_str'][:12]} (a halving follows, the Newton lines of the attempt):\n" + "\n".join(body))
+            n = segs[i]["newton"]
+            tail = " | ".join(re.sub(r"^on (\d+): \|F\| (\S+) -> (\S+), \|dz\| \S+ -> \S+, lam (\S+),.*$", r"on \1 |F| \2->\3 lam \4", ln.strip()).replace(": no trial step accepted, stopping", " no trial step")
+                              for ln in segs[i]["on"][-4:])
+            out(f"REFUSED attempt a {a['a']:g} to D {a['D_str'][:12]} (a halving follows): {n[0] if n else '?'} Newton steps, max|F| {n[1] if n else '?'}, not converged; "
+                f"last iterations: {tail}")
     st["ref"] = nref
     for j in range(st["reseed"], len(segs)):
         s = segs[j]
@@ -278,7 +281,7 @@ def selftest():
         events(os.path.join(td, "st.json"), log, jsonl, out=sink.append)
         if not any(x.startswith("ACCEPTED step 1") and "FIRST ACCEPTED STEP" in x for x in sink) or not any(x.startswith("RE-SEED NOT OK") for x in sink):
             fails.append("events on the crawl's log did not report a first accepted step and the failed re-seeds")
-        if not any(x.startswith("REFUSED attempt") and "octo-double Newton" in x for x in sink):
+        if not any(x.startswith("REFUSED attempt") and "Newton steps" in x and "\n" not in x for x in sink):
             fails.append("events on the crawl's log did not report a refused attempt with its Newton lines")
         sink2 = []
         events(os.path.join(td, "st.json"), log, jsonl, out=sink2.append)
