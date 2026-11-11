@@ -19,3 +19,11 @@ ending in its exit code) and a `.json` (`--json`). `hp/data/held_grip.csv` in th
 | schur_D150.0000_exact_od | the same | --jac=exact --od --eps_pow=100 | pass |
 | schur_D200.0000_exact | T138-win2/chain_o/anm_pin3_D200.0000.npz | --jac=exact (quad-double) | FAIL; cosine-sine pairs broken |
 | schur_D232.6312_exact | I461-win2/crawlG/anm_pin3_D232.6312.npz | --jac=exact (quad-double) | FAIL; cosine-sine pairs broken |
+| schur_D175.0000_exact_e70 | T138-win2/chain_o/anm_pin3_D175.0000.npz | --jac=exact --eps_pow=70 (quad-double) | FAIL (differences unresolved) |
+| schur_D175.0000_exact_od | the same | --jac=exact --od --eps_pow=100 | pass |
+| schur_D200.0000_exact_od | T138-win2/chain_o/anm_pin3_D200.0000.npz | --jac=exact --od --eps_pow=100 | FAIL: sigma_1 3.0e-17 below the default floor 1e-14 |
+| schur_D200.0000_exact_od_s25 | the same | the same with --sigma_min=1e-25 | pass |
+| schur_D200.0000_ctl_pinned_rows_s25 | the same | --jac=exact --eps_pow=70 --sigma_min=1e-25 --mutate=pinned_rows (control) | FAIL, as it must (sigma_1 1.3e-33) |
+| schur_D232.6312_exact_od | I461-win2/crawlG/anm_pin3_D232.6312.npz | --jac=exact --od --eps_pow=100 (stopped by hand: the default floor would fail) | log only |
+| schur_D232.6312_exact_od_s25 | the same | --jac=exact --od --eps_pow=100 --sigma_min=1e-25 | FAIL: differences agree to 1.1e-3, over the 1e-3 bound |
+| schur_D232.6312_exact_od_s25_e110 | the same | the same with --eps_pow=110 | pass |
