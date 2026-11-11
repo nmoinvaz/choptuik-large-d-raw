@@ -1,10 +1,10 @@
-"""#462: the launcher of a chain's restart with --held_o 1 --reseed_o 3 on main 7b6afc2 (the coordinator's rule: when a
+"""#462: the launcher of a chain's restart with --held_o 1 --reseed_o 3 on main cc6d51b (the coordinator's rule: when a
 step of a chain needs more than 6 octo-double solves, let it finish and save, stop that chain, restart it from its last
 state with these two options and --base_polish 0).
 
     python3 switch_cmd.py CHAIN [--dry]        CHAIN is d6 or d10, run from the raw clone's I462-win folder
 
-Writes CHAIN_long2.cmd: the chain's long-run command with the checkout choptuik-t151b (7b6afc2), --held_o 1 --reseed_o 3,
+Writes CHAIN_long2.cmd: the chain's long-run command with the checkout choptuik-t151c (cc6d51b), --held_o 1 --reseed_o 3,
 the newest saved state of the chain as --state, run_capped.py with the seconds left to that chain's cap (computed
 here, not by hand), the log appended to chain_CHAIN.log and the exit code in chain_CHAIN_long2.exit. It refuses when
 the newest state's D does not match the log's last accepted step (a step not saved yet), or when the cap is out of range.
@@ -35,7 +35,7 @@ if not 2 * 3600 < secs < 24 * 3600:
     sys.exit(f"REFUSED: {secs} s to the cap is out of range")
 lines = [
     "@echo off",
-    r"cd /d C:\Users\nathan\Source\choptuik-t151b\hp",
+    r"cd /d C:\Users\nathan\Source\choptuik-t151c\hp",
     r"set PATH=C:\Users\nathan\Source\venv-t151\Scripts;%PATH%",
     r"set RAW=..\..\choptuik-large-d-raw",
     rf"python.exe -u %RAW%\I462-win\run_capped.py {secs} python.exe -u anm_run.py %RAW% %RAW%\I462-win\chain_{chain} --state {state_rel} --kfreeze 3 --held_fit data/held_fit_{chain}.json --N 24 --eps 1e-14 --h_max 1.0 --steps 400 --D_max 400 --threads 3 --corrector od --tol_od 1e-40 --qd_it 12 --jet_o 1 --reseed 2 --reseed_q 1 --save_pred 1 --od_junk 0 --base_polish 0 --held_o 1 --reseed_o 3 >> %RAW%\I462-win\chain_{chain}.log 2>&1",

@@ -63,3 +63,13 @@ step 2: D 217.13125, pivots 2.3e-16..4.8e+30, |z_1| 4.31e-04, |z_N| 4.34e-30, ra
 step 3: D 218.13125, pivots 1.2e-16..6.8e+30, |z_1| 4.28e-04, |z_N| 4.21e-30, ratios 2-5 278.9 251.4 239.7 236.3, a_max 3.327, 3694 s
     a 1.0000: re-seeded (ok), 319.76 s
   on 0: |F| 3.59e-20 -> 6.50e-31, |dz| 3.5e-19 -> 4.6e-32, lam 1, dDelta +7.24e-20, piv 5.7e-17..9.7e+30, 472.57 s
+  on 1: |F| 6.50e-31 -> 3.07e-32, |dz| 4.6e-32 -> 3.2e-45, lam 1, dDelta +5.51e-33, piv 5.7e-17..9.7e+30, 297.25 s
+  on 2: |F| 3.07e-32 -> 1.45e-58, |dz| 3.2e-45 -> 1.7e-50, lam 1, dDelta -7.96e-47, piv 5.7e-17..9.7e+30, 311.59 s
+  on 3: |F| 1.45e-58 converged, Delta 1.69067145203027014 -5.3315e-17
+      elim projections {'u0': 0, 'u0q': 1, 'ladder': 0, 'failed': 0, 'skipped': 3}
+      octo-double Newton: 4 steps, max|F| 1.4e-58, converged; double-double |F| of its first two parts 2.4e+02
+    a 1.000 -> D 219.13125: predicted |F| 2.40e+02, od 4 steps -> 2.40e+02 (tol 4.4e-20, stall accepted, Delta correction +0.0e+00), Delta 1.690671452030 (formula diff -1.4e-06), moved 3.5e-19, 1346 s
+=== 00:31:29 UTC: d6 switched to main cc6d51b with --held_o 1 --reseed_o 3 (auto_switch.py), restart from chain_d6/anm_pin3_D219.1312.npz
+held values from the fit data/held_fit_d6.json (degree 6, 138 full-system states, D 38.020417-73.0), relative to the base
+base polish skipped (--base_polish 0): the stored state is the base
+base I462-win/chain_d6/anm_pin3_D219.1312.npz: D 219.13125, M 32, pin 3 (held [5, 7, 9, 11, 13]), |F| 2.4e+02; N 24, eps 1e-14, h_max 1.0, corrector od (junk_only False), tol 1.0e-20 x 1.45^(D - 219.13125), stalls accepted below 1e-17
