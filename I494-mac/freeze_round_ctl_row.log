@@ -1,0 +1,13 @@
+I461-win2/crawlJ/anm_pin3_D242.3642.npz: D 242.3641907, M 32, nodes [0.3, 0.4, 0.5, 0.6, 0.7], kfreeze 3, L 769
+  projector rounding: max |Pi_low dd - exact| 1.78e-34, max |Pi_high dd - exact| 1.78e-34
+  |d| 1.69e-34, |p1| 0.169, kernel's rows 0.000816 (2 s)
+  (a) emulated minus kernel's rows 3.15e-134 (bound 1e-60), other rows frozen minus unfrozen 0.0e+00 (bound 1e-90): pass
+  e = exact minus rounded rows: max 1.617e-34; harmonics k1 1.65e-34, k3 3.53e-36, k5 7.35e-38, k7 8.84e-39
+  the state's pinned residual F: max 7.989e-38
+  octo-double LU 266 s, pivots 3.5e-25..3.3e+34
+  Delta's shift: -(J^-1 e)_Delta 2.14723e-9, -(J^-1 F)_Delta 9.96512e-40
+  |dz| by block, largest: p1 3.38e-09, m_h 2.57e-09, node4.p 2.06e-09, node4.m 2.06e-09, node3.p 1.83e-09
+  (b) ||J x - e|| / ||e|| 0.00245 (bound 1e-6, 217 s): FAIL
+  Newton on the exact rows: max|F + e| 1.62e-34 -> 3.6e+31
+  verdict: |shift of Delta| 2.15e-09 against the error bar 3e-11: BAD
+check: FAIL
