@@ -1,6 +1,6 @@
-"""#462: the launcher of a chain's restart with --held_o 1 --reseed_o 3 on main cc6d51b (the coordinator's rule: when a
-step of a chain needs more than 6 octo-double solves, let it finish and save, stop that chain, restart it from its last
-state with these two options and --base_polish 0).
+"""#462: the launcher of a chain's restart with --held_o 1 --reseed_o 3 on main cc6d51b. Since 01:02 UTC Nov 11 (the task
+coordinator) it also has --tol_od 1e-60 and no --base_polish 0, so that the base is polished (a polish that does not
+converge prints "base polish not adopted" and the stored state stays the base); d6 gets this at its next restart.
 
     python3 switch_cmd.py CHAIN [--dry]        CHAIN is d6 or d10, run from the raw clone's I462-win folder
 
@@ -38,7 +38,7 @@ lines = [
     r"cd /d C:\Users\nathan\Source\choptuik-t151c\hp",
     r"set PATH=C:\Users\nathan\Source\venv-t151\Scripts;%PATH%",
     r"set RAW=..\..\choptuik-large-d-raw",
-    rf"python.exe -u %RAW%\I462-win\run_capped.py {secs} python.exe -u anm_run.py %RAW% %RAW%\I462-win\chain_{chain} --state {state_rel} --kfreeze 3 --held_fit data/held_fit_{chain}.json --N 24 --eps 1e-14 --h_max 1.0 --steps 400 --D_max 400 --threads 3 --corrector od --tol_od 1e-40 --qd_it 12 --jet_o 1 --reseed 2 --reseed_q 1 --save_pred 1 --od_junk 0 --base_polish 0 --held_o 1 --reseed_o 3 >> %RAW%\I462-win\chain_{chain}.log 2>&1",
+    rf"python.exe -u %RAW%\I462-win\run_capped.py {secs} python.exe -u anm_run.py %RAW% %RAW%\I462-win\chain_{chain} --state {state_rel} --kfreeze 3 --held_fit data/held_fit_{chain}.json --N 24 --eps 1e-14 --h_max 1.0 --steps 400 --D_max 400 --threads 3 --corrector od --tol_od 1e-60 --qd_it 12 --jet_o 1 --reseed 2 --reseed_q 1 --save_pred 1 --od_junk 0 --held_o 1 --reseed_o 3 >>%RAW%\I462-win\chain_{chain}.log 2>&1",
     rf"echo %errorlevel% > %RAW%\I462-win\chain_{chain}_long2.exit",
 ]
 print(f"{chain}: state {state_rel} (D {d_new}, the log's last accepted D {d_log}); now {now:%Y-%m-%d %H:%M:%S} UTC, cap {CAPS[chain]:%Y-%m-%d %H:%M:%S} UTC, SECONDS {secs} ({secs / 3600:.2f} h)")

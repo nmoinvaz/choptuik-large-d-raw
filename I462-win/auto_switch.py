@@ -118,7 +118,7 @@ log("old run stopped, no python of the chain left")
 try:
     with open(f"chain_{chain}.log", "a", encoding="utf-8", newline="") as fh:
         fh.write(f"=== {dt.datetime.now(dt.timezone.utc):%H:%M:%S} UTC: {chain} switched to main cc6d51b with --held_o 1 --reseed_o 3 "
-                 f"(auto_switch.py), restart from {path}\r\n")
+                 f"--tol_od 1e-60 and the base polish on (auto_switch.py), restart from {path}\r\n")
 except OSError as e:
     log(f"WARNING the marker line could not be written to chain_{chain}.log: {e}")
 
@@ -130,12 +130,20 @@ ok = False
 for _ in range(30):
     time.sleep(5)
     tail = open(f"chain_{chain}.log", encoding="utf-8", errors="replace").read().splitlines()[n0:]
-    if any("base polish skipped" in l for l in tail) and any(l.startswith("base I462-win/chain_" + chain) for l in tail) and len(chain_pythons()) >= 2:
+    # with the polish on, the first lines are "held values ..." and the base line comes only after the polish ends
+    if any(l.startswith("held values from the fit") for l in tail) and len(chain_pythons()) >= 2:
         ok = True
         break
 if not ok:
-    alarm("the restarted chain did not print its base line within 150 s: read chain_" + chain + ".log")
+    alarm("the restarted chain did not start within 150 s: read chain_" + chain + ".log")
+cmds = ps("Get-CimInstance Win32_Process | Where-Object { $_.Name -eq 'python.exe' -and $_.CommandLine -match 'anm_run' -and $_.CommandLine -match 'chain_" + chain +
+          "( |$)' } | ForEach-Object { $_.CommandLine }")
+want = re.search(r"--tol_od (\S+)", open(f"{chain}_long2.cmd").read()).group(1)
+live = re.findall(r"--tol_od (\S+)", cmds)
+bad = [w for w, ok_ in (("--held_o 1", "--held_o 1" in cmds), ("--reseed_o 3", "--reseed_o 3" in cmds), (f"--tol_od {want}", bool(live) and set(live) == {want})) if not ok_]
+if bad:
+    alarm(f"the live command line of {chain} lacks {bad}: read {chain}_long2.cmd")
 prio = ps("Get-CimInstance Win32_Process | Where-Object { $_.Name -eq 'python.exe' -and $_.CommandLine -match 'chain_" + chain +
           "( |$)' } | ForEach-Object { (Get-Process -Id $_.ProcessId).PriorityClass }").split()
-log(f"restart verified: base polish skipped and base line printed, priorities {prio}")
+log(f"restart verified: the driver started, live flags --held_o 1 --reseed_o 3 --tol_od {want}, base_polish option present: {'--base_polish' in cmds}, priorities {prio}")
 sys.exit(0)

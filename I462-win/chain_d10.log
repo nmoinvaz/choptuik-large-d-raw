@@ -77,3 +77,14 @@ step 5: D 220.13125, pivots 3.4e-17..1.4e+31, |z_1| 4.21e-04, |z_N| 3.40e-29, ra
       elim projections {'u0': 0, 'u0q': 1, 'ladder': 0, 'failed': 0, 'skipped': 3}
       octo-double Newton: 4 steps, max|F| 2.7e-54, converged; double-double |F| of its first two parts 4.2e+02
     a 1.000 -> D 221.13125: predicted |F| 4.46e+02, od 4 steps -> 4.15e+02 (tol 9.3e-20, stall accepted, Delta correction +0.0e+00), Delta 1.690253292862 (formula diff -1.4e-06), moved 1.5e-18, 1185 s
+step 6: D 221.13125, pivots 1.5e-17..2.0e+31, |z_1| 4.18e-04, |z_N| 2.62e-29, ratios 2-5 282.8 254.9 243.1 239.2, a_max 3.070, 3767 s
+    a 1.0000: re-seeded (ok), 236.58 s
+  on 0: |F| 2.61e-20 -> 1.29e-30, |dz| 1.9e-18 -> 1.1e-30, lam 1, dDelta +8.15e-20, piv 6.7e-18..2.8e+31, 408.57 s
+  on 1: |F| 1.29e-30 -> 5.37e-29, |dz| 1.1e-30 -> 8.5e-43, lam 1, dDelta -3.00e-31, piv 6.7e-18..2.8e+31, 168.57 s
+  on 2: |F| 5.37e-29 -> 3.23e-53, |dz| 8.5e-43 -> 3.8e-43, lam 1, dDelta +2.69e-43, piv 6.7e-18..2.8e+31, 178.98 s
+  on 3: |F| 3.23e-53 converged, Delta 1.69004700516864959 -7.4421e-17
+      elim projections {'u0': 0, 'u0q': 1, 'ladder': 0, 'failed': 0, 'skipped': 3}
+      octo-double Newton: 4 steps, max|F| 3.2e-53, converged; double-double |F| of its first two parts 7.5e+02
+    a 1.000 -> D 222.13125: predicted |F| 8.41e+02, od 4 steps -> 7.51e+02 (tol 1.3e-19, stall accepted, Delta correction +0.0e+00), Delta 1.690047005169 (formula diff -1.4e-06), moved 1.9e-18, 930 s
+=== 01:44:04 UTC: d10 switched to main cc6d51b with --held_o 1 --reseed_o 3 --tol_od 1e-60 and the base polish on (auto_switch.py), restart from chain_d10/anm_pin3_D222.1312.npz
+held values from the fit data/held_fit_d10.json (degree 10, 138 full-system states, D 38.020417-73.0), relative to the base
