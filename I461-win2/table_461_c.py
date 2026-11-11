@@ -169,8 +169,8 @@ def table(runs, frm=1, out=print, csv_path=CSV):
             if d is not None:
                 pts.append((s["D"], d))
     out("| step | D | a | smallest..largest pivot of the base | \\|z_N\\| of the base | ratios 2-5 of the base | a_max | start residual | first \\|dz\\| | first \\|dz\\| / a | \\|dz\\| where the collapse starts "
-        "| max\\|F\\| after the first Newton step | Newton steps | lam 0.5 iterations | lam per iteration | final residual | converged, lam 1 | Delta | Delta minus degree-5 extrapolation |")
-    out("|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|")
+        "| max\\|F\\| after the first Newton step | Newton steps | lam 0.5 iterations | lam per iteration | final residual | converged, lam 1 | Delta | Delta minus degree-5 extrapolation | last rung max\\|R\\| of the re-seed |")
+    out("|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|")
     for k, (s, d, e) in enumerate(rows, 1):
         if k < frm:
             continue
@@ -178,7 +178,7 @@ def table(runs, frm=1, out=print, csv_path=CSV):
         dd = mp.nstr(d, 18) if d is not None else "-"
         df = mp.nstr(d - e, 3) if d is not None else "-"
         out(f"| {k} | {mp.nstr(s['D'], 12)} | {s['a']:g} | {s['pivots']} | {s['zN']} | {s['ratios']} | {s['amax']} | {s['start']} | {s['dz0']} | {dz_per_a(s)} | {s['dzc']} | {s['after1']} | "
-            f"{s['steps']} | {sum(1 for x in s['lams'] if x == 0.5)} | {s['lamtxt']} | {s['final']} | {ok} | {dd} | {df} |")
+            f"{s['steps']} | {sum(1 for x in s['lams'] if x == 0.5)} | {s['lamtxt']} | {s['final']} | {ok} | {dd} | {df} | {s['seg'].get('hor', '-')} |")
     return len(rows)
 
 
@@ -202,6 +202,8 @@ PRIOR = {"crawlB3": [("crawlB2.log", "crawlB2/anm_run.jsonl")],
          "crawlK": [("crawlB2.log", "crawlB2/anm_run.jsonl"), ("crawlG.log", "crawlG/anm_run.jsonl"), ("crawlI.log", "crawlI/anm_run.jsonl"), ("crawlJ.log", "crawlJ/anm_run.jsonl")],
          "crawlL": [("crawlB2.log", "crawlB2/anm_run.jsonl"), ("crawlG.log", "crawlG/anm_run.jsonl"), ("crawlI.log", "crawlI/anm_run.jsonl"),
                     ("crawlJ.log", "crawlJ/anm_run.jsonl"), ("probe03125.log", "probe03125/anm_run.jsonl")],
+         "crawlM": [("crawlB2.log", "crawlB2/anm_run.jsonl"), ("crawlG.log", "crawlG/anm_run.jsonl"), ("crawlI.log", "crawlI/anm_run.jsonl"),
+                    ("crawlJ.log", "crawlJ/anm_run.jsonl"), ("probe03125.log", "probe03125/anm_run.jsonl"), ("crawlL.log", "crawlL/anm_run.jsonl")],
          "crawlD2": [("crawlB2.log", "crawlB2/anm_run.jsonl"), ("crawlB3.log", "crawlB3/anm_run.jsonl"), ("crawlB4.log", "crawlB4/anm_run.jsonl"),
                      ("crawlB5.log", "crawlB5/anm_run.jsonl"), ("crawlC.log", "crawlC/anm_run.jsonl"), ("crawlD.log", "crawlD/anm_run.jsonl")]}
 NEWTON_FLAG = 25      # the coordinator's order of 21:02 UTC (crawlF, a 0.35): report at once a step that needs more than this many Newton steps (and a lam below LAM_FLAG)

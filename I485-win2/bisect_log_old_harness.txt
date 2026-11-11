@@ -1,0 +1,25 @@
+# bad: [e043be234377ba5974239f70590500971c803441] hp: modecount_build.sh installs the Windows build of modecount_cx
+# good: [2ef5022993f6dfa2db3ba9b3c657aef79c9bd6f5] Merge the unstable-mode count (notes/MODE_COUNT.md, hp/modecount_*): one physical unstable mode at D = 30, 45, 61
+git bisect start 'e043be2' '2ef50229' '--' 'hp/src' 'hp/Cargo.toml' 'hp/modecount_cx' 'hp/modecount_common.py' 'hp/python/hpkernel/driver.py'
+# bad: [203670ab70e02c379d6feacd8b597968a4883f8b] hp: delta_correction's dot product in double-double (multidouble's dd_dot)
+git bisect bad 203670ab70e02c379d6feacd8b597968a4883f8b
+# skip: [93402cf87c7fa5509d3949474b0f674e7ed82be0] hp: the arithmetic comes from the multidouble crate
+git bisect skip 93402cf87c7fa5509d3949474b0f674e7ed82be0
+# skip: [e0c5f54bc724762fc2f9daba052e5c7f7b326b4c] Quad-double arithmetic in the double-double kernel: scalar QD and 8-lane QV (not used by the solver yet)
+git bisect skip e0c5f54bc724762fc2f9daba052e5c7f7b326b4c
+# skip: [68b9d399406d34c1f5a2f89ae26d3bf34f3f3500] hp: continuation verification at D = 40 and 59.8, loop budget 30, bench with 30 products at large D (WIP)
+git bisect skip 68b9d399406d34c1f5a2f89ae26d3bf34f3f3500
+# bad: [7588ebe25e17b18473d72b5deb0f511923c42bd9] hp: multidouble from its merged main (23adb80, lu_rect_f64) until 1.1.0 is on crates.io
+git bisect bad 7588ebe25e17b18473d72b5deb0f511923c42bd9
+# skip: [0a131fafa0893453891e069d6dbabcc1846c7a2e] hp: M = 512 (B = 64) in the size dispatch
+git bisect skip 0a131fafa0893453891e069d6dbabcc1846c7a2e
+# skip: [6bcd39042c3167414613e1040109b0b9b66fb1fb] hp: the scaled series on multidouble's mul_pwr2 (pin 6e93c58); pilot progress file with repository-relative paths; HIGH_M.md placeholders resolved (WIP, not yet verified)
+git bisect skip 6bcd39042c3167414613e1040109b0b9b66fb1fb
+# skip: [e6c908a20f17ead9f7a3639fbb571bd390bdb716] Quad-double accurate add: keep v as a fifth term and renormalize five (the u + v repair was incomplete)
+git bisect skip e6c908a20f17ead9f7a3639fbb571bd390bdb716
+# skip: [154738fa29d8ed4abb9226fa489f31572ea149da] hp: dd_finish (exact steps once a mixed step stalls near the floor), scan records the sensitivities' LU; D = 59.8 continuation runs without it kept (WIP)
+git bisect skip 154738fa29d8ed4abb9226fa489f31572ea149da
+# bad: [1dcde949124661efa8812d632d393bfaf907c34b] hp: modecount_cx on the current kernel, with a test-field sector (ghost admixture; counts in progress)
+git bisect bad 1dcde949124661efa8812d632d393bfaf907c34b
+# skip: [4a01322441a14796d492e3c8581c8025d9aaa0d8] hp: continuation runs at D = 40, 50, 59.8 with every variant and the exact last step; notes (WIP)
+git bisect skip 4a01322441a14796d492e3c8581c8025d9aaa0d8
