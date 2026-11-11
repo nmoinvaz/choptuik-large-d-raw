@@ -1,0 +1,31 @@
+T138-win2/chain/anm_pin3_D150.0000.npz: D 150.0, pinned LU 13 s, pivots 5.9e-08..3.2e+20
+  full residual max 1.79e-22; g (harmonics 5-13 of the horizon p rows) -1.14e-22 -8.93e-23 2.25e-23 -2.17e-23 7.61e-25 4.21e-24 -4.22e-25 -2.89e-25 5.63e-26 -4.4e-27
+  exact Jacobian (jacobian_q) and S from it: 14 s
+  singular values of S (eps): 2.227e-5 2.199e-5 1.583e-6 1.583e-6 4.488e-8 4.483e-8 5.387e-10 5.387e-10 2.656e-12 2.656e-12
+  singular values of S (eps/2): 5.567e-6 5.498e-6 3.958e-7 3.957e-7 1.122e-8 1.121e-8 1.347e-10 1.347e-10 6.641e-13 6.64e-13
+  eps vs eps/2, relative difference per singular value: 0.75 0.75 0.75 0.75 0.75 0.75 0.75 0.75 0.75 0.75
+  eps vs eps/2: largest relative difference 0.75 over sigma > 1e-12 sigma_1 (the finite-difference check fails)
+  singular values of S (exact): 1.729e-13 1.729e-13 2.793e-17 2.793e-17 7.441e-21 7.441e-21 5.223e-24 5.223e-24 6.418e-27 6.418e-27
+  exact vs eps, relative difference per singular value: 1.3e+8 1.3e+8 5.7e+10 5.7e+10 6.0e+12 6.0e+12 1.0e+14 1.0e+14 4.1e+14 4.1e+14
+  exact vs eps: largest relative difference +inf over the 0 values that eps and eps/2 resolve to 1e-3
+| sigma | direction (largest components) | dDelta per unit along v | u . g | full step along v | its dDelta |
+|---|---|---|---|---|---|
+| 1.73e-13 | 5a 0.998, 5b -0.0578 | 0.0142 | 1.17e-22 | -6.75e-10 | -9.61e-12 |
+| 1.73e-13 | 5b -0.998, 5a -0.0578 | -0.009 | 9.19e-23 | -5.32e-10 | 4.78e-12 |
+| 2.79e-17 | 7a 0.855, 7b -0.516 | 0.0012 | -3.18e-25 | 1.14e-8 | 1.36e-11 |
+| 2.79e-17 | 7b -0.855, 7a -0.516 | 0.000214 | -9.32e-26 | 3.34e-9 | 7.15e-13 |
+| 7.44e-21 | 9a -0.957, 9b 0.283 | 2.33e-5 | -1.14e-27 | 1.53e-7 | 3.56e-12 |
+| 7.44e-21 | 9b 0.957, 9a 0.283 | -8.47e-5 | -1.11e-27 | 1.5e-7 | -1.27e-11 |
+| 5.22e-24 | 11a 0.727, 11b -0.682 | -6.1e-6 | 3.26e-31 | -6.25e-8 | 3.81e-13 |
+| 5.22e-24 | 11b -0.727, 11a -0.682 | 1.58e-6 | -3.08e-31 | 5.89e-8 | 9.32e-14 |
+| 6.42e-27 | 13b -0.9, 13a 0.431 | -2.98e-7 | -9.43e-31 | 0.000147 | -4.38e-11 |
+| 6.42e-27 | 13a -0.9, 13b -0.431 | -3.94e-7 | -6.51e-32 | 1.01e-5 | -4.0e-12 |
+| kept: sigma > tau sigma_1 | harmonics solved | dDelta of the truncated step | the same from S at eps | max abs dh |
+|---|---|---|---|---|
+| 0.01 | 5 | -4.82424e-12 | 8.17608e-20 | 6.43e-10 |
+| 1e-05 | 5, 7 | 9.50179e-12 | 7.86958e-20 | 8.75e-9 |
+| 1e-08 | 5, 7, 9 | 3.86035e-13 | 3.48286e-19 | 1.87e-7 |
+| 1e-10 | 5, 7, 9 | 3.86035e-13 | 3.48286e-19 | 1.87e-7 |
+| 0 | 5, 7, 9, 11, 13 | -4.6894e-11 | 3.48286e-19 | 0.000137 |
+check: FAIL
+exit 1
