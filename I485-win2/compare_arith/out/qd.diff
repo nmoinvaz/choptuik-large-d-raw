@@ -1,0 +1,85 @@
+--- /d/choptuik-large-d-raw/I485-win2/compare_arith/out/old/qd.rs	2026-11-11 10:34:18.777867300 -0800
++++ /d/choptuik-large-d-raw/I485-win2/compare_arith/out/new/qd.rs	2026-11-11 10:34:18.616081300 -0800
+@@ -11,7 +11,7 @@
+ //! The operators use the library's default configuration: `+`, `-` the sloppy add, `*` the sloppy multiply, `/` the
+ //! sloppy divide; `ieee_add`, `accurate_mul` and `accurate_div` are the others.
+ //!
+-//! Two repairs of QD, both found by the tests (notes/QUAD_DOUBLE.md, section 3): the accurate add keeps u + v where
++//! Two repairs of QD, both found by the tests (docs/QUAD_DOUBLE.md, section 3): the accurate add keeps u + v where
+ //! QD keeps u alone (when all parts are read with three emitted), and sqrt scales its argument by an exact power of
+ //! four into [1, 4) (QD's iteration loses accuracy above about 2^860 and below about 2^-860).
+ //!
+@@ -19,13 +19,13 @@
+ //! parsing and printing are exact (via `exact`): `parse` rounds the decimal value to four parts by greedy
+ //! round-to-nearest (error <= 2^-212 relative), `to_sci` prints the four-part sum correctly rounded.
+ //!
+-//! With the cargo feature `qd_mutate`, `mutate::set(id)` breaks one algorithm on purpose in the current thread, for
++//! With the cargo feature `mutate`, `mutate::set(id)` breaks one algorithm on purpose in the current thread, for
+ //! the controls of the accuracy tests (`qd_tests`); without it the hooks are compile-time `false`.
+ use crate::dd::{quick_two_sum, two_prod, two_sum, DD};
+ use crate::exact::{BigU, DecRat, Dy};
+ use std::ops::{Add, Div, Mul, Neg, Sub};
+ 
+-/// Deliberate breakage for the controls (feature `qd_mutate`; ids below, 0 = none).
++/// Deliberate breakage for the controls (feature `mutate`; ids below, 0 = none).
+ pub mod mutate {
+     /// renormalization: the last first-pass quick-two-sum (c0 + s) done in plain f64, its error dropped
+     pub const RENORM_P1: u32 = 1;
+@@ -81,22 +81,22 @@
+         "8-lane accurate add: next part of a read one late",
+     ];
+ 
+-    #[cfg(feature = "qd_mutate")]
++    #[cfg(feature = "mutate")]
+     thread_local!(static ID: std::cell::Cell<u32> = const { std::cell::Cell::new(0) });
+ 
+     /// select the mutation for the current thread (0 = none)
+-    #[cfg(feature = "qd_mutate")]
++    #[cfg(feature = "mutate")]
+     pub fn set(id: u32) {
+         ID.with(|m| m.set(id));
+     }
+ 
+-    #[cfg(feature = "qd_mutate")]
++    #[cfg(feature = "mutate")]
+     #[inline(always)]
+     pub fn on(id: u32) -> bool {
+         ID.with(|m| m.get() == id)
+     }
+ 
+-    #[cfg(not(feature = "qd_mutate"))]
++    #[cfg(not(feature = "mutate"))]
+     #[inline(always)]
+     pub fn on(_id: u32) -> bool {
+         false
+@@ -226,7 +226,7 @@
+     0.0
+ }
+ 
+-/// Quad-double x[0] + x[1] + x[2] + x[3].
++/// Quad-double `x[0] + x[1] + x[2] + x[3]`.
+ #[derive(Clone, Copy, Debug, Default, PartialEq)]
+ pub struct QD {
+     pub x: [f64; 4],
+@@ -330,9 +330,11 @@
+ 
+     /// QD's accurate add (merge by magnitude, double-length accumulator), IEEE-style error bound, with one change:
+     /// when every part has been read with three already emitted, the last part is u + v where QD keeps u alone
+-    /// (notes/QUAD_DOUBLE.md: QD's version reached 16.8 u relative error in 2 of 20000 near-cancelling sums, this
++    /// (docs/QUAD_DOUBLE.md: QD's version reached 16.8 u relative error in 2 of 20000 near-cancelling sums, this
+     /// one 0.12 u in 200000)
+     #[inline]
++    // the merge keeps QD's branch order, in which the first and last branches take the same part
++    #[allow(clippy::if_same_then_else)]
+     pub fn ieee_add(self, b: QD) -> QD {
+         let (a, b) = (self.x, b.x);
+         let gt = |x: f64, y: f64| {
+@@ -644,7 +646,7 @@
+     /// Square root: QD's Newton iteration on 1/sqrt(a) (three steps from the f64 value, then times a), applied to a
+     /// scaled by an exact power of four into [1, 4) and the result scaled back. Unscaled, as in QD, the iteration
+     /// loses accuracy above about 2^860 (1/a's lower parts underflow) and below about 2^-860 (a/2 drops bits of
+-    /// subnormal parts); the near-overflow tests found it (notes/QUAD_DOUBLE.md).
++    /// subnormal parts); the near-overflow tests found it (docs/QUAD_DOUBLE.md).
+     #[inline]
+     pub fn sqrt(self) -> QD {
+         if self.is_zero() {

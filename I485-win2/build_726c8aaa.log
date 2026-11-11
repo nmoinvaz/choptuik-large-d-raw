@@ -12,3 +12,62 @@ Uninstalling hpkernel-0.1.0:
 🔗 Found pyo3 bindings
 📡 Using build options features from pyproject.toml
    Compiling hpkernel v0.1.0 (D:\choptuik-bisect\hp)
+    Finished `release` profile [optimized] target(s) in 11m 15s
+📦 Built wheel for CPython 3.12 to D:/choptuik-bisect/hp/dist_726c8aaa\hpkernel-0.1.0-cp312-cp312-win_amd64.whl
+Processing d:\choptuik-bisect\hp\dist_726c8aaa\hpkernel-0.1.0-cp312-cp312-win_amd64.whl
+Installing collected packages: hpkernel
+Successfully installed hpkernel-0.1.0
+
+[notice] A new release of pip is available: 24.3.1 -> 26.3
+[notice] To update, run: python.exe -m pip install --upgrade pip
+pyproject.toml names no multidouble package at this commit
+hpkernel ok avx2
+   Compiling hpkernel v0.1.0 (D:\choptuik-bisect\hp)
+   Compiling modecount_cx v0.1.0 (D:\choptuik-bisect\hp\modecount_cx)
+error[E0063]: missing fields `f64_dd` and `mutate` in initializer of `Ctx<2>`
+   --> src\lib.rs:822:32
+    |
+822 |             $( $bb => Box::new(Ctx::<$bb> {
+    |                                ^^^^^^^^^^ missing `f64_dd` and `mutate`
+...
+890 |         let mut api: Box<dyn CApi> = make_ctx!(m / 8, n, dh, dl, ph, pl, nodes.clone(), kt, kc, ks, plow, mn, [2, 4, 6, 8]);
+    |                                      -------------------------------------------------------------------------------------- in this macro invocation
+    |
+    = note: this error originates in the macro `make_ctx` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0063]: missing fields `f64_dd` and `mutate` in initializer of `Ctx<4>`
+   --> src\lib.rs:822:32
+    |
+822 |             $( $bb => Box::new(Ctx::<$bb> {
+    |                                ^^^^^^^^^^ missing `f64_dd` and `mutate`
+...
+890 |         let mut api: Box<dyn CApi> = make_ctx!(m / 8, n, dh, dl, ph, pl, nodes.clone(), kt, kc, ks, plow, mn, [2, 4, 6, 8]);
+    |                                      -------------------------------------------------------------------------------------- in this macro invocation
+    |
+    = note: this error originates in the macro `make_ctx` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0063]: missing fields `f64_dd` and `mutate` in initializer of `Ctx<6>`
+   --> src\lib.rs:822:32
+    |
+822 |             $( $bb => Box::new(Ctx::<$bb> {
+    |                                ^^^^^^^^^^ missing `f64_dd` and `mutate`
+...
+890 |         let mut api: Box<dyn CApi> = make_ctx!(m / 8, n, dh, dl, ph, pl, nodes.clone(), kt, kc, ks, plow, mn, [2, 4, 6, 8]);
+    |                                      -------------------------------------------------------------------------------------- in this macro invocation
+    |
+    = note: this error originates in the macro `make_ctx` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0063]: missing fields `f64_dd` and `mutate` in initializer of `Ctx<8>`
+   --> src\lib.rs:822:32
+    |
+822 |             $( $bb => Box::new(Ctx::<$bb> {
+    |                                ^^^^^^^^^^ missing `f64_dd` and `mutate`
+...
+890 |         let mut api: Box<dyn CApi> = make_ctx!(m / 8, n, dh, dl, ph, pl, nodes.clone(), kt, kc, ks, plow, mn, [2, 4, 6, 8]);
+    |                                      -------------------------------------------------------------------------------------- in this macro invocation
+    |
+    = note: this error originates in the macro `make_ctx` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+For more information about this error, try `rustc --explain E0063`.
+error: could not compile `modecount_cx` (lib) due to 4 previous errors
+BUILD FAILED modecount_cx

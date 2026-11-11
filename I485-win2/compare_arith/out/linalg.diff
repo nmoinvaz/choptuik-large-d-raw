@@ -1,0 +1,90 @@
+--- /d/choptuik-large-d-raw/I485-win2/compare_arith/out/old/linalg.rs	2026-11-11 10:34:18.764073400 -0800
++++ /d/choptuik-large-d-raw/I485-win2/compare_arith/out/new/linalg.rs	2026-11-11 10:34:18.518344100 -0800
+@@ -1,6 +1,7 @@
+ //! Dense double-double LU with partial pivoting (LAPACK getf2 order), column-major with the leading dimension
+-//! padded to a multiple of 8 so the trailing update runs on 8-row lane vectors. Used for the per-order periodic
+-//! solves of the horizon series (M x M) and for the Newton system (L x L, columns updated in parallel).
++//! padded to a multiple of 8 so the trailing update runs on 8-row lane vectors, columns updated in parallel (rayon)
++//! for large matrices; the same factorization blocked in plain f64 (LAPACK's right-looking getrf) for
++//! mixed-precision use, solves and transpose solves in double-double with either set of factors, and Gram matrices.
+ use crate::dd::{two_prod, two_sum, DD};
+ use crate::dv::{self, DV};
+ use crate::v8::V8;
+@@ -329,7 +330,7 @@
+         mut lo: Vec<f64>,
+         par: bool,
+     ) -> Result<DDLu, String> {
+-        assert!(ld % 8 == 0 && ld >= n && hi.len() >= ld * n && lo.len() >= ld * n);
++        assert!(ld.is_multiple_of(8) && ld >= n && hi.len() >= ld * n && lo.len() >= ld * n);
+         let mut perm = vec![0usize; n];
+         let mut mh = vec![0.0f64; ld];
+         let mut ml = vec![0.0f64; ld];
+@@ -419,9 +420,10 @@
+     ///     rows above je one k at a time (a unit-lower triangular solve), rows below je on register tiles with the
+     ///     k loop innermost, so each entry is loaded and stored once per panel instead of once per k (getf2 sweeps the
+     ///     whole trailing matrix through memory for every k).
++    ///
+     /// Step 3 runs in parallel over chunks of CW columns when par.
+     pub fn factor_blocked(n: usize, ld: usize, mut hi: Vec<f64>, mut lo: Vec<f64>, par: bool) -> Result<DDLu, String> {
+-        assert!(ld % 8 == 0 && ld >= n && hi.len() >= ld * n && lo.len() >= ld * n);
++        assert!(ld.is_multiple_of(8) && ld >= n && hi.len() >= ld * n && lo.len() >= ld * n);
+         let mut perm = vec![0usize; n];
+         let mut j0 = 0;
+         while j0 < n {
+@@ -761,21 +763,6 @@
+         }
+     }
+ 
+-    /// Solve for an M-point field given as B lane vectors (M = n).
+-    pub fn solve_lanes<const B: usize>(&self, f: &crate::field::Fl<DV, B>) -> crate::field::Fl<DV, B> {
+-        let m = 8 * B;
+-        let mut h = vec![0.0; m];
+-        let mut l = vec![0.0; m];
+-        f.store(&mut h, &mut l);
+-        let mut b: Vec<DD> = (0..m).map(|i| DD { hi: h[i], lo: l[i] }).collect();
+-        self.solve(&mut b);
+-        for i in 0..m {
+-            h[i] = b[i].hi;
+-            l[i] = b[i].lo;
+-        }
+-        crate::field::Fl::<DV, B>::load(&h, &l)
+-    }
+-
+     /// Solve A x = b in plain f64 with the hi parts of the factors (an f64 LU of A, accurate to about one ulp of its
+     /// entries), for the f64 lanes of the mixed-precision Jacobian.
+     pub fn solve_hi(&self, b: &mut [f64]) {
+@@ -806,17 +793,6 @@
+         }
+     }
+ 
+-    /// `solve_lanes` in plain f64 (`solve_hi`): the field's hi parts in, lo parts zero out.
+-    pub fn solve_lanes_hi<const B: usize>(&self, f: &crate::field::Fl<DV, B>) -> crate::field::Fl<DV, B> {
+-        let m = 8 * B;
+-        let mut h = vec![0.0; m];
+-        let mut l = vec![0.0; m];
+-        f.store(&mut h, &mut l);
+-        self.solve_hi(&mut h);
+-        l.iter_mut().for_each(|v| *v = 0.0);
+-        crate::field::Fl::<DV, B>::load(&h, &l)
+-    }
+-
+     /// (sign, ln|det|) of the factored matrix: product of the pivots u_kk, sign flipped per row interchange.
+     pub fn logdet(&self) -> (f64, f64) {
+         let mut sign = 1.0f64;
+@@ -994,7 +970,7 @@
+     /// n eps |L| |U|), stored with lo = 0 so that the double-double solves (solve, solve_t, solve_many, chord) use these
+     /// factors as they are. For the mixed-precision Newton step, whose Jacobian is f64 to begin with.
+     pub fn factor_f64(n: usize, ld: usize, mut a: Vec<f64>, par: bool) -> Result<DDLu, String> {
+-        assert!(ld % 8 == 0 && ld >= n && a.len() >= ld * n);
++        assert!(ld.is_multiple_of(8) && ld >= n && a.len() >= ld * n);
+         let mut perm = vec![0usize; n];
+         let mut j0 = 0;
+         while j0 < n {
+@@ -1201,6 +1177,7 @@
+     }
+ 
+     #[test]
++    #[allow(clippy::type_complexity)]
+     fn blocked_lu_matches_getf2() {
+         let cases: Vec<(usize, Vec<f64>, Vec<f64>, usize, &str)> =
+             [(96, 1), (97, 2), (130, 3), (200, 4), (257, 5), (333, 6)]

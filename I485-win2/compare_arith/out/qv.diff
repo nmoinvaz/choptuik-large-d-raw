@@ -1,0 +1,48 @@
+--- /d/choptuik-large-d-raw/I485-win2/compare_arith/out/old/qv.rs	2026-11-11 10:34:18.789127000 -0800
++++ /d/choptuik-large-d-raw/I485-win2/compare_arith/out/new/qv.rs	2026-11-11 10:34:18.652090000 -0800
+@@ -4,11 +4,11 @@
+ //!
+ //! The QD library's algorithms branch on the data in two places, and both are run here on all lanes with masks:
+ //! - the renormalization's second pass skips zero error terms. Written with a per-lane slot index k (the part being
+-//!   filled), each step is: (t, e) = quick_two_sum(s[k], c); s[k] = t; s[k+1] = e; k += (e != 0); with the
++//!   filled), each step is: `(t, e) = quick_two_sum(s[k], c); s[k] = t; s[k+1] = e; k += (e != 0);` with the
+ //!   five-part version's last step at k = 3 keeping only t (QD's `s3 += c4`). k is held as threshold masks
+ //!   (k >= 1, k >= 2, k >= 3) and the slots updated by selects; the zero test is the same `!=` as QD's.
+ //! - the accurate add merges the eight parts by magnitude. Each lane keeps its own read positions i, j (as f64) and
+-//!   output position k; every step reads a[i], b[j] by selects, and lanes that have finished are frozen. The loop
++//!   output position k; every step reads `a[i]`, `b[j]` by selects, and lanes that have finished are frozen. The loop
+ //!   runs at most seven steps and stops early once all eight lanes are done.
+ //!
+ //! `QDotAcc` accumulates a sum of quad-double products, in the spirit of `dv::DotAcc`: each product is expanded to
+@@ -20,7 +20,7 @@
+ //! design that summed level 3 in plain f64, with those errors mixed into the per-term ones, gave errors growing
+ //! like n (72 u at n = 512, u = 2^-209). Here every running-sum error enters the next level by its own two-sum,
+ //! level 4 is the only plain sum, and the error is that of the dropped O(eps^4) partial products and of `finish`
+-//! (notes/QUAD_DOUBLE.md). It costs about a third of a sloppy multiply plus a sloppy add.
++//! (docs/QUAD_DOUBLE.md). It costs about a third of a sloppy multiply plus a sloppy add.
+ use crate::dd::DD;
+ use crate::dv::{quick_two_sum, two_prod, two_sum, DV};
+ use crate::qd::{mutate, QD};
+@@ -852,16 +852,14 @@
+ }
+ 
+ // ---------------------------------------------------------------------------------------------------------------
+-// the model's lane trait (notes/QUAD_DOUBLE.md, stage 2)
++// quad-double lanes as a `Lane`
+ // ---------------------------------------------------------------------------------------------------------------
+ 
+-/// Quad-double values as a `Lane`, so that the model's generic code (centre series, Taylor stepping, horizon series)
+-/// compiles and runs with quad-double lanes. The trait passes constants and inputs as double-double (`DV`): they
+-/// enter exactly (`from_dv`) but carry only double-double accuracy, and `val` rounds back to double-double; the
+-/// horizon block's periodic solves stay double-double (`DDLu`). So this instantiation computes in quad-double with
+-/// double-double data: it measures the cost of quad-double lanes and checks that the generic code runs with them,
+-/// but does not give a quad-double residual (what that needs is in notes/QUAD_DOUBLE.md). No solver uses it.
+-impl crate::lane::Lane for QV {
++/// Quad-double values as a `Lane`, so that code generic over `Lane` compiles and runs with quad-double lanes. The
++/// trait passes constants and inputs as double-double (`DV`): they enter exactly (`from_dv`) but carry only
++/// double-double accuracy, and `val` rounds back to double-double. So this instantiation computes in quad-double with
++/// double-double data.
++impl crate::dual::Lane for QV {
+     type Acc = QDotAcc;
+     const TANGENT: bool = false;
+     #[inline(always)]
