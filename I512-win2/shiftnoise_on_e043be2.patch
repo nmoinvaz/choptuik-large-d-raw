@@ -1,0 +1,99 @@
+diff --git a/hp/modecount_cx/src/lib.rs b/hp/modecount_cx/src/lib.rs
+index b08853de..cb78724a 100644
+--- a/hp/modecount_cx/src/lib.rs
++++ b/hp/modecount_cx/src/lib.rs
+@@ -30,7 +30,8 @@
+ //! p, m solves it at lambda = 0 (the p, m equations are linear in p, m), so lambda = 0 is a zero.
+ //! TEST_MUT, the control, zeroes the tangents of c only: a's response to p, m stays in, and that identity breaks.
+ use hpk::dd::DD;
+-use hpk::dv::DV;
++use hpk::dv::{DotAcc, DV};
++use hpk::v8::V8;
+ use hpk::field::{cs, cs_range, cs_w, horner, DMat, FieldSolve, Fl, State};
+ use hpk::lane::{BaseLane, Dc};
+ use hpk::linalg::{clu_logdet, ld_for, DDLu};
+@@ -40,6 +41,7 @@ use numpy::{IntoPyArray, PyArray1, PyArray2, PyReadonlyArray1, PyReadonlyArray2}
+ use pyo3::exceptions::PyValueError;
+ use pyo3::prelude::*;
+ use rayon::prelude::*;
++use std::sync::atomic::{AtomicU64, Ordering};
+ use std::sync::Arc;
+ 
+ /// `Cx::test`: the full linearisation
+@@ -88,6 +90,46 @@ fn recip_int(k: usize) -> DD {
+     DD::ONE / DD::from_f64(k as f64)
+ }
+ 
++/// #512: a random relative change of the complex shift's output (rel, seed), and the switch to its old DotAcc form.
++static SHIFT_REL: AtomicU64 = AtomicU64::new(0);
++static SHIFT_SEED: AtomicU64 = AtomicU64::new(0);
++static SHIFT_OLD: AtomicU64 = AtomicU64::new(0);
++
++fn mix(z: u64) -> u64 {
++    let mut z = z.wrapping_add(0x9E37_79B9_7F4A_7C15);
++    z = (z ^ (z >> 30)).wrapping_mul(0xBF58_476D_1CE4_E5B9);
++    z = (z ^ (z >> 27)).wrapping_mul(0x94D0_49BB_1331_11EB);
++    z ^ (z >> 31)
++}
++
++fn shift_noise(out: DV, tr: &DV, ti: &DV, which: u64) -> DV {
++    let rel = f64::from_bits(SHIFT_REL.load(Ordering::Relaxed));
++    if rel == 0.0 {
++        return out;
++    }
++    let seed = SHIFT_SEED.load(Ordering::Relaxed);
++    let (oh, ol) = (out.hi.to_array(), out.lo.to_array());
++    let (a, b) = (tr.hi.to_array(), ti.hi.to_array());
++    let mut nl = [0.0f64; 8];
++    for j in 0..8 {
++        let h = mix(seed ^ mix(a[j].to_bits() ^ mix(b[j].to_bits() ^ (which << 8) ^ j as u64)));
++        let u = ((h >> 11) as f64) * (1.0 / 9007199254740992.0) * 2.0 - 1.0;
++        nl[j] = ol[j] + oh[j] * rel * u;
++    }
++    DV { hi: out.hi, lo: V8::from_array(nl) }
++}
++
++#[pyfunction]
++fn set_shift_noise(rel: f64, seed: u64) {
++    SHIFT_REL.store(rel.to_bits(), Ordering::Relaxed);
++    SHIFT_SEED.store(seed, Ordering::Relaxed);
++}
++
++#[pyfunction]
++fn set_shift_old(flag: bool) {
++    SHIFT_OLD.store(flag as u64, Ordering::Relaxed);
++}
++
+ /// d/dtau = omega D, plus lambda on the (complex) tangent. With li = 0 the same operations as model.rs's dtau.
+ #[inline(always)]
+ fn dtau_c<const B: usize>(cx: &Cx<B>, x: &Fl<Dc, B>, omega: Dc) -> Fl<Dc, B> {
+@@ -97,10 +139,19 @@ fn dtau_c<const B: usize>(cx: &Cx<B>, x: &Fl<Dc, B>, omega: Dc) -> Fl<Dc, B> {
+     }
+     let a = DV::splat(cx.lr);
+     let b = DV::splat(cx.li);
++    let nb = DV::splat(-cx.li);
++    let old_form = SHIFT_OLD.load(Ordering::Relaxed) != 0;
+     for k in 0..B {
+         let t = x.0[k];
+-        r.0[k].r = r.0[k].r + (t.r * a - t.i * b);
+-        r.0[k].i = r.0[k].i + (t.i * a + t.r * b);
++        let (re, im) = if old_form {
++            (DotAcc::zero().add_prod(t.r, a).add_prod(t.i, nb).finish(), DotAcc::zero().add_prod(t.i, a).add_prod(t.r, b).finish())
++        } else {
++            (t.r * a - t.i * b, t.i * a + t.r * b)
++        };
++        let re = shift_noise(re, &t.r, &t.i, 0);
++        let im = shift_noise(im, &t.r, &t.i, 1);
++        r.0[k].r = r.0[k].r + re;
++        r.0[k].i = r.0[k].i + im;
+     }
+     r
+ }
+@@ -951,5 +1002,7 @@ fn cdet<'py>(rh: PyReadonlyArray2<'py, f64>, rl: PyReadonlyArray2<'py, f64>, ih:
+ fn modecount_cx(m: &Bound<'_, PyModule>) -> PyResult<()> {
+     m.add_class::<CSolver>()?;
+     m.add_function(wrap_pyfunction!(cdet, m)?)?;
++    m.add_function(wrap_pyfunction!(set_shift_noise, m)?)?;
++    m.add_function(wrap_pyfunction!(set_shift_old, m)?)?;
+     Ok(())
+ }
