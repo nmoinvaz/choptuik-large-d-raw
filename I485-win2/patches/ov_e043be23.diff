@@ -303,9 +303,18 @@ index a313080a..00000000
 -source = "registry+https://github.com/rust-lang/crates.io-index"
 -checksum = "a2c754d6c33795a1c324727428e5a7dedb5b06195f9890bdbcba760d3e246563"
 diff --git a/hp/modecount_cx/src/lib.rs b/hp/modecount_cx/src/lib.rs
-index b08853de..9a921136 100644
+index b08853de..d7cc806a 100644
 --- a/hp/modecount_cx/src/lib.rs
 +++ b/hp/modecount_cx/src/lib.rs
+@@ -30,7 +30,7 @@
+ //! p, m solves it at lambda = 0 (the p, m equations are linear in p, m), so lambda = 0 is a zero.
+ //! TEST_MUT, the control, zeroes the tangents of c only: a's response to p, m stays in, and that identity breaks.
+ use hpk::dd::DD;
+-use hpk::dv::DV;
++use hpk::dv::{DotAcc, DV};
+ use hpk::field::{cs, cs_range, cs_w, horner, DMat, FieldSolve, Fl, State};
+ use hpk::lane::{BaseLane, Dc};
+ use hpk::linalg::{clu_logdet, ld_for, DDLu};
 @@ -97,10 +97,13 @@ fn dtau_c<const B: usize>(cx: &Cx<B>, x: &Fl<Dc, B>, omega: Dc) -> Fl<Dc, B> {
      }
      let a = DV::splat(cx.lr);

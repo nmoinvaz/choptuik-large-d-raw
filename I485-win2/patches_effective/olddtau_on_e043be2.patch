@@ -1,0 +1,27 @@
+--- a/hp/modecount_cx/src/lib.rs@e043be2
++++ b/hp/modecount_cx/src/lib.rs@e043be2+olddtau
+@@ -30,7 +30,7 @@
+ //! p, m solves it at lambda = 0 (the p, m equations are linear in p, m), so lambda = 0 is a zero.
+ //! TEST_MUT, the control, zeroes the tangents of c only: a's response to p, m stays in, and that identity breaks.
+ use hpk::dd::DD;
+-use hpk::dv::DV;
++use hpk::dv::{DotAcc, DV};
+ use hpk::field::{cs, cs_range, cs_w, horner, DMat, FieldSolve, Fl, State};
+ use hpk::lane::{BaseLane, Dc};
+ use hpk::linalg::{clu_logdet, ld_for, DDLu};
+@@ -97,10 +97,13 @@
+     }
+     let a = DV::splat(cx.lr);
+     let b = DV::splat(cx.li);
++    let nb = DV::splat(-cx.li);
+     for k in 0..B {
+         let t = x.0[k];
+-        r.0[k].r = r.0[k].r + (t.r * a - t.i * b);
+-        r.0[k].i = r.0[k].i + (t.i * a + t.r * b);
++        let re = DotAcc::zero().add_prod(t.r, a).add_prod(t.i, nb).finish();
++        let im = DotAcc::zero().add_prod(t.i, a).add_prod(t.r, b).finish();
++        r.0[k].r = r.0[k].r + re;
++        r.0[k].i = r.0[k].i + im;
+     }
+     r
+ }
