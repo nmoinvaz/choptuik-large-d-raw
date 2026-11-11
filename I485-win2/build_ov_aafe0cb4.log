@@ -1,43 +1,30 @@
-=== ov step aafe0cb4 (mode own): 2026-10-24 hp: the strip comment says what changes (layout can shift; the arithmetic does not)  patches: ctxfields,splitlane,fieldsolve,swrap
-start 2026-11-11 18:53:17 UTC
-patch_ctxfields: added mutate and f64_dd to the Ctx literal
-patch_splitlane: Dc implements BaseLane, Lane is empty
-patch_fieldsolve: FieldSolve imported
-patch_swrap: S, mul_pwr2 and horizon_alpha added
-overlay diff: 342 lines, saved to patches/ov_aafe0cb4.diff
+=== ov step aafe0cb4 (mode overlay): 2026-10-24 hp: the strip comment says what changes (layout can shift; the arithmetic does not)  patches: olddtau
+start 2026-11-11 19:17:41 UTC
+patch_olddtau: dtau_c uses DotAcc again
+overlay diff: 1739 lines, saved to patches/ov_aafe0cb4.diff
 Uninstalling hpkernel-0.1.0:
   Successfully uninstalled hpkernel-0.1.0
 🍹 Building a mixed python/rust project
 🐍 Found CPython 3.12 at C:\Users\nathan\Source\venv-bisect2\Scripts\python.exe
 🔗 Found pyo3 bindings
 📡 Using build options features from pyproject.toml
-   Compiling target-lexicon v0.13.5
-   Compiling autocfg v1.5.1
-   Compiling proc-macro2 v1.0.107
-   Compiling quote v1.0.47
-   Compiling unicode-ident v1.0.27
-   Compiling crossbeam-utils v0.8.23
-   Compiling num-traits v0.2.19
-   Compiling pyo3-build-config v0.30.1
-   Compiling crossbeam-epoch v0.9.21
-   Compiling libc v0.2.191
-   Compiling crossbeam-deque v0.8.8
-   Compiling pyo3-macros-backend v0.30.1
-   Compiling pyo3-ffi v0.30.1
-   Compiling pyo3 v0.30.1
-   Compiling syn v3.0.9
-   Compiling matrixmultiply v0.3.11
-   Compiling rayon-core v1.13.0
-   Compiling heck v0.5.0
-   Compiling rawpointer v0.2.1
-   Compiling num-integer v0.1.47
-   Compiling num-complex v0.4.6
-   Compiling numpy v0.30.0
-   Compiling either v1.19.0
-   Compiling once_cell v1.21.4
-   Compiling ndarray v0.17.2
-   Compiling rayon v1.12.0
-   Compiling rustc-hash v2.1.3
-   Compiling multidouble v1.0.0
-   Compiling pyo3-macros v0.30.1
-   Compiling hpkernel v0.1.0 (D:\choptuik-bisect2\hp)
+    Finished `release` profile [optimized] target(s) in 0.04s
+📦 Built wheel for CPython 3.12 to D:/choptuik-bisect2/hp/dist_ov_aafe0cb4\hpkernel-0.1.0-cp312-cp312-win_amd64.whl
+Processing d:\choptuik-bisect2\hp\dist_ov_aafe0cb4\hpkernel-0.1.0-cp312-cp312-win_amd64.whl
+Installing collected packages: hpkernel
+Successfully installed hpkernel-0.1.0
+
+[notice] A new release of pip is available: 24.3.1 -> 26.3
+[notice] To update, run: python.exe -m pip install --upgrade pip
+Collecting multidouble@ git+https://github.com/nmoinvaz/multidouble@23ee209531d4f3f2b326a2a2435e158f76c53367#subdirectory=python
+  Using cached multidouble-0.1.0-cp312-cp312-win_amd64.whl
+Installing collected packages: multidouble
+Successfully installed multidouble-0.1.0
+
+[notice] A new release of pip is available: 24.3.1 -> 26.3
+[notice] To update, run: python.exe -m pip install --upgrade pip
+hpkernel ok avx2
+   Compiling modecount_cx v0.1.0 (D:\choptuik-bisect2\hp\modecount_cx)
+    Finished `release` profile [optimized] target(s) in 44.00s
+modecount_cx ok D:\choptuik-bisect2\hp\modecount_cx\build\modecount_cx.cp312-win_amd64.pyd
+build done 19:18:31 UTC

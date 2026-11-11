@@ -12,3 +12,385 @@ Uninstalling hpkernel-0.1.0:
 🔗 Found pyo3 bindings
 📡 Using build options features from pyproject.toml
    Compiling hpkernel v0.1.0 (D:\choptuik-bisect\hp)
+    Finished `release` profile [optimized] target(s) in 16m 53s
+📦 Built wheel for CPython 3.12 to D:/choptuik-bisect/hp/dist_fd051d52\hpkernel-0.1.0-cp312-cp312-win_amd64.whl
+Processing d:\choptuik-bisect\hp\dist_fd051d52\hpkernel-0.1.0-cp312-cp312-win_amd64.whl
+Installing collected packages: hpkernel
+Successfully installed hpkernel-0.1.0
+
+[notice] A new release of pip is available: 24.3.1 -> 26.3
+[notice] To update, run: python.exe -m pip install --upgrade pip
+Collecting multidouble@ git+https://github.com/nmoinvaz/multidouble@57ecf20eb0d2d2f78688d267f9565b2d264591d7#subdirectory=python
+  Using cached multidouble-0.1.0-cp312-cp312-win_amd64.whl
+Installing collected packages: multidouble
+Successfully installed multidouble-0.1.0
+
+[notice] A new release of pip is available: 24.3.1 -> 26.3
+[notice] To update, run: python.exe -m pip install --upgrade pip
+hpkernel ok avx2
+   Compiling hpkernel v0.1.0 (D:\choptuik-bisect\hp)
+   Compiling modecount_cx v0.1.0 (D:\choptuik-bisect\hp\modecount_cx)
+error[E0437]: type `Acc` is not a member of trait `Lane`
+  --> src\lib.rs:82:5
+   |
+82 |     type Acc = (DotAcc, DotAcc, DotAcc);
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not a member of trait `Lane`
+
+error[E0438]: const `TANGENT` is not a member of trait `Lane`
+  --> src\lib.rs:83:5
+   |
+83 |     const TANGENT: bool = true;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^ not a member of trait `Lane`
+
+error[E0407]: method `zero` is not a member of trait `Lane`
+  --> src\lib.rs:85:5
+   |
+85 | /     fn zero() -> Self {
+86 | |         Dc { v: DV::zero(), r: DV::zero(), i: DV::zero() }
+87 | |     }
+   | |_____^ not a member of trait `Lane`
+
+error[E0407]: method `cst` is not a member of trait `Lane`
+  --> src\lib.rs:89:5
+   |
+89 | /     fn cst(c: DV) -> Self {
+90 | |         Dc { v: c, r: DV::zero(), i: DV::zero() }
+91 | |     }
+   | |_____^ not a member of trait `Lane`
+
+error[E0407]: method `mulc` is not a member of trait `Lane`
+  --> src\lib.rs:93:5
+   |
+93 | /     fn mulc(self, c: DV) -> Self {
+94 | |         Dc { v: self.v * c, r: self.r * c, i: self.i * c }
+95 | |     }
+   | |_____^ not a member of trait `Lane`
+
+error[E0407]: method `mulf` is not a member of trait `Lane`
+  --> src\lib.rs:97:5
+   |
+97 | /     fn mulf(self, s: f64) -> Self {
+98 | |         Dc { v: self.v.mul_f(s), r: self.r.mul_f(s), i: self.i.mul_f(s) }
+99 | |     }
+   | |_____^ not a member of trait `Lane`
+
+error[E0407]: method `addc` is not a member of trait `Lane`
+   --> src\lib.rs:101:5
+    |
+101 | /     fn addc(self, c: DV) -> Self {
+102 | |         Dc { v: self.v + c, r: self.r, i: self.i }
+103 | |     }
+    | |_____^ not a member of trait `Lane`
+
+error[E0407]: method `bcast` is not a member of trait `Lane`
+   --> src\lib.rs:105:5
+    |
+105 | /     fn bcast(self, j: usize) -> Self {
+106 | |         Dc { v: self.v.bcast(j), r: self.r.bcast(j), i: self.i.bcast(j) }
+107 | |     }
+    | |_____^ not a member of trait `Lane`
+
+error[E0407]: method `val` is not a member of trait `Lane`
+   --> src\lib.rs:109:5
+    |
+109 | /     fn val(self) -> DV {
+110 | |         self.v
+111 | |     }
+    | |_____^ not a member of trait `Lane`
+
+error[E0407]: method `tan` is not a member of trait `Lane`
+   --> src\lib.rs:114:5
+    |
+114 | /     fn tan(self) -> DV {
+115 | |         self.r
+116 | |     }
+    | |_____^ not a member of trait `Lane`
+
+error[E0407]: method `from_vt` is not a member of trait `Lane`
+   --> src\lib.rs:118:5
+    |
+118 | /     fn from_vt(v: DV, t: DV) -> Self {
+119 | |         Dc { v, r: t, i: DV::zero() }
+120 | |     }
+    | |_____^ not a member of trait `Lane`
+
+error[E0407]: method `acc0` is not a member of trait `Lane`
+   --> src\lib.rs:122:5
+    |
+122 | /     fn acc0() -> Self::Acc {
+123 | |         (DotAcc::zero(), DotAcc::zero(), DotAcc::zero())
+124 | |     }
+    | |_____^ not a member of trait `Lane`
+
+error[E0407]: method `acc` is not a member of trait `Lane`
+   --> src\lib.rs:126:5
+    |
+126 | /     fn acc(a: Self::Acc, x: Self, y: Self) -> Self::Acc {
+127 | |         (
+128 | |             a.0.add_prod(x.v, y.v),
+129 | |             a.1.add_prod(x.v, y.r).add_prod(x.r, y.v),
+...   |
+132 | |     }
+    | |_____^ not a member of trait `Lane`
+
+error[E0407]: method `accc` is not a member of trait `Lane`
+   --> src\lib.rs:134:5
+    |
+134 | /     fn accc(a: Self::Acc, x: Self, c: DV) -> Self::Acc {
+135 | |         (a.0.add_prod(x.v, c), a.1.add_prod(x.r, c), a.2.add_prod(x.i, c))
+136 | |     }
+    | |_____^ not a member of trait `Lane`
+
+error[E0407]: method `acc1` is not a member of trait `Lane`
+   --> src\lib.rs:138:5
+    |
+138 | /     fn acc1(a: Self::Acc, x: Self) -> Self::Acc {
+139 | |         (a.0.add(x.v), a.1.add(x.r), a.2.add(x.i))
+140 | |     }
+    | |_____^ not a member of trait `Lane`
+
+error[E0407]: method `fin` is not a member of trait `Lane`
+   --> src\lib.rs:142:5
+    |
+142 | /     fn fin(a: Self::Acc) -> Self {
+143 | |         Dc { v: a.0.finish(), r: a.1.finish(), i: a.2.finish() }
+144 | |     }
+    | |_____^ not a member of trait `Lane`
+
+error[E0277]: the trait bound `Dc: BaseLane` is not satisfied
+  --> src\lib.rs:81:15
+   |
+81 | impl Lane for Dc {
+   |               ^^ unsatisfied trait bound
+   |
+help: the trait `BaseLane` is not implemented for `Dc`
+  --> src\lib.rs:36:1
+   |
+36 | pub struct Dc {
+   | ^^^^^^^^^^^^^
+   = note: `Dc` implements similarly named trait `Lane`, but not `BaseLane`
+   = help: the following other types implement trait `BaseLane`:
+             multidouble::dual::Dtn<S, N>
+             multidouble::dual::Du<S>
+             multidouble::dual::F8<S>
+             multidouble::dual::Fu<S>
+             multidouble::dual::Fun<S, N>
+             multidouble::dv::DV<S>
+             multidouble::qv::QV<S>
+note: required by a bound in `Lane`
+  --> D:\choptuik-bisect\hp\src\lane.rs:13:17
+   |
+13 | pub trait Lane: BaseLane<S = Native> {
+   |                 ^^^^^^^^^^^^^^^^^^^^ required by this bound in `Lane`
+
+error[E0277]: the trait bound `Dc: BaseLane` is not satisfied
+   --> src\lib.rs:122:18
+    |
+122 |     fn acc0() -> Self::Acc {
+    |                  ^^^^^^^^^ unsatisfied trait bound
+    |
+help: the trait `BaseLane` is not implemented for `Dc`
+   --> src\lib.rs:36:1
+    |
+ 36 | pub struct Dc {
+    | ^^^^^^^^^^^^^
+    = note: `Dc` implements similarly named trait `Lane`, but not `BaseLane`
+    = help: the following other types implement trait `BaseLane`:
+              multidouble::dual::Dtn<S, N>
+              multidouble::dual::Du<S>
+              multidouble::dual::F8<S>
+              multidouble::dual::Fu<S>
+              multidouble::dual::Fun<S, N>
+              multidouble::dv::DV<S>
+              multidouble::qv::QV<S>
+
+error[E0277]: the trait bound `Dc: BaseLane` is not satisfied
+   --> src\lib.rs:126:15
+    |
+126 |     fn acc(a: Self::Acc, x: Self, y: Self) -> Self::Acc {
+    |               ^^^^^^^^^ unsatisfied trait bound
+    |
+help: the trait `BaseLane` is not implemented for `Dc`
+   --> src\lib.rs:36:1
+    |
+ 36 | pub struct Dc {
+    | ^^^^^^^^^^^^^
+    = note: `Dc` implements similarly named trait `Lane`, but not `BaseLane`
+    = help: the following other types implement trait `BaseLane`:
+              multidouble::dual::Dtn<S, N>
+              multidouble::dual::Du<S>
+              multidouble::dual::F8<S>
+              multidouble::dual::Fu<S>
+              multidouble::dual::Fun<S, N>
+              multidouble::dv::DV<S>
+              multidouble::qv::QV<S>
+
+error[E0277]: the trait bound `Dc: BaseLane` is not satisfied
+   --> src\lib.rs:134:16
+    |
+134 |     fn accc(a: Self::Acc, x: Self, c: DV) -> Self::Acc {
+    |                ^^^^^^^^^ unsatisfied trait bound
+    |
+help: the trait `BaseLane` is not implemented for `Dc`
+   --> src\lib.rs:36:1
+    |
+ 36 | pub struct Dc {
+    | ^^^^^^^^^^^^^
+    = note: `Dc` implements similarly named trait `Lane`, but not `BaseLane`
+    = help: the following other types implement trait `BaseLane`:
+              multidouble::dual::Dtn<S, N>
+              multidouble::dual::Du<S>
+              multidouble::dual::F8<S>
+              multidouble::dual::Fu<S>
+              multidouble::dual::Fun<S, N>
+              multidouble::dv::DV<S>
+              multidouble::qv::QV<S>
+
+error[E0277]: the trait bound `Dc: BaseLane` is not satisfied
+   --> src\lib.rs:138:16
+    |
+138 |     fn acc1(a: Self::Acc, x: Self) -> Self::Acc {
+    |                ^^^^^^^^^ unsatisfied trait bound
+    |
+help: the trait `BaseLane` is not implemented for `Dc`
+   --> src\lib.rs:36:1
+    |
+ 36 | pub struct Dc {
+    | ^^^^^^^^^^^^^
+    = note: `Dc` implements similarly named trait `Lane`, but not `BaseLane`
+    = help: the following other types implement trait `BaseLane`:
+              multidouble::dual::Dtn<S, N>
+              multidouble::dual::Du<S>
+              multidouble::dual::F8<S>
+              multidouble::dual::Fu<S>
+              multidouble::dual::Fun<S, N>
+              multidouble::dv::DV<S>
+              multidouble::qv::QV<S>
+
+error[E0277]: the trait bound `Dc: BaseLane` is not satisfied
+   --> src\lib.rs:142:15
+    |
+142 |     fn fin(a: Self::Acc) -> Self {
+    |               ^^^^^^^^^ unsatisfied trait bound
+    |
+help: the trait `BaseLane` is not implemented for `Dc`
+   --> src\lib.rs:36:1
+    |
+ 36 | pub struct Dc {
+    | ^^^^^^^^^^^^^
+    = note: `Dc` implements similarly named trait `Lane`, but not `BaseLane`
+    = help: the following other types implement trait `BaseLane`:
+              multidouble::dual::Dtn<S, N>
+              multidouble::dual::Du<S>
+              multidouble::dual::F8<S>
+              multidouble::dual::Fu<S>
+              multidouble::dual::Fun<S, N>
+              multidouble::dv::DV<S>
+              multidouble::qv::QV<S>
+
+error[E0599]: no associated function or constant named `zero` found for struct `Dc` in the current scope
+   --> src\lib.rs:162:22
+    |
+ 36 | pub struct Dc {
+    | ------------- associated function or constant `zero` not found for this struct
+...
+162 |     let mut r = [Dc::zero(); B];
+    |                      ^^^^ associated function or constant not found in `Dc`
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+    = note: the following traits define an item `zero`, perhaps you need to implement one of them:
+            candidate #1: `BaseLane`
+            candidate #2: `_hpkernel::simd::Simd`
+            candidate #3: `num_traits::identities::Zero`
+
+error[E0599]: no method named `solve_lanes` found for reference `&DDLu` in the current scope
+   --> src\lib.rs:416:17
+    |
+416 |     let fv = lu.solve_lanes(&rhs.val());
+    |                 ^^^^^^^^^^^
+    |
+    = help: items from traits can only be used if the trait is in scope
+help: trait `FieldSolve` which provides `solve_lanes` is implemented but not in scope; perhaps you want to import it
+    |
+ 18 + use _hpkernel::field::FieldSolve;
+    |
+help: there is a method `solve_lanes_hi` with a similar name
+    |
+416 |     let fv = lu.solve_lanes_hi(&rhs.val());
+    |                            +++
+
+error[E0599]: no associated function or constant named `splat` found for struct `Dc` in the current scope
+   --> src\lib.rs:525:21
+    |
+ 36 | pub struct Dc {
+    | ------------- associated function or constant `splat` not found for this struct
+...
+525 |     let omega = Dc::splat(DD::TWO_PI) / delta;
+    |                     ^^^^^ associated function or constant not found in `Dc`
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+    = note: the following traits define an item `splat`, perhaps you need to implement one of them:
+            candidate #1: `BaseLane`
+            candidate #2: `_hpkernel::simd::Simd`
+
+error[E0599]: no associated function or constant named `cst` found for struct `Dc` in the current scope
+   --> src\lib.rs:582:21
+    |
+ 36 | pub struct Dc {
+    | ------------- associated function or constant `cst` not found for this struct
+...
+582 |         let d = Dc::cst(DV::splat(delta));
+    |                     ^^^ associated function or constant not found in `Dc`
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+    = note: the following trait defines an item `cst`, perhaps you need to implement it:
+            candidate #1: `BaseLane`
+
+error[E0063]: missing fields `f64_dd`, `horizon_alpha` and `mutate` in initializer of `Ctx<2>`
+   --> src\lib.rs:822:32
+    |
+822 |             $( $bb => Box::new(Ctx::<$bb> {
+    |                                ^^^^^^^^^^ missing `f64_dd`, `horizon_alpha` and `mutate`
+...
+890 |         let mut api: Box<dyn CApi> = make_ctx!(m / 8, n, dh, dl, ph, pl, nodes.clone(), kt, kc, ks, plow, mn, [2, 4, 6, 8]);
+    |                                      -------------------------------------------------------------------------------------- in this macro invocation
+    |
+    = note: this error originates in the macro `make_ctx` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0063]: missing fields `f64_dd`, `horizon_alpha` and `mutate` in initializer of `Ctx<4>`
+   --> src\lib.rs:822:32
+    |
+822 |             $( $bb => Box::new(Ctx::<$bb> {
+    |                                ^^^^^^^^^^ missing `f64_dd`, `horizon_alpha` and `mutate`
+...
+890 |         let mut api: Box<dyn CApi> = make_ctx!(m / 8, n, dh, dl, ph, pl, nodes.clone(), kt, kc, ks, plow, mn, [2, 4, 6, 8]);
+    |                                      -------------------------------------------------------------------------------------- in this macro invocation
+    |
+    = note: this error originates in the macro `make_ctx` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0063]: missing fields `f64_dd`, `horizon_alpha` and `mutate` in initializer of `Ctx<6>`
+   --> src\lib.rs:822:32
+    |
+822 |             $( $bb => Box::new(Ctx::<$bb> {
+    |                                ^^^^^^^^^^ missing `f64_dd`, `horizon_alpha` and `mutate`
+...
+890 |         let mut api: Box<dyn CApi> = make_ctx!(m / 8, n, dh, dl, ph, pl, nodes.clone(), kt, kc, ks, plow, mn, [2, 4, 6, 8]);
+    |                                      -------------------------------------------------------------------------------------- in this macro invocation
+    |
+    = note: this error originates in the macro `make_ctx` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0063]: missing fields `f64_dd`, `horizon_alpha` and `mutate` in initializer of `Ctx<8>`
+   --> src\lib.rs:822:32
+    |
+822 |             $( $bb => Box::new(Ctx::<$bb> {
+    |                                ^^^^^^^^^^ missing `f64_dd`, `horizon_alpha` and `mutate`
+...
+890 |         let mut api: Box<dyn CApi> = make_ctx!(m / 8, n, dh, dl, ph, pl, nodes.clone(), kt, kc, ks, plow, mn, [2, 4, 6, 8]);
+    |                                      -------------------------------------------------------------------------------------- in this macro invocation
+    |
+    = note: this error originates in the macro `make_ctx` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+Some errors have detailed explanations: E0063, E0277, E0407, E0437, E0438, E0599.
+For more information about an error, try `rustc --explain E0063`.
+error: could not compile `modecount_cx` (lib) due to 30 previous errors
+BUILD FAILED modecount_cx

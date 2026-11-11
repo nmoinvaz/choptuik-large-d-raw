@@ -1,0 +1,18 @@
+--- a/hp/modecount_cx/src/lib.rs@1dcde949
++++ b/hp/modecount_cx/src/lib.rs@1dcde949+olddtau
+@@ -242,10 +242,13 @@
+     }
+     let a = DV::splat(cx.lr);
+     let b = DV::splat(cx.li);
++    let nb = DV::splat(-cx.li);
+     for k in 0..B {
+         let t = x.0[k];
+-        r.0[k].r = r.0[k].r + (t.r * a - t.i * b);
+-        r.0[k].i = r.0[k].i + (t.i * a + t.r * b);
++        let re = DotAcc::zero().add_prod(t.r, a).add_prod(t.i, nb).finish();
++        let im = DotAcc::zero().add_prod(t.i, a).add_prod(t.r, b).finish();
++        r.0[k].r = r.0[k].r + re;
++        r.0[k].i = r.0[k].i + im;
+     }
+     r
+ }
