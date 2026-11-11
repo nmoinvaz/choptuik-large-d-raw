@@ -190,6 +190,7 @@ PRIOR = {"crawlB3": [("crawlB2.log", "crawlB2/anm_run.jsonl")],
          "crawlG": [("crawlB2.log", "crawlB2/anm_run.jsonl")],
          "crawlH": [("crawlB2.log", "crawlB2/anm_run.jsonl"), ("crawlG.log", "crawlG/anm_run.jsonl")],
          "crawlI": [("crawlB2.log", "crawlB2/anm_run.jsonl"), ("crawlG.log", "crawlG/anm_run.jsonl"), ("crawlH.log", "crawlH/anm_run.jsonl")],
+         "crawlJ": [("crawlB2.log", "crawlB2/anm_run.jsonl"), ("crawlG.log", "crawlG/anm_run.jsonl"), ("crawlI.log", "crawlI/anm_run.jsonl")],
          "crawlD2": [("crawlB2.log", "crawlB2/anm_run.jsonl"), ("crawlB3.log", "crawlB3/anm_run.jsonl"), ("crawlB4.log", "crawlB4/anm_run.jsonl"),
                      ("crawlB5.log", "crawlB5/anm_run.jsonl"), ("crawlC.log", "crawlC/anm_run.jsonl"), ("crawlD.log", "crawlD/anm_run.jsonl")]}
 NEWTON_FLAG = 25      # the coordinator's order of 21:02 UTC (crawlF, a 0.35): report at once a step that needs more than this many Newton steps (and a lam below LAM_FLAG)
@@ -243,10 +244,10 @@ def events(state_path, log, jsonl, out=print, csv_path=CSV, quiet=False):
     if os.path.exists(state_path):
         st.update(json.load(open(state_path, encoding="utf-8")))
     segs, flat, stop, lines = load(log, jsonl)
-    if os.environ.get("EVENTS_PROFILE") == "I":
+    if os.environ.get("EVENTS_PROFILE") in ("I", "J"):
         recs_i = [json.loads(ln) for ln in open(jsonl, encoding="utf-8") if ln.strip()] if os.path.exists(jsonl) else []
         seen = set(st.get("rule_seen", []))
-        for p in step_rule_problems(recs_i, hmax=0.5) + stall_problems(segs):
+        for p in step_rule_problems(recs_i, hmax=1.0 if os.environ.get("EVENTS_PROFILE") == "J" else 0.5) + stall_problems(segs):
             if p not in seen:
                 out("CRAWLI RULE NOT FOLLOWED (stop and tell the coordinator): " + p)
                 seen.add(p)
@@ -289,7 +290,7 @@ def events(state_path, log, jsonl, out=print, csv_path=CSV, quiet=False):
             flags.append("FIRST ACCEPTED STEP OF THIS RUN")
         if s["steps"] is not None and s["steps"] > NEWTON_FLAG:
             flags.append(f"MORE THAN {NEWTON_FLAG} NEWTON STEPS ({s['steps']})")
-        if os.environ.get("EVENTS_PROFILE") == "I":
+        if os.environ.get("EVENTS_PROFILE") in ("I", "J"):
             try:
                 if float(s["final"]) >= 1e-60:
                     flags.append(f"FINAL RESIDUAL {s['final']} IS NOT BELOW 1e-60 (--tol_od 1e-60)")
@@ -566,15 +567,16 @@ def cmp_chains(log, jsonl, out=print, base=HERE):
             for s in accepted(os.path.join(base, l), os.path.join(base, j)):
                 if s["delta"] is not None:
                     first[round(float(s["D"]), 6)] = s["delta"]
-    out("| verdict | D | Delta of this chain | Delta of the first chain | difference |")
-    out("|---|---|---|---|---|")
+    # the coordinator, 01:55 UTC: information without a verdict (the first chain's states past D 225 carry the old rounding)
+    out("| D | Delta of this chain | Delta of the first chain | difference |")
+    out("|---|---|---|---|")
     n = 0
     for s in accepted(log, jsonl):
         k = round(float(s["D"]), 6)
         if k in first and s["delta"] is not None:
             n += 1
             diff = s["delta"] - first[k]
-            out(f"| {_band(abs(diff), 1e-16, 1e-14)} | {mp.nstr(s['D'], 12)} | {mp.nstr(s['delta'], 20)} | {mp.nstr(first[k], 20)} | {mp.nstr(diff, 3)} |")
+            out(f"| {mp.nstr(s['D'], 12)} | {mp.nstr(s['delta'], 20)} | {mp.nstr(first[k], 20)} | {mp.nstr(diff, 3)} |")
     out(f"{n} steps of this chain have a state of the first chain at the same D")
     return n
 
