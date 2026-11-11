@@ -21,3 +21,15 @@ Both chains restart with the same commands plus `--base_polish 0` (in `d10_s1.cm
 ## Start rule, a_max bound (2026-11-11 17:57 UTC, coordinator 175746Z)
 
 The start rule above (the step 0 series line has a_max above 3) is now a_max above 2.0, the bound of the step verdicts. Reason: a_max falls smoothly with D on every chain (win_d10 3.110, 2.976, 2.917 at bases D 227.13, 228.13, 229.13; 2.444 on crawlJ at D 242.36), the series radius shrinking with n and not a bad start. The |z_N| bound of 1e-25 stays. win_d10 was left running at its step 0 a_max of 2.917 (message 175651Z, answer 175746Z).
+
+
+## End of the task (2026-11-11 21:27:44 UTC)
+
+Both chains of the resume (16:27:43 UTC, `d6_long3.cmd` and `d10_long3.cmd`) ended at their 5 h cap, `run_capped` exit 124 in `chain_d6_long3.exit` and `chain_d10_long3.exit` (written 21:27:44 UTC). `chain_*_long2.exit` (1073807364, 11:12:19 UTC) is the record of the Windows Update restart that killed the first long run.
+
+| chain | last converged state | Delta | saved (UTC) | what the cap ended |
+|---|---|---|---|---|
+| win_d6 | chain_d6/anm_pin3_D232.1312.npz, D 232.13125 | 1.68808082466 | 21:11:41 | the series of the next step, from D 232.13125 |
+| win_d10 | chain_d10/anm_pin3_D231.6312.npz, D 231.63125 | 1.68817514541 | 20:27:28 | solve 1 of the step D 231.63125 -> 232.63125 at a=1 (its solve 0 took 4.09e-33 to 7.02e-27) |
+
+win_d10's step D 231.13125 -> 232.13125 at a=1 was refused at 20:15:15 UTC (the octo-double Newton did not converge, `no trial step accepted`, max|F| 1.4e-27); the driver halved to a=0.5 and converged at D 231.63125. The prediction files of both attempts are `chain_d10/pred_pin3_D232.1312.npz` (a=1, refused) and `chain_d10/pred_pin3_D231.6312.npz` (a=0.5). The coordinator (agent-comms `choptuik-large-d/2026-11-11/201728Z-coordinator-3e90.md`) calls this the signature of win2's chain at D 242.5 (#499).
