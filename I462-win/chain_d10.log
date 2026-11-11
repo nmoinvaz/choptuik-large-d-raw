@@ -88,3 +88,10 @@ step 6: D 221.13125, pivots 1.5e-17..2.0e+31, |z_1| 4.18e-04, |z_N| 2.62e-29, ra
     a 1.000 -> D 222.13125: predicted |F| 8.41e+02, od 4 steps -> 7.51e+02 (tol 1.3e-19, stall accepted, Delta correction +0.0e+00), Delta 1.690047005169 (formula diff -1.4e-06), moved 1.9e-18, 930 s
 === 01:44:04 UTC: d10 switched to main cc6d51b with --held_o 1 --reseed_o 3 --tol_od 1e-60 and the base polish on (auto_switch.py), restart from chain_d10/anm_pin3_D222.1312.npz
 held values from the fit data/held_fit_d10.json (degree 10, 138 full-system states, D 38.020417-73.0), relative to the base
+  on 0: |F| 2.39e-36 -> 9.32e-37, |dz| 1.7e-18 -> 2.5e-35, lam 1, dDelta -5.29e-19, piv 6.7e-18..2.8e+31, 438.44 s
+  on 1: |F| 9.32e-37 -> 2.65e-38, |dz| 2.5e-35 -> 5.8e-54, lam 1, dDelta -4.50e-36, piv 6.7e-18..2.8e+31, 184.09 s
+  on 2: |F| 2.65e-38 -> 1.49e-75, |dz| 5.8e-54 -> 4.4e-62, lam 1, dDelta -1.71e-54, piv 6.7e-18..2.8e+31, 181.73 s
+  on 3: |F| 1.49e-75 converged, Delta 1.69004700516864959 -7.4950e-17
+      elim projections {'u0': 0, 'u0q': 1, 'ladder': 0, 'failed': 0, 'skipped': 3}
+      octo-double Newton: 4 steps, max|F| 1.5e-75, converged; double-double |F| of its first two parts 9.1e+02
+base I462-win/chain_d10/anm_pin3_D222.1312.npz: D 222.13125, M 32, pin 3 (held [5, 7, 9, 11, 13]), |F| 9.1e+02; N 24, eps 1e-14, h_max 1.0, corrector od (junk_only False), tol 1.0e-20 x 1.45^(D - 222.13125), stalls accepted below 1e-17

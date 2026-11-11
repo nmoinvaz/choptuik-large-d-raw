@@ -262,8 +262,8 @@ def report(since):
     print("checks:  Newton steps · step length · final residual · start residual · first move · series")
     for s in shapes:
         print(s)
-    for _, dl in dlines:
-        print(dl)
+    for c, dl in dlines:
+        print(f"  {NAME[c]:<8} {dl.strip()}")      # two chains on one machine: the name tells the Delta lines of one D apart
     print("also:")
     for a in also:
         print(a)
