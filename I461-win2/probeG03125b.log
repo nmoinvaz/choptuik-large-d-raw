@@ -14,3 +14,7 @@ step 0: D 242.514649963, pivots 2.7e-25..3.5e+34, |z_1| 3.62e-04, |z_N| 3.58e-26
   on 0: |F| 9.04e-36 -> 7.27e-26, |dz| 2.5e-30 -> 3.2e-32, lam 1, dDelta -2.53e-30, piv 2.9e-25..3.5e+34, 15.17 s
   on 1: |F| 7.27e-26 -> 3.63e-26, |dz| 3.2e-32 -> 1.1e-32, lam 0.5, dDelta -2.22e-32, piv 2.8e-25..3.5e+34, 32.93 s
   on 2: |F| 3.63e-26 -> 3.18e-26, |dz| 1.1e-32 -> 1.0e-32, lam 0.125, dDelta +7.63e-33, piv 2.7e-25..3.5e+34, 65.08 s
+  on 3: |F| 3.18e-26, |dz| 1.0e-32: no trial step accepted, stopping
+      elim projections {'u0': 0, 'u0q': 0, 'ladder': 0, 'failed': 0, 'skipped': 17}
+      octo-double Newton: 4 steps, max|F| 3.2e-26, not converged; double-double |F| of its first two parts 1.1e+06
+    a 0.031 -> D 242.545899963: predicted |F| 1.10e+06, od 4 steps -> 1.11e+06 (tol 1.0e-20), Delta 1.686203679263 (formula diff -1.6e-06), moved 2.5e-30, 274 s
