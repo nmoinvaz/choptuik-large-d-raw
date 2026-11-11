@@ -1,0 +1,10 @@
+[     0 s] point 2: n 1152, bits 320; code ln|det| old np.float64(-965.1149263751369), new np.float64(-965.1149263918375), difference -1.6701e-08
+[     1 s] built M_old
+[     2 s] built M_new
+[     2 s] dM: 184313 of 1327104 entries differ; max |dM_ij| / |M_ij| 5.409e-13; rms over differing entries 2.954e-15; max |dM| 4.893e-21; max |M| 3.124e+04; Frobenius |dM| / |M| 1.752e-25
+[    82 s] exact ln|det M_old| = [-965.114926375135688927705116732 +/- 1.63e-28]  (code np.float64(-965.1149263751369))
+[   165 s] exact ln|det M_new| = [-965.114926391837070786733760264 +/- 4.16e-28]  (code np.float64(-965.1149263918375))
+[   165 s] exact difference ln|det M_new| - ln|det M_old| = [-1.67013818590286e-8 +/- 4.36e-23]; the code's difference -1.670060e-08
+[   165 s] code minus exact: old -1.137e-12, new -3.411e-13
+[   209 s] solved M_old X = dM
+[   209 s] first-order Re tr(M_old^-1 dM) = [-1.67013829899181e-8 +/- 9.12e-24]; exact difference minus first order [1.130889466e-15 +/- 4.15e-25]

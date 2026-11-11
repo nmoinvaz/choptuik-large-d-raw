@@ -1,0 +1,140 @@
+| D | sigma_1 | sigma_2 | sigma_3 | sigma_4 | planted check |
+|---|---|---|---|---|---|
+| 216.1312 | 1.5958e-48 | 5.8191e-48 | 4.4958e-45 | 3.8259e-43 | pass (4.66e-14; spread of the scalings 9.1e-13) |
+| 220.1312 | 2.6221e-50 | 1.3028e-49 | 6.8858e-47 | 5.7239e-45 | pass (4.96e-14; spread of the scalings 9.3e-13) |
+| 224.1312 | 5.0687e-52 | 1.6827e-51 | 8.9379e-49 | 6.2038e-47 | pass (4.44e-15; spread of the scalings 1.2e-12) |
+| 228.1312 | 5.2065e-54 | 2.7302e-53 | 9.0427e-51 | 5.0644e-49 | pass (6.00e-15; spread of the scalings 1.1e-12) |
+| 232.1312 | 6.6298e-56 | 2.3678e-55 | 5.7796e-53 | 3.5870e-51 | pass (2.66e-15; spread of the scalings 1.0e-12) |
+| 235.1312 | 1.7640e-57 | 7.2114e-57 | 1.0301e-54 | 7.3125e-53 | pass (2.22e-15; spread of the scalings 9.6e-13) |
+| 237.1312 | 1.6003e-58 | 6.1130e-58 | 7.0593e-56 | 4.3170e-54 | pass (5.33e-15; spread of the scalings 1.4e-12) |
+| 239.5375 | 7.1519e-60 | 3.4004e-59 | 2.1721e-57 | 1.4433e-55 | pass (4.44e-15; spread of the scalings 9.8e-13) |
+| 241.1244 | 9.2776e-61 | 4.4974e-60 | 2.0620e-58 | 1.4180e-56 | pass (1.55e-15; spread of the scalings 1.1e-12) |
+| 242.3642 | 1.8825e-61 | 9.3856e-61 | 2.6498e-59 | 2.4555e-57 | pass (1.11e-15; spread of the scalings 1.0e-12) |
+| 242.5225 | 1.5801e-61 | 7.3878e-61 | 2.0257e-59 | 1.9799e-57 | pass (7.33e-15; spread of the scalings 1.2e-12) |
+| 242.5264 | 1.5733e-61 | 7.3439e-61 | 2.0127e-59 | 1.9690e-57 | pass (5.55e-15; spread of the scalings 1.2e-12) |
+
+| from D to D | ΔD | rate of sigma_1 per unit D | sigma_2 | sigma_3 | sigma_4 |
+|---|---|---|---|---|---|
+| 216.1312 to 220.1312 | 4.0000 | 1.027 | 0.950 | 1.045 | 1.051 |
+| 220.1312 to 224.1312 | 4.0000 | 0.987 | 1.087 | 1.086 | 1.131 |
+| 224.1312 to 228.1312 | 4.0000 | 1.145 | 1.030 | 1.148 | 1.202 |
+| 228.1312 to 232.1312 | 4.0000 | 1.091 | 1.187 | 1.263 | 1.238 |
+| 232.1312 to 235.1312 | 3.0000 | 1.209 | 1.164 | 1.342 | 1.298 |
+| 235.1312 to 237.1312 | 2.0000 | 1.200 | 1.234 | 1.340 | 1.415 |
+| 237.1312 to 239.5375 | 2.4063 | 1.292 | 1.201 | 1.447 | 1.412 |
+| 239.5375 to 241.1244 | 1.5869 | 1.287 | 1.275 | 1.484 | 1.462 |
+| 241.1244 to 242.3642 | 1.2398 | 1.286 | 1.264 | 1.655 | 1.414 |
+| 242.3642 to 242.5225 | 0.1583 | 1.106 | 1.512 | 1.697 | 1.360 |
+| 242.5225 to 242.5264 | 0.0039 | 1.106 | 1.528 | 1.651 | 1.416 |
+| 216.1312 to 242.5264 | 26.3952 | 1.135 | 1.125 | 1.252 | 1.246 |
+
+sigma_1 over the whole range: ratio 1.014e+13, rate 1.135 per unit of D (e^1.135); verdict: neither reading (between 0.45 and 0.7, or above 1.1)
+
+D 216.1312:
+  sigma_1 1.5958e-48 (conv 0e+00); scaled: delta share 1.0e-13; blocks a_h 0.54, m_h 0.46, node2.m 0.00; top a_h k2 0.09, m_h k3 0.09, a_h k4 0.09, m_h k1 0.07, m_h k5 0.06
+    in z: delta share 1.5e-06; blocks p1 0.25, m_h 0.13, node4.p 0.09; top p1 k3 0.12, m_h k3 0.09, node4.p k3 0.08, node4.m k3 0.08, node3.p k3 0.07
+  sigma_2 5.8191e-48 (conv 0e+00); scaled: delta share 1.3e-09; blocks a_h 0.54, m_h 0.46, node2.m 0.00; top m_h k3 0.14, a_h k4 0.12, a_h k2 0.10, m_h k5 0.06, a_h k8 0.05
+    in z: delta share 5.3e-15; blocks p1 1.00, m_h 0.00, node4.p 0.00; top p1 k1 0.06, p1 k5 0.06, p1 k7 0.06, p1 k9 0.06, p1 k11 0.06
+  sigma_3 4.4958e-45 (conv 1e-16); scaled: delta share 5.6e-07; blocks a_h 0.51, m_h 0.49, node2.m 0.00; top m_h k1 0.15, a_h k0 0.11, m_h k3 0.09, a_h k4 0.08, m_h k5 0.03
+    in z: delta share 8.0e-12; blocks p1 1.00, m_h 0.00, node4.p 0.00; top p1 k31 0.07, p1 k29 0.07, p1 k27 0.07, p1 k25 0.07, p1 k23 0.07
+  sigma_4 3.8259e-43 (conv 1e-13); scaled: delta share 1.1e-02; blocks a_h 0.88, m_h 0.11, node2.m 0.00; top a_h k2 0.20, a_h k4 0.10, m_h k3 0.05, a_h k6 0.05, m_h k1 0.05
+    in z: delta share 6.0e-09; blocks p1 1.00, node4.p 0.00, node3.p 0.00; top p1 k1 0.07, p1 k3 0.07, p1 k5 0.07, p1 k7 0.07, p1 k9 0.07
+D 220.1312:
+  sigma_1 2.6221e-50 (conv 0e+00); scaled: delta share 6.2e-12; blocks a_h 0.55, m_h 0.45, node2.m 0.00; top a_h k2 0.09, m_h k3 0.09, a_h k4 0.08, m_h k1 0.07, m_h k5 0.06
+    in z: delta share 1.1e-04; blocks p1 0.25, m_h 0.13, node4.p 0.09; top p1 k3 0.12, m_h k3 0.09, node4.p k3 0.08, node4.m k3 0.08, node3.p k3 0.07
+  sigma_2 1.3028e-49 (conv 0e+00); scaled: delta share 1.4e-09; blocks a_h 0.53, m_h 0.47, node2.m 0.00; top m_h k3 0.14, a_h k4 0.12, a_h k2 0.10, m_h k5 0.06, a_h k8 0.05
+    in z: delta share 1.5e-16; blocks p1 1.00, m_h 0.00, node4.p 0.00; top p1 k1 0.06, p1 k5 0.06, p1 k7 0.06, p1 k9 0.06, p1 k11 0.06
+  sigma_3 6.8858e-47 (conv 3e-16); scaled: delta share 2.1e-07; blocks a_h 0.51, m_h 0.49, node2.m 0.00; top m_h k1 0.15, a_h k0 0.11, m_h k3 0.09, a_h k4 0.08, m_h k5 0.03
+    in z: delta share 7.3e-13; blocks p1 1.00, m_h 0.00, node4.p 0.00; top p1 k1 0.08, p1 k3 0.07, p1 k5 0.07, p1 k7 0.07, p1 k9 0.07
+  sigma_4 5.7239e-45 (conv 2e-13); scaled: delta share 1.1e-02; blocks a_h 0.88, m_h 0.11, node2.m 0.00; top a_h k2 0.20, a_h k4 0.10, m_h k3 0.05, m_h k1 0.05, a_h k6 0.05
+    in z: delta share 4.7e-09; blocks p1 1.00, node4.p 0.00, node3.p 0.00; top p1 k1 0.09, p1 k3 0.09, p1 k5 0.09, p1 k7 0.08, p1 k9 0.08
+D 224.1312:
+  sigma_1 5.0687e-52 (conv 0e+00); scaled: delta share 2.1e-12; blocks a_h 0.54, m_h 0.46, node2.m 0.00; top a_h k2 0.09, m_h k3 0.09, a_h k4 0.08, m_h k1 0.07, m_h k5 0.06
+    in z: delta share 4.4e-05; blocks p1 0.25, m_h 0.14, node4.p 0.09; top p1 k3 0.12, m_h k3 0.09, node4.p k3 0.08, node4.m k3 0.08, node3.p k3 0.07
+  sigma_2 1.6827e-51 (conv 0e+00); scaled: delta share 1.2e-09; blocks a_h 0.53, m_h 0.47, node2.m 0.00; top m_h k3 0.14, a_h k4 0.12, a_h k2 0.10, m_h k5 0.06, a_h k8 0.05
+    in z: delta share 1.3e-16; blocks p1 1.00, m_h 0.00, node4.p 0.00; top p1 k31 0.06, p1 k29 0.06, p1 k27 0.06, p1 k25 0.06, p1 k23 0.06
+  sigma_3 8.9379e-49 (conv 2e-16); scaled: delta share 7.9e-08; blocks a_h 0.51, m_h 0.49, node2.m 0.00; top m_h k1 0.15, a_h k0 0.11, m_h k3 0.09, a_h k4 0.08, m_h k5 0.03
+    in z: delta share 1.3e-14; blocks p1 1.00, m_h 0.00, node4.p 0.00; top p1 k31 0.07, p1 k29 0.07, p1 k27 0.07, p1 k25 0.07, p1 k23 0.07
+  sigma_4 6.2038e-47 (conv 3e-15); scaled: delta share 1.0e-02; blocks a_h 0.88, m_h 0.11, node2.m 0.00; top a_h k2 0.20, a_h k4 0.10, m_h k3 0.05, m_h k1 0.05, a_h k6 0.04
+    in z: delta share 2.6e-09; blocks p1 1.00, node4.p 0.00, node3.p 0.00; top p1 k31 0.07, p1 k29 0.07, p1 k27 0.07, p1 k25 0.07, p1 k23 0.07
+D 228.1312:
+  sigma_1 5.2065e-54 (conv 0e+00); scaled: delta share 2.1e-12; blocks a_h 0.54, m_h 0.46, node2.m 0.00; top a_h k2 0.09, m_h k3 0.09, a_h k4 0.08, m_h k1 0.07, m_h k5 0.06
+    in z: delta share 4.9e-05; blocks p1 0.25, m_h 0.14, node4.p 0.09; top p1 k3 0.12, m_h k3 0.09, node4.p k3 0.08, node4.m k3 0.08, node3.p k3 0.07
+  sigma_2 2.7302e-53 (conv 0e+00); scaled: delta share 1.1e-09; blocks a_h 0.53, m_h 0.47, node2.m 0.00; top m_h k3 0.14, a_h k4 0.12, a_h k2 0.10, m_h k5 0.06, a_h k8 0.05
+    in z: delta share 8.7e-18; blocks p1 1.00, m_h 0.00, node4.p 0.00; top p1 k1 0.06, p1 k5 0.06, p1 k7 0.06, p1 k9 0.06, p1 k11 0.06
+  sigma_3 9.0427e-51 (conv 1e-16); scaled: delta share 2.2e-07; blocks a_h 0.51, m_h 0.49, node2.m 0.00; top m_h k1 0.14, a_h k0 0.11, m_h k3 0.09, a_h k4 0.08, m_h k5 0.03
+    in z: delta share 1.2e-15; blocks p1 1.00, m_h 0.00, node4.p 0.00; top p1 k31 0.06, p1 k29 0.06, p1 k27 0.06, p1 k25 0.06, p1 k23 0.06
+  sigma_4 5.0644e-49 (conv 1e-16); scaled: delta share 9.9e-03; blocks a_h 0.88, m_h 0.11, node2.m 0.00; top a_h k2 0.20, a_h k4 0.10, m_h k3 0.05, m_h k1 0.05, a_h k6 0.04
+    in z: delta share 3.5e-10; blocks p1 1.00, node4.p 0.00, node3.p 0.00; top p1 k3 0.07, p1 k1 0.07, p1 k5 0.07, p1 k7 0.07, p1 k9 0.07
+D 232.1312:
+  sigma_1 6.6298e-56 (conv 0e+00); scaled: delta share 1.0e-11; blocks a_h 0.54, m_h 0.46, node2.m 0.00; top a_h k2 0.09, m_h k3 0.09, a_h k4 0.08, m_h k1 0.07, m_h k5 0.06
+    in z: delta share 2.6e-04; blocks p1 0.25, m_h 0.14, node4.p 0.09; top p1 k3 0.12, m_h k3 0.09, node4.p k3 0.08, node4.m k3 0.08, node3.p k3 0.07
+  sigma_2 2.3678e-55 (conv 2e-16); scaled: delta share 1.7e-09; blocks a_h 0.52, m_h 0.48, node2.m 0.00; top m_h k3 0.14, a_h k4 0.12, a_h k2 0.10, m_h k5 0.06, a_h k8 0.05
+    in z: delta share 7.3e-17; blocks p1 1.00, m_h 0.00, node4.p 0.00; top p1 k1 0.06, p1 k5 0.06, p1 k3 0.06, p1 k7 0.06, p1 k9 0.06
+  sigma_3 5.7796e-53 (conv 0e+00); scaled: delta share 8.2e-07; blocks a_h 0.51, m_h 0.49, node2.m 0.00; top m_h k1 0.14, a_h k0 0.11, m_h k3 0.09, a_h k4 0.08, m_h k5 0.03
+    in z: delta share 1.6e-15; blocks p1 1.00, m_h 0.00, node4.p 0.00; top p1 k31 0.07, p1 k29 0.07, p1 k27 0.07, p1 k25 0.07, p1 k23 0.07
+  sigma_4 3.5870e-51 (conv 0e+00); scaled: delta share 9.5e-03; blocks a_h 0.89, m_h 0.10, node2.m 0.00; top a_h k2 0.20, a_h k4 0.10, m_h k3 0.05, m_h k1 0.05, a_h k6 0.04
+    in z: delta share 2.0e-10; blocks p1 1.00, node4.p 0.00, node3.p 0.00; top p1 k1 0.09, p1 k3 0.09, p1 k5 0.09, p1 k7 0.08, p1 k9 0.08
+D 235.1312:
+  sigma_1 1.7640e-57 (conv 0e+00); scaled: delta share 1.3e-11; blocks a_h 0.54, m_h 0.46, node2.m 0.00; top a_h k2 0.09, m_h k3 0.08, a_h k4 0.08, m_h k1 0.07, m_h k5 0.06
+    in z: delta share 3.7e-04; blocks p1 0.25, m_h 0.14, node4.p 0.09; top p1 k3 0.12, m_h k3 0.09, node4.p k3 0.08, node4.m k3 0.08, node3.p k3 0.07
+  sigma_2 7.2114e-57 (conv 0e+00); scaled: delta share 1.0e-09; blocks a_h 0.52, m_h 0.48, node2.m 0.00; top m_h k3 0.14, a_h k4 0.12, a_h k2 0.10, m_h k5 0.06, a_h k8 0.05
+    in z: delta share 1.4e-17; blocks p1 1.00, m_h 0.00, node4.p 0.00; top p1 k31 0.06, p1 k29 0.06, p1 k27 0.06, p1 k25 0.06, p1 k23 0.06
+  sigma_3 1.0301e-54 (conv 0e+00); scaled: delta share 6.9e-08; blocks a_h 0.52, m_h 0.48, node2.m 0.00; top m_h k1 0.14, a_h k0 0.11, m_h k3 0.09, a_h k4 0.08, m_h k5 0.03
+    in z: delta share 2.5e-16; blocks p1 1.00, m_h 0.00, node4.p 0.00; top p1 k1 0.08, p1 k3 0.08, p1 k5 0.08, p1 k7 0.07, p1 k9 0.07
+  sigma_4 7.3125e-53 (conv 0e+00); scaled: delta share 9.2e-03; blocks a_h 0.89, m_h 0.10, node2.m 0.00; top a_h k2 0.20, a_h k4 0.10, m_h k3 0.05, m_h k1 0.05, a_h k6 0.04
+    in z: delta share 1.1e-11; blocks p1 1.00, node4.p 0.00, node3.p 0.00; top p1 k31 0.08, p1 k29 0.08, p1 k27 0.08, p1 k25 0.08, p1 k23 0.08
+D 237.1312:
+  sigma_1 1.6003e-58 (conv 0e+00); scaled: delta share 1.4e-14; blocks a_h 0.53, m_h 0.47, node2.m 0.00; top a_h k2 0.09, m_h k3 0.09, a_h k4 0.08, m_h k1 0.07, m_h k5 0.06
+    in z: delta share 4.2e-07; blocks p1 0.25, m_h 0.14, node4.p 0.09; top p1 k3 0.12, m_h k3 0.09, node4.p k3 0.08, node4.m k3 0.08, node3.p k3 0.07
+  sigma_2 6.1130e-58 (conv 1e-16); scaled: delta share 1.6e-09; blocks a_h 0.53, m_h 0.47, node2.m 0.00; top m_h k3 0.14, a_h k4 0.12, a_h k2 0.10, m_h k5 0.06, a_h k8 0.05
+    in z: delta share 2.5e-18; blocks p1 1.00, m_h 0.00, node4.p 0.00; top p1 k1 0.06, p1 k5 0.06, p1 k7 0.06, p1 k9 0.06, p1 k3 0.06
+  sigma_3 7.0593e-56 (conv 0e+00); scaled: delta share 1.3e-07; blocks a_h 0.52, m_h 0.48, node2.m 0.00; top m_h k1 0.14, a_h k0 0.11, m_h k3 0.09, a_h k4 0.09, m_h k5 0.03
+    in z: delta share 5.8e-16; blocks p1 1.00, m_h 0.00, node4.p 0.00; top p1 k1 0.09, p1 k3 0.09, p1 k5 0.09, p1 k7 0.08, p1 k9 0.08
+  sigma_4 4.3170e-54 (conv 1e-16); scaled: delta share 9.0e-03; blocks a_h 0.89, m_h 0.10, node2.m 0.00; top a_h k2 0.20, a_h k4 0.10, m_h k3 0.05, m_h k1 0.05, a_h k6 0.04
+    in z: delta share 5.2e-12; blocks p1 1.00, node4.p 0.00, node3.p 0.00; top p1 k31 0.08, p1 k29 0.08, p1 k27 0.08, p1 k25 0.08, p1 k23 0.08
+D 239.5375:
+  sigma_1 7.1519e-60 (conv 0e+00); scaled: delta share 1.1e-12; blocks a_h 0.53, m_h 0.47, node2.m 0.00; top m_h k3 0.09, a_h k2 0.09, a_h k4 0.08, m_h k1 0.07, m_h k5 0.06
+    in z: delta share 3.3e-05; blocks p1 0.25, m_h 0.14, node4.p 0.10; top p1 k3 0.12, m_h k3 0.09, node4.p k3 0.08, node4.m k3 0.08, node3.p k3 0.07
+  sigma_2 3.4004e-59 (conv 0e+00); scaled: delta share 1.7e-09; blocks a_h 0.53, m_h 0.47, node2.m 0.00; top m_h k3 0.14, a_h k4 0.12, a_h k2 0.10, m_h k5 0.06, a_h k8 0.05
+    in z: delta share 3.9e-18; blocks p1 1.00, m_h 0.00, node4.p 0.00; top p1 k1 0.06, p1 k5 0.06, p1 k7 0.06, p1 k9 0.06, p1 k3 0.06
+  sigma_3 2.1721e-57 (conv 0e+00); scaled: delta share 8.0e-08; blocks a_h 0.52, m_h 0.48, node2.m 0.00; top m_h k1 0.14, a_h k0 0.11, m_h k3 0.09, a_h k4 0.09, m_h k5 0.03
+    in z: delta share 1.4e-17; blocks p1 1.00, m_h 0.00, node4.p 0.00; top p1 k1 0.07, p1 k3 0.07, p1 k5 0.07, p1 k7 0.07, p1 k9 0.07
+  sigma_4 1.4433e-55 (conv 0e+00); scaled: delta share 8.8e-03; blocks a_h 0.89, m_h 0.10, node2.m 0.00; top a_h k2 0.20, a_h k4 0.10, m_h k3 0.05, m_h k1 0.05, a_h k6 0.04
+    in z: delta share 7.1e-13; blocks p1 1.00, node4.p 0.00, node3.p 0.00; top p1 k9 0.07, p1 k11 0.07, p1 k7 0.07, p1 k5 0.07, p1 k13 0.07
+D 241.1244:
+  sigma_1 9.2776e-61 (conv 0e+00); scaled: delta share 2.0e-11; blocks a_h 0.54, m_h 0.46, node2.m 0.00; top a_h k2 0.08, m_h k3 0.08, a_h k4 0.08, m_h k1 0.07, m_h k5 0.06
+    in z: delta share 6.7e-04; blocks p1 0.25, m_h 0.14, node4.p 0.10; top p1 k3 0.12, m_h k3 0.09, node4.p k3 0.08, node4.m k3 0.08, node3.p k3 0.07
+  sigma_2 4.4974e-60 (conv 0e+00); scaled: delta share 1.2e-10; blocks a_h 0.52, m_h 0.48, node2.m 0.00; top m_h k3 0.14, a_h k4 0.12, a_h k2 0.10, m_h k5 0.06, a_h k8 0.05
+    in z: delta share 1.5e-19; blocks p1 1.00, m_h 0.00, node4.p 0.00; top p1 k31 0.06, p1 k29 0.06, p1 k27 0.06, p1 k25 0.06, p1 k23 0.06
+  sigma_3 2.0620e-58 (conv 2e-16); scaled: delta share 7.1e-07; blocks a_h 0.52, m_h 0.48, node2.m 0.00; top m_h k1 0.14, a_h k0 0.11, m_h k3 0.09, a_h k4 0.09, m_h k5 0.03
+    in z: delta share 3.1e-16; blocks p1 1.00, m_h 0.00, node4.p 0.00; top p1 k31 0.09, p1 k29 0.08, p1 k27 0.08, p1 k25 0.08, p1 k23 0.08
+  sigma_4 1.4180e-56 (conv 2e-16); scaled: delta share 8.7e-03; blocks a_h 0.89, m_h 0.10, node2.m 0.00; top a_h k2 0.20, a_h k4 0.10, m_h k3 0.05, m_h k1 0.04, a_h k6 0.04
+    in z: delta share 5.8e-13; blocks p1 1.00, node4.p 0.00, node3.p 0.00; top p1 k1 0.09, p1 k3 0.09, p1 k5 0.09, p1 k7 0.08, p1 k9 0.08
+D 242.3642:
+  sigma_1 1.8825e-61 (conv 0e+00); scaled: delta share 2.1e-11; blocks a_h 0.53, m_h 0.47, node2.m 0.00; top m_h k3 0.09, a_h k2 0.08, a_h k4 0.08, m_h k1 0.07, m_h k5 0.06
+    in z: delta share 6.7e-04; blocks p1 0.25, m_h 0.14, node4.p 0.10; top p1 k3 0.12, m_h k3 0.09, node4.p k3 0.08, node4.m k3 0.08, node3.p k3 0.07
+  sigma_2 9.3856e-61 (conv 3e-16); scaled: delta share 8.4e-10; blocks a_h 0.53, m_h 0.47, node2.m 0.00; top m_h k3 0.14, a_h k4 0.12, a_h k2 0.10, m_h k5 0.06, a_h k8 0.05
+    in z: delta share 1.8e-20; blocks p1 1.00, m_h 0.00, node4.p 0.00; top p1 k31 0.06, p1 k29 0.06, p1 k27 0.06, p1 k25 0.06, p1 k23 0.06
+  sigma_3 2.6498e-59 (conv 2e-16); scaled: delta share 1.3e-07; blocks a_h 0.52, m_h 0.48, node2.m 0.00; top m_h k1 0.14, a_h k0 0.11, m_h k3 0.09, a_h k4 0.09, m_h k5 0.03
+    in z: delta share 5.1e-18; blocks p1 1.00, m_h 0.00, node4.p 0.00; top p1 k1 0.06, p1 k3 0.06, p1 k5 0.06, p1 k7 0.06, p1 k9 0.06
+  sigma_4 2.4555e-57 (conv 0e+00); scaled: delta share 8.5e-03; blocks a_h 0.89, m_h 0.10, node2.m 0.00; top a_h k2 0.20, a_h k4 0.10, m_h k3 0.05, m_h k1 0.04, a_h k6 0.04
+    in z: delta share 1.4e-12; blocks p1 1.00, node4.p 0.00, node3.p 0.00; top p1 k1 0.10, p1 k3 0.09, p1 k5 0.09, p1 k7 0.08, p1 k9 0.08
+D 242.5225:
+  sigma_1 1.5801e-61 (conv 0e+00); scaled: delta share 3.8e-11; blocks a_h 0.53, m_h 0.47, node2.m 0.00; top m_h k3 0.09, a_h k2 0.08, a_h k4 0.08, m_h k1 0.07, m_h k5 0.06
+    in z: delta share 1.2e-03; blocks p1 0.25, m_h 0.14, node4.p 0.10; top p1 k3 0.12, m_h k3 0.09, node4.p k3 0.08, node4.m k3 0.08, node3.p k3 0.07
+  sigma_2 7.3878e-61 (conv 0e+00); scaled: delta share 3.2e-10; blocks a_h 0.53, m_h 0.47, node2.m 0.00; top m_h k3 0.14, a_h k4 0.12, a_h k2 0.10, m_h k5 0.06, a_h k8 0.05
+    in z: delta share 5.8e-20; blocks p1 1.00, m_h 0.00, node4.p 0.00; top p1 k31 0.06, p1 k29 0.06, p1 k27 0.06, p1 k25 0.06, p1 k23 0.06
+  sigma_3 2.0257e-59 (conv 0e+00); scaled: delta share 2.1e-07; blocks a_h 0.52, m_h 0.48, node2.m 0.00; top m_h k1 0.14, a_h k0 0.11, m_h k3 0.09, a_h k4 0.09, m_h k5 0.03
+    in z: delta share 1.5e-17; blocks p1 1.00, m_h 0.00, node4.p 0.00; top p1 k31 0.06, p1 k29 0.06, p1 k27 0.06, p1 k25 0.06, p1 k23 0.06
+  sigma_4 1.9799e-57 (conv 0e+00); scaled: delta share 8.5e-03; blocks a_h 0.89, m_h 0.10, node2.m 0.00; top a_h k2 0.20, a_h k4 0.10, m_h k3 0.05, m_h k1 0.04, a_h k6 0.04
+    in z: delta share 5.7e-12; blocks p1 1.00, node4.p 0.00, node3.p 0.00; top p1 k1 0.08, p1 k3 0.08, p1 k5 0.07, p1 k7 0.07, p1 k9 0.07
+D 242.5264:
+  sigma_1 1.5733e-61 (conv 0e+00); scaled: delta share 3.9e-11; blocks a_h 0.53, m_h 0.47, node2.m 0.00; top m_h k3 0.09, a_h k2 0.08, a_h k4 0.08, m_h k1 0.07, m_h k5 0.06
+    in z: delta share 1.2e-03; blocks p1 0.25, m_h 0.14, node4.p 0.10; top p1 k3 0.12, m_h k3 0.09, node4.p k3 0.08, node4.m k3 0.08, node3.p k3 0.07
+  sigma_2 7.3439e-61 (conv 0e+00); scaled: delta share 3.1e-10; blocks a_h 0.53, m_h 0.47, node2.m 0.00; top m_h k3 0.14, a_h k4 0.12, a_h k2 0.10, m_h k5 0.06, a_h k8 0.05
+    in z: delta share 2.3e-19; blocks p1 1.00, m_h 0.00, node4.p 0.00; top p1 k31 0.06, p1 k29 0.06, p1 k27 0.06, p1 k25 0.06, p1 k23 0.06
+  sigma_3 2.0127e-59 (conv 0e+00); scaled: delta share 2.1e-07; blocks a_h 0.52, m_h 0.48, node2.m 0.00; top m_h k1 0.14, a_h k0 0.11, m_h k3 0.09, a_h k4 0.09, m_h k5 0.03
+    in z: delta share 7.7e-17; blocks p1 1.00, m_h 0.00, node4.p 0.00; top p1 k31 0.08, p1 k29 0.08, p1 k27 0.08, p1 k25 0.08, p1 k23 0.07
+  sigma_4 1.9690e-57 (conv 1e-16); scaled: delta share 8.5e-03; blocks a_h 0.89, m_h 0.10, node2.m 0.00; top a_h k2 0.20, a_h k4 0.10, m_h k3 0.05, m_h k1 0.04, a_h k6 0.04
+    in z: delta share 4.3e-13; blocks p1 1.00, node4.p 0.00, node3.p 0.00; top p1 k31 0.10, p1 k29 0.09, p1 k27 0.09, p1 k25 0.09, p1 k23 0.08

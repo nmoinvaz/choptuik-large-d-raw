@@ -1,0 +1,104 @@
+diff --git a/hp/modecount_cx/src/lib.rs b/hp/modecount_cx/src/lib.rs
+index b08853de..df89f250 100644
+--- a/hp/modecount_cx/src/lib.rs
++++ b/hp/modecount_cx/src/lib.rs
+@@ -30,7 +30,7 @@
+ //! p, m solves it at lambda = 0 (the p, m equations are linear in p, m), so lambda = 0 is a zero.
+ //! TEST_MUT, the control, zeroes the tangents of c only: a's response to p, m stays in, and that identity breaks.
+ use hpk::dd::DD;
+-use hpk::dv::DV;
++use hpk::dv::{DotAcc, DV};
+ use hpk::field::{cs, cs_range, cs_w, horner, DMat, FieldSolve, Fl, State};
+ use hpk::lane::{BaseLane, Dc};
+ use hpk::linalg::{clu_logdet, ld_for, DDLu};
+@@ -40,7 +40,8 @@ use numpy::{IntoPyArray, PyArray1, PyArray2, PyReadonlyArray1, PyReadonlyArray2}
+ use pyo3::exceptions::PyValueError;
+ use pyo3::prelude::*;
+ use rayon::prelude::*;
+-use std::sync::Arc;
++use std::sync::atomic::{AtomicU64, Ordering};
++use std::sync::{Arc, Mutex};
+ 
+ /// `Cx::test`: the full linearisation
+ pub const TEST_OFF: u8 = 0;
+@@ -88,6 +89,52 @@ fn recip_int(k: usize) -> DD {
+     DD::ONE / DD::from_f64(k as f64)
+ }
+ 
++/// #509 instrumentation: calls, elements, nonzero differences, max and sum of squares of the relative difference of the two forms of the complex shift, max absolute difference.
++static SHIFT_STATS: Mutex<[f64; 6]> = Mutex::new([0.0; 6]);
++static SHIFT_PLANT: AtomicU64 = AtomicU64::new(0);
++
++fn shift_record(new: &DV, old: &DV) {
++    let plant = f64::from_bits(SHIFT_PLANT.load(Ordering::Relaxed));
++    let (nh, nl, oh, ol) = (new.hi.to_array(), new.lo.to_array(), old.hi.to_array(), old.lo.to_array());
++    let mut loc = [0.0f64; 6];
++    loc[0] = 1.0;
++    for j in 0..8 {
++        let (oh, ol) = (oh[j], ol[j] + oh[j] * plant);
++        if oh == 0.0 {
++            continue;
++        }
++        let d = (nh[j] - oh) + (nl[j] - ol);
++        let rel = (d / oh).abs();
++        loc[1] += 1.0;
++        if d != 0.0 {
++            loc[2] += 1.0;
++        }
++        loc[3] = loc[3].max(rel);
++        loc[4] += rel * rel;
++        loc[5] = loc[5].max(d.abs());
++    }
++    let mut g = SHIFT_STATS.lock().unwrap();
++    g[0] += loc[0];
++    g[1] += loc[1];
++    g[2] += loc[2];
++    g[3] = g[3].max(loc[3]);
++    g[4] += loc[4];
++    g[5] = g[5].max(loc[5]);
++}
++
++#[pyfunction]
++fn shift_stats() -> (f64, f64, f64, f64, f64, f64) {
++    let mut g = SHIFT_STATS.lock().unwrap();
++    let r = (g[0], g[1], g[2], g[3], if g[1] > 0.0 { (g[4] / g[1]).sqrt() } else { 0.0 }, g[5]);
++    *g = [0.0; 6];
++    r
++}
++
++#[pyfunction]
++fn set_shift_plant(rel: f64) {
++    SHIFT_PLANT.store(rel.to_bits(), Ordering::Relaxed);
++}
++
+ /// d/dtau = omega D, plus lambda on the (complex) tangent. With li = 0 the same operations as model.rs's dtau.
+ #[inline(always)]
+ fn dtau_c<const B: usize>(cx: &Cx<B>, x: &Fl<Dc, B>, omega: Dc) -> Fl<Dc, B> {
+@@ -97,10 +144,17 @@ fn dtau_c<const B: usize>(cx: &Cx<B>, x: &Fl<Dc, B>, omega: Dc) -> Fl<Dc, B> {
+     }
+     let a = DV::splat(cx.lr);
+     let b = DV::splat(cx.li);
++    let nb = DV::splat(-cx.li);
+     for k in 0..B {
+         let t = x.0[k];
+-        r.0[k].r = r.0[k].r + (t.r * a - t.i * b);
+-        r.0[k].i = r.0[k].i + (t.i * a + t.r * b);
++        let re_new = t.r * a - t.i * b;
++        let im_new = t.i * a + t.r * b;
++        let re_old = DotAcc::zero().add_prod(t.r, a).add_prod(t.i, nb).finish();
++        let im_old = DotAcc::zero().add_prod(t.i, a).add_prod(t.r, b).finish();
++        shift_record(&re_new, &re_old);
++        shift_record(&im_new, &im_old);
++        r.0[k].r = r.0[k].r + re_new;
++        r.0[k].i = r.0[k].i + im_new;
+     }
+     r
+ }
+@@ -951,5 +1005,7 @@ fn cdet<'py>(rh: PyReadonlyArray2<'py, f64>, rl: PyReadonlyArray2<'py, f64>, ih:
+ fn modecount_cx(m: &Bound<'_, PyModule>) -> PyResult<()> {
+     m.add_class::<CSolver>()?;
+     m.add_function(wrap_pyfunction!(cdet, m)?)?;
++    m.add_function(wrap_pyfunction!(shift_stats, m)?)?;
++    m.add_function(wrap_pyfunction!(set_shift_plant, m)?)?;
+     Ok(())
+ }
