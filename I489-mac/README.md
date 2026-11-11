@@ -26,4 +26,25 @@ The horizon series and the Taylor steps differ at 0.8 by 4.4e-36 (p, m), 1.9e-36
 (`--mutate sign`, `renode_L1_ctl_sign.*`) leaves the rows at 1.22e-08 and its check fails (exit 1), as it must.
 The polish starts from the horizon start (`run_polish.sh`, `polish_L1.log`, `polish_L1/`).
 
-Results follow as the runs finish.
+## Base polish, layout 1: stopped inside its first Newton step
+
+`run_polish.sh <worktree>/hp RAW I489-mac/renode_L1_horizon_D242.3642.npz polish_L1`: anm_run.py with crawlJ's
+options, `--steps 0 --save_base 1`, 2 threads. It ran from 05:21:20 to 08:00:27 UTC (`exits.txt`: exit 143, SIGTERM,
+wall 9547 s, 210 cpu-min) and was stopped at the coordinator's deadline. In that time it did not finish step 0, so the log
+holds only its two header lines, `polish_L1/` is empty and no base was saved. newton_od prints a step only once a trial is
+accepted or all nine trials (lam 1 to 1/256) are refused.
+
+Where it was, from two stack samples (macOS `sample`, 07:25 and 08:00 UTC; the files were not kept):
+
+- 07:25: `Solver.newton_o` building the octo-double Jacobian (`osolve::jacobian_o`, in `taylor_coeffs` and
+  `horizon_series`). That is the start or a trial point.
+- 08:00: `Solver.jacobian` and `Solver.residual` in double-double, i.e. `Reseeder.invert`, the re-seed projection's
+  rung Newton. ElimO runs it only at points whose pinned quad-double max|F| exceeds 1e-15. The start's is 1.6e-34
+  (computed afterwards from its four-part rounding with the same offset), so ElimO skips it there.
+
+So at least one trial point of step 0 had max|F| above 1e-15, 19 or more orders above the start's 1.6e-34. That is
+the signature of crawlK's first step at 0.3-0.7 (1.4e-35 to 2.3e-24, #488) and of the earlier 0.8 layouts
+(notes/QUAD_DOUBLE.md 12.3, D 73: the first step raises |F| by 5-10 orders; 13.27, D 162.31: the polish stalls at
+7.9e-18 with pivots down to 9e-20). Each trial here costs a full octo-double Jacobian and LU at L 897 plus, above the
+switch, a projection with double-double Jacobians. With load 26-89 and swap nearly full, that held the run under one
+step for 2.6 h. Layout 2 was not run (coordinator: one process only). `run_near_null.sh` was prepared and never run.
