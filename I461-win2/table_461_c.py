@@ -55,6 +55,9 @@ def segments(lines):
         n = NEWT.search(ln)
         if n:
             cur["newton"] = (int(n.group(1)), n.group(2), n.group(3) == "converged")
+        h = HOR.match(ln)
+        if h:
+            cur["hor"] = h.group(1).split("->")[-1].strip()
         if "elim projections" in ln:
             cur["proj"] = ln.strip().replace("elim projections ", "")
         e = END.match(ln)
@@ -107,7 +110,7 @@ def accepted(log, jsonl):
                 inf.update(steps=a["steps"], lamtxt="(log lines lost)", final="?", conv=bool(r.get("converged", False)), lam1=True)
             sd = state_delta(os.path.dirname(os.path.abspath(jsonl)), a["D"])
             out.append(dict(D=mpf(a["D_str"]), a=a["a"], seg=segs[i], **{**inf, "delta_log": inf["delta"], "delta": sd if sd is not None else inf["delta"],
-                                                                          "from_state": sd is not None}))
+                                                                          "from_state": sd is not None, "idx": i}))
     return out
 
 
@@ -185,14 +188,53 @@ PRIOR = {"crawlB3": [("crawlB2.log", "crawlB2/anm_run.jsonl")],
                     ("crawlB5.log", "crawlB5/anm_run.jsonl"), ("crawlC.log", "crawlC/anm_run.jsonl"), ("crawlD.log", "crawlD/anm_run.jsonl"),
                     ("crawlE.log", "crawlE/anm_run.jsonl")],
          "crawlG": [("crawlB2.log", "crawlB2/anm_run.jsonl")],
+         "crawlH": [("crawlB2.log", "crawlB2/anm_run.jsonl"), ("crawlG.log", "crawlG/anm_run.jsonl")],
+         "crawlI": [("crawlB2.log", "crawlB2/anm_run.jsonl"), ("crawlG.log", "crawlG/anm_run.jsonl"), ("crawlH.log", "crawlH/anm_run.jsonl")],
          "crawlD2": [("crawlB2.log", "crawlB2/anm_run.jsonl"), ("crawlB3.log", "crawlB3/anm_run.jsonl"), ("crawlB4.log", "crawlB4/anm_run.jsonl"),
                      ("crawlB5.log", "crawlB5/anm_run.jsonl"), ("crawlC.log", "crawlC/anm_run.jsonl"), ("crawlD.log", "crawlD/anm_run.jsonl")]}
 NEWTON_FLAG = 25      # the coordinator's order of 21:02 UTC (crawlF, a 0.35): report at once a step that needs more than this many Newton steps (and a lam below LAM_FLAG)
 LAM_FLAG = 0.25
+STALL_LINE = "lam at or below 0.04 twice in a row, stopping (stalled)"
+
+
+def step_rule_problems(recs, hmax=0.5, grow=1.25):
+    """the coordinator's step rule of crawlI (--a_grow 1.25 --a_hold 1): the first attempt of each step is the step kept after a halved step, 1.25 times the previous step after a
+    step accepted at its first attempt, never above h_max and a_max; problems are returned as text (the first step of the run is not checked)"""
+    out, prev = [], None
+    for r in recs:
+        att = r["attempts"]
+        first = att[0]["a"]
+        if prev is not None:
+            a_prev, idx = prev
+            want = min(a_prev * grow if idx == 0 else a_prev, hmax, r.get("a_max", hmax))
+            if abs(first - want) > 1e-6 * max(want, 1e-9):
+                out.append(f"step {r['step']} (D {r['D0']:.5f}): first attempt a {first:g}, the rule gives {want:g} (previous step {a_prev:g}, accepted at attempt {idx})")
+        acc = next((i for i, x in enumerate(att) if x["accepted"]), None)
+        if acc is not None:
+            prev = (att[acc]["a"], acc)
+    return out
+
+
+def stall_problems(segs):
+    """a stalled attempt (two Newton steps in a row at lam <= 0.04) must end with STALL_LINE within 3 iterations of its start"""
+    out = []
+    for s in segs:
+        lams = [float(m.group(1)) for m in (re.search(r"lam (\S+),", ln) for ln in s["on"]) if m]
+        j = next((i for i in range(len(lams) - 1) if lams[i] <= 0.04 and lams[i + 1] <= 0.04), None)
+        has = any(STALL_LINE in ln for ln in s["lines"])
+        if j is not None and not has and s["end"] is not None:
+            out.append(f"attempt a {s['a']}: lam at or below 0.04 twice in a row from iteration {j} and no '{STALL_LINE}' line")
+        if has:
+            n_on = len(s["on"])
+            if n_on > 4:
+                out.append(f"attempt a {s['a']}: the stall line comes after {n_on} Newton iterations (more than 3 after its start)")
+    return out
+
+
 if os.environ.get("EVENTS_PROFILE") == "G":   # crawlG's reading rule of 21:31 UTC: report at once more than 6 Newton steps, any lam below 1, any refusal, series |z_N| above 1e-27 or fourth ratio below 100
     NEWTON_FLAG, LAM_FLAG = 6, 1.0
 Z_N_MAX, A_MAX_MIN, A_MAX_WARN = 1e-24, 2.0, 2.5   # the coordinator's series rule of 19:52 UTC: stop above/below the first two, warn once under the third
-HOR = re.compile(r"^horizon data refined in octo-double, rung max\|R\| (.*)$")
+HOR = re.compile(r"^\s*horizon data refined in octo-double, rung max\|R\| (.*)$")   # the log indents this line by 6 spaces
 SERIES = re.compile(r"^step (\d+): D (\S+), pivots (\S+?)\.\.(\S+?), \|z_1\| \S+, \|z_N\| (\S+), ratios 2-5 (.*), a_max (\S+),")
 
 
@@ -201,6 +243,14 @@ def events(state_path, log, jsonl, out=print, csv_path=CSV, quiet=False):
     if os.path.exists(state_path):
         st.update(json.load(open(state_path, encoding="utf-8")))
     segs, flat, stop, lines = load(log, jsonl)
+    if os.environ.get("EVENTS_PROFILE") == "I":
+        recs_i = [json.loads(ln) for ln in open(jsonl, encoding="utf-8") if ln.strip()] if os.path.exists(jsonl) else []
+        seen = set(st.get("rule_seen", []))
+        for p in step_rule_problems(recs_i, hmax=0.5) + stall_problems(segs):
+            if p not in seen:
+                out("CRAWLI RULE NOT FOLLOWED (stop and tell the coordinator): " + p)
+                seen.add(p)
+        st["rule_seen"] = sorted(seen)
     nref = 0
     for i, (r, a) in enumerate(flat):
         if a["accepted"]:
@@ -210,6 +260,8 @@ def events(state_path, log, jsonl, out=print, csv_path=CSV, quiet=False):
             n = segs[i]["newton"]
             tail = " | ".join(re.sub(r"^on (\d+): \|F\| (\S+) -> (\S+), \|dz\| \S+ -> \S+, lam (\S+),.*$", r"on \1 |F| \2->\3 lam \4", ln.strip()).replace(": no trial step accepted, stopping", " no trial step")
                               for ln in segs[i]["on"][-4:])
+            xr = dict(D=mpf(a["D_str"]), a=a["a"], seg=segs[i], **info(segs[i]))
+            out(step_line(xr, refused=True))
             out(f"REFUSED attempt a {a['a']:g} to D {a['D_str'][:12]} (a halving follows): {n[0] if n else '?'} Newton steps, max|F| {n[1] if n else '?'}, not converged; "
                 f"last iterations: {tail}")
     st["ref"] = nref
@@ -237,6 +289,12 @@ def events(state_path, log, jsonl, out=print, csv_path=CSV, quiet=False):
             flags.append("FIRST ACCEPTED STEP OF THIS RUN")
         if s["steps"] is not None and s["steps"] > NEWTON_FLAG:
             flags.append(f"MORE THAN {NEWTON_FLAG} NEWTON STEPS ({s['steps']})")
+        if os.environ.get("EVENTS_PROFILE") == "I":
+            try:
+                if float(s["final"]) >= 1e-60:
+                    flags.append(f"FINAL RESIDUAL {s['final']} IS NOT BELOW 1e-60 (--tol_od 1e-60)")
+            except ValueError:
+                pass
         if s["lams"] and min(s["lams"]) < LAM_FLAG:
             flags.append(f"A LAM BELOW {LAM_FLAG:g} ({min(s['lams']):g})")
         if not s["conv"]:
@@ -244,6 +302,13 @@ def events(state_path, log, jsonl, out=print, csv_path=CSV, quiet=False):
         elif not s["lam1"] and not quiet:
             flags.append("NOT CONVERGED AT LAM 1")
         diff = mp.nstr(s["delta"] - e, 3) if s["delta"] is not None else "-"
+        # the coordinator's verdicts of 2026-11-11 01:06 UTC: a BAD step or base is sent at once, a WATCH one is left to the hourly table
+        sm_ = SERIES.match(s["seg"].get("series", ""))
+        d0_ = sm_.group(2) if sm_ else "?"
+        vline, worst = verdict_line("step", f"{k + 1} D {d0_} -> {mp.nstr(s['D'], 9)} (a {s['a']:g})", step_verdicts(s, (s["delta"] - e) if s["delta"] is not None else None))
+        bline, bworst = verdict_line("base", f"D {d0_}", base_verdicts(s))
+        if worst == "BAD" or bworst == "BAD":
+            out(step_line(s))      # the coordinator's step line of 01:11 UTC, a ✗ in it is sent at once
         if quiet and not flags:
             continue
         out(f"ACCEPTED step {k + 1}: D {mp.nstr(s['D'], 12)}, a {s['a']:g}, start {s['start']}, {s['steps']} Newton steps, final {s['final']}, "
@@ -320,6 +385,23 @@ def selftest():
         events(os.path.join(td, "st.json"), log, jsonl, out=sink.append)
         if not any(x.startswith("ACCEPTED step 1") and "FIRST ACCEPTED STEP" in x for x in sink) or not any(x.startswith("RE-SEED NOT OK") for x in sink):
             fails.append("events on the crawl's log did not report a first accepted step and the failed re-seeds")
+        # the crawlI step rule must be able to fail: a kept step, a 1.25 growth, a wrong first attempt, and a stall line missing
+        mk = lambda step, D0, atts, amax=9.0: dict(step=step, D0=D0, a_max=amax, attempts=[dict(a=x, accepted=ok) for x, ok in atts])
+        good = [mk(0, 1.0, [(0.5, False), (0.25, True)]), mk(1, 1.25, [(0.25, True)]), mk(2, 1.5, [(0.3125, True)]), mk(3, 1.8, [(0.390625, True)])]
+        if step_rule_problems(good):
+            fails.append("the crawlI step rule flags a correct sequence: " + "; ".join(step_rule_problems(good)))
+        bad = [mk(0, 1.0, [(0.5, False), (0.25, True)]), mk(1, 1.25, [(0.5, True)])]
+        if not step_rule_problems(bad):
+            fails.append("the crawlI step rule did not flag a first attempt of 0.5 after a halved step of 0.25")
+        bad2 = [mk(0, 1.0, [(0.2, True)]), mk(1, 1.2, [(0.2, True)])]
+        if not step_rule_problems(bad2):
+            fails.append("the crawlI step rule did not flag a first attempt that did not grow 1.25 times after a first-attempt step")
+        seg = dict(a="0.5", on=["  on 0: |F| 1e-30 -> 2e-30, |dz| 1e-27 -> 1e-27, lam 0.03, x", "  on 1: |F| 2e-30 -> 2e-30, |dz| 1e-27 -> 1e-27, lam 0.02, x"], lines=["a", "b"], end="D")
+        if not stall_problems([seg]):
+            fails.append("a stalled attempt without the stall line was not flagged")
+        seg["lines"] = ["a", STALL_LINE]
+        if stall_problems([seg]):
+            fails.append("a stalled attempt with the stall line was flagged")
         if not any(x.startswith("REFUSED attempt") and "Newton steps" in x and "\n" not in x for x in sink):
             fails.append("events on the crawl's log did not report a refused attempt with its Newton lines")
         sink2 = []
@@ -332,6 +414,143 @@ def selftest():
             fails.append("part B's log, in which every step was refused, gave an accepted step")
     print("selftest: ok" if not fails else "selftest FAILED:\n  " + "\n  ".join(fails))
     return 0 if not fails else 1
+
+
+RANK = {"OK": 0, "WATCH": 1, "BAD": 2}
+
+
+def _band(x, ok, bad, big_is_bad=True):
+    """OK/WATCH/BAD of x by the coordinator's bounds (OK below `ok` and BAD above `bad`; the reverse when big_is_bad is False)"""
+    if big_is_bad:
+        return "OK" if x < ok else ("WATCH" if x <= bad else "BAD")
+    return "OK" if x > ok else ("WATCH" if x >= bad else "BAD")
+
+
+def _f(x):
+    try:
+        return float(x)
+    except (TypeError, ValueError):
+        return None
+
+
+def step_verdicts(s, ediff=None):
+    """[(quantity, OK/WATCH/BAD, text)] of an accepted step by the coordinator's bounds of 2026-11-11 01:06 UTC (the first |dz| and the start max|F| are the attempt's)"""
+    out = []
+    n = s["steps"]
+    if n is None or not s["conv"]:
+        out.append(("Newton steps", "BAD", "not converged"))
+    else:
+        out.append(("Newton steps", "OK" if n <= 4 else ("WATCH" if n <= 8 else "BAD"), f"{n} Newton"))
+    lams = s["lams"]
+    stall = any(STALL_LINE in ln for ln in s["seg"]["lines"])
+    lmin = min(lams) if lams else 1.0
+    v = "BAD" if (lmin < 0.25 or stall) else ("OK" if lmin == 1 else "WATCH")
+    out.append(("lam", v, "lam 1" if v == "OK" else f"lam down to {lmin:g}" + (" and the stall line" if stall else "")))
+    f = _f(s["final"])
+    out.append(("final max|F|", "BAD" if f is None or f > 1e-40 else ("OK" if f < 1e-60 else "WATCH"), f"final {s['final']}"))
+    st = _f(s["start"])
+    out.append(("start max|F|", "BAD" if st is None else _band(st, 1e-33, 1e-25), f"start {s['start']}"))
+    dz = _f(s["dz0"])
+    out.append(("first |dz|", "BAD" if dz is None else _band(dz, 1e-29, 1e-26), f"first |dz| {s['dz0']}"))
+    hor = _f(s["seg"].get("hor"))
+    out.append(("horizon rung", "BAD" if hor is None or s["seg"]["status"] != "ok" else _band(hor, 1e-50, 1e-40), f"horizon {s['seg'].get('hor', '?')}"))
+    if ediff is not None:
+        out.append(("Delta minus extrapolation", _band(abs(ediff), 1e-12, 1e-10), f"Delta-extrap {mp.nstr(ediff, 2)}"))
+    return out
+
+
+def base_verdicts(s):
+    """[(quantity, verdict, text)] of the series line of the step's base"""
+    sm = SERIES.match(s["seg"].get("series", ""))
+    if not sm:
+        return [("series", "BAD", "no series line")]
+    zN, amax, r4 = float(sm.group(5)), float(sm.group(7)), float(sm.group(6).split()[-1])
+    return [("|z_N|", _band(zN, 1e-27, 1e-24), f"|z_N| {sm.group(5)}"), ("a_max", _band(amax, 2.5, 2.0, big_is_bad=False), f"a_max {sm.group(7)}"),
+            ("fourth ratio", "OK" if r4 > 150 else "WATCH", f"fourth ratio {sm.group(6).split()[-1]}")]   # the coordinator, 01:33 UTC: a fourth ratio under 150 is ~ at most, never ✗
+
+
+def verdict_line(kind, label, vs, extra=""):
+    worst = max((v for _, v, _ in vs), key=lambda v: RANK[v])
+    names = [q for q, v, _ in vs if v == worst] if worst != "OK" else []
+    return f"{worst} {kind} {label}: " + ", ".join(t for _, _, t in vs) + (f"  [{worst}: {', '.join(names)}]" if names else "") + extra, worst
+
+
+def verdicts(runs, frm=1, out=print, csv_path=CSV):
+    """the verdict lines (per step, then per base) of the accepted steps of the runs, leading the hourly table"""
+    pts = chain_six(csv_path)
+    rows = []
+    for log, jsonl in runs:
+        for s in accepted(log, jsonl):
+            e = extrapolate(pts[-6:], s["D"])
+            ediff = (s["delta"] - e) if s["delta"] is not None else None
+            if s["delta"] is not None:
+                pts.append((s["D"], s["delta"]))
+            rows.append((s, ediff))
+    for k, (s, ediff) in enumerate(rows, 1):
+        if k < frm:
+            continue
+        sm = SERIES.match(s["seg"].get("series", ""))
+        d0 = sm.group(2) if sm else "?"
+        out(verdict_line("step", f"{k} D {d0} -> {mp.nstr(s['D'], 9)} (a {s['a']:g})", step_verdicts(s, ediff))[0])
+        out(verdict_line("base", f"D {d0}", base_verdicts(s), f", smallest pivot {s['pivots'].split('..')[0]} (not judged)")[0])
+    return len(rows)
+
+
+MARK = {"OK": "✓", "WATCH": "~", "BAD": "✗"}
+MACHINE = "win2"
+
+
+def step_line(s, refused=False):
+    """the coordinator's step line of 2026-11-11 01:11 UTC: machine, D base -> D target, six marks (Newton steps, step length = the smallest lam, final residual, start residual,
+    first move = first |dz|, series) and the numbers in the same order; a refused attempt has the Newton-steps mark BAD"""
+    vs = {q: v for q, v, _ in step_verdicts(s)}
+    if refused:
+        vs["Newton steps"] = "BAD"
+    bs = base_verdicts(s)
+    ser = max((v for _, v, _ in bs), key=lambda v: RANK[v])
+    marks = [MARK[vs[q]] for q in ("Newton steps", "lam", "final max|F|", "start max|F|", "first |dz|")] + [MARK[ser]]
+    sm = SERIES.match(s["seg"].get("series", ""))
+    d0 = f"{float(sm.group(2)):.2f}" if sm else "?"
+    dt = f"{float(s['D']):.2f}"
+    lmin = min(s["lams"]) if s["lams"] else 1.0
+    two = lambda v: f"{float(v):.1e}" if _f(v) is not None else str(v)   # two significant digits, as in the coordinator's example
+    vals = [str(s["steps"]), f"{lmin:g}", two(s["final"]), two(s["start"]), two(s["dz0"]), {"OK": "ok", "WATCH": "watch", "BAD": "bad"}[ser]]
+    return f"{MACHINE}  D {d0} -> {dt}   {' '.join(marks)}   ({', '.join(vals)})"
+
+
+def delta_line(D, delta, digits=11):
+    """Delta with only the trusted digits, cut (not rounded) after `digits` decimals: 11 digits and "±2 in the last digit" for an error bar of 2.1e-11 (the coordinator's
+    correction of 01:14 UTC; the bar is the spread over the held fit's degree, d6 minus d10, 2e-11 as the working value past D 221 until it is measured)"""
+    t = mp.nstr(delta, 30)
+    return f"Delta(D {mp.nstr(D, 11)}) = {t[:t.index('.') + 1 + digits]} (±2 in the last digit)"
+
+
+def steps(runs, out=print):
+    """the step lines of every attempt in order (a refused attempt is one line), a Delta line after each accepted step"""
+    n = 0
+    for log, jsonl in runs:
+        segs, flat, _, _ = load(log, jsonl)
+        acc = {x["idx"]: x for x in accepted(log, jsonl)}
+        for i, (r, a) in enumerate(flat):
+            if i >= len(segs):
+                break
+            seg = segs[i]
+            if a["accepted"]:
+                x = acc[i]
+                out(step_line(x))
+                if x["delta"] is not None:
+                    out(delta_line(x["D"], x["delta"]))
+            else:
+                x = dict(D=mpf(a["D_str"]), a=a["a"], seg=seg, **info(seg))
+                out(step_line(x, refused=True))
+            n += 1
+        for seg in segs[len(flat):]:     # attempts of a run that ended before its step record was written (crawlH): a finished, not converged one is a refused line
+            if seg["end"] and seg["newton"] and not seg["newton"][2]:
+                sm = SERIES.match(seg.get("series", ""))
+                x = dict(D=mpf(seg["end"]), a=float(seg["a"]), seg=seg, **info(seg))
+                out(step_line(x, refused=True))
+                n += 1
+    return n
 
 
 FIRST_CHAIN = [("crawlB2.log", "crawlB2/anm_run.jsonl"), ("crawlB3.log", "crawlB3/anm_run.jsonl"), ("crawlB4.log", "crawlB4/anm_run.jsonl"),
@@ -347,22 +566,32 @@ def cmp_chains(log, jsonl, out=print, base=HERE):
             for s in accepted(os.path.join(base, l), os.path.join(base, j)):
                 if s["delta"] is not None:
                     first[round(float(s["D"]), 6)] = s["delta"]
-    out("| D | Delta of this chain | Delta of the first chain | difference |")
-    out("|---|---|---|---|")
+    out("| verdict | D | Delta of this chain | Delta of the first chain | difference |")
+    out("|---|---|---|---|---|")
     n = 0
     for s in accepted(log, jsonl):
         k = round(float(s["D"]), 6)
         if k in first and s["delta"] is not None:
             n += 1
-            out(f"| {mp.nstr(s['D'], 12)} | {mp.nstr(s['delta'], 20)} | {mp.nstr(first[k], 20)} | {mp.nstr(s['delta'] - first[k], 3)} |")
+            diff = s["delta"] - first[k]
+            out(f"| {_band(abs(diff), 1e-16, 1e-14)} | {mp.nstr(s['D'], 12)} | {mp.nstr(s['delta'], 20)} | {mp.nstr(first[k], 20)} | {mp.nstr(diff, 3)} |")
     out(f"{n} steps of this chain have a state of the first chain at the same D")
     return n
 
 
 if __name__ == "__main__":
+    sys.stdout.reconfigure(encoding="utf-8")   # the step lines carry ✓ ~ ✗, and python -I ignores PYTHONIOENCODING
     a = sys.argv[1:]
     if "--selftest" in a:
         sys.exit(selftest())
+    if a and a[0] == "steps":
+        sys.exit(0 if steps(list(zip(a[1::2], a[2::2]))) >= 0 else 1)
+    if a and a[0] == "verdict":
+        frm = 1
+        rest = a[1:]
+        if rest and rest[0] == "--from":
+            frm, rest = int(rest[1]), rest[2:]
+        sys.exit(0 if verdicts(list(zip(rest[0::2], rest[1::2])), frm) >= 0 else 1)
     if a and a[0] == "cmp" and len(a) == 3:
         sys.exit(0 if cmp_chains(a[1], a[2]) >= 0 else 1)
     if a and a[0] == "table":
