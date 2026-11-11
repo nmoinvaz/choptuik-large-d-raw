@@ -1,0 +1,16 @@
+  resampled state from modecount_state_D45.0507_M48_kf21.npz
+Traceback (most recent call last):
+  File "/Users/nathan/Source/choptuik-large-d/hp/modecount_circle.py", line 219, in <module>
+    main()
+    ~~~~^^
+  File "/Users/nathan/Source/choptuik-large-d/hp/modecount_circle.py", line 167, in main
+    st = setup(path, M=int(opts["M"]) if "M" in opts else None, threads=int(opts.get("threads", 1)), kf=kf,
+               fmax=float(opts.get("fmax", 1e-20)),
+               centre_tol=float(opts["centre_tol"]) if "centre_tol" in opts else None)
+  File "/Users/nathan/Source/choptuik-large-d/hp/modecount_common.py", line 231, in setup
+    series_gate(s, zh, zl, meta, "start")
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nathan/Source/choptuik-large-d/hp/modecount_common.py", line 191, in series_gate
+    raise RuntimeError(f"series not converged in this layout ({when}; M = {meta['M']}, nodes {meta['nodes']}): "
+                       f"{tails_text(tails)}; more than {SERIES_TAIL:.0e}")
+RuntimeError: series not converged in this layout (start; M = 48, nodes [0.3, 0.4, 0.5, 0.6, 0.7]): centre 2.4e-08 (ratio 0.967 at 0.3), horizon 1.5e-28 (ratio 0.560 at 0.3); more than 1e-15
