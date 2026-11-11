@@ -16,3 +16,8 @@ Then from D 215.13125, each chain with `--h_max 1.0 --steps 400` (D 216.13125, .
 The first start (15:31 UTC, main dd4c70f) was stopped at 16:09:53 UTC, in the base polish of both chains, on the coordinator's word (agent-comms `choptuik-large-d/2026-11-10/160918Z-coordinator-be13.md`): a reloaded state near D 215 starts a few 1e-36 off because the held values are taken again from its first two parts, so the polish is lost time (d10's D 215.0 state: 3.86e-36, then 7.80e-19 after its first step at lam 1/32; d6's D 214.75 state repeated #276's polish to three digits). Nothing was saved. The logs `chain_d10.log` and `chain_d6.log` keep those lines, followed by a `=== restart` line.
 
 Both chains restart with the same commands plus `--base_polish 0` (in `d10_s1.cmd` and `d6_s1.cmd`), on main 718ca35 (`hp/anm_run.py` only, Python; the venv build is unchanged), and every later restart of this task uses it. **The reading rule changes in one line:** at each start the log prints `base polish skipped (--base_polish 0): the stored state is the base`, then the step 0 series line with |z_N| below 1e-25 and a_max above 3. The rest of the rule stands.
+
+
+## Start rule, a_max bound (2026-11-11 17:57 UTC, coordinator 175746Z)
+
+The start rule above (the step 0 series line has a_max above 3) is now a_max above 2.0, the bound of the step verdicts. Reason: a_max falls smoothly with D on every chain (win_d10 3.110, 2.976, 2.917 at bases D 227.13, 228.13, 229.13; 2.444 on crawlJ at D 242.36), the series radius shrinking with n and not a bad start. The |z_N| bound of 1e-25 stays. win_d10 was left running at its step 0 a_max of 2.917 (message 175651Z, answer 175746Z).
