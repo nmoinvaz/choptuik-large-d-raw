@@ -12,3 +12,12 @@ a small circle (R 0.05 to 0.1, centred on the located zero) winding +1 on each z
 
 ## Results
 
+Circles exit 0 at 18:59:10 UTC (started 16:02 UTC; 325 lines in the cache, 174 new). All five wind +1 with 0 verification mismatches:
+  lambda_phys 2.043532530673195 (R 0.2, replay of I244): zero 2.043534609 +0.000003920i, estimate 9.5e-07.
+  2.85 +0.25i (R 0.36): zero 2.904198 +0.244407i, estimate 1.4e-02, 44 points, 4 alias bisections, largest step 0.386.   2.85 -0.25i: zero 2.904184 -0.244432i, 1.4e-02, same counts.
+  3.35 +0.25i (R 0.36): zero 3.256356 +0.226640i, estimate 8.5e-03, 39 points, 0 alias bisections, largest step 0.391.   3.35 -0.25i: zero 3.256354 -0.226645i, 8.5e-03, same counts.
+The four circles cover the box 2.6 < Re < 3.6, |Im| <= 0.5 (the corners (2.6, +-0.5), (3.6, +-0.5) and the midpoints (3.1, 0) and (3.1, +-0.5) are 0.354 from a centre, inside R 0.36). Each zero is outside the other circle of its pair (0.407 and 0.446 from the other centre).
+Small circles (R 0.06, centred on the four located zeros, small_circles.cmd, started 19:25 UTC): follow.
+Small circles (R 0.06, started 19:25, exit 0 at 21:07:44 UTC; 360 lines in the cache), all winding +1, 28 points, largest steps 0.349 to 0.351, 0 mismatches, 0 alias bisections:
+  2.904198 +0.244407i: zero 2.903462 +0.242781i (estimate 4.3e-06).   2.904184 -0.244432i: zero 2.903462 -0.242778i (1.2e-05).
+  3.256356 +0.226640i: zero 3.256691 +0.226476i (1.0e-05).   3.256354 -0.226645i: zero 3.256693 -0.226477i (1.1e-05).

@@ -15,3 +15,6 @@ Part 2 (coordinator's 15:33 UTC message, circles widened so that neighbours over
 all on the real axis, in a second process on its own cache (data_seg/), command in circles_segment.cmd. The two controls (R 0.2 at 0.6138552550 and 2.6740838) keep running in the first process. Gaps along the real axis, from the radii:
 the controls cover 0.414 to 0.814 and 2.474 to 2.874; 0.3 R 0.2 covers 0.1 to 0.5, 1.3 R 0.6 covers 0.7 to 1.9, 2.2 R 0.32 covers 1.88 to 2.52, 3.32 R 0.52 covers 2.8 to 3.84, 4.35 R 0.57 covers 3.78 to 4.92, 5.45 R 0.57 covers 4.88 to 6.02.
 So the real segment is covered from 0.1 to 6.02 with overlaps, and (0, 0.1) is not covered (the zero at 0 is 0.1 from the first circle's edge).
+Controls exit 0 at 17:53:26 UTC; segment exit 0 at 21:01:10 UTC (started 17:54 UTC). Setup |F| 9.1e-30 (limit 1e-15). Delta of the state, zh[-1] + zl[-1] = 3.4454524040781, 1.84e-09 from 3.4454524022410 (limit 1e-8): passes.
+Controls (R 0.2): lambda_g 0.6138552550 winding +1 (zero 0.613855 +0i, estimate 9.2e-07, 27 points, largest step 0.384); lambda_phys 2.6740838 winding +1 (zero 2.674078 -0i, estimate 1.8e-11, 28 points, 0.353).
+Segment circles, all winding 0, 0 verification mismatches: 0.3 R 0.2 (22 points, 0.337); 1.3 R 0.6 (33, 0.337, 4 alias bisections); 2.2 R 0.32 (21, 0.357); 3.32 R 0.52 (24, 0.365); 4.35 R 0.57 (20, 0.035); 5.45 R 0.57 (20, 0.006).
