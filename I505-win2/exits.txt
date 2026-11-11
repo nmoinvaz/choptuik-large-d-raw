@@ -1,0 +1,11 @@
+run_i505 start 2026-11-11 20:50:49 UTC
+eq_D237.1312 start 2026-11-11 20:50:49 UTC
+eq_D239.5375 start 2026-11-11 20:50:49 UTC
+eq_D241.1244 start 2026-11-11 20:50:49 UTC
+eq_D242.3642 start 2026-11-11 20:50:49 UTC
+eq_D241.1244 exit 0 2026-11-11 20:54:54 UTC
+eq_D239.5375 exit 0 2026-11-11 20:54:55 UTC
+eq_D237.1312 exit 0 2026-11-11 20:54:55 UTC
+eq_D242.3642 exit 0 2026-11-11 20:55:05 UTC
+control eq_D237.1312 --mutate=rows_only start 2026-11-11 20:55:05 UTC
+control eq_D237.1312 --mutate=rows_only exit 1 (must be nonzero) 2026-11-11 20:58:54 UTC
