@@ -1,0 +1,14 @@
+# I515-win2: is the scatter of sigma_1's local rate the system's or the chain's? (the first chain at the same D)
+
+Machine win2 (Windows 11 desktop, Intel Core Ultra 7 265K, 20 threads, 96 GB), issue https://github.com/nmoinvaz/choptuik-large-d/issues/515 (follows from #511).
+Code: worktree `D:\choptuik-i505` at `origin/wip/i502-subagent` 0cce81e (Python only; interpreter and `hpkernel` build of `C:\Users\nathan\Source\venv-t126`), as in #505, #510, #511.
+Seven states of the first chain, four at a time (2 threads each, below-normal priority, `run_i515.sh`): crawlB4 at D 228.1312, 229.1312, 230.1312, 231.1312 (wave 1); crawlB5 at D 234.1312, 235.1312 and crawlE at D 239.8063, with the control `--mutate=rows_only` at crawlB4 D 231.1312 (wave 2). Exit codes in `exits.txt`.
+The clean chain (crawlG/crawlI/crawlJ) has states at exactly the same D for the first six, tabled from `../I510-win2` and `../I511-win2`; crawlE D 239.8063 is compared with the clean chain interpolated in ln sigma_1 between D 239.5375 and 241.1244 (#505). Results follow in this README.
+
+## Results (2026-11-11 22:02:20 to 22:10:33 UTC)
+
+Seven runs exited 0 (wave 1 22:02:24 to 22:06:28, wave 2 22:06:28 to 22:10:33 UTC), the control `--mutate=rows_only` at crawlB4 D 231.13 exited 1, as it must (`exits.txt`). The planted check passes at all seven states. `table_515.py` (selftest ok: an offset of 0.05 reads as the system's, 0.2 as the chain's) makes `results_515.txt`.
+
+At equal D the first chain's equilibrated sigma_1..4 equal the clean chain's to the printed digits: the difference of ln sigma_1 is 0.0000 at crawlB4 D 228.1312, 229.1312, 230.1312, 231.1312 and crawlB5 D 234.1312, 235.1312 (largest |difference| below 5e-5), sigma_2..4 the same. The local rates over the same steps are the same: 0.914, 1.297, 1.142 | 1.141 (228 to 231) and 1.187 | 1.187 (234 to 235). crawlE D 239.8063: ln sigma_1 -136.4630 against the clean chain's -136.5337 interpolated between D 239.5375 and 241.1244: difference +0.0707 (sigma_2 -0.061, sigma_3 -0.084, sigma_4 +0.091), of the size of the interpolation's own uncertainty (the local rate swings by 0.2 per unit of D).
+The rule (a difference above 0.1 means the scatter is the chain's): not exceeded anywhere, so **the scatter is the system's**, with the caveat below.
+The two chains are not independent solutions. Both start from crawlB2's D 215.1312 and stay on the same branch: the state vectors (zh, zl) of crawlB4 and crawlG at D 228.1312 differ by at most 2.2e-16, at D 231.1312 by 2.7e-15; crawlB5 and crawlI at D 234.1312 by 2.0e-14, at D 235.1312 by 6.2e-14 (the largest |difference| of any entry). So the comparison shows that different step sizes and corrector histories reach the same states within 6e-14 and that sigma_1 is stable under such differences; it does not test another start.
