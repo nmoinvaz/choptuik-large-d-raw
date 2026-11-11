@@ -1,0 +1,21 @@
+held values from the fit data/held_fit.json (degree 8, 138 full-system states, D 38.020417-73.0), relative to the base
+the base keeps its stored plan (21 steps)
+      saved the start and first step as dz0_pin3_D0.0000_a0.000000.npz
+  on 0: |F| 7.98e-38 -> 1.31e-40, |dz| 8.1e-38 -> 1.5e-61, lam 1, dDelta +9.91e-40, piv 2.7e-25..3.5e+34, 15.49 s
+  on 1: |F| 1.31e-40 -> 7.11e-87, |dz| 1.5e-61 -> 1.5e-61, lam 1, dDelta -2.97e-62, piv 2.7e-25..3.5e+34, 14.52 s
+  on 2: |F| 7.11e-87 converged, Delta 1.68620907278328036 +8.6323e-17
+      elim projections {'u0': 0, 'u0q': 0, 'ladder': 0, 'failed': 0, 'skipped': 3}
+      octo-double Newton: 3 steps, max|F| 7.1e-87, converged; double-double |F| of its first two parts 1.2e+06
+base I461-win2/probe03125/anm_pin3_D242.5146.npz: D 242.514649963, M 32, pin 3 (held [5, 7, 9, 11, 13]), |F| 1.2e+06; N 24, eps 1e-14, h_max 0.015625, corrector od (junk_only False), tol 1.0e-20 x 1.45^(D - 242.51465), stalls accepted below 1e-17
+step 0: D 242.514649963, pivots 2.7e-25..3.5e+34, |z_1| 3.62e-04, |z_N| 3.58e-26, ratios 2-5 311.6 206.7 7.7 0.7, a_max 2.229, 366 s
+    a 0.0156: re-seeded (ok), 22.21 s
+      horizon data refined in octo-double, rung max|R| 2.50e-27 -> 6.18e-25 -> 4.70e-41 -> 1.67e-48 -> 5.57e-56
+      saved the start and first step as dz0_pin3_D242.5303_a0.015625.npz
+  on 0: |F| 7.81e-36 -> 4.90e-26, |dz| 2.0e-30 -> 1.8e-32, lam 1, dDelta -2.05e-30, piv 2.9e-25..3.5e+34, 16.47 s
+  on 1: |F| 4.90e-26 -> 2.45e-26, |dz| 1.8e-32 -> 6.7e-33, lam 0.5, dDelta -1.09e-32, piv 2.7e-25..3.5e+34, 30.9 s
+  on 2: |F| 2.45e-26 -> 2.37e-26, |dz| 6.7e-33 -> 6.7e-33, lam 0.03125, dDelta +4.19e-33, piv 2.7e-25..3.5e+34, 96.59 s
+  on 3: |F| 2.37e-26 -> 2.35e-26, |dz| 6.7e-33 -> 6.7e-33, lam 0.0078125, dDelta +4.27e-33, piv 2.7e-25..3.5e+34, 129.98 s
+  on 3: lam at or below 0.04 twice in a row, stopping (stalled)
+      elim projections {'u0': 0, 'u0q': 0, 'ladder': 0, 'failed': 0, 'skipped': 18}
+      octo-double Newton: 4 steps, max|F| 2.4e-26, not converged; double-double |F| of its first two parts 1.0e+06
+    a 0.016 -> D 242.530274963: predicted |F| 1.04e+06, od 4 steps -> 1.02e+06 (tol 1.0e-20), Delta 1.686206375848 (formula diff -1.6e-06), moved 4.2e-30, 290 s
