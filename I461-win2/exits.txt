@@ -18,3 +18,10 @@ part B5 start 2026-11-10 17:14:59 UTC from I461-win2/crawlB4/anm_pin3_D231.6312.
 part B5 anm_run killed: stopped by the coordinator at 2026-11-10 19:34:48 UTC (order of 19:33 UTC) to run the pilot (part C), last saved state crawlB5/anm_pin3_D235.7562.npz
 part C start 2026-11-10 19:35:33 UTC from I461-win2/crawlB5/anm_pin3_D235.7562.npz
 part C anm_run --steps 3 exit 0 wall 1630s 2026-11-10 20:02:43 UTC
+part D start 2026-11-10 20:04:50 UTC from I461-win2/crawlC/anm_pin3_D238.7562.npz
+part D anm_run killed: stopped by the coordinator at 2026-11-10 20:39:03 UTC (order of 20:38 UTC): step 2's attempt stalled at lam 0.0078 with |F| 3.6e-22, last saved state crawlD/anm_pin3_D239.4563.npz
+part E start 2026-11-10 20:40:00 UTC from I461-win2/crawlD/anm_pin3_D239.4563.npz
+part E anm_run killed: stopped by the coordinator at 2026-11-10 21:03:00 UTC (order of 21:02 UTC), between steps (series of the next base running): 1 step accepted, the a 0.35 to D 239.80625 with 0 junk directions frozen; the a 0.7 attempt before it (1 frozen, sigma 2e-26) was refused. The state is crawlE/anm_pin3_D239.8063.npz. crawlD2 was not started (superseded by crawlF)
+part F start 2026-11-10 21:03:21 UTC from I461-win2/crawlE/anm_pin3_D239.8063.npz
+part F anm_run killed: stopped by the coordinator at 2026-11-10 21:32:09 UTC (order of 21:31 UTC): 1 step accepted (the a 0.35 to D 240.15625, 2 Newton steps), the second step refused at a 0.35 and its a 0.175 attempt running; the chain's front is crawlF/anm_pin3_D240.1562.npz
+part G start 2026-11-10 21:32:28 UTC from I461-win2/crawlB2/anm_pin3_D215.1312.npz

@@ -74,7 +74,12 @@ def info(seg):
     pv = re.search(r"pivots (\S+?)\.\.(\S+?),", seg.get("series", ""))
     pivots = f"{pv.group(1)}..{pv.group(2)}" if pv else "?"
     lamtxt = " ".join(m.group(1) for m in (re.search(r"lam (\S+),", ln) for ln in seg["on"]) if m)
-    return dict(start=first, after1=after1, pivots=pivots, lamtxt=lamtxt, lams=lams, lam1=bool(lams) and all(x == 1 for x in lams), steps=n[0] if n else None, final=n[1] if n else "?",
+    sm = SERIES.match(seg.get("series", ""))
+    zN, ratios, amax = (sm.group(5), sm.group(6), sm.group(7)) if sm else ("?", "?", "?")
+    dzs = [(m.group(1), m.group(2)) for m in (re.search(r"\|dz\| (\S+) -> (\S+?),", ln) for ln in seg["on"]) if m]
+    dz0 = dzs[0][0] if dzs else "?"
+    dzc = next((x for x, y in dzs if float(y) < 0.1 * float(x)), "-")  # |dz| entering the first iteration that shrinks it by more than 10
+    return dict(start=first, after1=after1, pivots=pivots, zN=zN, ratios=ratios, amax=amax, dz0=dz0, dzc=dzc, lamtxt=lamtxt, lams=lams, lam1=bool(lams) and all(x == 1 for x in lams), steps=n[0] if n else None, final=n[1] if n else "?",
                 conv=bool(n and n[2]), delta=delta)
 
 
@@ -152,24 +157,42 @@ def table(runs, frm=1, out=print, csv_path=CSV):
             rows.append((s, d, e))
             if d is not None:
                 pts.append((s["D"], d))
-    out("| step | D | a | smallest..largest pivot of the base | start residual | max\\|F\\| after the first Newton step | Newton steps | lam per iteration | final residual "
-        "| converged, lam 1 | Delta | Delta minus degree-5 extrapolation |")
-    out("|---|---|---|---|---|---|---|---|---|---|---|---|")
+    out("| step | D | a | smallest..largest pivot of the base | \\|z_N\\| of the base | ratios 2-5 of the base | a_max | start residual | first \\|dz\\| | \\|dz\\| where the collapse starts "
+        "| max\\|F\\| after the first Newton step | Newton steps | lam 0.5 iterations | lam per iteration | final residual | converged, lam 1 | Delta | Delta minus degree-5 extrapolation |")
+    out("|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|")
     for k, (s, d, e) in enumerate(rows, 1):
         if k < frm:
             continue
         ok = "yes" if s["conv"] and s["lam1"] else ("NO, converged" if s["conv"] else "NO, not converged")
         dd = mp.nstr(d, 18) if d is not None else "-"
         df = mp.nstr(d - e, 3) if d is not None else "-"
-        out(f"| {k} | {mp.nstr(s['D'], 12)} | {s['a']:g} | {s['pivots']} | {s['start']} | {s['after1']} | {s['steps']} | {s['lamtxt']} | {s['final']} | {ok} | {dd} | {df} |")
+        out(f"| {k} | {mp.nstr(s['D'], 12)} | {s['a']:g} | {s['pivots']} | {s['zN']} | {s['ratios']} | {s['amax']} | {s['start']} | {s['dz0']} | {s['dzc']} | {s['after1']} | "
+            f"{s['steps']} | {sum(1 for x in s['lams'] if x == 0.5)} | {s['lamtxt']} | {s['final']} | {ok} | {dd} | {df} |")
     return len(rows)
 
 
 # the runs whose accepted steps come before a run's own in the Delta sequence of its extrapolations (crawlB3 starts from crawlB2's step)
 PRIOR = {"crawlB3": [("crawlB2.log", "crawlB2/anm_run.jsonl")],
          "crawlB4": [("crawlB2.log", "crawlB2/anm_run.jsonl"), ("crawlB3.log", "crawlB3/anm_run.jsonl")],
-         "crawlB5": [("crawlB2.log", "crawlB2/anm_run.jsonl"), ("crawlB3.log", "crawlB3/anm_run.jsonl"), ("crawlB4.log", "crawlB4/anm_run.jsonl")]}
-NEWTON_FLAG = 25      # the coordinator's order of 15:49 UTC: report at once the first step that needs more than this many Newton steps
+         "crawlB5": [("crawlB2.log", "crawlB2/anm_run.jsonl"), ("crawlB3.log", "crawlB3/anm_run.jsonl"), ("crawlB4.log", "crawlB4/anm_run.jsonl")],
+         "crawlC": [("crawlB2.log", "crawlB2/anm_run.jsonl"), ("crawlB3.log", "crawlB3/anm_run.jsonl"), ("crawlB4.log", "crawlB4/anm_run.jsonl"),
+                    ("crawlB5.log", "crawlB5/anm_run.jsonl")],
+         "crawlD": [("crawlB2.log", "crawlB2/anm_run.jsonl"), ("crawlB3.log", "crawlB3/anm_run.jsonl"), ("crawlB4.log", "crawlB4/anm_run.jsonl"),
+                    ("crawlB5.log", "crawlB5/anm_run.jsonl"), ("crawlC.log", "crawlC/anm_run.jsonl")],
+         "crawlE": [("crawlB2.log", "crawlB2/anm_run.jsonl"), ("crawlB3.log", "crawlB3/anm_run.jsonl"), ("crawlB4.log", "crawlB4/anm_run.jsonl"),
+                    ("crawlB5.log", "crawlB5/anm_run.jsonl"), ("crawlC.log", "crawlC/anm_run.jsonl"), ("crawlD.log", "crawlD/anm_run.jsonl")],
+         "crawlF": [("crawlB2.log", "crawlB2/anm_run.jsonl"), ("crawlB3.log", "crawlB3/anm_run.jsonl"), ("crawlB4.log", "crawlB4/anm_run.jsonl"),
+                    ("crawlB5.log", "crawlB5/anm_run.jsonl"), ("crawlC.log", "crawlC/anm_run.jsonl"), ("crawlD.log", "crawlD/anm_run.jsonl"),
+                    ("crawlE.log", "crawlE/anm_run.jsonl")],
+         "crawlG": [("crawlB2.log", "crawlB2/anm_run.jsonl")],
+         "crawlD2": [("crawlB2.log", "crawlB2/anm_run.jsonl"), ("crawlB3.log", "crawlB3/anm_run.jsonl"), ("crawlB4.log", "crawlB4/anm_run.jsonl"),
+                     ("crawlB5.log", "crawlB5/anm_run.jsonl"), ("crawlC.log", "crawlC/anm_run.jsonl"), ("crawlD.log", "crawlD/anm_run.jsonl")]}
+NEWTON_FLAG = 25      # the coordinator's order of 21:02 UTC (crawlF, a 0.35): report at once a step that needs more than this many Newton steps (and a lam below LAM_FLAG)
+LAM_FLAG = 0.25
+if os.environ.get("EVENTS_PROFILE") == "G":   # crawlG's reading rule of 21:31 UTC: report at once more than 6 Newton steps, any lam below 1, any refusal, series |z_N| above 1e-27 or fourth ratio below 100
+    NEWTON_FLAG, LAM_FLAG = 6, 1.0
+Z_N_MAX, A_MAX_MIN, A_MAX_WARN = 1e-24, 2.0, 2.5   # the coordinator's series rule of 19:52 UTC: stop above/below the first two, warn once under the third
+HOR = re.compile(r"^horizon data refined in octo-double, rung max\|R\| (.*)$")
 SERIES = re.compile(r"^step (\d+): D (\S+), pivots (\S+?)\.\.(\S+?), \|z_1\| \S+, \|z_N\| (\S+), ratios 2-5 (.*), a_max (\S+),")
 
 
@@ -214,6 +237,8 @@ def events(state_path, log, jsonl, out=print, csv_path=CSV, quiet=False):
             flags.append("FIRST ACCEPTED STEP OF THIS RUN")
         if s["steps"] is not None and s["steps"] > NEWTON_FLAG:
             flags.append(f"MORE THAN {NEWTON_FLAG} NEWTON STEPS ({s['steps']})")
+        if s["lams"] and min(s["lams"]) < LAM_FLAG:
+            flags.append(f"A LAM BELOW {LAM_FLAG:g} ({min(s['lams']):g})")
         if not s["conv"]:
             flags.append("ACCEPTED WITH A CORRECTOR THAT DID NOT CONVERGE")
         elif not s["lam1"] and not quiet:
@@ -227,13 +252,27 @@ def events(state_path, log, jsonl, out=print, csv_path=CSV, quiet=False):
     ser = [m for m in (SERIES.match(ln) for ln in lines) if m]
     for m in ser[st.get("ser", 0):]:
         zN, amax = float(m.group(5)), float(m.group(7))
-        if zN >= 1e-27 or amax <= 3:
-            out(f"SERIES RULE BROKEN at the base of step {m.group(1)} (D {m.group(2)}): |z_N| {m.group(5)} (must be below 1e-27), a_max {m.group(7)} (must be above 3), "
+        r4 = float(m.group(6).split()[-1])
+        if os.environ.get("EVENTS_PROFILE") == "G" and (zN > 1e-27 or r4 < 100):
+            out(f"SERIES REPORT at the base of step {m.group(1)} (D {m.group(2)}): |z_N| {m.group(5)}{' (above 1e-27)' if zN > 1e-27 else ''}, "
+                f"ratios 2-5 {m.group(6)}{' (fourth below 100)' if r4 < 100 else ''}, a_max {m.group(7)}, pivots {m.group(3)}..{m.group(4)}")
+        if zN > Z_N_MAX or amax < A_MAX_MIN:
+            out(f"SERIES RULE BROKEN at the base of step {m.group(1)} (D {m.group(2)}): |z_N| {m.group(5)} (must be below {Z_N_MAX:g}), a_max {m.group(7)} (must be above {A_MAX_MIN:g}), "
                 f"pivots {m.group(3)}..{m.group(4)}, ratios 2-5 {m.group(6)}: stop and report")
-        elif amax < 3.15 and not st.get("amax_warned"):
-            out(f"SERIES WATCH: a_max {m.group(7)} at the base of step {m.group(1)} (D {m.group(2)}), the rule stops the run at 3")
+        elif amax < A_MAX_WARN and not st.get("amax_warned"):
+            out(f"SERIES WARNING: a_max {m.group(7)} at the base of step {m.group(1)} (D {m.group(2)}) is under {A_MAX_WARN:g} (the run stops at {A_MAX_MIN:g}); the coordinator lowers h_max")
             st["amax_warned"] = True
     st["ser"] = len(ser)
+    hor = [m for m in (HOR.match(ln) for ln in lines) if m]
+    for m in hor[st.get("hor", 0):]:
+        last = m.group(1).split("->")[-1].strip()
+        try:
+            bad = float(last) >= 1e-50
+        except ValueError:
+            bad = True
+        if bad:
+            out(f"HORIZON REFINEMENT BOUND BROKEN: rung max|R| {m.group(1)} (the last number must be below 1e-50)")
+    st["hor"] = len(hor)
     if stop and not st["stop"]:
         out("STOP: " + stop)
         st["stop"] = True
@@ -295,10 +334,37 @@ def selftest():
     return 0 if not fails else 1
 
 
+FIRST_CHAIN = [("crawlB2.log", "crawlB2/anm_run.jsonl"), ("crawlB3.log", "crawlB3/anm_run.jsonl"), ("crawlB4.log", "crawlB4/anm_run.jsonl"),
+               ("crawlB5.log", "crawlB5/anm_run.jsonl"), ("crawlC.log", "crawlC/anm_run.jsonl"), ("crawlD.log", "crawlD/anm_run.jsonl"),
+               ("crawlE.log", "crawlE/anm_run.jsonl"), ("crawlF.log", "crawlF/anm_run.jsonl")]
+
+
+def cmp_chains(log, jsonl, out=print, base=HERE):
+    """Delta of each accepted step of a second chain beside the first chain's Delta at the same D (within 1e-9), and the difference"""
+    first = {}
+    for l, j in FIRST_CHAIN:
+        if os.path.exists(os.path.join(base, l)):
+            for s in accepted(os.path.join(base, l), os.path.join(base, j)):
+                if s["delta"] is not None:
+                    first[round(float(s["D"]), 6)] = s["delta"]
+    out("| D | Delta of this chain | Delta of the first chain | difference |")
+    out("|---|---|---|---|")
+    n = 0
+    for s in accepted(log, jsonl):
+        k = round(float(s["D"]), 6)
+        if k in first and s["delta"] is not None:
+            n += 1
+            out(f"| {mp.nstr(s['D'], 12)} | {mp.nstr(s['delta'], 20)} | {mp.nstr(first[k], 20)} | {mp.nstr(s['delta'] - first[k], 3)} |")
+    out(f"{n} steps of this chain have a state of the first chain at the same D")
+    return n
+
+
 if __name__ == "__main__":
     a = sys.argv[1:]
     if "--selftest" in a:
         sys.exit(selftest())
+    if a and a[0] == "cmp" and len(a) == 3:
+        sys.exit(0 if cmp_chains(a[1], a[2]) >= 0 else 1)
     if a and a[0] == "table":
         frm = 1
         rest = a[1:]
