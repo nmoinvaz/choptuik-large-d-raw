@@ -1,0 +1,20 @@
+--- a/hp/modecount_cx/src/lib.rs
++++ b/hp/modecount_cx/src/lib.rs
+@@ -656,9 +656,6 @@
+     if zh.len() != l || zl.len() != l {
+         return Err(format!("z must have length {l}"));
+     }
+-    if ctx.horizon_alpha != 0 {
+-        return Err("horizon_alpha must be 0 (the horizon series in a)".into());
+-    }
+     let n = l - 1;
+     let m = Ctx::<B>::M;
+     let ld = ld_for(n);
+@@ -995,7 +992,6 @@
+                 lam: DD::ZERO,
+                 mutate: 0,
+                 f64_dd: 0,
+-                horizon_alpha: 0,
+             }) as Box<dyn CApi>, )*
+             _ => return Err(PyValueError::new_err("M must be one of 16, 32, 48, 64")),
+         }

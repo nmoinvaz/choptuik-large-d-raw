@@ -1,0 +1,36 @@
+--- a/hp/modecount_cx/src/lib.rs
++++ b/hp/modecount_cx/src/lib.rs
+@@ -34,7 +34,6 @@
+ use hpk::lane::{BaseLane, Lane};
+ use hpk::linalg::{ld_for, DDLu};
+ use hpk::model::{self as hm, series_scale, Ctx};
+-use hpk::simd::Native;
+ use numpy::ndarray::Array2;
+ use numpy::{IntoPyArray, PyArray1, PyArray2, PyReadonlyArray1, PyReadonlyArray2};
+ use pyo3::exceptions::PyValueError;
+@@ -100,7 +99,6 @@
+ }
+ 
+ impl BaseLane for Dc {
+-    type S = Native;
+     type Acc = (DotAcc, DotAcc, DotAcc);
+     const TANGENT: bool = true;
+     #[inline(always)]
+@@ -656,9 +654,6 @@
+     if zh.len() != l || zl.len() != l {
+         return Err(format!("z must have length {l}"));
+     }
+-    if ctx.horizon_alpha != 0 {
+-        return Err("horizon_alpha must be 0 (the horizon series in a)".into());
+-    }
+     let n = l - 1;
+     let m = Ctx::<B>::M;
+     let ld = ld_for(n);
+@@ -995,7 +990,6 @@
+                 lam: DD::ZERO,
+                 mutate: 0,
+                 f64_dd: 0,
+-                horizon_alpha: 0,
+             }) as Box<dyn CApi>, )*
+             _ => return Err(PyValueError::new_err("M must be one of 16, 32, 48, 64")),
+         }

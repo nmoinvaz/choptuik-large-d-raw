@@ -1,0 +1,143 @@
+--- a/hp/modecount_cx/src/lib.rs
++++ b/hp/modecount_cx/src/lib.rs
+@@ -34,7 +34,6 @@
+ use hpk::lane::{BaseLane, Lane};
+ use hpk::linalg::{ld_for, DDLu};
+ use hpk::model::{self as hm, series_scale, Ctx};
+-use hpk::simd::Native;
+ use numpy::ndarray::Array2;
+ use numpy::{IntoPyArray, PyArray1, PyArray2, PyReadonlyArray1, PyReadonlyArray2};
+ use pyo3::exceptions::PyValueError;
+@@ -100,7 +99,6 @@
+ }
+ 
+ impl BaseLane for Dc {
+-    type S = Native;
+     type Acc = (DotAcc, DotAcc, DotAcc);
+     const TANGENT: bool = true;
+     #[inline(always)]
+@@ -120,10 +118,6 @@
+         Dc { v: self.v.mul_f(s), r: self.r.mul_f(s), i: self.i.mul_f(s) }
+     }
+     #[inline(always)]
+-    fn mul_pwr2(self, s: f64) -> Self {
+-        Dc { v: self.v.mul_pwr2(s), r: self.r.mul_pwr2(s), i: self.i.mul_pwr2(s) }
+-    }
+-    #[inline(always)]
+     fn addc(self, c: DV) -> Self {
+         Dc { v: self.v + c, r: self.r, i: self.i }
+     }
+@@ -270,7 +264,7 @@
+     aa[0] = Fl::splat(DD::ONE);
+     cc[0] = *c0;
+     cx.hold_c(&mut cc[0]);
+-    pp[1] = p1.mul_pwr2(sig);
++    pp[1] = p1.mulf(sig);
+     mm[1] = -pp[1];
+     a2[0] = aa[0] * aa[0];
+     let invc = Fl::<Dc, B>::splat(DD::ONE) / cc[0];
+@@ -285,12 +279,12 @@
+         a2[k] = cs(&aa, &aa, k);
+         cc[k] = cs_range(&cc, &a2, k, 0, k - 1).muls(n1 * recip_int(k));
+         cx.hold_c(&mut cc[k]);
+-        let dp = dtau_c(cx, &pp[k - 1], omega).mul_pwr2(sig);
+-        let dm = dtau_c(cx, &mm[k - 1], omega).mul_pwr2(sig);
++        let dp = dtau_c(cx, &pp[k - 1], omega).mulf(sig);
++        let dm = dtau_c(cx, &mm[k - 1], omega).mulf(sig);
+         let s1p = cs_w(&cc, &pp, k, 1, k - 1, |i| (k - i) as f64);
+         let s1m = cs_w(&cc, &mm, k, 1, k - 1, |i| (k - i) as f64);
+-        let xpx = pp[k - 1].mulf(kf - 1.0).mul_pwr2(sig) - s1p;
+-        let xmx = mm[k - 1].mulf(kf - 1.0).mul_pwr2(sig) + s1m;
++        let xpx = pp[k - 1].mulf(kf - 1.0).mulf(sig) - s1p;
++        let xmx = mm[k - 1].mulf(kf - 1.0).mulf(sig) + s1m;
+         let xcxp = cs_w(&cc, &pp, k, 1, k, |j| j as f64);
+         let xcxm = cs_w(&cc, &mm, k, 1, k, |j| j as f64);
+         let cp = cs(&cc, &pp, k);
+@@ -311,7 +305,7 @@
+ 
+ fn centre_state_c<const B: usize>(cx: &Cx<B>, p1: &Fl<Dc, B>, c0: &Fl<Dc, B>, omega: Dc) -> State<Dc, B> {
+     let s = centre_series_c(cx, p1, c0, omega);
+-    let x = DD::from_f64(cx.ctx.nodes[0]).mul_pwr2(1.0 / series_scale(cx.ctx.nodes[0]));
++    let x = DD::from_f64(cx.ctx.nodes[0]).mul_f(1.0 / series_scale(cx.ctx.nodes[0]));
+     [horner(&s[0], x), horner(&s[1], x), horner(&s[2], x), horner(&s[3], x)]
+ }
+ 
+@@ -564,7 +558,7 @@
+     mm[0] = *m0;
+     a2[0] = aa[0] * aa[0];
+     dm[0] = dtau_c(cx, &mm[0], omega);
+-    let sone = one.mul_pwr2(sig);
++    let sone = one.mulf(sig);
+     let wfun = |c: &Vec<Fl<Dc, B>>, i: usize| -> Fl<Dc, B> {
+         match i {
+             0 => one - c[0],
+@@ -586,16 +580,16 @@
+         let kf = kk as f64;
+         let ik1 = recip_int(kk + 1);
+         let ca1 = cs(&cc, &a2, kk) - cc[kk];
+-        cc[kk + 1] = (cc[kk].mulf(kf) - ca1.muls(n1)).muls(ik1).mul_pwr2(sig);
++        cc[kk + 1] = (cc[kk].mulf(kf) - ca1.muls(n1)).muls(ik1).mulf(sig);
+         cx.hold_c(&mut cc[kk + 1]);
+-        ww[kk + 1] = wfun(&cc, kk + 1) - wfun(&cc, kk).mul_pwr2(sig);
+-        vv[kk] = cc[kk + 1].mulf((kk + 1) as f64).mul_pwr2(isig) - cc[kk].mulf(kf);
+-        zc[kk + 1] = zfun(&cc, kk + 1) - zfun(&cc, kk).mul_pwr2(sig);
++        ww[kk + 1] = wfun(&cc, kk + 1) - wfun(&cc, kk).mulf(sig);
++        vv[kk] = cc[kk + 1].mulf((kk + 1) as f64).mulf(isig) - cc[kk].mulf(kf);
++        zc[kk + 1] = zfun(&cc, kk + 1) - zfun(&cc, kk).mulf(sig);
+         pm[kk] = pp[kk] + mm[kk];
+-        let wpu = cs_w(&pp, &ww, kk + 1, 0, kk, |i| i as f64).mul_pwr2(isig);
+-        let tau = if kk >= 1 { -dp[kk - 1].mul_pwr2(sig) } else { z };
++        let wpu = cs_w(&pp, &ww, kk + 1, 0, kk, |i| i as f64).mulf(isig);
++        let tau = if kk >= 1 { -dp[kk - 1].mulf(sig) } else { z };
+         let r = (((tau - wpu) + cs(&vv, &pp, kk)) + cs(&cc, &pp, kk)) - cs(&cc, &pm, kk).muls(nh);
+-        let c1 = cc[1].mul_pwr2(isig);
++        let c1 = cc[1].mulf(isig);
+         let kappa = ((c1 + one).mulf(kf) + c1 + one).adds(-nh);
+         pp[kk] = psolve_c(hl, kk, &kappa, &(-r));
+         dp[kk] = dtau_c(cx, &pp[kk], omega);
+@@ -604,14 +598,14 @@
+             break;
+         }
+         let ag = cs(&aa, &q2, kk) + (aa[kk] - cs(&aa, &a2, kk)).muls(n1);
+-        aa[kk + 1] = (aa[kk].mulf(kf) - ag.mulf(0.5)).muls(ik1).mul_pwr2(sig);
++        aa[kk + 1] = (aa[kk].mulf(kf) - ag.mulf(0.5)).muls(ik1).mulf(sig);
+         cx.hold_a(&mut aa[kk + 1]);
+         a2[kk + 1] = cs(&aa, &aa, kk + 1);
+-        let tau = if kk >= 1 { dm[kk] - dm[kk - 1].mul_pwr2(sig) } else { dm[kk] };
++        let tau = if kk >= 1 { dm[kk] - dm[kk - 1].mulf(sig) } else { dm[kk] };
+         pm[kk] = pp[kk] + mm[kk];
+-        let zmu = cs_w(&mm, &zc, kk + 1, 0, kk, |i| i as f64).mul_pwr2(isig);
++        let zmu = cs_w(&mm, &zc, kk + 1, 0, kk, |i| i as f64).mulf(isig);
+         let rest = (((tau - zmu) - cs(&vv, &mm, kk)) - cs(&cc, &mm, kk)) + cs(&cc, &pm, kk).muls(nh);
+-        mm[kk + 1] = (rest * izc0).muls(ik1).mul_pwr2(sig);
++        mm[kk + 1] = (rest * izc0).muls(ik1).mulf(sig);
+         dm[kk + 1] = dtau_c(cx, &mm[kk + 1], omega);
+     }
+     pp.truncate(ks + 1);
+@@ -632,7 +626,7 @@
+         taylor_path_c(cx, &[inp[0], inp[1], inp[2], inp[3]], &ctx.segs[b - 1], omega, &mut w)
+     } else {
+         let s = horizon_series_c(cx, &inp[0], &inp[1], omega, hl);
+-        let u = ctx.u0().mul_pwr2(1.0 / series_scale(ctx.u0().hi));
++        let u = ctx.u0().mul_f(1.0 / series_scale(ctx.u0().hi));
+         [horner(&s[0], u), horner(&s[1], u), horner(&s[2], u), horner(&s[3], u)]
+     }
+ }
+@@ -656,9 +650,6 @@
+     if zh.len() != l || zl.len() != l {
+         return Err(format!("z must have length {l}"));
+     }
+-    if ctx.horizon_alpha != 0 {
+-        return Err("horizon_alpha must be 0 (the horizon series in a)".into());
+-    }
+     let n = l - 1;
+     let m = Ctx::<B>::M;
+     let ld = ld_for(n);
+@@ -995,7 +986,6 @@
+                 lam: DD::ZERO,
+                 mutate: 0,
+                 f64_dd: 0,
+-                horizon_alpha: 0,
+             }) as Box<dyn CApi>, )*
+             _ => return Err(PyValueError::new_err("M must be one of 16, 32, 48, 64")),
+         }

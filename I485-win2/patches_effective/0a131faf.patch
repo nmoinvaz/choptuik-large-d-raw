@@ -1,0 +1,11 @@
+--- a/hp/modecount_cx/src/lib.rs
++++ b/hp/modecount_cx/src/lib.rs
+@@ -831,6 +831,8 @@
+                 freeze: freeze_pair::<$bb>(&$plow),
+                 match_node: $mn,
+                 lam: DD::ZERO,
++                mutate: 0,
++                f64_dd: 0,
+             }) as Box<dyn CApi>, )*
+             _ => return Err(PyValueError::new_err("M must be one of 16, 32, 48, 64")),
+         }
