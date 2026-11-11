@@ -150,6 +150,14 @@ def extrapolate(pts, D):
     return s
 
 
+def dz_per_a(s):
+    """first |dz| / a of an accepted step as text (the first Newton move per unit of step), '-' when the log has no first move"""
+    try:
+        return f"{float(s['dz0']) / float(s['a']):.2g}"
+    except (ValueError, ZeroDivisionError):
+        return "-"
+
+
 def table(runs, frm=1, out=print, csv_path=CSV):
     pts = chain_six(csv_path)
     rows = []
@@ -160,16 +168,16 @@ def table(runs, frm=1, out=print, csv_path=CSV):
             rows.append((s, d, e))
             if d is not None:
                 pts.append((s["D"], d))
-    out("| step | D | a | smallest..largest pivot of the base | \\|z_N\\| of the base | ratios 2-5 of the base | a_max | start residual | first \\|dz\\| | \\|dz\\| where the collapse starts "
+    out("| step | D | a | smallest..largest pivot of the base | \\|z_N\\| of the base | ratios 2-5 of the base | a_max | start residual | first \\|dz\\| | first \\|dz\\| / a | \\|dz\\| where the collapse starts "
         "| max\\|F\\| after the first Newton step | Newton steps | lam 0.5 iterations | lam per iteration | final residual | converged, lam 1 | Delta | Delta minus degree-5 extrapolation |")
-    out("|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|")
+    out("|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|")
     for k, (s, d, e) in enumerate(rows, 1):
         if k < frm:
             continue
         ok = "yes" if s["conv"] and s["lam1"] else ("NO, converged" if s["conv"] else "NO, not converged")
         dd = mp.nstr(d, 18) if d is not None else "-"
         df = mp.nstr(d - e, 3) if d is not None else "-"
-        out(f"| {k} | {mp.nstr(s['D'], 12)} | {s['a']:g} | {s['pivots']} | {s['zN']} | {s['ratios']} | {s['amax']} | {s['start']} | {s['dz0']} | {s['dzc']} | {s['after1']} | "
+        out(f"| {k} | {mp.nstr(s['D'], 12)} | {s['a']:g} | {s['pivots']} | {s['zN']} | {s['ratios']} | {s['amax']} | {s['start']} | {s['dz0']} | {dz_per_a(s)} | {s['dzc']} | {s['after1']} | "
             f"{s['steps']} | {sum(1 for x in s['lams'] if x == 0.5)} | {s['lamtxt']} | {s['final']} | {ok} | {dd} | {df} |")
     return len(rows)
 
@@ -192,6 +200,8 @@ PRIOR = {"crawlB3": [("crawlB2.log", "crawlB2/anm_run.jsonl")],
          "crawlI": [("crawlB2.log", "crawlB2/anm_run.jsonl"), ("crawlG.log", "crawlG/anm_run.jsonl"), ("crawlH.log", "crawlH/anm_run.jsonl")],
          "crawlJ": [("crawlB2.log", "crawlB2/anm_run.jsonl"), ("crawlG.log", "crawlG/anm_run.jsonl"), ("crawlI.log", "crawlI/anm_run.jsonl")],
          "crawlK": [("crawlB2.log", "crawlB2/anm_run.jsonl"), ("crawlG.log", "crawlG/anm_run.jsonl"), ("crawlI.log", "crawlI/anm_run.jsonl"), ("crawlJ.log", "crawlJ/anm_run.jsonl")],
+         "crawlL": [("crawlB2.log", "crawlB2/anm_run.jsonl"), ("crawlG.log", "crawlG/anm_run.jsonl"), ("crawlI.log", "crawlI/anm_run.jsonl"),
+                    ("crawlJ.log", "crawlJ/anm_run.jsonl"), ("probe03125.log", "probe03125/anm_run.jsonl")],
          "crawlD2": [("crawlB2.log", "crawlB2/anm_run.jsonl"), ("crawlB3.log", "crawlB3/anm_run.jsonl"), ("crawlB4.log", "crawlB4/anm_run.jsonl"),
                      ("crawlB5.log", "crawlB5/anm_run.jsonl"), ("crawlC.log", "crawlC/anm_run.jsonl"), ("crawlD.log", "crawlD/anm_run.jsonl")]}
 NEWTON_FLAG = 25      # the coordinator's order of 21:02 UTC (crawlF, a 0.35): report at once a step that needs more than this many Newton steps (and a lam below LAM_FLAG)
@@ -245,10 +255,10 @@ def events(state_path, log, jsonl, out=print, csv_path=CSV, quiet=False):
     if os.path.exists(state_path):
         st.update(json.load(open(state_path, encoding="utf-8")))
     segs, flat, stop, lines = load(log, jsonl)
-    if os.environ.get("EVENTS_PROFILE") in ("I", "J", "K"):
+    if os.environ.get("EVENTS_PROFILE") in ("I", "J", "K", "L"):
         recs_i = [json.loads(ln) for ln in open(jsonl, encoding="utf-8") if ln.strip()] if os.path.exists(jsonl) else []
         seen = set(st.get("rule_seen", []))
-        for p in step_rule_problems(recs_i, hmax=1.0 if os.environ.get("EVENTS_PROFILE") == "J" else 0.5) + stall_problems(segs):
+        for p in step_rule_problems(recs_i, hmax={"J": 1.0, "L": 0.0625}.get(os.environ.get("EVENTS_PROFILE"), 0.5)) + stall_problems(segs):
             if p not in seen:
                 out("CRAWLI RULE NOT FOLLOWED (stop and tell the coordinator): " + p)
                 seen.add(p)
@@ -291,7 +301,7 @@ def events(state_path, log, jsonl, out=print, csv_path=CSV, quiet=False):
             flags.append("FIRST ACCEPTED STEP OF THIS RUN")
         if s["steps"] is not None and s["steps"] > NEWTON_FLAG:
             flags.append(f"MORE THAN {NEWTON_FLAG} NEWTON STEPS ({s['steps']})")
-        if os.environ.get("EVENTS_PROFILE") in ("I", "J", "K"):
+        if os.environ.get("EVENTS_PROFILE") in ("I", "J", "K", "L"):
             try:
                 if float(s["final"]) >= 1e-60:
                     flags.append(f"FINAL RESIDUAL {s['final']} IS NOT BELOW 1e-60 (--tol_od 1e-60)")
@@ -414,6 +424,23 @@ def selftest():
         logb, jsb = os.path.join(HERE, "crawlB.log"), os.path.join(HERE, "crawlB", "anm_run.jsonl")
         if os.path.exists(logb) and accepted(logb, jsb):
             fails.append("part B's log, in which every step was refused, gave an accepted step")
+    fake = lambda a, conv: dict(a=a, newton=(5, "1.0e-20", conv), end="242.0")
+    if not small_refused([fake("0.0078125", False)]):
+        fails.append("crawlL's stop rule did not fire on a refused attempt at a 0.0078125")
+    if not small_refused([fake("0.00390625", False)]):
+        fails.append("crawlL's stop rule did not fire on a refused attempt at a 0.00390625")
+    if small_refused([fake("0.0078125", True), fake("0.015625", False), fake("0.03125", False)]):
+        fails.append("crawlL's stop rule fired on a converged small attempt or on a refused attempt above a 0.0078125")
+    if dz_per_a(dict(dz0="3.0e-30", a=0.125)) != "2.4e-29" or dz_per_a(dict(dz0="?", a=0.125)) != "-":
+        fails.append("dz_per_a gave a wrong value")
+    pr, pj = os.path.join(HERE, "probe03125.log"), os.path.join(HERE, "probe03125", "anm_run.jsonl")
+    if os.path.exists(pr) and os.path.exists(pj):
+        if guard_l(pr, pj):
+            fails.append("crawlL's stop rule fired on the a 0.03125 probe, which was accepted")
+        # the control on the real log's shape: the same attempt with a planted refusal at a 0.0078125 must fire
+        bent = [dict(seg, a="0.0078125", newton=(seg["newton"][0], seg["newton"][1], False)) for seg in load(pr, pj)[0] if seg["newton"]]
+        if not bent or not small_refused(bent):
+            fails.append("crawlL's stop rule did not fire on the probe's attempt with a planted a 0.0078125 and a refusal")
     print("selftest: ok" if not fails else "selftest FAILED:\n  " + "\n  ".join(fails))
     return 0 if not fails else 1
 
@@ -602,6 +629,23 @@ def guard(log, jsonl):
     return out
 
 
+A_MIN_L = 0.0078125   # the coordinator's crawlL stop rule (17:01 UTC): an attempt at this step or below that is refused
+
+
+def small_refused(segs, a_min=A_MIN_L):
+    """the attempts of a run (segments) at a <= a_min whose octo-double Newton did not converge, as text"""
+    out = []
+    for seg in segs:
+        n = seg["newton"]
+        if n and float(seg["a"]) <= a_min * (1 + 1e-6) and not n[2]:
+            out.append(f"attempt a {seg['a']} to D {seg['end']}: {n[0]} Newton steps, refused, max|F| {n[1]}")
+    return out
+
+
+def guard_l(log, jsonl):
+    return small_refused(load(log, jsonl)[0])
+
+
 FIRST_CHAIN = [("crawlB2.log", "crawlB2/anm_run.jsonl"), ("crawlB3.log", "crawlB3/anm_run.jsonl"), ("crawlB4.log", "crawlB4/anm_run.jsonl"),
                ("crawlB5.log", "crawlB5/anm_run.jsonl"), ("crawlC.log", "crawlC/anm_run.jsonl"), ("crawlD.log", "crawlD/anm_run.jsonl"),
                ("crawlE.log", "crawlE/anm_run.jsonl"), ("crawlF.log", "crawlF/anm_run.jsonl")]
@@ -636,6 +680,11 @@ if __name__ == "__main__":
         sys.exit(selftest())
     if a and a[0] == "fseq":
         sys.exit(0 if fseq(list(zip(a[1::2], a[2::2]))) >= 0 else 1)
+    if a and a[0] == "guard_l" and len(a) == 3:
+        reasons = guard_l(a[1], a[2])
+        for r in reasons:
+            print("STOP: " + r)
+        sys.exit(3 if reasons else 0)
     if a and a[0] == "guard" and len(a) == 3:
         reasons = guard(a[1], a[2])
         for r in reasons:
