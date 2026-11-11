@@ -191,6 +191,7 @@ PRIOR = {"crawlB3": [("crawlB2.log", "crawlB2/anm_run.jsonl")],
          "crawlH": [("crawlB2.log", "crawlB2/anm_run.jsonl"), ("crawlG.log", "crawlG/anm_run.jsonl")],
          "crawlI": [("crawlB2.log", "crawlB2/anm_run.jsonl"), ("crawlG.log", "crawlG/anm_run.jsonl"), ("crawlH.log", "crawlH/anm_run.jsonl")],
          "crawlJ": [("crawlB2.log", "crawlB2/anm_run.jsonl"), ("crawlG.log", "crawlG/anm_run.jsonl"), ("crawlI.log", "crawlI/anm_run.jsonl")],
+         "crawlK": [("crawlB2.log", "crawlB2/anm_run.jsonl"), ("crawlG.log", "crawlG/anm_run.jsonl"), ("crawlI.log", "crawlI/anm_run.jsonl"), ("crawlJ.log", "crawlJ/anm_run.jsonl")],
          "crawlD2": [("crawlB2.log", "crawlB2/anm_run.jsonl"), ("crawlB3.log", "crawlB3/anm_run.jsonl"), ("crawlB4.log", "crawlB4/anm_run.jsonl"),
                      ("crawlB5.log", "crawlB5/anm_run.jsonl"), ("crawlC.log", "crawlC/anm_run.jsonl"), ("crawlD.log", "crawlD/anm_run.jsonl")]}
 NEWTON_FLAG = 25      # the coordinator's order of 21:02 UTC (crawlF, a 0.35): report at once a step that needs more than this many Newton steps (and a lam below LAM_FLAG)
@@ -244,7 +245,7 @@ def events(state_path, log, jsonl, out=print, csv_path=CSV, quiet=False):
     if os.path.exists(state_path):
         st.update(json.load(open(state_path, encoding="utf-8")))
     segs, flat, stop, lines = load(log, jsonl)
-    if os.environ.get("EVENTS_PROFILE") in ("I", "J"):
+    if os.environ.get("EVENTS_PROFILE") in ("I", "J", "K"):
         recs_i = [json.loads(ln) for ln in open(jsonl, encoding="utf-8") if ln.strip()] if os.path.exists(jsonl) else []
         seen = set(st.get("rule_seen", []))
         for p in step_rule_problems(recs_i, hmax=1.0 if os.environ.get("EVENTS_PROFILE") == "J" else 0.5) + stall_problems(segs):
@@ -290,7 +291,7 @@ def events(state_path, log, jsonl, out=print, csv_path=CSV, quiet=False):
             flags.append("FIRST ACCEPTED STEP OF THIS RUN")
         if s["steps"] is not None and s["steps"] > NEWTON_FLAG:
             flags.append(f"MORE THAN {NEWTON_FLAG} NEWTON STEPS ({s['steps']})")
-        if os.environ.get("EVENTS_PROFILE") in ("I", "J"):
+        if os.environ.get("EVENTS_PROFILE") in ("I", "J", "K"):
             try:
                 if float(s["final"]) >= 1e-60:
                     flags.append(f"FINAL RESIDUAL {s['final']} IS NOT BELOW 1e-60 (--tol_od 1e-60)")
@@ -554,6 +555,53 @@ def steps(runs, out=print):
     return n
 
 
+def fseq(runs, out=print):
+    """per attempt, the max|F| after each Newton step (the coordinator's 03:43 UTC request: a stall near 1e-51 followed by a jump, or a slow linear fall)"""
+    n = 0
+    two = lambda v: f"{float(v):.1e}"
+    for log, jsonl in runs:
+        segs, flat, _, _ = load(log, jsonl)
+        for i, seg in enumerate(segs):
+            if not seg["on"]:
+                continue
+            vals = []
+            for k, ln in enumerate(seg["on"]):
+                m = re.search(r"\|F\| (\S+) -> (\S+?),", ln)
+                m2 = re.search(r"\|F\| (\S+) converged", ln)
+                m3 = re.search(r"\|F\| (\S+),", ln)
+                if m:
+                    if k == 0:
+                        vals.append(two(m.group(1)))
+                    vals.append(two(m.group(2)))
+                elif m2:
+                    if not vals:
+                        vals.append(two(m2.group(1)))
+                elif m3 and k == 0:
+                    vals.append(two(m3.group(1)))
+            sm = SERIES.match(seg.get("series", ""))
+            d0 = f"{float(sm.group(2)):.2f}" if sm else "?"
+            dt = f"{float(seg['end']):.2f}" if seg["end"] else "(running)"
+            out(f"D {d0} -> {dt} (a {float(seg['a']):.3f}): " + " → ".join(vals))
+            n += 1
+    return n
+
+
+def guard(log, jsonl):
+    """the stop conditions of the coordinator's 03:43 UTC order, as text: a_max under 2.0 or |z_N| above 1e-24 in any base's series line, and an attempt of a 0.25 or below that
+    needed more than 12 Newton steps or was refused"""
+    segs, flat, stop, lines = load(log, jsonl)
+    out = []
+    for ln in lines:
+        m = SERIES.match(ln)
+        if m and (float(m.group(7)) < 2.0 or float(m.group(5)) > 1e-24):
+            out.append(f"series of the base D {m.group(2)}: |z_N| {m.group(5)}, a_max {m.group(7)}, ratios 2-5 {m.group(6)}")
+    for seg in segs:
+        n = seg["newton"]
+        if n and float(seg["a"]) <= 0.25 + 1e-9 and (n[0] > 12 or not n[2]):
+            out.append(f"attempt a {seg['a']} to D {seg['end']}: {n[0]} Newton steps, {'converged' if n[2] else 'refused'}, max|F| {n[1]}")
+    return out
+
+
 FIRST_CHAIN = [("crawlB2.log", "crawlB2/anm_run.jsonl"), ("crawlB3.log", "crawlB3/anm_run.jsonl"), ("crawlB4.log", "crawlB4/anm_run.jsonl"),
                ("crawlB5.log", "crawlB5/anm_run.jsonl"), ("crawlC.log", "crawlC/anm_run.jsonl"), ("crawlD.log", "crawlD/anm_run.jsonl"),
                ("crawlE.log", "crawlE/anm_run.jsonl"), ("crawlF.log", "crawlF/anm_run.jsonl")]
@@ -586,6 +634,13 @@ if __name__ == "__main__":
     a = sys.argv[1:]
     if "--selftest" in a:
         sys.exit(selftest())
+    if a and a[0] == "fseq":
+        sys.exit(0 if fseq(list(zip(a[1::2], a[2::2]))) >= 0 else 1)
+    if a and a[0] == "guard" and len(a) == 3:
+        reasons = guard(a[1], a[2])
+        for r in reasons:
+            print("STOP: " + r)
+        sys.exit(3 if reasons else 0)
     if a and a[0] == "steps":
         sys.exit(0 if steps(list(zip(a[1::2], a[2::2]))) >= 0 else 1)
     if a and a[0] == "verdict":
