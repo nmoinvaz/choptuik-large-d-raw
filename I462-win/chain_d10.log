@@ -213,3 +213,7 @@ step 2: D 231.13125, pivots 1.3e-20..6.5e+32, |z_1| 3.91e-04, |z_N| 1.92e-29, ra
       horizon data refined in octo-double, rung max|R| 5.17e-29 -> 3.10e-62 -> 1.89e-69 -> 1.72e-75
   on 0: |F| 3.88e-33 -> 2.70e-27, |dz| 1.0e-29 -> 2.6e-37, lam 1, dDelta -1.02e-29, piv 2.9e-21..9.2e+32, 147.37 s
   on 1: |F| 2.70e-27 -> 1.35e-27, |dz| 2.6e-37 -> 6.4e-38, lam 0.5, dDelta -1.65e-38, piv 2.9e-21..9.2e+32, 326.34 s
+  on 2: |F| 1.35e-27, |dz| 6.4e-38: no trial step accepted, stopping
+      elim projections {'u0': 0, 'u0q': 0, 'ladder': 0, 'failed': 0, 'skipped': 13}
+      octo-double Newton: 3 steps, max|F| 1.4e-27, not converged; double-double |F| of its first two parts 2.8e+04
+    a 1.000 -> D 232.13125: predicted |F| 2.84e+04, od 3 steps -> 2.79e+04 (tol 3.0e-20), Delta 1.688080824630 (formula diff -1.5e-06), moved 1.0e-29, 2139 s
