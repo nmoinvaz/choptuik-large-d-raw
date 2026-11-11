@@ -19,6 +19,9 @@ CAPS = {"d6": dt.datetime(2026, 11, 11, 15, 31, 10, tzinfo=dt.timezone.utc),
         "d10": dt.datetime(2026, 11, 11, 15, 31, 6, tzinfo=dt.timezone.utc)}
 chain = sys.argv[1]
 dry = "--dry" in sys.argv
+# --tag TAG names the files (default long2); --cap-seconds N replaces the cap above (the resume after the 11:12 UTC restart)
+tag = sys.argv[sys.argv.index("--tag") + 1] if "--tag" in sys.argv else "long2"
+cap_s = int(sys.argv[sys.argv.index("--cap-seconds") + 1]) if "--cap-seconds" in sys.argv else None
 assert chain in CAPS, "CHAIN must be d6 or d10"
 here = os.path.dirname(os.path.abspath(__file__))
 states = glob.glob(os.path.join(here, f"chain_{chain}", "anm_pin3_D*.npz"))
@@ -30,7 +33,8 @@ d_log = acc[-1]
 if abs(d_new - d_log) > 2e-4:
     sys.exit(f"REFUSED: newest state D {d_new} but the log's last accepted step is D {d_log} (not saved yet?)")
 now = dt.datetime.now(dt.timezone.utc)
-secs = int((CAPS[chain] - now).total_seconds())
+secs = cap_s if cap_s is not None else int((CAPS[chain] - now).total_seconds())
+cap_at = now + dt.timedelta(seconds=secs)
 if not 2 * 3600 < secs < 24 * 3600:
     sys.exit(f"REFUSED: {secs} s to the cap is out of range")
 lines = [
@@ -39,11 +43,11 @@ lines = [
     r"set PATH=C:\Users\nathan\Source\venv-t151\Scripts;%PATH%",
     r"set RAW=..\..\choptuik-large-d-raw",
     rf"python.exe -u %RAW%\I462-win\run_capped.py {secs} python.exe -u anm_run.py %RAW% %RAW%\I462-win\chain_{chain} --state {state_rel} --kfreeze 3 --held_fit data/held_fit_{chain}.json --N 24 --eps 1e-14 --h_max 1.0 --steps 400 --D_max 400 --threads 3 --corrector od --tol_od 1e-60 --qd_it 12 --jet_o 1 --reseed 2 --reseed_q 1 --save_pred 1 --od_junk 0 --held_o 1 --reseed_o 3 >>%RAW%\I462-win\chain_{chain}.log 2>&1",
-    rf"echo %errorlevel% > %RAW%\I462-win\chain_{chain}_long2.exit",
+    rf"echo %errorlevel% > %RAW%\I462-win\chain_{chain}_{tag}.exit",
 ]
-print(f"{chain}: state {state_rel} (D {d_new}, the log's last accepted D {d_log}); now {now:%Y-%m-%d %H:%M:%S} UTC, cap {CAPS[chain]:%Y-%m-%d %H:%M:%S} UTC, SECONDS {secs} ({secs / 3600:.2f} h)")
+print(f"{chain}: state {state_rel} (D {d_new}, the log's last accepted D {d_log}); now {now:%Y-%m-%d %H:%M:%S} UTC, cap {cap_at:%Y-%m-%d %H:%M:%S} UTC, SECONDS {secs} ({secs / 3600:.2f} h)")
 if dry:
     print("--dry, not written:\n" + "\n".join(lines))
 else:
-    open(os.path.join(here, f"{chain}_long2.cmd"), "w", newline="").write("\r\n".join(lines) + "\r\n")
-    print(f"written {chain}_long2.cmd")
+    open(os.path.join(here, f"{chain}_{tag}.cmd"), "w", newline="").write("\r\n".join(lines) + "\r\n")
+    print(f"written {chain}_{tag}.cmd")

@@ -155,3 +155,12 @@ step 8: D 227.13125, pivots 1.6e-19..1.6e+32, |z_1| 4.01e-04, |z_N| 3.55e-30, ra
       elim projections {'u0': 0, 'u0q': 0, 'ladder': 0, 'failed': 0, 'skipped': 3}
       octo-double Newton: 3 steps, max|F| 1.7e-52, converged; double-double |F| of its first two parts 5.9e+03
     a 1.000 -> D 228.13125: predicted |F| 5.84e+03, od 3 steps -> 5.87e+03 (tol 2.8e-19, stall accepted, Delta correction +0.0e+00), Delta 1.688846839881 (formula diff -1.5e-06), moved 1.2e-30, 514 s
+=== 16:27:43 UTC: d6 resumed from the newest state after the 11:12 UTC Windows Update restart killed it (coordinator 162621Z: 5 h cap), d6_long3.cmd, main cc6d51b, --held_o 1 --reseed_o 3 --tol_od 1e-60, base polish on
+held values from the fit data/held_fit_d6.json (degree 6, 138 full-system states, D 38.020417-73.0), relative to the base
+the base keeps its stored plan (21 steps)
+  on 0: |F| 8.42e-38 -> 7.83e-43, |dz| 8.6e-38 -> 1.5e-69, lam 1, dDelta +1.44e-39, piv 1.0e-19..2.3e+32, 154.7 s
+  on 1: |F| 7.83e-43 -> 8.19e-90, |dz| 1.5e-69 -> 1.0e-69, lam 1, dDelta -5.32e-70, piv 1.0e-19..2.3e+32, 153.86 s
+  on 2: |F| 8.19e-90 converged, Delta 1.68884683988080542 -3.5313e-17
+      elim projections {'u0': 0, 'u0q': 0, 'ladder': 0, 'failed': 0, 'skipped': 3}
+      octo-double Newton: 3 steps, max|F| 8.2e-90, converged; double-double |F| of its first two parts 5.9e+03
+base I462-win/chain_d6/anm_pin3_D228.1312.npz: D 228.13125, M 32, pin 3 (held [5, 7, 9, 11, 13]), |F| 5.9e+03; N 24, eps 1e-14, h_max 1.0, corrector od (junk_only False), tol 1.0e-20 x 1.45^(D - 228.13125), stalls accepted below 1e-17
