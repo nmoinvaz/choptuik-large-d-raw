@@ -1,0 +1,73 @@
+=== step e6c908a2: 2026-10-22 Quad-double accurate add: keep v as a fifth term and renormalize five (the u + v repair was incompl
+start 2026-11-11 16:41:22 UTC
+ M hp/modecount_cx/Cargo.lock
+?? hp/dist_0a131faf/
+?? hp/dist_203670ab/
+?? hp/dist_2ef50229/
+?? hp/dist_68b9d399/
+Uninstalling hpkernel-0.1.0:
+  Successfully uninstalled hpkernel-0.1.0
+🍹 Building a mixed python/rust project
+🐍 Found CPython 3.12 at C:\Users\nathan\Source\venv-bisect\Scripts\python.exe
+🔗 Found pyo3 bindings
+📡 Using build options features from pyproject.toml
+   Compiling hpkernel v0.1.0 (D:\choptuik-bisect\hp)
+    Finished `release` profile [optimized] target(s) in 5m 21s
+📦 Built wheel for CPython 3.12 to D:/choptuik-bisect/hp/dist_e6c908a2\hpkernel-0.1.0-cp312-cp312-win_amd64.whl
+Processing d:\choptuik-bisect\hp\dist_e6c908a2\hpkernel-0.1.0-cp312-cp312-win_amd64.whl
+Installing collected packages: hpkernel
+Successfully installed hpkernel-0.1.0
+
+[notice] A new release of pip is available: 24.3.1 -> 26.3
+[notice] To update, run: python.exe -m pip install --upgrade pip
+pyproject.toml names no multidouble package at this commit
+hpkernel ok avx2
+   Compiling hpkernel v0.1.0 (D:\choptuik-bisect\hp)
+   Compiling modecount_cx v0.1.0 (D:\choptuik-bisect\hp\modecount_cx)
+error[E0063]: missing field `mutate` in initializer of `Ctx<2>`
+   --> src\lib.rs:822:32
+    |
+822 |             $( $bb => Box::new(Ctx::<$bb> {
+    |                                ^^^^^^^^^^ missing `mutate`
+...
+890 |         let mut api: Box<dyn CApi> = make_ctx!(m / 8, n, dh, dl, ph, pl, nodes.clone(), kt, kc, ks, plow, mn, [2, 4, 6, 8]);
+    |                                      -------------------------------------------------------------------------------------- in this macro invocation
+    |
+    = note: this error originates in the macro `make_ctx` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0063]: missing field `mutate` in initializer of `Ctx<4>`
+   --> src\lib.rs:822:32
+    |
+822 |             $( $bb => Box::new(Ctx::<$bb> {
+    |                                ^^^^^^^^^^ missing `mutate`
+...
+890 |         let mut api: Box<dyn CApi> = make_ctx!(m / 8, n, dh, dl, ph, pl, nodes.clone(), kt, kc, ks, plow, mn, [2, 4, 6, 8]);
+    |                                      -------------------------------------------------------------------------------------- in this macro invocation
+    |
+    = note: this error originates in the macro `make_ctx` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0063]: missing field `mutate` in initializer of `Ctx<6>`
+   --> src\lib.rs:822:32
+    |
+822 |             $( $bb => Box::new(Ctx::<$bb> {
+    |                                ^^^^^^^^^^ missing `mutate`
+...
+890 |         let mut api: Box<dyn CApi> = make_ctx!(m / 8, n, dh, dl, ph, pl, nodes.clone(), kt, kc, ks, plow, mn, [2, 4, 6, 8]);
+    |                                      -------------------------------------------------------------------------------------- in this macro invocation
+    |
+    = note: this error originates in the macro `make_ctx` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0063]: missing field `mutate` in initializer of `Ctx<8>`
+   --> src\lib.rs:822:32
+    |
+822 |             $( $bb => Box::new(Ctx::<$bb> {
+    |                                ^^^^^^^^^^ missing `mutate`
+...
+890 |         let mut api: Box<dyn CApi> = make_ctx!(m / 8, n, dh, dl, ph, pl, nodes.clone(), kt, kc, ks, plow, mn, [2, 4, 6, 8]);
+    |                                      -------------------------------------------------------------------------------------- in this macro invocation
+    |
+    = note: this error originates in the macro `make_ctx` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+For more information about this error, try `rustc --explain E0063`.
+error: could not compile `modecount_cx` (lib) due to 4 previous errors
+BUILD FAILED modecount_cx
