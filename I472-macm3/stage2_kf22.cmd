@@ -1,0 +1,2 @@
+cd ~/Source/choptuik-large-d && PATH=/Users/nathan/Source/venv-macm3-314/bin:$PATH caffeinate -is nice -n 10 python3 hp/modecount_circle.py hp/data/seeds/local/up23_D61.0264.npz 2.689687,0.476164,0.06 2.689688,-0.476164,0.06 --M=48 --kf=22 --n0=20 --fmax=1e-15 --tag=D61.0264_M48_kf22 --data=../choptuik-large-d-raw/I472-macm3/kf22/data > ../choptuik-large-d-raw/I472-macm3/kf22/stage2.log 2>&1
+echo "stage2 kf22 exit $? at $(date -u +%Y-%m-%dT%H:%M:%SZ)" >> ../choptuik-large-d-raw/I472-macm3/exits.txt
