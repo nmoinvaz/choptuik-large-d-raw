@@ -23,3 +23,23 @@ git bisect skip 154738fa29d8ed4abb9226fa489f31572ea149da
 git bisect bad 1dcde949124661efa8812d632d393bfaf907c34b
 # skip: [4a01322441a14796d492e3c8581c8025d9aaa0d8] hp: continuation runs at D = 40, 50, 59.8 with every variant and the exact last step; notes (WIP)
 git bisect skip 4a01322441a14796d492e3c8581c8025d9aaa0d8
+# skip: [2b3b253ba56c94068dbcc6e985d16738cc9232df] hp: deflated Newton with the mixed-precision step; notes on the weakest directions at M = 192 (WIP)
+git bisect skip 2b3b253ba56c94068dbcc6e985d16738cc9232df
+# skip: [be55e4a33168a7e75012cde128bff329a7b66684] hp: JVP series cut at double-double resolution (cut=True), JVP control fixed (1 + 1e-20 is 1 in f64), GCR form of the correction loop with double-double residuals, Rust tests
+git bisect skip be55e4a33168a7e75012cde128bff329a7b66684
+# skip: [febada09e33b304d198da76654b327059fa605bb] Merge main (quad-double) into the large-D mixed-precision branch, on top of wip/high-m
+git bisect skip febada09e33b304d198da76654b327059fa605bb
+# skip: [d66b410d678bc55e0db4dcaa42846776f9927f1b] hp: centre and horizon series in a power-of-two scaled variable (model::series_scale), Solver.series(scaled=) and series_scale; lowD_dd.tails from the scaled coefficients (WIP, not built)
+git bisect skip d66b410d678bc55e0db4dcaa42846776f9927f1b
+# skip: [203cb0b98226255cf44f3561c485cb2009be437e] hp: the horizon series in alpha = a - 1 (Ctx::horizon_alpha, off by default); the mass-mode check
+git bisect skip 203cb0b98226255cf44f3561c485cb2009be437e
+# skip: [726c8aaa42d4a2c1a0eb71196a0109bddc39f327] hp: optional exact last step for the mixed variants (dd_last), scan_hp --dd_last, bench --dd_last (WIP)
+git bisect skip 726c8aaa42d4a2c1a0eb71196a0109bddc39f327
+# skip: [428b640d5b13aeae5a17a4cf19b951a37b5e7906] hp: large-D mixed step (WIP): horizon_dd options of the f64 Jacobian, exact JVP (Solver.jvp), GMRES correction loop and Jacobian variants in the driver
+git bisect skip 428b640d5b13aeae5a17a4cf19b951a37b5e7906
+# skip: [0802e86a641d42c78adc66efa6f53c68c8e71c80] hp/src/model.rs: control 6 (Ctx::mutate, f64 lanes only): the centre series' scale wrong at one order
+git bisect skip 0802e86a641d42c78adc66efa6f53c68c8e71c80
+# skip: [fd051d5239a063e691f8381dc82d00aec1e57121] Merge wip/highm-local: renode takes a node beyond the last old one from the horizon series (T45 fix, with a check)
+git bisect skip fd051d5239a063e691f8381dc82d00aec1e57121
+# skip: [e8d84ce709f36aae9e66ecefce1f08e20379ef51] Merge wip/high-m (deflated Newton with the mixed step, M = 192 diagnostics) into the large-D mixed branch
+git bisect skip e8d84ce709f36aae9e66ecefce1f08e20379ef51
