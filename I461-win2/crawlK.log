@@ -1,0 +1,26 @@
+held values from the fit data/held_fit.json (degree 8, 138 full-system states, D 38.020417-73.0), relative to the base
+the base keeps its stored plan (21 steps)
+  on 0: |F| 7.99e-38 -> 1.30e-40, |dz| 8.1e-38 -> 1.4e-61, lam 1, dDelta +9.93e-40, piv 2.9e-25..3.5e+34, 16.08 s
+  on 1: |F| 1.30e-40 -> 7.01e-87, |dz| 1.4e-61 -> 1.4e-61, lam 1, dDelta -4.80e-62, piv 2.9e-25..3.5e+34, 15.89 s
+  on 2: |F| 7.01e-87 converged, Delta 1.68621446770738204 +1.5754e-17
+      elim projections {'u0': 0, 'u0q': 0, 'ladder': 0, 'failed': 0, 'skipped': 3}
+      octo-double Newton: 3 steps, max|F| 7.0e-87, converged; double-double |F| of its first two parts 1.1e+06
+base I461-win2/crawlJ/anm_pin3_D242.4834.npz: D 242.483399963, M 32, pin 3 (held [5, 7, 9, 11, 13]), |F| 1.1e+06; N 24, eps 1e-14, h_max 0.5, corrector od (junk_only False), tol 1.0e-20 x 1.45^(D - 242.4834), stalls accepted below 1e-17
+step 0: D 242.483399963, pivots 2.9e-25..3.5e+34, |z_1| 3.62e-04, |z_N| 2.77e-26, ratios 2-5 311.5 207.5 7.9 0.7, a_max 2.254, 405 s
+    a 0.5000: re-seeded (ok), 23.5 s
+      horizon data refined in octo-double, rung max|R| 1.97e-27 -> 5.08e-60 -> 2.27e-68 -> 6.66e-76
+  on 0: |F| 1.42e-35 -> 2.28e-24, |dz| 1.8e-29 -> 8.9e-30, lam 1, dDelta -1.82e-29, piv 1.1e-25..4.1e+34, 15.85 s
+  on 1: |F| 2.28e-24 -> 1.18e-24, |dz| 8.9e-30 -> 8.3e-30, lam 0.5, dDelta -8.89e-30, piv 1.5e-25..4.1e+34, 31.29 s
+  on 2: |F| 1.18e-24 -> 6.09e-25, |dz| 8.3e-30 -> 7.8e-30, lam 0.5, dDelta -8.26e-30, piv 1.8e-25..4.1e+34, 30.94 s
+  on 3: |F| 6.09e-25, |dz| 7.8e-30: no trial step accepted, stopping
+      elim projections {'u0': 0, 'u0q': 0, 'ladder': 0, 'failed': 0, 'skipped': 15}
+      octo-double Newton: 4 steps, max|F| 6.1e-25, not converged; double-double |F| of its first two parts 1.3e+06
+    a 0.500 -> D 242.983399963: predicted |F| 1.46e+06, od 4 steps -> 1.34e+06 (tol 1.2e-20), Delta 1.686128317671 (formula diff -1.5e-06), moved 2.7e-29, 235 s
+    a 0.2500: re-seeded (ok), 24.58 s
+      horizon data refined in octo-double, rung max|R| 1.67e-27 -> 6.73e-60 -> 7.39e-69 -> 1.25e-76
+  on 0: |F| 1.84e-35 -> 9.68e-25, |dz| 1.1e-29 -> 2.5e-30, lam 1, dDelta +1.05e-29, piv 2.4e-25..3.8e+34, 15.56 s
+  on 1: |F| 9.68e-25 -> 7.29e-25, |dz| 2.5e-30 -> 2.3e-30, lam 0.25, dDelta -2.52e-30, piv 2.5e-25..3.8e+34, 43.91 s
+  on 2: |F| 7.29e-25, |dz| 2.3e-30: no trial step accepted, stopping
+      elim projections {'u0': 0, 'u0q': 0, 'ladder': 0, 'failed': 0, 'skipped': 14}
+      octo-double Newton: 3 steps, max|F| 7.3e-25, not converged; double-double |F| of its first two parts 1.2e+06
+    a 0.250 -> D 242.733399963: predicted |F| 1.27e+06, od 3 steps -> 1.23e+06 (tol 1.1e-20), Delta 1.686171347657 (formula diff -1.5e-06), moved 9.9e-30, 215 s

@@ -1,0 +1,54 @@
+=== step 7588ebe2: 2026-10-25 hp: multidouble from its merged main (23adb80, lu_rect_f64) until 1.1.0 is on crates.io
+start 2026-11-11 03:50:13 UTC
+?? hp/dist_203670ab/
+?? hp/dist_2ef50229/
+?? hp/dist_68b9d399/
+?? hp/dist_93402cf8/
+?? hp/dist_e0c5f54b/
+Uninstalling hpkernel-0.1.0:
+  Successfully uninstalled hpkernel-0.1.0
+🍹 Building a mixed python/rust project
+🐍 Found CPython 3.12 at C:\Users\nathan\Source\venv-bisect\Scripts\python.exe
+🔗 Found pyo3 bindings
+📡 Using build options features from pyproject.toml
+   Compiling multidouble v1.1.0 (https://github.com/nmoinvaz/multidouble?rev=23adb805066cabc426135fb94dde967744fcf8dc#23adb805)
+   Compiling hpkernel v0.1.0 (D:\choptuik-bisect\hp)
+    Finished `release` profile [optimized] target(s) in 16m 50s
+📦 Built wheel for CPython 3.12 to D:/choptuik-bisect/hp/dist_7588ebe2\hpkernel-0.1.0-cp312-cp312-win_amd64.whl
+Processing d:\choptuik-bisect\hp\dist_7588ebe2\hpkernel-0.1.0-cp312-cp312-win_amd64.whl
+Installing collected packages: hpkernel
+Successfully installed hpkernel-0.1.0
+
+[notice] A new release of pip is available: 24.3.1 -> 26.3
+[notice] To update, run: python.exe -m pip install --upgrade pip
+Collecting multidouble@ git+https://github.com/nmoinvaz/multidouble@23ee209531d4f3f2b326a2a2435e158f76c53367#subdirectory=python
+  Cloning https://github.com/nmoinvaz/multidouble (to revision 23ee209531d4f3f2b326a2a2435e158f76c53367) to c:\users\nathan\appdata\local\temp\pip-install-opftsbpj\multidouble_a4cf1de7ac0f47af9cd3b46575ef0760
+  Running command git clone --filter=blob:none --quiet https://github.com/nmoinvaz/multidouble 'C:\Users\nathan\AppData\Local\Temp\pip-install-opftsbpj\multidouble_a4cf1de7ac0f47af9cd3b46575ef0760'
+  Running command git rev-parse -q --verify 'sha^23ee209531d4f3f2b326a2a2435e158f76c53367'
+  Running command git fetch -q https://github.com/nmoinvaz/multidouble 23ee209531d4f3f2b326a2a2435e158f76c53367
+  Running command git checkout -q 23ee209531d4f3f2b326a2a2435e158f76c53367
+  Resolved https://github.com/nmoinvaz/multidouble to commit 23ee209531d4f3f2b326a2a2435e158f76c53367
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Building wheels for collected packages: multidouble
+  Building wheel for multidouble (pyproject.toml): started
+  Building wheel for multidouble (pyproject.toml): finished with status 'done'
+  Created wheel for multidouble: filename=multidouble-0.1.0-cp312-cp312-win_amd64.whl size=285714 sha256=69f25901fd18937e52d414cc04ba320e210495e2e0aecaa2b0a1a60a4a4d2e81
+  Stored in directory: c:\users\nathan\appdata\local\pip\cache\wheels\19\f2\00\3d4b59badb33fab7742abe0a5e27c2f46b67a55eb7a126bcf6
+Successfully built multidouble
+Installing collected packages: multidouble
+Successfully installed multidouble-0.1.0
+
+[notice] A new release of pip is available: 24.3.1 -> 26.3
+[notice] To update, run: python.exe -m pip install --upgrade pip
+hpkernel ok avx2
+   Compiling multidouble v1.1.0 (https://github.com/nmoinvaz/multidouble?rev=23adb805066cabc426135fb94dde967744fcf8dc#23adb805)
+   Compiling hpkernel v0.1.0 (D:\choptuik-bisect\hp)
+   Compiling modecount_cx v0.1.0 (D:\choptuik-bisect\hp\modecount_cx)
+    Finished `release` profile [optimized] target(s) in 55.22s
+modecount_cx ok D:\choptuik-bisect\hp\modecount_cx\build\modecount_cx.cp312-win_amd64.pyd
+build done 04:08:39 UTC

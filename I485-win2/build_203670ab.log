@@ -1,0 +1,109 @@
+=== step 203670ab: 2026-10-25 hp: delta_correction's dot product in double-double (multidouble's dd_dot)
+start 2026-11-11 03:04:00 UTC
+?? hp/dist_2ef50229/
+?? hp/modecount_build_bisect.sh
+?? hp/modecount_cx/Cargo.lock.before_2ef50229
+Uninstalling hpkernel-0.1.0:
+  Successfully uninstalled hpkernel-0.1.0
+    Updating git repository `https://github.com/nmoinvaz/multidouble`
+🍹 Building a mixed python/rust project
+🐍 Found CPython 3.12 at C:\Users\nathan\Source\venv-bisect\Scripts\python.exe
+🔗 Found pyo3 bindings
+📡 Using build options features from pyproject.toml
+   Compiling target-lexicon v0.13.5
+   Compiling autocfg v1.5.1
+   Compiling proc-macro2 v1.0.107
+   Compiling pyo3-build-config v0.30.1
+   Compiling quote v1.0.47
+   Compiling crossbeam-utils v0.8.23
+   Compiling unicode-ident v1.0.27
+   Compiling pyo3-ffi v0.30.1
+   Compiling num-traits v0.2.19
+   Compiling crossbeam-epoch v0.9.21
+   Compiling pyo3-macros-backend v0.30.1
+   Compiling crossbeam-deque v0.8.8
+   Compiling libc v0.2.191
+   Compiling syn v3.0.9
+   Compiling pyo3 v0.30.1
+   Compiling matrixmultiply v0.3.11
+   Compiling heck v0.5.0
+   Compiling rayon-core v1.13.0
+   Compiling rawpointer v0.2.1
+   Compiling num-complex v0.4.6
+   Compiling num-integer v0.1.47
+   Compiling numpy v0.30.0
+   Compiling once_cell v1.21.4
+   Compiling either v1.19.0
+   Compiling rayon v1.12.0
+   Compiling pyo3-macros v0.30.1
+   Compiling ndarray v0.17.2
+   Compiling rustc-hash v2.1.3
+   Compiling multidouble v1.3.0 (https://github.com/nmoinvaz/multidouble?rev=b45c0b9b200eabb61fb85c13439a0142073cbb88#b45c0b9b)
+   Compiling hpkernel v0.1.0 (D:\choptuik-bisect\hp)
+    Finished `release` profile [optimized] target(s) in 15m 25s
+📦 Built wheel for CPython 3.12 to D:/choptuik-bisect/hp/dist_203670ab\hpkernel-0.1.0-cp312-cp312-win_amd64.whl
+Processing d:\choptuik-bisect\hp\dist_203670ab\hpkernel-0.1.0-cp312-cp312-win_amd64.whl
+Installing collected packages: hpkernel
+Successfully installed hpkernel-0.1.0
+
+[notice] A new release of pip is available: 24.3.1 -> 26.3
+[notice] To update, run: python.exe -m pip install --upgrade pip
+Collecting multidouble@ git+https://github.com/nmoinvaz/multidouble@b45c0b9b200eabb61fb85c13439a0142073cbb88#subdirectory=python
+  Cloning https://github.com/nmoinvaz/multidouble (to revision b45c0b9b200eabb61fb85c13439a0142073cbb88) to c:\users\nathan\appdata\local\temp\pip-install-dy0hws44\multidouble_7d972b53f2fb40d88aa3f7cb875bdf9e
+  Running command git clone --filter=blob:none --quiet https://github.com/nmoinvaz/multidouble 'C:\Users\nathan\AppData\Local\Temp\pip-install-dy0hws44\multidouble_7d972b53f2fb40d88aa3f7cb875bdf9e'
+  Running command git rev-parse -q --verify 'sha^b45c0b9b200eabb61fb85c13439a0142073cbb88'
+  Running command git fetch -q https://github.com/nmoinvaz/multidouble b45c0b9b200eabb61fb85c13439a0142073cbb88
+  Running command git checkout -q b45c0b9b200eabb61fb85c13439a0142073cbb88
+  Resolved https://github.com/nmoinvaz/multidouble to commit b45c0b9b200eabb61fb85c13439a0142073cbb88
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Building wheels for collected packages: multidouble
+  Building wheel for multidouble (pyproject.toml): started
+  Building wheel for multidouble (pyproject.toml): finished with status 'done'
+  Created wheel for multidouble: filename=multidouble-0.1.0-cp312-cp312-win_amd64.whl size=308489 sha256=c84323bc68f73cb793ee78c655ece7bac7822394662eec9942ad626104f1231f
+  Stored in directory: c:\users\nathan\appdata\local\pip\cache\wheels\30\37\c9\5bd2844792af4f87f97fda6186724a9ac218b282d626dc4ead
+Successfully built multidouble
+Installing collected packages: multidouble
+Successfully installed multidouble-0.1.0
+
+[notice] A new release of pip is available: 24.3.1 -> 26.3
+[notice] To update, run: python.exe -m pip install --upgrade pip
+hpkernel ok avx2
+   Compiling target-lexicon v0.13.5
+   Compiling autocfg v1.5.1
+   Compiling proc-macro2 v1.0.107
+   Compiling crossbeam-utils v0.8.23
+   Compiling pyo3-build-config v0.30.1
+   Compiling crossbeam-epoch v0.9.21
+   Compiling unicode-ident v1.0.27
+   Compiling quote v1.0.47
+   Compiling pyo3-ffi v0.30.1
+   Compiling num-traits v0.2.19
+   Compiling crossbeam-deque v0.8.8
+   Compiling rayon-core v1.13.0
+   Compiling pyo3-macros-backend v0.30.1
+   Compiling libc v0.2.191
+   Compiling syn v3.0.9
+   Compiling pyo3 v0.30.1
+   Compiling matrixmultiply v0.3.11
+   Compiling heck v0.5.0
+   Compiling rawpointer v0.2.1
+   Compiling either v1.19.0
+   Compiling rayon v1.12.0
+   Compiling pyo3-macros v0.30.1
+   Compiling num-complex v0.4.6
+   Compiling num-integer v0.1.47
+   Compiling numpy v0.30.0
+   Compiling once_cell v1.21.4
+   Compiling ndarray v0.17.2
+   Compiling multidouble v1.3.0 (https://github.com/nmoinvaz/multidouble?rev=b45c0b9b200eabb61fb85c13439a0142073cbb88#b45c0b9b)
+   Compiling rustc-hash v2.1.3
+   Compiling hpkernel v0.1.0 (D:\choptuik-bisect\hp)
+   Compiling modecount_cx v0.1.0 (D:\choptuik-bisect\hp\modecount_cx)
+    Finished `release` profile [optimized] target(s) in 1m 02s
+modecount_cx ok D:\choptuik-bisect\hp\modecount_cx\build\modecount_cx.cp312-win_amd64.pyd
+build done 03:21:08 UTC
