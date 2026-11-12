@@ -1,0 +1,33 @@
+| x_last | reading | ln sigma_1 shift | ln sigma_2 | ln sigma_3 | ln sigma_4 |
+|---|---|---|---|---|---|
+| 0.66 | raw | +16.263 | +16.266 | +16.253 | +16.266 |
+| 0.66 | equilibrated | +2.506 | +2.490 | +2.472 | +2.474 |
+| 0.68 | raw | +8.385 | +8.387 | +8.380 | +8.387 |
+| 0.68 | equilibrated | +1.521 | +1.512 | +1.502 | +1.503 |
+| 0.69 | raw | +4.260 | +4.261 | +4.258 | +4.261 |
+| 0.69 | equilibrated | +0.839 | +0.834 | +0.828 | +0.829 |
+| 0.70 | raw | +0.000 | +0.000 | +0.000 | +0.000 |
+| 0.70 | equilibrated | +0.000 | +0.000 | +0.000 | +0.000 |
+| 0.71 | raw | -4.404 | -4.405 | -4.402 | -4.405 |
+| 0.71 | equilibrated | -1.017 | -1.012 | -1.004 | -1.005 |
+| 0.72 | raw | -8.964 | -8.965 | -8.958 | -8.965 |
+| 0.72 | equilibrated | -2.228 | -2.218 | -2.202 | -2.203 |
+| 0.74 | raw | -17.217 | -17.220 | -18.600 | -18.372 |
+| 0.74 | equilibrated | -3.859 | -3.878 | -5.084 | -5.251 |
+| 0.76 | raw | -24.359 | -17.319 | -20.171 | -19.827 |
+| 0.76 | equilibrated | -1.406 | +2.140 | -0.768 | -2.569 |
+| 0.80 | raw | -24.097 | -17.326 | -20.178 | -19.837 |
+| 0.80 | equilibrated | +11.270 | +14.527 | +11.558 | +9.822 |
+
+raw, ln sigma_3 shift = a + b x over 9 points x_last 0.66 to 0.80: a +200.767, b -286.427, rms residual 4.4187 (max 8.1972)
+raw, ln sigma_3 shift = a + b ln x over 9 points x_last 0.66 to 0.80: a -74.985, b -210.581, rms residual 4.1018 (max 7.8176)
+equilibrated, ln sigma_3 shift = a + b x over 9 points x_last 0.66 to 0.80: a -27.281, b +39.138, rms residual 4.0291 (max 7.5289)
+equilibrated, ln sigma_3 shift = a + b ln x over 9 points x_last 0.66 to 0.80: a +9.656, b +26.545, rms residual 4.0706 (max 7.8261)
+
+raw: the better form is log (rms 4.1018 against 4.4187)
+equilibrated: the better form is linear (rms 4.0291 against 4.0706)
+acceptance (equilibrated residual of the better form at most 0.1): FAIL
+
+raw: fit over the 8 points x_last <= 0.76: better form log (rms 1.5210, linear 1.6548); prediction of the shift of ln sigma_3 at x_last = 0.80 (five nodes 0.3 ... 0.6, 0.8 and, if the law is about the last node, #502's six-node 0.3-0.8 layout): -37.18 by the log form, -38.94 by the linear form; measured five-node 0.80: -20.18; #502's six-node layout: -20.26
+equilibrated: fit over the 8 points x_last <= 0.76: better form log (rms 1.4108, linear 1.4293); prediction of the shift of ln sigma_3 at x_last = 0.80 (five nodes 0.3 ... 0.6, 0.8 and, if the law is about the last node, #502's six-node 0.3-0.8 layout): -5.46 by the log form, -5.68 by the linear form; measured five-node 0.80: +11.56; #502's six-node layout: +11.56
+all check lines pass

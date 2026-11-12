@@ -1,0 +1,25 @@
+| layout | raw sigma_1 | raw sigma_2 | raw sigma_3 | raw sigma_4 | equilibrated sigma_1 | sigma_2 | sigma_3 | sigma_4 |
+|---|---|---|---|---|---|---|---|---|
+| baseline 0.3, 0.4, 0.5, 0.6, 0.7 (#537) | 2.5510e-27 | 2.5300e-27 | 4.3920e-26 | 7.9300e-26 | 1.8825e-61 | 9.3856e-61 | 2.6498e-59 | 2.4555e-57 |
+| second node 0.4 -> 0.42 | 2.5460e-27 | 2.5190e-27 | 4.3880e-26 | 7.9130e-26 | 1.8826e-61 | 9.3861e-61 | 2.6501e-59 | 2.4558e-57 |
+| third node 0.5 -> 0.52 | 2.5440e-27 | 2.5190e-27 | 4.3870e-26 | 7.9090e-26 | 1.8825e-61 | 9.3857e-61 | 2.6499e-59 | 2.4556e-57 |
+| fourth node 0.6 -> 0.62 | 2.5430e-27 | 2.5200e-27 | 4.3870e-26 | 7.9060e-26 | 1.8825e-61 | 9.3855e-61 | 2.6497e-59 | 2.4554e-57 |
+| first node 0.3 -> 0.25 | 2.5690e-27 | 2.5440e-27 | 4.3990e-26 | 7.9600e-26 | 1.8818e-61 | 9.3815e-61 | 2.6469e-59 | 2.4527e-57 |
+| last node 0.7 -> 0.72 (#537) | 3.2650e-31 | 3.2330e-31 | 5.6530e-30 | 1.0130e-29 | 2.0276e-62 | 1.0212e-61 | 2.9314e-60 | 2.7134e-58 |
+
+shifts of ln sigma_i from the baseline (new layout minus baseline)
+| move | reading | ln sigma_1 | ln sigma_2 | ln sigma_3 | ln sigma_4 | ln sigma_3 per unit of node displacement |
+|---|---|---|---|---|---|---|
+| second node 0.4 -> 0.42 | raw | -0.002 | -0.004 | -0.001 | -0.002 | -0.0 |
+| second node 0.4 -> 0.42 | equilibrated | +0.000 | +0.000 | +0.000 | +0.000 | +0.0 |
+| third node 0.5 -> 0.52 | raw | -0.003 | -0.004 | -0.001 | -0.003 | -0.1 |
+| third node 0.5 -> 0.52 | equilibrated | +0.000 | +0.000 | +0.000 | +0.000 | +0.0 |
+| fourth node 0.6 -> 0.62 | raw | -0.003 | -0.004 | -0.001 | -0.003 | -0.1 |
+| fourth node 0.6 -> 0.62 | equilibrated | +0.000 | -0.000 | -0.000 | -0.000 | -0.0 |
+| first node 0.3 -> 0.25 | raw | +0.007 | +0.006 | +0.002 | +0.004 | -0.0 |
+| first node 0.3 -> 0.25 | equilibrated | -0.000 | -0.000 | -0.001 | -0.001 | +0.0 |
+| last node 0.7 -> 0.72 (#537) | raw | -8.964 | -8.965 | -8.958 | -8.965 | -447.9 |
+| last node 0.7 -> 0.72 (#537) | equilibrated | -2.228 | -2.218 | -2.202 | -2.203 | -110.1 |
+
+the 0.25 move: shift of ln sigma_3 +0.0016 raw, -0.0011 equilibrated; null (both under 0.01): reproduced
+all check lines pass
