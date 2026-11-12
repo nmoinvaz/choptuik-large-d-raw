@@ -1,0 +1,4 @@
+# I564-win2: the antiphase pair model for the sigma oscillation, tested on #558's states
+
+Machine win2 (Windows 11 desktop, Intel Core Ultra 7 265K, 20 threads, 96 GB), issue https://github.com/nmoinvaz/choptuik-large-d/issues/564 (follows from #557 and #558). Analysis only, one thread, venv-t177.
+`antiphase_564.py`: each sigma pair as one smooth sum S plus an antiphase oscillation of one amplitude with a shared period law (the model, the degree rule fixed before any fit, the planted-truth selftest are in the script's docstring). `--predict` writes the model's predictions of ln sigma at #558's twelve states to `predictions_564.json` without reading any file of I558-win2; they are posted on the issue before #558's states are read. `eval_564.py` (written after the posting) compares them with #558's states. Results follow in this README.
