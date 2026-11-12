@@ -101,7 +101,7 @@ def accepted(log, jsonl):
     segs, flat, _, _ = load(log, jsonl)
     out = []
     for i, (r, a) in enumerate(flat):
-        if i >= len(segs) or abs(float(segs[i]["a"]) - a["a"]) > 0.05 * a["a"]:
+        if i >= len(segs) or abs(float(segs[i]["a"]) - a["a"]) > 0.05 * abs(a["a"]):
             raise ValueError(f"attempt {i} of {jsonl} (a {a['a']}) does not match the log's attempt (a {segs[i]['a'] if i < len(segs) else '-'})")
         if a["accepted"]:
             inf = info(segs[i])
