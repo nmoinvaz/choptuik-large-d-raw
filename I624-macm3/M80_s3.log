@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/Users/nathan/Source/choptuik-large-d-b596/hp/modecount_smooth.py", line 23, in <module>
+    st = setup(path, M=M, threads=4, kf=kf, fmax=1e-15, log=lambda *a: None)
+  File "/Users/nathan/Source/choptuik-large-d-b596/hp/modecount_common.py", line 231, in setup
+    series_gate(s, zh, zl, meta, "start")
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nathan/Source/choptuik-large-d-b596/hp/modecount_common.py", line 191, in series_gate
+    raise RuntimeError(f"series not converged in this layout ({when}; M = {meta['M']}, nodes {meta['nodes']}): "
+                       f"{tails_text(tails)}; more than {SERIES_TAIL:.0e}")
+RuntimeError: series not converged in this layout (start; M = 80, nodes [0.15, 0.3, 0.4, 0.5, 0.6, 0.7]): centre 6.1e-127 (ratio 0.517 at 0.15), horizon 3.7e-12 (ratio 0.968 at 0.3); more than 1e-15
