@@ -1,0 +1,24 @@
+75 states D 198.13 to 237.13; planted verdict file results_planted_567_v1.txt: VERDICT: FAIL (control fires; planted-valid methods: none); ...; bounds {'H1': 0.00883, 'H2': 0.00784, 'H3': 0.01041, 'W558': 0.00796}; planted-valid methods ['none'] -- NOT VALIDATED: the planted verdict is FAIL (the pre-registered fallback: the real sums are computed and reported as not validated)
+
+== sum ln sigma_1 + ln sigma_2 (graded)
+| method | planted-valid | H1 | H2 | H3 | W558 | within the bounds in all four |
+|---|---|---|---|---|---|---|
+| G | no | 0.0063 ok | 0.0366 MISS | 0.0339 MISS | 0.0160 MISS | NO |
+| S | no | 0.1284 MISS | 0.1118 MISS | 0.2019 MISS | 0.2113 MISS | NO |
+| poly2 |  | 0.0456 MISS | 0.0332 MISS | 0.0659 MISS | 0.1305 MISS | NO |
+| poly3 |  | 0.0087 ok | 0.0177 MISS | 0.0127 MISS | 0.0237 MISS | NO |
+| poly4 |  | 0.0239 MISS | 0.0433 MISS | 0.0040 ok | 0.0358 MISS | NO |
+CHECK G: FAIL (a window of the sum of sigma_1 + sigma_2 misses the bound b_w); planted-valid: NO (not validated)
+CHECK S: FAIL (a window of the sum of sigma_1 + sigma_2 misses the bound b_w); planted-valid: NO (not validated)
+CHECK poly2: FAIL (a window of the sum of sigma_1 + sigma_2 misses the bound b_w)
+CHECK poly3: FAIL (a window of the sum of sigma_1 + sigma_2 misses the bound b_w)
+CHECK poly4: FAIL (a window of the sum of sigma_1 + sigma_2 misses the bound b_w)
+
+== sum ln sigma_3 + ln sigma_4 (information, not graded: its noise is larger)
+| method | planted-valid | H1 | H2 | H3 | W558 | within the bounds in all four |
+|---|---|---|---|---|---|---|
+| G | no | 0.0162 | 0.0146 | 0.0757 | 0.1154 |  |
+| S | no | 0.2636 | 0.1234 | 0.2210 | 0.3273 |  |
+| poly2 |  | 0.2050 | 0.1644 | 0.2812 | 0.3989 |  |
+| poly3 |  | 0.0458 | 0.0593 | 0.0860 | 0.0617 |  |
+| poly4 |  | 0.0415 | 0.0327 | 0.0443 | 0.0830 |  |

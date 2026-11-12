@@ -1,0 +1,36 @@
+planted noise 0.004, 100 seeds per truth; windows (fit, predicted states): {'H1': [42, 9], 'H2': [43, 8], 'H3': [51, 12], 'W558': [63, 12]}
+
+Noise floors (median prediction rms of the true form; in brackets its in-sample error against the truth):
+| truth | true form | H1 | H2 | H3 | W558 |
+|---|---|---|---|---|---|
+| P_L | lnD3 | 0.0051 (0.0012) | 0.0050 (0.0011) | 0.0069 (0.0011) | 0.0053 (0.0010) |
+| P_P | poly3 | 0.0059 (0.0012) | 0.0052 (0.0011) | 0.0055 (0.0010) | 0.0051 (0.0009) |
+| P_E | expo | 0.0042 (0.0009) | 0.0045 (0.0009) | 0.0049 (0.0009) | 0.0045 (0.0007) |
+
+bounds b_w = 1.5 x the largest floor over the truths: H1 0.0088, H2 0.0078, H3 0.0104, W558 0.0080
+
+Median planted prediction rms per method (ratio to 1.5 x that truth's floor), and the in-sample error against the truth (ratio to 1.5 x the true form's):
+| truth | method | H1 prediction | H2 prediction | H3 prediction | W558 prediction | prediction within 1.5 x in all four | in-sample error H3 (ratio) | recovered |
+|---|---|---|---|---|---|---|---|---|
+| P_L | G | 0.0084 (1.09) | 0.0073 (0.99) | 0.0115 (1.11) | 0.0132 (1.66) | no | 0.0013 (0.81) | yes |
+| P_L | S | 0.1362 (17.66) | 0.3087 (41.57) | 0.7420 (71.28) | 0.9068 (113.97) | no | 0.0026 (1.61) | no |
+| P_L | poly2 | 0.5015 (65.01) | 0.4857 (65.40) | 1.0492 (100.80) | 1.7610 (221.33) | no | 0.1185 (72.49) | no |
+| P_L | poly3 | 0.0368 (4.78) | 0.0337 (4.53) | 0.0925 (8.89) | 0.1724 (21.67) | no | 0.0052 (3.20) | no |
+| P_L | poly4 | 0.0081 (1.05) | 0.0070 (0.94) | 0.0102 (0.98) | 0.0163 (2.05) | no | 0.0012 (0.76) | yes |
+| P_P | G | 0.0091 (1.04) | 0.0073 (0.93) | 0.0108 (1.31) | 0.0082 (1.07) | no | 0.0012 (0.79) | yes |
+| P_P | S | 0.2769 (31.35) | 0.4759 (60.67) | 1.0744 (130.45) | 1.2206 (159.67) | no | 0.0028 (1.79) | no |
+| P_P | poly2 | 0.6637 (75.13) | 0.6195 (78.97) | 1.2459 (151.27) | 1.9162 (250.66) | no | 0.1542 (99.34) | no |
+| P_P | poly3 | 0.0059 (0.67) | 0.0052 (0.67) | 0.0055 (0.67) | 0.0051 (0.67) | yes | 0.0010 (0.67) | yes |
+| P_P | poly4 | 0.0087 (0.99) | 0.0068 (0.87) | 0.0092 (1.11) | 0.0075 (0.98) | no | 0.0012 (0.75) | yes |
+| P_E | G | 0.0138 (2.20) | 0.0145 (2.15) | 0.0456 (6.17) | 0.0747 (11.07) | no | 0.0014 (1.09) | no |
+| P_E | S | 0.0405 (6.47) | 0.1758 (26.10) | 0.4878 (65.88) | 0.7891 (116.88) | no | 0.0023 (1.78) | no |
+| P_E | poly2 | 0.3056 (48.87) | 0.3246 (48.18) | 0.8543 (115.39) | 1.8198 (269.56) | no | 0.0763 (59.40) | no |
+| P_E | poly3 | 0.0784 (12.54) | 0.0743 (11.03) | 0.2472 (33.39) | 0.5708 (84.54) | no | 0.0112 (8.73) | no |
+| P_E | poly4 | 0.0174 (2.79) | 0.0156 (2.31) | 0.0599 (8.09) | 0.1556 (23.05) | no | 0.0017 (1.32) | no |
+
+control (poly2 on P_L exceeds 1.5 x floor in some window): fires
+recovered in sample within 1.5 x the true form's error, all truths and windows: G no, S no
+extrapolated within 1.5 x the floor, all truths and windows: G no, S no
+planted-valid methods (both): none
+
+VERDICT: FAIL (control fires; planted-valid methods: none); BOUNDS H1 0.00883 H2 0.00784 H3 0.01041 W558 0.00796; VALID none
