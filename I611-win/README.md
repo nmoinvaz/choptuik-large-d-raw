@@ -45,7 +45,7 @@ The cut moves the reference by about 1.2e-15 at D 50 to 55, which is small again
 | D 60.001952, kf 13 | 1.8098842580017148218821155282315 | 1.6e-51 | 4 | 218 |
 | D 60.001952, no cut | **did not converge** | 6.5e-08 | 6 | 1027 |
 
-Seven of the eight converge. The no-cut polish at D 60.001952 starts from the kf 13 state (|F| 1.94e-23 in the no-cut system), takes a full Newton step of |dz| 1.0e-3 that raises |F| to 6.1e-7 (its dDelta is -1.56e-15, a linear estimate of the cut's effect there that the step itself shows is not valid), and five more steps with step fractions 0.5, 0.25, 0.5, 1 bring |F| down to 6.55e-8, |dz| 4.8e-5, where the sixth finds "no trial step accepted" and stops. Its Delta has moved by -1.4e-11 from the kf 13 value by then (`logs/kfm1_D60.stdout`, `qd_kfm1_D60_attempts.jsonl`; not a value of anything).
+Seven of the eight converge. The no-cut polish at D 60.001952 starts from the kf 13 state (|F| 1.94e-23 in the no-cut system), takes a full Newton step of |dz| 1.0e-3 that raises |F| to 6.1e-7 (its dDelta is -1.56e-15, a linear estimate of the cut's effect there that the step itself shows is not valid), and four more steps with step fractions 0.5, 0.25, 0.5, 1 bring |F| down to 6.55e-8, |dz| 4.8e-5, where the sixth finds "no trial step accepted" and stops. Its Delta has moved by -1.4e-11 from the kf 13 value by then (`logs/kfm1_D60.stdout`, `qd_kfm1_D60_attempts.jsonl`; not a value of anything).
 
 **The cut's effect** (no cut - kf 13): D 40.020065 +1.557e-15 (#610, the Mac), D 50.007491 -1.0431e-15, D 54.041398 -1.1981e-15, D 55.035148 -1.2100e-15; D 60.001952 not measured (the uncut polish does not converge). The effect changes sign between D 40 and D 50 and is smooth from 54 to 55 (the two values differ by 1.2e-17).
 
