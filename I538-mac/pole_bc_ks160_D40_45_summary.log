@@ -1,0 +1,12 @@
+per state: C = b (n - 1) on 13.6's grid; s = d ln R / d ln(1/delta) on the full grid, ± its standard error
+       D  C_R136     C_a     C_b     C_B     C_C     C_p     C_m   C_new          s_R136           s_new s_new/s_R136 s_B/s_R136
+ 40.0201   0.942   0.928   0.926   0.932   0.930   0.942   0.950   0.930   0.2809±0.0963   0.2808±0.0956        1.000      1.000
+ 45.0507   0.943   0.933   0.931   0.936   0.934   0.943   0.950   0.935   0.2207±0.0601   0.2209±0.0587        1.001      0.993
+where-test at D < 100 (B and x - c summed to u1 ~ 0.95 R; zeros extrapolated with the mass mode), per delta:
+  delta 1e-08: states 2, B(u1) 0.919-0.922, max x-c(u1) -0.181--0.162, sonic/R_new 1.023-1.025, AH/R_new 1.077-1.083, max |R_v/R136 - 1| over p, m, B, C 0.016, summation change 4.0e-07
+  delta 1e-07: states 2, B(u1) 0.914-0.927, max x-c(u1) -0.141--0.134, sonic/R_new 1.025-1.033, AH/R_new 1.098-1.114, max |R_v/R136 - 1| over p, m, B, C 0.015, summation change 2.8e-07
+  delta 1e-06: states 2, B(u1) 0.918-0.926, max x-c(u1) -0.111--0.100, sonic/R_new 1.036-1.037, AH/R_new 1.141-1.154, max |R_v/R136 - 1| over p, m, B, C 0.021, summation change 7.8e-07
+  delta 1e-05: states 2, B(u1) 0.913-0.946, max x-c(u1) -0.083--0.068, sonic/R_new 1.029-1.091, AH/R_new 1.193-1.266, max |R_v/R136 - 1| over p, m, B, C 0.052, summation change 4.0e-07
+  delta 1e-04: states 2, B(u1) 0.935-0.940, max x-c(u1) -0.048--0.041, sonic/R_new 1.067-1.074, AH/R_new 1.361-1.382, max |R_v/R136 - 1| over p, m, B, C 0.041, summation change 2.9e-07
+  delta 1e-03: states 2, B(u1) 0.944-0.952, max x-c(u1) -0.014--0.013, sonic/R_new 1.063-1.076, AH/R_new 1.744-1.832, max |R_v/R136 - 1| over p, m, B, C 0.025, summation change 6.1e-07
+  delta 1e-02: states 2, B(u1) 0.967-0.972, max x-c(u1) 0.000-0.002, sonic/R_new 0.036-0.057, AH/R_new 10.719-39.935, max |R_v/R136 - 1| over p, m, B, C 0.041, summation change 0.0e+00

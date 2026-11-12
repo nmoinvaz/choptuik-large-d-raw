@@ -20,6 +20,8 @@ b = a² are formed from its a and c series by series arithmetic.
 - `pole_bc_mutate_b.jsonl`, `.log`: the same run with `--mutate=b`, where B := b (exit 1 at D 40.02 and 45.05).
 - `pole_bc_ks130_D40_45.*`, `pole_bc_ks160_D40_45.*`: D 40.02 and 45.05 with the series carried to 130 and 160 orders
   (`--ks`), the diagnostic of the control failures (exit 0).
+- `*_summary.log`: `pole_bc.py summary` on each jsonl (code commit 15b853e), giving the per-state fits and the
+  where-test's ranges per δ that the issue quotes.
 
 Commands, run from the code repository's hp/ with RAW pointing at this repository:
 
