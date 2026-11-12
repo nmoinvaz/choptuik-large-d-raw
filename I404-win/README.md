@@ -92,3 +92,41 @@ All 14 solves converged on their first run (NTOL 1e-40; root b of 32x99 took 9 N
 **Pair test.** For N = 99, 103 and 107 the two starts reach one root to 1e-19 to 1e-17 (|z_b - z_a| 8.5e-20, 2.9e-18, 9.4e-18; the residual rise between them is "hidden by the residual floor"); from N = 111 the two roots are distinct (the residual rises between them), 7.5e-15 (111), 2.4e-14 (115), 9.2e-14 (119), 2.2e-12 (123) apart. So the degeneracy sets in between 107 and 111 at D 50.007, against between 103 and 107 at D 54.996 and at 99 or below at D 60.001952.
 
 **Against the earlier results at this D.** #145's 32x101 (N = 1 mod 4, root a) was +3.3e-15; the neighbours of this ladder are 99 -2.3e-14, 103 -2.9e-15 and 107 -7.5e-15, all negative. Cost: 678 to 1157 s per solve (four at once), 1637 s for 99b (9 Newton steps).
+
+## D 40.020065 (queue 19:20:05 to 20:14:28 UTC, 3263 s; analysis 20:15 UTC)
+
+All 14 solves converged on their first run, 4 Newton steps each (NTOL 1e-40), no restart. Same table, `fit/summary_D40.0201.md`, `fit_analysis_D40.0201.txt`, `fit/verdict_32xN_D40.0201.log`, `fit/roots_32xN_D40.0201.log` (the planted checks pass for all seven pairs):
+
+| N | root a - hp | root b - hp | spread a - b | E(N) | max abs(z_b - z_a) | max abs(B(e,e)) / max abs(e) | Newton steps a, b | seconds a, b | peak GB a, b |
+|---|---|---|---|---|---|---|---|---|---|
+| 99 | -8.22e-15 | -8.22e-15 | -1.58e-23 | 8.22e-15 | 1.199e-24 | 1.3e-23 | 4, 4 | 604, 607 | 1.16, 1.16 |
+| 103 | +1.17e-15 | +1.17e-15 | +2.36e-21 | 1.17e-15 | 1.485e-22 | 2.0e-21 | 4, 4 | 674, 674 | 1.25, 1.25 |
+| 107 | +1.54e-15 | +1.54e-15 | +1.09e-20 | 1.54e-15 | 7.836e-22 | 6.8e-20 | 4, 4 | 782, 759 | 1.34, 1.34 |
+| 111 | +1.56e-15 | +1.56e-15 | +4.32e-21 | 1.56e-15 | 3.153e-22 | 1.2e-21 | 4, 4 | 894, 902 | 1.43, 1.43 |
+| 115 | +1.55e-15 | +1.55e-15 | -8.13e-21 | 1.55e-15 | 6.543e-22 | 1.7e-20 | 4, 4 | 959, 922 | 1.53, 1.53 |
+| 119 | +1.55e-15 | +1.55e-15 | +2.55e-20 | 1.55e-15 | 2.161e-21 | 9.2e-20 | 4, 4 | 1014, 1016 | 1.63, 1.63 |
+| 123 | +1.54e-15 | +1.54e-15 | +3.18e-18 | 1.54e-15 | 3.126e-19 | 3.4e-17 | 4, 4 | 915, 914 | 1.73, 1.74 |
+
+**Verdict at D 40.020065: the ladder falls to below 1e-14 at N* = 99, its first rung** (E(99) = 8.22e-15, spread 1.6e-23), and it **keeps converging**: all seven grids pass `rt_grids.py --tol 1e-14`. E settles on a plateau: from N = 107 to 123 Delta_RT - Delta_hp is +1.54e-15, +1.56e-15, +1.55e-15, +1.55e-15, +1.54e-15, constant to about 2e-17, and the two starts agree to 1e-18 to 1e-24. The plateau value (+1.55e-15) is the difference between the RT limit and hp's double-double row, inside hp's stated error 2e-15; it is not a failure of the grid to converge.
+
+**Pair test.** For all seven grids the two roots are one root to 1e-24 to 3e-19 (|z_b - z_a| 1.2e-24 at 99, 1.5e-22 at 103, up to 3.1e-19 at 123; the pair test says "hidden by the residual floor" for every N): there is no degeneracy at D 40.020, up to 123.
+
+**Against the earlier results at this D.** #145's 32x101 (N = 1 mod 4) was +3.5e-15, 2e-15 above this plateau (+1.55e-15), while the N = 3 mod 4 family sits on the plateau from 103 on (E(103) = 1.17e-15 is 4e-16 below it). Cost: 604 to 1016 s per solve (four at once), 4 Newton steps each.
+
+## Across D: where the N = 3 mod 4 ladder converges
+
+E(N), the larger of the two roots' |Delta_RT - Delta_hp| (the bold ones pass 1e-14), and the grid from which the two starts give two distinct roots:
+
+| N | D 40.020065 | D 50.007491 | D 54.996085 | D 60.001952 |
+|---|---|---|---|---|
+| 99 | **8.22e-15** | 2.33e-14 | 3.75e-14 | 1.80e-12 |
+| 103 | **1.17e-15** | **2.95e-15** | 7.49e-14 | 4.86e-11 |
+| 107 | **1.54e-15** | **7.53e-15** | 5.44e-12 | 1.30e-10 |
+| 111 | **1.56e-15** | 6.56e-14 | 6.93e-12 | 5.69e-10 |
+| 115 | **1.55e-15** | 3.08e-13 | 8.53e-11 | 2.08e-11 |
+| 119 | **1.55e-15** | 2.62e-12 | 2.33e-10 | 1.04e-11 |
+| 123 | **1.54e-15** | 3.31e-11 | 1.21e-09 | 1.63e-07 |
+| verdict | falls to below 1e-14 at 99 and stays (plateau +1.55e-15) | falls to below 1e-14 at 103; passes at 103 and 107 only | stops falling at 99 (3.75e-14) | stops falling at 99 (1.80e-12) |
+| roots distinct from | none up to 123 | 111 | 107 | 99 |
+
+The degeneracy of the discrete system, nearly degenerate roots at residuals below 1e-30 spread over Delta by 1e-12 to 1e-7, sets in at smaller N as D grows: not at all up to 123 at D 40, from 111 at D 50, from 107 at D 54.996, from 99 at D 60.002. The N = 3 mod 4 ladder converges (to hp's error) at D 40, for N 99 to 123; at D 50 only on N = 103 to 107; at D 54 and 60 it does not reach 1e-14.
