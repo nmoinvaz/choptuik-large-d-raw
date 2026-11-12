@@ -1,0 +1,41 @@
+{
+ "written": "2026-11-12 before any evaluation of #588; committed to the raw-data repository before the run",
+ "design": {
+  "circles": "the twelve R 0.06 circles run on win2: #573 (kf 22: 4, kf 25: 6), #574 (kf 27: 1) and #585 (kf 27: 1), each at its own cut and state (sha256 kf22 7dd8e814..., kf25 48ac56a2..., kf27 1fd892fc...); listed in circles_588.json with the stored centre, zero and own estimate",
+  "replicas": "per circle 10 shifted replicas (rep 1..10) and 1 control (rep 0, no move, freshly evaluated); every argument lam that circle() asks det M at (n0 20, tol pi/4, the real runs' call: the 20 base points, the 2 beta points c +- 2R, the bisection points) is moved by 1 to 3 ulp in Re and independently in Im, sign and size uniform over {-3,-2,-1,1,2,3} drawn from (circle, rep, lam)",
+  "statistic": "s = sqrt(sum |z_r - zmean|^2 / (N - 1)) over the replicas that resolve with winding +1 (complex position); own estimate = the stored zeros_est; flag if s > 3 x own estimate",
+  "note": "the issue text says the 12 circles are at kf 27 (#507, #573, #574); the twelve on win2 are at kf 22, 25 and 27 as listed (#507's circles ran on macm3 and their caches are not here)"
+ },
+ "derivation": "From #585: the noise of the circles' own points is sigma_ln 1.28e-3 and sigma_arg 1.05e-3 pooled over six base points (circle A pooled over its three points 0.91e-3 and 0.74e-3, giving s = 1.6e-5; circle B 1.58e-3 and 1.28e-3, giving s = 2.7e-5; Q2 takes a factor 2 each way), the first power sum of a W = 1 circle has noise R |eps|rms / sqrt(n0) with |eps|rms = sqrt(sigma_ln^2 + sigma_arg^2) = 1.66e-3, so s = 0.06 x 1.66e-3 / sqrt(20) = 2.2e-5 for kf 27, and the synthetic selftest of replicas_588.py reproduces R sqrt(2) sigma / sqrt(n0) within 12 percent. The kf 22 and kf 25 noise is unmeasured; I assume the arithmetic noise is the same as at kf 27 (H_noise). The alternative (H_est) is s about equal to the own estimate (1e-7 at kf 22).",
+ "bounds": {
+  "all": [
+   7e-06,
+   7e-05
+  ],
+  "A": [
+   8e-06,
+   3.2e-05
+  ],
+  "B": [
+   1.4e-05,
+   5.6e-05
+  ]
+ },
+ "flagged": [
+  8,
+  11
+ ],
+ "criteria": {
+  "Q1": "all twelve spreads lie between 7e-6 and 7e-5 (a factor 3 about 2.2e-5, H_noise at every cut)",
+  "Q2": "A (kf 27, 1.9035+0.9107i) has s between 8e-6 and 3.2e-5 and B (kf 27, 2.3966+0.5476i) between 1.4e-5 and 5.6e-5 (from their own sigma_circle, a factor 2 each way)",
+  "Q3": "the number of flagged zeros (s > 3 x own estimate) is between 8 and 11; predicted 10, the unflagged being the kf 25 circle at 2.904+0.243i (est 1.1e-5) and A (est 1.2e-5)",
+  "Q4": "the median s / estimate over the four kf 22 circles (estimates 2e-8 to 1.4e-7) exceeds 100",
+  "Q5": "the control (rep 0) reproduces the stored zero bit for bit, 12 of 12",
+  "Q6": "at least 118 of the 120 shifted replicas resolve with winding +1, and at least 9 of the 10 for every circle",
+  "Q7": "the stored zero lies within 3 s of the replica mean for at least 11 of the 12 circles (a stored value is one more draw of the same noise; a bias would show here)"
+ },
+ "controls": {
+  "replicas_selftest": "replicas_588.py --selftest: the shift function (deterministic, 1 to 3 ulp, rep 0 unmoved), a synthetic noisy det whose replica spread is recovered within 30 percent of R sqrt(2) sigma / sqrt(n0), a noise-free det whose shifted replicas agree to 1e-9",
+  "analysis_selftest": "analyze_588.py --selftest: a known scatter recovered within 15 percent, a bit-equal control passes, a control moved by one ulp fails; --mutate=control on the real data must fail Q5"
+ }
+}
