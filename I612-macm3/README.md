@@ -15,7 +15,7 @@ Part 2 at M 56 and M 72 cannot run (hpkernel's M list: 8, 16, 32, 40, 48, 64, 80
 
 Part 1 (P1_*.log, joint612.py): D 61 M 64 s3 55821 entries, blocks (0, 0) 24366 and (5, 5) 31455; D 30 M 80 lambda_phys 20539, blocks (0, 0) 12340 and (6, 6) 8199; the M 32 control gives its one entry (block (0, 0), row 8, column 29, field p). In all 26 logs of this folder the joint sums to the count with no entry off the diagonal and none in a middle block.
 
-Part 2 (table612.py; M 32, 40 and the M 48 of lambda_phys from I609-macm3's logs, the rest from this folder; position 1 at M 48 here is with the state made in I609's run, 11427 against 11383 on the earlier state):
+Part 2 (table612.py). From I609-macm3's logs: lambda_phys at M 40, 48 (the rerun on the state made in that run) and 64; position 1 at M 32, 40 and 80. From this folder: lambda_phys at M 32 (the control) and 80 (P1), position 1 at M 48 (the state made in I609's run: 11427 entries, against 11383 on the earlier state) and 64, positions 2 to 8 at M 48, 64 and 80:
 
 | point (D 30) | M 32 | M 40 | M 48 | M 64 | M 80 | M 64 below M 48 and M 80 |
 |---|---|---|---|---|---|---|
