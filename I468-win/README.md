@@ -40,7 +40,7 @@ The coordinator's message 022020Z settled the planted criterion (notes/OCTO_DOUB
 | polish_d6 (`--save_base 1`) | 0 | pass | `octo-double Newton: 3 steps, max\|F\| 1.5e-44, converged` |
 | reload_d6 | 0 | pass | `on 0: \|F\| 1.53e-44 converged` |
 | planted_ref | 0 | **pass** | `(a) PASS: od max\|F\| 1.10e-44 < 1e-40, \|Delta_od - Delta_qd\| <= 1e-30` (the distance is 8.7647e-41) |
-| planted_ref_ctrl | PENDING | | |
+| planted_ref_ctrl (`--mutate_offset qd`) | 1 | fails as it must | `(a) FAIL: od max\|F\| 3.39e-12 < 1e-40, \|Delta_od - Delta_qd\| <= 1e-30` (the distance is 4.4791e-19) |
 
 **polish.** Delta(od) - Delta(qd) at d10 D 191.5 is +4.540e-19 (qd max|F| 6.37e-29, od 2.69e-44), within the 1e-18 bound. `compare_qd_od.out` tables it with #218's two rows (+4.480e-19 at d6 D 192.0, -2.068e-18 at d10 D 193.5, which fails the bound); its input `d10_D191.5_qd_od.log` is lines 1 and 2 of `I215-win/chain_d10.log` (the quad-double run) followed by `polish.log`, because the script reads a qd run and the od run that follows it in one file. The script's control `--mutate=shift=5e-18` trips all three rows and its selftest passes.
 
@@ -70,3 +70,17 @@ The coordinator's message 022020Z settled the planted criterion (notes/OCTO_DOUB
 | **stored plan (18 steps), as anm_run.py's reload** | **1.142e-22, PASS** | **1.527e-44, ratio 0.998, PASS** |
 
 Controls (must fail): `--mutate dd` (drop parts 2 to 7) gives 2.322e-3, `--mutate shift` (Delta + 1e-15) gives a Delta difference of 1.11e-15; `--mutate qd` (drop parts 4 to 7) gives 5.5e-36 with the replanned system, hidden by that system's 4.7e-36 floor, which is why dd was added. The 4.7e-36 of the replanned system is what the comment in `anm_run.py` (#461) says a new plan leaves; with the stored plan the base reloads to the polish's value. reload_d6 loads the base in anm_run.py ("the base keeps its stored plan (18 steps)") and starts at |F| 1.53e-44, converged in one step, Delta unchanged. The saved base is right.
+
+**planted_ref_ctrl (the control) fails, and for the right reason.** With `--mutate_offset qd` (PinnedO's J^-1 c taken through the quad-double LU) the first Newton step has |dz| 1.1e-2 where the unmutated one has 1.0e-12, no trial step is accepted (`on 0: |F| 3.39e-12, |dz| 1.1e-02: no trial step accepted, stopping`, 9 failed projections), and the run ends at the start, pinned max|F| 3.39e-12, 2683 s. So it fails both criteria: max|F| 3.39e-12 against 1e-40, and |Delta_od - Delta_ref| = 4.4791e-19 against 1e-30. The Delta failure is only the distance between the truth state's Delta (the start's, "od against the truth: dDelta 0.0") and the polished root, because no step was taken; the informative failure is the broken Newton step. The earlier mutated run (planted_ctrl) was stopped at 35 minutes; this run's first solve took 45 minutes (2683 s) to end the same way.
+
+## Summary of verdicts
+
+| check | criterion | verdict |
+|---|---|---|
+| od polish of d10 D 191.5 | max\|F\| below 1e-40, table with #218's rows | pass: 2.69e-44; Delta(od) - Delta(qd) +4.540e-19 |
+| wall | pinned max\|F\| below 1e-36 | pass: 5.09e-53 |
+| wall control `--mutate 10` | must fail | fails: 1.72e-35 |
+| planted, 5.3 (a) as written (quad-double reference) | od below 1e-40 and \|Delta_od - Delta_qd\| below 1e-30 | **fails**: 1.10e-44, but the quad-double reference stalls at 7.87e-24 (4.18e-14) |
+| planted against an octo-double polish of the same state | od below 1e-40 and \|Delta_od - Delta_ref\| below 1e-30 | pass: 1.10e-44, 8.7647e-41 |
+| its control `--mutate_offset qd` | must fail by its Delta | fails: no step accepted, 3.39e-12, 4.4791e-19 |
+| saved base (`--save_base 1`) | loads, Delta within the log's digits, reload \|F\| within a factor 2 | pass: 1.1e-22, 1.527e-44 against 1.530e-44 |
