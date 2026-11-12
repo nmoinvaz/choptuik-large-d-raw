@@ -1,0 +1,16 @@
+I562-win2/renode_0975_D242.3642.npz: D 242.3641907, nodes [0.3, 0.4, 0.5, 0.6, 0.975], L 769; max|E_lo| 1.78e-34, max|E_hi| 1.78e-34
+  unfrozen Jacobian's horizon p rows (600 s): max entry 129.0
+  v_1: sigma 1.348e-37, ||dJ v|| 2.758e-37 (2.05 sigma; E_lo dd/dz part 1.614e-51); against the residuals' difference 2.3e-29 (ok)
+  v_2: sigma 7.399e-35, ||dJ v|| 1.569e-34 (2.12 sigma; E_lo dd/dz part 2.967e-50); against the residuals' difference 5.9e-32 (ok)
+  v_3: sigma 7.412e-35, ||dJ v|| 1.568e-34 (2.12 sigma; E_lo dd/dz part 2.737e-50); against the residuals' difference 5.7e-32 (ok)
+  v_4: sigma 1.842e-34, ||dJ v|| 3.996e-34 (2.17 sigma; E_lo dd/dz part 3.636e-50); against the residuals' difference 4.1e-32 (ok)
+  ||dJ||_2 1.160e-31 (f64): every singular value of the rounded system's J lies within it of the exact one's
+  LU 582 s; sigma from J^-T v: 1.3475e-37, 7.3987e-35, 7.4116e-35, 1.8420e-34 (ok against the setup's to 1e-3); max|U^T U - I| 3.2e-04
+  W = U^T dJ V:
+    -3.905e-42 -6.374e-39 -3.062e-39 -5.965e-39
+    +2.438e-38 +7.398e-35 +1.409e-38 +6.597e-40
+    +1.029e-37 -1.565e-38 +7.411e-35 +2.088e-39
+    -7.545e-38 -1.486e-39 +7.347e-39 +1.842e-34
+  singular values of the weak block, rounded rows (diag sigma): 1.842e-34, 7.412e-35, 7.399e-35, 1.348e-37; exact rows (diag sigma - W): 1.874e-37, 1.808e-38, 1.687e-38, 2.818e-39
+check: pass
+exit 0
