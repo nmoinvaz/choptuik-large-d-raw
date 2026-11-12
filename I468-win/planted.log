@@ -1,0 +1,16 @@
+planted I13-win/chain_d6/anm_pin3_D192.0000.npz: D 192.0, start = truth moved by 1e-12 relative in [0, 576); pinned max|F| (octo) truth 7.06e-29, start 3.39e-12; mutate_offset '', mutate 0
+  on 0: |F| 3.39e-12 -> 6.25e-16, |dz| 1.0e-12 -> 1.9e-14, lam 1, dDelta -5.52e-17, piv 4.7e-11..7.3e+26, 233.11 s
+  on 1: |F| 6.25e-16 -> 9.53e-29, |dz| 1.9e-14 -> 3.3e-21, lam 1, dDelta +5.57e-17, piv 4.7e-11..7.3e+26, 233.73 s
+  on 2: |F| 9.53e-29 -> 8.34e-35, |dz| 3.3e-21 -> 2.1e-38, lam 1, dDelta +8.45e-22, piv 4.7e-11..7.3e+26, 200.12 s
+  on 3: |F| 8.34e-35 -> 1.10e-44, |dz| 2.1e-38 -> 1.5e-59, lam 1, dDelta +5.92e-39, piv 4.7e-11..7.3e+26, 227.67 s
+  on 4: |F| 1.10e-44 converged, Delta 1.69719354953899559 -4.2493e-17
+  od: 5 steps, converged, pinned max|F| (octo) 1.10e-44, Delta 1.697193549538995551413179773802307928375, projections {'u0': 0, 'u0q': 4, 'ladder': 0, 'failed': 0, 'skipped': 2}, 1087 s
+  od against the truth: dDelta 4.4791e-19
+  qn 0 [full]: |F| 3.39e-12 -> 1.70e-12, |dz| 1.1e-12 -> 6.2e-13, lam 0.5, dDelta +1.07e-12, piv 2.1e-13..7.3e+26, 225.79 s
+  qn 1 [full]: |F| 1.70e-12 -> 1.56e-16, |dz| 6.2e-13 -> 1.4e-13, lam 1, dDelta -6.23e-13, piv 9.2e-13..7.3e+26, 91.53 s
+  qn 2 [full]: |F| 1.56e-16 -> 8.49e-24, |dz| 1.4e-13 -> 2.0e-14, lam 1, dDelta +1.41e-13, piv 2.7e-13..7.3e+26, 70.95 s
+  qn 3 [full]: |F| 8.49e-24 -> 7.87e-24, |dz| 2.0e-14 -> 7.3e-15, lam 0.5, dDelta -1.97e-14, piv 1.5e-13..7.3e+26, 148.88 s
+  qn 4: |F| 7.87e-24, |dz| 7.3e-15: no trial step accepted, stopping
+  qd: 5 steps, stopped, its last max|F| 7.87e-24 (octo at the projected point 7.87e-24), Delta 1.697193549539037351952678242883515155388, projections {'u0': 0, 'u0q': 16, 'ladder': 0, 'failed': 0, 'skipped': 0}, 1385 s
+  |Delta_od - Delta_qd| 4.1801e-14
+  (a) FAIL: od max|F| 1.10e-44 < 1e-40, |Delta_od - Delta_qd| <= 1e-30
