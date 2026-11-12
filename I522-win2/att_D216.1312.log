@@ -7,3 +7,14 @@ the base keeps its stored plan (21 steps)
       elim projections {'u0': 0, 'u0q': 0, 'ladder': 0, 'failed': 0, 'skipped': 3}
       octo-double Newton: 3 steps, max|F| 2.3e-92, converged; double-double |F| of its first two parts 1.1e+02
 base I461-win2/crawlG/anm_pin3_D216.1312.npz: D 216.13125, M 32, pin 3 (held [5, 7, 9, 11, 13]), |F| 1.1e+02; N 24, eps 1e-14, h_max 0.5, corrector od (junk_only False), tol 1.0e-20 x 1.45^(D - 216.13125), stalls accepted below 1e-17
+step 0: D 216.13125, pivots 3.6e-16..3.4e+30, |z_1| 4.34e-04, |z_N| 2.36e-30, ratios 2-5 276.2 249.0 237.5 231.8, a_max 3.413, 906 s
+    a 0.5000: re-seeded (ok), 54.83 s
+      horizon data refined in octo-double, rung max|R| 1.39e-31 -> 1.23e-60 -> 5.70e-67 -> 2.58e-73
+      saved the start and first step as dz0_pin3_D216.6312_a0.500000.npz
+  on 0: |F| 1.32e-36 -> 2.23e-42, |dz| 1.3e-36 -> 9.4e-63, lam 1, dDelta -7.06e-39, piv 2.9e-16..4.0e+30, 54.61 s
+  on 1: |F| 2.23e-42 -> 4.95e-88, |dz| 9.4e-63 -> 5.9e-71, lam 1, dDelta +3.26e-63, piv 2.9e-16..4.0e+30, 55.33 s
+  on 2: |F| 4.95e-88 converged, Delta 1.69120488329765761 -3.9479e-17
+      elim projections {'u0': 0, 'u0q': 0, 'ladder': 0, 'failed': 0, 'skipped': 3}
+      octo-double Newton: 3 steps, max|F| 5.0e-88, converged; double-double |F| of its first two parts 1.0e+02
+    a 0.500 -> D 216.63125: predicted |F| 1.02e+02, od 3 steps -> 1.02e+02 (tol 1.2e-20, stall accepted, Delta correction +0.0e+00), Delta 1.691204883298 (formula diff -1.4e-06), moved 3.0e-36, 167 s
+done

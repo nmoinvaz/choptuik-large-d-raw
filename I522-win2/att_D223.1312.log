@@ -1,0 +1,20 @@
+held values from the fit data/held_fit.json (degree 8, 138 full-system states, D 38.020417-73.0), relative to the base
+the base keeps its stored plan (21 steps)
+      saved the start and first step as dz0_pin3_D0.0000_a0.000000.npz
+  on 0: |F| 8.57e-38 -> 1.35e-43, |dz| 8.7e-38 -> 2.4e-72, lam 1, dDelta +1.44e-39, piv 4.0e-18..3.9e+31, 54.51 s
+  on 1: |F| 1.35e-43 -> 7.25e-91, |dz| 2.4e-72 -> 2.4e-72, lam 1, dDelta -6.46e-73, piv 4.0e-18..3.9e+31, 54.9 s
+  on 2: |F| 7.25e-91 converged, Delta 1.68984254571049930 -9.7972e-17
+      elim projections {'u0': 0, 'u0q': 0, 'ladder': 0, 'failed': 0, 'skipped': 3}
+      octo-double Newton: 3 steps, max|F| 7.2e-91, converged; double-double |F| of its first two parts 1.0e+03
+base I461-win2/crawlG/anm_pin3_D223.1312.npz: D 223.13125, M 32, pin 3 (held [5, 7, 9, 11, 13]), |F| 1.0e+03; N 24, eps 1e-14, h_max 0.5, corrector od (junk_only False), tol 1.0e-20 x 1.45^(D - 223.13125), stalls accepted below 1e-17
+step 0: D 223.13125, pivots 4.0e-18..3.9e+31, |z_1| 4.13e-04, |z_N| 1.95e-30, ratios 2-5 285.5 257.3 245.4 239.0, a_max 3.435, 900 s
+    a 0.5000: re-seeded (ok), 59.74 s
+      horizon data refined in octo-double, rung max|R| 2.64e-30 -> 1.91e-64 -> 3.78e-71 -> 2.85e-77
+      saved the start and first step as dz0_pin3_D223.6312_a0.500000.npz
+  on 0: |F| 8.91e-36 -> 2.72e-39, |dz| 8.9e-36 -> 6.9e-60, lam 1, dDelta -8.33e-39, piv 2.6e-18..4.7e+31, 55.79 s
+  on 1: |F| 2.72e-39 -> 1.83e-82, |dz| 6.9e-60 -> 2.0e-63, lam 1, dDelta -1.74e-60, piv 2.6e-18..4.7e+31, 50.77 s
+  on 2: |F| 1.83e-82 converged, Delta 1.68974099400402022 +1.3802e-17
+      elim projections {'u0': 0, 'u0q': 0, 'ladder': 0, 'failed': 0, 'skipped': 3}
+      octo-double Newton: 3 steps, max|F| 1.8e-82, converged; double-double |F| of its first two parts 1.1e+03
+    a 0.500 -> D 223.63125: predicted |F| 1.13e+03, od 3 steps -> 1.13e+03 (tol 1.2e-20, stall accepted, Delta correction +0.0e+00), Delta 1.689740994004 (formula diff -1.4e-06), moved 9.6e-35, 162 s
+done
