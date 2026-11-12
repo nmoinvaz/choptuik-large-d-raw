@@ -1,0 +1,28 @@
+{
+ "written": "2026-11-12, before any #585 evaluation; committed to the raw-data repository before the run",
+ "design": {
+  "kf": 27,
+  "D": 61.0264,
+  "M": 48,
+  "state": "modecount_state_D61.0264_M48_kf27.npz (sha256 1fd892fc...)",
+  "per_point": "1 reference, 25 Re moves (re + j ulp, j = 1..25, by repeated nextafter toward +inf), 25 Im moves likewise, 50 repeats at the identical argument (each repeat a separate task, spread over the worker processes), 2 central-difference points re +- 1e-3",
+  "spread": "std (ddof 1) over the 51 values (reference + 50 moves) of ln|det| and of wrap(arg - arg_ref)",
+  "derivative": "|d ln det / d lam| from the central difference at +-1e-3 in Re (complex: (ln det(+) - ln det(-)) / 2e-3 with the phase wrapped); expected smooth change over 25 ulps = |derivative| * 25 * ulp(Re)",
+  "planted": "the cached determinants of the two kf 27 R 0.06 circles (#574's at 1.902797+0.916032i and a new one at 2.396619+0.547672i), times a known factor (lam - lam0), lam0 = centre + 0.025 e^{i phi}, phi = 0, 90, 180, 270 degrees; circle() of hp/modecount_circle.py, n0 20, tol pi/4, W = 2; points the bisections need that are not cached are computed with the same state",
+  "noise": "added to ln|det| and arg independently, Gaussian, per distinct lambda, sigma = the pooled std of the two near points (N1, N2) from the spread above; 200 realizations per case; error = |recovered lam0 - lam0|; own estimate = zeros_est of the matched root in the noise-free planted run"
+ },
+ "criteria": {
+  "P1": "the std of ln|det| and of arg over the 51 values lies between 1e-5 and 1e-2 at every one of the five points",
+  "P2": "at every point the median |deviation of ln|det|| over the moves j <= 5 (Re and Im pooled) is within a factor 3 of the median over j >= 21 (flat in j, not growing)",
+  "P3": "the median std of ln|det| over the near points divided by the median over the far points lies between 1 and 10",
+  "P4": "the 50 repeats at the identical argument are bit for bit equal in ln|det| and arg, at all five points",
+  "P5": "spread / (|derivative| * 25 ulp) exceeds 1e6 at every point (the smooth change is below the spread by six orders)",
+  "P6": "noise-free planted: the recovered lam0 is within the circle's own estimate of its planted position, in all 8 cases",
+  "P7": "with noise: the rms error of lam0 over the 200 realizations lies between 0.3 and 3 times the own estimate of that root, in at least 6 of the 8 cases"
+ },
+ "controls": {
+  "repeats": "analyze_585.py --mutate=repeat shifts one repeat by one ulp, P4's check must then fail",
+  "spread": "analyze_585.py --selftest: synthetic values with a known sigma are recovered within 15 percent, and the same code on a smooth function (sigma 0) reports below 1e-12",
+  "planted": "planted_585.py --selftest: an analytic det (lam - z1)(lam - z2) exp(a (lam - c)) at the same points recovers both zeros to 1e-9; --mutate=sign (arg sign flipped) must fail it"
+ }
+}
