@@ -1,0 +1,36 @@
+63 states D 204.1312 to 237.1312; 11 forms; criterion: the sum's prediction rms <= 0.007 in H1, H2 and H3
+
+== sum ln sigma_1 + ln sigma_2: prediction rms in H1, H2, H3 (fit on 42, 43 and 51 states)
+| form | parameters | H1 | H2 | H3 | meets 0.007 in all three |
+|---|---|---|---|---|---|
+| poly(2) | 3 | 0.0679 | 0.0332 | 0.0659 | no |
+| poly(3) | 4 | 0.0113 | 0.0177 | 0.0127 | no |
+| poly(4) | 5 | 0.0063 | 0.0433 | 0.0040 | no |
+| invD(2) | 3 | 0.4814 | 0.2856 | 0.5877 | no |
+| invD(3) | 4 | 0.0523 | 0.0463 | 0.0797 | no |
+| invD(4) | 5 | 0.0119 | 0.0454 | 0.0177 | no |
+| lnD(2) | 3 | 0.2407 | 0.1341 | 0.2722 | no |
+| lnD(3) | 4 | 0.0213 | 0.0254 | 0.0283 | no |
+| lnD(4) | 5 | 0.0077 | 0.0452 | 0.0067 | no |
+| B1 | 4 | 0.0129 | 0.0193 | 0.0152 | no |
+| B2 | 4 | 0.0137 | 0.0200 | 0.0165 | no |
+
+== sum ln sigma_3 + ln sigma_4: prediction rms in H1, H2, H3 (fit on 42, 43 and 51 states)
+| form | parameters | H1 | H2 | H3 | meets 0.007 in all three |
+|---|---|---|---|---|---|
+| poly(2) | 3 | 0.2935 | 0.1644 | 0.2812 | no |
+| poly(3) | 4 | 0.0693 | 0.0593 | 0.0860 | no |
+| poly(4) | 5 | 0.0132 | 0.0327 | 0.0443 | no |
+| invD(2) | 3 | 0.7975 | 0.4862 | 0.9331 | no |
+| invD(3) | 4 | 0.1488 | 0.1208 | 0.2249 | no |
+| invD(4) | 5 | 0.0387 | 0.0203 | 0.1068 | no |
+| lnD(2) | 3 | 0.5099 | 0.2975 | 0.5473 | no |
+| lnD(3) | 4 | 0.0971 | 0.0812 | 0.1320 | no |
+| lnD(4) | 5 | 0.0237 | 0.0286 | 0.0676 | no |
+| B1 | 4 | 0.0764 | 0.0652 | 0.0976 | no |
+| B2 | 4 | 0.0799 | 0.0681 | 0.1036 | no |
+
+summary
+sum sigma_1 + sigma_2: forms meeting 0.007 in all three windows: none (of 11 tried); polynomials among them: none
+sum sigma_3 + sigma_4: forms meeting 0.007 in all three windows: none (of 11 tried); polynomials among them: none
+acceptance (a form meets 0.007 in H1, H2 and H3 for each pair): FAIL
