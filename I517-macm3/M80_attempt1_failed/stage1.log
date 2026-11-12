@@ -1,0 +1,19 @@
+  centre series at x = 0.3: truncation inf, ratio 1.333 per order (radius 0.225); nodes [0.15, 0.3, 0.4, 0.5, 0.6, 0.7]
+  horizon series at u = 0.3: truncation 1.1e-07, ratio 0.882 per order (radius 0.340); ks 150
+  horizon series at u = 0.3: truncation 8.6e-11, ratio 0.843 per order (radius 0.356); ks 225
+  horizon series at u = 0.3: truncation 1.1e-15, ratio 0.900 per order (radius 0.334); ks 338
+Traceback (most recent call last):
+  File "/Users/nathan/Source/choptuik-large-d/hp/modecount_circle.py", line 219, in <module>
+    main()
+    ~~~~^^
+  File "/Users/nathan/Source/choptuik-large-d/hp/modecount_circle.py", line 167, in main
+    st = setup(path, M=int(opts["M"]) if "M" in opts else None, threads=int(opts.get("threads", 1)), kf=kf,
+               fmax=float(opts.get("fmax", 1e-20)),
+               centre_tol=float(opts["centre_tol"]) if "centre_tol" in opts else None)
+  File "/Users/nathan/Source/choptuik-large-d/hp/modecount_common.py", line 230, in setup
+    s, c = build_pair(meta, zh, zl, M, kf, threads)
+           ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nathan/Source/choptuik-large-d/hp/modecount_common.py", line 73, in build_pair
+    c = modecount_cx.CSolver(M, float(nh[0]), float(nl[0]), dh, dl, ph, pl, list(meta["nodes"]), s.get_segs(),
+                             meta.get("kt", 36), meta.get("kc", 420), meta.get("ks", 100), threads, a, b, None)
+ValueError: M must be one of 16, 32, 40, 48, 64
