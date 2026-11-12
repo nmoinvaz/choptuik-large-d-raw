@@ -1,0 +1,15 @@
+per state: C = b (n - 1) on 13.6's grid; s = d ln R / d ln(1/delta) on the full grid, ± its standard error
+       D  C_R136     C_a     C_b     C_B     C_C     C_p     C_m   C_new          s_R136           s_new s_new/s_R136 s_B/s_R136
+ 40.0201   0.946   0.939   0.938   0.940   0.939   0.946   0.952   0.939   0.3036±0.1102   0.3050±0.1087        1.004      1.003
+ 45.0507   0.953   0.948   0.948   0.949   0.948   0.953   0.958   0.948   0.2375±0.0698   0.2400±0.0682        1.010      1.010
+ 50.0075   0.948   0.944   0.944   0.944   0.943   0.948   0.954   0.944   0.2060±0.0495   0.2076±0.0480        1.007      1.003
+ 55.0351   0.946   0.928   0.927   0.928   0.927   0.946   0.951   0.928   0.1887±0.0382   0.1885±0.0373        0.999      0.997
+ 60.0020   0.938   0.923   0.923   0.924   0.923   0.938   0.944   0.924   0.1765±0.0306   0.1787±0.0288        1.012      1.007
+where-test at D < 100 (B and x - c summed to u1 ~ 0.95 R; zeros extrapolated with the mass mode), per delta:
+  delta 1e-08: states 5, B(u1) 0.908-0.943, max x-c(u1) -0.172--0.133, sonic/R_new 1.013-1.031, AH/R_new 1.069-1.108, max |R_v/R136 - 1| over p, m, B, C 0.016, summation change 1.5e-07
+  delta 1e-07: states 5, B(u1) 0.911-0.938, max x-c(u1) -0.140--0.102, sonic/R_new 1.022-1.030, AH/R_new 1.095-1.134, max |R_v/R136 - 1| over p, m, B, C 0.018, summation change 1.1e-07
+  delta 1e-06: states 5, B(u1) 0.911-0.949, max x-c(u1) -0.105--0.083, sonic/R_new 1.022-1.062, AH/R_new 1.132-1.203, max |R_v/R136 - 1| over p, m, B, C 0.034, summation change 3.9e-07
+  delta 1e-05: states 5, B(u1) 0.925-0.950, max x-c(u1) -0.080--0.057, sonic/R_new 1.042-1.064, AH/R_new 1.213-1.286, max |R_v/R136 - 1| over p, m, B, C 0.034, summation change 1.8e-07
+  delta 1e-04: states 5, B(u1) 0.929-0.959, max x-c(u1) -0.044--0.031, sonic/R_new 1.039-1.098, AH/R_new 1.341-1.487, max |R_v/R136 - 1| over p, m, B, C 0.054, summation change 1.3e-06
+  delta 1e-03: states 5, B(u1) 0.947-0.971, max x-c(u1) -0.017--0.011, sonic/R_new 1.087-1.193, AH/R_new 1.774-2.197, max |R_v/R136 - 1| over p, m, B, C 0.094, summation change 7.4e-09
+  delta 1e-02: states 5, B(u1) 0.945-0.973, max x-c(u1) 0.000-0.019, sonic/R_new 0.034-0.303, AH/R_new 3.797-65.713, max |R_v/R136 - 1| over p, m, B, C 0.020, summation change 0.0e+00
