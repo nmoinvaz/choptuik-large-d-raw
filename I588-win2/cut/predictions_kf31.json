@@ -1,0 +1,19 @@
+{
+ "written": "2026-11-12 22:2x UTC (see the README clock note for the exact time), before any evaluation at kf 31: the records at the time are kf 21: 12, 23: 12, 24: 12, 26: 12, 28: 12, 29: 12 and none at kf 31. The extension of the cut run approved by the coordinator at 22:24 UTC (recommendation 1 of the closing summary), posted on #588.",
+ "design": "the same as the cut run: the R 0.06 circle on lambda_phys (centre 2.044645 - 0.00032i), n0 20, tol pi/4, 10 shifted replicas (tags 1..10, every argument moved by 1 to 3 ulp in Re and Im) and 2 controls (rep 0, tags a, b) at kf 31, 12 runs of about 30 determinants on 3 workers of one thread, the state by setup from up23_D61.0264.npz (M 48, fmax 1e-15), main 80b5056 in D:/choptuik-i573, double-double determinant. kf 32 is kf 31 and kf 30 is kf 29 by #498 (plow_odd), so kf 31 is the one new operator.",
+ "model": "s grows by 8.32 per odd harmonic (the geometric mean of 6.15, 9.67, 6.63 and 12.15, odd_harmonics.txt), from the pooled s(29) = 8.83e-5: s(31) = 8.83e-5 x 8.32 = 7.3e-4.",
+ "predicted_s": 7.3e-4,
+ "band_factor": 3,
+ "criteria": {
+  "Q1": "s(31) lies between 2.4e-4 and 2.2e-3 (7.3e-4 / 3 to 7.3e-4 x 3)",
+  "Q2": "s(31) / s(29) lies between 4 and 20 (the four ratios per odd harmonic were 6.15 to 12.15)",
+  "Q3": "the two controls (a, b) agree bit for bit; analyze_kf31.py --mutate=control moves one by an ulp and must fail it",
+  "Q4": "at least 9 of the 10 shifted replicas resolve with winding +1",
+  "Q5": "the replicas' own n0/2-against-n0 estimate over s lies between 0.25 and 4 (0.48 at kf 29, 0.66 to 1.43 at the other cuts)"
+ },
+ "consequence": "Q1 includes s(31) above 1e-4, so kf 31 would be the first cut with s above 1e-4 (s(29) = 8.83e-5 is below it).",
+ "controls": {
+  "analyze_kf31.py --selftest": "planted spreads: s(31) 7e-4 holds all five, a wrong 1e-5 fails Q1 and Q2, a control moved by an ulp fails Q3 (run 22:25 UTC: passes)",
+  "cut_588.py --selftest": "as for the cut run (passes)"
+ }
+}
