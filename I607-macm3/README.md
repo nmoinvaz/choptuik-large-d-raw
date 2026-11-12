@@ -8,3 +8,19 @@ Written before the run (the issue's). At each cut, each circle's winding, and th
 
 ## Results
 
+
+## Results (2026-11-12 22:34 UTC; all four processes exit 0, exits.txt: kf55 B 21:46:25, kf51 B 22:01:12, kf51 A 22:33:06, kf55 A 22:33:25 UTC)
+
+| # | position (D 30.0688, M 64, R 0.3) | kf 55: winding, points, alias bisections | kf 51: winding, points, alias bisections |
+|---|---|---|---|
+| 1 | 0.055758+1.411769i | +0, 20, 0 | +0, 20, 0 |
+| 2 | 3.871717+0.105316i | +0, 20, 0 | +0, 20, 0 |
+| 3 | 4.285793+0.551490i | +0, 20, 0 | +0, 20, 0 |
+| 4 | 4.656327+1.390362i | +0, 20, 0 | +0, 20, 0 |
+| 5 | 0.847147+4.333559i | +0, 20, 0 | +0, 20, 0 |
+| 6 | 1.057045+2.913917i | +0, 25, 0 | +0, 42, 10 |
+| 7 | 1.978326+3.721021i | +0, 20, 0 | +0, 20, 0 |
+| 8 | 4.070967+2.532063i | +0, 28, 0 | +0, 28, 0 |
+
+The lambda_phys control (R 0.2) winds +1 at both cuts: zero 2.079747703854784 (kf 55, 8.7e-12 from 2.079747703853262) and 2.079747703853617 (kf 51, 5.5e-11), the script's n0 / n0/2 estimate 1.5e-9 (a range, not a bound). All 16 circles at #473's positions wind 0 and have 0 verification mismatches (the table is made by a script that asserts it). The cuts 57 to 63 were not run (the coordinator's message of 2026-11-12 22:26 UTC): the pairs enter above kf 55, or only at no cut.
+Part A's first start at 18:28 UTC (a gate that matched an old line) was killed after about two minutes, before any state; the runs above started at 18:47:17 (A) and 19:19:18 UTC (B). The state making took about 21 min. #609 and #612's runs shared the machine from 19:50 UTC.
