@@ -1,0 +1,52 @@
+planted n 40, r 3: moved 3 (want 3), carry90 1, verdict localized: pass
+planted n 40, r 0: moved 0 (want 0), carry90 7, verdict none: pass
+  resampled state from modecount_state_D61.0264_M48_kf27.npz
+  series truncation (solution): centre 1.0e-104 (ratio 0.560 at 0.3), horizon 6.1e-38 (ratio 0.473 at 0.3)
+up23_D61.0264.npz: D 61.026449, M 48, kf 27, n 1152, lambda 3.595442 +0.504558i, entry dh[10, 11] (2 s)
+  plain: ln|det| 42.256373, arg -1.026575, pmin 4.923e-14, pmax 7.482e+06, ||M||_F 1.549e+10; consistency with mode_det: pass
+  determinism (a fresh CSolver at shift 0): pass
+  part hi, shift +1: ln|det| 235.606862 (change +193.350), arg det +1.291880 (change +2.3185 rad), pmin 2.952e-12; pivots moved by more than 0.001 in ln: 48 of 1152; 90% of the summed |change| in 20 pivots (all below 1e3 u_hi ||M|| = 1.7e-03: True); rows differ at 43; verdict localized
+    k 1141: |u| 1.730e-11 -> 1.156e-06, d ln +11.110, d arg -1.606, rows 1151 -> 1146
+    k 1142: |u| 9.478e-12 -> 5.513e-07, d ln +10.971, d arg +1.994, rows 1146 -> 1144
+    k 1138: |u| 1.154e-10 -> 3.786e-06, d ln +10.399, d arg +0.162, rows 1140 -> 1139
+    k 1140: |u| 1.746e-11 -> 5.552e-07, d ln +10.367, d arg -1.411, rows 1145 -> 1150
+    k 1146: |u| 5.806e-13 -> 1.624e-08, d ln +10.239, d arg -1.119, rows 1149 -> 1148
+    k 1139: |u| 7.569e-11 -> 1.777e-06, d ln +10.064, d arg +1.677, rows 1139 -> 1148
+    k 1145: |u| 4.400e-12 -> 7.554e-08, d ln +9.751, d arg +2.882, rows 1146 -> 1149
+    k 1136: |u| 4.529e-10 -> 6.563e-06, d ln +9.581, d arg +2.528, rows 1136 -> 1141
+    k 1143: |u| 8.166e-12 -> 1.112e-07, d ln +9.519, d arg +2.023, rows 1145 -> 1147
+    k 1135: |u| 1.867e-09 -> 2.281e-05, d ln +9.411, d arg +1.935, rows 1141 -> 1137
+  part hi, shift -1: ln|det| 235.754326 (change +193.498), arg det -1.128235 (change -0.1017 rad), pmin 3.338e-12; pivots moved by more than 0.001 in ln: 48 of 1152; 90% of the summed |change| in 20 pivots (all below 1e3 u_hi ||M|| = 1.7e-03: True); rows differ at 43; verdict localized
+    k 1140: |u| 1.746e-11 -> 9.229e-07, d ln +10.875, d arg +2.790, rows 1145 -> 1140
+    k 1142: |u| 9.478e-12 -> 3.522e-07, d ln +10.523, d arg -0.694, rows 1146 -> 1146
+    k 1141: |u| 1.730e-11 -> 6.200e-07, d ln +10.487, d arg -0.941, rows 1151 -> 1146
+    k 1138: |u| 1.154e-10 -> 3.392e-06, d ln +10.289, d arg -0.308, rows 1140 -> 1139
+    k 1146: |u| 5.806e-13 -> 1.276e-08, d ln +9.998, d arg -0.493, rows 1149 -> 1149
+    k 1139: |u| 7.569e-11 -> 1.613e-06, d ln +9.967, d arg +2.554, rows 1139 -> 1142
+    k 1135: |u| 1.867e-09 -> 3.635e-05, d ln +9.877, d arg -0.681, rows 1141 -> 1145
+    k 1145: |u| 4.400e-12 -> 7.972e-08, d ln +9.805, d arg +2.379, rows 1146 -> 1147
+    k 1137: |u| 2.593e-10 -> 4.504e-06, d ln +9.762, d arg -0.501, rows 1145 -> 1151
+    k 1147: |u| 7.201e-13 -> 1.083e-08, d ln +9.619, d arg +0.103, rows 1149 -> 1148
+  part lo, shift +1: ln|det| 42.254174 (change -0.002), arg det -1.024141 (change +0.0024 rad), pmin 4.906e-14; pivots moved by more than 0.001 in ln: 1 of 1152; 90% of the summed |change| in 6 pivots (all below 1e3 u_lo ||M|| = 1.9e-19: False); rows differ at 0; verdict between
+    k 1151: |u| 4.923e-14 -> 4.906e-14, d ln -0.003, d arg +0.002, rows 1151 -> 1151
+    k 1148: |u| 2.051e-13 -> 2.050e-13, d ln -0.001, d arg +0.001, rows 1151 -> 1151
+    k 1150: |u| 9.248e-14 -> 9.253e-14, d ln +0.001, d arg +0.001, rows 1151 -> 1151
+    k 1146: |u| 5.806e-13 -> 5.809e-13, d ln +0.001, d arg +0.000, rows 1149 -> 1149
+    k 1145: |u| 4.400e-12 -> 4.401e-12, d ln +0.000, d arg -0.000, rows 1146 -> 1146
+    k 1149: |u| 5.303e-13 -> 5.305e-13, d ln +0.000, d arg +0.000, rows 1150 -> 1150
+    k 1144: |u| 5.039e-12 -> 5.038e-12, d ln -0.000, d arg +0.000, rows 1149 -> 1149
+    k 1142: |u| 9.478e-12 -> 9.479e-12, d ln +0.000, d arg -0.000, rows 1146 -> 1146
+    k 1143: |u| 8.166e-12 -> 8.167e-12, d ln +0.000, d arg -0.000, rows 1145 -> 1145
+    k 1141: |u| 1.730e-11 -> 1.730e-11, d ln -0.000, d arg +0.000, rows 1151 -> 1151
+  part lo, shift -1: ln|det| 42.256086 (change -0.000), arg det -1.028131 (change -0.0016 rad), pmin 4.903e-14; pivots moved by more than 0.001 in ln: 2 of 1152; 90% of the summed |change| in 6 pivots (all below 1e3 u_lo ||M|| = 1.9e-19: False); rows differ at 0; verdict between
+    k 1151: |u| 4.923e-14 -> 4.903e-14, d ln -0.004, d arg -0.002, rows 1151 -> 1151
+    k 1150: |u| 9.248e-14 -> 9.259e-14, d ln +0.001, d arg +0.001, rows 1151 -> 1151
+    k 1146: |u| 5.806e-13 -> 5.811e-13, d ln +0.001, d arg -0.000, rows 1149 -> 1149
+    k 1145: |u| 4.400e-12 -> 4.403e-12, d ln +0.001, d arg -0.000, rows 1146 -> 1146
+    k 1148: |u| 2.051e-13 -> 2.052e-13, d ln +0.000, d arg +0.000, rows 1151 -> 1151
+    k 1149: |u| 5.303e-13 -> 5.302e-13, d ln -0.000, d arg +0.001, rows 1150 -> 1150
+    k 1142: |u| 9.478e-12 -> 9.480e-12, d ln +0.000, d arg -0.000, rows 1146 -> 1146
+    k 1144: |u| 5.039e-12 -> 5.040e-12, d ln +0.000, d arg -0.000, rows 1149 -> 1149
+    k 1140: |u| 1.746e-11 -> 1.747e-11, d ln +0.000, d arg -0.000, rows 1145 -> 1145
+    k 1143: |u| 8.166e-12 -> 8.167e-12, d ln +0.000, d arg -0.000, rows 1145 -> 1145
+check: pass (490 s)
