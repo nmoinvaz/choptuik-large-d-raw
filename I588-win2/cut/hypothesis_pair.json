@@ -1,0 +1,15 @@
+{
+ "written": "2026-11-12 19:3x UTC, after kf 21, 23, 24 are complete and kf 26 is 9 of 12 runs, and before any kf 28 or kf 29 run has completed or been read (records by kf at the time: 21: 12, 23: 12, 24: 12, 26: 9). A post-hoc hypothesis read off the first four cuts, not one of P1 to P8; those stay as committed in predictions_cut.json (194c9351).",
+ "observation": {
+  "s": {"21": 1.884e-08, "22 (#588)": 1.80e-08, "23": 1.235e-07, "24": 1.04e-07, "25 (#588)": 1.10e-06, "26 (7 of 10 replicas so far)": 1.07e-06},
+  "within a pair (21,22), (23,24), (25,26)": "ratio 0.96, 0.84, 0.97 (flat within the 24 percent of a 10-replica sample std)",
+  "between pairs": "22 to 23: x6.9; 24 to 25: x10.6"
+ },
+ "H_pair": "the replica spread is set by the pair (2j-1, 2j) of cuts, not by the single cut: flat within a pair, a jump of about 7 to 11 between neighbouring pairs. Pairs continue as (27,28), (29,30).",
+ "H_smooth": "the model of predictions_cut.json: s grows by about 2.65 per kf step from kf 25 on (the 25 to 27 rate), so it rises at every step.",
+ "criteria": {
+  "H1": "s(28) lies between 3 and 15 times s(26) (the jump from the (25,26) pair to the (27,28) pair; H_smooth gives 7.0 with its own band, so this does not separate the two)",
+  "H2": "s(29) / s(28) lies between 4 and 20 (H_pair: the jump to the (29,30) pair); H_smooth gives 2.65, within a factor 1.6 either way (1.7 to 4.2), so H2 separates them"
+ },
+ "verdict_rule": "H_pair is supported by kf 28, 29 if H2 holds; H_smooth if s(29)/s(28) is between 1.5 and 3.5; between 3.5 and 4 neither. Three pairs of equal-looking cuts out of three is the whole evidence so far, and a staircase with no known cause."
+}
