@@ -9,3 +9,7 @@ Written by `solver/inner_amp/pade_geometry.py` (branch `wip/i541-subagent` of ch
 - `real.json`, `real.log`: the real σ₀–σ₂₂ (`scan45J1250`, and `scan45J1500` at wf 1.00), the same tables and the
   verdict.
 - `*_mutate_sigma7.*`: the same with σ₇ scaled by 1.01.
+- `*_noise_measured.*`: post-freeze reruns with the noise set to each order's plateau error from `sigma_err_fit.py`,
+  instead of the frozen uniform 2×10⁻¹². The plants file adds the context plant arcsteps.
+
+`solver/inner_amp/plot_pade_geometry.py` draws `pade_geometry.svg` from the `*_noise_measured.json` files.
