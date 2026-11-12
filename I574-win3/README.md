@@ -14,8 +14,8 @@ determinants (`cap.json`). `control_cap_dir/` and `control_cap.log` are its cont
 
 ## Cancelled
 
-The coordinator cancelled #574 for win3 at 08:55 UTC (win2 had finished its circles). Stage 1 had run from 08:50 to
-about 08:55 UTC: four circles (Re 1.85, 2.35, 2.85 and 3.35 at Im +1.25) were started and stopped before any finished.
+The coordinator cancelled #574 for win3 (message 08:39 UTC) (win2 had finished its circles). Stage 1 had run from 08:50 to
+about 08:52 UTC: four circles (Re 1.85, 2.35, 2.85 and 3.35 at Im +1.25) were started and stopped before any finished.
 Their caches and logs are kept as they were, with no record in any `circles.jsonl`, so they hold no winding. The
 cap control (`control_cap.log`, `control_cap_dir/`) passed: a cap of 25 stopped a circle at 28 determinants and wrote
 `cap.json`; one thread took 16.8 s per determinant (15.95 to 18.08).
