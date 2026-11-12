@@ -11,4 +11,6 @@ Files: `cut_588.py` (`run`, `pilot KF`, `--selftest`), `analyze_cut.py` (`--self
 
 Command: `cd I588-win2/cut && python cut_588.py run --workers 3` (resumes), then `python analyze_cut.py`.
 
+Note on the clock: `predictions_cut.json` says in its `written` field "16:30 UTC", a slip. The file was written at 16:26 UTC and committed at 16:27 UTC (raw commit 194c9351), before any replica was evaluated; the file is left as committed.
+
 Results follow below when the run ends.
