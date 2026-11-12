@@ -1,0 +1,13 @@
+(1) window residual rms with and without the second harmonic (quadratic trend in the window, phase of the p2 chirp)
+| series | window | states | rms, first harmonic only | rms, with the second | F (2, dof) | p |
+|---|---|---|---|---|---|---|
+| sigma_1 | D < 216 | 12 | 0.0057 | 0.0018 | 22.3 (2, 5) | 3.2e-03 |
+| sigma_1 | 216 <= D < 228 | 23 | 0.0055 | 0.0015 | 106.3 (2, 16) | 5.8e-10 |
+| sigma_1 | D >= 228 | 16 | 0.0047 | 0.0011 | 72.8 (2, 9) | 2.8e-06 |
+| sigma_2 | D < 216 | 12 | 0.0051 | 0.0009 | 76.1 (2, 5) | 1.8e-04 |
+| sigma_2 | 216 <= D < 228 | 23 | 0.0053 | 0.0009 | 292.3 (2, 16) | 2.5e-13 |
+| sigma_2 | D >= 228 | 16 | 0.0048 | 0.0006 | 247.8 (2, 9) | 1.4e-08 |
+
+(2) the planted agreement test at noise 0.0015 (windows' actual residual rms 0.0006 to 0.0018), 300 fresh seeds per scenario
+Q critical value at noise 0.0015 (95th percentile of S1A) 5.73; power on S2 (rho 0.03, 0.066, 0.12) 100% (at noise 0.006: critical value 7.91, power 52%)
+the observed Q values (sigma_1 1.59, sigma_2 0.02, p2 chirp phase) against this critical value: both below

@@ -1,0 +1,7 @@
+# controls of the script: the data command refuses a verdict file that does not say VERDICT: PASS, and a planted seed reproduces its stored record
+## data --verdict=results_planted_534_v1.txt (its VERDICT line says FAIL), expected: refuses, exit 1
+results_planted_534_v1.txt does not say VERDICT: PASS; the real series is not read
+exit 1
+## planted S1B seed 3000 rerun against planted_534_S1B.json's first record
+S1B: wrote guard_tmp.json (1 seeds, 0 s)
+the rerun record equals the stored one: True
