@@ -35,3 +35,23 @@ step 1: D 226.13125, pivots 4.2e-19..1.1e+32, |z_1| 4.04e-04, |z_N| 8.17e-30, ra
       octo-double Newton: 5 steps, max|F| 8.2e-96, converged; double-double |F| of its first two parts 4.0e+03
     a 1.000 -> D 227.13125: predicted |F| 4.05e+03, od 5 steps -> 4.01e+03 (tol 2.1e-20, stall accepted, Delta correction +0.0e+00), Delta 1.689042512751 (formula diff -1.5e-06), moved 7.3e-31, 335 s
       Delta of the saved state, its eight parts summed exactly: 1.689042512751348330889454738826111613254
+step 2: D 227.13125, pivots 1.6e-19..1.6e+32, |z_1| 4.01e-04, |z_N| 3.55e-30, ratios 2-5 290.8 262.1 249.9 239.5, a_max 3.343, 1311 s
+    a 1.0000: re-seeded (ok), 81.47 s
+      horizon data refined in octo-double, rung max|R| 8.79e-30 -> 4.02e-63 -> 5.57e-70 -> 2.27e-76
+  on 0: |F| 6.48e-34 -> 2.64e-29, |dz| 1.2e-30 -> 7.0e-43, lam 1, dDelta +1.16e-30, piv 1.0e-19..2.3e+32, 58.79 s
+  on 1: |F| 2.64e-29 -> 1.32e-29, |dz| 7.0e-43 -> 1.8e-43, lam 0.5, dDelta -2.60e-43, piv 1.0e-19..2.3e+32, 160.61 s
+  on 2: |F| 1.32e-29 -> 1.12e-53, |dz| 1.8e-43 -> 1.8e-43, lam 1, dDelta +6.39e-44, piv 1.0e-19..2.3e+32, 71.53 s
+  on 3: |F| 1.12e-53 -> 1.07e-53, |dz| 1.8e-43 -> 1.2e-75, lam 1, dDelta +6.46e-44, piv 1.0e-19..2.3e+32, 66.93 s
+  on 4: |F| 1.07e-53 -> 1.25e-95, |dz| 1.2e-75 -> 2.1e-91, lam 1, dDelta +3.24e-76, piv 1.0e-19..2.3e+32, 88.97 s
+  on 5: |F| 1.25e-95 converged, Delta 1.68884683988081297 -1.0177e-16
+      elim projections {'u0': 0, 'u0q': 0, 'ladder': 0, 'failed': 0, 'skipped': 7}
+      octo-double Newton: 6 steps, max|F| 1.3e-95, converged; double-double |F| of its first two parts 8.9e+03
+    a 1.000 -> D 228.13125: predicted |F| 8.88e+03, od 6 steps -> 8.90e+03 (tol 3.0e-20, stall accepted, Delta correction +0.0e+00), Delta 1.688846839881 (formula diff -1.5e-06), moved 1.2e-30, 539 s
+      Delta of the saved state, its eight parts summed exactly: 1.688846839880812864914437209233596557484
+step 3: D 228.13125, pivots 1.0e-19..2.3e+32, |z_1| 3.99e-04, |z_N| 8.50e-30, ratios 2-5 292.2 263.3 251.2 235.2, a_max 3.217, 1304 s
+    a 1.0000: re-seeded (ok), 106.73 s
+      horizon data refined in octo-double, rung max|R| 7.11e-30 -> 1.30e-63 -> 1.26e-70 -> 1.45e-76
+  on 0: |F| 6.51e-34 -> 4.78e-29, |dz| 1.1e-30 -> 2.0e-41, lam 1, dDelta -1.12e-30, piv 4.1e-20..3.2e+32, 65.37 s
+  on 1: |F| 4.78e-29 -> 2.39e-29, |dz| 2.0e-41 -> 5.0e-42, lam 0.5, dDelta +2.70e-42, piv 4.1e-20..3.2e+32, 141.87 s
+  on 2: |F| 2.39e-29 -> 1.25e-50, |dz| 5.0e-42 -> 5.0e-42, lam 1, dDelta -6.77e-43, piv 4.1e-20..3.2e+32, 71.15 s
+  on 3: |F| 1.25e-50 -> 1.24e-50, |dz| 5.0e-42 -> 7.9e-71, lam 1, dDelta -6.76e-43, piv 4.1e-20..3.2e+32, 66.09 s
