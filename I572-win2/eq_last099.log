@@ -1,0 +1,68 @@
+I572-win2/renode_last099_D242.3642.npz: D 237.131, L 769, octo-double LU 251 s, pivots 4.4e-36..1.1e+01
+  jacobian_o 238 s; |J| entries 7.2e-43..1.9e+01, row max-norms 8.8e-01..1.9e+01, column max-norms 6.9e-03..1.9e+01
+  scalings 0.7 s
+  J, Ruiz: 43 Ruiz iterations, largest |1 - max-norm| 5.6e-13; D_r 2.29e-01..1.41e+00, D_c 2.29e-01..1.44e+02
+  J, Curtis-Reid: 0 Ruiz iterations, largest |1 - max-norm| 1.6e+08; D_r 7.71e-05..2.15e+06, D_c 5.88e-06..5.61e+06
+  J, Curtis-Reid + Ruiz: 44 Ruiz iterations, largest |1 - max-norm| 7.4e-13; D_r 4.56e-04..1.02e+05, D_c 9.80e-06..2.19e+03
+  J, Ruiz (8 s):
+    Ruiz sigma_1 3.7577e-36 (converged to 0e+00)
+        scaled: delta share 1.9e-02; blocks node4.p 0.38, node4.m 0.27, m_h 0.25; top node4.p k1 0.14, node4.m k1 0.12, m_h k1 0.11, m_h k3 0.06, node4.p k3 0.06
+        in z: delta share 1.0e+00; blocks node4.p 0.00, m_h 0.00, node4.m 0.00; top node4.p k1 0.01, m_h k1 0.01, node4.m k1 0.01, node4.p k3 0.00, m_h k3 0.00
+    Ruiz sigma_2 6.6595e-35 (converged to 2e-05)
+        scaled: delta share 2.2e-05; blocks p1 0.23, node4.p 0.13, node4.m 0.13; top p1 k3 0.12, node4.p k3 0.09, node4.m k3 0.09, m_h k3 0.08, node3.p k3 0.07
+        in z: delta share 3.0e-01; blocks p1 0.17, node4.p 0.09, m_h 0.09; top p1 k3 0.10, node4.p k3 0.07, m_h k3 0.07, node4.m k3 0.07, node3.p k3 0.05
+    Ruiz sigma_3 6.8129e-35 (converged to 3e-05)
+        scaled: delta share 1.3e-03; blocks p1 0.24, node4.p 0.13, node4.m 0.13; top p1 k3 0.12, node4.m k3 0.08, node4.p k3 0.08, m_h k3 0.07, node3.m k3 0.07
+        in z: delta share 9.6e-01; blocks p1 0.01, node4.p 0.00, m_h 0.00; top p1 k3 0.02, m_h k3 0.02, node4.m k3 0.02, node4.p k3 0.02, node3.m k3 0.01
+    Ruiz sigma_4 2.2723e-34 (converged to 4e-16)
+        scaled: delta share 2.3e-02; blocks p1 0.38, node4.p 0.12, node3.p 0.07; top p1 k1 0.15, node4.p k1 0.08, node3.p k1 0.07, node2.p k1 0.06, node3.m k1 0.06
+        in z: delta share 1.0e+00; blocks p1 0.00, node4.p 0.00, node3.p 0.00; top p1 k1 0.01, node4.p k1 0.00, node3.p k1 0.00, node2.p k1 0.00, node3.m k1 0.00
+  J, Curtis-Reid (8 s):
+    Curtis-Reid sigma_1 1.9493e-36 (converged to 2e-16)
+        scaled: delta share 5.1e-06; blocks node4.m 0.81, node4.a 0.18, node4.c 0.01; top node4.m k1 0.20, node4.m k3 0.10, node4.a k0 0.07, node4.a k4 0.03, node4.a k2 0.02
+        in z: delta share 1.0e+00; blocks node4.p 0.00, m_h 0.00, node4.m 0.00; top node4.p k1 0.01, m_h k1 0.01, node4.m k1 0.01, node4.p k3 0.00, m_h k3 0.00
+    Curtis-Reid sigma_2 4.3425e-35 (converged to 7e-04)
+        scaled: delta share 2.4e-08; blocks node4.m 0.83, node4.a 0.17, node4.c 0.01; top node4.m k3 0.22, node4.a k2 0.07, node4.m k1 0.07, node4.a k4 0.06, node4.a k6 0.02
+        in z: delta share 4.7e-01; blocks p1 0.13, node4.p 0.07, m_h 0.07; top p1 k3 0.09, node4.p k3 0.06, m_h k3 0.06, node4.m k3 0.06, node3.p k3 0.05
+    Curtis-Reid sigma_3 4.5787e-35 (converged to 8e-04)
+        scaled: delta share 2.9e-07; blocks node4.m 0.82, node4.a 0.17, node4.c 0.01; top node4.m k3 0.21, node4.m k1 0.08, node4.a k2 0.08, node4.a k4 0.06, node4.a k6 0.02
+        in z: delta share 9.1e-01; blocks p1 0.02, m_h 0.01, node4.m 0.01; top p1 k3 0.04, m_h k3 0.02, node4.m k3 0.02, node4.p k3 0.02, node3.m k3 0.02
+    Curtis-Reid sigma_4 4.6662e-34 (converged to 2e-16)
+        scaled: delta share 1.5e-04; blocks node4.a 0.65, node4.m 0.32, node4.c 0.03; top node4.a k2 0.16, node4.m k1 0.13, node4.a k4 0.08, node4.m k5 0.06, node4.a k6 0.05
+        in z: delta share 1.0e+00; blocks p1 0.00, node4.p 0.00, node3.p 0.00; top p1 k1 0.01, node4.p k1 0.00, p1 k3 0.00, node3.p k1 0.00, node2.p k1 0.00
+  J, Curtis-Reid + Ruiz (8 s):
+    Curtis-Reid + Ruiz sigma_1 3.5255e-38 (converged to 0e+00)
+        scaled: delta share 1.5e-02; blocks node4.m 0.48, node4.a 0.47, m_h 0.03; top node4.m k1 0.16, node4.a k0 0.11, node4.m k3 0.07, node4.a k4 0.05, m_h k1 0.04
+        in z: delta share 1.0e+00; blocks node4.p 0.00, m_h 0.00, node4.m 0.00; top node4.p k1 0.01, m_h k1 0.01, node4.m k1 0.01, node4.p k3 0.00, m_h k3 0.00
+    Curtis-Reid + Ruiz sigma_2 8.2292e-37 (converged to 2e-06)
+        scaled: delta share 4.9e-05; blocks node4.m 0.48, node4.a 0.47, m_h 0.02; top node4.m k3 0.17, node4.a k4 0.12, node4.a k2 0.10, node4.a k6 0.04, m_h k3 0.04
+        in z: delta share 4.0e-01; blocks p1 0.14, m_h 0.08, node4.m 0.08; top p1 k3 0.09, m_h k3 0.07, node4.m k3 0.07, node4.p k3 0.07, node3.p k3 0.05
+    Curtis-Reid + Ruiz sigma_3 9.0633e-37 (converged to 4e-06)
+        scaled: delta share 1.7e-03; blocks node4.a 0.47, node4.m 0.47, m_h 0.03; top node4.m k3 0.16, node4.a k2 0.14, node4.a k4 0.08, node4.m k1 0.07, m_h k3 0.04
+        in z: delta share 9.5e-01; blocks p1 0.01, node4.p 0.01, m_h 0.01; top p1 k3 0.03, m_h k3 0.02, node4.m k3 0.02, node4.p k3 0.02, node3.m k3 0.01
+    Curtis-Reid + Ruiz sigma_4 5.7340e-36 (converged to 2e-16)
+        scaled: delta share 1.5e-01; blocks node4.a 0.65, node4.m 0.08, node3.m 0.06; top node4.a k2 0.15, node4.a k4 0.07, node4.m k1 0.06, node3.m k1 0.06, node4.a k6 0.05
+        in z: delta share 1.0e+00; blocks p1 0.00, node4.p 0.00, node3.p 0.00; top p1 k1 0.01, node4.p k1 0.00, p1 k3 0.00, node3.p k1 0.00, node2.p k1 0.00
+  planted S = 10^u, u uniform in [-20, 20], seed 7: 1.4e-20..9.2e+19
+  Ruiz from J, spread of the scalings under S by tolerance: tol 1e-08 7.05e+00, tol 1e-12 7.05e+00, tol 1e-14 7.05e+00
+  J S, Ruiz: 47 Ruiz iterations, largest |1 - max-norm| 6.1e-13; D_r 5.23e-11..1.65e-03, D_c 5.23e-11..2.50e+28
+  J S, Curtis-Reid: 0 Ruiz iterations, largest |1 - max-norm| 1.6e+08; D_r 8.72e-05..2.44e+06, D_c 3.05e-23..6.39e+25
+  J S, Curtis-Reid + Ruiz: 44 Ruiz iterations, largest |1 - max-norm| 7.4e-13; D_r 5.16e-04..1.16e+05, D_c 7.58e-23..5.67e+22
+    J S, Ruiz sigma_1 9.5006e-39 (converged to 0e+00)
+    J S, Ruiz sigma_2 1.1910e-37 (converged to 1e-06)
+    J S, Ruiz sigma_3 1.5271e-37 (converged to 4e-06)
+    J S, Ruiz sigma_4 2.5228e-36 (converged to 0e+00)
+  planted, Ruiz: max_i |sigma_i(J S) / sigma_i(J) - 1| = 9.98e-01; spread of the scalings 7.1e+00
+    J S, Curtis-Reid sigma_1 1.9493e-36 (converged to 0e+00)
+    J S, Curtis-Reid sigma_2 4.3425e-35 (converged to 7e-04)
+    J S, Curtis-Reid sigma_3 4.5787e-35 (converged to 8e-04)
+    J S, Curtis-Reid sigma_4 4.6662e-34 (converged to 2e-16)
+  planted, Curtis-Reid: max_i |sigma_i(J S) / sigma_i(J) - 1| = 2.22e-13; spread of the scalings 2.1e-12
+    J S, Curtis-Reid + Ruiz sigma_1 3.5255e-38 (converged to 0e+00)
+    J S, Curtis-Reid + Ruiz sigma_2 8.2292e-37 (converged to 2e-06)
+    J S, Curtis-Reid + Ruiz sigma_3 9.0633e-37 (converged to 4e-06)
+    J S, Curtis-Reid + Ruiz sigma_4 5.7340e-36 (converged to 0e+00)
+  planted, Curtis-Reid + Ruiz: max_i |sigma_i(J S) / sigma_i(J) - 1| = 3.37e-13; spread of the scalings 3.9e-13
+  check (planted column scaling, Curtis-Reid + Ruiz, bound 1e-3): pass
+  Curtis-Reid + Ruiz: ||J_eq v_1|| = 3.52553e-38 at 140 digits (2 s); ||J_eq v_1|| / sigma_1 = 1.000000 (bound 1e-2): pass
+check: pass

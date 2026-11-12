@@ -1,0 +1,9 @@
+renode_0975 start 2026-11-12 07:33:24 UTC
+renode_0975 exit 0 (check must pass) 2026-11-12 07:33:26 UTC
+renode_0975 mutate sign start 2026-11-12 07:33:26 UTC
+renode_0975 mutate sign exit 1 (must be nonzero) 2026-11-12 07:33:28 UTC
+polish start (anm_run.py --steps 0 --save_base 1, 8 threads, timeout 2 h) 2026-11-12 07:33:28 UTC
+near_null start 2026-11-12 07:33:28 UTC
+polish exit 0 2026-11-12 07:33:29 UTC
+note: the polish with crawlJ's default options (above) exited 0 after 1 s without polishing: anm_run.py polishes only if the double-double |F| of the start (3.5e-29) exceeds --tol (default 1e-20). The polish is therefore run again with --tol 1e-30 (polish_forced).
+polish_forced start 2026-11-12 07:34:49 UTC (--tol 1e-30)

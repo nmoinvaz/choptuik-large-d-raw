@@ -1,0 +1,5 @@
+# I562-win2: the control arm, crawlJ's D 242.3642 state re-noded to last node 0.975, its pinned step and the plain base polish
+
+Machine win2 (Windows 11 desktop, Intel Core Ultra 7 265K, 20 threads, 96 GB), issue https://github.com/nmoinvaz/choptuik-large-d/issues/562 (the control arm; the refined start, the main arm, is the coordinator's code and follows).
+Code: worktree `D:\choptuik-i562` at main 80b5056 (`near_null.py` with the pinned step and `--keep_plan=1`), Python only, venv-t126.
+(1) `renode_o.py ... --nodes 0.3,0.4,0.5,0.6,0.975 --threads 4` on `I461-win2/crawlJ/anm_pin3_D242.3642.npz` (its check must pass; the control `--mutate sign` once). (2) `near_null.py ... --keep_plan=1 --threads=4`: sigma_1..4 and the pinned step's |dz|, max|dz|, share on V and Delta part, as #501 tabled them at 0.8. (3) The plain base polish of that start: crawlJ's `anm_run.py` options with `--steps 0 --save_base 1`, 8 threads, capped at 2 h (`run_i562.sh`). Exit codes in `exits.txt`. Results follow in this README.

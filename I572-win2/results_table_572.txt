@@ -1,0 +1,20 @@
+D 237.13
+| x_last | raw sigma_1..4 | equilibrated sigma_1..4 | weakest equilibrated sigma | its mode (top scaled component) | largest abs J_ij |
+|---|---|---|---|---|---|
+| 0.95 | 1.850e-37 (D), 7.429e-35 (H3), 7.444e-35 (H3), 1.852e-34 (H1) | 2.953e-39, 8.030e-38, 8.481e-38, 1.010e-36 | 2.9529e-39 | Dz m_h k1 | 3.30e+05 |
+| 0.97 | 1.937e-37 (D), 7.415e-35 (H3), 7.429e-35 (H3), 1.843e-34 (H1) | 4.092e-38, 9.658e-37, 1.057e-36, 6.866e-36 | 4.0924e-38 | Dz node4.m k1 | 2.50e+03 |
+| 0.98 | 1.992e-37 (D), 7.408e-35 (H3), 7.422e-35 (H3), 1.838e-34 (H1) | 4.038e-38, 9.452e-37, 1.035e-36, 6.612e-36 | 4.0376e-38 | Dz node4.m k1 | 2.20e+02 |
+| 0.99 | 2.039e-37 (D), 7.401e-35 (H3), 7.416e-35 (H3), 1.833e-34 (H1) | 3.526e-38, 8.229e-37, 9.063e-37, 5.734e-36 | 3.5255e-38 | Dz node4.m k1 | 1.90e+01 |
+
+D 237.13: the weakest equilibrated sigma is largest at x_last = 0.97 (4.0924e-38); neighbours 2.9529e-39 (0.95), 4.0376e-38 (0.98); parabola vertex in ln sigma 0.9748
+located to within 0.01: bracket 0.03 wide; distance of the maximum from D 242.36's 0.975: 0.005 (vertex 0.000)
+
+D 242.36 for comparison (#559, #566)
+| x_last | weakest equilibrated sigma | mode |
+|---|---|---|
+| 0.96 | 1.2460e-38 | Dz m_h k1 |
+| 0.97 | 3.0077e-38 | Dz node4.m k1 |
+| 0.98 | 3.0126e-38 | Dz node4.m k1 |
+| 0.99 | 2.6120e-38 | Dz node4.m k1 |
+| 0.995 | 2.1332e-38 | Dz node4.m k1 |
+all check lines pass
