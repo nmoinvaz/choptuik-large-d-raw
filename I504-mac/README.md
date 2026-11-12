@@ -4,7 +4,7 @@ Machine: the M5 Mac (subagent), 2 threads under nice 10.
 Issue: https://github.com/nmoinvaz/choptuik-large-d/issues/504 (depends on #502, #489).
 
 Code: `hp/octo_corrector.py` (newton_od's `scale_c` and `trace`) and `hp/eq_test.py`, branch
-`feat/i504-equilibrated-test` of choptuik-large-d (backups `wip/i504-subagent`), interpreter venv-314 (Python 3.14, its
+`feat/i504-equilibrated-test` of choptuik-large-d, 448a9e2 to 79511cf, each run's commit in `exits.txt` (backups `wip/i504-subagent`), interpreter venv-314 (Python 3.14, its
 installed `hpkernel`). Each run is `run_eq.sh <worktree>/hp <this raw clone> TAG SUBCOMMAND ARGS...`, which writes
 `TAG.log` and appends its exit and wall time to `exits.txt`.
 
@@ -105,3 +105,18 @@ is stable under a relative change of J's entries but not under dropping its smal
 
 The run used choptuik-large-d 909b1d5 (branch `feat/i504-equilibrated-test`). That branch lacks main's e5bbdcd (the
 re-seed's octo-double rung LU refactored after a poor correction), so its projections are #489's.
+
+## Bit identity of the default: PASS, the control fails as it must
+
+`pA_old` is run A with the newton_od of 0cce81e (`git show 0cce81e:hp/octo_corrector.py`, loaded by `--newton_from`).
+It ran all four steps rather than one, in 1403 s. `same_A.log` (exit 0): its iterate's eight parts are bit-identical to
+A's (scale_c None), and its history without times is equal. `same_A_ctl.log` (exit 1): with one ulp of entry 155 of
+the eighth part moved, the comparison fails.
+
+## Files
+
+`exits.txt` has every run's start, commit and exit. The `*.log`, `*.json` (lam sequence, history with each trial) and
+`*.npz` (iterate, eight parts) files are per run, with `*_trace.npz` holding each trial's leading parts of dz and of its
+correction. `J0_D180.5246_start.npz` is the f64 leading part of the Jacobian at the planted start. `predict_A*.log`
+come from `eq_test.py predict` on A's trace, and `sensitivity_*.log` from `eq_test.py sensitivity`. The `polish_eq*`
+files are the real case. Scripts: `run_eq.sh`, `run_polish_eq.sh`, `run_all.sh` (stopped during D) and `run_rest.sh`.
