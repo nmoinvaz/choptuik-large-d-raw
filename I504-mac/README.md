@@ -50,3 +50,22 @@ criteria stay as above, with this S. The random S of seed 7 is kept in `predict_
 Real case: #489's base polish (`I489-mac/run_polish.sh`'s anm_run.py options) of `I489-mac/renode_L1_horizon_D242.3642.npz`,
 with newton_od given D_c from |J| at the corrector's start and every trial printed. Reported: whether step 0 is accepted,
 each trial's lam, max|F| and both sides of the raw and the equilibrated test, and whether it converges below 1e-60.
+
+## Planted check: PASS, the control fires (`verdict.log`, exit 0)
+
+| run | test | S | accepted lam | outcome | max\|F\| | wall |
+|---|---|---|---|---|---|---|
+| A `pA_raw` | raw | none | 1, 1, 1, 1 | converged | 6.86e-42 | 2641 s |
+| B `pB_eq` | eq | none | 1, 1, 1, 1 | converged | 6.86e-42 | 3074 s |
+| C `pC_eq_unmoved` | eq | unmoved | 1, 1, 1, 1 | converged | 6.86e-42 | 3998 s |
+| D `pD_raw_unmoved` | raw | unmoved | 0.5 (one step, `--it_max 1`) | stopped at it_max | 1.70e-12 | 2481 s |
+
+C's iterate is bit-identical to B's (and A's), Delta 1.700531269818162204386381037834122353007 for all three. D refuses
+lam 1 at step 0 (in w, 3.855e+04 vs 3.855e+04) where A accepts it (in z, 7.75e-16 vs 9.96e-13). The two sides of each
+test at every trial are in the logs. The equilibrated test accepts step 0 by 1.5e-7 (4.453e-03 vs 4.453e-03 in B), its
+max norm on a_h[0] (index 736), whose move step 1 undoes. D_c spans 1.63e-16..1.20e+07 for J and 4.0e-19..5.8e+28 for
+J S, and D_c(J S) S / D_c(J) is constant to 5.5e-12 in log10 (`predict_A_unmoved.log`).
+
+The first full run D was stopped after 3 trials (`pD_raw_unmoved_stopped.log`, exit 143). With S unmoved the raw test
+refused lam 1 again at step 1 (9.640e+03 vs 9.634e+03), so it would halve every step. `run_all.sh` ran A's
+successors until then, and `run_rest.sh` ran the rest.
