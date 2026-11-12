@@ -1,0 +1,18 @@
+seeds per scenario [('P1', 200), ('P2', 200), ('P3', 200)]; rules on P1 and P2 (noise 0.003), P3 (noise 0.006) is information
+
+| scenario | median P0 err | median p1 err | median rho_hat | median theta err | PR1 |
+|---|---|---|---|---|---|
+| P1 | 0.0009 | 0.0003 | 0.065 | 0.053 | pass |
+| P2 | 0.0009 | 0.0004 | 0.065 | 0.064 | pass |
+| P3 | 0.0020 | 0.0006 | 0.067 | 0.105 | pass (info) |
+
+| scenario | hold-out | 2h chirp: median rms | share <= 0.014 (PR2) | 1h chirp: median rms | 2h control: median rms | share control worse (PR3) | PR2 | PR3 | PR4 |
+|---|---|---|---|---|---|---|---|---|---|
+| P1 | H1 | 0.0054 | 98% | 0.0084 | 0.1113 | 100% | pass | pass | pass |
+| P1 | H2 | 0.0054 | 98% | 0.0080 | 0.0843 | 100% | pass | pass | pass |
+| P2 | H1 | 0.0054 | 99% | 0.0086 | 0.1024 | 100% | pass | pass | pass |
+| P2 | H2 | 0.0051 | 100% | 0.0078 | 0.0876 | 100% | pass | pass | pass |
+| P3 | H1 | 0.0110 | 72% | 0.0127 | 0.1125 | 100% | FAIL | pass | pass |
+| P3 | H2 | 0.0102 | 79% | 0.0120 | 0.0847 | 100% | FAIL | pass | pass |
+
+VERDICT: PASS (PR1 to PR4 on P1 and P2)

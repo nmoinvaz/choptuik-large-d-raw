@@ -1,0 +1,23 @@
+51 states D 210.13 to 237.13; planted verdict file results_planted_601_v1.txt; limit 0.014 (rms prediction error)
+
+=== ln sigma_1: the 2-harmonic chirp over all 51 states: P0 2.616, p1 +0.0160, p2 +0.00027, rho 0.068, theta +0.01, rms 0.0027 (1 harmonic: 0.0060)
+| hold-out | model | 2 harmonics: rms (max) | 1 harmonic: rms (max) | meets 0.014 (2h) | control worse (2h) |
+|---|---|---|---|---|---|
+| H1 (42 fit, 9 predicted) | p2 chirp | 0.0094 (0.0157) | 0.0079 (0.0162) | yes | yes (0.0964 against 0.0094) |
+| H1 (42 fit, 9 predicted) | p2 = 0 chirp | 0.0187 (0.0350) | 0.0177 (0.0398) |  |  |
+| H1 (42 fit, 9 predicted) | p1 = p2 = 0 | 0.0964 (0.1916) | 0.0891 (0.1741) |  |  |
+| H2 (43 fit, 8 predicted) | p2 chirp | 0.0146 (0.0242) | 0.0173 (0.0300) | NO | yes (0.1017 against 0.0146) |
+| H2 (43 fit, 8 predicted) | p2 = 0 chirp | 0.0184 (0.0364) | 0.0208 (0.0428) |  |  |
+| H2 (43 fit, 8 predicted) | p1 = p2 = 0 | 0.1017 (0.1718) | 0.1046 (0.1831) |  |  |
+
+=== ln sigma_2: the 2-harmonic chirp over all 51 states: P0 2.618, p1 +0.0173, p2 +0.00034, rho 0.065, theta +3.12, rms 0.0011 (1 harmonic: 0.0052)
+| hold-out | model | 2 harmonics: rms (max) | 1 harmonic: rms (max) | meets 0.014 (2h) | control worse (2h) |
+|---|---|---|---|---|---|
+| H1 (42 fit, 9 predicted) | p2 chirp | 0.0027 (0.0057) | 0.0082 (0.0134) | yes | yes (0.0937 against 0.0027) |
+| H1 (42 fit, 9 predicted) | p2 = 0 chirp | 0.0140 (0.0266) | 0.0157 (0.0314) |  |  |
+| H1 (42 fit, 9 predicted) | p1 = p2 = 0 | 0.0937 (0.1887) | 0.0966 (0.1854) |  |  |
+| H2 (43 fit, 8 predicted) | p2 chirp | 0.0070 (0.0150) | 0.0119 (0.0198) | yes | yes (0.0913 against 0.0070) |
+| H2 (43 fit, 8 predicted) | p2 = 0 chirp | 0.0141 (0.0292) | 0.0137 (0.0197) |  |  |
+| H2 (43 fit, 8 predicted) | p1 = p2 = 0 | 0.0913 (0.1529) | 0.0943 (0.1632) |  |  |
+
+ACCEPTANCE (both hold-outs at most 0.014 for sigma_1 and sigma_2 with two harmonics, and the p1 = p2 = 0 control worse): NOT MET
