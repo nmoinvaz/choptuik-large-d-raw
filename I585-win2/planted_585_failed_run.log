@@ -1,0 +1,52 @@
+8 cases, sigma_ln 3.331e-03 sigma_arg 2.923e-03, 200 realizations
+  resampled state from modecount_state_D61.0264_M48_kf27.npz
+  series truncation (solution): centre 1.0e-104 (ratio 0.560 at 0.3), horizon 6.1e-38 (ratio 0.473 at 0.3)
+  resampled state from modecount_state_D61.0264_M48_kf27.npz
+  series truncation (solution): centre 1.0e-104 (ratio 0.560 at 0.3), horizon 6.1e-38 (ratio 0.473 at 0.3)
+concurrent.futures.process._RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "C:\Users\nathan\AppData\Local\Programs\Python\Python312\Lib\concurrent\futures\process.py", line 264, in _process_worker
+    r = call_item.fn(*call_item.args, **call_item.kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nathan\AppData\Local\Programs\Python\Python312\Lib\concurrent\futures\process.py", line 213, in _process_chunk
+    return [fn(*args) for args in chunk]
+            ^^^^^^^^^
+  File "D:\choptuik-large-d-raw\I585-win2\planted_585.py", line 141, in case_main
+    json.dump(res, f, indent=1)
+  File "C:\Users\nathan\AppData\Local\Programs\Python\Python312\Lib\json\__init__.py", line 179, in dump
+    for chunk in iterable:
+                 ^^^^^^^^
+  File "C:\Users\nathan\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 432, in _iterencode
+    yield from _iterencode_dict(o, _current_indent_level)
+  File "C:\Users\nathan\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 406, in _iterencode_dict
+    yield from chunks
+  File "C:\Users\nathan\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 439, in _iterencode
+    o = _default(o)
+        ^^^^^^^^^^^
+  File "C:\Users\nathan\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type bool is not JSON serializable
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\choptuik-large-d-raw\I585-win2\planted_585.py", line 221, in <module>
+    for r in ex.map(case_main, cases):
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nathan\AppData\Local\Programs\Python\Python312\Lib\concurrent\futures\process.py", line 636, in _chain_from_iterable_of_lists
+    for element in iterable:
+                   ^^^^^^^^
+  File "C:\Users\nathan\AppData\Local\Programs\Python\Python312\Lib\concurrent\futures\_base.py", line 619, in result_iterator
+    yield _result_or_cancel(fs.pop())
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nathan\AppData\Local\Programs\Python\Python312\Lib\concurrent\futures\_base.py", line 317, in _result_or_cancel
+    return fut.result(timeout)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nathan\AppData\Local\Programs\Python\Python312\Lib\concurrent\futures\_base.py", line 456, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nathan\AppData\Local\Programs\Python\Python312\Lib\concurrent\futures\_base.py", line 401, in __get_result
+    raise self._exception
+TypeError: Object of type bool is not JSON serializable
