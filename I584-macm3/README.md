@@ -32,3 +32,24 @@ The rule of the issue (fixed before the run): the draws' largest abs d arg is th
 | F3 | 4.350000 -1.750000i | -2.580762 | -2.580744 | -1.74e-05 | +1.92e-04 | +4.52e-08 | -4.68e-05, -2.63e-06, +6.31e-05, -7.77e-05 | 7.77e-05 | resolved |
 
 Six of the seven points are resolved (floors 7.3e-5 to 8.7e-4 rad); N2 (2.396619 +0.567672i) is between (1.67e-3 rad). The largest LU error is 5.1e-3 rad (N1). The double-double LU's args at q3 and q4 equal #579's plain args (-1.026575 and -2.468116).
+
+(16:24 UTC, macm3) The M 64 points (win3's, taken over: the coordinator's message of 2026-11-12 16:22 UTC): run_584_kf23.sh, started 16:24 UTC from the same worktree: python3 -u modecount_qdet.py <raw>/I252-mac/states/modecount_state_D61.0264_M64_kf23.npz 1.980000,0.749808 1.698092,1.097394 0.132000,2.912795 -0.141205,3.186000 --M=64 --kf=23 --fmax=1e-15 --threads=2 --ulp --draws=4 --json=<raw>/I584-macm3/kf23_M64.json; the state is #445's (sha256 179d0bd69aae77c9660518663896b59f232eedc7df1b89603767d525a17ddf6d). The points are #579's q1, q2 (closed circles of #445) and s3, s4 (#445's unfinished circle). This completes #584.
+
+(17:31 UTC, macm3) The four M 64 points finished: kf23_M64 exit 0 at 2026-11-12 17:29:24 UTC (started 16:23:37 UTC, 3947 s on 2 threads, 'check: pass'; the ball determinant 133 to 143 s a point; the planted checks passed). All thirteen points of #584 are now run: s1, s2 (kf29_s1s2.json), q1, q2, s3, s4 (kf23_M64.json), q3, q4, N1, N2, F1, F2, F3 (kf27_M48.json). Merged table (floor = the draws' largest abs d arg; noise above 0.1 rad, resolved below 1e-3 rad):
+| point | state | class | λ | floor (rad) | verdict | LU d arg | ulp row: DD d arg | ulp row: exact d arg | smallest pivot |
+|---|---|---|---|---|---|---|---|---|---|
+| q1 | D 61 M 64 kf 23 | closed | 1.980000 +0.749808i | 6.22e-06 | resolved | -2.97e-05 | -2.41e-02 | -2.41e-02 | 2.4e-14 |
+| q2 | D 61 M 64 kf 23 | closed | 1.698092 +1.097394i | 2.42e-05 | resolved | +8.03e-05 | +2.16e-02 | +2.16e-02 | 1.2e-14 |
+| q3 | D 61 M 48 kf 27 | closed | 3.595442 +0.504558i | 0.000724 | resolved | -2.28e-04 | +6.80e-04 | +1.00e-06 | 4.9e-14 |
+| q4 | D 61 M 48 kf 27 | closed | 4.530000 -1.061769i | 7.34e-05 | resolved | -1.24e-04 | +1.17e-05 | -4.92e-08 | 8.1e-13 |
+| N1 | D 61 M 48 kf 27 | near a zero | 1.923548 +0.910715i | 0.000874 | resolved | +5.11e-03 | -4.95e-03 | -1.75e-05 | 1.8e-15 |
+| N2 | D 61 M 48 kf 27 | near a zero | 2.396619 +0.567672i | 0.00167 | between | -8.74e-05 | +3.99e-03 | -1.92e-05 | 4.8e-15 |
+| F1 | D 61 M 48 kf 27 | closed (#585) | 2.738754 -0.907620i | 9.43e-05 | resolved | +6.69e-04 | -5.43e-04 | +1.76e-06 | 4.7e-14 |
+| F2 | D 61 M 48 kf 27 | closed (#585) | 3.600000 +1.000000i | 0.000463 | resolved | -2.49e-05 | +4.21e-04 | -3.77e-07 | 1.4e-13 |
+| F3 | D 61 M 48 kf 27 | closed (#585) | 4.350000 -1.750000i | 7.77e-05 | resolved | -1.74e-05 | +1.92e-04 | +4.52e-08 | 6.4e-13 |
+| s1 | D 61 M 48 kf 29 | stuck | 3.100221 +0.002981i | 0.178 | noise | -2.68e+00 | +2.26e+00 | +3.04e-05 | 1.6e-16 |
+| s2 | D 61 M 48 kf 29 | stuck | 3.100564 -0.016648i | 0.131 | noise | +1.31e-01 | -1.95e-01 | -4.86e-05 | 7.4e-16 |
+| s3 | D 61 M 64 kf 23 | stuck | 0.132000 +2.912795i | 0.000573 | resolved | +3.12e-04 | +2.77e+00 | +2.77e+00 | 4.9e-16 |
+| s4 | D 61 M 64 kf 23 | stuck | -0.141205 +3.186000i | 0.000808 | resolved | -6.65e-03 | +6.26e-02 | +5.83e-02 | 2.1e-16 |
+
+The four M 64 points: q1 and q2 (closed) floors 6.2e-6 and 2.4e-5 rad; s3 and s4 (#445's unfinished circle) floors 5.7e-4 and 8.1e-4 rad: resolved, so the prediction that the stuck points exceed 0.1 rad fails at s3 and s4 (holds at s1 and s2: 0.178 and 0.131). The ulp row of the exact determinant at M 64 is not small: -0.0241 (q1), +0.0216 (q2), +2.77 (s3), +0.0583 (s4) rad for one f64 ulp up in Re lambda, against at most 5e-5 rad at the M 48 points; the double-double LU's rows are the same numbers (-0.0241, +0.0216, +2.77, +0.0626).
