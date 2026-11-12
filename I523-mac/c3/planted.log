@@ -1,0 +1,25 @@
+== planted 10:55 /Users/nathan/venv-314/bin/python octo_corrector.py planted /Users/nathan/Source/choptuik-large-d-raw T129-win2/chain/anm_pin3_D180.5246.npz --threads 2
+planted T129-win2/chain/anm_pin3_D180.5246.npz: D 180.524614981, start = truth moved by 1e-12 relative in [0, 576); pinned max|F| (octo) truth 2.83e-30, start 3.39e-12; mutate_offset '', mutate 0
+  on 0: |F| 3.39e-12 -> 5.92e-16, |dz| 1.0e-12 -> 7.7e-16, lam 1, dDelta -3.09e-17, piv 1.3e-09..1.3e+25, 274.62 s
+  on 1: |F| 5.92e-16 -> 1.63e-31, |dz| 7.7e-16 -> 6.8e-24, lam 1, dDelta +3.09e-17, piv 1.3e-09..1.3e+25, 252.97 s
+  on 2: |F| 1.63e-31 -> 7.61e-22, |dz| 6.8e-24 -> 6.4e-34, lam 1, dDelta +4.55e-25, piv 1.3e-09..1.3e+25, 202.42 s
+  on 3: |F| 7.61e-22 -> 6.86e-42, |dz| 6.4e-34 -> 6.4e-34, lam 1, dDelta +1.18e-34, piv 1.3e-09..1.3e+25, 205.64 s
+  on 4: |F| 6.86e-42 converged, Delta 1.70053126981816227 -6.7759e-17
+  od: 5 steps, converged, pinned max|F| (octo) 6.86e-42, Delta 1.700531269818162204386381200312492782858, projections {'u0': 0, 'u0q': 3, 'ladder': 0, 'failed': 0, 'skipped': 3}, 1284 s
+  od against the truth: dDelta 8.5495e-22
+  qn 0 [full]: |F| 3.39e-12 -> 5.92e-16, |dz| 1.0e-12 -> 7.7e-16, lam 1, dDelta -2.93e-17, piv 1.3e-09..1.3e+25, 70.36 s
+  qn 1 [full]: |F| 5.92e-16 -> 2.03e-26, |dz| 7.7e-16 -> 6.3e-18, lam 1, dDelta +2.30e-17, piv 1.3e-09..1.3e+25, 68.75 s
+  qn 2 [full]: |F| 2.03e-26 -> 3.03e-29, |dz| 6.3e-18 -> 6.8e-21, lam 1, dDelta +6.30e-18, piv 1.3e-09..1.3e+25, 73.0 s
+  qn 3 [full]: |F| 3.03e-29 -> 1.10e-18, |dz| 6.8e-21 -> 2.4e-24, lam 1, dDelta +6.85e-21, piv 1.3e-09..1.3e+25, 26.62 s
+  qn 4 [full]: |F| 1.10e-18 -> 8.86e-25, |dz| 2.4e-24 -> 4.1e-27, lam 1, dDelta -2.39e-24, piv 1.3e-09..1.3e+25, 27.01 s
+  qn 5 [full]: |F| 8.86e-25 -> 2.77e-28, |dz| 4.1e-27 -> 3.4e-29, lam 1, dDelta +3.35e-27, piv 1.2e-09..1.3e+25, 26.78 s
+  qn 6 [full]: |F| 2.77e-28 -> 6.88e-35, |dz| 3.4e-29 -> 2.1e-32, lam 1, dDelta +3.37e-29, piv 1.2e-09..1.3e+25, 26.5 s
+  qn 7 [full]: |F| 6.88e-35 -> 1.15e-36, |dz| 2.1e-32 -> 7.0e-36, lam 1, dDelta +2.08e-32, piv 1.3e-09..1.3e+25, 26.54 s
+  qn 8 [full]: |F| 1.15e-36 -> 1.55e-36, |dz| 7.0e-36 -> 5.1e-39, lam 1, dDelta +7.00e-36, piv 1.3e-09..1.3e+25, 24.19 s
+  qn 9 [full]: |F| 1.55e-36 -> 1.39e-36, |dz| 5.1e-39 -> 1.2e-41, lam 1, dDelta +5.15e-39, piv 1.3e-09..1.3e+25, 24.68 s
+  qn 10 [full]: |F| 1.39e-36 -> 1.46e-36, |dz| 1.2e-41 -> 1.2e-42, lam 1, dDelta +1.23e-41, piv 1.2e-09..1.3e+25, 25.1 s
+  qn 11 [full]: |F| 1.46e-36 -> 1.83e-36, |dz| 1.2e-42 -> 8.1e-43, lam 0.5, dDelta -5.80e-46, piv 1.3e-09..1.3e+25, 51.05 s
+  qd: 12 steps, stopped, its last max|F| 1.46e-36 (octo at the projected point 2.11e-36), Delta 1.700531269818162204386381200312492665007, projections {'u0': 0, 'u0q': 4, 'ladder': 0, 'failed': 0, 'skipped': 10}, 582 s
+  |Delta_od - Delta_qd| 1.1785e-34
+  (a) PASS: od max|F| 6.86e-42 < 1e-40, |Delta_od - Delta_qd| <= 1e-30
+exit 0

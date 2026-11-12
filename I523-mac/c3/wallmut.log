@@ -1,0 +1,10 @@
+== wallmut 11:42 /Users/nathan/venv-314/bin/python octo_corrector.py wall /Users/nathan/Source/choptuik-large-d-raw T129-win2/chain2/pred_pin3_D194.2746.npz --threads 2 --mutate 10
+wall T129-win2/chain2/pred_pin3_D194.2746.npz: D 194.274614981, re-seed ok (98.83 s), pinned max|F| (octo) 5.16e-20; mutate_offset '', mutate 10
+  on 0: |F| 5.16e-20 -> 1.07e-34, |dz| 6.7e-19 -> 9.7e-35, lam 1, dDelta +6.69e-19, piv 1.7e-11..1.6e+27, 343.87 s
+  on 1: |F| 1.07e-34 -> 9.48e-36, |dz| 9.7e-35 -> 2.6e-57, lam 1, dDelta -4.24e-35, piv 1.7e-11..1.6e+27, 276.31 s
+  on 2: |F| 9.48e-36 -> 1.25e-35, |dz| 2.6e-57 -> 7.4e-61, lam 1, dDelta +6.91e-58, piv 1.7e-11..1.6e+27, 321.37 s
+  on 3: |F| 1.25e-35 -> 1.19e-35, |dz| 7.4e-61 -> 2.1e-61, lam 0.5, dDelta -1.57e-61, piv 1.7e-11..1.6e+27, 644.63 s
+  on 4: |F| 1.19e-35, |dz| 2.1e-61: no trial step accepted, stopping
+  od: 5 steps, NOT converged, pinned max|F| (octo) 6.41e-36, Delta 1.696574658697940194493174859857499683588, projections {'u0': 0, 'u0q': 1, 'ladder': 0, 'failed': 0, 'skipped': 15}, 3971 s
+  (b) FAIL: od max|F| 6.41e-36 < 1e-36
+exit 1
