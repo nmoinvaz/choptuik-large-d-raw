@@ -1,0 +1,9 @@
+hpkernel /Users/nathan/venv-314/lib/python3.14/site-packages/hpkernel/__init__.py
+Traceback (most recent call last):
+  File "/private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/11bcbd25-9376-453b-88d5-a7c6ad0172dd/scratchpad/i589/mainhp/hp/anm_run.py", line 130, in <module>
+    from taylor_predict import formula_delta  # noqa: E402
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/11bcbd25-9376-453b-88d5-a7c6ad0172dd/scratchpad/i589/mainhp/hp/taylor_predict.py", line 27, in <module>
+    _C = json.load(open(os.path.join(HERE, "..", "solver", "data", "formula_coefficients.json")))
+                   ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/11bcbd25-9376-453b-88d5-a7c6ad0172dd/scratchpad/i589/mainhp/hp/../solver/data/formula_coefficients.json'
