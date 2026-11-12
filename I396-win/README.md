@@ -24,3 +24,16 @@ Segments (largest step truncation, then the end of the segment against the next 
 **Control: win against win** (`plan_win_M48_rerun.*`, `plan_win_M64_rerun.*`, the same two commands, `i396_plan_M<M>_rerun.cmd`, 13:30 to 13:34:32 UTC, exit 0): the second runs have the same plan sha256 and |F| as the first, and all 16 fields of each json are equal (the nodes, every segment's x points as hex floats, |F|, the hashes, the segments' truncations). So a plan hash on win is reproducible run to run, and a hash difference against the Mac is not run-to-run noise of this machine.
 
 **The faulty commit a445b4dd** (`held_a445b4d/`, its own README): the hashes there are dccace2ea9209d00... (M 48) and 414e07cab249c46b... (M 64), against the Mac's 9a2ee2fa8617a74e... and 8ee2918bf799f9a8... at the same unsolved start.
+
+## M 32, the identical input (the coordinator's message `133703Z-coordinator-71b0.md`)
+
+M 32 is the state's own M: no resampling, no Newton (|F| below `--fmax`), the nodes are the state's own (0.3, 0.4, 0.5, 0.6, 0.7), so both machines plan the same input. Main 179afc4c, worktree `choptuik-i396b`, 3 threads, `i396_plan_M32.cmd` (the M 48 command with `--M=32`, cap 3600 s), run at 13:37 UTC on 2026-11-12, exit 0, 23 s of compute.
+
+| | win | the Mac (the coordinator's) |
+|---|---|---|
+| plan sha256 | e37e27f52adaf1586c5be1d66e435affb1c38402ddabc7e8cf2639bb3726ee74 | 9d916858015e0deb66ee94101db6abddd53c5293c9673666914be4780df816ef |
+| \|F\| | 5.96e-25 | 6.9e-26 |
+| steps per segment | 3, 3, 3, 3 | |
+| largest step truncation | 5.5e-32, meets it (within 100 times); layout check pass | |
+
+**The hashes do not match.** Win's plan of the identical input is not the Mac's, and the |F| of the two differs too (|F| is evaluated on the plan, so it follows from it). The control `plan_win_M32_rerun.*` (the same command again, 13:39 UTC, exit 0): the same hash, and all 16 fields of the json equal, so the win plan is reproducible and the difference against the Mac is the planner's output on the same input, not the state or run-to-run noise. The built-in control passes (the plan at the tolerance 64 ulps up has another hash, b38b4fa167bf7123...).

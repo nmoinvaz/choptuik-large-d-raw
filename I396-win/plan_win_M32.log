@@ -1,0 +1,12 @@
+up6_D30.0688.npz: D 30.068824, M 32, kfreeze None, ks 100, |F| 5.96e-25, plan tol 1e-32 (23 s)
+nodes ['0x1.3333333333333p-2', '0x1.999999999999ap-2', '0x1.0000000000000p-1', '0x1.3333333333333p-1', '0x1.6666666666666p-1']
+segment 0: 3 steps, x 0x1.3333333333333p-2 0x1.5f9121d2669b1p-2 0x1.7c955db6001a6p-2 0x1.999999999999ap-2
+segment 1: 3 steps, x 0x1.999999999999ap-2 0x1.c3e21ed824ad3p-2 0x1.e1f10f6c1256ap-2 0x1.0000000000000p-1
+segment 2: 3 steps, x 0x1.0000000000000p-1 0x1.13f0c1bcac756p-1 0x1.2391fa77efd44p-1 0x1.3333333333333p-1
+segment 3: 3 steps, x 0x1.3333333333333p-1 0x1.45e9dbd7e560ap-1 0x1.5802b6f78e003p-1 0x1.6666666666666p-1
+plan sha256 e37e27f52adaf1586c5be1d66e435affb1c38402ddabc7e8cf2639bb3726ee74; at tol 64 ulps up b38b4fa167bf7123...: control pass (differs)
+  segment 0: largest step truncation 5.5e-32, end against node 1 1.5e-31
+  segment 1: largest step truncation 3.7e-32, end against node 2 9.8e-32
+  segment 2: largest step truncation 3.1e-32, end against node 3 7.1e-32
+  segment 3: largest step truncation 3.1e-32, end against node 4 1.0e-31
+truncation: largest 5.5e-32 against the target 1e-32: meets it (within 100 times); layout check pass
