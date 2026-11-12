@@ -1,0 +1,8 @@
+# I551-win2: #498's stage-1 box at kf 29 and kf 31 on the exact determinant (D 61.0264, M 48)
+
+Machine win2 (Windows 11 desktop, Intel Core Ultra 7 265K, 20 threads, 96 GB), 9 threads, beside #603's chain and #588's cut run. Issue https://github.com/nmoinvaz/choptuik-large-d/issues/551 (moved to win2 by the coordinator at 20:09 UTC, 2026-11-12, commands in its comment of 20:10 UTC).
+Code: worktree `D:\choptuik-i551` detached at main 98ee71bd. `hp/modecount_circle.py` and `hp/modecount_common.py` are identical at 98ee71bd and at 4b33cc9 (the #594 code; `git diff` empty). Builds: venv-t126 (Python 3.12.8, python-flint 0.9.0), its `hpkernel` (`_hpkernel` pyd sha256 f3a697a3..., the build all earlier win2 runs of #573 to #594 used, not the multishoot 1.2.1 build of #600) and `modecount_cx` copied from `D:\choptuik-i573\hp\modecount_cx\build` (cp312, sha256 7ab672ea9a17b239eb77897a..., the double-double mode matrix; its source is unchanged between 80b5056 and 98ee71bd except Cargo.lock). Seed `hp/data/seeds/local/up23_D61.0264.npz` (sha256 c3393ce849de0f11406a02c5...).
+Command: `run_551.sh`, for K = 29 and then 31: `modecount_circle.py data/seeds/local/up23_D61.0264.npz 2.043532530673195,0,0.2 2.85,0.25,0.36 3.35,0.25,0.36 2.85,-0.25,0.36 3.35,-0.25,0.36 --M=48 --kf=K --n0=20 --fmax=1e-15 --tag=D61.0264_M48_kfK --ball=320 --threads=9 --data=<raw>/I551-win2/kfK/data`; starts and exits in `exits_551.txt`, stdout in `kfK/run.log`.
+Acceptance (#551): the box's count at both cuts, with each circle closed within its point cap, and the control circle around lambda_phys winding +1 at both; or the task reports which circles reach the noise floor (a circle that passes its point cap is reported with its largest steps).
+
+Results follow when the run ends.
