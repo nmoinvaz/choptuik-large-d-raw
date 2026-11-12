@@ -26,3 +26,12 @@ n = 1152 pivots in both. kf 29: plain ln|det| -132.681283, arg +1.881273, pmin 3
 | kf 22 | lo -1 | -0.000 | 0 | 8 | no | 0 | none |
 
 The top ten pivots of each part are in the logs and the JSON (only the ten largest are stored). Under hi they are all among the last 20 pivots (k 1132 to 1150 at kf 29; k 1138 to 1144 at kf 22 for the first five), each growing by e^8 to e^13. The JSON does not store the indices of the other carriers of the 90%.
+
+(2026-11-12 07:23 UTC, macm3) Rerun of the kf 29 command with modecount_pivots.py of main 80b5056 (it prints arg det's change; run_552_arg.sh, kf29_arg.log and kf29_arg.json; started 07:15:38 UTC, exit 0 at 07:22:32 UTC, 414 s; same build, state and checks, all pass). Plain arg det +1.881273 (ln|det| -132.681283). Change of arg det, wrapped to (-pi, pi]:
+| part, shift | arg det | change of arg det |
+|---|---|---|
+| hi +1 | -0.190071 | -2.0713 rad |
+| hi -1 | +2.956076 | +1.0748 rad |
+| lo +1 | +1.166002 | -0.7153 rad |
+| lo -1 | +2.807551 | +0.9263 rad |
+Top pivots under lo +1: k 1151 d arg +0.197, k 1150 +2.229, all others 0.000 (k 1149, 1147, 1148, 1146 ...); lo -1: k 1150 +0.361, k 1151 +0.565, the others 0.000. The numbers of ln|det| and of the pivots are those of kf29.log.
