@@ -1,0 +1,63 @@
+# toolchain: clang version 23.1.5 (Fedora 23.1.5-2.fc45); LLD 23.1.5 (compatible with GNU linkers); rustc 1.99.1 (58cf8f9c3 2026-10-13); maturin 1.16.0; cc -> /home/nathan/.local/bin/cc; cargo linker = clang
+🍹 Building a mixed python/rust project
+🐍 Found CPython 3.14 at /home/nathan/Source/choptuik-large-d/.venv/bin/python
+🔗 Found pyo3 bindings
+📡 Using build options features from pyproject.toml
+   Compiling target-lexicon v0.13.5
+   Compiling autocfg v1.5.1
+   Compiling proc-macro2 v1.0.107
+   Compiling crossbeam-utils v0.8.23
+   Compiling unicode-ident v1.0.27
+   Compiling quote v1.0.47
+   Compiling crossbeam-epoch v0.9.21
+   Compiling crossbeam-deque v0.8.8
+   Compiling pyo3-macros-backend v0.30.1
+   Compiling libc v0.2.191
+   Compiling rayon-core v1.13.0
+   Compiling heck v0.5.0
+   Compiling rawpointer v0.2.1
+   Compiling either v1.19.0
+   Compiling num-traits v0.2.19
+   Compiling matrixmultiply v0.3.11
+   Compiling once_cell v1.21.4
+   Compiling rustc-hash v2.1.3
+   Compiling pyo3-build-config v0.30.1
+   Compiling syn v3.0.9
+   Compiling pyo3-ffi v0.30.1
+   Compiling pyo3 v0.30.1
+   Compiling numpy v0.30.0
+   Compiling num-complex v0.4.6
+   Compiling num-integer v0.1.47
+   Compiling rayon v1.12.0
+   Compiling ndarray v0.17.2
+   Compiling multidouble v4.1.0
+   Compiling pyo3-macros v0.30.1
+   Compiling hpkernel v0.1.0 (/home/nathan/Source/choptuik-large-d/hp)
+    Finished `release` profile [optimized] target(s) in 30m 04s
+📦 Built wheel for CPython 3.14 to /home/nathan/Source/choptuik-large-d/hp/dist/hpkernel-0.1.0-cp314-cp314-manylinux_2_34_x86_64.whl
+Processing ./dist/hpkernel-0.1.0-cp314-cp314-manylinux_2_34_x86_64.whl
+Installing collected packages: hpkernel
+Successfully installed hpkernel-0.1.0
+Collecting multidouble @ git+https://github.com/nmoinvaz/multidouble@f092018db2c449820ded3f62899ac4672b3440e5#subdirectory=python
+  Cloning https://github.com/nmoinvaz/multidouble (to revision f092018db2c449820ded3f62899ac4672b3440e5) to /tmp/pip-install-t3qkpg8u/multidouble_870fe2de90234e87b7342c9951a4d9b2
+  Running command git clone --filter=blob:none --quiet https://github.com/nmoinvaz/multidouble /tmp/pip-install-t3qkpg8u/multidouble_870fe2de90234e87b7342c9951a4d9b2
+  Running command git rev-parse -q --verify 'f092018db2c449820ded3f62899ac4672b3440e5^{commit}'
+  f092018db2c449820ded3f62899ac4672b3440e5
+  Running command git checkout -q f092018db2c449820ded3f62899ac4672b3440e5
+  Resolved https://github.com/nmoinvaz/multidouble to commit f092018db2c449820ded3f62899ac4672b3440e5
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Building wheels for collected packages: multidouble
+  Building wheel for multidouble (pyproject.toml): started
+  Building wheel for multidouble (pyproject.toml): finished with status 'done'
+  Created wheel for multidouble: filename=multidouble-0.1.0-cp314-cp314-linux_x86_64.whl size=1725711 sha256=649c60865b6b69bd309099865c96348b2f2db34b57567b5ddf806a29f8c239cd
+  Stored in directory: /home/nathan/.cache/pip/wheels/d4/e2/6e/3954fbf3686d5c7a332c4d1e16de616a65f76d0b8dbdf1ae28
+Successfully built multidouble
+Installing collected packages: multidouble
+Successfully installed multidouble-0.1.0
+hpkernel avx2 multidouble avx2
+exit 0
