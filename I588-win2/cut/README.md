@@ -61,3 +61,17 @@ s grows by **8.3 per odd harmonic** (geometric mean of 6.15, 9.67, 6.63 and 12.1
 
 **Predictions that failed, reported and not changed:** P2 and P3 (above), and kf 21's miss in P1 (4.1 times above its prediction: the model's fall-off below kf 22 does not exist, kf 21 and 22 being one cut).
 
+## Extension: s at kf 31 (2026-11-12 22:26:15 to 23:14:52 UTC)
+
+Approved by the coordinator at 22:24 UTC (recommendation 1 of the closing summary), prediction `predictions_kf31.json` committed at 61cb10ca (22:26 UTC) with no kf 31 record in the cache; analysis `analyze_kf31.py` (`--selftest` passes, `--mutate=control` makes Q3 fail: `mutate_control_kf31.txt`). 12 runs (10 shifted replicas, 2 controls), 360 determinants, 3 workers, 2912 s (`cut_588.py run --kfs 31`, `cut_588_kf31.log`; records appended to `cut_588.jsonl`). `analysis_kf31.txt`.
+
+| | s | prediction | verdict |
+|---|---|---|---|
+| s(31), 10 of 10 replicas resolved with winding +1 | **6.794e-4** | 7.3e-4 (band 2.4e-4 to 2.2e-3), ratio 0.93 | Q1 holds |
+| s(31) / s(29) | 7.70 | between 4 and 20 | Q2 holds |
+| controls a, b | equal bit for bit | equal | Q3 holds |
+| shifted replicas resolved | 10 of 10 | at least 9 | Q4 holds |
+| replicas' own estimate (median 6.7e-4) / s | 0.99 | between 0.25 and 4 | Q5 holds |
+
+The control's zero is 2.0438120 + 0.0001616i (its own estimate 4.4e-4), 2.8e-4 from lambda_phys, within s. **kf 31 is the first cut with s above 1e-4** (measured: s(29) = 8.83e-5, s(31) = 6.79e-4); kf 30 is kf 29 and kf 32 is kf 31 by #498. The ratios between neighbouring odd cuts are now 6.15, 9.67, 6.63, 12.15 and 7.70, geometric mean **8.19 per odd harmonic**, 36900 over the five steps from kf 21 to kf 31. An R 0.36 circle has six times these bars (4.1e-3 at kf 31).
+
