@@ -1,0 +1,4 @@
+# control of the script: the data command refuses a verdict file without VERDICT: PASS
+## data --verdict=fake_fail_verdict.txt, expected: refuses, exit 1
+fake_fail_verdict.txt does not say VERDICT: PASS; the real series is not read
+exit 1

@@ -1,0 +1,21 @@
+seeds per scenario [('T0', 100), ('T1', 100)]; planted noise 0.003, limit 0.014
+
+Share of seeds with the rms at most 0.014, and median rms, per variant:
+| scenario | degree | (a) H1 share (median) | (a) H2 share (median) | (b) H1 share (median) | (b) H2 share (median) |
+|---|---|---|---|---|---|
+| T0 | 2 | 0% (0.1782) | 0% (0.1559) | 0% (0.0594) | 0% (0.0538) |
+| T0 | 3 | 97% (0.0061) | 100% (0.0054) | 100% (0.0040) | 100% (0.0041) |
+| T0 | 4 | 76% (0.0095) | 86% (0.0074) | 99% (0.0038) | 100% (0.0040) |
+| T1 | 2 | 0% (0.1937) | 0% (0.1766) | 0% (0.0644) | 0% (0.0620) |
+| T1 | 3 | 32% (0.0162) | 35% (0.0153) | 100% (0.0046) | 100% (0.0051) |
+| T1 | 4 | 50% (0.0140) | 72% (0.0106) | 100% (0.0039) | 100% (0.0037) |
+
+Rules:
+- C1 (T0) (a), (b) cubic meet 0.014 in >= 80% of seeds, H1 and H2: pass (a) H1 97%, H2 100%; (b) H1 100%, H2 100%
+- S1 (T1) median (a) cubic H2 rms in [0.012, 0.017]: pass 0.0153
+- S2 (T1) (a) cubic H2 exceeds 0.014 in >= 35% of seeds: pass 65%
+- S3 (T1) (b) cubic median H2 rms >= 30% below (a)'s: pass 66% below (0.0051 against 0.0153)
+- S4 (T1) >= 40% of seeds with R above T0's 90th percentile: pass 47% (R90 of T0 1.30; medians T0 0.87, T1 1.26)
+- S5 (T1) median rho_hat in [0.049, 0.081]: pass 0.066
+
+VERDICT: PASS; T0 R90 1.297
