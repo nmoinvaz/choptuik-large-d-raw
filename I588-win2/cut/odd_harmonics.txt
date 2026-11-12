@@ -1,0 +1,12 @@
+| odd cut | spreads used (kf: s) | pooled s (geometric mean) | ratio to the previous odd cut |
+|---|---|---|---|
+| 21 | 21: 1.884e-08, 22: 1.803e-08 | 1.843e-08 |  |
+| 23 | 23: 1.235e-07, 24: 1.041e-07 | 1.134e-07 | 6.15 |
+| 25 | 25: 1.102e-06, 26: 1.091e-06 | 1.096e-06 | 9.67 |
+| 27 | 28: 7.268e-06 | 7.268e-06 | 6.63 |
+| 29 | 29: 8.828e-05 | 8.828e-05 | 12.15 |
+
+geometric mean of the four ratios between neighbouring odd cuts: 8.32 (range 6.15 to 12.15); s(29) / s(21) = 4790 over 4 odd steps = 8.32 a step
+hypothesis_pair.json: H1 s(28) / s(26) = 6.66 (criterion 3 to 15): holds
+hypothesis_pair.json: H2 s(29) / s(28) = 12.15 (H_pair 4 to 20; the smooth model 1.7 to 4.2): H_pair supported
+extrapolated by the same ratio: s(31) about 7.3e-04 (above 1e-4); s(29) = 8.83e-05 is below 1e-4
