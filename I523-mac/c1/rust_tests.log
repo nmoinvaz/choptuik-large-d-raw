@@ -1,0 +1,55 @@
+    Finished `release` profile [optimized] target(s) in 8m 03s
+     Running unittests src/lib.rs (/private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/11bcbd25-9376-453b-88d5-a7c6ad0172dd/scratchpad/i523/target/release/deps/_hpkernel-170bedd8132ca74e)
+
+running 23 tests
+HALPHA_ON against the default: residual 5.55e-32 (largest entry 4.47e-1), dd Jacobian 6.34e-30 (7.83e0), f64 Jacobian 7.87e-14 (7.83e0)
+test jvp_tests::halpha_control_bitwise_on_rounding_only ... ok
+HDD_BLOCK: horizon rows = dd hi true, other rows = f64 true; HDD_LASTSEG: horizon rows = dd hi false, rows outside the horizon block = f64 false; last segment rows = dd hi true, others = f64 true
+test jvp_tests::hdd_block_rows_are_dd ... ok
+jvp vs double-double Jacobian times v: 4.69e-30; with the Delta tangent x (1 + 1e-20): 3.67e-24
+test jvp_tests::jvp_matches_dd_jacobian ... ok
+test mode_tests::mode_matrix_at_rate_zero_is_the_jacobian_block ... ok
+test model::bench::bench_jac ... ignored
+mode matrix at 1.3 + i 2^-20: Im M / h against d Re M / d lr, relative 9.99e-14; control (horizon solves at the real factors) 3.67e0
+test mode_tests::mode_matrix_complex_rate_is_analytic ... ok
+octo-double vs quad-double: residual 2.0e-64, 24-order jet 6.7e-63, Jacobian 3.9e-63
+test osolve::tests::osolve_agrees_with_quad_double ... ok
+Jacobian vs central differences of the octo-double residual: 1.1e-83; horizon solves unrefined: 6.6e-4; quad-double Jacobian: 2.3e-63
+test osolve::tests::osolve_jacobian_matches_differences ... ok
+test osolve::tests::osolve_jet_resolves_sub_quad_double_changes has been running for over 60 seconds
+test osolve::tests::osolve_jet_sums_to_the_residual has been running for over 60 seconds
+jet order 1, change of 2^-300 in v: response error 3.0e-38 of J d; v read in quad-double: 9.4e-1; unrefined: 6.8e-2
+test osolve::tests::osolve_jet_resolves_sub_quad_double_changes ... ok
+octo-double jet summed vs the octo-double residual at n + h: h = 2^-6 6.0e-27, 2^-7 3.5e-34, 2^-8 4.2e-39; dimension frozen: 5.5e-3, 1.4e-3, 3.4e-4
+test osolve::tests::osolve_jet_sums_to_the_residual ... ok
+Jacobian, default refinement vs eight steps: 4.3e-129
+test osolve::tests::osolve_refinement_converged ... ok
+test osolve::tests::osolve_newton_converges has been running for over 60 seconds
+planted root from 1e-6, |z - z*| per step: 1.0e-6, 6.4e-8, 1.2e-14, 3.5e-28, 2.6e-55, 1.3e-109, 3.3e-128
+test osolve::tests::osolve_newton_converges ... ok
+test qd_residual::bench_qd_residual ... ignored
+QV vs DV, all blocks of the synthetic context: max relative difference 5.39e-32; with Delta x (1 + 1e-20): 9.03e-23
+test qd_residual::qv_lane_blocks_agree ... ok
+quad-double vs double-double: residual 5.5e-32, Jacobian 5.9e-31 (relative to the largest entry)
+test qsolve::tests::qsolve_agrees_with_double_double ... ok
+test osolve::tests::osolve_resolves_sub_quad_double_changes has been running for over 60 seconds
+Jacobian vs central differences of the quad-double residual: 1.5e-41; horizon solves unrefined: 6.6e-4
+test qsolve::tests::qsolve_jacobian_matches_differences ... ok
+change of 2^-300: response error 2.4e-40 of J d, Newton leaves 5.1e-38 of it; state read in quad-double: 6.4e-1, 2.6e25
+test osolve::tests::osolve_resolves_sub_quad_double_changes ... ok
+quad-double jet vs double-double jet, 24 orders: 1.1e-30 (relative to max(1, |F_k|))
+test qsolve::tests::qsolve_jet_agrees_with_double_double_jet ... ok
+jet order 1, change of 2^-180 in v: response error 7.5e-9 of J d; v read in double-double: 9.4e-1; unrefined: 6.8e-2
+test qsolve::tests::qsolve_jet_resolves_sub_double_double_changes ... ok
+quad-double jet summed vs the quad-double residual at n + h: h = 2^-6 6.0e-27, 2^-7 3.5e-34, 2^-8 4.2e-39; dimension frozen: 5.5e-3, 1.4e-3, 3.4e-4
+test qsolve::tests::qsolve_jet_sums_to_the_residual ... ok
+Jacobian, default refinement vs four steps: 3.3e-63
+test qsolve::tests::qsolve_refinement_converged ... ok
+planted root from 1e-6, |z - z*| per step: 1.0e-6, 6.4e-8, 1.2e-14, 3.5e-28, 2.6e-55, 3.5e-62
+test qsolve::tests::qsolve_newton_converges ... ok
+change of 2^-180: response error 1.6e-11 of J d, Newton leaves 8.9e-8 of it; state read in double-double: 1.0e0, 1.0e0
+test qsolve::tests::qsolve_resolves_sub_double_double_changes ... ok
+
+test result: ok. 21 passed; 0 failed; 2 ignored; 0 measured; 0 filtered out; finished in 254.72s
+
+exit 0
