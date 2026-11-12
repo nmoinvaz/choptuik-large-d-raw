@@ -117,3 +117,14 @@ step 10: D 211.13125, pivots 8.0e-15..5.9e+29, |z_1| 4.50e-04, |z_N| 2.52e-30, r
       elim projections {'u0': 0, 'u0q': 0, 'ladder': 0, 'failed': 0, 'skipped': 3}
       octo-double Newton: 3 steps, max|F| 1.2e-91, converged; double-double |F| of its first two parts 1.4e+01
     a -0.500 -> D 210.63125: predicted |F| 1.40e+01, od 3 steps -> 1.40e+01 (tol 1.3e-21, stall accepted, Delta correction +0.0e+00), Delta 1.692536169148 (formula diff -1.3e-06), moved 4.8e-35, 47 s
+step 11: D 210.63125, pivots 1.3e-14..4.9e+29, |z_1| 4.52e-04, |z_N| 2.43e-30, ratios 2-5 268.9 242.4 231.2 225.9, a_max 3.416, 367 s
+    a -0.5000: re-seeded (ok), 13.45 s
+      horizon data refined in octo-double, rung max|R| 4.80e-32 -> 3.62e-66 -> 2.70e-75 -> 5.02e-82
+      saved the start and first step as dz0_pin3_D210.1312_a-0.500000.npz
+  on 0: |F| 1.55e-35 -> 1.36e-41, |dz| 1.6e-35 -> 1.6e-63, lam 1, dDelta +1.05e-38, piv 1.1e-14..4.1e+29, 15.85 s
+  on 1: |F| 1.36e-41 -> 6.11e-86, |dz| 1.6e-63 -> 1.8e-70, lam 1, dDelta -4.82e-64, piv 1.1e-14..4.1e+29, 15.87 s
+  on 2: |F| 6.11e-86 converged, Delta 1.69265050059253341 +3.9544e-17
+      elim projections {'u0': 0, 'u0q': 0, 'ladder': 0, 'failed': 0, 'skipped': 3}
+      octo-double Newton: 3 steps, max|F| 6.1e-86, converged; double-double |F| of its first two parts 1.1e+01
+    a -0.500 -> D 210.13125: predicted |F| 1.08e+01, od 3 steps -> 1.08e+01 (tol 1.1e-21, stall accepted, Delta correction +0.0e+00), Delta 1.692650500593 (formula diff -1.3e-06), moved 9.6e-35, 47 s
+done

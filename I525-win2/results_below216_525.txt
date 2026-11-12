@@ -1,0 +1,39 @@
+12 new states D 210.1312 to 215.6312
+
+(A) periods in the new states alone (scan from 1.1, 1000-trial null test)
+| series | trend | period (interval) | amplitude | rms | null fraction | chirp extrapolation | stays at low half | rule |
+|---|---|---|---|---|---|---|---|---|
+| sigma_1 | quadratic | 2.440 (2.425 to 2.455) | 0.111 +- 0.004 | 0.0059 | 0.0% | 2.377 | 2.525 | meets |
+| sigma_1 | line | 2.455 (2.425 to 2.490) | 0.119 +- 0.007 | 0.0139 | 0.0% | 2.377 | 2.525 | meets |
+| sigma_2 | quadratic | 2.425 (2.415 to 2.440) | 0.111 +- 0.003 | 0.0049 | 0.0% | 2.377 | 2.525 | meets |
+| sigma_2 | line | 2.400 (2.360 to 2.440) | 0.102 +- 0.008 | 0.0143 | 0.0% | 2.377 | 2.525 | meets |
+| sigma_3 | quadratic | 2.130 (2.125 to 2.140) | 0.131 +- 0.003 | 0.0050 | 0.0% | 2.139 | 2.165 | meets |
+| sigma_3 | line | 2.080 (2.055 to 2.100) | 0.127 +- 0.009 | 0.0165 | 0.0% | 2.139 | 2.165 | meets |
+| sigma_4 | quadratic | 2.140 (2.135 to 2.145) | 0.130 +- 0.003 | 0.0044 | 0.0% | 2.109 | 2.160 | meets |
+| sigma_4 | line | 2.180 (2.160 to 2.200) | 0.135 +- 0.008 | 0.0139 | 0.0% | 2.109 | 2.160 | does not meet |
+
+acceptance of #525 part 3 (ln sigma_1, quadratic trend, within 0.1 of 2.377, interval below 2.525, null fraction below 1%): pass
+
+(B) the chirp fitted to the 39 states D >= 216.13, extrapolated down to the new states
+| series | trend | chirp P0, p1 | chirp prediction rms (a) | chirp (b) | p1 = 0: P | p1 = 0 prediction rms (a) | p1 = 0 (b) |
+|---|---|---|---|---|---|---|---|
+| sigma_1 | degree 2 | 2.62, +0.016 | 0.0357 | 0.0230 | 2.60 | 0.0762 | 0.0699 |
+| sigma_1 | degree 3 | 2.62, +0.016 | 0.0244 | 0.0231 | 2.60 | 0.0767 | 0.0705 |
+| sigma_2 | degree 2 | 2.62, +0.016 | 0.0338 | 0.0221 | 2.60 | 0.0760 | 0.0722 |
+| sigma_2 | degree 3 | 2.62, +0.016 | 0.0225 | 0.0213 | 2.60 | 0.0776 | 0.0714 |
+| sigma_3 | degree 2 | 2.20, +0.004 | 0.1172 | 0.0227 | 2.19 | 0.1234 | 0.0457 |
+| sigma_3 | degree 3 | 2.20, +0.006 | 0.0513 | 0.0145 | 2.19 | 0.0596 | 0.0446 |
+| sigma_4 | degree 2 | 2.20, +0.006 | 0.1073 | 0.0221 | 2.19 | 0.1171 | 0.0496 |
+| sigma_4 | degree 3 | 2.20, +0.006 | 0.0238 | 0.0157 | 2.19 | 0.0508 | 0.0420 |
+
+(C) the chirp refitted to all 51 states D 210.13 to 237.13
+| series | trend | P0 (D 228) | p1 | period at D 213 | rms residual |
+|---|---|---|---|---|---|
+| sigma_1 | degree 2 | 2.62 | +0.014 | 2.410 | 0.0087 |
+| sigma_1 | degree 3 | 2.62 | +0.014 | 2.410 | 0.0069 |
+| sigma_2 | degree 2 | 2.62 | +0.014 | 2.410 | 0.0077 |
+| sigma_2 | degree 3 | 2.62 | +0.014 | 2.410 | 0.0064 |
+| sigma_3 | degree 2 | 2.20 | +0.004 | 2.140 | 0.0254 |
+| sigma_3 | degree 3 | 2.20 | +0.006 | 2.110 | 0.0091 |
+| sigma_4 | degree 2 | 2.20 | +0.006 | 2.110 | 0.0223 |
+| sigma_4 | degree 3 | 2.20 | +0.004 | 2.140 | 0.0085 |
