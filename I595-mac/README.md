@@ -14,6 +14,7 @@ Code: main d020d58's `hp/anm_run.py` (its od gate, 62bc52a) for the polishes, `-
 | `polish_c2_s225`, `polish_main_s225` | D 225.1312, both converged (4.2e-95, 3.2e-64) | 0 |
 | `polish_c2_s235` | D 235.1312 on cadcaf1, converged (1.5e-94) | 0 |
 | `polish_main_s235` | D 235.1312 control: step 0 dDelta -2.60e-14 at lam 1, then lam 1/2 steps halving max\|F\| (1.27e-27 -> 1.59e-28, dDelta <= 4e-27); stopped by me after 4 steps with Delta settled to 1e-26 | stopped |
+| `polish_c2_s240` | D 240.0258 on cadcaf1: step 0 at lam 1 (max\|F\| 1.62e-34 -> 4.48e-20, \|dz\| 3.7e-10 -> 8.1e-16, dDelta -2.04e-10), step 1 accepted only at lam 1/256 (4.46e-20, \|dz\| 8.1e-16 -> 8.1e-16): stalled, stopped by me after 2 steps; its control on main's wheel not run (`run_562d.sh`) | stopped |
 | `delta_diff_s215.log`, `delta_diff_s225.log`, `delta_diff_s235.log` | the exact Delta differences | 0 |
 
 Results are on #595.
