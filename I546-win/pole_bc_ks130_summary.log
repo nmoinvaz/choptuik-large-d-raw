@@ -1,0 +1,13 @@
+per state: C = b (n - 1) on 13.6's grid; s = d ln R / d ln(1/delta) on the full grid, ± its standard error
+       D  C_R136     C_a     C_b     C_B     C_C     C_p     C_m   C_new          s_R136           s_new s_new/s_R136 s_B/s_R136
+ 50.0075   0.926   0.906   0.899   0.913   0.911   0.926   0.934   0.917   0.1842±0.0369   0.1832±0.0364        0.994      0.985
+ 55.0351   0.913   0.912   0.909   0.914   0.912   0.913   0.921   0.909   0.1725±0.0279   0.1719±0.0278        0.996      0.993
+ 60.0020   0.907   0.917   0.917   0.911   0.912   0.907   0.915   0.899   0.1639±0.0225   0.1629±0.0226        0.994      0.994
+where-test at D < 100 (B and x - c summed to u1 ~ 0.95 R; zeros extrapolated with the mass mode), per delta:
+  delta 1e-08: states 3, B(u1) 0.929-0.945, max x-c(u1) -0.146--0.131, sonic/R_new 1.024-1.034, AH/R_new 1.091-1.112, max |R_v/R136 - 1| over p, m, B, C 0.010, summation change 1.0e-06
+  delta 1e-07: states 3, B(u1) 0.937-0.946, max x-c(u1) -0.124--0.106, sonic/R_new 1.040-1.043, AH/R_new 1.129-1.146, max |R_v/R136 - 1| over p, m, B, C 0.018, summation change 9.9e-07
+  delta 1e-06: states 3, B(u1) 0.884-0.936, max x-c(u1) -0.093-0.085, sonic/R_new 1.029-1.045, AH/R_new 1.172-1.182, max |R_v/R136 - 1| over p, m, B, C 0.068, summation change 1.5e-02
+  delta 1e-05: states 3, B(u1) 0.937-0.947, max x-c(u1) -0.068--0.053, sonic/R_new 1.048-1.070, AH/R_new 1.258-1.276, max |R_v/R136 - 1| over p, m, B, C 0.035, summation change 1.7e-06
+  delta 1e-04: states 3, B(u1) 0.926-0.953, max x-c(u1) -0.032--0.022, sonic/R_new 1.046-1.068, AH/R_new 1.391-1.456, max |R_v/R136 - 1| over p, m, B, C 0.041, summation change 1.8e-04
+  delta 1e-03: states 3, B(u1) 0.957-0.969, max x-c(u1) -0.013--0.011, sonic/R_new 1.081-1.166, AH/R_new 1.911-2.154, max |R_v/R136 - 1| over p, m, B, C 0.010, summation change 8.8e-06
+  delta 1e-02: states 3, B(u1) 0.924-0.953, max x-c(u1) 0.011-0.037, sonic/R_new 0.021-0.330, AH/R_new 2.789-4.706, max |R_v/R136 - 1| over p, m, B, C 0.022, summation change 0.0e+00
