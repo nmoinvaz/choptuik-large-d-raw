@@ -6,3 +6,11 @@
   start D 60.001952 grid 32x115 L 12993: 4 Newton steps, max|F| 7.0e-14 -> 1.7e-42, products [61, 80, 82, 64], mu 0.129308021083213, Delta 1.8098842579940920047 (xi=1: 1.809884257994092), hp 1.809884258001715, diff -7.62e-12, LU pivot ratio 3.0e+15, J 92 s, LU 45 s, Newton 1000 s (rebuilds 0, 0 s)
   CHECK D = 60.001952 grid 32x115: |Delta_RT - Delta_hp| = 7.62e-12 > 1e-12 FAIL
 == exit 1
+== 2026-11-12 17:21:36 UTC  start C:\Users\nathan\Source\choptuik-large-d-raw\I145-mac\fol\fol_32x121_D54.9961_32x121.npz (D 54.996085, 32x121) D_start 54.996085 grids [(32, 115)] solver mp prec 192 mutate None horizon 0
+    newton_mp it 0: max|F| 1.133e-13 -> 7.304e-26, 59 products to 8.6e-40, step 1, max|dz| 5.3e-14, 220.49 s (products 149.4 s, precond 45.0 s)
+    newton_mp it 1: max|F| 7.304e-26 -> 8.031e-23, 76 products to 9.2e-38, step 1, max|dz| 1.5e-12, 261.15 s (products 173.1 s, precond 52.2 s)
+    newton_mp it 2: max|F| 8.031e-23 -> 7.764e-21, 75 products to 7.2e-31, step 1, max|dz| 8.8e-12, 243.28 s (products 161.3 s, precond 48.2 s)
+    newton_mp it 3: max|F| 7.764e-21 -> 4.617e-41, 64 products to 3.3e-31, step 1, max|dz| 1.6e-21, 207.17 s (products 139.3 s, precond 42.2 s)
+  start D 54.996085 grid 32x115 L 12993: 4 Newton steps, max|F| 1.1e-13 -> 4.6e-41, products [59, 76, 75, 64], mu 0.129247570026259, Delta 1.8243943371873388635 (xi=1: 1.824394337187339), hp 1.824394337272626, diff -8.53e-11, LU pivot ratio 6.1e+15, J 73 s, LU 44 s, Newton 932 s (rebuilds 0, 0 s)
+  CHECK D = 54.996085 grid 32x115: |Delta_RT - Delta_hp| = 8.53e-11 > 1e-12 FAIL
+== exit 1

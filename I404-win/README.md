@@ -52,3 +52,23 @@ Delta_RT - Delta_hp of the two roots on each grid, their spread, and the pair te
 **Against the Mac's #164 at 32x99** (a different machine, Python 3.13): start a -3.46e-13 here, -3.45e-13 there; start b -1.80e-12 here, -2.70e-13 there. The two starts-a roots agree to 1e-15, the starts-b roots differ by 1.5e-12, about the size of the root family's own spread at this N; rounding in the f64 preconditioner (and the exact `fma` I supply) can select another member of it.
 
 **Controls at D 60.001952, on the best grid (32x99)** (`fit/control_*_32x99_D60.0020.log`): `rt_grids.py --mutate=shift` (2 tol added to root b's Delta) exits **1** at `--tol 1e-11`, where the unmutated check exits **0** (at 1e-14 or 1e-12 the grid fails by itself, so the mutation could not be told from it); `rt_roots.py --mutate=mid` exits **1** (its planted pair check gives relative error 2.0e11 and fails); `rt_roots.py --mutate=same` exits 1; the unmutated `rt_roots.py` planted checks pass (exit 0) for all seven pairs.
+
+## D 54.996085 (queue 16:55:15 to 18:16:48 UTC, 4894 s; analysis 18:18 UTC)
+
+All 14 solves converged on their first run (no restart, no crash; the launcher and the stand-in `resource.py` of the D 60 section were in place). Same table as above, `fit/summary_D54.9961.md`, `fit_analysis_D54.9961.txt`, `fit/verdict_32xN_D54.9961.log`, `fit/roots_32xN_D54.9961.log` (the planted checks pass for all seven pairs):
+
+| N | root a - hp | root b - hp | spread a - b | E(N) | max abs(z_b - z_a) | max abs(B(e,e)) / max abs(e) | Newton steps a, b | seconds a, b | peak GB a, b |
+|---|---|---|---|---|---|---|---|---|---|
+| 99 | -3.75e-14 | -1.64e-14 | -2.11e-14 | 3.75e-14 | 1.660e-15 | 3.3e-14 | 4, 4 | 665, 685 | 1.2, 1.2 |
+| 103 | -6.91e-14 | -7.49e-14 | +5.78e-15 | 7.49e-14 | 4.256e-16 | 9.5e-16 | 4, 4 | 734, 730 | 1.29, 1.28 |
+| 107 | +5.44e-12 | -6.20e-13 | +6.06e-12 | 5.44e-12 | 4.388e-13 | 5.3e-13 | 4, 4 | 904, 886 | 1.37, 1.38 |
+| 111 | +8.19e-14 | -6.93e-12 | +7.01e-12 | 6.93e-12 | 4.693e-13 | 5.2e-12 | 4, 4 | 980, 1009 | 1.47, 1.47 |
+| 115 | -4.46e-11 | -8.53e-11 | +4.07e-11 | 8.53e-11 | 4.751e-12 | 1.6e-09 | 6, 4 | 1603, 1050 | 1.59, 1.56 |
+| 119 | -9.89e-12 | -2.33e-10 | +2.23e-10 | 2.33e-10 | 1.688e-11 | 1.3e-10 | 4, 4 | 1162, 1153 | 1.67, 1.67 |
+| 123 | +5.65e-11 | -1.21e-09 | +1.26e-09 | 1.21e-09 | 9.781e-11 | 1.3e-09 | 4, 8 | 1055, 1995 | 1.77, 3.3 |
+
+**Verdict at D 54.996085: the ladder stops falling at N_s = 99**: E(99) = 3.75e-14, spread 2.11e-14, both roots below hp (signs --); E(103) = 7.49e-14 is larger and beyond it E grows to 1.21e-09. No grid passes `rt_grids.py --tol 1e-14` (the best, 32x99, is 3.75e-14 and 1.64e-14 from hp with a spread of 2.11e-14, a factor 2 to 4 above the bound). (At D 60.001952 the best grid was at 1.8e-12.)
+
+**Pair test.** At N = 99 and 103 the two roots are not told apart: |z_b - z_a| is 1.7e-15 and 4.3e-16, and the pair test says the rise of the residual between them is "hidden by the residual floor", so at these N the two starts reach one root (the spreads 2.1e-14 and 5.8e-15 are the Delta uncertainty of that root at the residual floor, with hp's own error 2e-15). From N = 107 the two are distinct (the residual rises between them), |z_b - z_a| from 4.4e-13 (107) to 9.8e-11 (123): the degeneracy sets in between 103 and 107 at D 54.996, against already at 99 at D 60.
+
+**Against the earlier results at this D.** #164 (the other family N = 3 mod 4 up to 97, both starts agreeing to 2e-14): 95 -5.46e-13, 97 +1.25e-13; here 99 is -3.75e-14 and -1.64e-14, so the ladder 95, 97, 99 is -5.5e-13, +1.3e-13, -3e-14 (not monotone in sign, falling in size), and 103 (-7e-14) does not continue the fall. #145's 32x101 (N = 1 mod 4) was -2.1e-14 at this D. Cost: 665 to 1162 s per solve for N 99 to 119 (four at once), up to 2002 s for the ones that needed 6 or 8 Newton steps (115a, 123b).
