@@ -6,10 +6,8 @@ Every circle is one process, one thread, below-normal priority, with its own emp
 
 ## Results (2026-11-12 07:52:04 to 08:38:30 UTC)
 
-28 circles, one process and one thread each, below-normal priority, up to 18 at once: stage 1 (18 circles, 07:52 to 08:21) and stage 2 (10 circles of R 0.06, 08:26 to 08:38). All 28 exited 0, all resolved, none reached the 150-point cap (stage 1: 31 to 63 determinants, 12 to 29 min a circle; stage 2: 30 determinants, 12 min). A determinant takes 27 s (median, max 36 s) on one thread: 1069 determinants, about 8 h of single-thread time in 46 min of wall time. Per-circle records: `<circle>/res.jsonl`, `<circle>/stdout.log`, `jobs_status.jsonl`; the table below is `results_summary_573.txt` (`summ_57x.py`).
+28 circles, one process and one thread each, below-normal priority, started by `drive_57x.py` (at most 18 at once across #573 and #574). Stage 1 is 18 circles of R 0.36 (07:52 to 08:21, 15.5 to 28.8 min a circle, 31 to 63 determinants), stage 2 is 10 circles of R 0.06 on the zeros stage 1 found (08:26 to 08:38, 12 min a circle, 30 determinants). All 28 exited 0, all resolved, none reached the 150-point cap (`jobs_status.jsonl` has every start and exit). A determinant takes 27.0 s on one thread (median, 17 to 36 s): 1069 determinants, 8.1 h of single-thread time in 46 min of wall time. The table is `results_summary_573.txt` (`summ_57x.py`), the per-circle records are `<circle>/res.jsonl` and `stdout.log`. The estimates in brackets are each circle's own range of the zero position, not bounds.
 
-
-== I573-win2
 | circle | state | evals so far | winding | points | resolved | max step | zeros inside (estimate) |
 |---|---|---|---|---|---|---|---|
 | k22_ctl_re2.55_im+0.25 | done | 32 | +1.0000 | 30 | yes | 0.390 | 2.689693 +0.476118i (2e-03) |
@@ -41,18 +39,30 @@ Every circle is one process, one thread, below-normal priority, with its own emp
 | k25_z_re2.4727_im-0.5755 | done | 30 | +1.0000 | 28 | yes | 0.355 | 2.472511 -0.575721i (2e-06) |
 | k25_z_re2.9040_im+0.2433 | done | 30 | +1.0000 | 28 | yes | 0.351 | 2.903469 +0.242777i (1e-05) |
 
+**Coverage.** The four stage-1 circles of R 0.36 at Re 1.85, 2.35 and Im +-0.25, +-0.75 leave no point of the rectangle 1.6 <= Re <= 2.6, |Im| <= 1.0 farther than 0.3536 (= 0.5/sqrt(2)) from a centre, against R 0.36 (a 0.001 grid, `coverage_57x.py`, whose `--selftest` shows a dropped circle or R 0.35 leaving points uncovered), so every zero of the rectangle lies in at least one circle, at each cut.
+
+**Zeros of the rectangle** (the conjugate of each complex zero was circled too and agrees to 5e-6; the exception is the kf 22 zero at 2.69, outside the rectangle, circled in the upper half-plane only):
+
+| cut | real zero | pair near 1.9 | pair near 2.4 |
+|---|---|---|---|
+| kf 22 | 2.043533 (2e-8) | 2.086880 +- 0.989734i (1e-7) | outside: the zero is at 2.689714 + 0.476098i (1e-7), Re above 2.6 |
+| kf 25 | 2.043531 - 0.000001i (3e-6) | 1.948891 +- 0.943590i (5e-6) | 2.472506 + 0.575722i, 2.472511 - 0.575721i (6e-6, 2e-6) |
+
+(The kf 22 state is #244's, whose kf 22 equals kf 21: `plow_odd(M, 22)` and `plow_odd(M, 21)` project on the same odd harmonics, per #244's closing summary.)
+
 **Acceptance.**
 
-1. *The windings above and below are equal, and each zero found has a +1 circle: met.* Stage 1: kf 22 at Re 1.85: Im +0.25 and -0.25 both +1 (zero 2.0446), Im +0.75 and -0.75 both +1 (zero 2.0845 +- 0.9868i); at Re 2.35: Im +-0.25 both 0, Im +-0.75 both +1 (zero 2.0979 +- 0.9895i). kf 25: Re 1.85: Im +-0.25 both +1 (zero 2.0446), Im +-0.75 both +1 (1.9489 +- 0.9436i); Re 2.35: Im +-0.25 both +1 (2.4792 +- 0.5777i), Im +-0.75 both +1 (2.4727 +- 0.5755i). Stage 2 gave every zero found a circle of R 0.06 (one per zero, positions closer than 0.03 taken as one, the best estimate used; the conjugate partner was circled where stage 1 found it), and all ten wind +1, resolved, with positions to 1e-7 to 1e-5.
-2. *The control re-finds the box's pair at that cut: met.* kf 22: the control at 2.55 + 0.25i winds +1 with the zero 2.689714 + 0.476098i (stage 2, estimate 1e-7), against #244's own circle at kf 22, 2.689664 + 0.475823i (its estimate 2.9e-3): they differ by 5e-5 and 2.8e-4. kf 25: the control at 2.75 + 0.25i winds +1 with 2.903469 + 0.242777i (1e-5), against #447's 2.90346 + 0.24278i: they differ by 1e-5 and 3e-6.
-3. *The pairs found per cut, and whether 2.3966 +- 0.5476i and 1.9035 +- 0.9107i move with the cut.*
+1. *The windings above and below are equal, and each zero found has a +1 circle: met.* Every stage-1 circle and its mirror agree: kf 22 at Re 1.85, Im +-0.25 both +1 (the real zero), Im +-0.75 both +1 (2.0869 +- 0.9897i); at Re 2.35, Im +-0.25 both 0, Im +-0.75 both +1 (the same pair, 0.356 from the centre); kf 25 at Re 1.85, Im +-0.25 both +1 (real), Im +-0.75 both +1 (1.9489 +- 0.9436i); at Re 2.35, Im +-0.25 both +1 and Im +-0.75 both +1 (2.4725 +- 0.5757i, 0.352 from the first centres). Each of the ten zeros that stage 1 located got a circle of R 0.06 (positions of one cut closer than 0.03 taken as one zero), all ten wind +1 and resolve, with the positions above (2e-8 to 1e-5).
+2. *The control re-finds the box's pair at that cut: met.* At kf 22 the control at 2.55 + 0.25i winds +1 and its zero, 2.689714 + 0.476098i (R 0.06 circle, 1e-7), is #244's zero 3, 2.689664 + 0.475823i (its estimate 2.9e-3): 5e-5 and 2.8e-4 apart, inside that estimate. At kf 25 the control at 2.75 + 0.25i winds +1 and its zero, 2.903469 + 0.242777i (1e-5), is #447's box pair, 2.903462 + 0.242781i (4.3e-6): 7e-6 and 4e-6 apart.
+3. *The pairs per cut, and whether 2.3966 +- 0.5476i and 1.9035 +- 0.9107i move with the cut: yes, both move.* They are #244's zeros 2 and 3, and the positions at kf 22 and 25 here agree with #244's own (zero 2: 1e-6 and 0 at kf 22, 0 at kf 25; zero 3: 5e-5 and 2.8e-4 at kf 22, inside #244's estimate of 2.9e-3, and 2e-6 and 5e-6 at kf 25):
 
-| cut | real zero | pair near 1.9 (kf 27: 1.9035 +- 0.9107i, #507, #574) | pair near 2.4 (kf 27: 2.3966 +- 0.5476i, #507) | the box's pair |
+| zero | kf 22 (= kf 21) | kf 23 (#244) | kf 25 | kf 27 (#507) |
 |---|---|---|---|---|
-| kf 27 | (not in these columns) | 1.9035 +- 0.9107i (#574: 1.903548 + 0.910715i) | 2.3966 +- 0.5476i | #472's pair |
-| kf 25 | 2.043531 | 1.948891 +- 0.943590i | 2.472506 +- 0.575722i | 2.903469 +- 0.242777i |
-| kf 22 | 2.043533 | 2.086880 +- 0.989734i | none found | 2.689714 +- 0.476098i |
+| pair near 1.9 | 2.086880 +- 0.989734i | 2.0073 + 0.9727i | 1.948891 +- 0.943590i | 1.903566 + 0.910707i, 1.9035 +- 0.9107i (#574: 1.903548 + 0.910715i) |
+| pair near 2.4 | 2.689714 + 0.476098i (upper half only) | 2.5584 + 0.5825i | 2.472506 + 0.575722i, its conjugate | 2.396619 + 0.547672i, 2.3966 +- 0.5476i |
 
-(With +- the conjugate was found as well: both pairs at kf 25, the pair near 1.9 at kf 22; the box's pair was circled in the upper half-plane only.) **Both pairs move with the cut.** The pair near 1.9 goes from 1.9035 + 0.9107i (kf 27) to 1.9489 + 0.9436i (kf 25), a shift of (+0.0454, +0.0329), and to 2.0869 + 0.9897i (kf 22), a further (+0.138, +0.046), the kf 22 position being #244's own 2.086881 + 0.989734i. The pair near 2.4 goes from 2.3966 + 0.5476i (kf 27) to 2.4725 + 0.5757i (kf 25), a shift of (+0.0759, +0.0281) (the position of notes/MODE_COUNT.md's 2.4725 + 0.5757i). At kf 22 no zero is found near it: the circles at 2.35 +- 0.25i (R 0.36) wind 0, and the circles at 2.35 +- 0.75i find only the 2.0869 zero, so that pair has left the region the circles cover (1.99 < Re < 2.71, |Im| up to 1.11) or merged with another, and I have not located it. The real zero 2.0435 does not move: 2.043533 at kf 22 and 2.043531 at kf 25 (2e-6). The box's pair moves too (2.9035 + 0.2428i at kf 25, 2.6897 + 0.4761i at kf 22). So the zero pairs of #507 belong to the cut, like the pairs inside the box (#472), and are not separate from it.
+Re falls with kf at each, 2.0869, 2.0073, 1.9489, 1.9035 and 2.6897, 2.5584, 2.4725, 2.3966. Im of the first falls too (0.9897, 0.9727, 0.9436, 0.9107), and Im of the second is 0.4761, 0.5825, 0.5757, 0.5476. So neither pair is a cut-independent zero. The pair near 2.4 is at 2.69 at kf 22, outside the column 1.6 < Re < 2.6, which is why the kf 22 stage 1 of the column finds only the real zero and 2.0869 +- 0.9897i. Its conjugate at kf 22 was not circled here (nor in #244). The real zero moves little: 2.043533 and 2.043531 - 0.000001i here, 2.043532 and 2.043535 + 0.000004i in #244 (kf 22 and 25).
 
-**Checks and notes.** The cap of 150 points is enforced by the driver, since `modecount_circle.py` has none; no circle came near it. The determinants were computed on Windows and may differ from macm3's in their last bits (libm pow); the windings and the controls are what count. The offline build of `hp/modecount_cx` needed one online `cargo fetch` (see the top). The circles use the state's `--kf=K` and the seed `up23_D61.0264.npz`, M 48, `--fmax=1e-15`, n0 20; each log line starts with the state's |F| (1.3e-19 at kf 22).
+**Discrepancy.** At kf 25 the real zero here, 2.043531 - 0.000001i (3e-6), and #244's, 2.043535 + 0.000004i (9.5e-7), are 4e-6 apart in Re and 5e-6 in Im, a little more than the two estimates added (4e-6). Not explained; both are under #244's stop rule of 1e-5.
+
+**Notes.** The cap of 150 points is enforced by the driver (`modecount_circle.py` has none); no circle came near it. The determinants were computed on Windows and may differ from macm3's in their last bits (libm `pow`), which the windings and the controls do not depend on. The circle log header carries the state's |F|: 1.3e-19 at kf 22 (#244 gives 1.3e-19 at both cuts). The offline build of `hp/modecount_cx` needed one online `cargo fetch --locked` (see the top). All four rows of stage 1 (Im +0.25, +0.75, -0.25, -0.75) were run, so the lower half of the rectangle is covered by circles, and the three conjugate pairs of R 0.06 circles agree to 5e-6 (kf 22 exactly at 6 digits).
