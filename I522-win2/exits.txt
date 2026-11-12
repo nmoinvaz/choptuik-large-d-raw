@@ -34,3 +34,14 @@ attempt_D225.1312 start 2026-11-12 00:20:44 UTC at 14dc386 from I461-win2/crawlG
 eq_D222.6312 exit 0 2026-11-12 00:20:46 UTC
 attempt_D226.1312 start 2026-11-12 00:20:46 UTC at 14dc386 from I461-win2/crawlG/anm_pin3_D226.1312.npz a 0.5
 eq_D223.6312 exit 0 2026-11-12 00:20:47 UTC
+attempt_D225.1312 anm_run exit 0 2026-11-12 00:40:37 UTC
+eq_D225.6312 start 2026-11-12 00:40:37 UTC from attempt_D225.1312
+attempt_D224.1312 anm_run exit 0 2026-11-12 00:40:42 UTC
+eq_D224.6312 start 2026-11-12 00:40:42 UTC from attempt_D224.1312
+attempt_D226.1312 anm_run exit 0 2026-11-12 00:41:01 UTC
+eq_D226.6312 start 2026-11-12 00:41:02 UTC from attempt_D226.1312
+eq_D225.6312 exit 0 2026-11-12 00:44:39 UTC
+eq_D224.6312 exit 0 2026-11-12 00:44:43 UTC
+eq_D226.6312 exit 0 2026-11-12 00:45:00 UTC
+control eq_D221.6312 --mutate=rows_only start 2026-11-12 00:45:00 UTC
+control eq_D221.6312 --mutate=rows_only exit 1 (must be nonzero) 2026-11-12 00:48:48 UTC

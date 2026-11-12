@@ -133,7 +133,12 @@ if __name__ == "__main__":
     trials = int(sys.argv[sys.argv.index("--trials") + 1]) if "--trials" in sys.argv else 1000
     if "--selftest" in sys.argv:
         sys.exit(selftest())
-    pts = a21.collect()
+    if "--with-half-units" in sys.argv:       # also the eleven half-unit states D 216.63 to 226.63 of this task (39 distinct D)
+        sys.path.insert(0, HERE)
+        import halfunit_522 as h522
+        pts = h522.collect()
+    else:
+        pts = a21.collect()
     Ds = sorted(d for d in pts if d <= 237.2)
     D = np.array(Ds)
     Y = np.array([np.mean(pts[d], axis=0) for d in Ds])

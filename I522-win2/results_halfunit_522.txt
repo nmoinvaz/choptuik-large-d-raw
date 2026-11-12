@@ -1,0 +1,17 @@
+23 distinct D in 216 to 227.2 (216.1312 to 227.1312); spacings [np.float64(0.5)]
+  ln sigma_1 (a) line + sinusoid: N 23, P = 2.470 (2.410 to 2.540), amplitude 0.0926 +- 0.0198 (ratio 4.7), rms residual 0.0579, null fraction 1.8% (scan from 1.1)
+  ln sigma_1 (c) quadratic + sinusoid: N 23, P = 2.525 (2.520 to 2.530), amplitude 0.1098 +- 0.0025 (ratio 43.6), rms residual 0.0071, null fraction 0.0% (scan from 1.1)
+  ln sigma_2 (a) line + sinusoid: N 23, P = 2.545 (2.510 to 2.585), amplitude 0.1303 +- 0.0197 (ratio 6.6), rms residual 0.0586, null fraction 0.0% (scan from 1.1)
+  ln sigma_2 (c) quadratic + sinusoid: N 23, P = 2.525 (2.520 to 2.530), amplitude 0.1111 +- 0.0027 (ratio 41.5), rms residual 0.0075, null fraction 0.0% (scan from 1.1)
+  ln sigma_3 (a) line + sinusoid: N 23, P = 2.145 (2.115 to 2.180), amplitude 0.1476 +- 0.0244 (ratio 6.1), rms residual 0.0737, null fraction 0.1% (scan from 1.1)
+  ln sigma_3 (c) quadratic + sinusoid: N 23, P = 2.165 (2.160 to 2.165), amplitude 0.1288 +- 0.0022 (ratio 57.8), rms residual 0.0065, null fraction 0.0% (scan from 1.1)
+  ln sigma_4 (a) line + sinusoid: N 23, P = 2.210 (2.140 to 2.280), amplitude 0.1104 +- 0.0252 (ratio 4.4), rms residual 0.0760, null fraction 3.2% (scan from 1.1)
+  ln sigma_4 (c) quadratic + sinusoid: N 23, P = 2.160 (2.160 to 2.165), amplitude 0.1273 +- 0.0024 (ratio 53.7), rms residual 0.0069, null fraction 0.0% (scan from 1.1)
+
+rule of #522: within 0.1 of the unit-spacing value confirms, near its alias refutes (quadratic trend, the fit of #521's table)
+| series | unit-spacing value (#521) | its alias | half-unit period (quadratic) | difference | null fraction | verdict | half-unit period (line) | null fraction |
+|---|---|---|---|---|---|---|---|---|
+| sigma_1 | 2.530 | 1.654 | 2.525 (2.520 to 2.530) | -0.005 | 0.0% | confirms | 2.470 | 1.8% |
+| sigma_2 | 2.525 | 1.656 | 2.525 (2.520 to 2.530) | -0.000 | 0.0% | confirms | 2.545 | 0.0% |
+| sigma_3 | 2.165 | 1.858 | 2.165 (2.160 to 2.165) | -0.000 | 0.0% | confirms | 2.145 | 0.1% |
+| sigma_4 | 2.155 | 1.866 | 2.160 (2.160 to 2.165) | +0.005 | 0.0% | confirms | 2.210 | 3.2% |
