@@ -1,0 +1,19 @@
+| layout | raw sigma_1 | raw sigma_2 | raw sigma_3 | raw sigma_4 | equilibrated sigma_1 | sigma_2 | sigma_3 | sigma_4 |
+|---|---|---|---|---|---|---|---|---|
+| baseline (0.3 ... 0.7) | 2.5510e-27 | 2.5300e-27 | 4.3920e-26 | 7.9300e-26 | 1.8825e-61 | 9.3856e-61 | 2.6498e-59 | 2.4555e-57 |
+| first node 0.35 (0.35 ... 0.7) | 2.5320e-27 | 2.5140e-27 | 4.3830e-26 | 7.8960e-26 | 1.8832e-61 | 9.3894e-61 | 2.6525e-59 | 2.4581e-57 |
+| last node 0.72 (0.3 ... 0.72) | 3.2650e-31 | 3.2330e-31 | 5.6530e-30 | 1.0130e-29 | 2.0276e-62 | 1.0212e-61 | 2.9314e-60 | 2.7134e-58 |
+
+shifts of ln sigma_i from the baseline (new layout minus baseline)
+| change | reading | ln sigma_1 | ln sigma_2 | ln sigma_3 | ln sigma_4 |
+|---|---|---|---|---|---|
+| first node 0.35 (0.35 ... 0.7) | raw | -0.01 | -0.01 | -0.00 | -0.00 |
+| first node 0.35 (0.35 ... 0.7) | equilibrated | +0.00 | +0.00 | +0.00 | +0.00 |
+| last node 0.72 (0.3 ... 0.72) | raw | -8.96 | -8.97 | -8.96 | -8.97 |
+| last node 0.72 (0.3 ... 0.72) | equilibrated | -2.23 | -2.22 | -2.20 | -2.20 |
+
+the issue's predictions: fast mode +41 (first node) and -13.7 (last node), G^p 0 and +6.7p
+raw: first shift of ln sigma_3 -0.00 (-0% of +41), last shift -8.96 (65% of -13.7); fast mode excluded; G^p excluded
+equilibrated: first shift of ln sigma_3 +0.00 (0% of +41), last shift -2.20 (16% of -13.7); fast mode excluded; G^p excluded
+raw and equilibrated readings agree
+all six checks pass

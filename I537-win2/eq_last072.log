@@ -48,3 +48,21 @@ I537-win2/renode_last072_D242.3642.npz: D 242.364, L 769, octo-double LU 98 s, p
   J S, Ruiz: 47 Ruiz iterations, largest |1 - max-norm| 6.1e-13; D_r 1.36e-27..1.71e-03, D_c 1.36e-27..1.91e+28
   J S, Curtis-Reid: 0 Ruiz iterations, largest |1 - max-norm| 2.2e+21; D_r 3.19e-10..1.84e+08, D_c 6.41e-44..6.61e+30
   J S, Curtis-Reid + Ruiz: 46 Ruiz iterations, largest |1 - max-norm| 6.1e-13; D_r 1.12e-17..1.02e+04, D_c 1.00e-37..9.41e+27
+    J S, Ruiz sigma_1 1.0866e-64 (converged to 0e+00)
+    J S, Ruiz sigma_2 1.0712e-63 (converged to 3e-16)
+    J S, Ruiz sigma_3 3.2563e-62 (converged to 0e+00)
+    J S, Ruiz sigma_4 1.6257e-60 (converged to 2e-16)
+  planted, Ruiz: max_i |sigma_i(J S) / sigma_i(J) - 1| = 9.99e-01; spread of the scalings 7.1e+00
+    J S, Curtis-Reid sigma_1 1.4948e-60 (converged to 3e-04)
+    J S, Curtis-Reid sigma_2 1.5731e-60 (converged to 4e-04)
+    J S, Curtis-Reid sigma_3 3.2674e-59 (converged to 0e+00)
+    J S, Curtis-Reid sigma_4 6.0783e-57 (converged to 0e+00)
+  planted, Curtis-Reid: max_i |sigma_i(J S) / sigma_i(J) - 1| = 2.58e-14; spread of the scalings 2.2e-12
+    J S, Curtis-Reid + Ruiz sigma_1 2.0276e-62 (converged to 0e+00)
+    J S, Curtis-Reid + Ruiz sigma_2 1.0212e-61 (converged to 0e+00)
+    J S, Curtis-Reid + Ruiz sigma_3 2.9314e-60 (converged to 0e+00)
+    J S, Curtis-Reid + Ruiz sigma_4 2.7134e-58 (converged to 3e-16)
+  planted, Curtis-Reid + Ruiz: max_i |sigma_i(J S) / sigma_i(J) - 1| = 2.00e-15; spread of the scalings 9.7e-13
+  check (planted column scaling, Curtis-Reid + Ruiz, bound 1e-3): pass
+  Curtis-Reid + Ruiz: ||J_eq v_1|| = 2.02764e-62 at 140 digits (2 s); ||J_eq v_1|| / sigma_1 = 1.000000 (bound 1e-2): pass
+check: pass
