@@ -4,10 +4,13 @@
 # Each step writes <OUT>/<step>.log and ends it with "exit N". The dumps go to <OUT>/bits_win.json, bits_win_perturb.json, api_win.json, api_win_perturb.json.
 # RAWDIR is a worktree of origin/main of the raw-data repository (D:/choptuik-large-d-raw-push): it holds the Mac's references (I523-mac/c3/, T81/, anm-mac/jets_inputs/) and the stored states
 # the checks read; the live clone is not pulled. The outputs go to the live clone's I600-win2/.
-PY=/c/Users/nathan/Source/venv-i600/Scripts/python.exe
-HP=/d/choptuik-i600/hp
+# PY, HP and OUT default to the fat-LTO build (venv-i600, D:/choptuik-i600) and this folder; the thin-LTO build is run with
+# PY=/c/Users/nathan/Source/venv-i600b/Scripts/python.exe HP=/d/choptuik-i600b/hp OUT=/d/choptuik-large-d-raw/I600-win2/thin
+PY=${PY:-/c/Users/nathan/Source/venv-i600/Scripts/python.exe}
+HP=${HP:-/d/choptuik-i600/hp}
 RAW=/d/choptuik-large-d-raw-push
-OUT=/d/choptuik-large-d-raw/I600-win2
+OUT=${OUT:-/d/choptuik-large-d-raw/I600-win2}
+mkdir -p "$OUT"
 export OMP_NUM_THREADS=2 OPENBLAS_NUM_THREADS=2 PYTHONFAULTHANDLER=1
 cd "$HP" || exit 1
 run() {

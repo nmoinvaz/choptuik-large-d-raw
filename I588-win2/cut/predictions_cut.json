@@ -1,0 +1,37 @@
+{
+ "written": "2026-11-12 16:30 UTC, before any evaluation of the replicas of this task (a pilot of the state build and one determinant at the circle's centre, which is not an argument of circle(), comes after this file is committed and is recorded as such)",
+ "task": "#588's recommended task, approved by the coordinator at 16:22 UTC: the replica spread of the R 0.06 circle on lambda_phys against the cut",
+ "design": {
+  "circle": "centre (2.044645, -0.00032), R 0.06 at every cut: the circle of #573 at kf 22 and 25 whose zero is lambda_phys = 2.0435 (2.0435326 at kf 22, 2.043531 at kf 25; 1.1e-3 from the centre, well inside the circle)",
+  "cuts": "kf 21, 23, 24, 26, 28, 29 (new); kf 22 (s 1.80e-8) and kf 25 (s 1.10e-6) are #588's values for this circle; kf 27 has no lambda_phys circle in #588 and is not rerun",
+  "replicas": "per cut 10 shifted replicas (tags 1..10; every argument circle() asks det M at moved by 1 to 3 ulp in Re and in Im, sign and size drawn from (circle, rep, argument), as in replicas_588.py) and 2 controls (rep 0, tags a and b: no move, each its own fresh evaluation); circle() as in the real runs, n0 20, tol pi/4",
+  "states": "hp/data/modecount_state_D61.0264_M48_kf<K>.npz made by hp/modecount_common.setup from data/seeds/local/up23_D61.0264.npz with M 48, fmax 1e-15, kf K (kf 21, 23, 24, 26, 28, 29), in the worktree D:/choptuik-i573 at main 80b5056, double-double determinant (no --ball)",
+  "statistic": "s = sqrt(sum |z_r - zmean|^2 / (N - 1)) over the shifted replicas that resolve with winding +1 (complex position; relative uncertainty about 24 percent for N 10); own estimate = the control's zeros_est (tag a); a cut is flagged when s > 3 x it, the count is reported and has no criterion",
+  "controls": "the two controls (tags a, b) of a cut must give the same zero bit for bit; analyze_cut.py --mutate=control moves one by an ulp and must fail P4"
+ },
+ "model": "From #588: s = R |eps| / sqrt(n0) for a W = 1 circle, with the noise per determinant |eps| growing about 3.9 times per kf step from 22 to 25 for this circle (s 1.80e-8 to 1.10e-6) and about 2.65 times per step from 25 to 27 (the three cuts' geometric means, 7.0 over two steps). The prediction takes this circle's own s at 22 and 25 and interpolates in ln s between them (f1 = 3.939 per step), extends below 22 with f1 and above 25 with f2 = 2.646 per step.",
+ "predicted_s": {
+  "21": 4.57e-09,
+  "23": 7.09e-08,
+  "24": 2.79e-07,
+  "26": 2.91e-06,
+  "28": 2.04e-05,
+  "29": 5.39e-05
+ },
+ "band_factor": 3,
+ "criteria": {
+  "P1": "s lies within a factor 3 of the prediction (predicted_s / 3 to predicted_s x 3) at 5 or more of the 6 new cuts",
+  "P2": "s increases with kf over the eight cuts 21, 22, 23, 24, 25, 26, 28, 29 (22 and 25 from #588): every neighbour pair increases",
+  "P3": "the ratio of s per kf step, taken between neighbouring cuts (the 26 to 25 and 28 to 26 pairs per step, as s_hi/s_lo to the power 1/(kf_hi - kf_lo)), lies between 1.5 and 8 for at least 6 of the 7 pairs (21-22, 22-23, 23-24, 24-25, 25-26, 26-28, 28-29)",
+  "P4": "the two controls agree bit for bit at every cut, 6 of 6",
+  "P5": "at least 9 of the 10 shifted replicas resolve with winding +1 at every cut (58 of 60 or more in all)",
+  "P6": "s stays below 1e-4 at all six new cuts, so the cut at which s first exceeds 1e-4 is above 29 (the model gives 5.4e-5 at kf 29; within the band it can reach 1.6e-4)",
+  "P7": "the median over the shifted replicas of their own estimate, divided by s, lies between 0.5 and 2 at 5 or more of the 6 cuts (#588: 0.84, 0.80, 0.96 at the three cuts; 0.67 and 0.86 for this circle at 22 and 25)",
+  "P8": "the control zero lies within 3 s of the mean of the shifted replicas at 5 or more of the 6 cuts (a bias would show here)"
+ },
+ "controls": {
+  "cut_588.py --selftest": "the task list, the controls unmoved, the shift function, a synthetic noisy circle whose replica spread is recovered within 30 percent, a noise-free one that agrees to 1e-9 (run 2026-11-12 16:25 UTC: passes)",
+  "analyze_cut.py --selftest": "a known scatter recovered within 15 percent, bit-equal controls pass, a control moved by one ulp fails, a ratio table on a synthetic exponential growth gives the planted ratio",
+  "analyze_cut.py --mutate=control": "the real data with one control moved by an ulp must fail P4"
+ }
+}
