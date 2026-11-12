@@ -1,0 +1,25 @@
+== 2026-11-12 15:21:18 UTC  start C:\Users\nathan\Source\choptuik-large-d-raw\I145-mac\fol\fol_32x121_D60.0020_32x121.npz (D 60.001952, 32x121) D_start 60.001952 grids [(32, 99)] solver mp prec 192 mutate None horizon 0
+    newton_mp it 0: max|F| 8.533e-14 -> 1.086e-28, 54 products to 2.2e-31, step 1, max|dz| 2.0e-15, 131.19 s (products 87.1 s, precond 28.4 s)
+    newton_mp it 1: max|F| 1.086e-28 -> 9.105e-24, 71 products to 2.3e-33, step 1, max|dz| 5.4e-13, 185.16 s (products 119.5 s, precond 38.6 s)
+    newton_mp it 2: max|F| 9.105e-24 -> 9.878e-22, 76 products to 8.0e-39, step 1, max|dz| 3.5e-12, 200.95 s (products 130.2 s, precond 41.1 s)
+    newton_mp it 3: max|F| 9.878e-22 -> 7.309e-43, 60 products to 6.0e-31, step 1, max|dz| 9.5e-23, 149.68 s (products 99.4 s, precond 31.9 s)
+Traceback (most recent call last):
+  File "C:\Users\nathan\Source\choptuik-large-d-raw\I404-win\rt_launch.py", line 57, in <module>
+    runpy.run_path(script, run_name="__main__")
+  File "C:\Users\nathan\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 269, in run_path
+    return _run_module_code(code, init_globals, run_name,
+  File "C:\Users\nathan\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 96, in _run_module_code
+    _run_code(code, mod_globals, init_globals,
+  File "C:\Users\nathan\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "C:\Users\nathan\Source\choptuik-i404\solver\rt\rt_run.py", line 376, in <module>
+    main()
+  File "C:\Users\nathan\Source\choptuik-i404\solver\rt\rt_run.py", line 298, in main
+    z, ok, r = solve(rt, z, D0, "start")
+  File "C:\Users\nathan\Source\choptuik-i404\solver\rt\rt_run.py", line 222, in solve
+    return solve_mp(rt, z, D, label)
+  File "C:\Users\nathan\Source\choptuik-i404\solver\rt\rt_run.py", line 209, in solve_mp
+    t_prod=info["t_prod"], t_prec=info["t_prec"], pred_order=a.pred_order, rss_peak_gb=rss_peak_gb(),
+  File "C:\Users\nathan\Source\choptuik-i404\solver\rt\rt_run.py", line 78, in rss_peak_gb
+    import resource
+ModuleNotFoundError: No module named 'resource'

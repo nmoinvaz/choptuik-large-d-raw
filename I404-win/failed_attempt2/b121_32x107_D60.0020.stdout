@@ -1,0 +1,29 @@
+== 2026-11-12 15:19:06 UTC  start C:\Users\nathan\Source\choptuik-large-d-raw\I145-mac\fol\fol_32x121_D60.0020_32x121.npz (D 60.001952, 32x121) D_start 60.001952 grids [(32, 107)] solver mp prec 192 mutate None horizon 0
+Traceback (most recent call last):
+  File "C:\Users\nathan\Source\choptuik-large-d-raw\I404-win\rt_launch.py", line 18, in <module>
+    runpy.run_path(script, run_name="__main__")
+  File "C:\Users\nathan\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 269, in run_path
+    return _run_module_code(code, init_globals, run_name,
+  File "C:\Users\nathan\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 96, in _run_module_code
+    _run_code(code, mod_globals, init_globals,
+  File "C:\Users\nathan\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "C:\Users\nathan\Source\choptuik-i404\solver\rt\rt_run.py", line 376, in <module>
+    main()
+  File "C:\Users\nathan\Source\choptuik-i404\solver\rt\rt_run.py", line 298, in main
+    z, ok, r = solve(rt, z, D0, "start")
+  File "C:\Users\nathan\Source\choptuik-i404\solver\rt\rt_run.py", line 222, in solve
+    return solve_mp(rt, z, D, label)
+  File "C:\Users\nathan\Source\choptuik-i404\solver\rt\rt_run.py", line 194, in solve_mp
+    zm, ok, info = mps.newton_mp(rm, z, held.pop(), tol=a.newton_tol, it_max=a.it_max, max_products=a.max_products,
+  File "C:\Users\nathan\Source\choptuik-i404\solver\rt\rt_mpsolve.py", line 380, in newton_mp
+    dz, gi = inner(lambda u: apply(z, u), prec, mids(-F), tol=inner_tol, max_products=max_products)
+  File "C:\Users\nathan\Source\choptuik-i404\solver\rt\rt_mpsolve.py", line 251, in fgmres
+    z = mids(precond(V[k]))
+  File "C:\Users\nathan\Source\choptuik-i404\solver\rt\rt_mpsolve.py", line 202, in __call__
+    return from_dd(*self.solve_dd(*to_dd(r)))
+  File "C:\Users\nathan\Source\choptuik-i404\solver\rt\rt_mpsolve.py", line 192, in solve_dd
+    yh[i], yl[i] = _dd_div(th, tl, M[i, i])
+  File "C:\Users\nathan\Source\choptuik-i404\solver\rt\rt_mpsolve.py", line 150, in _dd_div
+    e = math.fma(-p, q1, ah)                 # ah - p q1 exactly
+AttributeError: module 'math' has no attribute 'fma'

@@ -24,4 +24,31 @@ Each is resampled to 32xN by `rt_run.py --start` and solved there at the same D.
 
 ## What ran
 
-(filled in as the runs go)
+The interpreter is Python 3.10.0 (venv-t151: python-flint 0.9.0, multidouble 0.1.0) on Windows where the RT code was written for Python 3.13 (the Mac) and SETUP.md asks for 3.14; the coordinator accepted a launcher that changes no repository file (agent-comms 162206Z). Four things in the code needed a stand-in here, found one run at a time (the logs of each failed launch are kept):
+
+1. 15:14:36 UTC, `failed_attempt1/`: the first four solves died within 90 s with `AttributeError: module 'multidouble' has no attribute '_dd_dot'` (`rt_mpsolve.py` line 187; this multidouble has `dd_dot(xh, xl, yh, yl)`, the same arguments, as a wrapper of the same Rust function).
+2. 15:17:45 UTC, `failed_attempt2/`: `AttributeError: module 'math' has no attribute 'fma'` (`rt_mpsolve._dd_div`, line 150; `math.fma` is Python 3.13 and later). `rt_launch.py` runs the repository's `rt_run.py` unchanged after aliasing `_dd_dot` and defining `math.fma` exactly with `fractions.Fraction` (one correct rounding); its selftest `selftest_rt_launch.txt`: against arb at 600 bits 0 of 20000 random cases differ, and the naive `x*y + z` differs in 10995 (the control).
+3. 15:21:18 UTC (third launch), `failed_attempt3_resource/`: the first four solves (32x99 and 32x103, both starts) converged (4 Newton steps, final max|F| 4.9e-49, 1.3e-46, 7.3e-43, 1.4e-40, 11 to 14 min each) and died at the record step with `ModuleNotFoundError: No module named 'resource'` (`rt_run.py` `rss_peak_gb()`, a Unix module), before a record or a state was written. The stand-in `resource.py` (peak working set by ctypes `GetProcessMemoryInfo`, in KiB as `rt_run.py` expects; a 400 MB allocation raised it by 392 MB) was put beside the launcher at 15:44 UTC, and the solves already running (32x107, 32x111) found it when they ended.
+4. `run_queue_404.py`'s skip rule first took rt_run's exit code 0 as "done"; `rt_run.py` exits 1 when |Delta_RT - Delta_hp| exceeds `--tol 1e-12`, which is the quantity under study, so the rule was changed to a converged record at the D in the jsonl (15:46 UTC, before it was used).
+
+The four lost solves were rerun by a second queue (`run_queue_404.py D60.0020 --nproc 2 --grids 99,103`, 16:23:19 to 16:47:11 UTC, 660 to 751 s each). The first queue (14 jobs, four at once, one thread each, BelowNormal) ran 15:21:18 to 16:49:32 UTC (5294 s). Every one of the 14 records at D 60.001952 is `ok` on the first full run; no solve was restarted from a saved state. `fit/` holds the analysis (`analyze_404.py` -> `fit_analysis_D60.0020.txt`, `fit/verdict_32xN_D60.0020.log` from `rt_grids.py --tol 1e-14`, `fit/roots_32xN_D60.0020.log` from `rt_roots.py`, `run_fit_404.py`, `fit/summary_D60.0020.md`) and the controls.
+
+## D 60.001952 (reported before going on)
+
+Delta_RT - Delta_hp of the two roots on each grid, their spread, and the pair test (`rt_roots.py`; the planted checks pass for every pair), with the cost per solve (four at once):
+
+| N | root a - hp | root b - hp | spread a - b | E(N) | max abs(z_b - z_a) | max abs(B(e,e)) / max abs(e) | Newton steps a, b | seconds a, b | peak GB a, b |
+|---|---|---|---|---|---|---|---|---|---|
+| 99 | -3.46e-13 | -1.80e-12 | +1.45e-12 | 1.80e-12 | 1.000e-13 | 6.7e-13 | 4, 4 | 654, 670 | 1.2, 1.21 |
+| 103 | -4.04e-12 | -4.86e-11 | +4.46e-11 | 4.86e-11 | 3.302e-12 | 7.7e-12 | 4, 4 | 732, 743 | 1.29, 1.29 |
+| 107 | +4.73e-12 | +1.30e-10 | -1.25e-10 | 1.30e-10 | 1.158e-11 | 1.5e-09 | 4, 4 | 905, 938 | 1.38, 1.38 |
+| 111 | +2.57e-13 | -5.69e-10 | +5.70e-10 | 5.69e-10 | 3.935e-11 | 2.5e-10 | 4, 6 | 1030, 1737 | 1.47, 2.74 |
+| 115 | +2.08e-11 | -7.62e-12 | +2.84e-11 | 2.08e-11 | 2.424e-12 | 1.5e-10 | 4, 4 | 1108, 1140 | 1.57, 1.58 |
+| 119 | -8.60e-12 | -1.04e-11 | +1.77e-12 | 1.04e-11 | 1.606e-12 | 6.5e-10 | 4, 4 | 1146, 1077 | 1.67, 1.68 |
+| 123 | -1.63e-07 | +2.27e-11 | -1.63e-07 | 1.63e-07 | 1.230e-08 | 7.9e-08 | 8, 4 | 2527, 1147 | 3.32, 1.78 |
+
+**Verdict at D 60.001952: the ladder does not fall; it stops falling at N_s = 99** (the first rung): E(99) = 1.80e-12, spread 1.45e-12, both roots below hp (signs --), and E(103) = 4.86e-11 is larger. No grid passes `rt_grids.py --tol 1e-14` (nor 1e-12: root b of 32x99 is -1.80e-12). Beyond 99 the roots scatter between 1e-12 and 6e-10 with changing signs, and root a of 32x123 is at -1.63e-07: eight Newton steps with the residual bouncing between 1e-14 and 1e-28 (steps 2 to 6; two preconditioner rebuilds, 42 min, 3.3 GB), ending at max|F| 2.1e-38 on a root 1.2e-8 away from the other. For every N the pair test says the two roots are distinct (the residual rises between them: max|F(zm)| 1.7e-26 at 99 up to far above the roots' 1e-31 residuals), so the discrete system has a family of nearly degenerate roots, at residuals below 1e-30, spread over Delta by 1e-12 to 1e-7. #164's 32x95 (-6.4e-13, -5.9e-13), also N = 3 mod 4, lies at E = 6.4e-13, below this ladder's best.
+
+**Against the Mac's #164 at 32x99** (a different machine, Python 3.13): start a -3.46e-13 here, -3.45e-13 there; start b -1.80e-12 here, -2.70e-13 there. The two starts-a roots agree to 1e-15, the starts-b roots differ by 1.5e-12, about the size of the root family's own spread at this N; rounding in the f64 preconditioner (and the exact `fma` I supply) can select another member of it.
+
+**Controls at D 60.001952, on the best grid (32x99)** (`fit/control_*_32x99_D60.0020.log`): `rt_grids.py --mutate=shift` (2 tol added to root b's Delta) exits **1** at `--tol 1e-11`, where the unmutated check exits **0** (at 1e-14 or 1e-12 the grid fails by itself, so the mutation could not be told from it); `rt_roots.py --mutate=mid` exits **1** (its planted pair check gives relative error 2.0e11 and fails); `rt_roots.py --mutate=same` exits 1; the unmutated `rt_roots.py` planted checks pass (exit 0) for all seven pairs.
