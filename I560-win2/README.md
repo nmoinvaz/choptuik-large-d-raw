@@ -1,0 +1,5 @@
+# I560-win2: does the Delta direction's raw sigma floor depend on D? Layout 0.80 at D 232.63, 237.13 and 242.36
+
+Machine win2 (Windows 11 desktop, Intel Core Ultra 7 265K, 20 threads, 96 GB), issue https://github.com/nmoinvaz/choptuik-large-d/issues/560 (follows from #553 and #554).
+States: crawlG D 232.6312 (`I461-win2/crawlG/anm_pin3_D232.6312.npz`), crawlI D 237.1312 (`I461-win2/crawlI/anm_pin3_D237.1312.npz`) and crawlJ D 242.3642, each with nodes 0.3, 0.4, 0.5, 0.6, 0.7, re-noded by `renode_o.py ... --nodes 0.3,0.4,0.5,0.6,0.8` and read by `near_null.py --k=4`. At D 242.36 the same renode is #543's (`I543-win2/renode_last080_D242.3642.npz`, whose `nn_last080.log` is the issue's 8.7e-38); here `near_null.py` is run on it again as a reproducibility control. The controls `--mutate sign` (renode, on D 237.13) and `--mutate=sigma` (near_null, on D 232.63) once each. One lane of 2 threads (`lane_560.sh`, `layout_lib.sh`).
+`renode_o.py` and `near_null.py` from `D:\choptuik-i446g/hp` at main 14dc386. Exit codes in `exits.txt`. Results follow in this README.

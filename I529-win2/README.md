@@ -1,0 +1,5 @@
+# I529-win2: order-2 assumptions at the D 242.5 starts, sigma_5 against sigma_4 and Q at small h
+
+Machine win2 (Windows 11 desktop, Intel Core Ultra 7 265K, 20 threads, 96 GB), issue https://github.com/nmoinvaz/choptuik-large-d/issues/529 (parts (a) and the Q half of (c); (b) and the mixed block need code and follow).
+Code: worktree `D:\choptuik-i529` at main 810396b (`hp/dz0_weak.py`), Python only, venv-t126. Inputs from the raw clone at 52c091a5 (copied to the same paths here): BASE = `I461-win2/probeG03125a/anm_pin3_D242.5146.npz`, ACC = `I461-win2/probeG0078/dz0_pin3_D242.5225_a0.007812.npz` (accepted attempt), REF = `I461-win2/probeG03125b/dz0_pin3_D242.5459_a0.031250.npz` (refused attempt).
+Four jobs of 2 threads (`run_i529.sh`): `dz0_weak.py RAW <attempt> BASE --k=5 --its=16` and `--k=5 --its=24 --reduced=1 --h=1e-31`, for ACC and REF, then the control `--mutate=D` on REF's reduced job (its rebuild check must FAIL, exit 1). Exit codes in `exits.txt`. Results follow in this README.
