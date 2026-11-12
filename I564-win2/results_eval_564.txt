@@ -1,0 +1,44 @@
+predictions_564.json equals the version committed at 950e85a6: yes
+12 measured states D 203.6312 to 198.1312
+
+| model | series | prediction rms | max abs error | mean error (predicted minus measured) | meets 0.014 |
+|---|---|---|---|---|---|
+| M0 | sigma_1 | 0.0676 | 0.1127 | -0.0634 | no |
+| M0 | sigma_2 | 0.0472 | 0.0749 | +0.0426 | no |
+| M0 | sigma_3 | 0.1049 | 0.1527 | -0.1010 | no |
+| M0 | sigma_4 | 0.0342 | 0.0536 | +0.0293 | no |
+| M1 | sigma_1 | 0.0091 | 0.0157 | -0.0029 | yes |
+| M1 | sigma_2 | 0.0206 | 0.0433 | -0.0179 | no |
+| M1 | sigma_3 | 0.0464 | 0.0828 | -0.0404 | no |
+| M1 | sigma_4 | 0.0383 | 0.0684 | -0.0313 | no |
+| separate cubic p2 chirp | sigma_1 | 0.0157 | 0.0273 | -0.0124 | no |
+| separate cubic p2 chirp | sigma_2 | 0.0123 | 0.0342 | -0.0075 | yes |
+| separate cubic p2 chirp | sigma_3 | 0.0425 | 0.0635 | +0.0380 | no |
+| separate cubic p2 chirp | sigma_4 | 0.0223 | 0.0506 | +0.0161 | no |
+
+split of the M1 error into the sum and the difference (half of each enters a series: e_a = (eS - eT) / 2, e_b = (eS + eT) / 2)
+| pair | rms of the sum error eS | rms of the difference error eT | eS / 2 | eT / 2 |
+|---|---|---|---|---|
+| sigma_1, sigma_2 | 0.0237 | 0.0213 | 0.0118 | 0.0106 |
+| sigma_3, sigma_4 | 0.0830 | 0.0184 | 0.0415 | 0.0092 |
+
+per-state errors of M1 (predicted minus measured) for sigma_1 and sigma_2
+| D | measured ln sigma_1 | error | measured ln sigma_2 | error |
+|---|---|---|---|---|
+| 203.6312 | -99.020 | +0.0048 | -97.555 | -0.0100 |
+| 203.1312 | -98.633 | -0.0013 | -97.127 | -0.0040 |
+| 202.6312 | -98.112 | +0.0059 | -96.835 | -0.0147 |
+| 202.1312 | -97.606 | -0.0076 | -96.535 | -0.0031 |
+| 201.6312 | -97.303 | +0.0101 | -96.038 | -0.0236 |
+| 201.1312 | -97.017 | -0.0049 | -95.526 | -0.0144 |
+| 200.6312 | -96.600 | -0.0102 | -95.150 | -0.0152 |
+| 200.1312 | -96.073 | -0.0093 | -94.893 | -0.0192 |
+| 199.6312 | -95.636 | -0.0077 | -94.552 | -0.0219 |
+| 199.1312 | -95.381 | +0.0117 | -94.035 | -0.0433 |
+| 198.6312 | -95.077 | -0.0110 | -93.571 | -0.0231 |
+| 198.1312 | -94.629 | -0.0157 | -93.257 | -0.0221 |
+
+acceptance of #564 for M0 (sigma_1 0.0676, sigma_2 0.0472, limit 0.014): FAIL
+
+acceptance of #564 for M1 (sigma_1 0.0091, sigma_2 0.0206, limit 0.014): FAIL
+separate cubic fits: sigma_1 0.0157, sigma_2 0.0123
