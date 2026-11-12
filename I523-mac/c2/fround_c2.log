@@ -1,0 +1,16 @@
+== fround_c2 07:34 /Users/nathan/venv-314/bin/python /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/11bcbd25-9376-453b-88d5-a7c6ad0172dd/scratchpad/i523/freeze_round.py /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/11bcbd25-9376-453b-88d5-a7c6ad0172dd/scratchpad/rawc I461-win2/crawlJ/anm_pin3_D242.3642.npz --threads=2 --json=/private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/11bcbd25-9376-453b-88d5-a7c6ad0172dd/scratchpad/raw-i489/I523-mac/c2/fround_c2.json
+I461-win2/crawlJ/anm_pin3_D242.3642.npz: D 242.3641907, M 32, nodes [0.3, 0.4, 0.5, 0.6, 0.7], kfreeze 3, L 769
+  projector rounding: max |Pi_low dd - exact| 1.78e-34, max |Pi_high dd - exact| 1.78e-34
+  |d| 1.69e-34, |p1| 0.169, kernel's rows 0.000816 (2 s)
+  (a) emulated minus kernel's rows 1.62e-34 (bound 1e-60), other rows frozen minus unfrozen 0.0e+00 (bound 1e-90): FAIL
+  e = exact minus rounded rows: max 1.151e-132; harmonics k1 9.16e-133, k5 1.59e-133, k7 1.05e-133, k9 6.86e-134
+  the state's pinned residual F: max 1.616e-34
+  octo-double LU 407 s, pivots 3.5e-25..3.3e+34
+  Delta's shift: -(J^-1 e)_Delta -1.23148e-107, -(J^-1 F)_Delta 2.14773e-9
+  |dz| by block, largest: p1 3.37e-09, m_h 2.56e-09, node4.p 2.06e-09, node4.m 2.06e-09, node3.p 1.83e-09
+  (b) ||J x - e|| / ||e|| 4.05e-71 (bound 1e-6, 452 s): pass
+  exact rows along z - t x: max|F + e| 1.62e-34 at t = 0; 1e-30: 1.62e-34, 1e-26: 1.64e-34, 1e-22: 6.45e-27, 1e-18: 6.45e-19, 1e-14: 6.45e-11, 1e-10: 0.00645, 1e-06: 6.45e+5, 1e-02: 1.78e+21, 1e+00: 3.6e+31
+  quadratic along x over 5 decades of t: c2 6.452e+17; the linear model holds for t < 2.5e-52, the second-order scale is t2 1.6e-26
+  verdict: the first-order shift 1.23e-107 lies outside the linear region (t = 1 > 2.5e-52) and is not an estimate. At the second-order scale Delta moves by about 1.9e-133, which holds if the curvature on the weak left directions is of the whole residual's size, and a root may not exist. Against the error bar 3e-11: OK
+check: FAIL
+exit 1
