@@ -1,0 +1,9 @@
+{
+ "written": "2026-11-12 10:0x UTC, after the registered P1-P7 results (results_585_spread.txt, results_585_planted.txt) and the exploratory sigma sweeps (results_585_planted_far.txt, _mid.txt), before any evaluation of this add-on. Exploratory: not part of the issue's acceptance.",
+ "design": "Six circle points: the base points t = i/20 (i = 0, 7, 14) of the two kf 27 R 0.06 circles A (centre 1.902797+0.916032i) and B (centre 2.396619+0.547672i), as the circle computes them (c + R (cos 2 pi t, sin 2 pi t)). At each: the reference and 15 Re moves (j ulp, j = 1..15, repeated nextafter toward +inf), same worker code as noise_585.py. sigma_circle = pooled root mean square over the six points of the std (ddof 1) of ln|det| over the 16 values.",
+ "criteria": {
+  "E1": "sigma_circle (ln|det|) lies between 2.7e-4 (the far points' pooled std) and 3.3e-3 (the near points'), and is below the near points' value by at least a factor 2",
+  "E2": "the mean of the eight noise-free errors of lam0 (err0 in planted_585_*.json, 1.9e-5 to 3.0e-5) is within a factor 3 of 0.045 x sigma_circle, where 0.045 = rms error / sigma of the registered ensemble (1.5e-4 / 3.3e-3)"
+ },
+ "controls": "analyze via the same std code as analyze_585.py (its selftest); the reference of each point is also compared with the cached value of the circle's own run (bit equal expected, a repeat control)"
+}

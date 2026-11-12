@@ -1,0 +1,15 @@
+| point | kind | values | std ln\|det\| | std arg | max \|dev\| ln | max \|dev\| arg | median \|dev\| j<=5 | j>=21 | \|dlnf/dlam\| | smooth change over 25 ulp | spread / smooth | distinct ln values | 50 repeats bit equal | workers |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| N1 | near | 51 | 2.16e-03 | 2.09e-03 | 7.56e-03 | 9.66e-03 | 3.35e-03 | 1.78e-03 | 92.5 | 5.14e-13 | 5.85e+09 | 51 | yes (50) | 15 |
+| N2 | near | 51 | 4.19e-03 | 3.57e-03 | 9.28e-03 | 8.15e-03 | 3.04e-03 | 2.32e-03 | 72.8 | 8.08e-13 | 6.80e+09 | 51 | yes (50) | 15 |
+| F1 | far | 51 | 3.62e-04 | 3.58e-04 | 1.23e-03 | 1.68e-03 | 5.89e-04 | 4.94e-04 | 49 | 5.44e-13 | 9.36e+08 | 51 | yes (50) | 15 |
+| F2 | far | 51 | 2.60e-04 | 4.16e-04 | 8.10e-04 | 1.15e-03 | 2.58e-04 | 1.83e-04 | 54.4 | 6.04e-13 | 8.12e+08 | 51 | yes (50) | 15 |
+| F3 | far | 51 | 1.67e-04 | 1.42e-04 | 6.18e-04 | 3.72e-04 | 2.67e-04 | 2.62e-04 | 54.2 | 1.20e-12 | 1.82e+08 | 51 | yes (50) | 15 |
+
+near/far median std ln ratio 12.19
+P1: holds
+P2: holds
+P3: FAILS
+P4: holds
+P5: holds
+pooled sigma: {'near_ln': '3.331e-03', 'near_arg': '2.923e-03', 'far_ln': '2.749e-04', 'far_arg': '3.272e-04'}
