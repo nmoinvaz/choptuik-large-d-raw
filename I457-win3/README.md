@@ -20,3 +20,16 @@ lambda(15) - lambda(13) = +9.67e-13, lambda(17) - lambda(13) = -2.62e-14, lambda
 Exit 1 is the floor check (|est| <= 1e-15), as the script defines it. The kf 13 lambda equals #273's (macm3,
 I273-macm3) to every digit; #273's kf 15 lambda was 2.045529761477269 with est -2.36e-15.
 Files: `gamma_D58_kfK.jsonl` (the record), `.log`, `.exit` (the exit status), `.start` (start and end, UTC).
+
+## kf 15 with the default limits (12 Newton, 20 LM), 09:05 to 09:10 UTC
+
+`gamma_D58_kf15_default.*`: the kf 15 command without `--newton_it`/`--lm_it`, same code and state. Exit 1 (floor
+check). lambda(48) = 2.045529761477269, est = -2.360e-15, ABOVE, |F| 2.3e-23, 12 Newton and 1 LM steps.
+
+| run | lambda(48, kf 15) | est | minus kf 13 |
+|---|---|---|---|
+| win3, 12 / 20 (default) | 2.045529761477269 | -2.360e-15 | -4.934e-13 |
+| win3, 24 / 80 | 2.0455297614787296 | -2.320e-15 | +9.673e-13 |
+| macm3, #273 (default) | 2.045529761477269 | -2.36e-15 | -4.93e-13 |
+
+The default run equals macm3's lambda to every digit; the two win3 runs differ by 1.461e-12.
