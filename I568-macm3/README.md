@@ -19,3 +19,12 @@ n = 1536 pivots; plain: ln|det| 547.837668, arg +1.660778, pmin 3.232e-16, pmax 
 | lo +1 | +1.197 | 15 | 5 | no (2.2e-19) | 8 | between |
 | lo -1 | -0.743 | 14 | 7 | no | 7 | between |
 Top pivots (k, |u| plain -> perturbed, d ln): hi +1: 1534: 3.2e-16 -> 3.5e-8 (+18.49); 1532: 4.5e-15 -> 6.2e-8 (+16.45); 1533: 3.5e-15 -> 4.5e-8 (+16.36); 1535: 1.2e-15 -> 1.4e-8 (+16.31); lo +1: 1534: 3.2e-16 -> 9.8e-16 (+1.114); 1532: 4.5e-15 -> 1.0e-14 (+0.804); 1535: 1.2e-15 -> 5.5e-16 (-0.757); 1533: 3.5e-15 -> 6.7e-15 (+0.658); 1531: 3.1e-14 -> 1.8e-14 (-0.556); lo -1: 1535: 1.2e-15 -> 2.7e-16 (-1.458); 1528: -0.294; 1534: +0.293; 1530: +0.248; 1532: +0.223; 1533: +0.201 (full lists in top.log). The script prints the perturbed LU's ln|det| and pmin but not its arg det, so the change of the phase is not in the output.
+
+(2026-11-12 07:16 UTC, macm3) Rerun with modecount_pivots.py of main 80b5056 (it prints arg det's change; worktree ~/Source/choptuik-large-d-b80 at 80b5056, same build and state; run_568_arg.sh, top_arg.log and top_arg.json; started 06:59:52 UTC, exit 0 at 07:15:14 UTC, 921 s). The checks pass again and the numbers of ln|det| are those above. Change of arg det (wrapped to (-pi, pi]), plain arg det +1.660778:
+| part, shift | arg det | change of arg det |
+|---|---|---|
+| hi +1 | +1.312158 | -0.3486 rad |
+| hi -1 | +2.067691 | +0.4069 rad |
+| lo +1 | +2.855928 | +1.1952 rad |
+| lo -1 | -2.811594 | +1.8108 rad |
+Top pivots' change of arg (lo +1): k 1534 +0.426, k 1532 -2.515, k 1535 +0.080, k 1533 -0.228, k 1531 +0.295, k 1527 +3.087; (lo -1): k 1535 -1.109, k 1528 +0.045, k 1534 -0.488, k 1530 +3.030, k 1532 -2.633, k 1533 -0.051 (full lists in top_arg.log).
