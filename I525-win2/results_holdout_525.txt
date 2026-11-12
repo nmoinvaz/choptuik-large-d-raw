@@ -1,0 +1,20 @@
+39 states D 216.1312 to 237.1312; training D <= 232.7 (30 states), test 233.13, 233.63, 234.13, 234.63, 235.13, 235.63, 236.13, 236.63, 237.13
+| series | chirp P0, p1 (training) | chirp in-sample rms | chirp prediction rms (max) (a) | chirp (b) | p1 = 0: P | p1 = 0 in-sample rms | p1 = 0 prediction rms (max) (a) | p1 = 0 (b) |
+|---|---|---|---|---|---|---|---|---|
+| ln sigma_1 | 2.61, +0.014 | 0.0062 | 0.0222 (0.0472) | 0.0132 | 2.56 | 0.0131 | 0.0667 (0.1385) | 0.0528 |
+| ln sigma_2 | 2.62, +0.016 | 0.0054 | 0.0152 (0.0245) | 0.0073 | 2.56 | 0.0140 | 0.0546 (0.1048) | 0.0525 |
+| ln sigma_3 | 2.20, +0.006 | 0.0103 | 0.0765 (0.1290) | 0.0194 | 2.18 | 0.0117 | 0.0768 (0.1374) | 0.0346 |
+| ln sigma_4 | 2.20, +0.006 | 0.0075 | 0.0564 (0.0991) | 0.0169 | 2.18 | 0.0112 | 0.0697 (0.1547) | 0.0370 |
+
+acceptance (a): the chirp's rms prediction error of ln sigma_1 and ln sigma_2 is at most 0.014 (2 x 0.007)
+  ln sigma_1: chirp 0.0222, p1 = 0 0.0667: FAIL; the control is worse (the drift is needed)
+  ln sigma_2: chirp 0.0152, p1 = 0 0.0546: FAIL; the control is worse (the drift is needed)
+acceptance: FAIL
+
+parametric bootstrap of the hold-out (diagnostic, not the acceptance): the chirp fitted to the 30 training states as the truth, white noise at its in-sample rms x sqrt(n/(n-7)), 500 trials
+| series | noise used | observed chirp prediction rms | trials: median | trials: 90th percentile | share of trials at or above the observed |
+|---|---|---|---|---|---|
+| ln sigma_1 | 0.0070 | 0.0222 | 0.0104 | 0.0160 | 1.0% |
+| ln sigma_2 | 0.0062 | 0.0152 | 0.0092 | 0.0146 | 8.0% |
+| ln sigma_3 | 0.0118 | 0.0765 | 0.0181 | 0.0287 | 0.0% |
+| ln sigma_4 | 0.0086 | 0.0564 | 0.0133 | 0.0222 | 0.0% |

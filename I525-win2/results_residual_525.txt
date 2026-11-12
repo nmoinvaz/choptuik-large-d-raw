@@ -1,0 +1,32 @@
+39 states D 216.1312 to 237.1312; 300 null trials; acceptance: residual <= 0.008 with a null fraction below 1%
+ln sigma_3: M0 chirp rms 0.0172 (P0 2.20, p1 +0.004)
+  M1: rms 0.0170 (P0 2.20, p1 +0.004, amplitude 0.1298 at D 216, 0.1229 at D 228, 0.1176 at D 237 (slope per unit u: -0.047 of the D 228 value)); null fraction 72.7% (noise = this rms), 69.0% (noise = M0 rms)
+  M2h: rms 0.0155 (P0 2.20, p1 +0.004, second-harmonic amplitude 0.0108, first 0.1238); null fraction 3.3% (noise = this rms), 4.7% (noise = M0 rms)
+  M2s: rms 0.0081 (P0 2.20, p1 +0.006, P2 15.00, amplitude 0.0230, first 0.1254); null fraction 0.0% (noise = this rms), 0.0% (noise = M0 rms)
+ln sigma_4: M0 chirp rms 0.0135 (P0 2.20, p1 +0.006)
+  M1: rms 0.0131 (P0 2.17, p1 +0.006, amplitude 0.1349 at D 216, 0.1263 at D 228, 0.1375 at D 237 (slope per unit u: +0.103 of the D 228 value)); null fraction 51.0% (noise = this rms), 51.3% (noise = M0 rms)
+  M2h: rms 0.0128 (P0 2.20, p1 +0.006, second-harmonic amplitude 0.0059, first 0.1297); null fraction 21.3% (noise = this rms), 23.7% (noise = M0 rms)
+  M2s: rms 0.0081 (P0 2.20, p1 +0.006, P2 15.00, amplitude 0.0161, first 0.1285); null fraction 0.0% (noise = this rms), 0.3% (noise = M0 rms)
+ln sigma_1: M0 chirp rms 0.0068 (P0 2.62, p1 +0.016)
+  M1: rms 0.0063 (P0 2.66, p1 +0.016, amplitude 0.1145 at D 216, 0.1106 at D 228, 0.1194 at D 237 (slope per unit u: +0.091 of the D 228 value)); null fraction 18.7% (noise = this rms), 14.7% (noise = M0 rms)
+  M2h: rms 0.0043 (P0 2.62, p1 +0.014, second-harmonic amplitude 0.0074, first 0.1120); null fraction 0.0% (noise = this rms), 0.0% (noise = M0 rms)
+  M2s: rms 0.0047 (P0 2.62, p1 +0.016, P2 1.30, amplitude 0.0070, first 0.1123); null fraction 0.0% (noise = this rms), 0.3% (noise = M0 rms)
+ln sigma_2: M0 chirp rms 0.0061 (P0 2.62, p1 +0.016)
+  M1: rms 0.0060 (P0 2.62, p1 +0.016, amplitude 0.1109 at D 216, 0.1108 at D 228, 0.1107 at D 237 (slope per unit u: -0.000 of the D 228 value)); null fraction 63.0% (noise = this rms), 64.0% (noise = M0 rms)
+  M2h: rms 0.0032 (P0 2.62, p1 +0.016, second-harmonic amplitude 0.0074, first 0.1103); null fraction 0.0% (noise = this rms), 0.0% (noise = M0 rms)
+  M2s: rms 0.0038 (P0 2.62, p1 +0.016, P2 1.30, amplitude 0.0068, first 0.1105); null fraction 0.0% (noise = this rms), 0.3% (noise = M0 rms)
+
+| series | model | rms residual | worst null fraction | meets the acceptance |
+|---|---|---|---|---|
+| ln sigma_3 | M1 | 0.0170 | 72.7% | no |
+| ln sigma_3 | M2h | 0.0155 | 4.7% | no |
+| ln sigma_3 | M2s | 0.0081 | 0.0% | no |
+| ln sigma_4 | M1 | 0.0131 | 51.3% | no |
+| ln sigma_4 | M2h | 0.0128 | 23.7% | no |
+| ln sigma_4 | M2s | 0.0081 | 0.3% | no |
+| ln sigma_1 | M1 | 0.0063 | 18.7% | no |
+| ln sigma_1 | M2h | 0.0043 | 0.0% | yes |
+| ln sigma_1 | M2s | 0.0047 | 0.3% | yes |
+| ln sigma_2 | M1 | 0.0060 | 64.0% | no |
+| ln sigma_2 | M2h | 0.0032 | 0.0% | yes |
+| ln sigma_2 | M2s | 0.0038 | 0.3% | yes |
