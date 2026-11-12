@@ -72,3 +72,23 @@ All 14 solves converged on their first run (no restart, no crash; the launcher a
 **Pair test.** At N = 99 and 103 the two roots are not told apart: |z_b - z_a| is 1.7e-15 and 4.3e-16, and the pair test says the rise of the residual between them is "hidden by the residual floor", so at these N the two starts reach one root (the spreads 2.1e-14 and 5.8e-15 are the Delta uncertainty of that root at the residual floor, with hp's own error 2e-15). From N = 107 the two are distinct (the residual rises between them), |z_b - z_a| from 4.4e-13 (107) to 9.8e-11 (123): the degeneracy sets in between 103 and 107 at D 54.996, against already at 99 at D 60.
 
 **Against the earlier results at this D.** #164 (the other family N = 3 mod 4 up to 97, both starts agreeing to 2e-14): 95 -5.46e-13, 97 +1.25e-13; here 99 is -3.75e-14 and -1.64e-14, so the ladder 95, 97, 99 is -5.5e-13, +1.3e-13, -3e-14 (not monotone in sign, falling in size), and 103 (-7e-14) does not continue the fall. #145's 32x101 (N = 1 mod 4) was -2.1e-14 at this D. Cost: 665 to 1162 s per solve for N 99 to 119 (four at once), up to 2002 s for the ones that needed 6 or 8 Newton steps (115a, 123b).
+
+## D 50.007491 (queue 18:16:52 to 19:20:05 UTC, 3793 s; analysis 19:20 UTC)
+
+All 14 solves converged on their first run (NTOL 1e-40; root b of 32x99 took 9 Newton steps and 1637 s, ending at max|F| 3.5e-38, a stall accepted within 1e6 of NTOL). Same table, `fit/summary_D50.0075.md`, `fit_analysis_D50.0075.txt`, `fit/verdict_32xN_D50.0075.log`, `fit/roots_32xN_D50.0075.log` (the planted checks pass for all seven pairs):
+
+| N | root a - hp | root b - hp | spread a - b | E(N) | max abs(z_b - z_a) | max abs(B(e,e)) / max abs(e) | Newton steps a, b | seconds a, b | peak GB a, b |
+|---|---|---|---|---|---|---|---|---|---|
+| 99 | -2.33e-14 | -2.33e-14 | +1.12e-18 | 2.33e-14 | 8.455e-20 | 6.7e-19 | 4, 9 | 678, 1637 | 1.18, 1.19 |
+| 103 | -2.95e-15 | -2.90e-15 | -4.86e-17 | 2.95e-15 | 2.863e-18 | 2.0e-16 | 4, 4 | 761, 748 | 1.27, 1.27 |
+| 107 | -7.53e-15 | -7.39e-15 | -1.45e-16 | 7.53e-15 | 9.385e-18 | 1.5e-16 | 4, 4 | 859, 860 | 1.36, 1.36 |
+| 111 | -5.97e-14 | -6.56e-14 | +5.89e-15 | 6.56e-14 | 7.528e-15 | 2.5e-12 | 4, 4 | 956, 1018 | 1.46, 1.46 |
+| 115 | -3.08e-13 | +1.00e-14 | -3.18e-13 | 3.08e-13 | 2.386e-14 | 1.4e-13 | 4, 4 | 1092, 1115 | 1.56, 1.56 |
+| 119 | -1.34e-12 | -2.62e-12 | +1.28e-12 | 2.62e-12 | 9.216e-14 | 1.3e-13 | 4, 4 | 1157, 985 | 1.66, 1.65 |
+| 123 | -1.95e-12 | -3.31e-11 | +3.11e-11 | 3.31e-11 | 2.165e-12 | 5.5e-12 | 4, 4 | 1018, 1013 | 1.76, 1.75 |
+
+**Verdict at D 50.007491: the ladder falls to below 1e-14 at N* = 103**: E(99) = 2.33e-14 > E(103) = 2.95e-15, and 32x103 passes `rt_grids.py --tol 1e-14` (both roots within 3e-15 of hp, spread 4.9e-17; hp's own error is 2e-15, so 32x103 equals hp within hp's error). 32x107 also passes (E = 7.53e-15, spread 1.5e-16) but E rises from 103 to 107, and from 111 on it grows steadily (6.56e-14, 3.08e-13, 2.62e-12, 3.31e-11): the ladder falls to N* = 103 and then rises again, so the window of N for which RT reproduces hp to 1e-14 at D 50 is 103 to 107.
+
+**Pair test.** For N = 99, 103 and 107 the two starts reach one root to 1e-19 to 1e-17 (|z_b - z_a| 8.5e-20, 2.9e-18, 9.4e-18; the residual rise between them is "hidden by the residual floor"); from N = 111 the two roots are distinct (the residual rises between them), 7.5e-15 (111), 2.4e-14 (115), 9.2e-14 (119), 2.2e-12 (123) apart. So the degeneracy sets in between 107 and 111 at D 50.007, against between 103 and 107 at D 54.996 and at 99 or below at D 60.001952.
+
+**Against the earlier results at this D.** #145's 32x101 (N = 1 mod 4, root a) was +3.3e-15; the neighbours of this ladder are 99 -2.3e-14, 103 -2.9e-15 and 107 -7.5e-15, all negative. Cost: 678 to 1157 s per solve (four at once), 1637 s for 99b (9 Newton steps).

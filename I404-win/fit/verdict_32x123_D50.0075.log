@@ -1,0 +1,18 @@
+grids A [32, 123] (roots\a101_32x123.jsonl), B [32, 123] (roots\b121_32x123.jsonl), tol 1e-14, tol_ab 1e-14, mutate None
+| D | Delta_RT (A) | A - hp | B - hp | A - B | verdict |
+|---|---|---|---|---|---|
+| 50.007491 | 1.841631133200318 | -1.95e-12 | -3.31e-11 | +3.11e-11 | FAIL |
+
+totals per file:
+  roots\a101_32x123.jsonl: 3 D, 77 min, 16 Newton steps, 1211 products, 2 rebuilds (4 min), LU pivot ratio 7.0e+15 to 1.6e+16, final max|F| at most 2.1e-38
+  roots\b121_32x123.jsonl: 3 D, 69 min, 16 Newton steps, 1167 products, 1 rebuilds (2 min), LU pivot ratio 4.2e+15 to 9.1e+15, final max|F| at most 1.1e-40
+
+every D in both files:
+| D | A - hp | B - hp | A - B | Newton steps A, B | products A | products B | s per Newton step A, B | s per D A, B |
+|---|---|---|---|---|---|---|---|---|
+| 50.007491 | -1.95e-12 | -3.31e-11 | +3.11e-11 | 4, 4 | [58, 76, 77, 62] | [58, 76, 74, 66] | 220.9, 219.0 | 1018, 1013 |
+| 54.996085 | +5.65e-11 | -1.21e-09 | +1.26e-09 | 4, 8 | [61, 80, 80, 68] | [61, 80, 80, 72, 99, 60, 84, 61] | 231.4, 221.5 | 1055, 1995 |
+| 60.001952 | -1.63e-07 | +2.27e-11 | -1.63e-07 | 8, 4 | [63, 83, 94, 90, 112, 59, 89, 59] | [63, 84, 83, 66] | 272.0, 253.8 | 2527, 1147 |
+exit 1
+
+exit 1
