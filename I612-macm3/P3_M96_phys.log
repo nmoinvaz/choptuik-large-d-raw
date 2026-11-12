@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/Users/nathan/Source/choptuik-large-d-b596/hp/modecount_smooth.py", line 23, in <module>
+    st = setup(path, M=M, threads=4, kf=kf, fmax=1e-15, log=lambda *a: None)
+  File "/Users/nathan/Source/choptuik-large-d-b596/hp/modecount_common.py", line 230, in setup
+    s, c = build_pair(meta, zh, zl, M, kf, threads)
+           ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nathan/Source/choptuik-large-d-b596/hp/modecount_common.py", line 73, in build_pair
+    c = modecount_cx.CSolver(M, float(nh[0]), float(nl[0]), dh, dl, ph, pl, list(meta["nodes"]), s.get_segs(),
+                             meta.get("kt", 36), meta.get("kc", 420), meta.get("ks", 100), threads, a, b, None)
+ValueError: M must be one of 16, 32, 40, 48, 64, 80

@@ -1,0 +1,17 @@
+Traceback (most recent call last):
+  File "/Users/nathan/Source/choptuik-large-d-b596/hp/modecount_smooth.py", line 23, in <module>
+    st = setup(path, M=M, threads=4, kf=kf, fmax=1e-15, log=lambda *a: None)
+  File "/Users/nathan/Source/choptuik-large-d-b596/hp/modecount_common.py", line 227, in setup
+    zh, zl, meta, kf, saved = prepare(path, M, threads, kf, log, fit, centre_tol)
+                              ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nathan/Source/choptuik-large-d-b596/hp/modecount_common.py", line 216, in prepare
+    zh, zl, meta, _ = fit_nodes(meta, zh, zl, kf, threads, log, tol_centre=centre_tol)
+                      ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nathan/Source/choptuik-large-d-b596/hp/modecount_common.py", line 158, in fit_nodes
+    s = build_solver(meta, zh, zl, M, kf, threads)
+  File "/Users/nathan/Source/choptuik-large-d-b596/hp/modecount_common.py", line 55, in build_solver
+    s = make_solver(meta["D"], M, nodes=meta["nodes"], kt=meta.get("kt", 36), kc=meta.get("kc", 420),
+                    ks=meta.get("ks", 100), threads=threads, kfreeze=kf)
+  File "/Users/nathan/Source/venv-macm3-314/lib/python3.14/site-packages/hpkernel/driver.py", line 94, in make_solver
+    s = Solver(M, float(nh[0]), float(nl[0]), dh, dl, ph, pl, nodes, segs or [], kt, kc, ks, threads, a, b, match_node)
+ValueError: M must be one of 8, 16, 32, 40, 48, 64, 80, 96, 128, 160, 192, 256, 320, 384, 512
