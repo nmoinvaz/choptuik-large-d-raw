@@ -1,2 +1,19 @@
 held values from the fit data/held_fit.json (degree 8, 138 full-system states, D 38.020417-73.0), relative to the base
 the base keeps its stored plan (27 steps)
+#504: D_c from |J| at the corrector's start (Curtis-Reid + Ruiz, 45 Ruiz iterations, largest |1 - max-norm| 7.7e-13, 1477 s): D_c 3.33e-15..1.86e+06, D_r 3.38e-11..1.05e+04
+#504: log10(D_c / D_c of L08_plant7.json) -2.022e+00..+9.857e-01 (spread 3.0e+00)
+    on 0 trial lam 1: max|F| nan; raw |dz_t| nan vs |dz| 1.683e-01 (not <); eq |dz_t/D_c| nan vs |dz/D_c| 6.172e+10 (not <); refused, 738.6 s
+    on 0 trial lam 0.5: max|F| nan; raw |dz_t| nan vs |dz| 1.683e-01 (not <); eq |dz_t/D_c| nan vs |dz/D_c| 6.172e+10 (not <); refused, 433.59 s
+    on 0 trial lam 0.25: max|F| nan; raw |dz_t| nan vs |dz| 1.683e-01 (not <); eq |dz_t/D_c| nan vs |dz/D_c| 6.172e+10 (not <); refused, 1685.66 s
+    on 0 trial lam 0.125: max|F| nan; raw |dz_t| nan vs |dz| 1.683e-01 (not <); eq |dz_t/D_c| nan vs |dz/D_c| 6.172e+10 (not <); refused, 1840.09 s
+    on 0 trial lam 0.0625: max|F| nan; raw |dz_t| nan vs |dz| 1.683e-01 (not <); eq |dz_t/D_c| nan vs |dz/D_c| 6.172e+10 (not <); refused, 726.27 s
+    on 0 trial lam 0.03125: max|F| nan; raw |dz_t| nan vs |dz| 1.683e-01 (not <); eq |dz_t/D_c| nan vs |dz/D_c| 6.172e+10 (not <); refused, 2084.35 s
+    on 0 trial lam 0.015625: max|F| nan; raw |dz_t| nan vs |dz| 1.683e-01 (not <); eq |dz_t/D_c| nan vs |dz/D_c| 6.172e+10 (not <); refused, 1250.59 s
+    on 0 trial lam 0.0078125: max|F| nan; raw |dz_t| nan vs |dz| 1.683e-01 (not <); eq |dz_t/D_c| nan vs |dz/D_c| 6.172e+10 (not <); refused, 1275.04 s
+    on 0 trial lam 0.00390625: max|F| nan; raw |dz_t| nan vs |dz| 1.683e-01 (not <); eq |dz_t/D_c| nan vs |dz/D_c| 6.172e+10 (not <); refused, 716.52 s
+  on 0: |F| 1.62e-34, |dz| 1.7e-01: no trial step accepted, stopping
+      elim projections {'u0': 0, 'u0q': 0, 'ladder': 0, 'failed': 9, 'skipped': 1}
+      octo-double Newton: 1 steps, max|F| 1.6e-34, not converged; double-double |F| of its first two parts 1.3e-08
+base polish not adopted (max|F| 1.6e-34 -> 1.6e-34): the stored state is the base
+base I489-mac/renode_L1_horizon_D242.3642.npz: D 242.364190674, M 32, pin 3 (held [5, 7, 9, 11, 13]), |F| 1.3e-08; N 24, eps 1e-14, h_max 1.0, corrector od (junk_only False), tol 1.0e-20 x 1.45^(D - 242.36419), stalls accepted below 1e-17
+done

@@ -69,3 +69,39 @@ J S, and D_c(J S) S / D_c(J) is constant to 5.5e-12 in log10 (`predict_A_unmoved
 The first full run D was stopped after 3 trials (`pD_raw_unmoved_stopped.log`, exit 143). With S unmoved the raw test
 refused lam 1 again at step 1 (9.640e+03 vs 9.634e+03), so it would halve every step. `run_all.sh` ran A's
 successors until then, and `run_rest.sh` ran the rest.
+
+## Real case: the 0.3-0.8 polish refuses step 0 whatever the test (`polish_eq.log`, exit 0)
+
+`run_polish_eq.sh` (#489's options, D_c from |J| at the corrector's start) ran from 04:18:19 to 08:18:51 UTC (14432 s,
+jacobian_o 1477 s of it). D_c spans 3.33e-15..1.86e+06 (45 Ruiz iterations, largest |1 - max-norm| 7.7e-13; saved in
+`polish_eq_Dc.npy`). The history is `polish_eq_hist.jsonl`, and the trace with step 0's correction is
+`polish_eq_hist_trace1.npz`.
+
+From max|F| 1.62e-34, step 0's correction is 0.168 in the raw max norm and 6.17e+10 in the equilibrated one. All nine
+trials, lam 1 to 2^-8, have a non-finite residual at the trial point, and their nine projections failed (ElimO
+counts: failed 9, skipped 1). So neither test is ever reached. Each is refused for lack of a residual, newton_od stops
+with "no trial step accepted", and the base polish is not adopted.
+
+| lam | max\|F\| at the trial | raw \|dz_t\| vs \|dz\| | eq \|dz_t/D_c\| vs \|dz/D_c\| | s |
+|---|---|---|---|---|
+| 1 | nan | nan vs 1.683e-01 | nan vs 6.172e+10 | 739 |
+| 1/2 | nan | nan vs 1.683e-01 | nan vs 6.172e+10 | 434 |
+| 1/4 | nan | nan vs 1.683e-01 | nan vs 6.172e+10 | 1686 |
+| 1/8 | nan | nan vs 1.683e-01 | nan vs 6.172e+10 | 1840 |
+| 1/16 | nan | nan vs 1.683e-01 | nan vs 6.172e+10 | 726 |
+| 1/32 | nan | nan vs 1.683e-01 | nan vs 6.172e+10 | 2084 |
+| 1/64 | nan | nan vs 1.683e-01 | nan vs 6.172e+10 | 1251 |
+| 1/128 | nan | nan vs 1.683e-01 | nan vs 6.172e+10 | 1275 |
+| 1/256 | nan | nan vs 1.683e-01 | nan vs 6.172e+10 | 717 |
+
+Where the correction lives (`eq_test.py step`, `polish_eq_step0.log`): it is O(0.1) in every field. That is p1 0.168,
+c0 0.051, the nodes' p and m 0.05 to 0.13, m_h 0.15 and Delta 0.076. Only a and a_h are smaller (1e-4). In the
+equilibrated unknowns the horizon data dominate, a_h[0] 6.2e10 and m_h[0] 5.7e10, where D_c is 3e-15 to 1.5e-10. So
+even lam 2^-8 moves Delta by 3.0e-4.
+
+D_c here is not #502's D_c at the same state times a constant. log10 of their ratio spans -2.02..+0.99. The scaling
+is stable under a relative change of J's entries but not under dropping its smallest ones (`sensitivity_L07.log`,
+`sensitivity_D180.log`).
+
+The run used choptuik-large-d 909b1d5 (branch `feat/i504-equilibrated-test`). That branch lacks main's e5bbdcd (the
+re-seed's octo-double rung LU refactored after a poor correction), so its projections are #489's.
