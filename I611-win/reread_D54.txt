@@ -1,0 +1,20 @@
+== D 54.996085: hp quad-double Delta (the last converged record of each polish)
+  kf13_D54a: Delta 1.8242712581939432761374833482553  max|F| 2.6e-56, 4 Newton steps, 218 s
+  kf13_D54b: Delta 1.8274556531206565070201730894252  max|F| 5.1e-56, 4 Newton steps, 217 s
+  kfm1_D54a: Delta 1.8242712581939420660919734166791  max|F| 3.8e-56, 7 Newton steps, 376 s
+  kfm1_D54b: Delta 1.8274556531206553089696055802166  max|F| 2.2e-56, 7 Newton steps, 370 s
+  qd - dd row: -1.73e-18 at 54.041398, +1.32e-17 at 55.035148; interpolated to 54.996085: +1.26e-17
+  the cut's effect (no cut - kf 13): -1.1981e-15 at 54.041398, -1.2100e-15 at 55.035148; interpolated to 54.996085: -1.2096e-15 (the two differ by -1.2e-17)
+  ESTIMATED Delta at D 54.996085: kf 13 1.82439433727262601231498961961, no cut 1.82439433727262480274098503228 (error of the estimate about 5e-17: the offset qd - dd row is +4.8e-17, -1.7e-18, +1.3e-17, -6.9e-17 at D 50, 54.04, 55.04, 60)
+
+| N | root a - uncut | root b - uncut | E_uncut(N) | root a - kf 13 | root b - kf 13 | E_cut(N) | spread a - b | passes 1e-14 (uncut) |
+|---|---|---|---|---|---|---|---|---|
+| 99 | -3.64e-14 | -1.53e-14 | 3.64e-14 | -3.76e-14 | -1.65e-14 | 3.76e-14 | -2.11e-14 | no |
+| 103 | -6.80e-14 | -7.38e-14 | 7.38e-14 | -6.92e-14 | -7.50e-14 | 7.50e-14 | +5.78e-15 | no |
+| 107 | +5.44e-12 | -6.19e-13 | 5.44e-12 | +5.44e-12 | -6.20e-13 | 5.44e-12 | +6.06e-12 | no |
+| 111 | +8.30e-14 | -6.93e-12 | 6.93e-12 | +8.17e-14 | -6.93e-12 | 6.93e-12 | +7.01e-12 | no |
+| 115 | -4.46e-11 | -8.53e-11 | 8.53e-11 | -4.46e-11 | -8.53e-11 | 8.53e-11 | +4.07e-11 | no |
+| 119 | -9.89e-12 | -2.33e-10 | 2.33e-10 | -9.89e-12 | -2.33e-10 | 2.33e-10 | +2.23e-10 | no |
+| 123 | +5.65e-11 | -1.21e-09 | 1.21e-09 | +5.65e-11 | -1.21e-09 | 1.21e-09 | +1.26e-09 | no |
+
+VERDICT D54 against the uncut Delta: the ladder STOPS FALLING at N_s = 99: E_uncut = 3.64e-14, spread 2.11e-14; the best N is 99 with E_uncut = 3.64e-14; passing grids: none

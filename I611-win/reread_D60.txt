@@ -1,0 +1,15 @@
+== D 60.001952: hp quad-double Delta (the last converged record of each polish)
+  kf13_D60: Delta 1.8098842580017148218821155282315  max|F| 1.6e-51, 4 Newton steps, 218 s
+  the no-cut polish did not converge (see the README): the table below is against the kf 13 quad-double Delta; the uncut column is n/a
+
+| N | root a - uncut | root b - uncut | E_uncut(N) | root a - kf 13 | root b - kf 13 | E_cut(N) | spread a - b | passes 1e-14 (uncut) |
+|---|---|---|---|---|---|---|---|---|
+| 99 | -3.47e-13 | -1.80e-12 | 1.80e-12 | -3.47e-13 | -1.80e-12 | 1.80e-12 | +1.45e-12 | no |
+| 103 | -4.04e-12 | -4.86e-11 | 4.86e-11 | -4.04e-12 | -4.86e-11 | 4.86e-11 | +4.46e-11 | no |
+| 107 | +4.73e-12 | +1.30e-10 | 1.30e-10 | +4.73e-12 | +1.30e-10 | 1.30e-10 | -1.25e-10 | no |
+| 111 | +2.57e-13 | -5.69e-10 | 5.69e-10 | +2.57e-13 | -5.69e-10 | 5.69e-10 | +5.70e-10 | no |
+| 115 | +2.08e-11 | -7.62e-12 | 2.08e-11 | +2.08e-11 | -7.62e-12 | 2.08e-11 | +2.84e-11 | no |
+| 119 | -8.60e-12 | -1.04e-11 | 1.04e-11 | -8.60e-12 | -1.04e-11 | 1.04e-11 | +1.77e-12 | no |
+| 123 | -1.63e-07 | +2.27e-11 | 1.63e-07 | -1.63e-07 | +2.27e-11 | 1.63e-07 | -1.63e-07 | no |
+
+VERDICT D60 against the uncut Delta: the ladder STOPS FALLING at N_s = 99: E_uncut = 1.80e-12, spread 1.45e-12; the best N is 99 with E_uncut = 1.80e-12; passing grids: none

@@ -1,0 +1,16 @@
+== D 50.007491: hp quad-double Delta (the last converged record of each polish)
+  kf13_D50: Delta 1.8416311332022644415634205832973  max|F| 9.5e-57, 4 Newton steps, 220 s
+  kfm1_D50: Delta 1.8416311332022633984652163275760  max|F| 4.3e-57, 6 Newton steps, 329 s
+  the cut's effect (no cut - kf 13): -1.0431e-15
+
+| N | root a - uncut | root b - uncut | E_uncut(N) | root a - kf 13 | root b - kf 13 | E_cut(N) | spread a - b | passes 1e-14 (uncut) |
+|---|---|---|---|---|---|---|---|---|
+| 99 | -2.22e-14 | -2.22e-14 | 2.22e-14 | -2.33e-14 | -2.33e-14 | 2.33e-14 | +1.12e-18 | no |
+| 103 | -1.91e-15 | -1.86e-15 | 1.91e-15 | -2.95e-15 | -2.90e-15 | 2.95e-15 | -4.86e-17 | yes |
+| 107 | -6.49e-15 | -6.35e-15 | 6.49e-15 | -7.53e-15 | -7.39e-15 | 7.53e-15 | -1.45e-16 | yes |
+| 111 | -5.87e-14 | -6.46e-14 | 6.46e-14 | -5.97e-14 | -6.56e-14 | 6.56e-14 | +5.89e-15 | no |
+| 115 | -3.07e-13 | +1.11e-14 | 3.07e-13 | -3.08e-13 | +1.00e-14 | 3.08e-13 | -3.18e-13 | no |
+| 119 | -1.34e-12 | -2.62e-12 | 2.62e-12 | -1.34e-12 | -2.62e-12 | 2.62e-12 | +1.28e-12 | no |
+| 123 | -1.95e-12 | -3.31e-11 | 3.31e-11 | -1.95e-12 | -3.31e-11 | 3.31e-11 | +3.11e-11 | no |
+
+VERDICT D50 against the uncut Delta: the ladder FALLS to below 1e-14 at N* = 103 (E_uncut = 1.91e-15, spread 4.86e-17); the best N is 103 with E_uncut = 1.91e-15; passing grids: [103, 107]

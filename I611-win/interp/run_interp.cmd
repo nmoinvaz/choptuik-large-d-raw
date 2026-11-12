@@ -1,0 +1,4 @@
+@echo off
+cd /d C:\Users\nathan\Source\choptuik-i611\hp
+start "kf13_D54i" /BELOWNORMAL /MIN cmd /c "C:\Users\nathan\Source\venv-t151\Scripts\python.exe -u scan_qd.py C:\Users\nathan\Source\choptuik-large-d-raw\I611-win\interp\qd_kf13_D54i.jsonl C:\Users\nathan\Source\choptuik-large-d-raw\I611-win\interp\interp_D54.996085.npz 54.996085 --kfreeze 13 --threads 3 --tag kf13_D54i > C:\Users\nathan\Source\choptuik-large-d-raw\I611-win\interp\kf13_D54i.stdout 2>&1"
+start "kfm1_D54i" /BELOWNORMAL /MIN cmd /c "C:\Users\nathan\Source\venv-t151\Scripts\python.exe -u scan_qd.py C:\Users\nathan\Source\choptuik-large-d-raw\I611-win\interp\qd_kfm1_D54i.jsonl C:\Users\nathan\Source\choptuik-large-d-raw\I611-win\interp\interp_D54.996085.npz 54.996085 --kfreeze -1 --threads 3 --tag kfm1_D54i > C:\Users\nathan\Source\choptuik-large-d-raw\I611-win\interp\kfm1_D54i.stdout 2>&1"

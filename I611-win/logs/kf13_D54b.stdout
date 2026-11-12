@@ -1,0 +1,15 @@
+converging data\states\up10_D54.0414.npz at D = 54.041398 in quad-double
+  qn 0 [full]: |F| 2.19e-24 -> 4.25e-26, |dz| 1.6e-12 -> 1.6e-20, lam 1, dDelta +2.83e-19, piv 1.8e-13..2.0e+06, 53.88 s
+  qn 1 [full]: |F| 4.25e-26 -> 4.34e-42, |dz| 1.6e-20 -> 6.4e-32, lam 1, dDelta -2.12e-27, piv 1.8e-13..2.0e+06, 55.2 s
+  qn 2 [full]: |F| 4.34e-42 -> 5.13e-56, |dz| 6.4e-32 -> 1.7e-44, lam 1, dDelta -2.45e-39, piv 1.8e-13..2.0e+06, 53.9 s
+  qn 3: |F| 5.13e-56 converged, Delta 1.82745565312065650 +9.0305e-18
+Traceback (most recent call last):
+  File "C:\Users\nathan\Source\choptuik-i611\hp\scan_qd.py", line 144, in <module>
+    main()
+  File "C:\Users\nathan\Source\choptuik-i611\hp\scan_qd.py", line 121, in main
+    z, h, ok, f, sec, nst, s_new = solve_at(Dn, zp, a, meta)
+  File "C:\Users\nathan\Source\choptuik-i611\hp\scan_qd.py", line 48, in solve_at
+    z, hist, conv = newton_qd(s, z, tol=a.tol, it_max=a.it_max, verbose=a.verbose)
+  File "C:\Users\nathan\Source\venv-t151\lib\site-packages\hpkernel\driver.py", line 803, in newton_qd
+    st = s.newton_q(*z, mutate=mutate)
+ValueError: singular or non-finite pivot at column 0 (NaN)

@@ -1,0 +1,14 @@
+converging C:\Users\nathan\Source\choptuik-large-d-raw\I611-win\kf13_D50_D50.007491.npz at D = 50.007491 in quad-double
+  qn 0 [full]: |F| 2.74e-36 -> 1.77e-44, |dz| 1.1e-21 -> 7.4e-42, lam 1, dDelta +8.42e-29, piv 1.0e-12..4.9e+05, 56.64 s
+  qn 1 [full]: |F| 1.77e-44 -> 6.80e-57, |dz| 7.4e-42 -> 3.1e-45, lam 1, dDelta +1.01e-48, piv 1.0e-12..4.9e+05, 55.97 s
+  qn 2: |F| 6.80e-57 converged, Delta 1.84163113320226435 +9.3904e-17
+Traceback (most recent call last):
+  File "C:\Users\nathan\Source\choptuik-i611\hp\scan_qd.py", line 144, in <module>
+    main()
+  File "C:\Users\nathan\Source\choptuik-i611\hp\scan_qd.py", line 121, in main
+    z, h, ok, f, sec, nst, s_new = solve_at(Dn, zp, a, meta)
+  File "C:\Users\nathan\Source\choptuik-i611\hp\scan_qd.py", line 48, in solve_at
+    z, hist, conv = newton_qd(s, z, tol=a.tol, it_max=a.it_max, verbose=a.verbose)
+  File "C:\Users\nathan\Source\venv-t151\lib\site-packages\hpkernel\driver.py", line 803, in newton_qd
+    st = s.newton_q(*z, mutate=mutate)
+ValueError: singular or non-finite pivot at column 0 (NaN)

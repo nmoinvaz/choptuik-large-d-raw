@@ -1,0 +1,4 @@
+@echo off
+cd /d C:\Users\nathan\Source\choptuik-i611\hp
+start "d1" /BELOWNORMAL /MIN cmd /c "C:\Users\nathan\Source\venv-t151\Scripts\python.exe -u scan_qd.py C:\Users\nathan\Source\choptuik-large-d-raw\I611-win\diag\qd_diag_lag.jsonl C:\Users\nathan\Source\choptuik-large-d-raw\I611-win\kf13_D50_D50.007491.npz 50.017491 --kfreeze 13 --threads 3 --tag diag_lag --predictor lagrange --dD 0.01 > C:\Users\nathan\Source\choptuik-large-d-raw\I611-win\diag\diag_lag.stdout 2>&1"
+start "d2" /BELOWNORMAL /MIN cmd /c "C:\Users\nathan\Source\venv-t151\Scripts\python.exe -u scan_qd.py C:\Users\nathan\Source\choptuik-large-d-raw\I611-win\diag\qd_diag_tan.jsonl C:\Users\nathan\Source\choptuik-large-d-raw\I611-win\kf13_D50_D50.007491.npz 50.017491 --kfreeze 13 --threads 3 --tag diag_tan --predictor tangent --dD 0.01 > C:\Users\nathan\Source\choptuik-large-d-raw\I611-win\diag\diag_tan.stdout 2>&1"
