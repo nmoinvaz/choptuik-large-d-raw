@@ -1,0 +1,18 @@
+# the same start-only run (kc 40, --verbose) with the PRE-#523 kernel and scan_hp.py of main 80b5056 (the venv of I577-dh370/)
+  dn 0 [all]: |F| 6.91e-16 -> 9.02e-16 lam 1 Delta 1.824271258193943 t 0s
+  dn: phase 'all' stalled at |F| 9.0e-16; phase 'full'
+  dn 1 [full]: |F| 9.02e-16 -> 5.69e-24 lam 1 Delta 1.824271258193943 t 1s
+  dn 2 [full]: |F| 5.69e-24 -> 3.11e-24 lam 1 Delta 1.824271258193943 t 1s
+  dn 3 [full]: |F| 3.11e-24 -> 3.61e-24 lam 0.25 Delta 1.824271258193943 t 2s
+  dn 4 [full]: |F| 3.61e-24 -> 3.54e-24 lam 0.5 Delta 1.824271258193943 t 2s
+  dn 5 [full]: |F| 3.54e-24 -> 2.74e-24 lam 0.5 Delta 1.824271258193943 t 2s
+  dn 6 [full]: |F| 2.74e-24 -> 2.49e-24 lam 0.5 Delta 1.824271258193943 t 3s
+  dn 7 [full]: |F| 2.49e-24 -> nan lam 0.000122 Delta 1.824271258193943 t 3s
+   D=55.035148: Newton stopped at |F| 2.5e-24; Levenberg-Marquardt from the predictor
+  lm 0: |F|_2 2.49e-15 -> 8.35e-24 (mu 0, |dz| 7.2e-16) Delta 1.824271258193943 t 1s
+  newton 0: |F| 2.87e-24 |dz| 6.94e-12 lam 0.0625 dDelta +6.61e-20 Delta 1.824271258193943 piv 1.5e-13..2.8e+06  t 0.4s
+  newton 1: |F| 2.26e-24 |dz| 6.74e-12 lam 0.5 dDelta +5.35e-19 Delta 1.824271258193943 piv 1.5e-13..2.8e+06  t 0.8s
+  newton 2: |F| 2.57e-24: no decrease along the Newton step, giving up
+(re-)converged start D=55.035148 M=32 nodes=[0.3, 0.4, 0.5, 0.6, 0.7]: Delta 1.8242712581939433 ok False (5s)
+start did not converge
+exit 1

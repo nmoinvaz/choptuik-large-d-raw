@@ -1,0 +1,13 @@
+# the same start-only run at the default kc 40 with --verbose, for the Newton iterates
+  dn 0 [all]: |F| 6.91e-16 -> 6.28e-16 lam 1 Delta 1.824271258193943 t 0s
+  dn: phase 'all' stalled at |F| 6.3e-16; phase 'full'
+  dn 1 [full]: |F| 6.28e-16 -> 4.03e-24 lam 1 Delta 1.824271258193943 t 1s
+  dn 2 [full]: |F| 4.03e-24 -> 3.43e-24 lam 0.25 Delta 1.824271258193943 t 1s
+  dn 3 [full]: |F| 3.43e-24 -> nan lam 0.000122 Delta 1.824271258193943 t 2s
+   D=55.035148: Newton stopped at |F| 3.4e-24; Levenberg-Marquardt from the predictor
+  lm 0: |F|_2 2.49e-15 -> 1.04e-23 (mu 0, |dz| 7.2e-16) Delta 1.824271258193943 t 1s
+  newton 0: |F| 4.08e-24 |dz| 1.16e-11 lam 0.125 dDelta +2.23e-19 Delta 1.824271258193943 piv 1.5e-13..2.8e+06  t 0.4s
+  newton 1: |F| 2.93e-24: no decrease along the Newton step, giving up
+(re-)converged start D=55.035148 M=32 nodes=[0.3, 0.4, 0.5, 0.6, 0.7]: Delta 1.8242712581939433 ok False (3s)
+start did not converge
+exit 1

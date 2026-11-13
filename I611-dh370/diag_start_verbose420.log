@@ -1,0 +1,14 @@
+# the same start-only run at kc 420 (the state's own) with --verbose
+  dn 0 [all]: |F| 1.50e-16 -> 1.49e-16 lam 0.0156 Delta 1.824271258193943 t 6s
+  dn: phase 'all' stalled at |F| 1.5e-16; phase 'full'
+  dn 1 [full]: |F| 1.49e-16 -> 4.26e-24 lam 1 Delta 1.824271258193943 t 11s
+  dn 2 [full]: |F| 4.26e-24 -> 2.44e-24 lam 1 Delta 1.824271258193943 t 15s
+  dn 3 [full]: |F| 2.44e-24 -> 3.17e-24 lam 0.0625 Delta 1.824271258193943 t 20s
+  dn 4 [full]: |F| 3.17e-24 -> nan lam 0.000122 Delta 1.824271258193943 t 26s
+   D=55.035148: Newton stopped at |F| 3.2e-24; Levenberg-Marquardt from the predictor
+  lm 0: |F|_2 2.13e-16 -> 8.55e-24 (mu 0, |dz| 7.7e-17) Delta 1.824271258193943 t 6s
+  newton 0: |F| 3.13e-24 |dz| 4.14e-12 lam 0.25 dDelta -7.16e-20 Delta 1.824271258193943 piv 1.5e-13..2.8e+06  t 5.0s
+  newton 1: |F| 3.46e-24: no decrease along the Newton step, giving up
+(re-)converged start D=55.035148 M=32 nodes=[0.3, 0.4, 0.5, 0.6, 0.7]: Delta 1.8242712581939433 ok False (42s)
+start did not converge
+exit 1
