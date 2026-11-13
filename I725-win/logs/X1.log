@@ -1,0 +1,13 @@
+the base keeps its stored plan (11 steps)
+  qn 0: |F| 6.03e-49 converged, Delta 1.74527387450341642 -9.2726e-17
+      quad-double Newton: 1 steps, max|F| 6.0e-49, converged; double-double |F| of its first two parts 8.6e-17
+base I682-win/cont3/anm_pin13_D99.7500.npz: D 99.75, M 32, pin 13 (held []), |F| 8.6e-17; N 24, eps 1e-14, h_max 0.0625, corrector qd (junk_only False), tol 1.0e-20 x 1.45^(D - 99.75), stalls accepted below 1e-17
+step 0: D 99.75, pivots 6.5e-19..9.7e+12, |z_1| 1.49e-03, |z_N| 4.69e-35, ratios 2-5 122.2 110.4 105.5 102.8, a_max 5.767, 126 s
+    a 0.0625: re-seeded (ok), 16.64 s
+  qn 0 [full]: |F| 1.18e-35 -> 9.14e-32, |dz| 1.7e-15 -> 1.3e-27, lam 1, dDelta +4.01e-22, piv 1.1e-18..9.9e+12, 23.95 s
+  qn 1 [full]: |F| 9.14e-32 -> 2.35e-49, |dz| 1.3e-27 -> 2.3e-39, lam 1, dDelta -2.78e-34, piv 1.1e-18..9.9e+12, 20.17 s
+  qn 2: |F| 2.35e-49 converged, Delta 1.74521191343852111 -4.3493e-17
+      elim projections {'u0': 0, 'u0q': 3, 'ladder': 0, 'failed': 0, 'skipped': 0}
+      quad-double Newton: 3 steps, max|F| 2.3e-49, converged; double-double |F| of its first two parts 6.4e-17
+    a 0.062 -> D 99.8125: predicted |F| 9.18e-17, qd 3 steps -> 6.42e-17 (tol 1.0e-20, stall accepted, Delta correction +0.0e+00), Delta 1.745211913439 (formula diff -3.0e-07), moved 1.7e-15, 77 s
+done
