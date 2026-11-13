@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "/Users/nathan/Source/choptuik-large-d-b596/hp/lowD_gamma.py", line 95, in <module>
+    main()
+    ~~~~^^
+  File "/Users/nathan/Source/choptuik-large-d-b596/hp/lowD_gamma.py", line 81, in main
+    zh, zl, _ = newton_solve(s, zh, zl, tol=1e-29, it_max=int(opts["polish"]), verbose=True)
+                ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nathan/Source/venv-macm3-314/lib/python3.14/site-packages/hpkernel/driver.py", line 272, in newton_solve
+    dh, dl, Fh, Fl, pmin, pmax, info = newton_step(s, zh, zl, cur, mixed, gmres)
+                                       ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nathan/Source/venv-macm3-314/lib/python3.14/site-packages/hpkernel/driver.py", line 198, in newton_step
+    dh, dl, Fh, Fl, pmin, pmax = s.newton(zh, zl)
+                                 ~~~~~~~~^^^^^^^^
+ValueError: newton: the dense n x n path is limited to M <= 128 (memory); at M = 160 use newton_mixed (block storage)
