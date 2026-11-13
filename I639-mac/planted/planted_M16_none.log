@@ -1,0 +1,14 @@
+planted M = 16, L = 641, 351 Taylor steps; max |F(z*)| = 9.86e-32
+  newton 0 (dd): |F| 1.90e-03 -> 5.70e-05, lam 1, |dz| 2.5e-03, dDelta -1.14e-03, pivots 1.9e-02..1.8e+00 (16.0 s)
+  newton 1 (dd): |F| 5.70e-05 -> 4.51e-05, lam 0.5, |dz| 2.3e-03, dDelta -7.14e-05, pivots 1.4e-02..1.9e+00 (30.6 s)
+  newton 2 (dd): |F| 4.51e-05 -> 2.17e-05, lam 1, |dz| 1.2e-03, dDelta -9.45e-05, pivots 1.8e-02..1.6e+00 (44.8 s)
+  newton 3 (dd): |F| 2.17e-05 -> 5.57e-07, lam 1, |dz| 3.8e-04, dDelta +3.59e-06, pivots 1.0e-02..1.8e+00 (58.5 s)
+  newton 4 (dd): |F| 5.57e-07 -> 4.28e-10, lam 1, |dz| 1.6e-05, dDelta -1.18e-07, pivots 1.0e-02..1.8e+00 (73.1 s)
+  newton 5 (dd): |F| 4.28e-10 -> 3.72e-18, lam 1, |dz| 1.9e-09, dDelta +4.15e-10, pivots 1.0e-02..1.8e+00 (89.6 s)
+  newton 6 (dd): |F| 3.72e-18 -> 1.23e-31, lam 1, |dz| 9.2e-18, dDelta -1.58e-18, pivots 1.0e-02..1.8e+00 (105.6 s)
+  newton 7: |F| 1.23e-31 converged, Delta 1.300000000000000
+double-double: converged True in 7 steps, max |z - z*| 2.26e-29, Delta - Delta* -1.14e-29 -> PASS
+  newton_qd 0: |F| 1.07e-31 -> 1.38e-57, dDelta +1.24e-29 (122.4 s)
+  newton_qd 1: |F| 1.38e-57 converged
+quad-double: converged True (|F| 1.38e-57), Delta_qd - Delta_dd +1.24e-29, Delta_qd - Delta* +1.03e-30 -> PASS
+PLANTED PASS

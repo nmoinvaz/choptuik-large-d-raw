@@ -31,3 +31,64 @@
 06:16:16 start 2026-11-13 06:16:16 UTC: eta 14, D 4.0, M 48, K 21, kt 36, kc 80, ks 80, threads 2
 06:16:17 seed {'src': 'sm_eta20_M48.npz', 'eta_src': '20', 'M_src': 48, 'src2': 'sm_etainf_M48.npz', 'eta_src2': 'inf', 'w': -0.42857142857142844}: Delta 0.459818852316, |F| (single-step plan) 3.01e+35
 06:16:19 plan from the seed: 696 steps [7, 8, 11, 14, 16, 33, 38, 17, 10, 18, 18, 18, 26, 28, 33, 42, 56, 92, 91, 120] (2.8 s); |F| 5.53e-05
+06:18:01   newton 0 (mixed): |F| 5.53e-05 -> 2.79e-09, lam 1, |dz| 9.5e-04, dDelta +3.72e-06, pivots 6.0e-04..2.3e+01 (100.8 s)
+06:18:03     re-planned: 613 steps
+06:19:33   newton 1 (mixed): |F| 2.79e-09 -> 7.15e-17, lam 1, |dz| 1.8e-07, dDelta +5.33e-10, pivots 6.0e-04..2.7e+01 (192.2 s)
+06:19:33     re-planned: 467 steps
+06:20:43   newton 2 (mixed): |F| 7.15e-17 -> 3.01e-30, lam 1, |dz| 4.5e-15, dDelta +8.75e-18, pivots 6.0e-04..2.7e+01 (262.9 s)
+06:20:44     re-planned: 325 steps
+06:21:31   newton 3 (mixed): |F| 3.02e-30 converged, Delta 0.459822572840981 (step |dz| 2.7e-25, taken)
+06:21:32 plan from the solution: 300 steps (1.1 s); |F| 2.36e-30
+06:22:18   newton 0 (mixed): |F| 2.36e-30 converged, Delta 0.459822572840981 (step |dz| 3.7e-20, taken)
+06:22:18 double-double: converged True, |F| 2.36e-30, Delta 0.4598225728409808810148717839183519, constraint 3.44e-14, tails 1.6e-68 4.5e-60
+06:22:18 done 2026-11-13 06:22:18 UTC (361.5 s)
+/Users/nathan/venv-314/bin/python3 -u /Users/nathan/Source/choptuik-large-d/.claude/worktrees/agent-afea90b43be4c50bf/matter/sigma_ms/run_eta.py --eta 10 --M 48 --out /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/11bcbd25-9376-453b-88d5-a7c6ad0172dd/scratchpad/raw-i639/I639-mac/data --tag eta10_M48 --threads 2 --jac mixed --jac_final mixed --from /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/11bcbd25-9376-453b-88d5-a7c6ad0172dd/scratchpad/raw-i639/I639-mac/data/sm_eta14_M48.npz --from2 /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/11bcbd25-9376-453b-88d5-a7c6ad0172dd/scratchpad/raw-i639/I639-mac/data/sm_eta20_M48.npz
+06:22:18 start 2026-11-13 06:22:18 UTC: eta 10, D 4.0, M 48, K 21, kt 36, kc 80, ks 80, threads 2
+06:22:18 seed {'src': 'sm_eta14_M48.npz', 'eta_src': '14', 'M_src': 48, 'src2': 'sm_eta20_M48.npz', 'eta_src2': '20', 'w': -1.3333333333333341}: Delta 0.459810634559, |F| (single-step plan) 2.63e+35
+06:22:20 plan from the seed: 692 steps [7, 8, 11, 14, 16, 32, 38, 17, 10, 18, 18, 17, 26, 28, 33, 41, 56, 92, 90, 120] (1.9 s); |F| 5.18e-05
+06:23:59   newton 0 (mixed): |F| 5.18e-05 -> 2.49e-09, lam 1, |dz| 9.0e-04, dDelta +3.55e-06, pivots 6.0e-04..1.7e+01 (97.9 s)
+06:24:00     re-planned: 608 steps
+06:25:24   newton 1 (mixed): |F| 2.49e-09 -> 5.64e-17, lam 1, |dz| 1.6e-07, dDelta +4.78e-10, pivots 6.0e-04..1.7e+01 (183.4 s)
+06:25:25     re-planned: 464 steps
+06:26:21   newton 2 (mixed): |F| 5.64e-17 -> 2.31e-30, lam 1, |dz| 3.5e-15, dDelta +6.75e-18, pivots 6.0e-04..1.7e+01 (240.2 s)
+06:26:21     re-planned: 324 steps
+06:27:04   newton 3 (mixed): |F| 2.34e-30 converged, Delta 0.459814183684057 (step |dz| 1.4e-25, taken)
+06:27:05 plan from the solution: 300 steps (0.9 s); |F| 2.93e-30
+06:27:38   newton 0 (mixed): |F| 2.93e-30 converged, Delta 0.459814183684057 (step |dz| 7.1e-19, taken)
+06:27:39 double-double: converged True, |F| 2.93e-30, Delta 0.4598141836840565210842157739534741, constraint 2.81e-14, tails 2.1e-67 4.8e-60
+06:27:39 done 2026-11-13 06:27:39 UTC (320.4 s)
+/Users/nathan/venv-314/bin/python3 -u /Users/nathan/Source/choptuik-large-d/.claude/worktrees/agent-afea90b43be4c50bf/matter/sigma_ms/run_eta.py --eta 8.5 --M 48 --out /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/11bcbd25-9376-453b-88d5-a7c6ad0172dd/scratchpad/raw-i639/I639-mac/data --tag eta8.5_M48 --threads 2 --jac mixed --jac_final mixed --from /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/11bcbd25-9376-453b-88d5-a7c6ad0172dd/scratchpad/raw-i639/I639-mac/data/sm_eta10_M48.npz --from2 /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/11bcbd25-9376-453b-88d5-a7c6ad0172dd/scratchpad/raw-i639/I639-mac/data/sm_eta14_M48.npz
+06:27:39 start 2026-11-13 06:27:39 UTC: eta 8.5, D 4.0, M 48, K 21, kt 36, kc 80, ks 80, threads 2
+06:27:39 seed {'src': 'sm_eta10_M48.npz', 'eta_src': '10', 'M_src': 48, 'src2': 'sm_eta14_M48.npz', 'eta_src2': '14', 'w': -0.617647058823529}: Delta 0.459809002146, |F| (single-step plan) 1.55e+35
+06:27:41 plan from the seed: 680 steps [7, 7, 11, 14, 16, 32, 37, 17, 10, 18, 18, 17, 25, 28, 31, 40, 55, 90, 89, 118] (1.9 s); |F| 2.98e-05
+06:28:58   newton 0 (mixed): |F| 2.98e-05 -> 8.27e-10, lam 1, |dz| 5.2e-04, dDelta +2.06e-06, pivots 6.0e-04..2.8e+01 (77.2 s)
+06:28:59     re-planned: 603 steps
+06:30:14   newton 1 (mixed): |F| 8.27e-10 -> 6.14e-18, lam 1, |dz| 5.2e-08, dDelta +1.59e-10, pivots 6.0e-04..2.8e+01 (152.1 s)
+06:30:15     re-planned: 462 steps
+06:31:39   newton 2 (mixed): |F| 6.14e-18 -> 6.59e-31, lam 1, |dz| 3.8e-16, dDelta +7.24e-19, pivots 6.0e-04..2.8e+01 (237.8 s)
+06:31:40     re-planned: 310 steps
+06:32:30   newton 3 (mixed): |F| 5.05e-31 converged, Delta 0.459811058771144 (step |dz| 1.7e-23, taken)
+06:32:32 plan from the solution: 332 steps (1.3 s); |F| 2.75e-29
+06:33:35   newton 0 (mixed): |F| 2.75e-29 converged, Delta 0.459811058771144 (step |dz| 1.7e-23, taken)
+06:33:35 double-double: converged True, |F| 2.75e-29, Delta 0.4598110587711441987757154947757954, constraint 2.84e-14, tails 4.5e-70 5.1e-60
+06:33:35 done 2026-11-13 06:33:35 UTC (356.6 s)
+/Users/nathan/venv-314/bin/python3 -u /Users/nathan/Source/choptuik-large-d/.claude/worktrees/agent-afea90b43be4c50bf/matter/sigma_ms/run_eta.py --eta 7 --M 48 --out /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/11bcbd25-9376-453b-88d5-a7c6ad0172dd/scratchpad/raw-i639/I639-mac/data --tag eta7_M48 --threads 2 --jac mixed --jac_final mixed --from /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/11bcbd25-9376-453b-88d5-a7c6ad0172dd/scratchpad/raw-i639/I639-mac/data/sm_eta8.5_M48.npz --from2 /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/11bcbd25-9376-453b-88d5-a7c6ad0172dd/scratchpad/raw-i639/I639-mac/data/sm_eta10_M48.npz
+06:33:36 start 2026-11-13 06:33:36 UTC: eta 7, D 4.0, M 48, K 21, kt 36, kc 80, ks 80, threads 2
+06:33:36 seed {'src': 'sm_eta8.5_M48.npz', 'eta_src': '8.5', 'M_src': 48, 'src2': 'sm_eta10_M48.npz', 'eta_src2': '10', 'w': -1.4285714285714288}: Delta 0.459806594610, |F| (single-step plan) 1.94e+35
+06:33:38 plan from the seed: 685 steps [7, 7, 11, 14, 16, 32, 38, 17, 10, 18, 18, 17, 25, 28, 31, 40, 55, 93, 89, 119] (2.5 s); |F| 3.96e-05
+06:35:33   newton 0 (mixed): |F| 3.96e-05 -> 1.48e-09, lam 1, |dz| 6.9e-04, dDelta +2.77e-06, pivots 6.0e-04..1.0e+01 (113.6 s)
+06:35:35     re-planned: 602 steps
+06:37:15   newton 1 (mixed): |F| 1.48e-09 -> 1.93e-17, lam 1, |dz| 9.3e-08, dDelta +2.84e-10, pivots 6.0e-04..1.0e+01 (215.8 s)
+06:37:16     re-planned: 459 steps
+06:38:31   newton 2 (mixed): |F| 1.93e-17 -> 1.06e-30, lam 1, |dz| 1.2e-15, dDelta +2.24e-18, pivots 6.0e-04..1.0e+01 (291.8 s)
+06:38:32     re-planned: 318 steps
+06:39:27   newton 3 (mixed): |F| 1.06e-30 converged, Delta 0.459809362170769 (step |dz| 5.2e-26, taken)
+06:39:28 plan from the solution: 302 steps (0.7 s); |F| 2.10e-30
+06:40:04   newton 0 (mixed): |F| 2.10e-30 converged, Delta 0.459809362170769 (step |dz| 1.9e-21, taken)
+06:40:04 double-double: converged True, |F| 2.10e-30, Delta 0.4598093621707692313371751424710965, constraint 2.60e-14, tails 4.8e-70 5.4e-60
+06:40:04 done 2026-11-13 06:40:04 UTC (388.4 s)
+/Users/nathan/venv-314/bin/python3 -u /Users/nathan/Source/choptuik-large-d/.claude/worktrees/agent-afea90b43be4c50bf/matter/sigma_ms/run_eta.py --eta 6 --M 48 --out /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/11bcbd25-9376-453b-88d5-a7c6ad0172dd/scratchpad/raw-i639/I639-mac/data --tag eta6_M48 --threads 2 --jac mixed --jac_final mixed --from /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/11bcbd25-9376-453b-88d5-a7c6ad0172dd/scratchpad/raw-i639/I639-mac/data/sm_eta7_M48.npz --from2 /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/11bcbd25-9376-453b-88d5-a7c6ad0172dd/scratchpad/raw-i639/I639-mac/data/sm_eta8.5_M48.npz
+06:40:04 start 2026-11-13 06:40:04 UTC: eta 6, D 4.0, M 48, K 21, kt 36, kc 80, ks 80, threads 2
+06:40:05 seed {'src': 'sm_eta7_M48.npz', 'eta_src': '7', 'M_src': 48, 'src2': 'sm_eta8.5_M48.npz', 'eta_src2': '8.5', 'w': -0.9444444444444446}: Delta 0.459807759826, |F| (single-step plan) 5.32e+34
+06:40:07 plan from the seed: 683 steps [7, 7, 11, 14, 16, 32, 38, 17, 10, 18, 18, 17, 26, 28, 32, 40, 55, 92, 90, 115] (2.1 s); |F| 4.30e-05
+chain A stopped at 06:40:24 before eta 6 (chain B runs 6 and 5)
