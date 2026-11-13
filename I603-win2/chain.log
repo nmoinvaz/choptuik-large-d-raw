@@ -543,3 +543,11 @@ step 40: D 251.885871804, pivots 9.4e-31..9.3e+35, |z_1| 3.42e-04, |z_N| 2.33e-2
       horizon data refined in octo-double, rung max|R| 6.90e-26 -> 7.82e-58 -> 3.56e-69 -> 9.25e-80
   on 0: |F| 1.70e-31 -> 1.08e-22, |dz| 2.1e-27 -> 1.4e-27, lam 0.125, dDelta -2.06e-27, piv 8.8e-25..1.2e+36, 198.58 s
   on 1: |F| 1.08e-22 -> 1.07e-22, |dz| 1.4e-27 -> 1.4e-27, lam 0.0078125, dDelta +1.36e-27, piv 8.7e-25..1.2e+36, 399.07 s
+  on 2: |F| 1.07e-22 -> 1.06e-22, |dz| 1.4e-27 -> 1.4e-27, lam 0.0078125, dDelta +1.36e-27, piv 8.6e-25..1.2e+36, 394.63 s
+  on 2: lam at or below 0.04 twice in a row, stopping (stalled)
+      elim projections {'u0': 0, 'u0q': 0, 'ladder': 0, 'failed': 0, 'skipped': 21}
+      octo-double Newton: 3 steps, max|F| 1.1e-22, not converged; double-double |F| of its first two parts 3.4e+07
+    a 0.728 -> D 252.613467565: predicted |F| 3.94e+07, od 3 steps -> 3.41e+07 (tol 2.7e-16), Delta 1.684534450119 (formula diff -1.9e-06), moved 2.4e-28, 1041 s
+    a 0.3638: re-seeded (ok), 32.64 s
+      horizon data refined in octo-double, rung max|R| 4.50e-26 -> 6.08e-58 -> 1.18e-69 -> 5.77e-80
+  on 0: |F| 1.00e-35 -> 7.68e-36, |dz| 6.2e-35 -> 2.3e-44, lam 1, dDelta -6.18e-35, piv 7.6e-31..1.1e+36, 49.56 s
