@@ -1,0 +1,20 @@
+selftest 1: exact (Beta) chord moments against tanh-sinh, m, k < 31: max rel diff 2.3e-43 (pass < 1e-40)
+selftest 2: arcjump sigma_0..sigma_30, tanh-sinh step 1/32 against 1/64: max rel diff 6.9e-60 (pass < 1e-35)
+selftest 2: chord2 sigma_0..sigma_30, tanh-sinh step 1/32 against 1/64: max rel diff 8.7e-60 (pass < 1e-35)
+selftest 3: log-linear tail fit of rel_k on k = 18..22: slope 0.1575 dex, largest residual 0.008 dex (pass <= 0.05); rel_30 = 2.65e-11
+selftest 4: chord2 refitted at M = 6 against sigma_0..sigma_30: chi 5.0e-37 (pass <= 1e-3)
+selftest 5: arcjump twin M 27, n 31: chi 1.039308e-10 at 150 digits, 1.039308e-10 at 250: rel diff 0.0e+00 (pass <= 1e-3)
+planted M_true  8, n 23, F 1: l2 at M_true - 1 1.31e+16 (> 4.80), chi at M_true 1.24e-38 (<= 1): PASS
+planted M_true  8, n 23, F 0.1: l2 at M_true - 1 1.31e+17 (> 4.80), chi at M_true 1.24e-37 (<= 1): PASS
+planted M_true  8, n 31, F 1: l2 at M_true - 1 1.31e+16 (> 5.57), chi at M_true 1.24e-38 (<= 1): PASS
+planted M_true  8, n 31, F 0.1: l2 at M_true - 1 1.31e+17 (> 5.57), chi at M_true 1.24e-37 (<= 1): PASS
+planted M_true 12, n 23, F 1: l2 at M_true - 1 1.21e+09 (> 4.80), chi at M_true 1.16e-41 (<= 1): PASS
+planted M_true 12, n 23, F 0.1: l2 at M_true - 1 1.21e+10 (> 4.80), chi at M_true 1.16e-40 (<= 1): PASS
+planted M_true 12, n 31, F 1: l2 at M_true - 1 1.29e+09 (> 5.57), chi at M_true 1.51e-41 (<= 1): PASS
+planted M_true 12, n 31, F 0.1: l2 at M_true - 1 1.29e+10 (> 5.57), chi at M_true 1.51e-40 (<= 1): PASS
+planted M_true 16, n 23, F 1: l2 at M_true - 1 2.42e+03 (> 4.80), chi at M_true 1.01e-43 (<= 1): PASS
+planted M_true 16, n 23, F 0.1: l2 at M_true - 1 2.42e+04 (> 4.80), chi at M_true 1.01e-42 (<= 1): PASS
+planted M_true 16, n 31, F 1: l2 at M_true - 1 2.03e+04 (> 5.57), chi at M_true 3.16e-43 (<= 1): PASS
+planted M_true 16, n 31, F 0.1: l2 at M_true - 1 2.03e+05 (> 5.57), chi at M_true 3.16e-42 (<= 1): PASS
+selftest: PASS
+selftest exit 0
