@@ -58,7 +58,7 @@ How a stop looks (`logs/D78.log`, `logs/D79.log`): the first Newton step takes m
 
 ## Discrepancies
 
-`notes/HELD_HARMONICS.md` 13.19 placed the frontier near 79 on the rounded projector (the issue text). Here the first D that does not converge is 78, on the exact projector as the coordinator describes it; D 79 does not converge either. The unperturbed D 73 release moves Delta by -8.4e-28 here against -2.8e-23 on the Mac (above). I do not know why the frontier differs by one, and it is one run per D from one start.
+`notes/HELD_HARMONICS.md` 13.19 placed the frontier near 79 on the rounded projector (the issue text). Here the first D that does not converge is 78 and D 79 does not converge either; win's kernel is from before #523, so these runs use the rounded freeze projector (the coordinator states that the exact and the rounded projectors agree below D 215, so the issue's "exact projector" is not tested separately here). The frontier is therefore 77 to 78 against "near 79", a difference of one or two in D that I cannot explain, from one run per D and one start. The unperturbed D 73 release moves Delta by -8.4e-28 here against -2.8e-23 on the Mac (above).
 
 ## Recommended tasks (for the coordinator)
 
