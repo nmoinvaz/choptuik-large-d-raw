@@ -1,0 +1,19 @@
+kantorovich_log selftest --mutate F: planted Newton histories in mpmath (dps 110), parsed from their printed log
+  (P1) quadratic fold, sigma 1e-28, c 1: planted omega 1.000e+28 (max norm)
+    h_0 = omega |dz_0| 1.61e-06: theta_0 1.419e+03, [h_0] 2.838e+03, [omega]_0 1.774e+37, ratio 1.77e+09  <- outside the factor 2
+    h_0 = omega |dz_0| 6.26e-05: theta_0 4.099e+03, [h_0] 8.199e+03, [omega]_0 1.301e+36, ratio 1.3e+08  <- outside the factor 2
+    h_0 = omega |dz_0| 1.08e-02: theta_0 1.366e+03, [h_0] 2.733e+03, [omega]_0 2.484e+33, ratio 2.48e+05  <- outside the factor 2
+    h_0 = omega |dz_0| 8.01e-02: theta_0 9.457e+03, [h_0] 1.891e+04, [omega]_0 2.364e+33, ratio 2.36e+05  <- outside the factor 2
+    h_0 = omega |dz_0| 1.85e-01: theta_0 2.863e+03, [h_0] 5.727e+03, [omega]_0 3.014e+32, ratio 3.01e+04  <- outside the factor 2
+    h_0 = omega |dz_0| 3.63e-01: theta_0 9.766e+02, [h_0] 1.953e+03, [omega]_0 5.425e+31, ratio 5.43e+03  <- outside the factor 2
+    h_0 = omega |dz_0| 6.90e-01: theta_0 4.138e+03, [h_0] 8.275e+03, [omega]_0 1.199e+32, ratio 1.2e+04 (not judged, h_0 > 0.5)
+    h_0 = omega |dz_0| 2.14e+00: theta_0 6.603e+02, [h_0] 1.321e+03, [omega]_0 6.289e+30, ratio 629 (not judged, h_0 > 0.5)
+    h_0 = omega |dz_0| 7.40e+00: theta_0 3.525e+02, [h_0] 7.051e+02, [omega]_0 9.528e+29, ratio 95.3 (not judged, h_0 > 0.5)
+    h_0 = omega |dz_0| 2.61e+01: theta_0 2.622e+02, [h_0] 5.244e+02, [omega]_0 2.017e+29, ratio 20.2 (not judged, h_0 > 0.5)
+  (P1) FAIL: [omega]_0 within a factor 2 of the planted omega for every h_0 <= 0.5
+  (P2) quad: planted order beta 1, fitted 0.412 +- 0.166 (standard error), gamma +7.65e-01: outside 0.2
+  (P2) cubic: planted order beta 2, fitted 0.716 +- 0.354 (standard error), gamma +6.38e-01: outside 0.2
+  (P2) FAIL: the fitted beta within 0.2 of the planted order for both
+  (P3) planted p 25, k 0.05, floor 1e-35 (x 0.7-1.4): fitted p 25.00, k 0.0502, floor 1.03e-35, rms 0.06 dex
+  (P3) PASS: p within 1.5 and the floor within a factor 2
+selftest FAIL
