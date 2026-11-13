@@ -1,0 +1,56 @@
+# 2026-11-13 02:32:32 UTC start; 3c35f0cd0d7e8636eed426060f7f5e2a7824dad7
+# clang version 23.1.5 (Fedora 23.1.5-2.fc45); rustc 1.99.1 (58cf8f9c3 2026-10-13); maturin 1.16.0; cc -> /home/nathan/.local/bin/cc
+# multidouble installed before: 0
+    Updating crates.io index
+ Downloading crates ...
+  Downloaded multishoot v1.2.2
+  Downloaded multidouble v4.2.1
+🍹 Building a mixed python/rust project
+🐍 Found CPython 3.14 at /home/nathan/Source/choptuik-large-d-614/.venv/bin/python
+🔗 Found pyo3 bindings
+📡 Using build options features from pyproject.toml
+   Compiling target-lexicon v0.13.5
+   Compiling autocfg v1.5.1
+   Compiling crossbeam-utils v0.8.23
+   Compiling proc-macro2 v1.0.107
+   Compiling crossbeam-epoch v0.9.21
+   Compiling unicode-ident v1.0.27
+   Compiling quote v1.0.47
+   Compiling crossbeam-deque v0.8.8
+   Compiling libc v0.2.191
+   Compiling pyo3-macros-backend v0.30.1
+   Compiling rayon-core v1.13.0
+   Compiling heck v0.5.0
+   Compiling either v1.19.0
+   Compiling rawpointer v0.2.1
+   Compiling once_cell v1.21.4
+   Compiling rustc-hash v2.1.3
+   Compiling num-traits v0.2.19
+   Compiling matrixmultiply v0.3.11
+   Compiling pyo3-build-config v0.30.1
+   Compiling syn v3.0.9
+   Compiling pyo3-ffi v0.30.1
+   Compiling pyo3 v0.30.1
+   Compiling numpy v0.30.0
+   Compiling num-complex v0.4.6
+   Compiling num-integer v0.1.47
+   Compiling rayon v1.12.0
+   Compiling ndarray v0.17.2
+   Compiling multidouble v4.2.1
+   Compiling multishoot v1.2.2
+   Compiling pyo3-macros v0.30.1
+   Compiling hpkernel v0.1.0 (/home/nathan/Source/choptuik-large-d-614/hp)
+    Finished `release` profile [optimized] target(s) in 33m 35s
+📦 Built wheel for CPython 3.14 to /home/nathan/Source/choptuik-large-d-614/hp/dist/hpkernel-0.1.0-cp314-cp314-manylinux_2_34_x86_64.whl
+Processing ./dist/hpkernel-0.1.0-cp314-cp314-manylinux_2_34_x86_64.whl
+Installing collected packages: hpkernel
+Successfully installed hpkernel-0.1.0
+Collecting multidouble @ git+https://github.com/nmoinvaz/multidouble@f092018db2c449820ded3f62899ac4672b3440e5#subdirectory=python
+  Using cached multidouble-0.1.0-cp314-cp314-linux_x86_64.whl
+Installing collected packages: multidouble
+Successfully installed multidouble-0.1.0
+hpkernel avx2 multidouble avx2
+# 2026-11-13 03:06:13 UTC end
+# build wall time: 2020 s (33 min)
+# scope memory.peak: 26333384704 bytes (25113 MiB); swap.peak: 0 bytes
+exit 0
