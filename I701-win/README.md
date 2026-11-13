@@ -50,3 +50,39 @@ Coordinator: the prediction and the commands, written before any run (2026-11-13
 | `k0b_D40` (`--mutate=norows`) | 0 | True | 4.99e-41 | yes | +1.5449e-15 |
 
 Delta(K 7) = 1.88845166449061538929462279651 and Delta(K 0) = 1.88845166449061538285634610600 (the records' `Delta_str`), so **DD = Delta(K 7) - Delta(K 0) = +6.4383e-18** (start a: 6.8e-18). P1 (|DD| < 1e-15) holds, and |DD| is below 1e-12, so the "root distance" outcome of the prediction's last bullet is not the one that occurred. Both solves count by the issue's rule. Delta_RT - Delta_hp is +1.55e-15 for both, as for #671's solves at D 40.02 from start a (+1.5517e-15 for K = 7, +1.5449e-15 for K = 0, `I671-win/solves/*.jsonl`). The sigma runs (12 rough starts each, two at once, two BLAS threads each) started at 19:19:36 UTC.
+
+## Part 2 (the sigma runs and the verdict): results
+
+Both rough runs (12 starts each, two BLAS threads each, started 19:19:36 UTC) ended with exit 0: `K0b_D40` after 2469 s (20:00:45 UTC) and `K7b_D40` after 3861 s (20:23:57 UTC). My 3.5 h estimate in the 19:29 post was wrong: it came from #681's 3.8 h, whose K = 7 starts ran to the 250-product cap, and none of this run's did. `table_701.txt` is the output of `table_701.py`.
+
+| K | n starts | best | Q1 | **median (the bound)** | Q3 | max | max/min | starts at the 250 cap | worst residual max abs J x - v |
+|---|---|---|---|---|---|---|---|---|---|
+| 7 | 12 | 3.38e-33 | 5.45e-33 | **1.426e-32** | 2.86e-32 | 8.37e-32 | 24.8 | 0 of 12 | 4.1e-16 |
+| 0 | 12 | 8.57e-34 | 1.18e-33 | **2.417e-33** | 4.13e-33 | 5.89e-33 | 6.9 | 0 of 12 | 4.4e-19 |
+
+All 24 starts' x are class "mixed" (#423's rules, as in #681). The 12 bounds, sorted: K = 7: 3.38e-33, 4.89e-33, 5.02e-33, 5.91e-33, 1.06e-32, 1.32e-32, 1.54e-32, 1.55e-32, 2.83e-32, 2.89e-32, 3.25e-32, 8.37e-32. K = 0: 8.57e-34, 8.94e-34, 1.02e-33, 1.35e-33, 1.95e-33, 2.33e-33, 2.50e-33, 2.78e-33, 3.44e-33, 4.96e-33, 5.27e-33, 5.89e-33.
+
+**Verdict, by the rules of the choices above.** The error bars are the bootstrap 95% intervals (10000 resamples of each run's 12 start bounds with replacement, `random.Random(701)`), a spread over the random starts, not an enclosure.
+
+| quantity | value | 95% bootstrap interval | against [1/3, 3] |
+|---|---|---|---|
+| P1: DD = Delta(K 7) - Delta(K 0) | +6.4383e-18 | | holds (below 1e-15, and below 1e-12) |
+| R_b = median(K 7) / median(K 0) | 5.90 | 2.13 to 14.67 | **UNDECIDED** (the point is outside, the interval straddles 3) |
+| R_b / R_a, R_a = 0.98 | 6.02 | 2.17 to 14.97 | UNDECIDED (the other reading of P2, README choice 1; the two readings agree) |
+| best-of-12 ratio (context) | 3.94 | | |
+
+So P1 holds, and P2 is **not confirmed and not refuted**: the point R_b = 5.90 lies outside the window the prediction named, and the interval reaches down to 2.13. R_a's own uncertainty is not in the R_b / R_a interval (R_a is a constant there). Because P1 holds, the prediction says both the root-distance hypothesis and the rival (D sets R) expect R_b in the window; this outcome therefore does not separate them, and the point value strains both alike.
+
+**Context, not criteria.** With the same D = 40.020065 and the K = 7 and K = 0 roots coinciding to 6.4e-18 (start a: 6.8e-18):
+
+| | R at D 40.02 (median ratio) | best-of-12 ratio | K = 7 median | K = 0 median | K = 7 starts at the 250 cap |
+|---|---|---|---|---|---|
+| start a (#681) | 0.98 | 1.38 | 2.403e-34 | 2.463e-34 | 12 of 12 |
+| start b (here) | 5.90 | 3.94 | 1.426e-32 | 2.417e-33 | 0 of 12 |
+
+R at start b is near #681's R at D 50.007 (5.88) and D 54.996 (7.12), both from start a, and above its 0.98 at D 40.02. The start-b bounds are 59 times (K = 7) and 9.8 times (K = 0) larger than start a's at the same D. The two starts' Delta differ by -3.668e-19 (K = 7) and -2.743e-20 (K = 0). The K = 7 runs of the two starts did not stop alike: all 12 starts of start a's K = 7 state stopped at the 250-product cap (worst residual 4.3e-14), none of start b's did (4.1e-16). #681 argued that its bounds hold to a relative accuracy of the residual, far below the spreads; I did not test whether the cap changes the median, and I do not know why start a's K = 7 system needs more products.
+
+## Recommended tasks (for the coordinator)
+
+1. **Is start a's R(40.02) = 0.98 a product-cap artefact?** What: `rt_sigma.py --starts 3 --rough --max_products 1000` on `I671-win/solves/k7_D40_D40.0201_32x121.npz` (12 of 12 starts capped at 250 in #681; its first three bounds are 1.257e-34, 9.921e-34, 7.797e-34). Acceptance (can fail): each of the three bounds within a factor 1.5 of #681's (the cap is not limiting) or not (it is), and how many starts still reach the cap; the control is the same command at `--max_products 250`, which must reproduce #681's three bounds to 3 digits. Depends on #701. About 4 h at 2 threads, if each start uses the whole cap (scaled from #681's 3.8 h for 12 starts at 250).
+2. **More starts for the pair.** What: `rt_sigma.py --starts 48 --rough` on each of the two start-b states, to see whether R_b's interval (2.13 to 14.67) narrows to one side of 3. Acceptance: the first 12 bounds of each run reproduce this run's to 3 digits (the start index sets the draw, as #681's reproduction of starts 0 to 2 showed), and R_b with its 95% bootstrap interval from the 48 starts against [1/3, 3]. Depends on #701. About 4.3 h at 4 threads (the K = 7 run, scaled from 64 min per 12 starts).
