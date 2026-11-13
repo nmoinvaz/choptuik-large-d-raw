@@ -1,0 +1,15 @@
+  planted (a), permuted triangular n 12: ln|det| 28.810395123348837 against 28.810395123348837, error 0.0e+00, exact input True: pass
+  planted (b), random 30 x 30 against mpmath at 80 digits: relative difference 8.1e-71 (bound 1e-40): pass
+  |F| 3.6e-07 in this layout: Newton
+  |F| 2.9e-07 after Newton: Levenberg-Marquardt
+  |F| 2.3e-15; saved modecount_state_D58.0060_M48_kf13.npz
+Traceback (most recent call last):
+  File "/Users/nathan/Source/choptuik-large-d-b596/hp/modecount_qdet.py", line 274, in <module>
+    sys.exit(main())
+             ~~~~^^
+  File "/Users/nathan/Source/choptuik-large-d-b596/hp/modecount_qdet.py", line 189, in main
+    st = setup(path, M=int(opts["M"]) if "M" in opts else None, threads=threads, kf=kf,
+               fmax=float(opts.get("fmax", 1e-20)))
+  File "/Users/nathan/Source/choptuik-large-d-b596/hp/modecount_common.py", line 248, in setup
+    raise RuntimeError(f"background not converged in this layout: |F| = {F:.1e} > {fmax:.0e} (M = {M})")
+RuntimeError: background not converged in this layout: |F| = 2.3e-15 > 1e-20 (M = 48)

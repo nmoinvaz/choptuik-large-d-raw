@@ -1,0 +1,12 @@
+# I625-macm3: the sign of the exact det M on a 65-point grid across the D 58 root, M 32 (control) and M 48
+
+Machine: macm3 (Apple M3, 24 GB RAM), venv-macm3-314 (Python 3.14.3, python-flint 0.9.0, FLINT 3.6.0, hpkernel cp314 neon of 2026-11-09), worktree ~/Source/choptuik-large-d-b596 at main ef466c7, modecount_cx built from 742bb879's source. Issue: https://github.com/nmoinvaz/choptuik-large-d/issues/625 (macm3's #615 recommendation; the coordinator's message of 2026-11-12 23:27 UTC: after #624, with the M 32 grid centred on lambda(32)).
+
+Command, from hp/ of the worktree, four processes per grid (run_625.sh): python3 -u modecount_qdet.py data/states/up12_D58.0060.npz RE,0 [RE,0 ...] --M=M --kf=13 --threads=1 --json=qdet_MM_pP.json, with the points of points_MM.txt dealt round robin (point i to process i mod 4); process 0 starts first and makes the M 48 state, the others start when its first line is out. Points: lambda = centre + k*1e-14 for k = -32 to 32 (rounded once to the nearest double from exact rational arithmetic, make_points.py), k = 0 twice (index 32 in process 0 and index 65 in process 1: the repeat). Centres (my choice of "lambda(48)" and "lambda(32)"): the mean of the five ball lambda(48) (2.045529761477787) and of the five ball lambda(32) (2.045529761477775) of b1 to b5 in I615-macm3; the band of +-3.2e-13 covers all five lambda(48) (-1.3e-13 to +1.7e-13 from the mean). The background state is modecount_common.setup's (resample to M 48 and polish to |F| <= 1e-20), not gamma_dd.py's M 48 state (which Newton-polishes to its floor); their roots can differ, which the M 32 control tests for M 32 only.
+
+Written before the run (the issue's). Acceptance: the M 32 grid has exactly one sign change (else the task stops: run_625.sh's gate); the M 48 sign pattern and the width of the band that holds all its sign changes are tabled (signs625.py); the repeated point gives the same result bit for bit. Started 23:29 UTC (after #624's runs).
+
+## Results (2026-11-13 00:14 UTC)
+
+M 32 grid (control; exits.txt, 23:57:57 to 23:58:32 UTC, all exit 0): exactly one sign change, between k = 0 and k = +1 (signs_M32.md); the repeat of k = 0 is bit for bit equal; the gate wrote 'control passes'.
+M 48 grid: all four processes exit 1 (00:04:44 to 00:13:37 UTC) in setup: RuntimeError: background not converged in this layout: |F| = 2.3e-15 > 1e-20 (M = 48); signs_M48.md says '0 of 66 points done'. The coordinator decides (options a, b, c of the comment on the issue); nothing was changed or rerun.
