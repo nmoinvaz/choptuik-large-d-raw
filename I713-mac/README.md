@@ -105,3 +105,12 @@ At the default switch, ElimO skipped 3 of its 7 evaluations: the start, five tri
 the last three being below the switch, step 3's trial among them, though it is inferred from the counts, not logged per
 point. Unprojected, that trial keeps the horizon rows' second-order term (#700), and the residual rises by nine orders
 before the next step removes it. With every point projected, the same step goes straight to 8.12e-54.
+
+### The stop of 22:40 UTC and the queue
+
+The first run of s0_D200_mo (from 22:10 UTC) died at 22:40 UTC with the session that ran it, after three refused trials
+of its first step (lam 1, 1/2, 1/4). Its partial log is kept as `s0_D200_mo_killed.log`. It is not a verdict. From
+22:45 UTC `queue.sh` runs the rest of the table, s0_D200_mo again from the start with the same command, then the others
+in the table's order, one at a time through run.sh. It does not rerun a run whose log has its `exit` line, takes REF252
+from `ref_D252.json`, and stops at the first exit the criteria do not expect (a check 0, a control 1). Its own log is
+`queue.log`, one line per run.
