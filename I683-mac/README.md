@@ -16,6 +16,8 @@ stdout.
   count, and the 25-digit ones against the J 1250 strings per order, in units of their rounding.
 - `selftests/`: the selftests of the six scripts whose loading changed (`pade_geometry`, `pade_farend`,
   `pade_chord_arc`, `pade_twin_size`, `pade_twin_count`, `pade_twin_peak`), each exit 0.
+- `errors/`: `sigma_err_fit.py` on the repository's wf 1.00 J 1250 file (T99-win2's) and on T102-mac's, which has
+  the same strings but other `f` and `fit_info` entries; the two outputs are identical.
 - `plants_c.*`: `pade_precision.py plants`, the plants' c_m and σ₀–σ₃₀ with the real template read at 53 bits, 60
   and 100 digits against 300 digits.
 - Reruns at full precision with the stage's own script, each against its stored record (`compare/<name>.log` and
