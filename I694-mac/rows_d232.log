@@ -1,0 +1,75 @@
+I513-win/run_d10/dz0_pin3_D232.1312_a1.000000.npz: D 232.13125 (a 1.0), from I462-win/chain_d10/anm_pin3_D231.1312.npz; L 769; held offset on its rows 0.000848, elsewhere 5.76e-101 (bound 1e-6 of the first): pass; the recovered system's start max|F| 3.8807e-33; octo-double LU pivots 2.9e-21..9.2e+32 (336 s)
+  basis: sigma of B 2.0593e-23, 2.0970e-23, 1.6795e-21, 4.9516e-21 (iteration 2.0599e-23, 2.0964e-23, 1.6795e-21, 4.9516e-21); |dz0| 1.431e-29, a = V^T dz0 -2.616e-30, 9.16e-30, -1.068e-29, -2.635e-32, |a| 1.431e-29, the rest 5.32e-32; |B a| 1.794e-50, |U^T F(z0) + B a| / |B a| 2.28e-52; -J^-1 F(z0) against dz0 7.23e-51; w0 = -J^-1 (I - U U^T) F(z0): |w0| 5.319e-32, |V^T w0| 2.59e-129 (10 s)
+  rows: 769 rows in (block, field, harmonic), the change of rows orthonormal to 2.62e-140; shares of |U| sum to 1.0, of |V| to 1.0 (0 s)
+  F''(v_j, v_l) per row at h 1e-32: max q 1.647e+32 (21 s)
+  F''(v_j, v_l) per row at h 1e-33: max q 1.647e+32 (22 s)
+  share of |U| on the rows affine to 1e-10 (q_r <= 1e-10 max q and <= 1e-10 |J_r|, at h 1e-33): 4.241423558e-18 (299 of 769 rows): refutes; at h 1e-32 4.241423558e-18 (refutes); against the largest q alone 0.5, against |J_r| alone 8.484519008e-18; the worst weak left vector's share (smallest eigenvalue of U_A^T U_A) 1.16122e-25
+  the rows linear by construction (29: horizon.p.k5c .. phase): share of |U| 3.628564234e-46; all classified affine: yes; their largest q 6.97e-66
+  by block and field: share of |U|, of it on affine rows, max q, max q/|J_r|, affine rows / rows
+    centre.p      4.474e-43  2.564e-62  4.895e-03  4.699e-03  12/32
+    centre.m      1.010e-41  5.429e-62  3.921e-03  3.765e-03  12/32
+    centre.a      3.808e-42  2.975e-56  3.341e-05  3.341e-05  17/32
+    centre.c      9.957e-44  3.845e-64  7.394e-03  5.224e-03  11/32
+    node1.p       1.719e-43  1.688e-62  5.366e-03  3.712e-03  12/32
+    node1.m       9.264e-42  4.916e-62  3.582e-03  2.482e-03  12/32
+    node1.a       6.268e-42  4.037e-58  5.694e-05  5.694e-05  15/32
+    node1.c       3.613e-43  1.482e-63  5.435e-03  2.242e-03  11/32
+    node2.p       8.813e-34  1.271e-50  8.466e-03  6.002e-03  12/32
+    node2.m       8.886e-34  1.092e-50  5.666e-03  4.025e-03  12/32
+    node2.a       2.178e-34  2.204e-47  8.380e-05  8.380e-05  15/32
+    node2.c       1.393e-39  3.172e-55  6.640e-03  2.738e-03  11/32
+    node3.p       4.686e-18  1.038e-38  1.195e-02  8.595e-03  10/32
+    node3.m       4.730e-18  8.935e-39  7.917e-03  5.705e-03  10/32
+    node3.a       1.524e-18  1.943e-32  1.122e-04  1.122e-04  15/32
+    node3.c       9.427e-24  1.588e-40  7.625e-03  3.141e-03  11/32
+    node4.p       2.217e-01  1.399e-66  1.626e-02  1.183e-02  10/32
+    node4.m       2.240e-01  1.405e-26  1.080e-02  7.875e-03  10/32
+    node4.a       5.432e-02  4.241e-18  1.403e-04  1.403e-04  15/32
+    node4.c       1.062e-06  7.208e-26  8.372e-03  3.444e-03  11/32
+    horizon.p     2.217e-01  3.238e-46  3.006e+31  3.190e-04  28/32
+    horizon.m     2.240e-01  1.025e-28  3.005e+31  3.190e-04   8/32
+    horizon.a     5.432e-02  1.787e-24  8.328e+31  2.668e-04   9/32
+    horizon.c     1.062e-06  4.528e-28  1.647e+32  2.660e-04   9/32
+    phase         3.905e-47  3.905e-47  6.969e-66  1.742e-66   1/1
+  the rows of U, largest share first:
+    node4.m.k1s        share 5.889e-02, q 1.131e-03, q/|J_r| 8.02e-04, |J_r| 1.41e+00, q(1e-32)/q(1e-33) 1, NOT affine
+    horizon.m.k1s      share 5.889e-02, q 8.160e+30, q/|J_r| 1.39e-04, |J_r| 5.87e+34, q(1e-32)/q(1e-33) 1, NOT affine
+    horizon.p.k1s      share 5.818e-02, q 8.160e+30, q/|J_r| 1.39e-04, |J_r| 5.88e+34, q(1e-32)/q(1e-33) 1, NOT affine
+    node4.p.k1s        share 5.818e-02, q 8.346e-03, q/|J_r| 5.90e-03, |J_r| 1.42e+00, q(1e-32)/q(1e-33) 1, NOT affine
+    horizon.m.k3s      share 5.598e-02, q 1.592e+31, q/|J_r| 2.03e-04, |J_r| 7.82e+34, q(1e-32)/q(1e-33) 1, NOT affine
+    node4.m.k3s        share 5.598e-02, q 1.076e-02, q/|J_r| 7.85e-03, |J_r| 1.37e+00, q(1e-32)/q(1e-33) 1, NOT affine
+    horizon.m.k3c      share 5.583e-02, q 1.624e+31, q/|J_r| 2.07e-04, |J_r| 7.86e+34, q(1e-32)/q(1e-33) 1, NOT affine
+    node4.m.k3c        share 5.583e-02, q 1.080e-02, q/|J_r| 7.87e-03, |J_r| 1.37e+00, q(1e-32)/q(1e-33) 1, NOT affine
+    node4.p.k3s        share 5.547e-02, q 1.626e-02, q/|J_r| 1.18e-02, |J_r| 1.37e+00, q(1e-32)/q(1e-33) 1, NOT affine
+    horizon.p.k3s      share 5.547e-02, q 1.592e+31, q/|J_r| 2.03e-04, |J_r| 7.82e+34, q(1e-32)/q(1e-33) 1, NOT affine
+    node4.p.k3c        share 5.532e-02, q 1.624e-02, q/|J_r| 1.18e-02, |J_r| 1.37e+00, q(1e-32)/q(1e-33) 1, NOT affine
+    horizon.p.k3c      share 5.532e-02, q 1.625e+31, q/|J_r| 2.07e-04, |J_r| 7.86e+34, q(1e-32)/q(1e-33) 1, NOT affine
+  the rest, on rows not affine (470 rows, share 1.0), largest share first:
+    node4.m.k1s        share 5.889e-02, q 1.131e-03, q/|J_r| 8.02e-04, |J_r| 1.41e+00, q(1e-32)/q(1e-33) 1, NOT affine
+    horizon.m.k1s      share 5.889e-02, q 8.160e+30, q/|J_r| 1.39e-04, |J_r| 5.87e+34, q(1e-32)/q(1e-33) 1, NOT affine
+    horizon.p.k1s      share 5.818e-02, q 8.160e+30, q/|J_r| 1.39e-04, |J_r| 5.88e+34, q(1e-32)/q(1e-33) 1, NOT affine
+    node4.p.k1s        share 5.818e-02, q 8.346e-03, q/|J_r| 5.90e-03, |J_r| 1.42e+00, q(1e-32)/q(1e-33) 1, NOT affine
+    horizon.m.k3s      share 5.598e-02, q 1.592e+31, q/|J_r| 2.03e-04, |J_r| 7.82e+34, q(1e-32)/q(1e-33) 1, NOT affine
+    node4.m.k3s        share 5.598e-02, q 1.076e-02, q/|J_r| 7.85e-03, |J_r| 1.37e+00, q(1e-32)/q(1e-33) 1, NOT affine
+    horizon.m.k3c      share 5.583e-02, q 1.624e+31, q/|J_r| 2.07e-04, |J_r| 7.86e+34, q(1e-32)/q(1e-33) 1, NOT affine
+    node4.m.k3c        share 5.583e-02, q 1.080e-02, q/|J_r| 7.87e-03, |J_r| 1.37e+00, q(1e-32)/q(1e-33) 1, NOT affine
+    node4.p.k3s        share 5.547e-02, q 1.626e-02, q/|J_r| 1.18e-02, |J_r| 1.37e+00, q(1e-32)/q(1e-33) 1, NOT affine
+    horizon.p.k3s      share 5.547e-02, q 1.592e+31, q/|J_r| 2.03e-04, |J_r| 7.82e+34, q(1e-32)/q(1e-33) 1, NOT affine
+    node4.p.k3c        share 5.532e-02, q 1.624e-02, q/|J_r| 1.18e-02, |J_r| 1.37e+00, q(1e-32)/q(1e-33) 1, NOT affine
+    horizon.p.k3c      share 5.532e-02, q 1.625e+31, q/|J_r| 2.07e-04, |J_r| 7.86e+34, q(1e-32)/q(1e-33) 1, NOT affine
+  the rest by block and field: horizon.m 2.24e-01, node4.m 2.24e-01, node4.p 2.22e-01, horizon.p 2.22e-01, horizon.a 5.43e-02, node4.a 5.43e-02, horizon.c 1.06e-06, node4.c 1.06e-06, node3.m 4.73e-18, node3.p 4.69e-18
+  V by unknowns (diagnostic), largest share first: Delta 0.250, p1.k3s 0.065, p1.k3c 0.065, p1.k1c 0.054, m_h.k1c 0.044, m_h.k3s 0.034, m_h.k3c 0.034, node4.p.k1c 0.024, node4.m.k1c 0.024, node4.p.k3s 0.023
+  along e = a / |a|: w_ee = J^-1 (I - U U^T) F''(e, e), |w_ee| 0.135, h 1e-33 against 1e-34 9.7e-8; U^T T(e) at h 1e-23 against 1e-24 2.16e-19; U^T S(e) at h 1e-32 against 1e-33 2.76e-18 (bound 1e-2 each): pass; U^T x by rows against by grid points 1.1e-141; |U^T (T - 3S)(e)| / |U^T T(e)| 2.58e-20 (bound 1e-12) (14 s)
+  per row, along e: |U^T x|; its part on the affine rows and on the rest; the sum of |U_r x_r| over all rows (no cancellation), on the affine rows and on the rest; max |x_r| over all rows and over the affine rows
+    F''(e,e)    3.64e-11;    1.05e+9    1.05e+9;    2.0e+31     1.2e+9    2.0e+31;   6.18e+31   2.45e+21; largest |U_r| |x_r|: horizon.a.k0c 7.22e+30, horizon.m.k1c 3.16e+30, horizon.p.k1c 3.14e+30
+    T(e)        1.52e+31;   3.12e+10   1.52e+31;   2.41e+31    3.5e+10   2.41e+31;   1.19e+31   1.65e+22; largest |U_r| |x_r|: horizon.m.k3s 5.63e+30, horizon.p.k3s 5.62e+30, horizon.m.k3c 4.29e+30
+    3S(e)       1.52e+31;   6.21e+10   1.52e+31;   4.44e+31   6.52e+10   4.44e+31;   6.65e+31   4.92e+22; largest |U_r| |x_r|: horizon.a.k0c 7.85e+30, horizon.m.k3s 7.12e+30, horizon.p.k3s 7.10e+30
+    T-3S        3.94e+11;   3.15e+10   3.69e+11;   2.48e+31   3.74e+10   2.48e+31;   6.65e+31   4.95e+22; largest |U_r| |x_r|: horizon.a.k0c 7.77e+30, horizon.m.k1c 3.24e+30, horizon.p.k1c 3.22e+30
+  each block's part of U^T x, |sum| (sum of |U_r x_r|), the three largest by the latter:
+    F''(e,e)  horizon 6.56e-03 (2.00e+31); node4 6.56e-03 (2.07e-02); node3 1.70e-11 (7.12e-11)
+    T(e)      horizon 1.52e+31 (2.41e+31); node4 7.79e-03 (3.67e-02); node3 2.02e-11 (1.24e-10)
+    3S(e)     horizon 1.52e+31 (4.44e+31); node4 1.66e-04 (1.15e-03); node3 1.22e-12 (1.05e-11)
+    T-3S      horizon 3.94e+11 (2.48e+31); node4 7.63e-03 (3.61e-02); node3 2.14e-11 (1.31e-10)
+  U on the last two blocks' rows: max over the weak vectors of |u(block 4) + u(block 5)| / |u| 2.15e-21; |P_V e_Delta|^2 0.99942233; w_ee by unknowns: m_h.k3c 0.229, m_h.k3s 0.193, p1.k3c 0.135, p1.k3s 0.068, c0.k0c 0.047, m_h.k1c 0.038, node0.c.k0c 0.035, node1.c.k0c 0.027
+  checks: (W1) the rows linear by construction classified affine pass; (W2) the change of rows pass; (W3) h checks pass, 3S = T along e pass; verdict (W4): the share 4.24142e-18 refutes the conjecture (at h 1e-32: refutes)
+check: pass

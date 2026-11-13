@@ -14,3 +14,4 @@ section 10. Kernel: main's 3c35f0c build (multishoot 1.2.2, exact freeze project
 - `rows_ref_pilot_8cbd3f31.log`, `.json`: the REF pilot, before the diagnostics of 848f7c06 (each block's part of
   U^T x, the pairing of the last two blocks' rows, w_ee by unknowns); its judged numbers are those of the final run.
 - `rows_planted*.log`, `.json` and `rows_{ref,acc,d232,classA}.log`, `.json`: the final runs, code 848f7c06.
+- `rowsum.txt`: `reduced_cubic.py rowsum rows_ref.json rows_acc.json rows_d232.json rows_classA.json` (code 9a7455f4).
