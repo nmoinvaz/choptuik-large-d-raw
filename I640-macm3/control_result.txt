@@ -1,0 +1,5 @@
+unperturbed: converged True ok True steps 3 |F| start 1.18e-35 end 2.59e-53; Delta_full - Delta_start = -8.387e-28
+perturbed 1e-10: converged True ok True steps 4 |F| start 9.85e-11 end 2.95e-53; Delta_full - Delta_start = -8.387e-28
+perturbed, --it_max=0: converged False ok True steps 0 |F| start 9.85e-11 end 9.85e-11; Delta_full - Delta_start = +0.000e+00
+perturbed release against unperturbed: |dDelta| 0.0, max |dcoeff| 0.00e+00: pass (needs 1e-25, 1e-20)
+no-release run against unperturbed: |dDelta| 8.39e-28, max |dcoeff| 1.00e-10: fails as it must
