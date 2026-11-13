@@ -186,3 +186,24 @@ A fresh Python 3.14.10 venv with today's wheels (numpy 2.5.4, scipy 1.18.1, thre
 | old stack (`venv-t151`: scipy 1.15.3, OpenBLAS 0.3.28), N = 23857, `OPENBLAS_CORETYPE=Haswell` | (not printed; the old venv has no threadpoolctl) | **passes**, `lu_factor` 187 s, error 8.56e-11, exit 0 | `lu_old_haswell_23857.*` |
 
 Reading: with two threads the AVX-512 (SkylakeX) kernels corrupt memory on matrices of this size in both OpenBLAS 0.3.34 (numpy) and 0.3.31.dev (scipy), and in the old 0.3.28/0.3.29 pair, where it shows at once in `lu_solve`; in numpy's `solve` it shows only when the process exits, which is consistent with a write past an allocation (the answer is right, something else in the heap is not); I did not look for the cause. The Haswell (AVX2) kernels do not crash at either size or in either stack. So `OPENBLAS_CORETYPE=Haswell` is a workaround that keeps 2 BLAS threads above 4 GiB on this machine; I did not time it properly against one thread: the 1-thread LU of N = 23857 took 209 s and 217 s and the 2-thread Haswell ones 187 s and 170 s, but all of these ran beside other jobs, so the times are indicative only. Not tested: other CPUs, `OPENBLAS_CORETYPE=SkylakeX` with 1 thread (it passed by default at 1 thread), a debug build of OpenBLAS, and the old stack at N = 21500. The second throwaway venv (`venv-blastest`) was sent to the Recycle Bin after the last test.
+
+
+### Side task, third part (coordinator's message `1794587330483-0`): the nightly wheels, a maintainer's suggestion on OpenMathLib/OpenBLAS#6252
+
+The install was denied by the auto-mode classifier twice (16:29 and 16:35 UTC, texts in the message `1794587377513-0` and `1794587736639-0`), then allowed after Nathan's own message to the session; it ran once, unchanged: a Python 3.14.10 venv (the machine's nuget interpreter), `pip install --pre --upgrade --extra-index-url https://pypi.anaconda.org/scientific-python-nightly-wheels/simple numpy scipy threadpoolctl`. `logs/versions_nightly.txt` has the versions; the tests ran at two BLAS threads with the default kernels (`OPENBLAS_CORETYPE` unset), BelowNormal, one at a time beside #682, free memory 20 GB.
+
+| package | version | OpenBLAS in it (threadpoolctl) |
+|---|---|---|
+| numpy | 2.6.0.dev0+git20261107.80049a0 | 0.3.34.237.2, 64-bit ints, SkylakeX, pthreads |
+| scipy | 2.0.0.dev0+git20261108.c9073e6 | 0.3.34.237.2, 32-bit ints, SkylakeX, pthreads |
+| threadpoolctl | 3.8.0 | |
+
+| test (nightly wheels, 2 threads) | result | log |
+|---|---|---|
+| `np.linalg.solve`, N = 20000 (control) | passes, exit 0, 99 s, max abs error 6.09e-11 | `nightly_np_solve_20000.log` |
+| `np.linalg.solve`, N = 21500 | **dies inside the solve**: access violation (0xC0000005), 17 s after the matrix-vector product, Python frame `numpy/linalg/_linalg.py` line 462 in `solve`. (The 0.3.34.106 wheel of part 2 finished the solve and died at exit.) | `nightly_np_solve_21500.*` |
+| `lu_size_test.py`, N = 20000 (control) | passes, exit 0, `lu_factor` 92 s, error 8.0e-11 | `nightly_lu_20000.log` |
+| `lu_size_test.py`, N = 21500 | `lu_factor` 97 s and `lu_solve` right (error 1.07e-10), "lu test done" printed, **then the process dies at exit** (0xC0000005, "Garbage-collecting", no Python frame) | `nightly_lu_21500.*` |
+| `lu_size_test.py`, N = 23857 | **dies inside `lu_factor`** (0xC0000005, 163 s) | `nightly_lu_23857.*` |
+
+So the nightly wheels, whose OpenBLAS is a build after 0.3.34 (0.3.34.237.2), crash as before: N = 20000 passes, 21500 and 23857 do not, in the same places as the wheels of part 2 (heap corruption that shows at exit for the LU at 21500, inside the factorization at 23857) except that `np.linalg.solve` at 21500 now dies inside the call. I did not check whether this build contains #6232 or #6235. The nightly venv was sent to the Recycle Bin after the last test.

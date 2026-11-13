@@ -1,0 +1,49 @@
+== venv-blastest nightly wheels: 2026-11-13 16:39 UTC
+3.14.10 (tags/v3.14.10:b703b2c, Oct 25 2026, 17:36:52) [MSC v.1944 64 bit (AMD64)]
+Windows-11-10.0.26200-SP0
+numpy 2.6.0.dev0+git20261107.80049a0 scipy 2.0.0.dev0+git20261108.c9073e6 threadpoolctl 3.8.0
+-- scipy.show_config (names, versions, openblas configuration)
+      "name": "clang-cl",
+      "version": "20.1.8",
+      "name": "cython",
+      "version": "3.3.0",
+      "name": "clang-cl",
+      "version": "20.1.8",
+      "version": "0.19.0",
+      "name": "scipy-openblas",
+      "version": "0.3.34.237.2",
+      "openblas configuration": "OpenBLAS 0.3.34.237.2 DYNAMIC_ARCH NO_AFFINITY Haswell MAX_THREADS=24",
+      "name": "scipy-openblas",
+      "version": "0.3.34.237.2",
+      "openblas configuration": "OpenBLAS 0.3.34.237.2 DYNAMIC_ARCH NO_AFFINITY Haswell MAX_THREADS=24",
+      "name": "numpy",
+      "version": "2.5.4",
+      "name": "pybind11",
+      "version": "3.1.0",
+    "version": "3.14"
+-- numpy.show_config (blas lines)
+      "name": "scipy-openblas",
+      "openblas configuration": "OpenBLAS 0.3.34.237.2  USE64BITINT DYNAMIC_ARCH NO_AFFINITY SkylakeX MAX_THREADS=24",
+      "name": "scipy-openblas",
+      "openblas configuration": "OpenBLAS 0.3.34.237.2  USE64BITINT DYNAMIC_ARCH NO_AFFINITY SkylakeX MAX_THREADS=24",
+-- threadpoolctl
+[{'architecture': 'SkylakeX',
+  'filepath': 'C:\\Users\\nathan\\Source\\venv-blastest\\Lib\\site-packages\\numpy.libs\\libscipy_openblas64_-4e39871015dc1470c682dc512497ee22.dll',
+  'internal_api': 'openblas',
+  'num_threads': 8,
+  'prefix': 'libscipy_openblas',
+  'threading_layer': 'pthreads',
+  'user_api': 'blas',
+  'version': '0.3.34.237.2'},
+ {'architecture': 'SkylakeX',
+  'filepath': 'C:\\Users\\nathan\\Source\\venv-blastest\\Lib\\site-packages\\scipy.libs\\libscipy_openblas-7fba3edc9cf47a60fb42305b8979430c.dll',
+  'internal_api': 'openblas',
+  'num_threads': 8,
+  'prefix': 'libscipy_openblas',
+  'threading_layer': 'pthreads',
+  'user_api': 'blas',
+  'version': '0.3.34.237.2'}]
+-- pip freeze
+numpy==2.6.0.dev0
+scipy==2.0.0.dev0
+threadpoolctl==3.8.0
