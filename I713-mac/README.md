@@ -57,4 +57,16 @@ A check that fails stops the work, and the failure is reported as it stands.
 
 ## Results
 
-Follow as the runs end.
+### pilot (`pilot.log`, `pilot.json`, exit 0, 20:15 to 20:21 UTC)
+
+At I644's converged point on the D 200 planted system, and at its projection by ElimO with the switch at 0:
+
+| point | pinned max\|F\| (octo) | horizon block p, m, a, c | every node block |
+|---|---|---|---|
+| I644's converged point | 6.519e-49 (I644: 6.52e-49) | 5.1e-50, 9.2e-50, 3.3e-49, 6.5e-49 | at most 3.5e-78 |
+| projected, reseed_o 0 (quad-double only) | **1.189e-33** | 9.2e-36, 1.7e-34, 6.0e-34, 1.2e-33 | unchanged |
+| projected, reseed_o 3 | 7.442e-52 | 7.3e-52, 1.2e-84, 3.9e-87, 7.4e-52 | unchanged |
+
+The projection with reseed_o 3 took 159 s, its rung max\|R\| 6.03e-34 → 2.28e-69 → 2.31e-77 → 1.24e-84. So with
+the switch at 0 and the quad-double projection alone, every iterate carries 1.2e-33 in its horizon rows, seven orders
+above the planted check's 1e-40. The setup reproduces I644's converged residual.
