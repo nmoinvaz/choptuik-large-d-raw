@@ -1,0 +1,22 @@
+T138-win2/chain/anm_pin3_D150.0000.npz: D 150.0, M 32, K 5, 4 parts, kfreeze 3, held [5, 7, 9, 11, 13]
+  round trip 32 -> 48 -> 32: 3.2e-90 relative (pass)
+  M 32: start max|F| 1.11e-31 (plan 14 steps)
+  M 32: re-seed ok, max|F| 1.11e-31, 53.74 s
+  qn 0: |F| 1.11e-31 converged, Delta 1.71186702661345613 +8.0338e-18
+  qn 0 [full]: |F| 1.11e-31 -> 5.03e-31, |dz| 3.9e-26 -> 4.2e-39, lam 1, dDelta -6.35e-27, piv 5.9e-08..3.2e+20, 18.19 s
+  qn 1 [full]: |F| 5.03e-31 -> 2.78e-41, |dz| 4.2e-39 -> 2.5e-47, lam 1, dDelta -4.20e-39, piv 5.9e-08..3.2e+20, 19.42 s
+  qn 2: |F| 2.78e-41, |dz| 2.5e-47: no trial step accepted, stopping
+  M 32: polish to the floor, max|F| 1.11e-31 -> 2.78e-41 in 3 steps, kept
+  M 32: converged in 4 steps, max|F| 2.78e-41, est -6.8e-54, pivots 5.9e-08..3.2e+20, F with a fresh plan 3.2e-36, 375.7 s
+  M 48: start max|F| 5.99e+01 (plan 23 steps)
+  M 48: re-seed ok, max|F| 3.64e-18, 114.82 s
+  qn 0 [full]: |F| 3.64e-18 -> 4.78e-25, |dz| 1.5e-17 -> 4.1e-29, lam 1, dDelta +3.04e-25, piv 8.9e-08..3.6e+20, 37.52 s
+  qn 1 [full]: |F| 4.78e-25 -> 3.28e-38, |dz| 4.1e-29 -> 7.2e-41, lam 1, dDelta -4.14e-29, piv 8.9e-08..3.6e+20, 39.1 s
+  qn 2: |F| 3.28e-38 converged, Delta 1.71186702661345613 +8.0338e-18
+  qn 0 [full]: |F| 7.03e-38 -> 1.92e-41, |dz| 4.4e-38 -> 7.4e-47, lam 1, dDelta -8.54e-42, piv 8.9e-08..3.6e+20, 44.0 s
+  qn 1 [full]: |F| 1.92e-41 -> 3.68e-41, |dz| 7.4e-47 -> 2.4e-47, lam 0.25, dDelta +7.86e-51, piv 8.9e-08..3.6e+20, 133.54 s
+  qn 2 [full]: |F| 3.68e-41 -> 2.09e-41, |dz| 2.4e-47 -> 2.0e-47, lam 0.125, dDelta +5.89e-51, piv 8.9e-08..3.6e+20, 149.38 s
+  qn 3: |F| 2.09e-41, |dz| 2.0e-47: no trial step accepted, stopping
+  M 48: polish to the floor, max|F| 7.03e-38 -> 2.09e-41 in 4 steps, kept
+  M 48: converged in 7 steps, max|F| 2.09e-41, est +5.2e-51, pivots 8.9e-08..3.6e+20, F with a fresh plan 1.2e-35, 1126.3 s
+  Delta(M 48) - Delta(M 32) +3.106e-25 (against the stored state +3.043e-25); lam_g +3.426e-27 (stored +3.865e-27); est at M 48 +5.2e-51; tau tails: M 32 |c_k>=28| 2.1e-15, M 48 |c_k>=32| 1.9e-17
