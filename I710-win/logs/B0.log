@@ -1,0 +1,23 @@
+the base keeps its stored plan (11 steps)
+  qn 0: |F| 4.51e-49 converged, Delta 1.74507277794093651 -1.6313e-18
+      quad-double Newton: 1 steps, max|F| 4.5e-49, converged; double-double |F| of its first two parts 9.5e-17
+base I682-win/cont3/anm_pin13_D99.9531.npz: D 99.953125, M 32, pin 13 (held []), |F| 9.5e-17; N 24, eps 1e-14, h_max 0.09765625, corrector qd (junk_only False), tol 1.0e-20 x 1.45^(D - 99.953125), stalls accepted below 1e-17
+step 0: D 99.953125, pivots 6.4e-19..1.0e+13, |z_1| 1.48e-03, |z_N| 1.02e-34, ratios 2-5 122.4 110.7 105.8 103.0, a_max 5.574, 120 s
+    a 0.0977: re-seeded (ok), 19.46 s
+  qn 0 [full]: |F| 2.93e-35 -> 2.78e-24, |dz| 5.3e-15 -> 2.3e-23, lam 1, dDelta +1.36e-21, piv 8.4e-19..1.1e+13, 7.43 s
+  qn 1 [full]: |F| 2.78e-24 -> 1.39e-24, |dz| 2.3e-23 -> 4.4e-24, lam 0.5, dDelta +2.81e-30, piv 7.1e-19..1.1e+13, 15.49 s
+  qn 2: |F| 1.39e-24, |dz| 4.4e-24: no trial step accepted, stopping
+      elim projections {'u0': 0, 'u0q': 0, 'ladder': 0, 'failed': 0, 'skipped': 13}
+      quad-double Newton: 3 steps, max|F| 1.4e-24, not converged; double-double |F| of its first two parts 1.1e-16
+    a 0.098 -> D 100.05078125: predicted |F| 9.75e-17, qd 3 steps -> 1.15e-16 (tol 1.0e-20), Delta 1.744976380976 (formula diff -3.0e-07), moved 5.3e-15, 111 s
+    a 0.0488: re-seeded (ok), 15.81 s
+  qn 0 [full]: |F| 2.57e-35 -> 6.76e-25, |dz| 2.6e-15 -> 1.6e-24, lam 1, dDelta +6.49e-22, piv 6.7e-19..1.1e+13, 7.49 s
+  qn 1 [full]: |F| 6.76e-25 -> 3.38e-25, |dz| 1.6e-24 -> 4.2e-25, lam 0.5, dDelta -6.75e-33, piv 6.6e-19..1.1e+13, 15.03 s
+  qn 2 [full]: |F| 3.38e-25 -> 1.64e-44, |dz| 4.2e-25 -> 4.1e-25, lam 1, dDelta -1.93e-32, piv 6.5e-19..1.1e+13, 7.73 s
+  qn 3 [full]: |F| 1.64e-44 -> 1.69e-44, |dz| 4.1e-25 -> 1.0e-39, lam 1, dDelta +2.29e-32, piv 6.5e-19..1.1e+13, 7.56 s
+  qn 4 [full]: |F| 1.69e-44 -> 4.25e-49, |dz| 1.0e-39 -> 1.2e-39, lam 1, dDelta -1.57e-46, piv 6.5e-19..1.1e+13, 7.45 s
+  qn 5: |F| 4.25e-49 converged, Delta 1.74502455645715493 -9.9960e-17
+      elim projections {'u0': 0, 'u0q': 0, 'ladder': 0, 'failed': 0, 'skipped': 7}
+      quad-double Newton: 6 steps, max|F| 4.2e-49, converged; double-double |F| of its first two parts 6.9e-17
+    a 0.049 -> D 100.001953125: predicted |F| 1.08e-16, qd 6 steps -> 6.94e-17 (tol 1.0e-20, stall accepted, Delta correction +0.0e+00), Delta 1.745024556457 (formula diff -3.0e-07), moved 2.6e-15, 65 s
+done
