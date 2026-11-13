@@ -1,0 +1,9 @@
+M = 48 series from the resampled M = 32 data against the M = 32 series with a_h scaled by 1 + delta (the response is linear in delta),
+by the largest term of each order (the lanes of the two grids differ): delta_eff = (t48 - t32) / (response of M = 32 at delta = 1e-16) * 1e-16
+order   t48         t32         response at 1e-16   delta_eff
+ 10    4.350e-10   5.814e-12   3.828e-04           1.12e-22
+ 15    3.677e-06   1.324e-14   3.236e+00           1.14e-22
+ 20    6.615e-03   5.036e-17   5.821e+03           1.14e-22
+ 30    8.955e+02   1.135e-21   7.881e+08           1.14e-22
+ 40    6.140e+06   6.059e-26   5.404e+12           1.14e-22
+M = 48 terms: t_100 1.51e+20, t_200 3.99e+43, t_300 2.12e+67 (M = 32: 1.02e-26, 4.87e-14, 2.72e-23)
