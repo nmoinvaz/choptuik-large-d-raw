@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# #657: #551's box at kf 27 and kf 33 on the exact determinant of the double-double mode matrix (--ball=320, M 48), as run_551.sh ran it at kf 29 and 31: the lambda_phys control (R 0.2) and the four R 0.36 circles,
+# #657: #551's box at kf 27 (kf 33 went to macm3) on the exact determinant of the double-double mode matrix (--ball=320, M 48), as run_551.sh ran it at kf 29 and 31: the lambda_phys control (R 0.2) and the four R 0.36 circles,
 # K = 27 then 33, 9 threads, from hp/ of the worktree D:/choptuik-i551 at main 98ee71bd with venv-t126's older hpkernel and the modecount_cx copied from D:/choptuik-i573 (the pair #551 used, consistent with each
 # other and with #498: the coordinator, 20:15 UTC 12 Nov). The kf K state is made by setup from data/seeds/local/up23_D61.0264.npz. The cache of a ball run ends in _ball320_evals.jsonl.
 PY=/c/Users/nathan/Source/venv-t126/Scripts/python.exe
@@ -8,7 +8,7 @@ R=/d/choptuik-large-d-raw/I657-win2
 cd "$HP" || exit 9
 [ "$(git rev-parse --short=8 HEAD)" = "98ee71bd" ] || { echo "worktree D:/choptuik-i551 is not at 98ee71bd" >&2; exit 9; }
 export PYTHONFAULTHANDLER=1
-for K in 27 33; do
+for K in 27; do   # kf 33 is macm3's (the coordinator, message 1794577946594-0, 2026-11-13)
   mkdir -p $R/kf$K/data
   echo "657 kf$K start $(date -u '+%Y-%m-%d %H:%M:%S UTC')" >> $R/exits_657.txt
   t=$(date +%s)

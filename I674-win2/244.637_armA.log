@@ -4,3 +4,21 @@ the base keeps its stored plan (61 steps)
       elim projections {'u0': 0, 'u0q': 0, 'ladder': 0, 'failed': 0, 'skipped': 1}
       octo-double Newton: 1 steps, max|F| 9.8e-90, converged; double-double |F| of its first two parts 2.1e+06
 base I603-win2/chain/anm_pin3_D244.6366.npz: D 244.636617756, M 32, pin 3 (held [5, 7, 9, 11, 13]), |F| 2.1e+06; N 24, eps 1e-14, h_max 1.0, corrector od (junk_only False), tol 1.0e-20 x 1.45^(D - 244.63662), stalls accepted below 1e-17
+step 0: D 244.636617756, pivots 2.3e-26..7.4e+34, |z_1| 3.57e-04, |z_N| 1.86e-28, ratios 2-5 314.1 283.1 266.1 77.0, a_max 2.800, 930 s
+    a 1.0000: re-seeded (ok), 36.95 s
+      horizon data refined in octo-double, rung max|R| 4.45e-27 -> 1.44e-59 -> 1.14e-68 -> 1.19e-76
+    on 0 chord 0: max|F| 1.43e-24, |dw| 2.578e-42
+    on 0 chord 1: max|F| 2.57e-42, |dw| 2.622e-42
+    on 0 chord 2: max|F| 1.54e-52, |dw| 8.871e-53
+  on 0: strong chord (4 weak directions), 3 steps after the full first step; theta at its point 6.058e-08 (bound 0.750): accepted, 130.71 s
+  on 0: |F| 2.65e-33 -> 1.52e-52, |dz| 6.22e-30 -> 3.77e-37, lam 1, dDelta +6.22e-30, piv 4.4e-27..1.0e+35, 253.4 s
+    on 1 trial lam 1: max|F| 2.35e-38; simplified correction / |dz| = 5.384e-11 (bound 0.750); accepted, 0.41 s
+  on 1: |F| 1.52e-52 -> 2.35e-38, |dz| 3.77e-37 -> 3.60e-55, lam 1, dDelta -2.18e-37, piv 4.4e-27..1.0e+35, 64.17 s
+    on 2 trial lam 1: max|F| 4.47e-75; simplified correction / |dz| = 1.000e+00 (bound 0.750); accepted, 0.39 s
+  on 2: |F| 2.35e-38 -> 4.47e-75, |dz| 3.60e-55 -> 3.60e-55, lam 1, dDelta -3.60e-55, piv 4.4e-27..1.0e+35, 62.68 s
+  on 3: |F| 4.47e-75 converged, Delta 1.68567692011234205 +2.4845e-17
+      elim projections {'u0': 0, 'u0q': 4, 'ladder': 0, 'failed': 0, 'skipped': 4}
+      octo-double Newton: 4 steps, max|F| 4.5e-75, converged; double-double |F| of its first two parts 3.7e+06
+    a 1.000 -> D 245.636617756: predicted |F| 3.67e+06, od 4 steps -> 3.67e+06 (tol 1.4e-20, stall accepted, Delta correction +0.0e+00), Delta 1.685676920112 (formula diff -1.6e-06), moved 6.2e-30, 433 s
+      Delta of the saved state, its eight parts summed exactly: 1.685676920112342072475618803361872420528
+done
