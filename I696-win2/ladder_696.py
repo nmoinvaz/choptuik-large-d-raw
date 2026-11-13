@@ -125,13 +125,63 @@ def selftest():
     got = abs(mv + mpf("1e-40")) < mpf("1e-50")
     print("the control's move against the stored plan is reported (planted -1e-40):", "ok" if got else "FAIL")
     ok &= got
+    # the single-order report: planted per-term moves 3.8e-13, 2.0e-13, then a rung that does not converge
+    import contextlib, io
+    ds = os.path.join(tmp, "S")
+    vals = {"r131k": base, "s132": base + mpf("3.8e-13"), "s133": base + mpf("5.8e-13"), "s134": base + mpf("5.8e-13")}
+    for name, v in vals.items():
+        os.makedirs(os.path.join(ds, name), exist_ok=True)
+        np.savez(os.path.join(ds, name, "base_pin3_D245.1366.npz"), **{kk: np.array([0.0, x]) for kk, x in zip(KEYS, parts(v))}, meta="{}")
+        if name != "r131k":
+            conv = name != "s134"
+            with open(os.path.join(ds, name + ".log"), "w") as f:
+                f.write(f"  on 0: |F| 2.0e-35 -> 1e-37, lam 1\n      elim projections {{'failed': {0 if conv else 11}}}\n"
+                        f"      octo-double Newton: 4 steps, max|F| {'1e-85' if conv else '3e-35'}, {'converged' if conv else 'not converged'}; x\n")
+    buf = io.StringIO()
+    with contextlib.redirect_stdout(buf):
+        singles(ds)
+    t = buf.getvalue()
+    got = "3.8e-13" in t and "2.0e-13" in t and "132" in t and t.count("NO") == 1 and "last converged order: 133" in t and "last converged order: 134" not in t
+    print("single-order report: per-term moves 3.8e-13 and 2.0e-13 recovered, the non-converged rung 134 flagged, last converged 133:", "ok" if got else "FAIL")
+    if not got:
+        print(t)
+    ok &= got
     shutil.rmtree(tmp, ignore_errors=True)
     return 0 if ok else 1
+
+
+def singles(dd):
+    """the single-order ladder s132, s133, ...: per rung Delta(K) - Delta(K-1) from r131k, steps, first and final |F|, the elim counts"""
+    prev = cmp.delta_of(glob.glob(os.path.join(dd, "r131k", "base_pin3_D*.npz"))[0])
+    print(f"\n== {dd}, single-order ladder from r131k's base (Delta(131k) = {nstr(prev, 25)})")
+    print("   ks    steps  first|F|   final|F|   converged  Delta(K) - Delta(K-1)     elim projections")
+    n, last_ok = 0, None
+    for k in range(132, 400):
+        log = os.path.join(dd, f"s{k}.log")
+        if not os.path.exists(log):
+            break
+        txt = open(log, encoding="utf-8", errors="replace").read()
+        nm = re.findall(r"octo-double Newton: (\d+) steps, max\|F\| ([0-9.e+-]+), (converged|not converged)", txt)
+        first = re.search(r"^\s+on 0: \|F\| ([0-9.e+-]+)", txt, re.M)
+        elim = re.findall(r"elim projections (\{[^}]*\})", txt)
+        base = glob.glob(os.path.join(dd, f"s{k}", "base_pin3_D*.npz"))
+        conv = bool(nm) and nm[-1][2] == "converged"
+        d = cmp.delta_of(base[0]) if base else None
+        step = (d - prev) if (d is not None and conv) else None
+        print(f"   {k:<5d} {nm[-1][0] if nm else '-':<6s} {first.group(1) if first else '-':<10s} {nm[-1][1] if nm else '-':<10s} {'yes' if conv else ('NO' if nm else 'running'):<10s} "
+              f"{nstr(step, 8) if step is not None else '-':<25s} {elim[-1] if elim else ''}")
+        n += 1
+        if conv and d is not None:
+            prev, last_ok = d, k
+    print(f"   last converged order: {last_ok}" if last_ok else "   none converged yet")
 
 
 if __name__ == "__main__":
     if "--selftest" in sys.argv:
         sys.exit(selftest())
+    if "--single" in sys.argv:
+        singles(os.path.join(HERE, "D245"))
+        sys.exit(0)
     which = [a for a in sys.argv[1:] if a in CHAIN] or list(CHAIN)
     code = 2
     for lab in which:
