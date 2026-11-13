@@ -101,5 +101,16 @@ for t in a[:1]:
         if abs(d["D0"] - 236.63) < 1:
             continue
         p(f"   D0 {d['D0']:.4f}: |D* - D0| {abs(z - d['D0']):.3f}, Delta's root test {d['root_radius']:.3f}, ratio {d['root_radius'] / abs(z - d['D0']):.3f}")
+p()
+ks = sorted(loc, key=float)
+x = np.array([loc[k]["delta"]["D0"] for k in ks if float(k) > 251.9])
+rec = [loc[k]["delta"]["recurrence"] for k in ks if float(k) > 251.9]
+im = np.array([r["D_im"] for r in rec])
+re = np.array([r["D_re"] for r in rec])
+m, c = np.polyfit(x, im, 1)
+p("Delta's two-term recurrence fit (a single conjugate pair, its windows' spread in |s|) from D 252 on:")
+for D0, r in zip(x, rec):
+    p(f"   D0 {D0:.4f}: D* {r['D_re']:.2f}{r['D_im']:+.2f}i, |s| {r['abs']:.3f}, spread {r['spread']:.2f}")
+p(f"   Im D* slope {m:+.3f} per unit D0" + (f", reaching 0 at D0 = {-c / m:.1f}" if m < 0 else "") + f"; Re D* slope {np.polyfit(x, re, 1)[0]:+.3f}")
 if len(sys.argv) > 3 and sys.argv[2] == "--out":
     open(sys.argv[3], "w").write("\n".join(out) + "\n")
