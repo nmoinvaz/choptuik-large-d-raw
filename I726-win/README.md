@@ -44,7 +44,7 @@ Refused attempts (qd max|F| after the corrector's own stop, "no trial step accep
 | 112.75 | 1/16 | 112.8125 | 9 | 7.8e-44 |
 | 112.75 | 1/32 | 112.78125 | 7 | 6.6e-44 |
 
-The stalled |F| is flat in a (2.9e-44, 1.1e-44, 7.8e-44, 6.6e-44 over a factor 8) while the first full step's |F| falls with a (1.05e-21 to 1.7e-23), so the floor is not the step's quadratic error. The last Newton steps of the stalled attempts change Delta by 2e-46 to 4e-45. The elimination pivots span 8e-20 to 9e14 (a factor 1e34). Whether the quad-double precision sets the floor is not tested here (the octo-double corrector would test it, M = 32 here).
+The stalled |F| is flat in a (2.9e-44, 1.1e-44, 7.8e-44, 6.6e-44 over a factor 8) while the first full step's |F| falls with a (1.05e-21 to 1.7e-23), so the floor is not the step's quadratic error. The 17 Newton steps taken at the floor (|F| between 1e-44 and 1e-42, no progress) change Delta by 2.2e-46 to 4.4e-45. The elimination pivots span 8e-20 to 9e14 (a factor 1e34). Whether the quad-double precision sets the floor is not tested here (the octo-double corrector would test it, M = 32 here).
 
 The series behind the predictor, per step (norm of the last term z_N; order ratio 5 is `ratios_2_5[3]`):
 

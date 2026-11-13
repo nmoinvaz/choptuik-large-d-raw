@@ -1,0 +1,24 @@
+control (one node moved by 1e-3): identical False, max difference 1.000e-03 ok
+control (cont3 against itself): identical True ok
+cont3: D 99.875, a 0.0625, steps in the plan 11, source I682-win/cont2/anm_pin13_D99.6250.npz
+   0.3000000000  0.3344860466  0.3727168239  0.4000000000
+   0.4000000000  0.4440903534  0.4720451767  0.5000000000
+   0.5000000000  0.5500000000  0.6000000000
+   0.6000000000  0.6485815917  0.6742907959  0.7000000000
+A1: D 99.875, a 0.125, steps in the plan 11, source I682-win/cont3/anm_pin13_D99.7500.npz
+   0.3000000000  0.3348733513  0.3732538333  0.4000000000
+   0.4000000000  0.4441841781  0.4720920891  0.5000000000
+   0.5000000000  0.5500000000  0.6000000000
+   0.6000000000  0.6486756562  0.6743378281  0.7000000000
+X2: D 99.875, a 0.0625, steps in the plan 11, source I725-win/X1/anm_pin13_D99.8125.npz
+   0.3000000000  0.3352611074  0.3734667257  0.4000000000
+   0.4000000000  0.4439692226  0.4719846113  0.5000000000
+   0.5000000000  0.5500000000  0.6000000000
+   0.6000000000  0.6495304653  0.6747652327  0.7000000000
+plan of A1 identical to cont3's: False; max |node difference| 5.3701e-04
+plan of X2 identical to cont3's: False; max |node difference| 9.4887e-04
+D 99.8125:
+  plan of A0 identical to cont3's: True; max |node difference| 0.0000e+00; |Delta A0 - Delta cont3| 0.000e+00
+  plan of X1 identical to cont3's: True; max |node difference| 0.0000e+00; |Delta X1 - Delta cont3| 5.670e-34
+D 99.875: plan difference 5.370e-04; |Delta A1 - Delta cont3| 2.971e-26
+D 99.875: plan difference 9.489e-04; |Delta X2 - Delta cont3| 1.658e-25
