@@ -1,0 +1,14 @@
+T138-win2/chain/anm_pin3_D80.0000.npz: D 80.0, M 32, K 5, 4 parts, kfreeze 3, held [5, 7, 9, 11, 13]
+  round trip 32 -> 48 -> 32: 2.9e-90 relative (pass)
+  M 32: start max|F| 2.95e-34 (plan 10 steps)
+  M 32: re-seed ok, max|F| 2.95e-34, 85.46 s
+  qn 0: |F| 2.93e-34 converged, Delta 1.76956791428336513 +3.1956e-17
+  M 32: converged in 1 steps, max|F| 2.95e-34, est +3.2e-27, pivots 2.5e-07..1.2e+10, F with a fresh plan 3.0e-34, 229.2 s
+  M 48: start max|F| 1.73e-09 (plan 20 steps)
+  M 48: re-seed ok, max|F| 1.42e-16, 177.69 s
+  qn 0 [full]: |F| 1.42e-16 -> 5.65e-31, |dz| 4.4e-16 -> 3.3e-25, lam 1, dDelta -5.65e-25, piv 3.8e-07..6.1e+09, 91.61 s
+  qn 1: |F| 5.65e-31 converged, Delta 1.76956791428336513 +3.1956e-17
+  M 48: converged in 2 steps, max|F| 6.03e-31, est +3.3e-25, pivots 3.8e-07..6.1e+09, F with a fresh plan 6.0e-31, 629.9 s
+  Delta(M 48) - Delta(M 32) -5.647e-25 (against the stored state -5.647e-25); lam_g +3.810e-26 (stored +3.810e-26); est at M 48 +3.3e-25; tau tails: M 32 |c_k>=28| 4.4e-14, M 48 |c_k>=32| 6.2e-16
+planted chain80: FAIL (dDelta against the stored state -5.6467e-25, known -2.3760e-25, tolerance 1e-27; record resolution-mac/scan_chainfit_D80.log)
+planted: FAIL

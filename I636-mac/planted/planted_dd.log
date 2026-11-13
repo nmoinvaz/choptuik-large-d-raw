@@ -1,0 +1,21 @@
+repo:hp/data/states/up2_D20.0437.npz: D 20.043653, M 32, K 8, 2 parts, kfreeze None, held []
+  round trip 32 -> 48 -> 32: 2.6e-90 relative (pass)
+  M 32: start max|F| 1.57e-29 (plan 18 steps)
+  qn 0 [full]: |F| 1.57e-29 -> 2.20e-36, |dz| 4.6e-17 -> 1.1e-35, lam 1, dDelta -5.83e-28, piv 9.8e-06..1.6e+01, 22.02 s
+  qn 1: |F| 2.20e-36 converged, Delta 2.11114029261447955 -2.6254e-17
+  M 32: converged in 2 steps, max|F| 2.20e-36, est +2.6e-39, pivots 9.8e-06..1.6e+01, F with a fresh plan 5.1e-35, 67.0 s
+  M 48: start max|F| 9.75e-12 (plan 46 steps)
+  qn 0 [full]: |F| 9.75e-12 -> 5.33e-23, |dz| 4.4e-11 -> 2.1e-12, lam 1, dDelta +1.67e-20, piv 9.4e-06..1.6e+01, 116.12 s
+  qn 1 [full]: |F| 5.33e-23 -> 2.00e-27, |dz| 2.1e-12 -> 9.3e-27, lam 1, dDelta +8.13e-25, piv 9.4e-06..1.6e+01, 122.86 s
+  qn 2 [full]: |F| 2.00e-27 -> 6.91e-55, |dz| 9.3e-27 -> 1.8e-47, lam 1, dDelta +2.48e-32, piv 9.4e-06..1.6e+01, 120.4 s
+  qn 3: |F| 6.91e-55 converged, Delta 2.11114029261447955 -2.6237e-17
+  M 48: converged in 4 steps, max|F| 6.91e-55, est -2.8e-59, pivots 9.4e-06..1.6e+01, F with a fresh plan 8.3e-35, 596.5 s
+  Delta(M 48) - Delta(M 32) +1.673e-20 (against the stored state +1.673e-20); lam_g -1.243e-21 (stored -1.243e-21); est at M 48 -2.8e-59; tau tails: M 32 |c_k>=28| 7.1e-10, M 48 |c_k>=32| 4.2e-11
+planted dd20: pass (Delta(M 48) - the record's -4.410e-27, tolerance 1.1e-25; record I271-macm3/gamma_dd.jsonl D 20.043653)
+repo:hp/data/states/up7_D40.0201.npz: D 40.020065, M 32, K 5, 2 parts, kfreeze 13, held []
+  round trip 32 -> 48 -> 32: 2.7e-90 relative (pass)
+  M 32: start max|F| 1.98e-26 (plan 10 steps)
+  qn 0 [full]: |F| 1.98e-26 -> 7.45e-31, |dz| 7.8e-15 -> 8.3e-28, lam 1, dDelta +7.02e-22, piv 3.2e-10..1.0e+04, 165.39 s
+  qn 1: |F| 7.45e-31 converged, Delta 1.88845166449061375 +9.1815e-17
+  M 32: converged in 2 steps, max|F| 7.45e-31, est +3.2e-35, pivots 3.2e-10..1.0e+04, F with a fresh plan 7.4e-31, 551.1 s
+  M 48: start max|F| 2.97e-14 (plan 24 steps)
