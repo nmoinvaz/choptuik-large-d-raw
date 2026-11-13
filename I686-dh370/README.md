@@ -13,3 +13,5 @@ Singularities are compared by track (D* = D0 + s, as grouped in I685-dh370/table
 For a base and a track present in the kept-plan series, spread = the largest |D* - the track's median D*| over its poles (Delta's Pade poles and the rows) in either series, and d = |median D* of the new-plan series - median D* of the kept-plan series|.
 d <= spread: the singularity is the solution's. d > 3 spread: the discretization's. Otherwise undecided. A track absent from the new-plan series is reported as absent (it moved or left the range).
 "Another M or layout": the octo-double kernel is M = 32 only, and no converged state exists on another layout at this D (#654's polish at 0.975 did not converge), so it is reported as not available unless one is found.
+
+Clarification, added before the new-plan series were read: a track with fewer than 3 poles in the kept-plan series has no usable spread, so it is reported with d and called undecided. The comparison is made at each of the two bases separately.
