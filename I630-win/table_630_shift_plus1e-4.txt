@@ -1,0 +1,31 @@
+continuation record: {'eps': 0.05, 'kc': 15, 'Delta': 0.45998626346043037, 'F': 6.9671316182425344e-15, 'par': 'eps', 'target': True} 
+
+MUTATION: Delta(20) at k_c 39 shifted by +1.0e-04
+
+| eta | k_c | N | Delta | F | constraint |
+|---|---|---|---|---|---|
+| inf | 15 | 48 | 0.4600214704 | 5.88e-12 | 1.1761e-01 |
+| inf | 23 | 72 | 0.4598654552 | 1.61e-15 | 1.5305e-02 |
+| inf | 39 | 120 | 0.4598611019 | 3.67e-12 | 2.0111e-04 |
+| 20.0000 | 15 | 48 | 0.4599862635 | 6.97e-15 | 1.1235e-01 |
+| 20.0000 | 23 | 72 | 0.4598356152 | 1.54e-15 | 1.4694e-02 |
+| 20.0000 | 39 | 120 | 0.4599315284 | 3.33e-12 | 1.8798e-04 |
+| 10.0000 | 15 | 48 | 0.4599633445 | 6.27e-11 | 1.0702e-01 |
+| 10.0000 | 23 | 72 | 0.4598180153 | 1.55e-15 | 1.4062e-02 |
+| 10.0000 | 39 | 120 | 0.4598141853 | 3.32e-12 | 1.7514e-04 |
+| 5.0000 | 15 | 48 | 0.4599560915 | 1.99e-14 | 9.6252e-02 |
+| 5.0000 | 23 | 72 | 0.4598211881 | 1.67e-15 | 1.2754e-02 |
+| 5.0000 | 39 | 120 | 0.4598178425 | 2.44e-12 | 1.5065e-04 |
+
+both refines present and converged (F < 1e-10): True
+
+| quantity | k_c 15 | k_c 23 | k_c 39 | change |d_39 - d_23| |
+|---|---|---|---|---|
+| d = Delta(20) - Delta(inf) | -3.521e-05 | -2.984e-05 | +7.043e-05 | 1.003e-04 |
+| e = Delta(20) - Delta(10) | +2.292e-05 | +1.760e-05 | +1.173e-04 | 9.974e-05 |
+
+d = Delta(20) - Delta(inf): OPEN: signs differ (-2.984e-05, +7.043e-05)
+e = Delta(20) - Delta(10): OPEN: a magnitude does not exceed its change c = 9.974e-05 (1.760e-05, 1.173e-04)
+READING (README): e open: the sign of Delta(20) - Delta(10) is not settled
+order of Delta at k_c 23 (low to high): Delta(10) < Delta(5) < Delta(20) < Delta(inf)
+order of Delta at k_c 39 (low to high): Delta(10) < Delta(5) < Delta(inf) < Delta(20)
