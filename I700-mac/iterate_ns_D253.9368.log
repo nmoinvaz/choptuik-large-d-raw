@@ -1,0 +1,14 @@
+attempt: base I603-win2/chain_ns/anm_pin3_D253.8825.npz, D 253.88245811752277962362878138691257845493964850902, a 0.05429687500004832, D + a 253.93675499252282794053481307372521769138984382152, prediction from jet I603-win2/chain_ns/jet_pin3_D253.8825.npz, 0.1 s
+  the rebuilt prediction against I603-win2/chain_ns/pred_pin3_D253.9368.npz: bit for bit equal
+  re-seed FAILED, prediction kept, 136.03 s; start max|F| (PinnedO) 4.01e-20
+    on 0 chord 0: max|F| 1.42e-17, |dw| 3.687e-37
+    on 0 chord 1: max|F| 3.55e-37, |dw| 3.659e-37
+    on 0 chord 2: max|F| 4.25e-53, |dw| 1.659e-53
+  on 0: strong chord (4 weak directions), 3 steps after the full first step; theta at its point 7.993e-12 (bound 0.750): accepted, 1238.27 s
+  on 0: |F| 4.01e-20 -> 2.58e-53, |dz| 3.46e-26 -> 3.46e-26, lam 1, dDelta -3.46e-26, piv 4.2e-32..1.9e+36, 1951.4 s
+    on 1 trial lam 1: max|F| 1.42e-17; simplified correction / |dz| = 9.448e+16 (bound 0.750); refused, 1.78 s
+    on 1 trial lam 0.5: max|F| 1.29e-53; simplified correction / |dz| = 5.000e-01 (bound 0.875); accepted, 331.29 s
+  on 1: |F| 2.58e-53 -> 1.29e-53, |dz| 3.46e-26 -> 1.73e-26, lam 0.5, dDelta +3.46e-26, piv 4.2e-32..1.9e+36, 783.35 s
+  newton_od: 2 steps, converged False, projections {'u0': 0, 'u0q': 5, 'ladder': 0, 'failed': 0, 'skipped': 3}, 3433 s
+  saved /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/11bcbd25-9376-453b-88d5-a7c6ad0172dd/scratchpad/i700/raw/I700-mac/crawl_iter_D253.9368.npz: the iterate (max|F| of its projection 2.58e-53, its own pinned quad-double max|F| 1.29e-01) and its step (|dz| 3.46e-26)
+exit 0
