@@ -1,0 +1,113 @@
+{
+ "frozen": {
+  "classes": "chord (two branch points, chord2's class), arc (arcjump's stepped arc, w = 1,2,1,2, log branch points on the arc), smooth (the arc with w = 1, the plant arc's class, context)",
+  "errors": "part 1: measured rel_k, k <= 22 (floor 1e-30), F = 1; part 2: #670's model (measured for k <= 22, log-linear extrapolation on k = 18..22 beyond), F = 1",
+  "twin_size": "M_min (least squares, chi <= 1) and M_lo (l2 <= sqrt(n)); the smallest twin lies in [M_lo, M_min]",
+  "C0_same_class": "chord2 in the chord basis, arcjump in the arc basis, the plant arc in the smooth basis, each at M = 6, n = 23: chi <= 1e-30 at every node",
+  "C1_precision": "at M_min - 1 and M_min of every scan, chi at 250 digits agrees with 150 digits within 1e-3 relative",
+  "C2_reproduce": "the chord twin of arcjump at n = 23 has M_min = 19 at every node (#670); a failure is a discrepancy, reported",
+  "both_ways": "the arc twin of chord2 counts as a twin (not an interpolant) if M_min <= n - 1 = 22; its M_min and gap n - M_min are reported per node",
+  "mutation_twins": "--mutate=arccol (arc column m = 0, order 20, x (1 + 1e-8)) must make C0 arc fail at every node, --mutate=chordcol the same for C0 chord; each run exits 1",
+  "twins_real": "only if C0 and C1 pass on the plants; per node M_min and M_lo of the chord, arc and smooth twins of the real sigma_0..sigma_22 (J1250); C1 on the real fits stops the work if it fires; a class is read as preferred by term count only if its M_min is smaller by at least 3 at every node (reported); J1500 at wf 1.00 is context",
+  "size": "N = ||c||_2 of the chord twin with M_SIZE = 40 terms, minimised exactly subject to chi <= 1; bracket [N_lo, N_hi] from the barrier (explicit twin) and its dual; targets chord2, arcjump, arc; n = 23, 31; every node",
+  "S_gap": "N_hi / N_lo - 1 <= 1e-4 for every target, n and node",
+  "S_valid": "the explicit twin's chi recomputed at 250 digits with the 250-digit basis <= 1 + 1e-6, and N_lo recomputed at 250 digits with the same multipliers within 1e-6 relative",
+  "S0_calibration": "chord2's smallest twin within 10% of chord2's own size N_own (its 6-term coefficients): N_lo >= 0.9 N_own and N_hi <= 1.1 N_own at n = 23 and 31 and every node",
+  "mutation_size": "--mutate=scale (chord2's sigma_k x 1.25, its errors kept) must make S0 fail at every n and node; the run exits 1",
+  "separation": "at n = 31, rho_hi = N_hi(arcjump) / N_lo(chord2) and rho_lo = N_lo(arcjump) / N_hi(chord2): if rho_hi <= 3 at every node, no size prior separates them (the answer); if rho_lo > 3 at every node, a size prior of factor 3 separates them; otherwise mixed. n = 23 is reported the same way",
+  "size_real": "only if S_gap, S_valid and S0 pass and rho_lo > 3 at every node at n = 23: the real series' smallest chord twin at n = 23, rho_real = N(real) / N(chord2) per node, read against 3; otherwise no real size run",
+  "context": "the ridge route's smallest ||c|| with chi <= 1, the peak density and largest |c_m| of each smallest twin, N at M = 50 (wf 1.00) against M = 40, and the plant arc's N; reported, not judged"
+ },
+ "mutate": "arccol",
+ "controls": {
+  "0.99": {
+   "chord": {
+    "M": 6,
+    "chi": 9.817535665601558e-37,
+    "l2": 1.2010556677196794e-36,
+    "c_max": 26.568853893559496,
+    "c_norm": 43.83091961036666,
+    "density_max": 2.869876771211391,
+    "pass": true
+   },
+   "arc": {
+    "M": 6,
+    "chi": 1575.139112136701,
+    "l2": 1575.1391121367012,
+    "c_max": 7.282435334376012,
+    "c_norm": 9.207605810199862,
+    "density_max": 2.4207258155084803,
+    "pass": false
+   },
+   "smooth": {
+    "M": 6,
+    "chi": 7.954199103445427e-37,
+    "l2": 9.775940579583398e-37,
+    "c_max": 18.489299297965072,
+    "c_norm": 27.558758565123327,
+    "density_max": 2.3199115234942265,
+    "pass": true
+   }
+  },
+  "1.0": {
+   "chord": {
+    "M": 6,
+    "chi": 4.991311578982209e-37,
+    "l2": 5.415196958970363e-37,
+    "c_max": 27.789068692488534,
+    "c_norm": 45.94098684186347,
+    "density_max": 2.9221983558383218,
+    "pass": true
+   },
+   "arc": {
+    "M": 6,
+    "chi": 2220.6403862448183,
+    "l2": 2220.6403862448187,
+    "c_max": 7.179161302771943,
+    "c_norm": 9.441006109460757,
+    "density_max": 2.45863254787729,
+    "pass": false
+   },
+   "smooth": {
+    "M": 6,
+    "chi": 2.4555832458165107e-37,
+    "l2": 2.576384807665653e-37,
+    "c_max": 19.297999298161947,
+    "c_norm": 28.867107226723817,
+    "density_max": 2.3193030519550164,
+    "pass": true
+   }
+  },
+  "1.01": {
+   "chord": {
+    "M": 6,
+    "chi": 1.5073488631675557e-36,
+    "l2": 1.7646691001712575e-36,
+    "c_max": 29.505544579627873,
+    "c_norm": 48.92774156689736,
+    "density_max": 2.9978838193032735,
+    "pass": true
+   },
+   "arc": {
+    "M": 6,
+    "chi": 2860.74123837326,
+    "l2": 2860.7412383732603,
+    "c_max": 7.058756660764758,
+    "c_norm": 9.85977012800568,
+    "density_max": 2.5101147829614803,
+    "pass": false
+   },
+   "smooth": {
+    "M": 6,
+    "chi": 4.3193648442198095e-37,
+    "l2": 5.098828855599122e-37,
+    "c_max": 21.332379846577886,
+    "c_norm": 32.20526729102368,
+    "density_max": 2.334298683877951,
+    "pass": true
+   }
+  }
+ },
+ "scans": {},
+ "controls_pass": false
+}

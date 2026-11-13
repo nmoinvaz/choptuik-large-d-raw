@@ -1,0 +1,22 @@
+run 2026-11-13 10:12 UTC, mutate None
+wf 0.99: C0 chord basis, chord2 at M 6: chi 9.8e-37 OK
+wf 0.99: C0 arc basis, arcjump at M 6: chi 2.8e-37 OK
+wf 0.99: C0 smooth basis, arc at M 6: chi 8.0e-37 OK
+  wf 0.99 arc twin of chord2: M_min 18 M_lo 18; chi at M_min - 1, M_min: 4.98e+00, 1.72e-01; at M_min max|c| 4.87e+01, peak density 2.71; C1 OK (2s)
+  wf 0.99 smooth twin of chord2: M_min 14 M_lo 14; chi at M_min - 1, M_min: 2.79e+01, 8.14e-02; at M_min max|c| 1.86e+01, peak density 2.36; C1 OK (2s)
+  wf 0.99 chord twin of arcjump: M_min 19 M_lo 19; chi at M_min - 1, M_min: 2.93e+00, 1.09e-01; at M_min max|c| 1.52e+03, peak density 9.48; C1 OK (2s)
+wf 1.0: C0 chord basis, chord2 at M 6: chi 5.0e-37 OK
+wf 1.0: C0 arc basis, arcjump at M 6: chi 6.7e-37 OK
+wf 1.0: C0 smooth basis, arc at M 6: chi 2.5e-37 OK
+  wf 1.0 arc twin of chord2: M_min 18 M_lo 18; chi at M_min - 1, M_min: 4.80e+00, 2.24e-01; at M_min max|c| 5.45e+01, peak density 2.68; C1 OK (2s)
+  wf 1.0 smooth twin of chord2: M_min 14 M_lo 14; chi at M_min - 1, M_min: 2.67e+01, 1.04e-01; at M_min max|c| 1.96e+01, peak density 2.36; C1 OK (2s)
+  wf 1.0 chord twin of arcjump: M_min 19 M_lo 19; chi at M_min - 1, M_min: 3.09e+00, 9.48e-02; at M_min max|c| 1.39e+03, peak density 8.13; C1 OK (2s)
+wf 1.01: C0 chord basis, chord2 at M 6: chi 1.5e-36 OK
+wf 1.01: C0 arc basis, arcjump at M 6: chi 1.3e-36 OK
+wf 1.01: C0 smooth basis, arc at M 6: chi 4.3e-37 OK
+  wf 1.01 arc twin of chord2: M_min 18 M_lo 18; chi at M_min - 1, M_min: 5.64e+00, 2.84e-01; at M_min max|c| 6.38e+01, peak density 2.66; C1 OK (2s)
+  wf 1.01 smooth twin of chord2: M_min 14 M_lo 14; chi at M_min - 1, M_min: 5.19e+01, 3.11e-01; at M_min max|c| 2.15e+01, peak density 2.38; C1 OK (2s)
+  wf 1.01 chord twin of arcjump: M_min 19 M_lo 19; chi at M_min - 1, M_min: 2.59e+00, 8.28e-02; at M_min max|c| 1.16e+03, peak density 6.97; C1 OK (2s)
+C2 chord twin of arcjump M_min {0.99: 19, 1.0: 19, 1.01: 19}: OK
+both ways: arc twin of chord2 M_min {0.99: 18, 1.0: 18, 1.01: 18}, a twin at every node: True
+controls C0 and C1 pass: True

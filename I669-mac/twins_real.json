@@ -1,0 +1,190 @@
+{
+ "frozen": {
+  "classes": "chord (two branch points, chord2's class), arc (arcjump's stepped arc, w = 1,2,1,2, log branch points on the arc), smooth (the arc with w = 1, the plant arc's class, context)",
+  "errors": "part 1: measured rel_k, k <= 22 (floor 1e-30), F = 1; part 2: #670's model (measured for k <= 22, log-linear extrapolation on k = 18..22 beyond), F = 1",
+  "twin_size": "M_min (least squares, chi <= 1) and M_lo (l2 <= sqrt(n)); the smallest twin lies in [M_lo, M_min]",
+  "C0_same_class": "chord2 in the chord basis, arcjump in the arc basis, the plant arc in the smooth basis, each at M = 6, n = 23: chi <= 1e-30 at every node",
+  "C1_precision": "at M_min - 1 and M_min of every scan, chi at 250 digits agrees with 150 digits within 1e-3 relative",
+  "C2_reproduce": "the chord twin of arcjump at n = 23 has M_min = 19 at every node (#670); a failure is a discrepancy, reported",
+  "both_ways": "the arc twin of chord2 counts as a twin (not an interpolant) if M_min <= n - 1 = 22; its M_min and gap n - M_min are reported per node",
+  "mutation_twins": "--mutate=arccol (arc column m = 0, order 20, x (1 + 1e-8)) must make C0 arc fail at every node, --mutate=chordcol the same for C0 chord; each run exits 1",
+  "twins_real": "only if C0 and C1 pass on the plants; per node M_min and M_lo of the chord, arc and smooth twins of the real sigma_0..sigma_22 (J1250); C1 on the real fits stops the work if it fires; a class is read as preferred by term count only if its M_min is smaller by at least 3 at every node (reported); J1500 at wf 1.00 is context",
+  "size": "N = ||c||_2 of the chord twin with M_SIZE = 40 terms, minimised exactly subject to chi <= 1; bracket [N_lo, N_hi] from the barrier (explicit twin) and its dual; targets chord2, arcjump, arc; n = 23, 31; every node",
+  "S_gap": "N_hi / N_lo - 1 <= 1e-4 for every target, n and node",
+  "S_valid": "the explicit twin's chi recomputed at 250 digits with the 250-digit basis <= 1 + 1e-6, and N_lo recomputed at 250 digits with the same multipliers within 1e-6 relative",
+  "S0_calibration": "chord2's smallest twin within 10% of chord2's own size N_own (its 6-term coefficients): N_lo >= 0.9 N_own and N_hi <= 1.1 N_own at n = 23 and 31 and every node",
+  "mutation_size": "--mutate=scale (chord2's sigma_k x 1.25, its errors kept) must make S0 fail at every n and node; the run exits 1",
+  "separation": "at n = 31, rho_hi = N_hi(arcjump) / N_lo(chord2) and rho_lo = N_lo(arcjump) / N_hi(chord2): if rho_hi <= 3 at every node, no size prior separates them (the answer); if rho_lo > 3 at every node, a size prior of factor 3 separates them; otherwise mixed. n = 23 is reported the same way",
+  "size_real": "only if S_gap, S_valid and S0 pass and rho_lo > 3 at every node at n = 23: the real series' smallest chord twin at n = 23, rho_real = N(real) / N(chord2) per node, read against 3; otherwise no real size run",
+  "context": "the ridge route's smallest ||c|| with chi <= 1, the peak density and largest |c_m| of each smallest twin, N at M = 50 (wf 1.00) against M = 40, and the plant arc's N; reported, not judged"
+ },
+ "scans": {
+  "0.99": {
+   "chord": {
+    "rows": [
+     {
+      "M": 6,
+      "chi": 1.790938121512175e+17,
+      "l2": 2.2307270462294218e+17,
+      "c_max": 33.32778807469604,
+      "c_norm": 54.72062324076521,
+      "density_max": 2.8025112189869446
+     },
+     {
+      "M": 7,
+      "chi": 6366648924399980.0,
+      "l2": 7573564699416982.0,
+      "c_max": 30.44324674783232,
+      "c_norm": 49.58581937317651,
+      "density_max": 2.833486358059384
+     },
+     {
+      "M": 8,
+      "chi": 157790998092845.1,
+      "l2": 218972250529574.9,
+      "c_max": 25.696625748951693,
+      "c_norm": 44.1737683782846,
+      "density_max": 2.979125673750278
+     },
+     {
+      "M": 9,
+      "chi": 18436758591355.316,
+      "l2": 23156804468809.984,
+      "c_max": 98.65658380475763,
+      "c_norm": 177.70594149041753,
+      "density_max": 4.095968774264313
+     },
+     {
+      "M": 10,
+      "chi": 1888156340027.3281,
+      "l2": 2815045523224.6216,
+      "c_max": 490.669375010046,
+      "c_norm": 942.9923758222818,
+      "density_max": 7.116246402332701
+     },
+     {
+      "M": 11,
+      "chi": 495290973560.68097,
+      "l2": 708265290416.971,
+      "c_max": 4571.08679069973,
+      "c_norm": 9275.990455490588,
+      "density_max": 54.4750622149204
+     },
+     {
+      "M": 12,
+      "chi": 90146680565.74323,
+      "l2": 160590323043.14212,
+      "c_max": 28153.49576078003,
+      "c_norm": 59717.92432628673,
+      "density_max": 346.66793349907243
+     },
+     {
+      "M": 13,
+      "chi": 60646769153.46553,
+      "l2": 107544454733.23657,
+      "c_max": 153594.40159084738,
+      "c_norm": 339073.0413071911,
+      "density_max": 1782.8360204894395
+     },
+     {
+      "M": 14,
+      "chi": 16265451059.834816,
+      "l2": 36141463476.32104,
+      "c_max": 2081082.5257721927,
+      "c_norm": 4764291.33207276,
+      "density_max": 20639.676519889796
+     },
+     {
+      "M": 15,
+      "chi": 10752993432.12191,
+      "l2": 21637309071.89208,
+      "c_max": 20941041.79209825,
+      "c_norm": 49533894.6799506,
+      "density_max": 192701.74917853248
+     },
+     {
+      "M": 16,
+      "chi": 4468770847.901145,
+      "l2": 8077947012.872251,
+      "c_max": 300797769.0625503,
+      "c_norm": 734462224.1775342,
+      "density_max": 2458257.271256216
+     },
+     {
+      "M": 17,
+      "chi": 1906072821.8959901,
+      "l2": 3175564837.004814,
+      "c_max": 3168938662.2117763,
+      "c_norm": 7960462235.118747,
+      "density_max": 22709858.8400856
+     },
+     {
+      "M": 18,
+      "chi": 421739521.17251015,
+      "l2": 822894418.3684475,
+      "c_max": 28965417297.16697,
+      "c_norm": 74776565417.75519,
+      "density_max": 178291084.97312278
+     },
+     {
+      "M": 19,
+      "chi": 95797836.18359198,
+      "l2": 172601084.4391957,
+      "c_max": 255910363348.52982,
+      "c_norm": 677517132010.3859,
+      "density_max": 1362393928.8056993
+     },
+     {
+      "M": 20,
+      "chi": 13570287.021217436,
+      "l2": 23859399.681519274,
+      "c_max": 2249340726016.1523,
+      "c_norm": 6102552218201.19,
+      "density_max": 10266291800.12285
+     },
+     {
+      "M": 21,
+      "chi": 1312872.165872454,
+      "l2": 2175095.7386210016,
+      "c_max": 20240632646430.96,
+      "c_norm": 56182558366029.01,
+      "density_max": 79662102116.72134
+     },
+     {
+      "M": 22,
+      "chi": 96978.58239397214,
+      "l2": 130514.53888570167,
+      "c_max": 173844934827865.28,
+      "c_norm": 493297683673916.4,
+      "density_max": 582060433801.7867
+     },
+     {
+      "M": 23,
+      "chi": 2.150668221406433e-107,
+      "l2": 2.1506683334625125e-107,
+      "c_max": 1393332595956229.0,
+      "c_norm": 4035352100852569.5,
+      "density_max": 3874634653657.699
+     }
+    ],
+    "M_min": 23,
+    "M_lo": 23,
+    "precision": [
+     {
+      "M": 22,
+      "chi": 96978.58239397214,
+      "chi_check": 96978.58239397214,
+      "rel_diff": 0.0
+     },
+     {
+      "M": 23,
+      "chi": 2.150668221406433e-107,
+      "chi_check": 2.607033610700936e-207,
+      "rel_diff": 8.249484059502389e+99
+     }
+    ],
+    "C1_pass": false
+   }
+  }
+ }
+}
