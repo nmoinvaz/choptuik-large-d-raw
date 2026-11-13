@@ -1,0 +1,20 @@
+run 2026-11-13 14:05 UTC, mutate judge
+R3 wf 0.99: real chi_22 by projection against #684, largest rel dev 2.0e-10 (pass <= 1e-6); M_min, M_lo all 23: True; C1 True -> OK (12s)
+R1/J+ wf 0.99: real m_DA 11 (R1 pass <= 5); d_P 5.0e-02; d_T 2.0e+00; judge (a) False (b) False (c) False -> J+ BAD; DA2 median (2.2006025668849243+1.3280886031670602j), zeros within 0.17 of #541's poles 1
+R4 wf 0.99 chord2: eta 0 plant against FarPlant, sigma_0..31 max |diff| 0.0e+00, M 6 -> OK
+R4 wf 0.99 arc: eta 0 plant against FarPlant, sigma_0..31 max |diff| 0.0e+00, M 6 -> OK
+R3 wf 1.0: real chi_22 by projection against #684, largest rel dev 2.0e-10 (pass <= 1e-6); M_min, M_lo all 23: True; C1 True -> OK (12s)
+R1/J+ wf 1.0: real m_DA 11 (R1 pass <= 5); d_P 5.0e-02; d_T 2.0e+00; judge (a) False (b) False (c) False -> J+ BAD; DA2 median (2.227526822690601+1.4351190606858883j), zeros within 0.17 of #541's poles 0
+J- wf 1.0 chord2 eta 0: m_DA 11 at (1.2793636214498008+1.0802018679278562j); d_P 0.220; M_min in kstar/chord 6; d_T 51.62; judge (a) False (b) False (c) False -> J- OK
+R4 wf 1.0 chord2: eta 0 plant against FarPlant, sigma_0..31 max |diff| 0.0e+00, M 6 -> OK
+J- wf 1.0 arc eta 0: m_DA 11 at (1.2753871724979695+1.0821304791356843j); d_P 0.225; M_min in kstar/smooth 6; d_T 51.66; judge (a) False (b) False (c) False -> J- OK
+R4 wf 1.0 arc: eta 0 plant against FarPlant, sigma_0..31 max |diff| 0.0e+00, M 6 -> OK
+R3 wf 1.01: real chi_22 by projection against #684, largest rel dev 4.3e-10 (pass <= 1e-6); M_min, M_lo all 23: True; C1 True -> OK (12s)
+R1/J+ wf 1.01: real m_DA 11 (R1 pass <= 5); d_P 5.0e-02; d_T 2.0e+00; judge (a) False (b) False (c) False -> J+ BAD; DA2 median (2.302920243793573+1.3486454745118721j), zeros within 0.17 of #541's poles 0
+R4 wf 1.01 chord2: eta 0 plant against FarPlant, sigma_0..31 max |diff| 0.0e+00, M 6 -> OK
+R4 wf 1.01 arc: eta 0 plant against FarPlant, sigma_0..31 max |diff| 0.0e+00, M 6 -> OK
+K0 wf 0.99: ratio law 12-21 1.459755+1.111335j (beta 5.6563-2.6909j), off #541 by 5.7e-05 (pass <= 1e-4); poles past kappa_* k 8 1.355475+1.050698j |t| 1.7150 (1 candidate), off #541 by 0.0e+00; k 9 1.405094+1.062886j |t| 1.7618 (1 candidate), off #541 by 0.0e+00; k 10 1.458552+1.071935j |t| 1.8101 (1 candidate), off #541 by 0.0e+00 -> OK
+K0 wf 1.0: ratio law 12-21 1.457407+1.111932j (beta 5.6631-2.6508j), off #541 by 3.3e-05 (pass <= 1e-4); poles past kappa_* k 8 1.354938+1.050760j |t| 1.7146 (1 candidate), off #541 by 0.0e+00; k 9 1.406617+1.061286j |t| 1.7621 (1 candidate), off #541 by 0.0e+00; k 10 1.456603+1.068512j |t| 1.8065 (1 candidate), off #541 by 0.0e+00 -> OK
+K0 wf 1.01: ratio law 12-21 1.455118+1.112573j (beta 5.6707-2.6105j), off #541 by 3.2e-05 (pass <= 1e-4); poles past kappa_* k 8 1.354899+1.050906j |t| 1.7147 (1 candidate), off #541 by 0.0e+00; k 9 1.407585+1.059929j |t| 1.7620 (1 candidate), off #541 by 0.0e+00; k 10 1.456260+1.067614j |t| 1.8057 (1 candidate), off #541 by 0.0e+00 -> OK
+mutation judge: J+ parts (a) False (b) False (c) False; each fails: True (must)
+controls {'R1': True, 'R2': True, 'R3': True, 'R4': True, 'J+': False, 'J-': True} -> pass False
