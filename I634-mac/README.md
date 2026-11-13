@@ -22,5 +22,5 @@ Contents:
 - `jets/D<D>_<variant>.npz` and their logs: `jet_singularity.py jet`, N 8 (od; `inject_1e-80_1`, noise injected into
   every order at 1e-80 of its right-hand side; `pert_<L>_<seed>`, the base moved by J^-1 r with max|r| = L; `qd`, the
   quad-double series).
-- `repro16/`, `polish/`: the 16-order series at D 245.14 and the polish to 1e-80, when they finish.
+- `repro16/jet_pin3_D245.1366.npz`, `repro16_D245.1366.log`: the 16-order series at D 245.14 (equal to the record's 17 norms). `polish/`, `polish_D245.1366.log`: the base at D 245.14 polished to 7.9e-93 (`--tol_od 1e-80 --save_base 1`) and its 8-order series.
 - `run_634.sh`, `run16_634.sh`, `queue_634.sh`, `queue2_634.sh`: the commands; `exits_634.txt`: each run's exit.
