@@ -170,3 +170,19 @@ Reproducer `lu_size_test.py N` (and `lu_size_test_steps.py`, the same with two p
 | new | **1** | 23857 | 4.24 GiB | **passes** (`lu_factor` 217 s, error 1.24e-10) | `lu_size_23857_latest_1thread.log` |
 
 So: the crash is not at 4 GiB (3.44 GiB already crashes with scipy 1.15.3, 2.98 GiB does not; I did not bisect between), it needs more than one BLAS thread, and today's wheels crash as well, at a different place (inside `lu_factor` for scipy 1.18.1 against `lu_solve` for 1.15.3). Not tested: other Windows builds, other CPUs, a debug build of OpenBLAS, `OPENBLAS_CORETYPE=Haswell`, and N between 20000 and 21500. The throwaway venvs (`venv-blastest`, `venv-blastest310`) were sent to the Recycle Bin after the last test.
+
+
+### Side task, second part (coordinator's message `1794554183629-0`): numpy's OpenBLAS 0.3.34 and the kernel family
+
+A fresh Python 3.14.10 venv with today's wheels (numpy 2.5.4, scipy 1.18.1, threadpoolctl 3.8.0), two BLAS threads, BelowNormal, one test at a time beside #643; 13.8 GB free before the first. `np_solve_test.py` (numpy's own OpenBLAS, `np.linalg.solve(A, b)` with `b = A x0`, same generator and seed as `lu_size_test.py`), `lu_size_test_tp.py` (the LU reproducer with the threadpoolctl lines printed first). Windows exit codes come from PowerShell (`$p.ExitCode`); `OPENBLAS_CORETYPE` is set in the environment of the one process.
+
+| test | threadpoolctl (numpy's OpenBLAS / scipy's OpenBLAS) | result | log |
+|---|---|---|---|
+| `np.linalg.solve`, N = 21500 (3.44 GiB) | 0.3.34.106.0 SkylakeX, pthreads, 2 threads / n.a. | **the solve finishes and is right** (92 s and 145 s in two runs, max abs error 1.26e-10) **and the process then dies at interpreter exit** with an access violation during garbage collection, no Python frame, exit code 0xC0000005 (both runs; `np_solve_21500.log`, `.err`) | `np_solve_21500.*` |
+| `np.linalg.solve`, N = 20000 (2.98 GiB), the control | same | passes, exit 0 (81 s and 130 s, error 6.09e-11) | `np_solve_20000.*` |
+| `lu_size_test.py`, N = 21500, default kernels | 0.3.34.106.0 SkylakeX / 0.3.31.dev SkylakeX, pthreads, 2 threads each | `lu_factor` done in 100 s, then **access violation** (0xC0000005) in a later Python call (`get_lapack_funcs`, called from `lu_solve`) | `lu_skylakex_21500.*` |
+| the same, `OPENBLAS_CORETYPE=Haswell` | 0.3.34.106.0 **Haswell** / 0.3.31.dev **Haswell**, pthreads, 2 threads each | **passes**, `lu_factor` 136 s, error 1.61e-10, exit 0 | `lu_haswell_21500.*` |
+| the same, N = 23857 (4.24 GiB), `OPENBLAS_CORETYPE=Haswell` | same | **passes**, `lu_factor` 170 s, error 8.56e-11, exit 0 | `lu_haswell_23857.*` |
+| old stack (`venv-t151`: scipy 1.15.3, OpenBLAS 0.3.28), N = 23857, `OPENBLAS_CORETYPE=Haswell` | (not printed; the old venv has no threadpoolctl) | **passes**, `lu_factor` 187 s, error 8.56e-11, exit 0 | `lu_old_haswell_23857.*` |
+
+Reading: with two threads the AVX-512 (SkylakeX) kernels corrupt memory on matrices of this size in both OpenBLAS 0.3.34 (numpy) and 0.3.31.dev (scipy), and in the old 0.3.28/0.3.29 pair, where it shows at once in `lu_solve`; in numpy's `solve` it shows only when the process exits, which is the signature of a write past an allocation (the answer is right, the heap is not). The Haswell (AVX2) kernels do not crash at either size or in either stack. So `OPENBLAS_CORETYPE=Haswell` is a workaround that keeps 2 BLAS threads above 4 GiB on this machine; I did not time it properly against one thread: the 1-thread LU of N = 23857 took 209 s and 217 s and the 2-thread Haswell ones 187 s and 170 s, but all of these ran beside other jobs, so the times are indicative only. Not tested: other CPUs, `OPENBLAS_CORETYPE=SkylakeX` with 1 thread (it passed by default at 1 thread), a debug build of OpenBLAS, and the old stack at N = 21500. The second throwaway venv (`venv-blastest`) was sent to the Recycle Bin after the last test.
