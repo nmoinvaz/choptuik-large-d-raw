@@ -1,0 +1,23 @@
+run 2026-11-13 18:01 UTC, mutate zero
+R3z wf 0.99: the real chi_22 in zk/chord 411.221492 (#702 zfit 411.221492), in nozero/chord 268.702213 (#702 268.702213): rel dev 0.0e+00 (pass <= 1e-6); M_min, M_lo 23 and C1 in both -> OK (14s)
+context wf 0.99: the real chi_22 at ZLOC per basis: kstar/chord 411.2, kstar/arc 529.0, kstar/smooth 529.1, ratio/chord 236.8, ratio/arc 463.6, ratio/smooth 440.0, pole8/chord 276.0, pole8/arc 452.4, pole8/smooth 444.2, pole9/chord 233.6, pole9/arc 439.1, pole9/smooth 420.5, pole10/chord 196.1, pole10/arc 440.0, pole10/smooth 403.3, nozero/chord 268.7; M_min  (others 23)
+R1/J+ wf 0.99: real m_DA 2 (R1 pass <= 5); d_P 0.0e+00; ratio 1; judge (a) True (b) True (c') True -> J+ OK
+R4z wf 0.99 chord2: eta 0 plant at x_ref against the reference at ZLOC, sigma_0..31 max |diff| 3.6e-05 (M 6, fit 3.6e-05) -> BAD; context: its [11/11] Pade zero off ZLOC by 6.7e-03
+R4z wf 0.99 arc: eta 0 plant at x_ref against the reference at ZLOC, sigma_0..31 max |diff| 4.1e-05 (M 6, fit 2.1e-05) -> BAD; context: its [11/11] Pade zero off ZLOC by 6.7e-03
+R3z wf 1.0: the real chi_22 in zk/chord 401.797658 (#702 zfit 401.797658), in nozero/chord 256.106622 (#702 256.106622): rel dev 0.0e+00 (pass <= 1e-6); M_min, M_lo 23 and C1 in both -> OK (16s)
+context wf 1.0: the real chi_22 at ZLOC per basis: kstar/chord 401.8, kstar/arc 512.7, kstar/smooth 513.3, ratio/chord 234.5, ratio/arc 435.3, ratio/smooth 420.9, pole8/chord 277.2, pole8/arc 436.7, pole8/smooth 433.1, pole9/chord 229.3, pole9/arc 413.9, pole9/smooth 403.3, pole10/chord 191.2, pole10/arc 405.6, pole10/smooth 383.0, nozero/chord 256.1; M_min  (others 23)
+R1/J+ wf 1.0: real m_DA 1 (R1 pass <= 5); d_P 0.0e+00; ratio 1; judge (a) True (b) True (c') True -> J+ OK
+J- wf 1.0 chord2 eta 0: m_DA 11; d_P 0.220; M_min in kstar/chord 23 (chi at 22 terms 9.2e+04); ratio in zk/chord 2.3e+02; judge (a) False (b) False (c') False -> J- BAD
+R4z wf 1.0 chord2: eta 0 plant at x_ref against the reference at ZLOC, sigma_0..31 max |diff| 3.2e-05 (M 6, fit 3.6e-05) -> BAD; context: its [11/11] Pade zero off ZLOC by 5.9e-03
+J- wf 1.0 arc eta 0: m_DA 11; d_P 0.225; M_min in kstar/smooth 23 (chi at 22 terms 1.2e+05); ratio in zk/chord 2.3e+02; judge (a) False (b) False (c') False -> J- BAD
+R4z wf 1.0 arc: eta 0 plant at x_ref against the reference at ZLOC, sigma_0..31 max |diff| 3.7e-05 (M 6, fit 1.3e-05) -> BAD; context: its [11/11] Pade zero off ZLOC by 5.9e-03
+R3z wf 1.01: the real chi_22 in zk/chord 427.491510 (#702 zfit 427.491510), in nozero/chord 259.975239 (#702 259.975239): rel dev 1.1e-16 (pass <= 1e-6); M_min, M_lo 23 and C1 in both -> OK (15s)
+context wf 1.01: the real chi_22 at ZLOC per basis: kstar/chord 427.5, kstar/arc 537.3, kstar/smooth 538.6, ratio/chord 253.7, ratio/arc 440.0, ratio/smooth 432.5, pole8/chord 306.3, pole8/arc 458.8, pole8/smooth 458.4, pole9/chord 248.3, pole9/arc 422.8, pole9/smooth 418.4, pole10/chord 205.6, pole10/arc 403.5, pole10/smooth 392.5, nozero/chord 260.0; M_min  (others 23)
+R1/J+ wf 1.01: real m_DA 1 (R1 pass <= 5); d_P 0.0e+00; ratio 1; judge (a) True (b) True (c') True -> J+ OK
+R4z wf 1.01 chord2: eta 0 plant at x_ref against the reference at ZLOC, sigma_0..31 max |diff| 2.8e-05 (M 6, fit 3.7e-05) -> BAD; context: its [11/11] Pade zero off ZLOC by 5.1e-03
+R4z wf 1.01 arc: eta 0 plant at x_ref against the reference at ZLOC, sigma_0..31 max |diff| 3.1e-05 (M 6, fit 1.4e-05) -> BAD; context: its [11/11] Pade zero off ZLOC by 5.1e-03
+K0 wf 0.99: ratio law 12-21 1.459755+1.111335j (beta 5.6563-2.6909j), off #541 by 5.7e-05 (pass <= 1e-4); poles past kappa_* k 8 1.355475+1.050698j |t| 1.7150 (1 candidate), off #541 by 0.0e+00; k 9 1.405094+1.062886j |t| 1.7618 (1 candidate), off #541 by 0.0e+00; k 10 1.458552+1.071935j |t| 1.8101 (1 candidate), off #541 by 0.0e+00 -> OK
+K0 wf 1.0: ratio law 12-21 1.457407+1.111932j (beta 5.6631-2.6508j), off #541 by 3.3e-05 (pass <= 1e-4); poles past kappa_* k 8 1.354938+1.050760j |t| 1.7146 (1 candidate), off #541 by 0.0e+00; k 9 1.406617+1.061286j |t| 1.7621 (1 candidate), off #541 by 0.0e+00; k 10 1.456603+1.068512j |t| 1.8065 (1 candidate), off #541 by 0.0e+00 -> OK
+K0 wf 1.01: ratio law 12-21 1.455118+1.112573j (beta 5.6707-2.6105j), off #541 by 3.2e-05 (pass <= 1e-4); poles past kappa_* k 8 1.354899+1.050906j |t| 1.7147 (1 candidate), off #541 by 0.0e+00; k 9 1.407585+1.059929j |t| 1.7620 (1 candidate), off #541 by 0.0e+00; k 10 1.456260+1.067614j |t| 1.8057 (1 candidate), off #541 by 0.0e+00 -> OK
+mutation zero: fired as frozen: True (must)
+controls {'R1': True, 'R2': True, 'R3z': True, 'R4z': False, 'R5': True, 'J+': True, 'J-': False} -> gate False, relocation context False

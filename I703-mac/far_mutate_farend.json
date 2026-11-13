@@ -1,0 +1,163 @@
+{
+ "frozen": {
+  "zero": "ZLOC = #702's zfit zero per node (I702-mac/real.json, ff0920c), not the [11/11] Pade zero (2e-5 away, where the real chi_22 is 636-720); every plant's pref and every basis' zero factor = planted_plants.factor([ZLOC]) at 60 digits",
+  "plants": "#667's plants (pade_second_set.make_plant) with pref at ZLOC and the main c_m refitted (M = 6, or 8 if the largest relative residual to sigma_0..sigma_12 exceeds 1e-2); nothing else changed",
+  "grid": "part near: kind chord2, arc; curve seg(a, b) (9) and sum; alpha 0 or beta - 1; eta 1e-2, 2e-2, 5e-2, 1e-1; phi 0, 90, 180, 270 (640 plants). Part rest: #667's 1584 plants (eta 1e-9..1e-1 in decades, curves seg, low, sum) not in part near (1264). All at wf 1.00",
+  "nodes": "wf 0.99 and 1.01 for every plant that passes (a), (b) and (c') or (c'') at wf 1.00, for the plants that pass (a) and (c') there (at most 60, smallest D first) and (a) and (c'') (at most 60, smallest D''), and for the 20 with the smallest D",
+  "bases": "judged: zk/chord, the kappa_* chord twin (P0, kappa_*, beta - 1) with the zero at ZLOC; context: #667's other 14 bases with the zero at ZLOC, and nozero/chord; projections at 150 digits, C1 at 250",
+  "a_b": "#667's (a) m_DA <= 5 and (b) d_P <= 0.03, unchanged",
+  "c_prime": "in zk/chord: M_min = 23 and 0.1 <= chi_22 / chi_22(real) <= 10, chi_22(real) the real series' in the same basis; d_T = |log10(chi_22 / chi_22(real))|",
+  "c_reloc": "(c''): (c') in the kappa_* chord basis with the zero at the plant's own zero located by gn_locate (l2 at 20 terms, from ZLOC), against the same chi_22(real); evaluated when R5 passes; a plant whose l2 at 20 terms in zk/chord is below 0.1 chi_22(real) fails (c'') unrelocated, since from ZLOC chi_22 <= l2_22 <= l2_20 at the located zero <= l2_20 at ZLOC",
+  "reproduces": "(a), (b) and (c') at all three nodes; and apart, (a), (b) and (c'') at all three nodes",
+  "question": "the coordinator's: does a plant's zk/chord chi_22 come within a factor 10 of the real's ((c')), and does it also meet (a) and (b); counts of (c'), (a)+(c'), (b)+(c') and all three at wf 1.00, and at all three nodes for the plants run there; the same with (c'')",
+  "closest": "D = max(m_DA / 5, d_P / 0.03, d_T) per node, D_all its max over the nodes; smallest D_all among the plants run at every node. D'' is D with d_T from (c'')'s ratio (from the bound when not relocated)",
+  "R_controls": "R1 the real m_DA <= 5 at every node; R2 #667's R2 (pade_twin_end.check_ends); R3z the real chi_22 by projection in zk/chord and nozero/chord within 1e-6 relative of REF702, M_min = M_lo = 23 and C1 in both; R4z the eta = 0 plants: chord2 equals pade_twin_near.NearPlant with its zero at ZLOC, sigma_0..sigma_31 exactly, and arc equals its own FarPlant refitted at ZLOC exactly, at every node; R5 gn_locate on the real series, from x_ref, returns #702's zfit zero within 1e-8 at every node",
+  "J_controls": "J+ the real series judged as a plant passes (a), (b), (c') at every node; J- the eta = 0 chord2 and arc plants at wf 1.00 fail the judge, each with M_min = 6 in its own class's kappa_* basis at ZLOC (chord2: zk/chord, arc: kstar/smooth)",
+  "gate": "the far and grid stages run only if R1-R4z, J+ and J- pass; (c'') is evaluated only if R5 passes too",
+  "mutations": "control --mutate=zero (the plants keep their zero at x_ref, the bases at ZLOC): J- and R4z must fail. --mutate=bzero (every basis' zero ZLOC + 1e-6, the plants' unchanged): R3z and J- must fail. --mutate=judge (REF541 + 0.05, the reference chi_22 x 100, the DA2 radius 0.5): each of J+'s parts must fail. far --mutate=farend (K1's own-end basis at 1.86): K1z(a) must fail. --selftest --mutate=gn (the locator returns its start): the planted locator check must fail. Each run exits 1",
+  "relocation": "gn_locate from ZLOC on every plant, at every node it runs, unless l2_20(ZLOC) < 0.1 chi_22(real); its zero, the distance from ZLOC, chi at 20..22 terms, M_min and l2 at 20 terms at the located zero",
+  "far_684": "K1z: #547's chord2 plant at R = 1.85 with pref at ZLOC: (a) chi <= 1e-30 in its own-end chord basis at ZLOC at its own M; (b) M_min >= 19 in zk/chord, with chi_22 / chi_22(real). Sensitivity: the ratio, pole8..10 far-end chord2 plants at ZLOC in zk/chord. Real (context): chi_22 in the ratio, pole8..10 and ex +- 0.3 chord bases at ZLOC",
+  "statements": "S1 (#684) 'the far end alone does not account for the real misfit' survives if K1z's and every sensitivity plant's chi_22 / chi_22(real) < 0.1 at every node. S2 (#684) 'moving the far end to the ratio-law kappa or the k = 10 pole lowers the real chi_22 2.3-2.7 times' survives if both are at most chi_22(zk/chord) / 2.3 at every node, at ZLOC. S2b 'the far end matters far more than the exponent' survives if |log chi(ratio)/chi(kstar)| exceeds |log chi(ex +- 0.3)/chi(kstar)| at every node. S3 (#684) 'the real misfit stays above 3e4 error units' survives if the real chi_22 >= 3e4 in all five far-end chord bases at ZLOC. S4 (#667) 'a set near P0 + kappa_* misfits at least 290 times less than the real series in every basis, even at 10% of sigma_22' survives if every plant of part near and of #667's near curves has chi_22 / chi_22(real) <= 1/290 in zk/chord at wf 1.00, and apart with (c'')'s chi_22. S5 (#667) 'only the low set reaches the real misfit' survives if some plant passes (c') at wf 1.00 and every one that does has the low curve, and apart for (c''). Each failure is a discrepancy, reported",
+  "C1": "#672's amended C1 on every plant scan; a failure is listed and the stage exits 1",
+  "context": "per plant: the other 15 scans' chi_22 / chi_22(real) and #667's (c) on the 15 bases at ZLOC; chi at 20 and 21 terms and l2 at 20 terms in zk/chord, and l2_20 / l2_20(real); the second set's share; the DA2 median; the [11/11] Pade zero of the eta = 0 plants against ZLOC"
+ },
+ "mutate": "farend",
+ "nodes": {
+  "0.99": {
+   "real": {
+    "kstar": {
+     "M_min": 23,
+     "chi22": 411.2214920221311,
+     "C1_pass": true
+    },
+    "ratio": {
+     "M_min": 23,
+     "chi22": 236.84349554999483,
+     "C1_pass": true
+    },
+    "pole8": {
+     "M_min": 23,
+     "chi22": 275.9503483364414,
+     "C1_pass": true
+    },
+    "pole9": {
+     "M_min": 23,
+     "chi22": 233.63782992457115,
+     "C1_pass": true
+    },
+    "pole10": {
+     "M_min": 23,
+     "chi22": 196.1191933091587,
+     "C1_pass": true
+    },
+    "ex-0.3": {
+     "M_min": 23,
+     "chi22": 411.538634124499,
+     "C1_pass": true
+    },
+    "ex+0.3": {
+     "M_min": 23,
+     "chi22": 411.19212135841093,
+     "C1_pass": true
+    }
+   },
+   "K1z": {
+    "M_plant": 6,
+    "fit_resid": 0.00014023426256355438,
+    "chi_own": 2.1966553955880496e+16,
+    "a_pass": false
+   }
+  },
+  "1.0": {
+   "real": {
+    "kstar": {
+     "M_min": 23,
+     "chi22": 401.7976584156973,
+     "C1_pass": true
+    },
+    "ratio": {
+     "M_min": 23,
+     "chi22": 234.53198068376295,
+     "C1_pass": true
+    },
+    "pole8": {
+     "M_min": 23,
+     "chi22": 277.2180690437378,
+     "C1_pass": true
+    },
+    "pole9": {
+     "M_min": 23,
+     "chi22": 229.2970195255775,
+     "C1_pass": true
+    },
+    "pole10": {
+     "M_min": 23,
+     "chi22": 191.2299584694268,
+     "C1_pass": true
+    },
+    "ex-0.3": {
+     "M_min": 23,
+     "chi22": 401.91053710331596,
+     "C1_pass": true
+    },
+    "ex+0.3": {
+     "M_min": 23,
+     "chi22": 401.9663153740028,
+     "C1_pass": true
+    }
+   },
+   "K1z": {
+    "M_plant": 6,
+    "fit_resid": 0.00014380900110277673,
+    "chi_own": 2.578252204554874e+16,
+    "a_pass": false
+   }
+  },
+  "1.01": {
+   "real": {
+    "kstar": {
+     "M_min": 23,
+     "chi22": 427.4915095089003,
+     "C1_pass": true
+    },
+    "ratio": {
+     "M_min": 23,
+     "chi22": 253.72353453314648,
+     "C1_pass": true
+    },
+    "pole8": {
+     "M_min": 23,
+     "chi22": 306.34116692910663,
+     "C1_pass": true
+    },
+    "pole9": {
+     "M_min": 23,
+     "chi22": 248.2873117203609,
+     "C1_pass": true
+    },
+    "pole10": {
+     "M_min": 23,
+     "chi22": 205.64803963585928,
+     "C1_pass": true
+    },
+    "ex-0.3": {
+     "M_min": 23,
+     "chi22": 427.21302150705446,
+     "C1_pass": true
+    },
+    "ex+0.3": {
+     "M_min": 23,
+     "chi22": 428.0637774748706,
+     "C1_pass": true
+    }
+   },
+   "K1z": {
+    "M_plant": 6,
+    "fit_resid": 0.00014650993975486823,
+    "chi_own": 4.74043257509333e+16,
+    "a_pass": false
+   }
+  }
+ },
+ "mutation_fired": true
+}
