@@ -1,0 +1,26 @@
+I461-win2/probeG0078/dz0_pin3_D242.5225_a0.007812.npz: D 242.522462463 (a 0.0078125), from I461-win2/probeG03125a/anm_pin3_D242.5146.npz; L 769; held offset on its rows 0.000816, elsewhere 2.1e-99 (bound 1e-6 of the first): pass; the recovered system's start max|F| 1.4652e-35; octo-double LU pivots 2.7e-25..3.5e+34 (449 s)
+  basis: sigma of B 2.1703e-27, 2.2041e-27, 3.3268e-26, 7.1880e-26 (iteration 2.1882e-27, 2.1857e-27, 3.3268e-26, 7.1880e-26); |dz0| 1.265e-29, a = V^T dz0 -8.165e-30, -8.547e-30, -4.486e-30, 2.894e-31, |a| 1.265e-29, the rest 1.13e-32; |B a| 1.529e-55, |U^T F(z0) + B a| / |B a| 1.03e-45; -J^-1 F(z0) against dz0 5.01e-45; w0 = -J^-1 (I - U U^T) F(z0): |w0| 1.131e-32, |V^T w0| 8.31e-128 (18 s)
+  Q = U^T F'': max|Q| 6.304e-6 at h 1e-33, against h 1e-32 99.0 (62 s)
+  w_jl = J^-1 (I - U U^T) F''(v_j, v_l): max|F''| 1.95e+33, |w_jl| 0.058..0.144 at h 1e-34, |V^T w_jl| / |w_jl| up to 6.61e-70; h 1e-32 against 1e-33 0.014, 1e-33 against 1e-34 0.00014 (bound 1e-2): pass (92 s)
+  T = U^T F''': max|T| 1.618e+33 at h 1e-24, against h 1e-23 3.09e-18 (176 residuals per h, 313 s)
+  S = U^T F''(v_i, w_jl), symmetrized: max|S| 5.395e+32 at h 1e-33, against h 1e-32 1.68e-17 (bound 1e-2): pass; its unsymmetric part 0.0536 of it; 3 max|S| / max|T| 1.0 (286 s)
+  T - 3S: max|T - 3S| / max|T| 1.611e-19; T - 3S at the larger steps against the smaller, relative to max|T|, 1.6e-17
+  L = U^T F''(v_j, w0): max|L| 6.807e-38, sigma 1.050e-39, 7.132e-39, 6.340e-38, 1.153e-37, h against h/10 99.0; sigma of B + L 2.170e-27, 2.204e-27, 3.327e-26, 7.188e-26; |q00| = |U^T F''(w0, w0)| 4.8e-68 (32 s)
+  g(0): |g(0) + B a| / |B a| 4.39e-25, |w(0) - w0| 9.18e-57, (max|strong residual|, |dw|) per chord step (1.8e-31, 9.2e-57), (3.7e-56, 1.3e-63), (5.0e-63, 1.9e-88) (3 s)
+  the map's own coefficients at h 1e-33: |B_LS - (B + L)| / max|B + L| 9.47e-13; max|Q_LS| 2.582e-24, |Q_LS - Q| / max|Q| 1.0 (33 solves, 86 s)
+  model T: 4 real roots from 26 starts; nearest a: |c| 5.73e-30 (1.0e-30, -2.97e-30, -4.8e-30, 2.91e-32): |g| / |B a| 0.208, affine 0.00682, max|F| 4.70e-52; |c| 1.39e-29 (-9.75e-31, 2.46e-30, -8.15e-30, -1.1e-29): |g| / |B a| 5.36, affine 0.456, max|F| 2.85e-50; |c| 1.93e-29 (1.53e-30, -2.91e-30, -4.1e-31, 1.9e-29): |g| / |B a| 8.84, affine 0.9, max|F| 3.66e-50; |c| 5.53e-28 (3.43e-29, 1.61e-29, 4.78e-28, -2.74e-28): |g| / |B a| 166.0, affine 345.0, max|F| 3.58e-47
+  model T,Q: 4 real roots from 26 starts; nearest a: |c| 5.73e-30 (1.0e-30, -2.97e-30, -4.8e-30, 2.91e-32): |g| / |B a| 0.208, max|F| 4.70e-52; |c| 1.39e-29 (-9.75e-31, 2.46e-30, -8.15e-30, -1.1e-29): |g| / |B a| 5.36, max|F| 2.85e-50; |c| 1.93e-29 (1.53e-30, -2.91e-30, -4.1e-31, 1.9e-29): |g| / |B a| 8.84, max|F| 3.66e-50; |c| 5.53e-28 (3.43e-29, 1.61e-29, 4.78e-28, -2.74e-28): |g| / |B a| 166.0, max|F| 3.58e-47
+  model T-3S: 1 real roots from 26 starts; nearest a: |c| 1.26e-29 (-8.17e-30, -8.55e-30, -4.49e-30, 2.89e-31): |g| / |B a| 1.19e-9, max|F| 1.12e-50
+  model T-3S,L: 1 real roots from 26 starts; nearest a: |c| 1.26e-29 (-8.17e-30, -8.55e-30, -4.49e-30, 2.89e-31): |g| / |B a| 1.19e-9, max|F| 1.12e-50
+  model T-3S,LS: 1 real roots from 26 starts; nearest a: |c| 1.26e-29 (-8.17e-30, -8.55e-30, -4.49e-30, 2.89e-31): |g| / |B a| 3.55e-19, max|F| 1.12e-50
+  at c = a: |g| / |B a| 4.53e-25, max|F| 1.12e-50; models' roots 36 s
+  c* = the root of model T (|c*| 5.734e-30): |g(c*)| / |B a| 0.208 on the strong-solved manifold, affine 0.00682; |S(c*,c*,c*)| 6.38e-56, |T(c*,c*,c*)| 1.91e-55; dw = w(c*) - w(0): |dw| 1.98e-60, against its quadratic model 0.0139
+  #499's split at c*, |U^T F(z0 + V c* + w)| / |B a| for w = rest 0.006203, w0 0.006203, w(0) 0.006203, w(c*) 0.2084; |w(0) - w0| 9.18e-57, |rest - w0| 3.67e-98
+  S control: dw -> 2 dw changes g by 3.076e-56, predicted -1/2 S(c*,c*,c*) 3.188e-56, difference 0.0355 of it (bound 1e-2): FAIL
+  w control (diagnostic): w(c*) -> 2 w(c*) changes g by 3.078e-56, predicted L c* - 1/2 S + 3/2 q00 3.188e-56 (L c* 2.11e-67, 3/2 q00 7.2e-68), difference 0.0347 of it
+  S control along c* (diagnostic), f: (2dw change against -1/2 S(f c*), against u.F''(V f c*, dw); u.F''(V f c*, dw) against -1/2 S; u.F''(V f c*, dw_quad) against -1/2 S; dw against dw_quad): 1: (0.0355, 0.0337; 0.0021; 2.03e-19; 0.014); 0.5: (0.0222, 0.0183; 0.00421; 2.03e-19; 0.0279); 0.25: (0.0203, 0.0122; 0.00841; 2.03e-19; 0.0559) (33 s)
+  strong solves: 49, of which 0 stalled; their last correction changes g by at most 0.0e+00 of |B a|
+  verdict, model T-3S: root |c**| 1.265e-29 with |g(c**)| / |B a| 1.19e-9 (below 1e-2), max|F| there 1.12e-50
+  verdict, model T-3S,L: root |c**| 1.265e-29 with |g(c**)| / |B a| 1.19e-9 (below 1e-2), max|F| there 1.12e-50
+  verdict, model T-3S,LS: root |c**| 1.265e-29 with |g(c**)| / |B a| 3.55e-19 (below 1e-2), max|F| there 1.12e-50
+check: FAIL

@@ -15,7 +15,7 @@ base `I461-win2/probeG03125a/anm_pin3_D242.5146.npz`, the accepted attempt
 | `planted.log`, `.json` | the plant (seed 5), code 2946e078 | 0, every check passes |
 | `planted_mut_w0.log`, `_Ssign`, `_Sh`, `_hF` | the four mutations, code 2946e078 | 1 each, as they must |
 | `ref.log`, `.json` | REF, the refused attempt, code 2946e078 (the results) | 1: the S control fails (2.72e-2 against 1e-2); every other check passes |
-| `acc.log`, `.json` | ACC, the accepted attempt, code 2946e078 (the results) | pending |
+| `acc.log`, `.json` | ACC, the accepted attempt, code 2946e078 (the results) | 1: the S control fails (3.55e-2 against 1e-2); every other check passes |
 | `ref_hF1e-24_stopped.log`, `.json` | REF run 1 (86b33a52), stopped by hand at the w_jl stage: w_jl at h 1e-24 was all truncation (0.99) | 143 |
 | `ref_hF1e-32_stopped.log`, `.json` | REF run 2 (bb5866c0), stopped by hand: the w_jl check fired, 1e-32 against 1e-33 at 1.41e-2 | 143 |
 | `ref_run3_d0225a8b.log`, `.json` | REF run 3 (d0225a8b), complete; the S control failed (2.72e-2) | 1 |
