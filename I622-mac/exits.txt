@@ -1,0 +1,16 @@
+rt 0
+rt --mutate=n 1
+identity 0
+identity --mutate=n 1
+f64 --live 0
+f64 --mutate=n 1
+mu_check 0
+planted 0
+planted --mutate=limit 1
+fit 0
+planted --sigma=5e-14 (post hoc) 0
+planted --sigma=5e-14 --step=74:3e-13 (post hoc) 0
+planted --sigma=5e-14 --step=74:-3e-13 (post hoc) 0
+planted --csv=lam_gauge_before603.csv --sigma=2.5e-13 --junk=241.887:4.8e-11,240.514:-2.5e-11 (post hoc, the table before the #603 backbone) 1
+fit --csv=lam_gauge_before603.csv 0
+fit --dlos=74,90,110 (diagnostic) 0

@@ -1,0 +1,23 @@
+criterion: |lam_g - lam_RT| / lam_g <= 10 max(|Delta_RT - Delta_hp| / Delta_hp, 1.0e-28)
+D 15.0: ours hp/data/states/up_D15.0000.npz (M 48, parts 2), RT 32x121 I105-mac/controls/res_32x121_D15.0000_D15.0000_32x121.npz
+  lam_g  0.734310754493249794547011511224
+  lam_RT 0.734310754493249794547029786964  (4 pi mu/Delta, RT state)
+  4 pi mu_RT / Delta_hp 0.734310754493249794546955327162
+  mu_RT 0.131658888799865530935083910341  mu_hp = lam_g Delta_hp/(4 pi) 0.131658888799865530935093983912
+  |Delta_RT - Delta_hp|/Delta 1.01e-22  |lam_g - lam_RT|/lam_g 2.49e-23  bound 1.01e-21  ok
+  RT spread: 48x101 lam_RT 0.734310754493249803425418134238, differs by 1.21e-17 (relative), Delta by 5.03e-17
+D 20.043653: ours hp/data/states/up2_D20.0437.npz (M 32, parts 2), RT 32x121 I105-mac/controls/res_32x121_D20.0437_D20.0437_32x121.npz
+  lam_g  0.774104624226504627657313765003
+  lam_RT 0.774104624226504627656017263268  (4 pi mu/Delta, RT state)
+  4 pi mu_RT / Delta_hp 0.774104624226504627662159131737
+  mu_RT 0.130048962668375318239908253370  mu_hp = lam_g Delta_hp/(4 pi) 0.130048962668375318239094235603
+  |Delta_RT - Delta_hp|/Delta 7.93e-21  |lam_g - lam_RT|/lam_g 1.67e-21  bound 7.93e-20  ok
+  RT spread: 48x101 lam_RT 0.774104624226504652667289931517, differs by 3.23e-17 (relative), Delta by 7.94e-17
+D 40.020065: ours hp/data/states/up7_D40.0201.npz (M 32, parts 2), RT 32x121 I106-mac/controls/C_32x121_D40.0201_D40.0201_32x121.npz
+  lam_g  0.859114044119646979679523032139
+  lam_RT 0.859114044119646652597123715984  (4 pi mu/Delta, RT state)
+  4 pi mu_RT / Delta_hp 0.859114044119647355444888287893
+  mu_RT 0.129106119530738143451338696264  mu_hp = lam_g Delta_hp/(4 pi) 0.129106119530738086981992752870
+  |Delta_RT - Delta_hp|/Delta 8.18e-16  |lam_g - lam_RT|/lam_g 3.81e-16  bound 8.18e-15  ok
+  RT spread: 32x141 lam_RT 0.859114044119645860194541856162, differs by 9.22e-16 (relative), Delta by 7.93e-15
+identity: PASS
