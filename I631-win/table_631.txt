@@ -1,0 +1,35 @@
+| eta | k_c | N | Delta | F | constraint |
+|---|---|---|---|---|---|
+| 5 | 15 | 48 | 0.4599560915 | 1.99e-14 | 9.6252e-02 |
+| 5 | 23 | 72 | 0.4598211881 | 1.67e-15 | 1.2754e-02 |
+| 5 | 39 | 120 | 0.4598178425 | 2.44e-12 | 1.5065e-04 |
+| 7 | 15 | 48 | 0.4599538031 | 2.02e-14 | 1.0241e-01 |
+| 7 | 23 | 72 | 0.4598129813 | 1.46e-15 | 1.3507e-02 |
+| 7 | 39 | 120 | 0.4598093636 | 2.88e-12 | 1.6442e-04 |
+| 10 | 15 | 48 | 0.4599633445 | 6.27e-11 | 1.0702e-01 |
+| 10 | 23 | 72 | 0.4598180153 | 1.55e-15 | 1.4062e-02 |
+| 10 | 39 | 120 | 0.4598141853 | 3.32e-12 | 1.7514e-04 |
+| 14 | 15 | 48 | 0.4599749118 | 2.63e-15 | 1.1007e-01 |
+| 14 | 23 | 72 | 0.4598265501 | 1.62e-15 | 1.4425e-02 |
+| 14 | 39 | 120 | 0.4598225746 | 2.85e-12 | 1.8243e-04 |
+| 20 | 15 | 48 | 0.4599862635 | 6.97e-15 | 1.1235e-01 |
+| 20 | 23 | 72 | 0.4598356152 | 1.54e-15 | 1.4694e-02 |
+| 20 | 39 | 120 | 0.4598315284 | 3.33e-12 | 1.8798e-04 |
+| inf | 15 | 48 | 0.4600214704 | 5.88e-12 | 1.1761e-01 |
+| inf | 23 | 72 | 0.4598654552 | 1.61e-15 | 1.5305e-02 |
+| inf | 39 | 120 | 0.4598611019 | 3.67e-12 | 2.0111e-04 |
+
+continuations present: 2 of 2 (target landed: [True, True], F ['2.02e-14', '2.63e-15']); new refines present and converged (F < 1e-10): True
+
+| neighbouring pair s = Delta(next) - Delta(first) | s at k_c 23 | s at k_c 39 | change c | status |
+|---|---|---|---|---|
+| (5, 7) | -8.207e-06 | -8.479e-06 | 2.720e-07 | RESOLVED fall |
+| (7, 10) | +5.034e-06 | +4.822e-06 | 2.123e-07 | RESOLVED rise |
+| (10, 14) | +8.535e-06 | +8.389e-06 | 1.455e-07 | RESOLVED rise |
+| (14, 20) | +9.065e-06 | +8.954e-06 | 1.112e-07 | RESOLVED rise |
+| (20, inf) | +2.984e-05 | +2.957e-05 | 2.665e-07 | RESOLVED rise |
+
+eta of the smallest Delta: k_c 23 7, k_c 39 7
+BRACKET: the minimum lies between eta = 5 and eta = 10 (Delta falls into eta = 7 and rises out of it, both resolved)
+order of Delta at k_c 23 (low to high): Delta(7) < Delta(10) < Delta(5) < Delta(14) < Delta(20) < Delta(inf)
+order of Delta at k_c 39 (low to high): Delta(7) < Delta(10) < Delta(5) < Delta(14) < Delta(20) < Delta(inf)
