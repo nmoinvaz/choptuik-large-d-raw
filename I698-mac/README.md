@@ -19,5 +19,6 @@ and `I694-mac/rows_ref.json`, `rows_classA.json` (#694's F''(e, e) rows, for the
 | `curve_planted_bridge_mut_fold.log`, `.json` | its control, a symmetric coupling: the pair ratio rho turns positive | 1, as it must |
 | `curve_ref_bridge.log`, `.json` | REF, the chord bridge alone (`--newton=0`), code 46f250b3: converged from 1e-24 to 3.16e-18, failed at 5.62e-18 | 0 |
 | `curve_classA.log`, `.json` | the class A start (D 249.3927), with the bridge (and its linear-regime pair test) before the Newton points, code 203e56a0: the bridge converged from 1e-24 to 1e-18; (Z0) and (Z1) pass, (Z2a) fires, Newton stops at 1e-6 on both rays | 1 |
-| `curve_ref_bridge2.log`, `.json` | REF's bridge again with the linear-regime pair test and the parts as vectors, to 1e-21 (`--bridge_to=1e-21`, code 96b4d34a) | running |
+| `curve_ref_bridge2.log`, `.json` | REF's bridge again with the linear-regime pair test and the parts as vectors, to 1e-21 (`--bridge_to=1e-21`, code 96b4d34a, whose reduced_cubic.py is 2169dc00's): the linear pair ratio is +4.6054e32 t² | 0 |
+| `curvesum.txt` | `reduced_cubic.py curvesum` of the plant, REF's three runs and the class A run | 0 |
 | `run_i698.sh`, `exits.txt` | the runner, and every run's start and exit | |
