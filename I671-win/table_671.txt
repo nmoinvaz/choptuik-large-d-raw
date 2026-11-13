@@ -1,0 +1,49 @@
+| D | K | kind | bound (best of 3) | starts' spread | worst residual | products | mu | E | C0 | C4 | class |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| 40.020065 | K7 (K 7) | rough | 1.257e-34 | 7.9 | 1.6e-15 | 250 | 0.14 | 0.70 | 1.00 | 1.00 | mixed |
+| 40.020065 | K7 (K 7) | smooth | 4.196e-34 | 4.8 | 3.8e-17 | 250 | 0.14 | 0.70 | 1.00 | 1.00 | mixed |
+| 40.020065 | K0 (K 0) | rough | 1.669e-34 | 8.5 | 1.2e-18 | 67 | 1.00 | 0.96 | 0.96 | 0.96 | mixed |
+| 40.020065 | K0 (K 0) | smooth | 4.974e-19 | 8.7 | 2.7e-34 | 67 | 1.00 | 1.11 | 0.89 | 0.89 | mixed |
+| 50.007491 | K7 (K 7) | rough | 4.882e-34 | 7.1 | 4.9e-15 | 250 | 0.14 | 0.30 | 1.00 | 1.00 | centre in w4 |
+| 50.007491 | K7 (K 7) | smooth | 2.698e-33 | 2.1 | 7.2e-17 | 175 | 0.16 | 0.30 | 1.00 | 1.00 | centre in w4 |
+| 50.007491 | K0 (K 0) | rough | 1.184e-34 | 2.2 | 9.6e-20 | 76 | 0.34 | 0.40 | 1.00 | 1.00 | mixed |
+| 50.007491 | K0 (K 0) | smooth | 2.380e-19 | 7.9 | 4.5e-31 | 76 | 0.33 | 0.40 | 1.00 | 1.00 | mixed |
+| 54.996085 | K7 (K 7) | rough | 1.754e-34 | 2.3 | 9.0e-15 | 250 | 0.01 | 0.10 | 1.00 | 1.00 | centre in w4 |
+| 54.996085 | K7 (K 7) | smooth | 8.831e-34 | 2.2 | 5.2e-17 | 162 | 0.03 | 0.09 | 1.00 | 1.00 | centre in w4 |
+| 54.996085 | K0 (K 0) | rough | 3.664e-35 | 3.4 | 3.8e-15 | 88 | 0.03 | 0.10 | 1.00 | 1.00 | centre in w4 |
+| 54.996085 | K0 (K 0) | smooth | 5.594e-20 | 17.9 | 1.0e-31 | 82 | 0.01 | 0.10 | 1.00 | 1.00 | centre in w4 |
+
+R(D) = rough K = 7 bound / rough K = 0 control bound:
+  D 40.020065: 1.257e-34 / 1.669e-34 = 0.75
+  D 50.007491: 4.882e-34 / 1.184e-34 = 4.12
+  D 54.996085: 1.754e-34 / 3.664e-35 = 4.79
+  R(40.020065) / R(50.007491) = 0.18 -> OUTSIDE a factor 3
+  R(54.996085) / R(50.007491) = 1.16 -> within a factor 3
+  VERDICT on the trend: the K = 7 bounds DO NOT FOLLOW the K = 0 trend within a factor 3
+
+D trend of the rough bounds (decades per 10 in D):
+  K7: D 40.020065 -> 50.007491: 1.257e-34 -> 4.882e-34, +0.59 decades per 10 in D, not horizon-like
+  K7: D 50.007491 -> 54.996085: 4.882e-34 -> 1.754e-34, -0.89 decades per 10 in D, not horizon-like
+  K0: D 40.020065 -> 50.007491: 1.669e-34 -> 1.184e-34, -0.15 decades per 10 in D, not horizon-like
+  K0: D 50.007491 -> 54.996085: 1.184e-34 -> 3.664e-35, -1.02 decades per 10 in D, in between
+  (#423's K = 0 `fol` roots: 5.227e-34, 1.404e-34, 2.559e-35 = -0.57 and -1.48 decades per 10 in D)
+
+Verdict per D by #423's rules with the measured trend of the same series:
+  K7 D 40.020065: x mixed; smooth/rough 3.34e+00 (seen); trend not horizon-like (+0.59) -> neither
+  K7 D 50.007491: x centre in w4; smooth/rough 5.53e+00 (seen); trend not horizon-like (+0.59) -> (C)
+  K7 D 54.996085: x centre in w4; smooth/rough 5.03e+00 (seen); trend not horizon-like (-0.89) -> (C)
+  K0 D 40.020065: x mixed; smooth/rough 2.98e+15 (not seen); trend not horizon-like (-0.15) -> neither
+  K0 D 50.007491: x mixed; smooth/rough 2.01e+15 (not seen); trend not horizon-like (-0.15) -> neither
+  K0 D 54.996085: x centre in w4; smooth/rough 1.53e+15 (not seen); trend in between (-1.02) -> neither
+
+POST-HOC sensitivity, not the criterion: R from the median of the three rough starts instead of the best (the best-of-3 has a start-to-start spread of up to a factor 8):
+  D 40.020065: K = 7 starts 1.26e-34, 7.80e-34, 9.92e-34 (median 7.80e-34); K = 0 starts 1.67e-34, 1.88e-34, 1.42e-33 (median 1.88e-34); R_median = 4.15
+  D 50.007491: K = 7 starts 4.88e-34, 1.35e-33, 3.47e-33 (median 1.35e-33); K = 0 starts 1.18e-34, 1.76e-34, 2.58e-34 (median 1.76e-34); R_median = 7.66
+  D 54.996085: K = 7 starts 1.75e-34, 3.36e-34, 4.10e-34 (median 3.36e-34); K = 0 starts 3.66e-35, 5.82e-35, 1.24e-34 (median 5.82e-35); R_median = 5.78
+  R_median(40.020065) / R_median(50.007491) = 0.54 -> within a factor 3
+  R_median(54.996085) / R_median(50.007491) = 0.75 -> within a factor 3
+
+The K = 0 controls against #423's `fol` roots (rough bound; within a factor 3 expected):
+  D 40.020065: 1.669e-34 against 5.227e-34: factor 0.32 -> OUTSIDE 3
+  D 50.007491: 1.184e-34 against 1.404e-34: factor 0.84 -> within 3
+  D 54.996085: 3.664e-35 against 2.559e-35: factor 1.43 -> within 3
