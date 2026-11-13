@@ -23,8 +23,9 @@ for step in "$@"; do
     planted80_held) run $F/controls/planted_chain80_held.log planted $RAW $F/controls --threads=5 --only=chain80 --mutate=held --m32=0 ;;
     d100) run $F/chain/d100.log run $RAW $F/chain T138-win2/chain/anm_pin3_D100.0000.npz --threads=5 ;;
     d150) run $F/chain/d150.log run $RAW $F/chain T138-win2/chain/anm_pin3_D150.0000.npz --threads=5 ;;
-    d200) run $F/chain/d200.log run $RAW $F/chain T138-win2/chain_o/anm_pin3_D200.0000.npz --threads=5 ;;
-    d240) run $F/chain/d240.log run $RAW $F/chain I603-win2/chain/anm_pin3_D240.1244.npz --threads=5 ;;
+    # from D 200 the quad-double Newton sits at its floor and each step costs about 3 min under the Mac's load: 6 steps
+    d200) run $F/chain/d200.log run $RAW $F/chain T138-win2/chain_o/anm_pin3_D200.0000.npz --threads=5 --it=6 ;;
+    d240) run $F/chain/d240.log run $RAW $F/chain I603-win2/chain/anm_pin3_D240.1244.npz --threads=5 --it=6 ;;
     unconv) run $F/controls/unconverged_d100.log run $RAW $F/controls T138-win2/chain/anm_pin3_D100.0000.npz --threads=5 --m32=0 --save=0 --mutate=unconverged ;;
     *) echo "unknown step $step" >&2; exit 9 ;;
   esac
