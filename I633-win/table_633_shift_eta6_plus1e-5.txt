@@ -1,0 +1,59 @@
+MUTATION: Delta(6) at k_c 39 shifted by +1.0e-05
+
+| eta | k_c | N | Delta | F | constraint |
+|---|---|---|---|---|---|
+| 5 | 15 | 48 | 0.4599560915 | 1.99e-14 | 9.6252e-02 |
+| 5 | 23 | 72 | 0.4598211881 | 1.67e-15 | 1.2754e-02 |
+| 5 | 39 | 120 | 0.4598178425 | 2.44e-12 | 1.5065e-04 |
+| 6 | 15 | 48 | 0.4599526402 | 2.79e-15 | 9.9847e-02 |
+| 6 | 23 | 72 | 0.4598142980 | 1.39e-15 | 1.3195e-02 |
+| 6 | 39 | 120 | 0.4598207952 | 2.89e-12 | 1.5861e-04 |
+| 7 | 15 | 48 | 0.4599538031 | 2.02e-14 | 1.0241e-01 |
+| 7 | 23 | 72 | 0.4598129813 | 1.46e-15 | 1.3507e-02 |
+| 7 | 39 | 120 | 0.4598093636 | 2.88e-12 | 1.6442e-04 |
+| 8.5 | 15 | 48 | 0.4599582688 | 2.48e-15 | 1.0512e-01 |
+| 8.5 | 23 | 72 | 0.4598148020 | 1.59e-15 | 1.3835e-02 |
+| 8.5 | 39 | 120 | 0.4598110603 | 2.90e-12 | 1.7069e-04 |
+| 10 | 15 | 48 | 0.4599633445 | 6.27e-11 | 1.0702e-01 |
+| 10 | 23 | 72 | 0.4598180153 | 1.55e-15 | 1.4062e-02 |
+| 10 | 39 | 120 | 0.4598141853 | 3.32e-12 | 1.7514e-04 |
+| 14 | 15 | 48 | 0.4599749118 | 2.63e-15 | 1.1007e-01 |
+| 14 | 23 | 72 | 0.4598265501 | 1.62e-15 | 1.4425e-02 |
+| 14 | 39 | 120 | 0.4598225746 | 2.85e-12 | 1.8243e-04 |
+| 20 | 15 | 48 | 0.4599862635 | 6.97e-15 | 1.1235e-01 |
+| 20 | 23 | 72 | 0.4598356152 | 1.54e-15 | 1.4694e-02 |
+| 20 | 39 | 120 | 0.4598315284 | 3.33e-12 | 1.8798e-04 |
+| inf | 15 | 48 | 0.4600214704 | 5.88e-12 | 1.1761e-01 |
+| inf | 23 | 72 | 0.4598654552 | 1.61e-15 | 1.5305e-02 |
+| inf | 39 | 120 | 0.4598611019 | 3.67e-12 | 2.0111e-04 |
+
+continuations present: 2 of 2 (target landed: [True, True], F ['2.79e-15', '2.48e-15']); new refines present and converged (F < 1e-10): True
+
+| neighbouring pair s = Delta(next) - Delta(first) | s at k_c 23 | s at k_c 39 | change c | status |
+|---|---|---|---|---|
+| (5, 6) | -6.890e-06 | +2.953e-06 | 9.843e-06 | OPEN |
+| (6, 7) | -1.317e-06 | -1.143e-05 | 1.011e-05 | OPEN |
+| (7, 8.5) | +1.821e-06 | +1.697e-06 | 1.240e-07 | RESOLVED rise |
+| (8.5, 10) | +3.213e-06 | +3.125e-06 | 8.830e-08 | RESOLVED rise |
+| (10, 14) | +8.535e-06 | +8.389e-06 | 1.455e-07 | RESOLVED rise |
+| (14, 20) | +9.065e-06 | +8.954e-06 | 1.112e-07 | RESOLVED rise |
+| (20, inf) | +2.984e-05 | +2.957e-05 | 2.665e-07 | RESOLVED rise |
+
+eta of the smallest Delta: k_c 23 7, k_c 39 7
+NO BRACKET by the rule; open differences: ['(5,6)', '(6,7)']
+order of Delta at k_c 23 (low to high): Delta(7) < Delta(6) < Delta(8.5) < Delta(10) < Delta(5) < Delta(14) < Delta(20) < Delta(inf)
+order of Delta at k_c 39 (low to high): Delta(7) < Delta(8.5) < Delta(10) < Delta(5) < Delta(6) < Delta(14) < Delta(20) < Delta(inf)
+
+parabola through the three smallest of eta = 5, 6, 7, 8.5, 10 (primary variable eta):
+| variable | k_c | points used | adjacent | eta_min | Delta_min | vertex inside span |
+|---|---|---|---|---|---|---|
+| eta | 23 | 6,7,8.5 | True | 7.1504 | 0.4598129584 | True |
+| eta | 39 | 7,8.5,10 | True | 5.9681 | 0.4598090256 | False |
+| ln eta | 23 | 6,7,8.5 | True | 7.0417 | 0.4598129795 | True |
+| ln eta | 39 | 7,8.5,10 | True | 6.6487 | 0.4598092856 | False |
+| eps = 1/eta | 23 | 6,7,8.5 | True | 6.9380 | 0.4598129770 | True |
+| eps = 1/eta | 39 | 7,8.5,10 | True | 6.9740 | 0.4598093629 | False |
+
+primary (eta): eta_min 7.1504 (k_c 23), 5.9681 (k_c 39), change -1.1823; Delta_min 0.4598129584, 0.4598090256, change -3.933e-06
+spread of eta_min over the three variables at k_c 23: 6.9380 to 7.1504 (width 0.2124)
+spread of eta_min over the three variables at k_c 39: 5.9681 to 6.9740 (width 1.0059)
