@@ -1,0 +1,15 @@
+== polish_f64 2026-11-13 12:48:47 UTC: python -u anm_run.py /home/nathan/Source/choptuik-large-d-raw /home/nathan/Source/choptuik-large-d-raw/I673-dh370/base_f64 --state I673-dh370/start_f64.npz --steps 0 --save_base 1 --tol 1e-30 --qd_it 3 --kfreeze 3 --held_fit data/held_fit.json --N 24 --eps 1e-14 --h_max 1.0 --D_max 400 --threads 12 --corrector od --tol_od 1e-60 --a_grow 1.25 --a_hold 1 --lam_stall 0.04 --od_junk 0 --jet_o 1 --reseed 2 --reseed_q 1 --held_o 1 --reseed_o 3 --save_pred 1
+held values from the fit data/held_fit.json (degree 8, 138 full-system states, D 38.020417-73.0), relative to the base
+the base keeps its stored plan (80 steps)
+    on 0 trial lam 1: max|F| nan; raw |dz_t| nan vs |dz| 2.139e-02 (not <); refused, 194.44 s
+    on 0 trial lam 0.5: max|F| nan; raw |dz_t| nan vs |dz| 2.139e-02 (not <); refused, 203.73 s
+    on 0 trial lam 0.25: max|F| nan; raw |dz_t| nan vs |dz| 2.139e-02 (not <); refused, 193.59 s
+  on 0: |F| 2.06e-16 -> 3.25e-06, |dz| 2.14e-02 -> 5.92e-06, lam 0.125, dDelta +7.11e-03, piv 4.6e-07..5.7e+02, 787.64 s
+  on 1: |F| 3.25e-06 -> 8.51e-09, |dz| 5.92e-06 -> 8.50e-09, lam 1, dDelta +8.29e-07, piv 2.6e-11..5.7e+02, 196.2 s
+  on 2: |F| 8.51e-09 -> 3.28e-18, |dz| 8.50e-09 -> 3.09e-17, lam 1, dDelta +4.17e-10, piv 5.7e-19..5.7e+02, 186.45 s
+      elim projections {'u0': 0, 'u0q': 5, 'ladder': 0, 'failed': 0, 'skipped': 2}
+      octo-double Newton: 3 steps, max|F| 8.5e-09, not converged; double-double |F| of its first two parts 1.0e-17
+base polish saved as /home/nathan/Source/choptuik-large-d-raw/I673-dh370/base_f64/base_pin3_D252.2497.npz
+base I673-dh370/start_f64.npz: D 252.249669684, M 32, pin 3 (held [5, 7, 9, 11, 13]), |F| 1.0e-17; N 24, eps 1e-14, h_max 1.0, corrector od (junk_only False), tol 1.0e-30 x 1.45^(D - 252.24967), stalls accepted below 1e-17
+done
+exit 0 wall 1350 s
