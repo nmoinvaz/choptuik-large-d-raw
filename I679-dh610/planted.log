@@ -35,3 +35,10 @@ repo:hp/data/states/up12_D58.0060.npz: D 58.00599, M 32, K 5, 2 parts, kfreeze 1
   qn 1 [full]: |F| 3.40e-24 -> 2.23e-26, |dz| 1.1e-12 -> 1.5e-20, lam 1, dDelta -1.47e-19, piv 5.9e-14..2.6e+06, 199.66 s
   qn 2 [full]: |F| 2.23e-26 -> 4.06e-42, |dz| 1.5e-20 -> 1.7e-30, lam 1, dDelta -1.01e-27, piv 5.9e-14..2.6e+06, 198.55 s
   qn 3: |F| 4.06e-42 converged, Delta 1.81537990111591263 +6.4609e-17
+  qn 0 [full]: |F| 4.06e-42 -> 1.59e-55, |dz| 1.7e-30 -> 2.8e-44, lam 1, dDelta +2.34e-37, piv 5.9e-14..2.6e+06, 213.86 s
+  qn 1: |F| 1.59e-55 converged, Delta 1.81537990111591263 +6.4609e-17
+  M 48: polish to the floor, max|F| 4.06e-42 -> 1.59e-55 in 2 steps, kept
+  M 48: converged in 6 steps, max|F| 1.59e-55, est +4.5e-51, pivots 5.9e-14..2.6e+06, F with a fresh plan 1.2e-35, 3419.2 s
+  Delta(M 48) - Delta(M 32) -2.385e-24 (against the stored state -1.185e-18); lam_g -4.970e-26 (stored -1.557e-19); est at M 48 +4.5e-51; tau tails: M 32 |c_k>=28| 2.8e-13, M 48 |c_k>=32| 5.1e-15
+planted dd58: pass (Delta(M 48) - the record's +1.875e-18, tolerance 6.1e-18; record I271-macm3/gamma_dd.jsonl D 58.00599)
+planted: PASS
