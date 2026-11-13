@@ -1,4 +1,4 @@
-# I677-mac: the reduced map along rays in |c| at four corrector starts (hp/reduced_cubic.py ray)
+# I677-mac: the reduced map along rays in the weak coordinates at four corrector starts (hp/reduced_cubic.py ray)
 
 Machine: the M5 Mac (the coordinator's), 2 threads, nice 10, OPENBLAS_NUM_THREADS=1, one compute process at a time.
 Issue: https://github.com/nmoinvaz/choptuik-large-d/issues/677.
