@@ -1,0 +1,27 @@
+I461-win2/probeG03125b/dz0_pin3_D242.5459_a0.031250.npz: D 242.545899963 (a 0.03125), from I461-win2/probeG03125a/anm_pin3_D242.5146.npz; L 769; held offset on its rows 0.000816, elsewhere 6.86e-65 (bound 1e-6 of the first): pass; the recovered system's start max|F| 9.0408e-36; octo-double LU pivots 2.6e-25..3.5e+34 (365 s)
+  basis: sigma of B 2.1226e-27, 2.1557e-27, 3.1943e-26, 7.0800e-26 (iteration 2.1390e-27, 2.1387e-27, 3.1943e-26, 7.0800e-26); |dz0| 8.325e-30, a = V^T dz0 -5.149e-30, -5.814e-30, -2.989e-30, 2.297e-31, |a| 8.325e-30, the rest 7.03e-33; |B a| 9.828e-56, |U^T F(z0) + B a| / |B a| 2.01e-45; -J^-1 F(z0) against dz0 7.34e-45; w0 = -J^-1 (I - U U^T) F(z0): |w0| 7.032e-33, |V^T w0| 3.54e-128 (26 s)
+  curve: |e| along a / |a|, |B e| 1.1807e-26; g(0) by the chord through z0's LU, from w0 and from w0 (1 + 1e-5): converged, floor0 2.97e-101 (3.02e-46 of |B a|); prediction kappa t |B c| with kappa 4.5047 (14 s)
+  flat chart z0 + V c (w = 0), per t: |dep(+t e)|, |dep(-t e)|, even, odd part (of |B c|); odd / t^3; max of the strong residual's change / t^2 (+, -); against 1/2 max|F''(e, e)| = 2.344e+33 (#694)
+        1e-24   8.783e+13   8.781e+13   8.782e+13   2.131e+10   2.516e+32   1.049e+33  1.049e+33
+        1e-06   4.558e+73   4.558e+73   4.558e+73   1.877e+67   2.217e+53   2.903e+53  2.903e+53
+        1e-05   2.937e+80   2.937e+80   2.937e+80   9.193e+74   1.085e+59   1.901e+59  1.901e+59
+       0.0001   3.646e+88   3.646e+88   3.646e+88   8.248e+83   9.738e+65   2.386e+66  2.386e+66
+        0.001         nan         nan         nan         nan         nan         nan        nan
+      0.00316         nan         nan         nan         nan         nan         nan        nan
+         0.01         nan         nan         nan         nan         nan         nan        nan
+    +t  1.0e-24: |dep| / |B c| 4.50477e-24, error estimate 7.21e-69 of |B c|, |w - w0| 7.181e-50, its prediction off by 7.18e-50, max|F| 1.75e-51, 2 LUs, (LU, |dw|) (1, 3.2e-36), (1, 3.2e-36), (2, 1.1e-51), (2, 1.2e-82), (2, 9.5e-114) (599 s)
+    +t   1.0e-6: NOT converged, error estimate nan of |B c|, |w - w0| 7.181e-14, its prediction off by 0.00e+00, max|F| 2.71e+22, 1 LUs, (LU, |dw|) (1, 5.9e+20) (253 s)
+  curve: the + ray stops at |c| 1.0e-6
+    -t   1.0e-6: NOT converged, error estimate nan of |B c|, |w - w0| 7.181e-14, its prediction off by 0.00e+00, max|F| 3.13e+22, 1 LUs, (LU, |dw|) (1, 3.5e+19) (212 s)
+  curve: the - ray stops at |c| 1.0e-6
+  curve along a / |a|: t, |dep(+t e)|, |dep(-t e)|, even part E, odd part O, floor (of |B c| = t |B e|), E / t, O / t (local orders between neighbours below)
+    local orders of E * |B c|: 
+    local orders of O * |B c|: 
+    local orders of dp * |B c|: 
+    local orders of dm * |B c|: 
+    leading orders of the departure (first four resolved points): even none, odd none
+  (Z1) the lead-in at |c| 1e-24: |dep| / |B a| 5.4114114e-19 against #677's chord 5.4114114e-19: 2.3e-17 (bound 1e-6): pass
+  (Z2) the flat chart: its strong residual's change at 1e-6 against 1/2 max|F''(e, e)| (+, -) 123865766863581216768.000, 123865680196796891136.000 (within a factor 2); its smallest departure against the prediction 1.01e+79 (above 10): FAIL
+  verdict (11.3): ratios to kappa t at ; the even part's order over 1e-3..1e-2 none; odd >= even below 1e-2 at no t; missing [0.001, 0.01]: not decided
+  curve: 4 LUs; stops {'1': 1e-06, '-1': 1e-06} (1099 s)
+check: FAIL

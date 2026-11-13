@@ -14,6 +14,9 @@ and `I694-mac/rows_ref.json`, `rows_classA.json` (#694's F''(e, e) rows, for the
 |---|---|---|
 | `curve_planted.log`, `.json` | the curve plant (seed 5), code 085fbdff | 0, every check passes |
 | `curve_planted_mut_w0.log`, `_chord` | its two controls, code 085fbdff | 1 each, as they must |
-| `curve_ref.log`, `.json` | REF (refused, D 242.5459), the pilot | running |
-| `curve_classA.log`, `.json` | the class A start (D 249.3927) | |
+| `curve_ref.log`, `.json` | REF (refused, D 242.5459), the pilot, code 085fbdff: (Z0) and (Z1) pass, the flat-chart control (Z2a) fires, and Newton stops at 1e-6 on both rays | 1 |
+| `curve_planted_bridge.log`, `.json` | the plant with the chord bridge from 1e-24 (a diagnostic added after the pilot), code 46f250b3 | 0 |
+| `curve_planted_bridge_mut_fold.log`, `.json` | its control, a symmetric coupling: the pair ratio rho turns positive | 1, as it must |
+| `curve_ref_bridge.log`, `.json` | REF, the chord bridge alone (`--newton=0`), code 46f250b3 | running |
+| `curve_classA.log`, `.json` | the class A start (D 249.3927), with the bridge before the Newton points | |
 | `run_i698.sh`, `exits.txt` | the runner, and every run's start and exit | |

@@ -28,5 +28,13 @@ case $WHAT in planted|all)
 esac
 case $WHAT in ref|all) one curve_ref curve "$RAW" $REF $B5146 --threads=2 --ref677="$RAW/I677-mac/ray_ref.json" \
   --ref694="$RAW/I694-mac/rows_ref.json" ;; esac
-case $WHAT in classA|all) one curve_classA curve "$RAW" $CLA $B248 --threads=2 \
+# added after the REF pilot (notes/REDUCED_CUBIC.md 11.4): the chord bridge from 1e-24, its plant and fold control,
+# REF's bridge alone, and the class A start with the bridge before its Newton points
+case $WHAT in bridge_planted|all)
+  one curve_planted_bridge curve planted --bridge=1
+  one curve_planted_bridge_mut_fold curve planted --bridge=1 --mutate=fold ;;
+esac
+case $WHAT in ref_bridge|all) one curve_ref_bridge curve "$RAW" $REF $B5146 --threads=2 --bridge=1 --newton=0 \
+  --ref677="$RAW/I677-mac/ray_ref.json" --ref694="$RAW/I694-mac/rows_ref.json" ;; esac
+case $WHAT in classA|all) one curve_classA curve "$RAW" $CLA $B248 --threads=2 --bridge=1 \
   --ref677="$RAW/I677-mac/ray_classA.json" --ref694="$RAW/I694-mac/rows_classA.json" ;; esac
