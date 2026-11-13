@@ -1,0 +1,37 @@
+curve plant (seed 5): n 12, k 4; start max|F| 1.498e-36, |w0| 5.92e-33, |y_a| 8.3e-30, |B e| 5.733e-26; its reduced map minus beta + Sigma y against P4/24 + P5/120 2.12e-91 (bound 1e-20): pass
+  basis: sigma of B 2.1000e-27, 2.2000e-27, 3.2000e-26, 7.1000e-26 (iteration 2.1000e-27, 2.2000e-27, 3.2000e-26, 7.1000e-26); |dz0| 8.3e-30, a = V^T dz0 -2.072e-30, -3.794e-30, 2.582e-30, -6.598e-30, |a| 8.3e-30, the rest 5.92e-33; |B a| 4.758e-55, |U^T F(z0) + B a| / |B a| 8.27e-123; -J^-1 F(z0) against dz0 0.0; w0 = -J^-1 (I - U U^T) F(z0): |w0| 5.92e-33, |V^T w0| 1.2e-150 (0 s)
+  curve: |e| along a / |a|, |B e| 5.7326e-26; g(0) by the chord through z0's LU, from w0 and from w0 (1 + 1e-5): converged, floor0 3.86e-182 (8.12e-128 of |B a|); prediction kappa t |B c| with kappa none (0 s)
+  flat chart z0 + V c (w = 0), per t: |dep(+t e)|, |dep(-t e)|, even, odd part (of |B c|); odd / t^3; max of the strong residual's change / t^2 (+, -)
+        1e-06   2.422e+42   2.422e+42   1.000e-11   2.422e+42   1.388e+29   1.133e+33  1.133e+33
+        1e-05   2.422e+44   2.422e+44   1.000e-08   2.422e+44   1.388e+29   1.133e+33  1.133e+33
+       0.0001   2.422e+46   2.422e+46   1.000e-05   2.422e+46   1.388e+29   1.133e+33  1.133e+33
+        0.001   2.422e+48   2.422e+48   1.000e-02   2.422e+48   1.388e+29   1.133e+33  1.133e+33
+      0.00316   2.422e+49   2.422e+49   3.162e-01   2.422e+49   1.388e+29   1.133e+33  1.133e+33
+         0.01   2.422e+50   2.422e+50   1.000e+01   2.422e+50   1.388e+29   1.133e+33  1.133e+33
+    +t   1.0e-6: |dep| / |B c| 2.42166e+42, error estimate 0.0 of |B c|, |w - w0| 5.920e-33, its prediction off by 5.92e-33, max|F| 1.13e+21, 0 LUs, (LU, |dw|)  (0 s)
+    +t   1.0e-5: |dep| / |B c| 2.42166e+44, error estimate 0.0 of |B c|, |w - w0| 5.920e-33, its prediction off by 5.86e-31, max|F| 1.13e+23, 0 LUs, (LU, |dw|)  (0 s)
+    +t   0.0001: |dep| / |B c| 2.42166e+46, error estimate 0.0 of |B c|, |w - w0| 5.920e-33, its prediction off by 5.86e-28, max|F| 1.13e+25, 0 LUs, (LU, |dw|)  (0 s)
+    +t    0.001: |dep| / |B c| 2.42166e+48, error estimate 0.0 of |B c|, |w - w0| 5.920e-33, its prediction off by 5.86e-28, max|F| 1.13e+27, 0 LUs, (LU, |dw|)  (0 s)
+    +t  0.00316: |dep| / |B c| 2.42166e+49, error estimate 0.0 of |B c|, |w - w0| 5.920e-33, its prediction off by 1.40e-29, max|F| 1.13e+28, 0 LUs, (LU, |dw|)  (0 s)
+    +t     0.01: |dep| / |B c| 2.42166e+50, error estimate 0.0 of |B c|, |w - w0| 5.920e-33, its prediction off by 1.63e-30, max|F| 1.13e+29, 0 LUs, (LU, |dw|)  (0 s)
+    -t   1.0e-6: |dep| / |B c| 2.42166e+42, error estimate 0.0 of |B c|, |w - w0| 5.920e-33, its prediction off by 0.00e+00, max|F| 1.13e+21, 0 LUs, (LU, |dw|)  (0 s)
+    -t   1.0e-5: |dep| / |B c| 2.42166e+44, error estimate 0.0 of |B c|, |w - w0| 5.920e-33, its prediction off by 1.07e-30, max|F| 1.13e+23, 0 LUs, (LU, |dw|)  (0 s)
+    -t   0.0001: |dep| / |B c| 2.42166e+46, error estimate 0.0 of |B c|, |w - w0| 5.920e-33, its prediction off by 1.07e-30, max|F| 1.13e+25, 0 LUs, (LU, |dw|)  (0 s)
+    -t    0.001: |dep| / |B c| 2.42166e+48, error estimate 0.0 of |B c|, |w - w0| 5.920e-33, its prediction off by 1.07e-30, max|F| 1.13e+27, 0 LUs, (LU, |dw|)  (0 s)
+    -t  0.00316: |dep| / |B c| 2.42166e+49, error estimate 0.0 of |B c|, |w - w0| 5.920e-33, its prediction off by 8.10e-32, max|F| 1.13e+28, 0 LUs, (LU, |dw|)  (0 s)
+    -t     0.01: |dep| / |B c| 2.42166e+50, error estimate 0.0 of |B c|, |w - w0| 5.920e-33, its prediction off by 8.10e-32, max|F| 1.13e+29, 0 LUs, (LU, |dw|)  (0 s)
+  curve along a / |a|: t, |dep(+t e)|, |dep(-t e)|, even part E, odd part O, floor (of |B c| = t |B e|), E / t, O / t (local orders between neighbours below), even and odd against the planted
+      1.0e-6  2.42166e+42  2.42166e+42  1.00000e-11  2.42166e+42 6.74e-151  1.0000e-05  2.4217e+48  5.8e-50  7.3e+56
+      1.0e-5  2.42166e+44  2.42166e+44  1.00000e-08  2.42166e+44 6.74e-152  1.0000e-03  2.4217e+49  5.8e-52  7.3e+54
+      0.0001  2.42166e+46  2.42166e+46  1.00000e-05  2.42166e+46 6.74e-153  1.0000e-01  2.4217e+50  5.8e-54  7.3e+52
+       0.001  2.42166e+48  2.42166e+48  1.00000e-02  2.42166e+48 6.74e-154  1.0000e+01  2.4217e+51  5.8e-56  7.3e+50
+     0.00316  2.42166e+49  2.42166e+49  3.16228e-01  2.42166e+49 2.13e-154  1.0000e+02  7.6580e+51  5.8e-57  7.3e+49
+        0.01  2.42166e+50  2.42166e+50  1.00000e+01  2.42166e+50 6.74e-155  1.0000e+03  2.4217e+52  5.8e-58  7.3e+48
+    local orders of E * |B c|: 4.000, 4.000, 4.000, 4.000, 4.000
+    local orders of O * |B c|: 3.000, 3.000, 3.000, 3.000, 3.000
+    local orders of dp * |B c|: 3.000, 3.000, 3.000, 3.000, 3.000
+    local orders of dm * |B c|: 3.000, 3.000, 3.000, 3.000, 3.000
+    leading orders of the departure (first four resolved points): even 4.000, odd 3.000
+  planted: (PC1) worst point error 7.3e+56 (bound 1e-3): FAIL; (PC2) orders 4 and 5 to 0.05: FAIL; (PC3) every solve converged: pass; (PC4) the verdict's self-test ['supports', 'refutes', 'between', 'refutes', 'not decided']: pass
+  curve: 0 LUs; stops {'1': None, '-1': None} (0 s)
+check: FAIL
