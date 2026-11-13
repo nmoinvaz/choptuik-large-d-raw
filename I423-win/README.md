@@ -142,3 +142,31 @@ None with the text of #163. The coordinator's list of states is not what the raw
 
 1. **The same bounds with `--horizon 7` states and the N_t = 48 grid at D 50.** What: `rt_sigma.py` on the K = 7 roots of `I163-mac/acc/` (32x121, D 50.007) and on a 48-wide state at D 50, rough starts, one BLAS thread above 4 GiB. Why: the rows exclude lambda_2's branch, and #163 found the weakest direction survives them at 4.9e-34; this run would show whether the rows change where x sits. Acceptance: the bound and the class per state, with the planted check and its control repeated. Depends on #423.
 2. **Report the OpenBLAS crash above 4 GiB**, with `I423-win/lu_size_test.py` as the reproducer, to the maintainers of the scipy wheel in use, and add `OPENBLAS_NUM_THREADS=1` for matrices over 4 GiB to the RT notes. Not a task for the runners: a filed issue is a public action.
+
+
+## Side task, 2026-11-13: facts for the OpenBLAS report (coordinator's message `1794551954544-0`)
+
+Reproducer `lu_size_test.py N` (and `lu_size_test_steps.py`, the same with two progress prints): a random `N x N` float64 matrix, `scipy.linalg.lu_factor(A.T, overwrite_a=True, check_finite=False)` (the call of `LUdd`) and then `lu_solve` on `r = A.T @ x0`, which must return `x0` (the planted check; when it does not crash the error is 8.0e-11 for N = 20000 and 1.24e-10 for N = 23857). Windows 11 Pro `10.0.26200.9974`, i7-1185G7 (4 cores, 8 threads; threadpoolctl reports the SkylakeX kernels for every OpenBLAS here). Versions are in `logs/versions.txt`.
+
+| stack | numpy / OpenBLAS in numpy | scipy / OpenBLAS in scipy (32-bit ints) | Python |
+|---|---|---|---|
+| old: `venv-t151` | 2.2.6 / 0.3.29 (ILP64) | 1.15.3 / 0.3.28 | 3.10.0 |
+| new: throwaway `venv-blastest`, today's wheels from PyPI | 2.5.4 / 0.3.34.106.0 (ILP64) | 1.18.1 / 0.3.31.dev | 3.14.10 |
+
+(Python 3.10 cannot install anything newer than numpy 2.2.6 and scipy 1.15.3, so the new stack is a Python 3.14.10 venv from the machine's nuget interpreter; a Python 3.10 venv with today's wheels resolves to the old versions.)
+
+| stack | BLAS threads | N | matrix | result | log |
+|---|---|---|---|---|---|
+| old | 2 | 20000 | 2.98 GiB | passes (`lu_factor` 76 s, error 8.0e-11) | `lu_size_20000.log` |
+| old | 2 | 21500 | 3.44 GiB | `lu_factor` done in 96 s, **`lu_solve` access violation** (0xC0000005, bash exit 139) | `lu_threshold_t151_21500.log` |
+| old | 2 | 22300 | 3.71 GiB | `lu_factor` 105 s, **`lu_solve` access violation** | `lu_threshold_t151_22300.log` |
+| old | 2 | 23100 | 3.98 GiB (under 2^32 bytes) | `lu_factor` 118 s, **`lu_solve` access violation** | `lu_threshold_t151_23100.log` |
+| old | 2 | 23250 | 4.03 GiB | `lu_factor` 121 s, **`lu_solve` access violation** | `lu_threshold_t151_23250.log` |
+| old | 2 | 23857 | 4.24 GiB | `lu_factor` 120 s, **`lu_solve` access violation** | `lu_size_23857.log` |
+| old | **1** | 23857 | 4.24 GiB | **passes** (`lu_factor` 209 s, error 1.24e-10) | `lu_size_23857_1thread.log` |
+| new | 2 | 20000 | 2.98 GiB | passes (`lu_factor` 68 s, error 8.0e-11) | `lu_threshold_latest_20000.log` |
+| new | 2 | 23100 | 3.98 GiB | **dies inside `lu_factor`**, Windows exit code 0xC0000409 (fail-fast; run through PowerShell, `lu_threshold_latest_23100_rerun.log`; the first attempt through bash showed only "exit code 127") | `lu_threshold_latest_23100.log` |
+| new | 2 | 23857 | 4.24 GiB | **dies inside `lu_factor`** (bash exit 139; the first run, `lu_size_23857_latest.log`, ended silently, the rerun with prints is `lu_size_23857_latest_steps.log`: last line "lu_factor starts") | `lu_size_23857_latest_steps.log` |
+| new | **1** | 23857 | 4.24 GiB | **passes** (`lu_factor` 217 s, error 1.24e-10) | `lu_size_23857_latest_1thread.log` |
+
+So: the crash is not at 4 GiB (3.44 GiB already crashes with scipy 1.15.3, 2.98 GiB does not; I did not bisect between), it needs more than one BLAS thread, and today's wheels crash as well, at a different place (inside `lu_factor` for scipy 1.18.1 against `lu_solve` for 1.15.3). Not tested: other Windows builds, other CPUs, a debug build of OpenBLAS, `OPENBLAS_CORETYPE=Haswell`, and N between 20000 and 21500. The throwaway venvs (`venv-blastest`, `venv-blastest310`) were sent to the Recycle Bin after the last test.
