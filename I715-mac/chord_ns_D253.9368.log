@@ -1,0 +1,52 @@
+chord: base I603-win2/chain_ns/anm_pin3_D253.8825.npz, D + a 253.93675499252282794053481307372521769138984382152, prediction from jet I603-win2/chain_ns/jet_pin3_D253.8825.npz
+  the rebuilt prediction against I603-win2/chain_ns/pred_pin3_D253.9368.npz: bit for bit equal
+  re-seed FAILED, prediction kept; start max|F| (PinnedO) 4.01e-20, |dz| 3.459e-26, 433 s
+    on 0 chord 0: max|F| 1.42e-17, |dw| 3.687e-37
+    on 0 chord 1: max|F| 3.55e-37, |dw| 3.659e-37
+    on 0 chord 2: max|F| 4.25e-53, |dw| 1.659e-53
+  chord: 3 steps, ok True; theta at its point 7.993e-12 (#700: 7.993e-12), 1654 s
+  the chord's point against I700-mac/crawl_iter_D253.9368.npz: bit for bit equal
+  points projected (in order): skipped (switch test 4.01e-20), skipped (switch test 1.42e-17), u0q (switch test 1.29e-01), u0q (switch test 1.29e-01), u0q (switch test 1.29e-01)
+  point 0 forced: projection u0q, 423.1 s
+  point 1 forced: projection u0q, 409.6 s
+  saved /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/11bcbd25-9376-453b-88d5-a7c6ad0172dd/scratchpad/i715/raw/I715-mac/chord_trace_D253.9368.npz, 2487 s
+chordstat: /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/11bcbd25-9376-453b-88d5-a7c6ad0172dd/scratchpad/i715/raw/I715-mac/chord_trace_D253.9368.npz; M 32, K 5; V (769, 4), sigma 1.51e-20, 1.06e-20, 8.25e-21, 1.57e-22
+  the points (the switch's test value is the pinned quad-double max |F| of the point itself):
+  [0] start z0: switch test 4.006e-20 (skipped, forced u0q); own F by block 5c 4.01e-20, 5a 2.03e-20, 5p 6.86e-21, 5m 6.48e-21; F(P(z)) 1.34e-35
+      own F in the horizon rows by harmonic: m k1 5.8e-21, k3 1.1e-21, k5 4.3e-22, k7 3.5e-23; a k3 1.4e-20, k1 1.1e-20, k5 4.7e-21, k7 3.8e-21; c k3 2.8e-20, k1 2.3e-20, k5 9.3e-21, k7 7.4e-21
+      P(z) - z: m_h 1.654e-57, a_h 2.737e-59, other 0.0e+00; a_h by harmonic k1 1.5e-59, k3 1.8e-59, k5 6.6e-60, k7 5.1e-60, k9 4.0e-60, k11 3.3e-60, k13 2.9e-60, k15 2.6e-60, k17 2.3e-60, k19 2.1e-60, k21 2.0e-60, k23 1.9e-60, k25 1.8e-60, k27 1.8e-60, k29 1.7e-60, k31 1.7e-60
+      m_h by harmonic k1 1.3e-57, k3 8.1e-58, k5 7.0e-60, k7 8.2e-60, k9 1.3e-60, k11 1.5e-61, k13 1.5e-62, k15 1.3e-63, k17 1.1e-64, k19 8.1e-66, k21 6.1e-67, k23 4.5e-68, k25 3.2e-69, k27 2.2e-70, k29 1.5e-71, k31 7.1e-73
+  [1] chord point 0: switch test 1.421e-17 (skipped, forced u0q); own F by block 5c 1.42e-17, 5a 7.20e-18, 5m 2.29e-18, 5p 2.18e-18; F(P(z)) 9.31e-47
+      own F in the horizon rows by harmonic: m k1 1.5e-18, k3 7.0e-19, k5 1.1e-19, k7 2.5e-21; a k3 3.4e-18, k5 2.4e-18, k1 2.1e-18, k7 1.5e-18; c k3 6.8e-18, k5 4.7e-18, k1 4.1e-18, k7 2.9e-18
+      P(z) - z: m_h 6.073e-47, a_h 7.628e-50, other 0.0e+00; a_h by harmonic k1 2.3e-50, k3 3.9e-50, k5 2.5e-50, k7 1.5e-50, k9 1.2e-50, k11 9.5e-51, k13 8.1e-51, k15 7.2e-51, k17 6.5e-51, k19 6.0e-51, k21 5.6e-51, k23 5.3e-51, k25 5.1e-51, k27 4.9e-51, k29 4.8e-51, k31 4.8e-51
+      m_h by harmonic k1 4.8e-47, k3 1.3e-47, k5 3.7e-49, k7 8.8e-50, k9 3.4e-50, k11 2.4e-51, k13 1.6e-52, k15 1.0e-53, k17 6.6e-55, k19 4.5e-56, k21 3.0e-57, k23 1.9e-58, k25 1.2e-59, k27 7.9e-61, k29 1.6e-62, k31 5.2e-62
+  [2] chord point 1: switch test 1.288e-01 (u0q); own F by block 5c 1.29e-01, 5a 6.52e-02, 5m 2.50e-02, 5p 2.42e-03; F(P(z)) 3.55e-37
+      own F in the horizon rows by harmonic: m k23 3.5e-03, k25 3.4e-03, k9 3.3e-03, k11 3.3e-03; a k7 1.3e-02, k19 1.3e-02, k29 1.2e-02, k27 1.1e-02; c k7 2.7e-02, k19 2.6e-02, k29 2.4e-02, k27 2.2e-02
+      P(z) - z: m_h 7.716e-38, a_h 5.597e-41, other 0.0e+00; a_h by harmonic k1 1.9e-41, k3 1.2e-41, k5 6.1e-42, k7 1.6e-42, k9 3.3e-42, k11 2.5e-42, k13 5.2e-42, k15 6.5e-42, k17 2.2e-42, k19 2.9e-42, k21 6.0e-42, k23 6.6e-42, k25 5.3e-42, k27 8.7e-42, k29 1.1e-41, k31 7.3e-42
+      m_h by harmonic k1 6.4e-39, k3 1.1e-38, k5 1.5e-38, k7 9.1e-40, k9 9.3e-39, k11 1.1e-38, k13 5.4e-39, k15 1.2e-38, k17 8.5e-39, k19 5.3e-39, k21 5.2e-39, k23 6.7e-39, k25 7.8e-39, k27 8.3e-39, k29 8.4e-39, k31 3.3e-39
+  [3] chord point 2: switch test 1.288e-01 (u0q); own F by block 5c 1.29e-01, 5a 6.52e-02, 5m 2.50e-02, 5p 2.42e-03; F(P(z)) 4.25e-53
+      own F in the horizon rows by harmonic: m k23 3.5e-03, k25 3.4e-03, k9 3.3e-03, k11 3.3e-03; a k7 1.3e-02, k19 1.3e-02, k29 1.2e-02, k27 1.1e-02; c k7 2.7e-02, k19 2.6e-02, k29 2.4e-02, k27 2.2e-02
+      P(z) - z: m_h 7.716e-38, a_h 5.597e-41, other 0.0e+00; a_h by harmonic k1 1.9e-41, k3 1.2e-41, k5 6.1e-42, k7 1.6e-42, k9 3.3e-42, k11 2.5e-42, k13 5.2e-42, k15 6.5e-42, k17 2.2e-42, k19 2.9e-42, k21 6.0e-42, k23 6.6e-42, k25 5.3e-42, k27 8.7e-42, k29 1.1e-41, k31 7.3e-42
+      m_h by harmonic k1 6.4e-39, k3 1.1e-38, k5 1.5e-38, k7 9.1e-40, k9 9.3e-39, k11 1.1e-38, k13 5.4e-39, k15 1.2e-38, k17 8.5e-39, k19 5.3e-39, k21 5.2e-39, k23 6.7e-39, k25 7.8e-39, k27 8.3e-39, k29 8.4e-39, k31 3.3e-39
+  [4] chord point 3: switch test 1.288e-01 (u0q); own F by block 5c 1.29e-01, 5a 6.52e-02, 5m 2.50e-02, 5p 2.42e-03; F(P(z)) 2.58e-53
+      own F in the horizon rows by harmonic: m k23 3.5e-03, k25 3.4e-03, k9 3.3e-03, k11 3.3e-03; a k7 1.3e-02, k19 1.3e-02, k29 1.2e-02, k27 1.1e-02; c k7 2.7e-02, k19 2.6e-02, k29 2.4e-02, k27 2.2e-02
+      P(z) - z: m_h 7.716e-38, a_h 5.597e-41, other 0.0e+00; a_h by harmonic k1 1.9e-41, k3 1.2e-41, k5 6.1e-42, k7 1.6e-42, k9 3.3e-42, k11 2.5e-42, k13 5.2e-42, k15 6.5e-42, k17 2.2e-42, k19 2.9e-42, k21 6.0e-42, k23 6.6e-42, k25 5.3e-42, k27 8.7e-42, k29 1.1e-41, k31 7.3e-42
+      m_h by harmonic k1 6.4e-39, k3 1.1e-38, k5 1.5e-38, k7 9.1e-40, k9 9.3e-39, k11 1.1e-38, k13 5.4e-39, k15 1.2e-38, k17 8.5e-39, k19 5.3e-39, k21 5.2e-39, k23 6.7e-39, k25 7.8e-39, k27 8.3e-39, k29 8.4e-39, k31 3.3e-39
+  the chord steps:
+  step 0 (chord point 0 -> 1): reproduced bit for bit; |x| 2.489e-21 (a_h 2.07e-25, m_h 1.66e-22, nodes 1.32e-22); V^T x -1.16e-21, +4.90e-22, -8.69e-23, -2.48e-21
+      |dw| 3.687e-37 (a_h 5.94e-41, m_h 6.46e-38, nodes 5.24e-38, Delta 1.67e-40); exact drop_V |dw| 3.764e-37; with V rounded differently 8.523e-37
+      drop_V's rounding (dw - exact): a_h 4.97e-41, m_h 2.36e-38, nodes 3.12e-38, centre 3.59e-38
+      switch test 1.421e-17 -> 1.288e-01; with one group of dw only: centre 1.42e-17, nodes 1.42e-17, last node 1.42e-17, m_h 1.05e-01, a_h 8.50e-02, horizon data 1.29e-01, Delta 2.25e-07, all but horizon data 2.25e-07, exact dw 8.49e-02, exact dw, own F max 8.49e-02, dw with V rounded differently 1.15e+03, rounding only (dw - exact dw) 1.12e-01
+      dw in a_h by harmonic k1 1.4e-41, k3 9.5e-42, k5 6.6e-42, k7 5.1e-42, k9 5.0e-42, k11 2.3e-42, k13 3.8e-42, k15 5.8e-42, k17 2.2e-42, k19 3.7e-42, k21 6.5e-42, k23 6.7e-42, k25 5.1e-42, k27 8.4e-42, k29 1.0e-41, k31 6.8e-42
+  step 1 (chord point 1 -> 2): reproduced bit for bit; |x| 4.101e-37 (a_h 6.99e-42, m_h 1.34e-38, nodes 5.94e-38); V^T x +3.48e-38, +4.29e-38, -3.60e-38, +4.12e-37
+      |dw| 3.659e-37 (a_h 1.36e-41, m_h 1.23e-38, nodes 5.43e-38, Delta 3.02e-40); exact drop_V |dw| 3.659e-37; with V rounded differently 3.659e-37
+      drop_V's rounding (dw - exact): a_h 4.25e-57, m_h 3.73e-54, nodes 3.44e-54, centre 4.73e-54
+      switch test 1.288e-01 -> 1.288e-01; with one group of dw only: centre 1.29e-01, nodes 1.29e-01, last node 1.29e-01, m_h 1.31e-01, a_h 1.27e-01, horizon data 1.29e-01, Delta 1.29e-01, all but horizon data 1.29e-01, exact dw 1.29e-01, exact dw, own F max 1.29e-01, dw with V rounded differently 1.29e-01, rounding only (dw - exact dw) 1.29e-01
+      dw in a_h by harmonic k1 4.8e-42, k3 2.4e-42, k5 3.5e-43, k7 3.4e-42, k9 1.7e-42, k11 5.7e-43, k13 1.9e-42, k15 1.6e-42, k17 1.0e-42, k19 5.7e-43, k21 4.4e-43, k23 4.5e-43, k25 4.4e-43, k27 4.3e-43, k29 4.2e-43, k31 4.2e-43
+  step 2 (chord point 2 -> 3): reproduced bit for bit; |x| 2.765e-37 (a_h 1.21e-42, m_h 1.07e-39, nodes 1.33e-39); V^T x +1.02e-38, +6.28e-40, -6.17e-39, +2.77e-37
+      |dw| 1.659e-53 (a_h 1.05e-57, m_h 1.09e-54, nodes 2.08e-54, Delta 4.52e-57); exact drop_V |dw| 1.696e-53; with V rounded differently 8.762e-53
+      drop_V's rounding (dw - exact): a_h 3.12e-58, m_h 1.63e-55, nodes 2.10e-55, centre 3.77e-55
+      switch test 1.288e-01 -> 1.288e-01; with one group of dw only: centre 1.29e-01, nodes 1.29e-01, last node 1.29e-01, m_h 1.29e-01, a_h 1.29e-01, horizon data 1.29e-01, Delta 1.29e-01, all but horizon data 1.29e-01, exact dw 1.29e-01, exact dw, own F max 1.29e-01, dw with V rounded differently 1.29e-01, rounding only (dw - exact dw) 1.29e-01
+      dw in a_h by harmonic k1 1.2e-58, k3 5.2e-58, k5 2.1e-58, k7 1.2e-59, k9 9.4e-59, k11 5.4e-59, k13 8.1e-59, k15 9.7e-59, k17 4.2e-59, k19 6.4e-59, k21 1.2e-58, k23 1.1e-58, k25 4.2e-59, k27 9.2e-59, k29 7.1e-59, k31 3.6e-59
+  records /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/11bcbd25-9376-453b-88d5-a7c6ad0172dd/scratchpad/i715/raw/I715-mac/chord_trace_D253.9368.jsonl
+exit 0
