@@ -1,0 +1,9 @@
+# I644-win2: A/B of the octo-double corrector's trial test on #603's refused step at D 249.39
+
+Machine win2 (Windows 11 desktop, Intel Core Ultra 7 265K, 20 threads, 96 GB), 9 threads per run. Issue https://github.com/nmoinvaz/choptuik-large-d/issues/644 (assigned by the coordinator on the agent-msg channel, message 1794553286702-0, 2026-11-13 06:3x UTC; to start when #551 has ended).
+Code: worktree `D:\choptuik-i644` detached at origin/main 5b9059ec ("octo_corrector: print each natural-test trial at the default verbosity"); venv-i600 (the #600 build, hpkernel `_hpkernel.cp314-win_amd64.pyd` sha256 4ede9afe..., the kernel #603 runs on); the A/B touches only Python files. #603's chain is read in place and left running: the start state is `I603-win2/chain/anm_pin3_D248.6298.npz`.
+Command: `run_644.sh`: `anm_run.py ... --steps 1 --a0 0.762939453125 --od_accept own` and then `--od_accept natural` (a0 is #603's own a at that step, 0.610 x 1.25, exactly), the other flags #603's, 9 threads, BelowNormal (nice -n 5), OPENBLAS_NUM_THREADS=1. Outputs `own/` and `natural/`, logs `own.log` and `natural.log`, starts and exits in `exits_644.txt`.
+
+To report (#644): (1) `own` must repeat #603's chain.log lines 432 to 441 (line 432 `a 0.7629: re-seeded (ok)` to line 441 `a 0.763 -> D 249.392721272 ... 767 s`, the a 0.763 attempt: |F| 6.92e-34 -> 4.89e-25 ..., "no trial step accepted" on step 4, refused); say whether the lines are identical. (2) `natural`: each "trial lam" line (lam, max|F|, the ratio and its bound), each step's |F| and |dz|, accepted or refused, its seconds against `own`'s. (3) If `natural` converges at a 0.763: its Delta (eight parts summed) against #603's state `I603-win2/chain/anm_pin3_D249.3927.npz` (1.685054158679257706013773262194860158710), and both D_str values; compare Delta only if the D_str values are equal.
+
+Results follow when the runs end.
