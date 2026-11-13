@@ -1,0 +1,35 @@
+| D | K | n starts | best | Q1 | **median (the bound)** | Q3 | max | max/min | starts at the 250 cap | worst residual | classes of the starts (edge / centre in w4 / mixed) | best start's class |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 40.020065 | K7 | 12 | 1.26e-34 | 1.42e-34 | **2.403e-34** | 6.17e-34 | 1.81e-33 | 14.4 | 12 of 12 | 4.3e-14 | 0 / 0 / 12 (of 12) | mixed |
+| 40.020065 | K0 | 12 | 9.14e-35 | 1.50e-34 | **2.463e-34** | 6.51e-34 | 1.42e-33 | 15.5 | 0 of 12 | 2.5e-18 | 0 / 0 / 12 (of 12) | mixed |
+| 50.007491 | K7 | 12 | 3.82e-34 | 5.08e-34 | **1.293e-33** | 1.79e-33 | 3.47e-33 | 9.1 | 5 of 12 | 5.6e-14 | 0 / 11 / 1 (of 12) | centre in w4 |
+| 50.007491 | K0 | 12 | 1.18e-34 | 1.74e-34 | **2.199e-34** | 4.45e-34 | 7.98e-34 | 6.7 | 0 of 12 | 3.6e-19 | 0 / 2 / 10 (of 12) | mixed |
+| 54.996085 | K7 | 12 | 7.97e-35 | 1.66e-34 | **2.122e-34** | 2.55e-34 | 4.10e-34 | 5.1 | 9 of 12 | 2.7e-13 | 0 / 12 / 0 (of 12) | centre in w4 |
+| 54.996085 | K0 | 12 | 1.33e-35 | 1.77e-35 | **2.983e-35** | 5.49e-35 | 1.64e-34 | 12.3 | 0 of 12 | 3.9e-15 | 0 / 12 / 0 (of 12) | centre in w4 |
+
+All bounds, sorted (per run):
+  K7 D 40.020065: 1.26e-34, 1.26e-34, 1.30e-34, 1.56e-34, 1.61e-34, 2.19e-34, 2.64e-34, 3.67e-34, 4.88e-34, 7.80e-34, 9.92e-34, 1.81e-33
+  K0 D 40.020065: 9.14e-35, 9.89e-35, 1.35e-34, 1.67e-34, 1.88e-34, 2.35e-34, 2.58e-34, 2.87e-34, 4.96e-34, 8.55e-34, 1.27e-33, 1.42e-33
+  K7 D 50.007491: 3.82e-34, 4.34e-34, 4.88e-34, 5.28e-34, 5.60e-34, 1.27e-33, 1.32e-33, 1.35e-33, 1.51e-33, 2.12e-33, 2.94e-33, 3.47e-33
+  K0 D 50.007491: 1.18e-34, 1.48e-34, 1.72e-34, 1.76e-34, 1.87e-34, 1.87e-34, 2.58e-34, 3.00e-34, 3.18e-34, 6.23e-34, 6.31e-34, 7.98e-34
+  K7 D 54.996085: 7.97e-35, 1.52e-34, 1.57e-34, 1.75e-34, 1.85e-34, 2.10e-34, 2.14e-34, 2.16e-34, 2.42e-34, 2.69e-34, 3.36e-34, 4.10e-34
+  K0 D 54.996085: 1.33e-35, 1.72e-35, 1.73e-35, 1.82e-35, 2.18e-35, 2.43e-35, 3.66e-35, 4.33e-35, 5.18e-35, 5.82e-35, 1.24e-34, 1.64e-34
+
+R(D) = median(K = 7) / median(K = 0), and from the best:
+  D 40.020065: median 2.403e-34 / 2.463e-34 = 0.98; best 1.257e-34 / 9.136e-35 = 1.38
+  D 50.007491: median 1.293e-33 / 2.199e-34 = 5.88; best 3.816e-34 / 1.184e-34 = 3.22
+  D 54.996085: median 2.122e-34 / 2.983e-35 = 7.12; best 7.966e-35 / 1.331e-35 = 5.98
+
+The window of 3 on R(D)/R(50.007491), with the bootstrap 95% intervals:
+  R(40.020065) / R(50.007491) = 0.17, interval 0.06 to 0.91: point OUTSIDE, interval straddles an edge
+  R(54.996085) / R(50.007491) = 1.21, interval 0.54 to 5.00: point inside, interval straddles an edge
+  VERDICT (rule of README.md): the K = 7 bounds UNDECIDED the K = 0 trend within a factor 3
+  (best-of-12 ratios, context: R_best(40.020065) / R_best(50.007491) = 0.43, R_best(54.996085) / R_best(50.007491) = 1.86)
+
+Control (a): the first three starts against the earlier 3-start runs (same draws, same state; within a factor 1.25):
+  K7 D 40.020065: new 1.257e-34, 9.921e-34, 7.797e-34 / earlier 1.257e-34, 9.921e-34, 7.797e-34 = 1.000, 1.000, 1.000 -> reproduces; best of the first three 1.257e-34 against the earlier best-of-3 1.257e-34
+  K0 D 40.020065: new 1.669e-34, 1.419e-33, 1.879e-34 / earlier 1.669e-34, 1.419e-33, 1.879e-34 = 1.000, 1.000, 1.000 -> reproduces; best of the first three 1.669e-34 against the earlier best-of-3 1.669e-34
+  K7 D 50.007491: new 4.882e-34, 3.472e-33, 1.348e-33 / earlier 4.882e-34, 3.472e-33, 1.348e-33 = 1.000, 1.000, 1.000 -> reproduces; best of the first three 4.882e-34 against the earlier best-of-3 4.882e-34
+  K0 D 50.007491: new 1.184e-34, 2.584e-34, 1.760e-34 / earlier 1.184e-34, 2.584e-34, 1.760e-34 = 1.000, 1.000, 1.000 -> reproduces; best of the first three 1.184e-34 against the earlier best-of-3 1.184e-34
+  K7 D 54.996085: new 1.754e-34, 4.096e-34, 3.361e-34 / earlier 1.754e-34, 4.096e-34, 3.361e-34 = 1.000, 1.000, 1.000 -> reproduces; best of the first three 1.754e-34 against the earlier best-of-3 1.754e-34
+  K0 D 54.996085: new 3.664e-35, 1.236e-34, 5.819e-35 / earlier 3.664e-35, 1.236e-34, 5.819e-35 = 1.000, 1.000, 1.000 -> reproduces; best of the first three 3.664e-35 against the earlier best-of-3 3.664e-35
