@@ -1,0 +1,60 @@
+== nn_0975_mutate_sigma 2026-11-13 12:20:05 UTC: python -u near_null.py /home/nathan/Source/choptuik-large-d-raw I654-dh370/start/start_0975.npz --k=4 --threads=12 --mutate=sigma --json=/home/nathan/Source/choptuik-large-d-raw/I673-dh370/nn_0975_mutate_sigma.json
+I654-dh370/start/start_0975.npz: D 252.25, L 769, octo-double LU 177 s, pivots 5.7e-37..5.7e+02
+  ||J v_1|| = 4.67371e-40 from the exact Jacobian at 140 digits (178 s)
+  sigma_1 4.674e-40 (converged to 2e-16); delta share 8.3e-05; blocks p1 0.19, m_h 0.16, node4.p 0.15; top p1 k1 0.10, m_h k1 0.09, node4.p k1 0.09, node4.m k1 0.09, node3.p k1 0.06
+  sigma_2 4.038e-39 (converged to 7e-04); delta share 1.2e-04; blocks p1 0.23, m_h 0.13, node4.p 0.13; top p1 k3 0.12, m_h k3 0.09, node4.p k3 0.09, node4.m k3 0.08, node3.p k3 0.06
+  sigma_3 3.938e-39 (converged to 6e-04); delta share 2.5e-04; blocks p1 0.23, m_h 0.13, node4.p 0.13; top p1 k3 0.12, m_h k3 0.09, node4.p k3 0.09, node4.m k3 0.09, node3.p k3 0.07
+  sigma_4 2.692e-38 (converged to 2e-16); delta share 1.0e+00; blocks p1 0.00, node4.p 0.00, m_h 0.00; top p1 k1 0.00, node4.p k1 0.00, m_h k3 0.00, node4.m k3 0.00, node4.p k3 0.00
+  step dz = -J^-1 F (newton_o): max 2.225e-02, norm 1.994e-01, Delta +7.312e-03; V^T dz -1.94e-01 +2.93e-02 +3.61e-02 +5.30e-03, share on span(V) 0.9997
+    p1        max 2.22e-02, norm 8.80e-02; k1 1.95e-02, k3 1.02e-02, k5 7.45e-04
+    c0        max 5.27e-03, norm 2.03e-02; k0 3.22e-03, k4 1.76e-03, k2 1.43e-03
+    node0.p   max 6.57e-03, norm 2.62e-02; k1 5.80e-03, k3 3.00e-03, k5 2.01e-04
+    node0.m   max 6.57e-03, norm 2.61e-02; k1 5.79e-03, k3 3.00e-03, k5 2.00e-04
+    node0.a   max 2.10e-06, norm 7.92e-06; k0 1.25e-06, k4 7.35e-07, k2 5.16e-07
+    node0.c   max 4.76e-03, norm 1.84e-02; k0 2.91e-03, k4 1.57e-03, k2 1.31e-03
+    node1.p   max 8.66e-03, norm 3.46e-02; k1 7.70e-03, k3 3.93e-03, k5 2.46e-04
+    node1.m   max 8.65e-03, norm 3.45e-02; k1 7.67e-03, k3 3.92e-03, k5 2.45e-04
+    node1.a   max 3.67e-06, norm 1.39e-05; k0 2.20e-06, k4 1.27e-06, k2 9.23e-07
+    node1.c   max 4.37e-03, norm 1.69e-02; k0 2.68e-03, k4 1.44e-03, k2 1.21e-03
+    node2.p   max 1.07e-02, norm 4.28e-02; k1 9.56e-03, k3 4.81e-03, k5 2.75e-04
+    node2.m   max 1.06e-02, norm 4.26e-02; k1 9.52e-03, k3 4.79e-03, k5 2.74e-04
+    node2.a   max 5.64e-06, norm 2.15e-05; k0 3.39e-06, k4 1.93e-06, k2 1.45e-06
+    node2.c   max 3.87e-03, norm 1.50e-02; k0 2.38e-03, k4 1.26e-03, k2 1.09e-03
+    node3.p   max 1.26e-02, norm 5.07e-02; k1 1.14e-02, k3 5.61e-03, k5 2.86e-04
+    node3.m   max 1.25e-02, norm 5.05e-02; k1 1.13e-02, k3 5.58e-03, k5 2.85e-04
+    node3.a   max 7.94e-06, norm 3.05e-05; k0 4.81e-06, k4 2.68e-06, k2 2.11e-06
+    node3.c   max 3.28e-03, norm 1.28e-02; k0 2.02e-03, k4 1.06e-03, k2 9.38e-04
+    node4.p   max 1.86e-02, norm 7.73e-02; k1 1.77e-02, k3 7.82e-03, k5 1.92e-04
+    node4.m   max 1.86e-02, norm 7.68e-02; k1 1.76e-02, k3 7.79e-03, k5 1.95e-04
+    node4.a   max 1.88e-05, norm 7.42e-05; k0 1.18e-05, k4 5.80e-06, k2 5.80e-06
+    node4.c   max 2.42e-04, norm 9.57e-04; k0 1.52e-04, k2 7.50e-05, k4 7.45e-05
+    m_h       max 1.89e-02, norm 7.84e-02; k1 1.79e-02, k3 7.89e-03, k5 1.83e-04
+    a_h       max 1.96e-05, norm 7.76e-05; k0 1.23e-05, k2 6.11e-06, k4 6.01e-06
+  pinned step dz + J^-1 c (held offset at the state's coefficients): max 2.139e-02, norm 1.923e-01, Delta +7.114e-03; V^T dz -1.86e-01 +3.19e-02 +3.73e-02 +5.19e-03, share on span(V) 1.0000
+    p1        max 2.14e-02, norm 8.50e-02; k1 1.86e-02, k3 1.03e-02, k23 2.73e-17
+    c0        max 5.02e-03, norm 1.94e-02; k0 3.08e-03, k4 1.67e-03, k2 1.29e-03
+    node0.p   max 6.34e-03, norm 2.53e-02; k1 5.54e-03, k3 3.03e-03, k5 8.41e-06
+    node0.m   max 6.31e-03, norm 2.52e-02; k1 5.53e-03, k3 3.02e-03, k5 8.41e-06
+    node0.a   max 1.99e-06, norm 7.53e-06; k0 1.19e-06, k4 6.93e-07, k2 4.61e-07
+    node0.c   max 4.53e-03, norm 1.75e-02; k0 2.79e-03, k4 1.50e-03, k2 1.18e-03
+    node1.p   max 8.36e-03, norm 3.34e-02; k1 7.35e-03, k3 3.96e-03, k5 1.91e-05
+    node1.m   max 8.32e-03, norm 3.33e-02; k1 7.33e-03, k3 3.95e-03, k5 1.90e-05
+    node1.a   max 3.49e-06, norm 1.32e-05; k0 2.10e-06, k4 1.20e-06, k2 8.28e-07
+    node1.c   max 4.16e-03, norm 1.61e-02; k0 2.57e-03, k4 1.37e-03, k2 1.10e-03
+    node2.p   max 1.03e-02, norm 4.13e-02; k1 9.13e-03, k3 4.84e-03, k5 3.52e-05
+    node2.m   max 1.02e-02, norm 4.12e-02; k1 9.09e-03, k3 4.82e-03, k5 3.50e-05
+    node2.a   max 5.35e-06, norm 2.04e-05; k0 3.24e-06, k4 1.83e-06, k2 1.31e-06
+    node2.c   max 3.69e-03, norm 1.43e-02; k0 2.28e-03, k4 1.21e-03, k2 9.88e-04
+    node3.p   max 1.22e-02, norm 4.90e-02; k1 1.09e-02, k3 5.64e-03, k5 5.68e-05
+    node3.m   max 1.21e-02, norm 4.87e-02; k1 1.08e-02, k3 5.62e-03, k5 5.63e-05
+    node3.a   max 7.55e-06, norm 2.90e-05; k0 4.60e-06, k4 2.54e-06, k2 1.91e-06
+    node3.c   max 3.13e-03, norm 1.22e-02; k0 1.94e-03, k4 1.01e-03, k2 8.51e-04
+    node4.p   max 1.81e-02, norm 7.45e-02; k1 1.69e-02, k3 7.87e-03, k5 1.66e-04
+    node4.m   max 1.79e-02, norm 7.40e-02; k1 1.68e-02, k3 7.84e-03, k5 1.64e-04
+    node4.a   max 1.80e-05, norm 7.08e-05; k0 1.13e-05, k4 5.58e-06, k2 5.30e-06
+    node4.c   max 2.32e-04, norm 9.12e-04; k0 1.45e-04, k4 7.16e-05, k2 6.86e-05
+    m_h       max 1.82e-02, norm 7.55e-02; k1 1.71e-02, k3 7.94e-03, k5 1.71e-04
+    a_h       max 1.88e-05, norm 7.40e-05; k0 1.18e-05, k4 5.78e-06, k2 5.59e-06
+  ||J v_1|| / sigma_1 = 0.952381
+check: FAIL
+exit 1 wall 371 s
