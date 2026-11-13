@@ -1,0 +1,22 @@
+/Users/nathan/venv-314/lib/python3.14/site-packages/numpy/linalg/_linalg.py:2366: RuntimeWarning: divide by zero encountered in slogdet
+  sign, logdet = _umath_linalg.slogdet(a, signature=signature)
+/Users/nathan/venv-314/lib/python3.14/site-packages/numpy/linalg/_linalg.py:2366: RuntimeWarning: overflow encountered in slogdet
+  sign, logdet = _umath_linalg.slogdet(a, signature=signature)
+/Users/nathan/venv-314/lib/python3.14/site-packages/numpy/linalg/_linalg.py:2366: RuntimeWarning: invalid value encountered in slogdet
+  sign, logdet = _umath_linalg.slogdet(a, signature=signature)
+complex LU vs numpy slogdet (n = 7, 40, 129): max error 8.7e-13
+  series truncation (solution): centre 6.8e-62 (ratio 0.730 at 0.15), horizon 4.9e-32 (ratio 0.414 at 0.3)
+D 30.068824: M 64, kfreeze None, |F| 1.7e-26; omega 3.198742; lam_g = 1 + <c1> = 0.826484043522
+  lam 1.7: hp sign -1 ln|det| -1867.596569054886 (55.7 s) | cx ln|det| -1867.596569054886 arg -3.142e+00 (58.6 s): d ln +0.0e+00, sign ok
+  M(1.7): 0 of 3211264 entries differ from hpkernel's in a bit, max |M_cx - M_hp| = 0.0e+00 (max |M| 3.1e+04), max |Im M_cx| = 0.0e+00: pass; control (cx one ulp above 1.7): 393216 differ, fires
+  real zero near gauge value 0.826484043522: 0.826484043522 (diff -2.2e-16)
+  5. lambda 0.124+0.0i: ln|det| -2032.395783208271 (cached -2032.395783208271), arg 3.594209374568891e-10 (3.594209374568891e-10); four floats equal 4 of 4: pass
+  5. lambda 4.4308738519266315+1.5993707841783633i: ln|det| -1578.518375466108 (cached -1578.518375466108), arg 2.866643795055701 (2.866643795055701); four floats equal 4 of 4: pass
+  5. lambda 1.3524718507469011+1.5993707841783633i: ln|det| -1900.4687954666526 (cached -1900.4687954666526), arg 1.2161324842273729 (1.2161324842273729); four floats equal 4 of 4: pass
+  5. lambda -0.096+2.6656179736306056i: ln|det| -2048.4808773120785 (cached -2048.4808773120785), arg -2.547196060535242 (-2.547196060535242); four floats equal 4 of 4: pass
+  5. lambda 1.0877727272727267+4.79811235253509i: ln|det| -1927.0892695068424 (cached -1927.0892695068424), arg 1.7117339496850619 (1.7117339496850619); four floats equal 4 of 4: pass
+  5. lambda 1.0533522727272722+4.79811235253509i: ln|det| -1930.7320299388277 (cached -1930.7320299388277), arg 1.7118533040452206 (1.7118533040452206); four floats equal 4 of 4: pass
+  5. lambda 2.447380681818182+4.79811235253509i: ln|det| -1782.2300959835388 (cached -1782.2300959835388), arg 2.549662933039663 (2.549662933039663); four floats equal 4 of 4: pass
+  5. lambda -0.096+1.466089885496833i: ln|det| -2053.5221588523414 (cached -2053.5221588523414), arg -0.5700971425368024 (-0.5700971425368024); four floats equal 4 of 4: pass
+  5. control, lambda 0.12400000000000001+0.0i: ln|det| -2032.3957832084016 (cached -2032.395783208271), arg 3.594209374568891e-10 (3.594209374568891e-10); four floats equal 2 of 4
+all checks pass

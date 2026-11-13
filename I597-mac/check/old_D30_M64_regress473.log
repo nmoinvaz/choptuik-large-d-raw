@@ -1,0 +1,12 @@
+/Users/nathan/venv-314/lib/python3.14/site-packages/numpy/linalg/_linalg.py:2366: RuntimeWarning: divide by zero encountered in slogdet
+  sign, logdet = _umath_linalg.slogdet(a, signature=signature)
+/Users/nathan/venv-314/lib/python3.14/site-packages/numpy/linalg/_linalg.py:2366: RuntimeWarning: overflow encountered in slogdet
+  sign, logdet = _umath_linalg.slogdet(a, signature=signature)
+/Users/nathan/venv-314/lib/python3.14/site-packages/numpy/linalg/_linalg.py:2366: RuntimeWarning: invalid value encountered in slogdet
+  sign, logdet = _umath_linalg.slogdet(a, signature=signature)
+complex LU vs numpy slogdet (n = 7, 40, 129): max error 8.7e-13
+  series truncation (solution): centre 6.8e-62 (ratio 0.730 at 0.15), horizon 4.9e-32 (ratio 0.414 at 0.3)
+D 30.068824: M 64, kfreeze None, |F| 1.7e-26; omega 3.198742; lam_g = 1 + <c1> = 0.826484043522
+  lam 1.7: hp sign -1 ln|det| -1867.596569054886 (137.7 s) | cx ln|det| -1867.596569054886 arg -3.142e+00 (145.5 s): d ln +0.0e+00, sign ok
+  M(1.7): 0 of 3211264 entries differ from hpkernel's in a bit, max |M_cx - M_hp| = 0.0e+00 (max |M| 3.1e+04), max |Im M_cx| = 0.0e+00: pass; control (cx one ulp above 1.7): 393216 differ, fires
+Terminated: 15             PYTHONPATH=$SP/i597/cx_old:$HPK nice -n 10 "$PY" -u "$@"

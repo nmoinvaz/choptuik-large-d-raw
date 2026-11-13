@@ -1,0 +1,16 @@
+/Users/nathan/venv-314/lib/python3.14/site-packages/numpy/linalg/_linalg.py:2366: RuntimeWarning: divide by zero encountered in slogdet
+  sign, logdet = _umath_linalg.slogdet(a, signature=signature)
+/Users/nathan/venv-314/lib/python3.14/site-packages/numpy/linalg/_linalg.py:2366: RuntimeWarning: overflow encountered in slogdet
+  sign, logdet = _umath_linalg.slogdet(a, signature=signature)
+/Users/nathan/venv-314/lib/python3.14/site-packages/numpy/linalg/_linalg.py:2366: RuntimeWarning: invalid value encountered in slogdet
+  sign, logdet = _umath_linalg.slogdet(a, signature=signature)
+complex LU vs numpy slogdet (n = 7, 40, 129): max error 8.7e-13
+  |F| 3.3e-12 in this layout: Newton
+  series truncation (solution): centre 2.3e-68 (ratio 0.696 at 0.3), horizon 1.4e-54 (ratio 0.261 at 0.3)
+--mutate=dmat: the complex kernel's dmat[0, 1] moved one ulp up (checks 2 and 5 must fail)
+D 30.068824: M 32, kfreeze None, |F| 6.0e-25; omega 3.198742; lam_g = 1 + <c1> = 0.826484043522
+  lam 1.7: hp sign -1 ln|det| -644.690461587590 (16.0 s) | cx ln|det| -644.690482317998 arg +3.142e+00 (18.9 s): d ln -2.1e-05, sign ok
+  M(1.7): 81920 of 589824 entries differ from hpkernel's in a bit, max |M_cx - M_hp| = 2.5e-09 (max |M| 3.1e+04), max |Im M_cx| = 0.0e+00: FAIL; control (cx one ulp above 1.7): 81920 differ, fires
+  real zero near gauge value 0.826484043522: 0.826484043522 (diff -1.1e-16)
+FAIL: check 2: the matrices at 1.7 differ
+1 failed
