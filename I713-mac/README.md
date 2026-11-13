@@ -55,6 +55,14 @@ A control that exits 0 stops the work.
 
 A check that fails stops the work, and the failure is reported as it stands.
 
+**Amendment 1 (21:38 UTC, after ref_D200's octo-double half and before s0_D200).** The quad-double half of ref_D200
+took 1990 s for its first step and reached only lam 1/2: |dz| 1.1e-9 where the octo-double step is 2.7e-11, smallest
+pivot 2.3e-14 where the octo-double one is 1.7e-12, dDelta +1.14e-9. At that pace its 12 steps take about 6.6 h, so I
+stopped it (`ref_D200.log`, exit 143). Its validity is not established. Until a quad-double run alone (`--od 0`) has
+finished, REF200 is the octo-double Delta of ref_D200, the fallback above, and the issue's criterion against the
+quad-double corrector stays open at D 200, reported as such. ref_D252 runs its octo-double half alone (`--qd 0`) for the
+same reason, and its quad-double half runs alone after the switch-0 runs if time allows. No bound changes.
+
 ## Results
 
 ### pilot (`pilot.log`, `pilot.json`, exit 0, 20:15 to 20:21 UTC)
@@ -70,3 +78,11 @@ At I644's converged point on the D 200 planted system, and at its projection by 
 The projection with reseed_o 3 took 159 s, its rung max\|R\| 6.03e-34 → 2.28e-69 → 2.31e-77 → 1.24e-84. So with
 the switch at 0 and the quad-double projection alone, every iterate carries 1.2e-33 in its horizon rows, seven orders
 above the planted check's 1e-40. The setup reproduces I644's converged residual.
+
+### ref_D200, C0 (`ref_D200.log`, `.json`, `.npz`; 20:21 to 21:38 UTC)
+
+**C0: PASS.** The octo-double half took 6 steps to pinned max\|F\| 6.52e-49, with Delta
+1.695088752463841744241523971202762929113, which equals I644-mac/planted_own to all 40 digits. Its projections
+were u0q 2, ladder 2 and skipped 3, and it took 2294 s. Each step's \|F\|, lam, dDelta and pivots equal I644's log line
+for line, and \|dz\| matches to the digits I644 printed (it printed two). The quad-double half was stopped after its
+first step (amendment 1), so the log ends `exit 143`.
