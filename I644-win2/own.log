@@ -4,3 +4,24 @@ the base keeps its stored plan (61 steps)
       elim projections {'u0': 0, 'u0q': 0, 'ladder': 0, 'failed': 0, 'skipped': 1}
       octo-double Newton: 1 steps, max|F| 1.5e-86, converged; double-double |F| of its first two parts 1.1e+07
 base I603-win2/chain/anm_pin3_D248.6298.npz: D 248.629781818, M 32, pin 3 (held [5, 7, 9, 11, 13]), |F| 1.1e+07; N 24, eps 1e-14, h_max 1.0, corrector od (junk_only False), tol 1.0e-20 x 1.45^(D - 248.62978), stalls accepted below 1e-17
+step 0: D 248.629781818, pivots 8.8e-29..3.0e+35, |z_1| 3.49e-04, |z_N| 4.94e-26, ratios 2-5 319.4 294.3 5.5 2.1, a_max 2.194, 978 s
+    a 0.7629: re-seeded (ok), 37.45 s
+      horizon data refined in octo-double, rung max|R| 1.42e-26 -> 9.31e-59 -> 1.43e-69 -> 5.36e-79
+  on 0: |F| 6.92e-34 -> 4.89e-25, |dz| 3.9e-30 -> 1.5e-30, lam 1, dDelta -3.93e-30, piv 1.5e-26..3.9e+35, 53.48 s
+  on 1: |F| 4.89e-25 -> 4.50e-27, |dz| 1.5e-30 -> 1.1e-30, lam 1, dDelta -1.48e-30, piv 6.4e-29..3.9e+35, 53.4 s
+  on 2: |F| 4.50e-27 -> 1.97e-28, |dz| 1.1e-30 -> 6.2e-31, lam 1, dDelta +1.07e-30, piv 2.9e-29..3.9e+35, 53.28 s
+  on 3: |F| 1.97e-28 -> 1.44e-28, |dz| 6.2e-31 -> 2.4e-31, lam 0.5, dDelta -6.21e-31, piv 3.7e-29..3.9e+35, 107.65 s
+  on 4: |F| 1.44e-28, |dz| 2.4e-31: no trial step accepted, stopping
+      elim projections {'u0': 0, 'u0q': 0, 'ladder': 0, 'failed': 0, 'skipped': 15}
+      octo-double Newton: 5 steps, max|F| 1.4e-28, not converged; double-double |F| of its first two parts 1.1e+07
+    a 0.763 -> D 249.392721272: predicted |F| 1.04e+07, od 5 steps -> 1.06e+07 (tol 1.3e-20), Delta 1.685054158679 (formula diff -1.6e-06), moved 4.7e-30, 884 s
+    a 0.3815: re-seeded (ok), 44.09 s
+      horizon data refined in octo-double, rung max|R| 2.32e-26 -> 4.47e-59 -> 4.73e-69 -> 5.36e-78
+  on 0: |F| 2.62e-36 -> 1.60e-35, |dz| 6.6e-36 -> 7.4e-49, lam 1, dDelta -1.02e-37, piv 5.4e-29..3.4e+35, 64.55 s
+  on 1: |F| 1.60e-35 -> 1.97e-61, |dz| 7.4e-49 -> 9.4e-49, lam 1, dDelta +7.38e-49, piv 5.4e-29..3.4e+35, 66.84 s
+  on 2: |F| 1.97e-61 converged, Delta 1.68511655685031170 +9.8639e-17
+      elim projections {'u0': 0, 'u0q': 0, 'ladder': 0, 'failed': 0, 'skipped': 3}
+      octo-double Newton: 3 steps, max|F| 2.0e-61, converged; double-double |F| of its first two parts 1.1e+07
+    a 0.381 -> D 249.011251545: predicted |F| 1.10e+07, od 3 steps -> 1.10e+07 (tol 1.2e-20, stall accepted, Delta correction +0.0e+00), Delta 1.685116556850 (formula diff -1.6e-06), moved 1.9e-34, 195 s
+      Delta of the saved state, its eight parts summed exactly: 1.685116556850311796241205234433709114370
+done
