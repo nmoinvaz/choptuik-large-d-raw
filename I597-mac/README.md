@@ -42,8 +42,10 @@ The matrix dumps of `mm597.py dump` (38 to 151 MB each, 0.8 GB in all) are not i
   passes (0); the old build fails check 2 with 1,854 entries, at most 2.0e-26 against max abs(M) 1.1e6, which is the
   projector's difference. `--mutate=dmat` at M 32: check 2 fails (81,920 entries), exit 1.
 - **Bit check against #473's cache** (D 30 M 64, 8 cached λ, 7 complex): the new build equals all four floats at all 8;
-  the control (Re λ one ulp up) changes 2 of 4. The old build's run was stopped by hand (exit 143) at machine load 60
-  to 90 from other sessions, as old = new is shown bit for bit elsewhere.
+  the control (Re λ one ulp up) changes 2 of 4. `--mutate=dmat` fails checks 2 and 5 (0 of 4 floats equal at both
+  cached points; one ulp of dmat[0, 1] moves ln abs(det) by about 220 at this M 64 no-cut state), exit 1. The old
+  build's run was stopped by hand (exit 143) at machine load 60 to 90 from other sessions, as old = new is shown bit
+  for bit elsewhere.
 - **Frozen rows, old against new** (`kf/compare_*.log`): at D 40 kf 13 and D 61 M 64 kf 23 every differing entry is in
   the horizon block's p rows, at most 1.9e-32 and 3.2e-32 of max abs(M). The det is bit for bit at 3 of 4 λ at D 40, and
   moves by 2.0e-7 in ln abs(det) and 1.2e-6 rad in arg at D 61 s3. No cut: 0 entries differ.

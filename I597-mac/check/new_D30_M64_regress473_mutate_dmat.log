@@ -10,3 +10,11 @@ complex LU vs numpy slogdet (n = 7, 40, 129): max error 8.7e-13
 D 30.068824: M 64, kfreeze None, |F| 1.7e-26; omega 3.198742; lam_g = 1 + <c1> = 0.826484043522
   lam 1.7: hp sign -1 ln|det| -1867.596569054886 (239.2 s) | cx ln|det| -1719.593224317260 arg -3.142e+00 (229.5 s): d ln +1.5e+02, sign ok
   M(1.7): 393216 of 3211264 entries differ from hpkernel's in a bit, max |M_cx - M_hp| = 3.3e-02 (max |M| 3.1e+04), max |Im M_cx| = 0.0e+00: FAIL; control (cx one ulp above 1.7): 393216 differ, fires
+  real zero near gauge value 0.826484043522: 0.826484043522 (diff -2.2e-16)
+  5. lambda 0.124+0.0i: ln|det| -1811.8301131251994 (cached -2032.395783208271), arg 3.580993279683753e-10 (3.594209374568891e-10); four floats equal 0 of 4: FAIL
+  5. lambda -0.096+1.466089885496833i: ln|det| -1820.6912966777625 (cached -2053.5221588523414), arg 0.12275207023520807 (-0.5700971425368024); four floats equal 0 of 4: FAIL
+  5. control, lambda 0.12400000000000001+0.0i: ln|det| -1811.8301206706717 (cached -2032.395783208271), arg 3.580993279683753e-10 (3.594209374568891e-10); four floats equal 0 of 4
+FAIL: check 2: the matrices at 1.7 differ
+FAIL: check 5 failed at 0.124+0.0i
+FAIL: check 5 failed at -0.096+1.466089885496833i
+3 failed
