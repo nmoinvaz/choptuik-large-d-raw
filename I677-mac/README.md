@@ -23,4 +23,6 @@ package. Protocol and results: `notes/REDUCED_CUBIC.md` section 9. Inputs from t
 | `ray_ref.log`, `.json` | REF (refused, D 242.5459), code 321954dc | 0 |
 | `ray_acc.log`, `.json` | ACC (accepted, D 242.5225), code 11c31fbd (the ray mode as 321954dc) | 0 |
 | `ray_d232.log`, `.json` | D 232.13, win_d10 (refused), --tensors=1, code 11c31fbd | 0 |
+| `ray_classA.log`, `.json` | the class A start (D 249.3927, refused in #603), --tensors=1, code 11c31fbd | 0 |
+| `raysum.txt` | `reduced_cubic.py raysum` (code f4512a04) of the five final JSON files: orders, constants, crossings and next-order estimates | 0 |
 | `run_i677.sh`, `exits.txt` | the runner, and every start and exit | |
