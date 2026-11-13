@@ -1,0 +1,56 @@
+rows plant (seed 5): n 33, k 4, --mutate=parity; start max|F| 2.789e+00; planted affine rows centre.m.k1c, horizon.a.k0c, horizon.p.k3c, horizon.p.k3s, phase; the planted share of |U| on them 0.96625
+  basis: sigma of B 2.1000e-27, 2.2000e-27, 3.2000e-26, 7.1000e-26 (iteration 2.1022e-27, 2.1973e-27, 3.2000e-26, 7.1000e-26); |dz0| 8.3e-30, a = V^T dz0 4.548e-30, -1.161e-30, 5.521e-30, -4.047e-30, |a| 8.3e-30, the rest 4.79e-33; |B a| 3.375e-55, |U^T F(z0) + B a| / |B a| 3.49e-87; -J^-1 F(z0) against dz0 0.0; w0 = -J^-1 (I - U U^T) F(z0): |w0| 4.789e-33, |V^T w0| 3.46e-115 (0 s)
+  rows: 33 rows in (block, field, harmonic), the change of rows orthonormal to 3.94e-141; shares of |U| sum to 1.0, of |V| to 1.0 (0 s)
+  F''(v_j, v_l) per row at h 1e-32: max q 9.792e+32 (0 s)
+  F''(v_j, v_l) per row at h 1e-33: max q 9.792e+32 (0 s)
+  share of |U| on the rows affine to 1e-10 (q_r <= 1e-10 max q and <= 1e-10 |J_r|, at h 1e-33): 0.2398473087 (1 of 33 rows): refutes; at h 1e-32 0.2398473087 (refutes); against the largest q alone 0.2398473087, against |J_r| alone 0.2398473087; the worst weak left vector's share (smallest eigenvalue of U_A^T U_A) -6.97045e-142
+  the rows linear by construction (5: centre.m.k1c .. phase): share of |U| 0.2398473087; all classified affine: NO; their largest q 0.0
+  by block and field: share of |U|, of it on affine rows, max q, max q/|J_r|, affine rows / rows
+    centre.p      3.819e-03  0.000e+00  9.792e+32  3.398e-01   0/4
+    centre.m      2.427e-01  0.000e+00  1.719e+31  1.699e-02   0/4
+    centre.a      4.946e-03  0.000e+00  1.965e+32  1.594e+00   0/4
+    centre.c      6.524e-03  0.000e+00  9.625e+32  9.690e-01   0/4
+    horizon.p     4.891e-01  0.000e+00  3.333e+32  7.037e-01   0/4
+    horizon.m     3.489e-03  0.000e+00  1.286e+31  3.422e-03   0/4
+    horizon.a     4.764e-03  0.000e+00  2.795e+32  1.294e-01   0/4
+    horizon.c     4.854e-03  0.000e+00  2.571e+32  5.341e-02   0/4
+    phase         2.398e-01  2.398e-01  0.000e+00  0.000e+00   1/1
+  the rows of U, largest share first:
+    phase              share 2.398e-01, q 0.000e+00, q/|J_r| 0.00e+00, |J_r| 1.22e+32, q(1e-32)/q(1e-33) inf
+    horizon.p.k4c      share 2.144e-01, q 1.667e+32, q/|J_r| 2.36e-01, |J_r| 7.05e+32, q(1e-32)/q(1e-33) 1, NOT affine
+    horizon.p.k2c      share 1.195e-01, q 2.357e+32, q/|J_r| 1.83e-01, |J_r| 1.29e+33, q(1e-32)/q(1e-33) 1, NOT affine
+    horizon.p.k2s      share 1.167e-01, q 3.333e+32, q/|J_r| 7.04e-01, |J_r| 4.74e+32, q(1e-32)/q(1e-33) 1, NOT affine
+    centre.m.k2s       share 1.155e-01, q 1.304e+30, q/|J_r| 6.38e-03, |J_r| 2.04e+32, q(1e-32)/q(1e-33) 1, NOT affine
+    centre.m.k2c       share 6.498e-02, q 1.018e+31, q/|J_r| 1.70e-02, |J_r| 5.99e+32, q(1e-32)/q(1e-33) 1, NOT affine
+    horizon.p.k0c      share 3.848e-02, q 1.667e+32, q/|J_r| 3.23e-02, |J_r| 5.16e+33, q(1e-32)/q(1e-33) 1, NOT affine
+    centre.m.k4c       share 3.799e-02, q 3.006e+30, q/|J_r| 9.26e-04, |J_r| 3.25e+33, q(1e-32)/q(1e-33) 1, NOT affine
+    centre.m.k0c       share 2.420e-02, q 1.719e+31, q/|J_r| 5.82e-03, |J_r| 2.95e+33, q(1e-32)/q(1e-33) 1, NOT affine
+    centre.c.k3s       share 3.695e-03, q 9.541e+32, q/|J_r| 9.69e-01, |J_r| 9.85e+32, q(1e-32)/q(1e-33) 1, NOT affine
+    horizon.c.k3c      share 3.620e-03, q 1.068e+32, q/|J_r| 2.18e-02, |J_r| 4.90e+33, q(1e-32)/q(1e-33) 1, NOT affine
+    horizon.a.k3c      share 2.260e-03, q 1.909e+32, q/|J_r| 1.29e-01, |J_r| 1.48e+33, q(1e-32)/q(1e-33) 1, NOT affine
+  the rest, on rows not affine (32 rows, share 0.7602), largest share first:
+    horizon.p.k4c      share 2.144e-01, q 1.667e+32, q/|J_r| 2.36e-01, |J_r| 7.05e+32, q(1e-32)/q(1e-33) 1, NOT affine
+    horizon.p.k2c      share 1.195e-01, q 2.357e+32, q/|J_r| 1.83e-01, |J_r| 1.29e+33, q(1e-32)/q(1e-33) 1, NOT affine
+    horizon.p.k2s      share 1.167e-01, q 3.333e+32, q/|J_r| 7.04e-01, |J_r| 4.74e+32, q(1e-32)/q(1e-33) 1, NOT affine
+    centre.m.k2s       share 1.155e-01, q 1.304e+30, q/|J_r| 6.38e-03, |J_r| 2.04e+32, q(1e-32)/q(1e-33) 1, NOT affine
+    centre.m.k2c       share 6.498e-02, q 1.018e+31, q/|J_r| 1.70e-02, |J_r| 5.99e+32, q(1e-32)/q(1e-33) 1, NOT affine
+    horizon.p.k0c      share 3.848e-02, q 1.667e+32, q/|J_r| 3.23e-02, |J_r| 5.16e+33, q(1e-32)/q(1e-33) 1, NOT affine
+    centre.m.k4c       share 3.799e-02, q 3.006e+30, q/|J_r| 9.26e-04, |J_r| 3.25e+33, q(1e-32)/q(1e-33) 1, NOT affine
+    centre.m.k0c       share 2.420e-02, q 1.719e+31, q/|J_r| 5.82e-03, |J_r| 2.95e+33, q(1e-32)/q(1e-33) 1, NOT affine
+    centre.c.k3s       share 3.695e-03, q 9.541e+32, q/|J_r| 9.69e-01, |J_r| 9.85e+32, q(1e-32)/q(1e-33) 1, NOT affine
+    horizon.c.k3c      share 3.620e-03, q 1.068e+32, q/|J_r| 2.18e-02, |J_r| 4.90e+33, q(1e-32)/q(1e-33) 1, NOT affine
+    horizon.a.k3c      share 2.260e-03, q 1.909e+32, q/|J_r| 1.29e-01, |J_r| 1.48e+33, q(1e-32)/q(1e-33) 1, NOT affine
+    centre.a.k1c       share 2.087e-03, q 1.421e+32, q/|J_r| 1.59e+00, |J_r| 8.91e+31, q(1e-32)/q(1e-33) 1, NOT affine
+  the rest by block and field: horizon.p 4.89e-01, centre.m 2.43e-01, centre.c 6.52e-03, centre.a 4.95e-03, horizon.c 4.85e-03, horizon.a 4.76e-03, centre.p 3.82e-03, horizon.m 3.49e-03
+  V by unknowns (diagnostic), largest share first: c0.k0c 0.067, a_h.k0c 0.066, node0.a.k4c 0.064, node0.p.k3s 0.063, m_h.k3c 0.058, p1.k1s 0.056, node0.p.k3c 0.054, a_h.k2c 0.052, p1.k1c 0.040, m_h.k1c 0.039
+  along e = a / |a|: w_ee = J^-1 (I - U U^T) F''(e, e), |w_ee| 1.22e+51, h 1e-33 against 1e-34 1.14e-105; U^T T(e) at h 1e-23 against 1e-24 1.08e-102; U^T S(e) at h 1e-32 against 1e-33 5.72e-108 (bound 1e-2 each): pass; U^T x by rows against by grid points 1.45e-141; |U^T (T - 3S)(e)| / |U^T T(e)| 1.09e+50 (bound 1e-12) (0 s)
+  per row, along e: |U^T x|; its part on the affine rows and on the rest; the sum of |U_r x_r| over all rows (no cancellation), on the affine rows and on the rest; max |x_r| over all rows and over the affine rows
+    F''(e,e)    8.73e+31;        0.0   8.73e+31;   3.91e+32        0.0   3.91e+32;   6.67e+32        0.0; largest |U_r| |x_r|: centre.c.k3s 8.11e+31, horizon.p.k2s 7.67e+31, horizon.p.k2c 5.49e+31
+    T(e)        1.61e+33;        0.0   1.61e+33;   2.64e+33        0.0   2.64e+33;   1.09e+34        0.0; largest |U_r| |x_r|: centre.p.k2s 5.11e+32, centre.p.k2c 5.09e+32, centre.p.k4c 4.38e+32
+    3S(e)       1.76e+83;        0.0   1.76e+83;   4.52e+83        0.0   4.52e+83;   9.77e+83        0.0; largest |U_r| |x_r|: centre.c.k3s 6.15e+82, centre.p.k2c 5.06e+82, centre.p.k2s 4.57e+82
+    T-3S        1.76e+83;        0.0   1.76e+83;   4.52e+83        0.0   4.52e+83;   9.77e+83        0.0; largest |U_r| |x_r|: centre.c.k3s 6.15e+82, centre.p.k2c 5.06e+82, centre.p.k2s 4.57e+82
+  planted (PR1) the affine rows found, ['phase'], against the planted ['centre.m.k1c', 'horizon.a.k0c', 'horizon.p.k3c', 'horizon.p.k3s', 'phase'], labels NOT equal: FAIL
+  planted (PR2) share on them 0.2398473087 against 0.96625: 0.752; every row's share 0.882 of the largest (bound 1e-6): FAIL
+  planted (PR3) q_r on the nonlinear rows against the planted 1.89e+4 (bound 1e-6): FAIL
+  planted (PR4) F''(e,e), T(e), S(e) per row against the planted, of each one's largest: 1.49, 0.707, 1.67; the affine rows' part of U^T x, of the no-cancellation size, 0.0 (bounds 1e-6, 1e-10): FAIL
+check: FAIL
