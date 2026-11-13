@@ -12,6 +12,10 @@ stdout.
   default precision (every component within 1e-100 of its string), and its control, which must exit 1.
 - `rounding.json`, `rounding.log`: `sigma_load.py --rounding`, the strings' rounding per order against the measured
   errors.
+- `strings.*`: `pade_precision.py strings`, every file of `solver/inner_amp/` with σ_k at the three nodes by digit
+  count, and the 25-digit ones against the J 1250 strings per order, in units of their rounding.
+- `selftests/`: the selftests of the six scripts whose loading changed (`pade_geometry`, `pade_farend`,
+  `pade_chord_arc`, `pade_twin_size`, `pade_twin_count`, `pade_twin_peak`), each exit 0.
 - `plants_c.*`: `pade_precision.py plants`, the plants' c_m and σ₀–σ₃₀ with the real template read at 53 bits, 60
   and 100 digits against 300 digits.
 - Reruns at full precision with the stage's own script, each against its stored record (`compare/<name>.log` and

@@ -1,0 +1,8 @@
+selftest 1: DA2 [4,4,4] on the semi-classical chord density: error 0.0e+00 (pass < 1e-10)
+selftest 1, mutation sigma_18 x 1.01: error 7.8e-07 (must exceed 1e-10)
+selftest 2: DA2 ensemble on a non-semi-classical chord density: 1.399989+1.200035j against 1.400000+1.200000j, error 3.7e-05 (pass < 5e-3), spread 2.6e-04
+selftest 2, mutation sigma_k x 1.03^k (end moved to 1.03 P1): error 5.5e-02 (must exceed 5e-3)
+selftest 3: plant R = 1.85 moments, tanh-sinh against mpmath.quad, max rel diff 5.9e-61 (pass < 1e-30); |P1| = 1.850000000000
+selftest 3, mutation moment(2, 11) x (1 + 1e-25): rel diff 1.0e-25 (must exceed 1e-30)
+selftest: PASS
+exit 0
