@@ -435,3 +435,42 @@ step 32: D 248.629781818, pivots 8.8e-29..3.0e+35, |z_1| 3.49e-04, |z_N| 4.94e-2
   on 1: |F| 4.89e-25 -> 4.50e-27, |dz| 1.5e-30 -> 1.1e-30, lam 1, dDelta -1.48e-30, piv 6.4e-29..3.9e+35, 50.27 s
   on 2: |F| 4.50e-27 -> 1.97e-28, |dz| 1.1e-30 -> 6.2e-31, lam 1, dDelta +1.07e-30, piv 2.9e-29..3.9e+35, 50.37 s
   on 3: |F| 1.97e-28 -> 1.44e-28, |dz| 6.2e-31 -> 2.4e-31, lam 0.5, dDelta -6.21e-31, piv 3.7e-29..3.9e+35, 105.43 s
+  on 4: |F| 1.44e-28, |dz| 2.4e-31: no trial step accepted, stopping
+      elim projections {'u0': 0, 'u0q': 0, 'ladder': 0, 'failed': 0, 'skipped': 15}
+      octo-double Newton: 5 steps, max|F| 1.4e-28, not converged; double-double |F| of its first two parts 1.1e+07
+    a 0.763 -> D 249.392721272: predicted |F| 1.04e+07, od 5 steps -> 1.06e+07 (tol 8.2e-17), Delta 1.685054158679 (formula diff -1.6e-06), moved 4.7e-30, 767 s
+    a 0.3815: re-seeded (ok), 34.22 s
+      horizon data refined in octo-double, rung max|R| 2.32e-26 -> 4.47e-59 -> 4.73e-69 -> 5.36e-78
+  on 0: |F| 2.62e-36 -> 1.60e-35, |dz| 6.6e-36 -> 7.4e-49, lam 1, dDelta -1.02e-37, piv 5.4e-29..3.4e+35, 54.59 s
+  on 1: |F| 1.60e-35 -> 1.97e-61, |dz| 7.4e-49 -> 9.4e-49, lam 1, dDelta +7.38e-49, piv 5.4e-29..3.4e+35, 50.35 s
+  on 2: |F| 1.97e-61 converged, Delta 1.68511655685031170 +9.8639e-17
+      elim projections {'u0': 0, 'u0q': 0, 'ladder': 0, 'failed': 0, 'skipped': 3}
+      octo-double Newton: 3 steps, max|F| 2.0e-61, converged; double-double |F| of its first two parts 1.1e+07
+    a 0.381 -> D 249.011251545: predicted |F| 1.10e+07, od 3 steps -> 1.10e+07 (tol 7.1e-17, stall accepted, Delta correction +0.0e+00), Delta 1.685116556850 (formula diff -1.6e-06), moved 1.9e-34, 156 s
+      Delta of the saved state, its eight parts summed exactly: 1.685116556850311796241205234433709114370
+step 33: D 249.011251545, pivots 5.4e-29..3.4e+35, |z_1| 3.48e-04, |z_N| 6.31e-26, ratios 2-5 319.8 238.9 3.2 2.9, a_max 2.171, 777 s
+    a 0.3815: re-seeded (FAILED, prediction kept), 5.43 s; rung u 0.3000 not converged at |R| 2.65e+06 after 1 steps
+  on 0: |F| 1.40e-35 -> 1.85e-35, |dz| 1.4e-35 -> 3.1e-48, lam 1, dDelta -7.69e-36, piv 4.3e-29..3.9e+35, 50.59 s
+  on 1: |F| 1.85e-35 -> 4.34e-61, |dz| 3.1e-48 -> 9.2e-49, lam 1, dDelta +3.13e-48, piv 4.3e-29..3.9e+35, 50.51 s
+  on 2: |F| 4.34e-61 converged, Delta 1.68505415867925779 -7.9267e-17
+      elim projections {'u0': 0, 'u0q': 1, 'ladder': 0, 'failed': 0, 'skipped': 2}
+      octo-double Newton: 3 steps, max|F| 4.3e-61, converged; double-double |F| of its first two parts 1.1e+07
+    a 0.381 -> D 249.392721272: predicted |F| 1.06e+07, od 3 steps -> 1.06e+07 (tol 8.2e-17, stall accepted, Delta correction +0.0e+00), Delta 1.685054158679 (formula diff -1.6e-06), moved 9.6e-35, 187 s
+      Delta of the saved state, its eight parts summed exactly: 1.685054158679257706013773262194860158710
+step 34: D 249.392721272, pivots 4.3e-29..3.9e+35, |z_1| 3.47e-04, |z_N| 3.69e-25, ratios 2-5 320.3 143.6 3.0 4.0, a_max 2.010, 778 s
+    a 0.4768: re-seeded (FAILED, prediction kept), 5.48 s; rung u 0.3000 not converged at |R| 5.34e+06 after 1 steps
+  on 0: |F| 1.50e-35 -> 3.89e-34, |dz| 2.7e-34 -> 4.5e-44, lam 1, dDelta -2.68e-34, piv 1.9e-29..4.6e+35, 50.69 s
+  on 1: |F| 3.89e-34 -> 1.78e-53, |dz| 4.5e-44 -> 3.6e-45, lam 1, dDelta +4.48e-44, piv 1.9e-29..4.6e+35, 50.6 s
+  on 2: |F| 1.78e-53 -> 4.85e-54, |dz| 3.6e-45 -> 6.3e-69, lam 1, dDelta -3.60e-45, piv 1.9e-29..4.6e+35, 50.28 s
+  on 3: |F| 4.85e-54 -> 2.97e-92, |dz| 6.3e-69 -> 3.8e-85, lam 1, dDelta -6.32e-69, piv 1.9e-29..4.6e+35, 50.5 s
+  on 4: |F| 2.97e-92 converged, Delta 1.68497642436220141 -9.8975e-17
+      elim projections {'u0': 0, 'u0q': 1, 'ladder': 0, 'failed': 0, 'skipped': 4}
+      octo-double Newton: 5 steps, max|F| 3.0e-92, converged; double-double |F| of its first two parts 1.2e+07
+    a 0.477 -> D 249.86955843: predicted |F| 1.15e+07, od 5 steps -> 1.15e+07 (tol 9.8e-17, stall accepted, Delta correction +0.0e+00), Delta 1.684976424362 (formula diff -1.6e-06), moved 1.5e-33, 288 s
+      Delta of the saved state, its eight parts summed exactly: 1.684976424362201309182997641406692514297
+step 35: D 249.86955843, pivots 1.9e-29..4.6e+35, |z_1| 3.46e-04, |z_N| 1.33e-25, ratios 2-5 320.8 78.2 3.5 8.5, a_max 2.101, 778 s
+    a 0.5960: re-seeded (ok), 33.56 s
+      horizon data refined in octo-double, rung max|R| 3.65e-26 -> 6.28e-59 -> 1.01e-69 -> 2.17e-79
+  on 0: |F| 2.73e-35 -> 2.72e-28, |dz| 2.4e-31 -> 3.1e-34, lam 1, dDelta +2.39e-31, piv 1.3e-29..5.7e+35, 50.24 s
+  on 1: |F| 2.72e-28 -> 1.36e-28, |dz| 3.1e-34 -> 5.9e-35, lam 0.5, dDelta -3.10e-34, piv 1.0e-29..5.7e+35, 100.81 s
+  on 2: |F| 1.36e-28 -> 6.81e-29, |dz| 5.9e-35 -> 1.9e-35, lam 0.5, dDelta -5.92e-35, piv 9.2e-30..5.7e+35, 106.58 s
