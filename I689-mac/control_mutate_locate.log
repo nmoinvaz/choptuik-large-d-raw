@@ -1,0 +1,21 @@
+run 2026-11-13 17:06 UTC, mutate locate
+K0 wf 0.99: ratio law 12-21 1.459755+1.111335j (beta 5.6563-2.6909j), off #541 by 5.7e-05 (pass <= 1e-4); poles past kappa_* k 8 1.355475+1.050698j |t| 1.7150 (1 candidate), off #541 by 0.0e+00; k 9 1.405094+1.062886j |t| 1.7618 (1 candidate), off #541 by 0.0e+00; k 10 1.458552+1.071935j |t| 1.8101 (1 candidate), off #541 by 0.0e+00 -> OK
+K0 wf 1.0: ratio law 12-21 1.457407+1.111932j (beta 5.6631-2.6508j), off #541 by 3.3e-05 (pass <= 1e-4); poles past kappa_* k 8 1.354938+1.050760j |t| 1.7146 (1 candidate), off #541 by 0.0e+00; k 9 1.406617+1.061286j |t| 1.7621 (1 candidate), off #541 by 0.0e+00; k 10 1.456603+1.068512j |t| 1.8065 (1 candidate), off #541 by 0.0e+00 -> OK
+K0 wf 1.01: ratio law 12-21 1.455118+1.112573j (beta 5.6707-2.6105j), off #541 by 3.2e-05 (pass <= 1e-4); poles past kappa_* k 8 1.354899+1.050906j |t| 1.7147 (1 candidate), off #541 by 0.0e+00; k 9 1.407585+1.059929j |t| 1.7620 (1 candidate), off #541 by 0.0e+00; k 10 1.456260+1.067614j |t| 1.8057 (1 candidate), off #541 by 0.0e+00 -> OK
+K0 wf 0.99: near_inf 0.773362+0.145995j, off #541 by 0.0e+00 (pass <= 1e-9)
+K0 wf 1.0: near_inf 0.732070+0.055920j, off #541 by 0.0e+00 (pass <= 1e-9)
+K0 wf 1.01: near_inf 0.727959+0.034868j, off #541 by 0.0e+00 (pass <= 1e-9)
+zpade wf 0.99: [11/11] zero 7.3527415514+0.0765021392j (x_ref 7.359350+0.077800j, off by 6.73e-03); spread over the other orders 8.8e-05
+zpade wf 1.0: [11/11] zero 7.3940870656-0.0000330191j (x_ref 7.400000+0.000000j, off by 5.91e-03); spread over the other orders 8.5e-05
+zpade wf 1.01: [11/11] zero 7.4343830863-0.0772602571j (x_ref 7.439350-0.078200j, off by 5.06e-03); spread over the other orders 8.4e-05
+K2(a) wf 0.99: alpha 0.5 plant (M 6, fit 3.3e-05) in its own basis (mutated): chi 1.1e-37 (pass <= 1e-30) OK; its Pade zero off x_ref by 1.2e-05
+Z1(a) wf 0.99: plant with its zero at 7.3624+0.0798j (M 6) in its own basis (mutated): chi 8.8e-37 OK; its Pade zero off by 1.3e-05
+Z1(b) wf 0.99: located zero (7.35935 + 0.0778000000000001j) (from x_ref), off the plant's by 3.6e-03 (pass <= 0.0001), log l2 at 20 terms 16.366 BAD
+K2(a) wf 1.0: alpha 0.5 plant (M 6, fit 3.1e-05) in its own basis (mutated): chi 5.5e-37 (pass <= 1e-30) OK; its Pade zero off x_ref by 1.4e-05
+Z1(a) wf 1.0: plant with its zero at 7.4030+0.0020j (M 6) in its own basis (mutated): chi 5.9e-37 OK; its Pade zero off by 1.5e-05
+Z1(b) wf 1.0: located zero (7.4 + 0.0j) (from x_ref), off the plant's by 3.6e-03 (pass <= 0.0001), log l2 at 20 terms 16.317 BAD
+K2(a) wf 1.01: alpha 0.5 plant (M 6, fit 3.0e-05) in its own basis (mutated): chi 3.9e-37 (pass <= 1e-30) OK; its Pade zero off x_ref by 1.6e-05
+Z1(a) wf 1.01: plant with its zero at 7.4424-0.0762j (M 6) in its own basis (mutated): chi 1.4e-36 OK; its Pade zero off by 1.7e-05
+Z1(b) wf 1.01: located zero (7.43935 - 0.0782000000000001j) (from x_ref), off the plant's by 3.6e-03 (pass <= 0.0001), log l2 at 20 terms 16.675 BAD
+mutation locate: K2(a) failed at every node False; Z1(a) False; C0 failures 0 of 0; Z1(b) False; as frozen: True
+K0 True, K2 True, C0 True (0 failures), Z1 False; the real stage may run: True

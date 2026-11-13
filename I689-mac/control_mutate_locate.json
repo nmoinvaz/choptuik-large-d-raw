@@ -1,0 +1,522 @@
+{
+ "frozen": {
+  "variants_judged": "chord twins, P1 = kappa_*, ex = beta - 1, per node: kstar (alpha 0, P0, the plants' zero factor at x_ref; the baseline); near-end exponent alpha = -0.5, -0.25, +0.25, +0.5, +1 (density s^alpha (1-s)^ex sum c_m T_m(2s-1)); near541 (P0 -> #541's extrapolated near end); nozero (zero factor removed); zpade (the zero at the real series' [11/11] Pade zero nearest x_ref); zfit (the zero located by the least-squares l2 at M = 20 = n - 3)",
+  "variants_context": "near541 x each alpha; nozero x each alpha; nozero with ex = beta - 2; x_ref + (+-0.01, +-0.01i, +-0.1, +-0.1i); the far end at the ratio-law kappa alone and with each alpha, near541, nozero, zpade; zfitratio; p0fit (P0 located by l2 at M = 20); afit (alpha located by l2 at M = 20); same rules, reported, not judged",
+  "errors_sizes_C1": "#672's: measured rel_k (floor 1e-30), F = 1; M_min (least squares, chi <= 1), M_lo (l2 <= sqrt(n)), n = 23, M = 6..23; 150 digits checked at 250; C1 amended at M = n, on every scan; if C1 fires on real data the work stops. Context: errors widened to the strings' rounding (#683), J1500 at wf 1.00",
+  "locator": "the zero (or P0) minimising log l2 at M = 20 = n - 3 (never chi at n - 1, #684): Nelder-Mead in offsets x = centre + scale (p + iq), scale 0.01, then rounds re-centred at the best point with scale / 100 until a round gains < 1e-3 in log l2 or scale < 1e-20; from each start (zero: x_ref and the Pade zero; P0: P0 and #541's near end), the lower l2 kept. afit: alpha on -0.9..2.0 step 0.1 by l2 at M = 20, then golden section to 1e-6",
+  "K0_ends": "the near end of #541 reproduced: |near_inf - NEAR541| <= 1e-9 at every node; the far ends as #684's K0 (the ratio law within 1e-4 of #541, the poles past kappa_* within 1e-9)",
+  "K2_control": "the issue's same-class control, at every node: the chord2 plant with alpha = 0.5 (P0, kappa_*, x_ref) (a) refitted in its own basis at its own M: chi <= 1e-30; (b) in the kstar basis (alpha = 0): M_min >= 19",
+  "C0_variants": "every non-located variant basis, judged and context, at every node: the chord2 plant of the same spec, refitted in the variant's basis at its own M: chi <= 1e-30. A located variant: the same at its located value, in the real stage; a failure there is reported and that variant is not judged",
+  "Z1_locator": "a chord2 plant with its zero at x_ref + 0.003 + 0.002i, at every node: (a) own basis chi <= 1e-30; (b) the zero locator, started as for zfit, returns the plant's zero within 1e-4. Z1 does not gate the real stage. If it fails, zfit and zfitratio are reported as uncalibrated, not judged",
+  "gate": "the real stage runs only if K0, K2 and every C0 pass",
+  "C2_baseline": "kstar reproduces #672's chord twin: M_min = 23 and chi at 22 terms within 1e-3 relative of REF672 at every node; a failure is a discrepancy, reported",
+  "mutation_control": "--mutate=alpha adds 0.01 to every basis' alpha: K2(a), Z1(a) and every C0 must fail. --mutate=zero moves the zero of every basis that has one by +0.01: K2(a), Z1(a) and every C0 with a zero factor must fail, every C0 without one must pass. --mutate=locate makes the locator return its first start (x_ref) unsearched: Z1(b) must fail at every node (C0 is skipped). The scans and Z1(b) are skipped under alpha and zero. Each run exits 1",
+  "mutation_real": "--mutate=c1dup (#672): column n - 1 of the 250-digit bases replaced by column n - 2, on the non-located variants; the amended C1 must fire on every scan with M_min = n and pass on every scan with M_min < n; exit 1",
+  "fits": "a variant fits if M_min <= 20 at all three nodes (chord class)",
+  "verdict": "names the fitting judged variants by ingredient: near-end exponent (a*), near-end position (near541), zero factor (nozero, zpade, zfit if Z1 passed); if none fits: none of the tested near ends or zero factors gives a short twin",
+  "context": "chi at M = 20..22 and l2 at M = 20 per scan; the sensitivity (each judged variant's chord2 plant in the kstar basis; the kstar plant in the nozero and a+0.5 bases; K2's plant in the a+0.25 and a+1 bases; Z1's plant in the kstar basis); the Pade zero's error on the K2 and Z1 plants and its spread over [10/12], [12/10], [10/10], [11/10], [10/11] on the real series; widened errors (a changed judged verdict is a discrepancy, reported); J1500 at wf 1.00 for the judged variants"
+ },
+ "mutate": "locate",
+ "K2": {
+  "0.99": {
+   "a": {
+    "chi": 1.1476117200066311e-37,
+    "M_plant": 6,
+    "fit_resid": 3.313798619819397e-05,
+    "pass": true
+   },
+   "pade_zero_error": 1.196661085956132e-05,
+   "b_pass": true
+  },
+  "1.0": {
+   "a": {
+    "chi": 5.450132339064817e-37,
+    "M_plant": 6,
+    "fit_resid": 3.0908774886755316e-05,
+    "pass": true
+   },
+   "pade_zero_error": 1.4100609894246743e-05,
+   "b_pass": true
+  },
+  "1.01": {
+   "a": {
+    "chi": 3.873327099536841e-37,
+    "M_plant": 6,
+    "fit_resid": 2.9590224804892288e-05,
+    "pass": true
+   },
+   "pade_zero_error": 1.6047790141905413e-05,
+   "b_pass": true
+  }
+ },
+ "Z1": {
+  "0.99": {
+   "a": {
+    "chi": 8.772255604004966e-37,
+    "M_plant": 6,
+    "fit_resid": 5.754512085496956e-05,
+    "pass": true
+   },
+   "zero_true": [
+    7.36235,
+    0.07980000000000007
+   ],
+   "pade_zero_error": 1.2737580561154337e-05,
+   "locator": {
+    "what": "zero",
+    "starts": [],
+    "value": [
+     7.35935,
+     0.07780000000000006
+    ],
+    "log_l2": 16.365706896433757,
+    "start": "x_ref",
+    "mutated": true
+   },
+   "dev": 0.003605551275464085,
+   "b_pass": false
+  },
+  "1.0": {
+   "a": {
+    "chi": 5.856478802214241e-37,
+    "M_plant": 6,
+    "fit_resid": 5.490770131214691e-05,
+    "pass": true
+   },
+   "zero_true": [
+    7.4030000000000005,
+    0.002
+   ],
+   "pade_zero_error": 1.5188134917813518e-05,
+   "locator": {
+    "what": "zero",
+    "starts": [],
+    "value": [
+     7.4,
+     0.0
+    ],
+    "log_l2": 16.316783794598862,
+    "start": "x_ref",
+    "mutated": true
+   },
+   "dev": 0.003605551275464084,
+   "b_pass": false
+  },
+  "1.01": {
+   "a": {
+    "chi": 1.412282129091358e-36,
+    "M_plant": 6,
+    "fit_resid": 5.276734520767489e-05,
+    "pass": true
+   },
+   "zero_true": [
+    7.44235,
+    -0.07620000000000007
+   ],
+   "pade_zero_error": 1.7406831578236046e-05,
+   "locator": {
+    "what": "zero",
+    "starts": [],
+    "value": [
+     7.43935,
+     -0.07820000000000006
+    ],
+    "log_l2": 16.67455523260719,
+    "start": "x_ref",
+    "mutated": true
+   },
+   "dev": 0.003605551275464077,
+   "b_pass": false
+  }
+ },
+ "C0": {},
+ "sensitivity": {},
+ "zpade_spread": {
+  "0.99": {
+   "zero": [
+    7.352741551355558,
+    0.076502139199874
+   ],
+   "others": {
+    "[10/12]": [
+     7.35274472807112,
+     0.07649655976557669
+    ],
+    "[12/10]": [
+     7.352721141107361,
+     0.07656490253617597
+    ],
+    "[10/10]": [
+     7.352793036040947,
+     0.0764348662966333
+    ],
+    "[11/10]": [
+     7.352793588897129,
+     0.07643157901868998
+    ],
+    "[10/11]": [
+     7.35274902331633,
+     0.07648377296056419
+    ]
+   },
+   "spread": 8.767351311290206e-05,
+   "x_ref": [
+    7.35935,
+    0.07780000000000006
+   ]
+  },
+  "1.0": {
+   "zero": [
+    7.394087065622293,
+    -3.3019050713189246e-05
+   ],
+   "others": {
+    "[10/12]": [
+     7.394089326929076,
+     -3.435625809134063e-05
+    ],
+    "[12/10]": [
+     7.394083764469554,
+     3.8687385110768556e-05
+    ],
+    "[10/10]": [
+     7.394124682478159,
+     -0.00010685103936798202
+    ],
+    "[11/10]": [
+     7.394133163696956,
+     -0.00010384711417407996
+    ],
+    "[10/11]": [
+     7.394095358118278,
+     -4.46999107346693e-05
+    ]
+   },
+   "spread": 8.450826622998776e-05,
+   "x_ref": [
+    7.4,
+    0.0
+   ]
+  },
+  "1.01": {
+   "zero": [
+    7.434383086342969,
+    -0.07726025712881923
+   ],
+   "others": {
+    "[10/12]": [
+     7.4343836842869635,
+     -0.07725992100471339
+    ],
+    "[12/10]": [
+     7.434398890387456,
+     -0.07719539959913528
+    ],
+    "[10/10]": [
+     7.434406773625301,
+     -0.07734075515851167
+    ],
+    "[11/10]": [
+     7.434426254486877,
+     -0.07732975530025236
+    ],
+    "[10/11]": [
+     7.434390353751928,
+     -0.0772632673485019
+    ]
+   },
+   "spread": 8.391078672401409e-05,
+   "x_ref": [
+    7.43935,
+    -0.07820000000000006
+   ]
+  }
+ },
+ "K0_far": {
+  "0.99": {
+   "ratio": [
+    1.4597552230332769,
+    1.1113352429307877
+   ],
+   "ratio_beta": [
+    5.656330729520137,
+    -2.6909042755356563
+   ],
+   "ratio_dev": 5.6982812491405e-05,
+   "poles": {
+    "8": {
+     "t": [
+      1.355474512907339,
+      1.0506977251883904
+     ],
+     "n_candidates": 1,
+     "dev": 0.0,
+     "pass": true
+    },
+    "9": {
+     "t": [
+      1.4050935307815564,
+      1.0628863629673637
+     ],
+     "n_candidates": 1,
+     "dev": 0.0,
+     "pass": true
+    },
+    "10": {
+     "t": [
+      1.458551637205871,
+      1.0719351389146154
+     ],
+     "n_candidates": 1,
+     "dev": 0.0,
+     "pass": true
+    }
+   },
+   "pass": true
+  },
+  "1.0": {
+   "ratio": [
+    1.4574065164860972,
+    1.1119324508555528
+   ],
+   "ratio_beta": [
+    5.663145048713171,
+    -2.650808742157384
+   ],
+   "ratio_dev": 3.309867999115618e-05,
+   "poles": {
+    "8": {
+     "t": [
+      1.3549378318196221,
+      1.0507596283369365
+     ],
+     "n_candidates": 1,
+     "dev": 0.0,
+     "pass": true
+    },
+    "9": {
+     "t": [
+      1.4066172412863676,
+      1.061286490489844
+     ],
+     "n_candidates": 1,
+     "dev": 0.0,
+     "pass": true
+    },
+    "10": {
+     "t": [
+      1.4566034199399178,
+      1.0685122989873004
+     ],
+     "n_candidates": 1,
+     "dev": 0.0,
+     "pass": true
+    }
+   },
+   "pass": true
+  },
+  "1.01": {
+   "ratio": [
+    1.4551177624451022,
+    1.1125733936526088
+   ],
+   "ratio_beta": [
+    5.670700575857041,
+    -2.6104947911817526
+   ],
+   "ratio_dev": 3.199065765985197e-05,
+   "poles": {
+    "8": {
+     "t": [
+      1.3548989680915362,
+      1.0509058447285036
+     ],
+     "n_candidates": 1,
+     "dev": 0.0,
+     "pass": true
+    },
+    "9": {
+     "t": [
+      1.407585411585267,
+      1.0599294998036761
+     ],
+     "n_candidates": 1,
+     "dev": 0.0,
+     "pass": true
+    },
+    "10": {
+     "t": [
+      1.456259830569657,
+      1.0676136922555628
+     ],
+     "n_candidates": 1,
+     "dev": 0.0,
+     "pass": true
+    }
+   },
+   "pass": true
+  }
+ },
+ "ends": {
+  "0.99": {
+   "ratio": [
+    1.4597552230332769,
+    1.1113352429307877
+   ],
+   "ratio_beta": [
+    5.656330729520137,
+    -2.6909042755356563
+   ],
+   "pole8_all": [
+    [
+     1.355474512907339,
+     1.0506977251883904
+    ]
+   ],
+   "pole8": [
+    1.355474512907339,
+    1.0506977251883904
+   ],
+   "pole9_all": [
+    [
+     1.4050935307815564,
+     1.0628863629673637
+    ]
+   ],
+   "pole9": [
+    1.4050935307815564,
+    1.0628863629673637
+   ],
+   "pole10_all": [
+    [
+     1.458551637205871,
+     1.0719351389146154
+    ]
+   ],
+   "pole10": [
+    1.458551637205871,
+    1.0719351389146154
+   ]
+  },
+  "1.0": {
+   "ratio": [
+    1.4574065164860972,
+    1.1119324508555528
+   ],
+   "ratio_beta": [
+    5.663145048713171,
+    -2.650808742157384
+   ],
+   "pole8_all": [
+    [
+     1.3549378318196221,
+     1.0507596283369365
+    ]
+   ],
+   "pole8": [
+    1.3549378318196221,
+    1.0507596283369365
+   ],
+   "pole9_all": [
+    [
+     1.4066172412863676,
+     1.061286490489844
+    ]
+   ],
+   "pole9": [
+    1.4066172412863676,
+    1.061286490489844
+   ],
+   "pole10_all": [
+    [
+     1.4566034199399178,
+     1.0685122989873004
+    ]
+   ],
+   "pole10": [
+    1.4566034199399178,
+    1.0685122989873004
+   ]
+  },
+  "1.01": {
+   "ratio": [
+    1.4551177624451022,
+    1.1125733936526088
+   ],
+   "ratio_beta": [
+    5.670700575857041,
+    -2.6104947911817526
+   ],
+   "pole8_all": [
+    [
+     1.3548989680915362,
+     1.0509058447285036
+    ]
+   ],
+   "pole8": [
+    1.3548989680915362,
+    1.0509058447285036
+   ],
+   "pole9_all": [
+    [
+     1.407585411585267,
+     1.0599294998036761
+    ]
+   ],
+   "pole9": [
+    1.407585411585267,
+    1.0599294998036761
+   ],
+   "pole10_all": [
+    [
+     1.456259830569657,
+     1.0676136922555628
+    ]
+   ],
+   "pole10": [
+    1.456259830569657,
+    1.0676136922555628
+   ]
+  }
+ },
+ "near": {
+  "0.99": [
+   0.7733624141264912,
+   0.14599529705211858
+  ],
+  "1.0": [
+   0.7320698315186889,
+   0.05591959983765087
+  ],
+  "1.01": [
+   0.7279591102672306,
+   0.03486781605302231
+  ]
+ },
+ "zpade": {
+  "0.99": [
+   7.352741551355558,
+   0.076502139199874
+  ],
+  "1.0": [
+   7.394087065622293,
+   -3.3019050713189246e-05
+  ],
+  "1.01": [
+   7.434383086342969,
+   -0.07726025712881923
+  ]
+ },
+ "K0": true,
+ "verdict": {
+  "K0": true,
+  "K2": true,
+  "Z1_a": true,
+  "Z1_b": false,
+  "C0": true,
+  "C0_fail": [],
+  "mutation_fired_as_frozen": true
+ },
+ "gate_pass": true,
+ "controls_pass": false
+}

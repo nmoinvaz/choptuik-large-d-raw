@@ -1,0 +1,12 @@
+commit 15b263b2, 2026-11-13 16:38 UTC
+selftest a-0.5        : P0 plants', P1 1.2790+1.0810j, ex 3.160-1.600j, alpha -0.5, zero 7.400000+0.000000j; exact columns against the plant's tanh-sinh columns, m, k < 23: max rel diff 8.4e-04 (pass < 1e-40); plant M 6, fit to sigma_0..12 4.9e-05
+selftest a-0.25       : P0 plants', P1 1.2790+1.0810j, ex 3.160-1.600j, alpha -0.25, zero 7.400000+0.000000j; exact columns against the plant's tanh-sinh columns, m, k < 23: max rel diff 1.6e-09 (pass < 1e-40); plant M 6, fit to sigma_0..12 4.1e-05
+selftest a+0.25       : P0 plants', P1 1.2790+1.0810j, ex 3.160-1.600j, alpha +0.25, zero 7.400000+0.000000j; exact columns against the plant's tanh-sinh columns, m, k < 23: max rel diff 5.5e-09 (pass < 1e-40); plant M 6, fit to sigma_0..12 3.3e-05
+selftest a+0.5        : P0 plants', P1 1.2790+1.0810j, ex 3.160-1.600j, alpha +0.5, zero 7.400000+0.000000j; exact columns against the plant's tanh-sinh columns, m, k < 23: max rel diff 8.6e-07 (pass < 1e-40); plant M 6, fit to sigma_0..12 3.1e-05
+selftest a+1          : P0 plants', P1 1.2790+1.0810j, ex 3.160-1.600j, alpha +1, zero 7.400000+0.000000j; exact columns against the plant's tanh-sinh columns, m, k < 23: max rel diff 1.1e-09 (pass < 1e-40); plant M 6, fit to sigma_0..12 3.3e-05
+selftest near541a+0.5 : P0 0.7321+0.0559j, P1 1.2790+1.0810j, ex 3.160-1.600j, alpha +0.5, zero 7.400000+0.000000j; exact columns against the plant's tanh-sinh columns, m, k < 23: max rel diff 8.6e-07 (pass < 1e-40); plant M 6, fit to sigma_0..12 5.5e-05
+selftest nozero       : P0 plants', P1 1.2790+1.0810j, ex 3.160-1.600j, alpha 0, zero none; exact columns against the plant's tanh-sinh columns, m, k < 23: max rel diff 3.2e-09 (pass < 1e-40); plant M 6, fit to sigma_0..12 1.5e-04
+selftest zpade        : P0 plants', P1 1.2790+1.0810j, ex 3.160-1.600j, alpha 0, zero 7.400000+0.010000j; exact columns against the plant's tanh-sinh columns, m, k < 23: max rel diff 1.8e-09 (pass < 1e-40); plant M 6, fit to sigma_0..12 6.8e-05
+selftest nozeroex-1   : P0 plants', P1 1.2790+1.0810j, ex 2.160-1.600j, alpha 0, zero none; exact columns against the plant's tanh-sinh columns, m, k < 23: max rel diff 1.5e-09 (pass < 1e-40); plant M 6, fit to sigma_0..12 3.7e-05
+selftest kstar: the columns equal pade_twin_end.end_basis's bit for bit: True
+selftest: FAIL
