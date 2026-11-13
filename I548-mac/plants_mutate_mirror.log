@@ -1,0 +1,14 @@
+wf 0.99 chord2    H_DA +0.000 (noise 0.09)  H_HP +0.000 (noise 0.00)  R_w -0.661 (noise 0.07)  (38s)
+wf 0.99 arcjump   H_DA +0.000 (noise 0.00)  H_HP +0.000 (noise 0.00)  R_w -0.712 (noise 0.09)  (38s)
+wf 1.0 chord2    H_DA +0.000 (noise 0.00)  H_HP +0.000 (noise 0.00)  R_w -0.726 (noise 0.10)  (37s)
+wf 1.0 arcjump   H_DA +0.000 (noise 0.00)  H_HP +0.000 (noise 0.00)  R_w -0.728 (noise 0.10)  (37s)
+wf 1.0 arcmid    H_DA +0.000 (noise 0.00)  H_HP +0.000 (noise 0.50)  R_w -0.832 (noise 0.04)  (34s)
+wf 1.0 arcsteps  H_DA +0.000 (noise 0.09)  H_HP +0.000 (noise 0.25)  R_w -0.760 (noise 0.05)  (38s)
+wf 1.0 arc       H_DA +0.000 (noise 0.09)  H_HP +0.000 (noise 0.00)  R_w -0.697 (noise 0.06)  (40s)
+wf 1.01 chord2    H_DA +0.000 (noise 0.00)  H_HP +0.000 (noise 0.25)  R_w -0.809 (noise 0.09)  (38s)
+wf 1.01 arcjump   H_DA +0.000 (noise 0.09)  H_HP +0.500 (noise 0.50)  R_w -0.815 (noise 0.07)  (41s)
+H_DA: wf 0.99 S +0.000 nu 0.091 BAD; wf 1.0 S +0.000 nu 0.000 BAD; wf 1.01 S +0.000 nu 0.091 BAD  -> does not separate
+H_HP: wf 0.99 S +0.000 nu 0.000 BAD; wf 1.0 S +0.000 nu 0.000 BAD; wf 1.01 S +0.500 nu 0.500 BAD  -> does not separate
+R_w: wf 0.99 S -0.052 nu 0.088 BAD; wf 1.0 S -0.001 nu 0.100 BAD; wf 1.01 S -0.005 nu 0.086 BAD  -> does not separate
+mirror mutation: S < 0.3 at every node for every statistic: False
+exit 1

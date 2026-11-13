@@ -1,0 +1,13 @@
+wf 0.99 chord2    H_DA +0.000 (noise 0.09)  H_HP +0.000 (noise 0.00)  R_w +0.661 (noise 0.07)  (40s)
+wf 0.99 arcjump   H_DA +0.545 (noise 0.36)  H_HP +0.750 (noise 0.75)  R_w +0.712 (noise 0.09)  (39s)
+wf 1.0 chord2    H_DA +0.000 (noise 0.09)  H_HP +0.000 (noise 0.00)  R_w +0.726 (noise 0.10)  (39s)
+wf 1.0 arcjump   H_DA +0.727 (noise 0.64)  H_HP +1.000 (noise 1.00)  R_w +0.728 (noise 0.10)  (40s)
+wf 1.0 arcmid    H_DA +0.909 (noise 0.36)  H_HP +1.000 (noise 1.00)  R_w +0.832 (noise 0.04)  (37s)
+wf 1.0 arcsteps  H_DA +0.364 (noise 0.36)  H_HP +0.750 (noise 0.75)  R_w +0.760 (noise 0.05)  (38s)
+wf 1.0 arc       H_DA +0.000 (noise 0.09)  H_HP +0.000 (noise 0.25)  R_w +0.697 (noise 0.06)  (37s)
+wf 1.01 chord2    H_DA +0.000 (noise 0.00)  H_HP +0.250 (noise 0.25)  R_w +0.809 (noise 0.09)  (39s)
+wf 1.01 arcjump   H_DA +0.636 (noise 0.64)  H_HP +0.500 (noise 0.50)  R_w +0.815 (noise 0.07)  (40s)
+H_DA: wf 0.99 S +0.545 nu 0.364 BAD; wf 1.0 S +0.727 nu 0.636 BAD; wf 1.01 S +0.636 nu 0.636 BAD  -> does not separate
+H_HP: wf 0.99 S +0.750 nu 0.750 BAD; wf 1.0 S +1.000 nu 1.000 BAD; wf 1.01 S +0.250 nu 0.500 BAD  -> does not separate
+R_w: wf 0.99 S +0.052 nu 0.088 BAD; wf 1.0 S +0.001 nu 0.100 BAD; wf 1.01 S +0.005 nu 0.086 BAD  -> does not separate
+exit 1

@@ -1,0 +1,342 @@
+{
+ "frozen": {
+  "statistics": "H_DA, H_HP, R_w as in the docstring",
+  "separation": "per node wf 0.99, 1.00, 1.01 and per statistic: S = X(arcjump) - X(chord2) >= 0.3 and S >= 3 nu, nu the larger noise spread of X on the two plants at the measured per-order errors",
+  "pass": "a statistic passes if the separation holds at all three nodes and its mutation fires",
+  "mutation": "--mutate=mirror (the arc's profile reflected across the chord, d_arc -> -d_arc, in H_DA, H_HP and R_w) must give S < 0.3 at every node; --mutate=sigma7 (sigma_7 x 1.01) is reported, not judged",
+  "real": "a real run only for a statistic that passes; otherwise the task reports the bound",
+  "bound": "the noise-scale study: the largest F in 1, 0.1, ..., 1e-4 at which a statistic's separation holds at all three nodes, i.e. how much more accurate sigma_13..sigma_22 must be"
+ },
+ "scales": {
+  "1.0": {
+   "H_DA": {
+    "nodes": {
+     "0.99": {
+      "S": 0.5454545454545454,
+      "nu": 0.3636363636363636,
+      "ok": false
+     },
+     "1.0": {
+      "S": 0.7272727272727273,
+      "nu": 0.6363636363636364,
+      "ok": false
+     },
+     "1.01": {
+      "S": 0.6363636363636364,
+      "nu": 0.6363636363636364,
+      "ok": false
+     }
+    },
+    "separates": false,
+    "S_lt_0.3_everywhere": false
+   },
+   "H_HP": {
+    "nodes": {
+     "0.99": {
+      "S": 0.75,
+      "nu": 0.75,
+      "ok": false
+     },
+     "1.0": {
+      "S": 1.0,
+      "nu": 1.0,
+      "ok": false
+     },
+     "1.01": {
+      "S": 0.25,
+      "nu": 0.5,
+      "ok": false
+     }
+    },
+    "separates": false,
+    "S_lt_0.3_everywhere": false
+   },
+   "R_w": {
+    "nodes": {
+     "0.99": {
+      "S": 0.05164137223037035,
+      "nu": 0.08770565356436688,
+      "ok": false
+     },
+     "1.0": {
+      "S": 0.0014417813581661942,
+      "nu": 0.1000529961764638,
+      "ok": false
+     },
+     "1.01": {
+      "S": 0.0054416919629809435,
+      "nu": 0.08619158369801738,
+      "ok": false
+     }
+    },
+    "separates": false,
+    "S_lt_0.3_everywhere": true
+   }
+  },
+  "0.1": {
+   "H_DA": {
+    "nodes": {
+     "0.99": {
+      "S": 0.5454545454545454,
+      "nu": 0.3636363636363636,
+      "ok": false
+     },
+     "1.0": {
+      "S": 0.7272727272727273,
+      "nu": 0.6363636363636364,
+      "ok": false
+     },
+     "1.01": {
+      "S": 0.6363636363636364,
+      "nu": 0.45454545454545453,
+      "ok": false
+     }
+    },
+    "separates": false,
+    "S_lt_0.3_everywhere": false
+   },
+   "H_HP": {
+    "nodes": {
+     "0.99": {
+      "S": 0.75,
+      "nu": 0.75,
+      "ok": false
+     },
+     "1.0": {
+      "S": 1.0,
+      "nu": 1.0,
+      "ok": false
+     },
+     "1.01": {
+      "S": 0.25,
+      "nu": 0.5,
+      "ok": false
+     }
+    },
+    "separates": false,
+    "S_lt_0.3_everywhere": false
+   },
+   "R_w": {
+    "nodes": {
+     "0.99": {
+      "S": 0.05164137223037035,
+      "nu": 0.08776675486169572,
+      "ok": false
+     },
+     "1.0": {
+      "S": 0.0014417813581661942,
+      "nu": 0.10687168274163594,
+      "ok": false
+     },
+     "1.01": {
+      "S": 0.0054416919629809435,
+      "nu": 0.09788601021328569,
+      "ok": false
+     }
+    },
+    "separates": false,
+    "S_lt_0.3_everywhere": true
+   }
+  },
+  "0.01": {
+   "H_DA": {
+    "nodes": {
+     "0.99": {
+      "S": 0.5454545454545454,
+      "nu": 0.2727272727272727,
+      "ok": false
+     },
+     "1.0": {
+      "S": 0.7272727272727273,
+      "nu": 0.36363636363636365,
+      "ok": false
+     },
+     "1.01": {
+      "S": 0.6363636363636364,
+      "nu": 0.45454545454545453,
+      "ok": false
+     }
+    },
+    "separates": false,
+    "S_lt_0.3_everywhere": false
+   },
+   "H_HP": {
+    "nodes": {
+     "0.99": {
+      "S": 0.75,
+      "nu": 0.75,
+      "ok": false
+     },
+     "1.0": {
+      "S": 1.0,
+      "nu": 1.0,
+      "ok": false
+     },
+     "1.01": {
+      "S": 0.25,
+      "nu": 0.5,
+      "ok": false
+     }
+    },
+    "separates": false,
+    "S_lt_0.3_everywhere": false
+   },
+   "R_w": {
+    "nodes": {
+     "0.99": {
+      "S": 0.05164137223037035,
+      "nu": 0.1266956930008022,
+      "ok": false
+     },
+     "1.0": {
+      "S": 0.0014417813581661942,
+      "nu": 0.12518662659652524,
+      "ok": false
+     },
+     "1.01": {
+      "S": 0.0054416919629809435,
+      "nu": 0.09813316775586989,
+      "ok": false
+     }
+    },
+    "separates": false,
+    "S_lt_0.3_everywhere": true
+   }
+  },
+  "0.001": {
+   "H_DA": {
+    "nodes": {
+     "0.99": {
+      "S": 0.5454545454545454,
+      "nu": 0.18181818181818177,
+      "ok": true
+     },
+     "1.0": {
+      "S": 0.7272727272727273,
+      "nu": 0.36363636363636365,
+      "ok": false
+     },
+     "1.01": {
+      "S": 0.6363636363636364,
+      "nu": 0.09090909090909094,
+      "ok": true
+     }
+    },
+    "separates": false,
+    "S_lt_0.3_everywhere": false
+   },
+   "H_HP": {
+    "nodes": {
+     "0.99": {
+      "S": 0.75,
+      "nu": 0.25,
+      "ok": true
+     },
+     "1.0": {
+      "S": 1.0,
+      "nu": 0.25,
+      "ok": true
+     },
+     "1.01": {
+      "S": 0.25,
+      "nu": 0.25,
+      "ok": false
+     }
+    },
+    "separates": false,
+    "S_lt_0.3_everywhere": false
+   },
+   "R_w": {
+    "nodes": {
+     "0.99": {
+      "S": 0.05164137223037035,
+      "nu": 0.07744155787695006,
+      "ok": false
+     },
+     "1.0": {
+      "S": 0.0014417813581661942,
+      "nu": 0.06669785019405727,
+      "ok": false
+     },
+     "1.01": {
+      "S": 0.0054416919629809435,
+      "nu": 0.060822691148268104,
+      "ok": false
+     }
+    },
+    "separates": false,
+    "S_lt_0.3_everywhere": true
+   }
+  },
+  "0.0001": {
+   "H_DA": {
+    "nodes": {
+     "0.99": {
+      "S": 0.5454545454545454,
+      "nu": 0.18181818181818177,
+      "ok": true
+     },
+     "1.0": {
+      "S": 0.7272727272727273,
+      "nu": 0.27272727272727276,
+      "ok": false
+     },
+     "1.01": {
+      "S": 0.6363636363636364,
+      "nu": 0.09090909090909094,
+      "ok": true
+     }
+    },
+    "separates": false,
+    "S_lt_0.3_everywhere": false
+   },
+   "H_HP": {
+    "nodes": {
+     "0.99": {
+      "S": 0.75,
+      "nu": 0.25,
+      "ok": true
+     },
+     "1.0": {
+      "S": 1.0,
+      "nu": 0.5,
+      "ok": false
+     },
+     "1.01": {
+      "S": 0.25,
+      "nu": 0.25,
+      "ok": false
+     }
+    },
+    "separates": false,
+    "S_lt_0.3_everywhere": false
+   },
+   "R_w": {
+    "nodes": {
+     "0.99": {
+      "S": 0.05164137223037035,
+      "nu": 0.04434527116976772,
+      "ok": false
+     },
+     "1.0": {
+      "S": 0.0014417813581661942,
+      "nu": 0.05368983557768692,
+      "ok": false
+     },
+     "1.01": {
+      "S": 0.0054416919629809435,
+      "nu": 0.047131215513339986,
+      "ok": false
+     }
+    },
+    "separates": false,
+    "S_lt_0.3_everywhere": true
+   }
+  }
+ },
+ "largest_separating_scale": {
+  "H_DA": null,
+  "H_HP": null,
+  "R_w": null
+ }
+}
