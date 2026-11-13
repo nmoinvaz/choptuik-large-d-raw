@@ -1,0 +1,5 @@
+selftest chord: P1 1.4566+1.0685j, ex beta - 1 +0.3: exact columns against the chord2 plant's tanh-sinh columns, m, k < 23: max rel diff 4.1e-09 (pass < 1e-40); gamma(1) = P1: True
+selftest arc: P1 1.4574+1.1119j, ex beta - 1 -0.3: exact columns against the arcjump plant's tanh-sinh columns, m, k < 23: max rel diff 6.0e-59 (pass < 1e-40); gamma(1) = P1: True
+selftest smooth: P1 1.3549+1.0508j, ex beta - 1 +0.1i: exact columns against the arc plant's tanh-sinh columns, m, k < 23: max rel diff 1.7e-47 (pass < 1e-40); gamma(1) = P1: True
+selftest: FAIL
+exit 1

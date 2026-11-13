@@ -1,0 +1,4300 @@
+{
+ "frozen": {
+  "variants_judged": "far end: ratio (ratio law over k = 12..21), pole8, pole9, pole10 (the real [k/k] pole past kappa_*), each with ex = beta - 1; exponent: ex = beta - 1 + delta, delta = -0.3, -0.1, +0.1, +0.3, with P1 = kappa_*; per node, from the node's own J1250 series; kstar is the baseline",
+  "variants_context": "R1.75..R2.00 (radial far ends), each far end with each delta, ratiopair (kappa and beta - 1 of the same 12..21 ratio fit), imaginary shifts +-0.1i, +-0.3i; same rules, reported, not judged",
+  "classes": "chord P0 -> P1; arc, the stepped arc of FarArc (w = 1, 2, 1, 2); smooth, the same arc with w = 1",
+  "errors": "measured rel_k, k <= 22, floor 1e-30, F = 1 (#672's twins_real); context: rel_k widened to max(rel_k, the strings' rounding_k) (#683)",
+  "sizes_C1": "#672's: M_min (least squares, chi <= 1) and M_lo (l2 <= sqrt(n)), n = 23, M = 6..23; C1 amended at M = n, on every scan; if C1 fires on real data the work stops",
+  "K0_ends": "the far ends reproduce #541: the ratio law within 1e-4 of REF541_RATIO at every node; exactly one real [k/k] pole with |kappa_*| + 0.01 < |t| < 2.2 and Im t > 0 for k = 8, 9, 10 at every node, within 1e-9 of REF541",
+  "K1_control_547": "#547's plant chord2 with its far end at R = 1.85 (pade_farend.FarPlant) at every node: (a) in the chord basis with its own far end, at its own M: chi <= 1e-30; (b) in the kappa_* chord basis: M_min >= 19",
+  "C0_variants": "every variant basis (judged and context), class and node: the plant of the same class (chord2, arcjump, arc) with that far end and exponent, c_m fitted to the node's real sigma_0..sigma_12 as #547, refitted at its own M: chi <= 1e-30",
+  "gate": "the real stage runs only if K0, K1 and every C0 pass",
+  "C2_baseline": "kstar reproduces #672: M_min = 23 and chi at 22 terms within 1e-3 relative of REF672 at every node and class; a failure is a discrepancy, reported",
+  "mutation_control": "--mutate=farend moves every moved-end basis' P1 radially by +0.01 (K1's own-end basis to 1.86): K1(a) and every C0 of a moved far end must fail, the C0 of kstar and of the exponent shifts must pass; --mutate=exshift adds 0.01 to every basis' ex: every C0 and K1(a) must fail. Each run exits 1",
+  "mutation_real": "--mutate=c1dup (#672): column n - 1 of the 250-digit bases replaced by column n - 2; the amended C1 must fire on every scan with M_min = n and pass on every scan with M_min < n; exit 1",
+  "fits": "a (variant, class) fits if M_min <= 20 at all three nodes; a variant fits if some class does",
+  "verdict": "the far end is named if some far-end variant fits and no exponent variant does; the exponent if the reverse; both if both; if none fits: none of the tested moves gives a short twin",
+  "context": "chi at M = 20..22 per scan; the sensitivity (each judged variant's chord2 plant in the kappa_*, beta - 1 chord basis); the far end's resolution (K1's plant in chord bases at |P1| = 1.80, 1.84, 1.86, 1.90); K1's plant in the kappa_* arc bases; the widened errors (a changed judged verdict is reported as a discrepancy); J1500 at wf 1.00 for the judged variants, chord and arc"
+ },
+ "mutate": "exshift",
+ "K1": {
+  "0.99": {
+   "M_plant": 6,
+   "fit_resid": 0.0001330247453089182,
+   "chi_own": 2344719304451270.0,
+   "a_pass": false,
+   "b_pass": true
+  },
+  "1.0": {
+   "M_plant": 6,
+   "fit_resid": 0.00013590457594895062,
+   "chi_own": 2670066479263704.0,
+   "a_pass": false,
+   "b_pass": true
+  },
+  "1.01": {
+   "M_plant": 6,
+   "fit_resid": 0.0001387046077415316,
+   "chi_own": 4746184382088970.0,
+   "a_pass": false,
+   "b_pass": true
+  }
+ },
+ "C0": {
+  "0.99": {
+   "kstar": {
+    "chord": {
+     "chi": 1492822256474486.8,
+     "M_plant": 6,
+     "fit_resid": 3.6439525943366564e-05,
+     "moves_end": false,
+     "pass": false
+    },
+    "arc": {
+     "chi": 646788561262207.2,
+     "M_plant": 6,
+     "fit_resid": 0.00010557692256360908,
+     "moves_end": false,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 1327203825853361.5,
+     "M_plant": 6,
+     "fit_resid": 2.078550268438585e-05,
+     "moves_end": false,
+     "pass": false
+    }
+   },
+   "ratio": {
+    "chord": {
+     "chi": 3583827227972730.0,
+     "M_plant": 6,
+     "fit_resid": 0.00023674499465100554,
+     "moves_end": true,
+     "pass": false
+    },
+    "arc": {
+     "chi": 775339881552817.5,
+     "M_plant": 6,
+     "fit_resid": 0.00010715051791204714,
+     "moves_end": true,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 954377976007416.1,
+     "M_plant": 6,
+     "fit_resid": 0.00011504764687991512,
+     "moves_end": true,
+     "pass": false
+    }
+   },
+   "pole8": {
+    "chord": {
+     "chi": 2025918451678522.0,
+     "M_plant": 6,
+     "fit_resid": 0.00012759420565850742,
+     "moves_end": true,
+     "pass": false
+    },
+    "arc": {
+     "chi": 1156044647284188.8,
+     "M_plant": 6,
+     "fit_resid": 0.00010150134320905273,
+     "moves_end": true,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 1257210531816751.0,
+     "M_plant": 6,
+     "fit_resid": 4.626582849152875e-05,
+     "moves_end": true,
+     "pass": false
+    }
+   },
+   "pole9": {
+    "chord": {
+     "chi": 2596610636411223.5,
+     "M_plant": 6,
+     "fit_resid": 0.00017708384571672357,
+     "moves_end": true,
+     "pass": false
+    },
+    "arc": {
+     "chi": 1040031519884832.2,
+     "M_plant": 6,
+     "fit_resid": 9.713812573967219e-05,
+     "moves_end": true,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 1056432349601566.2,
+     "M_plant": 6,
+     "fit_resid": 7.854432213087116e-05,
+     "moves_end": true,
+     "pass": false
+    }
+   },
+   "pole10": {
+    "chord": {
+     "chi": 3701204669179850.0,
+     "M_plant": 6,
+     "fit_resid": 0.00025533488939708996,
+     "moves_end": true,
+     "pass": false
+    },
+    "arc": {
+     "chi": 683231150066963.5,
+     "M_plant": 6,
+     "fit_resid": 9.848589466513638e-05,
+     "moves_end": true,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 886537945379723.1,
+     "M_plant": 6,
+     "fit_resid": 0.0001097902635730995,
+     "moves_end": true,
+     "pass": false
+    }
+   },
+   "ex-0.3": {
+    "chord": {
+     "chi": 1190052099608392.0,
+     "M_plant": 6,
+     "fit_resid": 3.772505584509819e-05,
+     "moves_end": false,
+     "pass": false
+    },
+    "arc": {
+     "chi": 1167145411513456.5,
+     "M_plant": 6,
+     "fit_resid": 0.00010293342125006234,
+     "moves_end": false,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 1234594382719958.5,
+     "M_plant": 6,
+     "fit_resid": 3.063182359063215e-05,
+     "moves_end": false,
+     "pass": false
+    }
+   },
+   "ex-0.1": {
+    "chord": {
+     "chi": 1390001340814150.5,
+     "M_plant": 6,
+     "fit_resid": 3.5720059035633604e-05,
+     "moves_end": false,
+     "pass": false
+    },
+    "arc": {
+     "chi": 810682086061773.2,
+     "M_plant": 6,
+     "fit_resid": 0.00010530505532288391,
+     "moves_end": false,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 1287946512571943.0,
+     "M_plant": 6,
+     "fit_resid": 2.3874906604627744e-05,
+     "moves_end": false,
+     "pass": false
+    }
+   },
+   "ex+0.1": {
+    "chord": {
+     "chi": 1596905243288379.0,
+     "M_plant": 6,
+     "fit_resid": 3.754305677366304e-05,
+     "moves_end": false,
+     "pass": false
+    },
+    "arc": {
+     "chi": 506923312743668.0,
+     "M_plant": 6,
+     "fit_resid": 0.00010525321324791949,
+     "moves_end": false,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 1375358479296868.8,
+     "M_plant": 6,
+     "fit_resid": 1.808074508440371e-05,
+     "moves_end": false,
+     "pass": false
+    }
+   },
+   "ex+0.3": {
+    "chord": {
+     "chi": 1807138649696769.5,
+     "M_plant": 6,
+     "fit_resid": 4.122207309359219e-05,
+     "moves_end": false,
+     "pass": false
+    },
+    "arc": {
+     "chi": 403013529569787.6,
+     "M_plant": 6,
+     "fit_resid": 0.00010289265946753707,
+     "moves_end": false,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 1499034833913969.5,
+     "M_plant": 6,
+     "fit_resid": 1.502817902913405e-05,
+     "moves_end": false,
+     "pass": false
+    }
+   },
+   "R1.75": {
+    "chord": {
+     "chi": 1247737895811907.8,
+     "M_plant": 6,
+     "fit_resid": 8.3252836956414e-05,
+     "moves_end": true,
+     "pass": false
+    },
+    "arc": {
+     "chi": 1469344677906972.8,
+     "M_plant": 6,
+     "fit_resid": 0.000125766718742263,
+     "moves_end": true,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 926678687752526.5,
+     "M_plant": 6,
+     "fit_resid": 6.119920985702424e-05,
+     "moves_end": true,
+     "pass": false
+    }
+   },
+   "R1.80": {
+    "chord": {
+     "chi": 1741135877461868.5,
+     "M_plant": 6,
+     "fit_resid": 0.00010658271459086764,
+     "moves_end": true,
+     "pass": false
+    },
+    "arc": {
+     "chi": 1577989521582109.2,
+     "M_plant": 6,
+     "fit_resid": 0.00012957167773061358,
+     "moves_end": true,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 896059106230181.0,
+     "M_plant": 6,
+     "fit_resid": 8.475857311234746e-05,
+     "moves_end": true,
+     "pass": false
+    }
+   },
+   "R1.85": {
+    "chord": {
+     "chi": 2344719304451270.0,
+     "M_plant": 6,
+     "fit_resid": 0.0001330247453089182,
+     "moves_end": true,
+     "pass": false
+    },
+    "arc": {
+     "chi": 1431382813955778.8,
+     "M_plant": 6,
+     "fit_resid": 0.0001319451587705189,
+     "moves_end": true,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 889647237830367.1,
+     "M_plant": 6,
+     "fit_resid": 0.00010908050475646108,
+     "moves_end": true,
+     "pass": false
+    }
+   },
+   "R1.90": {
+    "chord": {
+     "chi": 3059093768069519.5,
+     "M_plant": 6,
+     "fit_resid": 0.0001694682706426081,
+     "moves_end": true,
+     "pass": false
+    },
+    "arc": {
+     "chi": 1089877148562418.9,
+     "M_plant": 6,
+     "fit_resid": 0.00013875550443980114,
+     "moves_end": true,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 1326877760187010.5,
+     "M_plant": 6,
+     "fit_resid": 0.00013125045296770986,
+     "moves_end": true,
+     "pass": false
+    }
+   },
+   "R2.00": {
+    "chord": {
+     "chi": 5262875673092421.0,
+     "M_plant": 6,
+     "fit_resid": 0.000286453192710776,
+     "moves_end": true,
+     "pass": false
+    },
+    "arc": {
+     "chi": 1606579687563477.2,
+     "M_plant": 6,
+     "fit_resid": 0.00018949952510290122,
+     "moves_end": true,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 4025831738379228.0,
+     "M_plant": 6,
+     "fit_resid": 0.00014748716024642712,
+     "moves_end": true,
+     "pass": false
+    }
+   },
+   "ratioex-0.3": {
+    "chord": {
+     "chi": 3791397834601160.5,
+     "M_plant": 6,
+     "fit_resid": 0.0002353755434305669,
+     "moves_end": true,
+     "pass": false
+    },
+    "arc": {
+     "chi": 794752746252245.9,
+     "M_plant": 6,
+     "fit_resid": 0.00010219292015585876,
+     "moves_end": true,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 1362875968408193.0,
+     "M_plant": 6,
+     "fit_resid": 0.000122609470293432,
+     "moves_end": true,
+     "pass": false
+    }
+   },
+   "ratioex-0.1": {
+    "chord": {
+     "chi": 3648303463575301.0,
+     "M_plant": 6,
+     "fit_resid": 0.0002364079652315049,
+     "moves_end": true,
+     "pass": false
+    },
+    "arc": {
+     "chi": 791671123323248.4,
+     "M_plant": 6,
+     "fit_resid": 0.0001054819351148457,
+     "moves_end": true,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 1048415067651847.0,
+     "M_plant": 6,
+     "fit_resid": 0.00011791915476133289,
+     "moves_end": true,
+     "pass": false
+    }
+   },
+   "ratioex+0.1": {
+    "chord": {
+     "chi": 3522989659482950.0,
+     "M_plant": 6,
+     "fit_resid": 0.00023697136336689505,
+     "moves_end": true,
+     "pass": false
+    },
+    "arc": {
+     "chi": 750874684670925.9,
+     "M_plant": 6,
+     "fit_resid": 0.00010878806374032907,
+     "moves_end": true,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 901788157081823.0,
+     "M_plant": 6,
+     "fit_resid": 0.00011186178373765673,
+     "moves_end": true,
+     "pass": false
+    }
+   },
+   "ratioex+0.3": {
+    "chord": {
+     "chi": 3409778422341514.5,
+     "M_plant": 6,
+     "fit_resid": 0.00023711762660024547,
+     "moves_end": true,
+     "pass": false
+    },
+    "arc": {
+     "chi": 683480260404064.2,
+     "M_plant": 6,
+     "fit_resid": 0.00011183549223994038,
+     "moves_end": true,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 896357707468725.6,
+     "M_plant": 6,
+     "fit_resid": 0.00010469393860857417,
+     "moves_end": true,
+     "pass": false
+    }
+   },
+   "pole8ex-0.3": {
+    "chord": {
+     "chi": 2031398957088183.0,
+     "M_plant": 6,
+     "fit_resid": 0.00012400171162794632,
+     "moves_end": true,
+     "pass": false
+    },
+    "arc": {
+     "chi": 1468231588333410.2,
+     "M_plant": 6,
+     "fit_resid": 9.162246210753427e-05,
+     "moves_end": true,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 1216211775057621.2,
+     "M_plant": 6,
+     "fit_resid": 5.915251695615522e-05,
+     "moves_end": true,
+     "pass": false
+    }
+   },
+   "pole8ex-0.1": {
+    "chord": {
+     "chi": 2028792422320010.0,
+     "M_plant": 6,
+     "fit_resid": 0.00012638564217439324,
+     "moves_end": true,
+     "pass": false
+    },
+    "arc": {
+     "chi": 1262430348009729.2,
+     "M_plant": 6,
+     "fit_resid": 9.85872359859123e-05,
+     "moves_end": true,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 1244047477342753.5,
+     "M_plant": 6,
+     "fit_resid": 5.050347669331977e-05,
+     "moves_end": true,
+     "pass": false
+    }
+   },
+   "pole8ex+0.1": {
+    "chord": {
+     "chi": 2021681444465074.2,
+     "M_plant": 6,
+     "fit_resid": 0.00012883162530950907,
+     "moves_end": true,
+     "pass": false
+    },
+    "arc": {
+     "chi": 1049401672014644.5,
+     "M_plant": 6,
+     "fit_resid": 0.00010401241126054644,
+     "moves_end": true,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 1268315218231806.8,
+     "M_plant": 6,
+     "fit_resid": 4.2127030863758684e-05,
+     "moves_end": true,
+     "pass": false
+    }
+   },
+   "pole8ex+0.3": {
+    "chord": {
+     "chi": 2008227981006319.8,
+     "M_plant": 6,
+     "fit_resid": 0.00013143896110584654,
+     "moves_end": true,
+     "pass": false
+    },
+    "arc": {
+     "chi": 842330208716552.0,
+     "M_plant": 6,
+     "fit_resid": 0.00010778690926660025,
+     "moves_end": true,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 1282598495619661.2,
+     "M_plant": 6,
+     "fit_resid": 3.429051565108968e-05,
+     "moves_end": true,
+     "pass": false
+    }
+   },
+   "pole9ex-0.3": {
+    "chord": {
+     "chi": 2696660311986006.0,
+     "M_plant": 6,
+     "fit_resid": 0.0001749220555706131,
+     "moves_end": true,
+     "pass": false
+    },
+    "arc": {
+     "chi": 1232196239456520.0,
+     "M_plant": 6,
+     "fit_resid": 8.884643752595284e-05,
+     "moves_end": true,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 1032369520352137.6,
+     "M_plant": 6,
+     "fit_resid": 9.054929878306013e-05,
+     "moves_end": true,
+     "pass": false
+    }
+   },
+   "pole9ex-0.1": {
+    "chord": {
+     "chi": 2629531079618243.0,
+     "M_plant": 6,
+     "fit_resid": 0.00017645483378743513,
+     "moves_end": true,
+     "pass": false
+    },
+    "arc": {
+     "chi": 1109416094219776.2,
+     "M_plant": 6,
+     "fit_resid": 9.452463266804286e-05,
+     "moves_end": true,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 1035332484273163.4,
+     "M_plant": 6,
+     "fit_resid": 8.265319396556046e-05,
+     "moves_end": true,
+     "pass": false
+    }
+   },
+   "pole9ex+0.1": {
+    "chord": {
+     "chi": 2563661019154062.0,
+     "M_plant": 6,
+     "fit_resid": 0.0001776345054425972,
+     "moves_end": true,
+     "pass": false
+    },
+    "arc": {
+     "chi": 967470044062858.8,
+     "M_plant": 6,
+     "fit_resid": 9.954685285269133e-05,
+     "moves_end": true,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 1083225367242221.0,
+     "M_plant": 6,
+     "fit_resid": 7.437472702313157e-05,
+     "moves_end": true,
+     "pass": false
+    }
+   },
+   "pole9ex+0.3": {
+    "chord": {
+     "chi": 2496581341545175.5,
+     "M_plant": 6,
+     "fit_resid": 0.0001785345559997883,
+     "moves_end": true,
+     "pass": false
+    },
+    "arc": {
+     "chi": 820102113321515.0,
+     "M_plant": 6,
+     "fit_resid": 0.00010362776831356747,
+     "moves_end": true,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 1139270974914734.5,
+     "M_plant": 6,
+     "fit_resid": 6.600127406744499e-05,
+     "moves_end": true,
+     "pass": false
+    }
+   },
+   "pole10ex-0.3": {
+    "chord": {
+     "chi": 3900826541497563.0,
+     "M_plant": 6,
+     "fit_resid": 0.00025480744859121784,
+     "moves_end": true,
+     "pass": false
+    },
+    "arc": {
+     "chi": 730016416880665.0,
+     "M_plant": 6,
+     "fit_resid": 9.533739904239269e-05,
+     "moves_end": true,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 1199421199889316.2,
+     "M_plant": 6,
+     "fit_resid": 0.00011756335806752917,
+     "moves_end": true,
+     "pass": false
+    }
+   },
+   "pole10ex-0.1": {
+    "chord": {
+     "chi": 3764703741723786.5,
+     "M_plant": 6,
+     "fit_resid": 0.0002552853544769129,
+     "moves_end": true,
+     "pass": false
+    },
+    "arc": {
+     "chi": 707677294890507.1,
+     "M_plant": 6,
+     "fit_resid": 9.7385245162095e-05,
+     "moves_end": true,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 949844380262550.2,
+     "M_plant": 6,
+     "fit_resid": 0.00011272827656769908,
+     "moves_end": true,
+     "pass": false
+    }
+   },
+   "pole10ex+0.1": {
+    "chord": {
+     "chi": 3639990328878117.5,
+     "M_plant": 6,
+     "fit_resid": 0.0002552663994643556,
+     "moves_end": true,
+     "pass": false
+    },
+    "arc": {
+     "chi": 651700973091240.9,
+     "M_plant": 6,
+     "fit_resid": 9.959304709776084e-05,
+     "moves_end": true,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 860813991956895.0,
+     "M_plant": 6,
+     "fit_resid": 0.00010654869826891079,
+     "moves_end": true,
+     "pass": false
+    }
+   },
+   "pole10ex+0.3": {
+    "chord": {
+     "chi": 3522667624864227.0,
+     "M_plant": 6,
+     "fit_resid": 0.00025479724086437886,
+     "moves_end": true,
+     "pass": false
+    },
+    "arc": {
+     "chi": 573432104927291.2,
+     "M_plant": 6,
+     "fit_resid": 0.00010169735218078582,
+     "moves_end": true,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 891205614712051.5,
+     "M_plant": 6,
+     "fit_resid": 9.931098217264893e-05,
+     "moves_end": true,
+     "pass": false
+    }
+   },
+   "ratiopair": {
+    "chord": {
+     "chi": 1591633243148789.5,
+     "M_plant": 6,
+     "fit_resid": 0.0001320388368069864,
+     "moves_end": true,
+     "pass": false
+    },
+    "arc": {
+     "chi": 2038598576444831.5,
+     "M_plant": 6,
+     "fit_resid": 0.00015189688206132418,
+     "moves_end": true,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 1998348591843705.2,
+     "M_plant": 6,
+     "fit_resid": 2.7596075484183033e-05,
+     "moves_end": true,
+     "pass": false
+    }
+   },
+   "ex-0.3i": {
+    "chord": {
+     "chi": 1378416287195981.8,
+     "M_plant": 6,
+     "fit_resid": 2.4122132770746377e-05,
+     "moves_end": false,
+     "pass": false
+    },
+    "arc": {
+     "chi": 1216402584295507.0,
+     "M_plant": 6,
+     "fit_resid": 0.00011045687650670722,
+     "moves_end": false,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 1213405356514021.8,
+     "M_plant": 6,
+     "fit_resid": 3.0014486840923506e-05,
+     "moves_end": false,
+     "pass": false
+    }
+   },
+   "ex-0.1i": {
+    "chord": {
+     "chi": 1447127663296792.0,
+     "M_plant": 6,
+     "fit_resid": 3.222065543905036e-05,
+     "moves_end": false,
+     "pass": false
+    },
+    "arc": {
+     "chi": 804160314414752.9,
+     "M_plant": 6,
+     "fit_resid": 0.00010659675530737668,
+     "moves_end": false,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 1299108019408285.0,
+     "M_plant": 6,
+     "fit_resid": 2.3696512914533954e-05,
+     "moves_end": false,
+     "pass": false
+    }
+   },
+   "ex+0.1i": {
+    "chord": {
+     "chi": 1545661150260629.8,
+     "M_plant": 6,
+     "fit_resid": 4.078574215284069e-05,
+     "moves_end": false,
+     "pass": false
+    },
+    "arc": {
+     "chi": 533877113966089.1,
+     "M_plant": 6,
+     "fit_resid": 0.00010511531421845433,
+     "moves_end": false,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 1347532605297734.5,
+     "M_plant": 6,
+     "fit_resid": 1.8327697526480202e-05,
+     "moves_end": false,
+     "pass": false
+    }
+   },
+   "ex+0.3i": {
+    "chord": {
+     "chi": 1671446809830226.5,
+     "M_plant": 6,
+     "fit_resid": 5.158690335115581e-05,
+     "moves_end": false,
+     "pass": false
+    },
+    "arc": {
+     "chi": 486300201737175.25,
+     "M_plant": 6,
+     "fit_resid": 0.00010575261408487164,
+     "moves_end": false,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 1371077676451710.8,
+     "M_plant": 6,
+     "fit_resid": 1.901201529348603e-05,
+     "moves_end": false,
+     "pass": false
+    }
+   }
+  },
+  "1.0": {
+   "kstar": {
+    "chord": {
+     "chi": 1792007471883173.0,
+     "M_plant": 6,
+     "fit_resid": 3.562500180927311e-05,
+     "moves_end": false,
+     "pass": false
+    },
+    "arc": {
+     "chi": 1035250116098004.8,
+     "M_plant": 6,
+     "fit_resid": 0.00012131261365509979,
+     "moves_end": false,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 1562130811382511.0,
+     "M_plant": 6,
+     "fit_resid": 1.3227915125267062e-05,
+     "moves_end": false,
+     "pass": false
+    }
+   },
+   "ratio": {
+    "chord": {
+     "chi": 3931638597308377.5,
+     "M_plant": 6,
+     "fit_resid": 0.00022561548149514725,
+     "moves_end": true,
+     "pass": false
+    },
+    "arc": {
+     "chi": 1172072321329082.8,
+     "M_plant": 6,
+     "fit_resid": 0.00011147706380117455,
+     "moves_end": true,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 989443176444377.5,
+     "M_plant": 6,
+     "fit_resid": 0.00010698661005028943,
+     "moves_end": true,
+     "pass": false
+    }
+   },
+   "pole8": {
+    "chord": {
+     "chi": 2363478962935788.0,
+     "M_plant": 6,
+     "fit_resid": 0.00012043976454611743,
+     "moves_end": true,
+     "pass": false
+    },
+    "arc": {
+     "chi": 1481705658245416.8,
+     "M_plant": 6,
+     "fit_resid": 0.00011601651360700759,
+     "moves_end": true,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 1528563137693380.8,
+     "M_plant": 6,
+     "fit_resid": 3.520429218699641e-05,
+     "moves_end": true,
+     "pass": false
+    }
+   },
+   "pole9": {
+    "chord": {
+     "chi": 2997243318701785.5,
+     "M_plant": 6,
+     "fit_resid": 0.0001723809409957677,
+     "moves_end": true,
+     "pass": false
+    },
+    "arc": {
+     "chi": 1368882591896522.8,
+     "M_plant": 6,
+     "fit_resid": 0.00010718191108460232,
+     "moves_end": true,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 1292682426556781.2,
+     "M_plant": 6,
+     "fit_resid": 6.906598030955764e-05,
+     "moves_end": true,
+     "pass": false
+    }
+   },
+   "pole10": {
+    "chord": {
+     "chi": 4113586766229475.0,
+     "M_plant": 6,
+     "fit_resid": 0.00024562186895555845,
+     "moves_end": true,
+     "pass": false
+    },
+    "arc": {
+     "chi": 1013501141883018.2,
+     "M_plant": 6,
+     "fit_resid": 0.00010219480519427159,
+     "moves_end": true,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 978697084409000.5,
+     "M_plant": 6,
+     "fit_resid": 0.00010027787997804353,
+     "moves_end": true,
+     "pass": false
+    }
+   },
+   "ex-0.3": {
+    "chord": {
+     "chi": 1464124275654036.0,
+     "M_plant": 6,
+     "fit_resid": 3.614132539119293e-05,
+     "moves_end": false,
+     "pass": false
+    },
+    "arc": {
+     "chi": 1609104014057352.2,
+     "M_plant": 6,
+     "fit_resid": 0.00011898696791067108,
+     "moves_end": false,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 1450843844732052.5,
+     "M_plant": 6,
+     "fit_resid": 2.382285670096131e-05,
+     "moves_end": false,
+     "pass": false
+    }
+   },
+   "ex-0.1": {
+    "chord": {
+     "chi": 1679874594454568.5,
+     "M_plant": 6,
+     "fit_resid": 3.512914571809161e-05,
+     "moves_end": false,
+     "pass": false
+    },
+    "arc": {
+     "chi": 1213632806543772.5,
+     "M_plant": 6,
+     "fit_resid": 0.00012114886681367738,
+     "moves_end": false,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 1516610723956105.0,
+     "M_plant": 6,
+     "fit_resid": 1.657099926651639e-05,
+     "moves_end": false,
+     "pass": false
+    }
+   },
+   "ex+0.1": {
+    "chord": {
+     "chi": 1906247957431720.2,
+     "M_plant": 6,
+     "fit_resid": 3.7387187982127483e-05,
+     "moves_end": false,
+     "pass": false
+    },
+    "arc": {
+     "chi": 882097501774322.2,
+     "M_plant": 6,
+     "fit_resid": 0.00012087821534550433,
+     "moves_end": false,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 1616892274243966.2,
+     "M_plant": 6,
+     "fit_resid": 1.247798237831149e-05,
+     "moves_end": false,
+     "pass": false
+    }
+   },
+   "ex+0.3": {
+    "chord": {
+     "chi": 2138931703478249.0,
+     "M_plant": 6,
+     "fit_resid": 4.2393774225973845e-05,
+     "moves_end": false,
+     "pass": false
+    },
+    "arc": {
+     "chi": 712574502615505.2,
+     "M_plant": 6,
+     "fit_resid": 0.00011829079782472991,
+     "moves_end": false,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 1755627778821404.0,
+     "M_plant": 6,
+     "fit_resid": 1.5655677448985786e-05,
+     "moves_end": false,
+     "pass": false
+    }
+   },
+   "R1.75": {
+    "chord": {
+     "chi": 1528305760761486.0,
+     "M_plant": 6,
+     "fit_resid": 7.916691499604628e-05,
+     "moves_end": true,
+     "pass": false
+    },
+    "arc": {
+     "chi": 1900520868369189.5,
+     "M_plant": 6,
+     "fit_resid": 0.0001369476177383715,
+     "moves_end": true,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 1130691576089684.0,
+     "M_plant": 6,
+     "fit_resid": 5.314033102405221e-05,
+     "moves_end": true,
+     "pass": false
+    }
+   },
+   "R1.80": {
+    "chord": {
+     "chi": 2034394303417794.8,
+     "M_plant": 6,
+     "fit_resid": 0.00010545959559127024,
+     "moves_end": true,
+     "pass": false
+    },
+    "arc": {
+     "chi": 2039864966181703.5,
+     "M_plant": 6,
+     "fit_resid": 0.00013871649996698672,
+     "moves_end": true,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 1065976771304150.5,
+     "M_plant": 6,
+     "fit_resid": 7.765693759624445e-05,
+     "moves_end": true,
+     "pass": false
+    }
+   },
+   "R1.85": {
+    "chord": {
+     "chi": 2670066479263704.0,
+     "M_plant": 6,
+     "fit_resid": 0.00013590457594895062,
+     "moves_end": true,
+     "pass": false
+    },
+    "arc": {
+     "chi": 1902458400748115.8,
+     "M_plant": 6,
+     "fit_resid": 0.0001380852983606304,
+     "moves_end": true,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 940272589975697.2,
+     "M_plant": 6,
+     "fit_resid": 0.0001031819037438582,
+     "moves_end": true,
+     "pass": false
+    }
+   },
+   "R1.90": {
+    "chord": {
+     "chi": 3415120013513072.0,
+     "M_plant": 6,
+     "fit_resid": 0.00017664190527292282,
+     "moves_end": true,
+     "pass": false
+    },
+    "arc": {
+     "chi": 1572626474863393.0,
+     "M_plant": 6,
+     "fit_resid": 0.00014114795179175595,
+     "moves_end": true,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 1263085367911374.2,
+     "M_plant": 6,
+     "fit_resid": 0.00012660252431495768,
+     "moves_end": true,
+     "pass": false
+    }
+   },
+   "R2.00": {
+    "chord": {
+     "chi": 5716603029139522.0,
+     "M_plant": 6,
+     "fit_resid": 0.0003000086866754532,
+     "moves_end": true,
+     "pass": false
+    },
+    "arc": {
+     "chi": 1999259452091232.5,
+     "M_plant": 6,
+     "fit_resid": 0.00018581775960255475,
+     "moves_end": true,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 4193532424561452.5,
+     "M_plant": 6,
+     "fit_resid": 0.0001414306180270186,
+     "moves_end": true,
+     "pass": false
+    }
+   },
+   "ratioex-0.3": {
+    "chord": {
+     "chi": 4112762342723653.0,
+     "M_plant": 6,
+     "fit_resid": 0.0002248869932383325,
+     "moves_end": true,
+     "pass": false
+    },
+    "arc": {
+     "chi": 1234393378426604.2,
+     "M_plant": 6,
+     "fit_resid": 0.00010270422858361778,
+     "moves_end": true,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 1237245119496343.8,
+     "M_plant": 6,
+     "fit_resid": 0.00011561768046307647,
+     "moves_end": true,
+     "pass": false
+    }
+   },
+   "ratioex-0.1": {
+    "chord": {
+     "chi": 3988179567352650.0,
+     "M_plant": 6,
+     "fit_resid": 0.00022545623419878874,
+     "moves_end": true,
+     "pass": false
+    },
+    "arc": {
+     "chi": 1202548574716035.2,
+     "M_plant": 6,
+     "fit_resid": 0.00010866630551450778,
+     "moves_end": true,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 1019622263656681.1,
+     "M_plant": 6,
+     "fit_resid": 0.00011021608831402916,
+     "moves_end": true,
+     "pass": false
+    }
+   },
+   "ratioex+0.1": {
+    "chord": {
+     "chi": 3877842706169303.0,
+     "M_plant": 6,
+     "fit_resid": 0.00022570223014847158,
+     "moves_end": true,
+     "pass": false
+    },
+    "arc": {
+     "chi": 1133863263074953.5,
+     "M_plant": 6,
+     "fit_resid": 0.00011412768695358206,
+     "moves_end": true,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 1000362024542179.8,
+     "M_plant": 6,
+     "fit_resid": 0.00010345863212488962,
+     "moves_end": true,
+     "pass": false
+    }
+   },
+   "ratioex+0.3": {
+    "chord": {
+     "chi": 3776133343098125.5,
+     "M_plant": 6,
+     "fit_resid": 0.00022568622994481114,
+     "moves_end": true,
+     "pass": false
+    },
+    "arc": {
+     "chi": 1041103965240630.0,
+     "M_plant": 6,
+     "fit_resid": 0.0001188276303901852,
+     "moves_end": true,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 1093627400437961.0,
+     "M_plant": 6,
+     "fit_resid": 9.569270113856155e-05,
+     "moves_end": true,
+     "pass": false
+    }
+   },
+   "pole8ex-0.3": {
+    "chord": {
+     "chi": 2351187722045617.0,
+     "M_plant": 6,
+     "fit_resid": 0.00011617280037628852,
+     "moves_end": true,
+     "pass": false
+    },
+    "arc": {
+     "chi": 1869029895131585.0,
+     "M_plant": 6,
+     "fit_resid": 0.00010573921923754035,
+     "moves_end": true,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 1470778041948997.0,
+     "M_plant": 6,
+     "fit_resid": 4.770867217362179e-05,
+     "moves_end": true,
+     "pass": false
+    }
+   },
+   "pole8ex-0.1": {
+    "chord": {
+     "chi": 2361078621528515.5,
+     "M_plant": 6,
+     "fit_resid": 0.00011896084921400497,
+     "moves_end": true,
+     "pass": false
+    },
+    "arc": {
+     "chi": 1611836412605501.8,
+     "M_plant": 6,
+     "fit_resid": 0.00011306500512052326,
+     "moves_end": true,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 1512429099910456.5,
+     "M_plant": 6,
+     "fit_resid": 3.923430037488134e-05,
+     "moves_end": true,
+     "pass": false
+    }
+   },
+   "pole8ex+0.1": {
+    "chord": {
+     "chi": 2363919792277600.0,
+     "M_plant": 6,
+     "fit_resid": 0.00012198842899986542,
+     "moves_end": true,
+     "pass": false
+    },
+    "arc": {
+     "chi": 1353224307552185.2,
+     "M_plant": 6,
+     "fit_resid": 0.00011848576309101364,
+     "moves_end": true,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 1541014931757382.0,
+     "M_plant": 6,
+     "fit_resid": 3.138730635837569e-05,
+     "moves_end": true,
+     "pass": false
+    }
+   },
+   "pole8ex+0.3": {
+    "chord": {
+     "chi": 2358111526592621.5,
+     "M_plant": 6,
+     "fit_resid": 0.0001253262364194818,
+     "moves_end": true,
+     "pass": false
+    },
+    "arc": {
+     "chi": 1110318386814724.4,
+     "M_plant": 6,
+     "fit_resid": 0.0001219785680229888,
+     "moves_end": true,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 1555513430229342.2,
+     "M_plant": 6,
+     "fit_resid": 2.6239545752396895e-05,
+     "moves_end": true,
+     "pass": false
+    }
+   },
+   "pole9ex-0.3": {
+    "chord": {
+     "chi": 3090106500878493.5,
+     "M_plant": 6,
+     "fit_resid": 0.00017014778903928955,
+     "moves_end": true,
+     "pass": false
+    },
+    "arc": {
+     "chi": 1611941079595463.2,
+     "M_plant": 6,
+     "fit_resid": 9.66813476870404e-05,
+     "moves_end": true,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 1181603605423732.5,
+     "M_plant": 6,
+     "fit_resid": 8.152513580871527e-05,
+     "moves_end": true,
+     "pass": false
+    }
+   },
+   "pole9ex-0.1": {
+    "chord": {
+     "chi": 3028685098045906.0,
+     "M_plant": 6,
+     "fit_resid": 0.0001716868578492561,
+     "moves_end": true,
+     "pass": false
+    },
+    "arc": {
+     "chi": 1454658678550000.2,
+     "M_plant": 6,
+     "fit_resid": 0.00010397869528240974,
+     "moves_end": true,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 1250196795757585.0,
+     "M_plant": 6,
+     "fit_resid": 7.32897819208939e-05,
+     "moves_end": true,
+     "pass": false
+    }
+   },
+   "pole9ex+0.1": {
+    "chord": {
+     "chi": 2964913882881420.5,
+     "M_plant": 6,
+     "fit_resid": 0.00017303451763145235,
+     "moves_end": true,
+     "pass": false
+    },
+    "arc": {
+     "chi": 1280997570996034.5,
+     "M_plant": 6,
+     "fit_resid": 0.00011005424107910363,
+     "moves_end": true,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 1334573978170985.5,
+     "M_plant": 6,
+     "fit_resid": 6.482826941806981e-05,
+     "moves_end": true,
+     "pass": false
+    }
+   },
+   "pole9ex+0.3": {
+    "chord": {
+     "chi": 2896642342340284.0,
+     "M_plant": 6,
+     "fit_resid": 0.00017424263290056712,
+     "moves_end": true,
+     "pass": false
+    },
+    "arc": {
+     "chi": 1107805402597145.4,
+     "M_plant": 6,
+     "fit_resid": 0.00011473689269581002,
+     "moves_end": true,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 1406815031816590.8,
+     "M_plant": 6,
+     "fit_resid": 5.6492860989730426e-05,
+     "moves_end": true,
+     "pass": false
+    }
+   },
+   "pole10ex-0.3": {
+    "chord": {
+     "chi": 4296412935952499.5,
+     "M_plant": 6,
+     "fit_resid": 0.00024523614429283313,
+     "moves_end": true,
+     "pass": false
+    },
+    "arc": {
+     "chi": 1105252936912600.6,
+     "M_plant": 6,
+     "fit_resid": 9.50316640060831e-05,
+     "moves_end": true,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 1086393133188393.2,
+     "M_plant": 6,
+     "fit_resid": 0.0001095211406574271,
+     "moves_end": true,
+     "pass": false
+    }
+   },
+   "pole10ex-0.1": {
+    "chord": {
+     "chi": 4172536693846650.0,
+     "M_plant": 6,
+     "fit_resid": 0.0002455830115336345,
+     "moves_end": true,
+     "pass": false
+    },
+    "arc": {
+     "chi": 1052522307376759.8,
+     "M_plant": 6,
+     "fit_resid": 9.989424761147306e-05,
+     "moves_end": true,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 970725821951257.8,
+     "M_plant": 6,
+     "fit_resid": 0.00010367970528635229,
+     "moves_end": true,
+     "pass": false
+    }
+   },
+   "pole10ex+0.1": {
+    "chord": {
+     "chi": 4055923668959884.5,
+     "M_plant": 6,
+     "fit_resid": 0.00024557853717375344,
+     "moves_end": true,
+     "pass": false
+    },
+    "arc": {
+     "chi": 968192062597049.1,
+     "M_plant": 6,
+     "fit_resid": 0.00010436295830879298,
+     "moves_end": true,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 1015376415465294.8,
+     "M_plant": 6,
+     "fit_resid": 9.661328555938762e-05,
+     "moves_end": true,
+     "pass": false
+    }
+   },
+   "pole10ex+0.3": {
+    "chord": {
+     "chi": 3942890169298252.0,
+     "M_plant": 6,
+     "fit_resid": 0.00024526243851500496,
+     "moves_end": true,
+     "pass": false
+    },
+    "arc": {
+     "chi": 866125422757383.4,
+     "M_plant": 6,
+     "fit_resid": 0.00010818678019964596,
+     "moves_end": true,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 1129880743359290.0,
+     "M_plant": 6,
+     "fit_resid": 8.868409371367698e-05,
+     "moves_end": true,
+     "pass": false
+    }
+   },
+   "ratiopair": {
+    "chord": {
+     "chi": 1928667429633213.5,
+     "M_plant": 6,
+     "fit_resid": 0.00012974792119522862,
+     "moves_end": true,
+     "pass": false
+    },
+    "arc": {
+     "chi": 2521706138329995.5,
+     "M_plant": 6,
+     "fit_resid": 0.00016459823617417756,
+     "moves_end": true,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 2167417745538466.5,
+     "M_plant": 6,
+     "fit_resid": 1.876773828031526e-05,
+     "moves_end": true,
+     "pass": false
+    }
+   },
+   "ex-0.3i": {
+    "chord": {
+     "chi": 1632731285940480.5,
+     "M_plant": 6,
+     "fit_resid": 2.3363901966452956e-05,
+     "moves_end": false,
+     "pass": false
+    },
+    "arc": {
+     "chi": 1752305696332863.8,
+     "M_plant": 6,
+     "fit_resid": 0.0001285536177555215,
+     "moves_end": false,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 1436650458317867.8,
+     "M_plant": 6,
+     "fit_resid": 2.283051771324436e-05,
+     "moves_end": false,
+     "pass": false
+    }
+   },
+   "ex-0.1i": {
+    "chord": {
+     "chi": 1731579752201456.5,
+     "M_plant": 6,
+     "fit_resid": 3.142287296764198e-05,
+     "moves_end": false,
+     "pass": false
+    },
+    "arc": {
+     "chi": 1241158310820973.8,
+     "M_plant": 6,
+     "fit_resid": 0.0001231032985461456,
+     "moves_end": false,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 1530694454370097.0,
+     "M_plant": 6,
+     "fit_resid": 1.6157137986252325e-05,
+     "moves_end": false,
+     "pass": false
+    }
+   },
+   "ex+0.1i": {
+    "chord": {
+     "chi": 1859373903420826.5,
+     "M_plant": 6,
+     "fit_resid": 4.068071671080609e-05,
+     "moves_end": false,
+     "pass": false
+    },
+    "arc": {
+     "chi": 868098450948362.9,
+     "M_plant": 6,
+     "fit_resid": 0.00012009330511363954,
+     "moves_end": false,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 1585649876547723.5,
+     "M_plant": 6,
+     "fit_resid": 1.366353314490009e-05,
+     "moves_end": false,
+     "pass": false
+    }
+   },
+   "ex+0.3i": {
+    "chord": {
+     "chi": 2013828268159220.5,
+     "M_plant": 6,
+     "fit_resid": 5.2187502013540926e-05,
+     "moves_end": false,
+     "pass": false
+    },
+    "arc": {
+     "chi": 682168032154304.5,
+     "M_plant": 6,
+     "fit_resid": 0.00011925141146720924,
+     "moves_end": false,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 1616148925628133.5,
+     "M_plant": 6,
+     "fit_resid": 1.8379240199369836e-05,
+     "moves_end": false,
+     "pass": false
+    }
+   }
+  },
+  "1.01": {
+   "kstar": {
+    "chord": {
+     "chi": 3162115372138214.5,
+     "M_plant": 6,
+     "fit_resid": 3.711533802413164e-05,
+     "moves_end": false,
+     "pass": false
+    },
+    "arc": {
+     "chi": 2092130201099006.2,
+     "M_plant": 6,
+     "fit_resid": 0.0001376896941594153,
+     "moves_end": false,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 2786242328072379.0,
+     "M_plant": 6,
+     "fit_resid": 1.4135012633265657e-05,
+     "moves_end": false,
+     "pass": false
+    }
+   },
+   "ratio": {
+    "chord": {
+     "chi": 6639730716310527.0,
+     "M_plant": 6,
+     "fit_resid": 0.0002122137309375301,
+     "moves_end": true,
+     "pass": false
+    },
+    "arc": {
+     "chi": 2686452487788953.0,
+     "M_plant": 6,
+     "fit_resid": 0.00012234138639848028,
+     "moves_end": true,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 1582286973246466.2,
+     "M_plant": 6,
+     "fit_resid": 9.840079935563833e-05,
+     "moves_end": true,
+     "pass": false
+    }
+   },
+   "pole8": {
+    "chord": {
+     "chi": 4081718637670773.0,
+     "M_plant": 6,
+     "fit_resid": 0.00011239423613586703,
+     "moves_end": true,
+     "pass": false
+    },
+    "arc": {
+     "chi": 2713964062284149.0,
+     "M_plant": 6,
+     "fit_resid": 0.00013344597897749314,
+     "moves_end": true,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 2665087504152570.5,
+     "M_plant": 6,
+     "fit_resid": 2.8102332046358558e-05,
+     "moves_end": true,
+     "pass": false
+    }
+   },
+   "pole9": {
+    "chord": {
+     "chi": 5177972516376957.0,
+     "M_plant": 6,
+     "fit_resid": 0.0001648957686475397,
+     "moves_end": true,
+     "pass": false
+    },
+    "arc": {
+     "chi": 2676396644797223.0,
+     "M_plant": 6,
+     "fit_resid": 0.00012235006909950917,
+     "moves_end": true,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 2321935313391442.0,
+     "M_plant": 6,
+     "fit_resid": 5.973610542916852e-05,
+     "moves_end": true,
+     "pass": false
+    }
+   },
+   "pole10": {
+    "chord": {
+     "chi": 7043092355981657.0,
+     "M_plant": 6,
+     "fit_resid": 0.00023486018370072717,
+     "moves_end": true,
+     "pass": false
+    },
+    "arc": {
+     "chi": 2286323385083612.5,
+     "M_plant": 6,
+     "fit_resid": 0.00011318322487316081,
+     "moves_end": true,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 1732124948405679.0,
+     "M_plant": 6,
+     "fit_resid": 9.07656719692211e-05,
+     "moves_end": true,
+     "pass": false
+    }
+   },
+   "ex-0.3": {
+    "chord": {
+     "chi": 2677785986403433.5,
+     "M_plant": 6,
+     "fit_resid": 3.5707604784421886e-05,
+     "moves_end": false,
+     "pass": false
+    },
+    "arc": {
+     "chi": 3056273402661192.5,
+     "M_plant": 6,
+     "fit_resid": 0.00013586197694893964,
+     "moves_end": false,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 2568291885144500.5,
+     "M_plant": 6,
+     "fit_resid": 1.728297774213567e-05,
+     "moves_end": false,
+     "pass": false
+    }
+   },
+   "ex-0.1": {
+    "chord": {
+     "chi": 2996241244875654.0,
+     "M_plant": 6,
+     "fit_resid": 3.616912500929173e-05,
+     "moves_end": false,
+     "pass": false
+    },
+    "arc": {
+     "chi": 2391643894266303.5,
+     "M_plant": 6,
+     "fit_resid": 0.00013767207174913713,
+     "moves_end": false,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 2704664091548673.5,
+     "M_plant": 6,
+     "fit_resid": 1.2562329996163944e-05,
+     "moves_end": false,
+     "pass": false
+    }
+   },
+   "ex+0.1": {
+    "chord": {
+     "chi": 3331325757221956.5,
+     "M_plant": 6,
+     "fit_resid": 3.862953179249028e-05,
+     "moves_end": false,
+     "pass": false
+    },
+    "arc": {
+     "chi": 1829200217221352.8,
+     "M_plant": 6,
+     "fit_resid": 0.00013713133705416656,
+     "moves_end": false,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 2877980838637715.0,
+     "M_plant": 6,
+     "fit_resid": 1.5937966328577158e-05,
+     "moves_end": false,
+     "pass": false
+    }
+   },
+   "ex+0.3": {
+    "chord": {
+     "chi": 3676322921431899.5,
+     "M_plant": 6,
+     "fit_resid": 4.451635594677074e-05,
+     "moves_end": false,
+     "pass": false
+    },
+    "arc": {
+     "chi": 1475873411288764.8,
+     "M_plant": 6,
+     "fit_resid": 0.00013437375429505282,
+     "moves_end": false,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 3094534588077375.0,
+     "M_plant": 6,
+     "fit_resid": 2.0077339574625324e-05,
+     "moves_end": false,
+     "pass": false
+    }
+   },
+   "R1.75": {
+    "chord": {
+     "chi": 2831791117161619.5,
+     "M_plant": 6,
+     "fit_resid": 7.50320546411776e-05,
+     "moves_end": true,
+     "pass": false
+    },
+    "arc": {
+     "chi": 3446747514068998.0,
+     "M_plant": 6,
+     "fit_resid": 0.00014909473274858585,
+     "moves_end": true,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 2035185567809729.8,
+     "M_plant": 6,
+     "fit_resid": 4.7041495821729125e-05,
+     "moves_end": true,
+     "pass": false
+    }
+   },
+   "R1.80": {
+    "chord": {
+     "chi": 3649689258788123.5,
+     "M_plant": 6,
+     "fit_resid": 0.00010426267143140068,
+     "moves_end": true,
+     "pass": false
+    },
+    "arc": {
+     "chi": 3841518025053256.5,
+     "M_plant": 6,
+     "fit_resid": 0.00014975641682360742,
+     "moves_end": true,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 1827606647427125.0,
+     "M_plant": 6,
+     "fit_resid": 7.267844281699627e-05,
+     "moves_end": true,
+     "pass": false
+    }
+   },
+   "R1.85": {
+    "chord": {
+     "chi": 4746184382088970.0,
+     "M_plant": 6,
+     "fit_resid": 0.0001387046077415316,
+     "moves_end": true,
+     "pass": false
+    },
+    "arc": {
+     "chi": 3843840158713136.5,
+     "M_plant": 6,
+     "fit_resid": 0.0001470222287060157,
+     "moves_end": true,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 1348806451338132.2,
+     "M_plant": 6,
+     "fit_resid": 9.874982988418332e-05,
+     "moves_end": true,
+     "pass": false
+    }
+   },
+   "R1.90": {
+    "chord": {
+     "chi": 6050473003436312.0,
+     "M_plant": 6,
+     "fit_resid": 0.0001837113595831266,
+     "moves_end": true,
+     "pass": false
+    },
+    "arc": {
+     "chi": 3595171316309867.5,
+     "M_plant": 6,
+     "fit_resid": 0.00014657865168232563,
+     "moves_end": true,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 1418283990715484.0,
+     "M_plant": 6,
+     "fit_resid": 0.00012256315623129617,
+     "moves_end": true,
+     "pass": false
+    }
+   },
+   "R2.00": {
+    "chord": {
+     "chi": 1.0096951752519066e+16,
+     "M_plant": 6,
+     "fit_resid": 0.00031445218628937147,
+     "moves_end": true,
+     "pass": false
+    },
+    "arc": {
+     "chi": 4439938260993605.5,
+     "M_plant": 6,
+     "fit_resid": 0.00018244945930741933,
+     "moves_end": true,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 6508334773881100.0,
+     "M_plant": 6,
+     "fit_resid": 0.0001347838689676343,
+     "moves_end": true,
+     "pass": false
+    }
+   },
+   "ratioex-0.3": {
+    "chord": {
+     "chi": 6914812367699272.0,
+     "M_plant": 6,
+     "fit_resid": 0.00021217031587819298,
+     "moves_end": true,
+     "pass": false
+    },
+    "arc": {
+     "chi": 2972239840086058.0,
+     "M_plant": 6,
+     "fit_resid": 0.00011092999567744336,
+     "moves_end": true,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 1442643101764893.2,
+     "M_plant": 6,
+     "fit_resid": 0.00010760795659490262,
+     "moves_end": true,
+     "pass": false
+    }
+   },
+   "ratioex-0.1": {
+    "chord": {
+     "chi": 6726742274258486.0,
+     "M_plant": 6,
+     "fit_resid": 0.00021224079239478988,
+     "moves_end": true,
+     "pass": false
+    },
+    "arc": {
+     "chi": 2795423093068793.0,
+     "M_plant": 6,
+     "fit_resid": 0.0001187896012701414,
+     "moves_end": true,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 1465028869449913.5,
+     "M_plant": 6,
+     "fit_resid": 0.0001017899885228296,
+     "moves_end": true,
+     "pass": false
+    }
+   },
+   "ratioex+0.1": {
+    "chord": {
+     "chi": 6555756740034634.0,
+     "M_plant": 6,
+     "fit_resid": 0.0002121573320366726,
+     "moves_end": true,
+     "pass": false
+    },
+    "arc": {
+     "chi": 2567354694488901.0,
+     "M_plant": 6,
+     "fit_resid": 0.00012560094185196536,
+     "moves_end": true,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 1725734610695489.5,
+     "M_plant": 6,
+     "fit_resid": 9.476316117824553e-05,
+     "moves_end": true,
+     "pass": false
+    }
+   },
+   "ratioex+0.3": {
+    "chord": {
+     "chi": 6393610675003187.0,
+     "M_plant": 6,
+     "fit_resid": 0.00021198419783038038,
+     "moves_end": true,
+     "pass": false
+    },
+    "arc": {
+     "chi": 2311075222965101.5,
+     "M_plant": 6,
+     "fit_resid": 0.00013114656253680022,
+     "moves_end": true,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 2015373587787898.8,
+     "M_plant": 6,
+     "fit_resid": 8.696559192631102e-05,
+     "moves_end": true,
+     "pass": false
+    }
+   },
+   "pole8ex-0.3": {
+    "chord": {
+     "chi": 4057140949565742.0,
+     "M_plant": 6,
+     "fit_resid": 0.00010734553066341875,
+     "moves_end": true,
+     "pass": false
+    },
+    "arc": {
+     "chi": 3465098791781096.5,
+     "M_plant": 6,
+     "fit_resid": 0.00012412528877687773,
+     "moves_end": true,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 2558389331198192.5,
+     "M_plant": 6,
+     "fit_resid": 3.800903544016518e-05,
+     "moves_end": true,
+     "pass": false
+    }
+   },
+   "pole8ex-0.1": {
+    "chord": {
+     "chi": 4076960757601943.0,
+     "M_plant": 6,
+     "fit_resid": 0.00011060892181730593,
+     "moves_end": true,
+     "pass": false
+    },
+    "arc": {
+     "chi": 2961022788250337.5,
+     "M_plant": 6,
+     "fit_resid": 0.0001308663539560243,
+     "moves_end": true,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 2637228165607691.0,
+     "M_plant": 6,
+     "fit_resid": 3.103604277804201e-05,
+     "moves_end": true,
+     "pass": false
+    }
+   },
+   "pole8ex+0.1": {
+    "chord": {
+     "chi": 4082740016379120.5,
+     "M_plant": 6,
+     "fit_resid": 0.00011428921754961574,
+     "moves_end": true,
+     "pass": false
+    },
+    "arc": {
+     "chi": 2475242237396481.5,
+     "M_plant": 6,
+     "fit_resid": 0.00013549923154082002,
+     "moves_end": true,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 2686325302063621.0,
+     "M_plant": 6,
+     "fit_resid": 2.611226854110722e-05,
+     "moves_end": true,
+     "pass": false
+    }
+   },
+   "pole8ex+0.3": {
+    "chord": {
+     "chi": 4072514473520602.5,
+     "M_plant": 6,
+     "fit_resid": 0.00011842117948794273,
+     "moves_end": true,
+     "pass": false
+    },
+    "arc": {
+     "chi": 2039584195705017.8,
+     "M_plant": 6,
+     "fit_resid": 0.00013805484390674934,
+     "moves_end": true,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 2714092072913670.5,
+     "M_plant": 6,
+     "fit_resid": 2.621398916240905e-05,
+     "moves_end": true,
+     "pass": false
+    }
+   },
+   "pole9ex-0.3": {
+    "chord": {
+     "chi": 5336088331512917.0,
+     "M_plant": 6,
+     "fit_resid": 0.0001624800337756507,
+     "moves_end": true,
+     "pass": false
+    },
+    "arc": {
+     "chi": 3216502250781030.0,
+     "M_plant": 6,
+     "fit_resid": 0.00011107139573637398,
+     "moves_end": true,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 2037060810612744.8,
+     "M_plant": 6,
+     "fit_resid": 7.163870273075768e-05,
+     "moves_end": true,
+     "pass": false
+    }
+   },
+   "pole9ex-0.1": {
+    "chord": {
+     "chi": 5232654057653857.0,
+     "M_plant": 6,
+     "fit_resid": 0.00016409731685275707,
+     "moves_end": true,
+     "pass": false
+    },
+    "arc": {
+     "chi": 2860600345580214.5,
+     "M_plant": 6,
+     "fit_resid": 0.00011900825611213054,
+     "moves_end": true,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 2235426540915692.2,
+     "M_plant": 6,
+     "fit_resid": 6.368689409178177e-05,
+     "moves_end": true,
+     "pass": false
+    }
+   },
+   "pole9ex+0.1": {
+    "chord": {
+     "chi": 5120826521673597.0,
+     "M_plant": 6,
+     "fit_resid": 0.00016569324647034515,
+     "moves_end": true,
+     "pass": false
+    },
+    "arc": {
+     "chi": 2492972822374982.0,
+     "M_plant": 6,
+     "fit_resid": 0.00012525616427859585,
+     "moves_end": true,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 2396237214514660.5,
+     "M_plant": 6,
+     "fit_resid": 5.5875042134289984e-05,
+     "moves_end": true,
+     "pass": false
+    }
+   },
+   "pole9ex+0.3": {
+    "chord": {
+     "chi": 4997978315960203.0,
+     "M_plant": 6,
+     "fit_resid": 0.00016729510957897198,
+     "moves_end": true,
+     "pass": false
+    },
+    "arc": {
+     "chi": 2144924299422809.2,
+     "M_plant": 6,
+     "fit_resid": 0.0001297335750751275,
+     "moves_end": true,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 2505236394696514.5,
+     "M_plant": 6,
+     "fit_resid": 4.865904153514743e-05,
+     "moves_end": true,
+     "pass": false
+    }
+   },
+   "pole10ex-0.3": {
+    "chord": {
+     "chi": 7343365425295293.0,
+     "M_plant": 6,
+     "fit_resid": 0.0002345541159170803,
+     "moves_end": true,
+     "pass": false
+    },
+    "arc": {
+     "chi": 2604346337732458.0,
+     "M_plant": 6,
+     "fit_resid": 0.00010292414922655072,
+     "moves_end": true,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 1422831825521379.2,
+     "M_plant": 6,
+     "fit_resid": 0.00010090114175801147,
+     "moves_end": true,
+     "pass": false
+    }
+   },
+   "pole10ex-0.1": {
+    "chord": {
+     "chi": 7141191578534492.0,
+     "M_plant": 6,
+     "fit_resid": 0.00023480708575720577,
+     "moves_end": true,
+     "pass": false
+    },
+    "arc": {
+     "chi": 2403577684951019.5,
+     "M_plant": 6,
+     "fit_resid": 0.0001100202787618475,
+     "moves_end": true,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 1595506849891775.0,
+     "M_plant": 6,
+     "fit_resid": 9.440087386030843e-05,
+     "moves_end": true,
+     "pass": false
+    }
+   },
+   "pole10ex+0.1": {
+    "chord": {
+     "chi": 6945971927643826.0,
+     "M_plant": 6,
+     "fit_resid": 0.00023487023371174357,
+     "moves_end": true,
+     "pass": false
+    },
+    "arc": {
+     "chi": 2161757440695184.8,
+     "M_plant": 6,
+     "fit_resid": 0.00011605667628747409,
+     "moves_end": true,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 1873913236878844.0,
+     "M_plant": 6,
+     "fit_resid": 8.694633783496689e-05,
+     "moves_end": true,
+     "pass": false
+    }
+   },
+   "pole10ex+0.3": {
+    "chord": {
+     "chi": 6752518936708466.0,
+     "M_plant": 6,
+     "fit_resid": 0.00023477154510000533,
+     "moves_end": true,
+     "pass": false
+    },
+    "arc": {
+     "chi": 1904172251565498.5,
+     "M_plant": 6,
+     "fit_resid": 0.00012085960656029409,
+     "moves_end": true,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 2133258107084478.5,
+     "M_plant": 6,
+     "fit_resid": 7.897760868183651e-05,
+     "moves_end": true,
+     "pass": false
+    }
+   },
+   "ratiopair": {
+    "chord": {
+     "chi": 3435078548044229.0,
+     "M_plant": 6,
+     "fit_resid": 0.00012589705788430117,
+     "moves_end": true,
+     "pass": false
+    },
+    "arc": {
+     "chi": 4391526143640120.0,
+     "M_plant": 6,
+     "fit_resid": 0.00017485833647294996,
+     "moves_end": true,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 3179895386217175.0,
+     "M_plant": 6,
+     "fit_resid": 9.261356004873967e-06,
+     "moves_end": true,
+     "pass": false
+    }
+   },
+   "ex-0.3i": {
+    "chord": {
+     "chi": 2839482296027055.0,
+     "M_plant": 6,
+     "fit_resid": 2.4095109903074806e-05,
+     "moves_end": false,
+     "pass": false
+    },
+    "arc": {
+     "chi": 3283019977170110.0,
+     "M_plant": 6,
+     "fit_resid": 0.0001465235164518175,
+     "moves_end": false,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 2639766182061175.0,
+     "M_plant": 6,
+     "fit_resid": 1.3460668867906537e-05,
+     "moves_end": false,
+     "pass": false
+    }
+   },
+   "ex-0.1i": {
+    "chord": {
+     "chi": 3044604591224245.5,
+     "M_plant": 6,
+     "fit_resid": 3.1851996762562324e-05,
+     "moves_end": false,
+     "pass": false
+    },
+    "arc": {
+     "chi": 2438775625964327.5,
+     "M_plant": 6,
+     "fit_resid": 0.0001400253837055649,
+     "moves_end": false,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 2749446429032974.5,
+     "M_plant": 6,
+     "fit_resid": 1.2365558644588276e-05,
+     "moves_end": false,
+     "pass": false
+    }
+   },
+   "ex+0.1i": {
+    "chord": {
+     "chi": 3289298499365414.0,
+     "M_plant": 6,
+     "fit_resid": 4.2584129936785816e-05,
+     "moves_end": false,
+     "pass": false
+    },
+    "arc": {
+     "chi": 1800396940740964.8,
+     "M_plant": 6,
+     "fit_resid": 0.00013591246195638696,
+     "moves_end": false,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 2814794994286736.0,
+     "M_plant": 6,
+     "fit_resid": 1.6065774030758084e-05,
+     "moves_end": false,
+     "pass": false
+    }
+   },
+   "ex+0.3i": {
+    "chord": {
+     "chi": 3572006801291629.0,
+     "M_plant": 6,
+     "fit_resid": 5.4207924670921684e-05,
+     "moves_end": false,
+     "pass": false
+    },
+    "arc": {
+     "chi": 1411304533886816.5,
+     "M_plant": 6,
+     "fit_resid": 0.0001339240688082508,
+     "moves_end": false,
+     "pass": false
+    },
+    "smooth": {
+     "chi": 2857957116426809.5,
+     "M_plant": 6,
+     "fit_resid": 2.0186378887373857e-05,
+     "moves_end": false,
+     "pass": false
+    }
+   }
+  }
+ },
+ "sensitivity": {},
+ "resolution": {},
+ "K1_arc": {},
+ "K0": {
+  "0.99": {
+   "ratio": [
+    1.4597552230332769,
+    1.1113352429307877
+   ],
+   "ratio_beta": [
+    5.656330729520137,
+    -2.6909042755356563
+   ],
+   "ratio_dev": 5.6982812491405e-05,
+   "poles": {
+    "8": {
+     "t": [
+      1.355474512907339,
+      1.0506977251883904
+     ],
+     "n_candidates": 1,
+     "dev": 0.0,
+     "pass": true
+    },
+    "9": {
+     "t": [
+      1.4050935307815564,
+      1.0628863629673637
+     ],
+     "n_candidates": 1,
+     "dev": 0.0,
+     "pass": true
+    },
+    "10": {
+     "t": [
+      1.458551637205871,
+      1.0719351389146154
+     ],
+     "n_candidates": 1,
+     "dev": 0.0,
+     "pass": true
+    }
+   },
+   "pass": true
+  },
+  "1.0": {
+   "ratio": [
+    1.4574065164860972,
+    1.1119324508555528
+   ],
+   "ratio_beta": [
+    5.663145048713171,
+    -2.650808742157384
+   ],
+   "ratio_dev": 3.309867999115618e-05,
+   "poles": {
+    "8": {
+     "t": [
+      1.3549378318196221,
+      1.0507596283369365
+     ],
+     "n_candidates": 1,
+     "dev": 0.0,
+     "pass": true
+    },
+    "9": {
+     "t": [
+      1.4066172412863676,
+      1.061286490489844
+     ],
+     "n_candidates": 1,
+     "dev": 0.0,
+     "pass": true
+    },
+    "10": {
+     "t": [
+      1.4566034199399178,
+      1.0685122989873004
+     ],
+     "n_candidates": 1,
+     "dev": 0.0,
+     "pass": true
+    }
+   },
+   "pass": true
+  },
+  "1.01": {
+   "ratio": [
+    1.4551177624451022,
+    1.1125733936526088
+   ],
+   "ratio_beta": [
+    5.670700575857041,
+    -2.6104947911817526
+   ],
+   "ratio_dev": 3.199065765985197e-05,
+   "poles": {
+    "8": {
+     "t": [
+      1.3548989680915362,
+      1.0509058447285036
+     ],
+     "n_candidates": 1,
+     "dev": 0.0,
+     "pass": true
+    },
+    "9": {
+     "t": [
+      1.407585411585267,
+      1.0599294998036761
+     ],
+     "n_candidates": 1,
+     "dev": 0.0,
+     "pass": true
+    },
+    "10": {
+     "t": [
+      1.456259830569657,
+      1.0676136922555628
+     ],
+     "n_candidates": 1,
+     "dev": 0.0,
+     "pass": true
+    }
+   },
+   "pass": true
+  }
+ },
+ "ends": {
+  "0.99": {
+   "ratio": [
+    1.4597552230332769,
+    1.1113352429307877
+   ],
+   "ratio_beta": [
+    5.656330729520137,
+    -2.6909042755356563
+   ],
+   "pole8_all": [
+    [
+     1.355474512907339,
+     1.0506977251883904
+    ]
+   ],
+   "pole8": [
+    1.355474512907339,
+    1.0506977251883904
+   ],
+   "pole9_all": [
+    [
+     1.4050935307815564,
+     1.0628863629673637
+    ]
+   ],
+   "pole9": [
+    1.4050935307815564,
+    1.0628863629673637
+   ],
+   "pole10_all": [
+    [
+     1.458551637205871,
+     1.0719351389146154
+    ]
+   ],
+   "pole10": [
+    1.458551637205871,
+    1.0719351389146154
+   ]
+  },
+  "1.0": {
+   "ratio": [
+    1.4574065164860972,
+    1.1119324508555528
+   ],
+   "ratio_beta": [
+    5.663145048713171,
+    -2.650808742157384
+   ],
+   "pole8_all": [
+    [
+     1.3549378318196221,
+     1.0507596283369365
+    ]
+   ],
+   "pole8": [
+    1.3549378318196221,
+    1.0507596283369365
+   ],
+   "pole9_all": [
+    [
+     1.4066172412863676,
+     1.061286490489844
+    ]
+   ],
+   "pole9": [
+    1.4066172412863676,
+    1.061286490489844
+   ],
+   "pole10_all": [
+    [
+     1.4566034199399178,
+     1.0685122989873004
+    ]
+   ],
+   "pole10": [
+    1.4566034199399178,
+    1.0685122989873004
+   ]
+  },
+  "1.01": {
+   "ratio": [
+    1.4551177624451022,
+    1.1125733936526088
+   ],
+   "ratio_beta": [
+    5.670700575857041,
+    -2.6104947911817526
+   ],
+   "pole8_all": [
+    [
+     1.3548989680915362,
+     1.0509058447285036
+    ]
+   ],
+   "pole8": [
+    1.3548989680915362,
+    1.0509058447285036
+   ],
+   "pole9_all": [
+    [
+     1.407585411585267,
+     1.0599294998036761
+    ]
+   ],
+   "pole9": [
+    1.407585411585267,
+    1.0599294998036761
+   ],
+   "pole10_all": [
+    [
+     1.456259830569657,
+     1.0676136922555628
+    ]
+   ],
+   "pole10": [
+    1.456259830569657,
+    1.0676136922555628
+   ]
+  }
+ },
+ "verdict": {
+  "K0": true,
+  "K1": false,
+  "C0": false,
+  "C0_fail": [
+   [
+    0.99,
+    "kstar",
+    "chord"
+   ],
+   [
+    0.99,
+    "kstar",
+    "arc"
+   ],
+   [
+    0.99,
+    "kstar",
+    "smooth"
+   ],
+   [
+    0.99,
+    "ratio",
+    "chord"
+   ],
+   [
+    0.99,
+    "ratio",
+    "arc"
+   ],
+   [
+    0.99,
+    "ratio",
+    "smooth"
+   ],
+   [
+    0.99,
+    "pole8",
+    "chord"
+   ],
+   [
+    0.99,
+    "pole8",
+    "arc"
+   ],
+   [
+    0.99,
+    "pole8",
+    "smooth"
+   ],
+   [
+    0.99,
+    "pole9",
+    "chord"
+   ],
+   [
+    0.99,
+    "pole9",
+    "arc"
+   ],
+   [
+    0.99,
+    "pole9",
+    "smooth"
+   ],
+   [
+    0.99,
+    "pole10",
+    "chord"
+   ],
+   [
+    0.99,
+    "pole10",
+    "arc"
+   ],
+   [
+    0.99,
+    "pole10",
+    "smooth"
+   ],
+   [
+    0.99,
+    "ex-0.3",
+    "chord"
+   ],
+   [
+    0.99,
+    "ex-0.3",
+    "arc"
+   ],
+   [
+    0.99,
+    "ex-0.3",
+    "smooth"
+   ],
+   [
+    0.99,
+    "ex-0.1",
+    "chord"
+   ],
+   [
+    0.99,
+    "ex-0.1",
+    "arc"
+   ],
+   [
+    0.99,
+    "ex-0.1",
+    "smooth"
+   ],
+   [
+    0.99,
+    "ex+0.1",
+    "chord"
+   ],
+   [
+    0.99,
+    "ex+0.1",
+    "arc"
+   ],
+   [
+    0.99,
+    "ex+0.1",
+    "smooth"
+   ],
+   [
+    0.99,
+    "ex+0.3",
+    "chord"
+   ],
+   [
+    0.99,
+    "ex+0.3",
+    "arc"
+   ],
+   [
+    0.99,
+    "ex+0.3",
+    "smooth"
+   ],
+   [
+    0.99,
+    "R1.75",
+    "chord"
+   ],
+   [
+    0.99,
+    "R1.75",
+    "arc"
+   ],
+   [
+    0.99,
+    "R1.75",
+    "smooth"
+   ],
+   [
+    0.99,
+    "R1.80",
+    "chord"
+   ],
+   [
+    0.99,
+    "R1.80",
+    "arc"
+   ],
+   [
+    0.99,
+    "R1.80",
+    "smooth"
+   ],
+   [
+    0.99,
+    "R1.85",
+    "chord"
+   ],
+   [
+    0.99,
+    "R1.85",
+    "arc"
+   ],
+   [
+    0.99,
+    "R1.85",
+    "smooth"
+   ],
+   [
+    0.99,
+    "R1.90",
+    "chord"
+   ],
+   [
+    0.99,
+    "R1.90",
+    "arc"
+   ],
+   [
+    0.99,
+    "R1.90",
+    "smooth"
+   ],
+   [
+    0.99,
+    "R2.00",
+    "chord"
+   ],
+   [
+    0.99,
+    "R2.00",
+    "arc"
+   ],
+   [
+    0.99,
+    "R2.00",
+    "smooth"
+   ],
+   [
+    0.99,
+    "ratioex-0.3",
+    "chord"
+   ],
+   [
+    0.99,
+    "ratioex-0.3",
+    "arc"
+   ],
+   [
+    0.99,
+    "ratioex-0.3",
+    "smooth"
+   ],
+   [
+    0.99,
+    "ratioex-0.1",
+    "chord"
+   ],
+   [
+    0.99,
+    "ratioex-0.1",
+    "arc"
+   ],
+   [
+    0.99,
+    "ratioex-0.1",
+    "smooth"
+   ],
+   [
+    0.99,
+    "ratioex+0.1",
+    "chord"
+   ],
+   [
+    0.99,
+    "ratioex+0.1",
+    "arc"
+   ],
+   [
+    0.99,
+    "ratioex+0.1",
+    "smooth"
+   ],
+   [
+    0.99,
+    "ratioex+0.3",
+    "chord"
+   ],
+   [
+    0.99,
+    "ratioex+0.3",
+    "arc"
+   ],
+   [
+    0.99,
+    "ratioex+0.3",
+    "smooth"
+   ],
+   [
+    0.99,
+    "pole8ex-0.3",
+    "chord"
+   ],
+   [
+    0.99,
+    "pole8ex-0.3",
+    "arc"
+   ],
+   [
+    0.99,
+    "pole8ex-0.3",
+    "smooth"
+   ],
+   [
+    0.99,
+    "pole8ex-0.1",
+    "chord"
+   ],
+   [
+    0.99,
+    "pole8ex-0.1",
+    "arc"
+   ],
+   [
+    0.99,
+    "pole8ex-0.1",
+    "smooth"
+   ],
+   [
+    0.99,
+    "pole8ex+0.1",
+    "chord"
+   ],
+   [
+    0.99,
+    "pole8ex+0.1",
+    "arc"
+   ],
+   [
+    0.99,
+    "pole8ex+0.1",
+    "smooth"
+   ],
+   [
+    0.99,
+    "pole8ex+0.3",
+    "chord"
+   ],
+   [
+    0.99,
+    "pole8ex+0.3",
+    "arc"
+   ],
+   [
+    0.99,
+    "pole8ex+0.3",
+    "smooth"
+   ],
+   [
+    0.99,
+    "pole9ex-0.3",
+    "chord"
+   ],
+   [
+    0.99,
+    "pole9ex-0.3",
+    "arc"
+   ],
+   [
+    0.99,
+    "pole9ex-0.3",
+    "smooth"
+   ],
+   [
+    0.99,
+    "pole9ex-0.1",
+    "chord"
+   ],
+   [
+    0.99,
+    "pole9ex-0.1",
+    "arc"
+   ],
+   [
+    0.99,
+    "pole9ex-0.1",
+    "smooth"
+   ],
+   [
+    0.99,
+    "pole9ex+0.1",
+    "chord"
+   ],
+   [
+    0.99,
+    "pole9ex+0.1",
+    "arc"
+   ],
+   [
+    0.99,
+    "pole9ex+0.1",
+    "smooth"
+   ],
+   [
+    0.99,
+    "pole9ex+0.3",
+    "chord"
+   ],
+   [
+    0.99,
+    "pole9ex+0.3",
+    "arc"
+   ],
+   [
+    0.99,
+    "pole9ex+0.3",
+    "smooth"
+   ],
+   [
+    0.99,
+    "pole10ex-0.3",
+    "chord"
+   ],
+   [
+    0.99,
+    "pole10ex-0.3",
+    "arc"
+   ],
+   [
+    0.99,
+    "pole10ex-0.3",
+    "smooth"
+   ],
+   [
+    0.99,
+    "pole10ex-0.1",
+    "chord"
+   ],
+   [
+    0.99,
+    "pole10ex-0.1",
+    "arc"
+   ],
+   [
+    0.99,
+    "pole10ex-0.1",
+    "smooth"
+   ],
+   [
+    0.99,
+    "pole10ex+0.1",
+    "chord"
+   ],
+   [
+    0.99,
+    "pole10ex+0.1",
+    "arc"
+   ],
+   [
+    0.99,
+    "pole10ex+0.1",
+    "smooth"
+   ],
+   [
+    0.99,
+    "pole10ex+0.3",
+    "chord"
+   ],
+   [
+    0.99,
+    "pole10ex+0.3",
+    "arc"
+   ],
+   [
+    0.99,
+    "pole10ex+0.3",
+    "smooth"
+   ],
+   [
+    0.99,
+    "ratiopair",
+    "chord"
+   ],
+   [
+    0.99,
+    "ratiopair",
+    "arc"
+   ],
+   [
+    0.99,
+    "ratiopair",
+    "smooth"
+   ],
+   [
+    0.99,
+    "ex-0.3i",
+    "chord"
+   ],
+   [
+    0.99,
+    "ex-0.3i",
+    "arc"
+   ],
+   [
+    0.99,
+    "ex-0.3i",
+    "smooth"
+   ],
+   [
+    0.99,
+    "ex-0.1i",
+    "chord"
+   ],
+   [
+    0.99,
+    "ex-0.1i",
+    "arc"
+   ],
+   [
+    0.99,
+    "ex-0.1i",
+    "smooth"
+   ],
+   [
+    0.99,
+    "ex+0.1i",
+    "chord"
+   ],
+   [
+    0.99,
+    "ex+0.1i",
+    "arc"
+   ],
+   [
+    0.99,
+    "ex+0.1i",
+    "smooth"
+   ],
+   [
+    0.99,
+    "ex+0.3i",
+    "chord"
+   ],
+   [
+    0.99,
+    "ex+0.3i",
+    "arc"
+   ],
+   [
+    0.99,
+    "ex+0.3i",
+    "smooth"
+   ],
+   [
+    1.0,
+    "kstar",
+    "chord"
+   ],
+   [
+    1.0,
+    "kstar",
+    "arc"
+   ],
+   [
+    1.0,
+    "kstar",
+    "smooth"
+   ],
+   [
+    1.0,
+    "ratio",
+    "chord"
+   ],
+   [
+    1.0,
+    "ratio",
+    "arc"
+   ],
+   [
+    1.0,
+    "ratio",
+    "smooth"
+   ],
+   [
+    1.0,
+    "pole8",
+    "chord"
+   ],
+   [
+    1.0,
+    "pole8",
+    "arc"
+   ],
+   [
+    1.0,
+    "pole8",
+    "smooth"
+   ],
+   [
+    1.0,
+    "pole9",
+    "chord"
+   ],
+   [
+    1.0,
+    "pole9",
+    "arc"
+   ],
+   [
+    1.0,
+    "pole9",
+    "smooth"
+   ],
+   [
+    1.0,
+    "pole10",
+    "chord"
+   ],
+   [
+    1.0,
+    "pole10",
+    "arc"
+   ],
+   [
+    1.0,
+    "pole10",
+    "smooth"
+   ],
+   [
+    1.0,
+    "ex-0.3",
+    "chord"
+   ],
+   [
+    1.0,
+    "ex-0.3",
+    "arc"
+   ],
+   [
+    1.0,
+    "ex-0.3",
+    "smooth"
+   ],
+   [
+    1.0,
+    "ex-0.1",
+    "chord"
+   ],
+   [
+    1.0,
+    "ex-0.1",
+    "arc"
+   ],
+   [
+    1.0,
+    "ex-0.1",
+    "smooth"
+   ],
+   [
+    1.0,
+    "ex+0.1",
+    "chord"
+   ],
+   [
+    1.0,
+    "ex+0.1",
+    "arc"
+   ],
+   [
+    1.0,
+    "ex+0.1",
+    "smooth"
+   ],
+   [
+    1.0,
+    "ex+0.3",
+    "chord"
+   ],
+   [
+    1.0,
+    "ex+0.3",
+    "arc"
+   ],
+   [
+    1.0,
+    "ex+0.3",
+    "smooth"
+   ],
+   [
+    1.0,
+    "R1.75",
+    "chord"
+   ],
+   [
+    1.0,
+    "R1.75",
+    "arc"
+   ],
+   [
+    1.0,
+    "R1.75",
+    "smooth"
+   ],
+   [
+    1.0,
+    "R1.80",
+    "chord"
+   ],
+   [
+    1.0,
+    "R1.80",
+    "arc"
+   ],
+   [
+    1.0,
+    "R1.80",
+    "smooth"
+   ],
+   [
+    1.0,
+    "R1.85",
+    "chord"
+   ],
+   [
+    1.0,
+    "R1.85",
+    "arc"
+   ],
+   [
+    1.0,
+    "R1.85",
+    "smooth"
+   ],
+   [
+    1.0,
+    "R1.90",
+    "chord"
+   ],
+   [
+    1.0,
+    "R1.90",
+    "arc"
+   ],
+   [
+    1.0,
+    "R1.90",
+    "smooth"
+   ],
+   [
+    1.0,
+    "R2.00",
+    "chord"
+   ],
+   [
+    1.0,
+    "R2.00",
+    "arc"
+   ],
+   [
+    1.0,
+    "R2.00",
+    "smooth"
+   ],
+   [
+    1.0,
+    "ratioex-0.3",
+    "chord"
+   ],
+   [
+    1.0,
+    "ratioex-0.3",
+    "arc"
+   ],
+   [
+    1.0,
+    "ratioex-0.3",
+    "smooth"
+   ],
+   [
+    1.0,
+    "ratioex-0.1",
+    "chord"
+   ],
+   [
+    1.0,
+    "ratioex-0.1",
+    "arc"
+   ],
+   [
+    1.0,
+    "ratioex-0.1",
+    "smooth"
+   ],
+   [
+    1.0,
+    "ratioex+0.1",
+    "chord"
+   ],
+   [
+    1.0,
+    "ratioex+0.1",
+    "arc"
+   ],
+   [
+    1.0,
+    "ratioex+0.1",
+    "smooth"
+   ],
+   [
+    1.0,
+    "ratioex+0.3",
+    "chord"
+   ],
+   [
+    1.0,
+    "ratioex+0.3",
+    "arc"
+   ],
+   [
+    1.0,
+    "ratioex+0.3",
+    "smooth"
+   ],
+   [
+    1.0,
+    "pole8ex-0.3",
+    "chord"
+   ],
+   [
+    1.0,
+    "pole8ex-0.3",
+    "arc"
+   ],
+   [
+    1.0,
+    "pole8ex-0.3",
+    "smooth"
+   ],
+   [
+    1.0,
+    "pole8ex-0.1",
+    "chord"
+   ],
+   [
+    1.0,
+    "pole8ex-0.1",
+    "arc"
+   ],
+   [
+    1.0,
+    "pole8ex-0.1",
+    "smooth"
+   ],
+   [
+    1.0,
+    "pole8ex+0.1",
+    "chord"
+   ],
+   [
+    1.0,
+    "pole8ex+0.1",
+    "arc"
+   ],
+   [
+    1.0,
+    "pole8ex+0.1",
+    "smooth"
+   ],
+   [
+    1.0,
+    "pole8ex+0.3",
+    "chord"
+   ],
+   [
+    1.0,
+    "pole8ex+0.3",
+    "arc"
+   ],
+   [
+    1.0,
+    "pole8ex+0.3",
+    "smooth"
+   ],
+   [
+    1.0,
+    "pole9ex-0.3",
+    "chord"
+   ],
+   [
+    1.0,
+    "pole9ex-0.3",
+    "arc"
+   ],
+   [
+    1.0,
+    "pole9ex-0.3",
+    "smooth"
+   ],
+   [
+    1.0,
+    "pole9ex-0.1",
+    "chord"
+   ],
+   [
+    1.0,
+    "pole9ex-0.1",
+    "arc"
+   ],
+   [
+    1.0,
+    "pole9ex-0.1",
+    "smooth"
+   ],
+   [
+    1.0,
+    "pole9ex+0.1",
+    "chord"
+   ],
+   [
+    1.0,
+    "pole9ex+0.1",
+    "arc"
+   ],
+   [
+    1.0,
+    "pole9ex+0.1",
+    "smooth"
+   ],
+   [
+    1.0,
+    "pole9ex+0.3",
+    "chord"
+   ],
+   [
+    1.0,
+    "pole9ex+0.3",
+    "arc"
+   ],
+   [
+    1.0,
+    "pole9ex+0.3",
+    "smooth"
+   ],
+   [
+    1.0,
+    "pole10ex-0.3",
+    "chord"
+   ],
+   [
+    1.0,
+    "pole10ex-0.3",
+    "arc"
+   ],
+   [
+    1.0,
+    "pole10ex-0.3",
+    "smooth"
+   ],
+   [
+    1.0,
+    "pole10ex-0.1",
+    "chord"
+   ],
+   [
+    1.0,
+    "pole10ex-0.1",
+    "arc"
+   ],
+   [
+    1.0,
+    "pole10ex-0.1",
+    "smooth"
+   ],
+   [
+    1.0,
+    "pole10ex+0.1",
+    "chord"
+   ],
+   [
+    1.0,
+    "pole10ex+0.1",
+    "arc"
+   ],
+   [
+    1.0,
+    "pole10ex+0.1",
+    "smooth"
+   ],
+   [
+    1.0,
+    "pole10ex+0.3",
+    "chord"
+   ],
+   [
+    1.0,
+    "pole10ex+0.3",
+    "arc"
+   ],
+   [
+    1.0,
+    "pole10ex+0.3",
+    "smooth"
+   ],
+   [
+    1.0,
+    "ratiopair",
+    "chord"
+   ],
+   [
+    1.0,
+    "ratiopair",
+    "arc"
+   ],
+   [
+    1.0,
+    "ratiopair",
+    "smooth"
+   ],
+   [
+    1.0,
+    "ex-0.3i",
+    "chord"
+   ],
+   [
+    1.0,
+    "ex-0.3i",
+    "arc"
+   ],
+   [
+    1.0,
+    "ex-0.3i",
+    "smooth"
+   ],
+   [
+    1.0,
+    "ex-0.1i",
+    "chord"
+   ],
+   [
+    1.0,
+    "ex-0.1i",
+    "arc"
+   ],
+   [
+    1.0,
+    "ex-0.1i",
+    "smooth"
+   ],
+   [
+    1.0,
+    "ex+0.1i",
+    "chord"
+   ],
+   [
+    1.0,
+    "ex+0.1i",
+    "arc"
+   ],
+   [
+    1.0,
+    "ex+0.1i",
+    "smooth"
+   ],
+   [
+    1.0,
+    "ex+0.3i",
+    "chord"
+   ],
+   [
+    1.0,
+    "ex+0.3i",
+    "arc"
+   ],
+   [
+    1.0,
+    "ex+0.3i",
+    "smooth"
+   ],
+   [
+    1.01,
+    "kstar",
+    "chord"
+   ],
+   [
+    1.01,
+    "kstar",
+    "arc"
+   ],
+   [
+    1.01,
+    "kstar",
+    "smooth"
+   ],
+   [
+    1.01,
+    "ratio",
+    "chord"
+   ],
+   [
+    1.01,
+    "ratio",
+    "arc"
+   ],
+   [
+    1.01,
+    "ratio",
+    "smooth"
+   ],
+   [
+    1.01,
+    "pole8",
+    "chord"
+   ],
+   [
+    1.01,
+    "pole8",
+    "arc"
+   ],
+   [
+    1.01,
+    "pole8",
+    "smooth"
+   ],
+   [
+    1.01,
+    "pole9",
+    "chord"
+   ],
+   [
+    1.01,
+    "pole9",
+    "arc"
+   ],
+   [
+    1.01,
+    "pole9",
+    "smooth"
+   ],
+   [
+    1.01,
+    "pole10",
+    "chord"
+   ],
+   [
+    1.01,
+    "pole10",
+    "arc"
+   ],
+   [
+    1.01,
+    "pole10",
+    "smooth"
+   ],
+   [
+    1.01,
+    "ex-0.3",
+    "chord"
+   ],
+   [
+    1.01,
+    "ex-0.3",
+    "arc"
+   ],
+   [
+    1.01,
+    "ex-0.3",
+    "smooth"
+   ],
+   [
+    1.01,
+    "ex-0.1",
+    "chord"
+   ],
+   [
+    1.01,
+    "ex-0.1",
+    "arc"
+   ],
+   [
+    1.01,
+    "ex-0.1",
+    "smooth"
+   ],
+   [
+    1.01,
+    "ex+0.1",
+    "chord"
+   ],
+   [
+    1.01,
+    "ex+0.1",
+    "arc"
+   ],
+   [
+    1.01,
+    "ex+0.1",
+    "smooth"
+   ],
+   [
+    1.01,
+    "ex+0.3",
+    "chord"
+   ],
+   [
+    1.01,
+    "ex+0.3",
+    "arc"
+   ],
+   [
+    1.01,
+    "ex+0.3",
+    "smooth"
+   ],
+   [
+    1.01,
+    "R1.75",
+    "chord"
+   ],
+   [
+    1.01,
+    "R1.75",
+    "arc"
+   ],
+   [
+    1.01,
+    "R1.75",
+    "smooth"
+   ],
+   [
+    1.01,
+    "R1.80",
+    "chord"
+   ],
+   [
+    1.01,
+    "R1.80",
+    "arc"
+   ],
+   [
+    1.01,
+    "R1.80",
+    "smooth"
+   ],
+   [
+    1.01,
+    "R1.85",
+    "chord"
+   ],
+   [
+    1.01,
+    "R1.85",
+    "arc"
+   ],
+   [
+    1.01,
+    "R1.85",
+    "smooth"
+   ],
+   [
+    1.01,
+    "R1.90",
+    "chord"
+   ],
+   [
+    1.01,
+    "R1.90",
+    "arc"
+   ],
+   [
+    1.01,
+    "R1.90",
+    "smooth"
+   ],
+   [
+    1.01,
+    "R2.00",
+    "chord"
+   ],
+   [
+    1.01,
+    "R2.00",
+    "arc"
+   ],
+   [
+    1.01,
+    "R2.00",
+    "smooth"
+   ],
+   [
+    1.01,
+    "ratioex-0.3",
+    "chord"
+   ],
+   [
+    1.01,
+    "ratioex-0.3",
+    "arc"
+   ],
+   [
+    1.01,
+    "ratioex-0.3",
+    "smooth"
+   ],
+   [
+    1.01,
+    "ratioex-0.1",
+    "chord"
+   ],
+   [
+    1.01,
+    "ratioex-0.1",
+    "arc"
+   ],
+   [
+    1.01,
+    "ratioex-0.1",
+    "smooth"
+   ],
+   [
+    1.01,
+    "ratioex+0.1",
+    "chord"
+   ],
+   [
+    1.01,
+    "ratioex+0.1",
+    "arc"
+   ],
+   [
+    1.01,
+    "ratioex+0.1",
+    "smooth"
+   ],
+   [
+    1.01,
+    "ratioex+0.3",
+    "chord"
+   ],
+   [
+    1.01,
+    "ratioex+0.3",
+    "arc"
+   ],
+   [
+    1.01,
+    "ratioex+0.3",
+    "smooth"
+   ],
+   [
+    1.01,
+    "pole8ex-0.3",
+    "chord"
+   ],
+   [
+    1.01,
+    "pole8ex-0.3",
+    "arc"
+   ],
+   [
+    1.01,
+    "pole8ex-0.3",
+    "smooth"
+   ],
+   [
+    1.01,
+    "pole8ex-0.1",
+    "chord"
+   ],
+   [
+    1.01,
+    "pole8ex-0.1",
+    "arc"
+   ],
+   [
+    1.01,
+    "pole8ex-0.1",
+    "smooth"
+   ],
+   [
+    1.01,
+    "pole8ex+0.1",
+    "chord"
+   ],
+   [
+    1.01,
+    "pole8ex+0.1",
+    "arc"
+   ],
+   [
+    1.01,
+    "pole8ex+0.1",
+    "smooth"
+   ],
+   [
+    1.01,
+    "pole8ex+0.3",
+    "chord"
+   ],
+   [
+    1.01,
+    "pole8ex+0.3",
+    "arc"
+   ],
+   [
+    1.01,
+    "pole8ex+0.3",
+    "smooth"
+   ],
+   [
+    1.01,
+    "pole9ex-0.3",
+    "chord"
+   ],
+   [
+    1.01,
+    "pole9ex-0.3",
+    "arc"
+   ],
+   [
+    1.01,
+    "pole9ex-0.3",
+    "smooth"
+   ],
+   [
+    1.01,
+    "pole9ex-0.1",
+    "chord"
+   ],
+   [
+    1.01,
+    "pole9ex-0.1",
+    "arc"
+   ],
+   [
+    1.01,
+    "pole9ex-0.1",
+    "smooth"
+   ],
+   [
+    1.01,
+    "pole9ex+0.1",
+    "chord"
+   ],
+   [
+    1.01,
+    "pole9ex+0.1",
+    "arc"
+   ],
+   [
+    1.01,
+    "pole9ex+0.1",
+    "smooth"
+   ],
+   [
+    1.01,
+    "pole9ex+0.3",
+    "chord"
+   ],
+   [
+    1.01,
+    "pole9ex+0.3",
+    "arc"
+   ],
+   [
+    1.01,
+    "pole9ex+0.3",
+    "smooth"
+   ],
+   [
+    1.01,
+    "pole10ex-0.3",
+    "chord"
+   ],
+   [
+    1.01,
+    "pole10ex-0.3",
+    "arc"
+   ],
+   [
+    1.01,
+    "pole10ex-0.3",
+    "smooth"
+   ],
+   [
+    1.01,
+    "pole10ex-0.1",
+    "chord"
+   ],
+   [
+    1.01,
+    "pole10ex-0.1",
+    "arc"
+   ],
+   [
+    1.01,
+    "pole10ex-0.1",
+    "smooth"
+   ],
+   [
+    1.01,
+    "pole10ex+0.1",
+    "chord"
+   ],
+   [
+    1.01,
+    "pole10ex+0.1",
+    "arc"
+   ],
+   [
+    1.01,
+    "pole10ex+0.1",
+    "smooth"
+   ],
+   [
+    1.01,
+    "pole10ex+0.3",
+    "chord"
+   ],
+   [
+    1.01,
+    "pole10ex+0.3",
+    "arc"
+   ],
+   [
+    1.01,
+    "pole10ex+0.3",
+    "smooth"
+   ],
+   [
+    1.01,
+    "ratiopair",
+    "chord"
+   ],
+   [
+    1.01,
+    "ratiopair",
+    "arc"
+   ],
+   [
+    1.01,
+    "ratiopair",
+    "smooth"
+   ],
+   [
+    1.01,
+    "ex-0.3i",
+    "chord"
+   ],
+   [
+    1.01,
+    "ex-0.3i",
+    "arc"
+   ],
+   [
+    1.01,
+    "ex-0.3i",
+    "smooth"
+   ],
+   [
+    1.01,
+    "ex-0.1i",
+    "chord"
+   ],
+   [
+    1.01,
+    "ex-0.1i",
+    "arc"
+   ],
+   [
+    1.01,
+    "ex-0.1i",
+    "smooth"
+   ],
+   [
+    1.01,
+    "ex+0.1i",
+    "chord"
+   ],
+   [
+    1.01,
+    "ex+0.1i",
+    "arc"
+   ],
+   [
+    1.01,
+    "ex+0.1i",
+    "smooth"
+   ],
+   [
+    1.01,
+    "ex+0.3i",
+    "chord"
+   ],
+   [
+    1.01,
+    "ex+0.3i",
+    "arc"
+   ],
+   [
+    1.01,
+    "ex+0.3i",
+    "smooth"
+   ]
+  ],
+  "mutation_fired_as_frozen": true
+ },
+ "controls_pass": false
+}
