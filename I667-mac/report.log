@@ -1,4 +1,4 @@
-run 2026-11-13 14:36 UTC, mutate None
+run 2026-11-13 14:38 UTC, mutate None
 eta     n   (a) (b) (c) (a+b) M_min=23  min m_DA  min d_P  min d_T  median log10(chi22/real) [range]
 1e-09  176    0   0   0    0      0        10    0.219     6.95  -11.51 [-11.71, -6.78]
 1e-08  176    0   0   0    0      0         9    0.210     5.95  -10.76 [-11.66, -5.78]
@@ -58,4 +58,7 @@ arc    sum      ex :   0   0   0   0;  7 0.200 5.45 6.66; d_P best at eta 1e-02 
 (b) at k = 9 alone: smallest distance 0.009 (chord2|seg+0+1|ex|eta1e-02|ph270, pole 1.4147+1.0569j); that plant's d_P over k = 8..10 0.249
 (b) at k = 10 alone: smallest distance 0.013 (arc|seg-1-1|log|eta1e-02|ph90, pole 1.4637+1.0791j); that plant's d_P over k = 8..10 0.205
 (c) passes for 24 plants, curves ['low'], eta [0.001, 0.01]: m_DA 8..11, the agreeing zero within 0.1 of Q_low in 13 of them and within 0.1 of kappa_* in 8; d_P 0.204..0.260; chi_22 / real 0.11..3.00; share of sigma_12, sigma_17, sigma_22 4.6e-05..6.7e-04, 2.3e-04..2.9e-03, 1.0e-03..1.1e-02
+largest chi_22 / chi_22(real) over the 15 bases and every plant with the seg curve: 3.44e-03 (arc|seg+1+1|log|eta1e-01|ph0)
+largest chi_22 / chi_22(real) over the 15 bases and every plant with the sum curve: 1.89e-04 (chord2|sum|log|eta1e-01|ph0)
+largest chi_22 / chi_22(real) over the 15 bases and every plant with the low curve: 3.00e+01 (chord2|low|log|eta1e-01|ph0)
 (a) passes for 132 plants, curves ['seg+0+0', 'seg+0+1', 'seg+0-1', 'seg+1+0', 'seg+1+1', 'seg+1-1', 'seg-1+0', 'seg-1+1', 'seg-1-1', 'sum']; per eta 1e-09: 0, 1e-08: 0, 1e-07: 0, 1e-06: 0, 1e-05: 1, 1e-04: 1, 1e-03: 41, 1e-02: 36, 1e-01: 53; their d_T 2.88..9.54, d_P 0.155..0.276; DA2 median Re 1.63..2.27, Im 0.87..1.50
