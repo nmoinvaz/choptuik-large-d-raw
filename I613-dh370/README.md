@@ -17,6 +17,7 @@ at the four layouts of I580-dh370/README.md and F = 1e-14, 1e-12, 1e-10 and the 
 | ladders613.sh | the 16 runs, three at a time (exit 0 at all but 0.80 with F = 1e-12, which failed the planted check) |
 | diag_080_F1e-12_rerun, diag_080_F5e-13, diag_080_F2e-12 (.json, .log), diag613.sh | the diagnosis of that one failure: the same run again, and the neighbouring floors |
 | rerun_54c9fcb/ | the rerun of the 0.80 bracket on main 54c9fcb with `--cr_sets=1` (its own README.md) |
+| rerun_ff08351/ | the ladder again on main ff08351 (the floor weighted from a covariant star), 14 runs with `--cr_sets` (its own README.md) |
 | ladder_table.py, ladder_table.txt | the tables of the issue's summary, from the json files of this folder and of I580-dh370/ |
 
 The F = 0 controls give sigma_1..4 identical to I580-dh370/'s, bit for bit.
