@@ -28,3 +28,18 @@ Control, before the first step: each base polish at D 225.13 moves Delta by abou
 | chain_d6.log, chain_d10.log | the chains' logs |
 | chain_d6/, chain_d10/ | states (npz), `anm_run.jsonl`, the saved base after its polish |
 | exits_608.txt | start and exit of each chain |
+| delta_diff_d6.log, delta_diff_d10.log | the control: exact eight-part Delta of each start and polished base |
+| report_608.py | reads the two logs and the states: `python3 -I report_608.py <raw clone>` prints each chain's accepted steps, refused attempts (with every Newton iteration) and Delta(d6) - Delta(d10) |
+| report_608_HHMM.md, report_608_final.md | its output at that UTC time (the hourly posts); `final` is the stop |
+
+Result: both chains stopped by `systemctl --user stop` at 2026-11-13 09:01:05 UTC (SIGTERM, so the wrapper wrote no exit
+line, and `exits_608.txt` has them by hand) after d10 had an accepted step past D 242, as the issue asks. Neither chain
+had reached a wall: each a = 1.0 refusal was recovered by the retry at a = 0.5. The step each chain was computing when
+stopped (the Taylor series, 22 min each) was not an attempt and left no files.
+
+| chain | accepted steps (a = 1.0, a = 0.5) | last state | refused attempts |
+|---|---|---|---|
+| chain_d6 | 20 (16, 4) | anm_pin3_D243.1312.npz | 4 |
+| chain_d10 | 21 (13, 8) | anm_pin3_D242.1312.npz | 8 |
+
+Restart from a saved state with `run_608.sh d6|d10 I608-dh610/chain_dX/anm_pin3_D<D>.npz`.
