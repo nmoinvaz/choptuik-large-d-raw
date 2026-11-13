@@ -12,7 +12,8 @@ Steps (from `hp/`, nice 10): 1. `scan_hp.py` back from `up10_D55.0351.npz` and f
 
 | file | what |
 |---|---|
-| hp_back.log, hp_fwd.log | the two pilot commands of the task, as given (default `--kc 40`): both end with `start did not converge`, exit 1, no step taken. The first start of hp_fwd was lost to a typo of mine in the launching shell and run again; the log is the run. |
+| hp_back_tol1e-27.log, hp_fwd_tol1e-27.log | the two pilot commands of the task, as first given (default `--tol` 1e-27, `--kc 40`): both end with `start did not converge`, exit 1, no step taken. The first start of hp_fwd was lost to a typo of mine in the launching shell and run again; the log is the run. |
+| hp_back.log, hp_fwd.log | the same two commands with `--tol 1e-23` added (the coordinator's second message): the start re-converges (`ok True`, 2 s), then the first step to the next D ends in an uncaught `ValueError: singular or non-finite pivot at column 0 (NaN)` from `newton_step`, exit 1 |
 | diag_start_kc.log | the back start alone (D_END = its own D) at `--kc 40` and `--kc 420` (the states' own metadata): both stall at 3.4e-24 and 3.2e-24, tolerance 1e-27 |
 | diag_start_verbose.log, diag_start_verbose420.log | the same with `--verbose`: the start's own residual is 6.9e-16 (kc 40) and 1.5e-16 (kc 420), the deflated Newton then falls to 4e-24 and stalls |
 | diag_start_old_kernel.log | the same at kc 40 with the pre-#523 kernel and the scan_hp.py of main 80b5056 (venv of I577-dh370/): the same start residual 6.91e-16, the same stall at 2.5e-24 |

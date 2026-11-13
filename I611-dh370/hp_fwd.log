@@ -1,4 +1,21 @@
-   D=54.041398: Newton stopped at |F| 2.0e-24; Levenberg-Marquardt from the predictor
-(re-)converged start D=54.041398 M=32 nodes=[0.3, 0.4, 0.5, 0.6, 0.7]: Delta 1.8274556531206565 ok False (5s)
-start did not converge
+(re-)converged start D=54.041398 M=32 nodes=[0.3, 0.4, 0.5, 0.6, 0.7]: Delta 1.8274556531206565 ok True (2s)
+Traceback (most recent call last):
+  File "/home/nathan/Source/choptuik-large-d-611/hp/scan_hp.py", line 471, in <module>
+    main()
+    ~~~~^^
+  File "/home/nathan/Source/choptuik-large-d-611/hp/scan_hp.py", line 358, in main
+    s, zh2, zl2, hist, ok, dt = solve_at(Dn, zp, zpl, a, nodes, M, a.it_max, pin=pin)
+                                ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nathan/Source/choptuik-large-d-611/hp/scan_hp.py", line 129, in solve_at
+    zh2, zl2, hist = deflated_newton(s, zh, zl, tol=a.tol, it_max=it_max, w=a.w, verbose=a.verbose,
+                     ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                     junk_only=a.junk_only, delta_tol=a.delta_tol, **jkw)
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nathan/Source/choptuik-large-d-604/.venv/lib/python3.14/site-packages/hpkernel/driver.py", line 593, in deflated_newton
+    dh, dl, Fh, Fl, pmin, pmax, info = newton_step(s, zh, zl, cur, mixed, gmres)
+                                       ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nathan/Source/choptuik-large-d-604/.venv/lib/python3.14/site-packages/hpkernel/driver.py", line 198, in newton_step
+    dh, dl, Fh, Fl, pmin, pmax = s.newton(zh, zl)
+                                 ~~~~~~~~^^^^^^^^
+ValueError: singular or non-finite pivot at column 0 (NaN)
 exit 1
