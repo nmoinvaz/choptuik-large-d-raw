@@ -1,0 +1,37 @@
+== 2026-11-12 23:22:41 predictor tangent
+converging /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/11bcbd25-9376-453b-88d5-a7c6ad0172dd/scratchpad/raw-i611/I611-win/kf13_D50_D50.007491.npz at D = 50.007491 in quad-double
+  qn 0 [full]: |F| 3.28e-34 -> 1.20e-39, |dz| 2.7e-19 -> 4.0e-38, lam 1, dDelta +4.01e-27, piv 1.0e-12..4.9e+05, 80.95 s
+  qn 1 [full]: |F| 1.20e-39 -> 9.35e-57, |dz| 4.0e-38 -> 4.7e-45, lam 1, dDelta -4.25e-45, piv 1.0e-12..4.9e+05, 60.82 s
+  qn 2: |F| 9.35e-57 converged, Delta 1.84163113320226435 +9.3904e-17
+Traceback (most recent call last):
+  File "/Users/nathan/Source/choptuik-large-d/hp/scan_qd.py", line 144, in <module>
+    main()
+    ~~~~^^
+  File "/Users/nathan/Source/choptuik-large-d/hp/scan_qd.py", line 121, in main
+    z, h, ok, f, sec, nst, s_new = solve_at(Dn, zp, a, meta)
+                                   ~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/nathan/Source/choptuik-large-d/hp/scan_qd.py", line 48, in solve_at
+    z, hist, conv = newton_qd(s, z, tol=a.tol, it_max=a.it_max, verbose=a.verbose)
+                    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/11bcbd25-9376-453b-88d5-a7c6ad0172dd/scratchpad/i523/site_c3/hpkernel/driver.py", line 803, in newton_qd
+    st = s.newton_q(*z, mutate=mutate)
+ValueError: singular or non-finite pivot at column 0 (NaN)
+      411.27 real       437.85 user         1.60 sys
+           110755840  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+               19874  page reclaims
+                 940  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                 364  voluntary context switches
+              299718  involuntary context switches
+       4925022549959  instructions retired
+       1197432186174  cycles elapsed
+            76366616  peak memory footprint
+exit 1
