@@ -1,0 +1,33 @@
+probe: /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/11bcbd25-9376-453b-88d5-a7c6ad0172dd/scratchpad/i700/raw/I700-mac/crawl_iter_D253.9368.npz, D + a 253.93675499252282794053481307372521769138984382152, |dz| 3.459e-26, arms ['U', 'E'], 0.1 s
+  arm U: at lam 0 max|F| 1.288e-01 (switch test 1.288e-01, never)
+    lam 0.500000000 (1 - lam 5.0000e-01): max|F| 6.442e-02, e 1.002e-10  sw 6.442e-02 how never s 2.100e+00
+    lam 0.600000000 (1 - lam 4.0000e-01): max|F| 5.154e-02, e 9.623e-11  sw 5.154e-02 how never s 1.800e+00
+    lam 0.700000000 (1 - lam 3.0000e-01): max|F| 3.865e-02, e 8.420e-11  sw 3.865e-02 how never s 1.700e+00
+    lam 0.800000000 (1 - lam 2.0000e-01): max|F| 2.577e-02, e 6.415e-11  sw 2.577e-02 how never s 1.700e+00
+    lam 0.900000000 (1 - lam 1.0000e-01): max|F| 1.288e-02, e 3.609e-11  sw 1.288e-02 how never s 1.700e+00
+    lam 1.000000000 (1 - lam 0.0000e+00): max|F| 1.421e-17, e 1.421e-17  sw 1.421e-17 how never s 1.600e+00
+  arm U: affine to lam = 1 (largest ladder growth 6.67e-01, K 1e+03); e at the end 1.421e-17
+  arm E: at lam 0 max|F| 2.578e-53 (switch test 1.288e-01, u0q)
+    lam 0.500000000 (1 - lam 5.0000e-01): max|F| 1.291e-53, e 4.027e-55  sw 6.442e-02 how u0q s 2.899e+02
+    lam 0.600000000 (1 - lam 4.0000e-01): max|F| 1.035e-53, e 5.799e-55  sw 5.154e-02 how u0q s 3.118e+02
+    lam 0.700000000 (1 - lam 3.0000e-01): max|F| 7.783e-54, e 7.893e-55  sw 3.865e-02 how u0q s 5.699e+02
+    lam 0.800000000 (1 - lam 2.0000e-01): max|F| 5.220e-54, e 1.031e-54  sw 2.577e-02 how u0q s 2.806e+02
+    lam 0.900000000 (1 - lam 1.0000e-01): max|F| 2.659e-54, e 1.305e-54  sw 1.288e-02 how u0q s 3.495e+02
+    lam 1.000000000 (1 - lam 0.0000e+00): max|F| 1.421e-17, e 1.421e-17  sw 1.421e-17 how skipped s 1.900e+00
+    hint: the switch's test value crosses 1e-15 at lam = 1 - 7.7755e-15 (14 evaluations of it)
+    lam 1.000000000 (1 - lam 8.5487e-15): max|F| 1.611e-54, e 1.611e-54  sw 1.087e-15 how u0q s 3.025e+02
+    lam 1.000000000 (1 - lam 6.9944e-15): max|F| 8.871e-16, e 8.871e-16  sw 8.871e-16 how skipped s 1.700e+00
+    hint taken: [0.9999999999999915, 0.999999999999993]
+  arm E: lam* 1.000000000, 1 - lam* 7.7716e-15 (bracket 1 - lam 8.5487e-15 .. 6.9944e-15, width 1.55e-15), e 1.611e-54 -> 8.871e-16
+    |F - (1 - lam) F0| per block, below lam*: 4p 1.61e-54, 5p 1.50e-54, 3p 1.15e-54, 5c 9.97e-55, 4m 8.27e-55, 2p 7.69e-55
+    |F - (1 - lam) F0| per block, above lam*: 5c 8.87e-16, 5a 4.49e-16, 5m 1.73e-16, 5p 1.69e-17, 4p 1.61e-54, 3p 1.15e-54
+    44 rows carry 99% of the jump; the first: 5c[30] -8.87e-16, 5c[29] +8.36e-16, 5c[28] -7.13e-16, 5c[31] -6.75e-16, 5c[4] -6.42e-16, 5a[30] +4.49e-16, 5a[29] -4.23e-16, 5c[27] +4.17e-16, 5c[26] +3.65e-16, 5a[28] +3.61e-16
+    block 5 field c: largest harmonics k 7 1.85e-16, k 19 1.81e-16, k 29 1.67e-16, k 27 1.54e-16
+    block 5 field a: largest harmonics k 7 9.33e-17, k 19 9.13e-17, k 29 8.44e-17, k 27 7.77e-17
+    block 5 field m: largest harmonics k 23 2.44e-17, k 25 2.35e-17, k 9 2.33e-17, k 11 2.29e-17
+    at lam_b (1 - lam 6.9944e-15) projected (u0q): e 1.611e-54; per block 4p 1.61e-54, 5p 1.50e-54, 3p 1.15e-54, 5c 9.97e-55, 4m 8.27e-55, 2p 7.69e-55
+  natural test at lam 1, trial as the corrector projects it: max|F| 1.421e-17, simplified correction / |dz| 9.448e+16 (bound 0.750)
+  natural test at lam 1, trial projected: max|F| 1.611e-54, simplified correction / |dz| 2.384e-24 (bound 0.750)
+  the step at the iterate formed again: bit for bit the stored one
+done, 3470 s; records /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/11bcbd25-9376-453b-88d5-a7c6ad0172dd/scratchpad/i700/raw/I700-mac/crawl_probe_D253.9368.jsonl
+exit 0
