@@ -1,0 +1,22 @@
+planted M = 8, L = 321, 172 Taylor steps; max |F(z*)| = 6.78e-32
+control: Jacobian column 155 dropped
+  newton 0 (dd): |F| 1.86e-03 -> 3.68e-04, lam 1, |dz| 3.8e-03, dDelta -3.20e-03, pivots 1.9e-02..1.6e+00 (7.1 s)
+  newton 1 (dd): |F| 3.68e-04 -> 1.30e-05, lam 1, |dz| 4.7e-03, dDelta +2.92e-03, pivots 3.4e-03..1.8e+00 (14.5 s)
+  newton 2 (dd): |F| 1.30e-05 -> 1.89e-06, lam 1, |dz| 1.6e-03, dDelta -1.03e-03, pivots 4.6e-03..1.7e+00 (21.8 s)
+  newton 3 (dd): |F| 1.89e-06 -> 1.37e-08, lam 1, |dz| 2.3e-04, dDelta +8.15e-06, pivots 4.7e-03..1.7e+00 (29.2 s)
+  newton 4 (dd): |F| 1.37e-08 -> 5.63e-11, lam 1, |dz| 2.1e-07, dDelta -2.46e-08, pivots 4.7e-03..1.7e+00 (36.7 s)
+  newton 5 (dd): |F| 5.63e-11 -> 1.76e-14, lam 1, |dz| 5.6e-11, dDelta +2.40e-11, pivots 4.7e-03..1.7e+00 (44.2 s)
+  newton 6 (dd): |F| 1.76e-14 -> 5.48e-18, lam 1, |dz| 1.8e-14, dDelta +7.53e-15, pivots 4.7e-03..1.7e+00 (51.2 s)
+  newton 7 (dd): |F| 5.48e-18 -> 1.70e-21, lam 1, |dz| 5.5e-18, dDelta +2.34e-18, pivots 4.7e-03..1.7e+00 (57.3 s)
+  newton 8 (dd): |F| 1.70e-21 -> 5.30e-25, lam 1, |dz| 1.7e-21, dDelta +7.28e-22, pivots 4.7e-03..1.7e+00 (62.0 s)
+  newton 9 (dd): |F| 5.30e-25 -> 1.65e-28, lam 1, |dz| 5.3e-25, dDelta +2.27e-25, pivots 4.7e-03..1.7e+00 (66.7 s)
+double-double: converged False in 10 steps, max |z - z*| 1.65e-28, Delta - Delta* -6.76e-29 -> FAIL
+  newton_qd 0: |F| 1.65e-28 -> 2.39e-32, dDelta +6.51e-29 (46.9 s)
+  newton_qd 1: |F| 2.39e-32 -> 7.44e-36, dDelta +1.02e-32 (94.0 s)
+  newton_qd 2: |F| 7.44e-36 -> 2.31e-39, dDelta +3.18e-36 (133.7 s)
+  newton_qd 3: |F| 2.31e-39 -> 7.19e-43, dDelta +9.88e-40 (176.7 s)
+  newton_qd 4: |F| 7.19e-43 -> 2.24e-46, dDelta +3.07e-43 (224.0 s)
+  newton_qd 5: |F| 2.24e-46 -> 6.96e-50, dDelta +9.56e-47 (287.6 s)
+quad-double: converged False (|F| 2.24e-46), Delta_qd - Delta_dd +6.51e-29, Delta_qd - Delta* -2.52e-30 -> FAIL
+PLANTED FAIL
+exit 1

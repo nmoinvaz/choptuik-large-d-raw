@@ -1,0 +1,17 @@
+/Users/nathan/venv-314/bin/python3 -u /Users/nathan/Source/choptuik-large-d/.claude/worktrees/agent-afea90b43be4c50bf/matter/sigma_ms/run_eta.py --eta inf --M 32 --out /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/11bcbd25-9376-453b-88d5-a7c6ad0172dd/scratchpad/raw-i639/I639-mac/data --tag etainf_M32 --threads 4 --from /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/11bcbd25-9376-453b-88d5-a7c6ad0172dd/scratchpad/raw-i639/I639-mac/data/sm_seed_inf_M32.npz
+05:17:38 start 2026-11-13 05:17:38 UTC: eta inf, D 4.0, M 32, K 21, kt 36, kc 80, ks 80, threads 4
+05:17:38 seed {'src': 'sm_seed_inf_M32.npz', 'eta_src': 'inf', 'M_src': 32}: Delta 0.459861158649, |F| (single-step plan) 2.24e+17
+05:17:38 plan from the seed: 233 steps [3, 4, 5, 6, 7, 13, 18, 10, 7, 11, 10, 9, 11, 10, 9, 10, 14, 23, 23, 30] (0.4 s); |F| 2.48e-30
+05:18:28   newton 0 (dd): |F| 2.48e-30 converged, Delta 0.459861158648786 (step |dz| 9.3e-27)
+05:18:29 plan from the solution: 233 steps (0.5 s); |F| 2.48e-30
+05:19:16   newton 0 (dd): |F| 2.48e-30 converged, Delta 0.459861158648786 (step |dz| 9.3e-27)
+05:19:16 double-double: converged True, |F| 2.48e-30, Delta 0.4598611586487857949556712355843047, constraint 1.65e-14, tails 1.1e-73 5.5e-66
+05:19:16 done 2026-11-13 05:19:16 UTC (98.6 s)
+/Users/nathan/venv-314/bin/python3 -u /Users/nathan/Source/choptuik-large-d/.claude/worktrees/agent-afea90b43be4c50bf/matter/sigma_ms/run_eta.py --eta 20 --M 32 --out /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/11bcbd25-9376-453b-88d5-a7c6ad0172dd/scratchpad/raw-i639/I639-mac/data --tag eta20_M32 --threads 4 --from /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/11bcbd25-9376-453b-88d5-a7c6ad0172dd/scratchpad/raw-i639/I639-mac/data/sm_etainf_M32.npz
+05:19:17 start 2026-11-13 05:19:17 UTC: eta 20, D 4.0, M 32, K 21, kt 36, kc 80, ks 80, threads 4
+05:19:17 seed {'src': 'sm_etainf_M32.npz', 'eta_src': 'inf', 'M_src': 32}: Delta 0.459861158649, |F| (single-step plan) 1.61e+31
+05:19:18 plan from the seed: 537 steps [7, 6, 8, 11, 12, 25, 31, 15, 9, 15, 14, 14, 21, 21, 25, 32, 43, 67, 69, 92] (1.0 s); |F| 1.22e-02
+05:21:44   newton 0 (dd): |F| 1.22e-02 -> 5.48e-05, lam 1, |dz| 1.7e-01, dDelta -8.98e-05, pivots 8.0e-04..5.0e+00 (146.1 s)
+05:24:06   newton 1 (dd): |F| 5.48e-05 -> 5.12e-07, lam 1, |dz| 7.5e-03, dDelta +6.02e-05, pivots 8.0e-04..4.7e+00 (287.4 s)
+05:26:21   newton 2 (dd): |F| 5.12e-07 -> 4.51e-13, lam 1, |dz| 1.2e-05, dDelta +7.09e-08, pivots 8.0e-04..3.4e+00 (423.2 s)
+05:28:32   newton 3 (dd): |F| 4.51e-13 -> 9.97e-24, lam 1, |dz| 4.5e-11, dDelta +3.71e-13, pivots 8.0e-04..3.4e+00 (553.4 s)
