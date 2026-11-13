@@ -12,6 +12,6 @@ criteria: `notes/PADE_FAR_END.md` §5 there.
 | `plants.json`, `plants.log` | H_DA, H_HP and R_w on chord2 and arcjump at three nodes, and arcmid, arcsteps and arc, with noise spreads |
 | `plants_mutate_mirror.*` | the mirror mutation (arc profile reflected across the chord) |
 | `plants_mutate_sigma7.*` | σ₇ × 1.01, reported |
-| `bound.json`, `bound.log` | the noise-scale study, measured errors × 1 … 10⁻⁴ |
+| `bound.json`, `bound.log`, `plants_noise*.json` | the noise-scale study, measured errors × 1 … 10⁻⁴, and its per-scale records |
 | `twin.json`, `twin.log` | chord twins (two branch points, M-term density on the chord) fitted to arcjump's σ₀–σ₂₂, χ against the measured errors |
 | `twin_mutate_twin_noshift.*` | the twin's control: fitted to chord2 itself, reproduced at M = 6 |
