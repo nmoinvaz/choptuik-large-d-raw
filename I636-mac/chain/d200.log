@@ -1,0 +1,20 @@
+T138-win2/chain_o/anm_pin3_D200.0000.npz: D 200.0, M 32, K 5, 4 parts, kfreeze 3, held [5, 7, 9, 11, 13]
+  round trip 32 -> 48 -> 32: 3.0e-90 relative (pass)
+  M 32: start max|F| 9.75e-29 (plan 18 steps)
+  M 32: re-seed ok, max|F| 9.75e-29, 198.69 s
+  qn 0 [full]: |F| 9.75e-29 -> 9.75e-29, |dz| 2.1e-19 -> 3.8e-20, lam 1, dDelta +2.14e-19, piv 2.4e-15..1.2e+28, 229.48 s
+  qn 1 [full]: |F| 9.75e-29 -> 9.75e-29, |dz| 3.8e-20 -> 2.8e-20, lam 0.5, dDelta +3.79e-20, piv 3.4e-15..1.2e+28, 460.21 s
+  qn 2 [full]: |F| 9.75e-29 -> 9.75e-29, |dz| 2.8e-20 -> 8.0e-21, lam 1, dDelta +2.75e-20, piv 6.0e-15..1.2e+28, 224.11 s
+  qn 3: |F| 9.75e-29, |dz| 8.0e-21: no trial step accepted, stopping
+  qn 0: |F| 9.75e-29, |dz| 8.0e-21: no trial step accepted, stopping
+  M 32: polish to the floor, max|F| 9.75e-29 -> 9.75e-29 in 1 steps, kept
+  M 32: not converged in 5 steps, max|F| 9.75e-29, est -8.0e-21, pivots 6.0e-15..1.2e+28, F with a fresh plan 9.8e-29, 2106.2 s
+  M 48: start max|F| 2.26e+15 (plan 25 steps)
+  M 48: re-seed ok, max|F| 1.00e-18, 466.18 s
+  qn 0 [full]: |F| 1.00e-18 -> 9.77e-29, |dz| 4.6e-18 -> 3.6e-20, lam 1, dDelta +1.16e-21, piv 6.2e-15..1.3e+28, 447.51 s
+  qn 1 [full]: |F| 9.77e-29 -> 9.77e-29, |dz| 3.6e-20 -> 5.4e-21, lam 1, dDelta +3.62e-20, piv 1.2e-14..1.3e+28, 443.94 s
+  qn 2: |F| 9.77e-29, |dz| 5.4e-21: no trial step accepted, stopping
+  qn 0: |F| 9.77e-29, |dz| 5.4e-21: no trial step accepted, stopping
+  M 48: polish to the floor, max|F| 9.77e-29 -> 9.77e-29 in 1 steps, kept
+  M 48: not converged in 4 steps, max|F| 9.77e-29, est -5.4e-21, pivots 1.2e-14..1.3e+28, F with a fresh plan 9.8e-29, 3595.1 s
+  Delta(M 48) - Delta(M 32) -2.235e-19 (against the stored state +3.737e-20); lam_g +2.748e-22 (stored -3.175e-22); est at M 48 -5.4e-21; tau tails: M 32 |c_k>=28| 6.6e-16, M 48 |c_k>=32| 5.3e-18
