@@ -38,3 +38,7 @@ case $WHAT in ref_bridge|all) one curve_ref_bridge curve "$RAW" $REF $B5146 --th
   --ref677="$RAW/I677-mac/ray_ref.json" --ref694="$RAW/I694-mac/rows_ref.json" ;; esac
 case $WHAT in classA|all) one curve_classA curve "$RAW" $CLA $B248 --threads=2 --bridge=1 \
   --ref677="$RAW/I677-mac/ray_classA.json" --ref694="$RAW/I694-mac/rows_classA.json" ;; esac
+# added after the class A bridge, whose two pair tests disagree in sign: REF's bridge again with the linear-regime test
+# and the parts stored as vectors, to 1e-21
+case $WHAT in ref_bridge2|all) one curve_ref_bridge2 curve "$RAW" $REF $B5146 --threads=2 --bridge=1 --newton=0 \
+  --bridge_to=1e-21 --ref677="$RAW/I677-mac/ray_ref.json" --ref694="$RAW/I694-mac/rows_ref.json" ;; esac
