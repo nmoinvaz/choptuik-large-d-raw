@@ -55,3 +55,40 @@ Control: the full-system base polish of the stored D 77 state moves Delta by +7.
 | 1 | 2.62e-35 | 3.8 | 3.51e-34 | 50.9 |
 
 The slope of log F against log a over the points above 3 floors is **-0.11: FLAT**. A first-order error would raise F by 64 from a = 1/64 to 1; the observed ratio is 0.72 (re-seeded) and 9.6 (raw, all of it at a = 1, which the re-seed removes). So the jet predictor's error is below the quad-double floor at every a up to 1/2 and a few times the floor at a = 1; its coefficient of a first-order term is at most the largest F divided by its a, about 2.3e-33 (from a = 1/64), against #645's Lagrange predictor at 4.2e2 (|F| = 4.2e2 x dD), 35 orders smaller, and |F| = 2.2e8 at D 77.05 against at most 5.2e-35 here. The double-double probe of the plan (3a) was not run: `--probe 1` crashes with the quad-double jet (amendment 1) and the ladder answers the question with the actual predictor. The raw predictions of the three chain steps (a = 1 each) are 3.5e-34, 6.4e-34 and 1.1e-33, growing with D (the horizon data the re-seed replaces).
+
+## Follow-up runs, 2026-11-13 18:00 to 18:51 UTC (added after the continuation's last step, with no new pass rule)
+
+The continuation (`cont/`, 16:50 to 17:58 UTC, 4060 s, `--steps 20`) ended on its step count, not on the stop rule: D 81 to 99 at a = 1, then at D 99 the a = 1 step to D 100 was refused and a = 0.5 to D 99.5 accepted. It did not reach D 100. Three more runs were started after reading each predecessor, each from the last accepted state, with the same command and the same rules (a step is converged when its quad-double max|F| is at most 1e-44; the stop rule is anm_run's three refusals in a row at one D): `cont2` (18:00, 510 s, `--h_max 0.5 --steps 1` from D 99.5), `cont3` (18:09, 2278 s, `--h_max 0.125 --a0 0.125 --steps 8` from D 99.625) and `cont4` (18:47, 202 s, `--h_max 0.046875 --a0 0.046875 --steps 1` from D 99.953125, chosen so that D 99.953125 + 3/64 = 100 exactly and the held chain's D 100 state can be compared directly). All four exited 0 and the three-refusal stop never fired (the "stopping" in the log lines of a refused attempt is the corrector's line search giving up, not that rule).
+
+## Part 2 (the continuation to D 100 and past it): results
+
+**The full system is carried to D 100 and beyond.** 33 converged states from D 77 (3 in the chain, 20 in `cont`, 1 in `cont2`, 8 in `cont3`, 1 in `cont4`), up to D 100.1881, each with quad-double max|F| at most 4.4e-45 after 2 to 9 corrector steps (`cont_table_682.txt`, which lists all 35 attempts after the chain: 30 accepted, 5 refused).
+
+**The five refusals** (every one stalls in the corrector at |F| between 5.3e-25 and 5.7e-24 with "no trial step accepted", then anm_run halves the step):
+
+| attempt | a | quad-double max abs F of the prediction | first Newton step max abs dz | corrector max abs F at the stall | smallest pivot |
+|---|---|---|---|---|---|
+| D 99 to 100 (cont) | 1 | 4.61e-35 | 8.8e-15 | 2.7e-24 | 8.7e-19 |
+| D 99.5 to 100 (cont2) | 0.5 | 8.67e-36 | 1.5e-14 | 5.7e-24 | 1.2e-18 |
+| D 99.5 to 99.75 (cont2) | 0.25 | 2.20e-35 | 7.5e-15 | 2.0e-24 | 9.4e-19 |
+| D 99.75 to 99.875 (cont3) | 0.125 | 2.08e-35 | 3.4e-15 | 5.3e-25 | 1.1e-18 |
+| D 99.953125 to 100.0508 (cont3) | 0.0977 | 2.93e-35 | 5.3e-15 | 1.4e-24 | 7.1e-19 |
+
+The a of the accepted steps falls from 1 (every step up to D 99) to 0.5 (D 99 to 99.5), 0.125 (D 99.5 to 99.75, two steps), 0.0625 (D 99.75 to 99.875) and 0.047 to 0.078 (D 99.875 to 100.19). The quad-double max|F| of the re-seeded prediction at the start of the corrector is the same in refused and accepted attempts: 8.7e-36 to 4.6e-35 in the five refused, 5.8e-36 to 5.2e-35 in the 30 accepted (the ladder of part 1 gave 1.8e-35 to 5.2e-35 against a floor of 6.9e-36), so this quantity does not separate them. The smallest pivot of the step's Newton matrix falls from 2.9e-17 (D 80 to 81) to 6.8e-19 (D 99 to 99.5) and stays between 5.4e-19 and 1.2e-18 from there to D 100.19. The series' a_max is 5.3 to 5.9 over the `cont3` steps (8.1 at D 77), far above every a taken. I do not know why the corrector stalls at a of 0.1 and above past D 99; it is listed as a recommended task, not explained here.
+
+**Delta_full - Delta_held** (the held chain is `T138-win2/chain/anm_pin3_D<D>.0000.npz`, 4 parts summed in arb at 400 bits; the err is `delta_all.csv`'s err column, kind "fits d10"; the two chains share the D 77 origin, since the full chain starts from #642's release of the held chain's D 77 state, and the kernel):
+
+| D | Delta_full - Delta_held | err of delta_all.csv | ratio to the err | #641's kfreeze 7 shift | ratio to it |
+|---|---|---|---|---|---|
+| 80 | +1.2189e-14 | 4.2e-14 | 0.29 | +3.665e-14 | 0.33 |
+| 90 | +8.4085e-14 | 3.8e-13 | 0.22 | | |
+| 99 | +2.0628e-13 | 1.1e-12 | 0.19 | | |
+| 100 | +2.2221e-13 | 1.2e-12 | 0.19 (0.185) | +9.694e-13 | 0.23 (0.229) |
+
+Delta_full at D 100 is 1.74502648443282362511280, Delta_held 1.74502648443260141935170 (`cont4/anm_pin13_D100.0000.npz`, converged in 5 corrector steps to 3.7e-49, the prediction's quad-double max|F| 5.23e-35). From D 80 to D 100 the full-release shift grows by a factor 18.2, the kfreeze 7 shift by 26.4 and the err by 28.6 (from the rounded values quoted). The successive ratios of the full shift fall from 1.43 (D 78 to 79) to 1.08 (D 99 to 100), and the ratio to the err settles at 0.19 from D 97 on. So at D 100 the release of the harmonics 9, 11 and 13 moves Delta by about a fifth of the quoted err, and by 0.23 of what releasing only harmonics 5 and 7 (kfreeze 7) moved it. So, if the parts add, harmonics 9, 11 and 13 held on the fit contribute -7.5e-13 at D 100 (+2.2221e-13 - 9.694e-13; additivity was not tested here).
+
+**An observation on the double-double measure.** anm_run's double-double |F| of the first two parts of each converged quad-double state (the "qd N steps -> X" figure of the log, which the accept rule compares with tol 1.0e-20) rises with D: 2.85e-20 (D 78), 7.21e-20 (80), 2.36e-18 (90), 1.82e-17 (95), 5.99e-17 (99), 8.97e-17 (100). The accepted steps carry "stall accepted" for it, and the quad-double |F| decides convergence here. I did not investigate why it rises.
+
+## Recommended tasks (for the coordinator)
+
+1. **Why the corrector stalls past D 99.** Title: diagnose the five refusals of #682. What: re-run the refused D 99.75 to 99.875 attempt (a = 1/8, base `cont3/anm_pin13_D99.7500.npz`) and one other of the five, printing each Newton step's |F|, |dz| and the line search's trial lengths, and test one change at a time (a refreshed Jacobian at the iterate, if the corrector reuses one; the a = 1/16 step from the same base as the control, which converges in 3 steps to 4.4e-45). Acceptance: the stall is attributed to one measured cause, and the change that removes it makes the a = 1/8 attempt converge to 1e-44 while a deliberately broken input (a prediction displaced by 1e-12) still fails. Depends on #682.
