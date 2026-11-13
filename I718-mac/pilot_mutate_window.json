@@ -1,0 +1,322 @@
+{
+ "frozen": {
+  "plants": "#703's plants (pade_second_zero.ZMain, pade_second_set.make_plant), zero at ZLOC, main c_m refitted; the second set's density s^P (1-s)^alpha on the segment from Q - L Q/|Q| to Q; nothing else changed",
+  "positions": "Q = P0 + kappa_* + 0.25 (a + ib) per node, a = -1..4, b = -2..4 (42 lattice positions); stage 2: Q + 0.25 e^(i k pi/4), k = 1, 3, 5, 7, around each candidate",
+  "groups": "(kind, L, P) = (chord2, 0.3, 4), (arc, 0.3, 4), (chord2, 0.15, 4), (chord2, 0.6, 4), (chord2, 0.3, 2), (chord2, 0.3, 6); alpha 0 or beta - 1; phi 0, 90, 180, 270",
+  "eta": "g = (chi_22 / chi_22(real) in zk/chord) / eta of the chord2 plant at eta 1e-2, phi 0, wf 1.00, per position, L, P, alpha; W = [0.1/g, 10/g] cut to [1e-6, 0.2]; eta = the log-midpoints of 3 equal bins of W; if W is empty, eta = 0.2 when 0.1/g >= 0.2 (cap), else 1e-6 (floor); the same eta at every node",
+  "judge": "#703's frozen judge, unchanged (pade_second_zero.evaluate: (a) m_DA <= 5, (b) d_P <= 0.03, (c') in zk/chord M_min = 23 and 0.1 <= chi_22 / chi_22(real) <= 10; (c'') by pade_second_zero.relocated and judge_reloc). (c'') is evaluated at a node only for a plant that passes (a) there, and only if control's R5 passed",
+  "nodes": "every plant at wf 1.00; per position and group, the plants passing (a) and (c') at wf 1.00, smallest D first, run at 0.99 and then 1.01 until one passes (a) and (c') at all three nodes; apart, the same for (a) and (c''), smallest D'' first",
+  "located": "a plant passes if (a) and (c') hold at all three nodes; a position passes for a group if one of its plants passes, and passes if it passes for some group; a lattice position is located if it passes, its 4 lattice neighbours (a +- 1, b), (a, b +- 1) exist in the lattice and pass for no group, and its 4 diagonal points (stage 2) pass for no group; otherwise no position is located and the region is not bounded by this rule, reported with the passing positions, |Q| and arg Q, and the lattice edges they touch. Apart, the same with (c'')",
+  "stage2": "candidates: lattice positions that pass and whose 4 lattice neighbours exist and fail; their diagonal points run with every group, the eta rule and the node rule above",
+  "R6": "pilot: 12 of #703's plants (seg(+1, +1), seg(0, 0), seg(-1, -1) x chord2, arc x alpha 0, beta - 1, eta 1e-1, phi 90) through this path at wf 1.00 against I703-mac/grid.jsonl: m_DA, M_min and the judge's (a), (b), (c') equal; d_P and chi_22 / chi_22(real) within 1e-12 relative; (c'')'s ratio within 1e-9 where both have it",
+  "R7": "selftest: the second set's exact moments against mpmath.quad for (L, P) = (0.15, 4), (0.6, 4), (0.3, 2), (0.3, 6), alpha 0 and beta - 1, at a lattice and a diagonal position, k = 0, 7, 15, 22, 31: rel diff < 1e-40; the lattice curves with L = 0.3 equal pade_second_set.second_curve's bit for bit for #667's nine seg; the diagonal offsets 0.25 from their centre to 1e-50; the eta rule on planted g (7.79, 0.49, 1e8) gives a window whose eta g lie in [0.1, 10], the cap, and the floor",
+  "R8": "pilot and ring: every plant at wf 1.00 has |chi_22 / chi_22(real) / (eta g) - 1| <= 1e-2, and every plant inside a window passes (c') at wf 1.00; the pilot checks it on Q = P0 + kappa_* + 0.25 (1 + i), (chord2, 0.3, 4), alpha 0, phi 0",
+  "J": "pilot: J+ the real series judged through this path passes (a), (b), (c') at every node; J- the eta = 0 chord2 and arc plants at wf 1.00 fail the judge, M_min = 6 in their own kappa_* basis. #703's control (pade_second_zero.py control and its mutations) is rerun into OUTDIR first",
+  "gate": "pilot runs only if control.json's controls pass; ring runs only if the pilot passes (R6, R8, J+, J-)",
+  "mutations": "--selftest --mutate=secmom (alpha + 1e-10 in the exact moments): R7's moments fail; --selftest --mutate=len (L x (1 + 1e-6)): R7's curves fail; --selftest --mutate=window (g x 100 in the eta rule): R7's eta rule fails; pilot --mutate=len: R6 fails; pilot --mutate=window: R8 fails. Each exits 1",
+  "C1": "#672's amended C1 on every plant scan; a failure is listed and the ring stage exits 1",
+  "context": "per plant: the record of pade_second_zero.evaluate (the other 15 scans' chi_22 and M_min kept), the relocation; per position: |Q|, arg Q, g, the window; group-resolved maps; (b) and d_P. Reported, not judged"
+ },
+ "mutate": "window",
+ "R6": [
+  {
+   "id": "chord2|L+1+1|L0.3|P4|log|eta1.000000e-01|ph90",
+   "dev": {
+    "d_P": 0.0,
+    "ratio": 0.0,
+    "ratio2": 0.0
+   },
+   "pass": true
+  },
+  {
+   "id": "chord2|L+1+1|L0.3|P4|ex|eta1.000000e-01|ph90",
+   "dev": {
+    "d_P": 0.0,
+    "ratio": 0.0
+   },
+   "pass": true
+  },
+  {
+   "id": "arc|L+1+1|L0.3|P4|log|eta1.000000e-01|ph90",
+   "dev": {
+    "d_P": 0.0,
+    "ratio": 0.0
+   },
+   "pass": true
+  },
+  {
+   "id": "arc|L+1+1|L0.3|P4|ex|eta1.000000e-01|ph90",
+   "dev": {
+    "d_P": 0.0,
+    "ratio": 0.0
+   },
+   "pass": true
+  },
+  {
+   "id": "chord2|L+0+0|L0.3|P4|log|eta1.000000e-01|ph90",
+   "dev": {
+    "d_P": 0.0,
+    "ratio": 0.0
+   },
+   "pass": true
+  },
+  {
+   "id": "chord2|L+0+0|L0.3|P4|ex|eta1.000000e-01|ph90",
+   "dev": {
+    "d_P": 0.0,
+    "ratio": 0.0,
+    "ratio2": 0.0
+   },
+   "pass": true
+  },
+  {
+   "id": "arc|L+0+0|L0.3|P4|log|eta1.000000e-01|ph90",
+   "dev": {
+    "d_P": 0.0,
+    "ratio": 0.0
+   },
+   "pass": true
+  },
+  {
+   "id": "arc|L+0+0|L0.3|P4|ex|eta1.000000e-01|ph90",
+   "dev": {
+    "d_P": 0.0,
+    "ratio": 0.0
+   },
+   "pass": true
+  },
+  {
+   "id": "chord2|L-1-1|L0.3|P4|log|eta1.000000e-01|ph90",
+   "dev": {
+    "d_P": 0.0,
+    "ratio": 0.0
+   },
+   "pass": true
+  },
+  {
+   "id": "chord2|L-1-1|L0.3|P4|ex|eta1.000000e-01|ph90",
+   "dev": {
+    "d_P": 0.0,
+    "ratio": 0.0
+   },
+   "pass": true
+  },
+  {
+   "id": "arc|L-1-1|L0.3|P4|log|eta1.000000e-01|ph90",
+   "dev": {
+    "d_P": 0.0,
+    "ratio": 0.0
+   },
+   "pass": true
+  },
+  {
+   "id": "arc|L-1-1|L0.3|P4|ex|eta1.000000e-01|ph90",
+   "dev": {
+    "d_P": 0.0,
+    "ratio": 2.220446049250313e-16
+   },
+   "pass": true
+  }
+ ],
+ "R8": [
+  {
+   "id": "chord2|L+1+1|L0.3|P4|log|eta2.767341e-04|ph0",
+   "lin": 2.1607278055668644e-07,
+   "c": false,
+   "pass": false
+  },
+  {
+   "id": "chord2|L+1+1|L0.3|P4|log|eta1.284486e-03|ph0",
+   "lin": 1.9367828107963447e-07,
+   "c": false,
+   "pass": false
+  },
+  {
+   "id": "chord2|L+1+1|L0.3|P4|log|eta5.962055e-03|ph0",
+   "lin": 8.973220910757362e-08,
+   "c": false,
+   "pass": false
+  }
+ ],
+ "J": {
+  "J+ 0.99": {
+   "a": true,
+   "b": true,
+   "c": true,
+   "all": true,
+   "m_DA": 2,
+   "d_P": 0.0,
+   "d_T": 0.0,
+   "ratio": 1.0,
+   "M_min": 23,
+   "D": 0.4,
+   "l2_ratio": 1.0,
+   "ratios": {
+    "kstar/chord": 1.0,
+    "kstar/arc": 1.0,
+    "kstar/smooth": 1.0,
+    "ratio/chord": 1.0,
+    "ratio/arc": 1.0,
+    "ratio/smooth": 1.0,
+    "pole8/chord": 1.0,
+    "pole8/arc": 1.0,
+    "pole8/smooth": 1.0,
+    "pole9/chord": 1.0,
+    "pole9/arc": 1.0,
+    "pole9/smooth": 1.0,
+    "pole10/chord": 1.0,
+    "pole10/arc": 1.0,
+    "pole10/smooth": 1.0,
+    "nozero/chord": 1.0
+   },
+   "c667_ZLOC": true,
+   "C1_pass": true
+  },
+  "J+ 1.0": {
+   "a": true,
+   "b": true,
+   "c": true,
+   "all": true,
+   "m_DA": 1,
+   "d_P": 0.0,
+   "d_T": 0.0,
+   "ratio": 1.0,
+   "M_min": 23,
+   "D": 0.2,
+   "l2_ratio": 1.0,
+   "ratios": {
+    "kstar/chord": 1.0,
+    "kstar/arc": 1.0,
+    "kstar/smooth": 1.0,
+    "ratio/chord": 1.0,
+    "ratio/arc": 1.0,
+    "ratio/smooth": 1.0,
+    "pole8/chord": 1.0,
+    "pole8/arc": 1.0,
+    "pole8/smooth": 1.0,
+    "pole9/chord": 1.0,
+    "pole9/arc": 1.0,
+    "pole9/smooth": 1.0,
+    "pole10/chord": 1.0,
+    "pole10/arc": 1.0,
+    "pole10/smooth": 1.0,
+    "nozero/chord": 1.0
+   },
+   "c667_ZLOC": true,
+   "C1_pass": true
+  },
+  "J+ 1.01": {
+   "a": true,
+   "b": true,
+   "c": true,
+   "all": true,
+   "m_DA": 1,
+   "d_P": 0.0,
+   "d_T": 0.0,
+   "ratio": 1.0,
+   "M_min": 23,
+   "D": 0.2,
+   "l2_ratio": 1.0,
+   "ratios": {
+    "kstar/chord": 1.0,
+    "kstar/arc": 1.0,
+    "kstar/smooth": 1.0,
+    "ratio/chord": 1.0,
+    "ratio/arc": 1.0,
+    "ratio/smooth": 1.0,
+    "pole8/chord": 1.0,
+    "pole8/arc": 1.0,
+    "pole8/smooth": 1.0,
+    "pole9/chord": 1.0,
+    "pole9/arc": 1.0,
+    "pole9/smooth": 1.0,
+    "pole10/chord": 1.0,
+    "pole10/arc": 1.0,
+    "pole10/smooth": 1.0,
+    "nozero/chord": 1.0
+   },
+   "c667_ZLOC": true,
+   "C1_pass": true
+  },
+  "J- chord2": {
+   "judge": {
+    "a": false,
+    "b": false,
+    "c": false,
+    "all": false,
+    "m_DA": 11,
+    "d_P": 0.21923610259391765,
+    "d_T": 49.17534128108261,
+    "ratio": 6.6781892002053e-50,
+    "M_min": 6,
+    "D": 49.17534128108261,
+    "l2_ratio": 4.359297031330077e-49,
+    "ratios": {
+     "kstar/chord": 6.6781892002053e-50,
+     "kstar/arc": 1.0860094303635712e-10,
+     "kstar/smooth": 2.756574536069862e-27,
+     "ratio/chord": 4.475492255575746e-09,
+     "ratio/arc": 3.6797673988322356e-09,
+     "ratio/smooth": 1.4718491038121868e-10,
+     "pole8/chord": 8.768313603573532e-10,
+     "pole8/arc": 4.646384787331934e-10,
+     "pole8/smooth": 9.251295616250775e-11,
+     "pole9/chord": 3.850576307048821e-09,
+     "pole9/arc": 1.5865888572461504e-09,
+     "pole9/smooth": 1.67458254084524e-10,
+     "pole10/chord": 1.7384927823560264e-08,
+     "pole10/arc": 3.3992434549381283e-09,
+     "pole10/smooth": 3.6811338035476334e-10,
+     "nozero/chord": 1.187142783974281e-11
+    },
+    "c667_ZLOC": false,
+    "C1_pass": true
+   },
+   "M_min_own": 6
+  },
+  "J- arc": {
+   "judge": {
+    "a": false,
+    "b": false,
+    "c": false,
+    "all": false,
+    "m_DA": 10,
+    "d_P": 0.2254098533549031,
+    "d_T": 16.04439301741091,
+    "ratio": 9.028320805887668e-17,
+    "M_min": 16,
+    "D": 16.04439301741091,
+    "l2_ratio": 3.484105332381847e-13,
+    "ratios": {
+     "kstar/chord": 9.028320805887668e-17,
+     "kstar/arc": 1.18144448466802e-10,
+     "kstar/smooth": 6.273075940042983e-50,
+     "ratio/chord": 5.746185906551541e-09,
+     "ratio/arc": 3.859637254987217e-09,
+     "ratio/smooth": 1.8121487647793964e-10,
+     "pole8/chord": 1.0195334823030287e-09,
+     "pole8/arc": 4.756195455045235e-10,
+     "pole8/smooth": 1.0505232323708771e-10,
+     "pole9/chord": 4.693200398799959e-09,
+     "pole9/arc": 1.702763949831954e-09,
+     "pole9/smooth": 1.968363252397028e-10,
+     "pole10/chord": 2.1937567743293873e-08,
+     "pole10/arc": 3.482598835009501e-09,
+     "pole10/smooth": 4.430240177011764e-10,
+     "nozero/chord": 6.304514266091726e-10
+    },
+    "c667_ZLOC": false,
+    "C1_pass": true
+   },
+   "M_min_own": 6
+  }
+ },
+ "checks": {
+  "R6": true,
+  "R8": false,
+  "J+": true,
+  "J-": true
+ },
+ "mutation_fired": true,
+ "pilot_pass": false
+}
