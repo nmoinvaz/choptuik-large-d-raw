@@ -22,4 +22,5 @@ package. Protocol and results: `notes/REDUCED_CUBIC.md` section 9. Inputs from t
 | `ray_ref_pilot1_99ca8e3b.log`, `.json` | REF, the pilot, first code: the basis equals #528's, then the floor solve at c = 0 failed | 1 |
 | `ray_ref.log`, `.json` | REF (refused, D 242.5459), code 321954dc | 0 |
 | `ray_acc.log`, `.json` | ACC (accepted, D 242.5225), code 11c31fbd (the ray mode as 321954dc) | 0 |
+| `ray_d232.log`, `.json` | D 232.13, win_d10 (refused), --tensors=1, code 11c31fbd | 0 |
 | `run_i677.sh`, `exits.txt` | the runner, and every start and exit | |
