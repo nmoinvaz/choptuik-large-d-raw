@@ -1,0 +1,55 @@
+I461-win2/probeG03125b/dz0_pin3_D242.5459_a0.031250.npz: D 242.545899963 (a 0.03125), from I461-win2/probeG03125a/anm_pin3_D242.5146.npz; L 769; held offset on its rows 0.000816, elsewhere 1.62e-99 (bound 1e-6 of the first): pass; the recovered system's start max|F| 9.0408e-36; octo-double LU pivots 2.6e-25..3.5e+34 (444 s)
+  basis: sigma of B 2.1226e-27, 2.1557e-27, 3.1943e-26, 7.0800e-26 (iteration 2.1390e-27, 2.1387e-27, 3.1943e-26, 7.0800e-26); |dz0| 8.325e-30, a = V^T dz0 -5.149e-30, -5.814e-30, -2.989e-30, 2.297e-31, |a| 8.325e-30, the rest 7.03e-33; |B a| 9.828e-56, |U^T F(z0) + B a| / |B a| 2.01e-45; -J^-1 F(z0) against dz0 7.34e-45; w0 = -J^-1 (I - U U^T) F(z0): |w0| 7.032e-33, |V^T w0| 4.27e-128 (18 s)
+  Q = U^T F'': max|Q| 6.368e-6 at h 1e-33, against h 1e-32 99.0 (58 s)
+  w_jl = J^-1 (I - U U^T) F''(v_j, v_l): max|F''| 1.96e+33, |w_jl| 0.0576..0.144 at h 1e-34, |V^T w_jl| / |w_jl| up to 3.86e-70; h 1e-32 against 1e-33 0.0141, 1e-33 against 1e-34 0.000141 (bound 1e-2): pass (96 s)
+  T = U^T F''': max|T| 1.631e+33 at h 1e-24, against h 1e-23 3.11e-18 (176 residuals per h, 336 s)
+  S = U^T F''(v_i, w_jl), symmetrized: max|S| 5.438e+32 at h 1e-33, against h 1e-32 1.68e-17 (bound 1e-2): pass; its unsymmetric part 0.0534 of it; 3 max|S| / max|T| 1.0 (313 s)
+  L = U^T F''(v_j, w0): max|L| 4.274e-38, sigma 6.652e-40, 4.514e-39, 3.986e-38, 7.254e-38, h against h/10 99.0; sigma of B + L 2.123e-27, 2.156e-27, 3.194e-26, 7.080e-26; |q00| = |U^T F''(w0, w0)| 1.88e-68 (34 s)
+  g(0): |g(0) + B a| / |B a| 2.72e-25, |w(0) - w0| 3.53e-57, (max|strong residual|, |dw|) per chord step (7.0e-32, 3.5e-57), (8.8e-57, 3.2e-64), (7.6e-64, 2.8e-89) (3 s)
+  strong solve at |c| 1.0e-33 did not converge: (max|strong residual|, |dw|) per step (1.7e-32, 5.7e-65), (7.8e-64, 5.7e-65)
+  strong solve at |c| 1.0e-33 did not converge: (max|strong residual|, |dw|) per step (1.5e-32, 6.2e-65), (5.2e-64, 6.2e-65)
+  strong solve at |c| 1.41e-33 did not converge: (max|strong residual|, |dw|) per step (2.2e-32, 9.1e-65), (1.0e-63, 9.1e-65)
+  strong solve at |c| 1.41e-33 did not converge: (max|strong residual|, |dw|) per step (2.5e-32, 8.5e-65), (1.3e-63, 8.5e-65)
+  strong solve at |c| 1.41e-33 did not converge: (max|strong residual|, |dw|) per step (2.1e-32, 8.2e-65), (5.6e-64, 8.2e-65)
+  strong solve at |c| 1.41e-33 did not converge: (max|strong residual|, |dw|) per step (2.2e-32, 1.1e-64), (1.0e-63, 1.1e-64)
+  strong solve at |c| 1.41e-33 did not converge: (max|strong residual|, |dw|) per step (1.8e-32, 5.0e-65), (8.8e-64, 5.0e-65)
+  strong solve at |c| 1.41e-33 did not converge: (max|strong residual|, |dw|) per step (1.7e-32, 6.7e-65), (6.8e-64, 6.8e-65)
+  strong solve at |c| 1.41e-33 did not converge: (max|strong residual|, |dw|) per step (1.9e-32, 9.5e-65), (6.9e-64, 9.6e-65)
+  strong solve at |c| 1.41e-33 did not converge: (max|strong residual|, |dw|) per step (1.6e-32, 4.6e-65), (4.7e-64, 4.6e-65)
+  strong solve at |c| 1.41e-33 did not converge: (max|strong residual|, |dw|) per step (1.8e-32, 5.0e-65), (8.1e-64, 5.0e-65)
+  strong solve at |c| 1.41e-33 did not converge: (max|strong residual|, |dw|) per step (1.9e-32, 8.0e-65), (7.6e-64, 8.0e-65)
+  strong solve at |c| 1.41e-33 did not converge: (max|strong residual|, |dw|) per step (2.5e-32, 1.3e-64), (8.6e-64, 1.3e-64)
+  strong solve at |c| 1.0e-33 did not converge: (max|strong residual|, |dw|) per step (1.5e-32, 6.3e-65), (4.9e-64, 6.4e-65)
+  strong solve at |c| 1.0e-33 did not converge: (max|strong residual|, |dw|) per step (1.7e-32, 7.0e-65), (7.6e-64, 7.0e-65)
+  strong solve at |c| 1.41e-33 did not converge: (max|strong residual|, |dw|) per step (1.2e-32, 5.6e-65), (5.7e-64, 5.6e-65)
+  strong solve at |c| 1.41e-33 did not converge: (max|strong residual|, |dw|) per step (1.8e-32, 8.2e-65), (5.5e-64, 8.2e-65)
+  strong solve at |c| 1.41e-33 did not converge: (max|strong residual|, |dw|) per step (2.2e-32, 9.9e-65), (9.3e-64, 1.0e-64)
+  strong solve at |c| 1.41e-33 did not converge: (max|strong residual|, |dw|) per step (1.3e-32, 4.7e-65), (6.2e-64, 4.8e-65)
+  strong solve at |c| 1.41e-33 did not converge: (max|strong residual|, |dw|) per step (1.6e-32, 6.2e-65), (5.0e-64, 6.3e-65)
+  strong solve at |c| 1.41e-33 did not converge: (max|strong residual|, |dw|) per step (2.1e-32, 1.0e-64), (6.3e-64, 1.0e-64)
+  strong solve at |c| 1.41e-33 did not converge: (max|strong residual|, |dw|) per step (2.6e-32, 1.3e-64), (1.1e-63, 1.3e-64)
+  strong solve at |c| 1.41e-33 did not converge: (max|strong residual|, |dw|) per step (1.1e-32, 3.6e-65), (6.3e-64, 3.6e-65)
+  strong solve at |c| 1.0e-33 did not converge: (max|strong residual|, |dw|) per step (5.9e-33, 3.1e-65), (1.2e-64, 3.1e-65)
+  strong solve at |c| 1.0e-33 did not converge: (max|strong residual|, |dw|) per step (5.5e-33, 2.6e-65), (8.4e-65, 2.6e-65)
+  strong solve at |c| 1.41e-33 did not converge: (max|strong residual|, |dw|) per step (1.7e-32, 9.9e-65), (4.7e-64, 1.0e-64)
+  strong solve at |c| 1.41e-33 did not converge: (max|strong residual|, |dw|) per step (4.2e-33, 2.2e-65), (1.1e-64, 2.2e-65)
+  strong solve at |c| 1.41e-33 did not converge: (max|strong residual|, |dw|) per step (4.5e-33, 2.4e-65), (1.3e-64, 2.4e-65)
+  strong solve at |c| 1.41e-33 did not converge: (max|strong residual|, |dw|) per step (1.4e-32, 6.6e-65), (2.2e-64, 6.6e-65)
+  strong solve at |c| 1.0e-33 did not converge: (max|strong residual|, |dw|) per step (1.1e-32, 5.8e-65), (2.7e-64, 5.9e-65)
+  strong solve at |c| 1.0e-33 did not converge: (max|strong residual|, |dw|) per step (9.5e-33, 4.5e-65), (1.8e-64, 4.6e-65)
+  the map's own coefficients at h 1e-33: |B_LS - (B + L)| / max|B + L| 6.04e-13; max|Q_LS| 2.566e-24, |Q_LS - Q| / max|Q| 1.0 (33 solves, 62 s)
+  strong solve at |c| 1.7e-29 did not converge: (max|strong residual|, |dw|) per step (2.5e-25, 3.5e-54), (3.1e-50, 3.5e-54)
+  model T: 4 real roots from 26 starts; nearest a: |c| 4.45e-30 (7.24e-31, -3.05e-30, -3.16e-30, 1.07e-31): |g| / |B a| 0.176, affine 0.00444, max|F| 2.03e-52; |c| 1.4e-29 (-1.06e-30, 2.5e-30, -7.43e-30, -1.15e-29): |g| / |B a| 8.59, affine 0.737, max|F| 2.96e-50; |c| 1.7e-29 (1.42e-30, -2.79e-30, 1.97e-30, 1.66e-29): |g| / |B a| 11.9, affine 1.15, max|F| 3.07e-50 (strong solve NOT converged); |c| 5.38e-28 (-3.36e-29, -1.55e-29, -4.67e-28, 2.65e-28): |g| / |B a| 243.0, affine 486.0, max|F| 3.10e-47
+  strong solve at |c| 1.7e-29 did not converge: (max|strong residual|, |dw|) per step (2.5e-25, 3.5e-54), (3.1e-50, 3.5e-54)
+  model T,Q: 4 real roots from 26 starts; nearest a: |c| 4.45e-30 (7.24e-31, -3.05e-30, -3.16e-30, 1.07e-31): |g| / |B a| 0.176, max|F| 2.03e-52; |c| 1.4e-29 (-1.06e-30, 2.5e-30, -7.43e-30, -1.15e-29): |g| / |B a| 8.59, max|F| 2.96e-50; |c| 1.7e-29 (1.42e-30, -2.79e-30, 1.97e-30, 1.66e-29): |g| / |B a| 11.9, max|F| 3.07e-50 (strong solve NOT converged); |c| 5.38e-28 (-3.36e-29, -1.55e-29, -4.67e-28, 2.65e-28): |g| / |B a| 243.0, max|F| 3.10e-47
+  model T-3S: 1 real roots from 26 starts; nearest a: |c| 8.32e-30 (-5.15e-30, -5.81e-30, -2.99e-30, 2.3e-31): |g| / |B a| 7.86e-10, max|F| 2.00e-51
+  model T-3S,L: 1 real roots from 26 starts; nearest a: |c| 8.32e-30 (-5.15e-30, -5.81e-30, -2.99e-30, 2.3e-31): |g| / |B a| 7.86e-10, max|F| 2.00e-51
+  model T-3S,LS: 1 real roots from 26 starts; nearest a: |c| 8.32e-30 (-5.15e-30, -5.81e-30, -2.99e-30, 2.3e-31): |g| / |B a| 1.6e-19, max|F| 2.00e-51
+  at c = a: |g| / |B a| 2.72e-25, max|F| 2.00e-51; models' roots 37 s
+  c* = the root of model T (|c*| 4.448e-30): |g(c*)| / |B a| 0.176 on the strong-solved manifold, affine 0.00444; |S(c*,c*,c*)| 3.46e-56, |T(c*,c*,c*)| 1.04e-55; dw = w(c*) - w(0): |dw| 1.33e-60, against its quadratic model 0.0104
+  S control: dw -> 2 dw changes g by 1.684e-56, predicted -1/2 S(c*,c*,c*) 1.729e-56, difference 0.0272 of it (bound 1e-2): FAIL
+  w control (diagnostic): w(c*) -> 2 w(c*) changes g by 1.684e-56, predicted L c* - 1/2 S + 3/2 q00 1.729e-56 (L c* 1.33e-67, 3/2 q00 2.81e-68), difference 0.0266 of it
+  verdict, model T-3S: root |c**| 8.325e-30 with |g(c**)| / |B a| 7.86e-10 (below 1e-2), max|F| there 2.00e-51
+  verdict, model T-3S,L: root |c**| 8.325e-30 with |g(c**)| / |B a| 7.86e-10 (below 1e-2), max|F| there 2.00e-51
+  verdict, model T-3S,LS: root |c**| 8.325e-30 with |g(c**)| / |B a| 1.6e-19 (below 1e-2), max|F| there 2.00e-51
+check: FAIL

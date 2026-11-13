@@ -1,0 +1,28 @@
+planted (seed 5): n 12, k 4; start max|F| 1.498e-36, |w0| 5.92e-33, planted root |y*| 4.5e-30, its conditioning sigma_min(g') |y*| / |B a| 0.529
+  basis: sigma of B 2.1000e-27, 2.2000e-27, 3.2000e-26, 7.1000e-26 (iteration 2.1000e-27, 2.2000e-27, 3.2000e-26, 7.1000e-26); |dz0| 2.406e-29, a = V^T dz0 -1.75e-30, -2.398e-29, 5.246e-31, 3.879e-31, |a| 2.406e-29, the rest 5.92e-33; |B a| 6.195e-56, |U^T F(z0) + B a| / |B a| 2.06e-122; -J^-1 F(z0) against dz0 0.0; w0 = -J^-1 (I - U U^T) F(z0): |w0| 5.92e-33, |V^T w0| 7.95e-151 (0 s)
+  Q = U^T F'': max|Q| 2082.0 at h 1e-33, against h 1e-32 3.8e-9 (0 s)
+  w_jl = J^-1 (I - U U^T) F''(v_j, v_l): max|F''| 1.21e+33, |w_jl| 620.0..6.43e+3 at h 1e-34, |V^T w_jl| / |w_jl| up to 4.99e-85; h 1e-32 against 1e-33 7.9e-6, 1e-33 against 1e-34 7.9e-8 (bound 1e-2): pass (0 s)
+  T = U^T F''': max|T| 6.346e+33 at h 1e-24, against h 1e-23 2.45e-118 (176 residuals per h, 1 s)
+  S = U^T F''(v_i, w_jl), symmetrized: max|S| 1.122e+34 at h 1e-33, against h 1e-32 0.9 (bound 1e-2): FAIL; its unsymmetric part 0.959 of it; 3 max|S| / max|T| 5.305 (1 s)
+  T - 3S: max|T - 3S| / max|T| 6.305; T - 3S at the larger steps against the smaller, relative to max|T|, 4.77
+  L = U^T F''(v_j, w0): max|L| 2.172e-26, sigma 6.394e-28, 1.221e-26, 2.074e-26, 3.540e-26, h against h/10 6.96e-66; sigma of B + L 8.190e-27, 1.696e-26, 1.983e-26, 6.490e-26; |q00| = |U^T F''(w0, w0)| 1.03e-111 (0 s)
+  g(0): |g(0) + B a| / |B a| 8.33e-57, |w(0) - w0| 0.0, (max|strong residual|, |dw|) per chord step (1.7e-94, 7.0e-94) (0 s)
+  the map's own coefficients at h 1e-33: |B_LS - (B + L)| / max|B + L| 2.72e-8; max|Q_LS| 2082.0, |Q_LS - Q| / max|Q| 0.000106 (33 solves, 0 s)
+  model T: 5 real roots from 26 starts; nearest a: |c| 1.05e-29 (1.04e-29, 8.48e-31, -1.54e-31, 5.35e-31): |g| / |B a| 9.94, affine 1.71, max|F| 3.89e-55; |c| 3.32e-29 (-1.74e-31, -1.65e-29, -2.06e-29, 2.01e-29): |g| / |B a| 407.0, affine 9.88, max|F| 1.32e-53; |c| 3.42e-29 (-6.03e-31, 1.71e-29, 2.13e-29, -2.04e-29): |g| / |B a| 467.0, affine 10.1, max|F| 1.50e-53; |c| 5.42e-29 (4.21e-29, -1.87e-29, -1.19e-29, 2.61e-29): |g| / |B a| 1.88e+3, affine 55.1, max|F| 7.72e-53; |c| 5.23e-29 (-4.01e-29, 1.91e-29, 1.2e-29, -2.48e-29): |g| / |B a| 1.74e+3, affine 53.0, max|F| 7.08e-53
+  model T,Q: 1 real roots from 26 starts; nearest a: |c| 9.89e-30 (9.62e-30, 1.98e-30, 1.25e-31, 1.13e-30): |g| / |B a| 9.01, max|F| 3.40e-55
+  model T-3S: 3 real roots from 26 starts; nearest a: |c| 3.44e-30 (3.35e-31, -3.07e-30, -3.25e-31, 1.48e-30): |g| / |B a| 0.649, max|F| 1.96e-56; |c| 6.51e-30 (-4.04e-30, -3.32e-30, 1.08e-30, 3.73e-30): |g| / |B a| 3.84, max|F| 1.51e-55; |c| 2.3e-30 (1.28e-31, 1.14e-31, 2.28e-30, 2.19e-31): |g| / |B a| 1.12, max|F| 3.18e-56
+  model T-3S,L: 1 real roots from 26 starts; nearest a: |c| 6.04e-30 (-3.87e-30, -3.87e-30, -2.36e-31, 2.54e-30): |g| / |B a| 1.76, max|F| 5.36e-56
+  model T-3S,LS: 1 real roots from 26 starts; nearest a: |c| 6.04e-30 (-3.87e-30, -3.87e-30, -2.36e-31, 2.54e-30): |g| / |B a| 1.76, max|F| 5.36e-56
+  at c = a: |g| / |B a| 143.0, max|F| 4.94e-54; models' roots 15 s
+  c* = the root of model T (|c*| 1.047e-29): |g(c*)| / |B a| 9.94 on the strong-solved manifold, affine 1.71; |S(c*,c*,c*)| 1.28e-53, |T(c*,c*,c*)| 3.9e-55; dw = w(c*) - w(0): |dw| 2.23e-37, against its quadratic model 1.0
+  #499's split at c*, |U^T F(z0 + V c* + w)| / |B a| for w = rest 3.781, w0 3.781, w(0) 3.781, w(c*) 9.939; |w(0) - w0| 0.0, |rest - w0| 3.06e-84
+  S control: dw -> 2 dw changes g by 6.376e-55, predicted -1/2 S(c*,c*,c*) 6.376e-54, difference 0.9 of it (bound 1e-2): FAIL
+  w control (diagnostic): w(c*) -> 2 w(c*) changes g by 6.664e-55, predicted L c* - 1/2 S + 3/2 q00 6.386e-54 (L c* 1.67e-55, 3/2 q00 1.55e-111), difference 0.899 of it
+  S control along c* (diagnostic), f: (2dw change against -1/2 S(f c*), against u.F''(V f c*, dw); u.F''(V f c*, dw) against -1/2 S; u.F''(V f c*, dw_quad) against -1/2 S; dw against dw_quad): 1: (0.9, 2.8e-57; 0.9; 0.9; 8.38e+17); 0.5: (0.9, 5.59e-57; 0.9; 0.9; 1.68e+18); 0.25: (0.9, 1.12e-56; 0.9; 0.9; 3.35e+18) (0 s)
+  strong solves: 49, of which 0 stalled; their last correction changes g by at most 0.0e+00 of |B a|
+  verdict, model T-3S: root |c**| 3.442e-30 with |g(c**)| / |B a| 0.649 (NOT below 1e-2), max|F| there 1.96e-56
+  verdict, model T-3S,L: root |c**| 6.039e-30 with |g(c**)| / |B a| 1.76 (NOT below 1e-2), max|F| there 5.36e-56
+  verdict, model T-3S,LS: root |c**| 6.039e-30 with |g(c**)| / |B a| 1.76 (NOT below 1e-2), max|F| there 5.36e-56
+  planted: recovered against planted, relative to the largest entry: B 6.29e-107, L 2.39e-57, Q 3.84e-11, T 2.39e-118, S 9.0 (bound 1e-6): FAIL
+  planted: model T-3S,L's root against the planted root 0.511 (bound 1e-3), |g| / |B a| there 1.76 (bound 1e-2): FAIL; the plant shows (|g(c*)| / |B a| = 9.94 >= 0.1 at model T's root): yes
+check: FAIL
