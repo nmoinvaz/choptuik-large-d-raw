@@ -1,0 +1,29 @@
+| state | K | grid | kind | bound (best of 3) | starts' spread | worst residual | products | mu | E (edge) | C0 (centre) | C4 (w4 centre) | class |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| a_32x121_D50.0075_32x121.npz | 7 | 32x121 | rough | 4.882e-34 | 7.1 | 4.9e-15 | 250 | 0.14 | 0.30 | 1.00 | 1.00 | centre in w4 |
+| a_32x121_D50.0075_32x121.npz | 7 | 32x121 | smooth | 2.698e-33 | 2.1 | 7.2e-17 | 175 | 0.16 | 0.30 | 1.00 | 1.00 | centre in w4 |
+| a_32x121_mutnorows_D50.0075_32x121.npz | 0 | 32x121 | rough | 1.184e-34 | 2.2 | 9.6e-20 | 76 | 0.34 | 0.40 | 1.00 | 1.00 | mixed |
+| a_32x121_mutnorows_D50.0075_32x121.npz | 0 | 32x121 | smooth | 2.380e-19 | 7.9 | 4.5e-31 | 76 | 0.33 | 0.40 | 1.00 | 1.00 | mixed |
+| b_32x121_D50.0075_32x121.npz | 7 | 32x121 | rough | 6.112e-34 | 12.2 | 1.4e-15 | 228 | 0.05 | 0.20 | 1.00 | 1.00 | centre in w4 |
+| b_32x121_D50.0075_32x121.npz | 7 | 32x121 | smooth | 2.487e-33 | 4.3 | 1.4e-17 | 139 | 0.06 | 0.20 | 1.00 | 1.00 | centre in w4 |
+| b_32x121_mutnorows_D50.0075_32x121.npz | 0 | 32x121 | rough | 7.817e-35 | 4.3 | 2.5e-18 | 76 | 0.50 | 0.60 | 1.00 | 1.00 | mixed |
+| b_32x121_mutnorows_D50.0075_32x121.npz | 0 | 32x121 | smooth | 8.852e-20 | 26.4 | 2.2e-32 | 76 | 0.51 | 0.60 | 1.00 | 1.00 | mixed |
+| C:\Users\nathan\Source\choptuik-large-d-raw\I643-win\nt48\nt48_121_D50.0075_48x121.npz | 0 | 48x121 | rough | 9.893e-35 | 3.5 | 1.3e-18 | 85 | 0.10 | 0.30 | 1.00 | 1.00 | centre in w4 |
+| C:\Users\nathan\Source\choptuik-large-d-raw\I643-win\nt48\nt48_121_D50.0075_48x121.npz | 0 | 48x121 | smooth | 1.606e-19 | 1.8 | 2.1e-34 | 85 | 0.02 | 0.30 | 1.00 | 1.00 | centre in w4 |
+
+Per state (smooth against rough, class, verdict by #423's rules with the carried D trend):
+  K7_a: rough 4.882e-34, smooth 2.698e-33, smooth/rough 5.53e+00 (seen by smooth); x centre in w4 (rough start; smooth start: centre in w4); trend (carried) not horizon-like -> (C)
+  K0_a: rough 1.184e-34, smooth 2.380e-19, smooth/rough 2.01e+15 (not seen by smooth); x mixed (rough start; smooth start: mixed); trend (carried) not horizon-like -> neither
+  K7_b: rough 6.112e-34, smooth 2.487e-33, smooth/rough 4.07e+00 (seen by smooth); x centre in w4 (rough start; smooth start: centre in w4); trend (carried) not horizon-like -> (C)
+  K0_b: rough 7.817e-35, smooth 8.852e-20, smooth/rough 1.13e+15 (not seen by smooth); x mixed (rough start; smooth start: mixed); trend (carried) not horizon-like -> neither
+  NT48: rough 9.893e-35, smooth 1.606e-19, smooth/rough 1.62e+15 (not seen by smooth); x centre in w4 (rough start; smooth start: centre in w4); trend (carried) not horizon-like -> neither
+
+The rows against their same-start controls (rough bound, K = 7 / K = 0):
+  start a: 4.882e-34 / 1.184e-34 = 4.12; class centre in w4 (mu 0.14) against mixed (mu 0.34)
+  start b: 6.112e-34 / 7.817e-35 = 7.82; class centre in w4 (mu 0.05) against mixed (mu 0.50)
+
+Reproduction of #163 (same code, another machine):
+  K0_a rough 1.184e-34 against 1.2e-34: factor 0.99 -> within 3
+  K7_a rough 4.882e-34 against 4.9e-34: factor 1.00 -> within 3
+
+N_t = 48 (48x121) rough 9.893e-35 against #423's 32x121 K = 0 at D 50.007 (1.404e-34): factor 0.70
