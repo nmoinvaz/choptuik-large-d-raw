@@ -1,0 +1,50 @@
+== rust_tests 2026-11-12 23:35 multishoot f891639, cargo test --release --lib, low-memory recipe
+   Compiling crossbeam-utils v0.8.23
+   Compiling crossbeam-epoch v0.9.21
+   Compiling crossbeam-deque v0.8.8
+   Compiling rayon-core v1.13.0
+   Compiling either v1.19.0
+   Compiling rayon v1.12.0
+   Compiling multidouble v4.1.0
+   Compiling multishoot v1.2.1 (/Users/nathan/Source/ms-wt/multishoot-fallible)
+   Compiling hpkernel v0.1.0 (/Users/nathan/Source/choptuik-large-d/.claude/worktrees/agent-a4f3680c95170e0c9/hp)
+    Finished `release` profile [optimized] target(s) in 6m 53s
+     Running unittests src/lib.rs (/private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/11bcbd25-9376-453b-88d5-a7c6ad0172dd/scratchpad/i599/hp_target_test/release/deps/_hpkernel-e4fb1171ffa7434a)
+
+running 26 tests
+test model::bench::bench_jac ... ignored
+test freeze_tests::freeze_projector_is_recognized ... ok
+test freeze_tests::freeze_jvp_matches_dd_jacobian ... ok
+test jvp_tests::jvp_matches_dd_jacobian ... ok
+test mode_tests::mode_matrix_at_rate_zero_is_the_jacobian_block ... ok
+test freeze_tests::freeze_hdd_block_rows_are_dd ... ok
+test jvp_tests::halpha_control_bitwise_on_rounding_only ... ok
+test jvp_tests::hdd_block_rows_are_dd ... ok
+test mode_tests::mode_matrix_complex_rate_is_analytic ... ok
+test prec_tests::qd::qsolve_agrees_with_double_double ... ok
+test prec_tests::qd::qsolve_jet_agrees_with_double_double_jet ... ok
+test prec_tests::qd::qsolve_jacobian_matches_differences ... ok
+test prec_tests::qd::qsolve_jet_resolves_sub_double_double_changes ... ok
+test prec_tests::qd::qsolve_jet_sums_to_the_residual ... ok
+test prec_tests::qd::qsolve_refinement_converged ... ok
+test qd_residual::bench_qd_residual ... ignored
+test qd_residual::qv_lane_blocks_agree ... ok
+test prec_tests::qd::qsolve_newton_converges ... ok
+test prec_tests::qd::qsolve_resolves_sub_double_double_changes ... ok
+test prec_tests::od::osolve_refinement_converged ... ok
+test prec_tests::od::osolve_agrees_with_quad_double has been running for over 60 seconds
+test prec_tests::od::osolve_jacobian_matches_differences has been running for over 60 seconds
+test prec_tests::od::osolve_jet_resolves_sub_quad_double_changes has been running for over 60 seconds
+test prec_tests::od::osolve_jet_sums_to_the_residual has been running for over 60 seconds
+test prec_tests::od::osolve_newton_converges has been running for over 60 seconds
+test prec_tests::od::osolve_resolves_sub_quad_double_changes has been running for over 60 seconds
+test prec_tests::od::osolve_agrees_with_quad_double ... ok
+test prec_tests::od::osolve_resolves_sub_quad_double_changes ... ok
+test prec_tests::od::osolve_jacobian_matches_differences ... ok
+test prec_tests::od::osolve_jet_resolves_sub_quad_double_changes ... ok
+test prec_tests::od::osolve_jet_sums_to_the_residual ... ok
+test prec_tests::od::osolve_newton_converges ... ok
+
+test result: ok. 24 passed; 0 failed; 2 ignored; 0 measured; 0 filtered out; finished in 89.78s
+
+exit 0

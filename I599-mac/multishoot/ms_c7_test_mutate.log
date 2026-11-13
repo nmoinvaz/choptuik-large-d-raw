@@ -1,0 +1,272 @@
+   Compiling multishoot v1.2.1 (/Users/nathan/Source/ms-wt/multishoot-fallible)
+    Finished `release` profile [optimized] target(s) in 29.49s
+     Running unittests src/lib.rs (target/release/deps/multishoot-f2854e3369edd03f)
+
+running 19 tests
+test newton::tests::norm2_does_not_overflow ... ok
+test newton::tests::norm2_nan_and_zero ... ok
+test periodic::tests::sin_cos_agree ... ok
+test periodic::tests::dmat_control_wrong_parity_fails ... ok
+test periodic::tests::pi_od_control_quad_parts_fail ... ok
+test periodic::tests::pi_od_is_pi ... ok
+test periodic::tests::dmat_differentiates_harmonics ... ok
+test periodic::tests::sin_cos_pi_large_q_control_former_remainder_fails ... ok
+test periodic::tests::sin_cos_pi_reduction_control_half_period_differs ... ok
+test periodic::tests::sin_cos_pi_reduces_large_p ... ok
+test periodic::tests::sin_cos_pi_takes_large_denominators ... ok
+test taylor::tests::kth_root_agrees_with_powf ... ok
+test periodic::tests::sin_cos_pi_od_control_short_series_fails ... ok
+test taylor::tests::kth_root_control_neighbours_fail ... ok
+test taylor::tests::kth_root_is_correctly_rounded ... ok
+test taylor::tests::kth_root_follows_its_input ... ok
+test periodic::tests::dmat_equals_direct_sums ... ok
+test periodic::tests::dmat_control_transposed_differs ... ok
+test periodic::tests::sin_cos_pi_od_agrees ... ok
+
+test result: ok. 19 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.08s
+
+     Running tests/damping.rs (target/release/deps/damping-75e09c60acc14411)
+
+running 4 tests
+test correction_rule_is_affine_covariant ... ok
+test residual_rule_evaluates_once_per_trial ... ok
+test correction_rule_converges_where_residual_rule_refuses ... ok
+test affine_covariance_control_residual_rule_differs ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.90s
+
+     Running tests/eigen.rs (target/release/deps/eigen-de6dd46becf114b5)
+
+running 9 tests
+test jet_control_frozen_parameter_fails ... ok
+test jet_orders_match_central_differences ... ok
+test jet_precisions_control_wrong_quad_fails ... ok
+test jet_precisions_agree ... ok
+test eigenpair_control_phase_row_along_amplitude_fails ... ok
+test jet_bytes_match_reference ... ok
+test jet_bytes_control_one_ulp_differs ... ok
+test eigenpair_control_wrong_coefficient_fails ... ok
+test eigenpair_converges_in_double_and_quad ... ok
+
+test result: ok. 9 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.03s
+
+     Running tests/fast.rs (target/release/deps/fast-906c41078e16e137)
+
+running 31 tests
+test assembled_bytes_match_reference ... ok
+test assembled_f64_jacobian_control_unprojected_differs ... ok
+test controls::dropped_column_fails_the_f64_jacobian ... ok
+test controls::staircase_pivot_and_link_fail_the_solve ... ok
+test assembled_f64_jacobian_is_the_engines ... ok
+test dd_columns_control_not_given_differ ... ok
+test dd_columns_are_read_where_the_matrix_is_zero ... ok
+test f64_projection_control_unprojected_fails ... ok
+test f64_scaling_control_wrong_factor_differs ... ok
+test f64_jacobian_and_staircase_scale_rows ... ok
+test assembled_bytes_control_one_ulp_differs ... ok
+test four_tangents_control_base_precision_differs ... ok
+test dd_columns_project_to_the_dd_jacobians_rows ... ok
+test fast_bytes_match_reference ... ok
+test controls::staircase_pivot_slows_the_mixed_newton ... ok
+test four_tangents_equal_one ... ok
+test f64_jacobian_projects_its_rows ... ok
+test newton_step_mixed_control_other_storage_differs ... ok
+test pointwise_f64_control_coupled_differs ... ok
+test pointwise_f64_jacobian_equals_per_column ... ok
+test project_f64_block_refuses_bad_inputs ... ok
+test zero_dd_column_replaces_the_matrix_entries ... ok
+test newton_step_mixed_is_the_loops_step ... ok
+test staircase_refuses_other_layouts ... ok
+test f64_jacobians_match_the_exact_one ... ok
+test dd_columns_control_rounded_columns_differ ... ok
+test staircase_solves_the_f64_system ... ok
+test mixed_newton_reaches_quad_double ... ok
+test fast_bytes_control_one_ulp_differs ... ok
+test controls::half_parts_fail_the_quad_double_mixed_newton ... ok
+test mixed_newton_converges ... ok
+
+test result: ok. 31 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.87s
+
+     Running tests/frobenius.rs (target/release/deps/frobenius-4ca3d795af8c2ef1)
+
+running 6 tests
+test prepare_control_counts_each_evaluation ... ok
+test bessel_pointwise_jacobian_control_one_side_wrong_differs ... ok
+test bessel_pointwise_jacobian_equals_per_column ... ok
+test prepare_runs_once_per_evaluation ... ok
+test bessel_control_wrong_frobenius_coefficient_fails ... ok
+test bessel_converges_to_its_closed_form ... ok
+
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+     Running tests/jvp.rs (target/release/deps/jvp-508a8013606fab02)
+
+running 6 tests
+test jvp_residual_control_one_ulp_differs ... ok
+test jvp_bytes_control_one_ulp_differs ... ok
+test controls::dropped_global_column_fails ... ok
+test controls::dropped_node_column_fails ... ok
+test jvp_matches_the_jacobian ... ok
+test jvp_bytes_match_reference ... ok
+
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 3.12s
+
+     Running tests/mode.rs (target/release/deps/mode-60dd3505c53ad97e)
+
+running 26 tests
+test complex_rate_on_real_tangents_panics - should panic ... ok
+test controls::pointwise_rate_real_differs ... ok
+test complex_rate_rows_scale ... ok
+test mode_bytes_control_one_ulp_differs ... ok
+test complex_rate_projection_control_real_only_differs ... ok
+test complex_rate_projects_both_parts ... ok
+test rate_zero_control_unscaled_differs ... ok
+test pointwise_mode_matrix_equals_per_column ... ok
+test pointwise_mode_control_coupled_differs ... ok
+test mode_matrix_refuses_a_wrong_row_scale ... ok
+test complex_rate_rows_scale_control_wrong_factor ... ok
+test mode_bytes_match_reference ... ok
+test shift_control_real_rate_moves_the_tangent ... ok
+test shift_identity_controls_signed_zero_and_value_differ ... ok
+test shift_is_the_identity_without_a_tangent_or_a_rate ... ok
+test rate_zero_is_the_projected_jacobian_block ... ok
+test rate_zero_is_the_scaled_jacobian_block ... ok
+test real_rate_is_the_explicit_shift ... ok
+test controls::dropped_column_fails_the_jacobian_block ... ok
+test rate_zero_projected_controls_differ ... ok
+test rate_zero_is_the_jacobian_block ... ok
+test controls::rate_not_prepared_fails_the_determinant ... ok
+test wave_determinant_is_planted ... ok
+test controls::rate_not_in_steps_fails_the_explicit_shift ... ok
+test controls::rate_real_fails_the_determinant_and_the_count ... ok
+test winding_counts_the_planted_zeros ... ok
+
+test result: ok. 26 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.91s
+
+     Running tests/nan.rs (target/release/deps/nan-1f5864c188eab5a0)
+
+running 6 tests
+test planner_norm_control_amax_skips_nan ... ok
+test planner_norm_propagates_nan ... ok
+test max_abs_control_old_fold_drops_nan ... ok
+test newton_on_nan_residual_does_not_converge ... ok
+test max_abs_propagates_nan ... ok
+test newton_nan_control_old_fold_scores_zero ... ok
+
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/newton.rs (target/release/deps/newton-02b618456d806b23)
+
+running 11 tests
+test pointwise_jacobian_equals_per_column ... ok
+test planted_residual_vanishes ... ok
+test pointwise_control_coupled_problem_differs ... ok
+test newton_step_solves_the_linear_system ... ok
+test controls::shifted_row_fails_newton ... ok
+test planted_newton_converges ... ok
+test results_bytes_match_reference ... ok
+test results_bytes_control_one_ulp_differs ... ok
+test newton_refuses_options_out_of_range ... ok
+test jacobian_matches_central_differences ... ok
+test controls::dropped_column_fails_central_differences ... ok
+
+test result: ok. 11 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.54s
+
+     Running tests/precision.rs (target/release/deps/precision-41d75d05692c56d3)
+
+running 5 tests
+test precisions_agree_on_the_residual ... ok
+test residual_bytes_match_reference ... ok
+test planted_converges_in_quad_and_octo ... ok
+test residual_bytes_control_one_ulp_differs ... ok
+test controls::half_parts_stall_above_the_floors ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 3.77s
+
+     Running tests/prepare.rs (target/release/deps/prepare-fab50a4aa145ab60)
+
+running 6 tests
+test block_states_panics_on_a_failed_preparation - should panic ... ok
+test try_block_states_refuses_a_malformed_z ... ok
+test failed_preparation_is_every_entry_points_error ... ok
+test controls::infallible_prepare_hides_the_error ... ok
+test controls::infallible_prepare_changes_the_bits ... ok
+test try_prepare_gives_the_bits_of_prepare ... ok
+
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.11s
+
+     Running tests/projected.rs (target/release/deps/projected-fa1c99913895ceae)
+
+running 15 tests
+test project_rows_refuses_bad_layouts ... ok
+test projected_jet_is_the_jacobian_product ... ok
+test projected_jet_control_unprojected_fails ... ok
+test projected_bytes_control_one_ulp_differs ... ok
+test projector_control_double_double_fails ... ok
+test projector_is_exact_in_octo ... ok
+test projected_jvp_is_the_jacobian_product ... ok
+test projected_rows_scale_control_wrong_factor_fails ... ok
+test projected_rows_scale_after_the_projection ... ok
+test projected_bytes_match_reference ... ok
+test projected_jvp_control_unprojected_fails ... ok
+test controls::double_double_projector_misses_the_exact_rows ... ok
+test projected_jacobian_control_unprojected_fails ... ok
+test projected_jacobian_matches_central_differences ... ok
+test projected_newton_reaches_the_exact_rows ... ok
+
+test result: ok. 15 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 4.05s
+
+     Running tests/raw_reads.rs (target/release/deps/raw_reads-e2e75996d81b9a8b)
+
+running 9 tests
+test extra_rows_control_renormalized_sum_fails_dd ... ok
+test extra_rows_read_parts_as_they_are_dd ... ok
+test mutate::extra_rows_control_renorm_scalar_fails_dd ... ok
+test mutate::extra_rows_control_renorm_scalar_fails_qd ... ok
+test extra_rows_control_renormalized_sum_fails_qd ... ok
+test extra_rows_read_parts_as_they_are_qd ... ok
+test mutate::extra_rows_control_renorm_scalar_fails_od ... ok
+test extra_rows_read_parts_as_they_are_od ... ok
+test extra_rows_control_renormalized_sum_fails_od ... ok
+
+test result: ok. 9 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.32s
+
+     Running tests/row_scale.rs (target/release/deps/row_scale-35dc605caf05374b)
+
+running 3 tests
+test row_scale_control_wrong_length_fails ... ok
+test row_scale_control_wrong_factor_fails ... ok
+test row_scale_scales_residual_jacobian_and_jet ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.07s
+
+     Running tests/taylor.rs (target/release/deps/taylor-aa4e0e72ecf8c498)
+
+running 18 tests
+test layout_offsets ... ok
+test planner_one_ulp_control_early_stop_fails ... ok
+test planner_nan_control_finite_plans ... ok
+test planner_reaches_an_end_one_ulp_away ... ok
+test planner_rejects_infinite_end - should panic ... ok
+test planner_rejects_nan_coefficient - should panic ... ok
+test planner_rejects_zero_tolerance - should panic ... ok
+test planned_segments_end_at_their_nodes ... ok
+test planner_reports_an_underflowing_tolerance - should panic ... ok
+test planner_underflow_control_normal_tolerance_plans ... ok
+test plan_points_match_reference ... ok
+test planner_bound_control_doubled_steps_fails ... ok
+test planner_bound_holds ... ok
+test rotor_carried_control_wrong_coefficient_fails ... ok
+test rotor_carried_to_double_double ... ok
+test stepping_bytes_match_reference ... ok
+test plan_points_control_tolerance_differs ... ok
+test stepping_bytes_control_one_ulp_differs ... ok
+
+test result: ok. 18 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+   Doc-tests multishoot
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
