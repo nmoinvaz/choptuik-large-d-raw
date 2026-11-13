@@ -86,3 +86,22 @@ above the planted check's 1e-40. The setup reproduces I644's converged residual.
 were u0q 2, ladder 2 and skipped 3, and it took 2294 s. Each step's \|F\|, lam, dDelta and pivots equal I644's log line
 for line, and \|dz\| matches to the digits I644 printed (it printed two). The quad-double half was stopped after its
 first step (amendment 1), so the log ends `exit 143`.
+
+### s0_D200, C1 (`s0_D200.log`, `.json`, `.npz`; 21:38 to 22:10 UTC, exit 0)
+
+**C1: PASS.** With every point projected (switch 0, reseed_o 3), the corrector converged in 5 steps to pinned max\|F\|
+8.12e-54, with Delta 1.695088752463841744241523971202762929111. That is 1.71e-39 from REF200, the default-switch
+octo-double Delta. Its projections were u0q 4, ladder 2, skipped 0, and it took 1938 s.
+
+| step | switch 1e-15 (ref_D200) | switch 0 (s0_D200) |
+|---|---|---|
+| 0 | 3.39e-12 → 1.15e-15 | 3.39e-12 → 1.15e-15 |
+| 1 | 1.15e-15 → 2.15e-22 | 1.15e-15 → 2.15e-22 |
+| 2 | 2.15e-22 → 9.75e-34 | 2.15e-22 → 6.22e-34 |
+| 3 | 9.75e-34 → **4.51e-25** (the trial not projected) | 6.22e-34 → 8.12e-54, converged |
+| 4 | 4.51e-25 → 6.52e-49, converged | |
+
+At the default switch, ElimO skipped 3 of its 7 evaluations: the start, five trials and the final point. That fits
+the last three being below the switch, step 3's trial among them, though it is inferred from the counts, not logged per
+point. Unprojected, that trial keeps the horizon rows' second-order term (#700), and the residual rises by nine orders
+before the next step removes it. With every point projected, the same step goes straight to 8.12e-54.

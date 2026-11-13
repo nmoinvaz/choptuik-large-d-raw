@@ -1,0 +1,14 @@
+== s0_D200 2026-11-13 21:37:51 UTC, hp at 00c3963f, octo_corrector.py planted /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/11bcbd25-9376-453b-88d5-a7c6ad0172dd/scratchpad/i713/raw T138-win2/chain_o/anm_pin3_D200.0000.npz --threads 3 --switch 0 --reseed_o 3 --reseed_start pred --qd 0 --Delta_ref 1.695088752463841744241523971202762929113 --out /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/11bcbd25-9376-453b-88d5-a7c6ad0172dd/scratchpad/i713/raw/I713-mac/s0_D200
+planted T138-win2/chain_o/anm_pin3_D200.0000.npz: D 200.0, start = truth moved by 1e-12 relative in [0, 576); pinned max|F| (octo) truth 9.75e-29, start 3.39e-12; mutate_offset '', mutate 0
+  ElimO switch 0, reseed_o 3, reseed_start pred, accept own, strong 0
+  on 0: |F| 3.39e-12 -> 1.15e-15, |dz| 2.74e-11 -> 2.73e-11, lam 1, dDelta -9.67e-13, piv 1.7e-12..1.2e+28, 508.83 s
+  on 1: |F| 1.15e-15 -> 2.15e-22, |dz| 2.73e-11 -> 4.58e-17, lam 1, dDelta +9.67e-13, piv 1.7e-12..1.2e+28, 535.58 s
+  on 2: |F| 2.15e-22 -> 6.22e-34, |dz| 4.58e-17 -> 5.12e-27, lam 1, dDelta +7.68e-18, piv 1.7e-12..1.2e+28, 262.29 s
+  on 3: |F| 6.22e-34 -> 8.12e-54, |dz| 5.12e-27 -> 2.81e-48, lam 1, dDelta -1.48e-27, piv 1.7e-12..1.2e+28, 240.77 s
+  on 4: |F| 8.12e-54 converged, Delta 1.69508875246384183 -8.5979e-17
+  od: 5 steps, converged, pinned max|F| (octo) 8.12e-54, Delta 1.695088752463841744241523971202762929111, projections {'u0': 0, 'u0q': 4, 'ladder': 2, 'failed': 0, 'skipped': 0}, 1938 s
+  od against the truth: dDelta 7.7569e-18
+  |Delta_od - Delta_qd| 1.7096e-39 (Delta_ref 1.695088752463841744241523971202762929113)
+  (a) PASS: od max|F| 8.12e-54 < 1e-40, |Delta_od - Delta_qd| <= 1e-30
+exit 0
+== end 2026-11-13 22:10:10 UTC
