@@ -8,3 +8,19 @@ Written before the run (the issue's). Pass: exactly one sign change in the brack
 
 ## Result so far (2026-11-13 01:14 UTC)
 The run exited 1 at 01:13:23 UTC, before any determinant: ValueError: newton: the dense n x n path is limited to M <= 128 (memory); at M = 160 use newton_mixed (block storage), from hp/lowD_gamma.py line 81 (newton_solve without mixed=) via hpkernel/driver.py newton_step. Nothing was changed; the coordinator decides (message of 2026-11-13 01:14 UTC, comment on the issue).
+
+## The lowDhm family at M 96 and M 128 (the coordinator's message of 2026-11-13 01:15 UTC: mode_det is dense too, DENSE_M_MAX in hp/src/python.rs, so M 160 is out)
+run_628b.sh: python3 -u hp/lowD_gamma.py <raw>/I628-macm3/lowD_gamma_D3.5_hm_MM.jsonl hp/data/lowD_states/lowDhm_D3.5000_MM.npz --threads=3 --polish=2 --lam0=3.1018757202 --xtol=1e-11 for M 96 and 128, two runs at once, 3 threads each, nice 10, caffeinate; states' sha256 6de2033bd059e5bb... (M 96) and 260f26dbe2e41e0e... (M 128). Started 01:16 UTC. Written before the run (the note on the issue). Pass: one sign change each and F after the polish recorded. Report gamma at each M against dh370's lowDvh values at the same M (M 96: 0.32238557898599024, lambda 3.1018757202022877, F 4.388e-30, 16 determinants, 3355 s, in hp/data/lowD_gamma*.jsonl; M 128 from dh370's run); the resolution criterion is gamma(128) - gamma(96) in each family and the family difference at each M, both tabled; gamma(3.5) is resolved to the larger of the two.
+
+## Results of the lowDhm runs (01:42 UTC; exits.txt: hm M96 exit 0 at 01:23:41, hm M128 exit 0 at 01:41:23 UTC)
+
+| family, M | state | λ | γ | F after the polish | determinants | seconds (threads) |
+|---|---|---|---|---|---|---|
+| lowDhm, 96 | `lowDhm_D3.5000_M96.npz` | 3.101875720205001 | 0.32238557898570824 | 1.356e-30 | 4 | 434 (3, with the M 128 run beside it) |
+| lowDhm, 128 | `lowDhm_D3.5000_M128.npz` | 3.1018756839323616 | 0.32238558275561296 | 7.640e-30 | 6 | 1496 (3) |
+| lowDvh, 96 (dh370, `hp/data/lowD_gamma_local.jsonl`) | `lowDvh_D3.5000_M96.npz` | 3.1018757202022877 | 0.32238557898599024 | 4.388e-30 | 16 | 3355 (6) |
+
+hm 96->128: gamma +3.770e-09, lambda -3.627e-08
+hm - vh at M 96: gamma -2.820e-13, lambda +2.713e-12
+Ecker et al. 0.32239 - gamma_hm(128) = +4.417e-06, 0.32239 - gamma_hm(96) = +4.421e-06
+Last bracket: M 96 lambda 3.1018757202 (-) to 3.101875720205 (+), M 128 3.101875683932 (-) to 3.101875683937 (+): 5e-12 wide, so gamma is located to about 5e-13 (dgamma = dlambda / lambda^2). dh370's lowDvh M 96 is the stored hp/data value (his rerun, I628-dh370, and his M 128 were running at 01:41 UTC); the family difference at M 128 waits for it.
