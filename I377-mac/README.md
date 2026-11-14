@@ -13,6 +13,7 @@ Code: `solver/matter/css_kappa_crit.py` (finite D, through css_lateral.py and cs
 | `scan_D4.jsonl` | collocation (css_scan.py, N 40/56) at D = 4, kappa = 0.0754, 0.0757329315, 0.076 and 10 |
 | `path_D{4,6,10,20,40}.jsonl` | background, lambda_osc and lambda_phys at R = 0.85 x_h and 0.6 x_h along kappa |
 | `crit.jsonl` | kappa_c at each D and radius (Re lambda_osc = 0), lambda_osc and gamma there |
+| `at_D4.jsonl` | the jump method at D = 4, kappa = 0.0754 and 0.076, both radii |
 | `kpath_inf.jsonl`, `kcrit_inf.jsonl` | D = infinity: lambda_osc of the inner solution along kappa (settings A, B) and kappa_c(infinity) |
 | `inner_check.jsonl` | css_inner_pert.py check at kappa = 0 and 0.5 (for #376) |
 | `failed_v1/`, `stopped_q4/` | a first queue whose paths stopped at kappa = 0 (a bug in the kappa history, fixed), and a queue stopped to put the D = 4 checks first; kept for the record |
