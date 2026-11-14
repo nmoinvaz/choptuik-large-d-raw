@@ -6,26 +6,26 @@ import json, math, glob, sys
 TOL, ALIAS, NB, RAD = math.pi / 4, math.pi / 2, 3, 0.36
 wrap = lambda x: (x + math.pi) % (2 * math.pi) - math.pi
 
-def analyse(path, c):
+def analyse(path, c, rad=RAD):
     ev = {}
     for l in open(glob.glob(f"{path}/data/*evals.jsonl")[0]):
         if l.strip():
             e = json.loads(l); ev[(e["re"], e["im"])] = (e["lnabs"], e["arg"])
     near = lambda x, y: min(ev, key=lambda k: abs(complex(*k) - complex(x, y)))
-    kp, km = near(c.real + 2 * RAD, c.imag), near(c.real - 2 * RAD, c.imag)
-    assert abs(complex(*kp) - (c + 2 * RAD)) < 1e-12 and abs(complex(*km) - (c - 2 * RAD)) < 1e-12
+    kp, km = near(c.real + 2 * rad, c.imag), near(c.real - 2 * rad, c.imag)
+    assert abs(complex(*kp) - (c + 2 * rad)) < 1e-12 and abs(complex(*km) - (c - 2 * rad)) < 1e-12
     (lp, ap), (lm, am) = ev[kp], ev[km]
-    beta = complex(lp - lm, wrap(ap - am)) / (4 * RAD)
+    beta = complex(lp - lm, wrap(ap - am)) / (4 * rad)
     vals = {}
     for (x, y), (la, arg) in ev.items():
         lam = complex(x, y)
-        if abs(abs(lam - c) - RAD) < 1e-9:
+        if abs(abs(lam - c) - rad) < 1e-9:
             s = (math.atan2((lam - c).imag, (lam - c).real) / (2 * math.pi)) % 1.0
             v = complex(la, arg) - beta * (lam - c)
             vals[round(s, 12)] = (v.real, wrap(v.imag))
     vals[1.0] = vals[min(vals)]  # s = 0 closes the circle
     ts = sorted(vals)
-    L = 2 * math.pi * RAD
+    L = 2 * math.pi * rad
     st = [wrap(vals[b][1] - vals[a][1]) for a, b in zip(ts[:-1], ts[1:])]
     sc = [abs(complex(vals[b][0] - vals[a][0], s)) / ((b - a) * L) for (a, b), s in zip(zip(ts[:-1], ts[1:]), st)]
     local = lambda i: max(sc[(i + j) % len(sc)] for j in range(-NB, NB + 1))
