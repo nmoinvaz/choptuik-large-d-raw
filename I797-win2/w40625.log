@@ -1,0 +1,22 @@
+horizon series to order 132 instead of the state's 132
+the horizon series' order-132 term weighted 0.40625 (#744)
+held values from the fit data/held_fit.json (degree 8, 138 full-system states, D 38.020417-73.0), relative to the base
+the base keeps its stored plan (23 steps)
+    on 0 chord 0: max|F| 3.41e-26, |dw| 7.607e-26
+      projection failed (1): point max|F| 8.01e+13; u0 rung 1 its, |R| 8.01e+13 -> 8.01e+13, NOT converged; u0 quad-double 8 its, |R| 8.01e+13 -> 1.96e+10, NOT converged; ladder FAILED after 8 rungs, last rung u 0.300000 quad-double 8 its, |R| 4.11e+05 -> 4.11e+05, NOT converged
+    on 0 chord 1: max|F| 8.01e+13, |dw| 2.100e+24
+  on 0: strong chord (4 weak directions), 2 steps after the full first step; theta at its point inf (bound 0.750): refused, 290.5 s
+    on 0 trial lam 1: max|F| 3.41e-26; simplified correction / |dz| = 9.208e-02 (bound 0.750); accepted, 169.16 s
+  on 0: |F| 4.16e-38 -> 3.41e-26, |dz| 3.23e-13 -> 1.16e-24, lam 1, dDelta +4.94e-15, piv 2.7e-25..8.8e+34, 518.16 s
+    on 1 trial lam 1: max|F| 1.87e-48; simplified correction / |dz| = 8.654e-02 (bound 0.750); accepted, 83.95 s
+  on 1: |F| 3.41e-26 -> 1.87e-48, |dz| 1.16e-24 -> 9.64e-26, lam 1, dDelta -1.25e-25, piv 2.7e-25..8.8e+34, 140.84 s
+    on 2 trial lam 1: max|F| 3.07e-51; simplified correction / |dz| = 8.132e-25 (bound 0.750); accepted, 85.73 s
+  on 2: |F| 1.87e-48 -> 3.07e-51, |dz| 9.64e-26 -> 7.86e-50, lam 1, dDelta -1.42e-26, piv 2.7e-25..8.8e+34, 141.65 s
+    on 3 trial lam 1: max|F| 9.12e-64; simplified correction / |dz| = 1.730e-26 (bound 0.750); accepted, 0.37 s
+  on 3: |F| 3.07e-51 -> 9.12e-64, |dz| 7.86e-50 -> 1.36e-75, lam 1, dDelta -3.81e-51, piv 2.7e-25..8.8e+34, 56.25 s
+  on 4: |F| 9.12e-64 converged, Delta 1.68576124519686577 +6.2959e-17
+      elim projections {'u0': 0, 'u0q': 2, 'ladder': 2, 'failed': 1, 'skipped': 2}
+      octo-double Newton: 5 steps, max|F| 9.1e-64, converged; double-double |F| of its first two parts 3.2e+06
+base polish saved as D:/choptuik-large-d-raw/I797-win2/w40625\base_pin3_D245.1366.npz
+base I783-win2/w375/base_pin3_D245.1366.npz: D 245.136617756, M 32, pin 3 (held [5, 7, 9, 11, 13]), |F| 3.2e+06; N 24, eps 1e-14, h_max 1.0, corrector od (junk_only False), tol 1.0e-20 x 1.45^(D - 245.13662), stalls accepted below 1e-17
+done
