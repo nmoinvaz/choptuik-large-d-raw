@@ -1,5 +1,5 @@
 #!/bin/bash
-# #777: run.sh NAME BUILD SCRIPT ARGS... runs hp/SCRIPT with ARGS from hp/ of main 8e10d127 (newton_od's full_drop for
+# #777: run.sh NAME BUILD SCRIPT ARGS... runs hp/SCRIPT with ARGS from hp/ of main 165b1da3 or later (newton_od's full_drop for
 # the own test) and writes I777-mac/NAME.log, ending "exit N". BUILD: "old" is venv-314's hpkernel (before #523's exact
 # freeze projector, the build #742 and #752 ran on), "new" the i599/site2 build of main 3c35f0c (after #523, #713's).
 HP=/Users/nathan/Source/choptuik-large-d-777/hp
@@ -10,7 +10,7 @@ name=$1
 build=$2
 shift 2
 cd "$HP" || exit 9
-[ "$(git rev-parse --short=8 HEAD)" = "8e10d127" ] || { echo "worktree is not at 8e10d127" > "$OUT/$name.log"; exit 9; }
+git merge-base --is-ancestor 165b1da3 HEAD || { echo "worktree is older than 165b1da3" > "$OUT/$name.log"; exit 9; }
 PP=""
 [ "$build" = new ] && PP=$SITE
 {
