@@ -31,3 +31,24 @@ The rerun is job `N` (`run_742.py N`): from `L/anm_pin13_D117.0000.npz`, `--step
 Both tests fail at the same point, so the acceptance test is not what stops the step: the first full step from the a = 1 prediction at D 117 is large (the iterate's |dz| at the start is 1.95e-7, against 3.38e-9, 3.52e-9, 1.27e-8 and 8.81e-9 for the steps to D 114, 115, 116 and 117, so 22 to 58 times larger), and what follows is a crawl whichever test judges it. That is a reading of the numbers, not a traced cause.
 
 N produced no accepted state. The accepted states of the task are D 114 to 117.
+
+## Result of M and the table (2026-11-14 05:12 UTC): D 120 reached
+
+`run_742.py M` (D 117 at a = 1/2, `--steps 6 --h_max 0.5 --a0 0.5`, the default own test, L's flags, 4 threads) exited 0 after 7373 s with all six steps accepted at their first attempt, lam 1 at every Newton step, no refused attempt: D 117.5, 118, 118.5, 119, 119.5, 120, each 6 evaluations, 897 to 1080 s in the corrector, final octo-double max|F| 8.6e-79, 6.9e-74, 2.2e-70, 2.7e-83, 1.7e-70, 3.1e-65. Tables: `table_742_out.md` (`table_742.py`, which first reproduced #739's D 113 value, +4.3655e-13), `dz_742_out.md`, `crawl_742_out.md`.
+
+| D | Delta_full (octo-double, 40 digits) | Delta_full - Delta_held | err (chain_fit, a spread over fit choices) | ratio to the err | shift ratio to the previous D |
+|---|---|---|---|---|---|
+| 113 | 1.733640141567942734406710993193602081591 | +4.3655e-13 | 3.0e-12 | 0.146 | |
+| 114 | 1.732869663158360015225732667964316431814 | +4.5175e-13 | 3.2e-12 | 0.141 | 1.0348 |
+| 115 | 1.732112314608397196279780335037996998181 | +4.6652e-13 | 3.3e-12 | 0.141 | 1.0327 |
+| 116 | 1.731367762815444921564320564141065073226 | +4.8080e-13 | 3.5e-12 | 0.137 | 1.0306 |
+| 117 | 1.730635685860038849267059677903292989227 | +4.9456e-13 | 3.7e-12 | 0.134 | 1.0286 |
+| 118 | 1.729915772540067188606164966063807771721 | +5.0775e-13 | 3.8e-12 | 0.134 | 1.0267 |
+| 119 | 1.729207721928085006517252284424691967389 | +5.2033e-13 | 4.0e-12 | 0.130 | 1.0248 |
+| 120 | 1.728511242950407984923956924965683176416 | +5.3226e-13 | 4.2e-12 | 0.127 | 1.0229 |
+
+With #726's D 105 to 112 (+3.0518e-13 to +4.2096e-13, shift ratios 1.055 to 1.039) the shift runs smoothly from D 105 to D 120, the successive ratio falling by about 0.002 a step throughout, from 1.055 to 1.0229. The expectation written before the runs, that the ratio to the err stays near 0.146, did not hold: it falls to 0.127 because the err grows (3.0e-12 to 4.2e-12, a factor 1.4) faster than the shift (4.37e-13 to 5.32e-13, a factor 1.22). These are not enclosures. The states at D 118, 119 and 120 come from a = 1/2 steps and D 114 to 117 from a = 1 steps, and the shift is continuous across that change.
+
+**The crawl and what the steps cost.** The a = 1 attempt from D 117 crawls under both trial tests (the previous comments and `crawl_742_out.md`), the cause is not found, and it cost: L, stopped after 8 crawling steps of its attempt (5038 s of L in all), N under `--od_accept natural`, stopped after four crawling steps (1252 s). The a = 1/2 steps that follow start with about the same iterate |dz| (9.4e-8 to 2.6e-7 against 1.95e-7 for the crawling a = 1 step, `dz_742_out.md`), and converge with lam 1 at every step. The series state weakens along the chain (order ratio 5: 5.0 at D 113, 3.3 from D 117 on; z_N from 2.3e-29 to 6.3e-27).
+
+Acceptance of #742: (a) met, trivially (no Newton step in the polish); (b) every accepted step converged to at most 1e-60 (the largest final max|F| is L's D 116 step, 2.3e-62), the a = 1 attempt to D 118 did not converge under either test and was stopped by me (L, on the coordinator's word) and by the driver's crawl rule (N), anm_run's own stop rule (four refused attempts) never fired, and its history is in the logs and posts; (c) the table above, D 113 to 120, with the reading reproduced first.
