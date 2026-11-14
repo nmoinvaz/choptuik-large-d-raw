@@ -1,0 +1,14 @@
+# build E: hpkernel /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/df65b01f-07cd-4aee-8283-07a856363b66/scratchpad/site2/hpkernel/__init__.py
+# cwd /Users/nathan/Source/choptuik-large-d-774/hp
+# nice -n 10 /Users/nathan/venv-314/bin/python -u anm_run.py /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/df65b01f-07cd-4aee-8283-07a856363b66/scratchpad/raw /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/df65b01f-07cd-4aee-8283-07a856363b66/scratchpad/raw/I774-mac/E_120 --state I742-win/M/anm_pin13_D120.0000.npz --kfreeze 13 --N 24 --eps 1e-14 --D_max 400 --qd_it 12 --jet_q 1 --pred_q 1 --reseed 2 --reseed_q 1 --save_pred 1 --a_grow 1.25 --a_hold 1 --lam_stall 0.04 --corrector od --tol_od 1e-60 --reseed_o 3 --elim_switch 0 --h_max 1.0 --a0 1.0 --steps 0 --save_base 1 --threads 4
+the base keeps its stored plan (13 steps)
+  on 0: |F| 1.98e-34 -> 1.22e-26, |dz| 5.79e-13 -> 1.61e-22, lam 1, dDelta +7.64e-20, piv 1.9e-20..1.0e+16, 145.99 s
+  on 1: |F| 1.22e-26 -> 9.41e-46, |dz| 1.61e-22 -> 3.39e-27, lam 1, dDelta -4.87e-29, piv 1.9e-20..1.0e+16, 155.26 s
+  on 2: |F| 9.41e-46 -> 4.14e-55, |dz| 3.39e-27 -> 6.56e-51, lam 1, dDelta -1.63e-34, piv 1.9e-20..1.0e+16, 149.29 s
+  on 3: |F| 4.14e-55 -> 1.58e-102, |dz| 6.56e-51 -> 6.75e-84, lam 1, dDelta +2.26e-57, piv 1.9e-20..1.0e+16, 144.87 s
+  on 4: |F| 1.58e-102 converged, Delta 1.72851124295040792 +6.2664e-17
+      elim projections {'u0': 0, 'u0q': 5, 'ladder': 0, 'failed': 0, 'skipped': 0}
+      octo-double Newton: 5 steps, max|F| 1.6e-102, converged; double-double |F| of its first two parts 9.0e-14
+base polish saved as /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/df65b01f-07cd-4aee-8283-07a856363b66/scratchpad/raw/I774-mac/E_120/base_pin13_D120.0000.npz
+base I742-win/M/anm_pin13_D120.0000.npz: D 120.0, M 32, pin 13 (held []), |F| 9.0e-14; N 24, eps 1e-14, h_max 1.0, corrector od (junk_only False), tol 1.0e-20 x 1.45^(D - 120.0), stalls accepted below 1e-17
+done
