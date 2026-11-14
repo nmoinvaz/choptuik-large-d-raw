@@ -1,0 +1,25 @@
+horizon series to order 132 instead of the state's 131
+the horizon series' order-132 term weighted 0.0 (#744)
+held values from the fit data/held_fit.json (degree 8, 138 full-system states, D 38.020417-73.0), relative to the base
+--ks changes the horizon order, so the base is planned again (compare with --ks of the state's own order and --keep_plan 0, which moves Delta by itself past D 230)
+    on 0 chord 0: max|F| 1.11e-27, |dw| 2.477e-27
+    on 0 chord 1: max|F| 2.99e-31, |dw| 3.314e-31
+    on 0 chord 2: max|F| 2.35e-35, |dw| 2.534e-35
+    on 0 chord 3: max|F| 1.43e-39, |dw| 1.559e-39
+    on 0 chord 4: max|F| 9.39e-41, |dw| 7.814e-41
+    on 0 chord 5: max|F| 1.09e-40, |dw| 6.995e-41
+    on 0 chord 6: max|F| 9.79e-41, |dw| 9.879e-41
+  on 0: strong chord (4 weak directions), 7 steps after the full first step; theta at its point 3.872e-12 (bound 0.750): accepted, 790.63 s
+  on 0: |F| 3.55e-36 -> 1.23e-40, |dz| 7.91e-14 -> 3.06e-25, lam 1, dDelta +7.91e-14, piv 8.6e-26..8.8e+34, 919.92 s
+    on 1 trial lam 1: max|F| 2.90e-50; simplified correction / |dz| = 6.428e-17 (bound 0.750); accepted, 52.74 s
+  on 1: |F| 1.23e-40 -> 2.90e-50, |dz| 3.06e-25 -> 1.97e-41, lam 1, dDelta -7.90e-26, piv 8.6e-26..8.8e+34, 88.71 s
+    on 2 trial lam 1: max|F| 5.66e-47; simplified correction / |dz| = 2.100e-20 (bound 0.750); accepted, 0.31 s
+  on 2: |F| 2.90e-50 -> 5.66e-47, |dz| 1.97e-41 -> 6.79e-66, lam 1, dDelta -7.94e-42, piv 8.6e-26..8.8e+34, 34.71 s
+    on 3 trial lam 1: max|F| 6.20e-93; simplified correction / |dz| = 2.702e-08 (bound 0.750); accepted, 0.37 s
+  on 3: |F| 5.66e-47 -> 6.20e-93, |dz| 6.79e-66 -> 1.83e-73, lam 1, dDelta +3.57e-67, piv 8.6e-26..8.8e+34, 35.63 s
+  on 4: |F| 6.20e-93 converged, Delta 1.68576124519580328 -3.7578e-17
+      elim projections {'u0': 0, 'u0q': 1, 'ladder': 9, 'failed': 0, 'skipped': 3}
+      octo-double Newton: 5 steps, max|F| 6.2e-93, converged; double-double |F| of its first two parts 2.3e+06
+base polish saved as D:/choptuik-large-d-raw/I744-win2/w0\base_pin3_D245.1366.npz
+base I696-win2/D245/r131k/base_pin3_D245.1366.npz: D 245.136617756, M 32, pin 3 (held [5, 7, 9, 11, 13]), |F| 2.3e+06; N 24, eps 1e-14, h_max 1.0, corrector od (junk_only False), tol 1.0e-20 x 1.45^(D - 245.13662), stalls accepted below 1e-17
+done
