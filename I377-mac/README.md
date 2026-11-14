@@ -7,10 +7,11 @@ Code: `solver/matter/css_kappa_crit.py` (finite D, through css_lateral.py and cs
 
 | file | what |
 |---|---|
-| `queue5.sh`, `queue5.log`; `queue6.sh`, `queue6.log` | the runs, in order, with their exits |
+| `queue5.sh`, `queue5.log`; `queue6.sh`, `queue6.log`; `queue7.sh`, `queue7.log` | the runs, in order, with their exits |
 | `bgpath_D4.jsonl` | control: the D = 4 background continued in kappa from 0 to 1 (ends on HHS96's axion-dilaton solution) |
 | `bgpath_D4_k10.jsonl` | the D = 4 background continued to kappa = 10 (for gamma against HE97 Table 1) |
 | `scan_D4.jsonl` | collocation (css_scan.py, N 40/56) at D = 4, kappa = 0.0754, 0.0757329315, 0.076 and 10 |
+| `scan_D4_lo.jsonl` | collocation (css_scan.py, N 40/56) at D = 4, kappa = 0.07125, the lower end of the jump method's bracket |
 | `path_D{4,6,10,20,40}.jsonl` | background, lambda_osc and lambda_phys at R = 0.85 x_h and 0.6 x_h along kappa |
 | `crit.jsonl` | kappa_c at each D and radius (Re lambda_osc = 0), lambda_osc and gamma there |
 | `at_D4.jsonl` | the jump method at D = 4, kappa = 0.0754 and 0.076, both radii |
