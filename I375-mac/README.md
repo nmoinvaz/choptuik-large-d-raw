@@ -24,3 +24,17 @@ Code: `solver/matter/complex_imag_dd.py` and `solver/matter/ddnp.py` of choptuik
   by the mutated-coupling count (exit 1, FAIL, as it must).
 - `xmachine_det_D30.jsonl`: `complex_imag_dd.py det up6_D30.0688.npz -0.05 --tol=1e-14` on the Mac at 38c2fbee. It
   equals the Mac pilot's value bit for bit (-1059.4961934889302); dh370 gives -1059.496193329259 at the same point.
+
+## Recommended tasks (#375)
+
+1. **complex_imag.py's light-cone block at D = 10 and 20.04.** What: evaluate det M with `complex_imag.py` (double)
+   and `complex_imag_dd.py det` (tol 1e-14) at the six tolscan lambda on lowDn/up_D10.0000 and up2_D20.0437. Why: the
+   double code's light-cone block puts its phase 0.05 rad off at D = 30.07 (COMPLEX_IMAG_DD.md section 5), and its
+   counts at D = 4, 10, 20 are COMPLEX_CRITICAL.md's independent check. Acceptance (can fail): the two phases agree to
+   1e-2 rad at every lambda (a quarter of the count's pi/4 step budget, with margin); control: the double code with its
+   light-cone series cut to order 20 must miss by more. Depends on: #375. Estimate: 1 CPU-h.
+2. **The cross-machine floor of complex_imag_dd's det M (optional, the counts do not depend on it).** What: put the
+   centre block's propagation (x_s = 0.05 to the first node, DOP853 in double) in double-double and rerun 39 B0 points
+   at D = 30.07 on the Mac and dh370. Why: the two machines differ by 6.8e-7 in ln|det M| with the same code, about
+   1e3 times the tolerance spread. Acceptance (can fail): the machines agree to 1e-10 in ln det at every point; the
+   double centre block reproduces the 1e-7 spread. Depends on: #375. Estimate: half a day of code, 1 CPU-h.
