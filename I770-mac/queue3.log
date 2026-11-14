@@ -1,0 +1,15 @@
+== 2026-11-14 16:42:55 root 1 6.5+6.3j --set=A,B,C
+{"kind": "root", "kappa": 1.0, "f0": 0.40487684382345707, "omega": 3.1998939019738755, "setting": "A", "r0": 0.1, "r1": 0.3, "start": [6.5, 6.3], "lam": [1.002085610075007, 0.026543444003846547], "converged": false, "im_over_omega": 0.00829510128053716, "sv": [0.41545648108999567, 0.00210793894371467], "evaluations": 43, "seconds": 48.2, "mutate": null}
+{"kind": "root", "kappa": 1.0, "f0": 0.40487684382345707, "omega": 3.1998939019738755, "setting": "B", "r0": 0.1, "r1": 0.25, "start": [6.5, 6.3], "lam": [0.3615689555125905, 1.3434432808973809], "converged": false, "im_over_omega": 0.41983994533964675, "sv": [0.19881120087647275, 0.0002406292936160869], "evaluations": 43, "seconds": 42.0, "mutate": null}
+{"kind": "root", "kappa": 1.0, "f0": 0.40487684382345707, "omega": 3.1998939019738755, "setting": "C", "r0": 0.09, "r1": 0.3, "start": [6.5, 6.3], "lam": [1.0020856100761466, 0.02654344400368952], "converged": false, "im_over_omega": 0.008295101280488089, "sv": [0.41545648109025013, 0.002107938943723603], "evaluations": 43, "seconds": 63.8, "mutate": null}
+== exit 0
+== 2026-11-14 16:46:45 locate 1 2 3 5.5 6.5 --set=A,B --plant=2.3+6.1j --out=locate_k1.jsonl
+{"kind": "locate_box", "kappa": 1.0, "setting": "A", "box": [2.0, 3.0, 5.5, 6.5], "winding": 1.0000000000000002, "largest_step": 0.34105094070759967, "intervals": 48, "split": false, "seconds": 311.8, "mutate": null}
+{"kind": "locate", "kappa": 1.0, "omega": 3.1998939019738755, "setting": "A", "box": [2.0, 3.0, 5.5, 6.5], "winding": 1.0000000000000002, "lam": [2.3, 6.1], "sv": [1239850.4574128024, 1.7346408922282823], "at_other_settings": [["B", 2.3, 6.1, true, 0.0]], "mutate": null, "plant": [2.3, 6.1]}
+== exit 0
+== 2026-11-14 16:52:57 locate 1 5 8 2.9498939 9.5996817 --set=A,B,C --w=1 --out=locate_k1.jsonl
+{"kind": "locate_box", "kappa": 1.0, "setting": "A", "box": [5.0, 8.0, 2.9498939, 9.5996817], "winding": 1.0000000000000004, "largest_step": 0.4956628002594431, "intervals": 53, "split": true, "seconds": 556.2, "mutate": null}
+{"kind": "locate_box", "kappa": 1.0, "setting": "A", "box": [5.0, 8.0, 6.2747878, 9.5996817], "winding": -7.675296887559528e-17, "largest_step": 0.025453141269432246, "intervals": 48, "split": false, "seconds": 511.3, "mutate": null}
+./queue3.sh: line 7: 40166 Terminated: 15          nice -n 10 python "$P" "$@"
+== exit 143
+== 2026-11-14 17:17:17 done
