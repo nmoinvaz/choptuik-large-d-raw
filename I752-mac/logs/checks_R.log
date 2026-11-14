@@ -1,0 +1,44 @@
+=== check 2: predictions
+  I752-mac/R/pred_pin13_D118.0000.npz vs I742-win/L/pred_pin13_D118.0000.npz: bit for bit equal
+  I752-mac/R/pred_pin13_D118.0000.npz vs I742-win/N/pred_pin13_D118.0000.npz: bit for bit equal
+  I752-mac/R/pred_pin13_D117.5000.npz vs I742-win/M/pred_pin13_D117.5000.npz: bit for bit equal
+PASS
+exit 0
+=== check 2 control
+  I752-mac/R/pred_pin13_D118.0000.npz vs I742-win/L/pred_pin13_D118.0000.npz: DIFFERS, largest part difference 1.39e-17
+  I752-mac/R/pred_pin13_D118.0000.npz vs I742-win/N/pred_pin13_D118.0000.npz: DIFFERS, largest part difference 1.39e-17
+  I752-mac/R/pred_pin13_D117.5000.npz vs I742-win/M/pred_pin13_D117.5000.npz: DIFFERS, largest part difference 1.39e-17
+FAIL (--mutate ulp)
+exit 1
+=== check 3a: base polish vs N.log
+  [0] same: the base keeps its stored plan (13 steps)
+  [1] same: on 0: |F| 1.75e-64 converged, Delta 1.73063568586003891 -5.8879e-17
+  [2] same: elim projections {'u0': 0, 'u0q': 1, 'ladder': 0, 'failed': 0, 'skipped': 0}
+  [3] same: octo-double Newton: 1 steps, max|F| 1.8e-64, converged; double-double |F| of its first two parts 3.6e-14
+logcmp: 4 of 4 lines equal; PASS
+exit 0
+=== check 3b: series line vs L.log (step 3)
+  [0] same: D 117.0, pivots 3.0e-20..3.6e+15, |z_1| 1.15e-03, |z_N| 2.87e-27, ratios 2-5 141.8 42.7 3.6 3.3, a_max 2.615
+logcmp: 1 of 1 lines equal; PASS
+exit 0
+=== check 3c: a = 1 attempt vs L.log
+  [0] same: a 1.0000: re-seeded (ok)
+  [1] same: on 0: |F| 1.49e-29 -> 1.39e-15, |dz| 1.95e-07 -> 1.68e-15, lam 1, dDelta -6.93e-14, piv 2.9e-15..5.0e+15
+  [2] same: on 1 trial lam 1: max|F| 1.39e-28; raw |dz_t| 2.977e-15 vs |dz| 1.683e-15 (not <); refused
+  [3] same: on 1: |F| 1.39e-15 -> 6.94e-16, |dz| 1.68e-15 -> 8.42e-16, lam 0.5, dDelta +1.37e-23, piv 1.2e-15..5.0e+15
+logcmp: 4 of 4 lines equal; PASS
+exit 0
+=== check 3d: a = 1/2 attempt vs M.log
+  [0] same: a 0.5000: re-seeded (ok)
+  [1] same: on 0: |F| 9.37e-34 -> 3.17e-16, |dz| 9.36e-08 -> 3.85e-16, lam 1, dDelta -3.20e-14, piv 8.6e-16..4.2e+15
+  [2] same: on 1: |F| 3.17e-16 -> 6.12e-28, |dz| 3.85e-16 -> 2.62e-17, lam 1, dDelta -9.88e-24, piv 2.5e-20..4.2e+15
+logcmp: 3 of 3 lines equal; PASS
+exit 0
+=== check 3 control: 3c with --mutate digit
+  [0] same: a 1.0000: re-seeded (ok)
+  [1] same: on 0: |F| 1.49e-29 -> 1.39e-15, |dz| 1.95e-07 -> 1.68e-15, lam 1, dDelta -6.93e-14, piv 2.9e-15..5.0e+15
+  [2] same: on 1 trial lam 1: max|F| 1.39e-28; raw |dz_t| 2.977e-15 vs |dz| 1.683e-15 (not <); refused
+  [3] DIFFERS: on 2: |F| 1.39e-15 -> 6.94e-16, |dz| 1.68e-15 -> 8.42e-16, lam 0.5, dDelta +1.37e-23, piv 1.2e-15..5.0e+15
+       reference: on 1: |F| 1.39e-15 -> 6.94e-16, |dz| 1.68e-15 -> 8.42e-16, lam 0.5, dDelta +1.37e-23, piv 1.2e-15..5.0e+15
+logcmp: 3 of 4 lines equal (--mutate digit); FAIL
+exit 1

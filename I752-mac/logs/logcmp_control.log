@@ -1,0 +1,21 @@
+=== N against L, a = 1 attempt (anchors 1 and 4)
+  [0] same: a 1.0000: re-seeded (ok)
+  [1] DIFFERS: on 0 trial lam 1: max|F| 1.39e-15; simplified correction / |dz| = 1.015e+06 (bound 0.750); refused
+       reference: on 0: |F| 1.49e-29 -> 1.39e-15, |dz| 1.95e-07 -> 1.68e-15, lam 1, dDelta -6.93e-14, piv 2.9e-15..5.0e+15
+logcmp: 1 of 2 lines equal; FAIL
+exit 1
+=== L against itself, mutated
+  [0] same: a 1.0000: re-seeded (ok)
+  [1] same: on 0: |F| 1.49e-29 -> 1.39e-15, |dz| 1.95e-07 -> 1.68e-15, lam 1, dDelta -6.93e-14, piv 2.9e-15..5.0e+15
+  [2] same: on 1 trial lam 1: max|F| 1.39e-28; raw |dz_t| 2.977e-15 vs |dz| 1.683e-15 (not <); refused
+  [3] DIFFERS: on 2: |F| 1.39e-15 -> 6.94e-16, |dz| 1.68e-15 -> 8.42e-16, lam 0.5, dDelta +1.37e-23, piv 1.2e-15..5.0e+15
+       reference: on 1: |F| 1.39e-15 -> 6.94e-16, |dz| 1.68e-15 -> 8.42e-16, lam 0.5, dDelta +1.37e-23, piv 1.2e-15..5.0e+15
+logcmp: 3 of 4 lines equal (--mutate digit); FAIL
+exit 1
+=== L against itself
+  [0] same: a 1.0000: re-seeded (ok)
+  [1] same: on 0: |F| 1.49e-29 -> 1.39e-15, |dz| 1.95e-07 -> 1.68e-15, lam 1, dDelta -6.93e-14, piv 2.9e-15..5.0e+15
+  [2] same: on 1 trial lam 1: max|F| 1.39e-28; raw |dz_t| 2.977e-15 vs |dz| 1.683e-15 (not <); refused
+  [3] same: on 1: |F| 1.39e-15 -> 6.94e-16, |dz| 1.68e-15 -> 8.42e-16, lam 0.5, dDelta +1.37e-23, piv 1.2e-15..5.0e+15
+logcmp: 4 of 4 lines equal; PASS
+exit 0
