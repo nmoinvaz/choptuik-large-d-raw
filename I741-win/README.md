@@ -51,3 +51,24 @@ S5 (shift 1e-2) converged (2.4e-71, 2 Newton steps, 832 s): **Delta - root = +8.
 Another number from the logs: the residual of cont3's state on each shifted plan before the polish (octo-double max|F| of the first iterate) is 4.41e-36, 3.49e-36, 1.11e-35, 3.82e-36 and 1.64e-36 for the shifts 1e-4, 3e-4, 1e-3, 3e-3 and 1e-2, **flat in the shift**, not proportional to it (cont3's state on its own plan is at 3.4e-49 to 4e-63).
 
 **The control the plan lacked.** My conclusions about a single node (at most a few 1e-27, no scaling law) rest on the polished Delta of a shifted plan being reproducible at the 1e-27 level, and the only control run, S0, checks the 1e-46 level and trivially (no Newton step). If the polished Delta of one plan depended on the start state at 1e-27, the five numbers above would be noise of that size and say nothing about the plan. So, before closing: **R1** is S1's plan (shift 1e-4) polished from a different start, the arrays of #710's A1 state (which differ from cont3's by up to 1e-17 per entry) with S1's meta (`make_repro_741.py`), and **R3** is S3's plan (shift 1e-3) from the arrays of #725's X2 state, the same flags, 2 threads. Reading, fixed here: **|Delta(R1) - Delta(S1)| and |Delta(R3) - Delta(S3)| at most 1e-40** means the shifted-plan root's Delta is reproducible far below 1e-27, so the five numbers are a real function of the plan; a difference of 1e-30 or more means they are not determined to that level and no statement about the plan dependence at 1e-27 holds; between them is reported as it is.
+
+## Results of the reproducibility control (2026-11-14 04:50 UTC): reproducible, the shifts are real
+
+`run_741.py R1 R3` (2 threads, exit 0, 842 s each), `repro_741.py` (selftest passed, `repro_741_out.txt`): both converged (R1 6.6e-62, R3 3.0e-61, 2 Newton steps) and reproduce the Delta of the same plan from a different start to far below the 1e-40 bar of the reading fixed before the runs.
+
+| control | plan | start arrays | Delta(R) - Delta(S) | reading |
+|---|---|---|---|---|
+| R1 | S1's (shift 1e-4) | #710's A1 (up to 1.4e-17 from cont3's) | -2.931851e-57 | reproducible |
+| R3 | S3's (shift 1e-3) | #725's X2 (up to 2.8e-17 from cont3's) | +1.947261e-54 | reproducible |
+
+Their first Newton steps move Delta by -3.07e-26 (R1) and +1.68e-25 (R3), the offsets of A1 and X2 on their own plans against the root of the shifted plan; the Delta of a plan is determined by the plan and not by the start. So the five single-node numbers (-1.03e-27, +7.9e-28, +2.58e-27, +8.5e-28, +8.2e-29) are real functions of the plan at the 1e-27 level, with a margin of more than 25 orders.
+
+## Acceptance, as it stands
+
+| acceptance | status |
+|---|---|
+| (a) each polish converges to at most 1e-60 | **met**: S1 to S5 1.8e-67, 7.0e-68, 7.5e-66, 9.8e-68, 2.4e-71 (R1, R3: 6.6e-62, 3.0e-61) |
+| (b) the Delta shift fits a power law in the node shift and predicts the fifth shift to 10 % | **not met**: the signs differ, so it is no power law; the post-hoc two-term model also failed (S3 18.6 times, S4 623 times, S5 614 times off) |
+| (c) control: the zero shift reproduces X2c's Delta to 1e-40 | **met**, trivially (S0, 1.1101e-46, no Newton step); the real reproducibility control is R1 and R3 above |
+
+What the five single-node numbers say: moving the node `segs[3][1]` by 1e-4 to 1e-2 changes Delta by at most +2.6e-27 in size, not growing with the shift (the shift 1e-2 gives +8.2e-29), against #727's offsets 3.0e-26 (A1) and 1.7e-25 (X2) for plans that moved several nodes by 5e-4 to 9.5e-4. So this node does not carry those offsets. The other nodes of the plan, and the shape of this node's effect between the shifts run, were not measured; no scaling law is claimed.
