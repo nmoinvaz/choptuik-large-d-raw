@@ -1,1 +1,16 @@
 == uf_080 2026-11-14 15:51:10 UTC
+/home/nathan/scratch772/start_080.npz: D 252.25, L 769, octo-double LU 332 s, pivots 2.7e-38..3.8e+21
+  ||J v_1|| 8.57472e-40 (subspace sigma_1 8.574724e-40, ratio 1.000000), J v_1 at 140 digits (325 s)
+  u_1^T r = -9.00158e-40; -sigma_1 v_1^T dz_pinned = -9.001581e-40 (v_1^T dz_pinned +1.0498e+00, v_1 signs agree +1.000000): relative 1.87e-10 -> ok
+  planted r + beta u_1 (beta 1e-30): total change/beta - 1 = 0.0, largest block 2.6e-141 -> ok
+  block              max|r|       u_1^T r (signed)   sum |u_i r_i|   share of that sum   |u_1|^2 in the block
+  centre>n0         6.465e-99         2.068e-138     5.141e-136       0.0000         0.0000
+  n0>n1             4.963e-99        -3.255e-137     1.248e-136       0.0000         0.0000
+  n1>n2             3.060e-99         5.244e-137     7.942e-137       0.0000         0.0000
+  n2>n3             4.174e-99         3.582e-121     1.083e-119       0.0000         0.0000
+  n3>n4             1.184e-36         -9.002e-40      1.497e-36       1.0000         0.5000
+  horizon>n4        5.099e-99         3.632e-133       4.46e-99       0.0000         0.5000
+  phase             5.732e-99        -5.182e-138     5.182e-138       0.0000         0.0000
+  blocks carrying 99% of sum |u_i r_i| (1.497e-36): n3>n4
+  pinned step: max 2.517e-01, norm 1.607e+00, Delta -1.575e-01; V^T dz +1.05e+00 +5.97e-01 +1.04e+00 +2.28e-01; sigma 8.575e-40 1.561e-39 7.534e-39 1.384e-38 (converged 2e-16 2e-16 7e-16 1e-14)
+check: pass
