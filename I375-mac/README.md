@@ -18,3 +18,9 @@ Code: `solver/matter/complex_imag_dd.py` and `solver/matter/ddnp.py` of choptuik
   step 0.58 rad, 39 determinants, 1007 s (26 s each), no refinement-limit hit (`counts.jsonl`,
   `evals_D30.0688_tol1e-14.jsonl`, `pilot_B0_D30.log`).
 - The full recount is `solver/matter/run_i375.sh` (branch wip/xf-checks, 38c2fbee), handed to a runner.
+- Summary of dh370's run (`I375-dh370/`, 31438056): `summary_dh370.log` is `python3 solver/matter/i375_summary.py
+  <raw>/I375-dh370 --other=<raw>/I375-mac/evals_D30.0688_tol1e-14.jsonl,<raw>/I375-dh370/evals_up6_D30.0688_B0.jsonl`
+  (exit 0, PASS); `summary_control.log` is the same script on a copy of that folder whose D = 45.05 B0 count is replaced
+  by the mutated-coupling count (exit 1, FAIL, as it must).
+- `xmachine_det_D30.jsonl`: `complex_imag_dd.py det up6_D30.0688.npz -0.05 --tol=1e-14` on the Mac at 38c2fbee. It
+  equals the Mac pilot's value bit for bit (-1059.4961934889302); dh370 gives -1059.496193329259 at the same point.
