@@ -1,0 +1,8 @@
+Q1 (planted function, log in w): C_k at k = 5..8 0.02383, 0.02113, 0.01938, 0.01815; predicted finite-k curve 0.02383, 0.02113, 0.01938, 0.01815 (asymptote 0.01124); largest deviation 1.6e-06: PASS
+   C_k / predicted along k: k 10: 155.8104, k 20: 34.7866, k 30: 2.9777, k 40: 1.1116, k 50: 0.9958, k 60: 0.9943, k 70: 0.9956, k 80: 0.9965
+Q2 (planted ODE, k1 = 0.3): nearest singularity x0 = (0.278830160415 - 2.46511964595j), residue a = (-1.999998186 + 3.06409413e-7j) (stage 1: +-2); kappa = b2 x0^2/a = (0.29995369 + 0.068735079j) with b2 = k1/3
+   C_k at k = [60, 65, 70, 75, 80]: measured 0.79061, 0.78719, 0.78425, 0.78168, 0.77942; predicted 0.79512, 0.79112, 0.78770, 0.78475, 0.78217; largest deviation 5.7e-03; local exponents p_k 4.049, 4.051, 4.049, 4.047, 4.044: PASS
+Q2 control (k1 = 0, the logarithm removed): x0 = (0.1463654125 - 2.079945532j), residue (-2.0 + 1.1795332e-14j); C_10 = 1.203e+02, C_30 = 9.171e-01, C_60 = 2.084e-05: falls by 1.3e+02 from k = 10 to 30 (must be > 10): the check fails, as it must
+   at the settled range (where Q2 is compared): C_k at k = 60, 70, 80: 2.08e-05, 4.42e-07, 8.66e-09; local exponents 27.6, 32.1, 36.5 (the k^-4 law gives 4)
+planted: PASS
+planted exit 0

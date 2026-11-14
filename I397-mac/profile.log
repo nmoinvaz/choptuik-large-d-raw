@@ -1,0 +1,11 @@
+profile at A = 2.72 (K 45, omega_inf, J 1500): c_k = F_{2k+1}; relative tail added per k 0e+00, 0e+00, 1e-13, 1e-12, 1e-11, 1e-10, 1e-09, 9e-09, 7e-08, 5e-07, 4e-06
+  C_k = (k + 1.5)^4 |r_{k+1} - r_k|, k = 0..8: 0.01214, 0.01154, 0.01134, 0.01127, 0.01125, 0.01124, 0.01124, 0.01124, 0.01124
+  local exponents p_k, k = 0..7: 4.098, 4.054, 4.024, 4.010, 4.004, 4.001, 4.000, 3.995
+test 1 (exponent): p_5, p_6, p_7 = 4.0012, 4.0002, 3.9955; 4 +- 0.2: PASS
+test 2 (residue, free fit on k = 4..9, max residual 4.4e-08): theta0 = (-0.036401432 - 1.4283842j) (repository gauge), |R| = 2.7026367 against omega/sqrt2 = 2.7026582 (-7.97e-06), arg R off 0 or pi by 1.38e-05; kappa' = (0.00769115 - 0.0332085j), lambda' = (0.0126516 + 0.013215j): PASS
+test 3 (constant, consistency; R fixed at - omega/sqrt2, fit of w0, kappa, lambda on k = 4..9, max residual 3.2e-07): model C_k at k = 5..8 0.01122, 0.01120, 0.01119, 0.01120 against the data's 0.01124, 0.01124, 0.01124, 0.01124; largest deviation 3.8e-03: PASS
+  in nu: F_nu ~ -2i R e^{-i nu theta0} (1 + kappa/nu^2 + kappa3/nu^3), kappa = (0.029473 - 0.130604j), |kappa| = 0.13389; kappa3/kappa = (-0.49321 + 0.94589j) against the predicted 3i/omega = (0.0 + 0.7849j) (the centring; b-free)
+  B/R = kappa (log strength relative to the pole) and C_inf = 1.5 e^{2 Im theta0} |kappa| = 0.01154
+post hoc: kappa3 fixed at 3i kappa/omega, free mu/nu^4 (max residual 2.5e-07): kappa = (0.029987 - 0.126891j), |kappa| = 0.13039, mu = (0.04437 + 0.328j); model C_k at k = 5..8 0.01124, 0.01124, 0.01124, 0.01124; C_inf = 1.5 e^{2 Im theta0} |kappa| = 0.01124
+profile: PASS
+exit 0
