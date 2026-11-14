@@ -238,6 +238,29 @@ def main():
         print(f"\nE_cont3 - E_X2c (one plan, both on E): {float(dE['E_cont3'] - dE['E_X2c']):+.4e}; "
               f"stored cont3 - stored X2c: {float(delta(STORED['E_cont3']) - delta(STORED['E_X2c'])):+.4e}")
 
+    print("\n## Plan dependence at D 99.875: X2 on its own plan against X2c (cont3's plan)\n")
+    x2s = "I725-win/X2/anm_pin13_D99.8750.npz"
+    t = float(delta(x2s) - delta(STORED["E_X2c"]))
+    ok = abs(t / -1.6580e-25 - 1) < 1e-4
+    print(f"  reading: stored X2 - stored X2c = {t:+.4e} (#727: -1.6580e-25) {'ok' if ok else 'MISMATCH'}")
+    bad += not ok
+    rx, ex = base_of("R_X2"), base_of("E_X2")
+    for job, b in (("R_X2", rx), ("E_X2", ex)):
+        lg = parse_log(job)
+        if lg is None or b is None:
+            print(f"  {job}: not run or no polished state")
+            continue
+        conv = lg["od"] is not None and lg["od"]["says"].startswith("converged") and lg["final"] is not None and lg["final"] <= 1e-60
+        bad += not conv
+        print(f"  {job}: {len(lg['steps'])} Newton steps, start max|F| {lg['steps'][0]['F0'] if lg['steps'] else float('nan'):.2e}, "
+              f"final {lg['final']:.2e}, converged {conv}; Delta {digits(delta(b))}; minus stored X2 {float(delta(b) - delta(x2s)):+.4e}")
+    if rx and ex and "E_X2c" in dE:
+        pr = delta(rx) - delta(STORED["E_X2c"])
+        pe = delta(ex) - dE["E_X2c"]
+        print(f"  plan dependence X2 - X2c: rounded {float(pr):+.6e}, exact {float(pe):+.6e}, exact - rounded {float(pe - pr):+.3e}")
+        print(f"  projector shift of X2 on its own plan (E_X2 - R_X2) {float(delta(ex) - delta(rx)):+.4e} against X2c's "
+              f"{float(dE['E_X2c'] - delta(STORED['E_X2c'])):+.4e}")
+
     print("\n## Delta_full - Delta_held at D 113, 117, 120\n")
     print("| D | #742 (stored full - stored held) | rounded, held polished (stored full - H_R) | exact (E - H_E) | "
           "exact - #742 | held: H_E - H_R (projector) | held: H_R - stored (its own convergence) |")

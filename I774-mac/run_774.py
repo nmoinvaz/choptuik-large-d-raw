@@ -41,6 +41,9 @@ JOBS = {
     "E_120": ("E", "I742-win/M/anm_pin13_D120.0000.npz", F682 + OD + S742),
     "E_cont3": ("E", "I682-win/cont3/anm_pin13_D99.8750.npz", F682 + OD[:4] + S727 + OD[4:]),
     "E_X2c": ("E", "I727-win/X2c/base_pin13_D99.8750.npz", F682 + OD[:4] + S727 + OD[4:]),
+    # X2 on its own plan (#725), on both builds: does the plan dependence at D 99.875 survive the projector change
+    "R_X2": ("R", "I725-win/X2/anm_pin13_D99.8750.npz", F682 + OD[:4] + S727 + OD[4:]),
+    "E_X2": ("E", "I725-win/X2/anm_pin13_D99.8750.npz", F682 + OD[:4] + S727 + OD[4:]),
     # the held states of #742's table, on both builds
     **{f"H_{b}{D}": (b, f"T138-win2/chain/anm_pin3_D{D}.0000.npz", F138 + OD138) for b in "RE" for D in (113, 117, 120)},
 }

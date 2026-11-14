@@ -69,3 +69,13 @@ above 1e-25 (HELD_HARMONICS 4.4 records -2.76e-23 at D 73 between the builds), w
 
 **Not done:** states other than these, any continuation step, any flag change beyond the corrector swap of the held
 jobs. If a held polish stalls on build R with the default switch, I stop the held jobs and report.
+
+## Addendum to the plan, written before these runs (2026-11-14 16:55 UTC)
+
+The E jobs put the D 99.875 shift at +1.4994e-20, above bar 4's 1e-25, so the D 99.875 statements are flagged. Most of
+those statements are differences between roots on different plans (#725, #727, #763, #769: about 1e-25). Whether the
+differences survive needs one root on another plan on both builds. So two more jobs, beyond #774's list, with the same
+flags as X2c: `R_X2` (build R) and `E_X2` (build E), both from X2 on its own plan (`I725-win/X2/anm_pin13_D99.8750.npz`,
+#725). The reading: plan dependence X2 - X2c on each build (#727's -1.6580e-25 on the stored states; `cmp_774.py`
+reproduces that first). If exact - rounded is below 1e-30, the differences survive and only the absolute D 99.875
+values move. Otherwise both are reported. They run after the held jobs.
