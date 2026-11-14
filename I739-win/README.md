@@ -30,7 +30,7 @@ Accepted states, Delta as the exact sum of the eight parts, 40 digits: D 112.875
 
 **What this does not separate**: octo-double changes the corrector and, with `--reseed_o 3`, the projection together. #727's first pilot (octo-double corrector without `--reseed_o`, D 99.875) floored at the projection's quad-double level (2.74e-49), so at D 112 to 113 the quad-double projection alone may be a floor too. "The precision" here is the pipeline's, not one component's; no run with only one changed was made.
 
-**Cost**: the octo-double attempts took 577 s (A) and 593 s (B) in the corrector, 5 evaluations each at 100 to 120 s a step, against 412 s and 495 s for the stalled quad-double attempts at the same a (and 686 s and 748 s for the two halvings), so about 1.2 to 1.4 times the price of an attempt that failed.
+**Cost**: the octo-double attempts took 577 s (A) and 593 s (B) in the corrector, 4 Newton steps of 97 to 123 s each plus a convergence check, against 412 s and 495 s for the stalled quad-double attempts at the same a (and 686 s and 748 s for the two halvings), so about 1.2 to 1.4 times the price of an attempt that failed.
 
 **Extra, not asked** (`extra_739.py`, read-only): Delta_full - Delta_held at D 113, which #726 did not reach, is +4.3655e-13 (held state `T138-win2/chain/anm_pin3_D113.0000.npz`), ratio 0.146 to delta_all.csv's err (3.0e-12, a spread over fit choices), and the ratio of the shift to D 112's is 1.037 (#726's successive ratios fell 1.055 to 1.039). The control, the same arithmetic at D 112 from #726's quad-double state, reproduces #726's +4.2096e-13.
 
