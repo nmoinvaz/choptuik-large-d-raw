@@ -3,3 +3,56 @@ the base keeps its stored plan (12 steps)
       elim projections {'u0': 0, 'u0q': 1, 'ladder': 0, 'failed': 0, 'skipped': 0}
       octo-double Newton: 1 steps, max|F| 8.5e-69, converged; double-double |F| of its first two parts 1.2e-14
 base I742-win/P/anm_pin13_D114.0000.npz: D 114.0, M 32, pin 13 (held []), |F| 1.2e-14; N 24, eps 1e-14, h_max 1.0, corrector od (junk_only False), tol 1.0e-20 x 1.45^(D - 114.0), stalls accepted below 1e-17
+step 0: D 114.0, pivots 7.0e-20..1.3e+15, |z_1| 1.20e-03, |z_N| 1.56e-29, ratios 2-5 140.9 123.2 50.1 5.3, a_max 3.287, 158 s
+    a 1.0000: re-seeded (ok), 24.82 s
+  on 0: |F| 1.65e-32 -> 4.37e-19, |dz| 3.52e-09 -> 5.27e-19, lam 1, dDelta +1.02e-15, piv 3.8e-18..1.8e+15, 114.6 s
+  on 1: |F| 4.37e-19 -> 1.36e-33, |dz| 5.27e-19 -> 7.86e-20, lam 1, dDelta +1.11e-26, piv 4.3e-20..1.8e+15, 106.17 s
+  on 2: |F| 1.36e-33 -> 2.41e-40, |dz| 7.86e-20 -> 6.94e-34, lam 1, dDelta -5.06e-26, piv 4.3e-20..1.8e+15, 115.01 s
+  on 3: |F| 2.41e-40 -> 1.70e-68, |dz| 6.94e-34 -> 6.46e-53, lam 1, dDelta -2.35e-40, piv 4.3e-20..1.8e+15, 118.59 s
+  on 4: |F| 1.70e-68 converged, Delta 1.73211231460839721 -1.1469e-17
+      elim projections {'u0': 0, 'u0q': 5, 'ladder': 0, 'failed': 0, 'skipped': 0}
+      octo-double Newton: 5 steps, max|F| 1.7e-68, converged; double-double |F| of its first two parts 2.1e-14
+    a 1.000 -> D 115.0: predicted |F| 1.84e-14, od 5 steps -> 2.10e-14 (tol 1.4e-20, stall accepted, Delta correction +0.0e+00), Delta 1.732112314608 (formula diff -4.6e-07), moved 3.5e-09, 615 s
+      Delta of the saved state, its eight parts summed exactly: 1.732112314608397196279780335037996998181
+step 1: D 115.0, pivots 4.3e-20..1.8e+15, |z_1| 1.18e-03, |z_N| 4.58e-29, ratios 2-5 142.1 116.3 19.4 3.8, a_max 3.134, 190 s
+    a 1.0000: re-seeded (ok), 31.95 s
+  on 0: |F| 5.49e-32 -> 5.69e-18, |dz| 1.27e-08 -> 6.87e-18, lam 1, dDelta +1.77e-15, piv 4.6e-17..2.5e+15, 140.88 s
+  on 1: |F| 5.69e-18 -> 8.75e-32, |dz| 6.87e-18 -> 4.73e-19, lam 1, dDelta +5.11e-26, piv 4.0e-20..2.5e+15, 117.0 s
+  on 2: |F| 8.75e-32 -> 8.49e-39, |dz| 4.73e-19 -> 8.02e-31, lam 1, dDelta -1.86e-25, piv 4.0e-20..2.5e+15, 114.19 s
+  on 3: |F| 8.49e-39 -> 2.32e-62, |dz| 8.02e-31 -> 3.57e-48, lam 1, dDelta -2.57e-37, piv 4.0e-20..2.5e+15, 111.81 s
+  on 4: |F| 2.32e-62 converged, Delta 1.73136776281544491 +1.0935e-17
+      elim projections {'u0': 0, 'u0q': 5, 'ladder': 0, 'failed': 0, 'skipped': 0}
+      octo-double Newton: 5 steps, max|F| 2.3e-62, converged; double-double |F| of its first two parts 3.1e-14
+    a 1.000 -> D 116.0: predicted |F| 2.77e-14, od 5 steps -> 3.10e-14 (tol 2.1e-20, stall accepted, Delta correction +0.0e+00), Delta 1.731367762815 (formula diff -4.7e-07), moved 1.3e-08, 645 s
+      Delta of the saved state, its eight parts summed exactly: 1.731367762815444921564320564141065073226
+step 2: D 116.0, pivots 4.0e-20..2.5e+15, |z_1| 1.17e-03, |z_N| 7.70e-29, ratios 2-5 143.5 119.1 28.0 3.7, a_max 3.063, 146 s
+    a 1.0000: re-seeded (ok), 23.51 s
+  on 0: |F| 7.02e-32 -> 2.79e-18, |dz| 8.81e-09 -> 3.38e-18, lam 1, dDelta +2.22e-15, piv 2.5e-17..3.6e+15, 127.86 s
+  on 1: |F| 2.79e-18 -> 1.88e-32, |dz| 3.38e-18 -> 1.25e-19, lam 1, dDelta -2.14e-25, piv 3.0e-20..3.6e+15, 113.79 s
+  on 2: |F| 1.88e-32 -> 6.65e-40, |dz| 1.25e-19 -> 7.00e-32, lam 1, dDelta +1.98e-25, piv 3.0e-20..3.6e+15, 109.4 s
+  on 3: |F| 6.65e-40 -> 1.75e-64, |dz| 7.00e-32 -> 7.01e-50, lam 1, dDelta -1.03e-38, piv 3.0e-20..3.6e+15, 113.36 s
+  on 4: |F| 1.75e-64 converged, Delta 1.73063568586003891 -5.8879e-17
+      elim projections {'u0': 0, 'u0q': 5, 'ladder': 0, 'failed': 0, 'skipped': 0}
+      octo-double Newton: 5 steps, max|F| 1.8e-64, converged; double-double |F| of its first two parts 3.6e-14
+    a 1.000 -> D 117.0: predicted |F| 5.54e-14, od 5 steps -> 3.61e-14 (tol 3.0e-20, stall accepted, Delta correction +0.0e+00), Delta 1.730635685860 (formula diff -4.8e-07), moved 8.8e-09, 603 s
+      Delta of the saved state, its eight parts summed exactly: 1.730635685860038849267059677903292989227
+step 3: D 117.0, pivots 3.0e-20..3.6e+15, |z_1| 1.15e-03, |z_N| 2.87e-27, ratios 2-5 141.8 42.7 3.6 3.3, a_max 2.615, 148 s
+    a 1.0000: re-seeded (ok), 23.23 s
+  on 0: |F| 1.49e-29 -> 1.39e-15, |dz| 1.95e-07 -> 1.68e-15, lam 1, dDelta -6.93e-14, piv 2.9e-15..5.0e+15, 141.07 s
+    on 1 trial lam 1: max|F| 1.39e-28; raw |dz_t| 2.977e-15 vs |dz| 1.683e-15 (not <); refused, 112.8 s
+  on 1: |F| 1.39e-15 -> 6.94e-16, |dz| 1.68e-15 -> 8.42e-16, lam 0.5, dDelta +1.37e-23, piv 1.2e-15..5.0e+15, 239.61 s
+    on 2 trial lam 1: max|F| 3.48e-29; raw |dz_t| 2.977e-15 vs |dz| 8.416e-16 (not <); refused, 113.4 s
+  on 2: |F| 6.94e-16 -> 3.47e-16, |dz| 8.42e-16 -> 4.21e-16, lam 0.5, dDelta +4.27e-24, piv 9.7e-16..5.0e+15, 243.17 s
+    on 3 trial lam 1: max|F| 8.71e-30; raw |dz_t| 2.977e-15 vs |dz| 4.208e-16 (not <); refused, 114.43 s
+  on 3: |F| 3.47e-16 -> 1.74e-16, |dz| 4.21e-16 -> 2.10e-16, lam 0.5, dDelta -1.15e-23, piv 8.8e-16..5.0e+15, 236.45 s
+    on 4 trial lam 1: max|F| 2.18e-30; raw |dz_t| 2.977e-15 vs |dz| 2.104e-16 (not <); refused, 113.51 s
+  on 4: |F| 1.74e-16 -> 8.68e-17, |dz| 2.10e-16 -> 1.05e-16, lam 0.5, dDelta -3.77e-24, piv 7.8e-16..5.0e+15, 239.61 s
+    on 5 trial lam 1: max|F| 5.44e-31; raw |dz_t| 2.977e-15 vs |dz| 1.052e-16 (not <); refused, 113.11 s
+  on 5: |F| 8.68e-17 -> 4.34e-17, |dz| 1.05e-16 -> 5.26e-17, lam 0.5, dDelta +1.38e-24, piv 4.3e-16..5.0e+15, 237.86 s
+    on 6 trial lam 1: max|F| 1.36e-31; raw |dz_t| 2.977e-15 vs |dz| 5.259e-17 (not <); refused, 117.45 s
+  on 6: |F| 4.34e-17 -> 2.17e-17, |dz| 5.26e-17 -> 2.63e-17, lam 0.5, dDelta +1.15e-24, piv 2.5e-16..5.0e+15, 241.62 s
+    on 7 trial lam 1: max|F| 3.40e-32; raw |dz_t| 2.977e-15 vs |dz| 2.629e-17 (not <); refused, 113.62 s
+  on 7: |F| 2.17e-17 -> 1.08e-17, |dz| 2.63e-17 -> 1.31e-17, lam 0.5, dDelta +6.63e-25, piv 1.1e-16..5.0e+15, 235.85 s
+    on 8 trial lam 1: max|F| 8.50e-33; raw |dz_t| 2.976e-15 vs |dz| 1.313e-17 (not <); refused, 112.57 s
+  on 8: |F| 1.08e-17 -> 5.42e-18, |dz| 1.31e-17 -> 6.55e-18, lam 0.5, dDelta +4.05e-25, piv 5.5e-17..5.0e+15, 235.72 s
+    on 9 trial lam 1: max|F| 2.13e-33; raw |dz_t| 2.976e-15 vs |dz| 6.545e-18 (not <); refused, 121.53 s
