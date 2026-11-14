@@ -1,0 +1,21 @@
+=== junk_err
+crawl (a = 1, D 118): root I752-mac/fix/fixrun_D118.0000_s1_switch0_own_from1.npz
+  prediction: max|z - root| 1.95e-07; p1 1.95e-07; harmonics k 7 1.88e-11, k 9 6.04e-10, k 11 1.42e-08, k 13 1.91e-07, k 15 1.39e-22, k 17 2.06e-22
+  iterate z1: max|z - root| 4.14e-15; p1 4.14e-15; harmonics k 7 1.99e-19, k 9 9.35e-18, k 11 2.15e-16, k 13 2.92e-15, k 15 2.94e-31, k 17 1.36e-30
+  trial z1 + d1: max|z - root| 2.98e-15; p1 2.98e-15; harmonics k 7 2.90e-19, k 9 9.39e-18, k 11 2.15e-16, k 13 2.92e-15, k 15 5.91e-31, k 17 1.64e-30
+control (a = 1/2, D 117.5): root I742-win/M/anm_pin13_D117.5000.npz
+  prediction: max|z - root| 9.36e-08; p1 9.36e-08; harmonics k 7 8.88e-12, k 9 2.87e-10, k 11 6.77e-09, k 13 9.07e-08, k 15 3.94e-23, k 17 9.63e-23
+  iterate z1: max|z - root| 3.86e-16; p1 3.12e-16; harmonics k 7 2.69e-20, k 9 1.17e-19, k 11 2.65e-18, k 13 3.59e-17, k 15 2.05e-31, k 17 1.96e-31
+  trial z1 + d1: max|z - root| 2.62e-17; p1 2.62e-17; harmonics k 7 1.18e-20, k 9 4.98e-19, k 11 1.55e-18, k 13 2.59e-17, k 15 1.60e-32, k 17 3.00e-32
+exit 0
+=== junk_err --mutate k17
+crawl (a = 1, D 118): root I752-mac/fix/fixrun_D118.0000_s1_switch0_own_from1.npz
+  prediction: max|z - root| 1.95e-07; p1 1.95e-07; harmonics k 7 1.88e-11, k 9 6.04e-10, k 11 1.42e-08, k 13 1.91e-07, k 15 1.39e-22, k 17 2.06e-22
+  iterate z1: max|z - root| 4.14e-15; p1 4.14e-15; harmonics k 7 1.99e-19, k 9 9.35e-18, k 11 2.15e-16, k 13 2.92e-15, k 15 3.72e-31, k 17 1.00e-20
+  control: the planted 1e-20 in k 17 reads 1.00e-20: ok
+  trial z1 + d1: max|z - root| 2.98e-15; p1 2.98e-15; harmonics k 7 2.90e-19, k 9 9.39e-18, k 11 2.15e-16, k 13 2.92e-15, k 15 4.15e-31, k 17 1.00e-20
+control (a = 1/2, D 117.5): root I742-win/M/anm_pin13_D117.5000.npz
+  prediction: max|z - root| 9.36e-08; p1 9.36e-08; harmonics k 7 8.88e-12, k 9 2.87e-10, k 11 6.77e-09, k 13 9.07e-08, k 15 3.94e-23, k 17 9.63e-23
+  iterate z1: max|z - root| 3.86e-16; p1 3.12e-16; harmonics k 7 2.69e-20, k 9 1.17e-19, k 11 2.65e-18, k 13 3.59e-17, k 15 2.05e-31, k 17 1.96e-31
+  trial z1 + d1: max|z - root| 2.62e-17; p1 2.62e-17; harmonics k 7 1.18e-20, k 9 4.98e-19, k 11 1.55e-18, k 13 2.59e-17, k 15 1.60e-32, k 17 3.00e-32
+exit 0

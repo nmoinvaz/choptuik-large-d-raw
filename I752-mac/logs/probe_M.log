@@ -1,0 +1,38 @@
+probe: /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/df65b01f-07cd-4aee-8283-07a856363b66/scratchpad/raw/I752-mac/R/crawl_iter_D117.5000_s1.npz, D + a 117.5, |dz| 3.846e-16, arms ['U', 'E'], 0.1 s
+  arm U: at lam 0 max|F| 2.551e-06 (switch test 2.551e-06, never)
+    lam 0.500000000 (1 - lam 5.0000e-01): max|F| 1.276e-06, e 3.113e-12  sw 1.276e-06 how never s 1.100e+00
+    lam 0.600000000 (1 - lam 4.0000e-01): max|F| 1.020e-06, e 2.989e-12  sw 1.020e-06 how never s 8.000e-01
+    lam 0.700000000 (1 - lam 3.0000e-01): max|F| 7.653e-07, e 2.615e-12  sw 7.653e-07 how never s 1.000e+00
+    lam 0.800000000 (1 - lam 2.0000e-01): max|F| 5.102e-07, e 1.992e-12  sw 5.102e-07 how never s 7.000e-01
+    lam 0.900000000 (1 - lam 1.0000e-01): max|F| 2.551e-07, e 1.121e-12  sw 2.551e-07 how never s 9.000e-01
+    lam 1.000000000 (1 - lam 0.0000e+00): max|F| 2.833e-20, e 2.833e-20  sw 2.833e-20 how never s 9.000e-01
+  arm U: affine to lam = 1 (largest ladder growth 6.67e-01, K 1e+03); e at the end 2.833e-20
+  arm E: at lam 0 max|F| 3.171e-16 (switch test 2.551e-06, u0q)
+    lam 0.500000000 (1 - lam 5.0000e-01): max|F| 1.586e-16, e 1.531e-28  sw 1.276e-06 how u0q s 4.390e+01
+    lam 0.600000000 (1 - lam 4.0000e-01): max|F| 1.269e-16, e 2.204e-28  sw 1.020e-06 how u0q s 4.390e+01
+    lam 0.700000000 (1 - lam 3.0000e-01): max|F| 9.514e-17, e 3.000e-28  sw 7.653e-07 how u0q s 4.000e+01
+    lam 0.800000000 (1 - lam 2.0000e-01): max|F| 6.343e-17, e 3.919e-28  sw 5.102e-07 how u0q s 4.490e+01
+    lam 0.900000000 (1 - lam 1.0000e-01): max|F| 3.171e-17, e 4.959e-28  sw 2.551e-07 how u0q s 3.220e+01
+    lam 1.000000000 (1 - lam 0.0000e+00): max|F| 6.123e-28, e 6.123e-28  sw 2.833e-20 how u0q s 2.750e+01
+  arm E: affine to lam = 1 (largest ladder growth 1.00e+00, K 1e+03); e at the end 6.123e-28
+  natural test at lam 1, trial as the corrector projects it: max|F| 6.123e-28, simplified correction / |dz| 9.367e-04 (bound 0.750)
+  natural test at lam 1, trial projected: max|F| 6.123e-28, simplified correction / |dz| 9.367e-04 (bound 0.750)
+  natural test at lam 0.5, trial as the corrector projects it: max|F| 1.586e-16, simplified correction / |dz| 5.000e-01 (bound 0.875)
+  the step at the iterate formed again: bit for bit the stored one
+  own test, at the iterate: |correction| 3.8464e-16 = displacement P(z) - z 1.3317e-20 + step from P(z) 3.8464e-16; max|F(P(z))| 3.171e-16, piv 8.6e-16..4.2e+15
+      displacement by group: m_h 1.33e-20, a_h 5.18e-23, p1 0.00e+00, c0 0.00e+00, n0p 0.00e+00, n0m 0.00e+00
+      step from P(z) by group: c0 3.85e-16, p1 2.87e-16, n0c 5.99e-17, n0m 3.18e-17, n0p 3.10e-17, n1c 1.49e-17
+      weak directions at P(z): sigma 5.63e-22, 5.56e-22, 2.42e-22, 1.09e-22; share of the dz 0.025, disp 0.000, newton 0.025
+      the step formed again at the iterate: bit for bit the stored one
+  own test, trial lam 1: |correction| 2.6229e-17 = displacement P(z) - z 2.0971e-34 + step from P(z) 2.6229e-17; max|F(P(z))| 6.123e-28, piv 2.5e-20..4.2e+15
+      displacement by group: m_h 2.10e-34, a_h 6.88e-37, p1 0.00e+00, c0 0.00e+00, n0p 0.00e+00, n0m 0.00e+00
+      step from P(z) by group: p1 2.62e-17, n0p 3.40e-18, n0m 3.38e-18, n1m 2.32e-18, n1p 2.30e-18, n2m 1.25e-18
+      weak directions at P(z): sigma 8.64e-25, 8.64e-25, 5.21e-28, 5.21e-28; share of the dz 1.000, disp 0.000, newton 1.000
+      own test at lam 1: 2.6229e-17 vs |dz| 3.8464e-16: accepted
+  own test, trial lam 0.5: |correction| 1.9231e-16 = displacement P(z) - z 6.6586e-21 + step from P(z) 1.9231e-16; max|F(P(z))| 1.586e-16, piv 7.0e-16..4.2e+15
+      displacement by group: m_h 6.66e-21, a_h 2.59e-23, p1 0.00e+00, c0 0.00e+00, n0p 0.00e+00, n0m 0.00e+00
+      step from P(z) by group: c0 1.92e-16, p1 1.44e-16, n0c 3.00e-17, n0m 1.59e-17, n0p 1.55e-17, n1c 7.46e-18
+      weak directions at P(z): sigma 2.83e-22, 2.79e-22, 1.21e-22, 5.45e-23; share of the dz 0.025, disp 0.000, newton 0.025
+      own test at lam 0.5: 1.9231e-16 vs |dz| 3.8464e-16: accepted
+  cosines of the steps from P(z): iterate~1 +0.022646, iterate~0.5 +0.999999, 1~0.5 +0.022907
+done, 681 s; records /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/df65b01f-07cd-4aee-8283-07a856363b66/scratchpad/raw/I752-mac/probe/crawl_probe_D117.5000_s1.jsonl

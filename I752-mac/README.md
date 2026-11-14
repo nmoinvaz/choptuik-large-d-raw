@@ -64,3 +64,61 @@ switch, which `--elim_switch 0` removes).
 
 **Expectation, not a criterion**: arm E affine to lam = 1 in both, since L's lam 1 trial's own max|F| was 1.39e-28;
 the own test's correction at lam 1 is then not the residual's, and its split names what it is.
+
+## The rebuild, run R (pre-#523 build; 2026-11-14 09:10 to 09:50 UTC)
+
+`logs/R.log`, the iterates `R/crawl_iter_D118.0000_s1.npz` (the crawl) and `R/crawl_iter_D117.5000_s1.npz` (the
+control), the rebuilt predictions `R/pred_pin13_D*.npz`. Checks (`logs/checks_R.log`):
+
+| check | result | control |
+|---|---|---|
+| 1. planted check of `locate_jump` (`logs/selftest.log`) | PASS | shift, comp, smooth, control, coarse, hint_trust each FAIL |
+| 2. predictions against #742's, every part (`cmp_pred.py`) | D 118 equal bit for bit to L's and N's, D 117.5 to M's | one ulp moved: FAIL |
+| 3a. base polish against N.log | 4 of 4 lines equal (converged at step 0, 1.75e-64) | |
+| 3b. series line against L.log | equal | |
+| 3c. a = 1 attempt against L.log | 4 of 4 equal: step 0 1.49e-29 -> 1.39e-15, the refused lam 1 trial (1.39e-28, raw \|dz_t\| 2.977e-15 vs 1.683e-15), step 1 at lam 0.5 | one digit changed: FAIL |
+| 3d. a = 1/2 attempt against M.log | 3 of 3 equal: steps 0 and 1 at lam 1 | |
+| 4. saved iterate against newton_od's records; the step formed again by probe | equal; bit for bit (both iterates) | |
+
+## The probe at the two iterates (pre-#523 build)
+
+`logs/probe_L.log` (crawl, 1324 s), `logs/probe_M.log` (control, 681 s), records `probe/crawl_probe_D*.jsonl`.
+
+### Along lam (`locate_jump`, rungs 0.5 to 1)
+
+| | crawl (a = 1, D 118, step 1) | control (a = 1/2, D 117.5, step 1) |
+|---|---|---|
+| \|dz\| | 1.683e-15 | 3.846e-16 |
+| arm E (the corrector's residual, switch 0) at lam 0 | 1.388e-15 | 3.171e-16 |
+| arm E: e(lam) / lam² on the six rungs | 1.393e-28 at every rung (4 digits) | 6.123e-28 at every rung (4 digits) |
+| arm E at lam 1 | 1.393e-28 | 6.123e-28 |
+| arm E verdict | affine to lam = 1 | affine to lam = 1 |
+| arm P (always projected) | equal to arm E at every rung | (not run: equal to E under switch 0) |
+| arm U (never projected) at lam 0 | 1.425e-05 | 2.551e-06 |
+| arm U: e at lam 0.5, at lam 1 | 9.6e-11, 6.6e-19 | 3.1e-12, 2.8e-20 |
+| arm U verdict | affine to lam = 1 (growth at most 0.67) | affine to lam = 1 (growth at most 0.67) |
+
+The corrector's residual along the step is the affine model plus its quadratic remainder, c lam² with c constant to
+four digits on every rung, in both. `locate_jump`'s floor (1e-12 max|F0|, 1.4e-27 in the crawl) lies above that
+remainder, so its growth (0.10 in the crawl) reads the floor; the c lam² fit is the finer statement. No jump exists
+at any rung: at lam 1 the residual is 1.39e-28, 1e13 below the iterate's.
+
+### The tests at lam 1 and 1/2
+
+| | crawl | control |
+|---|---|---|
+| natural test at lam 1 (ratio, bound 0.75) | 5.85e-05, accepted | 9.37e-04, accepted |
+| natural test at lam 1/2 (bound 0.875) | 0.5000 | 0.5000 |
+| own test at lam 1: the trial's own correction | 2.9769e-15, refused (\|dz\| 1.6831e-15) | 2.6229e-17, accepted (\|dz\| 3.8464e-16) |
+| its projection's displacement P(zt) - zt | 4.96e-33 | 2.10e-34 |
+| its step from P(zt) | 2.9769e-15, in p1 (then n0p, n0m 3.6e-16) | 2.6229e-17, in p1 (then n0p, n0m 3.4e-18) |
+| its share in the four weakest directions at P(zt) | 1.000 | 1.000 |
+| those directions' singular values at P(zt) | 8.27e-25, 8.27e-25, 4.91e-28, 4.91e-28 | 8.64e-25, 8.64e-25, 5.21e-28, 5.21e-28 |
+| own test at lam 1/2 | 8.4157e-16, accepted | 1.9231e-16, accepted |
+| weakest singular values at P(z), the iterate | 2.64e-21, 2.60e-21, 1.12e-21, 5.05e-22 | 5.63e-22, 5.56e-22, 2.42e-22, 1.09e-22 |
+| at P(z + dz/2) | 1.26e-21, 1.24e-21, 5.62e-22, 2.53e-22 | 2.83e-22, 2.79e-22, 1.21e-22, 5.45e-23 |
+| the iterate's step: displacement, step from P(z), share in the weak directions | 6.1e-20 (m_h), 1.68e-15 (c0, p1), 0.002 | 1.3e-20 (m_h), 3.85e-16 (c0, p1), 0.025 |
+
+The four weakest singular values halve from the iterate to the half step in both attempts. At the full step they fall
+to two pairs, about 8.5e-25 and 5e-28, the same pairs in both. The iterate's own steps hardly touch these directions.
+The trial's own correction lies wholly in them, and the own test compares that correction with the iterate's step.

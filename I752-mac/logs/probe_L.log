@@ -1,0 +1,46 @@
+probe: /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/df65b01f-07cd-4aee-8283-07a856363b66/scratchpad/raw/I752-mac/R/crawl_iter_D118.0000_s1.npz, D + a 118.0, |dz| 1.683e-15, arms ['U', 'E', 'P'], 0.1 s
+  arm U: at lam 0 max|F| 1.425e-05 (switch test 1.425e-05, never)
+    lam 0.500000000 (1 - lam 5.0000e-01): max|F| 7.127e-06, e 9.634e-11  sw 7.127e-06 how never s 6.000e-01
+    lam 0.600000000 (1 - lam 4.0000e-01): max|F| 5.702e-06, e 9.249e-11  sw 5.702e-06 how never s 7.000e-01
+    lam 0.700000000 (1 - lam 3.0000e-01): max|F| 4.276e-06, e 8.093e-11  sw 4.276e-06 how never s 7.000e-01
+    lam 0.800000000 (1 - lam 2.0000e-01): max|F| 2.851e-06, e 6.166e-11  sw 2.851e-06 how never s 7.000e-01
+    lam 0.900000000 (1 - lam 1.0000e-01): max|F| 1.425e-06, e 3.468e-11  sw 1.425e-06 how never s 6.000e-01
+    lam 1.000000000 (1 - lam 0.0000e+00): max|F| 6.620e-19, e 6.620e-19  sw 6.620e-19 how never s 6.000e-01
+  arm U: affine to lam = 1 (largest ladder growth 6.67e-01, K 1e+03); e at the end 6.620e-19
+  arm E: at lam 0 max|F| 1.388e-15 (switch test 1.425e-05, u0q)
+    lam 0.500000000 (1 - lam 5.0000e-01): max|F| 6.940e-16, e 3.483e-29  sw 7.127e-06 how u0q s 6.470e+01
+    lam 0.600000000 (1 - lam 4.0000e-01): max|F| 5.552e-16, e 5.015e-29  sw 5.702e-06 how u0q s 6.880e+01
+    lam 0.700000000 (1 - lam 3.0000e-01): max|F| 4.164e-16, e 6.827e-29  sw 4.276e-06 how u0q s 6.470e+01
+    lam 0.800000000 (1 - lam 2.0000e-01): max|F| 2.776e-16, e 8.917e-29  sw 2.851e-06 how u0q s 4.440e+01
+    lam 0.900000000 (1 - lam 1.0000e-01): max|F| 1.388e-16, e 1.129e-28  sw 1.425e-06 how u0q s 4.900e+01
+    lam 1.000000000 (1 - lam 0.0000e+00): max|F| 1.393e-28, e 1.393e-28  sw 6.620e-19 how u0q s 2.980e+01
+  arm E: affine to lam = 1 (largest ladder growth 1.00e-01, K 1e+03); e at the end 1.393e-28
+  arm P: at lam 0 max|F| 1.388e-15 (switch test 1.425e-05, u0q)
+    lam 0.500000000 (1 - lam 5.0000e-01): max|F| 6.940e-16, e 3.483e-29  sw 7.127e-06 how u0q s 6.620e+01
+    lam 0.600000000 (1 - lam 4.0000e-01): max|F| 5.552e-16, e 5.015e-29  sw 5.702e-06 how u0q s 6.110e+01
+    lam 0.700000000 (1 - lam 3.0000e-01): max|F| 4.164e-16, e 6.827e-29  sw 4.276e-06 how u0q s 5.060e+01
+    lam 0.800000000 (1 - lam 2.0000e-01): max|F| 2.776e-16, e 8.917e-29  sw 2.851e-06 how u0q s 4.400e+01
+    lam 0.900000000 (1 - lam 1.0000e-01): max|F| 1.388e-16, e 1.129e-28  sw 1.425e-06 how u0q s 4.940e+01
+    lam 1.000000000 (1 - lam 0.0000e+00): max|F| 1.393e-28, e 1.393e-28  sw 6.620e-19 how u0q s 2.900e+01
+  arm P: affine to lam = 1 (largest ladder growth 1.00e-01, K 1e+03); e at the end 1.393e-28
+  natural test at lam 1, trial as the corrector projects it: max|F| 1.393e-28, simplified correction / |dz| 5.850e-05 (bound 0.750)
+  natural test at lam 1, trial projected: max|F| 1.393e-28, simplified correction / |dz| 5.850e-05 (bound 0.750)
+  natural test at lam 0.5, trial as the corrector projects it: max|F| 6.940e-16, simplified correction / |dz| 5.000e-01 (bound 0.875)
+  the step at the iterate formed again: bit for bit the stored one
+  own test, at the iterate: |correction| 1.6831e-15 = displacement P(z) - z 6.1101e-20 + step from P(z) 1.6831e-15; max|F(P(z))| 1.388e-15, piv 2.9e-15..5.0e+15
+      displacement by group: m_h 6.11e-20, a_h 2.35e-22, p1 0.00e+00, c0 0.00e+00, n0p 0.00e+00, n0m 0.00e+00
+      step from P(z) by group: c0 1.68e-15, p1 1.22e-15, n0c 2.67e-16, n0m 1.38e-16, n0p 1.34e-16, n1c 6.65e-17
+      weak directions at P(z): sigma 2.64e-21, 2.60e-21, 1.12e-21, 5.05e-22; share of the dz 0.002, disp 0.000, newton 0.002
+      the step formed again at the iterate: bit for bit the stored one
+  own test, trial lam 1: |correction| 2.9769e-15 = displacement P(z) - z 4.9590e-33 + step from P(z) 2.9769e-15; max|F(P(z))| 1.393e-28, piv 2.5e-20..5.0e+15
+      displacement by group: m_h 4.96e-33, a_h 1.58e-35, p1 0.00e+00, c0 0.00e+00, n0p 0.00e+00, n0m 0.00e+00
+      step from P(z) by group: p1 2.98e-15, n0p 3.58e-16, n0m 3.54e-16, n1m 2.31e-16, n1p 2.29e-16, c0 1.28e-16
+      weak directions at P(z): sigma 8.27e-25, 8.27e-25, 4.91e-28, 4.91e-28; share of the dz 1.000, disp 0.000, newton 1.000
+      own test at lam 1: 2.9769e-15 vs |dz| 1.6831e-15: refused
+  own test, trial lam 0.5: |correction| 8.4157e-16 = displacement P(z) - z 3.0550e-20 + step from P(z) 8.4157e-16; max|F(P(z))| 6.940e-16, piv 1.2e-15..5.0e+15
+      displacement by group: m_h 3.06e-20, a_h 1.17e-22, p1 0.00e+00, c0 0.00e+00, n0p 0.00e+00, n0m 0.00e+00
+      step from P(z) by group: c0 8.42e-16, p1 6.08e-16, n0c 1.34e-16, n0m 6.88e-17, n0p 6.69e-17, n1c 3.33e-17
+      weak directions at P(z): sigma 1.26e-21, 1.24e-21, 5.62e-22, 2.53e-22; share of the dz 0.002, disp 0.000, newton 0.002
+      own test at lam 0.5: 8.4157e-16 vs |dz| 1.6831e-15: accepted
+  cosines of the steps from P(z): iterate~1 +0.001675, iterate~0.5 +1.000000, 1~0.5 +0.001663
+done, 1324 s; records /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/df65b01f-07cd-4aee-8283-07a856363b66/scratchpad/raw/I752-mac/probe/crawl_probe_D118.0000_s1.jsonl
