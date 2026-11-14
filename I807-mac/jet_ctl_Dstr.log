@@ -1,0 +1,11 @@
+plants (63 jets, bases 253.92657 to 259.73617):
+  plant W : 2499 comparisons; worst |d|/(10T + 1e-30) 0.0263 at D 257.9208 from the jet at 255.3711: passes; expected pass: as expected
+  plant S : 2634 comparisons; worst |d|/(10T + 1e-30) 0.125 at D 258.5106 from the jet at 255.7661: passes; expected pass: as expected
+  plant N : 2499 comparisons; worst |d|/(10T + 1e-30) 3.57e+21 at D 259.7148 from the jet at 259.6306: fails; expected fail: as expected
+  plant N1: 2499 comparisons; worst |d|/(10T + 1e-30) 1e+20 at D 256.5686 from the jet at 256.7615: fails; expected fail: as expected
+real chain:
+  control: 62 jets against their next prediction, largest |lam_J - lam_pred| 3.1e-51 (bound 1e-60): FAILS; with --mutate=n smallest 1.1e-04: fails, as it must
+  test J: 1236 comparisons from 63 jets, 83 states reached, D 251.3038 to 259.7362; worst |d|/(10T + 1e-30) 0.308 at D 258.7128 from the jet at 257.3462 (d -2.20e-12, T 7.1e-13): lam_g is one analytic function there
+  largest |d| 2.20e-12 at D 258.7128 (T 7.1e-13)
+nice -n 10 /Users/nathan/venv-314/bin/python lam_frontier.py jet $S/raw781pus  103.82s user 11.87s system 99% cpu 1:56.39 total
+exit 1
