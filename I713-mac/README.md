@@ -114,3 +114,11 @@ of its first step (lam 1, 1/2, 1/4). Its partial log is kept as `s0_D200_mo_kill
 in the table's order, one at a time through run.sh. It does not rerun a run whose log has its `exit` line, takes REF252
 from `ref_D252.json`, and stops at the first exit the criteria do not expect (a check 0, a control 1). Its own log is
 `queue.log`, one line per run.
+
+### s0_D200_mo, C1's `--mutate_offset qd` control (`s0_D200_mo.log`, `.json`, `.npz`; 22:45 to 00:13 UTC, exit 1)
+
+**Fires: exit 1, as required.** The first step's nine trials (lam 1 to 1/256) were all refused, so the corrector
+stopped after one step at the start's max\|F\| 3.39e-12. With the quad-double offset, the step's \|dz\| is 7.71e-3
+against the true step's 2.74e-11, and each trial's own correction is far larger still (nan at lam 1, then 3.96e+66
+falling to 8.98e+41 at lam 1/256). ElimO's projection failed at all nine trials (`failed` 9, u0q 2). The rerun's
+first three trials equal the killed run's to every printed digit. It took 5254 s.
