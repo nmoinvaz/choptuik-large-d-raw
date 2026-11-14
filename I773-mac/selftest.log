@@ -1,0 +1,6 @@
+selftest: planted order-3 arm x0..x7 = 8.533-0.786i, 13.500+0.200i, 17.811+1.681i, 21.818+3.330i, 25.649+5.070i, 29.365+6.870i, 33.000+8.713i, 36.573+10.587i
+  N = 3 on x1..x6: |x0_hat - x0| = 4.58e-57 (must be < 1e-20); N = 2 on x1..x5: 5.61e-04 (must be > 1e-6); x6 labelled 7: 4.59e+00 (must be > 0.1); PASS
+selftest exit 0
+selftest: planted order-3 arm x0..x7 = 8.533-0.786i, 13.500+0.200i, 17.811+1.681i, 21.818+3.330i, 25.649+5.070i, 29.365+6.870i, 33.000+8.713i, 36.573+10.587i
+  N = 3 on x1..x6: |x0_hat - x0| = 4.31e-01 (must be < 1e-20); N = 2 on x1..x5: 7.31e-01 (must be > 1e-6); x6 labelled 7: 4.78e+00 (must be > 0.1); FAIL (mutate=nolog)
+selftest control exit 1 (must be 1)
