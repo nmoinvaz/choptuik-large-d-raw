@@ -21,6 +21,7 @@ FLAGS = ["--kfreeze", "13", "--N", "24", "--eps", "1e-14", "--D_max", "400", "--
          "--h_max", "0.0625", "--a0", "0.0625", "--steps", "0", "--elim_switch", "0", "--save_base", "1"]
 TAGS = {"S0": "0", "S1": "1e-4", "S2": "3e-4", "S3": "1e-3", "S4": "3e-3", "S5": "1e-2"}
 CAP = 2400
+REPRO = {"R1": "R1_A1arrays_S1plan", "R3": "R3_X2arrays_S3plan"}      # the reproducibility control: a different start on S1's and S3's plans (make_repro_741.py)
 THREADS = os.environ.get("I741_THREADS", "4")      # 2 while #742 runs beside it (the coordinator's message 1794625688727-0)
 os.makedirs(os.path.join(HERE, "logs"), exist_ok=True)
 
@@ -34,7 +35,7 @@ def say(msg):
 for name in sys.argv[1:]:
     if name == "S5" and not os.path.exists(os.path.join(HERE, "fit_741_out.txt")):
         raise SystemExit("S5 runs only after fit_741.py --fit has written fit_741_out.txt")
-    state = f"I741-win/states/{name}_shift{TAGS[name]}.npz"
+    state = f"I741-win/states/{name}_shift{TAGS[name]}.npz" if name in TAGS else f"I741-win/states/{REPRO[name]}.npz"
     out = os.path.join(HERE, name)
     os.makedirs(out, exist_ok=True)
     cmd = [PY, "-u", "anm_run.py", RAW, out, "--state", state, *FLAGS, "--threads", THREADS]
