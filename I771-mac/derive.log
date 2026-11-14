@@ -1,0 +1,9 @@
+equations derived from the PDE in 0.6 s
+background in compact form: matches
+  s-translation, lambda = 2                            residuals 5.8e-15 1.2e-14 1.3e-15 -> exact
+  t-translation, lambda = 1                            residuals 2.1e-15 6.1e-15 1.6e-16 -> exact
+  reparametrization, any lambda                        residuals 4.0e-15 7.6e-15 1.8e-16 -> exact
+  phase, lambda = 0                                    residuals 1.1e-16 4.4e-17 0.0e+00 -> exact
+  shift of F, lambda = i omega                         residuals 0.0e+00 0.0e+00 0.0e+00 -> exact
+  control: s-translation at lambda = 2.01 (must fail)  residuals 5.5e+00 6.0e+00 1.1e-02 -> not a solution
+derive PASS
