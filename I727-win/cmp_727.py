@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """#727: Delta of the three D 99.875 full-system states and their pairwise differences.
 usage: python cmp_727.py [--selftest]        (venv-t151 python, from this folder; reads the three STATES and prints Delta in arb at 600 bits)
-       python cmp_727.py --od                (the polished bases pilot/, A1c/, X2c/ base_pin13_D99.8750.npz, eight parts, Delta to 40 digits, against cont3's stored quad-double Delta)
+       python cmp_727.py --od                (the polished bases pilot2/, A1c/, X2c/ base_pin13_D99.8750.npz, eight parts, Delta to 40 digits, against cont3's stored quad-double Delta)
 Delta of a state = the exact sum of the last entry of every part present (zh, zl, z2, z3 and z4 to z7 of an octo-double state). Pass NAME=path to compare other states.
 --selftest: a planted equal pair must read 0, a planted pair displaced by 2e-25 must show 2e-25, and a planted eight-part value must come back to 40 digits (the two-part sum must differ)."""
 import itertools
@@ -74,14 +74,14 @@ def main():
     if "--selftest" in sys.argv:
         sys.exit(selftest())
     if "--od" in sys.argv:
-        od = {k: os.path.join(HERE, k, "base_pin13_D99.8750.npz") for k in ("pilot", "A1c", "X2c") if os.path.exists(os.path.join(HERE, k, "base_pin13_D99.8750.npz"))}
+        od = {k: os.path.join(HERE, k, "base_pin13_D99.8750.npz") for k in ("pilot2", "A1c", "X2c") if os.path.exists(os.path.join(HERE, k, "base_pin13_D99.8750.npz"))}
         q = delta(os.path.join(RAW, STATES["cont3"]))
         vals = {k: delta(p) for k, p in od.items()}
         print(f"Delta cont3 stored (quad-double): {q.str(40, radius=False)}")
         for k, v in vals.items():
             print(f"Delta {k} (octo-double, eight parts): {v.str(40, radius=False)}")
-        if "pilot" in vals:
-            print(f"pilot - cont3 stored: {float((vals['pilot'] - q).mid()):+.4e}")
+        if "pilot2" in vals:
+            print(f"pilot2 - cont3 stored: {float((vals['pilot2'] - q).mid()):+.4e}")
         names = list(vals)
         diffs = []
         for i, a in enumerate(names):

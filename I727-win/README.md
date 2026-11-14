@@ -55,3 +55,43 @@ The step converges but the residual does not: the first step (|dz| 1.05e-39 to 3
 As the coordinator's point 2 says, I stopped: A1c and X2c were not run. The cost: an octo-double Newton step or trial is about 90 s at 4 threads here, so a polish that converges in 2 to 3 steps is about 5 min per state, and this pilot took 33 min because of the refused line search.
 
 Files: `pilot/` (the saved base), `logs/pilot.log`, `logs/run_727.log`, `pilot_cmp_727.txt`, `states/` and `make_states_727.py` (made, not yet used by a run), `cmp_727.py` (selftest passed with the planted eight-part value).
+
+## Decision after the pilot, fixed before pilot2 (2026-11-13 00:01 UTC)
+
+The first pilot (no `--reseed_o`) stalled at octo-double max|F| 2.74e-49 with its Delta equal to the quad-double one to 40 digits. The coordinator's message `1794614449424-0`: repeat it with `--reseed_o 3` added and nothing else changed (job `pilot2`, `run_727.py`), the same two controls, then A1c and X2c, also with `--reseed_o 3`, only if it passes. Their diagnosis matches #713's pilot on the Mac (at D 200 the quad-double projection floored the octo-double residual at 1.2e-33, `--reseed_o 3` brought it to 7.4e-52).
+
+**Pass for pilot2**, written before the run: the polish converges to octo-double max|F| of at most 1e-60 (the corrector's own "converged"), and its Delta equals cont3's stored quad-double Delta to 1e-30. If it still stalls above 1e-60, I stop and post the floor (the coordinator's instruction) and run neither A1c nor X2c. The reading of the three Delta stays as in point 4 above.
+
+## Results of pilot2 (2026-11-14 00:04 UTC): both controls pass, the polish was the projection alone
+
+`run_727.py pilot2` (cont3's own state and plan, `--corrector od --tol_od 1e-60 --save_base 1 --steps 0 --reseed_o 3`, #682's flags, `--elim_switch 0`, 4 threads) exited 0 after 115 s. Base saved in eight parts (`pilot2/base_pin13_D99.8750.npz`).
+
+| control | result |
+|---|---|
+| the polish converges to at most 1e-60 | **passes**: octo-double max abs F 3.9e-63, "converged" |
+| octo-double Delta equals the quad-double Delta to 1e-30 | **passes**: 1.745150028164499252944352893640343550633 for both, difference exactly 0 (`pilot2_cmp_727.txt`) |
+
+The exact 0 needs reading. The polish converged at its first evaluation: the octo-double projection (`--reseed_o 3`) alone took max|F| from the stored state's 3.4e-49 to 3.95e-63, and no Newton step was taken (log line `on 0: |F| 3.95e-63 converged`, "1 steps" counts the evaluation). Against the stored state only 64 of 769 entries differ (max |difference| 4.524e-50, entry 704, the horizon block), the other 705 are bit-identical, and the last entry of all eight parts equals the stored four parts' with z4 to z7 exactly 0. So the stored cont3 state is a root of its own plan's system to better than 1e-62 apart from its horizon data, whose quad-double accuracy was the 2.74e-49 floor of the first pilot (all 769 entries of that run moved, by up to 1.05e-39, along weak directions). The control passes but does not show that the octo-double polish moves Delta when it must: the A1c and X2c runs below do (their plan swap displaces them), with point 5's |F| before the polish.
+
+## Results of A1c and X2c, and the reading (2026-11-14 00:17 UTC)
+
+`run_727.py A1c X2c` (the `states/` copies on cont3's plan, `--corrector od --tol_od 1e-60 --save_base 1 --steps 0 --reseed_o 3`, 4 threads): A1c exit 0 after 5 min, X2c exit 0 after 414 s. Every number below is from `logs/*.log` and `final_cmp_727.txt` (`cmp_727.py --od`, the exact sum of the eight parts).
+
+| state, on cont3's plan | octo max abs F before the polish | Newton steps | final octo max abs F | Delta moved by the first step | Delta, 40 digits | Delta - X2c |
+|---|---|---|---|---|---|---|
+| cont3 (pilot2) | 3.4e-49 with the quad-double projection (first pilot), 3.95e-63 with `--reseed_o 3` | 0 | 3.9e-63 | none | 1.745150028164499252944352893640343550633 | -1.1101e-46 |
+| A1c | 1.67e-35 | 2 | 2.4e-62 | -2.97e-26 | 1.745150028164499252944352893640343550633 | -1.2667e-57 |
+| X2c | 1.76e-35 | 3 | 2.7e-93 | +1.66e-25 | 1.745150028164499252944352893640343550633 | 0 |
+
+Pairwise differences: pilot2 - A1c -1.1101e-46, pilot2 - X2c -1.1101e-46, A1c - X2c -1.2667e-57; the largest is 1.1101e-46.
+
+**Reading (point 4, fixed before the runs): all three Delta agree to at most 1e-30 (largest 1.11e-46), so the plan made the 2e-25 spread.** On one plan there is one root, with Delta = 1.745150028164499252944352893640343550633457431631616393443 (X2c, 60 digits).
+
+What backs it, beyond the agreement:
+- The plan swap alone moves the residual of A1 and X2 to 1.7e-35 on cont3's plan (X2 was at 4.1e-49 on its own plan, #725's table), and the first Newton step moves Delta by -2.97e-26 and +1.66e-25, which are exactly their offsets from the root on their own plans (A1 on its own plan - X2c = +2.9709e-26, X2 - X2c = -1.6580e-25). So the polish did move Delta, by what the plan explains.
+- The first pilot (no `--reseed_o`, stalled at max|F| 2.74e-49) has Delta equal to X2c's to 1.4e-80 (-1.4484e-80) and to A1c's to 1.27e-57: its one effective Newton step already reached the root's Delta, and its horizon floor never touched Delta. Pilot2 (and the stored cont3 state) sit 1.1101e-46 off the root in Delta because pilot2 took no Newton step, which its first-pilot twin shows is the weak direction (pivot 1.2e-18), far below the 1e-30 bar.
+- The largest node difference from cont3's plan is 5.4e-4 (A1) and 9.5e-4 (X2), and Delta on their own plans differs by 3.0e-26 and 1.7e-25.
+
+Limits, stated: this is three states at D 99.875 on one plan, and it shows that the spread of #725's three states is the plan, not that every spread elsewhere is. The control of point 2 passed trivially (pilot2 took no Newton step), and the test of the polish is A1c and X2c. The quoted Delta of a state is a root of its own plan's discrete system: two plans 1e-3 apart in a node give Delta differing at 1e-25, whatever the corrector's precision.
+
+Controls run: `make_states_727.py --selftest` (planted array change, second meta key, own plan kept: all flagged), `plans_727.py` (planted node moved, self-comparison), `cmp_727.py --selftest` (planted equal pair, planted 2e-25 displacement, planted eight-part value returned to 40 digits with the two-part sum differing).

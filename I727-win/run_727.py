@@ -2,7 +2,8 @@
 """#727: anm_run.py --steps 0 (the base polish alone) of the three D 99.875 full-system states with #682's flags, --elim_switch 0 as #725 used it, --tol_qd 1e-60 --qd_it 12.
 usage: python run_727.py chk          (the check on cont3 first: quad-double, saved nothing)
        python run_727.py pilot        (the common-plan polish, step 2: cont3's own state, octo-double; logs/<name>.log, logs/<name>.exit, logs/run_727.log, output in <name>/)
-       python run_727.py A1c X2c      (step 3, only if the pilot passed: the states/ copies with cont3's plan)
+       python run_727.py pilot2       (the pilot again with --reseed_o 3 added, nothing else changed; the first pilot, without it, stalled at 2.74e-49)
+       python run_727.py A1c X2c      (step 3, only if pilot2 passed: the states/ copies with cont3's plan, with --reseed_o 3)
 The octo-double jobs use --corrector od --tol_od 1e-60 in place of --corrector qd --tol_qd 1e-60, and --save_base 1 (saves <name>/base_pin13_D99.8750.npz, eight parts).
 chk and pilot: I682-win/cont3/anm_pin13_D99.8750.npz. A1c and X2c: I727-win/states/A1_on_cont3plan.npz and X2_on_cont3plan.npz (make_states_727.py).
 Each job: python -u anm_run.py RAW OUT --state S --kfreeze 13 --N 24 --eps 1e-14 --D_max 400 --corrector qd --tol_qd 1e-60 --qd_it 12 --jet_q 1 --pred_q 1 --reseed 2 --reseed_q 1 --save_pred 1
@@ -20,7 +21,7 @@ env = dict(os.environ, OPENBLAS_NUM_THREADS="1", OMP_NUM_THREADS="1", MKL_NUM_TH
 FLAGS = ["--kfreeze", "13", "--N", "24", "--eps", "1e-14", "--D_max", "400", "--corrector", "qd", "--tol_qd", "1e-60", "--qd_it", "12", "--jet_q", "1", "--pred_q", "1",
          "--reseed", "2", "--reseed_q", "1", "--save_pred", "1", "--a_grow", "1.25", "--a_hold", "1", "--lam_stall", "0.04"]
 STEP = ["--h_max", "0.0625", "--a0", "0.0625", "--steps", "0", "--elim_switch", "0"]
-JOBS = {"chk": "I682-win/cont3/anm_pin13_D99.8750.npz", "pilot": "I682-win/cont3/anm_pin13_D99.8750.npz",
+JOBS = {"chk": "I682-win/cont3/anm_pin13_D99.8750.npz", "pilot": "I682-win/cont3/anm_pin13_D99.8750.npz", "pilot2": "I682-win/cont3/anm_pin13_D99.8750.npz",
         "A1c": "I727-win/states/A1_on_cont3plan.npz", "X2c": "I727-win/states/X2_on_cont3plan.npz"}
 
 
@@ -33,7 +34,10 @@ def flags_for(name):
     f[i + 1] = "od"
     j = f.index("--tol_qd")
     f[j:j + 2] = ["--tol_od", "1e-60"]
-    return f + STEP + ["--save_base", "1"]
+    f = f + STEP + ["--save_base", "1"]
+    if name != "pilot":
+        f += ["--reseed_o", "3"]      # the coordinator's decision after the pilot stalled at 2.74e-49 (message 1794614449424-0)
+    return f
 os.makedirs(os.path.join(HERE, "logs"), exist_ok=True)
 
 
