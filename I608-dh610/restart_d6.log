@@ -149,3 +149,19 @@ step 3: D 246.13125, pivots 2.4e-27..1.2e+35, |z_1| 3.54e-04, |z_N| 1.96e-27, ra
     on 16 trial lam 1: max|F| 6.61e-33; simplified correction / |dz| = 2.961e-05 (bound 0.750); accepted, 0.62 s
   on 16: |F| 4.36e-33 -> 6.61e-33, |dz| 2.42e-34 -> 4.36e-39, lam 1, dDelta +2.42e-34, piv 1.1e-27..1.8e+35, 95.57 s
     on 17 trial lam 1: max|F| 5.78e-42; simplified correction / |dz| = 8.694e-05 (bound 0.750); accepted, 0.46 s
+  on 17: |F| 6.61e-33 -> 5.78e-42, |dz| 4.36e-39 -> 3.79e-43, lam 1, dDelta +2.58e-39, piv 1.1e-27..1.8e+35, 73.13 s
+    on 18 trial lam 1: max|F| 4.20e-50; simplified correction / |dz| = 6.460e-14 (bound 0.750); accepted, 0.42 s
+  on 18: |F| 5.78e-42 -> 4.20e-50, |dz| 3.79e-43 -> 2.45e-56, lam 1, dDelta -4.86e-45, piv 1.1e-27..1.8e+35, 92.28 s
+    on 19 trial lam 1: max|F| 1.81e-76; simplified correction / |dz| = 5.443e-22 (bound 0.750); accepted, 0.96 s
+  on 19: |F| 4.20e-50 -> 1.81e-76, |dz| 2.45e-56 -> 1.33e-77, lam 1, dDelta +3.18e-57, piv 1.1e-27..1.8e+35, 89.85 s
+  on 20: |F| 1.81e-76 converged, Delta 1.68542686376268125 +8.2422e-18
+      elim projections {'u0': 0, 'u0q': 3, 'ladder': 16, 'failed': 4, 'skipped': 22}
+      octo-double Newton: 21 steps, max|F| 1.8e-76, converged; double-double |F| of its first two parts 6.6e+06
+    a 1.000 -> D 247.13125: predicted |F| 5.72e+06, od 21 steps -> 6.57e+06 (tol 4.4e-20, stall accepted, Delta correction +0.0e+00), Delta 1.685426863763 (formula diff -1.6e-06), moved 6.6e-26, 5814 s
+      Delta of the saved state, its eight parts summed exactly: 1.685426863762681257057300501820502394759
+step 4: the series saved as /home/nathan/Source/choptuik-large-d-raw/I608-dh610/restart_d6/jet_pin3_D247.1312.npz (8 parts, 1419 s)
+step 4: D 247.13125, pivots 1.1e-27..1.8e+35, |z_1| 3.52e-04, |z_N| 1.15e-26, ratios 2-5 317.4 285.7 43.4 32.0, a_max 2.339, 1419 s
+    a 1.0000: re-seeded (ok), 76.61 s
+      horizon data refined in octo-double, rung max|R| 1.13e-26 -> 3.71e-59 -> 4.57e-69 -> 8.49e-78
+    on 0 chord 0: max|F| 9.08e-47, |dw| 2.437e-41
+    on 0 chord 1: max|F| 1.15e-39, |dw| 1.180e-41

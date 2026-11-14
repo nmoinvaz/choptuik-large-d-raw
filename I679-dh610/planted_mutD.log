@@ -10,3 +10,19 @@ repo:hp/data/states/up7_D40.0201.npz: D 40.020065, M 32, K 5, 2 parts, kfreeze 1
   M 32: converged in 4 steps, max|F| 2.86e-58, est +2.9e-55, pivots 3.2e-10..1.0e+04, F with a fresh plan 2.1e-35, 1155.6 s
   M 48: start max|F| 4.03e-11 (plan 24 steps)
   M 48: re-seed ok, max|F| 2.97e-14, 753.09 s
+  qn 0 [full]: |F| 2.97e-14 -> 7.03e-26, |dz| 6.2e-14 -> 8.1e-18, lam 1, dDelta -2.32e-15, piv 4.2e-10..6.2e+03, 211.21 s
+  qn 1 [full]: |F| 7.03e-26 -> 7.86e-37, |dz| 8.1e-18 -> 1.3e-29, lam 1, dDelta +1.48e-24, piv 4.2e-10..6.2e+03, 206.95 s
+  qn 2: |F| 7.86e-37 converged, Delta 1.88845166449061153 -1.0909e-17
+  qn 0 [full]: |F| 7.86e-37 -> 1.67e-58, |dz| 1.3e-29 -> 2.1e-47, lam 1, dDelta -1.26e-37, piv 4.2e-10..6.2e+03, 190.48 s
+  qn 1: |F| 1.67e-58 converged, Delta 1.88845166449061153 -1.0909e-17
+  M 48: polish to the floor, max|F| 7.86e-37 -> 1.67e-58 in 2 steps, kept
+  M 48: converged in 5 steps, max|F| 1.67e-58, est +8.9e-56, pivots 4.2e-10..6.2e+03, F with a fresh plan 4.0e-11, 3250.6 s
+  Delta(M 48) - Delta(M 32) -2.323e-15 (against the stored state -2.323e-15); lam_g +2.590e-15 (stored +2.590e-15); est at M 48 +8.9e-56; tau tails: M 32 |c_k>=28| 3.1e-12, M 48 |c_k>=32| 7.9e-14
+planted dd40: FAIL (Delta(M 48) - the record's -2.323e-15, tolerance 1.1e-21; record I271-macm3/gamma_dd.jsonl D 40.020065)
+repo:hp/data/states/up12_D58.0060.npz: D 58.00599, M 32, K 5, 2 parts, kfreeze 13, held [], mutation D
+  round trip 32 -> 48 -> 32: 3.0e-90 relative (pass)
+  M 32: start max|F| 9.45e-24 (plan 10 steps)
+  M 32: re-seed ok, max|F| 7.90e-24, 341.21 s
+  qn 0 [full]: |F| 7.90e-24 -> 3.92e-24, |dz| 1.4e-11 -> 3.2e-23, lam 1, dDelta -1.18e-18, piv 5.3e-14..8.0e+06, 85.79 s
+  qn 1 [full]: |F| 3.92e-24 -> 1.06e-44, |dz| 3.2e-23 -> 5.2e-31, lam 1, dDelta +1.98e-31, piv 5.3e-14..8.0e+06, 94.09 s
+  qn 2: |F| 1.06e-44 converged, Delta 1.81537990111591263 +6.4609e-17
