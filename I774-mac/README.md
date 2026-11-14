@@ -110,8 +110,8 @@ Every number below is from `cmp_774_out.md` (`cmp_774.py`, all checks passed) an
 | H_E120 | E | `T138-win2/chain/anm_pin3_D120.0000.npz` | 2 | 2.35e-34 | 1.21e-70 | -2.48e-27 | 0 | 358 | 1280 |
 
 "Newton steps" counts the steps taken, without the last evaluation. Every polish converged (the corrector's own
-"converged", final max|F| at most 1e-60). The largest job took 2804 s of CPU (E_120), and the whole task about 7.3 CPU
-hours. Each start max|F| on build E is 2.0e-34 to 2.4e-34, all in the horizon block's p rows as #752 found at D 117.
+"converged", final max|F| at most 1e-60). The largest job took 2804 s of CPU (E_120), and the 14 jobs 23610 s (6.6 CPU
+hours). Each start max|F| on build E is 2.0e-34 to 2.4e-34, all in the horizon block's p rows as #752 found at D 117.
 
 ### The checks
 
