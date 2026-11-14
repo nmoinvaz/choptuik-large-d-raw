@@ -1,0 +1,18 @@
+the base keeps its stored plan (12 steps)
+  on 0: |F| 6.61e-48 -> 2.45e-78, |dz| 8.42e-39 -> 2.62e-65, lam 1, dDelta -6.96e-46, piv 9.0e-20..8.3e+14, 176.01 s
+  on 1: |F| 2.45e-78 converged, Delta 1.73383485285059091 -7.9639e-17
+      elim projections {'u0': 0, 'u0q': 2, 'ladder': 0, 'failed': 0, 'skipped': 0}
+      octo-double Newton: 2 steps, max|F| 2.5e-78, converged; double-double |F| of its first two parts 8.4e-15
+base I726-win/L/anm_pin13_D112.7500.npz: D 112.75, M 32, pin 13 (held []), |F| 8.4e-15; N 24, eps 1e-14, h_max 0.25, corrector od (junk_only False), tol 1.0e-20 x 1.45^(D - 112.75), stalls accepted below 1e-17
+step 0: D 112.75, pivots 9.0e-20..8.3e+14, |z_1| 1.22e-03, |z_N| 4.78e-30, ratios 2-5 139.3 125.3 97.7 13.3, a_max 3.463, 169 s
+    a 0.2500: re-seeded (ok), 28.06 s
+  on 0: |F| 1.86e-35 -> 7.59e-22, |dz| 1.48e-10 -> 2.49e-21, lam 1, dDelta +3.46e-17, piv 7.1e-20..9.0e+14, 120.71 s
+  on 1: |F| 7.59e-22 -> 3.53e-39, |dz| 2.49e-21 -> 3.51e-22, lam 1, dDelta -5.47e-28, piv 5.7e-20..9.0e+14, 109.97 s
+  on 2: |F| 3.53e-39 -> 4.30e-45, |dz| 3.51e-22 -> 4.55e-42, lam 1, dDelta -1.17e-28, piv 5.7e-20..9.0e+14, 103.66 s
+  on 3: |F| 4.30e-45 -> 7.25e-85, |dz| 4.55e-42 -> 9.00e-66, lam 1, dDelta +1.99e-49, piv 5.7e-20..9.0e+14, 102.78 s
+  on 4: |F| 7.25e-85 converged, Delta 1.73364014156794277 -3.7365e-17
+      elim projections {'u0': 0, 'u0q': 5, 'ladder': 0, 'failed': 0, 'skipped': 0}
+      octo-double Newton: 5 steps, max|F| 7.3e-85, converged; double-double |F| of its first two parts 1.2e-14
+    a 0.250 -> D 113.0: predicted |F| 1.01e-14, od 5 steps -> 1.19e-14 (tol 1.1e-20, stall accepted, Delta correction +0.0e+00), Delta 1.733640141568 (formula diff -4.4e-07), moved 1.5e-10, 593 s
+      Delta of the saved state, its eight parts summed exactly: 1.733640141567942734406710993193602081591
+done
