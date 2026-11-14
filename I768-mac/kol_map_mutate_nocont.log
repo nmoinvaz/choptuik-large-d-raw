@@ -1,0 +1,23 @@
+1. Emparan-Suzuki (3.20): (1/rho) d_rho g = 2 Ric on g = V(rho, xi)(-dt^2 + dxi^2)
+  PASS  the tt and xi-xi components of (3.20) are +(4.2) and -(4.2) (R_ab = R g_ab / 2), off-diagonal zero: residuals 0, 0
+2. Kol's continuation (3.7): xi = i x, t = i z
+  PASS  (3.20) on Vh(-dx^2 + dz^2) is the forward diffusion Vh_sigma = (ln Vh)_xx in both components
+  PASS  ES's (4.2) with xi = i x is minus the forward diffusion (same solutions): difference 0
+3. Kol's Weyl rescaling e^{2A/(d-2)}, e^{2A} = V/n, d = n + 2
+  PASS  (V/n)^(1/n) -> 1 as n -> infinity at fixed V: limit 1
+4. reduction over z and the gauge X_s = -grad phi: form L, alpha = 1  [mutate=nocont]
+  FAIL  phi_s - c^-1 (c^-1 phi_t)_t = 0: residual (-V0*V2 + V1**2)/V0**3
+  FAIL  (c^2)_s - 2 alpha phi_t^2 = 0 with alpha = 1: residual 2*P1**2*(-V0*V2 + V1**2)/V0**2
+5. Prop. 5(i): Y_t = c W, W_t = c (Y_s + Y^3/4), c_s = c Y^2/4 with Y = 2 phi_t / c
+  FAIL  W_t - c (Y_s + Y^3/4) = 0: residual P1*(2*V0**2*V3 - 9*V0*V1*V2 + 7*V1**3)/V0**4
+  FAIL  c_s - c Y^2/4 = 0: residual P1*(-V0*V2 + V1**2)/V0**(5/2)
+6. exact solutions of ES and their counterparts
+  PASS  cone (4.7) solves (4.2), is real after xi = i x ((-mu + 2*sigma)/cos(x)**2) and solves the continued diffusion: (4.2) 0, continued 0
+  PASS  King-Rosenau (4.22) solves (4.2), is real after xi = i x (-sinh(2*mu - 4*sigma)/(cos(2*x) + cosh(2*mu - 4*sigma))) and solves the continued diffusion: (4.2) 0, continued 0
+  info  single black hole (4.9): solves (4.2) True; continuation real: False (Im at a sample point exp(14/5)*sin(3/5)/(1 + 2*exp(14/5)*cos(3/5) + exp(28/5)))
+  PASS  the cone's gauge ODE is solved by tan X = t / sqrt(2s - mu): residual 0
+  PASS  the cone's counterpart phi = log(-mu + 2*s + t**2)/2, c^2 = (-mu + 2*s)/(-mu + 2*s + t**2) solves form L: residuals 0, 0
+  PASS  and Prop. 5(i), with Y = 2*t/(sqrt((-mu + 2*s)/(-mu + 2*s + t**2))*(-mu + 2*s + t**2)): residuals 0, 0
+
+4 check(s) failed under --mutate=nocont
+--mutate=nocont exit 1 (must be 1)
