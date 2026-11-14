@@ -122,3 +122,167 @@ at any rung: at lam 1 the residual is 1.39e-28, 1e13 below the iterate's.
 The four weakest singular values halve from the iterate to the half step in both attempts. At the full step they fall
 to two pairs, about 8.5e-25 and 5e-28, the same pairs in both. The iterate's own steps hardly touch these directions.
 The trial's own correction lies wholly in them, and the own test compares that correction with the iterate's step.
+
+## The refused full step taken (pre-#523 build)
+
+`crawl_probe.py fixrun ... --accept own --start_lam 1 --switch 0` (`logs/fix_own_from1.log`, 474 s): the corrector
+started from z1 + d1, the point the crawl refused, with its own test and switch 0.
+
+| step | max\|F\| | \|dz\| | lam |
+|---|---|---|---|
+| 0 | 1.39e-28 -> 3.26e-31 | 2.98e-15 -> 9.82e-23 | 1 |
+| 1 | 3.26e-31 -> 3.43e-46 | 9.82e-23 -> 3.38e-32 | 1 |
+| 2 | 3.43e-46 -> 4.16e-65 | 3.38e-32 -> 1.76e-56 | 1 |
+| 3 | 4.16e-65, converged | | |
+
+Delta 1.729915772540067188606175429102600883886 (`fix/fixrun_D118.0000_s1_switch0_own_from1.npz`, the projected
+point; the point itself 4.06e-55). So the 2.98e-15 correction the own test refused is the step that converges.
+M's D 118 state (a = 1/2 steps) has Delta 1.729915772540067188606164966063807771721, 1.05e-20 lower. The two states
+solve different plans (the same 4, 3, 3, 3 steps at other points: each attempt plans its own prediction), so this is
+the plan's effect on the root, not a corrector difference.
+
+## What the weak directions are (pre-#523 build)
+
+`crawl_probe.py weak` (`logs/weak.log`, records `probe/weak.jsonl`): the four weakest right singular directions of the
+pinned octo-double Jacobian (`junk_subspace_o`, every direction kept).
+
+| point | max\|F\| | sigma (k = 11 pair) | sigma (k = 13 pair) |
+|---|---|---|---|
+| L's D 117 state | 1.75e-64 | 9.040e-25 | 5.533e-28 |
+| M's D 117.5 state | 8.57e-79 | 8.643e-25 | 5.210e-28 |
+| M's D 118 state | 6.86e-74 | 8.267e-25 | 4.908e-28 |
+| the crawl's refused trial, projected | 1.39e-28 | 8.267e-25 | 4.908e-28 |
+
+At every point the four directions are two cos/sin pairs of p1, the centre data: its harmonic 11 (the pair at about
+8.5e-25) and its harmonic 13 (the pair at about 5e-28), the highest free harmonics under `--kfreeze 13`. Each has
+about 0.24 of its unit norm in that harmonic of p1, 0.03 to 0.04 in node 0's p and m, and a Delta component of 7e-9
+to 1.2e-6. These are the junk directions of notes/QUAD_DOUBLE.md 13.29 (p1's highest harmonics, no Delta content).
+The refused correction lies wholly in the k = 13 pair (components -0.607 and -0.795): it is 2.9e-15 in p1's
+harmonic 13, 2.1e-16 in harmonic 11.
+
+## Where the harmonic-13 error comes from
+
+`junk_err.py` (`logs/junk_err.log`; its control plants 1e-20 in harmonic 17 of the iterate's last part and reads
+1.00e-20): each point's error in p1's harmonics against the root of the same plan (for the crawl the root above, for
+the control M's D 117.5 state).
+
+| point | crawl: max error | crawl: p1 k = 13 | crawl: k = 11 | control: max error | control: k = 13 | control: k = 11 |
+|---|---|---|---|---|---|---|
+| prediction | 1.95e-07 | 1.91e-07 | 1.42e-08 | 9.36e-08 | 9.07e-08 | 6.77e-09 |
+| iterate z1 (after step 0) | 4.14e-15 | 2.92e-15 | 2.15e-16 | 3.86e-16 | 3.59e-17 | 2.65e-18 |
+| full-step trial z1 + d1 | 2.98e-15 | 2.92e-15 | 2.15e-16 | 2.62e-17 | 2.59e-17 | 1.55e-18 |
+
+The prediction's error is almost all in p1's harmonic 13. The first step removes all but 2.92e-15 of it at a = 1
+and all but 3.6e-17 at a = 1/2. The next step from the iterate leaves it unchanged (2.92e-15 at z1 and at z1 + d1):
+at the iterate the k = 13 pair's singular values are 5e-22 to 2.6e-21, raised by the iterate's other errors (they
+halve with the distance along d), so its Newton step does not see the harmonic-13 error. At the full-step trial the
+other errors are gone, the pair's singular value is the root's 4.9e-28, and the trial's own correction is that error.
+
+## The own test's margin over #742's attempts
+
+`margin.py` (`margin_out.md`; its selftest reads planted lines, and a parser that halves the refused trial's W fails
+it): at Newton step 1 of each attempt, Y the iterate's |dz| after step 0 and W the lam 1 trial's own correction.
+
+| run | a | D reached | start \|dz\| | Y | W | W / Y | step 1 |
+|---|---|---|---|---|---|---|---|
+| P | 1 | 114 | 3.38e-09 | 4.88e-19 | 4.39e-20 | 0.090 | accepted |
+| L | 1 | 115 | 3.52e-09 | 5.27e-19 | 7.86e-20 | 0.149 | accepted |
+| L | 1 | 116 | 1.27e-08 | 6.87e-18 | 4.73e-19 | 0.069 | accepted |
+| L | 1 | 117 | 8.81e-09 | 3.38e-18 | 1.25e-19 | 0.037 | accepted |
+| L | 1 | (118, stopped) | 1.95e-07 | 1.68e-15 | 2.977e-15 | 1.772 | refused, the crawl |
+| M | 1/2 | 117.5 | 9.36e-08 | 3.85e-16 | 2.62e-17 | 0.068 | accepted |
+| M | 1/2 | 118 | 1.52e-07 | 1.01e-15 | 8.25e-17 | 0.082 | accepted |
+| M | 1/2 | 118.5 | 1.92e-07 | 1.61e-15 | 2.02e-16 | 0.125 | accepted |
+| M | 1/2 | 119 | 4.45e-08 | 8.76e-17 | 1.19e-17 | 0.136 | accepted |
+| M | 1/2 | 119.5 | 1.39e-07 | 8.62e-16 | 3.92e-16 | 0.455 | accepted |
+| M | 1/2 | 120 | 2.64e-07 | 3.10e-15 | 5.61e-16 | 0.181 | accepted |
+
+W is the harmonic-13 error left by step 0 in the crawl and the control (measured above). For the other attempts that
+reading of W is an inference. Every attempt but the crawl has W / Y between 0.037 and 0.455. The start's |dz| does not
+order them: M's D 118.5 step started at 1.92e-7, next to the crawl's 1.95e-7, and had W / Y 0.125.
+
+## The same attempt on main's build (3c35f0c, exact freeze projector; 10:29 to 10:51 UTC)
+
+`crawl_probe.py anm ... --stop 3` with `PYTHONPATH` on main's build, the rest of run R unchanged (`logs/AB_main.log`).
+The base polish moves the D 117 state first (it is 2.0e-34 off in 5p under this build): five steps, |dz| 4.07e-13 at
+the first, dDelta +1.57e-20, converged at 1.46e-106. #774 owns what that does to Delta.
+
+| | pre-#523 build (#742, run R) | main's build |
+|---|---|---|
+| series: \|z_N\|, ratios 2-5, a_max | 2.87e-27; 141.8 42.7 3.6 3.3; 2.615 | 2.58e-28; 144.1 85.4 7.0 3.3; 2.904 |
+| a = 1 start \|dz\| | 1.95e-07 | 4.93e-08 |
+| step 0 | 1.49e-29 -> 1.39e-15, \|dz\| -> 1.68e-15 | 9.31e-31 -> 8.69e-17, \|dz\| -> 1.05e-16 |
+| step 1 | lam 1 refused (W 2.977e-15, W / Y 1.77), lam 1/2 | lam 1, 8.69e-17 -> 6.15e-30 (W 4.15e-17, W / Y 0.395) |
+| steps 2, 3 | the crawl (8 steps at lam 1/2 on win) | lam 1: 6.15e-30 -> 6.23e-35 -> 2.57e-53 |
+
+So on main's build this attempt does not crawl. One attempt is not a rule: its W / Y, 0.395, is near the largest of
+the accepted ones on the old build (0.455).
+
+## Answer
+
+**(a)** Met. Both iterates and their steps are saved (`R/crawl_iter_D118.0000_s1.npz`, `R/crawl_iter_D117.5000_s1.npz`),
+the rebuild reproduces #742 bit for bit in every compared line and prediction, and in the control the corrector's
+residual along the step is affine to lam = 1, with deviation 6.123e-28 lam² to four digits.
+
+**(b)** The second branch: the residual is smooth to the last rung. In the crawl, arm E (switch 0, every point
+projected) deviates from the affine model by 1.393e-28 lam² to four digits on all six rungs, and arm P equals it. No
+lam* exists, so the fault is in the acceptance test. The own test judges the lam 1 trial by its own Newton correction,
+and that correction (2.977e-15) lies wholly in the k = 13 pair of p1's junk directions, singular value 4.9e-28 at the
+root. It is the error in p1's harmonic 13 that the first step left (2.92e-15). The iterate's Jacobian cannot see that
+error, because there the pair's singular values are 5e-22 to 2.6e-21, raised by the iterate's other errors. So every
+lam 1 trial's correction is 2.977e-15 while |dz| halves, and the test never passes. Taking the refused step converges
+in three lam 1 steps (to 4.16e-65). In #742's other eleven attempts W / Y was 0.037 to 0.455.
+
+**(c)** Not #700's mechanism. #700's residual jumped at lam* = 1 - 7.77e-15, where ElimO's switch stopped projecting.
+Here every trial is projected (switch 0), the residual has no jump, and the trial's projection displacement is
+5e-33. One feature is shared: the full first step leaves the iterate's own residual large (1.4e-5 here, 0.129 in
+#700), carried by horizon data off the projection by 6.1e-20. Under switch 0 that is harmless, and the control
+carries it too (2.6e-6). #700's lam = 1/2 signature (ratio 0.5000, |F| halving) appears here for a different reason:
+the lam 1/2 trial is accepted because its own Jacobian, like the iterate's, does not see the harmonic-13 error.
+
+## Measured and inferred
+
+Measured, on the pre-#523 build unless marked:
+
+- the rebuild against #742's logs and predictions;
+- the residual along the step (arms U, E, P) at both iterates;
+- both trial tests at lam 1 and 1/2, the own corrections split, and the weak directions there;
+- the weak directions at L's D 117 and M's D 117.5 and 118 states;
+- the p1 harmonic errors of the prediction, iterate and trial against a root of the same plan;
+- the refused step taken, converging;
+- the same attempt on main's build, not crawling.
+
+Inferred, not measured:
+
+- that W is the harmonic-13 error in #742's other attempts (measured only in the crawl and the control);
+- why the first step leaves 81 times more harmonic-13 error at a = 1 than at a = 1/2. The prediction's own k = 13
+  error is only 2.1 times larger, 1.91e-7 against 9.07e-8;
+- whether N's crawl (`--od_accept natural`, lam 1/128 at step 0, then lam 1/2 without progress) is the same pair seen
+  through the start's Jacobian. At this iterate the natural test accepts lam 1 (ratio 5.85e-5), but N never reached it.
+
+## Recommended tasks
+
+1. **The own test's full-step drop.**
+   - What: give newton_od's own test the full_drop rule that #709 gave the natural test: a lam 1 trial is also
+     accepted when its max|F| is at most f times the iterate's. A/B at this attempt on the pre-#523 build
+     (`crawl_probe.py fixrun ... --accept own` from `R/crawl_iter_D118.0000_s1.npz` with the new option, f = 1e-6), and
+     `octo_corrector.py planted` and `wall` with it.
+   - Why: the refused trial lowered max|F| by 1e13, and taking it converged in three steps.
+   - Acceptance (can fail): the A/B converges to at most 1e-60 within 6 steps, the same run without the option
+     crawls (lam 1/2 at step 1), and planted and wall pass with their controls still failing.
+   - Depends on #752.
+2. **N's crawl, probed.**
+   - What: extend `crawl_probe.py anm` to the natural test (record PinnedO.newton_o as well), rebuild N's attempt
+     (#742's flags plus `--od_accept natural`) to Newton step 1, and run `weak` and probe's theta there.
+   - Why: N stalled at max|F| 1e-19 with ratios 0.96 to 1.006 at lam 1. Whether that is the same k = 13 pair, seen
+     through the start's Jacobian, is unknown.
+   - Acceptance (can fail): either the simplified correction at lam 1 has share above 0.9 in the four weakest
+     directions, or it does not, and then its largest unknown groups are named.
+   - Depends on #752.
+3. **The first step's harmonic-13 remainder against a.**
+   - What: on main's build, from the D 117 state polished there, run `anm --stop 1` at a = 1, 1/2 and 1/4, with
+     `junk_err.py` (extended to take its roots as arguments) against roots of the same plans, from `fixrun`.
+   - Why: on the old build the first step left 2.92e-15 at a = 1 and 3.6e-17 at a = 1/2, and that remainder against
+     the iterate's |dz| decides the own test. On main's build W / Y was 0.395 at a = 1.
+   - Acceptance (can fail): W measured equals the harmonic-13 error at each a, to 10%, or it does not.
+   - Depends on #752 and #774.
