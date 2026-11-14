@@ -13,3 +13,8 @@ Code: `solver/matter/complex_imag_dd.py` and `solver/matter/ddnp.py` of choptuik
 - `check_D30.jsonl`, `check2_D30.jsonl`, `check_D60.jsonl`: `complex_imag_dd.py check` (tol 1e-20, K 32, nsub 5).
 - `tolscan_D60_pilot.jsonl`: ln det M at lambda = 1.3 + 0.4i for tolerances 1e-12 ... 1e-24 (nsub 1).
 - `pilot_B0_D30.log`, `counts.jsonl`, `evals_*.jsonl`: the pilot count (B0 at D = 30.07, tol 1e-14).
+- `check_D45.jsonl` (`check`, tol 1e-14, nsub 5, with the conjugation test).
+- Pilot result: B0 at D = 30.07 (`count ... B0 --tol=1e-14`, code 8d3621b4): winding of g 1.0000000000000464, largest
+  step 0.58 rad, 39 determinants, 1007 s (26 s each), no refinement-limit hit (`counts.jsonl`,
+  `evals_D30.0688_tol1e-14.jsonl`, `pilot_B0_D30.log`).
+- The full recount is `solver/matter/run_i375.sh` (branch wip/xf-checks, 38c2fbee), handed to a runner.
