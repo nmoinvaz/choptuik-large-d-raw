@@ -1,0 +1,46 @@
+== pm_092 2026-11-14 17:24:49 UTC
+/home/nathan/scratch790/start_092.npz: D 252.25, L 769, octo-double LU 360 s, pivots 1.1e-37..2.8e+06
+  ||J v_1|| 5.56827e-40 (subspace sigma_1 5.568270e-40, ratio 1.000000), J v_1 at 140 digits (353 s)
+  u_1^T r = -4.13704e-40; -sigma_1 v_1^T dz_pinned = -4.137041e-40 (v_1^T dz_pinned +7.4297e-01, v_1 signs agree +1.000000): relative 6.51e-15 -> ok
+  planted r + beta u_1 (beta 1e-30): total change/beta - 1 = 5.25e-141, largest block 2.6e-141 -> ok
+  block              max|r|       u_1^T r (signed)   sum |u_i r_i|   share of that sum   |u_1|^2 in the block
+  centre>n0         6.465e-99        -4.402e-138      1.55e-136       0.0000         0.0000
+  n0>n1             4.963e-99          7.34e-138     3.488e-137       0.0000         0.0000
+  n1>n2             3.060e-99        -1.812e-137     2.634e-137       0.0000         0.0000
+  n2>n3             4.174e-99        -3.716e-132     1.875e-130       0.0000         0.0000
+  n3>n4             6.776e-37         -4.137e-40      2.277e-36       1.0000         0.5000
+  horizon>n4        5.099e-99         7.791e-133      3.558e-99       0.0000         0.5000
+  phase             5.732e-99         1.679e-138     1.679e-138       0.0000         0.0000
+  blocks carrying 99% of sum |u_i r_i| (2.277e-36): n3>n4
+  rows of n3>n4 with |r| > 1e-60: 128 of 128; their u_1 r sums to the block's u_1^T r -4.13704e-40 to 0.0e+00 relative
+    field p: 32 rows, max|r| 6.776e-37, share -1877.141131; r's largest harmonics k 1: 6.88e-37, k 3: 8.97e-38, k 5: 6.15e-39
+    field m: 32 rows, max|r| 6.734e-37, share +1877.739260; r's largest harmonics k 1: 6.84e-37, k 3: 8.92e-38, k 5: 6.04e-39
+    field a: 32 rows, max|r| 6.241e-40, share +0.102892; r's largest harmonics k 2: 3.40e-40, k 0: 2.88e-40, k 4: 1.40e-41
+    field c: 32 rows, max|r| 3.340e-37, share +0.298978; r's largest harmonics k 2: 2.03e-37, k 0: 1.27e-37, k 4: 3.60e-38
+    row   field  j    r              u_1            share of the block's u_1^T r
+      519     p    7  -6.774186e-37  -1.629297e-01  -266.788716
+      551     m    7  +6.734436e-37  -1.628245e-01  +265.052079
+      552     m    8  +6.701642e-37  -1.629967e-01  +264.040206
+      520     p    8  -6.722387e-37  -1.605400e-01  -260.865608
+      518     p    6  -6.775927e-37  -1.562874e-01  -255.978163
+      550     m    6  +6.726822e-37  -1.536701e-01  +249.867408
+      553     m    9  +6.584711e-37  -1.541296e-01  +245.319917
+      521     p    9  -6.567764e-37  -1.492697e-01  -236.973222
+      517     p    5  -6.742210e-37  -1.411915e-01  -230.102348
+      549     m    5  +6.682040e-37  -1.363155e-01  +220.173167
+      554     m   10  +6.317129e-37  -1.368968e-01  +209.036984
+      522     p   10  -6.245479e-37  -1.299874e-01  -196.235231
+      516     p    4  -6.656372e-37  -1.189000e-01  -191.306504
+      548     m    4  +6.578516e-37  -1.122000e-01  +178.414834
+      555     m   11  +5.851479e-37  -1.126456e-01  +159.327232
+      523     p   11  -5.721082e-37  -1.042049e-01  -144.104165
+      515     p    3  -6.499517e-37  -9.124298e-02  -143.347694
+      547     m    3  +6.401364e-37  -8.329715e-02  +128.888115
+      556     m   12  +5.193767e-37  -8.328248e-02  +104.555349
+      514     p    2  -6.276067e-37  -6.046546e-02  -91.728665
+  p and m split: share of r_p + r_m -14.383763, of r_p - r_m +14.981892, of the a and c rows +0.401871; their sum - 1 = 4.7e-139 -> ok
+    r_p + r_m's largest harmonics k 1: 1.98e-38, k 3: 7.12e-39, k 9: 1.41e-39; r_p - r_m's k 1: 1.37e-36, k 3: 1.79e-37, k 5: 1.22e-38
+  planted r_p = r_m at j 7: share of the sum part 1.000000, of the difference part 0.000000 -> ok
+  planted row 552 alone: listed [552], share 1.000000 -> ok; the shares' sum -> ok
+  pinned step: max 1.030e-01, norm 9.496e-01, Delta -3.416e-04; V^T dz +7.43e-01 +6.41e-02 -5.88e-01 +1.16e-02; sigma 5.568e-40 1.383e-39 1.772e-39 2.350e-38 (converged 1e-16 2e-08 5e-08 0e+00)
+check: pass
