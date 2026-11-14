@@ -122,3 +122,14 @@ stopped after one step at the start's max\|F\| 3.39e-12. With the quad-double of
 against the true step's 2.74e-11, and each trial's own correction is far larger still (nan at lam 1, then 3.96e+66
 falling to 8.98e+41 at lam 1/256). ElimO's projection failed at all nine trials (`failed` 9, u0q 2). The rerun's
 first three trials equal the killed run's to every printed digit. It took 5254 s.
+
+### s0_D200_m10, C1's `--mutate 10` control (`s0_D200_m10.log`, `.json`, `.npz`; 00:13 to 03:02 UTC, exit 1)
+
+**Fires: exit 1, as required, because the corrector does not converge.** With the state read in its quad-double part
+(OD_MUT_STATE_QD), steps 0 to 2 equal s0_D200's (3.39e-12 → 1.15e-15 → 2.15e-22 → 6.22e-34). From step 3 the
+corrector's own residual stays at the quad-double level, 8.4e-35 to 1.24e-34, while |dz| falls from 5e-27 to 6e-59.
+Step 7's trials, lam 1/16 to 1/256, are all refused, and the run stops NOT converged after 8 steps. The octo-double
+residual of its last point, evaluated apart from the mutated path, is 2.15e-65, and its Delta lies 1.71e-39 from
+REF200. So the control fails only through the convergence flag: the mutation hides the octo-double parts from the
+corrector, which is what it is meant to detect. Its projections were u0q 23, ladder 2, failed 0, skipped 0, in
+10145 s. (Recorded by the coordinator session at 03:05 UTC, from the log.)
