@@ -27,3 +27,22 @@ Box 0.05 < Re lambda < 5, |Im lambda| < 9, full boundary, initial steps 0.25, ph
   1e-13, N 160): winding 4.000000000000003, largest step 0.4985 rad, 464 determinants, no bisection limit hit;
   D(conj lam) = conj D(lam) to 1.1e-9 relative over the 231 conjugate pairs of the contour; 1817 s.
 - `count_A_plant.log`: the same with a pair planted at 3.1 +- 5i: winding 5.999999999999997 (20 new determinants).
+- `count_B.log`, `evals_B.jsonl`: setting B (r0 0.11, r1 0.25, alpha 0.3 pi, rtol 1e-13, N 160): winding
+  3.9999999999999956, largest step 0.4997 rad, 476 determinants, no bisection limit hit; D(conj lam) = conj D(lam) to
+  7.7e-9 relative over 237 pairs; 2021 s.
+- `count_B_plant.log`: the same with the pair at 3.1 +- 5i: winding 6.0000000000000036 (20 new determinants).
+
+## Result
+
+Four zeros in the box at both settings (lambda = 1, lambda = 2, the lambda_osc pair), six with the planted pair. The
+code is css_inf_jump.py's D unchanged; only the counting (css_inf_count.py) is new. lambda = i omega, 0.05 outside the
+left edge, is avoided by the contour and settled separately as a simple zero (iomega2.log).
+
+## Recommended task (#781)
+
+1. **The strip -0.05 < Re lambda < 0.05 at D = infinity.** What: `css_inf_count.py` with the box -0.05 < Re lambda <
+   0.05, |Im lambda| < 9 (a `--box` option), at settings A and B. Why: neither method's count covers 0 <= Re lambda <=
+   0.05 (CSS_STABILITY.md 1.4: "Not covered ... 0 < Re lambda < 0.05"), and it holds the exact zeros 0 and +-i omega,
+   with the integrator's stall at i omega to avoid (the contour stays 0.05 from them). Acceptance (can fail): the
+   winding is 3 (lambda = 0, +-i omega) at both settings, a planted pair at 0.02 +- 6i adds 2, every phase step at most
+   0.5 rad. Depends on: #781. Estimate: about 1 h on one core.
