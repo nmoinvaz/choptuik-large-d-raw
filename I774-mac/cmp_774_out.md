@@ -31,13 +31,21 @@
 
 E_cont3 - E_X2c (one plan, both on E): +7.6439e-98; stored cont3 - stored X2c: -1.1101e-46
 
+## Plan dependence at D 99.875: X2 on its own plan against X2c (cont3's plan)
+
+  reading: stored X2 - stored X2c = -1.6580e-25 (#727: -1.6580e-25) ok
+  R_X2: 1 Newton steps, start max|F| 8.59e-55, final 1.11e-77, converged True; Delta 1.745150028164499252944352727836252300100; minus stored X2 +5.5589e-45
+  E_X2: 3 Newton steps, start max|F| 2.20e-34, final 4.45e-69, converged True; Delta 1.745150028164499252959346725289547222578; minus stored X2 +1.4994e-20
+  plan dependence X2 - X2c: rounded -1.658041e-25, exact -1.658042e-25, exact - rounded -1.245e-31
+  projector shift of X2 on its own plan (E_X2 - R_X2) +1.4994e-20 against X2c's +1.4994e-20
+
 ## Delta_full - Delta_held at D 113, 117, 120
 
 | D | #742 (stored full - stored held) | rounded, held polished (stored full - H_R) | exact (E - H_E) | exact - #742 | held: H_E - H_R (projector) | held: H_R - stored (its own convergence) |
 |---|---|---|---|---|---|---|
-| 113 | +4.365506e-13 | not run | not run | not run | not run | not run |
-| 117 | +4.945575e-13 | not run | not run | not run | not run | not run |
-| 120 | +5.322591e-13 | not run | not run | not run | not run | not run |
+| 113 | +4.365506e-13 | +4.365506e-13 | +4.365505e-13 | -9.600e-20 | -3.6248e-27 | -1.0744e-31 |
+| 117 | +4.945575e-13 | +4.945575e-13 | +4.945575e-13 | +1.567e-20 | -5.8163e-27 | -3.3265e-32 |
+| 120 | +5.322591e-13 | +5.322591e-13 | +5.322592e-13 | +7.641e-20 | -2.4780e-27 | -2.9202e-34 |
   #742's value at D 113 reproduced from the stored states: +4.3655e-13 (#742 +4.3655e-13) ok
   #742's value at D 117 reproduced from the stored states: +4.9456e-13 (#742 +4.9456e-13) ok
   #742's value at D 120 reproduced from the stored states: +5.3226e-13 (#742 +5.3226e-13) ok
