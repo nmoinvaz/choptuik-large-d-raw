@@ -25,4 +25,22 @@ Stop conditions: an import error, a Traceback, or either check line missing. Eac
 
 | file | what |
 |---|---|
+| run_675.sh | the two commands, in order, with their exits |
+| split_start.log, split_start.json | the run in the frame from the LU at z0 |
+| split_after.log, split_after.json | the control, in the frame newton_od leaves |
 | exits_675.txt | start and exit of each run |
+
+## Results
+
+Both runs exited 0 (split_start 08:26:57 to 09:43:18 UTC on 2026-11-14, 4581 s; split_after 09:43:18 to 10:51:25 UTC, 4087 s)
+and have no error line. The two logs agree line for line with each other and with #499's
+(`I499-mac/wcorr_5146_a03125_weak_split.log`) except for the timings in seconds and the two frame-dependent numbers of the check line:
+
+| | #499 (after newton_od) | split_after | split_start |
+|---|---|---|---|
+| weak residual / \|B a\| at z1 | 0.517 | 0.517 | 0.00409 |
+| weak residual / \|B a\| at z1 + dz | 0.384 | 0.384 | 0.147 |
+
+The criterion on the control (split_after gives 0.517 and 0.384) is met. For split_start, 0.00409 at z1 is #528's figure
+(`notes/REDUCED_CUBIC.md`, "0.00444 to 0.00409 of |Ba| at REF") and meets issue #675's "0.0041 at REF to 1e-2", and the task
+message's "about 0.0044 at z1" to 1e-2. The task message's "0.0041 at z1 + dz" is not met, 0.147 is 0.143 away.
