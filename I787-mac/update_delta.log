@@ -1,0 +1,48 @@
+exports:
+  ok   export_qd.py /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/ececf14c-b4b6-41d2-ad20-2caade87ad18/scratchpad/raw781push: exit 0;   D  73.0000 Delta 1.7812396819309262 +3.994075e-18 -1.591e-34  solutions 2 spread 8.4e-28
+  ok   export_lowD.py --raw /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/ececf14c-b4b6-41d2-ad20-2caade87ad18/scratchpad/raw781push: exit 0; wrote /Users/nathan/Source/choptuik-large-d-787/hp/data/delta_dd_lowD.csv: 163 rows, 60 values of D from 3.043
+  ok   export_dd.py --raw /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/ececf14c-b4b6-41d2-ad20-2caade87ad18/scratchpad/raw781push: exit 0; 1259 points, D = 3.0438 .. 67.7671 -> /Users/nathan/Source/choptuik-large-d-787/hp/data/delta_dd.csv; of them 
+  ok   export_delta_all.py /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/ececf14c-b4b6-41d2-ad20-2caade87ad18/scratchpad/raw781push: exit 0;   chain_fit D 74.0 to 259.7435980253813
+  ok   track_c.py csv: exit 0;   D 400.0: Delta 1.669658064111, E 2.33e-10 (series fits)
+  ok   export_delta_all.py /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/ececf14c-b4b6-41d2-ad20-2caade87ad18/scratchpad/raw781push: exit 0;   series  D 250.0 to 400.0
+checks of the master table:
+  ok   export_delta_all.py /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/ececf14c-b4b6-41d2-ad20-2caade87ad18/scratchpad/raw781push --verify: exit 0; verify: 2450 of 2450 rows equal their sources, 202 rows of delta_fits.csv rebuilt
+  ok   export_delta_all.py /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/ececf14c-b4b6-41d2-ad20-2caade87ad18/scratchpad/raw781push --verify --mutate=dd: exit 1; verify: 2449 of 2450 rows equal their sources, 202 rows of delta_fits.csv rebuilt
+  ok   export_delta_all.py /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/ececf14c-b4b6-41d2-ad20-2caade87ad18/scratchpad/raw781push --verify --mutate=qd: exit 1; verify: 2448 of 2450 rows equal their sources, 202 rows of delta_fits.csv rebuilt
+  ok   export_delta_all.py /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/ececf14c-b4b6-41d2-ad20-2caade87ad18/scratchpad/raw781push --verify --mutate=pinned: exit 1; verify: 2449 of 2450 rows equal their sources, 202 rows of delta_fits.csv rebuilt
+  ok   export_delta_all.py /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/ececf14c-b4b6-41d2-ad20-2caade87ad18/scratchpad/raw781push --verify --mutate=pinned_qd: exit 1; verify: 2449 of 2450 rows equal their sources, 202 rows of delta_fits.csv rebuilt
+  ok   export_delta_all.py /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/ececf14c-b4b6-41d2-ad20-2caade87ad18/scratchpad/raw781push --verify --mutate=gap: exit 1; verify: 2449 of 2450 rows equal their sources, 202 rows of delta_fits.csv rebuilt
+  ok   export_delta_all.py /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/ececf14c-b4b6-41d2-ad20-2caade87ad18/scratchpad/raw781push --verify --mutate=neighbours: exit 1; verify: 2449 of 2450 rows equal their sources, 202 rows of delta_fits.csv rebuilt
+  ok   export_delta_all.py /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/ececf14c-b4b6-41d2-ad20-2caade87ad18/scratchpad/raw781push --verify --mutate=cross: exit 1; verify: 2449 of 2450 rows equal their sources, 202 rows of delta_fits.csv rebuilt
+  ok   export_delta_all.py /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/ececf14c-b4b6-41d2-ad20-2caade87ad18/scratchpad/raw781push --verify --mutate=chain_fit: exit 1; verify: 2448 of 2450 rows equal their sources, 202 rows of delta_fits.csv rebuilt
+  skip export_delta_all.py /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/ececf14c-b4b6-41d2-ad20-2caade87ad18/scratchpad/raw781push --verify --mutate=chain: exit 2; no chain rows, so nothing to mutate
+  ok   export_delta_all.py /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/ececf14c-b4b6-41d2-ad20-2caade87ad18/scratchpad/raw781push --verify --mutate=held: exit 1; verify: 2449 of 2450 rows equal their sources, 202 rows of delta_fits.csv rebuilt
+  ok   export_delta_all.py /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/ececf14c-b4b6-41d2-ad20-2caade87ad18/scratchpad/raw781push --verify --mutate=frontier: exit 1; verify: 2450 of 2451 rows equal their sources, 202 rows of delta_fits.csv rebuilt
+  skip export_delta_all.py /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/ececf14c-b4b6-41d2-ad20-2caade87ad18/scratchpad/raw781push --verify --mutate=projector: exit 2; no projector rows, so nothing to mutate
+  ok   export_delta_all.py /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/ececf14c-b4b6-41d2-ad20-2caade87ad18/scratchpad/raw781push --verify --mutate=t85: exit 1; verify: 2449 of 2450 rows equal their sources, 202 rows of delta_fits.csv rebuilt
+  ok   export_delta_all.py /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/ececf14c-b4b6-41d2-ad20-2caade87ad18/scratchpad/raw781push --verify --mutate=fits: exit 1; verify: 2448 of 2450 rows equal their sources, 202 rows of delta_fits.csv rebuilt
+  ok   export_delta_all.py /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/ececf14c-b4b6-41d2-ad20-2caade87ad18/scratchpad/raw781push --verify --mutate=fits_table: exit 1; verify: 2449 of 2450 rows equal their sources, 202 rows of delta_fits.csv rebuilt
+  ok   export_delta_all.py /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/ececf14c-b4b6-41d2-ad20-2caade87ad18/scratchpad/raw781push --verify --mutate=half: exit 1; verify: 2448 of 2450 rows equal their sources, 202 rows of delta_fits.csv rebuilt
+  ok   export_delta_all.py /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/ececf14c-b4b6-41d2-ad20-2caade87ad18/scratchpad/raw781push --verify --mutate=qd_neighbours: exit 1; verify: 2449 of 2450 rows equal their sources, 202 rows of delta_fits.csv rebuilt
+  ok   export_delta_all.py /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/ececf14c-b4b6-41d2-ad20-2caade87ad18/scratchpad/raw781push --verify --mutate=dm_neighbours: exit 1; verify: 2449 of 2450 rows equal their sources, 202 rows of delta_fits.csv rebuilt
+  skip export_delta_all.py /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/ececf14c-b4b6-41d2-ad20-2caade87ad18/scratchpad/raw781push --verify --mutate=one_sided: exit 2; no one_sided rows, so nothing to mutate
+  ok   export_delta_all.py /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/ececf14c-b4b6-41d2-ad20-2caade87ad18/scratchpad/raw781push --verify --mutate=series: exit 1; verify: 2449 of 2450 rows equal their sources, 202 rows of delta_fits.csv rebuilt
+  ok   export_delta_all.py /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/ececf14c-b4b6-41d2-ad20-2caade87ad18/scratchpad/raw781push --verify --mutate=weak_pivot: exit 1; verify: 2342 of 2450 rows equal their sources, 202 rows of delta_fits.csv rebuilt
+  ok   export_delta_all.py /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/ececf14c-b4b6-41d2-ad20-2caade87ad18/scratchpad/raw781push --verify: exit 0; verify: 2450 of 2450 rows equal their sources, 202 rows of delta_fits.csv rebuilt
+  ok   export_delta_all.py /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/ececf14c-b4b6-41d2-ad20-2caade87ad18/scratchpad/raw781push --interp_check: exit 0; verify: 16 of 16 interpolated values within 1e-14 of their states
+  ok   export_delta_all.py /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/ececf14c-b4b6-41d2-ad20-2caade87ad18/scratchpad/raw781push --interp_check --mutate=interp: exit 1; verify: 0 of 16 interpolated values within 1e-14 of their states
+  ok   export_delta_all.py /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/ececf14c-b4b6-41d2-ad20-2caade87ad18/scratchpad/raw781push --lam_screen: exit 0; verify: lam screen, 286 of 286 backbone states within 1e-11 of their neighbours' polynomial or, 87 past D 250.
+  ok   export_delta_all.py /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/ececf14c-b4b6-41d2-ad20-2caade87ad18/scratchpad/raw781push --lam_screen --mutate=lam: exit 1; verify: lam screen, 280 of 286 backbone states within 1e-11 of their neighbours' polynomial or, 87 past D 250.
+  ok   export_delta_all.py /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/ececf14c-b4b6-41d2-ad20-2caade87ad18/scratchpad/raw781push --lam_screen --mutate=lam_pred: exit 1; verify: lam screen, 285 of 286 backbone states within 1e-11 of their neighbours' polynomial or, 87 past D 250.
+  ok   compare_published.py: exit 0;   EEG2026: 237 values, 237 compared, 106 within the stated uncertainty; largest |diff| 2.01e-03 at D 22.5
+  ok   compare_gamma_published.py: exit 0;   PVG2022: 6 values, 5 within their uncertainty; largest |diff| 1.09e-02 (Delta_half at D 5.0, q = 0; period o
+tables:
+  delta_qd.csv: 7 -> 7 rows, 0 new, 0 changed, 0 gone
+  delta_dd_lowD.csv: 61 -> 61 rows, 0 new, 0 changed, 0 gone
+  delta_dd.csv: 1259 -> 1259 rows, 0 new, 0 changed, 0 gone
+  delta_all.csv: 2339 -> 2450 rows, 111 new, 22 changed, 0 gone; new D 246.2616177558899..400.0
+  delta_fits.csv: 169 -> 202 rows, 33 new, 1 changed, 0 gone; new D 232.13125..251.30379519462585
+  delta_series.csv: 0 -> 111 rows, 111 new, 0 changed, 0 gone; new D 246.2616177558899..400.0
+done
+nice -n 10 /Users/nathan/venv-314/bin/python update_delta.py $S/raw781push  54.04s user 5.24s system 85% cpu 1:09.72 total
+exit 0

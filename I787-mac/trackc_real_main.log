@@ -1,0 +1,14 @@
+real data: 1354 points, D 8.500 .. 245.637; 124 of 135 fits accepted (per D_min 10: 7, 20: 12, 30: 15, 45: 15, 60: 15, 80: 15, 100: 15, 130: 15, 160: 15); D0 = 10, 19 fits used
+  used: 1/(D-2) K14 D20 (0.50), 1/(D-2) K16 D20 (0.25), 1/(D-2) K18 D10 (2.68), 1/(D-2) K18 D20 (0.25), 1/(D-2) K20 D10 (0.29), 1/(D-2) K20 D20 (0.24), 1/(D-1) K14 D20 (0.27), 1/(D-1) K16 D20 (0.25), 1/(D-1) K18 D10 (0.36), 1/(D-1) K18 D20 (0.25), 1/(D-1) K20 D10 (0.29), 1/(D-1) K20 D20 (0.24), 1/D K14 D20 (0.25), 1/D K16 D10 (1.44), 1/D K16 D20 (0.25), 1/D K18 D10 (0.29), 1/D K18 D20 (0.24), 1/D K20 D10 (0.29), 1/D K20 D20 (0.24)
+  D 245.64 : Delta = 1.68567635088429794  +- 7.75e-11   (h 7.75e-11, s 7.99e-12, 19 fits)
+  D 250    : Delta = 1.68495520594934969  +- 8.10e-11   (h 8.10e-11, s 8.96e-12, 19 fits)
+  D 255    : Delta = 1.68415825932501991  +- 8.51e-11   (h 8.51e-11, s 1.02e-11, 19 fits)
+  D 259.5  : Delta = 1.68346700863418280  +- 8.88e-11   (h 8.88e-11, s 1.13e-11, 19 fits)
+  D 300    : Delta = 1.67817101541337355  +- 1.27e-10   (h 1.27e-10, s 1.47e-11, 19 fits)
+  D 400    : Delta = 1.66965806411044807  +- 2.40e-10   (h 2.40e-10, s 1.18e-11, 19 fits)
+  D inf    : Delta = 1.64389374530131534  +- 2.03e-09   (h 2.03e-09, s 4.89e-11, 19 fits)
+  slope Delta_1 = dDelta/deps at eps = 0: median 10.375285, range 10.371094 .. 10.375305 (D = infinity, M = 5: 10.402; fitted 10.3753)
+  central fit (1/(D-2) K18 D20) on D 150-245: 114 points, |res|/sigma max 2.23, rms 0.37; |res| max 9.38e-11
+  #313: chain_fit at D 215.00 minus the low-D series (1/D, 1/n; 16, 18, 20): -1.06e-10, +4.00e-12, +8.44e-11, -1.68e-09, -2.06e-10, +1.44e-11; spread 1.76e-09; the track C series minus chain_fit there: +2.06e-13
+nice -n 10 /Users/nathan/venv-314/bin/python track_c.py real   27.77s user 0.10s system 99% cpu 28.063 total
+exit 0
