@@ -74,7 +74,7 @@ def main():
         print("control (a): P/base_pin13_D113.0000.npz does not exist yet")
     print("\n### per attempt\n")
     print("| run | step | from D | a | to D | corrector steps | seconds | max abs F at the end | converged (at most 1e-60) | accepted |\n|---|---|---|---|---|---|---|---|---|---|")
-    for name in ("P", "L"):
+    for name in ("P", "L", "M"):
         lp = os.path.join(HERE, "logs", f"{name}.log")
         ends = []
         if os.path.exists(lp):
@@ -91,7 +91,7 @@ def main():
     prev = None
     for D in range(113, 121):
         p = B113 if D == 113 else None
-        for run in ("P", "L"):
+        for run in ("P", "L", "M"):
             q = os.path.join(HERE, run, f"anm_pin13_D{D}.0000.npz")
             if os.path.exists(q):
                 p = q

@@ -27,3 +27,19 @@ S0 to S2 are polished; the folders `S3/` and `S4/` hold no polished state yet (c
 **Post-hoc, adopted after seeing the sign change and so not the pre-registered fit**: the two-term model Delta - root = a s + b s^2. Fitted to S1 and S2 alone it gives a = -1.6748e-23, b = 6.4617e-20, with the sign change at s = 2.592e-4, and predicts, **recorded here before S3 and S4 finish**: S3 (1e-3) **+4.7869e-26**, S4 (3e-3) **+5.3131e-25** (and 1e-2: +6.2942e-24, to be replaced by the fit on S1 to S4). `fit_741.py --fit` now writes both verdicts to `fit_741_out.txt` before S5 runs: the pre-registered power law (NOT MET when the signs differ), and the post-hoc two-term fit on S1 to S4 with its out-of-sample check of S3 and S4 and its prediction for S5 (marked post hoc); `--check5` reports S5 against each prediction present and refuses unless the fit file is older than S5's state. `fit_741.py --selftest` plants a two-term law with a sign change (recovered, power law flagged) and a 30 % deviation (shows in the relative residuals).
 
 If S5 (1e-2) is run after that, it tests the post-hoc model on one more point, with its stated 10 % bar; it does not rescue acceptance (b).
+
+## Results of S3, S4 and the fits (2026-11-14 04:07 UTC), before S5 finished
+
+All four shifted polishes converged (acceptance (a)): octo-double max|F| 1.8e-67 (S1), 7.0e-68 (S2), 7.5e-66 (S3), 9.8e-68 (S4), each in 2 Newton steps (3 evaluations), 761 to 816 s at 2 threads. Delta - root, the root being X2c's Delta:
+
+| run | node shift of `segs[3][1]` | Delta - root | post-hoc model from S1, S2, recorded before S3 and S4 finished |
+|---|---|---|---|
+| S0 | 0 | -1.110073e-46 | (control (c) met, trivially) |
+| S1 | 1e-4 | -1.028638e-27 | |
+| S2 | 3e-4 | +7.910843e-28 | |
+| S3 | 1e-3 | +2.580394e-27 | +4.7869e-26, **18.6 times too large** |
+| S4 | 3e-3 | +8.524860e-28 | +5.3131e-25, **623 times too large** |
+
+**Acceptance (b) is not met, and neither model holds.** (1) The pre-registered power law: the signs differ (S1 negative, S2 to S4 positive), so Delta - root is not a power law of the node shift (`fit_741_out.txt`). (2) The post-hoc two-term model, adopted after the sign change: its prediction from S1 and S2 failed out of sample by 18.6 and 623, and its refit to S1 to S4 (a = 2.5631e-24, b = -7.5859e-22) has relative residuals -1.24, -0.11, -0.30 and +0.01, so it is no model either. Its prediction for S5, written to `fit_741_out.txt` at 04:05:40 UTC before S5 started (04:05:58 UTC), is -5.022819e-26, which is a statement of the refit, not a claim that it is right.
+
+What the numbers do say: over a factor 30 in the shift (1e-4 to 3e-3) the Delta shift of this one node stays within about +-3e-27 and does not grow with the shift (1.03e-27, 7.9e-28, 2.58e-27, 8.5e-28 in absolute value). So the plan dependence of Delta through this node, at these shifts, is at most a few 1e-27, far below the 3.0e-26 and 1.7e-25 offsets of #727's A1 and X2 plans, which moved several nodes by 5e-4 to 9.5e-4; the offsets are not carried by this node. Whether other nodes carry them is not measured here. No scaling law is claimed.
