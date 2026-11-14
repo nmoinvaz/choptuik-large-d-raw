@@ -111,7 +111,7 @@ Every number below is from `cmp_774_out.md` (`cmp_774.py`, all checks passed) an
 
 "Newton steps" counts the steps taken, without the last evaluation. Every polish converged (the corrector's own
 "converged", final max|F| at most 1e-60). The largest job took 2804 s of CPU (E_120), and the 14 jobs 23610 s (6.6 CPU
-hours). Each start max|F| on build E is 2.0e-34 to 2.4e-34, all in the horizon block's p rows as #752 found at D 117.
+hours). Each start max|F| on build E is 2.0e-34 to 2.4e-34. #752 found it all in the horizon block's p rows at D 117; the blocks are not read here for the other states.
 
 ### The checks
 
