@@ -11,4 +11,5 @@ Code: `solver/matter/css_inner_pert.py` and `css_inner_pert_eqs.py` on branch wi
 | `mut_k0.jsonl` | det M and its singular values at lambda = 1, 2, 1.5 with and without the mutations nometric and hamsign, and the secant from 2.1 under each mutation |
 | `counts_k0.jsonl` | winding numbers of det M in the boxes A, B, C, S (matter/COMPLEX_CRITICAL.md section 2's boxes with the D = infinity omega), with a planted zero and a mutation as controls |
 | `queue3.sh`, `queue3.log`, `conj_k0.jsonl` | det M at lambda and conj(lambda) (conjugation symmetry) and the secant from conj(lambda_osc), settings A, B; run at the end of I377-mac's queue5 |
-| `inner_check.jsonl` | `css_inner_pert.py check` at kappa = 0 and 0.5 (run in I377-mac's queue5) |
+| `inner_check.jsonl` | first `css_inner_pert.py check` at kappa = 0 (PASS) and 0.5 (FAIL on the +-i omega modes: the check compared an exact coefficient 0 against the absolute scale 1, while the recursion's coefficients there are rounding of size 1e-30 \|a_k\| with \|a_k\| up to 1e90; the series agree, see v2) |
+| `inner_check_v2.jsonl` | the check rerun with errors relative to max(\|exact\|, \|a_k\|): PASS at kappa = 0 and 0.5 |
