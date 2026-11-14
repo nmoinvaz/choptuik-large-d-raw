@@ -1,0 +1,51 @@
+== 2026-11-14 15:52:30 /Users/nathan/Source/choptuik-large-d-xf-kappa/solver/matter/css_inner_pert.py check 1 --out=check_k1.jsonl
+{"kind": "check", "what": "background rhs vs css_inner.rhs", "kappa": 1.0, "maxdiff": 7.32410687763558e-15}
+{"kind": "check", "what": "series of the exact mode", "lam": [0.0, 0.0], "relerr_AB": 1.2878488469189709e-27, "err_beta_scaled": 2.6386497824283513e-27, "control_lam_plus_0p01_relerr": 5038307862.579812, "ok": true}
+{"kind": "check", "what": "series of the exact mode", "lam": [1.0, 0.0], "relerr_AB": 2.7757571717767254e-27, "err_beta_scaled": 4.32418180426123e-25, "control_lam_plus_0p01_relerr": 3481028597.2968755, "ok": true}
+{"kind": "check", "what": "series of the exact mode", "lam": [2.0, 0.0], "relerr_AB": 9.800149740134644e-28, "err_beta_scaled": 7.683699381229084e-24, "control_lam_plus_0p01_relerr": 17361194555.68113, "ok": true}
+{"kind": "check", "what": "series of the exact mode", "lam": [0.0, 3.1998939019738755], "relerr_AB": 3.5606065917657726e-27, "err_beta_scaled": 3.8271907747571155e-27, "control_lam_plus_0p01_relerr": 3644752301247.119, "ok": true}
+{"kind": "check", "what": "series of the exact mode", "lam": [0.0, -3.1998939019738755], "relerr_AB": 3.5606065917657726e-27, "err_beta_scaled": 3.8271907747571155e-27, "control_lam_plus_0p01_relerr": 3644752301247.119, "ok": true}
+{"kind": "check", "what": "smallest/largest singular value of M (1.5: control, must be large)", "lam": 0, "ratio": 4.310498648164535e-14, "ok": true}
+{"kind": "check", "what": "smallest/largest singular value of M (1.5: control, must be large)", "lam": 1, "ratio": 1.1088472894676244e-13, "ok": true}
+{"kind": "check", "what": "smallest/largest singular value of M (1.5: control, must be large)", "lam": 2, "ratio": 9.870551153793566e-13, "ok": true}
+{"kind": "check", "what": "smallest/largest singular value of M (1.5: control, must be large)", "lam": 1.5, "ratio": 0.14857959539749557, "ok": true}
+check PASS
+== exit 0
+== 2026-11-14 15:52:40 /Users/nathan/Source/choptuik-large-d-xf-770/solver/matter/css_inner_pert.py root 1 2.1 --set=A,B,C --out=roots_k1.jsonl
+{"kind": "root", "kappa": 1.0, "f0": 0.40487684382345707, "omega": 3.1998939019738755, "setting": "A", "r0": 0.1, "r1": 0.3, "start": [2.1, 0.0], "lam": [1.999999999998803, -5.035278211401327e-15], "converged": true, "im_over_omega": -1.5735766139918837e-15, "sv": [1.012620065185352, 1.776846831202318e-14], "evaluations": 9, "seconds": 6.8, "mutate": null}
+{"kind": "root", "kappa": 1.0, "f0": 0.40487684382345707, "omega": 3.1998939019738755, "setting": "B", "r0": 0.1, "r1": 0.25, "start": [2.1, 0.0], "lam": [1.999999999999179, -9.830416599286598e-15], "converged": true, "im_over_omega": -3.072107044931284e-15, "sv": [0.07782390899001763, 1.8284018353719573e-15], "evaluations": 10, "seconds": 5.7, "mutate": null}
+{"kind": "root", "kappa": 1.0, "f0": 0.40487684382345707, "omega": 3.1998939019738755, "setting": "C", "r0": 0.09, "r1": 0.3, "start": [2.1, 0.0], "lam": [1.9999999999988005, -3.7933838624051835e-15], "converged": true, "im_over_omega": -1.1854717620684891e-15, "sv": [1.012620065185361, 2.0347468423881093e-14], "evaluations": 9, "seconds": 7.8, "mutate": null}
+== exit 0
+== 2026-11-14 15:53:09 /Users/nathan/Source/choptuik-large-d-xf-770/solver/matter/css_inner_pert.py root 1 1.1 --set=A,B,C --out=roots_k1.jsonl
+{"kind": "root", "kappa": 1.0, "f0": 0.40487684382345707, "omega": 3.1998939019738755, "setting": "A", "r0": 0.1, "r1": 0.3, "start": [1.1, 0.0], "lam": [1.0000000000006737, 9.406994373436828e-14], "converged": true, "im_over_omega": 2.9397832120727695e-14, "sv": [0.4138243036028284, 9.201219262022481e-15], "evaluations": 9, "seconds": 6.8, "mutate": null}
+{"kind": "root", "kappa": 1.0, "f0": 0.40487684382345707, "omega": 3.1998939019738755, "setting": "B", "r0": 0.1, "r1": 0.25, "start": [1.1, 0.0], "lam": [0.9999999999993574, 8.051772270302126e-15], "converged": true, "im_over_omega": 2.516262262737942e-15, "sv": [0.022566796740606385, 9.161198103627664e-16], "evaluations": 9, "seconds": 6.1, "mutate": null}
+{"kind": "root", "kappa": 1.0, "f0": 0.40487684382345707, "omega": 3.1998939019738755, "setting": "C", "r0": 0.09, "r1": 0.3, "start": [1.1, 0.0], "lam": [1.000000000000351, -1.4025042245341372e-14], "converged": true, "im_over_omega": -4.382971021848547e-15, "sv": [0.41382430360270295, 5.4760139914090914e-15], "evaluations": 9, "seconds": 8.7, "mutate": null}
+== exit 0
+== 2026-11-14 15:53:41 /Users/nathan/Source/choptuik-large-d-xf-770/solver/matter/css_inner_pert.py det 1 1.3+2.1j --out=conj_k1.jsonl
+{"kind": "det", "kappa": 1.0, "lam": [1.3, 2.1], "r0": 0.1, "r1": 0.3, "det": [1.0020937479218566, 0.9459170637519608], "sv": [59.51687157606273, 0.023153506953757206], "seconds": 0.89, "mutate": null}
+== exit 0
+== 2026-11-14 15:53:45 /Users/nathan/Source/choptuik-large-d-xf-770/solver/matter/css_inner_pert.py det 1 1.3+2.1j --r0=0.1 --r1=0.25 --out=conj_k1.jsonl
+{"kind": "det", "kappa": 1.0, "lam": [1.3, 2.1], "r0": 0.1, "r1": 0.25, "det": [-0.0026339839336499055, 0.0040835923907304], "sv": [3.1769168735639286, 0.0015295906951919608], "seconds": 0.89, "mutate": null}
+== exit 0
+== 2026-11-14 15:53:50 /Users/nathan/Source/choptuik-large-d-xf-770/solver/matter/css_inner_pert.py det 1 1.3-2.1j --out=conj_k1.jsonl
+{"kind": "det", "kappa": 1.0, "lam": [1.3, -2.1], "r0": 0.1, "r1": 0.3, "det": [1.0020937479220673, -0.9459170637518988], "sv": [59.51687157606165, 0.02315350695376032], "seconds": 0.85, "mutate": null}
+== exit 0
+== 2026-11-14 15:53:54 /Users/nathan/Source/choptuik-large-d-xf-770/solver/matter/css_inner_pert.py det 1 1.3-2.1j --r0=0.1 --r1=0.25 --out=conj_k1.jsonl
+{"kind": "det", "kappa": 1.0, "lam": [1.3, -2.1], "r0": 0.1, "r1": 0.25, "det": [-0.00263398393364867, -0.0040835923907399695], "sv": [3.176916873563771, 0.0015295906951942522], "seconds": 0.86, "mutate": null}
+== exit 0
+== 2026-11-14 15:53:58 /Users/nathan/Source/choptuik-large-d-xf-770/solver/matter/css_inner_pert.py det 1 0.7+6.5j --out=conj_k1.jsonl
+{"kind": "det", "kappa": 1.0, "lam": [0.7, 6.5], "r0": 0.1, "r1": 0.3, "det": [-449740.0576067588, -54790.19067788038], "sv": [1674202.9900439288, 0.2706154585935892], "seconds": 0.97, "mutate": null}
+== exit 0
+== 2026-11-14 15:54:02 /Users/nathan/Source/choptuik-large-d-xf-770/solver/matter/css_inner_pert.py det 1 0.7+6.5j --r0=0.1 --r1=0.25 --out=conj_k1.jsonl
+{"kind": "det", "kappa": 1.0, "lam": [0.7, 6.5], "r0": 0.1, "r1": 0.25, "det": [334.38813792166206, 724.0937415426097], "sv": [57111.00346832397, 0.013965361522748068], "seconds": 0.92, "mutate": null}
+== exit 0
+== 2026-11-14 15:54:07 /Users/nathan/Source/choptuik-large-d-xf-770/solver/matter/css_inner_pert.py det 1 0.7-6.5j --out=conj_k1.jsonl
+{"kind": "det", "kappa": 1.0, "lam": [0.7, -6.5], "r0": 0.1, "r1": 0.3, "det": [-449740.0576069519, 54790.190677413746], "sv": [1674202.9900439293, 0.2706154585687386], "seconds": 0.93, "mutate": null}
+== exit 0
+== 2026-11-14 15:54:11 /Users/nathan/Source/choptuik-large-d-xf-770/solver/matter/css_inner_pert.py det 1 0.7-6.5j --r0=0.1 --r1=0.25 --out=conj_k1.jsonl
+{"kind": "det", "kappa": 1.0, "lam": [0.7, -6.5], "r0": 0.1, "r1": 0.25, "det": [334.38813792133857, -724.0937415434887], "sv": [57111.00346832381, 0.01396536152329924], "seconds": 0.89, "mutate": null}
+== exit 0
+== 2026-11-14 15:54:15 /Users/nathan/Source/choptuik-large-d-xf-770/solver/matter/css_inner_pert.py count 1 0.9 5 -2.9498939 2.9498939 --set=A --out=counts_k1.jsonl
+{"kind": "count", "kappa": 1.0, "setting": "A", "r0": 0.1, "r1": 0.3, "box": [0.9, 5.0, -2.9498939, 2.9498939], "winding": 2.0000000000000004, "largest_step": 0.4825515472671683, "intervals": 66, "evaluations": 132, "seconds": 108.1, "plant": null, "mutate": null, "omega": 3.1998939019738755}
+== exit 0
+== 2026-11-14 15:56:07 done
