@@ -1,0 +1,29 @@
+# 2026-11-14 07:54 UTC, mac, commit 648db1da, python 3.14.7 sympy 1.14.0 mpmath 1.3.0
+# command: python3 kol_merger.py --mutate=prefactor
+PASS  0a warped-product Ricci = brute force, D = 5  (residuals [0, 0, 0, 0, 0])
+PASS  0a warped-product Ricci = brute force, D = 6  (residuals [0, 0, 0, 0, 0])
+FAIL  1a the cone is Ricci flat  ({'rho-rho': 0, 'S^2': 0, 'S^(D-3)': (2 - D)/(rho**2*(D - 3))})
+     linearized components times rho^(2-s): {'rho-rho': 0, 'S^2': -(D*s + 2*D + s**2 - 2*s - 4)/2, 'S^(D-3)': (D**2*s + 2*D**2 + D*s**2 - 5*D*s - 12*D - 3*s**2 + 6*s + 16)/(D - 3)**2}
+PASS  1b rho-rho vanishes identically  (0)
+FAIL  1c both sphere components are s-independent multiples of P(s)  ({'rho-rho': 0, 'S^2': -1/2, 'S^(D-3)': (D**2*s + 2*D**2 + D*s**2 - 5*D*s - 12*D - 3*s**2 + 6*s + 16)/((D - 3)**2*(2*D + s**2 + s*(D - 2) - 4))})
+PASS  1d Eq. (2.5) solves P symbolically
+FAIL  1e at D = 5, 7, 13 all components vanish at Eq. (2.5) to 1e-20  (max 1.5)
+     areal-gauge 2x2 minors: [s*(D - 4)*(D - 3)*(D*s + 2*D + s**2 - 2*s - 4)/(2*(D - 2)), -s*(D - 4)*(D*s + 2*D + s**2 - 2*s - 4)/(D - 2), -(D - 4)**2*(2*D + s - 4)*(D*s + 2*D + s**2 - 2*s - 4)/(2*(D - 2)**2)]
+PASS  2  areal gauge: cone Ricci flat and every 2x2 minor is P(s) times a factor nonzero at Eq. (2.5)
+     leading order at D = infinity: {'rho-rho': Derivative(Nh(s_), s_)/Nh(s_), 'S^2': 1 - Derivative(A(s_), s_)/(2*Nh(s_)**2), 'S^(D-3)': 1 - 1/Nh(s_)**2}
+PASS  3a D = inf: N_s = 0, N = 1 and A_s = 2 N^2, with no explicit s, r or n  ({'rho-rho': Derivative(Nh(s_), s_)/Nh(s_), 'S^2': 1 - Derivative(A(s_), s_)/(2*Nh(s_)**2), 'S^(D-3)': 1 - 1/Nh(s_)**2})
+PASS  3b s-translation of the cone: dA/A = 1/s, i.e. eps ~ rho^-2
+PASS  3c P(s)/n -> s + 2  (s + 2)
+PASS  4  s_+ = -2 - 4/n - 16/n^2 - 80/n^3 + O(n^-4)  (-80*h**3 - 16*h**2 - 4*h - 2)
+PASS  0b O'Neill's formula = brute force at k = 2 (base N(rho,xi)^2 drho^2 + W(rho,xi)(dxi^2 + dt^2))
+PASS  5a xi-xi and t-t leading = -(1/2)[(1/rho) V_rho + (ln V)_xixi]  (-Derivative(V(rho, xi), (xi, 2))/(2*V(rho, xi)) + Derivative(V(rho, xi), xi)**2/(2*V(rho, xi)**2) - Derivative(V(rho, xi), rho)/(2*rho))
+PASS  5b rho-xi and the fibre vanish identically at leading order  (0, 0)
+PASS  5c every leading component vanishes on the cone solution  ([0, 0, 0, 0, 0])
+PASS  5c every leading component vanishes on the King-Rosenau solution  ([0, 0, 0, 0, 0])
+PASS  5d control: the profile sech^2(2 xi) does not solve it  (-6/cosh(2*xi)**2)
+     (l, exponent from the linearized flow, D -> inf of AKS s^s_+): [(0, -2, -2), (1, 0, 0), (2, 4, 4), (3, 10, 10), (4, 18, 18)]
+PASS  6  linearized flow gives s = l(l+1) - 2 = lim AKS s^s_+ for l = 0..4
+     note: ES19 App. A prints 4l^2+12l+D+6 (AKS's tensor family s^t); its l = 2 limit is 12, not 4
+
+3 check(s) failed under --mutate=prefactor
+# exit 1
