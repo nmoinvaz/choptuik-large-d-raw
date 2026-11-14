@@ -1,0 +1,14 @@
+replica T103-mac/scan45J1500/sigF_w1.0000_K45_J1500_p1280.json against T99-win2/scan45J1500/sigF_w1.0000_K45_J1500_p1280.json: 23 of 23 equal; differing n: none
+replica T103-mac/scan45J1500/sigF_w1.0000_K45_J1500_p1280.json against T99-win2/scan45J1500/sigF_w1.0000_K45_J1500_p1280.json: 22 of 23 equal; differing n: [3]
+replica T103-mac/scan45J1500/sigF_w1.0000_K45_J1500_p1280.json against T99-win2/scan45J1500/sigF_w1.0000_K45_J1500_p1280.json: 22 of 23 equal; differing n: [16]
+replica T103-mac/scan45J1500/sigF_w1.0000_K45_J1500_p1280.json against T99-win2/scan45J1500/sigF_w1.0000_K45_J1500_p1280.json: 22 of 23 equal; differing n: [22]
+reproduce #82's table: 22 of 22 posted values recomputed; mismatches: none
+compare without a plant: BAD at [('1.09', 9)]
+planted 3F x level at n=2: BAD at [('1.10', 2), ('1.09', 9)]; fires: True. planted 0.3 x level: BAD at [('1.09', 9)]; silent: True
+planted 3F x level at n=9: BAD at [('1.09', 9), ('1.10', 9)]; fires: True. planted 0.3 x level: BAD at [('1.09', 9)]; silent: True
+planted 3F x level at n=16: BAD at [('1.09', 9), ('1.10', 16)]; fires: True. planted 0.3 x level: BAD at [('1.09', 9)]; silent: True
+smooth: planted 100 x e at n=2: BAD at [('1.09', 2), ('1.10', 2), ('1.11', 2)]; fires: True
+smooth: planted 100 x e at n=9: BAD at [('1.09', 9), ('1.10', 9), ('1.11', 9)]; fires: True
+smooth: planted 100 x e at n=16: BAD at [('1.09', 16), ('1.10', 16), ('1.11', 16)]; fires: True
+smooth without a plant: BAD at none
+selftest ok
