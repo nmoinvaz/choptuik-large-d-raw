@@ -133,3 +133,13 @@ residual of its last point, evaluated apart from the mutated path, is 2.15e-65, 
 REF200. So the control fails only through the convergence flag: the mutation hides the octo-double parts from the
 corrector, which is what it is meant to detect. Its projections were u0q 23, ladder 2, failed 0, skipped 0, in
 10145 s. (Recorded by the coordinator session at 03:05 UTC, from the log.)
+
+## Amendment 2 (2026-11-14): C2 as a two-seed test at switch 0
+
+`queue2.sh` (hp at 00c3963f, the post-#523 build). `ref_D252.log`: the default switch at D 252.6, stopped by the
+coordinator at 07:45 UTC after 7 Newton steps crawling at max|F| 3.4e-12 to 3.8e-16 (#700's crawl), so it has no exit
+line. `s0_D252` (seed 1, switch 0) from 07:44 to 15:24 UTC: exit 1, not converged, max|F| 3.40e-12 to 1.68e-16 in 12
+steps. Its first two steps take lam 1/64 and 1/16 after trials of 1e16 to 1e22; step 2 takes lam 1 to 7.2e-16. From
+step 3 on, every lam = 1 trial lowers max|F| to 2e-32 to 4e-32, and the own test refuses it, its raw correction
+1.1e-05 against |dz| 7e-16, the pattern #752 found at D 118 (notes/CRAWL.md 12). Its Delta lies 2.02e-11 from the
+stored state's. queue2 stopped there, so seed 2, the C2 controls and the wall checks C3 did not run.
