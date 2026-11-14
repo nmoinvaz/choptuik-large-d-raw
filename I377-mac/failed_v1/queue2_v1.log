@@ -1,0 +1,83 @@
+== 2026-11-14 08:35:29 selftest
+selftest: planted kappa_c 0.079597424206, found 0.079597424208 (4 iterations): PASS; control (no crossing) fires
+== exit 0
+== 2026-11-14 08:35:30 css_inner_pert check 0 and 0.5
+{"kind": "check", "what": "background rhs vs css_inner.rhs", "kappa": 0.0, "maxdiff": 7.105427357601002e-15}
+{"kind": "check", "what": "series of the exact mode", "lam": [0.0, 0.0], "relerr_AB": 1.3427759190291019e-27, "err_beta_scaled": 1.5772164977703436e-29, "control_lam_plus_0p01_relerr": 7573087211.0493765, "ok": true}
+{"kind": "check", "what": "series of the exact mode", "lam": [1.0, 0.0], "relerr_AB": 2.229866813558096e-27, "err_beta_scaled": 1.3838682765541706e-26, "control_lam_plus_0p01_relerr": 6159249638.775545, "ok": true}
+{"kind": "check", "what": "series of the exact mode", "lam": [2.0, 0.0], "relerr_AB": 4.111145269528984e-27, "err_beta_scaled": 9.638563989692666e-25, "control_lam_plus_0p01_relerr": 35062034116.095566, "ok": true}
+{"kind": "check", "what": "series of the exact mode", "lam": [0.0, 3.9789695073723137], "relerr_AB": 0.0, "err_beta_scaled": 0.0, "control_lam_plus_0p01_relerr": 3.5488124293785016e+93, "ok": true}
+{"kind": "check", "what": "series of the exact mode", "lam": [0.0, -3.9789695073723137], "relerr_AB": 0.0, "err_beta_scaled": 0.0, "control_lam_plus_0p01_relerr": 3.5488124293785016e+93, "ok": true}
+{"kind": "check", "what": "smallest/largest singular value of M (1.5: control, must be large)", "lam": 0, "ratio": 1.316801015868498e-13, "ok": true}
+{"kind": "check", "what": "smallest/largest singular value of M (1.5: control, must be large)", "lam": 1, "ratio": 2.2494683512355587e-14, "ok": true}
+{"kind": "check", "what": "smallest/largest singular value of M (1.5: control, must be large)", "lam": 2, "ratio": 5.209846834737629e-13, "ok": true}
+{"kind": "check", "what": "smallest/largest singular value of M (1.5: control, must be large)", "lam": 1.5, "ratio": 0.07225526500442317, "ok": true}
+check PASS
+== exit 0
+{"kind": "check", "what": "background rhs vs css_inner.rhs", "kappa": 0.5, "maxdiff": 3.552713678800501e-15}
+{"kind": "check", "what": "series of the exact mode", "lam": [0.0, 0.0], "relerr_AB": 1.2390894236046584e-27, "err_beta_scaled": 2.9042303620142174e-29, "control_lam_plus_0p01_relerr": 3669365268.551755, "ok": true}
+{"kind": "check", "what": "series of the exact mode", "lam": [1.0, 0.0], "relerr_AB": 5.247168838872786e-28, "err_beta_scaled": 2.2184729158893024e-27, "control_lam_plus_0p01_relerr": 2759629819.9232054, "ok": true}
+{"kind": "check", "what": "series of the exact mode", "lam": [2.0, 0.0], "relerr_AB": 8.050816457934591e-28, "err_beta_scaled": 1.8759485416809467e-25, "control_lam_plus_0p01_relerr": 13956173532.48327, "ok": true}
+{"kind": "check", "what": "series of the exact mode", "lam": [0.0, 3.519342258996222], "relerr_AB": 1.792762016398236e+52, "err_beta_scaled": 7.929263065135914e-29, "control_lam_plus_0p01_relerr": 1.4585758652233998e+91, "ok": false}
+{"kind": "check", "what": "series of the exact mode", "lam": [0.0, -3.519342258996222], "relerr_AB": 1.792762016398236e+52, "err_beta_scaled": 7.929263065135914e-29, "control_lam_plus_0p01_relerr": 1.4585758652233998e+91, "ok": false}
+{"kind": "check", "what": "smallest/largest singular value of M (1.5: control, must be large)", "lam": 0, "ratio": 4.457218432992291e-13, "ok": true}
+{"kind": "check", "what": "smallest/largest singular value of M (1.5: control, must be large)", "lam": 1, "ratio": 8.414481770185576e-13, "ok": true}
+{"kind": "check", "what": "smallest/largest singular value of M (1.5: control, must be large)", "lam": 2, "ratio": 5.172660826871826e-13, "ok": true}
+{"kind": "check", "what": "smallest/largest singular value of M (1.5: control, must be large)", "lam": 1.5, "ratio": 0.11108441441641247, "ok": true}
+check FAIL
+== exit 1
+== 2026-11-14 08:36:37 bgpath 4 1 --h=0.05 --out=bgpath_D4.jsonl
+{"kind": "bgpath", "D": 4.0, "kappa": 0.05, "omega": 1.8770067601211027, "f0": 1.236563736584072, "xh": 4.871790269319879, "absJ": 3.593894561022925e-13}
+{"kind": "bgpath", "D": 4.0, "kappa": 0.1, "omega": 1.8362671089146005, "f0": 1.2259179342018263, "xh": 4.724132726210982, "absJ": 9.813210924338235e-13}
+{"kind": "bgpath", "D": 4.0, "kappa": 0.15000000000000002, "omega": 1.7938096587211994, "f0": 1.2124474736476833, "xh": 4.56775452873353, "absJ": 1.599865783664479e-14}
+{"kind": "bgpath", "D": 4.0, "kappa": 0.2, "omega": 1.750247117017547, "f0": 1.1966126029047337, "xh": 4.4072391097702, "absJ": 1.8907269441818933e-13}
+{"kind": "bgpath", "D": 4.0, "kappa": 0.25, "omega": 1.7061742523923578, "f0": 1.1788961995854346, "xh": 4.2464467456058035, "absJ": 2.2259751016962042e-14}
+{"kind": "bgpath", "D": 4.0, "kappa": 0.3, "omega": 1.6621316770801935, "f0": 1.1597690301841932, "xh": 4.088431469062318, "absJ": 8.841610063835013e-13}
+{"kind": "bgpath", "D": 4.0, "kappa": 0.35, "omega": 1.6185827440640068, "f0": 1.1396643027312048, "xh": 3.9354565571191746, "absJ": 6.235496253287228e-13}
+{"kind": "bgpath", "D": 4.0, "kappa": 0.39999999999999997, "omega": 1.575903083960906, "f0": 1.118962202150165, "xh": 3.789075816774041, "absJ": 1.980757246396644e-13}
+{"kind": "bgpath", "D": 4.0, "kappa": 0.44999999999999996, "omega": 1.5343803421627527, "f0": 1.0979831908376574, "xh": 3.6502488971547318, "absJ": 9.007274982675258e-14}
+{"kind": "bgpath", "D": 4.0, "kappa": 0.49999999999999994, "omega": 1.4942209212163355, "f0": 1.0769879238974644, "xh": 3.519465683399221, "absJ": 3.58973950336091e-14}
+{"kind": "bgpath", "D": 4.0, "kappa": 0.5499999999999999, "omega": 1.455560678431611, "f0": 1.0561814849172357, "xh": 3.3968633957373813, "absJ": 1.0660640552121013e-13}
+{"kind": "bgpath", "D": 4.0, "kappa": 0.6, "omega": 1.4184771537280394, "f0": 1.0357199731156082, "xh": 3.282327681941994, "absJ": 8.663763660375292e-14}
+{"kind": "bgpath", "D": 4.0, "kappa": 0.65, "omega": 1.3830016616352867, "f0": 1.0157179793366249, "xh": 3.175574625995797, "absJ": 3.8334218147220116e-14}
+{"kind": "bgpath", "D": 4.0, "kappa": 0.7000000000000001, "omega": 1.3491302650391062, "f0": 0.9962559907893863, "xh": 3.076214115915581, "absJ": 6.634138821647027e-14}
+{"kind": "bgpath", "D": 4.0, "kappa": 0.7500000000000001, "omega": 1.3168331691441406, "f0": 0.977387173835009, "xh": 2.9837968385467257, "absJ": 3.427093216318266e-14}
+{"kind": "bgpath", "D": 4.0, "kappa": 0.8000000000000002, "omega": 1.2860624230604443, "f0": 0.9591432777888632, "xh": 2.8978478425118217, "absJ": 2.0573472892387537e-14}
+{"kind": "bgpath", "D": 4.0, "kappa": 0.8500000000000002, "omega": 1.256758022185588, "f0": 0.9415395924081609, "xh": 2.8178896063060774, "absJ": 5.736279132490399e-14}
+{"kind": "bgpath", "D": 4.0, "kappa": 0.9000000000000002, "omega": 1.2288526068014312, "f0": 0.924579001733984, "xh": 2.7434572085442874, "absJ": 8.932295360071702e-14}
+{"kind": "bgpath", "D": 4.0, "kappa": 0.9500000000000003, "omega": 1.2022749874903498, "f0": 0.9082552319936489, "xh": 2.674107736519353, "absJ": 1.590346042987914e-14}
+{"kind": "bgpath", "D": 4.0, "kappa": 1.0, "omega": 1.1769527241765354, "f0": 0.892555411573678, "xh": 2.6094256068151735, "absJ": 3.8708829699866537e-14}
+== exit 0
+== 2026-11-14 08:36:48 path 4 0.2586698339+3.5022487970j 2.5832751746 --k1=1 --h=0.01 --out=path_D4.jsonl
+{"kind": "path", "D": 4.0, "kappa": 0.0, "omega": 1.9154446898931115, "f0": 1.2439879248968544, "xh": 5.0056258882928875, "absJ": 3.1253026241563816e-13, "osc": [[0.85, 0.25866983391227644, 3.5022487970200755, true], [0.6, 0.258669833925382, 3.502248797050761, true]], "phys": [[0.85, 2.5832751745936138, 6.371300720864252e-15, true], [0.6, 2.5832751745929916, -1.8026951318990816e-15, true]], "osc_spread": 3.3367150724322765e-11, "gamma": 0.3871054891228591, "seconds": 4.1}
+{"kind": "path_stop", "D": 4.0, "kappa": 0.0, "reason": "step below 1e-5"}
+== exit 0
+== 2026-11-14 08:36:53 crit path_D4.jsonl 4 --out=crit.jsonl
+{"kind": "crit", "D": 4.0, "R_over_xh": 0.85, "crossing": false}
+{"kind": "crit", "D": 4.0, "R_over_xh": 0.6, "crossing": false}
+== exit 0
+== 2026-11-14 08:36:54 path 6 0.35168333+4.09789715j 2.2695762470 --k1=1 --h=0.01 --out=path_D6.jsonl
+{"kind": "path", "D": 6.0, "kappa": 0.0, "omega": 2.1762864130457973, "f0": 0.987652754654366, "xh": 2.222802312005333, "absJ": 2.382335042938508e-13, "osc": [[0.85, 0.3516833315775483, 4.097897151693987, true], [0.6, 0.35168333158122006, 4.097897151827699, true]], "phys": [[0.85, 2.269576247008415, -1.3915961997441372e-13, true], [0.6, 2.269576247008737, -1.194707881759428e-15, true]], "osc_spread": 1.3376300117038877e-10, "gamma": 0.44061088554223504, "seconds": 11.6}
+{"kind": "path_stop", "D": 6.0, "kappa": 0.0, "reason": "step below 1e-5"}
+== exit 0
+== 2026-11-14 08:37:06 crit path_D6.jsonl 6 --out=crit.jsonl
+{"kind": "crit", "D": 6.0, "R_over_xh": 0.85, "crossing": false}
+{"kind": "crit", "D": 6.0, "R_over_xh": 0.6, "crossing": false}
+== exit 0
+== 2026-11-14 08:37:07 path 10 0.42514655+4.99934510j 2.1646154815 --k1=1 --h=0.01 --out=path_D10.jsonl
+{"kind": "path", "D": 10.0, "kappa": 0.0, "omega": 2.593348500895953, "f0": 0.8016327440549728, "xh": 1.5118667862461554, "absJ": 1.374829369656556e-14, "osc": [[0.85, 0.42514654751765146, 4.999345102139827, true], [0.6, 0.4251465467709627, 4.999345103239689, true]], "phys": [[0.85, 2.1646154815190037, -1.8621394167037897e-15, true], [0.6, 2.164615481519419, -1.5908069062357136e-15, true]], "osc_spread": 1.3293756092235437e-09, "gamma": 0.46197581442883195, "seconds": 26.4}
+{"kind": "path_stop", "D": 10.0, "kappa": 0.0, "reason": "step below 1e-5"}
+== exit 0
+== 2026-11-14 08:37:35 crit path_D10.jsonl 10 --out=crit.jsonl
+{"kind": "crit", "D": 10.0, "R_over_xh": 0.85, "crossing": false}
+{"kind": "crit", "D": 10.0, "R_over_xh": 0.6, "crossing": false}
+== exit 0
+== 2026-11-14 08:37:36 path 20 0.47996170+6.06910951j 2.0973011405 --k1=1 --h=0.01 --out=path_D20.jsonl
+{"kind": "path", "D": 20.0, "kappa": 0.0, "omega": 3.0946232654127668, "f0": 0.6595917981289502, "xh": 1.2155053732419974, "absJ": 2.2886256192317992e-15, "osc": [[0.85, 0.4799616972573262, 6.069109509065492, true], [0.6, 0.4799616961159391, 6.069109509210695, true]], "phys": [[0.85, 2.0973011405498108, 2.9288906392661046e-15, true], [0.6, 2.0973011405498627, -1.0772086593869453e-15, true]], "osc_spread": 1.1505861126458394e-09, "gamma": 0.47680324997956586, "seconds": 30.0}
+{"kind": "path_stop", "D": 20.0, "kappa": 0.0, "reason": "step below 1e-5"}
+== exit 0
+== 2026-11-14 08:38:07 crit path_D20.jsonl 20 --out=crit.jsonl
+{"kind": "crit", "D": 20.0, "R_over_xh": 0.85, "crossing": false}
+{"kind": "crit", "D": 20.0, "R_over_xh": 0.6, "crossing": false}
+== exit 0
+== 2026-11-14 08:38:08 path 40 0.5077925+6.8452800j 2.0565169094 --k1=1 --h=0.01 --out=path_D40.jsonl
