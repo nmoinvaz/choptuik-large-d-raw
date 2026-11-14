@@ -1,0 +1,17 @@
+Check of the tool: the old bases' locate entries against I685-dh370/jet_685.json (the code changed since aedb403b)
+   D0  236.6312: Delta's Pade poles, root test and rows equal to I685's
+   D0  252.2497: Delta's Pade poles, root test and rows equal to I685's
+   D0  252.6135: Delta's Pade poles, root test and rows equal to I685's
+   D0  253.0682: Delta's Pade poles, root test and rows equal to I685's
+   D0  253.3524: Delta's Pade poles, root test and rows equal to I685's
+   D0  253.7139: Delta's Pade poles, root test and rows equal to I685's
+
+D0         root test of Delta   |A - D0|   ratio    within 5%   A pole of Delta's Pade: |s| arg n -> D*, Im D* - 4.99   within 0.1   other stable poles of Delta (D*)
+ 255.0550      4.803              5.033   -4.6%    yes         5.063 83.3 n6 -> 255.65+5.03i, +0.038    yes    258.53+2.76i (n4); 258.72+2.80i (n3); 260.16+1.79i (n3)
+ 255.3711      4.237              5.001   -15.3%     NO         5.044 86.9 n5 -> 255.64+5.04i, +0.047    yes    258.65+2.61i (n3); 258.65+2.86i (n5)
+ 255.7661      3.682              4.990   -26.2%     NO         5.016 91.4 n5 -> 255.64+5.01i, +0.025    yes    258.61+2.81i (n6); 259.84+1.17i (n4)
+
+the rows' nearest stable poles per new base (the 24 rows with the largest |z_8|): D* = D0 + s, median and range
+   D0  255.0550: 24 of 24 rows with a pole; median D* 258.59+2.81i, Im D* 2.76 to 2.82; 0 rows within 0.4 of A
+   D0  255.3711: 24 of 24 rows with a pole; median D* 258.61+2.79i, Im D* 2.61 to 2.84; 0 rows within 0.4 of A
+   D0  255.7661: 24 of 24 rows with a pole; median D* 258.59+2.78i, Im D* 2.77 to 2.81; 0 rows within 0.4 of A
