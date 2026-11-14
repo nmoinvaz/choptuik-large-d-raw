@@ -1,0 +1,12 @@
+planted w = F3/F1   : M_t 19 of 22 (median ratio 0.0302), S 0.0571416532+0.0054934061i, truth 0.0571416532+0.0054934061i, |error| 8.67e-15, T 1.36e-14 (rho 0.229), untrusted terms 8.8e-15: PASS
+planted r_3 = F5/F3 : M_t 18 of 21 (median ratio 0.0309), S 0.0587585448+0.0046964247i, truth 0.0587585448+0.0046964247i, |error| 3.17e-14, T 5.05e-14 (rho 0.236), untrusted terms 3.2e-14: PASS
+planted: PASS
+planted exit 0
+planted w = F3/F1   : M_t 18 of 21 (median ratio 0.0304), S -0.0007757035-0.0003999154i, truth 0.0571416532+0.0054934061i, |error| 5.82e-02, T 1.84e-15 (rho 0.229), untrusted terms 1.2e-15: FAIL
+planted r_3 = F5/F3 : M_t 17 of 20 (median ratio 0.0314), S 0.1030301266+0.0054399432i, truth 0.0587585448+0.0046964247i, |error| 4.43e-02, T 2.62e-13 (rho 0.237), untrusted terms 1.6e-13: FAIL
+planted (mutate=index): FAIL
+planted --mutate=index exit 1 (must be 1)
+planted w = F3/F1   : M_t 19 of 22 (median ratio 0.0302), S 0.0054934061-0.0571416532i, truth 0.0571416532+0.0054934061i, |error| 8.12e-02, T 1.36e-14 (rho 0.229), untrusted terms 8.8e-15: FAIL
+planted r_3 = F5/F3 : M_t 18 of 21 (median ratio 0.0309), S 0.0587585448+0.0046964247i, truth 0.0587585448+0.0046964247i, |error| 3.17e-14, T 5.05e-14 (rho 0.236), untrusted terms 3.2e-14: PASS
+planted (mutate=phase): FAIL
+planted --mutate=phase exit 1 (must be 1)
