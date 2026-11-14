@@ -22,3 +22,7 @@ unchanged), reading those records. The resumed run appends to `ring.log`, after 
 the 17 positions' lines from the stored records; `ring.stdout` is the first run's output and `ring_resume.stdout` the
 resumed run's. `ring.json` is rewritten by the resumed run. `report.*` is the report stage (written after the freeze,
 judges nothing).
+
+The resumed ring finished the lattice at 02:57 UTC on 2026-11-14 with exit 0 (5967 plant records, 5392 of them at
+ω∞; R8 and C1 pass). No lattice position is a candidate, so stage 2 ran no diagonal point. `report.log`,
+`report.json` and `report.stdout` are the report stage's maps and counts, run right after.
