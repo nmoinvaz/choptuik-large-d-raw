@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """#742: the full system from D 113 to 120 with the octo-double corrector, from I739-win/B/anm_pin13_D113.0000.npz (eight parts, M = 32).
-usage: python run_742.py --selftest            (the crawl rule of N on planted lines)
+usage: python run_742.py M                      (the resumption after the crawl: from I742-win/L/anm_pin13_D117.0000.npz, --steps 6 --h_max 0.5 --a0 0.5, the default own test, anm_run's stop rule; D 117.5, 118, ..., 120)
+       python run_742.py --selftest            (the crawl rule of N on planted lines)
        python run_742.py N                      (D 117 to 120 with --od_accept natural, one flag changed from L, from I742-win/L/anm_pin13_D117.0000.npz; --steps 3; stops after the fourth crawling step in a row)
        python run_742.py P                      (the pilot: one step a = 1 from D 113 to D 114, --save_base 1, so its base polish is the control (a))
        python run_742.py L [STATE [STEPS]]      (the chain: default STATE I742-win/P/anm_pin13_D114.0000.npz, default 6 steps; --h_max 1.0 --a0 1.0)
@@ -71,7 +72,9 @@ def selftest():
 if len(sys.argv) > 1 and sys.argv[1] == "--selftest":
     sys.exit(selftest())
 name = sys.argv[1]
-if name == "N":
+if name == "M":
+    state, extra, cap = "I742-win/L/anm_pin13_D117.0000.npz", ["--steps", "6", "--h_max", "0.5", "--a0", "0.5"], 21600
+elif name == "N":
     state, extra, cap = "I742-win/L/anm_pin13_D117.0000.npz", ["--steps", "3", "--h_max", "1.0", "--a0", "1.0", "--od_accept", "natural"], 18000
 elif name == "P":
     state, extra, cap = START, ["--steps", "1", "--h_max", "1.0", "--a0", "1.0", "--save_base", "1"], 7200
@@ -80,7 +83,7 @@ elif name == "L":
     steps = sys.argv[3] if len(sys.argv) > 3 else "6"
     extra, cap = ["--steps", steps, "--h_max", "1.0", "--a0", "1.0"], 18000
 else:
-    raise SystemExit("name is P, L or N")
+    raise SystemExit("name is P, L, N or M")
 out = os.path.join(HERE, name)
 os.makedirs(out, exist_ok=True)
 cmd = [PY, "-u", "anm_run.py", RAW, out, "--state", state, *FLAGS, *extra, "--threads", "4"]

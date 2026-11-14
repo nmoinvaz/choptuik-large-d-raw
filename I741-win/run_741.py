@@ -21,6 +21,7 @@ FLAGS = ["--kfreeze", "13", "--N", "24", "--eps", "1e-14", "--D_max", "400", "--
          "--h_max", "0.0625", "--a0", "0.0625", "--steps", "0", "--elim_switch", "0", "--save_base", "1"]
 TAGS = {"S0": "0", "S1": "1e-4", "S2": "3e-4", "S3": "1e-3", "S4": "3e-3", "S5": "1e-2"}
 CAP = 2400
+THREADS = os.environ.get("I741_THREADS", "4")      # 2 while #742 runs beside it (the coordinator's message 1794625688727-0)
 os.makedirs(os.path.join(HERE, "logs"), exist_ok=True)
 
 
@@ -36,10 +37,10 @@ for name in sys.argv[1:]:
     state = f"I741-win/states/{name}_shift{TAGS[name]}.npz"
     out = os.path.join(HERE, name)
     os.makedirs(out, exist_ok=True)
-    cmd = [PY, "-u", "anm_run.py", RAW, out, "--state", state, *FLAGS, "--threads", "4"]
+    cmd = [PY, "-u", "anm_run.py", RAW, out, "--state", state, *FLAGS, "--threads", THREADS]
     t0 = time.time()
     p = subprocess.Popen(cmd, cwd=HP, stdout=open(os.path.join(HERE, "logs", f"{name}.log"), "w"), stderr=subprocess.STDOUT, env=env, creationflags=0x00004000 | 0x08000000)
-    say(f"start {name} (pid {p.pid}) from {state}")
+    say(f"start {name} (pid {p.pid}) from {state}, {THREADS} threads")
     reason = None
     while p.poll() is None:
         time.sleep(5)

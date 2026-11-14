@@ -13,3 +13,17 @@ Machine win (Surface Laptop 4, i7-1185G7, 32 GB), issue https://github.com/nmoin
 **Expectation, written before the runs and not a criterion**: from #727, a plan whose nodes differ by 5e-4 to 1e-3 gave Delta offsets of 3e-26 to 1.7e-25, so I expect the shift of a single node by 1e-3 to give 1e-27 to 1e-25, an exponent between 1 and 2 (linear if cont3's plan is not stationary for Delta, about 2 if it is), and 5 to 7 minutes a point at 4 threads, so about 40 minutes for S0 to S4 and 7 for S5.
 
 **Not done**: other nodes, other D, any change of the flags, the polish of the shifted states on the other plans.
+
+## Amendment (2026-11-14 03:08 UTC): 2 threads, beside #742
+
+The coordinator (message `1794625688727-0`) asked for this task to run **at 2 threads beside #742's chain (4 threads)**, within the 6-thread budget, so each polish takes longer than the 5 to 7 minutes of the estimate at 4 threads (`run_741.py` reads the thread count from the environment variable `I741_THREADS`, set to 2; `logs/run_741.log` records it per job). Nothing else in the plan changes: the same flags, the same states, the 1e-2 shift only after the fit is written down. The octo-double polish converges to 1e-60 or does not, which does not depend on the thread count; the Delta read-out is the exact sum of the saved parts.
+
+## Observation after S2 (2026-11-14 03:40 UTC), written before S3 and S4 finished
+
+S0 to S2 are polished; the folders `S3/` and `S4/` hold no polished state yet (checked at the time of writing: 0 and 0 files). Delta - root (the unshifted root is X2c's Delta, `fit_741.py`): S0 (shift 0) -1.110073e-46 (control (c) met, trivially, no Newton step); S1 (shift 1e-4) **-1.028638e-27**; S2 (3e-4) **+7.910843e-28**. Both polishes converged in 2 Newton steps (1.8e-67, 7.0e-68) at 2 threads, 761 s each.
+
+**The signs differ**, so the pre-registered rule of point 5 ("all four shifts must have the same sign, else it is not a power law") already says that acceptance (b), a power law in the node shift, will not be met, whatever S3 and S4 give; I report it as it is. The shift of Delta changes sign near s = 2.6e-4, as an `a s + b s^2` with a negative linear term and a larger positive quadratic term would.
+
+**Post-hoc, adopted after seeing the sign change and so not the pre-registered fit**: the two-term model Delta - root = a s + b s^2. Fitted to S1 and S2 alone it gives a = -1.6748e-23, b = 6.4617e-20, with the sign change at s = 2.592e-4, and predicts, **recorded here before S3 and S4 finish**: S3 (1e-3) **+4.7869e-26**, S4 (3e-3) **+5.3131e-25** (and 1e-2: +6.2942e-24, to be replaced by the fit on S1 to S4). `fit_741.py --fit` now writes both verdicts to `fit_741_out.txt` before S5 runs: the pre-registered power law (NOT MET when the signs differ), and the post-hoc two-term fit on S1 to S4 with its out-of-sample check of S3 and S4 and its prediction for S5 (marked post hoc); `--check5` reports S5 against each prediction present and refuses unless the fit file is older than S5's state. `fit_741.py --selftest` plants a two-term law with a sign change (recovered, power law flagged) and a 30 % deviation (shows in the relative residuals).
+
+If S5 (1e-2) is run after that, it tests the post-hoc model on one more point, with its stated 10 % bar; it does not rescue acceptance (b).
