@@ -9,3 +9,5 @@ Code: `solver/matter/complex_css.py` and `css_inner_pert.py` of choptuik-large-d
 | file | what |
 |---|---|
 | `queue1.sh`, `queue1.log`, `boxes_k0.jsonl` | COMPLEX_CRITICAL 2's boxes A, B, C, S at D = 4, 5, 6, 8, 10, 20, 40, 80, both radii, and the D = 4 controls (plant, nometric), with the new default |
+| `queue2.sh`, `queue2.log`, `locate_k0.jsonl` | COMPLEX_CRITICAL 2's strip S cut into sub-boxes of width 0.5 (`complex_css.py locate`), each zero refined at R = 0.6 x_h, with the new default |
+| `chain.sh` | runs queues 2 and 3 after queue 1, one at a time |
