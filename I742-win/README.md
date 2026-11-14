@@ -1,0 +1,14 @@
+# I742-win: the full system from D 113 to 120 with the octo-double corrector (completes #726)
+
+Machine win (Surface Laptop 4, i7-1185G7, 32 GB), issue https://github.com/nmoinvaz/choptuik-large-d/issues/742 (the coordinator's message `1794618284752-0` on the `choptuik-large-d` channel; recommended by #739, raw `I739-win/` 51a8e41f). Worktree `choptuik-i710` at main 5249c432, venv-t151 (Python 3.10), `OPENBLAS_NUM_THREADS=1`, BelowNormal, 4 threads. Start state `I739-win/B/anm_pin13_D113.0000.npz` (eight parts, M = 32, octo-double max|F| 7.3e-85, Delta 1.733640141567942734406710993193602081591). Flags as the issue gives them, #739's: #682's plus `--elim_switch 0 --corrector od --tol_od 1e-60 --reseed_o 3`, with `--h_max 1.0 --a0 1.0` (`run_742.py` lists them). Raw output to `I742-win/`.
+
+## Plan, written before the runs (2026-11-14 01:05 UTC)
+
+1. **Pilot `P`**: one step a = 1 from D 113 to D 114 (`--steps 1 --save_base 1`), since a full step may need more Newton steps than a = 1/4 did (5 evaluations at 100 to 120 s there). Its base polish (the octo-double polish of the D 113 start, saved as `P/base_pin13_D113.0000.npz`) is **control (a)**: its Delta must equal B's, 1.733640141567942734406710993193602081591, to 1e-30. The pilot fixes the cost, and I post it before the chain.
+2. **Chain `L`**: from the pilot's D 114 state, `--steps 6 --h_max 1.0 --a0 1.0`, to D 120 if every step is taken at a = 1. If the a = 1 step is refused and a halved step is accepted, the states are not on integer D, and I choose a0 so that the next step lands on an integer D and say so on the issue. The stop rule is #726's: anm_run's own, four refused attempts at one D (the first plus three halvings), after which the run ends and its history is posted.
+3. **Convergence (b)**: converged means the corrector says converged and its octo-double max|F| is at most 1e-60, for every accepted step.
+4. **Table (c)** (`table_742.py`): Delta_full - Delta_held at D 113 and at each integer D from 114 to the last one reached, Delta the exact sum of the eight parts (`I739-win/cmp_739.py`'s reading) against the held states `T138-win2/chain/anm_pin3_D<D>.0000.npz` of the stage checkout, with the ratio to `delta_all.csv`'s err (chain_fit, a spread over fit choices, not an enclosure) as `I726-win/table_726.py` reads it. The script **first reproduces D 113's +4.3655e-13 from `I739-win/B/`** and exits 1 if it does not.
+
+**Expectation, written before the runs and not a criterion**: a = 1 steps converge in 5 to 8 octo-double steps at 10 to 15 min an attempt, so 7 steps take 1.2 to 1.8 h; the shift keeps growing with successive ratios falling slowly from 1.037 toward 1, and its ratio to the err stays near 0.146. A break of that pattern, or a stop, is reported as it is.
+
+**Not done**: any step past D 120, any change of the flags, the quad-double comparison of #740 (closed).
