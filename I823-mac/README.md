@@ -37,3 +37,16 @@ grid gains t = |a| (`--curve_t=a`), and the root's Delta is read there. The issu
    the Delta and |g| / |g(0)|. A ray that stops before 1e-4 without a bracket is undecided (exit 1). Its check:
    `--selftest` (six planted rays) must pass, and `--selftest --mutate=any` (a root when any component changes
    sign) must fail. Both were run before the real data: PASS (exit 0) and FAIL (exit 1), verdict_selftest*.log.
+
+## Runs
+
+| run | result | exit |
+|---|---|---|
+| `dz0_truth` (05:54:00–05:55:43 UTC) | written; projections skipped 1; \|dz\| = dDelta = **+3.311085e-8** (#816 at switch 0: +1.100878e-5) | 0 |
+| `curve_planted` | PC1 worst point error 1.3e-48 (1e-3), PC2 pass, check pass | 0 |
+| `curve_planted_w0` | PC1 7.3e+56, PC2 FAIL, check FAIL | 1 |
+| `curve_dz0mut` | stored step against its re-solve 1.0e-6 (bound 1e-20): FAIL; the held offset's check FAIL too (4.21e9 on its rows, 9.02e10 elsewhere) | 1 |
+
+The control fired at both checks, and `main_curve` stops at the offset check first. queue.sh's gate looked for the
+second check's line only, so it did not start the real curve (queue.log). The real curve was started by hand at 05:59
+UTC, with the command of the plan.
