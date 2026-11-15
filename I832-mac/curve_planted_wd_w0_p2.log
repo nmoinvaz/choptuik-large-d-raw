@@ -1,0 +1,39 @@
+== curve_planted_wd_w0 2026-11-15 11:17:57 UTC, hp at 75f94140+dirty, reduced_cubic.py curve planted --elim=1 --weak_delta=1 --plant_t=1e-12,1e-11,1e-10,1e-9,1e-8 --mutate=w0 --json=/private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/ececf14c-b4b6-41d2-ad20-2caade87ad18/scratchpad/raw781push/I832-mac/curve_planted_wd_w0.json
+# hpkernel /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/11bcbd25-9376-453b-88d5-a7c6ad0172dd/scratchpad/i599/site2/hpkernel/__init__.py
+curve plant (seed 5): n 12, k 4; start max|F| 1.498e-36, |w0| 5.92e-33, |y_a| 8.3e-30, |B e| 5.733e-26; its reduced map minus beta + Sigma y against P4/24 + P5/120 2.12e-91 (bound 1e-20): pass
+horizon plant (seed 5): n 14 = 12 + 2, k 4; start max|F| 1.498e-36; on the projected manifold the main rows against CurvePlanted's and the horizon rows 0.0 (bound 1e-20): pass
+  elimination: 2 unknowns (hcols 11..12) and 2 rows (hrows 6..7), L 14 -> 12; P(z0) moves the horizon data by 0.0; max|F| on hrows 0.0 at z0, 0.0 at P(z0) (the projection's last rung residual 0.00e+00); on the other rows 1.498e-36 and 1.498e-36; the reduced Newton step's last unknown -1.437104e-30 (0 s)
+  basis: sigma of B 2.1000e-27, 2.2000e-27, 3.2000e-26, 7.1000e-26, 3.1930e-18 (iteration 2.1000e-27, 2.2000e-27, 3.2000e-26, 7.1000e-26); |dz0| 8.3e-30, a = V^T dz0 -2.072e-30, -3.794e-30, 2.582e-30, -6.598e-30, -3.015e-33, |a| 8.3e-30, the rest 5.09e-33; |B a| 9.627e-51, |U^T F(z0) + B a| / |B a| 4.44e-127; -J^-1 F(z0) against dz0 0.0; w0 = -J^-1 (I - U U^T) F(z0): |w0| 9.246e-32, |V^T w0| 1.14e-150 (0 s)
+  curve: |e| along a / |a|, |B e| 1.1599e-21; g(0) by the chord through z0's LU, from w0 and from w0 (1 + 1e-5): converged (|dw| per step 2.8e-57, 5.1e-82, 9.2e-107; bound 1e-40 |w0| = 9.25e-72), floor0 1.78e-150 (1.85e-100 of |B a|); |g(0) - U^T F(z0)| 3.172e-26 of |B a|; prediction kappa t |B c| with kappa none (0 s)
+  flat chart z0 + V c (w = 0), per t: |dep(+t e)|, |dep(-t e)|, even, odd part (of |B c|); odd / t^3; max of the strong residual's change / t^2 (+, -)
+        1e-12   1.279e+35   1.279e+35   1.279e+35   1.197e+26   1.388e+29   8.309e+41  8.309e+41
+        1e-11   1.279e+36   1.279e+36   1.279e+36   1.197e+28   1.388e+29   8.309e+40  8.309e+40
+        1e-10   1.279e+37   1.279e+37   1.279e+37   1.197e+30   1.388e+29   8.309e+39  8.309e+39
+        1e-09   1.279e+38   1.279e+38   1.279e+38   1.197e+32   1.388e+29   8.309e+38  8.309e+38
+        1e-08   1.279e+39   1.279e+39   1.279e+39   1.197e+34   1.388e+29   8.309e+37  8.309e+37
+    +t  1.0e-12: |dep| / |B c| 1.27888e+35, g against g(0) -+++-, g.g(0) / |g(0)|^2 4.46397e+47, dlast -1.7314501989e-13, error estimate 0.0 of |B c|, |w - w0| 9.246e-32, its prediction off by 9.25e-32, max|F| 8.31e+17, 0 LUs, (LU, |dw|)  (0 s)
+    +t  1.0e-11: |dep| / |B c| 1.27889e+36, g against g(0) -+++-, g.g(0) / |g(0)|^2 4.46397e+49, dlast -1.7314501989e-12, error estimate 0.0 of |B c|, |w - w0| 9.246e-32, its prediction off by 9.15e-30, max|F| 8.31e+18, 0 LUs, (LU, |dw|)  (0 s)
+    +t  1.0e-10: |dep| / |B c| 1.27889e+37, g against g(0) -+++-, g.g(0) / |g(0)|^2 4.46397e+51, dlast -1.7314501989e-11, error estimate 0.0 of |B c|, |w - w0| 9.246e-32, its prediction off by 9.14e-27, max|F| 8.31e+19, 0 LUs, (LU, |dw|)  (0 s)
+    +t   1.0e-9: |dep| / |B c| 1.27889e+38, g against g(0) -+++-, g.g(0) / |g(0)|^2 4.46397e+53, dlast -1.7314501989e-10, error estimate 0.0 of |B c|, |w - w0| 9.246e-32, its prediction off by 9.14e-27, max|F| 8.31e+20, 0 LUs, (LU, |dw|)  (0 s)
+    +t   1.0e-8: |dep| / |B c| 1.27889e+39, g against g(0) -+++-, g.g(0) / |g(0)|^2 4.46399e+55, dlast -1.7314501989e-09, error estimate 0.0 of |B c|, |w - w0| 9.246e-32, its prediction off by 9.14e-27, max|F| 8.31e+21, 0 LUs, (LU, |dw|)  (0 s)
+    -t  1.0e-12: |dep| / |B c| 1.27888e+35, g against g(0) -++++, g.g(0) / |g(0)|^2 4.46397e+47, dlast +1.7314501989e-13, error estimate 0.0 of |B c|, |w - w0| 9.246e-32, its prediction off by 0.00e+00, max|F| 8.31e+17, 0 LUs, (LU, |dw|)  (0 s)
+    -t  1.0e-11: |dep| / |B c| 1.27888e+36, g against g(0) -++++, g.g(0) / |g(0)|^2 4.46397e+49, dlast +1.7314501989e-12, error estimate 0.0 of |B c|, |w - w0| 9.246e-32, its prediction off by 1.66e-29, max|F| 8.31e+18, 0 LUs, (LU, |dw|)  (0 s)
+    -t  1.0e-10: |dep| / |B c| 1.27888e+37, g against g(0) -++++, g.g(0) / |g(0)|^2 4.46397e+51, dlast +1.7314501989e-11, error estimate 0.0 of |B c|, |w - w0| 9.246e-32, its prediction off by 1.66e-29, max|F| 8.31e+19, 0 LUs, (LU, |dw|)  (0 s)
+    -t   1.0e-9: |dep| / |B c| 1.27888e+38, g against g(0) -++++, g.g(0) / |g(0)|^2 4.46397e+53, dlast +1.7314501989e-10, error estimate 0.0 of |B c|, |w - w0| 9.246e-32, its prediction off by 1.66e-29, max|F| 8.31e+20, 0 LUs, (LU, |dw|)  (0 s)
+    -t   1.0e-8: |dep| / |B c| 1.27888e+39, g against g(0) -++++, g.g(0) / |g(0)|^2 4.46395e+55, dlast +1.7314501989e-09, error estimate 0.0 of |B c|, |w - w0| 9.246e-32, its prediction off by 1.66e-29, max|F| 8.31e+21, 0 LUs, (LU, |dw|)  (0 s)
+  curve along a / |a|: t, |dep(+t e)|, |dep(-t e)|, even part E, odd part O, floor (of |B c| = t |B e|), E / t, O / t (local orders between neighbours below), even and odd against the planted
+     1.0e-12  1.27888e+35  1.27888e+35  1.27888e+35  1.19691e+26 1.54e-117  1.2789e+47  1.1969e+38  5.0e+41  1.9e+39
+     1.0e-11  1.27889e+36  1.27888e+36  1.27888e+36  1.19691e+28 1.54e-118  1.2789e+47  1.1969e+39  5.0e+41  1.9e+39
+     1.0e-10  1.27889e+37  1.27888e+37  1.27888e+37  1.19691e+30 1.54e-119  1.2789e+47  1.1969e+40  5.0e+41  1.9e+39
+      1.0e-9  1.27889e+38  1.27888e+38  1.27888e+38  1.19691e+32 1.54e-120  1.2789e+47  1.1969e+41  5.0e+41  1.9e+39
+      1.0e-8  1.27889e+39  1.27888e+39  1.27888e+39  1.19691e+34 1.54e-121  1.2789e+47  1.1969e+42  5.0e+41  1.9e+39
+    local orders of E * |B c|: 2.000, 2.000, 2.000, 2.000
+    local orders of O * |B c|: 3.000, 3.000, 3.000, 3.000
+    local orders of dp * |B c|: 2.000, 2.000, 2.000, 2.000
+    local orders of dm * |B c|: 2.000, 2.000, 2.000, 2.000
+    leading orders of the departure (first four resolved points): even 2.000, odd 3.000
+  planted: (PC1) worst point error 5.0e+41 (bound 1e-3): FAIL; (PC2) orders 4 and 5 to 0.05: FAIL; (PC3) every solve converged: pass; (PC4) the verdict's self-test ['supports', 'refutes', 'between', 'refutes', 'not decided']: pass
+  curve: 0 LUs; stops {'1': None, '-1': None} (16 s)
+check: FAIL
+exit 1
+== end 2026-11-15 11:18:16 UTC

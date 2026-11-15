@@ -1,0 +1,43 @@
+== curve_planted_wd_w0 2026-11-15 11:15:42 UTC, hp at 75f94140+dirty, reduced_cubic.py curve planted --elim=1 --weak_delta=1 --mutate=w0 --json=/private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/ececf14c-b4b6-41d2-ad20-2caade87ad18/scratchpad/raw781push/I832-mac/curve_planted_wd_w0.json
+# hpkernel /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/11bcbd25-9376-453b-88d5-a7c6ad0172dd/scratchpad/i599/site2/hpkernel/__init__.py
+curve plant (seed 5): n 12, k 4; start max|F| 1.498e-36, |w0| 5.92e-33, |y_a| 8.3e-30, |B e| 5.733e-26; its reduced map minus beta + Sigma y against P4/24 + P5/120 2.12e-91 (bound 1e-20): pass
+horizon plant (seed 5): n 14 = 12 + 2, k 4; start max|F| 1.498e-36; on the projected manifold the main rows against CurvePlanted's and the horizon rows 0.0 (bound 1e-20): pass
+  elimination: 2 unknowns (hcols 11..12) and 2 rows (hrows 6..7), L 14 -> 12; P(z0) moves the horizon data by 0.0; max|F| on hrows 0.0 at z0, 0.0 at P(z0) (the projection's last rung residual 0.00e+00); on the other rows 1.498e-36 and 1.498e-36; the reduced Newton step's last unknown -1.437104e-30 (0 s)
+  basis: sigma of B 2.1000e-27, 2.2000e-27, 3.2000e-26, 7.1000e-26, 3.1930e-18 (iteration 2.1000e-27, 2.2000e-27, 3.2000e-26, 7.1000e-26); |dz0| 8.3e-30, a = V^T dz0 -2.072e-30, -3.794e-30, 2.582e-30, -6.598e-30, -3.015e-33, |a| 8.3e-30, the rest 5.09e-33; |B a| 9.627e-51, |U^T F(z0) + B a| / |B a| 4.44e-127; -J^-1 F(z0) against dz0 0.0; w0 = -J^-1 (I - U U^T) F(z0): |w0| 9.246e-32, |V^T w0| 1.14e-150 (0 s)
+  curve: |e| along a / |a|, |B e| 1.1599e-21; g(0) by the chord through z0's LU, from w0 and from w0 (1 + 1e-5): converged (|dw| per step 2.8e-57, 5.1e-82, 9.2e-107; bound 1e-40 |w0| = 9.25e-72), floor0 1.78e-150 (1.85e-100 of |B a|); |g(0) - U^T F(z0)| 3.172e-26 of |B a|; prediction kappa t |B c| with kappa none (0 s)
+  flat chart z0 + V c (w = 0), per t: |dep(+t e)|, |dep(-t e)|, even, odd part (of |B c|); odd / t^3; max of the strong residual's change / t^2 (+, -)
+        1e-06   1.280e+41   1.278e+41   1.279e+41   1.197e+38   1.388e+29   8.320e+35  8.298e+35
+        1e-05   1.289e+42   1.269e+42   1.279e+42   1.197e+40   1.388e+29   8.422e+34  8.196e+34
+       0.0001   1.380e+43   1.181e+43   1.279e+43   1.197e+42   1.388e+29   9.441e+33  7.176e+33
+        0.001   2.369e+44   7.245e+43   1.279e+44   1.197e+44   1.388e+29   1.963e+33  3.017e+32
+      0.00316   1.549e+45   8.899e+44   4.044e+44   1.197e+45   1.388e+29   1.395e+33  8.698e+32
+         0.01   1.305e+46   1.093e+46   1.279e+45   1.197e+46   1.388e+29   1.216e+33  1.049e+33
+    +t   1.0e-6: |dep| / |B c| 1.27988e+41, g against g(0) -+++-, g.g(0) / |g(0)|^2 4.46607e+59, dlast -1.7314501989e-07, error estimate 0.0 of |B c|, |w - w0| 9.246e-32, its prediction off by 9.25e-32, max|F| 8.32e+23, 0 LUs, (LU, |dw|)  (0 s)
+    +t   1.0e-5: |dep| / |B c| 1.28885e+42, g against g(0) -+++-, g.g(0) / |g(0)|^2 4.48495e+61, dlast -1.7314501989e-06, error estimate 0.0 of |B c|, |w - w0| 9.246e-32, its prediction off by 9.15e-30, max|F| 8.42e+24, 0 LUs, (LU, |dw|)  (0 s)
+    +t   0.0001: |dep| / |B c| 1.37992e+43, g against g(0) -+++-, g.g(0) / |g(0)|^2 4.67373e+63, dlast -1.7314501989e-05, error estimate 0.0 of |B c|, |w - w0| 9.246e-32, its prediction off by 9.14e-27, max|F| 9.44e+25, 0 LUs, (LU, |dw|)  (0 s)
+    +t    0.001: |dep| / |B c| 2.36882e+44, g against g(0) -+++-, g.g(0) / |g(0)|^2 6.56158e+65, dlast -1.7314501989e-04, error estimate 0.0 of |B c|, |w - w0| 9.246e-32, its prediction off by 9.14e-27, max|F| 1.96e+27, 0 LUs, (LU, |dw|)  (0 s)
+    +t  0.00316: |dep| / |B c| 1.54931e+45, g against g(0) -+++-, g.g(0) / |g(0)|^2 1.10972e+67, dlast -5.4753262838e-04, error estimate 0.0 of |B c|, |w - w0| 9.246e-32, its prediction off by 2.19e-28, max|F| 1.40e+28, 0 LUs, (LU, |dw|)  (0 s)
+    +t     0.01: |dep| / |B c| 1.30509e+46, g against g(0) -+++-, g.g(0) / |g(0)|^2 2.54401e+68, dlast -1.7314501989e-03, error estimate 0.0 of |B c|, |w - w0| 9.246e-32, its prediction off by 2.55e-29, max|F| 1.22e+29, 0 LUs, (LU, |dw|)  (0 s)
+    -t   1.0e-6: |dep| / |B c| 1.27789e+41, g against g(0) -++++, g.g(0) / |g(0)|^2 4.46187e+59, dlast +1.7314501989e-07, error estimate 0.0 of |B c|, |w - w0| 9.246e-32, its prediction off by 0.00e+00, max|F| 8.30e+23, 0 LUs, (LU, |dw|)  (0 s)
+    -t   1.0e-5: |dep| / |B c| 1.26896e+42, g against g(0) -++++, g.g(0) / |g(0)|^2 4.443e+61, dlast +1.7314501989e-06, error estimate 0.0 of |B c|, |w - w0| 9.246e-32, its prediction off by 1.66e-29, max|F| 8.20e+24, 0 LUs, (LU, |dw|)  (0 s)
+    -t   0.0001: |dep| / |B c| 1.18134e+43, g against g(0) --+++, g.g(0) / |g(0)|^2 4.25421e+63, dlast +1.7314501989e-05, error estimate 0.0 of |B c|, |w - w0| 9.246e-32, its prediction off by 1.66e-29, max|F| 7.18e+25, 0 LUs, (LU, |dw|)  (0 s)
+    -t    0.001: |dep| / |B c| 7.24545e+43, g against g(0) +-+++, g.g(0) / |g(0)|^2 2.36636e+65, dlast +1.7314501989e-04, error estimate 0.0 of |B c|, |w - w0| 9.246e-32, its prediction off by 1.66e-29, max|F| 3.02e+26, 0 LUs, (LU, |dw|)  (0 s)
+    -t  0.00316: |dep| / |B c| 8.899e+44, g against g(0) +---+, g.g(0) / |g(0)|^2 -2.16925e+66, dlast +5.4753262838e-04, error estimate 0.0 of |B c|, |w - w0| 9.246e-32, its prediction off by 1.26e-30, max|F| 8.70e+27, 0 LUs, (LU, |dw|)  (0 s)
+    -t     0.01: |dep| / |B c| 1.09299e+46, g against g(0) +----, g.g(0) / |g(0)|^2 -1.65121e+68, dlast +1.7314501989e-03, error estimate 0.0 of |B c|, |w - w0| 9.246e-32, its prediction off by 1.26e-30, max|F| 1.05e+29, 0 LUs, (LU, |dw|)  (0 s)
+  curve along a / |a|: t, |dep(+t e)|, |dep(-t e)|, even part E, odd part O, floor (of |B c| = t |B e|), E / t, O / t (local orders between neighbours below), even and odd against the planted
+      1.0e-6  1.27988e+41  1.27789e+41  1.27888e+41  1.19691e+38 1.54e-123  1.2789e+47  1.1969e+44  4.7e+41  1.8e+39
+      1.0e-5  1.28885e+42  1.26896e+42  1.27888e+42  1.19691e+40 1.54e-124  1.2789e+47  1.1969e+45  2.6e+42  9.9e+39
+      0.0001  1.37992e+43  1.18134e+43  1.27888e+43  1.19691e+42 1.54e-125  1.2789e+47  1.1969e+46  5.8e+43  1.1e+42
+       0.001  2.36882e+44  7.24545e+43  1.27888e+44  1.19691e+44 1.54e-126  1.2789e+47  1.1969e+47  2.9e+41  2.8e+41
+     0.00316  1.54931e+45  8.89900e+44  4.04419e+44  1.19691e+45 4.86e-127  1.2789e+47  3.7850e+47  1.5e+43  6.9e+45
+        0.01  1.30509e+46  1.09299e+46  1.27888e+45  1.19691e+46 1.54e-127  1.2789e+47  1.1969e+48  1.4e+42  1.4e+43
+    local orders of E * |B c|: 2.000, 2.000, 2.000, 2.000, 2.000
+    local orders of O * |B c|: 3.000, 3.000, 3.000, 3.000, 3.000
+    local orders of dp * |B c|: 2.003, 2.030, 2.235, 2.631, 2.851
+    local orders of dm * |B c|: 1.997, 1.969, 1.788, 3.179, 3.179
+    leading orders of the departure (first four resolved points): even 2.000, odd 3.000
+  planted: (PC1) worst point error 6.9e+45 (bound 1e-3): FAIL; (PC2) orders 4 and 5 to 0.05: FAIL; (PC3) every solve converged: pass; (PC4) the verdict's self-test ['supports', 'refutes', 'between', 'refutes', 'not decided']: pass
+  curve: 0 LUs; stops {'1': None, '-1': None} (66 s)
+check: FAIL
+exit 1
+== end 2026-11-15 11:16:51 UTC
