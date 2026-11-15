@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """#808: Delta at fixed D under other held values and another plan, at #603's states (run808.sh's jobs).
 
-    python3 -I table808.py R [--pilot] [--mutate=swap]
+    python3 -I table808.py R [--pilot] [--mutate=swap] [--plan_tag=NAME]
 
 R is the raw folder (I808-dh370). Each job s<D>_<arm> polished #603's state at D with the held values of #608's d6 or
 d10 chain (arms d6, d10, #603's plan) or with #603's own held values on a new plan (arm plan). Per job: whether the
@@ -17,7 +17,8 @@ Registered before the runs (#808), with E(D) = 2.2e-37 / p_min(D), #805's envelo
   1/p_min and about 1 for a smooth one.
 Exit 0 when the control passes and every job present converged; 1 when the control fails; 2 when a job is missing or
 did not converge. --pilot needs only s253.5301_d10 and s240.1244_d6. --mutate=swap swaps the control's two values,
-and the control must then fail.
+and the control must then fail. --plan_tag=NAME reads the plan arm from the jobs s<D>_NAME (plandrop: the plan arm with
+--od_full_drop 1e-6, run808b.sh).
 """
 import glob
 import os
@@ -67,12 +68,13 @@ def main():
         if a.startswith("--B="):
             B = a[4:]
     pilot = "--pilot" in sys.argv
+    ptag = next((a.split("=", 1)[1] for a in sys.argv if a.startswith("--plan_tag=")), "plan")
     ctrl = dict(CTRL)
     if "--mutate=swap" in sys.argv:
         ctrl = {"d6": CTRL["d10"], "d10": CTRL["d6"]}
         print("MUTATION swap: the control's two values exchanged; the control must fail")
     need = [("253.5301", "d10"), ("240.1244", "d6")] if pilot else [(D, a) for D in STATES for a in ("d6", "d10", "plan")]
-    J = {(D, a): job(R, B, D, a) for D in STATES for a in ("d6", "d10", "plan")}
+    J = {(D, a): job(R, B, D, ptag if a == "plan" else a) for D in STATES for a in ("d6", "d10", "plan")}
     print("| job | converged | steps | max|F| | first dDelta | Delta - Delta(#603) | E = 2.2e-37/p_min |")
     print("|---|---|---|---|---|---|---|")
     for (D, a), j in J.items():

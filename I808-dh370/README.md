@@ -59,3 +59,5 @@ from 1.2e-20 to 5.9e27. At 240.1244 `|dz|` halved per step from step 1 to step 9
 did for its first three steps before it sped up, and here it did not speed up. At 253.5301 step 0's first correction
 has |dz| 1.004e-07 and the nine trials' max|F| runs from 9.94e36 (lam 1) to 1.19e24 (lam 1/256), so the polish never
 left the start's 5.2e-36.
+
+run808.sh and run808b.sh as placed call bash $0 after a cd, so run them by absolute path; plandrop was relaunched that way at 06:28:53 UTC.
