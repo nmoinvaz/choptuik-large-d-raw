@@ -1,0 +1,14 @@
+== selftest_band 2026-11-15 07:49:06 UTC, hp at 01c5df20, step_spread.py --selftest --mutate=band
+# hpkernel /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/11bcbd25-9376-453b-88d5-a7c6ad0172dd/scratchpad/i599/site2/hpkernel/__init__.py
+  steps / ref 1, 1, 0.9991, 1: determined, largest deviation 0.0009 (want determined)
+  steps / ref 1, 332.5, 1, 1: not determined, largest deviation 332 (want not determined)
+  steps / ref 1.002, 1.002, 1.002, 1.002: not determined, largest deviation 0.002 (want not determined)
+  steps / ref -1, 1, 1, 1: not determined, largest deviation 2 (want not determined)
+  ratio 0.5: within a factor 3 (want within a factor 3)
+  ratio 2.9: within a factor 3 (want within a factor 3)
+  ratio 0.005: below 1e-2 (want below 1e-2)
+  ratio 0.1: within a factor 3 (want between)  <- wrong
+  ratio 4: within a factor 3 (want between)  <- wrong
+step_spread selftest --mutate=band: FAIL
+exit 1
+== end 2026-11-15 07:49:06 UTC
