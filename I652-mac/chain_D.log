@@ -1,0 +1,19 @@
+start 06:39:29 UTC
+/Users/nathan/venv-314/bin/python -u /Users/nathan/Source/choptuik-large-d-xf-652/matter/sigma_ms/run_eta.py --eta 1 --D 4.5 --M 32 --out /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/d012cdf9-58a7-44fd-8235-23e0811480fc/scratchpad/i652/out --tag eta1_D4.5_M32 --threads 4 --from /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/d012cdf9-58a7-44fd-8235-23e0811480fc/scratchpad/i652/out/sm_eta1_M32.npz
+06:39:29 start 2026-11-15 06:39:29 UTC: eta 1, D 4.5, M 32, K 21, kt 36, kc 80, ks 80, threads 4
+06:39:29 seed {'src': 'sm_eta1_M32.npz', 'eta_src': '1', 'M_src': 32}: Delta 0.462158390155, |F| (single-step plan) 5.34e+34
+06:39:29 plan from the seed: 624 steps [8, 6, 8, 11, 12, 22, 27, 15, 9, 16, 16, 16, 24, 27, 31, 38, 53, 88, 86, 111] (0.6 s); |F| 2.44e-01
+06:40:28   newton 0 (dd): |F| 2.44e-01 -> 1.86e-01, lam 0.25, |dz| 1.5e+01, dDelta -1.90e-02, pivots 9.2e-04..4.0e+00 (58.5 s)
+06:40:29     re-planned: 701 steps
+06:41:37   newton 1 (dd): |F| 1.86e-01 -> 1.68e-01, lam 0.0625, |dz| 8.5e+01, dDelta -2.44e-05, pivots 6.9e-04..3.3e+00 (126.8 s)
+06:41:37     re-planned: 751 steps
+06:42:51   newton 2 (dd): |F| 1.68e-01 -> 1.67e-01, lam 0.00195312, |dz| 1.2e+03, dDelta -5.72e-04, pivots 6.3e-04..3.3e+00 (199.7 s)
+06:42:51     re-planned: 754 steps
+06:44:02   newton 3 (dd): |F| 1.67e-01 -> 3.03e-01, lam 0.000488281, |dz| 1.2e+04, dDelta -1.29e-03, pivots 6.5e-04..3.3e+00 (270.9 s)
+06:44:03 plan from the solution: 754 steps (0.6 s); |F| 1.67e-01
+06:45:16   newton 0 (dd): |F| 1.67e-01 -> 3.03e-01, lam 0.000488281, |dz| 1.2e+04, dDelta -1.29e-03, pivots 6.5e-04..3.3e+00 (70.9 s)
+06:45:16 double-double: converged False, |F| 1.67e-01, Delta 0.4425433985628103394521324654386639, constraint 6.19e-01, tails 3.0e-28 1.5e-52
+06:45:16 done 2026-11-15 06:45:16 UTC (347.2 s)
+chain: eta1_D4.5_M32 exit 1, stopping
+D chain exit 1
+end 06:45:16 UTC
