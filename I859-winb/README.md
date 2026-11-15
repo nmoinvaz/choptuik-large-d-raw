@@ -30,4 +30,11 @@ last change -7.3e-10. The changes fell from 7.6e-06 (jac 0) through 8.9e-08 (jac
 last two were -9.5e-09 and -7.3e-10. Width at its end (exit 0, the two g agree): g 3.4614e+05, W 5.458e-05, Newton's
 Delta step -1.841e-06, which would put Delta at 1.02690437. So by the pre-registered definition (last change below
 1e-9 and W <= 1e-6) it has not settled, W being 55 times the bar.
-(walks b, c, e follow)
+
+Walk b (D 9, kc 23; 21:59:28 to 22:05:19 UTC, 351 s, exit 0): stopped by the 1e-9 rule after 14 Jacobians, with Delta
+1.027051411571 (-3.19e-05 from the kernel, +1.47e-04 from the march), |F| 3.0152e-11. The changes fell from -1.38e-06
+(jac 0) to -9.6e-08 (jac 12), a ratio of about 0.79 per Jacobian, and jac 13 made no step (change +1.0e-14, |F| from
+3.0150e-11 up to 3.0152e-11), which is what the rule read as settled. Width at its end (exit 0, the two g agree): g
+3.4715e+05, W 1.047e-05, Newton's Delta step -7.28e-07, which would put Delta at 1.02705068. By the pre-registered
+definition (W <= 1e-6) it has not settled, W being 10 times the bar.
+(walks c and e follow)
