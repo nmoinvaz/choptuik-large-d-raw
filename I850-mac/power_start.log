@@ -1,0 +1,10 @@
+== power_start 2026-11-15 21:20:11 UTC, hp at d78c0a90, step_spread.py power /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/ececf14c-b4b6-41d2-ad20-2caade87ad18/scratchpad/raw781push/I850-mac/dl_D240_r65.json /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/ececf14c-b4b6-41d2-ad20-2caade87ad18/scratchpad/raw781push/I850-mac/dl_D240_r66.json /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/ececf14c-b4b6-41d2-ad20-2caade87ad18/scratchpad/raw781push/I850-mac/dl_D240_r67.json --mutate start
+step_spread power: per D, blocks and seed, dev = dDelta(seed) - dDelta(unperturbed) at each rel, the power p between neighbouring rels, and the reading (quadratic: p in (1.8, 2.2); linear: p in (0.9, 1.1))
+  D 240.1244141, Delta, seed 1: the unperturbed step NOT the same in the 3 runs (FAIL)
+    rel 1e-65 (dl_D240_r65.json): move 1.6866e-65, dDelta +1.102671e-49, dev +1.102671e-49, |dev| / move 6.5377e+15, max|dz| 4.3854e-49, smallest pivot 7.306186e-24, max|F| 1.9879e-34
+    rel 1e-66 (dl_D240_r66.json): move 1.6866e-66, dDelta +1.102670e-51, dev +1.102671e-51, |dev| / move 6.5377e+14, max|dz| 4.3854e-51, smallest pivot 7.306186e-24, max|F| 1.9879e-35
+    rel 1e-67 (dl_D240_r67.json): move 1.6866e-67, dDelta +1.102627e-53, dev +1.102671e-53, |dev| / move 6.5377e+13, max|dz| 4.3852e-53, smallest pivot 7.306186e-24, max|F| 1.9879e-36
+    p 2.0000, 2.0000: quadratic
+step_spread power: FAIL
+exit 1
+== end 2026-11-15 21:20:12 UTC
