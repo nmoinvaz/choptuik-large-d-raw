@@ -15,6 +15,30 @@ CPU: 11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz, 4 cores, 8 threads
 RAM: 31.8 GB
 ```
 
+## Result: the margins against the Pi's
+
+Every run of the three parts exits 0 and every control exits non-zero by its verdict (no run or control crashed). Each
+reproduced margin below equals the Pi's to every printed digit; the discrepancies of the logs are listed under each part.
+
+| item | Windows x86-64 (this run) | the Pi (the issue, or its log) |
+|---|---|---|
+| M = 1, Krawczyk, own enclosures (`vi_test_own`) | 7.925e-10, 9.247e-10 | 7.925e-10, 9.247e-10 |
+| M = 1, stored x86 and the Pi's enclosures | 7.925e-10, 9.247e-10 (both) | 7.925e-10, 9.247e-10 |
+| M = 1 reproduction (`m1_rerun`) | REPRODUCED | REPRODUCED |
+| M = 3, `krawczyk3` on box3, relative margins | +0.994, +0.997, +0.778, +0.778 | +0.994, +0.997, +0.778, +0.778 |
+| M = 3, stored x86 and the Pi's box | the same (both) | the same |
+| M = 5, `krawczyk5` on B5, relative margins | +0.996, +0.998, +0.889, +0.889, +0.912, +0.911 | +0.996, +0.998, +0.889, +0.889, +0.912, +0.911 |
+| M = 5, hier checks (a) and (b) | True, True | True, True |
+| M = 5, stored x86 and the Pi's B5 | the same margins (both) | the same |
+| M = 5, `d2check5`, worst abs(dev) / tolerance | 2.59e-07 | 2.64e-07 (stored box), 2.67e-07 (the Pi's) |
+| M = 1 and M = 3 reference checks | REPRODUCED (thmA1, AM3) | REPRODUCED |
+
+Discrepancies, in order of size (the details are under each part): `d2check5`'s worst ratio is 2.59e-07 against 2.64e-07
+and 2.67e-07 (2% and 3% lower); the non-rigorous Newton search and the box margins printed by `certify_M1_pm` differ from
+the 4th digit; the printed contribution matrices of `krawczyk5` differ by up to 19% in small entries; the sha256 of
+`fixed_point_M.py` printed in the logs differs because of the CRLF working copy (the repository's blob has the Pi's sha256);
+enclosure radii and mpmath enclosures differ in the last printed digits throughout.
+
 ## Part A(M = 1) (22:36:42 to 22:46:02 UTC)
 
 Every run exits 0 (13 of 13). The Krawczyk test passes in all three runs of `validated_int.py krawczyk 1e-9`, with the
@@ -111,4 +135,55 @@ Differences from the Pi's logs (listed, not fixed):
   against 4.0902588391218884e-64, 4.9e-15 relative) and `start/eta_der` (2.3e-15) differ.
 - Wall times: m1_rerun 83%, crosscheck3 69%, box3 79% of the Pi's.
 
-(part A(M = 5) follows)
+## Part A(M = 5) (box5 22:36:42 to 23:43:34 UTC, the rest 23:00:00 to 23:43:37 UTC)
+
+Every run exits 0 and every ctrl exits non-zero by its check's verdict, none by a crash (no Traceback in any log). box5
+took 4012 s against the Pi's 4924 s, and ran beside the M = 1 and M = 3 parts (two processes). B5 passes the Krawczyk
+test (C^2) with the Pi's six relative margins to every printed digit, +0.996, +0.998, +0.889, +0.889, +0.912, +0.911, and
+hier.py's checks (a) inside the hull and (b) agreement within 3x its spread are both True; the stored x86 B5 and the Pi's
+B5 pass with the same margins on this machine. `controls5` prints CONTROLS ALL AS EXPECTED with the Pi's margins. The
+`reference check` prints REPRODUCED for M = 1 (`krawczyk1`, thmA1) and for M = 3 (`krawczyk3m2`, AM3), and NOT REPRODUCED
+in the control `krawczyk1_mut`.
+
+| run | kind | exit | wall (s) | Pi wall (s) | verdict line |
+|---|---|---|---|---|---|
+| box5 | run | 0 | 4012.4 | 4923.6 | steps [2118, 863, 101] (the Pi's) |
+| lohner_selftest | run | 0 | 1.5 | 1.7 | SELFTEST2 PASS |
+| lohner_selftest_mut (lin2) | ctrl | 1 | 1.5 | 1.6 | SELFTEST2 FAIL |
+| box1 | run | 0 | 210.2 | 243.3 | steps [303, 320, 46] (the Pi's) |
+| krawczyk1 | run | 0 | 0.27 | 0.24 | margins +1.000, +1.000; reference check (thmA1): REPRODUCED |
+| krawczyk1_mut (ref) | ctrl | 1 | 0.29 | 0.24 | reference check (thmA1): NOT REPRODUCED |
+| controls1 | run | 0 | 0.28 | 0.24 | CONTROLS ALL AS EXPECTED |
+| recheck1 | run | 0 | 0.17 | 0.09 | margins +1.000, +1.000 |
+| recheck1_mut | ctrl | 1 | 0.16 | 0.09 | K(X) in int X: False, margins -58856260.588, ... |
+| box3m2 | run | 0 | 770.7 | 923.1 | steps [955, 552, 72] (the Pi's) |
+| krawczyk3m2 | run | 0 | 0.31 | 0.25 | margins +1.000 (four); reference check (AM3): REPRODUCED |
+| controls3m2 | run | 0 | 0.29 | 0.26 | CONTROLS ALL AS EXPECTED |
+| d2check3 | run | 0 | 0.29 | 0.24 | True; worst abs(dev) / tolerance 3.46e-10 (the Pi's 3.50e-10) |
+| recheck3m2 | run | 0 | 0.23 | 0.17 | margins +1.000 (four) |
+| recheck3m2_mut | ctrl | 1 | 0.26 | 0.17 | K(X) in int X: False, margins -69705846.168, ... |
+| krawczyk5_stored | run | 0 | 0.32 | 0.27 | margins +0.996, +0.998, +0.889, +0.889, +0.912, +0.911; hier (a), (b) True |
+| krawczyk5_pi | run | 0 | 0.30 | | the same |
+| krawczyk5 (B5) | run | 0 | 0.36 | 0.22 | the same |
+| krawczyk5_mut (hier) | ctrl | 1 | 0.35 | 0.20 | hier.py check (a) False, (b) False |
+| controls5 | run | 0 | 0.39 | 0.25 | CONTROLS ALL AS EXPECTED |
+| d2check5 | run | 0 | 0.34 | 0.20 | True; worst abs(dev) / tolerance 2.59e-07 |
+
+Differences from the Pi's logs (listed, not fixed):
+- `d2check5`: the worst abs(dev) / tolerance is 2.59e-07 against the Pi's 2.67e-07 and the stored box's 2.64e-07 (the issue's
+  numbers), the worst relative deviation 6.49e+01 as the Pi's; the enclosure radii it prints are 1.0e+22 against 1.2e+22.
+  `d2check3`: 3.46e-10 against 3.50e-10, and the enclosure radii 3.8e+07 and 3.9e+07 against 3.9e+07 and 4.6e+07.
+- `krawczyk5`, `krawczyk5_mut`: the printed matrices of contributions to |K_i| / w_i differ in 56 entries, by up to 19%
+  in the small ones (1.86e-07 against 2.30e-07, 1.25e-08 against 1.32e-08) and by 0.1% or less in the large (1.95e-04,
+  3.17e-04 equal); the margins and the hier checks are identical. `krawczyk3m2`: 18 entries, up to 14% (1.63e-08 against
+  1.40e-08); `krawczyk1`: the enclosure radii, up to 8% (2.31e-15 against 2.12e-15). On the Pi's B5, `krawczyk5_pi` is
+  identical to the Pi's own `krawczyk5.log`, line for line.
+- The ray lines of `A_M2_box_M5_1e-10.log`: 72 printed radii differ, by up to 7% (V0 and W radii; 9.93 against 10.7 on one
+  line); the step counts are the Pi's (2118, 863, 101).
+- `A_M2_box_M5_1e-10.json` (7104 leaves, the same keys as the Pi's and the stored x86 box): four numeric leaves differ
+  (`sec`, `start/sec`, `start/eta` by 3e-13 relative, `start/eta_der`), and of 2004 ball strings the midpoints differ within
+  their first 40 characters in 593 (against the Pi's B5), 667 (against the stored x86 B5) and 693 (the Pi's against the
+  stored), so the Windows box is as close to the Pi's as the Pi's is to the stored one. The sha256 of `fixed_point_M.py`
+  recorded in it is a44e6c92eac010eb (CRLF working copy), as in the M = 3 part.
+- `recheck1`, `recheck3m2`: the mpmath enclosures differ from the 11th to the 14th digit; the margins agree.
+- Wall times: box5 81%, box3m2 83%, box1 86% of the Pi's.
