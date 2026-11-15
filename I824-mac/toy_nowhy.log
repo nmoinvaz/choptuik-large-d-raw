@@ -1,0 +1,11 @@
+== toy_nowhy 2026-11-15 07:45:48 UTC, hp at f198c203, newton_od_toy.py --mutate=nowhy
+own: converged True in 21 lines; trial lines printed 1 (refused 1), parsed 1: pass
+natural: converged True in 21 lines; trial lines printed 21 (refused 1), parsed 21: pass
+chord: 4 steps; weak coordinate moved 4.1e-17 of the step (<= 1e-12), residual off u cut to 2.5e-16 (<= 1e-12); newton_od with the chord converged True, chord accepted True: pass
+full step's drop, natural test: accepted by the drop at 1e-20 True (its trial line printed True); refused at 0 True; a full step to 2e-10 of the start's refused at 1e-20 True: pass
+full step's drop, own test: accepted by the drop at 1e-20 True (its trial line printed True); refused at 0 True; a full step to 2e-10 of the start's refused at 1e-20 True: pass
+refusal at iteration 1: stops at 1e8 True (theta 1.59e+09); not at 1e10 True: pass
+refusal at iteration 2: stops with abort_it 2 True (3 records); not with abort_it 1 True: pass
+why a trial's projection failed: converged True; reason lines 0 for 21 failed trial projections, each naming the stages True; trial lines printed 1, parsed 1: FAIL
+newton_od_toy --mutate=nowhy: FAIL
+exit 1
