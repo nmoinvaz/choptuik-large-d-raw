@@ -74,3 +74,16 @@ step 1: D 253.785465544, pivots 4.1e-32..1.8e+36, |z_1| 3.38e-04, |z_N| 1.14e-21
     a 0.1073: re-seeded (ok), 59.19 s
       horizon data refined in octo-double, rung max|R| 1.27e-25 -> 1.46e-57 -> 2.52e-70 -> 7.14e-81
     on 0 chord 0: max|F| 4.88e-28, |dw| 1.093e-27
+    on 0 chord 1: max|F| 3.14e+09, |dw| 8.557e+25
+  on 0: strong chord (4 weak directions), 2 steps after the full first step; theta at its point inf (bound 0.750): refused, 235.95 s
+    on 0 trial lam 1: max|F| 4.88e-28; simplified correction / |dz| = 3.773e+02 (bound 0.750); refused, 98.72 s
+    on 0 trial lam 0.5: max|F| 1.22e-28; simplified correction / |dz| = 4.666e+01 (bound 0.875); refused, 92.12 s
+    on 0 trial lam 0.25: max|F| 3.05e-29; simplified correction / |dz| = 5.145e+00 (bound 0.938); refused, 107.83 s
+    on 0 trial lam 0.125: max|F| 7.63e-30; simplified correction / |dz| = 1.381e-01 (bound 0.969); accepted, 99.6 s
+  on 0: |F| 6.26e-36 -> 7.63e-30, |dz| 1.74e-14 -> 2.23e-15, lam 0.125, dDelta +1.74e-14, piv 2.5e-31..1.9e+36, 702.71 s
+    on 1 trial lam 1: max|F| 7.33e-29; simplified correction / |dz| = 5.586e+00 (bound 0.750); refused, 93.97 s
+    on 1 trial lam 0.5: max|F| 1.70e-29; simplified correction / |dz| = 6.355e-01 (bound 0.875); accepted, 94.42 s
+  on 1: |F| 7.63e-30 -> 1.70e-29, |dz| 2.23e-15 -> 3.54e-14, lam 0.5, dDelta +2.23e-15, piv 2.4e-32..1.9e+36, 259.55 s
+    on 2 trial lam 1: max|F| 4.07e-26; simplified correction / |dz| = 1.502e+04 (bound 0.750); refused, 194.88 s
+    on 2 trial lam 0.5: max|F| 4.55e+10; simplified correction / |dz| = 8.293e+56 (bound 0.875); refused, 109.61 s
+      on 2, lam 0.5: projection failed (2): point max|F| 4.55e+10; u0 rung 1 its, |R| 2.68e+10 -> 2.68e+10, NOT converged; u0 quad-double 8 its, |R| 2.77e+10 -> 9.01e+06, NOT converged; ladder FAILED after 8 rungs, last rung u 0.300000 quad-double 8 its, |R| 2.64e+07 -> 2.64e+07, NOT converged
