@@ -3,7 +3,7 @@
 Machine: mac (Apple M5 Mac, 10 cores, macOS 27.0.1), `.venv` of the main checkout (Python 3.13.15, python-flint 0.9.0
 with FLINT 3.6.0), one process at nice 10. Issue: https://github.com/nmoinvaz/choptuik-large-d/issues/427. Code:
 `solver/proof/fixed_point_M_b.py` (the proof code; it imports python-flint and the standard library only) and
-`solver/proof/fixed_point_M_b_check.py` (a harness that imports both implementations), branch `wip/sa-427` at a1811299.
+`solver/proof/fixed_point_M_b_check.py` (a harness that imports both implementations), branch `wip/sa-427` (rebased onto main b268b553: the code at e9419653, the proposed notes at 4bea27cf).
 All arithmetic is arb/acb ball arithmetic at 512 bits.
 
 `run_i427.sh <python> <root of the raw-data clone>` ran everything from `solver/proof/`, in 94 s. `exits.txt` has each
