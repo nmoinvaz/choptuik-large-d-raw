@@ -82,9 +82,9 @@ The slope of log(spread) against D over the four points is 1.5585, against #805'
 - The spread grows with D at about the rate of 1/p_min, but scatters about it by a factor of 1100 (0.019 to 20.5).
   With four seeds per D, a spread is the largest of four draws, not an error bar. The bands cannot settle the
   question, and nor can this data.
-- The steps were taken at the four-part reads, whose smallest pivots exceed #805's p_min by 1.3x at 245.6, 5.6x at
-  250.2 and 97x at 252.6. So above 245 these spreads are of a different point's step than the chain's own. A rerun at
-  the eight-part states is the like-for-like test.
+- The steps were taken at the four-part reads, whose smallest pivots are 0.75, 5.6 and 97 times #805's p_min at
+  245.6, 250.2 and 252.6 (1.0 at 240.1). So above 245 these spreads are of a different point's step than the chain's
+  own. A rerun at the eight-part states is the like-for-like test.
 - At 252.6135 the eight-part state's step (+1.10e-5) lies 260 times farther from the four-part one than any of the
   four seeds' steps. Restoring the dropped parts is not a random-sign perturbation of the same size. It moves the
   point back onto the chain's own state, where the pivot is 97 times smaller.
