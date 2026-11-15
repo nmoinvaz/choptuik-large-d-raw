@@ -1,0 +1,13 @@
+858 mixed.sh stopped by dh610 on the coordinator's order (hc message, 2026-11-15 about 23:50 UTC, #858's criterion 2 cannot pass at this D): systemctl --user stop run-p307840-i301387.scope at 2026-11-15 23:54:20 UTC, 1 h 09 min after the start (22:45:10 UTC); the scope held exactly mixed.sh (pids 307840, 307862, 307863) and the two octo_corrector.py wall processes (307872 wall_od, 307873 wall_qd); #608's units i608r4-d6 and i608r3-d10 were not in it and stayed active; no control run and no compare.py were started (no wall_qd_mutate10.log, no compare.log, no done.txt)
+wall_qd had ended its own iteration 1 with 'no trial step accepted, stopping' (all 9 trials refused at theta 1.000, max|F| 1.55e-40) and was in its closing phase, so its log has no exit line; wall_od was in the trial lam 1/128 of its iteration 0 (8 trials refused, the 9th, lam 1/256, not reached), no exit line
+
+--- wall_od.log, last lines
+    on 0 trial lam 0.015625: max|F| 2.18e+23; simplified correction / |dz| = 1.154e+63 (bound 0.996); refused, 404.13 s
+      on 0, lam 0.015625: projection failed (9): point max|F| 2.18e+23; u0 rung 1 its, |R| 9.56e+22 -> 9.56e+22, NOT converged; u0 quad-double 8 its, |R| 9.56e+22 -> 2.34e+19, NOT converged; ladder FA
+    on 0 trial lam 0.0078125: max|F| 1.35e+22; simplified correction / |dz| = 7.146e+61 (bound 0.998); refused, 409.01 s
+      on 0, lam 0.0078125: projection failed (10): point max|F| 1.35e+22; u0 rung 1 its, |R| 5.98e+21 -> 5.98e+21, NOT converged; u0 quad-double 8 its, |R| 5.98e+21 -> 1.46e+18, NOT converged; ladder 
+--- wall_qd.log, last lines
+    on 1 trial lam 0.015625: max|F| 1.55e-40; simplified correction / |dz| = 1.000e+00 (bound 0.996); refused, 281.26 s
+    on 1 trial lam 0.0078125: max|F| 1.55e-40; simplified correction / |dz| = 1.000e+00 (bound 0.998); refused, 278.1 s
+    on 1 trial lam 0.00390625: max|F| 1.55e-40; simplified correction / |dz| = 1.000e+00 (bound 0.999); refused, 204.05 s
+  on 1: |F| 1.55e-40, |dz| 4.55e-24: no trial step accepted, stopping
