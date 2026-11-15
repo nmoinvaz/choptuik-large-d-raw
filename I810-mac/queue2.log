@@ -1,1 +1,5 @@
 == 2026-11-15 00:19:14 ell_refine.py l1_kc23r 23 l1kc23d5s810 23 1 5 4.64 --kappa 0.5 --u0 0.01 --Ks 16 --tol 1e-13
+[note, 2026-11-15 01:35 UTC, xfkappa] This log stops after its first line. The raw commit 022ba327 took in the live
+queue2.log while queue 2 ran, and the `git pull --rebase` after it rewrote the file on disk, so the job wrote the rest
+into an unlinked copy. The six runs finished (their records, out/l1kc{23,31,39}d{4,5}s810.jsonl, carry Delta, F,
+psi-constraint, dDelta_dF, lambda and seconds, written 00:22 to 01:01 UTC); only this log's echo of them is lost.
