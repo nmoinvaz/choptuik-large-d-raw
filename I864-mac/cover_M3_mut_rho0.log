@@ -1,0 +1,19 @@
+python-flint 0.9.0, FLINT 3.6.0, 320 bits
+M = 3, MUTATION rho0
+[1] lemma 6b_1, start set at s0 = 89 e^(-3 i pi/4)  [lemma6b1_runs_M3_cert/ray.json]
+    old sector lemma: rays |arg xi - 3pi/8| <= 0.2, r0 = 0.1, diag; at the centre c = (2.72647588563114, 1.01560309485778, 0.14441947847010, 0.01108742588811) and on c +- (1.1e-9 + 1e-3), imaginary +- 1e-3
+    (a) X_b = c +- 1.1e-9 inside the complex box: True
+    (b) diag side condition M W0 sup|Im w/w_inf| = 0.0115 <= 3/2: True
+    (c) start point |z0| = 1/89 = 0.011236 < r0^2 = 0.010000: False
+    -> NOT COVERED
+[2] lemma 6b_1, the check's G0 = {|u| > 257} from lemma S(3)  [lemmas_M_runs/lemma6_sector_M3_rp0.1_1e-6.json]
+    stored run: R+ = 0.1^2, k = 20, N = 53, over x^ +- 1e-6, holds True, contraction 0.8252
+    (a) g0 = 257 >= 1/(R+ sin 0.4) = 256.79 and rho0 = 89 > g0: False
+    (b) X_b inside x^ +- 1e-6: True (slack +9.985e-07 at A)
+    -> NOT COVERED
+[3] lemma 6a, lemma S and the flat estimate  [lemmas_M_runs/lemma6a_M3_cert.json]
+    in the run: R+ = 0.1^2, k = 20, over centre +- 1e-6, the centre being the stored zero x^ (no --x): (2.726475886, 1.015603095, 0.144419478488, 0.011087425887); Z = 0.004489, stored Lambda 0.2923, rho_6a 0.0413, ok True
+    (a) the input box x +- 1e-10 (its own x) inside centre +- 1e-6: True (slack +9.995e-07 at A)
+    -> proved in the run (lemma6_jump_M.py exits otherwise)
+    for reference (H2): the 6a input box x +- 1e-10 against X_b: the centres differ by up to 2.663e-13 (at A); the covering's ball has radius 1.1e-9 + 2.544e-18; inside: True (slack +9.997e-10 at A)
+START COVER LEMMAS (M = 3, mutation rho0): NOT COVERED: [1](c) start point outside the lemma's radius; [2](a) g0 below 1/(R+ sin 0.4), or rho0 not beyond g0
