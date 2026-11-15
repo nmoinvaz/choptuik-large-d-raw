@@ -1,0 +1,11 @@
+== toy_noline 2026-11-15 03:41:00 UTC, hp at ec917706, newton_od_toy.py --mutate=noline
+# hpkernel /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/11bcbd25-9376-453b-88d5-a7c6ad0172dd/scratchpad/i599/site2/hpkernel/__init__.py
+own: converged True in 21 lines; trial lines printed 1 (refused 1), parsed 1: pass
+natural: converged True in 21 lines; trial lines printed 21 (refused 1), parsed 21: pass
+chord: 4 steps; weak coordinate moved 4.1e-17 of the step (<= 1e-12), residual off u cut to 2.5e-16 (<= 1e-12); newton_od with the chord converged True, chord accepted True: pass
+full step's drop, natural test: accepted by the drop at 1e-20 True (its trial line printed True); refused at 0 True; a full step to 2e-10 of the start's refused at 1e-20 True: pass
+full step's drop, own test: accepted by the drop at 1e-20 False (its trial line printed False); refused at 0 True; a full step to 2e-10 of the start's refused at 1e-20 True: FAIL
+refusal at iteration 1: stops at 1e8 True (theta 1.59e+09); not at 1e10 True: pass
+newton_od_toy --mutate=noline: FAIL
+exit 1
+== end 2026-11-15 03:41:00 UTC
