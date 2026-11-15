@@ -28,12 +28,13 @@ k_c to the next, falling at the one after; D = 6 from ELL.md's own check, D = 10
 | 9 | 23 | 0.9882045993 | -5.73e-7 | -1.50e-7 | 3.018537415 | +2.57e-6 | +6.7e-7 | 2.4e-6 / 3.0e-7 / 1.2e-7 | both converged (lambda at 0.86 of its bar) |
 | 10 (#660, not in the table) | 23 | 0.9849793417 | -2.65e-6 | -7.0e-7 | 2.914965959 | -1.34e-5 | -3.5e-6 | 8.2e-5 / 1.6e-6 / 2.4e-7 | not converged |
 
-Re-solves at the row's own k_c reproduce the stored rows: Delta within 3e-13, lambda within 3e-9, and the
-psi-constraint exactly. |dDelta/dF| is 59, 357, 1.7e4, 8.2e4, 3.8e5 at D = 4, 5, 7, 8, 9 (1.4e6 at D = 10).
+Re-solves at the row's own k_c reproduce the stored rows: Delta within 3e-13, lambda within 5e-9, and the
+psi-constraint to 5 digits or better. |dDelta/dF| is 59, 357, 1.7e4, 8.2e4, 3.8e5 at D = 4, 5, 7, 8, 9 (1.4e6 at D = 10).
 Settings: the D = 4 and 5 rows were solved with kappa 0.5, u0 0.01, Ks 16, not the kappa 0.7, u0 0.04, Ks 30 that
 ELL.md states for the table (the residual of each stored state matches only under its own settings).
 
-The psi-constraint, stored against rerun. (a) The table's states give back their stored constraint exactly. (b) #660's
+The psi-constraint, stored against rerun. (a) The table's states give back their stored constraint (recomputed from the state: exactly; after a re-solve: to 5
+digits or better). (b) #660's
 march: on its D = 10 rerun state (k_c 23) the Jacobian has four near-null directions (singular values 2.4e-12 twice,
 1.4e-11 twice, against 5.5). Test 1, straight moves along them that change the constraint by 1e-5, raised |F| to
 4e-10 to 2e-8 and failed its criterion. Test 2, the same moves followed by Newton (tol 1e-13), lands at states with
