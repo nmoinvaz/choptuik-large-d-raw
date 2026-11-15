@@ -22,3 +22,15 @@ the step where it stops, with its trials. Where both seeds of an arm converge, t
 control `--mutate=bar` (the Delta bar at 1e-20) fails: verdict_selftest*.log, run before the queue (exit 0, exit 1).
 
 Estimate: a few hours per arm (#713's s0_D252 took 2–6 h). The hourly posts follow the queue.
+
+## Change of plan (2026-11-15 16:07 UTC, the coordinator's reply)
+
+By step 4, every lam-1 trial of A_s1 had point max|F| 1e14–1e18, far above full_drop's 1e-2 of |F|. So B_s1 would take
+every step as A_s1 did, bit for bit. The coordinator agreed: A_s1 runs out its 12 steps, then A_s2 runs. A B arm runs
+only when its A run had a lam-1 trial within 1e-2 of |F|. queue.sh was stopped at 16:07 UTC while A_s1 kept running,
+and queue2.sh took over at 16:08 UTC.
+
+`b_needed.py A_LOG` makes that decision from the A run's log (exit 0: B needed). Its selftest passes on planted log
+lines, and its control `--mutate=bar` (the drop at 1e-5) fails: b_needed_selftest*.log (exit 0, exit 1). On real logs
+(b_needed_real.log), it says needed for I777-mac/stopped_s0_D252 (step 3's lam-1 trial at 4.3e-4 of |F|) and for
+I713-mac/s0_D252 (step 11, 3.6e-17), and not needed for A_s1 through step 4 (closest 5.5e27 of |F|).
