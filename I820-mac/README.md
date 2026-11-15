@@ -9,7 +9,7 @@ low orders of #818's 26 bases) and `hp/data/fold_cancel_coeffs.json` (#819). One
 
 - `calibrate.log`, `calibrate.json`: the registered run, contamination 0.3 (#819's plant). Not bounded, exit 1.
 - `calibrate_cont{0,0.003,0.01,0.03,0.1}.{log,json}`: post hoc, the contamination at those amplitudes.
-- `check_numbers.log`: `check_numbers.py --selftest` at 2380c015, 1939 of 1939, selftest 1939 of 1939.
+- `check_numbers.log`: `check_numbers.py --selftest` at aa89aa7f, 1940 of 1940, selftest 1940 of 1940.
 - The registered run and `--cont=0.01` rerun byte-identical.
 
 ## Result
@@ -26,8 +26,9 @@ r's relative range (max - min)/median over the 26 bases. Real: 1.19e-4.
 | 0.1 | 9.12e-4 | 1.31e-3 | 4.89e-3 | 4.08e-2 | | 7.56e-4 | not bounded |
 
 The range grows strictly with delta at every contamination, by about 400 delta. The robust range (the smallest over a
-shift of both folds by -4e-4 to +4e-4) is at least 0.84 of the nominal one, and still exceeds the real range at
-delta 1e-6 for contamination 0 to 0.01. The contamination amplitude is that of #782's near singularities (260.17 and
+shift of both folds by -4e-4 to +4e-4) is at least 0.87 of the nominal one at delta >= 1e-6 (contamination 0 and
+0.01; the delta 0 floors move more, to 0.67 of nominal at 0.003), and still exceeds the real range at delta 1e-6 for
+contamination 0 to 0.01. The contamination amplitude is that of #782's near singularities (260.17 and
 259.47 +- 1.17i) against the fold's amplitude b1 sqrt(s), + for lam_g and - for Delta.
 
 ## Recommended task
