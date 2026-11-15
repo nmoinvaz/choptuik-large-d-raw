@@ -1,0 +1,23 @@
+== fpm_table5.log against fixed_point_M_table_M5.log: 18 lines, 0 lines with a differing printed number (0 numbers), worst relative difference 0.0e+00
+== fpm_data5.log against fixed_point_M_data_M5.log: 4 lines, 0 lines with a differing printed number (0 numbers), worst relative difference 0.0e+00
+== sector5.log against lemma6_sector_M5_rp0.08_1e-6.log: 13 lines, 0 lines with a differing printed number (0 numbers), worst relative difference 0.0e+00
+== scan5.log: 27 lines against 22
+== scan5.log against lemmaS_scan_M5.log: 27 lines, 19 lines with a differing printed number (19 numbers), worst relative difference 1.0e+00 (line 10: 1.0e-44 against 5.3e-42)
+== fixed_point_M_table_M5.json: 340 leaves, 79 differ apart from timings: 0 non-numeric (N, k, flags, strings), 5 numeric keys
+   eta        worst relative difference 2.12e-12 (4.155712908304086e-45 against 4.1557129083129087e-45)
+   selfmap    worst relative difference 1.07e-12 (8.52026606859531e+47 against 8.52026606860439e+47)
+   rho        worst relative difference 1.06e-12 (1.4885381095784566e+48 against 1.488538109580039e+48)
+   F          worst relative difference 1.06e-12 (2.121705009063085e+47 against 2.1217050090653333e+47)
+   lip        worst relative difference 4.52e-15 (0.4298553740988367 against 0.4298553740988386)
+== fixed_point_M_data_M5.json: 36 leaves, 7 differ apart from timings: 0 non-numeric (N, k, flags, strings), 2 numeric keys
+   deta       worst relative difference 1.94e-13 (3.5852151292870395e-20 against 3.5852151292863456e-20)
+   eta        worst relative difference 1.37e-13 (1.5529642797472488e-26 against 1.5529642797470365e-26)
+== lemma6_sector_M5_rp0.08_1e-6.json: 73 leaves, 61 differ apart from timings: 4 non-numeric (N, k, flags, strings), 3 numeric keys
+   wts_S      worst relative difference 1.38e-12 (1.4549125239648346 against 1.454912523962826)
+   wts_R_plain worst relative difference 6.28e-13 (139.1090767905057 against 139.109076790593)
+   wts_R_diag worst relative difference 2.16e-13 (1.5208338014711336 against 1.5208338014714622)
+   differs: ('/lip_S', '[0.7246665601 +/- 1.62e-11]', '[0.7246665601 +/- 1.65e-11]')
+   differs: ('/rho_S', '[1.995838813e+36 +/- 4.35e+26]', '[1.995838813e+36 +/- 4.36e+26]')
+   differs: ('/F_S', '[1.373802916e+35 +/- 5.27e+24]', '[1.373802916e+35 +/- 5.46e+24]')
+   differs: ('/Lambda_plain', '[0.4233267068 +/- 6.84e-12]', '[0.4233267068 +/- 6.90e-12]')
+structural or flag differences: scan5.log: 27 lines against 22; lemma6_sector_M5_rp0.08_1e-6.json: /lip_S [0.7246665601 +/- 1.62e-11] against [0.7246665601 +/- 1.65e-11]; lemma6_sector_M5_rp0.08_1e-6.json: /rho_S [1.995838813e+36 +/- 4.35e+26] against [1.995838813e+36 +/- 4.36e+26]; lemma6_sector_M5_rp0.08_1e-6.json: /F_S [1.373802916e+35 +/- 5.27e+24] against [1.373802916e+35 +/- 5.46e+24]; lemma6_sector_M5_rp0.08_1e-6.json: /Lambda_plain [0.4233267068 +/- 6.84e-12] against [0.4233267068 +/- 6.90e-12]
