@@ -1,0 +1,13 @@
+== 2026-11-15 03:01:58 python3 export_pinned_qd.py RAW --verify (raw at 4e24f775)
+verify: 16 of 16 rows of /Users/nathan/Source/choptuik-large-d-xf-762/hp/data/delta_pinned_qd.csv equal their rebuild
+== exit 0
+== 2026-11-15 03:01:58 python3 export_pinned_qd.py RAW --mutate=repr (raw at 4e24f775)
+mutated: D 71.0 pin 5, its parts summed as their shortest decimal forms
+DIFFERS: row 1 (D 71.0 pin 7): minus_other_pin
+   minus_other_pin: file '-5.25112292596691e-29', rebuilt '4.052577926189974e-17'
+DIFFERS: row 2 (D 71.0 pin 5): Delta_q1, Delta_q2, Delta_q3, Delta, minus_other_pin, minus_qd
+   Delta_q1: file '-4.310301498588704e-17', rebuilt '-8.362879424783929e-17'
+   Delta_q2: file '-1.3168061134101268e-33', rebuilt '6.609574013613703e-34'
+   Delta_q3: file '5.899140150095596e-50', rebuilt '-1.6640815217568587e-50'
+verify: 14 of 16 rows of /Users/nathan/Source/choptuik-large-d-xf-762/hp/data/delta_pinned_qd.csv equal their rebuild
+== exit 1
