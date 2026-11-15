@@ -46,14 +46,14 @@ grid gains t = |a| (`--curve_t=a`), and the root's Delta is read there. The issu
 | `curve_planted` | PC1 worst point error 1.3e-48 (1e-3), PC2 pass, check pass | 0 |
 | `curve_planted_w0` | PC1 7.3e+56, PC2 FAIL, check FAIL | 1 |
 | `curve_dz0mut` | stored step against its re-solve 1.0e-6 (bound 1e-20): FAIL; the held offset's check FAIL too (4.21e9 on its rows, 9.02e10 elsewhere) | 1 |
-
-The control fired at both checks, and `main_curve` stops at the offset check first. queue.sh's gate looked for the
-second check's line only, so it did not start the real curve (queue.log). The real curve was started by hand at 05:59
-UTC, with the command of the plan.
 | `curve_truth` (05:59:33–06:02:46 UTC) | offset 6.72e-44 off its rows (0.000789 on them): pass; stored step re-solved 3.12e-89: pass; basis \|a\| 3.343e-8, sigma of B 9.09e-30..7.62e-28, \|B a\| 7.118e-37, \|w0\| 2.257e-19; g(0)'s chord NOT converged, floor0 2.53e-18 (3.6e18 \|B a\|); no point evaluated | 1 |
 | `diag_g0` (06:04:45–06:09:09 UTC) | the chord at c = 0 and newton_strong at c = 0, below | 0 |
 | `proj_shift` (06:10–06:31:20 UTC) | both checks pass, below | 0 |
 | `proj_shift_block` (`--mutate block`) | displacement outside m_h and a_h 6.78e-67 (must be 0): FAIL | 1 |
+
+The control fired at both checks, and `main_curve` stops at the offset check first. queue.sh's gate looked for the
+second check's line only, so it did not start the real curve (queue.log). The real curve was started by hand at 05:59
+UTC, with the command of the plan.
 
 ## Results (2026-11-15 06:57 UTC)
 
