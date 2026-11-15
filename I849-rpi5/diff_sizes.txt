@@ -1,0 +1,36 @@
+== fixed_point_M_data_M3: 36 leaves, 11 differ: 4 timing, 2 numeric keys, 0 other strings, 0 flags
+   deta           max rel diff 1.33e-14  (2.4147263386122858e-06 -> 2.414726338612318e-06)
+   eta            max rel diff 9.39e-16  (1.0751327440003872e-12 -> 1.0751327440003862e-12)
+== fixed_point_M_table_M3: 300 leaves, 87 differ: 15 timing, 5 numeric keys, 0 other strings, 0 flags
+   eta            max rel diff 7.48e-14  (8.376463397322108e-46 -> 8.37646339732148e-46)
+   selfmap        max rel diff 4.71e-14  (1.2222996939901249e+55 -> 1.2222996939900673e+55)
+   rho            max rel diff 4.66e-14  (1.2326295097228663e+55 -> 1.2326295097228088e+55)
+   F              max rel diff 3.73e-14  (3.632095195126144e+44 -> 3.6320951951260086e+44)
+   lip            max rel diff 1.44e-15  (0.5407692805948585 -> 0.5407692805948593)
+== fixed_point_M_table_M5: 340 leaves, 96 differ: 17 timing, 5 numeric keys, 0 other strings, 0 flags
+   eta            max rel diff 2.12e-12  (4.1557129083129087e-45 -> 4.155712908304086e-45)
+   selfmap        max rel diff 1.07e-12  (8.52026606860439e+47 -> 8.52026606859531e+47)
+   rho            max rel diff 1.06e-12  (1.488538109580039e+48 -> 1.4885381095784566e+48)
+   F              max rel diff 1.06e-12  (2.1217050090653333e+47 -> 2.121705009063085e+47)
+   lip            max rel diff 4.52e-15  (0.4298553740988386 -> 0.4298553740988367)
+== lemma6_sector_M3_rp0.1_1e-6: 55 leaves, 37 differ: 0 timing, 3 numeric keys, 0 other strings, 0 flags
+   wts_S          max rel diff 1.90e-14  (509.1557811179584 -> 509.15578111796805)
+   wts_R_plain    max rel diff 9.50e-15  (67.27951398158082 -> 67.27951398158018)
+   wts_R_diag     max rel diff 3.71e-15  (13.877991373335908 -> 13.877991373335856)
+== lemma6_sector_M5_rp0.08_1e-6: 73 leaves, 61 differ: 0 timing, 3 numeric keys, 4 other strings, 0 flags
+   wts_S          max rel diff 1.38e-12  (1.454912523962826 -> 1.4549125239648346)
+   wts_R_plain    max rel diff 6.28e-13  (139.109076790593 -> 139.1090767905057)
+   wts_R_diag     max rel diff 2.16e-13  (1.5208338014714622 -> 1.5208338014711336)
+   string differs: /lip_S | [0.7246665601 +/- 1.65e-11] -> [0.7246665601 +/- 1.62e-11]
+   string differs: /rho_S | [1.995838813e+36 +/- 4.36e+26] -> [1.995838813e+36 +/- 4.35e+26]
+   string differs: /F_S | [1.373802916e+35 +/- 5.46e+24] -> [1.373802916e+35 +/- 5.27e+24]
+   string differs: /Lambda_plain | [0.4233267068 +/- 6.90e-12] -> [0.4233267068 +/- 6.84e-12]
+== lemmaS_scan_M3: 216 leaves, 84 differ: 27 timing, 3 numeric keys, 0 other strings, 0 flags
+   eta            max rel diff 9.99e-01  (9.259536240225346e-91 -> 5.459454287718751e-94)
+   N              max rel diff 3.98e-03  (250 -> 251)
+   lip            max rel diff 2.79e-11  (0.8285335385134792 -> 0.8285335385365742)
+== mutations_M: 185 leaves, 28 differ: 22 timing, 0 numeric keys, 6 other strings, 0 flags
+   string differs: [5]/tail[0] | run over the complex box +-1e-3(1+i): fixed_point.py N 53, k 40, lip 0.292255, F 8.569284e -> run over the complex box +-1e-3(1+i): fixed_point.py N 53, k 40, lip 0.292255, F 8.569284e
+   string differs: [6]/tail[0] | M = 3 [MUTATION label]: (a) 1.4e-55 ok; (b) 3.5e-16 ok; (c) 2.6e+00 FAIL; (d) 3.5e-01 FAIL -> M = 3 [MUTATION label]: (a) 1.4e-55 ok; (b) 6.1e-16 ok; (c) 2.6e+00 FAIL; (d) 3.5e-01 FAIL
+   string differs: [6]/tail[1] | M = 5 [MUTATION label]: (a) 1.4e-55 ok; (b) 1.4e-15 ok; (c) 1.8e+00 FAIL; (d) 3.3e-01 FAIL -> M = 5 [MUTATION label]: (a) 1.4e-55 ok; (b) 8.7e-16 ok; (c) 1.8e+00 FAIL; (d) 3.3e-01 FAIL
+   string differs: [7]/tail[0] | M = 3: (a) 1.4e-55 ok; (b) 3.5e-16 ok; (c) 4.0e-58 ok; (d) 9.2e-59 ok; (e) 5.3e-56 ok; (f) -> M = 3: (a) 1.4e-55 ok; (b) 6.1e-16 ok; (c) 4.0e-58 ok; (d) 9.2e-59 ok; (e) 5.3e-56 ok; (f)

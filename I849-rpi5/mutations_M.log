@@ -1,0 +1,20 @@
+fp_series_M3     expected caught  exit 0: OK   (0.7 s)  MUTATION series: the lemma holds: False (must be False)
+fp_series_M5     expected caught  exit 0: OK   (3.7 s)  MUTATION series: the lemma holds: False (must be False)
+fp_cdrop_M3      expected caught  exit 0: OK   (0.6 s)  MUTATION cdrop: the lemma holds: False (must be False)
+fp_diagpath_M3   expected caught  exit 0: OK   (0.2 s)  MUTATION diagpath: refused (the diag splitting is valid on rays only; refusing it with a non-ray kernel bound) -> caught
+fp_control_r0    expected fails   exit 2: OK   (0.3 s)    => fixed point exists and is unique in the ball: False; |eta| <= 4.37e-03 at |z| = R (p, v, c variables)
+fp_m1            expected passes  exit 0: OK   (2.5 s)  M = 1 REPRODUCES fixed_point.py: True
+usys_label       expected caught  exit 0: OK   (0.8 s)  MUTATION label: caught: True
+usys_clean       expected passes  exit 0: OK   (0.7 s)  ALL SELF-TESTS PASS: True
+S_series_M3      expected caught  exit 0: OK   (1.2 s)  MUTATION series (top harmonic's coefficient off by 1e-6): lemma S holds: False (must be False)
+S_control_rp     expected fails   exit 2: OK   (1.7 s)  ALL CHECKS PASS (M = 3): False
+disc_m1          expected passes  exit 0: OK   (1.7 s)  M = 1 REPRODUCES lemma6b1_disc: True
+cover_check_M3   expected passes  exit 0: OK   (0.3 s)  LEMMA 6b_1 CHECK: PASS
+cover_drop_M3    expected fails   exit 3: OK   (0.3 s)  LEMMA 6b_1 CHECK: FAIL (3 failures: ['tile (5, 7): agreement point not in the meeting set', 'tile (6, 5): meeting set not connected', 'point (|u| = 128.8, arg = phi_5,6) not covered without tile (5, 6)'])
+cover_sign_M3    expected caught  exit 0: OK   (242.3 s)  MUTATION sign (V_u = +V/2 in the defect), M = 3: 0 of 12 discs of row 11 certified (must be 0)
+c1_truth_M3      expected passes  exit 0: OK   (17.8 s)  C1 PLANTED TRUTH: every point inside its set: True
+c1_nov_M3        expected caught  exit 0: OK   (17.9 s)  MUTATION nov (derivative columns dropped): every off-centre point outside: True (must be True)
+jump_partial_M3  expected caught  exit 0: OK   (5.7 s)  G_slow is 9 x 11: not square, beta is not determined by the slow data; lemma 6a NOT established   [MUTATION partial: failure expected]
+jump_swap_M3     expected caught  exit 0: OK   (374.5 s)  backward integration failed (step size underflow at t = 0.06811420060694218): lemma 6a NOT established   [MUTATION swap: failure expected]
+jump_coords_M3   expected report  exit 0: OK   (5.7 s)  rho_6a = 8.916e-01 < 1: True  => all J_D,mu(0.2) = 0 implies psi = 0 (whole jump): True   [MUTATION coords]   [PILOT: not rigorous]
+ALL VERDICTS AS EXPECTED: True
