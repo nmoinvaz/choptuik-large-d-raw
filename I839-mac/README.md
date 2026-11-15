@@ -34,3 +34,10 @@ and queue2.sh took over at 16:08 UTC.
 lines, and its control `--mutate=bar` (the drop at 1e-5) fails: b_needed_selftest*.log (exit 0, exit 1). On real logs
 (b_needed_real.log), it says needed for I777-mac/stopped_s0_D252 (step 3's lam-1 trial at 4.3e-4 of |F|) and for
 I713-mac/s0_D252 (step 11, 3.6e-17), and not needed for A_s1 through step 4 (closest 5.5e27 of |F|).
+
+`table_839.py NAME` gives the closing summary's per-step table from NAME.json and NAME.log: Delta − truth before
+each step (the summed lam·dDelta, since the offset leaves Delta at the truth), max|F|, |dz|, the smallest pivot,
+pivot/|dz| and the accepted lam. It also fits the lam-1 trials' point max|F| against |dz| (exponent free, then 4) and
+the smallest pivot against |dz|. Its check compares the summed Delta moves at the end with planted's own Delta − truth
+(relative 1e-6). The selftest passes on a planted run. The controls `--mutate=lam` (step 0's lam taken as 1) and
+`--mutate=power` (planted trials at exponent 3) fail: table_selftest*.log (exit 0, 1, 1).

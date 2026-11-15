@@ -1,0 +1,14 @@
+| step | Delta - truth before | max\|F\| | \|dz\| | smallest pivot | pivot/\|dz\| | accepted lam |
+|---|---|---|---|---|---|---|
+| 0 | +0.0000e+00 | 3.300e-12 | 2.200e-12 | 1.980e-14 | 0.0090 | 1/8 |
+| 1 | -2.7500e-13 | 2.887e-12 | 1.925e-12 | 1.732e-14 | 0.0090 | 1/4 |
+| 2 | -7.5625e-13 | 2.166e-12 | 1.444e-12 | 1.299e-14 | 0.0090 | 1/4 |
+| 3 | -1.1172e-12 | 1.624e-12 | 1.083e-12 | 9.745e-15 | 0.0090 | 1/2 |
+| 4 | -1.6586e-12 | 8.121e-13 | 5.414e-13 | 4.873e-15 | 0.0090 | 1/2 |
+end: Delta - truth -1.929297e-12 summed from the steps; planted's Delta - Delta_ref -1.929297e-12; max|F| 4.061e-13, converged False
+check: the summed Delta moves against planted's own Delta - truth, relative 0.00e+00 (bound 1e-6): pass
+lam-1 trials (5): point max|F| = 5.387e+64 |dz|^4.0002 (max deviation 0.05%); with the exponent 4, C = 5.3588e+64 (max deviation 0.05%)
+smallest pivot = 9.000e-03 |dz|^1.0000 over 5 steps (max deviation 0.00%)
+  the planted exponent recovered: 4.0000 (want 4 within 0.01): pass
+table_839 selftest: PASS
+exit 0
