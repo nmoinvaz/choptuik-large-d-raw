@@ -43,3 +43,27 @@ Nothing was rerun, and no file of the coordinator's was edited.
 Make `octo_corrector.py`'s `_parse` refuse a flag that is not in its defaults (exit 2 and name it), with a control
 that passes a made-up `--reseed_x 1` and must fail. Why: the queue's two re-seeder flags were dropped without a word,
 and the 3.6 h run did not test what its criterion says. It depends on nothing.
+
+# The second stop: the rerun on 165b1da3 (2026-11-15 03:29 UTC)
+
+The rerun had #713's re-seeder settings. Its first trial matched #713's to every printed digit (max|F| 2.48e+22, raw
+|dz_t| 1.200e+17). It exited 1 where 0 was expected, after 5 steps at pinned max|F| 4.42e-32, above the 1e-40 bar.
+
+| step | lam | \|F\| after | \|dz\| after | smallest pivot | taken by |
+|---|---|---|---|---|---|
+| 0 | 1/64 | 3.34e-12 | 1.99e-11 | 2.3e-14 | own test (as #713) |
+| 1 | 1/16 | 3.13e-12 | 1.86e-11 | 2.3e-14 | own test (as #713) |
+| 2 | 1 | 7.19e-16 | 7.41e-16 | 2.2e-14 | own test (as #713) |
+| 3 | 1 | 4.42e-32 | 1.10e-05 | 1.2e-19 | the drop (`by_drop` in the JSON) |
+| 4 | none | | | 7.3e-31 | all 9 trials refused, at max\|F\| 2.0e+51 down to 5.6e+34 |
+
+The run used 16755 s and made 19 failed projections. Its Delta lies 2.0184e-11 below the planted truth, as #713's
+does, and the two agree to 2.09e-17 (rerun minus #713). The stopped run on 8e10d127 lies 5.91e-12 lower. The truth's own
+octo-double residual is 3.58e-20, twelve orders above the rerun's final point.
+
+## Discrepancy: a step taken by the drop prints no trial line
+
+In `newton_od`'s own-test branch, the outer condition prints when `by_drop` holds, but the inner one,
+`verbose >= 2 or (verbose and not ok)`, does not. So at the default verbosity, a step accepted by the drop logs only
+its `on N:` line. It never says "accepted by the full step's drop", and only the JSON's `by_drop` records it (step 3
+here, step 1 of the stopped run).
