@@ -24,4 +24,10 @@ states. Newton's step at D 8 and D 9 differs from the Mac's (a different sign at
 |F| are at 1e-13 to 1e-14, where the step is below W and set by the direction of the rounding in F.
 
 ## Stage 2: the walks
-(in progress)
+Walk a (D 9, kc 15; 21:52:50 to 21:59:21 UTC, 391 s, exit 0): stopped by the 1e-9 rule after 49 Jacobians, with Delta
+1.026906208730 (-1.77e-04 from the kernel's 1.02708332095, +1.79e-06 from the march's 1.026904414), |F| 1.5769e-10,
+last change -7.3e-10. The changes fell from 7.6e-06 (jac 0) through 8.9e-08 (jac 29) and 4.7e-09 (jac 46), and the
+last two were -9.5e-09 and -7.3e-10. Width at its end (exit 0, the two g agree): g 3.4614e+05, W 5.458e-05, Newton's
+Delta step -1.841e-06, which would put Delta at 1.02690437. So by the pre-registered definition (last change below
+1e-9 and W <= 1e-6) it has not settled, W being 55 times the bar.
+(walks b, c, e follow)
