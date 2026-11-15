@@ -1,0 +1,15 @@
+second implementation: M = 1, r0 = 0.1, arg xi = 1.178097, N = 53, k = 51, a = 0.35355, e_min = 1.5000, kernel bound sharp
+  residual below its structural orders contains 0: True (largest |ball| R^j there 2.8e-153)
+  largest Lipschitz entries: v+1<-p+1 0.2701, v-1<-p-1 0.2701, v+1<-p-1 0.1055, v-1<-p+1 0.1055, v+1<-c+0 0.06554, v-1<-c+0 0.06554
+  contraction constant max_i (L w)_i / w_i <= 0.1045; F + L w < w: True; refined set inside and mapped into itself: True
+  => unique fixed point; |eta| at |z| = R: p 6.36e-35, v 5.82e-33, c 7.29e-38
+first implementation: N = 53, k = 40, contraction 0.2918
+  component, overlap, |mid - first's mid|, radius, first's radius
+  D-1 True 5.60e-97 8.31e-36 2.38e-34
+  S-1 True 3.15e-97 8.52e-35 6.00e-34
+  D+1 True 4.80e-97 8.31e-36 2.38e-34
+  S+1 True 2.15e-97 8.52e-35 6.00e-34
+  C-2 True 5.04e-98 4.18e-38 3.00e-36
+  C+0 True 9.39e-98 7.29e-38 5.90e-36
+  C+2 True 4.77e-98 4.18e-38 3.00e-36
+M = 1 PLANTED (fixed_point.py's start values): PASS
