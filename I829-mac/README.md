@@ -3,7 +3,23 @@
 Machine: the Apple M5 Mac (xfkappa). Issue: https://github.com/nmoinvaz/choptuik-large-d/issues/829.
 Code: `hp/fold_mirror.py` on wip/xf-829. Input: `I603-win2/chain_nsr/jet_pin3_D*.npz` at #818's 46 bases 258.7829 to
 259.8352 (chain_nsr has since gone on to 259.8517; those newer jets are not used), and the measured Delta of every state
-in [259.64, D*). Work in progress; the closing summary will replace the status section.
+in [259.64, D*). Code: wip/xf-829 c8f1b7ec (on main 365d1bca).
+
+## Result
+- **The plant passes.** It has 7 usable bases, 259.8068 to 259.8352. Over them, the mirror is within 5.5e-8 (M1)
+  and 8.5e-8 (M2) of the plant's, and the + sheet within 7.3e-28.
+- **The control fails, as it must.** With D* moved by 0.01, both methods miss by 2.0e-3.
+- **On the real series:**
+  - the + sheet meets the measured Delta to 5.4e-29;
+  - M1 and M2 agree on the mirror to 8.0e-9;
+  - the table runs from 1.6104224 at 259.64 to 1.6302764 at 259.90, with an error of 1.8e-7 at 259.64.
+- **The Puiseux data:** D* 259.90330382883, Delta* 1.6323214210731, a1 0.035020554885, a2 -0.008654817400,
+  a3 0.018417121619, a4 0.004191095534. M1's mu is 1/2 to 8.9e-15.
+- **The rerun is byte-identical** (real.json and fold_mirror.csv).
+- **check_numbers.py --selftest:** 2064 of 2064, and its selftest 2064 of 2064.
+- **A discrepancy.** I registered the 46 bases present from 258.7829 to 259.8352 and called them #818's. #818 had 42,
+  to 259.8184. With those alone, 3 bases are usable, one fewer than the registered 4. Their mirror agrees with the
+  table to 9.4e-10 (restricted818.log).
 
 ## Files
 - `noise.log`: the jets' noise. The two-base least-squares residual of the forms (degrees 10-15, three base pairs) on
