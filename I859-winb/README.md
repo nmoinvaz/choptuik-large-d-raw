@@ -46,4 +46,43 @@ the last Jacobian. The changes were about -2.3e-06 per Jacobian through jac 105,
 `width` freezes them from this end state, which I did not test as the cause), g 1.4949e+06, W 1.236e-03, Newton's Delta
 step +5.23e-05, which would put Delta at 1.022134. By the pre-registered definition (W <= 1e-6) it has not settled, W
 being 1200 times the bar.
-(walk e follows)
+Walk e (D 10, kc 23; 22:06:54 to 22:27:02 UTC, 1208 s, exit 0): stopped by the 1e-9 rule after 54 Jacobians, with Delta
+1.023202578726 (-2.347e-04 from the kernel, -2.939e-03 from the march), |F| 1.5485e-10. The changes were about -1.0e-06
+per Jacobian (-1.00e-06, -9.66e-07), and jac 53 made no step (change +4.4e-16, |F| up from 1.5471e-10), which the rule
+read as settled. Width at its end (exit 0, the two g agree): g 1.4456e+06, W 2.239e-04, Newton's Delta step -5.35e-06,
+which would put Delta at 1.02319723. By the pre-registered definition (W <= 1e-6) it has not settled, W being 220 times
+the bar.
+
+## Result (2026-11-15 22:27 UTC, the four walks took 34 min 32 s with two at a time)
+
+No walk has settled by the definition (last change below 1e-9 and W <= 1e-6 at its end).
+
+| walk | D | kc | Jacobians | s | Delta at the end | \|F\| | last change | W | Newton's Delta | stopped on |
+|---|---|---|---|---|---|---|---|---|---|---|
+| a | 9 | 15 | 49 | 391 | 1.026906208730 | 1.577e-10 | -7.3e-10 | 5.458e-05 | 1.02690437 | a change below 1e-9, after -4.7e-09 and -9.5e-09 |
+| b | 9 | 23 | 14 | 351 | 1.027051411571 | 3.015e-11 | +1.0e-14 | 1.047e-05 | 1.02705068 | a Jacobian with no step (stall), after -9.6e-08 |
+| c | 10 | 15 | 109 | 838 | 1.022082021836 | 8.163e-10 | -2.2e-14 | 1.236e-03 | 1.02213430 | a Jacobian with no step (stall), after -7.3e-09 |
+| e | 10 | 23 | 54 | 1208 | 1.023202578726 | 1.549e-10 | +4.4e-16 | 2.239e-04 | 1.02319723 | a Jacobian with no step (stall), after -9.7e-07 |
+
+The kernel's Delta is 1.02708332095 at D 9 and 1.02343724954 at D 10, the march's 1.026904414 and 1.026141550. Width at
+each end: g 3.4614e+05 (a), 3.4715e+05 (b), 1.4949e+06 (c), 1.4456e+06 (e); |F| from `width` equals the walk's last
+for a, b and e, and is 8.267e-10 for c (the walk's last is 8.163e-10).
+
+| reading (the issue's), with the ends | numbers | verdict |
+|---|---|---|
+| D 9 same solution: a within 1e-6 of the march's 1.026904414 | a is 1.795e-06 from it; Newton's step from a gives 1.02690437 | does not hold; a not settled (W 5.5e-05) |
+| D 9 truncation: \|b - kernel\| <= \|a - kernel\| / 3 | 3.191e-05 and 1.771e-04, factor 5.55 (Newton's prediction 5.4) | numbers meet the bar; a and b not settled (W 5.5e-05, 1.0e-05) |
+| D 10 prior: c settles 1e-3 or more from the march's 1.026141550 | c is 4.060e-03 from it | numbers meet the bar; c not settled (W 1.2e-03, stalled) |
+| D 10 truncation: \|e - kernel\| <= \|c - kernel\| / 3 | 2.347e-04 and 1.355e-03, factor 5.78 | numbers meet the bar; c and e not settled (W 1.2e-03, 2.2e-04, both stalled) |
+
+Also seen:
+- b, c and e stopped on a Jacobian that made no step (change +1.0e-14, -2.2e-14, +4.4e-16), with |F| not lower (b
+  3.0150e-11 up to 3.0152e-11, e 1.5471e-10 up to 1.5485e-10, c unchanged at 8.1629e-10 after rising from 8.1610e-10 one
+  Jacobian earlier), while Delta was still moving by 9.6e-08 (b), 7.3e-09 (c) and 9.7e-07 (e) in the Jacobian before.
+  The rule read each as settled. Main 750f902b reports such a stop as stalled; these runs used cf479ad5.
+- Walk a took 49 Jacobians where the issue expected about 120 from its first four changes (ratio 0.93).
+- Newton's Delta step at the march's D 8 and D 9 states differs from the issue's Mac table (stage 1).
+- Every exit 0, no traceback, and the two g agree to 1e-6 in all eight `width` runs.
+
+Files: `width_*.log` and `width.jsonl`, `walk_?.log`, `walk_?.npy` (each end's state) and `walk.jsonl` (the per-Jacobian
+history), `width_walk_?.log`, `exits_859.txt`, `run859a.sh` and `run859w.sh`.
