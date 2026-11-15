@@ -1,0 +1,15 @@
+held values from the fit data/held_fit.json (degree 8, 138 full-system states, D 38.020417-73.0), relative to the base
+the base keeps its stored plan (61 steps)
+  on 0: |F| 3.28e-72 converged, Delta 1.63662580864708107 -5.5825e-17
+      elim projections {'u0': 0, 'u0q': 0, 'ladder': 0, 'failed': 0, 'skipped': 1}
+      octo-double Newton: 1 steps, max|F| 3.3e-72, converged; double-double |F| of its first two parts 6.1e+08
+base I603-win2/chain_nsr/anm_pin3_D259.8875.npz: D 259.887489667, M 32, pin 3 (held [5, 7, 9, 11, 13]), |F| 6.1e+08; N 4, eps 1e-14, h_max 1.0, corrector od (junk_only False), tol 1.0e-20 x 1.45^(D - 259.88749), stalls accepted below 1e-17
+  on 0: |F| 3.28e-72 converged, Delta 1.63662580864708107 -5.5825e-17
+diag newton_base: {"F": 3.282215972451149e-72, "step_max": 4.333858402802229e-60, "step_Delta": 4.333858402802229e-60, "pivots": [5.901941331094582e-37, 1.475570076220883e+37]} (324 s)
+diag b: {"FD_max": 4.345084517818499e+33, "FD_pre_vs_post": 0.0, "b_norm": 0.1419219641195223, "w1_norm": 0.1419219641195223, "b_plus_w1": 0.0, "b_pre_vs_post": 0.0, "b_Delta": 0.1341298371469986, "w1_Delta": -0.1341298371469986} (383 s)
+diag sigma: {"J": [5.72485210617493e-38, 1.2088965147963277e-36, 4.910549777560488e-35, 5.024110039118706e-35], "bordered": [5.779635700050263e-38, 1.2094367254700785e-36, 4.910549933850254e-35, 5.024110565844102e-35]} (1074 s)
+diag bordered_step: {"core_D": 0.0, "core_max": 4.333858402802229e-60, "core_Delta": 4.333858402802229e-60, "elim_D": 0.0, "elim_max": 4.333858402802229e-60, "elim_Delta": 4.333858402802229e-60, "log": [{"D": "259.8874896673615257601530625919395", "den": 1.010020714589331, "b": 0.1419219641195223, "dD": 6.637178123766913e-61, "dD_rounded": 0.0, "g": 0.0}, {"D": "259.8874896673615257601530625919395", "den": 1.010020714589331, "b": 0.1419219641195223, "dD": 6.637178123766913e-61, "dD_rounded": 0.0, "g": 0.0}], "counts": {"u0": 0, "u0q": 0, "ladder": 0, "failed": 0, "skipped": 1}} (1410 s)
+diag FD_h1e-22: {"h_used": 9.999999998199587e-23, "rel": 0.0019465594887377513, "held_rows": 0.0019465594887377513, "other_rows": 0.00019813692430388364, "worst_row": 670} (1412 s)
+diag FD_h1e-26: {"h_used": 9.999600834581546e-27, "rel": 1.946404092693556e-11, "held_rows": 1.946404092693556e-11, "other_rows": 1.9812110680926093e-12, "worst_row": 670} (1415 s)
+done
+exit 0
