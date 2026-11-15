@@ -1,0 +1,13 @@
+826 arm A stopped by dh610 on the coordinator's order (#826 comment 2026-11-15 08:5x UTC, hc message): systemctl --user stop i826 at 2026-11-15 08:51:13 UTC, unit inactive at 08:51:16, no octo_corrector or run826 process left
+arm A had run 1 h 53 min (started 06:57:43 UTC), in step 2 after its trials lam 1, 1/2 and 1/4 (all refused); no .npz or .json state exists (planted writes them at the end of a run)
+
+--- truth.log, from step 0's line on
+  on 0: |F| 3.58e-20 -> 3.56e-20, |dz| 3.31e-08 -> 2.28e-11, lam 0.0078125, dDelta +3.31e-08, piv 8.1e-24..1.2e+36, 3790.02 s
+    on 1 trial lam 1: max|F| 6.40e+22; raw |dz_t| 1.535e+19 vs |dz| 2.279e-11 (not <); refused, 395.66 s
+  on 1: |F| 3.56e-20 -> 1.78e-20, |dz| 2.28e-11 -> 1.03e-12, lam 0.5, dDelta +8.05e-14, piv 5.4e-24..1.2e+36, 1015.05 s
+    on 2 trial lam 1: max|F| 3.68e-25; raw |dz_t| 2.517e-08 vs |dz| 1.032e-12 (not <); refused, 638.78 s
+    on 2 trial lam 0.5: max|F| 9.37e+20; raw |dz_t| 2.098e+16 vs |dz| 1.032e-12 (not <); refused, 526.39 s
+    on 2 trial lam 0.25: max|F| 1.33e-20; raw |dz_t| 1.374e-12 vs |dz| 1.032e-12 (not <); refused, 623.82 s
+
+--- exits_826.txt (the script's own, no exit line since the unit was stopped)
+826 truth start, hp 390d1db9 2026-11-15 06:57:43 UTC
