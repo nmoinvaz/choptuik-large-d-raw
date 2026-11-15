@@ -1,0 +1,19 @@
+1. linear Stokes normalization (rigorous):
+   xi1 0.20, w/w_inf 1.0000: J / (2 pi i K' f 2F_1) = [1.0000000000000000000 +/- 3e-25] + [+/- 4.82e-63]j
+   xi1 0.20, w/w_inf 0.7770: J / (2 pi i K' f 2F_1) = [1.0000000000000000000 +/- 3e-25] + [+/- 1.87e-63]j
+   xi1 0.30, w/w_inf 1.0000: J / (2 pi i K' f 2F_1) = [1.0000000000000000000 +/- 3e-25] + [+/- 2.79e-69]j
+   xi1 0.30, w/w_inf 0.7770: J / (2 pi i K' f 2F_1) = [1.0000000000000000000 +/- 1e-24] + [+/- 1.01e-69]j
+2. truncated formal series and its residual (rigorous), M = 1 at the zero:
+   N = 53 terms; |R(xi)| <= sum_k |rho_k| |xi|^k <= 9.98e-34 on |xi| <= 0.1; nonzero coefficients from xi^106
+3. start-value fixed point (rigorous), M = 1 at the zero, rays arg xi = +-3pi/8:
+   contraction constant <= 0.2918, self-map verified: True; y+(xi0) enclosed to radius 6.0e-34 (D, S, C at xi0 = 0.1 e^(3 i pi/8))
+4. Poincare-Miranda dry run (double precision, not rigorous):
+newton 0: p = 2.542148049074, 0.776994014464  |G| 1.26e-03  [3 s]
+newton 1: p = 2.542148047580, 0.776994013630  |G| 1.20e-07  [6 s]
+newton 2: p = 2.542148047645, 0.776994013605  |G| 1.23e-08  [10 s]
+newton 3: p = 2.542148047633, 0.776994013641  |G| 1.08e-08  [13 s]
+newton 4: p = 2.542148047521, 0.776994013551  |G| 1.51e-08  [16 s]
+newton 5: p = 2.542148047630, 0.776994013744  |G| 4.37e-08  [20 s]
+zero: A = 2.5421480476, w/w_inf = 0.7769940137 (w = 2.96977671); J0 singular values 3.027e+02, 8.717e+01
+box h = 1e-03: min edge margins (should all be > 0) [0.000973572, 0.001005, 0.000985995, 0.00101017]; allowed enclosure radius of G ~ 7.63e-02  [60 s]
+box h = 1e-05: min edge margins (should all be > 0) [1e-05, 1.0003e-05, 9.997e-06, 1e-05]; allowed enclosure radius of G ~ 7.84e-04  [97 s]

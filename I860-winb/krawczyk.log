@@ -1,0 +1,17 @@
+matching radius xi1 = 0.3
+normalization (rigorous): N(x^) = [0.828122363634 +/- 3.31e-13] + [0.0212161711472 +/- 1.28e-14]j, xi1^(-A^2) = [2393.93647044 +/- 7.20e-10], |xi1^(-A^2)/N| = [2889.8522 +/- 2.99e-5]
+[dry run, double precision, NOT rigorous; 16 s]
+  centre x^ = (2.5421480475, 0.7769940136); |g(x^)| = 1.0e-08 (double-precision floor)
+  J0 = dg/d(A, wf) = [[-15.322, -103.123], [90.857, -44.093]], singular values 117.1, 85.8
+  variation of J over the h = 1e-3 box (entrywise max |J(corner) - J0|): [[1.5331, 1.5907], [0.7979, 0.5906]]
+  tolerated enclosure radii (one at a time; split between them in practice):
+    h = 1e-03: J varies by <= 1.59e+00 over X; g(x^) radius <= 6.63e-02 (with exact J(X)); J(X) extra radius <= 3.32e+01 per entry (with exact g(x^))
+    h = 1e-05: J varies by <= 1.59e-02 over X; g(x^) radius <= 6.82e-04 (with exact J(X)); J(X) extra radius <= 3.41e+01 per entry (with exact g(x^))
+  in terms of the raw jump J_D = D+_{+1}(xi1) - conj(D+_{-1}(xi1)) (what the validated integration must enclose):
+    h = 1e-03: |J_D(x^)| radius <= 2.30e-05; dJ_D/d(A, wf) over X: extra radius <= 1.15e-02 (on top of the true variation 5.50e-04)
+    h = 1e-05: |J_D(x^)| radius <= 2.36e-07; dJ_D/d(A, wf) over X: extra radius <= 1.18e-02 (on top of the true variation 5.50e-06)
+mock validation of the test (enclosures = dry-run values with inflated radii):
+  mock h = 1e-03, g radius 0.25 x budget, J radius 0.25 x budget, centre off by 0.0 h: K(X) in int X: True (margins 4.86e-04, 6.19e-04)
+  mock h = 1e-03, g radius 2.50 x budget, J radius 0.25 x budget, centre off by 0.0 h: K(X) in int X: False (margins -1.70e-03, -9.58e-04)
+  mock h = 1e-05, g radius 0.25 x budget, J radius 0.25 x budget, centre off by 0.0 h: K(X) in int X: True (margins 5.00e-06, 6.39e-06)
+  mock h = 1e-05, g radius 0.25 x budget, J radius 0.25 x budget, centre off by 3.0 h: K(X) in int X: False (margins -2.50e-05, 6.39e-06)
