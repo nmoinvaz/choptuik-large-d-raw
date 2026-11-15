@@ -49,7 +49,7 @@ and the 3.6 h run did not test what its criterion says. It depends on nothing.
 The rerun had #713's re-seeder settings. Its first trial matched #713's to every printed digit (max|F| 2.48e+22, raw
 |dz_t| 1.200e+17). It exited 1 where 0 was expected, after 5 steps at pinned max|F| 4.42e-32, above the 1e-40 bar.
 
-| step | lam | \|F\| after | \|dz\| after | smallest pivot | taken by |
+| step | lam | \|F\| after | \|dz\| after | smallest pivot at its start | taken by |
 |---|---|---|---|---|---|
 | 0 | 1/64 | 3.34e-12 | 1.99e-11 | 2.3e-14 | own test (as #713) |
 | 1 | 1/16 | 3.13e-12 | 1.86e-11 | 2.3e-14 | own test (as #713) |
