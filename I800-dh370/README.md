@@ -66,3 +66,10 @@ Findings, from the coordinator's analysis of these logs (not re-derived here).
    9.4e44), so the horizon series diverges there, and no weight on the whole tail to 250 can be climbed.
 
 The control fired, so the climb stops until the cause is known (AGENTS.md).
+
+Correction (2026-11-15, the coordinator, #800 comment 6887821154): finding 2 above, that the horizon series diverges at
+the last node, is withdrawn. The tail of orders 131 to 250 adds only 1.3e-17 at t0's base (diag800b.txt), so the rung
+w = 1/64 starts near 2e-19, and the 9.4e44 is the point after its first full step (`on 0 chord 0`), not its start.
+Finding 1 stands.
+
+diag800*.py: the coordinator's checks of the rung's start (#800 comment 6887821154); diag800 and diag800c read D at 15 digits and are artifacts, diag800b is the valid one.
