@@ -55,5 +55,5 @@ inclusion whose slack is 10⁻⁹. The mutation now moves by twice the box's hal
    comes from how arb stores a radius. Lemma 6a's state box covers the larger sub-box already. Acceptance: the script
    reports (2) with a slack near 10⁻¹⁹ and still HOLD with the covering's radius taken as the decimal 10⁻¹⁸. Depends
    on: #871.
-2. **README and PROOF.md wording.** What: where they give Theorem A(5)'s box, say it is the decimal box of §7.
-   Why: the notes now define it there. Acceptance: `check_numbers.py --selftest` passes. Depends on: #871.
+
+The README and PROOF.md do not state Theorem A(5)'s box (they give the interval of ω/ω∞), so they need no change.
