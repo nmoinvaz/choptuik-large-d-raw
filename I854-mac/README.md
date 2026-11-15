@@ -42,3 +42,18 @@ stub re-seeder's projection sets from y, from the planted start (y moved, h at t
 
 Estimate: dz0 runs about 6 min each, off_step0 about 60 min. keep_s1 takes 1–12 h: about 7 steps of 30–60 min if lam
 grows to 1, and 12 h at the step limit.
+
+## The default against A_s1 (queue.log, 20:37–22:40 UTC)
+
+| check | result | control | control result |
+|---|---|---|---|
+| dz0, 4617f876 against 394e45b0 off (cmp_dz0.log) | 16 of 16 arrays bit for bit, pass | against the option's dz0 | 7 of 16 equal (z4–z7, d3–d7 differ), FAIL as required |
+| step0, A_s1 against off_step0 (cmp_step0.log) | 7 of 7 lines equal, pass | `--mutate=digit` | FAIL as required |
+
+- off_step0 accepts lam 1/8 after refusing 1, 1/2 and 1/4, as A_s1 did: |F| 3.40e-12 → 2.97e-12, |dz| 2.20e-12 →
+  1.93e-12, Delta − truth −2.7542e-13 afterwards (A_s1's table: −2.750e-13 from the log's three digits).
+- off_step0's exit 1 is planted's (a) verdict after one step (max|F| 2.97e-12), as it_max 1 gives.
+- The option's dz0 shares the start's first parts: its z0–z3 and d0–d2 are A_s1's bits. The projection moves only
+  parts 4–7 of z, so the change from the default sits below quad-double in the start.
+- Times: the dz0 runs took 745–761 s each and off_step0 5113 s, against 6 min and 60 min estimated. Another agent's
+  3-thread job shares the CPU.

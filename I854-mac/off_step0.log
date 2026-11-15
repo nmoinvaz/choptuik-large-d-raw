@@ -2,3 +2,16 @@
 # hpkernel /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/11bcbd25-9376-453b-88d5-a7c6ad0172dd/scratchpad/i599/site2/hpkernel/__init__.py
 planted I603-win2/chain/anm_pin3_D252.6135.npz: D 252.613467565, start = truth moved by 1e-12 relative in [0, 576); pinned max|F| (octo) truth 5.55e-92, start 3.40e-12; mutate_offset '', mutate 0
   the system (#837): truth read in 8 of 8 parts, held values eight parts, plan stored; pinned max|F| (octo) at the truth 5.5519e-92
+    on 0 trial lam 1: max|F| 1.26e+18; raw |dz_t| 6.325e+12 vs |dz| 2.203e-12 (not <); refused, 959.3 s
+      on 0, lam 1: projection failed (1): point max|F| 1.26e+18; u0 rung 1 its, |R| 7.48e+17 -> 7.48e+17, NOT converged; u0 quad-double 8 its, |R| 7.48e+17 -> 1.83e+14, NOT converged; ladder FAILED after 8 rungs, last rung u 0.300000 quad-double 8 its, |R| 9.50e+06 -> 2.50e+01, NOT converged
+    on 0 trial lam 0.5: max|F| 7.89e+16; raw |dz_t| 2.561e+12 vs |dz| 2.203e-12 (not <); refused, 891.94 s
+      on 0, lam 0.5: projection failed (2): point max|F| 7.89e+16; u0 rung 1 its, |R| 4.68e+16 -> 4.68e+16, NOT converged; u0 quad-double 8 its, |R| 4.68e+16 -> 1.14e+13, NOT converged; ladder FAILED after 8 rungs, last rung u 0.300000 quad-double 8 its, |R| 2.45e+07 -> 1.33e-02, NOT converged
+    on 0 trial lam 0.25: max|F| 4.93e+15; raw |dz_t| 7.099e+11 vs |dz| 2.203e-12 (not <); refused, 862.82 s
+      on 0, lam 0.25: projection failed (3): point max|F| 4.93e+15; u0 rung 1 its, |R| 2.92e+15 -> 2.92e+15, NOT converged; u0 quad-double 8 its, |R| 2.92e+15 -> 7.13e+11, NOT converged; ladder FAILED after 8 rungs, last rung u 0.300000 quad-double 8 its, |R| 2.08e+07 -> 1.71e+06, NOT converged
+  on 0: |F| 3.40e-12 -> 2.97e-12, |dz| 2.20e-12 -> 1.93e-12, lam 0.125, dDelta -2.20e-12, piv 2.0e-14..1.2e+36, 3679.98 s
+  od: 1 steps, NOT converged, pinned max|F| (octo) 2.97e-12, Delta 1.684534450118646873238761468973286422813, projections {'u0': 0, 'u0q': 1, 'ladder': 2, 'failed': 3, 'skipped': 0}, 5113 s
+  od against the truth: dDelta -2.7542e-13
+  |Delta_od - Delta_qd| 2.7542e-13 (Delta_ref 1.68453445011892229445312904531756908899422197089059690341775)
+  (a) FAIL: od max|F| 2.97e-12 < 1e-40, |Delta_od - Delta_qd| <= 1e-30
+exit 1
+== end 2026-11-15 22:40:20 UTC
