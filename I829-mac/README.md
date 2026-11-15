@@ -52,3 +52,15 @@ Code: `hp/fold_mirror.py` on wip/xf-829 c8f1b7ec (on main 365d1bca).
 
   The first plant runs of `t1.py` and `t2.py` had no noise. The noise term `1 + 1e-30 g` was rounded in floats; it
   was fixed before any judged run.
+
+## Recommended task: the mirror state polished by Newton
+- **What:** apply fold_mirror.py's M2 forms (the same 7 usable bases and degree sets) to every component of the
+  jets, not only Delta. Take the mirror state at D 259.80 and polish it with the chain's corrector at fixed D
+  (hp's Newton, double-double or better).
+- **Why:** the converged state's Delta tests the table with machinery that shares nothing with the approximants; only
+  the seed comes from them. Away from D*, the Jacobian is regular on both sheets.
+- **Acceptance (can fail):** Newton converges to |F| < 1e-30 from the mirror seed, with Delta within 1e-9 of the
+  table's 1.6196534449 at 259.80 (the table's stated error there is 1.4e-10).
+- **Control:** the chain-sheet seed from the same forms converges back to the chain's Delta, 1.6432968633, and not to
+  the mirror.
+- **Depends on:** #829.
