@@ -1,0 +1,20 @@
+plant: exit 0 (wanted 0)
+   (a) on the curve: 51 points, worst 5.9e-40 (bar 1e-30) -> pass
+   (b) both branches: 20 with sigma <= -0.3, 18 with sigma >= +0.3 (2 each) -> pass
+   (c) the turn: step 26: |D - D*| 2.7e-40, |x - x*| 2.9e-41 (bar 1e-10) -> pass
+   (d) composed against bordered: worst ratio to 100 x 1e-50 x cond 0.01909998659332542 (bar 1) -> pass
+   plant: PASS
+--border 0: exit 1 (wanted 1)
+   (a) on the curve: 60 points, worst 6.7e-40 (bar 1e-30) -> pass
+   (b) both branches: 30 with sigma <= -0.3, 0 with sigma >= +0.3 (2 each) -> FAIL
+   (c) the turn: none found (bar 1e-10) -> FAIL
+   (d) composed against bordered: worst ratio to 100 x 1e-50 x cond None (bar 1) -> FAIL
+   plant: FAIL
+--mutate compose: exit 1 (wanted 1)
+   (a) on the curve: 3 points, worst 4.2e-40 (bar 1e-30) -> pass
+   (b) both branches: 0 with sigma <= -0.3, 2 with sigma >= +0.3 (2 each) -> FAIL
+   (c) the turn: none found (bar 1e-10) -> FAIL
+   (d) composed against bordered: worst ratio to 100 x 1e-50 x cond 0.0 (bar 1) -> pass
+   plant: FAIL
+selfcheck: PASS
+exit 0
