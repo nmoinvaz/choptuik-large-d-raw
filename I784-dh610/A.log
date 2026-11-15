@@ -72,3 +72,19 @@ step 0: D 249.5375, pivots 4.1e-29..4.1e+35, |z_1| 3.47e-04, |z_N| 4.33e-25, rat
       elim projections {'u0': 0, 'u0q': 23, 'ladder': 0, 'failed': 0, 'skipped': 20}
       octo-double Newton: 20 steps, max|F| 5.5e-38, not converged; double-double |F| of its first two parts 2.0e+07
     a 0.488 -> D 250.02578125: predicted |F| 1.35e+07, od 20 steps -> 1.95e+07 (tol 1.2e-20), Delta 1.684951019215 (formula diff -1.6e-06), moved 2.5e-20, 8589 s
+    a 0.2441: re-seeded (ok), 134.35 s
+      horizon data refined in octo-double, rung max|R| 2.80e-26 -> 7.99e-54 -> 7.97e-63 -> 4.99e-72
+    on 0 chord 0: max|F| 1.11e-41, |dw| 2.648e-43
+    on 0 chord 1: max|F| 4.71e-48, |dw| 2.770e-50
+  on 0: strong chord (4 weak directions), 2 steps after the full first step; theta at its point 7.382e-16 (bound 0.750): accepted, 703.95 s
+  on 0: |F| 1.09e-35 -> 1.06e-49, |dz| 4.22e-21 -> 3.12e-36, lam 1, dDelta -4.22e-21, piv 2.5e-29..4.5e+35, 1087.03 s
+    on 1 trial lam 1: max|F| 1.17e-36; simplified correction / |dz| = 1.004e-07 (bound 0.750); accepted, 1.18 s
+  on 1: |F| 1.06e-49 -> 1.17e-36, |dz| 3.12e-36 -> 3.49e-50, lam 1, dDelta -3.12e-36, piv 2.5e-29..4.5e+35, 158.17 s
+    on 2 trial lam 1: max|F| 1.20e-64; simplified correction / |dz| = 1.000e+00 (bound 0.750); accepted, 0.97 s
+  on 2: |F| 1.17e-36 -> 1.20e-64, |dz| 3.49e-50 -> 3.49e-50, lam 1, dDelta +3.49e-50, piv 2.5e-29..4.5e+35, 180.64 s
+  on 3: |F| 1.20e-64 converged, Delta 1.68499073467179272 -1.0725e-16
+      elim projections {'u0': 0, 'u0q': 4, 'ladder': 0, 'failed': 0, 'skipped': 3}
+      octo-double Newton: 4 steps, max|F| 1.2e-64, converged; double-double |F| of its first two parts 1.3e+07
+    a 0.244 -> D 249.781640625: predicted |F| 1.68e+07, od 4 steps -> 1.25e+07 (tol 1.1e-20, stall accepted, Delta correction +0.0e+00), Delta 1.684990734672 (formula diff -1.6e-06), moved 4.2e-21, 1559 s
+      Delta of the saved state, its eight parts summed exactly: 1.684990734671792615313704900428680519175
+done
