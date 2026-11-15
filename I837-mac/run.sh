@@ -1,5 +1,5 @@
 #!/bin/bash
-# #837: run.sh NAME SCRIPT ARGS... runs hp/SCRIPT with ARGS from hp/ of the wip/i837 worktree (1b359232 or later) on
+# #837: run.sh NAME SCRIPT ARGS... runs hp/SCRIPT with ARGS from hp/ of the wip/i837 worktree (f5c2964e or later) on
 # the new build (main 3c35f0c's hpkernel, i599/site2, which #713 and #777's rerun used), and writes I837-mac/NAME.log,
 # ending "exit N".
 HP=/Users/nathan/Source/choptuik-large-d-837/hp
@@ -9,7 +9,7 @@ OUT=$(cd "$(dirname "$0")" && pwd)
 name=$1
 shift
 cd "$HP" || exit 9
-git merge-base --is-ancestor 1b359232 HEAD || { echo "worktree is older than 1b359232" > "$OUT/$name.log"; exit 9; }
+git merge-base --is-ancestor f5c2964e HEAD || { echo "worktree is older than f5c2964e" > "$OUT/$name.log"; exit 9; }
 {
   echo "== $name $(date -u '+%Y-%m-%d %H:%M:%S') UTC, hp at $(git rev-parse --short=8 HEAD), $*"
   echo "# hpkernel $(PYTHONPATH=$SITE "$PY" -c 'import hpkernel; print(hpkernel.__file__)')"
