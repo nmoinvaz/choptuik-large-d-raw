@@ -1,0 +1,10 @@
+== sum 2026-11-15 19:15:29 UTC, hp at 0cfff3c4, step_spread.py sum /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/ececf14c-b4b6-41d2-ad20-2caade87ad18/scratchpad/raw781push/I830-mac/table805.json /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/ececf14c-b4b6-41d2-ad20-2caade87ad18/scratchpad/raw781push/I840-mac/ss_D240.json /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/ececf14c-b4b6-41d2-ad20-2caade87ad18/scratchpad/raw781push/I840-mac/ss_D245.json /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/ececf14c-b4b6-41d2-ad20-2caade87ad18/scratchpad/raw781push/I840-mac/ss_D250.json /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/ececf14c-b4b6-41d2-ad20-2caade87ad18/scratchpad/raw781push/I840-mac/ss_D252.json --json /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/ececf14c-b4b6-41d2-ad20-2caade87ad18/scratchpad/raw781push/I840-mac/sum.json
+step_spread sum: K 2.2e-37, #805's slope 1.44; per D: the spread (largest deviation over the seeds, exact), the seeds' sd, the unperturbed dDelta and smallest pivot, #805's p_min, E = K / p_min, spread / E and its band
+  D 240.1244: spread 2.6732e-38, sd 1.1392e-39, dDelta -4.3765e-58, pivot 7.306e-24, p_min 7.306e-24, E 3.011e-14, spread / E 8.878e-25: below 1e-2
+  D 245.6366: spread 1.0179e-33, sd 1.3973e-34, dDelta +3.3839e-53, pivot 4.374e-27, p_min 4.374e-27, E 5.029e-11, spread / E 2.024e-23: below 1e-2
+  D 250.1676: spread 5.3618e-30, sd 2.2544e-30, dDelta +7.6531e-49, pivot 1.069e-29, p_min 1.069e-29, E 2.059e-08, spread / E 2.605e-22: below 1e-2
+  D 252.6135: spread 2.2368e-30, sd 1.0148e-30, dDelta +5.2646e-82, pivot 7.287e-31, p_min 7.287e-31, E 3.019e-07, spread / E 7.409e-24: below 1e-2
+  slope of log(spread) against D, 4 points: 1.5682 per unit D; #805's 1.44 (ratio 1.089); log(E) at the same D 1.3015 (ratio 1.205)
+  bands: below 1e-2 at every D
+exit 0
+== end 2026-11-15 19:15:29 UTC
