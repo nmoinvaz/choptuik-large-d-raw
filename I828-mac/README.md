@@ -45,3 +45,14 @@ https://github.com/nmoinvaz/choptuik-large-d/issues/828#issuecomment-6891188413.
 The first four `curve planted` runs were first launched with the options as one argument (zsh does not split an
 unquoted parameter), so they ran plain `curve planted`; they were run again with the options split, and these logs
 are the second runs.
+| `curve_elim_dps50` (07:39-07:57 UTC, killed) | reseed's import set mpmath to 50 digits, so P(z0)'s 1.7e-65 move of a_h was rounded to 0, the LU stayed at z0 (pivot 7.09e-29) and the reduced step was the unprojected +3.311085e-8; fixed in 77351cbe (curve now fails unless it ends at 140 digits) | killed |
+| `curve_elim` (07:58-08:22 UTC) | below; R1 FAIL, E1 FAIL, E2 pass (`judge_curve_elim.log`) | 1 |
+
+## The real run (`curve_elim.log`)
+
+The elimination at P(z0) agrees with #823's ElimO numbers:
+- **P(z0).** `Reseeder.project` gave 'u0q' with 3 octo-double corrections (536 s), moving a_h by 1.7e-65 (#823: 1.697e-65). The full system's own m and a rows read 2.30e-80 there, the rung's residual. One chord step with their octo-double block LU took them to 3.08e-92.
+- **The step.** The LU pivots at P(z0) are 7.29e-31..1.20e36 (#823: 7.287e-31). The reduced Newton step's Delta part is **+1.100878e-5**, so E2 passes.
+- **The basis.** sigma of B is 4.62e-32..1.26e-31, |a| 1.365e-5 (a = 1.282e-5, 1.058e-6, 3.964e-6, 2.291e-6), |B a| 8.30e-37, |w0| 2.17e-19.
+
+**g(0) is not defined with this solve either (R1 FAIL).** At P(z0) + w0 the fast projection left max|F| on the m and a rows at **5.05e14**, and the chord on them did not lower it (E1 FAIL). The reduced residual there is garbage. The chord's first |dw| is 2.1e15, against its bound 1e-40 |w0| = 2.17e-59, and |g(0) - U^T F(P(z0))| is 2.0e51 |B a|. `diag_828.py` follows.
