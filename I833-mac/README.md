@@ -36,7 +36,8 @@ Code: `hp/fold_plan.py` (with `hp/fold_mirror.py`) on wip/xf-833 6ff8f6e2, off m
 
 ## Recommended task: new-plan series that meet their own states
 - **What:** re-plan (`anm_run.py --keep_plan 0`, as #795) at bases within 0.1 of D*: 259.8068, 259.8139, 259.8184,
-  259.8228, 259.8283, 259.8318, 259.8352, each with its partner about 0.05 below (#829's pairs), about 14 series. First,
+  259.8228, 259.8283, 259.8318, 259.8352, each with its partner about 0.05 below (#829's pairs: 259.7603, 259.7719,
+  259.7792, 259.7864). That is 11 series, or 8 for the registered minimum of 4 bases. First,
   check the new-plan series of two adjacent bases against each other's states, as here. Then run
   `fold_mirror.py`'s configuration on them.
 - **Why:** #795's two new-plan series are not series of one function: each misses the other's state by 1.7e-5 to
