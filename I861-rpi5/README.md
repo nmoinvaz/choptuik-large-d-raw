@@ -14,3 +14,10 @@ every output written here and none into `lemmas_M_runs/`. Exits and wall times i
   with #184's commands; `jump5_partial`, `jump5_coords`, `jump5_swap` are its controls, `bfloat` and `bfloat_w` #39's float
   check of B and its control.
 - `jump5_macB.log`, `lemma6a_M5_macB.json`: macm3's stored B (`I184-macm3`) loaded on the Pi.
+
+Comparisons (mine, not the coordinator's script):
+
+- `cmp861.py`, `compare_stored.txt`: this folder's logs and JSON against the stored `lemmas_M_runs/` files, with the
+  timings removed (`python3 cmp861.py <this folder> <worktree>/solver/proof/lemmas_M_runs`). The planted-difference control
+  (a changed `ok`, `k`, `eta` and printed digit) exits 1.
+- `compare_B_pi_mac.py`, `compare_B_pi_mac.txt`: the Pi's B against macm3's B of #184, entry by entry.
