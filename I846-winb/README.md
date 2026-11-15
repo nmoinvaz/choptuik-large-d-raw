@@ -36,4 +36,10 @@ Arm c (D 10, kc 15, reg 0; 21:39:15 to 21:40:13 UTC, exit 0): |F| 2.498e-09 (fro
 it has not converged; Delta 1.0233007072, -1.37e-04 from the kernel's 1.02343724954 and -2.84e-03 from the march's
 1.026141550, 1087 LM steps; readings: none. Delta was still falling by about 1.9e-05 per Jacobian when it stopped
 (1.023417 at jac 0 to 1.023301 at jac 6, |F| 2.7e-09 down to 2.5e-09, smin/smax 2.2e-11).
-(arms d and e follow)
+
+Arm d (D 10, kc 15, reg 1e-8; 21:40:13 to 21:41:52 UTC, exit 0): |F| 2.328e-09 (from 7.647e-07), above the 1e-9 bar,
+so it has not converged; Delta 1.0232112818, -2.26e-04 from the kernel and -2.93e-03 from the march's 1.026141550,
+1086 LM steps. Prior reading at D 10: arm d is 2.93e-03 from the march, arm c 2.84e-03, so it does not hold. The
+prior did not change the course: d's Delta and |F| follow c's (jac 6: 1.023300703 and 2.498e-09 against c's
+1.023300707 and 2.498e-09), and Delta was still falling by about 1.8e-05 per Jacobian when it stopped.
+(arm e follows)
