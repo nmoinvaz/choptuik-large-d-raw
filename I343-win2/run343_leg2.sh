@@ -8,9 +8,14 @@ RAW=/d/choptuik-large-d-raw; R=$RAW/I343-win2
 cd /d/choptuik-i343/hp || exit 9
 export PYTHONFAULTHANDLER=1 OPENBLAS_NUM_THREADS=1
 log() { echo "343 $1 $(date -u '+%Y-%m-%d %H:%M:%S UTC')" >> $R/exits_343.txt; }
-grep -q '"done"' $R/leg.jsonl.progress.json || { log "leg2: the first run has not stopped (no done in its progress file)"; exit 9; }
+"$PY" -c "import json, sys; sys.exit(0 if json.load(open(sys.argv[1])).get('done') else 1)" $R/leg.jsonl.progress.json \
+    || { log "leg2: the first run has not stopped (its progress file's done is empty)"; exit 9; }
+# targets from the run's last converged D in steps of 2e-4 down to 3.040: 4e-4 failed at M 384 from 3.04375 (#343)
+TARGETS=$("$PY" -c "import json, sys; d = json.load(open(sys.argv[1]))['hist_n'][-1][0]; n = int(round((d - 3.040) / 2e-4)); print(','.join('%.5f' % (d - 2e-4 * k) for k in range(1, n + 1)))" $R/leg.jsonl.progress.json)
+[ -n "$TARGETS" ] || { log "leg2: no targets from the progress file"; exit 9; }
+log "leg2 targets $TARGETS"
 "$PY" -u lowD_highM_leg.py $R/leg.jsonl.progress.json $R/leg2.jsonl \
-    --targets 3.04295,3.04255,3.04215,3.04175,3.04135,3.04095,3.04055,3.04015 --states $R/states >> $R/leg2.log 2>&1 \
+    --targets $TARGETS --states $R/states >> $R/leg2.log 2>&1 \
     || { log "leg2: lowD_highM_leg.py exit $?"; exit 9; }
 log "leg2 start, main $(git rev-parse --short=8 HEAD)"
 "$PY" -u lowD_highM.py --start_w $RAW/T105-win2/states/lowDhm_x0.000157-0.975_p1_D3.0438_M320.npz \
