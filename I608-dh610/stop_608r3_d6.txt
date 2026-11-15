@@ -1,0 +1,10 @@
+restart3_d6 stopped by dh610 on the coordinator's order (hc message 2026-11-15 about 14:45 UTC, because its attempts at the base D 253.7855 fail alike for every a): systemctl --user stop i608r3-d6 at 2026-11-15 14:45:31 UTC after 3 h 09 min (started 2026-11-15 11:35:45 UTC), unit inactive at 14:45:35, no restart3_d6 anm_run process left (restart3_d10's, pid 238836, still runs)
+restart4_d6 started at 2026-11-15 14:45:41 UTC as unit i608r4-d6: bash run_608r4.sh d6 /home/nathan/scratch608r3/I836-dh370/drop/anm_pin3_D252.7855.npz 12 0.25 253.6 (md5 5326cac0, unedited), hp 0f56ea23, 12 threads, h_max 0.25, D_max 253.6, with restart3's flags and --od_abort_it 3
+restart3_d6's accepted step: D 253.785465544 (a 1.0, 15 solves, Delta 1.684351233497183295495), kept as a state, abandoned as a base; its attempts there: a 0.2145 aborted at iteration 2, a 0.1073 stopped at iteration 3, a 0.0536 aborted at iteration 2 (the attempt in progress at the stop was a 0.0536, its end line not printed, dropped in the count of finished ones)
+
+--- restart3_d6.log, last lines
+  on 1: |F| 8.47e-30 -> 1.71e-29, |dz| 2.22e-15 -> 4.19e-14, lam 0.5, dDelta +2.22e-15, piv 2.2e-32..1.8e+36, 253.95 s
+    on 2 trial lam 1: max|F| 1.34e+12; simplified correction / |dz| = 2.115e+58 (bound 0.750); refused, 119.47 s
+      on 2, lam 1: projection failed (2): point max|F| 1.34e+12; u0 rung 1 its, |R| 8.39e+11 -> 8.39e+11, NOT converged; u0 quad-double 8 its, |R| 8.38e+11 -> 1.95e+08, NOT converged; ladder FAILED af
+  on 2: theta at lam 1 2.115e+58 above abort_theta 1e+08: attempt refused at iteration 2
+      elim projections {'u0': 0, 'u0q': 7, 'ladder': 0, 'failed': 2, 'skipped': 1}
