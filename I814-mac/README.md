@@ -88,3 +88,15 @@ from 249.87, 1e-9 from 251.30, 1e-7 from 254.21, 1e-6 from 256.01, 1e-5 from 256
   12th is D 4.25, two M = 48 states, 1.5e-31). Reported in the note, not changed.
 - #765's sentence in 10.3 said delta_all.csv names #603's states in place of #461's from D 216.13. It names #461's
   crawlB3 states in place of crawlG's from 216.13 to 225.13, and #603's from 226.13. Corrected in the rewritten 10.3.
+
+## Recommended task
+
+*λ_g's large-D fit past D 248.* What: notes/MODE_COUNT.md 10.4's fit in 1/n stops agreeing once its top end passes
+D 248 (the c₀ = 1 spread of c₁ grows from 4.4e-6 to 70 at D_max 260), and the chain's λ_g leaves the capped fit by
+1e-10 from D 249.87 and by 9.2e-5 at 259.74. Either fit λ_g with the fold's square root at D* ≈ 259.90 as a term, as
+notes/LARGE_D_WALL.md's track C (#801) does for Δ, or keep `lam_gauge_fit.DMAX` and state the scan in 10.4. Why: the
+fit takes 200 of the table's 1371 backbone D, and the chain past 244.64 is kept out by the cap alone. Acceptance (can
+fail): a planted test with a square-root term at a known D* passes through the same code first, with its criteria
+fixed before the real fit; then the real fit's c₁ and c₂ with D_max 260 lie inside the capped fit's ranges
+(7.4165644 ± 4.4e-6, 107.5086 ± 0.0069), or the fit is kept capped and 10.4 says why with the scan's numbers and a
+`check_numbers.py` item for them. Depends on: #814, #801.
