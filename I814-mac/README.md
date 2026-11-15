@@ -37,7 +37,7 @@ Code: wip/xf-814 e25ae01c and 50fd9424, on main d423507a. One process at nice 10
 | λ_g at the frontier | 0.9711585000283656 | 0.9728509437334254 |
 | n(1 − λ_g) at the frontier | 6.998004 | 6.9974954 |
 
-New rows, 111: I603 chain_nsr 63, chain 26, chain_ns 5, I461 crawlB3 10 (D 216.13 to 225.13, which delta_all.csv names
+New rows, 111: I603 chain_nsr 63, chain 26, chain_ns 5, chain_nat 3 (all 97 past D 244.64), I461 crawlB3 10 (D 216.13 to 225.13, which delta_all.csv names
 in place of crawlG's), T84-mac 4 (re-solves of pin 7 at D 72.0, 72.4, 73.1, 73.27). Role changes: 20 backbone to alt
 (crawlG at 216.13 to 224.13, T73 at 70.65 to 70.95, T75 at 72.0 to 73.27), 7 alt to backbone (T75 at 70.65 to 70.95).
 
