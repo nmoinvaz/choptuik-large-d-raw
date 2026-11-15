@@ -220,3 +220,30 @@ step 3: D 253.191715544, pivots 1.0e-31..1.5e+36, |z_1| 3.39e-04, |z_N| 3.04e-22
   on 2: |F| 5.39e-34 -> 2.69e-34, |dz| 1.01e-32 -> 5.07e-33, lam 0.5, dDelta -1.01e-32, piv 8.6e-32..1.5e+36, 167.59 s
     on 3 trial lam 1: max|F| 4.46e-30; simplified correction / |dz| = 9.721e+01 (bound 0.750); refused, 0.53 s
     on 3 trial lam 0.5: max|F| 1.35e-34; simplified correction / |dz| = 5.000e-01 (bound 0.875); accepted, 92.11 s
+  on 3: |F| 2.69e-34 -> 1.35e-34, |dz| 5.07e-33 -> 2.54e-33, lam 0.5, dDelta -5.07e-33, piv 8.6e-32..1.5e+36, 157.3 s
+    on 4 trial lam 1: max|F| 1.12e-30; simplified correction / |dz| = 2.431e+01 (bound 0.750); refused, 0.56 s
+    on 4 trial lam 0.5: max|F| 6.74e-35; simplified correction / |dz| = 5.000e-01 (bound 0.875); accepted, 92.62 s
+  on 4: |F| 1.35e-34 -> 6.74e-35, |dz| 2.54e-33 -> 1.27e-33, lam 0.5, dDelta -2.54e-33, piv 8.6e-32..1.5e+36, 169.65 s
+    on 5 trial lam 1: max|F| 2.79e-31; simplified correction / |dz| = 6.077e+00 (bound 0.750); refused, 0.62 s
+    on 5 trial lam 0.5: max|F| 3.37e-35; simplified correction / |dz| = 5.000e-01 (bound 0.875); accepted, 91.32 s
+  on 5: |F| 6.74e-35 -> 3.37e-35, |dz| 1.27e-33 -> 6.34e-34, lam 0.5, dDelta -1.27e-33, piv 8.6e-32..1.5e+36, 157.97 s
+    on 6 trial lam 1: max|F| 6.97e-32; simplified correction / |dz| = 1.519e+00 (bound 0.750); refused, 0.43 s
+    on 6 trial lam 0.5: max|F| 1.68e-35; simplified correction / |dz| = 5.000e-01 (bound 0.875); accepted, 93.79 s
+  on 6: |F| 3.37e-35 -> 1.68e-35, |dz| 6.34e-34 -> 3.17e-34, lam 0.5, dDelta -6.34e-34, piv 8.6e-32..1.5e+36, 161.72 s
+    on 7 trial lam 1: max|F| 1.74e-32; simplified correction / |dz| = 3.798e-01 (bound 0.750); accepted, 0.65 s
+  on 7: |F| 1.68e-35 -> 1.74e-32, |dz| 3.17e-34 -> 1.46e-39, lam 1, dDelta -3.17e-34, piv 7.7e-32..1.5e+36, 68.3 s
+    on 8 trial lam 1: max|F| 1.41e-42; simplified correction / |dz| = 7.668e-01 (bound 0.750); accepted by the full step's drop (max|F| at most 0.01 of 1.74e-32), 0.54 s
+  on 8: |F| 1.74e-32 -> 1.41e-42, |dz| 1.46e-39 -> 9.22e-40, lam 1, dDelta -1.46e-39, piv 8.6e-32..1.5e+36, 71.47 s
+    on 9 trial lam 1: max|F| 4.08e-44; simplified correction / |dz| = 3.081e-12 (bound 0.750); accepted, 0.46 s
+  on 9: |F| 1.41e-42 -> 4.08e-44, |dz| 9.22e-40 -> 3.14e-51, lam 1, dDelta -9.22e-40, piv 8.6e-32..1.5e+36, 70.92 s
+    on 10 trial lam 1: max|F| 3.87e-66; simplified correction / |dz| = 2.393e-12 (bound 0.750); accepted, 0.44 s
+  on 10: |F| 4.08e-44 -> 3.87e-66, |dz| 3.14e-51 -> 7.52e-63, lam 1, dDelta +3.14e-51, piv 8.6e-32..1.5e+36, 77.07 s
+  on 11: |F| 3.87e-66 converged, Delta 1.68442770004146403 -8.1747e-17
+      elim projections {'u0': 0, 'u0q': 11, 'ladder': 0, 'failed': 0, 'skipped': 11}
+      octo-double Newton: 12 steps, max|F| 3.9e-66, converged; double-double |F| of its first two parts 6.1e+07
+    a 0.098 -> D 253.289371794: predicted |F| 4.41e+07, od 12 steps -> 6.13e+07 (tol 1.2e-20, stall accepted, Delta correction +0.0e+00), Delta 1.684427700041 (formula diff -1.3e-06), moved 5.6e-17, 1906 s
+      Delta of the saved state, its eight parts summed exactly: 1.684427700041463944878880200465062265010
+step 4: the series saved as /home/nathan/Source/choptuik-large-d-raw/I608-dh610/restart4_d6/jet_pin3_D253.2894.npz (8 parts, 1224 s)
+step 4: D 253.289371794, pivots 8.6e-32..1.5e+36, |z_1| 3.39e-04, |z_N| 1.06e-22, ratios 2-5 100.8 2.1 3.4 13.3, a_max 1.570, 1224 s
+    a 0.0977: re-seeded (ok), 53.99 s
+      horizon data refined in octo-double, rung max|R| 8.40e-26 -> 7.24e-58 -> 2.59e-69 -> 1.37e-79
