@@ -84,4 +84,5 @@ coordinator): under ElimO, newton_od keeps the unprojected trial point as its it
 4617f876, and `z, st = zt, stt`). Its |F| and step come from ElimO.newton_o at that point's projection, with the
 projection's displacement carried into d. A short trial therefore sits near an unprojected point whose residual is
 about 5e14, and its projection, started from that point's own horizon data (`--reseed_start pred`), fails. The u0
-quad-double polish cut |R| by 4087–4115× in its 8 iterations at every failed projection (steps 0, 4, 5, 8).
+quad-double polish cut |R| by 4087–4229× (about 2^12) in its 8 iterations at all 20 failed projections
+(steps 0–8).
