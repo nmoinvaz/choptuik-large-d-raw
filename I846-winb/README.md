@@ -31,4 +31,9 @@ Arm b (D 9, kc 23, reg 0; 21:36:29 to 21:39:15 UTC, exit 0): |F| 3.735e-11 (from
 -2.55e-05 from the kernel and +1.53e-04 from the march, 1670 LM steps. Truncation reading at D 9: |Delta - kernel| is
 2.55e-05 for kc 23 against 7.08e-05 for kc 15, a factor 2.78, short of 3, so it does not hold. Delta was still falling
 (1.027077 at jac 0 to 1.027058 at jac 6, by 1.7e-06 per Jacobian at the end).
-(arms c to e follow)
+
+Arm c (D 10, kc 15, reg 0; 21:39:15 to 21:40:13 UTC, exit 0): |F| 2.498e-09 (from 7.647e-07), above the 1e-9 bar, so
+it has not converged; Delta 1.0233007072, -1.37e-04 from the kernel's 1.02343724954 and -2.84e-03 from the march's
+1.026141550, 1087 LM steps; readings: none. Delta was still falling by about 1.9e-05 per Jacobian when it stopped
+(1.023417 at jac 0 to 1.023301 at jac 6, |F| 2.7e-09 down to 2.5e-09, smin/smax 2.2e-11).
+(arms d and e follow)
