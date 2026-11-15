@@ -1,7 +1,7 @@
 #!/bin/bash
-# #857: run.sh NAME SCRIPT ARGS... runs hp/SCRIPT with ARGS from hp/ of a worktree at main 56b87471 (step_spread.py as
-# 5ca54afe) on main 3c35f0c's hpkernel (i599/site2) and writes I857-mac/NAME.log, ending "exit N".
-HP=/Users/nathan/Source/choptuik-large-d-856/hp
+# #857: run.sh NAME SCRIPT ARGS... runs hp/SCRIPT with ARGS from hp/ of the wip/xf-874 worktree (main 2283596e and
+# truth_restep.py) on main 3c35f0c's hpkernel (i599/site2) and writes I857-mac/NAME.log, ending "exit N".
+HP=/Users/nathan/Source/choptuik-large-d-852/hp
 SITE=/private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/11bcbd25-9376-453b-88d5-a7c6ad0172dd/scratchpad/i599/site2
 PY=/Users/nathan/venv-314/bin/python3
 OUT=$(cd "$(dirname "$0")" && pwd)
