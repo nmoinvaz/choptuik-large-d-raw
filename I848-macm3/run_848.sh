@@ -9,8 +9,8 @@
 . /Users/nathan/Source/choptuik-large-d-raw-749/I848-macm3/common.sh
 case $1 in
   1) go control 2.043532530673195,0,0.2 6
-     grep -q "centre 7.1e-26" $R/kf47ct/control/run.log && log "STOP: the layout did not change (centre 7.1e-26)"
-     grep -m1 "series truncation (solution)" $R/kf47ct/control/run.log >> $R/exits_848.txt ;;
+     grep -q "centre 7.1e-26" $R/kf47_ct$CT/control/run.log && log "STOP: the layout did not change (centre 7.1e-26)"
+     grep -m1 "series truncation (solution)" $R/kf47_ct$CT/control/run.log >> $R/exits_848.txt ;;
   2) cd $WT/hp || exit 9
      [ -f data/$ST ] || { log "STOP: data/$ST is missing"; exit 9; }
      mkdir -p $R/qdet_draws; log "qdet_draws start"
