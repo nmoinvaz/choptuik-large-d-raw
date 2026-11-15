@@ -1,0 +1,9 @@
+M = 1: SysM vs validated_int.Sys: rhs 3.8e+01, lin 2.0e+02  MISMATCH
+M = 3: SysM vs inner_np.Inner.rhs (double): 8.2e-01; lin vs central difference: 1.8e-45  MISMATCH
+M = 5: SysM vs inner_np.Inner.rhs (double): 9.9e-01; lin vs central difference: 2.3e-45  MISMATCH
+M = 3: series_generic_M vs series_arb.SeriesArb: 2.5e-56; parameter jets vs central differences: 3.7e-51  ok
+M = 3: lin_unit vs lin on all unit vectors (series): 7.2e-72  ok
+M = 5: lin_unit vs lin on all unit vectors (series): 1.3e-71  ok
+M = 1: one step of LohnerM vs validated_int.Lohner: both ok True, overlap False, midpoints differ 1.4e-04, radii 9.6e-34 vs 9.7e-34  MISMATCH
+M = 1: the same step with NJ = 12: ok True, overlaps validated_int's False, radius 9.6e-34  MISMATCH
+SELFTEST FAIL
