@@ -1,0 +1,104 @@
+#!/usr/bin/env python3
+"""#832's diagnostic of g(0)'s first strong move in the chart with e_Delta weak and the horizon data eliminated (after
+curve_wd stopped there). With reduced_cubic's Real, Elim (real_horizon, fast) and basis (--weak_delta): (1) w0 by
+unknown block (its Delta part must be 0); (2) the change of the full residual at P(z0) + w0 with the horizon data held,
+max by row block, for w0 and for each of its blocks alone; (3) the fast chord at P(z0) + w0, its max|F[hrows]| per step;
+(4) the horizon rows along the chord's first correction dh = -J_hh^-1 F[hrows] at P(z0)'s block: F[hrows] at
+P(z0) + w0 + eps dh for eps = +-1, +-1e-3, +-1e-6, its odd part / eps (the slope, against F[hrows] itself) and even
+part / eps^2 (half the curvature), and dh by m_h and a_h; (5) unless --prod=0, reseed's production projection at
+P(z0) + w0: how, the move of m_h and a_h, max|F| on the eliminated rows after it, and |U^T F_red| there against
+|U^T F_red(P(z0))| and |B a|. Diagnostic only: nothing is judged.
+usage (from hp/): python3 diag_832.py RAW DZ0 BASE [--threads=3] [--prod=1]"""
+import os
+import sys
+import time
+
+sys.path.insert(0, os.getcwd())
+import numpy as np                 # noqa: E402
+import reduced_cubic as rc         # noqa: E402  (from hp/, after the path)
+from reduced_cubic import mp       # noqa: E402
+
+
+def main(argv):
+    args = [a for a in argv if not a.startswith("--")]
+    opts = dict(a[2:].split("=", 1) for a in argv if a.startswith("--") and "=" in a)
+
+    def log(s):
+        print(s, flush=True)
+    base = rc.Real(*args[:3], int(opts.get("threads", 3)), log, fast=True)
+    hc, hr, pr = rc.real_horizon(base, 3, fast=True, log=log)
+    el = rc.Elim(base, hc, hr, pr, log)
+    bas = rc.basis(el, {"weak_delta": "1"}, log, {}, lambda: None)
+    Um, w0, nBa = bas["Um"], bas["w0"], bas["nBa"]
+    M, K, L = base.M, base.K, base.L
+    blocks = [("centre", range(0, 2 * M))] + [(f"node {i}", range(2 * M + 4 * M * i, 2 * M + 4 * M * (i + 1)))
+                                              for i in range(K)] + [("Delta", [L - 1])]
+    rblocks = [("rows 0..2M", range(0, 2 * M))] + [(f"node rows {i}", range(2 * M + 4 * M * i, 2 * M + 4 * M * (i + 1)))
+                                                   for i in range(K - 1)] + \
+        [(f"horizon {f}", range(4 * M * K + j * M, 4 * M * K + (j + 1) * M)) for j, f in enumerate("pma4")] + \
+        [("last", [L - 1])]
+    wf = [mp.mpf(0)] * L
+    for j, i in enumerate(el.keep):
+        wf[i] = w0[j]
+    p0 = el.p0
+    log("  w0 by block, max|.|: " + ", ".join(f"{n} {mp.nstr(max(abs(wf[i]) for i in r), 3)}" for n, r in blocks))
+    F0 = base.F(p0)
+
+    def rowsum(F, label):
+        log(f"    {label}: " + ", ".join(f"{n} {mp.nstr(max(abs(F[i]) for i in r), 3)}" for n, r in rblocks))
+    rowsum(F0, "F at P(z0)")
+    for name, part in [("w0", None)] + [(n, r) for n, r in blocks]:
+        v = list(wf) if part is None else [mp.mpf(0)] * L
+        if part is not None:
+            for i in part:
+                v[i] = wf[i]
+        F = base.F([a + b for a, b in zip(p0, v)])
+        rowsum([a - b for a, b in zip(F, F0)], f"F(P(z0) + {name}) - F(P(z0)), horizon data held")
+    t1 = time.time()
+    Fr = el.F(w0)
+    log(f"  the fast chord at P(z0) + w0: max|F[hrows]| per step " + ", ".join(f"{x:.2e}" for x in pr.hist)
+        + f" ({time.time() - t1:.0f} s); |U^T F_red| {mp.nstr(rc.nrm(rc.proj_U(Um, Fr)), 4)}, |B a| {mp.nstr(nBa, 4)}")
+    # (4) along the chord's first correction
+    pw = [a + b for a, b in zip(p0, wf)]
+    Fw = base.F(pw)
+    Rw = [Fw[r] for r in hr]
+    lu = pr.st["lu"]
+    x = lu.solve(*[np.array([float(v) for v in Rw])] + [np.zeros(len(hr))] * 7)
+    dh = [-mp.mpf(float(a)) for a in np.asarray(x[0])]
+    log(f"  the chord's first correction dh = -J_hh^-1 F[hrows] (leading part): m_h {mp.nstr(max(abs(v) for v in dh[:M]), 3)}, "
+        f"a_h {mp.nstr(max(abs(v) for v in dh[M:]), 3)}; max|F[hrows]| at P(z0) + w0 {mp.nstr(max(abs(v) for v in Rw), 4)}")
+    for eps in (mp.mpf(1), mp.mpf("1e-3"), mp.mpf("1e-6")):
+        Fs = {}
+        for sg in (1, -1):
+            q = list(pw)
+            for j, i in enumerate(hc):
+                q[i] += sg * eps * dh[j]
+            Fq = base.F(q)
+            Fs[sg] = [Fq[r] - a for r, a in zip(hr, Rw)]
+        odd = max(abs(a - b) for a, b in zip(Fs[1], Fs[-1])) / (2 * eps)
+        even = max(abs(a + b) for a, b in zip(Fs[1], Fs[-1])) / (2 * eps * eps)
+        log(f"    eps {mp.nstr(eps, 2)}: F[hrows] change, odd part / eps {mp.nstr(odd, 4)} (linear: max|F[hrows]| "
+            f"{mp.nstr(max(abs(v) for v in Rw), 4)}), even part / eps^2 {mp.nstr(even, 4)}")
+    if opts.get("prod", "1") == "1":
+        from octo_corrector import q4_of_o, with_horizon
+        rs = pr.rs
+        z = base.o8(base.od_axpy(1.0, *base.parts8(pw), *base.z0))
+        t1 = time.time()
+        zp4, how = rs.project(q4_of_o(z))
+        log(f"  the production projection at P(z0) + w0: '{how}' ({time.time() - t1:.0f} s), last stage "
+            f"{getattr(rs, 'last_project', None)}")
+        if how != "failed":
+            zp = with_horizon(z, zp4, rs)
+            dhp = [a - b for a, b in zip(base.mpv(zp, hc), base.mpv(z, hc))]
+            Fp = base.mpv(base.so.residual_o(zp), range(L))
+            Fk = [Fp[r] for r in el.krows]
+            log(f"    m_h moved {mp.nstr(max(abs(v) for v in dhp[:M]), 3)}, a_h {mp.nstr(max(abs(v) for v in dhp[M:]), 3)}; "
+                f"refine_o {['%.2e' % v for v in rs.last_o]}; max|F[hrows]| {mp.nstr(max(abs(Fp[r]) for r in hr), 3)}; "
+                f"|U^T F_red| {mp.nstr(rc.nrm(rc.proj_U(Um, Fk)), 4)} ({mp.nstr(rc.nrm(rc.proj_U(Um, Fk)) / nBa, 4)} "
+                f"of |B a|), max|F_red| {mp.nstr(rc.amax(Fk), 4)}")
+            rowsum([a - b for a, b in zip(Fp, F0)], "F at the projected P(z0) + w0 - F(P(z0))")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main(sys.argv[1:]))

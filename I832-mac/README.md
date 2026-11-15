@@ -47,3 +47,62 @@ square system at 400 digits.
 | `curve_planted_wd_p2` (`--plant_t`, before the predictor's linear term) | the rays stop at 1e-10: w - w0 is linear in t in this chart, and the quadratic predictor missed by 10 t | 1 |
 
 The real runs follow.
+
+## Part 1: the real start (s0_D252, #823's dz0_truth.npz, 3 threads)
+
+| run | result | exit |
+|---|---|---|
+| `curve_wd` (`--elim=1 --weak_delta=1 --g0_only=1`, 11:20-11:36 UTC) | sigma of B 4.62e-32 .. 1.26e-31 and **0.249** (the e_Delta direction); a's e_Delta part 1.11e-20, \|B a\| 2.76e-21; \|w0\| 2.17e-19. g(0)'s chord: first \|dw\| 2.25e-20 above its bound 1e-3 \|w0\|, stopped. max\|F\| on the eliminated rows 1.65e-20. **R1 FAIL, E1 FAIL** (`judge_curve_wd.log`) | 1 |
+| `curve_wd_free` (`--weak_delta=1 --g0_only=1`, horizon data free) | \|w0\| 2.25e-19; first \|dw\| 2.86e-13, as #823's 2.76e-13; **R1 FAIL** (`judge_curve_wd_free.log`) | 1 |
+| `diag_832` (11:40-12:04 UTC) | below | 0 |
+| `judge_selftest` | judge_832.py's three planted records: pass, fail, fail | 0 |
+
+**Why** (`diag_832.log`). In this chart w0's Delta part is 6.7e-115, so Delta does not move. Its blocks (max|.|) are
+the centre 3.64e-20 and nodes 0-4 1.01e-20 to 1.66e-20. With the horizon data held:
+- The centre part moves the held p rows by 3.58e-20. That is the start's residual, and the strong move is meant to
+  remove it.
+- The last node's part moves the horizon m rows by 1.65e-20. Every other block leaves the m and a rows alone.
+
+**The m and a rows cannot be re-solved cheaply.** Re-solving them needs m_h to move by 1.65e-20 and a_h by 1.95e-23,
+and the response along that correction is quadratic:
+- The fast chord's one step from P(z0)'s block lands at max|F[hrows]| 4.89e-4, against 1.65e-20 before it. That is
+  the even part of the response along the step, 4.894e-4 at eps 1, the same at eps 1e-3 and 1e-6.
+- The production projection at P(z0) + w0 needed its ladder (459 s). The u0 rung from the point's own data and its
+  quad-double polish both failed (|R| 6.2e6, then 5.1e-20 after 8 steps). The ladder's 7 rungs converged (4.6e-26),
+  and 3 octo-double corrections took the rows to 7.25e-79.
+- In (4) of the diagnostic, the "odd part / eps 1.144" is an artifact. It used only the leading double of the octo
+  solve's dh, and a_h's gain of about 1e37 turns that truncation into an O(1) residual. The chord, which uses all eight
+  parts, agrees with the even part.
+
+**With the ladder's projection the first strong step works.** At the projected P(z0) + w0:
+- the reduced residual's max is 4.1e-22, against 3.58e-20 at P(z0), so the held p rows' residual is removed;
+- |U^T F_red| is 2.757e-21, 1.0 |B a|, so g is unchanged by the step;
+- the eliminated rows read 7.25e-79.
+
+The system with Delta weak and the horizon data eliminated is therefore not the obstruction. The obstruction is the
+projection: m_h moves of 1e-20 lie far outside the u0 rung's Newton basin, about 1/G in m_h, which is HORIZON_RADIUS's
+pole law in another unknown. Only the ladder follows them, at 459 s a projection.
+
+## Discrepancies
+
+1. delta_range's first run (`delta_range_dps15.log`) parsed D_str at 15 digits through pinned_o, #831's trap. Every
+   I603 state then read 6e25 to 1e31 and none was resolved. The script now sets 60 digits, and #831's branch makes
+   pinned_o parse at 60 digits whatever the caller's precision.
+2. In the e_Delta chart, CurvePlanted's own ray (CURVE_T) is outside that plant's design: PC1 1.7. The planted check
+   uses --plant_t 1e-12 .. 1e-8. Its PC2 (orders 4 and 5) belongs to CurvePlanted's own chart and is reported, not
+   judged, in this chart.
+
+## Recommended tasks
+
+1. **g(0) with the ladder's projection at every residual.**
+   - What: `curve ... --elim=1 --weak_delta=1 --elim_fast=0 --g0_only=1` at s0_D252.
+   - Why: through the ladder, the first strong step lowers the reduced residual 100-fold with g unchanged.
+   - Acceptance (can fail): R1 as here, the kept |dw| below 1e-40 |w0| from both starts; the log gives |dw| per step.
+   - Estimate: about 460 s a projection, 10 to 20 projections, 1.5-3 h at 3 threads. Depends on #832.
+2. **A projection that follows m_h moves of 1e-20 cheaply.**
+   - What: the ladder warm-started from the last projected point's inner rungs, or Newton on the full system's m and
+     a rows with their block refactored each step and a damped start.
+   - Why: the fixed-block chord fails at P(z0) + w0, and the ladder takes 459 s.
+   - Acceptance (can fail): at P(z0) + w0 it reproduces the ladder's horizon data (m_h 1.65e-20 and a_h 1.95e-23
+     moved) to 1e-60 relative, in under 60 s; its control (the fixed block) fails as above.
+   - Estimate: 2-3 h.
