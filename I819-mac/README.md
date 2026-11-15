@@ -15,7 +15,7 @@ Code: `hp/fold_cancel.py` at wip/xf-819 403d9dae, on main ecb36f6e. Input: `I603
 
 | series | b1 | b3 | b5 | largest relative residual |
 |---|---|---|---|---|
-| lam_g | +7.2163e-4 to +7.2272e-4 | +6.79e-4 to +8.08e-4 | -2.5e-5 to -2.3e-3 | 6.3e-6 to 2.6e-5 |
+| lam_g | +7.2163e-4 to +7.2272e-4 | +6.79e-4 to +8.08e-4 | -2.4e-5 to -2.3e-3 | 6.3e-6 to 2.6e-5 |
 | Delta | +3.4954e-2 to +3.5003e-2 | +1.19e-2 to +1.79e-2 | -1.6e-2 to -1.24e-1 | 3.3e-6 to 3.0e-5 |
 
 r = b1(lam_g)/b1(Delta) = 0.020646, from 0.020645 to 0.020648 over the 26 bases (a relative range of 1.2e-4). The
