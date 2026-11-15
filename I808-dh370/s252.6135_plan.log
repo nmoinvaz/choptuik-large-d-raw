@@ -5,3 +5,16 @@ held values from the fit data/held_fit.json (degree 8, 138 full-system states, D
   on 0: |F| 2.68e-36 -> 2.50e-20, |dz| 2.93e-09 -> 3.33e-18, lam 0.125, dDelta +2.93e-09, piv 1.5e-22..1.2e+36, 1886.44 s
     on 1 trial lam 1: max|F| 3.08e-36; raw |dz_t| 2.560e-09 vs |dz| 3.334e-18 (not <); refused, 493.58 s
     on 1 trial lam 0.5: max|F| 1.25e-20; raw |dz_t| 6.647e-18 vs |dz| 3.334e-18 (not <); refused, 563.86 s
+    on 1 trial lam 0.25: max|F| 1.87e-20; raw |dz_t| 4.437e-18 vs |dz| 3.334e-18 (not <); refused, 482.35 s
+    on 1 trial lam 0.125: max|F| 4.18e+27; raw |dz_t| 1.469e+25 vs |dz| 3.334e-18 (not <); refused, 294.91 s
+    on 1 trial lam 0.0625: max|F| 2.34e-20; raw |dz_t| 3.555e-18 vs |dz| 3.334e-18 (not <); refused, 477.47 s
+    on 1 trial lam 0.03125: max|F| 2.42e-20; raw |dz_t| 3.441e-18 vs |dz| 3.334e-18 (not <); refused, 483.56 s
+    on 1 trial lam 0.015625: max|F| 5.68e+27; raw |dz_t| 3.812e+25 vs |dz| 3.334e-18 (not <); refused, 243.87 s
+    on 1 trial lam 0.0078125: max|F| 5.80e+27; raw |dz_t| 4.152e+25 vs |dz| 3.334e-18 (not <); refused, 185.68 s
+    on 1 trial lam 0.00390625: max|F| 5.86e+27; raw |dz_t| 4.339e+25 vs |dz| 3.334e-18 (not <); refused, 186.38 s
+  on 1: |F| 2.50e-20, |dz| 3.33e-18: no trial step accepted, stopping
+      elim projections {'u0': 0, 'u0q': 1, 'ladder': 5, 'failed': 7, 'skipped': 1}
+      octo-double Newton: 2 steps, max|F| 2.5e-20, not converged; double-double |F| of its first two parts 3.4e+07
+base polish not adopted (max|F| 2.7e-36 -> 2.5e-20): the stored state is the base
+base /home/nathan/scratch808/I603-win2/chain/anm_pin3_D252.6135.npz: D 252.613467565, M 32, pin 3 (held [5, 7, 9, 11, 13]), |F| 4.1e+07; N 24, eps 1e-14, h_max 1.0, corrector od (junk_only False), tol 1.0e-20 x 1.45^(D - 252.61347), stalls accepted below 1e-17
+done
