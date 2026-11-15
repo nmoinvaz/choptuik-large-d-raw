@@ -41,3 +41,47 @@ pivot/|dz| and the accepted lam. It also fits the lam-1 trials' point max|F| aga
 the smallest pivot against |dz|. Its check compares the summed Delta moves at the end with planted's own Delta − truth
 (relative 1e-6). The selftest passes on a planted run. The controls `--mutate=lam` (step 0's lam taken as 1) and
 `--mutate=power` (planted trials at exponent 3) fail: table_selftest*.log (exit 0, 1, 1).
+
+## Stopped (2026-11-15 20:26 UTC, the coordinator's word), superseded by #854
+
+A_s1 was stopped by its PIDs at 20:26:58 UTC while on step 9 (exit 143). Its log up to then is A_s1_at_stop.log, and
+A_s1.log is the same plus the stop lines. queue2.sh was stopped first, so A_s2 never started. No B run was made, since
+b_needed said A_s1's lam-1 trials never came within 1e-2 of |F|. A_s1 wrote no JSON, so the per-step table
+(A_s1_table.txt, `table_839.py A_s1`, exit 1 because its check against planted's own Delta needs the JSON) comes from
+the log's step lines. Those carry 3 digits, and the pivots 2.
+
+**Result:** A_s1 did not converge in 9 accepted steps (0–8): max|F| went from 3.40e-12 to 1.16e-13. Delta moved away
+from the truth, although the offset leaves Delta at the truth's value. Delta − truth reached −2.127e-12 after step 8,
+heading for −2.203e-12. At every step, the Delta already moved plus the remaining |dz| equals step 0's |dz| (2.203e-12)
+to 3–4 digits, so the iteration's target in Delta was fixed from step 0 onward.
+
+| step | Delta − truth before | max\|F\| | \|dz\| | smallest pivot | pivot/\|dz\| | accepted lam | minutes |
+|---|---|---|---|---|---|---|---|
+| 0 | 0 | 3.40e-12 | 2.20e-12 | 2.0e-14 | 0.0091 | 1/8 | 60 |
+| 1 | −2.750e-13 | 2.97e-12 | 1.93e-12 | 1.5e-14 | 0.0078 | 1/4 | 45 |
+| 2 | −7.575e-13 | 2.23e-12 | 1.45e-12 | 1.1e-14 | 0.0076 | 1/4 | 46 |
+| 3 | −1.120e-12 | 1.67e-12 | 1.08e-12 | 5.7e-15 | 0.0053 | 1/2 | 31 |
+| 4 | −1.660e-12 | 8.36e-13 | 5.42e-13 | 2.9e-15 | 0.0054 | 1/2 | 33 |
+| 5 | −1.931e-12 | 4.18e-13 | 2.71e-13 | 2.2e-15 | 0.0081 | 1/4 | 61 |
+| 6 | −1.999e-12 | 3.13e-13 | 2.03e-13 | 1.6e-15 | 0.0079 | 1/4 | 65 |
+| 7 | −2.050e-12 | 2.35e-13 | 1.53e-13 | 8.1e-16 | 0.0053 | 1/2 | 34 |
+| 8 | −2.126e-12 | 1.17e-13 | 7.63e-14 | 7.9e-16 | 0.0104 | 1/64 | 117 |
+| after 8 | −2.127e-12 | 1.16e-13 | 7.51e-14 | | | | |
+
+The smallest pivot fell with |dz|: by a factor 25 while |dz| fell by 29. A fit gives pivot = 4.1e-3·|dz|^0.98, but
+pivot/|dz| scatters from 0.0053 to 0.0104. The largest pivot stayed 1.2e36.
+
+**The lam-1 law:** at all nine steps, the full-step trial point's max|F| (quad-double, at the point's four-part
+rounding, before its projection) was 5.302e64·|dz|^3.9996 (exponent free, max deviation 0.18%). With the exponent
+fixed at 4, it is 5.3587e64·|dz|⁴ (max deviation 0.19%). Shorter trials follow it only at step 0 (ratio 1.000 at lam
+1/2 and 1/4). At later steps they lie above it, by up to 2.6e8 at step 8's lam 1/32.
+
+**Step 8's trials** (lam 1 to 1/32 refused, each projection failing, lam 1/64 accepted): the points' max|F| rose as lam
+fell, 1.81e12 at lam 1, then 1.29e14, 2.76e14, 3.73e14, 4.28e14 and 4.57e14 for lam 1/2 to 1/32. For lam 1/2 to 1/32
+that is P0·(1 − lam)^q with P0 = 4.83e14 and q = 1.91 (max deviation 1%; with q fixed at 2, P0 = 4.93e14 and 4.6%). So
+a trial point near lam 0 does not approach the reported |F| (1.17e-13). The reading (from the code, checked by the
+coordinator): under ElimO, newton_od keeps the unprojected trial point as its iterate (`zt = z + lam d`, line 393 at
+4617f876, and `z, st = zt, stt`). Its |F| and step come from ElimO.newton_o at that point's projection, with the
+projection's displacement carried into d. A short trial therefore sits near an unprojected point whose residual is
+about 5e14, and its projection, started from that point's own horizon data (`--reseed_start pred`), fails. The u0
+quad-double polish cut |R| by 4087–4115× in its 8 iterations at every failed projection (steps 0, 4, 5, 8).

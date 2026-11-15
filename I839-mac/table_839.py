@@ -101,13 +101,31 @@ def selftest(mutate):
     return 0 if ok else 1
 
 
+STEPLINE = re.compile(r"^  on (\d+): \|F\| (\S+) -> (\S+), \|dz\| (\S+) -> (\S+), lam (\S+), dDelta (\S+), "
+                      r"piv (\S+)\.\.(\S+),")
+
+
+def hist_from_log(lines):
+    """newton_od's accepted steps from the log's lines (3 digits, the pivots 2), for a run stopped before its JSON"""
+    return [dict(it=int(m.group(1)), F=float(m.group(2)), F_new=float(m.group(3)), dz=float(m.group(4)),
+                 lam=float(m.group(6)), dDelta=float(m.group(7)), piv=[float(m.group(8)), float(m.group(9))])
+            for m in map(STEPLINE.match, lines) if m]
+
+
 def main(argv):
     if argv and argv[0] == "--selftest":
         return selftest(next((a.split("=", 1)[1] for a in argv[1:] if a.startswith("--mutate=")), ""))
-    with open(argv[0] + ".json") as f:
-        rec = json.load(f)
     with open(argv[0] + ".log") as f:
-        return report(rec, f.read().splitlines())
+        lines = f.read().splitlines()
+    try:
+        with open(argv[0] + ".json") as f:
+            rec = json.load(f)
+    except FileNotFoundError:
+        # a stopped run: the table from the log, its last step's end as the end, and no check against planted's own
+        h = hist_from_log(lines)
+        print(f"{argv[0]}: no JSON (the run was stopped); the table from the log's {len(h)} accepted steps")
+        rec = dict(od=dict(hist=h, F=h[-1]["F_new"], converged=False, Delta=None), Delta_ref=None)
+    return report(rec, lines)
 
 
 if __name__ == "__main__":
