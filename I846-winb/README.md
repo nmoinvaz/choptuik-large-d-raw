@@ -22,4 +22,8 @@ https://github.com/nmoinvaz/choptuik-large-d/issues/846. Code: main 5063422d (`m
 All four are below the bar of 1e-5.
 
 ## Stage 2: the five refine arms
-(in progress)
+Arm a (D 9, kc 15, reg 0; 21:35:31 to 21:36:29 UTC, exit 0): |F| 3.839e-10 (from 6.109e-07), Delta 1.0270124764,
+-7.08e-05 from the kernel's 1.02708332095 and +1.08e-04 from the march's 1.026904400, 1090 LM steps; readings: none.
+Delta was still falling by about 1e-5 per Jacobian when the arm stopped (jac 0 to 6: 1.027071, 1.027060, 1.027049,
+1.027039, 1.027029, 1.027021, 1.027012, with |F| 5.9e-10 down to 3.8e-10), so it had not settled in Delta.
+(arms b to e follow)
