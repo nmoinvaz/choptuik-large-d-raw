@@ -1,0 +1,19 @@
+== import_precision_before_old 2026-11-15 10:59:44 UTC: wip/xf-831's import_precision.py (83fd181f) run from the 828 worktree (main 75f94140's reseed, before #831), so that (C) builds the old Reseeder
+(A) 996 modules, 257 imported by another; 56 of those set the precision at import, 54 through KNOWN modules only
+    NEW: hp/anm_run.py (through hp/reseed.py)
+    NEW: hp/reseed.py (sets it)
+(B) 11 modules import reseed; precision across reseed's import:
+    hp/anm_run.py: kept (dps 50 -> 50, prec 169 -> 169)
+    hp/chain_dM.py: kept (dps 50 -> 50, prec 169 -> 169)
+    hp/crawl_probe.py: changed (dps 15 -> 50, prec 53 -> 169)
+    hp/eq_test.py: kept (dps 50 -> 50, prec 169 -> 169)
+    hp/horizon_radius.py: changed (dps 60 -> 50, prec 203 -> 169)
+    hp/octo_corrector.py: changed (dps 15 -> 50, prec 53 -> 169)
+    hp/proj_shift.py: changed (dps 15 -> 50, prec 53 -> 169)
+    hp/reduced_cubic.py: changed (dps 140 -> 50, prec 468 -> 169)
+    hp/reseed_check.py: kept (dps 50 -> 50, prec 169 -> 169)
+    hp/reseed_hist.py: changed (dps 15 -> 50, prec 53 -> 169)
+    hp/reseed_start_check.py: kept (dps 50 -> 50, prec 169 -> 169)
+(C) Reseeder keeps D at 15 digits: |D - D_str| 5.72e-15 (bound 1e-45): FAIL
+import_precision: (A) FAIL, (B) FAIL, (C) FAIL: FAIL
+exit 1

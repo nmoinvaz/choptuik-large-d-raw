@@ -1,0 +1,19 @@
+== import_precision 2026-11-15 10:59:23 UTC, hp at 559c90fc, import_precision.py
+(A) 999 modules, 258 imported by another; 55 of those set the precision at import, 55 through KNOWN modules only
+(B) 12 modules import reseed; precision across reseed's import:
+    hp/anm_run.py: kept (dps 50 -> 50, prec 169 -> 169)
+    hp/chain_dM.py: kept (dps 50 -> 50, prec 169 -> 169)
+    hp/crawl_probe.py: kept (dps 15 -> 15, prec 53 -> 53)
+    hp/eq_test.py: kept (dps 50 -> 50, prec 169 -> 169)
+    hp/horizon_radius.py: kept (dps 60 -> 60, prec 203 -> 203)
+    hp/octo_corrector.py: kept (dps 15 -> 15, prec 53 -> 53)
+    hp/proj_shift.py: kept (dps 15 -> 15, prec 53 -> 53)
+    hp/reduced_cubic.py: kept (dps 140 -> 140, prec 468 -> 468)
+    hp/reseed_check.py: kept (dps 50 -> 50, prec 169 -> 169)
+    hp/reseed_hist.py: kept (dps 15 -> 15, prec 53 -> 53)
+    hp/reseed_start_check.py: kept (dps 15 -> 15, prec 53 -> 53)
+    hp/step_spread.py: kept (dps 15 -> 15, prec 53 -> 53)
+(C) Reseeder keeps D at 15 digits: |D - D_str| 0.0 (bound 1e-45): pass
+import_precision: (A) pass, (B) pass, (C) pass: pass
+exit 0
+== end 2026-11-15 10:59:27 UTC
