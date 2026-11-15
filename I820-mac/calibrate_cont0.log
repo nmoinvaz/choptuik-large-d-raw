@@ -1,0 +1,14 @@
+contamination amplitude 0 (post hoc, --cont)
+real r: median 0.020646, relative range 1.189e-04 over 26 bases
+  delta 0       range 1.950e-11 (r 0.020646 to 0.020646) | robust over the common shift 1.950e-11
+  delta 1e-06   range 3.976e-04 (r 0.020635 to 0.020644) | robust over the common shift 3.462e-04 | -delta 3.976e-04
+  delta 1e-05   range 3.977e-03 (r 0.020543 to 0.020625) | robust over the common shift 3.699e-03 | -delta 3.975e-03
+  delta 0.0001  range 3.983e-02 (r 0.019633 to 0.020436) | robust over the common shift 3.728e-02 | -delta 3.970e-02
+  delta 0.001   range 4.076e-01 (r 0.011987 to 0.018618) | robust over the common shift 3.802e-01 | -delta 3.937e-01
+  delta 3e-06   range 1.193e-03 (reported)
+  delta 3e-05   range 1.193e-02 (reported)
+  delta 0.0003  range 1.200e-01 (reported)
+monotonic: True; floor 1.950e-11 below the real 1.189e-04: True
+calibrate: |D*(lam_g) - D*(Delta)| < 1e-06: the planted range exceeds the real 1.19e-04 from delta 1e-06 on; 0 is allowed
+robust over the common shift (reported): excluded from delta 1e-06 on
+exit 0
