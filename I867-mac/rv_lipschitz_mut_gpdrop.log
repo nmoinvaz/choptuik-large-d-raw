@@ -1,0 +1,32 @@
+rv_lipschitz: M = 5, N = 105, k = 103, a = 0.35355, mutation gpdrop; the module's contraction constant 0.0966, proved True
+  283 entries of L are positive: the true derivative at eta = 0 is at most 1.8014 of the bound (at ('v', -1) <- ('p', 1)), and above half of it in 283 entries
+  entries above their bound: 17
+      ('v', -5) <- ('p', -1): true 0.005124, bound 0.00299
+      ('v', -5) <- ('p', 1): true 0.0006066, bound 0.000344
+      ('v', -5) <- ('p', 3): true 3.234e-05, bound 2.097e-05
+      ('v', -5) <- ('p', 5): true 2.994e-06, bound 2.821e-06
+      ('v', -5) <- ('c', 2): true 1.608e-05, bound 1.593e-05
+      ('v', -3) <- ('p', -1): true 0.03669, bound 0.02105
+      ('v', -3) <- ('p', 1): true 0.005164, bound 0.0029
+      ('v', -3) <- ('p', 5): true 4.26e-05, bound 3.487e-05
+  entries where L is 0 and the true derivative is not: 0
+  the forcing: |T(0)_i| at |z| = R is between 0.8473 and 0.9998 of F_i, and at most 0.9219 of the proved radius w2_i: True
+RV_LIPSCHITZ: FAIL
+the author's Lipschitz comparison with the same mutation:
+M = 5, r0 = 0.07, sector None: N = 105, k = 40, a = 0.35355
+  entries of the first above 1e-6: ratio second / first between 0.3276 and 1.000000
+  (a) second <= first in every entry: True
+  (b) second >= 0.8 first: False
+      ('v', -5)<-('p', -3): first 0.257402, second 0.155171
+      ('v', -5)<-('p', -1): first 0.020658, second 0.00732835
+      ('v', -5)<-('p', 1): first 0.00228436, second 0.000843303
+      ('v', -5)<-('p', 3): first 0.00011094, second 5.16427e-05
+      ('v', -5)<-('p', 5): first 1.03842e-05, second 6.94623e-06
+      ('v', -5)<-('c', 2): first 5.51984e-05, second 3.92257e-05
+      ('v', -5)<-('c', 4): first 4.66604e-06, second 3.49494e-06
+      ('v', -3)<-('p', -5): first 0.351718, second 0.249487
+  (c) forcing in the first's norm: first 2.307129e+47, second 2.307081e+47, ratio 0.999979: True
+  contraction constant in the first's weights: first 0.250035, second 0.249845
+LIPSCHITZ COMPARISON: FAIL
+  fixed_point_M_b_check.py lip: FAIL (noticed)
+exit 1

@@ -1,0 +1,25 @@
+rv_kernel: mutation offbyone; the module's runs, recording its kernel calls
+  M = 5, the point: N = 105, k = 103, a = 0.35355, e_min = 1.5000, contraction constant 0.0997, proved True
+  M = 5, the complex box: N = 105, k = 103, a = 0.35355, e_min = 1.4809, contraction constant 0.0999, proved True
+  M = 5, sector 0.2: N = 105, k = 103, a = 0.18796, e_min = 1.5000, contraction constant 0.1130, proved True
+  M = 5, sector 0.2, k = 40: N = 105, k = 40, a = 0.18796, e_min = 1.5000, contraction constant 0.2338, proved True
+  M = 3, r0 = 0.1: N = 53, k = 51, a = 0.35355, e_min = 1.5000, contraction constant 0.1662, proved True
+  1417 distinct cases (mm, pw, a, e_min, R); pw from 1 to 377, mm from 39 to 415
+  the identity 1 = a I_(n-1) + (n - 1) r I_n holds to 2.3e-41 over the cases
+  largest true value / bound: 1.006761 at (mm, pw, a, e, r) = (50, 1, 0.3535533905932738, 1.5, 0.01); cases above the bound: 2834 of 11336
+RV_KERNEL: FAIL (the quadrature exceeds the module's bound; its slack is -0.6761%)
+the author's checks with the mutated bound:
+PLANTED (linear problem, M = 5): PASS; largest midpoint distance 2.99e-63
+PLANTED (linear problem, M = 5): PASS; largest midpoint distance 2.61e-33
+  at the start point: largest |Re, Im (Y_N2 - Y_N1)| / (radius_N1 + radius_N2) over the components 0.260 (an overlap needs <= 1)
+  at |z| = R: largest |Re, Im (Y_N2 - Y_N1)| / (radius_N1 + radius_N2) over the components 0.837 (an overlap needs <= 1)
+TWO TRUNCATIONS (N = 60 against N = 105): PASS; largest ratio 0.837
+  at the start point: largest |Re, Im (Y_N2 - Y_N1)| / (radius_N1 + radius_N2) over the components 0.274 (an overlap needs <= 1)
+  at |z| = R: largest |Re, Im (Y_N2 - Y_N1)| / (radius_N1 + radius_N2) over the components 0.686 (an overlap needs <= 1)
+TWO TRUNCATIONS (N = 95 against N = 105): PASS; largest ratio 0.686
+  planted, M = 5, at the start point: PASS (the mutation is not noticed)
+  planted, M = 5, at |z| = R: PASS (the mutation is not noticed)
+  two truncations, N = 60 and 105: PASS (the mutation is not noticed)
+  two truncations, N = 95 and 105: PASS (the mutation is not noticed)
+  start set against the stored one: PASS (the mutation is not noticed)
+exit 1

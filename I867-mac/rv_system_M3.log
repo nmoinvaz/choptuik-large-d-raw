@@ -1,0 +1,11 @@
+rv_system: M = 3, mutation None
+(a) random polynomials, on the ray: relative differences D 4.8e-153, S 1.7e-150, C 6.0e-153
+(a) random polynomials, off it: relative differences D 2.1e-153, S 1.5e-151, C 2.7e-153
+(a) the module's residual numerators are the defects of inner_np's equations: True
+(b) against inner_np.Inner.rhs, on the ray: relative differences D 8.3e-17, S 2.5e-16, C 1.1e-16
+(b) against inner_np.Inner.rhs, off it: relative differences D 1.9e-16, S 2.3e-16, C 2.2e-16
+(b) the same against the solver's own rhs: True
+(c) the series at the M = 3 zero, N = 53: low orders of the residual contain 0: True (largest |ball| R^j 8.0e-153); the true defect at |xi| = 0.9 r0 is 1.0e-36, and the identities hold to a relative D 8.5e-117, S 5.0e-118, C 1.2e-117: True
+(d) the module's 53 terms against inner_np.series_at's sums (65 terms) at |xi| = 0.9 r0: relative difference 3.4e-16: True
+RV_SYSTEM: PASS
+exit 0
