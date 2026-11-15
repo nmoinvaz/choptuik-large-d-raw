@@ -61,3 +61,45 @@ has |dz| 1.004e-07 and the nine trials' max|F| runs from 9.94e36 (lam 1) to 1.19
 left the start's 5.2e-36.
 
 run808.sh and run808b.sh as placed call bash $0 after a cd, so run them by absolute path; plandrop was relaunched that way at 06:28:53 UTC.
+
+## Results, plandrop (dh370, 2026-11-15)
+
+What ran. Unit `i808drop`, `bash /home/nathan/Source/choptuik-large-d-raw/I808-dh370/run808b.sh plandrop` (worktree
+choptuik-large-d-808b at bd4ada6c, venv-i800), the five states with `--keep_plan 0 --od_full_drop 1e-6`, three at a time at
+4 threads, nice 10. The first launch at 06:28:14 UTC ran no job (relative `$0` after the cd, `plandrop_nolaunch_run.log`,
+`table808_plandrop_nolaunch.txt`); the run is the relaunch at 06:28:53 UTC (`i808drop_journal.log`, `exits_808.txt`). One
+polish ran past 4 h, so I stopped the unit at 10:29:27 UTC (`exits_808.txt`); run808b.sh's own table step then did not run, and
+`table808_plandrop.txt` is the same `table808.py ... --plan_tag=plandrop` run by hand at 10:29:36 UTC. Exit 2, as expected: the
+held arm has no jobs.
+
+| job | start to end (UTC) | steps | final max\|F\| | first dDelta | Delta - Delta(#603) |
+|---|---|---|---|---|---|
+| s240.1244_plandrop | 06:28 to 09:07 | 16, no trial accepted at step 15 | 3.4e-25 (start 6.1e-36) | +2.610e-16 | none |
+| s250.8381_plandrop | 06:28 to 10:29 | 17 done, 18th under way, stopped at 4 h | 7.17e-50 | +2.210e-09 | none |
+| s251.8859_plandrop | 06:28 to 08:02 | 13, converged | 2.1e-64 | +9.060e-11 | +9.05849e-11 |
+| s252.6135_plandrop | 08:02 to 09:56 | 3, no trial accepted at step 2 | 3.1e-36 (start 2.7e-36) | +2.930e-09 | none |
+| s253.5301_plandrop | 09:07 to 10:12 | 1, no trial accepted at step 0 | 5.2e-36, the start's | none | none |
+
+`table808_plandrop.txt`: plan, delta(plan): incomplete. Only 251.8859 converged, so no band of the registered rule applies
+and the control (the held arm at 240.1244) was not measured. The base of 251.8859 is `s251.8859_plandrop/base_pin3_D251.8859.npz`;
+the other four saved none.
+
+What the logs show.
+- The full-step rule did what it was made for at 250.8381, 251.8859 and 252.6135: after a damped step 0 raised max|F| to
+  5.8e-23, 4.1e-24 and 2.5e-20, step 1's lam 1 trial fell to 7.2e-31, 2.1e-31 and 3.1e-36 and was accepted by the drop that
+  the own test had refused in the plan arm. At 251.8859 this repeated at steps 3 and 5, and |dz| fell from 5.7e-20 (step 6)
+  to 3.7e-70 (step 11).
+- 250.8381 went through 7 cycles (steps 0 to 13) of an even step at lam 1/16 to 1 that raised max|F| to between 6e-23 and
+  8e-22 and an odd step at lam 1 that dropped it to between 3e-37 and 7e-31; the even steps' dDelta fell 2.21e-9, 2.06e-9,
+  1.56e-9, 1.17e-9, 1.02e-9, 5.1e-10, 2.6e-10. From step 13 on, max|F| went 2.9e-37, 1.7e-32, 1.4e-49, 7.2e-50 and |dz|
+  2.1e-15, 5.5e-24, 2.3e-27, 1.2e-27, with lam 1/2 at step 16 and |dz| halving per step, as 240.1244's did, so convergence
+  to 1e-60 needed tens of further steps at about 6 min each. The sum of
+  lam x dDelta over its accepted steps (from the log's 3-digit values) is +2.21e-9, the first dDelta; it is not a converged
+  delta, and the registered rule does not use it.
+- 252.6135 at step 2 and 253.5301 at step 0 refused all 9 trials (lam 1 to 1/256): from a start at 3e-36 and 5e-36 there is
+  nothing for the drop rule to accept. At 253.5301 the first correction has |dz| 1.004e-07 and the trials' max|F| is
+  9.9e36 at lam 1 and 1.2e24 at lam 1/256, falling about 27 times per halving.
+- 240.1244 (the control's state) stopped at step 15 with lam 1 at 1.5e-26 against 3.4e-25, a 22-fold drop, short of 1e-6.
+
+First dDelta over E (not a registered quantity): 240.1244 8.7e-3, 250.8381 3.1e-2, 251.8859 3.9e-4, 252.6135 9.7e-3. Where a
+delta exists, it agrees with the first dDelta (251.8859 +9.05849e-11 against +9.060e-11).
