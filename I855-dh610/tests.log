@@ -1,2 +1,82 @@
 # 2026-11-15 21:47:43 UTC hp: cargo test --release --lib
    Compiling hpkernel v0.1.0 (/home/nathan/Source/choptuik-large-d-855/hp)
+    Finished `release` profile [optimized] target(s) in 18m 06s
+     Running unittests src/lib.rs (target/release/deps/_hpkernel-bc4e9ff7c7a8c0b7)
+
+running 26 tests
+test model::bench::bench_jac ... ignored
+test freeze_tests::freeze_projector_is_recognized ... ok
+test freeze_tests::freeze_jvp_matches_dd_jacobian ... ok
+test jvp_tests::jvp_matches_dd_jacobian ... ok
+test mode_tests::mode_matrix_at_rate_zero_is_the_jacobian_block ... ok
+test qd_residual::bench_qd_residual ... ignored
+test qd_residual::qv_lane_blocks_agree ... ok
+test jvp_tests::halpha_control_bitwise_on_rounding_only ... ok
+test freeze_tests::freeze_hdd_block_rows_are_dd ... ok
+test jvp_tests::hdd_block_rows_are_dd ... ok
+test mode_tests::mode_matrix_complex_rate_is_analytic ... ok
+test prec_tests::qd::qsolve_agrees_with_double_double ... ok
+test prec_tests::qd::qsolve_jet_agrees_with_double_double_jet ... ok
+test prec_tests::qd::qsolve_refinement_converged ... ok
+test prec_tests::qd::qsolve_resolves_sub_double_double_changes ... ok
+test prec_tests::qd::qsolve_jet_sums_to_the_residual ... ok
+test prec_tests::qd::qsolve_jacobian_matches_differences ... ok
+test prec_tests::qd::qsolve_newton_converges ... ok
+test prec_tests::qd::qsolve_jet_resolves_sub_double_double_changes ... ok
+test prec_tests::od::osolve_refinement_converged ... ok
+test prec_tests::od::osolve_agrees_with_quad_double ... ok
+test prec_tests::od::osolve_resolves_sub_quad_double_changes ... ok
+test prec_tests::od::osolve_jacobian_matches_differences ... ok
+test prec_tests::od::osolve_jet_sums_to_the_residual ... ok
+test prec_tests::od::osolve_jet_resolves_sub_quad_double_changes ... ok
+test prec_tests::od::osolve_newton_converges ... ok
+
+test result: ok. 24 passed; 0 failed; 2 ignored; 0 measured; 0 filtered out; finished in 34.63s
+
+# hp exit 0, 1121 s, peak 7970 MiB
+# 2026-11-15 22:06:24 UTC modecount_cx: cargo test --release --offline (libpython3.14 from /home/nathan/.local/share/uv/python/cpython-3.14.10-linux-x86_64-gnu/lib)
+   Compiling target-lexicon v0.13.5
+   Compiling crossbeam-utils v0.8.23
+   Compiling autocfg v1.5.1
+   Compiling crossbeam-epoch v0.9.21
+   Compiling proc-macro2 v1.0.107
+   Compiling crossbeam-deque v0.8.8
+   Compiling unicode-ident v1.0.27
+   Compiling pyo3-build-config v0.30.1
+   Compiling quote v1.0.47
+   Compiling rayon-core v1.13.0
+   Compiling num-traits v0.2.19
+   Compiling either v1.19.0
+   Compiling pyo3-ffi v0.30.1
+   Compiling libc v0.2.191
+   Compiling pyo3-macros-backend v0.30.1
+   Compiling syn v3.0.9
+   Compiling pyo3 v0.30.1
+   Compiling rayon v1.12.0
+   Compiling matrixmultiply v0.3.11
+   Compiling heck v0.5.0
+   Compiling rawpointer v0.2.1
+   Compiling multidouble v4.5.0
+   Compiling num-integer v0.1.47
+   Compiling num-complex v0.4.6
+   Compiling numpy v0.30.0
+   Compiling once_cell v1.21.4
+   Compiling ndarray v0.17.2
+   Compiling rustc-hash v2.1.3
+   Compiling multisolver v0.1.0
+   Compiling multishoot v3.0.0
+   Compiling pyo3-macros v0.30.1
+   Compiling hpkernel v0.1.0 (/home/nathan/Source/choptuik-large-d-855/hp)
+   Compiling modecount_cx v0.1.0 (/home/nathan/Source/choptuik-large-d-855/hp/modecount_cx)
+    Finished `release` profile [optimized] target(s) in 3m 20s
+     Running unittests src/lib.rs (target/release/deps/modecount_cx-245ac929f43048f9)
+
+running 3 tests
+test pivots::tests::planted_diagonal_pivots ... ok
+test pivots::tests::control_entry_change_moves_ln_det ... ok
+test pivots::tests::pivots_reproduce_clu_logdet ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.14s
+
+# modecount_cx exit 0, 201 s
+exit 0
