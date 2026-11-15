@@ -1,0 +1,15 @@
+817 stopped by dh610 on the coordinator's order (#817 comment IC_kwDOVPE7OM8AAAABmrfdsA, 2026-11-15 06:55:21 UTC): systemctl --user stop i817 at 2026-11-15 06:56:02 UTC, unit inactive at 06:56:05, no octo_corrector or run817 process left
+arms had been running 2 h 30 min (started 04:26:05 UTC), both in step 1 (the second) with no line yet; no .npz or .json state exists (planted writes them at the end of a run)
+
+--- strong4.log, last lines
+    on 0 trial lam 0.0625: max|F| 3.76e+17; raw |dz_t| 1.268e+12 vs |dz| 2.018e-11 (not <); refused, 1012.45 s
+    on 0 trial lam 0.03125: max|F| 2.35e+16; raw |dz_t| 3.160e+11 vs |dz| 2.018e-11 (not <); refused, 926.51 s
+  on 0: |F| 3.40e-12 -> 3.34e-12, |dz| 2.02e-11 -> 1.99e-11, lam 0.015625, dDelta -2.02e-11, piv 2.3e-14..1.2e+36, 7593.68 s
+--- strong4_drop.log, last lines
+    on 0 trial lam 0.0625: max|F| 3.76e+17; raw |dz_t| 1.268e+12 vs |dz| 2.018e-11 (not <); refused, 1027.42 s
+    on 0 trial lam 0.03125: max|F| 2.35e+16; raw |dz_t| 3.160e+11 vs |dz| 2.018e-11 (not <); refused, 902.97 s
+  on 0: |F| 3.40e-12 -> 3.34e-12, |dz| 2.02e-11 -> 1.99e-11, lam 0.015625, dDelta -2.02e-11, piv 2.3e-14..1.2e+36, 7678.38 s
+
+--- exits_817.txt (the script's own, no exit lines since the unit was stopped)
+817 strong4 start, hp 390d1db9 2026-11-15 04:26:05 UTC
+817 strong4_drop start, hp 390d1db9 2026-11-15 04:26:05 UTC
