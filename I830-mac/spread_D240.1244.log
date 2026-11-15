@@ -12,3 +12,18 @@ step_spread I603-win2/chain/anm_pin3_D240.1244.npz: D 240.1244140625, M 32, K 5,
   node 1 seed 1          move 1.000e-65: dDelta +1.1823051774e-12, max|dz| 3.4420e-12, smallest pivot 7.3034e-24, max|F| 2.2158e-20 (306 s)
   node 2 seed 1          move 1.000e-65: dDelta +1.1823051774e-12, max|dz| 3.4420e-12, smallest pivot 7.3034e-24, max|F| 2.2158e-20 (310 s)
   node 3 seed 1          move 1.000e-65: dDelta +1.1823051774e-12, max|dz| 3.4420e-12, smallest pivot 7.3034e-24, max|F| 2.2158e-20 (327 s)
+  node 4 seed 1          move 1.000e-65: dDelta +1.1823051774e-12, max|dz| 3.4420e-12, smallest pivot 7.3034e-24, max|F| 2.2158e-20 (315 s)
+  Delta seed 1           move 1.687e-65: dDelta +1.1823051786e-12, max|dz| 3.4420e-12, smallest pivot 7.3034e-24, max|F| 2.2158e-20 (313 s)
+  check: the unperturbed step taken again, its Delta part's eight parts and smallest pivot the same: pass
+  check: the centre's and the nodes' dDelta equal the unperturbed one as a double (6 of 6): pass
+  verdict: determined; the horizon seeds' dDelta +1.181744e-12 .. +1.182593e-12, ratio to the unperturbed 0.9995 .. 1, largest relative deviation 0.000474 (bar 0.001); spread 5.609e-16, sd 3.1298e-16
+  centre seed 1 (control): dDelta / unperturbed 1
+  node 0 seed 1: dDelta / unperturbed 1
+  node 1 seed 1: dDelta / unperturbed 1
+  node 2 seed 1: dDelta / unperturbed 1
+  node 3 seed 1: dDelta / unperturbed 1
+  node 4 seed 1: dDelta / unperturbed 1
+  Delta seed 1: dDelta / unperturbed 1
+step_spread: PASS (3793 s)
+exit 0
+== end 2026-11-15 08:59:22 UTC
