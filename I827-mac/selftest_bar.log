@@ -1,0 +1,9 @@
+== selftest_bar 2026-11-15 07:01:48 UTC, hp at daf24da5, step_spread.py --selftest --mutate=bar
+# hpkernel /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/11bcbd25-9376-453b-88d5-a7c6ad0172dd/scratchpad/i599/site2/hpkernel/__init__.py
+  steps / ref 1, 1, 0.9991, 1: determined, largest deviation 0.0009 (want determined)
+  steps / ref 1, 332.5, 1, 1: determined, largest deviation 332 (want not determined)  <- wrong
+  steps / ref 1.002, 1.002, 1.002, 1.002: determined, largest deviation 0.002 (want not determined)  <- wrong
+  steps / ref -1, 1, 1, 1: determined, largest deviation 2 (want not determined)  <- wrong
+step_spread selftest --mutate=bar: FAIL
+exit 1
+== end 2026-11-15 07:01:48 UTC
