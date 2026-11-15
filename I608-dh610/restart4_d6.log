@@ -123,3 +123,36 @@ step 1: D 252.910465544, pivots 1.8e-31..1.3e+36, |z_1| 3.40e-04, |z_N| 3.02e-22
       octo-double Newton: 15 steps, max|F| 1.2e-64, converged; double-double |F| of its first two parts 4.1e+07
     a 0.125 -> D 253.035465544: predicted |F| 4.26e+07, od 15 steps -> 4.05e+07 (tol 1.1e-20, stall accepted, Delta correction +0.0e+00), Delta 1.684467567076 (formula diff -1.7e-06), moved 1.6e-16, 2691 s
       Delta of the saved state, its eight parts summed exactly: 1.684467567075658589536979337143221658435
+step 2: the series saved as /home/nathan/Source/choptuik-large-d-raw/I608-dh610/restart4_d6/jet_pin3_D253.0355.npz (8 parts, 1255 s)
+step 2: D 253.035465544, pivots 1.4e-31..1.4e+36, |z_1| 3.39e-04, |z_N| 3.80e-22, ratios 2-5 146.1 2.0 2.8 6.3, a_max 1.485, 1255 s
+    a 0.1562: re-seeded (ok), 56.18 s
+      horizon data refined in octo-double, rung max|R| 5.09e-26 -> 1.84e-57 -> 1.01e-67 -> 2.76e-78
+    on 0 chord 0: max|F| 1.34e-31, |dw| 2.456e-33
+    on 0 chord 1: max|F| 4.63e-31, |dw| 1.318e-33
+    on 0 chord 2: max|F| 9.28e-31, |dw| 2.980e-33
+  on 0: strong chord (4 weak directions), 3 steps after the full first step; theta at its point inf (bound 0.750): refused, 334.01 s
+    on 0 trial lam 1: max|F| 1.34e-31; simplified correction / |dz| = 4.116e-02 (bound 0.750); accepted, 102.27 s
+  on 0: |F| 2.22e-36 -> 1.34e-31, |dz| 2.66e-16 -> 4.41e-30, lam 1, dDelta +2.66e-16, piv 1.1e-31..1.5e+36, 515.28 s
+    on 1 trial lam 1: max|F| 8.31e-25; simplified correction / |dz| = 2.256e+06 (bound 0.750); refused, 0.51 s
+    on 1 trial lam 0.5: max|F| 6.68e-32; simplified correction / |dz| = 3.132e-01 (bound 0.875); accepted, 114.88 s
+  on 1: |F| 1.34e-31 -> 6.68e-32, |dz| 4.41e-30 -> 3.16e-31, lam 0.5, dDelta +4.41e-30, piv 1.0e-31..1.5e+36, 192.28 s
+    on 2 trial lam 1: max|F| 6.90e-26; simplified correction / |dz| = 2.396e+06 (bound 0.750); refused, 0.57 s
+    on 2 trial lam 0.5: max|F| 3.34e-32; simplified correction / |dz| = 1.206e+00 (bound 0.875); refused, 94.58 s
+    on 2 trial lam 0.25: max|F| 5.01e-32; simplified correction / |dz| = 9.264e-01 (bound 0.938); accepted, 102.42 s
+  on 2: |F| 6.68e-32 -> 5.01e-32, |dz| 3.16e-31 -> 6.28e-31, lam 0.25, dDelta -3.16e-31, piv 1.0e-31..1.5e+36, 275.76 s
+    on 3 trial lam 1: max|F| 8.29e-26; simplified correction / |dz| = 1.465e+06 (bound 0.750); refused, 0.68 s
+    on 3 trial lam 0.5: max|F| 2.50e-32; simplified correction / |dz| = 7.027e-01 (bound 0.875); accepted, 97.88 s
+  on 3: |F| 5.01e-32 -> 2.50e-32, |dz| 6.28e-31 -> 6.99e-31, lam 0.5, dDelta -6.28e-31, piv 1.0e-31..1.5e+36, 190.4 s
+    on 4 trial lam 1: max|F| 5.70e-26; simplified correction / |dz| = 6.603e+05 (bound 0.750); refused, 0.98 s
+    on 4 trial lam 0.5: max|F| 1.25e-32; simplified correction / |dz| = 5.470e-01 (bound 0.875); accepted, 97.15 s
+  on 4: |F| 2.50e-32 -> 1.25e-32, |dz| 6.99e-31 -> 4.48e-31, lam 0.5, dDelta -6.99e-31, piv 1.0e-31..1.5e+36, 167.8 s
+    on 5 trial lam 1: max|F| 2.08e-26; simplified correction / |dz| = 2.153e+05 (bound 0.750); refused, 0.62 s
+    on 5 trial lam 0.5: max|F| 6.26e-33; simplified correction / |dz| = 5.186e-01 (bound 0.875); accepted, 100.36 s
+  on 5: |F| 1.25e-32 -> 6.26e-33, |dz| 4.48e-31 -> 2.49e-31, lam 0.5, dDelta -4.48e-31, piv 1.0e-31..1.5e+36, 199.73 s
+    on 6 trial lam 1: max|F| 6.14e-27; simplified correction / |dz| = 6.079e+04 (bound 0.750); refused, 0.48 s
+    on 6 trial lam 0.5: max|F| 3.13e-33; simplified correction / |dz| = 5.084e-01 (bound 0.875); accepted, 116.24 s
+  on 6: |F| 6.26e-33 -> 3.13e-33, |dz| 2.49e-31 -> 1.31e-31, lam 0.5, dDelta -2.49e-31, piv 1.0e-31..1.5e+36, 182.25 s
+    on 7 trial lam 1: max|F| 1.66e-27; simplified correction / |dz| = 1.611e+04 (bound 0.750); refused, 0.5 s
+    on 7 trial lam 0.5: max|F| 1.57e-33; simplified correction / |dz| = 5.040e-01 (bound 0.875); accepted, 91.62 s
+  on 7: |F| 3.13e-33 -> 1.57e-33, |dz| 1.31e-31 -> 6.71e-32, lam 0.5, dDelta -1.31e-31, piv 1.0e-31..1.5e+36, 166.53 s
+    on 8 trial lam 1: max|F| 4.31e-28; simplified correction / |dz| = 4.142e+03 (bound 0.750); refused, 0.58 s
