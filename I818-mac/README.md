@@ -39,3 +39,12 @@ Post hoc, a1 (the coefficient of sqrt(D* - D)) from c_k = a1 sqrt(s) binom(1/2, 
 s = 259.9033 - D0: the plants' 5e-4 and 5e-5 to a relative 9.4e-5; lam_g +6.87e-4 to +7.23e-4 at 31 bases from 259.367
 (spread over k at most 2.3%); Delta +3.41e-2 to +3.52e-2; lam_g/Delta 0.0201 to 0.0206. #815's value fits left lam_g's
 coefficient in 4.7e-4 to 8.7e-4.
+
+## Recommended task
+
+*The square root cancels in lam_g - r Delta.* What: with r = 0.0203, the ratio of the two coefficients at the same
+bases, the combination's series should carry no sqrt(D* - D) term, so its leading singular term is (D* - D)^(3/2),
+mu = 3/2. Why: it tests that lam_g and Delta share one branch point and one Puiseux variable, independent of the
+estimators' low Dlog exponent on lam_g. Acceptance (can fail): a plant of the two series' sizes first; then at 4 or more
+of the 26 bases both estimators give mu in [1.25, 1.75] with D* within 0.01 of 259.903, and with r moved by 10% mu
+returns to the S band. Depends on: #818.
