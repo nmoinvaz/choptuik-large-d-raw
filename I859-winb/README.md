@@ -37,4 +37,13 @@ Walk b (D 9, kc 23; 21:59:28 to 22:05:19 UTC, 351 s, exit 0): stopped by the 1e-
 3.0150e-11 up to 3.0152e-11), which is what the rule read as settled. Width at its end (exit 0, the two g agree): g
 3.4715e+05, W 1.047e-05, Newton's Delta step -7.28e-07, which would put Delta at 1.02705068. By the pre-registered
 definition (W <= 1e-6) it has not settled, W being 10 times the bar.
-(walks c and e follow)
+
+Walk c (D 10, kc 15; 21:52:50 to 22:06:48 UTC, 838 s, exit 0): stopped by the 1e-9 rule after 109 Jacobians, with Delta
+1.022082021836 (-1.355e-03 from the kernel's 1.02343724954, -4.060e-03 from the march's 1.026141550), |F| 8.1629e-10 at
+the last Jacobian. The changes were about -2.3e-06 per Jacobian through jac 105, then -7.3e-07, -7.3e-09 and, at jac 108,
+-2.2e-14 with |F| unchanged, so again the last Jacobian made no step. Width at its end (exit 0, the two g agree): |F|
+8.2668e-10 (1.3% above the walk's last, 8.1629e-10; the walk freezes the RK steps once from its starting state and
+`width` freezes them from this end state, which I did not test as the cause), g 1.4949e+06, W 1.236e-03, Newton's Delta
+step +5.23e-05, which would put Delta at 1.022134. By the pre-registered definition (W <= 1e-6) it has not settled, W
+being 1200 times the bar.
+(walk e follows)
