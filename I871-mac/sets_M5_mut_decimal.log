@@ -1,0 +1,11 @@
+python-flint 0.9.0, FLINT 3.6.0, 320 bits
+M = 5, MUTATION decimal
+X_b, the covering's ball [RAW/I38-macm3/lemma6b1_runs_M5_cert/ray.json]: centre c = ray.json's x, radius 1e-18 as arb rounds it up: 1e-18 + 0.000e+00
+    c against the certificate's p^ [data/A_M2_box_M5_1e-10.json]: |p^ - c| = A 4.61e-39, w/w_inf 8.49e-41, B3 8.83e-39, C3 3.26e-40, B5 1.82e-39, C5 8.81e-40
+X_c, the decimal box: p(X), X = +-(1e-18, 1e-26, 1e-27) in the chart around p^ (the sub-box of [RAW/I103-macm3/A_M2_6a_M5_sub1e-18.json])
+(0) Krawczyk on the certificate's arb ball (radii 1e-18 + 2.193e-27, ...): K(X) in int X: True, relative margins +1.000, +1.000, +0.980, +0.980, +0.932, +0.932; the ball contains the decimal box: True
+(1) K(X) inside the decimal box: |K_0| <= 6.08e-24 < 1.00e-18, |K_1| <= 4.96e-24 < 1.00e-18, |K_2| <= 1.99e-28 < 1.00e-26, |K_3| <= 1.99e-28 < 1.00e-26, |K_4| <= 6.80e-29 < 1.00e-27, |K_5| <= 6.80e-29 < 1.00e-27: True
+(2) the decimal box inside X_b: slack A -4.613e-39, w/w_inf -8.493e-41, B3 +5.885e-19, C3 +9.536e-19, B5 +9.562e-19, C5 +9.918e-19: False
+    for reference: the certificate's arb ball against X_b: slack A -2.193e-27, w/w_inf -2.193e-27
+    the zero's enclosure p(K(X)): A radius 6.08e-24, w/w_inf radius 4.96e-24, B3 radius 2.21e-24, C3 radius 2.43e-25, B5 radius 2.33e-25, C5 radius 4.30e-26
+THEOREM A SETS (M = 5, mutation decimal): FAIL: (2) the decimal box outside X_b
