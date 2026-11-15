@@ -2,3 +2,28 @@
 # hpkernel /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/11bcbd25-9376-453b-88d5-a7c6ad0172dd/scratchpad/i599/site2/hpkernel/__init__.py
 step_spread I603-win2/chain/anm_pin3_D250.1676.npz: D 250.167581653595, M 32, K 5, L 769; rel 1e-65, seeds [1, 2, 3, 4]; pinned max|F| (octo) 3.9651e-20 (1 s)
   unperturbed            move 0.000e+00: dDelta -1.1079234753e-07, max|dz| 1.1079e-07, smallest pivot 6.0145e-29, max|F| 3.9651e-20 (201 s)
+  unperturbed again      move 0.000e+00: dDelta -1.1079234753e-07, max|dz| 1.1079e-07, smallest pivot 6.0145e-29, max|F| 3.9651e-20 (213 s)
+  m_h, a_h seed 1        move 1.000e-65: dDelta -5.3355368427e-07, max|dz| 5.3355e-07, smallest pivot 1.5223e-29, max|F| 3.9651e-20 (196 s)
+  m_h, a_h seed 2        move 1.000e-65: dDelta -6.8581470508e-08, max|dz| 6.8581e-08, smallest pivot 1.0687e-28, max|F| 3.9651e-20 (189 s)
+  m_h, a_h seed 3        move 1.000e-65: dDelta -1.8883208990e-07, max|dz| 1.8883e-07, smallest pivot 1.0438e-28, max|F| 3.9651e-20 (186 s)
+  m_h, a_h seed 4        move 1.000e-65: dDelta -2.9708463996e-07, max|dz| 2.9708e-07, smallest pivot 3.8991e-29, max|F| 3.9651e-20 (185 s)
+  centre seed 1 (control) move 1.000e-65: dDelta -1.1079234753e-07, max|dz| 1.1079e-07, smallest pivot 6.0145e-29, max|F| 3.9651e-20 (183 s)
+  node 0 seed 1          move 1.000e-65: dDelta -1.1079234753e-07, max|dz| 1.1079e-07, smallest pivot 6.0145e-29, max|F| 3.9651e-20 (179 s)
+  node 1 seed 1          move 1.000e-65: dDelta -1.1079234753e-07, max|dz| 1.1079e-07, smallest pivot 6.0145e-29, max|F| 3.9651e-20 (185 s)
+  node 2 seed 1          move 1.000e-65: dDelta -1.1079234753e-07, max|dz| 1.1079e-07, smallest pivot 6.0145e-29, max|F| 3.9651e-20 (184 s)
+  node 3 seed 1          move 1.000e-65: dDelta -1.1079234753e-07, max|dz| 1.1079e-07, smallest pivot 6.0145e-29, max|F| 3.9651e-20 (186 s)
+  node 4 seed 1          move 1.000e-65: dDelta -1.1079234753e-07, max|dz| 1.1079e-07, smallest pivot 6.0145e-29, max|F| 3.9651e-20 (183 s)
+  Delta seed 1           move 1.685e-65: dDelta -1.1079316613e-07, max|dz| 1.1079e-07, smallest pivot 6.0146e-29, max|F| 3.9651e-20 (186 s)
+  check: the unperturbed step taken again, its Delta part's eight parts and smallest pivot the same: pass
+  check: the centre's and the nodes' dDelta equal the unperturbed one as a double (6 of 6): pass
+  verdict: not determined; the horizon seeds' dDelta -5.335537e-07 .. -6.858147e-08, ratio to the unperturbed 0.619 .. 4.816, largest relative deviation 3.82 (bar 0.001); spread 4.2276e-7, sd 1.7127e-7
+  centre seed 1 (control): dDelta / unperturbed 1
+  node 0 seed 1: dDelta / unperturbed 1
+  node 1 seed 1: dDelta / unperturbed 1
+  node 2 seed 1: dDelta / unperturbed 1
+  node 3 seed 1: dDelta / unperturbed 1
+  node 4 seed 1: dDelta / unperturbed 1
+  Delta seed 1: dDelta / unperturbed 1.00001
+step_spread: PASS (2457 s)
+exit 0
+== end 2026-11-15 10:24:27 UTC
