@@ -1,0 +1,6 @@
+  converged True, 5 records, max|F| 3.000e-45 (< 1e-40), |Delta - truth| 4.000e-41 (<= 1e-20): pass (want pass)
+  converged True, 5 records, max|F| 3.000e-45 (< 1e-40), |Delta - truth| 2.000e-25 (<= 1e-20): pass (want FAIL)  <- wrong
+  converged True, 5 records, max|F| 2.000e-39 (< 1e-40), |Delta - truth| 4.000e-41 (<= 1e-20): FAIL (want FAIL)
+  converged False, 13 records, max|F| 3.000e-45 (< 1e-40), |Delta - truth| 4.000e-41 (<= 1e-20); stopped at step 12 (max|F| 1.00e-35, lam 0.5, |dz| 1.00e-30): FAIL (want FAIL)
+verdict_839 selftest --mutate=bar: FAIL
+exit 1
