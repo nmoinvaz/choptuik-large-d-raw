@@ -1,0 +1,10 @@
+== curve_planted_elim_hrows 2026-11-15 07:38:28 UTC, hp at 78687d7c+dirty, reduced_cubic.py curve planted --elim=1 --mutate=hrows --json=/private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/ececf14c-b4b6-41d2-ad20-2caade87ad18/scratchpad/raw781push/I828-mac/curve_planted_elim_hrows.json
+# hpkernel /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/11bcbd25-9376-453b-88d5-a7c6ad0172dd/scratchpad/i599/site2/hpkernel/__init__.py
+curve plant (seed 5): n 12, k 4; start max|F| 1.498e-36, |w0| 5.92e-33, |y_a| 8.3e-30, |B e| 5.733e-26; its reduced map minus beta + Sigma y against P4/24 + P5/120 2.12e-91 (bound 1e-20): pass
+horizon plant (seed 5): n 14 = 12 + 2, k 4; start max|F| 1.498e-36; on the projected manifold the main rows against CurvePlanted's and the horizon rows 0.0 (bound 1e-20): pass
+  elimination: 2 unknowns (hcols 11..12) and 2 rows (hrows 7..8), L 14 -> 12; P(z0) moves the horizon data by 0.0; max|F| on hrows 1.23e-36 at z0, 1.23e-36 at P(z0) (the projection's last rung residual 0.00e+00); on the other rows 1.498e-36 and 1.498e-36; the reduced Newton step's last unknown 4.64652e-11 (0 s)
+  basis: sigma of B 1.0183e-27, 2.2559e-27, 2.9205e-26, 7.5997e-26 (iteration 1.0183e-27, 2.2559e-27, 2.9205e-26, 7.5997e-26); |dz0| 1.595e-10, a = V^T dz0 9.62e-11, -1.247e-10, 2.382e-11, -8.629e-12, |a| 1.595e-10, the rest 6.81e-18; |B a| 1.001e-36, |U^T F(z0) + B a| / |B a| 2.05e-141; -J^-1 F(z0) against dz0 0.0; w0 = -J^-1 (I - U U^T) F(z0): |w0| 6.808e-18, |V^T w0| 5.25e-151 (0 s)
+  curve: |e| along a / |a|, |B e| 6.276e-27; g(0) by the chord through z0's LU, from w0 and from w0 (1 + 1e-5): NOT converged (|dw| per step 1.6e+03; bound 1e-40 |w0| = 6.81e-58), floor0 4.77e-21 (4.76e+15 of |B a|); |g(0) - U^T F(z0)| 2.381e+20 of |B a|; prediction kappa t |B c| with kappa none (0 s)
+check: FAIL
+exit 1
+== end 2026-11-15 07:38:29 UTC

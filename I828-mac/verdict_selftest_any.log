@@ -1,0 +1,8 @@
+  root at 1.2e-5 on +: root within 1e-4 True, within 1e-5 False (want (True, False))
+  root at 5e-6 on +: root within 1e-4 True, within 1e-5 True (want (True, True))
+  one component never flips: root within 1e-4 True, within 1e-5 False (want (False, False))  <- wrong
+  root at 3e-4 on +: root within 1e-4 False, within 1e-5 False (want (False, False))
+  root at 2e-5 on -: root within 1e-4 True, within 1e-5 False (want (True, False))
+  no root on - (g grows): root within 1e-4 False, within 1e-5 False (want (False, False))
+verdict_823 selftest --mutate=any: FAIL
+exit 1
