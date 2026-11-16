@@ -1,0 +1,5 @@
+plain_M5: exit 0 (must be 0): python3 fixed_point_M_b.py --M=5 --x=<p of data/A_M2_box_M5_1e-10.json>
+cli: exit 0 (must be 0): python3 fixed_point_M_b_check.py cli
+cli_mut_read53: exit 3 (must be 3): python3 fixed_point_M_b_check.py cli --mutate=read53
+rv_cli_precision: exit 0 (must be 0): python3 review_867/rv_cli_precision.py --ray=RAW/I38-macm3/lemma6b1_runs_M5_cert/ray.json
+rerun: exit 0 (must be 0): bash review_867/rerun_runs.sh python3 RAW RAW/I878-mac/rerun   (38 runs, rerun/exits.txt)
