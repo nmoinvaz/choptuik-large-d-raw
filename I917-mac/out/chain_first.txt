@@ -1,0 +1,21 @@
+python3 -u matter/sigma_ms/run_eta.py --eta 1 --D 10.5 --M 32 --out out --tag eta1_D10.5_M32 --threads 2 --solver band --it 40 --from sm_eta1_D10.475_M32.npz --from2 sm_eta1_D10.4375_M32.npz
+13:18:07 start 2026-11-16 13:18:07 UTC: eta 1, D 10.5, M 32, K 21, kt 36, kc 80, ks 80, threads 2
+13:18:07 seed {'src': 'sm_eta1_D10.475_M32.npz', 'eta_src': '1', 'M_src': 32, 'D_src': 10.475, 'D_src2': 10.4375, 'src2': 'sm_eta1_D10.4375_M32.npz', 'eta_src2': '1', 'w': -0.6666666666666825}: Delta 1.019911905737, |F| (single-step plan) 1.03e+20
+13:18:07 plan from the seed: 250 steps [8, 5, 4, 4, 3, 4, 5, 4, 3, 5, 6, 7, 13, 15, 16, 18, 22, 33, 33, 42] (0.3 s); |F| 1.52e-05
+13:18:48   band 0 (newton): |F| 1.52e-05, |F|_2 1.17e-04 -> 6.02e-06, |dz| 6.9e-02, dDelta +1.26e-06, pivots 2.6e-07..6.8e+00 (40.6 s)
+13:18:48     re-planned: 301 steps
+13:19:37   band 1 (newton): |F| 3.67e-06, |F|_2 6.02e-06 -> 6.01e-06, |dz| 6.9e-02, dDelta -3.47e-06, pivots 1.3e-09..6.8e+00 (90.0 s)
+13:19:38     re-planned: 291 steps
+13:20:25   band 2 (newton): |F| 3.67e-06, |F|_2 6.01e-06 -> 7.49e-11, |dz| 3.6e-04, dDelta -5.79e-09, pivots 1.3e-09..6.8e+00 (137.6 s)
+13:20:25     re-planned: 256 steps
+13:21:07   band 3 (newton): |F| 3.34e-11, |F|_2 7.49e-11 -> 4.24e-14, |dz| 2.3e-05, dDelta -1.05e-09, pivots 5.8e-09..6.8e+00 (179.6 s)
+13:21:07     re-planned: 195 steps
+13:21:39   band 4 (newton): |F| 1.08e-14, |F|_2 4.24e-14 -> 1.66e-24, |dz| 1.5e-10, dDelta +2.10e-15, pivots 5.8e-09..6.8e+00 (211.8 s)
+13:21:39     re-planned: 131 steps
+13:22:01   band 5 (newton): |F| 4.72e-25, |F|_2 1.66e-24 -> 9.73e-31, |dz| 1.6e-15, dDelta -1.07e-23, pivots 6.7e-09..6.8e+00 (233.8 s)
+13:22:01     re-planned: 129 steps
+13:22:22   band 6: |F| 1.45e-31 converged, Delta 1.019909692894059
+13:22:22 plan from the solution: 129 steps (0.2 s); |F| 1.45e-31
+13:22:43   band 0: |F| 1.45e-31 converged, Delta 1.019909692894059
+13:22:43 double-double: converged True, |F| 1.45e-31, Delta 1.019909692894059450176824175443549, constraint 7.28e-15, tails 8.5e-174 1.8e-115
+13:22:43 done 2026-11-16 13:22:43 UTC (276.0 s)
