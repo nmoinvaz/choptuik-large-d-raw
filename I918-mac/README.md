@@ -1,22 +1,26 @@
-# I918-mac: the sigma-model kernel's mode matrix and growth rates
+# I918-mac: the sigma-model kernel's mode matrix and its growth rates from D 9 to 11
 
 Machine: mac (Apple M5 Mac). Issue: https://github.com/nmoinvaz/choptuik-large-d/issues/918. Code: branch `wip/sa-918`
 (`matter/sigma_ms`: `src/model.rs`, `src/python.rs`, `smdriver.py`, `mode_check.py`, `mode_lam.py`, `mode_table.py`).
 The kernel module was built from that branch into a new site directory (`out/build.log`: 10 min 12 s, peak 9.8 GB;
-the site of #652 is untouched) and run with python 3.14, one process with 2 threads at nice 10. Every run starts
-behind a gate on the 1-minute load, below 31 (`out/gate.log`, and the `load` and `waiting` lines of the logs). Local
-paths are removed from the copies here.
+the site of #652 is untouched) and run with python 3.14, one process with 2 threads at nice 10. Local paths are
+removed from the copies here.
 
-This file is the pilot's state. It is rewritten when the runs end.
+The load gate. The build, the checks, the mutations and the first growth rate (D 9, eta 1) started behind the gate
+of 31 on the 1-minute load (`out/gate.log`: 20.1 to 28.0 at those starts). From 16:33 UTC the load was 90 to 144
+from jobs outside this task, the next run waited 17 minutes (`out/waited/`), and at 16:50 UTC the coordinator
+dropped the gate for the remaining runs (the issue's comment of that time). Their loads at the start are in the
+`start` lines of `out/lam_*.txt` (14 to 97) and in `out/gate.log`.
 
 ## The build at rate zero (`bitcheck.py`)
 
 The residual and the Newton step of two states (D 4 at eta 1, D 10.5 at eta 0.3) are the same bits in the new build
 and in the build of #652 (hashes 142b2dc23343b621 and a210bd14cc91971a in both).
 
-## The checks at D 9, eta 1, M 32 (`out/check_D9_eta1*.txt`, `.json`)
+## The checks at D 9, eta 1, M 32 (`run_check.sh`, `run_mut.sh`, `out/check_D9_eta1*.txt`, `.json`)
 
-The state is #652's chain's (`I652-mac/out/sm_eta1_D9_M32.npz`, max |F| 4.2e-29).
+The state is #652's chain's (`I652-mac/out/sm_eta1_D9_M32.npz`, max |F| 4.2e-29). The bounds are in `mode_check.py`'s
+header and were fixed before its first run.
 
 | check | bound | result | verdict |
 |---|---|---|---|
@@ -25,7 +29,8 @@ The state is #652's chain's (`I652-mac/out/sm_eta1_D9_M32.npz`, max |F| 4.2e-29)
 | (3) the tau-translation mode, \|M(0) v\| over \|M(0)\|_F \|v\| | 1e-9 | 1.0e-13 | PASS |
 | (4) the gauge root against lambda_g = 0.824242706019437 | 1e-10 | det M changes sign between lambda_g and lambda_g + 5.0e-14 | PASS |
 
-Each mutation exits 1 (`out/mutations.txt`, from the statuses in `out/gate.log`):
+Each mutation exits 1 (`out/mutations.txt`, from the statuses in `out/gate.log`; `run_mut.sh`'s first version logged
+`date`'s status instead, see its header):
 
 | mutation | check | what the check then reads |
 |---|---|---|
@@ -37,21 +42,21 @@ Each mutation exits 1 (`out/mutations.txt`, from the statuses in `out/gate.log`)
 | rate_centre | (4) | the root 3.4e-3 below lambda_g |
 | rate_steps | (4) | no sign change within lambda_g (1 -+ 1e-2) |
 
-## The checks at D 4, eta 1, M 32 (`out/check_D4_eta1.txt`)
+## Growth rates (`run_pilot.sh`, `run_full.sh`, `run_extra.sh`, `run_extra2.sh`; `out/sm_lam.jsonl`, `out/lam_*.txt`)
 
-(1) the same bits and (2) 1.1e-10 pass. (3) reads 3.6e-7 and (4) puts the root 1.32e-6 below lambda_g =
-0.898137277266780: both fail their bounds. The tau resolution at D 4 is far coarser than at D 9: the centre datum's
-top harmonic is 1.5e-4 at M 32 (2.4e-13 at D 9), and Delta(32) is 5.9e-8 from Delta(48) at eta = inf (1e-23 at
-D 10.5). The M 48 state at D 4 tests this reading.
+`mode_lam.py` on each state: the gauge root, then the root nearest the guess. The states are #652's and #917's chain
+at eta 1 (`I652-mac/out/`, `I917-mac/out/`), #916's at eta 0.3 (`I916-mac/out/`), #915's at M 24 and 48
+(`I915-mac/out/`), #639's at eta inf (`I639-mac/data/`), and three made here in `out/`: D 11, eta 0.3 at M 24 and 48
+(`run_eta_M.sh`, the recipe of #915: Delta(24) - Delta(32) = +2.1e-21 and Delta(48) - Delta(32) = +3.2e-23), and
+#916's 27-node state at D 10.5 with its Taylor steps planned (`plan_state.py`, max |F| 1.2e-31).
 
-## Growth rates (`out/sm_lam.jsonl`, `out/lam_*.txt`, `out/mode_table.txt`)
-
-State at 2026-11-16 21:00 UTC: both chains done at M 32, the other M at eta 0.3 done (M 48 at eta 1, the scan, D 4 at
-M 48 and the 27-node state are running). `out/mode_table.txt` is `matter/sigma_ms/mode_table.py <raw clone>`:
+`out/mode_table.txt` is `python3 matter/sigma_ms/mode_table.py <raw clone> --csv matter/sigma_ms/data/lam_D.csv`:
 
 ```
-(1) the gauge root at the 17 states with D >= 9: largest distance from lambda_g 5.0e-14 (<= 1e-10): PASS
+(1) the gauge root at the 19 states with D >= 9: largest distance from lambda_g 5.0e-14 (<= 1e-10): PASS
       validation state eta inf, D 4, M 32, 21 nodes: 1.5e-04 (outside 1e-10)
+      validation state eta inf, D 4, M 48, 21 nodes: 1.5e-09 (outside 1e-10)
+      validation state eta inf, D 4, M 64, 21 nodes: 5.1e-11 (within 1e-10)
       validation state eta 1, D 4, M 32, 21 nodes: 1.3e-06 (outside 1e-10)
       validation state eta 1, D 6, M 32, 21 nodes: 5.0e-14 (within 1e-10)
 (2) against sigdss:
@@ -65,6 +70,7 @@ lambda(D) at eta 0.3, M 32, D 9 to 11: 9: 3.175331722, 9.5: 3.112288835, 10: 3.0
     lambda falls at every step, by 0.207836 in all and by 0.020560 over the last one
     resolution: D 10.5, M 24, 21 nodes: lambda minus the base's +0.0e+00 +- 5e-14 (the two sign changes' half widths)
     resolution: D 10.5, M 48, 21 nodes: lambda minus the base's +0.0e+00 +- 5e-14 (the two sign changes' half widths)
+    resolution: D 10.5, M 32, 27 nodes: lambda minus the base's +0.0e+00 +- 5e-14 (the two sign changes' half widths)
     resolution: D 11, M 24, 21 nodes: lambda minus the base's +0.0e+00 +- 5e-14 (the two sign changes' half widths)
     resolution: D 11, M 48, 21 nodes: lambda minus the base's +0.0e+00 +- 5e-14 (the two sign changes' half widths)
     largest 5.2e-14
@@ -72,11 +78,14 @@ lambda(D) at eta 1, M 32, D 9 to 11: 9: 3.048323164, 10: 2.943442641, 10.475: 2.
     slopes d lambda / dD up to each D: 10: -0.10488, 10.475: -0.08528, 10.75: -0.07767, 11: -0.07303
     lambda falls at every step, by 0.185006 in all and by 0.018256 over the last one
     resolution: D 10.475, M 24, 21 nodes: lambda minus the base's +0.0e+00 +- 5e-14 (the two sign changes' half widths)
+    resolution: D 10.475, M 48, 21 nodes: lambda minus the base's +0.0e+00 +- 5e-14 (the two sign changes' half widths)
     largest 5.2e-14
 
 | η | D | M, nodes | λ_g | gauge root's distance | λ | γ = 1/λ | sigdss's λ | kernel minus sigdss |
 |---|---|---|---|---|---|---|---|---|
 | inf | 4 | 32, 21 | 0.8952991749 | 1.5e-04 | 8.4101887800 | 0.1189033952 | 8.410420 (l = 1 solver, k_c 23) | -2.3e-04 |
+| inf | 4 | 48, 21 | 0.8952991909 | 1.5e-09 | 8.4101578779 | 0.1189038321 |  |  |
+| inf | 4 | 64, 21 | 0.8952991909 | 5.1e-11 |  |  |  |  |
 | 1 | 4 | 32, 21 | 0.8981372773 | 1.3e-06 | 8.6468444707 | 0.1156491253 | 8.648384 (lam_d4b, k_c 15) | -1.5e-03 |
 | 1 | 6 | 32, 21 | 0.8484953915 | 5.0e-14 | 3.8062210963 | 0.2627277751 | 3.806224 (m1up, k_c 15) | -3.1e-06 |
 | 1 | 6 | 32, 21 | 0.8484953915 | 5.0e-14 | 3.8062210963 | 0.2627277751 | 3.806222 (refine_kc23, k_c 23) | -5.0e-07 |
@@ -86,6 +95,7 @@ lambda(D) at eta 1, M 32, D 9 to 11: 9: 3.048323164, 10: 2.943442641, 10.475: 2.
 | 1 | 10 | 32, 21 | 0.8225574978 | 5.0e-14 | 2.9434426411 | 0.3397382324 | 2.919835 (refine_kc23, k_c 23) | +2.4e-02 |
 | 1 | 10.475 | 24, 21 | 0.8223798899 | 5.0e-14 | 2.9029327426 | 0.3444792176 |  |  |
 | 1 | 10.475 | 32, 21 | 0.8223798899 | 5.0e-14 | 2.9029327426 | 0.3444792176 |  |  |
+| 1 | 10.475 | 48, 21 | 0.8223798899 | 5.0e-14 | 2.9029327426 | 0.3444792176 |  |  |
 | 1 | 10.75 | 32, 21 | 0.8224256353 | 5.0e-14 | 2.8815739028 | 0.3470325710 |  |  |
 | 1 | 11 | 32, 21 | 0.8225512961 | 5.0e-14 | 2.8633176520 | 0.3492452188 |  |  |
 | 0.3 | 9 | 32, 21 | 0.8080057588 | 5.0e-14 | 3.1753317225 | 0.3149277264 | 3.175316 (m03up, k_c 15) | +1.6e-05 |
@@ -97,14 +107,64 @@ lambda(D) at eta 1, M 32, D 9 to 11: 9: 3.048323164, 10: 2.943442641, 10.475: 2.
 | 0.3 | 10.5 | 32, 21 | 0.8099211399 | 5.0e-14 | 3.0098540917 | 0.3322420189 | 3.068528 (m03hi, k_c 15) | -5.9e-02 |
 | 0.3 | 10.5 | 32, 21 | 0.8099211399 | 5.0e-14 | 3.0098540917 | 0.3322420189 | 3.068523 (refine_kc23, k_c 23) | -5.9e-02 |
 | 0.3 | 10.5 | 48, 21 | 0.8099211399 | 5.0e-14 | 3.0098540917 | 0.3322420189 |  |  |
+| 0.3 | 10.5 | 32, 27 | 0.8099211399 | 5.0e-14 | 3.0098540917 | 0.3322420189 |  |  |
 | 0.3 | 10.75 | 32, 21 | 0.8105151692 | 5.0e-14 | 2.9880552818 | 0.3346658297 |  |  |
 | 0.3 | 11 | 24, 21 | 0.8111668002 | 5.0e-14 | 2.9674956093 | 0.3369844919 |  |  |
 | 0.3 | 11 | 32, 21 | 0.8111668002 | 5.0e-14 | 2.9674956093 | 0.3369844919 | 3.112655 (m03hi, k_c 15) | -1.5e-01 |
 | 0.3 | 11 | 32, 21 | 0.8111668002 | 5.0e-14 | 2.9674956093 | 0.3369844919 | 3.112436 (refine_kc23, k_c 23) | -1.4e-01 |
 | 0.3 | 11 | 48, 21 | 0.8111668002 | 5.0e-14 | 2.9674956093 | 0.3369844919 |  |  |
 
+30 rows -> matter/sigma_ms/data/lam_D.csv
+
 MODE TABLE: PASS
 ```
 
-The gate of 31 was dropped at 16:50 UTC for the remaining runs (the issue's comment of that time); the load at each
-start is in the logs' start lines. One determinant takes 33 to 80 s at M 32, depending on the load.
+Its mutations `gauge` and `sigdss` each exit 1.
+
+What the table shows:
+
+- lambda(D) falls at every step from D 9 to 11 at both couplings. sigdss's rise from 3.0685 (D 10.5) to 3.1124
+  (D 11) at eta 0.3 is not on the kernel.
+- The gauge root lies within 5.0e-14 of lambda_g at the 20 states from D 6 to 11.
+- The rate does not depend on M (24, 32, 48) or on the node set (21, 27) beyond the root search's 5e-14.
+- The scan (`out/lam_eta0.3_D11_scan.txt`): at D 11, eta 0.3, det M changes sign twice on 0.2 <= lambda <= 7 (35
+  rates, 0.2 apart), in (0.8, 1.0) at the gauge rate and in (2.8, 3.0) at lambda.
+
+## D 4 and the tau resolution
+
+At D 4 the gauge root misses the bound of 1e-10 at M 32, and check (3) reads 3.6e-7 there
+(`out/check_D4_eta1.txt`). The centre datum's top harmonic at eta inf is 5.5e-4 at M 32, 1.9e-6 at M 48 and 4.4e-8
+at M 64 (`I639-mac`'s records), against 2.4e-13 at D 9, M 32.
+
+| eta | M | lambda_g | gauge root minus lambda_g | lambda |
+|---|---|---|---|---|
+| 1 | 32 | 0.898137277267 | -1.32e-6 | 8.646844470746 |
+| inf | 32 | 0.895299174899 | +1.457e-4 | 8.410188780024 |
+| inf | 48 | 0.895299190857 | +1.503e-9 | 8.410157877871 |
+| inf | 64 | 0.895299190854 | -5.07e-11 | not run (the gauge root only) |
+
+From M 32 to 48 the top harmonic falls by 290 and the distance by 9.7e4, its square. From M 48 to 64 it falls by 43 and the distance by 30. So the gauge root's distance at D 4 is the tau resolution's, and the bound of 1e-10 is met there at M 64 only.
+
+## Runs that did not count
+
+- `out/waited/`: the D 6 run's log while it waited at the gate (16:33 to 16:50 UTC), before it was restarted.
+- `out/failed/`: `plan_state.py`'s first version failed on the 27-node state's empty list of steps, so the run
+  after it found no state; both logs are there, and the run was repeated. The M 64 run that had started meanwhile was
+  stopped after 30 s and started again after it.
+- One determinant of the M 48 run at D 10.5 took 1921 s instead of about 110 s, with the machine's load near 100.
+
+## Cost
+
+`mode_lam.py`: 25 records, 354 determinants, 7.1 hours of one process with 2 threads. Seconds per determinant, by the load:
+
+| M | D | seconds |
+|---|---|---|
+| 24 | 6 to 11 | 12 to 15 |
+| 32 | 6 to 11 | 28 to 49 |
+| 32 | 4 | 88 to 92 |
+| 48 | 6 to 11 | 137 to 331 |
+| 48 | 4 | 227 to 227 |
+| 64 | 4 | 710 to 710 |
+
+The checks and mutations took 10 runs of `mode_check.py`, about 35 minutes. Memory was not measured. The mode
+matrix's four double-double parts take 0.4 GB at M 32 and 1.6 GB at M 64.

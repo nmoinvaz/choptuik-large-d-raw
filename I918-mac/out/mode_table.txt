@@ -1,5 +1,7 @@
-(1) the gauge root at the 17 states with D >= 9: largest distance from lambda_g 5.0e-14 (<= 1e-10): PASS
+(1) the gauge root at the 19 states with D >= 9: largest distance from lambda_g 5.0e-14 (<= 1e-10): PASS
       validation state eta inf, D 4, M 32, 21 nodes: 1.5e-04 (outside 1e-10)
+      validation state eta inf, D 4, M 48, 21 nodes: 1.5e-09 (outside 1e-10)
+      validation state eta inf, D 4, M 64, 21 nodes: 5.1e-11 (within 1e-10)
       validation state eta 1, D 4, M 32, 21 nodes: 1.3e-06 (outside 1e-10)
       validation state eta 1, D 6, M 32, 21 nodes: 5.0e-14 (within 1e-10)
 (2) against sigdss:
@@ -13,6 +15,7 @@ lambda(D) at eta 0.3, M 32, D 9 to 11: 9: 3.175331722, 9.5: 3.112288835, 10: 3.0
     lambda falls at every step, by 0.207836 in all and by 0.020560 over the last one
     resolution: D 10.5, M 24, 21 nodes: lambda minus the base's +0.0e+00 +- 5e-14 (the two sign changes' half widths)
     resolution: D 10.5, M 48, 21 nodes: lambda minus the base's +0.0e+00 +- 5e-14 (the two sign changes' half widths)
+    resolution: D 10.5, M 32, 27 nodes: lambda minus the base's +0.0e+00 +- 5e-14 (the two sign changes' half widths)
     resolution: D 11, M 24, 21 nodes: lambda minus the base's +0.0e+00 +- 5e-14 (the two sign changes' half widths)
     resolution: D 11, M 48, 21 nodes: lambda minus the base's +0.0e+00 +- 5e-14 (the two sign changes' half widths)
     largest 5.2e-14
@@ -20,11 +23,14 @@ lambda(D) at eta 1, M 32, D 9 to 11: 9: 3.048323164, 10: 2.943442641, 10.475: 2.
     slopes d lambda / dD up to each D: 10: -0.10488, 10.475: -0.08528, 10.75: -0.07767, 11: -0.07303
     lambda falls at every step, by 0.185006 in all and by 0.018256 over the last one
     resolution: D 10.475, M 24, 21 nodes: lambda minus the base's +0.0e+00 +- 5e-14 (the two sign changes' half widths)
+    resolution: D 10.475, M 48, 21 nodes: lambda minus the base's +0.0e+00 +- 5e-14 (the two sign changes' half widths)
     largest 5.2e-14
 
 | η | D | M, nodes | λ_g | gauge root's distance | λ | γ = 1/λ | sigdss's λ | kernel minus sigdss |
 |---|---|---|---|---|---|---|---|---|
 | inf | 4 | 32, 21 | 0.8952991749 | 1.5e-04 | 8.4101887800 | 0.1189033952 | 8.410420 (l = 1 solver, k_c 23) | -2.3e-04 |
+| inf | 4 | 48, 21 | 0.8952991909 | 1.5e-09 | 8.4101578779 | 0.1189038321 |  |  |
+| inf | 4 | 64, 21 | 0.8952991909 | 5.1e-11 |  |  |  |  |
 | 1 | 4 | 32, 21 | 0.8981372773 | 1.3e-06 | 8.6468444707 | 0.1156491253 | 8.648384 (lam_d4b, k_c 15) | -1.5e-03 |
 | 1 | 6 | 32, 21 | 0.8484953915 | 5.0e-14 | 3.8062210963 | 0.2627277751 | 3.806224 (m1up, k_c 15) | -3.1e-06 |
 | 1 | 6 | 32, 21 | 0.8484953915 | 5.0e-14 | 3.8062210963 | 0.2627277751 | 3.806222 (refine_kc23, k_c 23) | -5.0e-07 |
@@ -34,6 +40,7 @@ lambda(D) at eta 1, M 32, D 9 to 11: 9: 3.048323164, 10: 2.943442641, 10.475: 2.
 | 1 | 10 | 32, 21 | 0.8225574978 | 5.0e-14 | 2.9434426411 | 0.3397382324 | 2.919835 (refine_kc23, k_c 23) | +2.4e-02 |
 | 1 | 10.475 | 24, 21 | 0.8223798899 | 5.0e-14 | 2.9029327426 | 0.3444792176 |  |  |
 | 1 | 10.475 | 32, 21 | 0.8223798899 | 5.0e-14 | 2.9029327426 | 0.3444792176 |  |  |
+| 1 | 10.475 | 48, 21 | 0.8223798899 | 5.0e-14 | 2.9029327426 | 0.3444792176 |  |  |
 | 1 | 10.75 | 32, 21 | 0.8224256353 | 5.0e-14 | 2.8815739028 | 0.3470325710 |  |  |
 | 1 | 11 | 32, 21 | 0.8225512961 | 5.0e-14 | 2.8633176520 | 0.3492452188 |  |  |
 | 0.3 | 9 | 32, 21 | 0.8080057588 | 5.0e-14 | 3.1753317225 | 0.3149277264 | 3.175316 (m03up, k_c 15) | +1.6e-05 |
@@ -45,10 +52,13 @@ lambda(D) at eta 1, M 32, D 9 to 11: 9: 3.048323164, 10: 2.943442641, 10.475: 2.
 | 0.3 | 10.5 | 32, 21 | 0.8099211399 | 5.0e-14 | 3.0098540917 | 0.3322420189 | 3.068528 (m03hi, k_c 15) | -5.9e-02 |
 | 0.3 | 10.5 | 32, 21 | 0.8099211399 | 5.0e-14 | 3.0098540917 | 0.3322420189 | 3.068523 (refine_kc23, k_c 23) | -5.9e-02 |
 | 0.3 | 10.5 | 48, 21 | 0.8099211399 | 5.0e-14 | 3.0098540917 | 0.3322420189 |  |  |
+| 0.3 | 10.5 | 32, 27 | 0.8099211399 | 5.0e-14 | 3.0098540917 | 0.3322420189 |  |  |
 | 0.3 | 10.75 | 32, 21 | 0.8105151692 | 5.0e-14 | 2.9880552818 | 0.3346658297 |  |  |
 | 0.3 | 11 | 24, 21 | 0.8111668002 | 5.0e-14 | 2.9674956093 | 0.3369844919 |  |  |
 | 0.3 | 11 | 32, 21 | 0.8111668002 | 5.0e-14 | 2.9674956093 | 0.3369844919 | 3.112655 (m03hi, k_c 15) | -1.5e-01 |
 | 0.3 | 11 | 32, 21 | 0.8111668002 | 5.0e-14 | 2.9674956093 | 0.3369844919 | 3.112436 (refine_kc23, k_c 23) | -1.4e-01 |
 | 0.3 | 11 | 48, 21 | 0.8111668002 | 5.0e-14 | 2.9674956093 | 0.3369844919 |  |  |
+
+30 rows -> matter/sigma_ms/data/lam_D.csv
 
 MODE TABLE: PASS
