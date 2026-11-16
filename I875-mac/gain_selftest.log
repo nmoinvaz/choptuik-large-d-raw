@@ -1,0 +1,19 @@
+== gain_selftest 2026-11-16 04:38:24 UTC, gain.py --selftest
+planted linear gain 0 (want pass)
+gain: planted, max|z_h| 1
+  planted rel 1e-90: e_0 1.0000e-90, e_1 7.5556e-88, gain 7.5556e+02, gain / rel 7.5556e+92
+  planted rel 1e-93: e_0 1.0000e-93, e_1 7.5556e-94, gain 7.5556e-01, gain / rel 7.5556e+92
+  planted rel 1e-96: e_0 1.0000e-96, e_1 1.7556e-99, gain 1.7556e-03, gain / rel 1.7556e+93
+  check small: gain at rel 1e-96 1.7556e-03 (< 1): pass
+  check large: gain at rel 1e-90 7.5556e+02 (> 1): pass
+  check quadratic: gain / rel at 1e-90 7.5556e+92 against 7.5556e+92: +1.323e-12 (|.| <= 0.1): pass
+planted linear gain 9306 (want FAIL)
+gain: planted, max|z_h| 1
+  planted rel 1e-90: e_0 1.0000e-90, e_1 1.0062e-86, gain 1.0062e+04, gain / rel 1.0062e+94
+  planted rel 1e-93: e_0 1.0000e-93, e_1 9.3068e-90, gain 9.3068e+03, gain / rel 9.3068e+96
+  planted rel 1e-96: e_0 1.0000e-96, e_1 9.3060e-93, gain 9.3060e+03, gain / rel 9.3060e+99
+  check small: gain at rel 1e-96 9.3060e+03 (< 1): FAIL
+  check large: gain at rel 1e-90 1.0062e+04 (> 1): pass
+  check quadratic: gain / rel at 1e-90 1.0062e+94 against 7.5556e+92: +1.232e+01 (|.| <= 0.1): FAIL
+gain selftest: PASS
+exit 0

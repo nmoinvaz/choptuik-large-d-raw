@@ -1,0 +1,10 @@
+== gain_ctl852 2026-11-16 04:38:24 UTC, gain.py /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/ececf14c-b4b6-41d2-ad20-2caade87ad18/scratchpad/raw781push/I852-mac/steps_D240.json
+gain: I603-win2/chain/anm_pin3_D240.1244.npz, max|z_h| 1.000111062
+  m_h, a_h seed 1 rel 1e-90: e_0 1.0000e-90, e_1 1.0062e-86, gain 1.0062e+04, gain / rel 1.0062e+94
+  m_h, a_h seed 1 rel 1e-93: e_0 1.0000e-93, e_1 9.3068e-90, gain 9.3068e+03, gain / rel 9.3068e+96
+  m_h, a_h seed 1 rel 1e-96: e_0 1.0000e-96, e_1 9.3060e-93, gain 9.3060e+03, gain / rel 9.3060e+99
+  check small: gain at rel 1e-96 9.3060e+03 (< 1): FAIL
+  check large: gain at rel 1e-90 1.0062e+04 (> 1): pass
+  check quadratic: gain / rel at 1e-90 1.0062e+94 against 7.5556e+92: +1.232e+01 (|.| <= 0.1): FAIL
+gain: FAIL
+exit 1
