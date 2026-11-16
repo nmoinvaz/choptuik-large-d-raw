@@ -166,4 +166,4 @@ Its checks pass (the rerun's check, σ₁ below 1e-3, |Δ ln g| < 1e-3). The con
 16-iteration run as the rerun, fails on the first two; the third cannot fail under it, as both runs share one LU.
 `sigma.py` on a folder of links with the rerun in place of the 16-iteration run (`sigma_its32.log`) differs from
 `sigma.log` only in that run's σ line and passes C1: PASS, verdict neither, g and σ₃ still disagree. σ₁ and σ₂ share
-Δ (0.83 and 0.16 at 32 iterations) and are 12% apart, so the 16-iteration σ₁ had not finished separating them.
+Δ (0.83 and 0.16 at 32 iterations) and are close (7.626499e-18, 8.573513e-18), so the 16-iteration σ₁ had not finished separating them.
