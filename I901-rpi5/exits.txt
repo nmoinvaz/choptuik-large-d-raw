@@ -1,0 +1,33 @@
+planted_M1: exit 0 (must be 0), 0 s: python3 fixed_point_M_b.py --planted --M=1
+planted_M3: exit 0 (must be 0), 0 s: python3 fixed_point_M_b.py --planted --M=3
+planted_M5: exit 0 (must be 0), 0 s: python3 fixed_point_M_b.py --planted --M=5
+planted_M1_edge: exit 0 (must be 0), 0 s: python3 fixed_point_M_b.py --planted --M=1 --rho0=204.1
+planted_M3_edge: exit 0 (must be 0), 0 s: python3 fixed_point_M_b.py --planted --M=3 --rho0=204.1
+planted_M5_edge: exit 0 (must be 0), 1 s: python3 fixed_point_M_b.py --planted --M=5 --rho0=204.1
+planted_M5_mut_truth: exit 3 (must be 3), 0 s: python3 fixed_point_M_b.py --planted --M=5 --mutate=truth
+planted_M5_mut_coef: exit 3 (must be 3), 0 s: python3 fixed_point_M_b.py --planted --M=5 --mutate=coef
+planted_M5_mut_radius: exit 3 (must be 3), 0 s: python3 fixed_point_M_b.py --planted --M=5 --mutate=radius
+check_m1: exit 0 (must be 0), 1 s: python3 fixed_point_M_b_check.py m1
+check_m1_mut_coef: exit 3 (must be 3), 0 s: python3 fixed_point_M_b_check.py m1 --mutate=coef
+check_m1_mut_sign: exit 3 (must be 3), 1 s: python3 fixed_point_M_b_check.py m1 --mutate=sign
+check_m1_mut_scale: exit 3 (must be 3), 1 s: python3 fixed_point_M_b_check.py m1 --mutate=scale
+lip_M1: exit 0 (must be 0), 0 s: python3 fixed_point_M_b_check.py lip --M=1
+lip_M3: exit 0 (must be 0), 1 s: python3 fixed_point_M_b_check.py lip --M=3
+lip_M5: exit 0 (must be 0), 5 s: python3 fixed_point_M_b_check.py lip --M=5
+lip_M5_sector: exit 0 (must be 0), 4 s: python3 fixed_point_M_b_check.py lip --M=5 --sector=0.2
+lip_M5_mut_drop: exit 3 (must be 3), 5 s: python3 fixed_point_M_b_check.py lip --M=5 --mutate=drop
+two_M5_60_105: exit 0 (must be 0), 3 s: python3 fixed_point_M_b.py --M=5 --two=60,105 --compare=RAW/I38-macm3/lemma6b1_runs_M5_cert/ray.json
+two_M5_95_105: exit 0 (must be 0), 5 s: python3 fixed_point_M_b.py --M=5 --two=95,105 --compare=RAW/I38-macm3/lemma6b1_runs_M5_cert/ray.json
+two_M5_60_105_mut_forcing: exit 3 (must be 3), 4 s: python3 fixed_point_M_b.py --M=5 --two=60,105 --compare=RAW/I38-macm3/lemma6b1_runs_M5_cert/ray.json --mutate=forcing
+start_M5: exit 0 (must be 0), 25 s: python3 fixed_point_M_b.py --M=5 --start --rho0=405 --h=1e-18 --cauchy=1e-3 --compare=RAW/I38-macm3/lemma6b1_runs_M5_cert/ray.json --json=RAW/I901-rpi5/start_M5.json
+start_M5_sector: exit 0 (must be 0), 24 s: python3 fixed_point_M_b.py --M=5 --start --rho0=405 --h=1e-18 --cauchy=1e-3 --sector=0.2 --compare=RAW/I38-macm3/lemma6b1_runs_M5_cert/ray.json --json=RAW/I901-rpi5/start_M5_sector.json
+start_M5_k40_sector: exit 0 (must be 0), 24 s: python3 fixed_point_M_b.py --M=5 --start --rho0=405 --h=1e-18 --cauchy=1e-3 --sector=0.2 --k=40 --compare=RAW/I38-macm3/lemma6b1_runs_M5_cert/ray.json --json=RAW/I901-rpi5/start_M5_k40_sector.json
+start_M5_mut_radius: exit 3 (must be 3), 1 s: python3 fixed_point_M_b.py --M=5 --start --rho0=405 --h=1e-18 --cauchy=1e-3 --compare=RAW/I38-macm3/lemma6b1_runs_M5_cert/ray.json --mutate=radius
+start_M5_mut_coef: exit 3 (must be 3), 5 s: python3 fixed_point_M_b.py --M=5 --start --rho0=405 --h=1e-18 --cauchy=1e-3 --compare=RAW/I38-macm3/lemma6b1_runs_M5_cert/ray.json --mutate=coef
+start_M5_mut_sign: exit 3 (must be 3), 25 s: python3 fixed_point_M_b.py --M=5 --start --rho0=405 --h=1e-18 --cauchy=1e-3 --compare=RAW/I38-macm3/lemma6b1_runs_M5_cert/ray.json --mutate=sign
+start_M5_mut_scale: exit 3 (must be 3), 25 s: python3 fixed_point_M_b.py --M=5 --start --rho0=405 --h=1e-18 --cauchy=1e-3 --compare=RAW/I38-macm3/lemma6b1_runs_M5_cert/ray.json --mutate=scale
+start_M5_mut_rho0: exit 3 (must be 3), 25 s: python3 fixed_point_M_b.py --M=5 --start --rho0=405 --h=1e-18 --cauchy=1e-3 --compare=RAW/I38-macm3/lemma6b1_runs_M5_cert/ray.json --mutate=rho0
+start_M5_vs_win2: exit 0 (must be 0), 25 s: python3 fixed_point_M_b.py --M=5 --start --rho0=405 --h=1e-18 --cauchy=1e-3 --compare=RAW/I121-win2/lemma6b1_runs_M5_cert/ray.json
+start_M3_cert: exit 0 (must be 0), 3 s: python3 fixed_point_M_b.py --M=3 --start --rho0=262 --r0=0.1 --h=1.1e-9 --cauchy=1e-3 --compare=lemma6b1_runs_M3_cert/ray.json --json=RAW/I901-rpi5/start_M3_cert.json
+start_M3_cert_mut_sign: exit 3 (must be 3), 2 s: python3 fixed_point_M_b.py --M=3 --start --rho0=262 --r0=0.1 --h=1.1e-9 --cauchy=1e-3 --compare=lemma6b1_runs_M3_cert/ray.json --mutate=sign
+cert_M3: exit 0 (must be 0), 33 s: python3 fixed_point_M_b_check.py cert --box=data/A_M_box_M3_1e-10.json
