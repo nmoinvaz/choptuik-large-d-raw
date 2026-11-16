@@ -39,3 +39,7 @@ the same D 200 state is 1.7e-12 in dh610's `p130_200` (first Jacobian of the pol
 pivot 1.2e+28. At orders 150 and 160 the polish's first-Jacobian pivot and the chain's step 0 pivot agree to two digits
 (3.3e-09 and 3.3e-09 here; 2.1e-08 and 2.1e-08 on dh610). So the rung is +7.571 against dh610's p130 and +7.27 against
 T138's record. The chain's per-step ratios to T138's p_min (as in dh610's `pmin_k160.md`) use T138's record.
+
+Decision (coordinator, 2026-11-16): dh610's `p130_200` is the reference, so the rung +7.571 stands. It was polished with
+the same flags, code and plan as `p150_200` and `p160_200`, while T138's `chain_o` reached the state with its own
+corrector, plan and flags of 2026-11-07, so its pivot is not like-for-like. The cause is not pursued.
