@@ -1,0 +1,11 @@
+== qcheck_ctl850 2026-11-16 00:07:31 UTC, qcheck.py /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/ececf14c-b4b6-41d2-ad20-2caade87ad18/scratchpad/raw781push/I850-mac/power.json
+qcheck /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/ececf14c-b4b6-41d2-ad20-2caade87ad18/scratchpad/raw781push/I850-mac/power.json
+qcheck: D 252.61346756, seed 1, tol 0.01
+  rel 1e-65: dev -1.127443e-41, q -1.127443e+89
+  rel 1e-66: dev -2.534825e-43, q -2.534825e+89
+  rel 1e-67: dev -2.671220e-45, q -2.671220e+89
+  check same start: power's same-start check: pass
+  check p: p 1.6481, 1.9772 in [1.8, 2.2]: FAIL
+  check q: q's change 1e-66 -> 1e-67: +5.381e-02 (|.| <= 0.01): FAIL
+qcheck: FAIL
+exit 1
