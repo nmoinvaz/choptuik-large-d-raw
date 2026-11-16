@@ -44,28 +44,67 @@ Each mutation exits 1 (`out/mutations.txt`, from the statuses in `out/gate.log`)
 top harmonic is 1.5e-4 at M 32 (2.4e-13 at D 9), and Delta(32) is 5.9e-8 from Delta(48) at eta = inf (1e-23 at
 D 10.5). The M 48 state at D 4 tests this reading.
 
-## Growth rates (`out/sm_lam.jsonl`, `out/lam_*.txt`)
+## Growth rates (`out/sm_lam.jsonl`, `out/lam_*.txt`, `out/mode_table.txt`)
 
-State at 2026-11-16 18:45 UTC, the eta 0.3 chain done at M 32 (the other M, eta 1 at D 10 to 11, the scan and D 4 at
-M 48 are running). sigdss's value is its k_c 23 one at eta 1 (D 6, 9), its k_c 15 one elsewhere, and the l = 1
-solver's at eta inf.
+State at 2026-11-16 21:00 UTC: both chains done at M 32, the other M at eta 0.3 done (M 48 at eta 1, the scan, D 4 at
+M 48 and the 27-node state are running). `out/mode_table.txt` is `matter/sigma_ms/mode_table.py <raw clone>`:
 
-| eta | D | M | lambda_g | gauge root's distance | lambda | gamma = 1/lambda | sigdss | kernel minus sigdss |
+```
+(1) the gauge root at the 17 states with D >= 9: largest distance from lambda_g 5.0e-14 (<= 1e-10): PASS
+      validation state eta inf, D 4, M 32, 21 nodes: 1.5e-04 (outside 1e-10)
+      validation state eta 1, D 4, M 32, 21 nodes: 1.3e-06 (outside 1e-10)
+      validation state eta 1, D 6, M 32, 21 nodes: 5.0e-14 (within 1e-10)
+(2) against sigdss:
+      eta 1, D 4: kernel 8.646844471, sigdss k_c 15 8.648383723, difference -1.54e-03 (<= 8.6e-03 in size, k_c 15 - 23 at eta inf, D 4): PASS
+      eta inf, D 4: kernel 8.410188780, l = 1 solver, k_c 23 8.410420010, difference -2.31e-04 (<= 8.6e-03 in size, k_c 15 - 23 at eta inf, D 4): PASS
+      eta 1, D 6: kernel 3.806221096, sigdss k_c 23 3.806221595, difference -4.99e-07 (<= 2.6e-06 in size, k_c 15 - 23 there): PASS
+      eta 1, D 9: kernel 3.048323164, sigdss k_c 23 3.048509322, difference -1.86e-04 (<= 4.2e-04 in size, k_c 15 - 23 there): PASS
+      eta 0.3, D 9: kernel 3.175331722, sigdss k_c 15 3.175316160, difference +1.56e-05 (<= 4.2e-04 in size, k_c 15 - 23 at eta 1, D 9): PASS
+lambda(D) at eta 0.3, M 32, D 9 to 11: 9: 3.175331722, 9.5: 3.112288835, 10: 3.057696912, 10.25: 3.033019318, 10.5: 3.009854092, 10.75: 2.988055282, 11: 2.967495609
+    slopes d lambda / dD up to each D: 9.5: -0.12609, 10: -0.10918, 10.25: -0.09871, 10.5: -0.09266, 10.75: -0.08720, 11: -0.08224
+    lambda falls at every step, by 0.207836 in all and by 0.020560 over the last one
+    resolution: D 10.5, M 24, 21 nodes: lambda minus the base's +0.0e+00 +- 5e-14 (the two sign changes' half widths)
+    resolution: D 10.5, M 48, 21 nodes: lambda minus the base's +0.0e+00 +- 5e-14 (the two sign changes' half widths)
+    resolution: D 11, M 24, 21 nodes: lambda minus the base's +0.0e+00 +- 5e-14 (the two sign changes' half widths)
+    resolution: D 11, M 48, 21 nodes: lambda minus the base's +0.0e+00 +- 5e-14 (the two sign changes' half widths)
+    largest 5.2e-14
+lambda(D) at eta 1, M 32, D 9 to 11: 9: 3.048323164, 10: 2.943442641, 10.475: 2.902932743, 10.75: 2.881573903, 11: 2.863317652
+    slopes d lambda / dD up to each D: 10: -0.10488, 10.475: -0.08528, 10.75: -0.07767, 11: -0.07303
+    lambda falls at every step, by 0.185006 in all and by 0.018256 over the last one
+    resolution: D 10.475, M 24, 21 nodes: lambda minus the base's +0.0e+00 +- 5e-14 (the two sign changes' half widths)
+    largest 5.2e-14
+
+| η | D | M, nodes | λ_g | gauge root's distance | λ | γ = 1/λ | sigdss's λ | kernel minus sigdss |
 |---|---|---|---|---|---|---|---|---|
-| 1 | 9 | 32 | 0.824242706019 | 5.0e-14 | 3.048323164261 | 0.328049208077 | 3.048509 | -1.9e-04 |
-| 1 | 6 | 32 | 0.848495391500 | 5.0e-14 | 3.806221096314 | 0.262727775054 | 3.806222 | -5.0e-07 |
-| 1 | 4 | 32 | 0.898137277267 | 1.3e-06 | 8.646844470746 | 0.115649125341 | 8.648384 | -1.5e-03 |
-| inf | 4 | 32 | 0.895299174899 | 1.5e-04 | 8.410188780024 | 0.118903395174 | 8.410420 | -2.3e-04 |
-| 0.3 | 9 | 32 | 0.808005758845 | 5.0e-14 | 3.175331722462 | 0.314927726425 | 3.175316 | +1.6e-05 |
-| 0.3 | 9.5 | 32 | 0.808267508337 | 5.0e-14 | 3.112288834615 | 0.321306939407 |  |  |
-| 0.3 | 10 | 32 | 0.808933365985 | 5.0e-14 | 3.057696912012 | 0.327043532690 | 3.081424 | -2.4e-02 |
-| 0.3 | 10.25 | 32 | 0.809391376068 | 5.0e-14 | 3.033019318405 | 0.329704461139 |  |  |
-| 0.3 | 10.5 | 32 | 0.809921139867 | 5.0e-14 | 3.009854091669 | 0.332242018896 | 3.068528 | -5.9e-02 |
-| 0.3 | 10.75 | 32 | 0.810515169160 | 5.0e-14 | 2.988055281843 | 0.334665829671 |  |  |
-| 0.3 | 11 | 32 | 0.811166800229 | 5.0e-14 | 2.967495609278 | 0.336984491864 | 3.112655 | -1.5e-01 |
+| inf | 4 | 32, 21 | 0.8952991749 | 1.5e-04 | 8.4101887800 | 0.1189033952 | 8.410420 (l = 1 solver, k_c 23) | -2.3e-04 |
+| 1 | 4 | 32, 21 | 0.8981372773 | 1.3e-06 | 8.6468444707 | 0.1156491253 | 8.648384 (lam_d4b, k_c 15) | -1.5e-03 |
+| 1 | 6 | 32, 21 | 0.8484953915 | 5.0e-14 | 3.8062210963 | 0.2627277751 | 3.806224 (m1up, k_c 15) | -3.1e-06 |
+| 1 | 6 | 32, 21 | 0.8484953915 | 5.0e-14 | 3.8062210963 | 0.2627277751 | 3.806222 (refine_kc23, k_c 23) | -5.0e-07 |
+| 1 | 9 | 32, 21 | 0.8242427060 | 5.0e-14 | 3.0483231643 | 0.3280492081 | 3.048927 (m1up, k_c 15) | -6.0e-04 |
+| 1 | 9 | 32, 21 | 0.8242427060 | 5.0e-14 | 3.0483231643 | 0.3280492081 | 3.048509 (refine_kc23, k_c 23) | -1.9e-04 |
+| 1 | 10 | 32, 21 | 0.8225574978 | 5.0e-14 | 2.9434426411 | 0.3397382324 | 2.919800 (m1up, k_c 15) | +2.4e-02 |
+| 1 | 10 | 32, 21 | 0.8225574978 | 5.0e-14 | 2.9434426411 | 0.3397382324 | 2.919835 (refine_kc23, k_c 23) | +2.4e-02 |
+| 1 | 10.475 | 24, 21 | 0.8223798899 | 5.0e-14 | 2.9029327426 | 0.3444792176 |  |  |
+| 1 | 10.475 | 32, 21 | 0.8223798899 | 5.0e-14 | 2.9029327426 | 0.3444792176 |  |  |
+| 1 | 10.75 | 32, 21 | 0.8224256353 | 5.0e-14 | 2.8815739028 | 0.3470325710 |  |  |
+| 1 | 11 | 32, 21 | 0.8225512961 | 5.0e-14 | 2.8633176520 | 0.3492452188 |  |  |
+| 0.3 | 9 | 32, 21 | 0.8080057588 | 5.0e-14 | 3.1753317225 | 0.3149277264 | 3.175316 (m03up, k_c 15) | +1.6e-05 |
+| 0.3 | 9.5 | 32, 21 | 0.8082675083 | 5.0e-14 | 3.1122888346 | 0.3213069394 |  |  |
+| 0.3 | 10 | 32, 21 | 0.8089333660 | 5.0e-14 | 3.0576969120 | 0.3270435327 | 3.081424 (m03up, k_c 15) | -2.4e-02 |
+| 0.3 | 10 | 32, 21 | 0.8089333660 | 5.0e-14 | 3.0576969120 | 0.3270435327 | 3.081100 (refine_kc23, k_c 23) | -2.3e-02 |
+| 0.3 | 10.25 | 32, 21 | 0.8093913761 | 5.0e-14 | 3.0330193184 | 0.3297044611 |  |  |
+| 0.3 | 10.5 | 24, 21 | 0.8099211399 | 5.0e-14 | 3.0098540917 | 0.3322420189 |  |  |
+| 0.3 | 10.5 | 32, 21 | 0.8099211399 | 5.0e-14 | 3.0098540917 | 0.3322420189 | 3.068528 (m03hi, k_c 15) | -5.9e-02 |
+| 0.3 | 10.5 | 32, 21 | 0.8099211399 | 5.0e-14 | 3.0098540917 | 0.3322420189 | 3.068523 (refine_kc23, k_c 23) | -5.9e-02 |
+| 0.3 | 10.5 | 48, 21 | 0.8099211399 | 5.0e-14 | 3.0098540917 | 0.3322420189 |  |  |
+| 0.3 | 10.75 | 32, 21 | 0.8105151692 | 5.0e-14 | 2.9880552818 | 0.3346658297 |  |  |
+| 0.3 | 11 | 24, 21 | 0.8111668002 | 5.0e-14 | 2.9674956093 | 0.3369844919 |  |  |
+| 0.3 | 11 | 32, 21 | 0.8111668002 | 5.0e-14 | 2.9674956093 | 0.3369844919 | 3.112655 (m03hi, k_c 15) | -1.5e-01 |
+| 0.3 | 11 | 32, 21 | 0.8111668002 | 5.0e-14 | 2.9674956093 | 0.3369844919 | 3.112436 (refine_kc23, k_c 23) | -1.4e-01 |
+| 0.3 | 11 | 48, 21 | 0.8111668002 | 5.0e-14 | 2.9674956093 | 0.3369844919 |  |  |
 
-lambda(D) at eta 0.3 falls from D 9 to 11 on the kernel, with slopes -0.126, -0.109, -0.099, -0.093, -0.087 and
--0.082 per unit D. sigdss's rise from 3.0685 at D 10.5 to 3.1127 at D 11 is not there.
+MODE TABLE: PASS
+```
 
 The gate of 31 was dropped at 16:50 UTC for the remaining runs (the issue's comment of that time); the load at each
 start is in the logs' start lines. One determinant takes 33 to 80 s at M 32, depending on the load.
