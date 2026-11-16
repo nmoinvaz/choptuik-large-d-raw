@@ -1,0 +1,18 @@
+== modecount_check_mutate_dmat 14:27 python modecount_check.py data/states/up2_D20.0437.npz --quick --mutate=dmat --out=/home/nathan/Source/choptuik-large-d-raw/I911-dh610/modecount_check.jsonl
+complex LU vs numpy slogdet (n = 7, 40, 129): max error 8.4e-13
+  series truncation (solution): centre 9.0e-56 (ratio 0.204 at 0.1), horizon 4.1e-53 (ratio 0.303 at 0.3)
+--mutate=dmat: the complex kernel's dmat[0, 1] moved one ulp up (checks 2 and 5 must fail)
+D 20.043653: M 32, kfreeze None, |F| 1.9e-29; omega 2.976205; lam_g = 1 + <c1> = 0.774104624227
+  lam 1.7: hp sign -1 ln|det| -519.777249902131 (6.1 s) | cx ln|det| -519.777249901691 arg -3.142e+00 (5.8 s): d ln +4.4e-10, sign ok
+  M(1.7): 131072 of 1327104 entries differ from hpkernel's in a bit, max |M_cx - M_hp| = 1.8e-12 (max |M| 8.7e+02), max |Im M_cx| = 0.0e+00: FAIL; control (cx one ulp above 1.7): 131072 differ, fires
+  real zero near gauge value 0.774104624227: 0.774104624227 (diff -3.3e-16)
+  6. lambda 1.7+0.0i: blocked ln|det| -519.7772499016905, unblocked -519.7772499016905; four floats equal 4 of 4: pass
+  6. lambda 0.9+0.4i: blocked ln|det| -567.2649126345168, unblocked -567.2649126345168; four floats equal 4 of 4: pass
+  6. lambda 2.5-1.1i: blocked ln|det| -470.08216449046586, unblocked -470.08216449046586; four floats equal 4 of 4: pass
+  6. lambda 0.7741046242265047+0.05i: blocked ln|det| -577.1411255864687, unblocked -577.1411255864687; four floats equal 4 of 4: pass
+  6. control (blocked one ulp above), lambda 1.7+0.0i: blocked ln|det| -519.7772499016905, unblocked -519.7772499016905; four floats equal 3 of 4
+  6. pivots at lambda 1.7+0.0i: 0 ln|u_kk|, 0 arg u_kk, 0 rows of 1152 differ: pass
+  6. control (blocked one ulp above), pivots at lambda 1.7+0.0i: 45 ln|u_kk|, 0 arg u_kk, 0 rows of 1152 differ
+FAIL: check 2: the matrices at 1.7 differ
+1 failed
+exit 1
