@@ -35,9 +35,9 @@ length of Newton's band step (72.5).
 | `pilotB.txt` | first version (merged as bd702d7d..c897b582) | 3 + 3 iterations from start B: 125 s each, the spectrum, S 5.0e-4, 1.0e-8, 3.1e-13 |
 | `bandB.txt`, `bandB_polish.txt` | the same, ten correctors | continued from the pilot's state: converged, Delta the chain's |
 | `bandA.txt`, run 1, stopped | the same | 11 iterations: S at 1.5e-14 times the band step (2.85e-11, 1.53e-11, 4.1e-12 for band steps 2.0e3, 9.7e2, 3.0e2), then 2% of B per iteration, Delta 1.02997 |
-| `bandA2.txt`, run 2, stopped | left space from J V (b395ad5b, superseded) | 4 iterations: S converges to 1e-13, but B takes in the resolved residual (1.05e-3 at step 0 against 7e-11) |
-| `bandA3.txt`, run 3, stopped | the floor E of the split (339c0874) | 29 iterations: S at E as designed, B 8.11e-11 to 4.42e-11 and stalling, Newton's band step grown from 40 to 170, Delta 1.02072 |
-| `bandA4.txt`, `bandA4_polish.txt` | the damped band step (wip/sa-845 at 2ff18532) | converged in 16 iterations; `sm_bandA4_D10.475_M32_ckpt.npz` is the checkpoint of its last step |
+| `bandA2.txt`, run 2, stopped | a left space taken from J V (not kept; a86852dc's message records it) | 4 iterations: S converges to 1e-13, but B takes in the resolved residual (1.05e-3 at step 0 against 7e-11) |
+| `bandA3.txt`, run 3, stopped | the floor E of the split (a86852dc) | 29 iterations: S at E as designed, B 8.11e-11 to 4.42e-11 and stalling, Newton's band step grown from 40 to 170, Delta 1.02072 |
+| `bandA4.txt`, `bandA4_polish.txt` | the damped band step and the checkpoint (wip/sa-845 at 3cd0d486) | converged in 16 iterations; `sm_bandA4_D10.475_M32_ckpt.npz` is the checkpoint of its last step |
 
 Run 4's band steps (S, E, B before the step; the step taken of Newton's band step; Delta after):
 
