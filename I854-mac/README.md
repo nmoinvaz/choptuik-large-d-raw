@@ -99,3 +99,9 @@ The corrected prediction: keep_s1 repeats A_s1 at step 4 (lam 1 refused at 4.63e
 depart at step 5, where A_s1 refused lam 1/2 at 1.59e15 and keep_s1's lam 1/2 should come at about 1.8e13 (2.90e14/16).
 It reaches lam 1 only if a lam-1 projection succeeds at some smaller |dz| than A_s1 reached (7.6e-14). Without lam-1
 steps, |F| falls at most by (1 − lam) per step, so the bar (1e-40 within 12 steps) is not expected to be met.
+- Step 4 accepted lam 1/2 (03:43 UTC), as the corrected prediction says and as A_s1 did: lam 1 refused at 4.63e15,
+  |F| 8.36e-13 → 4.18e-13, |dz| 5.42e-13 → 2.71e-13.
+- Step 5 (04:29 UTC), the first possible departure: lam 1 refused at 2.90e14 (A_s1's). lam 1/2 came at 1.81e13, as
+  predicted (2.90e14/16), 88 times below A_s1's 1.59e15, and its projection failed all the same (u0 quad-double
+  |R| 1.07e13 → 2.59e9, ladder FAILED). So the trial's point max|F| does not decide the projection: A_s1's accepted
+  trials projected from up to about 4.6e14 (step 8, lam 1/64), and keep_s1's lam 1/2 fails from 1.81e13.
