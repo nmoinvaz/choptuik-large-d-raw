@@ -1,0 +1,5 @@
+kernel: exit 0 (must be 0), 11 s: python3 fixed_point_M_b.py --kernel
+kernel_mut_offbyone: exit 3 (must be 3), 11 s: python3 fixed_point_M_b.py --kernel --mutate=offbyone
+rv_kernel: exit 0 (must be 0), 242 s: python3 review_867/rv_kernel.py
+rv_kernel_mut_offbyone: exit 1 (must be 1), 253 s: python3 review_867/rv_kernel.py --mutate=offbyone --ray=RAW/I38-macm3/lemma6b1_runs_M5_cert/ray.json
+rerun: exit 0 (must be 0): bash review_867/rerun_runs.sh python3 RAW RAW/I877-mac/rerun   (38 runs, rerun/exits.txt)
