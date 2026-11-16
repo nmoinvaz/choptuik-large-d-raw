@@ -1,0 +1,10 @@
+== mutation base
+d6: 30 states, 31 jets, to D 253.432804411; C1 max|jet - next state| 1.66e-10 over 30 steps (FAIL); C2 held values against held_fit_d6.json, max 0.00e+00 over 29 states (pass)
+d10: 32 states, 34 jets, to D 253.897446627; C1 max|jet - next state| 1.66e-10 over 33 steps (FAIL); C2 held values against held_fit_d10.json, max 6.53e-54 over 31 states (pass)
+mutation base: checks fail, as they must
+exit 0
+== mutation fit
+d6: 30 states, 31 jets, to D 253.432804411; C1 max|jet - next state| 3.97e-15 over 30 steps (FAIL); C2 held values against held_fit_d10.json, max 3.68e-07 over 29 states (FAIL)
+d10: 32 states, 34 jets, to D 253.897446627; C1 max|jet - next state| 1.53e-15 over 33 steps (FAIL); C2 held values against held_fit_d6.json, max 3.97e-07 over 31 states (FAIL)
+mutation fit: checks fail, as they must
+exit 0
