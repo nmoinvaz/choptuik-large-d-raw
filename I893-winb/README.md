@@ -124,7 +124,7 @@ Every run exits 0. The controls exit 1 and give their documented verdicts in the
 | b8m_scan_box | run | 0 | 118 | the four records L0 = 73.89, 70, 66, 62 (appended to `b8m_scan_K4_box.log` in the worktree) |
 | b8m_h8 | run | 0 | 3 | (H8)(ii) with delta <= delta_ref: PROVED |
 | b8m_numcheck | run | 0 | 115 | (A) OK; ALL CHECKS OK |
-| b8m_numcheck_weight | ctrl | 1 | 1 | (C) Lemma K on the arc ... OK, SOME CHECK FAILED |
+| b8m_numcheck_weight | ctrl | 1 | 1 | (B) weight rho^6: b 1.79e+00, c 1.86e+00 FAIL; SOME CHECK FAILED |
 | b8m_numcheck_kernel | ctrl | 1 | 1 | (C) ... 4.689e+00 (must be <= 0) FAIL; SOME CHECK FAILED |
 | b8m_numcheck_tau | ctrl | 1 | 114 | (A) FAIL; SOME CHECK FAILED |
 
