@@ -105,3 +105,4 @@ steps, |F| falls at most by (1 − lam) per step, so the bar (1e-40 within 12 st
   predicted (2.90e14/16), 88 times below A_s1's 1.59e15, and its projection failed all the same (u0 quad-double
   |R| 1.07e13 → 2.59e9, ladder FAILED). So the trial's point max|F| does not decide the projection: A_s1's accepted
   trials projected from up to about 4.6e14 (step 8, lam 1/64), and keep_s1's lam 1/2 fails from 1.81e13.
+- Step 5 accepted lam 1/4 (04:56 UTC), as A_s1 did: |F| 4.18e-13 → 3.13e-13, |dz| 2.71e-13 → 2.03e-13. No departure.
