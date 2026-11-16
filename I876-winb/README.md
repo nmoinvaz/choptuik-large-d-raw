@@ -56,4 +56,52 @@ agree with the Pi's `_b` logs line for line except the seconds printed (`cover_c
 2 lines each, only in seconds; the other two are identical). `lemma6b1_runs_M3_winb/` is the covering's own rows and ray (`ray.json`,
 `row_00.json` to `row_11.json`), and `lemma6b1_check_M3_winb.json` the check's output.
 
-(the rest of the M = 3 set and the M = 5 set follow)
+## Step (i), lemma S, D, the mutations and lemma 6a(3) at M = 3 (00:29:01 to 00:46:39 UTC)
+
+Every run exits 0 (the 11 below, and the covering's), and no log has a Traceback besides the three failed rows of the
+race. `mutations_M --all` prints ALL VERDICTS AS EXPECTED: True, with each of its 19 lines as stated:
+
+| run | exit | wall (s) | verdict line |
+|---|---|---|---|
+| usys_M | 0 | 1 | ALL SELF-TESTS PASS: True |
+| fpm_check_m1 | 0 | 3 | M = 1 REPRODUCES fixed_point.py: True |
+| fpm_M3 | 0 | 1 | fixed point exists and is unique in the ball: True; abs(eta) <= 2.10e-27 |
+| fpm_M3_diag | 0 | 2 | fixed point exists and is unique in the ball: True; abs(eta) <= 5.91e-17 |
+| fpm_table_M3 | 0 | 14 | `fixed_point_M_table_M3.json` |
+| fpm_data_M3 | 0 | 24 | `fixed_point_M_data_M3.json` |
+| sector_scan_M3 | 0 | 104 | `lemmaS_scan_M3.json`; the last row M 3 rp 0.045 k 30: contraction 0.1710 ok True |
+| sector_M3 | 0 | 2 | ALL CHECKS PASS (M = 3): True (rp 0.1, k 20: contraction 0.8252, Lambda 0.2923) |
+| disc_M | 0 | 2 | M = 1 REPRODUCES lemma6b1_disc: True |
+| mutations_M | 0 | 528 | ALL VERDICTS AS EXPECTED: True |
+| jump3 (6a(3) at A_M_6a_M3_1e-10_in.json) | 0 | 378 | rho_6a = 4.128e-02 < 1: True => all J_D,mu(0.3) = 0 implies psi = 0 (whole jump): True |
+
+`mutations_M` verdict lines (each OK): fp_series_M3, fp_series_M5, fp_cdrop_M3 (the lemma holds: False, must be False), fp_diagpath_M3
+(refused), fp_control_r0 (exit 2, fixed point exists: False), fp_m1 (True), usys_label (caught), usys_clean (True),
+S_series_M3 (lemma S holds: False), S_control_rp (exit 2, ALL CHECKS PASS: False), disc_m1 (True), cover_check_M3 (PASS),
+cover_drop_M3 (exit 3, FAIL with 3 failures), cover_sign_M3 (0 of 12 discs of row 11 certified, must be 0), c1_truth_M3
+(True), c1_nov_M3 (every off-centre point outside: True), jump_partial_M3 (G_slow is 9 x 11, not square, caught),
+jump_swap_M3 (backward integration failed, step size underflow at t = 0.06813978124409914, caught), jump_coords_M3 (report
+only, rho_6a = 8.916e-01 < 1: True, a pilot).
+
+Against the stored files (`solver/proof/lemmas_M_runs/`; the timing fields left out, "worst" the largest relative difference):
+
+| output | leaves | differing | worst | against |
+|---|---|---|---|---|
+| fixed_point_M_table_M3.json | 285 | 67 | 2.3e-14 (`eta`) | stored |
+| fixed_point_M_data_M3.json | 32 | 6 | 2.3e-15 | stored |
+| lemmaS_scan_M3.json | 189 | 53 | 3.4e-14 | stored |
+| lemma6_sector_M3_rp0.1_1e-6.json | 55 | 39 | 1.3e-14 (the 7 ball strings agree to 40 characters) | stored |
+| lemma6a_M3_cert.json | 13 | 3 | rho_6a [0.04127932156 +/- 4.95e-12] against the stored [0.04134615071 +/- 5.30e-13] (0.16%, the intervals do not overlap), H_max 11.563 against 11.592 (0.25%), G_slow^-1 max 1.61894 against 1.61932 | stored |
+| lemma6b1_check_M3_winb.json | 159 | 33 | 9.0e-03 (the radii of the C1 ray's state sets, 1.27e-08 against 1.26e-08), against the Pi's `_rpi5_b`: 6.7e-06 | stored `_cert`, and the Pi's |
+
+The logs agree with the Pi's #849 logs line for line except seconds in `fpm_M3`, `fpm_M3_diag`, `sector_M3` and `disc_M`
+(0 lines), `fpm_table_M3`, `fpm_data_M3` and `sector_scan_M3` (seconds only), and in these:
+- `usys_M`: (b) 3.5e-16 (M = 3) and 1.4e-15 (M = 5) against the Pi's 6.1e-16 and 8.7e-16 (a double-precision comparison).
+- `fpm_check_m1`: the upper bounds of fixed_point.py and fixed_point_M.py agree to relative 1e-21 here against 8e-18 and 7e-17
+  on the Pi.
+- `mutations_M`: the seconds, and `jump_swap_M3`'s underflow at t = 0.06813978124409914 against the Pi's 0.06811420060694218
+  (both caught).
+- rho_6a is assembled from upper bounds (AGENTS.md), so its difference from the stored value is expected of a different
+  build; both are 0.041 and below 1.
+
+(the M = 5 set follows)
