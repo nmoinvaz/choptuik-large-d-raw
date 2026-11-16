@@ -1256,3 +1256,42 @@ step 39: D 259.27455923, pivots 9.4e-36..1.2e+37, |z_1| 2.67e-02, |z_N| 4.49e+00
       octo-double Newton: 13 steps, max|F| 2.9e-88, converged; double-double |F| of its first two parts 6.9e+08
     a 0.040 -> D 259.314948908: predicted |F| 6.87e+08, od 13 steps -> 6.89e+08 (tol 1.1e-19, stall accepted, Delta correction +0.0e+00), Delta 1.660808585193 (formula diff -2.3e-02), moved 5.9e-30, 2255 s
       Delta of the saved state, its eight parts summed exactly: 1.660808585193237272269880070282205989426
+step 40: the series saved as /home/nathan/Source/choptuik-large-d-raw/I841-dh370/chain/jet_pin3_D259.3149.npz (8 parts, 1357 s)
+step 40: D 259.314948908, pivots 8.7e-36..1.2e+37, |z_1| 2.76e-02, |z_N| 2.14e+01, ratios 2-5 2.3 4.3 0.6 0.5, a_max 0.184, 1357 s
+    a 0.0505: re-seeded (ok), 62.69 s
+      horizon data refined in octo-double, rung max|R| 8.55e-25 -> 1.69e-56 -> 4.93e-71 -> 3.74e-83
+    on 0 chord 0: max|F| 1.58e-25, |dw| 1.923e-36
+    on 0 chord 1: max|F| 1.77e-36, |dw| 1.920e-36
+    on 0 chord 2: max|F| 3.57e-47, |dw| 4.251e-48
+  on 0: strong chord (4 weak directions), 3 steps after the full first step; theta at its point 1.225e-01 (bound 0.750): accepted, 276.49 s
+  on 0: |F| 9.36e-36 -> 3.59e-47, |dz| 2.29e-30 -> 2.49e-31, lam 1, dDelta -2.29e-30, piv 7.8e-36..1.2e+37, 446.22 s
+    on 1 trial lam 1: max|F| 1.18e-26; simplified correction / |dz| = 2.552e+09 (bound 0.750); refused, 0.54 s
+  on 1: theta at lam 1 2.552e+09 above abort_theta 1e+08: attempt refused at iteration 1
+      elim projections {'u0': 0, 'u0q': 0, 'ladder': 4, 'failed': 0, 'skipped': 3}
+      octo-double Newton: 2 steps, max|F| 3.6e-47, not converged; double-double |F| of its first two parts 4.2e+08
+    a 0.050 -> D 259.365436006: predicted |F| 4.22e+08, od 2 steps -> 4.24e+08 (tol 1.1e-19), Delta 1.659383152220 (formula diff -2.4e-02), moved 2.3e-30, 617 s
+    a 0.0252: re-seeded (ok), 62.84 s
+      horizon data refined in octo-double, rung max|R| 4.71e-25 -> 6.78e-48 -> 3.82e-60 -> 5.78e-73
+    on 0 chord 0: max|F| 1.88e-24, |dw| 2.594e-34
+    on 0 chord 1: max|F| 2.45e-34, |dw| 2.587e-34
+    on 0 chord 2: max|F| 2.11e-47, |dw| 2.239e-47
+  on 0: strong chord (4 weak directions), 3 steps after the full first step; theta at its point 7.029e-08 (bound 0.750): accepted, 306.08 s
+  on 0: |F| 1.61e-35 -> 7.46e-52, |dz| 1.08e-29 -> 1.35e-35, lam 1, dDelta -1.08e-29, piv 8.2e-36..1.2e+37, 485.47 s
+    on 1 trial lam 1: max|F| 1.37e-35; simplified correction / |dz| = 1.047e+00 (bound 0.750); refused, 0.55 s
+    on 1 trial lam 0.5: max|F| 3.73e-52; simplified correction / |dz| = 5.000e-01 (bound 0.875); accepted, 99.86 s
+  on 1: |F| 7.46e-52 -> 3.73e-52, |dz| 1.35e-35 -> 6.75e-36, lam 0.5, dDelta -2.97e-39, piv 8.2e-36..1.2e+37, 180.52 s
+    on 2 trial lam 1: max|F| 3.41e-36; simplified correction / |dz| = 2.617e-01 (bound 0.750); accepted, 0.53 s
+  on 2: |F| 3.73e-52 -> 3.41e-36, |dz| 6.75e-36 -> 1.42e-43, lam 1, dDelta -1.49e-39, piv 1.1e-35..1.2e+37, 80.79 s
+    on 3 trial lam 1: max|F| 3.56e-52; simplified correction / |dz| = 8.785e-01 (bound 0.750); accepted by the full step's drop (max|F| at most 0.01 of 3.41e-36), 0.55 s
+  on 3: |F| 3.41e-36 -> 3.56e-52, |dz| 1.42e-43 -> 1.42e-43, lam 1, dDelta -1.42e-43, piv 8.2e-36..1.2e+37, 80.96 s
+    on 4 trial lam 1: max|F| 3.56e-52; simplified correction / |dz| = 2.208e-30 (bound 0.750); accepted, 0.54 s
+  on 4: |F| 3.56e-52 -> 3.56e-52, |dz| 1.42e-43 -> 1.77e-60, lam 1, dDelta +1.42e-43, piv 8.2e-36..1.2e+37, 80.71 s
+    on 5 trial lam 1: max|F| 4.86e-86; simplified correction / |dz| = 1.097e-15 (bound 0.750); accepted, 0.54 s
+  on 5: |F| 3.56e-52 -> 4.86e-86, |dz| 1.77e-60 -> 1.94e-75, lam 1, dDelta +1.77e-60, piv 8.2e-36..1.2e+37, 80.73 s
+  on 6: |F| 4.86e-86 converged, Delta 1.66010352177017273 -8.6546e-17
+      elim projections {'u0': 0, 'u0q': 0, 'ladder': 5, 'failed': 0, 'skipped': 7}
+      octo-double Newton: 7 steps, max|F| 4.9e-86, converged; double-double |F| of its first two parts 5.8e+08
+    a 0.025 -> D 259.340192457: predicted |F| 5.61e+08, od 7 steps -> 5.78e+08 (tol 1.1e-19, stall accepted, Delta correction +0.0e+00), Delta 1.660103521770 (formula diff -2.3e-02), moved 1.1e-29, 1070 s
+      Delta of the saved state, its eight parts summed exactly: 1.660103521770172643241624818085845105227
+step 41: the series saved as /home/nathan/Source/choptuik-large-d-raw/I841-dh370/chain/jet_pin3_D259.3402.npz (8 parts, 1355 s)
+step 41: D 259.340192457, pivots 8.2e-36..1.2e+37, |z_1| 2.82e-02, |z_N| 5.99e+01, ratios 2-5 2.4 3.7 0.5 0.5, a_max 0.176, 1355 s
