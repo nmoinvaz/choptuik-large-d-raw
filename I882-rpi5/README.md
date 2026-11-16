@@ -70,7 +70,7 @@ differences: none.
 | `b7_box`, `b7_point`, `b7_adjoint`, `b7_check`, `b7_adjoint_mutT` | ball radii (certified, from the Lohner steps) | radius ratio 0.995 to 1.002 (`b7_box.json`), 0.992 to 1.000 (`b7_adjoint.json`), 0.457 to 1.466 (the two `_point` files); `b7_box` midpoints agree to 40 digits, `b7_adjoint` to 6.7 digits (its radius is 6e-8); `b7_check` radii 3.4e18 against 3.6e18 (5.6%); all PASS |
 | `b7_ift.json` | 457 of 1024 float leaves, worst relative difference 8.1e-8 | the log (41 lines) is identical |
 | `b8m_lc` | 21 numbers, worst 2.1e-15 (20.139783666122348 against 20.139783666122305) | none printed differs |
-| `b8m_lc_mut_rho2L` | a mutation's output, 9.1468e-07 against 9.1834e-07 (4.0e-3); the appended record's `diag.int_F` 8.7e-4 | `closes` equal, caught |
+| `b8m_lc_mut_rho2L` | the fixed-point iteration stops after the same 34 iterations at a different last change, 9.1468e-07 against 9.1834e-07 (4.0e-3); the converged `h_fixed` `V.F` differs by 3.4e-4 and the record's `diag.int_F` by 8.7e-4 | `closes` 1.1 in both (not closed, caught) |
 | `b8m_lc_numcheck` | the jump of the two continuations, 1.18e-20 against 1.40e-20 (a roundoff-level quantity), which is the only difference | every verdict `OK` |
 | `b8m_lcj_Om` | the weight 0.02135935140664794 against 0.02135936024788961 (4.1e-7) | caught |
 | `b5_bounds_k0.3_Z0.0085.json` | 39 float leaves, worst 4.4e-15 | none printed differs |
