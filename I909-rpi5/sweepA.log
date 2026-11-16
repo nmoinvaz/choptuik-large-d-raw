@@ -1,0 +1,111 @@
+sigdss_band profile /home/nathan/Source/choptuik-large-d-raw/I907-winb/walk3_up_10.5.npy: D 10.5, eps 3.33333333333, kc 15, start Delta 1.125742989685, 12 points
+/home/nathan/Source/choptuik-large-d-909/solver/matter/sigdss_solver.py:241: RuntimeWarning: overflow encountered in multiply
+  a2 = a * a
+/home/nathan/Source/choptuik-large-d-909/solver/matter/sigdss_solver.py:244: RuntimeWarning: invalid value encountered in subtract
+  cx = c * ((n - 1) * (a2 - 1) - 2 * L * g) / x
+/home/nathan/Source/choptuik-large-d-909/solver/matter/sigdss_solver.py:245: RuntimeWarning: overflow encountered in multiply
+  ax = a * ((p * p + m * m) + 2 * L * g + (n - 1) * (1 - a2)) / (2 * x)
+/home/nathan/Source/choptuik-large-d-909/solver/matter/sigdss_solver.py:245: RuntimeWarning: invalid value encountered in add
+  ax = a * ((p * p + m * m) + 2 * L * g + (n - 1) * (1 - a2)) / (2 * x)
+/home/nathan/Source/choptuik-large-d-909/solver/matter/sigdss_solver.py:247: RuntimeWarning: overflow encountered in multiply
+  pc = n * c * (p + m) / (2 * x)
+/home/nathan/Source/choptuik-large-d-909/solver/matter/sigdss_solver.py:249: RuntimeWarning: overflow encountered in multiply
+  px = (-self.D(p, omega) + cx * p - c * p / x + pc - lt) / (x - c)
+/home/nathan/Source/choptuik-large-d-909/solver/matter/sigdss_solver.py:250: RuntimeWarning: overflow encountered in multiply
+  mx = (-self.D(m, omega) - cx * m + c * m / x - pc + lt) / (x + c)
+/home/nathan/Source/choptuik-large-d-909/solver/matter/sigdss_solver.py:244: RuntimeWarning: overflow encountered in multiply
+  cx = c * ((n - 1) * (a2 - 1) - 2 * L * g) / x
+/home/nathan/Source/choptuik-large-d-909/solver/matter/sigdss_solver.py:248: RuntimeWarning: overflow encountered in multiply
+  lt = L * c * a2 * sq * gq / x
+/home/nathan/Source/choptuik-large-d-909/solver/matter/sigdss_solver.py:249: RuntimeWarning: invalid value encountered in subtract
+  px = (-self.D(p, omega) + cx * p - c * p / x + pc - lt) / (x - c)
+/home/nathan/Source/choptuik-large-d-909/solver/matter/sigdss_solver.py:250: RuntimeWarning: invalid value encountered in add
+  mx = (-self.D(m, omega) - cx * m + c * m / x - pc + lt) / (x + c)
+/home/nathan/Source/choptuik-large-d-909/solver/matter/sigdss_solver.py:45: RuntimeWarning: invalid value encountered in matmul
+  return f @ M
+    jac 0: |F| 1.7482e-08 Delta 1.120000000000 (17 s)
+/home/nathan/Source/choptuik-large-d-909/solver/matter/sigdss_solver.py:246: RuntimeWarning: invalid value encountered in add
+  qx = (p + m) / (2 * x)
+/home/nathan/Source/choptuik-large-d-909/solver/matter/sigdss_solver.py:247: RuntimeWarning: invalid value encountered in add
+  pc = n * c * (p + m) / (2 * x)
+    jac 1: |F| 1.3301e-08 Delta 1.120000000000 (33 s)
+/home/nathan/Source/choptuik-large-d-909/solver/matter/sigdss_solver.py:244: RuntimeWarning: overflow encountered in divide
+  cx = c * ((n - 1) * (a2 - 1) - 2 * L * g) / x
+    jac 2: |F| 1.3259e-08 Delta 1.120000000000 (49 s)
+    jac 3: |F| 1.3252e-08 Delta 1.120000000000 (66 s)
+    jac 4: |F| 1.3249e-08 Delta 1.120000000000 (81 s)
+  Delta 1.120000: least |F| 1.3249e-08 after 5 Jacobians; smallest singular values 9.60e-10, 2.07e-09, 3.33e-09 of 3.49e+01; Delta held True (81 s)
+/home/nathan/Source/choptuik-large-d-909/solver/matter/sigdss_solver.py:248: RuntimeWarning: overflow encountered in divide
+  lt = L * c * a2 * sq * gq / x
+/home/nathan/Source/choptuik-large-d-909/solver/matter/sigdss_solver.py:245: RuntimeWarning: overflow encountered in divide
+  ax = a * ((p * p + m * m) + 2 * L * g + (n - 1) * (1 - a2)) / (2 * x)
+/home/nathan/Source/choptuik-large-d-909/solver/matter/sigdss_solver.py:249: RuntimeWarning: overflow encountered in divide
+  px = (-self.D(p, omega) + cx * p - c * p / x + pc - lt) / (x - c)
+/home/nathan/Source/choptuik-large-d-909/solver/matter/sigdss_solver.py:250: RuntimeWarning: overflow encountered in divide
+  mx = (-self.D(m, omega) - cx * m + c * m / x - pc + lt) / (x + c)
+    jac 0: |F| 1.2531e-08 Delta 1.122000000000 (97 s)
+/home/nathan/Source/choptuik-large-d-909/solver/matter/sigdss_solver.py:247: RuntimeWarning: overflow encountered in divide
+  pc = n * c * (p + m) / (2 * x)
+/home/nathan/Source/choptuik-large-d-909/solver/matter/sigdss_solver.py:250: RuntimeWarning: invalid value encountered in subtract
+  mx = (-self.D(m, omega) - cx * m + c * m / x - pc + lt) / (x + c)
+    jac 1: |F| 1.2469e-08 Delta 1.122000000000 (113 s)
+    jac 2: |F| 1.2460e-08 Delta 1.122000000000 (128 s)
+    jac 3: |F| 1.2457e-08 Delta 1.122000000000 (144 s)
+  Delta 1.122000: least |F| 1.2457e-08 after 4 Jacobians; smallest singular values 4.03e-10, 1.19e-09, 1.89e-09 of 3.19e+01; Delta held True (144 s)
+    jac 0: |F| 1.1830e-08 Delta 1.124000000000 (159 s)
+    jac 1: |F| 1.1767e-08 Delta 1.124000000000 (175 s)
+/home/nathan/Source/venv-choptuik/lib/python3.13/site-packages/numpy/linalg/_linalg.py:2820: RuntimeWarning: overflow encountered in multiply
+  s = (x.conj() * x).real
+    jac 2: |F| 1.1756e-08 Delta 1.124000000000 (191 s)
+    jac 3: |F| 1.1753e-08 Delta 1.124000000000 (207 s)
+  Delta 1.124000: least |F| 1.1753e-08 after 4 Jacobians; smallest singular values 5.91e-10, 1.06e-09, 2.04e-09 of 3.30e+01; Delta held True (207 s)
+    jac 0: |F| 1.1227e-08 Delta 1.126000000000 (223 s)
+    jac 1: |F| 1.1166e-08 Delta 1.126000000000 (239 s)
+    jac 2: |F| 1.1156e-08 Delta 1.126000000000 (256 s)
+    jac 3: |F| 1.1153e-08 Delta 1.126000000000 (273 s)
+  Delta 1.126000: least |F| 1.1153e-08 after 4 Jacobians; smallest singular values 7.85e-10, 9.52e-10, 2.20e-09 of 3.42e+01; Delta held True (273 s)
+/home/nathan/Source/choptuik-large-d-909/solver/matter/sigdss_solver.py:245: RuntimeWarning: overflow encountered in add
+  ax = a * ((p * p + m * m) + 2 * L * g + (n - 1) * (1 - a2)) / (2 * x)
+    jac 0: |F| 1.0748e-08 Delta 1.128000000000 (289 s)
+    jac 1: |F| 1.0689e-08 Delta 1.128000000000 (304 s)
+    jac 2: |F| 1.0678e-08 Delta 1.128000000000 (322 s)
+    jac 3: |F| 1.0676e-08 Delta 1.128000000000 (338 s)
+  Delta 1.128000: least |F| 1.0676e-08 after 4 Jacobians; smallest singular values 7.88e-10, 1.06e-09, 2.31e-09 of 3.54e+01; Delta held True (338 s)
+    jac 0: |F| 1.0409e-08 Delta 1.130000000000 (354 s)
+    jac 1: |F| 1.0351e-08 Delta 1.130000000000 (369 s)
+    jac 2: |F| 1.0341e-08 Delta 1.130000000000 (386 s)
+    jac 3: |F| 1.0338e-08 Delta 1.130000000000 (403 s)
+  Delta 1.130000: least |F| 1.0338e-08 after 4 Jacobians; smallest singular values 7.02e-10, 1.27e-09, 2.31e-09 of 3.66e+01; Delta held True (403 s)
+    jac 0: |F| 1.0226e-08 Delta 1.132000000000 (419 s)
+    jac 1: |F| 1.0165e-08 Delta 1.132000000000 (434 s)
+/home/nathan/Source/choptuik-large-d-909/solver/matter/sigdss_solver.py:249: RuntimeWarning: invalid value encountered in add
+  px = (-self.D(p, omega) + cx * p - c * p / x + pc - lt) / (x - c)
+    jac 2: |F| 1.0157e-08 Delta 1.132000000000 (451 s)
+    jac 3: |F| 1.0154e-08 Delta 1.132000000000 (468 s)
+  Delta 1.132000: least |F| 1.0154e-08 after 4 Jacobians; smallest singular values 6.26e-10, 1.46e-09, 2.26e-09 of 3.79e+01; Delta held True (468 s)
+    jac 0: |F| 1.0206e-08 Delta 1.134000000000 (484 s)
+    jac 1: |F| 1.0145e-08 Delta 1.134000000000 (499 s)
+    jac 2: |F| 1.0137e-08 Delta 1.134000000000 (516 s)
+    jac 3: |F| 1.0134e-08 Delta 1.134000000000 (533 s)
+  Delta 1.134000: least |F| 1.0134e-08 after 4 Jacobians; smallest singular values 5.69e-10, 1.63e-09, 2.20e-09 of 3.93e+01; Delta held True (533 s)
+    jac 0: |F| 1.0351e-08 Delta 1.136000000000 (549 s)
+    jac 1: |F| 1.0288e-08 Delta 1.136000000000 (564 s)
+    jac 2: |F| 1.0281e-08 Delta 1.136000000000 (581 s)
+    jac 3: |F| 1.0279e-08 Delta 1.136000000000 (596 s)
+  Delta 1.136000: least |F| 1.0279e-08 after 4 Jacobians; smallest singular values 5.35e-10, 1.78e-09, 2.14e-09 of 4.06e+01; Delta held True (596 s)
+    jac 0: |F| 1.0660e-08 Delta 1.138000000000 (614 s)
+    jac 1: |F| 1.0592e-08 Delta 1.138000000000 (629 s)
+    jac 2: |F| 1.0588e-08 Delta 1.138000000000 (646 s)
+    jac 3: |F| 1.0585e-08 Delta 1.138000000000 (661 s)
+  Delta 1.138000: least |F| 1.0585e-08 after 4 Jacobians; smallest singular values 5.29e-10, 1.88e-09, 2.11e-09 of 4.21e+01; Delta held True (661 s)
+    jac 0: |F| 1.1114e-08 Delta 1.140000000000 (679 s)
+    jac 1: |F| 1.1045e-08 Delta 1.140000000000 (694 s)
+    jac 2: |F| 1.1039e-08 Delta 1.140000000000 (712 s)
+    jac 3: |F| 1.1037e-08 Delta 1.140000000000 (727 s)
+  Delta 1.140000: least |F| 1.1037e-08 after 4 Jacobians; smallest singular values 5.56e-10, 1.92e-09, 2.13e-09 of 4.35e+01; Delta held True (727 s)
+    jac 0: |F| 1.1702e-08 Delta 1.142000000000 (745 s)
+    jac 1: |F| 1.1631e-08 Delta 1.142000000000 (760 s)
+    jac 2: |F| 1.1625e-08 Delta 1.142000000000 (771 s)
+    jac 3: |F| 1.1623e-08 Delta 1.142000000000 (782 s)
+  Delta 1.142000: least |F| 1.1623e-08 after 4 Jacobians; smallest singular values 6.09e-10, 1.90e-09, 2.21e-09 of 4.51e+01; Delta held True (782 s)
+sigdss_band profile: least |F| 1.0134e-08 at Delta 1.134000; every Delta held: True
