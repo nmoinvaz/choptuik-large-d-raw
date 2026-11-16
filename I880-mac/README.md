@@ -52,9 +52,27 @@ So the mutation yields no box file and no certificate. Its Krawczyk test was nev
 background without a step cap and left for 13.7 hours of one core. A background run now gets a step or time cap
 before it is left.
 
-A cleaner control is to follow as a comment on the issue and a file here: the scale mutation ([G P] times
-1 + 10⁻⁹) with `box2_run`'s own step cap of 6200, which should finish in the normal step count and then fail the
-Krawczyk test.
+## The scale mutation, with a stop rule
+
+Agreed with the coordinator after the above, and with its stop rule written before the run: [G P] times 1 + 10⁻⁹ in
+the second implementation's start data, the same run under `box2_run`'s own step cap of 6200 (twice the stored
+count) and a time cap of 7200 s. A run that reaches a cap has failed: no box file, exit 3.
+
+| leg | clean run | scale-mutated run |
+|---|---|---|
+| start data: contraction constants | 0.0886, 0.0888, 0.0886, 0.0888 | the same to four decimals |
+| ray | 2118 steps | 2118 steps; state radius 2.04×10⁻¹⁰ at its end, as in the clean run |
+| arc | 863 steps | 865 steps; V0 radius 2.98×10⁻⁶ against 5.06×10⁻⁶ |
+| real axis | 101 steps | 3217 steps to real t = 0.716 of 1, where the cap of 6200 steps stopped it |
+
+So this run did not finish either: the cap fired (exit 3, 6178 s), no box file was written, and the Krawczyk test was
+not reached. My prediction, that the run would finish in the normal step count and then fail the Krawczyk test, was
+wrong: the ray and the arc go as in the clean run, and the step size collapses on the real axis. Files:
+`box2_M5_1e-10_b_mut_scale.log`, `.runlog`, and `A_M2_box_M5_1e-10_b_mut_scale.json`, which is `box2_run`'s pilot
+record of the stop and not a box file.
+
+Both mutations of the start data therefore end the same way: the box run cannot be completed, so no certificate is
+produced. Neither reached a Krawczyk test that says "fail".
 
 ## Recommended tasks
 
