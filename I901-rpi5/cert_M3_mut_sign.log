@@ -1,0 +1,29 @@
+data/A_M_box_M3_1e-10.json: kind box, M = 3, ray 5pi/16, r0 = 0.0741, Cauchy radius 1e-3, the certificate's N = 95, hull half-width 1.000e-10
+first implementation (start_data_M at p^ and over the hull): sup|eta| 4.090e-64 and 1.296e-24, Cauchy parts 7.193e-14 and 7.193e-14  [16 s]
+p^, real set: M = 3, r0 = 0.0741, arg xi = 0.981748, N = 94, k = 92, a = 0.19134, e_min = 1.5000, kernel bound sharp
+  residual below its structural orders contains 0: True (largest |ball| R^j there 3.2e-153)
+  largest Lipschitz entries: v+3<-p+3 0.8201, v-3<-p-3 0.8201, v+1<-p+1 0.2262, v-1<-p-1 0.2262, v+1<-p+3 0.1413, v-1<-p-3 0.1413
+  contraction constant max_i (L w)_i / w_i <= 0.0978; F + L w < w: True; refined set inside and mapped into itself: True
+  => unique fixed point; |eta| at |z| = R: p 3.12e-37, v 5.45e-35, c 7.05e-41
+p^, Cauchy box: M = 3, r0 = 0.0741, arg xi = 0.981748, N = 94, k = 92, a = 0.19134, e_min = 1.4885, kernel bound sharp
+  residual below its structural orders contains 0: True (largest |ball| R^j there 5.7e-02)
+  largest Lipschitz entries: v+3<-p+3 0.8222, v-3<-p-3 0.8222, v+1<-p+1 0.2267, v-1<-p-1 0.2267, v-1<-p-3 0.142, v+1<-p+3 0.142
+  contraction constant max_i (L w)_i / w_i <= 0.0980; F + L w < w: True; refined set inside and mapped into itself: True
+  => unique fixed point; |eta| at |z| = R: p 2.35e-20, v 4.12e-18, c 5.36e-24
+hull, real set: M = 3, r0 = 0.0741, arg xi = 0.981748, N = 94, k = 92, a = 0.19134, e_min = 1.5000, kernel bound sharp
+  residual below its structural orders contains 0: True (largest |ball| R^j there 1.1e-09)
+  largest Lipschitz entries: v+3<-p+3 0.8201, v-3<-p-3 0.8201, v+1<-p+1 0.2262, v-1<-p-1 0.2262, v+1<-p+3 0.1413, v-1<-p-3 0.1413
+  contraction constant max_i (L w)_i / w_i <= 0.0978; F + L w < w: True; refined set inside and mapped into itself: True
+  => unique fixed point; |eta| at |z| = R: p 4.62e-28, v 8.09e-26, c 1.05e-31
+hull, Cauchy box: M = 3, r0 = 0.0741, arg xi = 0.981748, N = 94, k = 92, a = 0.19134, e_min = 1.4885, kernel bound sharp
+  residual below its structural orders contains 0: True (largest |ball| R^j there 5.7e-02)
+  largest Lipschitz entries: v+3<-p+3 0.8222, v-3<-p-3 0.8222, v+1<-p+1 0.2267, v-1<-p-1 0.2267, v-1<-p-3 0.142, v+1<-p+3 0.142
+  contraction constant max_i (L w)_i / w_i <= 0.0980; F + L w < w: True; refined set inside and mapped into itself: True
+  => unique fixed point; |eta| at |z| = R: p 2.35e-20, v 4.12e-18, c 5.36e-24
+second implementation: N = 94 (the certificate's 95), k = 92; four contractions hold: True  [16 s]
+  sup|eta| in (p, v, c): 5.448e-35 at p^, 8.089e-26 over the hull; on the Cauchy boxes 4.125e-18 and 4.125e-18
+  values at p^: 0 of 13 overlap (0 of the second's balls inside the first's); largest midpoint distance 1.26e-02; largest radius first 3.33e-66, second 3.19e-37; MISSES at entries [0, 1, 2, 3, 4, 5, 6, 7]
+  derivatives at p^: 0 of 52 overlap (0 of the second's balls inside the first's); largest midpoint distance 1.41e-02; largest radius first 5.85e-16, second 2.42e-17; MISSES at entries [0, 1, 2, 3, 4, 5, 6, 7]
+  derivatives over the hull: 0 of 52 overlap (0 of the second's balls inside the first's); largest midpoint distance 1.41e-02; largest radius first 2.50e-11, second 2.75e-11; MISSES at entries [0, 1, 2, 3, 4, 5, 6, 7]
+  values over the hull (not used by the certificate): 0 of 13 overlap (0 of the second's balls inside the first's); largest midpoint distance 1.26e-02; largest radius first 1.10e-11, second 1.11e-11; MISSES at entries [0, 1, 2, 3, 4, 5, 6, 7]
+CERTIFICATE START DATA (data/A_M_box_M3_1e-10.json): FAIL
