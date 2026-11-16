@@ -1,5 +1,5 @@
 #!/bin/bash
-# #911 on dh610: the worktree of branch hp/order-by-order (9c2b0840) with its own venv (SETUP.md), the references
+# #911 on dh610 (rerun; 9c2b0840 failed modecount_build.sh): the worktree of branch hp/order-by-order at 0cf9b94a with its own venv (SETUP.md), the references
 # from the raw repository's origin/main (fetch only), then hp/build.sh and hp/modecount_build.sh at nice 10, with wall
 # times and the scope's memory.peak. No memory guard.
 set -u
@@ -8,7 +8,7 @@ WT=/home/nathan/Source/choptuik-large-d-911
 RAW=/home/nathan/Source/choptuik-large-d-raw
 OUT=$RAW/I911-dh610
 REF=/home/nathan/scratch911/refs
-L=$OUT/build.log
+L=$OUT/build_rerun.log
 export PATH=$HOME/.local/bin:$HOME/.cargo/bin:$PATH CARGO_BUILD_JOBS=4
 CG=/sys/fs/cgroup$(cut -d: -f3 /proc/self/cgroup)
 log() { echo "# $(date -u '+%Y-%m-%d %H:%M:%S') UTC $*" >> "$L"; }
@@ -20,10 +20,11 @@ git -C "$RAW" archive origin/main T81/ref_main.json T81/scaled_main.json anm-mac
     I855-dh610/bits.json I855-dh610/bits_perturb.json I855-dh610/api.json I855-dh610/api_perturb.json \
     | tar -x -C "$REF" || { log "reference extraction failed"; exit 1; }
 log "references: $(find "$REF" -type f | wc -l) files"
+git -C "$SRC" fetch -q origin hp/order-by-order >> "$L" 2>&1 || { log "fetch failed"; exit 1; }
 if [ ! -d "$WT" ]; then
-  { git -C "$SRC" fetch -q origin hp/order-by-order && git -C "$SRC" worktree add -q --detach "$WT" 9c2b0840; } >> "$L" 2>&1 \
-    || { log "worktree failed"; exit 1; }
+  git -C "$SRC" worktree add -q --detach "$WT" 0cf9b94a >> "$L" 2>&1 || { log "worktree failed"; exit 1; }
 fi
+git -C "$WT" checkout -q --detach 0cf9b94a >> "$L" 2>&1 || { log "checkout failed"; exit 1; }
 cd "$WT" || exit 1
 log "worktree $(git rev-parse HEAD)"
 if [ ! -x .venv/bin/python ]; then
