@@ -106,3 +106,12 @@ steps, |F| falls at most by (1 − lam) per step, so the bar (1e-40 within 12 st
   |R| 1.07e13 → 2.59e9, ladder FAILED). So the trial's point max|F| does not decide the projection: A_s1's accepted
   trials projected from up to about 4.6e14 (step 8, lam 1/64), and keep_s1's lam 1/2 fails from 1.81e13.
 - Step 5 accepted lam 1/4 (04:56 UTC), as A_s1 did: |F| 4.18e-13 → 3.13e-13, |dz| 2.71e-13 → 2.03e-13. No departure.
+- Step 6 (06:42 UTC), the departure, in the other direction. lam 1 refused at 9.16e13 (A_s1's). keep_s1's lam 1/2,
+  1/4 and 1/8 came at 5.73e12, 3.58e11 and 2.24e10, each the lam-1 trial's times lam^4. Each projection failed (u0
+  quad-double |R| 3.39e12 → 8.14e8, 2.11e11 → 4.72e7, 1.29e10 → 5.24e6, ladders FAILED). A_s1 accepted lam 1/4 here,
+  whose trial carried −(3/4) disp and a higher point max|F| (its lam 1/2 was 8.77e14).
+- Every projection path starts from the trial's own horizon data: the u0 rung, its quad-double polish, the re-seed's
+  polish from the point's own data (qd_start pred), and the ladder's first rung. The two variants' trials at one lam
+  have the same bulk and differ only in −(1 − lam) disp_h. So at step 6 the default's horizon data, mixed toward the
+  unprojected iterate's, projected, while keep_s1's (zp_h + lam s_h) did not, even at lam 1/8. What decides the
+  projection is where the trial's horizon data start, not the trial's point max|F|.
