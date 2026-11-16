@@ -36,3 +36,10 @@ These are the coordinator's rungs of +10 in the horizon order, each `--ks K --ke
 | 150 from 140 | **failed**: start 2.9e-26, step 4.4e-13, every λ 1 … 1/256 refused (2.1e12 … 2.2e4, ∝ λ⁴), 11 projections failed | | | | | 34 min |
 | 145 from 140 | **failed**: iterate 0 accepted at 1.1e-27 → 1.1e-20, then iterate 1 refused at every λ (2.4e-16 at λ 1, 3.7e10 … 1.5e11 below), 9 projections failed | | | | | 56 min |
 | 142 from 140 | 14 steps | 2.7e-71 | 4.499e-14 | +10.738 | −4.783e-13 | 63 min |
+| 146 from 142 | **failed**: iterate 0 accepted at 1.3e-27 → 1.4e-21, then iterate 1 refused at every λ, 18 projections failed | | | | | 68 min |
+
+The ladder stopped after rung 146 on the coordinator's redirect (#903, 13:16 UTC). The loop was stopped by hand while 146 ran, and 146's result line in `exits_ladder.txt` is written by hand. The highest converged rung is 142.
+
+## The fixed-order chain (`chain_fixed_903.sh`, `chain_fixed/`, `compare_903.py`)
+
+This chain runs at `--ks 142` from rung 142's base toward the fold, using `anm_run.py` with chain_nsr's flags at 8 threads and `--steps 400 --D_max 262`. It tests whether the fold moves with the order. #603's chain at order 130 folds at D* = 259.9033. If the fold moves by more than 0.05, it is the truncation's. If it stays within 0.01, it is not. Anything between is reported. `compare_903.py` sets p_min at each base against #603's chain at the same D, with ln p_603 interpolated linearly in D between #603's 181 bases. Its control, #603's log against itself, gives 0.00 everywhere.
