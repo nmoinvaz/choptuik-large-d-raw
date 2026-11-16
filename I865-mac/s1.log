@@ -1,0 +1,19 @@
+lemma S on D (u = 1/z in U0 + K, R+ = 0.1^2 = 0.01, U0 = sqrt2/R+), parameters x^ + [-1e-9, 1e-9]^2:
+  N = 53, vanishing orders [53, 53, 53, 53, 52, 52, 52], weight exponent k = 30 (admissible up to 52), a_eff = sqrt2/4 - k R+/2 = 0.2036
+  weights (symmetric in mu) [39.3339, 39.3339, 1.4152, 1.4152, 397.3896, 202.2383, 397.3896]
+  contraction constant <= 0.4903; forcing 1.038e+44; ball rho = 8.143e+44; F + Lip rho = 5.030e+44 < rho: True
+  => unique fixed point in the ball (y+ on D): True
+  D covers: the real segment 0 < z <= R+/sqrt2 = 0.00707 (xi <= 0.08409), and |z| <= R+ sin(3pi/4 - theta) in direction theta = arg z
+old sector lemma (rays |arg xi - 3pi/8| <= 0.2, |xi| <= 0.1) over the same parameters: contraction 0.5107, F + Lip rho < rho: True, ok True
+flat estimate on the real segment 0 < z <= Z = 0.004489 (xi <= 0.06700), a_eff = 1/2 - k Z = 0.3653:
+  ||T0|| matrix (rows/cols p-1, p+1, v-1, v+1, c-2, c+0, c+2):
+     7.78e-04  3.91e-04  1.69e-02  1.25e-04  6.21e-04  6.21e-04  0.00e+00
+     3.91e-04  7.78e-04  1.25e-04  1.69e-02  0.00e+00  6.21e-04  6.21e-04
+     2.68e-01  1.00e-01  8.27e-02  2.09e-02  5.79e-02  5.83e-02  6.52e-04
+     1.00e-01  2.68e-01  2.09e-02  8.27e-02  6.52e-04  5.83e-02  5.79e-02
+     4.37e-02  3.20e-04  0.00e+00  0.00e+00  4.94e-04  2.47e-04  0.00e+00
+     4.37e-02  4.37e-02  0.00e+00  0.00e+00  2.47e-04  4.94e-04  2.47e-04
+     3.20e-04  4.37e-02  0.00e+00  0.00e+00  0.00e+00  2.47e-04  4.94e-04
+  weights [12.516, 12.516, 1.4257, 1.4257, 42.6923, 21.537, 42.6923]; ||T0|| <= Lambda = 0.1513 < 1: True
+ALL CHECKS PASS: True
+exit 0
