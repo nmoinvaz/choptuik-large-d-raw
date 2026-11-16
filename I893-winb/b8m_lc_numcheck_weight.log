@@ -1,0 +1,6 @@
+n = 1000: formal light-cone offset d = c(0) - c^K(0): |d|_1 n^(K+1) = 1.2120e+05 (c_5(0) part 1.2269e+05)
+(1) R_c(1) (Cauchy mean on |x - 1| = 0.02): |R_c(1)|_1 = 5.985e-18 = 4.94e-08 |d|; jump of the two continuations at 1 + eta: 1.16e-20; spline errors 2.7e-03 (real axis), 2.9e-12 (circle)  OK
+(2) |d| n^(K+1) = 1.2120e+05 <= d0 = 3.5863e+06 (certified, b8m_lc.py)  OK
+    h_Sp at n0 = 5.968e-07; the same formula at n = 1000 (N_L = 461.4): 1.815e+02
+(3) max |R|/bound per band (weight rho^6): S.L 4.95e+01, S.N0 2.05e+02, S.Na 1.83e+01, Sp.L 6.40e+00, V.L 6.44e-03, V.N0 1.90e+01, V.Na 1.27e+01, b.L 1.04e+02, b.N0 1.84e+02, b.Na 3.91e+00, c.L 3.93e+01, c.N0 2.64e+01, c.Na 1.74e+01  FAIL
+MUTATION weight: a check must FAIL: caught
