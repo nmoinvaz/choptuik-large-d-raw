@@ -1,0 +1,23 @@
+| group | runs | exit 0 / exit 3 | wall |
+|---|---|---|---|
+| #427 (planted, check_m1, lip, two, start) | 32 | 18 / 14 | 179 s |
+| cert (M3, M5 at h 1e-10, 1e-9, 1e-11) | 12 | 4 / 8 | 1536 s |
+| cert2 | 5 | 3 / 2 | 1588 s |
+| kernel, cli | 4 | 2 / 2 | 50 s |
+total 3353 s
+
+bracketed times: 39 in all, 35 of 5 s or more on the Mac
+  Windows / Mac: min 1.60, median 1.88, max 2.12
+  cert2_M5_1e-10_mut_w0: 174 s against 82 s (2.12)
+  cert2_M5_1e-10_mut_sign: 169 s against 88 s (1.92)
+  cert2_M5_1e-9: 159 s against 86 s (1.85)
+  cert2_M5_1e-10: 158 s against 77 s (2.05)
+  cert2_M5_1e-11: 158 s against 79 s (2.00)
+other differences:
+   ('start_M5', 'stored set line', 'stored set C:/Users/nathan/Source/choptuik-large-d-raw-754/I38-macm3/lemma6b1_runs_M5_cert/ray.json:', 'stored set /Users/nathan/Source/choptuik-large-d-raw-427/I38-macm3/lemma6b1_runs_M5_cert/ray.json: c')
+   ('start_M5_sector', 'stored set line', 'stored set C:/Users/nathan/Source/choptuik-large-d-raw-754/I38-macm3/lemma6b1_runs_M5_cert/ray.json:', 'stored set /Users/nathan/Source/choptuik-large-d-raw-427/I38-macm3/lemma6b1_runs_M5_cert/ray.json: c')
+   ('start_M5_k40_sector', 'stored set line', 'stored set C:/Users/nathan/Source/choptuik-large-d-raw-754/I38-macm3/lemma6b1_runs_M5_cert/ray.json:', 'stored set /Users/nathan/Source/choptuik-large-d-raw-427/I38-macm3/lemma6b1_runs_M5_cert/ray.json: c')
+   ('start_M5_mut_sign', 'stored set line', 'stored set C:/Users/nathan/Source/choptuik-large-d-raw-754/I38-macm3/lemma6b1_runs_M5_cert/ray.json:', 'stored set /Users/nathan/Source/choptuik-large-d-raw-427/I38-macm3/lemma6b1_runs_M5_cert/ray.json: c')
+   ('start_M5_mut_scale', 'stored set line', 'stored set C:/Users/nathan/Source/choptuik-large-d-raw-754/I38-macm3/lemma6b1_runs_M5_cert/ray.json:', 'stored set /Users/nathan/Source/choptuik-large-d-raw-427/I38-macm3/lemma6b1_runs_M5_cert/ray.json: c')
+   ('start_M5_mut_rho0', 'stored set line', 'stored set C:/Users/nathan/Source/choptuik-large-d-raw-754/I38-macm3/lemma6b1_runs_M5_cert/ray.json:', 'stored set /Users/nathan/Source/choptuik-large-d-raw-427/I38-macm3/lemma6b1_runs_M5_cert/ray.json: c')
+   ('start_M5_vs_win2', 'stored set line', 'stored set C:/Users/nathan/Source/choptuik-large-d-raw-754/I121-win2/lemma6b1_runs_M5_cert/ray.json:', 'stored set /Users/nathan/Source/choptuik-large-d-raw-427/I121-win2/lemma6b1_runs_M5_cert/ray.json: c')
