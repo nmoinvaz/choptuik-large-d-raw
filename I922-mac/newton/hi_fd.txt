@@ -1,0 +1,18 @@
+sm_hi_D10.5_M32.npz: eta 0.3, D 10.5, M 32, n = 3521; on the stored plan max |F| = 2.494e-30, Delta = 1.142980986472450205536279166
+  Solver.newton's step: |d|_2 = 1.565e-15, dDelta = +9.618e-22, max |F| after = 1.079e-31, Delta after = 1.142980986472450205537240986: OK
+    (pivots 9.7e-09..6.8e+00; 22 s)
+  Solver.jacobian: 43 s
+  K2, Solver.jacobian with the reviewer's solve: |d|_2 = 1.565e-15, dDelta = +9.618e-22, max |F| after = 1.079e-31, Delta after = 1.142980986472450205537240986: OK
+    against Solver.newton's step: max difference 0.00e+00, in Delta +0.00e+00  (43 s)
+  finite differences: column 0 of 3521 (0 s)
+  finite differences: column 500 of 3521 (83 s)
+  finite differences: column 1000 of 3521 (154 s)
+  finite differences: column 1500 of 3521 (244 s)
+  finite differences: column 2000 of 3521 (322 s)
+  finite differences: column 2500 of 3521 (403 s)
+  finite differences: column 3000 of 3521 (484 s)
+  finite differences: column 3500 of 3521 (561 s)
+  K3, finite-difference Jacobian against Solver.jacobian: largest entry difference 1.78e-14 at (286, 158) (largest entry of J 2.68e+00); Frobenius 8.41e-14 of 9.61e+01  (608 s)
+  K1, Jacobian from the residual alone: |d|_2 = 1.565e-15, dDelta = +9.618e-22, max |F| after = 1.302e-31, Delta after = 1.142980986472450205537240986: OK
+    against K2's step: max difference 1.55e-22, in Delta -7.66e-31  (608 s)
+RV_NEWTON (sm_hi_D10.5_M32.npz): PASS

@@ -1,0 +1,9 @@
+sm_march_D10.5_M32.npz: eta 0.3, D 10.5, M 32, n = 3521; on the stored plan max |F| = 7.021e-30, Delta = 1.142980986472450205528457235
+  Solver.newton's step: |d|_2 = 1.371e-15, dDelta = +8.769e-21, max |F| after = 1.109e-31, Delta after = 1.142980986472450205537226162: OK
+    (pivots 9.5e-09..6.8e+00; 23 s)
+  Solver.jacobian: 45 s
+  K2, Solver.jacobian with the reviewer's solve: |d|_2 = 1.371e-15, dDelta = +8.769e-21, max |F| after = 1.109e-31, Delta after = 1.142980986472450205537226162: OK
+  the F returned by Solver.newton equals Solver.residual's bit for bit: True
+  K4, x = J^-T e_Delta: |x|_1 = 8.674e+09, |x|_2 = 6.360e+08, max |x| = 1.012e+08; -x.F = +8.769e-21 (the step's dDelta +8.769e-21); |x|_1 max |F| = 6.09e-20 here, 8.67e-22 at max |F| = 1e-31, 8.67e-19 at 1e-28
+    against Solver.newton's step: max difference 0.00e+00, in Delta +0.00e+00  (46 s)
+RV_NEWTON (sm_march_D10.5_M32.npz): PASS

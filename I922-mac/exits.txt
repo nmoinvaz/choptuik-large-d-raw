@@ -1,0 +1,24 @@
+planted/clean: exit 0 (must be 0), 30 s: python3 planted_band.py --out planted/clean.json
+planted/mut_noband: exit 1 (must be 1), 30 s: python3 planted_band.py --mutate noband --out planted/mut_noband.json
+planted/mut_easy: exit 1 (must be 1), 30 s: python3 planted_band.py --mutate easy --out planted/mut_easy.json
+planted/mut_root: exit 1 (must be 1), 30 s: python3 planted_band.py --mutate root --out planted/mut_root.json
+planted/mut_gamma: exit 1 (must be 1), 31 s: python3 planted_band.py --mutate gamma --out planted/mut_gamma.json
+mut/none: exit 0 (must be 0), 31 s: python3 review_922/rv_band_mut.py --mutate none --out mut/none.json
+mut/loose: exit 1 (must be 1: written before the run), 30 s: python3 review_922/rv_band_mut.py --mutate loose --out mut/loose.json
+mut/nodamp: exit 0 (0 or 1: reported), 30 s: python3 review_922/rv_band_mut.py --mutate nodamp --out mut/nodamp.json
+mut/nofloor: exit 0 (0 or 1: reported), 30 s: python3 review_922/rv_band_mut.py --mutate nofloor --out mut/nofloor.json
+mut/noheld: exit 0 (0 or 1: reported), 30 s: python3 review_922/rv_band_mut.py --mutate noheld --out mut/noheld.json
+mut/anyB: exit 0 (0 or 1: reported), 30 s: python3 review_922/rv_band_mut.py --mutate anyB --out mut/anyB.json
+mut/nochord: exit 1 (0 or 1: reported), 32 s: python3 review_922/rv_band_mut.py --mutate nochord --out mut/nochord.json
+newton/hi_fd: exit 0 (must be 0; 124: stopped at the cap of 3000 s), 608 s: python3 review_922/rv_newton.py --state I913-mac/out/sm_hi_D10.5_M32.npz --fd --out newton/hi_fd.json
+newton/fdcol: exit 0 (must be 0: written before the run), 39 s: python3 -u review_922/rv_fdcol.py --state I913-mac/out/sm_hi_D10.5_M32.npz --cols 158 --random 40 --out newton/fdcol.json
+newton/hi: exit 0 (must be 0), 45 s: python3 -u review_922/rv_newton.py --state I913-mac/out/sm_hi_D10.5_M32.npz --out newton/hi.json
+newton/up: exit 0 (must be 0), 46 s: python3 -u review_922/rv_newton.py --state I913-mac/out/sm_up_D10.5_M32.npz --out newton/up.json
+newton/march: exit 0 (must be 0), 46 s: python3 -u review_922/rv_newton.py --state I913-mac/out/sm_march_D10.5_M32.npz --out newton/march.json
+newton/hi_fd2: exit 0 (must be 0; 124: stopped at the cap of 3600 s), 1047 s: python3 -u review_922/rv_newton.py --state I913-mac/out/sm_hi_D10.5_M32.npz --fd --richardson --out newton/hi_fd2.json
+states/all: exit 0 (must be 0: written before the run), 9 s: python3 -u review_922/rv_states.py RAW --folders I845-mac,I913-mac,I915-mac,I916-mac,I917-mac --out states/all.json
+states/mut_state: exit 0 (must be 1), 9 s: python3 -u review_922/rv_states.py RAW --folders I845-mac,I913-mac,I915-mac,I916-mac,I917-mac --mutate state --out states/mut_state.json
+  (states/mut_state above: the control added 1e-20 to the high part of a double, which rounds it away, so nothing was mutated; its files are states/mut_state_noop.*. The control was corrected to the low part and rerun below.)
+states/mut_state: exit 1 (must be 1), 10 s: python3 -u review_922/rv_states.py RAW --folders I845-mac,I913-mac,I915-mac,I916-mac,I917-mac --mutate state --out states/mut_state.json
+mut/sonly: exit 1 (must be 1: named on the issue before any run), 36 s: python3 review_922/rv_band_mut.py --mutate sonly --out mut/sonly.json
+mut/noshort: exit 0 (must be 0), 36 s: python3 review_922/rv_band_mut.py --mutate noshort --out mut/noshort.json
