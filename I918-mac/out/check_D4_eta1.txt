@@ -1,0 +1,15 @@
+15:34:30 start 2026-11-16 15:34:30 UTC: sm_eta1_M32.npz, eta 1, D 4.0, M 32, 3520 unknowns before Delta, |F| 1.27e-30, Delta 0.462158390154748
+15:35:27 M(0): 56.9 s
+15:35:59 (1) M(0) against the Jacobian's leading block: largest difference 0.00e+00, largest entry 3.41e+00 (ratio 0.0e+00 <= 1e-28), largest imaginary part 0.0e+00 (0): PASS
+15:36:00 (3) the tau-translation mode: |M(0) v|_2 4.76e-02, |M(0)|_F 9.40e+01, |v|_2 1.40e+03, ratio 3.61e-07 (<= 1e-9): FAIL
+15:38:48 (2) dM/dlambda at 1.7: central difference against the complex rate, largest difference 2.09e-09, largest entry 1.83e+01 (ratio 1.1e-10 <= 1e-7): PASS (168.7 s)
+15:38:48 (4) the gauge rate lambda_g = 0.898137277266780
+15:39:47     lam 0.897239139989513: sign +1 ln|det| -69.698684 pivots 8.59e-04..6.47e+00 (58.6 s)
+15:40:48     lam 0.899035414544047: sign -1 ln|det| -69.394478 pivots 8.59e-04..6.47e+00 (60.7 s)
+15:41:51     lam 0.898137277266780: sign -1 ln|det| -76.069146 pivots 3.82e-06..6.47e+00 (63.1 s)
+15:42:55     lam 0.898135742848264: sign +1 ln|det| -77.887753 pivots 6.20e-07..6.47e+00 (63.4 s)
+15:43:54     lam 0.898135957054786: sign +1 ln|det| -86.303284 pivots 1.37e-10..6.47e+00 (60.0 s)
+15:44:54     lam 0.898135957102220: sign +1 ln|det| -100.761596 pivots 7.22e-17..6.47e+00 (59.9 s)
+15:45:53     lam 0.898135957102271: sign -1 ln|det| -93.150811 pivots 1.46e-13..6.47e+00 (58.6 s)
+15:45:53     root 0.898135957102220, minus lambda_g -1.32e-06 (<= 1e-10 in size), 7 determinants: FAIL
+15:45:53 MODE CHECK: FAIL
