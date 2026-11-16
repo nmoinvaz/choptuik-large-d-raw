@@ -1,0 +1,36 @@
+Exploratory probes of 2026-11-16 (23:15-00:30 UTC), mac, before hp/sonic_valley.py existed. Script: probe_pred.py in
+this folder (the predictor through the given M 320 states at the target D, integrated through segment 6, x 0.01 ->
+0.02, with the target's equations on the last state's stored plan, step by step; --refine=R splits each step R times).
+States: T105-win2/states/lowDhm_x0.000157-0.975_p1_D3.0438_M320.npz, I343-win2/states/lowD343_D3.0436_M320.npz,
+I343-win2/states/lowD343_D3.043350_M320.npz of this repository. The console output, copied as printed but abridged:
+of 1. only the node lines of 0.01 and 0.02 and the summary, of 2. and 3. only the last trace lines and the summary.
+
+1. probe_pred.py 3.04335 6 <3.0438 p1> <3.0436> --truth=<3.043350> --every=300   (the linear predictor of #343's first
+   target, finite there at |F| 6.4e-4 on the reused plan)
+predictor error: p1 2.28e-02 c0 9.48e-08
+  node 0.01: p 9.02e-04 m 2.32e-04 a 5.33e-04 c 7.57e-07
+  node 0.02: p 2.99e-04 m 1.02e-04 a 4.79e-04 c 2.75e-06
+  m_h 1.95e-05 a_h 4.27e-05 Delta 4.44e-06
+segment 6: finite; min(c - x) 1.2866e-05 at x 0.01428830 i 23; end mismatch 3.625e-04
+  114s
+
+2. probe_pred.py 3.04315 6 <3.0438 p1> <3.0436> <3.043350> --every=100   (#343's NaN predictor, plan 5603 steps,
+   segment 4679)
+   x 0.01403350 min(c - x) +1.0220e-05 at i 21, max |state| 8.196e+00
+   x 0.01404364 min(c - x) -1.3813e-04 at i 22, max |state| 6.926e+04
+segment 6: non-finite at x 0.01404396 (step 1933 of 4679); last min(c - x) (-0.000138127973735927, 0.014043636108510841, 22)
+  60s
+
+3. probe_pred.py 3.04315 6 <3.043350> --every=400   (the last state alone, i.e. itself at 3.04315's equations)
+   x 0.01417986 min(c - x) +7.1518e-06 at i 22, max |state| 8.237e+00
+   x 0.01418307 min(c - x) -5.3253e-01 at i 21, max |state| 1.039e+09
+segment 6: non-finite at x 0.01418333 (step 2414 of 4679); last min(c - x) (-0.5325325413092922, 0.01418306551572551, 21)
+  76s
+
+4. probe_pred.py 3.04315 6 <3.0438 p1> <3.0436> <3.043350> --every=400 --refine=4   (2. with each step split 4 times)
+   full output in pred3.04315_r4.log: finite; min(c - x) 1.6869e-06 at x 0.01426199 i 23; end mismatch 1.383e-05
+
+5. The converged states' own segment 6 (probe_seg.py, superseded by sonic_valley.py depth, depth_M320.*):
+   3.04375 (p1 file): min over the grid of c - x 3.587670e-05 at x 0.01433964, i 23 (5021 steps)
+   3.04355: 2.449190e-05 at x 0.01431381, i 23 (4102 steps)
+   3.04335: 1.309667e-05 at x 0.01428794, i 23 (4679 steps)
