@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "lemma6b1_cover.py", line 462, in <module>
+    res = check(h, drop)
+  File "lemma6b1_cover.py", line 281, in check
+    rows, ray, runs = load_runs(h)
+                      ~~~~~~~~~^^^
+  File "lemma6b1_cover.py", line 268, in load_runs
+    with open(os.path.join(RUNS, "ray.json")) as fh:
+         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'lemma6b1_runs_x/ray.json'

@@ -1,0 +1,9 @@
+check_x_empty: exit 1: python3 lemma6b1_cover.py check --tag=_x
+ray: exit 0: python3 lemma6b1_cover.py ray --tag=_x
+rows: exit 0: python3 lemma6b1_cover.py rows --tag=_x
+check: exit 0: python3 lemma6b1_cover.py check --tag=_x --json=check_x.json
+check_drop: exit 3: python3 lemma6b1_cover.py check --tag=_x --drop=5,6
+mutate_sign: exit 0: python3 lemma6b1_cover.py --mutate=sign --tag=_x
+control: exit 0: python3 lemma6b1_cover.py control --tag=_x --json=control_x.json
+rows_y_from11: exit 0: python3 lemma6b1_cover.py rows --from=11 --tag=_y
+check_stored: exit 0: python3 lemma6b1_cover.py check
