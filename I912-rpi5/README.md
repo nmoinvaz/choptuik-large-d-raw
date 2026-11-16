@@ -10,7 +10,7 @@ runs over the box (`s3`, `s5` over 1e-6, `s1` over 1e-9), the series mutation ov
 must exit 3). Each line of `exits.txt` has the run, its exit status, the status it must have and its wall time, followed
 by the byte comparison of `s3.json` and `s5.json` with the Mac's. Versions in `env.txt`.
 
-Run 2026-11-16 07:12 UTC, `done` within 30 s (the runs took 1 to 5 s each, 21 s in all). python-flint 0.9.0, FLINT 3.6.0,
+Run 2026-11-16 07:12 UTC, `done` within 30 s (the runs took 1 to 5 s each, 22 s in all). python-flint 0.9.0, FLINT 3.6.0,
 python 3.13.7, aarch64 glibc 2.42 (`env.txt`), worktree commit 40cbc871, never committed (`git status` clean; the
 script's temporary `lemma6_sector_M_prefix.py` is removed).
 
