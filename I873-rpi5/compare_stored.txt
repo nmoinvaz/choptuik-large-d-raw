@@ -1,0 +1,40 @@
+== lemma6_sector_1e-9.json against lemma6_sector_1e-9.json: 28 leaves, 12 differ apart from timings: 0 ball midpoints, 0 other non-numeric, 2 numeric keys, 0 ball radii
+   wts_S          worst relative difference 1.81e-15 (39.33392658178377 against 39.33392658178384)
+   wts_R          worst relative difference 6.60e-16 (21.53699485377315 against 21.536994853773137)
+== lemma6_path_point.json against lemma6_path_point.json: 41 leaves, 30 differ apart from timings: 0 ball midpoints, 0 other non-numeric, 2 numeric keys, 28 ball radii (ratio 0.985 to 1.016)
+   state_rad      worst relative difference 8.83e-03 (1.7809160103688687e-16 against 1.7967875673235513e-16)
+   eta0           worst relative difference 6.26e-16 (5.248747643061335e-32 against 5.248747643061339e-32)
+== lemma6_path_box_1e-9.json against lemma6_path_box_1e-9.json: 59 leaves, 36 differ apart from timings: 0 ball midpoints, 0 other non-numeric, 2 numeric keys, 34 ball radii (ratio 0.945 to 1.121)
+   V_rad          worst relative difference 4.56e-03 (0.0011377307928341907 against 0.0011325445757393027)
+   state_rad      worst relative difference 2.31e-06 (5.199229987512544e-10 against 5.199241974451763e-10)
+== lemma6_jump_1e-9.json against lemma6_jump_1e-9.json: 10 leaves, 2 differ apart from timings: 1 ball midpoints, 0 other non-numeric, 1 numeric keys, 1 ball radii (ratio 1.174 to 1.174)
+   H_max          worst relative difference 2.09e-06 (7.719103716313839 against 7.719119876623154)
+   differs: ('/rho6a', '[0.004220618728 +/- 2.23e-13]', '[0.004220711508 +/- 1.90e-13]')
+== lemma6_jump_stored_box.json against lemma6_jump_1e-9.json: 10 leaves, 2 differ apart from timings: 1 ball midpoints, 0 other non-numeric, 1 numeric keys, 1 ball radii (ratio 2.053 to 2.053)
+   H_max          worst relative difference 2.12e-06 (7.719103522598743 against 7.719119876623154)
+   differs: ('/rho6a', '[0.004220617667 +/- 3.90e-13]', '[0.004220711508 +/- 1.90e-13]')
+== lemma6b1_check_1e-9.json against lemma6b1_check_1e-9.json: 172 leaves, 1 differ apart from timings: 0 ball midpoints, 0 other non-numeric, 1 numeric keys, 0 ball radii
+   ray_sec        worst relative difference 7.12e-01 (41.019904375076294 against 142.45695734024048)
+== lemma6b1_check_1e-9_b.json against lemma6b1_check_1e-9.json: 172 leaves, 14 differ apart from timings: 0 ball midpoints, 0 other non-numeric, 3 numeric keys, 0 ball radii
+   ray_sec        worst relative difference 7.12e-01 (41.019904375076294 against 142.45695734024048)
+   box            worst relative difference 1.92e-08 (1.5914003365091745e-08 against 1.5914003670403076e-08)
+   Lam            worst relative difference 1.82e-15 (0.18330268295757066 against 0.18330268295757032)
+
+== lemma6b1_runs_rpi5b/ray.json against the stored ray.json: 275 leaves, 0 differ apart from timings: 0 ball midpoints, 0 other non-numeric, 0 numeric keys, 0 ball radii
+| row | discs | steps | max Lam Pi | max Lam stored | rel diff | max box radius Pi | stored | ratio | all ok |
+|---|---|---|---|---|---|---|---|---|---|
+| 0 | 25 | 789 | 0.172980 | 0.172980 | 1.3e-15 | 2.88e-08 | 2.88e-08 | 1.000 | yes |
+| 1 | 23 | 717 | 0.173892 | 0.173892 | 1.1e-15 | 1.19e-08 | 1.19e-08 | 1.000 | yes |
+| 2 | 20 | 657 | 0.175098 | 0.175098 | 3.2e-16 | 1.59e-08 | 1.59e-08 | 1.000 | yes |
+| 3 | 18 | 579 | 0.176784 | 0.176784 | 3.1e-16 | 2.29e-08 | 2.29e-08 | 1.000 | yes |
+| 4 | 16 | 558 | 0.179275 | 0.179275 | 1.5e-16 | 3.49e-08 | 3.49e-08 | 1.000 | yes |
+| 5 | 13 | 461 | 0.183303 | 0.183303 | 1.8e-15 | 5.70e-08 | 5.70e-08 | 1.000 | yes |
+| 6 | 11 | 402 | 0.190856 | 0.190856 | 4.4e-16 | 1.04e-07 | 1.04e-07 | 1.000 | yes |
+| 7 | 13 | 350 | 0.151588 | 0.151588 | 5.5e-16 | 2.07e-07 | 2.07e-07 | 1.000 | yes |
+| 8 | 10 | 316 | 0.164082 | 0.164082 | 8.5e-16 | 4.28e-07 | 4.28e-07 | 1.000 | yes |
+| 9 | 12 | 275 | 0.158049 | 0.158049 | 8.8e-16 | 1.20e-06 | 1.20e-06 | 1.000 | yes |
+| 10 | 10 | 268 | 0.188709 | 0.188709 | 1.3e-15 | 3.58e-06 | 3.58e-06 | 1.000 | yes |
+| 11 | 7 | 249 | 0.438972 | 0.438972 | 5.1e-16 | 1.77e-05 | 1.77e-05 | 1.000 | yes |
+
+discs in all rows: 178
+structural, midpoint, count or flag differences: lemma6_jump_1e-9.json against lemma6_jump_1e-9.json: ball midpoint /rho6a [0.004220618728 +/- 2.23e-13] against [0.004220711508 +/- 1.90e-13]; lemma6_jump_stored_box.json against lemma6_jump_1e-9.json: ball midpoint /rho6a [0.004220617667 +/- 3.90e-13] against [0.004220711508 +/- 1.90e-13]

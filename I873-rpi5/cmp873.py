@@ -96,16 +96,17 @@ def rows(new, old):
 new, proof, runs = sys.argv[1], sys.argv[2], sys.argv[3]
 PAIRS = [("lemma6_sector_1e-9.json", "lemma6_sector_1e-9.json"), ("lemma6_path_point.json", "lemma6_path_point.json"),
          ("lemma6_path_box_1e-9.json", "lemma6_path_box_1e-9.json"), ("lemma6_jump_1e-9.json", "lemma6_jump_1e-9.json"),
-         ("lemma6_jump_stored_box.json", "lemma6_jump_1e-9.json"), ("lemma6b1_check_1e-9.json", "lemma6b1_check_1e-9.json")]
+         ("lemma6_jump_stored_box.json", "lemma6_jump_1e-9.json"), ("lemma6b1_check_1e-9.json", "lemma6b1_check_1e-9.json"), ("lemma6b1_check_1e-9_b.json", "lemma6b1_check_1e-9.json")]
 for n, s in PAIRS:
     if os.path.exists(os.path.join(new, n)):
         jsoncmp(os.path.join(new, n), os.path.join(proof, s), f"{n} against {s}")
     else:
         print(f"== {n}: missing")
-if os.path.isdir(os.path.join(new, "lemma6b1_runs_rpi5")):
+if os.path.isdir(os.path.join(new, "lemma6b1_runs_rpi5b")):
     print()
-    if os.path.exists(os.path.join(new, "lemma6b1_runs_rpi5", "ray.json")):
-        jsoncmp(os.path.join(new, "lemma6b1_runs_rpi5", "ray.json"), os.path.join(runs, "ray.json"), "lemma6b1_runs ray.json")
-    rows(os.path.join(new, "lemma6b1_runs_rpi5"), runs)
+    d = os.path.join(new, "lemma6b1_runs_rpi5b")
+    if os.path.exists(os.path.join(d, "ray.json")):
+        jsoncmp(os.path.join(d, "ray.json"), os.path.join(runs, "ray.json"), "lemma6b1_runs_rpi5b/ray.json against the stored ray.json")
+    rows(d, runs)
 print("structural, midpoint, count or flag differences:", "; ".join(bad) if bad else "none")
 sys.exit(1 if bad else 0)
