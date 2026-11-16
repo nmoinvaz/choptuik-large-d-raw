@@ -1,0 +1,22 @@
+toy: n = 12, band of 3; at the start max |F| = 3.36e-01, singular values 2.95e+00 down to 1.1e+00, 8.5e-01, 5.5e-01; Newton's step |dz_N| = 4.05e-01
+A  newton_band
+  band 0 (resolved, 0 deflated, lowest sig 1.1e+00, 1.1e+00, 8.5e-01, 5.5e-01): |F| 3.36e-01, S 5.65e-01 -> 7.56e-02, B 0.00e+00 -> 0.00e+00, lam 1 after 0 halvings, 0 correctors from S nan, |dz| 4.1e-01 (band step 0.0e+00, Newton's 4.1e-01), dDelta -1.62e-01, pivots 5.4e-01..4.2e+00 (0.0 s)
+  band 1 (resolved, 0 deflated, lowest sig 1.0e+00, 1.0e+00, 8.1e-01, 5.0e-01): |F| 3.42e-02, S 7.56e-02 -> 4.97e-04, B 0.00e+00 -> 0.00e+00, lam 1 after 0 halvings, 0 correctors from S nan, |dz| 7.5e-02 (band step 0.0e+00, Newton's 7.5e-02), dDelta -3.80e-02, pivots 5.1e-01..4.3e+00 (0.0 s)
+  band 2 (newton): |F| 2.80e-04, |F|_2 4.97e-04 -> 7.31e-10, |dz| 5.0e-04, dDelta -2.34e-04, pivots 5.1e-01..4.3e+00 (0.0 s)
+  band 3 (newton): |F| 4.20e-10, |F|_2 7.31e-10 -> 1.98e-19, |dz| 7.9e-10, dDelta -4.42e-10, pivots 5.1e-01..4.3e+00 (0.1 s)
+  band 4 (newton): |F| 1.28e-19, |F|_2 1.98e-19 -> 2.18e-38, |dz| 2.2e-19, dDelta -1.23e-19, pivots 5.1e-01..4.3e+00 (0.1 s)
+  band 5: |F| 1.41e-38 converged, Delta -0.852059450777606
+   converged True, max |F| 1.41e-38, 5 steps, max |z - z*| 1.35e-38: PASS
+B  plain Newton with backtracking (newton_solve)
+  newton 0 (dd): |F| 3.36e-01 -> 3.42e-02, lam 1, |dz| 3.0e-01, dDelta -1.62e-01, pivots 5.4e-01..4.2e+00 (0.0 s)
+  newton 1 (dd): |F| 3.42e-02 -> 2.80e-04, lam 1, |dz| 3.8e-02, dDelta -3.80e-02, pivots 5.1e-01..4.3e+00 (0.0 s)
+  newton 2 (dd): |F| 2.80e-04 -> 4.20e-10, lam 1, |dz| 2.3e-04, dDelta -2.34e-04, pivots 5.1e-01..4.3e+00 (0.0 s)
+  newton 3 (dd): |F| 4.20e-10 -> 1.28e-19, lam 1, |dz| 4.4e-10, dDelta -4.42e-10, pivots 5.1e-01..4.3e+00 (0.1 s)
+  newton 4 (dd): |F| 1.28e-19 -> 1.41e-38, lam 1, |dz| 1.2e-19, dDelta -1.23e-19, pivots 5.1e-01..4.3e+00 (0.1 s)
+  newton 5: |F| 1.41e-38 converged, Delta -0.852059450777606
+   converged True, max |F| 1.41e-38 (first 3.36e-01), ended on None: FAIL (it does not stall)
+C  the control: newton_band with band=False
+   converged True, max |F| 1.41e-38 (first 3.36e-01) after 5 steps, band coordinates 0.00, 0.00, 0.00: FAIL (it converges)
+D  the kernel's planted problem (planted.py, M = 8) through the deflated path
+   converged True, max |F| 8.01e-32, 12 steps (2 resolved, 6 band, 8 directions deflated), max |z - z*| 4.77e-30, |dDelta| 3.64e-30: PASS
+PLANTED BAND (mutation easy): FAIL
