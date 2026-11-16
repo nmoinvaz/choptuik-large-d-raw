@@ -8,7 +8,8 @@ the old behaviour; `pinned_o` takes them from `held_z`. `truth_restep.py` passes
 On main 3c35f0c's hpkernel, one process at nice 10, 3 kernel threads, OPENBLAS_NUM_THREADS=1 (`run.sh`). Runs in
 `queue.sh` order, after I875-mac's queue.
 
-In progress.
+Deferred, before any run: the coordinator stopped the queue on 2026-11-16 at 04:03 UTC, pending a math review
+of the wall's cause (label blocked). The code is on wip/xf-884 (6118a8be); `queue.sh` is ready to run as written.
 
 ## Criteria (posted on the issue before the runs)
 
