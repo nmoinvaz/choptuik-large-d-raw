@@ -2,7 +2,7 @@
 # #903 grip: state.sh TAG STATE [K...] [--mutks] reads STATE (a path in choptuik-large-d-raw) from origin/main into the
 # inputs root IN (git show in the push worktree, which changes no checkout), records its blob, then runs near_null.py
 # at the state's own order and at each K (default 200), one run at a time, and last lift.py over the folder.
-# TAG names the chain (k142: xfkappa's I903-mac/chain_fixed; k140: dh610's I903-dh610/chain_k140; ctl: #902's D 60).
+# TAG names the chain (k142: xfkappa's I903-mac/chain_fixed; k160: dh610's I903-dh610/chain_k160; ctl: #902's D 60).
 S=/private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/ececf14c-b4b6-41d2-ad20-2caade87ad18/scratchpad
 P=$S/raw828push
 IN=$S/raw903in

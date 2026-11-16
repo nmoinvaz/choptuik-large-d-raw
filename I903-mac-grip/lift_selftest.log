@@ -1,4 +1,4 @@
-== lift --selftest 2026-11-16 15:47:14 UTC
+== lift --selftest 2026-11-16 16:11:49 UTC
 planted small (want pass, small)
 lift: L = ln g(200) - ln g(own), g = 1 / ||e_Delta^T J^-1||_2; bar at D 255: L < ln 10 = 2.3026
   ctl D 60.0000 (target None): ks 142 ln g -19.0000, ks 200 -19.0000, L +0.0000; sigma_1-4 at 142 1.000e-20, 2.000e-20, 3.000e-20, 4.000e-20; at 200 1.000e-20, 2.000e-20, 3.000e-20, 4.000e-20; the Delta mode at 142 sigma_1 (share 0.90); Delta's pinned step at 200 +1.000e-09; horizon max|dF| 1.00e-20
@@ -7,7 +7,7 @@ lift: L = ln g(200) - ln g(own), g = 1 / ||e_Delta^T J^-1||_2; bar at D 255: L <
   check mutation: k142 D 254.5000: --ks 200 --mutate=ks against ks 142: equal: pass
   check runs: every run's check, and only the horizon block changed: pass: pass
   reading k142 at D 254.5000: L +1.0000 < ln 10: order 142 leaves little of the cut; the fold test is a fair test of it
-  reading k140: no base near D 255 yet
+  reading k160: no base near D 255 yet
 planted large (want pass, large)
 lift: L = ln g(200) - ln g(own), g = 1 / ||e_Delta^T J^-1||_2; bar at D 255: L < ln 10 = 2.3026
   ctl D 60.0000 (target None): ks 142 ln g -19.0000, ks 200 -19.0000, L +0.0000; sigma_1-4 at 142 1.000e-20, 2.000e-20, 3.000e-20, 4.000e-20; at 200 1.000e-20, 2.000e-20, 3.000e-20, 4.000e-20; the Delta mode at 142 sigma_1 (share 0.90); Delta's pinned step at 200 +1.000e-09; horizon max|dF| 1.00e-20
@@ -16,7 +16,7 @@ lift: L = ln g(200) - ln g(own), g = 1 / ||e_Delta^T J^-1||_2; bar at D 255: L <
   check mutation: k142 D 254.5000: --ks 200 --mutate=ks against ks 142: equal: pass
   check runs: every run's check, and only the horizon block changed: pass: pass
   reading k142 at D 254.5000: L +5.0000 >= ln 10: order 142 leaves a large part of the cut; its fold could stay and still move higher
-  reading k140: no base near D 255 yet
+  reading k160: no base near D 255 yet
 planted failed (want FAIL, small)
 lift: L = ln g(200) - ln g(own), g = 1 / ||e_Delta^T J^-1||_2; bar at D 255: L < ln 10 = 2.3026
   ctl D 60.0000 (target None): ks 142 ln g -19.0000, ks 200 -19.0000, L +0.0000; sigma_1-4 at 142 1.000e-20, 2.000e-20, 3.000e-20, 4.000e-20; at 200 1.000e-20, 2.000e-20, 3.000e-20, 4.000e-20; the Delta mode at 142 sigma_1 (share 0.90); Delta's pinned step at 200 +1.000e-09; horizon max|dF| 1.00e-20
@@ -25,7 +25,7 @@ lift: L = ln g(200) - ln g(own), g = 1 / ||e_Delta^T J^-1||_2; bar at D 255: L <
   check mutation: k142 D 254.5000: --ks 200 --mutate=ks against ks 142: equal: pass
   check runs: every run's check, and only the horizon block changed: FAIL at k142 D 254.5 ks 200: FAIL
   reading k142 at D 254.5000: L +1.0000 < ln 10: order 142 leaves little of the cut; the fold test is a fair test of it
-  reading k140: no base near D 255 yet
+  reading k160: no base near D 255 yet
 planted mut (want FAIL, small)
 lift: L = ln g(200) - ln g(own), g = 1 / ||e_Delta^T J^-1||_2; bar at D 255: L < ln 10 = 2.3026
   ctl D 60.0000 (target None): ks 142 ln g -19.0000, ks 200 -19.0000, L +0.0000; sigma_1-4 at 142 1.000e-20, 2.000e-20, 3.000e-20, 4.000e-20; at 200 1.000e-20, 2.000e-20, 3.000e-20, 4.000e-20; the Delta mode at 142 sigma_1 (share 0.90); Delta's pinned step at 200 +1.000e-09; horizon max|dF| 1.00e-20
@@ -34,7 +34,7 @@ lift: L = ln g(200) - ln g(own), g = 1 / ||e_Delta^T J^-1||_2; bar at D 255: L <
   check mutation: k142 D 254.5000: --ks 200 --mutate=ks against ks 142: NOT equal: FAIL
   check runs: every run's check, and only the horizon block changed: pass: pass
   reading k142 at D 254.5000: L +1.0000 < ln 10: order 142 leaves little of the cut; the fold test is a fair test of it
-  reading k140: no base near D 255 yet
+  reading k160: no base near D 255 yet
 planted ctl (want FAIL, small)
 lift: L = ln g(200) - ln g(own), g = 1 / ||e_Delta^T J^-1||_2; bar at D 255: L < ln 10 = 2.3026
   ctl D 60.0000 (target None): ks 142 ln g -19.0000, ks 200 -18.9000, L +0.1000; sigma_1-4 at 142 1.000e-20, 2.000e-20, 3.000e-20, 4.000e-20; at 200 1.000e-20, 2.000e-20, 3.000e-20, 4.000e-20; the Delta mode at 142 sigma_1 (share 0.90); Delta's pinned step at 200 +1.000e-09; horizon max|dF| 1.00e-20
@@ -43,6 +43,6 @@ lift: L = ln g(200) - ln g(own), g = 1 / ||e_Delta^T J^-1||_2; bar at D 255: L <
   check mutation: k142 D 254.5000: --ks 200 --mutate=ks against ks 142: equal: pass
   check runs: every run's check, and only the horizon block changed: pass: pass
   reading k142 at D 254.5000: L +1.0000 < ln 10: order 142 leaves little of the cut; the fold test is a fair test of it
-  reading k140: no base near D 255 yet
+  reading k160: no base near D 255 yet
 lift selftest: PASS
 exit 0

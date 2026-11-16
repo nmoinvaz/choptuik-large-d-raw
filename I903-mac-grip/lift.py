@@ -1,11 +1,11 @@
-"""I903-mac-grip check: how much of the horizon cut do the fixed-order chains (order 142 and 140) leave near the fold?
+"""I903-mac-grip check: how much of the horizon cut do the fixed-order chains (orders 142 and 160) leave near the fold?
 
-Reads near_null.py's JSONs nn_<tag>_D<d>_ks<K>[_mutks].json (tag k142: xfkappa's I903-mac/chain_fixed; k140: dh610's
-I903-dh610/chain_k140; ctl: #902's D 60 state) and the vectors V_<tag>_D<d>_ks<K>.npy. Each state is read at its own
+Reads near_null.py's JSONs nn_<tag>_D<d>_ks<K>[_mutks].json (tag k142: xfkappa's I903-mac/chain_fixed; k160: dh610's
+I903-dh610/chain_k160; k140 was its first plan; ctl: #902's D 60 state) and the vectors V_<tag>_D<d>_ks<K>.npy. Each state is read at its own
 order (the smallest K of its runs) and at ks 200, at the stored z with no Newton step (#902's method).
 
 The reading is the lift L = ln g(200) - ln g(own), g = 1 / ||e_Delta^T J^-1||_2. The coordinator's bar (#903): at the
-base near D 255 of each chain, L < ln 10 says order 140-142 leaves little of the cut, so the fixed-order fold test is a
+base near D 255 of each chain, L < ln 10 says the chain's order leaves little of the cut, so the fixed-order fold test is a
 fair test of it; L >= ln 10 says it leaves a large part, so the fold could stay put at that order and still move at a
 higher one. Bases: the first stored base with D >= T - 1 for T = 230, 240, 245, 250, 255.
 
@@ -31,7 +31,7 @@ import numpy as np
 
 TARGETS = (230, 240, 245, 250, 255)
 BAR = math.log(10)
-NAME = re.compile(r"nn_(k142|k140|ctl)_D([\d.]+)_ks(\d+)(_mutks)?\.json$")
+NAME = re.compile(r"nn_(k142|k160|k140|ctl)_D([\d.]+)_ks(\d+)(_mutks)?\.json$")
 
 
 def load(d0):
@@ -109,7 +109,7 @@ def evaluate(groups):
     for name, c, what in checks:
         print(f"  check {name}: {what}: {'pass' if c else 'FAIL'}")
         ok &= c
-    for tag in ("k142", "k140"):
+    for tag in ("k142", "k160"):
         if tag in reading:
             D, L = reading[tag]
             print(f"  reading {tag} at D {D:.4f}: L {L:+.4f} " + (
