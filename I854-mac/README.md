@@ -57,3 +57,14 @@ grows to 1, and 12 h at the step limit.
   parts 4–7 of z, so the change from the default sits below quad-double in the start.
 - Times: the dz0 runs took 745–761 s each and off_step0 5113 s, against 6 min and 60 min estimated. Another agent's
   3-thread job shares the CPU.
+
+## keep_s1: what to expect, written 00:21 UTC before step 1's shorter trials
+
+- From the iterate's projection zp with the step s from there, a trial at lam is, by default,
+  z + lam (disp + s) with z = zp − disp, that is zp + lam s − (1 − lam) disp. With the option it is zp + lam s.
+- At lam 1 the two are the same point. So keep_s1's lam-1 trials repeat A_s1's while zp does. Step 0 (lam 1/8) and
+  step 1's lam-1 trial (point max|F| 7.40e17, the same ladder |R|) are A_s1's to the printed digits.
+- At lam < 1 only the default carries −(1 − lam) disp. A_s1's step 8 trials fit P0 (1 − lam)^1.91 with P0 = 4.83e14,
+  the unprojected iterate's own point max|F|. The prediction for the option: the shorter trials follow the lam-1
+  trial's value times lam^4 (#839's |dz|^4 law), for example 4.6e16 at step 1's lam 1/2 against A_s1's 5.01e16. The gap
+  should grow at later steps, where A_s1's P0 term dominates, and larger lam should be accepted there.
