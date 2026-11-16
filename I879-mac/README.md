@@ -21,7 +21,7 @@ process at nice 10. Issue: https://github.com/nmoinvaz/choptuik-large-d/issues/8
 No exit status changes in any of the 31 reruns. Seven commands print other last digits. Two results move beyond
 that:
 
-- the first row of each `fixed_point_M.py --data-table` invocation, by 2.0×10⁻⁸ relative at M = 3 and by at most
+- the first row of each `fixed_point_M.py --data-table` invocation, by at most 3.7×10⁻⁸ relative at M = 3 and by at most
   1.2×10⁻⁸ at M = 5, as #484 found;
 - lemma LC's Lipschitz matrix, where 552 of 1600 entries move by factors between 0.733 and 1.014 while the certified
   contraction constant stays θ = 0.7355.
