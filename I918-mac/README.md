@@ -168,3 +168,28 @@ From M 32 to 48 the top harmonic falls by 290 and the distance by 9.7e4, its squ
 
 The checks and mutations took 10 runs of `mode_check.py`, about 35 minutes. Memory was not measured. The mode
 matrix's four double-double parts take 0.4 GB at M 32 and 1.6 GB at M 64.
+
+## Recommended tasks
+
+1. **The kernel's growth rate below D 9 and past D 11.** What: `mode_lam.py` on #652's chain states at eta 1 from
+   D 4 to 9 (every 0.5), and the kernel's chains at eta 0.3 and 1 carried past D 11 with `chain.py` and the band
+   solver (steps of 0.0625, to D 13 or the chain's stop), with their rates. Why: sections 5 and 7 of
+   matter/SIGMA_DSS.md take lambda(D) and gamma(D) above D 9 from sigdss, which is 0.02 to 0.15 off the kernel
+   there, and the large-D reading rests on those points. Acceptance: every state's gauge root within 1e-10 of
+   lambda_g, or the state named with its distance; `chain_table.py`'s checks on each extended chain;
+   `mode_table.py` passes and its two mutations exit 1; lambda(D) reported with its slopes. Cost: about 10 minutes
+   per chain point and 8 per rate at M 32. Depends on #918.
+2. **The count of unstable modes by the winding of det M.** What: `Solver.mode_logdet` takes complex rates now. Count
+   the zeros of det M in the strip of height 2 omega (section 6) over 0.2 <= Re lambda <= 7 by the argument
+   principle, at D 6 and D 11, eta 0.3 and 1, as notes/MODE_COUNT.md does for the scalar field. Why: section 6 lists
+   complex growth rates as not checked, and sigdss's count was too expensive. The real scan here found two real roots
+   at D 11. Acceptance: planted counts first (a contour around the gauge root alone gives 1, around lambda alone 1,
+   around a region of the real scan without a sign change 0); the argument's step between neighbouring points stays
+   below pi/2; the mutation `real_solve` (`set_mutate(15)`) changes a count or breaks that step condition. Depends on
+   #918.
+3. **The mode matrix in the opposite parity sector.** What: perturbations that break u(tau + Delta/2) = -u(tau) have
+   the other harmonics in every field, so they need the even operator for p, m, psi and the odd one for a, c in
+   `model.rs`'s tangents. Why: section 6 lists real rates of that sector as not checked. Acceptance: at D 6, eta 1
+   the count of real roots in that sector on 0.2 <= lambda <= 7, with a check that the sector's matrix at rate 0
+   annihilates no translation mode (its translation mode is in the background's sector) and a planted check of the
+   two operators. Depends on #918. This is a change to the kernel's Rust and needs a build.
