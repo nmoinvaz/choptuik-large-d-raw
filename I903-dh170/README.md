@@ -30,3 +30,12 @@ of T138's D 200 state at order 130.
 
 `p150_200` took 2332 s on dh170's 8 threads (the first full Newton step 1747 s, dh610's 480 s on 20 threads). Its
 launcher gate passed and `chain_k150` started at 20:13:26 UTC.
+
+### Discrepancy in the order-130 reference pivot (reported, not resolved)
+
+Both pivots in the rung table have two digits, so ln(p150/p130) is good to about 0.03 at best. The order-130 pivot at
+the same D 200 state is 1.7e-12 in dh610's `p130_200` (first Jacobian of the polish) and 2.3e-12 in T138's
+`chain_o.log` (`step 29: D 200.0, pivots 2.3e-12..1.2e+28`, the base's series), a 35% difference, with the same largest
+pivot 1.2e+28. At orders 150 and 160 the polish's first-Jacobian pivot and the chain's step 0 pivot agree to two digits
+(3.3e-09 and 3.3e-09 here; 2.1e-08 and 2.1e-08 on dh610). So the rung is +7.571 against dh610's p130 and +7.27 against
+T138's record. The chain's per-step ratios to T138's p_min (as in dh610's `pmin_k160.md`) use T138's record.
