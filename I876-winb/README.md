@@ -10,6 +10,34 @@ worktree of raw main 07169c6f. `exits_876.txt` has each run's exit code and wall
 md5 e02b5615aa6313ea4f9e0723315eca63 and mine 882667266ce869fafd70a69acbdc475d; `run876b.sh` as placed has md5
 17dd718e3041297c032009cb40782083 and mine ee82eb0c42b72bf8316ac54fffe4b320.
 
+## Result
+
+Every `run` of the two scripts that ran exits 0 (25 in all: `cover_ray` of part a, and 24 of part b), apart from the three
+row runs of the race in part a, which `run876b.sh` reran. Every control gives its stated verdict in its log (the 6 of part
+b, and the 19 lines of `mutations_M`). The whole of part b took 1 h 18 min 46 s (00:03:13 to 01:21:59 UTC), 1 h 25 min 50 s
+from the first start.
+
+| part | result on Windows x86-64 | against the stored file and the Pi |
+|---|---|---|
+| 6b1(3) covering | check PASS: 183 tiles, 579 polar rectangles, 461 links; the control with tile (11, 0) dropped FAILS with 182, 576, 458; c1check True and its `nov` control outside: True | #849's counts; the logs equal the Pi's except seconds; the rows' JSON differ in their numbers (worst relative 1.9e-2 against the stored x86 rows, 3.6e-4 against the Pi's) |
+| step (i), M = 3 | `usys_M`, `fpm_check_m1`, `fpm_M3`, the diag run, the table and data runs all exit 0 | the JSON differ from the stored files by 2.3e-14 at most |
+| lemma S, M = 3 | scan and box run pass (contraction 0.8252, Lambda 0.2923) | 3.4e-14 at most |
+| 6a(3) at the certificate's box | rho_6a = 4.128e-02 < 1: True | the stored 0.04134615071 +/- 5.3e-13, ours 0.04127932156 +/- 4.95e-12 (0.16%); assembled from upper bounds |
+| D, mutations | `disc_M` True, `mutations_M --all`: ALL VERDICTS AS EXPECTED: True | verdicts equal the Pi's; `jump_swap_M3` underflows at t = 0.06813978 against the Pi's 0.06811420 |
+| M = 5 | tables, sector (Lambda 0.2979), scan, 6a(5) at p^ rho_6a = 0.2133 < 1, partial, coords (3.249, False) and swap controls fail as stated, `bfloat` 8.71e-08 and its `w` control 226, macm3's B (0.2121) and the Pi's B (0.2125) pass | logs equal the stored ones; JSON within 6.0e-13; B's midpoints equal the Pi's in all 722 strings, its radii differ up to 24% |
+
+Discrepancies, not fixed:
+- The race in `run876.sh` (above): its three row runs failed at once; `run876b.sh` corrected it.
+- rho_6a differs from the stored value at M = 3 (0.04128 against 0.04135) and from the Pi's at M = 5 (0.2133 against 0.2125);
+  an upper-bound assembly, as AGENTS.md says of builds.
+- B's radii for M = 5 differ from the Pi's and macm3's by up to 24%, the midpoints not at all.
+- The rows' JSON of the covering differ in the numbers other than timings from the stored x86 rows (worst relative 1.9e-2, in
+  the `F0` and radius entries of the discs) and from the Pi's (worst 3.6e-4), and `ray.json` differs in 18169 of its 25721
+  leaves from the Pi's (18159 of them arb ball strings), while the check's counts and verdicts are the same.
+- Double-precision comparisons (`usys_M` (b)) and the upper-bound agreement of `fpm_check_m1` (1e-21 against the Pi's 8e-18)
+  differ as in #860; `jump_swap_M3`'s and `jump5_swap`'s underflow times differ from the Pi's (0.058585 against 0.058526).
+- `cover_c1check_mut`, `jump5_partial`, `jump5_swap` and `bfloat_w` exit 0 and are read from their logs, as on the Pi.
+
 ## The race in run876.sh (a discrepancy of the script, not fixed in it)
 
 `run876.sh` started the three row runs beside `cover_ray`, but the rows read `lemma6b1_runs_M3_winb/ray.json`, which the ray
@@ -104,4 +132,42 @@ The logs agree with the Pi's #849 logs line for line except seconds in `fpm_M3`,
 - rho_6a is assembled from upper bounds (AGENTS.md), so its difference from the stored value is expected of a different
   build; both are 0.041 and below 1.
 
-(the M = 5 set follows)
+## The rest of the M = 5 set (#861's list) (00:46:39 to 01:21:59 UTC)
+
+Every run exits 0 (`fpm_table5`, `fpm_data5`, `sector5`, `scan5`, `jump5`, `bfloat`, `jump5_macB`, `jump5_piB`), and the four
+controls give their stated verdicts in their logs (`jump5_coords` exits 2, `jump5_partial`, `jump5_swap` and `bfloat_w`
+exit 0, as on the Pi). `jump5_macB` and `jump5_piB` load macm3's and the Pi's B; both pass on Windows.
+
+| run | kind | exit | wall (s) | Pi wall (s) | verdict line |
+|---|---|---|---|---|---|
+| fpm_table5 | run | 0 | 46 | 49 | TABLE: every recommended configuration holds and every control fails: True |
+| fpm_data5 | run | 0 | 107 | 112 | start data M 5, ray 5pi/16 r0 0.0622: value radius 3.9e-10 / 3.9e-07 (the Pi's) |
+| sector5 | run | 0 | 5 | 5 | ALL CHECKS PASS (M = 5): True; Lambda = 0.2979 < 1 |
+| scan5 | run | 0 | 207 | 206 | last row M 5 rp 0.045 k 30: contraction 0.2490 ok True |
+| jump5 (6a(5) at p^, saves B) | run | 0 | 1155 | 1574 | rho_6a = 2.133e-01 < 1: True; 615 steps; max radius of B 3.29e-05 |
+| jump5_partial | ctrl | 0 | 3 | 4 | G_slow is 13 x 17: not square; lemma 6a NOT established [MUTATION partial: failure expected] |
+| jump5_coords | ctrl | 2 | 3 | 4 | rho_6a = 3.249e+00 < 1: False [MUTATION coords] |
+| jump5_swap | ctrl | 0 | 561 | 759 | backward integration failed (step size underflow at t = 0.058584731072187424): lemma 6a NOT established [MUTATION swap: failure expected] |
+| bfloat | run | 0 | 12 | 15 | max abs(B_float - mid(B)) / rad(B) = 8.71e-08 from p^ and 0.179 from x^ (inside B: must be below 1) |
+| bfloat_w | ctrl | 0 | 12 | 15 | the same ratio 226 [MUTATION w: must exceed 1] |
+| jump5_macB (macm3's B) | run | 0 | 3 | 4 | rho_6a = 2.121e-01 < 1: True |
+| jump5_piB (the Pi's B) | run | 0 | 4 | | rho_6a = 2.125e-01 < 1: True |
+
+Against the stored files (`cmp861.py` of #861 run on this folder, `compare_stored_M5.txt`): the logs of `fpm_table5`,
+`fpm_data5`, `sector5` and `scan5` agree with the stored logs in every printed number (0 differing). The JSON outputs
+differ in the last digits: `fixed_point_M_table_M5.json` 80 of 340 leaves, worst relative 6.0e-13 (`eta`);
+`fixed_point_M_data_M5.json` 7 of 36, worst 5.5e-13; `lemma6_sector_M5_rp0.08_1e-6.json` 60 of 73, worst 5.1e-13, and three
+ball strings differ in their radii only (`F_S` +/- 5.49e+24 against 5.46e+24, `Lambda_plain` +/- 6.85e-12 against 6.90e-12,
+`Lambda_diag` +/- 1.02e-11 against 1.01e-11; the tool exits 1 on them, as it did for the Pi's run, `I861-rpi5/compare_stored.txt`).
+Against the Pi's: `lemmaS_scan_M5.json` 54 of 189 leaves differ, worst 4.7e-11 (`eta`).
+
+The B of this run against the Pi's and macm3's (`compare_B_winb_pi.txt`, `compare_B_winb_mac.txt`, the Pi's tool
+`compare_B_pi_mac.py` with winb's B as its first argument, which it labels "Pi", and the other as "Mac"): 361 entries,
+615 steps each, the midpoints identical in all 722 printed strings against the Pi's B and in 718 against macm3's (the others
+differ by 5.8e-20 relative, as the Pi's differ from macm3's), no ball disjoint from either, and the radii differ: max radius
+3.293e-05 against the Pi's 3.248e-05 (ratio 1.014) and macm3's 3.030e-05 (1.087), the entrywise ratios from 0.87 to 1.24
+against the Pi's and 0.92 to 1.27 against macm3's (the Pi's against macm3's: 0.925 to 1.119). rho_6a from this B is 0.2133
+([0.2133038157 +/- 4.64e-11]) against the Pi's own 0.2125 ([0.2124578258 +/- 4.08e-11]); the bound is assembled from upper
+bounds (AGENTS.md), and both are below 1. `centre_passed.txt` has the same six numbers as the Pi's (the Pi's copy in a CRLF
+checkout differs only by its line ending).
+
