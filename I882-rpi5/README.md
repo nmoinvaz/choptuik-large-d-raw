@@ -66,7 +66,7 @@ differences: none.
 | file | difference | size |
 |---|---|---|
 | `b8m_numcheck`, `_tau`, `_weight`, `_kernel` | floating-point (numpy, ODE) checks: line 1 `1.3e-14` against `5.8e-15`, the table of relative differences at the 1e-6 to 1e-4 level, the angle of the worst point of each ray | every verdict line and every PASS/FAIL equal |
-| `b8m_scan_box` record L0 = 62 | the fixed-point iteration stops after 67 iterations, not 70 (relative change per step 1.2e-5); `hyp` V, S, b, c differ by up to 4.2e-7 | `closes` true in all four records, as stored |
+| `b8m_scan_box` record L0 = 62 | known (#885): the fixed-point iteration stops after 67 iterations, the stored record has 70 (relative change per step 1.2e-5); `hyp` V, S, b, c differ by up to 4.2e-7 | `closes` true in all four records, as stored |
 | `b7_box`, `b7_point`, `b7_adjoint`, `b7_check`, `b7_adjoint_mutT` | ball radii (certified, from the Lohner steps) | radius ratio 0.995 to 1.002 (`b7_box.json`), 0.992 to 1.000 (`b7_adjoint.json`), 0.457 to 1.466 (the two `_point` files); `b7_box` midpoints agree to 40 digits, `b7_adjoint` to 6.7 digits (its radius is 6e-8); `b7_check` radii 3.4e18 against 3.6e18 (5.6%); all PASS |
 | `b7_ift.json` | 457 of 1024 float leaves, worst relative difference 8.1e-8 | the log (41 lines) is identical |
 | `b8m_lc` | 21 numbers, worst 2.1e-15 (20.139783666122348 against 20.139783666122305) | none printed differs |
@@ -78,7 +78,7 @@ differences: none.
 
 ### Differences of format, not of numbers
 
-- The new records of `b8m_scan.py` carry a key `"d0": "0"` that the stored records lack (the stored logs predate it).
+- The new records of `b8m_scan.py` carry a key `"d0": "0"` that the stored records lack (the stored logs predate it; known, #885).
   The comparator removes it before comparing (`compare_stored.txt` says how many records).
 - `b8m_h8_K4_L73.89_d0_1e7.log`: the script copies `b8m_h8_d0.log` over the stored file, and the stored file has one
   more line, `exit 0` (`diff_against_stored.txt` shows `1 -`). Its other 12 lines are equal.
