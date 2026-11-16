@@ -27,7 +27,7 @@ every Delta, with no dip. Sweep B (from the descending branch end) falls from 1.
 | both sweeps exit 0, Delta held at every point | yes: `exits_909.txt` sweepA 0, sweepB 0; `held` true at all 12 points of each |
 | the control `--mutate dfree` exits 1 | yes: exit 1, `Delta held False` (Delta moved to 1.127044637 against the target 1.128) |
 | Delta decides: the two sweeps agree within a factor 2 at every Delta | **no**: the ratio is above 2 at 7 of 12 points (1.130 to 1.142), at most 2 at 1.120 to 1.128 (1.29 to 1.97) |
-| a Delta whose \|F\| is below half of both neighbours' in both sweeps | none (the rule applies only if Delta decides; sweep A has no such Delta, sweep B's least, 1.285e-9 at 1.136, is 0.96 of its neighbour 1.136 to 1.138) |
+| a Delta whose \|F\| is below half of both neighbours' in both sweeps | none (the rule applies only if Delta decides; sweep A has no such Delta, sweep B's least, 1.285e-9 at 1.136, is 0.96 of its neighbour's at 1.138, 1.336e-9) |
 | branch decides: the sweeps differ by more than a factor 3 at half the points or more | **yes**: 6 of 12 (1.132 3.25, 1.134 4.89, 1.136 8.00, 1.138 7.93, 1.140 5.12, 1.142 3.65) |
 
 The line is met by exactly half of the points, and the points nearest to the factor 3 are 1.132 (3.25) and 1.142 (3.65)
