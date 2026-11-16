@@ -1,0 +1,10 @@
+== check_u2 2026-11-16 00:30:20 UTC, hp at 28763c87, truth_restep.py check /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/ececf14c-b4b6-41d2-ad20-2caade87ad18/scratchpad/raw781push I874-mac/anm_pin3_D240.1244_u2.npz --threads 3 --held_ref I603-win2/chain/anm_pin3_D240.1244.npz --match /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/ececf14c-b4b6-41d2-ad20-2caade87ad18/scratchpad/raw781push/I852-mac/steps_D240.json --match_k 3 --json /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/ececf14c-b4b6-41d2-ad20-2caade87ad18/scratchpad/raw781push/I874-mac/check_u2.json
+truth_restep check I874-mac/anm_pin3_D240.1244_u2.npz: D 240.124414062500; max|z_h| 1.0001110617537678; read in 8 of 8 parts, held values eight parts, plan stored; restep of I603-win2/chain/anm_pin3_D240.1244.npz by 2 steps (0 s)
+  held offset against I603-win2/chain/anm_pin3_D240.1244.npz's: max difference 1.767418394180938e-100 (max|offset| 8.2252e-04)
+  step 1: max|dz| 1.5635832413406279e-99 (/ max|z_h| 1.5634e-99), dDelta 5.744294532362707e-103, smallest pivot 7.3062e-24, max|F| before 5.406159172179391e-94 (476 s); against steps_D240.json step 3: max|dz| 1.1622976274826494e-99, max|F| 5.406159172179391e-94: NOT equal
+  check step: max|dz| / max|z_h| 1.5634e-99 (<= 1e-97): pass
+  check residual: pinned max|F| at the state 5.4062e-94 (<= 1e-92): pass
+  check match: the step against step 3 of steps_D240.json: FAIL
+truth_restep check: FAIL (478 s)
+exit 1
+== end 2026-11-16 00:38:18 UTC
