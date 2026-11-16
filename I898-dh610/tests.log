@@ -1,2 +1,28 @@
 # 2026-11-16 04:25:52 UTC hp: cargo test --release --lib od:: -- --nocapture
    Compiling hpkernel v0.1.0 (/home/nathan/Source/choptuik-large-d-898/hp)
+    Finished `release` profile [optimized] target(s) in 20m 32s
+     Running unittests src/lib.rs (target/release/deps/_hpkernel-10638d7a708014db)
+
+running 8 tests
+Jacobian, default refinement vs eight steps: 1.6e-129
+test prec_tests::od::osolve_refinement_converged ... ok
+octo-double vs quad-double: residual 1.5e-64, 24-order jet 6.2e-63, Jacobian 1.7e-62
+test prec_tests::od::osolve_agrees_with_quad_double ... ok
+change of 2^-300: response error 2.3e-40 of J d, Newton leaves 3.6e-38 of it; state read in quad-double: 6.4e-1, 2.6e25
+test prec_tests::od::osolve_resolves_sub_quad_double_changes ... ok
+Jacobian vs central differences of the octo-double residual: 1.1e-83; horizon solves unrefined: 6.6e-4; quad-double Jacobian: 2.7e-63
+test prec_tests::od::osolve_jacobian_matches_differences ... ok
+jet order 1, change of 2^-300 in v: response error 3.0e-38 of J d; v read in quad-double: 9.4e-1; unrefined: 6.8e-2
+test prec_tests::od::osolve_jet_resolves_sub_quad_double_changes ... ok
+octo-double jet summed vs the octo-double residual at n + h: h = 2^-6 6.0e-27, 2^-7 3.5e-34, 2^-8 4.2e-39; dimension frozen: 5.5e-3, 1.4e-3, 3.4e-4
+test prec_tests::od::osolve_jet_sums_to_the_residual ... ok
+planted root from 1e-6, |z - z*| per step: 1.0e-6, 6.4e-8, 1.2e-14, 3.5e-28, 2.6e-55, 1.3e-109, 4.8e-128
+test prec_tests::od::osolve_newton_converges ... ok
+test prec_tests::od::ojet_lanes_bitwise has been running for over 60 seconds
+ojet lanes: 24 comparisons bitwise; the control first differs at (order, row) Some((26, 0))
+test prec_tests::od::ojet_lanes_bitwise ... ok
+
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 19 filtered out; finished in 588.93s
+
+# exit 0, 1822 s, peak 8084 MiB
+exit 0
