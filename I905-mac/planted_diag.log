@@ -1,0 +1,21 @@
+checks: base max|F| 2.0e-67 (<= 1e-50), Newton step Delta +1.329e-53 against -psi^T F +1.329e-53 (rel 6.2e-40, <= 1e-8), psi^T r against (J^-1 r)_Delta rel 0.0e+00 (<= 1e-20) -> pass
+|psi| 7.951e+26, max |psi_i| 9.339e+25 at row 567 of 769
+planted e_Delta eps 1e-40: eps x_Delta +1.000000e-40, psi^T dF +1.441330e-20, rel 1.4e+20 -> FAIL
+    max|dF| 6.590e-09; plain solve (J^-1 dF)_Delta +1.441330e-20, max|J^-1 dF - eps x| 1.441e-20
+planted e_Delta eps 1e-45: eps x_Delta +1.000000e-45, psi^T dF +1.441351e-35, rel 1.4e+10 -> FAIL
+    max|dF| 6.590e-14; plain solve (J^-1 dF)_Delta +1.441377e-35, max|J^-1 dF - eps x| 1.441e-35
+planted e_Delta eps 1e-50: eps x_Delta +9.354676e-51, psi^T dF -3.776611e-45, rel 4.0e+05 -> FAIL
+    max|dF| 6.590e-19; plain solve (J^-1 dF)_Delta -1.194444e-45, max|J^-1 dF - eps x| 1.342e-44
+planted random0 eps 1e-40: eps x_Delta +5.925366e-42, psi^T dF -4.219795e-08, rel 7.1e+33 -> FAIL
+    max|dF| 5.495e-04; plain solve (J^-1 dF)_Delta -4.219795e-08, max|J^-1 dF - eps x| 1.144e-06
+planted random0 eps 1e-45: eps x_Delta +5.925386e-47, psi^T dF -4.219795e-23, rel 7.1e+23 -> FAIL
+    max|dF| 5.495e-09; plain solve (J^-1 dF)_Delta -4.219795e-23, max|J^-1 dF - eps x| 1.144e-21
+planted random0 eps 1e-50: eps x_Delta +1.336382e-51, psi^T dF -4.442904e-38, rel 3.3e+13 -> FAIL
+    max|dF| 5.495e-14; plain solve (J^-1 dF)_Delta -4.402884e-38, max|J^-1 dF - eps x| 1.147e-36
+planted random1 eps 1e-40: eps x_Delta -4.009351e-43, psi^T dF +1.091389e-06, rel 2.7e+36 -> FAIL
+    max|dF| 6.616e-04; plain solve (J^-1 dF)_Delta +1.091389e-06, max|J^-1 dF - eps x| 1.175e-06
+planted random1 eps 1e-45: eps x_Delta -4.009147e-48, psi^T dF +1.091389e-21, rel 2.7e+26 -> FAIL
+    max|dF| 6.616e-09; plain solve (J^-1 dF)_Delta +1.091389e-21, max|J^-1 dF - eps x| 1.175e-21
+planted random1 eps 1e-50: eps x_Delta +0.000000e+00, psi^T dF +1.088824e-36, rel 1.1e-36 -> pass
+    max|dF| 6.616e-14; plain solve (J^-1 dF)_Delta +1.090518e-36, max|J^-1 dF - eps x| 1.174e-36
+planted: FAIL

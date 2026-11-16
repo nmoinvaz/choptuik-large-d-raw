@@ -1,0 +1,21 @@
+== planted real
+planted e_Delta: eps x_Delta +1.000000e-45, psi^T dF +1.441351e-35, rel 1.4e+10 -> FAIL
+planted random0: eps x_Delta +5.925386e-47, psi^T dF -4.219795e-23, rel 7.1e+23 -> FAIL
+planted random1: eps x_Delta -4.009147e-48, psi^T dF +1.091389e-21, rel 2.7e+26 -> FAIL
+planted: FAIL
+exit 1
+06:43
+== planted notrans
+planted e_Delta: eps x_Delta +1.000000e-45, psi^T dF -6.716433e-16, rel 6.7e+29 -> FAIL
+planted random0: eps x_Delta +5.925386e-47, psi^T dF -2.548359e-10, rel 4.3e+36 -> FAIL
+planted random1: eps x_Delta -4.009147e-48, psi^T dF -2.211498e-10, rel 5.5e+37 -> FAIL
+planted (mutation notrans): FAIL
+exit 1
+06:49
+== planted shift
+planted e_Delta: eps x_Delta +1.000000e-45, psi^T dF -2.517924e+11, rel 2.5e+56 -> FAIL
+planted random0: eps x_Delta +5.925386e-47, psi^T dF -1.919101e+16, rel 3.2e+62 -> FAIL
+planted random1: eps x_Delta -4.009147e-48, psi^T dF -2.511270e+16, rel 6.3e+63 -> FAIL
+planted (mutation shift): FAIL
+exit 1
+06:56
