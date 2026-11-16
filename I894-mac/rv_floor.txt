@@ -1,0 +1,8 @@
+K1 floored against unfloored (1600 entries, floor 1e-50): entries lowered 0; above the floor 396, of which not equal in every digit 0; at or below it 1204 (1184 below 1e-60, 20 between 1e-60 and the floor), of which not written as the floor 0; smallest unfloored entry above the floor 4.912e-50, largest at or below it 4.852e-53: OK
+K2 theta: the certificate's check 0.735467756408 (floored) and 0.735467756408 (unfloored); the reviewer's exact row sums with the certificate's weights 0.735467756407, with own weights 0.705132216712 (floored) and 0.705132216712 (unfloored)
+   with the certificate's weights the entries at the floor add at most 2.339e-48 to a weighted row sum (stated 2.4e-48), and theta rises by 5.456e-50 from the unfloored matrix: OK
+   (with the reviewer's weights, an approximate Perron vector, the rows that hold only floored entries have weights near the floor, and the floored share of a row sum is not small there: 7.051e-01; theta is the same with and without the floor to 9.1e-51)
+K3 centres 1e-17 apart: the same entries at the floor: True; entries above it differ by at most 5.29e-11 (at der/S/Nb<-val/b/N0), 37 by more than 1e-12; stated 5.3e-11 and 37: OK
+K4 saved fields: floor 1e-50; floored 1204 (recounted 1204); eta 1e-06; note 'M: upper bounds of the secant slopes. An entry below floor is written as floor: the secant of a bound that does not depend on the perturbed input is rounding noise over eta': OK
+K5 the stored matrix against the rerun: 0 of 1600 entries not equal in every digit, largest relative difference 0.00e+00; stored floor 1e-50, floored 1204: OK
+RV_FLOOR: PASS

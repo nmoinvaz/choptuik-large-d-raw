@@ -1,0 +1,7 @@
+liprep: exit 0 (must be 0), 237 s: python3 b8m_lc_liprep.py --out=RAW/I894-mac/liprep
+liprep_nofloor: exit 1 (must be 1), 232 s: python3 b8m_lc_liprep.py --out=RAW/I894-mac/liprep --mutate=nofloor
+cap_runs: exit 0 (must be 0: the two mutated runs end), 241 s: python3 review_894/rv_floor.py cap --out=RAW/I894-mac/cap --dA=1e-17
+rv_floor: exit 0 (must be 0), 2 s: python3 review_894/rv_floor.py --dir=RAW/I894-mac/liprep
+rv_floor_mut_cap: exit 3 (must be 3), 2 s: python3 review_894/rv_floor.py --dir=RAW/I894-mac/liprep --floored=RAW/I894-mac/cap/lip_cap.json
+liprep_on_cap: exit 0 (must be 0 or 1: reported as a finding), 0 s: python3 b8m_lc_liprep.py --compare=RAW/I894-mac/cap/lip_cap.json,RAW/I894-mac/cap/lip_cap_dA.json
+lipcheck_on_cap: exit 0 (must be 0 or 1: reported as a finding), 0 s: python3 b8m_lc.py --lipcheck=RAW/I894-mac/cap/lip_cap.json
