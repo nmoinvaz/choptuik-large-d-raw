@@ -1,2 +1,28 @@
 horizon series to order 160 instead of the state's 130
 held values from the fit data/held_fit.json (degree 8, 138 full-system states, D 38.020417-73.0), relative to the base
+    on 0 chord 0: max|F| 3.42e-26, |dw| 7.975e-26
+    on 0 chord 1: max|F| 2.31e-32, |dw| 3.028e-33
+    on 0 chord 2: max|F| 2.31e-32, |dw| 3.028e-33
+    on 0 chord 3: max|F| 2.31e-32, |dw| 3.028e-33
+  on 0: strong chord (4 weak directions), 4 steps after the full first step; theta at its point 2.665e-12 (bound 0.750): accepted, 1270.87 s
+  on 0: |F| 1.90e-22 -> 2.31e-32, |dz| 3.33e-13 -> 8.87e-25, lam 1, dDelta +9.04e-14, piv 2.1e-08..8.8e+28, 1558.49 s
+    on 1 trial lam 1: max|F| 9.92e-20; simplified correction / |dz| = 6.317e-08 (bound 0.750); accepted, 0.9 s
+  on 1: |F| 2.31e-32 -> 9.92e-20, |dz| 8.87e-25 -> 5.55e-32, lam 1, dDelta -2.01e-25, piv 2.1e-08..8.8e+28, 64.77 s
+    on 2 trial lam 1: max|F| 3.84e-34; simplified correction / |dz| = 1.000e+00 (bound 0.750); refused, 0.73 s
+    on 2 trial lam 0.5: max|F| 4.96e-20; simplified correction / |dz| = 2.500e-01 (bound 0.875); accepted, 0.76 s
+  on 2: |F| 9.92e-20 -> 4.96e-20, |dz| 5.55e-32 -> 1.39e-32, lam 0.5, dDelta +1.09e-32, piv 2.1e-08..8.8e+28, 75.15 s
+    on 3 trial lam 1: max|F| 2.40e-35; simplified correction / |dz| = 1.000e+00 (bound 0.750); refused, 0.96 s
+    on 3 trial lam 0.5: max|F| 2.48e-20; simplified correction / |dz| = 7.500e-01 (bound 0.875); accepted, 0.89 s
+  on 3: |F| 4.96e-20 -> 2.48e-20, |dz| 1.39e-32 -> 1.73e-32, lam 0.5, dDelta -2.72e-33, piv 2.1e-08..8.8e+28, 67.97 s
+    on 4 trial lam 1: max|F| 3.75e-35; simplified correction / |dz| = 2.000e-01 (bound 0.750); accepted, 0.7 s
+  on 4: |F| 2.48e-20 -> 3.75e-35, |dz| 1.73e-32 -> 3.47e-33, lam 1, dDelta -3.40e-33, piv 2.1e-08..8.8e+28, 63.15 s
+    on 5 trial lam 1: max|F| 1.50e-36; simplified correction / |dz| = 2.655e-25 (bound 0.750); accepted, 0.98 s
+  on 5: |F| 3.75e-35 -> 1.50e-36, |dz| 3.47e-33 -> 9.59e-58, lam 1, dDelta -6.80e-34, piv 2.1e-08..8.8e+28, 68.8 s
+    on 6 trial lam 1: max|F| 1.82e-74; simplified correction / |dz| = 6.490e-09 (bound 0.750); accepted, 0.69 s
+  on 6: |F| 1.50e-36 -> 1.82e-74, |dz| 9.59e-58 -> 6.22e-66, lam 1, dDelta +1.95e-58, piv 2.1e-08..8.8e+28, 73.82 s
+  on 7: |F| 1.82e-74 converged, Delta 1.69508875246393220 -3.0332e-17
+      elim projections {'u0': 0, 'u0q': 0, 'ladder': 6, 'failed': 0, 'skipped': 9}
+      octo-double Newton: 8 steps, max|F| 1.8e-74, converged; double-double |F| of its first two parts 1.1e+02
+base polish saved as /home/nathan/Source/choptuik-large-d-raw/I903-dh610/p160_200/base_pin3_D200.0000.npz
+base T138-win2/chain_o/anm_pin3_D200.0000.npz: D 200.0, M 32, pin 3 (held [5, 7, 9, 11, 13]), |F| 1.1e+02; N 24, eps 1e-14, h_max 1.0, corrector od (junk_only False), tol 1.0e-20 x 1.45^(D - 200.0), stalls accepted below 1e-17
+done
