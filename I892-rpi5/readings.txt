@@ -1,0 +1,11 @@
+control D 8.0: 1 Jacobians (settled), Delta moved 6.183e-10 against W 6.638e-08: within W
+
+| state | Delta (march) | \|F\| (march) | W (march) | Jacobians | end | Delta (end) | Delta end - march | \|F\| (end) | W (end) | rate per Jacobian (last, mean of last 10) | reading |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| data/sigdss_m03up.npz@9.0 | 1.164945055 | 3.44e-12 | 1.68e-06 | 1 | settled | 1.164945055 | -2.220e-16 | 3.40e-12 | 1.66e-06 | -2.22e-16, -2.22e-16 | prior-free |
+| data/sigdss_m03up.npz@10.0 | 1.154559202 | 3.19e-09 | 5.04e-03 | 150 | not settled (150 Jacobians) | 1.153750697 | -8.085e-04 | 2.34e-09 | 3.70e-03 | -4.52e-06, -4.57e-06 | undecided (last |F| 2.339e-09, Delta 1.153750697, rate -4.52e-06 per Jacobian) |
+| data/sigdss_m03up.npz@10.5 | 1.112502242 | 8.43e-07 | 6.13e+00 | 150 | not settled (150 Jacobians) | 1.115098687 | +2.596e-03 | 2.06e-08 | 1.43e-01 | +1.93e-05, +1.95e-05 | prior-held |
+| data/sigdss_m03hi.npz@10.5 | 1.139109365 | 2.59e-09 | 6.28e-03 | 111 | stalled | 1.137696236 | -1.413e-03 | 1.28e-09 | 3.09e-03 | +0.00e+00, -6.35e-06 | prior-held |
+| data/sigdss_m03hi.npz@11.0 | 1.117461404 | 1.17e-08 | 4.60e-01 | 57 | settled | 1.115934614 | -1.527e-03 | 1.01e-08 | 7.02e-02 | +2.71e-10, -2.26e-05 | prior-held |
+
+flags: g pair disagrees at the march state data/sigdss_m03hi.npz@11.0: 3.931301e+07 against 3.931234e+07
