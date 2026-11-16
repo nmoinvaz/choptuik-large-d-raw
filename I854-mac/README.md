@@ -68,3 +68,6 @@ grows to 1, and 12 h at the step limit.
   the unprojected iterate's own point max|F|. The prediction for the option: the shorter trials follow the lam-1
   trial's value times lam^4 (#839's |dz|^4 law), for example 4.6e16 at step 1's lam 1/2 against A_s1's 5.01e16. The gap
   should grow at later steps, where A_s1's P0 term dominates, and larger lam should be accepted there.
+- Step 1's lam 1/2 (00:39 UTC): point max|F| 4.63e16, 0.0626 of the lam-1 trial's 7.40e17 (1/16 within 0.2%), against
+  A_s1's 5.01e16 (0.0677). Refused, its projection failed (ladder |R| 1.05e7 → 5.21e1).
+- Step 1 accepted lam 1/4 (01:03 UTC), as A_s1 did: |F| 2.97e-12 → 2.23e-12, |dz| 1.93e-12 → 1.45e-12.
