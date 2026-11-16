@@ -76,7 +76,7 @@ verdicts in their logs.
 | cover_check | run | 0 | 1 | | LEMMA 6b_1 CHECK: PASS; ray: 903 steps; tiles glued: 183 (meeting sets: 579 polar rectangles, 461 links) |
 | cover_c1check | run | 0 | 18 | 17.3 | C1 PLANTED TRUTH: every point inside its set: True |
 | cover_c1check_mut (nov) | ctrl | 0 | 18 | 17.3 | MUTATION nov: every off-centre point outside: True (must be True); every off-centre point prints OUT |
-| cover_check_drop11_0 | ctrl | 3 | 0 | | LEMMA 6b_1 CHECK: FAIL (2 failures: tile (11, 1) agreement point not in the meeting set; point (|u| = 26.98, arg = phi_11,0) not covered without tile (11, 0)); tiles 182, 576 polar rectangles, 458 links |
+| cover_check_drop11_0 | ctrl | 3 | 0 | | LEMMA 6b_1 CHECK: FAIL (2 failures: tile (11, 1) agreement point not in the meeting set; point (abs(u) = 26.98, arg = phi_11,0) not covered without tile (11, 0)); tiles 182, 576 polar rectangles, 458 links |
 
 The counts are #849's (183 tiles, 579 pieces, 461 links, and 182, 576, 458 with the tile dropped). `cover_c1check_mut` exits 0 by
 design, as on the Pi, and its verdict is the line in its log. The logs of the check, `cover_c1check` and both controls
