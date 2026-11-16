@@ -1,0 +1,15 @@
+python-flint 0.9.0, FLINT 3.6.0, 320 bits
+THEOREM A SETS (M = 5, mutation None): HOLD
+  mutation None: holds True (must be True): ok
+THEOREM A SETS (M = 5, mutation decimal): HOLD
+  mutation decimal: holds True (must be True): ok
+THEOREM A SETS (M = 5, mutation old): FAIL: (2) X_c outside X_b
+  mutation old: holds False (must be False): ok
+THEOREM A SETS (M = 5, mutation centre): FAIL: (2) X_c outside X_b
+  mutation centre: holds False (must be False): ok
+THEOREM A SETS (M = 5, mutation kbox): FAIL: (1) K(X) outside X_c
+  mutation kbox: holds False (must be False): ok
+THEOREM A SETS (M = 5, mutation six_a): FAIL: (2) X_c outside X_b; (3) X_c outside the ball
+  mutation six_a: holds False (must be False): ok
+SELFTEST (M = 5): PASS
+exit 0
