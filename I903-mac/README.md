@@ -33,3 +33,6 @@ These are the coordinator's rungs of +10 in the horizon order, each `--ks K --ke
 |---|---|---|---|---|---|---|
 | 130 (q130) | 1 step | 4.2e-95 | 9.769e-19 | 0 | 0 | 4 min |
 | 140 from 130 | 5 steps (start 4.5e-28, first step 2.4e-12) | 3.1e-96 | 6.773e-15 | +8.844 | −4.338e-13 | 59 min |
+| 150 from 140 | **failed**: start 2.9e-26, step 4.4e-13, every λ 1 … 1/256 refused (2.1e12 … 2.2e4, ∝ λ⁴), 11 projections failed | | | | | 34 min |
+| 145 from 140 | **failed**: iterate 0 accepted at 1.1e-27 → 1.1e-20, then iterate 1 refused at every λ (2.4e-16 at λ 1, 3.7e10 … 1.5e11 below), 9 projections failed | | | | | 56 min |
+| 142 from 140 | 14 steps | 2.7e-71 | 4.499e-14 | +10.738 | −4.783e-13 | 63 min |
