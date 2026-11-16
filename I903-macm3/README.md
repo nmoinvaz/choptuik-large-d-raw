@@ -14,3 +14,13 @@ Files: `run_build_903.sh` (the build driver, with the low-memory recipe `CARGO_P
 `run_checks_903.sh` and its logs `ref_compare.log`, `scaled_compare.log`, `jets_compare.log`, `jets_mutate_kappa.log`,
 `checks_times.txt`. The references are in the raw repository at ee77cff7b: `T81/ref_main.json`, `T81/scaled_main.json`,
 `anm-mac/jets_inputs/jets_inputs.json`.
+
+## Order 135 (the coordinator's comment on #903 of 2026-11-16 16:01 UTC)
+
+`run_903_k135.sh`: a fixed-order chain at horizon order 135 from q130's base (`I903-mac/q130/base_pin3_D225.1312.npz`,
+copied in from the raw repository at its main for the run). First the rung (`rung135/`, `rung135.log`: `--ks 135
+--keep_plan 0 --steps 0 --D_max 226 --save_base 1`), then, if its octo-double polish converges to max|F| <= 1e-60 with the
+base saved, the chain (`chain_k135/`, `chain_k135.log`: `--ks 135 --keep_plan 1 --steps 400 --D_max 262`), with chain_nsr's
+flags at 6 threads, nice 10 under caffeinate. Code: worktree at main 5897ee28 with the 1f3cda09 hpkernel of this folder's
+build, which has no `Solver.series_o`, so the series are formed by the jets (the same bits, a notice in the log).
+`exits_k135.txt` has the start and exit lines.
