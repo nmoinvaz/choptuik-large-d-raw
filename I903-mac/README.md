@@ -24,3 +24,12 @@ These were measured after the failure, with `adjoint_split.py`'s system and LU a
 | ks 250 | new, 21 steps | 6.4e-21 | 4.765e-13 .. 4.35e38 | 1.0e13 | 2.29e-12 (−4.88e-13) |
 
 ln(p250/p130) is +13.10 at this point, against the model's predicted 14 to 16. Δ(q250) − Δ(q130) does not exist, because q250 has no converged state. The Newton step's Δ component, −4.9e-13, is a first-order estimate only (#905 found the first-order response unreliable for a change of horizon order).
+
+## The ladder at D 225.13 (`ladder_903.sh`, `rung_info.py`, `ladder/`)
+
+These are the coordinator's rungs of +10 in the horizon order, each `--ks K --keep_plan 0 --steps 0 --save_base 1` from the previous rung's base. A failed rung is retried at +5, then +2 (+2 stands for +2.5, since `--ks` is an integer). After a reduced success the next step doubles, up to +10. A rung counts when its base is saved and the polish ends at max|F| ≤ 1e-60. `rung_info.py` takes each base on its own system (its ks, its new plan). The table is updated as rungs finish (`ladder/rungs.jsonl`).
+
+| rung | polish | max\|F\| | p_min | ln(p_K/p_130) | Δ_K − Δ_130 | wall |
+|---|---|---|---|---|---|---|
+| 130 (q130) | 1 step | 4.2e-95 | 9.769e-19 | 0 | 0 | 4 min |
+| 140 from 130 | 5 steps (start 4.5e-28, first step 2.4e-12) | 3.1e-96 | 6.773e-15 | +8.844 | −4.338e-13 | 59 min |
