@@ -43,7 +43,7 @@ LOGS = [
     (["b5_path"], "b5_path_n1e8.log"),
     (["b5_label"], "b5_label.log"),
     (["b5_label_check"], "b5_label_check.log"),
-    (["b5_label_Ct2", "b5_label_scale"], "b5_label_mutations.log"),
+    (["b5_label_Ct2", "b5_label_scale", "b5_jump_sum"], "b5_label_mutations.log"),
     (["b5_jump"], "b5_jump.log"),
     (["b8m_scan_d0"], "b8m_scan_K4_d0_1e7.log"),
     (["b8m_h8_d0"], "b8m_h8_K4_L73.89_d0_1e7.log"),
@@ -59,7 +59,7 @@ LOGS = [
     (["b8m_lc"], "b8m_lc_K4.out"),
     (["b8m_lc_lipcheck"], "b8m_lc_lipcheck.log"),
     (["b8m_lc_mut_rho2L"], "b8m_lc_K4_mut_rho2L.out"),
-    (["b8m_lc_numcheck_mut"], "b8m_lc_numcheck_mut.log"),
+    (["b8m_lc_numcheck_d0", "b8m_lc_numcheck_weight", "b8m_lc_numcheck_mut"], "b8m_lc_numcheck_mut.log"),
     (["b8m_lc_numcheck"], "b8m_lc_numcheck_n1e3.log"),
     (["b8m_lcj"], "b8m_lcj.log"),
     (["b8m_lcj_kernel", "b8m_lcj_Om"], "b8m_lcj_mutations.log"),
@@ -67,6 +67,11 @@ LOGS = [
 JSONS = ["b5_bounds_k0.3_Z0.0085.json", "b5_label.json", "b5_jump.json", "b5_jump_d0_1e7.json", "b7_box.json", "b7_adjoint.json",
          "b7_box_point.json", "b7_adjoint_point.json", "b7_adjoint_point_mutT.json", "b7_ift.json", "b8m_lc_lip.json", "b8m_lcj.json"]
 APPENDED = ["b8m_scan_K4_box.log", "b8m_scan_K4_d0_1e7.log", "b8m_scan_K4_k0.85.log", "b8m_lc_K4.log", "b8m_lc_K4_mut_rho2L.log"]
+# the stored file is a filtered or re-ordered subset of the new text: each stored line is matched to the closest new line
+SUBSET = {"b5_mutations.log", "b5_label_mutations.log", "b8m_lc_numcheck_mut.log", "b8m_lc_numcheck_n1e3.log",
+          "b8m_lcj_mutations.log"}
+# the stored records predate the "d0": "0" key, so the new text is compared with that key removed (a format difference)
+D0KEY = {"b8m_scan_K4_box.out", "b8m_scan_K4_k0.85.log", "b8m_scan_K4_d0_1e7.log"}
 bad = []
 
 
@@ -87,7 +92,52 @@ def skel(l):
     return NUM.sub("#", l)
 
 
+def subsetcmp(label, new, old, stored_name):
+    la = [strip(x) for x in new.splitlines() if x.strip() and not re.fullmatch(r"exit \d+", x.strip())]
+    lb = [strip(x) for x in old.splitlines() if x.strip() and not re.fullmatch(r"exit \d+", x.strip()) and not x.startswith("== ") and x.strip() not in ("BATCH DONE", "rho2L-done")]
+    unmatched, ndiff, nnum, worst, used = [], 0, 0, (0.0, ""), set()
+    for j, y in enumerate(lb):
+        cand = [i for i, x in enumerate(la) if skel(x) == skel(y) and len(NUM.findall(x)) == len(NUM.findall(y))]
+        if not cand:
+            unmatched.append(j + 1)
+            continue
+        def d(i):
+            t = 0.0
+            for u, v in zip(NUM.findall(la[i]), NUM.findall(y)):
+                try:
+                    t += abs(float(u) - float(v)) / max(abs(float(u)), abs(float(v)), 1e-300)
+                except ValueError:
+                    t += 1.0
+            return t
+        i = min(cand, key=d)
+        used.add(i)
+        x = la[i]
+        if x == y:
+            continue
+        ndiff += 1
+        for u, v in zip(NUM.findall(x), NUM.findall(y)):
+            if u != v:
+                nnum += 1
+                try:
+                    r = abs(float(u) - float(v)) / max(abs(float(u)), abs(float(v)), 1e-300)
+                except ValueError:
+                    r = float("inf")
+                if r > worst[0]:
+                    worst = (r, f"stored line {j + 1}: {u} against {v}")
+    if unmatched:
+        bad.append(f"{label}: stored lines with no counterpart {unmatched[:6]}")
+    print(f"| {label} | {stored_name} | subset: {len(lb)} stored lines, {len(la) - len(used)} new lines not in stored | {len(unmatched)} | {ndiff} ({nnum}) | {worst[0]:.1e} | {worst[1]} |")
+    for j in unmatched[:3]:
+        print(f"    stored line {j} unmatched: {lb[j - 1][:170]}")
+
+
 def textcmp(label, new, old, stored_name):
+    if stored_name in D0KEY:
+        k = new.count('"d0": "0", ')
+        new = new.replace('"d0": "0", ', "")
+        print(f"|   ({label}: {k} records carry a \"d0\": \"0\" key the stored ones lack, removed for the comparison) |")
+    if stored_name in SUBSET:
+        return subsetcmp(label, new, old, stored_name)
     la = [strip(x) for x in new.splitlines()]
     lb_all = [strip(x) for x in old.splitlines() if not re.fullmatch(r"exit \d+", x.strip())]
     n = len(la)
@@ -153,27 +203,49 @@ def key(p):
     return re.sub(r"\[\d+\]", "", p).rsplit("/", 1)[-1]
 
 
+BALL = re.compile(r"^\[\s*([-+0-9.eE]*)\s*\+/-\s*([-+0-9.eE]+)\s*\]$")
+BALLS = []   # (label, path, digits agreeing, |dmid|/(r1+r2), radius ratio) over every ball leaf pair
+
+
 def jsoncmp(label, new, old):
+    import mpmath
+    mpmath.mp.dps = 120
     try:
         A, B = dict(leaves(json.loads(new))), dict(leaves(json.loads(old)))
     except ValueError as e:
         bad.append(f"{label}: unreadable ({e})"); print(f"| {label} | unreadable |"); return
     if A.keys() != B.keys():
         bad.append(f"{label}: structure differs"); print(f"| {label} | structure differs ({len(A)} against {len(B)} leaves) |"); return
-    nd, worst, other = 0, (0.0, ""), []
+    nd, worst, other, nball, nover, mind, maxr, rr = 0, (0.0, ""), [], 0, 0, 1e9, 0.0, []
     for p in A:
         x, y = A[p], B[p]
         if x == y or key(p) in TIMEKEYS:
             continue
         nd += 1
-        if isinstance(x, (int, float)) and isinstance(y, (int, float)) and not isinstance(x, bool) and not isinstance(y, bool):
+        mx, my = (BALL.match(x) if isinstance(x, str) else None), (BALL.match(y) if isinstance(y, str) else None)
+        if mx and my:
+            a, b = (mpmath.mpf(mx[1]) if mx[1] else mpmath.mpf(0)), (mpmath.mpf(my[1]) if my[1] else mpmath.mpf(0))
+            r1, r2 = mpmath.mpf(mx[2]), mpmath.mpf(my[2])
+            dm = abs(a - b)
+            nball += 1
+            ov = dm <= r1 + r2
+            nover += ov
+            if not ov:
+                bad.append(f"{label}: balls {p} are disjoint")
+            maxr = max(maxr, float(dm / (r1 + r2)))
+            if dm > 0 and max(abs(a), abs(b)) > 0:
+                mind = min(mind, float(-mpmath.log10(dm / max(abs(a), abs(b)))))
+            rr.append(float(r1 / r2))
+        elif isinstance(x, (int, float)) and isinstance(y, (int, float)) and not isinstance(x, bool) and not isinstance(y, bool):
             r = abs(x - y) / max(abs(x), abs(y), 1e-300)
             if r > worst[0]:
                 worst = (r, f"{p}: {x} against {y}")
         else:
             other.append(p)
             bad.append(f"{label}: {p} {str(x)[:40]} against {str(y)[:40]}")
-    print(f"| {label} | {len(A)} leaves | {nd} differ apart from timings | {len(other)} non-numeric | {worst[0]:.1e} | {worst[1][:80]} |")
+    ball = (f"{nball} balls, {nover} overlap, midpoints agree to >= {mind:.1f} digits, |dmid|/(r1+r2) <= {maxr:.1e}, radius ratio {min(rr):.3f} to {max(rr):.3f}"
+            if nball else "no balls")
+    print(f"| {label} | {len(A)} leaves | {nd} differ apart from timings | {len(other)} other non-numeric | {worst[0]:.1e} | {worst[1][:80]} | {ball} |")
 
 
 print("| my log(s) | stored file | lines | structural | lines with a differing number (numbers) | worst relative | where |")
@@ -187,8 +259,8 @@ for names, sname in LOGS:
         print(f"| {'+'.join(names)} | {sname} | no stored file | | | | |"); continue
     textcmp("+".join(names), "".join(parts), old, sname)
 print()
-print("| JSON | leaves | differ | non-numeric | worst relative | where |")
-print("|---|---|---|---|---|---|")
+print("| JSON | leaves | differ | non-numeric | worst relative (floats) | where | balls |")
+print("|---|---|---|---|---|---|---|")
 for j in JSONS:
     new, old = read(os.path.join(RAW, "changed", j)), stored(j)
     if new is None:

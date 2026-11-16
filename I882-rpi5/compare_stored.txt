@@ -1,0 +1,72 @@
+| my log(s) | stored file | lines | structural | lines with a differing number (numbers) | worst relative | where |
+|---|---|---|---|---|---|---|
+| b8m_atoms | b8m_atoms_K4.log | 53 (stored lines 1-53 of 106) | 0 | 0 (0) | 0.0e+00 |  |
+| b8m_identities | b8m_identities.log | 4 | 0 | 0 (0) | 0.0e+00 |  |
+| b8m_identities_rho2old+b8m_identities_q | b8m_identities_mut.log | 8 | 0 | 0 (0) | 0.0e+00 |  |
+|   (b8m_scan_box: 4 records carry a "d0": "0" key the stored ones lack, removed for the comparison) |
+| b8m_scan_box | b8m_scan_K4_box.out | 4 (stored lines 1-4 of 5) | 0 | 1 (26) | 4.3e-02 | line 4: 67 against 70 |
+| b8m_h8 | b8m_h8_K4_L73.89.log | 12 | 0 | 0 (0) | 0.0e+00 |  |
+| b8m_numcheck | b8m_numcheck_n1e3.log | 34 | 0 | 11 (11) | 5.5e-01 | line 1: 1.3e-14 against 5.8e-15 |
+| b8m_numcheck_weight+b8m_numcheck_kernel | b8m_numcheck_mut.log | 10 | 0 | 2 (2) | 5.5e-01 | line 1: 1.3e-14 against 5.8e-15 |
+| b8m_numcheck_tau | b8m_numcheck_mut_tau.log | 34 | 0 | 9 (9) | 5.5e-01 | line 1: 1.3e-14 against 5.8e-15 |
+| b5_system | b5_system.log | 4 | 0 | 0 (0) | 0.0e+00 |  |
+| b5_formulas | b5_formulas.log | 5 | 0 | 0 (0) | 0.0e+00 |  |
+| b5_numeric_residual | b5_numeric_residual.log | 23 | 0 | 0 (0) | 0.0e+00 |  |
+| b5_numeric_lip | b5_numeric_lip.log | 3 | 0 | 0 (0) | 0.0e+00 |  |
+| b5_bounds | b5_bounds_k0.3_Z0.0085.log | 12 | 0 | 0 (0) | 0.0e+00 |  |
+| b5_bounds_scan | b5_bounds_scan.log | 36 (stored lines 73-108 of 108) | 0 | 0 (0) | 0.0e+00 |  |
+| b5_bounds_rp | b5_bounds_rp.log | 12 (stored lines 13-24 of 24) | 0 | 0 (0) | 0.0e+00 |  |
+| b5_bounds_check | b5_bounds_check.log | 2 | 0 | 0 (0) | 0.0e+00 |  |
+| b5_system_epsCB+b5_system_theta+b5_system_t5+b5_formulas_res+b5_numeric_offsol+b5_bounds_check_res+b5_bounds_check_jacP+b5_bounds_jac+b5_bounds_series+b5_data_gauge+b5_threshold_sum+b5_path_stokes | b5_mutations.log | subset: 118 stored lines, 5 new lines not in stored | 0 | 0 (0) | 0.0e+00 |  |
+| b5_data | b5_data.log | 5 | 0 | 0 (0) | 0.0e+00 |  |
+| b5_threshold | b5_threshold.log | 29 | 0 | 0 (0) | 0.0e+00 |  |
+| b5_path | b5_path_n1e8.log | 5 | 0 | 0 (0) | 0.0e+00 |  |
+| b5_label | b5_label.log | 18 | 0 | 0 (0) | 0.0e+00 |  |
+| b5_label_check | b5_label_check.log | 18 | 0 | 0 (0) | 0.0e+00 |  |
+| b5_label_Ct2+b5_label_scale+b5_jump_sum | b5_label_mutations.log | subset: 6 stored lines, 48 new lines not in stored | 0 | 0 (0) | 0.0e+00 |  |
+| b5_jump | b5_jump.log | 16 | 0 | 0 (0) | 0.0e+00 |  |
+|   (b8m_scan_d0: 0 records carry a "d0": "0" key the stored ones lack, removed for the comparison) |
+| b8m_scan_d0 | b8m_scan_K4_d0_1e7.log | 1 | 0 | 0 (0) | 0.0e+00 |  |
+| b8m_h8_d0 | b8m_h8_K4_L73.89_d0_1e7.log | 12 | 0 | 0 (0) | 0.0e+00 |  |
+| b5_jump_d0 | b5_jump_d0_1e7.log | 16 | 0 | 0 (0) | 0.0e+00 |  |
+|   (b8m_scan_k085: 1 records carry a "d0": "0" key the stored ones lack, removed for the comparison) |
+| b8m_scan_k085 | b8m_scan_K4_k0.85.log | 1 | 0 | 0 (0) | 0.0e+00 |  |
+| b7_box | b7_box.log | 1 | 0 | 1 (1) | 3.6e-03 | line 1: 8.34e-09 against 8.31e-09 |
+| b7_adjoint | b7_adjoint.log | 8 | 0 | 7 (11) | 7.3e-15 | line 4: -1169189414932101317682 against -1169189414932109907617 |
+| b7_point | b7_point.log | 1 (stored lines 1-1 of 9) | 0 | 1 (1) | 1.1e-02 | line 1: 1.78e-16 against 1.80e-16 |
+| b7_check | b7_checks.log | 8 (stored lines 1-8 of 19) | 0 | 7 (21) | 5.6e-02 | line 3: 3.4e+18 against 3.6e+18 |
+| b7_adjoint_mutT | b7_adjoint_mutT.log | 8 | 0 | 8 (16) | 7.4e-02 | line 1: 1.49e-08 against 1.38e-08 |
+| b7_ift | b7_ift.log | 41 | 0 | 0 (0) | 0.0e+00 |  |
+| b7_ift_JD | b7_ift_mutJD.log | 42 | 0 | 0 (0) | 0.0e+00 |  |
+| b8m_lc | b8m_lc_K4.out | 42 | 0 | 1 (21) | 2.1e-15 | line 42: 20.139783666122348 against 20.139783666122305 |
+| b8m_lc_lipcheck | b8m_lc_lipcheck.log | 1 | 0 | 0 (0) | 0.0e+00 |  |
+| b8m_lc_mut_rho2L | b8m_lc_K4_mut_rho2L.out | 2 | 0 | 1 (19) | 4.0e-03 | line 1: 9.146778433456963e-07 against 9.18336951880895e-07 |
+| b8m_lc_numcheck_d0+b8m_lc_numcheck_weight+b8m_lc_numcheck_mut | b8m_lc_numcheck_mut.log | subset: 9 stored lines, 10 new lines not in stored | 0 | 0 (0) | 0.0e+00 |  |
+| b8m_lc_numcheck | b8m_lc_numcheck_n1e3.log | subset: 6 stored lines, 0 new lines not in stored | 0 | 1 (1) | 1.6e-01 | stored line 2: 1.18e-20 against 1.40e-20 |
+| b8m_lcj | b8m_lcj.log | 13 | 0 | 0 (0) | 0.0e+00 |  |
+| b8m_lcj_kernel+b8m_lcj_Om | b8m_lcj_mutations.log | subset: 4 stored lines, 22 new lines not in stored | 0 | 1 (3) | 4.1e-07 | stored line 3: 0.02135935140664794 against 0.02135936024788961 |
+
+| JSON | leaves | differ | non-numeric | worst relative (floats) | where | balls |
+|---|---|---|---|---|---|---|
+| b5_bounds_k0.3_Z0.0085.json | 134 leaves | 39 differ apart from timings | 0 other non-numeric | 4.4e-15 | [0]/eta_at_Z/c[1]: 9.005213606575071e-07 against 9.005213606575032e-07 | no balls |
+| b5_label.json | 76 leaves | 2 differ apart from timings | 0 other non-numeric | 2.6e-15 | /lemmaS_lip: 0.9519359916209653 against 0.9519359916209678 | no balls |
+| b5_jump.json | 16 leaves | 3 differ apart from timings | 0 other non-numeric | 3.7e-16 | /xPhi[0]: 39784.3708058103 against 39784.370805810286 | no balls |
+| b5_jump_d0_1e7.json | 16 leaves | 3 differ apart from timings | 0 other non-numeric | 4.4e-16 | /CE: 2.597492497090147e+33 against 2.5974924970901457e+33 | no balls |
+| b7_box.json | 27 leaves | 15 differ apart from timings | 0 other non-numeric | 2.6e-03 | /state_rad: 8.336521709062517e-09 against 8.314438276757485e-09 | 14 balls, 14 overlap, midpoints agree to >= 40.0 digits, |dmid|/(r1+r2) <= 6.9e-46, radius ratio 0.995 to 1.002 |
+| b7_adjoint.json | 34 leaves | 28 differ apart from timings | 0 other non-numeric | 3.2e-04 | /state_rad: 6.236048344376854e-08 against 6.238027194793716e-08 | 26 balls, 26 overlap, midpoints agree to >= 6.7 digits, |dmid|/(r1+r2) <= 2.9e-12, radius ratio 0.992 to 1.000 |
+| b7_box_point.json | 27 leaves | 17 differ apart from timings | 0 other non-numeric | 8.8e-03 | /state_rad: 1.7809160103688687e-16 against 1.7967875673235513e-16 | 16 balls, 16 overlap, midpoints agree to >= 1000000000.0 digits, |dmid|/(r1+r2) <= 0.0e+00, radius ratio 0.457 to 1.008 |
+| b7_adjoint_point.json | 34 leaves | 30 differ apart from timings | 0 other non-numeric | 4.4e-02 | /chi_rad_rel: 2.2923850141080788e-08 against 2.397739835150377e-08 | 28 balls, 28 overlap, midpoints agree to >= -0.3 digits, |dmid|/(r1+r2) <= 9.8e-09, radius ratio 0.629 to 1.466 |
+| b7_adjoint_point_mutT.json | 34 leaves | 30 differ apart from timings | 0 other non-numeric | 7.5e-02 | /chi_rad_rel: 1.4937007803944602e-08 against 1.3816926475584913e-08 | 28 balls, 28 overlap, midpoints agree to >= -0.3 digits, |dmid|/(r1+r2) <= 9.8e-09, radius ratio 0.629 to 1.466 |
+| b7_ift.json | 1024 leaves | 457 differ apart from timings | 0 other non-numeric | 8.1e-08 | /rows[58][3][1]: 7.530354035883073e-11 against 7.530353428729857e-11 | no balls |
+| b8m_lc_lip.json | unchanged or not run (no changed/ copy) | | | | |
+| b8m_lcj.json | unchanged or not run (no changed/ copy) | | | | |
+
+| appended log | records before | records appended | closes (stored / Pi) | worst relative of hyp, ratio, diag | status |
+|---|---|---|---|---|---|
+| b8m_scan_K4_box.log | 5 | 4 | 4 of 4 equal | 4.2e-07 (L0 62.0 hyp.V) | prefix intact |
+| b8m_scan_K4_d0_1e7.log | 1 | 1 | 1 of 1 equal | 0.0e+00 () | prefix intact |
+| b8m_scan_K4_k0.85.log | 1 | 1 | 1 of 1 equal | 0.0e+00 () | prefix intact |
+| b8m_lc_K4.log | 1 | 1 | 1 of 1 equal | 0.0e+00 () | prefix intact |
+| b8m_lc_K4_mut_rho2L.log | 1 | 1 | 1 of 1 equal | 8.7e-04 (L0 73.89 diag.int_F) | prefix intact |
+
+structural, count or flag differences: none
