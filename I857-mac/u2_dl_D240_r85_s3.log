@@ -1,0 +1,10 @@
+== u2_dl_D240_r85_s3 2026-11-16 03:05:05 UTC, hp at 28763c87, step_spread.py /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/ececf14c-b4b6-41d2-ad20-2caade87ad18/scratchpad/raw781push I874-mac/anm_pin3_D240.1244_u2.npz --threads 3 --seeds 3 --controls 0 --repeat 0 --blocks Delta --rel 1e-85 --ref 5.744294532362707e-103 --json /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/ececf14c-b4b6-41d2-ad20-2caade87ad18/scratchpad/raw781push/I857-mac/u2/dl_D240_r85_s3.json
+step_spread I874-mac/anm_pin3_D240.1244_u2.npz: D 240.1244140625, M 32, K 5, L 769; rel 1e-85, steps 1, seeds [3]; pinned max|F| (octo) 5.4062e-94 (2 s)
+  the system (#837): truth read in 8 of 8 parts, held values eight parts, plan stored
+  unperturbed            move 0.000e+00: dDelta +5.7442945324e-103, max|dz| 1.5636e-99, smallest pivot 7.3062e-24, max|F| 5.4062e-94 (448 s)
+  Delta seed 3           move 1.687e-85: dDelta -1.6865154874e-85, max|dz| 1.6865e-85, smallest pivot 7.3062e-24, max|F| 1.9879e-54 (484 s)
+  check: the unperturbed dDelta 5.744294532362707e-103 against --ref 5.744294532362707e-103: equal: pass
+  verdict: not determined; the Delta seeds' dDelta -1.686515e-85 .. -1.686515e-85, ratio to the unperturbed -2.936e+17 .. -2.936e+17, largest relative deviation 2.94e+17 (bar 0.001); spread 1.6865e-85, sd 0.0
+step_spread: PASS (933 s)
+exit 0
+== end 2026-11-16 03:20:39 UTC

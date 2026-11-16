@@ -1,0 +1,33 @@
+== linear_selftest 2026-11-16 03:20:39 UTC, linear.py --selftest
+planted: scale 1.0, floor 0.0 (want pass)
+linear: D 240.12441406, seed 1, reading planted
+  rel 1e-83: move 1.686600e-83, dev +1.697627e-83, |dev| / move 1.00654
+  rel 1e-84: move 1.686600e-84, dev +1.687703e-84, |dev| / move 1.00065
+  rel 1e-85: move 1.686600e-85, dev +1.686710e-85, |dev| / move 1.00007
+  noise at rel 1e-85: dev(1) +1.686710e-85, dev(3) -1.686490e-85, moves 1.686600e-85, 1.686600e-85, sum +2.205400e-89
+  check same start: power's same-start check: pass
+  check linear: p 1.0025, 1.0003 in [0.9, 1.1]: pass
+  check ratio: |dev| / move in [0.99, 1.01] at each rel: pass
+  check noise: n = |dev(1) + dev(3)| / (2 move) 6.538e-05 (< 1e-3): pass
+planted: scale 1.02, floor 0.0 (want FAIL)
+linear: D 240.12441406, seed 1, reading planted
+  rel 1e-83: move 1.686600e-83, dev +1.731359e-83, |dev| / move 1.02654
+  rel 1e-84: move 1.686600e-84, dev +1.721435e-84, |dev| / move 1.02065
+  rel 1e-85: move 1.686600e-85, dev +1.720442e-85, |dev| / move 1.02007
+  noise at rel 1e-85: dev(1) +1.720442e-85, dev(3) -1.720222e-85, moves 1.686600e-85, 1.686600e-85, sum +2.205400e-89
+  check same start: power's same-start check: pass
+  check linear: p 1.0025, 1.0003 in [0.9, 1.1]: pass
+  check ratio: |dev| / move in [0.99, 1.01] at each rel: FAIL
+  check noise: n = |dev(1) + dev(3)| / (2 move) 6.538e-05 (< 1e-3): pass
+planted: scale 1.0, floor 0.01 (want FAIL)
+linear: D 240.12441406, seed 1, reading planted
+  rel 1e-83: move 1.686600e-83, dev +1.697796e-83, |dev| / move 1.00664
+  rel 1e-84: move 1.686600e-84, dev +1.689389e-84, |dev| / move 1.00165
+  rel 1e-85: move 1.686600e-85, dev +1.703576e-85, |dev| / move 1.01007
+  noise at rel 1e-85: dev(1) +1.703576e-85, dev(3) -1.669624e-85, moves 1.686600e-85, 1.686600e-85, sum +3.395254e-87
+  check same start: power's same-start check: pass
+  check linear: p 1.0022, 0.9964 in [0.9, 1.1]: pass
+  check ratio: |dev| / move in [0.99, 1.01] at each rel: FAIL
+  check noise: n = |dev(1) + dev(3)| / (2 move) 1.007e-02 (< 1e-3): FAIL
+linear selftest: PASS
+exit 0

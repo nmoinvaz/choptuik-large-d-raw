@@ -1,0 +1,10 @@
+== u2_power 2026-11-16 03:20:39 UTC, hp at 28763c87, step_spread.py power /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/ececf14c-b4b6-41d2-ad20-2caade87ad18/scratchpad/raw781push/I857-mac/u2/dl_D240_r83.json /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/ececf14c-b4b6-41d2-ad20-2caade87ad18/scratchpad/raw781push/I857-mac/u2/dl_D240_r84.json /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/ececf14c-b4b6-41d2-ad20-2caade87ad18/scratchpad/raw781push/I857-mac/u2/dl_D240_r85.json --json /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/ececf14c-b4b6-41d2-ad20-2caade87ad18/scratchpad/raw781push/I857-mac/u2/power.json
+step_spread power: per D, blocks and seed, dev = dDelta(seed) - dDelta(unperturbed) at each rel, the power p between neighbouring rels, and the reading (quadratic: p in (1.8, 2.2); linear: p in (0.9, 1.1))
+  D 240.1244141, Delta, seed 1: the unperturbed step the same in the 3 runs (pass)
+    rel 1e-83 (dl_D240_r83.json): move 1.6866e-83, dDelta +1.697652e-83, dev +1.697652e-83, |dev| / move 1.0065e+00, max|dz| 1.6977e-83, smallest pivot 7.306186e-24, max|F| 1.9879e-52
+    rel 1e-84 (dl_D240_r84.json): move 1.6866e-84, dDelta +1.687728e-84, dev +1.687728e-84, |dev| / move 1.0007e+00, max|dz| 1.6877e-84, smallest pivot 7.306186e-24, max|F| 1.9879e-53
+    rel 1e-85 (dl_D240_r85.json): move 1.6866e-85, dDelta +1.686736e-85, dev +1.686736e-85, |dev| / move 1.0001e+00, max|dz| 1.6867e-85, smallest pivot 7.306186e-24, max|F| 1.9879e-54
+    p 1.0025, 1.0003: linear
+step_spread power: PASS
+exit 0
+== end 2026-11-16 03:20:39 UTC

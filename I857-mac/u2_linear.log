@@ -1,0 +1,13 @@
+== u2_linear 2026-11-16 03:20:39 UTC, linear.py /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/ececf14c-b4b6-41d2-ad20-2caade87ad18/scratchpad/raw781push/I857-mac/u2 --noise /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/ececf14c-b4b6-41d2-ad20-2caade87ad18/scratchpad/raw781push/I857-mac/u2/power_s3.json
+linear /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/ececf14c-b4b6-41d2-ad20-2caade87ad18/scratchpad/raw781push/I857-mac/u2 --noise /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/ececf14c-b4b6-41d2-ad20-2caade87ad18/scratchpad/raw781push/I857-mac/u2/power_s3.json
+linear: D 240.12441406, seed 1, reading linear
+  rel 1e-83: move 1.686626e-83, dev +1.697652e-83, |dev| / move 1.00654
+  rel 1e-84: move 1.686626e-84, dev +1.687728e-84, |dev| / move 1.00065
+  rel 1e-85: move 1.686626e-85, dev +1.686736e-85, |dev| / move 1.00007
+  noise at rel 1e-85: dev(1) +1.686736e-85, dev(3) -1.686515e-85, moves 1.686626e-85, 1.686626e-85, sum +2.205341e-89
+  check same start: power's same-start check: pass
+  check linear: p 1.0025, 1.0003 in [0.9, 1.1]: pass
+  check ratio: |dev| / move in [0.99, 1.01] at each rel: pass
+  check noise: n = |dev(1) + dev(3)| / (2 move) 6.538e-05 (< 1e-3): pass
+linear: PASS
+exit 0
