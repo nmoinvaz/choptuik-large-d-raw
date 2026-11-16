@@ -1,0 +1,127 @@
+== sigma_selftest 2026-11-16 15:06:08 UTC, sigma.py --selftest
+planted model (want pass, supports)
+sigma: g = 1 / ||e_Delta^T J^-1||_2; P(K) = ln f(K) - ln f(130), mu 1 (model.log)
+  D 237: the Delta mode at ks 130 is sigma_3 (Delta share 0.90)
+    ks 130: ln g -50.0000 (ln g - ln g(130) +0.0000); sigma 1.000e-25, 2.000e-25, 3.000e-25, 4.000e-25, 5.000e-25, 6.000e-25; P +0.00 (mu 3 +0.00)
+    ks 160: ln g -21.5444 (ln g - ln g(130) +28.4556); sigma 1.000e-25, 2.000e-25, 3.000e-25, 4.000e-25, 5.000e-25, 6.000e-25; P +28.46 (mu 3 +28.46)
+    ks 200: ln g -3.0483 (ln g - ln g(130) +46.9517); sigma 1.000e-25, 2.000e-25, 3.000e-25, 4.000e-25, 5.000e-25, 6.000e-25; P +46.95 (mu 3 +46.95)
+    ks 250: ln g -2.5835 (ln g - ln g(130) +47.4165); sigma 1.000e-25, 2.000e-25, 3.000e-25, 4.000e-25, 5.000e-25, 6.000e-25; P +47.42 (mu 3 +47.42)
+  D 249: the Delta mode at ks 130 is sigma_3 (Delta share 0.90)
+    ks 130: ln g -50.0000 (ln g - ln g(130) +0.0000); sigma 1.000e-25, 2.000e-25, 3.000e-25, 4.000e-25, 5.000e-25, 6.000e-25; P +0.00 (mu 3 +0.00)
+    ks 160: ln g -20.1188 (ln g - ln g(130) +29.8812); sigma 1.000e-25, 2.000e-25, 3.000e-25, 4.000e-25, 5.000e-25, 6.000e-25; P +29.88 (mu 3 +29.88)
+    ks 200: ln g -0.6960 (ln g - ln g(130) +49.3040); sigma 1.000e-25, 2.000e-25, 3.000e-25, 4.000e-25, 5.000e-25, 6.000e-25; P +49.30 (mu 3 +49.30)
+    ks 250: ln g -0.2080 (ln g - ln g(130) +49.7920); sigma 1.000e-25, 2.000e-25, 3.000e-25, 4.000e-25, 5.000e-25, 6.000e-25; P +49.79 (mu 3 +49.79)
+  D 253: the Delta mode at ks 130 is sigma_3 (Delta share 0.90)
+    ks 130: ln g -50.0000 (ln g - ln g(130) +0.0000); sigma 1.000e-25, 2.000e-25, 3.000e-25, 4.000e-25, 5.000e-25, 6.000e-25; P +0.00 (mu 3 +0.00)
+    ks 160: ln g -19.5440 (ln g - ln g(130) +30.4560); sigma 1.000e-25, 2.000e-25, 3.000e-25, 4.000e-25, 5.000e-25, 6.000e-25; P +30.46 (mu 3 +30.46)
+    ks 200: ln g +0.2524 (ln g - ln g(130) +50.2524); sigma 1.000e-25, 2.000e-25, 3.000e-25, 4.000e-25, 5.000e-25, 6.000e-25; P +50.25 (mu 3 +50.25)
+    ks 250: ln g +0.7498 (ln g - ln g(130) +50.7498); sigma 1.000e-25, 2.000e-25, 3.000e-25, 4.000e-25, 5.000e-25, 6.000e-25; P +50.75 (mu 3 +50.75)
+  D 60: the Delta mode at ks 130 is sigma_3 (Delta share 0.90)
+    ks 130: ln g -50.0000 (ln g - ln g(130) +0.0000); sigma 1.000e-25, 2.000e-25, 3.000e-25, 4.000e-25, 5.000e-25, 6.000e-25
+    ks 160: ln g -50.0000 (ln g - ln g(130) +0.0000); sigma 1.000e-25, 2.000e-25, 3.000e-25, 4.000e-25, 5.000e-25, 6.000e-25
+    ks 200: ln g -50.0000 (ln g - ln g(130) +0.0000); sigma 1.000e-25, 2.000e-25, 3.000e-25, 4.000e-25, 5.000e-25, 6.000e-25
+    ks 250: ln g -50.0000 (ln g - ln g(130) +0.0000); sigma 1.000e-25, 2.000e-25, 3.000e-25, 4.000e-25, 5.000e-25, 6.000e-25
+  support D 237.13: ln g(200) - ln g(130) +46.952 against P(200) +46.95 (+0.00 of it, |.| <= 0.3); ln g(250) - ln g(200) +0.465 (|.| < 1): holds
+  support D 249.01: ln g(200) - ln g(130) +49.304 against P(200) +49.30 (+0.00 of it, |.| <= 0.3); ln g(250) - ln g(200) +0.488 (|.| < 1): holds
+  support D 253.80: ln g(200) - ln g(130) +50.252 against P(200) +50.25 (+0.00 of it, |.| <= 0.3); ln g(250) - ln g(200) +0.497 (|.| < 1): holds
+  refute D 253.80: ln g(250) - ln g(130) +50.750 (|.| < ln 2): does not hold
+  check control: D 60: the largest |ln g(K) - ln g(130)| or |ln sigma_i(K) - ln sigma_i(130)| 0.00e+00 (< 0.05): pass
+  check mutation: --ks 250 --mutate=ks against ks 130 at D 253.80: equal: pass
+  check runs: every run's check, and only the horizon block changed: pass: pass
+  verdict: supports the reading
+  sigma_3 by index: D 237.13 ln sigma_3(200) - (130) +0.000, (250) - (200) +0.000; D 249.01 ln sigma_3(200) - (130) +0.000, (250) - (200) +0.000; D 253.80 ln sigma_3(200) - (130) +0.000, (250) - (200) +0.000; verdict refutes: g and sigma_3 DISAGREE
+planted flat (want pass, refutes)
+sigma: g = 1 / ||e_Delta^T J^-1||_2; P(K) = ln f(K) - ln f(130), mu 1 (model.log)
+  D 237: the Delta mode at ks 130 is sigma_3 (Delta share 0.90)
+    ks 130: ln g -50.0000 (ln g - ln g(130) +0.0000); sigma 1.000e-25, 2.000e-25, 3.000e-25, 4.000e-25, 5.000e-25, 6.000e-25; P +0.00 (mu 3 +0.00)
+    ks 160: ln g -50.0000 (ln g - ln g(130) +0.0000); sigma 1.000e-25, 2.000e-25, 3.000e-25, 4.000e-25, 5.000e-25, 6.000e-25; P +28.46 (mu 3 +28.46)
+    ks 200: ln g -50.0000 (ln g - ln g(130) +0.0000); sigma 1.000e-25, 2.000e-25, 3.000e-25, 4.000e-25, 5.000e-25, 6.000e-25; P +46.95 (mu 3 +46.95)
+    ks 250: ln g -50.0000 (ln g - ln g(130) +0.0000); sigma 1.000e-25, 2.000e-25, 3.000e-25, 4.000e-25, 5.000e-25, 6.000e-25; P +47.42 (mu 3 +47.42)
+  D 249: the Delta mode at ks 130 is sigma_3 (Delta share 0.90)
+    ks 130: ln g -50.0000 (ln g - ln g(130) +0.0000); sigma 1.000e-25, 2.000e-25, 3.000e-25, 4.000e-25, 5.000e-25, 6.000e-25; P +0.00 (mu 3 +0.00)
+    ks 160: ln g -50.0000 (ln g - ln g(130) +0.0000); sigma 1.000e-25, 2.000e-25, 3.000e-25, 4.000e-25, 5.000e-25, 6.000e-25; P +29.88 (mu 3 +29.88)
+    ks 200: ln g -50.0000 (ln g - ln g(130) +0.0000); sigma 1.000e-25, 2.000e-25, 3.000e-25, 4.000e-25, 5.000e-25, 6.000e-25; P +49.30 (mu 3 +49.30)
+    ks 250: ln g -50.0000 (ln g - ln g(130) +0.0000); sigma 1.000e-25, 2.000e-25, 3.000e-25, 4.000e-25, 5.000e-25, 6.000e-25; P +49.79 (mu 3 +49.79)
+  D 253: the Delta mode at ks 130 is sigma_3 (Delta share 0.90)
+    ks 130: ln g -50.0000 (ln g - ln g(130) +0.0000); sigma 1.000e-25, 2.000e-25, 3.000e-25, 4.000e-25, 5.000e-25, 6.000e-25; P +0.00 (mu 3 +0.00)
+    ks 160: ln g -50.0000 (ln g - ln g(130) +0.0000); sigma 1.000e-25, 2.000e-25, 3.000e-25, 4.000e-25, 5.000e-25, 6.000e-25; P +30.46 (mu 3 +30.46)
+    ks 200: ln g -50.0000 (ln g - ln g(130) +0.0000); sigma 1.000e-25, 2.000e-25, 3.000e-25, 4.000e-25, 5.000e-25, 6.000e-25; P +50.25 (mu 3 +50.25)
+    ks 250: ln g -50.0000 (ln g - ln g(130) +0.0000); sigma 1.000e-25, 2.000e-25, 3.000e-25, 4.000e-25, 5.000e-25, 6.000e-25; P +50.75 (mu 3 +50.75)
+  D 60: the Delta mode at ks 130 is sigma_3 (Delta share 0.90)
+    ks 130: ln g -50.0000 (ln g - ln g(130) +0.0000); sigma 1.000e-25, 2.000e-25, 3.000e-25, 4.000e-25, 5.000e-25, 6.000e-25
+    ks 160: ln g -50.0000 (ln g - ln g(130) +0.0000); sigma 1.000e-25, 2.000e-25, 3.000e-25, 4.000e-25, 5.000e-25, 6.000e-25
+    ks 200: ln g -50.0000 (ln g - ln g(130) +0.0000); sigma 1.000e-25, 2.000e-25, 3.000e-25, 4.000e-25, 5.000e-25, 6.000e-25
+    ks 250: ln g -50.0000 (ln g - ln g(130) +0.0000); sigma 1.000e-25, 2.000e-25, 3.000e-25, 4.000e-25, 5.000e-25, 6.000e-25
+  support D 237.13: ln g(200) - ln g(130) +0.000 against P(200) +46.95 (-1.00 of it, |.| <= 0.3); ln g(250) - ln g(200) +0.000 (|.| < 1): does not hold
+  support D 249.01: ln g(200) - ln g(130) +0.000 against P(200) +49.30 (-1.00 of it, |.| <= 0.3); ln g(250) - ln g(200) +0.000 (|.| < 1): does not hold
+  support D 253.80: ln g(200) - ln g(130) +0.000 against P(200) +50.25 (-1.00 of it, |.| <= 0.3); ln g(250) - ln g(200) +0.000 (|.| < 1): does not hold
+  refute D 253.80: ln g(250) - ln g(130) +0.000 (|.| < ln 2): holds
+  check control: D 60: the largest |ln g(K) - ln g(130)| or |ln sigma_i(K) - ln sigma_i(130)| 0.00e+00 (< 0.05): pass
+  check mutation: --ks 250 --mutate=ks against ks 130 at D 253.80: equal: pass
+  check runs: every run's check, and only the horizon block changed: pass: pass
+  verdict: refutes the reading
+  sigma_3 by index: D 237.13 ln sigma_3(200) - (130) +0.000, (250) - (200) +0.000; D 249.01 ln sigma_3(200) - (130) +0.000, (250) - (200) +0.000; D 253.80 ln sigma_3(200) - (130) +0.000, (250) - (200) +0.000; verdict refutes: g and sigma_3 agree
+planted ctl (want FAIL, supports)
+sigma: g = 1 / ||e_Delta^T J^-1||_2; P(K) = ln f(K) - ln f(130), mu 1 (model.log)
+  D 237: the Delta mode at ks 130 is sigma_3 (Delta share 0.90)
+    ks 130: ln g -50.0000 (ln g - ln g(130) +0.0000); sigma 1.000e-25, 2.000e-25, 3.000e-25, 4.000e-25, 5.000e-25, 6.000e-25; P +0.00 (mu 3 +0.00)
+    ks 160: ln g -21.5444 (ln g - ln g(130) +28.4556); sigma 1.000e-25, 2.000e-25, 3.000e-25, 4.000e-25, 5.000e-25, 6.000e-25; P +28.46 (mu 3 +28.46)
+    ks 200: ln g -3.0483 (ln g - ln g(130) +46.9517); sigma 1.000e-25, 2.000e-25, 3.000e-25, 4.000e-25, 5.000e-25, 6.000e-25; P +46.95 (mu 3 +46.95)
+    ks 250: ln g -2.5835 (ln g - ln g(130) +47.4165); sigma 1.000e-25, 2.000e-25, 3.000e-25, 4.000e-25, 5.000e-25, 6.000e-25; P +47.42 (mu 3 +47.42)
+  D 249: the Delta mode at ks 130 is sigma_3 (Delta share 0.90)
+    ks 130: ln g -50.0000 (ln g - ln g(130) +0.0000); sigma 1.000e-25, 2.000e-25, 3.000e-25, 4.000e-25, 5.000e-25, 6.000e-25; P +0.00 (mu 3 +0.00)
+    ks 160: ln g -20.1188 (ln g - ln g(130) +29.8812); sigma 1.000e-25, 2.000e-25, 3.000e-25, 4.000e-25, 5.000e-25, 6.000e-25; P +29.88 (mu 3 +29.88)
+    ks 200: ln g -0.6960 (ln g - ln g(130) +49.3040); sigma 1.000e-25, 2.000e-25, 3.000e-25, 4.000e-25, 5.000e-25, 6.000e-25; P +49.30 (mu 3 +49.30)
+    ks 250: ln g -0.2080 (ln g - ln g(130) +49.7920); sigma 1.000e-25, 2.000e-25, 3.000e-25, 4.000e-25, 5.000e-25, 6.000e-25; P +49.79 (mu 3 +49.79)
+  D 253: the Delta mode at ks 130 is sigma_3 (Delta share 0.90)
+    ks 130: ln g -50.0000 (ln g - ln g(130) +0.0000); sigma 1.000e-25, 2.000e-25, 3.000e-25, 4.000e-25, 5.000e-25, 6.000e-25; P +0.00 (mu 3 +0.00)
+    ks 160: ln g -19.5440 (ln g - ln g(130) +30.4560); sigma 1.000e-25, 2.000e-25, 3.000e-25, 4.000e-25, 5.000e-25, 6.000e-25; P +30.46 (mu 3 +30.46)
+    ks 200: ln g +0.2524 (ln g - ln g(130) +50.2524); sigma 1.000e-25, 2.000e-25, 3.000e-25, 4.000e-25, 5.000e-25, 6.000e-25; P +50.25 (mu 3 +50.25)
+    ks 250: ln g +0.7498 (ln g - ln g(130) +50.7498); sigma 1.000e-25, 2.000e-25, 3.000e-25, 4.000e-25, 5.000e-25, 6.000e-25; P +50.75 (mu 3 +50.75)
+  D 60: the Delta mode at ks 130 is sigma_3 (Delta share 0.90)
+    ks 130: ln g -50.0000 (ln g - ln g(130) +0.0000); sigma 1.000e-25, 2.000e-25, 3.000e-25, 4.000e-25, 5.000e-25, 6.000e-25
+    ks 160: ln g -50.0000 (ln g - ln g(130) +0.0000); sigma 1.000e-25, 2.000e-25, 3.000e-25, 4.000e-25, 5.000e-25, 6.000e-25
+    ks 200: ln g -50.0000 (ln g - ln g(130) +0.0000); sigma 1.000e-25, 2.000e-25, 3.000e-25, 4.000e-25, 5.000e-25, 6.000e-25
+    ks 250: ln g -49.9000 (ln g - ln g(130) +0.1000); sigma 1.000e-25, 2.000e-25, 3.000e-25, 4.000e-25, 5.000e-25, 6.000e-25
+  support D 237.13: ln g(200) - ln g(130) +46.952 against P(200) +46.95 (+0.00 of it, |.| <= 0.3); ln g(250) - ln g(200) +0.465 (|.| < 1): holds
+  support D 249.01: ln g(200) - ln g(130) +49.304 against P(200) +49.30 (+0.00 of it, |.| <= 0.3); ln g(250) - ln g(200) +0.488 (|.| < 1): holds
+  support D 253.80: ln g(200) - ln g(130) +50.252 against P(200) +50.25 (+0.00 of it, |.| <= 0.3); ln g(250) - ln g(200) +0.497 (|.| < 1): holds
+  refute D 253.80: ln g(250) - ln g(130) +50.750 (|.| < ln 2): does not hold
+  check control: D 60: the largest |ln g(K) - ln g(130)| or |ln sigma_i(K) - ln sigma_i(130)| 1.00e-01 (< 0.05): FAIL
+  check mutation: --ks 250 --mutate=ks against ks 130 at D 253.80: equal: pass
+  check runs: every run's check, and only the horizon block changed: pass: pass
+  verdict: supports the reading
+  sigma_3 by index: D 237.13 ln sigma_3(200) - (130) +0.000, (250) - (200) +0.000; D 249.01 ln sigma_3(200) - (130) +0.000, (250) - (200) +0.000; D 253.80 ln sigma_3(200) - (130) +0.000, (250) - (200) +0.000; verdict refutes: g and sigma_3 DISAGREE
+planted mut (want FAIL, supports)
+sigma: g = 1 / ||e_Delta^T J^-1||_2; P(K) = ln f(K) - ln f(130), mu 1 (model.log)
+  D 237: the Delta mode at ks 130 is sigma_3 (Delta share 0.90)
+    ks 130: ln g -50.0000 (ln g - ln g(130) +0.0000); sigma 1.000e-25, 2.000e-25, 3.000e-25, 4.000e-25, 5.000e-25, 6.000e-25; P +0.00 (mu 3 +0.00)
+    ks 160: ln g -21.5444 (ln g - ln g(130) +28.4556); sigma 1.000e-25, 2.000e-25, 3.000e-25, 4.000e-25, 5.000e-25, 6.000e-25; P +28.46 (mu 3 +28.46)
+    ks 200: ln g -3.0483 (ln g - ln g(130) +46.9517); sigma 1.000e-25, 2.000e-25, 3.000e-25, 4.000e-25, 5.000e-25, 6.000e-25; P +46.95 (mu 3 +46.95)
+    ks 250: ln g -2.5835 (ln g - ln g(130) +47.4165); sigma 1.000e-25, 2.000e-25, 3.000e-25, 4.000e-25, 5.000e-25, 6.000e-25; P +47.42 (mu 3 +47.42)
+  D 249: the Delta mode at ks 130 is sigma_3 (Delta share 0.90)
+    ks 130: ln g -50.0000 (ln g - ln g(130) +0.0000); sigma 1.000e-25, 2.000e-25, 3.000e-25, 4.000e-25, 5.000e-25, 6.000e-25; P +0.00 (mu 3 +0.00)
+    ks 160: ln g -20.1188 (ln g - ln g(130) +29.8812); sigma 1.000e-25, 2.000e-25, 3.000e-25, 4.000e-25, 5.000e-25, 6.000e-25; P +29.88 (mu 3 +29.88)
+    ks 200: ln g -0.6960 (ln g - ln g(130) +49.3040); sigma 1.000e-25, 2.000e-25, 3.000e-25, 4.000e-25, 5.000e-25, 6.000e-25; P +49.30 (mu 3 +49.30)
+    ks 250: ln g -0.2080 (ln g - ln g(130) +49.7920); sigma 1.000e-25, 2.000e-25, 3.000e-25, 4.000e-25, 5.000e-25, 6.000e-25; P +49.79 (mu 3 +49.79)
+  D 253: the Delta mode at ks 130 is sigma_3 (Delta share 0.90)
+    ks 130: ln g -50.0000 (ln g - ln g(130) +0.0000); sigma 1.000e-25, 2.000e-25, 3.000e-25, 4.000e-25, 5.000e-25, 6.000e-25; P +0.00 (mu 3 +0.00)
+    ks 160: ln g -19.5440 (ln g - ln g(130) +30.4560); sigma 1.000e-25, 2.000e-25, 3.000e-25, 4.000e-25, 5.000e-25, 6.000e-25; P +30.46 (mu 3 +30.46)
+    ks 200: ln g +0.2524 (ln g - ln g(130) +50.2524); sigma 1.000e-25, 2.000e-25, 3.000e-25, 4.000e-25, 5.000e-25, 6.000e-25; P +50.25 (mu 3 +50.25)
+    ks 250: ln g +0.7498 (ln g - ln g(130) +50.7498); sigma 1.000e-25, 2.000e-25, 3.000e-25, 4.000e-25, 5.000e-25, 6.000e-25; P +50.75 (mu 3 +50.75)
+  D 60: the Delta mode at ks 130 is sigma_3 (Delta share 0.90)
+    ks 130: ln g -50.0000 (ln g - ln g(130) +0.0000); sigma 1.000e-25, 2.000e-25, 3.000e-25, 4.000e-25, 5.000e-25, 6.000e-25
+    ks 160: ln g -50.0000 (ln g - ln g(130) +0.0000); sigma 1.000e-25, 2.000e-25, 3.000e-25, 4.000e-25, 5.000e-25, 6.000e-25
+    ks 200: ln g -50.0000 (ln g - ln g(130) +0.0000); sigma 1.000e-25, 2.000e-25, 3.000e-25, 4.000e-25, 5.000e-25, 6.000e-25
+    ks 250: ln g -50.0000 (ln g - ln g(130) +0.0000); sigma 1.000e-25, 2.000e-25, 3.000e-25, 4.000e-25, 5.000e-25, 6.000e-25
+  support D 237.13: ln g(200) - ln g(130) +46.952 against P(200) +46.95 (+0.00 of it, |.| <= 0.3); ln g(250) - ln g(200) +0.465 (|.| < 1): holds
+  support D 249.01: ln g(200) - ln g(130) +49.304 against P(200) +49.30 (+0.00 of it, |.| <= 0.3); ln g(250) - ln g(200) +0.488 (|.| < 1): holds
+  support D 253.80: ln g(200) - ln g(130) +50.252 against P(200) +50.25 (+0.00 of it, |.| <= 0.3); ln g(250) - ln g(200) +0.497 (|.| < 1): holds
+  refute D 253.80: ln g(250) - ln g(130) +50.750 (|.| < ln 2): does not hold
+  check control: D 60: the largest |ln g(K) - ln g(130)| or |ln sigma_i(K) - ln sigma_i(130)| 0.00e+00 (< 0.05): pass
+  check mutation: --ks 250 --mutate=ks against ks 130 at D 253.80: NOT equal: FAIL
+  check runs: every run's check, and only the horizon block changed: pass: pass
+  verdict: supports the reading
+  sigma_3 by index: D 237.13 ln sigma_3(200) - (130) +0.000, (250) - (200) +0.000; D 249.01 ln sigma_3(200) - (130) +0.000, (250) - (200) +0.000; D 253.80 ln sigma_3(200) - (130) +0.000, (250) - (200) +0.000; verdict refutes: g and sigma_3 DISAGREE
+sigma selftest: PASS
+exit 0
