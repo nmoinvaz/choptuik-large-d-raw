@@ -54,3 +54,25 @@ So at the base the adapter is consistent, and 0.1419 is the right \|b\|. The sta
 The smoke test's starts (3.8e-31 to 3.7e-34) all lie above the level that chain_nsr's corrector converges from. In its log a start at 5.0e-34 is refused at the chord (θ 1.01), and starts at 6.5e-36 and 3.7e-36 converge in 4 steps. At N 4 the predictor cannot reach that level even at a = 1.9e-7, so the failure is laid to the predictor's order (a hypothesis, which the N 24 pilot tests).
 
 One point to watch: F_D's central-difference error scales as h² with a coefficient that puts the horizon block's D-scale near 1e-21 at fixed z. So a D move inside the corrector must stay small, or be followed by the projection.
+
+## Pilot 1, N 24 from chain_nsr's D 259.8875 (`pilot1/`)
+
+Command: chain_nsr's flags at `--threads 4 --qd_it 12`, with `--steps 1 --arclength 1 --a0 0.00097`, code wip/xf-842 d5bf8536. chain_nsr runs `--qd_it 20`; the 12 here was a slip. The series took 5131 s and is saved as `arcjet_000_D259.887490.npz`. Pilot 2 reads it back with `--arc_jet`.
+
+The run did not converge, and the cause is the bordered D move. It was stopped in attempt 2, at 04:14 UTC on 2026-11-16, so `arc.jsonl` holds only the header line.
+
+| quantity | chain_nsr, same step (log I603-win2 step 100) | pilot 1, attempt 1 (a 0.00097, D 259.888449719) |
+|---|---|---|
+| start max\|F\| | 3.7e-36 | 1.07e-35 |
+| first step \|dz\| | 6.5e-35 | 1.86e-31, all Δ: 0.134·dD for dD ≈ 1.4e-30, about one double-double ulp of D |
+| chord's full first step, max\|F\| | 6.5e-34 | 3.8e-27, about 2e33·dD² |
+| after the chord | 2.9e-48, then λ = 1 steps of 6.9e-40 and 3.5e-54, converged 2.7e-72 | 1.7e-47, then a 6.8e-32 step in Δ |
+| λ = 1 trials | accepted | 1.0e-27, 2.5e-28, 6.3e-29, 1.6e-29 (∝ \|dz\|², ratio 4.0), refused |
+| λ = 1/2 trials | none | F halves exactly at every iterate: 12 iterates to 8.5e-51, not converged |
+| attempt 2 (a/2) | | start 3.3e-36, the same crawl from 1.95e-49 |
+
+The bordered step's denominators stayed at 1.01-1.02. |b| was 0.234 at the start and 0.147 after.
+
+The border adds no weak direction (`diag/`: σ_min 5.72e-38 for J, 5.78e-38 bordered). chain_nsr's fixed-D corrector converges at this D with the same pivots, 5.7e-37..1.5e37. So the crawl is the D move's, not the system's weak pivot.
+
+The fix is wip/xf-842 6d71cec5, `--arc_dhold 1e-12`: D is held, taking the fixed-D step, when the bordered dD is at most 1e-12.
