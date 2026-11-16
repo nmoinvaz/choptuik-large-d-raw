@@ -46,8 +46,26 @@ D 10.5). The M 48 state at D 4 tests this reading.
 
 ## Growth rates (`out/sm_lam.jsonl`, `out/lam_*.txt`)
 
-| eta | D | M | lambda | gamma = 1/lambda | sigdss | kernel minus sigdss | bound |
-|---|---|---|---|---|---|---|---|
-| 1 | 9 | 32 | 3.048323164261 | 0.328049208077 | 3.048509 (k_c 23), 3.048927 (k_c 15) | -1.9e-4 from k_c 23 | 4.2e-4 |
+State at 2026-11-16 18:45 UTC, the eta 0.3 chain done at M 32 (the other M, eta 1 at D 10 to 11, the scan and D 4 at
+M 48 are running). sigdss's value is its k_c 23 one at eta 1 (D 6, 9), its k_c 15 one elsewhere, and the l = 1
+solver's at eta inf.
 
-One determinant takes 33 to 60 s at M 32, and a root 4 to 9 determinants.
+| eta | D | M | lambda_g | gauge root's distance | lambda | gamma = 1/lambda | sigdss | kernel minus sigdss |
+|---|---|---|---|---|---|---|---|---|
+| 1 | 9 | 32 | 0.824242706019 | 5.0e-14 | 3.048323164261 | 0.328049208077 | 3.048509 | -1.9e-04 |
+| 1 | 6 | 32 | 0.848495391500 | 5.0e-14 | 3.806221096314 | 0.262727775054 | 3.806222 | -5.0e-07 |
+| 1 | 4 | 32 | 0.898137277267 | 1.3e-06 | 8.646844470746 | 0.115649125341 | 8.648384 | -1.5e-03 |
+| inf | 4 | 32 | 0.895299174899 | 1.5e-04 | 8.410188780024 | 0.118903395174 | 8.410420 | -2.3e-04 |
+| 0.3 | 9 | 32 | 0.808005758845 | 5.0e-14 | 3.175331722462 | 0.314927726425 | 3.175316 | +1.6e-05 |
+| 0.3 | 9.5 | 32 | 0.808267508337 | 5.0e-14 | 3.112288834615 | 0.321306939407 |  |  |
+| 0.3 | 10 | 32 | 0.808933365985 | 5.0e-14 | 3.057696912012 | 0.327043532690 | 3.081424 | -2.4e-02 |
+| 0.3 | 10.25 | 32 | 0.809391376068 | 5.0e-14 | 3.033019318405 | 0.329704461139 |  |  |
+| 0.3 | 10.5 | 32 | 0.809921139867 | 5.0e-14 | 3.009854091669 | 0.332242018896 | 3.068528 | -5.9e-02 |
+| 0.3 | 10.75 | 32 | 0.810515169160 | 5.0e-14 | 2.988055281843 | 0.334665829671 |  |  |
+| 0.3 | 11 | 32 | 0.811166800229 | 5.0e-14 | 2.967495609278 | 0.336984491864 | 3.112655 | -1.5e-01 |
+
+lambda(D) at eta 0.3 falls from D 9 to 11 on the kernel, with slopes -0.126, -0.109, -0.099, -0.093, -0.087 and
+-0.082 per unit D. sigdss's rise from 3.0685 at D 10.5 to 3.1127 at D 11 is not there.
+
+The gate of 31 was dropped at 16:50 UTC for the remaining runs (the issue's comment of that time); the load at each
+start is in the logs' start lines. One determinant takes 33 to 80 s at M 32, depending on the load.
