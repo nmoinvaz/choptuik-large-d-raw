@@ -34,7 +34,8 @@ at the plan's own error, 1.2e-30 to 4e-29 at 1e-28.
 stopped between 1e-30 and 1e-28 (D 9.6875, 9.75, 9.8125, 10.1, 10.9375, 11). `gate.log` has the 1-minute load at
 every start, 22 to 30.7.
 
-No run failed and no step was halved. 30 of the 35 points took Newton's own short steps only (7 each, about 280 s).
+No run failed and no step was halved. 30 of the 35 points took Newton's own short steps only (5 to 7 each, 221 to
+326 s), as did the closure.
 The band solver's resolved and band steps ran at D 10.4375 and 10.375, which had zero-order seeds, and at D 10.875,
 10.9375 and 11.
 
