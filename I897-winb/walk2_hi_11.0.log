@@ -1,0 +1,100 @@
+C:\Users\nathan\Source\choptuik-i897\solver\matter\sigdss_solver.py:244: RuntimeWarning: overflow encountered in multiply
+  cx = c * ((n - 1) * (a2 - 1) - 2 * L * g) / x
+C:\Users\nathan\Source\choptuik-i897\solver\matter\sigdss_solver.py:245: RuntimeWarning: overflow encountered in multiply
+  ax = a * ((p * p + m * m) + 2 * L * g + (n - 1) * (1 - a2)) / (2 * x)
+C:\Users\nathan\Source\choptuik-i897\solver\matter\sigdss_solver.py:248: RuntimeWarning: overflow encountered in multiply
+  lt = L * c * a2 * sq * gq / x
+C:\Users\nathan\Source\choptuik-i897\solver\matter\sigdss_solver.py:249: RuntimeWarning: invalid value encountered in subtract
+  px = (-self.D(p, omega) + cx * p - c * p / x + pc - lt) / (x - c)
+C:\Users\nathan\Source\choptuik-i897\solver\matter\sigdss_solver.py:250: RuntimeWarning: invalid value encountered in add
+  mx = (-self.D(m, omega) - cx * m + c * m / x - pc + lt) / (x + c)
+C:\Users\nathan\Source\choptuik-i897\solver\matter\sigdss_solver.py:45: RuntimeWarning: invalid value encountered in matmul
+  return f @ M
+C:\Users\nathan\Source\choptuik-i897\solver\matter\sigdss_solver.py:249: RuntimeWarning: overflow encountered in multiply
+  px = (-self.D(p, omega) + cx * p - c * p / x + pc - lt) / (x - c)
+C:\Users\nathan\Source\choptuik-i897\solver\matter\sigdss_solver.py:250: RuntimeWarning: overflow encountered in multiply
+  mx = (-self.D(m, omega) - cx * m + c * m / x - pc + lt) / (x + c)
+C:\Users\nathan\Source\choptuik-i897\solver\matter\sigdss_solver.py:241: RuntimeWarning: overflow encountered in multiply
+  a2 = a * a
+C:\Users\nathan\Source\choptuik-i897\solver\matter\sigdss_solver.py:244: RuntimeWarning: invalid value encountered in subtract
+  cx = c * ((n - 1) * (a2 - 1) - 2 * L * g) / x
+C:\Users\nathan\Source\choptuik-i897\solver\matter\sigdss_solver.py:245: RuntimeWarning: invalid value encountered in add
+  ax = a * ((p * p + m * m) + 2 * L * g + (n - 1) * (1 - a2)) / (2 * x)
+C:\Users\nathan\Source\choptuik-i897\solver\matter\sigdss_solver.py:247: RuntimeWarning: overflow encountered in multiply
+  pc = n * c * (p + m) / (2 * x)
+  jac 0: |F| 1.0113e-08 Delta 1.115909845700 change -2.477e-05 (9 s)
+  jac 1: |F| 1.0108e-08 Delta 1.115885146942 change -2.470e-05 (19 s)
+C:\Users\nathan\Source\choptuik-i897\solver\matter\sigdss_solver.py:244: RuntimeWarning: overflow encountered in divide
+  cx = c * ((n - 1) * (a2 - 1) - 2 * L * g) / x
+  jac 2: |F| 1.0101e-08 Delta 1.115860512487 change -2.463e-05 (29 s)
+  jac 3: |F| 1.0094e-08 Delta 1.115835940313 change -2.457e-05 (39 s)
+C:\Users\nathan\Source\choptuik-i897\solver\matter\sigdss_solver.py:245: RuntimeWarning: overflow encountered in add
+  ax = a * ((p * p + m * m) + 2 * L * g + (n - 1) * (1 - a2)) / (2 * x)
+C:\Users\nathan\Source\choptuik-i897\solver\matter\sigdss_solver.py:247: RuntimeWarning: overflow encountered in divide
+  pc = n * c * (p + m) / (2 * x)
+C:\Users\nathan\Source\choptuik-i897\solver\matter\sigdss_solver.py:249: RuntimeWarning: overflow encountered in divide
+  px = (-self.D(p, omega) + cx * p - c * p / x + pc - lt) / (x - c)
+C:\Users\nathan\Source\choptuik-i897\solver\matter\sigdss_solver.py:250: RuntimeWarning: overflow encountered in divide
+  mx = (-self.D(m, omega) - cx * m + c * m / x - pc + lt) / (x + c)
+C:\Users\nathan\Source\choptuik-i897\solver\matter\sigdss_solver.py:250: RuntimeWarning: invalid value encountered in subtract
+  mx = (-self.D(m, omega) - cx * m + c * m / x - pc + lt) / (x + c)
+  jac 4: |F| 1.0091e-08 Delta 1.115799225556 change -3.671e-05 (50 s)
+  jac 5: |F| 1.0082e-08 Delta 1.115774826774 change -2.440e-05 (60 s)
+  jac 6: |F| 1.0079e-08 Delta 1.115750483101 change -2.434e-05 (71 s)
+  jac 7: |F| 1.0073e-08 Delta 1.115726204687 change -2.428e-05 (81 s)
+  jac 8: |F| 1.0070e-08 Delta 1.115726204821 change +1.341e-10 (92 s)
+  jac 9: |F| 1.0069e-08 Delta 1.115701990538 change -2.421e-05 (103 s)
+  jac 10: |F| 1.0064e-08 Delta 1.115701987077 change -3.461e-09 (113 s)
+  jac 11: |F| 1.0064e-08 Delta 1.115677831184 change -2.416e-05 (123 s)
+  jac 12: |F| 1.0059e-08 Delta 1.115653735495 change -2.410e-05 (132 s)
+  jac 13: |F| 1.0053e-08 Delta 1.115629710393 change -2.403e-05 (142 s)
+  jac 14: |F| 1.0050e-08 Delta 1.115593792424 change -3.592e-05 (151 s)
+  jac 15: |F| 1.0041e-08 Delta 1.115569933672 change -2.386e-05 (160 s)
+  jac 16: |F| 1.0039e-08 Delta 1.115569932644 change -1.028e-09 (169 s)
+  jac 17: |F| 1.0037e-08 Delta 1.115534249967 change -3.568e-05 (178 s)
+  jac 18: |F| 1.0029e-08 Delta 1.115510551868 change -2.370e-05 (188 s)
+  jac 19: |F| 1.0025e-08 Delta 1.115486909172 change -2.364e-05 (197 s)
+  jac 20: |F| 1.0021e-08 Delta 1.115463325154 change -2.358e-05 (206 s)
+  jac 21: |F| 1.0016e-08 Delta 1.115439804415 change -2.352e-05 (216 s)
+  jac 22: |F| 1.0013e-08 Delta 1.115428060657 change -1.174e-05 (227 s)
+  jac 23: |F| 1.0009e-08 Delta 1.115416333026 change -1.173e-05 (237 s)
+C:\Users\nathan\Source\choptuik-i897\solver\matter\sigdss_solver.py:245: RuntimeWarning: overflow encountered in divide
+  ax = a * ((p * p + m * m) + 2 * L * g + (n - 1) * (1 - a2)) / (2 * x)
+  jac 24: |F| 1.0007e-08 Delta 1.115392948395 change -2.338e-05 (246 s)
+  jac 25: |F| 1.0001e-08 Delta 1.115369616813 change -2.333e-05 (255 s)
+  jac 26: |F| 9.9982e-09 Delta 1.115334743386 change -3.487e-05 (265 s)
+  jac 27: |F| 9.9907e-09 Delta 1.115311570586 change -2.317e-05 (275 s)
+  jac 28: |F| 9.9869e-09 Delta 1.115276923539 change -3.465e-05 (285 s)
+  jac 29: |F| 9.9804e-09 Delta 1.115253903120 change -2.302e-05 (294 s)
+  jac 30: |F| 9.9760e-09 Delta 1.115230948695 change -2.295e-05 (303 s)
+  jac 31: |F| 9.9724e-09 Delta 1.115196628744 change -3.432e-05 (313 s)
+  jac 32: |F| 9.9654e-09 Delta 1.115185222768 change -1.141e-05 (323 s)
+  jac 33: |F| 9.9634e-09 Delta 1.115151081760 change -3.414e-05 (332 s)
+  jac 34: |F| 9.9565e-09 Delta 1.115128406410 change -2.268e-05 (341 s)
+  jac 35: |F| 9.9529e-09 Delta 1.115094503975 change -3.390e-05 (351 s)
+  jac 36: |F| 9.9451e-09 Delta 1.115060726645 change -3.378e-05 (360 s)
+  jac 37: |F| 9.9397e-09 Delta 1.115038300340 change -2.243e-05 (369 s)
+  jac 38: |F| 9.9353e-09 Delta 1.115015924879 change -2.238e-05 (379 s)
+  jac 39: |F| 9.9319e-09 Delta 1.114982489104 change -3.344e-05 (388 s)
+  jac 40: |F| 9.9242e-09 Delta 1.114960282238 change -2.221e-05 (397 s)
+  jac 41: |F| 9.9208e-09 Delta 1.114927072436 change -3.321e-05 (407 s)
+C:\Users\nathan\Source\venv-choptuik-314\Lib\site-packages\numpy\linalg\_linalg.py:2820: RuntimeWarning: overflow encountered in multiply
+  s = (x.conj() * x).real
+  jac 42: |F| 9.9158e-09 Delta 1.114905005474 change -2.207e-05 (417 s)
+  jac 43: |F| 9.9126e-09 Delta 1.114893996218 change -1.101e-05 (426 s)
+  jac 44: |F| 9.9120e-09 Delta 1.114861067917 change -3.293e-05 (436 s)
+  jac 45: |F| 9.9029e-09 Delta 1.114839187983 change -2.188e-05 (445 s)
+  jac 46: |F| 9.9005e-09 Delta 1.114817369076 change -2.182e-05 (454 s)
+  jac 47: |F| 9.8970e-09 Delta 1.114784750311 change -3.262e-05 (461 s)
+C:\Users\nathan\Source\choptuik-i897\solver\matter\sigdss_solver.py:249: RuntimeWarning: invalid value encountered in add
+  px = (-self.D(p, omega) + cx * p - c * p / x + pc - lt) / (x - c)
+  jac 48: |F| 9.8900e-09 Delta 1.114763086489 change -2.166e-05 (468 s)
+  jac 49: |F| 9.8873e-09 Delta 1.114730702628 change -3.238e-05 (475 s)
+  jac 50: |F| 9.8829e-09 Delta 1.114730702823 change +1.952e-10 (482 s)
+C:\Users\nathan\Source\choptuik-i897\solver\matter\sigdss_solver.py:248: RuntimeWarning: overflow encountered in divide
+  lt = L * c * a2 * sq * gq / x
+  jac 51: |F| 9.8827e-09 Delta 1.114709191895 change -2.151e-05 (489 s)
+  jac 52: |F| 9.8764e-09 Delta 1.114698451469 change -1.074e-05 (496 s)
+  jac 53: |F| 9.8776e-09 Delta 1.114698448292 change -3.176e-09 (503 s)
+  no decrease of |F|: stalled
+sigdss_band walk C:/Users/nathan/Source/choptuik-large-d-raw-754/I892-rpi5/walk_hi_11.0.npy: 54 Jacobians, Delta 1.114698451469, |F| 9.8776e-09, stalled (dtol 1e-9)
