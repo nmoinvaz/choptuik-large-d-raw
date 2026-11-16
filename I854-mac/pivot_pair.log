@@ -1,0 +1,24 @@
+pivot_pair selftest: exponent 1.0000, constant 1.0500e-02 (planted 1, 0.0105): PASS
+exit 0
+pivot_pair selftest --mutate=pair: exponent 1.0000, constant 7.3500e-03 (planted 1, 0.0105): FAIL
+exit 1 (the control: must be 1)
+I839-mac/A_s1_at_stop.log: | step | \|dz\| start | \|dz\| at the accepted point | pivot there | pivot/start | pivot/own |
+  | 0 | 2.20e-12 | 1.93e-12 | 2.0e-14 | 0.0091 | 0.0104 |
+  | 1 | 1.93e-12 | 1.45e-12 | 1.5e-14 | 0.0078 | 0.0103 |
+  | 2 | 1.45e-12 | 1.08e-12 | 1.1e-14 | 0.0076 | 0.0102 |
+  | 3 | 1.08e-12 | 5.42e-13 | 5.7e-15 | 0.0053 | 0.0105 |
+  | 4 | 5.42e-13 | 2.71e-13 | 2.9e-15 | 0.0054 | 0.0107 |
+  | 5 | 2.71e-13 | 2.03e-13 | 2.2e-15 | 0.0081 | 0.0108 |
+  | 6 | 2.03e-13 | 1.53e-13 | 1.6e-15 | 0.0079 | 0.0105 |
+  | 7 | 1.53e-13 | 7.63e-14 | 8.1e-16 | 0.0053 | 0.0106 |
+  | 8 | 7.63e-14 | 7.51e-14 | 7.9e-16 | 0.0104 | 0.0105 |
+  pivot/own from 0.0102 to 0.0108; fit pivot = 7.993e-03 |dz|^0.9905 over 9 points
+I854-mac/keep_s1_at_stop.log: | step | \|dz\| start | \|dz\| at the accepted point | pivot there | pivot/start | pivot/own |
+  | 0 | 2.20e-12 | 1.93e-12 | 2.0e-14 | 0.0091 | 0.0104 |
+  | 1 | 1.93e-12 | 1.45e-12 | 1.5e-14 | 0.0078 | 0.0103 |
+  | 2 | 1.45e-12 | 1.08e-12 | 1.1e-14 | 0.0076 | 0.0102 |
+  | 3 | 1.08e-12 | 5.42e-13 | 5.7e-15 | 0.0053 | 0.0105 |
+  | 4 | 5.42e-13 | 2.71e-13 | 2.9e-15 | 0.0054 | 0.0107 |
+  | 5 | 2.71e-13 | 2.03e-13 | 2.2e-15 | 0.0081 | 0.0108 |
+  | 6 | 2.03e-13 | 1.91e-13 | 2.0e-15 | 0.0099 | 0.0105 |
+  pivot/own from 0.0102 to 0.0108; fit pivot = 6.540e-03 |dz|^0.9833 over 7 points

@@ -115,3 +115,108 @@ steps, |F| falls at most by (1 − lam) per step, so the bar (1e-40 within 12 st
   have the same bulk and differ only in −(1 − lam) disp_h. So at step 6 the default's horizon data, mixed toward the
   unprojected iterate's, projected, while keep_s1's (zp_h + lam s_h) did not, even at lam 1/8. What decides the
   projection is where the trial's horizon data start, not the trial's point max|F|.
+- Step 6 accepted lam 1/16 (06:59 UTC): |F| 3.13e-13 → 2.94e-13, |dz| 2.03e-13 → 1.91e-13. The run was then stopped
+  by its PIDs (queue.log), the log saved first as keep_s1_at_stop.log (exit 143).
+
+## Stopped after step 6 (the coordinator's word, 03:04 UTC)
+
+**The answer.** keep_projected works as designed but does not remove the crawl. At lam 1 both variants evaluate
+zp + s, so the full-step trials are A_s1's, and their projection fails at every step. Only the shorter trials change.
+They lose the displacement term, since all 15 refused trials lie on one curve, 5.36e64 · move^4 within 0.3%. Yet they
+project less often: at step 6 keep_s1 refused lam 1/4 and 1/8 and took 1/16, where A_s1 took 1/4. The bar is not met.
+After 7 steps max|F| is 2.94e-13, and Delta − truth is −2.01e-12, heading to −2.203e-12.
+
+### The steps against A_s1 (side_854.log; the checks pass, the controls side_854_digit.log and side_854_power.log fail)
+
+| step | \|F\| before | \|dz\| before | A_s1 lam | keep_s1 lam | lam-1 trial, both | A_s1's refused shorter trials | keep_s1's refused shorter trials (ratio to lam-1 × lam^4) |
+|---|---|---|---|---|---|---|---|
+| 0 | 3.40e-12 | 2.20e-12 | 1/8 | 1/8 | 1.26e18 | 1/2: 7.89e16, 1/4: 4.93e15 | 1/2: 7.89e16 (1.002), 1/4: 4.93e15 (1.002) |
+| 1 | 2.97e-12 | 1.93e-12 | 1/4 | 1/4 | 7.40e17 | 1/2: 5.01e16 | 1/2: 4.63e16 (1.001) |
+| 2 | 2.23e-12 | 1.45e-12 | 1/4 | 1/4 | 2.34e17 | 1/2: 2.39e16 | 1/2: 1.46e16 (0.998) |
+| 3 | 1.67e-12 | 1.08e-12 | 1/2 | 1/2 | 7.41e16 | none | none |
+| 4 | 8.36e-13 | 5.42e-13 | 1/2 | 1/2 | 4.63e15 | none | none |
+| 5 | 4.18e-13 | 2.71e-13 | 1/4 | 1/4 | 2.90e14 | 1/2: 1.59e15 | 1/2: 1.81e13 (0.999) |
+| 6 | 3.13e-13 | 2.03e-13 | 1/4 | 1/16 | 9.16e13 | 1/2: 8.77e14 | 1/2: 5.73e12 (1.001), 1/4: 3.58e11 (1.001), 1/8: 2.24e10 (1.002) |
+
+Delta − truth before each step (table_keep_s1.log, summed from the log's three-digit dDelta): 0, −2.750e-13,
+−7.575e-13, −1.120e-12, −1.660e-12, −1.931e-12, −1.999e-12, and −2.011e-12 after step 6 (A_s1: −2.050e-12 after its
+step 6, −2.127e-12 after step 8). The trial law over all 15 refused trials of keep_s1 (table_keep_s1.log): point
+max|F| = 5.214e64 |dz|^3.9990, or 5.3589e64 move^4 within 0.19% for the lam-1 trials and 0.3% for the shorter ones.
+A_s1's lam-1 trials gave 5.3587e64 (#839).
+
+### The algebra
+
+From the projected iterate zp, with s the step there, a trial at lam is zp + lam s − (1 − lam) disp by default
+(the iterate z = zp − disp, the direction disp + s) and zp + lam s with the option. At lam 1 the two are one point.
+The projection moves only m_h and a_h, so two trials with one bulk part project to one point. While the accepted lam
+agree, the projected iterates and the lam-1 trials agree, and the logs show it: the lam-1 lines are A_s1's at all 7
+steps, the |R| of their failed projections included.
+
+### Step 5 against the prediction
+
+Step 5 did not depart. Its lam 1/2 came at the predicted 1.81e13 (2.90e14/16), 88 times below A_s1's refused 1.59e15,
+and its projection failed all the same. The departure came at step 6, towards shorter steps.
+
+### The reading
+
+The crawl is the failure of the full step's projection, not the choice of iterate. No lam-1 trial has projected in
+16 steps of the two runs, from point max|F| 1.26e18 down to 1.81e12. Without a lam-1 step, |F| falls at most by
+(1 − lam) per step. It does fall exactly so: |F_new| = (1 − lam)|F| at every step. The projection's success is not
+set by the trial's point max|F| either. Every projection path starts from the trial's own horizon data (the u0
+rung, its quad-double polish, the re-seed's polish from the point's own data, and the ladder's first rung), and the
+polish stops when its first Newton step after six block steps rises past 1e12 times the best (polish_q with
+take_all). At step 6 the default's trials, whose horizon data are mixed toward the unprojected iterate's, projected
+at lam 1/4. keep_s1's, zp_h + lam s_h, failed at lam 1/8 from point max|F| 2.2e10. So where the horizon data start
+decides. #850 and #852 (the coordinator's note) put plain Newton's quadratic region at D 240 near 1e-81 relative in
+Delta, against this start's 1e-12.
+
+The pivots, paired with their own point: the step line prints the accepted point's pivots (octo_corrector.newton_od
+prints st after z, st = zk, stt). Paired with that point's own |dz|, the smallest pivot is 0.0102–0.0108 |dz| at all
+16 accepted points of both runs, 0.0105 within the printed pivots' two digits (pivot_pair.log, with its selftest and
+control). The smallest LU pivot thus falls in proportion to |dz|, and so to |F| (|F| = 1.54 |dz| at every point).
+
+### Discrepancies
+
+- #839's table and fit paired each step's printed pivot with the |dz| the step started from: pivot/|dz| 0.0053–0.0104,
+  fit 4.1e-3 |dz|^0.98 (I839-mac README, "Stopped"). The pivot belongs to the accepted point. With that point's own
+  |dz| the ratio is 0.0102–0.0108 (above). table_839.py pairs them the same way and was used here unchanged
+  (table_keep_s1.log); pivot_pair.py gives the corrected pairing.
+- Prediction 1 (lam 1 by step 4 or 5) was wrong. It was corrected before step 4 from A_s1's log ("Prediction 1
+  corrected").
+- table_keep_s1.log exits 1, as A_s1's did: its Delta check needs planted's JSON, which a stopped run does not write.
+  off_step0.log's exit 1 is planted's (a) verdict after one step.
+- Times: keep_s1's steps took 44–123 min (step 6: 7388 s), and the dz0 runs 12.5 min each, against 30–60 min and
+  6 min estimated. Another agent's 3-thread jobs shared the CPU.
+
+### Recommended task: project the full step's point from other horizon starts
+
+- **What:** at step 0 of the D 252.6 planted test, take the lam-1 trial's bulk zp0_b + s0_b from I854-mac/dz0_keep.npz
+  (z the projected start, d its step, eight parts each). Project it with planted's settings (Reseeder with qd,
+  qd_start pred, od 3; ElimO switch 0; 3 threads) from these horizon starts:
+  - (a) zp0_h + s0_h, the logged trial, as the control;
+  - (b) zp0_h, the start's own consistent data, without the tangent step;
+  - (c) the lam-1/8 trial's projected data, extrapolated linearly in lam to 1;
+  - (d) a chain lam 1/4, 1/2, 1, each starting from the previous projection's data;
+  - (e) start (a) with polish_q's rise_max 1e40 and it_max 64.
+
+  For each converged projection, take newton_o at the projected point: its pinned max|F| and |dz|.
+- **Why:** the crawl of #839 and #854 is the failure of the full step's projection. Every failed projection stops at
+  the polish's first Newton step after the block steps, and step 6 of #854 showed that the start's horizon data
+  decide.
+- **Acceptance:**
+  - (a) reproduces the logged failure (u0 quad-double |R| 7.48e17 → 1.83e14, ladder FAILED), or the task stops.
+  - The lam-1/8 trial projects from its own data, as in the runs (the second control).
+  - For each of (b)–(e), report converged or not and the |R| reached.
+  - A start passes when its projection converges and the projected point's pinned max|F| and |dz| fall below the
+    start's 3.40e-12 and 2.20e-12, since the own test then accepts the full step. Otherwise its numbers are reported
+    against those.
+- **Cost:** about 8 projections at 13–27 min each and 2–3 newton_o calls at 3 threads, about 3–4 h. A script of about
+  100 lines.
+- **Depends on:** #854 (raw I854-mac, dz0_keep.npz).
+
+### Files
+
+keep_s1.log and keep_s1_at_stop.log (the run, stopped after step 6), side_854.py with side_854*.log (the table and
+its checks), pivot_pair.py with pivot_pair.log, table_keep_s1.log (table_839.py on keep_s1), cmp_854.py with
+cmp_dz0.log and cmp_step0.log, the dz0 runs (dz0_old, dz0_off, dz0_keep: .log and .npz), off_step0 (.log, .json,
+.npz), queue.sh and queue.log, run.sh, and the toy's logs (toy.log, toy_keepskip.log, toylogs_*.txt, toy_logs.py).

@@ -1,0 +1,15 @@
+| step | \|F\| before | \|dz\| before | A_s1 lam | keep_s1 lam | lam-1 trial (both) | A_s1 refused shorter trials | keep_s1 refused shorter trials, ratio to lam-1 × lam^4 |
+|---|---|---|---|---|---|---|---|
+| 0 | 3.40e-12 | 2.20e-12 | 1/8 | 1/8 | 1.26e+18 (equal) | 1/2: 7.89e+16, 1/4: 4.93e+15 | 1/2: 7.89e+16 (1.002), 1/4: 4.93e+15 (1.002) |
+| 1 | 2.97e-12 | 1.93e-12 | 1/4 | 1/4 | 7.40e+17 (equal) | 1/2: 5.01e+16 | 1/2: 4.63e+16 (1.001) |
+| 2 | 2.23e-12 | 1.45e-12 | 1/4 | 1/4 | 2.34e+17 (equal) | 1/2: 2.39e+16 | 1/2: 1.46e+16 (0.998) |
+| 3 | 1.67e-12 | 1.08e-12 | 1/2 | 1/2 | 7.41e+16 (equal) | none | none |
+| 4 | 8.36e-13 | 5.42e-13 | 1/2 | 1/2 | 4.63e+15 (equal) | none | none |
+| 5 | 4.18e-13 | 2.71e-13 | 1/4 | 1/4 | 2.90e+14 (equal) | 1/2: 1.59e+15 | 1/2: 1.81e+13 (0.999) |
+| 6 | 3.13e-13 | 2.03e-13 | 1/4 | 1/16 | 9.16e+13 (equal) | 1/2: 8.77e+14 | 1/2: 5.73e+12 (1.001), 1/4: 3.58e+11 (1.001), 1/8: 2.24e+10 (1.002) |
+| 7 | 2.35e-13 | 1.53e-13 | 1/2 | – | – (after a departure) | none | none |
+| 8 | 1.17e-13 | 7.63e-14 | 1/64 | – | – (after a departure) | 1/2: 1.29e+14, 1/4: 2.76e+14, 1/8: 3.73e+14, 1/16: 4.28e+14, 1/32: 4.57e+14 | none |
+algebra: keep_s1's lam-1 trial lines equal A_s1's while the accepted lam agree: pass
+law: keep_s1's refused shorter trials at lam-1 × lam^4 within 5%: pass
+side_854: PASS
+exit 0

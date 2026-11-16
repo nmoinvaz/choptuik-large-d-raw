@@ -1,0 +1,23 @@
+I854-mac/keep_s1_at_stop: no JSON (the run was stopped); the table from the log's 7 accepted steps
+| step | Delta - truth before | max\|F\| | \|dz\| | smallest pivot | pivot/\|dz\| | accepted lam |
+|---|---|---|---|---|---|---|
+| 0 | +0.0000e+00 | 3.400e-12 | 2.200e-12 | 2.000e-14 | 0.0091 | 1/8 |
+| 1 | -2.7500e-13 | 2.970e-12 | 1.930e-12 | 1.500e-14 | 0.0078 | 1/4 |
+| 2 | -7.5750e-13 | 2.230e-12 | 1.450e-12 | 1.100e-14 | 0.0076 | 1/4 |
+| 3 | -1.1200e-12 | 1.670e-12 | 1.080e-12 | 5.700e-15 | 0.0053 | 1/2 |
+| 4 | -1.6600e-12 | 8.360e-13 | 5.420e-13 | 2.900e-15 | 0.0054 | 1/2 |
+| 5 | -1.9310e-12 | 4.180e-13 | 2.710e-13 | 2.200e-15 | 0.0081 | 1/4 |
+| 6 | -1.9988e-12 | 3.130e-13 | 2.030e-13 | 2.000e-15 | 0.0099 | 1/16 |
+end: Delta - truth -2.011438e-12 summed from the steps; planted's Delta - Delta_ref none; max|F| 2.940e-13, converged False
+check: the summed Delta moves against planted's own Delta - truth, relative n/a (bound 1e-6): FAIL
+lam-1 trials (7): point max|F| = 5.214e+64 |dz|^3.9990 (max deviation 0.17%); with the exponent 4, C = 5.3589e+64 (max deviation 0.19%)
+  shorter trial: move 1.101e-12, point max|F| 7.890e+16, 1.000 of C4 move^4
+  shorter trial: move 5.507e-13, point max|F| 4.930e+15, 1.000 of C4 move^4
+  shorter trial: move 9.640e-13, point max|F| 4.630e+16, 1.000 of C4 move^4
+  shorter trial: move 7.230e-13, point max|F| 1.460e+16, 0.997 of C4 move^4
+  shorter trial: move 1.355e-13, point max|F| 1.810e+13, 1.000 of C4 move^4
+  shorter trial: move 1.017e-13, point max|F| 5.730e+12, 1.001 of C4 move^4
+  shorter trial: move 5.083e-14, point max|F| 3.580e+11, 1.001 of C4 move^4
+  shorter trial: move 2.541e-14, point max|F| 2.240e+10, 1.002 of C4 move^4
+smallest pivot = 2.634e-03 |dz|^0.9629 over 7 steps (max deviation 28.67%)
+exit 1
