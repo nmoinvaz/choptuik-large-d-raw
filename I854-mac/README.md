@@ -71,3 +71,16 @@ grows to 1, and 12 h at the step limit.
 - Step 1's lam 1/2 (00:39 UTC): point max|F| 4.63e16, 0.0626 of the lam-1 trial's 7.40e17 (1/16 within 0.2%), against
   A_s1's 5.01e16 (0.0677). Refused, its projection failed (ladder |R| 1.05e7 → 5.21e1).
 - Step 1 accepted lam 1/4 (01:03 UTC), as A_s1 did: |F| 2.97e-12 → 2.23e-12, |dz| 1.93e-12 → 1.45e-12.
+- Step 2 (02:18 UTC): lam 1 at 2.34e17 (A_s1's), lam 1/2 at 1.46e16 (1/16 of it; A_s1 2.39e16), refused; lam 1/4
+  accepted, as A_s1 did: |F| 2.23e-12 → 1.67e-12, |dz| 1.45e-12 → 1.08e-12.
+
+### Two further predictions, written 02:25 UTC before step 3
+
+1. **When lam reaches 1.** The projections so far succeeded at moves lam·|dz| up to 4.82e-13 (step 1, lam 1/4) and
+   failed from 5.5e-13 (step 0, lam 1/4, point max|F| 4.93e15). With the option a trial's point max|F| is
+   C (lam |dz|)^4 alone, so keep_s1 should accept the largest lam with lam·|dz| below about 5e-13. That gives lam 1/2 at
+   step 3 (|dz| 1.08e-12, borderline) and lam 1 by step 4 or 5, where A_s1 took 1/2 and then 1/4.
+2. **Where it goes.** In every step so far dDelta is −|dz| to the printed digits and |F| falls to (1 − lam)|F|. So the
+   steps walk to Delta − truth = −2.203e-12 whatever lam is. The option changes how fast, not where, and the Delta bar
+   (1e-30) is expected to fail. The open part is what a lam-1 step does to |F|: a quadratic fall, or a slow one if the
+   smallest pivot keeps falling with |dz| (A_s1: 4.1e-3 |dz|^0.98).
