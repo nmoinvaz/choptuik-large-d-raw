@@ -1,0 +1,33 @@
+[    2 s] python3 b5_bounds.py --kappa=0.3 --Z=0.0085 --json=b5_bounds_k0.3_Z0.0085.json: exit 0 / 0, 0 of 12 lines differ
+[    3 s] python3 b5_bounds.py --kappa=0.3 --Z=0.0085 --mutate=jac: exit 0 / 0, 0 of 13 lines differ
+[    5 s] python3 b5_bounds.py --kappa=0.3 --Z=0.0085 --mutate=series: exit 0 / 0, 0 of 13 lines differ
+[    6 s] python3 b5_bounds.py --kappa=0.3 --Z=0.0085 --rp=0.15: exit 1 / 1, 0 of 12 lines differ
+[    9 s] python3 b5_bounds.py --kappa=0.3 --Z=0.0085,0.009,0.0091: exit 1 / 1, 0 of 36 lines differ
+[   11 s] python3 b5_bounds.py check: exit 0 / 0, 0 of 2 lines differ
+[   12 s] python3 b5_jump.py --h8log=b8m_h8_K4_L73.89_d0_1e7.log --json=b5_jump_d0_1e7.json: exit 1 / FileNotFoundError: [Errno 2] No such file or directory: ', 10 of 10 lines differ
+[   12 s] python3 b5_jump.py --json=b5_jump.json: exit 0 / 0, 0 of 16 lines differ
+[   12 s] python3 b5_jump.py --mutate=sum: exit 0 / 0, 0 of 16 lines differ
+[   14 s] python3 b5_label.py --json=b5_label.json: exit 0 / 0, 0 of 18 lines differ
+[   20 s] python3 b5_label.py check: exit 0 / 0, 0 of 18 lines differ
+[   26 s] python3 b5_label.py check --mutate=Ct2: exit 0 / 0, 0 of 19 lines differ
+[   26 s] python3 b5_threshold.py: exit 0 / 0, 0 of 29 lines differ
+[   27 s] python3 b7_ift.py --adj=b7_adjoint.json --jump=b5_jump_d0_1e7.json --json=b7_ift.json: exit 1 / FileNotFoundError: [Errno 2] No such file or directory: ', 8 of 8 lines differ
+[   28 s] python3 b7_ift.py --adj=b7_adjoint.json --jump=b5_jump_d0_1e7.json --mutate=JD: exit 1 / FileNotFoundError: [Errno 2] No such file or directory: ', 8 of 8 lines differ
+[   29 s] python3 b8m_atoms.py 4 0 0: exit 0 / 0, 0 of 53 lines differ
+[   29 s] python3 b8m_h8.py 4 73.89 --log=b8m_scan_K4_box.log --rA=2e-6 --rW=2e-6: exit 1 / FileNotFoundError: [Errno 2] No such file or directory: ', 8 of 8 lines differ
+[   30 s] python3 b8m_h8.py 4 73.89 --log=b8m_scan_K4_d0_1e7.log --d0=1e7: exit 1 / FileNotFoundError: [Errno 2] No such file or directory: ', 8 of 8 lines differ
+[   30 s] python3 b8m_lc.py --lipcheck=b8m_lc_lip.json: exit 1 / FileNotFoundError: [Errno 2] No such file or directory: ', 11 of 11 lines differ
+[  339 s] python3 b8m_lc.py 4 73.89 --rA=2e-6 --rW=2e-6 --lip --log=b8m_lc_K4.log: exit 0 / 0, 1 of 42 lines differ
+[  484 s] python3 b8m_lc.py 4 73.89 --rA=2e-6 --rW=2e-6 --mutate=rho2L --log=b8m_lc_K4_mut_rho2L.log: exit 0 / 0, 1 of 2 lines differ
+[  484 s] python3 b8m_lcj.py --log=b8m_lc_K4.log --json=b8m_lcj.json: exit 1 / FileNotFoundError: [Errno 2] No such file or directory: ', 8 of 8 lines differ
+[  484 s] python3 b8m_lcj.py --log=b8m_lc_K4.log --mutate=kernel: exit 1 / FileNotFoundError: [Errno 2] No such file or directory: ', 8 of 8 lines differ
+[  497 s] python3 b8m_scan.py 4 104.68 --kappa1=0.85 --rA=2e-6 --rW=2e-6 --log=b8m_scan_K4_k0.85.log: exit 0 / 0, 1 of 1 lines differ
+[  537 s] python3 b8m_scan.py 4 73.89 --d0=1e7 --rA=2e-6 --rW=2e-6 --log=b8m_scan_K4_d0_1e7.log: exit 0 / 0, 1 of 1 lines differ
+[  675 s] python3 b8m_scan.py 4 73.89,70,66,62 --rA=2e-6 --rW=2e-6 --log=b8m_scan_K4_box.log: exit 0 / 0, 4 of 4 lines differ
+[  676 s] python3 fixed_point.py --sector=0.2: exit 0 / 0, 0 of 32 lines differ
+[  700 s] python3 fixed_point_M.py --data-table --Ms=3 --json=lemmas_M_runs/fixed_point_M_data_M3.json: exit 0 / 0, 0 of 4 lines differ
+[  715 s] python3 fixed_point_M.py --table --Ms=3: exit 0 / 0, 0 of 16 lines differ
+[  735 s] python3 fixed_point_M.py --table --Ms=3 --json=lemmas_M_runs/fixed_point_M_table_M3.json: exit 0 / 0, 0 of 16 lines differ
+[  795 s] python3 fixed_point_M.py --table --Ms=5 --json=lemmas_M_runs/fixed_point_M_table_M5.json: exit 0 / 0, 0 of 18 lines differ
+rerun: 31 commands, 8 with another exit status, 13 with differing lines
+exit 0

@@ -1,0 +1,613 @@
+[
+ {
+  "cmd": "python3 b5_bounds.py --kappa=0.3 --Z=0.0085 --json=b5_bounds_k0.3_Z0.0085.json",
+  "src": [
+   "proof/B5_inner.md"
+  ],
+  "plain": {
+   "exit": "0",
+   "lines": 12,
+   "sec": 0.9
+  },
+  "p320": {
+   "exit": "0",
+   "lines": 12,
+   "sec": 0.7
+  },
+  "same_exit": true,
+  "differing_lines": 0,
+  "first_difference": null
+ },
+ {
+  "cmd": "python3 b5_bounds.py --kappa=0.3 --Z=0.0085 --mutate=jac",
+  "src": [
+   "proof/B5_inner.md"
+  ],
+  "plain": {
+   "exit": "0",
+   "lines": 13,
+   "sec": 0.7
+  },
+  "p320": {
+   "exit": "0",
+   "lines": 13,
+   "sec": 0.8
+  },
+  "same_exit": true,
+  "differing_lines": 0,
+  "first_difference": null
+ },
+ {
+  "cmd": "python3 b5_bounds.py --kappa=0.3 --Z=0.0085 --mutate=series",
+  "src": [
+   "proof/B5_inner.md"
+  ],
+  "plain": {
+   "exit": "0",
+   "lines": 13,
+   "sec": 0.8
+  },
+  "p320": {
+   "exit": "0",
+   "lines": 13,
+   "sec": 0.9
+  },
+  "same_exit": true,
+  "differing_lines": 0,
+  "first_difference": null
+ },
+ {
+  "cmd": "python3 b5_bounds.py --kappa=0.3 --Z=0.0085 --rp=0.15",
+  "src": [
+   "proof/B5_inner.md"
+  ],
+  "plain": {
+   "exit": "1",
+   "lines": 12,
+   "sec": 0.8
+  },
+  "p320": {
+   "exit": "1",
+   "lines": 12,
+   "sec": 0.7
+  },
+  "same_exit": true,
+  "differing_lines": 0,
+  "first_difference": null
+ },
+ {
+  "cmd": "python3 b5_bounds.py --kappa=0.3 --Z=0.0085,0.009,0.0091",
+  "src": [
+   "proof/B5_inner.md"
+  ],
+  "plain": {
+   "exit": "1",
+   "lines": 36,
+   "sec": 1.4
+  },
+  "p320": {
+   "exit": "1",
+   "lines": 36,
+   "sec": 1.4
+  },
+  "same_exit": true,
+  "differing_lines": 0,
+  "first_difference": null
+ },
+ {
+  "cmd": "python3 b5_bounds.py check",
+  "src": [
+   "proof/B5_inner.md"
+  ],
+  "plain": {
+   "exit": "0",
+   "lines": 2,
+   "sec": 1.0
+  },
+  "p320": {
+   "exit": "0",
+   "lines": 2,
+   "sec": 0.9
+  },
+  "same_exit": true,
+  "differing_lines": 0,
+  "first_difference": null
+ },
+ {
+  "cmd": "python3 b5_label.py --json=b5_label.json",
+  "src": [
+   "proof/B_chain.md"
+  ],
+  "plain": {
+   "exit": "0",
+   "lines": 18,
+   "sec": 0.6
+  },
+  "p320": {
+   "exit": "0",
+   "lines": 18,
+   "sec": 1.0
+  },
+  "same_exit": true,
+  "differing_lines": 0,
+  "first_difference": null
+ },
+ {
+  "cmd": "python3 b5_label.py check",
+  "src": [
+   "proof/B_chain.md"
+  ],
+  "plain": {
+   "exit": "0",
+   "lines": 18,
+   "sec": 3.1
+  },
+  "p320": {
+   "exit": "0",
+   "lines": 18,
+   "sec": 2.8
+  },
+  "same_exit": true,
+  "differing_lines": 0,
+  "first_difference": null
+ },
+ {
+  "cmd": "python3 b5_label.py check --mutate=Ct2",
+  "src": [
+   "proof/B_chain.md"
+  ],
+  "plain": {
+   "exit": "0",
+   "lines": 19,
+   "sec": 2.8
+  },
+  "p320": {
+   "exit": "0",
+   "lines": 19,
+   "sec": 3.0
+  },
+  "same_exit": true,
+  "differing_lines": 0,
+  "first_difference": null
+ },
+ {
+  "cmd": "python3 b5_threshold.py",
+  "src": [
+   "proof/B5_inner.md"
+  ],
+  "plain": {
+   "exit": "0",
+   "lines": 29,
+   "sec": 0.3
+  },
+  "p320": {
+   "exit": "0",
+   "lines": 29,
+   "sec": 0.1
+  },
+  "same_exit": true,
+  "differing_lines": 0,
+  "first_difference": null
+ },
+ {
+  "cmd": "python3 b8m_atoms.py 4 0 0",
+  "src": [
+   "proof/B8_constants.md"
+  ],
+  "plain": {
+   "exit": "0",
+   "lines": 53,
+   "sec": 0.3
+  },
+  "p320": {
+   "exit": "0",
+   "lines": 53,
+   "sec": 0.2
+  },
+  "same_exit": true,
+  "differing_lines": 0,
+  "first_difference": null
+ },
+ {
+  "cmd": "python3 b8m_lc.py --lipcheck=b8m_lc_lip.json",
+  "src": [
+   "proof/B_chain.md"
+  ],
+  "plain": {
+   "exit": "0",
+   "lines": 1,
+   "sec": null
+  },
+  "p320": {
+   "exit": "0",
+   "lines": 1,
+   "sec": null
+  },
+  "same_exit": true,
+  "differing_lines": 0,
+  "first_difference": null,
+  "note": "run by hand after --lipcheck was made an input option of the driver"
+ },
+ {
+  "cmd": "python3 b8m_lc.py 4 73.89 --rA=2e-6 --rW=2e-6 --lip --log=b8m_lc_K4.log",
+  "src": [
+   "proof/B_chain.md"
+  ],
+  "plain": {
+   "exit": "0",
+   "lines": 42,
+   "sec": 136.6
+  },
+  "p320": {
+   "exit": "0",
+   "lines": 42,
+   "sec": 172.3
+  },
+  "same_exit": true,
+  "differing_lines": 1,
+  "first_difference": [
+   "{\"kernel\": {\"sstar\": 0.1875138215828502, \"HF\": 14.044487846234501, \"NF\": 117.47537268267487, \"KF\": 1.762971952742454, \"gF\": 0.41504359787011197, \"gN0\": 0.9353984380615632, \"gNa\": 3.721011890264793e-15",
+   "{\"kernel\": {\"sstar\": 0.1875138215828502, \"HF\": 14.044487846234501, \"NF\": 117.47537268267487, \"KF\": 1.7629719527424539, \"gF\": 0.4150435978701119, \"gN0\": 0.9353984380615632, \"gNa\": 3.721011890264792e-15"
+  ]
+ },
+ {
+  "cmd": "python3 b8m_lc.py 4 73.89 --rA=2e-6 --rW=2e-6 --mutate=rho2L --log=b8m_lc_K4_mut_rho2L.log",
+  "src": [
+   "proof/B_chain.md"
+  ],
+  "plain": {
+   "exit": "0",
+   "lines": 2,
+   "sec": 60.2
+  },
+  "p320": {
+   "exit": "0",
+   "lines": 2,
+   "sec": 84.6
+  },
+  "same_exit": true,
+  "differing_lines": 1,
+  "first_difference": [
+   "{\"kernel\": {\"sstar\": 0.1875138215828502, \"HF\": 14.044487846234501, \"NF\": 117.47537268267487, \"KF\": 1.762971952742454, \"gF\": 0.41504359787011197, \"gN0\": 0.9353984380615632, \"gNa\": 3.721011890264793e-15",
+   "{\"kernel\": {\"sstar\": 0.1875138215828502, \"HF\": 14.044487846234501, \"NF\": 117.47537268267487, \"KF\": 1.7629719527424539, \"gF\": 0.4150435978701119, \"gN0\": 0.9353984380615632, \"gNa\": 3.721011890264792e-15"
+  ]
+ },
+ {
+  "cmd": "python3 b8m_scan.py 4 104.68 --kappa1=0.85 --rA=2e-6 --rW=2e-6 --log=b8m_scan_K4_k0.85.log",
+  "src": [
+   "proof/B_chain.md"
+  ],
+  "plain": {
+   "exit": "0",
+   "lines": 1,
+   "sec": 5.4
+  },
+  "p320": {
+   "exit": "0",
+   "lines": 1,
+   "sec": 7.0
+  },
+  "same_exit": true,
+  "differing_lines": 1,
+  "first_difference": [
+   "{\"K\": 4, \"L0\": 104.68, \"outer\": \"full\", \"rho_max\": 0.00849960700522901, \"d0\": \"0\", \"kappa1\": \"0.85\", \"kernel\": {\"sstar\": 0.18751672372325812, \"HF\": 14.044445883478575, \"NF\": 117.4781783327117, \"KF\": 1",
+   "{\"K\": 4, \"L0\": 104.68, \"outer\": \"full\", \"rho_max\": 0.00849960700522901, \"d0\": \"0\", \"kappa1\": \"0.85\", \"kernel\": {\"sstar\": 0.18751672372325812, \"HF\": 14.044445883478575, \"NF\": 117.4781783327117, \"KF\": 1"
+  ]
+ },
+ {
+  "cmd": "python3 b8m_scan.py 4 73.89 --d0=1e7 --rA=2e-6 --rW=2e-6 --log=b8m_scan_K4_d0_1e7.log",
+  "src": [
+   "proof/B_chain.md"
+  ],
+  "plain": {
+   "exit": "0",
+   "lines": 1,
+   "sec": 17.0
+  },
+  "p320": {
+   "exit": "0",
+   "lines": 1,
+   "sec": 23.6
+  },
+  "same_exit": true,
+  "differing_lines": 1,
+  "first_difference": [
+   "{\"K\": 4, \"L0\": 73.89, \"outer\": \"full\", \"rho_max\": 0.008499810000309279, \"d0\": \"1e7\", \"kernel\": {\"sstar\": 0.1875138215828502, \"HF\": 14.044487846234501, \"NF\": 117.47537268267487, \"KF\": 1.762971952742454",
+   "{\"K\": 4, \"L0\": 73.89, \"outer\": \"full\", \"rho_max\": 0.008499810000309279, \"d0\": \"1e7\", \"kernel\": {\"sstar\": 0.1875138215828502, \"HF\": 14.044487846234501, \"NF\": 117.47537268267487, \"KF\": 1.762971952742453"
+  ]
+ },
+ {
+  "cmd": "python3 b8m_scan.py 4 73.89,70,66,62 --rA=2e-6 --rW=2e-6 --log=b8m_scan_K4_box.log",
+  "src": [
+   "proof/B8_constants.md"
+  ],
+  "plain": {
+   "exit": "0",
+   "lines": 4,
+   "sec": 59.3
+  },
+  "p320": {
+   "exit": "0",
+   "lines": 4,
+   "sec": 78.7
+  },
+  "same_exit": true,
+  "differing_lines": 4,
+  "first_difference": [
+   "{\"K\": 4, \"L0\": 73.89, \"outer\": \"full\", \"rho_max\": 0.008499810000309279, \"d0\": \"0\", \"kernel\": {\"sstar\": 0.1875138215828502, \"HF\": 14.044487846234501, \"NF\": 117.47537268267487, \"KF\": 1.762971952742454, ",
+   "{\"K\": 4, \"L0\": 73.89, \"outer\": \"full\", \"rho_max\": 0.008499810000309279, \"d0\": \"0\", \"kernel\": {\"sstar\": 0.1875138215828502, \"HF\": 14.044487846234501, \"NF\": 117.47537268267487, \"KF\": 1.7629719527424539,"
+  ]
+ },
+ {
+  "cmd": "python3 fixed_point.py --sector=0.2",
+  "src": [
+   "proof/A_certify.md"
+  ],
+  "plain": {
+   "exit": "0",
+   "lines": 32,
+   "sec": 0.2
+  },
+  "p320": {
+   "exit": "0",
+   "lines": 32,
+   "sec": 0.2
+  },
+  "same_exit": true,
+  "differing_lines": 0,
+  "first_difference": null
+ },
+ {
+  "cmd": "python3 fixed_point_M.py --data-table --Ms=3 --json=lemmas_M_runs/fixed_point_M_data_M3.json",
+  "src": [
+   "proof/A_lemmas_M.md"
+  ],
+  "plain": {
+   "exit": "0",
+   "lines": 4,
+   "sec": 11.8
+  },
+  "p320": {
+   "exit": "0",
+   "lines": 4,
+   "sec": 12.3
+  },
+  "same_exit": true,
+  "differing_lines": 0,
+  "first_difference": null
+ },
+ {
+  "cmd": "python3 fixed_point_M.py --table --Ms=3",
+  "src": [
+   "proof/A_lemmas_M.md"
+  ],
+  "plain": {
+   "exit": "0",
+   "lines": 16,
+   "sec": 7.3
+  },
+  "p320": {
+   "exit": "0",
+   "lines": 16,
+   "sec": 8.3
+  },
+  "same_exit": true,
+  "differing_lines": 0,
+  "first_difference": null
+ },
+ {
+  "cmd": "python3 fixed_point_M.py --table --Ms=3 --json=lemmas_M_runs/fixed_point_M_table_M3.json",
+  "src": [
+   "proof/A_lemmas_M.md"
+  ],
+  "plain": {
+   "exit": "0",
+   "lines": 16,
+   "sec": 9.4
+  },
+  "p320": {
+   "exit": "0",
+   "lines": 16,
+   "sec": 10.1
+  },
+  "same_exit": true,
+  "differing_lines": 0,
+  "first_difference": null
+ },
+ {
+  "cmd": "python3 fixed_point_M.py --table --Ms=5 --json=lemmas_M_runs/fixed_point_M_table_M5.json",
+  "src": [
+   "proof/A_lemmas_M.md"
+  ],
+  "plain": {
+   "exit": "0",
+   "lines": 18,
+   "sec": 31.3
+  },
+  "p320": {
+   "exit": "0",
+   "lines": 18,
+   "sec": 28.9
+  },
+  "same_exit": true,
+  "differing_lines": 0,
+  "first_difference": null
+ },
+ {
+  "cmd": "python3 b8m_h8.py 4 73.89 --log=b8m_scan_K4_box.log --rA=2e-6 --rW=2e-6",
+  "src": [
+   "proof/B8_constants.md"
+  ],
+  "plain": {
+   "exit": "0",
+   "lines": 12,
+   "sec": 1.5
+  },
+  "p320": {
+   "exit": "0",
+   "lines": 12,
+   "sec": 1.9
+  },
+  "same_exit": true,
+  "differing_lines": 1,
+  "first_difference": [
+   "{\"K\": 4, \"L0\": 73.89, \"rA\": \"2e-6\", \"rW\": \"2e-6\", \"gamma\": \"0.3\", \"closes\": true, \"hyp\": {\"V\": 2414642.2816111282, \"S\": 6270361.403328838, \"b\": 616547.4361273267, \"c\": 166561.43402355906}, \"P_hyp\": {\"",
+   "{\"K\": 4, \"L0\": 73.89, \"rA\": \"2e-6\", \"rW\": \"2e-6\", \"gamma\": \"0.3\", \"closes\": true, \"hyp\": {\"V\": 2414642.2816111282, \"S\": 6270361.403328838, \"b\": 616547.4361273267, \"c\": 166561.43402355906}, \"P_hyp\": {\""
+  ]
+ },
+ {
+  "cmd": "python3 b8m_h8.py 4 73.89 --log=b8m_scan_K4_d0_1e7.log --d0=1e7",
+  "src": [
+   "proof/B_chain.md"
+  ],
+  "plain": {
+   "exit": "0",
+   "lines": 12,
+   "sec": 1.9
+  },
+  "p320": {
+   "exit": "0",
+   "lines": 12,
+   "sec": 2.0
+  },
+  "same_exit": true,
+  "differing_lines": 1,
+  "first_difference": [
+   "{\"K\": 4, \"L0\": 73.89, \"rA\": \"2e-6\", \"rW\": \"2e-6\", \"gamma\": \"0.3\", \"closes\": true, \"hyp\": {\"V\": 97056787.42202918, \"S\": 119582197.82137321, \"b\": 11291628.185164344, \"c\": 12799444.739978401}, \"P_hyp\": {",
+   "{\"K\": 4, \"L0\": 73.89, \"rA\": \"2e-6\", \"rW\": \"2e-6\", \"gamma\": \"0.3\", \"closes\": true, \"hyp\": {\"V\": 97056787.42202918, \"S\": 119582197.82137321, \"b\": 11291628.185164344, \"c\": 12799444.739978401}, \"P_hyp\": {"
+  ]
+ },
+ {
+  "cmd": "python3 b8m_lcj.py --log=b8m_lc_K4.log --json=b8m_lcj.json",
+  "src": [
+   "proof/B_chain.md"
+  ],
+  "plain": {
+   "exit": "0",
+   "lines": 13,
+   "sec": 2.9
+  },
+  "p320": {
+   "exit": "0",
+   "lines": 13,
+   "sec": 3.5
+  },
+  "same_exit": true,
+  "differing_lines": 0,
+  "first_difference": null
+ },
+ {
+  "cmd": "python3 b8m_lcj.py --log=b8m_lc_K4.log --mutate=kernel",
+  "src": [
+   "proof/B_chain.md"
+  ],
+  "plain": {
+   "exit": "0",
+   "lines": 13,
+   "sec": 2.7
+  },
+  "p320": {
+   "exit": "0",
+   "lines": 13,
+   "sec": 3.4
+  },
+  "same_exit": true,
+  "differing_lines": 0,
+  "first_difference": null
+ },
+ {
+  "cmd": "python3 b7_ift.py --adj=b7_adjoint.json --jump=b5_jump_d0_1e7.json --json=b7_ift.json",
+  "src": [
+   "proof/B_chain.md"
+  ],
+  "plain": {
+   "exit": "0",
+   "lines": 41,
+   "sec": 0.8
+  },
+  "p320": {
+   "exit": "0",
+   "lines": 41,
+   "sec": 0.7
+  },
+  "same_exit": true,
+  "differing_lines": 0,
+  "first_difference": null
+ },
+ {
+  "cmd": "python3 b7_ift.py --adj=b7_adjoint.json --jump=b5_jump_d0_1e7.json --mutate=JD",
+  "src": [
+   "proof/B_chain.md"
+  ],
+  "plain": {
+   "exit": "0",
+   "lines": 42,
+   "sec": 0.6
+  },
+  "p320": {
+   "exit": "0",
+   "lines": 42,
+   "sec": 0.8
+  },
+  "same_exit": true,
+  "differing_lines": 0,
+  "first_difference": null
+ },
+ {
+  "cmd": "python3 b5_jump.py --h8log=b8m_h8_K4_L73.89_d0_1e7.log --json=b5_jump_d0_1e7.json",
+  "src": [
+   "proof/B_chain.md"
+  ],
+  "plain": {
+   "exit": "0",
+   "lines": 16,
+   "sec": 0.1
+  },
+  "p320": {
+   "exit": "0",
+   "lines": 16,
+   "sec": 0.2
+  },
+  "same_exit": true,
+  "differing_lines": 0,
+  "first_difference": null
+ },
+ {
+  "cmd": "python3 b5_jump.py --json=b5_jump.json",
+  "src": [
+   "proof/B_chain.md"
+  ],
+  "plain": {
+   "exit": "0",
+   "lines": 16,
+   "sec": 0.2
+  },
+  "p320": {
+   "exit": "0",
+   "lines": 16,
+   "sec": 0.1
+  },
+  "same_exit": true,
+  "differing_lines": 0,
+  "first_difference": null
+ },
+ {
+  "cmd": "python3 b5_jump.py --mutate=sum",
+  "src": [
+   "proof/B_chain.md"
+  ],
+  "plain": {
+   "exit": "0",
+   "lines": 16,
+   "sec": 0.1
+  },
+  "p320": {
+   "exit": "0",
+   "lines": 16,
+   "sec": 0.4
+  },
+  "same_exit": true,
+  "differing_lines": 0,
+  "first_difference": null
+ }
+]

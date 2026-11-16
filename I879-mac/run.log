@@ -1,0 +1,54 @@
+[    5 s] python3 b5_bounds.py: 1 early reads
+[    5 s] python3 b5_jump.py: 13 early reads
+[    6 s] python3 b5_label.py: 1 early reads
+[    7 s] python3 b5_threshold.py: 9 early reads
+[   13 s] python3 b7_ift.py: 1 early reads
+[   13 s] python3 b8_atoms.py: 5 early reads
+[   19 s] python3 b8_bounds.py: 10 early reads
+[   19 s] python3 b8_formal.py: 7 early reads
+[   24 s] python3 b8m_atoms.py: 3 early reads
+[   29 s] python3 b8m_bounds.py: 10 early reads
+[   30 s] python3 b8m_h8.py: 3 early reads
+[   36 s] python3 b8m_lc.py: 3 early reads
+[   40 s] python3 b8m_lcj.py: 3 early reads
+[   41 s] python3 b8m_scan.py: 3 early reads
+[   85 s] python3 start_cover_M2.py: 8 early reads
+[  107 s] python3 b5_bounds.py --kappa=0.3 --Z=0.0085 --json=b5_bounds_k0.3_Z0.0085.json: 1 early reads
+[  108 s] python3 b5_bounds.py --kappa=0.3 --Z=0.0085 --mutate=jac: 1 early reads
+[  109 s] python3 b5_bounds.py --kappa=0.3 --Z=0.0085 --mutate=series: 1 early reads
+[  110 s] python3 b5_bounds.py --kappa=0.3 --Z=0.0085 --rp=0.15: 1 early reads
+[  111 s] python3 b5_bounds.py --kappa=0.3 --Z=0.0085,0.009,0.0091: 1 early reads
+[  112 s] python3 b5_bounds.py check: 1 early reads
+[  114 s] python3 b5_jump.py --h8log=b8m_h8_K4_L73.89_d0_1e7.log --json=b5_jump_d0_1e7.json: 1 early reads
+[  114 s] python3 b5_jump.py --json=b5_jump.json: 13 early reads
+[  114 s] python3 b5_jump.py --mutate=sum: 13 early reads
+[  115 s] python3 b5_label.py --json=b5_label.json: 1 early reads
+[  118 s] python3 b5_label.py check: 1 early reads
+[  121 s] python3 b5_label.py check --mutate=Ct2: 1 early reads
+[  127 s] python3 b5_threshold.py: 9 early reads
+[  155 s] python3 b7_ift.py --adj=b7_adjoint.json --jump=b5_jump_d0_1e7.json --json=b7_ift.json: 1 early reads
+[  156 s] python3 b7_ift.py --adj=b7_adjoint.json --jump=b5_jump_d0_1e7.json --mutate=JD: 1 early reads
+[  156 s] python3 b8m_atoms.py 4 0 0: 3 early reads
+[  156 s] python3 b8m_h8.py 4 73.89 --log=b8m_scan_K4_box.log --rA=2e-6 --rW=2e-6: 3 early reads
+[  156 s] python3 b8m_h8.py 4 73.89 --log=b8m_scan_K4_d0_1e7.log --d0=1e7: 3 early reads
+[  158 s] python3 b8m_lc.py --lipcheck=b8m_lc_lip.json: 3 early reads
+[  163 s] python3 b8m_lc.py 4 73.89 --rA=2e-6 --rW=2e-6 --lip --log=b8m_lc_K4.log: 3 early reads
+[  168 s] python3 b8m_lc.py 4 73.89 --rA=2e-6 --rW=2e-6 --mutate=rho2L --log=b8m_lc_K4_mut_rho2L.log: 3 early reads
+[  170 s] python3 b8m_lcj.py --log=b8m_lc_K4.log --json=b8m_lcj.json: 3 early reads
+[  170 s] python3 b8m_lcj.py --log=b8m_lc_K4.log --mutate=kernel: 3 early reads
+[  188 s] python3 b8m_scan.py 4 104.68 --kappa1=0.85 --rA=2e-6 --rW=2e-6 --log=b8m_scan_K4_k0.85.log: 6 early reads
+[  193 s] python3 b8m_scan.py 4 73.89 --d0=1e7 --rA=2e-6 --rW=2e-6 --log=b8m_scan_K4_d0_1e7.log: 6 early reads
+[  198 s] python3 b8m_scan.py 4 73.89,70,66,62 --rA=2e-6 --rW=2e-6 --log=b8m_scan_K4_box.log: 6 early reads
+[  309 s] python3 fixed_point.py --sector=0.2: 1 early reads
+[  318 s] python3 fixed_point_M.py --data-table --Ms=3 --json=lemmas_M_runs/fixed_point_M_data_M3.json: 6 early reads
+[  324 s] python3 fixed_point_M.py --table --Ms=3: 1 early reads
+[  329 s] python3 fixed_point_M.py --table --Ms=3 --json=lemmas_M_runs/fixed_point_M_table_M3.json: 1 early reads
+[  334 s] python3 fixed_point_M.py --table --Ms=5 --json=lemmas_M_runs/fixed_point_M_table_M5.json: 1 early reads
+[  381 s] python3 fixed_point_M_b.py --M=5 --x=: 1 early reads
+[  600 s] python3 start_cover_M2.py: 8 early reads
+[  601 s] python3 start_cover_M2.py --box=data/A_M_box_M3_1e-10.json: 6 early reads
+[  606 s] python3 start_cover_M2.py --box=data/A_M_box_M3_1e-10.json --rerun: 6 early reads
+[  612 s] python3 start_cover_M2.py --box=data/A_M_box_M3_1e-10.json --rerun --mutate=overlap: 6 early reads
+[  617 s] python3 start_cover_M2.py --rerun: 8 early reads
+run: 347 traced, 51 skipped for a placeholder, 52 with early reads, 657 s -> prec_survey_runs.json
+exit 0
