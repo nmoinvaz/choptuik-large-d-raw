@@ -84,3 +84,18 @@ grows to 1, and 12 h at the step limit.
    steps walk to Delta − truth = −2.203e-12 whatever lam is. The option changes how fast, not where, and the Delta bar
    (1e-30) is expected to fail. The open part is what a lam-1 step does to |F|: a quadratic fall, or a slow one if the
    smallest pivot keeps falling with |dz| (A_s1: 4.1e-3 |dz|^0.98).
+- Step 3 accepted lam 1/2 (03:03 UTC), as A_s1 did: |F| 1.67e-12 → 8.36e-13, |dz| 1.08e-12 → 5.42e-13. Its lam-1 trial
+  was A_s1's (7.41e16).
+
+### Prediction 1 corrected (03:05 UTC, before step 4)
+
+Prediction 1 is wrong as written, for a reason that was in A_s1's log. The projection moves only m_h and a_h, so two
+trials with the same bulk part project to the same point. keep_s1's projected iterates are therefore A_s1's while the
+accepted lam agree, and its lam-1 trials are A_s1's points. A_s1's projection failed at every lam-1 trial through
+step 8: 4.63e15, 2.90e14, 9.16e13, 2.90e13 and 1.81e12 at steps 4–8. Meanwhile A_s1's accepted step 8 trial
+(lam 1/64, near 4.6e14 by the P0 fit) projected. So whether a projection succeeds is not a threshold on point max|F|.
+
+The corrected prediction: keep_s1 repeats A_s1 at step 4 (lam 1 refused at 4.63e15, lam 1/2 accepted). It can first
+depart at step 5, where A_s1 refused lam 1/2 at 1.59e15 and keep_s1's lam 1/2 should come at about 1.8e13 (2.90e14/16).
+It reaches lam 1 only if a lam-1 projection succeeds at some smaller |dz| than A_s1 reached (7.6e-14). Without lam-1
+steps, |F| falls at most by (1 − lam) per step, so the bar (1e-40 within 12 steps) is not expected to be met.
