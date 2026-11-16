@@ -1,0 +1,54 @@
+[
+ {
+  "cmd": "python3 b8m_lc.py",
+  "src": [
+   "no argument"
+  ],
+  "script": "b8m_lc.py",
+  "end": "stopped after 5 s",
+  "reads": [],
+  "constants": []
+ },
+ {
+  "cmd": "python3 b8m_lc.py --lipcheck=b8m_lc_lip.json",
+  "src": [
+   "proof/B_chain.md",
+   "raw-data repository"
+  ],
+  "script": "b8m_lc.py",
+  "end": "exit 0",
+  "reads": [],
+  "constants": []
+ },
+ {
+  "cmd": "python3 b8m_lc.py 4 73.89 --rA=2e-6 --rW=2e-6 --lip --log=b8m_lc_K4.log",
+  "src": [
+   "proof/B_chain.md"
+  ],
+  "script": "b8m_lc.py",
+  "end": "stopped after 5 s",
+  "reads": [],
+  "constants": []
+ },
+ {
+  "cmd": "python3 b8m_lc.py 4 73.89 --rA=2e-6 --rW=2e-6 --lip --log=b8m_lc_K4.log --lipout=b8m_lc_lip.json",
+  "src": [
+   "raw-data repository"
+  ],
+  "script": "b8m_lc.py",
+  "end": "stopped after 5 s",
+  "reads": [],
+  "constants": []
+ },
+ {
+  "cmd": "python3 b8m_lc.py 4 73.89 --rA=2e-6 --rW=2e-6 --mutate=rho2L --log=b8m_lc_K4_mut_rho2L.log",
+  "src": [
+   "proof/B_chain.md",
+   "raw-data repository"
+  ],
+  "script": "b8m_lc.py",
+  "end": "stopped after 5 s",
+  "reads": [],
+  "constants": []
+ }
+]

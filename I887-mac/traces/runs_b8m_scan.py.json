@@ -1,0 +1,45 @@
+[
+ {
+  "cmd": "python3 b8m_scan.py",
+  "src": [
+   "no argument"
+  ],
+  "script": "b8m_scan.py",
+  "end": "IndexError: list index out of range",
+  "reads": [],
+  "constants": []
+ },
+ {
+  "cmd": "python3 b8m_scan.py 4 104.68 --kappa1=0.85 --rA=2e-6 --rW=2e-6 --log=b8m_scan_K4_k0.85.log",
+  "src": [
+   "proof/B_chain.md",
+   "raw-data repository"
+  ],
+  "script": "b8m_scan.py",
+  "end": "stopped after 5 s",
+  "reads": [],
+  "constants": []
+ },
+ {
+  "cmd": "python3 b8m_scan.py 4 73.89 --d0=1e7 --rA=2e-6 --rW=2e-6 --log=b8m_scan_K4_d0_1e7.log",
+  "src": [
+   "proof/B_chain.md",
+   "raw-data repository"
+  ],
+  "script": "b8m_scan.py",
+  "end": "stopped after 5 s",
+  "reads": [],
+  "constants": []
+ },
+ {
+  "cmd": "python3 b8m_scan.py 4 73.89,70,66,62 --rA=2e-6 --rW=2e-6 --log=b8m_scan_K4_box.log",
+  "src": [
+   "proof/B8_constants.md",
+   "raw-data repository"
+  ],
+  "script": "b8m_scan.py",
+  "end": "stopped after 5 s",
+  "reads": [],
+  "constants": []
+ }
+]
