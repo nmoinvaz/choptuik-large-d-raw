@@ -37,4 +37,16 @@ horizon rows' max|ΔF|.
 
 ## Runs
 
-In progress.
+`queue1.sh` ran the D 60 control (15:48–18:32 UTC) and then the order-142 chain's first base past D 229, with the
+mutation control (18:42–19:57 UTC). `drive.sh` then runs one pending target of `targets.txt` at a time, in its order,
+as each lands, and records it in `done.txt`. `lift.log` is rewritten after every base.
+
+| chain | base D | ln g(own) | ln g(200) | L | Δ mode σ, own → 200 | 1/g² at own: largest share | at 200 | checks |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| ctl (D 60) | 60.0020 | −19.4641 | −19.4641 | +0.0000 | – | – | – | G3 pass (0.00e+00) |
+| k142 | 229.1312 | −35.4817 | −31.6410 | +3.8407 | σ₃ 8.139e-15 → σ₁ 1.707e-14 (ln +0.741) | σ₂ (k3) 0.970 | σ₁ (k1) 0.993 | G1, G2 pass |
+
+At D 229.13 the order-142 chain's weakest modes are the harmonic-3 pair (σ₁, σ₂ 1.497e-17, 1.515e-17), below the Δ
+mode (σ₃ 8.139e-15), and their small Δ shares carry 0.997 of 1/g² (`lift.log`): the grip on Δ at order 142 is the
+harmonic-3 pair's. At ks 200 the pair rises to 2.6e-10 and the Δ mode carries 0.993 of 1/g²; the Δ mode itself moved
+by ln +0.741 of the lift's +3.8407.

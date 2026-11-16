@@ -15,7 +15,9 @@ Checks (each can fail):
   mutation  each *_mutks run (--ks 200 --mutate=ks, built at the own order) equals the own-order run bit for bit
   control   ctl (D 60): |L| and |ln sigma_i(200) - ln sigma_i(own)|, i = 1..4, below 0.05
 Reported: L at every base with sigma_1-4 at both orders, the Delta mode followed by overlap, Delta's pinned step at
-200, and the horizon rows' max|dF|.
+200, and the horizon rows' max|dF|. And the split of 1/g^2 = sum_i v_i,Delta^2 / sigma_i^2 (exact over all singular
+triplets; v_i,Delta^2 is near_null's Delta share) over the six computed modes: the share each carries, with its top
+harmonic, and the six's sum against 1/g^2 (coverage), which says which mode sets the grip.
 
 Run: python3 lift.py FOLDER, or python3 lift.py --selftest (planted: a lift of 1 reads small, 5 reads large, a failed
 run, a mutation one ulp off and a control off by 0.1 fail). Exits 1 when a check fails or the selftest does.
@@ -51,6 +53,14 @@ def load(d0):
             fv = os.path.join(d0, f"V_{tag}_D{d}_ks{K}.npy")
             g["V"][K] = np.load(fv) if os.path.exists(fv) else None
     return groups
+
+
+def split(r):
+    """the six modes' shares of 1/g^2 = sum_i delta_i / sigma_i^2, and their sum against 1/g^2"""
+    c = [v["delta"] / v["sigma"] ** 2 for v in r["vectors"]]
+    tot = r["grip"]["two"] ** -2
+    o = sorted(range(len(c)), key=lambda i: -c[i])
+    return sum(c) / tot, [(i, r["vectors"][i]["top"][0][1], c[i] / tot) for i in o[:2]]
 
 
 def target(D):
@@ -89,6 +99,11 @@ def evaluate(groups):
         hz = b["rows"]["blocks"]["horizon"]["F"] if b["rows"] else None
         line += (f"; Delta's pinned step at 200 {b['step_pinned']['delta']:+.3e}"
                  + (f"; horizon max|dF| {hz:.2e}" if hz is not None else ""))
+        for K, r in ((own, a), (200, b)):
+            if "top" in r["vectors"][0]:
+                cov, top = split(r)
+                line += (f"; 1/g^2 at {K}: " + ", ".join(f"sigma_{i + 1} (k{h}) {f:.3f}" for i, h, f in top)
+                         + f", six {cov:.3f}")
         print(line)
         if tag == "ctl":
             worst = max([abs(L)] + [abs(math.log(y / x)) for x, y in zip(sa, sb)])
