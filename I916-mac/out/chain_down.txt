@@ -1,0 +1,536 @@
+bash gate.sh 31 gate.log nice -n 10 python3 -u matter/sigma_ms/run_eta.py --eta 0.3 --D 10.4375 --M 32 --out out --tag eta0.3_D10.4375_M32 --threads 2 --solver band --it 40 --from sm_hi_D10.5_polish_M32.npz
+09:28:01 start 2026-11-16 09:28:01 UTC: eta 0.3, D 10.4375, M 32, K 21, kt 36, kc 80, ks 80, threads 2
+09:28:01 seed {'src': 'sm_hi_D10.5_polish_M32.npz', 'eta_src': '0.3', 'M_src': 32}: Delta 1.142980986472, |F| (single-step plan) 1.41e+20
+09:28:01 plan from the seed: 265 steps [8, 6, 5, 4, 3, 4, 5, 4, 3, 5, 7, 8, 14, 16, 17, 20, 24, 36, 34, 42] (0.3 s); |F| 2.48e-03
+09:29:32   band 0 (resolved, 30 deflated): |F| 2.48e-03, S 2.42e-02 -> 4.13e-05 (E 2.4e-14), B 1.01e-07 -> 1.40e-09, lam 1 (0 halvings), band step 1.5e+00 held, |dz| 4.9e-02, dDelta -1.22e-03, pivots 8.4e-05..6.8e+00 (90.7 s)
+09:29:32     re-planned: 247 steps
+09:30:10   band 1 (newton): |F| 5.91e-06, |F|_2 4.13e-05 -> 9.76e-06, |dz| 1.6e-01, dDelta -5.49e-06, pivots 3.4e-07..6.8e+00 (128.3 s)
+09:30:10     re-planned: 309 steps
+09:31:46   band 2 (resolved, 32 deflated): |F| 4.70e-06, S 9.76e-06 -> 4.33e-11 (E 1.3e-13), B 1.58e-11 -> 1.58e-11, lam 1 (0 halvings), band step 8.7e+00 held, |dz| 6.6e-05, dDelta +2.41e-07, pivots 1.1e-09..6.8e+00 (224.8 s)
+09:31:46     re-planned: 296 steps
+09:33:19   band 3 (resolved, 32 deflated): |F| 2.07e-11, S 4.33e-11 -> 3.24e-15 (E 3.2e-15), B 1.58e-11 -> 1.58e-11, lam 1 (0 halvings), band step 2.2e-01 held, |dz| 1.8e-10, dDelta +1.33e-12, pivots 1.4e-09..6.8e+00 (318.0 s)
+09:33:19     re-planned: 294 steps
+09:34:54   band 4 (band, 32 deflated): |F| 1.92e-12, S 3.24e-15 -> 1.11e-14 (E 3.6e-15), B 1.58e-11 -> 8.03e-13, band step 2.7e-01 of 2.7e-01 (mu 0.0e+00, 0 halvings, 0 doublings, model B 0.00e+00), 5 correctors from S 5.7e-05, |dz| 2.7e-01, dDelta +2.21e-03, pivots 1.4e-09..6.8e+00 (412.3 s)
+09:34:54     re-planned: 297 steps
+09:36:30   band 5 (band, 32 deflated): |F| 9.47e-14, S 1.13e-14 -> 4.68e-16 (E 3.2e-15), B 8.03e-13 -> 4.97e-15, band step 2.1e-01 of 2.1e-01 (mu 0.0e+00, 0 halvings, 0 doublings, model B 0.00e+00), 4 correctors from S 5.7e-06, |dz| 2.1e-01, dDelta +2.82e-05, pivots 8.5e-10..6.8e+00 (509.0 s)
+09:36:30     re-planned: 279 steps
+09:37:57   band 6 (band, 32 deflated): |F| 5.91e-16, S 4.68e-16 -> 2.68e-19 (E 4.2e-16), B 4.97e-15 -> 5.90e-17, band step 2.7e-02 of 2.7e-02 (mu 0.0e+00, 0 halvings, 0 doublings, model B 0.00e+00), 4 correctors from S 8.0e-08, |dz| 2.7e-02, dDelta +1.78e-07, pivots 1.1e-09..6.8e+00 (595.5 s)
+09:37:57     re-planned: 226 steps
+09:39:08   band 7 (band, 32 deflated): |F| 7.00e-18, S 2.68e-19 -> 3.35e-24 (E 3.5e-19), B 5.90e-17 -> 4.58e-23, band step 2.1e-05 of 2.1e-05 (mu 0.0e+00, 0 halvings, 0 doublings, model B 0.00e+00), 2 correctors from S 5.1e-14, |dz| 2.1e-05, dDelta +9.73e-09, pivots 1.1e-08..6.8e+00 (666.6 s)
+09:39:08     re-planned: 163 steps
+09:39:31   band 8 (newton): |F| 5.36e-24, |F|_2 4.60e-23 -> 2.70e-24, |dz| 1.6e-10, dDelta +1.40e-15, pivots 1.1e-08..6.8e+00 (690.0 s)
+09:39:31     re-planned: 124 steps
+09:39:50   band 9 (newton): |F| 7.29e-25, |F|_2 2.70e-24 -> 9.03e-31, |dz| 8.2e-16, dDelta +1.66e-23, pivots 1.0e-08..6.8e+00 (708.8 s)
+09:39:50     re-planned: 120 steps
+09:40:08   band 10: |F| 1.27e-31 converged, Delta 1.143989217286562
+09:40:08 plan from the solution: 120 steps (0.2 s); |F| 1.27e-31
+09:40:26   band 0: |F| 1.27e-31 converged, Delta 1.143989217286562
+09:40:26 double-double: converged True, |F| 1.27e-31, Delta 1.143989217286562210825808952895374, constraint 7.29e-15, tails 1.1e-178 3.6e-119
+09:40:26 done 2026-11-16 09:40:26 UTC (744.9 s)
+bash gate.sh 31 gate.log nice -n 10 python3 -u matter/sigma_ms/run_eta.py --eta 0.3 --D 10.375 --M 32 --out out --tag eta0.3_D10.375_M32 --threads 2 --solver band --it 40 --from sm_eta0.3_D10.4375_M32.npz
+09:40:26 start 2026-11-16 09:40:26 UTC: eta 0.3, D 10.375, M 32, K 21, kt 36, kc 80, ks 80, threads 2
+09:40:26 seed {'src': 'sm_eta0.3_D10.4375_M32.npz', 'eta_src': '0.3', 'M_src': 32}: Delta 1.143989217287, |F| (single-step plan) 1.28e+20
+09:40:27 plan from the seed: 265 steps [8, 6, 5, 4, 3, 4, 5, 4, 3, 5, 7, 8, 14, 16, 17, 20, 24, 36, 34, 42] (0.3 s); |F| 2.50e-03
+09:41:52   band 0 (resolved, 30 deflated): |F| 2.50e-03, S 2.45e-02 -> 4.57e-05 (E 2.2e-14), B 1.03e-07 -> 1.48e-09, lam 1 (0 halvings), band step 1.5e+00 held, |dz| 5.1e-02, dDelta -1.27e-03, pivots 8.3e-05..6.8e+00 (85.8 s)
+09:41:53     re-planned: 251 steps
+09:42:34   band 1 (newton): |F| 6.57e-06, |F|_2 4.57e-05 -> 1.26e-05, |dz| 2.1e-01, dDelta -5.42e-06, pivots 2.8e-07..6.8e+00 (127.0 s)
+09:42:34     re-planned: 313 steps
+09:44:20   band 2 (resolved, 32 deflated): |F| 6.04e-06, S 1.26e-05 -> 7.18e-11 (E 1.5e-13), B 1.81e-11 -> 1.81e-11, lam 1 (0 halvings), band step 9.8e+00 held, |dz| 8.4e-05, dDelta +3.33e-07, pivots 5.9e-10..6.8e+00 (233.0 s)
+09:44:20     re-planned: 299 steps
+09:46:02   band 3 (resolved, 32 deflated): |F| 2.55e-11, S 7.18e-11 -> 5.29e-15 (E 5.3e-15), B 1.81e-11 -> 1.81e-11, lam 1 (0 halvings), band step 3.5e-01 held, |dz| 2.9e-10, dDelta +3.84e-12, pivots 1.3e-09..6.8e+00 (335.4 s)
+09:46:02     re-planned: 298 steps
+09:47:46   band 4 (band, 32 deflated): |F| 2.20e-12, S 5.29e-15 -> 1.42e-14 (E 4.8e-15), B 1.81e-11 -> 9.16e-13, band step 3.5e-01 of 3.5e-01 (mu 0.0e+00, 0 halvings, 0 doublings, model B 0.00e+00), 5 correctors from S 6.6e-05, |dz| 3.5e-01, dDelta +2.26e-03, pivots 1.3e-09..6.8e+00 (439.4 s)
+09:47:46     re-planned: 302 steps
+09:49:32   band 5 (band, 32 deflated): |F| 1.07e-13, S 1.45e-14 -> 5.81e-16 (E 3.8e-15), B 9.16e-13 -> 8.85e-15, band step 2.8e-01 of 2.8e-01 (mu 0.0e+00, 0 halvings, 0 doublings, model B 0.00e+00), 5 correctors from S 9.7e-06, |dz| 2.8e-01, dDelta +2.23e-05, pivots 4.7e-10..6.8e+00 (545.5 s)
+09:49:32     re-planned: 283 steps
+09:51:11   band 6 (band, 32 deflated): |F| 1.03e-15, S 5.81e-16 -> 6.83e-19 (E 6.6e-16), B 8.85e-15 -> 1.15e-16, band step 3.6e-02 of 3.6e-02 (mu 0.0e+00, 0 halvings, 0 doublings, model B 0.00e+00), 4 correctors from S 1.3e-07, |dz| 3.6e-02, dDelta +1.03e-07, pivots 9.9e-10..6.8e+00 (644.0 s)
+09:51:11     re-planned: 233 steps
+09:52:33   band 7 (band, 32 deflated): |F| 1.37e-17, S 6.83e-19 -> 1.02e-23 (E 6.6e-19), B 1.15e-16 -> 2.13e-22, band step 4.4e-05 of 4.4e-05 (mu 0.0e+00, 0 halvings, 0 doublings, model B 0.00e+00), 2 correctors from S 2.3e-13, |dz| 4.4e-05, dDelta +1.75e-08, pivots 1.2e-08..6.8e+00 (726.7 s)
+09:52:33     re-planned: 169 steps
+09:53:00   band 8 (newton): |F| 2.48e-23, |F|_2 2.13e-22 -> 2.77e-23, |dz| 5.3e-10, dDelta +5.66e-15, pivots 1.2e-08..6.8e+00 (753.7 s)
+09:53:00     re-planned: 125 steps
+09:53:21   band 9 (newton): |F| 7.14e-24, |F|_2 2.77e-23 -> 9.30e-31, |dz| 1.6e-15, dDelta +3.18e-25, pivots 1.3e-08..6.8e+00 (774.6 s)
+09:53:21     re-planned: 121 steps
+09:53:41   band 10: |F| 1.02e-31 converged, Delta 1.144992274671635
+09:53:41 plan from the solution: 121 steps (0.2 s); |F| 1.02e-31
+09:54:01   band 0: |F| 1.02e-31 converged, Delta 1.144992274671635
+09:54:01 double-double: converged True, |F| 1.02e-31, Delta 1.14499227467163451047948273415261, constraint 7.30e-15, tails 1.9e-178 2.5e-119
+09:54:01 done 2026-11-16 09:54:01 UTC (814.4 s)
+bash gate.sh 31 gate.log nice -n 10 python3 -u matter/sigma_ms/run_eta.py --eta 0.3 --D 10.3125 --M 32 --out out --tag eta0.3_D10.3125_M32 --threads 2 --solver band --it 40 --from sm_eta0.3_D10.375_M32.npz --from2 sm_eta0.3_D10.4375_M32.npz
+09:54:02 start 2026-11-16 09:54:02 UTC: eta 0.3, D 10.3125, M 32, K 21, kt 36, kc 80, ks 80, threads 2
+09:54:02 seed {'src': 'sm_eta0.3_D10.375_M32.npz', 'eta_src': '0.3', 'M_src': 32, 'D_src': 10.375, 'D_src2': 10.4375, 'src2': 'sm_eta0.3_D10.4375_M32.npz', 'eta_src2': '0.3', 'w': -1.0}: Delta 1.145995332057, |F| (single-step plan) 5.57e+18
+09:54:02 plan from the seed: 240 steps [8, 6, 5, 4, 3, 4, 5, 4, 3, 5, 6, 8, 12, 14, 15, 17, 21, 32, 30, 38] (0.3 s); |F| 4.93e-05
+09:54:41   band 0 (newton): |F| 4.93e-05, |F|_2 4.62e-04 -> 3.64e-06, |dz| 2.5e-02, dDelta -7.44e-06, pivots 1.9e-06..6.8e+00 (38.9 s)
+09:54:41     re-planned: 242 steps
+09:55:20   band 1 (newton): |F| 8.24e-07, |F|_2 3.64e-06 -> 3.59e-06, |dz| 2.5e-02, dDelta +6.35e-06, pivots 1.5e-08..6.8e+00 (78.3 s)
+09:55:21     re-planned: 258 steps
+09:56:01   band 2 (newton): |F| 8.34e-07, |F|_2 3.59e-06 -> 1.79e-08, |dz| 2.6e-03, dDelta -4.81e-06, pivots 1.5e-08..6.8e+00 (118.5 s)
+09:56:01     re-planned: 241 steps
+09:56:39   band 3 (newton): |F| 3.45e-09, |F|_2 1.79e-08 -> 1.10e-10, |dz| 2.4e-04, dDelta +2.77e-07, pivots 1.4e-08..6.8e+00 (156.3 s)
+09:56:39     re-planned: 216 steps
+09:57:12   band 4 (newton): |F| 3.04e-11, |F|_2 1.10e-10 -> 4.84e-17, |dz| 3.0e-07, dDelta -1.20e-09, pivots 1.5e-08..6.8e+00 (190.1 s)
+09:57:12     re-planned: 162 steps
+09:57:38   band 5 (newton): |F| 8.47e-18, |F|_2 4.84e-17 -> 4.19e-26, |dz| 7.8e-12, dDelta +3.40e-15, pivots 1.5e-08..6.8e+00 (215.9 s)
+09:57:38     re-planned: 123 steps
+09:57:58   band 6 (newton): |F| 1.68e-26, |F|_2 4.19e-26 -> 9.41e-31, |dz| 7.3e-16, dDelta -1.82e-23, pivots 1.5e-08..6.8e+00 (236.0 s)
+09:57:58     re-planned: 117 steps
+09:58:19   band 7: |F| 1.14e-31 converged, Delta 1.145989707356080
+09:58:19 plan from the solution: 117 steps (0.1 s); |F| 1.14e-31
+09:58:39   band 0: |F| 1.14e-31 converged, Delta 1.145989707356080
+09:58:39 double-double: converged True, |F| 1.14e-31, Delta 1.145989707356080048327230974864053, constraint 9.76e-15, tails 3.5e-179 2.6e-119
+09:58:39 done 2026-11-16 09:58:39 UTC (277.6 s)
+bash gate.sh 31 gate.log nice -n 10 python3 -u matter/sigma_ms/run_eta.py --eta 0.3 --D 10.25 --M 32 --out out --tag eta0.3_D10.25_M32 --threads 2 --solver band --it 40 --from sm_eta0.3_D10.3125_M32.npz --from2 sm_eta0.3_D10.375_M32.npz
+09:58:40 start 2026-11-16 09:58:40 UTC: eta 0.3, D 10.25, M 32, K 21, kt 36, kc 80, ks 80, threads 2
+09:58:40 seed {'src': 'sm_eta0.3_D10.3125_M32.npz', 'eta_src': '0.3', 'M_src': 32, 'D_src': 10.3125, 'D_src2': 10.375, 'src2': 'sm_eta0.3_D10.375_M32.npz', 'eta_src2': '0.3', 'w': -1.0}: Delta 1.146987140041, |F| (single-step plan) 3.42e+18
+09:58:40 plan from the seed: 240 steps [8, 6, 5, 4, 3, 4, 5, 4, 3, 5, 6, 8, 13, 14, 15, 17, 21, 32, 29, 38] (0.3 s); |F| 5.05e-05
+09:59:21   band 0 (newton): |F| 5.05e-05, |F|_2 4.72e-04 -> 4.04e-06, |dz| 2.6e-02, dDelta -8.57e-06, pivots 1.2e-06..6.8e+00 (40.9 s)
+09:59:21     re-planned: 241 steps
+10:00:03   band 1 (newton): |F| 8.96e-07, |F|_2 4.04e-06 -> 3.98e-06, |dz| 2.7e-02, dDelta +7.09e-06, pivots 2.0e-08..6.8e+00 (82.7 s)
+10:00:03     re-planned: 258 steps
+10:00:46   band 2 (newton): |F| 9.06e-07, |F|_2 3.98e-06 -> 1.66e-08, |dz| 2.5e-03, dDelta -4.95e-06, pivots 1.9e-08..6.8e+00 (125.6 s)
+10:00:46     re-planned: 241 steps
+10:01:26   band 3 (newton): |F| 2.94e-09, |F|_2 1.66e-08 -> 9.61e-11, |dz| 2.3e-04, dDelta +3.32e-07, pivots 1.8e-08..6.8e+00 (165.7 s)
+10:01:26     re-planned: 215 steps
+10:02:02   band 4 (newton): |F| 2.49e-11, |F|_2 9.61e-11 -> 5.46e-17, |dz| 2.9e-07, dDelta -1.17e-09, pivots 1.8e-08..6.8e+00 (201.6 s)
+10:02:02     re-planned: 162 steps
+10:02:29   band 5 (newton): |F| 1.03e-17, |F|_2 5.46e-17 -> 3.82e-26, |dz| 5.4e-12, dDelta +4.02e-15, pivots 1.8e-08..6.8e+00 (229.0 s)
+10:02:29     re-planned: 122 steps
+10:02:51   band 6 (newton): |F| 1.17e-26, |F|_2 3.82e-26 -> 8.95e-31, |dz| 9.8e-16, dDelta +4.09e-25, pivots 1.4e-08..6.8e+00 (250.7 s)
+10:02:51     re-planned: 120 steps
+10:03:12   band 7: |F| 1.29e-31 converged, Delta 1.146981042060820
+10:03:12 plan from the solution: 120 steps (0.2 s); |F| 1.29e-31
+10:03:33   band 0: |F| 1.29e-31 converged, Delta 1.146981042060820
+10:03:33 double-double: converged True, |F| 1.29e-31, Delta 1.146981042060820441751412112890928, constraint 7.59e-15, tails 2.3e-178 2.8e-119
+10:03:33 done 2026-11-16 10:03:33 UTC (292.8 s)
+bash gate.sh 31 gate.log nice -n 10 python3 -u matter/sigma_ms/run_eta.py --eta 0.3 --D 10.1875 --M 32 --out out --tag eta0.3_D10.1875_M32 --threads 2 --solver band --it 40 --from sm_eta0.3_D10.25_M32.npz --from2 sm_eta0.3_D10.3125_M32.npz
+10:03:33 start 2026-11-16 10:03:33 UTC: eta 0.3, D 10.1875, M 32, K 21, kt 36, kc 80, ks 80, threads 2
+10:03:33 seed {'src': 'sm_eta0.3_D10.25_M32.npz', 'eta_src': '0.3', 'M_src': 32, 'D_src': 10.25, 'D_src2': 10.3125, 'src2': 'sm_eta0.3_D10.3125_M32.npz', 'eta_src2': '0.3', 'w': -1.0}: Delta 1.147972376766, |F| (single-step plan) 2.61e+18
+10:03:33 plan from the seed: 241 steps [8, 6, 5, 4, 3, 4, 5, 4, 3, 5, 7, 8, 13, 14, 15, 17, 21, 31, 30, 38] (0.3 s); |F| 5.16e-05
+10:04:13   band 0 (newton): |F| 5.16e-05, |F|_2 4.83e-04 -> 4.50e-06, |dz| 2.8e-02, dDelta -9.77e-06, pivots 1.1e-06..6.8e+00 (40.1 s)
+10:04:13     re-planned: 241 steps
+10:04:53   band 1 (newton): |F| 1.06e-06, |F|_2 4.50e-06 -> 4.43e-06, |dz| 2.8e-02, dDelta +7.85e-06, pivots 2.4e-08..6.8e+00 (79.4 s)
+10:04:53     re-planned: 260 steps
+10:05:33   band 2 (newton): |F| 1.05e-06, |F|_2 4.43e-06 -> 1.56e-08, |dz| 2.4e-03, dDelta -5.05e-06, pivots 2.3e-08..6.8e+00 (120.2 s)
+10:05:34     re-planned: 239 steps
+10:06:11   band 3 (newton): |F| 2.91e-09, |F|_2 1.56e-08 -> 8.38e-11, |dz| 2.2e-04, dDelta +3.76e-07, pivots 1.7e-08..6.8e+00 (157.6 s)
+10:06:11     re-planned: 215 steps
+10:06:44   band 4 (newton): |F| 2.13e-11, |F|_2 8.38e-11 -> 5.30e-17, |dz| 2.6e-07, dDelta -1.08e-09, pivots 1.7e-08..6.8e+00 (191.2 s)
+10:06:44     re-planned: 161 steps
+10:07:10   band 5 (newton): |F| 1.02e-17, |F|_2 5.30e-17 -> 2.85e-26, |dz| 4.4e-12, dDelta +4.04e-15, pivots 1.7e-08..6.8e+00 (216.7 s)
+10:07:10     re-planned: 121 steps
+10:07:30   band 6 (newton): |F| 1.05e-26, |F|_2 2.85e-26 -> 1.00e-30, |dz| 5.4e-16, dDelta -8.73e-24, pivots 2.6e-08..6.8e+00 (236.9 s)
+10:07:30     re-planned: 120 steps
+10:07:50   band 7: |F| 1.48e-31 converged, Delta 1.147965782383993
+10:07:50 plan from the solution: 120 steps (0.2 s); |F| 1.48e-31
+10:08:09   band 0: |F| 1.48e-31 converged, Delta 1.147965782383993
+10:08:09 double-double: converged True, |F| 1.48e-31, Delta 1.147965782383993450920893985494227, constraint 6.42e-15, tails 1.1e-178 3.4e-119
+10:08:09 done 2026-11-16 10:08:09 UTC (276.5 s)
+bash gate.sh 31 gate.log nice -n 10 python3 -u matter/sigma_ms/run_eta.py --eta 0.3 --D 10.125 --M 32 --out out --tag eta0.3_D10.125_M32 --threads 2 --solver band --it 40 --from sm_eta0.3_D10.1875_M32.npz --from2 sm_eta0.3_D10.25_M32.npz
+10:08:11 start 2026-11-16 10:08:11 UTC: eta 0.3, D 10.125, M 32, K 21, kt 36, kc 80, ks 80, threads 2
+10:08:11 seed {'src': 'sm_eta0.3_D10.1875_M32.npz', 'eta_src': '0.3', 'M_src': 32, 'D_src': 10.1875, 'D_src2': 10.25, 'src2': 'sm_eta0.3_D10.25_M32.npz', 'eta_src2': '0.3', 'w': -1.0}: Delta 1.148950522707, |F| (single-step plan) 2.73e+18
+10:08:11 plan from the seed: 241 steps [8, 6, 5, 4, 3, 4, 5, 4, 3, 5, 7, 8, 13, 14, 15, 17, 21, 31, 30, 38] (0.3 s); |F| 5.28e-05
+10:08:50   band 0 (newton): |F| 5.28e-05, |F|_2 4.94e-04 -> 5.04e-06, |dz| 3.0e-02, dDelta -1.10e-05, pivots 9.4e-07..6.8e+00 (39.1 s)
+10:08:50     re-planned: 247 steps
+10:09:28   band 1 (newton): |F| 1.25e-06, |F|_2 5.04e-06 -> 4.96e-06, |dz| 3.0e-02, dDelta +8.63e-06, pivots 4.6e-08..6.8e+00 (77.6 s)
+10:09:29     re-planned: 260 steps
+10:10:09   band 2 (newton): |F| 1.24e-06, |F|_2 4.96e-06 -> 1.49e-08, |dz| 2.3e-03, dDelta -5.13e-06, pivots 3.8e-08..6.8e+00 (118.4 s)
+10:10:09     re-planned: 243 steps
+10:10:48   band 3 (newton): |F| 2.67e-09, |F|_2 1.49e-08 -> 7.30e-11, |dz| 2.0e-04, dDelta +4.09e-07, pivots 2.6e-08..6.8e+00 (156.7 s)
+10:10:48     re-planned: 217 steps
+10:11:22   band 4 (newton): |F| 2.00e-11, |F|_2 7.30e-11 -> 4.57e-17, |dz| 2.0e-07, dDelta -9.47e-10, pivots 2.6e-08..6.8e+00 (190.6 s)
+10:11:22     re-planned: 162 steps
+10:11:47   band 5 (newton): |F| 8.28e-18, |F|_2 4.57e-17 -> 1.86e-26, |dz| 6.8e-12, dDelta +3.52e-15, pivots 2.6e-08..6.8e+00 (216.6 s)
+10:11:48     re-planned: 122 steps
+10:12:07   band 6 (newton): |F| 6.50e-27, |F|_2 1.86e-26 -> 9.34e-31, |dz| 2.2e-16, dDelta -4.08e-25, pivots 3.1e-08..6.8e+00 (236.4 s)
+10:12:07     re-planned: 116 steps
+10:12:26   band 7: |F| 1.31e-31 converged, Delta 1.148943407623199
+10:12:26 plan from the solution: 116 steps (0.2 s); |F| 1.31e-31
+10:12:45   band 0: |F| 1.31e-31 converged, Delta 1.148943407623199
+10:12:45 double-double: converged True, |F| 1.31e-31, Delta 1.148943407623199506479023552612767, constraint 5.57e-15, tails 3.1e-179 3.4e-119
+10:12:45 done 2026-11-16 10:12:45 UTC (274.5 s)
+bash gate.sh 31 gate.log nice -n 10 python3 -u matter/sigma_ms/run_eta.py --eta 0.3 --D 10.0625 --M 32 --out out --tag eta0.3_D10.0625_M32 --threads 2 --solver band --it 40 --from sm_eta0.3_D10.125_M32.npz --from2 sm_eta0.3_D10.1875_M32.npz
+10:12:47 start 2026-11-16 10:12:47 UTC: eta 0.3, D 10.0625, M 32, K 21, kt 36, kc 80, ks 80, threads 2
+10:12:47 seed {'src': 'sm_eta0.3_D10.125_M32.npz', 'eta_src': '0.3', 'M_src': 32, 'D_src': 10.125, 'D_src2': 10.1875, 'src2': 'sm_eta0.3_D10.1875_M32.npz', 'eta_src2': '0.3', 'w': -1.0}: Delta 1.149921032862, |F| (single-step plan) 1.31e+18
+10:12:47 plan from the seed: 240 steps [8, 6, 5, 4, 3, 4, 5, 4, 3, 5, 7, 8, 13, 14, 15, 17, 21, 32, 29, 37] (0.3 s); |F| 5.41e-05
+10:13:26   band 0 (newton): |F| 5.41e-05, |F|_2 5.05e-04 -> 5.68e-06, |dz| 3.2e-02, dDelta -1.24e-05, pivots 8.5e-07..6.8e+00 (38.6 s)
+10:13:26     re-planned: 250 steps
+10:14:06   band 1 (newton): |F| 1.46e-06, |F|_2 5.68e-06 -> 5.57e-06, |dz| 3.2e-02, dDelta +9.42e-06, pivots 3.8e-08..6.8e+00 (79.5 s)
+10:14:07     re-planned: 261 steps
+10:14:48   band 2 (newton): |F| 1.44e-06, |F|_2 5.57e-06 -> 1.44e-08, |dz| 2.2e-03, dDelta -5.16e-06, pivots 3.6e-08..6.8e+00 (121.0 s)
+10:14:48     re-planned: 247 steps
+10:15:27   band 3 (newton): |F| 2.56e-09, |F|_2 1.44e-08 -> 6.35e-11, |dz| 1.9e-04, dDelta +4.32e-07, pivots 3.6e-08..6.8e+00 (159.8 s)
+10:15:27     re-planned: 218 steps
+10:16:01   band 4 (newton): |F| 1.81e-11, |F|_2 6.35e-11 -> 3.56e-17, |dz| 1.4e-07, dDelta -7.82e-10, pivots 3.6e-08..6.8e+00 (194.2 s)
+10:16:01     re-planned: 164 steps
+10:16:27   band 5 (newton): |F| 7.03e-18, |F|_2 3.56e-17 -> 1.10e-26, |dz| 7.8e-12, dDelta +2.67e-15, pivots 3.6e-08..6.8e+00 (220.4 s)
+10:16:27     re-planned: 118 steps
+10:16:47   band 6 (newton): |F| 2.63e-27, |F|_2 1.10e-26 -> 9.56e-31, |dz| 2.6e-16, dDelta +6.85e-24, pivots 3.0e-08..6.8e+00 (240.2 s)
+10:16:47     re-planned: 116 steps
+10:17:06   band 7: |F| 1.60e-31 converged, Delta 1.149913371531406
+10:17:06 plan from the solution: 116 steps (0.2 s); |F| 1.60e-31
+10:17:25   band 0: |F| 1.60e-31 converged, Delta 1.149913371531406
+10:17:25 double-double: converged True, |F| 1.60e-31, Delta 1.149913371531406501707431080879453, constraint 7.34e-15, tails 3.3e-179 6.1e-119
+10:17:25 done 2026-11-16 10:17:25 UTC (278.6 s)
+bash gate.sh 31 gate.log nice -n 10 python3 -u matter/sigma_ms/run_eta.py --eta 0.3 --D 10 --M 32 --out out --tag eta0.3_D10_M32 --threads 2 --solver band --it 40 --from sm_eta0.3_D10.0625_M32.npz --from2 sm_eta0.3_D10.125_M32.npz
+10:17:26 start 2026-11-16 10:17:26 UTC: eta 0.3, D 10.0, M 32, K 21, kt 36, kc 80, ks 80, threads 2
+10:17:26 seed {'src': 'sm_eta0.3_D10.0625_M32.npz', 'eta_src': '0.3', 'M_src': 32, 'D_src': 10.0625, 'D_src2': 10.125, 'src2': 'sm_eta0.3_D10.125_M32.npz', 'eta_src2': '0.3', 'w': -1.0}: Delta 1.150883335440, |F| (single-step plan) 4.38e+18
+10:17:26 plan from the seed: 241 steps [8, 6, 5, 4, 3, 4, 5, 4, 3, 5, 7, 8, 13, 14, 15, 17, 21, 31, 30, 38] (0.3 s); |F| 5.53e-05
+10:18:05   band 0 (newton): |F| 5.53e-05, |F|_2 5.17e-04 -> 6.42e-06, |dz| 3.5e-02, dDelta -1.37e-05, pivots 7.7e-07..6.8e+00 (39.1 s)
+10:18:06     re-planned: 250 steps
+10:18:44   band 1 (newton): |F| 1.68e-06, |F|_2 6.42e-06 -> 6.30e-06, |dz| 3.5e-02, dDelta +1.02e-05, pivots 3.9e-08..6.8e+00 (78.1 s)
+10:18:45     re-planned: 262 steps
+10:19:25   band 2 (newton): |F| 1.67e-06, |F|_2 6.30e-06 -> 1.40e-08, |dz| 2.1e-03, dDelta -5.16e-06, pivots 3.8e-08..6.8e+00 (119.0 s)
+10:19:26     re-planned: 249 steps
+10:20:04   band 3 (newton): |F| 2.59e-09, |F|_2 1.40e-08 -> 5.51e-11, |dz| 1.8e-04, dDelta +4.44e-07, pivots 3.4e-08..6.8e+00 (157.9 s)
+10:20:04     re-planned: 214 steps
+10:20:38   band 4 (newton): |F| 1.59e-11, |F|_2 5.51e-11 -> 2.56e-17, |dz| 8.7e-08, dDelta -6.07e-10, pivots 3.4e-08..6.8e+00 (191.5 s)
+10:20:38     re-planned: 162 steps
+10:21:04   band 5 (newton): |F| 5.22e-18, |F|_2 2.56e-17 -> 6.91e-27, |dz| 6.9e-12, dDelta +1.78e-15, pivots 3.4e-08..6.8e+00 (217.5 s)
+10:21:04     re-planned: 122 steps
+10:21:24   band 6 (newton): |F| 1.85e-27, |F|_2 6.91e-27 -> 9.28e-31, |dz| 2.5e-16, dDelta -3.57e-24, pivots 3.1e-08..6.8e+00 (237.4 s)
+10:21:24     re-planned: 116 steps
+10:21:43   band 7: |F| 1.33e-31 converged, Delta 1.150875101002367
+10:21:43 plan from the solution: 116 steps (0.1 s); |F| 1.33e-31
+10:22:02   band 0: |F| 1.33e-31 converged, Delta 1.150875101002367
+10:22:02 double-double: converged True, |F| 1.33e-31, Delta 1.150875101002366688811233394887597, constraint 7.52e-15, tails 2.7e-179 8.8e-119
+10:22:02 done 2026-11-16 10:22:02 UTC (275.6 s)
+bash gate.sh 31 gate.log nice -n 10 python3 -u matter/sigma_ms/run_eta.py --eta 0.3 --D 9.9375 --M 32 --out out --tag eta0.3_D9.9375_M32 --threads 2 --solver band --it 40 --from sm_eta0.3_D10_M32.npz --from2 sm_eta0.3_D10.0625_M32.npz
+10:22:02 start 2026-11-16 10:22:02 UTC: eta 0.3, D 9.9375, M 32, K 21, kt 36, kc 80, ks 80, threads 2
+10:22:02 seed {'src': 'sm_eta0.3_D10_M32.npz', 'eta_src': '0.3', 'M_src': 32, 'D_src': 10.0, 'D_src2': 10.0625, 'src2': 'sm_eta0.3_D10.0625_M32.npz', 'eta_src2': '0.3', 'w': -1.0}: Delta 1.151836830473, |F| (single-step plan) 2.62e+18
+10:22:03 plan from the seed: 242 steps [8, 6, 5, 4, 3, 4, 5, 4, 3, 5, 7, 8, 13, 14, 15, 17, 21, 32, 30, 38] (0.3 s); |F| 5.66e-05
+10:22:42   band 0 (newton): |F| 5.66e-05, |F|_2 5.30e-04 -> 7.30e-06, |dz| 3.7e-02, dDelta -1.52e-05, pivots 7.1e-07..6.8e+00 (39.0 s)
+10:22:42     re-planned: 252 steps
+10:23:21   band 1 (newton): |F| 1.93e-06, |F|_2 7.30e-06 -> 7.16e-06, |dz| 3.8e-02, dDelta +1.10e-05, pivots 4.1e-08..6.8e+00 (78.3 s)
+10:23:21     re-planned: 262 steps
+10:24:02   band 2 (newton): |F| 1.92e-06, |F|_2 7.16e-06 -> 1.38e-08, |dz| 2.1e-03, dDelta -5.10e-06, pivots 4.2e-08..6.8e+00 (119.5 s)
+10:24:02     re-planned: 250 steps
+10:24:42   band 3 (newton): |F| 2.72e-09, |F|_2 1.38e-08 -> 4.77e-11, |dz| 1.7e-04, dDelta +4.45e-07, pivots 3.4e-08..6.8e+00 (159.1 s)
+10:24:42     re-planned: 217 steps
+10:25:16   band 4 (newton): |F| 1.29e-11, |F|_2 4.77e-11 -> 1.76e-17, |dz| 8.5e-08, dDelta -4.41e-10, pivots 3.4e-08..6.8e+00 (193.6 s)
+10:25:16     re-planned: 162 steps
+10:25:42   band 5 (newton): |F| 3.74e-18, |F|_2 1.76e-17 -> 3.70e-27, |dz| 5.6e-12, dDelta +1.04e-15, pivots 3.4e-08..6.8e+00 (219.7 s)
+10:25:42     re-planned: 116 steps
+10:26:02   band 6 (newton): |F| 1.13e-27, |F|_2 3.70e-27 -> 9.32e-31, |dz| 9.7e-17, dDelta -5.54e-24, pivots 4.5e-08..6.8e+00 (239.1 s)
+10:26:02     re-planned: 116 steps
+10:26:21   band 7: |F| 1.54e-31 converged, Delta 1.151827994681114
+10:26:21 plan from the solution: 116 steps (0.2 s); |F| 1.54e-31
+10:26:40   band 0: |F| 1.54e-31 converged, Delta 1.151827994681114
+10:26:40 double-double: converged True, |F| 1.54e-31, Delta 1.151827994681114390994480817306805, constraint 6.34e-15, tails 2.6e-179 1.0e-118
+10:26:40 done 2026-11-16 10:26:40 UTC (277.6 s)
+bash gate.sh 31 gate.log nice -n 10 python3 -u matter/sigma_ms/run_eta.py --eta 0.3 --D 9.875 --M 32 --out out --tag eta0.3_D9.875_M32 --threads 2 --solver band --it 40 --from sm_eta0.3_D9.9375_M32.npz --from2 sm_eta0.3_D10_M32.npz
+10:26:41 start 2026-11-16 10:26:41 UTC: eta 0.3, D 9.875, M 32, K 21, kt 36, kc 80, ks 80, threads 2
+10:26:41 seed {'src': 'sm_eta0.3_D9.9375_M32.npz', 'eta_src': '0.3', 'M_src': 32, 'D_src': 9.9375, 'D_src2': 10.0, 'src2': 'sm_eta0.3_D10_M32.npz', 'eta_src2': '0.3', 'w': -1.0}: Delta 1.152780888360, |F| (single-step plan) 5.45e+18
+10:26:42 plan from the seed: 242 steps [8, 6, 5, 4, 3, 4, 5, 4, 3, 5, 7, 8, 13, 14, 15, 17, 21, 31, 30, 39] (0.3 s); |F| 5.79e-05
+10:27:19   band 0 (newton): |F| 5.79e-05, |F|_2 5.42e-04 -> 8.34e-06, |dz| 4.1e-02, dDelta -1.67e-05, pivots 6.7e-07..6.8e+00 (37.8 s)
+10:27:20     re-planned: 253 steps
+10:27:58   band 1 (newton): |F| 2.20e-06, |F|_2 8.34e-06 -> 8.17e-06, |dz| 4.1e-02, dDelta +1.18e-05, pivots 4.6e-08..6.8e+00 (76.2 s)
+10:27:58     re-planned: 262 steps
+10:28:37   band 2 (newton): |F| 2.19e-06, |F|_2 8.17e-06 -> 1.36e-08, |dz| 2.0e-03, dDelta -5.00e-06, pivots 5.5e-08..6.8e+00 (115.3 s)
+10:28:37     re-planned: 250 steps
+10:29:14   band 3 (newton): |F| 2.65e-09, |F|_2 1.36e-08 -> 4.10e-11, |dz| 1.6e-04, dDelta +4.35e-07, pivots 5.0e-08..6.8e+00 (151.9 s)
+10:29:14     re-planned: 218 steps
+10:29:48   band 4 (newton): |F| 1.07e-11, |F|_2 4.10e-11 -> 1.18e-17, |dz| 1.1e-07, dDelta -2.97e-10, pivots 5.0e-08..6.8e+00 (185.9 s)
+10:29:48     re-planned: 161 steps
+10:30:13   band 5 (newton): |F| 2.15e-18, |F|_2 1.18e-17 -> 1.21e-27, |dz| 3.7e-12, dDelta +5.23e-16, pivots 5.0e-08..6.8e+00 (211.5 s)
+10:30:13     re-planned: 118 steps
+10:30:33   band 6 (newton): |F| 2.66e-28, |F|_2 1.21e-27 -> 9.16e-31, |dz| 6.1e-17, dDelta -5.48e-24, pivots 5.0e-08..6.8e+00 (231.1 s)
+10:30:33     re-planned: 114 steps
+10:30:51   band 7: |F| 1.53e-31 converged, Delta 1.152771421494807
+10:30:51 plan from the solution: 114 steps (0.1 s); |F| 1.53e-31
+10:31:10   band 0: |F| 1.53e-31 converged, Delta 1.152771421494807
+10:31:10 double-double: converged True, |F| 1.53e-31, Delta 1.15277142149480676687676127365049, constraint 6.00e-15, tails 1.5e-179 1.9e-118
+10:31:10 done 2026-11-16 10:31:10 UTC (268.5 s)
+bash gate.sh 31 gate.log nice -n 10 python3 -u matter/sigma_ms/run_eta.py --eta 0.3 --D 9.8125 --M 32 --out out --tag eta0.3_D9.8125_M32 --threads 2 --solver band --it 40 --from sm_eta0.3_D9.875_M32.npz --from2 sm_eta0.3_D9.9375_M32.npz
+10:31:12 start 2026-11-16 10:31:12 UTC: eta 0.3, D 9.8125, M 32, K 21, kt 36, kc 80, ks 80, threads 2
+10:31:12 seed {'src': 'sm_eta0.3_D9.875_M32.npz', 'eta_src': '0.3', 'M_src': 32, 'D_src': 9.875, 'D_src2': 9.9375, 'src2': 'sm_eta0.3_D9.9375_M32.npz', 'eta_src2': '0.3', 'w': -1.0}: Delta 1.153714848308, |F| (single-step plan) 2.56e+18
+10:31:12 plan from the seed: 241 steps [8, 6, 5, 4, 3, 4, 5, 4, 3, 5, 7, 8, 13, 14, 15, 17, 21, 31, 30, 38] (0.3 s); |F| 5.92e-05
+10:31:51   band 0 (newton): |F| 5.92e-05, |F|_2 5.55e-04 -> 9.56e-06, |dz| 4.4e-02, dDelta -1.82e-05, pivots 6.3e-07..6.8e+00 (39.1 s)
+10:31:52     re-planned: 258 steps
+10:32:31   band 1 (newton): |F| 2.49e-06, |F|_2 9.56e-06 -> 9.36e-06, |dz| 4.4e-02, dDelta +1.25e-05, pivots 4.8e-08..6.8e+00 (78.3 s)
+10:32:31     re-planned: 262 steps
+10:33:08   band 2 (newton): |F| 2.48e-06, |F|_2 9.36e-06 -> 1.35e-08, |dz| 2.0e-03, dDelta -4.83e-06, pivots 5.5e-08..6.8e+00 (115.5 s)
+10:33:08     re-planned: 250 steps
+10:33:44   band 3 (newton): |F| 2.65e-09, |F|_2 1.35e-08 -> 3.48e-11, |dz| 1.5e-04, dDelta +4.15e-07, pivots 4.6e-08..6.8e+00 (151.4 s)
+10:33:44     re-planned: 218 steps
+10:34:16   band 4 (newton): |F| 9.89e-12, |F|_2 3.48e-11 -> 7.56e-18, |dz| 1.2e-07, dDelta -1.83e-10, pivots 4.6e-08..6.8e+00 (183.3 s)
+10:34:16     re-planned: 159 steps
+10:34:39   band 5 (newton): |F| 1.34e-18, |F|_2 7.56e-18 -> 3.21e-28, |dz| 1.8e-12, dDelta +2.25e-16, pivots 4.6e-08..6.8e+00 (207.0 s)
+10:34:39     re-planned: 116 steps
+10:34:57   band 6: |F| 9.65e-29 converged, Delta 1.153704719098840
+10:34:57 plan from the solution: 116 steps (0.1 s); |F| 9.65e-29
+10:35:15   band 0: |F| 9.65e-29 converged, Delta 1.153704719098840
+10:35:15 double-double: converged True, |F| 9.65e-29, Delta 1.153704719098840320417626197692299, constraint 8.85e-15, tails 3.2e-179 3.1e-118
+10:35:15 done 2026-11-16 10:35:15 UTC (242.9 s)
+bash gate.sh 31 gate.log nice -n 10 python3 -u matter/sigma_ms/run_eta.py --eta 0.3 --D 9.75 --M 32 --out out --tag eta0.3_D9.75_M32 --threads 2 --solver band --it 40 --from sm_eta0.3_D9.8125_M32.npz --from2 sm_eta0.3_D9.875_M32.npz
+10:35:16 start 2026-11-16 10:35:16 UTC: eta 0.3, D 9.75, M 32, K 21, kt 36, kc 80, ks 80, threads 2
+10:35:16 seed {'src': 'sm_eta0.3_D9.8125_M32.npz', 'eta_src': '0.3', 'M_src': 32, 'D_src': 9.8125, 'D_src2': 9.875, 'src2': 'sm_eta0.3_D9.875_M32.npz', 'eta_src2': '0.3', 'w': -1.0}: Delta 1.154638016703, |F| (single-step plan) 2.63e+18
+10:35:16 plan from the seed: 241 steps [8, 6, 4, 4, 3, 4, 5, 4, 3, 5, 7, 8, 13, 14, 15, 17, 21, 32, 30, 38] (0.3 s); |F| 6.07e-05
+10:35:52   band 0 (newton): |F| 6.07e-05, |F|_2 5.69e-04 -> 1.10e-05, |dz| 4.8e-02, dDelta -1.98e-05, pivots 5.9e-07..6.8e+00 (36.6 s)
+10:35:53     re-planned: 264 steps
+10:36:31   band 1 (newton): |F| 2.81e-06, |F|_2 1.10e-05 -> 1.08e-05, |dz| 4.8e-02, dDelta +1.32e-05, pivots 8.8e-08..6.8e+00 (75.3 s)
+10:36:31     re-planned: 262 steps
+10:37:09   band 2 (newton): |F| 2.81e-06, |F|_2 1.08e-05 -> 1.33e-08, |dz| 2.0e-03, dDelta -4.60e-06, pivots 6.7e-08..6.8e+00 (113.5 s)
+10:37:10     re-planned: 250 steps
+10:37:46   band 3 (newton): |F| 2.69e-09, |F|_2 1.33e-08 -> 2.90e-11, |dz| 1.4e-04, dDelta +3.85e-07, pivots 7.3e-08..6.8e+00 (150.4 s)
+10:37:46     re-planned: 218 steps
+10:38:18   band 4 (newton): |F| 8.32e-12, |F|_2 2.90e-11 -> 4.34e-18, |dz| 1.1e-07, dDelta -1.02e-10, pivots 7.3e-08..6.8e+00 (182.5 s)
+10:38:19     re-planned: 156 steps
+10:38:42   band 5 (newton): |F| 8.10e-19, |F|_2 4.34e-18 -> 5.45e-29, |dz| 7.0e-13, dDelta +8.05e-17, pivots 7.3e-08..6.8e+00 (205.9 s)
+10:38:42     re-planned: 115 steps
+10:38:59   band 6: |F| 1.87e-29 converged, Delta 1.154627192232821
+10:38:59 plan from the solution: 115 steps (0.2 s); |F| 1.87e-29
+10:39:16   band 0: |F| 1.87e-29 converged, Delta 1.154627192232821
+10:39:16 double-double: converged True, |F| 1.87e-29, Delta 1.154627192232821368944430818744247, constraint 8.81e-15, tails 4.2e-179 4.6e-118
+10:39:16 done 2026-11-16 10:39:16 UTC (241.0 s)
+bash gate.sh 31 gate.log nice -n 10 python3 -u matter/sigma_ms/run_eta.py --eta 0.3 --D 9.6875 --M 32 --out out --tag eta0.3_D9.6875_M32 --threads 2 --solver band --it 40 --from sm_eta0.3_D9.75_M32.npz --from2 sm_eta0.3_D9.8125_M32.npz
+10:39:18 start 2026-11-16 10:39:18 UTC: eta 0.3, D 9.6875, M 32, K 21, kt 36, kc 80, ks 80, threads 2
+10:39:18 seed {'src': 'sm_eta0.3_D9.75_M32.npz', 'eta_src': '0.3', 'M_src': 32, 'D_src': 9.75, 'D_src2': 9.8125, 'src2': 'sm_eta0.3_D9.8125_M32.npz', 'eta_src2': '0.3', 'w': -1.0}: Delta 1.155549665367, |F| (single-step plan) 1.74e+18
+10:39:18 plan from the seed: 242 steps [8, 6, 4, 4, 3, 4, 5, 4, 3, 5, 7, 8, 13, 15, 15, 17, 21, 32, 30, 38] (0.3 s); |F| 6.30e-05
+10:39:56   band 0 (newton): |F| 6.30e-05, |F|_2 5.83e-04 -> 1.27e-05, |dz| 5.3e-02, dDelta -2.13e-05, pivots 5.7e-07..6.8e+00 (37.6 s)
+10:39:56     re-planned: 265 steps
+10:40:37   band 1 (newton): |F| 3.15e-06, |F|_2 1.27e-05 -> 1.24e-05, |dz| 5.3e-02, dDelta +1.37e-05, pivots 6.2e-08..6.8e+00 (78.4 s)
+10:40:37     re-planned: 263 steps
+10:41:17   band 2 (newton): |F| 3.16e-06, |F|_2 1.24e-05 -> 1.31e-08, |dz| 2.0e-03, dDelta -4.30e-06, pivots 8.1e-08..6.8e+00 (118.9 s)
+10:41:17     re-planned: 249 steps
+10:41:56   band 3 (newton): |F| 2.53e-09, |F|_2 1.31e-08 -> 2.33e-11, |dz| 1.2e-04, dDelta +3.47e-07, pivots 6.4e-08..6.8e+00 (157.9 s)
+10:41:56     re-planned: 215 steps
+10:42:30   band 4 (newton): |F| 6.25e-12, |F|_2 2.33e-11 -> 2.00e-18, |dz| 7.1e-08, dDelta -4.92e-11, pivots 6.4e-08..6.8e+00 (191.8 s)
+10:42:30     re-planned: 151 steps
+10:42:56   band 5 (newton): |F| 2.99e-19, |F|_2 2.00e-18 -> 4.37e-30, |dz| 2.1e-13, dDelta +2.33e-17, pivots 6.4e-08..6.8e+00 (217.4 s)
+10:42:56     re-planned: 115 steps
+10:43:16   band 6: |F| 1.22e-30 converged, Delta 1.155538110980587
+10:43:16 plan from the solution: 115 steps (0.2 s); |F| 1.22e-30
+10:43:36   band 0: |F| 1.22e-30 converged, Delta 1.155538110980587
+10:43:36 double-double: converged True, |F| 1.22e-30, Delta 1.155538110980587234047008403048881, constraint 8.57e-15, tails 4.8e-179 5.7e-118
+10:43:36 done 2026-11-16 10:43:36 UTC (257.8 s)
+bash gate.sh 31 gate.log nice -n 10 python3 -u matter/sigma_ms/run_eta.py --eta 0.3 --D 9.625 --M 32 --out out --tag eta0.3_D9.625_M32 --threads 2 --solver band --it 40 --from sm_eta0.3_D9.6875_M32.npz --from2 sm_eta0.3_D9.75_M32.npz
+10:43:36 start 2026-11-16 10:43:36 UTC: eta 0.3, D 9.625, M 32, K 21, kt 36, kc 80, ks 80, threads 2
+10:43:36 seed {'src': 'sm_eta0.3_D9.6875_M32.npz', 'eta_src': '0.3', 'M_src': 32, 'D_src': 9.6875, 'D_src2': 9.75, 'src2': 'sm_eta0.3_D9.75_M32.npz', 'eta_src2': '0.3', 'w': -1.0}: Delta 1.156449029728, |F| (single-step plan) 4.23e+18
+10:43:37 plan from the seed: 241 steps [8, 6, 4, 4, 3, 4, 5, 4, 3, 5, 7, 8, 13, 15, 15, 17, 21, 31, 30, 38] (0.3 s); |F| 6.53e-05
+10:44:15   band 0 (newton): |F| 6.53e-05, |F|_2 5.98e-04 -> 1.47e-05, |dz| 5.8e-02, dDelta -2.27e-05, pivots 5.5e-07..6.9e+00 (38.5 s)
+10:44:15     re-planned: 270 steps
+10:44:58   band 1 (newton): |F| 3.52e-06, |F|_2 1.47e-05 -> 1.44e-05, |dz| 5.8e-02, dDelta +1.40e-05, pivots 1.0e-07..6.9e+00 (81.0 s)
+10:44:58     re-planned: 268 steps
+10:45:40   band 2 (newton): |F| 3.53e-06, |F|_2 1.44e-05 -> 1.28e-08, |dz| 2.0e-03, dDelta -3.93e-06, pivots 1.0e-07..6.9e+00 (123.0 s)
+10:45:40     re-planned: 245 steps
+10:46:18   band 3 (newton): |F| 2.46e-09, |F|_2 1.28e-08 -> 1.80e-11, |dz| 1.1e-04, dDelta +3.01e-07, pivots 1.1e-07..6.9e+00 (161.6 s)
+10:46:19     re-planned: 210 steps
+10:46:52   band 4 (newton): |F| 4.42e-12, |F|_2 1.80e-11 -> 7.60e-19, |dz| 2.8e-08, dDelta -2.01e-11, pivots 1.1e-07..6.9e+00 (194.9 s)
+10:46:52     re-planned: 144 steps
+10:47:15   band 5 (newton): |F| 1.72e-19, |F|_2 7.60e-19 -> 8.99e-31, |dz| 3.9e-14, dDelta +5.12e-18, pivots 1.1e-07..6.9e+00 (218.0 s)
+10:47:15     re-planned: 112 steps
+10:47:34   band 6: |F| 1.40e-31 converged, Delta 1.156436708928064
+10:47:34 plan from the solution: 112 steps (0.1 s); |F| 1.40e-31
+10:47:52   band 0: |F| 1.40e-31 converged, Delta 1.156436708928064
+10:47:52 double-double: converged True, |F| 1.40e-31, Delta 1.156436708928064299178766154273665, constraint 7.31e-15, tails 2.5e-179 7.8e-118
+10:47:52 done 2026-11-16 10:47:52 UTC (256.0 s)
+bash gate.sh 31 gate.log nice -n 10 python3 -u matter/sigma_ms/run_eta.py --eta 0.3 --D 9.5625 --M 32 --out out --tag eta0.3_D9.5625_M32 --threads 2 --solver band --it 40 --from sm_eta0.3_D9.625_M32.npz --from2 sm_eta0.3_D9.6875_M32.npz
+10:49:53 start 2026-11-16 10:49:53 UTC: eta 0.3, D 9.5625, M 32, K 21, kt 36, kc 80, ks 80, threads 2
+10:49:53 seed {'src': 'sm_eta0.3_D9.625_M32.npz', 'eta_src': '0.3', 'M_src': 32, 'D_src': 9.625, 'D_src2': 9.6875, 'src2': 'sm_eta0.3_D9.6875_M32.npz', 'eta_src2': '0.3', 'w': -1.0}: Delta 1.157335306876, |F| (single-step plan) 2.75e+18
+10:49:53 plan from the seed: 242 steps [8, 6, 4, 4, 3, 4, 5, 4, 3, 5, 7, 9, 13, 15, 15, 17, 21, 31, 30, 38] (0.3 s); |F| 6.77e-05
+10:50:31   band 0 (newton): |F| 6.77e-05, |F|_2 6.13e-04 -> 1.70e-05, |dz| 6.4e-02, dDelta -2.39e-05, pivots 5.6e-07..6.9e+00 (37.7 s)
+10:50:31     re-planned: 273 steps
+10:51:14   band 1 (newton): |F| 3.91e-06, |F|_2 1.70e-05 -> 1.67e-05, |dz| 6.5e-02, dDelta +1.40e-05, pivots 8.2e-08..6.9e+00 (80.4 s)
+10:51:14     re-planned: 266 steps
+10:51:56   band 2 (newton): |F| 3.94e-06, |F|_2 1.67e-05 -> 1.24e-08, |dz| 2.1e-03, dDelta -3.50e-06, pivots 1.0e-07..6.9e+00 (122.3 s)
+10:51:56     re-planned: 244 steps
+10:52:34   band 3 (newton): |F| 2.34e-09, |F|_2 1.24e-08 -> 1.31e-11, |dz| 9.3e-05, dDelta +2.51e-07, pivots 1.2e-07..6.9e+00 (160.5 s)
+10:52:34     re-planned: 211 steps
+10:53:07   band 4 (newton): |F| 3.46e-12, |F|_2 1.31e-11 -> 3.03e-19, |dz| 1.9e-08, dDelta -6.55e-12, pivots 1.2e-07..6.9e+00 (193.8 s)
+10:53:07     re-planned: 138 steps
+10:53:30   band 5 (newton): |F| 5.99e-20, |F|_2 3.03e-19 -> 9.17e-31, |dz| 5.7e-15, dDelta +7.20e-19, pivots 1.2e-07..6.9e+00 (216.1 s)
+10:53:30     re-planned: 111 steps
+10:53:48   band 6: |F| 1.29e-31 converged, Delta 1.157322181212307
+10:53:48 plan from the solution: 111 steps (0.2 s); |F| 1.29e-31
+10:54:07   band 0: |F| 1.29e-31 converged, Delta 1.157322181212307
+10:54:07 double-double: converged True, |F| 1.29e-31, Delta 1.15732218121230688622602890444807, constraint 7.07e-15, tails 2.4e-179 1.4e-117
+10:54:07 done 2026-11-16 10:54:07 UTC (253.6 s)
+bash gate.sh 31 gate.log nice -n 10 python3 -u matter/sigma_ms/run_eta.py --eta 0.3 --D 9.5 --M 32 --out out --tag eta0.3_D9.5_M32 --threads 2 --solver band --it 40 --from sm_eta0.3_D9.5625_M32.npz --from2 sm_eta0.3_D9.625_M32.npz
+10:55:08 start 2026-11-16 10:55:08 UTC: eta 0.3, D 9.5, M 32, K 21, kt 36, kc 80, ks 80, threads 2
+10:55:08 seed {'src': 'sm_eta0.3_D9.5625_M32.npz', 'eta_src': '0.3', 'M_src': 32, 'D_src': 9.5625, 'D_src2': 9.625, 'src2': 'sm_eta0.3_D9.625_M32.npz', 'eta_src2': '0.3', 'w': -1.0}: Delta 1.158207653497, |F| (single-step plan) 2.70e+18
+10:55:08 plan from the seed: 244 steps [8, 6, 4, 4, 3, 4, 5, 4, 3, 5, 7, 9, 14, 15, 16, 17, 21, 32, 29, 38] (0.3 s); |F| 7.03e-05
+10:55:46   band 0 (newton): |F| 7.03e-05, |F|_2 6.29e-04 -> 1.97e-05, |dz| 7.2e-02, dDelta -2.47e-05, pivots 5.2e-07..6.9e+00 (37.7 s)
+10:55:46     re-planned: 282 steps
+10:56:30   band 1 (newton): |F| 4.45e-06, |F|_2 1.97e-05 -> 1.94e-05, |dz| 7.2e-02, dDelta +1.36e-05, pivots 9.7e-08..6.9e+00 (81.4 s)
+10:56:30     re-planned: 275 steps
+10:57:13   band 2 (newton): |F| 4.37e-06, |F|_2 1.94e-05 -> 1.18e-08, |dz| 2.1e-03, dDelta -3.00e-06, pivots 9.9e-08..6.9e+00 (124.5 s)
+10:57:13     re-planned: 251 steps
+10:57:54   band 3 (newton): |F| 2.30e-09, |F|_2 1.18e-08 -> 8.79e-12, |dz| 7.9e-05, dDelta +1.99e-07, pivots 1.3e-07..6.9e+00 (165.3 s)
+10:57:54     re-planned: 214 steps
+10:58:30   band 4 (newton): |F| 2.27e-12, |F|_2 8.79e-12 -> 1.36e-19, |dz| 2.4e-08, dDelta -1.53e-12, pivots 1.3e-07..6.9e+00 (201.7 s)
+10:58:30     re-planned: 138 steps
+10:58:54   band 5 (newton): |F| 1.76e-20, |F|_2 1.36e-19 -> 9.56e-31, |dz| 5.7e-15, dDelta -1.27e-20, pivots 1.3e-07..6.9e+00 (225.5 s)
+10:58:54     re-planned: 115 steps
+10:59:14   band 6: |F| 1.98e-31 converged, Delta 1.158193682454584
+10:59:14 plan from the solution: 115 steps (0.1 s); |F| 1.98e-31
+10:59:34   band 0: |F| 1.98e-31 converged, Delta 1.158193682454584
+10:59:34 double-double: converged True, |F| 1.98e-31, Delta 1.158193682454584534307194766451762, constraint 8.45e-15, tails 1.0e-178 2.6e-117
+10:59:34 done 2026-11-16 10:59:34 UTC (265.9 s)
+bash gate.sh 31 gate.log nice -n 10 python3 -u matter/sigma_ms/run_eta.py --eta 0.3 --D 9.4375 --M 32 --out out --tag eta0.3_D9.4375_M32 --threads 2 --solver band --it 40 --from sm_eta0.3_D9.5_M32.npz --from2 sm_eta0.3_D9.5625_M32.npz
+10:59:34 start 2026-11-16 10:59:34 UTC: eta 0.3, D 9.4375, M 32, K 21, kt 36, kc 80, ks 80, threads 2
+10:59:34 seed {'src': 'sm_eta0.3_D9.5_M32.npz', 'eta_src': '0.3', 'M_src': 32, 'D_src': 9.5, 'D_src2': 9.5625, 'src2': 'sm_eta0.3_D9.5625_M32.npz', 'eta_src2': '0.3', 'w': -1.0}: Delta 1.159065183697, |F| (single-step plan) 1.94e+18
+10:59:34 plan from the seed: 244 steps [8, 6, 4, 4, 3, 4, 5, 4, 3, 5, 7, 9, 14, 15, 16, 17, 21, 31, 30, 38] (0.3 s); |F| 7.29e-05
+11:00:15   band 0 (newton): |F| 7.29e-05, |F|_2 6.45e-04 -> 2.28e-05, |dz| 7.9e-02, dDelta -2.51e-05, pivots 4.8e-07..6.9e+00 (40.7 s)
+11:00:15     re-planned: 289 steps
+11:01:03   band 1 (newton): |F| 5.40e-06, |F|_2 2.28e-05 -> 2.23e-05, |dz| 8.0e-02, dDelta +1.26e-05, pivots 1.1e-07..6.9e+00 (88.5 s)
+11:01:03     re-planned: 277 steps
+11:01:49   band 2 (newton): |F| 5.26e-06, |F|_2 2.23e-05 -> 1.13e-08, |dz| 2.2e-03, dDelta -2.45e-06, pivots 1.0e-07..6.9e+00 (134.6 s)
+11:01:49     re-planned: 256 steps
+11:02:31   band 3 (newton): |F| 2.88e-09, |F|_2 1.13e-08 -> 5.36e-12, |dz| 6.5e-05, dDelta +1.49e-07, pivots 1.6e-07..6.9e+00 (177.0 s)
+11:02:31     re-planned: 213 steps
+11:03:07   band 4 (newton): |F| 1.22e-12, |F|_2 5.36e-12 -> 6.14e-20, |dz| 2.2e-08, dDelta -2.20e-13, pivots 1.6e-07..6.9e+00 (212.7 s)
+11:03:07     re-planned: 135 steps
+11:03:30   band 5 (newton): |F| 1.01e-20, |F|_2 6.14e-20 -> 9.41e-31, |dz| 2.1e-15, dDelta -5.00e-20, pivots 1.6e-07..6.9e+00 (235.9 s)
+11:03:30     re-planned: 115 steps
+11:03:50   band 6: |F| 1.42e-31 converged, Delta 1.159050324569872
+11:03:50 plan from the solution: 115 steps (0.2 s); |F| 1.42e-31
+11:04:10   band 0: |F| 1.42e-31 converged, Delta 1.159050324569872
+11:04:10 double-double: converged True, |F| 1.42e-31, Delta 1.159050324569871882558515102033139, constraint 6.81e-15, tails 2.3e-178 4.4e-117
+11:04:10 done 2026-11-16 11:04:10 UTC (275.9 s)
+bash gate.sh 31 gate.log nice -n 10 python3 -u matter/sigma_ms/run_eta.py --eta 0.3 --D 9.375 --M 32 --out out --tag eta0.3_D9.375_M32 --threads 2 --solver band --it 40 --from sm_eta0.3_D9.4375_M32.npz --from2 sm_eta0.3_D9.5_M32.npz
+11:04:10 start 2026-11-16 11:04:10 UTC: eta 0.3, D 9.375, M 32, K 21, kt 36, kc 80, ks 80, threads 2
+11:04:10 seed {'src': 'sm_eta0.3_D9.4375_M32.npz', 'eta_src': '0.3', 'M_src': 32, 'D_src': 9.4375, 'D_src2': 9.5, 'src2': 'sm_eta0.3_D9.5_M32.npz', 'eta_src2': '0.3', 'w': -1.0}: Delta 1.159906966685, |F| (single-step plan) 2.52e+18
+11:04:11 plan from the seed: 243 steps [8, 6, 4, 4, 3, 4, 5, 4, 3, 5, 7, 9, 14, 15, 16, 17, 21, 31, 29, 38] (0.3 s); |F| 7.56e-05
+11:04:51   band 0 (newton): |F| 7.56e-05, |F|_2 6.62e-04 -> 2.60e-05, |dz| 8.7e-02, dDelta -2.48e-05, pivots 4.6e-07..6.9e+00 (39.9 s)
+11:04:51     re-planned: 296 steps
+11:05:39   band 1 (newton): |F| 6.55e-06, |F|_2 2.60e-05 -> 2.56e-05, |dz| 8.7e-02, dDelta +1.08e-05, pivots 1.3e-07..6.9e+00 (88.6 s)
+11:05:40     re-planned: 287 steps
+11:06:25   band 2 (newton): |F| 6.39e-06, |F|_2 2.56e-05 -> 1.09e-08, |dz| 2.5e-03, dDelta -1.87e-06, pivots 1.5e-07..6.9e+00 (134.7 s)
+11:06:26     re-planned: 260 steps
+11:07:09   band 3 (newton): |F| 3.32e-09, |F|_2 1.09e-08 -> 2.92e-12, |dz| 5.2e-05, dDelta +1.04e-07, pivots 1.9e-07..6.9e+00 (178.0 s)
+11:07:09     re-planned: 215 steps
+11:07:44   band 4 (newton): |F| 6.48e-13, |F|_2 2.92e-12 -> 1.56e-19, |dz| 4.6e-08, dDelta -3.93e-14, pivots 1.9e-07..6.9e+00 (213.7 s)
+11:07:45     re-planned: 130 steps
+11:08:06   band 5 (newton): |F| 3.38e-20, |F|_2 1.56e-19 -> 9.39e-31, |dz| 3.2e-16, dDelta -2.05e-20, pivots 1.9e-07..6.9e+00 (235.7 s)
+11:08:06     re-planned: 115 steps
+11:08:26   band 6: |F| 1.05e-31 converged, Delta 1.159891174444542
+11:08:26 plan from the solution: 115 steps (0.2 s); |F| 1.05e-31
+11:08:45   band 0: |F| 1.05e-31 converged, Delta 1.159891174444542
+11:08:45 double-double: converged True, |F| 1.05e-31, Delta 1.159891174444541880351004961147465, constraint 6.98e-15, tails 2.1e-178 6.4e-117
+11:08:45 done 2026-11-16 11:08:45 UTC (274.9 s)
+bash gate.sh 31 gate.log nice -n 10 python3 -u matter/sigma_ms/run_eta.py --eta 0.3 --D 9.3125 --M 32 --out out --tag eta0.3_D9.3125_M32 --threads 2 --solver band --it 40 --from sm_eta0.3_D9.375_M32.npz --from2 sm_eta0.3_D9.4375_M32.npz
+11:08:46 start 2026-11-16 11:08:46 UTC: eta 0.3, D 9.3125, M 32, K 21, kt 36, kc 80, ks 80, threads 2
+11:08:46 seed {'src': 'sm_eta0.3_D9.375_M32.npz', 'eta_src': '0.3', 'M_src': 32, 'D_src': 9.375, 'D_src2': 9.4375, 'src2': 'sm_eta0.3_D9.4375_M32.npz', 'eta_src2': '0.3', 'w': -1.0}: Delta 1.160732024319, |F| (single-step plan) 8.00e+17
+11:08:46 plan from the seed: 243 steps [8, 6, 4, 4, 3, 4, 5, 4, 3, 5, 7, 9, 14, 15, 16, 17, 21, 31, 30, 37] (0.3 s); |F| 7.84e-05
+11:09:27   band 0 (newton): |F| 7.84e-05, |F|_2 6.79e-04 -> 2.94e-05, |dz| 9.3e-02, dDelta -2.36e-05, pivots 4.5e-07..6.9e+00 (40.4 s)
+11:09:27     re-planned: 298 steps
+11:10:15   band 1 (newton): |F| 7.70e-06, |F|_2 2.94e-05 -> 2.89e-05, |dz| 9.3e-02, dDelta +8.09e-06, pivots 1.6e-07..6.9e+00 (88.8 s)
+11:10:15     re-planned: 290 steps
+11:11:03   band 2 (newton): |F| 7.54e-06, |F|_2 2.89e-05 -> 9.82e-09, |dz| 2.6e-03, dDelta -1.29e-06, pivots 2.0e-07..6.9e+00 (136.6 s)
+11:11:03     re-planned: 259 steps
+11:11:46   band 3 (newton): |F| 3.21e-09, |F|_2 9.82e-09 -> 1.40e-12, |dz| 4.3e-05, dDelta +6.78e-08, pivots 2.0e-07..6.9e+00 (179.5 s)
+11:11:46     re-planned: 212 steps
+11:12:20   band 4 (newton): |F| 3.03e-13, |F|_2 1.40e-12 -> 4.59e-20, |dz| 2.3e-08, dDelta -5.09e-14, pivots 2.0e-07..6.9e+00 (214.3 s)
+11:12:21     re-planned: 126 steps
+11:12:42   band 5 (newton): |F| 1.59e-20, |F|_2 4.59e-20 -> 9.49e-31, |dz| 8.9e-17, dDelta -5.56e-21, pivots 2.0e-07..6.9e+00 (235.9 s)
+11:12:42     re-planned: 108 steps
+11:13:01   band 6: |F| 1.62e-31 converged, Delta 1.160715251473466
+11:13:01 plan from the solution: 108 steps (0.1 s); |F| 1.62e-31
+11:13:21   band 0: |F| 1.62e-31 converged, Delta 1.160715251473466
+11:13:21 double-double: converged True, |F| 1.62e-31, Delta 1.160715251473466116879161265633994, constraint 6.75e-15, tails 4.9e-179 1.1e-116
+11:13:21 done 2026-11-16 11:13:21 UTC (275.1 s)
+bash gate.sh 31 gate.log nice -n 10 python3 -u matter/sigma_ms/run_eta.py --eta 0.3 --D 9.25 --M 32 --out out --tag eta0.3_D9.25_M32 --threads 2 --solver band --it 40 --from sm_eta0.3_D9.3125_M32.npz --from2 sm_eta0.3_D9.375_M32.npz
+11:13:21 start 2026-11-16 11:13:21 UTC: eta 0.3, D 9.25, M 32, K 21, kt 36, kc 80, ks 80, threads 2
+11:13:21 seed {'src': 'sm_eta0.3_D9.3125_M32.npz', 'eta_src': '0.3', 'M_src': 32, 'D_src': 9.3125, 'D_src2': 9.375, 'src2': 'sm_eta0.3_D9.375_M32.npz', 'eta_src2': '0.3', 'w': -1.0}: Delta 1.161539328502, |F| (single-step plan) 1.24e+18
+11:13:21 plan from the seed: 243 steps [8, 6, 4, 4, 3, 4, 5, 4, 3, 6, 8, 9, 14, 15, 15, 17, 20, 31, 30, 37] (0.3 s); |F| 8.14e-05
+11:14:02   band 0 (newton): |F| 8.14e-05, |F|_2 6.98e-04 -> 3.31e-05, |dz| 9.7e-02, dDelta -2.13e-05, pivots 4.5e-07..6.9e+00 (40.3 s)
+11:14:02     re-planned: 290 steps
+11:14:50   band 1 (newton): |F| 8.96e-06, |F|_2 3.31e-05 -> 3.25e-05, |dz| 9.7e-02, dDelta +4.16e-06, pivots 3.1e-07..6.9e+00 (88.2 s)
+11:14:50     re-planned: 285 steps
+11:15:33   band 2 (newton): |F| 8.81e-06, |F|_2 3.25e-05 -> 8.30e-09, |dz| 1.7e-03, dDelta -7.03e-07, pivots 1.9e-07..6.9e+00 (131.1 s)
+11:15:33     re-planned: 259 steps
+11:16:12   band 3 (newton): |F| 2.80e-09, |F|_2 8.30e-09 -> 5.91e-13, |dz| 3.9e-05, dDelta +3.99e-08, pivots 2.5e-07..6.9e+00 (170.4 s)
+11:16:12     re-planned: 206 steps
+11:16:43   band 4 (newton): |F| 1.33e-13, |F|_2 5.91e-13 -> 3.65e-22, |dz| 1.9e-09, dDelta -5.61e-14, pivots 2.4e-07..6.9e+00 (201.3 s)
+11:16:43     re-planned: 121 steps
+11:17:03   band 5 (newton): |F| 9.87e-23, |F|_2 3.65e-22 -> 9.10e-31, |dz| 1.7e-17, dDelta -8.48e-22, pivots 2.1e-07..6.9e+00 (221.5 s)
+11:17:03     re-planned: 112 steps
+11:17:21   band 6: |F| 1.31e-31 converged, Delta 1.161521524947082
+11:17:21 plan from the solution: 112 steps (0.2 s); |F| 1.31e-31
+11:17:40   band 0: |F| 1.31e-31 converged, Delta 1.161521524947082
+11:17:40 double-double: converged True, |F| 1.31e-31, Delta 1.161521524947082023899797455636287, constraint 9.29e-15, tails 2.0e-178 1.6e-116
+11:17:40 done 2026-11-16 11:17:40 UTC (258.6 s)
+bash gate.sh 31 gate.log nice -n 10 python3 -u matter/sigma_ms/run_eta.py --eta 0.3 --D 9.1875 --M 32 --out out --tag eta0.3_D9.1875_M32 --threads 2 --solver band --it 40 --from sm_eta0.3_D9.25_M32.npz --from2 sm_eta0.3_D9.3125_M32.npz
+11:17:41 start 2026-11-16 11:17:41 UTC: eta 0.3, D 9.1875, M 32, K 21, kt 36, kc 80, ks 80, threads 2
+11:17:41 seed {'src': 'sm_eta0.3_D9.25_M32.npz', 'eta_src': '0.3', 'M_src': 32, 'D_src': 9.25, 'D_src2': 9.3125, 'src2': 'sm_eta0.3_D9.3125_M32.npz', 'eta_src2': '0.3', 'w': -1.0}: Delta 1.162327798421, |F| (single-step plan) 3.29e+18
+11:17:42 plan from the seed: 245 steps [8, 6, 4, 4, 3, 4, 5, 4, 3, 6, 8, 9, 14, 15, 15, 17, 21, 31, 30, 38] (0.3 s); |F| 8.44e-05
+11:18:20   band 0 (newton): |F| 8.44e-05, |F|_2 7.17e-04 -> 3.76e-05, |dz| 1.0e-01, dDelta -1.74e-05, pivots 4.6e-07..6.9e+00 (38.0 s)
+11:18:20     re-planned: 288 steps
+11:19:04   band 1 (newton): |F| 1.04e-05, |F|_2 3.76e-05 -> 3.68e-05, |dz| 1.0e-01, dDelta -1.36e-06, pivots 2.3e-07..6.9e+00 (82.8 s)
+11:19:05     re-planned: 284 steps
+11:19:49   band 2 (newton): |F| 1.03e-05, |F|_2 3.68e-05 -> 7.18e-09, |dz| 1.4e-03, dDelta -1.22e-07, pivots 2.5e-07..6.9e+00 (127.5 s)
+11:19:49     re-planned: 261 steps
+11:20:31   band 3 (newton): |F| 2.34e-09, |F|_2 7.18e-09 -> 2.52e-13, |dz| 3.9e-05, dDelta +2.06e-08, pivots 2.6e-07..6.9e+00 (169.5 s)
+11:20:31     re-planned: 198 steps
+11:21:04   band 4 (newton): |F| 5.62e-14, |F|_2 2.52e-13 -> 9.15e-24, |dz| 2.5e-10, dDelta -4.19e-14, pivots 2.6e-07..6.9e+00 (202.9 s)
+11:21:05     re-planned: 117 steps
+11:21:25   band 5 (newton): |F| 1.90e-24, |F|_2 9.15e-24 -> 9.13e-31, |dz| 6.0e-18, dDelta -4.57e-23, pivots 2.2e-07..6.9e+00 (223.7 s)
+11:21:25     re-planned: 109 steps
+11:21:45   band 6: |F| 1.62e-31 converged, Delta 1.162308911278292
+11:21:45 plan from the solution: 109 steps (0.2 s); |F| 1.62e-31
+11:22:04   band 0: |F| 1.62e-31 converged, Delta 1.162308911278292
+11:22:04 double-double: converged True, |F| 1.62e-31, Delta 1.162308911278291582692987513369223, constraint 8.27e-15, tails 9.6e-179 2.4e-116
+11:22:04 done 2026-11-16 11:22:04 UTC (263.0 s)
+bash gate.sh 31 gate.log nice -n 10 python3 -u matter/sigma_ms/run_eta.py --eta 0.3 --D 9.125 --M 32 --out out --tag eta0.3_D9.125_M32 --threads 2 --solver band --it 40 --from sm_eta0.3_D9.1875_M32.npz --from2 sm_eta0.3_D9.25_M32.npz
+11:22:05 start 2026-11-16 11:22:05 UTC: eta 0.3, D 9.125, M 32, K 21, kt 36, kc 80, ks 80, threads 2
+11:22:05 seed {'src': 'sm_eta0.3_D9.1875_M32.npz', 'eta_src': '0.3', 'M_src': 32, 'D_src': 9.1875, 'D_src2': 9.25, 'src2': 'sm_eta0.3_D9.25_M32.npz', 'eta_src2': '0.3', 'w': -1.0}: Delta 1.163096297610, |F| (single-step plan) 1.79e+18
+11:22:05 plan from the seed: 243 steps [8, 6, 4, 4, 3, 4, 5, 4, 3, 6, 8, 9, 14, 15, 15, 17, 20, 31, 29, 38] (0.3 s); |F| 8.75e-05
+11:22:44   band 0 (newton): |F| 8.75e-05, |F|_2 7.36e-04 -> 4.31e-05, |dz| 1.1e-01, dDelta -1.15e-05, pivots 4.7e-07..6.9e+00 (39.1 s)
+11:22:44     re-planned: 286 steps
+11:23:31   band 1 (newton): |F| 1.20e-05, |F|_2 4.31e-05 -> 4.22e-05, |dz| 1.1e-01, dDelta -8.99e-06, pivots 2.8e-07..6.9e+00 (85.8 s)
+11:23:31     re-planned: 285 steps
+11:24:18   band 2 (newton): |F| 1.19e-05, |F|_2 4.22e-05 -> 6.13e-09, |dz| 1.2e-03, dDelta +4.82e-07, pivots 2.7e-07..6.9e+00 (133.1 s)
+11:24:18     re-planned: 261 steps
+11:25:01   band 3 (newton): |F| 2.21e-09, |F|_2 6.13e-09 -> 1.95e-13, |dz| 3.8e-05, dDelta +8.06e-09, pivots 3.6e-07..6.9e+00 (176.5 s)
+11:25:02     re-planned: 202 steps
+11:25:36   band 4 (newton): |F| 4.63e-14, |F|_2 1.95e-13 -> 1.57e-22, |dz| 1.3e-09, dDelta -4.23e-15, pivots 3.6e-07..6.9e+00 (210.6 s)
+11:25:36     re-planned: 117 steps
+11:25:56   band 5 (newton): |F| 5.60e-23, |F|_2 1.57e-22 -> 9.18e-31, |dz| 2.3e-18, dDelta +7.58e-24, pivots 3.6e-07..6.9e+00 (231.3 s)
+11:25:56     re-planned: 112 steps
+11:26:15   band 6: |F| 9.86e-32 converged, Delta 1.163076271058306
+11:26:16 plan from the solution: 112 steps (0.1 s); |F| 9.86e-32
+11:26:35   band 0: |F| 9.86e-32 converged, Delta 1.163076271058306
+11:26:35 double-double: converged True, |F| 9.86e-32, Delta 1.163076271058305626880151396038158, constraint 6.66e-15, tails 3.7e-178 4.3e-116
+11:26:35 done 2026-11-16 11:26:35 UTC (270.3 s)
+bash gate.sh 31 gate.log nice -n 10 python3 -u matter/sigma_ms/run_eta.py --eta 0.3 --D 9.0625 --M 32 --out out --tag eta0.3_D9.0625_M32 --threads 2 --solver band --it 40 --from sm_eta0.3_D9.125_M32.npz --from2 sm_eta0.3_D9.1875_M32.npz
+11:26:35 start 2026-11-16 11:26:35 UTC: eta 0.3, D 9.0625, M 32, K 21, kt 36, kc 80, ks 80, threads 2
+11:26:35 seed {'src': 'sm_eta0.3_D9.125_M32.npz', 'eta_src': '0.3', 'M_src': 32, 'D_src': 9.125, 'D_src2': 9.1875, 'src2': 'sm_eta0.3_D9.1875_M32.npz', 'eta_src2': '0.3', 'w': -1.0}: Delta 1.163843630838, |F| (single-step plan) 1.46e+18
+11:26:36 plan from the seed: 244 steps [8, 6, 4, 4, 3, 4, 5, 4, 3, 6, 8, 9, 14, 15, 15, 17, 21, 31, 30, 37] (0.3 s); |F| 9.07e-05
+11:27:16   band 0 (newton): |F| 9.07e-05, |F|_2 7.57e-04 -> 5.03e-05, |dz| 1.2e-01, dDelta -2.95e-06, pivots 4.8e-07..6.9e+00 (40.6 s)
+11:27:16     re-planned: 285 steps
+11:28:03   band 1 (newton): |F| 1.37e-05, |F|_2 5.03e-05 -> 4.93e-05, |dz| 1.2e-01, dDelta -1.94e-05, pivots 4.0e-07..6.9e+00 (87.5 s)
+11:28:03     re-planned: 284 steps
+11:28:50   band 2 (newton): |F| 1.36e-05, |F|_2 4.93e-05 -> 4.69e-09, |dz| 1.1e-03, dDelta +1.17e-06, pivots 3.5e-07..6.9e+00 (134.4 s)
+11:28:50     re-planned: 260 steps
+11:29:33   band 3 (newton): |F| 1.68e-09, |F|_2 4.69e-09 -> 4.00e-13, |dz| 3.9e-05, dDelta -8.80e-10, pivots 4.1e-07..6.9e+00 (177.3 s)
+11:29:33     re-planned: 203 steps
+11:30:07   band 4 (newton): |F| 7.51e-14, |F|_2 4.00e-13 -> 6.14e-22, |dz| 3.3e-09, dDelta +5.38e-14, pivots 4.1e-07..6.9e+00 (210.9 s)
+11:30:07     re-planned: 116 steps
+11:30:27   band 5 (newton): |F| 1.41e-22, |F|_2 6.14e-22 -> 9.49e-31, |dz| 1.4e-18, dDelta -4.27e-23, pivots 4.1e-07..6.9e+00 (231.5 s)
+11:30:27     re-planned: 112 steps
+11:30:47   band 6: |F| 1.34e-31 converged, Delta 1.163822405929737
+11:30:47 plan from the solution: 112 steps (0.2 s); |F| 1.34e-31
+11:31:06   band 0: |F| 1.34e-31 converged, Delta 1.163822405929737
+11:31:06 double-double: converged True, |F| 1.34e-31, Delta 1.163822405929737157427842955690875, constraint 7.15e-15, tails 7.1e-178 7.2e-116
+11:31:06 done 2026-11-16 11:31:06 UTC (271.0 s)
+bash gate.sh 31 gate.log nice -n 10 python3 -u matter/sigma_ms/run_eta.py --eta 0.3 --D 9 --M 32 --out out --tag eta0.3_D9_M32 --threads 2 --solver band --it 40 --from sm_eta0.3_D9.0625_M32.npz --from2 sm_eta0.3_D9.125_M32.npz
+11:31:07 start 2026-11-16 11:31:07 UTC: eta 0.3, D 9.0, M 32, K 21, kt 36, kc 80, ks 80, threads 2
+11:31:07 seed {'src': 'sm_eta0.3_D9.0625_M32.npz', 'eta_src': '0.3', 'M_src': 32, 'D_src': 9.0625, 'D_src2': 9.125, 'src2': 'sm_eta0.3_D9.125_M32.npz', 'eta_src2': '0.3', 'w': -1.0}: Delta 1.164568540801, |F| (single-step plan) 1.38e+18
+11:31:07 plan from the seed: 244 steps [8, 6, 4, 4, 3, 4, 5, 4, 3, 6, 8, 9, 14, 15, 15, 17, 20, 31, 30, 38] (0.3 s); |F| 9.41e-05
+11:31:47   band 0 (newton): |F| 9.41e-05, |F|_2 7.78e-04 -> 6.01e-05, |dz| 1.4e-01, dDelta +9.14e-06, pivots 4.8e-07..6.9e+00 (40.4 s)
+11:31:48     re-planned: 285 steps
+11:32:35   band 1 (newton): |F| 1.67e-05, |F|_2 6.01e-05 -> 5.90e-05, |dz| 1.4e-01, dDelta -3.37e-05, pivots 4.7e-07..6.9e+00 (88.2 s)
+11:32:35     re-planned: 283 steps
+11:33:22   band 2 (newton): |F| 1.63e-05, |F|_2 5.90e-05 -> 4.19e-09, |dz| 1.0e-03, dDelta +2.05e-06, pivots 5.4e-07..6.9e+00 (134.8 s)
+11:33:22     re-planned: 260 steps
+11:34:03   band 3 (newton): |F| 1.29e-09, |F|_2 4.19e-09 -> 1.13e-12, |dz| 3.6e-05, dDelta -1.10e-08, pivots 4.7e-07..6.9e+00 (176.1 s)
+11:34:03     re-planned: 207 steps
+11:34:36   band 4 (newton): |F| 2.41e-13, |F|_2 1.13e-12 -> 1.09e-21, |dz| 4.2e-09, dDelta +1.11e-13, pivots 4.7e-07..6.9e+00 (208.8 s)
+11:34:36     re-planned: 120 steps
+11:34:56   band 5 (newton): |F| 2.74e-22, |F|_2 1.09e-21 -> 9.04e-31, |dz| 4.0e-18, dDelta -4.77e-23, pivots 4.7e-07..6.9e+00 (228.6 s)
+11:34:56     re-planned: 113 steps
+11:35:14   band 6: |F| 1.44e-31 converged, Delta 1.164546055264371
+11:35:14 plan from the solution: 113 steps (0.2 s); |F| 1.44e-31
+11:35:33   band 0: |F| 1.44e-31 converged, Delta 1.164546055264371
+11:35:33 double-double: converged True, |F| 1.44e-31, Delta 1.16454605526437113322874810160746, constraint 7.59e-15, tails 1.1e-177 1.3e-115
+11:35:33 done 2026-11-16 11:35:33 UTC (266.8 s)
