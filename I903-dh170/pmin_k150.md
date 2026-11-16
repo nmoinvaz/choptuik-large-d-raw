@@ -1,6 +1,6 @@
-# p_min of the order-150 chain's bases (I903-dh170, `chain_k150.log`), read at 2026-11-16 22:19 UTC
+# p_min of the order-150 chain's bases (I903-dh170, `chain_k150.log`), read at 2026-11-16 23:19 UTC
 
-From `I903-dh610/pmin903.py`. p_min is the smallest octo-double pivot of the base's series record, two digits as the log prints it.
+From `I903-dh610/pmin903.py`. p_min is the smallest octo-double pivot of the base's series record, two digits as the log prints it. The references are read from origin/main of the raw repository at the time of reading.
 
 ## Against T138's order-130 chain (`T138-win2/chain_o.log`)
 
@@ -15,6 +15,10 @@ From `I903-dh610/pmin903.py`. p_min is the smallest octo-double pivot of the bas
 | 206 | 9.20e-10 | 1.00e-13 | 9.2e+03 | 6.9e-76 |
 | 207 | 8.50e-10 | 7.60e-14 | 1.12e+04 | 4.3e-74 |
 | 208 | 7.40e-10 | 3.70e-14 | 2e+04 | 1.3e-73 |
+| 209 | 4.60e-10 | 2.30e-14 | 2e+04 | 7.4e-72 |
+| 210 | 2.20e-10 | - | - | 5.7e-72 |
+| 211 | 1.60e-10 | - | - | 2.7e-70 |
+| 212 | 1.60e-10 | - | - | 1.7e-69 |
 
 ## Against dh610's order-160 chain (`I903-dh610/chain_k160.log`)
 
@@ -29,3 +33,7 @@ From `I903-dh610/pmin903.py`. p_min is the smallest octo-double pivot of the bas
 | 206 | 9.20e-10 | 1.90e-09 | 0.484 | 6.9e-76 |
 | 207 | 8.50e-10 | 1.30e-09 | 0.654 | 4.3e-74 |
 | 208 | 7.40e-10 | 7.80e-10 | 0.949 | 1.3e-73 |
+| 209 | 4.60e-10 | 4.60e-10 | 1 | 7.4e-72 |
+| 210 | 2.20e-10 | 3.00e-10 | 0.733 | 5.7e-72 |
+| 211 | 1.60e-10 | 2.00e-10 | 0.8 | 2.7e-70 |
+| 212 | 1.60e-10 | 1.30e-10 | 1.23 | 1.7e-69 |
