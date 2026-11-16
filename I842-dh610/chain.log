@@ -403,3 +403,41 @@ step 12: D0 259.896154971044, sign +1, a_max 2.542e-03, a 4.517e-04 (a_max), |t_
   on 3: |F| 8.85e-68 converged, Delta 1.63504900598922576 -5.1985e-18
   corrector: 4 steps, pinned max|F| 8.85e-68 at D 259.89703597837969456, converged, 851.1 s; denominators 1.03e+00, 1.03e+00, 1.03e+00, 1.03e+00, |b| 2.35e-01, 2.35e-01, 2.35e-01, 2.35e-01
 step 13: D0 259.896595858977, sign +1, a_max 2.394e-03, a 4.517e-04 (a_max), |t_D| base 0.975, cond max 6.0e+00 -> D 259.89703597838 in 4 its, max|F| 8.8e-68
+  series at D 259.89703597838: pivots 3.7e-37..1.5e+37, |w_1| 2.147e-01, |w_N| 4.999e+47, 2201.6 s
+  attempt at D 259.897584882394 (the prediction moved +1.81e-31 in D, -4.07e-32 in Delta): predicted max|F| 1.20e-35, re-seed ok
+      border at D 259.8975848823939663992022085703938: g +1.86e-31, dD -1.82e-31 -> held, den 1.0312, |b| 0.2520, |a| 6.68e-33
+    on 0 chord 0: max|F| 8.17e-30, |dw| 7.364e-42
+    on 0 chord 1: max|F| 6.90e-42, |dw| 7.426e-42
+    on 0 chord 2: max|F| 7.34e-51, |dw| 2.473e-51
+  on 0: strong chord (4 weak directions), 3 steps after the full first step; theta at its point 1.845e-02 (bound 0.750): accepted, 245.81 s
+      border at D 259.8975848823939663992022085703938: g +1.88e-31, dD -1.83e-31 -> held, den 1.0301, |b| 0.2472, |a| 1.21e-34
+  on 0: |F| 1.20e-35 -> 6.78e-51, |dz| 6.68e-33 -> 1.21e-34, lam 1, dDelta -6.68e-33, piv 3.5e-37..1.5e+37, 506.24 s
+    on 1 trial lam 1: max|F| 2.69e-33; simplified correction / |dz| = 5.800e+03 (bound 0.750); refused, 1.52 s
+    on 1 trial lam 0.5: max|F| 3.39e-51; simplified correction / |dz| = 5.000e-01 (bound 0.875); accepted, 117.0 s
+      border at D 259.8975848823939663992022085703938: g +1.88e-31, dD -1.83e-31 -> held, den 1.0301, |b| 0.2472, |a| 6.05e-35
+  on 1: |F| 6.78e-51 -> 3.39e-51, |dz| 1.21e-34 -> 6.05e-35, lam 0.5, dDelta +1.21e-34, piv 3.5e-37..1.5e+37, 249.23 s
+    on 2 trial lam 1: max|F| 6.72e-34; simplified correction / |dz| = 1.450e+03 (bound 0.750); refused, 0.51 s
+    on 2 trial lam 0.5: max|F| 1.70e-51; simplified correction / |dz| = 5.000e-01 (bound 0.875); accepted, 79.45 s
+      border at D 259.8975848823939663992022085703938: g +1.88e-31, dD -1.83e-31 -> held, den 1.0301, |b| 0.2472, |a| 3.03e-35
+  on 2: |F| 3.39e-51 -> 1.70e-51, |dz| 6.05e-35 -> 3.03e-35, lam 0.5, dDelta +6.05e-35, piv 3.5e-37..1.5e+37, 196.21 s
+    on 3 trial lam 1: max|F| 1.68e-34; simplified correction / |dz| = 3.625e+02 (bound 0.750); refused, 0.55 s
+    on 3 trial lam 0.5: max|F| 8.48e-52; simplified correction / |dz| = 5.000e-01 (bound 0.875); accepted, 81.57 s
+      border at D 259.8975848823939663992022085703938: g +1.88e-31, dD -1.83e-31 -> held, den 1.0301, |b| 0.2472, |a| 1.51e-35
+  on 3: |F| 1.70e-51 -> 8.48e-52, |dz| 3.03e-35 -> 1.51e-35, lam 0.5, dDelta +3.03e-35, piv 3.5e-37..1.5e+37, 212.88 s
+    on 4 trial lam 1: max|F| 4.20e-35; simplified correction / |dz| = 9.062e+01 (bound 0.750); refused, 1.18 s
+    on 4 trial lam 0.5: max|F| 4.24e-52; simplified correction / |dz| = 5.000e-01 (bound 0.875); accepted, 108.46 s
+      border at D 259.8975848823939663992022085703938: g +1.88e-31, dD -1.83e-31 -> held, den 1.0301, |b| 0.2472, |a| 7.56e-36
+  on 4: |F| 8.48e-52 -> 4.24e-52, |dz| 1.51e-35 -> 7.56e-36, lam 0.5, dDelta +1.51e-35, piv 3.5e-37..1.5e+37, 264.35 s
+    on 5 trial lam 1: max|F| 1.05e-35; simplified correction / |dz| = 2.266e+01 (bound 0.750); refused, 0.49 s
+    on 5 trial lam 0.5: max|F| 2.12e-52; simplified correction / |dz| = 5.000e-01 (bound 0.875); accepted, 95.3 s
+      border at D 259.8975848823939663992022085703938: g +1.88e-31, dD -1.83e-31 -> held, den 1.0301, |b| 0.2472, |a| 3.78e-36
+  on 5: |F| 4.24e-52 -> 2.12e-52, |dz| 7.56e-36 -> 3.78e-36, lam 0.5, dDelta +7.56e-36, piv 3.5e-37..1.5e+37, 232.68 s
+    on 6 trial lam 1: max|F| 2.63e-36; simplified correction / |dz| = 5.664e+00 (bound 0.750); refused, 0.52 s
+    on 6 trial lam 0.5: max|F| 1.06e-52; simplified correction / |dz| = 5.000e-01 (bound 0.875); accepted, 74.34 s
+      border at D 259.8975848823939663992022085703938: g +1.88e-31, dD -1.83e-31 -> held, den 1.0301, |b| 0.2472, |a| 1.89e-36
+  on 6: |F| 2.12e-52 -> 1.06e-52, |dz| 3.78e-36 -> 1.89e-36, lam 0.5, dDelta +3.78e-36, piv 3.5e-37..1.5e+37, 184.17 s
+    on 7 trial lam 1: max|F| 6.56e-37; simplified correction / |dz| = 1.416e+00 (bound 0.750); refused, 0.72 s
+    on 7 trial lam 0.5: max|F| 5.30e-53; simplified correction / |dz| = 5.000e-01 (bound 0.875); accepted, 75.96 s
+      border at D 259.8975848823939663992022085703938: g +1.88e-31, dD -1.83e-31 -> held, den 1.0301, |b| 0.2472, |a| 9.45e-37
+  on 7: |F| 1.06e-52 -> 5.30e-53, |dz| 1.89e-36 -> 9.45e-37, lam 0.5, dDelta +1.89e-36, piv 3.5e-37..1.5e+37, 194.36 s
+    on 8 trial lam 1: max|F| 1.64e-37; simplified correction / |dz| = 3.540e-01 (bound 0.750); accepted, 1.16 s
