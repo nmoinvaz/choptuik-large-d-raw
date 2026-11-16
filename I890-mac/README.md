@@ -47,7 +47,7 @@ file is byte for byte the stored one.
 | the four `b8m_h8_*.log` | at most 5.3×10⁻¹⁶, in the record line |
 | `b8m_lc_K4.log`, `.out` | at most 3.9×10⁻¹⁵; two new fields and one new line for the floor |
 | `b8m_scan_K4_d0*.log`, `_fixedZ.log`, `_k0.85.log` | at most 1.7×10⁻¹¹; the field `d0` is new in the last two |
-| `b8m_scan_K4_box.log`, `.out` | the field `d0` is new; at ln n₀ = 62, 67 iterations against 70, h within 4.2×10⁻⁷, closes; the other records within 5.9×10⁻¹⁶ |
+| `b8m_scan_K4_box.log`, `.out` | the field `d0` is new; at ln n₀ = 62, 67 iterations against 70, h within 4.2×10⁻⁷, closes; the constants of the other records within 5.9×10⁻¹⁶, and one last relative change at ln n₀ = 70 within 1.7×10⁻¹¹ |
 | `b8m_lc_lip.json` | 1204 entries at the floor 10⁻⁵⁰, where the old values were at most 4.9×10⁻⁵³; the 396 above it within 4.5×10⁻¹⁶; four new fields |
 | `b8m_lc_K4_mut_rho2L.log`, `.out` | 4×10⁻³ in the last relative change: the record of a mutated certificate, still caught |
 | `b8m_lcj_mutations.log` | 4.1×10⁻⁷ in the weights that the `Om` mutation prints; θ = 2.8342×10² as before, caught |
