@@ -1,0 +1,17 @@
+b8m_atoms_K4.log: exit 0, 1 s: python3 b8m_atoms.py 4 0 0
+b8m_scan_K4_box.out: exit 0, 73 s: python3 b8m_scan.py 4 73.89,70,66,62 --rA=2e-6 --rW=2e-6 --log=b8m_scan_K4_box.log
+b8m_h8_K4_L73.89.log: exit 0, 2 s: python3 b8m_h8.py 4 73.89 --log=b8m_scan_K4_box.log --rA=2e-6 --rW=2e-6
+b8m_scan_K4_d0_1e7.out: exit 0, 22 s: python3 b8m_scan.py 4 73.89 --d0=1e7 --rA=2e-6 --rW=2e-6 --log=b8m_scan_K4_d0_1e7.log
+b8m_h8_K4_L73.89_d0_1e7.log: exit 0, 2 s: python3 b8m_h8.py 4 73.89 --log=b8m_scan_K4_d0_1e7.log --d0=1e7
+b5_jump_d0_1e7.log: exit 0, 0 s: python3 b5_jump.py --h8log=b8m_h8_K4_L73.89_d0_1e7.log --json=b5_jump_d0_1e7.json
+b8m_scan_K4_k0.85.out: exit 0, 8 s: python3 b8m_scan.py 4 104.68 --kappa1=0.85 --rA=2e-6 --rW=2e-6 --log=b8m_scan_K4_k0.85.log
+b7_ift.log: exit 0, 0 s: python3 b7_ift.py --adj=b7_adjoint.json --jump=b5_jump_d0_1e7.json --json=b7_ift.json
+b7_ift_mutJD.log: exit 0, 0 s: python3 b7_ift.py --adj=b7_adjoint.json --jump=b5_jump_d0_1e7.json --mutate=JD
+b8m_lc_K4.out: exit 0, 178 s: python3 b8m_lc.py 4 73.89 --rA=2e-6 --rW=2e-6 --lip --log=b8m_lc_K4.log --lipout=b8m_lc_lip.json
+b8m_lc_lipcheck.log: exit 0, 0 s: python3 b8m_lc.py --lipcheck=b8m_lc_lip.json
+b8m_lc_K4_mut_rho2L.out: exit 0, 81 s: python3 b8m_lc.py 4 73.89 --rA=2e-6 --rW=2e-6 --mutate=rho2L --log=b8m_lc_K4_mut_rho2L.log
+b8m_lc_numcheck_mut.log: exit 0, 176 s: python3 b8m_lc_numcheck.py 1000 --log=b8m_lc_K4_mut_rho2L.log --mutlc
+b8m_lc_numcheck_n1e3.log: exit 0, 165 s: python3 b8m_lc_numcheck.py 1000 --log=b8m_lc_K4.log
+b8m_lc_numcheck_mut_d0.log: exit 0, 159 s: python3 b8m_lc_numcheck.py 1000 --log=b8m_lc_K4.log --mutate=d0
+b8m_lcj.log: exit 0, 3 s: python3 b8m_lcj.py --log=b8m_lc_K4.log --json=b8m_lcj.json
+b8m_lcj_mut_kernel.log: exit 0, 4 s: python3 b8m_lcj.py --log=b8m_lc_K4.log --mutate=kernel
