@@ -24,7 +24,7 @@ and -1.4e-23 (`march`), and Delta(24) by +1.02e-21 and +1.04e-21. The three M = 
 2.3e-23, so Delta(48) - Delta(32) is at the level to which the band lets a converged double-double state fix Delta.
 At eta 1, Delta(48) is 2.1e-23 from #913's control state.
 
-Every step was Newton's own: the resampled states are within 3e-13 to 5e-11 of the solutions, so the band solver's
+Every step was Newton's own: the resampled states are within 2e-13 to 1.2e-10 of the solutions, so the band solver's
 short-step path ran and no SVD was taken.
 
 The resolution here is M, the number of tau points. The x direction was the same in every run: the 21 nodes, the
