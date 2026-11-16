@@ -42,4 +42,85 @@ Jacobians with a step below 1e-9 (jac 6 and 38, jac 8 and 50) and the next one i
 end them there (#892's walk at D 11.0 stopped on one such step, +2.7e-10, while Delta fell 2.3e-05 per Jacobian). The first
 step of each walk (-7.6e-06 and -2.5e-05) is the rate #892's walk had before it stalled (-7.7e-06 and -2.3e-05).
 
-(the widths and the readings follow)
+## Result
+
+Started 03:21:03 UTC, finished 04:18:00 (57 min of wall time; the estimate was about 4 h, a Jacobian took 7 s in the first
+pair and 9 s in the second). 8 commands, all exit 0 except `width2_hi_11.0`, which exits 1 (its two g disagree, below).
+No walk settled: `walk2_up_10.0` and `walk2_up_10.5` ran all 400 Jacobians with Delta still moving (-1.6e-06 and
++9.9e-06 per Jacobian), and `walk2_hi_10.5` and `walk2_hi_11.0` ended on the walk's stall rule after 48 and 54 Jacobians
+(one Jacobian that did not lower abs(F)), with Delta moving at -6.7e-06 and -2.1e-05 per applied Jacobian. By the rule
+of #892 all four ends are 1e-3 or more from their march's Delta, so each reads prior-held, and the one that was
+undecided (D 10.0) now reads prior-held; none has an end W at or below 1e-4, so none is a settled prior-free Delta.
+
+## The widths at the walks' ends (04:17:37 to 04:18:00 UTC)
+
+`width` at each end state (`width2_<n>.log`, `width2.jsonl`). The Newton column is Newton's step of Delta at the end.
+
+| walk end | Delta | abs(F) | g (SVD) | W = g abs(F) | Newton | smax, smallest singular value | g pair |
+|---|---|---|---|---|---|---|---|
+| walk2_up_10.0 (D 10.0) | 1.152612360 | 1.1146e-09 | 1.5887e+06 | 1.771e-03 | -8.314e-04 | 19.23, 2.98e-10 | agree (4.8e-09) |
+| walk2_up_10.5 (D 10.5) | 1.120571241 | 3.6309e-06 | 5.0437e+06 | 1.831e+01 | +1.748e-02 | 31.25, 4.55e-10 | agree (1.9e-07) |
+| walk2_hi_10.5 (D 10.5) | 1.137323569 | 1.1966e-09 | 2.4226e+06 | 2.899e-03 | +6.768e-04 | 44.50, 1.86e-10 | agree (1.5e-09) |
+| walk2_hi_11.0 (D 11.0) | 1.114698451 | 9.8764e-09 | 8.4718e+06 | 8.367e-02 | +3.584e-02 | 93.56, 2.25e-11 | **disagree (5.2e-06)** |
+
+`width2_hi_11.0` exits 1 because g (SVD) 8.47182e+06 and g (solve) 8.47177e+06 differ by 5.2e-06 against the tool's 1e-6
+bar; the smallest singular value 2.25e-11 against smax 93.6 (condition 4e+12) is the cause, as in #892 (its march state
+at D 11.0: 1.7e-05, condition 3e+13). The script and the bar are unchanged and W uses the SVD g.
+
+At `walk2_up_10.5` the width's abs(F) is 3.6309e-06 and the walk's last abs(F) was 1.5691e-08. The other three ends agree
+with their walk's last applied abs(F) to the digits printed (1.1146e-09, 1.1966e-09, 9.8764e-09). The tool's own text says
+`width` freezes the RK steps from the state it is given (the end state) and `walk` freezes them once from its start state,
+so the two abs(F) belong to systems built from different states; this end is 8.1e-03 from its march's Delta and 5.5e-03
+from the walk's start. I did not test whether that is the whole cause.
+
+## The readings of #892, restated on these ends
+
+Rules of #892: prior-held when the walk ends 1e-3 or more from the march's Delta, or does not settle while Delta moves by
+more than 1e-3; prior-free when it ends within the march state's own W of the march's Delta and the end's own W is at most
+1e-4; otherwise undecided. None of the four walks settled, so each reading below is by the rule's 1e-3 line on an end that is
+still moving. "step" is the applied change of Delta per Jacobian, the last and the mean of the last 10 (`readings.txt`,
+made by `read897.py`).
+
+| state | Delta (march), W | reading in #892 | walk of #897 | Delta (end) | end minus march | abs(F) (end) | W (end) | step | reading now |
+|---|---|---|---|---|---|---|---|---|---|
+| m03up D 10.0 | 1.154559202, 5.04e-03 | undecided | 400, not settled | 1.152612360 | -1.947e-03 | 1.115e-09 | 1.77e-03 | -1.613e-06, -1.577e-06 | **prior-held** |
+| m03up D 10.5 | 1.112502242, 6.13 | prior-held | 400, not settled | 1.120571241 | +8.069e-03 | 1.569e-08 (width 3.631e-06) | 18.3 | +9.899e-06, +9.960e-06 | **prior-held** |
+| m03hi D 10.5 | 1.139109365, 6.28e-03 | prior-held | 48, stalled | 1.137323569 | -1.786e-03 | 1.197e-09 | 2.90e-03 | -4.194e-06, -6.709e-06 | **prior-held** |
+| m03hi D 11.0 | 1.117461404, 0.460 | prior-held | 54, stalled | 1.114698451 | -2.763e-03 | 9.876e-09 | 8.37e-02 | -1.074e-05, -2.066e-05 | **prior-held** |
+
+(m03up D 9.0 was not continued; its reading in #892, prior-free, stands.)
+
+Where the ends point. Newton's step is a linear estimate, a measurement only where W is small. The estimate "Delta plus
+Newton's step" at the march state, at #892's end and at this end (`newton.txt`, made by `newton897.py`):
+
+| state | march + Newton | #892 end + Newton | #897 end + Newton | the walk moves, Newton points |
+|---|---|---|---|---|
+| m03up D 10.0 | 1.151757 | 1.151769 | 1.151781 | down, down |
+| m03up D 10.5 | 1.141216 | 1.139215 | 1.138050 | up, up |
+| m03hi D 10.5 | 1.137918 | 1.137984 | 1.138000 | down, up |
+| m03hi D 11.0 | 0.985591 | 1.125718 | 1.150537 | down, up |
+
+At D 10.0 the three estimates agree to 2.4e-05 (W at the end 1.8e-03, so this is the one end where the estimate is close
+to a measurement); the walk's end is 8.3e-04 above it and moving down, and the geometric tail of its last 50 steps would
+add -6.0e-04. At D 10.5 the two branches are 2.26e-02 apart at #892's ends and 1.68e-02 apart now (the up walk gained
++5.5e-03 and the hi walk lost 3.7e-04), and their Newton estimates, 1.2e-03 apart at #892's ends, are now 5.0e-05 apart
+(1.138050 and 1.138000); the up walk's W is 18, so its estimate is the weaker one. At D 11.0 the estimate has not settled
+(0.986, 1.126, 1.151), the walk moves down and Newton points up, with the smallest singular value 2e-11.
+
+## Discrepancies (listed, not fixed)
+
+- No walk settled. `walk2_hi_10.5` and `walk2_hi_11.0` ended on the walk's stall rule (abs(F) rose from 1.1966e-09 to
+  1.19672e-09 and from 9.8764e-09 to 9.87759e-09, relative 1e-4 and 1.2e-4) while Delta moved by -4.2e-06 to -1.2e-05 and
+  -1.1e-05 to -3.2e-05 per Jacobian before it; the step alternates between sizes there, so a walk-rule stall is not a
+  settled Delta (as in #859).
+- `width2_hi_11.0` exits 1: the two g differ by 5.2e-06 against 1e-6.
+- The width at `walk2_up_10.5` has abs(F) 3.6309e-06 against the walk's 1.5691e-08.
+- Three of the four walk logs (all but `walk2_up_10.0.log`) print the numpy RuntimeWarnings that #892's logs have
+  (overflow and invalid value in the trial steps, `sigdss_solver.py` lines 241 to 250 and 45, `dss.py:197`, numpy's
+  norm): 20, 22 and 25 lines, the same 25 distinct warnings as the Pi's `walk_*.log`.
+
+## Files
+
+`<name>.log` one per command (8), `exits_897.txt`, `env.txt`, `run897.sh` (placed md5 2481a931, only its RAW line changed),
+`walk2_<n>.jsonl` and `walk2_<n>.npy` (the end states, the start for a longer walk), `width2.jsonl`, `readings.txt` and
+`read897.py`, `newton.txt` and `newton897.py` (this runner's readers of the jsonl records).
