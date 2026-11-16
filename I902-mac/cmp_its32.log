@@ -1,0 +1,25 @@
+== cmp_its32 2026-11-16 15:41:49 UTC
+cmp_its32: ln g its 16 -39.393621, its 32 -39.393621, difference +0.000e+00
+  grip equal True; pivots equal True; pinned step's Delta equal True (-3.288902e-09)
+  sigma_1 its 16 7.644355e-18 (conv 1.35e-03, Delta share 9.10e-01), its 32 7.626499e-18 (conv 7.96e-07, Delta share 8.31e-01), ln ratio -2.34e-03
+  sigma_2 its 16 8.541933e-18 (conv 2.09e-03, Delta share 8.26e-02), its 32 8.573513e-18 (conv 1.27e-06, Delta share 1.62e-01), ln ratio +3.69e-03
+  sigma_3 its 16 1.807577e-16 (conv 2.81e-04, Delta share 3.08e-04), its 32 1.804041e-16 (conv 4.32e-05, Delta share 1.42e-05), ln ratio -1.96e-03
+  sigma_4 its 16 1.856202e-16 (conv 3.12e-04, Delta share 6.71e-03), its 32 1.860283e-16 (conv 4.89e-05, Delta share 7.00e-03), ln ratio +2.20e-03
+  check run: the rerun's near_null check passed: True: pass
+  check conv: sigma_1 converged to 7.96e-07 (< 1e-3): pass
+  check grip: |ln g(32) - ln g(16)| 0.00e+00 (< 1e-3): pass
+cmp_its32: PASS
+exit 0
+== cmp_its32 --mutate=self (want FAIL)
+cmp_its32: --mutate=self, the --its=16 run read as the rerun
+cmp_its32: ln g its 16 -39.393621, its 32 -39.393621, difference +0.000e+00
+  grip equal True; pivots equal True; pinned step's Delta equal True (-3.288902e-09)
+  sigma_1 its 16 7.644355e-18 (conv 1.35e-03, Delta share 9.10e-01), its 32 7.644355e-18 (conv 1.35e-03, Delta share 9.10e-01), ln ratio +0.00e+00
+  sigma_2 its 16 8.541933e-18 (conv 2.09e-03, Delta share 8.26e-02), its 32 8.541933e-18 (conv 2.09e-03, Delta share 8.26e-02), ln ratio +0.00e+00
+  sigma_3 its 16 1.807577e-16 (conv 2.81e-04, Delta share 3.08e-04), its 32 1.807577e-16 (conv 2.81e-04, Delta share 3.08e-04), ln ratio +0.00e+00
+  sigma_4 its 16 1.856202e-16 (conv 3.12e-04, Delta share 6.71e-03), its 32 1.856202e-16 (conv 3.12e-04, Delta share 6.71e-03), ln ratio +0.00e+00
+  check run: the rerun's near_null check passed: False: FAIL
+  check conv: sigma_1 converged to 1.35e-03 (< 1e-3): FAIL
+  check grip: |ln g(32) - ln g(16)| 0.00e+00 (< 1e-3): pass
+cmp_its32: FAIL
+exit 1

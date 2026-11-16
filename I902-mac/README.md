@@ -64,7 +64,7 @@ early, with g at ks 250 7.1e-16, 7.7e-18 and 6.3e-18 (M5's σ_∞ at D 253.80 is
 
 | # | criterion | verdict | number |
 | --- | --- | --- | --- |
-| C1 | runs' checks; only the horizon rows change | **FAIL** at D 249.01 ks 160 | σ₁ converged to 1.35e-3 (bar 1e-3); the other 16 runs pass; at every changed ks only the horizon block changed, its max\|ΔF\| 1.76e-27 (D 60) to 2.09e-12 |
+| C1 | runs' checks; only the horizon rows change | **FAIL** at D 249.01 ks 160; pass with its rerun at `--its=32` (below) | σ₁ converged to 1.35e-3 (bar 1e-3), and to 7.96e-07 in the rerun; the other 16 runs pass; at every changed ks only the horizon block changed, its max\|ΔF\| 1.76e-27 (D 60) to 2.09e-12 |
 | C2 | mutation equals ks 130 bit for bit; selftest | pass | `--ks 250 --mutate=ks`: equal; `sigma.py --selftest`: PASS |
 | C3 | control, D 60 | pass | largest \|Δ ln g\| or \|Δ ln σᵢ\| 0.00e+00 (bar 0.05) |
 | C4 | supports | does not hold | ln g(200) − ln g(130) +18.512, +27.718, +34.740 against P(200) +40.25, +53.89, +60.51 (−0.54, −0.49, −0.43 of it, bar ±0.3); ln g(250) − ln g(200) −0.000, −0.006, +0.051 (bar 1) |
@@ -72,7 +72,8 @@ early, with g at ks 250 7.1e-16, 7.7e-18 and 6.3e-18 (M5's σ_∞ at D 253.80 is
 | C6 | reported | below | |
 | — | verdict on g | neither | σ₃ by index: supports, so **g and σ₃ disagree** (below) |
 
-`sigma.log` exits 1, from C1.
+`sigma.log` exits 1, from C1. `sigma_its32.log`, with the rerun in place of the 16-iteration run, exits 0 with the same
+verdict.
 
 ### g and σ₁–σ₄ by D and ks
 
@@ -126,7 +127,7 @@ which follows μ 3's model (above) closely enough to fall within 30% of μ 1's P
 
 1. **C1 fails at D 249.01, ks 160.** σ₁'s relative change over the last two of 16 iterations is 1.35e-3 (bar 1e-3);
    σ₁ and σ₂ are close there (7.644e-18, 8.542e-18). g comes from one transpose solve, not from the iteration, and reads
-   −39.3936 against −39.3941 at ks 200; the verdict uses ks 130, 200 and 250 only. Not rerun: reported.
+   −39.3936 against −39.3941 at ks 200; the verdict uses ks 130, 200 and 250 only. Cleared by the rerun below, on the coordinator's word.
 2. **g and σ₃ by index disagree** on the verdict (neither, supports), for the reason above.
 3. **The model's last digit.** `model.log` gives ln f(130) −63.04 (μ 1, D 253.80), −48.77 (μ 3, D 249.01) and −53.95
    (μ 3, D 253.80); FACTORED_HORIZON.md 4.2's table has −63.05, −48.78 and −53.96.
@@ -146,3 +147,23 @@ which follows μ 3's model (above) closely enough to fall within 30% of μ 1's P
    e^−39.6 there decides how much grip the restart gains. Acceptance: the corrector converges (its own check), and ln g
    at the new root is reported against −39.6126 with a bar of 1 (a change above 1 says the cap moves with the root);
    the run's near_null checks pass. Depends on: #902, and the math review that blocks #884, #899 and #900.
+
+### Rerun of D 249.01 at ks 160 with `--its=32` (the coordinator's task, 2026-11-16)
+
+`nn_D249_ks160_its32.{log,json}` and `V_D249_ks160_its32.npy` (15:14–15:41 UTC, 5e8b08db, the same command as the
+queue's with `--its=32`); the 16-iteration files stay as they were. `cmp_its32.py` compares the two (`cmp_its32.log`):
+
+| reading | `--its=16` | `--its=32` |
+| --- | --- | --- |
+| near_null check | FAIL | pass |
+| σ₁ (converged to) | 7.644355e-18 (1.35e-03) | 7.626499e-18 (7.96e-07) |
+| σ₂ (converged to) | 8.541933e-18 (2.09e-03) | 8.573513e-18 (1.27e-06) |
+| σ₁'s Δ share | 9.10e-01 | 8.31e-01 |
+| ln g | −39.393621 | −39.393621 (bit for bit) |
+| pinned step's Δ | −3.288902e-09 | equal |
+
+Its checks pass (the rerun's check, σ₁ below 1e-3, |Δ ln g| < 1e-3). The control `--mutate=self`, which reads the
+16-iteration run as the rerun, fails on the first two; the third cannot fail under it, as both runs share one LU.
+`sigma.py` on a folder of links with the rerun in place of the 16-iteration run (`sigma_its32.log`) differs from
+`sigma.log` only in that run's σ line and passes C1: PASS, verdict neither, g and σ₃ still disagree. σ₁ and σ₂ share
+Δ (0.83 and 0.16 at 32 iterations) and are 12% apart, so the 16-iteration σ₁ had not finished separating them.
