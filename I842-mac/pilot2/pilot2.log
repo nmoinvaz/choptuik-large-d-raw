@@ -1,0 +1,19 @@
+held values from the fit data/held_fit.json (degree 8, 138 full-system states, D 38.020417-73.0), relative to the base
+the base keeps its stored plan (61 steps)
+  on 0: |F| 3.28e-72 converged, Delta 1.63662580864708107 -5.5825e-17
+      elim projections {'u0': 0, 'u0q': 0, 'ladder': 0, 'failed': 0, 'skipped': 1}
+      octo-double Newton: 1 steps, max|F| 3.3e-72, converged; double-double |F| of its first two parts 6.1e+08
+base I603-win2/chain_nsr/anm_pin3_D259.8875.npz: D 259.887489667, M 32, pin 3 (held [5, 7, 9, 11, 13]), |F| 6.1e+08; N 24, eps 1e-14, h_max 1.0, corrector od (junk_only False), tol 1.0e-20 x 1.45^(D - 259.88749), stalls accepted below 1e-17
+  on 0: |F| 3.28e-72 converged, Delta 1.63662580864708107 -5.5825e-17
+base polished at D rounded to double-double (259.8874896673615257601530625919395): max|F| 3.28e-72 -> 3.28e-72 in 1 steps, converged, Delta moved +0.00e+00
+  series at D 259.887489667362 read from /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/d012cdf9-58a7-44fd-8235-23e0811480fc/scratchpad/i842/pilot1/arcjet_000_D259.887490.npz: |w_1| 1.341e-01, |w_N| 1.792e+38
+  attempt at D 259.888449719018: predicted max|F| 1.07e-35, re-seed ok
+      border at D 259.8884497190183142627513244915584: g -8.44e-31, dD +8.54e-31 -> held, den 1.0232, |b| 0.2336, |a| 1.86e-31
+    on 0 chord 0: max|F| 3.84e-27, |dw| 1.329e-37
+    on 0 chord 1: max|F| 1.08e-37, |dw| 1.307e-37
+    on 0 chord 2: max|F| 9.62e-48, |dw| 4.155e-48
+  on 0: strong chord (4 weak directions), 3 steps after the full first step; theta at its point 4.339e-01 (bound 0.750): accepted, 723.36 s
+      border at D 259.8884497190183142627513244915584: g -8.74e-31, dD +8.53e-31 -> held, den 1.0107, |b| 0.1469, |a| 6.76e-32
+  on 0: |F| 1.07e-35 -> 9.38e-48, |dz| 1.86e-31 -> 6.76e-32, lam 1, dDelta +1.86e-31, piv 5.7e-37..1.5e+37, 1676.42 s
+    on 1 trial lam 1: max|F| 1.01e-27; simplified correction / |dz| = 1.521e+09 (bound 0.750); refused, 2.33 s
+stopped by hand 2026-11-16 05:21 UTC: the crawl with D held refutes the D-move reading
