@@ -1,0 +1,12 @@
+second atoms run: exit 0; 53 lines or records; largest relative difference 0.0e+00: REPRODUCED
+    $ python3 b8m_atoms.py 4 2e-6 2e-6
+scan with ln n0 = 58: exit 0; 5 lines or records; largest relative difference 0.0e+00: REPRODUCED
+    $ nice -n 10 python3 b8m_scan.py 4 73.89,70,66,62,58 --rA=2e-6 --rW=2e-6 --log=b8m_scan_K4_box.log
+scan over d0: exit 0; 5 lines or records; largest relative difference 0.0e+00: REPRODUCED
+    $ for d0 in 1e5 1e6 1e7 1e8 1e9; do python3 b8m_scan.py 4 73.89 --d0=$d0 --rA=2e-6 --rW=2e-6 --log=b8m_scan_K4_d0.log; done
+fixedZ: exit 0; 1 lines or records; largest relative difference 0.0e+00: REPRODUCED
+    $ python3 b8m_scan.py 4 90 --kappa1=0.7308324141810887 --rA=2e-6 --rW=2e-6 --log=b8m_scan_K4_fixedZ.log
+(H8) at kappa1 = 0.85: exit 0; 12 lines or records; largest relative difference 0.0e+00: REPRODUCED
+    $ python3 b8m_h8.py 4 104.68 --log=b8m_scan_K4_k0.85.log --kappa1=0.85 > b8m_h8_K4_L104.68_k0.85.log
+CHECK 895: PASS
+exit 0
