@@ -15,3 +15,18 @@ Stage 2, `chain_k150/` (`chain_k150.log`): the chain from `p150_200/base_pin3_D2
 Code: Python and `hp/data` from a worktree of main at 7f88c5bb (`hp/` is unchanged since 5897ee28); hpkernel from the
 checkout's venv, built and checked in #920 (it has `Solver.series_o`, so the series are formed one order at a time).
 The reference rung is dh610's `I903-dh610/p130_200` (p130 at D 200 is 1.7e-12).
+
+## Rung: order 150 against order 130 at D 200
+
+`rungs_p150.md` (dh610's `rungs903.py` over `p130_200` and `p160_200` of `I903-dh610/` and this folder's `p150_200`).
+p is the lowest pivot of the first octo-double Jacobian, two digits as the log prints it. Delta_130 is dh610's re-polish
+of T138's D 200 state at order 130.
+
+| rung | octo-double steps | final max\|F\| | p first Jacobian | ln(p_K/p_130) | Delta_K - Delta_130 |
+|---|---|---|---|---|---|
+| p130_200 (dh610) | 4 converged | 3.1e-76 | 1.7e-12 | 0.0 | 0.0 |
+| p150_200 (dh170) | 8 converged | 6.6e-74 | 3.3e-09 | 7.571 | 8.39e-14 |
+| p160_200 (dh610) | 8 converged | 1.8e-74 | 2.1e-08 | 9.422 | 9.04e-14 |
+
+`p150_200` took 2332 s on dh170's 8 threads (the first full Newton step 1747 s, dh610's 480 s on 20 threads). Its
+launcher gate passed and `chain_k150` started at 20:13:26 UTC.
