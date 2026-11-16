@@ -1,0 +1,11 @@
+per lane-term: ODotAcc 112.50 ns, od mul + add 174.33 ns, integer naive 89.29 ns, comba full 139.48 ns, comba truncated 79.88 ns
+per lane-term: ODotAcc 112.30 ns, od mul + add 173.74 ns, integer naive 89.18 ns, comba full 139.04 ns, comba truncated 80.29 ns
+per lane-term: ODotAcc 112.81 ns, od mul + add 174.08 ns, integer naive 91.58 ns, comba full 141.99 ns, comba truncated 81.51 ns
+per lane-term: ODotAcc 115.26 ns, od mul + add 177.24 ns, integer naive 90.76 ns, comba full 142.37 ns, comba truncated 80.81 ns
+per lane-term: ODotAcc 115.00 ns, od mul + add 177.38 ns, integer naive 90.33 ns, comba full 141.77 ns, comba truncated 81.30 ns
+per lane-term: ODotAcc 113.87 ns, od mul + add 175.56 ns, integer naive 89.22 ns, comba full 138.97 ns, comba truncated 79.82 ns
+best: ODotAcc 112.30 ns, comba truncated 79.82 ns, ratio 1.41
+accuracy, units of 2^-418 (ODotAcc, Ozaki): flat inputs rel. sum|ab| 3.199e-6 3.199e-6, rel. n max|a|max|b| 8.712e-7 8.712e-7
+accuracy, graded (Cauchy-like) inputs: rel. sum|ab| 3.199e-6 1.445e24, rel. n max|a|max|b| 2.786e-44 1.584e-14
+ozaki best, n 128: ODotAcc 112.74 ns per lane-term; Ozaki products 59.03 ns per lane-term, slicing 75.70 ns per element per lane, recombination 7299.2 ns per dot product per lane
+  per term with slicing both operands each time: 210.44 ns; with slices reused (Cauchy sums): 59.03 ns + 57.02 ns recombination amortized over 128
