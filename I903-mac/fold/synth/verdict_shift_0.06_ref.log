@@ -1,0 +1,13 @@
+control 1: #603's chain_nsr, 45 bases in [258.9, 259.84]: max|D* - 259.9033| 2.48e-04 (bound 0.005): pass
+chain fold/synth/shift_0.06, jets from D 257.5:
+  D_b          M1 n  M1 median    half     mu      M2 n  M2 median    half     D*           error    D* - 259.9033
+  258.131250   0/7  -            -        -       6/7  259.947715   1.1e-02  -            -        -
+  259.131250   6/7  259.964231   6.5e-04  0.4300  7/7  259.962995   1.5e-04  259.963613   6.5e-04  +0.060313
+  259.600000   7/7  259.963294   2.2e-06  0.5017  7/7  259.963298   2.8e-06  259.963296   2.8e-06  +0.059996
+  D_b          D*             error     plant worst  counted  #603 base     #603 D*        D* - D*_603
+  258.131250   -              -         -            no       258.159957    -              -
+  259.131250   259.96361294   6.5e-04   3.1e-04      yes      259.119010    259.90354764   +6.01e-02
+  259.600000   259.96329589   2.8e-06   4.1e-06      yes      259.590118    259.90330383   +6.00e-02
+stop: the first two counted bases, 259.131250 and 259.600000, agree on D* within 3.17e-04 (bound 1e-3): STOP the chain
+shift: D* 259.96329589 at the counted base nearest the fold, 259.600000; D* - 259.96330000 = -0.000004, spread 4.2e-04 (approximants, methods and counted bases, plus the reference's 1.0e-04; not a bound): within 0.01: the truncation does not move the fold
+matched: D* - D*_603 at #603's nearest base, over the counted bases: +6.01e-02, +6.00e-02
