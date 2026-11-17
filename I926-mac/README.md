@@ -142,7 +142,10 @@ times their normal time. The probes of section 2 cover the starts on the stored 
 
 | file | what |
 |---|---|
-| `gap_M320.jsonl`, `gap_M320.log` | `sonic_valley.py gap` (written as `depth_M320.*` by the first version, whose field is `depth`) on six M 320 states |
+| `depth_M320.jsonl`, `depth_M320.log` | the gap on six M 320 states (the first version's `depth` command and field, `gap` since) |
+| `run_tangency.sh`, `tangency_M320.log` | the line's fits and the slope control |
+| `gap_dshift.*` | the control of the end check (`--mutate dshift`) |
 | `explore/` | the first probes (`probe_pred.py`, `probes.log`, `pred3.04315_r4.log`) |
-| `runner_task_M320.md` | the M 320 / 384 test at 3.04315 for a runner, with its commands and criteria |
+| `planplant_run*` | the three runs of the planted check of the split plan (section 3) |
 | `run_c3.sh`, `c3_*` | criterion 3 at M 48 / 64 |
+| `runner_task_M320.md` | the runner's steps: the planted check of the gate, the starts and the point at 3.04315 |
