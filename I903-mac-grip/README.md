@@ -50,3 +50,28 @@ At D 229.13 the order-142 chain's weakest modes are the harmonic-3 pair (σ₁, 
 mode (σ₃ 8.139e-15), and their small Δ shares carry 0.970 and 0.027 of 1/g² (`lift.log`): the grip on Δ at order 142 is the
 harmonic-3 pair's. At ks 200 the pair rises to 2.6e-10 and the Δ mode carries 0.993 of 1/g²; the Δ mode itself moved
 by ln +0.741 of the lift's +3.8407.
+
+## The p_min question (t5, 2026-11-17 02:20 UTC)
+
+dh610's order-160 chain has p_min, the smallest LU pivot at its bases, falling 12 to 18 times per unit D from D 228
+(1.5 before). Is that the wall's weak direction arriving (order 135's at that D, and order 130's near D 250) or a new
+direction from the series at order 160?
+
+### Runs
+
+`queue2.sh` runs the lines of `q2.txt` one at a time (`one.sh`: near_null.py as above, six vectors saved). It covers
+dh610's bases D 227 to 231 at their order 160, macm3's order-135 bases D 227.13 to 231.13 at order 135, and the order-160
+state at D 229 summed to ks 200 (the same z). `pmin_cmp.py` compares the vectors. `series_order.py` reads where each
+vector lives by horizon-series order.
+
+### Criteria (written before the results)
+
+- Same direction as order 135's weak direction: `|v₁(160) · v|` ≥ 0.9 for an order-135 vector v at the same D, and the
+  same identity, meaning Δ share and top harmonic. New direction: no order-135 vector above 0.5. Calibration: the
+  overlap of order 160's v₁ at D d with D d − 1, and of order 135's Δ mode at d with d − 1.
+- The series' own: at D 229 the vector's σ at ks 200 on the same z is above 100 σ(160), or its top-tenth share by
+  series order is above 0.5 (`series_order.py`, written before the runs: above 0.5 top orders, below 0.01 not). The
+  wall's: σ at ks 200 within a factor 3 of σ(160), and the top-tenth share below 0.01.
+- Checks: every near_null run passes its check (σ₁ converged, ‖J v₁‖/σ₁ within 1e-2), and at ks 200 only the horizon
+  rows change. `series_order.py`'s linearity check passes, and its control `--mutate=eps` fails. Its selftest passes
+  (`series_order_selftest.log`).
