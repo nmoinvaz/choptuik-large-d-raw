@@ -1,0 +1,14 @@
+step_spread power: per D, blocks and seed, dev = dDelta(seed) - dDelta(unperturbed) at each rel, the power p between neighbouring rels, and the reading (quadratic: p in (1.8, 2.2); linear: p in (0.9, 1.1))
+  D 250.1675817, m_h, a_h, seed 1: the unperturbed step the same in the 4 runs (pass)
+    rel 1e-77 (seed1.json): move 1.0001e-77, dDelta -8.728131e-55, dev -8.728131e-55, |dev| / move 8.7272e+22, max|dz| 8.7281e-55, smallest pivot 1.068665e-29, max|F| 3.7704e-39
+    rel 1e-80 (seed1.json): move 1.0001e-80, dDelta -8.728131e-61, dev -8.728131e-61, |dev| / move 8.7272e+19, max|dz| 8.7281e-61, smallest pivot 1.068665e-29, max|F| 3.7704e-42
+    rel 1e-82 (seed1.json): move 1.0001e-82, dDelta -8.728131e-65, dev -8.728131e-65, |dev| / move 8.7272e+17, max|dz| 8.7281e-65, smallest pivot 1.068665e-29, max|F| 3.7704e-44
+    rel 1e-85 (seed1.json): move 1.0001e-85, dDelta -8.728131e-71, dev -8.728131e-71, |dev| / move 8.7272e+14, max|dz| 8.7281e-71, smallest pivot 1.068665e-29, max|F| 3.7704e-47
+    p 2.0000, 2.0000, 2.0000: quadratic
+  D 250.1675817, m_h, a_h, seed 2: the unperturbed step the same in the 4 runs (pass)
+    rel 1e-77 (seed2.json): move 1.0001e-77, dDelta -8.558038e-55, dev -8.558038e-55, |dev| / move 8.5572e+22, max|dz| 8.5580e-55, smallest pivot 1.068665e-29, max|F| 3.7711e-39
+    rel 1e-80 (seed2.json): move 1.0001e-80, dDelta -8.558038e-61, dev -8.558038e-61, |dev| / move 8.5572e+19, max|dz| 8.5580e-61, smallest pivot 1.068665e-29, max|F| 3.7711e-42
+    rel 1e-82 (seed2.json): move 1.0001e-82, dDelta -8.558038e-65, dev -8.558038e-65, |dev| / move 8.5572e+17, max|dz| 8.5580e-65, smallest pivot 1.068665e-29, max|F| 3.7711e-44
+    rel 1e-85 (seed2.json): move 1.0001e-85, dDelta -8.558038e-71, dev -8.558038e-71, |dev| / move 8.5572e+14, max|dz| 8.5580e-71, smallest pivot 1.068665e-29, max|F| 3.7711e-47
+    p 2.0000, 2.0000, 2.0000: quadratic
+step_spread power: PASS
