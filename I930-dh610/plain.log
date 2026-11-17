@@ -1,0 +1,19 @@
+installed driver /home/nathan/Source/choptuik-large-d-923/.venv/lib/python3.14/site-packages/hpkernel/driver.py: without the stall option; paths ['script']
+20:35:12 --- D 3.35 (from 3.4), M 80 / 96, nodes 0.0025..0.9
+20:35:13   D 3.35 M 80: start 'predictor' |F| 1.38e-01 (116 steps)
+20:35:13   D 3.35 M 80: start 'last state' |F| 1.38e-01 (116 steps)
+20:35:13   D 3.35 M 80: best start |F| 1.4e-01 > 1e-03 on the reused plan; two passes
+20:35:14   D 3.35 M 80: start 'predictor' |F| 1.38e-01 on its own plan (358 steps)
+20:35:14   D 3.35 M 80: start 'last state' |F| 1.38e-01 on its own plan (358 steps)
+20:35:14   D 3.35 M 80: start 'predictor' |F| 1.38e-01 (358 steps)
+20:35:15 D 3.35 M 80: L 5121, steps 358, start |F| 1.4e-01
+20:35:15   newton_solve: this hpkernel has no stall option (built before #925); solve_point applies the stall rule itself, one residual per step
+  newton 0: |F| 1.38e-01 |dz| 6.99e-01 lam 1 dDelta -5.48e-03 Delta 3.360774395901947 piv 7.8e-04..4.5e+00  t 20.8s
+  newton 0: |F| 1.31e-01 |dz| 6.36e-01 lam 1 dDelta -4.96e-03 Delta 3.355817094412774 piv 7.8e-04..4.3e+00  t 20.2s
+  newton 0: |F| 1.24e-01 |dz| 5.83e-01 lam 1 dDelta -4.48e-03 Delta 3.351341092861794 piv 7.8e-04..4.7e+00  t 12.9s
+20:36:09 D 3.35 M 80: |F| 1.38e-01 -> 1.18e-01 over 3 accepted steps, not below 0.5 of it (a stall); giving up
+20:36:09 D 3.35 M 80: NOT converged, |F| 1.2e-01 after 4 iterations (55s); stopping
+20:36:09 D 3.35 failed at M 80; inserting D 3.375
+20:36:09 STOP: 0.002 h of wall time used
+(4) leg: gave up on the stall True after 3 accepted steps, D 3.375 inserted True, next target [3.375], notices 1 (the installed driver lacks the option)
+all checks pass

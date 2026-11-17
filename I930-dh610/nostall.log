@@ -1,0 +1,19 @@
+installed driver /home/nathan/Source/choptuik-large-d-923/.venv/lib/python3.14/site-packages/hpkernel/driver.py: without the stall option; paths ['script']
+20:33:44 --- D 3.35 (from 3.4), M 80 / 96, nodes 0.0025..0.9
+20:33:45   D 3.35 M 80: start 'predictor' |F| 1.38e-01 (116 steps)
+20:33:46   D 3.35 M 80: start 'last state' |F| 1.38e-01 (116 steps)
+20:33:46   D 3.35 M 80: best start |F| 1.4e-01 > 1e-03 on the reused plan; two passes
+20:33:47   D 3.35 M 80: start 'predictor' |F| 1.38e-01 on its own plan (358 steps)
+20:33:47   D 3.35 M 80: start 'last state' |F| 1.38e-01 on its own plan (358 steps)
+20:33:48   D 3.35 M 80: start 'predictor' |F| 1.38e-01 (358 steps)
+20:33:49 D 3.35 M 80: L 5121, steps 358, start |F| 1.4e-01
+  newton 0: |F| 1.38e-01 |dz| 6.99e-01 lam 1 dDelta -5.48e-03 Delta 3.360774395901947 piv 7.8e-04..4.5e+00  t 24.7s
+  newton 0: |F| 1.31e-01 |dz| 6.36e-01 lam 1 dDelta -4.96e-03 Delta 3.355817094412774 piv 7.8e-04..4.3e+00  t 13.7s
+  newton 0: |F| 1.24e-01 |dz| 5.83e-01 lam 1 dDelta -4.48e-03 Delta 3.351341092861794 piv 7.8e-04..4.7e+00  t 20.4s
+  newton 0: |F| 1.18e-01 |dz| 5.37e-01 lam 1 dDelta -4.03e-03 Delta 3.347309614359309 piv 7.8e-04..5.0e+00  t 11.8s
+  newton 0: |F| 1.12e-01 |dz| 4.95e-01 lam 1 dDelta -3.62e-03 Delta 3.343687845584421 piv 7.8e-04..3.4e+00  t 12.2s
+20:35:12 D 3.35 M 80: NOT converged, |F| 1.1e-01 after 5 iterations (84s); stopping
+20:35:12 D 3.35 failed at M 80; inserting D 3.375
+20:35:12 STOP: 0.002 h of wall time used
+(4) leg: gave up on the stall False after None accepted steps, D 3.375 inserted True, next target [3.375], notices 0 (the installed driver lacks the option)
+mutated (nostall): (4) the M 80 solve did not give up on the stall after 3 accepted steps; (4) no midpoint D 3.375 inserted after the stall
