@@ -1,0 +1,14 @@
+14:11:44 start 2026-11-17 14:11:44 UTC: eta 0.3, D 12.375, M 32, K 21, kt 36, kc 80, ks 80, threads 2
+14:11:44 seed {'src': 'sm_eta0.3_D12.375_dd_conv.npz', 'eta_src': '0.3', 'M_src': 32}: Delta 1.111899734009, |F| (single-step plan) 2.44e+08
+14:11:44 plan from the seed: 129 steps [3, 2, 2, 2, 1, 2, 2, 2, 2, 4, 5, 5, 8, 9, 9, 10, 12, 18, 15, 16] (0.2 s); |F| 6.67e-29
+14:12:05   band 0: |F| 6.67e-29 converged, Delta 1.111899734008755
+14:12:05 plan from the solution: 129 steps (0.2 s); |F| 6.67e-29
+14:12:25   band 0: |F| 6.67e-29 converged, Delta 1.111899734008755
+14:12:25 double-double: converged True, |F| 6.67e-29, Delta 1.11189973400875474395587252075196, constraint 6.83e-15, tails 1.2e-176 6.1e-115
+14:17:23   newton_qd 0: |F| 6.67e-29 -> 6.24e-29, dDelta -1.12e-21 (296.9 s)
+14:22:09   newton_qd 1: |F| 6.24e-29 -> 4.68e-57, dDelta +7.82e-33 (583.1 s)
+14:26:53   newton_qd 2: |F| 4.68e-57 converged
+14:26:53 quad-double: |F| 4.68e-57, Delta 1.11189973400875474395475543854391264604723577042329203505634, minus dd -1.11708e-21
+14:26:53 done 2026-11-17 14:26:53 UTC (909.2 s)
+sm_eta0.3_D12.375_qdcheck_M32.npz: D 12.375, max |F| in quad-double 4.68e-57, double-double residual of its first two parts 9.86e-32, Delta 1.1118997340087547439547554385439126460472357704233
+    minus the double-double Delta of sm_eta0.3_D12.375_dd_conv.npz (1.11189973400875474395587252075): -1.117e-21

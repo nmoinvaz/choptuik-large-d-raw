@@ -1,0 +1,28 @@
+horizon series to order 150 instead of the state's 150
+held values from the fit data/held_fit.json (degree 8, 138 full-system states, D 38.020417-73.0), relative to the base
+the base keeps its stored plan (18 steps)
+  od: 1 junk directions frozen (sigma 5e-24..5e-24), 3 weak ones with Delta content kept
+  on 0: projected correction below 1e-45 with the junk frozen: converged at |F| 1.32e-73, Delta 1.68791789459288766 -1.0605e-16
+      elim projections {'u0': 0, 'u0q': 0, 'ladder': 0, 'failed': 0, 'skipped': 1}
+      octo-double Newton: 1 steps, max|F| 1.3e-73, converged; double-double |F| of its first two parts 3.5e+07
+base I903-dh170/chain_k150/anm_pin3_D233.0000.npz: D 233.0, M 32, pin 3 (held [5, 7, 9, 11, 13]), |F| 3.5e+07; N 24, eps 1e-14, h_max 1.0, corrector od (junk_only False), tol 1.0e-20 x 1.45^(D - 233.0), stalls accepted below 1e-17
+step 0: the series saved as /home/nathan/Source/choptuik-large-d-raw/I944-dh170/k150_junk4/jet_pin3_D233.0000.npz (8 parts, 430 s)
+step 0: D 233.0, pivots 6.3e-22..8.4e+32, |z_1| 3.86e-04, |z_N| 2.05e-27, ratios 2-5 298.6 269.1 256.6 247.9, a_max 2.531, 430 s
+    a 1.0000: re-seeded (FAILED, prediction kept), 89.04 s; rung u 0.3000 not converged at |R| 1.28e+05 after 8 steps
+      elim projections {'u0': 0, 'u0q': 0, 'ladder': 0, 'failed': 1, 'skipped': 0}: the start's projection failed, attempt stopped
+    a 1.000 -> D 234.0: predicted |F| 1.11e+08, od 0 steps -> 1.11e+08 (tol 1.4e-20), Delta 1.687731830887 (formula diff -1.5e-06), moved 0.0e+00, 106 s
+    a 0.5000: re-seeded (ok), 88.09 s
+      horizon data refined in octo-double, rung max|R| 4.42e-29 -> 5.90e-38 -> 6.09e-38 -> 6.06e-38 -> 6.07e-38 -> 6.13e-38 -> 6.12e-38 -> 6.12e-38 -> 6.11e-38 -> 6.11e-38
+  od: 0 junk directions frozen (sigma 0e+00..0e+00), 4 weak ones with Delta content kept
+    on 0 chord 0: max|F| 6.86e+06, |dw| 8.149e+10
+  on 0: strong chord (4 weak directions), 1 steps after the full first step; theta at its point inf (bound 0.750): refused, 117.08 s
+    on 0 trial lam 1: max|F| 6.86e+06; simplified correction / |dz| = 1.979e+35 (bound 0.750); refused, 109.09 s
+      on 0, lam 1: projection failed (3): point max|F| 6.86e+06; u0 rung 1 its, |R| 2.18e+07 -> 2.18e+07, NOT converged; u0 quad-double 8 its, |R| 2.61e+06 -> 2.61e+06, NOT converged; ladder FAILED after 8 rungs, last rung u 0.300000 quad-double 8 its, |R| 1.49e+05 -> 1.78e+02, NOT converged
+    on 0 trial lam 0.5: max|F| 1.08e+06; simplified correction / |dz| = 1.237e+34 (bound 0.875); refused, 104.4 s
+      on 0, lam 0.5: projection failed (4): point max|F| 1.08e+06; u0 rung 1 its, |R| 2.17e+06 -> 2.17e+06, NOT converged; u0 quad-double 8 its, |R| 1.82e+05 -> 1.82e+05, NOT converged; ladder FAILED after 8 rungs, last rung u 0.300000 quad-double 8 its, |R| 8.20e+04 -> 1.37e+02, NOT converged
+    on 0 trial lam 0.25: max|F| 2.42e+05; simplified correction / |dz| = 7.729e+32 (bound 0.938); refused, 100.22 s
+      on 0, lam 0.25: projection failed (5): point max|F| 2.42e+05; u0 rung 1 its, |R| 2.99e+06 -> 2.99e+06, NOT converged; u0 quad-double 8 its, |R| 4.00e+04 -> 4.00e+04, NOT converged; ladder FAILED after 8 rungs, last rung u 0.300000 quad-double 8 its, |R| 1.45e+05 -> 5.47e+02, NOT converged
+    on 0 trial lam 0.125: max|F| 5.91e+04; simplified correction / |dz| = 4.831e+31 (bound 0.969); refused, 144.14 s
+      on 0, lam 0.125: projection failed (6): point max|F| 5.91e+04; u0 rung 1 its, |R| 1.78e+06 -> 1.78e+06, NOT converged; u0 quad-double 8 its, |R| 2.42e+04 -> 2.42e+04, NOT converged; ladder FAILED after 8 rungs, last rung u 0.300000 quad-double 8 its, |R| 1.79e+05 -> 6.94e+02, NOT converged
+    on 0 trial lam 0.0625: max|F| 7.32e-27; simplified correction / |dz| = 9.375e-01 (bound 0.984); accepted, 264.32 s
+  on 0: |F| 9.32e-32 -> 7.32e-27, |dz| 5.28e-15 -> 4.95e-15, lam 0.0625, dDelta -5.30e-16, piv 1.5e-22..9.5e+32, 918.37 s

@@ -2,10 +2,16 @@
 # out/sm_records.jsonl), and the two rates before them as mode_lam.py's --prev (from out/sm_lam.jsonl, else given)
 import json, os, sys
 out, eta, A, B, prev0 = sys.argv[1], sys.argv[2], float(sys.argv[3]), float(sys.argv[4]), sys.argv[5]
+def ok(r):
+    """a converged record; a hand-over run (--tol above 1e-28 with --qd) only when its quad-double stage accepted it"""
+    q = r.get("qd", {})
+    return r["converged"] and (q.get("handover_tol", 0) <= 1e-28 or q.get("accepted", False))
+
+
 best = {}
 for l in open(os.path.join(out, "sm_records.jsonl")):
     r = json.loads(l)
-    if str(r["eta"]) == eta and r["converged"] and r["M"] == 32 and A + 1e-9 < float(r["D"]) <= B + 1e-9:
+    if str(r["eta"]) == eta and ok(r) and r["M"] == 32 and "qdcheck" not in r["tag"] and A + 1e-9 < float(r["D"]) <= B + 1e-9:
         if "polish" in r["tag"] or float(r["D"]) not in best or "polish" not in best[float(r["D"])]:
             best[float(r["D"])] = r["tag"]
 lam = {}

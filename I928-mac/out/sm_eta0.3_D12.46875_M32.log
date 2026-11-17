@@ -1,0 +1,46 @@
+12:45:57 start 2026-11-17 12:45:57 UTC: eta 0.3, D 12.46875, M 32, K 21, kt 36, kc 80, ks 80, threads 2
+12:45:57 seed {'src': 'sm_eta0.3_D12.4375_M32.npz', 'eta_src': '0.3', 'M_src': 32, 'D_src': 12.4375, 'D_src2': 12.40625, 'src2': 'sm_eta0.3_D12.40625_M32.npz', 'eta_src2': '0.3', 'w': -1.0}: Delta 1.110358197433, |F| (single-step plan) 6.02e+18
+12:45:58 plan from the seed: 231 steps [8, 6, 5, 4, 3, 4, 5, 4, 3, 5, 5, 6, 10, 12, 14, 16, 21, 31, 31, 38] (0.3 s); |F| 6.23e-06
+12:46:33   band 0 (newton): |F| 6.23e-06, |F|_2 6.17e-05 -> 8.43e-08, |dz| 3.7e-03, dDelta +4.10e-06, pivots 3.7e-08..6.6e+00 (35.8 s)
+12:46:34     re-planned: 216 steps
+12:47:52   band 1 (resolved, 32 deflated): |F| 2.69e-08, S 8.43e-08 -> 4.04e-15 (E 6.1e-17), B 9.65e-16 -> 9.65e-16, lam 1 (0 halvings), band step 4.0e-03 held, |dz| 6.3e-07, dDelta +1.67e-08, pivots 4.9e-11..6.6e+00 (114.1 s)
+12:47:52     re-planned: 211 steps
+12:49:06   band 2 (resolved, 32 deflated): |F| 7.87e-16, S 4.04e-15 -> 5.80e-17 (E 5.8e-17), B 9.65e-16 -> 9.65e-16, lam 1 (0 halvings), band step 3.8e-03 held, |dz| 1.3e-14, dDelta +8.88e-16, pivots 5.6e-11..6.6e+00 (188.8 s)
+12:49:07     re-planned: 210 steps
+12:50:24   band 3 (band, 32 deflated): |F| 1.16e-16, S 5.80e-17 -> 1.14e-17 (E 5.8e-17), B 9.65e-16 -> 9.83e-19, band step 3.8e-03 of 3.8e-03 (mu 0.0e+00, 0 halvings, 0 doublings, model B 0.00e+00), 4 correctors from S 8.5e-08, |dz| 3.8e-03, dDelta -3.58e-06, pivots 5.6e-11..6.6e+00 (266.6 s)
+12:50:24     re-planned: 224 steps
+12:51:46   band 4 (band, 32 deflated): |F| 2.57e-18, S 1.14e-17 -> 2.29e-21 (E 1.1e-17), B 9.83e-19 -> 8.90e-22, band step 6.8e-04 of 6.8e-04 (mu 0.0e+00, 0 halvings, 0 doublings, model B 0.00e+00), 4 correctors from S 9.9e-11, |dz| 6.8e-04, dDelta -1.57e-08, pivots 7.7e-12..6.6e+00 (348.3 s)
+12:51:46     re-planned: 177 steps
+12:52:51   band 5 (band, 32 deflated): |F| 4.53e-22, S 2.29e-21 -> 3.26e-26 (E 2.0e-21), B 8.90e-22 -> 2.78e-29, band step 1.2e-07 of 1.2e-07 (mu 0.0e+00, 0 halvings, 0 doublings, model B 0.00e+00), 1 correctors from S 3.7e-18, |dz| 1.2e-07, dDelta +1.02e-11, pivots 5.3e-11..6.6e+00 (413.8 s)
+12:52:52     re-planned: 132 steps
+12:53:13   band 6 (newton): |F| 6.12e-27, |F|_2 3.26e-26 -> 1.58e-27, |dz| 2.4e-12, dDelta +1.64e-19, pivots 5.2e-11..6.6e+00 (435.5 s)
+12:53:13     re-planned: 131 steps
+12:53:35   band 7 (newton): |F| 6.00e-28, |F|_2 1.58e-27 -> 1.35e-27, |dz| 2.2e-12, dDelta -2.31e-21, pivots 3.3e-11..6.6e+00 (457.0 s)
+12:53:35     re-planned: 126 steps
+12:54:33   band 8 (band, 32 deflated): |F| 5.29e-28, S 1.35e-27 -> 1.38e-27 (E 4.3e-26), B 7.65e-32 -> 1.19e-31, band step 2.8e-12 of 2.8e-12 (mu 0.0e+00, 30 halvings, 0 doublings, model B 0.00e+00), 0 correctors from S 1.4e-27, |dz| 2.8e-12, dDelta +0.00e+00, pivots 3.6e-11..6.6e+00 (515.3 s)
+12:54:33 plan from the solution: 126 steps (0.2 s); |F| 5.29e-28
+12:55:30   band 0 (band, 32 deflated): |F| 5.29e-28, S 1.35e-27 -> 1.38e-27 (E 4.3e-26), B 7.65e-32 -> 1.19e-31, band step 2.8e-12 of 2.8e-12 (mu 0.0e+00, 30 halvings, 0 doublings, model B 0.00e+00), 0 correctors from S 1.4e-27, |dz| 2.8e-12, dDelta +0.00e+00, pivots 3.6e-11..6.6e+00 (57.2 s)
+12:55:30 double-double: converged False, |F| 5.29e-28, Delta 1.110358716440844940727529332340568, constraint 7.91e-15, tails 3.6e-177 2.0e-115
+12:55:30 done 2026-11-17 12:55:30 UTC (573.1 s)
+12:59:39 start 2026-11-17 12:59:39 UTC: eta 0.3, D 12.46875, M 32, K 21, kt 36, kc 80, ks 80, threads 2
+12:59:39 seed {'src': 'sm_eta0.3_D12.453125_M32.npz', 'eta_src': '0.3', 'M_src': 32, 'D_src': 12.453125, 'D_src2': 12.4375, 'src2': 'sm_eta0.3_D12.4375_M32.npz', 'eta_src2': '0.3', 'w': -1.0}: Delta 1.110358585214, |F| (single-step plan) 8.64e+18
+12:59:39 plan from the seed: 225 steps [8, 6, 4, 4, 3, 4, 5, 4, 3, 5, 5, 6, 9, 11, 13, 16, 20, 31, 30, 38] (0.3 s); |F| 1.55e-06
+13:00:15   band 0 (newton): |F| 1.55e-06, |F|_2 1.54e-05 -> 5.19e-09, |dz| 9.1e-04, dDelta +1.01e-06, pivots 8.0e-09..6.6e+00 (35.5 s)
+13:00:15     re-planned: 206 steps
+13:00:48   band 1 (newton): |F| 1.65e-09, |F|_2 5.19e-09 -> 5.18e-09, |dz| 9.2e-04, dDelta -8.86e-07, pivots 5.3e-11..6.6e+00 (69.0 s)
+13:00:49     re-planned: 203 steps
+13:01:20   band 2 (newton): |F| 1.63e-09, |F|_2 5.18e-09 -> 3.45e-12, |dz| 2.3e-05, dDelta +6.22e-09, pivots 5.4e-11..6.6e+00 (100.8 s)
+13:01:20     re-planned: 177 steps
+13:01:49   band 3 (newton): |F| 7.66e-13, |F|_2 3.45e-12 -> 3.36e-16, |dz| 3.2e-07, dDelta +3.60e-10, pivots 5.2e-11..6.6e+00 (129.2 s)
+13:01:49     re-planned: 147 steps
+13:02:12   band 4 (newton): |F| 9.26e-17, |F|_2 3.36e-16 -> 1.01e-26, |dz| 2.9e-12, dDelta +4.21e-15, pivots 5.2e-11..6.6e+00 (152.9 s)
+13:02:12     re-planned: 133 steps
+13:02:35   band 5 (newton): |F| 3.29e-27, |F|_2 1.01e-26 -> 1.79e-27, |dz| 3.2e-12, dDelta -1.15e-21, pivots 4.0e-11..6.6e+00 (175.6 s)
+13:02:35     re-planned: 124 steps
+13:02:56   band 6 (newton): |F| 4.77e-28, |F|_2 1.79e-27 -> 7.20e-29, |dz| 4.9e-13, dDelta +5.07e-21, pivots 6.3e-11..6.6e+00 (196.4 s)
+13:02:56     re-planned: 125 steps
+13:03:16   band 7: |F| 3.21e-29 converged, Delta 1.110358716440845
+13:03:16 plan from the solution: 125 steps (0.2 s); |F| 3.21e-29
+13:03:36   band 0: |F| 3.21e-29 converged, Delta 1.110358716440845
+13:03:37 double-double: converged True, |F| 3.21e-29, Delta 1.110358716440844940730192802182954, constraint 7.91e-15, tails 1.0e-177 6.8e-116
+13:03:37 done 2026-11-17 13:03:37 UTC (237.5 s)

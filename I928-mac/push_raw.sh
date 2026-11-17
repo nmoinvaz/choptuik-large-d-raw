@@ -9,7 +9,7 @@ cd "$RAW" && git fetch -q origin && git worktree add -q "$W" -b i928-mac origin/
 R=$W/I928-mac
 mkdir -p "$R/out"
 cp "$J"/*.sh "$J"/*.py "$R/"
-cp "$J/README.md" "$R/README.md"
+cp "$J/README.md" "$J/qd_protocol.md" "$R/"
 for f in "$J"/out/*.txt "$J"/out/*.json "$J"/out/*.jsonl "$J"/out/*.log "$J"/out/*.npz; do
     case "$f" in *_ckpt.npz) continue;; esac
     [ -e "$f" ] && cp "$f" "$R/out/"

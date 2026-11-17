@@ -48,6 +48,7 @@ as each lands, and records it in `done.txt`. `lift.log` is rewritten after every
 | k160 | 229.0000 | −34.1970 | −31.8111 | +2.3859 | σ₃ 1.179e-14 → σ₁ 1.392e-14 (ln +0.166) | σ₂ (k3) 0.873 | σ₁ (k1) 0.986 | G1 pass |
 | k160 | 231.0000 | −39.7365 | −36.8117 | +2.9247 | σ₃ 5.908e-17 → σ₁ 9.042e-17 (ln +0.425) | σ₂ (k3) 0.788 | σ₁ (k1) 0.991 | G1 pass |
 | k142 | 239.1312 | −41.4612 | −35.6271 | +5.8341 | σ₃ 1.251e-17 → σ₁ 3.352e-16 (ln +3.288) | σ₂ (k3) 0.843 | σ₁ (k3) 1.000 | G1 pass |
+| k142 | 244.1312 | −44.8992 | −37.4490 | +7.4502 | σ₃ 4.282e-19 → σ₁ 5.368e-17 (ln +4.831) | σ₂ (k3) 0.816 | σ₁ (k1) 0.986 | G1 pass |
 
 dh610's order-160 chain was stopped at D 234 by the coordinator's order (#903), so its targets from 240 on will not
 land, and k160's last base here is D 231 (target 230). At D 239.13 the order-142 chain's Δ mode is not converged in
@@ -57,6 +58,20 @@ At D 229.13 the order-142 chain's weakest modes are the harmonic-3 pair (σ₁, 
 mode (σ₃ 8.139e-15), and their small Δ shares carry 0.970 and 0.027 of 1/g² (`lift.log`): the grip on Δ at order 142 is the
 harmonic-3 pair's. At ks 200 the pair rises to 2.6e-10 and the Δ mode carries 0.993 of 1/g²; the Δ mode itself moved
 by ln +0.741 of the lift's +3.8407.
+
+### The kernel window: the D 239.13 and 244.13 bases rerun (15:09 UTC)
+
+From 07:02 to about 14:40 UTC on 2026-11-17, site2's hpkernel lacked `__init__.py`, so a run started then loaded
+venv-314's Nov 8 kernel (multidouble 4.0.0), not main 3c35f0c's (the coordinator's notice). The order-142 bases at
+D 239.1312 (10:49) and 244.1312 (12:43) started in that window. Their first runs are in `old_kernel/`. The reruns
+(14:11–15:09 UTC) are in this folder, and each log's second line names the kernel loaded. `run.sh` now stops unless
+`hpkernel` resolves to site2. Its guard, given a missing site path, resolves to venv-314's kernel and fires.
+
+`kernel_cmp.py` compares them (`kernel_cmp.log`). Both readings agree. L is +5.8341 and +7.4502 in both runs, with
+differences 0 and −7.1e-15, and the check passes. Its control `--mutate=scale` fails as designed. g and σ₁–σ₄ agree to
+relative 1e-13 or better, and g at ks 200 bit for bit. σ₅ and σ₆, which the subspace iteration does not converge in
+its 32 iterations (residual 0.05–3.3), differ by up to 4.6 times relative and enter no reading. `lift.log` is the same
+line for line except its time. The runs table above holds for both bases.
 
 ## The p_min question (t5, 2026-11-17 02:20 UTC)
 
