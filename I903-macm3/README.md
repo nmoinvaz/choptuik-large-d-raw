@@ -24,3 +24,15 @@ base saved, the chain (`chain_k135/`, `chain_k135.log`: `--ks 135 --keep_plan 1 
 flags at 6 threads, nice 10 under caffeinate. Code: worktree at main 5897ee28 with the 1f3cda09 hpkernel of this folder's
 build, which has no `Solver.series_o`, so the series are formed by the jets (the same bits, a notice in the log).
 `exits_k135.txt` has the start and exit lines.
+
+## Fold rule (the coordinator's stop rule, 2026-11-17)
+
+The command is xfkappa's `hp/fold_est_903.py verdict`, from a worktree at main 66d6ebfd (`~/Source/choptuik-large-d-903f`),
+run from its `hp/` with this venv (numpy 2.5.4, mpmath 1.3.0):
+
+    python3 fold_est_903.py verdict <RAW>/I903-macm3/chain_k135 <RAW> --json=<RAW>/I903-macm3/fold_verdict.json
+
+after each new jet with base D of at least 258.5. Exit 0 stops the chain, 1 means #603's control failed, 2 continues. The
+pilot before any base is in range (`fold_pilot.log`, `fold_pilot.json`, `run_fold_pilot.sh`) gave exit 2 in 108 s, with
+control 1 passing: max|D* - 259.9033| 2.48e-04 over 45 bases of #603's chain_nsr (bound 0.005). Each later run appends to
+`fold_verdict_k135.log` and rewrites `fold_verdict.json`; the exits are in `exits_k135.txt`.
