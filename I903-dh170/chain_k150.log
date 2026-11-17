@@ -412,3 +412,38 @@ step 24: D 224.0, pivots 6.9e-13..4.0e+33, |z_1| 4.10e-04, |z_N| 4.21e-30, ratio
 step 25: the series saved as /home/nathan/Source/choptuik-large-d-raw/I903-dh170/chain_k150/jet_pin3_D225.0000.npz (8 parts, 441 s)
 step 25: D 225.0, pivots 5.0e-13..3.7e+33, |z_1| 4.07e-04, |z_N| 4.23e-30, ratios 2-5 288.0 259.6 247.5 241.4, a_max 3.319, 441 s
     a 1.0000: re-seeded (ok), 113.44 s
+      horizon data refined in octo-double, rung max|R| 3.92e-29 -> 2.23e-32 -> 3.36e-33 -> 3.43e-33 -> 3.36e-33 -> 3.45e-33 -> 3.49e-33 -> 3.51e-33 -> 2.73e-33 -> 3.06e-33
+    on 0 chord 0: max|F| 6.15e-43, |dw| 1.928e-45
+    on 0 chord 1: max|F| 7.56e-47, |dw| 6.014e-47
+  on 0: strong chord (4 weak directions), 2 steps after the full first step; theta at its point 1.126e-19 (bound 0.750): accepted, 611.8 s
+  on 0: |F| 2.41e-29 -> 1.48e-45, |dz| 5.12e-23 -> 5.76e-42, lam 1, dDelta -1.06e-23, piv 2.9e-13..7.0e+33, 893.65 s
+    on 1 trial lam 1: max|F| 4.01e-49; simplified correction / |dz| = 2.316e-32 (bound 0.750); accepted, 0.64 s
+  on 1: |F| 1.48e-45 -> 4.01e-49, |dz| 5.76e-42 -> 1.33e-73, lam 1, dDelta -4.29e-43, piv 2.9e-13..7.0e+33, 85.91 s
+    on 2 trial lam 1: max|F| 1.18e-94; simplified correction / |dz| = 7.462e-18 (bound 0.750); accepted, 0.69 s
+  on 2: |F| 4.01e-49 -> 1.18e-94, |dz| 1.33e-73 -> 9.95e-91, lam 1, dDelta -8.79e-75, piv 2.9e-13..7.0e+33, 86.63 s
+  on 3: |F| 1.18e-94 converged, Delta 1.68926593189819441 -5.7621e-17
+      elim projections {'u0': 0, 'u0q': 0, 'ladder': 4, 'failed': 0, 'skipped': 3}
+      octo-double Newton: 4 steps, max|F| 1.2e-94, converged; double-double |F| of its first two parts 1.2e+07
+    a 1.000 -> D 226.0: predicted |F| 2.65e+07, od 4 steps -> 1.22e+07 (tol 1.6e-16, stall accepted, Delta correction +0.0e+00), Delta 1.689265931898 (formula diff -1.4e-06), moved 5.1e-23, 1153 s
+      Delta of the saved state, its eight parts summed exactly: 1.689265931898194348481623689352161826884
+step 26: the series saved as /home/nathan/Source/choptuik-large-d-raw/I903-dh170/chain_k150/jet_pin3_D226.0000.npz (8 parts, 440 s)
+step 26: D 226.0, pivots 2.9e-13..7.0e+33, |z_1| 4.05e-04, |z_N| 4.24e-30, ratios 2-5 289.3 260.8 248.7 241.5, a_max 3.318, 440 s
+    a 1.0000: re-seeded (ok), 112.87 s
+      horizon data refined in octo-double, rung max|R| 8.64e-30 -> 1.58e-32 -> 3.31e-33 -> 2.45e-33 -> 3.38e-33 -> 1.94e-33 -> 2.20e-33 -> 4.32e-33 -> 2.86e-33 -> 2.72e-33
+    on 0 chord 0: max|F| 1.22e-42, |dw| 1.825e-45
+    on 0 chord 1: max|F| 1.73e-45, |dw| 2.219e-45
+    on 0 chord 2: max|F| 9.20e-46, |dw| 1.068e-45
+  on 0: strong chord (4 weak directions), 3 steps after the full first step; theta at its point 7.044e-19 (bound 0.750): accepted, 776.57 s
+  on 0: |F| 5.04e-29 -> 4.93e-46, |dz| 4.68e-23 -> 3.30e-41, lam 1, dDelta -7.67e-24, piv 2.7e-14..4.0e+33, 1055.76 s
+    on 1 trial lam 1: max|F| 1.98e-47; simplified correction / |dz| = 6.322e-33 (bound 0.750); accepted, 0.69 s
+  on 1: |F| 4.93e-46 -> 1.98e-47, |dz| 3.30e-41 -> 2.29e-73, lam 1, dDelta +4.37e-43, piv 2.7e-14..4.0e+33, 86.92 s
+    on 2 trial lam 1: max|F| 2.09e-94; simplified correction / |dz| = 1.282e-14 (bound 0.750); accepted, 0.62 s
+  on 2: |F| 1.98e-47 -> 2.09e-94, |dz| 2.29e-73 -> 2.93e-87, lam 1, dDelta -2.18e-74, piv 2.7e-14..4.0e+33, 86.17 s
+  on 3: |F| 2.09e-94 converged, Delta 1.68906832134662599 +8.8357e-17
+      elim projections {'u0': 0, 'u0q': 0, 'ladder': 5, 'failed': 0, 'skipped': 3}
+      octo-double Newton: 4 steps, max|F| 2.1e-94, converged; double-double |F| of its first two parts 6.2e+06
+    a 1.000 -> D 227.0: predicted |F| 1.31e+07, od 4 steps -> 6.15e+06 (tol 2.3e-16, stall accepted, Delta correction +0.0e+00), Delta 1.689068321347 (formula diff -1.5e-06), moved 4.7e-23, 1315 s
+      Delta of the saved state, its eight parts summed exactly: 1.689068321346626077677731670098277654424
+step 27: the series saved as /home/nathan/Source/choptuik-large-d-raw/I903-dh170/chain_k150/jet_pin3_D227.0000.npz (8 parts, 436 s)
+step 27: D 227.0, pivots 2.7e-14..4.0e+33, |z_1| 4.02e-04, |z_N| 4.27e-30, ratios 2-5 290.7 262.0 249.8 243.7, a_max 3.316, 436 s
+    a 1.0000: re-seeded (ok), 112.13 s
