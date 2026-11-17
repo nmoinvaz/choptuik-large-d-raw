@@ -49,3 +49,32 @@ The rule was tried on the two checks' histories, which pass, and on four made-up
 convergence in five steps, a rise at the first step, a second step as large as the first, and a third step that is
 not quadratic in max |F|. All four are rejected. The checks did not record max |dz|, so the fourth line is first
 seen on the continuation's points.
+
+## Second addendum: the first step may raise max |F| by a bounded factor
+
+Written 2026-11-17 18:10 UTC, after the rule above rejected a point. It was not fixed in advance.
+
+What happened. Under the rule of the first addendum the continuation at eta 0.3 accepted D 12.5 and rejected
+D 12.5625: handed over at max |F| 1.66e-28, its first quad-double step gave 2.49e-28, and the "never rises" line
+stopped it. A diagnostic outside the rule (`qd_force.py`, `out/qd_force_eta0.3_D12.5625.txt`) continued the
+Newton past that rise: 1.66e-28 -> 2.49e-28 -> 6.28e-56, with max |dz| 5.42e-13 then 8.83e-28. After the first
+step the convergence is quadratic in both, as in the accepted cases.
+
+The first-step ratios of max |F| seen so far, after over before: 0.94 (check 1, D 12.375), 0.26 (check 2,
+D 12.5), 0.043 (D 12.5 on the chain), 1.5 (D 12.5625).
+
+The reason. The residual at the start is a second-order effect of the displacement along the band, and the residual
+after the first step is the second-order remainder of a Newton step of that displacement's size. Their ratio is of
+order one and can fall on either side of 1. The "never rises" line was written from two cases in which it fell.
+
+(2'') The coordinator's amendment, approved 2026-11-17: at the first quad-double step max |F| may rise by at most a
+factor of 10. After the first step it must not rise. The other lines of (2') are unchanged: at most 1e-28 within 4
+steps and at the end; from the second step on, max |F| at most 1e10 times the square of the step before; max |dz|
+at most 1e10 times the square of the step before at every step after the first.
+(`run_eta.py --qd_first_rise 10`; each record keeps the factor it was run with.)
+
+D 12.5625 counts only from a fresh run under (2''), not from the diagnostic's state.
+
+The amended rule was tried on the two real histories (D 12.5 passes with and without the amendment; D 12.5625's
+forced history passes only with it) and on two made-up ones that must fail under it: a first rise by a factor of
+30, and a rise at the second step. Both are rejected.
