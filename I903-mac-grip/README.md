@@ -137,3 +137,82 @@ at orders 135, 142, 150 and 160. Across each chain's collapse step the pair fall
 series is wrong there by more than 1e9, which confirms the reading above. The octo-double 8.557e-4 is F itself, not F
 minus the held offset c. `dd_vs_od.py` now prints F − c as well, and reruns after the ks 200 run (`dv2_*`). The D 60
 control failed on a missing plan (KeyError 'segs', `dv_ctl_D60.log`) and reruns with a new plan, as near_null.py makes.
+
+### The coordinator's question on dh610's stop at D 234 (read only, 05:00 UTC)
+
+The question: is the double-double horizon series what stopped `chain_k160` at D 234? Read from `I903-dh610/chain_k160.log`
+and `run903c.sh` (raw ff5dd9f6), and the code at main 80b944ff, which contains dh610's 423bd22d. No code was changed.
+
+- The flags: `--corrector od --tol_od 1e-60 --reseed 2 --reseed_q 1 --reseed_o 3 --reseed_start pred --od_strong 4
+  --od_accept natural`, with `--ks 160 --keep_plan 1`.
+- The double-double measures are in the log and do not decide acceptance. Every "predicted |F|" is double-double:
+  `anm_run.py` sets `Fp = rnorm(spn.residual(ph, pl))`, giving 7.14e9 at D 232, 1.07e10 at 233, 1.65e10 at 234 and
+  1.10e11 at 235. So is the corrector's returned |F|, `correct()`'s `Fc = rnorm(spx.residual(z8[0], z8[1]))`, the
+  "double-double |F| of its first two parts", 1.3e10 and 1.4e10 at D 233 and 234 against octo-double 9.5e-92 and
+  3.4e-78. These are the same rounding as `dd_vs_od.py`'s 1.164e9 on the D 229 state. With `--corrector od` an attempt is
+  accepted on the octo-double convergence (`accepted = conv`), so the "stall accepted" in those lines is only a label.
+  The same `Fp` gates the re-plan, `if Fp <= 1e-6: plan`, which cannot pass at these D.
+- The 7.89e9 at the a = 0.5 start is octo-double, not double-double. `octo_corrector.chord_strong` prints
+  `s.residual_o` at z + d, with s the `ElimO`, after its attempted projection. It falls as λ² over the trials: 7.89e9,
+  2.17e9, 5.55e8 down to 2.18e6 at λ = 1/64, and 2.00e-27 at λ = 1/128, where the projection succeeded. It is a real
+  residual, after a full first step of |dz| 1.18e-14 from a start already at |F| 1.79e-33.
+- The projection reads the double-double horizon rows in its first stage. `ElimO.project` calls `reseed.Reseeder.project`,
+  which runs a double-double Newton at u0 first: `Reseeder.invert` on `Solver.residual`. At D 235 that stage sat at its
+  floor at every trial, for example "u0 rung 1 its, |R| 1.87e+10 -> 1.87e+10". It then passes double-double data
+  (parts 2-3 zero) to the quad-double polish, `polish_q`, which uses `residual_q` and `jacobian_q` and no double-double.
+  The polish did not converge in 8 steps, for example 1.54e6 to 7.80e1 at λ = 1/64. The re-seed ladder,
+  `Reseeder.reseed` (`targets`, then `invert` per rung, then `polish_q` at u0), is double-double up to its last rung, and
+  it failed after 8 rungs.
+- `--reseed_o 3` was set. `refine_o` ran on the a = 0.5 start's re-seed (2.53e-26 to 2.44e-39) and not inside the
+  corrector's projections. At a = 1 the re-seed's first failed stage was the quad-double polish from the prediction's
+  own data (`--reseed_start pred`), at |R| 1.82e-5 after 8 steps, not a double-double stage. The start's projection then
+  failed, and `StartNotProjected` stopped the attempt.
+
+Reading: the double-double series did not stop the chain by itself. The stop is the first full step's octo-double
+residual of 7.9e9, which the projections could not repair. In each of them the first stage is a double-double Newton
+that can no longer converge at these D, and the quad-double polish after it starts from double-double-rounded data.
+Whether a projection without the double-double stage, from the point's own four-part data and with `refine_o`, would
+repair these trials is not tested. dh610 saved the predictions before their re-seed (`pred_pin3_D234.5000.npz`,
+`pred_pin3_D235.0000.npz`), and they would be the test's inputs.
+
+### The order-200 test and the F − c rerun (05:18 UTC)
+
+`nn_k160_D229.0000_ks200` passes its check, and only the horizon rows change: max|dF| 1.62e-22, max|dJ| 4.49e41. On the
+same z at order 200, order 160's harmonic-3 pair (5.406e-17, 5.381e-17) is order 200's σ₂ and σ₃ (4.223e-14,
+4.345e-14). The overlaps on that span are 0.961 and 0.990, and the pair rose 781 times. The Δ mode moved from 1.179e-14
+to 1.392e-14, a ratio of 1.181 at overlap 0.982, and is order 200's σ₁ (`pair200.log`). By the criteria above, the pair
+is the series' own (above 100 times) and the Δ mode is the wall's (within 3).
+
+`dd_vs_od.py` with F − c (`dv2_k160_D229.0000.log`): on order 160's D 229 state the octo-double F − c horizon rows read
+1.505e-91 at order 160, the chain's convergence, and 1.622e-22 at order 200, the series' tail. The double-double ones
+read 1.164e9 and 2.868e12. So the 8.557e-4 of the first run was the held offset c. The D 60 control (`dv2_ctl_D60.log`)
+agrees in double-double and octo-double to every printed digit at orders 100 and 200, horizon 1.086e-10. That is not
+a converged residual, since the state stores no plan and a new one is made. The double-double horizon series is
+right at D 60 and wrong by more than 1e9 at D 229.
+
+For the grip queue, `lift.log` now has k160's first base, D 229 (target 230): L = +2.3859, with the Δ mode σ₃
+1.179e-14 at order 160 and σ₁ 1.392e-14 at order 200 (ln +0.166).
+
+### Recommended tasks (the p_min question)
+
+1. **Horizon series in octo-double.** What: an hpkernel accessor for the horizon (and centre) series in eight parts,
+   beside `Solver.series`, and `series_profile.py` and `series_order.py` rerun on it for the D 226-234 states of orders
+   135-160. Why: the content of a direction by series order cannot be read in double-double past D ~226, where the
+   double-double terms grow from rounding (1.16e9 in the horizon rows at D 229 against 1.5e-91 in octo-double).
+   Acceptance: the eight-part coefficients up to order K agree with the double-double ones where those are right (D 60,
+   to 1e-30 relative), the eight-part sum at u0 reproduces `residual_o`'s horizon rows at D 229 to 1e-80, and a
+   control that drops the last order must fail that. Depends on: this task.
+2. **A projection without the double-double first stage.** What: `reseed.Reseeder.project` (used by
+   `octo_corrector.ElimO` under `--reseed 2`) and the re-seed ladder start with a double-double Newton on
+   `Solver.residual` (`Reseeder.invert`). At D ≳ 226 its horizon rows are rounding, so it stalls at its floor (|R|
+   1.87e10 at D 235) and hands double-double data to `polish_q`. Test a projection that starts `polish_q` from the
+   point's own four-part data, followed by `refine_o`, on dh610's `pred_pin3_D234.5000.npz` and `pred_pin3_D235.0000.npz`
+   and the a = 0.5 trial points. Why: dh610's order-160 chain stopped at D 234 with every projection failing.
+   Acceptance: the new projection converges (octo-double F − c below 1e-60) at λ ≥ 1/64 trials where the current one
+   fails, and the current one still fails there (control). Depends on: this task, and on dh610's stored predictions.
+3. **The double-double measures in anm_run.py.** What: "predicted |F|" (`Fp = rnorm(spn.residual(ph, pl))`), the
+   corrector's returned `Fc` and the re-plan gate `if Fp <= 1e-6` are double-double, and read rounding at D ≳ 226
+   (1.1e11 at D 235). Report quad- or octo-double measures, or label these, and decide the gate on one that is right.
+   Why: the logs read "stall accepted" at |F| 1e10 for steps that converged to 1e-78, and the plan is never remade at
+   these D. Acceptance: at D 229, order 160 the reported measure equals `residual_o` − c's (1.5e-91) within 10 times,
+   and a control that reverts to the double-double measure reads above 1e8. Depends on: this task.

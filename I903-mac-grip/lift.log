@@ -1,11 +1,11 @@
-== lift 2026-11-16 19:58:28 UTC
 lift: L = ln g(200) - ln g(own), g = 1 / ||e_Delta^T J^-1||_2; bar at D 255: L < ln 10 = 2.3026
   ctl D 60.0020 (target None): ks 142 ln g -19.4641, ks 200 -19.4641, L +0.0000; sigma_1-4 at 142 5.033e-15, 5.032e-15, 5.416e-14, 5.415e-14; at 200 5.033e-15, 5.032e-15, 5.416e-14, 5.415e-14; the Delta mode at 142 sigma_6 (share 0.00), at 200 sigma_6 4.132e-13 (overlap 1.00, ln ratio +0.000); Delta's pinned step at 200 -5.082e-13; horizon max|dF| 1.76e-27; 1/g^2 at 142: sigma_1 (k13) 0.163, sigma_3 (k11) 0.088, six 0.403; 1/g^2 at 200: sigma_1 (k13) 0.163, sigma_3 (k11) 0.088, six 0.403
   k142 D 229.1312 (target 230): ks 142 ln g -35.4817, ks 200 -31.6410, L +3.8407; sigma_1-4 at 142 1.497e-17, 1.515e-17, 8.139e-15, 1.688e-14; at 200 1.707e-14, 7.017e-14, 2.649e-10, 2.690e-10; the Delta mode at 142 sigma_3 (share 0.97), at 200 sigma_1 1.707e-14 (overlap 0.98, ln ratio +0.741); Delta's pinned step at 200 -2.414e-13; horizon max|dF| 6.82e-22; 1/g^2 at 142: sigma_2 (k3) 0.970, sigma_1 (k3) 0.027, six 0.999; 1/g^2 at 200: sigma_1 (k1) 0.993, sigma_2 (k1) 0.007, six 1.000
+  k160 D 228.0000: runs at ks [160] (incomplete)
+  k160 D 229.0000 (target 230): ks 160 ln g -34.1970, ks 200 -31.8111, L +2.3859; sigma_1-4 at 160 5.406e-17, 5.381e-17, 1.179e-14, 4.441e-14; at 200 1.392e-14, 4.223e-14, 4.345e-14, 6.221e-14; the Delta mode at 160 sigma_3 (share 0.75), at 200 sigma_1 1.392e-14 (overlap 0.98, ln ratio +0.166); Delta's pinned step at 200 -1.495e-13; horizon max|dF| 1.62e-22; 1/g^2 at 160: sigma_2 (k3) 0.873, sigma_1 (k3) 0.106, six 0.990; 1/g^2 at 200: sigma_1 (k1) 0.986, sigma_4 (k1) 0.009, six 1.000
   check control: D 60.00: the largest |L| or |ln sigma_i(200) - ln sigma_i(142)| 0.00e+00 (< 0.05): pass
   check mutation: k142 D 229.1312: --ks 200 --mutate=ks against ks 142: equal: pass
   check runs: every run's check, and only the horizon block changed: pass: pass
   reading k142: no base near D 255 yet
   reading k160: no base near D 255 yet
 lift: PASS
-exit 0
