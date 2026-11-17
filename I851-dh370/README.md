@@ -12,7 +12,7 @@ Machine dh370 (Fedora 45, i7-8700, 12 threads). Issue: https://github.com/nmoinv
 
 ## Results
 
-Each run took 1494 s (D 245.6366), 1631 s (D 250.1676) and 1551 s (D 252.6135) at 3 threads, 154 MB. Exits 0, `step_spread: PASS` for all
+Each run took 1494 s (D 245.6366), 1631 s (D 250.1676) and 1551 s (D 252.6135) at 3 threads, peak RSS 151 to 154 MB. Exits 0, `step_spread: PASS` for all
 three (`exits_851.txt`).
 
 | D | rel | smallest pivot | pivot / unperturbed - 1 | dev = dDelta(seed) - dDelta(unperturbed) | p from the next larger rel |
