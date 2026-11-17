@@ -49,6 +49,7 @@ as each lands, and records it in `done.txt`. `lift.log` is rewritten after every
 | k160 | 231.0000 | −39.7365 | −36.8117 | +2.9247 | σ₃ 5.908e-17 → σ₁ 9.042e-17 (ln +0.425) | σ₂ (k3) 0.788 | σ₁ (k1) 0.991 | G1 pass |
 | k142 | 239.1312 | −41.4612 | −35.6271 | +5.8341 | σ₃ 1.251e-17 → σ₁ 3.352e-16 (ln +3.288) | σ₂ (k3) 0.843 | σ₁ (k3) 1.000 | G1 pass |
 | k142 | 244.1312 | −44.8992 | −37.4490 | +7.4502 | σ₃ 4.282e-19 → σ₁ 5.368e-17 (ln +4.831) | σ₂ (k3) 0.816 | σ₁ (k1) 0.986 | G1 pass |
+| k142 | 249.1469 | −48.6575 | −39.4508 | +9.2067 | σ₃ 5.636e-21 → σ₁ 7.184e-18 (ln +7.150) | σ₂ (k3) 0.782 | σ₁ (k1) 0.855 | G1 pass |
 
 dh610's order-160 chain was stopped at D 234 by the coordinator's order (#903), so its targets from 240 on will not
 land, and k160's last base here is D 231 (target 230). At D 239.13 the order-142 chain's Δ mode is not converged in
