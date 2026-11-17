@@ -1,0 +1,105 @@
+# 2026-11-17 04:35:40 UTC start
+# 2026-11-17 04:35:41 UTC references: 11 files
+# 2026-11-17 04:35:44 UTC worktree cdb5a6bc1938904b67f5e99637c0d41877a38ec3
+Using CPython 3.14.10
+Creating virtual environment with seed packages at: .venv
+ + pip==26.3
+Activate with: source .venv/bin/activate
+Resolved 6 packages in 141ms
+Installed 6 packages in 116ms
+ + maturin==1.16.0
+ + mpmath==1.3.0
+ + numpy==2.5.4
+ + python-flint==0.9.0
+ + scipy==1.18.1
+ + sympy==1.14.0
+# 2026-11-17 04:35:44 UTC cc (GCC) 16.2.1 20261029 (Red Hat 16.2.1-3); rustc 1.99.1 (58cf8f9c3 2026-10-13); maturin 1.16.0; Python 3.14.10
+    Updating crates.io index
+ Downloading crates ...
+  Downloaded multidouble v4.8.2
+🍹 Building a mixed python/rust project
+🐍 Found CPython 3.14 at /home/nathan/Source/choptuik-large-d-934/.venv/bin/python
+🔗 Found pyo3 bindings
+📡 Using build options features from pyproject.toml
+   Compiling target-lexicon v0.13.5
+   Compiling autocfg v1.5.1
+   Compiling crossbeam-utils v0.8.23
+   Compiling proc-macro2 v1.0.107
+   Compiling crossbeam-epoch v0.9.21
+   Compiling unicode-ident v1.0.27
+   Compiling quote v1.0.47
+   Compiling crossbeam-deque v0.8.8
+   Compiling num-traits v0.2.19
+   Compiling rayon-core v1.13.0
+   Compiling pyo3-build-config v0.30.1
+   Compiling pyo3-macros-backend v0.30.1
+   Compiling libc v0.2.191
+   Compiling syn v3.0.9
+   Compiling matrixmultiply v0.3.11
+   Compiling heck v0.5.0
+   Compiling pyo3-ffi v0.30.1
+   Compiling pyo3 v0.30.1
+   Compiling either v1.19.0
+   Compiling rawpointer v0.2.1
+   Compiling rayon v1.12.0
+   Compiling num-complex v0.4.6
+   Compiling num-integer v0.1.47
+   Compiling numpy v0.30.0
+   Compiling once_cell v1.21.4
+   Compiling ndarray v0.17.2
+   Compiling rustc-hash v2.1.3
+   Compiling multidouble v4.8.2
+   Compiling pyo3-macros v0.30.1
+   Compiling multisolver v0.1.1
+   Compiling multishoot v3.2.0
+   Compiling hpkernel v0.1.0 (/home/nathan/Source/choptuik-large-d-934/hp)
+    Finished `release` profile [optimized] target(s) in 44m 24s
+📦 Built wheel for CPython 3.14 to /home/nathan/Source/choptuik-large-d-934/hp/dist/hpkernel-0.1.0-cp314-cp314-manylinux_2_34_x86_64.whl
+Processing ./dist/hpkernel-0.1.0-cp314-cp314-manylinux_2_34_x86_64.whl
+Installing collected packages: hpkernel
+Successfully installed hpkernel-0.1.0
+Collecting multidouble @ git+https://github.com/nmoinvaz/multidouble@a93e0896fb3206509d5a121e8a1be72961475f2f#subdirectory=python
+  Using cached multidouble-0.1.0-cp314-cp314-linux_x86_64.whl
+Installing collected packages: multidouble
+Successfully installed multidouble-0.1.0
+hpkernel avx2 multidouble avx2
+# 2026-11-17 05:20:14 UTC hp/build.sh exit 0, 2670 s, peak 26499 MiB
+   Compiling target-lexicon v0.13.5
+   Compiling autocfg v1.5.1
+   Compiling crossbeam-utils v0.8.23
+   Compiling crossbeam-epoch v0.9.21
+   Compiling proc-macro2 v1.0.107
+   Compiling crossbeam-deque v0.8.8
+   Compiling rayon-core v1.13.0
+   Compiling unicode-ident v1.0.27
+   Compiling quote v1.0.47
+   Compiling num-traits v0.2.19
+   Compiling pyo3-build-config v0.30.1
+   Compiling libc v0.2.191
+   Compiling pyo3-macros-backend v0.30.1
+   Compiling either v1.19.0
+   Compiling syn v3.0.9
+   Compiling matrixmultiply v0.3.11
+   Compiling heck v0.5.0
+   Compiling pyo3-ffi v0.30.1
+   Compiling pyo3 v0.30.1
+   Compiling rayon v1.12.0
+   Compiling rawpointer v0.2.1
+   Compiling num-integer v0.1.47
+   Compiling num-complex v0.4.6
+   Compiling numpy v0.30.0
+   Compiling once_cell v1.21.4
+   Compiling ndarray v0.17.2
+   Compiling rustc-hash v2.1.3
+   Compiling multidouble v4.8.2
+   Compiling multisolver v0.1.1
+   Compiling multishoot v3.2.0
+   Compiling pyo3-macros v0.30.1
+   Compiling hpkernel v0.1.0 (/home/nathan/Source/choptuik-large-d-934/hp)
+   Compiling modecount_cx v0.1.0 (/home/nathan/Source/choptuik-large-d-934/hp/modecount_cx)
+    Finished `release` profile [optimized] target(s) in 2m 17s
+modecount_cx ok /home/nathan/Source/choptuik-large-d-934/hp/modecount_cx/build/modecount_cx.cpython-314-x86_64-linux-gnu.so
+# 2026-11-17 05:22:32 UTC hp/modecount_build.sh exit 0, 138 s, peak 26499 MiB
+hpkernel /home/nathan/Source/choptuik-large-d-934/.venv/lib/python3.14/site-packages/hpkernel/__init__.py
+multidouble /home/nathan/Source/choptuik-large-d-934/.venv/lib/python3.14/site-packages/multidouble/__init__.py
+exit 0
