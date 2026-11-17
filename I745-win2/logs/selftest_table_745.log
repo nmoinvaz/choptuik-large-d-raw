@@ -1,0 +1,11 @@
+  the reference's first three printed bounds equal the issue's: ok
+  identical bounds: all nine within 1.5: ok
+  start 5 at 1.6 times fails, start 6 at 1/1.4 passes: ok
+  start 1 changed by 1% misses acceptance 1: ok
+  two starts at the cap are counted: ok
+  K = 7 bounds times 3: R_a moves from 0.98 to 2.93 (want 2.93, 3 x 2.403e-34/2.463e-34) and the full rule's R(40)/R(50) to 0.50 (want 0.50): ok
+control from #681's logs: K = 7 median 2.403e-34, K = 0 median 2.463e-34, R = 0.98 (want 0.98), R(40)/R(50) = 0.17 (0.17), interval 0.06 to 0.91 (0.06 to 0.91), verdict UNDECIDED (UNDECIDED)
+  one-state interval of R(40.02) itself: 0.32 to 2.92
+control passed
+  the control passes: ok
+selftest passed
