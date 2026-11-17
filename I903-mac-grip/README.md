@@ -45,6 +45,7 @@ as each lands, and records it in `done.txt`. `lift.log` is rewritten after every
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | ctl (D 60) | 60.0020 | −19.4641 | −19.4641 | +0.0000 | – | – | – | G3 pass (0.00e+00) |
 | k142 | 229.1312 | −35.4817 | −31.6410 | +3.8407 | σ₃ 8.139e-15 → σ₁ 1.707e-14 (ln +0.741) | σ₂ (k3) 0.970 | σ₁ (k1) 0.993 | G1, G2 pass |
+| k160 | 229.0000 | −34.1970 | −31.8111 | +2.3859 | σ₃ 1.179e-14 → σ₁ 1.392e-14 (ln +0.166) | σ₂ (k3) 0.873 | σ₁ (k1) 0.986 | G1 pass |
 
 At D 229.13 the order-142 chain's weakest modes are the harmonic-3 pair (σ₁, σ₂ 1.497e-17, 1.515e-17), below the Δ
 mode (σ₃ 8.139e-15), and their small Δ shares carry 0.970 and 0.027 of 1/g² (`lift.log`): the grip on Δ at order 142 is the
@@ -216,3 +217,11 @@ For the grip queue, `lift.log` now has k160's first base, D 229 (target 230): L 
    Why: the logs read "stall accepted" at |F| 1e10 for steps that converged to 1e-78, and the plan is never remade at
    these D. Acceptance: at D 229, order 160 the reported measure equals `residual_o` − c's (1.5e-91) within 10 times,
    and a control that reverts to the double-double measure reads above 1e8. Depends on: this task.
+
+### Correction (the coordinator, #937): refine_o does run inside the corrector's projections
+
+Above I wrote that `refine_o` "ran on the a = 0.5 start's re-seed and not inside the corrector's projections". That
+is wrong for projections that succeed. `octo_corrector.ElimO.project` returns `with_horizon(z, zp, rs)` unless the
+projection failed, and `with_horizon` runs `rs.refine_o` whenever `rs.od > 0` (`--reseed_o 3`). At D 235 the
+projections at λ ≥ 1/64 all failed, so they did not run it. dh610's log prints `rs.last_o` only at the start. #937
+logs it per projection (`I937-mac/`).
