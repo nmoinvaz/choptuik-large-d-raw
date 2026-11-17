@@ -59,6 +59,20 @@ mode (σ₃ 8.139e-15), and their small Δ shares carry 0.970 and 0.027 of 1/g²
 harmonic-3 pair's. At ks 200 the pair rises to 2.6e-10 and the Δ mode carries 0.993 of 1/g²; the Δ mode itself moved
 by ln +0.741 of the lift's +3.8407.
 
+### The kernel window: the D 239.13 and 244.13 bases rerun (15:09 UTC)
+
+From 07:02 to about 14:40 UTC on 2026-11-17, site2's hpkernel lacked `__init__.py`, so a run started then loaded
+venv-314's Nov 8 kernel (multidouble 4.0.0), not main 3c35f0c's (the coordinator's notice). The order-142 bases at
+D 239.1312 (10:49) and 244.1312 (12:43) started in that window. Their first runs are in `old_kernel/`. The reruns
+(14:11–15:09 UTC) are in this folder, and each log's second line names the kernel loaded. `run.sh` now stops unless
+`hpkernel` resolves to site2. Its guard, given a missing site path, resolves to venv-314's kernel and fires.
+
+`kernel_cmp.py` compares them (`kernel_cmp.log`). Both readings agree. L is +5.8341 and +7.4502 in both runs, with
+differences 0 and −7.1e-15, and the check passes. Its control `--mutate=scale` fails as designed. g and σ₁–σ₄ agree to
+relative 1e-13 or better, and g at ks 200 bit for bit. σ₅ and σ₆, which the subspace iteration does not converge in
+its 32 iterations (residual 0.05–3.3), differ by up to 4.6 times relative and enter no reading. `lift.log` is the same
+line for line except its time. The runs table above holds for both bases.
+
 ## The p_min question (t5, 2026-11-17 02:20 UTC)
 
 dh610's order-160 chain has p_min, the smallest LU pivot at its bases, falling 12 to 18 times per unit D from D 228
