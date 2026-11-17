@@ -29,11 +29,17 @@ solve runs on two paths, the driver deciding and solve_point deciding (a `newton
 | 3 | M 80, D 3.4 to 3.39, last-state start | new | converged in 7 steps, history, record and state bit-identical on/off and across paths | `test_cases23_new.log` |
 | 4 | planted leg, M 80/96 from D 3.4, target 3.35 | old | stall after 3 steps (\|F\| 1.38e-1 to 1.18e-1), D 3.375 inserted, 1 notice | `test_case4_old.log` |
 | 4 | the same | new | the same, 0 notices | `test_case4_new.log` |
-| 2, 3 | the script-level rule on a genuinely old driver | old | see the log | `test_cases23_old.log` |
+
+Cases 2 and 3 were not run on the old driver (the Mac's load reached 150). Their script path ran on the new driver,
+with a `newton_solve` of the old signature, and case 4 ran the script-level rule on the old driver itself.
 
 Controls, each expected to exit 1: `control_case1_nostall_new.log`, `control_case2_nostall_new.log` (the rule off where
 it must fire), `control_case3_eager_new.log` (stall_factor 1e-12: the converging solve fails after 3 steps, so the
-bit-identity check fires), `control_case4_nostall_old.log` (the leg's solve runs to `--it_max 5`).
+bit-identity check fires). The first three exit 1. The leg control, `control_case4_nostall_old.log` (`--cases 4
+--mutate nostall`, the leg's solve runs to `--it_max 5`), has not completed. Its first run lost its output (a rebase of
+this clone replaced its log file while it ran), and the second was stopped after 45 min with 5 CPU-minutes at load
+100-150. Case 4 itself, 3 steps, took 5 min here at load 30 (`test_case4_old.log`), so the control's 5 steps take
+about 8.
 
 ## Replay on stored logs
 
