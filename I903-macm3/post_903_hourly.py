@@ -72,8 +72,16 @@ if rows:
 dpm = None
 if len(rows) >= 2:
     span = (rows[-1]["Dnext"] - rows[0]["D"]); per = (sum(r["tser"] + (r["tatt"] or 0) for r in rows)) / span
-    left = 262 - rows[-1]["Dnext"]
-    o.append(f"Pace so far: {per/60:.0f} min per unit of D ({span:.2f} D in {nsteps} steps). At that pace D 262 is {left*per/3600:.1f} h away; an assumption, since the step size and the series cost move with D.\n")
+    k = min(6, len(rows))
+    w = rows[-k:]
+    spanw = w[-1]["Dnext"] - w[0]["D"]; tw = sum(r["tser"] + (r["tatt"] or 0) for r in w)
+    perw = tw / spanw
+    left = 262 - rows[-1]["Dnext"]; left9 = 258.9 - rows[-1]["Dnext"]
+    o.append(f"Pace: {per/60:.0f} min per unit of D over all {nsteps} steps ({span:.2f} D), and {perw/60:.0f} min per unit of D over the last {k} steps ({spanw:.3f} D in {tw/3600:.2f} h of series and attempt time, a {'/'.join('%.4g' % r['a'] for r in w)}). At the recent pace D 258.9 (the first base of the fold rule's counted range) is {left9*perw/3600:.1f} h away and D 262 is {left*perw/3600:.1f} h away; an assumption, since the step size and the series cost move with D.\n")
+import glob as _g, re as _re
+_jets = [float(_re.search(r"_D([0-9.]+)\\.npz", f).group(1)) for f in _g.glob(os.path.expanduser("~/Source/choptuik-large-d-raw-903/I903-macm3/chain_k135/jet_pin3_D*.npz"))]
+_fx = [l.strip() for l in open(os.path.expanduser("~/Source/choptuik-large-d-raw-903/I903-macm3/exits_k135.txt")) if "fold" in l]
+o.append(f"Fold rule (the coordinator's `fold_est_903.py verdict`, run after each new jet with base D of at least 258.5): {sum(1 for d in _jets if d >= 258.5)} such jets so far, the newest jet is at base D {max(_jets):.4f}; last run: {_fx[-1] if _fx else 'none'}.\n")
 o.append(f"cpu and memory: anm_run {cpu}% cpu (6 threads), {rss:.2f} GB rss; load average {la[0]:.1f}, swap used {sw} MB of 1024 MB; `caffeinate -is nice -n 10`, nothing else of mine runs.\n")
 o.append(f"The hpkernel here has no `Solver.series_o`, so the series are formed by the jets (the notice is in `chain_k135.log`); the bits are the same as by order (#914's check).\n")
 RC = sys.argv[2] if len(sys.argv) > 2 else None

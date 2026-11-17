@@ -747,3 +747,106 @@ step 28: D 251.44375, pivots 1.1e-25..8.1e+35, |z_1| 3.43e-04, |z_N| 2.05e-29, r
     a 0.3125: re-seeded (ok), 82.45 s
       horizon data refined in octo-double, rung max|R| 8.37e-26 -> 2.31e-51 -> 1.46e-56 -> 7.32e-62
     on 0 chord 0: max|F| 1.31e-16, |dw| 5.342e-28
+    on 0 chord 1: max|F| 2.35e+10, |dw| 3.435e+21
+  on 0: strong chord (4 weak directions), 2 steps after the full first step; theta at its point inf (bound 0.750): refused, 219.33 s
+    on 0 trial lam 1: max|F| 1.31e-16; simplified correction / |dz| = 1.248e+14 (bound 0.750); refused, 0.45 s
+    on 0 trial lam 0.5: max|F| 3.28e-17; simplified correction / |dz| = 7.798e+12 (bound 0.875); refused, 0.47 s
+    on 0 trial lam 0.25: max|F| 8.21e-18; simplified correction / |dz| = 4.873e+11 (bound 0.938); refused, 0.47 s
+    on 0 trial lam 0.125: max|F| 2.05e-18; simplified correction / |dz| = 3.044e+10 (bound 0.969); refused, 0.46 s
+    on 0 trial lam 0.0625: max|F| 5.13e-19; simplified correction / |dz| = 1.901e+09 (bound 0.984); refused, 0.47 s
+    on 0 trial lam 0.03125: max|F| 1.28e-19; simplified correction / |dz| = 1.186e+08 (bound 0.992); refused, 0.47 s
+    on 0 trial lam 0.015625: max|F| 3.21e-20; simplified correction / |dz| = 7.385e+06 (bound 0.996); refused, 0.47 s
+    on 0 trial lam 0.0078125: max|F| 8.02e-21; simplified correction / |dz| = 4.582e+05 (bound 0.998); refused, 0.47 s
+    on 0 trial lam 0.00390625: max|F| 2.00e-21; simplified correction / |dz| = 2.822e+04 (bound 0.999); refused, 0.47 s
+  on 0: |F| 1.10e-36, |dz| 9.47e-27: no trial step accepted, stopping
+      elim projections {'u0': 0, 'u0q': 0, 'ladder': 0, 'failed': 1, 'skipped': 11}
+      octo-double Newton: 1 steps, max|F| 1.1e-36, not converged; double-double |F| of its first two parts 6.9e+07
+    a 0.312 -> D 251.75625: predicted |F| 6.89e+07, od 1 steps -> 6.89e+07 (tol 2.0e-16), Delta 1.684671708004 (formula diff -1.6e-06), moved 0.0e+00, 321 s
+    a 0.1562: re-seeded (ok), 82.65 s
+      horizon data refined in octo-double, rung max|R| 4.73e-26 -> 2.14e-57 -> 1.64e-63 -> 1.22e-68
+    on 0 chord 0: max|F| 3.22e-51, |dw| 1.929e-51
+  on 0: strong chord (4 weak directions), 1 steps after the full first step; theta at its point 2.798e-24 (bound 0.750): accepted, 277.2 s
+  on 0: |F| 6.57e-36 -> 2.92e-63, |dz| 5.63e-26 -> 1.57e-49, lam 1, dDelta -5.63e-26, piv 6.0e-26..8.6e+35, 506.67 s
+  on 1: |F| 2.92e-63 converged, Delta 1.68469677145837871 +6.4977e-17
+      elim projections {'u0': 0, 'u0q': 0, 'ladder': 3, 'failed': 0, 'skipped': 1}
+      octo-double Newton: 2 steps, max|F| 2.9e-63, converged; double-double |F| of its first two parts 9.1e+07
+    a 0.156 -> D 251.6: predicted |F| 1.32e+08, od 2 steps -> 9.05e+07 (tol 1.9e-16, stall accepted, Delta correction +0.0e+00), Delta 1.684696771458 (formula diff -1.6e-06), moved 5.6e-26, 734 s
+      Delta of the saved state, its eight parts summed exactly: 1.684696771458378770665267072767790427802
+  coefficients_o: this hpkernel has no Solver.series_o (built before #914); the series by the jets
+step 29: the series saved as /Users/nathan/Source/choptuik-large-d-raw-903/I903-macm3/chain_k135/jet_pin3_D251.6000.npz (8 parts, 930 s)
+step 29: D 251.6, pivots 6.0e-26..8.6e+35, |z_1| 3.42e-04, |z_N| 3.58e-30, ratios 2-5 323.4 291.4 276.1 39.3, a_max 3.318, 930 s
+    a 0.1562: re-seeded (ok), 81.04 s
+      horizon data refined in octo-double, rung max|R| 5.69e-26 -> 3.00e-57 -> 3.71e-63 -> 2.15e-68
+    on 0 chord 0: max|F| 4.61e-51, |dw| 3.936e-51
+  on 0: strong chord (4 weak directions), 1 steps after the full first step; theta at its point 3.615e-24 (bound 0.750): accepted, 288.05 s
+  on 0: |F| 6.09e-36 -> 4.59e-63, |dz| 7.56e-26 -> 2.73e-49, lam 1, dDelta +4.94e-26, piv 4.8e-26..9.0e+35, 518.34 s
+  on 1: |F| 4.59e-63 converged, Delta 1.68467170800386268 -3.8877e-17
+      elim projections {'u0': 0, 'u0q': 0, 'ladder': 3, 'failed': 0, 'skipped': 1}
+      octo-double Newton: 2 steps, max|F| 4.6e-63, converged; double-double |F| of its first two parts 4.5e+07
+    a 0.156 -> D 251.75625: predicted |F| 1.05e+08, od 2 steps -> 4.50e+07 (tol 2.0e-16, stall accepted, Delta correction +0.0e+00), Delta 1.684671708004 (formula diff -1.6e-06), moved 7.6e-26, 749 s
+      Delta of the saved state, its eight parts summed exactly: 1.684671708003862639050345356820301006034
+  coefficients_o: this hpkernel has no Solver.series_o (built before #914); the series by the jets
+step 30: the series saved as /Users/nathan/Source/choptuik-large-d-raw-903/I903-macm3/chain_k135/jet_pin3_D251.7562.npz (8 parts, 906 s)
+step 30: D 251.75625, pivots 4.8e-26..9.0e+35, |z_1| 3.42e-04, |z_N| 2.63e-29, ratios 2-5 323.6 291.6 275.5 38.4, a_max 3.042, 906 s
+    a 0.1953: re-seeded (ok), 82.11 s
+      horizon data refined in octo-double, rung max|R| 4.50e-26 -> 3.47e-56 -> 1.96e-61 -> 5.63e-67
+    on 0 chord 0: max|F| 6.07e-50, |dw| 1.302e-49
+  on 0: strong chord (4 weak directions), 1 steps after the full first step; theta at its point 1.663e-23 (bound 0.750): accepted, 337.68 s
+  on 0: |F| 1.85e-35 -> 7.51e-62, |dz| 4.41e-25 -> 7.34e-48, lam 1, dDelta +5.02e-26, piv 3.8e-26..9.7e+35, 596.41 s
+  on 1: |F| 7.51e-62 converged, Delta 1.68464042196192110 +5.4886e-17
+      elim projections {'u0': 0, 'u0q': 0, 'ladder': 3, 'failed': 0, 'skipped': 1}
+      octo-double Newton: 2 steps, max|F| 7.5e-62, converged; double-double |F| of its first two parts 2.1e+08
+    a 0.195 -> D 251.9515625: predicted |F| 6.88e+07, od 2 steps -> 2.08e+08 (tol 2.1e-16, stall accepted, Delta correction +0.0e+00), Delta 1.684640421962 (formula diff -1.6e-06), moved 4.4e-25, 840 s
+      Delta of the saved state, its eight parts summed exactly: 1.684640421961921152235136012770859561547
+  coefficients_o: this hpkernel has no Solver.series_o (built before #914); the series by the jets
+step 31: the series saved as /Users/nathan/Source/choptuik-large-d-raw-903/I903-macm3/chain_k135/jet_pin3_D251.9516.npz (8 parts, 924 s)
+step 31: D 251.9515625, pivots 3.8e-26..9.7e+35, |z_1| 3.41e-04, |z_N| 3.78e-29, ratios 2-5 323.8 291.8 274.7 43.1, a_max 2.995, 924 s
+    a 0.2441: re-seeded (ok), 82.05 s
+      horizon data refined in octo-double, rung max|R| 5.95e-26 -> 1.38e-54 -> 1.11e-59 -> 7.34e-65
+    on 0 chord 0: max|F| 3.65e-49, |dw| 2.201e-49
+  on 0: strong chord (4 weak directions), 1 steps after the full first step; theta at its point 6.950e-23 (bound 0.750): accepted, 309.01 s
+  on 0: |F| 1.14e-35 -> 1.11e-60, |dz| 5.83e-25 -> 4.05e-47, lam 1, dDelta +3.72e-25, piv 3.1e-26..1.1e+36, 553.45 s
+    on 1 trial lam 1: max|F| 3.00e-57; simplified correction / |dz| = 2.929e-30 (bound 0.750); accepted, 0.44 s
+  on 1: |F| 1.11e-60 -> 3.00e-57, |dz| 4.05e-47 -> 7.84e-84, lam 1, dDelta -7.87e-48, piv 3.1e-26..1.1e+36, 87.63 s
+    on 2 trial lam 1: max|F| 5.48e-92; simplified correction / |dz| = 1.093e-10 (bound 0.750); accepted, 0.44 s
+  on 2: |F| 3.00e-57 -> 5.48e-92, |dz| 7.84e-84 -> 8.57e-94, lam 1, dDelta +2.31e-85, piv 3.1e-26..1.1e+36, 88.22 s
+  on 3: |F| 5.48e-92 converged, Delta 1.68460138187024544 +5.3134e-17
+      elim projections {'u0': 0, 'u0q': 0, 'ladder': 3, 'failed': 0, 'skipped': 3}
+      octo-double Newton: 4 steps, max|F| 5.5e-92, converged; double-double |F| of its first two parts 1.7e+08
+    a 0.244 -> D 252.195703125: predicted |F| 1.06e+08, od 4 steps -> 1.68e+08 (tol 2.3e-16, stall accepted, Delta correction +0.0e+00), Delta 1.684601381870 (formula diff -1.6e-06), moved 5.8e-25, 821 s
+      Delta of the saved state, its eight parts summed exactly: 1.684601381870245493231714545552892167794
+  coefficients_o: this hpkernel has no Solver.series_o (built before #914); the series by the jets
+step 32: the series saved as /Users/nathan/Source/choptuik-large-d-raw-903/I903-macm3/chain_k135/jet_pin3_D252.1957.npz (8 parts, 921 s)
+step 32: D 252.195703125, pivots 3.1e-26..1.1e+36, |z_1| 3.41e-04, |z_N| 5.68e-30, ratios 2-5 324.1 292.1 273.8 83.7, a_max 3.252, 921 s
+    a 0.3052: re-seeded (ok), 81.62 s
+      horizon data refined in octo-double, rung max|R| 1.00e-25 -> 9.72e-52 -> 1.41e-56 -> 1.24e-61
+    on 0 chord 0: max|F| 9.93e-51, |dw| 2.221e-51
+  on 0: strong chord (4 weak directions), 1 steps after the full first step; theta at its point 2.189e-20 (bound 0.750): accepted, 311.95 s
+  on 0: |F| 4.99e-37 -> 4.27e-59, |dz| 9.24e-26 -> 2.02e-45, lam 1, dDelta -9.24e-26, piv 2.7e-26..1.2e+36, 556.02 s
+    on 1 trial lam 1: max|F| 8.65e-54; simplified correction / |dz| = 1.170e-26 (bound 0.750); accepted, 0.43 s
+  on 1: |F| 4.27e-59 -> 8.65e-54, |dz| 2.02e-45 -> 1.55e-80, lam 1, dDelta -1.99e-46, piv 2.7e-26..1.2e+36, 87.62 s
+    on 2 trial lam 1: max|F| 8.04e-92; simplified correction / |dz| = 2.218e-07 (bound 0.750); accepted, 0.43 s
+  on 2: |F| 8.65e-54 -> 8.04e-92, |dz| 1.55e-80 -> 3.44e-87, lam 1, dDelta +1.83e-83, piv 2.7e-26..1.2e+36, 88.24 s
+  on 3: |F| 8.04e-92 converged, Delta 1.68455268685478488 +1.0287e-16
+      elim projections {'u0': 0, 'u0q': 0, 'ladder': 3, 'failed': 0, 'skipped': 3}
+      octo-double Newton: 4 steps, max|F| 8.0e-92, converged; double-double |F| of its first two parts 1.0e+08
+    a 0.305 -> D 252.500878906: predicted |F| 1.47e+08, od 4 steps -> 1.01e+08 (tol 2.6e-16, stall accepted, Delta correction +0.0e+00), Delta 1.684552686855 (formula diff -1.6e-06), moved 9.2e-26, 823 s
+      Delta of the saved state, its eight parts summed exactly: 1.684552686854784978206397203318411379493
+  coefficients_o: this hpkernel has no Solver.series_o (built before #914); the series by the jets
+step 33: the series saved as /Users/nathan/Source/choptuik-large-d-raw-903/I903-macm3/chain_k135/jet_pin3_D252.5009.npz (8 parts, 919 s)
+step 33: D 252.500878906, pivots 2.7e-26..1.2e+36, |z_1| 3.40e-04, |z_N| 8.29e-29, ratios 2-5 324.5 292.5 273.1 52.6, a_max 2.894, 919 s
+    a 0.3815: re-seeded (ok), 82.41 s
+      horizon data refined in octo-double, rung max|R| 4.30e-26 -> 3.72e-49 -> 1.99e-54 -> 1.05e-59
+    on 0 chord 0: max|F| 8.68e-47, |dw| 8.964e-48
+  on 0: strong chord (4 weak directions), 1 steps after the full first step; theta at its point 1.192e-17 (bound 0.750): accepted, 308.17 s
+  on 0: |F| 9.15e-36 -> 3.40e-54, |dz| 9.90e-24 -> 1.18e-40, lam 1, dDelta +9.90e-24, piv 1.7e-26..1.3e+36, 552.19 s
+    on 1 trial lam 1: max|F| 3.14e-44; simplified correction / |dz| = 6.265e-17 (bound 0.750); accepted, 0.44 s
+  on 1: |F| 3.40e-54 -> 3.14e-44, |dz| 1.18e-40 -> 9.59e-68, lam 1, dDelta -7.00e-41, piv 1.7e-26..1.3e+36, 87.75 s
+    on 2 trial lam 1: max|F| 7.49e-92; simplified correction / |dz| = 9.981e-01 (bound 0.750); accepted, 0.44 s
+  on 2: |F| 3.14e-44 -> 7.49e-92, |dz| 9.59e-68 -> 9.57e-68, lam 1, dDelta -7.49e-68, piv 1.7e-26..1.3e+36, 87.85 s
+  on 3: |F| 7.49e-92 converged, Delta 1.68449198170292491 -9.5923e-17
+      elim projections {'u0': 0, 'u0q': 0, 'ladder': 3, 'failed': 0, 'skipped': 3}
+      octo-double Newton: 4 steps, max|F| 7.5e-92, converged; double-double |F| of its first two parts 1.5e+08
+    a 0.381 -> D 252.882348633: predicted |F| 1.07e+08, od 4 steps -> 1.52e+08 (tol 3.0e-16, stall accepted, Delta correction +0.0e+00), Delta 1.684491981703 (formula diff -1.6e-06), moved 9.9e-24, 819 s
+      Delta of the saved state, its eight parts summed exactly: 1.684491981702924816133910519579210164236
+  coefficients_o: this hpkernel has no Solver.series_o (built before #914); the series by the jets
