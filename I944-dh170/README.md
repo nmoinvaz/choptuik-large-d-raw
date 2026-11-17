@@ -56,3 +56,62 @@ At the base D 233.0 the polish with `--od_junk 4` finds 1 junk direction (sigma 
 Verdict on the issue's first acceptance line: not met at a = 1 (fails before the corrector), not at a = 0.5 and 0.25 (the junk
 subspace is empty, the attempt is the default's), and at a = 0.125 the default converges and the junk freeze does not.
 The k160 junk probes were dropped by the coordinator's order.
+
+## `--od_weak_first 1`, old code d93f5b1b (k150, D 233.0; 15:42 to 16:51 UTC; logs k150_weakfirst_d93f5b1b*)
+
+Stopped on the coordinator's order in its second attempt. a = 1 failed in the start's projection as in every run above (106 s). a = 0.5:
+the weak components were dropped (|d| 2.0e-27, the default's first step 5.3e-15), the chord left max|F| 3.66e+04 (default 6.86e+06) and
+was refused, and no trial was accepted. The trials, all refused:
+
+| lam | max\|F\| | theta (bound) |
+|---|---|---|
+| 1, 1/2 | 3.66e+04, 1.81e+04 | 8.6e+31, 2.2e+31 (0.750, 0.875) |
+| 1/4, 1/8, 1/16, 1/32, 1/64, 1/128, 1/256 | 3.4e-24, 1.7e-24, 7.7e-23, 4.3e-25, 2.1e-25, 1.1e-25, 5.4e-26 | 1.000 at each (0.938 up to 0.999) |
+
+The attempt ended `no trial step accepted` at max|F| 9.3e-32 (the start's), 2112 s, with the printed |dz| 5.28e-15 equal to the default's full
+first step. Cause (the coordinator's, from this log): the test judged each trial by the full correction, whose weak part a step that
+holds the weak coordinates cannot change, so theta was 1.000 by construction. The a = 0.25 attempt's trials down to lam 1/8 (max|F|
+5.2e+05 to 2.4e+04, theta 1e31 to 1e33) were refused before the stop.
+
+## `--od_weak_first 1`, fixed test (main c714694a, multidouble Python package 482c6835), k150, D 233.0 (16:54 to 20:26 UTC)
+
+Runs: `k150_weakfirst` (a = 1, 0.5, 0.25; stopped on my order after the a = 0.25 attempt so that the a = 0.125 attempt gets its own 3 h
+limit, 7628 s) and `k150_weakfirst_a0p125` (`--a0 0.125`, exit 0, 5086 s). Chain flags with `--od_junk 0 --od_strong 4`.
+
+| a | default (I903-dh170 chain_k150.log, 4.7.0) | `--od_weak_first 1` |
+|---|---|---|
+| 1 | the start's projection fails | the same failure, 106 s (before the corrector, so no corrector option acts) |
+| 0.5 | stalled after 3 steps, 3223 s | it 0: chord refused, lam 1/4 accepted (theta 0.750), max\|F\| 9.3e-32 to 3.4e-24. It 1: lam 1/32 (theta 0.969), \|dz\| 5.28e-15 to 5.11e-15. It 2: lam 1/2 to 1/32 refused, lam 1/64 accepted, \|dz\| 5.03e-15. Stall rule (lam <= 0.04 twice). 3 steps, max\|F\| 3.3e-24, **not converged**, 3353 s |
+| 0.25 | stalled after 2 steps, 3708 s | it 0: lam 1/32 accepted (theta 0.969), 1.0e-35 to 2.3e-24. It 1: no trial accepted (lam 1 to 1/256), \|dz\| 6.2e-14. 2 steps, max\|F\| 2.3e-24, **not converged**, 3284 s |
+| 0.125 | converged, 16 steps, max\|F\| 2.1e-71, 4470 s | **converged**, 11 steps, max\|F\| 5.4e-61, 4443 s. Lam 1/2 (theta 0.500), 1/4, 1/4, 1/4, 1/2, 1, 1, 1, 1/2, 1 |
+
+The old-code runs (d93f5b1b, 8c1857ce) are in `k150_weakfirst_d93f5b1b*` and `k150_weakfirst_8c1857ce_old_pkg*`; the
+section above this one has the d93f5b1b trials.
+
+| code | multidouble Python package | runs |
+|---|---|---|
+| 043834d9 | a93e0896 (4.6.0, pre-fix) | k150_junk0_ctl, k150_junk4*, k150_junk4_a0p25, k150_junk4_a0p125 |
+| d93f5b1b | a93e0896 | k150_weakfirst_d93f5b1b |
+| 8c1857ce | a93e0896 | k150_weakfirst_8c1857ce_old_pkg (killed at 90 s) |
+| c714694a | 482c6835 | k150_weakfirst, k150_weakfirst_a0p125, k150_D225_weakfirst |
+
+All runs: hpkernel 4.8.2 (the #935 build), 10 threads, nice 10.
+
+## Agreement with the chain's stored states (compare_states.py)
+
+`compare_states.py HP_DIR A B` sums each component's eight parts exactly and exits 0 only when |Delta_A - Delta_B| <= 1e-40. Controls:
+chain D 226 against chain D 225 (2.0e-4, exit 1), a planted 1e-39 (exit 1) and a planted 1e-41 (exit 0) on the compared pair.
+
+| compared | \|dDelta\| | max \|diff\| over the 769 components | verdict |
+|---|---|---|---|
+| k150_weakfirst_a0p125's D 233.125 against chain_k150's | 3.7e-48 | 3.7e-48 | pass |
+| k150_D225_weakfirst's D 226 (a = 1 from D 225, 5 steps, max\|F\| 1.5e-95, 1392 s) against chain_k150's | 5.4e-91 | 9.9e-91 | pass |
+| control: chain D 233.125 against chain D 233.0 | 2.3e-5 | 4.8e-5 | fail, as it must |
+
+## Verdict
+
+- `--od_junk 4`: the first acceptance line (the start projects and the corrector converges where the default failed) is not met.
+- `--od_weak_first 1` (fixed): not met either. The start of a = 0.5 and 0.25 projects, the first iteration passes, and the later
+  iterations that move the weak coordinates stall as the default's do (max\|F\| 3.3e-24 and 2.3e-24). a = 1 fails before the
+  corrector. At a = 0.125, where the default converges, it converges too, in 11 steps instead of 16 and about the same time.
+- Agreement: both checks pass.

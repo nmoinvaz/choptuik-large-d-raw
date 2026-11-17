@@ -1,0 +1,45 @@
+horizon series to order 150 instead of the state's 150
+held values from the fit data/held_fit.json (degree 8, 138 full-system states, D 38.020417-73.0), relative to the base
+the base keeps its stored plan (18 steps)
+  on 0: |F| 1.32e-73 converged, Delta 1.68791789459288766 -1.0605e-16
+      elim projections {'u0': 0, 'u0q': 0, 'ladder': 0, 'failed': 0, 'skipped': 1}
+      octo-double Newton: 1 steps, max|F| 1.3e-73, converged; double-double |F| of its first two parts 3.5e+07
+base I903-dh170/chain_k150/anm_pin3_D233.0000.npz: D 233.0, M 32, pin 3 (held [5, 7, 9, 11, 13]), |F| 3.5e+07; N 24, eps 1e-14, h_max 1.0, corrector od (junk_only False), tol 1.0e-20 x 1.45^(D - 233.0), stalls accepted below 1e-17
+step 0: the series saved as /home/nathan/Source/choptuik-large-d-raw/I944-dh170/k150_weakfirst/jet_pin3_D233.0000.npz (8 parts, 430 s)
+step 0: D 233.0, pivots 6.3e-22..8.4e+32, |z_1| 3.86e-04, |z_N| 2.05e-27, ratios 2-5 298.6 269.1 256.6 247.9, a_max 2.531, 430 s
+    a 1.0000: re-seeded (FAILED, prediction kept), 89.77 s; rung u 0.3000 not converged at |R| 1.28e+05 after 8 steps
+      elim projections {'u0': 0, 'u0q': 0, 'ladder': 0, 'failed': 1, 'skipped': 0}: the start's projection failed, attempt stopped
+    a 1.000 -> D 234.0: predicted |F| 1.11e+08, od 0 steps -> 1.11e+08 (tol 1.4e-20), Delta 1.687731830887 (formula diff -1.5e-06), moved 0.0e+00, 107 s
+    a 0.5000: re-seeded (ok), 89.09 s
+      horizon data refined in octo-double, rung max|R| 4.42e-29 -> 5.90e-38 -> 6.09e-38 -> 6.06e-38 -> 6.07e-38 -> 6.13e-38 -> 6.12e-38 -> 6.12e-38 -> 6.11e-38 -> 6.11e-38
+  on 0: the first step's components along the 4 weakest directions dropped (--od_weak_first), |d| 2.022e-27
+    on 0 chord 0: max|F| 3.66e+04, |dw| 3.684e+07
+  on 0: strong chord (4 weak directions), 1 steps after the full first step; theta at its point inf (bound 0.750): refused, 146.62 s
+    on 0 trial lam 1: max|F| 3.66e+04; simplified correction / |dz| = 8.603e+31 (bound 0.750); refused, 129.04 s
+      on 0, lam 1: projection failed (3): point max|F| 3.66e+04; u0 rung 1 its, |R| 2.21e+06 -> 2.21e+06, NOT converged; u0 quad-double 8 its, |R| 2.10e+04 -> 1.34e+03, NOT converged; ladder FAILED after 8 rungs, last rung u 0.300000 quad-double 8 its, |R| 1.05e+05 -> 1.70e+02, NOT converged
+    on 0 trial lam 0.5: max|F| 1.81e+04; simplified correction / |dz| = 2.151e+31 (bound 0.875); refused, 187.78 s
+      on 0, lam 0.5: projection failed (4): point max|F| 1.81e+04; u0 rung 1 its, |R| 1.12e+06 -> 1.12e+06, NOT converged; u0 quad-double 8 its, |R| 2.41e+04 -> 1.01e+02, NOT converged; ladder FAILED after 8 rungs, last rung u 0.300000 quad-double 8 its, |R| 9.90e+04 -> 8.25e+01, NOT converged
+    on 0 trial lam 0.25: max|F| 3.42e-24; simplified correction / |dz| = 1.000e+00 (bound 0.938); refused, 262.99 s
+    on 0 trial lam 0.125: max|F| 1.71e-24; simplified correction / |dz| = 1.000e+00 (bound 0.969); refused, 263.61 s
+    on 0 trial lam 0.0625: max|F| 7.70e-23; simplified correction / |dz| = 1.000e+00 (bound 0.984); refused, 221.76 s
+    on 0 trial lam 0.03125: max|F| 4.28e-25; simplified correction / |dz| = 1.000e+00 (bound 0.992); refused, 203.41 s
+    on 0 trial lam 0.015625: max|F| 2.14e-25; simplified correction / |dz| = 1.000e+00 (bound 0.996); refused, 208.08 s
+    on 0 trial lam 0.0078125: max|F| 1.07e-25; simplified correction / |dz| = 1.000e+00 (bound 0.998); refused, 174.53 s
+    on 0 trial lam 0.00390625: max|F| 5.35e-26; simplified correction / |dz| = 1.000e+00 (bound 0.999); refused, 235.1 s
+  on 0: |F| 9.32e-32, |dz| 5.28e-15: no trial step accepted, stopping
+      elim projections {'u0': 0, 'u0q': 0, 'ladder': 7, 'failed': 4, 'skipped': 1}
+      octo-double Newton: 1 steps, max|F| 9.3e-32, not converged; double-double |F| of its first two parts 3.2e+07
+    a 0.500 -> D 233.5: predicted |F| 3.24e+07, od 1 steps -> 3.24e+07 (tol 1.2e-20), Delta 1.687824665676 (formula diff -1.5e-06), moved 0.0e+00, 2112 s
+    a 0.2500: re-seeded (ok), 89.32 s
+      horizon data refined in octo-double, rung max|R| 8.03e-29 -> 8.67e-46 -> 8.69e-46 -> 8.61e-46 -> 8.61e-46 -> 8.60e-46 -> 8.57e-46 -> 8.56e-46 -> 8.61e-46 -> 8.56e-46
+  on 0: the first step's components along the 4 weakest directions dropped (--od_weak_first), |d| 3.275e-26
+    on 0 chord 0: max|F| 5.21e+05, |dw| 7.246e+09
+  on 0: strong chord (4 weak directions), 1 steps after the full first step; theta at its point inf (bound 0.750): refused, 178.72 s
+    on 0 trial lam 1: max|F| 5.21e+05; simplified correction / |dz| = 1.447e+33 (bound 0.750); refused, 163.5 s
+      on 0, lam 1: projection failed (3): point max|F| 5.21e+05; u0 rung 1 its, |R| 6.05e+06 -> 6.05e+06, NOT converged; u0 quad-double 8 its, |R| 3.17e+05 -> 1.60e+02, NOT converged; ladder FAILED after 8 rungs, last rung u 0.300000 quad-double 8 its, |R| 1.26e+05 -> 2.42e+02, NOT converged
+    on 0 trial lam 0.5: max|F| 1.63e+05; simplified correction / |dz| = 3.618e+32 (bound 0.875); refused, 164.29 s
+      on 0, lam 0.5: projection failed (4): point max|F| 1.63e+05; u0 rung 1 its, |R| 1.80e+06 -> 1.80e+06, NOT converged; u0 quad-double 8 its, |R| 9.74e+04 -> 2.36e+02, NOT converged; ladder FAILED after 8 rungs, last rung u 0.300000 quad-double 8 its, |R| 1.19e+05 -> 1.19e+05, NOT converged
+    on 0 trial lam 0.25: max|F| 5.81e+04; simplified correction / |dz| = 9.044e+31 (bound 0.938); refused, 213.21 s
+      on 0, lam 0.25: projection failed (5): point max|F| 5.81e+04; u0 rung 1 its, |R| 4.67e+06 -> 4.67e+06, NOT converged; u0 quad-double 8 its, |R| 4.25e+04 -> 1.33e+02, NOT converged; ladder FAILED after 8 rungs, last rung u 0.300000 quad-double 8 its, |R| 3.19e+05 -> 2.03e+02, NOT converged
+    on 0 trial lam 0.125: max|F| 2.39e+04; simplified correction / |dz| = 2.261e+31 (bound 0.969); refused, 164.13 s
+      on 0, lam 0.125: projection failed (6): point max|F| 2.39e+04; u0 rung 1 its, |R| 1.23e+06 -> 1.23e+06, NOT converged; u0 quad-double 8 its, |R| 3.45e+04 -> 7.31e+01, NOT converged; ladder FAILED after 8 rungs, last rung u 0.300000 quad-double 8 its, |R| 2.71e+05 -> 2.71e+05, NOT converged
