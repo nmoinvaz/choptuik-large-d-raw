@@ -7,7 +7,7 @@ R=/private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/afb99455-a815-41
 PY=/Users/nathan/venv-314/bin/python
 cd /Users/nathan/Source/choptuik-large-d/.claude/worktrees/agent-a611e0854f7930044/hp || exit 9
 nice -n 10 $PY -u lowD_fixed_plan.py $R $R/I927-mac/fixed_plan/onset --coeffs I798-win/probe/coeffs.npz \
-    --targets 3.04335,3.04325,3.04315 --orders 3 --plans base --threads 4 > $R/I927-mac/fixed_plan/onset.log 2>&1
+    --targets "${ONSET_TARGETS:-3.04335,3.04325,3.04315}" --orders 3 --plans base --threads 4 >> $R/I927-mac/fixed_plan/onset.log 2>&1
 echo "onset exit $?" >> $R/I927-mac/fixed_plan/probe2_exits.txt
 nice -n 10 $PY -u lowD_fixed_plan.py $R $R/I927-mac/fixed_plan/last_state --coeffs I798-win/probe/coeffs.npz \
     --targets 3.04315 --orders 0 --plans I343-win2/states/lowD343_D3.043350_M384.npz \

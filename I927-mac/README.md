@@ -66,3 +66,14 @@ Fixed before the runs. Base: lowD_highM.py's converged state `lowDhm_x0.000625-0
 - Controls, from step 1's base, each must exit 1 with the check failed: `--mutate drop2` (z_2 left out: (A) fails by
   about |Delta_2| h^2), `--mutate kappa` (the jets with kappa's n frozen: a wrong dDelta/dD, (A) fails), `--mutate dshift
   --stop_on_fail 0` (the step to D + 1e-9: (A) and (B) fail by about dDelta/dD x 1e-9 = 4e-9).
+
+**Amendment, 2026-11-17 01:00 UTC, before any pilot or reference run.** The Mac's load rose to 100-137 (others' work),
+and an M 128 Jacobian took 257 s at a load of 22, so the M 128/160 references and pilot would take many hours. The
+pilot runs first at the smallest M where lowD_highM.py has a stored pair at low D: `lowDv_D3.7000_M48.npz` and
+`_M64.npz` (13 nodes 0.005..0.8, kc 100, ks 250; `inputs/`). References in `ref48/` (`run_ref.sh`, default `PAIR=48`:
+`--Ms 48,64 --dD 0.005 --D_end 3.6876`, so lowD_highM.py solves D 3.695 and 3.69), pilot in `pilot48/` (`run_pilot.sh
+step1|controls|step2`), N 6, steps of 0.005. Criteria (A), (B) and the three controls as above, unchanged. Expected:
+the radius about D - 3 = 0.7, so h/R about 0.007 and the order-6 truncation far below 1e-12. Near Delta's maximum
+(D 3.7557) dDelta/dD is only about 0.06 at 3.7, so dshift moves Delta by about 6e-11, still 60 times the bound; drop2
+moves it by about |Delta_2| h^2 = 0.5 x 2.5e-5. The M 128 design above
+stays as written (`PAIR=128`), for a quieter machine.
