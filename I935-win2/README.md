@@ -65,3 +65,48 @@ much more accurate, and still about 2^-213 off, which is not cancellation (the w
 operand). The gap class is mine (up to 12 terms into 8 parts), not PR #56's, so this does not say 4.8.2 violates its bounds.
 Logs: `od_axpy_gap_pin_a93e0896.log`, `od_axpy_gap_tag_4.8.2.log`, `od_axpy_pin_vs_482.log`. The 20000-trial output arrays
 are regenerable (seeded) and not stored.
+
+## Follow-ups after main c714694a (pin at 482c6835), 2026-11-17
+
+(a) venv-md482's Python package reinstalled at the new pin
+(`pip install --force-reinstall --no-deps "multidouble @ git+https://github.com/nmoinvaz/multidouble@482c6835...#subdirectory=python"`,
+dist-info `direct_url.json` commit 482c683550de...). pip took the wheel from its cache, which is the wheel of the scratch
+4.8.2 target built earlier (same file hash), so the compare against that target is the same binary. A fresh `--no-cache-dir`
+build of 482c6835 (different file hash, as Windows builds embed timestamps) is the independent one.
+
+| `od_axpy` compare, same 20000-trial seeded inputs per class | results that differ in any bit, per class (dense, gaps 60, 150, 250, 400) |
+|---|---|
+| venv-md482 (reinstalled) against a fresh `--no-cache-dir` build of 482c6835 | 0, 0, 0, 0, 0 |
+| venv-md482 (reinstalled) against the earlier scratch tag-4.8.2 target | 0, 0, 0, 0, 0 |
+| control: venv-md482 (reinstalled) against the old 4.6.0 pin's outputs | 0, 1787, 862, 735, 846 |
+
+Log: `od_axpy_reinstall_compare.log`.
+
+(b) `PinnedO.residual_o` and `PinnedO.newton_o` (`pinnedo_dump.py`, `run_pinnedo.sh`, log `pinnedo.log`) on the D 215 state
+of #936 (`I903-win2/ks_chain/leg06_D212.0000_ks230/anm_pin3_D215.0000.npz`), the same kernel (venv-md482's hpkernel, 4.8.2) and
+Python (`D:\choptuik-i935\hp`, d7b59668), with the 4.6.0 Python package (the files venv-md482 held before the reinstall,
+copied first, loaded through PYTHONPATH) and the 4.8.2 one (venv-md482 after it).
+
+| criterion | verdict | number |
+|---|---|---|
+| `held8` (held values in eight parts, `od_axpy` in `residual_o` and the step), 4.6.0 against 4.8.2 | equal | 0 of 13844 entries differ |
+| `heldfloat` (held values as floats, `od_add_dd` in `residual_o`), 4.6.0 against 4.8.2 | equal | 0 of 13844 entries differ |
+| control (`mutate_offset 'qd'`, J^-1 c through the quad-double LU) against `held8` | differs, as it must | 6112 step entries differ |
+| `run_pinnedo.sh` exit | 0 | 16:55:37 to 17:04:47 UTC |
+
+The 13844 entries are F0..F7 and dz0..dz7 (6152 each), the step's F hi and lo (769 each) and the two pivots.
+
+How many of those helper operands are in the gap class (`pinnedo_gapcount.py`, log `pinnedo_gapcount.log`; the class is a zero
+part before a nonzero one, or a part more than 60 bits below the previous; its classifier fires on planted cases,
+`pinnedo_gapcount_classifier_check.log`):
+
+| variant, helper | calls | elements per operand | operand in the gap class | result in the gap class |
+|---|---|---|---|---|
+| held8, `od_axpy` | 3 | 2307 | x: 4 (and 1474 all-zero), y: 0 | 0 |
+| heldfloat, `od_axpy` | 1 | 769 | 0 and 0 | 0 |
+| heldfloat, `od_add_dd` | 2 | 769 | 0 | 0 |
+
+Equal bits are then what one expects: this state's Newton step feeds the helpers almost no gap-class element (4 of 6921
+operand elements, in one operand, and none of the 3845 results), so the check says the helpers were not exercised in the class
+here, not that the class is harmless. It covers `PinnedO` on one state, not `newton_od`'s line search or the reseeder's
+helpers (`octo_corrector.py` lines 393-436, `reseed.py` line 495), which also call `od_axpy`.
