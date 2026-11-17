@@ -1,0 +1,20 @@
+# 2026-11-17 07:18:41 UTC planted201_new: /home/nathan/Source/choptuik-large-d-934/.venv/bin/python , load 25.79 25.84 23.84
+planted I903-dh610/chain_k160/anm_pin3_D201.0000.npz: D 201.0, start = truth moved by 1e-12 relative in [0, 576); pinned max|F| (octo) truth 3.68e-78, start 3.39e-12; mutate_offset '', mutate 0
+  the system (#837): truth read in 8 of 8 parts, held values eight parts, plan stored; pinned max|F| (octo) at the truth 3.6772e-78
+  on 0: |F| 3.39e-12 -> 1.38e-15, |dz| 9.96e-13 -> 2.64e-15, lam 1, dDelta +1.03e-15, piv 1.3e-08..4.9e+29, 365.4 s
+  on 1: |F| 1.38e-15 -> 5.26e-29, |dz| 2.64e-15 -> 3.10e-25, lam 1, dDelta -1.03e-15, piv 1.3e-08..4.9e+29, 390.82 s
+  on 2: |F| 5.26e-29 -> 4.55e-20, |dz| 3.10e-25 -> 2.23e-34, lam 1, dDelta +2.65e-25, piv 1.3e-08..4.9e+29, 188.05 s
+  on 3: |F| 4.55e-20 -> 2.39e-38, |dz| 2.23e-34 -> 2.23e-34, lam 1, dDelta -1.50e-35, piv 1.3e-08..4.9e+29, 178.58 s
+  on 4: |F| 2.39e-38 -> 2.39e-38, |dz| 2.23e-34 -> 2.54e-62, lam 1, dDelta +1.50e-35, piv 1.3e-08..4.9e+29, 162.18 s
+  on 5: |F| 2.39e-38 -> 4.96e-79, |dz| 2.54e-62 -> 8.88e-71, lam 1, dDelta -6.29e-63, piv 1.3e-08..4.9e+29, 213.3 s
+  on 6: |F| 4.96e-79 converged, Delta 1.69483728802693379 -7.5532e-17
+  od: 7 steps, converged, pinned max|F| (octo) 4.96e-79, Delta 1.694837288026933710368526488561985407194, projections {'u0': 0, 'u0q': 3, 'ladder': 0, 'failed': 0, 'skipped': 5}, 1921 s
+  od against the truth: dDelta -4.2492e-70
+  qn 0 [full]: |F| 3.39e-12 -> 1.38e-15, |dz| 1.0e-12 -> 8.7e-13, lam 1, dDelta -2.15e-13, piv 6.7e-12..4.9e+29, 262.75 s
+  qn 1 [full]: |F| 1.38e-15 -> 9.22e-20, |dz| 8.7e-13 -> 1.6e-14, lam 1, dDelta -8.66e-13, piv 3.3e-11..4.9e+29, 218.5 s
+  qn 2 [full]: |F| 9.22e-20 -> 9.29e-20, |dz| 1.6e-14 -> 1.7e-15, lam 0.5, dDelta -1.55e-14, piv 7.9e-11..4.9e+29, 383.35 s
+  qn 3: |F| 9.29e-20, |dz| 1.7e-15: no trial step accepted, stopping
+  qd: 4 steps, stopped, its last max|F| 9.29e-20 (octo at the projected point 9.29e-20), Delta 1.694837288025845150332448215974881780645, projections {'u0': 0, 'u0q': 4, 'ladder': 10, 'failed': 0, 'skipped': 0}, 3219 s
+  |Delta_od - Delta_qd| 1.0886e-12
+  (a) FAIL: od max|F| 4.96e-79 < 1e-40, |Delta_od - Delta_qd| <= 1e-30
+exit 1

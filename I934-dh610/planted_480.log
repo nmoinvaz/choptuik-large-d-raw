@@ -1,3 +1,27 @@
 # 2026-11-17 06:46:02 UTC planted with the 4.8.0 python (/home/nathan/Source/choptuik-large-d-923/.venv) on the 4.8.2 worktree's hp code
 planted I903-dh610/chain_k160/anm_pin3_D231.0000.npz: D 231.0, start = truth moved by 1e-12 relative in [0, 576); pinned max|F| (octo) truth 2.53e-75, start 1.48e-01; mutate_offset '', mutate 0
   the system (#837): truth read in 8 of 8 parts, held values eight parts, plan stored; pinned max|F| (octo) at the truth 2.5308e-75
+Traceback (most recent call last):
+  File "/home/nathan/Source/choptuik-large-d-934/hp/octo_corrector.py", line 934, in <module>
+    sys.exit(dict(planted=planted, wall=wall, horizon=horizon)[sys.argv[1]](sys.argv[2:]))
+             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/home/nathan/Source/choptuik-large-d-934/hp/octo_corrector.py", line 769, in planted
+    zo, ho, co, Fo, counts = _run_od(so, rs, o8_any(zs), opt, on_first=on_first)
+                             ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nathan/Source/choptuik-large-d-934/hp/octo_corrector.py", line 636, in _run_od
+    z, hist, conv = newton_od(el, z8, tol=opt["tol"], it_max=opt["it_max"], mutate=opt["mutate"],
+                    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                              junk_w=opt.get("junk", 0), accept=opt.get("accept", "own"),
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                              strong_chord=int(opt.get("strong", 0)), full_drop=float(opt.get("full_drop", 0.0)),
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                              on_first=on_first)
+                              ^^^^^^^^^^^^^^^^^^
+  File "/home/nathan/Source/choptuik-large-d-934/hp/octo_corrector.py", line 308, in newton_od
+    st = s.newton_o(z, mutate=mutate)
+  File "/home/nathan/Source/choptuik-large-d-934/hp/octo_corrector.py", line 573, in newton_o
+    zp = self.project(z)
+  File "/home/nathan/Source/choptuik-large-d-934/hp/octo_corrector.py", line 564, in project
+    raise StartNotProjected(dict(self.counts))
+reseed.StartNotProjected: {'u0': 0, 'u0q': 0, 'ladder': 0, 'failed': 1, 'skipped': 0}
+exit 1
