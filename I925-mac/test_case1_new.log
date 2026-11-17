@@ -1,0 +1,7 @@
+cd hp && PYTHONPATH=<overlay: hpkernel package with this branch's driver.py and the installed _hpkernel> OPENBLAS_NUM_THREADS=1 nice -n 10 python3 -u test_stall.py --cases 1
+installed driver /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/afb99455-a815-419f-becf-38b07aee7d3a/scratchpad/overlay/hpkernel/driver.py: with the stall option; paths ['driver', 'script']
+(1) toy, newton_solve: rule on: 3 accepted steps at lam [0.5], last record stall; off: 8 accepted steps, failures []
+(1) toy, solve_point, driver path: rule on: converged False, 3 accepted steps, failed 'stall' (driver); off: converged False, 8 accepted steps, failed None
+(1) toy, solve_point, script path: rule on: converged False, 3 accepted steps, failed 'stall' (script); off: converged False, 8 accepted steps, failed None
+all checks pass
+exit 0

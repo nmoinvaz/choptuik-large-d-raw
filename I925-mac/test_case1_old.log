@@ -1,0 +1,6 @@
+cd hp && OPENBLAS_NUM_THREADS=1 nice -n 10 python3 -u test_stall.py --cases 1   (installed hpkernel of Oct 28, without the stall option)
+installed driver /Users/nathan/Source/choptuik-large-d/.venv/lib/python3.13/site-packages/hpkernel/driver.py: without the stall option; paths ['script']
+(1) toy, newton_solve: skipped (the installed driver predates #925)
+(1) toy, solve_point, script path: rule on: converged False, 3 accepted steps, failed 'stall' (script); off: converged False, 8 accepted steps, failed None
+all checks pass
+exit 0

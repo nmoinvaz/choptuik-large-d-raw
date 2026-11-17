@@ -1,0 +1,21 @@
+cd hp && PYTHONPATH=<overlay: hpkernel package with this branch's driver.py and the installed _hpkernel> OPENBLAS_NUM_THREADS=1 nice -n 10 python3 -u test_stall.py --cases 4 --threads 3
+installed driver /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/afb99455-a815-419f-becf-38b07aee7d3a/scratchpad/overlay/hpkernel/driver.py: with the stall option; paths ['driver', 'script']
+16:02:55 --- D 3.35 (from 3.4), M 80 / 96, nodes 0.0025..0.9
+16:02:56   D 3.35 M 80: start 'predictor' |F| 1.38e-01 (116 steps)
+16:02:57   D 3.35 M 80: start 'last state' |F| 1.38e-01 (116 steps)
+16:02:57   D 3.35 M 80: best start |F| 1.4e-01 > 1e-03 on the reused plan; two passes
+16:02:59   D 3.35 M 80: start 'predictor' |F| 1.38e-01 on its own plan (358 steps)
+16:03:00   D 3.35 M 80: start 'last state' |F| 1.38e-01 on its own plan (358 steps)
+16:03:01   D 3.35 M 80: start 'predictor' |F| 1.38e-01 (358 steps)
+16:03:02 D 3.35 M 80: L 5121, steps 358, start |F| 1.4e-01
+  newton 0: |F| 1.38e-01 |dz| 6.99e-01 lam 1 dDelta -5.48e-03 Delta 3.360774395901947 piv 7.8e-04..4.5e+00  t 66.8s
+  newton 0: |F| 1.31e-01 |dz| 6.36e-01 lam 1 dDelta -4.96e-03 Delta 3.355817094412774 piv 7.8e-04..4.3e+00  t 98.3s
+  newton 0: |F| 1.24e-01 |dz| 5.83e-01 lam 1 dDelta -4.48e-03 Delta 3.351341092861794 piv 7.8e-04..4.7e+00  t 66.6s
+  newton 0: |F| 1.38e-01 -> 1.18e-01 over 3 accepted steps, not below 0.5 of it: a stall, giving up
+16:06:54 D 3.35 M 80: |F| 1.38e-01 -> 1.18e-01 over 3 accepted steps, not below 0.5 of it (a stall); giving up
+16:06:54 D 3.35 M 80: NOT converged, |F| 1.2e-01 after 4 iterations (233s); stopping
+16:06:54 D 3.35 failed at M 80; inserting D 3.375
+16:06:54 STOP: 0.002 h of wall time used
+(4) leg: gave up on the stall True after 3 accepted steps, D 3.375 inserted True, next target [3.375], notices 0 (the installed driver has the option)
+all checks pass
+exit 0

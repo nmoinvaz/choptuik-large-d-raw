@@ -1,0 +1,9 @@
+cd hp && PYTHONPATH=<overlay: hpkernel package with this branch's driver.py and the installed _hpkernel> OPENBLAS_NUM_THREADS=1 nice -n 10 python3 -u test_stall.py --cases 2 --threads 3 --mutate nostall
+installed driver /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/afb99455-a815-419f-becf-38b07aee7d3a/scratchpad/overlay/hpkernel/driver.py: with the stall option; paths ['driver', 'script']
+(2) planted, driver path, rule on: converged False, 5 accepted steps at lam [1.0], |F| 2.6713e-07 2.5377e-07 2.4108e-07 2.2903e-07 2.1758e-07 -> 2.0670e-07, failed None
+(2) planted, driver path, rule off: converged False, 5 accepted steps at lam [1.0], |F| 2.6713e-07 2.5377e-07 2.4108e-07 2.2903e-07 2.1758e-07 -> 2.0670e-07, failed None
+(2) planted, script path, rule on: converged False, 5 accepted steps at lam [1.0], |F| 2.6713e-07 2.5377e-07 2.4108e-07 2.2903e-07 2.1758e-07 -> 2.0670e-07, failed None
+(2) planted, script path, rule off: converged False, 5 accepted steps at lam [1.0], |F| 2.6713e-07 2.5377e-07 2.4108e-07 2.2903e-07 2.1758e-07 -> 2.0670e-07, failed None
+(2) driver and script paths, rule on: steps, final state and record bit-identical
+mutated (nostall): (2) driver path: no stall after 3 accepted steps; (2) script path: no stall after 3 accepted steps
+exit 1

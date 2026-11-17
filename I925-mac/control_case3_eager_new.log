@@ -1,0 +1,11 @@
+cd hp && PYTHONPATH=<overlay: hpkernel package with this branch's driver.py and the installed _hpkernel> OPENBLAS_NUM_THREADS=1 nice -n 10 python3 -u test_stall.py --cases 3 --threads 3 --mutate eager
+installed driver /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/afb99455-a815-419f-becf-38b07aee7d3a/scratchpad/overlay/hpkernel/driver.py: with the stall option; paths ['driver', 'script']
+(3) unaffected, driver path, rule on: converged False, Delta 3.3586105015632377 (+1.81e-17), 3 accepted steps, |F| 2.54e-02 2.45e-03 1.21e-05 5.25e-06, failed 'stall'
+(3) unaffected, driver path, rule off: converged True, Delta 3.3586104776916970 (+9.17e-17), 7 accepted steps, |F| 2.54e-02 2.45e-03 1.21e-05 5.25e-06 2.30e-09 7.11e-15 3.01e-24 3.17e-29
+(3) unaffected, script path, rule on: converged False, Delta 3.3586105015632377 (+1.81e-17), 3 accepted steps, |F| 2.54e-02 2.45e-03 1.21e-05, failed 'stall'
+(3) unaffected, script path, rule off: converged True, Delta 3.3586104776916970 (+9.17e-17), 7 accepted steps, |F| 2.54e-02 2.45e-03 1.21e-05 5.25e-06 2.30e-09 7.11e-15 3.01e-24 3.17e-29
+(3) driver path rule on against driver path rule off: history, record and state DIFFERENT
+(3) script path rule on against script path rule off: history, record and state DIFFERENT
+(3) driver path rule on against script path rule on: history, record and state DIFFERENT
+mutated (eager): (3) driver on and driver off differ; (3) script on and script off differ; (3) driver on and script on differ; (3) driver path: did not converge; (3) script path: did not converge
+exit 1
