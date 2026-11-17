@@ -1,0 +1,15 @@
+Traceback (most recent call last):
+  File "/home/nathan/Source/choptuik-large-d-940/hp/qd_window.py", line 77, in <module>
+    sys.exit(main())
+             ~~~~^^
+  File "/home/nathan/Source/choptuik-large-d-940/hp/qd_window.py", line 63, in main
+    zq, m, rec = solve(path, a.mode, a.threads, 1e-6 if a.mutate == "dshift" else 0.0, a.plan_tol)
+                 ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nathan/Source/choptuik-large-d-940/hp/qd_window.py", line 38, in solve
+    _, _, sq = pinned(m, D, z, threads=threads)
+               ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nathan/Source/choptuik-large-d-940/hp/reseed.py", line 712, in pinned
+    threads=threads, kfreeze=meta["kfreeze"])
+                             ~~~~^^^^^^^^^^^
+KeyError: 'kfreeze'
+exit 1
