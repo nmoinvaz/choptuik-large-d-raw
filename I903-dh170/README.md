@@ -57,3 +57,31 @@ to `exits_903.txt`). Its checks: `--selftest` (nine synthetic cases, three of wh
 trials inside iterations included) and of dh610's `chain_k160.log` (0 triggers with n 3, since its pushed log has one
 crawling iteration, line 603 at lam 0.0078125, which `--n 1` finds). The 3-in-a-row detection is therefore tested on
 synthetic cases only. The 2 h timer starts at an attempt's `re-seeded` line, so it does not time the series.
+
+## Stopped (coordinator, 2026-11-17 11:23:43 UTC)
+
+`chain_k150` was stopped by hand on the coordinator's order (SIGTERM to its process, exit 143, wall 54617 s = 15 h 10 min,
+no child processes), since where order 150 stalls is known and the crawl past D 233.125 costs about 120 h. The watchdog
+was stopped after it. Last accepted D 233.125 (33 full steps and one of 0.125). The base at D 233.125 has no series record
+(`step 34` was never written, the kill came during its series); its state is `chain_k150/anm_pin3_D233.1250.npz`. The
+lowest pivot of the Jacobian of the a 0.125 attempt, at its start point (the prediction at D 233.125), was 4.1e-22; the
+D 233.0 base's p_min is 6.3e-22.
+
+Steps past D 228 (`chain_k150.log`; "od steps" are octo-double Newton iterations, the time is the attempt's):
+
+| attempt | a | od steps | result | time | Delta moved |
+|---|---|---|---|---|---|
+| to D 229 | 1.000 | 4 | accepted | 1323 s | 2.7e-19 |
+| to D 230 | 1.000 | 5 | accepted | 1217 s | 4.7e-18 |
+| to D 231 | 1.000 | 9 | accepted | 2241 s | 1.4e-17 |
+| to D 232 | 1.000 | 8 | accepted | 1331 s | 2.2e-16 |
+| to D 233 | 1.000 | 15 | accepted (9 refused trials, 7 failed projections) | 3719 s | 1.2e-15 |
+| to D 234 | 1.000 | 0 | start projection failed, attempt stopped | 107 s | 0 |
+| to D 233.5 | 0.5 | 3 | stalled (lam <= 0.04 twice), lam 0.0625, 0.03125, 0.03125 | 3223 s | 6.3e-16 |
+| to D 233.25 | 0.25 | 2 | stalled (lam <= 0.04 twice), lam 1/256 twice | 3708 s | 4.8e-16 |
+| to D 233.125 | 0.125 | 16 | accepted (11 refused trials, 9 failed projections) | 4470 s | 1.4e-15 |
+
+Bases (`step N` records): D 229 p_min 9.5e-17, D 230 3.6e-18, D 231 2.1e-19 (|z_N| 1.8e-29, a_max 3.111), D 232 1.5e-20,
+D 233 6.3e-22 (|z_N| 2.05e-27, a_max 2.531). Kept for #937: the base `anm_pin3_D233.0000.npz` with its series
+`jet_pin3_D233.0000.npz`, the predictions `pred_pin3_D234.0000`, `D233.5000`, `D233.2500`, `D233.1250`, and
+`anm_pin3_D233.1250.npz`. `watchdog.log` holds the watchdog's events (it never fired).
