@@ -14,7 +14,7 @@ if [ "${PAIR:-48}" = 128 ]; then
 else
     BASE=$R/inputs/lowDv_D3.7000_M48.npz; D1=3.695; D2=3.69; P=pilot48; M=48
     REF1=$R/ref48/states/lowD927_D3.6950_M48.npz
-    REF2=$R/ref48/states/lowD927_D3.6900_M48.npz
+    REF2=$R/ref48b/states/lowD927_D3.6900_M48.npz
 fi
 run() {  # name, then the pilot's arguments
     local name=$1; shift

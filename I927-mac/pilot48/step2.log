@@ -1,0 +1,16 @@
+step D 3.695 -> 3.69 (h -0.005), M 48, N 6, mutate none, reference /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/afb99455-a815-419f-becf-38b07aee7d3a/scratchpad/raw927/I927-mac/ref48b/states/lowD927_D3.6900_M48.npz
+  base: plan 64 steps, |F| 1.44e-30, LU pivots 1.78e-03..4.44e+00, 36 s
+  z_1: |z| 5.265e+01, |rhs| 7.40e-01, 4 products, converged True, 28 + 5 s
+  z_2: |z| 1.130e+02, |rhs| 4.85e+00, 4 products, converged True, 23 + 4 s
+  z_3: |z| 2.146e+02, |rhs| 1.26e+01, 4 products, converged True, 26 + 5 s
+  z_4: |z| 3.795e+02, |rhs| 4.49e+01, 4 products, converged True, 23 + 4 s
+  z_5: |z| 5.066e+02, |rhs| 1.69e+02, 4 products, converged True, 24 + 5 s
+  z_6: |z| 6.098e+02, |rhs| 5.57e+02, 4 products, converged True, 29 + 4 s
+  series: ratios |z_k-1|/|z_k| 0.466 0.527 0.565 0.749 0.831, all converged True, 181 s
+  partial sums vs the reference (n, max |P - ref|, Delta - ref): 0 2.66e-01 +3.36e-04; 1 2.84e-03 +1.49e-05; 2 2.71e-05 +9.43e-08; 3 2.39e-07 +5.02e-10; 4 1.59e-09 +2.65e-12; 5 9.59e-12 +1.53e-14; 6 1.10e-13 +9.03e-17
+  prediction on the fixed plan: |F| 1.16e-13 (the base state's 3.72e-03); (A) |Delta(P) - Delta(ref)| 9.03e-17 <= 1e-12: PASS
+  newton 0: |F| 1.16e-13 |dz| 1.10e-13 lam 1 dDelta -9.03e-17 Delta 3.464558395113743 piv 1.8e-03..4.8e+00  t 40.1s
+  newton 1: |F| 4.87e-26 |dz| 5.47e-22 lam 1 dDelta +3.68e-27 Delta 3.464558395113743 piv 1.8e-03..4.8e+00  t 80.8s
+  newton 2: |F| 9.96e-30 converged (last |dz| 5.2e-27) Delta 3.464558395113743; last step taken, |F| 4.06e-30
+  corrector: |F| 4.06e-30 after 3 calls (line-search factors [1.0, 1.0]), Delta 3.4645583951137429 (+1.74e-17), converged True; (B) |Delta - Delta(ref)| 3.51e-30 <= 1e-12: PASS, 115 s
+PASS (338 s)

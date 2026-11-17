@@ -109,3 +109,33 @@ Controls (`pilot48/drop2.log`, `kappa.log`, `dshift.log`; `pilot48/exits.txt`), 
 
 Under kappa the ratios |z_(k-1)|/|z_k| become 0.21, 0.067, 0.26, 0.086, 0.0083 (the plain run's are 0.46-0.84), and
 z_1's max norm 80.7 where the plain one is 51.5.
+
+Second reference (`ref48b/leg.log`): lowD_highM.py from the converged 3.695 pair solved D 3.69 at M 48 (|F| 1.3e-30 on
+its 63-step pass-2 plan, Delta 3.464558395113743) and M 64 (M 48 -> 64: -1.03e-6), then reached its grid's end.
+
+Step 2 (`pilot48/step2.log`, from step 1's corrected state at 3.695 to 3.69, 02:21-02:27 UTC): PASS. Plan 64 steps,
+ratios 0.47, 0.53, 0.57, 0.75, 0.83; partial sums n = 0..6 at Delta(P_n) - Delta(ref) +3.36e-4, +1.49e-5, +9.43e-8,
++5.02e-10, +2.65e-12, +1.53e-14, +9.03e-17 (max |P_n - ref| 2.66e-1 down to 1.10e-13). (A) 9.03e-17; prediction |F|
+1.16e-13 on the fixed plan (the base state's 3.72e-3); the corrector converged in 3 calls with full steps to 4.1e-30;
+(B) 3.51e-30.
+
+## 4. Recommended tasks (for the coordinator)
+
+1. **Low-D: the Taylor series as a start in lowD_highM.py.** What: notes/LOW_D_ANM.md section 5 (branch `wip/sa-927`):
+   `lowD_dd.solve_point` returns its Solver (its LU is already at the converged state); `lowD_highM.py --predictor anm
+   --anm_N 3` adds the start ("anm", the order-N sum) for M_w, evaluated on the last M_w solve's plan, and records the
+   series' ratios and a_max; controls `--anm_mutate freeze|drop2`. Why: where starts are finite the series is 7000 times
+   closer than the Lagrange predictor (D 3.04335, M 384), and in the M 48 pilot Newton converged from it in 3 full steps;
+   about 2x fewer M_w Newton calls estimated. Acceptance: T107 A's M 48 smoke test (D 4 -> 3.99, 3.98) reaches both
+   targets from the anm start; with `freeze` the anm start's |F| equals the last state's to 1e-12 relative; with
+   `drop2` it is at least 10 times the plain anm start's; one M 320 point above D 3.0434 takes fewer M_w Newton calls
+   than its Lagrange-start record. Depends on: #927, and #926 (below D 3.0433 it only helps with a projection).
+   Estimate: a day of Python (coordinator), one M 320 point on a runner.
+2. **The M 128 pilot at D 3.15 on a quieter machine** (optional). What: `PAIR=128 HOURS=1 bash run_ref.sh`, then
+   `PAIR=128 bash run_pilot.sh step1` and `controls`, from this folder. Why: the pilot ran at M 48, D 3.7 under load;
+   M 128 at 3.15 is nearer the low-D trouble (radius about 0.15, pollution from order 6). Acceptance: (A) and (B) at most
+   1e-12 at step 1, each control exit 1. Depends on: #927. Estimate: 2 h on a quiet Mac.
+
+Input for #926 (no new task): on fixed plans the predicted states fail from D 3.04325 on (order-3 sum from 3.04375,
+h -0.0005), in the segment x 0.01 -> 0.02; at 3.04335 the same sum is finite (|F| 1.33e-6); the series' base state is
+finite at 3.04315 (8.1e-2) where the nearer predictions are not.
