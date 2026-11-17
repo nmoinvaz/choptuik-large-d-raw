@@ -1,3 +1,71 @@
 # 2026-11-17 06:26:12 UTC, new cdb5a6bc, old d2be15c7, load 11.03 12.16 12.82
 == dump, 4.8.0 06:26:12
 hpkernel /home/nathan/Source/choptuik-large-d-923/.venv/lib/python3.14/site-packages/hpkernel/__init__.py
+k160_D231: D 231.0, stored plan, max|F| 8.495e-04
+i841_D259: D 259.516552173127, stored plan, max|F| 7.720e-04
+== dump, new 06:30:16
+hpkernel /home/nathan/Source/choptuik-large-d-934/.venv/lib/python3.14/site-packages/hpkernel/__init__.py
+k160_D231: D 231.0, stored plan, max|F| 8.495e-04
+i841_D259: D 259.516552173127, stored plan, max|F| 7.720e-04
+== dump, new, control 06:34:20
+hpkernel /home/nathan/Source/choptuik-large-d-934/.venv/lib/python3.14/site-packages/hpkernel/__init__.py
+k160_D231: D 231.0, stored plan, control step
+i841_D259: D 259.516552173127, stored plan, control step
+== compare 06:37:56
+k160_D231: entries that differ, old against new: residual 0, step 0; control (tangents reversed) 6067
+i841_D259: entries that differ, old against new: residual 0, step 0; control (tangents reversed) 6089
+PASS: residuals and steps are the same bits; control fired
+== planted 06:37:56
+planted I903-dh610/chain_k160/anm_pin3_D231.0000.npz: D 231.0, start = truth moved by 1e-12 relative in [0, 576); pinned max|F| (octo) truth 2.53e-75, start 1.48e-01; mutate_offset '', mutate 0
+  the system (#837): truth read in 8 of 8 parts, held values eight parts, plan stored; pinned max|F| (octo) at the truth 2.5308e-75
+Traceback (most recent call last):
+  File "/home/nathan/Source/choptuik-large-d-934/hp/octo_corrector.py", line 934, in <module>
+    sys.exit(dict(planted=planted, wall=wall, horizon=horizon)[sys.argv[1]](sys.argv[2:]))
+             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/home/nathan/Source/choptuik-large-d-934/hp/octo_corrector.py", line 769, in planted
+    zo, ho, co, Fo, counts = _run_od(so, rs, o8_any(zs), opt, on_first=on_first)
+                             ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nathan/Source/choptuik-large-d-934/hp/octo_corrector.py", line 636, in _run_od
+    z, hist, conv = newton_od(el, z8, tol=opt["tol"], it_max=opt["it_max"], mutate=opt["mutate"],
+                    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                              junk_w=opt.get("junk", 0), accept=opt.get("accept", "own"),
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                              strong_chord=int(opt.get("strong", 0)), full_drop=float(opt.get("full_drop", 0.0)),
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                              on_first=on_first)
+                              ^^^^^^^^^^^^^^^^^^
+  File "/home/nathan/Source/choptuik-large-d-934/hp/octo_corrector.py", line 308, in newton_od
+    st = s.newton_o(z, mutate=mutate)
+  File "/home/nathan/Source/choptuik-large-d-934/hp/octo_corrector.py", line 573, in newton_o
+    zp = self.project(z)
+  File "/home/nathan/Source/choptuik-large-d-934/hp/octo_corrector.py", line 564, in project
+    raise StartNotProjected(dict(self.counts))
+reseed.StartNotProjected: {'u0': 0, 'u0q': 0, 'ladder': 0, 'failed': 1, 'skipped': 0}
+== planted, control --mutate 10 06:41:42
+planted I903-dh610/chain_k160/anm_pin3_D231.0000.npz: D 231.0, start = truth moved by 1e-12 relative in [0, 576); pinned max|F| (octo) truth 2.53e-75, start 1.48e-01; mutate_offset '', mutate 10
+  the system (#837): truth read in 8 of 8 parts, held values eight parts, plan stored; pinned max|F| (octo) at the truth 2.5308e-75
+Traceback (most recent call last):
+  File "/home/nathan/Source/choptuik-large-d-934/hp/octo_corrector.py", line 934, in <module>
+    sys.exit(dict(planted=planted, wall=wall, horizon=horizon)[sys.argv[1]](sys.argv[2:]))
+             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/home/nathan/Source/choptuik-large-d-934/hp/octo_corrector.py", line 769, in planted
+    zo, ho, co, Fo, counts = _run_od(so, rs, o8_any(zs), opt, on_first=on_first)
+                             ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nathan/Source/choptuik-large-d-934/hp/octo_corrector.py", line 636, in _run_od
+    z, hist, conv = newton_od(el, z8, tol=opt["tol"], it_max=opt["it_max"], mutate=opt["mutate"],
+                    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                              junk_w=opt.get("junk", 0), accept=opt.get("accept", "own"),
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                              strong_chord=int(opt.get("strong", 0)), full_drop=float(opt.get("full_drop", 0.0)),
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                              on_first=on_first)
+                              ^^^^^^^^^^^^^^^^^^
+  File "/home/nathan/Source/choptuik-large-d-934/hp/octo_corrector.py", line 308, in newton_od
+    st = s.newton_o(z, mutate=mutate)
+  File "/home/nathan/Source/choptuik-large-d-934/hp/octo_corrector.py", line 573, in newton_o
+    zp = self.project(z)
+  File "/home/nathan/Source/choptuik-large-d-934/hp/octo_corrector.py", line 564, in project
+    raise StartNotProjected(dict(self.counts))
+reseed.StartNotProjected: {'u0': 0, 'u0q': 0, 'ladder': 0, 'failed': 1, 'skipped': 0}
+# 2026-11-17 06:45:40 UTC, compare exit 0, planted exit 1, planted control exit 1, load 24.98 22.41 18.57
+exit 1
