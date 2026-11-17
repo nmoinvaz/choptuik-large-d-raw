@@ -1,0 +1,8 @@
+misfit_profile_746: raw /home/nathan/Source/choptuik-large-d-raw-746/I718-mac, window F = 5.0, mutate drop_node
+read 6387 lines, 5695 plant records, 252 position-groups in 0.8 s
+records per node {0.99: 303, 1.0: 5392, 1.01: 0}, duplicates 0; counts at wf 1.00 {'a': 3477, 'c': 5064, 'ac': 3401, 'ac2': 3433} (published {'a': 3477, 'c': 5064, 'ac': 3401, 'ac2': 3433}); R-b mismatches 0
+R-a (loader with (d) off against ring.json): FAIL, 862 differences, first: ['L+0+1 c: position pass unknown vs stored True', 'L+0+1 arc/0.3/4 c: group unknown vs stored pass True', 'L+0+1 arc/0.3/4 c: stored hit arc|L+0+1|L0.3|P4|log|eta1.674973e-01|ph0 is not a passing plant here']
+J+ (the real profile against itself): OK; wf 0.99: held True, reloc True, rho [1.0, 1.0, 1.0], anchor True; wf 1.0: held True, reloc True, rho [1.0, 1.0, 1.0], anchor True; wf 1.01: held True, reloc True, rho [1.0, 1.0, 1.0], anchor True
+edge check (planted rho at F, 1/F, 10, 1/10, 1 for each M): OK
+mutation drop_node: failed checks ['R-a']; expected ['R-a'] -> FIRES
+exit 1

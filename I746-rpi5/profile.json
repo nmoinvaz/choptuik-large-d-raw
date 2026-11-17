@@ -1,0 +1,7827 @@
+{
+ "F": 5.0,
+ "mutate": null,
+ "checks": {
+  "records": true,
+  "R-b": true,
+  "counts": true,
+  "R-a": true,
+  "J+": true,
+  "edge": true
+ },
+ "records": {
+  "0.99": 303,
+  "1.0": 5392,
+  "1.01": 272
+ },
+ "counts": {
+  "a": 3477,
+  "c": 5064,
+  "ac": 3401,
+  "ac2": 3433
+ },
+ "R-a": {
+  "pass": true,
+  "bad": [],
+  "n_bad": 0
+ },
+ "J+": {
+  "pass": true,
+  "nodes": {
+   "0.99": {
+    "rho": {
+     "20": 1.0,
+     "21": 1.0,
+     "22": 1.0
+    },
+    "held": true,
+    "reloc": true,
+    "ratio_one": true,
+    "anchor": true
+   },
+   "1.0": {
+    "rho": {
+     "20": 1.0,
+     "21": 1.0,
+     "22": 1.0
+    },
+    "held": true,
+    "reloc": true,
+    "ratio_one": true,
+    "anchor": true
+   },
+   "1.01": {
+    "rho": {
+     "20": 1.0,
+     "21": 1.0,
+     "22": 1.0
+    },
+    "held": true,
+    "reloc": true,
+    "ratio_one": true,
+    "anchor": true
+   }
+  }
+ },
+ "edge": {
+  "pass": true,
+  "bad": [],
+  "n_bad": 0
+ },
+ "verdict": {
+  "P'": {
+   "summary": {
+    "variant": "P'",
+    "n_718_pass": 34,
+    "pass": 0,
+    "unknown": 22,
+    "718_pass_now_pass": 0,
+    "718_pass_now_unknown": [
+     [
+      -1,
+      4
+     ],
+     [
+      0,
+      4
+     ],
+     [
+      1,
+      3
+     ],
+     [
+      1,
+      4
+     ],
+     [
+      2,
+      1
+     ],
+     [
+      2,
+      2
+     ],
+     [
+      2,
+      3
+     ],
+     [
+      2,
+      4
+     ],
+     [
+      3,
+      -2
+     ],
+     [
+      3,
+      -1
+     ],
+     [
+      3,
+      0
+     ],
+     [
+      3,
+      1
+     ],
+     [
+      3,
+      2
+     ],
+     [
+      3,
+      3
+     ],
+     [
+      3,
+      4
+     ],
+     [
+      4,
+      -2
+     ],
+     [
+      4,
+      -1
+     ],
+     [
+      4,
+      0
+     ],
+     [
+      4,
+      1
+     ],
+     [
+      4,
+      2
+     ],
+     [
+      4,
+      3
+     ],
+     [
+      4,
+      4
+     ]
+    ],
+    "718_pass_now_fail": [
+     [
+      -1,
+      2
+     ],
+     [
+      -1,
+      3
+     ],
+     [
+      0,
+      1
+     ],
+     [
+      0,
+      2
+     ],
+     [
+      0,
+      3
+     ],
+     [
+      1,
+      -1
+     ],
+     [
+      1,
+      0
+     ],
+     [
+      1,
+      1
+     ],
+     [
+      1,
+      2
+     ],
+     [
+      2,
+      -2
+     ],
+     [
+      2,
+      -1
+     ],
+     [
+      2,
+      0
+     ]
+    ],
+    "edge": [],
+    "candidates": [],
+    "candidates_undecided": [],
+    "fail_at_absQ_ge_2.48": [
+     [
+      -1,
+      2
+     ],
+     [
+      -1,
+      3
+     ],
+     [
+      0,
+      1
+     ],
+     [
+      0,
+      2
+     ],
+     [
+      0,
+      3
+     ],
+     [
+      1,
+      -1
+     ],
+     [
+      1,
+      0
+     ],
+     [
+      1,
+      1
+     ],
+     [
+      1,
+      2
+     ],
+     [
+      2,
+      -2
+     ],
+     [
+      2,
+      -1
+     ],
+     [
+      2,
+      0
+     ]
+    ],
+    "unknown_at_absQ_ge_2.48": [
+     [
+      -1,
+      4
+     ],
+     [
+      0,
+      4
+     ],
+     [
+      1,
+      3
+     ],
+     [
+      1,
+      4
+     ],
+     [
+      2,
+      1
+     ],
+     [
+      2,
+      2
+     ],
+     [
+      2,
+      3
+     ],
+     [
+      2,
+      4
+     ],
+     [
+      3,
+      -2
+     ],
+     [
+      3,
+      -1
+     ],
+     [
+      3,
+      0
+     ],
+     [
+      3,
+      1
+     ],
+     [
+      3,
+      2
+     ],
+     [
+      3,
+      3
+     ],
+     [
+      3,
+      4
+     ],
+     [
+      4,
+      -2
+     ],
+     [
+      4,
+      -1
+     ],
+     [
+      4,
+      0
+     ],
+     [
+      4,
+      1
+     ],
+     [
+      4,
+      2
+     ],
+     [
+      4,
+      3
+     ],
+     [
+      4,
+      4
+     ]
+    ],
+    "narrows": true,
+    "brackets": true
+   },
+   "positions": {
+    "L+0+0": {
+     "groups": {
+      "arc/0.3/4": {
+       "status": "fail",
+       "n_base": 0,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.15/4": {
+       "status": "fail",
+       "n_base": 3,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.3/2": {
+       "status": "fail",
+       "n_base": 0,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.3/4": {
+       "status": "fail",
+       "n_base": 0,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.3/6": {
+       "status": "fail",
+       "n_base": 3,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.6/4": {
+       "status": "fail",
+       "n_base": 0,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      }
+     },
+     "status": "fail",
+     "n_groups_pass": 0,
+     "n_groups_unknown": 0
+    },
+    "L+0+1": {
+     "groups": {
+      "arc/0.3/4": {
+       "status": "fail",
+       "n_base": 10,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.15/4": {
+       "status": "fail",
+       "n_base": 14,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.3/2": {
+       "status": "fail",
+       "n_base": 13,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.3/4": {
+       "status": "fail",
+       "n_base": 11,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.3/6": {
+       "status": "fail",
+       "n_base": 13,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.6/4": {
+       "status": "fail",
+       "n_base": 6,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      }
+     },
+     "status": "fail",
+     "n_groups_pass": 0,
+     "n_groups_unknown": 0
+    },
+    "L+0+2": {
+     "groups": {
+      "arc/0.3/4": {
+       "status": "fail",
+       "n_base": 4,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.15/4": {
+       "status": "fail",
+       "n_base": 18,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.3/2": {
+       "status": "fail",
+       "n_base": 17,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.3/4": {
+       "status": "fail",
+       "n_base": 16,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.3/6": {
+       "status": "fail",
+       "n_base": 21,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.6/4": {
+       "status": "fail",
+       "n_base": 9,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      }
+     },
+     "status": "fail",
+     "n_groups_pass": 0,
+     "n_groups_unknown": 0
+    },
+    "L+0+3": {
+     "groups": {
+      "arc/0.3/4": {
+       "status": "fail",
+       "n_base": 5,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.15/4": {
+       "status": "fail",
+       "n_base": 21,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.3/2": {
+       "status": "fail",
+       "n_base": 14,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.3/4": {
+       "status": "fail",
+       "n_base": 20,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.3/6": {
+       "status": "fail",
+       "n_base": 21,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.6/4": {
+       "status": "fail",
+       "n_base": 10,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      }
+     },
+     "status": "fail",
+     "n_groups_pass": 0,
+     "n_groups_unknown": 0
+    },
+    "L+0+4": {
+     "groups": {
+      "arc/0.3/4": {
+       "status": "unknown",
+       "n_base": 7,
+       "n_cand": 4,
+       "n_pass": 0,
+       "n_unknown": 3,
+       "pass_ids": []
+      },
+      "chord2/0.15/4": {
+       "status": "unknown",
+       "n_base": 22,
+       "n_cand": 8,
+       "n_pass": 0,
+       "n_unknown": 7,
+       "pass_ids": []
+      },
+      "chord2/0.3/2": {
+       "status": "unknown",
+       "n_base": 17,
+       "n_cand": 6,
+       "n_pass": 0,
+       "n_unknown": 6,
+       "pass_ids": []
+      },
+      "chord2/0.3/4": {
+       "status": "unknown",
+       "n_base": 21,
+       "n_cand": 7,
+       "n_pass": 0,
+       "n_unknown": 6,
+       "pass_ids": []
+      },
+      "chord2/0.3/6": {
+       "status": "unknown",
+       "n_base": 22,
+       "n_cand": 7,
+       "n_pass": 0,
+       "n_unknown": 6,
+       "pass_ids": []
+      },
+      "chord2/0.6/4": {
+       "status": "unknown",
+       "n_base": 11,
+       "n_cand": 4,
+       "n_pass": 0,
+       "n_unknown": 4,
+       "pass_ids": []
+      }
+     },
+     "status": "unknown",
+     "n_groups_pass": 0,
+     "n_groups_unknown": 6
+    },
+    "L+0-1": {
+     "groups": {
+      "arc/0.3/4": {
+       "status": "fail",
+       "n_base": 0,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.15/4": {
+       "status": "fail",
+       "n_base": 0,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.3/2": {
+       "status": "fail",
+       "n_base": 0,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.3/4": {
+       "status": "fail",
+       "n_base": 0,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.3/6": {
+       "status": "fail",
+       "n_base": 0,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.6/4": {
+       "status": "fail",
+       "n_base": 0,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      }
+     },
+     "status": "fail",
+     "n_groups_pass": 0,
+     "n_groups_unknown": 0
+    },
+    "L+0-2": {
+     "groups": {
+      "arc/0.3/4": {
+       "status": "fail",
+       "n_base": 0,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.15/4": {
+       "status": "fail",
+       "n_base": 3,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.3/2": {
+       "status": "fail",
+       "n_base": 0,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.3/4": {
+       "status": "fail",
+       "n_base": 0,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.3/6": {
+       "status": "fail",
+       "n_base": 0,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.6/4": {
+       "status": "fail",
+       "n_base": 0,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      }
+     },
+     "status": "fail",
+     "n_groups_pass": 0,
+     "n_groups_unknown": 0
+    },
+    "L+1+0": {
+     "groups": {
+      "arc/0.3/4": {
+       "status": "fail",
+       "n_base": 6,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.15/4": {
+       "status": "fail",
+       "n_base": 15,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.3/2": {
+       "status": "fail",
+       "n_base": 17,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.3/4": {
+       "status": "fail",
+       "n_base": 15,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.3/6": {
+       "status": "fail",
+       "n_base": 15,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.6/4": {
+       "status": "fail",
+       "n_base": 18,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      }
+     },
+     "status": "fail",
+     "n_groups_pass": 0,
+     "n_groups_unknown": 0
+    },
+    "L+1+1": {
+     "groups": {
+      "arc/0.3/4": {
+       "status": "fail",
+       "n_base": 3,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.15/4": {
+       "status": "fail",
+       "n_base": 24,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.3/2": {
+       "status": "fail",
+       "n_base": 23,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.3/4": {
+       "status": "fail",
+       "n_base": 24,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.3/6": {
+       "status": "fail",
+       "n_base": 23,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.6/4": {
+       "status": "fail",
+       "n_base": 20,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      }
+     },
+     "status": "fail",
+     "n_groups_pass": 0,
+     "n_groups_unknown": 0
+    },
+    "L+1+2": {
+     "groups": {
+      "arc/0.3/4": {
+       "status": "fail",
+       "n_base": 2,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.15/4": {
+       "status": "fail",
+       "n_base": 24,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.3/2": {
+       "status": "fail",
+       "n_base": 24,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.3/4": {
+       "status": "fail",
+       "n_base": 24,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.3/6": {
+       "status": "fail",
+       "n_base": 24,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.6/4": {
+       "status": "fail",
+       "n_base": 23,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      }
+     },
+     "status": "fail",
+     "n_groups_pass": 0,
+     "n_groups_unknown": 0
+    },
+    "L+1+3": {
+     "groups": {
+      "arc/0.3/4": {
+       "status": "unknown",
+       "n_base": 14,
+       "n_cand": 4,
+       "n_pass": 0,
+       "n_unknown": 3,
+       "pass_ids": []
+      },
+      "chord2/0.15/4": {
+       "status": "unknown",
+       "n_base": 24,
+       "n_cand": 8,
+       "n_pass": 0,
+       "n_unknown": 7,
+       "pass_ids": []
+      },
+      "chord2/0.3/2": {
+       "status": "unknown",
+       "n_base": 23,
+       "n_cand": 4,
+       "n_pass": 0,
+       "n_unknown": 4,
+       "pass_ids": []
+      },
+      "chord2/0.3/4": {
+       "status": "unknown",
+       "n_base": 24,
+       "n_cand": 4,
+       "n_pass": 0,
+       "n_unknown": 4,
+       "pass_ids": []
+      },
+      "chord2/0.3/6": {
+       "status": "unknown",
+       "n_base": 24,
+       "n_cand": 8,
+       "n_pass": 0,
+       "n_unknown": 8,
+       "pass_ids": []
+      },
+      "chord2/0.6/4": {
+       "status": "unknown",
+       "n_base": 23,
+       "n_cand": 4,
+       "n_pass": 0,
+       "n_unknown": 4,
+       "pass_ids": []
+      }
+     },
+     "status": "unknown",
+     "n_groups_pass": 0,
+     "n_groups_unknown": 6
+    },
+    "L+1+4": {
+     "groups": {
+      "arc/0.3/4": {
+       "status": "unknown",
+       "n_base": 23,
+       "n_cand": 8,
+       "n_pass": 0,
+       "n_unknown": 7,
+       "pass_ids": []
+      },
+      "chord2/0.15/4": {
+       "status": "unknown",
+       "n_base": 22,
+       "n_cand": 6,
+       "n_pass": 0,
+       "n_unknown": 5,
+       "pass_ids": []
+      },
+      "chord2/0.3/2": {
+       "status": "unknown",
+       "n_base": 22,
+       "n_cand": 6,
+       "n_pass": 0,
+       "n_unknown": 6,
+       "pass_ids": []
+      },
+      "chord2/0.3/4": {
+       "status": "unknown",
+       "n_base": 22,
+       "n_cand": 6,
+       "n_pass": 0,
+       "n_unknown": 5,
+       "pass_ids": []
+      },
+      "chord2/0.3/6": {
+       "status": "unknown",
+       "n_base": 22,
+       "n_cand": 6,
+       "n_pass": 0,
+       "n_unknown": 5,
+       "pass_ids": []
+      },
+      "chord2/0.6/4": {
+       "status": "unknown",
+       "n_base": 21,
+       "n_cand": 6,
+       "n_pass": 0,
+       "n_unknown": 6,
+       "pass_ids": []
+      }
+     },
+     "status": "unknown",
+     "n_groups_pass": 0,
+     "n_groups_unknown": 6
+    },
+    "L+1-1": {
+     "groups": {
+      "arc/0.3/4": {
+       "status": "fail",
+       "n_base": 5,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.15/4": {
+       "status": "fail",
+       "n_base": 5,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.3/2": {
+       "status": "fail",
+       "n_base": 9,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.3/4": {
+       "status": "fail",
+       "n_base": 7,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.3/6": {
+       "status": "fail",
+       "n_base": 7,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.6/4": {
+       "status": "fail",
+       "n_base": 12,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      }
+     },
+     "status": "fail",
+     "n_groups_pass": 0,
+     "n_groups_unknown": 0
+    },
+    "L+1-2": {
+     "groups": {
+      "arc/0.3/4": {
+       "status": "fail",
+       "n_base": 3,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.15/4": {
+       "status": "fail",
+       "n_base": 1,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.3/2": {
+       "status": "fail",
+       "n_base": 0,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.3/4": {
+       "status": "fail",
+       "n_base": 1,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.3/6": {
+       "status": "fail",
+       "n_base": 1,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.6/4": {
+       "status": "fail",
+       "n_base": 2,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      }
+     },
+     "status": "fail",
+     "n_groups_pass": 0,
+     "n_groups_unknown": 0
+    },
+    "L+2+0": {
+     "groups": {
+      "arc/0.3/4": {
+       "status": "fail",
+       "n_base": 3,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.15/4": {
+       "status": "fail",
+       "n_base": 24,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.3/2": {
+       "status": "fail",
+       "n_base": 20,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.3/4": {
+       "status": "fail",
+       "n_base": 22,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.3/6": {
+       "status": "fail",
+       "n_base": 22,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.6/4": {
+       "status": "fail",
+       "n_base": 20,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      }
+     },
+     "status": "fail",
+     "n_groups_pass": 0,
+     "n_groups_unknown": 0
+    },
+    "L+2+1": {
+     "groups": {
+      "arc/0.3/4": {
+       "status": "fail",
+       "n_base": 2,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.15/4": {
+       "status": "unknown",
+       "n_base": 24,
+       "n_cand": 4,
+       "n_pass": 0,
+       "n_unknown": 4,
+       "pass_ids": []
+      },
+      "chord2/0.3/2": {
+       "status": "fail",
+       "n_base": 24,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.3/4": {
+       "status": "unknown",
+       "n_base": 24,
+       "n_cand": 4,
+       "n_pass": 0,
+       "n_unknown": 4,
+       "pass_ids": []
+      },
+      "chord2/0.3/6": {
+       "status": "unknown",
+       "n_base": 24,
+       "n_cand": 4,
+       "n_pass": 0,
+       "n_unknown": 4,
+       "pass_ids": []
+      },
+      "chord2/0.6/4": {
+       "status": "fail",
+       "n_base": 24,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      }
+     },
+     "status": "unknown",
+     "n_groups_pass": 0,
+     "n_groups_unknown": 3
+    },
+    "L+2+2": {
+     "groups": {
+      "arc/0.3/4": {
+       "status": "unknown",
+       "n_base": 8,
+       "n_cand": 4,
+       "n_pass": 0,
+       "n_unknown": 3,
+       "pass_ids": []
+      },
+      "chord2/0.15/4": {
+       "status": "unknown",
+       "n_base": 24,
+       "n_cand": 8,
+       "n_pass": 0,
+       "n_unknown": 7,
+       "pass_ids": []
+      },
+      "chord2/0.3/2": {
+       "status": "unknown",
+       "n_base": 24,
+       "n_cand": 4,
+       "n_pass": 0,
+       "n_unknown": 4,
+       "pass_ids": []
+      },
+      "chord2/0.3/4": {
+       "status": "unknown",
+       "n_base": 24,
+       "n_cand": 8,
+       "n_pass": 0,
+       "n_unknown": 8,
+       "pass_ids": []
+      },
+      "chord2/0.3/6": {
+       "status": "unknown",
+       "n_base": 24,
+       "n_cand": 8,
+       "n_pass": 0,
+       "n_unknown": 8,
+       "pass_ids": []
+      },
+      "chord2/0.6/4": {
+       "status": "unknown",
+       "n_base": 24,
+       "n_cand": 4,
+       "n_pass": 0,
+       "n_unknown": 4,
+       "pass_ids": []
+      }
+     },
+     "status": "unknown",
+     "n_groups_pass": 0,
+     "n_groups_unknown": 6
+    },
+    "L+2+3": {
+     "groups": {
+      "arc/0.3/4": {
+       "status": "unknown",
+       "n_base": 12,
+       "n_cand": 8,
+       "n_pass": 0,
+       "n_unknown": 7,
+       "pass_ids": []
+      },
+      "chord2/0.15/4": {
+       "status": "unknown",
+       "n_base": 23,
+       "n_cand": 7,
+       "n_pass": 0,
+       "n_unknown": 6,
+       "pass_ids": []
+      },
+      "chord2/0.3/2": {
+       "status": "unknown",
+       "n_base": 24,
+       "n_cand": 8,
+       "n_pass": 0,
+       "n_unknown": 8,
+       "pass_ids": []
+      },
+      "chord2/0.3/4": {
+       "status": "unknown",
+       "n_base": 24,
+       "n_cand": 8,
+       "n_pass": 0,
+       "n_unknown": 8,
+       "pass_ids": []
+      },
+      "chord2/0.3/6": {
+       "status": "unknown",
+       "n_base": 23,
+       "n_cand": 7,
+       "n_pass": 0,
+       "n_unknown": 6,
+       "pass_ids": []
+      },
+      "chord2/0.6/4": {
+       "status": "unknown",
+       "n_base": 24,
+       "n_cand": 8,
+       "n_pass": 0,
+       "n_unknown": 8,
+       "pass_ids": []
+      }
+     },
+     "status": "unknown",
+     "n_groups_pass": 0,
+     "n_groups_unknown": 6
+    },
+    "L+2+4": {
+     "groups": {
+      "arc/0.3/4": {
+       "status": "unknown",
+       "n_base": 19,
+       "n_cand": 6,
+       "n_pass": 0,
+       "n_unknown": 5,
+       "pass_ids": []
+      },
+      "chord2/0.15/4": {
+       "status": "unknown",
+       "n_base": 20,
+       "n_cand": 5,
+       "n_pass": 0,
+       "n_unknown": 4,
+       "pass_ids": []
+      },
+      "chord2/0.3/2": {
+       "status": "unknown",
+       "n_base": 22,
+       "n_cand": 6,
+       "n_pass": 0,
+       "n_unknown": 5,
+       "pass_ids": []
+      },
+      "chord2/0.3/4": {
+       "status": "unknown",
+       "n_base": 21,
+       "n_cand": 6,
+       "n_pass": 0,
+       "n_unknown": 5,
+       "pass_ids": []
+      },
+      "chord2/0.3/6": {
+       "status": "unknown",
+       "n_base": 20,
+       "n_cand": 5,
+       "n_pass": 0,
+       "n_unknown": 4,
+       "pass_ids": []
+      },
+      "chord2/0.6/4": {
+       "status": "unknown",
+       "n_base": 22,
+       "n_cand": 6,
+       "n_pass": 0,
+       "n_unknown": 6,
+       "pass_ids": []
+      }
+     },
+     "status": "unknown",
+     "n_groups_pass": 0,
+     "n_groups_unknown": 6
+    },
+    "L+2-1": {
+     "groups": {
+      "arc/0.3/4": {
+       "status": "fail",
+       "n_base": 3,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.15/4": {
+       "status": "fail",
+       "n_base": 17,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.3/2": {
+       "status": "fail",
+       "n_base": 17,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.3/4": {
+       "status": "fail",
+       "n_base": 17,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.3/6": {
+       "status": "fail",
+       "n_base": 18,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.6/4": {
+       "status": "fail",
+       "n_base": 17,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      }
+     },
+     "status": "fail",
+     "n_groups_pass": 0,
+     "n_groups_unknown": 0
+    },
+    "L+2-2": {
+     "groups": {
+      "arc/0.3/4": {
+       "status": "fail",
+       "n_base": 0,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.15/4": {
+       "status": "fail",
+       "n_base": 9,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.3/2": {
+       "status": "fail",
+       "n_base": 10,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.3/4": {
+       "status": "fail",
+       "n_base": 9,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.3/6": {
+       "status": "fail",
+       "n_base": 11,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.6/4": {
+       "status": "fail",
+       "n_base": 11,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      }
+     },
+     "status": "fail",
+     "n_groups_pass": 0,
+     "n_groups_unknown": 0
+    },
+    "L+3+0": {
+     "groups": {
+      "arc/0.3/4": {
+       "status": "fail",
+       "n_base": 2,
+       "n_cand": 1,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.15/4": {
+       "status": "unknown",
+       "n_base": 24,
+       "n_cand": 8,
+       "n_pass": 0,
+       "n_unknown": 8,
+       "pass_ids": []
+      },
+      "chord2/0.3/2": {
+       "status": "unknown",
+       "n_base": 23,
+       "n_cand": 7,
+       "n_pass": 0,
+       "n_unknown": 7,
+       "pass_ids": []
+      },
+      "chord2/0.3/4": {
+       "status": "unknown",
+       "n_base": 23,
+       "n_cand": 7,
+       "n_pass": 0,
+       "n_unknown": 7,
+       "pass_ids": []
+      },
+      "chord2/0.3/6": {
+       "status": "unknown",
+       "n_base": 22,
+       "n_cand": 7,
+       "n_pass": 0,
+       "n_unknown": 7,
+       "pass_ids": []
+      },
+      "chord2/0.6/4": {
+       "status": "unknown",
+       "n_base": 23,
+       "n_cand": 8,
+       "n_pass": 0,
+       "n_unknown": 8,
+       "pass_ids": []
+      }
+     },
+     "status": "unknown",
+     "n_groups_pass": 0,
+     "n_groups_unknown": 5
+    },
+    "L+3+1": {
+     "groups": {
+      "arc/0.3/4": {
+       "status": "unknown",
+       "n_base": 5,
+       "n_cand": 4,
+       "n_pass": 0,
+       "n_unknown": 3,
+       "pass_ids": []
+      },
+      "chord2/0.15/4": {
+       "status": "unknown",
+       "n_base": 22,
+       "n_cand": 8,
+       "n_pass": 0,
+       "n_unknown": 7,
+       "pass_ids": []
+      },
+      "chord2/0.3/2": {
+       "status": "unknown",
+       "n_base": 23,
+       "n_cand": 8,
+       "n_pass": 0,
+       "n_unknown": 8,
+       "pass_ids": []
+      },
+      "chord2/0.3/4": {
+       "status": "unknown",
+       "n_base": 23,
+       "n_cand": 8,
+       "n_pass": 0,
+       "n_unknown": 8,
+       "pass_ids": []
+      },
+      "chord2/0.3/6": {
+       "status": "unknown",
+       "n_base": 22,
+       "n_cand": 8,
+       "n_pass": 0,
+       "n_unknown": 8,
+       "pass_ids": []
+      },
+      "chord2/0.6/4": {
+       "status": "unknown",
+       "n_base": 23,
+       "n_cand": 8,
+       "n_pass": 0,
+       "n_unknown": 8,
+       "pass_ids": []
+      }
+     },
+     "status": "unknown",
+     "n_groups_pass": 0,
+     "n_groups_unknown": 6
+    },
+    "L+3+2": {
+     "groups": {
+      "arc/0.3/4": {
+       "status": "unknown",
+       "n_base": 7,
+       "n_cand": 4,
+       "n_pass": 0,
+       "n_unknown": 2,
+       "pass_ids": []
+      },
+      "chord2/0.15/4": {
+       "status": "unknown",
+       "n_base": 22,
+       "n_cand": 8,
+       "n_pass": 0,
+       "n_unknown": 7,
+       "pass_ids": []
+      },
+      "chord2/0.3/2": {
+       "status": "unknown",
+       "n_base": 22,
+       "n_cand": 8,
+       "n_pass": 0,
+       "n_unknown": 8,
+       "pass_ids": []
+      },
+      "chord2/0.3/4": {
+       "status": "unknown",
+       "n_base": 22,
+       "n_cand": 8,
+       "n_pass": 0,
+       "n_unknown": 7,
+       "pass_ids": []
+      },
+      "chord2/0.3/6": {
+       "status": "unknown",
+       "n_base": 22,
+       "n_cand": 8,
+       "n_pass": 0,
+       "n_unknown": 7,
+       "pass_ids": []
+      },
+      "chord2/0.6/4": {
+       "status": "unknown",
+       "n_base": 23,
+       "n_cand": 8,
+       "n_pass": 0,
+       "n_unknown": 8,
+       "pass_ids": []
+      }
+     },
+     "status": "unknown",
+     "n_groups_pass": 0,
+     "n_groups_unknown": 6
+    },
+    "L+3+3": {
+     "groups": {
+      "arc/0.3/4": {
+       "status": "unknown",
+       "n_base": 16,
+       "n_cand": 8,
+       "n_pass": 0,
+       "n_unknown": 7,
+       "pass_ids": []
+      },
+      "chord2/0.15/4": {
+       "status": "unknown",
+       "n_base": 22,
+       "n_cand": 6,
+       "n_pass": 0,
+       "n_unknown": 5,
+       "pass_ids": []
+      },
+      "chord2/0.3/2": {
+       "status": "unknown",
+       "n_base": 22,
+       "n_cand": 6,
+       "n_pass": 0,
+       "n_unknown": 5,
+       "pass_ids": []
+      },
+      "chord2/0.3/4": {
+       "status": "unknown",
+       "n_base": 22,
+       "n_cand": 6,
+       "n_pass": 0,
+       "n_unknown": 5,
+       "pass_ids": []
+      },
+      "chord2/0.3/6": {
+       "status": "unknown",
+       "n_base": 22,
+       "n_cand": 6,
+       "n_pass": 0,
+       "n_unknown": 5,
+       "pass_ids": []
+      },
+      "chord2/0.6/4": {
+       "status": "unknown",
+       "n_base": 22,
+       "n_cand": 6,
+       "n_pass": 0,
+       "n_unknown": 6,
+       "pass_ids": []
+      }
+     },
+     "status": "unknown",
+     "n_groups_pass": 0,
+     "n_groups_unknown": 6
+    },
+    "L+3+4": {
+     "groups": {
+      "arc/0.3/4": {
+       "status": "unknown",
+       "n_base": 22,
+       "n_cand": 8,
+       "n_pass": 0,
+       "n_unknown": 7,
+       "pass_ids": []
+      },
+      "chord2/0.15/4": {
+       "status": "unknown",
+       "n_base": 15,
+       "n_cand": 1,
+       "n_pass": 0,
+       "n_unknown": 1,
+       "pass_ids": []
+      },
+      "chord2/0.3/2": {
+       "status": "unknown",
+       "n_base": 17,
+       "n_cand": 3,
+       "n_pass": 0,
+       "n_unknown": 3,
+       "pass_ids": []
+      },
+      "chord2/0.3/4": {
+       "status": "unknown",
+       "n_base": 17,
+       "n_cand": 3,
+       "n_pass": 0,
+       "n_unknown": 3,
+       "pass_ids": []
+      },
+      "chord2/0.3/6": {
+       "status": "unknown",
+       "n_base": 17,
+       "n_cand": 3,
+       "n_pass": 0,
+       "n_unknown": 2,
+       "pass_ids": []
+      },
+      "chord2/0.6/4": {
+       "status": "unknown",
+       "n_base": 19,
+       "n_cand": 4,
+       "n_pass": 0,
+       "n_unknown": 4,
+       "pass_ids": []
+      }
+     },
+     "status": "unknown",
+     "n_groups_pass": 0,
+     "n_groups_unknown": 6
+    },
+    "L+3-1": {
+     "groups": {
+      "arc/0.3/4": {
+       "status": "fail",
+       "n_base": 0,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.15/4": {
+       "status": "unknown",
+       "n_base": 22,
+       "n_cand": 6,
+       "n_pass": 0,
+       "n_unknown": 5,
+       "pass_ids": []
+      },
+      "chord2/0.3/2": {
+       "status": "unknown",
+       "n_base": 21,
+       "n_cand": 6,
+       "n_pass": 0,
+       "n_unknown": 6,
+       "pass_ids": []
+      },
+      "chord2/0.3/4": {
+       "status": "unknown",
+       "n_base": 21,
+       "n_cand": 6,
+       "n_pass": 0,
+       "n_unknown": 6,
+       "pass_ids": []
+      },
+      "chord2/0.3/6": {
+       "status": "unknown",
+       "n_base": 22,
+       "n_cand": 6,
+       "n_pass": 0,
+       "n_unknown": 5,
+       "pass_ids": []
+      },
+      "chord2/0.6/4": {
+       "status": "unknown",
+       "n_base": 19,
+       "n_cand": 6,
+       "n_pass": 0,
+       "n_unknown": 6,
+       "pass_ids": []
+      }
+     },
+     "status": "unknown",
+     "n_groups_pass": 0,
+     "n_groups_unknown": 5
+    },
+    "L+3-2": {
+     "groups": {
+      "arc/0.3/4": {
+       "status": "fail",
+       "n_base": 1,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.15/4": {
+       "status": "unknown",
+       "n_base": 21,
+       "n_cand": 6,
+       "n_pass": 0,
+       "n_unknown": 6,
+       "pass_ids": []
+      },
+      "chord2/0.3/2": {
+       "status": "unknown",
+       "n_base": 19,
+       "n_cand": 5,
+       "n_pass": 0,
+       "n_unknown": 5,
+       "pass_ids": []
+      },
+      "chord2/0.3/4": {
+       "status": "unknown",
+       "n_base": 19,
+       "n_cand": 5,
+       "n_pass": 0,
+       "n_unknown": 5,
+       "pass_ids": []
+      },
+      "chord2/0.3/6": {
+       "status": "unknown",
+       "n_base": 20,
+       "n_cand": 5,
+       "n_pass": 0,
+       "n_unknown": 4,
+       "pass_ids": []
+      },
+      "chord2/0.6/4": {
+       "status": "unknown",
+       "n_base": 15,
+       "n_cand": 5,
+       "n_pass": 0,
+       "n_unknown": 5,
+       "pass_ids": []
+      }
+     },
+     "status": "unknown",
+     "n_groups_pass": 0,
+     "n_groups_unknown": 5
+    },
+    "L+4+0": {
+     "groups": {
+      "arc/0.3/4": {
+       "status": "unknown",
+       "n_base": 4,
+       "n_cand": 2,
+       "n_pass": 0,
+       "n_unknown": 1,
+       "pass_ids": []
+      },
+      "chord2/0.15/4": {
+       "status": "unknown",
+       "n_base": 24,
+       "n_cand": 8,
+       "n_pass": 0,
+       "n_unknown": 7,
+       "pass_ids": []
+      },
+      "chord2/0.3/2": {
+       "status": "unknown",
+       "n_base": 24,
+       "n_cand": 8,
+       "n_pass": 0,
+       "n_unknown": 8,
+       "pass_ids": []
+      },
+      "chord2/0.3/4": {
+       "status": "unknown",
+       "n_base": 24,
+       "n_cand": 8,
+       "n_pass": 0,
+       "n_unknown": 7,
+       "pass_ids": []
+      },
+      "chord2/0.3/6": {
+       "status": "unknown",
+       "n_base": 24,
+       "n_cand": 8,
+       "n_pass": 0,
+       "n_unknown": 7,
+       "pass_ids": []
+      },
+      "chord2/0.6/4": {
+       "status": "unknown",
+       "n_base": 24,
+       "n_cand": 8,
+       "n_pass": 0,
+       "n_unknown": 8,
+       "pass_ids": []
+      }
+     },
+     "status": "unknown",
+     "n_groups_pass": 0,
+     "n_groups_unknown": 6
+    },
+    "L+4+1": {
+     "groups": {
+      "arc/0.3/4": {
+       "status": "unknown",
+       "n_base": 5,
+       "n_cand": 2,
+       "n_pass": 0,
+       "n_unknown": 1,
+       "pass_ids": []
+      },
+      "chord2/0.15/4": {
+       "status": "unknown",
+       "n_base": 22,
+       "n_cand": 8,
+       "n_pass": 0,
+       "n_unknown": 7,
+       "pass_ids": []
+      },
+      "chord2/0.3/2": {
+       "status": "unknown",
+       "n_base": 22,
+       "n_cand": 8,
+       "n_pass": 0,
+       "n_unknown": 7,
+       "pass_ids": []
+      },
+      "chord2/0.3/4": {
+       "status": "unknown",
+       "n_base": 22,
+       "n_cand": 8,
+       "n_pass": 0,
+       "n_unknown": 7,
+       "pass_ids": []
+      },
+      "chord2/0.3/6": {
+       "status": "unknown",
+       "n_base": 22,
+       "n_cand": 8,
+       "n_pass": 0,
+       "n_unknown": 7,
+       "pass_ids": []
+      },
+      "chord2/0.6/4": {
+       "status": "unknown",
+       "n_base": 23,
+       "n_cand": 8,
+       "n_pass": 0,
+       "n_unknown": 8,
+       "pass_ids": []
+      }
+     },
+     "status": "unknown",
+     "n_groups_pass": 0,
+     "n_groups_unknown": 6
+    },
+    "L+4+2": {
+     "groups": {
+      "arc/0.3/4": {
+       "status": "unknown",
+       "n_base": 12,
+       "n_cand": 6,
+       "n_pass": 0,
+       "n_unknown": 5,
+       "pass_ids": []
+      },
+      "chord2/0.15/4": {
+       "status": "unknown",
+       "n_base": 24,
+       "n_cand": 8,
+       "n_pass": 0,
+       "n_unknown": 7,
+       "pass_ids": []
+      },
+      "chord2/0.3/2": {
+       "status": "unknown",
+       "n_base": 22,
+       "n_cand": 8,
+       "n_pass": 0,
+       "n_unknown": 7,
+       "pass_ids": []
+      },
+      "chord2/0.3/4": {
+       "status": "unknown",
+       "n_base": 23,
+       "n_cand": 8,
+       "n_pass": 0,
+       "n_unknown": 7,
+       "pass_ids": []
+      },
+      "chord2/0.3/6": {
+       "status": "unknown",
+       "n_base": 23,
+       "n_cand": 8,
+       "n_pass": 0,
+       "n_unknown": 7,
+       "pass_ids": []
+      },
+      "chord2/0.6/4": {
+       "status": "unknown",
+       "n_base": 24,
+       "n_cand": 8,
+       "n_pass": 0,
+       "n_unknown": 8,
+       "pass_ids": []
+      }
+     },
+     "status": "unknown",
+     "n_groups_pass": 0,
+     "n_groups_unknown": 6
+    },
+    "L+4+3": {
+     "groups": {
+      "arc/0.3/4": {
+       "status": "unknown",
+       "n_base": 19,
+       "n_cand": 8,
+       "n_pass": 0,
+       "n_unknown": 7,
+       "pass_ids": []
+      },
+      "chord2/0.15/4": {
+       "status": "unknown",
+       "n_base": 21,
+       "n_cand": 6,
+       "n_pass": 0,
+       "n_unknown": 5,
+       "pass_ids": []
+      },
+      "chord2/0.3/2": {
+       "status": "unknown",
+       "n_base": 21,
+       "n_cand": 6,
+       "n_pass": 0,
+       "n_unknown": 5,
+       "pass_ids": []
+      },
+      "chord2/0.3/4": {
+       "status": "unknown",
+       "n_base": 20,
+       "n_cand": 6,
+       "n_pass": 0,
+       "n_unknown": 5,
+       "pass_ids": []
+      },
+      "chord2/0.3/6": {
+       "status": "unknown",
+       "n_base": 20,
+       "n_cand": 6,
+       "n_pass": 0,
+       "n_unknown": 5,
+       "pass_ids": []
+      },
+      "chord2/0.6/4": {
+       "status": "unknown",
+       "n_base": 21,
+       "n_cand": 6,
+       "n_pass": 0,
+       "n_unknown": 5,
+       "pass_ids": []
+      }
+     },
+     "status": "unknown",
+     "n_groups_pass": 0,
+     "n_groups_unknown": 6
+    },
+    "L+4+4": {
+     "groups": {
+      "arc/0.3/4": {
+       "status": "unknown",
+       "n_base": 22,
+       "n_cand": 8,
+       "n_pass": 0,
+       "n_unknown": 7,
+       "pass_ids": []
+      },
+      "chord2/0.15/4": {
+       "status": "fail",
+       "n_base": 16,
+       "n_cand": 2,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.3/2": {
+       "status": "fail",
+       "n_base": 16,
+       "n_cand": 2,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.3/4": {
+       "status": "fail",
+       "n_base": 16,
+       "n_cand": 2,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.3/6": {
+       "status": "fail",
+       "n_base": 16,
+       "n_cand": 2,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.6/4": {
+       "status": "fail",
+       "n_base": 15,
+       "n_cand": 1,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      }
+     },
+     "status": "unknown",
+     "n_groups_pass": 0,
+     "n_groups_unknown": 1
+    },
+    "L+4-1": {
+     "groups": {
+      "arc/0.3/4": {
+       "status": "fail",
+       "n_base": 0,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.15/4": {
+       "status": "unknown",
+       "n_base": 24,
+       "n_cand": 8,
+       "n_pass": 0,
+       "n_unknown": 7,
+       "pass_ids": []
+      },
+      "chord2/0.3/2": {
+       "status": "unknown",
+       "n_base": 24,
+       "n_cand": 8,
+       "n_pass": 0,
+       "n_unknown": 7,
+       "pass_ids": []
+      },
+      "chord2/0.3/4": {
+       "status": "unknown",
+       "n_base": 24,
+       "n_cand": 8,
+       "n_pass": 0,
+       "n_unknown": 7,
+       "pass_ids": []
+      },
+      "chord2/0.3/6": {
+       "status": "unknown",
+       "n_base": 24,
+       "n_cand": 8,
+       "n_pass": 0,
+       "n_unknown": 7,
+       "pass_ids": []
+      },
+      "chord2/0.6/4": {
+       "status": "unknown",
+       "n_base": 24,
+       "n_cand": 8,
+       "n_pass": 0,
+       "n_unknown": 8,
+       "pass_ids": []
+      }
+     },
+     "status": "unknown",
+     "n_groups_pass": 0,
+     "n_groups_unknown": 5
+    },
+    "L+4-2": {
+     "groups": {
+      "arc/0.3/4": {
+       "status": "fail",
+       "n_base": 0,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.15/4": {
+       "status": "unknown",
+       "n_base": 24,
+       "n_cand": 8,
+       "n_pass": 0,
+       "n_unknown": 7,
+       "pass_ids": []
+      },
+      "chord2/0.3/2": {
+       "status": "unknown",
+       "n_base": 23,
+       "n_cand": 8,
+       "n_pass": 0,
+       "n_unknown": 8,
+       "pass_ids": []
+      },
+      "chord2/0.3/4": {
+       "status": "unknown",
+       "n_base": 23,
+       "n_cand": 8,
+       "n_pass": 0,
+       "n_unknown": 7,
+       "pass_ids": []
+      },
+      "chord2/0.3/6": {
+       "status": "unknown",
+       "n_base": 24,
+       "n_cand": 8,
+       "n_pass": 0,
+       "n_unknown": 7,
+       "pass_ids": []
+      },
+      "chord2/0.6/4": {
+       "status": "unknown",
+       "n_base": 23,
+       "n_cand": 7,
+       "n_pass": 0,
+       "n_unknown": 7,
+       "pass_ids": []
+      }
+     },
+     "status": "unknown",
+     "n_groups_pass": 0,
+     "n_groups_unknown": 5
+    },
+    "L-1+0": {
+     "groups": {
+      "arc/0.3/4": {
+       "status": "fail",
+       "n_base": 0,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.15/4": {
+       "status": "fail",
+       "n_base": 0,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.3/2": {
+       "status": "fail",
+       "n_base": 0,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.3/4": {
+       "status": "fail",
+       "n_base": 0,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.3/6": {
+       "status": "fail",
+       "n_base": 0,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.6/4": {
+       "status": "fail",
+       "n_base": 0,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      }
+     },
+     "status": "fail",
+     "n_groups_pass": 0,
+     "n_groups_unknown": 0
+    },
+    "L-1+1": {
+     "groups": {
+      "arc/0.3/4": {
+       "status": "fail",
+       "n_base": 0,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.15/4": {
+       "status": "fail",
+       "n_base": 0,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.3/2": {
+       "status": "fail",
+       "n_base": 0,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.3/4": {
+       "status": "fail",
+       "n_base": 0,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.3/6": {
+       "status": "fail",
+       "n_base": 0,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.6/4": {
+       "status": "fail",
+       "n_base": 0,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      }
+     },
+     "status": "fail",
+     "n_groups_pass": 0,
+     "n_groups_unknown": 0
+    },
+    "L-1+2": {
+     "groups": {
+      "arc/0.3/4": {
+       "status": "fail",
+       "n_base": 0,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.15/4": {
+       "status": "fail",
+       "n_base": 2,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.3/2": {
+       "status": "fail",
+       "n_base": 0,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.3/4": {
+       "status": "fail",
+       "n_base": 0,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.3/6": {
+       "status": "fail",
+       "n_base": 1,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.6/4": {
+       "status": "fail",
+       "n_base": 3,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      }
+     },
+     "status": "fail",
+     "n_groups_pass": 0,
+     "n_groups_unknown": 0
+    },
+    "L-1+3": {
+     "groups": {
+      "arc/0.3/4": {
+       "status": "fail",
+       "n_base": 0,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.15/4": {
+       "status": "fail",
+       "n_base": 3,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.3/2": {
+       "status": "fail",
+       "n_base": 1,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.3/4": {
+       "status": "fail",
+       "n_base": 2,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.3/6": {
+       "status": "fail",
+       "n_base": 3,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.6/4": {
+       "status": "fail",
+       "n_base": 0,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      }
+     },
+     "status": "fail",
+     "n_groups_pass": 0,
+     "n_groups_unknown": 0
+    },
+    "L-1+4": {
+     "groups": {
+      "arc/0.3/4": {
+       "status": "fail",
+       "n_base": 1,
+       "n_cand": 1,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.15/4": {
+       "status": "unknown",
+       "n_base": 8,
+       "n_cand": 4,
+       "n_pass": 0,
+       "n_unknown": 4,
+       "pass_ids": []
+      },
+      "chord2/0.3/2": {
+       "status": "unknown",
+       "n_base": 3,
+       "n_cand": 2,
+       "n_pass": 0,
+       "n_unknown": 2,
+       "pass_ids": []
+      },
+      "chord2/0.3/4": {
+       "status": "unknown",
+       "n_base": 5,
+       "n_cand": 2,
+       "n_pass": 0,
+       "n_unknown": 2,
+       "pass_ids": []
+      },
+      "chord2/0.3/6": {
+       "status": "unknown",
+       "n_base": 5,
+       "n_cand": 3,
+       "n_pass": 0,
+       "n_unknown": 3,
+       "pass_ids": []
+      },
+      "chord2/0.6/4": {
+       "status": "unknown",
+       "n_base": 3,
+       "n_cand": 2,
+       "n_pass": 0,
+       "n_unknown": 2,
+       "pass_ids": []
+      }
+     },
+     "status": "unknown",
+     "n_groups_pass": 0,
+     "n_groups_unknown": 5
+    },
+    "L-1-1": {
+     "groups": {
+      "arc/0.3/4": {
+       "status": "fail",
+       "n_base": 0,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.15/4": {
+       "status": "fail",
+       "n_base": 0,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.3/2": {
+       "status": "fail",
+       "n_base": 0,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.3/4": {
+       "status": "fail",
+       "n_base": 0,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.3/6": {
+       "status": "fail",
+       "n_base": 0,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.6/4": {
+       "status": "fail",
+       "n_base": 0,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      }
+     },
+     "status": "fail",
+     "n_groups_pass": 0,
+     "n_groups_unknown": 0
+    },
+    "L-1-2": {
+     "groups": {
+      "arc/0.3/4": {
+       "status": "fail",
+       "n_base": 0,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.15/4": {
+       "status": "fail",
+       "n_base": 0,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.3/2": {
+       "status": "fail",
+       "n_base": 0,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.3/4": {
+       "status": "fail",
+       "n_base": 0,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.3/6": {
+       "status": "fail",
+       "n_base": 0,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.6/4": {
+       "status": "fail",
+       "n_base": 0,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      }
+     },
+     "status": "fail",
+     "n_groups_pass": 0,
+     "n_groups_unknown": 0
+    }
+   }
+  },
+  "P''": {
+   "summary": {
+    "variant": "P''",
+    "n_718_pass": 37,
+    "pass": 24,
+    "unknown": 12,
+    "718_pass_now_pass": 24,
+    "718_pass_now_unknown": [
+     [
+      0,
+      -2
+     ],
+     [
+      2,
+      -1
+     ],
+     [
+      2,
+      4
+     ],
+     [
+      3,
+      -2
+     ],
+     [
+      3,
+      -1
+     ],
+     [
+      3,
+      0
+     ],
+     [
+      3,
+      1
+     ],
+     [
+      3,
+      2
+     ],
+     [
+      3,
+      3
+     ],
+     [
+      4,
+      1
+     ],
+     [
+      4,
+      2
+     ],
+     [
+      4,
+      3
+     ]
+    ],
+    "718_pass_now_fail": [
+     [
+      0,
+      -1
+     ]
+    ],
+    "edge": [
+     [
+      -1,
+      2
+     ],
+     [
+      -1,
+      3
+     ],
+     [
+      -1,
+      4
+     ],
+     [
+      0,
+      4
+     ],
+     [
+      1,
+      4
+     ],
+     [
+      2,
+      -2
+     ],
+     [
+      3,
+      4
+     ],
+     [
+      4,
+      -2
+     ],
+     [
+      4,
+      -1
+     ],
+     [
+      4,
+      0
+     ],
+     [
+      4,
+      4
+     ]
+    ],
+    "candidates": [],
+    "candidates_undecided": [],
+    "fail_at_absQ_ge_2.48": [],
+    "unknown_at_absQ_ge_2.48": [
+     [
+      2,
+      -1
+     ],
+     [
+      2,
+      4
+     ],
+     [
+      3,
+      -2
+     ],
+     [
+      3,
+      -1
+     ],
+     [
+      3,
+      0
+     ],
+     [
+      3,
+      1
+     ],
+     [
+      3,
+      2
+     ],
+     [
+      3,
+      3
+     ],
+     [
+      4,
+      1
+     ],
+     [
+      4,
+      2
+     ],
+     [
+      4,
+      3
+     ]
+    ],
+    "narrows": true,
+    "brackets": true
+   },
+   "positions": {
+    "L+0+0": {
+     "groups": {
+      "arc/0.3/4": {
+       "status": "pass",
+       "n_base": 2,
+       "n_cand": 1,
+       "n_pass": 1,
+       "n_unknown": 0,
+       "pass_ids": [
+        "arc|L+0+0|L0.3|P4|log|eta2.000000e-01|ph0"
+       ]
+      },
+      "chord2/0.15/4": {
+       "status": "unknown",
+       "n_base": 4,
+       "n_cand": 4,
+       "n_pass": 0,
+       "n_unknown": 3,
+       "pass_ids": []
+      },
+      "chord2/0.3/2": {
+       "status": "pass",
+       "n_base": 5,
+       "n_cand": 1,
+       "n_pass": 1,
+       "n_unknown": 0,
+       "pass_ids": [
+        "chord2|L+0+0|L0.3|P2|log|eta2.000000e-01|ph0"
+       ]
+      },
+      "chord2/0.3/4": {
+       "status": "pass",
+       "n_base": 4,
+       "n_cand": 1,
+       "n_pass": 1,
+       "n_unknown": 0,
+       "pass_ids": [
+        "chord2|L+0+0|L0.3|P4|log|eta2.000000e-01|ph0"
+       ]
+      },
+      "chord2/0.3/6": {
+       "status": "pass",
+       "n_base": 6,
+       "n_cand": 3,
+       "n_pass": 1,
+       "n_unknown": 2,
+       "pass_ids": [
+        "chord2|L+0+0|L0.3|P6|log|eta1.984573e-01|ph0"
+       ]
+      },
+      "chord2/0.6/4": {
+       "status": "pass",
+       "n_base": 1,
+       "n_cand": 1,
+       "n_pass": 1,
+       "n_unknown": 0,
+       "pass_ids": [
+        "chord2|L+0+0|L0.6|P4|log|eta2.000000e-01|ph0"
+       ]
+      }
+     },
+     "status": "pass",
+     "n_groups_pass": 5,
+     "n_groups_unknown": 1
+    },
+    "L+0+1": {
+     "groups": {
+      "arc/0.3/4": {
+       "status": "pass",
+       "n_base": 10,
+       "n_cand": 10,
+       "n_pass": 1,
+       "n_unknown": 9,
+       "pass_ids": [
+        "arc|L+0+1|L0.3|P4|log|eta1.674973e-01|ph0"
+       ]
+      },
+      "chord2/0.15/4": {
+       "status": "pass",
+       "n_base": 14,
+       "n_cand": 14,
+       "n_pass": 1,
+       "n_unknown": 13,
+       "pass_ids": [
+        "chord2|L+0+1|L0.15|P4|log|eta1.642755e-01|ph0"
+       ]
+      },
+      "chord2/0.3/2": {
+       "status": "pass",
+       "n_base": 13,
+       "n_cand": 13,
+       "n_pass": 1,
+       "n_unknown": 12,
+       "pass_ids": [
+        "chord2|L+0+1|L0.3|P2|log|eta1.702842e-01|ph270"
+       ]
+      },
+      "chord2/0.3/4": {
+       "status": "pass",
+       "n_base": 11,
+       "n_cand": 11,
+       "n_pass": 1,
+       "n_unknown": 9,
+       "pass_ids": [
+        "chord2|L+0+1|L0.3|P4|log|eta1.674973e-01|ph0"
+       ]
+      },
+      "chord2/0.3/6": {
+       "status": "pass",
+       "n_base": 13,
+       "n_cand": 13,
+       "n_pass": 1,
+       "n_unknown": 12,
+       "pass_ids": [
+        "chord2|L+0+1|L0.3|P6|log|eta1.659151e-01|ph0"
+       ]
+      },
+      "chord2/0.6/4": {
+       "status": "pass",
+       "n_base": 8,
+       "n_cand": 8,
+       "n_pass": 1,
+       "n_unknown": 7,
+       "pass_ids": [
+        "chord2|L+0+1|L0.6|P4|log|eta1.713179e-01|ph270"
+       ]
+      }
+     },
+     "status": "pass",
+     "n_groups_pass": 6,
+     "n_groups_unknown": 0
+    },
+    "L+0+2": {
+     "groups": {
+      "arc/0.3/4": {
+       "status": "pass",
+       "n_base": 4,
+       "n_cand": 4,
+       "n_pass": 1,
+       "n_unknown": 1,
+       "pass_ids": [
+        "arc|L+0+2|L0.3|P4|log|eta2.755833e-02|ph270"
+       ]
+      },
+      "chord2/0.15/4": {
+       "status": "pass",
+       "n_base": 18,
+       "n_cand": 18,
+       "n_pass": 1,
+       "n_unknown": 15,
+       "pass_ids": [
+        "chord2|L+0+2|L0.15|P4|log|eta5.789614e-02|ph90"
+       ]
+      },
+      "chord2/0.3/2": {
+       "status": "pass",
+       "n_base": 17,
+       "n_cand": 17,
+       "n_pass": 1,
+       "n_unknown": 15,
+       "pass_ids": [
+        "chord2|L+0+2|L0.3|P2|log|eta1.365208e-01|ph270"
+       ]
+      },
+      "chord2/0.3/4": {
+       "status": "pass",
+       "n_base": 16,
+       "n_cand": 16,
+       "n_pass": 1,
+       "n_unknown": 15,
+       "pass_ids": [
+        "chord2|L+0+2|L0.3|P4|log|eta1.345472e-01|ph270"
+       ]
+      },
+      "chord2/0.3/6": {
+       "status": "pass",
+       "n_base": 21,
+       "n_cand": 21,
+       "n_pass": 1,
+       "n_unknown": 20,
+       "pass_ids": [
+        "chord2|L+0+2|L0.3|P6|log|eta1.334431e-01|ph270"
+       ]
+      },
+      "chord2/0.6/4": {
+       "status": "pass",
+       "n_base": 9,
+       "n_cand": 9,
+       "n_pass": 1,
+       "n_unknown": 8,
+       "pass_ids": [
+        "chord2|L+0+2|L0.6|P4|log|eta1.373145e-01|ph270"
+       ]
+      }
+     },
+     "status": "pass",
+     "n_groups_pass": 6,
+     "n_groups_unknown": 0
+    },
+    "L+0+3": {
+     "groups": {
+      "arc/0.3/4": {
+       "status": "pass",
+       "n_base": 5,
+       "n_cand": 5,
+       "n_pass": 1,
+       "n_unknown": 2,
+       "pass_ids": [
+        "arc|L+0+3|L0.3|P4|log|eta9.306534e-03|ph180"
+       ]
+      },
+      "chord2/0.15/4": {
+       "status": "unknown",
+       "n_base": 21,
+       "n_cand": 17,
+       "n_pass": 0,
+       "n_unknown": 17,
+       "pass_ids": []
+      },
+      "chord2/0.3/2": {
+       "status": "unknown",
+       "n_base": 14,
+       "n_cand": 14,
+       "n_pass": 0,
+       "n_unknown": 13,
+       "pass_ids": []
+      },
+      "chord2/0.3/4": {
+       "status": "unknown",
+       "n_base": 20,
+       "n_cand": 20,
+       "n_pass": 0,
+       "n_unknown": 19,
+       "pass_ids": []
+      },
+      "chord2/0.3/6": {
+       "status": "unknown",
+       "n_base": 21,
+       "n_cand": 21,
+       "n_pass": 0,
+       "n_unknown": 20,
+       "pass_ids": []
+      },
+      "chord2/0.6/4": {
+       "status": "unknown",
+       "n_base": 10,
+       "n_cand": 10,
+       "n_pass": 0,
+       "n_unknown": 9,
+       "pass_ids": []
+      }
+     },
+     "status": "pass",
+     "n_groups_pass": 1,
+     "n_groups_unknown": 5
+    },
+    "L+0+4": {
+     "groups": {
+      "arc/0.3/4": {
+       "status": "pass",
+       "n_base": 7,
+       "n_cand": 5,
+       "n_pass": 1,
+       "n_unknown": 4,
+       "pass_ids": [
+        "arc|L+0+4|L0.3|P4|log|eta3.324680e-03|ph90"
+       ]
+      },
+      "chord2/0.15/4": {
+       "status": "pass",
+       "n_base": 22,
+       "n_cand": 15,
+       "n_pass": 1,
+       "n_unknown": 14,
+       "pass_ids": [
+        "chord2|L+0+4|L0.15|P4|log|eta3.093723e-03|ph90"
+       ]
+      },
+      "chord2/0.3/2": {
+       "status": "unknown",
+       "n_base": 17,
+       "n_cand": 11,
+       "n_pass": 0,
+       "n_unknown": 11,
+       "pass_ids": []
+      },
+      "chord2/0.3/4": {
+       "status": "pass",
+       "n_base": 21,
+       "n_cand": 14,
+       "n_pass": 1,
+       "n_unknown": 13,
+       "pass_ids": [
+        "chord2|L+0+4|L0.3|P4|log|eta3.324680e-03|ph90"
+       ]
+      },
+      "chord2/0.3/6": {
+       "status": "pass",
+       "n_base": 22,
+       "n_cand": 14,
+       "n_pass": 1,
+       "n_unknown": 13,
+       "pass_ids": [
+        "chord2|L+0+4|L0.3|P6|log|eta3.208928e-03|ph90"
+       ]
+      },
+      "chord2/0.6/4": {
+       "status": "pass",
+       "n_base": 11,
+       "n_cand": 8,
+       "n_pass": 1,
+       "n_unknown": 7,
+       "pass_ids": [
+        "chord2|L+0+4|L0.6|P4|log|eta1.696604e-02|ph270"
+       ]
+      }
+     },
+     "status": "pass",
+     "n_groups_pass": 5,
+     "n_groups_unknown": 1
+    },
+    "L+0-1": {
+     "groups": {
+      "arc/0.3/4": {
+       "status": "fail",
+       "n_base": 1,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.15/4": {
+       "status": "fail",
+       "n_base": 1,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.3/2": {
+       "status": "fail",
+       "n_base": 0,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.3/4": {
+       "status": "fail",
+       "n_base": 0,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.3/6": {
+       "status": "fail",
+       "n_base": 2,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.6/4": {
+       "status": "fail",
+       "n_base": 0,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      }
+     },
+     "status": "fail",
+     "n_groups_pass": 0,
+     "n_groups_unknown": 0
+    },
+    "L+0-2": {
+     "groups": {
+      "arc/0.3/4": {
+       "status": "fail",
+       "n_base": 1,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.15/4": {
+       "status": "fail",
+       "n_base": 5,
+       "n_cand": 5,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.3/2": {
+       "status": "fail",
+       "n_base": 2,
+       "n_cand": 1,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.3/4": {
+       "status": "unknown",
+       "n_base": 2,
+       "n_cand": 1,
+       "n_pass": 0,
+       "n_unknown": 1,
+       "pass_ids": []
+      },
+      "chord2/0.3/6": {
+       "status": "unknown",
+       "n_base": 2,
+       "n_cand": 1,
+       "n_pass": 0,
+       "n_unknown": 1,
+       "pass_ids": []
+      },
+      "chord2/0.6/4": {
+       "status": "fail",
+       "n_base": 1,
+       "n_cand": 1,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      }
+     },
+     "status": "unknown",
+     "n_groups_pass": 0,
+     "n_groups_unknown": 2
+    },
+    "L+1+0": {
+     "groups": {
+      "arc/0.3/4": {
+       "status": "pass",
+       "n_base": 6,
+       "n_cand": 6,
+       "n_pass": 1,
+       "n_unknown": 3,
+       "pass_ids": [
+        "arc|L+1+0|L0.3|P4|log|eta1.394376e-01|ph90"
+       ]
+      },
+      "chord2/0.15/4": {
+       "status": "pass",
+       "n_base": 15,
+       "n_cand": 15,
+       "n_pass": 1,
+       "n_unknown": 14,
+       "pass_ids": [
+        "chord2|L+1+0|L0.15|P4|log|eta1.370179e-01|ph0"
+       ]
+      },
+      "chord2/0.3/2": {
+       "status": "pass",
+       "n_base": 17,
+       "n_cand": 17,
+       "n_pass": 1,
+       "n_unknown": 16,
+       "pass_ids": [
+        "chord2|L+1+0|L0.3|P2|log|eta1.415564e-01|ph0"
+       ]
+      },
+      "chord2/0.3/4": {
+       "status": "pass",
+       "n_base": 15,
+       "n_cand": 15,
+       "n_pass": 1,
+       "n_unknown": 14,
+       "pass_ids": [
+        "chord2|L+1+0|L0.3|P4|log|eta1.394376e-01|ph0"
+       ]
+      },
+      "chord2/0.3/6": {
+       "status": "pass",
+       "n_base": 15,
+       "n_cand": 15,
+       "n_pass": 1,
+       "n_unknown": 14,
+       "pass_ids": [
+        "chord2|L+1+0|L0.3|P6|log|eta1.382477e-01|ph0"
+       ]
+      },
+      "chord2/0.6/4": {
+       "status": "pass",
+       "n_base": 18,
+       "n_cand": 18,
+       "n_pass": 1,
+       "n_unknown": 17,
+       "pass_ids": [
+        "chord2|L+1+0|L0.6|P4|ex|eta1.750796e-01|ph270"
+       ]
+      }
+     },
+     "status": "pass",
+     "n_groups_pass": 6,
+     "n_groups_unknown": 0
+    },
+    "L+1+1": {
+     "groups": {
+      "arc/0.3/4": {
+       "status": "pass",
+       "n_base": 3,
+       "n_cand": 3,
+       "n_pass": 1,
+       "n_unknown": 2,
+       "pass_ids": [
+        "arc|L+1+1|L0.3|P4|ex|eta1.401571e-01|ph0"
+       ]
+      },
+      "chord2/0.15/4": {
+       "status": "pass",
+       "n_base": 24,
+       "n_cand": 24,
+       "n_pass": 1,
+       "n_unknown": 23,
+       "pass_ids": [
+        "chord2|L+1+1|L0.15|P4|log|eta1.245295e-01|ph0"
+       ]
+      },
+      "chord2/0.3/2": {
+       "status": "pass",
+       "n_base": 23,
+       "n_cand": 23,
+       "n_pass": 1,
+       "n_unknown": 22,
+       "pass_ids": [
+        "chord2|L+1+1|L0.3|P2|log|eta1.283600e-01|ph270"
+       ]
+      },
+      "chord2/0.3/4": {
+       "status": "pass",
+       "n_base": 24,
+       "n_cand": 24,
+       "n_pass": 1,
+       "n_unknown": 23,
+       "pass_ids": [
+        "chord2|L+1+1|L0.3|P4|log|eta1.265649e-01|ph0"
+       ]
+      },
+      "chord2/0.3/6": {
+       "status": "pass",
+       "n_base": 23,
+       "n_cand": 23,
+       "n_pass": 1,
+       "n_unknown": 22,
+       "pass_ids": [
+        "chord2|L+1+1|L0.3|P6|log|eta1.255632e-01|ph0"
+       ]
+      },
+      "chord2/0.6/4": {
+       "status": "pass",
+       "n_base": 20,
+       "n_cand": 20,
+       "n_pass": 1,
+       "n_unknown": 19,
+       "pass_ids": [
+        "chord2|L+1+1|L0.6|P4|ex|eta1.543049e-01|ph270"
+       ]
+      }
+     },
+     "status": "pass",
+     "n_groups_pass": 6,
+     "n_groups_unknown": 0
+    },
+    "L+1+2": {
+     "groups": {
+      "arc/0.3/4": {
+       "status": "pass",
+       "n_base": 2,
+       "n_cand": 2,
+       "n_pass": 1,
+       "n_unknown": 1,
+       "pass_ids": [
+        "arc|L+1+2|L0.3|P4|ex|eta1.199058e-01|ph180"
+       ]
+      },
+      "chord2/0.15/4": {
+       "status": "unknown",
+       "n_base": 24,
+       "n_cand": 24,
+       "n_pass": 0,
+       "n_unknown": 23,
+       "pass_ids": []
+      },
+      "chord2/0.3/2": {
+       "status": "pass",
+       "n_base": 24,
+       "n_cand": 24,
+       "n_pass": 1,
+       "n_unknown": 23,
+       "pass_ids": [
+        "chord2|L+1+2|L0.3|P2|log|eta1.116519e-01|ph270"
+       ]
+      },
+      "chord2/0.3/4": {
+       "status": "pass",
+       "n_base": 24,
+       "n_cand": 24,
+       "n_pass": 1,
+       "n_unknown": 23,
+       "pass_ids": [
+        "chord2|L+1+2|L0.3|P4|log|eta1.102363e-01|ph270"
+       ]
+      },
+      "chord2/0.3/6": {
+       "status": "pass",
+       "n_base": 24,
+       "n_cand": 24,
+       "n_pass": 1,
+       "n_unknown": 23,
+       "pass_ids": [
+        "chord2|L+1+2|L0.3|P6|log|eta1.094537e-01|ph270"
+       ]
+      },
+      "chord2/0.6/4": {
+       "status": "pass",
+       "n_base": 23,
+       "n_cand": 23,
+       "n_pass": 1,
+       "n_unknown": 22,
+       "pass_ids": [
+        "chord2|L+1+2|L0.6|P4|ex|eta1.302783e-01|ph270"
+       ]
+      }
+     },
+     "status": "pass",
+     "n_groups_pass": 5,
+     "n_groups_unknown": 1
+    },
+    "L+1+3": {
+     "groups": {
+      "arc/0.3/4": {
+       "status": "pass",
+       "n_base": 14,
+       "n_cand": 11,
+       "n_pass": 1,
+       "n_unknown": 10,
+       "pass_ids": [
+        "arc|L+1+3|L0.3|P4|log|eta4.739835e-03|ph90"
+       ]
+      },
+      "chord2/0.15/4": {
+       "status": "pass",
+       "n_base": 24,
+       "n_cand": 16,
+       "n_pass": 1,
+       "n_unknown": 15,
+       "pass_ids": [
+        "chord2|L+1+3|L0.15|P4|log|eta4.448041e-03|ph90"
+       ]
+      },
+      "chord2/0.3/2": {
+       "status": "unknown",
+       "n_base": 23,
+       "n_cand": 15,
+       "n_pass": 0,
+       "n_unknown": 15,
+       "pass_ids": []
+      },
+      "chord2/0.3/4": {
+       "status": "unknown",
+       "n_base": 24,
+       "n_cand": 16,
+       "n_pass": 0,
+       "n_unknown": 16,
+       "pass_ids": []
+      },
+      "chord2/0.3/6": {
+       "status": "unknown",
+       "n_base": 24,
+       "n_cand": 16,
+       "n_pass": 0,
+       "n_unknown": 16,
+       "pass_ids": []
+      },
+      "chord2/0.6/4": {
+       "status": "unknown",
+       "n_base": 23,
+       "n_cand": 19,
+       "n_pass": 0,
+       "n_unknown": 17,
+       "pass_ids": []
+      }
+     },
+     "status": "pass",
+     "n_groups_pass": 2,
+     "n_groups_unknown": 4
+    },
+    "L+1+4": {
+     "groups": {
+      "arc/0.3/4": {
+       "status": "pass",
+       "n_base": 23,
+       "n_cand": 16,
+       "n_pass": 1,
+       "n_unknown": 15,
+       "pass_ids": [
+        "arc|L+1+4|L0.3|P4|log|eta1.956745e-03|ph90"
+       ]
+      },
+      "chord2/0.15/4": {
+       "status": "pass",
+       "n_base": 22,
+       "n_cand": 14,
+       "n_pass": 1,
+       "n_unknown": 13,
+       "pass_ids": [
+        "chord2|L+1+4|L0.15|P4|log|eta1.831775e-03|ph90"
+       ]
+      },
+      "chord2/0.3/2": {
+       "status": "unknown",
+       "n_base": 22,
+       "n_cand": 14,
+       "n_pass": 0,
+       "n_unknown": 14,
+       "pass_ids": []
+      },
+      "chord2/0.3/4": {
+       "status": "pass",
+       "n_base": 22,
+       "n_cand": 14,
+       "n_pass": 1,
+       "n_unknown": 13,
+       "pass_ids": [
+        "chord2|L+1+4|L0.3|P4|log|eta1.956745e-03|ph90"
+       ]
+      },
+      "chord2/0.3/6": {
+       "status": "pass",
+       "n_base": 22,
+       "n_cand": 14,
+       "n_pass": 1,
+       "n_unknown": 13,
+       "pass_ids": [
+        "chord2|L+1+4|L0.3|P6|log|eta1.894153e-03|ph90"
+       ]
+      },
+      "chord2/0.6/4": {
+       "status": "unknown",
+       "n_base": 21,
+       "n_cand": 13,
+       "n_pass": 0,
+       "n_unknown": 13,
+       "pass_ids": []
+      }
+     },
+     "status": "pass",
+     "n_groups_pass": 4,
+     "n_groups_unknown": 2
+    },
+    "L+1-1": {
+     "groups": {
+      "arc/0.3/4": {
+       "status": "pass",
+       "n_base": 5,
+       "n_cand": 5,
+       "n_pass": 1,
+       "n_unknown": 4,
+       "pass_ids": [
+        "arc|L+1-1|L0.3|P4|log|eta3.728453e-02|ph90"
+       ]
+      },
+      "chord2/0.15/4": {
+       "status": "pass",
+       "n_base": 5,
+       "n_cand": 5,
+       "n_pass": 1,
+       "n_unknown": 2,
+       "pass_ids": [
+        "chord2|L+1-1|L0.15|P4|ex|eta4.773325e-02|ph90"
+       ]
+      },
+      "chord2/0.3/2": {
+       "status": "pass",
+       "n_base": 9,
+       "n_cand": 9,
+       "n_pass": 1,
+       "n_unknown": 6,
+       "pass_ids": [
+        "chord2|L+1-1|L0.3|P2|log|eta4.030760e-02|ph90"
+       ]
+      },
+      "chord2/0.3/4": {
+       "status": "pass",
+       "n_base": 7,
+       "n_cand": 7,
+       "n_pass": 1,
+       "n_unknown": 5,
+       "pass_ids": [
+        "chord2|L+1-1|L0.3|P4|log|eta3.728453e-02|ph90"
+       ]
+      },
+      "chord2/0.3/6": {
+       "status": "pass",
+       "n_base": 7,
+       "n_cand": 7,
+       "n_pass": 1,
+       "n_unknown": 4,
+       "pass_ids": [
+        "chord2|L+1-1|L0.3|P6|log|eta3.566645e-02|ph90"
+       ]
+      },
+      "chord2/0.6/4": {
+       "status": "pass",
+       "n_base": 12,
+       "n_cand": 12,
+       "n_pass": 1,
+       "n_unknown": 9,
+       "pass_ids": [
+        "chord2|L+1-1|L0.6|P4|log|eta4.153240e-02|ph90"
+       ]
+      }
+     },
+     "status": "pass",
+     "n_groups_pass": 6,
+     "n_groups_unknown": 0
+    },
+    "L+1-2": {
+     "groups": {
+      "arc/0.3/4": {
+       "status": "fail",
+       "n_base": 3,
+       "n_cand": 3,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.15/4": {
+       "status": "fail",
+       "n_base": 1,
+       "n_cand": 1,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.3/2": {
+       "status": "fail",
+       "n_base": 0,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.3/4": {
+       "status": "fail",
+       "n_base": 1,
+       "n_cand": 1,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.3/6": {
+       "status": "fail",
+       "n_base": 1,
+       "n_cand": 1,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.6/4": {
+       "status": "fail",
+       "n_base": 2,
+       "n_cand": 2,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      }
+     },
+     "status": "fail",
+     "n_groups_pass": 0,
+     "n_groups_unknown": 0
+    },
+    "L+2+0": {
+     "groups": {
+      "arc/0.3/4": {
+       "status": "unknown",
+       "n_base": 3,
+       "n_cand": 3,
+       "n_pass": 0,
+       "n_unknown": 2,
+       "pass_ids": []
+      },
+      "chord2/0.15/4": {
+       "status": "unknown",
+       "n_base": 24,
+       "n_cand": 24,
+       "n_pass": 0,
+       "n_unknown": 23,
+       "pass_ids": []
+      },
+      "chord2/0.3/2": {
+       "status": "pass",
+       "n_base": 20,
+       "n_cand": 20,
+       "n_pass": 1,
+       "n_unknown": 19,
+       "pass_ids": [
+        "chord2|L+2+0|L0.3|P2|log|eta1.058068e-01|ph270"
+       ]
+      },
+      "chord2/0.3/4": {
+       "status": "unknown",
+       "n_base": 22,
+       "n_cand": 22,
+       "n_pass": 0,
+       "n_unknown": 21,
+       "pass_ids": []
+      },
+      "chord2/0.3/6": {
+       "status": "unknown",
+       "n_base": 22,
+       "n_cand": 22,
+       "n_pass": 0,
+       "n_unknown": 21,
+       "pass_ids": []
+      },
+      "chord2/0.6/4": {
+       "status": "pass",
+       "n_base": 20,
+       "n_cand": 20,
+       "n_pass": 1,
+       "n_unknown": 19,
+       "pass_ids": [
+        "chord2|L+2+0|L0.6|P4|ex|eta1.262182e-01|ph270"
+       ]
+      }
+     },
+     "status": "pass",
+     "n_groups_pass": 2,
+     "n_groups_unknown": 4
+    },
+    "L+2+1": {
+     "groups": {
+      "arc/0.3/4": {
+       "status": "unknown",
+       "n_base": 2,
+       "n_cand": 1,
+       "n_pass": 0,
+       "n_unknown": 1,
+       "pass_ids": []
+      },
+      "chord2/0.15/4": {
+       "status": "unknown",
+       "n_base": 24,
+       "n_cand": 20,
+       "n_pass": 0,
+       "n_unknown": 20,
+       "pass_ids": []
+      },
+      "chord2/0.3/2": {
+       "status": "unknown",
+       "n_base": 24,
+       "n_cand": 24,
+       "n_pass": 0,
+       "n_unknown": 23,
+       "pass_ids": []
+      },
+      "chord2/0.3/4": {
+       "status": "unknown",
+       "n_base": 24,
+       "n_cand": 20,
+       "n_pass": 0,
+       "n_unknown": 20,
+       "pass_ids": []
+      },
+      "chord2/0.3/6": {
+       "status": "unknown",
+       "n_base": 24,
+       "n_cand": 20,
+       "n_pass": 0,
+       "n_unknown": 20,
+       "pass_ids": []
+      },
+      "chord2/0.6/4": {
+       "status": "pass",
+       "n_base": 24,
+       "n_cand": 24,
+       "n_pass": 1,
+       "n_unknown": 23,
+       "pass_ids": [
+        "chord2|L+2+1|L0.6|P4|ex|eta1.179542e-01|ph270"
+       ]
+      }
+     },
+     "status": "pass",
+     "n_groups_pass": 1,
+     "n_groups_unknown": 5
+    },
+    "L+2+2": {
+     "groups": {
+      "arc/0.3/4": {
+       "status": "pass",
+       "n_base": 8,
+       "n_cand": 5,
+       "n_pass": 1,
+       "n_unknown": 4,
+       "pass_ids": [
+        "arc|L+2+2|L0.3|P4|log|eta3.962676e-03|ph180"
+       ]
+      },
+      "chord2/0.15/4": {
+       "status": "pass",
+       "n_base": 24,
+       "n_cand": 16,
+       "n_pass": 1,
+       "n_unknown": 15,
+       "pass_ids": [
+        "chord2|L+2+2|L0.15|P4|log|eta3.677973e-03|ph180"
+       ]
+      },
+      "chord2/0.3/2": {
+       "status": "unknown",
+       "n_base": 24,
+       "n_cand": 16,
+       "n_pass": 0,
+       "n_unknown": 16,
+       "pass_ids": []
+      },
+      "chord2/0.3/4": {
+       "status": "unknown",
+       "n_base": 24,
+       "n_cand": 16,
+       "n_pass": 0,
+       "n_unknown": 16,
+       "pass_ids": []
+      },
+      "chord2/0.3/6": {
+       "status": "unknown",
+       "n_base": 24,
+       "n_cand": 16,
+       "n_pass": 0,
+       "n_unknown": 16,
+       "pass_ids": []
+      },
+      "chord2/0.6/4": {
+       "status": "unknown",
+       "n_base": 24,
+       "n_cand": 20,
+       "n_pass": 0,
+       "n_unknown": 19,
+       "pass_ids": []
+      }
+     },
+     "status": "pass",
+     "n_groups_pass": 2,
+     "n_groups_unknown": 4
+    },
+    "L+2+3": {
+     "groups": {
+      "arc/0.3/4": {
+       "status": "pass",
+       "n_base": 12,
+       "n_cand": 11,
+       "n_pass": 1,
+       "n_unknown": 10,
+       "pass_ids": [
+        "arc|L+2+3|L0.3|P4|log|eta2.111213e-03|ph90"
+       ]
+      },
+      "chord2/0.15/4": {
+       "status": "unknown",
+       "n_base": 23,
+       "n_cand": 15,
+       "n_pass": 0,
+       "n_unknown": 14,
+       "pass_ids": []
+      },
+      "chord2/0.3/2": {
+       "status": "unknown",
+       "n_base": 24,
+       "n_cand": 16,
+       "n_pass": 0,
+       "n_unknown": 16,
+       "pass_ids": []
+      },
+      "chord2/0.3/4": {
+       "status": "unknown",
+       "n_base": 24,
+       "n_cand": 16,
+       "n_pass": 0,
+       "n_unknown": 16,
+       "pass_ids": []
+      },
+      "chord2/0.3/6": {
+       "status": "pass",
+       "n_base": 23,
+       "n_cand": 15,
+       "n_pass": 1,
+       "n_unknown": 14,
+       "pass_ids": [
+        "chord2|L+2+3|L0.3|P6|log|eta2.042672e-03|ph90"
+       ]
+      },
+      "chord2/0.6/4": {
+       "status": "unknown",
+       "n_base": 24,
+       "n_cand": 16,
+       "n_pass": 0,
+       "n_unknown": 16,
+       "pass_ids": []
+      }
+     },
+     "status": "pass",
+     "n_groups_pass": 2,
+     "n_groups_unknown": 4
+    },
+    "L+2+4": {
+     "groups": {
+      "arc/0.3/4": {
+       "status": "unknown",
+       "n_base": 19,
+       "n_cand": 14,
+       "n_pass": 0,
+       "n_unknown": 13,
+       "pass_ids": []
+      },
+      "chord2/0.15/4": {
+       "status": "unknown",
+       "n_base": 20,
+       "n_cand": 12,
+       "n_pass": 0,
+       "n_unknown": 11,
+       "pass_ids": []
+      },
+      "chord2/0.3/2": {
+       "status": "unknown",
+       "n_base": 22,
+       "n_cand": 14,
+       "n_pass": 0,
+       "n_unknown": 13,
+       "pass_ids": []
+      },
+      "chord2/0.3/4": {
+       "status": "unknown",
+       "n_base": 21,
+       "n_cand": 13,
+       "n_pass": 0,
+       "n_unknown": 12,
+       "pass_ids": []
+      },
+      "chord2/0.3/6": {
+       "status": "unknown",
+       "n_base": 20,
+       "n_cand": 12,
+       "n_pass": 0,
+       "n_unknown": 11,
+       "pass_ids": []
+      },
+      "chord2/0.6/4": {
+       "status": "unknown",
+       "n_base": 22,
+       "n_cand": 14,
+       "n_pass": 0,
+       "n_unknown": 14,
+       "pass_ids": []
+      }
+     },
+     "status": "unknown",
+     "n_groups_pass": 0,
+     "n_groups_unknown": 6
+    },
+    "L+2-1": {
+     "groups": {
+      "arc/0.3/4": {
+       "status": "fail",
+       "n_base": 3,
+       "n_cand": 3,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.15/4": {
+       "status": "unknown",
+       "n_base": 17,
+       "n_cand": 17,
+       "n_pass": 0,
+       "n_unknown": 16,
+       "pass_ids": []
+      },
+      "chord2/0.3/2": {
+       "status": "unknown",
+       "n_base": 17,
+       "n_cand": 17,
+       "n_pass": 0,
+       "n_unknown": 16,
+       "pass_ids": []
+      },
+      "chord2/0.3/4": {
+       "status": "unknown",
+       "n_base": 17,
+       "n_cand": 17,
+       "n_pass": 0,
+       "n_unknown": 16,
+       "pass_ids": []
+      },
+      "chord2/0.3/6": {
+       "status": "unknown",
+       "n_base": 18,
+       "n_cand": 18,
+       "n_pass": 0,
+       "n_unknown": 17,
+       "pass_ids": []
+      },
+      "chord2/0.6/4": {
+       "status": "unknown",
+       "n_base": 17,
+       "n_cand": 17,
+       "n_pass": 0,
+       "n_unknown": 16,
+       "pass_ids": []
+      }
+     },
+     "status": "unknown",
+     "n_groups_pass": 0,
+     "n_groups_unknown": 5
+    },
+    "L+2-2": {
+     "groups": {
+      "arc/0.3/4": {
+       "status": "fail",
+       "n_base": 0,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.15/4": {
+       "status": "pass",
+       "n_base": 9,
+       "n_cand": 9,
+       "n_pass": 1,
+       "n_unknown": 6,
+       "pass_ids": [
+        "chord2|L+2-2|L0.15|P4|log|eta4.778537e-03|ph270"
+       ]
+      },
+      "chord2/0.3/2": {
+       "status": "pass",
+       "n_base": 10,
+       "n_cand": 10,
+       "n_pass": 1,
+       "n_unknown": 7,
+       "pass_ids": [
+        "chord2|L+2-2|L0.3|P2|ex|eta3.486293e-02|ph180"
+       ]
+      },
+      "chord2/0.3/4": {
+       "status": "pass",
+       "n_base": 9,
+       "n_cand": 9,
+       "n_pass": 1,
+       "n_unknown": 7,
+       "pass_ids": [
+        "chord2|L+2-2|L0.3|P4|log|eta5.151200e-03|ph270"
+       ]
+      },
+      "chord2/0.3/6": {
+       "status": "pass",
+       "n_base": 11,
+       "n_cand": 11,
+       "n_pass": 1,
+       "n_unknown": 8,
+       "pass_ids": [
+        "chord2|L+2-2|L0.3|P6|log|eta4.964623e-03|ph270"
+       ]
+      },
+      "chord2/0.6/4": {
+       "status": "pass",
+       "n_base": 11,
+       "n_cand": 11,
+       "n_pass": 1,
+       "n_unknown": 7,
+       "pass_ids": [
+        "chord2|L+2-2|L0.6|P4|log|eta5.665166e-03|ph270"
+       ]
+      }
+     },
+     "status": "pass",
+     "n_groups_pass": 5,
+     "n_groups_unknown": 0
+    },
+    "L+3+0": {
+     "groups": {
+      "arc/0.3/4": {
+       "status": "fail",
+       "n_base": 2,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.15/4": {
+       "status": "unknown",
+       "n_base": 24,
+       "n_cand": 8,
+       "n_pass": 0,
+       "n_unknown": 8,
+       "pass_ids": []
+      },
+      "chord2/0.3/2": {
+       "status": "unknown",
+       "n_base": 23,
+       "n_cand": 11,
+       "n_pass": 0,
+       "n_unknown": 11,
+       "pass_ids": []
+      },
+      "chord2/0.3/4": {
+       "status": "unknown",
+       "n_base": 23,
+       "n_cand": 8,
+       "n_pass": 0,
+       "n_unknown": 8,
+       "pass_ids": []
+      },
+      "chord2/0.3/6": {
+       "status": "unknown",
+       "n_base": 22,
+       "n_cand": 7,
+       "n_pass": 0,
+       "n_unknown": 7,
+       "pass_ids": []
+      },
+      "chord2/0.6/4": {
+       "status": "unknown",
+       "n_base": 23,
+       "n_cand": 12,
+       "n_pass": 0,
+       "n_unknown": 12,
+       "pass_ids": []
+      }
+     },
+     "status": "unknown",
+     "n_groups_pass": 0,
+     "n_groups_unknown": 5
+    },
+    "L+3+1": {
+     "groups": {
+      "arc/0.3/4": {
+       "status": "fail",
+       "n_base": 5,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.15/4": {
+       "status": "unknown",
+       "n_base": 22,
+       "n_cand": 6,
+       "n_pass": 0,
+       "n_unknown": 6,
+       "pass_ids": []
+      },
+      "chord2/0.3/2": {
+       "status": "unknown",
+       "n_base": 23,
+       "n_cand": 11,
+       "n_pass": 0,
+       "n_unknown": 11,
+       "pass_ids": []
+      },
+      "chord2/0.3/4": {
+       "status": "unknown",
+       "n_base": 23,
+       "n_cand": 7,
+       "n_pass": 0,
+       "n_unknown": 7,
+       "pass_ids": []
+      },
+      "chord2/0.3/6": {
+       "status": "unknown",
+       "n_base": 22,
+       "n_cand": 6,
+       "n_pass": 0,
+       "n_unknown": 6,
+       "pass_ids": []
+      },
+      "chord2/0.6/4": {
+       "status": "unknown",
+       "n_base": 23,
+       "n_cand": 11,
+       "n_pass": 0,
+       "n_unknown": 11,
+       "pass_ids": []
+      }
+     },
+     "status": "unknown",
+     "n_groups_pass": 0,
+     "n_groups_unknown": 5
+    },
+    "L+3+2": {
+     "groups": {
+      "arc/0.3/4": {
+       "status": "unknown",
+       "n_base": 7,
+       "n_cand": 3,
+       "n_pass": 0,
+       "n_unknown": 3,
+       "pass_ids": []
+      },
+      "chord2/0.15/4": {
+       "status": "unknown",
+       "n_base": 22,
+       "n_cand": 6,
+       "n_pass": 0,
+       "n_unknown": 6,
+       "pass_ids": []
+      },
+      "chord2/0.3/2": {
+       "status": "unknown",
+       "n_base": 22,
+       "n_cand": 10,
+       "n_pass": 0,
+       "n_unknown": 10,
+       "pass_ids": []
+      },
+      "chord2/0.3/4": {
+       "status": "unknown",
+       "n_base": 22,
+       "n_cand": 6,
+       "n_pass": 0,
+       "n_unknown": 6,
+       "pass_ids": []
+      },
+      "chord2/0.3/6": {
+       "status": "unknown",
+       "n_base": 22,
+       "n_cand": 6,
+       "n_pass": 0,
+       "n_unknown": 6,
+       "pass_ids": []
+      },
+      "chord2/0.6/4": {
+       "status": "unknown",
+       "n_base": 23,
+       "n_cand": 11,
+       "n_pass": 0,
+       "n_unknown": 11,
+       "pass_ids": []
+      }
+     },
+     "status": "unknown",
+     "n_groups_pass": 0,
+     "n_groups_unknown": 6
+    },
+    "L+3+3": {
+     "groups": {
+      "arc/0.3/4": {
+       "status": "unknown",
+       "n_base": 16,
+       "n_cand": 5,
+       "n_pass": 0,
+       "n_unknown": 5,
+       "pass_ids": []
+      },
+      "chord2/0.15/4": {
+       "status": "unknown",
+       "n_base": 22,
+       "n_cand": 8,
+       "n_pass": 0,
+       "n_unknown": 8,
+       "pass_ids": []
+      },
+      "chord2/0.3/2": {
+       "status": "unknown",
+       "n_base": 22,
+       "n_cand": 8,
+       "n_pass": 0,
+       "n_unknown": 8,
+       "pass_ids": []
+      },
+      "chord2/0.3/4": {
+       "status": "unknown",
+       "n_base": 22,
+       "n_cand": 8,
+       "n_pass": 0,
+       "n_unknown": 8,
+       "pass_ids": []
+      },
+      "chord2/0.3/6": {
+       "status": "unknown",
+       "n_base": 22,
+       "n_cand": 8,
+       "n_pass": 0,
+       "n_unknown": 8,
+       "pass_ids": []
+      },
+      "chord2/0.6/4": {
+       "status": "unknown",
+       "n_base": 22,
+       "n_cand": 11,
+       "n_pass": 0,
+       "n_unknown": 11,
+       "pass_ids": []
+      }
+     },
+     "status": "unknown",
+     "n_groups_pass": 0,
+     "n_groups_unknown": 6
+    },
+    "L+3+4": {
+     "groups": {
+      "arc/0.3/4": {
+       "status": "unknown",
+       "n_base": 22,
+       "n_cand": 8,
+       "n_pass": 0,
+       "n_unknown": 8,
+       "pass_ids": []
+      },
+      "chord2/0.15/4": {
+       "status": "pass",
+       "n_base": 15,
+       "n_cand": 6,
+       "n_pass": 1,
+       "n_unknown": 5,
+       "pass_ids": [
+        "chord2|L+3+4|L0.15|P4|log|eta2.590496e-03|ph90"
+       ]
+      },
+      "chord2/0.3/2": {
+       "status": "pass",
+       "n_base": 17,
+       "n_cand": 6,
+       "n_pass": 1,
+       "n_unknown": 5,
+       "pass_ids": [
+        "chord2|L+3+4|L0.3|P2|log|eta2.866949e-03|ph90"
+       ]
+      },
+      "chord2/0.3/4": {
+       "status": "pass",
+       "n_base": 17,
+       "n_cand": 6,
+       "n_pass": 1,
+       "n_unknown": 5,
+       "pass_ids": [
+        "chord2|L+3+4|L0.3|P4|log|eta2.731361e-03|ph90"
+       ]
+      },
+      "chord2/0.3/6": {
+       "status": "unknown",
+       "n_base": 17,
+       "n_cand": 6,
+       "n_pass": 0,
+       "n_unknown": 6,
+       "pass_ids": []
+      },
+      "chord2/0.6/4": {
+       "status": "unknown",
+       "n_base": 19,
+       "n_cand": 10,
+       "n_pass": 0,
+       "n_unknown": 10,
+       "pass_ids": []
+      }
+     },
+     "status": "pass",
+     "n_groups_pass": 3,
+     "n_groups_unknown": 3
+    },
+    "L+3-1": {
+     "groups": {
+      "arc/0.3/4": {
+       "status": "fail",
+       "n_base": 0,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.15/4": {
+       "status": "unknown",
+       "n_base": 22,
+       "n_cand": 12,
+       "n_pass": 0,
+       "n_unknown": 11,
+       "pass_ids": []
+      },
+      "chord2/0.3/2": {
+       "status": "unknown",
+       "n_base": 21,
+       "n_cand": 11,
+       "n_pass": 0,
+       "n_unknown": 11,
+       "pass_ids": []
+      },
+      "chord2/0.3/4": {
+       "status": "unknown",
+       "n_base": 21,
+       "n_cand": 12,
+       "n_pass": 0,
+       "n_unknown": 10,
+       "pass_ids": []
+      },
+      "chord2/0.3/6": {
+       "status": "unknown",
+       "n_base": 22,
+       "n_cand": 12,
+       "n_pass": 0,
+       "n_unknown": 10,
+       "pass_ids": []
+      },
+      "chord2/0.6/4": {
+       "status": "unknown",
+       "n_base": 19,
+       "n_cand": 11,
+       "n_pass": 0,
+       "n_unknown": 11,
+       "pass_ids": []
+      }
+     },
+     "status": "unknown",
+     "n_groups_pass": 0,
+     "n_groups_unknown": 5
+    },
+    "L+3-2": {
+     "groups": {
+      "arc/0.3/4": {
+       "status": "fail",
+       "n_base": 1,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.15/4": {
+       "status": "unknown",
+       "n_base": 21,
+       "n_cand": 11,
+       "n_pass": 0,
+       "n_unknown": 9,
+       "pass_ids": []
+      },
+      "chord2/0.3/2": {
+       "status": "unknown",
+       "n_base": 19,
+       "n_cand": 10,
+       "n_pass": 0,
+       "n_unknown": 9,
+       "pass_ids": []
+      },
+      "chord2/0.3/4": {
+       "status": "unknown",
+       "n_base": 19,
+       "n_cand": 11,
+       "n_pass": 0,
+       "n_unknown": 11,
+       "pass_ids": []
+      },
+      "chord2/0.3/6": {
+       "status": "unknown",
+       "n_base": 20,
+       "n_cand": 11,
+       "n_pass": 0,
+       "n_unknown": 10,
+       "pass_ids": []
+      },
+      "chord2/0.6/4": {
+       "status": "unknown",
+       "n_base": 15,
+       "n_cand": 11,
+       "n_pass": 0,
+       "n_unknown": 10,
+       "pass_ids": []
+      }
+     },
+     "status": "unknown",
+     "n_groups_pass": 0,
+     "n_groups_unknown": 5
+    },
+    "L+4+0": {
+     "groups": {
+      "arc/0.3/4": {
+       "status": "unknown",
+       "n_base": 4,
+       "n_cand": 2,
+       "n_pass": 0,
+       "n_unknown": 2,
+       "pass_ids": []
+      },
+      "chord2/0.15/4": {
+       "status": "unknown",
+       "n_base": 24,
+       "n_cand": 16,
+       "n_pass": 0,
+       "n_unknown": 16,
+       "pass_ids": []
+      },
+      "chord2/0.3/2": {
+       "status": "pass",
+       "n_base": 24,
+       "n_cand": 16,
+       "n_pass": 1,
+       "n_unknown": 15,
+       "pass_ids": [
+        "chord2|L+4+0|L0.3|P2|log|eta1.614346e-02|ph270"
+       ]
+      },
+      "chord2/0.3/4": {
+       "status": "unknown",
+       "n_base": 24,
+       "n_cand": 16,
+       "n_pass": 0,
+       "n_unknown": 16,
+       "pass_ids": []
+      },
+      "chord2/0.3/6": {
+       "status": "unknown",
+       "n_base": 24,
+       "n_cand": 16,
+       "n_pass": 0,
+       "n_unknown": 16,
+       "pass_ids": []
+      },
+      "chord2/0.6/4": {
+       "status": "unknown",
+       "n_base": 24,
+       "n_cand": 16,
+       "n_pass": 0,
+       "n_unknown": 15,
+       "pass_ids": []
+      }
+     },
+     "status": "pass",
+     "n_groups_pass": 1,
+     "n_groups_unknown": 5
+    },
+    "L+4+1": {
+     "groups": {
+      "arc/0.3/4": {
+       "status": "unknown",
+       "n_base": 5,
+       "n_cand": 3,
+       "n_pass": 0,
+       "n_unknown": 3,
+       "pass_ids": []
+      },
+      "chord2/0.15/4": {
+       "status": "unknown",
+       "n_base": 22,
+       "n_cand": 14,
+       "n_pass": 0,
+       "n_unknown": 14,
+       "pass_ids": []
+      },
+      "chord2/0.3/2": {
+       "status": "unknown",
+       "n_base": 22,
+       "n_cand": 14,
+       "n_pass": 0,
+       "n_unknown": 14,
+       "pass_ids": []
+      },
+      "chord2/0.3/4": {
+       "status": "unknown",
+       "n_base": 22,
+       "n_cand": 14,
+       "n_pass": 0,
+       "n_unknown": 14,
+       "pass_ids": []
+      },
+      "chord2/0.3/6": {
+       "status": "unknown",
+       "n_base": 22,
+       "n_cand": 14,
+       "n_pass": 0,
+       "n_unknown": 14,
+       "pass_ids": []
+      },
+      "chord2/0.6/4": {
+       "status": "unknown",
+       "n_base": 23,
+       "n_cand": 15,
+       "n_pass": 0,
+       "n_unknown": 14,
+       "pass_ids": []
+      }
+     },
+     "status": "unknown",
+     "n_groups_pass": 0,
+     "n_groups_unknown": 6
+    },
+    "L+4+2": {
+     "groups": {
+      "arc/0.3/4": {
+       "status": "unknown",
+       "n_base": 12,
+       "n_cand": 6,
+       "n_pass": 0,
+       "n_unknown": 6,
+       "pass_ids": []
+      },
+      "chord2/0.15/4": {
+       "status": "unknown",
+       "n_base": 24,
+       "n_cand": 16,
+       "n_pass": 0,
+       "n_unknown": 16,
+       "pass_ids": []
+      },
+      "chord2/0.3/2": {
+       "status": "unknown",
+       "n_base": 22,
+       "n_cand": 14,
+       "n_pass": 0,
+       "n_unknown": 14,
+       "pass_ids": []
+      },
+      "chord2/0.3/4": {
+       "status": "unknown",
+       "n_base": 23,
+       "n_cand": 15,
+       "n_pass": 0,
+       "n_unknown": 15,
+       "pass_ids": []
+      },
+      "chord2/0.3/6": {
+       "status": "unknown",
+       "n_base": 23,
+       "n_cand": 15,
+       "n_pass": 0,
+       "n_unknown": 15,
+       "pass_ids": []
+      },
+      "chord2/0.6/4": {
+       "status": "unknown",
+       "n_base": 24,
+       "n_cand": 16,
+       "n_pass": 0,
+       "n_unknown": 15,
+       "pass_ids": []
+      }
+     },
+     "status": "unknown",
+     "n_groups_pass": 0,
+     "n_groups_unknown": 6
+    },
+    "L+4+3": {
+     "groups": {
+      "arc/0.3/4": {
+       "status": "unknown",
+       "n_base": 19,
+       "n_cand": 11,
+       "n_pass": 0,
+       "n_unknown": 11,
+       "pass_ids": []
+      },
+      "chord2/0.15/4": {
+       "status": "unknown",
+       "n_base": 21,
+       "n_cand": 15,
+       "n_pass": 0,
+       "n_unknown": 15,
+       "pass_ids": []
+      },
+      "chord2/0.3/2": {
+       "status": "unknown",
+       "n_base": 21,
+       "n_cand": 15,
+       "n_pass": 0,
+       "n_unknown": 15,
+       "pass_ids": []
+      },
+      "chord2/0.3/4": {
+       "status": "unknown",
+       "n_base": 20,
+       "n_cand": 14,
+       "n_pass": 0,
+       "n_unknown": 14,
+       "pass_ids": []
+      },
+      "chord2/0.3/6": {
+       "status": "unknown",
+       "n_base": 20,
+       "n_cand": 14,
+       "n_pass": 0,
+       "n_unknown": 14,
+       "pass_ids": []
+      },
+      "chord2/0.6/4": {
+       "status": "unknown",
+       "n_base": 21,
+       "n_cand": 11,
+       "n_pass": 0,
+       "n_unknown": 11,
+       "pass_ids": []
+      }
+     },
+     "status": "unknown",
+     "n_groups_pass": 0,
+     "n_groups_unknown": 6
+    },
+    "L+4+4": {
+     "groups": {
+      "arc/0.3/4": {
+       "status": "unknown",
+       "n_base": 22,
+       "n_cand": 14,
+       "n_pass": 0,
+       "n_unknown": 14,
+       "pass_ids": []
+      },
+      "chord2/0.15/4": {
+       "status": "pass",
+       "n_base": 16,
+       "n_cand": 14,
+       "n_pass": 1,
+       "n_unknown": 13,
+       "pass_ids": [
+        "chord2|L+4+4|L0.15|P4|log|eta1.454507e-03|ph90"
+       ]
+      },
+      "chord2/0.3/2": {
+       "status": "pass",
+       "n_base": 16,
+       "n_cand": 14,
+       "n_pass": 1,
+       "n_unknown": 13,
+       "pass_ids": [
+        "chord2|L+4+4|L0.3|P2|log|eta1.591525e-03|ph90"
+       ]
+      },
+      "chord2/0.3/4": {
+       "status": "pass",
+       "n_base": 16,
+       "n_cand": 14,
+       "n_pass": 1,
+       "n_unknown": 13,
+       "pass_ids": [
+        "chord2|L+4+4|L0.3|P4|log|eta1.524284e-03|ph90"
+       ]
+      },
+      "chord2/0.3/6": {
+       "status": "pass",
+       "n_base": 16,
+       "n_cand": 14,
+       "n_pass": 1,
+       "n_unknown": 13,
+       "pass_ids": [
+        "chord2|L+4+4|L0.3|P6|log|eta1.489400e-03|ph90"
+       ]
+      },
+      "chord2/0.6/4": {
+       "status": "pass",
+       "n_base": 15,
+       "n_cand": 10,
+       "n_pass": 1,
+       "n_unknown": 9,
+       "pass_ids": [
+        "chord2|L+4+4|L0.6|P4|log|eta1.629589e-03|ph90"
+       ]
+      }
+     },
+     "status": "pass",
+     "n_groups_pass": 5,
+     "n_groups_unknown": 1
+    },
+    "L+4-1": {
+     "groups": {
+      "arc/0.3/4": {
+       "status": "fail",
+       "n_base": 0,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.15/4": {
+       "status": "unknown",
+       "n_base": 24,
+       "n_cand": 16,
+       "n_pass": 0,
+       "n_unknown": 16,
+       "pass_ids": []
+      },
+      "chord2/0.3/2": {
+       "status": "unknown",
+       "n_base": 24,
+       "n_cand": 16,
+       "n_pass": 0,
+       "n_unknown": 15,
+       "pass_ids": []
+      },
+      "chord2/0.3/4": {
+       "status": "unknown",
+       "n_base": 24,
+       "n_cand": 16,
+       "n_pass": 0,
+       "n_unknown": 15,
+       "pass_ids": []
+      },
+      "chord2/0.3/6": {
+       "status": "unknown",
+       "n_base": 24,
+       "n_cand": 16,
+       "n_pass": 0,
+       "n_unknown": 16,
+       "pass_ids": []
+      },
+      "chord2/0.6/4": {
+       "status": "pass",
+       "n_base": 24,
+       "n_cand": 16,
+       "n_pass": 1,
+       "n_unknown": 13,
+       "pass_ids": [
+        "chord2|L+4-1|L0.6|P4|log|eta1.320230e-02|ph0"
+       ]
+      }
+     },
+     "status": "pass",
+     "n_groups_pass": 1,
+     "n_groups_unknown": 4
+    },
+    "L+4-2": {
+     "groups": {
+      "arc/0.3/4": {
+       "status": "fail",
+       "n_base": 0,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.15/4": {
+       "status": "unknown",
+       "n_base": 24,
+       "n_cand": 16,
+       "n_pass": 0,
+       "n_unknown": 16,
+       "pass_ids": []
+      },
+      "chord2/0.3/2": {
+       "status": "pass",
+       "n_base": 23,
+       "n_cand": 15,
+       "n_pass": 1,
+       "n_unknown": 13,
+       "pass_ids": [
+        "chord2|L+4-2|L0.3|P2|log|eta7.882873e-03|ph0"
+       ]
+      },
+      "chord2/0.3/4": {
+       "status": "unknown",
+       "n_base": 23,
+       "n_cand": 15,
+       "n_pass": 0,
+       "n_unknown": 14,
+       "pass_ids": []
+      },
+      "chord2/0.3/6": {
+       "status": "unknown",
+       "n_base": 24,
+       "n_cand": 16,
+       "n_pass": 0,
+       "n_unknown": 16,
+       "pass_ids": []
+      },
+      "chord2/0.6/4": {
+       "status": "pass",
+       "n_base": 23,
+       "n_cand": 16,
+       "n_pass": 1,
+       "n_unknown": 13,
+       "pass_ids": [
+        "chord2|L+4-2|L0.6|P4|log|eta8.084229e-03|ph0"
+       ]
+      }
+     },
+     "status": "pass",
+     "n_groups_pass": 2,
+     "n_groups_unknown": 3
+    },
+    "L-1+0": {
+     "groups": {
+      "arc/0.3/4": {
+       "status": "fail",
+       "n_base": 0,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.15/4": {
+       "status": "fail",
+       "n_base": 0,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.3/2": {
+       "status": "fail",
+       "n_base": 0,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.3/4": {
+       "status": "fail",
+       "n_base": 0,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.3/6": {
+       "status": "fail",
+       "n_base": 0,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.6/4": {
+       "status": "fail",
+       "n_base": 0,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      }
+     },
+     "status": "fail",
+     "n_groups_pass": 0,
+     "n_groups_unknown": 0
+    },
+    "L-1+1": {
+     "groups": {
+      "arc/0.3/4": {
+       "status": "fail",
+       "n_base": 0,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.15/4": {
+       "status": "fail",
+       "n_base": 0,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.3/2": {
+       "status": "fail",
+       "n_base": 0,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.3/4": {
+       "status": "fail",
+       "n_base": 0,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.3/6": {
+       "status": "fail",
+       "n_base": 0,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.6/4": {
+       "status": "fail",
+       "n_base": 0,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      }
+     },
+     "status": "fail",
+     "n_groups_pass": 0,
+     "n_groups_unknown": 0
+    },
+    "L-1+2": {
+     "groups": {
+      "arc/0.3/4": {
+       "status": "fail",
+       "n_base": 0,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.15/4": {
+       "status": "pass",
+       "n_base": 2,
+       "n_cand": 2,
+       "n_pass": 1,
+       "n_unknown": 1,
+       "pass_ids": [
+        "chord2|L-1+2|L0.15|P4|log|eta1.602833e-01|ph180"
+       ]
+      },
+      "chord2/0.3/2": {
+       "status": "fail",
+       "n_base": 0,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.3/4": {
+       "status": "fail",
+       "n_base": 0,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.3/6": {
+       "status": "pass",
+       "n_base": 1,
+       "n_cand": 1,
+       "n_pass": 1,
+       "n_unknown": 0,
+       "pass_ids": [
+        "chord2|L-1+2|L0.3|P6|log|eta1.618611e-01|ph180"
+       ]
+      },
+      "chord2/0.6/4": {
+       "status": "fail",
+       "n_base": 3,
+       "n_cand": 3,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      }
+     },
+     "status": "pass",
+     "n_groups_pass": 2,
+     "n_groups_unknown": 0
+    },
+    "L-1+3": {
+     "groups": {
+      "arc/0.3/4": {
+       "status": "fail",
+       "n_base": 0,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.15/4": {
+       "status": "pass",
+       "n_base": 3,
+       "n_cand": 3,
+       "n_pass": 1,
+       "n_unknown": 2,
+       "pass_ids": [
+        "chord2|L-1+3|L0.15|P4|log|eta4.260410e-02|ph180"
+       ]
+      },
+      "chord2/0.3/2": {
+       "status": "fail",
+       "n_base": 1,
+       "n_cand": 1,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.3/4": {
+       "status": "pass",
+       "n_base": 2,
+       "n_cand": 2,
+       "n_pass": 1,
+       "n_unknown": 1,
+       "pass_ids": [
+        "chord2|L-1+3|L0.3|P4|log|eta4.464554e-02|ph180"
+       ]
+      },
+      "chord2/0.3/6": {
+       "status": "pass",
+       "n_base": 3,
+       "n_cand": 3,
+       "n_pass": 1,
+       "n_unknown": 2,
+       "pass_ids": [
+        "chord2|L-1+3|L0.3|P6|log|eta4.363203e-02|ph180"
+       ]
+      },
+      "chord2/0.6/4": {
+       "status": "fail",
+       "n_base": 0,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      }
+     },
+     "status": "pass",
+     "n_groups_pass": 3,
+     "n_groups_unknown": 0
+    },
+    "L-1+4": {
+     "groups": {
+      "arc/0.3/4": {
+       "status": "fail",
+       "n_base": 1,
+       "n_cand": 1,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.15/4": {
+       "status": "pass",
+       "n_base": 8,
+       "n_cand": 8,
+       "n_pass": 1,
+       "n_unknown": 7,
+       "pass_ids": [
+        "chord2|L-1+4|L0.15|P4|log|eta2.044573e-02|ph270"
+       ]
+      },
+      "chord2/0.3/2": {
+       "status": "pass",
+       "n_base": 3,
+       "n_cand": 3,
+       "n_pass": 1,
+       "n_unknown": 2,
+       "pass_ids": [
+        "chord2|L-1+4|L0.3|P2|log|eta2.198004e-02|ph180"
+       ]
+      },
+      "chord2/0.3/4": {
+       "status": "pass",
+       "n_base": 5,
+       "n_cand": 5,
+       "n_pass": 1,
+       "n_unknown": 3,
+       "pass_ids": [
+        "chord2|L-1+4|L0.3|P4|log|eta2.124241e-02|ph180"
+       ]
+      },
+      "chord2/0.3/6": {
+       "status": "pass",
+       "n_base": 5,
+       "n_cand": 5,
+       "n_pass": 1,
+       "n_unknown": 3,
+       "pass_ids": [
+        "chord2|L-1+4|L0.3|P6|log|eta2.084669e-02|ph180"
+       ]
+      },
+      "chord2/0.6/4": {
+       "status": "pass",
+       "n_base": 3,
+       "n_cand": 3,
+       "n_pass": 1,
+       "n_unknown": 2,
+       "pass_ids": [
+        "chord2|L-1+4|L0.6|P4|log|eta2.232494e-02|ph180"
+       ]
+      }
+     },
+     "status": "pass",
+     "n_groups_pass": 5,
+     "n_groups_unknown": 0
+    },
+    "L-1-1": {
+     "groups": {
+      "arc/0.3/4": {
+       "status": "fail",
+       "n_base": 0,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.15/4": {
+       "status": "fail",
+       "n_base": 0,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.3/2": {
+       "status": "fail",
+       "n_base": 0,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.3/4": {
+       "status": "fail",
+       "n_base": 0,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.3/6": {
+       "status": "fail",
+       "n_base": 0,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.6/4": {
+       "status": "fail",
+       "n_base": 0,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      }
+     },
+     "status": "fail",
+     "n_groups_pass": 0,
+     "n_groups_unknown": 0
+    },
+    "L-1-2": {
+     "groups": {
+      "arc/0.3/4": {
+       "status": "fail",
+       "n_base": 0,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.15/4": {
+       "status": "fail",
+       "n_base": 0,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.3/2": {
+       "status": "fail",
+       "n_base": 0,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.3/4": {
+       "status": "fail",
+       "n_base": 0,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.3/6": {
+       "status": "fail",
+       "n_base": 0,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      },
+      "chord2/0.6/4": {
+       "status": "fail",
+       "n_base": 0,
+       "n_cand": 0,
+       "n_pass": 0,
+       "n_unknown": 0,
+       "pass_ids": []
+      }
+     },
+     "status": "fail",
+     "n_groups_pass": 0,
+     "n_groups_unknown": 0
+    }
+   }
+  }
+ },
+ "post_freeze": {
+  "held": {
+   "best_dist_by_pos": {
+    "L+0+0": 0.9592883335174532,
+    "L+0+1": 0.7687612834691684,
+    "L+1+0": 0.7892164361798311,
+    "L+1+1": 0.7942422998226512,
+    "L+0+2": 0.8205397453664334,
+    "L+1-1": 0.7986037694213498,
+    "L+1+2": 0.7349916908234982,
+    "L+2+0": 0.711743631455137,
+    "L+2+1": 0.6915419994622857,
+    "L-1+2": 0.9038586061984526,
+    "L+2-1": 0.7081679598358482,
+    "L+2+2": 0.6666630376374988,
+    "L+0-2": 0.9955116634851913,
+    "L+0+3": 0.7273605862283986,
+    "L+1-2": 0.8166727396069935,
+    "L+1+3": 0.6694277791239438,
+    "L+3+0": 0.6666630242660492,
+    "L+3+1": 0.6666630320704908,
+    "L-1+3": 0.7761404328277954,
+    "L+2-2": 0.7061854148189013,
+    "L+2+3": 0.6666630239020219,
+    "L+3-1": 0.6666666145340531,
+    "L+3+2": 0.6666630272318039,
+    "L+0+4": 0.6666629893034576,
+    "L+1+4": 0.6666630036412909,
+    "L+3-2": 0.6666665137841983,
+    "L+3+3": 0.6666630195670847,
+    "L+4+0": 0.6666629936710642,
+    "L+4+1": 0.6666630104875522,
+    "L-1+4": 0.6698574842129803,
+    "L+2+4": 0.6666630140103514,
+    "L+4-1": 0.6666666139290258,
+    "L+4+2": 0.6666630140921618,
+    "L+3+4": 0.6666630139805473,
+    "L+4-2": 0.6666665301347008,
+    "L+4+3": 0.666663013567393,
+    "L+4+4": 0.6666630113444241
+   },
+   "n_by_pos": {
+    "L+0+0": {
+     "n_ac": 6,
+     "n_d": 0
+    },
+    "L+0+1": {
+     "n_ac": 67,
+     "n_d": 0
+    },
+    "L+1+0": {
+     "n_ac": 86,
+     "n_d": 0
+    },
+    "L+1+1": {
+     "n_ac": 117,
+     "n_d": 0
+    },
+    "L+0+2": {
+     "n_ac": 85,
+     "n_d": 0
+    },
+    "L+1-1": {
+     "n_ac": 45,
+     "n_d": 0
+    },
+    "L+1+2": {
+     "n_ac": 121,
+     "n_d": 0
+    },
+    "L+2+0": {
+     "n_ac": 111,
+     "n_d": 0
+    },
+    "L+2+1": {
+     "n_ac": 122,
+     "n_d": 12
+    },
+    "L-1+2": {
+     "n_ac": 6,
+     "n_d": 0
+    },
+    "L+2-1": {
+     "n_ac": 89,
+     "n_d": 0
+    },
+    "L+2+2": {
+     "n_ac": 128,
+     "n_d": 36
+    },
+    "L+0-2": {
+     "n_ac": 3,
+     "n_d": 0
+    },
+    "L+0+3": {
+     "n_ac": 91,
+     "n_d": 0
+    },
+    "L+1-2": {
+     "n_ac": 8,
+     "n_d": 0
+    },
+    "L+1+3": {
+     "n_ac": 132,
+     "n_d": 32
+    },
+    "L+3+0": {
+     "n_ac": 117,
+     "n_d": 38
+    },
+    "L+3+1": {
+     "n_ac": 118,
+     "n_d": 44
+    },
+    "L-1+3": {
+     "n_ac": 9,
+     "n_d": 0
+    },
+    "L+2-2": {
+     "n_ac": 50,
+     "n_d": 0
+    },
+    "L+2+3": {
+     "n_ac": 130,
+     "n_d": 46
+    },
+    "L+3-1": {
+     "n_ac": 105,
+     "n_d": 30
+    },
+    "L+3+2": {
+     "n_ac": 118,
+     "n_d": 44
+    },
+    "L+0+4": {
+     "n_ac": 100,
+     "n_d": 36
+    },
+    "L+1+4": {
+     "n_ac": 132,
+     "n_d": 38
+    },
+    "L+3-2": {
+     "n_ac": 95,
+     "n_d": 26
+    },
+    "L+3+3": {
+     "n_ac": 126,
+     "n_d": 38
+    },
+    "L+4+0": {
+     "n_ac": 124,
+     "n_d": 42
+    },
+    "L+4+1": {
+     "n_ac": 116,
+     "n_d": 42
+    },
+    "L-1+4": {
+     "n_ac": 25,
+     "n_d": 14
+    },
+    "L+2+4": {
+     "n_ac": 124,
+     "n_d": 34
+    },
+    "L+4-1": {
+     "n_ac": 120,
+     "n_d": 40
+    },
+    "L+4+2": {
+     "n_ac": 128,
+     "n_d": 46
+    },
+    "L+3+4": {
+     "n_ac": 107,
+     "n_d": 22
+    },
+    "L+4-2": {
+     "n_ac": 117,
+     "n_d": 39
+    },
+    "L+4+3": {
+     "n_ac": 122,
+     "n_d": 38
+    },
+    "L+4+4": {
+     "n_ac": 101,
+     "n_d": 17
+    }
+   },
+   "drift": {
+    "n": 575,
+    "median": 0.12407625999047266,
+    "p90": 0.1874435853663954,
+    "max": 0.20648518828326431
+   },
+   "unknown_plants": 678,
+   "unknown_runs_upper": 1356,
+   "unknown_positions": 22,
+   "unknown_positions_margin_gt_maxdrift": [],
+   "unknown_positions_margin": {
+    "L+0+4": 0.032307012556379466,
+    "L+1+3": 0.029542223847089377,
+    "L+1+4": 0.032307000694727916,
+    "L+2+1": 0.007428004873733185,
+    "L+2+2": 0.03230696669852007,
+    "L+2+3": 0.03230698009323418,
+    "L+2+4": 0.03230699028286632,
+    "L+3+0": 0.032303339821396215,
+    "L+3+1": 0.03230697226552803,
+    "L+3+2": 0.032306971371731774,
+    "L+3+3": 0.03230698476893412,
+    "L+3+4": 0.03230699030788542,
+    "L+3-1": 0.03230338980196579,
+    "L+3-2": 0.03230349055182058,
+    "L+4+0": 0.03230700463320535,
+    "L+4+1": 0.03230698766492146,
+    "L+4+2": 0.03230699024385708,
+    "L+4+3": 0.032306990768625865,
+    "L+4+4": 0.032306992991594785,
+    "L+4-1": 0.03230339040699304,
+    "L+4-2": 0.03230347420131807,
+    "L-1+4": 0.029112520123038554
+   }
+  },
+  "relocated": {
+   "best_dist_by_pos": {
+    "L+0+0": 0.5118586698310067,
+    "L+0+1": 0.18630346386335891,
+    "L+1+0": 0.07467412818765033,
+    "L+1+1": 0.08366449354059613,
+    "L+0-1": 0.7125525546505859,
+    "L+0+2": 0.04691564192839758,
+    "L+1-1": 0.1095118851649156,
+    "L+1+2": 0.05953771465935618,
+    "L+2+0": 0.07174375460775313,
+    "L+2+1": 0.07039564744583535,
+    "L-1+2": 0.07392206880547295,
+    "L+2-1": 0.06449384740418135,
+    "L+2+2": 0.08199588289977255,
+    "L+0-2": 0.49451561795713384,
+    "L+0+3": 0.06147599810598465,
+    "L+1-2": 0.19412542561881166,
+    "L+1+3": 0.11985601130823768,
+    "L+3+0": 0.08247463469688703,
+    "L+3+1": 0.07377946027419112,
+    "L-1+3": 0.07418463742247593,
+    "L+2-2": 0.06848070205732952,
+    "L+2+3": 0.15736367589684247,
+    "L+3-1": 0.0738290095896864,
+    "L+3+2": 0.0779447356280611,
+    "L+0+4": 0.28557490309779,
+    "L+1+4": 0.21898662326234075,
+    "L+3-2": 0.07768283944154727,
+    "L+3+3": 0.07937663274284072,
+    "L+4+0": 0.1603999671389803,
+    "L+4+1": 0.14167478303730405,
+    "L-1+4": 0.32036046828960224,
+    "L+2+4": 0.14151365914709702,
+    "L+4-1": 0.18212475933453523,
+    "L+4+2": 0.12890140860500351,
+    "L+3+4": 0.08334151804143762,
+    "L+4-2": 0.20161064201321113,
+    "L+4+3": 0.12271899185996785,
+    "L+4+4": 0.1223941455273377
+   },
+   "n_by_pos": {
+    "L+0+0": {
+     "n_ac": 22,
+     "n_d": 11
+    },
+    "L+0+1": {
+     "n_ac": 69,
+     "n_d": 69
+    },
+    "L+1+0": {
+     "n_ac": 86,
+     "n_d": 86
+    },
+    "L+1+1": {
+     "n_ac": 117,
+     "n_d": 117
+    },
+    "L+0-1": {
+     "n_ac": 4,
+     "n_d": 0
+    },
+    "L+0+2": {
+     "n_ac": 85,
+     "n_d": 85
+    },
+    "L+1-1": {
+     "n_ac": 45,
+     "n_d": 45
+    },
+    "L+1+2": {
+     "n_ac": 121,
+     "n_d": 121
+    },
+    "L+2+0": {
+     "n_ac": 111,
+     "n_d": 111
+    },
+    "L+2+1": {
+     "n_ac": 122,
+     "n_d": 109
+    },
+    "L-1+2": {
+     "n_ac": 6,
+     "n_d": 6
+    },
+    "L+2-1": {
+     "n_ac": 89,
+     "n_d": 89
+    },
+    "L+2+2": {
+     "n_ac": 128,
+     "n_d": 89
+    },
+    "L+0-2": {
+     "n_ac": 13,
+     "n_d": 9
+    },
+    "L+0+3": {
+     "n_ac": 91,
+     "n_d": 87
+    },
+    "L+1-2": {
+     "n_ac": 8,
+     "n_d": 8
+    },
+    "L+1+3": {
+     "n_ac": 132,
+     "n_d": 93
+    },
+    "L+3+0": {
+     "n_ac": 117,
+     "n_d": 46
+    },
+    "L+3+1": {
+     "n_ac": 118,
+     "n_d": 41
+    },
+    "L-1+3": {
+     "n_ac": 9,
+     "n_d": 9
+    },
+    "L+2-2": {
+     "n_ac": 50,
+     "n_d": 50
+    },
+    "L+2+3": {
+     "n_ac": 130,
+     "n_d": 89
+    },
+    "L+3-1": {
+     "n_ac": 105,
+     "n_d": 58
+    },
+    "L+3+2": {
+     "n_ac": 118,
+     "n_d": 42
+    },
+    "L+0+4": {
+     "n_ac": 100,
+     "n_d": 67
+    },
+    "L+1+4": {
+     "n_ac": 132,
+     "n_d": 85
+    },
+    "L+3-2": {
+     "n_ac": 95,
+     "n_d": 54
+    },
+    "L+3+3": {
+     "n_ac": 126,
+     "n_d": 48
+    },
+    "L+4+0": {
+     "n_ac": 124,
+     "n_d": 82
+    },
+    "L+4+1": {
+     "n_ac": 116,
+     "n_d": 74
+    },
+    "L-1+4": {
+     "n_ac": 25,
+     "n_d": 25
+    },
+    "L+2+4": {
+     "n_ac": 124,
+     "n_d": 79
+    },
+    "L+4-1": {
+     "n_ac": 120,
+     "n_d": 80
+    },
+    "L+4+2": {
+     "n_ac": 128,
+     "n_d": 82
+    },
+    "L+3+4": {
+     "n_ac": 107,
+     "n_d": 42
+    },
+    "L+4-2": {
+     "n_ac": 117,
+     "n_d": 78
+    },
+    "L+4+3": {
+     "n_ac": 122,
+     "n_d": 80
+    },
+    "L+4+4": {
+     "n_ac": 101,
+     "n_d": 80
+    }
+   },
+   "drift": {
+    "n": 486,
+    "median": 0.09522522827884591,
+    "p90": 0.11636517341743514,
+    "max": 0.13012796600066778
+   },
+   "unknown_plants": 2240,
+   "unknown_runs_upper": 4475,
+   "unknown_positions": 12,
+   "unknown_positions_margin_gt_maxdrift": [
+    "L+0-2",
+    "L+2+4",
+    "L+2-1",
+    "L+3+0",
+    "L+3+1",
+    "L+3+2",
+    "L+3+3",
+    "L+3-1",
+    "L+3-2",
+    "L+4+1",
+    "L+4+2",
+    "L+4+3"
+   ],
+   "unknown_positions_margin": {
+    "L+0-2": 0.18144581942013294,
+    "L+2+4": 0.5574563451889218,
+    "L+2-1": 0.6344761569318376,
+    "L+3+0": 0.6164953696391319,
+    "L+3+1": 0.6251905440618277,
+    "L+3+2": 0.6210252687079577,
+    "L+3+3": 0.6195933715931782,
+    "L+3-1": 0.6251409947463324,
+    "L+3-2": 0.6212871648944716,
+    "L+4+1": 0.5572952212987148,
+    "L+4+2": 0.5700685957310153,
+    "L+4+3": 0.576251012476051
+   }
+  }
+ },
+ "context": {
+  "held": {
+   "n_plants": 3401,
+   "per_position": {
+    "L+0+0": {
+     "n": 6,
+     "absQ": 2.374969473488028,
+     "rho20": [
+      4.055633080018585,
+      4.384947610255977
+     ],
+     "rho21": [
+      0.26298486436182433,
+      0.2855116607363315
+     ],
+     "rho22": [
+      0.10077830786011173,
+      0.10982764379192682
+     ],
+     "s20": [
+      39.925718688488374,
+      40.08441707891128,
+      40.243115469334185
+     ],
+     "s21": [
+      2.599633852450168,
+      2.6045861267898927,
+      2.6095384011296177
+     ]
+    },
+    "L+0+1": {
+     "n": 67,
+     "absQ": 2.5141559219746097,
+     "rho20": [
+      3.8863632745545433,
+      8.90271962926448
+     ],
+     "rho21": [
+      0.2566932821563735,
+      0.6347048499577699
+     ],
+     "rho22": [
+      0.10032323824351261,
+      0.2674779515034902
+     ],
+     "s20": [
+      33.28393828060371,
+      34.11591127668648,
+      38.73841537213194
+     ],
+     "s21": [
+      2.3729239976233627,
+      2.402898763123977,
+      2.55866224666021
+     ]
+    },
+    "L+1+0": {
+     "n": 86,
+     "absQ": 2.591713718758305,
+     "rho20": [
+      4.036019742162176,
+      19.676938748061097
+     ],
+     "rho21": [
+      0.2792451770064771,
+      1.4821525377010862
+     ],
+     "rho22": [
+      0.114233664289041,
+      0.6626206761331069
+     ],
+     "s20": [
+      29.695630481817922,
+      31.25354504913527,
+      35.33126392540461
+     ],
+     "s21": [
+      2.2368039378888196,
+      2.296733753456025,
+      2.444508619629971
+     ]
+    },
+    "L+1+1": {
+     "n": 117,
+     "absQ": 2.7198308770951183,
+     "rho20": [
+      4.016327509787842,
+      28.223464412634648
+     ],
+     "rho21": [
+      0.296068433614755,
+      2.248511746926579
+     ],
+     "rho22": [
+      0.1296132692363237,
+      1.0685359963541734
+     ],
+     "s20": [
+      26.41320882865212,
+      27.113187184124047,
+      30.98700876424062
+     ],
+     "s21": [
+      2.104291998209197,
+      2.132617896081868,
+      2.2842447795598293
+     ]
+    },
+    "L+0+2": {
+     "n": 85,
+     "absQ": 2.669546778013077,
+     "rho20": [
+      3.9933858185160114,
+      21.447398108200716
+     ],
+     "rho21": [
+      0.29561347261764037,
+      1.6873919291133699
+     ],
+     "rho22": [
+      0.12956424485850881,
+      0.7894080353114025
+     ],
+     "s20": [
+      27.168963512944522,
+      27.81470514843212,
+      30.82166552104716
+     ],
+     "s21": [
+      2.137540858002205,
+      2.163385419945906,
+      2.281597619315934
+     ]
+    },
+    "L+1-1": {
+     "n": 45,
+     "absQ": 2.482232865788381,
+     "rho20": [
+      4.194604775531908,
+      17.29198534771965
+     ],
+     "rho21": [
+      0.2779391084594345,
+      1.2531849889588635
+     ],
+     "rho22": [
+      0.10900445658009197,
+      0.5364182139397374
+     ],
+     "s20": [
+      31.80105877319996,
+      32.689345229593556,
+      38.48103928163603
+     ],
+     "s21": [
+      2.320053547464668,
+      2.35275606448534,
+      2.5497958265148206
+     ]
+    },
+    "L+1+2": {
+     "n": 121,
+     "absQ": 2.864084495960271,
+     "rho20": [
+      4.05462358706633,
+      48.30630468847809
+     ],
+     "rho21": [
+      0.3229720195557119,
+      4.126218527608502
+     ],
+     "rho22": [
+      0.15351740142760914,
+      2.1136938607824267
+     ],
+     "s20": [
+      22.853974071058964,
+      23.761182561307596,
+      26.411491787647808
+     ],
+     "s21": [
+      1.9521363070435842,
+      1.9922302177612266,
+      2.1038137471862357
+     ]
+    },
+    "L+2+0": {
+     "n": 111,
+     "absQ": 2.8139793886949493,
+     "rho20": [
+      4.3236439102478785,
+      64.45707014973216
+     ],
+     "rho21": [
+      0.33896710700679894,
+      5.4521803862109754
+     ],
+     "rho22": [
+      0.15845556784785453,
+      2.7623747519244395
+     ],
+     "s20": [
+      23.333934001832088,
+      23.93297493659948,
+      27.28615957755012
+     ],
+     "s21": [
+      1.9737294450771576,
+      1.9995912636498747,
+      2.1391934130851595
+     ]
+    },
+    "L+2+1": {
+     "n": 122,
+     "absQ": 2.9324017460095746,
+     "rho20": [
+      4.223968180442231,
+      75.07839078240099
+     ],
+     "rho21": [
+      0.3458459711109084,
+      6.59485400979903
+     ],
+     "rho22": [
+      0.16955724583689705,
+      3.4857046827946676
+     ],
+     "s20": [
+      21.538941939914086,
+      22.230478257621346,
+      24.911752721587682
+     ],
+     "s21": [
+      1.891971526546993,
+      1.923258151077017,
+      2.0397003348567577
+     ]
+    },
+    "L-1+2": {
+     "n": 6,
+     "absQ": 2.484950703736394,
+     "rho20": [
+      3.8484304393907784,
+      9.747010985950178
+     ],
+     "rho21": [
+      0.2546653656096736,
+      0.7069027816296796
+     ],
+     "rho22": [
+      0.10013476579710509,
+      0.3024877257576576
+     ],
+     "s20": [
+      32.22283139435262,
+      35.451760251774644,
+      38.43251051476506
+     ],
+     "s21": [
+      2.3369635242523024,
+      2.444408058533581,
+      2.543226256959359
+     ]
+    },
+    "L+2-1": {
+     "n": 89,
+     "absQ": 2.7134811589543055,
+     "rho20": [
+      4.516475759090319,
+      70.12588413669283
+     ],
+     "rho21": [
+      0.3456206396598042,
+      5.817383028755485
+     ],
+     "rho22": [
+      0.1570869512604932,
+      2.87845956112852
+     ],
+     "s20": [
+      24.36229609882012,
+      25.001903650686856,
+      28.75143812295883
+     ],
+     "s21": [
+      2.0210056473660303,
+      2.048033703560769,
+      2.2001868193792276
+     ]
+    },
+    "L+2+2": {
+     "n": 128,
+     "absQ": 3.0666724637626364,
+     "rho20": [
+      4.17822314487897,
+      91.85790621207575
+     ],
+     "rho21": [
+      0.36212918988022774,
+      8.400300777061693
+     ],
+     "rho22": [
+      0.1886504648815292,
+      4.641630695778247
+     ],
+     "s20": [
+      19.393596207083238,
+      19.964464181985754,
+      22.164066663009294
+     ],
+     "s21": [
+      1.7908967505233242,
+      1.8181818828057894,
+      1.9195775112859736
+     ]
+    },
+    "L+0-2": {
+     "n": 3,
+     "absQ": 2.157424390332139,
+     "rho20": [
+      4.596938091108687,
+      4.635174507159105
+     ],
+     "rho21": [
+      0.2785240040600116,
+      0.2808407112873431
+     ],
+     "rho22": [
+      0.10020534835810113,
+      0.10103883650050363
+     ],
+     "s20": [
+      45.87517698836526,
+      45.87517698836527,
+      45.87517698836527
+     ],
+     "s21": [
+      2.7795323166250356,
+      2.779532316625036,
+      2.779532316625036
+     ]
+    },
+    "L+0+3": {
+     "n": 91,
+     "absQ": 2.8384819886692956,
+     "rho20": [
+      4.1029011074760025,
+      51.23738273641519
+     ],
+     "rho21": [
+      0.3380692634629796,
+      4.445457748872286
+     ],
+     "rho22": [
+      0.16591123977050332,
+      2.307796327559717
+     ],
+     "s20": [
+      22.20186509725233,
+      22.696018796291973,
+      24.729494596938338
+     ],
+     "s21": [
+      1.926278196990178,
+      1.9482521458105577,
+      2.0376513606348428
+     ]
+    },
+    "L+1-2": {
+     "n": 8,
+     "absQ": 2.393946532402092,
+     "rho20": [
+      4.525208940140154,
+      10.899537241150552
+     ],
+     "rho21": [
+      0.29677496281586047,
+      0.7886351345436418
+     ],
+     "rho22": [
+      0.11541937263244667,
+      0.336079959072843
+     ],
+     "s20": [
+      31.95833250074217,
+      34.37130376290672,
+      39.206667277171015
+     ],
+     "s21": [
+      2.33007664778483,
+      2.41275625485251,
+      2.5712751338628497
+     ]
+    },
+    "L+1+3": {
+     "n": 132,
+     "absQ": 3.022164787035942,
+     "rho20": [
+      4.1041123170889575,
+      88.05539917163887
+     ],
+     "rho21": [
+      0.35486069165470663,
+      8.102307639740648
+     ],
+     "rho22": [
+      0.18404354262463937,
+      4.4963633570932116
+     ],
+     "s20": [
+      19.58369290433959,
+      20.061776779458064,
+      22.299681143713805
+     ],
+     "s21": [
+      1.8019690572735625,
+      1.8245600426221928,
+      1.9281344327220022
+     ]
+    },
+    "L+3+0": {
+     "n": 117,
+     "absQ": 3.0405558702316258,
+     "rho20": [
+      4.1023223116537455,
+      98.33055123854442
+     ],
+     "rho21": [
+      0.3824395386914799,
+      8.710245226661385
+     ],
+     "rho22": [
+      0.20622079506183316,
+      4.64163203734796
+     ],
+     "s20": [
+      19.04129441209452,
+      19.497799421707573,
+      21.91959773249039
+     ],
+     "s21": [
+      1.7751271835377735,
+      1.7970288622384172,
+      1.9093836102070194
+     ]
+    },
+    "L+3+1": {
+     "n": 118,
+     "absQ": 3.150472980363425,
+     "rho20": [
+      3.8798970457289954,
+      92.34361798184169
+     ],
+     "rho21": [
+      0.37115469473513635,
+      8.423348530536844
+     ],
+     "rho22": [
+      0.21271661141605486,
+      4.641630687826848
+     ],
+     "s20": [
+      18.008887976634792,
+      18.61561835519853,
+      20.553089519067377
+     ],
+     "s21": [
+      1.722747598894413,
+      1.7529430325150352,
+      1.8452493272061097
+     ]
+    },
+    "L-1+3": {
+     "n": 9,
+     "absQ": 2.6656106242285276,
+     "rho20": [
+      4.142813977072622,
+      11.64732743407947
+     ],
+     "rho21": [
+      0.3392789370214489,
+      0.9598236660663886
+     ],
+     "rho22": [
+      0.16484812866380838,
+      0.4694384556517387
+     ],
+     "s20": [
+      24.811191528629788,
+      24.97490178689417,
+      25.399344953280657
+     ],
+     "s21": [
+      2.0446208752408874,
+      2.051549924000773,
+      2.0693332384991416
+     ]
+    },
+    "L+2-2": {
+     "n": 50,
+     "absQ": 2.6329603111326993,
+     "rho20": [
+      4.831836598233533,
+      37.885234932181284
+     ],
+     "rho21": [
+      0.3696390517704829,
+      2.898248322708828
+     ],
+     "rho22": [
+      0.16733615097089308,
+      1.3120413456235085
+     ],
+     "s20": [
+      24.30349190728749,
+      24.952212892079945,
+      28.875031307932957
+     ],
+     "s21": [
+      2.022464469236631,
+      2.0499427540681943,
+      2.20896112182465
+     ]
+    },
+    "L+2+3": {
+     "n": 130,
+     "absQ": 3.2148063705299577,
+     "rho20": [
+      3.712611382490242,
+      87.6607083722714
+     ],
+     "rho21": [
+      0.36276682185594583,
+      8.200500874864591
+     ],
+     "rho22": [
+      0.2140117082214453,
+      4.64162861934473
+     ],
+     "s20": [
+      17.232416597287887,
+      17.69328962315531,
+      19.45770189249508
+     ],
+     "s21": [
+      1.6838145331824832,
+      1.707255784229702,
+      1.794220735157704
+     ]
+    },
+    "L+3-1": {
+     "n": 105,
+     "absQ": 2.9477923943181614,
+     "rho20": [
+      4.214409771185004,
+      101.5628089278999
+     ],
+     "rho21": [
+      0.3883738755017291,
+      8.869416096206436
+     ],
+     "rho22": [
+      0.20940105002134599,
+      4.641600632436071
+     ],
+     "s20": [
+      19.561556632093684,
+      20.040059022541946,
+      22.680099920491095
+     ],
+     "s21": [
+      1.8026717790938975,
+      1.8253336171836463,
+      1.9458092178449276
+     ]
+    },
+    "L+3+2": {
+     "n": 118,
+     "absQ": 3.2758174552315946,
+     "rho20": [
+      3.5917800573717615,
+      87.47854771779258
+     ],
+     "rho21": [
+      0.35631406677873473,
+      8.184258452392088
+     ],
+     "rho22": [
+      0.21544344393755285,
+      4.641591209858132
+     ],
+     "s20": [
+      16.671567149219257,
+      17.11426914742571,
+      18.846672135193558
+     ],
+     "s21": [
+      1.6538634870810598,
+      1.6767236452297976,
+      1.763244129515283
+     ]
+    },
+    "L+0+4": {
+     "n": 100,
+     "absQ": 3.018688456929598,
+     "rho20": [
+      3.961241322336336,
+      89.96266333327877
+     ],
+     "rho21": [
+      0.3720003355578089,
+      8.339375003857237
+     ],
+     "rho22": [
+      0.19977754335195064,
+      4.641629620177847
+     ],
+     "s20": [
+      18.386453713962496,
+      18.76514402890066,
+      20.75744654741537
+     ],
+     "s21": [
+      1.7473343072939247,
+      1.7659253214984816,
+      1.862072830190184
+     ]
+    },
+    "L+1+4": {
+     "n": 132,
+     "absQ": 3.192018170374348,
+     "rho20": [
+      3.6217172497570225,
+      87.63142930931936
+     ],
+     "rho21": [
+      0.35863064554432694,
+      8.2121553701662
+     ],
+     "rho22": [
+      0.21544345884397662,
+      4.641629634476417
+     ],
+     "s20": [
+      16.810522778884053,
+      17.19916788441744,
+      18.879605282194138
+     ],
+     "s21": [
+      1.6646160427165497,
+      1.6845087331432633,
+      1.76925394378225
+     ]
+    },
+    "L+3-2": {
+     "n": 95,
+     "absQ": 2.8738441154662513,
+     "rho20": [
+      4.184953384171047,
+      105.08102556647361
+     ],
+     "rho21": [
+      0.3876936983930488,
+      9.0389483019897
+     ],
+     "rho22": [
+      0.21544352130789887,
+      4.641627901837512
+     ],
+     "s20": [
+      19.424827671795803,
+      19.906306539872716,
+      22.639048128666317
+     ],
+     "s21": [
+      1.7995142572461087,
+      1.8224306432055632,
+      1.9473847399007518
+     ]
+    },
+    "L+3+3": {
+     "n": 126,
+     "absQ": 3.4148909206591065,
+     "rho20": [
+      3.2797745454837357,
+      79.09866095243478
+     ],
+     "rho21": [
+      0.33968590024931533,
+      7.764838429368333
+     ],
+     "rho22": [
+      0.21544345414742838,
+      4.641628114616772
+     ],
+     "s20": [
+      15.223365508142098,
+      15.552861887798388,
+      17.041286891664306
+     ],
+     "s21": [
+      1.576682343784373,
+      1.5944182346466234,
+      1.672883431261332
+     ]
+    },
+    "L+4+0": {
+     "n": 124,
+     "absQ": 3.2705473548016393,
+     "rho20": [
+      3.4474450388761175,
+      84.30782275769805
+     ],
+     "rho21": [
+      0.3491023995444731,
+      8.034790686284538
+     ],
+     "rho22": [
+      0.2154434629310237,
+      4.641590951189393
+     ],
+     "s20": [
+      16.00162206856002,
+      16.358284374348088,
+      18.16356151247978
+     ],
+     "s21": [
+      1.6203897662598346,
+      1.639123887581002,
+      1.731042388434864
+     ]
+    },
+    "L+4+1": {
+     "n": 116,
+     "absQ": 3.3729779127649206,
+     "rho20": [
+      3.3150150418671362,
+      80.52025424656222
+     ],
+     "rho21": [
+      0.341685468911048,
+      7.837774712903653
+     ],
+     "rho22": [
+      0.2154434574612582,
+      4.6415897961960315
+     ],
+     "s20": [
+      15.386937014533979,
+      15.836375264350632,
+      17.34755930232176
+     ],
+     "s21": [
+      1.5859634790539576,
+      1.6102079290388267,
+      1.6885970232283394
+     ]
+    },
+    "L-1+4": {
+     "n": 25,
+     "absQ": 2.8567429005775087,
+     "rho20": [
+      4.209111926304694,
+      19.331220045282663
+     ],
+     "rho21": [
+      0.37621858824102766,
+      1.7786964624231554
+     ],
+     "rho22": [
+      0.1994335602349862,
+      0.9781996536221428
+     ],
+     "s20": [
+      19.762039348206404,
+      19.992528541733193,
+      21.189406403036493
+     ],
+     "s21": [
+      1.8183368352635167,
+      1.8293019723086228,
+      1.8864357021844331
+     ]
+    },
+    "L+2+4": {
+     "n": 124,
+     "absQ": 3.3749785184501544,
+     "rho20": [
+      3.284750132706376,
+      78.98507389426182
+     ],
+     "rho21": [
+      0.3403071622688847,
+      7.768259614461142
+     ],
+     "rho22": [
+      0.21544345998342082,
+      4.64162846413627
+     ],
+     "s20": [
+      15.24645995177651,
+      15.650886989472765,
+      17.0168151471291
+     ],
+     "s21": [
+      1.5795659673390017,
+      1.6016617240152413,
+      1.6736204874753833
+     ]
+    },
+    "L+4-1": {
+     "n": 120,
+     "absQ": 3.184490540102137,
+     "rho20": [
+      3.5038612753919205,
+      86.16693309661053
+     ],
+     "rho21": [
+      0.3525596498528822,
+      8.136796511714087
+     ],
+     "rho22": [
+      0.21544348260994864,
+      4.64159188997272
+     ],
+     "s20": [
+      16.263481792211333,
+      16.713069228133755,
+      18.564090755750822
+     ],
+     "s21": [
+      1.6364367751429887,
+      1.659950639720809,
+      1.7530185127417375
+     ]
+    },
+    "L+4+2": {
+     "n": 128,
+     "absQ": 3.490340957557012,
+     "rho20": [
+      3.130189489769901,
+      75.45537465911157
+     ],
+     "rho21": [
+      0.33135128867239627,
+      7.572303373232941
+     ],
+     "rho22": [
+      0.21544345788847413,
+      4.641627771469089
+     ],
+     "s20": [
+      14.529052922647677,
+      14.835240157388428,
+      16.256366498713707
+     ],
+     "s21": [
+      1.5379964774792738,
+      1.5548844041601906,
+      1.6314031893797791
+     ]
+    },
+    "L+3+4": {
+     "n": 107,
+     "absQ": 3.5660874919160355,
+     "rho20": [
+      2.9871870788286436,
+      71.02861380224857
+     ],
+     "rho21": [
+      0.3234222970239728,
+      7.34056367646376
+     ],
+     "rho22": [
+      0.2154434613109464,
+      4.641628028166104
+     ],
+     "s20": [
+      13.802917342361734,
+      14.138485958268944,
+      15.302650326410815
+     ],
+     "s21": [
+      1.4976308480694067,
+      1.5168881862266141,
+      1.5814764378257014
+     ]
+    },
+    "L+4-2": {
+     "n": 117,
+     "absQ": 3.1161643088900175,
+     "rho20": [
+      3.4690557541628015,
+      85.65512710220113
+     ],
+     "rho21": [
+      0.35135840438719596,
+      8.125389854244952
+     ],
+     "rho22": [
+      0.2154435171852242,
+      4.641592586713878
+     ],
+     "s20": [
+      16.101926850647978,
+      16.47104367427868,
+      18.453822799394523
+     ],
+     "s21": [
+      1.6308608816719279,
+      1.6502381816763347,
+      1.7505607617314625
+     ]
+    },
+    "L+4+3": {
+     "n": 122,
+     "absQ": 3.6211848889555474,
+     "rho20": [
+      2.917574921152183,
+      69.77064244547738
+     ],
+     "rho21": [
+      0.3192130090365463,
+      7.266206548369018
+     ],
+     "rho22": [
+      0.21544346033715006,
+      4.641628018088975
+     ],
+     "s20": [
+      13.542183471610338,
+      13.845713554292939,
+      15.031628786226737
+     ],
+     "s21": [
+      1.4816555707130155,
+      1.499109889159096,
+      1.5654566977004083
+     ]
+    },
+    "L+4+4": {
+     "n": 101,
+     "absQ": 3.764104143086373,
+     "rho20": [
+      2.6974416838474036,
+      63.99138063387185
+     ],
+     "rho21": [
+      0.30624273553902637,
+      6.943375775139675
+     ],
+     "rho22": [
+      0.21544346438845272,
+      4.6416279506139535
+     ],
+     "s20": [
+      12.520415394038118,
+      12.763562488443855,
+      13.786524961807208
+     ],
+     "s21": [
+      1.4214528837881184,
+      1.4359430877960997,
+      1.4959049561825137
+     ]
+    }
+   },
+   "eta_spread": {
+    "s20": {
+     "n_sets": 1194,
+     "median": 0.0,
+     "max": 3.4638958368304884e-14
+    },
+    "s21": {
+     "n_sets": 1194,
+     "median": 5.551115123125783e-17,
+     "max": 2.7200464103316335e-15
+    }
+   },
+   "vs_absQ": {
+    "all": {
+     "n": 3401,
+     "rho_s20_absQ": -0.960140123766969,
+     "rho_s21_absQ": -0.9628465112135748,
+     "log10_s20": [
+      1.0976187378477245,
+      1.6615777527897833
+     ],
+     "log10_s21": [
+      0.15273246891569642,
+      0.44397172779006255
+     ]
+    },
+    "rho22_0.5_2": {
+     "n": 1114,
+     "rho_s20_absQ": -0.955539138362903,
+     "rho_s21_absQ": -0.9586496242036958,
+     "log10_s20": [
+      1.0976187378477245,
+      1.5083413430793091
+     ],
+     "log10_s21": [
+      0.15273246891569642,
+      0.36851166834077265
+     ]
+    }
+   }
+  },
+  "relocated": {
+   "n_plants": 3433,
+   "per_position": {
+    "L+0+0": {
+     "n": 22,
+     "absQ": 2.374969473488028,
+     "rho20": [
+      0.09872399239247151,
+      0.30770980156467637
+     ],
+     "rho21": [
+      0.09982737202668514,
+      0.3125356718744782
+     ],
+     "rho22": [
+      0.1161513655024335,
+      0.3743064014669221
+     ],
+     "s20": [
+      0.8220799867668548,
+      0.8342625529551743,
+      0.8858535592194664
+     ],
+     "s21": [
+      0.83491695532035,
+      0.8471621919433534,
+      0.8610581298360201
+     ]
+    },
+    "L+0+1": {
+     "n": 69,
+     "absQ": 2.5141559219746097,
+     "rho20": [
+      0.22392581353692476,
+      0.6551666551020519
+     ],
+     "rho21": [
+      0.22677843469156428,
+      0.6524069403233498
+     ],
+     "rho22": [
+      0.26662861652028763,
+      0.7946987240132766
+     ],
+     "s20": [
+      0.812527150375745,
+      0.8296141297412484,
+      0.8557918157597475
+     ],
+     "s21": [
+      0.8198686306549462,
+      0.8246178295772153,
+      0.8513107633430882
+     ]
+    },
+    "L+1+0": {
+     "n": 86,
+     "absQ": 2.591713718758305,
+     "rho20": [
+      0.2609329567385575,
+      1.1724739573374805
+     ],
+     "rho21": [
+      0.25967588815090903,
+      1.1812613945518706
+     ],
+     "rho22": [
+      0.3296781918051703,
+      1.501605908853444
+     ],
+     "s20": [
+      0.7808133614982421,
+      0.7990061324582807,
+      0.8370713498250294
+     ],
+     "s21": [
+      0.7858826486563529,
+      0.7944060830058222,
+      0.8158568348693912
+     ]
+    },
+    "L+1+1": {
+     "n": 117,
+     "absQ": 2.7198308770951183,
+     "rho20": [
+      0.26549687738044786,
+      1.7884290229367583
+     ],
+     "rho21": [
+      0.26392021693879836,
+      1.7587625677517662
+     ],
+     "rho22": [
+      0.33853260141499525,
+      2.2613504743263477
+     ],
+     "s20": [
+      0.7739791512149702,
+      0.7889137971876198,
+      0.8153179786929591
+     ],
+     "s21": [
+      0.7768328116947977,
+      0.781683137015232,
+      0.8056642959780987
+     ]
+    },
+    "L+0-1": {
+     "n": 4,
+     "absQ": 2.2549900221508743,
+     "rho20": [
+      0.10133218956035307,
+      0.19585590851889928
+     ],
+     "rho21": [
+      0.10078085180895789,
+      0.1938418050776158
+     ],
+     "rho22": [
+      0.11737919657444033,
+      0.22969669738266046
+     ],
+     "s20": [
+      0.8526718527111231,
+      0.8607781546414557,
+      0.8641451213472998
+     ],
+     "s21": [
+      0.8439033180990294,
+      0.855313137127682,
+      0.858629720957799
+     ]
+    },
+    "L+0+2": {
+     "n": 85,
+     "absQ": 2.669546778013077,
+     "rho20": [
+      0.31081038441588,
+      1.6466081210087344
+     ],
+     "rho21": [
+      0.3085505512162839,
+      1.61866487671916
+     ],
+     "rho22": [
+      0.38285670609600553,
+      2.0176537063890234
+     ],
+     "s20": [
+      0.7974739223539896,
+      0.8119453511509561,
+      0.8433580116856012
+     ],
+     "s21": [
+      0.801218040494859,
+      0.8055447740825202,
+      0.8247385064099296
+     ]
+    },
+    "L+1-1": {
+     "n": 45,
+     "absQ": 2.482232865788381,
+     "rho20": [
+      0.26725747383862836,
+      1.0342614653616282
+     ],
+     "rho21": [
+      0.2650200927185346,
+      1.0196815057412099
+     ],
+     "rho22": [
+      0.33291619356606295,
+      1.2868024679608172
+     ],
+     "s20": [
+      0.7898750324366766,
+      0.8041015218591033,
+      0.8403958106684019
+     ],
+     "s21": [
+      0.7903096274915001,
+      0.7948090461202462,
+      0.8212752951917823
+     ]
+    },
+    "L+1+2": {
+     "n": 121,
+     "absQ": 2.864084495960271,
+     "rho20": [
+      0.2759282228887948,
+      3.198236754018749
+     ],
+     "rho21": [
+      0.27406743244818677,
+      3.1508290917088417
+     ],
+     "rho22": [
+      0.357232186606622,
+      4.118901671408183
+     ],
+     "s20": [
+      0.7631415779063123,
+      0.7770695933495975,
+      0.8065018985231932
+     ],
+     "s21": [
+      0.7642062179937402,
+      0.7711653333109247,
+      0.7915044280641188
+     ]
+    },
+    "L+2+0": {
+     "n": 111,
+     "absQ": 2.8139793886949493,
+     "rho20": [
+      0.2262962130456846,
+      3.249133942660284
+     ],
+     "rho21": [
+      0.22468612726540346,
+      3.1998881212393573
+     ],
+     "rho22": [
+      0.3014826792125714,
+      4.291323600705002
+     ],
+     "s20": [
+      0.7439688463860279,
+      0.7559414125469001,
+      0.7796713401924672
+     ],
+     "s21": [
+      0.7449271278364088,
+      0.749564314096138,
+      0.7727957627102535
+     ]
+    },
+    "L+2+1": {
+     "n": 122,
+     "absQ": 2.9324017460095746,
+     "rho20": [
+      0.23182652512211227,
+      4.00428342446315
+     ],
+     "rho21": [
+      0.2301408221853426,
+      3.947188390635826
+     ],
+     "rho22": [
+      0.31082963966396504,
+      5.328619482766516
+     ],
+     "s20": [
+      0.7399834993633345,
+      0.7522526817795345,
+      0.7800286158480286
+     ],
+     "s21": [
+      0.7401009478568586,
+      0.7456810990553906,
+      0.7662157436595365
+     ]
+    },
+    "L-1+2": {
+     "n": 6,
+     "absQ": 2.484950703736394,
+     "rho20": [
+      0.34665959828228377,
+      0.8641435177265733
+     ],
+     "rho21": [
+      0.34836368679124863,
+      0.8434861020360568
+     ],
+     "rho22": [
+      0.4018967604867349,
+      1.0001495333337715
+     ],
+     "s20": [
+      0.8556340096359919,
+      0.8625327439987852,
+      0.8654036828954317
+     ],
+     "s21": [
+      0.8433599916049426,
+      0.8609183275782182,
+      0.8773160724035649
+     ]
+    },
+    "L+2-1": {
+     "n": 89,
+     "absQ": 2.7134811589543055,
+     "rho20": [
+      0.2288310208816918,
+      3.334151366399162
+     ],
+     "rho21": [
+      0.2272073749030122,
+      3.3444468848804334
+     ],
+     "rho22": [
+      0.30432569637678103,
+      4.477124540451379
+     ],
+     "s20": [
+      0.7447082019440577,
+      0.7575609115753812,
+      0.785644037920806
+     ],
+     "s21": [
+      0.7465178596946339,
+      0.7512763827049364,
+      0.7757763455807389
+     ]
+    },
+    "L+2+2": {
+     "n": 128,
+     "absQ": 3.0666724637626364,
+     "rho20": [
+      0.23623124438869655,
+      5.276865744285049
+     ],
+     "rho21": [
+      0.23446830432792057,
+      5.206070994591659
+     ],
+     "rho22": [
+      0.3202564075990119,
+      7.0766061409830705
+     ],
+     "s20": [
+      0.7332935527122492,
+      0.7432711957443228,
+      0.7685935591622178
+     ],
+     "s21": [
+      0.73189463453946,
+      0.7370356750476392,
+      0.7563244550594962
+     ]
+    },
+    "L+0-2": {
+     "n": 13,
+     "absQ": 2.157424390332139,
+     "rho20": [
+      0.09131891854307948,
+      0.3237781479612791
+     ],
+     "rho21": [
+      0.08736707736789748,
+      0.320246492655444
+     ],
+     "rho22": [
+      0.10040974803997994,
+      0.38002150354325287
+     ],
+     "s20": [
+      0.8519823016232404,
+      0.8555723441442972,
+      0.9094626799254513
+     ],
+     "s21": [
+      0.842706240750912,
+      0.8473317797936329,
+      0.870105533310478
+     ]
+    },
+    "L+0+3": {
+     "n": 91,
+     "absQ": 2.8384819886692956,
+     "rho20": [
+      0.3261456897179101,
+      4.058744683111133
+     ],
+     "rho21": [
+      0.32404984184018976,
+      3.999827772045219
+     ],
+     "rho22": [
+      0.4129688000011216,
+      5.122618058738364
+     ],
+     "s20": [
+      0.7788628866662348,
+      0.7904773860283546,
+      0.8105395540804272
+     ],
+     "s21": [
+      0.7800050879922149,
+      0.7841595085828813,
+      0.8016739028570441
+     ]
+    },
+    "L+1-2": {
+     "n": 8,
+     "absQ": 2.393946532402092,
+     "rho20": [
+      0.2867179981914693,
+      0.6480352895883336
+     ],
+     "rho21": [
+      0.2836792183647215,
+      0.6395501047171978
+     ],
+     "rho22": [
+      0.3556133393233978,
+      0.8071561344705418
+     ],
+     "s20": [
+      0.7985793668618557,
+      0.8110866428875043,
+      0.8400176900275368
+     ],
+     "s21": [
+      0.7901156258850639,
+      0.8008504040320144,
+      0.8211499613357475
+     ]
+    },
+    "L+1+3": {
+     "n": 132,
+     "absQ": 3.022164787035942,
+     "rho20": [
+      0.2892118164736367,
+      6.117834481856325
+     ],
+     "rho21": [
+      0.28713237673643915,
+      6.036377679052422
+     ],
+     "rho22": [
+      0.38199253370966707,
+      8.055270072364406
+     ],
+     "s20": [
+      0.7492027279401013,
+      0.7606154475282538,
+      0.7870379538399366
+     ],
+     "s21": [
+      0.7487440358046398,
+      0.7532896016643553,
+      0.7744247395406856
+     ]
+    },
+    "L+3+0": {
+     "n": 117,
+     "absQ": 3.0405558702316258,
+     "rho20": [
+      0.1667473142200696,
+      4.479351013490612
+     ],
+     "rho21": [
+      0.1654394922563863,
+      4.416814731926643
+     ],
+     "rho22": [
+      0.2329908575319882,
+      6.062248818892694
+     ],
+     "s20": [
+      0.7133053081531529,
+      0.7204594196945535,
+      0.7471947723176808
+     ],
+     "s21": [
+      0.709934223850626,
+      0.714134555330499,
+      0.7353241879238711
+     ]
+    },
+    "L+3+1": {
+     "n": 118,
+     "absQ": 3.150472980363425,
+     "rho20": [
+      0.17192969063378205,
+      4.502159979264718
+     ],
+     "rho21": [
+      0.17058044416274518,
+      4.439095040307345
+     ],
+     "rho22": [
+      0.24068587258211,
+      6.094041054743529
+     ],
+     "s20": [
+      0.7123171820952109,
+      0.7198814919132546,
+      0.7430944421545375
+     ],
+     "s21": [
+      0.7086172695290973,
+      0.7142282991820817,
+      0.7319050207120356
+     ]
+    },
+    "L-1+3": {
+     "n": 9,
+     "absQ": 2.6656106242285276,
+     "rho20": [
+      0.37067739439539243,
+      1.0428641497547866
+     ],
+     "rho21": [
+      0.3678831537999374,
+      1.031253298151383
+     ],
+     "rho22": [
+      0.45020567682401796,
+      1.265684994851688
+     ],
+     "s20": [
+      0.820881795257436,
+      0.8239523688727847,
+      0.8284424376592474
+     ],
+     "s21": [
+      0.8147787975255442,
+      0.8160543673163269,
+      0.8188394288683908
+     ]
+    },
+    "L+2-2": {
+     "n": 50,
+     "absQ": 2.6329603111326993,
+     "rho20": [
+      0.24275701695573196,
+      2.080709309207846
+     ],
+     "rho21": [
+      0.24094763012824513,
+      2.0513037465425934
+     ],
+     "rho22": [
+      0.32352160938407726,
+      2.648697322316643
+     ],
+     "s20": [
+      0.7495373984114765,
+      0.7569836891446452,
+      0.7855594868000944
+     ],
+     "s21": [
+      0.7447021200480853,
+      0.7496933604181157,
+      0.774714114241835
+     ]
+    },
+    "L+2+3": {
+     "n": 130,
+     "absQ": 3.2148063705299577,
+     "rho20": [
+      0.224922096350638,
+      5.728567449508924
+     ],
+     "rho21": [
+      0.22317699047290096,
+      5.651594725748751
+     ],
+     "rho22": [
+      0.30953625688141206,
+      7.599132916365387
+     ],
+     "s20": [
+      0.7244488684561264,
+      0.7317373132934175,
+      0.7545757807243741
+     ],
+     "s21": [
+      0.7208880384469792,
+      0.7255981632107469,
+      0.7437157354594437
+     ]
+    },
+    "L+3-1": {
+     "n": 105,
+     "absQ": 2.9477923943181614,
+     "rho20": [
+      0.16029015263500518,
+      4.4017151331058795
+     ],
+     "rho21": [
+      0.1590167417134503,
+      4.356111700776802
+     ],
+     "rho22": [
+      0.2245247676090461,
+      5.978953729763077
+     ],
+     "s20": [
+      0.7117359166103774,
+      0.7190471214658471,
+      0.7427178145021724
+     ],
+     "s21": [
+      0.7081136832830074,
+      0.7127602994525836,
+      0.7357615747946428
+     ]
+    },
+    "L+3+2": {
+     "n": 118,
+     "absQ": 3.2758174552315946,
+     "rho20": [
+      0.1746532556115682,
+      4.697533676738545
+     ],
+     "rho21": [
+      0.1732750613396385,
+      4.641326309576994
+     ],
+     "rho22": [
+      0.24614206007839046,
+      6.398135924443727
+     ],
+     "s20": [
+      0.7081692272759375,
+      0.7142639579197965,
+      0.7347232417295424
+     ],
+     "s21": [
+      0.7038910046768546,
+      0.7082544053460436,
+      0.7254185225801567
+     ]
+    },
+    "L+0+4": {
+     "n": 100,
+     "absQ": 3.018688456929598,
+     "rho20": [
+      0.32264797204364587,
+      7.576414913554037
+     ],
+     "rho21": [
+      0.3203566344112975,
+      7.477107204160288
+     ],
+     "rho22": [
+      0.42272031212400235,
+      9.714209352433443
+     ],
+     "s20": [
+      0.7595504693407639,
+      0.7678489599740574,
+      0.789918375576847
+     ],
+     "s21": [
+      0.7576148453001963,
+      0.7615337141507041,
+      0.7838745048622846
+     ]
+    },
+    "L+1+4": {
+     "n": 132,
+     "absQ": 3.192018170374348,
+     "rho20": [
+      0.26302061987889475,
+      6.779311508089176
+     ],
+     "rho21": [
+      0.2610330291457918,
+      6.6937751962016225
+     ],
+     "rho22": [
+      0.3567238928121049,
+      8.860255885185614
+     ],
+     "s20": [
+      0.7352993680900193,
+      0.7425401778504084,
+      0.7657625672369809
+     ],
+     "s21": [
+      0.7316301300323567,
+      0.7358093814640327,
+      0.7554832820792053
+     ]
+    },
+    "L+3-2": {
+     "n": 95,
+     "absQ": 2.8738441154662513,
+     "rho20": [
+      0.15446341723460905,
+      4.602717807657256
+     ],
+     "rho21": [
+      0.15322922577035844,
+      4.603155436089586
+     ],
+     "rho22": [
+      0.21754469157438905,
+      6.2750820729875025
+     ],
+     "s20": [
+      0.7086364538238034,
+      0.7152806906730212,
+      0.740219486276043
+     ],
+     "s21": [
+      0.704281346723132,
+      0.7092814699765876,
+      0.7335609929159175
+     ]
+    },
+    "L+3+3": {
+     "n": 126,
+     "absQ": 3.4148909206591065,
+     "rho20": [
+      0.17475104022392549,
+      4.546873470298015
+     ],
+     "rho21": [
+      0.17335265227194585,
+      4.500822442769194
+     ],
+     "rho22": [
+      0.2489924785541719,
+      6.283561319527064
+     ],
+     "s20": [
+      0.7009586687346641,
+      0.7055649211974784,
+      0.7238915037600782
+     ],
+     "s21": [
+      0.6961732565713258,
+      0.699659783367083,
+      0.7162852742094273
+     ]
+    },
+    "L+4+0": {
+     "n": 124,
+     "absQ": 3.2705473548016393,
+     "rho20": [
+      0.11186921650114884,
+      3.241900274584608
+     ],
+     "rho21": [
+      0.11094734660561101,
+      3.2090410198189088
+     ],
+     "rho22": [
+      0.16321865741505184,
+      4.568865308524317
+     ],
+     "s20": [
+      0.6847610960290059,
+      0.6896687383445828,
+      0.7097985270082562
+     ],
+     "s21": [
+      0.6797071427651918,
+      0.6834279840698709,
+      0.702371552479709
+     ]
+    },
+    "L+4+1": {
+     "n": 116,
+     "absQ": 3.3729779127649206,
+     "rho20": [
+      0.12235958127385924,
+      3.3838653307225055
+     ],
+     "rho21": [
+      0.12135694378810405,
+      3.3503414867859465
+     ],
+     "rho22": [
+      0.1779882440808928,
+      4.7726143674777415
+     ],
+     "s20": [
+      0.6868401907523215,
+      0.6917145999709174,
+      0.7092365670461858
+     ],
+     "s21": [
+      0.6817920029747767,
+      0.6863971291881744,
+      0.7019929180987975
+     ]
+    },
+    "L-1+4": {
+     "n": 25,
+     "absQ": 2.8567429005775087,
+     "rho20": [
+      0.38595463527620516,
+      1.7684738223185925
+     ],
+     "rho21": [
+      0.38317874372706534,
+      1.753128790824586
+     ],
+     "rho22": [
+      0.484812974917497,
+      2.231206728274335
+     ],
+     "s20": [
+      0.7914244597567788,
+      0.794919598304838,
+      0.808142554115539
+     ],
+     "s21": [
+      0.7856787614484148,
+      0.7879381242053517,
+      0.8020940773186115
+     ]
+    },
+    "L+2+4": {
+     "n": 124,
+     "absQ": 3.3749785184501544,
+     "rho20": [
+      0.21290395326589712,
+      5.440928967271393
+     ],
+     "rho21": [
+      0.2112404522845787,
+      5.385680683379691
+     ],
+     "rho22": [
+      0.2984386734746022,
+      7.387698964961427
+     ],
+     "s20": [
+      0.7123944601359378,
+      0.7182603291206758,
+      0.7367736399419731
+     ],
+     "s21": [
+      0.7077594108672653,
+      0.7127820025622719,
+      0.7290065159561915
+     ]
+    },
+    "L+4-1": {
+     "n": 120,
+     "absQ": 3.184490540102137,
+     "rho20": [
+      0.10172889871676319,
+      3.082973480110846
+     ],
+     "rho21": [
+      0.10088185028179994,
+      3.0523728556753587
+     ],
+     "rho22": [
+      0.1497049570293029,
+      4.361188413272005
+     ],
+     "s20": [
+      0.6790137333579219,
+      0.6847975762147939,
+      0.707110926967687
+     ],
+     "s21": [
+      0.6738345324576897,
+      0.6791348869868961,
+      0.6998947457501152
+     ]
+    },
+    "L+4+2": {
+     "n": 128,
+     "absQ": 3.490340957557012,
+     "rho20": [
+      0.13120350536320152,
+      3.4830423065416096
+     ],
+     "rho21": [
+      0.1301290075547244,
+      3.4501487161783295
+     ],
+     "rho22": [
+      0.1914027157572837,
+      4.939396951514128
+     ],
+     "s20": [
+      0.684981057509633,
+      0.6887807250931429,
+      0.7053243877019877
+     ],
+     "s21": [
+      0.679846224377346,
+      0.6829905746936453,
+      0.6984959398982333
+     ]
+    },
+    "L+3+4": {
+     "n": 107,
+     "absQ": 3.5660874919160355,
+     "rho20": [
+      0.1736081014617176,
+      4.369411917922427
+     ],
+     "rho21": [
+      0.17221068003162285,
+      4.32981228907204
+     ],
+     "rho22": [
+      0.25069592495793613,
+      6.140800186335899
+     ],
+     "s20": [
+      0.6912795240347391,
+      0.6961068601066992,
+      0.7116730151566166
+     ],
+     "s21": [
+      0.686167550413306,
+      0.6905298023949897,
+      0.7050892648659128
+     ]
+    },
+    "L+4-2": {
+     "n": 117,
+     "absQ": 3.1161643088900175,
+     "rho20": [
+      0.09475522622565091,
+      2.945801300560636
+     ],
+     "rho21": [
+      0.09395756813032191,
+      2.9182289218774806
+     ],
+     "rho22": [
+      0.14094268546693178,
+      4.195021007765838
+     ],
+     "s20": [
+      0.6719736155837702,
+      0.6778940574286685,
+      0.7023466960935796
+     ],
+     "s21": [
+      0.6666114209737961,
+      0.6718449547784452,
+      0.6956410746156562
+     ]
+    },
+    "L+4+3": {
+     "n": 122,
+     "absQ": 3.6211848889555474,
+     "rho20": [
+      0.13754201371448346,
+      3.531165828377028
+     ],
+     "rho21": [
+      0.1364093426747498,
+      3.4994142654959037
+     ],
+     "rho22": [
+      0.20220508509722496,
+      5.055451359599215
+     ],
+     "s20": [
+      0.6798401260341206,
+      0.6837373295406486,
+      0.6985991120150326
+     ],
+     "s21": [
+      0.6745934071096356,
+      0.6781340082771982,
+      0.6922060992341007
+     ]
+    },
+    "L+4+4": {
+     "n": 101,
+     "absQ": 3.764104143086373,
+     "rho20": [
+      0.14133074165184667,
+      3.532517457197354
+     ],
+     "rho21": [
+      0.14016026010659216,
+      3.5018814933109903
+     ],
+     "rho22": [
+      0.21016322325227133,
+      5.122032976249676
+     ],
+     "s20": [
+      0.6722372384033086,
+      0.675803813186067,
+      0.6897380812193541
+     ],
+     "s21": [
+      0.6669013178093983,
+      0.6699645066365786,
+      0.6836897594273297
+     ]
+    }
+   },
+   "eta_spread": {
+    "s20": {
+     "n_sets": 1194,
+     "median": 0.0004968252011320062,
+     "max": 0.004836767636780162
+    },
+    "s21": {
+     "n_sets": 1194,
+     "median": 2.8753064994752053e-05,
+     "max": 0.00023207579005703194
+    }
+   },
+   "vs_absQ": {
+    "all": {
+     "n": 3433,
+     "rho_s20_absQ": -0.8326126648304183,
+     "rho_s21_absQ": -0.8346074058157085,
+     "log10_s20": [
+      -0.1726477787785105,
+      -0.04121511763951275
+     ],
+     "log10_s21": [
+      -0.17612724989629994,
+      -0.05684391430695555
+     ]
+    },
+    "rho22_0.5_2": {
+     "n": 1214,
+     "rho_s20_absQ": -0.8482242330030243,
+     "rho_s21_absQ": -0.8495357688776779,
+     "log10_s20": [
+      -0.1724773001229537,
+      -0.06278126090785151
+     ],
+     "log10_s21": [
+      -0.17611389825218252,
+      -0.07338727280455228
+     ]
+    }
+   }
+  }
+ }
+}
