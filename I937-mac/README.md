@@ -43,3 +43,9 @@ returns `z if how == "failed" else with_horizon(z, zp, self.rs)`, and `with_hori
 one. At D 235 on dh610 every projection at λ ≥ 1/64 failed, so none of those ran it. The ones that converged (λ 1/128,
 and the `ladder` 5 counted at D 233 and 234) did. anm_run.py prints `rs.last_o` only at the start's re-seed, so
 dh610's log cannot show the others. `run937.py`'s wrapper prints them.
+
+## Decisions (the coordinator, by hc, after the criteria post)
+
+Case 2 (win2b's ks 230 leg at D 215) is skipped. Its re-seed already polishes from the point's own data, so
+`--project_start pred` would repeat that failure. dh610's log is c1's control unless `c1_pred` changes an outcome. 2 to 3
+h per order-160 run on site2 is accepted as the estimate.

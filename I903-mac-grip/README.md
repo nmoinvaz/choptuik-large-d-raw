@@ -225,3 +225,28 @@ is wrong for projections that succeed. `octo_corrector.ElimO.project` returns `w
 projection failed, and `with_horizon` runs `rs.refine_o` whenever `rs.od > 0` (`--reseed_o 3`). At D 235 the
 projections at λ ≥ 1/64 all failed, so they did not run it. dh610's log prints `rs.last_o` only at the start. #937
 logs it per projection (`I937-mac/`).
+
+### The Δ mode falls fast from D 229, order-converged (06:50 UTC)
+
+The coordinator's word at 05:31 UTC dropped four rows (order 135 at D 228.13, 227.13 and 230.13, and order 160 at D 227)
+and added order 200 at D 231 and order 160 at D 230. All of these runs pass their checks.
+
+`fold_rate.log` (the Δ mode is the vector of largest Δ share, harmonic 1, Δ share 0.75 to 0.87):
+
+| D | order 160 σ | fall per unit D | order 200 σ (same z) | order 200 / order 160 |
+|---|---|---|---|---|
+| 228 | 2.724e-14 | – | – | – |
+| 229 | 1.179e-14 | 2.31 | 1.392e-14 | 1.181 |
+| 230 | 7.899e-16 | 14.9 | – | – |
+| 231 | 5.908e-17 | 13.4 | 9.042e-17 | 1.530 |
+
+At order 200 the fall from D 229 to 231 is 12.4 per unit D. The criterion for the wall's, within 3 between orders 160
+and 200, holds at D 229 and at D 231. So the wall's weak direction falls 12 to 15 times per unit D from D 229, at
+the two orders alike, where it fell 2.3 times from D 228 to 229. Caveats: these are order-160 roots read at order 200
+without a Newton step, and the ratio between the orders grows from 1.18 to 1.53. Order 135's Δ mode falls 2.1 times
+per unit from D 229.13 to 231.13 (1.016e-17 to 2.218e-18, `pmin_table.log`). It sits 1160 times below order 160's at
+D 229 and 27 times below at D 231, so order 135 is not converged for this mode.
+
+The pair keeps falling 15.3 to 15.4 times per unit at order 160 (D 228 to 231), and at order 200 on the D 231 state it
+rises 1214 times, with v₁ on order 200's pair span at 0.950 (`pair200_D231.log`). So it is the truncation's at D 231
+too. For the grip queue, `lift.log`'s k160 D 231.0000 gives L = +2.9247.
