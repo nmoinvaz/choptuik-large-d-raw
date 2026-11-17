@@ -18,9 +18,10 @@ the D* verdict below. No Traceback and no non-zero exit; the stop is the last li
 
 What it holds. `chain/` has 59 states `anm_pin3_D*.npz` from D 252.3859 to 259.665356828 and 59 series `jet_pin3_D*.npz` (8 parts) from
 D 251.8859 to 259.6470; the last state's series (D 259.6654) was being built and is not saved. The last state converged at a = 0.0184
-in 19 octo-double steps, max|F| 3.5e-86, Delta 1.649398990376264106. The abort rule (`--od_abort_theta 1e8`) refused 13 attempts at
-iteration 1, all of them grown (x1.25) attempts, and each was followed by a halved attempt that converged. The step bound a_max fell
-from 1.677 (D 251.89) to 0.080 (D 259.647) and the accepted a from 1 to 0.012 to 0.018, so the last 20 states cost 45 to 75 min each.
+in 19 octo-double steps, max|F| 3.5e-86, Delta 1.649398990376264106. There were 78 attempts, 59 accepted and 19 refused. The abort rule
+(`--od_abort_theta 1e8`) refused 13 of them at iteration 1, and 17 of the 19 refused attempts were grown (x1.25) attempts, the other two
+the a = 1 trials at the start. Each refusal was followed by a halved attempt that converged. The step bound a_max fell from 1.677
+(D 251.89) to 0.080 (D 259.647) and the accepted a from 0.5 to 0.012 to 0.018, so the 13 states from D 259.4364 on took 45 to 85 min each.
 
 The verdict (not computed here). The coordinator's agent xfkappa ran #903's fold rule, `hp/fold_est_903.py verdict` (main 3c1b9582), on
 `chain/` and posted it on #841 (comment 6948684048; `I903-mac/fold/verdict_841.log` at d5b4d2b0): D*(#841) = 259.90361142 from 14
