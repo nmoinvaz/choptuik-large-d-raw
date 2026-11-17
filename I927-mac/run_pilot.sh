@@ -9,12 +9,12 @@ cd /Users/nathan/Source/choptuik-large-d/.claude/worktrees/agent-a611e0854f79300
 # default: the amended pilot at M 48, D 3.7 (README section 3, amendment); PAIR=128 the first design at D 3.15
 if [ "${PAIR:-48}" = 128 ]; then
     BASE=$R/inputs/lowDhm_x0.000625-0.9_D3.1500_M128.npz; D1=3.149; D2=3.148; P=pilot; M=128
-    REF1=$R/ref/states/lowD927_x0.000625-0.9_D3.1490_M128.npz
-    REF2=$R/ref/states/lowD927_x0.000625-0.9_D3.1480_M128.npz
+    REF1=$R/ref/states/lowD927_D3.1490_M128.npz
+    REF2=$R/ref/states/lowD927_D3.1480_M128.npz
 else
     BASE=$R/inputs/lowDv_D3.7000_M48.npz; D1=3.695; D2=3.69; P=pilot48; M=48
-    REF1=$R/ref48/states/lowD927_x0.005-0.8_D3.6950_M48.npz
-    REF2=$R/ref48/states/lowD927_x0.005-0.8_D3.6900_M48.npz
+    REF1=$R/ref48/states/lowD927_D3.6950_M48.npz
+    REF2=$R/ref48/states/lowD927_D3.6900_M48.npz
 fi
 run() {  # name, then the pilot's arguments
     local name=$1; shift

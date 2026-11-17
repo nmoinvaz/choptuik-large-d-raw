@@ -1,0 +1,12 @@
+step D 3.7 -> 3.695 (h -0.005), M 48, N 6, mutate drop2, reference /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/afb99455-a815-419f-becf-38b07aee7d3a/scratchpad/raw927/I927-mac/ref48/states/lowD927_D3.6950_M48.npz
+  base: plan 63 steps, |F| 3.65e-30, LU pivots 1.80e-03..4.91e+00, 33 s
+  z_1: |z| 5.153e+01, |rhs| 7.31e-01, 4 products, converged True, 24 + 4 s
+  z_2: |z| 1.110e+02, |rhs| 4.77e+00, 4 products, converged True, 22 + 4 s
+  z_3: |z| 2.071e+02, |rhs| 1.23e+01, 4 products, converged True, 22 + 3 s
+  z_4: |z| 3.670e+02, |rhs| 4.27e+01, 4 products, converged True, 22 + 4 s
+  z_5: |z| 4.902e+02, |rhs| 1.60e+02, 4 products, converged True, 23 + 3 s
+  z_6: |z| 5.812e+02, |rhs| 5.22e+02, 4 products, converged True, 20 + 4 s
+  series: ratios |z_k-1|/|z_k| 0.464 0.536 0.564 0.749 0.843, all converged True, 154 s
+  partial sums vs the reference (n, max |P - ref|, Delta - ref): 0 2.60e-01 +3.07e-04; 1 2.79e-03 +1.46e-05; 2 2.79e-03 +1.46e-05; 3 2.78e-03 +1.45e-05; 4 2.78e-03 +1.45e-05; 5 2.78e-03 +1.45e-05; 6 2.78e-03 +1.45e-05
+  prediction on the fixed plan: |F| 1.20e-04 (the base state's 3.67e-03); (A) |Delta(P) - Delta(ref)| 1.45e-05 <= 1e-12: FAIL
+FAIL (A); the corrector is not run (--stop_on_fail 1)

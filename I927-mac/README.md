@@ -77,3 +77,35 @@ the radius about D - 3 = 0.7, so h/R about 0.007 and the order-6 truncation far 
 (D 3.7557) dDelta/dD is only about 0.06 at 3.7, so dshift moves Delta by about 6e-11, still 60 times the bound; drop2
 moves it by about |Delta_2| h^2 = 0.5 x 2.5e-5. The M 128 design above
 stays as written (`PAIR=128`), for a quieter machine.
+
+References (`ref48/leg.log`): lowD_highM.py solved D 3.695 at M 48 (two passes, |F| 3.5e-31 on its 63-step pass-2
+plan, Delta 3.4648947264004986) and M 64 (Delta 3.4648937501254804; M 48 -> 64: -9.76e-7), then stopped on its own
+--hours 0.5 rule before 3.69. For step 2 a second lowD_highM.py run starts from that converged 3.695 pair to 3.69
+(`run_step2.sh`, `ref48b/`), written before it ran; step 2 is then checked against its M 48 state.
+
+Step 1 (`pilot48/step1.log`, 01:41-01:46 UTC): PASS. Plan 63 steps, base |F| 3.7e-30, ratios |z_(k-1)|/|z_k| 0.46,
+0.54, 0.56, 0.75, 0.84, every order's GMRES converged in 4 products.
+
+| n | max \|P_n - ref\| | Delta(P_n) - Delta(ref) |
+|---|---|---|
+| 0 | 2.60e-1 | +3.07e-4 |
+| 1 | 2.79e-3 | +1.46e-5 |
+| 2 | 2.61e-5 | +9.23e-8 |
+| 3 | 2.31e-7 | +4.89e-10 |
+| 4 | 1.54e-9 | +2.56e-12 |
+| 5 | 9.14e-12 | +1.46e-14 |
+| 6 | 1.03e-13 | +8.74e-17 |
+
+(A) 8.74e-17 <= 1e-12. The prediction's |F| on the fixed plan is 1.10e-13 (the base state's there 3.67e-3). The
+corrector converged in 3 calls with full steps to |F| 1.44e-30; (B) |Delta - Delta(ref)| = 3.06e-30 <= 1e-12.
+
+Controls (`pilot48/drop2.log`, `kappa.log`, `dshift.log`; `pilot48/exits.txt`), each exit 1 as required:
+
+| control | Delta(P_6) - Delta(ref) | (A) | corrector | (B) |
+|---|---|---|---|---|
+| drop2 (z_2 left out) | +1.45e-5 | FAIL | not run | |
+| kappa (kappa's n frozen in the jets) | -2.31e-2 | FAIL | not run | |
+| dshift (the step to D + 1e-9) | +6.43e-11 | FAIL | converged, \|F\| 1.37e-30 | FAIL, +6.43e-11 |
+
+Under kappa the ratios |z_(k-1)|/|z_k| become 0.21, 0.067, 0.26, 0.086, 0.0083 (the plain run's are 0.46-0.84), and
+z_1's max norm 80.7 where the plain one is 51.5.
