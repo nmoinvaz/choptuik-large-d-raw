@@ -250,3 +250,13 @@ D 229 and 27 times below at D 231, so order 135 is not converged for this mode.
 The pair keeps falling 15.3 to 15.4 times per unit at order 160 (D 228 to 231), and at order 200 on the D 231 state it
 rises 1214 times, with v₁ on order 200's pair span at 0.950 (`pair200_D231.log`). So it is the truncation's at D 231
 too. For the grip queue, `lift.log`'s k160 D 231.0000 gives L = +2.9247.
+
+### Do all modes fall, or the Δ mode alone? (for #941, 07:00 UTC)
+
+`scale_check.log` compares D 229 with 231 on dh610's order-160 states, mode by mode. At order 200 the four weakest
+fall together: the Δ mode by 12.4 per unit D, and the harmonic-3 pair (σ₂, σ₃) by 12.3 and 11.1. σ₄ falls by 9.33, the
+harmonic-5 pair (σ₅, σ₆) by 3.36 and 3.28, and the largest pivot by 2. At order 160 the pattern is the same: 15.4,
+15.3, 14.1 (the Δ mode), 9.66, 3.47 and 3.52. So the fast fall is shared by the p1 and m_h sector's weakest modes, the
+truncation's harmonic-3 pair included, and is not singled out in the Δ mode. A fold would single it out. A common
+change of scale in the horizon data's columns or the horizon rows would not. The first Newton step at order 200 from
+these roots (near_null's pinned step) is 1.495e-13 at D 229 and 6.271e-13 at D 231, all in Δ.
