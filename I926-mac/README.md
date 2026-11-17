@@ -61,8 +61,65 @@ The predictor's gap at 3.04315, 1.6869e-6, is the line's 1.71e-6 to 1.3%: it kee
 with c - x still positive, one Taylor step after a point where the state is regular: a step past the stiff
 integration's stability limit, not a crossing of x = c.
 
-(More sections follow as the runs finish: the planted check of the refined plan, the leg's starts at 3.04315 on the
-plan lowD_highM.py reuses, and criterion 3 at M 48 / 64.)
+## 3. The planted check of the refined plan (`planplant*`)
+
+Truth: the converged M 320 state at 3.04335 (|F| 1.17e-28 on its own 5603-step plan, gap 1.31e-5). Coarse plan: the
+plan of the M 320 state at 3.0475 (1619 steps, 992 in the segment 0.01 -> 0.02, made for a gap of 2.45e-4, 19 times
+wider, whose floor lies at x 0.01477 against the truth's 0.01429). The first run (`planplant_run1_interrupted.*`,
+`--refine 4 --levels 2`) was stopped by the session's interruption after three residuals: the truth on its own plan
+1.170e-28, on the coarse plan nan, on the coarse plan split 4 times near x = c (5000 steps, 3968 in the segment, fewer
+than the truth's own 4679 and placed for the 3.0475 valley) nan. The second run (`planplant_run2_accuracy.*`, `--refine
+16 --levels 1`) gave the truth 1.170e-28 on its own plan, nan on the coarse one, and 2.917e-21 on the coarse plan split
+16 times (18524 steps): finite, but its first criterion, the truth's own residual (at most 100 times 1.2e-28), failed.
+The split plan's steps are placed for the 3.0475 valley, and its truncation error would floor Newton far above the
+tolerance. That is a property of any split plan, so lowD_highM.py was changed (48581ddb): the split plan is only a gate,
+and a start it admits goes to the two passes on its own plan. The check was rewritten for that path, its criteria fixed
+before its run (`sonic_valley.py`'s docstring): the planted case exists (the truth nan or above 1e-20 on the coarse
+plan); the gate admits the truth moved by delta = 1e-8 in every node state; the truth is finite on the split plan; the
+moved truth's residual on its own plan lies between delta / 100 and 1e4 delta. Control `--mutate norefine`.
+
+The third run (`planplant_run3_gate_stopped.*`, `--refine 4 --levels 2`) was stopped at 02:01 UTC: load 95-117 on
+10 cores gave it about 5% of a core, and the split-16 gate, the truth on that plan and the moved truth's own plan were
+6-7 h away. Its lines so far:
+
+| residual | plan | steps | |F| |
+|---|---|---|---|
+| truth | its own | 5603 | 1.170e-28 |
+| truth | coarse (3.0475's) | 1619 | nan: the planted case exists |
+| truth + 1e-8 | coarse split 4 near x = c | 5000 | nan: the gate does not admit it at split 4 |
+| truth | coarse split 16 (run 2) | 18524 | 2.917e-21: finite, the gate admits the truth at split 16 |
+
+The rest, the gate at split 16 for the moved truth and its own plan, is step 0 of `runner_task_M320.md`, at normal
+load about 20 min.
+
+(More sections follow as the runs finish: the leg's starts at 3.04315 on the plan lowD_highM.py reuses, and
+criterion 3 at M 48 / 64.)
+
+## Recommended tasks (full text; the closing comment of #926 lists them one line each)
+
+1. **The point at 3.04315 with the refined plan (runner, win2).** What: `runner_task_M320.md`, lowD_highM.py with
+   `--sonic_refine 4 --sonic_stop` from #343's history at 3.04335, M 320 / 384. Why: the Mac showed the predictor
+   finite on the refined plan but cannot run Newton at M 320 (hours per call under its load); this is #926's real case
+   at the real M. Criteria (each can fail): the four of the file (the predictor nan on the reused plan and finite on
+   the refined one; Newton converged at both M; the gap of the M 384 solution within 20% of the line's value; the
+   control without `--sonic_refine` falls back to the last state at |F| 2.7e-2). Depends on: #926; #343's leg2b
+   stopped first or finished with 3.04325, since both use win2's threads.
+2. **Stop #343's leg at the closing (a coordinator's decision).** What: rerun #343's leg with `--sonic_stop` (and
+   `--sonic_refine 4`), or cut its targets to 3.04315 and above. Why: its targets 3.04295, 3.04275, ... lie below
+   3.04312, where the gap's line is negative and T135 / #798's predictions cross x = c; the step halving would spend
+   days down to the 0.00005 floor. Criterion: the leg's log states the stop with the closing D. Depends on: #926.
+3. **The closing at M 384.** What: `sonic_valley.py gap` on the M 384 states at 3.045 (T82-win), 3.04375 (T105-win2),
+   3.04355 and 3.04335 (I343-win2), then `tangency --M 384 --last 3`. Why: the closing at M 320 is a grid property
+   (the grid point nearest the valley's floor); if it is the solution's, M 384 gives the same D. Criterion: |D_384 -
+   D_320| at most 2e-5 (the spread of the M 320 fits is 1.4e-5); a larger difference is reported, not a stop.
+   About 1 h at M 384 on one core. Depends on: #926.
+4. **What the family does at the closing (research).** What: whether c - x reaches 0 in the continuum at the closing
+   (a tangency of c = x in the (x, tau) plane) and what lies below: a patch with c below x, whose boundary would need
+   regularity conditions as at a sonic point, or the end of the family. First check Ecker et al.'s exported fields
+   below D 3.043 (`hp/lowD_ecker.py --fields`; their data are external, read only) for min c - x, in their variables.
+   Why: notes/LOW_D.md 6 says the family degenerates as D -> 3; the closing at 3.0431 may be where, and Ecker et
+   al. report solutions down to 3.01. Criterion: a table of their min c - x at D 3.01-3.05, or a statement of why
+   their data cannot give it. Depends on: #926.
 
 ## Files
 
