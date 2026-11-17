@@ -10,3 +10,7 @@ pass-1 state (1.86e-18) is the reference.
 - `run945.sh`: glue, runs the command and logs its exit in `exits_945.txt`.
 - `w945.sh`: glue, a watcher that notifies when the `_fail` state's six records are written, on an exit, a Traceback, or after 2 h. It never kills.
 - `plan_floor.log`, `plan_floor.jsonl`: the output, one record per state and plan.
+
+## First launch and why the second uses `_ckpt_failed`
+
+The coordinator's command put `I932-win2/states/lowD343_D3.043150_M320_fail.npz` first. `lowD_highM.py` saves that final iterate of pass 2 (7.3e-21) without a stored plan (its meta has D, M, kc, ks, kt, nodes only), so `plan_floor.py` stopped on `KeyError: 'segs'` after 4 s (`run945.sh`, `plan_floor.log` before the second launch). `lowD343_D3.043150_M320_ckpt_failed.npz` is the same iterate bit for bit (max |zh diff| 0.0, zh + zl the same) and stores pass 2's own plan of 14358 steps, so the coordinator's hc ordered the same command with it first (`run945b.sh`, `w945b.sh`). The pass-1 state (`lowD343_p1_D3.043150_M320.npz`, the reference) stores its plan of 10575 steps. `plan_floor.log` of the first launch is kept as `plan_floor_first_launch.log`.
