@@ -14,3 +14,20 @@ Input, read in place: `I671-win/solves/k7_D40_D40.0201_32x121.npz` (sha256 df81e
 4. Acceptance 2: each of the other nine starts (3 to 11) is reported as within a factor 1.5 of #681's bound for the same start (new / #681 in [1/1.5, 1.5]) or not, with its products used and how many of the twelve starts reach 1000 products (the cap; those are the starts whose bound the cap may still set).
 5. Acceptance 3: R_a = median(the twelve bounds at 1000 products) / median(#681's K = 0 twelve at D 40.02, 2.463e-34), the median being the geometric mean of the 6th and 7th smallest (`table_681.median`). Its 95% interval is the one-state bootstrap of #681's rule (10000 resamples with replacement of each sample's twelve, `random.Random(681)`, 2.5 and 97.5 percentiles as in `table_681.verdict`), and it is compared with #681's 0.98. As context, the full rule of #681 (`table_681.verdict`, seed 681, R(40.02) / R(50.007) and R(54.996) / R(50.007) against the window of 3) is applied with the D 40.02 K = 7 sample replaced by this run's, the other five samples being #681's. Control, before the run: `table_745.py --control` recomputes from #681's own logs R = 0.98, and the full rule's 0.17, interval 0.06 to 0.91, UNDECIDED. `table_745.py --selftest`: identical bounds pass acceptance 1, a 1% change of one bound misses, a start 1.6 times #681's fails acceptance 2, and K = 7 bounds scaled by 3 move R_a to 2.93 and the full rule's R(40.02) / R(50.007) to 0.50.
 6. The numbers are single-start upper bounds on the smallest gain (max norm), not enclosures. The bounds' differences between runs of this stack and #681's stack (Python 3.10, numpy 2.2.6, scipy 1.15.3, x86 Windows) are reported as found: #720 found the iterates differ in their last digits and the bounds do not.
+
+## Results (the run was killed by its own 12 h cap at 2026-11-17 13:43:30 UTC, exit code 5; 8 of 12 starts printed)
+
+The planted check passes on aarch64 with the x86 digits (exit 0, best bound 1.4103e-21; `--mutate=shift` exit 1, 1.4244e-19; `logs/planted*.log`).
+
+| acceptance | verdict | numbers |
+|---|---|---|
+| 1, first three bounds equal #720's in the printed digits | **met** | 1.257e-34, 9.921e-34, 7.797e-34, relative difference 0 each (`logs/control_745.log`, at 06:51, 07:18 and 08:15 UTC) |
+| 2, the other nine within a factor 1.5 of #681's | **5 of 9 reported, all within** | starts 3 to 7, ratio 1.000 each; starts 8 to 11 never printed |
+| 2, starts reaching 1000 products | **0 of 8** | products 606, 276, 421, 527, 501, 480, 248, 448 |
+| 3, R_a against 0.98 | **not formed** | needs all twelve starts; `table_745.py` prints it when they exist |
+
+`logs/table_745_partial.txt` is `table_745.py` on the 8 printed starts. Starts 3, 4, 5 and 7 stop at 448 to 527 products where #681's capped them at 250, with the same bound to four digits, so the 250 cap did not set them either (start 6 stopped at 248 in both).
+
+Against #720 on win2 the bounds are equal and the iterates differ, as #720 found across stacks: start 0 stopped at 606 products (win2 654), start 1 at 276 (363), start 2 at 421 (336), and the final residuals max|J x - v| are 1.3e-14, 1.6e-14, 7.7e-16 (win2 2.7e-14, 2.6e-15, 1.8e-15).
+
+What ran: 8 starts in 12 h of wall time on 2 cores that the negative-mass jobs, other Claude sessions and a full 1 GB swap shared. The first 4 h gave 39 CPU-minutes (I/O pressure averaged 76 to 84%, load up to 60; `logs/resource.log`), RSS grew from 1.5 to 2.8 GB (fgmres keeps two arb vectors per product). The task moved to win2 (I745-win2). The 4 h progress post of #745 was never made (the gh token had expired); raw pushes went by SSH. These are single-start upper bounds on the smallest gain, not enclosures.
