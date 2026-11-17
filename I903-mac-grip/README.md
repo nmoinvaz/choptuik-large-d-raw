@@ -46,6 +46,12 @@ as each lands, and records it in `done.txt`. `lift.log` is rewritten after every
 | ctl (D 60) | 60.0020 | −19.4641 | −19.4641 | +0.0000 | – | – | – | G3 pass (0.00e+00) |
 | k142 | 229.1312 | −35.4817 | −31.6410 | +3.8407 | σ₃ 8.139e-15 → σ₁ 1.707e-14 (ln +0.741) | σ₂ (k3) 0.970 | σ₁ (k1) 0.993 | G1, G2 pass |
 | k160 | 229.0000 | −34.1970 | −31.8111 | +2.3859 | σ₃ 1.179e-14 → σ₁ 1.392e-14 (ln +0.166) | σ₂ (k3) 0.873 | σ₁ (k1) 0.986 | G1 pass |
+| k160 | 231.0000 | −39.7365 | −36.8117 | +2.9247 | σ₃ 5.908e-17 → σ₁ 9.042e-17 (ln +0.425) | σ₂ (k3) 0.788 | σ₁ (k1) 0.991 | G1 pass |
+| k142 | 239.1312 | −41.4612 | −35.6271 | +5.8341 | σ₃ 1.251e-17 → σ₁ 3.352e-16 (ln +3.288) | σ₂ (k3) 0.843 | σ₁ (k3) 1.000 | G1 pass |
+
+dh610's order-160 chain was stopped at D 234 by the coordinator's order (#903), so its targets from 240 on will not
+land, and k160's last base here is D 231 (target 230). At D 239.13 the order-142 chain's Δ mode is not converged in
+order: it rises 26.8 times (ln +3.288) from order 142 to 200 on the same z, against 1.53 times at order 160's D 231.
 
 At D 229.13 the order-142 chain's weakest modes are the harmonic-3 pair (σ₁, σ₂ 1.497e-17, 1.515e-17), below the Δ
 mode (σ₃ 8.139e-15), and their small Δ shares carry 0.970 and 0.027 of 1/g² (`lift.log`): the grip on Δ at order 142 is the
@@ -251,7 +257,7 @@ The pair keeps falling 15.3 to 15.4 times per unit at order 160 (D 228 to 231), 
 rises 1214 times, with v₁ on order 200's pair span at 0.950 (`pair200_D231.log`). So it is the truncation's at D 231
 too. For the grip queue, `lift.log`'s k160 D 231.0000 gives L = +2.9247.
 
-### Do all modes fall, or the Δ mode alone? (for #941, 07:00 UTC)
+### Do all modes fall, or the Δ mode alone? (for #941, 06:50 UTC)
 
 `scale_check.log` compares D 229 with 231 on dh610's order-160 states, mode by mode. At order 200 the four weakest
 fall together: the Δ mode by 12.4 per unit D, and the harmonic-3 pair (σ₂, σ₃) by 12.3 and 11.1. σ₄ falls by 9.33, the
