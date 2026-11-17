@@ -75,3 +75,26 @@ vector lives by horizon-series order.
 - Checks: every near_null run passes its check (σ₁ converged, ‖J v₁‖/σ₁ within 1e-2), and at ks 200 only the horizon
   rows change. `series_order.py`'s linearity check passes, and its control `--mutate=eps` fails. Its selftest passes
   (`series_order_selftest.log`).
+
+Amended at 03:59 UTC, after order 160's D 229 run showed its two weakest as a near pair (σ₂/σ₁ 0.995) and before any overlap with
+order 135 or 150 was computed: for a pair, the overlap is read on the span of the other order's two smallest, √(o₁² + o₂²),
+since any rotation within a degenerate pair is as good a basis. Added at the coordinator's request: dh170's
+order-150 bases D 226 and 227 (`I903-dh170/chain_k150`), whose p_min fell 11 times from D 226 to 227, with v₁(150)
+against order 160's six at D 229 and order 135's at D 227.13, and their series content by order.
+
+### series_order.py failed, and what replaces it (04:20 UTC)
+
+`series_order.py`'s criterion is void. Its linearity check failed on order 135's and order 142's D 229.13 states. The
+top-tenth share went from 0.9997 at e = 1e-12 to 0.198 at e = 1e-14 for order 135's σ₁ (`so_k135_D229.1312_ks135.log`,
+`so_k142_D229.1312_ks142.log`). On order 160's D 229 state its control `--mutate=eps` did not fire: e = 1e-31, below
+resolution, still read 1.000 (`so_k160_D229.0000_ks160_muteps.log`). The cause is in the logs. At t = u0/σ = 1.2,
+the base series' own terms at u0 grow with the order, with norm 8.06 at order 0 and 1.71e9 at order 160 on order 160's
+state (6.79e2 at order 135 and 2.54e4 at order 142 on theirs). So any change, even rounding, lands in the top orders,
+and every vector, the σ₅ and σ₆ ones included, reads "top orders". The measure cannot separate directions there. Its
+readings are kept in the folder and not used.
+
+In its place, `series_profile.py` prints the series' own term norms at u0 by order (per field), at the state's order
+and at higher ones on the same z. Its check: the coefficients up to the smaller order agree bit for bit between two
+orders. Its control `--mutate=order` must fail. D 60 (Δ's grip unchanged from ks 142 to 200 there) is the case where
+the terms should fall. Whether a weak direction is the truncation's is read from the ks 200 run at D 229 on the same
+z: it is the series' if σ there rises above 100 σ(160), and the wall's if it stays within a factor 3.

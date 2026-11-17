@@ -6,9 +6,12 @@ order-160 state at D 229 summed to order 200) and, from I902-mac (argument 2), #
 and 253.80. For each d of 227..231 with both runs it prints:
   sigma_1..6 at order 160 and order 135, the gap sigma_2 / sigma_1 at each, and near_null's LU pivot floor;
   v_1(160): its Delta share and top harmonic, and |V(135)^T v_1(160)|, the overlap with each order-135 vector, with the
-  largest named (its index, sigma, Delta share, harmonic); the overlap of the two smallest, |v_1(135) . v_1(160)|;
+  largest named (its index, sigma, Delta share, harmonic); the overlap of the two smallest, |v_1(135) . v_1(160)|, and on the span of order 135's two smallest (a near pair);
   the Delta mode (the vector of largest Delta share) at each order and its sigma.
-Then at D 229: v_1(160) followed into the order-200 run at the same z (largest overlap; its sigma there, the ratio to
+Order 150 (dh170's I903-dh170/chain_k150, nn_k150_D<d>.0000_ks150) at D 226 and 227, added at the coordinator's
+request: its sigma_1..6, gap and pivot floor, and v_1(150) against the six of order 160 at D 229 and of order 135 at
+D 227.13 (the largest named; the two smallest together, sqrt of the sum of their two squared overlaps, as the weak
+modes come in near pairs). Then at D 229: v_1(160) followed into the order-200 run at the same z (largest overlap; its sigma there, the ratio to
 order 160), and v_1(160) of every d against the order-130 Delta modes of #902 (D 249.01, 253.80).
 Overlaps are in z's raw coordinates (near_null's), of unit f64 vectors, so 1 is the same direction. Calibration printed
 with them: v_1(160) at d against d - 1 (same chain, the next base), and the Delta mode at order 135 at d against d - 1.
@@ -73,12 +76,30 @@ for d, (a, b) in runs.items():
     print(f"    order 135 sigma_1-6 " + ", ".join(f"{x:.2e}" for x in sb) + f", gap {sb[1] / sb[0]:.3g}, LU pivot floor "
           f"{rb['pivots'][0]:.2e}; v_1 {ident(rb, 0)}; Delta mode {ident(rb, dmode(rb))}")
     print(f"    v_1(160) against order 135's six: " + ", ".join(f"{x:.3f}" for x in ov)
-          + f"; largest {ident(rb, j)}; smallest against smallest |v_1(135) . v_1(160)| {ov[0]:.3f}; Delta modes "
+          + f"; largest {ident(rb, j)}; smallest against smallest |v_1(135) . v_1(160)| {ov[0]:.3f}, on the span of order 135's two smallest "
+          f"{np.hypot(ov[0], ov[1]):.3f}; Delta modes "
           f"{abs(Vb[:, dmode(rb)] @ Va[:, dmode(ra)]):.3f}; sigma_1(160) / sigma_1(135) {sa[0] / sb[0]:.3g}")
     pb = runs.get(d - 1, (None, None))[1]
     if pb is not None:
         print(f"    calibration: order 135's Delta mode against D {d - 1}.1312's "
               f"{abs(pb[1][:, dmode(pb[0])] @ Vb[:, dmode(rb)]):.3f}")
+for d in (226, 227):
+    e = get(d0, f"k150_D{d}.0000_ks150")
+    if e is None:
+        print(f"  order 150 (dh170) at D {d}: not run yet")
+        continue
+    re_, Ve = e
+    se = [v["sigma"] for v in re_["vectors"]]
+    print(f"  order 150 (dh170) at D {d}: sigma_1-6 " + ", ".join(f"{x:.2e}" for x in se) + f", gap {se[1] / se[0]:.3g}, "
+          f"LU pivot floor {re_['pivots'][0]:.2e}; v_1 {ident(re_, 0)}; Delta mode {ident(re_, dmode(re_))}")
+    for name, o in (("order 160 at D 229", runs[229][0]), ("order 135 at D 227.1312", runs[227][1])):
+        if o is None:
+            print(f"    v_1(150) against {name}: not run yet")
+            continue
+        ov = np.abs(o[1].T @ Ve[:, 0])
+        j = int(ov.argmax())
+        print(f"    v_1(150) against {name}'s six: " + ", ".join(f"{x:.3f}" for x in ov) + f"; largest {ident(o[0], j)}; "
+              f"two smallest together {np.hypot(ov[0], ov[1]):.3f}")
 c = get(d0, "k160_D229.0000_ks200")
 if c is not None and runs[229][0] is not None:
     ra, Va = runs[229][0]
