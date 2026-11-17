@@ -36,3 +36,13 @@ after each new jet with base D of at least 258.5. Exit 0 stops the chain, 1 mean
 pilot before any base is in range (`fold_pilot.log`, `fold_pilot.json`, `run_fold_pilot.sh`) gave exit 2 in 108 s, with
 control 1 passing: max|D* - 259.9033| 2.48e-04 over 45 bases of #603's chain_nsr (bound 0.005). Each later run appends to
 `fold_verdict_k135.log` and rewrites `fold_verdict.json`; the exits are in `exits_k135.txt`.
+
+### Fold rule, change of 2026-11-17 13:2x UTC (the coordinator)
+
+From main 3c1b9582 (`~/Source/choptuik-large-d-903f`, moved from 66d6ebfd; only `hp/fold_est_903.py` differs) the command takes the
+reference of #841's re-planned order-130 chain, so the shift measures the order's effect without the plan's:
+
+    python3 fold_est_903.py verdict <RAW>/I903-macm3/chain_k135 <RAW> --ref_Dstar=259.90361142 --ref_err=5.3e-4 --json=<RAW>/I903-macm3/fold_verdict.json
+
+Control 1 stays against #603's chain. Pilot 2 (`run_fold_pilot2.sh`, `fold_pilot2.log`, `fold_pilot2.json`): control 1
+max|D* - 259.9033| 2.48e-04 over 45 bases, exit 2 in 110 s, with no jet of the chain yet in range.
