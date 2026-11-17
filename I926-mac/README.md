@@ -72,7 +72,7 @@ than the truth's own 4679 and placed for the 3.0475 valley) nan. The second run 
 16 --levels 1`) gave the truth 1.170e-28 on its own plan, nan on the coarse one, and 2.917e-21 on the coarse plan split
 16 times (18524 steps): finite, but its first criterion, the truth's own residual (at most 100 times 1.2e-28), failed.
 The split plan's steps are placed for the 3.0475 valley, and its truncation error would floor Newton far above the
-tolerance. That is a property of any split plan, so lowD_highM.py was changed (48581ddb): the split plan is only a gate,
+tolerance. That is a property of any split plan, so lowD_highM.py was changed (in `wip/sa-926` f9852dac, squashed): the split plan is only a gate,
 and a start it admits goes to the two passes on its own plan. The check was rewritten for that path, its criteria fixed
 before its run (`sonic_valley.py`'s docstring): the planted case exists (the truth nan or above 1e-20 on the coarse
 plan); the gate admits the truth moved by delta = 1e-8 in every node state; the truth is finite on the split plan; the
@@ -92,8 +92,25 @@ The third run (`planplant_run3_gate_stopped.*`, `--refine 4 --levels 2`) was sto
 The rest, the gate at split 16 for the moved truth and its own plan, is step 0 of `runner_task_M320.md`, at normal
 load about 20 min.
 
-(More sections follow as the runs finish: the leg's starts at 3.04315 on the plan lowD_highM.py reuses, and
-criterion 3 at M 48 / 64.)
+## 4. Criterion 3 at M 48 / 64 (`run_c3.sh`, `c3_plain/`, `c3_sonic/`, `c3_exits.txt`)
+
+One `lowD_highM.py` point, D 4 -> 3.99 at M 48 / 64 from I95-mac's states, without and with `--sonic_refine 4
+--sonic_stop` (the branch at f9852dac's code). Both exit 0, and their pair records are the same bit for bit:
+
+| | Delta (M 64) hi | lo | Delta (M 48) hi | |F| M 48 | |F| M 64 |
+|---|---|---|---|---|---|
+| plain | 3.4469558241749336 | -1.3375291473708587e-16 | 3.4469561188008173 | 1.82e-30 | 6.02e-30 |
+| sonic options | 3.4469558241749336 | -1.3375291473708587e-16 | 3.4469561188008173 | 1.82e-30 | 6.02e-30 |
+
+At D 4 no start is nan and no node has c - x below 1e-2 (the gaps at the nodes are 0.045 to 0.15), so the options
+take no action; this tests that they change nothing where things work, not their action. The same test at the
+valley (a step whose predictor was finite, as 3.04335's) is M 320 work.
+
+## 5. Not run here
+
+The leg's starts at 3.04315 on the plan lowD_highM.py reuses (`sonic_valley.py startcase`, step 1 of
+`runner_task_M320.md`) and the gaps at M 384 were not run: at load 95-117 on 10 cores the M 320 residuals took 5-8
+times their normal time. The probes of section 2 cover the starts on the stored plan.
 
 ## Recommended tasks (full text; the closing comment of #926 lists them one line each)
 

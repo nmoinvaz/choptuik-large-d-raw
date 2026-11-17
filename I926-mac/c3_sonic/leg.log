@@ -1,0 +1,38 @@
+18:21:13 --- D 3.99 (from 4.0), M 48 / 64, nodes 0.01..0.7
+18:21:16   D 3.99 M 48: start 'predictor' |F| 4.11e-03 (53 steps)
+18:21:16   D 3.99 M 48: start 'last state' |F| 4.11e-03 (53 steps)
+18:21:16   D 3.99 M 48: best start |F| 4.1e-03 > 1e-03 on the reused plan; two passes
+18:21:19   D 3.99 M 48: start 'predictor' |F| 4.11e-03 on its own plan (146 steps)
+18:21:20   D 3.99 M 48: start 'last state' |F| 4.11e-03 on its own plan (146 steps)
+18:21:21   D 3.99 M 48: start 'predictor' |F| 4.11e-03 (146 steps)
+18:21:23 D 3.99 M 48: L 2305, steps 146, start |F| 4.1e-03
+  newton 0: |F| 4.11e-03 |dz| 2.07e-01 lam 1 dDelta +1.13e-03 Delta 3.446583477805410 piv 2.0e-03..9.5e+00  t 73.6s
+  newton 0: |F| 1.05e-04 |dz| 1.88e-02 lam 1 dDelta +3.73e-04 Delta 3.446956091853407 piv 2.0e-03..6.2e+00  t 86.3s
+  newton 0: |F| 1.14e-07 |dz| 1.46e-05 lam 1 dDelta +2.69e-08 Delta 3.446956118800701 piv 2.0e-03..6.2e+00  t 74.4s
+  newton 0: |F| 1.02e-13 |dz| 5.08e-11 lam 1 dDelta +1.17e-13 Delta 3.446956118800817 piv 2.0e-03..6.2e+00  t 85.4s
+  newton 0: |F| 6.56e-25 converged (last |dz| 4.5e-21) Delta 3.446956118800817; last step taken, |F| 4.13e-31
+18:28:11 D 3.99 M 48: Delta 3.4469561188008173 (-1.12e-16) |F| 4.1e-31 its 5 408s dDelta/dF max 2.6e+00 tails 3e-64 7e-49 dDelta_est +9.4e-31
+18:28:15   D 3.99 M 48: start 'pass 1' |F| 4.13e-31 (48 steps)
+18:28:17 D 3.99 M 48: L 2305, steps 48, start |F| 4.1e-31
+  newton 0: |F| 4.13e-31 converged (last |dz| 1.3e-26) Delta 3.446956118800817; last step taken, |F| 1.82e-30
+18:28:41 D 3.99 M 48: Delta 3.4469561188008173 (-1.12e-16) |F| 1.8e-30 its 1 25s dDelta/dF max 2.6e+00 tails 3e-64 7e-49 dDelta_est -1.9e-30
+18:28:53   D 3.99 M 64: start 'lift of M_w' |F| 2.24e-04 (71 steps)
+18:28:54   D 3.99 M 64: start 'last state' |F| 4.12e-03 (71 steps)
+18:28:54   D 3.99 M 64: best start 'lift of M_w' is a lift (|F| 2.2e-04 on the reused plan); two passes
+18:29:02   D 3.99 M 64: start 'lift of M_w' |F| 2.24e-04 on its own plan (222 steps)
+18:29:06   D 3.99 M 64: start 'last state' |F| 4.12e-03 on its own plan (178 steps)
+18:29:13   D 3.99 M 64: start 'lift of M_w' |F| 2.24e-04 (222 steps)
+18:29:23 D 3.99 M 64: L 3073, steps 222, start |F| 2.2e-04
+  newton 0: |F| 2.24e-04 |dz| 1.29e-02 lam 1 dDelta -3.04e-07 Delta 3.446955814642228 piv 1.9e-03..7.8e+00  t 201.3s
+  newton 0: |F| 2.49e-08 |dz| 1.43e-06 lam 1 dDelta +9.53e-09 Delta 3.446955824174934 piv 1.9e-03..7.8e+00  t 205.1s
+  newton 0: |F| 1.49e-15 converged (last |dz| 2.2e-13) Delta 3.446955824174934; last step taken, |F| 5.16e-25
+18:38:41 D 3.99 M 64: Delta 3.4469558241749336 (-1.34e-16) |F| 5.2e-25 its 3 566s dDelta/dF max 1.9e+00 tails 7e-59 4e-38 dDelta_est -1.7e-24
+18:38:49   D 3.99 M 64: start 'pass 1' |F| 5.16e-25 (83 steps)
+18:38:52 D 3.99 M 64: L 3073, steps 83, start |F| 5.2e-25
+  newton 0: |F| 5.16e-25 |dz| 7.49e-21 lam 1 dDelta -1.72e-24 Delta 3.446955824174934 piv 1.9e-03..7.8e+00  t 55.5s
+  newton 0: |F| 5.66e-30 converged (last |dz| 4.0e-26) Delta 3.446955824174934; last step taken, |F| 6.02e-30
+18:40:40 D 3.99 M 64: Delta 3.4469558241749336 (-1.34e-16) |F| 6.0e-30 its 2 111s dDelta/dF max 1.9e+00 tails 2e-62 4e-38 dDelta_est -6.9e-31
+18:40:45 D 3.99: Delta(M 64) = 3.4469558241749336 (-1.34e-16), M 48 -> 64: -2.95e-07; pair
+18:40:47 D 3.99: series tails of the M 48 solution resampled to M 64: 8.7e-24 (centre), 3.1e-49 (horizon)
+18:40:47 point 3.99 took 18.7 min of solves, 19.6 min of running time; 0.33 h used
+18:40:47 STOP: reached the end of the D grid (3.985)
