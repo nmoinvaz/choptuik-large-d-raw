@@ -51,7 +51,7 @@ sign change came from.
 side at 6 threads (980 s and 910 s, 169 and 171 MB), `--ref 5.2645963792835124e-82` at D 252.6135 only (equal as a double: pass), then
 `step_spread.py power` over both (`power_seed2.log`, `power_seed2.json`). Both seed-2 groups are quadratic: D 245.6366 p 2.0000, 2.0000;
 D 252.6135 p 1.9988, 2.0000. Smallest pivots: D 245.6366 4.374269e-27 at rel 1e-75 and 1e-80 (4.374241e-27 at 1e-70); D 252.6135 7.286891e-31
-at 1e-80 and 7.286881e-31 at 1e-75, against 6.326356e-31 at 1e-70 (13% off the unperturbed, as seed 1's 24% there).
+at 1e-80 and 7.286881e-31 at 1e-75, against 6.326356e-31 at 1e-70 (13% below the unperturbed; seed 1's was 24% above).
 
 `spread946.py` (log `spread946.log`) reads #851's `power.json` (seed 1, stored states at 245.6366 and 252.6135), #946's `power.json` (seeds 1 and 2 on
 the re-converged state at 250.1676) and `power_seed2.json`. c = |dev| / rel^2 at rel 1e-80, the one rel that is pivot-clean and quadratic at
