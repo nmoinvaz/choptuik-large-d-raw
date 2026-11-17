@@ -15,7 +15,7 @@ Machine dh170 (Fedora 45, i7-7700, 4 cores / 8 threads, AVX2, 31 GB). Issue http
 - Input states are copies of the committed raw files (cmp-equal to the live ones) in ~/scratch944/ with the same relative paths:
   I903-dh170/chain_k150/anm_pin3_D233.0000.npz (and D225, D226), I903-dh610/chain_k160/anm_pin3_D234.0000.npz.
 
-## Runs, in order, one at a time
+## Runs, in order, one at a time (the plan; what ran, with the later runs, is in the sections below)
 
 | name | state | ks | `--od_junk` | what |
 |---|---|---|---|---|
@@ -115,3 +115,30 @@ chain D 226 against chain D 225 (2.0e-4, exit 1), a planted 1e-39 (exit 1) and a
   iterations that move the weak coordinates stall as the default's do (max\|F\| 3.3e-24 and 2.3e-24). a = 1 fails before the
   corrector. At a = 0.125, where the default converges, it converges too, in 11 steps instead of 16 and about the same time.
 - Agreement: both checks pass.
+
+## Recommended tasks (for the coordinator to file; full text)
+
+1. **Trust region on the weak components in every iteration, not only the first.**
+   What: `--od_weak_first 1` holds the 4 weakest directions in iteration 0 only. At a = 0.5 and 0.25 the later iterations, which move
+   them, are accepted only at lam 1/32 to 1/64 with \|dz\| falling 3% per step (5.28e-15, 5.11e-15, 5.03e-15) until the stall rule ends the
+   attempt. Limit the step's component along those directions to their basin radius in every iteration (or deflate it as
+   `deflated_newton` does in double-double).
+   Why: this log shows the first iteration is fixed and the crawl comes back at the first step that moves them.
+   Acceptance (each can fail): from chain_k150 D 233.0 the a = 0.5 and a = 0.25 attempts end with octo-double max\|F\| <= 1e-60 inside the
+   3 h limit; the controls (default and the current `--od_weak_first 1`) stall at 3.3e-24 and 2.3e-24 as recorded here; from D 225
+   the step to D 226 keeps its Delta within 1e-40 of the stored state (compare_states.py, controls included).
+   Depends on: this issue's option and #944's coordinator code.
+2. **The a = 1 start's re-seed and projection.**
+   What: at k150 D 233.0 and k160 D 234.0 the a = 1 attempt fails in the start's projection (rung u 0.3000 stalls at \|R\| 1.28e+05 after
+   8 steps at k150; predicted \|F\| 1.11e+08), before the corrector, so no corrector option acts. Widen `Reseeder.polish_q`'s basin or
+   re-seed from a smaller-a prediction.
+   Why: every run here fails identically at a = 1 (106 s), with the default, `--od_junk 4` and `--od_weak_first 1`.
+   Acceptance: the a = 1 start projects at D 233.0 (all rungs converge) and the corrector converges or reaches a stated max\|F\|;
+   the control (the current code) reproduces \|R\| 1.28e+05. Depends on: #937.
+3. **The stall rule at a = 0.5 and 0.25.**
+   What: rerun the weak_first a = 0.5 attempt with `--lam_stall 0` to see whether the crawl converges given time.
+   Why: the default's a = 0.125 attempt crawled at lam 1/4 for three iterations and then converged (16 steps); the stall rule would
+   have ended a crawl at lam <= 0.04. At a = 0.5 the \|dz\| fall (3% per step) makes this unlikely, so this is the cheapest test of the
+   guess, not a forecast.
+   Acceptance: the attempt converges to 1e-60 or hits the 3 h limit with its \|F\| history; control: the same command with
+   `--lam_stall 0.04` stalls at 3.3e-24 as recorded. Depends on: nothing.
