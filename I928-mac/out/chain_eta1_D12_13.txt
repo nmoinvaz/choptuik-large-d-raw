@@ -1,0 +1,4 @@
+nice -n 10 python3 -u matter/sigma_ms/run_eta.py --eta 1 --D 12.0625 --M 32 --out out --tag eta1_D12.0625_M32 --threads 2 --solver band --it 40 --from sm_eta1_D12_M32.npz --from2 sm_eta1_D11.9375_M32.npz
+14:42:39 start 2026-11-17 14:42:39 UTC: eta 1, D 12.0625, M 32, K 21, kt 36, kc 80, ks 80, threads 2
+14:42:39 seed {'src': 'sm_eta1_D12_M32.npz', 'eta_src': '1', 'M_src': 32, 'D_src': 12.0, 'D_src2': 11.9375, 'src2': 'sm_eta1_D11.9375_M32.npz', 'eta_src2': '1', 'w': -1.0}: Delta 1.005296709685, |F| (single-step plan) 1.07e+20
+14:42:40 plan from the seed: 251 steps [8, 6, 5, 4, 3, 4, 5, 4, 3, 5, 6, 7, 11, 14, 16, 18, 22, 35, 33, 42] (0.4 s); |F| 4.15e-05
