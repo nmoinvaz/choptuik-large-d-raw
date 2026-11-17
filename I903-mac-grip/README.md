@@ -82,7 +82,7 @@ since any rotation within a degenerate pair is as good a basis. Added at the coo
 order-150 bases D 226 and 227 (`I903-dh170/chain_k150`), whose p_min fell 11 times from D 226 to 227, with v₁(150)
 against order 160's six at D 229 and order 135's at D 227.13, and their series content by order.
 
-### series_order.py failed, and what replaces it (04:20 UTC)
+### series_order.py failed, and what replaces it (04:11 UTC)
 
 `series_order.py`'s criterion is void. Its linearity check failed on order 135's and order 142's D 229.13 states. The
 top-tenth share went from 0.9997 at e = 1e-12 to 0.198 at e = 1e-14 for order 135's σ₁ (`so_k135_D229.1312_ks135.log`,
@@ -98,3 +98,42 @@ and at higher ones on the same z. Its check: the coefficients up to the smaller 
 orders. Its control `--mutate=order` must fail. D 60 (Δ's grip unchanged from ks 142 to 200 there) is the case where
 the terms should fall. Whether a weak direction is the truncation's is read from the ks 200 run at D 229 on the same
 z: it is the series' if σ there rises above 100 σ(160), and the wall's if it stays within a factor 3.
+
+### series_profile.py: the double-double terms are not the series (04:41 UTC)
+
+Its check passed on all seven states, with the coefficients up to the smaller order bit for bit equal between orders.
+Its control fired: `--mutate=order` reads NOT equal, FAIL. At D 60 the terms at u0 fall 0.55 per order (8.2 at order
+0, 9.4e-37 at 140, 2.4e-51 at 200). At D 226 to 229 the double-double terms grow past order ~50, reaching 1.7e9 at order
+160 and 3.5e11 at 200 on order 160's D 229 state, with similar profiles at orders 135, 142 and 150 (`sp_*.log`).
+These terms cannot be the series'. On order 142's D 229.13 state, near_null's octo-double F changed by only 6.82e-22
+in the horizon rows from order 142 to 200 (`nn_k142_D229.1312_ks200.log`). If orders 143 to 200 held terms of 5e3 to
+1e11, as the double-double profile says, F would change by that much. The likely reading is that the double-double
+recursion grows rounding with the order, about 1.7 per order from order ~100 at these D. That would make the
+double-double horizon series wrong past order ~100 here, and with it `series_order.py`. `dd_vs_od.py` tests this.
+It compares the double-double residual's horizon rows with the octo-double ones at the same converged z (order 160 at
+D 229, at orders 160 and 200), with D 60 as the control where the two must agree.
+
+### Results so far (04:54 UTC)
+
+`pmin_table.py` (`pmin_table.log`): every base at its own order. The overlap is v₁ on the span of order 160's two
+smallest at D 229, and the falls are per unit D from the same chain's base before.
+
+| order | D | p_min (LU pivot floor) | weak pair σ₁ (harmonic) | fall per unit D | Δ mode σ (Δ share) | fall per unit D | overlap with order 160's pair at D 229 |
+|---|---|---|---|---|---|---|---|
+| 135 | 229.1312 | 8.10e-18 | 3.958e-20 (k3) | – | 1.016e-17 (0.94) | – | 1.000 |
+| 142 | 229.1312 | 4.05e-15 | 1.497e-17 (k3) | – | 8.139e-15 (0.97) | – | 1.000 |
+| 150 | 226.0000 | 2.92e-13 | 2.408e-15 (k3) | – | 6.310e-14 (0.85) | – | 1.000 |
+| 150 | 227.0000 | 2.74e-14 | 1.443e-16 (k3) | 16.7 | 3.998e-14 (0.87) | 1.58 | 1.000 |
+| 160 | 228.0000 | 1.25e-13 | 8.269e-16 (k3) | – | 2.724e-14 (0.87) | – | 1.000 |
+| 160 | 229.0000 | 8.85e-15 | 5.406e-17 (k3) | 15.3 | 1.179e-14 (0.75) | 2.31 | 1.000 |
+
+At every base the two weakest vectors are the harmonic-3 pair (p1 and m_h k3, Δ share 4e-5 to 2e-4), the same direction
+at orders 135, 142, 150 and 160. Across each chain's collapse step the pair falls 16.7 (order 150, D 226 to 227) and
+15.3 times (order 160, D 228 to 229), while the Δ mode falls 1.58 and 2.31 times. Order 160's v₁ at D 229 overlaps
+0.965 with the harmonic-3 vector of #902's order 130 at D 253.80 and 0.077 with that state's Δ mode (`pmin_cmp.log`).
+
+`dd_vs_od.py` on order 160's D 229 state (`dv_k160_D229.0000.log`): the double-double residual's horizon rows read
+1.164e9 at order 160 and 2.868e12 at order 200, and the octo-double ones 8.557e-4 at both. The double-double horizon
+series is wrong there by more than 1e9, which confirms the reading above. The octo-double 8.557e-4 is F itself, not F
+minus the held offset c. `dd_vs_od.py` now prints F − c as well, and reruns after the ks 200 run (`dv2_*`). The D 60
+control failed on a missing plan (KeyError 'segs', `dv_ctl_D60.log`) and reruns with a new plan, as near_null.py makes.
