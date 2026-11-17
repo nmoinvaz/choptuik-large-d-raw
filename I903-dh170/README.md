@@ -43,3 +43,17 @@ T138's record. The chain's per-step ratios to T138's p_min (as in dh610's `pmin_
 Decision (coordinator, 2026-11-16): dh610's `p130_200` is the reference, so the rung +7.571 stands. It was polished with
 the same flags, code and plan as `p150_200` and `p160_200`, while T138's `chain_o` reached the state with its own
 corrector, plan and flags of 2026-11-07, so its pivot is not like-for-like. The cause is not pursued.
+
+## Stop rule for chain_k150 (coordinator, 2026-11-17)
+
+Stop the chain, killing its process tree, when inside one attempt the octo-double Newton's accepted iterations have
+lam <= 1/32 for 3 in a row, or when one attempt runs past 2 h. Every state and log is kept, the folder is pushed, and
+the stop is posted on #903 with the last accepted D, the base p_min and Delta moved. Reason: dh610's order-160 chain
+crawled at lam 1/128 near D 234 (its `exits_903.txt`).
+
+`watchdog903.py` implements it over `chain_k150.log` (started 06:14 UTC, events in `watchdog.log`, a stop adds a line
+to `exits_903.txt`). Its checks: `--selftest` (nine synthetic cases, three of which must trigger), `--selftest
+--mutate` (lam threshold 1e-9, must fail and does, exit 1), `--replay` of `chain_k150.log` (0 triggers, 8 refused
+trials inside iterations included) and of dh610's `chain_k160.log` (0 triggers with n 3, since its pushed log has one
+crawling iteration, line 603 at lam 0.0078125, which `--n 1` finds). The 3-in-a-row detection is therefore tested on
+synthetic cases only. The 2 h timer starts at an attempt's `re-seeded` line, so it does not time the series.
