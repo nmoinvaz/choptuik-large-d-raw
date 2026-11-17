@@ -1,0 +1,19 @@
+c = |dev| / rel^2 per D and seed (rel 1e-80 and 1e-75 where it exists; the readings are step_spread.py power's)
+D          seed  reading     p                      c(1e-80)      c(1e-75)
+245.6366   1     quadratic   [2.0, 2.0]             9.24472e+96   9.24411e+96
+245.6366   2     quadratic   [2.0, 2.0]             8.92378e+96   8.92454e+96
+250.1676   1     quadratic   [2.0, 2.0, 2.0]        8.72813e+99   nan
+250.1676   2     quadratic   [2.0, 2.0, 2.0]        8.55804e+99   nan
+252.6135   1     quadratic   [2.0161, 2.0]          1.05367e+102   1.05367e+102
+252.6135   2     quadratic   [1.9988, 2.0]          1.02319e+102   1.02319e+102
+
+seed 2 against seed 1 (c2 / c1 - 1):
+  D 245.6366 rel 1e-80: -0.0347
+  D 245.6366 rel 1e-75: -0.0346
+  D 250.1676 rel 1e-80: -0.0195
+  D 252.6135 rel 1e-80: -0.0289
+  D 252.6135 rel 1e-75: -0.0289
+
+ln c against D at rel 1e-80, per unit D:
+  seed 1: steps 245.6366->250.1676: 1.5119, 250.1676->252.6135: 1.9598; least squares 1.6492 (1.44: ratio 1.145; 2.88: ratio 0.573)
+  seed 2: steps 245.6366->250.1676: 1.5153, 250.1676->252.6135: 1.9558; least squares 1.6503 (1.44: ratio 1.146; 2.88: ratio 0.573)

@@ -43,3 +43,27 @@ processes and `power`. Seed 1's c is #851's value at the stored state (8.72803e9
 seed 2's is 1.9% below seed 1's. The sign change that #851 found at rel 1e-80 on the stored state (max|F| 3.05e-61) does not appear on
 the polished one; the polish changed that state's residual and its Delta together, so this does not say which of the two the
 sign change came from.
+
+## Addendum: seed 2 at D 245.6366 and D 252.6135 (the coordinator's order)
+
+`run946_seed2.sh` (unit `i946b`, 15:13:44 to 15:30:04 UTC, same worktree and build, nice 10): `step_spread.py` with `--seeds 2` at #851's rels
+(1e-70, 1e-75, 1e-80), `--controls 0 --repeat 0`, on the stored states `I603-win2/chain/anm_pin3_D245.6366.npz` and `..._D252.6135.npz`, side by
+side at 6 threads (980 s and 910 s, 169 and 171 MB), `--ref 5.2645963792835124e-82` at D 252.6135 only (equal as a double: pass), then
+`step_spread.py power` over both (`power_seed2.log`, `power_seed2.json`). Both seed-2 groups are quadratic: D 245.6366 p 2.0000, 2.0000;
+D 252.6135 p 1.9988, 2.0000. Smallest pivots: D 245.6366 4.374269e-27 at rel 1e-75 and 1e-80 (4.374241e-27 at 1e-70); D 252.6135 7.286891e-31
+at 1e-80 and 7.286881e-31 at 1e-75, against 6.326356e-31 at 1e-70 (13% off the unperturbed, as seed 1's 24% there).
+
+`spread946.py` (log `spread946.log`) reads #851's `power.json` (seed 1, stored states at 245.6366 and 252.6135), #946's `power.json` (seeds 1 and 2 on
+the re-converged state at 250.1676) and `power_seed2.json`. c = |dev| / rel^2 at rel 1e-80, the one rel that is pivot-clean and quadratic at
+every D and in every source:
+
+| D | seed 1 c | seed 2 c | seed 2 / seed 1 - 1 |
+|---|---|---|---|
+| 245.6366 | 9.24472e96 | 8.92378e96 | -3.5% |
+| 250.1676 (re-converged) | 8.72813e99 | 8.55804e99 | -1.9% |
+| 252.6135 | 1.05367e102 | 1.02319e102 | -2.9% |
+
+The seed spread here is the difference between two seeds' c, not a confidence interval. The slope of ln c against D per unit D at rel 1e-80:
+seed 1 1.5119 (245.6 to 250.2) and 1.9598 (250.2 to 252.6), least squares 1.6492; seed 2 1.5153 and 1.9558, least squares 1.6503. Against #805's 1.44 the
+least-squares slope is 1.145 (seed 1) and 1.146 (seed 2) times it, against twice it 0.573 for both. At rel 1e-75 the two D where it is clean give the same c
+to 1e-3 (`spread946.log`).
