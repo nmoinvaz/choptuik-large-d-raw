@@ -1,0 +1,17 @@
+step_spread power: per D, blocks and seed, dev = dDelta(seed) - dDelta(unperturbed) at each rel, the power p between neighbouring rels, and the reading (quadratic: p in (1.8, 2.2); linear: p in (0.9, 1.1))
+  D 245.6366178, m_h, a_h, seed 1: the unperturbed step the same in the 3 runs (pass)
+    rel 1e-70 (D245.6366.json): move 1.0001e-70, dDelta -9.244121e-44, dev -9.244121e-44, |dev| / move 9.2431e+26, max|dz| 9.2441e-44, smallest pivot 4.374260e-27, max|F| 7.5568e-33
+    rel 1e-75 (D245.6366.json): move 1.0001e-75, dDelta +2.459522e-53, dev -9.244112e-54, |dev| / move 9.2431e+21, max|dz| 8.0551e-53, smallest pivot 4.374269e-27, max|F| 7.5568e-38
+    rel 1e-80 (D245.6366.json): move 1.0001e-80, dDelta +3.383933e-53, dev -9.244719e-64, |dev| / move 9.2437e+16, max|dz| 8.1707e-53, smallest pivot 4.374269e-27, max|F| 7.5568e-43
+    p 2.0000, 2.0000: quadratic
+  D 250.1675817, m_h, a_h, seed 1: the unperturbed step the same in the 3 runs (pass)
+    rel 1e-70 (D250.1676.json): move 1.0001e-70, dDelta -8.792623e-41, dev -8.792623e-41, |dev| / move 8.7917e+29, max|dz| 8.7926e-41, smallest pivot 1.066682e-29, max|F| 3.7704e-32
+    rel 1e-75 (D250.1676.json): move 1.0001e-75, dDelta +7.565831e-49, dev -8.728027e-51, |dev| / move 8.7271e+24, max|dz| 7.5658e-49, smallest pivot 1.068665e-29, max|F| 3.7704e-37
+    rel 1e-80 (D250.1676.json): move 1.0001e-80, dDelta +7.653111e-49, dev +1.802934e-61, |dev| / move 1.8027e+19, max|dz| 7.6531e-49, smallest pivot 1.068665e-29, max|F| 3.7704e-42
+    p 2.0006, none (sign change): neither
+  D 252.6134676, m_h, a_h, seed 1: the unperturbed step the same in the 3 runs (pass)
+    rel 1e-70 (D252.6135.json): move 1.0001e-70, dDelta -1.267806e-38, dev -1.267806e-38, |dev| / move 1.2677e+32, max|dz| 1.2678e-38, smallest pivot 9.065005e-31, max|F| 8.9673e-32
+    rel 1e-75 (D252.6135.json): move 1.0001e-75, dDelta -1.053668e-48, dev -1.053668e-48, |dev| / move 1.0536e+27, max|dz| 1.0537e-48, smallest pivot 7.286907e-31, max|F| 8.9673e-37
+    rel 1e-80 (D252.6135.json): move 1.0001e-80, dDelta -1.053665e-58, dev -1.053665e-58, |dev| / move 1.0536e+22, max|dz| 1.0537e-58, smallest pivot 7.286891e-31, max|F| 8.9673e-42
+    p 2.0161, 2.0000: quadratic
+step_spread power: PASS

@@ -1,0 +1,13 @@
+== 2026-11-17 14:13:03 043834d9 step_spread.py /home/nathan/Source/choptuik-large-d-raw-wt613 I603-win2/chain/anm_pin3_D252.6135.npz --ref 5.2645963792835124e-82
+step_spread /home/nathan/Source/choptuik-large-d-raw-wt613/I603-win2/chain/anm_pin3_D252.6135.npz: D 252.613467565179, M 32, K 5, L 769; rel 1e-70, 1e-75, 1e-80, steps 1, seeds [1]; pinned max|F| (octo) 5.5519e-92 (2 s)
+  the system (#837): truth read in 8 of 8 parts, held values eight parts, plan stored
+  unperturbed            move 0.000e+00: dDelta +5.2645963793e-82, max|dz| 5.2646e-82, smallest pivot 7.2869e-31, max|F| 5.5519e-92 (400 s)
+  m_h, a_h seed 1 rel 1e-70 move 1.000e-70: dDelta -1.2678060298e-38, max|dz| 1.2678e-38, smallest pivot 9.0650e-31, max|F| 8.9673e-32 (389 s)
+  m_h, a_h seed 1 rel 1e-75 move 1.000e-75: dDelta -1.0536677192e-48, max|dz| 1.0537e-48, smallest pivot 7.2869e-31, max|F| 8.9673e-37 (377 s)
+  m_h, a_h seed 1 rel 1e-80 move 1.000e-80: dDelta -1.0536653329e-58, max|dz| 1.0537e-58, smallest pivot 7.2869e-31, max|F| 8.9673e-42 (382 s)
+  check: the unperturbed dDelta 5.2645963792835124e-82 against --ref 5.2645963792835124e-82: equal: pass
+  verdict: not determined; the m_h, a_h seeds' dDelta -1.267806e-38 .. -1.053665e-58, ratio to the unperturbed -2.408e+43 .. -2.001e+23, largest relative deviation 2.41e+43 (bar 0.001); spread 1.2678e-38, sd 5.9765e-39
+  m_h, a_h seed 1 rel 1e-75: dDelta / unperturbed -2.00142e+33
+  m_h, a_h seed 1 rel 1e-80: dDelta / unperturbed -2.00142e+23
+step_spread: PASS (1551 s)
+time 1550.71 s, max rss 153760 kB
