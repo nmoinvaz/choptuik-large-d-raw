@@ -1,0 +1,31 @@
+== cargo_test_oseries 2026-11-18 04:49:16 954eadcb cargo test --release --lib oseries_ -- --nocapture --test-threads=1
+   Compiling crossbeam-utils v0.8.23
+   Compiling crossbeam-epoch v0.9.21
+   Compiling crossbeam-deque v0.8.8
+   Compiling rayon-core v1.13.0
+   Compiling either v1.19.0
+   Compiling rayon v1.12.0
+   Compiling multidouble v4.8.2
+   Compiling multisolver v0.1.1
+   Compiling multishoot v3.2.0 (https://github.com/nmoinvaz/multishoot?rev=4e36b9126507a77ca25b5ce2ae7373e054d72c12#4e36b912)
+   Compiling hpkernel v0.1.0 (/home/nathan/Source/choptuik-large-d-957/hp)
+    Finished `release` profile [optimized] target(s) in 9m 04s
+     Running unittests src/lib.rs (target/release/deps/_hpkernel-a1a954f310e3b6c8)
+
+running 2 tests
+test prec_tests::od::oseries_by_order_bitwise ... series by order against residual_jet, rows that differ: octo-double 0 serial, 0 threaded; quad-double 0; double-double 0; control 9600
+ok
+test prec_tests::od::oseries_tangent_accuracy ... tangent from 1, octo-double serial: 0 rows differ below order 1, moved orders within 3.987e-130 (bound 2.420e-122)
+tangent from 1, octo-double threaded: 0 rows differ below order 1, moved orders within 3.987e-130 (bound 2.420e-122)
+tangent from 1, quad-double: 0 rows differ below order 1, moved orders within 6.933e-64 (bound 1.593e-58)
+tangent from 1, double-double: 0 rows differ below order 1, moved orders within 2.116e-31 (bound 1.292e-26)
+tangent from 3, octo-double serial: 0 rows differ below order 3, moved orders within 1.515e-130 (bound 2.420e-122)
+tangent from 3, octo-double threaded: 0 rows differ below order 3, moved orders within 1.515e-130 (bound 2.420e-122)
+tangent from 3, quad-double: 0 rows differ below order 3, moved orders within 5.264e-64 (bound 1.593e-58)
+tangent from 3, double-double: 0 rows differ below order 3, moved orders within 1.864e-31 (bound 1.292e-26)
+control, the kept series not moved: 1.001e0
+ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 31 filtered out; finished in 456.15s
+
+exit 0

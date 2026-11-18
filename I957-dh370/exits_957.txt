@@ -1,0 +1,25 @@
+start 2026-11-18 04:13:04 954eadcb
+build stopped 2026-11-18 04:14:04 by me (the guard could stop the unit, the coordinator's rule allows alerts only); restarting with an alert-only watcher
+start 2026-11-18 04:14:29 954eadcb
+build stopped 2026-11-18 04:15:15 by me, restarting with the low-memory recipe (the coordinator's order): CARGO_PROFILE_RELEASE_LTO=false CARGO_PROFILE_RELEASE_CODEGEN_UNITS=16
+start 2026-11-18 04:15:28 954eadcb
+build exit 0 2026-11-18 04:48:47
+957 cargo_test_oseries start 2026-11-18 04:49:16
+957 cargo_test_oseries exit 0 2026-11-18 05:05:56
+957 jbo_default start 2026-11-18 05:05:56
+957 jbo_default exit 1 2026-11-18 05:52:23
+957 jbo_default_main start 2026-11-18 05:54:47 808b1fac
+957 jbo_default_main stopped by me 2026-11-18 06:28:01 at the coordinator's word (dh610 reproduced the hook-line failure on plain main at D 229.0509, order 6), it had run 1994 s, no exit line
+957 diff_pr start 2026-11-18 06:28:15 954eadcb
+957 diff_pr exit 0 2026-11-18 06:33:34
+957 jbo_tangent1 start 2026-11-18 06:33:34 954eadcb
+957 jbo_tangent1 stopped by me 2026-11-18 06:43:34 (about 600 s in, no exit line) and the nan957 waiter i957w stopped, on the coordinator's word: main's jet_by_order_check.py now compares finite words bitwise and non-finite ones by place (9bff3a1e), use it for the remaining lines
+957 jbo_tangent1 start 2026-11-18 06:43:57 954eadcb
+957 jbo_tangent1 exit 0 2026-11-18 07:11:51
+957 jbo_tangent1_D232 start 2026-11-18 07:11:51 954eadcb
+957 jbo_tangent1_D232 exit 0 2026-11-18 07:39:48
+957 jbo_tangent3 start 2026-11-18 07:39:48 954eadcb
+957 jbo_tangent3 exit 0 2026-11-18 08:07:53
+957 jbo_default2 start 2026-11-18 08:07:53 954eadcb
+957 jbo_default2 exit 0 2026-11-18 08:54:07
+957 checks done 2026-11-18 08:54:07

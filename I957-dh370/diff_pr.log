@@ -1,0 +1,13 @@
+== diff_pr 2026-11-18 06:28:15 954eadcb python3 /home/nathan/Source/choptuik-large-d-raw-wt613/I957-dh370/diff957.py /home/nathan/Source/choptuik-large-d-raw-wt613 I903-win2/ks_chain/leg07_D222.0000_ks240/anm_pin3_D229.0509.npz --threads 10 --Np 6 --out /home/nathan/Source/choptuik-large-d-raw-wt613/I957-dh370/diff_pr
+diff957 I903-win2/ks_chain/leg07_D222.0000_ks240/anm_pin3_D229.0509.npz: D 229.05088233947753, stored plan, Np 6, 10 threads
+jets vs by order, the planted change in both (the failing line):
+  k  entries differing (any part)  per part (0..7)                      lowest part  max|z-z'|/max|z|
+  1  0                             [0, 0, 0, 0, 0, 0, 0, 0]  None  0.000e+00
+  2  0                             [0, 0, 0, 0, 0, 0, 0, 0]  None  0.000e+00
+  3  0                             [0, 0, 0, 0, 0, 0, 0, 0]  None  0.000e+00
+  4  0                             [0, 0, 0, 0, 0, 0, 0, 0]  None  0.000e+00
+  5  757                           [757, 757, 757, 757, 757, 757, 757, 757]  0  nan
+  6  0                             [0, 0, 0, 0, 0, 0, 0, 0]  None  nan
+control, the jets' series against itself: differs at [] (must be none): ok
+control, the change in the order-by-order form only: differs at [1, 2, 3, 4, 5, 6] (must be every order): ok
+exit 0

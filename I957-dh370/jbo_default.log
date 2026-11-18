@@ -1,0 +1,8 @@
+== jbo_default 2026-11-18 05:05:56 954eadcb python3 jet_by_order_check.py /home/nathan/Source/choptuik-large-d-raw-wt613 I903-win2/ks_chain/leg07_D222.0000_ks240/anm_pin3_D229.0509.npz --N 24 --threads 10 --Np 6 --out /home/nathan/Source/choptuik-large-d-raw-wt613/I957-dh370/jbo_default
+jet_by_order_check I903-win2/ks_chain/leg07_D222.0000_ks240/anm_pin3_D229.0509.npz: D 229.05088233947753, stored plan, N 24, Np 6, 10 threads
+  newton_o at the state: 90.9 s
+  N 24: jets 1688.4 s, by order 722.2 s, ratio 2.34; orders that differ []
+  Np 6 with the planted change in both: orders that differ [5]
+  controls: a kept intermediate dropped, orders that differ [1, 2, 3, 4, 5, 6]; the planted change in the order-by-order form only, [1, 2, 3, 4, 5, 6]
+  FAIL: 24 of 24 orders the same bits, 5 of 6 with the hook; controls fired
+exit 1

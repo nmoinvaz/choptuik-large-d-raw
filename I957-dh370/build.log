@@ -1,0 +1,75 @@
+🍹 Building a mixed python/rust project
+🐍 Found CPython 3.14 at /home/nathan/Source/choptuik-large-d-957/.venv/bin/python
+🔗 Found pyo3 bindings
+📡 Using build options features from pyproject.toml
+   Compiling target-lexicon v0.13.5
+   Compiling autocfg v1.5.1
+   Compiling crossbeam-utils v0.8.23
+   Compiling proc-macro2 v1.0.107
+   Compiling crossbeam-epoch v0.9.21
+   Compiling unicode-ident v1.0.27
+   Compiling quote v1.0.47
+   Compiling crossbeam-deque v0.8.8
+   Compiling num-traits v0.2.19
+   Compiling rayon-core v1.13.0
+   Compiling pyo3-macros-backend v0.30.1
+   Compiling libc v0.2.191
+   Compiling pyo3-build-config v0.30.1
+   Compiling matrixmultiply v0.3.11
+   Compiling syn v3.0.9
+   Compiling heck v0.5.0
+   Compiling either v1.19.0
+   Compiling pyo3-ffi v0.30.1
+   Compiling pyo3 v0.30.1
+   Compiling rawpointer v0.2.1
+   Compiling rayon v1.12.0
+   Compiling numpy v0.30.0
+   Compiling num-complex v0.4.6
+   Compiling num-integer v0.1.47
+   Compiling once_cell v1.21.4
+   Compiling ndarray v0.17.2
+   Compiling rustc-hash v2.1.3
+   Compiling multidouble v4.8.2
+   Compiling multisolver v0.1.1
+   Compiling pyo3-macros v0.30.1
+   Compiling multishoot v3.2.0 (https://github.com/nmoinvaz/multishoot?rev=4e36b9126507a77ca25b5ce2ae7373e054d72c12#4e36b912)
+   Compiling hpkernel v0.1.0 (/home/nathan/Source/choptuik-large-d-957/hp)
+    Finished `release` profile [optimized] target(s) in 33m 15s
+📦 Built wheel for CPython 3.14 to /home/nathan/Source/choptuik-large-d-957/hp/dist/hpkernel-0.1.0-cp314-cp314-manylinux_2_34_x86_64.whl
+Processing ./dist/hpkernel-0.1.0-cp314-cp314-manylinux_2_34_x86_64.whl
+Installing collected packages: hpkernel
+Successfully installed hpkernel-0.1.0
+
+[notice] A new release of pip is available: 26.2.2 -> 26.3
+[notice] To update, run: pip install --upgrade pip
+Collecting multidouble @ git+https://github.com/nmoinvaz/multidouble@482c683550de265c46e1ca836f89f71bea13c491#subdirectory=python
+  Using cached multidouble-0.1.0-cp314-cp314-linux_x86_64.whl
+Installing collected packages: multidouble
+Successfully installed multidouble-0.1.0
+
+[notice] A new release of pip is available: 26.2.2 -> 26.3
+[notice] To update, run: pip install --upgrade pip
+hpkernel avx2 multidouble avx2
+	Command being timed: "bash hp/build.sh"
+	User time (seconds): 2436.01
+	System time (seconds): 28.64
+	Percent of CPU this job got: 123%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 33:18.86
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 24080876
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 22
+	Minor (reclaiming a frame) page faults: 15682654
+	Voluntary context switches: 8942
+	Involuntary context switches: 37417
+	Swaps: 0
+	File system inputs: 63696
+	File system outputs: 1340880
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
