@@ -96,7 +96,7 @@ if len(rows) >= 2:
     spanw = w[-1]["Dnext"] - w[0]["D"]; tw = sum(r["tser"] + (r["tatt"] or 0) for r in w)
     perw = tw / spanw
     left = 262 - rows[-1]["Dnext"]; left9 = 258.9 - rows[-1]["Dnext"]
-    o.append(f"Pace: {per/60:.0f} min per unit of D over all {nsteps} steps ({span:.2f} D), and {perw/60:.0f} min per unit of D over the last {k} steps ({spanw:.3f} D in {tw/3600:.2f} h of series and attempt time, a {'/'.join('%.4g' % r['a'] for r in w)}). At the recent pace D 258.9 (the first base of the fold rule's counted range) is {left9*perw/3600:.1f} h away and D 262 is {left*perw/3600:.1f} h away; an assumption, since the step size and the series cost move with D.\n")
+    o.append(f"Pace: {per/60:.0f} min per unit of D over all {nsteps} steps ({span:.2f} D), and {perw/60:.0f} min per unit of D over the last {k} steps ({spanw:.3f} D in {tw/3600:.2f} h of series and attempt time, a {'/'.join('%.4g' % r['a'] for r in w)}). At the recent pace D 258.9 (the first base of the fold rule's counted range) is {("%.1f h away" % (left9*perw/3600)) if left9 > 0 else "already passed"} and D 262 is {left*perw/3600:.1f} h away; an assumption, since the step size and the series cost move with D.\n")
 import glob as _g, re as _re
 _jets = [float(_re.search(r"_D([0-9.]+)\.npz", f).group(1)) for f in _g.glob(os.path.expanduser("~/Source/choptuik-large-d-raw-903/I903-macm3/chain_k135*/jet_pin3_D*.npz"))]
 _fx = [l.strip() for l in open(os.path.expanduser("~/Source/choptuik-large-d-raw-903/I903-macm3/exits_k135.txt")) if "fold" in l]
