@@ -198,6 +198,12 @@ def main():
             print(f"| R_c from the first 12 of each (context) | {p12:.2f} | {c12[0]:.2f} to {c12[1]:.2f} | |")
         if n7 != NSTARTS or n0 != NSTARTS:
             print(f"\nnot the criterion: the verdict is for {NSTARTS} starts of each run, and these have {n7} and {n0}")
+        print("\n### The three starts side by side (medians of 48 bounds, R = median(K 7) / median(K 0), the 95% interval is the bootstrap of table_701.verdict)\n")
+        print("| start | K 7 median | K 0 median | R | 95% interval |\n|---|---|---|---|---|")
+        for name, k7, k0, pt, ci in (("a (#943)", a7, a0, r["pa"], r["ca"]), ("b (#721)", b7, b0, r["pb"], r["cb"]), ("c (this task, #145's 32 x 121 root)", B["K7"], B["K0"], r["pc"], r["cc"])):
+            print(f"| {name} | {t701.median(k7):.3e} | {t701.median(k0):.3e} | {pt:.2f} | {ci[0]:.2f} to {ci[1]:.2f} |")
+        print(f"\nK 7 median over K 0 median across starts: c / a = {t701.median(B['K7']) / t701.median(a7):.2f} (K 7), {t701.median(B['K0']) / t701.median(a0):.2f} (K 0); "
+              f"c / b = {t701.median(B['K7']) / t701.median(b7):.2f} (K 7), {t701.median(B['K0']) / t701.median(b0):.2f} (K 0)")
 
 
 if __name__ == "__main__":

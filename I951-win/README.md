@@ -76,3 +76,9 @@ DD(c) = Delta(K 7) - Delta(K 0) = +6.7776e-18 (a's 6.8e-18, b's 6.4383e-18), so 
 - The issue's start file (`cont_32x101_D50.0075`) and "seed 943" were read as D 40.0201 and the fixed `default_rng(163)`, which the coordinator confirmed (hc, during the first solve attempt).
 - The first solve attempt failed on my missing `resource.py` (above); the rerun's records are the ones used.
 - P1 of the prediction failed (above). P3 was not tested.
+
+## Run record of the second c (#145's 32 x 121 root)
+
+- 02:43:30 UTC: `run_951_solves.py` started the two solves from `fol_32x121_D40.0201_32x121.npz` (BelowNormal, 1 BLAS thread each). 02:48:40 `k0c_D40` exit 0 (311 s), 02:49:40 `k7c_D40` exit 0 (371 s). Each converged in one Newton step from the 32 x 121 root: K 7 max|F| 5.76e-29 -> 7.55e-44, K 0 4.45e-31 -> 2.82e-49 (a's and b's K 7 stalled at about 1e-36), both count by the 1e-36 rule. Delta(K 7) 1.88845166449061538291061373176, Delta(K 0) 1.88845166449061538290961246572, DD = +1.0013e-21 (a 6.78e-18, b 6.44e-18).
+- Distances from a's and b's roots (`table_951.py`): K 7, c from a 5.864e-19 (max-norm), from b 5.579e-19; K 0, c from a 2.189e-21, from b 3.497e-21; so c is new in all four, and its K 7 root sits at the K 0 roots' place (its distance from c's K 0 root is 7.5e-23) while a's and b's K 7 roots sit 5.6e-19 to 5.9e-19 off theirs.
+- 02:50:03 UTC: `start_951.cmd` started `run_951.py --t0 "2026-11-18 01:49:22"` (BelowNormal, detached): K 7 pid 22184 and K 0 pid 10584, 2 BLAS threads each, both BelowNormal, deadline 2026-11-19 07:49:22 UTC, K 0 own cap 10 h. Headers: K 7 max|F| 6.20e-29 (a's 6.21e-29), K 0 6.91e-31 (a's 4.39e-31); these `rt_sigma.py` header values are not the solves' last Newton values for a either, so plan item 6's last check (header equals the solve's last Newton value) does not apply and is dropped. Free memory 19.8 GB, laptop CPU 23% before the start, the negative-mass jobs are not running.
