@@ -104,6 +104,16 @@ ks_chain keeps the original rule.
   (the frozen D-trend) applied to it as well, which is my assumption, said in the posts, and its ORDER EFFECT against ks_chain2's ks 291 at equal D
   where the D's agree.
 
+## The σ_pair reading rule (coordinator, hc 2026-11-18 about 22:50 UTC, fixed before more states came)
+
+σ_pair has fallen since D 237.4 with a growing slope and its fold fit does not hold still (window shift −0.5), while it does not move with ks above 291.
+Every new state of both chains is reported with σ_pair, its interval slope, and the fold law's D* over the last 4 and 5 states with the window
+shift (`pairfold949.py`, `pairfold949.csv`; the series is ks ≥ 291 across ks_chain2, ks_chain3b and ks_chain3). A candidate zero of σ_pair at D* is
+called only when, for two states in a row, the last-4 and last-5 D* agree within 0.1 and the window shift is within 0.1 for both; until then the
+reading is "falling, no stable D*". A state that lands within 0.3 of the current D* estimate is reported at once. Selftest `selftest_pairfold949.log`
+(planted fold 260 recovered and called after two states, a (260 − D)^2.5 law not called, one met state not enough, a rising pair "not falling", the
+alert raised; `--mutate` turns the stability test off and fails).
+
 ## Planted fold test (before any state was read)
 
 `selftest949.log` (exit 0): planted σ² = 0.3 (D* − D) exp(−2 · 0.405 (D − 232)), D* 260 and 262, on the five #941 states, five states
