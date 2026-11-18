@@ -1,0 +1,14 @@
+# xi1 0.15
+$ /home/nathan/Source/venv-choptuik/bin/python m7_outer.py --local logs/hier_nb_M7_rpi5_rtol13_xi015_zero.log logs/hier_nb_M7_rpi5_rtol13_xi015_pert1.log logs/hier_nb_M7_rpi5_rtol13_xi015_pert2.log logs/hier_nb_M7_rpi5_rtol13_xi015_pert3.log -- logs/hier_nb_M7_rpi5_rtol13_xi015_dA_endstate.log logs/hier_nb_M7_rpi5_rtol13_xi015_dw_endstate.log
+  2.719219000 1.000022000   r_1 -0.0718-0.0079i   |r_3| 3.0e-08   (logs/hier_nb_M7_rpi5_rtol13_xi015_zero.log)
+  2.719219000 1.000022000   r_1 -0.0661+0.0271i   |r_3| 6.4e-09   (logs/hier_nb_M7_rpi5_rtol13_xi015_pert1.log)
+  2.719219000 1.000022000   r_1 -0.1051+0.0506i   |r_3| 8.9e-08   (logs/hier_nb_M7_rpi5_rtol13_xi015_pert2.log)
+  2.719219000 1.000022000   r_1 -0.0915+0.0624i   |r_3| 3.3e-08   (logs/hier_nb_M7_rpi5_rtol13_xi015_pert3.log)
+  2.719419000 1.000022000   r_1 +0.7755-0.7857i   |r_3| 2.0e-08   (logs/hier_nb_M7_rpi5_rtol13_xi015_dA_endstate.log)
+  2.719219000 1.000122000   r_1 +0.1409+0.9963i   |r_3| 2.3e-08   (logs/hier_nb_M7_rpi5_rtol13_xi015_dw_endstate.log)
+centre r_1 = -0.0836+0.0331i from 4 solves, noise (half range) 0.035
+local Jacobian (Re/Im rows; A, w/w_inf):
+[[ 4295.9  2244.9]
+ [-4093.7  9632.4]]   singular values [10475.2  4827.5]
+zero: A 2.719236, w/w_inf 1.000026   (step +1.74e-05, +3.96e-06); error estimate 9.9e-06 in (A, w/w_inf) (7.3e-06 from the centre's noise, 2.6e-06 from J)
+(exit 0)
