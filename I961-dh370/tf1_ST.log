@@ -1,0 +1,9 @@
+== tf1_ST 2026-11-18 14:18:02 40f4b4a5 /home/nathan/Source/choptuik-large-d-961/.venv/bin/python -u jet_by_order_check.py /home/nathan/Source/choptuik-large-d-raw-wt613 I903-win2/ks_chain/leg07_D222.0000_ks240/anm_pin3_D229.0509.npz --N 24 --threads 10 --Np 6 --tangent_from 1 --out /home/nathan/Source/choptuik-large-d-raw-wt613/I961-dh370/tf1_ST
+jet_by_order_check I903-win2/ks_chain/leg07_D222.0000_ks240/anm_pin3_D229.0509.npz: D 229.05088233947753, stored plan, N 24, Np 6, 10 threads
+  newton_o at the state: 87.3 s
+  N 24: formed twice 316.3 s, moved from order 1 196.9 s, ratio 1.61; orders <= 1 that differ []
+  max |z_k - z'_k| / max |z_k|: 1:0.0e+00 2:2.7e-52 3:1.2e-47 4:1.0e-46 5:8.4e-47 6:4.5e-47 7:6.3e-48 8:1.6e-47 9:5.3e-48 10:1.9e-47 11:8.3e-48 12:1.3e-47 13:1.1e-47 14:8.1e-48 15:7.7e-48 16:5.7e-48 17:1.2e-48 18:6.3e-49 19:1.8e-48 20:1.8e-48 21:1.4e-48 22:2.1e-48 23:2.9e-48 24:2.8e-48
+  rho, formed twice: max 6.55e-35; moved: max 6.55e-35 (bound 6.71e-32)
+  control, the kept series not moved: rho max 1.16e+29
+  PASS: orders 1..1 the same bits yes, rho within the bound yes, agreement max 1.0e-46 (<= 1e-40 yes); controls: rho 1.2e+29, agreement 1.0e-30, fired
+exit 0

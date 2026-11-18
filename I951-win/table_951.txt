@@ -1,0 +1,53 @@
+### Part 1, the solves of start c
+
+| solve | D | grid | horizon | mutate | ok | last Newton max abs F | counts (ok and <= 1e-36) | Delta_RT | Delta_RT - Delta_hp | secs |
+|---|---|---|---|---|---|---|---|---|---|---|
+| K7 | 40.020065 | 32x121 | 7 | None | True | 7.55e-44 | yes | 1.88845166449061538291061373176 | +1.5450e-15 | 366 |
+| K0 | 40.020065 | 32x121 | 0 | norows | True | 2.82e-49 | yes | 1.88845166449061538290961246572 | +1.5450e-15 | 306 |
+
+### Distances (double-double states, 32x121, D 40.020065), re-found if the max-norm is <= 1e-30
+
+| roots | max-norm | 2-norm | re-found | Delta difference |
+|---|---|---|---|---|
+| K 7 c - a | 5.864e-19 | 7.027e-18 | no | -6.7508e-18 |
+| K 7 c - b | 5.579e-19 | 6.814e-18 | no | -6.3840e-18 |
+| K 7 a - b (reference) | 2.857e-20 | 4.085e-19 | no | +3.6680e-19 |
+| K 0 c - a | 2.189e-21 | 2.488e-20 | no | +2.5836e-20 |
+| K 0 c - b | 3.497e-21 | 1.179e-19 | no | +5.3266e-20 |
+| K 0 a - b (reference) | 2.097e-21 | 1.147e-19 | no | +2.7431e-20 |
+| c: K 7 - K 0 | 7.503e-23 | 1.330e-21 | no | +1.0013e-21 |
+| a: K 7 - K 0 (reference) | 5.887e-19 | 7.051e-18 | no | +6.7776e-18 |
+| b: K 7 - K 0 (reference) | 5.614e-19 | 6.810e-18 | no | +6.4383e-18 |
+
+### Part 2, the rough bounds
+
+| K | n starts | best | Q1 | **median (the bound)** | Q3 | max | max/min | starts at the 250 cap | worst residual max abs J x - v | header max abs F |
+|---|---|---|---|---|---|---|---|---|---|---|
+| K7 | 48 | 1.35e-34 | 4.36e-34 | **7.847e-34** | 2.15e-33 | 2.58e-32 | 191.0 | 42 of 48 | 1.5e-12 | 6.20e-29 |
+| K0 | 48 | 4.59e-36 | 1.02e-35 | **1.514e-35** | 4.87e-35 | 5.27e-34 | 114.8 | 0 of 48 | 8.6e-16 | 6.91e-31 |
+  K7 bounds, sorted: 1.35e-34, 1.99e-34, 1.99e-34, 2.34e-34, 2.39e-34, 2.84e-34, 2.92e-34, 3.13e-34, 3.27e-34, 4.06e-34, 4.19e-34, 4.21e-34, 4.52e-34, 4.71e-34, 4.84e-34, 5.05e-34, 5.07e-34, 5.22e-34, 5.45e-34, 6.00e-34, 6.17e-34, 7.40e-34, 7.48e-34, 7.76e-34, 7.93e-34, 8.10e-34, 9.02e-34, 9.16e-34, 9.63e-34, 1.11e-33, 1.28e-33, 1.33e-33, 1.44e-33, 1.59e-33, 1.68e-33, 2.13e-33, 2.17e-33, 2.86e-33, 2.90e-33, 3.42e-33, 3.52e-33, 4.43e-33, 6.09e-33, 7.14e-33, 7.23e-33, 9.43e-33, 1.91e-32, 2.58e-32
+  K0 bounds, sorted: 4.59e-36, 5.00e-36, 5.51e-36, 5.56e-36, 6.25e-36, 7.06e-36, 8.18e-36, 8.99e-36, 9.04e-36, 9.18e-36, 9.69e-36, 9.93e-36, 1.05e-35, 1.06e-35, 1.13e-35, 1.22e-35, 1.29e-35, 1.30e-35, 1.32e-35, 1.42e-35, 1.42e-35, 1.47e-35, 1.48e-35, 1.48e-35, 1.54e-35, 1.90e-35, 1.96e-35, 1.99e-35, 2.05e-35, 2.36e-35, 2.38e-35, 2.74e-35, 2.99e-35, 3.33e-35, 4.06e-35, 4.58e-35, 5.18e-35, 5.29e-35, 5.42e-35, 5.44e-35, 5.67e-35, 6.16e-35, 7.05e-35, 7.65e-35, 9.39e-35, 1.62e-34, 2.73e-34, 5.27e-34
+
+### Reference: R_a (48 and 48 bounds, #943) and R_b (48 and 48, #721 with win2's K 0), recomputed from their logs
+
+R_a(48) = 0.98, 0.60 to 1.43: equal to #943; R_b(48) = 6.06, 4.56 to 9.26: equal to #721
+
+### Verdict (48 and 48 starts, bootstrap 10000 resamples, seed 701)
+
+| quantity | value | 95% bootstrap interval | against |
+|---|---|---|---|
+| R_c = median(K 7) / median(K 0) = 7.847e-34 / 1.514e-35 | **51.82** | 26.55 to 80.59 | R_a 0.60 to 1.43, R_b 4.56 to 9.26: **SPREAD (outside both)** |
+| R_c / R_a (context) | 52.894 | 24.997 to 97.411 | 1: EXCLUDES 1 |
+| R_c / R_b (context) | 8.550 | 3.772 to 13.572 | 1: EXCLUDES 1 |
+| best ratio (context) | 29.36 | | |
+| R_c from the first 12 of each (context) | 34.74 | 12.65 to 139.15 | |
+
+### The three starts side by side (medians of 48 bounds, R = median(K 7) / median(K 0), the 95% interval is the bootstrap of table_701.verdict)
+
+| start | K 7 median | K 0 median | R | 95% interval |
+|---|---|---|---|---|
+| a (#943) | 2.658e-34 | 2.713e-34 | 0.98 | 0.60 to 1.43 |
+| b (#721) | 1.582e-32 | 2.610e-33 | 6.06 | 4.56 to 9.26 |
+| c (this task, #145's 32 x 121 root) | 7.847e-34 | 1.514e-35 | 51.82 | 26.55 to 80.59 |
+
+K 7 median over K 0 median across starts: c / a = 2.95 (K 7), 0.06 (K 0); c / b = 0.05 (K 7), 0.01 (K 0)

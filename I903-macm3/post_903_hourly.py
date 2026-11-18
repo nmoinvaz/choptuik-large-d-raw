@@ -100,7 +100,11 @@ if len(rows) >= 2:
 import glob as _g, re as _re
 _jets = [float(_re.search(r"_D([0-9.]+)\.npz", f).group(1)) for f in _g.glob(os.path.expanduser("~/Source/choptuik-large-d-raw-903/I903-macm3/chain_k135*/jet_pin3_D*.npz"))]
 _fx = [l.strip() for l in open(os.path.expanduser("~/Source/choptuik-large-d-raw-903/I903-macm3/exits_k135.txt")) if "fold" in l]
-o.append(f"Fold rule (the coordinator's `fold_est_903.py verdict`, run after each new jet with base D of at least 258.5): {sum(1 for d in _jets if d >= 258.5)} such jets so far, the newest jet is at base D {max(_jets):.4f}; last run: {_fx[-1] if _fx else 'none'}.\n")
+o.append(f"Fold rule (the coordinator's `fold_est_903.py verdict`, run after each new jet with base D of at least 258.5): {sum(1 for d in _jets if d >= 258.5)} such jet(s) so far, the newest jet is at base D {max(_jets):.4f}; last run: {_fx[-1] if _fx else 'none'}.\n")
+_vl = os.path.expanduser("~/Source/choptuik-large-d-raw-903/I903-macm3/fold_verdict_k135.log")
+if os.path.exists(_vl):
+    _t = open(_vl).read().split("=== verdict run")[-1].splitlines()
+    o.append("The fold rule's last run (`fold_verdict_k135.log`, its header line then its output):\n\n```\n=== verdict run" + _t[0] + "\n" + "\n".join(_t[1:]).replace(O + "/", "") + "\n```\n")
 o.append(f"cpu and memory: anm_run {cpu}% cpu (6 threads), {rss:.2f} GB rss; load average {la[0]:.1f}, swap used {sw} MB of 1024 MB; `caffeinate -is nice -n 10`, nothing else of mine runs.\n")
 o.append(f"The hpkernel here has no `Solver.series_o`, so the series are formed by the jets (the notice is in `chain_k135.log` and `chain_k135b.log`); the bits are the same as by order (#914's check).\n")
 RC = sys.argv[2] if len(sys.argv) > 2 else None

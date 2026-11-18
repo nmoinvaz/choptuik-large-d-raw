@@ -1,0 +1,9 @@
+== jbo4 2026-11-18 14:02:44 40f4b4a5 /home/nathan/Source/choptuik-large-d-961/.venv/bin/python -u jet_by_order_check.py /home/nathan/Source/choptuik-large-d-raw-wt613 I903-win2/ks_chain/leg07_D222.0000_ks240/anm_pin3_D229.0509.npz --N 12 --threads 4 --Np 6 --compare /home/nathan/Source/choptuik-large-d-raw-wt613/I961-dh370/s10.npz --out /home/nathan/Source/choptuik-large-d-raw-wt613/I961-dh370/jbo4
+jet_by_order_check I903-win2/ks_chain/leg07_D222.0000_ks240/anm_pin3_D229.0509.npz: D 229.05088233947753, stored plan, N 12, Np 6, 4 threads
+  newton_o at the state: 126.2 s
+  N 12: jets 382.4 s, by order 116.6 s, ratio 3.28; orders that differ []
+  Np 6 with the planted change in both: orders that differ []
+  controls: a kept intermediate dropped, orders that differ [1, 2, 3, 4, 5, 6]; a round of sums with p_k in place, [2, 3, 4, 5, 6]; the centre's (a q^2)_k before q^2_k, [1, 2, 3, 4, 5, 6]; the planted change in the order-by-order form only, [1, 2, 3, 4, 5, 6]
+  against /home/nathan/Source/choptuik-large-d-raw-wt613/I961-dh370/s10.npz (10 threads; this run 4): orders that differ []; control (the round control's series against it) [2, 3, 4, 5, 6]
+  PASS: 12 of 12 orders the same bits, 6 of 6 with the hook, 12 of 12 as saved; controls fired
+exit 0
