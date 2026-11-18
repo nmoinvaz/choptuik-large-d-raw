@@ -5,7 +5,7 @@ X=/d/choptuik-large-d-raw/I945-win2
 R=$X/leg
 cnt() { if [ -f "$1" ]; then wc -l < "$1"; else echo 0; fi; }
 until grep -q '945f rerun of step 2 (--accept 1e-20) start' $X/exits_945.txt 2>/dev/null; do sleep 10; done
-n0=$(cnt $R/leg.jsonl); f0=$(grep -c 'failed at M' $R/leg.log); e0=$(cnt $X/exits_945.txt); t0=$(date +%s); dl=$(( t0 + 30*3600 )); why=none; kill=0
+n0=$(cnt $R/leg.jsonl); f0=$(grep -c 'failed at M' $R/leg.log); e0=$(cnt $X/exits_945.txt); t0=$(date +%s); dl=${DL:-$(( t0 + 30*3600 ))}; why=none; kill=0
 while true; do
   [ "$(cnt $R/leg.jsonl)" -gt "$n0" ] && { why="NEW leg.jsonl RECORD (a pair or a stop record)"; break; }
   [ "$(grep -c 'failed at M' $R/leg.log)" -gt "$f0" ] && { why="A PASS FAILED (failed at M, the code halves): stopping the leg as the file says"; kill=1; break; }
