@@ -1,0 +1,25 @@
+2026-11-18 17:13:01 UTC run: /home/nathan/Source/venv-choptuik/bin/python -u hier_nb.py 7 2.719219 1.000022 --x=0.148977988,0.014770713,0.008424206,0.001511189,0.000474205,0.00012168 --xi1=0.14 --pretune --fixA --schur --predict --floor --procs 2 --h3=1e-4 > logs/hier_nb_M7_rpi5_xi014_zero.log
+2026-11-18 17:13:51 UTC zero try 0: r_1 -0.1510+1.2630i  |r_3| 2.20e-06  [51 s since start]
+2026-11-18 17:13:51 UTC zero: |r_3| above 1e-06, repeat from its end state x 0.1489782,0.014770826,0.008424259,0.001511207,0.00047421,0.000121682
+2026-11-18 17:13:51 UTC run: /home/nathan/Source/venv-choptuik/bin/python -u hier_nb.py 7 2.719219 1.000022 --x=0.1489782,0.014770826,0.008424259,0.001511207,0.00047421,0.000121682 --xi1=0.14 --pretune --fixA --schur --predict --floor --procs 2 --h3=1e-4 > logs/hier_nb_M7_rpi5_xi014_zero_endstate.log
+2026-11-18 17:14:45 UTC zero try 1: r_1 -0.7642+0.1845i  |r_3| 1.00e-06  [104 s since start]
+2026-11-18 17:14:45 UTC zero: stays above 1e-06, logs renamed _r3high
+2026-11-18 17:14:45 UTC run: /home/nathan/Source/venv-choptuik/bin/python -u hier_nb.py 7 2.719419 1.000022 --x=0.148977988,0.014770713,0.008424206,0.001511189,0.000474205,0.00012168 --xi1=0.14 --pretune --fixA --schur --predict --floor --procs 2 --h3=1e-4 > logs/hier_nb_M7_rpi5_xi014_dA.log
+2026-11-18 17:16:08 UTC dA try 0: r_1 +0.1195+0.3587i  |r_3| 2.50e-06  [187 s since start]
+2026-11-18 17:16:08 UTC dA: |r_3| above 1e-06, repeat from its end state x 0.14900817,0.014773098,0.008427081,0.001511649,0.000474432,0.000121734
+2026-11-18 17:16:08 UTC run: /home/nathan/Source/venv-choptuik/bin/python -u hier_nb.py 7 2.719419 1.000022 --x=0.14900817,0.014773098,0.008427081,0.001511649,0.000474432,0.000121734 --xi1=0.14 --pretune --fixA --schur --predict --floor --procs 2 --h3=1e-4 > logs/hier_nb_M7_rpi5_xi014_dA_endstate.log
+2026-11-18 17:17:04 UTC dA try 1: r_1 +0.4910-5.2224i  |r_3| 3.30e-06  [243 s since start]
+2026-11-18 17:17:04 UTC dA: stays above 1e-06, logs renamed _r3high
+2026-11-18 17:17:04 UTC run: /home/nathan/Source/venv-choptuik/bin/python -u hier_nb.py 7 2.719219 1.000122 --x=0.148977988,0.014770713,0.008424206,0.001511189,0.000474205,0.00012168 --xi1=0.14 --pretune --fixA --schur --predict --floor --procs 2 --h3=1e-4 > logs/hier_nb_M7_rpi5_xi014_dw.log
+2026-11-18 17:18:16 UTC dw try 0: r_1 -1.3697+3.3223i  |r_3| 2.30e-06  [315 s since start]
+2026-11-18 17:18:16 UTC dw: |r_3| above 1e-06, repeat from its end state x 0.1489522,0.014767243,0.008421272,0.001510565,0.000473957,0.000121609
+2026-11-18 17:18:16 UTC run: /home/nathan/Source/venv-choptuik/bin/python -u hier_nb.py 7 2.719219 1.000122 --x=0.1489522,0.014767243,0.008421272,0.001510565,0.000473957,0.000121609 --xi1=0.14 --pretune --fixA --schur --predict --floor --procs 2 --h3=1e-4 > logs/hier_nb_M7_rpi5_xi014_dw_endstate.log
+2026-11-18 17:19:21 UTC dw try 1: r_1 +1.2114+1.0940i  |r_3| 7.70e-07  [380 s since start]
+2026-11-18 17:19:21 UTC run: /home/nathan/Source/venv-choptuik/bin/python -u hier_nb.py 7 2.719219 1.000022 --xi1=0.14 --pretune --fixA --schur --predict --floor --procs 2 --h3=1e-4 > logs/hier_nb_M7_rpi5_xi014_zero_repeat.log
+2026-11-18 17:20:29 UTC zero_repeat try 0: r_1 +0.1684+0.1994i  |r_3| 1.40e-06  [448 s since start]
+2026-11-18 17:20:29 UTC zero_repeat: |r_3| above 1e-06, repeat from its end state x 0.1489782,0.014770826,0.008424259,0.001511207,0.00047421,0.000121682
+2026-11-18 17:20:29 UTC run: /home/nathan/Source/venv-choptuik/bin/python -u hier_nb.py 7 2.719219 1.000022 --x=0.1489782,0.014770826,0.008424259,0.001511207,0.00047421,0.000121682 --xi1=0.14 --pretune --fixA --schur --predict --floor --procs 2 --h3=1e-4 > logs/hier_nb_M7_rpi5_xi014_zero_repeat_endstate.log
+2026-11-18 17:21:22 UTC zero_repeat try 1: r_1 -0.7642+0.1845i  |r_3| 1.00e-06  [501 s since start]
+2026-11-18 17:21:22 UTC zero_repeat: stays above 1e-06, logs renamed _r3high
+2026-11-18 17:21:22 UTC run: /home/nathan/Source/venv-choptuik/bin/python m7_outer.py --local logs/hier_nb_M7_rpi5_xi014_zero_r3high.log logs/hier_nb_M7_rpi5_xi014_zero_endstate_r3high.log logs/hier_nb_M7_rpi5_xi014_zero_repeat_r3high.log logs/hier_nb_M7_rpi5_xi014_zero_repeat_endstate_r3high.log -- logs/hier_nb_M7_rpi5_xi014_dA_endstate_r3high.log logs/hier_nb_M7_rpi5_xi014_dw_endstate.log
+2026-11-18 17:21:22 UTC m7_outer.py --local exit 1; output in logs/m7_outer_rpi5_xi014.txt
