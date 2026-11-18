@@ -1,0 +1,8 @@
+== kern_run check 2026-11-18 00:13 UTC
+-- site2, a no-op script (pass expected):
+hpkernel /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/11bcbd25-9376-453b-88d5-a7c6ad0172dd/scratchpad/i599/site2/hpkernel/__init__.py; module /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/11bcbd25-9376-453b-88d5-a7c6ad0172dd/scratchpad/i599/site2/hpkernel/_hpkernel.cpython-314-darwin.so; crates multidouble 4.2.1, multishoot 1.2.2, multisolver -
+exit 0
+-- control: SITE without the package (exit 7 expected):
+hpkernel /Users/nathan/venv-314/lib/python3.14/site-packages/hpkernel/__init__.py; module /Users/nathan/venv-314/lib/python3.14/site-packages/hpkernel/_hpkernel.cpython-314-darwin.so; crates multidouble 4.0.0, multishoot -, multisolver -
+hpkernel is not site2's (multidouble 4.2.1): stop
+exit 7

@@ -50,6 +50,8 @@ as each lands, and records it in `done.txt`. `lift.log` is rewritten after every
 | k142 | 239.1312 | −41.4612 | −35.6271 | +5.8341 | σ₃ 1.251e-17 → σ₁ 3.352e-16 (ln +3.288) | σ₂ (k3) 0.843 | σ₁ (k3) 1.000 | G1 pass |
 | k142 | 244.1312 | −44.8992 | −37.4490 | +7.4502 | σ₃ 4.282e-19 → σ₁ 5.368e-17 (ln +4.831) | σ₂ (k3) 0.816 | σ₁ (k1) 0.986 | G1 pass |
 | k142 | 249.1469 | −48.6575 | −39.4508 | +9.2067 | σ₃ 5.636e-21 → σ₁ 7.184e-18 (ln +7.150) | σ₂ (k3) 0.782 | σ₁ (k1) 0.855 | G1 pass |
+| k142 | 250.2455 | −49.5334 | −39.9203 | +9.6131 | σ₃ 2.142e-21 → σ₁ 4.436e-18 (ln +7.636) | σ₂ (k3) 0.729 | σ₁ (k1) 0.789 | G1 pass |
+| k135 | 254.7003 | −63.6889 | −41.9593 | +21.7296 | σ₃ 2.400e-28 → σ₁ 5.963e-19 (ln +21.633) | σ₃ (k1) 0.744 | σ₁ (k3) 0.999 | G1 pass |
 
 dh610's order-160 chain was stopped at D 234 by the coordinator's order (#903), so its targets from 240 on will not
 land, and k160's last base here is D 231 (target 230). At D 239.13 the order-142 chain's Δ mode is not converged in
@@ -59,6 +61,20 @@ At D 229.13 the order-142 chain's weakest modes are the harmonic-3 pair (σ₁, 
 mode (σ₃ 8.139e-15), and their small Δ shares carry 0.970 and 0.027 of 1/g² (`lift.log`): the grip on Δ at order 142 is the
 harmonic-3 pair's. At ks 200 the pair rises to 2.6e-10 and the Δ mode carries 0.993 of 1/g²; the Δ mode itself moved
 by ln +0.741 of the lift's +3.8407.
+
+### The reading near D 255 (2026-11-18 01:08 UTC)
+
+xfkappa's order-142 chain is held at D 251 (#944), so the coordinator moved the reading to macm3b's order-135 chain
+(`I903-macm3/chain_k135`), at its first base past D 254, and took order 142's last base, D 250.2455, as order 142's
+substitute. dh610's order-160 targets are dropped, since #941 settled order 160. `queue3.sh a` ran both, and each run's
+log names the kernel its process loaded (site2, multidouble 4.2.1, multishoot 1.2.2; `kern_run.py`, its control in
+`kern_run_check.log`).
+
+At D 254.7003, L is +21.7296 at order 135, far above ln 10 (2.3026). So order 135 leaves a large part of the horizon cut
+there, and its fold could stay put at that order and still move at a higher one. Order 135's Δ mode is σ₃ 2.400e-28 and
+carries 0.744 of 1/g². At order 200 it is σ₁ 5.963e-19 (overlap 0.94), ln +21.633 higher, and the first pinned Newton
+step at order 200 moves Δ by +2.734e-09. Order 142's last base, 4.75 short of D 255, reads L +9.6131, with that step
++6.208e-10. Each L is one run with no error bar. The checks (runs, mutation, control) pass.
 
 ### The kernel window: the D 239.13 and 244.13 bases rerun (15:09 UTC)
 

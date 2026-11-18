@@ -1,7 +1,7 @@
 """I903-mac-grip check: how much of the horizon cut do the fixed-order chains (orders 142 and 160) leave near the fold?
 
 Reads near_null.py's JSONs nn_<tag>_D<d>_ks<K>[_mutks].json (tag k142: xfkappa's I903-mac/chain_fixed; k160: dh610's
-I903-dh610/chain_k160; k140 was its first plan; ctl: #902's D 60 state) and the vectors V_<tag>_D<d>_ks<K>.npy. Each state is read at its own
+I903-dh610/chain_k160; k140 was its first plan; k135: macm3b's I903-macm3/chain_k135; ctl: #902's D 60 state) and the vectors V_<tag>_D<d>_ks<K>.npy. Each state is read at its own
 order (the smallest K of its runs) and at ks 200, at the stored z with no Newton step (#902's method).
 
 The reading is the lift L = ln g(200) - ln g(own), g = 1 / ||e_Delta^T J^-1||_2. The coordinator's bar (#903): at the
@@ -33,7 +33,7 @@ import numpy as np
 
 TARGETS = (230, 240, 245, 250, 255)
 BAR = math.log(10)
-NAME = re.compile(r"nn_(k142|k160|k140|ctl)_D([\d.]+)_ks(\d+)(_mutks)?\.json$")
+NAME = re.compile(r"nn_(k135|k142|k160|k140|ctl)_D([\d.]+)_ks(\d+)(_mutks)?\.json$")
 
 
 def load(d0):
@@ -70,7 +70,7 @@ def target(D):
 
 def evaluate(groups):
     print(f"lift: L = ln g(200) - ln g(own), g = 1 / ||e_Delta^T J^-1||_2; bar at D 255: L < ln 10 = {BAR:.4f}")
-    bad, checks, reading = [], [], {}
+    bad, checks, reading, last = [], [], {}, {}
     for (tag, d), g in sorted(groups.items(), key=lambda t: (t[0][0], float(t[0][1]))):
         runs = g["runs"]
         for K, r in runs.items():
@@ -111,6 +111,8 @@ def evaluate(groups):
                            f"sigma_i({own})| {worst:.2e} (< 0.05)"))
         elif target(D) == 255:
             reading[tag] = (D, L)
+        if tag != "ctl" and D > last.get(tag, (0, 0))[0]:
+            last[tag] = (D, L)
         m = g["mut"]
         if m is not None:
             same = all(m[k] == a[k] for k in ("pivots", "grip", "step", "step_pinned")) and \
@@ -124,14 +126,17 @@ def evaluate(groups):
     for name, c, what in checks:
         print(f"  check {name}: {what}: {'pass' if c else 'FAIL'}")
         ok &= c
-    for tag in ("k142", "k160"):
+    for tag in ("k135", "k142", "k160"):
         if tag in reading:
             D, L = reading[tag]
             print(f"  reading {tag} at D {D:.4f}: L {L:+.4f} " + (
                 f"< ln 10: order {tag[1:]} leaves little of the cut; the fold test is a fair test of it" if L < BAR else
                 f">= ln 10: order {tag[1:]} leaves a large part of the cut; its fold could stay and still move higher"))
         else:
-            print(f"  reading {tag}: no base near D 255 yet")
+            print(f"  reading {tag}: no base near D 255 yet"
+                  + (f"; its last base, D {last[tag][0]:.4f}: L {last[tag][1]:+.4f} "
+                     f"({'<' if last[tag][1] < BAR else '>='} ln 10, {255 - last[tag][0]:.2f} short of D 255)"
+                     if tag in last else ""))
     return ok, {t: v[1] < BAR for t, v in reading.items()}
 
 

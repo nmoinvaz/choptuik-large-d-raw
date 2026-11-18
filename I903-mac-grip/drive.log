@@ -18,3 +18,20 @@ fatal: Could not read from remote repository.
 
 Please make sure you have the correct access rights
 and the repository exists.
+queue3 (b) and (a), the coordinator's pick 00:13
+fatal: path '200' does not exist in 'origin/main'
+state.sh exit 8 for k135 I903-macm3/chain_k135/anm_pin3_D254.7003.npz
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+    import json,sys,numpy as np; print(json.loads(str(np.load(sys.argv[1])['meta']))['ks'])
+                                                      ~~~~~~~^^^^^^^^^^^^^
+  File "/Users/nathan/venv-314/lib/python3.14/site-packages/numpy/lib/_npyio_impl.py", line 463, in load
+    raise EOFError("No data left in file")
+EOFError: No data left in file
+k142 I903-mac/chain_fixed/anm_pin3_D250.2455.npz 200 done 00:13
+queue3 00:13: a launch with unsplit arguments (zsh) ran nothing; its stray files are in the Trash, inputs.txt's two 00:13 lines are its failed lookups
+queue3 a: k135 I903-macm3/chain_k135/anm_pin3_D254.7003.npz 00:14
+k135 254.7003 done 00:46
+queue3 a: k142 I903-mac/chain_fixed/anm_pin3_D250.2455.npz 00:46
+k142 250.2455 done 01:08
+queue3 b: k135 I903-macm3/chain_k135/anm_pin3_D249.1312.npz 01:08

@@ -11,10 +11,8 @@ cd "$HP" || exit 9
 {
   echo "== $name $(date -u '+%Y-%m-%d %H:%M:%S') UTC, hp at $(git rev-parse --short=8 HEAD)$(git diff --quiet HEAD -- . || echo '+dirty'), $*"
   # The kernel must be site2's: from 07:02 to ~14:40 UTC on 2026-11-17 site2 lacked __init__.py and venv-314's loaded.
-  k=$(PYTHONPATH=$SITE "$PY" -c "import hpkernel; print(hpkernel.__file__)" 2>&1)
-  echo "hpkernel $k"
-  case "$k" in "$SITE"/*) ;; *) echo "hpkernel is not site2's: stop"; echo "exit 7"; exit 7 ;; esac
-  OPENBLAS_NUM_THREADS=1 PYTHONPATH=$SITE nice -n 10 "$PY" -u "$@"
+  # kern_run.py logs the kernel the run's own process loads (path, module, crate versions) and stops on another.
+  OPENBLAS_NUM_THREADS=1 PYTHONPATH=$SITE nice -n 10 "$PY" -u "$OUT/kern_run.py" "$SITE" "$@"
   echo "exit $?"
   echo "== end $(date -u '+%Y-%m-%d %H:%M:%S') UTC"
 } > "$OUT/$name.log" 2>&1
