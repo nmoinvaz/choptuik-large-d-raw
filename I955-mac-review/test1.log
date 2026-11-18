@@ -1,0 +1,24 @@
+start 03:02:58
+   Compiling crossbeam-utils v0.8.23
+   Compiling crossbeam-epoch v0.9.21
+   Compiling crossbeam-deque v0.8.8
+   Compiling rayon-core v1.13.0
+   Compiling either v1.19.0
+   Compiling rayon v1.12.0
+   Compiling multidouble v4.8.2 (https://github.com/nmoinvaz/multidouble?branch=perf%2Ffield-par-at-sums#de7da525)
+   Compiling multisolver v0.1.1
+   Compiling multishoot v3.2.0
+   Compiling hpkernel v0.1.0 (/Users/nathan/Source/choptuik-large-d-955/hp)
+    Finished `release-dev` profile [optimized] target(s) in 7m 13s
+     Running unittests src/lib.rs (target/release-dev/deps/_hpkernel-4afaadb94852ab83)
+
+running 3 tests
+test prec_tests::od::bench_oseries_by_order ... ignored
+test prec_tests::od::oseries_by_order_bitwise ... series by order against residual_jet, rows that differ: octo-double 0 serial, 0 threaded; quad-double 0; double-double 0; control 9600
+ok
+test prec_tests::od::oseries_by_order_threads_bitwise ... series by order at M = 32 against residual_jet, rows that differ: 0 on one thread, 0 on four; words that differ between the pools 0 of 43064; control 3200
+ok
+
+test result: ok. 2 passed; 0 failed; 1 ignored; 0 measured; 31 filtered out; finished in 295.40s
+
+exit 0 03:15:07

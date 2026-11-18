@@ -1,0 +1,92 @@
+diff --git a/hp/src/model.rs b/hp/src/model.rs
+index b6c3c87b..376b968e 100644
+--- a/hp/src/model.rs
++++ b/hp/src/model.rs
+@@ -448,6 +448,7 @@ pub fn centre_series_at<T: Lane, const B: usize>(
+     // sum reads what it reads in centre_series, so the reordering changes no bit.
+     let (mut s, mut t, mut u, mut s1p, mut s1m, mut xcxp, mut xcxm, mut cp, mut cm) = (z, z, z, z, z, z, z, z, z);
+     let wi = |i: usize| i as f64;
++    let rev = std::env::var("REV955").unwrap_or_default();
+     for k in 2..=kmax {
+         let kf = k as f64;
+         let wk = |i: usize| (k - i) as f64;
+@@ -463,9 +464,19 @@ pub fn centre_series_at<T: Lane, const B: usize>(
+             ],
+             j,
+         );
++        if rev == "c" {
++            sums_at(vec![SumAt::new(&mut cp, cc, pp, k), SumAt::new(&mut cm, cc, mm, k)], j);
++        }
++        if rev == "c2" {
++            sums_at(vec![SumAt::new(&mut s, aa, q2, k)], j);
++        }
+         q2[k].copy_at(&(t + u), j);
+         std::mem::swap(&mut a2[k], &mut a2p[k]);
+-        sums_at(vec![SumAt::new(&mut s, aa, q2, k), SumAt::new(&mut t3s[k], aa, a2, k)], j);
++        if rev == "c2" {
++            sums_at(vec![SumAt::new(&mut t3s[k], aa, a2, k)], j);
++        } else {
++            sums_at(vec![SumAt::new(&mut s, aa, q2, k), SumAt::new(&mut t3s[k], aa, a2, k)], j);
++        }
+         std::mem::swap(&mut a2[k], &mut a2p[k]);
+         aa[k] = ak;
+         t3s[k].mulp_at(&n1.mul_f(0.5), j, &mut t);
+@@ -481,15 +492,15 @@ pub fn centre_series_at<T: Lane, const B: usize>(
+         let (dp, dm) = (t.mul_pwr2(sig), u.mul_pwr2(sig));
+         let xpx = pp[k - 1].mulf(kf - 1.0).mul_pwr2(sig) - s1p;
+         let xmx = mm[k - 1].mulf(kf - 1.0).mul_pwr2(sig) + s1m;
+-        sums_at(
+-            vec![
+-                SumAt::new(&mut xcxp, cc, pp, k).range(1, k).weighted(&wi),
+-                SumAt::new(&mut xcxm, cc, mm, k).range(1, k).weighted(&wi),
+-                SumAt::new(&mut cp, cc, pp, k),
+-                SumAt::new(&mut cm, cc, mm, k),
+-            ],
+-            j,
+-        );
++        let mut round = vec![
++            SumAt::new(&mut xcxp, cc, pp, k).range(1, k).weighted(&wi),
++            SumAt::new(&mut xcxm, cc, mm, k).range(1, k).weighted(&wi),
++        ];
++        if rev != "c" {
++            round.push(SumAt::new(&mut cp, cc, pp, k));
++            round.push(SumAt::new(&mut cm, cc, mm, k));
++        }
++        sums_at(round, j);
+         pp[k] = pk;
+         mm[k] = mk;
+         cpm[k].copy_at(&(cp + cm), j);
+@@ -1335,6 +1346,8 @@ pub fn horizon_series_at<T: Lane, const B: usize>(
+     // sum reads what it reads in horizon_series, so the reordering changes no bit.
+     let (mut t, mut u, mut s1, mut s2, mut s1m, mut s2m, mut umm, mut taa2, mut wpu, mut zmu) = (z, z, z, z, z, z, z, z, z, z);
+     let wi = |i: usize| i as f64;
++    let rev_h = std::env::var("REV955").map(|v| v == "h").unwrap_or(false);
++    let mut tpp = z;
+     for kk in 0..=ks {
+         let kf = kk as f64;
+         let ik1 = recip_int(kk + 1);
+@@ -1360,6 +1373,9 @@ pub fn horizon_series_at<T: Lane, const B: usize>(
+             round.push(SumAt::new(&mut taa2, aa, a2, kk));
+             round.push(SumAt::new(&mut s2m, cc, mm, kk));
+         }
++        if rev_h {
++            round.push(SumAt::new(&mut tpp, pp, pp, kk));
++        }
+         sums_at(round, j);
+         if ctx.mutate == JET_MUT_AT_ROUND {
+             pp[kk] = z;
+@@ -1396,12 +1412,12 @@ pub fn horizon_series_at<T: Lane, const B: usize>(
+         if more {
+             pm[kk].copy_at(&(pp[kk] + mm[kk]), j);
+         }
+-        let mut round = vec![SumAt::new(&mut t, pp, pp, kk)];
++        let mut round = if rev_h { vec![] } else { vec![SumAt::new(&mut t, pp, pp, kk)] };
+         if more {
+             round.push(SumAt::new(&mut cpmf[kk], cc, pm, kk));
+         }
+         sums_at(round, j);
+-        q2[kk].copy_at(&(t + umm), j);
++        q2[kk].copy_at(&((if rev_h { tpp } else { t }) + umm), j);
+         if kk == ks {
+             break;
+         }

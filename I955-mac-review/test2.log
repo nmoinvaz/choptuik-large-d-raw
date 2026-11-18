@@ -1,0 +1,73 @@
+== REV955=none start 03:16:47
+   Compiling hpkernel v0.1.0 (/Users/nathan/Source/choptuik-large-d-955/hp)
+    Finished `release-dev` profile [optimized] target(s) in 9m 34s
+     Running unittests src/lib.rs (target/release-dev/deps/_hpkernel-4afaadb94852ab83)
+
+running 1 test
+test prec_tests::od::oseries_by_order_threads_bitwise ... series by order at M = 32 against residual_jet, rows that differ: 0 on one thread, 0 on four; words that differ between the pools 0 of 43064; control 3200
+ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 33 filtered out; finished in 278.56s
+
+== REV955=none exit 0 03:31:00
+== REV955=h start 03:31:00
+    Finished `release-dev` profile [optimized] target(s) in 0.04s
+     Running unittests src/lib.rs (target/release-dev/deps/_hpkernel-4afaadb94852ab83)
+
+running 1 test
+test prec_tests::od::oseries_by_order_threads_bitwise ... series by order at M = 32 against residual_jet, rows that differ: 4224 on one thread, 4224 on four; words that differ between the pools 0 of 43064; control 4224
+
+thread 'prec_tests::od::oseries_by_order_threads_bitwise' (53369164) panicked at src/prec_tests.rs:567:9:
+assertion `left == right` failed: the series by order is not residual_jet's, or depends on the pool
+  left: (4224, 4224, 0)
+ right: (0, 0, 0)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+FAILED
+
+failures:
+
+failures:
+    prec_tests::od::oseries_by_order_threads_bitwise
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 33 filtered out; finished in 219.83s
+
+error: test failed, to rerun pass `--lib`
+== REV955=h exit 101 03:34:40
+== REV955=c start 03:34:40
+    Finished `release-dev` profile [optimized] target(s) in 0.02s
+     Running unittests src/lib.rs (target/release-dev/deps/_hpkernel-4afaadb94852ab83)
+
+running 1 test
+test prec_tests::od::oseries_by_order_threads_bitwise ... series by order at M = 32 against residual_jet, rows that differ: 0 on one thread, 0 on four; words that differ between the pools 0 of 43064; control 3200
+ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 33 filtered out; finished in 210.52s
+
+== REV955=c exit 0 03:38:11
+== split_tests start 03:38:11
+    Finished `release-dev` profile [optimized] target(s) in 0.02s
+     Running unittests src/lib.rs (target/release-dev/deps/_hpkernel-4afaadb94852ab83)
+
+running 3 tests
+test split_tests::bench_split ... ignored
+test split_tests::split_file ... ignored
+test split_tests::split_series_accuracy ...  k   d_split    d_oa       d_ctrl     |F_k|
+ 1   0.00e0   8.32e-130   0.00e0   8.97e-3
+ 2   0.00e0   1.67e-130   9.86e-2   2.00e0
+ 3   0.00e0   7.35e-130   3.56e-1   2.37e0
+ 4   0.00e0   2.75e-130   4.57e-1   4.27e0
+ 5   0.00e0   1.59e-130   5.14e-1   7.66e0
+ 6   0.00e0   2.32e-130   5.71e-1   1.32e1
+ 7   0.00e0   4.30e-130   6.22e-1   2.19e1
+ 8   0.00e0   3.03e-130   6.64e-1   3.45e1
+ 9   0.00e0   5.37e-130   7.01e-1   5.17e1
+10   0.00e0   2.75e-130   7.34e-1   7.36e1
+11   0.00e0   3.84e-130   7.63e-1   9.95e1
+12   0.00e0   3.61e-130   7.89e-1   1.28e2
+split series' checksum a0aada9b8fe95419
+split series: default against residual_jet 0 rows differ; split against default 0 rows differ, order 1 0; worst d_split / threshold 0.00e0; threads 1 against 4 and the default pool 0 rows differ; control max d_ctrl / threshold 2.14e123
+ok
+
+test result: ok. 1 passed; 0 failed; 2 ignored; 0 measured; 31 filtered out; finished in 40.50s
+
+== split_tests exit 0 03:38:51

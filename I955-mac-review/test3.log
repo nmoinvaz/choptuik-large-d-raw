@@ -1,0 +1,24 @@
+== REV955=c2 start 03:39:32
+   Compiling hpkernel v0.1.0 (/Users/nathan/Source/choptuik-large-d-955/hp)
+    Finished `release-dev` profile [optimized] target(s) in 6m 46s
+     Running unittests src/lib.rs (target/release-dev/deps/_hpkernel-4afaadb94852ab83)
+
+running 1 test
+test prec_tests::od::oseries_by_order_threads_bitwise ... series by order at M = 32 against residual_jet, rows that differ: 4224 on one thread, 4224 on four; words that differ between the pools 0 of 43064; control 7424
+
+thread 'prec_tests::od::oseries_by_order_threads_bitwise' (53424330) panicked at src/prec_tests.rs:567:9:
+assertion `left == right` failed: the series by order is not residual_jet's, or depends on the pool
+  left: (4224, 4224, 0)
+ right: (0, 0, 0)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+FAILED
+
+failures:
+
+failures:
+    prec_tests::od::oseries_by_order_threads_bitwise
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 33 filtered out; finished in 162.42s
+
+error: test failed, to rerun pass `--lib`
+== REV955=c2 exit 101 03:49:01
