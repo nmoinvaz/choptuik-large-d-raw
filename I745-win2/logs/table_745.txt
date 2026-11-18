@@ -1,0 +1,27 @@
+logs/main_1000.log: 12 of 12 starts printed
+
+Acceptance 1 (starts 0 to 2 against #720's printed bounds):
+  start 0: 1.257e-34 vs 1.257e-34: equal
+  start 1: 9.921e-34 vs 9.921e-34: equal
+  start 2: 7.797e-34 vs 7.797e-34: equal
+
+Acceptance 2 (starts 3 to 11 against #681's, factor 1.5):
+
+| start | bound at 1000 | #681 bound | ratio | within 1.5 | products used | #681 products | reaches 1000 |
+|---|---|---|---|---|---|---|---|
+| 3 | 1.263e-34 | 1.263e-34 | 1.000 | yes | 559 | 250 | no |
+| 4 | 1.564e-34 | 1.564e-34 | 1.000 | yes | 591 | 250 | no |
+| 5 | 2.188e-34 | 2.188e-34 | 1.000 | yes | 522 | 250 | no |
+| 6 | 1.805e-33 | 1.805e-33 | 1.000 | yes | 341 | 250 | no |
+| 7 | 4.881e-34 | 4.881e-34 | 1.000 | yes | 427 | 250 | no |
+| 8 | 2.639e-34 | 2.639e-34 | 1.000 | yes | 538 | 250 | no |
+| 9 | 1.297e-34 | 1.297e-34 | 1.000 | yes | 559 | 250 | no |
+| 10 | 3.667e-34 | 3.667e-34 | 1.000 | yes | 506 | 250 | no |
+| 11 | 1.606e-34 | 1.606e-34 | 1.000 | yes | 596 | 250 | no |
+
+  within 1.5: 9 of 9; the first three: start 0 654 products, start 1 363 products, start 2 336 products
+  starts reaching the 1000 cap: 0 of 12 (products used: 654, 363, 336, 559, 591, 522, 341, 427, 538, 559, 506, 596)
+
+Acceptance 3: R_a = median 2.403e-34 / #681's K = 0 median 2.463e-34 = 0.98, one-state bootstrap 95% interval 0.32 to 2.92 (seed 681, 10000 resamples), against #681's 0.98
+  full rule of #681 with this run's twelve at D 40.02: R(40.02) / R(50.007) = 0.17, interval 0.06 to 0.91; R(54.996) / R(50.007) = 1.21, interval 0.54 to 5.00; verdict UNDECIDED (#681: UNDECIDED, 0.17 and 0.06 to 0.91)
+  sorted bounds: 1.26e-34, 1.26e-34, 1.30e-34, 1.56e-34, 1.61e-34, 2.19e-34, 2.64e-34, 3.67e-34, 4.88e-34, 7.80e-34, 9.92e-34, 1.81e-33
