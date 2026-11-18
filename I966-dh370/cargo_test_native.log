@@ -1,0 +1,25 @@
+== cargo_test_native 2026-11-18 18:52:14 40f4b4a5 cargo test --release --lib oseries_ -- --nocapture --test-threads=1
+   Compiling hpkernel v0.1.0 (/home/nathan/Source/choptuik-large-d-961/hp)
+    Finished `release` profile [optimized] target(s) in 16m 00s
+     Running unittests src/lib.rs (target/release/deps/_hpkernel-ee3626ff5e8cfa75)
+
+running 4 tests
+test prec_tests::od::bench_oseries_by_order ... ignored
+test prec_tests::od::oseries_by_order_bitwise ... series by order against residual_jet, rows that differ: octo-double 0 serial, 0 threaded; quad-double 0; double-double 0; control 9600
+ok
+test prec_tests::od::oseries_by_order_threads_bitwise ... series by order at M = 32 against residual_jet, rows that differ: 0 on one thread, 0 on four; words that differ between the pools 0 of 43064; controls: the horizon's round 3200, the centre's 4224
+ok
+test prec_tests::od::oseries_tangent_accuracy ... tangent from 1, octo-double serial: 0 rows differ below order 1, moved orders within 3.987e-130 (bound 2.420e-122)
+tangent from 1, octo-double threaded: 0 rows differ below order 1, moved orders within 3.987e-130 (bound 2.420e-122)
+tangent from 1, quad-double: 0 rows differ below order 1, moved orders within 6.933e-64 (bound 1.593e-58)
+tangent from 1, double-double: 0 rows differ below order 1, moved orders within 2.116e-31 (bound 1.292e-26)
+tangent from 3, octo-double serial: 0 rows differ below order 3, moved orders within 1.515e-130 (bound 2.420e-122)
+tangent from 3, octo-double threaded: 0 rows differ below order 3, moved orders within 1.515e-130 (bound 2.420e-122)
+tangent from 3, quad-double: 0 rows differ below order 3, moved orders within 5.264e-64 (bound 1.593e-58)
+tangent from 3, double-double: 0 rows differ below order 3, moved orders within 1.864e-31 (bound 1.292e-26)
+control, the kept series not moved: 1.001e0
+ok
+
+test result: ok. 3 passed; 0 failed; 1 ignored; 0 measured; 32 filtered out; finished in 279.18s
+
+exit 0
