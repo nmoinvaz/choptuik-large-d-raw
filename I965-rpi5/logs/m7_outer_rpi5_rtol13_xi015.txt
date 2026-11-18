@@ -1,0 +1,13 @@
+# xi1 0.15
+$ /home/nathan/Source/venv-choptuik/bin/python m7_outer.py --local logs/hier_nb_M7_rpi5_rtol13_xi015_zero.log logs/hier_nb_M7_rpi5_rtol13_xi015_zero_repeat.log logs/hier_nb_M7_rpi5_rtol13_xi015_zero_repeat_endstate.log -- logs/hier_nb_M7_rpi5_rtol13_xi015_dA_endstate.log logs/hier_nb_M7_rpi5_rtol13_xi015_dw_endstate.log
+  2.719219000 1.000022000   r_1 -0.0718-0.0079i   |r_3| 3.0e-08   (logs/hier_nb_M7_rpi5_rtol13_xi015_zero.log)
+  2.719219000 1.000022000   r_1 +0.6249-0.0130i   |r_3| 5.8e-06  (rejected)   (logs/hier_nb_M7_rpi5_rtol13_xi015_zero_repeat.log)
+  2.719219000 1.000022000   r_1 -0.1030+0.0332i   |r_3| 4.5e-08   (logs/hier_nb_M7_rpi5_rtol13_xi015_zero_repeat_endstate.log)
+  2.719419000 1.000022000   r_1 +0.7755-0.7857i   |r_3| 2.0e-08   (logs/hier_nb_M7_rpi5_rtol13_xi015_dA_endstate.log)
+  2.719219000 1.000122000   r_1 +0.1409+0.9963i   |r_3| 2.3e-08   (logs/hier_nb_M7_rpi5_rtol13_xi015_dw_endstate.log)
+centre r_1 = -0.0874+0.0127i from 2 solves, noise (half range) 0.021
+local Jacobian (Re/Im rows; A, w/w_inf):
+[[ 4314.8  2282.7]
+ [-3991.7  9836.3]]   singular values [10629.9  4849.9]
+zero: A 2.719236, w/w_inf 1.000028   (step +1.72e-05, +5.71e-06); error estimate 5.8e-06 in (A, w/w_inf) (4.2e-06 from the centre's noise, 1.5e-06 from J)
+(exit 0)
