@@ -1,0 +1,43 @@
+$ rt_perturb.py --selftest --along
+selftest --along: planted move 1e-25, realised 1.000000e-25, cosine with the planted difference 1.000000000: PASS
+exit 0
+$ rt_perturb.py --selftest --along --mutate
+selftest --along --mutate: planted move 1e-25, realised 0.000000e+00, cosine with the planted difference 0.000000000: FAIL
+exit 1
+$ orth_969.py --selftest
+  planted: rel2 0.194263 (want 0.194263), t 1.500000000 (want 1.5), mu of o -2.0906e-21 (want -2.0906e-21), mu 2-norm share of b - c 4.782e-06 (want 4.782e-06), orthogonality 8.0e-19: ok
+  mutated projection (t left out): rel2 1.000000, orthogonality 9.81e-01: the test sees it, ok
+selftest passed
+exit 0
+$ table_969.py --selftest
+  along at the edge: verdict ALONG THE ROOT SET (want ALONG THE ROOT SET) ok
+  just above the bar: verdict UNDECIDED (want UNDECIDED) ok
+  not along: verdict NOT ALONG (want NOT ALONG) ok
+  not along near the edges: verdict NOT ALONG (want NOT ALONG) ok
+  just under 0.1: verdict UNDECIDED (want UNDECIDED) ok
+  just over 10: verdict UNDECIDED (want UNDECIDED) ok
+  one along, one not: verdict UNDECIDED (want UNDECIDED) ok
+  in between: verdict UNDECIDED (want UNDECIDED) ok
+  mutated along bar (1e-2): the 5e-3 case reads ALONG THE ROOT SET against UNDECIDED ok
+  an incomplete run: INCOMPLETE (want INCOMPLETE) ok
+  median: geometric mean of the two middle ones for 12, the middle one for 3: ok
+  #963's c_d1e-20: median 5.4593e-24 against m_rand 5.4593e-24 ok
+  #963's c_d1e-19: median 2.6809e-22 against m_rand 2.6809e-22 ok
+selftest passed
+exit 0
+$ run_969.py --selftest
+2026-11-18 22:11:46 UTC start slow (pid 7852), cap 0.00 h
+2026-11-18 22:11:48 UTC slow killed 5 (cap 0.00 h) after 2 s
+2026-11-18 22:11:48 UTC start after (pid 14192), cap 0.00 h
+2026-11-18 22:11:48 UTC after exit 0 after 0 s
+  cap hit: exit 5 {'r0': 0, 'slow': 5, 'after': 0} (want slow 5, the run after it still done) ok
+2026-11-18 22:11:48 UTC start r0 (pid 3096), cap 0.01 h
+2026-11-18 22:11:49 UTC r0 exit 0 after 0 s
+2026-11-18 22:11:49 UTC start crash (pid 21988), cap 0.01 h
+2026-11-18 22:11:49 UTC crash exit 3 after 0 s
+  a crash: exit 7 {'r0': 0, 'crash': 3} (want 7, after not run) ok
+2026-11-18 22:11:49 UTC start r0 (pid 14468), cap 0.01 h
+2026-11-18 22:11:49 UTC r0 killed 4 (STOP_969) after 0 s
+  STOP file: exit 4 (want 4) ok
+selftest passed
+exit 0

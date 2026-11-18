@@ -1,0 +1,24 @@
+D 40.020065, 32x121, K 0, z has 13665 entries, max|z_C| 1.291061e-01, mu of z_C +1.291061e-01, block sizes w1 half 1952, w2 = w3 = w4 3904, mu 1
+
+| vector | max-norm / max abs z | 2-norm / max abs z |
+|---|---|---|
+| a - c | 1.6958e-20 | 1.9273e-19 |
+| b - c | 2.7086e-20 | 9.1319e-19 |
+| o = b - c orthogonal to a - c | 1.6461e-20 | 8.8790e-19 |
+
+cosine of a - c and b - c: 0.233728973222. b - c = t (a - c) + o with t = 1.107434; check cosine of o and a - c: 1.1e-16 (zero to the rounding of the double vectors).
+Orthogonal component o against b - c: 2-norm 0.972302, max-norm 0.607752.  Its part along a - c, t (a - c): 2-norm 0.233729 of b - c.
+
+| vector | mu entry | mu / max-norm | mu^2 / 2-norm^2 |
+|---|---|---|---|
+| a - c | -2.1893e-21 | 1.0000e+00 | 7.7413e-03 |
+| b - c | -3.4969e-21 | 1.0000e+00 | 8.7974e-04 |
+| o | -1.0724e-21 | 5.0459e-01 | 8.7515e-05 |
+
+Share of the squared 2-norm by block:
+
+| vector | w1 half | w2 | w3 | w4 | mu |
+|---|---|---|---|---|---|
+| a - c | 3.2376e-03 | 1.0651e-01 | 3.8585e-01 | 4.9667e-01 | 7.7413e-03 |
+| b - c | 1.0795e-03 | 1.5353e-01 | 1.6281e-01 | 6.8170e-01 | 8.7974e-04 |
+| o | 2.2136e-03 | 1.9805e-01 | 1.7850e-01 | 6.2115e-01 | 8.7515e-05 |
