@@ -1,0 +1,19 @@
+(1) 72 values of D from 9 to 13, each converged; largest max |F| 7.83e-29 (<= 1e-28); 9 of them in quad-double from D 12.5 on (handed over at a double-double max |F| of up to 9.85e-27), largest quad-double max |F| 4.70e-57, largest double-double one 7.83e-29: PASS
+(2) closure at D 11: the chain's 1.134776574571408748482773 against 1 records of I916-mac with max |F| <= 1e-30: largest difference 1.0e-19 (<= 1e-20): FAIL
+(3) smoothness on the 65 grid points (step 0.0625; smallest step of all points 0.009375): the second derivative runs from -0.005756 to 0.0006902; third differences of one sign True, fourth of one sign True, largest fourth over largest second 0.00277 (< 0.01): PASS
+
+| D | Δ, kernel | max \|F\| | sigdss's Δ (march, prior) | kernel minus sigdss |
+|---|---|---|---|---|
+| 9 | 1.1645460552643711 | 1.4e-31 | 1.1649451 (m03up, 1e-08) | -3.99e-04 |
+| 9.759375 | 1.1544895396142041 | 1.9e-31 | 1.1549598 (m03up, 1e-08) | -4.70e-04 |
+| 10 | 1.1508751010023666 | 1.3e-31 | 1.1545592 (m03up, 1e-08) | -3.68e-03 |
+| 10.1 | 1.1493323440239251 | 1.8e-31 | 1.1517462 (m03hi, 1e-07) | -2.41e-03 |
+| 10.25 | 1.1469810420608204 | 1.3e-31 | 1.1486373 (m03hi, 1e-07) | -1.66e-03 |
+| 10.475 | 1.1433848716116713 | 2.0e-31 | 1.1400188 (m03hi, 1e-07) | +3.37e-03 |
+| 10.5 | 1.1429809864724502 | 1.5e-31 | 1.1125022 (m03up, 1e-08) | +3.05e-02 |
+| 10.5 | 1.1429809864724502 | 1.5e-31 | 1.1391146 (m03hi, 1e-07) | +3.87e-03 |
+| 10.5625 | 1.1419680125498595 | 1.2e-31 | 1.1187049 (m03up, 1e-08) | +2.33e-02 |
+| 10.75 | 1.1389046417306607 | 1.4e-31 | 1.1299686 (m03hi, 1e-07) | +8.94e-03 |
+| 11 | 1.1347765745714087 | 1.2e-31 | 1.1174614 (m03hi, 1e-07) | +1.73e-02 |
+
+CHAIN TABLE (mutation closure): FAIL

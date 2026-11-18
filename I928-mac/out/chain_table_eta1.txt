@@ -1,0 +1,17 @@
+(1) 55 values of D from 10 to 13, each converged; largest max |F| 9.64e-29 (<= 1e-28); 11 of them in quad-double from D 12.375 on (handed over at a double-double max |F| of up to 2.51e-26), largest quad-double max |F| 3.64e-56, largest double-double one 9.64e-29: PASS
+(2) closure at D 11: the chain's 1.015682192797883451131788 against 1 records of I917-mac with max |F| <= 1e-30: largest difference 3.24e-23 (<= 1e-20): PASS
+(3) smoothness on the 49 grid points (step 0.0625; smallest step of all points 0.000390625): the second derivative runs from -0.003787 to -0.0002306; third differences of one sign True, fourth of one sign True, largest fourth over largest second 0.0017 (< 0.01): PASS
+
+| D | Δ, kernel | max \|F\| | sigdss's Δ (march, prior) | kernel minus sigdss |
+|---|---|---|---|---|
+| 10 | 1.0234372495427839 | 1.2e-31 | 1.0261416 (m1up, 1e-08) | -2.70e-03 |
+| 10.1 | 1.0228006533690608 | 1.5e-31 | 1.0269908 (m1hi, 1e-07) | -4.19e-03 |
+| 10.25 | 1.0217773777518988 | 1.5e-31 | 1.0295102 (m1hi, 1e-07) | -7.73e-03 |
+| 10.3796875 | 1.0208321765227579 | 1.6e-31 | 1.0298300 (m1up, 1e-08) | -9.00e-03 |
+| 10.474609375 | 1.0201078346530785 | 1.3e-31 | 1.0340058 (m1up, 1e-08) | -1.39e-02 |
+| 10.475 | 1.0201048000251548 | 1.2e-31 | 0.9934860 (m1hi, 1e-07) | +2.66e-02 |
+| 10.5 | 1.0199096928940594 | 1.4e-31 | 0.9942924 (m1hi, 1e-07) | +2.56e-02 |
+
+55 rows -> matter/sigma_ms/data/delta_D_eta1.csv
+
+CHAIN TABLE: PASS
