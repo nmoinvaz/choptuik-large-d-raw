@@ -1,0 +1,22 @@
+== ks_chain3b_dry 2026-11-18 21:16:16 664ef3dd /home/nathan/Source/choptuik-large-d-961/.venv/bin/python -u ks_chain.py /home/nathan/Source/choptuik-large-d-raw-wt613 /home/nathan/Source/choptuik-large-d-raw-wt613/I966-dh370/ks_chain3b --state I903-win2/ks_chain2/leg00_D232.0000_ks291/anm_pin3_D237.7132.npz --D_stop 400 --mult 4.4 --pad -262 --dry -- --kfreeze 3 --held_fit data/held_fit.json --N 31 --eps 1e-14 --h_max 2 --threads 10 --corrector od --tol_od 1e-60 --qd_it 40 --lam_stall 0.04 --od_junk 0 --jet_o 1 --reseed 2 --reseed_q 1 --held_o 1 --reseed_o 3 --save_pred 1 --od_accept natural --save_jet 1 --od_strong 4 --reseed_start pred --a_rule reseed --a_scale 0.0715 --jet_tangent_from 1 --series_split 1 --reseed_qd_bar 1e-21 --steps 400
+Re s = 1.4961 + 0.500436 D from 33 states of horizon_radius.csv (D 225.131 to 253.804); ks = ceil(4.4 Re s(leg end)) + -262
+  leg D 237.7132 -> 247.7132: ks 291
+  leg D 247.7132 -> 257.7132: ks 313
+  leg D 257.7132 -> 267.7132: ks 335
+  leg D 267.7132 -> 277.7132: ks 357
+  leg D 277.7132 -> 287.7132: ks 379
+  leg D 287.7132 -> 297.7132: ks 401
+  leg D 297.7132 -> 307.7132: ks 423
+  leg D 307.7132 -> 317.7132: ks 445
+  leg D 317.7132 -> 327.7132: ks 467
+  leg D 327.7132 -> 337.7132: ks 489
+  leg D 337.7132 -> 347.7132: ks 511
+  leg D 347.7132 -> 357.7132: ks 533
+  leg D 357.7132 -> 367.7132: ks 555
+  leg D 367.7132 -> 377.7132: ks 577
+  leg D 377.7132 -> 387.7132: ks 599
+  leg D 387.7132 -> 397.7132: ks 621
+  leg D 397.7132 -> 400.0000: ks 626
+leg 0: D 237.7132 -> 247.7132 at ks 291 from I903-win2/ks_chain2/leg00_D232.0000_ks291/anm_pin3_D237.7132.npz
+  /home/nathan/Source/choptuik-large-d-961/.venv/bin/python -u /home/nathan/Source/choptuik-large-d-961/hp/anm_run.py /home/nathan/Source/choptuik-large-d-raw-wt613 /home/nathan/Source/choptuik-large-d-raw-wt613/I966-dh370/ks_chain3b/leg00_D237.7132_ks291 --state I903-win2/ks_chain2/leg00_D232.0000_ks291/anm_pin3_D237.7132.npz --kfreeze 3 --held_fit data/held_fit.json --N 31 --eps 1e-14 --h_max 2 --threads 10 --corrector od --tol_od 1e-60 --qd_it 40 --lam_stall 0.04 --od_junk 0 --jet_o 1 --reseed 2 --reseed_q 1 --held_o 1 --reseed_o 3 --save_pred 1 --od_accept natural --save_jet 1 --od_strong 4 --reseed_start pred --a_rule reseed --a_scale 0.0715 --jet_tangent_from 1 --series_split 1 --reseed_qd_bar 1e-21 --steps 400 --ks 291 --keep_plan 0 --D_max 247.7132
+exit 0

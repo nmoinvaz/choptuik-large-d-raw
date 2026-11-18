@@ -5,6 +5,8 @@
 #   doff   #961's step (d) with --jet_tangent_from 0 --series_split 0, all else as in #961 (flags of run961.sh)
 #   dry    ks_chain.py --dry with #966's flags
 #   chain  ks_chain.py with #966's flags (no timeout, no kill rule; the stops are the driver's own)
+#   dryb chainb  ks_chain3b (coordinator's hc, 2026-11-18 ~21:10 UTC): the same from the same state with --pad -262 (leg 0 at the state's ks 291) and F3b = F3 plus
+#          --reseed_qd_bar 1e-21, on main 664ef3dd (-961 fast-forwarded, build kept), OUT I966-dh370/ks_chain3b
 # The watcher only logs and alerts (mem966.log, alerts966.txt, an hc message at most every 10 min); it never stops or kills anything.
 WT=/home/nathan/Source/choptuik-large-d-961
 RAW=/home/nathan/Source/choptuik-large-d-raw-wt613
@@ -55,6 +57,8 @@ CH="--kfreeze 3 --held_fit data/held_fit.json --eps 1e-14 --h_max 2 --threads $T
 BASE=I903-win2/ks_chain2/leg00_D232.0000_ks291/anm_pin3_D237.7132.npz
 F3="--kfreeze 3 --held_fit data/held_fit.json --N 31 --eps 1e-14 --h_max 2 --threads $T --corrector od --tol_od 1e-60 --qd_it 40 --lam_stall 0.04 --od_junk 0 --jet_o 1 --reseed 2 --reseed_q 1 --held_o 1 --reseed_o 3 --save_pred 1 --od_accept natural --save_jet 1 --od_strong 4 --reseed_start pred --a_rule reseed --a_scale 0.0715 --jet_tangent_from 1 --series_split 1"
 
+F3b="$F3 --reseed_qd_bar 1e-21"
+
 for s in "$@"; do
   case $s in
   test)
@@ -68,6 +72,10 @@ for s in "$@"; do
     stage ks_chain3_dry $OUT/ks_chain3_dry.log $PY -u ks_chain.py $RAW $OUT/ks_chain3 --state $BASE --D_stop 400 --mult 4.4 --pad -249 --dry -- $F3 --steps 400 || exit 1 ;;
   chain)
     stage ks_chain3 $OUT/ks_chain3.log $PY -u ks_chain.py $RAW $OUT/ks_chain3 --state $BASE --D_stop 400 --mult 4.4 --pad -249 -- $F3 --steps 400 || exit 1 ;;
+  dryb)
+    stage ks_chain3b_dry $OUT/ks_chain3b_dry.log $PY -u ks_chain.py $RAW $OUT/ks_chain3b --state $BASE --D_stop 400 --mult 4.4 --pad -262 --dry -- $F3b --steps 400 || exit 1 ;;
+  chainb)
+    stage ks_chain3b $OUT/ks_chain3b.log $PY -u ks_chain.py $RAW $OUT/ks_chain3b --state $BASE --D_stop 400 --mult 4.4 --pad -262 -- $F3b --steps 400 || exit 1 ;;
   *) log "unknown stage $s"; exit 3 ;;
   esac
 done

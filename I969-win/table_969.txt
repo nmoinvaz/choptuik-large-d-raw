@@ -1,0 +1,23 @@
+| run | delta | printed max abs F | bounds printed | m (median of the bounds) | m_rand (#963) | m / m_rand | products per start (min, median, max) | starts at the 250 cap | worst max abs J x - v | start 0 mu share of x |
+|---|---|---|---|---|---|---|---|---|---|---|
+| c_alongb_d1e-20 | 1e-20 | 1.16e-30 | 12 | 1.5836e-33 | 5.4593e-24 | 2.901e-10 | 67, 67, 67 | 0 of 12 | 3.9e-19 | +6.02e-01 |
+| c_alongb_d1e-19 | 1e-19 | 3.27e-30 | 12 | 4.8112e-33 | 2.6809e-22 | 1.795e-11 | 67, 67, 67 | 0 of 12 | 5.2e-20 | +5.41e-01 |
+
+The bounds of each run, start 0 to 11:
+
+| start | c_alongb_d1e-20 | c_alongb_d1e-19 |
+|---|---|---|
+| 0 | 1.474e-33 | 4.094e-33 |
+| 1 | 5.224e-33 | 6.902e-33 |
+| 2 | 1.691e-33 | 6.301e-33 |
+| 3 | 2.493e-33 | 5.853e-33 |
+| 4 | 8.609e-34 | 2.574e-33 |
+| 5 | 7.793e-34 | 2.057e-33 |
+| 6 | 1.483e-33 | 3.161e-33 |
+| 7 | 7.489e-33 | 2.737e-32 |
+| 8 | 2.123e-33 | 5.654e-33 |
+| 9 | 1.416e-33 | 3.901e-33 |
+| 10 | 6.829e-34 | 2.239e-33 |
+| 11 | 4.184e-33 | 7.347e-33 |
+
+Verdict by the pre-set criteria: **ALONG THE ROOT SET** (m / m_rand 2.9e-10 at 1e-20, 1.79e-11 at 1e-19); with #968's a - c also along (ALONG A FAMILY) and the cosine 0.234 between a - c and b - c, the set of roots near c is at least two-dimensional.
