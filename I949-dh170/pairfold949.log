@@ -1,0 +1,22 @@
+sigma_pair at ks 291, last states: 236.2678: 2.6571e-10 (chain 2); 236.7447: 2.7025e-10 (chain 2); 237.0427: 2.7410e-10 (chain 2); 237.3407: 2.7553e-10 (chain 2); 237.7132: 2.6790e-10 (chain 2); 237.9461: 2.5553e-10 (chain 2); 238.1789: 2.3774e-10 (chain 2); 238.7874: 1.8141e-10 (chain 4)
+coordinator's arithmetic, D* = midpoint + 1 / (2 slope) of each interval of the last 5:
+   237.3407 -> 237.7132: slope +0.075, D* 244.16
+   237.7132 -> 237.9461: slope +0.203, D* 240.29
+   237.9461 -> 238.1789: slope +0.310, D* 239.68
+   238.1789 -> 238.7874: slope +0.444, D* 239.61
+last 4: D 237.7132 to 238.7874 (4 states, chains [2, 4], spans two chains), conv up to 3.5e-04
+   model B: D* 239.469 (0.681 past the last state), c 4.829e-20, s -0.0757, relative residuals of sigma^2 -3.9e-03, +8.6e-03, -5.1e-03, +3.2e-04
+   model A (s = 0, the plain fold law sigma^2 = c (D* - D)): D* 239.672, relative residuals -2.0e-02, +1.2e-02, +1.3e-02, -4.6e-03
+   Monte Carlo at sigma_pair noise 3.5e-04: D* 16/50/84 percent 239.46 239.47 239.47 (0 of 400 without an interior minimum)
+last 4 shifted back by one state: D 237.3407 to 238.1789 (4 states, chains [2]), conv up to 3.5e-04
+   model B: D* 238.891 (0.712 past the last state), c 7.924e-20, s -0.2866, relative residuals of sigma^2 -1.1e-03, +3.9e-03, -3.9e-03, +1.1e-03
+   model A (s = 0, the plain fold law sigma^2 = c (D* - D)): D* 240.613, relative residuals -2.9e-02, +3.6e-02, +2.5e-02, -2.8e-02
+   window shift: D* moves by -0.577
+last 5: D 237.3407 to 238.7874 (5 states, chains [2, 4], spans two chains), conv up to 3.5e-04
+   model B: D* 239.329 (0.542 past the last state), c 6.062e-20, s -0.1550, relative residuals of sigma^2 -1.4e-02, +2.2e-02, +1.1e-02, -2.2e-02, +2.1e-03
+   model A (s = 0, the plain fold law sigma^2 = c (D* - D)): D* 239.802, relative residuals -8.2e-02, +2.9e-02, +5.2e-02, +4.2e-02, -2.9e-02
+   Monte Carlo at sigma_pair noise 3.5e-04: D* 16/50/84 percent 239.33 239.33 239.33 (0 of 400 without an interior minimum)
+last 5 shifted back by one state: D 237.0427 to 238.1789 (5 states, chains [2]), conv up to 3.5e-04
+   model B: D* 238.856 (0.677 past the last state), c 8.328e-20, s -0.3058, relative residuals of sigma^2 -3.2e-03, +4.6e-03, +2.7e-03, -6.5e-03, +2.3e-03
+   model A (s = 0, the plain fold law sigma^2 = c (D* - D)): D* 241.636, relative residuals -5.2e-02, +2.7e-02, +6.0e-02, +2.8e-02, -5.2e-02
+   window shift: D* moves by -0.473

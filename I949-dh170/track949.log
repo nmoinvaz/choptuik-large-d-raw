@@ -80,6 +80,11 @@ POST-FREEZE D-trend (the backfill's 20 same-ks interval slopes against D, never 
     D  238.1789 ks 291: 0.3734  vs D lin -0.0137  vs D quad -0.0185  vs s(ks) +0.0647
   coordinator's caveat (#948: sigma_Delta is the same from ks 240 to 320 at D 232, so the baseline's ks dependence is really D dependence): at the jump to ks 275 s(ks) reads about 0.04 below the D-trend (0.3364 at ks 275), so an excess near +0.04 against s(ks) there is not a fold; the 0.10 trigger is unaffected.
 
+ks ladder at one D (post-freeze report, coordinator's #949 note 2026-11-18; sigma_Delta against the chain's state at that D):
+  D 237.7132: chain state ks 291: sigma_Delta 5.6796461617e-16, Delta share 0.9831, pair 2.6790e-10
+    ks 295: sigma_Delta 5.6796461617e-16, +0.00e+00 against the chain state; Delta share 0.9831, pair 2.6790e-10 (-3.15e-09 against the chain state), conv 0.0e+00
+    ks 299: sigma_Delta 5.6796461617e-16, +0.00e+00 against the chain state; Delta share 0.9831, pair 2.6790e-10 (-3.06e-09 against the chain state), conv 0.0e+00
+
 ORDER EFFECT at equal D, ks_chain2 (its ks: see the rows) against the ks 250 states of ks_chain, of sigma_Delta (the Delta mode's singular value of the pinned Jacobian) and sigma_pair, NOT of Delta(D), the state's last unknown, which compare_delta949.py gives (coordinator, hc 2026-11-18; interpolation error of ln sigma, left-one-out: Delta 2.4e-06, pair 1.6e-03):
   D  232.5000 ks 291: sigma_Delta 4.313610e-15 against 4.313610e-15 (-6.33e-11); sigma_pair 2.97740e-10 against 2.97741e-10 (-3.36e-06); Delta share 0.9196; same D
   D  233.0000 ks 291: sigma_Delta 3.530003e-15 against 3.530003e-15 (-7.68e-11); sigma_pair 3.01096e-10 against 3.01098e-10 (-3.98e-06); Delta share 0.9263; same D

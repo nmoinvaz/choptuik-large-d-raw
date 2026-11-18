@@ -8,7 +8,7 @@ S=/home/nathan/scratch949
 git -C $G fetch -q origin || exit 9
 C=$(git -C $G rev-parse --short origin/main)
 n=0
-for p in $(git -C $G ls-tree -r --name-only origin/main I903-win2/ks_chain/ I903-win2/ks_chain2/ I966-dh370/ks_chain3/ I966-dh370/ks_chain3b/ | grep -E '/(anm_pin3|base_pin[0-9]+)_D[0-9.]+\.npz$'); do
+for p in $(git -C $G ls-tree -r --name-only origin/main I903-win2/ks_chain/ I903-win2/ks_chain2/ I966-dh370/ks_chain3/ I966-dh370/ks_chain3b/ I971-dh610/ | grep -E '/(anm_pin3|base_pin[0-9]+)_D[0-9.]+\.npz$'); do
   n=$((n+1))
   [ -f "$S/$p" ] && continue
   mkdir -p "$S/$(dirname $p)"

@@ -71,7 +71,7 @@ def classify(rec):
 
 def row_of(rec, src):
     ks = int(re.search(r"[_/]ks(\d+)/", rec["state"]).group(1))
-    r = dict(D=float(rec["D"]), ks=ks, src=src, state=rec["state"], ok=True, note="", ladder="ladder" in rec["state"],
+    r = dict(D=float(rec["D"]), ks=ks, src=src, state=rec["state"], ok=True, note="", ladder=("ladder" in rec["state"] or "I971-dh610" in rec["state"]),
              chain=4 if "ks_chain3b" in rec["state"] else (3 if "ks_chain3" in rec["state"] else (2 if "ks_chain2" in rec["state"] else 1)))
     v = rec["vectors"]
     try:
@@ -92,7 +92,7 @@ def load(folder):
     for p in sorted(glob.glob(os.path.join(folder, "from941", "o*_D*.json"))):
         r = row_of(json.load(open(p)), "I941-dh370")
         rows[(r["chain"], r["ks"], round(r["D"], 6))] = r
-    for p in sorted(glob.glob(os.path.join(folder, "ks*_D*.json")) + glob.glob(os.path.join(folder, "c3*_ks*_D*.json"))
+    for p in sorted(glob.glob(os.path.join(folder, "ks*_D*.json")) + glob.glob(os.path.join(folder, "c3*_ks*_D*.json")) + glob.glob(os.path.join(folder, "b971_ks*_D*.json"))
                     + glob.glob(os.path.join(folder, "ctl_planted.json"))):
         r = row_of(json.load(open(p)), os.path.basename(p)[:-5])
         key = (r["chain"], r["ks"], round(r["D"], 6))
@@ -399,7 +399,8 @@ def tables(folder, forward=False):
                 print(f"  D {D:.4f}: chain state ks {ref['ks']}: sigma_Delta {ref['sd']:.10e}, Delta share {ref['share']:.4f}, pair {ref['sp']:.4e}")
             for r in g:
                 rel = f", {r['sd'] / ref['sd'] - 1:+.2e} against the chain state" if ref else ""
-                print(f"    ks {r['ks']}: sigma_Delta {r['sd']:.10e}{rel}; Delta share {r['share']:.4f}, pair {r['sp']:.4e}, conv {r['conv']:.1e}"
+                relp = f" ({r['sp'] / ref['sp'] - 1:+.2e} against the chain state)" if ref else ""
+                print(f"    ks {r['ks']}: sigma_Delta {r['sd']:.10e}{rel}; Delta share {r['share']:.4f}, pair {r['sp']:.4e}{relp}, conv {r['conv']:.1e}"
                       f"{'' if r['ok'] else '  NOT CLASSIFIED: ' + r['note']}")
     for new_ch, ref_ch, ref_ks in ((2, 1, 250), (3, 2, 291), (4, 2, 291)):
         oe = order_effect(rows, ref_ks, new_ch, ref_ch)
