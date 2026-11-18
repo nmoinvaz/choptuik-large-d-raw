@@ -90,7 +90,12 @@ DD(c) = Delta(K 7) - Delta(K 0) = +6.7776e-18 (a's 6.8e-18, b's 6.4383e-18), so 
 - Free memory 17.7 GB of 31.8, CPU about 29%. No cap hit, no stop, no re-find.
 - `table_951.py` is run when K 7 ends. Nothing is concluded from K 0 alone.
 
-## 6 h progress (2026-11-18 08:48 UTC, sigma runs started 02:50:03 UTC)
+## 6 h progress (2026-11-18 08:46 UTC, sigma runs started 02:50:03 UTC)
 
 - K 7 (K7c_D40) is at start 22 of 48 (start 21 printed 08:38 UTC), about 15 min a start since 05:22, expected end about 15:10 UTC. K 0 is done (above). No cap hit, no stop, no re-find. Free memory 17.5 GB of 31.8, CPU about 29%.
 - Partial, not a result: median of K 7's first 22 bounds 8.547e-34, against K 0's first 22 median 1.480e-35, ratio 57.75. The same first-22 ratio for a is 1.06 (final 0.98) and for b 6.68 (final 6.06), so the first 22 starts tracked the 48 for both earlier pairs. The verdict, the interval and the first rule wait for the 48.
+
+## 9 h progress (2026-11-18 11:46 UTC, sigma runs started 02:50:03 UTC)
+
+- K 7 (K7c_D40) is at start 34 of 48 (start 33 printed 11:38 UTC), 15 min a start, expected end about 15:15 UTC. K 0 is done. No cap hit, no stop, no re-find. Free memory 17.6 GB of 31.8, CPU about 30%.
+- Partial, not a result: first-34 medians. c K 7 8.014e-34, K 0 1.514e-35, ratio 52.92. The same first-34 ratio is 0.96 for a (final 0.98) and 6.39 for b (final 6.06). The verdict waits for the 48.
