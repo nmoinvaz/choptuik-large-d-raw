@@ -19,3 +19,7 @@ The hook line of the first run on A failed at order 6 because the old check comp
 ## Note, 2026-11-18: decisions of the coordinator (hc)
 
 No C2 build: checksC stays on build C (6d7b2927, PR #955's head at that time); dh370 builds the merged head (main, #956 and the rebased #955) and runs both PRs' lines there. B's `checkq` mismatch at PRED is the check's, since A fails identically (`A_checkq.log`, `checksG.sh`). B's planted-at-ST verdict waits for A's planted at ST in checksD.
+
+## Closing, 2026-11-18 18:00 UTC
+
+All scripts ended: checksA 06:26, checksB 10:50, checksC 12:47 (its timing lines failed on my path error and were rerun by `checksH.sh`, 12:48 to 13:30), checksD 17:07, checksE 17:12, checksF 17:56. `checksG.sh` is A's `checkq`. The closing comment on #954 has the table of every check.

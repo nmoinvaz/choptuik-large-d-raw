@@ -1,0 +1,32 @@
+# 2026-11-18 17:13:51 UTC build A, modified check, hpkernel /home/nathan/Source/choptuik-large-d-954a/.venv/lib/python3.14/site-packages/hpkernel/__init__.py
+# cmd: python /home/nathan/Source/choptuik-large-d-raw/I954-dh610/series_split_check_main.py /home/nathan/scratch954/raw I608-dh610/restart4_d6/anm_pin3_D253.3382.npz --N 24 --threads 8 --Np 6 --out /home/nathan/Source/choptuik-large-d-raw/I954-dh610/splitfix_D253
+series_split_check I608-dh610/restart4_d6/anm_pin3_D253.3382.npz: D 253.33819991877826, ks 130, stored plan, N 24, Np 6, 8 threads
+  newton_o at the state: 68.6 s
+  N 24: default 306.2 s, split 298.1 s, ratio 1.03
+ k   |z_k|      d_split    d_oa       d_split/thr  d_ctrl
+ 1   3.37e-04   0.00e+00   4.20e-36   0.00e+00     0.00e+00
+ 2   2.14e-06   0.00e+00   1.37e-33   0.00e+00     2.33e+28
+ 3   1.43e-06   0.00e+00   1.42e-33   0.00e+00     3.46e+53
+ 4   5.92e-07   0.00e+00   7.82e-34   0.00e+00     7.93e+78
+ 5   2.83e-08   0.00e+00   6.79e-33   0.00e+00     1.44e+105
+ 6   6.84e-08   0.00e+00   2.73e-33   0.00e+00     4.66e+129
+ 7   2.55e-08   0.00e+00   2.89e-33   0.00e+00   
+ 8   3.54e-09   0.00e+00   5.12e-33   0.00e+00   
+ 9   2.02e-10   0.00e+00   1.41e-32   0.00e+00   
+10   6.34e-11   0.00e+00   3.46e-33   0.00e+00   
+11   2.11e-11   0.00e+00   1.09e-33   0.00e+00   
+12   1.85e-12   0.00e+00   5.62e-33   0.00e+00   
+13   1.69e-13   0.00e+00   9.71e-33   0.00e+00   
+14   3.46e-14   0.00e+00   3.56e-33   0.00e+00   
+15   4.53e-15   0.00e+00   5.21e-34   0.00e+00   
+16   1.34e-15   0.00e+00   1.53e-33   0.00e+00   
+17   6.06e-17   0.00e+00   1.84e-32   0.00e+00   
+18   4.50e-17   0.00e+00   5.50e-33   0.00e+00   
+19   3.35e-18   0.00e+00   6.95e-33   0.00e+00   
+20   1.56e-18   0.00e+00   1.41e-33   0.00e+00   
+21   2.16e-19   0.00e+00   5.05e-33   0.00e+00   
+22   2.32e-20   0.00e+00   6.28e-33   0.00e+00   
+23   5.45e-21   0.00e+00   9.96e-34   0.00e+00   
+24   1.78e-22   0.00e+00   3.10e-32   0.00e+00   
+  PASS: z_1 the same bits, worst d_split / (1e3 d_oa) 0.00e+00; control (l = 1 dropped) 1.71e+159 times the threshold, fired
+exit 0
