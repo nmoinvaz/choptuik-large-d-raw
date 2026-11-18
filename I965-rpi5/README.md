@@ -6,7 +6,7 @@ origin/main 0fc2fab0 (branch `wip/i964-rpi5`, no commits), venv `~/Source/venv-c
 scipy 1.18.1. `run_job.py`, `affine_all.py` and `summarize.py` are #964's (`I964-rpi5/`, 84782909); `run_job.py` here differs by one line
 that writes `INNER_NB_RTOL` into the driver log.
 
-Started 2026-11-18 17:26 UTC (stage 1b), stage 2 from 17:39 UTC. Contents are filled in as the runs finish.
+Started 2026-11-18 17:26 UTC (stage 1b), stage 2 17:39 to 18:25 UTC. Contents are filled in as the runs finish.
 
 ## Stage 1b: M = 7 at three radii with `INNER_NB_RTOL=1e-13` (17:26 to 17:39 UTC)
 
@@ -67,3 +67,59 @@ in w/w_inf.
 | `dw_endstate_r3high` | 2.719219000 | 1.000122000 | +0.2070 +0.7822i | 2.2e-05 (above) | 689 | 75 |
 | `zero_repeat_r3high` | 2.719219000 | 1.000022000 | +0.0628 -0.0508i | 1.2e-05 (above) | 942 | 90 |
 | `zero_repeat_endstate_r3high` | 2.719219000 | 1.000022000 | +0.1240 -0.1075i | 2.0e-05 (above) | 671 | 65 |
+
+## Stage 2: the M = 9 diagnostic (`logs/hier_nb_M9_diag_rpi5.log`, 3816 lines, the whole verbose=2 log; exit file `.exit`)
+
+The issue's command unchanged, run through `run_cap.py 3 LOG EXIT -- CMD` (nice 10, a kill of the process group at 3 h):
+`INNER_NB_RTOL=1e-13 python -u hier_nb.py 9 2.719219 1.000022 --x=0.148977988,0.014770713,0.008424206,0.001511189,0.000474205,0.00012168
+--xi1=0.15 --pretune --fixA --schur --predict --floor --procs 2 --h3=1e-4 --verbose=2`. It ended by itself at 2758 s (46 min, 15232
+residuals, 181 MB for the main process), nowhere near the cap, with the FIXED-A line **r_1 = +4.4382e4 + 1.1429e4i, |r_3| 1.7e+1**
+(F_3/F_1 = +0.054786 + 0.005428i). Tables by `summarize_M9.py` (`logs/M9_summary.txt`).
+
+**Where it breaks: level 5, before level 3.** Levels 9 and 7 converge; level 5 does not, and level 3 then inherits it.
+
+1. *Pretune of F_9* (B_9, C_9 only, harmonics 1 to 7 at the M = 7 zero): approach radius xi 0.0919, |r_9| 1.476e+2 to 3.5e-6 in 3 steps, no decrease
+   after; polish radius **xi 0.1246** (not 0.15), 7.1e-4 to 7.4e-11 in 5 steps. B_9, C_9 = 2.660298503485e-05, 8.947854197796e-06 (B_7, C_7
+   are 4.742e-4, 1.2168e-4). The main solve's start residual is |r_9| 6.6e-5, and r_1, r_3, r_5, r_7 print as 0 at the start
+   (not evaluated yet, as in the M = 7 logs).
+2. *Levels 9 and 7:* level 9 solves to 8e-11 to 5e-9 in 1 to 20 residuals each time (1584 solves in all, its floor recorded as 4.19e-10);
+   level 7's first solves end at 7e-6 to 2.6e-4 (to 409 s), then at 3e-8 to 1e-6 after K is computed (413 s), its floor recorded as 3.11e-8
+   (129 solves), against 6.6e-10 at M = 7 (`logs/hier_nb_M7_rpi5_fit3_repeat.log`). So level 7 converges to 1e-7 to 1e-6, not 1e-9.
+3. *Level 5:* its first solve takes 404 s and 2150 residuals and stops at **|r_5| = 42.7**, "stop at |g| 4.27e+01 (noise floor)", against 2.6e-6
+   in 23 s and then 5.7e-10 at M = 7 (`logs/hier_nb_M7_rpi5_fit3_repeat.log`). The noise-floor rule then records **"floor of level 5:
+   |r_5| ~ 4.27e+01 (stop at 3x from now on)"** (line 1239), so from the second solve on a level-5 residual up to 128 counts as converged. Its
+   later solves end at 0.23, 6e-3, 8e-3, 6e-2, 1.7e-2, 2.9e-2, 1.4e-2, then 14.5, 14.4, 1.78, 1.81 (table). Its approach-radius (xi 0.1188) solve
+   stops at |g| 0.7 to 20 each time (the M = 7 logs at verbose 1 do not print this).
+4. *Level 3:* the first |r_3| printed is 2.570e+3 (after the level-5 solve at 0.23), then 77.5 and 17.4 (table); no further iteration is printed
+   and the level stops at "|g| 1.74e+01 (noise floor)" after another 1385 s of nested solves. **|r_3| does not grow in this log**: it falls by
+   2.2 orders and stalls at 17.4, 7 orders above the 1e-6 bar. T36's growth to 6e4 (rtol 1e-12) is not reproduced, and this run has no rtol
+   1e-12 control, so whether rtol 1e-13 matters here is not known.
+5. *K:* the leakage Jacobian is not printed at verbose=2: the log says only "Jacobian K computed (10 residuals) [413 s]" (line 757). Its
+   entries into r_3 from levels 5, 7 and 9 need a print added to `hier.py` (not changed here).
+
+| time (s) | level 5 solve, \|r_5\| | its approach-radius (xi 0.1188) solve stopped at \|g\| | residuals | seconds in it |
+|---|---|---|---|---|
+| 409 | 4.27e+01 | 1.96e+01 | 2150 | 404 |
+| 704 | 4.27e+01 | 1.97e+01 | 1559 | 291 |
+| 1086 | 2.29e-01 | 2.05e+00 | 620 | 123 |
+| 1219 | 6.02e-03 | 2.78e+00 | 662 | 133 |
+| 1366 | 8.20e-03 | 7.21e-01 | 751 | 147 |
+| 1500 | 6.06e-02 | 2.12e+00 | 676 | 134 |
+| 1631 | 1.74e-02 | 1.19e+00 | 634 | 131 |
+| 1764 | 2.94e-02 | 3.91e+00 | 663 | 132 |
+| 1899 | 1.36e-02 | 5.41e+00 | 698 | 135 |
+| 2001 | 1.45e+01 | not logged | 535 | 102 |
+| 2139 | 1.44e+01 | 6.03e+00 | 686 | 138 |
+| 2659 | 1.78e+00 | not logged | 734 | 142 |
+| 2757 | 1.81e+00 | not logged | 488 | 98 |
+
+| level 3 iteration | \|r_3\| | time (s), residuals so far |
+|---|---|---|
+| 0 (lam 1) | 2.570e+03 | 1086, 6324 |
+| 1 (lam 1) | 7.747e+01 | 1219, 6986 |
+| 2 (lam 1) | 1.743e+01 | 1366, 7737 |
+
+Reading, not established: with level 5 stalled at 1e-2 to 40, the Schur-corrected r_1 (error about 1e5 to 1e6 times |r_3|, B_tail_M7.md 2) is
+about 2e6 to 2e7 here, so 4.4e4 carries no information, and r_1^[9](p_7) is not obtained. What M = 9 needs is a convergent level 5 first:
+the candidates the issue names are harmonic 9's own polish radius (0.1246 here against 0.15 for levels 1 to 7), a better seed for F_9, or another
+matching radius; this log says level 5 is where each would have to act, and that its "floor" is a stall.
