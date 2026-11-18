@@ -1,5 +1,5 @@
 #!/bin/bash
-# #949 on dh170: near_null.py --k=6 --its=16 --threads=4 on the order-tied chain's stored states, two lanes (4 threads each, 8 in all),
+# #949 on dh170: near_null.py --k=6 --its=16 --threads=$THREADS (default 4; 2 per lane while #958's checks run, 2026-11-18) on the order-tied chain's stored states, two lanes (4 threads each, 8 in all),
 # nice 10, worktree ~/Source/choptuik-large-d-935 (its 4.8.2 .venv), raw root ~/scratch949 (copies of the committed states, sync949.sh).
 #   run949.sh lane N    a worker: takes the next unclaimed line of queue949.txt, runs it, and when the queue is empty waits and
 #                       looks again until the file STOP949 exists. Start two (lane 1, lane 2).
@@ -32,7 +32,7 @@ while :; do
   [ "$rest" != "$state" ] && extra=${rest#* }
   t=$(date +%s)
   echo "949 $name start $(date -u '+%F %T') lane $lane hp $(git -C "$WT" rev-parse --short HEAD) $state $extra, load $(cut -d' ' -f1-3 /proc/loadavg)" >> $L
-  ( cd "$WT/hp" && nice -n 10 /usr/bin/time -f "time %e s, max rss %M kB" "$PY" -u near_null.py "$R" "$state" --k=6 --its=16 --threads=4 \
+  ( cd "$WT/hp" && nice -n 10 /usr/bin/time -f "time %e s, max rss %M kB" "$PY" -u near_null.py "$R" "$state" --k=6 --its=16 --threads=${THREADS:-4} \
       --json="$HERE/$name.json" $extra ) > "$HERE/$name.log" 2>&1
   rc=$?
   echo "949 $name exit $rc wall $(( $(date +%s) - t )) s $(date -u '+%F %T')" >> $L

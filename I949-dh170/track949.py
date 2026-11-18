@@ -390,7 +390,7 @@ def tables(folder, forward=False):
     oe = order_effect(rows)
     if oe:
         tab, e_d, e_p = oe
-        print(f"\nORDER EFFECT at equal D, ks_chain2 against the ks 250 states of ks_chain (coordinator, hc 2026-11-18; interpolation error of ln sigma, left-one-out: "
+        print(f"\nORDER EFFECT at equal D, ks_chain2 against the ks 250 states of ks_chain, of sigma_Delta (the Delta mode's singular value of the pinned Jacobian) and sigma_pair, NOT of Delta(D), the state's last unknown, which compare_delta949.py gives (coordinator, hc 2026-11-18; interpolation error of ln sigma, left-one-out: "
               f"Delta {e_d:.1e}, pair {e_p:.1e}):")
         for t in tab:
             print(f"  D {t['D']:9.4f} ks {t['ks']}: sigma_Delta {t['sd']:.6e} against {t['sd_ref']:.6e} ({t['sd'] / t['sd_ref'] - 1:+.2e}); "
