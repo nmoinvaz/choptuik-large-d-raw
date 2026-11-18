@@ -83,9 +83,14 @@ DD(c) = Delta(K 7) - Delta(K 0) = +6.7776e-18 (a's 6.8e-18, b's 6.4383e-18), so 
 - Distances from a's and b's roots (`table_951.py`): K 7, c from a 5.864e-19 (max-norm), from b 5.579e-19; K 0, c from a 2.189e-21, from b 3.497e-21; so c is new in all four, and its K 7 root sits at the K 0 roots' place (its distance from c's K 0 root is 7.5e-23) while a's and b's K 7 roots sit 5.6e-19 to 5.9e-19 off theirs.
 - 02:50:03 UTC: `start_951.cmd` started `run_951.py --t0 "2026-11-18 01:49:22"` (BelowNormal, detached): K 7 pid 22184 and K 0 pid 10584, 2 BLAS threads each, both BelowNormal, deadline 2026-11-19 07:49:22 UTC, K 0 own cap 10 h. Headers: K 7 max|F| 6.20e-29 (a's 6.21e-29), K 0 6.91e-31 (a's 4.39e-31); these `rt_sigma.py` header values are not the solves' last Newton values for a either, so plan item 6's last check (header equals the solve's last Newton value) does not apply and is dropped. Free memory 19.8 GB, laptop CPU 23% before the start, the negative-mass jobs are not running.
 
-## 3 h progress (2026-11-18 05:35 UTC, sigma runs started 02:50:03 UTC)
+## 3 h progress (2026-11-18 05:34 UTC, sigma runs started 02:50:03 UTC)
 
 - K 0 (K0c_D40) finished: exit 0, 48 of 48 starts, 9768 s. Median of the 48 bounds 1.514e-35 (geometric mean of the 24th and 25th), best 4.594e-36, spread of the starts a factor 114.8. a's K 0 median is 2.713e-34 (#943), b's 2.610e-33 (#721 with win2's K 0). c is 18 times below a and 172 times below b. The first 9 starts give 1.484e-35.
 - K 7 (K7c_D40) is at start 9 of 48, about 17 min a start, expected end about 16:30 UTC (deadline 2026-11-19 07:49:22 UTC, no own cap).
 - Free memory 17.7 GB of 31.8, CPU about 29%. No cap hit, no stop, no re-find.
 - `table_951.py` is run when K 7 ends. Nothing is concluded from K 0 alone.
+
+## 6 h progress (2026-11-18 08:48 UTC, sigma runs started 02:50:03 UTC)
+
+- K 7 (K7c_D40) is at start 22 of 48 (start 21 printed 08:38 UTC), about 15 min a start since 05:22, expected end about 15:10 UTC. K 0 is done (above). No cap hit, no stop, no re-find. Free memory 17.5 GB of 31.8, CPU about 29%.
+- Partial, not a result: median of K 7's first 22 bounds 8.547e-34, against K 0's first 22 median 1.480e-35, ratio 57.75. The same first-22 ratio for a is 1.06 (final 0.98) and for b 6.68 (final 6.06), so the first 22 starts tracked the 48 for both earlier pairs. The verdict, the interval and the first rule wait for the 48.
