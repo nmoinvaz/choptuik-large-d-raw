@@ -31,3 +31,34 @@ Drivers: `checks_943.py` (the two planted checks), `run_943.py` (the two `rt_sig
 - 09:47:48 UTC: **driver replaced, runs not restarted.** The first driver's interpreter (pid 3776) was killed with `Stop-Process` (not its tree), both `rt_sigma.py` launcher processes (K 7 pid 15796, K 0 pid 8472, with their interpreters 3272 and 7824) were alive afterwards, and `start_943_adopt.cmd` started `run_943.py --adopt K7_D40=15796,K0_D40=8472 --t0 "2026-11-17 08:35:56"` at 09:47:49 (BelowNormal, detached). It holds a handle on each pid, resumes the control after the last start in `logs/control_943.log` (K 7 at start 2, K 0 at start 10, so no start is compared twice), counts the caps from 08:35:56 (K 7 28 h, K 0 10 h), and writes the `.exit` files when the processes end. Before use, `run_943.py --selftest` ran the same switch on dummy children (a driver killed while its children run, a new one adopting them: good exit 0 with each control line once, bad code 3, capped one code 5) and a mutation (control resumed from 0) is flagged. Results are unchanged: the runs' own logs are the same files, written by the same processes.
 - 09:56 UTC: K 0's control complete, 12 of 12 starts equal to #681's (relative difference 0.0). K 7's control was at start 8 of 12 by 13:38 UTC (9 starts, all equal, 33 min a start).
 - 13:49:51 UTC: **K 0 ended, exit 0 after 18835 s (5.2 h)**, 48 starts, 67 products on every start (none at the 250 cap), best bound 8.086e-35, median 2.713e-34, spread 36.4. K 7 is the only run left (about 72% laptop CPU after K 0 ended), its cap stays 12:35:56 UTC on 2026-11-18.
+- 14:54 UTC: K 7's control complete, 12 of 12 equal to #681's (relative difference 0.0). With K 0 gone K 7 took about 24.5 min a start instead of 33.
+- 2026-11-18 01:35:34 UTC: **K 7 ended, exit 0 after 61179 s (17.0 h)**, 48 starts, inside its 28 h cap; `run_943.log`: `all done, codes {'K0_D40': 0, 'K7_D40': 0}, driver exit 0`. No control miss, no cap kill, no `STOP_943`. `table_943.py` run at 01:37 UTC, output in `table_943.txt`.
+
+## Results (`table_943.txt`; 48 starts of each run, bootstrap 10000 resamples, `random.Random(701)`)
+
+| acceptance | value | 95% bootstrap interval | judged against | verdict |
+|---|---|---|---|---|
+| 1. first 12 bounds equal #681's, K 7 | 12 of 12, max relative difference 0.0 | | 1e-3 | passes |
+| 1. first 12 bounds equal #681's, K 0 | 12 of 12, max relative difference 0.0 | | 1e-3 | passes |
+| 2. R_a(48) = median(K 7) / median(K 0) = 2.658e-34 / 2.713e-34 | **0.98** | 0.60 to 1.43 | [1/3, 3] | **HOLDS** |
+| 3. R_a(48) / R_b(48), R_b = 6.06 (4.56 to 9.26, recomputed from #721's logs, equal) | **0.162** | 0.083 to 0.248 | 1 | **EXCLUDES 1** |
+
+| run | starts | best | median | max | max/min | at the 250 cap | worst residual max abs J x - v |
+|---|---|---|---|---|---|---|---|
+| a K 7 | 48 | 9.46e-35 | 2.658e-34 | 9.35e-33 | 98.9 | 46 of 48 (starts 22 and 28 stopped at 156 and 168 products) | 7.1e-14 |
+| a K 0 | 48 | 8.09e-35 | 2.713e-34 | 2.94e-33 | 36.4 | 0 of 48 (67 products each) | 4.2e-18 |
+| b K 7 (#721) | 48 | 3.38e-33 | 1.582e-32 | 8.37e-32 | | | |
+| b K 0 (#721, win2) | 48 | 8.57e-34 | 2.610e-33 | 1.26e-32 | | | |
+
+Reading, within what was measured. At start a the K 7 and K 0 medians are equal (R_a 0.98, the 12-start value of #681 was 0.98 and is 0.98 again from the first 12 of each here), and the interval lies inside [1/3, 3]. At start b the K 7 median is 6 times the K 0 median (#721). R_a/R_b excludes 1, so the start (the state pair) sets R at D 40.02, and R is not one number for the two start sets. This is two start sets, so it does not say which is typical. The bounds are upper bounds on the smallest gain from one rough start each, not enclosures, and the intervals are bootstrap spreads over the random right-hand sides.
+
+## Discrepancies
+
+- None against the plan's acceptance. Both controls pass with relative difference 0.0, and the R_b recomputation equals #721's (6.06, 4.56 to 9.26).
+- K 7 solves end at the 250-product cap on 46 of 48 starts with residual up to 7.1e-14, K 0 solves converge in 67 products with residual 4.2e-18. #720 checked three of start a's starts at 1000 products and got the same bounds, so no bias is seen, but 45 starts are unchecked and K 7 is the capped side of R_a.
+- Plan changes made during the run (both from the coordinator, both in the plan above): K 7 cap 10 h to 18 h to 28 h, and the driver swap with no restart. The runs' own logs are the original files.
+
+## Recommended tasks (candidates for the coordinator)
+
+1. Start c: the same 48 rough starts of K 7 and K 0 at a third start (a new state pair at D 40.02, or start a's states at a different D), to see which of R about 1 (a) or R about 6 (b) is typical. Cost as here, about 17 h for K 7 and 5 h for K 0 with 4 threads.
+2. Cap check on K 7: rerun a few of start a's K 7 starts at `--max_products 1000` (the two that stopped early, 22 and 28, the two largest bounds 4.6e-33 and 9.4e-33, and a few of the smallest) and compare the bounds, to extend #720's three starts. #720's three starts took 53 min at 1000 products (about 18 min a start, 2 BLAS threads), so a few starts are a few hours.

@@ -1,0 +1,28 @@
+### Control (acceptance 1), the first 12 bounds against #681's (relative difference, rule 1e-3)
+
+| run | starts compared | max relative difference | misses |
+|---|---|---|---|
+| K 7 | 12 of 12 | 0.0e+00 | none |
+| K 0 | 12 of 12 | 0.0e+00 | none |
+
+control: PASSES
+
+| K | n starts | best | Q1 | **median (the bound)** | Q3 | max | max/min | starts at the 250 cap | worst residual max abs J x - v |
+|---|---|---|---|---|---|---|---|---|---|
+| K7 | 48 | 9.46e-35 | 1.59e-34 | **2.658e-34** | 5.20e-34 | 9.35e-33 | 98.9 | 46 of 48 | 7.1e-14 |
+| K0 | 48 | 8.09e-35 | 1.90e-34 | **2.713e-34** | 8.00e-34 | 2.94e-33 | 36.4 | 0 of 48 | 4.2e-18 |
+  K7 bounds, sorted: 9.46e-35, 1.17e-34, 1.21e-34, 1.26e-34, 1.26e-34, 1.26e-34, 1.27e-34, 1.27e-34, 1.30e-34, 1.39e-34, 1.56e-34, 1.58e-34, 1.61e-34, 1.70e-34, 1.71e-34, 1.77e-34, 1.81e-34, 1.92e-34, 2.19e-34, 2.31e-34, 2.32e-34, 2.49e-34, 2.52e-34, 2.64e-34, 2.68e-34, 2.68e-34, 2.87e-34, 3.09e-34, 3.30e-34, 3.67e-34, 3.73e-34, 4.10e-34, 4.28e-34, 4.49e-34, 4.88e-34, 5.08e-34, 5.33e-34, 6.46e-34, 7.80e-34, 7.83e-34, 8.22e-34, 9.21e-34, 9.92e-34, 1.11e-33, 1.81e-33, 3.13e-33, 4.59e-33, 9.35e-33
+  K0 bounds, sorted: 8.09e-35, 9.14e-35, 9.77e-35, 9.89e-35, 1.12e-34, 1.23e-34, 1.35e-34, 1.67e-34, 1.70e-34, 1.72e-34, 1.80e-34, 1.88e-34, 1.93e-34, 1.93e-34, 1.96e-34, 2.29e-34, 2.33e-34, 2.35e-34, 2.39e-34, 2.49e-34, 2.58e-34, 2.60e-34, 2.64e-34, 2.71e-34, 2.72e-34, 2.82e-34, 2.87e-34, 3.29e-34, 3.32e-34, 3.48e-34, 4.02e-34, 4.96e-34, 5.11e-34, 5.84e-34, 7.01e-34, 7.49e-34, 8.55e-34, 8.79e-34, 9.44e-34, 9.66e-34, 1.00e-33, 1.27e-33, 1.42e-33, 1.42e-33, 1.78e-33, 2.24e-33, 2.83e-33, 2.94e-33
+
+### Start b (#721), recomputed from its logs: 48 K 7 and 48 K 0 bounds
+
+R_b(48) = 6.06, interval 4.56 to 9.26, FAILS; #721 said 6.06, 4.56 to 9.26: equal, control ok
+
+### Verdict (48 and 48 starts, bootstrap 10000 resamples, seed 701)
+
+| quantity | value | 95% bootstrap interval | against |
+|---|---|---|---|
+| R_a = median(K 7) / median(K 0) | 0.98 | 0.60 to 1.43 | [1/3, 3]: **HOLDS** |
+| R_a / R_b (R_b = 6.06) | 0.162 | 0.083 to 0.248 | 1: **EXCLUDES 1** |
+| best ratio (context) | 1.17 | | |
+| R_a from the first 12 of each (#681: 0.98) | 0.98 | 0.34 to 2.80 | [1/3, 3]: HOLDS |
