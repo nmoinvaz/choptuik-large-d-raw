@@ -1,0 +1,13 @@
+horizon series to order 240 instead of the state's 240
+held values from the fit data/held_fit.json (degree 8, 138 full-system states, D 38.020417-73.0), relative to the base
+    on 0 chord 0: max|F| 2.30e-48, |dw| 7.111e-53
+  on 0: strong chord (4 weak directions), 1 steps after the full first step; theta at its point 3.754e-25 (bound 0.750): accepted, 430.49 s
+  on 0: |F| 2.46e-36 -> 4.18e-49, |dz| 1.15e-25 -> 4.31e-50, lam 1, dDelta +1.15e-25, piv 9.6e-14..6.9e+39, 732.65 s
+    on 1 trial lam 1: max|F| 1.69e-60; simplified correction / |dz| = 1.552e-38 (bound 0.750); accepted, 1.29 s
+  on 1: |F| 4.18e-49 -> 1.69e-60, |dz| 4.31e-50 -> 6.68e-88, lam 1, dDelta +4.31e-50, piv 9.6e-14..6.9e+39, 93.31 s
+    on 2 trial lam 1: max|F| 7.75e-89; simplified correction / |dz| = 2.633e-06 (bound 0.750); accepted, 1.28 s
+  on 2: |F| 1.69e-60 -> 7.75e-89, |dz| 6.68e-88 -> 4.97e-93, lam 1, dDelta +6.68e-88, piv 9.6e-14..6.9e+39, 93.36 s
+  on 3: |F| 7.75e-89 converged, Delta 1.68866838430236488 -1.0747e-17
+      elim projections {'u0': 0, 'u0q': 0, 'ladder': 3, 'failed': 0, 'skipped': 3}
+      octo-double Newton: 4 steps, max|F| 7.8e-89, converged; double-double |F| of its first two parts 3.4e+13
+base I903-win2/ks_chain/leg07_D222.0000_ks240/anm_pin3_D229.0509.npz: D 229.050882339, M 32, pin 3 (held [5, 7, 9, 11, 13]), |F| 3.4e+13; N 24, eps 1e-14, h_max 1.0, corrector od (junk_only False), tol 1.0e-20 x 1.45^(D - 229.05088), stalls accepted below 1e-17
