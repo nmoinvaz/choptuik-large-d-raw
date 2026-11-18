@@ -1,0 +1,23 @@
+# 2026-11-18 04:07:52 UTC C worktree 6d7b2927934a2e76c1a11a663007541234b0f261, patch lines in hp/Cargo.toml: 1
+warning: Skipping multidouble as it is not installed
+warning: No packages to uninstall
+# 2026-11-18 04:07:52 UTC C rustc 1.99.1 (58cf8f9c3 2026-10-13); maturin 1.16.0; Python 3.14.10
+🍹 Building a mixed python/rust project
+🐍 Found CPython 3.14 at /home/nathan/Source/choptuik-large-d-954c/.venv/bin/python
+🔗 Found pyo3 bindings
+📡 Using build options features from pyproject.toml
+   Compiling hpkernel v0.1.0 (/home/nathan/Source/choptuik-large-d-954c/hp)
+    Finished `release` profile [optimized] target(s) in 43m 50s
+📦 Built wheel for CPython 3.14 to /home/nathan/Source/choptuik-large-d-954c/hp/dist/hpkernel-0.1.0-cp314-cp314-manylinux_2_34_x86_64.whl
+Processing ./dist/hpkernel-0.1.0-cp314-cp314-manylinux_2_34_x86_64.whl
+Installing collected packages: hpkernel
+Successfully installed hpkernel-0.1.0
+Collecting multidouble @ git+https://github.com/nmoinvaz/multidouble@482c683550de265c46e1ca836f89f71bea13c491#subdirectory=python
+  Using cached multidouble-0.1.0-cp314-cp314-linux_x86_64.whl
+Installing collected packages: multidouble
+Successfully installed multidouble-0.1.0
+hpkernel avx2 multidouble avx2
+# 2026-11-18 04:51:47 UTC C hp/build.sh exit 0, 2635 s, peak 27201 MiB
+hpkernel /home/nathan/Source/choptuik-large-d-954c/.venv/lib/python3.14/site-packages/hpkernel/__init__.py
+multidouble /home/nathan/Source/choptuik-large-d-954c/.venv/lib/python3.14/site-packages/multidouble/__init__.py
+exit 0

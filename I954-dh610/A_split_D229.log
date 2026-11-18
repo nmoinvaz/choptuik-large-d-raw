@@ -1,0 +1,17 @@
+# 2026-11-18 05:53:04 UTC build A, hp 4c3bb0ef, hpkernel /home/nathan/Source/choptuik-large-d-954a/.venv/lib/python3.14/site-packages/hpkernel/__init__.py
+# multidouble in the .so: multidouble-4.8.2 
+# cmd: python series_split_check.py /home/nathan/scratch954/raw I903-win2/ks_chain/leg07_D222.0000_ks240/anm_pin3_D229.0509.npz --N 24 --threads 8 --Np 6 --out /home/nathan/Source/choptuik-large-d-raw/I954-dh610/split_D229
+series_split_check I903-win2/ks_chain/leg07_D222.0000_ks240/anm_pin3_D229.0509.npz: D 229.05088233947753, ks 240, stored plan, N 24, Np 6, 8 threads
+  newton_o at the state: 80.7 s
+  N 24: default 775.6 s, split 399.7 s, ratio 1.94
+Traceback (most recent call last):
+  File "/home/nathan/Source/choptuik-large-d-954a/hp/series_split_check.py", line 108, in <module>
+    sys.exit(main(sys.argv[1:]))
+             ~~~~^^^^^^^^^^^^^^
+  File "/home/nathan/Source/choptuik-large-d-954a/hp/series_split_check.py", line 78, in main
+    Za = series(s, zo, N)
+  File "/home/nathan/Source/choptuik-large-d-954a/hp/series_split_check.py", line 26, in series
+    return [zo] + [[np.asarray(p) for p in z8] for z8 in s.series_o(list(zo), n, None, mutate=mutate, split=split)]
+                                                         ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: no octo-double LU (call newton_o at z0 first)
+exit 1

@@ -1,0 +1,152 @@
+# 2026-11-18 02:19:20 UTC inputs extracted into /home/nathan/scratch954/raw
+# 2026-11-18 02:19:22 UTC A worktree 4c3bb0ef1817e7ed99bbcd6c8882a4a14d266940, hp/Cargo.toml patched: 0
+Using CPython 3.14.10
+Creating virtual environment with seed packages at: .venv
+ + pip==26.3
+Activate with: source .venv/bin/activate
+Resolved 6 packages in 146ms
+Installed 6 packages in 98ms
+ + maturin==1.16.0
+ + mpmath==1.3.0
+ + numpy==2.5.4
+ + python-flint==0.9.0
+ + scipy==1.18.1
+ + sympy==1.14.0
+warning: Skipping multidouble as it is not installed
+warning: No packages to uninstall
+# 2026-11-18 02:19:22 UTC A rustc 1.99.1 (58cf8f9c3 2026-10-13); maturin 1.16.0; Python 3.14.10
+🍹 Building a mixed python/rust project
+🐍 Found CPython 3.14 at /home/nathan/Source/choptuik-large-d-954a/.venv/bin/python
+🔗 Found pyo3 bindings
+📡 Using build options features from pyproject.toml
+   Compiling target-lexicon v0.13.5
+   Compiling autocfg v1.5.1
+   Compiling crossbeam-utils v0.8.23
+   Compiling proc-macro2 v1.0.107
+   Compiling crossbeam-epoch v0.9.21
+   Compiling unicode-ident v1.0.27
+   Compiling quote v1.0.47
+   Compiling crossbeam-deque v0.8.8
+   Compiling rayon-core v1.13.0
+   Compiling libc v0.2.191
+   Compiling pyo3-macros-backend v0.30.1
+   Compiling heck v0.5.0
+   Compiling either v1.19.0
+   Compiling num-traits v0.2.19
+   Compiling matrixmultiply v0.3.11
+   Compiling rawpointer v0.2.1
+   Compiling once_cell v1.21.4
+   Compiling rustc-hash v2.1.3
+   Compiling pyo3-build-config v0.30.1
+   Compiling syn v3.0.9
+   Compiling num-complex v0.4.6
+   Compiling num-integer v0.1.47
+   Compiling pyo3-ffi v0.30.1
+   Compiling pyo3 v0.30.1
+   Compiling numpy v0.30.0
+   Compiling ndarray v0.17.2
+   Compiling rayon v1.12.0
+   Compiling multidouble v4.8.2
+   Compiling pyo3-macros v0.30.1
+   Compiling multisolver v0.1.1
+   Compiling multishoot v3.2.0
+   Compiling hpkernel v0.1.0 (/home/nathan/Source/choptuik-large-d-954a/hp)
+    Finished `release` profile [optimized] target(s) in 43m 45s
+📦 Built wheel for CPython 3.14 to /home/nathan/Source/choptuik-large-d-954a/hp/dist/hpkernel-0.1.0-cp314-cp314-manylinux_2_34_x86_64.whl
+Processing ./dist/hpkernel-0.1.0-cp314-cp314-manylinux_2_34_x86_64.whl
+Installing collected packages: hpkernel
+Successfully installed hpkernel-0.1.0
+Collecting multidouble @ git+https://github.com/nmoinvaz/multidouble@482c683550de265c46e1ca836f89f71bea13c491#subdirectory=python
+  Cloning https://github.com/nmoinvaz/multidouble (to revision 482c683550de265c46e1ca836f89f71bea13c491) to /tmp/pip-install-c0s2pr5r/multidouble_da36ab48004d4f54b8ae63a1a407f1db
+  Running command git clone --filter=blob:none --quiet https://github.com/nmoinvaz/multidouble /tmp/pip-install-c0s2pr5r/multidouble_da36ab48004d4f54b8ae63a1a407f1db
+  Running command git rev-parse -q --verify '482c683550de265c46e1ca836f89f71bea13c491^{commit}'
+  482c683550de265c46e1ca836f89f71bea13c491
+  Running command git checkout -q 482c683550de265c46e1ca836f89f71bea13c491
+  Resolved https://github.com/nmoinvaz/multidouble to commit 482c683550de265c46e1ca836f89f71bea13c491
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Building wheels for collected packages: multidouble
+  Building wheel for multidouble (pyproject.toml): started
+  Building wheel for multidouble (pyproject.toml): finished with status 'done'
+  Created wheel for multidouble: filename=multidouble-0.1.0-cp314-cp314-linux_x86_64.whl size=1733608 sha256=275dafc10a9e162f7606a35b4c02c8cae9aebb67a294b2f7ee2e554aef05874e
+  Stored in directory: /home/nathan/.cache/pip/wheels/72/aa/37/9d73a34a3b5da7eea0a3039b6999302b3ba0d19eb92f40230e
+Successfully built multidouble
+Installing collected packages: multidouble
+Successfully installed multidouble-0.1.0
+hpkernel avx2 multidouble avx2
+# 2026-11-18 03:03:55 UTC A hp/build.sh exit 0, 2673 s, peak 27571 MiB
+hpkernel /home/nathan/Source/choptuik-large-d-954a/.venv/lib/python3.14/site-packages/hpkernel/__init__.py
+multidouble /home/nathan/Source/choptuik-large-d-954a/.venv/lib/python3.14/site-packages/multidouble/__init__.py
+# 2026-11-18 03:03:57 UTC B worktree 7583e7870b2791476d9adea7795033a4decefd2c, hp/Cargo.toml patched: 1
+Using CPython 3.14.10
+Creating virtual environment with seed packages at: .venv
+ + pip==26.3
+Activate with: source .venv/bin/activate
+Resolved 6 packages in 126ms
+Installed 6 packages in 103ms
+ + maturin==1.16.0
+ + mpmath==1.3.0
+ + numpy==2.5.4
+ + python-flint==0.9.0
+ + scipy==1.18.1
+ + sympy==1.14.0
+warning: Skipping multidouble as it is not installed
+warning: No packages to uninstall
+# 2026-11-18 03:03:57 UTC B rustc 1.99.1 (58cf8f9c3 2026-10-13); maturin 1.16.0; Python 3.14.10
+    Updating git repository `https://github.com/nmoinvaz/multidouble`
+     Locking 1 package to highest compatible version
+      Adding multidouble v4.8.2 (https://github.com/nmoinvaz/multidouble?branch=perf%2Fod-dd-const-products#abf59adc)
+🍹 Building a mixed python/rust project
+🐍 Found CPython 3.14 at /home/nathan/Source/choptuik-large-d-954b/.venv/bin/python
+🔗 Found pyo3 bindings
+📡 Using build options features from pyproject.toml
+   Compiling target-lexicon v0.13.5
+   Compiling autocfg v1.5.1
+   Compiling crossbeam-utils v0.8.23
+   Compiling crossbeam-epoch v0.9.21
+   Compiling proc-macro2 v1.0.107
+   Compiling crossbeam-deque v0.8.8
+   Compiling unicode-ident v1.0.27
+   Compiling quote v1.0.47
+   Compiling rayon-core v1.13.0
+   Compiling libc v0.2.191
+   Compiling pyo3-macros-backend v0.30.1
+   Compiling either v1.19.0
+   Compiling heck v0.5.0
+   Compiling rawpointer v0.2.1
+   Compiling once_cell v1.21.4
+   Compiling rustc-hash v2.1.3
+   Compiling num-traits v0.2.19
+   Compiling matrixmultiply v0.3.11
+   Compiling pyo3-build-config v0.30.1
+   Compiling syn v3.0.9
+   Compiling num-integer v0.1.47
+   Compiling num-complex v0.4.6
+   Compiling rayon v1.12.0
+   Compiling pyo3-ffi v0.30.1
+   Compiling pyo3 v0.30.1
+   Compiling numpy v0.30.0
+   Compiling ndarray v0.17.2
+   Compiling multidouble v4.8.2 (https://github.com/nmoinvaz/multidouble?branch=perf%2Fod-dd-const-products#abf59adc)
+   Compiling pyo3-macros v0.30.1
+   Compiling multisolver v0.1.1
+   Compiling multishoot v3.2.0
+   Compiling hpkernel v0.1.0 (/home/nathan/Source/choptuik-large-d-954b/hp)
+    Finished `release` profile [optimized] target(s) in 43m 53s
+📦 Built wheel for CPython 3.14 to /home/nathan/Source/choptuik-large-d-954b/hp/dist/hpkernel-0.1.0-cp314-cp314-manylinux_2_34_x86_64.whl
+Processing ./dist/hpkernel-0.1.0-cp314-cp314-manylinux_2_34_x86_64.whl
+Installing collected packages: hpkernel
+Successfully installed hpkernel-0.1.0
+Collecting multidouble @ git+https://github.com/nmoinvaz/multidouble@482c683550de265c46e1ca836f89f71bea13c491#subdirectory=python
+  Using cached multidouble-0.1.0-cp314-cp314-linux_x86_64.whl
+Installing collected packages: multidouble
+Successfully installed multidouble-0.1.0
+hpkernel avx2 multidouble avx2
+# 2026-11-18 03:47:58 UTC B hp/build.sh exit 0, 2641 s, peak 28238 MiB
+hpkernel /home/nathan/Source/choptuik-large-d-954b/.venv/lib/python3.14/site-packages/hpkernel/__init__.py
+multidouble /home/nathan/Source/choptuik-large-d-954b/.venv/lib/python3.14/site-packages/multidouble/__init__.py
+exit 0

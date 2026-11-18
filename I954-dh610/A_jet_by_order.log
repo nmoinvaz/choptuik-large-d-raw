@@ -1,0 +1,10 @@
+# 2026-11-18 06:15:54 UTC build A, hp 4c3bb0ef, hpkernel /home/nathan/Source/choptuik-large-d-954a/.venv/lib/python3.14/site-packages/hpkernel/__init__.py
+# multidouble in the .so: multidouble-4.8.2 
+# cmd: python jet_by_order_check.py /home/nathan/scratch954/raw I903-win2/ks_chain/leg07_D222.0000_ks240/anm_pin3_D229.0509.npz --threads 8 --N 6
+jet_by_order_check I903-win2/ks_chain/leg07_D222.0000_ks240/anm_pin3_D229.0509.npz: D 229.05088233947753, stored plan, N 6, Np 6, 8 threads
+  newton_o at the state: 104.6 s
+  N 6: jets 138.1 s, by order 79.2 s, ratio 1.74; orders that differ []
+  Np 6 with the planted change in both: orders that differ [6]
+  controls: a kept intermediate dropped, orders that differ [1, 2, 3, 4, 5, 6]; the planted change in the order-by-order form only, [1, 2, 3, 4, 5, 6]
+  FAIL: 6 of 6 orders the same bits, 5 of 6 with the hook; controls fired
+exit 1
