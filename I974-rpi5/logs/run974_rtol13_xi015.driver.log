@@ -1,0 +1,11 @@
+INNER_NB_RTOL=1e-13 seed logs/hier_nb_M7_rpi5_rtol13_xi015_zero.log max 3 want 3 cap 3 h perturb 1e-07 rngseed 974
+2026-11-18 23:34:38 UTC seed logs/hier_nb_M7_rpi5_rtol13_xi015_zero.log: |r_3| 3.00e-08, end state x 0.1489782,0.014770826,0.008424259,0.001511207,0.00047421,0.000121682
+2026-11-18 23:34:38 UTC run: /home/nathan/Source/venv-choptuik/bin/python -u hier_nb.py 7 2.719219 1.000022 --x=0.148978212,0.0147708255,0.008424259172,0.001511207034,0.0004742100183,0.00012168201 --xi1=0.15 --pretune --fixA --schur --predict --floor --procs 2 --h3=1e-4 > logs/hier_nb_M7_rpi5_rtol13_xi015_pert1.log
+2026-11-18 23:35:41 UTC pert1: r_1 -0.0661+0.0271i  |r_3| 6.40e-09  passes  [63 s]
+2026-11-18 23:35:41 UTC run: /home/nathan/Source/venv-choptuik/bin/python -u hier_nb.py 7 2.719219 1.000022 --x=0.148978197,0.01477082569,0.008424258635,0.001511206957,0.0004742099594,0.0001216820049 --xi1=0.15 --pretune --fixA --schur --predict --floor --procs 2 --h3=1e-4 > logs/hier_nb_M7_rpi5_rtol13_xi015_pert2.log
+2026-11-18 23:36:54 UTC pert2: r_1 -0.1051+0.0506i  |r_3| 8.90e-08  passes  [136 s]
+2026-11-18 23:36:54 UTC run: /home/nathan/Source/venv-choptuik/bin/python -u hier_nb.py 7 2.719219 1.000022 --x=0.1489782045,0.01477082632,0.008424259251,0.001511207098,0.0004742100297,0.0001216819895 --xi1=0.15 --pretune --fixA --schur --predict --floor --procs 2 --h3=1e-4 > logs/hier_nb_M7_rpi5_rtol13_xi015_pert3.log
+2026-11-18 23:38:11 UTC pert3: r_1 -0.0915+0.0624i  |r_3| 3.30e-08  passes  [213 s]
+2026-11-18 23:38:11 UTC 3 of 3 repeats pass the bar
+2026-11-18 23:38:11 UTC run: /home/nathan/Source/venv-choptuik/bin/python m7_outer.py --local logs/hier_nb_M7_rpi5_rtol13_xi015_zero.log logs/hier_nb_M7_rpi5_rtol13_xi015_pert1.log logs/hier_nb_M7_rpi5_rtol13_xi015_pert2.log logs/hier_nb_M7_rpi5_rtol13_xi015_pert3.log -- logs/hier_nb_M7_rpi5_rtol13_xi015_dA_endstate.log logs/hier_nb_M7_rpi5_rtol13_xi015_dw_endstate.log
+2026-11-18 23:38:11 UTC m7_outer.py --local exit 0; output in logs/m7_outer_rpi5_rtol13_xi015_pert.txt
