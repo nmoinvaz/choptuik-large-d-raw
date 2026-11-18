@@ -1,0 +1,27 @@
+== selftest 
+ok   fit3_repeat: r_3 1.2e-7, below the bar
+ok   fit3_repeat: r_1 -0.0225+0.0424i
+ok   fit3_repeat: end state is the six 9-decimal harmonics
+ok   newton2_repeat_b: r_3 1.5e-5, above the bar (repeat rule fires)
+ok   a log cut before FIXED-A is read as no result
+ok   Traceback before FIXED-A is a crash, the exit BytesIO one is not
+PASS
+exit 0
+== selftest --mutate=r3
+FAIL fit3_repeat: r_3 1.2e-7, below the bar
+ok   fit3_repeat: r_1 -0.0225+0.0424i
+ok   fit3_repeat: end state is the six 9-decimal harmonics
+FAIL newton2_repeat_b: r_3 1.5e-5, above the bar (repeat rule fires)
+ok   a log cut before FIXED-A is read as no result
+ok   Traceback before FIXED-A is a crash, the exit BytesIO one is not
+FAIL
+exit 1
+== selftest --mutate=endstate
+ok   fit3_repeat: r_3 1.2e-7, below the bar
+ok   fit3_repeat: r_1 -0.0225+0.0424i
+FAIL fit3_repeat: end state is the six 9-decimal harmonics
+ok   newton2_repeat_b: r_3 1.5e-5, above the bar (repeat rule fires)
+ok   a log cut before FIXED-A is read as no result
+ok   Traceback before FIXED-A is a crash, the exit BytesIO one is not
+FAIL
+exit 1
