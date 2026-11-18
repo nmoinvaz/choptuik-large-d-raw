@@ -78,3 +78,32 @@ D 12.5625 counts only from a fresh run under (2''), not from the diagnostic's st
 The amended rule was tried on the two real histories (D 12.5 passes with and without the amendment; D 12.5625's
 forced history passes only with it) and on two made-up ones that must fail under it: a first rise by a factor of
 30, and a rise at the second step. Both are rejected.
+
+## Third addendum: M 48 at eta 1, D 13, run again with a looser double-double tolerance
+
+Written 2026-11-18 09:45 UTC, while the rerun was in its double-double stage and before its result. It
+was decided after the first run, not before.
+
+The first run (`out/failed/eta_eta1_D13_M48_no_handover.txt`, the record of tag eta1_D13_M48 with no qd entry). Its
+double-double stage aimed at 3e-27 and never stalled in one place. Its max |F| over its 36 iterations:
+1.3e-15, 4.9e-24, 4.6e-25, 1.6e-24, 5.6e-24, 2.7e-24, 5.2e-25, 1.6e-24, 2.9e-25, 1.2e-24, 1.1e-24, 1.2e-24, 1.8e-24,
+1.9e-24, 4.8e-25, 1.6e-24, 1.7e-24, 1.5e-24, 1.5e-24, 6.3e-25, 1.7e-24, 1.9e-24, 6.9e-25, 1.3e-24, 2.1e-24, 3.2e-24,
+2.2e-24, 3.0e-24, 2.2e-24, 7.6e-25, 1.9e-24, 9.4e-25, 4.4e-24, 2.7e-24, 2.8e-24, 2.8e-24.
+It was lowest at iteration 8, 2.86e-25, and ended at 2.82e-24. The end is above the hand-over limit of 1e-24, so no
+quad-double stage ran. Eight of its iterates were below 1e-24.
+
+The rerun (`run_m48.sh`) differs only in the double-double stage's tolerance, 9e-25 in place of 3e-27, so that the
+state is handed over at the first iterate below it. The coordinator's reading of limit (1), 2026-11-18: the limit
+bounds the max |F| of the state that is handed over, at most 1e-24, and the double-double stage's own target is not
+an acceptance rule. Its conditions:
+
+1. This disclosure.
+2. The record keeps the actual hand-over max |F|, the double-double iteration at which it was taken, and the factor
+   by which the first quad-double step changes max |F|. The limit of a factor of 10 counts from that hand-over value.
+3. If (2'') rejects the point, or the double-double stage never gets below 9e-25, eta 1 at M 48 is reported as not
+   obtained and that acceptance line stays unmet. There is no second retry with another tolerance.
+4. The bound of the comparison is unchanged: lambda(48) against lambda(32) to 1e-10. Delta(48) - Delta(32) is
+   reported beside eta 0.3's 2.9e-31. No bound on that difference was fixed beforehand.
+
+A note for a later hand-over: this stage's floor at M 48 is near 3e-25, and its last iterate is not its best. Handing
+over the best iterate would be the better design.
