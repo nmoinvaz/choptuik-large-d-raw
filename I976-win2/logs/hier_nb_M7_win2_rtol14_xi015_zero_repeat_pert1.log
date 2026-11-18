@@ -1,0 +1,41 @@
+pretune level 7 (approach, xi 0.1028): start |r_7| 1.086e-02  [0 s]
+   it 0: |r_7| 1.655e-06  lam 1.0  B,C_7 4.742101054868e-04 1.216820922950e-04  [1 s]
+   it 1: |r_7| 1.396e-06  lam 1.0  B,C_7 4.742101054972e-04 1.216820923075e-04  [1 s]
+   it 2: |r_7| 5.916e-07  lam 0.5  B,C_7 4.742101055033e-04 1.216820923042e-04  [2 s]
+pretune level 7 (polish, xi 0.1500): start |r_7| 1.059e-06  [0 s]
+   it 0: |r_7| 2.860e-08  lam 1.0  B,C_7 4.742101055027e-04 1.216820923051e-04  [1 s]
+   it 1: |r_7| 1.109e-09  lam 1.0  B,C_7 4.742101055027e-04 1.216820923052e-04  [1 s]
+   it 2: |r_7| 3.542e-10  lam 1.0  B,C_7 4.742101055027e-04 1.216820923052e-04  [1 s]
+   it 3: |r_7| 2.397e-10  lam 0.125  B,C_7 4.742101055027e-04 1.216820923052e-04  [2 s]
+   it 4: |r_7| 1.116e-10  lam 0.125  B,C_7 4.742101055027e-04 1.216820923052e-04  [4 s]
+   it 5: no decrease; stop at |r_7| 1.116e-10
+pretuned x [2.719219, 1.000022, 0.1489782053, 0.01477082605, 0.008424259309, 0.001511206993, 0.00047421010550273326, 0.00012168209230516882]
+M 7, xi1 0.15, fixed (A, w), procs 2; start x [2.719219, 1.000022, 0.148978205, 0.014770826, 0.008424259, 0.001511207, 0.00047421, 0.000121682]
+level radii (approach -> polish): r_1 0.1500 -> 0.1500, r_3 0.1500 -> 0.1500, r_5 0.1188 -> 0.1500, r_7 0.1028 -> 0.1500
+start residuals: |r_1| 0.00e+00  |r_3| 0.00e+00  |r_5| 0.00e+00  |r_7| 8.70e-07
+   level 5 solved: |r_5| 7.67e-06  (166 residuals, 33 s)  [40 s total]
+   Jacobian K computed (8 residuals) [42 s]
+   floor of level 7: |r_7| ~ 4.84e-10 (stop at 3x from now on)
+   floor of level 5: |r_5| ~ 4.01e-10 (stop at 3x from now on)
+   level 5 solved: |r_5| 4.01e-10  (35 residuals, 6 s)  [48 s total]
+   level 5 solved: |r_5| 3.82e-10  (7 residuals, 2 s)  [84 s total]
+level 3 it 0: |r_3| 6.741e-08  lam 1  x [2.719219, 1.000022, 0.1489782, 0.014770826, 0.008424259, 0.001511207, 0.00047421, 0.000121682]  [84 s, 435 residuals]
+   level 5 solved: |r_5| 1.04e-09  (2 residuals, 1 s)  [85 s total]
+   level 5 solved: |r_5| 9.70e-10  (1 residuals, 0 s)  [85 s total]
+level 3 it 1: |r_3| 5.505e-08  lam 0.5  x [2.719219, 1.000022, 0.1489782, 0.014770826, 0.008424259, 0.001511207, 0.00047421, 0.000121682]  [117 s, 639 residuals]
+   level 5 solved: |r_5| 6.19e-10  (4 residuals, 1 s)  [118 s total]
+level 3 it 2: |r_3| 2.627e-08  lam 1  x [2.719219, 1.000022, 0.1489782, 0.014770826, 0.008424259, 0.001511207, 0.00047421, 0.000121682]  [154 s, 864 residuals]
+   level 5 solved: |r_5| 9.66e-10  (1 residuals, 0 s)  [155 s total]
+   level 5 solved: |r_5| 1.12e-09  (1 residuals, 0 s)  [155 s total]
+   level 3 solved: |r_3| 2.18e-08  (865 residuals, 148 s)  [155 s total]
+FIXED-A M 7: A 2.719219000  w/w_inf 1.000022000  (w 3.82222, Delta 1.64386)  <F^2> 3.7083  r_1 -2.9071e-02+3.4155e-02i  [155 s, 866 residuals]
+      F_3/F_1 = +0.054787+0.005432i   |.| 0.055056  arg +0.0988   r_3 2.2e-08
+      F_5/F_1 = +0.003098+0.000556i   |.| 0.003147  arg +0.1775   r_5 1.1e-09
+      F_7/F_1 = +0.000174+0.000045i   |.| 0.000180  arg +0.2512   r_7 9.1e-10
+      (uncorrected r_1 -3.4578e+02-9.1990e+01i)
+Exception ignored while calling deallocator <function Pool.__del__ at 0x00000157B4A6A980>:
+Traceback (most recent call last):
+  File "C:\Users\nathan\AppData\Local\Programs\Python\Python314\Lib\multiprocessing\pool.py", line 271, in __del__
+  File "C:\Users\nathan\AppData\Local\Programs\Python\Python314\Lib\multiprocessing\queues.py", line 391, in put
+  File "C:\Users\nathan\AppData\Local\Programs\Python\Python314\Lib\multiprocessing\reduction.py", line 50, in dumps
+AttributeError: 'NoneType' object has no attribute 'BytesIO'
