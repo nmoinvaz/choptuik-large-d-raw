@@ -1,0 +1,465 @@
+{
+ "frozen": {
+  "stage_a": "Q = P0 + kappa_* + 0.25 (a + ib), a, b = -3..4 (64); groups (kind, L, direction) (chord2, 0.3, radial), (arc, 0.3, radial), (chord2, 0.3, horizontal), (chord2, 0.6, horizontal), near-end exponent 4; alpha 0 or beta - 1; eta 1e-6..1 in half decades (13); phi 0, 90, 180, 270; 26624 plants at wf 1.00, in the order a, b, group, alpha, eta, phi; stops after 4 h and lists what it did not reach",
+  "stage_b": "from the 8 best admissible stage-A starts by d_P at wf 1.00, one per (kind, a, b, group, alpha), Nelder-Mead on (log10 eta, phi, Re o, Im o, L, theta) with D3 = the largest d_P over the three nodes (1 + the largest fit_resid if a node is inadmissible, 10 if a Pade fails); simplex steps (0.5, 45, 0.06, 0.06, 0.08, 20), bounds log10 eta [-6, 0], Re o and Im o [-1, 1.25], L [0.05, 1.2]; 200 evaluations, xatol 1e-3, fatol 1e-5; theta absolute (radial start: arg Q at wf 1.00)",
+  "stage_c": "every admissible stage-A plant with d_P <= 0.06 at wf 1.00 (the 300 smallest) at wf 0.99 and 1.01",
+  "passes": "admissible and d_P <= 0.03 at the three nodes, same parameters; the answer is yes if any plant of stages A to C passes, no otherwise; every plant with d_P <= 0.03 at a node is rechecked through pade_second_set.pade_record, and a disagreement exits 1",
+  "located": "#718's rule on the 64 positions; a passing position with four lattice neighbours inside the lattice that fail is a candidate; diagonal points are not run",
+  "R1": "the poles-only d_P and nearest poles equal pade_record's bit for bit, 6 plants at wf 1.00; --mutate=prec (12 digits) fails it",
+  "R2": "radial curves equal ring_curve's bit for bit at 64 positions and L 0.3, 0.6; horizontal A = Q - L exactly; exact moments of a horizontal and a theta = 30 deg segment against mpmath.quad within 1e-40; --mutate=dir fails it",
+  "R3": "point masses' moments equal the mean of the tiny-segment limits (L = 1e-30, P 0, alpha 0) at k = 0, 7, 15, 22, 31 within 1e-20 relative; --mutate=pole_w fails it",
+  "R4": "12 of #718's plants (first record at wf 1.00 of I718-mac/ring.jsonl for (chord2, arc) x L 0.3 radial positions (+1, +1), (0, 0), (-1, -1) x alpha 0, beta - 1) through this path: d_P within 1e-6 relative; control --mutate=len (L x 1.01) fails it",
+  "J": "J+ the real series' d_P <= 1e-9 at every node; J- the eta = 0 chord2 and arc plants at wf 1.00 have d_P > 0.03 and within 1e-6 relative of I718-mac/pilot.json's",
+  "P": "main chord2 and main arc with three point masses at REF541[wf][8], [9], [10], equal weights, phi 0, the share 10^(-3 + j/2), j 0..6, of sigma_22: for each kind some rung has d_P <= 0.03 at the three nodes, admissible or not; the lowest admissible one is the sensitivity",
+  "mutation": "control --mutate=shift_poles (the reference poles + 0.05): J+ and P must fail; --mutate=len: R4 must fail",
+  "gate": "scan runs only if the selftest, J+, J-, P and R4 pass"
+ },
+ "mutate": null,
+ "nodes": {
+  "0.99": {
+   "J+": {
+    "d_P": 0.0,
+    "pass": true
+   }
+  },
+  "1.0": {
+   "J+": {
+    "d_P": 0.0,
+    "pass": true
+   },
+   "J- chord2": {
+    "d_P": 0.21923610259391071,
+    "d_P_718": 0.21923610259391765,
+    "pass": true
+   },
+   "J- arc": {
+    "d_P": 0.22540985335490515,
+    "d_P_718": 0.2254098533549031,
+    "pass": true
+   }
+  },
+  "1.01": {
+   "J+": {
+    "d_P": 0.0,
+    "pass": true
+   }
+  }
+ },
+ "P": {
+  "chord2": {
+   "rows": [
+    {
+     "eta": 0.001,
+     "nodes": {
+      "0.99": {
+       "d_P": 0.20187547866014605,
+       "adm": true,
+       "fit_resid": 1.702501818920836e-05
+      },
+      "1.0": {
+       "d_P": 0.19715024294510997,
+       "adm": true,
+       "fit_resid": 1.395115451908092e-05
+      },
+      "1.01": {
+       "d_P": 0.18963769969388664,
+       "adm": true,
+       "fit_resid": 1.001415938222e-05
+      }
+     },
+     "passes": false,
+     "admissible": true
+    },
+    {
+     "eta": 0.0031622776601683794,
+     "nodes": {
+      "0.99": {
+       "d_P": 0.20203256269035305,
+       "adm": true,
+       "fit_resid": 1.6445614281581753e-05
+      },
+      "1.0": {
+       "d_P": 0.1971656571895888,
+       "adm": true,
+       "fit_resid": 1.3389559847887843e-05
+      },
+      "1.01": {
+       "d_P": 0.19002036840597056,
+       "adm": true,
+       "fit_resid": 9.82302132986931e-06
+      }
+     },
+     "passes": false,
+     "admissible": true
+    },
+    {
+     "eta": 0.01,
+     "nodes": {
+      "0.99": {
+       "d_P": 0.1547799161741706,
+       "adm": true,
+       "fit_resid": 1.4614070378256697e-05
+      },
+      "1.0": {
+       "d_P": 0.1479298550889558,
+       "adm": true,
+       "fit_resid": 1.1613786196640124e-05
+      },
+      "1.01": {
+       "d_P": 0.14013871338856404,
+       "adm": true,
+       "fit_resid": 1.0545962545406014e-05
+      }
+     },
+     "passes": false,
+     "admissible": true
+    },
+    {
+     "eta": 0.03162277660168379,
+     "nodes": {
+      "0.99": {
+       "d_P": 0.15579732244958835,
+       "adm": true,
+       "fit_resid": 8.835574219390328e-06
+      },
+      "1.0": {
+       "d_P": 0.14888393364074456,
+       "adm": true,
+       "fit_resid": 9.206610347809148e-06
+      },
+      "1.01": {
+       "d_P": 0.14108273202809632,
+       "adm": true,
+       "fit_resid": 1.5026848132780508e-05
+      }
+     },
+     "passes": false,
+     "admissible": true
+    },
+    {
+     "eta": 0.1,
+     "nodes": {
+      "0.99": {
+       "d_P": 0.15034397060429913,
+       "adm": true,
+       "fit_resid": 2.642928391325565e-05
+      },
+      "1.0": {
+       "d_P": 0.1495095304437211,
+       "adm": true,
+       "fit_resid": 3.02868248590796e-05
+      },
+      "1.01": {
+       "d_P": 0.14758589877200826,
+       "adm": true,
+       "fit_resid": 3.5614619567670295e-05
+      }
+     },
+     "passes": false,
+     "admissible": true
+    },
+    {
+     "eta": 0.31622776601683794,
+     "nodes": {
+      "0.99": {
+       "d_P": 0.14017722382510617,
+       "adm": true,
+       "fit_resid": 9.977162405416935e-05
+      },
+      "1.0": {
+       "d_P": 0.1375180741086358,
+       "adm": true,
+       "fit_resid": 0.00010321616727987708
+      },
+      "1.01": {
+       "d_P": 0.13693637294936267,
+       "adm": true,
+       "fit_resid": 0.0001066207175213362
+      }
+     },
+     "passes": false,
+     "admissible": true
+    },
+    {
+     "eta": 1.0,
+     "nodes": {
+      "0.99": {
+       "d_P": 0.12700591281051607,
+       "adm": true,
+       "fit_resid": 0.0003330776332824872
+      },
+      "1.0": {
+       "d_P": 0.12738850707500854,
+       "adm": true,
+       "fit_resid": 0.00033538964491808775
+      },
+      "1.01": {
+       "d_P": 0.12736509576797944,
+       "adm": true,
+       "fit_resid": 0.0003336767430046182
+      }
+     },
+     "passes": false,
+     "admissible": true
+    }
+   ],
+   "some_rung_passes": false,
+   "lowest_admissible_passing": null
+  },
+  "arc": {
+   "rows": [
+    {
+     "eta": 0.001,
+     "nodes": {
+      "0.99": {
+       "d_P": 0.21297704702429968,
+       "adm": true,
+       "fit_resid": 4.6517808947536746e-05
+      },
+      "1.0": {
+       "d_P": 0.2071387025508,
+       "adm": true,
+       "fit_resid": 4.220246804306173e-05
+      },
+      "1.01": {
+       "d_P": 0.19687086427861558,
+       "adm": true,
+       "fit_resid": 3.1938996203867836e-05
+      }
+     },
+     "passes": false,
+     "admissible": true
+    },
+    {
+     "eta": 0.0031622776601683794,
+     "nodes": {
+      "0.99": {
+       "d_P": 0.21556701393989208,
+       "adm": true,
+       "fit_resid": 4.5845172638304435e-05
+      },
+      "1.0": {
+       "d_P": 0.20987953570363668,
+       "adm": true,
+       "fit_resid": 4.151399128534791e-05
+      },
+      "1.01": {
+       "d_P": 0.20033985464202378,
+       "adm": true,
+       "fit_resid": 3.1239347071355654e-05
+      }
+     },
+     "passes": false,
+     "admissible": true
+    },
+    {
+     "eta": 0.01,
+     "nodes": {
+      "0.99": {
+       "d_P": 0.17136684667087654,
+       "adm": true,
+       "fit_resid": 4.3747282254048686e-05
+      },
+      "1.0": {
+       "d_P": 0.16490190868963872,
+       "adm": true,
+       "fit_resid": 3.9365338460087905e-05
+      },
+      "1.01": {
+       "d_P": 0.1567316219302443,
+       "adm": true,
+       "fit_resid": 2.9081208630493247e-05
+      }
+     },
+     "passes": false,
+     "admissible": true
+    },
+    {
+     "eta": 0.03162277660168379,
+     "nodes": {
+      "0.99": {
+       "d_P": 0.17246764543637239,
+       "adm": true,
+       "fit_resid": 3.747699762504745e-05
+      },
+      "1.0": {
+       "d_P": 0.1670404520834115,
+       "adm": true,
+       "fit_resid": 3.293789585208575e-05
+      },
+      "1.01": {
+       "d_P": 0.1334468143125178,
+       "adm": true,
+       "fit_resid": 2.2677909368765494e-05
+      }
+     },
+     "passes": false,
+     "admissible": true
+    },
+    {
+     "eta": 0.1,
+     "nodes": {
+      "0.99": {
+       "d_P": 0.15829247382210856,
+       "adm": true,
+       "fit_resid": 2.538989715799108e-05
+      },
+      "1.0": {
+       "d_P": 0.14839311105642644,
+       "adm": true,
+       "fit_resid": 2.1529587567151275e-05
+      },
+      "1.01": {
+       "d_P": 0.14552728844343893,
+       "adm": true,
+       "fit_resid": 1.6388541960318816e-05
+      }
+     },
+     "passes": false,
+     "admissible": true
+    },
+    {
+     "eta": 0.31622776601683794,
+     "nodes": {
+      "0.99": {
+       "d_P": 0.13881849522581421,
+       "adm": true,
+       "fit_resid": 8.214797902827154e-05
+      },
+      "1.0": {
+       "d_P": 0.13610538439624442,
+       "adm": true,
+       "fit_resid": 8.35499664689205e-05
+      },
+      "1.01": {
+       "d_P": 0.1356882793069608,
+       "adm": true,
+       "fit_resid": 8.669113207034183e-05
+      }
+     },
+     "passes": false,
+     "admissible": true
+    },
+    {
+     "eta": 1.0,
+     "nodes": {
+      "0.99": {
+       "d_P": 0.10924537986564434,
+       "adm": true,
+       "fit_resid": 0.000334708261318672
+      },
+      "1.0": {
+       "d_P": 0.11137075615723414,
+       "adm": true,
+       "fit_resid": 0.00033527511722590005
+      },
+      "1.01": {
+       "d_P": 0.1132142683582094,
+       "adm": true,
+       "fit_resid": 0.0003326732207367162
+      }
+     },
+     "passes": false,
+     "admissible": true
+    }
+   ],
+   "some_rung_passes": false,
+   "lowest_admissible_passing": null
+  }
+ },
+ "R4": [
+  {
+   "id": "arc|L+0+0|L0.3|P4|ex|eta2.000000e-01|ph0",
+   "d_P": 0.25647877897970883,
+   "d_P_718": 0.2564787789797137,
+   "dev": 1.9095836023552692e-14,
+   "pass": true
+  },
+  {
+   "id": "arc|L+0+0|L0.3|P4|log|eta2.000000e-01|ph0",
+   "d_P": 0.25625872817768003,
+   "d_P_718": 0.25625872817767936,
+   "dev": 2.6645352591003757e-15,
+   "pass": true
+  },
+  {
+   "id": "arc|L+1+1|L0.3|P4|ex|eta3.380306e-02|ph0",
+   "d_P": 0.25937046911080963,
+   "d_P_718": 0.2593704691108126,
+   "dev": 1.1324274851176597e-14,
+   "pass": true
+  },
+  {
+   "id": "arc|L+1+1|L0.3|P4|log|eta2.029767e-02|ph0",
+   "d_P": 0.25879523435416674,
+   "d_P_718": 0.25879523435416674,
+   "dev": 0.0,
+   "pass": true
+  },
+  {
+   "id": "arc|L-1-1|L0.3|P4|ex|eta2.000000e-01|ph0",
+   "d_P": 0.1775880001720714,
+   "d_P_718": 0.17758800017206475,
+   "dev": 3.752553823233029e-14,
+   "pass": true
+  },
+  {
+   "id": "arc|L-1-1|L0.3|P4|log|eta2.000000e-01|ph0",
+   "d_P": 0.24624749888099096,
+   "d_P_718": 0.24624749888099984,
+   "dev": 3.608224830031759e-14,
+   "pass": true
+  },
+  {
+   "id": "chord2|L+0+0|L0.3|P4|ex|eta2.000000e-01|ph0",
+   "d_P": 0.24555491039125946,
+   "d_P_718": 0.24555491039125973,
+   "dev": 1.1102230246251565e-15,
+   "pass": true
+  },
+  {
+   "id": "chord2|L+0+0|L0.3|P4|log|eta2.000000e-01|ph0",
+   "d_P": 0.24472208840788462,
+   "d_P_718": 0.24472208840788598,
+   "dev": 5.551115123125783e-15,
+   "pass": true
+  },
+  {
+   "id": "chord2|L+1+1|L0.3|P4|ex|eta3.380306e-02|ph0",
+   "d_P": 0.24682715532939448,
+   "d_P_718": 0.24682715532939628,
+   "dev": 7.327471962526033e-15,
+   "pass": true
+  },
+  {
+   "id": "chord2|L+1+1|L0.3|P4|log|eta2.029767e-02|ph0",
+   "d_P": 0.24632178101392185,
+   "d_P_718": 0.24632178101392208,
+   "dev": 8.881784197001252e-16,
+   "pass": true
+  },
+  {
+   "id": "chord2|L-1-1|L0.3|P4|ex|eta2.000000e-01|ph0",
+   "d_P": 0.18305536127087965,
+   "d_P_718": 0.1830553612708925,
+   "dev": 7.016609515630989e-14,
+   "pass": true
+  },
+  {
+   "id": "chord2|L-1-1|L0.3|P4|log|eta2.000000e-01|ph0",
+   "d_P": 0.23773574857214635,
+   "d_P_718": 0.2377357485721387,
+   "dev": 3.219646771412954e-14,
+   "pass": true
+  }
+ ],
+ "checks": {
+  "selftest": true,
+  "J+": true,
+  "J-": true,
+  "P": false,
+  "R4": true
+ },
+ "mutation_fired": null,
+ "controls_pass": false
+}

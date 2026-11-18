@@ -1,0 +1,275 @@
+{
+ "frozen": {
+  "stage_a": "Q = P0 + kappa_* + 0.25 (a + ib), a, b = -3..4 (64); groups (kind, L, direction) (chord2, 0.3, radial), (arc, 0.3, radial), (chord2, 0.3, horizontal), (chord2, 0.6, horizontal), near-end exponent 4; alpha 0 or beta - 1; eta 1e-6..10 in half decades (15, amended from 13 up to 1); phi 0, 90, 180, 270; 30720 plants at wf 1.00, in the order a, b, group, alpha, eta, phi; stops after 4 h and lists what it did not reach",
+  "stage_b": "from the 8 best admissible stage-A starts by d_P at wf 1.00, one per (kind, a, b, group, alpha), Nelder-Mead on (log10 eta, phi, Re o, Im o, L, theta) with D3 = the largest d_P over the three nodes (1 + the largest fit_resid if a node is inadmissible, 10 if a Pade fails); simplex steps (0.5, 45, 0.06, 0.06, 0.08, 20), bounds log10 eta [-6, 1] (amended from 0), Re o and Im o [-1, 1.25], L [0.05, 1.2]; 200 evaluations, xatol 1e-3, fatol 1e-5; theta absolute (radial start: arg Q at wf 1.00)",
+  "stage_c": "every admissible stage-A plant with d_P <= 0.06 at wf 1.00 (the 300 smallest) at wf 0.99 and 1.01",
+  "passes": "admissible and d_P <= 0.03 at the three nodes, same parameters; the answer is yes if any plant of stages A to C passes, no otherwise; every plant with d_P <= 0.03 at a node is rechecked through pade_second_set.pade_record, and a disagreement exits 1",
+  "located": "#718's rule on the 64 positions; a passing position with four lattice neighbours inside the lattice that fail is a candidate; diagonal points are not run",
+  "R1": "the poles-only d_P and nearest poles equal pade_record's bit for bit, 6 plants at wf 1.00; --mutate=prec (12 digits) fails it",
+  "R2": "radial curves equal ring_curve's bit for bit at 64 positions and L 0.3, 0.6; horizontal A = Q - L exactly; exact moments of a horizontal and a theta = 30 deg segment against mpmath.quad within 1e-40; --mutate=dir fails it",
+  "R3": "point masses' moments equal the mean of the tiny-segment limits (L = 1e-30, P 0, alpha 0) at k = 0, 7, 15, 22, 31 within 1e-20 relative; --mutate=pole_w fails it",
+  "R4": "12 of #718's plants (first record at wf 1.00 of I718-mac/ring.jsonl for (chord2, arc) x L 0.3 radial positions (+1, +1), (0, 0), (-1, -1) x alpha 0, beta - 1) through this path: d_P within 1e-6 relative; control --mutate=len (L x 1.01) fails it",
+  "J": "J+ the real series' d_P <= 1e-9 at every node; J- the eta = 0 chord2 and arc plants at wf 1.00 have d_P > 0.03 and within 1e-6 relative of I718-mac/pilot.json's",
+  "P_point_masses": "FINDING, not a check: main chord2 and main arc with three equal point masses at REF541[wf][8], [9], [10], phi 0, the share 10^(-3 + j/2) of sigma_22, j 0..9. As a check (j 0..6) it fired in the first run and was replaced by P'",
+  "Pprime": "the plant (chord2, radial, L 0.3, P 4, alpha 0, a = b = 1, eta 1, phi 90), built twice at each node with independent noise (pg.noisy, measured errors, seeds 747100 + i and 747200 + i); the reference of order k is copy 1's [k/k] pole nearest to Q; with copy 2 the plant passes (admissible, d_P <= 0.03 at the three nodes) and each of its four lattice neighbours fails; context at eta 1e-2, 1e-1, 10 and the eta = 0 plant",
+  "mutation": "control --mutate=shift_poles (the reference poles of J+ and of P' + 0.05): J+ and P''s plant must fail; --mutate=tol (P''s tolerance 3.0): P' must fail; --mutate=noise (copy 2's noise x 1e10): P''s plant must fail; --mutate=len: R4 must fail",
+  "gate": "scan runs only if the selftest, J+, J-, P' and R4 pass"
+ },
+ "mutate": "shift_poles",
+ "nodes": {
+  "0.99": {
+   "J+": {
+    "d_P": 0.050000000000000044,
+    "pass": false
+   }
+  },
+  "1.0": {
+   "J+": {
+    "d_P": 0.050000000000000044,
+    "pass": false
+   },
+   "J- chord2": {
+    "d_P": 0.2692247996811655,
+    "d_P_718": 0.21923610259391765,
+    "pass": false
+   },
+   "J- arc": {
+    "d_P": 0.2754086121122075,
+    "d_P_718": 0.2254098533549031,
+    "pass": false
+   }
+  },
+  "1.01": {
+   "J+": {
+    "d_P": 0.050000000000000044,
+    "pass": false
+   }
+  }
+ },
+ "Pprime": {
+  "spec": {
+   "kind": "chord2",
+   "ab": [
+    1,
+    1
+   ],
+   "L": 0.3,
+   "theta": null,
+   "P": 4,
+   "alpha": "log",
+   "eta": 1.0,
+   "phase": 90
+  },
+  "tol": 0.03,
+  "nodes": {
+   "0.99": {
+    "ref": {
+     "8": [
+      2.2592511204573857,
+      1.6096841577411103
+     ],
+     "9": [
+      2.316378710982691,
+      1.4936455892848333
+     ],
+     "10": [
+      2.32734471656224,
+      1.504863907150088
+     ]
+    },
+    "ref_minus_REF541": {
+     "8": 1.0626749211930655,
+     "9": 1.0079653717821062,
+     "10": 0.9706846723336087
+    },
+    "fit_resid": 0.00010713844254772784,
+    "share12": 0.0018725410608310552,
+    "share22": 0.7134963736227695
+   },
+   "1.0": {
+    "ref": {
+     "8": [
+      2.2706593348885806,
+      1.6092349298630375
+     ],
+     "9": [
+      2.3359513648771957,
+      1.487739472114381
+     ],
+     "10": [
+      2.3362420297262028,
+      1.496793827362017
+     ]
+    },
+    "ref_minus_REF541": {
+     "8": 1.072585909658309,
+     "9": 1.0225087084258941,
+     "10": 0.9783604404174011
+    },
+    "fit_resid": 0.00010293860531568695,
+    "share12": 0.0018125228330483204,
+    "share22": 0.7118773602431855
+   },
+   "1.01": {
+    "ref": {
+     "8": [
+      2.2833992178193965,
+      1.608743568768597
+     ],
+     "9": [
+      2.359284556175577,
+      1.4825074094170263
+     ],
+     "10": [
+      2.3587565166956534,
+      1.4928580682290165
+     ]
+    },
+    "ref_minus_REF541": {
+     "8": 1.0831877215454995,
+     "9": 1.0412988771275595,
+     "10": 0.9976637949557242
+    },
+    "fit_resid": 9.5110879693375e-05,
+    "share12": 0.0017427588503134853,
+    "share22": 0.7103806260407503
+   }
+  },
+  "d_P_true": {
+   "0.99": 0.05990258355525935,
+   "1.0": 0.05000016607145886,
+   "1.01": 0.05005030777538136
+  },
+  "d_P_neighbours": {
+   "+1,+0": {
+    "0.99": 0.19063309780465287,
+    "1.0": 0.18761280266617342,
+    "1.01": 0.1812892032551682
+   },
+   "-1,+0": {
+    "0.99": 0.3138837853999435,
+    "1.0": 0.30168510216439576,
+    "1.01": 0.3024827221786342
+   },
+   "+0,+1": {
+    "0.99": 0.2475175027180934,
+    "1.0": 0.2461505671652773,
+    "1.01": 0.2454365797662507
+   },
+   "+0,-1": {
+    "0.99": 0.2626689863408735,
+    "1.0": 0.2548367221686084,
+    "1.01": 0.2578586435377324
+   }
+  },
+  "d_P_eta0": {
+   "0.99": 1.1985890679114695,
+   "1.0": 1.1926380602945938,
+   "1.01": 1.1970301033932897
+  },
+  "admissible": true,
+  "true_pass": false,
+  "neighbours_fail": {
+   "+1,+0": true,
+   "-1,+0": true,
+   "+0,+1": true,
+   "+0,-1": true
+  },
+  "pass": false
+ },
+ "R4": [
+  {
+   "id": "arc|L+0+0|L0.3|P4|ex|eta2.000000e-01|ph0",
+   "d_P": 0.3062550868770455,
+   "d_P_718": 0.2564787789797137,
+   "dev": 0.1940757363839012,
+   "pass": false
+  },
+  {
+   "id": "arc|L+0+0|L0.3|P4|log|eta2.000000e-01|ph0",
+   "d_P": 0.30607226838367724,
+   "d_P_718": 0.25625872817767936,
+   "dev": 0.1943876821688555,
+   "pass": false
+  },
+  {
+   "id": "arc|L+1+1|L0.3|P4|ex|eta3.380306e-02|ph0",
+   "d_P": 0.3092190190218752,
+   "d_P_718": 0.2593704691108126,
+   "dev": 0.19219053765818472,
+   "pass": false
+  },
+  {
+   "id": "arc|L+1+1|L0.3|P4|log|eta2.029767e-02|ph0",
+   "d_P": 0.30864870042428577,
+   "d_P_718": 0.25879523435416674,
+   "dev": 0.19263672375780128,
+   "pass": false
+  },
+  {
+   "id": "arc|L-1-1|L0.3|P4|ex|eta2.000000e-01|ph0",
+   "d_P": 0.22342103122792592,
+   "d_P_718": 0.17758800017206475,
+   "dev": 0.25808630657169185,
+   "pass": false
+  },
+  {
+   "id": "arc|L-1-1|L0.3|P4|log|eta2.000000e-01|ph0",
+   "d_P": 0.22695750415653546,
+   "d_P_718": 0.24624749888099984,
+   "dev": 0.07833579960049197,
+   "pass": false
+  },
+  {
+   "id": "chord2|L+0+0|L0.3|P4|ex|eta2.000000e-01|ph0",
+   "d_P": 0.2952840591691849,
+   "d_P_718": 0.24555491039125973,
+   "dev": 0.20251742756309876,
+   "pass": false
+  },
+  {
+   "id": "chord2|L+0+0|L0.3|P4|log|eta2.000000e-01|ph0",
+   "d_P": 0.2944979689245184,
+   "d_P_718": 0.24472208840788598,
+   "dev": 0.20339757984440454,
+   "pass": false
+  },
+  {
+   "id": "chord2|L+1+1|L0.3|P4|ex|eta3.380306e-02|ph0",
+   "d_P": 0.2966428417355814,
+   "d_P_718": 0.24682715532939628,
+   "dev": 0.2018241726268124,
+   "pass": false
+  },
+  {
+   "id": "chord2|L+1+1|L0.3|P4|log|eta2.029767e-02|ph0",
+   "d_P": 0.29614365190153613,
+   "d_P_718": 0.24632178101392208,
+   "dev": 0.20226335926337802,
+   "pass": false
+  },
+  {
+   "id": "chord2|L-1-1|L0.3|P4|ex|eta2.000000e-01|ph0",
+   "d_P": 0.21175486755059605,
+   "d_P_718": 0.1830553612708925,
+   "dev": 0.15678047384382743,
+   "pass": false
+  },
+  {
+   "id": "chord2|L-1-1|L0.3|P4|log|eta2.000000e-01|ph0",
+   "d_P": 0.23321919785148132,
+   "d_P_718": 0.2377357485721387,
+   "dev": 0.01899819756929355,
+   "pass": false
+  }
+ ],
+ "checks": {
+  "selftest": true,
+  "J+": false,
+  "J-": false,
+  "Pprime": false,
+  "R4": false
+ },
+ "mutation_fired": true,
+ "controls_pass": false
+}
