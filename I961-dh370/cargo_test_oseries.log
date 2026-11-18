@@ -1,0 +1,34 @@
+== cargo_test_oseries 2026-11-18 13:00:28 40f4b4a5 cargo test --release --lib oseries_ -- --nocapture --test-threads=1
+   Compiling crossbeam-utils v0.8.23
+   Compiling crossbeam-epoch v0.9.21
+   Compiling crossbeam-deque v0.8.8
+   Compiling rayon-core v1.13.0
+   Compiling either v1.19.0
+   Compiling rayon v1.12.0
+   Compiling multidouble v4.9.0
+   Compiling multisolver v0.1.1
+   Compiling multishoot v3.3.0
+   Compiling hpkernel v0.1.0 (/home/nathan/Source/choptuik-large-d-961/hp)
+    Finished `release` profile [optimized] target(s) in 8m 37s
+     Running unittests src/lib.rs (target/release/deps/_hpkernel-3680a214dde75ffa)
+
+running 4 tests
+test prec_tests::od::bench_oseries_by_order ... ignored
+test prec_tests::od::oseries_by_order_bitwise ... series by order against residual_jet, rows that differ: octo-double 0 serial, 0 threaded; quad-double 0; double-double 0; control 9600
+ok
+test prec_tests::od::oseries_by_order_threads_bitwise ... series by order at M = 32 against residual_jet, rows that differ: 0 on one thread, 0 on four; words that differ between the pools 0 of 43064; controls: the horizon's round 3200, the centre's 4224
+ok
+test prec_tests::od::oseries_tangent_accuracy ... tangent from 1, octo-double serial: 0 rows differ below order 1, moved orders within 3.987e-130 (bound 2.420e-122)
+tangent from 1, octo-double threaded: 0 rows differ below order 1, moved orders within 3.987e-130 (bound 2.420e-122)
+tangent from 1, quad-double: 0 rows differ below order 1, moved orders within 6.933e-64 (bound 1.593e-58)
+tangent from 1, double-double: 0 rows differ below order 1, moved orders within 2.116e-31 (bound 1.292e-26)
+tangent from 3, octo-double serial: 0 rows differ below order 3, moved orders within 1.515e-130 (bound 2.420e-122)
+tangent from 3, octo-double threaded: 0 rows differ below order 3, moved orders within 1.515e-130 (bound 2.420e-122)
+tangent from 3, quad-double: 0 rows differ below order 3, moved orders within 5.264e-64 (bound 1.593e-58)
+tangent from 3, double-double: 0 rows differ below order 3, moved orders within 1.864e-31 (bound 1.292e-26)
+control, the kept series not moved: 1.001e0
+ok
+
+test result: ok. 3 passed; 0 failed; 1 ignored; 0 measured; 32 filtered out; finished in 919.02s
+
+exit 0
