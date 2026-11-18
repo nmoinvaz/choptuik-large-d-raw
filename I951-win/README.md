@@ -36,6 +36,13 @@ Drivers, from #701's and #943's with only the start, the tags and the rules chan
 
 The bounds are upper bounds on the smallest gain from one rough start each, and the intervals are bootstrap spreads over the random right-hand sides, not enclosures. The 250-product cap is as in #943 (46 of its 48 K 7 starts ended at it), and it is not tested again here (#720 checked 3 starts of a).
 
+## Restated plan after the stop (2026-11-18 02:43 UTC, before the new solves and any sigma run)
+
+The coordinator (issue comment 6967406677 and `hc`) went on with start c = #145's own 32 x 121 root, `I145-mac/fol/fol_32x121_D40.0201_32x121.npz` (D 40.020065, 32 x 121, sha256 a6767a7dec01e91c2c6f..., last change in the raw history 61216f6a; no resampling, the solves' grid). The first c, from the 32 x 101 file, was start a again and its files are in `a_rerun/` (not part of the result). The coordinator's stored-root check: a and b are the same root, apart by 2.9e-20 (K 7) and 2.1e-21 (K 0); #145's 32 x 121 root is 2.2e-21 from a's K 0 root, so c is a third floor-level sample of that root, and **the question is now how far the rough bounds spread over such samples**.
+- The same two solves (`run_951_solves.py`, only the start path changed), the same distance rule, then the same two sigma runs (`run_951.py`, 48 rough starts, 2 BLAS threads each).
+- **Reported:** R_c with its 95% bootstrap interval and the K 7 and K 0 medians of c beside those of a and b, and the max-norm (and 2-norm) distance of the two new roots from a's and b's (the table of `table_951.py`). The classes/spread rule above (R_c inside R_a's or R_b's interval) is still computed and printed, as the first reading of the issue.
+- **Caps:** the same, the 30 h counted from 01:49:22 UTC (so the deadline stays 2026-11-19 07:49:22 UTC), K 0 10 h of its own. Nothing else changes. P1 is restated: the roots are new if the max-norm distance to a's and b's roots is above 1e-30, and I expect them near 1e-21 as the coordinator found for the K 0 root. P3 (R_c outside both intervals) stands as it was.
+
 ## Run record
 
 - 01:49:22 UTC: `run_951_solves.py` started the two solves (`start_951_solves.cmd`, BelowNormal, 1 BLAS thread each). `--resample_mp` accepted 101 to 121.

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-"""#951: the two RT solves of start c, K = 7 (k7c_D40) and its same-start K = 0 control (k0c_D40, --mutate=norows), at D 40.020065 on 32x121 from #145's 32x101 root
-(cont_32x101_D40.0201_32x101.npz, resampled exactly in xi, 101 to 121). From I701-win/run_701_solves.py with only the start, the tags and the paths changed.
+"""#951: the two RT solves of start c, K = 7 (k7c_D40) and its same-start K = 0 control (k0c_D40, --mutate=norows), at D 40.020065 on 32x121 from #145's 32x121 root
+(fol_32x121_D40.0201_32x121.npz, the solves' own grid; the first c, from cont_32x101_D40.0201_32x101.npz, was start a again, a_rerun/). From I701-win/run_701_solves.py with only the start, the tags and the paths changed.
 usage: python run_951_solves.py          (BelowNormal, one BLAS thread each, the two at once = 2 busy threads; logs/<tag>.log, logs/<tag>.exit, logs/run_951.log)
 Job: python rt_launch.py <worktree>/solver/rt/rt_run.py --start STATE --grids 32x121 --solver mp --tol 1e-12 --max_products 250 --refresh_dz 1e-5 --patient --it_max 20 --full_below 1e-4
      --newton_tol NTOL --horizon 7 --out solves --tag TAG --resample_mp [--mutate=norows]     (#163's run_one.sh: NTOL 1e-40 at D 40.02)
@@ -17,11 +17,11 @@ os.makedirs(os.path.join(HERE, "logs"), exist_ok=True)
 os.makedirs(os.path.join(HERE, "solves"), exist_ok=True)
 env = dict(os.environ, OPENBLAS_NUM_THREADS="1", OMP_NUM_THREADS="1", MKL_NUM_THREADS="1", PYTHONDONTWRITEBYTECODE="1")
 OPTS = "--solver mp --tol 1e-12 --max_products 250 --refresh_dz 1e-5 --patient --it_max 20 --full_below 1e-4".split()
-CASES = [("D40", "cont_32x101_D40.0201_32x101.npz", "1e-40")]
+CASES = [("D40", "fol_32x121_D40.0201_32x121.npz", "1e-40")]
 JOBS = []
 for d, f, ntol in CASES:
-    JOBS.append((f"k7c_{d}", os.path.join(RAW_PUSH, "I145-mac", "cont", f), ntol, []))
-    JOBS.append((f"k0c_{d}", os.path.join(RAW_PUSH, "I145-mac", "cont", f), ntol, ["--mutate=norows"]))
+    JOBS.append((f"k7c_{d}", os.path.join(RAW_PUSH, "I145-mac", "fol", f), ntol, []))
+    JOBS.append((f"k0c_{d}", os.path.join(RAW_PUSH, "I145-mac", "fol", f), ntol, ["--mutate=norows"]))
 
 
 def say(msg):
