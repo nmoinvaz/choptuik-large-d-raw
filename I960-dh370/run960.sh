@@ -64,6 +64,17 @@ for s in "$@"; do
     [ -f $RAW/$J ] || { log "p2 missing $J, not run"; exit 2; }
     stage p2 $OUT/p2.log $SRC --jet $J --state $L/anm_pin3_D229.0509.npz --N 31 --as 0.75,1.0,1.15,1.25,1.4 --scale 0.0715 \
       --threads $T --out $OUT/pilot_n31.jsonl || exit 1 ;;
+  bits)
+    # default bits on the chain path: origin/main's anm_run.py (copied in as anm_run_main.py, untracked) against the branch's, the
+    # chain's F of I903-win2/run_ks_chain.sh with --threads $T, --steps 1 from the same state
+    git -C $WT show origin/main:hp/anm_run.py > $WT/hp/anm_run_main.py && cp $WT/hp/anm_run_main.py $OUT/anm_run_main.py
+    log "bits: anm_run_main.py = origin/main $(git -C $WT rev-parse --short origin/main), sha1 $(sha1sum < $OUT/anm_run_main.py | cut -c1-12); anm_run.py sha1 $(sha1sum < $WT/hp/anm_run.py | cut -c1-12)"
+    FB="--kfreeze 3 --held_fit data/held_fit.json --N 24 --eps 1e-14 --h_max 1.0 --threads $T --corrector od --tol_od 1e-60 --qd_it 20 --a_grow 1.25 --a_hold 1 --lam_stall 0.04 --od_junk 0 --jet_o 1 --reseed 2 --reseed_q 1 --held_o 1 --reseed_o 3 --save_pred 1 --od_accept natural --save_jet 1 --od_strong 4 --reseed_start pred"
+    for v in anm_run_main anm_run; do
+      stage bits_$v $OUT/bits_$v.log nice -n 10 timeout -s TERM 10800 $PY -u $v.py $RAW $OUT/bits_$v --state $L/anm_pin3_D229.0509.npz \
+        $FB --ks 240 --keep_plan 0 --D_max 240 --steps 1 || exit 1
+    done
+    $PY $OUT/bits_cmp960.py $OUT/bits_anm_run_main $OUT/bits_anm_run > $OUT/bits_cmp.log 2>&1; log "bits compare exit $?" ;;
   *) log "unknown stage $s"; exit 3 ;;
   esac
 done
