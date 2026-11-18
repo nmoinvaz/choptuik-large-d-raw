@@ -21,3 +21,4 @@ B_planted_control: expected exit 1, got 1, 3743 s OK
 B_checkq: expected exit 0, got 1, 76 s MISMATCH
 B_checkq_control: expected exit 1, got 1, 30 s OK
 # checksB done 2026-11-18 10:50:47 UTC
+note (hc from t5, 2026-11-18 12:xx UTC): B_checkq's exit 1 at PRED is the check's, not B's: build A fails identically (A_checkq.log, rung and result lines the same but for seconds; the ks 240 re-seed ladder fails at its last rung). B_planted and B_planted_control at ST (exit 1, "no trial step accepted") wait for A's D_A_planted_ST in checksD.

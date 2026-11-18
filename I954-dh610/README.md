@@ -15,3 +15,7 @@ Scripts, in order: `build954.sh` (both builds), `checksA.sh`, `checksB.sh`; each
 ## Note, 2026-11-18: jet_by_order_check.py from main 9bff3a1e
 
 The hook line of the first run on A failed at order 6 because the old check compared the payload bits of inf and NaN words (#954, comments 6970974909 and 6971226549). Main's script `jet_by_order_check_main.py` (origin/main 9bff3a1e: finite words bit for bit, non-finite ones by place) is used for the reruns on A (`jboA_main954.sh`, `A_jbo_main.log`). In the worktrees of B and C the file `hp/jet_by_order_check.py` was replaced before their line ran: B's by main's file (byte for byte), C's by its own file with main's `same_words` and `differ` (C keeps its `--save`, `--compare` and two extra controls). No kernel code changed, so no rebuild. The `A_jet_by_order` line of `summary_A.txt` (old script) is the failed first run.
+
+## Note, 2026-11-18: decisions of the coordinator (hc)
+
+No C2 build: checksC stays on build C (6d7b2927, PR #955's head at that time); dh370 builds the merged head (main, #956 and the rebased #955) and runs both PRs' lines there. B's `checkq` mismatch at PRED is the check's, since A fails identically (`A_checkq.log`, `checksG.sh`). B's planted-at-ST verdict waits for A's planted at ST in checksD.

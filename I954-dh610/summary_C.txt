@@ -1,1 +1,22 @@
 C_jbo_t1: expected exit 0, got 0, 3030 s OK
+C_jbo_t8_compare: expected exit 0, got 0, 933 s OK
+C_jbo_N24: expected exit 0, got 0, 2770 s OK
+C_jets: expected exit 0, got 0, 139 s OK
+C_jets_kappa: expected exit 1, got 1, 138 s OK
+timing A run 1:  python: can't open file '/home/nathan/Source/choptuik-large-d-954a/hp/timing954.py': [Errno 2] No su
+timing C run 1:  python: can't open file '/home/nathan/Source/choptuik-large-d-954c/hp/timing954.py': [Errno 2] No su
+timing A run 2:  python: can't open file '/home/nathan/Source/choptuik-large-d-954a/hp/timing954.py': [Errno 2] No su
+timing C run 2:  python: can't open file '/home/nathan/Source/choptuik-large-d-954c/hp/timing954.py': [Errno 2] No su
+timing series compare: Traceback (most recent call last):|  File "/home/nathan/Source/choptuik-large-d-raw/I954-dh610/compare954.py", line 8, in <module>|    base = np.load(sys.argv[1], allow_pickle=False)|  File "/home/nathan/Source/choptuik-large-d-954c/.venv/lib/python3.14/site-packages/numpy/lib/_npyio_impl.py", line 454, in load|    fid = stack.enter_context(open(os.fspath(file), "rb"))|                              ~~~~^^^^^^^^^^^^^^^^^^^^^^^|FileNotFoundError: [Errno 2] No such file or directory: '/home/nathan/Source/choptuik-large-d-raw/I954-dh610/timing_A1.npz'|
+perf: which: no perf in (/home/nathan/Source/choptuik-large-d-954c/.venv/bin:/home/nathan/.local/bin:/home/nathan/.cargo/bin:/home/nathan/.local/bin:/home/nathan/.cargo/bin:/home/nathan/.cargo/bin:/home/nathan/.local/bin:/home/nathan/bin:/usr/local/bin:/usr/bin)
+# checksC done 2026-11-18 12:47:42 UTC
+# checksH start 2026-11-18 12:48:03 UTC: the four timing lines above this one failed (timing954.py not found), rerun here
+timing A run 1: {"hpkernel": "/home/nathan/Source/choptuik-large-d-954a/.venv/lib/python3.14/site-packages/hpkernel/__init__.py", "N": 24, "threads": 8, "t_truth": 0.08, "t_newton": 76.33, "t_series": 770.22, "ratio_series_newton": 10.091, "load_before": [11.04, 11.79, 12.62], "load_after": [11.13, 11.27, 11.86]} 
+timing C run 1: {"hpkernel": "/home/nathan/Source/choptuik-large-d-954c/.venv/lib/python3.14/site-packages/hpkernel/__init__.py", "N": 24, "threads": 8, "t_truth": 0.11, "t_newton": 75.62, "t_series": 395.4, "ratio_series_newton": 5.229, "load_before": [11.13, 11.27, 11.86], "load_after": [14.44, 14.0, 13.06]} 
+timing A run 2: {"hpkernel": "/home/nathan/Source/choptuik-large-d-954a/.venv/lib/python3.14/site-packages/hpkernel/__init__.py", "N": 24, "threads": 8, "t_truth": 0.11, "t_newton": 80.13, "t_series": 693.64, "ratio_series_newton": 8.656, "load_before": [14.44, 14.0, 13.06], "load_after": [9.78, 10.49, 11.62]} 
+timing C run 2: {"hpkernel": "/home/nathan/Source/choptuik-large-d-954c/.venv/lib/python3.14/site-packages/hpkernel/__init__.py", "N": 24, "threads": 8, "t_truth": 0.11, "t_newton": 82.12, "t_series": 362.23, "ratio_series_newton": 4.411, "load_before": [9.78, 10.49, 11.62], "load_after": [13.7, 13.45, 12.71]} 
+timing series compare: Traceback (most recent call last):|  File "/home/nathan/Source/choptuik-large-d-raw/I954-dh610/compare954.py", line 6, in <module>|    import numpy as np|ModuleNotFoundError: No module named 'numpy'. Did you mean: 'runpy'?|
+perf: which: no perf in (/home/nathan/.local/bin:/home/nathan/.cargo/bin:/home/nathan/.cargo/bin:/home/nathan/.local/bin:/home/nathan/bin:/usr/local/bin:/usr/bin)
+# checksH done 2026-11-18 13:30:20 UTC
+timing series compare: timing_A1.npz against timing_A2.npz: 0 of 147648 words differ, 0 keys missing|timing_A1.npz against timing_C1.npz: 0 of 147648 words differ, 0 keys missing|timing_A1.npz against timing_C2.npz: 0 of 147648 words differ, 0 keys missing|; control (one bit of C2 flipped) exit 1: timing_A1.npz against /tmp/claude-1000/-home-nathan-Source-choptuik-large-d/466d244d-7c63-411e-9465-534d3602f042/scratchpad/timing_C2_flipped.npz: 1 of 147648 words differ, 0 keys missing|
+note: the compare lines above this one failed (system python had no numpy under checksH); run by hand with C's venv python -I at 13:3x UTC
