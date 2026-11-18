@@ -1,0 +1,49 @@
+# 2026-11-18 07:44:41 UTC build B, hp 7583e787, hpkernel /home/nathan/Source/choptuik-large-d-954b/.venv/lib/python3.14/site-packages/hpkernel/__init__.py
+# multidouble in the .so: multidouble-2ee9e3c95fe1538e 
+# cmd: python dup_eval_check.py /home/nathan/scratch954/raw I903-win2/ks_chain/leg07_D222.0000_ks240/anm_pin3_D229.0509.npz --threads 8
+hpkernel /home/nathan/Source/choptuik-large-d-954b/.venv/lib/python3.14/site-packages/hpkernel/__init__.py; mutate ''
+base:
+  base: series to N 4: newton_o and series 109.4 s, kept LU and series 29.0 s
+  base: the corrector's LU is kept at z: ok (kept)
+  base: pivots: ok (bit for bit)
+  base: series z_0..z_4, eight parts: ok (bit for bit)
+  base: the key refuses z one ulp off, mutate 10, other tangents, set_segs: ok
+  base: 218 s
+pinned:
+  pinned: PinnedO.newton_o at z with the kept residual 81.8 s, with residual_o 80.2 s
+  pinned: the kernel kept newton_o's residual: ok
+  pinned: newton_o's outputs (dz, F hi, F lo, pivots): ok (bit for bit)
+  pinned: newton_o_residual against residual_o, eight parts: ok (bit for bit)
+  pinned: the key refuses z one ulp off: ok
+  pinned: newton_od 2 steps, 10 calls: 89.6 s with the kept residual, 89.4 s without; max|F| [3.3949238978482977e-12]
+  pinned: newton_od took steps: ok
+  pinned: newton_od's calls (inputs and outputs), final z and history: ok (bit for bit)
+  pinned: 342 s
+near_null:
+  near_null: newton_o and jacobian_o 156.6 s, newton_o keeping its Jacobian 78.6 s
+  near_null: the Jacobian was kept at z: ok
+  near_null: newton_o's step with and without keep_jacobian: ok (bit for bit)
+  near_null: the kept Jacobian against jacobian_o, eight parts: ok (bit for bit)
+  near_null: newton_o_residual against residual_o, eight parts: ok (bit for bit)
+  near_null: subspace vectors and sigma estimates: ok (bit for bit)
+  near_null: the key refuses z one ulp off and a newton_o that kept no Jacobian: ok
+  near_null: 328 s
+reseed:
+  reseed: double-double rung block: jacobian_sub 0.32 s, full 0.41 s
+  reseed: double-double rung block: ok (bit for bit)
+  reseed: double-double all rows, mixed columns: jacobian_sub 0.06 s, full 0.46 s
+  reseed: double-double all rows, mixed columns: ok (bit for bit)
+  reseed: quad-double rung block: jacobian_sub 3.32 s, full 3.89 s
+  reseed: quad-double rung block: ok (bit for bit)
+  reseed: quad-double all rows, mixed columns: jacobian_sub 0.38 s, full 5.69 s
+  reseed: quad-double all rows, mixed columns: ok (bit for bit)
+  reseed: octo-double rung block against jacobian_o with 1 tangents: ok (bit for bit)
+  reseed: octo-double rung block against jacobian_o with 2 tangents: ok (bit for bit)
+  reseed: rung solves (new): invert 0.6 s (1 its), polish_q 4.5 s, refine_o 37.7 s; |R| 2.11e+53, 2.11e+53, 6.38e+206
+  reseed: rung solves (old): invert 0.6 s (1 its), polish_q 6.2 s, refine_o 54.9 s; |R| 2.11e+53, 2.11e+53, 6.38e+206
+  reseed: invert (dd): data, history, convergence: ok (bit for bit)
+  reseed: polish_q (qd): data, history, convergence: ok (bit for bit)
+  reseed: refine_o (od): data, history, convergence: ok (bit for bit)
+  reseed: 304 s
+check: pass
+exit 0

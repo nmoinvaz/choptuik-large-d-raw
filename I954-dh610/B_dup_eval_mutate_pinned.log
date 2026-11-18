@@ -1,0 +1,14 @@
+# 2026-11-18 08:08:11 UTC build B, hp 7583e787, hpkernel /home/nathan/Source/choptuik-large-d-954b/.venv/lib/python3.14/site-packages/hpkernel/__init__.py
+# multidouble in the .so: multidouble-2ee9e3c95fe1538e 
+# cmd: python dup_eval_check.py /home/nathan/scratch954/raw I903-win2/ks_chain/leg07_D222.0000_ks240/anm_pin3_D229.0509.npz --threads 8 --sites pinned --mutate pinned
+hpkernel /home/nathan/Source/choptuik-large-d-954b/.venv/lib/python3.14/site-packages/hpkernel/__init__.py; mutate 'pinned'
+pinned:
+  pinned: PinnedO.newton_o at z with the kept residual 79.4 s, with residual_o 82.3 s
+  pinned: the kernel kept newton_o's residual: ok
+  pinned: newton_o's outputs (dz, F hi, F lo, pivots): FAIL (1 floats differ)
+  pinned: newton_od 2 steps, 10 calls: 89.2 s with the kept residual, 93.5 s without; max|F| [3.3949238978482977e-12]
+  pinned: newton_od took steps: ok
+  pinned: newton_od's calls (inputs and outputs), final z and history: FAIL (1 floats differ)
+  pinned: 345 s
+check: FAIL (pinned: newton_o's outputs (dz, F hi, F lo, pivots); pinned: newton_od's calls (inputs and outputs), final z and history)
+exit 1

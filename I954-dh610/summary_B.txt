@@ -1,1 +1,23 @@
 B_jets: expected exit 0, got 0, 921 s OK
+B_scaled: expected exit 0, got 0, 1557 s OK
+B_octo_ST: expected exit 0, got 0, 304 s OK
+B_octo_ST2: expected exit 0, got 0, 222 s OK
+B_octo_ST_mutate: expected exit 0, got 0, 317 s OK
+B_octo_ST2_mutate: expected exit 0, got 0, 240 s OK
+octo_hashes ST: diff of A against B has 0 lines OK
+octo_hashes ST: --mutate_dz 1 changes: > newton_o dz fcef9c37854fe73c9248d8b097ec08c30a550beb953fe5|
+octo_hashes ST2: diff of A against B has 0 lines OK
+octo_hashes ST2: --mutate_dz 1 changes: > newton_o dz 23f73c805bf22b22e1fa9d46e2304e891bfbfc5f33d8b1|
+B_jacobian_sub: expected exit 0, got 0, 1097 s; J[rows, cols] against the full Jacobian, entries that differ (dd, qd, od; rung block, mixed): [0, 0, 0, 0, 0, 0]; control [1, 1] test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 32 filtered out; finished in 0.69s 
+B_dup_eval: expected exit 0, got 0, 1193 s OK
+B_dup_eval_mutate_base: expected exit 1, got 1, 216 s OK
+B_dup_eval_mutate_pinned: expected exit 1, got 1, 345 s OK
+B_dup_eval_mutate_near_null: expected exit 1, got 1, 253 s OK
+B_dup_eval_mutate_reseed: expected exit 1, got 1, 318 s OK
+B_jac_tangents: expected exit 0, got 0, 576 s OK
+B_jet_by_order: expected exit 0, got 0, 604 s OK
+B_planted: expected exit 0, got 1, 3803 s MISMATCH
+B_planted_control: expected exit 1, got 1, 3743 s OK
+B_checkq: expected exit 0, got 1, 76 s MISMATCH
+B_checkq_control: expected exit 1, got 1, 30 s OK
+# checksB done 2026-11-18 10:50:47 UTC

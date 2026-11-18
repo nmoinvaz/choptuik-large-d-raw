@@ -1,0 +1,12 @@
+# 2026-11-18 08:23:29 UTC build B, hp 7583e787, hpkernel /home/nathan/Source/choptuik-large-d-954b/.venv/lib/python3.14/site-packages/hpkernel/__init__.py
+# multidouble in the .so: multidouble-2ee9e3c95fe1538e 
+# cmd: python jac_tangents_check.py /home/nathan/scratch954/raw I903-win2/ks_chain/leg07_D222.0000_ks240/anm_pin3_D229.0509.npz --threads 8
+jac_tangents_check I903-win2/ks_chain/leg07_D222.0000_ks240/anm_pin3_D229.0509.npz: D 229.05088233947753, stored plan, n [2, 4, 8], 8 threads
+  n 1: 74.4 s
+  n 2: 63.8 s (1.17x), entries that differ from n 1: 0
+  n 4: 69.6 s (1.07x), entries that differ from n 1: 0
+  n 8: 75.4 s (0.99x), entries that differ from n 1: 0
+  Newton step with n 2 against n 1: 0 entries or pivots differ
+  control (n 4, tangents reversed): 655360 entries differ
+  PASS: every n's Jacobian is n 1's bit for bit; the fastest is n 2 at 1.17x; control fired
+exit 0

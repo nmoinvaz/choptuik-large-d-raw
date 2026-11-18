@@ -1,0 +1,14 @@
+# 2026-11-18 07:26:23 UTC build B, hp 7583e787, hpkernel /home/nathan/Source/choptuik-large-d-954b/.venv/lib/python3.14/site-packages/hpkernel/__init__.py
+# multidouble in the .so: multidouble-2ee9e3c95fe1538e 
+# cmd: cargo test --release --lib jacobian_sub_bitwise -- --nocapture
+   Compiling hpkernel v0.1.0 (/home/nathan/Source/choptuik-large-d-954b/hp)
+    Finished `release` profile [optimized] target(s) in 18m 15s
+     Running unittests src/lib.rs (target/release/deps/_hpkernel-2c492e5d02c420ab)
+
+running 1 test
+J[rows, cols] against the full Jacobian, entries that differ (dd, qd, od; rung block, mixed): [0, 0, 0, 0, 0, 0]; control [1, 1]
+test jac_sub::tests::jacobian_sub_bitwise ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 32 filtered out; finished in 0.69s
+
+exit 0

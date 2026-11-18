@@ -1,0 +1,23 @@
+# 2026-11-18 08:18:10 UTC build B, hp 7583e787, hpkernel /home/nathan/Source/choptuik-large-d-954b/.venv/lib/python3.14/site-packages/hpkernel/__init__.py
+# multidouble in the .so: multidouble-2ee9e3c95fe1538e 
+# cmd: python dup_eval_check.py /home/nathan/scratch954/raw I903-win2/ks_chain/leg07_D222.0000_ks240/anm_pin3_D229.0509.npz --threads 8 --sites reseed --mutate reseed
+hpkernel /home/nathan/Source/choptuik-large-d-954b/.venv/lib/python3.14/site-packages/hpkernel/__init__.py; mutate 'reseed'
+reseed:
+  reseed: double-double rung block: jacobian_sub 0.60 s, full 0.65 s
+  reseed: double-double rung block: FAIL (1 floats differ)
+  reseed: double-double all rows, mixed columns: jacobian_sub 0.02 s, full 0.38 s
+  reseed: double-double all rows, mixed columns: FAIL (1 floats differ)
+  reseed: quad-double rung block: jacobian_sub 4.87 s, full 5.75 s
+  reseed: quad-double rung block: FAIL (1 floats differ)
+  reseed: quad-double all rows, mixed columns: jacobian_sub 0.38 s, full 5.87 s
+  reseed: quad-double all rows, mixed columns: FAIL (1 floats differ)
+  reseed: octo-double rung block against jacobian_o with 1 tangents: FAIL (1 floats differ)
+  reseed: octo-double rung block against jacobian_o with 2 tangents: FAIL (1 floats differ)
+  reseed: rung solves (new): invert 0.5 s (1 its), polish_q 4.4 s, refine_o 40.5 s; |R| 2.11e+53, 2.11e+53, 8.00e+233
+  reseed: rung solves (old): invert 0.8 s (1 its), polish_q 5.7 s, refine_o 52.2 s; |R| 2.11e+53, 2.11e+53, 6.38e+206
+  reseed: invert (dd): data, history, convergence: FAIL (1 floats differ)
+  reseed: polish_q (qd): data, history, convergence: FAIL (1 floats differ)
+  reseed: refine_o (od): data, history, convergence: FAIL (448 floats differ)
+  reseed: 318 s
+check: FAIL (reseed: double-double rung block; reseed: double-double all rows, mixed columns; reseed: quad-double rung block; reseed: quad-double all rows, mixed columns; reseed: octo-double rung block against jacobian_o with 1 tangents; reseed: octo-double rung block against jacobian_o with 2 tangents; reseed: invert (dd): data, history, convergence; reseed: polish_q (qd): data, history, convergence; reseed: refine_o (od): data, history, convergence)
+exit 1

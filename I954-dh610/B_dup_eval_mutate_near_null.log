@@ -1,0 +1,14 @@
+# 2026-11-18 08:13:56 UTC build B, hp 7583e787, hpkernel /home/nathan/Source/choptuik-large-d-954b/.venv/lib/python3.14/site-packages/hpkernel/__init__.py
+# multidouble in the .so: multidouble-2ee9e3c95fe1538e 
+# cmd: python dup_eval_check.py /home/nathan/scratch954/raw I903-win2/ks_chain/leg07_D222.0000_ks240/anm_pin3_D229.0509.npz --threads 8 --sites near_null --mutate near_null
+hpkernel /home/nathan/Source/choptuik-large-d-954b/.venv/lib/python3.14/site-packages/hpkernel/__init__.py; mutate 'near_null'
+near_null:
+  near_null: newton_o and jacobian_o 164.3 s, newton_o keeping its Jacobian 72.7 s
+  near_null: the Jacobian was kept at z: ok
+  near_null: newton_o's step with and without keep_jacobian: ok (bit for bit)
+  near_null: the kept Jacobian against jacobian_o, eight parts: FAIL (1 floats differ)
+  near_null: newton_o_residual against residual_o, eight parts: ok (bit for bit)
+  near_null: subspace vectors and sigma estimates: ok (bit for bit)
+  near_null: 252 s
+check: FAIL (near_null: the kept Jacobian against jacobian_o, eight parts)
+exit 1

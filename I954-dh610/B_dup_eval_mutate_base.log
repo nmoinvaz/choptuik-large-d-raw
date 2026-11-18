@@ -1,0 +1,12 @@
+# 2026-11-18 08:04:35 UTC build B, hp 7583e787, hpkernel /home/nathan/Source/choptuik-large-d-954b/.venv/lib/python3.14/site-packages/hpkernel/__init__.py
+# multidouble in the .so: multidouble-2ee9e3c95fe1538e 
+# cmd: python dup_eval_check.py /home/nathan/scratch954/raw I903-win2/ks_chain/leg07_D222.0000_ks240/anm_pin3_D229.0509.npz --threads 8 --sites base --mutate base
+hpkernel /home/nathan/Source/choptuik-large-d-954b/.venv/lib/python3.14/site-packages/hpkernel/__init__.py; mutate 'base'
+base:
+  base: series to N 4: newton_o and series 106.2 s, kept LU and series 30.9 s
+  base: the corrector's LU is kept at z: ok (kept)
+  base: pivots: ok (bit for bit)
+  base: series z_0..z_4, eight parts: FAIL (24565 floats differ)
+  base: 215 s
+check: FAIL (base: series z_0..z_4, eight parts)
+exit 1
