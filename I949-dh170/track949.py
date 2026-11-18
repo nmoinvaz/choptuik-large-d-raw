@@ -68,7 +68,8 @@ def classify(rec):
 
 def row_of(rec, src):
     ks = int(re.search(r"[_/]ks(\d+)/", rec["state"]).group(1))
-    r = dict(D=float(rec["D"]), ks=ks, src=src, state=rec["state"], ok=True, note="", ladder="ladder" in rec["state"])
+    r = dict(D=float(rec["D"]), ks=ks, src=src, state=rec["state"], ok=True, note="", ladder="ladder" in rec["state"],
+             chain=2 if "ks_chain2" in rec["state"] else 1)
     v = rec["vectors"]
     try:
         d, pair = classify(rec)
@@ -95,8 +96,13 @@ def load(folder):
             own[key] = r
         else:
             rows[key] = r
-    allr = sorted(rows.values(), key=lambda r: (r["D"], r["ks"]))
+    allr = sorted(rows.values(), key=lambda r: (r["chain"], r["D"], r["ks"]))
     return [r for r in allr if not r["ladder"]], own, [r for r in allr if r["ladder"]]
+
+
+def same_leg(*rs):
+    """the rows are states of one leg: one chain (ks_chain or ks_chain2) and one ks"""
+    return len({(r.get("chain", 1), r["ks"]) for r in rs}) == 1
 
 
 def central(rows, forward=False):
@@ -107,7 +113,7 @@ def central(rows, forward=False):
         s = None
         if 0 < i < len(rows) - 1:
             a, b = rows[i - 1], rows[i + 1]
-            if a["ok"] and b["ok"] and r["ok"] and a["ks"] == r["ks"] == b["ks"]:
+            if a["ok"] and b["ok"] and r["ok"] and same_leg(a, r, b):
                 lo = r if forward else a
                 s = -math.log(b["sd"] / lo["sd"]) / (b["D"] - lo["D"])
         out.append(s)
@@ -118,7 +124,7 @@ def interval_slopes(rows):
     """per row: the slope of the interval from the previous row, or None unless both are classified and share a ks"""
     out = [None]
     for a, b in zip(rows, rows[1:]):
-        out.append(-math.log(b["sd"] / a["sd"]) / (b["D"] - a["D"]) if a["ok"] and b["ok"] and a["ks"] == b["ks"] else None)
+        out.append(-math.log(b["sd"] / a["sd"]) / (b["D"] - a["D"]) if a["ok"] and b["ok"] and same_leg(a, b) else None)
     return out
 
 
@@ -172,11 +178,53 @@ def dtrend_at(dt, rows, i):
     return float(np.polyval(dt[0], Dm)), float(np.polyval(dt[1], Dm))
 
 
+def interp_ln(Dr, yr, D):
+    """cubic Lagrange interpolation of y (ln sigma) at D through the four reference states nearest to D, or None outside their span"""
+    Dr, yr = np.asarray(Dr, float), np.asarray(yr, float)
+    if len(Dr) < 4 or not (Dr.min() <= D <= Dr.max()):
+        return None
+    i = np.argsort(np.abs(Dr - D))[:4]
+    x, y = Dr[i], yr[i]
+    return float(sum(y[a] * np.prod([(D - x[b]) / (x[a] - x[b]) for b in range(4) if b != a]) for a in range(4)))
+
+
+def order_effect(rows, ref_ks=250):
+    """each ks_chain2 state against the ks_chain states of order ref_ks at the same D: sigma_Delta and sigma_pair, as the relative difference
+    (new / reference - 1). The reference is the state itself where a D agrees to 1e-6, else the cubic interpolation of ln sigma through the
+    four nearest reference states (its error is estimated by leaving each interior reference state out). Returns (table, interpolation
+    error of ln sigma_Delta, of ln sigma_pair) or None without four reference states."""
+    ref = [r for r in rows if r["chain"] == 1 and r["ks"] == ref_ks and r["ok"]]
+    new = [r for r in rows if r["chain"] == 2 and r["ok"]]
+    if len(ref) < 4 or not new:
+        return None
+    Dr = np.array([r["D"] for r in ref])
+    ld, lp = np.log([r["sd"] for r in ref]), np.log([r["sp"] for r in ref])
+    err = [0.0, 0.0]
+    for j in range(1, len(ref) - 1):
+        m = np.arange(len(ref)) != j
+        for k, y in enumerate((ld, lp)):
+            p = interp_ln(Dr[m], y[m], Dr[j])
+            if p is not None:
+                err[k] = max(err[k], abs(p - y[j]))
+    out = []
+    for r in new:
+        hit = np.where(np.abs(Dr - r["D"]) < 1e-6)[0]
+        if len(hit):
+            d_ref, p_ref, how = ref[hit[0]]["sd"], ref[hit[0]]["sp"], "same D"
+        else:
+            a, b = interp_ln(Dr, ld, r["D"]), interp_ln(Dr, lp, r["D"])
+            if a is None:
+                continue
+            d_ref, p_ref, how = math.exp(a), math.exp(b), "interpolated"
+        out.append(dict(D=r["D"], ks=r["ks"], sd=r["sd"], sd_ref=d_ref, sp=r["sp"], sp_ref=p_ref, share=r["share"], how=how))
+    return out, err[0], err[1]
+
+
 def trigger(rows, iv, base):
     """the index of the third consecutive row of one leg whose interval slope exceeds s(ks) by more than TRIGGER, or None"""
     n = 0
     for i, r in enumerate(rows):
-        if iv[i] is not None and iv[i] - s_of(base, r["ks"]) > TRIGGER and (n == 0 or rows[i - 1]["ks"] == r["ks"]):
+        if iv[i] is not None and iv[i] - s_of(base, r["ks"]) > TRIGGER and (n == 0 or same_leg(rows[i - 1], r)):
             n += 1
             if n >= 3:
                 return i
@@ -189,12 +237,12 @@ def windows(rows, base):
     """the fold rule on the window ending at each state that has at least five states of its leg up to it:
     [(ks, window rows, rule result)]"""
     out = []
-    for ks in sorted({r["ks"] for r in rows}):
-        g = [r for r in rows if r["ks"] == ks and r["ok"]]
+    for ch, ks in sorted({(r["chain"], r["ks"]) for r in rows}):
+        g = [r for r in rows if r["chain"] == ch and r["ks"] == ks and r["ok"]]
         for i in range(5, len(g) + 1):
             D = [r["D"] for r in g[:i]]
             s2 = [r["sd"] ** 2 for r in g[:i]]
-            out.append((ks, g[i - 5:i], fold949.rule(D, s2, s_of(base, ks))))
+            out.append((ks if ch == 1 else f"{ks} (chain 2)", g[i - 5:i], fold949.rule(D, s2, s_of(base, ks))))
     return out
 
 
@@ -230,13 +278,13 @@ def tables(folder, forward=False):
     ok = True
     with open(os.path.join(folder, "track949.csv"), "w", newline="") as f:
         w = csv.writer(f)
-        w.writerow(["D", "ks", "sigma_delta", "sigma_pair", "delta_share", "delta_share_2nd", "delta_vec", "pair_vecs", "conv_delta",
+        w.writerow(["D", "ks", "chain", "sigma_delta", "sigma_pair", "delta_share", "delta_share_2nd", "delta_vec", "pair_vecs", "conv_delta",
                     "local_slope", "interval_slope", "s_baseline", "excess", "postfreeze_dtrend_lin", "postfreeze_excess_lin", "postfreeze_dtrend_quad",
                     "postfreeze_excess_quad", "classified", "source"])
         for i, (r, c, v) in enumerate(zip(rows, cen, iv)):
             sb = None if base is None else s_of(base, r["ks"])
             tl, tq = dtrend_at(dt, rows, i)
-            w.writerow([f"{r['D']:.6f}", r["ks"], f"{r['sd']:.6e}", f"{r['sp']:.6e}", f"{r['share']:.4f}", f"{r['share2']:.4f}", r["dvec"],
+            w.writerow([f"{r['D']:.6f}", r["ks"], r["chain"], f"{r['sd']:.6e}", f"{r['sp']:.6e}", f"{r['share']:.4f}", f"{r['share2']:.4f}", r["dvec"],
                         r["pvec"], f"{r['conv']:.1e}", "" if c is None else f"{c:.4f}", "" if v is None else f"{v:.4f}",
                         "" if sb is None else f"{sb:.4f}", "" if v is None or sb is None else f"{v - sb:+.4f}",
                         "" if tl is None else f"{tl:.4f}", "" if v is None or tl is None else f"{v - tl:+.4f}",
@@ -248,13 +296,13 @@ def tables(folder, forward=False):
             if a["ok"] and b["ok"]:
                 w.writerow([f"{a['D']:.6f}", f"{b['D']:.6f}", a["ks"], b["ks"], f"{-math.log(b['sd'] / a['sd']) / (b['D'] - a['D']):.4f}",
                             int(a["ks"] != b["ks"])])
-    print(f"{'D':>9} {'ks':>4} {'sigma_Delta':>12} {'sigma_pair':>12} {'Dshare':>7} {'2nd':>6} {'conv':>8} {'local':>7} {'interval':>8} {'excess':>7} {'vsD lin':>8} {'vsD quad':>8}  note")
+    print(f"{'D':>9} {'ks':>4} {'ch':>1} {'sigma_Delta':>12} {'sigma_pair':>12} {'Dshare':>7} {'2nd':>6} {'conv':>8} {'local':>7} {'interval':>8} {'excess':>7} {'vsD lin':>8} {'vsD quad':>8}  note")
     for i, (r, c, v) in enumerate(zip(rows, cen, iv)):
         tl, tq = dtrend_at(dt, rows, i)
         conv = "" if r["conv"] < 1e-3 else "  NOT CONVERGED (rerun --its=32)"
         note = ("" if r["ok"] else "  NOT CLASSIFIED: " + r["note"]) + conv
         ex = "" if v is None or base is None else format(v - s_of(base, r["ks"]), "+7.4f")
-        print(f"{r['D']:9.4f} {r['ks']:4d} {r['sd']:12.4e} {r['sp']:12.4e} {r['share']:7.3f} {r['share2']:6.3f} {r['conv']:8.1e} "
+        print(f"{r['D']:9.4f} {r['ks']:4d} {r['chain']:1d} {r['sd']:12.4e} {r['sp']:12.4e} {r['share']:7.3f} {r['share2']:6.3f} {r['conv']:8.1e} "
               f"{'' if c is None else format(c, '7.4f'):>7} {'' if v is None else format(v, '8.4f'):>8} {ex:>7} {'' if v is None or tl is None else format(v - tl, '+8.4f'):>8} {'' if v is None or tq is None else format(v - tq, '+8.4f'):>8}  v{r['dvec']}/{r['pvec']}{note}")
     bad = [r for r in rows if not r["ok"] or r["conv"] >= 1e-3]
     print(f"\nstates {len(rows)}, not classified or not converged: {len(bad)}"
@@ -315,6 +363,14 @@ def tables(folder, forward=False):
                 rel = f", {r['sd'] / ref['sd'] - 1:+.2e} against the chain state" if ref else ""
                 print(f"    ks {r['ks']}: sigma_Delta {r['sd']:.10e}{rel}; Delta share {r['share']:.4f}, pair {r['sp']:.4e}, conv {r['conv']:.1e}"
                       f"{'' if r['ok'] else '  NOT CLASSIFIED: ' + r['note']}")
+    oe = order_effect(rows)
+    if oe:
+        tab, e_d, e_p = oe
+        print(f"\nORDER EFFECT at equal D, ks_chain2 against the ks 250 states of ks_chain (coordinator, hc 2026-11-18; interpolation error of ln sigma, left-one-out: "
+              f"Delta {e_d:.1e}, pair {e_p:.1e}):")
+        for t in tab:
+            print(f"  D {t['D']:9.4f} ks {t['ks']}: sigma_Delta {t['sd']:.6e} against {t['sd_ref']:.6e} ({t['sd'] / t['sd_ref'] - 1:+.2e}); "
+                  f"sigma_pair {t['sp']:.5e} against {t['sp_ref']:.5e} ({t['sp'] / t['sp_ref'] - 1:+.2e}); Delta share {t['share']:.4f}; {t['how']}")
     wins = windows(rows, base)
     print("\nfold rule on every five-state window (conditions: 1 residuals, 2 D* within 3 past, 3 shifted window, 4 planted scatter; "
           "T true, F false, - not evaluated):")
@@ -420,6 +476,26 @@ def selftest(mutate):
     ok &= good
     print(f"selftest: D-trend of planted slopes 0.9 - 0.0025 D: coefficient error {err:.1e}, last interval minus the trend {e3:.1e}, too few intervals give None: "
           f"{'pass' if good else 'FAIL'}")
+    # two chains overlapping in D must not mix: intervals, slopes and the order effect stay within a chain
+    ref = [dict(D=232.5 + 0.5 * k, ks=250, chain=1, ok=True, sd=math.exp(-30 - 0.40 * (232.5 + 0.5 * k) + 0.003 * (0.5 * k) ** 2),
+                sp=math.exp(-22 - 0.001 * k), share=0.9) for k in range(10)]
+    ln = lambda D: -30 - 0.40 * D + 0.003 * (D - 232.5) ** 2
+    new = [dict(D=D, ks=291, chain=2, ok=True, sd=math.exp(ln(D)) * (1 + 3e-6), sp=math.exp(-22 - 0.001 * (D - 232.5) / 0.5) * (1 - 2e-6), share=0.9)
+           for D in (233.1, 234.2, 235.7, 236.31)]
+    mixed = sorted(ref + new, key=lambda r: (r["chain"], r["D"]))
+    iv = interval_slopes(mixed)
+    only_within = all(iv[i] is None or same_leg(mixed[i - 1], mixed[i]) for i in range(len(mixed))) and iv[len(ref)] is None
+    oe = order_effect(mixed)
+    d_err = max(abs(t["sd"] / t["sd_ref"] - 1 - 3e-6) for t in oe[0]) if oe else 1.0
+    p_err = max(abs(t["sp"] / t["sp_ref"] - 1 + 2e-6) for t in oe[0]) if oe else 1.0
+    good = only_within and oe is not None and len(oe[0]) == 4 and d_err < 1e-9 and p_err < 1e-9
+    ok &= good
+    print(f"selftest: two chains overlapping in D stay apart (no interval across them), the order effect of planted +3e-6 (Delta) and -2e-6 (pair) is "
+          f"returned to {d_err:.1e} and {p_err:.1e} by the cubic interpolation: {'pass' if good else 'FAIL'}")
+    wrong = [dict(t, sd=t["sd"] * 1.001) for t in oe[0]] if oe else []
+    miss = oe is not None and max(abs(t["sd"] / t["sd_ref"] - 1 - 3e-6) for t in wrong) > 1e-4
+    ok &= miss
+    print(f"selftest: a planted 1e-3 error in sigma_Delta shows in the order effect: {'pass' if miss else 'FAIL'}")
     print(f"selftest{' --mutate' if mutate else ''}: {'pass' if ok else 'FAIL'}")
     return ok
 

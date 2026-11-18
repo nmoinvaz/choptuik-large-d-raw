@@ -74,6 +74,17 @@ and undetermined at 28; and ks 211's five states gave a "valid" fit by the 10% r
   (`postfreeze_*` columns of `track949.csv`). It is a report, not the trigger. Its fits are not frozen before leg 8; they are made
   from the backfill alone.
 
+## Plan change (coordinator, hc 2026-11-18 about 07:30 UTC)
+
+win2b's ks 260 rung at D 237.53 did not converge (ks 250 there is already below the needed order), so there are no `ladder8` bases. The chain
+restarts from #948's converged ks 280 base at D 232.0 (`I948-dh370/up_K280_from270/base_pin3_D232.0000.npz`) in `I903-win2/ks_chain2`, with a
+steeper order rule (about ks 291 for D 232 to 242). Its states are read as they come. They overlap leg 8's ks 250 states at D 232 to 237.5, so
+`track949.py` prints, at equal D, σ_Δ and σ_pair at ks 291 against ks 250 (the ORDER EFFECT table: the same D where a D agrees to 1e-6,
+else a cubic interpolation of ln σ through the four nearest ks 250 states, whose error is estimated by leaving each interior state out). The
+two chains are kept apart: no interval, slope, trigger or fold window crosses from one chain to the other. The frozen baseline
+extrapolates poorly to ks 291 (s = 0.3088 there, about 0.09 under the D-trend), so the excess against s(ks) can sit near the 0.10 trigger without
+a fold; the post-freeze D-trend comparison stays beside it, and a fold needs a valid fit and an excess against the D-trend too.
+
 ## Planted fold test (before any state was read)
 
 `selftest949.log` (exit 0): planted σ² = 0.3 (D* − D) exp(−2 · 0.405 (D − 232)), D* 260 and 262, on the five #941 states, five states
