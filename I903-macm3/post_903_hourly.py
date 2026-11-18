@@ -82,7 +82,7 @@ for r in rows[-24:]:
 o.append("")
 if any(sg[0] == "chain_k135b" for sg in SEGS):
     nb = [r for r in rows if r["cap"] == 40]
-    o.append("Restart (the coordinator's hc): steps 0-48 ran under `--qd_it 20` (`chain_k135`), from step 49 on under `--qd_it 40` (`chain_k135b`), started from the saved state of D 258.24808 with every other flag unchanged except `--a0` (the a the chain would have tried next). " + (f"Since the restart, {len(nb)} accepted steps: " + "; ".join(f"step {r['step']} a {r['a']:.4g}, {r['ncorr']} corrections ({r['nlow']} at lam < 1), {r['nat']} attempt(s)" for r in nb) + ".\n" if nb else "No step has been accepted since the restart yet.\n"))
+    o.append("Restart (the coordinator's hc): steps 0-48 ran under `--qd_it 20` (`chain_k135`), from step 49 on under `--qd_it 40` (`chain_k135b`), started from the saved state of D 258.24808 with every other flag unchanged except `--a0` (the a the chain would have tried next). " + (f"Since the restart, {len(nb)} accepted step(s): " + "; ".join(f"step {r['step']} a {r['a']:.4g}, {r['ncorr']} corrections ({r['nlow']} at lam < 1), {r['nat']} attempt(s)" for r in nb) + ".\n" if nb else "No step has been accepted since the restart yet.\n"))
 o.append("A correction is one octo-double Newton iteration of the accepted attempt (the `on k:` lines with an arrow), lam < 1 are the damped ones; the table's step count is the log's own, which also counts the final convergence check.\n")
 o.append("p_min is the smallest octo-double LU pivot at the base (the record's `pivots`), ln(p/p603) is against #603's chain at the same D from its logs' two-digit p_min, interpolated in ln p as `compare_903.py` does. The max|F| is the octo-double Newton's final one for that step's accepted attempt.\n")
 if rows:
