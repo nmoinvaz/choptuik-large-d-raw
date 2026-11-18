@@ -1,0 +1,19 @@
+PASS  (a) and (b) accepted at the same a: a 0.5 and 0.5, attempts 3 and 3
+PASS  |Delta(b) - Delta(a)| <= 1e-40: 2.956e-69
+PASS  (b)'s series at most 1/1.5 of (a)'s: 191.0 s against 316.5 s, ratio 1.657 (bar 1.5, base_lu kept, kept)
+PASS  control |Delta(c) - Delta(a)| > 1e-40: 1.100e-17, (c) accepted 1 at a 0.5
+
+reported, not judged ((d): N 31, a_rule reseed, a_scale 0.0715; (b): N 24, the default rule)
+                                      (b)          (d)
+accepted a                         0.5000       1.2899
+attempts                           3.0000       1.0000
+series s                         191.0478     288.3224
+accepted attempt s               468.5830     781.2654
+all attempts s                  1203.6535     781.2654
+step wall s (stage)             2273.0000    1953.0000
+series s per unit D                 382.1        223.5   (d)/(b) 0.585
+accepted attempt s per unit D        937.2        605.7   (d)/(b) 0.646
+all attempts s per unit D          2407.3        605.7   (d)/(b) 0.252
+step wall s (stage) per unit D       4546.0       1514.1   (d)/(b) 0.333
+
+summary PASS
