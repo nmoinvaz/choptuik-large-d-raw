@@ -1,0 +1,36 @@
+# selftests of the task scripts (run from solver/inner_stokes/)
+$ python3 run_job.py --selftest
+ok   fit3_repeat: r_3 1.2e-7, below the bar
+ok   fit3_repeat: r_1 -0.0225+0.0424i
+ok   fit3_repeat: end state is the six 9-decimal harmonics
+ok   newton2_repeat_b: r_3 1.5e-5, above the bar (repeat rule fires)
+ok   a log cut before FIXED-A is read as no result
+ok   Traceback before FIXED-A is a crash, the exit BytesIO one is not
+PASS
+exit 0
+$ python3 run_job.py --selftest --mutate=r3
+FAIL fit3_repeat: r_3 1.2e-7, below the bar
+ok   fit3_repeat: r_1 -0.0225+0.0424i
+ok   fit3_repeat: end state is the six 9-decimal harmonics
+FAIL newton2_repeat_b: r_3 1.5e-5, above the bar (repeat rule fires)
+ok   a log cut before FIXED-A is read as no result
+ok   Traceback before FIXED-A is a crash, the exit BytesIO one is not
+FAIL
+exit 1
+$ python3 run_job.py --selftest --mutate=endstate
+ok   fit3_repeat: r_3 1.2e-7, below the bar
+ok   fit3_repeat: r_1 -0.0225+0.0424i
+FAIL fit3_repeat: end state is the six 9-decimal harmonics
+ok   newton2_repeat_b: r_3 1.5e-5, above the bar (repeat rule fires)
+ok   a log cut before FIXED-A is read as no result
+ok   Traceback before FIXED-A is a crash, the exit BytesIO one is not
+FAIL
+exit 1
+$ python3 affine_all.py --selftest
+planted zero [2.7192  1.00002], recovered [2.7192  1.00002], max error 0.0e+00, residuals 1.3e-12
+PASS
+exit 0
+$ python3 affine_all.py --selftest --mutate=sign
+planted zero [2.7192  1.00002], recovered [2.71922016 1.00010065], max error 8.1e-05, residuals 1.3e-12
+FAIL
+exit 1
