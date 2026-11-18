@@ -22,3 +22,4 @@ B_checkq: expected exit 0, got 1, 76 s MISMATCH
 B_checkq_control: expected exit 1, got 1, 30 s OK
 # checksB done 2026-11-18 10:50:47 UTC
 note (hc from t5, 2026-11-18 12:xx UTC): B_checkq's exit 1 at PRED is the check's, not B's: build A fails identically (A_checkq.log, rung and result lines the same but for seconds; the ks 240 re-seed ladder fails at its last rung). B_planted and B_planted_control at ST (exit 1, "no trial step accepted") wait for A's D_A_planted_ST in checksD.
+note (2026-11-18 14:50 UTC): B_planted at ST is the check's, not B's: D_A_planted_ST (build A, same state) exits 1 with every line identical to B_planted but for seconds (31 lines each; od 1 step NOT converged, pinned max|F| 3.39e-12, no trial step accepted, 11 projections failed; qd stopped at 3.39e-12, |Delta_od - Delta_qd| 2.0708e-66; (a) FAIL). The --mutate 10 control at ST exits 1 for the same reason, so it does not discriminate there; the amendment's runs at T129 follow in checksD.
