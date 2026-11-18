@@ -1,0 +1,37 @@
+# #977 controls (every check must be able to fail)
+$ pairs977.py --selftest 
+planted (0,0 est 1) and (3,4 est 2): distance 5.0, units 5.000 2.500 1.667, within sum False
+PASS
+exit 0
+$ pairs977.py --selftest --mutate=norm
+planted (0,0 est 1) and (3,4 est 2): distance 7.0, units 7.000 3.500 2.333, within sum False
+FAIL
+exit 1
+$ pairs977.py --selftest --mutate=swap
+planted (0,0 est 1) and (3,4 est 2): distance 5.0, units 2.500 5.000 1.667, within sum False
+FAIL
+exit 1
+$ run_job976.py --selftest (and three mutations), from I976-win2/selftest_run_job976.log:
+== selftest 
+PASS
+exit 0
+== selftest --mutate=r3
+FAIL fit3_repeat: r_3 1.2e-7, below the bar
+FAIL newton2_repeat_b: r_3 1.5e-5, above the bar (repeat rule fires)
+FAIL
+exit 1
+== selftest --mutate=endstate
+FAIL fit3_repeat: end state is the six 9-decimal harmonics
+FAIL
+exit 1
+== selftest --mutate=pert
+FAIL perturbed start is reproducible from its rng seed
+FAIL
+exit 1
+$ zero_digits977.py on run 2's m7_outer file
+m7_outer_win2_rtol13_s976_xi015.txt: 2 centre solves, zero A 2.719242554, w/w_inf 1.000025865, estimate 4.587e-06 (3.10e-06 noise, 1.48e-06 J), centre noise 0.0159; matches m7_outer's print: True
+exit 0
+$ zero_digits977.py on the same file with the printed estimate changed 4.6e-06 -> 2.0e-06 (must fail)
+m7_corrupt977.txt: 2 centre solves, zero A 2.719242554, w/w_inf 1.000025865, estimate 4.587e-06 (3.10e-06 noise, 1.48e-06 J), centre noise 0.0159; matches m7_outer's print: False
+exit 1
+$ first attempts of #976 and run 1 (rtol 1e-14), after stripping seconds and addresses: 0 diff lines each for zero, dA, dw, zero_repeat (checked by hand after the runs, not by a script)

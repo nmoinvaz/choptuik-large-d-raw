@@ -1,0 +1,23 @@
+INNER_NB_RTOL=1e-13 cap 3 h, RUN_PY C:/Users/nathan/Source/venv-i962/Scripts/python.exe, RUN_SRC D:/choptuik-i962/solver/inner_stokes, perturb REL 1e-07 rngseed 976 max 3 repeats per solve (I976's copy of I975's run_job.py)
+2026-11-18 23:35:50 UTC run: C:/Users/nathan/Source/venv-i962/Scripts/python.exe -u hier_nb.py 7 2.719219 1.000022 --x=0.148977988,0.014770713,0.008424206,0.001511189,0.000474205,0.00012168 --xi1=0.15 --pretune --fixA --schur --predict --floor --procs 2 --h3=1e-4 > D:\choptuik-i935-raw\I977-win2\logs\hier_nb_M7_win2_rtol13_s976_xi015_zero.log
+2026-11-18 23:35:50 UTC pid 31188
+2026-11-18 23:37:44 UTC zero try 0: r_1 -0.0994+0.0509i  |r_3| 3.00e-08  [114 s since start]
+2026-11-18 23:37:44 UTC run: C:/Users/nathan/Source/venv-i962/Scripts/python.exe -u hier_nb.py 7 2.719419 1.000022 --x=0.148977988,0.014770713,0.008424206,0.001511189,0.000474205,0.00012168 --xi1=0.15 --pretune --fixA --schur --predict --floor --procs 2 --h3=1e-4 > D:\choptuik-i935-raw\I977-win2\logs\hier_nb_M7_win2_rtol13_s976_xi015_dA.log
+2026-11-18 23:37:44 UTC pid 22496
+2026-11-18 23:39:41 UTC dA try 0: r_1 +1.8714-0.1443i  |r_3| 4.60e-05  [231 s since start]
+2026-11-18 23:39:41 UTC dA: |r_3| 4.6e-05 not under 1e-06, repeat 1 from its first end state perturbed by 1e-07: x 0.1490081795,0.01477309871,0.008427080476,0.001511649065,0.0004744319802,0.0001217340021
+2026-11-18 23:39:41 UTC run: C:/Users/nathan/Source/venv-i962/Scripts/python.exe -u hier_nb.py 7 2.719419 1.000022 --x=0.1490081795,0.01477309871,0.008427080476,0.001511649065,0.0004744319802,0.0001217340021 --xi1=0.15 --pretune --fixA --schur --predict --floor --procs 2 --h3=1e-4 > D:\choptuik-i935-raw\I977-win2\logs\hier_nb_M7_win2_rtol13_s976_xi015_dA_pert1.log
+2026-11-18 23:39:41 UTC pid 1060
+2026-11-18 23:41:59 UTC dA try 1: r_1 +0.7757-0.7655i  |r_3| 4.20e-08  [369 s since start]
+2026-11-18 23:41:59 UTC run: C:/Users/nathan/Source/venv-i962/Scripts/python.exe -u hier_nb.py 7 2.719219 1.000122 --x=0.148977988,0.014770713,0.008424206,0.001511189,0.000474205,0.00012168 --xi1=0.15 --pretune --fixA --schur --predict --floor --procs 2 --h3=1e-4 > D:\choptuik-i935-raw\I977-win2\logs\hier_nb_M7_win2_rtol13_s976_xi015_dw.log
+2026-11-18 23:42:00 UTC pid 27684
+2026-11-18 23:44:28 UTC dw try 0: r_1 +2.8819+3.7933i  |r_3| 6.10e-06  [518 s since start]
+2026-11-18 23:44:29 UTC dw: |r_3| 6.1e-06 not under 1e-06, repeat 1 from its first end state perturbed by 1e-07: x 0.1489522088,0.01476724416,0.008421271568,0.001510565033,0.0004739570093,0.000121608988
+2026-11-18 23:44:29 UTC run: C:/Users/nathan/Source/venv-i962/Scripts/python.exe -u hier_nb.py 7 2.719219 1.000122 --x=0.1489522088,0.01476724416,0.008421271568,0.001510565033,0.0004739570093,0.000121608988 --xi1=0.15 --pretune --fixA --schur --predict --floor --procs 2 --h3=1e-4 > D:\choptuik-i935-raw\I977-win2\logs\hier_nb_M7_win2_rtol13_s976_xi015_dw_pert1.log
+2026-11-18 23:44:29 UTC pid 11200
+2026-11-18 23:45:52 UTC dw try 1: r_1 +0.1532+1.0274i  |r_3| 3.70e-08  [602 s since start]
+2026-11-18 23:45:52 UTC run: C:/Users/nathan/Source/venv-i962/Scripts/python.exe -u hier_nb.py 7 2.719219 1.000022 --xi1=0.15 --pretune --fixA --schur --predict --floor --procs 2 --h3=1e-4 > D:\choptuik-i935-raw\I977-win2\logs\hier_nb_M7_win2_rtol13_s976_xi015_zero_repeat.log
+2026-11-18 23:45:52 UTC pid 2692
+2026-11-18 23:47:28 UTC zero_repeat try 0: r_1 -0.1313+0.0687i  |r_3| 5.00e-07  [698 s since start]
+2026-11-18 23:47:28 UTC run: C:/Users/nathan/Source/venv-i962/Scripts/python.exe m7_outer.py --local D:\choptuik-i935-raw\I977-win2\logs\hier_nb_M7_win2_rtol13_s976_xi015_zero.log D:\choptuik-i935-raw\I977-win2\logs\hier_nb_M7_win2_rtol13_s976_xi015_zero_repeat.log -- D:\choptuik-i935-raw\I977-win2\logs\hier_nb_M7_win2_rtol13_s976_xi015_dA_pert1.log D:\choptuik-i935-raw\I977-win2\logs\hier_nb_M7_win2_rtol13_s976_xi015_dw_pert1.log
+2026-11-18 23:47:28 UTC m7_outer.py --local exit 0; output in logs/m7_outer_win2_rtol13_s976_xi015.txt
