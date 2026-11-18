@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# #903 ladder-phase watcher (glue, never kills): notifies on a new 903d line of exits_903.txt, a new ks_chain2 leg record, a Traceback in the ladder or
+# ks_chain2 logs, or a 3 h heartbeat.
+R=/d/choptuik-large-d-raw/I903-win2
+cnt() { local n; n=$(grep -cE "$1" "$2" 2>/dev/null); echo ${n:-0}; }
+n0=$(cnt '^903d ' $R/exits_903.txt); j0=$(wc -l < $R/ks_chain2/ks_chain.jsonl 2>/dev/null || echo 0); t0=$(date +%s); why=none
+while true; do
+  [ "$(cnt '^903d ' $R/exits_903.txt)" -gt "$n0" ] && { why="NEW 903d LINE"; break; }
+  [ "$(wc -l < $R/ks_chain2/ks_chain.jsonl 2>/dev/null || echo 0)" -gt "$j0" ] && { why="NEW ks_chain2 LEG RECORD"; break; }
+  grep -qs Traceback $R/ks_chain/ladder8/*/anm_run.log $R/ks_chain2.log && { why="TRACEBACK"; break; }
+  [ $(( $(date +%s) - t0 )) -ge 10800 ] && { why="3 H HEARTBEAT"; break; }
+  sleep 10
+done
+echo "$why at $(date -u '+%Y-%m-%d %H:%M:%S UTC')"; grep '^903d ' $R/exits_903.txt | tail -4 | cut -c1-300
