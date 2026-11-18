@@ -3,7 +3,7 @@
 Machine rpi5 (Raspberry Pi 5, Cortex-A76 x 4, 8 GB, Ubuntu aarch64, Python 3.13.7), runner. Issue
 https://github.com/nmoinvaz/choptuik-large-d/issues/964 (coordinator task, toward #355). Code: worktree of origin/main
 0fc2fab0, branch `wip/i964-rpi5`, venv `~/Source/venv-choptuik` with numba 0.68.1, llvmlite 0.50.0, numpy 2.5.4, scipy 1.18.1
-(`setup_checks/env.txt`). Started 2026-11-18 17:05 UTC, stopped 17:20 UTC at the setup, as the issue says: no solve was run.
+(`setup_checks/env.txt`). Started 2026-11-18 17:05 UTC, stopped 17:08 UTC at the setup, as the issue says: no solve was run.
 
 ## Setup checks (`sh inner_nb_checks.sh`, 72 s in all, logs in `setup_checks/`)
 
