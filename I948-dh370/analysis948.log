@@ -1,0 +1,31 @@
+== D 232.0: each rung's six sigma (convergence), the Delta mode's identity and the ratios to the 240 rung
+ks 240  (near_up_K240_from240.json)  Delta mode = vector 1 (Delta share 0.913), pair = vectors 3, 4
+   sigma: 5.277e-15 (0e+00)  2.172e-14 (0e+00)  2.918e-10 (5e-04)  2.970e-10 (6e-04)  2.401e-06 (1e+00)  4.411e-06 (8e-02)
+ks 250  (near_up_K250_from240.json)  Delta mode = vector 1 (Delta share 0.913), pair = vectors 3, 4
+   sigma: 5.277e-15 (1e-16)  2.172e-14 (3e-16)  2.918e-10 (5e-04)  2.970e-10 (6e-04)  1.429e-06 (1e-01)  1.903e-06 (9e-01)
+ks 260  (near_up_K260_from250.json)  Delta mode = vector 1 (Delta share 0.913), pair = vectors 3, 4
+   sigma: 5.277e-15 (0e+00)  2.172e-14 (0e+00)  2.918e-10 (5e-04)  2.970e-10 (6e-04)  3.543e-06 (5e-01)  2.013e-06 (1e+00)
+ks 270  (near_up_K270_from260.json)  Delta mode = vector 1 (Delta share 0.913), pair = vectors 3, 4
+   sigma: 5.277e-15 (1e-16)  2.172e-14 (0e+00)  2.918e-10 (5e-04)  2.970e-10 (6e-04)  2.496e-06 (5e-02)  1.213e-06 (8e-02)
+ks 280  (near_up_K280_from270.json)  Delta mode = vector 1 (Delta share 0.913), pair = vectors 3, 4
+   sigma: 5.277e-15 (0e+00)  2.172e-14 (0e+00)  2.918e-10 (5e-04)  2.970e-10 (6e-04)  2.735e-06 (3e-01)  2.334e-06 (1e-01)
+ks 300  (near_up_K300_from280.json)  Delta mode = vector 1 (Delta share 0.913), pair = vectors 3, 4
+   sigma: 5.277e-15 (0e+00)  2.172e-14 (0e+00)  2.918e-10 (5e-04)  2.970e-10 (6e-04)  4.008e-06 (7e-01)  1.873e-06 (2e-01)
+ks 320  (near_up_K320_from300.json)  Delta mode = vector 1 (Delta share 0.913), pair = vectors 3, 4
+   sigma: 5.277e-15 (0e+00)  2.172e-14 (0e+00)  2.918e-10 (5e-04)  2.970e-10 (6e-04)  2.278e-06 (2e-01)  3.533e-06 (2e-01)
+
+ks    sigma_Delta   /240      sigma_pair    /240      sigma_5       /240      Delta share  Delta vector
+240   5.2769e-15  1         2.9442e-10  1         2.4010e-06  1         0.913        1
+250   5.2769e-15  1         2.9440e-10  0.9999    1.4289e-06  0.5951    0.913        1
+260   5.2769e-15  1         2.9440e-10  0.9999    3.5431e-06  1.476     0.913        1
+270   5.2769e-15  1         2.9440e-10  0.9999    2.4957e-06  1.039     0.913        1
+280   5.2769e-15  1         2.9440e-10  0.9999    2.7354e-06  1.139     0.913        1
+300   5.2769e-15  1         2.9440e-10  0.9999    4.0081e-06  1.669     0.913        1
+320   5.2769e-15  1         2.9440e-10  0.9999    2.2782e-06  0.9489    0.913        1
+
+control: the 240 rung's sigma_Delta 5.2769e-15 against #941's 5.2769e-15: 0.000%: pass (bound 1%)
+verdict by the issue's rule: converged (sigma_Delta(280, 300, 320) / sigma_Delta(240) = 1.000, 1.000, 1.000)
+
+== D 222.0, by ks
+ks 160: sigma_Delta 3.3501e-13, sigma_pair 2.3613e-12, sigma_5 1.6686e-06, Delta vector 1 (share 0.830), pair vectors 3, 4
+ks 230: sigma_Delta 3.3528e-13, sigma_pair 2.8331e-10, sigma_5 1.3384e-04, Delta vector 1 (share 0.832), pair vectors 3, 4

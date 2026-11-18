@@ -1,0 +1,29 @@
+horizon series to order 250 instead of the state's 240
+held values from the fit data/held_fit.json (degree 8, 138 full-system states, D 38.020417-73.0), relative to the base
+    on 0 chord 0: max|F| 2.39e-29, |dw| 3.735e-34
+    on 0 chord 1: max|F| 2.35e-29, |dw| 4.117e-34
+    on 0 chord 2: max|F| 2.95e-25, |dw| 9.138e-33
+  on 0: strong chord (4 weak directions), 3 steps after the full first step; theta at its point inf (bound 0.750): refused, 2076.58 s
+    on 0 trial lam 1: max|F| 2.39e-29; simplified correction / |dz| = 2.887e-16 (bound 0.750); accepted, 662.92 s
+  on 0: |F| 3.67e-27 -> 2.39e-29, |dz| 4.69e-17 -> 1.36e-32, lam 1, dDelta +4.69e-17, piv 3.0e-14..8.7e+40, 2888.78 s
+    on 1 trial lam 1: max|F| 2.45e-24; simplified correction / |dz| = 1.060e-13 (bound 0.750); accepted, 2.01 s
+  on 1: |F| 2.39e-29 -> 2.45e-24, |dz| 1.36e-32 -> 9.35e-48, lam 1, dDelta +1.36e-32, piv 3.0e-14..8.7e+40, 147.08 s
+    on 2 trial lam 1: max|F| 2.49e-55; simplified correction / |dz| = 9.993e-01 (bound 0.750); refused, 2.14 s
+    on 2 trial lam 0.5: max|F| 1.22e-24; simplified correction / |dz| = 2.502e-01 (bound 0.875); accepted, 2.14 s
+  on 2: |F| 2.45e-24 -> 1.22e-24, |dz| 9.35e-48 -> 2.33e-48, lam 0.5, dDelta -9.35e-48, piv 3.0e-14..8.7e+40, 149.05 s
+    on 3 trial lam 1: max|F| 1.52e-56; simplified correction / |dz| = 1.001e+00 (bound 0.750); refused, 2.07 s
+    on 3 trial lam 0.5: max|F| 6.11e-25; simplified correction / |dz| = 7.504e-01 (bound 0.875); accepted, 1.94 s
+  on 3: |F| 1.22e-24 -> 6.11e-25, |dz| 2.33e-48 -> 2.92e-48, lam 0.5, dDelta +2.33e-48, piv 3.0e-14..8.7e+40, 154.02 s
+    on 4 trial lam 1: max|F| 2.43e-56; simplified correction / |dz| = 2.001e-01 (bound 0.750); accepted, 2.1 s
+  on 4: |F| 6.11e-25 -> 2.43e-56, |dz| 2.92e-48 -> 5.84e-49, lam 1, dDelta +2.92e-48, piv 3.0e-14..8.7e+40, 156.21 s
+    on 5 trial lam 1: max|F| 9.77e-58; simplified correction / |dz| = 1.078e-43 (bound 0.750); accepted, 2.0 s
+  on 5: |F| 2.43e-56 -> 9.77e-58, |dz| 5.84e-49 -> 5.29e-92, lam 1, dDelta +5.84e-49, piv 3.0e-14..8.7e+40, 153.19 s
+    on 6 trial lam 1: max|F| 3.29e-88; simplified correction / |dz| = 1.835e+00 (bound 0.750); accepted, 2.13 s
+  on 6: |F| 9.77e-58 -> 3.29e-88, |dz| 5.29e-92 -> 7.89e-92, lam 1, dDelta -1.58e-94, piv 3.0e-14..8.7e+40, 147.33 s
+  on 7: |F| 3.29e-88 converged, Delta 1.68810554489655074 +1.0724e-16
+      elim projections {'u0': 0, 'u0q': 0, 'ladder': 4, 'failed': 0, 'skipped': 9}
+      octo-double Newton: 8 steps, max|F| 3.3e-88, converged; double-double |F| of its first two parts 4.0e+15
+base polish saved as /home/nathan/Source/choptuik-large-d-raw-wt613/I948-dh370/up_K250_from240/base_pin3_D232.0000.npz
+base I948-dh370/up_K240_from240/base_pin3_D232.0000.npz: D 232.0, M 32, pin 3 (held [5, 7, 9, 11, 13]), |F| 4.0e+15; N 24, eps 1e-14, h_max 1.0, corrector od (junk_only False), tol 1.0e-20 x 1.45^(D - 232.0), stalls accepted below 1e-17
+done
+time 3961.74 s, max rss 276308 kB
