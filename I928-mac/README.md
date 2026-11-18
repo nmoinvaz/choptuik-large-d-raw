@@ -88,7 +88,7 @@ Each mutation turns its own check's line to FAIL (`out/mode_table_mut_*.txt`): `
 `sigdss` +8.14e-04 at D 9, eta 1, and `spread` +1.0e-09 at eta 0.3, M 48.
 
 The reading rule of `mode_table.py` (falling, flat, turning) was committed with the script on 2026-11-17 00:30 UTC
-(2d05b19b), before the first rate past D 11 at 01:12 UTC.
+(2d05b19b then, 92a478e2 after the branch was rebased), before the first rate past D 11 at 01:12 UTC.
 
 ## Where double-double ends (`out/chain_eta*_D12_13.txt`, `floor.py`, `out/floor_eta0.3.txt`)
 
