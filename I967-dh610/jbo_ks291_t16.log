@@ -1,0 +1,10 @@
+# 2026-11-18 20:19:15 UTC build d96a09a1, hpkernel /home/nathan/Source/choptuik-large-d-967/.venv/lib/python3.14/site-packages/hpkernel/__init__.py, load 4.60 4.25 3.78
+# cmd: python jet_by_order_check.py /home/nathan/scratch967/raw I903-win2/ks_chain2/leg00_D232.0000_ks291/anm_pin3_D237.7132.npz --N 12 --threads 16 --Np 6 --out /home/nathan/Source/choptuik-large-d-raw/I967-dh610/jbo_ks291_t16 --compare /home/nathan/Source/choptuik-large-d-raw/I967-dh610/jbo_ks291_t2.npz
+jet_by_order_check I903-win2/ks_chain2/leg00_D232.0000_ks291/anm_pin3_D237.7132.npz: D 237.71323490142822, stored plan, N 12, Np 6, 16 threads
+  newton_o at the state: 53.5 s
+  N 12: jets 259.9 s, by order 72.3 s, ratio 3.60; orders that differ []
+  Np 6 with the planted change in both: orders that differ []
+  controls: a kept intermediate dropped, orders that differ [1, 2, 3, 4, 5, 6]; a round of sums with p_k in place, [2, 3, 4, 5, 6]; the centre's (a q^2)_k before q^2_k, [1, 2, 3, 4, 5, 6]; the planted change in the order-by-order form only, [1, 2, 3, 4, 5, 6]
+  against /home/nathan/Source/choptuik-large-d-raw/I967-dh610/jbo_ks291_t2.npz (2 threads; this run 16): orders that differ []; control (the round control's series against it) [2, 3, 4, 5, 6]
+  PASS: 12 of 12 orders the same bits, 6 of 6 with the hook, 12 of 12 as saved; controls fired
+exit 0
