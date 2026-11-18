@@ -1,0 +1,32 @@
+2026-11-18 22:29:45 UTC seed logs/hier_nb_M7_rpi5_rtol13_xi014_zero.log: |r_3| 7.20e-07, end state x 0.1489782,0.014770826,0.008424259,0.001511207,0.00047421,0.000121682
+2026-11-18 22:29:45 UTC run: /home/nathan/Source/venv-choptuik/bin/python -u hier_nb.py 7 2.719219 1.000022 --x=0.148978212,0.0147708255,0.008424259172,0.001511207034,0.0004742100183,0.00012168201 --xi1=0.14 --pretune --fixA --schur --predict --floor --procs 2 --h3=1e-4 > logs/hier_nb_M7_rpi5_rtol13_xi014_pert1.log
+2026-11-18 22:30:44 UTC pert1: r_1 +0.2059-0.2675i  |r_3| 1.90e-06  above the bar  [59 s]
+2026-11-18 22:30:44 UTC run: /home/nathan/Source/venv-choptuik/bin/python -u hier_nb.py 7 2.719219 1.000022 --x=0.148978197,0.01477082569,0.008424258635,0.001511206957,0.0004742099594,0.0001216820049 --xi1=0.14 --pretune --fixA --schur --predict --floor --procs 2 --h3=1e-4 > logs/hier_nb_M7_rpi5_rtol13_xi014_pert2.log
+2026-11-18 22:31:34 UTC pert2: r_1 -1.0901+5.2847i  |r_3| 1.90e-06  above the bar  [109 s]
+2026-11-18 22:31:34 UTC run: /home/nathan/Source/venv-choptuik/bin/python -u hier_nb.py 7 2.719219 1.000022 --x=0.1489782045,0.01477082632,0.008424259251,0.001511207098,0.0004742100297,0.0001216819895 --xi1=0.14 --pretune --fixA --schur --predict --floor --procs 2 --h3=1e-4 > logs/hier_nb_M7_rpi5_rtol13_xi014_pert3.log
+2026-11-18 22:32:40 UTC pert3: r_1 -1.9466+2.7441i  |r_3| 5.70e-07  passes  [175 s]
+2026-11-18 22:32:40 UTC run: /home/nathan/Source/venv-choptuik/bin/python -u hier_nb.py 7 2.719219 1.000022 --x=0.1489782123,0.0147708273,0.008424258781,0.001511206969,0.00047421004,0.0001216819968 --xi1=0.14 --pretune --fixA --schur --predict --floor --procs 2 --h3=1e-4 > logs/hier_nb_M7_rpi5_rtol13_xi014_pert4.log
+2026-11-18 22:33:32 UTC pert4: r_1 -0.1390-0.3906i  |r_3| 1.40e-06  above the bar  [227 s]
+2026-11-18 22:33:32 UTC run: /home/nathan/Source/venv-choptuik/bin/python -u hier_nb.py 7 2.719219 1.000022 --x=0.1489781873,0.01477082691,0.008424259463,0.001511207102,0.0004742099624,0.0001216819883 --xi1=0.14 --pretune --fixA --schur --predict --floor --procs 2 --h3=1e-4 > logs/hier_nb_M7_rpi5_rtol13_xi014_pert5.log
+2026-11-18 22:34:30 UTC pert5: r_1 +0.1086+0.0420i  |r_3| 1.60e-06  above the bar  [285 s]
+2026-11-18 22:34:30 UTC run: /home/nathan/Source/venv-choptuik/bin/python -u hier_nb.py 7 2.719219 1.000022 --x=0.1489782106,0.0147708253,0.008424259698,0.001511207042,0.0004742099716,0.0001216820107 --xi1=0.14 --pretune --fixA --schur --predict --floor --procs 2 --h3=1e-4 > logs/hier_nb_M7_rpi5_rtol13_xi014_pert6.log
+2026-11-18 22:35:38 UTC pert6: r_1 +1.3677+0.8311i  |r_3| 8.20e-07  passes  [353 s]
+2026-11-18 22:35:38 UTC 2 of 6 repeats pass the bar
+2026-11-18 22:35:38 UTC run: /home/nathan/Source/venv-choptuik/bin/python m7_outer.py --local logs/hier_nb_M7_rpi5_rtol13_xi014_zero.log logs/hier_nb_M7_rpi5_rtol13_xi014_pert1_r3high.log logs/hier_nb_M7_rpi5_rtol13_xi014_pert2_r3high.log logs/hier_nb_M7_rpi5_rtol13_xi014_pert3.log logs/hier_nb_M7_rpi5_rtol13_xi014_pert4_r3high.log logs/hier_nb_M7_rpi5_rtol13_xi014_pert5_r3high.log logs/hier_nb_M7_rpi5_rtol13_xi014_pert6.log -- logs/hier_nb_M7_rpi5_rtol13_xi014_dA_endstate.log logs/hier_nb_M7_rpi5_rtol13_xi014_dw_endstate.log
+2026-11-18 22:35:38 UTC m7_outer.py --local exit 0; output in logs/m7_outer_rpi5_rtol13_xi014_pert.txt
+  2.719219000 1.000022000   r_1 -0.7512-0.3201i   |r_3| 7.2e-07   (logs/hier_nb_M7_rpi5_rtol13_xi014_zero.log)
+  2.719219000 1.000022000   r_1 +0.2059-0.2675i   |r_3| 1.9e-06  (rejected)   (logs/hier_nb_M7_rpi5_rtol13_xi014_pert1_r3high.log)
+  2.719219000 1.000022000   r_1 -1.0901+5.2847i   |r_3| 1.9e-06  (rejected)   (logs/hier_nb_M7_rpi5_rtol13_xi014_pert2_r3high.log)
+  2.719219000 1.000022000   r_1 -1.9466+2.7441i   |r_3| 5.7e-07   (logs/hier_nb_M7_rpi5_rtol13_xi014_pert3.log)
+  2.719219000 1.000022000   r_1 -0.1390-0.3906i   |r_3| 1.4e-06  (rejected)   (logs/hier_nb_M7_rpi5_rtol13_xi014_pert4_r3high.log)
+  2.719219000 1.000022000   r_1 +0.1086+0.0420i   |r_3| 1.6e-06  (rejected)   (logs/hier_nb_M7_rpi5_rtol13_xi014_pert5_r3high.log)
+  2.719219000 1.000022000   r_1 +1.3677+0.8311i   |r_3| 8.2e-07   (logs/hier_nb_M7_rpi5_rtol13_xi014_pert6.log)
+  2.719419000 1.000022000   r_1 +0.4546-0.5131i   |r_3| 9.3e-07   (logs/hier_nb_M7_rpi5_rtol13_xi014_dA_endstate.log)
+  2.719219000 1.000122000   r_1 -0.2170+1.7553i   |r_3| 8.8e-07   (logs/hier_nb_M7_rpi5_rtol13_xi014_dw_endstate.log)
+centre r_1 = -0.4434+1.0851i from 3 solves, noise (half range) 1.657
+local Jacobian (Re/Im rows; A, w/w_inf):
+[[ 4489.8  2263.6]
+ [-7990.8  6702.4]]   singular values [10659.7  4519.9]
+zero: A 2.719332, w/w_inf 0.999994   (step +1.13e-04, -2.76e-05); error estimate 1.2e-03 in (A, w/w_inf) (3.7e-04 from the centre's noise, 8.5e-04 from J)
+(exit 0)
+
