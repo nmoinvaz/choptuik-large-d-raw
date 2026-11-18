@@ -72,7 +72,7 @@ def classify(rec):
 def row_of(rec, src):
     ks = int(re.search(r"[_/]ks(\d+)/", rec["state"]).group(1))
     r = dict(D=float(rec["D"]), ks=ks, src=src, state=rec["state"], ok=True, note="", ladder="ladder" in rec["state"],
-             chain=2 if "ks_chain2" in rec["state"] else 1)
+             chain=3 if "ks_chain3" in rec["state"] else (2 if "ks_chain2" in rec["state"] else 1))
     v = rec["vectors"]
     try:
         d, pair = classify(rec)
@@ -120,6 +120,16 @@ def central(rows, forward=False):
                 lo = r if forward else a
                 s = -math.log(b["sd"] / lo["sd"]) / (b["D"] - lo["D"])
         out.append(s)
+    return out
+
+
+def pair_interval_slopes(rows):
+    """per row: -ln(sigma_pair_i / sigma_pair_{i-1}) / (D_i - D_{i-1}) over the interval from the previous row of the same leg (a reading,
+    never a trigger; positive where the pair falls), or None"""
+    out = [None]
+    for a, b in zip(rows, rows[1:]):
+        ok = a["ok"] and b["ok"] and same_leg(a, b) and a["sp"] > 0 and b["sp"] > 0
+        out.append(-math.log(b["sp"] / a["sp"]) / (b["D"] - a["D"]) if ok else None)
     return out
 
 
@@ -191,13 +201,13 @@ def interp_ln(Dr, yr, D):
     return float(sum(y[a] * np.prod([(D - x[b]) / (x[a] - x[b]) for b in range(4) if b != a]) for a in range(4)))
 
 
-def order_effect(rows, ref_ks=250):
+def order_effect(rows, ref_ks=250, new_chain=2, ref_chain=1):
     """each ks_chain2 state against the ks_chain states of order ref_ks at the same D: sigma_Delta and sigma_pair, as the relative difference
     (new / reference - 1). The reference is the state itself where a D agrees to 1e-6, else the cubic interpolation of ln sigma through the
     four nearest reference states (its error is estimated by leaving each interior reference state out). Returns (table, interpolation
     error of ln sigma_Delta, of ln sigma_pair) or None without four reference states."""
-    ref = [r for r in rows if r["chain"] == 1 and r["ks"] == ref_ks and r["ok"]]
-    new = [r for r in rows if r["chain"] == 2 and r["ok"]]
+    ref = [r for r in rows if r["chain"] == ref_chain and r["ks"] == ref_ks and r["ok"]]
+    new = [r for r in rows if r["chain"] == new_chain and r["ok"]]
     if len(ref) < 4 or not new:
         return None
     Dr = np.array([r["D"] for r in ref])
@@ -226,7 +236,7 @@ def order_effect(rows, ref_ks=250):
 def trigger_baseline(rows, base, i):
     """the baseline the trigger compares row i's interval slope with: s(ks) in ks_chain (the original rule), and for ks_chain2 the frozen
     D-trend at the interval's midpoint (the coordinator's amendment)"""
-    if rows[i].get("chain", 1) == 2:
+    if rows[i].get("chain", 1) >= 2:
         return DTREND_FROZEN[0] + DTREND_FROZEN[1] * (rows[i - 1]["D"] + rows[i]["D"]) / 2
     return s_of(base, rows[i]["ks"])
 
@@ -289,18 +299,19 @@ def tables(folder, forward=False):
     bpath = os.path.join(folder, "baseline949.json")
     base = json.load(open(bpath)) if os.path.exists(bpath) else None
     cen, iv = central(rows, forward), interval_slopes(rows)
+    pv = pair_interval_slopes(rows)
     dt = dtrend(rows)
     ok = True
     with open(os.path.join(folder, "track949.csv"), "w", newline="") as f:
         w = csv.writer(f)
         w.writerow(["D", "ks", "chain", "sigma_delta", "sigma_pair", "delta_share", "delta_share_2nd", "delta_vec", "pair_vecs", "conv_delta",
-                    "local_slope", "interval_slope", "s_baseline", "excess", "postfreeze_dtrend_lin", "postfreeze_excess_lin", "postfreeze_dtrend_quad",
+                    "local_slope", "interval_slope", "pair_interval_slope", "s_baseline", "excess", "postfreeze_dtrend_lin", "postfreeze_excess_lin", "postfreeze_dtrend_quad",
                     "postfreeze_excess_quad", "trigger_baseline", "trigger_excess", "classified", "source"])
         for i, (r, c, v) in enumerate(zip(rows, cen, iv)):
             sb = None if base is None else s_of(base, r["ks"])
             tl, tq = dtrend_at(dt, rows, i)
             w.writerow([f"{r['D']:.6f}", r["ks"], r["chain"], f"{r['sd']:.6e}", f"{r['sp']:.6e}", f"{r['share']:.4f}", f"{r['share2']:.4f}", r["dvec"],
-                        r["pvec"], f"{r['conv']:.1e}", "" if c is None else f"{c:.4f}", "" if v is None else f"{v:.4f}",
+                        r["pvec"], f"{r['conv']:.1e}", "" if c is None else f"{c:.4f}", "" if v is None else f"{v:.4f}", "" if pv[i] is None else f"{pv[i]:+.4f}",
                         "" if sb is None else f"{sb:.4f}", "" if v is None or sb is None else f"{v - sb:+.4f}",
                         "" if tl is None else f"{tl:.4f}", "" if v is None or tl is None else f"{v - tl:+.4f}",
                         "" if tq is None else f"{tq:.4f}", "" if v is None or tq is None else f"{v - tq:+.4f}",
@@ -313,14 +324,14 @@ def tables(folder, forward=False):
             if a["ok"] and b["ok"]:
                 w.writerow([f"{a['D']:.6f}", f"{b['D']:.6f}", a["ks"], b["ks"], f"{-math.log(b['sd'] / a['sd']) / (b['D'] - a['D']):.4f}",
                             int(a["ks"] != b["ks"])])
-    print(f"{'D':>9} {'ks':>4} {'ch':>1} {'sigma_Delta':>12} {'sigma_pair':>12} {'Dshare':>7} {'2nd':>6} {'conv':>8} {'local':>7} {'interval':>8} {'excess':>7} {'vsD lin':>8} {'vsD quad':>8}  note")
+    print(f"{'D':>9} {'ks':>4} {'ch':>1} {'sigma_Delta':>12} {'sigma_pair':>12} {'Dshare':>7} {'2nd':>6} {'conv':>8} {'local':>7} {'interval':>8} {'pair':>7} {'excess':>7} {'vsD lin':>8} {'vsD quad':>8}  note")
     for i, (r, c, v) in enumerate(zip(rows, cen, iv)):
         tl, tq = dtrend_at(dt, rows, i)
         conv = "" if r["conv"] < 1e-3 else "  NOT CONVERGED (rerun --its=32)"
         note = ("" if r["ok"] else "  NOT CLASSIFIED: " + r["note"]) + conv
         ex = "" if v is None or base is None else format(v - s_of(base, r["ks"]), "+7.4f")
         print(f"{r['D']:9.4f} {r['ks']:4d} {r['chain']:1d} {r['sd']:12.4e} {r['sp']:12.4e} {r['share']:7.3f} {r['share2']:6.3f} {r['conv']:8.1e} "
-              f"{'' if c is None else format(c, '7.4f'):>7} {'' if v is None else format(v, '8.4f'):>8} {ex:>7} {'' if v is None or tl is None else format(v - tl, '+8.4f'):>8} {'' if v is None or tq is None else format(v - tq, '+8.4f'):>8}  v{r['dvec']}/{r['pvec']}{note}")
+              f"{'' if c is None else format(c, '7.4f'):>7} {'' if v is None else format(v, '8.4f'):>8} {'' if pv[i] is None else format(pv[i], '+7.3f'):>7} {ex:>7} {'' if v is None or tl is None else format(v - tl, '+8.4f'):>8} {'' if v is None or tq is None else format(v - tq, '+8.4f'):>8}  v{r['dvec']}/{r['pvec']}{note}")
     bad = [r for r in rows if not r["ok"] or r["conv"] >= 1e-3]
     print(f"\nstates {len(rows)}, not classified or not converged: {len(bad)}"
           + "".join(f"\n  D {r['D']:.4f}: {r['note'] or 'conv ' + format(r['conv'], '.1e')}" for r in bad))
@@ -347,19 +358,21 @@ def tables(folder, forward=False):
     print(f"\nbaseline frozen {base['frozen_utc']} UTC: s(ks) = {base['inv_ks'][0]:.5f} + {base['inv_ks'][1]:.3f} / ks; legs "
           + ", ".join(f"{k}: {l['slope']:.4f} (fit {l['fit_inv_ks']:.4f})" for k, l in base["legs"].items()))
     print("  extrapolation to " + ", ".join(f"ks {k}: {e['inv_ks']:.4f} / {e['lin_ks']:.4f} (1/ks, linear in ks)" for k, e in base["extrapolation"].items()))
-    it1, it2 = trigger(rows, iv, base, 1), trigger(rows, iv, base, 2)
-    it = it1 if it1 is not None else it2
+    it1, it2, it3 = (trigger(rows, iv, base, c) for c in (1, 2, 3))
+    it = it1 if it1 is not None else (it2 if it2 is not None else it3)
     print(f"\ntrigger, ks_chain (interval slope - s(ks) > {TRIGGER}, three consecutive states of one leg): "
           f"{'FIRED at D ' + format(rows[it1]['D'], '.4f') if it1 is not None else 'not reached'}")
     mx = max(((v - s_of(base, r["ks"]), r["D"]) for r, v in zip(rows, iv) if v is not None and r["chain"] == 1), default=None)
     if mx:
         print(f"  largest excess so far {mx[0]:+.4f} at D {mx[1]:.4f}")
-    if any(r["chain"] == 2 for r in rows):
-        print(f"trigger, ks_chain2 (interval slope - the frozen D-trend {DTREND_FROZEN[0]} {DTREND_FROZEN[1]:+} D > {TRIGGER}, three in a row): "
-              f"{'FIRED at D ' + format(rows[it2]['D'], '.4f') if it2 is not None else 'not reached'}")
-        m2 = max(((v - trigger_baseline(rows, base, i), r["D"]) for i, (r, v) in enumerate(zip(rows, iv)) if v is not None and r["chain"] == 2), default=None)
-        if m2:
-            print(f"  largest excess so far {m2[0]:+.4f} at D {m2[1]:.4f}; s(ks) is reported beside it in the table's excess column")
+    for ch, itc in ((2, it2), (3, it3)):
+        if any(r["chain"] == ch for r in rows):
+            print(f"trigger, ks_chain{ch} (interval slope - the frozen D-trend {DTREND_FROZEN[0]} {DTREND_FROZEN[1]:+} D > {TRIGGER}, three in a row"
+                  f"{'; the amendment for ks_chain2, applied to ks_chain3 by the same reasoning, not yet confirmed' if ch == 3 else ''}): "
+                  f"{'FIRED at D ' + format(rows[itc]['D'], '.4f') if itc is not None else 'not reached'}")
+            mc = max(((v - trigger_baseline(rows, base, i), r["D"]) for i, (r, v) in enumerate(zip(rows, iv)) if v is not None and r["chain"] == ch), default=None)
+            if mc:
+                print(f"  largest excess so far {mc[0]:+.4f} at D {mc[1]:.4f}; s(ks) is reported beside it in the table's excess column")
     # post-freeze reports (coordinator, 2026-11-18): the slope against the D-trend, and the ks ladder at one D
     if dt is not None:
         res_l = max(abs(v - np.polyval(dt[0], (rows[i - 1]["D"] + rows[i]["D"]) / 2)) for i, v in enumerate(iv) if v is not None and rows[i]["ks"] <= 240)
@@ -387,14 +400,16 @@ def tables(folder, forward=False):
                 rel = f", {r['sd'] / ref['sd'] - 1:+.2e} against the chain state" if ref else ""
                 print(f"    ks {r['ks']}: sigma_Delta {r['sd']:.10e}{rel}; Delta share {r['share']:.4f}, pair {r['sp']:.4e}, conv {r['conv']:.1e}"
                       f"{'' if r['ok'] else '  NOT CLASSIFIED: ' + r['note']}")
-    oe = order_effect(rows)
-    if oe:
-        tab, e_d, e_p = oe
-        print(f"\nORDER EFFECT at equal D, ks_chain2 against the ks 250 states of ks_chain, of sigma_Delta (the Delta mode's singular value of the pinned Jacobian) and sigma_pair, NOT of Delta(D), the state's last unknown, which compare_delta949.py gives (coordinator, hc 2026-11-18; interpolation error of ln sigma, left-one-out: "
-              f"Delta {e_d:.1e}, pair {e_p:.1e}):")
-        for t in tab:
-            print(f"  D {t['D']:9.4f} ks {t['ks']}: sigma_Delta {t['sd']:.6e} against {t['sd_ref']:.6e} ({t['sd'] / t['sd_ref'] - 1:+.2e}); "
-                  f"sigma_pair {t['sp']:.5e} against {t['sp_ref']:.5e} ({t['sp'] / t['sp_ref'] - 1:+.2e}); Delta share {t['share']:.4f}; {t['how']}")
+    for new_ch, ref_ch, ref_ks in ((2, 1, 250), (3, 2, 291)):
+        oe = order_effect(rows, ref_ks, new_ch, ref_ch)
+        if oe and oe[0]:
+            tab, e_d, e_p = oe
+            print(f"\nORDER EFFECT at equal D, ks_chain{new_ch} against the ks {ref_ks} states of ks_chain{'' if ref_ch == 1 else ref_ch}, of sigma_Delta (the Delta mode's singular value of "
+                  f"the pinned Jacobian) and sigma_pair, NOT of Delta(D), the state's last unknown, which compare_delta949.py gives (coordinator, hc 2026-11-18; "
+                  f"interpolation error of ln sigma, left-one-out: Delta {e_d:.1e}, pair {e_p:.1e}):")
+            for t in tab:
+                print(f"  D {t['D']:9.4f} ks {t['ks']}: sigma_Delta {t['sd']:.6e} against {t['sd_ref']:.6e} ({t['sd'] / t['sd_ref'] - 1:+.2e}); "
+                      f"sigma_pair {t['sp']:.5e} against {t['sp_ref']:.5e} ({t['sp'] / t['sp_ref'] - 1:+.2e}); Delta share {t['share']:.4f}; {t['how']}")
     wins = windows(rows, base)
     print("\nfold rule on every five-state window (conditions: 1 residuals, 2 D* within 3 past, 3 shifted window, 4 planted scatter; "
           "T true, F false, - not evaluated):")
@@ -479,9 +494,19 @@ def selftest(mutate):
     r1 = row_of(dict(base_rec, state="I903-win2/ks_chain/leg08_D232.0000_ks250/anm_pin3_D237.4338.npz"), "x")
     r2 = row_of(dict(base_rec, state="I903-win2/ks_chain/ladder8/ks260/base_pin3_D237.4338.npz"), "x")
     r3 = row_of(dict(base_rec, state="I903-win2/ks_chain2/leg00_D237.4338_ks275/anm_pin3_D238.0000.npz"), "x")
-    good = (r1["ks"], r1["ladder"], r2["ks"], r2["ladder"], r3["ks"], r3["ladder"]) == (250, False, 260, True, 275, False)
+    r4 = row_of(dict(base_rec, state="I966-dh370/ks_chain3/leg00_D237.7132_ks304/anm_pin3_D238.0000.npz"), "x")
+    good = (r1["ks"], r1["ladder"], r1["chain"], r2["ks"], r2["ladder"], r3["ks"], r3["ladder"], r3["chain"], r4["ks"], r4["chain"]) == \
+        (250, False, 1, 260, True, 275, False, 2, 304, 3)
     ok &= good
-    print(f"selftest: ks and ladder flag from paths (250 leg, 260 ladder rung, 275 chain 2 leg): {'pass' if good else 'FAIL'}")
+    print(f"selftest: ks, ladder flag and chain from paths (250 leg of ks_chain, 260 ladder rung, 275 leg of ks_chain2, 304 leg of ks_chain3): {'pass' if good else 'FAIL'}")
+    # the pair's interval slope: a planted pair falling as exp(-0.3 D) gives +0.3, rising gives a negative slope, a ks change gives None
+    pr = [dict(D=float(i) / 2, ks=291, chain=2, ok=True, sp=math.exp(-0.3 * i / 2 if i < 4 else 0.2 * (i - 4) / 2 - 0.6), sd=1.0) for i in range(7)]
+    ps = pair_interval_slopes(pr)
+    pr[5]["ks"] = 300
+    ps2 = pair_interval_slopes(pr)
+    good = ps[0] is None and abs(ps[2] - 0.3) < 1e-12 and abs(ps[6] + 0.2) < 1e-12 and ps2[5] is None
+    ok &= good
+    print(f"selftest: the pair's interval slope (falling +0.3, rising -0.2, None across a ks change): {'pass' if good else 'FAIL'}")
     # D-trend: planted backfill slopes 0.9 - 0.0025 D (no scatter) give the line back and zero excess at ks 250
     rows = []
     D, lns = 192.0, 0.0
