@@ -10,7 +10,7 @@ jet_by_order: expected exit 0, got 0, 829 s OK
 # checks962 done 2026-11-18 21:04:59 UTC
 diff win2 vs dh170 build D ST: exit 1 (12 lines differ of 12)
 diff win2 vs dh170 build A ST: exit 1 (12 lines differ of 12)
-# correction 2026-11-18 21:08 UTC: the two diff lines above compare octo_win2_ST.txt, which Python on Windows wrote with CRLF line
+# correction 2026-11-18 21:06 UTC: the two diff lines above compare octo_win2_ST.txt, which Python on Windows wrote with CRLF line
 # endings (12 CR, 1006 bytes), against dh170's LF files (994 bytes), so every line differs by its CR alone. With the CR stripped:
 diff --strip-trailing-cr win2 vs dh170 build D (4.9.0) ST: exit 0 (0 lines differ of 12), cmp of CR-stripped win2 against octo_D_ST.txt byte-identical
 diff --strip-trailing-cr win2 vs dh170 build A (4.8.2) ST: exit 0 (0 lines differ of 12)
