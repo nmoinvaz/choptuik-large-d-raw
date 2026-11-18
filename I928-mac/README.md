@@ -87,7 +87,7 @@ lambda(D) at eta 1, M 32, D 9 to 13: 9: 3.048323164, 10: 2.943442641, 10.475: 2.
 Each mutation turns its own check's line to FAIL (`out/mode_table_mut_*.txt`): `gauge` gives 1.0e-09 in check (1),
 `sigdss` +8.14e-04 at D 9, eta 1, and `spread` +1.0e-09 at eta 0.3, M 48.
 
-The reading rule of `mode_table.py` (falling, flat, turning) was committed with the script on 2026-11-17 00:20 UTC
+The reading rule of `mode_table.py` (falling, flat, turning) was committed with the script on 2026-11-17 00:30 UTC
 (2d05b19b), before the first rate past D 11 at 01:12 UTC.
 
 ## Where double-double ends (`out/chain_eta*_D12_13.txt`, `floor.py`, `out/floor_eta0.3.txt`)
@@ -171,9 +171,10 @@ double-double tolerance at 9e-25 and nothing else changed, was handed over at do
   rates. They were corrected, and the two rates were computed by `lam_two.sh`.
 - The main run was paused (SIGSTOP on its leaf process) during the two checks, the diagnostic and `lam_two.sh`, so
   that 2 threads were in use at any time.
-- Four numbers in the issue's progress posts were typed before they were computed and corrected afterwards
+- Five numbers in four of the issue's progress posts were typed before they were computed and corrected afterwards
   (a commit hash, gamma at D 12 in its last digits, a count of converged points and a slope, a count of gauge
-  roots). From 2026-11-18 04:15 UTC on every posted number comes from `status.py` or a table's output.
+  roots), and the times of two posts were typed a few minutes ahead of the clock and corrected. From 2026-11-18
+  04:15 UTC on every posted number comes from `status.py` or a table's output.
 
 ## Cost
 
