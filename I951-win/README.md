@@ -1,17 +1,54 @@
-# I951-win: start c, a third K = 7 root and K = 0 control at D 40.02 from #145's 32 x 101 root, and 48 rough rt_sigma starts on each
+# I951-win: start c, a third K = 7 root and K = 0 control at D 40.02 (#145's own 32 x 121 root), and 48 rough rt_sigma starts on each
+
+**Read this first.** The result is the section "Result" below (the sigma runs of the second c, `fol_32x121_D40.0201_32x121.npz`). The sections "Plan, fixed before any solve", "Run record" and "The first c was start a" describe the first c, from the 32 x 101 file, which turned out to be start a again; its files are in `a_rerun/` and are not part of the result. The sections that follow "Restated plan" are the second c and the progress notes.
 
 Machine win (Surface Laptop 4, i7-1185G7, 4 cores and 8 threads, 32 GB), runner winb, issue https://github.com/nmoinvaz/choptuik-large-d/issues/951 (recommended by #943, raw `I943-win/` c9573179; the coordinator's `hc` message of 2026-11-18). Worktree `C:\Users\nathan\Source\choptuik-i951` at origin/main a80697d7 (detached; `git diff --stat 09ffaa1e origin/main -- solver/rt` and the same against #681's 5135cdeb are empty, so `solver/rt` is the code of #681, #701, #721 and #943), venv-t151 (Python 3.10.0, numpy 2.2.6, scipy 1.15.3, python-flint 0.9.0) through `rt_launch.py` (copied from `I943-win/`, it supplies `multidouble._dd_dot` and `math.fma`, no repository file changes). Runs start in the worktree (`rt_run.py`) or in `solver\rt` (`rt_sigma.py`).
 
 Drivers, from #701's and #943's with only the start, the tags and the rules changed: `checks_951.py` (the two planted checks), `run_951_solves.py` (the two solves at once, 1 BLAS thread each, from `I701-win/run_701_solves.py`), `start_951_solves.cmd` (launcher), `run_951.py` (the two `rt_sigma.py STATE --starts 48 --rough` runs at once, from `I943-win/run_943.py` without its #681 control), `start_951.cmd`, `table_951.py` (the tables and the verdict, with a selftest), `table_701.py` and `table_423.py` (the bootstrap and log parser, copied from `I943-win/`), `rt_launch.py`.
 
+## Result (2026-11-18, the second c, `table_951.txt`)
+
+**R_c = 51.82 (95% bootstrap interval 26.55 to 80.59), outside both R_a's (0.60 to 1.43) and R_b's (4.56 to 9.26): by the issue's rule, SPREAD.** Three samples of one floor-level root gave R = 0.98, 6.06 and 51.82, a factor 53 between the smallest and the largest, so the K = 7 to K = 0 bound ratio takes neither two classes nor one value over such samples. P3 (outside both) held, P1 (new, between 1e-21 and 1e-18 from a and b) held after the restart, P2 (|DD| below 1e-15) held.
+
+| start | K 7 median | K 0 median | R | 95% interval |
+|---|---|---|---|---|
+| a (#943) | 2.658e-34 | 2.713e-34 | 0.98 | 0.60 to 1.43 |
+| b (#721, win2's K 0) | 1.582e-32 | 2.610e-33 | 6.06 | 4.56 to 9.26 |
+| **c (this task)** | **7.847e-34** | **1.514e-35** | **51.82** | **26.55 to 80.59** |
+
+Context, not the rule: R_c / R_a 52.89 (24.997 to 97.411), R_c / R_b 8.55 (3.772 to 13.572), both exclude 1 (the joint bootstrap of `table_943.ratio_ab`). Best-of-48 ratio 29.36. R_c from the first 12 starts of each 34.74 (12.65 to 139.15). R_a and R_b recomputed from their logs equal #943's and #721's.
+
+| roots | max-norm distance, c from a | c from b | a from b (reference) |
+|---|---|---|---|
+| K 7 | 5.864e-19 | 5.579e-19 | 2.857e-20 |
+| K 0 | 2.189e-21 | 3.497e-21 | 2.097e-21 |
+
+Neither of c's roots re-finds a or b (the bar is 1e-30). c's own K 7 and K 0 roots are 7.503e-23 apart (DD +1.0013e-21), a's and b's 5.9e-19 and 5.6e-19 (DD 6.78e-18, 6.44e-18).
+
+Runs: K 0 exit 0, 48 of 48 starts, 9768 s (2.7 h); K 7 exit 0, 48 of 48 starts, 43975 s (12.2 h), finished 15:02:58 UTC, 13.2 h after the 01:49:22 UTC clock start of the 30 h. No cap hit, no stop. Planted checks: exit 0 (1.4103e-21) and the `--mutate=shift` exit 1 (1.4244e-19).
+
+**The K 7 median over time, and its middle pair** (the coordinator asked at the 12 h post). The median is the geometric mean of the two middle bounds, ranks n/2 and n/2 + 1 of the n starts so far.
+
+| starts | ranks | middle pair | median |
+|---|---|---|---|
+| 22 | 11, 12 | | 8.547e-34 |
+| 34 | 17, 18 | 7.929e-34 (start 27), 8.099e-34 (start 15) | 8.01355e-34 |
+| 40 | 20, 21 | | 7.703e-34 |
+| 46 | 23, 24 | 7.929e-34 (start 27), 8.099e-34 (start 15) | 8.01355e-34 |
+| **48** | **24, 25** | **7.765e-34 (start 46), 7.929e-34 (start 27)** | **7.84657e-34** |
+
+The 34-start and 46-start medians agree to every digit because the 12 starts between them fell 6 below and 6 above the same middle pair, so ranks 17 and 18 became ranks 23 and 24 holding the same two starts. At 48 the two new starts (46 at 7.765e-34 and 47 at 4.836e-34) are both below that pair, so the pair moves down one rank and the median to 7.847e-34. The K 0 median at 48 is the pair 1.484e-35 and 1.545e-35 (geometric mean 1.51419e-35).
+
+**Caveats.** The bounds are upper bounds from random starts and the intervals are bootstrap spreads, not enclosures. The 250-product cap is reached by 42 of c's 48 K 7 starts (worst residual max|J x - v| 1.5e-12), 46 of a's, and 0 of b's (worst 3.4e-15); no K 0 run hits it. So R_c against R_a is like for like on the cap, against R_b it is not. The `rt_sigma.py` headers read max|F| 6.20e-29 (K 7) and 6.91e-31 (K 0) for c, the sigma run's own evaluation of the state and not the solves' last Newton values (7.55e-44 and 2.82e-49).
+
 ## Inputs
 
-- Start c: `I145-mac/cont/cont_32x101_D40.0201_32x101.npz` (D 40.020065, 32 x 101, sha256 18221618c647a967...), read in place from the push worktree `choptuik-large-d-raw-754` (origin/main, last change in the raw history 6265e769).
+- Start c as first planned (**replaced**, the final start c is `I145-mac/fol/fol_32x121_D40.0201_32x121.npz`, see the restated plan): `I145-mac/cont/cont_32x101_D40.0201_32x101.npz` (D 40.020065, 32 x 101, sha256 18221618c647a967...), read in place from the push worktree `choptuik-large-d-raw-754` (origin/main, last change in the raw history 6265e769).
 - **The issue's file name is not the one used.** The issue names `cont_32x101_D50.0075_32x101.npz`, #145's 32 x 101 root at D 50.007491 (the file of RT_FORMULATION 13.7). #701's start was the 32 x 141 root at D 40.020065 (`I145-mac/fol/fol_32x141_D40.0201_32x141.npz`) and the issue says "instead of its 32 x 141", so start c is the 32 x 101 root at the same D, `cont_32x101_D40.0201_32x101.npz`. The D 50.0075 file would need a 10-unit continuation in D, which is not #701's procedure. Reported to the coordinator before the solves.
 - For the distances and R_a, R_b: a's states `I671-win/solves/k7_D40_D40.0201_32x121.npz` (sha256 df81e4d2a6f098a6...) and `k0_D40_mutnorows_D40.0201_32x121.npz` (a6b9a729d78f39ce...), b's `I701-win/solves/k7b_D40_D40.0201_32x121.npz` (c5c3e03ceafb3b5e...) and `k0b_D40_mutnorows_D40.0201_32x121.npz` (b048df8c7504d477...); the bounds of a are `I943-win/logs/K7_D40_rough.log` and `K0_D40_rough.log`, of b `I721-win/logs/K7b_D40_rough.log` and win2's `I721-win2/logs/K0b_D40_rough.log`, all read in place from the push worktree.
 - **The issue's "seed 943" is not a setting.** `rt_sigma.py --rough` draws its right-hand sides from `np.random.default_rng(163)` written in the code (successive draws, `rt_sigma.py` line 119), with no seed option, and #943 ran exactly that. I run the same code, so the 48 right-hand sides of start c are those of a and b ("as #943"). No code is changed.
 
-## Plan, fixed before any solve and any sigma run (2026-11-18 01:49 UTC)
+## Plan, fixed before any solve and any sigma run (2026-11-18 01:49 UTC; start c as planned was the 32 x 101 file, replaced by the restated plan below)
 
 1. `rt_sigma.py --planted` exits 0 and `--planted --mutate=shift` exits 1, first (`checks_951.py`, `logs/planted*.log`). **Done 01:46:41 UTC:** exit 0 (best bound 1.4103e-21, as #701, #721, #943) and exit 1 (1.4244e-19, FAIL).
 2. Two solves at once, 1 BLAS thread each, BelowNormal (as #701): `rt_run.py --start <start c> --grids 32x121 --solver mp --tol 1e-12 --max_products 250 --refresh_dz 1e-5 --patient --it_max 20 --full_below 1e-4 --newton_tol 1e-40 --horizon 7 --resample_mp --out solves --tag k7c_D40`, and the same with `--mutate=norows --tag k0c_D40`. A solve counts if its jsonl record says `ok` with the last Newton max|F| at most 1e-36 (#701's rule). If a solve ends above that, I post its value and ask before the sigma runs. If `--resample_mp` refuses 101 to 121, I stop and report.
@@ -43,7 +80,7 @@ The coordinator (issue comment 6967406677 and `hc`) went on with start c = #145'
 - **Reported:** R_c with its 95% bootstrap interval and the K 7 and K 0 medians of c beside those of a and b, and the max-norm (and 2-norm) distance of the two new roots from a's and b's (the table of `table_951.py`). The classes/spread rule above (R_c inside R_a's or R_b's interval) is still computed and printed, as the first reading of the issue.
 - **Caps:** the same, the 30 h counted from 01:49:22 UTC (so the deadline stays 2026-11-19 07:49:22 UTC), K 0 10 h of its own. Nothing else changes. P1 is restated: the roots are new if the max-norm distance to a's and b's roots is above 1e-30, and I expect them near 1e-21 as the coordinator found for the K 0 root. P3 (R_c outside both intervals) stands as it was.
 
-## Run record
+## Run record of the first c (start a again, `a_rerun/`, not part of the result)
 
 - 01:49:22 UTC: `run_951_solves.py` started the two solves (`start_951_solves.cmd`, BelowNormal, 1 BLAS thread each). `--resample_mp` accepted 101 to 121.
 - 02:13:04 UTC: **both solves crashed at their last step** (`ModuleNotFoundError: No module named 'resource'`, `rt_run.py` line 78): I did not copy #701's `resource.py` (a Windows stand-in for the Unix module, which `rt_run.py`'s `rss_peak_gb()` imports) into this folder. No record or state was written; the failed attempt's files are in `logs/attempt1_no_resource/` (its `solves/k7c_D40.log` was overwritten by the stdout log of the same name, which holds the same lines). 24 min lost; the 30 h clock stays at 01:49:22.
@@ -51,7 +88,7 @@ The coordinator (issue comment 6967406677 and `hc`) went on with start c = #145'
 - 02:39 UTC: read by `table_951.py` (`table_951.txt`). **Both roots are bit-identical to start a's** (below), so by plan item 3 I stop before the sigma runs. Coordinator's rule on the K 7 floor (hc, during the rerun, "at or below 2e-36 at its floor: accept, record on the issue, go on"): K 7 ended at 1.19e-36 after three Newton steps between 4.9e-37 and 1.9e-36 (a floor), so it would have been accepted; it is moot.
 - Nothing else runs; no sigma run was started.
 
-## Result: start c is start a
+## The first c was start a (`a_rerun/`, not part of the result)
 
 | solve | ok | last Newton max abs F | Delta_RT | Delta_RT - Delta_hp | secs |
 |---|---|---|---|---|---|
@@ -99,3 +136,8 @@ DD(c) = Delta(K 7) - Delta(K 0) = +6.7776e-18 (a's 6.8e-18, b's 6.4383e-18), so 
 
 - K 7 (K7c_D40) is at start 34 of 48 (start 33 printed 11:38 UTC), 15 min a start, expected end about 15:15 UTC. K 0 is done. No cap hit, no stop, no re-find. Free memory 17.6 GB of 31.8, CPU about 30%.
 - Partial, not a result: first-34 medians. c K 7 8.014e-34, K 0 1.514e-35, ratio 52.92. The same first-34 ratio is 0.96 for a (final 0.98) and 6.39 for b (final 6.06). The verdict waits for the 48.
+
+## 12 h progress (2026-11-18 14:47 UTC, sigma runs started 02:50:03 UTC)
+
+- K 7 (K7c_D40) is at start 46 of 48 (start 45 printed 14:30 UTC), two starts left, expected end about 15:00 UTC. No cap hit, no stop, no re-find. Free memory 17.3 GB of 31.8, CPU about 29%.
+- Partial, not a result: first-46 medians. c K 7 8.014e-34 (22 starts 8.547e-34, 34 starts 8.014e-34, 40 starts 7.703e-34), K 0 1.514e-35, ratio 52.92. a at 46 starts 0.98, b 6.06. The verdict waits for the 48.
