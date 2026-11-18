@@ -23,12 +23,13 @@ def main():
     have = names(os.path.join(HERE, "queue949.txt")) | names(os.path.join(HERE, "queue949_leg08_hold.txt"))
     out = os.path.join(HERE, "queue949.txt" if frozen else "queue949_leg08_hold.txt")
     new = []
-    for p in sorted(glob.glob(f"{R}/I903-win2/ks_chain*/**/*.npz", recursive=True) + glob.glob(f"{R}/I966-dh370/ks_chain3/**/*.npz", recursive=True)):
+    for p in sorted(glob.glob(f"{R}/I903-win2/ks_chain*/**/*.npz", recursive=True) + glob.glob(f"{R}/I966-dh370/ks_chain3*/**/*.npz", recursive=True)):
         rel = os.path.relpath(p, R)
         m, d = re.search(r"[_/]ks(\d+)/", rel), re.search(r"_D(\d+\.\d+)\.npz$", rel)
         if not (m and d) or int(m.group(1)) < 250:
             continue
-        name = f"ks{m.group(1)}_D{d.group(1)}"
+        pre = "c3b_" if "/ks_chain3b/" in rel else ("c3_" if "/ks_chain3/" in rel else "")   # a name must tell the chains apart (ks 291 is in two)
+        name = f"{pre}ks{m.group(1)}_D{d.group(1)}"
         if name not in have:
             new.append(f"{name} {rel}")
             have.add(name)
