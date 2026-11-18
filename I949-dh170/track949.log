@@ -32,9 +32,12 @@
  234.8945  250   1.6698e-15   2.8258e-10   0.952  0.039  0.0e+00  0.3899   0.3915 +0.0049  v1/3+4
  235.5049  250   1.3172e-15   2.7023e-10   0.960  0.032  0.0e+00  0.3875   0.3886 +0.0019  v1/3+4
  235.8864  250   1.1369e-15   2.6602e-10   0.964  0.027  0.0e+00  0.3848   0.3859 -0.0008  v1/3+4
- 236.2678  250   9.8207e-16   2.6571e-10   0.969  0.022  0.0e+00           0.3838 -0.0029  v1/3+4
+ 236.2678  250   9.8207e-16   2.6571e-10   0.969  0.022  0.0e+00  0.3825   0.3838 -0.0029  v1/3+4
+ 236.7447  250   8.1875e-16   2.7025e-10   0.974  0.017  2.4e-16  0.3806   0.3814 -0.0052  v1/3+4
+ 237.0427  250   7.3123e-16   2.7410e-10   0.977  0.014  0.0e+00  0.3786   0.3793 -0.0073  v1/3+4
+ 237.3407  250   6.5337e-16   2.7554e-10   0.980  0.011  0.0e+00           0.3778 -0.0089  v1/3+4
 
-states 34, not classified or not converged: 0
+states 37, not classified or not converged: 0
 
 criterion 5, intervals D 229.05 to 232.0: 0.4124, 0.4097, 0.4067, 0.4047 against #941's 0.412, 0.41, 0.407, 0.405: largest difference 0.0004: pass
 re-read of #941's state D 229.0509: sigma_Delta 1.7643947185e-14 here (ctl_planted) against 1.7643947185e-14 (relative difference 0.0e+00); Delta share 0.8784 against 0.8784
@@ -60,4 +63,7 @@ fold rule on every five-state window (conditions: 1 residuals, 2 D* within 3 pas
   ks 250 D 233.6250 to 235.5049: D* inf (s 0.392) conditions FFF- not valid
   ks 250 D 234.0156 to 235.8864: D* inf (s 0.390) conditions FFF- not valid
   ks 250 D 234.4062 to 236.2678: D* inf (s 0.388) conditions FFF- not valid
+  ks 250 D 234.8945 to 236.7447: D* inf (s 0.385) conditions FFF- not valid
+  ks 250 D 235.5049 to 237.0427: D* inf (s 0.383) conditions FFF- not valid
+  ks 250 D 235.8864 to 237.3407: D* inf (s 0.381) conditions FFF- not valid
 null control: no backfill window is valid; ks 211's window D* 212.8: fails by condition 2
