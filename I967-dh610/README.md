@@ -16,3 +16,5 @@ Files are added as the items run:
 | `build.log`, `build_time.txt`, `memlog.log` | item 1's log, its `/usr/bin/time -v` output and the memory log (the build's first minute is not in it, see its second line) |
 | `checks967.sh`, `summary_item2.txt`, `jbo_*` | item 2 |
 | `step61_967.py`, `run_item3_967.sh`, `i3_*` | item 3 |
+
+A memory log run through `withmem967.sh` has no "end" line: systemd kills it with the unit when the script ends. A log with no ALERT line means no alert while the script ran.

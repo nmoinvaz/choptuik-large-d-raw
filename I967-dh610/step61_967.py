@@ -10,12 +10,13 @@ solver, re-seeder) is the chain's. I967_CASE names the case:
   control  base = step 60's end (arc_061), the series arcjet_061, target D = step 61's accepted attempt (a = 8.4953719399692e-05),
            where arc_062 is a converged solution.
 
-Per case: (A) the fixed-D octo-double Newton (ChainSys.correct, border=False, the chain's flags, --qd_it raised) started
-from the base state itself at the target D; (B) the series' prediction at the target by the D-series (sum w_m (D - D_0)^m,
-from the arcjet file) and the chain's arclength composition moved to the target, each: max|F| as is and after the chain's
-re-seed, and their miss against (A)'s solution; (C) the chain's own attempt (bordered, as arc.jsonl records it) replayed,
-its F_pred and its F by iteration against the record's, word for word; (D) the fixed-D Newton from the D-series'
-prediction. The control case's (A) solution is also compared with arc_062, the chain's accepted state. Nothing is
+Per case: (A) the fixed-D octo-double Newton (ChainSys.correct, border=False, the chain's flags, --qd_it 60) started from the
+base state itself at the target D (its horizon re-seed may not project that start); (B) the series' prediction at the
+target by the D-series (sum of w_m (D - D_0)^m, m <= k, from the arcjet file) at orders k = 1, 2, 4, ... 24 and the
+chain's arclength composition moved to the target, each: max|F| as is and after the chain's re-seed; (D) the fixed-D
+Newton from the full D-series' prediction; then each prediction's miss against the converged solution (A's, else D's);
+(C) the chain's own attempt (bordered, --qd_it 20) replayed, its F_pred and its F by iteration against arc.jsonl's,
+word for word. The control case's solution is also compared with arc_062, the chain's accepted state. Nothing is
 loosened: pass is max|F| <= --tol_od (1e-60). Output: i3_<case>.json beside the chain's output directory.
 """
 import json
@@ -44,7 +45,7 @@ def run_case(c):
     cfg = CASES[case]
     opt, raw, out = c["opt"], c["raw"], c["out"]
     opt["qd_it"] = int(os.environ.get("I967_QD_IT", "60"))
-    qd_it_chain = int(os.environ.get("I967_QD_IT_D", "20"))
+    KS = [int(k) for k in os.environ.get("I967_KS", "1,2,4,8,12,16,20,24").split(",")]
     recs = [json.loads(line) for line in open(os.path.join(raw, "I842-dh610/chain/arc.jsonl"))]
     rec = next(r for r in recs if r.get("step") == cfg["step"])
     att = rec["attempts"][cfg["attempt"]]
@@ -92,42 +93,47 @@ def run_case(c):
             return dict(rel_max=float(A.vmax(d) / A.vmax(v)), at=i, of=len(d), delta_rel=float(abs(d[-1]) / abs(v[-1])))
         say("F_state_at_target_unreseeded", F_of(x0))
 
-        # (A) the fixed-D Newton from the state itself
+        # (A) the fixed-D Newton from the state itself (--qd_it solves), refused where the re-seed cannot project the start
         ta = time.time()
         xn, Dn, conv, ra = sysm.correct(x0, Dd, tz, tD, border=False)
         say("A_newton_from_state", dict(converged=bool(conv), its=ra["its"], F=ra["F"], F_start_reseeded=ra["F_pred"],
-                                        seconds=round(time.time() - ta, 1), reseed=ra.get("reseed")))
+                                        why=ra.get("why"), seconds=round(time.time() - ta, 1), reseed=ra.get("reseed")))
 
-        # (B) the predictions at the target
-        P2 = A.horner(W, Dd - D0)
+        # (B) the D-series' prediction at the target by order k (sum of w_m (D - D_0)^m, m <= k): the re-seeded start's max|F|
+        h = Dd - D0
+        Pk = {k: A.horner(W[:k + 1], h) for k in KS}
+        pb = {}
+        for k in KS:
+            pb[k] = dict(F_unreseeded=F_of(Pk[k]), F_reseeded=reseeded_F(Pk[k]))
+            say(f"B_order_{k}", pb[k])
+        P2 = Pk[opt["N"]]
         P1 = A.vadd(xp, tz, (Dd - Dp) / tD)
-        pb = dict(F_Dseries_unreseeded=F_of(P2), F_Dseries_reseeded=reseeded_F(P2), F_arclength_unreseeded=F_of(P1),
-              F_arclength_reseeded=reseeded_F(P1),
-                  Dseries_vs_arclength=rel(P2, P1))
-        if conv:
-            pb.update(miss_Dseries=rel(P2, xn), miss_arclength=rel(P1, xn), miss_state=rel(x0, xn))
-            if cfg["ref"]:
-                zr_, mr = load_o(os.path.join(raw, cfg["ref"]))
-                pb["solution_vs_accepted"] = rel(xn, A.to_mp_vec(zr_))
-        say("B_prediction", pb)
+        say("B_arclength", dict(F_unreseeded=F_of(P1), F_reseeded=reseeded_F(P1), vs_Dseries=rel(P1, P2)))
 
-        # (C) the chain's own attempt replayed
-        tc = time.time()
-        xc, Dc, convc, rc = sysm.correct(xp, Dp, tz, tD, border=True)
-        itsr = [(h["F"], h["lam"]) for h in crec["its"]]
-        itsn = [(h["F"], h["lam"]) for h in rc["its"]]
-        say("C_chain_attempt", dict(converged=bool(convc), F_pred=rc["F_pred"], F_pred_record=crec["F_pred"],
-                                    F_pred_same=rc["F_pred"] == crec["F_pred"], its=rc["its"], its_same=itsr == itsn,
-                                    converged_record=att["converged"], seconds=round(time.time() - tc, 1), seconds_record=crec["seconds"]))
-
-        # (D) the fixed-D Newton from the D-series' prediction, with the chain's own solve limit
-        opt["qd_it"] = qd_it_chain
+        # (D) the fixed-D Newton from the full D-series' prediction, --qd_it (60) solves
         td = time.time()
         xd, Dd2, convd, rd = sysm.correct(P2, Dd, tz, tD, border=False)
         say("D_newton_from_prediction", dict(converged=bool(convd), its=rd["its"], F=rd["F"], F_start_reseeded=rd["F_pred"],
-                                             qd_it=qd_it_chain, seconds=round(time.time() - td, 1)))
-        if conv and convd:
-            say("D_solution_vs_A", rel(xd, xn))
+                                             why=rd.get("why"), seconds=round(time.time() - td, 1)))
+        xs = xn if conv else (xd if convd else None)
+        if xs is not None:
+            say("miss", dict(solution_from="state" if conv else "prediction", state=rel(x0, xs),
+                             **{f"order_{k}": rel(Pk[k], xs) for k in KS}, arclength=rel(P1, xs)))
+            if conv and convd:
+                say("A_vs_D_solution", rel(xn, xd))
+            if cfg["ref"]:
+                zr_, mr = load_o(os.path.join(raw, cfg["ref"]))
+                say("solution_vs_accepted", rel(xs, A.to_mp_vec(zr_)))
+
+        # (C) the chain's own attempt replayed (bordered, the chain's --qd_it 20)
+        opt["qd_it"] = 20
+        tc = time.time()
+        xc, Dc, convc, rc = sysm.correct(xp, Dp, tz, tD, border=True)
+        itsr = [(h_["F"], h_["lam"]) for h_ in crec["its"]]
+        itsn = [(h_["F"], h_["lam"]) for h_ in rc["its"]]
+        say("C_chain_attempt", dict(converged=bool(convc), F_pred=rc["F_pred"], F_pred_record=crec["F_pred"],
+                                    F_pred_same=rc["F_pred"] == crec["F_pred"], its=rc["its"], its_same=itsr == itsn,
+                                    converged_record=att["converged"], seconds=round(time.time() - tc, 1), seconds_record=crec["seconds"]))
     say("done", dict(seconds=round(time.time() - t0, 1)))
     return 0
 

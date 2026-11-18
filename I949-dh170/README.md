@@ -93,6 +93,17 @@ would: `selftest_track949.log`). For ks_chain2 the trigger's baseline is the bac
 consecutive states of one leg), the fold fit and its validity rules are otherwise unchanged, and s(ks) is still printed beside it. Leg 8 of
 ks_chain keeps the original rule.
 
+## Requests of 2026-11-18 about 21:00 UTC (coordinator, hc)
+
+- **σ_pair's slope**: `track949.py` prints σ_pair's interval slope of ln per state beside σ_Δ's (`pair` column; `pair_interval_slope` in
+  `track949.csv`; −d ln σ_pair/dD over the interval ending at the state, positive where the pair falls), a reading and never a trigger.
+- **σ_pair against win2b's re-seed failures** (from base D 236.7, `I903-win2/refused903.txt`): `pair_reseed949.py` (`pair_reseed949.log`)
+  lists each attempt's base D, σ_pair there, the pair's slope into it, the step factor a, the result and the quad-double polish's R.
+- **ks_chain3** (dh370's #966, `I966-dh370/ks_chain3`, ks 304 and up, restarting past D 238): `sync949.sh` and `queue_new949.py` read its states
+  when they are pushed (none yet, only the log), `track949.py` keeps it as chain 3 apart from the others, with the ks_chain2 trigger baseline
+  (the frozen D-trend) applied to it as well, which is my assumption, said in the posts, and its ORDER EFFECT against ks_chain2's ks 291 at equal D
+  where the D's agree.
+
 ## Planted fold test (before any state was read)
 
 `selftest949.log` (exit 0): planted σ² = 0.3 (D* − D) exp(−2 · 0.405 (D − 232)), D* 260 and 262, on the five #941 states, five states
