@@ -23,4 +23,4 @@ Issue: https://github.com/nmoinvaz/choptuik-large-d/issues/962 (coordinator `nat
 | 2 | `octo_hashes.py` at ks 240 D 229.0509, against dh170's 4.9.0 (and 4.8.2) hashes | reported | 0 of 12 lines differ, both builds, once the CRLF is stripped (`octo_win2_ST.txt`, `diff_win2_dh170*_ST_nocr.txt`) |
 | 3 | `jet_by_order_check.py --N 6 --Np 6` | exit 0, controls fire | exit 0, PASS 6 of 6 orders and 6 of 6 with the hook, four controls fired (`jet_by_order.log`) |
 
-`diff_win2_dh170D_ST.txt` and `diff_win2_dh170A_ST.txt` (not written: `run_checks.sh` wrote them under `diff_win2_dh170{D,A}_ST.txt`) hold the raw `diff`, which flags every line because of the CR.
+`diff_win2_dh170D_ST.txt` and `diff_win2_dh170A_ST.txt` hold the raw `diff`, which flags every line because of the CR alone; the `_nocr` files hold the `--strip-trailing-cr` diffs, both empty.
