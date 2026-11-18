@@ -1,0 +1,8 @@
+misfit_profile_746: raw /home/nathan/Source/choptuik-large-d-raw-746/I718-mac, window F = 5.0, mutate scale_chi
+read 6387 lines, 5967 plant records, 252 position-groups in 0.8 s
+records per node {0.99: 303, 1.0: 5392, 1.01: 272}, duplicates 0; counts at wf 1.00 {'a': 3477, 'c': 5064, 'ac': 3401, 'ac2': 3433} (published {'a': 3477, 'c': 5064, 'ac': 3401, 'ac2': 3433}); R-b mismatches 0
+R-a (loader with (d) off against ring.json): OK
+J+ (the real profile against itself): FAIL; wf 0.99: held False, reloc False, rho [1.0, 10.0, 1.0], anchor True; wf 1.0: held False, reloc False, rho [1.0, 10.0, 1.0], anchor True; wf 1.01: held False, reloc False, rho [1.0, 10.0, 1.0], anchor True
+edge check (planted rho at F, 1/F, 10, 1/10, 1 for each M): FAIL, 10 wrong, first: ['M 20 rho 5: expected inside', 'M 20 rho 0.2: expected inside', 'M 20 rho 1: expected inside']
+mutation scale_chi: failed checks ['J+', 'edge']; expected ['J+', 'edge'] -> FIRES
+exit 1

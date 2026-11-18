@@ -1,0 +1,35 @@
+run 2026-11-18 00:42 UTC, mutate len
+selftest R1: the poles-only d_P and nearest poles equal pade_record's bit for bit on 6 plants: True (largest difference 0.0e+00; pass = 0)
+selftest R2: radial curves equal ring_curve's bit for bit (64 positions x L 0.3, 0.6 x 2 mains): True; horizontal curves have A = Q - L exactly: True
+selftest R2: exact moments of horizontal and 30 deg segments against mpmath.quad at k = 0, 7, 15, 22, 31: max rel diff 2.4e-56 (pass < 1e-40)
+selftest R3: three point masses' moments against the mean of the tiny-segment limits at k = 0, 7, 15, 22, 31: max rel diff 8.7e-30 (pass < 1e-20)
+selftest: PASS
+node 0.99: set up in 6s
+node 1.0: set up in 5s
+node 1.01: set up in 5s
+J+ wf 0.99: the real series' d_P 0.00e+00 (pass <= 1e-09) -> OK
+J+ wf 1.0: the real series' d_P 0.00e+00 (pass <= 1e-09) -> OK
+J+ wf 1.01: the real series' d_P 0.00e+00 (pass <= 1e-09) -> OK
+J- wf 1.0 chord2 eta 0: d_P 0.219236 (#718 0.219236; pass > 0.03 and within 1e-06) -> OK
+J- wf 1.0 arc eta 0: d_P 0.225410 (#718 0.225410; pass > 0.03 and within 1e-06) -> OK
+P' chord2 (1, 1) eta 1 phi 90: the plant, copy 2 against copy 1's poles: d_P 1.03e-02, 2.81e-03, 7.72e-04 (admissible True, pass <= 0.03) -> pass; share22 0.71
+P'   neighbour (2, 1): d_P 0.2404, 0.2374, 0.2312 -> fails
+P'   neighbour (0, 1): d_P 0.2639, 0.2517, 0.2525 -> fails
+P'   neighbour (1, 2): d_P 0.2381, 0.2368, 0.2348 -> fails
+P'   neighbour (1, 0): d_P 0.2564, 0.2504, 0.2533 -> fails
+P'   the plant without its second set: d_P 1.1520, 1.1487, 1.1531; copy 1's reference poles from REF541: 1.020, 1.030, 1.041 -> P' OK
+R4 arc|L+0+0|L0.3|P4|ex|eta2.000000e-01|ph0: d_P 0.256499 (#718 0.256479); rel dev 7.7e-05 (pass <= 1e-06) -> BAD
+R4 arc|L+0+0|L0.3|P4|log|eta2.000000e-01|ph0: d_P 0.256258 (#718 0.256259); rel dev 1.4e-06 (pass <= 1e-06) -> BAD
+R4 arc|L+1+1|L0.3|P4|ex|eta3.380306e-02|ph0: d_P 0.259382 (#718 0.259370); rel dev 4.3e-05 (pass <= 1e-06) -> BAD
+R4 arc|L+1+1|L0.3|P4|log|eta2.029767e-02|ph0: d_P 0.258797 (#718 0.258795); rel dev 6.1e-06 (pass <= 1e-06) -> BAD
+R4 arc|L-1-1|L0.3|P4|ex|eta2.000000e-01|ph0: d_P 0.176093 (#718 0.177588); rel dev 8.4e-03 (pass <= 1e-06) -> BAD
+R4 arc|L-1-1|L0.3|P4|log|eta2.000000e-01|ph0: d_P 0.246239 (#718 0.246247); rel dev 3.6e-05 (pass <= 1e-06) -> BAD
+R4 chord2|L+0+0|L0.3|P4|ex|eta2.000000e-01|ph0: d_P 0.245590 (#718 0.245555); rel dev 1.4e-04 (pass <= 1e-06) -> BAD
+R4 chord2|L+0+0|L0.3|P4|log|eta2.000000e-01|ph0: d_P 0.244723 (#718 0.244722); rel dev 3.9e-06 (pass <= 1e-06) -> BAD
+R4 chord2|L+1+1|L0.3|P4|ex|eta3.380306e-02|ph0: d_P 0.246838 (#718 0.246827); rel dev 4.2e-05 (pass <= 1e-06) -> BAD
+R4 chord2|L+1+1|L0.3|P4|log|eta2.029767e-02|ph0: d_P 0.246323 (#718 0.246322); rel dev 3.5e-06 (pass <= 1e-06) -> BAD
+R4 chord2|L-1-1|L0.3|P4|ex|eta2.000000e-01|ph0: d_P 0.181545 (#718 0.183055); rel dev 8.3e-03 (pass <= 1e-06) -> BAD
+R4 chord2|L-1-1|L0.3|P4|log|eta2.000000e-01|ph0: d_P 0.237732 (#718 0.237736); rel dev 1.5e-05 (pass <= 1e-06) -> BAD
+mutation len: fired as frozen: True (must)
+controls {'selftest': True, 'J+': True, 'J-': True, 'Pprime': True, 'R4': False} -> gate False
+mutation len fired as frozen

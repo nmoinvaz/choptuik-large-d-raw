@@ -273,6 +273,20 @@ The pair keeps falling 15.3 to 15.4 times per unit at order 160 (D 228 to 231), 
 rises 1214 times, with v₁ on order 200's pair span at 0.950 (`pair200_D231.log`). So it is the truncation's at D 231
 too. For the grip queue, `lift.log`'s k160 D 231.0000 gives L = +2.9247.
 
+### Withdrawn: the Δ mode order-converged at D 231 (#941, 22:14 UTC)
+
+#941 (dh370, raw I941-dh370 9da736f7) converged the order-tied chain by Newton at order 240. Its σ_Δ is 1.7 to 1152
+times order 160's from D 229.05 to 232, and falls 1.51 per unit D. So the order-160 collapse is the truncation's. The
+reading below that the Δ mode is order-converged at D 231 is withdrawn. It came from order 200 read at the order-160
+roots without a Newton solve.
+
+dh370 read σ_Δ / σ_pair as 219–257 at order 160, and my #941 comment gave 0.33 at order 200. Both use the same labels:
+the Δ mode is the vector of largest Δ share, and the pair is the harmonic-3 pair. The difference is the order.
+`ratio_941.py` (`ratio_941.log`) prints the ratio at both orders on the same states. At order 160 the pair is σ₁, σ₂
+and the Δ mode σ₃, ratio 219, 226 and 258 at D 229, 230 and 231. At order 200 the pair rises to σ₂, σ₃, with span
+overlap 0.92–0.995 with order 160's. The Δ mode becomes σ₁, ratio 0.33 and 0.325. Its check (Δ share ≥ 0.5, pair
+overlap ≥ 0.9, Δ mode outside the pair) passes. Its control, which takes order 200's σ₁ and σ₂ as the pair, fails.
+
 ### Do all modes fall, or the Δ mode alone? (for #941, 06:50 UTC)
 
 `scale_check.log` compares D 229 with 231 on dh610's order-160 states, mode by mode. At order 200 the four weakest

@@ -1,0 +1,43 @@
+run 2026-11-18 00:19 UTC, mutate None
+selftest R1: the poles-only d_P and nearest poles equal pade_record's bit for bit on 6 plants: True (largest difference 0.0e+00; pass = 0)
+selftest R2: radial curves equal ring_curve's bit for bit (64 positions x L 0.3, 0.6 x 2 mains): True; horizontal curves have A = Q - L exactly: True
+selftest R2: exact moments of horizontal and 30 deg segments against mpmath.quad at k = 0, 7, 15, 22, 31: max rel diff 2.4e-56 (pass < 1e-40)
+selftest R3: three point masses' moments against the mean of the tiny-segment limits at k = 0, 7, 15, 22, 31: max rel diff 8.7e-30 (pass < 1e-20)
+selftest: PASS
+node 0.99: set up in 6s
+node 1.0: set up in 6s
+node 1.01: set up in 6s
+J+ wf 0.99: the real series' d_P 0.00e+00 (pass <= 1e-09) -> OK
+J+ wf 1.0: the real series' d_P 0.00e+00 (pass <= 1e-09) -> OK
+J+ wf 1.01: the real series' d_P 0.00e+00 (pass <= 1e-09) -> OK
+J- wf 1.0 chord2 eta 0: d_P 0.219236 (#718 0.219236; pass > 0.03 and within 1e-06) -> OK
+J- wf 1.0 arc eta 0: d_P 0.225410 (#718 0.225410; pass > 0.03 and within 1e-06) -> OK
+P chord2 eta_P 0.001: d_P 0.2019, 0.1972, 0.1896; fit_resid 1.7e-05, 1.4e-05, 1.0e-05 -> passes False, admissible True
+P chord2 eta_P 0.00316: d_P 0.2020, 0.1972, 0.1900; fit_resid 1.6e-05, 1.3e-05, 9.8e-06 -> passes False, admissible True
+P chord2 eta_P 0.01: d_P 0.1548, 0.1479, 0.1401; fit_resid 1.5e-05, 1.2e-05, 1.1e-05 -> passes False, admissible True
+P chord2 eta_P 0.0316: d_P 0.1558, 0.1489, 0.1411; fit_resid 8.8e-06, 9.2e-06, 1.5e-05 -> passes False, admissible True
+P chord2 eta_P 0.1: d_P 0.1503, 0.1495, 0.1476; fit_resid 2.6e-05, 3.0e-05, 3.6e-05 -> passes False, admissible True
+P chord2 eta_P 0.316: d_P 0.1402, 0.1375, 0.1369; fit_resid 1.0e-04, 1.0e-04, 1.1e-04 -> passes False, admissible True
+P chord2 eta_P 1: d_P 0.1270, 0.1274, 0.1274; fit_resid 3.3e-04, 3.4e-04, 3.3e-04 -> passes False, admissible True
+P chord2: some rung passes at the three nodes: False -> BAD; lowest admissible passing rung None
+P arc eta_P 0.001: d_P 0.2130, 0.2071, 0.1969; fit_resid 4.7e-05, 4.2e-05, 3.2e-05 -> passes False, admissible True
+P arc eta_P 0.00316: d_P 0.2156, 0.2099, 0.2003; fit_resid 4.6e-05, 4.2e-05, 3.1e-05 -> passes False, admissible True
+P arc eta_P 0.01: d_P 0.1714, 0.1649, 0.1567; fit_resid 4.4e-05, 3.9e-05, 2.9e-05 -> passes False, admissible True
+P arc eta_P 0.0316: d_P 0.1725, 0.1670, 0.1334; fit_resid 3.7e-05, 3.3e-05, 2.3e-05 -> passes False, admissible True
+P arc eta_P 0.1: d_P 0.1583, 0.1484, 0.1455; fit_resid 2.5e-05, 2.2e-05, 1.6e-05 -> passes False, admissible True
+P arc eta_P 0.316: d_P 0.1388, 0.1361, 0.1357; fit_resid 8.2e-05, 8.4e-05, 8.7e-05 -> passes False, admissible True
+P arc eta_P 1: d_P 0.1092, 0.1114, 0.1132; fit_resid 3.3e-04, 3.4e-04, 3.3e-04 -> passes False, admissible True
+P arc: some rung passes at the three nodes: False -> BAD; lowest admissible passing rung None
+R4 arc|L+0+0|L0.3|P4|ex|eta2.000000e-01|ph0: d_P 0.256479 (#718 0.256479); rel dev 1.9e-14 (pass <= 1e-06) -> OK
+R4 arc|L+0+0|L0.3|P4|log|eta2.000000e-01|ph0: d_P 0.256259 (#718 0.256259); rel dev 2.7e-15 (pass <= 1e-06) -> OK
+R4 arc|L+1+1|L0.3|P4|ex|eta3.380306e-02|ph0: d_P 0.259370 (#718 0.259370); rel dev 1.1e-14 (pass <= 1e-06) -> OK
+R4 arc|L+1+1|L0.3|P4|log|eta2.029767e-02|ph0: d_P 0.258795 (#718 0.258795); rel dev 0.0e+00 (pass <= 1e-06) -> OK
+R4 arc|L-1-1|L0.3|P4|ex|eta2.000000e-01|ph0: d_P 0.177588 (#718 0.177588); rel dev 3.8e-14 (pass <= 1e-06) -> OK
+R4 arc|L-1-1|L0.3|P4|log|eta2.000000e-01|ph0: d_P 0.246247 (#718 0.246247); rel dev 3.6e-14 (pass <= 1e-06) -> OK
+R4 chord2|L+0+0|L0.3|P4|ex|eta2.000000e-01|ph0: d_P 0.245555 (#718 0.245555); rel dev 1.1e-15 (pass <= 1e-06) -> OK
+R4 chord2|L+0+0|L0.3|P4|log|eta2.000000e-01|ph0: d_P 0.244722 (#718 0.244722); rel dev 5.6e-15 (pass <= 1e-06) -> OK
+R4 chord2|L+1+1|L0.3|P4|ex|eta3.380306e-02|ph0: d_P 0.246827 (#718 0.246827); rel dev 7.3e-15 (pass <= 1e-06) -> OK
+R4 chord2|L+1+1|L0.3|P4|log|eta2.029767e-02|ph0: d_P 0.246322 (#718 0.246322); rel dev 8.9e-16 (pass <= 1e-06) -> OK
+R4 chord2|L-1-1|L0.3|P4|ex|eta2.000000e-01|ph0: d_P 0.183055 (#718 0.183055); rel dev 7.0e-14 (pass <= 1e-06) -> OK
+R4 chord2|L-1-1|L0.3|P4|log|eta2.000000e-01|ph0: d_P 0.237736 (#718 0.237736); rel dev 3.2e-14 (pass <= 1e-06) -> OK
+controls {'selftest': True, 'J+': True, 'J-': True, 'P': False, 'R4': True} -> gate False

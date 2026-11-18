@@ -1,0 +1,104 @@
+run 2026-11-18 00:19 UTC, mutate None
+node 0.99: set up in 6s
+node 1.0: set up in 6s
+node 1.01: set up in 6s
+J+ wf 0.99: the real series' d_P 0.00e+00 (pass <= 1e-09) -> OK
+J+ wf 1.0: the real series' d_P 0.00e+00 (pass <= 1e-09) -> OK
+J+ wf 1.01: the real series' d_P 0.00e+00 (pass <= 1e-09) -> OK
+J- wf 1.0 chord2 eta 0: d_P 0.219236 (#718 0.219236; pass > 0.03 and within 1e-06) -> OK
+J- wf 1.0 arc eta 0: d_P 0.225410 (#718 0.225410; pass > 0.03 and within 1e-06) -> OK
+P chord2 eta_P 0.001: d_P 0.2019, 0.1972, 0.1896; fit_resid 1.7e-05, 1.4e-05, 1.0e-05 -> passes False, admissible True
+P chord2 eta_P 0.00316: d_P 0.2020, 0.1972, 0.1900; fit_resid 1.6e-05, 1.3e-05, 9.8e-06 -> passes False, admissible True
+P chord2 eta_P 0.01: d_P 0.1548, 0.1479, 0.1401; fit_resid 1.5e-05, 1.2e-05, 1.1e-05 -> passes False, admissible True
+P chord2 eta_P 0.0316: d_P 0.1558, 0.1489, 0.1411; fit_resid 8.8e-06, 9.2e-06, 1.5e-05 -> passes False, admissible True
+P chord2 eta_P 0.1: d_P 0.1503, 0.1495, 0.1476; fit_resid 2.6e-05, 3.0e-05, 3.6e-05 -> passes False, admissible True
+P chord2 eta_P 0.316: d_P 0.1402, 0.1375, 0.1369; fit_resid 1.0e-04, 1.0e-04, 1.1e-04 -> passes False, admissible True
+P chord2 eta_P 1: d_P 0.1270, 0.1274, 0.1274; fit_resid 3.3e-04, 3.4e-04, 3.3e-04 -> passes False, admissible True
+P chord2: some rung passes at the three nodes: False -> BAD; lowest admissible passing rung None
+P arc eta_P 0.001: d_P 0.2130, 0.2071, 0.1969; fit_resid 4.7e-05, 4.2e-05, 3.2e-05 -> passes False, admissible True
+P arc eta_P 0.00316: d_P 0.2156, 0.2099, 0.2003; fit_resid 4.6e-05, 4.2e-05, 3.1e-05 -> passes False, admissible True
+P arc eta_P 0.01: d_P 0.1714, 0.1649, 0.1567; fit_resid 4.4e-05, 3.9e-05, 2.9e-05 -> passes False, admissible True
+P arc eta_P 0.0316: d_P 0.1725, 0.1670, 0.1334; fit_resid 3.7e-05, 3.3e-05, 2.3e-05 -> passes False, admissible True
+P arc eta_P 0.1: d_P 0.1583, 0.1484, 0.1455; fit_resid 2.5e-05, 2.2e-05, 1.6e-05 -> passes False, admissible True
+P arc eta_P 0.316: d_P 0.1388, 0.1361, 0.1357; fit_resid 8.2e-05, 8.4e-05, 8.7e-05 -> passes False, admissible True
+P arc eta_P 1: d_P 0.1092, 0.1114, 0.1132; fit_resid 3.3e-04, 3.4e-04, 3.3e-04 -> passes False, admissible True
+P arc: some rung passes at the three nodes: False -> BAD; lowest admissible passing rung None
+R4 arc|L+0+0|L0.3|P4|ex|eta2.000000e-01|ph0: d_P 0.256479 (#718 0.256479); rel dev 1.9e-14 (pass <= 1e-06) -> OK
+R4 arc|L+0+0|L0.3|P4|log|eta2.000000e-01|ph0: d_P 0.256259 (#718 0.256259); rel dev 2.7e-15 (pass <= 1e-06) -> OK
+R4 arc|L+1+1|L0.3|P4|ex|eta3.380306e-02|ph0: d_P 0.259370 (#718 0.259370); rel dev 1.1e-14 (pass <= 1e-06) -> OK
+R4 arc|L+1+1|L0.3|P4|log|eta2.029767e-02|ph0: d_P 0.258795 (#718 0.258795); rel dev 0.0e+00 (pass <= 1e-06) -> OK
+R4 arc|L-1-1|L0.3|P4|ex|eta2.000000e-01|ph0: d_P 0.177588 (#718 0.177588); rel dev 3.8e-14 (pass <= 1e-06) -> OK
+R4 arc|L-1-1|L0.3|P4|log|eta2.000000e-01|ph0: d_P 0.246247 (#718 0.246247); rel dev 3.6e-14 (pass <= 1e-06) -> OK
+R4 chord2|L+0+0|L0.3|P4|ex|eta2.000000e-01|ph0: d_P 0.245555 (#718 0.245555); rel dev 1.1e-15 (pass <= 1e-06) -> OK
+R4 chord2|L+0+0|L0.3|P4|log|eta2.000000e-01|ph0: d_P 0.244722 (#718 0.244722); rel dev 5.6e-15 (pass <= 1e-06) -> OK
+R4 chord2|L+1+1|L0.3|P4|ex|eta3.380306e-02|ph0: d_P 0.246827 (#718 0.246827); rel dev 7.3e-15 (pass <= 1e-06) -> OK
+R4 chord2|L+1+1|L0.3|P4|log|eta2.029767e-02|ph0: d_P 0.246322 (#718 0.246322); rel dev 8.9e-16 (pass <= 1e-06) -> OK
+R4 chord2|L-1-1|L0.3|P4|ex|eta2.000000e-01|ph0: d_P 0.183055 (#718 0.183055); rel dev 7.0e-14 (pass <= 1e-06) -> OK
+R4 chord2|L-1-1|L0.3|P4|log|eta2.000000e-01|ph0: d_P 0.237736 (#718 0.237736); rel dev 3.2e-14 (pass <= 1e-06) -> OK
+controls {'selftest': True, 'J+': True, 'J-': True, 'P': False, 'R4': True} -> gate False
+run 2026-11-18 00:38 UTC, mutate None
+node 0.99: set up in 6s
+node 1.0: set up in 6s
+node 1.01: set up in 6s
+J+ wf 0.99: the real series' d_P 0.00e+00 (pass <= 1e-09) -> OK
+J+ wf 1.0: the real series' d_P 0.00e+00 (pass <= 1e-09) -> OK
+J+ wf 1.01: the real series' d_P 0.00e+00 (pass <= 1e-09) -> OK
+J- wf 1.0 chord2 eta 0: d_P 0.219236 (#718 0.219236; pass > 0.03 and within 1e-06) -> OK
+J- wf 1.0 arc eta 0: d_P 0.225410 (#718 0.225410; pass > 0.03 and within 1e-06) -> OK
+P' chord2 (1, 1) eta 1 phi 90: the plant, copy 2 against copy 1's poles: d_P 1.03e-02, 2.81e-03, 7.72e-04 (admissible True, pass <= 0.03) -> pass; share22 0.71
+P'   neighbour (2, 1): d_P 0.2404, 0.2374, 0.2312 -> fails
+P'   neighbour (0, 1): d_P 0.2639, 0.2517, 0.2525 -> fails
+P'   neighbour (1, 2): d_P 0.2381, 0.2368, 0.2348 -> fails
+P'   neighbour (1, 0): d_P 0.2564, 0.2504, 0.2533 -> fails
+P'   the plant without its second set: d_P 1.1520, 1.1487, 1.1531; copy 1's reference poles from REF541: 1.020, 1.030, 1.041 -> P' OK
+context chord2 (1, 1) eta 0.01 phi 90: the plant, copy 2 against copy 1's poles: d_P 8.30e-02, 7.62e-02, 7.36e-02 (admissible True, pass <= 0.03) -> FAIL; share22 0.01
+context   neighbour (2, 1): d_P 0.2295, 0.2268, 0.2234 -> fails
+context   neighbour (0, 1): d_P 0.3036, 0.2497, 0.2707 -> fails
+context   neighbour (1, 2): d_P 0.2370, 0.2544, 0.2332 -> fails
+context   neighbour (1, 0): d_P 0.2643, 0.2602, 0.3128 -> fails
+context   the plant without its second set: d_P 1.2272, 1.2216, 1.2339; copy 1's reference poles from REF541: 1.087, 1.103, 1.122
+context chord2 (1, 1) eta 0.1 phi 90: the plant, copy 2 against copy 1's poles: d_P 1.03e-01, 4.00e-02, 1.10e-02 (admissible True, pass <= 0.03) -> FAIL; share22 0.10
+context   neighbour (2, 1): d_P 0.2525, 0.2247, 0.2232 -> fails
+context   neighbour (0, 1): d_P 0.3285, 0.2405, 0.2527 -> fails
+context   neighbour (1, 2): d_P 0.2333, 0.2419, 0.2390 -> fails
+context   neighbour (1, 0): d_P 0.3082, 0.2305, 0.2644 -> fails
+context   the plant without its second set: d_P 1.2081, 1.2060, 1.2166; copy 1's reference poles from REF541: 1.075, 1.089, 1.105
+context chord2 (1, 1) eta 10 phi 90: the plant, copy 2 against copy 1's poles: d_P 6.18e-04, 2.87e-04, 4.86e-05 (admissible True, pass <= 0.03) -> pass; share22 1.01
+context   neighbour (2, 1): d_P 0.2637, 0.2650, 0.2661 -> fails
+context   neighbour (0, 1): d_P 0.2527, 0.2525, 0.2525 -> fails
+context   neighbour (1, 2): d_P 0.2091, 0.2200, 0.2257 -> fails
+context   neighbour (1, 0): d_P 0.2532, 0.2524, 0.2554 -> fails
+context   the plant without its second set: d_P 1.1608, 1.1505, 1.1560; copy 1's reference poles from REF541: 0.972, 0.986, 1.003
+FINDING point masses chord2 eta_P 0.001: d_P 0.2019, 0.1972, 0.1896; d_8, d_9, d_10 at wf 1.00 0.144, 0.197, 0.117; fit_resid 1.4e-05
+FINDING point masses chord2 eta_P 0.00316: d_P 0.2020, 0.1972, 0.1900; d_8, d_9, d_10 at wf 1.00 0.148, 0.197, 0.052; fit_resid 1.3e-05
+FINDING point masses chord2 eta_P 0.01: d_P 0.1548, 0.1479, 0.1401; d_8, d_9, d_10 at wf 1.00 0.148, 0.114, 0.029; fit_resid 1.2e-05
+FINDING point masses chord2 eta_P 0.0316: d_P 0.1558, 0.1489, 0.1411; d_8, d_9, d_10 at wf 1.00 0.149, 0.088, 0.025; fit_resid 9.2e-06
+FINDING point masses chord2 eta_P 0.1: d_P 0.1503, 0.1495, 0.1476; d_8, d_9, d_10 at wf 1.00 0.150, 0.080, 0.024; fit_resid 3.0e-05
+FINDING point masses chord2 eta_P 0.316: d_P 0.1402, 0.1375, 0.1369; d_8, d_9, d_10 at wf 1.00 0.138, 0.080, 0.024; fit_resid 1.0e-04
+FINDING point masses chord2 eta_P 1: d_P 0.1270, 0.1274, 0.1274; d_8, d_9, d_10 at wf 1.00 0.127, 0.077, 0.022; fit_resid 3.4e-04
+FINDING point masses chord2 eta_P 3.16: d_P 0.1157, 0.1124, 0.1083; d_8, d_9, d_10 at wf 1.00 0.112, 0.076, 0.022; fit_resid 1.1e-03
+FINDING point masses chord2 eta_P 10: d_P 0.1066, 0.1016, 0.0963; d_8, d_9, d_10 at wf 1.00 0.102, 0.079, 0.021; fit_resid 3.5e-03
+FINDING point masses chord2 eta_P 31.6: d_P 0.3571, 0.3523, 0.3475; d_8, d_9, d_10 at wf 1.00 0.352, 0.195, 0.026; fit_resid 2.3e-04
+FINDING point masses arc eta_P 0.001: d_P 0.2130, 0.2071, 0.1969; d_8, d_9, d_10 at wf 1.00 0.154, 0.207, 0.117; fit_resid 4.2e-05
+FINDING point masses arc eta_P 0.00316: d_P 0.2156, 0.2099, 0.2003; d_8, d_9, d_10 at wf 1.00 0.160, 0.210, 0.044; fit_resid 4.2e-05
+FINDING point masses arc eta_P 0.01: d_P 0.1714, 0.1649, 0.1567; d_8, d_9, d_10 at wf 1.00 0.165, 0.146, 0.024; fit_resid 3.9e-05
+FINDING point masses arc eta_P 0.0316: d_P 0.1725, 0.1670, 0.1334; d_8, d_9, d_10 at wf 1.00 0.167, 0.096, 0.023; fit_resid 3.3e-05
+FINDING point masses arc eta_P 0.1: d_P 0.1583, 0.1484, 0.1455; d_8, d_9, d_10 at wf 1.00 0.148, 0.082, 0.024; fit_resid 2.2e-05
+FINDING point masses arc eta_P 0.316: d_P 0.1388, 0.1361, 0.1357; d_8, d_9, d_10 at wf 1.00 0.136, 0.080, 0.023; fit_resid 8.4e-05
+FINDING point masses arc eta_P 1: d_P 0.1092, 0.1114, 0.1132; d_8, d_9, d_10 at wf 1.00 0.111, 0.078, 0.023; fit_resid 3.4e-04
+FINDING point masses arc eta_P 3.16: d_P 0.1270, 0.1231, 0.1174; d_8, d_9, d_10 at wf 1.00 0.123, 0.077, 0.028; fit_resid 1.1e-03
+FINDING point masses arc eta_P 10: d_P 0.1022, 0.0969, 0.0899; d_8, d_9, d_10 at wf 1.00 0.097, 0.088, 0.022; fit_resid 3.7e-03
+FINDING point masses arc eta_P 31.6: d_P 0.3741, 0.3678, 0.3602; d_8, d_9, d_10 at wf 1.00 0.368, 0.198, 0.027; fit_resid 2.7e-04
+R4 arc|L+0+0|L0.3|P4|ex|eta2.000000e-01|ph0: d_P 0.256479 (#718 0.256479); rel dev 1.9e-14 (pass <= 1e-06) -> OK
+R4 arc|L+0+0|L0.3|P4|log|eta2.000000e-01|ph0: d_P 0.256259 (#718 0.256259); rel dev 2.7e-15 (pass <= 1e-06) -> OK
+R4 arc|L+1+1|L0.3|P4|ex|eta3.380306e-02|ph0: d_P 0.259370 (#718 0.259370); rel dev 1.1e-14 (pass <= 1e-06) -> OK
+R4 arc|L+1+1|L0.3|P4|log|eta2.029767e-02|ph0: d_P 0.258795 (#718 0.258795); rel dev 0.0e+00 (pass <= 1e-06) -> OK
+R4 arc|L-1-1|L0.3|P4|ex|eta2.000000e-01|ph0: d_P 0.177588 (#718 0.177588); rel dev 3.8e-14 (pass <= 1e-06) -> OK
+R4 arc|L-1-1|L0.3|P4|log|eta2.000000e-01|ph0: d_P 0.246247 (#718 0.246247); rel dev 3.6e-14 (pass <= 1e-06) -> OK
+R4 chord2|L+0+0|L0.3|P4|ex|eta2.000000e-01|ph0: d_P 0.245555 (#718 0.245555); rel dev 1.1e-15 (pass <= 1e-06) -> OK
+R4 chord2|L+0+0|L0.3|P4|log|eta2.000000e-01|ph0: d_P 0.244722 (#718 0.244722); rel dev 5.6e-15 (pass <= 1e-06) -> OK
+R4 chord2|L+1+1|L0.3|P4|ex|eta3.380306e-02|ph0: d_P 0.246827 (#718 0.246827); rel dev 7.3e-15 (pass <= 1e-06) -> OK
+R4 chord2|L+1+1|L0.3|P4|log|eta2.029767e-02|ph0: d_P 0.246322 (#718 0.246322); rel dev 8.9e-16 (pass <= 1e-06) -> OK
+R4 chord2|L-1-1|L0.3|P4|ex|eta2.000000e-01|ph0: d_P 0.183055 (#718 0.183055); rel dev 7.0e-14 (pass <= 1e-06) -> OK
+R4 chord2|L-1-1|L0.3|P4|log|eta2.000000e-01|ph0: d_P 0.237736 (#718 0.237736); rel dev 3.2e-14 (pass <= 1e-06) -> OK
+controls {'selftest': True, 'J+': True, 'J-': True, 'Pprime': True, 'R4': True} -> gate True

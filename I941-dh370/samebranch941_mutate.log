@@ -1,0 +1,9 @@
+order 160 Delta(D): D 229 1.688678221022492, D 230 1.688485687195864, D 231 1.688294802185931, D 232 1.688105544897256, D 233 1.687917894592839, D 234 1.687731830886527 (cubic through the four nearest)
+order 135 at D 230.1312: Delta 1.688460539993982, order 160 there 1.688460539989950, difference +4.031e-12 (the order difference scale)
+order 240 D 229.0509: Delta 1.688668385302365, order 160 there 1.688668384306592, difference +9.958e-10, 247.00 x the 135-160 difference: OFF
+order 240 D 229.9822: Delta 1.688489099879821, order 160 there 1.688489098879948, difference +9.999e-10, 248.02 x the 135-160 difference: OFF
+order 240 D 230.9281: Delta 1.688308477176924, order 160 there 1.688308476174478, difference +1.002e-09, 248.66 x the 135-160 difference: OFF
+order 240 D 231.7466: Delta 1.688153346216295, order 160 there 1.688153345210605, difference +1.006e-09, 249.46 x the 135-160 difference: OFF
+order 240 D 232.0000: Delta 1.688105545896551, order 160 there 1.688105544897256, difference +9.993e-10, 247.88 x the 135-160 difference: OFF
+FAIL: 5 of the order-240 states off the branch (--mutate, must FAIL)
+exit 1

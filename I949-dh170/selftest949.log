@@ -1,0 +1,14 @@
+planted D* 260, grid 941  : B D* 260.0000 (c 0.3000, s 0.4050, max |res| 6.8e-16), C D* 260.0000, A (s=0) D* 232.41 max |res| 0.42: pass, control A misses: yes
+planted D* 260, grid leg8 : B D* 260.0000 (c 0.0052, s 0.4050, max |res| 2.6e-15), C D* 260.0000, A (s=0) D* 237.37 max |res| 0.65: pass, control A misses: yes
+planted D* 260, grid wide : B D* 260.0000 (c 0.0005, s 0.4050, max |res| 1.5e-15), C D* 260.0000, A (s=0) D* 240.31 max |res| 0.97: pass, control A misses: yes
+planted D* 262, grid 941  : B D* 262.0000 (c 0.3000, s 0.4050, max |res| 6.4e-16), C D* 262.0000, A (s=0) D* 232.41 max |res| 0.42: pass, control A misses: yes
+planted D* 262, grid leg8 : B D* 262.0000 (c 0.0052, s 0.4050, max |res| 1.3e-14), C D* 262.0000, A (s=0) D* 237.37 max |res| 0.65: pass, control A misses: yes
+planted D* 262, grid wide : B D* 262.0000 (c 0.0005, s 0.4050, max |res| 1.9e-15), C D* 262.0000, A (s=0) D* 240.31 max |res| 0.97: pass, control A misses: yes
+pure exponential, no fold: B interior False, D* inf: pass (no fold claimed)
+pure fold (s = 0): A D* 260.0000, B D* 260.0000: pass
+rule, fold 1 unit past the last state: D* 260.000, conditions (True, True, True, True), valid True (want (True, True, True, True), True): pass
+rule, fold 5 units past the last state: D* 260.000, conditions (True, False, True, None), valid False (want (True, False, True, None), False): pass
+rule, sixth state back 30% off: conditions (True, True, False, True), valid False (want c3 False alone): pass
+rule, exact fold 2.9 units past, scatter 0.03 spreads D* to 259.29 259.99 261.78: conditions (True, True, True, False) (want c4 False alone): pass
+rule, no fold (slope drifting 0.50 to 0.38, scatter 0.03), 27 windows valid: 0 (want 0): pass
+selftest: pass
