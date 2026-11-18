@@ -1,0 +1,42 @@
+#!/usr/bin/env python3
+"""#949: queue the states of ks >= 250 that are in the scratch root and not yet named in queue949.txt or queue949_leg08_hold.txt.
+
+    queue_new949.py [--dry]    appends `ks{KS}_D{D:.4f} {path}` to queue949.txt when baseline949.json exists (the baseline is frozen),
+                               else to queue949_leg08_hold.txt; prints what it did. KS is read from the path (`_ks250/` for a leg,
+                               `/ks260/` for a ladder rung). The states of ks <= 240 are the backfill and are not queued here.
+Covers I903-win2/ks_chain (leg08 on), the ladder's bases I903-win2/ks_chain/ladder8/ks*/base_pin*_D*.npz and I903-win2/ks_chain2."""
+import glob
+import os
+import re
+import sys
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+R = os.path.expanduser("~/scratch949")
+
+
+def names(path):
+    return {l.split()[0] for l in open(path) if l.strip()} if os.path.exists(path) else set()
+
+
+def main():
+    frozen = os.path.exists(os.path.join(HERE, "baseline949.json"))
+    have = names(os.path.join(HERE, "queue949.txt")) | names(os.path.join(HERE, "queue949_leg08_hold.txt"))
+    out = os.path.join(HERE, "queue949.txt" if frozen else "queue949_leg08_hold.txt")
+    new = []
+    for p in sorted(glob.glob(f"{R}/I903-win2/ks_chain*/**/*.npz", recursive=True)):
+        rel = os.path.relpath(p, R)
+        m, d = re.search(r"[_/]ks(\d+)/", rel), re.search(r"_D(\d+\.\d+)\.npz$", rel)
+        if not (m and d) or int(m.group(1)) < 250:
+            continue
+        name = f"ks{m.group(1)}_D{d.group(1)}"
+        if name not in have:
+            new.append(f"{name} {rel}")
+            have.add(name)
+    for l in new:
+        print(("would queue " if "--dry" in sys.argv else ("queued " if frozen else "held ")) + l.split()[0])
+    if new and "--dry" not in sys.argv:
+        with open(out, "a") as f:
+            f.write("".join(l + "\n" for l in new))
+
+
+main()

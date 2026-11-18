@@ -67,8 +67,8 @@ def classify(rec):
 
 
 def row_of(rec, src):
-    ks = int(re.search(r"_ks(\d+)/", rec["state"]).group(1))
-    r = dict(D=float(rec["D"]), ks=ks, src=src, state=rec["state"], ok=True, note="")
+    ks = int(re.search(r"[_/]ks(\d+)/", rec["state"]).group(1))
+    r = dict(D=float(rec["D"]), ks=ks, src=src, state=rec["state"], ok=True, note="", ladder="ladder" in rec["state"])
     v = rec["vectors"]
     try:
         d, pair = classify(rec)
@@ -95,7 +95,8 @@ def load(folder):
             own[key] = r
         else:
             rows[key] = r
-    return sorted(rows.values(), key=lambda r: r["D"]), own
+    allr = sorted(rows.values(), key=lambda r: (r["D"], r["ks"]))
+    return [r for r in allr if not r["ladder"]], own, [r for r in allr if r["ladder"]]
 
 
 def central(rows, forward=False):
@@ -151,6 +152,26 @@ def s_of(base, ks):
     return base["inv_ks"][0] + base["inv_ks"][1] / ks
 
 
+def dtrend(rows):
+    """post-freeze (coordinator, 2026-11-18): the slope against D. Least-squares line and parabola through the backfill's same-ks interval
+    slopes (ks <= 240, at the interval's midpoint in D). Returns (linear coefficients, quadratic coefficients, number of intervals), highest
+    power first, or None before the backfill is read. Only a report beside the frozen baseline, never the trigger."""
+    iv = interval_slopes(rows)
+    pts = [((rows[i - 1]["D"] + rows[i]["D"]) / 2, v) for i, v in enumerate(iv) if v is not None and rows[i]["ks"] <= 240]
+    if len(pts) < 8:
+        return None
+    x, y = np.array(pts).T
+    return np.polyfit(x, y, 1), np.polyfit(x, y, 2), len(pts)
+
+
+def dtrend_at(dt, rows, i):
+    """the linear and the quadratic D-trend at the midpoint of the interval ending at row i (None if there is no interval)"""
+    if dt is None or i == 0:
+        return None, None
+    Dm = (rows[i - 1]["D"] + rows[i]["D"]) / 2
+    return float(np.polyval(dt[0], Dm)), float(np.polyval(dt[1], Dm))
+
+
 def trigger(rows, iv, base):
     """the index of the third consecutive row of one leg whose interval slope exceeds s(ks) by more than TRIGGER, or None"""
     n = 0
@@ -188,7 +209,7 @@ def freeze(folder):
     late = [p for p in glob.glob(os.path.join(folder, "ks*_D*.json")) if int(re.match(r"ks(\d+)_", os.path.basename(p)).group(1)) > 240]
     if late:
         sys.exit(f"a state of ks > 240 has been read ({os.path.basename(late[0])}): the baseline cannot be frozen before leg 8's first read")
-    rows, _ = load(folder)
+    rows, _, _ = load(folder)
     base = make_baseline(rows)
     base["frozen_utc"] = time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime())
     json.dump(base, open(path, "w"), indent=1)
@@ -201,20 +222,25 @@ def freeze(folder):
 
 
 def tables(folder, forward=False):
-    rows, own = load(folder)
+    rows, own, ladder = load(folder)
     bpath = os.path.join(folder, "baseline949.json")
     base = json.load(open(bpath)) if os.path.exists(bpath) else None
     cen, iv = central(rows, forward), interval_slopes(rows)
+    dt = dtrend(rows)
     ok = True
     with open(os.path.join(folder, "track949.csv"), "w", newline="") as f:
         w = csv.writer(f)
         w.writerow(["D", "ks", "sigma_delta", "sigma_pair", "delta_share", "delta_share_2nd", "delta_vec", "pair_vecs", "conv_delta",
-                    "local_slope", "interval_slope", "s_baseline", "excess", "classified", "source"])
-        for r, c, v in zip(rows, cen, iv):
+                    "local_slope", "interval_slope", "s_baseline", "excess", "postfreeze_dtrend_lin", "postfreeze_excess_lin", "postfreeze_dtrend_quad",
+                    "postfreeze_excess_quad", "classified", "source"])
+        for i, (r, c, v) in enumerate(zip(rows, cen, iv)):
             sb = None if base is None else s_of(base, r["ks"])
+            tl, tq = dtrend_at(dt, rows, i)
             w.writerow([f"{r['D']:.6f}", r["ks"], f"{r['sd']:.6e}", f"{r['sp']:.6e}", f"{r['share']:.4f}", f"{r['share2']:.4f}", r["dvec"],
                         r["pvec"], f"{r['conv']:.1e}", "" if c is None else f"{c:.4f}", "" if v is None else f"{v:.4f}",
-                        "" if sb is None else f"{sb:.4f}", "" if v is None or sb is None else f"{v - sb:+.4f}", int(r["ok"]), r["src"]])
+                        "" if sb is None else f"{sb:.4f}", "" if v is None or sb is None else f"{v - sb:+.4f}",
+                        "" if tl is None else f"{tl:.4f}", "" if v is None or tl is None else f"{v - tl:+.4f}",
+                        "" if tq is None else f"{tq:.4f}", "" if v is None or tq is None else f"{v - tq:+.4f}", int(r["ok"]), r["src"]])
     with open(os.path.join(folder, "intervals949.csv"), "w", newline="") as f:
         w = csv.writer(f)
         w.writerow(["D0", "D1", "ks0", "ks1", "slope", "crosses_ks"])
@@ -222,13 +248,14 @@ def tables(folder, forward=False):
             if a["ok"] and b["ok"]:
                 w.writerow([f"{a['D']:.6f}", f"{b['D']:.6f}", a["ks"], b["ks"], f"{-math.log(b['sd'] / a['sd']) / (b['D'] - a['D']):.4f}",
                             int(a["ks"] != b["ks"])])
-    print(f"{'D':>9} {'ks':>4} {'sigma_Delta':>12} {'sigma_pair':>12} {'Dshare':>7} {'2nd':>6} {'conv':>8} {'local':>7} {'interval':>8} {'excess':>7}  note")
-    for r, c, v in zip(rows, cen, iv):
+    print(f"{'D':>9} {'ks':>4} {'sigma_Delta':>12} {'sigma_pair':>12} {'Dshare':>7} {'2nd':>6} {'conv':>8} {'local':>7} {'interval':>8} {'excess':>7} {'vsD lin':>8} {'vsD quad':>8}  note")
+    for i, (r, c, v) in enumerate(zip(rows, cen, iv)):
+        tl, tq = dtrend_at(dt, rows, i)
         conv = "" if r["conv"] < 1e-3 else "  NOT CONVERGED (rerun --its=32)"
         note = ("" if r["ok"] else "  NOT CLASSIFIED: " + r["note"]) + conv
         ex = "" if v is None or base is None else format(v - s_of(base, r["ks"]), "+7.4f")
         print(f"{r['D']:9.4f} {r['ks']:4d} {r['sd']:12.4e} {r['sp']:12.4e} {r['share']:7.3f} {r['share2']:6.3f} {r['conv']:8.1e} "
-              f"{'' if c is None else format(c, '7.4f'):>7} {'' if v is None else format(v, '8.4f'):>8} {ex:>7}  v{r['dvec']}/{r['pvec']}{note}")
+              f"{'' if c is None else format(c, '7.4f'):>7} {'' if v is None else format(v, '8.4f'):>8} {ex:>7} {'' if v is None or tl is None else format(v - tl, '+8.4f'):>8} {'' if v is None or tq is None else format(v - tq, '+8.4f'):>8}  v{r['dvec']}/{r['pvec']}{note}")
     bad = [r for r in rows if not r["ok"] or r["conv"] >= 1e-3]
     print(f"\nstates {len(rows)}, not classified or not converged: {len(bad)}"
           + "".join(f"\n  D {r['D']:.4f}: {r['note'] or 'conv ' + format(r['conv'], '.1e')}" for r in bad))
@@ -261,6 +288,33 @@ def tables(folder, forward=False):
     mx = max(((v - s_of(base, r["ks"]), r["D"]) for r, v in zip(rows, iv) if v is not None), default=None)
     if mx:
         print(f"  largest excess so far {mx[0]:+.4f} at D {mx[1]:.4f}")
+    # post-freeze reports (coordinator, 2026-11-18): the slope against the D-trend, and the ks ladder at one D
+    if dt is not None:
+        res_l = max(abs(v - np.polyval(dt[0], (rows[i - 1]["D"] + rows[i]["D"]) / 2)) for i, v in enumerate(iv) if v is not None and rows[i]["ks"] <= 240)
+        res_q = max(abs(v - np.polyval(dt[1], (rows[i - 1]["D"] + rows[i]["D"]) / 2)) for i, v in enumerate(iv) if v is not None and rows[i]["ks"] <= 240)
+        print(f"\nPOST-FREEZE D-trend (the backfill's {dt[2]} same-ks interval slopes against D, never the trigger): linear {dt[0][1]:.4f} "
+              f"{dt[0][0]:+.5f} D (largest backfill residual {res_l:.3f}), quadratic {dt[1][2]:.3f} {dt[1][1]:+.5f} D {dt[1][0]:+.7f} D^2 "
+              f"(largest residual {res_q:.3f})")
+        late = [(r, v, dtrend_at(dt, rows, i)) for i, (r, v) in enumerate(zip(rows, iv)) if v is not None and r["ks"] >= 250]
+        if late:
+            print("  interval slope minus the D-trend (linear, quadratic) and minus the frozen s(ks), newest states of ks >= 250:")
+            for r, v, (tl, tq) in late[-6:]:
+                print(f"    D {r['D']:9.4f} ks {r['ks']}: {v:.4f}  vs D lin {v - tl:+.4f}  vs D quad {v - tq:+.4f}  vs s(ks) {v - s_of(base, r['ks']):+.4f}")
+        ts = [(v - dtrend_at(dt, rows, i)[0]) for i, v in enumerate(iv) if v is not None and rows[i]["ks"] >= 250]
+        print(f"  coordinator's caveat (#948: sigma_Delta is the same from ks 240 to 320 at D 232, so the baseline's ks dependence is really D dependence): "
+              f"at the jump to ks 275 s(ks) reads about 0.04 below the D-trend ({s_of(base, 275):.4f} at ks 275), so an excess near +0.04 against s(ks) "
+              f"there is not a fold; the 0.10 trigger is unaffected.")
+    if ladder:
+        print("\nks ladder at one D (post-freeze report, coordinator's #949 note 2026-11-18; sigma_Delta against the chain's state at that D):")
+        for D in sorted({round(r["D"], 4) for r in ladder}):
+            g = sorted([r for r in ladder if round(r["D"], 4) == D], key=lambda r: r["ks"])
+            ref = next((r for r in rows if round(r["D"], 4) == D and r["ok"]), None)
+            if ref:
+                print(f"  D {D:.4f}: chain state ks {ref['ks']}: sigma_Delta {ref['sd']:.10e}, Delta share {ref['share']:.4f}, pair {ref['sp']:.4e}")
+            for r in g:
+                rel = f", {r['sd'] / ref['sd'] - 1:+.2e} against the chain state" if ref else ""
+                print(f"    ks {r['ks']}: sigma_Delta {r['sd']:.10e}{rel}; Delta share {r['share']:.4f}, pair {r['sp']:.4e}, conv {r['conv']:.1e}"
+                      f"{'' if r['ok'] else '  NOT CLASSIFIED: ' + r['note']}")
     wins = windows(rows, base)
     print("\nfold rule on every five-state window (conditions: 1 residuals, 2 D* within 3 past, 3 shifted window, 4 planted scatter; "
           "T true, F false, - not evaluated):")
@@ -338,6 +392,33 @@ def selftest(mutate):
     ok &= good
     print(f"selftest: baseline fit of planted legs, a and b error {eb:.1e}, 1/ks extrapolation to ks 250 "
           f"{b['extrapolation']['250']['inv_ks']:.6f} (want 0.48), linear in ks {b['extrapolation']['250']['lin_ks']:.4f} (differs): "
+          f"{'pass' if good else 'FAIL'}")
+    # ks and ladder flag from a state path: a leg (`_ks250/`) and a ladder rung (`/ks260/`)
+    base_rec = dict(D=237.4338, vectors=[dict(sigma=1e-9 * (i + 1), delta=0.9 if i == 0 else 0.01, conv=0.0,
+                                         top=[["p1", 3, 0.1], ["m_h", 3, 0.1]] if i in (1, 2) else [["c0", 4, 0.1]]) for i in range(6)])
+    r1 = row_of(dict(base_rec, state="I903-win2/ks_chain/leg08_D232.0000_ks250/anm_pin3_D237.4338.npz"), "x")
+    r2 = row_of(dict(base_rec, state="I903-win2/ks_chain/ladder8/ks260/base_pin3_D237.4338.npz"), "x")
+    r3 = row_of(dict(base_rec, state="I903-win2/ks_chain2/leg00_D237.4338_ks275/anm_pin3_D238.0000.npz"), "x")
+    good = (r1["ks"], r1["ladder"], r2["ks"], r2["ladder"], r3["ks"], r3["ladder"]) == (250, False, 260, True, 275, False)
+    ok &= good
+    print(f"selftest: ks and ladder flag from paths (250 leg, 260 ladder rung, 275 chain 2 leg): {'pass' if good else 'FAIL'}")
+    # D-trend: planted backfill slopes 0.9 - 0.0025 D (no scatter) give the line back and zero excess at ks 250
+    rows = []
+    D, lns = 192.0, 0.0
+    for k in range(40):
+        ks = 211 if D < 212 else (230 if D < 222 else 240)
+        rows.append(dict(D=D, ks=ks, sd=math.exp(lns), ok=True))
+        step = 1.0
+        lns -= (0.9 - 0.0025 * (D + step / 2)) * step
+        D += step
+    dtl = dtrend(rows)
+    err = abs(dtl[0][0] + 0.0025) + abs(dtl[0][1] - 0.9)
+    tl, tq = dtrend_at(dtl, rows, len(rows) - 1)
+    iv = interval_slopes(rows)
+    e3 = abs(iv[-1] - tl)
+    good = err < 1e-9 and e3 < 1e-9 and dtrend(rows[:5]) is None
+    ok &= good
+    print(f"selftest: D-trend of planted slopes 0.9 - 0.0025 D: coefficient error {err:.1e}, last interval minus the trend {e3:.1e}, too few intervals give None: "
           f"{'pass' if good else 'FAIL'}")
     print(f"selftest{' --mutate' if mutate else ''}: {'pass' if ok else 'FAIL'}")
     return ok

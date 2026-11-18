@@ -60,6 +60,20 @@ exponential in it (D* 232 to 240, residuals 0.4 to 1.0); at 1e-3 relative noise 
 and undetermined at 28; and ks 211's five states gave a "valid" fit by the 10% rule alone with D* 212.8, which the chain's later states
 (the same slope to D 232) refute.
 
+## Post-freeze reports (coordinator, hc 2026-11-18 about 05:56 UTC; the frozen rule stands, the trigger is unchanged)
+
+- **Ladder and chain 2.** win2b raises the order at D 237.43 by a +10 ladder (ks 260, 270, 280, bases `I903-win2/ks_chain/ladder8/ks*/base_pin*.npz`)
+  and then runs on at ks about 275 in `I903-win2/ks_chain2/`. Every base and state is read as it is pushed (`sync949.sh`,
+  `queue_new949.py`). `track949.py` keeps the ladder rows out of the chain's slopes and prints them as a table against the chain's state at
+  the same D (what #948 did at D 232.0, where σ_Δ is the same from ks 240 to 320).
+- **Caveat for every post.** #948 showed σ_Δ is the same from ks 240 to 320 at D 232, so the baseline's ks dependence was really D
+  dependence along the chain. At the jump to ks 275 the frozen s(ks) (0.3364 at ks 275) reads about 0.04 below the D-trend, so an apparent
+  excess near +0.04 there is not a fold. The 0.10 trigger is unaffected.
+- **The slope against a D-trend line, labeled post-freeze.** `track949.py` also fits the backfill's 20 same-ks interval slopes against D
+  (a line and a parabola, at each interval's midpoint) and prints each interval's slope minus them beside the one minus the frozen s(ks)
+  (`postfreeze_*` columns of `track949.csv`). It is a report, not the trigger. Its fits are not frozen before leg 8; they are made
+  from the backfill alone.
+
 ## Planted fold test (before any state was read)
 
 `selftest949.log` (exit 0): planted σ² = 0.3 (D* − D) exp(−2 · 0.405 (D − 232)), D* 260 and 262, on the five #941 states, five states

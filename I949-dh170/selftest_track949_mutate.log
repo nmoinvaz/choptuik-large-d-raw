@@ -4,4 +4,6 @@ selftest: baseline 0.480 at ks 250; intervals 0.07 over (x3), then 0.12 over (x4
 selftest: the same series with a ks change at row 5: trigger None (want None): pass
 selftest: a record with no Delta mode does not classify: pass
 selftest: baseline fit of planted legs, a and b error 6.9e-12, 1/ks extrapolation to ks 250 0.480000 (want 0.48), linear in ks 0.4792 (differs): pass
+selftest: ks and ladder flag from paths (250 leg, 260 ladder rung, 275 chain 2 leg): pass
+selftest: D-trend of planted slopes 0.9 - 0.0025 D: coefficient error 1.3e-15, last interval minus the trend 2.8e-16, too few intervals give None: pass
 selftest --mutate: FAIL
