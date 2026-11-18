@@ -1,7 +1,7 @@
 selftest: pure exponential, central slope error 5.6e-17: pass
 selftest: planted fold + exponential, central slope error 2.2e-16: pass
-selftest: planted fold 28 units off: literal trigger row 3 (want 3), excess trigger None (want None): pass
-selftest: planted fold 3 to 5 units off: excess trigger row 3 (want not None): pass
-selftest: a ks change among the three states is flagged: pass
+selftest: baseline 0.480 at ks 250; intervals 0.07 over (x3), then 0.12 over (x4): trigger at the third 0.12 (row 6, want 6), not on the first six rows (None): pass
+selftest: the same series with a ks change at row 5: trigger None (want None): pass
 selftest: a record with no Delta mode does not classify: pass
+selftest: baseline fit of planted legs, a and b error 6.9e-12, 1/ks extrapolation to ks 250 0.480000 (want 0.48), linear in ks 0.4792 (differs): pass
 selftest: pass

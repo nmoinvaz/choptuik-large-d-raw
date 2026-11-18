@@ -31,28 +31,34 @@ Machine dh170 (Fedora 45, i7-7700, 4 cores / 8 threads). Issue: https://github.c
 | 2 | the same with `--mutate=scale_block` | exit 1, planted check FAIL |
 | 3 | planted fold fit, D* 260 and 262 (`fold949.py --selftest`) | D* within 0.05 of the planted value, on three grids |
 | 4 | its mutation (`--selftest --mutate`, a wrong fold law) | exit 1 |
+| 4a | the validity rule's planted checks (fold 1 unit past: valid; 5 past: fails c2; sixth state off: fails c3 alone; 2.9 past with scatter: fails c4 alone; no fold: no window valid) | pass, and the mutation fails |
 | 5 | slope over D 229–232 reproduces #941's 0.405–0.412 | each interval's slope within 0.01 of #941's, from the five states (two re-read here, bit-compared) |
 | 6 | every state's σ_Δ converged | relative change over the last two iterations below 1e-3, else rerun with `--its=32` |
+| 7 | null control on the backfill's five-state windows (rule above) | no window valid, ks 211's D* 212.8 fails by condition 2 |
+| 8 | the baseline frozen before leg 8's first read | `baseline949.json` committed before any ks 250 state is read (the freeze refuses otherwise) |
 
-## The fold fit, and two places where the issue's text needed a reading (reported, not quietly decided)
+## The rule (coordinator, issue #949 comment of 2026-11-17 23:18 UTC, fixed before leg 8's first read)
 
-The issue fixes the fit as σ_Δ² = c (D* − D) on the last five states, tested on σ² = 0.3 (260 − D) "with the backfill's exponential
-multiplied in". That linear fit cannot return 260 for a series with the exponential in it (`fold949.py --selftest` prints it:
-the literal fit, model A, gives D* 232 to 240 with residuals 0.4 to 1.0, a control that must miss and does). So `fold949.py` fits
-σ_Δ² = c (D* − D) exp(−2 s (D − D_last)) with c, D* and s free (model B), on the last five states of one leg (one ks), valid when
-every relative residual of σ² is within 10% and D* is past the last state, as the issue says. Model A and model C (s fixed
-from the baseline) are printed beside it. With 1e-3 relative noise on σ (near_null's convergence level; `noise949.log`) B's D* is
-within 0.5 at 10 units from the fold and within 0.11 at 5 units (states 1 unit apart), but 7 at 28 units, with 17% of the draws
-finding no interior minimum: far from the fold D* is not determined by five states, and a fold is claimed only from a fit that is
-valid, whose D* lies within 40 units of the last state, and after the indicator below.
+My readings of the issue's first text (the fit cannot be the literal linear one, because the planted series has the exponential in
+it; the trigger cannot be the literal 0.10, because the baseline slope is 0.4 to 0.5) were adopted, and then the rule was made exact:
 
-The second: the chain's σ_Δ already has a log slope of 0.405 at order 240 (#941), above the 0.10 trigger. Read literally the
-trigger "slope above 0.10 for three consecutive states" fires at the first states, with no fold. The fold's own contribution to
-the slope is 1/(2 (D* − D)), 0.10 at 5 units from D*, so the table also carries the excess over the baseline 0.405 and a
-fold candidate is three consecutive states whose excess exceeds 0.10 (same ks). The literal trigger is also reported.
+- **Baseline.** s(ks) is the least-squares slope of ln σ_Δ against D over each backfill leg (ks 211, 220, 230, 240, five or more states
+  each), fitted as a + b/ks and frozen in `baseline949.json` (`track949.py --freeze`, which refuses once a state of ks ≥ 250 has been
+  read) before leg 8's first read. For ks ≥ 250 it is extrapolated, and the spread against a line in ks is reported.
+- **Trigger.** An interval's slope (−d ln σ_Δ/dD between a state and the previous state of the same leg) minus s(ks) above 0.10 at
+  three consecutive states of one leg.
+- **Fold fit** (`fold949.py`, model B): σ_Δ² = c (D* − D) e^(−2 s D) with c, D*, s free on the five latest states of one ks. Valid only if
+  (1) every relative residual of σ_Δ² is within 10%, (2) D* is past the last state by no more than 3 units, (3) the window moved back
+  by one state gives D* within 0.3, (4) 400 planted series with the same D points, the frozen s and a Gaussian scatter of 0.03 in the
+  interval slope (ln σ error 0.03 h/√2 per state) return the fit's own D* within 0.3 at the 16th and the 84th percentile.
+- **Null control.** The rule on every five-state window of the backfill's legs must return no valid fold, and ks 211's D* of 212.8 must
+  fail by condition 2. A window that passes stops the work until the cause is known.
+- A fold is claimed only from a valid fit with the trigger fired. A later state that contradicts it is reported, not fitted around.
 
-Both readings were adopted by the coordinator (hc, 2026-11-17, posted on the issue): the fit above, and the trigger on the excess slope
-over the baseline, 0.405 or the backfill's own fit if it drifts, above 0.10 for three states.
+Why the issue's first text needed the change (`noise949.log`, `selftest949.log`): the literal linear fit misses a planted fold with the
+exponential in it (D* 232 to 240, residuals 0.4 to 1.0); at 1e-3 relative noise on σ model B's D* is within 0.5 at 10 units from the fold
+and undetermined at 28; and ks 211's five states gave a "valid" fit by the 10% rule alone with D* 212.8, which the chain's later states
+(the same slope to D 232) refute.
 
 ## Planted fold test (before any state was read)
 

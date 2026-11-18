@@ -1,24 +1,32 @@
 #!/usr/bin/env python3
-"""#949: the running table of the Delta mode's sigma along the order-tied chain, with the local slope of ln sigma_Delta and the fold fit.
+"""#949: the running table of the Delta mode's sigma along the order-tied chain, the frozen baseline, the trigger and the fold rule.
 
     track949.py [FOLDER]            read the state JSONs of near_null.py in FOLDER (default: this folder): ksNNN_DDDD.json (one per
                                     state, run949.sh), ctl_planted.json (D 229.0509 re-read, with the planted check) and from941/
                                     (the five states of #941, I941-dh370 9da736f7), write FOLDER/track949.csv and
-                                    FOLDER/intervals949.csv and print the tables
-    track949.py --selftest [--mutate]   planted series with known slopes and a planted fold; --mutate uses a forward difference
-                                    for the slope, which the checks must catch (exit 1)
+                                    FOLDER/intervals949.csv and print the tables, the null control and the fold rule
+    track949.py --freeze [FOLDER]   fit the baseline s(ks) on the backfill's legs (ks 211 to 240) and write baseline949.json; refuses
+                                    when a state of a higher ks has been read, when a leg has fewer than five states or an unconverged
+                                    or unclassified one, or when baseline949.json exists
+    track949.py --selftest [--mutate]   planted records and series with known answers; --mutate uses a forward difference for the
+                                    central slope and the checks must catch it (exit 1)
 
 Classification of a state's six vectors is #941's analyze941.py (copied): the Delta mode is the vector with the largest Delta share
 (it must exceed 0.5), sigma_pair is the geometric mean of the two vectors, not the Delta mode, whose two largest (block, harmonic)
 components are (p1, 3) and (m_h, 3) (in either order, one of them among the first two and the other among the printed five); exactly
-two must qualify. A state that does not classify is printed with its vectors and left out of the slope and the fit.
+two must qualify. A state that does not classify is printed with its vectors and left out of every slope and fit.
 
-A row's local slope is -ln(sigma_{i+1} / sigma_{i-1}) / (D_{i+1} - D_{i-1}) over its two neighbours, and an interval's slope is
--ln(sigma_{i+1} / sigma_i) / (D_{i+1} - D_i) (the quantity #941 quotes). They are used for the triggers and the fit only when every
-state involved has the same ks (the chain changes its horizon order at each leg, and sigma_Delta jumps there). The literal
-trigger of the issue is three consecutive such rows with slope above 0.10; the excess trigger, three with slope - 0.405 above
-0.10 (0.405 is #941's constant slope at order 240). The fold fit (fold949.py: model B, c, D* and s free) is run on the last five
-states of each ks, with model A (the literal linear fit) and model C (s fixed at 0.405) beside it."""
+The rule (coordinator, issue #949, 2026-11-17 23:18 UTC, fixed before leg 8's first read):
+  baseline   s(ks) = a + b / ks, a least-squares line in 1/ks through each backfill leg's slope of ln sigma_Delta against D (the leg's
+             states, ks 211, 220, 230, 240; the least-squares slope over the leg), frozen in baseline949.json before any state of
+             ks >= 250 is read. For ks >= 250 it is extrapolated, and the spread against a line in ks is reported.
+  trigger    the interval slope -ln(sigma_i / sigma_{i-1}) / (D_i - D_{i-1}) minus s(ks) exceeds 0.10 at three consecutive states of one
+             leg (an interval belongs to its later state, and both states must have the same ks).
+  fold       fold949.rule on the five latest states of one ks: residuals within 10%, D* past the last state by no more than 3, the
+             window moved back by one state within 0.3, and the planted series with the frozen slope and a scatter of 0.03 returns D*
+             within 0.3. A fold is claimed only from a valid fit with the trigger fired.
+  null       the rule applied to every five-state window of every backfill leg must return no valid fold, and the ks 211 window's D*
+             of 212.8 must fail by condition 2 (a window that passes stops the work)."""
 import csv
 import glob
 import json
@@ -26,14 +34,18 @@ import math
 import os
 import re
 import sys
+import time
 
 import numpy as np
 
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
 import fold949  # noqa: E402
 
-BASE = 0.405                        # #941's log slope at order 240
+TRIGGER = 0.10
 QUOTED_941 = [0.412, 0.410, 0.407, 0.405]   # the intervals over D 229.0509, 229.9822, 230.9281, 231.7466, 232.0 (#941's closing)
+BACKFILL_KS = (211, 220, 230, 240)
+EXTRAP_KS = (250, 260, 270, 300, 400)
 
 
 def is_pair_member(top):
@@ -61,22 +73,21 @@ def row_of(rec, src):
     try:
         d, pair = classify(rec)
     except ValueError as e:
-        r.update(ok=False, note=str(e), sd=float("nan"), sp=float("nan"), share=float("nan"), conv=float("nan"), dvec=0, pvec="")
         d = int(np.argmin([x["sigma"] for x in v]))
-        r.update(sd=v[d]["sigma"], share=v[d]["delta"], conv=v[d]["conv"])
+        r.update(ok=False, note=str(e), sd=v[d]["sigma"], sp=float("nan"), share=v[d]["delta"], share2=float("nan"), conv=v[d]["conv"],
+                 dvec=0, pvec="")
         return r
     second = sorted((x["delta"] for i, x in enumerate(v) if i != d), reverse=True)[0]
-    r.update(sd=v[d]["sigma"], sp=math.sqrt(v[pair[0]]["sigma"] * v[pair[1]]["sigma"]), share=v[d]["delta"], conv=v[d]["conv"],
-             dvec=d + 1, pvec=f"{pair[0] + 1}+{pair[1] + 1}", s5=v[4]["sigma"], share2=second)
+    r.update(sd=v[d]["sigma"], sp=math.sqrt(v[pair[0]]["sigma"] * v[pair[1]]["sigma"]), share=v[d]["delta"], share2=second,
+             conv=v[d]["conv"], dvec=d + 1, pvec=f"{pair[0] + 1}+{pair[1] + 1}")
     return r
 
 
 def load(folder):
-    rows = {}
+    rows, own = {}, {}
     for p in sorted(glob.glob(os.path.join(folder, "from941", "o*_D*.json"))):
         r = row_of(json.load(open(p)), "I941-dh370")
         rows[(r["ks"], round(r["D"], 6))] = r
-    own = {}
     for p in sorted(glob.glob(os.path.join(folder, "ks*_D*.json")) + glob.glob(os.path.join(folder, "ctl_planted.json"))):
         r = row_of(json.load(open(p)), os.path.basename(p)[:-5])
         key = (r["ks"], round(r["D"], 6))
@@ -87,38 +98,64 @@ def load(folder):
     return sorted(rows.values(), key=lambda r: r["D"]), own
 
 
-def slopes(rows, central=True):
-    """per row: local slope over the two neighbours (None at the ends or where a neighbour is not classified), and whether its three
-    states share a ks"""
+def central(rows, forward=False):
+    """per row: the slope over the two neighbours -ln(sigma_{i+1} / sigma_{i-1}) / (D_{i+1} - D_{i-1}), or None; forward=True (the
+    --mutate control) takes the forward difference instead"""
     out = []
     for i, r in enumerate(rows):
-        s, same = None, True
+        s = None
         if 0 < i < len(rows) - 1:
             a, b = rows[i - 1], rows[i + 1]
-            if a["ok"] and b["ok"] and r["ok"]:
-                if central:
-                    s = -math.log(b["sd"] / a["sd"]) / (b["D"] - a["D"])
-                else:                          # --mutate: a forward difference
-                    s = -math.log(b["sd"] / r["sd"]) / (b["D"] - r["D"])
-                same = a["ks"] == r["ks"] == b["ks"]
-        out.append((s, same))
+            if a["ok"] and b["ok"] and r["ok"] and a["ks"] == r["ks"] == b["ks"]:
+                lo = r if forward else a
+                s = -math.log(b["sd"] / lo["sd"]) / (b["D"] - lo["D"])
+        out.append(s)
     return out
 
 
-def intervals(rows):
-    out = []
+def interval_slopes(rows):
+    """per row: the slope of the interval from the previous row, or None unless both are classified and share a ks"""
+    out = [None]
     for a, b in zip(rows, rows[1:]):
-        if a["ok"] and b["ok"]:
-            out.append(dict(D0=a["D"], D1=b["D"], ks0=a["ks"], ks1=b["ks"], slope=-math.log(b["sd"] / a["sd"]) / (b["D"] - a["D"]),
-                            cross=a["ks"] != b["ks"]))
+        out.append(-math.log(b["sd"] / a["sd"]) / (b["D"] - a["D"]) if a["ok"] and b["ok"] and a["ks"] == b["ks"] else None)
     return out
 
 
-def run_trigger(rows, sl, key):
-    """the index of the third consecutive row (same ks run, same-ks neighbours) whose key(slope) exceeds 0.10, or None"""
+def leg_slope(g):
+    """least-squares slope of -ln sigma_Delta against D over a leg's states"""
+    D = np.array([r["D"] for r in g])
+    y = -np.log([r["sd"] for r in g])
+    return float(np.polyfit(D, y, 1)[0])
+
+
+def make_baseline(rows):
+    """the backfill's baseline: per leg slope, a + b/ks and a + b' ks through them, and their extrapolations"""
+    legs = {}
+    for ks in BACKFILL_KS:
+        g = [r for r in rows if r["ks"] == ks]
+        if len(g) < 5 or not all(r["ok"] and r["conv"] < 1e-3 for r in g):
+            raise ValueError(f"ks {ks}: {len(g)} states, or one is unclassified or unconverged")
+        legs[ks] = dict(n=len(g), D0=g[0]["D"], D1=g[-1]["D"], slope=leg_slope(g))
+    ks = np.array(sorted(legs), float)
+    sl = np.array([legs[int(k)]["slope"] for k in ks])
+    b, a = np.polyfit(1 / ks, sl, 1)
+    b2, a2 = np.polyfit(ks, sl, 1)
+    for k, y in zip(ks, a + b / ks):
+        legs[int(k)]["fit_inv_ks"] = float(y)
+    return dict(inv_ks=[float(a), float(b)], lin_ks=[float(a2), float(b2)], legs=legs,
+                extrapolation={str(k): dict(inv_ks=float(a + b / k), lin_ks=float(a2 + b2 * k)) for k in EXTRAP_KS},
+                states=[r["state"] for r in rows if r["ks"] in BACKFILL_KS])
+
+
+def s_of(base, ks):
+    return base["inv_ks"][0] + base["inv_ks"][1] / ks
+
+
+def trigger(rows, iv, base):
+    """the index of the third consecutive row of one leg whose interval slope exceeds s(ks) by more than TRIGGER, or None"""
     n = 0
-    for i, (r, (s, same)) in enumerate(zip(rows, sl)):
-        if s is not None and same and key(s) > 0.10 and (n == 0 or rows[i - 1]["ks"] == r["ks"]):
+    for i, r in enumerate(rows):
+        if iv[i] is not None and iv[i] - s_of(base, r["ks"]) > TRIGGER and (n == 0 or rows[i - 1]["ks"] == r["ks"]):
             n += 1
             if n >= 3:
                 return i
@@ -127,108 +164,161 @@ def run_trigger(rows, sl, key):
     return None
 
 
-def fits(rows):
-    """the fold fit on the last five states of each ks that has five: [(ks, D list, A, B, C)]"""
+def windows(rows, base):
+    """the fold rule on the window ending at each state that has at least five states of its leg up to it:
+    [(ks, window rows, rule result)]"""
     out = []
     for ks in sorted({r["ks"] for r in rows}):
-        g = [r for r in rows if r["ks"] == ks and r["ok"]][-5:]
-        if len(g) < 5:
-            continue
-        D = np.array([r["D"] for r in g])
-        s2 = np.array([r["sd"] ** 2 for r in g])
-        out.append((ks, D, fold949.fit_A(D, s2), fold949.fit_B(D, s2), fold949.fit_C(D, s2, BASE)))
+        g = [r for r in rows if r["ks"] == ks and r["ok"]]
+        for i in range(5, len(g) + 1):
+            D = [r["D"] for r in g[:i]]
+            s2 = [r["sd"] ** 2 for r in g[:i]]
+            out.append((ks, g[i - 5:i], fold949.rule(D, s2, s_of(base, ks))))
     return out
 
 
-def tables(folder, central=True, quiet=False):
+def fmt_conds(c):
+    return "".join({True: "T", False: "F", None: "-"}[x] for x in c)
+
+
+def freeze(folder):
+    path = os.path.join(folder, "baseline949.json")
+    if os.path.exists(path):
+        sys.exit("baseline949.json exists: the baseline is frozen")
+    late = [p for p in glob.glob(os.path.join(folder, "ks*_D*.json")) if int(re.match(r"ks(\d+)_", os.path.basename(p)).group(1)) > 240]
+    if late:
+        sys.exit(f"a state of ks > 240 has been read ({os.path.basename(late[0])}): the baseline cannot be frozen before leg 8's first read")
+    rows, _ = load(folder)
+    base = make_baseline(rows)
+    base["frozen_utc"] = time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime())
+    json.dump(base, open(path, "w"), indent=1)
+    print(f"frozen {base['frozen_utc']} UTC: s(ks) = {base['inv_ks'][0]:.5f} + {base['inv_ks'][1]:.3f} / ks")
+    for ks, l in base["legs"].items():
+        print(f"  ks {ks}: {l['n']} states D {l['D0']:.4f} to {l['D1']:.4f}, leg slope {l['slope']:.4f}, fit {l['fit_inv_ks']:.4f} "
+              f"(residual {l['slope'] - l['fit_inv_ks']:+.4f})")
+    for k, e in base["extrapolation"].items():
+        print(f"  ks {k}: 1/ks {e['inv_ks']:.4f}, linear in ks {e['lin_ks']:.4f}, spread {abs(e['inv_ks'] - e['lin_ks']):.4f}")
+
+
+def tables(folder, forward=False):
     rows, own = load(folder)
-    sl = slopes(rows, central)
-    iv = intervals(rows)
+    bpath = os.path.join(folder, "baseline949.json")
+    base = json.load(open(bpath)) if os.path.exists(bpath) else None
+    cen, iv = central(rows, forward), interval_slopes(rows)
+    ok = True
     with open(os.path.join(folder, "track949.csv"), "w", newline="") as f:
         w = csv.writer(f)
-        w.writerow(["D", "ks", "sigma_delta", "sigma_pair", "delta_share", "delta_share_2nd", "delta_vec", "pair_vecs", "conv_delta", "slope", "excess_over_0.405",
-                    "slope_same_ks", "classified", "source"])
-        for r, (s, same) in zip(rows, sl):
-            w.writerow([f"{r['D']:.6f}", r["ks"], f"{r['sd']:.6e}", f"{r.get('sp', float('nan')):.6e}", f"{r['share']:.4f}", f"{r.get('share2', float('nan')):.4f}", r.get("dvec", ""),
-                        r.get("pvec", ""), f"{r['conv']:.1e}", "" if s is None else f"{s:.4f}", "" if s is None else f"{s - BASE:+.4f}",
-                        "" if s is None else int(same), int(r["ok"]), r["src"]])
+        w.writerow(["D", "ks", "sigma_delta", "sigma_pair", "delta_share", "delta_share_2nd", "delta_vec", "pair_vecs", "conv_delta",
+                    "local_slope", "interval_slope", "s_baseline", "excess", "classified", "source"])
+        for r, c, v in zip(rows, cen, iv):
+            sb = None if base is None else s_of(base, r["ks"])
+            w.writerow([f"{r['D']:.6f}", r["ks"], f"{r['sd']:.6e}", f"{r['sp']:.6e}", f"{r['share']:.4f}", f"{r['share2']:.4f}", r["dvec"],
+                        r["pvec"], f"{r['conv']:.1e}", "" if c is None else f"{c:.4f}", "" if v is None else f"{v:.4f}",
+                        "" if sb is None else f"{sb:.4f}", "" if v is None or sb is None else f"{v - sb:+.4f}", int(r["ok"]), r["src"]])
     with open(os.path.join(folder, "intervals949.csv"), "w", newline="") as f:
         w = csv.writer(f)
         w.writerow(["D0", "D1", "ks0", "ks1", "slope", "crosses_ks"])
-        for x in iv:
-            w.writerow([f"{x['D0']:.6f}", f"{x['D1']:.6f}", x["ks0"], x["ks1"], f"{x['slope']:.4f}", int(x["cross"])])
-    ok = True
-    if not quiet:
-        print(f"{'D':>9} {'ks':>4} {'sigma_Delta':>12} {'sigma_pair':>12} {'Dshare':>7} {'2nd':>6} {'conv':>8} {'slope':>7} {'excess':>7}  note")
-        for r, (s, same) in zip(rows, sl):
-            conv = "" if r["conv"] < 1e-3 else "  NOT CONVERGED (rerun --its=32)"
-            note = ("" if r["ok"] else "  NOT CLASSIFIED: " + r["note"]) + conv + ("" if same else "  (spans a ks change)")
-            print(f"{r['D']:9.4f} {r['ks']:4d} {r['sd']:12.4e} {r.get('sp', float('nan')):12.4e} {r['share']:7.3f} {r.get('share2', float('nan')):6.3f} {r['conv']:8.1e} "
-                  f"{'' if s is None else format(s, '7.4f'):>7} {'' if s is None else format(s - BASE, '+7.4f'):>7}  "
-                  f"v{r.get('dvec', '?')}/{r.get('pvec', '?')}{note}")
-        print("\nintervals (slope -d ln sigma_Delta / dD per consecutive pair):")
-        for x in iv:
-            print(f"  {x['D0']:9.4f} -> {x['D1']:9.4f}  ks {x['ks0']}->{x['ks1']}  {x['slope']:.4f}{'  (crosses a ks change)' if x['cross'] else ''}")
-        bad = [r for r in rows if not r["ok"] or r["conv"] >= 1e-3]
-        print(f"\nstates {len(rows)}, not classified or not converged: {len(bad)}" + "".join(f"\n  D {r['D']:.4f}: {r['note'] or 'conv ' + format(r['conv'], '.1e')}" for r in bad))
-        # criterion 5: #941's four intervals
-        w941 = [x for x in iv if 229.0 < x["D0"] and x["D1"] <= 232.0001 and x["ks0"] == x["ks1"] == 240][-4:]
-        if len(w941) == 4:
-            d = [abs(x["slope"] - q) for x, q in zip(w941, QUOTED_941)]
-            print(f"\ncriterion 5, intervals D 229.05 to 232.0: {', '.join(format(x['slope'], '.4f') for x in w941)} against #941's "
-                  f"{', '.join(map(str, QUOTED_941))}: largest difference {max(d):.4f}: {'pass' if max(d) <= 0.01 else 'FAIL'}")
-            ok &= max(d) <= 0.01
-        for key, r in own.items():
-            ref = next(x for x in rows if (x["ks"], round(x["D"], 6)) == key)
-            print(f"re-read of #941's state D {key[1]:.4f}: sigma_Delta {r['sd']:.10e} here ({r['src']}) against {ref['sd']:.10e} (relative "
-                  f"difference {abs(r['sd'] / ref['sd'] - 1):.1e}); Delta share {r['share']:.4f} against {ref['share']:.4f}")
-        it = run_trigger(rows, sl, lambda s: s)
-        ie = run_trigger(rows, sl, lambda s: s - BASE)
-        print(f"\nliteral trigger (slope > 0.10, three in a row, same ks): {'at D ' + format(rows[it]['D'], '.4f') if it is not None else 'not reached'}")
-        print(f"excess trigger (slope - 0.405 > 0.10, three in a row, same ks): {'at D ' + format(rows[ie]['D'], '.4f') + ' (fold candidate)' if ie is not None else 'not reached'}")
-        print("\nfold fit on the last five states of each ks (valid: every relative residual of sigma^2 within 0.10, D* past the last state):")
-        for ks, D, A, B, C in fits(rows):
-            vb = fold949.valid(B, D)
-            res = "n/a" if not B["interior"] else f"{np.abs(B['res']).max():.1e}"
-            print(f"  ks {ks}, D {D[0]:.4f} to {D[-1]:.4f}: B D* {B['Dstar']:.1f} (c {B['c']:.3g}, s {B['s']:.4f}, max |res| {res}, "
-                  f"{'valid' if vb else 'not valid'}{'' if B['interior'] else ', no interior minimum'}); "
-                  f"A D* {A['Dstar']:.1f} max|res| {np.abs(A['res']).max():.2f}; C (s 0.405) D* {C['Dstar']:.1f} max|res| {np.abs(C['res']).max():.2f}")
-    return ok, rows, sl
+        for a, b in zip(rows, rows[1:]):
+            if a["ok"] and b["ok"]:
+                w.writerow([f"{a['D']:.6f}", f"{b['D']:.6f}", a["ks"], b["ks"], f"{-math.log(b['sd'] / a['sd']) / (b['D'] - a['D']):.4f}",
+                            int(a["ks"] != b["ks"])])
+    print(f"{'D':>9} {'ks':>4} {'sigma_Delta':>12} {'sigma_pair':>12} {'Dshare':>7} {'2nd':>6} {'conv':>8} {'local':>7} {'interval':>8} {'excess':>7}  note")
+    for r, c, v in zip(rows, cen, iv):
+        conv = "" if r["conv"] < 1e-3 else "  NOT CONVERGED (rerun --its=32)"
+        note = ("" if r["ok"] else "  NOT CLASSIFIED: " + r["note"]) + conv
+        ex = "" if v is None or base is None else format(v - s_of(base, r["ks"]), "+7.4f")
+        print(f"{r['D']:9.4f} {r['ks']:4d} {r['sd']:12.4e} {r['sp']:12.4e} {r['share']:7.3f} {r['share2']:6.3f} {r['conv']:8.1e} "
+              f"{'' if c is None else format(c, '7.4f'):>7} {'' if v is None else format(v, '8.4f'):>8} {ex:>7}  v{r['dvec']}/{r['pvec']}{note}")
+    bad = [r for r in rows if not r["ok"] or r["conv"] >= 1e-3]
+    print(f"\nstates {len(rows)}, not classified or not converged: {len(bad)}"
+          + "".join(f"\n  D {r['D']:.4f}: {r['note'] or 'conv ' + format(r['conv'], '.1e')}" for r in bad))
+    # criterion 5: #941's four intervals, and the re-reads
+    w941 = [(r, v) for r, v in zip(rows, iv) if r["ks"] == 240 and 229.5 < r["D"] <= 232.0001 and v is not None][-4:]
+    if len(w941) == 4:
+        d = [abs(v - q) for (_, v), q in zip(w941, QUOTED_941)]
+        print(f"\ncriterion 5, intervals D 229.05 to 232.0: {', '.join(format(v, '.4f') for _, v in w941)} against #941's "
+              f"{', '.join(map(str, QUOTED_941))}: largest difference {max(d):.4f}: {'pass' if max(d) <= 0.01 else 'FAIL'}")
+        ok &= max(d) <= 0.01
+    for key, r in own.items():
+        ref = next(x for x in rows if (x["ks"], round(x["D"], 6)) == key)
+        print(f"re-read of #941's state D {key[1]:.4f}: sigma_Delta {r['sd']:.10e} here ({r['src']}) against {ref['sd']:.10e} (relative "
+              f"difference {abs(r['sd'] / ref['sd'] - 1):.1e}); Delta share {r['share']:.4f} against {ref['share']:.4f}")
+    if base is None:
+        print("\nbaseline: not frozen (track949.py --freeze, once the backfill is read and before any state of ks >= 250)")
+        try:
+            b = make_baseline(rows)
+            print(f"  the backfill so far would give s(ks) = {b['inv_ks'][0]:.5f} + {b['inv_ks'][1]:.3f} / ks; legs "
+                  + ", ".join(f"{k}: {l['slope']:.4f} (fit {l['fit_inv_ks']:.4f})" for k, l in b["legs"].items()))
+        except ValueError as e:
+            print("  not yet possible:", e)
+        return ok, rows
+    print(f"\nbaseline frozen {base['frozen_utc']} UTC: s(ks) = {base['inv_ks'][0]:.5f} + {base['inv_ks'][1]:.3f} / ks; legs "
+          + ", ".join(f"{k}: {l['slope']:.4f} (fit {l['fit_inv_ks']:.4f})" for k, l in base["legs"].items()))
+    print("  extrapolation to " + ", ".join(f"ks {k}: {e['inv_ks']:.4f} / {e['lin_ks']:.4f} (1/ks, linear in ks)" for k, e in base["extrapolation"].items()))
+    it = trigger(rows, iv, base)
+    print(f"\ntrigger (interval slope - s(ks) > {TRIGGER}, three consecutive states of one leg): "
+          f"{'FIRED at D ' + format(rows[it]['D'], '.4f') if it is not None else 'not reached'}")
+    mx = max(((v - s_of(base, r["ks"]), r["D"]) for r, v in zip(rows, iv) if v is not None), default=None)
+    if mx:
+        print(f"  largest excess so far {mx[0]:+.4f} at D {mx[1]:.4f}")
+    wins = windows(rows, base)
+    print("\nfold rule on every five-state window (conditions: 1 residuals, 2 D* within 3 past, 3 shifted window, 4 planted scatter; "
+          "T true, F false, - not evaluated):")
+    null_fail = []
+    for ks, g, res in wins:
+        B = res["B"]
+        back = ks in BACKFILL_KS
+        if back and res["valid"]:
+            null_fail.append((ks, g[-1]["D"]))
+        print(f"  ks {ks} D {g[0]['D']:.4f} to {g[-1]['D']:.4f}: D* {B['Dstar']:.2f} (s {B['s']:.3f}) conditions {fmt_conds(res['conds'])} "
+              f"{'VALID' if res['valid'] else 'not valid'}{'  [backfill: null control]' if back else ''}")
+    w211 = [res for ks, g, res in wins if ks == 211]
+    if w211:
+        c2 = w211[0]["conds"][1] is False
+        print(f"null control: {'no backfill window is valid' if not null_fail else 'WINDOWS VALID ' + str(null_fail) + ': STOP, find the cause'}; "
+              f"ks 211's window D* {w211[0]['B']['Dstar']:.1f}: {'fails by condition 2' if c2 else 'DOES NOT FAIL BY CONDITION 2'}")
+        ok &= not null_fail and c2
+    late = [(ks, g, res) for ks, g, res in wins if ks not in BACKFILL_KS and res["valid"]]
+    if late:
+        ks, g, res = late[-1]
+        print(f"\nVALID FOLD FIT at ks {ks}, window ending D {g[-1]['D']:.4f}: D* {res['B']['Dstar']:.2f}; trigger "
+              f"{'fired' if it is not None else 'NOT fired (no claim)'}")
+    return ok, rows
 
 
 def selftest(mutate):
-    """planted series: a pure exponential (slope 0.40, uneven D), a fold with the exponential (D* 260), and a record that must not
-    classify; every check must be able to fail, and the forward-difference mutation must fail the fold series' central slope"""
+    """planted records and series; every check must be able to fail, and --mutate (forward difference for the central slope) must fail"""
     ok = True
     D = [200.0, 202.0, 203.5, 206.0, 208.0, 210.0, 213.0]
     rows = [dict(D=d, ks=211, sd=1e-14 * math.exp(-0.40 * (d - 200)), ok=True) for d in D]
-    sl = slopes(rows, not mutate)
-    e1 = max(abs(s - 0.40) for s, _ in sl if s is not None)
+    e1 = max(abs(s - 0.40) for s in central(rows, mutate) if s is not None)
     ok &= e1 < 1e-12
     print(f"selftest: pure exponential, central slope error {e1:.1e}: {'pass' if e1 < 1e-12 else 'FAIL'}")
     D = [233.0, 234.0, 235.0, 236.0, 237.0, 238.0]
-    s2 = [0.3 * (260 - d) * math.exp(-2 * 0.405 * (d - 232)) for d in D]
-    rows = [dict(D=d, ks=250, sd=math.sqrt(v), ok=True) for d, v in zip(D, s2)]
-    sl = slopes(rows, not mutate)
-    # central slope of the planted fold series: exact secant -ln(sd_{i+1}/sd_{i-1})/(D_{i+1}-D_{i-1}) = 0.405 + ln((260-D_{i-1})/(260-D_{i+1}))/(2 dD)
+    rows = [dict(D=d, ks=250, sd=math.sqrt(0.3 * (260 - d) * math.exp(-2 * 0.405 * (d - 232))), ok=True) for d in D]
+    cen = central(rows, mutate)
     want = [0.405 + 0.5 * math.log((260 - D[i - 1]) / (260 - D[i + 1])) / (D[i + 1] - D[i - 1]) for i in range(1, 5)]
-    e2 = max(abs(sl[i][0] - want[i - 1]) for i in range(1, 5))
+    e2 = max(abs(cen[i] - want[i - 1]) for i in range(1, 5))
     ok &= e2 < 1e-12
     print(f"selftest: planted fold + exponential, central slope error {e2:.1e}: {'pass' if e2 < 1e-12 else 'FAIL'}")
-    it = run_trigger(rows, sl, lambda s: s)
-    ie = run_trigger(rows, sl, lambda s: s - BASE)
-    ok &= it == 3 and ie is None            # literal trigger fires at the third slope, the excess (about 0.02) never does
-    print(f"selftest: planted fold 28 units off: literal trigger row {it} (want 3), excess trigger {ie} (want None): "
-          f"{'pass' if it == 3 and ie is None else 'FAIL'}")
-    D = [255.0, 255.5, 256.0, 256.5, 257.0, 257.5]
-    rows = [dict(D=d, ks=250, sd=math.sqrt(0.3 * (260 - d) * math.exp(-2 * 0.405 * (d - 232))), ok=True) for d in D]
-    sl = slopes(rows, not mutate)
-    ie = run_trigger(rows, sl, lambda s: s - BASE)
-    ok &= ie is not None
-    print(f"selftest: planted fold 3 to 5 units off: excess trigger row {ie} (want not None): {'pass' if ie is not None else 'FAIL'}")
-    sl2 = slopes([dict(D=1.0, ks=1, sd=1.0, ok=True), dict(D=2.0, ks=2, sd=0.5, ok=True), dict(D=3.0, ks=2, sd=0.25, ok=True)])
-    ok &= sl2[1][1] is False
-    print(f"selftest: a ks change among the three states is flagged: {'pass' if sl2[1][1] is False else 'FAIL'}")
+    # trigger: baseline s(ks) = 0.40 + 20 / ks, so 0.48 at ks 250; intervals 0.55 are 0.07 over (no), 0.60 are 0.12 over (yes)
+    base = dict(inv_ks=[0.40, 20.0])
+    s250 = s_of(base, 250)
+    rows = [dict(D=float(i), ks=250, sd=1.0, ok=True) for i in range(8)]
+    for i in range(1, 8):
+        rows[i]["sd"] = rows[i - 1]["sd"] * math.exp(-(0.55 if i < 4 else 0.60))
+    iv = interval_slopes(rows)
+    t = trigger(rows, iv, base)
+    t_early = trigger(rows[:6], iv[:6], base)
+    ok &= abs(s250 - 0.48) < 1e-12 and t == 6 and t_early is None
+    print(f"selftest: baseline {s250:.3f} at ks 250; intervals 0.07 over (x3), then 0.12 over (x4): trigger at the third 0.12 "
+          f"(row {t}, want 6), not on the first six rows ({t_early}): {'pass' if t == 6 and t_early is None else 'FAIL'}")
+    rows2 = [dict(r) for r in rows]
+    for i in (5, 6, 7):
+        rows2[i]["ks"] = 260
+    t2 = trigger(rows2, interval_slopes(rows2), base)
+    ok &= t2 is None
+    print(f"selftest: the same series with a ks change at row 5: trigger {t2} (want None): {'pass' if t2 is None else 'FAIL'}")
     rec = dict(vectors=[dict(sigma=1e-9 * (i + 1), delta=0.1, top=[["p1", 1, 0.5]]) for i in range(6)], state="x_ks1/y.npz", D=1.0)
     try:
         classify(rec)
@@ -236,6 +326,19 @@ def selftest(mutate):
         print("selftest: a record with no Delta mode must not classify: FAIL")
     except ValueError:
         print("selftest: a record with no Delta mode does not classify: pass")
+    # baseline fit: planted legs on s = 0.40 + 20/ks exactly must come back with a, b to 1e-9, and the two extrapolations differ
+    rows = []
+    for ks in BACKFILL_KS:
+        s = 0.40 + 20.0 / ks
+        for j in range(6):
+            rows.append(dict(D=float(ks) + j, ks=ks, sd=math.exp(-s * j), ok=True, conv=0.0, state=f"x_ks{ks}/y"))
+    b = make_baseline(rows)
+    eb = max(abs(b["inv_ks"][0] - 0.40), abs(b["inv_ks"][1] - 20.0))
+    good = eb < 1e-9 and abs(b["extrapolation"]["250"]["inv_ks"] - 0.48) < 1e-9 and abs(b["extrapolation"]["250"]["lin_ks"] - 0.48) > 1e-4
+    ok &= good
+    print(f"selftest: baseline fit of planted legs, a and b error {eb:.1e}, 1/ks extrapolation to ks 250 "
+          f"{b['extrapolation']['250']['inv_ks']:.6f} (want 0.48), linear in ks {b['extrapolation']['250']['lin_ks']:.4f} (differs): "
+          f"{'pass' if good else 'FAIL'}")
     print(f"selftest{' --mutate' if mutate else ''}: {'pass' if ok else 'FAIL'}")
     return ok
 
@@ -244,4 +347,8 @@ if __name__ == "__main__":
     if "--selftest" in sys.argv:
         sys.exit(0 if selftest("--mutate" in sys.argv) else 1)
     args = [a for a in sys.argv[1:] if not a.startswith("--")]
-    sys.exit(0 if tables(args[0] if args else os.path.dirname(os.path.abspath(__file__)))[0] else 1)
+    folder = args[0] if args else HERE
+    if "--freeze" in sys.argv:
+        freeze(folder)
+        sys.exit(0)
+    sys.exit(0 if tables(folder)[0] else 1)

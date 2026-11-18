@@ -16,6 +16,12 @@ fit has three parameters, c, D* and s, on the last five states of one leg (one k
      the end of the scan is reported as "no interior minimum" (no fold: the series is a pure exponential to the fit).
   C  s fixed from outside (the baseline slope of the leg's earlier states): A on sigma^2 exp(2 s (D - D_last)).
 
+The coordinator's validity rule (issue #949, 2026-11-17 23:18 UTC) is rule() below: model B on the five latest states of one ks is
+valid only if (1) every relative residual of sigma^2 is within 10%, (2) D* is past the last state by no more than 3 units, (3) the
+window moved back by one state gives D* within 0.3 of it, and (4) a planted series with the same D points, the frozen baseline slope
+s and a scatter of 0.03 in the interval slope (a Gaussian ln sigma error of 0.03 h / sqrt 2 per state, h the mean spacing), fitted
+400 times, returns the planted D* (the fit's own) within 0.3 at the 16th and the 84th percentile.
+
 Residuals are relative: (sigma^2 - fit) / sigma^2 over the five states. The fit is valid when every |residual| <= 0.10 and D* is
 past the last state (the issue's rule). Planted truth: sigma^2 = 0.3 (D* - D) exp(-2 s (D - 232)) with D* 260 and 262, s 0.405,
 on the five #941 states and two other grids, must give D* within 0.05 of the planted one."""
@@ -91,6 +97,92 @@ GRIDS = {"941": [229.0509, 229.9822, 230.9281, 231.7466, 232.0], "leg8": [233.0,
          "wide": [232.0, 234.0, 236.0, 238.0, 240.0]}
 
 
+SCATTER, DIST_MAX, SHIFT_TOL, NOISE_TOL = 0.03, 3.0, 0.3, 0.3
+
+
+def planted_noise(D, Dstar, s, n=400, seed=949):
+    """16, 50 and 84th percentile of model B's D* on n planted series (D* planted, slope s, scatter SCATTER in the interval slope)"""
+    rng = np.random.default_rng(seed)
+    D = np.asarray(D, float)
+    h = (D[-1] - D[0]) / (len(D) - 1)
+    tau = SCATTER * h / math.sqrt(2)
+    got = []
+    for _ in range(n):
+        y = (Dstar - D) * np.exp(-2 * s * (D - D[-1])) * np.exp(2 * tau * rng.standard_normal(len(D)))
+        got.append(fit_B(D, y)["Dstar"])
+    return np.percentile(np.array(got), [16, 50, 84])
+
+
+def rule(D, s2, s_frozen, n=400):
+    """the validity rule on the latest five states of D, s2 (>= 5 states of one ks, D ascending; a sixth gives the shifted window):
+    dict(B, conds=(c1, c2, c3, c4) each True, False or None when it could not be evaluated, valid)"""
+    D, s2 = np.asarray(D, float), np.asarray(s2, float)
+    B = fit_B(D[-5:], s2[-5:])
+    c1 = bool(B["interior"] and np.all(np.abs(B["res"]) <= 0.10))
+    d = B["Dstar"] - D[-1]
+    c2 = bool(B["interior"] and 0 < d <= DIST_MAX)
+    c3 = None
+    if len(D) >= 6:
+        Bs = fit_B(D[-6:-1], s2[-6:-1])
+        c3 = bool(Bs["interior"] and abs(Bs["Dstar"] - B["Dstar"]) <= SHIFT_TOL)
+    c4, q = None, None
+    if c2:
+        q = planted_noise(D[-5:], B["Dstar"], s_frozen, n)
+        c4 = bool(np.all(np.abs(q[[0, 2]] - B["Dstar"]) <= NOISE_TOL))
+    conds = (c1, c2, c3, c4)
+    return dict(B=B, conds=conds, q=q, valid=all(c is True for c in conds))
+
+
+def rule_selftest():
+    ok = True
+    s = 0.40
+
+    def fold(Dstar, D, bad_back=0.0):
+        D = np.asarray(D, float)
+        y = 0.3 * (Dstar - D) * np.exp(-2 * s * (D - 232.0))
+        if bad_back:
+            y[0] *= 1 + bad_back
+        return D, y
+
+    def show(name, r, want):
+        nonlocal ok
+        good = r["conds"] == want[0] and r["valid"] == want[1] and (len(want) < 3 or abs(r["B"]["Dstar"] - want[2]) <= 0.05)
+        ok &= good
+        print(f"rule, {name}: D* {r['B']['Dstar']:.3f}, conditions {r['conds']}, valid {r['valid']} "
+              f"(want {want[0]}, {want[1]}): {'pass' if good else 'FAIL'}")
+
+    # a fold 1 unit past the last state, states 0.5 apart: all four hold, D* is the planted one
+    D, y = fold(260.0, [256.0, 256.5, 257.0, 257.5, 258.0, 259.0])
+    show("fold 1 unit past the last state", rule(D, y, s), ((True, True, True, True), True, 260.0))
+    # 5 units past: condition 2 fails alone
+    D, y = fold(260.0, [250.0, 251.0, 252.0, 253.0, 254.0, 255.0])
+    show("fold 5 units past the last state", rule(D, y, s), ((True, False, True, None), False, 260.0))
+    # condition 3 control: the sixth state back is 30% off, the window itself is exact
+    D, y = fold(260.0, [256.0, 256.5, 257.0, 257.5, 258.0, 259.0], bad_back=0.0)
+    D2, y2 = fold(260.0, [256.0, 256.5, 257.0, 257.5, 258.0, 259.0])
+    y2[0] *= 1.3
+    r = rule(D2, y2, s)
+    c3_alone = r["conds"][0] and r["conds"][1] and r["conds"][2] is False
+    ok &= c3_alone and not r["valid"]
+    print(f"rule, sixth state back 30% off: conditions {r['conds']}, valid {r['valid']} (want c3 False alone): {'pass' if c3_alone else 'FAIL'}")
+    # condition 4 control: exact data 3 units short with states 1 apart, the planted scatter spreads D* by more than 0.3
+    D, y = fold(260.0, [252.1, 253.1, 254.1, 255.1, 256.1, 257.1])
+    r = rule(D, y, s)
+    c4_alone = r["conds"][:3] == (True, True, True) and r["conds"][3] is False
+    ok &= c4_alone and not r["valid"]
+    print(f"rule, exact fold 2.9 units past, scatter 0.03 spreads D* to {'n/a' if r['q'] is None else ' '.join(f'{x:.2f}' for x in r['q'])}: conditions "
+          f"{r['conds']} (want c4 False alone): {'pass' if c4_alone else 'FAIL'}")
+    # no fold: a drifting exponential with scatter 0.03 in the slope must not pass, in any window
+    rng = np.random.default_rng(7)
+    Dn = np.arange(200.0, 232.0, 1.0)
+    lns = -np.cumsum(0.5 - 0.004 * (Dn - 200)) + (0.03 / math.sqrt(2)) * rng.standard_normal(len(Dn))
+    wins = [rule(Dn[:i + 1], np.exp(2 * lns[:i + 1]), 0.45, n=100)["valid"] for i in range(5, len(Dn))]
+    ok &= not any(wins)
+    print(f"rule, no fold (slope drifting 0.50 to 0.38, scatter 0.03), {len(wins)} windows valid: {sum(wins)} (want 0): "
+          f"{'pass' if not any(wins) else 'FAIL'}")
+    return ok
+
+
 def selftest():
     ok = True
     s = 0.405
@@ -119,6 +211,7 @@ def selftest():
     pure = abs(a["Dstar"] - 260) <= 0.05 and abs(b["Dstar"] - 260) <= 0.05
     ok &= pure
     print(f"pure fold (s = 0): A D* {a['Dstar']:.4f}, B D* {b['Dstar']:.4f}: {'pass' if pure else 'FAIL'}")
+    ok &= rule_selftest()
     print(f"selftest{' --mutate' if P != 1.0 else ''}: {'pass' if ok else 'FAIL'}")
     return ok
 

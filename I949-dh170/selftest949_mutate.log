@@ -6,4 +6,9 @@ planted D* 262, grid leg8 : B D* 273.1510 (c 0.0001, s 0.3973, max |res| 1.2e-05
 planted D* 262, grid wide : B D* 272.6329 (c 0.0000, s 0.3970, max |res| 1.1e-04), C D* 262.0000, A (s=0) D* 240.31 max |res| 0.97: FAIL, control A misses: yes
 pure exponential, no fold: B interior False, D* inf: pass (no fold claimed)
 pure fold (s = 0): A D* 260.0000, B D* 270.3200: FAIL
+rule, fold 1 unit past the last state: D* 260.787, conditions (True, True, False, False), valid False (want (True, True, True, True), True): FAIL
+rule, fold 5 units past the last state: D* 262.771, conditions (True, False, False, None), valid False (want (True, False, True, None), False): FAIL
+rule, sixth state back 30% off: conditions (True, True, False, False), valid False (want c3 False alone): pass
+rule, exact fold 2.9 units past, scatter 0.03 spreads D* to n/a: conditions (True, False, False, None) (want c4 False alone): FAIL
+rule, no fold (slope drifting 0.50 to 0.38, scatter 0.03), 27 windows valid: 0 (want 0): pass
 selftest --mutate: FAIL
