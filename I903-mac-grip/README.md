@@ -1,4 +1,4 @@
-# I903-mac-grip: the grip on Δ at the fixed-order chains' bases (orders 142 and 160), at the own order and at ks 200
+# I903-mac-grip: the grip on Δ at the fixed-order chains' bases (orders 135, 142 and 160), at the own order and at ks 200
 
 Machine: mac (Apple M5), agent xfchecks. Issue: https://github.com/nmoinvaz/choptuik-large-d/issues/903 (the
 coordinator's comment of 2026-11-16 15:43 UTC). xfkappa's chain writes I903-mac, so this measurement has its own folder.
@@ -51,6 +51,10 @@ as each lands, and records it in `done.txt`. `lift.log` is rewritten after every
 | k142 | 244.1312 | −44.8992 | −37.4490 | +7.4502 | σ₃ 4.282e-19 → σ₁ 5.368e-17 (ln +4.831) | σ₂ (k3) 0.816 | σ₁ (k1) 0.986 | G1 pass |
 | k142 | 249.1469 | −48.6575 | −39.4508 | +9.2067 | σ₃ 5.636e-21 → σ₁ 7.184e-18 (ln +7.150) | σ₂ (k3) 0.782 | σ₁ (k1) 0.855 | G1 pass |
 | k142 | 250.2455 | −49.5334 | −39.9203 | +9.6131 | σ₃ 2.142e-21 → σ₁ 4.436e-18 (ln +7.636) | σ₂ (k3) 0.729 | σ₁ (k1) 0.789 | G1 pass |
+| k135 | 229.1312 | −41.4286 | −31.6410 | +9.7876 | σ₃ 1.016e-17 → σ₁ 1.707e-14 (ln +7.427) | σ₂ (k3) 0.831 | σ₁ (k1) 0.993 | G1 pass |
+| k135 | 239.1312 | −48.8333 | −35.6271 | +13.2062 | σ₃ 3.537e-21 → σ₁ 3.352e-16 (ln +11.459) | σ₂ (k3) 0.849 | σ₁ (k3) 1.000 | G1 pass |
+| k135 | 244.1312 | −52.9824 | −37.4490 | +15.5334 | σ₃ 2.464e-23 → σ₁ 5.368e-17 (ln +14.594) | σ₂ (k3) 0.810 | σ₁ (k1) 0.986 | G1 pass |
+| k135 | 249.1312 | −57.4971 | −39.4442 | +18.0529 | σ₃ 1.289e-25 → σ₁ 7.234e-18 (ln +17.843) | σ₃ (k1) 0.665 | σ₁ (k1) 0.857 | G1 pass |
 | k135 | 254.7003 | −63.6889 | −41.9593 | +21.7296 | σ₃ 2.400e-28 → σ₁ 5.963e-19 (ln +21.633) | σ₃ (k1) 0.744 | σ₁ (k3) 0.999 | G1 pass |
 
 dh610's order-160 chain was stopped at D 234 by the coordinator's order (#903), so its targets from 240 on will not
@@ -61,6 +65,64 @@ At D 229.13 the order-142 chain's weakest modes are the harmonic-3 pair (σ₁, 
 mode (σ₃ 8.139e-15), and their small Δ shares carry 0.970 and 0.027 of 1/g² (`lift.log`): the grip on Δ at order 142 is the
 harmonic-3 pair's. At ks 200 the pair rises to 2.6e-10 and the Δ mode carries 0.993 of 1/g²; the Δ mode itself moved
 by ln +0.741 of the lift's +3.8407.
+
+### Closing summary (2026-11-18 02:56 UTC)
+
+The fixed orders leave a large part of the horizon cut near the fold. L is above ln 10 at every base read from D 229 on,
+and it grows with D: +21.7296 at order 135's D 254.7003, and +9.6131 at order 142's last base, D 250.2455, which is 4.75
+short of D 255. At order 200 the Δ mode falls 1.488 and 1.475 per unit D on the two chains' roots (`fall_rate_grip.log`),
+steady to 0.16 in ln, against #941's 1.51 at order 240. At the fixed orders it falls faster, and faster with D: order 135
+from 2.217 to 3.092 per unit, order 142 from 1.911 to 2.413. So the truncation steepens the Δ mode's fall, and a
+fixed-order fold sits earlier in D than the converged problem's would.
+
+| D | L, order 135 | L, order 142 | L, order 160 |
+| --- | --- | --- | --- |
+| 229.0000 | – | – | +2.3859 |
+| 229.1312 | +9.7876 | +3.8407 | – |
+| 231.0000 | – | – | +2.9247 |
+| 239.1312 | +13.2062 | +5.8341 | – |
+| 244.1312 | +15.5334 | +7.4502 | – |
+| 249.1312 / 249.1469 | +18.0529 | +9.2067 | – |
+| 250.2455 | – | +9.6131 | – |
+| 254.7003 | +21.7296 | – | – |
+
+At equal D the two chains' roots give the same grip at ks 200, to 1.5e-11, 7.2e-10 and 1.7e-08 relative at D 229.13,
+239.13 and 244.13 (`fall_rate_grip.log`). Their states differ (other blobs, Δ's first pinned step at 200 differs), so L's difference between
+the orders is ln g at the own order alone. At order 135 the grip is the harmonic-3 pair's up to D 244.13. From D 249.13
+the Δ mode's own share takes over (0.665, then 0.744), as it closes on the pair: its σ is 1.016e-17 against the pair's
+3.958e-20 at D 229.13, and 2.400e-28 against 2.334e-29 at D 254.70. The repeat of order 135's D 229.1312 own-order run equals the
+first (`k135_pmin/`) bit for bit in pivots, grip, steps, σ₁–σ₄ and their vectors.
+
+Acceptance:
+
+| # | criterion | result |
+| --- | --- | --- |
+| G1 | every run's check, and only the horizon block changes at ks 200 | pass, all 30 runs `lift.py` reads |
+| G2 | the mutation (`--mutate=ks`) equals the own-order run bit for bit; `lift.py --selftest` | pass, pass |
+| G3 | the D 60 control below 0.05 | pass (0.00e+00) |
+| R | L < ln 10 at the base near D 255 | not met: order 135 +21.7296 at D 254.7003; order 142's substitute +9.6131 at D 250.2455 |
+| kernel | each run's process loaded site2's kernel (multidouble 4.2.1); control loads 4.0.0 and stops | pass for the 12 runs since 00:14 UTC; the two bases of the kernel window rerun and agree |
+
+Discrepancies:
+
+- From 07:02 to about 14:40 UTC on 2026-11-17, site2 lacked `__init__.py`. Order 142's D 239.13 and 244.13 bases ran
+  on venv-314's kernel then. Their reruns agree in L to 7.1e-15 ("The kernel window" below).
+- My reading that the Δ mode is order-converged at D 231 is withdrawn (#941). The σ_Δ / σ_pair difference with
+  dh370 is one of order, not of labels ("Withdrawn" below).
+- Order 142 has no base near D 255 (its chain is held at D 251, #944). Its bar reading is a substitute, 4.75 short.
+- `fall_rate.py`'s least-squares falls at the own orders have residuals up to 0.81 in ln, because the fall accelerates.
+  The per-interval falls are the reading there, not the fit.
+
+Recommended tasks:
+
+1. Order convergence of the reference. At order 135's D 249.1312, read g at ks 200, 240 and 280 on the same z, after a
+   site2 pilot at 280. If ln g still rises past 200, every L here is a lower bound on the cut the fixed orders leave.
+2. The order-tied chain near D 255 (the coordinator's (c)). Read L between its own order and one well above it, e.g.
+   300, at its bases near D 245, 250 and 255, with the same checks. This tests the fold that the order-tied chain
+   approaches.
+3. Label the fold estimates from fixed-order chains (orders 135, 142) as those orders' folds. The bar fails at both,
+   and the Δ mode falls 2–3 times per unit at those orders against 1.5 at orders 200–240. So a fixed-order D* does not
+   test the problem's fold, and is likely below it.
 
 ### The reading near D 255 (2026-11-18 01:08 UTC)
 
