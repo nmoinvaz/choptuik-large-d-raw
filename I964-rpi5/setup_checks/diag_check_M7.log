@@ -1,0 +1,17 @@
+scipy rtol 1e-12: 3.6 s
+scipy rtol 9e-13: 3.6 s
+scipy rtol 8e-13: 3.7 s
+scipy rtol 6e-13: 3.8 s
+scipy rtol 4e-13: 3.9 s
+scipy rtol 1e-13: 4.3 s
+numba rtol 1e-12: 0.4 s
+numba rtol 8e-13: 0.2 s
+numba rtol 1e-13: 0.2 s
+entry                scipy-spread(rtol 1e-12..4e-13) | numba-scipy @1e-12 | numba-scipy @1e-13 | numba spread(1e-12,0.8e-12) | rel |numba-scipy|@1e-12
+xi 0.1028 r_7   4.66e-06 |  2.94e-06 |  2.86e-06 |  1.90e-06 |  1.14e-04
+xi 0.1188 r_5   4.59e-06 |  4.13e-06 |  3.76e-06 |  2.40e-06 |  6.58e-09
+xi 0.1515 r_7   1.19e-09 |  1.34e-09 |  6.90e-10 |  5.77e-10 |  5.21e-09
+xi 0.2000 r_1   3.52e+03 |  4.09e+03 |  2.12e+03 |  1.66e+03 |  2.55e-09
+xi 0.2000 r_3   2.90e-01 |  3.79e-01 |  1.96e-01 |  1.64e-01 |  2.59e-09
+xi 0.2000 r_5   2.27e-05 |  2.65e-05 |  1.37e-05 |  1.15e-05 |  2.61e-09
+exit 0
