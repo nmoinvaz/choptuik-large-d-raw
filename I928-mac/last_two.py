@@ -3,9 +3,12 @@
 import json, os, sys
 out, eta, A = sys.argv[1], sys.argv[2], float(sys.argv[3])
 def ok(r):
-    """a converged record; a hand-over run (--tol above 1e-28 with --qd) only when its quad-double stage accepted it"""
+    """a converged record; a hand-over run (--tol above 1e-28 with --qd) exactly when its quad-double stage accepted it
+    (its first version also asked for the double-double stage's own convergence, which left out D 12.9375 and 13)"""
     q = r.get("qd", {})
-    return r["converged"] and (q.get("handover_tol", 0) <= 1e-28 or q.get("accepted", False))
+    if q.get("handover_tol", 0) > 1e-28:
+        return bool(q.get("accepted"))                      # also when its double-double stage stalled above its tolerance
+    return r["converged"]
 
 
 best = {}
