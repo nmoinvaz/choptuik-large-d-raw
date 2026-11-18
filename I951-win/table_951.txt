@@ -1,0 +1,32 @@
+### Part 1, the solves of start c
+
+| solve | D | grid | horizon | mutate | ok | last Newton max abs F | counts (ok and <= 1e-36) | Delta_RT | Delta_RT - Delta_hp | secs |
+|---|---|---|---|---|---|---|---|---|---|---|
+| K7 | 40.020065 | 32x121 | 7 | None | True | 1.19e-36 | NO | 1.88845166449061538966142548338 | +1.5517e-15 | 1464 |
+| K0 | 40.020065 | 32x121 | 0 | norows | True | 2.20e-40 | yes | 1.88845166449061538288377677162 | +1.5449e-15 | 985 |
+
+### Distances (double-double states, 32x121, D 40.020065), re-found if the max-norm is <= 1e-30
+
+| roots | max-norm | 2-norm | re-found | Delta difference |
+|---|---|---|---|---|
+| K 7 c - a | 0.000e+00 | 0.000e+00 | YES | +0.0000e+00 |
+| K 7 c - b | 2.857e-20 | 4.085e-19 | no | +3.6680e-19 |
+| K 7 a - b (reference) | 2.857e-20 | 4.085e-19 | no | +3.6680e-19 |
+| K 0 c - a | 0.000e+00 | 0.000e+00 | YES | +0.0000e+00 |
+| K 0 c - b | 2.097e-21 | 1.147e-19 | no | +2.7431e-20 |
+| K 0 a - b (reference) | 2.097e-21 | 1.147e-19 | no | +2.7431e-20 |
+| c: K 7 - K 0 | 5.887e-19 | 7.051e-18 | no | +6.7776e-18 |
+| a: K 7 - K 0 (reference) | 5.887e-19 | 7.051e-18 | no | +6.7776e-18 |
+| b: K 7 - K 0 (reference) | 5.614e-19 | 6.810e-18 | no | +6.4383e-18 |
+
+### Part 2, the rough bounds
+
+| K | n starts | best | Q1 | **median (the bound)** | Q3 | max | max/min | starts at the 250 cap | worst residual max abs J x - v | header max abs F |
+|---|---|---|---|---|---|---|---|---|---|---|
+| K7 | 0 | not yet | | | | | | | | |
+| K0 | 0 | not yet | | | | | | | | |
+
+### Reference: R_a (48 and 48 bounds, #943) and R_b (48 and 48, #721 with win2's K 0), recomputed from their logs
+
+R_a(48) = 0.98, 0.60 to 1.43: equal to #943; R_b(48) = 6.06, 4.56 to 9.26: equal to #721
+

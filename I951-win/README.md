@@ -38,4 +38,34 @@ The bounds are upper bounds on the smallest gain from one rough start each, and 
 
 ## Run record
 
-(filled in as the work goes)
+- 01:49:22 UTC: `run_951_solves.py` started the two solves (`start_951_solves.cmd`, BelowNormal, 1 BLAS thread each). `--resample_mp` accepted 101 to 121.
+- 02:13:04 UTC: **both solves crashed at their last step** (`ModuleNotFoundError: No module named 'resource'`, `rt_run.py` line 78): I did not copy #701's `resource.py` (a Windows stand-in for the Unix module, which `rt_run.py`'s `rss_peak_gb()` imports) into this folder. No record or state was written; the failed attempt's files are in `logs/attempt1_no_resource/` (its `solves/k7c_D40.log` was overwritten by the stdout log of the same name, which holds the same lines). 24 min lost; the 30 h clock stays at 01:49:22.
+- 02:13:54 UTC: `resource.py` copied from `I701-win/`, solves started again. 02:30:26 UTC `k0c_D40` exit 0 (992 s), 02:38:22 UTC `k7c_D40` exit 0 (1467 s).
+- 02:39 UTC: read by `table_951.py` (`table_951.txt`). **Both roots are bit-identical to start a's** (below), so by plan item 3 I stop before the sigma runs. Coordinator's rule on the K 7 floor (hc, during the rerun, "at or below 2e-36 at its floor: accept, record on the issue, go on"): K 7 ended at 1.19e-36 after three Newton steps between 4.9e-37 and 1.9e-36 (a floor), so it would have been accepted; it is moot.
+- Nothing else runs; no sigma run was started.
+
+## Result: start c is start a
+
+| solve | ok | last Newton max abs F | Delta_RT | Delta_RT - Delta_hp | secs |
+|---|---|---|---|---|---|
+| `k7c_D40` (K 7) | True | 1.19e-36 | 1.88845166449061538966142548338 | +1.5517e-15 | 1464 |
+| `k0c_D40` (K 0, `--mutate=norows`) | True | 2.20e-40 | 1.88845166449061538288377677162 | +1.5449e-15 | 985 |
+
+| roots | max-norm of the difference | 2-norm | re-found (at most 1e-30) | Delta difference |
+|---|---|---|---|---|
+| K 7, c against a | 0 | 0 | **YES** | 0 |
+| K 0, c against a | 0 | 0 | **YES** | 0 |
+| K 7, c against b | 2.857e-20 | 4.085e-19 | no | +3.668e-19 |
+| K 0, c against b | 2.097e-21 | 1.147e-19 | no | +2.743e-20 |
+
+DD(c) = Delta(K 7) - Delta(K 0) = +6.7776e-18 (a's 6.8e-18, b's 6.4383e-18), so P2 holds. P1 (the pair is new) is wrong, and avoidably so.
+
+**Why.** Start a's solves (#671, `I671-win/`, the commands in its README and `solves/k7_D40.log`) started from this same file, `I145-mac/cont/cont_32x101_D40.0201_32x101.npz`, resampled 101 to 121 by `--resample_mp`, with the same options and the same `solver/rt`. So the pair is the same computation: the arrays `z`, `zh`, `zl` of both `.npz` files equal a's byte for byte (K 7 sha256 df81e4d2a6f098a6e4cb, K 0 a6b9a729d78f39ce60bf, the same as a's), the records' Newton histories equal #671's to every printed digit (K 7: 2.258e-29, 6.185e-33, 2.148e-31, 1.936e-36, 4.852e-37, 1.188e-36), and Delta_RT equals a's in all 30 digits. The issue's "from #145's 32 x 101 root instead of its 32 x 141" describes start a against start b, not a third start. I read #701's and #943's READMEs and not #671's, and predicted a distance of 1e-21 to 1e-18 without checking where a came from.
+
+**Candidates for start c** (the #145 states at D 40.0201 that no pair of this series used): `I145-mac/fol/fol_32x121_D40.0201_32x121.npz` (#145's own 32 x 121 root, the grid the solves run on, so no resampling). The same two `rt_run.py` commands with `--start` set to it (and `--resample_mp` dropped, or left, it only acts when the grids differ) take about 25 min; whether the result is distinct from a and b is read by this README's rule 3. Not run, since it changes the issue's start.
+
+## Discrepancies
+
+- The issue's start file (`cont_32x101_D50.0075`) and "seed 943" were read as D 40.0201 and the fixed `default_rng(163)`, which the coordinator confirmed (hc, during the first solve attempt).
+- The first solve attempt failed on my missing `resource.py` (above); the rerun's records are the ones used.
+- P1 of the prediction failed (above). P3 was not tested.
