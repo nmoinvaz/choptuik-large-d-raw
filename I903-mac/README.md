@@ -43,3 +43,11 @@ The ladder stopped after rung 146 on the coordinator's redirect (#903, 13:16 UTC
 ## The fixed-order chain (`chain_fixed_903.sh`, `chain_fixed/`, `compare_903.py`)
 
 This chain runs at `--ks 142` from rung 142's base toward the fold, using `anm_run.py` with chain_nsr's flags at 8 threads and `--steps 400 --D_max 262`. It tests whether the fold moves with the order. #603's chain at order 130 folds at D* = 259.9033. If the fold moves by more than 0.05, it is the truncation's. If it stays within 0.01, it is not. Anything between is reported. `compare_903.py` sets p_min at each base against #603's chain at the same D, with ln p_603 interpolated linearly in D between #603's 181 bases. Its control, #603's log against itself, gives 0.00 everywhere.
+
+### End: stopped at D 251.128 on the coordinator's order, before the fold (2026-11-18 00:47 UTC)
+
+The chain ran from 2026-11-16 14:24 to 2026-11-18 00:47 UTC (exit 143, SIGTERM, `exits_chain.txt`). Its last state is `anm_pin3_D251.1277.npz` (Δ 1.684772725973740514410640365969032734566, ks 142), saved before the stop, without its series. It can resume from there. The last series is at D 251.008. No base reached the counted range (D ≥ 257.5), so the fold reading (`fold/`, `fold_est_903.py verdict`) was not run on this chain.
+
+- From D 245, Δ142 − Δ603 (`delta_cmp.txt`, this chain's series at #603's states) equals minus #805's chain − series (`I805-mac/table.json`) to a smooth −2.25e-12 at D 246.26, falling to −3.1e-12 at 250.84. That holds while #603's departure grows to 2.7e-8 and changes sign twice.
+- Past D 247 the steps were capped near a 0.5 by the horizon rung refinement, which diverged at a 0.625 and a 1. At D 251.008 the corrector's first damped step left the basin (|F| 2e-35 to 1e-23) at a 0.477 and 0.238, as #944 found at orders 150 and 160. a 0.119 recovered in 15 iterations to 1.9e-61.
+- Unexplained discrepancy: this chain's rung refinement floors at 1e-43 to 1e-54 (1e-28 to 1e-30 at a 1 near D 242–246), while #603's (order 130, same flags) reaches 2e-79 to 6e-80 in 3 corrections.
