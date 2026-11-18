@@ -51,7 +51,8 @@ runo A_octo_ST 0 octo_A_ST.txt $PA A octo_hashes.py $R $ST --threads $T --N 6
 runo A_octo_ST2 0 octo_A_ST2.txt $PA A octo_hashes.py $R $ST2 --threads $T --N 6
 run D_jet_by_order 0 $PD D jet_by_order_check.py $R $ST --threads $T --N 6
 run D_jac_tangents 0 $PD D jac_tangents_check.py $R $ST --threads $T
-# the diffs of check 2: D against A (same machine), the control against D, and A against dh610's build A of #954 (4.8.2 on another machine)
+# the diffs of check 2 (run from the raw folder; the first version ran in hp/ and exited 2, rerun by hand 2026-11-18)
+cd $OUT || exit 1
 for s in ST ST2; do
   diff octo_A_$s.txt octo_D_$s.txt > diff_A_D_$s.txt; echo "diff A D $s: exit $? ($(grep -c '^<' diff_A_D_$s.txt) lines differ)" >> $SUM
   diff octo_A_$s.txt $R/I954-dh610/octo_A_$s.txt > diff_A_dh610_$s.txt; echo "diff A(dh170) A(dh610,#954) $s: exit $? ($(grep -c '^<' diff_A_dh610_$s.txt) lines differ)" >> $SUM

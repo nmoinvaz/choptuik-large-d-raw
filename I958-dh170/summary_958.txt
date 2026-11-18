@@ -1,1 +1,24 @@
 # checks958 start 2026-11-18 10:19:44 UTC, raw commit e1956ce1569632b7bb04b708d427b22317f1266b
+D_ref: expected exit 0, got 0, 95 s OK
+D_scaled: expected exit 0, got 0, 916 s OK
+D_jets: expected exit 0, got 0, 126 s OK
+D_jets_kappa: expected exit 1, got 1, 128 s OK
+D_octo_ST: expected exit 0, got 0, 409 s OK
+D_octo_ST2: expected exit 0, got 0, 312 s OK
+D_octo_ST_mut: expected exit 0, got 0, 480 s OK
+A_octo_ST: expected exit 0, got 0, 503 s OK
+A_octo_ST2: expected exit 0, got 0, 367 s OK
+D_jet_by_order: expected exit 0, got 0, 698 s OK
+D_jac_tangents: expected exit 0, got 0, 904 s OK
+diff A D ST: exit 2 (0 lines differ)
+diff A(dh170) A(dh610,#954) ST: exit 2 (0 lines differ)
+diff A D ST2: exit 2 (0 lines differ)
+diff A(dh170) A(dh610,#954) ST2: exit 2 (0 lines differ)
+diff D D_mut ST: exit 2 (0 lines differ, want exactly the step line)
+# checks958 done 2026-11-18 11:42:12 UTC
+# diffs rerun by hand from the raw folder after the script's own diff lines failed (exit 2: they ran in hp/, where the files are not), 2026-11-18 11:42:21 UTC
+diff A D ST: exit 0 (0 lines differ of 12)
+diff A(dh170) A(dh610,#954) ST: exit 0 (0 lines differ)
+diff A D ST2: exit 0 (0 lines differ of 12)
+diff A(dh170) A(dh610,#954) ST2: exit 0 (0 lines differ)
+diff D D_mut ST: exit 1 (1 line differs: newton_o dz)
