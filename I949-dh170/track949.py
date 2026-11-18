@@ -43,6 +43,9 @@ sys.path.insert(0, HERE)
 import fold949  # noqa: E402
 
 TRIGGER = 0.10
+# the trigger baseline of ks_chain2 (coordinator, issue #949 comment 2026-11-18 07:35 UTC, before any of its states was read): the backfill's
+# linear D-trend as published, s(D) = 0.9692 - 0.00245 D (the exact least-squares fit, dtrend(), is 0.00113 to 0.00126 higher at D 233 to 260)
+DTREND_FROZEN = (0.9692, -0.00245)
 QUOTED_941 = [0.412, 0.410, 0.407, 0.405]   # the intervals over D 229.0509, 229.9822, 230.9281, 231.7466, 232.0 (#941's closing)
 BACKFILL_KS = (211, 220, 230, 240)
 EXTRAP_KS = (250, 260, 270, 300, 400)
@@ -220,11 +223,23 @@ def order_effect(rows, ref_ks=250):
     return out, err[0], err[1]
 
 
-def trigger(rows, iv, base):
-    """the index of the third consecutive row of one leg whose interval slope exceeds s(ks) by more than TRIGGER, or None"""
+def trigger_baseline(rows, base, i):
+    """the baseline the trigger compares row i's interval slope with: s(ks) in ks_chain (the original rule), and for ks_chain2 the frozen
+    D-trend at the interval's midpoint (the coordinator's amendment)"""
+    if rows[i].get("chain", 1) == 2:
+        return DTREND_FROZEN[0] + DTREND_FROZEN[1] * (rows[i - 1]["D"] + rows[i]["D"]) / 2
+    return s_of(base, rows[i]["ks"])
+
+
+def trigger(rows, iv, base, chain=None):
+    """the index of the third consecutive row of one leg (of one chain, if given) whose interval slope exceeds its baseline by more than
+    TRIGGER, or None"""
     n = 0
     for i, r in enumerate(rows):
-        if iv[i] is not None and iv[i] - s_of(base, r["ks"]) > TRIGGER and (n == 0 or same_leg(rows[i - 1], r)):
+        if chain is not None and r.get("chain", 1) != chain:
+            n = 0
+            continue
+        if iv[i] is not None and iv[i] - trigger_baseline(rows, base, i) > TRIGGER and (n == 0 or same_leg(rows[i - 1], r)):
             n += 1
             if n >= 3:
                 return i
@@ -280,7 +295,7 @@ def tables(folder, forward=False):
         w = csv.writer(f)
         w.writerow(["D", "ks", "chain", "sigma_delta", "sigma_pair", "delta_share", "delta_share_2nd", "delta_vec", "pair_vecs", "conv_delta",
                     "local_slope", "interval_slope", "s_baseline", "excess", "postfreeze_dtrend_lin", "postfreeze_excess_lin", "postfreeze_dtrend_quad",
-                    "postfreeze_excess_quad", "classified", "source"])
+                    "postfreeze_excess_quad", "trigger_baseline", "trigger_excess", "classified", "source"])
         for i, (r, c, v) in enumerate(zip(rows, cen, iv)):
             sb = None if base is None else s_of(base, r["ks"])
             tl, tq = dtrend_at(dt, rows, i)
@@ -288,7 +303,9 @@ def tables(folder, forward=False):
                         r["pvec"], f"{r['conv']:.1e}", "" if c is None else f"{c:.4f}", "" if v is None else f"{v:.4f}",
                         "" if sb is None else f"{sb:.4f}", "" if v is None or sb is None else f"{v - sb:+.4f}",
                         "" if tl is None else f"{tl:.4f}", "" if v is None or tl is None else f"{v - tl:+.4f}",
-                        "" if tq is None else f"{tq:.4f}", "" if v is None or tq is None else f"{v - tq:+.4f}", int(r["ok"]), r["src"]])
+                        "" if tq is None else f"{tq:.4f}", "" if v is None or tq is None else f"{v - tq:+.4f}",
+                        "" if v is None or sb is None else f"{trigger_baseline(rows, base, i):.4f}",
+                        "" if v is None or sb is None else f"{v - trigger_baseline(rows, base, i):+.4f}", int(r["ok"]), r["src"]])
     with open(os.path.join(folder, "intervals949.csv"), "w", newline="") as f:
         w = csv.writer(f)
         w.writerow(["D0", "D1", "ks0", "ks1", "slope", "crosses_ks"])
@@ -330,12 +347,19 @@ def tables(folder, forward=False):
     print(f"\nbaseline frozen {base['frozen_utc']} UTC: s(ks) = {base['inv_ks'][0]:.5f} + {base['inv_ks'][1]:.3f} / ks; legs "
           + ", ".join(f"{k}: {l['slope']:.4f} (fit {l['fit_inv_ks']:.4f})" for k, l in base["legs"].items()))
     print("  extrapolation to " + ", ".join(f"ks {k}: {e['inv_ks']:.4f} / {e['lin_ks']:.4f} (1/ks, linear in ks)" for k, e in base["extrapolation"].items()))
-    it = trigger(rows, iv, base)
-    print(f"\ntrigger (interval slope - s(ks) > {TRIGGER}, three consecutive states of one leg): "
-          f"{'FIRED at D ' + format(rows[it]['D'], '.4f') if it is not None else 'not reached'}")
-    mx = max(((v - s_of(base, r["ks"]), r["D"]) for r, v in zip(rows, iv) if v is not None), default=None)
+    it1, it2 = trigger(rows, iv, base, 1), trigger(rows, iv, base, 2)
+    it = it1 if it1 is not None else it2
+    print(f"\ntrigger, ks_chain (interval slope - s(ks) > {TRIGGER}, three consecutive states of one leg): "
+          f"{'FIRED at D ' + format(rows[it1]['D'], '.4f') if it1 is not None else 'not reached'}")
+    mx = max(((v - s_of(base, r["ks"]), r["D"]) for r, v in zip(rows, iv) if v is not None and r["chain"] == 1), default=None)
     if mx:
         print(f"  largest excess so far {mx[0]:+.4f} at D {mx[1]:.4f}")
+    if any(r["chain"] == 2 for r in rows):
+        print(f"trigger, ks_chain2 (interval slope - the frozen D-trend {DTREND_FROZEN[0]} {DTREND_FROZEN[1]:+} D > {TRIGGER}, three in a row): "
+              f"{'FIRED at D ' + format(rows[it2]['D'], '.4f') if it2 is not None else 'not reached'}")
+        m2 = max(((v - trigger_baseline(rows, base, i), r["D"]) for i, (r, v) in enumerate(zip(rows, iv)) if v is not None and r["chain"] == 2), default=None)
+        if m2:
+            print(f"  largest excess so far {m2[0]:+.4f} at D {m2[1]:.4f}; s(ks) is reported beside it in the table's excess column")
     # post-freeze reports (coordinator, 2026-11-18): the slope against the D-trend, and the ks ladder at one D
     if dt is not None:
         res_l = max(abs(v - np.polyval(dt[0], (rows[i - 1]["D"] + rows[i]["D"]) / 2)) for i, v in enumerate(iv) if v is not None and rows[i]["ks"] <= 240)
@@ -392,7 +416,7 @@ def tables(folder, forward=False):
     if late:
         ks, g, res = late[-1]
         print(f"\nVALID FOLD FIT at ks {ks}, window ending D {g[-1]['D']:.4f}: D* {res['B']['Dstar']:.2f}; trigger "
-              f"{'fired' if it is not None else 'NOT fired (no claim)'}")
+              f"{'fired' if (it1 is not None or it2 is not None) else 'NOT fired (no claim)'}")
     return ok, rows
 
 
@@ -496,6 +520,22 @@ def selftest(mutate):
     miss = oe is not None and max(abs(t["sd"] / t["sd_ref"] - 1 - 3e-6) for t in wrong) > 1e-4
     ok &= miss
     print(f"selftest: a planted 1e-3 error in sigma_Delta shows in the order effect: {'pass' if miss else 'FAIL'}")
+    # ks_chain2: the trigger's baseline is the frozen D-trend, not s(ks). At ks 300 s(ks) is 0.294, so intervals at the D-trend (about 0.40 at D 233)
+    # would fire the s(ks) rule and must not fire the D-trend rule; intervals 0.12 over the D-trend must fire it
+    bk = dict(inv_ks=[-0.16667, 138.339])
+    trend = lambda D: DTREND_FROZEN[0] + DTREND_FROZEN[1] * D
+    def chain2(extra):
+        rows = [dict(D=233.0 + 0.5 * i, ks=300, chain=2, ok=True, sd=1.0) for i in range(8)]
+        for i in range(1, 8):
+            rows[i]["sd"] = rows[i - 1]["sd"] * math.exp(-(trend((rows[i - 1]["D"] + rows[i]["D"]) / 2) + extra) * 0.5)
+        return rows
+    r0, r1 = chain2(0.0), chain2(0.12)
+    t0, t1 = trigger(r0, interval_slopes(r0), bk), trigger(r1, interval_slopes(r1), bk)
+    s_ks_would = max(v - s_of(bk, 300) for v in interval_slopes(r0) if v is not None)
+    good = t0 is None and t1 == 3 and s_ks_would > 0.10
+    ok &= good
+    print(f"selftest: ks_chain2 trigger on the D-trend: intervals at the trend give {t0} (want None; against s(300) = {s_of(bk, 300):.3f} their excess would be "
+          f"{s_ks_would:+.3f}, over 0.10), 0.12 over it fire at row {t1} (want 3): {'pass' if good else 'FAIL'}")
     print(f"selftest{' --mutate' if mutate else ''}: {'pass' if ok else 'FAIL'}")
     return ok
 

@@ -1,0 +1,8 @@
+{
+ "what": "the trigger baseline of ks_chain2, s(D) = a + b D, frozen by the coordinator before any ks_chain2 state was read",
+ "a": 0.9692, "b": -0.00245,
+ "source": "the backfill's 20 same-ks interval slopes against D, linear least squares (track949.py dtrend(), post-freeze report of 2026-11-18)",
+ "exact_fit": {"a": 0.9691901315873231, "b": -0.0024451028535730753, "note": "0.00113 to 0.00126 above the published line at D 233 to 260; the published line is the frozen one"},
+ "frozen_by": "issue #949 comment IC_kwDOVPE7OM8AAAABn5MyFA, 2026-11-18 07:35:11 UTC",
+ "rule": "ks_chain2: interval slope minus s(D) above 0.10 at three consecutive states of one leg; leg 8 of ks_chain keeps s(ks)"
+}

@@ -85,6 +85,14 @@ two chains are kept apart: no interval, slope, trigger or fold window crosses fr
 extrapolates poorly to ks 291 (s = 0.3088 there, about 0.09 under the D-trend), so the excess against s(ks) can sit near the 0.10 trigger without
 a fold; the post-freeze D-trend comparison stays beside it, and a fold needs a valid fit and an excess against the D-trend too.
 
+## Amendment for ks_chain2 (coordinator, issue #949 comment of 2026-11-18 07:35 UTC, before any of its states was read)
+
+The frozen s(ks) gives 0.309 at ks 291, about 0.09 under the chain's D-trend, so the trigger could fire from the baseline alone (and at ks 300 it
+would: `selftest_track949.log`). For ks_chain2 the trigger's baseline is the backfill's linear D-trend as published, s(D) = 0.9692 − 0.00245 D
+(`dtrend_frozen949.json`; the exact fit is 0.0011 to 0.0013 higher), at each interval's midpoint. The trigger (excess above 0.10 at three
+consecutive states of one leg), the fold fit and its validity rules are otherwise unchanged, and s(ks) is still printed beside it. Leg 8 of
+ks_chain keeps the original rule.
+
 ## Planted fold test (before any state was read)
 
 `selftest949.log` (exit 0): planted σ² = 0.3 (D* − D) exp(−2 · 0.405 (D − 232)), D* 260 and 262, on the five #941 states, five states

@@ -8,4 +8,5 @@ selftest: ks and ladder flag from paths (250 leg, 260 ladder rung, 275 chain 2 l
 selftest: D-trend of planted slopes 0.9 - 0.0025 D: coefficient error 1.3e-15, last interval minus the trend 2.8e-16, too few intervals give None: pass
 selftest: two chains overlapping in D stay apart (no interval across them), the order effect of planted +3e-6 (Delta) and -2e-6 (pair) is returned to 1.4e-14 and 3.6e-15 by the cubic interpolation: pass
 selftest: a planted 1e-3 error in sigma_Delta shows in the order effect: pass
+selftest: ks_chain2 trigger on the D-trend: intervals at the trend give None (want None; against s(300) = 0.294 their excess would be +0.103, over 0.10), 0.12 over it fire at row 3 (want 3): pass
 selftest: pass
