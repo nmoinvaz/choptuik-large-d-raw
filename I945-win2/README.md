@@ -40,3 +40,12 @@ Pass 1 of M 320 reproduced step 2's record bit for bit (every field but `seconds
 Why, from reading `hp/lowD_highM.py` at 808b1fac (nothing was changed or run): `find_record` (line 107) keeps a record only with `r["F"] <= 1e-24`, and `solve` returns `False` when `solve_point` said ok but `find_record` finds none (`if ok and rec is None: return False, None, None`). So `--accept 1e-20` is not seen by the driver. In `lowD_dd.solve_point` the give-up check (line 314) comes before the floor rule (line 320), so the loop ended on the give-up here, not the floor rule.
 
 `leg/leg.jsonl.progress.json` now has `targets` [3.04325, 3.04315] (the halving was saved before the stop). Nothing was restarted.
+
+## Resume of the rerun with `find_record` fixed (`run945g.sh`, `w945i.sh`)
+
+The coordinator's hc (2026-11-18 ~04:27 UTC): `find_record` takes the run's `--accept` since main 55cd5354 (never below 1e-24). Steps, as ordered: `hp/lowD_highM.py` checked out from 55cd5354 into `D:\choptuik-i932` (`git checkout 55cd5354 -- hp/lowD_highM.py`; HEAD stays 808b1fac; the file equals origin/main's and differs from 808b1fac's by that commit's 7 insertions and 6 deletions only); the progress file's `targets` set to [3.04315] only (copy before the edit: `leg/leg.jsonl.progress.after_945f.json`); the same command as `run945f.sh` with `--accept 1e-20` and `--resume`, 10 threads.
+
+- `run945g.sh`: glue, edits the targets, runs the command, logs `945g` lines in `exits_945.txt`.
+- `w945i.sh`: glue, `w945h.sh` keyed on the `945g` lines (same stop rules: kill the leg's python tree on a `failed at M` line or after 30 h, notify on a pair record, STOP, Traceback, exit or a 3 h heartbeat).
+
+Started 04:28:31 UTC. The log's first lines are `resuming: M 320/384, last D 3.04335, 8.32 h used` and `--- D 3.04315 (from 3.04335), M 320 / 384`.
