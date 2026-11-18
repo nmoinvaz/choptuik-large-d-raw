@@ -225,3 +225,42 @@ step 12: D 237.340705872, pivots 3.7e-15..2.5e+42, |z_1| 3.75e-04, |z_N| 1.54e-2
     on 1 trial lam 1: max|F| 1.29e+06; simplified correction / |dz| = 1.133e+30 (bound 0.750); refused, 229.89 s
     on 1 trial lam 0.5: max|F| 1.55e-12; simplified correction / |dz| = 3.565e-01 (bound 0.875); accepted, 162.55 s
   on 1: |F| 1.72e-12 -> 1.55e-12, |dz| 1.89e-18 -> 5.84e-19, lam 0.5, dDelta +1.89e-18, piv 2.7e-15..4.3e+42, 439.06 s
+    on 2 trial lam 1: max|F| 5.90e+05; simplified correction / |dz| = 6.121e+29 (bound 0.750); refused, 210.62 s
+    on 2 trial lam 0.5: max|F| 7.23e+05; simplified correction / |dz| = 9.466e+29 (bound 0.875); refused, 163.79 s
+    on 2 trial lam 0.25: max|F| 9.01e+05; simplified correction / |dz| = 1.482e+30 (bound 0.938); refused, 161.13 s
+    on 2 trial lam 0.125: max|F| 1.02e+06; simplified correction / |dz| = 1.893e+30 (bound 0.969); refused, 152.26 s
+    on 2 trial lam 0.0625: max|F| 1.08e+06; simplified correction / |dz| = 2.144e+30 (bound 0.984); refused, 159.35 s
+    on 2 trial lam 0.03125: max|F| 1.12e+06; simplified correction / |dz| = 2.283e+30 (bound 0.992); refused, 164.28 s
+    on 2 trial lam 0.015625: max|F| 1.13e+06; simplified correction / |dz| = 2.355e+30 (bound 0.996); refused, 161.8 s
+    on 2 trial lam 0.0078125: max|F| 1.14e+06; simplified correction / |dz| = 2.392e+30 (bound 0.998); refused, 165.71 s
+    on 2 trial lam 0.00390625: max|F| 1.15e+06; simplified correction / |dz| = 2.411e+30 (bound 0.999); refused, 169.37 s
+  on 2: |F| 1.55e-12, |dz| 5.84e-19: no trial step accepted, stopping
+      elim projections {'u0': 0, 'u0q': 0, 'ladder': 3, 'failed': 12, 'skipped': 0}
+      octo-double Newton: 3 steps, max|F| 1.5e-12, not converged; double-double |F| of its first two parts 2.4e+17
+    a 0.186 -> D 237.526970387: predicted |F| 5.74e+17, od 3 steps -> 2.36e+17 (tol 7.8e-20), Delta 1.687087964223 (formula diff -1.5e-06), moved 3.0e-19, 2990 s
+    a 0.0931: re-seeded (FAILED, prediction kept), 199.36 s; rung u 0.3000 not converged at |R| 1.32e-24 after 23 steps
+    on 0 chord 0: max|F| 1.56e-18, |dw| 2.348e-41
+    on 0 chord 1: max|F| 1.18e-04, |dw| 2.075e-20
+  on 0: strong chord (4 weak directions), 2 steps after the full first step; theta at its point inf (bound 0.750): refused, 235.3 s
+    on 0 trial lam 1: max|F| 1.56e-18; simplified correction / |dz| = 1.001e+00 (bound 0.750); refused, 0.91 s
+    on 0 trial lam 0.5: max|F| 5.13e-36; simplified correction / |dz| = 4.999e-01 (bound 0.875); accepted, 120.4 s
+  on 0: |F| 2.15e-15 -> 5.13e-36, |dz| 1.17e-29 -> 5.85e-30, lam 0.5, dDelta +1.17e-29, piv 3.6e-15..3.4e+42, 402.18 s
+    on 1 trial lam 1: max|F| 3.90e-19; simplified correction / |dz| = 1.184e-07 (bound 0.750); accepted, 0.8 s
+  on 1: |F| 5.13e-36 -> 3.90e-19, |dz| 5.85e-30 -> 2.54e-37, lam 1, dDelta -5.85e-30, piv 3.6e-15..3.4e+42, 50.4 s
+    on 2 trial lam 1: max|F| 2.59e-34; simplified correction / |dz| = 1.000e+00 (bound 0.750); refused, 0.93 s
+    on 2 trial lam 0.5: max|F| 1.95e-19; simplified correction / |dz| = 2.500e-01 (bound 0.875); accepted, 1.2 s
+  on 2: |F| 3.90e-19 -> 1.95e-19, |dz| 2.54e-37 -> 6.36e-38, lam 0.5, dDelta +2.54e-37, piv 3.6e-15..3.4e+42, 55.49 s
+    on 3 trial lam 1: max|F| 1.62e-35; simplified correction / |dz| = 1.000e+00 (bound 0.750); refused, 1.16 s
+    on 3 trial lam 0.5: max|F| 9.74e-20; simplified correction / |dz| = 7.500e-01 (bound 0.875); accepted, 1.03 s
+  on 3: |F| 1.95e-19 -> 9.74e-20, |dz| 6.36e-38 -> 7.95e-38, lam 0.5, dDelta -6.36e-38, piv 3.6e-15..3.4e+42, 55.63 s
+    on 4 trial lam 1: max|F| 2.53e-35; simplified correction / |dz| = 2.000e-01 (bound 0.750); accepted, 1.05 s
+  on 4: |F| 9.74e-20 -> 2.53e-35, |dz| 7.95e-38 -> 1.59e-38, lam 1, dDelta -7.95e-38, piv 3.6e-15..3.4e+42, 53.95 s
+    on 5 trial lam 1: max|F| 1.01e-36; simplified correction / |dz| = 2.871e-24 (bound 0.750); accepted, 1.17 s
+  on 5: |F| 2.53e-35 -> 1.01e-36, |dz| 1.59e-38 -> 4.76e-62, lam 1, dDelta -1.59e-38, piv 3.6e-15..3.4e+42, 54.6 s
+    on 6 trial lam 1: max|F| 1.35e-83; simplified correction / |dz| = 3.936e-11 (bound 0.750); accepted, 1.09 s
+  on 6: |F| 1.01e-36 -> 1.35e-83, |dz| 4.76e-62 -> 1.87e-72, lam 1, dDelta +4.76e-62, piv 3.6e-15..3.4e+42, 58.69 s
+  on 7: |F| 1.35e-83 converged, Delta 1.68710472272223022 -2.6828e-17
+      elim projections {'u0': 0, 'u0q': 0, 'ladder': 1, 'failed': 2, 'skipped': 10}
+      octo-double Newton: 8 steps, max|F| 1.3e-83, converged; double-double |F| of its first two parts 7.3e+17
+    a 0.093 -> D 237.433838129: predicted |F| 7.31e+17, od 8 steps -> 7.31e+17 (tol 7.5e-20, stall accepted, Delta correction +0.0e+00), Delta 1.687104722722 (formula diff -1.5e-06), moved 9.6e-35, 1008 s
+      Delta of the saved state, its eight parts summed exactly: 1.687104722722230194337411515051107028214
