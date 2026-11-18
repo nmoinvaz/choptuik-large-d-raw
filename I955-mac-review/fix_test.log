@@ -1,0 +1,41 @@
+start 03:52:52
+   Compiling hpkernel v0.1.0 (/Users/nathan/Source/choptuik-large-d-955fix/hp)
+    Finished `release-dev` profile [optimized] target(s) in 6m 59s
+     Running unittests src/lib.rs (/Users/nathan/Source/choptuik-large-d-955/hp/target/release-dev/deps/_hpkernel-4afaadb94852ab83)
+
+running 3 tests
+test prec_tests::od::bench_oseries_by_order ... ignored
+test prec_tests::od::oseries_by_order_bitwise ... series by order against residual_jet, rows that differ: octo-double 0 serial, 0 threaded; quad-double 0; double-double 0; control 9600
+ok
+test prec_tests::od::oseries_by_order_threads_bitwise ... series by order at M = 32 against residual_jet, rows that differ: 0 on one thread, 0 on four; words that differ between the pools 0 of 43064; controls: the horizon's round 3200, the centre's 4224
+ok
+
+test result: ok. 2 passed; 0 failed; 1 ignored; 0 measured; 31 filtered out; finished in 301.44s
+
+== oseries exit 0 04:04:54
+    Finished `release-dev` profile [optimized] target(s) in 0.03s
+     Running unittests src/lib.rs (/Users/nathan/Source/choptuik-large-d-955/hp/target/release-dev/deps/_hpkernel-4afaadb94852ab83)
+
+running 3 tests
+test split_tests::bench_split ... ignored
+test split_tests::split_file ... ignored
+test split_tests::split_series_accuracy ...  k   d_split    d_oa       d_ctrl     |F_k|
+ 1   0.00e0   8.32e-130   0.00e0   8.97e-3
+ 2   0.00e0   1.67e-130   9.86e-2   2.00e0
+ 3   0.00e0   7.35e-130   3.56e-1   2.37e0
+ 4   0.00e0   2.75e-130   4.57e-1   4.27e0
+ 5   0.00e0   1.59e-130   5.14e-1   7.66e0
+ 6   0.00e0   2.32e-130   5.71e-1   1.32e1
+ 7   0.00e0   4.30e-130   6.22e-1   2.19e1
+ 8   0.00e0   3.03e-130   6.64e-1   3.45e1
+ 9   0.00e0   5.37e-130   7.01e-1   5.17e1
+10   0.00e0   2.75e-130   7.34e-1   7.36e1
+11   0.00e0   3.84e-130   7.63e-1   9.95e1
+12   0.00e0   3.61e-130   7.89e-1   1.28e2
+split series' checksum a0aada9b8fe95419
+split series: default against residual_jet 0 rows differ; split against default 0 rows differ, order 1 0; worst d_split / threshold 0.00e0; threads 1 against 4 and the default pool 0 rows differ; control max d_ctrl / threshold 2.14e123
+ok
+
+test result: ok. 1 passed; 0 failed; 2 ignored; 0 measured; 31 filtered out; finished in 46.24s
+
+== split exit 0 04:05:40
