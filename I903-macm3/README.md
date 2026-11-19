@@ -46,3 +46,7 @@ reference of #841's re-planned order-130 chain, so the shift measures the order'
 
 Control 1 stays against #603's chain. Pilot 2 (`run_fold_pilot2.sh`, `fold_pilot2.log`, `fold_pilot2.json`): control 1
 max|D* - 259.9033| 2.48e-04 over 45 bases, exit 2 in 110 s, with no jet of the chain yet in range.
+
+## Closing (2026-11-19)
+
+The order-135 chain ended at D 259.107228285, step 53 never accepted, fold not read. `chain_k135` (`--qd_it 20`, steps 0-48) and `chain_k135b` (`--qd_it 40`, from step 48's base, steps 49-52 accepted) were stopped by SIGTERM (exit 143) by the runner, the first for the cap restart and the second at the coordinator's order after step 53's third refused attempt. The last accepted state is `chain_k135b/anm_pin3_D259.1072.npz` with its jet `jet_pin3_D259.1072.npz`; `pred_pin3_D259.*.npz` are the refused attempts' predictions. `fold_verdict_k135.log` and `fold_verdict.json` hold the three fold-rule runs (all exit 2, no counted base). The closing summary is on issue #903, built by `post_scripts/closing_903.py` from `post_scripts/rows_903.json` (every number from the files here); the other `post_scripts/` files build the posts and watchers used during the run. To resume: `run_903_k135b.sh` from that state with `--a0` at 0.0909 or below.
