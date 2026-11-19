@@ -16,3 +16,5 @@ Reference: `solver/inner_amp/scan45J1250/sigF_w1.0000_K45_J1250_p1280.json` (K 4
 | `compare1003.py` | the check against the K 45 file's `sigma_str` (1e-19), with its controls |
 | `compare_K17.txt`, `compare_K17_controls.txt` | the K 17 pilot against the K 45 file (sigma_0..sigma_8, worst relative difference 0.0 over the 20-digit strings) and its two controls |
 | `run1003_k49.sh`, `K49_J1250.log`, `sigF_w1.0000_K49_J1250_p1280.json` | the main run, K 49 at J 1250, --procs 12, 48 h cap (started 06:55:10 UTC); the JSON appears only at the end |
+| `K49_J1250_procs12_stopped.log`, `memlog_k49_j1250_procs12.log` | the first K 49 J 1250 run at --procs 12 (06:55:10 to 07:42:35 UTC), stopped at order 23 by me for memory (see the issue) |
+| `K49_J1250.log`, `memlog_k49_j1250.log` | the restart at --procs 5, 72 h cap (started 07:42:44 UTC) |
