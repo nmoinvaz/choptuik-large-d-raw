@@ -1,0 +1,30 @@
+xi1 0.145 r145: 32 of 32 under the bar, |r_3| 1.4e-08 to 4.3e-07
+xi1 0.145 dA145: 8 of 8 under the bar, |r_3| 7.5e-08 to 3.3e-07
+xi1 0.145 dw145: 8 of 8 under the bar, |r_3| 2.2e-08 to 3.6e-07
+xi1 0.145: n (centre, dA, dw) = (32, 8, 8); centre mean r_1 = -0.1135-0.0079i
+  covariances of r_1: centre [[ 0.0416 -0.0211]
+ [-0.0211  0.0435]], dA [[ 0.0048 -0.0052]
+ [-0.0052  0.0151]], dw [[ 0.007  -0.0079]
+ [-0.0079  0.027 ]]
+  J (Re/Im rows; A, w/w_inf) = [[ 4844.5  2530.9]
+ [-3967.6  9553.3]], singular values [10359.8  5436.6]
+  zero (2.719237890, 1.000030668)   coefficients c0, ca, cw = -0.819, -0.094, -0.087
+  standard error with J's noise: 6.34e-06 (A 5.86e-06, w/w_inf 2.43e-06);  centre only, J fixed: bound 9.48e-06, propagated 7.66e-06
+  bootstrap: std A 5.92e-06, w 2.45e-06, norm 6.41e-06; robust A 5.86e-06, w 2.40e-06, norm 6.33e-06
+xi1 0.15 r150: 8 of 8 under the bar, |r_3| 1.2e-08 to 7.8e-08
+xi1 0.15 dA150: 8 of 8 under the bar, |r_3| 9.2e-09 to 6.1e-08
+xi1 0.15 dw150: 8 of 8 under the bar, |r_3| 6.7e-09 to 9.5e-08
+xi1 0.15: n (centre, dA, dw) = (8, 8, 8); centre mean r_1 = -0.0879+0.0395i
+  covariances of r_1: centre [[ 0.0004 -0.0003]
+ [-0.0003  0.0007]], dA [[ 0.0104 -0.0106]
+ [-0.0106  0.0109]], dw [[ 0.0002 -0.0001]
+ [-0.0001  0.0004]]
+  J (Re/Im rows; A, w/w_inf) = [[ 4483.2  2296.1]
+ [-4209.7  9739.5]], singular values [10616.9  5023.1]
+  zero (2.719236758, 1.000025616)   coefficients c0, ca, cw = -0.875, -0.089, -0.036
+  standard error with J's noise: 1.64e-06 (A 1.52e-06, w/w_inf 6.00e-07);  centre only, J fixed: bound 2.32e-06, propagated 1.68e-06
+  bootstrap: std A 1.53e-06, w 5.98e-07, norm 1.64e-06; robust A 1.51e-06, w 5.94e-07, norm 1.63e-06
+
+Delta = Z(0.145) - Z(0.15) = (A +1.132e-06, w/w_inf +5.052e-06), |Delta| 5.177e-06; combined SE (quadrature) 6.550e-06
+d = |Delta| / combined SE = 0.79 -> absent   (Mahalanobis 2.01; per component A +0.19, w/w_inf +2.01)
+w/w_inf alone: +5.052e-06 over its combined SE 2.508e-06 = +2.01 -> undecided
