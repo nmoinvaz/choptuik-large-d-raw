@@ -5,3 +5,11 @@ ok   refused streak reset by an accepted step
 FAIL an attempt past the limit alerts
 ok   an attempt within the limit does not
 ok   a refused attempt's clock restarts
+FAIL a stalled refinement alerts
+ok   a refinement to 1e-31 does not
+FAIL a floor-kind failure alerts (3e-12 after 23)
+ok   a failure at 5e-17 after 23 does not (below 1e-13)
+ok   an edge failure at 4e-10 after 8 does not
+FAIL a polish at 3e-16 alerts
+ok   a polish at 3e-18 does not (below 1e-16)
+ok   a polish at 3.3e-22 does not

@@ -5,3 +5,11 @@ ok   refused streak reset by an accepted step
 ok   an attempt past the limit alerts -> ['one attempt has run 150 s, past 100 s']
 ok   an attempt within the limit does not
 ok   a refused attempt's clock restarts
+ok   a stalled refinement alerts -> ['octo-double refinement ended at rung max|R| 3.00e-17, above 1e-25']
+ok   a refinement to 1e-31 does not
+ok   a floor-kind failure alerts (3e-12 after 23) -> ['WALL: re-seed FAILED with polish |R| 3.00e-12 after 23 steps, above 1e-13 with 20+ steps (the floor kind)']
+ok   a failure at 5e-17 after 23 does not (below 1e-13)
+ok   an edge failure at 4e-10 after 8 does not
+ok   a polish at 3e-16 alerts -> ['polish_q |R| 3.00e-16 after 23 steps at a 0.9700, D 243.8000, re-seed ok, above 1e-16']
+ok   a polish at 3e-18 does not (below 1e-16)
+ok   a polish at 3.3e-22 does not
