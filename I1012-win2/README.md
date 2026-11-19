@@ -31,3 +31,9 @@ step by arithmetic (same double, same expression) and `--h5=1e-4` changes level 
    cause either, and that is the report.
 
 Deviation to note: the issue says "run 1 again with `--h5=1e-3`" and the hc says "then #1011's two runs with --h5=1e-4 ... and --h5=1e-3 if neither first solve gets below 1e-6"; I follow the issue (run 1 only) as the task's record.
+
+## Added by the coordinator's hc, 08:14 UTC 19 Nov (before any level-5 solve of the h5 = 1e-4 runs had ended)
+
+- **Success is any level-5 solve below 1e-6, not only the first** (the coordinator notes it on the issue). The driver's "later solve below 1e-6" notice is the matching check; the runs have 3 h caps already, so nothing is extended.
+- Report each later level-5 solve's end |r_5| and stop reason too (`summarize1007.py` lists every solve with both stages' stops and accepted iterations).
+- If the later solves floor near 4e-5 with every trial rejected (as #1011's XI 0.11 run did, 3.92e-5), that may be the integrator's floor at rtol 1e-13 rather than the Jacobian, and the next run is the same command at `INNER_NB_RTOL=1e-14`, which lowered M = 7's floors (#976, #977, #981). Not started before the h5 = 1e-4 results are read; it is a new command with its own pre-registration.
