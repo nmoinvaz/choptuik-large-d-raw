@@ -1,0 +1,34 @@
+== 2026-11-19 00:05:23 UTC nice -n 10 /Users/nathan/venv-314/bin/python solver/rt/rt_chords.py RAW --out I983-mac/chords.json (code 6b9b23f8)
+rt_chords: D 40.020065 32x121, L 13665; a random unit vector's share along a fixed line is about 0.0086
+T0a  K 0: cos(a-c, b-c) 0.233729, part of b-c orthogonal to a-c 0.9723 (control #969 0.234, 0.97: ok); max|a-c|/max|z| 1.696e-20, max|b-c|/max|z| 2.709e-20
+     K 7: cos(a7-c7, b7-c7) 0.998730232, orthogonal part 5.038e-02; max|a7-c7|/max|z| 4.542e-18, max|b7-c7|/max|z| 4.321e-18; reading: undecided
+T0b  a-c: share along d_t z(c) 2.354e-02 (excluded), Nyquist share 7.426e-09 (excluded); 2-norm^2 by block w1 0.003, w2 0.107, w3 0.386, w4 0.497, mu 0.008, lowest harmonic 0.978
+T0b  b-c: share along d_t z(c) 1.017e-02 (excluded), Nyquist share 7.171e-09 (excluded); 2-norm^2 by block w1 0.001, w2 0.154, w3 0.163, w4 0.682, mu 0.001, lowest harmonic 0.975
+T0b  b-a: share along d_t z(c) 1.556e-02 (excluded), Nyquist share 8.985e-09 (excluded); 2-norm^2 by block w1 0.002, w2 0.194, w3 0.176, w4 0.628, mu 0.000, lowest harmonic 0.976
+T0c  control: max|F| at c 6.91e-31 (#951 6.91e-31), at the moved state 3.36e-18 (#963 3.36e-18), seed 977: ok (1 s)
+T0c  max|Omega_5^+| at c 3.468e-12; g(random) 1.132e+03
+T0c  a-c: g 4.175e-10, rho 3.690e-13 (chord rounding share 1.5e-12); reading: not (HC)
+T0c  b-c: g 1.285e-09, rho 1.136e-12 (chord rounding share 9.1e-13); reading: not (HC)
+T0c  1 s
+T0d  rt_branch_cheb.py --planted exit 0: ok
+T0d  sample c: mu 0.129106, lambda_4 21.1275
+T0d  k 0.5: om 3.8728, interpolation error on N = 61, 81, 101, 121 2.9e-34 1.9e-39 4.7e-44 6.4e-47; N^2 e 9.4e-43: below
+T0d  k 1.5: om 11.6184, interpolation error on N = 61, 81, 101, 121 1.2e-25 3.0e-31 7.2e-35 2.1e-38; N^2 e 3.1e-34: in the band
+T0d  k 2.5: om 19.3639, interpolation error on N = 61, 81, 101, 121 1.9e-20 2.0e-25 3.5e-29 9.5e-33; N^2 e 1.4e-28: above
+T0d  D  4.000000 (48x81): mu 0.168307, lambda_4 0.6290, k 1/2: e(121) 1.4e-02, N^2 e 2.0e+02: above
+T0d  D  6.000000 (32x61): mu 0.150117, lambda_4 2.1907, k 1/2: e(121) 1.3e-07, N^2 e 1.9e-03: above
+T0d  D  8.000000 (32x61): mu 0.141102, lambda_4 3.5881, k 1/2: e(121) 1.1e-11, N^2 e 1.6e-07: above
+T0d  D 10.000000 (48x81): mu 0.136468, lambda_4 4.8804, k 1/2: e(121) 3.7e-15, N^2 e 5.4e-11: above
+T0d  D 15.000000 (32x101): mu 0.131659, lambda_4 7.8518, k 1/2: e(121) 1.9e-22, N^2 e 2.8e-18: above
+T0d  D 20.000000 (32x101): mu 0.130057, lambda_4 10.6308, k 1/2: e(121) 1.4e-28, N^2 e 2.0e-24: above
+T0d  D 25.000000 (32x101): mu 0.129436, lambda_4 13.3147, k 1/2: e(121) 3.7e-34, N^2 e 5.4e-30: in the band
+T0d  D 30.000000 (32x101): mu 0.129191, lambda_4 15.9449, k 1/2: e(121) 4.6e-39, N^2 e 6.7e-35: in the band
+T0d  D 35.000000 (32x101): mu 0.129110, lambda_4 18.5420, k 1/2: e(121) 5.5e-43, N^2 e 8.1e-39: below
+T0d  D 40.000000 (32x101): mu 0.129106, lambda_4 21.1172, k 1/2: e(121) 6.6e-47, N^2 e 9.7e-43: below
+T0d  D 45.000000 (32x101): mu 0.129139, lambda_4 23.6771, k 1/2: e(121) 7.5e-51, N^2 e 1.1e-46: below
+T0d  D 50.007491 (32x101): mu 0.129190, lambda_4 26.2298, k 1/2: e(121) 1.5e-54, N^2 e 2.2e-50: below
+T0d  D 54.996085 (32x101): mu 0.129248, lambda_4 28.7646, k 1/2: e(121) 2.7e-57, N^2 e 4.0e-53: below
+T0d  D 60.001952 (32x101): mu 0.129308, lambda_4 31.3019, k 1/2: e(121) 2.2e-60, N^2 e 3.2e-56: below
+T0d  9 s
+exit 0
+== exit 0 00:05:33

@@ -49,8 +49,37 @@ python solver/rt/rt_chords.py --selftest --mutate=nyq        # exit 1 (the harmo
 python solver/rt/rt_chords.py --selftest --mutate=null       # exit 1 (the planted null direction removed)
 python solver/rt/rt_chords.py RAW --mutate=seed              # exit 1 (T0c's control with seed 978)
 python solver/rt/rt_chords.py RAW --out I983-mac/chords.json # the run (logs/run.log)
+python solver/rt/rt_chords.py RAW --tests e --out I983-mac/extra.json   # outside the readings, code a70ab308 (logs/extra.log)
 ```
 
-## Result
+## Result (2026-11-19 00:05 UTC, 10 s on one core)
 
-Not yet run.
+**By the readings above no single candidate fits. (HP), (HN) and (HC) are excluded, and (H4) and (H2) remain,
+because T0a is undecided. T1 is needed.** Every control held, and the seed control failed as it must
+(`logs/control_mutate_seed.log`: 6.23e-18 against 3.36e-18, exit 1).
+
+| Test | Measured | Reading |
+|---|---|---|
+| controls | K = 0 cosine 0.233729 and orthogonal share 0.9723 (#969: 0.234, 0.97). max\|F\| 6.91e-31 at c and 3.36e-18 at the moved state. `rt_branch_cheb.py --planted` exit 0 | ok |
+| T0a | \|cos(a₇ − c₇, b₇ − c₇)\| = 0.998730, so 5.0% of b₇ − c₇ is orthogonal to a₇ − c₇. The K = 7 chords are 4.5×10⁻¹⁸ and 4.3×10⁻¹⁸ of max\|z\| | undecided (between 0.99 and 1 − 10⁻⁶) |
+| T0b | shares along ∂_t z(c) of 0.024 (a − c), 0.010 (b − c) and 0.016 (b − a). Nyquist shares 7.4×10⁻⁹, 7.2×10⁻⁹ and 9.0×10⁻⁹ | (HP) excluded, (HN) excluded |
+| T0c | max\|Ω₅⁺\| at c is 3.5×10⁻¹². g(random) = 1.13×10³. ρ = 3.7×10⁻¹³ (a − c) and 1.1×10⁻¹² (b − c), against chord rounding shares of 1.5×10⁻¹² and 9.1×10⁻¹³ | not (HC) on both chords. ρ sits at the rounding floor, so no change of Ω₅⁺ along the chords is resolved |
+| T0d | at sample c (μ 0.129106, λ₄ 21.1275), e(121) = 6.4×10⁻⁴⁷ for k = ½ (N²e 9.4×10⁻⁴³), 2.1×10⁻³⁸ for k = 3/2 (N²e 3.1×10⁻³⁴) and 9.5×10⁻³³ for k = 5/2 | k = ½ below, 3/2 in the band, 5/2 above. (H4)'s count is two deep directions, and four if the k = 3/2 pair reaches the floor |
+| T0d against D | the k = ½ branch on N = 121 is above the band through D 20, in the band at D 25 and 30, and below from D 35 | (H4)'s onset on 32 × 121 lies between D 20 and 35 |
+
+**Outside the readings** (`logs/extra.log`, `extra.json`, decided after the run, so this is not a pre-set test):
+
+- The K = 7 chords lie in the K = 0 chords' plane. The out-of-plane share is 2.4×10⁻⁵ for a₇ − c₇ and 6.4×10⁻⁶ for
+  the part of b₇ − c₇ orthogonal to it. A random vector's in-plane share would be about √(2/L) = 0.012. The K = 7 rows
+  exclude λ₂'s branch (RT_FORMULATION.md §13.2), yet the same plane carries the K = 7 samples' spread, and the
+  orthogonal part (5% of 4.3×10⁻¹⁸) is about 8 times the K = 0 chords' size. That argues against (H2), whose second
+  direction the rows would remove. It is not a pre-set reading, and T1 still has to decide.
+- 92% to 99.5% of each field's part of every chord lies in that field's lowest harmonic: harmonic 0 for ω₁, ω₂ and
+  ω₃, wavenumbers ±½ for ω₄. ω₄ carries 50% to 68% of each K = 0 chord and μ under 1%. That is the shape (H4) expects,
+  a k = ½ scalar branch with a harmonic-0 response in the metric functions, though it does not prove it.
+
+**Stage 1.** T1 is needed, since two candidates remain and T1 separates them: (H2) predicts one deep direction, (H4)
+two, or four if the k = 3/2 pair counts. T2 is needed if T1 reads two or four. T0d puts D 30 inside the band, so a T2
+at D 30 alone could not decide. D 20 (above the band, where (H4) predicts no null direction) and D 35 (below it, where
+(H4) predicts the null pair) bracket the onset. #423's root-level bound at D 30 on 32 × 121, 1.35×10⁻³¹, is two to four decades
+above D 40's, and T2 would also read it.
