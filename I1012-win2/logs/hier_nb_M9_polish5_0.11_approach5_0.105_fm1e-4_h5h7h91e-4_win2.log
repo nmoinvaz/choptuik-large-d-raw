@@ -1,0 +1,60 @@
+pretune level 9 (approach, xi 0.0919): start |r_9| 1.476e+02  [8 s]
+   it 0: |r_9| 5.980e-04  lam 1.0  B,C_9 2.660298558655e-05 8.947853826324e-06  [9 s]
+   it 1: |r_9| 7.745e-06  lam 1.0  B,C_9 2.660298495134e-05 8.947854213419e-06  [9 s]
+   it 2: |r_9| 6.772e-06  lam 0.5  B,C_9 2.660298495605e-05 8.947854212404e-06  [10 s]
+   it 3: |r_9| 2.971e-06  lam 1.0  B,C_9 2.660298495548e-05 8.947854220809e-06  [10 s]
+   it 4: |r_9| 1.646e-06  lam 1.0  B,C_9 2.660298495308e-05 8.947854217997e-06  [11 s]
+   it 5: no decrease; stop at |r_9| 1.646e-06
+pretune level 9 (polish, xi 0.1246): start |r_9| 7.463e-04  [0 s]
+   it 0: |r_9| 2.515e-05  lam 1.0  B,C_9 2.660298503239e-05 8.947854196393e-06  [1 s]
+   it 1: |r_9| 3.290e-07  lam 1.0  B,C_9 2.660298503482e-05 8.947854197774e-06  [1 s]
+   it 2: |r_9| 3.140e-09  lam 1.0  B,C_9 2.660298503485e-05 8.947854197796e-06  [1 s]
+   it 3: |r_9| 2.419e-10  lam 1.0  B,C_9 2.660298503485e-05 8.947854197796e-06  [1 s]
+   it 4: |r_9| 2.290e-10  lam 1.0  B,C_9 2.660298503485e-05 8.947854197796e-06  [1 s]
+   it 5: |r_9| 1.664e-10  lam 1.0  B,C_9 2.660298503485e-05 8.947854197796e-06  [2 s]
+   it 6: no decrease; stop at |r_9| 1.664e-10
+pretuned x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008424206, 0.001511189, 0.000474205, 0.00012168, 2.6602985034854245e-05, 8.947854197796251e-06]
+M 9, xi1 0.15, fixed (A, w), procs 2; start x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008424206, 0.001511189, 0.000474205, 0.00012168, 2.6603e-05, 8.948e-06]
+level radii (approach -> polish): r_1 0.1500 -> 0.1500, r_3 0.1500 -> 0.1500, r_5 0.1050 -> 0.1100, r_7 0.1028 -> 0.1500, r_9 0.0919 -> 0.1246
+start residuals: |r_1| 0.00e+00  |r_3| 0.00e+00  |r_5| 0.00e+00  |r_7| 0.00e+00  |r_9| 6.57e-05
+   level 9 (top): stop at |r_9| 1.53e-10: step below rounding
+   level 9 solved: |r_9| 1.53e-10  (3 residuals, 3 s)  [19 s total]
+   level 9 (top): stop at |r_9| 1.53e-10: step below rounding
+   level 9 solved: |r_9| 1.53e-10  (1 residuals, 0 s)  [19 s total]
+level 9 it 0: |r_9| 3.147e-06  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008424206, 0.001511189, 0.000475436, 0.000122556, 2.666e-05, 8.997e-06]  [27 s, 51 residuals]
+level 9 it 1: |r_9| 2.967e-06  lam 0.125  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008424206, 0.001511189, 0.000475436, 0.000122556, 2.666e-05, 8.997e-06]  [28 s, 57 residuals]
+   level 9 (low): stop at |r_9| 2.97e-06: every trial rejected with a fresh Jacobian (noise floor)
+   level 9 (top): stop at |r_9| 5.13e-05: every trial rejected with a fresh Jacobian (noise floor)
+   level 9 solved: |r_9| 5.13e-05  (20 residuals, 5 s)  [31 s total]
+level 7 it 0: |r_7| 1.144e+01  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008424206, 0.001511189, 0.000475436, 0.000122556, 2.666e-05, 8.997e-06]  [31 s, 66 residuals]
+level 9 it 0: |r_9| 7.316e-06  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008424206, 0.001511189, 0.000475364, 0.000122554, 2.6656e-05, 8.997e-06]  [32 s, 69 residuals]
+level 9 it 1: |r_9| 5.695e-06  lam 0.25  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008424206, 0.001511189, 0.000475364, 0.000122554, 2.6656e-05, 8.997e-06]  [33 s, 74 residuals]
+   level 9 (low): stop at |r_9| 5.03e-06: a fresh Jacobian no longer halves |g|
+   level 9 (top): stop at |r_9| 2.54e-05: a fresh Jacobian no longer halves |g|
+   level 9 solved: |r_9| 2.54e-05  (14 residuals, 4 s)  [35 s total]
+level 7 it 1: |r_7| 5.152e-01  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008424206, 0.001511189, 0.000475364, 0.000122554, 2.6656e-05, 8.997e-06]  [35 s, 80 residuals]
+level 9 it 0: |r_9| 4.250e-06  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008424206, 0.001511189, 0.000475368, 0.000122554, 2.6656e-05, 8.997e-06]  [36 s, 83 residuals]
+level 9 it 1: |r_9| 2.960e-06  lam 0.5  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008424206, 0.001511189, 0.000475368, 0.000122554, 2.6656e-05, 8.997e-06]  [36 s, 87 residuals]
+   level 9 (low): stop at |r_9| 2.14e-06: a fresh Jacobian no longer halves |g|
+   level 9 (top): stop at |r_9| 7.40e-05: every trial rejected with a fresh Jacobian (noise floor)
+   level 9 solved: |r_9| 7.40e-05  (16 residuals, 5 s)  [40 s total]
+level 7 it 2: |r_7| 1.794e-01  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008424206, 0.001511189, 0.000475368, 0.000122554, 2.6656e-05, 8.997e-06]  [46 s, 136 residuals]
+level 9 it 0: |r_9| 7.537e-06  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008424206, 0.001511189, 0.000475368, 0.000122555, 2.6656e-05, 8.997e-06]  [47 s, 139 residuals]
+level 9 it 1: |r_9| 4.976e-06  lam 0.5  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008424206, 0.001511189, 0.000475368, 0.000122555, 2.6656e-05, 8.997e-06]  [48 s, 143 residuals]
+   level 9 (low): stop at |r_9| 4.98e-06: every trial rejected with a fresh Jacobian (noise floor)
+   level 9 (top): stop at |r_9| 4.01e-05: every trial rejected with a fresh Jacobian (noise floor)
+   level 9 solved: |r_9| 4.01e-05  (16 residuals, 5 s)  [51 s total]
+level 7 it 3: |r_7| 8.471e-02  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008424206, 0.001511189, 0.000475368, 0.000122555, 2.6656e-05, 8.997e-06]  [59 s, 195 residuals]
+level 9 it 0: |r_9| 7.086e-06  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008424206, 0.001511189, 0.000475368, 0.000122554, 2.6656e-05, 8.997e-06]  [60 s, 198 residuals]
+level 9 it 1: |r_9| 2.765e-06  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008424206, 0.001511189, 0.000475368, 0.000122554, 2.6656e-05, 8.997e-06]  [60 s, 201 residuals]
+   level 9 (low): stop at |r_9| 2.76e-06: every trial rejected with a fresh Jacobian (noise floor)
+   level 9 (top): stop at |r_9| 2.98e-05: a fresh Jacobian no longer halves |g|
+   level 9 solved: |r_9| 2.98e-05  (14 residuals, 4 s)  [63 s total]
+level 9 it 0: |r_9| 7.516e-06  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008424206, 0.001511189, 0.000475368, 0.000122554, 2.6656e-05, 8.997e-06]  [64 s, 212 residuals]
+level 9 it 1: |r_9| 2.014e-06  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008424206, 0.001511189, 0.000475368, 0.000122554, 2.6656e-05, 8.997e-06]  [64 s, 213 residuals]
+   level 9 (low): stop at |r_9| 2.01e-06: every trial rejected with a fresh Jacobian (noise floor)
+   level 9 (top): stop at |r_9| 5.83e-05: every trial rejected with a fresh Jacobian (noise floor)
+   level 9 solved: |r_9| 5.83e-05  (21 residuals, 6 s)  [70 s total]
+   level 7 (low): stop at |r_7| 8.47e-02: every trial rejected with a fresh Jacobian (noise floor)
+   level 9 (top): stop at |r_9| 4.01e-05: every trial rejected with a fresh Jacobian (noise floor)
+   level 9 solved: |r_9| 4.01e-05  (7 residuals, 3 s)  [73 s total]

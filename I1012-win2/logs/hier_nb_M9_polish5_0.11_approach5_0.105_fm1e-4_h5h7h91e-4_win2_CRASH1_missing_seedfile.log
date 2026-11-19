@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "D:\choptuik-h9b\solver\inner_stokes\hier_nb.py", line 193, in <module>
+    main()
+    ~~~~^^
+  File "D:\choptuik-h9b\solver\inner_stokes\hier_nb.py", line 180, in main
+    v = np.concatenate([v, H.seed_from_C(opts.get("--seed", H.DEFAULT_SEED), A, M)[len(v):]])
+                           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\choptuik-h9b\solver\inner_stokes\hier.py", line 64, in seed_from_C
+    d = json.load(open(path))
+                  ~~~~^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\choptuik-h9b\\solver\\inner_stokes\\..\\inner_amp\\data\\sigF_w1.0000_K15_J1000_phys.json'
