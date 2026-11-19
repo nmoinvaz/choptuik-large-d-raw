@@ -37,3 +37,14 @@ Deviation to note: the issue says "run 1 again with `--h5=1e-3`" and the hc says
 - **Success is any level-5 solve below 1e-6, not only the first** (the coordinator notes it on the issue). The driver's "later solve below 1e-6" notice is the matching check; the runs have 3 h caps already, so nothing is extended.
 - Report each later level-5 solve's end |r_5| and stop reason too (`summarize1007.py` lists every solve with both stages' stops and accepted iterations).
 - If the later solves floor near 4e-5 with every trial rejected (as #1011's XI 0.11 run did, 3.92e-5), that may be the integrator's floor at rtol 1e-13 rather than the Jacobian, and the next run is the same command at `INNER_NB_RTOL=1e-14`, which lowered M = 7's floors (#976, #977, #981). Not started before the h5 = 1e-4 results are read; it is a new command with its own pre-registration.
+
+## Stage 3, written down at 08:35 UTC 19 Nov before it starts (from the coordinator's hc of 08:15 UTC and the second milestone)
+
+State at 08:33 UTC (the h5 = 1e-4 runs' second level-5 solves and the h5 = 1e-3 run's first): h5 = 1e-4, XI 0.11: solve 1 1.72e-2, solve 2 **4.25e-5** (stops: every trial rejected, approach 1.03e-2, polish 4.25e-5); h5 = 1e-4, XI 0.105: 1.25e-2, then 3.90e-3
+(the default step gave 11.5 there); h5 = 1e-3, XI 0.11: first solve 4.50e-2. The XI 0.11 floor at 4.25e-5 on "every trial rejected" equals #1011's 3.92e-5 at the default step, so it does not move with h5, which is the condition the hc named.
+
+- **Stage 3** (`chain1012c.py`): that run (XI 0.11, AP 0.105, `--h5=1e-4`, `--floor_max=1e-4`, `--verbose=2`, `--procs 2`, BelowNormal) again at **`INNER_NB_RTOL=1e-14`**, 3 h cap, started beside the three runs above. The environment variable reaches the spawn workers
+  (probe: a pool of two reads 1e-14 in os.environ and in inner_nb.RTOL_OVERRIDE, None when unset). No log-for-log control applies (the rounding changes from the first integration), so the plumbing check is that probe plus the first log lines' |r_9| values differing from the 1e-13 log's.
+- **What would show an integrator floor:** its second level-5 solve ends clearly below 4.25e-5 (the 1e-13 run's), with the stop reason read from the log; the same floor at 1e-14 means it is not the integrator's. Any level-5 solve below 1e-6 is the success of #1012.
+- The driver's selftest (one success notice for a stub's later solve of 5e-7, no process left; it fails under `--mutate=anysolve` and `--mutate=nokill`): `logs/selftest_chain1012c.txt`.
+- The driver and the pattern of my first milestone waiter: that waiter grepped "below 1e-6", which also matches the driver's header line, and fired at 08:24:48 with no solve below 1e-6. I changed it to the notice text ("solve ended at/below") and tested it on real and synthetic lines.
