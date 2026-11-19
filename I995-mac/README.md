@@ -26,4 +26,20 @@ Code: `solver/inner_stokes/argcount.py` on branch `wip/excited-zeros` of choptui
   first M = 1 count at r1 = 0.3, 01:31-04:09 UTC on 2026-11-19. **Not usable as a count:** boundary winding 0 and leaf
   sum 0, but 397 of 2635 leaf cells unresolved, among them 51 of the 55 cells of nonzero winding and the known zero's
   cell. R_1 computed along the r1 = 0.3 path jumps between nearby w/w_inf (A 0.5123456, w/w_inf 2.351404 to 2.351410),
-  the same to 7 digits at rtol 1e-12, 1e-13 and 1e-14, and absent along the r1 = 0.25 path. Being diagnosed (#995).
+  the same to 7 digits at rtol 1e-12, 1e-13 and 1e-14, and absent along the r1 = 0.25 path.
+- `m1b/lines1.jsonl`, `m1b/lines2.jsonl` (`lines.py`, `anal2.py`): R_1 on lines of w/w_inf at A 0.51, 2.51, 5.01 (and
+  5.99) for xi1 0.3, 0.25, 0.2, 0.17, 0.15, with max |Y| on the path. The jumps sit where max |Y| > about 1e2: the path
+  passes near a movable singularity of y+. None at 0.17 for A <= 5; at A 5.99 the singularities come inside 0.17, and
+  at 0.15 J reaches the double-precision floor (its error is about 4e-16 |Y| at every rtol).
+- `m1b/*guard*`: the guard check, A 0.5-0.75, w/w_inf 2.2-2.5. At xi1 0.3 all 8 points have max |Y| > 1e2 (largest
+  1.4e5), so no value and 3 unresolved cells; at 0.17 none, and the box resolves.
+- `m1b/*pilot_known*`: the known zero's box at xi1 0.17: one zero of sign +1 located at (2.542148, 0.776994), the same at
+  0.2.
+- `m1b/count_M1_full.json`, `leaves_M1_full.jsonl`, `points_M1_r0.17.jsonl`, `logs/m1b.log` (`run_m1b.sh`, code
+  8e770023 of wip/excited-zeros): the count at xi1 0.17 with the guards, 06:52-08:08 UTC. 10 cells of nonzero winding,
+  leaf sum -2, 145 unresolved (134 by the rounding floor, at w/w_inf < 1 and A > 2.8; the rest past A 4.75), 14350
+  points. The box boundary has points of no value, so its winding is NaN.
+- `m1b/count_M1_plant.json`, `leaves_M1_plant.jsonl`: the same with the planted factor at (1.7, 2.1), 08:08-08:16 UTC.
+  One more zero, of sign +1, located at (1.700000, 2.100000); the other 10 unchanged; leaf sum -1.
+- `run_m1c.sh` recounts the 145 unresolved cells at xi1 0.2, then 0.25, then 0.3 (code 8cad564f; its waves give the
+  same leaves as 8e770023 on the planted maps and the cached pilot). Its outputs follow when it ends.
