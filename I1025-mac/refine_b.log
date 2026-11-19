@@ -1,0 +1,44 @@
+== 2026-11-19 13:35:36 ell_refine.py l1kc31L1025 31 l1kc39L1025 39 1 12.5,13,13.5,14 2.75 --kappa 0.7 --u0 0.04 --Ks 30 --tol 1e-12
+  cx = c * ((n - 1) * (a2 - 1) - 2 * L * g) / x
+  ax = a * ((p * p + m * m) + 2 * L * g + (n - 1) * (1 - a2)) / (2 * x)
+  lt = L * c * a2 * q / x
+  lt = L * c * a2 * q / x
+  px = (-self.D(p, omega) + cx * p - c * p / x + pc - lt) / (x - c)
+  mx = (-self.D(m, omega) - cx * m + c * m / x - pc + lt) / (x + c)
+  a2 = a * a
+  cx = c * ((n - 1) * (a2 - 1) - 2 * L * g) / x
+  ax = a * ((p * p + m * m) + 2 * L * g + (n - 1) * (1 - a2)) / (2 * x)
+  pc = n * c * (p + m) / (2 * x)
+  px = (-self.D(p, omega) + cx * p - c * p / x + pc - lt) / (x - c)
+  mx = (-self.D(m, omega) - cx * m + c * m / x - pc + lt) / (x + c)
+  g = a2 * q * q
+  cx = c * ((n - 1) * (a2 - 1) - 2 * L * g) / x
+  ax = a * ((p * p + m * m) + 2 * L * g + (n - 1) * (1 - a2)) / (2 * x)
+  xpx = sum(X[j] * (k - j + 1) * P[k - j + 1] for j in range(1, k + 1))
+  xmx = sum(Y[j] * (k - j + 1) * M[k - j + 1] for j in range(1, k + 1))
+  xcxp = sum(j * C[j] * P[k - j] for j in range(1, k + 1))
+  xcxm = sum(j * C[j] * M[k - j] for j in range(1, k + 1))
+  s = s + X[j] * Y[k - j]
+  s = s + X[j] * Y[k - j]
+  r3 = Dp + xpx - xcxp + cp - 0.5 * n * cpm + L * ch
+  r4 = Dmm + xmx + xcxm - cm + 0.5 * n * cpm - L * ch
+  s = s + X[j] * Y[k - j]
+  mx = (-self.D(m, omega) - cx * m + c * m / x - pc + lt) / (x + c)
+  A2[0] = A[0] * A[0]; QQ[0] = Q[0] * Q[0]; G[0] = A2[0] * QQ[0]; H[0] = A2[0] * Q[0]
+  kappa = Kk * (1.0 + C[1]) + C[1] + 1.0 - 0.5 * n
+  qx = (p + m) / (2 * x)
+  pc = n * c * (p + m) / (2 * x)
+{"D": 12.5, "l": 1, "kc": 39, "kappa": 0.7, "rk": 1, "reg": 0.0, "u0": 0.04, "Ks": 30, "src": "l1kc31L1025", "Delta": 0.9660014301386953, "Delta_src": 0.9660014260600802, "F": 1.1571131774205641e-10, "F_start": 1.4331973907529178e-06, "steps": 2120, "constraint": 5.758642436212992e-06, "dDelta_dF": 34352243.30087537, "lam_gauge": 0.826495463470038, "lam_guess": 2.75, "lam": 2.7323751032674473, "gamma": 0.365981961555781, "n_eval": 13, "n_signchanges": 1, "seconds": 525}
+  aG = cs(A, Q2, Kk) + (n - 1) * (A[Kk] - cs(A, A2, Kk)) + 2 * L * cs(A, G, Kk)
+  pc = n * c * (p + m) / (2 * x)
+  px = (-self.D(p, omega) + cx * p - c * p / x + pc - lt) / (x - c)
+  px = (-self.D(p, omega) + cx * p - c * p / x + pc - lt) / (x - c)
+  mx = (-self.D(m, omega) - cx * m + c * m / x - pc + lt) / (x + c)
+{"D": 13.0, "l": 1, "kc": 39, "kappa": 0.7, "rk": 1, "reg": 0.0, "u0": 0.04, "Ks": 30, "src": "l1kc31L1025", "Delta": 0.965752481616261, "Delta_src": 0.9657535011477957, "F": 2.0306964607991422e-10, "F_start": 3.852928582395588e-06, "steps": 2092, "constraint": 2.3643248200645983e-05, "dDelta_dF": 78437151.03155117, "lam_gauge": 0.8265602927696212, "lam_guess": 2.7323751032674473, "lam": 2.684182472933395, "gamma": 0.3725529132552435, "n_eval": 15, "n_signchanges": 1, "seconds": 526}
+{"D": 13.5, "l": 1, "kc": 39, "kappa": 0.7, "rk": 1, "reg": 0.0, "u0": 0.04, "Ks": 30, "src": "l1kc31L1025", "Delta": 0.9676342604515177, "Delta_src": 0.9676366835759745, "F": 2.463754215665014e-10, "F_start": 8.55128338940427e-06, "steps": 2059, "constraint": 8.291868326643827e-05, "dDelta_dF": 221132629.5607614, "lam_gauge": 0.826567524820453, "lam_guess": 2.6359898425993427, "lam": 2.628764542091289, "gamma": 0.3804068352217119, "n_eval": 14, "n_signchanges": 1, "seconds": 495}
+  ax = a * ((p * p + m * m) + 2 * L * g + (n - 1) * (1 - a2)) / (2 * x)
+  C[Kk + 1] = (Kk * C[Kk] - (n - 1) * (cs(C, A2, Kk) - C[Kk]) + 2 * L * cs(C, G, Kk)) / (Kk + 1)
+  aG = cs(A, Q2, Kk) + (n - 1) * (A[Kk] - cs(A, A2, Kk)) + 2 * L * cs(A, G, Kk)
+{"D": 14.0, "l": 1, "kc": 39, "kappa": 0.7, "rk": 1, "reg": 0.0, "u0": 0.04, "Ks": 30, "src": "l1kc31L1025", "Delta": 0.9714879959109544, "Delta_src": 0.9714908647819005, "F": 2.3785285149019823e-10, "F_start": 1.6716324910515875e-05, "steps": 2022, "constraint": 0.00022302148456411006, "dDelta_dF": 687412538.5871027, "lam_gauge": 0.8267500197602654, "lam_guess": 2.573346611249183, "lam": 2.5654094006730803, "gamma": 0.38980133141230106, "n_eval": 22, "n_signchanges": 1, "seconds": 587}
+== exit 0
+== 2026-11-19 14:11:17 lane B done

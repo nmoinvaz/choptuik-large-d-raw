@@ -1,0 +1,25 @@
+$ python3 ell_march.py l1kc31m1025 1 31 data/sol_l1kc31t660_D10.0000.npy 10 15 10.5,11,11.5,12,12.5,13,13.5,14,14.5,15 --dinit 0.05 --dmax 0.1 --kappa 0.7 --u0 0.04 --Ks 30 --tol 1e-11  (from solver/matter, wip/ell1-highD at 86f77a88)
+2026-11-19 13:04 UTC
+seed D = 10.0: Delta 0.9849766911 |dz/dD| 1.874e-01 dDelta/dD -0.00559
+{"D": 10.05, "l": 1, "kc": 31, "kappa": 0.7, "reg": 0.0, "u0": 0.04, "Ks": 30, "Delta": 0.9847169962999491, "F": 1.9130422109656278e-11, "F_start": 3.162985617970615e-05, "dDelta_dF": 1524519.2362519123, "tan_norm": 0.18674947475511172, "dDelta_dD": -0.005720883871590912, "constraint": 3.6999375464521774e-05, "lam_gauge": 0.8251671177529278, "step": 0.05, "seconds": 125}
+{"D": 10.125, "l": 1, "kc": 31, "kappa": 0.7, "reg": 0.0, "u0": 0.04, "Ks": 30, "Delta": 0.9842276544675724, "F": 1.7005655070094232e-11, "F_start": 4.851358666668507e-06, "dDelta_dF": 1699121.300381041, "tan_norm": 0.22825772800641983, "dDelta_dD": -0.006100270499501521, "constraint": 0.0002764823117587591, "lam_gauge": 0.8251248928070135, "step": 0.07500000000000001, "seconds": 130}
+{"D": 10.225, "l": 1, "kc": 31, "kappa": 0.7, "reg": 0.0, "u0": 0.04, "Ks": 30, "Delta": 0.9836731600218068, "F": 3.596655122353478e-11, "F_start": 4.9003100697828004e-05, "dDelta_dF": 2058931.7146659119, "tan_norm": 1.8576698377622478, "dDelta_dD": -0.006249519504114787, "constraint": 0.0030287688362274708, "lam_gauge": 0.8250398381309217, "step": 0.1, "seconds": 129}
+  D = 10.32500: failed (start |F| 6.16e-04, end 2.866492569821683e-09); step -> 0.0500
+{"D": 10.275, "l": 1, "kc": 31, "kappa": 0.7, "reg": 0.0, "u0": 0.04, "Ks": 30, "Delta": 0.9833406473817579, "F": 3.9583598439867963e-11, "F_start": 0.00011112421792406813, "dDelta_dF": 3507666.8531684866, "tan_norm": 3.196844100886339, "dDelta_dD": -0.006464703331178406, "constraint": 0.011629303357743512, "lam_gauge": 0.8250162844973904, "step": 0.05, "seconds": 127}
+/Users/nathan/Source/choptuik-1025/solver/matter/dss_ell.py:211: RuntimeWarning: overflow encountered in multiply
+  a2 = a * a
+/Users/nathan/Source/choptuik-1025/solver/matter/dss_ell.py:213: RuntimeWarning: invalid value encountered in subtract
+  cx = c * ((n - 1) * (a2 - 1) - 2 * L * g) / x
+/Users/nathan/Source/choptuik-1025/solver/matter/dss_ell.py:214: RuntimeWarning: overflow encountered in multiply
+  ax = a * ((p * p + m * m) + 2 * L * g + (n - 1) * (1 - a2)) / (2 * x)
+/Users/nathan/Source/choptuik-1025/solver/matter/dss_ell.py:214: RuntimeWarning: invalid value encountered in add
+  ax = a * ((p * p + m * m) + 2 * L * g + (n - 1) * (1 - a2)) / (2 * x)
+/Users/nathan/Source/choptuik-1025/solver/matter/dss_ell.py:216: RuntimeWarning: overflow encountered in multiply
+  pc = n * c * (p + m) / (2 * x)
+/Users/nathan/Source/choptuik-1025/solver/matter/dss_ell.py:218: RuntimeWarning: overflow encountered in multiply
+  px = (-self.D(p, omega) + cx * p - c * p / x + pc - lt) / (x - c)
+/Users/nathan/Source/choptuik-1025/solver/matter/dss_ell.py:219: RuntimeWarning: overflow encountered in multiply
+  mx = (-self.D(m, omega) - cx * m + c * m / x - pc + lt) / (x + c)
+  D = 10.35000: failed (start |F| 5.42e-04, end 6.782760228684196e-09); step -> 0.0375
+{"D": 10.3125, "l": 1, "kc": 31, "kappa": 0.7, "reg": 0.0, "u0": 0.04, "Ks": 30, "Delta": 0.9830552170347218, "F": 2.3406933572996768e-12, "F_start": 8.771236800055867e-05, "dDelta_dF": 6200394.464603158, "tan_norm": 0.583705720903441, "dDelta_dD": -0.006649974070497805, "constraint": 0.02160757966637389, "lam_gauge": 0.8250108166741317, "step": 0.037500000000000006, "seconds": 70}
+stopped by hand 2026-11-19 13:16 UTC: the psi-constraint grew from 2.8e-4 (D 10.125) to 2.2e-2 (D 10.31); the tangent predictor drifts along near-null Jacobian directions
