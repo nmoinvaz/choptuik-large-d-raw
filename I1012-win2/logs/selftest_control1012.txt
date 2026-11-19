@@ -1,0 +1,15 @@
+# control1012.py self-tests on existing logs (no new run), 07:59:22 UTC; REF = #1011 run 1's log (its first 446 lines are final)
+$ the log against itself (must pass)
+hier_nb_M9_polish5_0.11_approach5_0.105_fm1e-4_win2.log against hier_nb_M9_polish5_0.11_approach5_0.105_fm1e-4_win2.log: the first 446 lines (to the reference's first level-5 (low) stop, inclusive), equal: True
+exit 0
+$ against #1011 run 2 (XI 0.105, other radii; must differ)
+hier_nb_M9_polish5_0.105_approach5_0.105_fm1e-4_win2.log against hier_nb_M9_polish5_0.11_approach5_0.105_fm1e-4_win2.log: the first 446 lines (to the reference's first level-5 (low) stop, inclusive), 
+first difference at line 18:
+  new: level radii (approach -> polish): r_1 0.1500 -> 0.1500, r_3 0.1500 -> 0.1500, r_5 0.1050 -> 0.1050, r_7 0.1028 -> 0.1500, r_9 0.0919 -> 0.1246
+  ref: level radii (approach -> polish): r_1 0.1500 -> 0.1500, r_3 0.1500 -> 0.1500, r_5 0.1050 -> 0.1100, r_7 0.1028 -> 0.1500, r_9 0.0919 -> 0.1246
+exit 1
+$ the log against itself with --mutate=shift (must differ)
+hier_nb_M9_polish5_0.11_approach5_0.105_fm1e-4_win2.log against hier_nb_M9_polish5_0.11_approach5_0.105_fm1e-4_win2.log: the first 446 lines (to the reference's first level-5 (low) stop, inclusive), e
+first difference at line 21:
+  new:    level 9 (top): stop at |r_9| 1.53e-10: step below rounding
+exit 1

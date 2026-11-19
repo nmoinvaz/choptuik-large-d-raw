@@ -1,0 +1,15 @@
+$ chain1012.py --selftest 
+scenario A: stage 2 started True (want True), stage-2 runs 1, alive after the cap [] -> ok
+scenario B: stage 2 started False (want False), stage-2 runs 0, alive after the cap [] -> ok
+selftest PASS
+exit 0
+$ chain1012.py --selftest --mutate=anyone
+scenario A: stage 2 started True (want True), stage-2 runs 1, alive after the cap [] -> ok
+scenario B: stage 2 started True (want False), stage-2 runs 1, alive after the cap [] -> FAIL
+selftest FAIL
+exit 1
+$ chain1012.py --selftest --mutate=nokill
+scenario A: stage 2 started True (want True), stage-2 runs 1, alive after the cap [17844, 27504, 20620] -> FAIL
+scenario B: stage 2 started False (want False), stage-2 runs 0, alive after the cap [7628, 25796] -> FAIL
+selftest FAIL
+exit 1

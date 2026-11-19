@@ -1,0 +1,29 @@
+# unit check of --h5 plumbing on main 23844822's hier_nb.py (scratch extract), 07:58:17 UTC; HIER_NB_H5 is what --h5= sets and the workers inherit
+$ unit_h5.py default
+mode default level 3: FD_STEP None, LazyHier.h [1.48977988e-07 1.47707130e-08], hier default [1.48977988e-07 1.47707130e-08], relative to the default [1. 1.]
+mode default level 5: FD_STEP None, LazyHier.h [8.424206e-09 2.719219e-09], hier default [8.424206e-09 2.719219e-09], relative to the default [1. 1.]
+mode default level 7: FD_STEP None, LazyHier.h [2.719219e-09 2.719219e-09], hier default [2.719219e-09 2.719219e-09], relative to the default [1. 1.]
+mode default: level-5 step = [1. 1.] x default (expected 1.0), levels 3 and 7 unchanged: OK
+exit 0
+$ unit_h5.py h5_1e-6
+mode h5_1e-6 level 3: FD_STEP None, LazyHier.h [1.48977988e-07 1.47707130e-08], hier default [1.48977988e-07 1.47707130e-08], relative to the default [1. 1.]
+mode h5_1e-6 level 5: FD_STEP 1e-06, LazyHier.h [8.424206e-09 2.719219e-09], hier default [8.424206e-09 2.719219e-09], relative to the default [1. 1.]
+mode h5_1e-6 level 7: FD_STEP None, LazyHier.h [2.719219e-09 2.719219e-09], hier default [2.719219e-09 2.719219e-09], relative to the default [1. 1.]
+mode h5_1e-6: level-5 step = [1. 1.] x default (expected 1.0), levels 3 and 7 unchanged: OK
+exit 0
+$ unit_h5.py h5
+mode h5 level 3: FD_STEP None, LazyHier.h [1.48977988e-07 1.47707130e-08], hier default [1.48977988e-07 1.47707130e-08], relative to the default [1. 1.]
+mode h5 level 5: FD_STEP 0.0001, LazyHier.h [8.424206e-07 2.719219e-07], hier default [8.424206e-09 2.719219e-09], relative to the default [100. 100.]
+mode h5 level 7: FD_STEP None, LazyHier.h [2.719219e-09 2.719219e-09], hier default [2.719219e-09 2.719219e-09], relative to the default [1. 1.]
+mode h5: level-5 step = [100. 100.] x default (expected 100.0), levels 3 and 7 unchanged: OK
+exit 0
+$ unit_h5.py wrongenv
+mode wrongenv level 3: FD_STEP None, LazyHier.h [1.48977988e-07 1.47707130e-08], hier default [1.48977988e-07 1.47707130e-08], relative to the default [1. 1.]
+mode wrongenv level 5: FD_STEP None, LazyHier.h [8.424206e-09 2.719219e-09], hier default [8.424206e-09 2.719219e-09], relative to the default [1. 1.]
+mode wrongenv level 7: FD_STEP None, LazyHier.h [2.719219e-09 2.719219e-09], hier default [2.719219e-09 2.719219e-09], relative to the default [1. 1.]
+mode wrongenv: level-5 step = [1. 1.] x default (expected 1.0), levels 3 and 7 unchanged: OK
+exit 0
+$ mutation: a wrong expectation (h5 mode expecting 1.0) must fail
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: level-5 step is [100. 100.] times the default, expected 1.0
+exit 1
