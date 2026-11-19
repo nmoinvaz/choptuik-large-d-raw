@@ -1,0 +1,10 @@
+== acc_nobar2 2026-11-19 21:36:34 68c0a09f
+  reseed: this hpkernel has no Solver.residual_sub; each rung residual is taken from the full residual
+accuracy I966-dh370/ks_chain3b/leg06_D251.2845_ks293/anm_pin3_D251.8782.npz: D 251.878219928, {'file_parts': 8, 'read': 8, 'held': 'eight parts', 'plan': 'stored'}; the reference (the default projection of the state) pinned max|F| 1.68e-35, rung |R| 2.94e-36, 339 s
+  plant 1e-21 default: 'ladder', rung |R| 1.11e-35, pinned max|F| 6.66e-35, distance from the reference 1.45e-43, 339 s
+  plant 1e-21 stop: 'pred', rung |R| 1.12e-35, pinned max|F| 6.68e-35, distance from the reference 1.45e-43, 164 s
+  plant 1e-21 o: 'u0o accepted (floor)', rung |R| 6.43e-21, pinned max|F| 3.59e-20, distance from the reference 5.19e-43, 13 s
+    stop against the default: ok
+    o against the default: NOT ok
+accuracy --mutate o_nobar: FAIL (1 plants)
+exit 1
