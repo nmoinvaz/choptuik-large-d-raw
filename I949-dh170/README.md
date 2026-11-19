@@ -130,7 +130,7 @@ What was read: 83 states in `track949.csv` (D 192 to 252.8861; ks_chain 39, ks_c
 |---|---|---|---|
 | 1 | planted check of near_null on D 229.0509 | pass | `ctl_planted exit 0` (427 s) |
 | 2 | `--mutate=scale_block` | pass | `ctl_planted_mut exit 1` |
-| 3 | planted fold fit, D* 260 and 262, three grids | pass | D* 260.0000 and 262.0000 on all three grids, max residual 1.9e-14; control A misses each time; `fold949.py --selftest` exit 0 (rerun at close) |
+| 3 | planted fold fit, D* 260 and 262, three grids | pass | D* 260.0000 and 262.0000 on all three grids, max residual 1.3e-14; control A misses each time; `fold949.py --selftest` exit 0 (rerun at close) |
 | 4 | its mutation | pass | `--selftest --mutate` exit 1 (rerun at close) |
 | 4a | validity rule's planted checks | pass | `selftest949.log` exit 0, its mutation exit 1 (27 no-fold windows valid: 0) |
 | 5 | slope over D 229 to 232 against #941 | pass | 0.4124, 0.4097, 0.4067, 0.4047 against 0.412, 0.410, 0.407, 0.405: largest difference 0.0004 |
@@ -144,7 +144,7 @@ Discrepancies and corrections, reported and not fixed:
 - The s(ks) baseline's ks dependence was really D dependence (#948: σ_Δ is the same from ks 240 to 320 at D 232), so later chains' triggers use the D-trend. The trigger baseline for dh370's ks_chain3b is my assumption.
 - Two forecasts of mine were wrong and were retracted on #949: that σ_2/σ_Δ would fall to 1.04 to 1.05 at D 247.28 with the Δ share dropping, and (07:21 UTC on 2026-11-19) that the trigger excess would pass 0.10 near D 250. It is +0.0896 at D 252.8861.
 - One ALERT in the whole run: the state at D 238.6789 lay 0.195 from the previous D* estimate (reported 2026-11-18 23:26 UTC, comment 6994662166); the estimate moved on to 239.25 to 239.39 and there was no zero.
-- My hc line of 2026-11-17 called σ_Δ "Delta"; it is the singular value of the Δ-mode vector, not Δ(D) (`compare_delta949.py`).
+- An early hc line of mine called σ_Δ "Delta"; it is the singular value of the Δ-mode vector, not Δ(D) (`compare_delta949.py`).
 - Reading, not a result: from D 251.2845 to 252.8861 the Δ share of σ_Δ's vector rose from 0.735 to 0.853 while σ_2/σ_Δ fell from 1.152 to 1.128, so the two lowest modes were still exchanging character at the end. The trigger and the fold fit follow σ_Δ as one branch.
 
 Recommended tasks (coordinator opens the issues):
