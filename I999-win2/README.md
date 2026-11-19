@@ -56,8 +56,8 @@ No XI takes level 5's first solve below 1e-6, so the M = 9 zero solve (3 h cap) 
 
 At XI 0.11 with approach 0.105 level 5 does converge to a floor: its second solve, started after the leakage Jacobian K is computed (245 s), takes six accepted iterations
 2.96, 0.92, 4.5e-3, 1.2e-3, 3.6e-4, 1.2e-4 and stops at |g| 1.17e-4 (polish solve, 342 s); the three later solves end at 3.4e-4 to 6.7e-4. That is 5 orders below
-the default's 42.5 and 2 orders above M = 7's level-5 floor (2.6e-6 in #974). At the end of that run r_3 7.6, r_5 3.4e-4, r_7 3.0e-8, r_9 2.2e-10; the level-7 stops range 1.2e-8 to 7e-5
-(7.7e-8 and below after K) and level 9's solves 1.8e-11 to 6.6e-9, so levels 7 and 9 sit well below level 5's floor. No `level 3 it` line was printed in that run or the 0.10 run.
+the default's 42.5 and 2 orders above M = 7's level-5 floor (2.6e-6 in #974). At the end of that run r_3 7.6, r_5 3.4e-4, r_7 3.0e-8, r_9 2.2e-10; the level-7 solves range 1.2e-8 to 7.0e-5
+(top-level stops 1.2e-8 to 4.8e-7 after K) and level 9's solves 1.8e-11 to 6.6e-9, so levels 7 and 9 sit well below level 5's floor. No `level 3 it` line was printed in that run or the 0.10 run.
 
 **What the table cannot separate:** XI and AP changed together from 0.12 to 0.11 (AP 0.1188 to 0.105), so the drop from 6.47 to 1.2e-4 is not attributed to either. At XI 0.15 AP 0.105 was the lowest AP
 in #980 (19.6) and AP 0.095 the highest (42.8), so AP matters at the default XI too. Each radius is one run, and the first-solve numbers come from the same start, so there is no scatter estimate.
