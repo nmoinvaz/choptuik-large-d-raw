@@ -1,0 +1,32 @@
+xi1 0.145 r145: 8 of 8 under the bar, |r_3| 3.7e-08 to 3.2e-07
+xi1 0.145 dA145: 8 of 8 under the bar, |r_3| 7.5e-08 to 3.3e-07
+xi1 0.145 dw145: 8 of 8 under the bar, |r_3| 2.2e-08 to 3.6e-07
+xi1 0.145: n (centre, dA, dw) = (8, 8, 8); centre mean r_1 = -0.1890+0.0184i
+  covariances of r_1: centre [[0.0312 0.0157]
+ [0.0157 0.0426]], dA [[ 0.0048 -0.0052]
+ [-0.0052  0.0151]], dw [[ 0.007  -0.0079]
+ [-0.0079  0.027 ]]
+  J (Re/Im rows; A, w/w_inf) = [[ 5222.3  3286.6]
+ [-4098.7  9291.2]], singular values [10216.8  6067.7]
+  zero (2.719248303, 1.000032951)   coefficients c0, ca, cw = -0.744, -0.147, -0.110
+  standard error with J's noise: 9.14e-06 (A 6.38e-06, w/w_inf 6.54e-06);  centre only, J fixed: bound 1.58e-05, propagated 1.22e-05
+  bootstrap: std A 6.61e-06, w 6.94e-06, norm 9.58e-06; robust A 6.35e-06, w 6.60e-06, norm 9.16e-06
+xi1 0.15 r150: 8 of 8 under the bar, |r_3| 1.2e-08 to 7.8e-08
+xi1 0.15 dA150: 8 of 8 under the bar, |r_3| 9.2e-09 to 6.1e-08
+xi1 0.15 dw150: 8 of 8 under the bar, |r_3| 6.7e-09 to 9.5e-08
+xi1 0.15: n (centre, dA, dw) = (8, 8, 8); centre mean r_1 = -0.0879+0.0395i
+  covariances of r_1: centre [[ 0.0004 -0.0003]
+ [-0.0003  0.0007]], dA [[ 0.0104 -0.0106]
+ [-0.0106  0.0109]], dw [[ 0.0002 -0.0001]
+ [-0.0001  0.0004]]
+  J (Re/Im rows; A, w/w_inf) = [[ 4483.2  2296.1]
+ [-4209.7  9739.5]], singular values [10616.9  5023.1]
+  zero (2.719236758, 1.000025616)   coefficients c0, ca, cw = -0.875, -0.089, -0.036
+  standard error with J's noise: 1.64e-06 (A 1.52e-06, w/w_inf 6.00e-07);  centre only, J fixed: bound 2.32e-06, propagated 1.68e-06
+  bootstrap: std A 1.53e-06, w 5.98e-07, norm 1.64e-06; robust A 1.51e-06, w 5.94e-07, norm 1.63e-06
+check against m7_outer (xi1 0.145): its zero 2.719247, 1.000033; formula 2.719247, 1.000033: ok
+check against m7_outer (xi1 0.15): its zero 2.719237, 1.000026; formula 2.719237, 1.000026: ok
+
+Delta = Z(0.145) - Z(0.15) = (A +1.154e-05, w/w_inf +7.335e-06), |Delta| 1.368e-05; combined SE (quadrature) 9.286e-06
+d = |Delta| / combined SE = 1.47 -> undecided   (Mahalanobis 1.81; per component A +1.76, w/w_inf +1.12)
+w/w_inf alone: +7.335e-06 over its combined SE 6.571e-06 = +1.12 -> undecided
