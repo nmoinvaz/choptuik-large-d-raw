@@ -61,7 +61,7 @@ About 30 min on the Mac by §10's times, about 1 h here (a guess). rpi5 needed 5
 | `compare1039.py` | the comparison (checks, line by line against I1030-rpi5, `--mutate` controls, `--selftest`) |
 | `compare1039.log` | its output on the eight logs: 19 checks, 0 differ, 0 missing, exit 0 |
 | `compare1039_mutate.log` | the controls on altered copies of the eight logs: 4 of 4 reported, exit 1 |
-| `logs/<name>.log`, `logs/<name>.exit` | the eight runs' stdout and stderr (CRLF line endings from Windows Python, the last line `exit N` has LF) and each run's exit text |
+| `logs/<name>.log`, `logs/<name>.exit` | the eight runs' stdout and stderr (Windows Python wrote CRLF line endings in the runner's folder; git stores them with LF, see Observations) and each run's exit text |
 | `logs/driver.log`, `logs/times.txt`, `logs/versions.txt`, `logs/run_1039.exit` | start and end of every run in UTC, wall seconds, Python and library versions with the code commit, the driver's exit (0) |
 | `logs/selftest_run.log`, `logs/selftest_compare.log`, `logs/selftest_compare_final.log` | the selftests |
 | `tmp/` | the issue comments as posted (start comment and its fix) |
@@ -101,7 +101,7 @@ Observations:
 - The certified bounds agree to every printed digit, not only to the digits §10 quotes: C_0 = 56.8735, C_p = 4.76610e+6, the max relative radii of `route3_bound_check` (2.3e-121 to 6.1e-32), the 5 violations in every row of the plant control and the violation counts and first-violation columns of the psi control. #111's allowance for last-digit differences between machines was not needed.
 - The controls behave as rpi5's did: plant reaches a worst ratio 3.0 to 3.03 with 5 violations per row, psi violates only the perturbation 0 rows (worst 2.348 at nu = 3, down to 1.006 at nu = 7 and below 1 from nu = 9), and demix breaks the tuned table's "form C nu/j^2" in every row.
 - Versions: Python 3.14.10 (CPython, AMD64, Windows 11 10.0.26200), python-flint 0.9.0, FLINT 3.6.0 (30600), mpmath 1.3.0, sympy 1.14.0, numpy 2.5.4. rpi5 used Python 3.13.7 on aarch64 Linux with the same python-flint, FLINT, mpmath, sympy and numpy versions. So this is a second architecture, operating system and Python, not a second FLINT.
-- The Windows logs have CRLF line endings (Python text mode on Windows) and a final `exit N` line with LF; the comparison strips `\r`. The logs are therefore not byte-identical to rpi5's, they are identical line by line after removing `\r` and masking the tuned timings. The tuned tables print the Greek letter nu as UTF-8 on both machines.
+- Line endings: the runner's folder holds the logs with CRLF (Python text mode on Windows; the final `exit N` line has LF), so `compare1039.py` strips `\r` and the comparison above is line by line. The push worktree has `core.autocrlf=true`, so git stores the logs with LF. As stored in git, the six `route3_bound_*` logs are byte-identical to I1030-rpi5's (checked with `cmp` on the two blobs of each), and the two tuned logs differ from rpi5's only in the timing numbers. The tuned tables print the Greek letter nu as UTF-8 on both machines.
 - Timing: the win laptop was faster than rpi5 on the slow runs (880 to 890 s against 1071 to 1078 s for the `--check` runs, 455 s against 574 s for the tuned runs) and took the same time on the `--constants` runs.
 
 Limits:
