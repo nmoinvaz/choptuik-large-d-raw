@@ -41,5 +41,11 @@ Code: `solver/inner_stokes/argcount.py` on branch `wip/excited-zeros` of choptui
   points. The box boundary has points of no value, so its winding is NaN.
 - `m1b/count_M1_plant.json`, `leaves_M1_plant.jsonl`: the same with the planted factor at (1.7, 2.1), 08:08-08:16 UTC.
   One more zero, of sign +1, located at (1.700000, 2.100000); the other 10 unchanged; leaf sum -1.
-- `run_m1c.sh` recounts the 145 unresolved cells at xi1 0.2, then 0.25, then 0.3 (code 8cad564f; its waves give the
-  same leaves as 8e770023 on the planted maps and the cached pilot). Its outputs follow when it ends.
+- `run_m1c.sh`, `logs/m1c.log`, `m1b/*_M1_full_r0.2*`, `*_r0.25*`, `*_r0.3*`: the radius ladder, 08:16-08:53 UTC (code
+  8cad564f; its waves give the same leaves as 8e770023 on the planted maps and the cached pilot). It recounted the 145
+  unresolved cells at xi1 0.2: 15 more zero cells, leaf sum +1, 101 left; at 0.25: none, 89 left; at 0.3: none, 73
+  left. The 73 lie at A >= 3.98 (mostly A >= 4.5, area 1.14 of the box's 15.4), all with paths past max |Y| 1e2 at
+  0.3: there the rounding floor rises below xi1 0.17 and the singularities come inside 0.2-0.3, so double precision
+  does not resolve them.
+- `m1b/zeros_M1.md`: the 25 zeros (sum -1) with their locations at each radius. 15 sit at two or three radii within
+  1e-5, (3.4077, 0.6150) within 1.6e-4, and 9 at one radius only (6 of them at A >= 4.25).
