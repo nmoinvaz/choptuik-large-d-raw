@@ -1,0 +1,10 @@
+== eps 1e-6
+n 3094; seconds: mode_matrix 45.2, mode_matrix_c 74.2, complex solve with 10 probes 1.3
+check (a) mode_matrix_c vs mode_matrix at lam1: max column-relative error 1.9e-07 (bar 1e-6) OK
+check (b) conjugate symmetry at lam1 + 0.3i: skipped
+   worst column 3072: max |M| there 1.02e+00 (matrix max 7.27e+00), eps 1e-06
+== eps 1e-5
+n 3094; seconds: mode_matrix 41.2, mode_matrix_c 89.8, complex solve with 10 probes 1.1
+check (a) mode_matrix_c vs mode_matrix at lam1: max column-relative error 1.0e-06 (bar 1e-6) BAD
+check (b) conjugate symmetry at lam1 + 0.3i: skipped
+   worst column 3045: max |M| there 7.20e+00 (matrix max 7.27e+00), eps 1e-05
