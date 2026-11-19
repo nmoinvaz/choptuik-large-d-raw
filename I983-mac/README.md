@@ -84,7 +84,7 @@ at D 30 alone could not decide. D 20 (above the band, where (H4) predicts no nul
 (H4) predicts the null pair) bracket the onset. #423's root-level bound at D 30 on 32 × 121, 1.35×10⁻³¹, is two to four decades
 above D 40's, and T2 would also read it.
 
-## T1's code, checked on the Mac (2026-11-19 00:40 UTC)
+## T1's code, checked on the Mac (2026-11-19 00:17 UTC)
 
 `rt_sigma.py --save_x` and `rt_xcount.py` on `wip/p7-stage0` at b27f2297, run with `/Users/nathan/venv-qd/bin/python`
 and RT_FORMULATION.md 9.9's `MULTIDOUBLE_SITE` (venv-314's multidouble lacks `_dd_dot`). Logs `logs/t1_*.log`.
