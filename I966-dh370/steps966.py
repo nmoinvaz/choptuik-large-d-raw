@@ -4,7 +4,7 @@
     python3 -I steps966.py CHAIN_OUT [--from D] [--to D] [--wall H]
     python3 -I steps966.py --selftest [--mutate]
 
-One row per converged step of every leg's anm_run.jsonl: leg ks, D reached (the accepted attempt's), a, attempts, the a rule's
+The last two columns are the base the step started from (D0) and its smallest pivot (p_min, pivots[0] of the record). One row per converged step of every leg's anm_run.jsonl: leg ks, D reached (the accepted attempt's), a, attempts, the a rule's
 level at the accepted attempt (blank without the rule), the octo-double corrector's steps, the series seconds (t_coef) and the
 step seconds, the sum of the logged parts: t_coef plus, for each attempt, its re-seed seconds and t_corr. That sum leaves out each
 leg's base polish and the setup of each attempt, so it is the same quantity for ks_chain2 (whose log has no clock) and ks_chain3.
@@ -43,17 +43,17 @@ def rows(chain):
             if not r.get("converged"):
                 continue
             acc = [a for a in r["attempts"] if a["accepted"]][-1]
-            out.append(dict(ks=int(m.group(2)), step=r["step"], D0=r["D0"], D=acc["D"], a=acc["a"], att=len(r["attempts"]),
+            out.append(dict(ks=int(m.group(2)), step=r["step"], D0=r["D0"], pmin=(r.get("pivots") or [None])[0], D=acc["D"], a=acc["a"], att=len(r["attempts"]),
                             level=acc.get("rule_level"), cs=acc["steps"], series=r.get("t_coef", 0.0), sec=step_seconds(r)))
     return out
 
 
 def table(rs):
-    print("| ks | step | D | a | attempts | level | corrector steps | series s | step s |")
-    print("|---|---|---|---|---|---|---|---|---|")
+    print("| ks | step | D | a | attempts | level | corrector steps | series s | step s | base D0 | base p_min |")
+    print("|---|---|---|---|---|---|---|---|---|---|---|")
     for r in rs:
         lv = "" if r["level"] is None else f"{r['level']:.4f}"
-        print(f"| {r['ks']} | {r['step']} | {r['D']:.4f} | {r['a']:.4f} | {r['att']} | {lv} | {r['cs']} | {r['series']:.0f} | {r['sec']:.0f} |")
+        print(f"| {r['ks']} | {r['step']} | {r['D']:.4f} | {r['a']:.4f} | {r['att']} | {lv} | {r['cs']} | {r['series']:.0f} | {r['sec']:.0f} | {r['D0']:.4f} | {'' if r['pmin'] is None else format(r['pmin'], '.3e')} |")
 
 
 def per_D(rs, lo, hi):

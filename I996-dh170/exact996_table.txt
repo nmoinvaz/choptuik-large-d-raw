@@ -1,0 +1,17 @@
+exact orders sigma_0 .. sigma_n (n = min(M, M'), and what the shorter run reached), largest relative difference, 20-digit JSONs:
+    M3_60 against M3_120 : sigma_0..sigma_3: largest       0.0 at sigma_0
+    M5_60 against M5_120 : sigma_0..sigma_5: largest  1.25e-14 at sigma_5
+   M3_120 against M5_120 : sigma_0..sigma_3: largest  1.26e-11 at sigma_3
+   M3_120 against M7_120 : sigma_0..sigma_3: largest  1.92e-11 at sigma_3
+   M3_120 against M9_120 : sigma_0..sigma_3: largest  2.41e-11 at sigma_3
+   M5_120 against M7_120 : sigma_0..sigma_5: largest  4.65e-11 at sigma_5
+   M5_120 against M9_120 : sigma_0..sigma_5: largest  5.55e-11 at sigma_5
+   M7_120 against M9_120 : sigma_0..sigma_7: largest   6.81e-7 at sigma_7
+   M7_120 against M9_180 : sigma_0..sigma_4: largest  7.83e-12 at sigma_4
+   M9_120 against M9_180 : sigma_0..sigma_4: largest       0.0 at sigma_0
+    M3_60 against M5_60  : sigma_0..sigma_3: largest  1.26e-11 at sigma_3
+
+the exact orders of the next-larger model against this one, as a fraction of Delta sigma_{M+1} (the 1% rule, 120-digit runs):
+  M 3 against M 5: |Delta sigma_4| = 4.145e-5; |sigma_j difference| / that, j = 0..3: 0.0, 5.0e-8, 5.6e-8, 3.9e-8  -> largest 5.6e-8 at sigma_2: within 1%
+  M 5 against M 7: |Delta sigma_6| = 1.222e-8; |sigma_j difference| / that, j = 0..5: 0.0, 9.0e-5, 9.9e-5, 7.0e-5, 2.6e-5, 2.4e-5  -> largest 9.9e-5 at sigma_2: within 1%
+  M 7 against M 9: |Delta sigma_8| = 7.339e-9; |sigma_j difference| / that, j = 0..7: 0.0, 0.00011, 0.00012, 8.6e-5, 3.3e-5, 8.5e-6, 0.0016, 0.017  -> largest 0.017 at sigma_7: OVER 1%

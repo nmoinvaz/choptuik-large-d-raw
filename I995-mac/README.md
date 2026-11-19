@@ -19,3 +19,11 @@ Code: `solver/inner_stokes/argcount.py` on branch `wip/excited-zeros` of choptui
 - M = 1 over A 0.5-6, w/w_inf 0.2-3 (base grid 22 x 28), then the same with the planted factor (cache reused).
 - M = 3 in boxes around the known zero and around each M = 1 candidate's shifted position. The full M = 3 box is a
   runner job (about 7.5 s a point).
+
+## Results
+
+- `m1/count_M1_full.json`, `m1/leaves_M1_full.jsonl`, `m1/points_M1.jsonl` (18643 points), `logs/m1_full.log`: the
+  first M = 1 count at r1 = 0.3, 01:31-04:09 UTC on 2026-11-19. **Not usable as a count:** boundary winding 0 and leaf
+  sum 0, but 397 of 2635 leaf cells unresolved, among them 51 of the 55 cells of nonzero winding and the known zero's
+  cell. R_1 computed along the r1 = 0.3 path jumps between nearby w/w_inf (A 0.5123456, w/w_inf 2.351404 to 2.351410),
+  the same to 7 digits at rtol 1e-12, 1e-13 and 1e-14, and absent along the r1 = 0.25 path. Being diagnosed (#995).

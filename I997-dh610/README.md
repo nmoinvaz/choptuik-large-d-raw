@@ -13,3 +13,6 @@ Its meta: D 3.15, M 160, 17 nodes 0.000625 ... 0.9, kt 36, kc 100, ks 250.
 | `m256.jsonl`, `m256.log` | step 1's record and log (lowD_dd.py, the direct M 160 to M 256 lift) |
 | `lowD997_D3.1500_M256.npz` | step 1's converged state (copied from `hp/data/lowD_states/` of the worktree, sha1 4407e801cb08) |
 | `run997_series.sh`, `series/run.log`, `series_D3.15_M256_N20.npz` | step 2, the Taylor series at M 256 |
+| `compare997.py`, `compare997.txt` | Delta_k of the saved series at M 256, M 160 and M 128 per order, with the partial sums at h = -0.01 (M 160 and M 128 files are win2b's `I997-win2/series/series_D3.15_M160_N20.npz` and `series_M128/series_D3.15_M128_N20.npz`, raw origin/main 012d465c) |
+
+Step 2's anm_lowd process (pid 649398) wrote the series at 02:54 UTC and was still in its target-D 3.14 stage at 06:40 UTC (no "target" record in `series/anm_lowd.jsonl`).
