@@ -1,0 +1,8 @@
+S0 the old series solves model.rs's header equations at u0/8: PASS  residual 1.585e-38 (bound 1e-20)
+S1 B_sl solves B's rows 0..K with b_(K+1) = 0: FAIL  residual 2.111e-06 relative
+S2 chi equals (1-u)^-(n-1) exp(int q/(1-s)) coefficient by coefficient: PASS  relative 1.651e-76
+S3 Miller's recurrence gives a with a a B = 1: PASS  residual 2.161e-77 relative
+S4 P1 planted: factored rows equal the old rows: FAIL  max diff 8.668e-10 (bound 1.869e-60, G 2.164e+15)
+S5 plain and Anderson sweeps reach the fixed point: PASS  |g(y)-y| plain 2.92e-75 in 18, Anderson 3.35e-76 in 18 sweeps
+S6 the closure b_(K+1) = 1 gives the same rows: FAIL  max diff 1.774e-26
+selftest --mutate=bsl: 4 of 7 pass; FAIL: S1, S4, S6
