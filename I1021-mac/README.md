@@ -38,3 +38,10 @@ seeds (R02N 0) 12 of 750 seeds differ.
 `split/rerun2_box.sh` does the same for dh610's 068913b4 jobs b11-15, b16-20 or b26-31, given as its fourth argument.
 It refuses while that job runs, or if its cache does not begin with the 617-line input or ends inside a line; these
 refusals were tested on scratch copies on the Mac.
+
+Start-noise check (b), `diag/start_noise.py` at 068913b4: noise3 at the start radius of every continuation-valued
+point of the Mac cache, from its replayed seed. `start_noise.jsonl` covers the cache's first 964 lines (748 points,
+17:47-20:22 UTC), and `start_noise_after964.jsonl` the other 85 (seeds `seeds_after964.jsonl` from
+`seeds_replay_1049.jsonl`, 20:07-20:26 UTC); together they are all 833 such points. None is above the cap of 1e2 or
+1e7, and every start passes |r3| <= 3 noise3; the largest start noise3 is 4.6e-4. The largest final noise3 in the
+cache is 4.73. So neither cap changes the bits of any Mac point.
