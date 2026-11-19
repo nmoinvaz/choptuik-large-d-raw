@@ -1,0 +1,9 @@
+$ chain1012g.py --selftest 
+commands carry the right (A, w, seed) per run: True; stubs started 3 (want 3); alive after the cap [] -> selftest PASS
+exit 0
+$ chain1012g.py --selftest --mutate=swap
+commands carry the right (A, w, seed) per run: False; stubs started 3 (want 3); alive after the cap [] -> selftest FAIL
+exit 1
+$ chain1012g.py --selftest --mutate=nokill
+commands carry the right (A, w, seed) per run: True; stubs started 3 (want 3); alive after the cap [29840, 25684, 31796] -> selftest FAIL
+exit 1

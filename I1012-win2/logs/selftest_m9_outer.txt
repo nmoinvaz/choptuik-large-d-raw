@@ -1,0 +1,11 @@
+# m9_outer.py planted-truth selftest, 12:33:05 UTC
+$ m9_outer.py --selftest
+planted (response 100 sigma): max relative error of J 3.11e-02, snr 98.0 and 28.0, resolved True  -> ok
+planted (response 0.5 sigma): max relative error of J 6.09e+00, snr 1.0 and 1.6, resolved False  -> ok
+PASS
+exit 0
+$ m9_outer.py --selftest --mutate=sign (must fail)
+planted (response 100 sigma): max relative error of J 1.98e+00, snr 98.0 and 28.0, resolved True  -> FAIL
+planted (response 0.5 sigma): max relative error of J 6.09e+00, snr 1.0 and 1.6, resolved False  -> ok
+FAIL
+exit 1
