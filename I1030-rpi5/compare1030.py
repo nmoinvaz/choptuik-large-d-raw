@@ -1,6 +1,7 @@
 """#1030: this folder's logs against the issue's pass criteria and I1015-mac's logs.
     python3 compare1030.py MAC_RAW_DIR [--mutate]      # MAC_RAW_DIR = a checkout of choptuik-large-d-raw holding I1015-mac
-1. every run's last line is `exit N` with the expected N (0 for a verdict run, which also prints PASS; 1 for a control, which prints FAIL);
+1. every run's last line is `exit N` with the expected N (0 for a verdict run, which also prints PASS; 1 for a control, which prints FAIL;
+   route3_head --scope and --certify print no verdict line, as in I1015-mac's logs, so only their exit 0 is required);
 2. `route3_bound.py --constants` prints C_m, C_0, C_p = 28.45, 56.87, 4.77e6, and with --J0=100 1.60, 3.17, 3.63e5 (rounded to the quoted digits);
 3. route3_head.py's six logs equal I1015-mac's line by line (timings masked; the logs print none);
 4. extra, not a criterion: the J0 = 10 sups, P, W and Cr equal notes/P6_route3.md 10.2's table at its digits.
@@ -14,6 +15,7 @@ EXPECT = {"route3_bound_lemmas": 0, "route3_bound_constants": 0, "route3_bound_c
           "route3_head_scope": 0, "route3_head_lemmas": 0, "route3_head_check": 0, "route3_head_check_plant": 1,
           "route3_head_check_gsmall": 1, "route3_head_certify": 0}
 HEAD = [k for k in EXPECT if k.startswith("route3_head")]
+NOVERDICT = {"route3_head_scope", "route3_head_certify"}    # these two print no PASS line (nor do I1015-mac's logs): exit 0 only
 MASK = [re.compile(p) for p in (r"\[\d+(\.\d+)? s\]", r"\(\d+ s\)", r"\d+ s\)")]
 
 
@@ -49,6 +51,8 @@ def checks(mut=""):
         got = int(m.group(1)) if m else None
         verdict = lines[-2] if len(lines) > 1 else ""
         want_v = "PASS" if want == 0 else "FAIL"
+        if name in NOVERDICT:
+            out.append((f"{name}: exit {want} (no verdict line)", got == want, f"exit {got}")); continue
         out.append((f"{name}: exit {want}, verdict {want_v}", got == want and verdict.strip() == want_v,
                     f"exit {got}, last line before it {verdict.strip()[:60]!r}"))
     for name, tag, want in (("route3_bound_constants", "J0 10", ("28.45", "56.87", "4.77e+6")),
