@@ -1,0 +1,546 @@
+pretune level 9 (approach, xi 0.0919): start |r_9| 1.476e+02  [0 s]
+   it 0: |r_9| 5.980e-04  lam 1.0  B,C_9 2.660298558655e-05 8.947853826324e-06  [1 s]
+   it 1: |r_9| 7.745e-06  lam 1.0  B,C_9 2.660298495134e-05 8.947854213419e-06  [1 s]
+   it 2: |r_9| 6.772e-06  lam 0.5  B,C_9 2.660298495605e-05 8.947854212404e-06  [2 s]
+   it 3: |r_9| 2.971e-06  lam 1.0  B,C_9 2.660298495548e-05 8.947854220809e-06  [3 s]
+   it 4: |r_9| 1.646e-06  lam 1.0  B,C_9 2.660298495308e-05 8.947854217997e-06  [4 s]
+   it 5: no decrease; stop at |r_9| 1.646e-06
+pretune level 9 (polish, xi 0.1246): start |r_9| 7.463e-04  [0 s]
+   it 0: |r_9| 2.515e-05  lam 1.0  B,C_9 2.660298503239e-05 8.947854196393e-06  [1 s]
+   it 1: |r_9| 3.290e-07  lam 1.0  B,C_9 2.660298503482e-05 8.947854197774e-06  [1 s]
+   it 2: |r_9| 3.140e-09  lam 1.0  B,C_9 2.660298503485e-05 8.947854197796e-06  [1 s]
+   it 3: |r_9| 2.419e-10  lam 1.0  B,C_9 2.660298503485e-05 8.947854197796e-06  [2 s]
+   it 4: |r_9| 2.290e-10  lam 1.0  B,C_9 2.660298503485e-05 8.947854197796e-06  [2 s]
+   it 5: |r_9| 1.664e-10  lam 1.0  B,C_9 2.660298503485e-05 8.947854197796e-06  [3 s]
+   it 6: no decrease; stop at |r_9| 1.664e-10
+pretuned x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008424206, 0.001511189, 0.000474205, 0.00012168, 2.6602985034854245e-05, 8.947854197796251e-06]
+M 9, xi1 0.15, fixed (A, w), procs 2; start x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008424206, 0.001511189, 0.000474205, 0.00012168, 2.6603e-05, 8.948e-06]
+level radii (approach -> polish): r_1 0.1500 -> 0.1500, r_3 0.1500 -> 0.1500, r_5 0.1050 -> 0.1100, r_7 0.1028 -> 0.1500, r_9 0.0919 -> 0.1246
+start residuals: |r_1| 0.00e+00  |r_3| 0.00e+00  |r_5| 0.00e+00  |r_7| 0.00e+00  |r_9| 6.57e-05
+   level 9 (top): stop at |r_9| 1.53e-10: step below rounding
+   level 9 solved: |r_9| 1.53e-10  (3 residuals, 1 s)  [11 s total]
+   level 9 (top): stop at |r_9| 1.53e-10: step below rounding
+   level 9 solved: |r_9| 1.53e-10  (1 residuals, 0 s)  [12 s total]
+     level 9 (low) it 0 trial lam 1: |r_9| 1.596e-04 against 5.840e+01: accepted
+level 9 it 0: |r_9| 1.596e-04  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008424206, 0.001511189, 0.000475367, 0.000122554, 2.6656e-05, 8.997e-06]  [17 s, 43 residuals]
+     level 9 (low) it 1 trial lam 1: |r_9| 3.458e-06 against 1.596e-04: accepted
+level 9 it 1: |r_9| 3.458e-06  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008424206, 0.001511189, 0.000475367, 0.000122554, 2.6656e-05, 8.997e-06]  [17 s, 44 residuals]
+     level 9 (low) it 2 trial lam 1: |r_9| 2.338e-06 against 3.458e-06: accepted
+level 9 it 2: |r_9| 2.338e-06  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008424206, 0.001511189, 0.000475367, 0.000122554, 2.6656e-05, 8.997e-06]  [18 s, 47 residuals]
+     level 9 (low) it 3 trial lam 1: |r_9| 7.278e-06 against 2.338e-06: rejected
+     level 9 (low) it 3 trial lam 0.5: |r_9| 8.279e-06 against 2.338e-06: rejected
+   level 9 (low): stop at |r_9| 2.34e-06: every trial rejected with a fresh Jacobian (noise floor)
+     level 9 (top) it 0 trial lam 1: |r_9| 1.274e-06 against 3.442e-05: accepted
+level 9 it 0: |r_9| 1.274e-06  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008424206, 0.001511189, 0.000475367, 0.000122554, 2.6656e-05, 8.997e-06]  [19 s, 51 residuals]
+     level 9 (top) it 1 trial lam 1: |r_9| 1.749e-08 against 1.274e-06: accepted
+level 9 it 1: |r_9| 1.749e-08  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008424206, 0.001511189, 0.000475367, 0.000122554, 2.6656e-05, 8.997e-06]  [19 s, 52 residuals]
+     level 9 (top) it 2 trial lam 1: |r_9| 2.594e-10 against 1.749e-08: accepted
+level 9 it 2: |r_9| 2.594e-10  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008424206, 0.001511189, 0.000475367, 0.000122554, 2.6656e-05, 8.997e-06]  [20 s, 53 residuals]
+   level 9 (top): stop at |r_9| 2.59e-10: step below rounding
+   level 9 solved: |r_9| 2.59e-10  (15 residuals, 4 s)  [20 s total]
+     level 7 (low) it 0 trial lam 1: |r_7| 7.751e-03 against 2.386e+02: accepted
+level 7 it 0: |r_7| 7.751e-03  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008424206, 0.001511189, 0.000475367, 0.000122554, 2.6656e-05, 8.997e-06]  [20 s, 53 residuals]
+     level 9 (low) it 0 trial lam 1: |r_9| 7.454e-06 against 1.901e-03: accepted
+level 9 it 0: |r_9| 7.454e-06  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008424206, 0.001511189, 0.000475367, 0.000122554, 2.6656e-05, 8.997e-06]  [21 s, 56 residuals]
+     level 9 (low) it 1 trial lam 1: |r_9| 3.070e-06 against 7.454e-06: accepted
+level 9 it 1: |r_9| 3.070e-06  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008424206, 0.001511189, 0.000475367, 0.000122554, 2.6656e-05, 8.997e-06]  [21 s, 59 residuals]
+     level 9 (low) it 2 trial lam 1: |r_9| 2.067e-06 against 3.070e-06: accepted
+   level 9 (low): stop at |r_9| 2.07e-06: a fresh Jacobian no longer halves |g|
+     level 9 (top) it 0 trial lam 1: |r_9| 5.697e-07 against 1.894e-05: accepted
+level 9 it 0: |r_9| 5.697e-07  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008424206, 0.001511189, 0.000475367, 0.000122554, 2.6656e-05, 8.997e-06]  [22 s, 62 residuals]
+     level 9 (top) it 1 trial lam 1: |r_9| 7.279e-09 against 5.697e-07: accepted
+level 9 it 1: |r_9| 7.279e-09  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008424206, 0.001511189, 0.000475367, 0.000122554, 2.6656e-05, 8.997e-06]  [22 s, 63 residuals]
+     level 9 (top) it 2 trial lam 1: |r_9| 2.187e-10 against 7.279e-09: accepted
+level 9 it 2: |r_9| 2.187e-10  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008424206, 0.001511189, 0.000475367, 0.000122554, 2.6656e-05, 8.997e-06]  [23 s, 64 residuals]
+   level 9 (top): stop at |r_9| 2.19e-10: step below rounding
+   level 9 solved: |r_9| 2.19e-10  (11 residuals, 3 s)  [23 s total]
+     level 7 (low) it 1 trial lam 1: |r_7| 2.619e-06 against 7.751e-03: accepted
+level 7 it 1: |r_7| 2.619e-06  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008424206, 0.001511189, 0.000475367, 0.000122554, 2.6656e-05, 8.997e-06]  [23 s, 64 residuals]
+     level 9 (top) it 0 trial lam 1: |r_9| 1.340e-07 against 7.067e-06: accepted
+level 9 it 0: |r_9| 1.340e-07  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008424206, 0.001511189, 0.000475367, 0.000122554, 2.6656e-05, 8.997e-06]  [24 s, 66 residuals]
+     level 9 (top) it 1 trial lam 1: |r_9| 1.666e-09 against 1.340e-07: accepted
+level 9 it 1: |r_9| 1.666e-09  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008424206, 0.001511189, 0.000475367, 0.000122554, 2.6656e-05, 8.997e-06]  [24 s, 67 residuals]
+   level 9 (top): stop at |r_9| 1.67e-09: step below rounding
+   level 9 solved: |r_9| 1.67e-09  (3 residuals, 1 s)  [24 s total]
+     level 7 (low) it 2 trial lam 1: |r_7| 3.448e-06 against 2.619e-06: rejected
+     level 9 (top) it 0 trial lam 1: |r_9| 6.700e-08 against 3.533e-06: accepted
+level 9 it 0: |r_9| 6.700e-08  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008424206, 0.001511189, 0.000475367, 0.000122554, 2.6656e-05, 8.997e-06]  [25 s, 69 residuals]
+     level 9 (top) it 1 trial lam 1: |r_9| 8.848e-10 against 6.700e-08: accepted
+level 9 it 1: |r_9| 8.848e-10  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008424206, 0.001511189, 0.000475367, 0.000122554, 2.6656e-05, 8.997e-06]  [25 s, 70 residuals]
+   level 9 (top): stop at |r_9| 8.85e-10: step below rounding
+   level 9 solved: |r_9| 8.85e-10  (3 residuals, 1 s)  [25 s total]
+     level 7 (low) it 2 trial lam 0.5: |r_7| 2.966e-06 against 2.619e-06: rejected
+     level 9 (top) it 0 trial lam 1: |r_9| 3.345e-08 against 1.767e-06: accepted
+level 9 it 0: |r_9| 3.345e-08  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008424206, 0.001511189, 0.000475367, 0.000122554, 2.6656e-05, 8.997e-06]  [26 s, 72 residuals]
+     level 9 (top) it 1 trial lam 1: |r_9| 2.379e-10 against 3.345e-08: accepted
+level 9 it 1: |r_9| 2.379e-10  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008424206, 0.001511189, 0.000475367, 0.000122554, 2.6656e-05, 8.997e-06]  [26 s, 73 residuals]
+   level 9 (top): stop at |r_9| 2.38e-10: step below rounding
+   level 9 solved: |r_9| 2.38e-10  (3 residuals, 1 s)  [26 s total]
+     level 7 (low) it 2 trial lam 0.25: |r_7| 5.308e-06 against 2.619e-06: rejected
+     level 9 (top) it 0 trial lam 1: |r_9| 1.688e-08 against 8.830e-07: accepted
+level 9 it 0: |r_9| 1.688e-08  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008424206, 0.001511189, 0.000475367, 0.000122554, 2.6656e-05, 8.997e-06]  [27 s, 75 residuals]
+     level 9 (top) it 1 trial lam 1: |r_9| 3.269e-10 against 1.688e-08: accepted
+level 9 it 1: |r_9| 3.269e-10  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008424206, 0.001511189, 0.000475367, 0.000122554, 2.6656e-05, 8.997e-06]  [27 s, 76 residuals]
+   level 9 (top): stop at |r_9| 3.27e-10: step below rounding
+   level 9 solved: |r_9| 3.27e-10  (3 residuals, 1 s)  [27 s total]
+     level 7 (low) it 2 trial lam 0.125: |r_7| 4.494e-06 against 2.619e-06: rejected
+     level 9 (top) it 0 trial lam 1: |r_9| 8.131e-09 against 4.417e-07: accepted
+level 9 it 0: |r_9| 8.131e-09  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008424206, 0.001511189, 0.000475367, 0.000122554, 2.6656e-05, 8.997e-06]  [28 s, 78 residuals]
+     level 9 (top) it 1 trial lam 1: |r_9| 3.302e-10 against 8.131e-09: accepted
+level 9 it 1: |r_9| 3.302e-10  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008424206, 0.001511189, 0.000475367, 0.000122554, 2.6656e-05, 8.997e-06]  [28 s, 79 residuals]
+   level 9 (top): stop at |r_9| 3.30e-10: step below rounding
+   level 9 solved: |r_9| 3.30e-10  (3 residuals, 1 s)  [28 s total]
+     level 7 (low) it 2 trial lam 0.0625: |r_7| 4.140e-06 against 2.619e-06: rejected
+     level 9 (top) it 0 trial lam 1: |r_9| 3.788e-09 against 2.210e-07: accepted
+level 9 it 0: |r_9| 3.788e-09  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008424206, 0.001511189, 0.000475367, 0.000122554, 2.6656e-05, 8.997e-06]  [29 s, 81 residuals]
+   level 9 (top): stop at |r_9| 3.79e-09: step below rounding
+   level 9 solved: |r_9| 3.79e-09  (2 residuals, 1 s)  [29 s total]
+     level 7 (low) it 2 trial lam 0.03125: |r_7| 8.384e-06 against 2.619e-06: rejected
+     level 9 (top) it 0 trial lam 1: |r_9| 1.339e-07 against 7.066e-06: accepted
+level 9 it 0: |r_9| 1.339e-07  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008424206, 0.001511189, 0.000475367, 0.000122554, 2.6656e-05, 8.997e-06]  [34 s, 115 residuals]
+     level 9 (top) it 1 trial lam 1: |r_9| 1.795e-09 against 1.339e-07: accepted
+level 9 it 1: |r_9| 1.795e-09  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008424206, 0.001511189, 0.000475367, 0.000122554, 2.6656e-05, 8.997e-06]  [35 s, 116 residuals]
+   level 9 (top): stop at |r_9| 1.79e-09: step below rounding
+   level 9 solved: |r_9| 1.79e-09  (3 residuals, 1 s)  [35 s total]
+     level 7 (low) it 3 trial lam 1: |r_7| 3.205e-06 against 2.619e-06: rejected
+     level 9 (top) it 0 trial lam 1: |r_9| 6.670e-08 against 3.533e-06: accepted
+level 9 it 0: |r_9| 6.670e-08  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008424206, 0.001511189, 0.000475367, 0.000122554, 2.6656e-05, 8.997e-06]  [36 s, 118 residuals]
+     level 9 (top) it 1 trial lam 1: |r_9| 7.730e-10 against 6.670e-08: accepted
+level 9 it 1: |r_9| 7.730e-10  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008424206, 0.001511189, 0.000475367, 0.000122554, 2.6656e-05, 8.997e-06]  [36 s, 119 residuals]
+   level 9 (top): stop at |r_9| 7.73e-10: step below rounding
+   level 9 solved: |r_9| 7.73e-10  (3 residuals, 1 s)  [36 s total]
+     level 7 (low) it 3 trial lam 0.5: |r_7| 6.828e-06 against 2.619e-06: rejected
+   level 7 (low): stop at |r_7| 2.62e-06: every trial rejected with a fresh Jacobian (noise floor)
+   level 9 (top): stop at |r_9| 2.19e-10: step below rounding
+   level 9 solved: |r_9| 2.19e-10  (1 residuals, 0 s)  [36 s total]
+     level 9 (top) it 0 trial lam 1: |r_9| 5.806e-08 against 4.206e-06: accepted
+level 9 it 0: |r_9| 5.806e-08  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008424206, 0.001511189, 0.000475367, 0.000122554, 2.6656e-05, 8.997e-06]  [42 s, 154 residuals]
+     level 9 (top) it 1 trial lam 1: |r_9| 6.680e-10 against 5.806e-08: accepted
+level 9 it 1: |r_9| 6.680e-10  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008424206, 0.001511189, 0.000475367, 0.000122554, 2.6656e-05, 8.997e-06]  [42 s, 155 residuals]
+   level 9 (top): stop at |r_9| 6.68e-10: step below rounding
+   level 9 solved: |r_9| 6.68e-10  (3 residuals, 1 s)  [42 s total]
+     level 7 (top) it 0 trial lam 1: |r_7| 8.368e-05 against 1.310e-05: rejected
+     level 9 (top) it 0 trial lam 1: |r_9| 2.880e-08 against 2.103e-06: accepted
+level 9 it 0: |r_9| 2.880e-08  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008424206, 0.001511189, 0.000475367, 0.000122554, 2.6656e-05, 8.997e-06]  [43 s, 157 residuals]
+     level 9 (top) it 1 trial lam 1: |r_9| 5.330e-10 against 2.880e-08: accepted
+level 9 it 1: |r_9| 5.330e-10  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008424206, 0.001511189, 0.000475367, 0.000122554, 2.6656e-05, 8.997e-06]  [43 s, 158 residuals]
+   level 9 (top): stop at |r_9| 5.33e-10: step below rounding
+   level 9 solved: |r_9| 5.33e-10  (3 residuals, 1 s)  [43 s total]
+     level 7 (top) it 0 trial lam 0.5: |r_7| 6.651e-05 against 1.310e-05: rejected
+     level 9 (top) it 0 trial lam 1: |r_9| 1.430e-08 against 1.051e-06: accepted
+level 9 it 0: |r_9| 1.430e-08  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008424206, 0.001511189, 0.000475367, 0.000122554, 2.6656e-05, 8.997e-06]  [44 s, 160 residuals]
+     level 9 (top) it 1 trial lam 1: |r_9| 3.358e-10 against 1.430e-08: accepted
+level 9 it 1: |r_9| 3.358e-10  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008424206, 0.001511189, 0.000475367, 0.000122554, 2.6656e-05, 8.997e-06]  [45 s, 161 residuals]
+   level 9 (top): stop at |r_9| 3.36e-10: step below rounding
+   level 9 solved: |r_9| 3.36e-10  (3 residuals, 1 s)  [45 s total]
+     level 7 (top) it 0 trial lam 0.25: |r_7| 3.799e-05 against 1.310e-05: rejected
+     level 9 (top) it 0 trial lam 1: |r_9| 7.017e-09 against 5.256e-07: accepted
+level 9 it 0: |r_9| 7.017e-09  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008424206, 0.001511189, 0.000475367, 0.000122554, 2.6656e-05, 8.997e-06]  [45 s, 163 residuals]
+     level 9 (top) it 1 trial lam 1: |r_9| 2.600e-10 against 7.017e-09: accepted
+level 9 it 1: |r_9| 2.600e-10  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008424206, 0.001511189, 0.000475367, 0.000122554, 2.6656e-05, 8.997e-06]  [46 s, 164 residuals]
+   level 9 (top): stop at |r_9| 2.60e-10: step below rounding
+   level 9 solved: |r_9| 2.60e-10  (3 residuals, 1 s)  [46 s total]
+     level 7 (top) it 0 trial lam 0.125: |r_7| 3.548e-05 against 1.310e-05: rejected
+     level 9 (top) it 0 trial lam 1: |r_9| 3.488e-09 against 2.629e-07: accepted
+level 9 it 0: |r_9| 3.488e-09  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008424206, 0.001511189, 0.000475367, 0.000122554, 2.6656e-05, 8.997e-06]  [47 s, 166 residuals]
+   level 9 (top): stop at |r_9| 3.49e-09: step below rounding
+   level 9 solved: |r_9| 3.49e-09  (2 residuals, 1 s)  [47 s total]
+     level 7 (top) it 0 trial lam 0.0625: |r_7| 3.482e-04 against 1.310e-05: rejected
+     level 9 (top) it 0 trial lam 1: |r_9| 1.770e-09 against 1.316e-07: accepted
+level 9 it 0: |r_9| 1.770e-09  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008424206, 0.001511189, 0.000475367, 0.000122554, 2.6656e-05, 8.997e-06]  [47 s, 168 residuals]
+   level 9 (top): stop at |r_9| 1.77e-09: step below rounding
+   level 9 solved: |r_9| 1.77e-09  (2 residuals, 1 s)  [47 s total]
+     level 7 (top) it 0 trial lam 0.03125: |r_7| 1.811e-04 against 1.310e-05: rejected
+   level 7 (top): stop at |r_7| 1.31e-05: every trial rejected with a fresh Jacobian (noise floor)
+   level 7 solved: |r_7| 1.31e-05  (167 residuals, 38 s)  [47 s total]
+   level 9 (top): stop at |r_9| 2.19e-10: step below rounding
+   level 9 solved: |r_9| 2.19e-10  (1 residuals, 0 s)  [48 s total]
+     level 9 (top) it 0 trial lam 1: |r_9| 5.806e-08 against 4.206e-06: accepted
+level 9 it 0: |r_9| 5.806e-08  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008424206, 0.001511189, 0.000475367, 0.000122554, 2.6656e-05, 8.997e-06]  [49 s, 171 residuals]
+     level 9 (top) it 1 trial lam 1: |r_9| 6.680e-10 against 5.806e-08: accepted
+level 9 it 1: |r_9| 6.680e-10  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008424206, 0.001511189, 0.000475367, 0.000122554, 2.6656e-05, 8.997e-06]  [49 s, 172 residuals]
+   level 9 (top): stop at |r_9| 6.68e-10: step below rounding
+   level 9 solved: |r_9| 6.68e-10  (3 residuals, 1 s)  [49 s total]
+     level 7 (top) it 0 trial lam 1: |r_7| 8.368e-05 against 1.310e-05: rejected
+     level 9 (top) it 0 trial lam 1: |r_9| 2.880e-08 against 2.103e-06: accepted
+level 9 it 0: |r_9| 2.880e-08  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008424206, 0.001511189, 0.000475367, 0.000122554, 2.6656e-05, 8.997e-06]  [50 s, 174 residuals]
+     level 9 (top) it 1 trial lam 1: |r_9| 5.330e-10 against 2.880e-08: accepted
+level 9 it 1: |r_9| 5.330e-10  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008424206, 0.001511189, 0.000475367, 0.000122554, 2.6656e-05, 8.997e-06]  [50 s, 175 residuals]
+   level 9 (top): stop at |r_9| 5.33e-10: step below rounding
+   level 9 solved: |r_9| 5.33e-10  (3 residuals, 1 s)  [50 s total]
+     level 7 (top) it 0 trial lam 0.5: |r_7| 6.651e-05 against 1.310e-05: rejected
+     level 9 (top) it 0 trial lam 1: |r_9| 1.430e-08 against 1.051e-06: accepted
+level 9 it 0: |r_9| 1.430e-08  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008424206, 0.001511189, 0.000475367, 0.000122554, 2.6656e-05, 8.997e-06]  [51 s, 177 residuals]
+     level 9 (top) it 1 trial lam 1: |r_9| 3.358e-10 against 1.430e-08: accepted
+level 9 it 1: |r_9| 3.358e-10  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008424206, 0.001511189, 0.000475367, 0.000122554, 2.6656e-05, 8.997e-06]  [51 s, 178 residuals]
+   level 9 (top): stop at |r_9| 3.36e-10: step below rounding
+   level 9 solved: |r_9| 3.36e-10  (3 residuals, 1 s)  [51 s total]
+     level 7 (top) it 0 trial lam 0.25: |r_7| 3.799e-05 against 1.310e-05: rejected
+     level 9 (top) it 0 trial lam 1: |r_9| 7.017e-09 against 5.256e-07: accepted
+level 9 it 0: |r_9| 7.017e-09  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008424206, 0.001511189, 0.000475367, 0.000122554, 2.6656e-05, 8.997e-06]  [52 s, 180 residuals]
+     level 9 (top) it 1 trial lam 1: |r_9| 2.600e-10 against 7.017e-09: accepted
+level 9 it 1: |r_9| 2.600e-10  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008424206, 0.001511189, 0.000475367, 0.000122554, 2.6656e-05, 8.997e-06]  [53 s, 181 residuals]
+   level 9 (top): stop at |r_9| 2.60e-10: step below rounding
+   level 9 solved: |r_9| 2.60e-10  (3 residuals, 1 s)  [53 s total]
+     level 7 (top) it 0 trial lam 0.125: |r_7| 3.548e-05 against 1.310e-05: rejected
+     level 9 (top) it 0 trial lam 1: |r_9| 3.488e-09 against 2.629e-07: accepted
+level 9 it 0: |r_9| 3.488e-09  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008424206, 0.001511189, 0.000475367, 0.000122554, 2.6656e-05, 8.997e-06]  [53 s, 183 residuals]
+   level 9 (top): stop at |r_9| 3.49e-09: step below rounding
+   level 9 solved: |r_9| 3.49e-09  (2 residuals, 1 s)  [53 s total]
+     level 7 (top) it 0 trial lam 0.0625: |r_7| 3.482e-04 against 1.310e-05: rejected
+     level 9 (top) it 0 trial lam 1: |r_9| 1.770e-09 against 1.316e-07: accepted
+level 9 it 0: |r_9| 1.770e-09  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008424206, 0.001511189, 0.000475367, 0.000122554, 2.6656e-05, 8.997e-06]  [54 s, 185 residuals]
+   level 9 (top): stop at |r_9| 1.77e-09: step below rounding
+   level 9 solved: |r_9| 1.77e-09  (2 residuals, 1 s)  [54 s total]
+     level 7 (top) it 0 trial lam 0.03125: |r_7| 1.811e-04 against 1.310e-05: rejected
+   level 7 (top): stop at |r_7| 1.31e-05: every trial rejected with a fresh Jacobian (noise floor)
+   level 7 solved: |r_7| 1.31e-05  (17 residuals, 7 s)  [54 s total]
+     level 9 (low) it 0 trial lam 1: |r_9| 5.847e-06 against 3.859e+00: accepted
+level 9 it 0: |r_9| 5.847e-06  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008422814, 0.001514899, 0.000475367, 0.000122554, 2.6654e-05, 9.001e-06]  [109 s, 467 residuals]
+     level 9 (low) it 1 trial lam 1: |r_9| 1.175e-05 against 5.847e-06: rejected
+     level 9 (low) it 1 trial lam 0.5: |r_9| 5.830e-06 against 5.847e-06: accepted
+level 9 it 1: |r_9| 5.830e-06  lam 0.5  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008422814, 0.001514899, 0.000475367, 0.000122554, 2.6654e-05, 9.001e-06]  [110 s, 471 residuals]
+     level 9 (low) it 2 trial lam 1: |r_9| 6.460e-06 against 5.830e-06: rejected
+     level 9 (low) it 2 trial lam 0.5: |r_9| 7.892e-06 against 5.830e-06: rejected
+   level 9 (low): stop at |r_9| 5.83e-06: every trial rejected with a fresh Jacobian (noise floor)
+     level 9 (top) it 0 trial lam 1: |r_9| 2.073e-06 against 1.767e-04: accepted
+level 9 it 0: |r_9| 2.073e-06  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008422814, 0.001514899, 0.000475367, 0.000122554, 2.6654e-05, 9.001e-06]  [112 s, 475 residuals]
+     level 9 (top) it 1 trial lam 1: |r_9| 4.096e-08 against 2.073e-06: accepted
+level 9 it 1: |r_9| 4.096e-08  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008422814, 0.001514899, 0.000475367, 0.000122554, 2.6654e-05, 9.001e-06]  [113 s, 476 residuals]
+     level 9 (top) it 2 trial lam 1: |r_9| 4.542e-10 against 4.096e-08: accepted
+level 9 it 2: |r_9| 4.542e-10  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008422814, 0.001514899, 0.000475367, 0.000122554, 2.6654e-05, 9.001e-06]  [113 s, 477 residuals]
+   level 9 (top): stop at |r_9| 4.54e-10: step below rounding
+   level 9 solved: |r_9| 4.54e-10  (13 residuals, 6 s)  [113 s total]
+   level 9 (top): stop at |r_9| 4.54e-10: step below rounding
+   level 9 solved: |r_9| 4.54e-10  (1 residuals, 0 s)  [114 s total]
+     level 9 (low) it 0 trial lam 1: |r_9| 2.377e-05 against 9.433e+00: accepted
+level 9 it 0: |r_9| 2.377e-05  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008422814, 0.001514899, 0.000475263, 0.000122764, 2.6648e-05, 9.011e-06]  [114 s, 481 residuals]
+     level 9 (low) it 1 trial lam 1: |r_9| 7.790e-06 against 2.377e-05: accepted
+level 9 it 1: |r_9| 7.790e-06  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008422814, 0.001514899, 0.000475263, 0.000122764, 2.6648e-05, 9.011e-06]  [115 s, 484 residuals]
+     level 9 (low) it 2 trial lam 1: |r_9| 6.359e-06 against 7.790e-06: accepted
+   level 9 (low): stop at |r_9| 6.36e-06: a fresh Jacobian no longer halves |g|
+     level 9 (top) it 0 trial lam 1: |r_9| 3.312e-06 against 8.889e-05: accepted
+level 9 it 0: |r_9| 3.312e-06  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008422814, 0.001514899, 0.000475263, 0.000122764, 2.6648e-05, 9.011e-06]  [116 s, 487 residuals]
+     level 9 (top) it 1 trial lam 1: |r_9| 4.757e-08 against 3.312e-06: accepted
+level 9 it 1: |r_9| 4.757e-08  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008422814, 0.001514899, 0.000475263, 0.000122764, 2.6648e-05, 9.011e-06]  [116 s, 488 residuals]
+     level 9 (top) it 2 trial lam 1: |r_9| 4.261e-10 against 4.757e-08: accepted
+level 9 it 2: |r_9| 4.261e-10  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008422814, 0.001514899, 0.000475263, 0.000122764, 2.6648e-05, 9.011e-06]  [117 s, 489 residuals]
+   level 9 (top): stop at |r_9| 4.26e-10: step below rounding
+   level 9 solved: |r_9| 4.26e-10  (11 residuals, 3 s)  [117 s total]
+     level 7 (low) it 0 trial lam 1: |r_7| 2.228e-04 against 3.853e+01: accepted
+level 7 it 0: |r_7| 2.228e-04  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008422814, 0.001514899, 0.000475263, 0.000122764, 2.6648e-05, 9.011e-06]  [117 s, 489 residuals]
+     level 9 (low) it 0 trial lam 1: |r_9| 8.817e-06 against 5.721e-05: accepted
+level 9 it 0: |r_9| 8.817e-06  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008422814, 0.001514899, 0.000475263, 0.000122764, 2.6648e-05, 9.011e-06]  [118 s, 492 residuals]
+     level 9 (low) it 1 trial lam 1: |r_9| 5.958e-06 against 8.817e-06: accepted
+level 9 it 1: |r_9| 5.958e-06  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008422814, 0.001514899, 0.000475263, 0.000122764, 2.6648e-05, 9.011e-06]  [118 s, 495 residuals]
+     level 9 (low) it 2 trial lam 1: |r_9| 5.029e-06 against 5.958e-06: accepted
+   level 9 (low): stop at |r_9| 5.03e-06: a fresh Jacobian no longer halves |g|
+     level 9 (top) it 0 trial lam 1: |r_9| 2.408e-07 against 3.528e-05: accepted
+level 9 it 0: |r_9| 2.408e-07  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008422814, 0.001514899, 0.000475263, 0.000122764, 2.6648e-05, 9.011e-06]  [119 s, 498 residuals]
+     level 9 (top) it 1 trial lam 1: |r_9| 8.187e-10 against 2.408e-07: accepted
+level 9 it 1: |r_9| 8.187e-10  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008422814, 0.001514899, 0.000475263, 0.000122764, 2.6648e-05, 9.011e-06]  [119 s, 499 residuals]
+   level 9 (top): stop at |r_9| 8.19e-10: step below rounding
+   level 9 solved: |r_9| 8.19e-10  (10 residuals, 3 s)  [119 s total]
+     level 7 (low) it 1 trial lam 1: |r_7| 4.569e-06 against 2.228e-04: accepted
+level 7 it 1: |r_7| 4.569e-06  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008422814, 0.001514899, 0.000475263, 0.000122764, 2.6648e-05, 9.011e-06]  [119 s, 499 residuals]
+     level 9 (top) it 0 trial lam 1: |r_9| 2.155e-07 against 1.233e-05: accepted
+level 9 it 0: |r_9| 2.155e-07  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008422814, 0.001514899, 0.000475263, 0.000122764, 2.6648e-05, 9.011e-06]  [120 s, 501 residuals]
+     level 9 (top) it 1 trial lam 1: |r_9| 3.765e-09 against 2.155e-07: accepted
+level 9 it 1: |r_9| 3.765e-09  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008422814, 0.001514899, 0.000475263, 0.000122764, 2.6648e-05, 9.011e-06]  [121 s, 502 residuals]
+   level 9 (top): stop at |r_9| 3.76e-09: step below rounding
+   level 9 solved: |r_9| 3.76e-09  (3 residuals, 1 s)  [121 s total]
+     level 7 (low) it 2 trial lam 1: |r_7| 1.414e-05 against 4.569e-06: rejected
+     level 9 (top) it 0 trial lam 1: |r_9| 1.079e-07 against 6.165e-06: accepted
+level 9 it 0: |r_9| 1.079e-07  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008422814, 0.001514899, 0.000475263, 0.000122764, 2.6648e-05, 9.011e-06]  [122 s, 504 residuals]
+     level 9 (top) it 1 trial lam 1: |r_9| 1.705e-09 against 1.079e-07: accepted
+level 9 it 1: |r_9| 1.705e-09  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008422814, 0.001514899, 0.000475263, 0.000122764, 2.6648e-05, 9.011e-06]  [122 s, 505 residuals]
+   level 9 (top): stop at |r_9| 1.71e-09: step below rounding
+   level 9 solved: |r_9| 1.71e-09  (3 residuals, 1 s)  [122 s total]
+     level 7 (low) it 2 trial lam 0.5: |r_7| 3.258e-06 against 4.569e-06: accepted
+level 7 it 2: |r_7| 3.258e-06  lam 0.5  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008422814, 0.001514899, 0.000475263, 0.000122764, 2.6648e-05, 9.011e-06]  [127 s, 535 residuals]
+     level 9 (top) it 0 trial lam 1: |r_9| 1.732e-07 against 8.792e-06: accepted
+level 9 it 0: |r_9| 1.732e-07  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008422814, 0.001514899, 0.000475263, 0.000122764, 2.6648e-05, 9.011e-06]  [128 s, 537 residuals]
+     level 9 (top) it 1 trial lam 1: |r_9| 3.360e-09 against 1.732e-07: accepted
+level 9 it 1: |r_9| 3.360e-09  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008422814, 0.001514899, 0.000475263, 0.000122764, 2.6648e-05, 9.011e-06]  [128 s, 538 residuals]
+   level 9 (top): stop at |r_9| 3.36e-09: step below rounding
+   level 9 solved: |r_9| 3.36e-09  (3 residuals, 1 s)  [128 s total]
+     level 7 (low) it 3 trial lam 1: |r_7| 1.039e-05 against 3.258e-06: rejected
+     level 9 (top) it 0 trial lam 1: |r_9| 8.686e-08 against 4.396e-06: accepted
+level 9 it 0: |r_9| 8.686e-08  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008422814, 0.001514899, 0.000475263, 0.000122764, 2.6648e-05, 9.011e-06]  [129 s, 540 residuals]
+     level 9 (top) it 1 trial lam 1: |r_9| 1.484e-09 against 8.686e-08: accepted
+level 9 it 1: |r_9| 1.484e-09  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008422814, 0.001514899, 0.000475263, 0.000122764, 2.6648e-05, 9.011e-06]  [130 s, 541 residuals]
+   level 9 (top): stop at |r_9| 1.48e-09: step below rounding
+   level 9 solved: |r_9| 1.48e-09  (3 residuals, 1 s)  [130 s total]
+     level 7 (low) it 3 trial lam 0.5: |r_7| 4.397e-06 against 3.258e-06: rejected
+   level 7 (low): stop at |r_7| 3.26e-06: every trial rejected with a fresh Jacobian (noise floor)
+   level 9 (top): stop at |r_9| 1.71e-09: step below rounding
+   level 9 solved: |r_9| 1.71e-09  (1 residuals, 0 s)  [130 s total]
+     level 9 (top) it 0 trial lam 1: |r_9| 1.781e-06 against 5.464e-05: accepted
+level 9 it 0: |r_9| 1.781e-06  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008422814, 0.001514899, 0.000475263, 0.000122764, 2.6648e-05, 9.011e-06]  [131 s, 544 residuals]
+     level 9 (top) it 1 trial lam 1: |r_9| 2.339e-08 against 1.781e-06: accepted
+level 9 it 1: |r_9| 2.339e-08  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008422814, 0.001514899, 0.000475263, 0.000122764, 2.6648e-05, 9.011e-06]  [132 s, 545 residuals]
+     level 9 (top) it 2 trial lam 1: |r_9| 1.423e-10 against 2.339e-08: accepted
+level 9 it 2: |r_9| 1.423e-10  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008422814, 0.001514899, 0.000475263, 0.000122764, 2.6648e-05, 9.011e-06]  [132 s, 546 residuals]
+   level 9 (top): stop at |r_9| 1.42e-10: step below rounding
+   level 9 solved: |r_9| 1.42e-10  (4 residuals, 2 s)  [132 s total]
+     level 7 (top) it 0 trial lam 1: |r_7| 1.757e-04 against 1.680e-04: rejected
+     level 9 (top) it 0 trial lam 1: |r_9| 8.906e-07 against 2.732e-05: accepted
+level 9 it 0: |r_9| 8.906e-07  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008422814, 0.001514899, 0.000475263, 0.000122764, 2.6648e-05, 9.011e-06]  [133 s, 548 residuals]
+     level 9 (top) it 1 trial lam 1: |r_9| 1.182e-08 against 8.906e-07: accepted
+level 9 it 1: |r_9| 1.182e-08  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008422814, 0.001514899, 0.000475263, 0.000122764, 2.6648e-05, 9.011e-06]  [134 s, 549 residuals]
+     level 9 (top) it 2 trial lam 1: |r_9| 1.166e-10 against 1.182e-08: accepted
+level 9 it 2: |r_9| 1.166e-10  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008422814, 0.001514899, 0.000475263, 0.000122764, 2.6648e-05, 9.011e-06]  [134 s, 550 residuals]
+   level 9 (top): stop at |r_9| 1.17e-10: step below rounding
+   level 9 solved: |r_9| 1.17e-10  (4 residuals, 2 s)  [134 s total]
+     level 7 (top) it 0 trial lam 0.5: |r_7| 8.117e-05 against 1.680e-04: accepted
+level 7 it 0: |r_7| 8.117e-05  lam 0.5  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008422814, 0.001514899, 0.000475263, 0.000122764, 2.6648e-05, 9.011e-06]  [141 s, 580 residuals]
+     level 9 (top) it 0 trial lam 1: |r_9| 9.723e-07 against 2.659e-05: accepted
+level 9 it 0: |r_9| 9.723e-07  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008422814, 0.001514899, 0.000475263, 0.000122764, 2.6648e-05, 9.011e-06]  [142 s, 582 residuals]
+     level 9 (top) it 1 trial lam 1: |r_9| 1.331e-08 against 9.723e-07: accepted
+level 9 it 1: |r_9| 1.331e-08  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008422814, 0.001514899, 0.000475263, 0.000122764, 2.6648e-05, 9.011e-06]  [142 s, 583 residuals]
+     level 9 (top) it 2 trial lam 1: |r_9| 7.790e-11 against 1.331e-08: accepted
+level 9 it 2: |r_9| 7.790e-11  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008422814, 0.001514899, 0.000475263, 0.000122764, 2.6648e-05, 9.011e-06]  [143 s, 584 residuals]
+   level 9 (top): stop at |r_9| 7.79e-11: step below rounding
+   level 9 solved: |r_9| 7.79e-11  (4 residuals, 2 s)  [143 s total]
+     level 7 (top) it 1 trial lam 1: |r_7| 7.134e-06 against 8.117e-05: accepted
+level 7 it 1: |r_7| 7.134e-06  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008422814, 0.001514899, 0.000475263, 0.000122764, 2.6648e-05, 9.011e-06]  [143 s, 584 residuals]
+     level 9 (top) it 0 trial lam 1: |r_9| 2.130e-08 against 2.289e-06: accepted
+level 9 it 0: |r_9| 2.130e-08  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008422814, 0.001514899, 0.000475263, 0.000122764, 2.6648e-05, 9.011e-06]  [144 s, 586 residuals]
+     level 9 (top) it 1 trial lam 1: |r_9| 1.530e-10 against 2.130e-08: accepted
+level 9 it 1: |r_9| 1.530e-10  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008422814, 0.001514899, 0.000475263, 0.000122764, 2.6648e-05, 9.011e-06]  [145 s, 587 residuals]
+   level 9 (top): stop at |r_9| 1.53e-10: step below rounding
+   level 9 solved: |r_9| 1.53e-10  (3 residuals, 2 s)  [145 s total]
+     level 7 (top) it 2 trial lam 1: |r_7| 2.235e-05 against 7.134e-06: rejected
+     level 9 (top) it 0 trial lam 1: |r_9| 1.086e-08 against 1.144e-06: accepted
+level 9 it 0: |r_9| 1.086e-08  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008422814, 0.001514899, 0.000475263, 0.000122764, 2.6648e-05, 9.011e-06]  [146 s, 589 residuals]
+     level 9 (top) it 1 trial lam 1: |r_9| 2.104e-10 against 1.086e-08: accepted
+level 9 it 1: |r_9| 2.104e-10  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008422814, 0.001514899, 0.000475263, 0.000122764, 2.6648e-05, 9.011e-06]  [146 s, 590 residuals]
+   level 9 (top): stop at |r_9| 2.10e-10: step below rounding
+   level 9 solved: |r_9| 2.10e-10  (3 residuals, 2 s)  [146 s total]
+     level 7 (top) it 2 trial lam 0.5: |r_7| 2.823e-05 against 7.134e-06: rejected
+     level 9 (top) it 0 trial lam 1: |r_9| 5.101e-09 against 5.723e-07: accepted
+level 9 it 0: |r_9| 5.101e-09  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008422814, 0.001514899, 0.000475263, 0.000122764, 2.6648e-05, 9.011e-06]  [147 s, 592 residuals]
+   level 9 (top): stop at |r_9| 5.10e-09: step below rounding
+   level 9 solved: |r_9| 5.10e-09  (2 residuals, 1 s)  [147 s total]
+     level 7 (top) it 2 trial lam 0.25: |r_7| 5.007e-04 against 7.134e-06: rejected
+     level 9 (top) it 0 trial lam 1: |r_9| 2.637e-09 against 2.860e-07: accepted
+level 9 it 0: |r_9| 2.637e-09  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008422814, 0.001514899, 0.000475263, 0.000122764, 2.6648e-05, 9.011e-06]  [148 s, 594 residuals]
+   level 9 (top): stop at |r_9| 2.64e-09: step below rounding
+   level 9 solved: |r_9| 2.64e-09  (2 residuals, 1 s)  [148 s total]
+     level 7 (top) it 2 trial lam 0.125: |r_7| 2.601e-04 against 7.134e-06: rejected
+     level 9 (top) it 0 trial lam 1: |r_9| 1.354e-09 against 1.430e-07: accepted
+level 9 it 0: |r_9| 1.354e-09  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008422814, 0.001514899, 0.000475263, 0.000122764, 2.6648e-05, 9.011e-06]  [149 s, 596 residuals]
+   level 9 (top): stop at |r_9| 1.35e-09: step below rounding
+   level 9 solved: |r_9| 1.35e-09  (2 residuals, 1 s)  [149 s total]
+     level 7 (top) it 2 trial lam 0.0625: |r_7| 1.384e-04 against 7.134e-06: rejected
+     level 9 (top) it 0 trial lam 1: |r_9| 6.791e-10 against 7.143e-08: accepted
+level 9 it 0: |r_9| 6.791e-10  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008422814, 0.001514899, 0.000475263, 0.000122764, 2.6648e-05, 9.011e-06]  [150 s, 598 residuals]
+   level 9 (top): stop at |r_9| 6.79e-10: step below rounding
+   level 9 solved: |r_9| 6.79e-10  (2 residuals, 1 s)  [150 s total]
+     level 7 (top) it 2 trial lam 0.03125: |r_7| 6.594e-05 against 7.134e-06: rejected
+     level 9 (top) it 0 trial lam 1: |r_9| 2.130e-08 against 2.289e-06: accepted
+level 9 it 0: |r_9| 2.130e-08  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008422814, 0.001514899, 0.000475263, 0.000122764, 2.6648e-05, 9.011e-06]  [157 s, 625 residuals]
+     level 9 (top) it 1 trial lam 1: |r_9| 1.530e-10 against 2.130e-08: accepted
+level 9 it 1: |r_9| 1.530e-10  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008422814, 0.001514899, 0.000475263, 0.000122764, 2.6648e-05, 9.011e-06]  [157 s, 626 residuals]
+   level 9 (top): stop at |r_9| 1.53e-10: step below rounding
+   level 9 solved: |r_9| 1.53e-10  (3 residuals, 1 s)  [157 s total]
+     level 7 (top) it 3 trial lam 1: |r_7| 2.235e-05 against 7.134e-06: rejected
+     level 9 (top) it 0 trial lam 1: |r_9| 1.062e-08 against 1.144e-06: accepted
+level 9 it 0: |r_9| 1.062e-08  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008422814, 0.001514899, 0.000475263, 0.000122764, 2.6648e-05, 9.011e-06]  [158 s, 628 residuals]
+     level 9 (top) it 1 trial lam 1: |r_9| 4.171e-10 against 1.062e-08: accepted
+level 9 it 1: |r_9| 4.171e-10  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008422814, 0.001514899, 0.000475263, 0.000122764, 2.6648e-05, 9.011e-06]  [159 s, 629 residuals]
+   level 9 (top): stop at |r_9| 4.17e-10: step below rounding
+   level 9 solved: |r_9| 4.17e-10  (3 residuals, 2 s)  [159 s total]
+     level 7 (top) it 3 trial lam 0.5: |r_7| 3.368e-05 against 7.134e-06: rejected
+   level 7 (top): stop at |r_7| 7.13e-06: every trial rejected with a fresh Jacobian (noise floor)
+   level 7 solved: |r_7| 7.13e-06  (165 residuals, 51 s)  [159 s total]
+     level 5 (low) it 0 trial lam 1: |r_5| 3.014e+01 against 1.389e+01: rejected
+     level 9 (low) it 0 trial lam 1: |r_9| 5.472e-06 against 1.930e+00: accepted
+level 9 it 0: |r_9| 5.472e-06  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.00842351, 0.001513044, 0.000475367, 0.000122554, 2.6655e-05, 8.999e-06]  [160 s, 632 residuals]
+     level 9 (low) it 1 trial lam 1: |r_9| 6.905e-06 against 5.472e-06: rejected
+     level 9 (low) it 1 trial lam 0.5: |r_9| 4.591e-07 against 5.472e-06: accepted
+level 9 it 1: |r_9| 4.591e-07  lam 0.5  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.00842351, 0.001513044, 0.000475367, 0.000122554, 2.6655e-05, 8.999e-06]  [160 s, 634 residuals]
+     level 9 (low) it 2 trial lam 1: |r_9| 3.098e-06 against 4.591e-07: rejected
+     level 9 (low) it 2 trial lam 0.5: |r_9| 1.301e-05 against 4.591e-07: rejected
+     level 9 (low) it 2 trial lam 0.25: |r_9| 3.416e-06 against 4.591e-07: rejected
+     level 9 (low) it 2 trial lam 0.125: |r_9| 5.688e-06 against 4.591e-07: rejected
+     level 9 (low) it 2 trial lam 0.0625: |r_9| 8.706e-06 against 4.591e-07: rejected
+     level 9 (low) it 2 trial lam 0.03125: |r_9| 4.491e-06 against 4.591e-07: rejected
+     level 9 (low) it 3 trial lam 1: |r_9| 9.076e-06 against 4.591e-07: rejected
+     level 9 (low) it 3 trial lam 0.5: |r_9| 1.301e-05 against 4.591e-07: rejected
+   level 9 (low): stop at |r_9| 4.59e-07: every trial rejected with a fresh Jacobian (noise floor)
+     level 9 (top) it 0 trial lam 1: |r_9| 2.131e-07 against 9.848e-05: accepted
+level 9 it 0: |r_9| 2.131e-07  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.00842351, 0.001513044, 0.000475367, 0.000122554, 2.6655e-05, 8.999e-06]  [164 s, 646 residuals]
+     level 9 (top) it 1 trial lam 1: |r_9| 6.497e-09 against 2.131e-07: accepted
+level 9 it 1: |r_9| 6.497e-09  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.00842351, 0.001513044, 0.000475367, 0.000122554, 2.6655e-05, 8.999e-06]  [165 s, 647 residuals]
+     level 9 (top) it 2 trial lam 1: |r_9| 2.302e-10 against 6.497e-09: accepted
+level 9 it 2: |r_9| 2.302e-10  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.00842351, 0.001513044, 0.000475367, 0.000122554, 2.6655e-05, 8.999e-06]  [165 s, 648 residuals]
+   level 9 (top): stop at |r_9| 2.30e-10: step below rounding
+   level 9 solved: |r_9| 2.30e-10  (19 residuals, 6 s)  [165 s total]
+   level 9 (top): stop at |r_9| 2.30e-10: step below rounding
+   level 9 solved: |r_9| 2.30e-10  (1 residuals, 0 s)  [166 s total]
+     level 9 (low) it 0 trial lam 1: |r_9| 1.900e-05 against 4.716e+00: accepted
+level 9 it 0: |r_9| 1.900e-05  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.00842351, 0.001513044, 0.000475315, 0.000122659, 2.6652e-05, 9.004e-06]  [167 s, 652 residuals]
+     level 9 (low) it 1 trial lam 1: |r_9| 2.403e-06 against 1.900e-05: accepted
+level 9 it 1: |r_9| 2.403e-06  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.00842351, 0.001513044, 0.000475315, 0.000122659, 2.6652e-05, 9.004e-06]  [167 s, 653 residuals]
+     level 9 (low) it 2 trial lam 1: |r_9| 8.967e-06 against 2.403e-06: rejected
+     level 9 (low) it 2 trial lam 0.5: |r_9| 1.181e-06 against 2.403e-06: accepted
+level 9 it 2: |r_9| 1.181e-06  lam 0.5  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.00842351, 0.001513044, 0.000475315, 0.000122659, 2.6652e-05, 9.004e-06]  [168 s, 657 residuals]
+     level 9 (low) it 3 trial lam 1: |r_9| 4.245e-06 against 1.181e-06: rejected
+     level 9 (low) it 3 trial lam 0.5: |r_9| 3.012e-06 against 1.181e-06: rejected
+   level 9 (low): stop at |r_9| 1.18e-06: every trial rejected with a fresh Jacobian (noise floor)
+     level 9 (top) it 0 trial lam 1: |r_9| 9.030e-07 against 2.434e-05: accepted
+level 9 it 0: |r_9| 9.030e-07  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.00842351, 0.001513044, 0.000475315, 0.000122659, 2.6652e-05, 9.004e-06]  [169 s, 661 residuals]
+     level 9 (top) it 1 trial lam 1: |r_9| 1.258e-08 against 9.030e-07: accepted
+level 9 it 1: |r_9| 1.258e-08  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.00842351, 0.001513044, 0.000475315, 0.000122659, 2.6652e-05, 9.004e-06]  [170 s, 662 residuals]
+     level 9 (top) it 2 trial lam 1: |r_9| 3.301e-10 against 1.258e-08: accepted
+level 9 it 2: |r_9| 3.301e-10  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.00842351, 0.001513044, 0.000475315, 0.000122659, 2.6652e-05, 9.004e-06]  [170 s, 663 residuals]
+   level 9 (top): stop at |r_9| 3.30e-10: step below rounding
+   level 9 solved: |r_9| 3.30e-10  (14 residuals, 5 s)  [170 s total]
+     level 7 (low) it 0 trial lam 1: |r_7| 1.108e-04 against 1.927e+01: accepted
+level 7 it 0: |r_7| 1.108e-04  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.00842351, 0.001513044, 0.000475315, 0.000122659, 2.6652e-05, 9.004e-06]  [170 s, 663 residuals]
+     level 9 (low) it 0 trial lam 1: |r_9| 1.256e-05 against 2.619e-05: accepted
+level 9 it 0: |r_9| 1.256e-05  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.00842351, 0.001513044, 0.000475315, 0.000122659, 2.6652e-05, 9.004e-06]  [172 s, 668 residuals]
+     level 9 (low) it 1 trial lam 1: |r_9| 6.903e-06 against 1.256e-05: accepted
+   level 9 (low): stop at |r_9| 6.90e-06: a fresh Jacobian no longer halves |g|
+     level 9 (top) it 0 trial lam 1: |r_9| 3.581e-06 against 1.033e-04: accepted
+level 9 it 0: |r_9| 3.581e-06  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.00842351, 0.001513044, 0.000475315, 0.000122659, 2.6652e-05, 9.004e-06]  [173 s, 671 residuals]
+     level 9 (top) it 1 trial lam 1: |r_9| 5.354e-08 against 3.581e-06: accepted
+level 9 it 1: |r_9| 5.354e-08  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.00842351, 0.001513044, 0.000475315, 0.000122659, 2.6652e-05, 9.004e-06]  [173 s, 672 residuals]
+     level 9 (top) it 2 trial lam 1: |r_9| 6.805e-10 against 5.354e-08: accepted
+level 9 it 2: |r_9| 6.805e-10  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.00842351, 0.001513044, 0.000475315, 0.000122659, 2.6652e-05, 9.004e-06]  [174 s, 673 residuals]
+   level 9 (top): stop at |r_9| 6.80e-10: step below rounding
+   level 9 solved: |r_9| 6.80e-10  (10 residuals, 4 s)  [174 s total]
+     level 7 (low) it 1 trial lam 1: |r_7| 5.535e-06 against 1.108e-04: accepted
+level 7 it 1: |r_7| 5.535e-06  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.00842351, 0.001513044, 0.000475315, 0.000122659, 2.6652e-05, 9.004e-06]  [174 s, 673 residuals]
+     level 9 (top) it 0 trial lam 1: |r_9| 9.088e-08 against 1.493e-05: accepted
+level 9 it 0: |r_9| 9.088e-08  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.00842351, 0.001513044, 0.000475315, 0.000122659, 2.6652e-05, 9.004e-06]  [175 s, 675 residuals]
+     level 9 (top) it 1 trial lam 1: |r_9| 2.434e-09 against 9.088e-08: accepted
+level 9 it 1: |r_9| 2.434e-09  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.00842351, 0.001513044, 0.000475315, 0.000122659, 2.6652e-05, 9.004e-06]  [175 s, 676 residuals]
+   level 9 (top): stop at |r_9| 2.43e-09: step below rounding
+   level 9 solved: |r_9| 2.43e-09  (3 residuals, 2 s)  [175 s total]
+     level 7 (low) it 2 trial lam 1: |r_7| 1.101e-05 against 5.535e-06: rejected
+     level 9 (top) it 0 trial lam 1: |r_9| 4.567e-08 against 7.467e-06: accepted
+level 9 it 0: |r_9| 4.567e-08  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.00842351, 0.001513044, 0.000475315, 0.000122659, 2.6652e-05, 9.004e-06]  [176 s, 678 residuals]
+     level 9 (top) it 1 trial lam 1: |r_9| 1.309e-09 against 4.567e-08: accepted
+level 9 it 1: |r_9| 1.309e-09  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.00842351, 0.001513044, 0.000475315, 0.000122659, 2.6652e-05, 9.004e-06]  [177 s, 679 residuals]
+   level 9 (top): stop at |r_9| 1.31e-09: step below rounding
+   level 9 solved: |r_9| 1.31e-09  (3 residuals, 2 s)  [177 s total]
+     level 7 (low) it 2 trial lam 0.5: |r_7| 6.065e-06 against 5.535e-06: rejected
+     level 9 (top) it 0 trial lam 1: |r_9| 2.303e-08 against 3.734e-06: accepted
+level 9 it 0: |r_9| 2.303e-08  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.00842351, 0.001513044, 0.000475315, 0.000122659, 2.6652e-05, 9.004e-06]  [178 s, 681 residuals]
+     level 9 (top) it 1 trial lam 1: |r_9| 4.783e-10 against 2.303e-08: accepted
+level 9 it 1: |r_9| 4.783e-10  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.00842351, 0.001513044, 0.000475315, 0.000122659, 2.6652e-05, 9.004e-06]  [178 s, 682 residuals]
+   level 9 (top): stop at |r_9| 4.78e-10: step below rounding
+   level 9 solved: |r_9| 4.78e-10  (3 residuals, 1 s)  [178 s total]
+     level 7 (low) it 2 trial lam 0.25: |r_7| 5.214e-06 against 5.535e-06: accepted
+level 7 it 2: |r_7| 5.214e-06  lam 0.25  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.00842351, 0.001513044, 0.000475315, 0.000122659, 2.6652e-05, 9.004e-06]  [183 s, 707 residuals]
+     level 9 (top) it 0 trial lam 1: |r_9| 2.509e-07 against 1.407e-05: accepted
+level 9 it 0: |r_9| 2.509e-07  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.00842351, 0.001513044, 0.000475315, 0.000122659, 2.6652e-05, 9.004e-06]  [185 s, 709 residuals]
+     level 9 (top) it 1 trial lam 1: |r_9| 2.873e-09 against 2.509e-07: accepted
+level 9 it 1: |r_9| 2.873e-09  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.00842351, 0.001513044, 0.000475315, 0.000122659, 2.6652e-05, 9.004e-06]  [185 s, 710 residuals]
+   level 9 (top): stop at |r_9| 2.87e-09: step below rounding
+   level 9 solved: |r_9| 2.87e-09  (3 residuals, 2 s)  [185 s total]
+     level 7 (low) it 3 trial lam 1: |r_7| 3.928e-06 against 5.214e-06: accepted
+   level 7 (low): stop at |r_7| 3.93e-06: a fresh Jacobian no longer halves |g|
+   level 9 (top): stop at |r_9| 2.87e-09: step below rounding
+   level 9 solved: |r_9| 2.87e-09  (1 residuals, 1 s)  [186 s total]
+     level 9 (top) it 0 trial lam 1: |r_9| 3.402e-06 against 9.820e-05: accepted
+level 9 it 0: |r_9| 3.402e-06  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.00842351, 0.001513044, 0.000475315, 0.000122659, 2.6652e-05, 9.004e-06]  [187 s, 713 residuals]
+     level 9 (top) it 1 trial lam 1: |r_9| 4.511e-08 against 3.402e-06: accepted
+level 9 it 1: |r_9| 4.511e-08  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.00842351, 0.001513044, 0.000475315, 0.000122659, 2.6652e-05, 9.004e-06]  [187 s, 714 residuals]
+     level 9 (top) it 2 trial lam 1: |r_9| 5.642e-10 against 4.511e-08: accepted
+level 9 it 2: |r_9| 5.642e-10  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.00842351, 0.001513044, 0.000475315, 0.000122659, 2.6652e-05, 9.004e-06]  [188 s, 715 residuals]
+   level 9 (top): stop at |r_9| 5.64e-10: step below rounding
+   level 9 solved: |r_9| 5.64e-10  (4 residuals, 2 s)  [188 s total]
+     level 7 (top) it 0 trial lam 1: |r_7| 3.195e-04 against 3.009e-04: rejected
+     level 9 (top) it 0 trial lam 1: |r_9| 1.701e-06 against 4.910e-05: accepted
+level 9 it 0: |r_9| 1.701e-06  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.00842351, 0.001513044, 0.000475315, 0.000122659, 2.6652e-05, 9.004e-06]  [189 s, 717 residuals]
+     level 9 (top) it 1 trial lam 1: |r_9| 2.281e-08 against 1.701e-06: accepted
+level 9 it 1: |r_9| 2.281e-08  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.00842351, 0.001513044, 0.000475315, 0.000122659, 2.6652e-05, 9.004e-06]  [189 s, 718 residuals]
+     level 9 (top) it 2 trial lam 1: |r_9| 1.175e-10 against 2.281e-08: accepted
+level 9 it 2: |r_9| 1.175e-10  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.00842351, 0.001513044, 0.000475315, 0.000122659, 2.6652e-05, 9.004e-06]  [190 s, 719 residuals]
+   level 9 (top): stop at |r_9| 1.18e-10: step below rounding
+   level 9 solved: |r_9| 1.18e-10  (4 residuals, 2 s)  [190 s total]
+     level 7 (top) it 0 trial lam 0.5: |r_7| 1.472e-04 against 3.009e-04: accepted
+level 7 it 0: |r_7| 1.472e-04  lam 0.5  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.00842351, 0.001513044, 0.000475315, 0.000122659, 2.6652e-05, 9.004e-06]  [195 s, 742 residuals]
+     level 9 (top) it 0 trial lam 1: |r_9| 1.806e-06 against 4.834e-05: accepted
+level 9 it 0: |r_9| 1.806e-06  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.00842351, 0.001513044, 0.000475315, 0.000122659, 2.6652e-05, 9.004e-06]  [196 s, 744 residuals]
+     level 9 (top) it 1 trial lam 1: |r_9| 2.484e-08 against 1.806e-06: accepted
+level 9 it 1: |r_9| 2.484e-08  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.00842351, 0.001513044, 0.000475315, 0.000122659, 2.6652e-05, 9.004e-06]  [196 s, 745 residuals]
+     level 9 (top) it 2 trial lam 1: |r_9| 2.090e-10 against 2.484e-08: accepted
+level 9 it 2: |r_9| 2.090e-10  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.00842351, 0.001513044, 0.000475315, 0.000122659, 2.6652e-05, 9.004e-06]  [197 s, 746 residuals]
+   level 9 (top): stop at |r_9| 2.09e-10: step below rounding
+   level 9 solved: |r_9| 2.09e-10  (4 residuals, 2 s)  [197 s total]
+     level 7 (top) it 1 trial lam 1: |r_7| 3.501e-05 against 1.472e-04: accepted
+level 7 it 1: |r_7| 3.501e-05  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.00842351, 0.001513044, 0.000475315, 0.000122659, 2.6652e-05, 9.004e-06]  [197 s, 746 residuals]
+     level 9 (top) it 0 trial lam 1: |r_9| 4.315e-07 against 1.151e-05: accepted
+level 9 it 0: |r_9| 4.315e-07  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.00842351, 0.001513044, 0.000475315, 0.000122659, 2.6652e-05, 9.004e-06]  [198 s, 748 residuals]
+     level 9 (top) it 1 trial lam 1: |r_9| 5.893e-09 against 4.315e-07: accepted
+level 9 it 1: |r_9| 5.893e-09  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.00842351, 0.001513044, 0.000475315, 0.000122659, 2.6652e-05, 9.004e-06]  [198 s, 749 residuals]
+   level 9 (top): stop at |r_9| 5.89e-09: step below rounding
+   level 9 solved: |r_9| 5.89e-09  (3 residuals, 2 s)  [198 s total]
+     level 7 (top) it 2 trial lam 1: |r_7| 5.944e-04 against 3.501e-05: rejected
+     level 9 (top) it 0 trial lam 1: |r_9| 2.159e-07 against 5.755e-06: accepted
+level 9 it 0: |r_9| 2.159e-07  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.00842351, 0.001513044, 0.000475315, 0.000122659, 2.6652e-05, 9.004e-06]  [199 s, 751 residuals]
+     level 9 (top) it 1 trial lam 1: |r_9| 2.974e-09 against 2.159e-07: accepted
+level 9 it 1: |r_9| 2.974e-09  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.00842351, 0.001513044, 0.000475315, 0.000122659, 2.6652e-05, 9.004e-06]  [200 s, 752 residuals]
+   level 9 (top): stop at |r_9| 2.97e-09: step below rounding
+   level 9 solved: |r_9| 2.97e-09  (3 residuals, 2 s)  [200 s total]
+     level 7 (top) it 2 trial lam 0.5: |r_7| 2.932e-04 against 3.501e-05: rejected
+     level 9 (top) it 0 trial lam 1: |r_9| 1.079e-07 against 2.877e-06: accepted
+level 9 it 0: |r_9| 1.079e-07  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.00842351, 0.001513044, 0.000475315, 0.000122659, 2.6652e-05, 9.004e-06]  [201 s, 754 residuals]
+     level 9 (top) it 1 trial lam 1: |r_9| 1.732e-09 against 1.079e-07: accepted
+level 9 it 1: |r_9| 1.732e-09  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.00842351, 0.001513044, 0.000475315, 0.000122659, 2.6652e-05, 9.004e-06]  [201 s, 755 residuals]
+   level 9 (top): stop at |r_9| 1.73e-09: step below rounding
+   level 9 solved: |r_9| 1.73e-09  (3 residuals, 1 s)  [201 s total]
+     level 7 (top) it 2 trial lam 0.25: |r_7| 1.633e-04 against 3.501e-05: rejected
+     level 9 (top) it 0 trial lam 1: |r_9| 5.395e-08 against 1.439e-06: accepted
+level 9 it 0: |r_9| 5.395e-08  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.00842351, 0.001513044, 0.000475315, 0.000122659, 2.6652e-05, 9.004e-06]  [202 s, 757 residuals]
+     level 9 (top) it 1 trial lam 1: |r_9| 6.090e-10 against 5.395e-08: accepted
+level 9 it 1: |r_9| 6.090e-10  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.00842351, 0.001513044, 0.000475315, 0.000122659, 2.6652e-05, 9.004e-06]  [203 s, 758 residuals]
+   level 9 (top): stop at |r_9| 6.09e-10: step below rounding
+   level 9 solved: |r_9| 6.09e-10  (3 residuals, 2 s)  [203 s total]
+     level 7 (top) it 2 trial lam 0.125: |r_7| 4.931e-05 against 3.501e-05: rejected
+     level 9 (top) it 0 trial lam 1: |r_9| 2.723e-08 against 7.192e-07: accepted
+level 9 it 0: |r_9| 2.723e-08  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.00842351, 0.001513044, 0.000475315, 0.000122659, 2.6652e-05, 9.004e-06]  [204 s, 760 residuals]
+     level 9 (top) it 1 trial lam 1: |r_9| 5.135e-10 against 2.723e-08: accepted
+level 9 it 1: |r_9| 5.135e-10  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.00842351, 0.001513044, 0.000475315, 0.000122659, 2.6652e-05, 9.004e-06]  [205 s, 761 residuals]
+   level 9 (top): stop at |r_9| 5.13e-10: step below rounding
+   level 9 solved: |r_9| 5.13e-10  (3 residuals, 2 s)  [205 s total]
+     level 7 (top) it 2 trial lam 0.0625: |r_7| 3.789e-05 against 3.501e-05: rejected
+     level 9 (top) it 0 trial lam 1: |r_9| 1.324e-08 against 3.597e-07: accepted
+level 9 it 0: |r_9| 1.324e-08  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.00842351, 0.001513044, 0.000475315, 0.000122659, 2.6652e-05, 9.004e-06]  [206 s, 763 residuals]
+     level 9 (top) it 1 trial lam 1: |r_9| 3.615e-10 against 1.324e-08: accepted
+level 9 it 1: |r_9| 3.615e-10  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.00842351, 0.001513044, 0.000475315, 0.000122659, 2.6652e-05, 9.004e-06]  [206 s, 764 residuals]
+   level 9 (top): stop at |r_9| 3.62e-10: step below rounding
+   level 9 solved: |r_9| 3.62e-10  (3 residuals, 1 s)  [206 s total]
+     level 7 (top) it 2 trial lam 0.03125: |r_7| 2.243e-05 against 3.501e-05: accepted
+level 7 it 2: |r_7| 2.243e-05  lam 0.0312  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.00842351, 0.001513044, 0.000475315, 0.000122659, 2.6652e-05, 9.004e-06]  [212 s, 794 residuals]
+     level 9 (top) it 0 trial lam 1: |r_9| 2.620e-07 against 7.388e-06: accepted
+level 9 it 0: |r_9| 2.620e-07  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.00842351, 0.001513044, 0.000475315, 0.000122659, 2.6652e-05, 9.004e-06]  [214 s, 796 residuals]
+     level 9 (top) it 1 trial lam 1: |r_9| 4.187e-09 against 2.620e-07: accepted
+level 9 it 1: |r_9| 4.187e-09  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.00842351, 0.001513044, 0.000475315, 0.000122659, 2.6652e-05, 9.004e-06]  [214 s, 797 residuals]
+   level 9 (top): stop at |r_9| 4.19e-09: step below rounding
+   level 9 solved: |r_9| 4.19e-09  (3 residuals, 2 s)  [214 s total]
+     level 7 (top) it 3 trial lam 1: |r_7| 4.393e-04 against 2.243e-05: rejected
+     level 9 (top) it 0 trial lam 1: |r_9| 1.310e-07 against 3.694e-06: accepted
+level 9 it 0: |r_9| 1.310e-07  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.00842351, 0.001513044, 0.000475315, 0.000122659, 2.6652e-05, 9.004e-06]  [215 s, 799 residuals]
+     level 9 (top) it 1 trial lam 1: |r_9| 2.110e-09 against 1.310e-07: accepted
+level 9 it 1: |r_9| 2.110e-09  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.00842351, 0.001513044, 0.000475315, 0.000122659, 2.6652e-05, 9.004e-06]  [216 s, 800 residuals]
+   level 9 (top): stop at |r_9| 2.11e-09: step below rounding
+   level 9 solved: |r_9| 2.11e-09  (3 residuals, 2 s)  [216 s total]
+     level 7 (top) it 3 trial lam 0.5: |r_7| 2.296e-04 against 2.243e-05: rejected
+   level 7 (top): stop at |r_7| 2.24e-05: every trial rejected with a fresh Jacobian (noise floor)
+   level 7 solved: |r_7| 2.24e-05  (171 residuals, 57 s)  [216 s total]
+     level 5 (low) it 0 trial lam 0.5: |r_5| 1.097e+01 against 1.389e+01: accepted
+   level 5 (low): stop at |r_5| 1.10e+01: a fresh Jacobian no longer halves |g|
+   level 9 (top): stop at |r_9| 3.62e-10: step below rounding
+   level 9 solved: |r_9| 3.62e-10  (1 residuals, 0 s)  [216 s total]
+     level 9 (top) it 0 trial lam 1: |r_9| 2.620e-07 against 7.388e-06: accepted
+level 9 it 0: |r_9| 2.620e-07  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.00842351, 0.001513044, 0.000475315, 0.000122659, 2.6652e-05, 9.004e-06]  [217 s, 803 residuals]
+     level 9 (top) it 1 trial lam 1: |r_9| 4.187e-09 against 2.620e-07: accepted
+level 9 it 1: |r_9| 4.187e-09  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.00842351, 0.001513044, 0.000475315, 0.000122659, 2.6652e-05, 9.004e-06]  [218 s, 804 residuals]
+   level 9 (top): stop at |r_9| 4.19e-09: step below rounding
+   level 9 solved: |r_9| 4.19e-09  (3 residuals, 2 s)  [218 s total]
+     level 7 (top) it 0 trial lam 1: |r_7| 4.393e-04 against 2.243e-05: rejected

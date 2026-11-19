@@ -1,0 +1,12 @@
+$ chain1007.py --selftest 
+2026-11-19 06:30:00 UTC selftest: lived 9.6 s (extended, want ~9) and 3.2 s (not extended, want ~3), alive after the cap [], third started after a slot freed: True
+2026-11-19 06:30:00 UTC selftest PASS
+exit 0
+$ chain1007.py --selftest --mutate=nokill
+2026-11-19 06:30:10 UTC selftest: lived 9.2 s (extended, want ~9) and 3.0 s (not extended, want ~3), alive after the cap [24484, 29544, 28372], third started after a slot freed: True
+2026-11-19 06:30:10 UTC selftest FAIL
+exit 1
+$ chain1007.py --selftest --mutate=anysolve
+2026-11-19 06:30:23 UTC selftest: lived 9.2 s (extended, want ~9) and 9.3 s (not extended, want ~3), alive after the cap [], third started after a slot freed: True
+2026-11-19 06:30:23 UTC selftest FAIL
+exit 1

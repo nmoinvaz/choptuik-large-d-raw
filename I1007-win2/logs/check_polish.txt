@@ -1,0 +1,15 @@
+# check_polish.py with the approach radius, 06:32:18 UTC
+$ check_polish.py logs/hier_nb_M9_polish5_0.105_approach5_0.105_v3_win2.log 0.105 0.105
+level radii (approach -> polish): r_1 0.1500 -> 0.1500, r_3 0.1500 -> 0.1500, r_5 0.1050 -> 0.1050, r_7 0.1028 -> 0.1500, r_9 0.0919 -> 0.1246
+r_5 polish 0.1050 (approach 0.1050) vs XI 0.105 AP 0.105: ok
+exit 0
+$ ... --mutate (must fail)
+r_5 polish 0.1050 (approach 0.1050) vs XI 0.11499999999999999 AP 0.11499999999999999: FAIL
+exit 1
+$ check_polish.py logs/hier_nb_M9_polish5_0.115_approach5_0.105_v3_win2.log 0.115 0.105
+level radii (approach -> polish): r_1 0.1500 -> 0.1500, r_3 0.1500 -> 0.1500, r_5 0.1050 -> 0.1150, r_7 0.1028 -> 0.1500, r_9 0.0919 -> 0.1246
+r_5 polish 0.1150 (approach 0.1050) vs XI 0.115 AP 0.105: ok
+exit 0
+$ ... --mutate (must fail)
+r_5 polish 0.1150 (approach 0.1050) vs XI 0.125 AP 0.11499999999999999: FAIL
+exit 1

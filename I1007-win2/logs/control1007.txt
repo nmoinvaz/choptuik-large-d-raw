@@ -1,0 +1,16 @@
+# control1007.py v3 (the control run at XI 0.11, the old log's own XI, from ec7cfea7), 06:41:55 UTC
+$ control1007.py logs/hier_nb_M9_polish5_0.11_approach5_0.105_v3_ctrl_win2.log 
+hier_nb_M9_polish5_0.11_approach5_0.105_v3_ctrl_win2.log against hier_nb_M9_polish5_0.11_approach5_0.105_win2.log: 239 lines before level 5's first (low) stop line, equal after normalization: True
+exit 0
+$ control1007.py logs/hier_nb_M9_polish5_0.11_approach5_0.105_v3_ctrl_win2.log --mutate=other
+hier_nb_M9_polish5_0.11_approach5_0.105_v3_ctrl_win2.log against hier_nb_M9_polish5_0.10_approach5_0.095_win2.log: 239 lines before level 5's first (low) stop line, equal after normalization: False
+first difference at line 18:
+  new: level radii (approach -> polish): r_1 0.1500 -> 0.1500, r_3 0.1500 -> 0.1500, r_5 0.1050 -> XI, r_7 0.1028 -> 0.1500, r_9 0.0919 -> 0.1246
+  ref: level radii (approach -> polish): r_1 0.1500 -> 0.1500, r_3 0.1500 -> 0.1500, r_5 0.0950 -> XI, r_7 0.1028 -> 0.1500, r_9 0.0919 -> 0.1246
+exit 1
+$ control1007.py logs/hier_nb_M9_polish5_0.11_approach5_0.105_v3_ctrl_win2.log --mutate=shift
+hier_nb_M9_polish5_0.11_approach5_0.105_v3_ctrl_win2.log against hier_nb_M9_polish5_0.11_approach5_0.105_win2.log: 238 lines before level 5's first (low) stop line, equal after normalization: False
+first difference at line 21:
+  new: level 9 it 0: |r_9| 1.596e-04  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008424206, 0.001511189, 0.000475367, 0.000122554, 2.6656e-05,
+  ref:    level 9 solved: |r_9| 1.53e-10  (1 residuals, T s)  [T s]
+exit 1
