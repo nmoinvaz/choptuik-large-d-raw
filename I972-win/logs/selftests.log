@@ -1,0 +1,39 @@
+$ check_972.py --selftest
+  planted orth: check passes (want pass), cos with ac -4.12e-17, outside the plane 2.7e-15, sum deviation 8.1e-01: ok
+  planted sum: check passes (want pass), cos with ac +8.32e-01, outside the plane 1.1e-15, sum deviation 0.0e+00: ok
+  planted d = bc as orth: check fails (want fail), cos with ac +3.17e-01, outside the plane 1.1e-15, sum deviation 5.6e-01: ok
+  planted d = ac as sum: check fails (want fail), cos with ac +1.00e+00, outside the plane 3.4e-16, sum deviation 6.1e-01: ok
+  planted d = sum as orth: check fails (want fail), cos with ac +8.32e-01, outside the plane 1.1e-15, sum deviation 0.0e+00: ok
+  planted d = orth as sum: check fails (want fail), cos with ac -4.12e-17, outside the plane 2.7e-15, sum deviation 8.1e-01: ok
+selftest passed
+exit 0
+$ table_972.py --selftest
+  all in: verdict IN THE ROOT SET (want IN THE ROOT SET) ok
+  all at the edge: verdict IN THE ROOT SET (want IN THE ROOT SET) ok
+  one just above the bar: verdict UNDECIDED (want UNDECIDED) ok
+  one in the band: verdict NOT IN THE ROOT SET (want NOT IN THE ROOT SET) ok
+  last in the band: verdict NOT IN THE ROOT SET (want NOT IN THE ROOT SET) ok
+  all not: verdict NOT IN THE ROOT SET (want NOT IN THE ROOT SET) ok
+  one just under 0.1: verdict UNDECIDED (want UNDECIDED) ok
+  one just over 10: verdict UNDECIDED (want UNDECIDED) ok
+  one at 1e-2 and one at 50: verdict UNDECIDED (want UNDECIDED) ok
+  in between: verdict UNDECIDED (want UNDECIDED) ok
+  one band value beside an in-between: verdict NOT IN THE ROOT SET (want NOT IN THE ROOT SET) ok
+  mutated in-set bar (1e-2): the 5e-3 case reads IN THE ROOT SET against UNDECIDED ok
+  mutated not rule (all for any): one in the band reads UNDECIDED against NOT IN THE ROOT SET ok
+  an incomplete run: INCOMPLETE (want INCOMPLETE) ok
+  median: geometric mean of the two middle ones for 12, the middle one for 3: ok
+  #963's c_d1e-20: median 5.4593e-24 against m_rand 5.4593e-24 ok
+  #963's c_d1e-19: median 2.6809e-22 against m_rand 2.6809e-22 ok
+selftest passed
+exit 0
+$ run_972.py --selftest
+  four good runs: exit 0 {'r0': 0, 'r1': 0, 'r2': 0, 'r3': 0} ok
+  cap hit: exit 5 {'r0': 0, 'slow': 5, 'after': 0} (want slow 5, the run after it still done) ok
+  a crash: exit 7 {'r0': 0, 'crash': 3} (want 7, after not run) ok
+  STOP file: exit 4 (want 4) ok
+selftest passed
+exit 0
+$ rt_perturb.py --selftest --orth
+selftest --orth: cosine with d1 1.9e-12, part outside the plane 2.7e-10: PASS
+exit 0

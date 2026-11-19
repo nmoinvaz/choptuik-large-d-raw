@@ -31,7 +31,8 @@ def row(ks, log, ex, label=None):
     if nw and nw[-1][2] == "converged":
         outcome, steps, fin = "converged", nw[-1][0], nw[-1][1]
     else:
-        outcome = "capped at 3600 s" if code == 124 else ("failed" if code is not None else "running")
+        outcome = ("capped at 3600 s" if code == 124 else "stopped by me after its first refused trial" if code == 143
+                   else "failed" if code is not None else "running")
         steps, fin = "none", (f"ladder FAILED after {lad.group(1)} rungs, |R| {lad.group(2)} to {lad.group(3)}" if lad else "none")
     return (label or str(ks), "%d" % (ks % 4), c0.group(1) if c0 else "n/a", c0.group(2) if c0 else "n/a",
             f"{c1.group(1)}, {c1.group(2)}" if c1 else "not formed", f"{th.group(1)}, {th.group(2)}" if th else "n/a", outcome, steps, fin,
@@ -39,24 +40,17 @@ def row(ks, log, ex, label=None):
 
 
 e971, e973 = exits("I971-dh610", "exits_971.txt"), exits("I973-dh610", "exits_973.txt")
-rows = [("291", "3", "the state itself, ks_chain2's leg 0 base (its own polish at D 232 was +11 from ks 280: first chord 2.05e-42, 4 steps)",
-         "", "", "", "", "", "", "")]
 rows = []
 rows.append(("291 (+0)", "3", "n/a (the state)", "n/a", "n/a", "n/a", "state of ks_chain2 leg 0", "n/a", "n/a", "n/a"))
-for k in (293, 295):
-    rows.append(row(k, os.path.join(raw, "I971-dh610", f"ks{k}.log"), e971.get(f"ks{k}"), f"{k} (+{k - 291}) #971"))
-for k in (297,):
-    p = os.path.join(raw, "I973-dh610", f"ks{k}.log")
-    rows.append(row(k, p, e973.get(f"ks{k}"), f"{k} (+{k - 291})") if os.path.exists(p) else (f"{k}", "1", "n/a", "n/a", "n/a", "n/a", "not run", "", "", ""))
+rows.append(row(293, os.path.join(raw, "I971-dh610", "ks293.log"), e971.get("ks293"), "293 (+2) #971"))
+rows.append(row(293, os.path.join(raw, "I973-dh610", "ks293_rerun.log"), e973.get("ks293_rerun"), "293 (+2) rerun alone"))
+rows.append(row(295, os.path.join(raw, "I971-dh610", "ks295.log"), e971.get("ks295"), "295 (+4) #971"))
+for k in (297, 301, 303, 307):
+    rows.append(row(k, os.path.join(raw, "I973-dh610", f"ks{k}.log"), e973.get(f"ks{k}"), f"{k} (+{k - 291}) attempt 1, 5 threads"))
+    rows.append(row(k, os.path.join(raw, "I973-dh610", f"ks{k}_r2.log"), e973.get(f"ks{k}_r2"), f"{k} (+{k - 291}) attempt 2, 6 threads"))
 rows.append(row(299, os.path.join(raw, "I971-dh610", "ks299.log"), e971.get("ks299"), "299 (+8) #971"))
-for k in (301, 303, 307):
-    p = os.path.join(raw, "I973-dh610", f"ks{k}.log")
-    rows.append(row(k, p, e973.get(f"ks{k}"), f"{k} (+{k - 291})") if os.path.exists(p) else (f"{k}", str(k % 4), "n/a", "n/a", "n/a", "n/a", "not run", "", "", ""))
-rows.append(("304 (+13) #966", "0", "5.1e-06", "n/a", "1.9e+33", "inf, refused", "failed", "none", "ladder FAILED, |R| 2.9e12 (as quoted in #971)", "n/a"))
-p = os.path.join(raw, "I973-dh610", "ks293_rerun.log")
-if os.path.exists(p):
-    rows.append(row(293, p, e973.get("ks293_rerun"), "293 (+2) rerun alone"))
-rows.sort(key=lambda r: int(r[0].split()[0]))
+rows.append(("304 (+13) #966", "0", "5.1e-06", "n/a", "1.9e+33", "inf, refused", "failed (another build and flags, as quoted in #971)", "none", "ladder FAILED, |R| 2.9e12", "n/a"))
+rows.sort(key=lambda r: (int(r[0].split()[0]), r[0]))
 head = ("| ks (jump) | ks mod 4 | first chord max\\|F\\| | \\|dw\\| | chord 1 max\\|F\\|, \\|dw\\| | theta of the first step | outcome | steps | polished max\\|F\\| or failure | wall |\n"
         "|---|---|---|---|---|---|---|---|---|---|")
 md = head + "\n" + "\n".join("| " + " | ".join(str(x).replace("|", "\\|") for x in r) + " |" for r in rows)

@@ -15,3 +15,7 @@ Predictions, fixed before the runs (the issue): 303 and 307 converge, 297 and 30
 | `table973.py`, `table973.md` | the table of every polish from this state (291, 293, 295, 299, 304 and these) |
 | `ks<K>.log`, `ks<K>/`, `ks293_rerun.log`, `ks293_rerun/` | a rung's stdout and output directory |
 | `exits_973.txt`, `summary_973.txt` | exits and verdicts |
+
+Outcome: the four side-by-side runs (attempt 1, 5 threads each, 20 threads on 20 logical cpus beside #967's item 3) hit the 1 h cap; the same four again at 6 threads (attempt 2: 297 and 301 side by side with the ks 293 rerun's tail,
+then 303 and 307) all converged in 4 steps. The ks 293 rerun, alone on the machine (the second attempt waited until its chord lines were out), reproduced #971's lines and was stopped by me after
+its first refused trial (1614 s), not at the cap. `table973.md` has every polish from this state. The two minutes of ks297_r2 and ks301_r2 output from a start beside the ks 293 rerun were removed (see `summary_973.txt`).

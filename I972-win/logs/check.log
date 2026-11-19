@@ -1,0 +1,14 @@
+max|z_C| 1.2910612e-01; max|a - c| 1.6958e-20, max|b - c| 2.7086e-20 (over max|z_C|), cos(a - c, b - c) 0.233728973
+
+| state | mode | delta | realised max abs (z' - z) / max abs z | cos with a - c | cos with b - c | part outside the plane | max abs deviation from the sum direction | mu / max-norm | check |
+|---|---|---|---|---|---|---|---|---|---|
+| c_orth_d1e-20.npz | orth | 1e-20 | 1.000000e-20 | +2.354e-16 | +9.723e-01 | 1.18e-13 | 8.19e-01 | 0.5046 | pass |
+| c_orth_d1e-19.npz | orth | 1e-19 | 1.000000e-19 | -2.824e-17 | +9.723e-01 | 1.21e-14 | 8.19e-01 | 0.5046 | pass |
+| c_sum_d1e-20.npz | sum | 1e-20 | 1.000000e-20 | +5.063e-01 | +9.568e-01 | 3.38e-13 | 3.64e-13 | 1.0000 | pass |
+| c_sum_d1e-19.npz | sum | 1e-19 | 1.000000e-19 | +5.063e-01 | +9.568e-01 | 3.34e-14 | 3.30e-14 | 1.0000 | pass |
+| c_alongb_d1e-20.npz | orth | 1e-20 | 1.000000e-20 | +2.337e-01 | +1.000e+00 | 1.90e-13 | 3.25e-01 | 1.0000 | control: fails as it must |
+| c_alongb_d1e-19.npz | orth | 1e-19 | 1.000000e-19 | +2.337e-01 | +1.000e+00 | 1.96e-14 | 3.25e-01 | 1.0000 | control: fails as it must |
+| c_orth_d1e-20.npz | sum | 1e-20 | 1.000000e-20 | +2.354e-16 | +9.723e-01 | 1.18e-13 | 8.19e-01 | 0.5046 | control: fails as it must |
+| c_orth_d1e-19.npz | sum | 1e-19 | 1.000000e-19 | -2.824e-17 | +9.723e-01 | 1.21e-14 | 8.19e-01 | 0.5046 | control: fails as it must |
+
+check_972 passed
