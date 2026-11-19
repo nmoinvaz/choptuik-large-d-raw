@@ -60,7 +60,7 @@ The estimate is `m7_outer`'s noise plus J estimate from two centre solves, not a
 | `zero_repeat_pert1` | 2.719219000 | 1.000022000 | -0.0975 -0.0016i | 2.9e-07 | 646 | 125 |
 
 **xi1 0.155: one solve of 15 under the bar, `m7_outer.py --local` refuses** ("not enough solves with |r_3| < 1e-6", exit 1): only `dw_pert2` (5.4e-7) is under it; the centres stay at
-5.0e-6 to 2.5e-5 (`zero`) and 1.3e-6 to 2.5e-5 (`zero_repeat`), `dA` at 1.4e-6 to 1.5e-5.
+5.0e-6 to 1.2e-5 (`zero`) and 1.3e-6 to 2.5e-5 (`zero_repeat`), `dA` at 1.4e-6 to 1.5e-5.
 
 | log | A | ω/ω∞ | r₁ | \|r₃\| | residuals | seconds |
 |---|---|---|---|---|---|---|
@@ -95,7 +95,7 @@ value a miss of 0.2 is 1e-4 in the zero.
 
 | xi1 | attempts | under the bar | first attempts (zero, dA, dw, zero_repeat) | solves under the bar | perturbed repeats under the bar |
 |---|---|---|---|---|---|
-| 0.15 (#976, #977 run 1) | 7 | 7 | 6.0e-8, 7.4e-6, 9.4e-6, 3.3e-6 | 1.1e-8 to 6.0e-8 | 3 of 3 |
+| 0.15 (#976, #977 run 1) | 7 | 4 | 6.0e-8, 7.4e-6, 9.4e-6, 3.3e-6 | 3.4e-9 to 6.0e-8 | 3 of 3 |
 | 0.145 | 7 | 4 | 2.8e-7, 1.3e-5, 6.6e-6, 1.4e-6 | 1.8e-7 to 3.5e-7 | 3 of 3 |
 | 0.14 (#981 run 1) | 9 | 3 | 5.5e-7, 6.7e-6, 1.2e-6, 2.9e-6 | 4.2e-7 to 5.5e-7 | 2 of 5 |
 | 0.155 | 15 | 1 | 1.1e-5, 1.5e-5, 2.5e-5, 1.3e-6 | 5.4e-7 | 1 of 11 |
