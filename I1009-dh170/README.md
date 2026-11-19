@@ -36,3 +36,8 @@ still growing; the other jobs on the machine together held about 2 GB (the two 1
 about 1.5 GB). `MemAvailable` fell from 28.4 GB at the start to 2.0 GB in 14 minutes. The earlier hp builds on this box, run with nothing else heavy beside them, peaked at 29.2 GB (#935) and 29.4 GB (#958), both with 10 jobs; at #958's peak the system had 31.0 GB used and 0.95 GB available. So, if 6 jobs
 lowers the final compile's peak only a little,  the final `_hpkernel` compile needs about the same: **this build cannot meet the 2 GB rule on a 31 GB machine, with or without the other jobs**. Nothing after the build
 was run (checks 1 to 4). No file of any other job was touched; the 935 venv was not used.
+
+## 2026-11-19 07:09 UTC, dropped (coordinator's hc)
+
+#1009 moves to dh610 (62 GB), so nothing more is run here: no retry, no checks. The worktree `~/Source/choptuik-large-d-ccc` (with its 288 MB of partial build artifacts, the dependencies cached) and the venv `~/Source/venv-ccc` are left as they are,
+the artifacts being small. This folder keeps the setup, the watchdog's `build.log` and `mem1009.log` as the record of the attempt.
