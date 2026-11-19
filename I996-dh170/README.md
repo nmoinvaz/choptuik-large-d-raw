@@ -42,3 +42,12 @@ Machine dh170 (Fedora 45, i7-7700, 4 cores / 8 threads). Issue: https://github.c
   M 9's own precision control against the 120-digit M 9). Rule for every M (coordinator): accept σ_k only where a run at higher digits agrees to 1% of Δσ_{M+1} or better, the agreement
   reported per k (`agree996.py`, selftest `selftest_agree996.log`, and its mutated run `selftest_agree996_mutated.log`, exit 1). Δσ_{M+1} = σ_{M+1}^[M+2] − σ_{M+1}^[M] from the
   highest-digit runs; it does not exist for M 9 (needs M 11). The Mac runs M 3 and M 5 at J 1500 and 120 digits for the J question.
+- 2026-11-19 06:50 UTC, state after the account switch (the old session's shell tasks never reported; the jobs were checked from logs and exits). All eight jobs ended by themselves:
+  `M3` 1942 s, `M3_dps120` 2137 s, `M5` 4331 s, `M5_dps120` 4144 s, `M7_dps120` 6316 s, `M9_dps120` 10314 s, `M9_K9_dps180` 3422 s, all exit 0 (`exits_996.txt`), and the stopped
+  `M7` (60 digits, exit 143 after k 11, invalid) and the failed `M9` (60 digits, exit 1 at k 1). Their JSONs are here. Tables: `agree996_table.txt` (per k, higher against lower digits,
+  fit residuals, in units of Δσ_{M+1}) and `exact996_table.txt` (the exact orders σ_0..σ_M agree across models M, so a run of M' > M is a second check of M's exact orders at no
+  extra digits; in units of Δσ_{M+1}).
+  Findings in them: M 3 and M 5 at 120 digits equal their 60-digit runs (20 JSON digits for M 3; at most 7.3e-7 of Δσ_6 at σ_7 for M 5): accepted at every k. M 7 has no higher-digit
+  run; against M 9 at 180 digits its σ_0..σ_4 agree to 1.2e-4 of Δσ_8 or better (accepted), but its σ_6 and σ_7 differ from M 9's at 120 digits by 1.6e-3 and **1.7e-2** of Δσ_8
+  (1.2e-11 and 1.2e-10 absolute, Δσ_8 = 7.34e-9), over the 1% rule at σ_7, and which of the two is the less accurate there cannot be told without a higher-digit run of M 7
+  or of M 9 beyond k 9. M 9 at K 18 does not reach its own σ_{M+1} = σ_10 (k 21), so it has no residual there and no Δσ_10.
