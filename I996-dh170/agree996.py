@@ -12,17 +12,20 @@ import re
 import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-PAT = re.compile(r"^k (\d+): sigma_(\d+) = \(([^ ]+) ([+-] ?[^ ]+)j\)")
+RES = {}      # fit residual per log and k (the coordinator, 2026-11-19: each model's residual beside its sigma_k, sigma_{M+1} above all)
+PAT = re.compile(r"^k (\d+): sigma_(\d+) = \(([^ ]+) ([+-] ?[^ ]+)j\)\s+fit resid ([\d.e+-]+)")
 
 
 def read(name):
     p = os.path.join(HERE, name)
+    RES[name] = {}
     out = {}
     if os.path.exists(p):
         for line in open(p):
             m = PAT.match(line)
             if m:
                 out[int(m.group(1))] = complex(float(m.group(3)), float(m.group(4).replace(" ", "")))
+                RES.setdefault(name, {})[int(m.group(1))] = float(m.group(5))
     return out
 
 
@@ -52,11 +55,13 @@ def table(runs=None):
         for k in sorted(set(a) & set(b)):
             d = abs(a[k] - b[k])
             tag = f"sigma_{(k - 1) // 2}{' (= sigma_M+1)' if (k - 1) // 2 == M + 1 else ''}"
+            res = f"  fit resid {RES.get(RUNS[hi], {}).get(k, float('nan')):.1e} ({hi}), {RES.get(RUNS[lo], {}).get(k, float('nan')):.1e} ({lo})"
+            ds = "equal in all 15 printed digits (< 1e-15 relative)" if d == 0 else f"|difference| {d:.2e}"
             if sh:
                 r = d / sh
-                lines.append(f"   k {k:2d} {tag:<22} |difference| {d:.2e}  = {r:.2e} of Delta sigma_{M + 1}: {verdict(r)}")
+                lines.append(f"   k {k:2d} {tag:<22} {ds}  = {r:.2e} of Delta sigma_{M + 1}: {verdict(r)};{res}")
             else:
-                lines.append(f"   k {k:2d} {tag:<22} |difference| {d:.2e}  (no Delta sigma_{M + 1} yet)")
+                lines.append(f"   k {k:2d} {tag:<22} {ds}  (no Delta sigma_{M + 1} yet);{res}")
     return "\n".join(lines)
 
 
