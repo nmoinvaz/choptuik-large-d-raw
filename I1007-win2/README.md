@@ -52,9 +52,9 @@ its checks and their mutations: `logs/selftest_summarize1007.txt`); the `level r
 | 0.115 | 9.07 | 1.44 | 1.17 | | 3 | one trial (lam 1) 2.523e4 -> 2.229e4, then stop | 1387 s, r_1 -7.3e8 + 3.9e8 i, r_3 2.2e4, r_5 1.2, r_7 6.6e-8, r_9 7.3e-10 |
 | 0.12 | 12.3 | 5.12 | 4.10 | | 3 | one trial (lam 1) 5.249e4 -> 3.890e4, then stop | 1631 s, r_1 -2.3e9 - 5.2e8 i, r_3 3.9e4, r_5 4.1, r_7 1.1e-7, r_9 3.3e-9 |
 
-**Stop reasons** (all stops of the runs, `--verbose=2`): level 5's stops are "a fresh Jacobian no longer halves |g|" in 22 of 24 stages, "every trial rejected with a fresh Jacobian (noise floor)" in 2
-(0.105's fifth polish stage, 9.14e-3, and the third approach stage of 0.115 and of 0.12, which is counted in the 24: 8 + 7 at 0.105, 3 + 3 at 0.115, 3 + 3 at 0.12 = 27 stages; the exact counts by stage are in the
-tally below). No level 5, 7 or 9 stop was "maxit", "below --tol" or "at the recorded floor"; level 9's polish stops are all "step below rounding".
+**Stop reasons** (every stop of the runs, `--verbose=2`): level 5 has 27 finished stages (0.105: 8 approach + 7 polish; 0.115: 3 + 3; 0.12: 3 + 3). 24 of them stop with "a fresh Jacobian no longer halves |g|"
+and 3 with "every trial rejected with a fresh Jacobian (noise floor)": 0.105's fifth polish stage (9.14e-3), and the third approach stage of 0.115 (1.26) and of 0.12 (3.18). No stop of level 5, 7 or 9 was "maxit",
+"below --tol" or "at the recorded floor"; level 9's polish stops are all "step below rounding". The counts by level and stage:
 
 | run | level 5 low | level 5 top | level 3 top |
 |---|---|---|---|
