@@ -3,7 +3,9 @@
 ('octo-double Newton: N steps, max|F| X' line), the smallest pivot of its last iteration, the Delta error estimate |F| / sigma_Delta
 with sigma_Delta = that pivot and with 1.6e-17 (the coordinator's), the octo-double steps and the corrector seconds (the a-line's).
 Pass for a step: both estimates <= 1e-18.
-usage: python3 -I tol966.py CHAIN_OUT LEG0_PREFIX   (e.g. leg04)      python3 -I tol966.py --selftest [--mutate]"""
+From the coordinator's correction (hc 2026-11-19 ~13:30 UTC): the smallest pivot is not sigma_Delta; near_null's sigma_Delta (dh170) is the
+denominator that counts. --sigma D=S[,D=S...] adds a column |F| / sigma_Delta(near_null) for the states at those D (4 decimals), 'n/a' otherwise.
+usage: python3 -I tol966.py CHAIN_OUT LEG0_PREFIX [--sigma 251.2845=2.822e-18]     python3 -I tol966.py --selftest [--mutate]"""
 import glob, re, sys
 
 SIG = 1.6e-17
@@ -53,11 +55,19 @@ if __name__ == "__main__":
     if "--selftest" in sys.argv:
         selftest("--mutate" in sys.argv)
     out, leg0 = sys.argv[1], sys.argv[2]
-    print("| leg | D | od steps | final max\\|F\\| | smallest pivot | \\|F\\|/pivot | \\|F\\|/1.6e-17 | corrector s | estimates <= 1e-18 |\n|---|---|---|---|---|---|---|---|---|")
+    sig = {}
+    if "--sigma" in sys.argv:
+        for kv in sys.argv[sys.argv.index("--sigma") + 1].split(","):
+            k, v = kv.split("=")
+            sig[f"{float(k):.4f}"] = float(v)
+    print("| leg | D | od steps | final max\\|F\\| | smallest pivot | \\|F\\|/pivot | \\|F\\|/1.6e-17 | sigma_Delta (near_null) | \\|F\\|/sigma_Delta | corrector s | pivot-based <= 1e-18 | near_null <= 1e-18 |\n|---|---|---|---|---|---|---|---|---|---|---|---|")
     for log in sorted(glob.glob(out + "/leg*/anm_run.log")):
         leg = log.split("/")[-2]
         if leg[:5] < leg0[:5]:
             continue
         for r in steps(open(log, errors="replace").read()):
             ok = r["e1"] is not None and max(r["e1"], r["e2"]) <= 1e-18
-            print(f"| {leg[:5]} | {r['D']} | {r['od']} | {r['F']:.2e} ({r['conv']}) | {r['piv']:.2e} | {r['e1']:.2e} | {r['e2']:.2e} | {r['s']} | {'yes' if ok else 'NO'} |")
+            sg = sig.get(f"{float(r['D']):.4f}")
+            en = r["F"] / sg if sg else None
+            print(f"| {leg[:5]} | {r['D']} | {r['od']} | {r['F']:.2e} ({r['conv']}) | {r['piv']:.2e} | {r['e1']:.2e} | {r['e2']:.2e} | "
+                  f"{'%.3e' % sg if sg else 'n/a'} | {'%.2e' % en if sg else 'n/a'} | {r['s']} | {'yes' if ok else 'NO'} | {('yes' if en <= 1e-18 else 'NO') if sg else 'n/a'} |")
