@@ -1,0 +1,14 @@
+# control989 v1 (strict) fired at 00:45:46 UTC 19 Nov: 37 lines against 42, from chain989.driver.log:
+2026-11-19 00:43:27 UTC start control (xi1 0.15 zero solve against #976's log)
+hier_nb_M7_win2_rtol14_ctrl_xi015_zero.log against hier_nb_M7_win2_rtol14_xi015_zero.log: 37 and 42 lines, identical apart from seconds and addresses: False
+2026-11-19 00:45:46 UTC control (xi1 0.15 zero solve against #976's log) exit 1 after 140 s
+the control differs: the chain stops
+# the same strict comparison on the clean control log of 00:49 UTC (the 00:43 log was overwritten by my botched re-runs, see README):
+--- I976 zero (5e603e30)
++++ control (b081fbb2)
+@@ -38,5 +37,0 @@
+-Traceback (most recent call last):
+-  File "C:\Users\nathan\AppData\Local\Programs\Python\Python314\Lib\multiprocessing\pool.py", line 271, in __del__
+-  File "C:\Users\nathan\AppData\Local\Programs\Python\Python314\Lib\multiprocessing\queues.py", line 391, in put
+-  File "C:\Users\nathan\AppData\Local\Programs\Python\Python314\Lib\multiprocessing\reduction.py", line 50, in dumps
+-AttributeError: 'NoneType' object has no attribute 'BytesIO'

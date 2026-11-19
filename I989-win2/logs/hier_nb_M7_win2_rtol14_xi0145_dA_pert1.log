@@ -1,0 +1,32 @@
+pretune level 7 (approach, xi 0.1028): start |r_7| 4.815e-02  [0 s]
+   it 0: |r_7| 1.861e-06  lam 1.0  B,C_7 4.744324351646e-04 1.217338744723e-04  [1 s]
+   it 1: no decrease; stop at |r_7| 1.861e-06
+pretune level 7 (polish, xi 0.1450): start |r_7| 2.510e-05  [0 s]
+   it 0: |r_7| 8.234e-08  lam 1.0  B,C_7 4.744324351490e-04 1.217338745012e-04  [1 s]
+   it 1: |r_7| 6.331e-10  lam 1.0  B,C_7 4.744324351489e-04 1.217338745012e-04  [1 s]
+   it 2: |r_7| 2.486e-10  lam 1.0  B,C_7 4.744324351489e-04 1.217338745012e-04  [1 s]
+   it 3: no decrease; stop at |r_7| 2.486e-10
+pretuned x [2.719419, 1.000022, 0.1490081795, 0.01477309871, 0.008427080476, 0.001511649065, 0.00047443243514889776, 0.00012173387450115656]
+M 7, xi1 0.145, fixed (A, w), procs 2; start x [2.719419, 1.000022, 0.14900818, 0.014773099, 0.00842708, 0.001511649, 0.000474432, 0.000121734]
+level radii (approach -> polish): r_1 0.1450 -> 0.1450, r_3 0.1450 -> 0.1450, r_5 0.1188 -> 0.1450, r_7 0.1028 -> 0.1450
+start residuals: |r_1| 0.00e+00  |r_3| 0.00e+00  |r_5| 0.00e+00  |r_7| 1.40e-06
+   level 5 solved: |r_5| 4.16e-06  (143 residuals, 22 s)  [26 s total]
+   Jacobian K computed (8 residuals) [28 s]
+   floor of level 7: |r_7| ~ 1.94e-10 (stop at 3x from now on)
+   floor of level 5: |r_5| ~ 2.84e-10 (stop at 3x from now on)
+   level 5 solved: |r_5| 2.84e-10  (50 residuals, 7 s)  [35 s total]
+   level 5 solved: |r_5| 6.14e-10  (5 residuals, 1 s)  [62 s total]
+level 3 it 0: |r_3| 4.369e-07  lam 1  x [2.719419, 1.000022, 0.14900817, 0.014773098, 0.008427081, 0.001511649, 0.000474432, 0.000121734]  [62 s, 422 residuals]
+   level 5 solved: |r_5| 8.11e-10  (3 residuals, 1 s)  [63 s total]
+level 3 it 1: |r_3| 4.206e-07  lam 1  x [2.719419, 1.000022, 0.14900817, 0.014773098, 0.008427081, 0.001511649, 0.000474432, 0.000121734]  [89 s, 619 residuals]
+   level 5 solved: |r_5| 6.91e-10  (3 residuals, 1 s)  [90 s total]
+   level 5 solved: |r_5| 8.38e-10  (3 residuals, 1 s)  [90 s total]
+level 3 it 2: |r_3| 1.770e-07  lam 0.5  x [2.719419, 1.000022, 0.14900817, 0.014773098, 0.008427081, 0.001511649, 0.000474432, 0.000121734]  [108 s, 771 residuals]
+   level 5 solved: |r_5| 3.69e-10  (3 residuals, 1 s)  [109 s total]
+   level 5 solved: |r_5| 3.35e-10  (2 residuals, 0 s)  [109 s total]
+   level 3 solved: |r_3| 1.77e-07  (775 residuals, 106 s)  [109 s total]
+FIXED-A M 7: A 2.719419000  w/w_inf 1.000022000  (w 3.82222, Delta 1.64386)  <F^2> 3.7089  r_1 +5.1620e-01+5.4953e-01i  [109 s, 776 residuals]
+      F_3/F_1 = +0.054794+0.005432i   |.| 0.055063  arg +0.0988   r_3 1.8e-07
+      F_5/F_1 = +0.003099+0.000556i   |.| 0.003148  arg +0.1775   r_5 8.4e-10
+      F_7/F_1 = +0.000174+0.000045i   |.| 0.000180  arg +0.2512   r_7 4.0e-10
+      (uncorrected r_1 -7.8181e+01+1.2652e+02i)

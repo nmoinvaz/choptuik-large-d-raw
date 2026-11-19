@@ -1,0 +1,13 @@
+# #989 xi1 0.155: m7_outer.py --local refused (no centre solve under the bar); labelled affine zeros of the solves, NOT accepted by the 1e-6 bar
+## first attempts: zero, dA, dw, zero_repeat
+  2.719219000 1.000022000   r_1 -0.0509+0.1040i   |r_3| 1.1e-05  (above the bar)   (hier_nb_M7_win2_rtol14_xi0155_zero_r3high.log)
+  2.719419000 1.000022000   r_1 +0.6293-0.6119i   |r_3| 1.5e-05  (above the bar)   (hier_nb_M7_win2_rtol14_xi0155_dA_r3high.log)
+  2.719219000 1.000122000   r_1 -0.4204+1.0772i   |r_3| 2.5e-05  (above the bar)   (hier_nb_M7_win2_rtol14_xi0155_dw.log)
+  2.719219000 1.000022000   r_1 -0.2700+0.3418i   |r_3| 1.3e-06  (above the bar)   (hier_nb_M7_win2_rtol14_xi0155_zero_repeat_r3high.log)
+NOT ACCEPTED by the 1e-6 bar: affine zero of all 4 solves: A 2.719254, w/w_inf 1.000013; J singular values [10387.6  2203.3]; residuals [1.617e-01 2.942e-13 2.943e-13 1.617e-01]
+## lowest |r_3| per role: zero_pert3, dA_pert3, dw_pert2, zero_repeat
+  2.719219000 1.000022000   r_1 +0.1230+0.0033i   |r_3| 5.0e-06  (above the bar)   (hier_nb_M7_win2_rtol14_xi0155_zero_pert3_r3high.log)
+  2.719419000 1.000022000   r_1 +0.8653-0.8691i   |r_3| 1.4e-06  (above the bar)   (hier_nb_M7_win2_rtol14_xi0155_dA_pert3_r3high.log)
+  2.719219000 1.000122000   r_1 +0.2249+0.9687i   |r_3| 5.4e-07   (hier_nb_M7_win2_rtol14_xi0155_dw_pert2.log)
+  2.719219000 1.000022000   r_1 -0.2700+0.3418i   |r_3| 1.3e-06  (above the bar)   (hier_nb_M7_win2_rtol14_xi0155_zero_repeat_r3high.log)
+NOT ACCEPTED by the 1e-6 bar: affine zero of all 4 solves: A 2.719240, w/w_inf 1.000014; J singular values [9513.7 5561.6]; residuals [2.593e-01 7.001e-13 7.002e-13 2.593e-01]

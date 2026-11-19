@@ -1,0 +1,16 @@
+# control989.py v2 (exit-time BytesIO Traceback block dropped), run 00:46:31 UTC 19 Nov, after v1 fired at 00:45:46 UTC
+$ control989.py --compare-only
+00:46:31 run: C:/Users/nathan/Source/venv-i962/Scripts/python.exe -u hier_nb.py 7 2.719219 1.000022 --x=0.148977988,0.014770713,0.008424206,0.001511189,0.000474205,0.00012168 --xi1=0.15 --pretune --fixA --schur --predict --floor --procs 2 --h3=1e-4 > D:\choptuik-i935-raw\I989-win2\logs\hier_nb_M7_win2_rtol14_ctrl_xi015_zero.log
+00:46:31 pid 8032
+solve exit 0 after 108 s
+hier_nb_M7_win2_rtol14_ctrl_xi015_zero.log against hier_nb_M7_win2_rtol14_xi015_zero.log: 41 and 42 lines, identical apart from seconds and addresses: False
+r_1, |r_3|, end state of the new log: ((-0.077884+0.028801j), 7e-08)
+exit 1
+$ control989.py --mutate=ref (must differ)
+hier_nb_M7_win2_rtol14_ctrl_xi015_zero.log against hier_nb_M7_win2_rtol13_xi015_zero.log: 41 and 51 lines, identical apart from seconds and addresses: False
+r_1, |r_3|, end state of the new log: ((-0.077884+0.028801j), 7e-08)
+exit 1
+$ control989_v1_strict.py --compare-only, as run by the chain (fired)
+00:48:21 run: C:/Users/nathan/Source/venv-i962/Scripts/python.exe -u hier_nb.py 7 2.719219 1.000022 --x=0.148977988,0.014770713,0.008424206,0.001511189,0.000474205,0.00012168 --xi1=0.15 --pretune --fixA --schur --predict --floor --procs 2 --h3=1e-4 > D:\choptuik-i935-raw\I989-win2\logs\hier_nb_M7_win2_rtol14_ctrl_xi015_zero.log
+00:48:21 pid 19360
+exit 1

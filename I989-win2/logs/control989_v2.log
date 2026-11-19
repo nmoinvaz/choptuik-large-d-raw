@@ -1,0 +1,12 @@
+# control989.py v2, 00:49:23 UTC 19 Nov: INNER_NB_RTOL=1e-14 RUN_H3=1e-4 RUN_SRC=D:/choptuik-inner/solver/inner_stokes
+$ control989.py (solve, then compare)
+00:49:23 run: C:/Users/nathan/Source/venv-i962/Scripts/python.exe -u hier_nb.py 7 2.719219 1.000022 --x=0.148977988,0.014770713,0.008424206,0.001511189,0.000474205,0.00012168 --xi1=0.15 --pretune --fixA --schur --predict --floor --procs 2 --h3=1e-4 > D:\choptuik-i935-raw\I989-win2\logs\hier_nb_M7_win2_rtol14_ctrl_xi015_zero.log
+00:49:23 pid 23332
+solve exit 0 after 139 s
+hier_nb_M7_win2_rtol14_ctrl_xi015_zero.log against hier_nb_M7_win2_rtol14_xi015_zero.log: 37 and 37 lines, identical apart from seconds and addresses: True
+r_1, |r_3|, end state of the new log: ((-0.085043+0.055245j), 6e-08)
+exit 0
+$ control989.py --mutate=ref (must differ)
+hier_nb_M7_win2_rtol14_ctrl_xi015_zero.log against hier_nb_M7_win2_rtol13_xi015_zero.log: 37 and 46 lines, identical apart from seconds and addresses: False
+r_1, |r_3|, end state of the new log: ((-0.085043+0.055245j), 6e-08)
+exit 1
