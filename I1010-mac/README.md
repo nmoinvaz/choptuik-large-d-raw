@@ -14,3 +14,4 @@ nice 10 (two at most). The result JSONs these logs belong to stay in the code re
 - `l2_c2_M{1,3,5}.log`: c2, the control, lambda_1 (l0, sym); `l2_c2_M{1,3,5}_G.log`: G alone and the F_lambda relation
 - `l2_c2_M5_mutate_gsign.log`: the planted lambda_1 with every forcing's sign flipped
 - `l2_c2_summary.log`: the table and verdicts of section 9.5; PASS
+- `l2_c2_forcing_p1.log`: `l2_c2_forcing.py --p1`, the p = 1 representative (section 9.6): Ft(p1) = Ft(l2); PASS
