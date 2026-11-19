@@ -33,6 +33,7 @@ def main():
         if name not in have:
             new.append(f"{name} {rel}")
             have.add(name)
+    new.sort(key=lambda l: 0 if "_ks293_D247.28" in l.split()[0] or "D247.28" in l.split()[0] else 1)   # the coordinator's priority read (2026-11-19): ks_chain3b's D 247.28
     for l in new:
         print(("would queue " if "--dry" in sys.argv else ("queued " if frozen else "held ")) + l.split()[0])
     if new and "--dry" not in sys.argv:

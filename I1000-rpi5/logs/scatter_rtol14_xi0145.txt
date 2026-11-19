@@ -1,0 +1,15 @@
+centre solves under the bar: n = 8; mean r_1 = -0.1890+0.0184i; |r_3| 3.7e-08 to 3.2e-07
+sigma (sqrt of the trace of the sample covariance, ddof 1) = 0.2717 over the 8 under the bar, 0.2717 over all 8
+covariance of r_1 (under the bar): [[0.0312 0.0157]
+ [0.0157 0.0426]]
+J (Re/Im rows; A, w/w_inf) = [[ 3526.1  3818.3]
+ [ 2655.9 11337.5]], singular values [12527.3  2381.7]
+zero = (2.719293175, 1.000003005)   step (+7.418e-05, -1.899e-05)
+standard error of the zero, J fixed: bound sigma/(sqrt(n) s_min) = 4.03e-05;  propagated sqrt(tr(J^-1 cov J^-T)/n) = 2.29e-05
+r_1 spread / |r_3| (sigma / mean |r_3|) = 1.7e+06
+  vs #989 xi1 0.145 zero: dA -2.01e-05, dw +4.15e-06, norm 2.05e-05 = 0.9 x the propagated SE, 0.5 x the bound
+  vs #977 Z14c (0.15): dA +5.90e-05, dw -2.17e-05, norm 6.28e-05 = 2.7 x the propagated SE, 1.6 x the bound
+  vs #974 run 4 (0.15): dA +5.72e-05, dw -2.30e-05, norm 6.16e-05 = 2.7 x the propagated SE, 1.5 x the bound
+bootstrap with J's noise (20000 draws, seed 989): std of A 2.81e-03, of w/w_inf 7.82e-04, norm 2.92e-03; robust (half the 16-84 percentile width) A 3.35e-05, w/w_inf 1.27e-05, norm 3.58e-05; median zero (2.719293420, 1.000002968)
+projection (8 centre solves, 8 solves for each of dA and dw, same scatter): std norm 2.17e-05, robust A 1.96e-05, w/w_inf 7.41e-06, norm 2.10e-05
+projection (16 centre solves, 16 solves for each of dA and dw, same scatter): std norm 1.51e-05, robust A 1.38e-05, w/w_inf 5.21e-06, norm 1.48e-05

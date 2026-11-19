@@ -1,0 +1,18 @@
+Traceback (most recent call last):
+  File "/home/nathan/Source/choptuik-large-d-996/solver/proof/amp_trunc_hiermodel.py", line 103, in <module>
+    sig, f = a.run()
+             ~~~~~^^
+  File "/home/nathan/Source/choptuik-large-d-996/solver/proof/amp_trunc.py", line 55, in run
+    S, rs = self.S_at(1, k)
+            ~~~~~~~~~^^^^^^
+  File "/home/nathan/Source/choptuik-large-d-996/solver/proof/amp_trunc_hiermodel.py", line 94, in S_at
+    c, res = mp.qr_solve(A, y)
+             ~~~~~~~~~~~^^^^^^
+  File "/home/nathan/Source/choptuik-large-d-935/.venv/lib/python3.14/site-packages/mpmath/matrices/linalg.py", line 407, in qr_solve
+    H, p, x, r = ctx.householder(ctx.extend(A, b))
+                 ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/home/nathan/Source/choptuik-large-d-935/.venv/lib/python3.14/site-packages/mpmath/matrices/linalg.py", line 341, in householder
+    raise ValueError('matrix is numerically singular')
+ValueError: matrix is numerically singular
+Command exited with non-zero status 1
+time 42.20 s, max rss 121360 kB
