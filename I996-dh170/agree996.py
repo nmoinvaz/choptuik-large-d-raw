@@ -2,8 +2,8 @@
 """#996: the coordinator's acceptance rule for the truncated models' sigma_k: accept sigma_k only where a run at higher digits agrees to 1% of Delta sigma_{M+1} or
 better; the agreement is reported per k.
     python agree996.py          (reads the M*.log files of this folder, 15 printed digits)
-For each M the pair of runs is (lower digits, higher digits): M 3 and M 5 at 60 against 120 digits, M 9 at 120 against 180 (K 9 only), and for M 7, which has only a
-120-digit run (its 60-digit run was stopped at k 11 and is known wrong), M 7 at 120 against M 9 at 180 on the exact orders sigma_0..sigma_4 that both runs have (exact996.py: the rest). Delta sigma_{M+1} = sigma_{M+1}^[M+2] - sigma_{M+1}^[M], both from the highest-digit runs available (M 3 from the
+For each M the pair of runs is (lower digits, higher digits): M 3 and M 5 at 60 against 120 digits, M 9 at 120 against 180 (K 9 only), and M 7 at 120 against 180 digits (K 15, sigma_0..sigma_7; the
+60-digit M 7 run was stopped at k 11 and is known wrong). Delta sigma_{M+1} = sigma_{M+1}^[M+2] - sigma_{M+1}^[M], both from the highest-digit runs available (M 3 from the
 120-digit M 3 and M 5, M 5 from the 120-digit M 5 and M 7, M 7 from the 120-digit M 7 and M 9); it does not exist for M 9 (it needs M 11), and the rule is then not
 evaluated, the absolute differences are listed. The ratio |sigma_low - sigma_high| / |Delta sigma_{M+1}| is the thing to read; a k is accepted where it is <= 0.01.
 --selftest plants a difference at 1% and at 2% and checks the verdicts."""
@@ -30,8 +30,8 @@ def read(name):
 
 
 RUNS = {"M3_60": "M3.log", "M3_120": "M3_dps120.log", "M5_60": "M5.log", "M5_120": "M5_dps120.log", "M7_60": "M7.log", "M7_120": "M7_dps120.log",
-        "M9_120": "M9_dps120.log", "M9_180": "M9_K9_dps180.log"}
-PAIRS = {3: ("M3_60", "M3_120"), 5: ("M5_60", "M5_120"), 7: ("M7_120", "M9_180"), 9: ("M9_120", "M9_180")}   # M 7 has no higher-digit run of its own: its exact orders sigma_0..sigma_4 against M 9 at 180 digits (exact996.py has the rest)
+        "M9_120": "M9_dps120.log", "M9_180": "M9_K9_dps180.log", "M7_180": "M7_K15_dps180.log"}
+PAIRS = {3: ("M3_60", "M3_120"), 5: ("M5_60", "M5_120"), 7: ("M7_120", "M7_180"), 9: ("M9_120", "M9_180")}   # M 7 has no higher-digit run of its own: its exact orders sigma_0..sigma_4 against M 9 at 180 digits (exact996.py has the rest)
 SHIFT = {3: ("M3_120", "M5_120"), 5: ("M5_120", "M7_120"), 7: ("M7_120", "M9_120")}   # Delta sigma_{M+1} = sigma^[M+2] - sigma^[M]
 
 
