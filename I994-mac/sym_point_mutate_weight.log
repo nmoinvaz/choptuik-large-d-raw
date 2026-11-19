@@ -1,0 +1,77 @@
+$ python3 ell_lambda2.py point --mutate=weight  (from solver/matter)
+2026-11-19 12:30 UTC
+== the general Lie point symmetry, weight s^l with l symbolic  [MUTATION: the c equation's weight is s^(l + 1)]
+   E1(2, 0, 0): -c*Derivative(sigma(s, t, psi, Q, c), Q) = 0  =>  sigma independent of Q
+   E1(1, 0, 1): -Derivative(sigma(s, t, psi, c), c) = 0  =>  sigma independent of c
+   E2(1, 0, 1): -c*Derivative(tau(s, t, psi, Q, c), c) = 0  =>  tau independent of c
+   E1(0, 0, 1): Derivative(Phi(s, t, psi, Q, c), c) = 0  =>  Phi independent of c
+   E2(0, 0, 1): Derivative(Theta(s, t, psi, Q, c), c) = 0  =>  Theta independent of c
+   E3(1, 0, 1): -Derivative(tau(s, t, psi, Q), psi) = 0  =>  tau independent of psi
+   E3(0, 1, 1): -Derivative(tau(s, t, Q), Q) = 0  =>  tau independent of Q
+   E2(2, 0, 0): c*Derivative(sigma(s, t, psi), psi) = 0  =>  sigma independent of psi
+   E3(1, 0, 0): Derivative(Gamma(s, t, psi, Q, c), psi) = 0  =>  Gamma independent of psi
+   E3(0, 1, 0): Derivative(Gamma(s, t, Q, c), Q) = 0  =>  Gamma independent of Q
+   E3(0, 0, 1): -Derivative(tau(s, t), s) = 0  =>  tau independent of s
+   E1(1, 0, 0): split by powers of c into 2 equations
+   E1(1, 0, 0)[c^1]: Derivative(Phi(s, t, psi, Q), Q) = 0  =>  Phi independent of Q
+   E1(1, 0, 0)[c^0]: -Derivative(sigma(s, t), t) = 0  =>  sigma independent of t
+   E2(0, 0, 0): split by powers of c into 2 equations
+   E2(0, 0, 0)[c^0]: Derivative(Theta(s, t, psi, Q), t) = 0  =>  Theta independent of t
+
+-- after the automatic steps: 4 equations left
+   E1(0, 0, 0): Q*c*Derivative(Phi(s, t, psi), psi) - Q*c*Derivative(tau(t), t) - Q*Gamma(s, t, c) - c*Theta(s, psi, Q) + Derivative(Phi(s, t, psi), t) = 0
+   E2(1, 0, 0): -c*Derivative(Phi(s, t, psi), psi) + c*Derivative(Theta(s, psi, Q), Q) + c*Derivative(sigma(s), s) - c*Derivative(tau(t), t) - Gamma(s, t, c) = 0
+   E2(0, 0, 0)[c^1]: Q*Derivative(Theta(s, psi, Q), psi) - Derivative(Phi(s, t, psi), s) = 0
+   E3(0, 0, 0): -2*Q**2*c*l*s**l*sigma(s) - 2*Q**2*c*s**l*sigma(s) + 2*Q**2*c*s**(l + 1)*Derivative(Gamma(s, t, c), c) - 2*Q**2*c*s**(l + 1)*Derivative(sigma(s), s) - 2*Q**2*s**(l + 1)*Gamma(s, t, c) - 4*Q*c*s**(l + 1)*Theta(s, psi, Q) + Derivative(Gamma(s, t, c), s) = 0
+   infinitesimals: sigma = sigma(s), tau = tau(t), Phi = Phi(s, t, psi), Theta = Theta(s, psi, Q), Gamma = Gamma(s, t, c)
+
+   E1(0,0,0) solved for Theta: Theta = (Q*c*(Derivative(Phi(s, t, psi), psi) - Derivative(tau(t), t)) - Q*Gamma(s, t, c) + Derivative(Phi(s, t, psi), t))/c; Theta does not depend on c, so c^2 d_c of that = -Q*c*Derivative(Gamma(s, t, c), c) + Q*Gamma(s, t, c) - Derivative(Phi(s, t, psi), t) = 0, split by Q:
+      -c*Derivative(Gamma(s, t, c), c) + Gamma(s, t, c) = 0
+      -Derivative(Phi(s, t, psi), t) = 0
+
+-- after Theta and Gamma = c g(s, t): 3 equations left
+   E2(1, 0, 0)[c^1]: -2*f_g(t) + Derivative(sigma(s), s) - 2*Derivative(tau(t), t) = 0
+   E2(0, 0, 0)[c^1][Q^2]: Derivative(Phi(psi), (psi, 2)) = 0
+   E3(0, 0, 0)[c^1][Q^2]: -2*(l*s**l*sigma(s) + s**l*sigma(s) - 2*s**(l + 1)*f_g(t) + 2*s**(l + 1)*Derivative(Phi(psi), psi) + s**(l + 1)*Derivative(sigma(s), s) - 2*s**(l + 1)*Derivative(tau(t), t)) = 0
+   infinitesimals: sigma = sigma(s), tau = tau(t), Phi = Phi(psi), Theta = Q*(-f_g(t) + Derivative(Phi(psi), psi) - Derivative(tau(t), t)), Gamma = c*f_g(t)
+
+   E2(1, 0, 0)[c^1]: d_s of it is sigma'' = 0, so sigma = sigma0 + sigma1 s; then f_g(t) = sigma1/2 - Derivative(tau(t), t)
+   E2(0, 0, 0)[c^1][Q^2]: Phi'' = 0, so Phi = a psi + b
+
+-- after sigma, g and Phi (only conditions on constants and tau may remain): 1 equations left
+   E3(0, 0, 0)[c^1][Q^2]: -2*(2*a*s**(l + 1) + l*s**l*sigma0 + l*s**(l + 1)*sigma1 + s**l*sigma0 + s**(l + 1)*sigma1) = 0
+   infinitesimals: sigma = s*sigma1 + sigma0, tau = tau(t), Phi = a*psi + b, Theta = Q*(2*a - sigma1)/2, Gamma = c*(sigma1 - 2*Derivative(tau(t), t))/2
+
+== check: the general solution
+   sigma = sigma0 + sigma1 s, tau = T(t), Phi = a psi + b, Gamma = c (sigma1/2 - T'), Theta = Q (a - sigma1/2)
+   left in the determining equations (all must vanish):
+      E3(0, 0, 0): -2*Q**2*c*(2*a*s**(l + 1) + l*s*s**l*sigma1 + l*s**l*sigma0 + s*s**l*sigma1 + s**l*sigma0)
+   conditions on the constants: ['-2*(2*a + l*sigma1 + sigma1) = 0', '-2*sigma0*(l + 1) = 0']
+
+   l = 0 (planted): solution {sigma0: 0, sigma1: -2*a}, free constants [a]
+      non-gauge generators and their lambda: {'S (second scaling)': 0, 'd_psi': 0}
+      gauge t^k d_t - k t^(k-1) c d_c, lambda by k: {-1: 2, 0: 1, 1: 0, 2: -1} (lambda = 1 - k; k = -1 gives the gauge mode at lambda = 2, which moves c(0) and is removed by h0 = 0)
+      a non-gauge lambda = 2 generator: none  (expected d_s: BAD)
+
+   l = 1: solution {sigma0: 0, sigma1: -a}, free constants [a]
+      non-gauge generators and their lambda: {'S (second scaling)': 0, 'd_psi': -1}
+      gauge t^k d_t - k t^(k-1) c d_c, lambda by k: {-1: 2, 0: 1, 1: 0, 2: -1} (lambda = 1 - k; k = -1 gives the gauge mode at lambda = 2, which moves c(0) and is removed by h0 = 0)
+      a non-gauge lambda = 2 generator: none  (expected none: OK)
+
+   l = 2: solution {sigma0: 0, sigma1: -2*a/3}, free constants [a]
+      non-gauge generators and their lambda: {'S (second scaling)': 0, 'd_psi': -2}
+      gauge t^k d_t - k t^(k-1) c d_c, lambda by k: {-1: 2, 0: 1, 1: 0, 2: -1} (lambda = 1 - k; k = -1 gives the gauge mode at lambda = 2, which moves c(0) and is removed by h0 = 0)
+      a non-gauge lambda = 2 generator: none  (expected none: OK)
+
+   l = 0.1 (control: the weight s^(0 + 0.1)): solution {sigma0: 0, sigma1: -20*a/11}, free constants [a]
+      non-gauge generators and their lambda: {'S (second scaling)': 0, 'd_psi': -1/10}
+      gauge t^k d_t - k t^(k-1) c d_c, lambda by k: {-1: 2, 0: 1, 1: 0, 2: -1} (lambda = 1 - k; k = -1 gives the gauge mode at lambda = 2, which moves c(0) and is removed by h0 = 0)
+      a non-gauge lambda = 2 generator: none  (expected none: OK)
+
+   l = 1.1 (control: the weight s^(1 + 0.1)): solution {sigma0: 0, sigma1: -20*a/21}, free constants [a]
+      non-gauge generators and their lambda: {'S (second scaling)': 0, 'd_psi': -11/10}
+      gauge t^k d_t - k t^(k-1) c d_c, lambda by k: {-1: 2, 0: 1, 1: 0, 2: -1} (lambda = 1 - k; k = -1 gives the gauge mode at lambda = 2, which moves c(0) and is removed by h0 = 0)
+      a non-gauge lambda = 2 generator: none  (expected none: OK)
+
+FAIL
+exit 1

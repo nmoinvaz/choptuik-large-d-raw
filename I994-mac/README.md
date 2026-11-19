@@ -2,9 +2,9 @@
 
 Machine: Mac (Apple silicon), helper session xfkappa. Issue: https://github.com/nmoinvaz/choptuik-large-d/issues/994
 
-Code: branch `wip/ell1-dinf` of choptuik-large-d at aff9c2fa. `solver/inner_stokes/inner_ell.py` holds the M = 1 zero,
+Code: branch `wip/ell1-dinf` of choptuik-large-d at aff9c2fa (the `sym_*` logs: 2887a41b). `solver/inner_stokes/inner_ell.py` holds the M = 1 zero,
 `solver/inner_stokes/nested_ell.py` the M = 3 zero, and `solver/inner_pert/ell_lam.py` the growth rate (on
-`first_order_jet.py` with `ELL`). Each log starts with its command and the UTC time and ends with the exit code. The
+`first_order_jet.py` with `ELL`), and `solver/matter/ell_lambda2.py` the search for an exact λ = 2 mode. Each log starts with its command and the UTC time and ends with the exit code. The
 `inner_ell` and `nested_ell` commands run from `solver/inner_stokes`, the `ell_lam` ones from `solver/inner_pert`.
 
 | log | what it checks |
@@ -20,3 +20,6 @@ Code: branch `wip/ell1-dinf` of choptuik-large-d at aff9c2fa. `solver/inner_stok
 | `lam_ident*.log`, `lam_cross*.log`, `lam_modes*.log` | the jet model at ELL = 0 against the base commit, at ELL = 1 against inner_ell, and the exact modes lambda = 0 and 1, each with its mutation |
 | `lam_l0_planted.log`, `lam_scan_l1.log`, `lam_l1_M1.log` | lambda* at M = 1: l = 0 planted, the l = 1 scan of the deflated determinant, and the l = 1 root at three xi1 |
 | `lam3_l0_planted.log`, `lam3_l1.log`, `lam3_l1_rtol1e-13.log` | lambda* at M = 3: l = 0 planted, and l = 1 at three xi1 at two rtols |
+| `sym_point.log`, `sym_point_mutate_weight.log` | every Lie point symmetry for symbolic l, no ansatz: d_s only at l = 0; the mutation (weight s^(l + 1)) must fail |
+| `sym_gen.log`, `sym_gen_mutate_weight.log` | first-order generalized symmetries of weight 2 at l = 0, 1, 2 (polynomial ansatz), and the mutation (must fail) |
+| `sym_mseq.log` | lambda_inf(l = 1) from M = 1, 3 calibrated by l = 0's M sequence |

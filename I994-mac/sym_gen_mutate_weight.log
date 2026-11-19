@@ -1,0 +1,17 @@
+$ python3 ell_lambda2.py gen --mutate=weight  (from solver/matter)
+2026-11-19 12:30 UTC
+
+== l = 0: first-order generalized symmetries of weight 2 (1552 unknown coefficients, 6139 conditions): 1 independent solutions  [MUTATION: weight s^(l + 1) in the c equation]
+   K = (Q*c/t, c*psi_s/t, (-c + c_t*t)/t**2)
+   contains the gauge mode (tau = 1/t): True; contains d_s: False; solutions beyond the gauge: 0 (expected 1, d_s present): BAD
+
+== l = 1: first-order generalized symmetries of weight 2 (1436 unknown coefficients, 5540 conditions): 1 independent solutions  [MUTATION: weight s^(l + 1) in the c equation]
+   K = (Q*c/t, c*psi_s/t, (-c + c_t*t)/t**2)
+   contains the gauge mode (tau = 1/t): True; contains d_s: False; solutions beyond the gauge: 0 (expected 0, d_s absent): OK
+
+== l = 2: first-order generalized symmetries of weight 2 (1144 unknown coefficients, 4334 conditions): 1 independent solutions  [MUTATION: weight s^(l + 1) in the c equation]
+   K = (Q*c/t, c*psi_s/t, (-c + c_t*t)/t**2)
+   contains the gauge mode (tau = 1/t): True; contains d_s: False; solutions beyond the gauge: 0 (expected 0, d_s absent): OK
+
+FAIL
+exit 1

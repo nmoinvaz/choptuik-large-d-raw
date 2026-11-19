@@ -1,0 +1,13 @@
+$ python3 ell_lambda2.py mseq  (from solver/matter)
+2026-11-19 12:30 UTC
+l = 0 (first_order_hier_M{1,3,5}_xi0.2.json; exact limit 2, GAMMA.md 5):
+   lambda* 1.769122008, 2.006804459, 1.999668509; steps M 1->3 +0.237682, 3->5 -0.007136, 5->inf +0.000331
+   step ratios (3->5)/(1->3) -0.0300, (5->inf)/(3->5) -0.0465: alternating, shrinking 20- to 35-fold
+
+l = 1 (data/ell_lambda_l1.json, from raw I994-mac): lambda* M = 1 1.977527661, M = 3 1.997411 (range 1.996985 to 1.997928); step 1->3 +0.019884
+   calibrated by both l = 0 ratios: M = 3 -> inf -0.000569, lambda_inf 1.996842, lambda_inf - 2 = -0.003158 (M = 3 range: -0.003584 to -0.002641)
+   calibrated by geometric, ratio (3->5)/(1->3): M = 3 -> inf -0.000580, lambda_inf 1.996832, lambda_inf - 2 = -0.003168 (M = 3 range: -0.003594 to -0.002651)
+   calibrated by geometric, ratio (5->inf)/(3->5): M = 3 -> inf -0.000883, lambda_inf 1.996529, lambda_inf - 2 = -0.003471 (M = 3 range: -0.003897 to -0.002955)
+
+   lambda_inf = 2 would need the M = 3 -> inf correction +0.002589, i.e. +0.130 times the 1 -> 3 step (range +0.104 to +0.152), with the step's own sign; l = 0's corrections after M = 3 total -0.0286 times its 1 -> 3 step, of the opposite sign
+exit 0
