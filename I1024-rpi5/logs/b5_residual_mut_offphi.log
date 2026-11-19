@@ -1,0 +1,5 @@
+--residual: z^2 (f^eps - f^0) on the inner series (z^24), as a series in (tau, z) [mutate offphi]:
+  tau^0 part (Lemma 2: zero): largest coefficient relative to the state's 8.77e-60: PASS
+  z^0 and z^1 at tau >= 1 (Lemma 3: zero): largest coefficient 0.0005: FAIL
+  R(0) = t r_Phi/eps at t -> 0: [-1] (-33.303501 - 11.321448j) (|.| 35.1753), [1] (-33.303501 + 11.321448j) (|.| 35.1753); against B5_inner.md 2's 35.18: PASS
+  K1's check: max |t r_Phi/eps| on |t| = 1e-6 Z 58844.0, on |t| = Z 43.24; at most 3 times: FAIL

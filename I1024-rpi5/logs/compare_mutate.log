@@ -1,0 +1,28 @@
+== text logs (timings masked)
+disc_checkint: 12 lines vs 12; 0 differ
+disc_ray: 13 lines vs 13; 1 differ
+   line 1
+     rpi5: disc (0, 0) t 0.000000 r 24 n 70 input stored: ok, Lambda 0.2699, max M 0.1286, F0 1.76e-116 <t>
+     Mac:  disc (0, 0) t 0.000000 r 24 n 70 input stored: ok, Lambda 0.1699, max M 0.1286, F0 1.76e-116 <t>
+disc_K1_toolarge: 2 lines vs 2; 0 differ
+disc_K2_sign: 13 lines vs 13; 0 differ
+disc_all_infl2: 179 lines vs 179; 0 differ
+h8_centre: 10 lines vs 10; 0 differ
+h8_centre_mut_A: 10 lines vs 10; 0 differ
+h8_d0_0: 14 lines vs 14; 0 differ
+h8_d0_1e7: 14 lines vs 14; 0 differ
+b5_model: 1 lines vs 1; 0 differ
+b5_phiz: 2 lines vs 2; 0 differ
+b5_phiz_mut_G0: 2 lines vs 2; 0 differ
+b5_residual: 5 lines vs 5; 0 differ
+b5_residual_mut_offphi: 5 lines vs 5; 0 differ
+b5_sector_box_nr32_na64: 16 lines vs 16; 0 differ
+== records (leaf by leaf, 'sec' skipped)
+p2c_disc_ray.jsonl: 12 records; leaves that differ: 1 numeric (largest relative 1.0e-12), 0 other; e.g. record 0 /Lam: rpi5 0.16988878534101187 vs Mac 0.16988878534084198
+p2c_disc_all_infl2.jsonl: 178 records; leaves that differ: 37 numeric (largest relative 1.65e-8), 0 other; e.g. record 136 /F0: rpi5 7.573682353585482e-88 vs Mac 7.57368222824992e-88
+p2c_disc_11-0_r16.jsonl: 1 records; leaves that differ: 0 numeric (largest relative 0.0), 0 other
+p2c_disc_ray_mut_sign.jsonl: 12 records; leaves that differ: 0 numeric (largest relative 0.0), 0 other
+p2c_h8_d0_0.json: 1 records; leaves that differ: 0 numeric (largest relative 0.0), 0 other
+p2c_h8_d0_1e7.json: 1 records; leaves that differ: 0 numeric (largest relative 0.0), 0 other
+p2c_b5_box_nr32_na64.json: 1 records; leaves that differ: 0 numeric (largest relative 0.0), 0 other
+TOTAL differing: 39
