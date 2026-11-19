@@ -1,0 +1,15 @@
+max|z_C| 1.2910612e-01; max|a - c| 1.6958e-20, max|b - c| 2.7086e-20 (over max|z_C|); T1_c24: d = 4, B is 13665 x 4
+Q_c24 rows: norms 1.000000000000000 and 1.000000000000000, q_0 . q_1 = -9.02e-17
+
+| state | row | delta | realised max abs (z' - z) / max abs z | max abs of d / max abs d - q / max abs q | part in the plane of a - c, b - c | part outside the deep span | cos with a - c | cos with b - c | mu / max-norm | check |
+|---|---|---|---|---|---|---|---|---|---|---|
+| c_q0_d1e-20.npz | 0 | 1e-20 | 1.000000e-20 | 2.98e-13 | 4.11e-15 | 2.70e-13 | -4.12e-15 | -6.52e-16 | 0.0151 | pass |
+| c_q0_d1e-19.npz | 0 | 1e-19 | 1.000000e-19 | 2.99e-14 | 9.86e-16 | 2.68e-14 | +7.51e-16 | -7.92e-16 | 0.0151 | pass |
+| c_q1_d1e-20.npz | 1 | 1e-20 | 1.000000e-20 | 2.99e-13 | 3.04e-15 | 2.82e-13 | +1.97e-15 | +2.53e-15 | 0.0250 | pass |
+| c_q1_d1e-19.npz | 1 | 1e-19 | 1.000000e-19 | 1.03e-13 | 8.57e-16 | 2.86e-14 | -2.21e-16 | +4.67e-16 | 0.0250 | pass |
+| c_sum_d1e-20.npz | q_0 | 1e-20 | 1.000000e-20 | 1.22e+00 | 1.00e+00 | 2.38e-05 | +5.06e-01 | +9.57e-01 | 1.0000 | control: fails as it must |
+| c_sum_d1e-19.npz | q_0 | 1e-19 | 1.000000e-19 | 1.22e+00 | 1.00e+00 | 2.38e-05 | +5.06e-01 | +9.57e-01 | 1.0000 | control: fails as it must |
+| c_d1e-20.npz | q_0 | 1e-20 | 1.000000e-20 | 1.69e+00 | 1.07e-02 | 1.00e+00 | +1.02e-02 | +5.52e-03 | 0.4774 | control: fails as it must |
+| c_d1e-19.npz | q_0 | 1e-19 | 1.000000e-19 | 1.69e+00 | 1.07e-02 | 1.00e+00 | +1.02e-02 | +5.52e-03 | 0.4774 | control: fails as it must |
+
+check_1018 passed

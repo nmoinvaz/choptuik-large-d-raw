@@ -1,0 +1,63 @@
+$ rt_perturb.py --selftest --dir (first)
+selftest --dir: realised 1.000000e-25, cosine with the planted row 1.000000000000000: PASS
+exit 0
+$ /c/Users/nathan/Source/venv-t151/Scripts/python.exe -I /c/Users/nathan/Source/choptuik-i1018/solver/rt/rt_perturb.py --selftest
+selftest: planted move 1e-25, realised 1.000000e-25: PASS
+exit 0
+$ /c/Users/nathan/Source/venv-t151/Scripts/python.exe -I /c/Users/nathan/Source/choptuik-i1018/solver/rt/rt_perturb.py --selftest --mutate
+selftest --mutate: planted move 1e-25, realised 0.000000e+00: FAIL
+exit 1
+$ /c/Users/nathan/Source/venv-t151/Scripts/python.exe -I /c/Users/nathan/Source/choptuik-i1018/solver/rt/rt_perturb.py --selftest --along
+selftest --along: planted move 1e-25, realised 1.000000e-25, cosine with the planted difference 1.000000000: PASS
+exit 0
+$ /c/Users/nathan/Source/venv-t151/Scripts/python.exe -I /c/Users/nathan/Source/choptuik-i1018/solver/rt/rt_perturb.py --selftest --orth
+selftest --orth: cosine with d1 1.9e-12, part outside the plane 2.7e-10: PASS
+exit 0
+$ /c/Users/nathan/Source/venv-t151/Scripts/python.exe -I /c/Users/nathan/Source/choptuik-i1018/solver/rt/rt_angles.py --selftest
+selftest: smallest principal cosine 0.999995502: PASS
+exit 0
+$ /c/Users/nathan/Source/venv-t151/Scripts/python.exe -I /c/Users/nathan/Source/choptuik-i1018/solver/rt/rt_angles.py --selftest --mutate=replace
+selftest --mutate=replace: smallest principal cosine 0.027678981: FAIL
+exit 1
+$ /c/Users/nathan/Source/venv-t151/Scripts/python.exe -I /c/Users/nathan/Source/choptuik-i1018/solver/rt/rt_angles.py --selftest --complement
+selftest --complement: 2 directions, largest cosine with the chords 4.2e-16, part outside the span 3.2e-16: PASS
+exit 0
+$ /c/Users/nathan/Source/venv-t151/Scripts/python.exe -I /c/Users/nathan/Source/choptuik-i1018/solver/rt/rt_angles.py --selftest --complement --mutate=noproj
+selftest --complement --mutate=noproj: 4 directions, largest cosine with the chords 8.2e-01, part outside the span 5.7e-16: FAIL
+exit 1
+$ check_1018.py --selftest
+  planted move along q (relative noise 1e-12): check passes (want pass), parallel 4.4e-12, in the plane 8.5e-14, outside the span 4.1e-12: ok
+  d = ac: check fails (want fail), parallel 1.4e+00, in the plane 1.0e+00, outside the span 1.0e-15: ok
+  d = a random combination of the deep span: check fails (want fail), parallel 1.2e+00, in the plane 6.0e-01, outside the span 1.0e-15: ok
+  d = a random vector: check fails (want fail), parallel 1.3e+00, in the plane 1.2e-02, outside the span 1.0e+00: ok
+  d = q plus 1e-6 of noise: check fails (want fail), parallel 4.3e-06, in the plane 5.0e-08, outside the span 4.1e-06: ok
+  d = q1 (the other complement direction, not parallel to q0): check fails (want fail), parallel 1.4e+00, in the plane 6.1e-16, outside the span 1.2e-15: ok
+selftest passed
+exit 0
+$ table_1018.py --selftest
+  all in: reading TANGENT (want TANGENT) ok
+  all at the edge: reading TANGENT (want TANGENT) ok
+  one just above the bar: reading UNDECIDED (want UNDECIDED) ok
+  one in the band: reading NOT TANGENT (want NOT TANGENT) ok
+  last in the band: reading NOT TANGENT (want NOT TANGENT) ok
+  all not: reading NOT TANGENT (want NOT TANGENT) ok
+  one just under 0.1: reading UNDECIDED (want UNDECIDED) ok
+  one just over 10: reading UNDECIDED (want UNDECIDED) ok
+  one at 1e-2 and one at 50: reading UNDECIDED (want UNDECIDED) ok
+  in between: reading UNDECIDED (want UNDECIDED) ok
+  one band value beside an in-between: reading NOT TANGENT (want NOT TANGENT) ok
+  mutated tangent bar (1e-2): the 5e-3 case reads TANGENT against UNDECIDED ok
+  mutated not-tangent rule (all for any): one in the band reads UNDECIDED against NOT TANGENT ok
+  an incomplete run: INCOMPLETE (want INCOMPLETE) ok
+  median: geometric mean of the two middle ones for 12, the middle one for 3: ok
+  #963's c_d1e-20: median 5.4593e-24 against m_rand 5.4593e-24 ok
+  #963's c_d1e-19: median 2.6809e-22 against m_rand 2.6809e-22 ok
+selftest passed
+exit 0
+$ run_1018.py --selftest
+  four good runs: exit 0 {'r0': 0, 'r1': 0, 'r2': 0, 'r3': 0} ok
+  cap hit: exit 5 {'r0': 0, 'slow': 5, 'after': 0} (want slow 5, the run after it still done) ok
+  a crash: exit 7 {'r0': 0, 'crash': 3} (want 7, after not run) ok
+  STOP file: exit 4 (want 4) ok
+selftest passed
+exit 0

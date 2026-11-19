@@ -1,0 +1,25 @@
+| run | row | delta | printed max abs F | bounds printed | m (median of the bounds) | m_rand (#963) | m / m_rand | products per start (min, median, max) | starts at the 250 cap | worst max abs J x - v | start 0 mu share of x |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| c_q0_d1e-20 | 0 | 1e-20 | 1.39e-30 | 12 | 7.3744e-34 | 5.4593e-24 | 1.351e-10 | 67, 67, 67 | 0 of 12 | 3.3e-18 | -1.00e+00 |
+| c_q0_d1e-19 | 0 | 1e-19 | 5.33e-30 | 12 | 3.9858e-33 | 2.6809e-22 | 1.487e-11 | 67, 67, 67 | 0 of 12 | 8.0e-21 | +1.00e+00 |
+| c_q1_d1e-20 | 1 | 1e-20 | 2.34e-29 | 12 | 2.1019e-33 | 5.4593e-24 | 3.85e-10 | 67, 67, 67 | 0 of 12 | 2.4e-18 | -1.00e+00 |
+| c_q1_d1e-19 | 1 | 1e-19 | 2.34e-28 | 12 | 3.4795e-34 | 2.6809e-22 | 1.298e-12 | 67, 67, 67 | 0 of 12 | 2.1e-19 | +5.74e-01 |
+
+The bounds of each run, start 0 to 11:
+
+| start | c_q0_d1e-20 | c_q0_d1e-19 | c_q1_d1e-20 | c_q1_d1e-19 |
+|---|---|---|---|---|
+| 0 | 1.753e-34 | 1.428e-33 | 2.052e-33 | 1.347e-34 |
+| 1 | 8.760e-34 | 4.637e-33 | 3.309e-33 | 3.713e-34 |
+| 2 | 2.999e-34 | 3.474e-33 | 4.313e-33 | 3.922e-34 |
+| 3 | 1.690e-33 | 5.370e-33 | 2.303e-33 | 3.537e-34 |
+| 4 | 1.971e-34 | 2.342e-33 | 2.051e-33 | 3.423e-34 |
+| 5 | 1.959e-33 | 2.321e-33 | 8.536e-34 | 1.487e-34 |
+| 6 | 9.309e-34 | 2.875e-33 | 1.420e-33 | 2.083e-34 |
+| 7 | 1.316e-33 | 1.520e-32 | 1.744e-32 | 1.659e-33 |
+| 8 | 6.208e-34 | 8.565e-33 | 4.684e-33 | 2.017e-33 |
+| 9 | 7.004e-33 | 4.573e-33 | 1.627e-33 | 2.911e-34 |
+| 10 | 2.650e-34 | 4.699e-33 | 1.312e-33 | 1.419e-33 |
+| 11 | 4.160e-34 | 2.694e-33 | 2.153e-33 | 2.211e-34 |
+
+Reading by the pre-set criteria: **TANGENT** (m / m_rand 1.35e-10, 1.49e-11, 3.85e-10, 1.3e-12 (row 0 at 1e-20, row 0 at 1e-19, row 1 at 1e-20, row 1 at 1e-19)); both deep directions out of the samples' plane are tangent at both deltas, so with a - c and b - c all four directions of the deep span are tangent: a four-dimensional root set, and the rows of (H4) at k = 1/2 and 3/2 (four real conditions) are stage 2.
