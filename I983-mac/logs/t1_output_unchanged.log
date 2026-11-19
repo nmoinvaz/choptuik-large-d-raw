@@ -1,0 +1,12 @@
+== rt_sigma.py --planted, main 4415514e against b27f2297 (venv-qd): cmp
+identical
+== rt_sigma.py I105-mac/cont/cont_32x81_D15.0000_32x81.npz --rough --starts 2: main 4415514e against b27f2297 with --save_x: diff
+7a8
+>   saved x of 2 starts to x_d15.npz
+== rt_xcount.py on that file
+rt_xcount: /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/c1624759-29b0-41ee-b1ba-c50f07eff81b/scratchpad/t1check/x_d15.npz: L 9185, 2 starts; bounds from 2.150e-16 to 8.754e-16; state d15.npz, D 15.0, Nt 32, N 81, K 0, rough True, seed 163, prec 192, max_products 250
+  deep count d = 2 of 2 (s_j >= 0.0001 s_1); gap s_(d+1)/s_d = none (every direction is deep)
+  s_j / s_1: 1.0e+00 1.5e-01
+  direction 1: s/s_1 1.00e+00, gain estimate 1.6e-18  (deep)
+  direction 2: s/s_1 1.51e-01, gain estimate 1.1e-17  (deep)
+exit 0

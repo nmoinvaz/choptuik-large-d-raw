@@ -1,0 +1,33 @@
+held values from the fit data/held_fit.json (degree 8, 138 full-system states, D 38.020417-73.0), relative to the base
+the base keeps its stored plan (61 steps)
+  on 0: |F| 2.58e-71 converged, Delta 1.63259451892803931 -1.0452e-16
+      elim projections {'u0': 0, 'u0q': 0, 'ladder': 0, 'failed': 0, 'skipped': 1}
+      octo-double Newton: 1 steps, max|F| 2.6e-71, converged; double-double |F| of its first two parts 8.5e+08
+base I842-dh610/chain/arc_061_D259.903243.npz: D 259.903242785, M 32, pin 3 (held [5, 7, 9, 11, 13]), |F| 8.5e+08; N 24, eps 1e-14, h_max 1.0, corrector od (junk_only False), tol 1.0e-20 x 1.45^(D - 259.90324), stalls accepted below 1e-17
+  series at D 259.903242785065 read from /home/nathan/scratch967/raw/I842-dh610/chain/arcjet_061_D259.903243.npz: |w_1| 2.233e+00, |w_N| 9.305e+94
+i3 control setup: {"state": "259.9032427850653812155150396548888", "D0": "259.9032427850653812155150396548888", "c_D": "259.9032427850653812155150396548888", "D_pred": "259.9032697241064193399856049044913", "D_pred_matches_record": true, "D_start": "259.9032697241064193399856049044914", "D_start_matches_record": true, "dD": 2.693904103812447e-05, "tD": 0.274371148272749, "cond_max": 1.3118399154600552e+23} (3 s)
+i3 control F_state_at_target_unreseeded: 4.087278776847627e+69 (4 s)
+  attempt at D 259.903269724106 (the prediction moved +1.71e-31 in D, -5.11e-31 in Delta): predicted max|F| 3.09e-36, re-seed ok
+    on 0 chord 0: max|F| 2.38e-30, |dw| 3.394e-41
+    on 0 chord 1: max|F| 3.22e-41, |dw| 3.332e-41
+    on 0 chord 2: max|F| 1.95e-53, |dw| 6.522e-54
+  on 0: strong chord (4 weak directions), 3 steps after the full first step; theta at its point 2.972e-05 (bound 0.750): accepted, 203.66 s
+  on 0: |F| 3.09e-36 -> 1.32e-53, |dz| 3.61e-33 -> 1.07e-37, lam 1, dDelta -3.61e-33, piv 2.8e-38..1.5e+37, 462.69 s
+    on 1 trial lam 1: max|F| 2.11e-39; simplified correction / |dz| = 5.990e-02 (bound 0.750); accepted, 1.06 s
+  on 1: |F| 1.32e-53 -> 2.11e-39, |dz| 1.07e-37 -> 1.32e-47, lam 1, dDelta +1.07e-37, piv 3.0e-38..1.5e+37, 176.1 s
+    on 2 trial lam 1: max|F| 3.12e-59; simplified correction / |dz| = 9.441e-01 (bound 0.750); refused, 1.19 s
+    on 2 trial lam 0.5: max|F| 1.05e-39; simplified correction / |dz| = 2.640e-01 (bound 0.875); accepted, 0.97 s
+  on 2: |F| 2.11e-39 -> 1.05e-39, |dz| 1.32e-47 -> 3.01e-48, lam 0.5, dDelta -1.32e-47, piv 2.9e-38..1.5e+37, 162.04 s
+    on 3 trial lam 1: max|F| 1.63e-60; simplified correction / |dz| = 1.155e+00 (bound 0.750); refused, 0.96 s
+    on 3 trial lam 0.5: max|F| 5.27e-40; simplified correction / |dz| = 7.887e-01 (bound 0.875); accepted, 0.95 s
+  on 3: |F| 1.05e-39 -> 5.27e-40, |dz| 3.01e-48 -> 4.15e-48, lam 0.5, dDelta +3.01e-48, piv 2.9e-38..1.5e+37, 148.69 s
+    on 4 trial lam 1: max|F| 3.09e-60; simplified correction / |dz| = 2.217e-01 (bound 0.750); accepted, 0.97 s
+  on 4: |F| 5.27e-40 -> 3.09e-60, |dz| 4.15e-48 -> 9.34e-49, lam 1, dDelta +4.15e-48, piv 2.8e-38..1.5e+37, 157.86 s
+    on 5 trial lam 1: max|F| 1.57e-61; simplified correction / |dz| = 8.220e-23 (bound 0.750); accepted, 0.99 s
+  on 5: |F| 3.09e-60 -> 1.57e-61, |dz| 9.34e-49 -> 8.09e-71, lam 1, dDelta +9.34e-49, piv 2.8e-38..1.5e+37, 171.97 s
+  on 6: |F| 1.57e-61 converged, Delta 1.63252564698868086 +7.7817e-17
+  corrector: 7 steps, pinned max|F| 1.57e-61 at D 259.90326972410641934, converged, 1519.7 s
+i3 control E_newton_from_chain_prediction: {"converged": true, "its": [{"F": 3.0856068401575944e-36, "lam": 1.0}, {"F": 1.319507163411276e-53, "lam": 1.0}, {"F": 2.1086665228226985e-39, "lam": 0.5}, {"F": 1.0543332614113492e-39, "lam": 0.5}, {"F": 5.271666307056746e-40, "lam": 1.0}, {"F": 3.0926000037366634e-60, "lam": 1.0}, {"F": 1.5660159830947142e-61, "lam": null}], "F": 1.5660159830947142e-61, "F_start_reseeded": 3.0856068401575944e-36, "F_pred_record": 3.0856068401575944e-36, "F_start_same_as_record": true, "why": null, "seconds": 1519.7} (1524 s)
+i3 control miss: {"solution_from": "chain_prediction", "state": {"rel_max": 4.218735520958431e-05, "at": 768, "of": 769, "delta_rel": 4.218735520958431e-05}, "arclength": {"rel_max": 2.2096827711208513e-33, "at": 768, "of": 769, "delta_rel": 2.2096827711208513e-33}, "order_1": {"rel_max": 5.344253457544792e-06, "at": 768, "of": 769, "delta_rel": 5.344253457544792e-06}, "order_2": {"rel_max": 1.264505761667048e-06, "at": 768, "of": 769, "delta_rel": 1.264505761667048e-06}, "order_4": {"rel_max": 1.1592442718757628e-07, "at": 768, "of": 769, "delta_rel": 1.1592442718757628e-07}, "order_8": {"rel_max": 1.867754535315873e-09, "at": 768, "of": 769, "delta_rel": 1.867754535315873e-09}, "order_12": {"rel_max": 4.1416919673606806e-11, "at": 768, "of": 769, "delta_rel": 4.1416919673606806e-11}, "order_16": {"rel_max": 1.0602778247268292e-12, "at": 768, "of": 769, "delta_rel": 1.0602778247268292e-12}, "order_20": {"rel_max": 2.947638274725443e-14, "at": 768, "of": 769, "delta_rel": 2.947638274725443e-14}, "order_24": {"rel_max": 8.646538615205081e-16, "at": 768, "of": 769, "delta_rel": 8.646538615205081e-16}} (1524 s)
+i3 control solution_accepted_state_vs_chain_prediction: {"rel_max": 7.90223202350697e-34, "at": 768, "of": 769, "delta_rel": 7.90223202350697e-34} (1524 s)
+i3 control done: {"seconds": 1524.2} (1524 s)
