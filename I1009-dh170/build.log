@@ -1,0 +1,57 @@
+# 2026-11-19 06:51:50 UTC build, worktree /home/nathan/Source/choptuik-large-d-ccc at 76fdcbc92ed575badd6e6e5f6d4e49bc2aca4401, rustc 1.99.1 (58cf8f9c3 2026-10-13) (Fedora 1.99.1-2.fc45), cargo 1.99.1 (5f94df478 2026-08-27) (Fedora 1.99.1-2.fc45), maturin maturin 1.16.0, python Python 3.14.10
+# env: CARGO_PROFILE_RELEASE_LTO=false CARGO_PROFILE_RELEASE_CODEGEN_UNITS=16 CARGO_BUILD_JOBS=6, nice 15, MemAvailable at start 28394 MB
+    Updating git repository `https://github.com/nmoinvaz/multidouble`
+🍹 Building a mixed python/rust project
+🐍 Found CPython 3.14 at /home/nathan/Source/venv-ccc/bin/python
+🔗 Found pyo3 bindings
+📡 Using build options features from pyproject.toml
+   Compiling target-lexicon v0.13.5
+   Compiling autocfg v1.5.1
+   Compiling crossbeam-utils v0.8.23
+   Compiling proc-macro2 v1.0.107
+   Compiling crossbeam-epoch v0.9.21
+   Compiling unicode-ident v1.0.27
+   Compiling quote v1.0.47
+   Compiling crossbeam-deque v0.8.8
+   Compiling num-traits v0.2.19
+   Compiling rayon-core v1.13.0
+   Compiling libc v0.2.191
+   Compiling pyo3-macros-backend v0.30.1
+   Compiling pyo3-build-config v0.30.1
+   Compiling matrixmultiply v0.3.11
+   Compiling heck v0.5.0
+   Compiling either v1.19.0
+   Compiling syn v3.0.9
+   Compiling rawpointer v0.2.1
+   Compiling num-integer v0.1.47
+   Compiling pyo3-ffi v0.30.1
+   Compiling pyo3 v0.30.1
+   Compiling rayon v1.12.0
+   Compiling numpy v0.30.0
+   Compiling num-complex v0.4.6
+   Compiling once_cell v1.21.4
+   Compiling ndarray v0.17.2
+   Compiling rustc-hash v2.1.3
+   Compiling multidouble v4.9.0 (https://github.com/nmoinvaz/multidouble?branch=perf%2Fdmat-apply-chunks#6dfd5b03)
+   Compiling multisolver v0.1.1
+   Compiling pyo3-macros v0.30.1
+   Compiling multishoot v3.3.0
+   Compiling hpkernel v0.1.0 (/home/nathan/Source/choptuik-large-d-ccc/hp)
+warning: use of deprecated type alias `multidouble::native::DotAcc`: renamed `DDotAcc`, like `QDotAcc` and `ODotAcc`
+  --> src/lib.rs:43:35
+   |
+43 |     pub use multidouble::native::{DotAcc, DV};
+   |                                   ^^^^^^
+   |
+   = note: `#[warn(deprecated)]` on by default
+
+# 2026-11-19 07:05:37 UTC WATCHDOG: MemAvailable 2015 MB under 2048 MB, killing the build's process group 553852
+    PID   RSS COMMAND
+ 554998 26717076 rustc --crate-name _hpkernel --edition=2021 src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat 
+ 548861 437080 claude --resume a818b8b9-9165-45bb-bcd6-99e5b46f2258 --fork-session --model sonnet --effort xhigh --permission-mode auto
+ 551970 339264 /home/nathan/Source/choptuik-large-d-935/.venv/bin/python -u amp_trunc_hiermodel.py 9 15 1000 1.0 180
+   3876 326516 /usr/sbin/dnf5daemon-server
+ 551972 292168 /home/nathan/Source/choptuik-large-d-935/.venv/bin/python -u amp_trunc_hiermodel.py 7 15 1000 1.0 180
+  70549 269708 claude
+   2779 189820 /usr/bin/gnome-shell --mode=user
+# 2026-11-19 07:05:40 UTC build exit 143, watchdog tripped 1, minimum MemAvailable 2015 MB

@@ -14,3 +14,5 @@ Reference: `solver/inner_amp/scan45J1250/sigF_w1.0000_K45_J1250_p1280.json` (K 4
 | `pilot_K25_J1250_capped.log` | the K 25 pilot (first run, `run1003_pilot.sh`): capped at 3600 s at order 19, no JSON |
 | `run1003_pilot_k17.sh`, `pilot_K17_J1250.log`, `.json` | the K 17 rerun (sigma_0..sigma_8), 1 h cap, --procs 8 |
 | `compare1003.py` | the check against the K 45 file's `sigma_str` (1e-19), with its controls |
+| `compare_K17.txt`, `compare_K17_controls.txt` | the K 17 pilot against the K 45 file (sigma_0..sigma_8, worst relative difference 0.0 over the 20-digit strings) and its two controls |
+| `run1003_k49.sh`, `K49_J1250.log`, `sigF_w1.0000_K49_J1250_p1280.json` | the main run, K 49 at J 1250, --procs 12, 48 h cap (started 06:55:10 UTC); the JSON appears only at the end |
