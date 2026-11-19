@@ -26,3 +26,12 @@ are all valued by the continuation. Boxes 7-10 resolve with 0 unresolved cells (
 `m3/count_M3_cand_r0.17_fix_b07-10.json`). Box 7 holds a zero of sign -1, located at A 3.245478, w/w_inf 0.345851;
 the locate at xi1 0.2 did not find it. Bit checks (`argcount_samebits.py`, 3a76a2f9): I1013's 161 valued points and
 the split input's 562 keep their records, PASS; the `--mutate=flip` control exits 1.
+
+Noise cap (2026-11-19 19:42-19:49 UTC, `diag/onepoint_cap.py`, logs `diag/cap*.log`): two points of rpi5's #1013 box at
+17c51597, with the 0.2 start first and the known zero's F3 as seed. With the cap at 1e2, A 4.3623 (w/w_inf 0.5065) is
+lost at xi1 0.18, with noise3 from 67 to 1.85e3 there, and A 5.1123 is lost at its 0.2 start (noise3 4.2e5). With the
+cap at 1e7, A 4.3623 is valued at 0.17 with noise3 929. A 5.1123 is lost near 0.186, with noise3 9.5e6 at 0.19 and
+2.5e8 at 0.18. The default became 1e7 at 998fd290. rpi5's box is cut to A 3.6-4.35 (`split/run_rpi5_upper.sh`), and
+dh610's b21-25 is rerun at 998fd290 with `--retry` (`split/rerun2_b21-25.sh`). `diag/replay_runs.py` replays any
+cache's seeds; on the 964-line Mac cache it gives `seeds_replay.jsonl` byte for byte, and without the 0.2 file's
+seeds (R02N 0) 12 of 750 seeds differ.
