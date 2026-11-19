@@ -166,3 +166,13 @@ step 5: D 250.706015979, pivots 2.4e-17..2.0e+47, |z_1| 3.44e-04, |z_N| 1.50e-28
   on 6: |F| 6.71e-37 -> 6.26e-37, |dz| 9.89e-66 -> 4.24e-66, lam 0.03125, dDelta -9.89e-66, piv 1.8e-17..2.5e+47, 2144.04 s
     on 7 trial lam 1: max|F| 1.89e-35; simplified correction / |dz| = 3.881e+02 (bound 0.750); refused, 339.44 s
     on 7 trial lam 0.5: max|F| 1.28e-36; simplified correction / |dz| = 4.670e+00 (bound 0.875); refused, 337.36 s
+    on 7 trial lam 0.25: max|F| 1.55e-33; simplified correction / |dz| = 1.000e+06 (bound 0.938); refused, 342.65 s
+    on 7 trial lam 0.125: max|F| 1.22e-34; simplified correction / |dz| = 1.413e+04 (bound 0.969); refused, 340.65 s
+    on 7 trial lam 0.0625: max|F| 3.48e-37; simplified correction / |dz| = 1.020e+00 (bound 0.984); refused, 338.57 s
+    on 7 trial lam 0.03125: max|F| 1.07e-36; simplified correction / |dz| = 1.020e+00 (bound 0.992); refused, 337.81 s
+    on 7 trial lam 0.015625: max|F| 6.69e-37; simplified correction / |dz| = 9.805e-01 (bound 0.996); accepted, 340.09 s
+  on 7: |F| 6.26e-37 -> 6.69e-37, |dz| 4.24e-66 -> 3.74e-66, lam 0.015625, dDelta -4.24e-66, piv 1.8e-17..2.5e+47, 2489.96 s
+  on 7: lam at or below 0.04 twice in a row, stopping (stalled)
+      elim projections {'u0': 0, 'u0q': 0, 'ladder': 26, 'failed': 0, 'skipped': 0}
+      octo-double Newton: 8 steps, max|F| 6.7e-37, not converged; double-double |F| of its first two parts 2.8e+25
+    a 0.600 -> D 251.305523918: predicted |F| 2.68e+26, od 8 steps -> 2.84e+25 (tol 4.5e-20), Delta 1.684744090241 (formula diff -1.6e-06), moved 1.9e-34, 10207 s
