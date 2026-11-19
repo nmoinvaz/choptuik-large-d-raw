@@ -1,0 +1,51 @@
+## selftest
+planted shifts recovered through J^-1: max relative error 3.0e-16 -> ok
+white r_1 noise of norm 1e6: shifts' norm 7.02e-05 <= worst-case bound sigma/sigma_min 9.72e-05 -> ok
+PASS
+## mutation sign (must FAIL)
+planted shifts recovered through J^-1: max relative error 1.9e+00 -> FAIL
+white r_1 noise of norm 1e6: shifts' norm 7.02e-05 <= worst-case bound sigma/sigma_min 9.72e-05 -> ok
+FAIL
+## the four seeded values
+n = 4; shifts of the zero implied by each r_1, -J^-1 r_1, (dA, dw/w_inf):
+  5_0.105_fm1e-4_h51e-4_win2.log   (+1.765e-05, +1.420e-05)
+  fm1e-4_h51e-4_seed_p1_win2.log   (+1.541e-04, -7.450e-05)
+  fm1e-4_h51e-4_seed_p3_win2.log   (-2.758e-05, +4.131e-05)
+  fm1e-4_h51e-4_seed_m3_win2.log   (-1.284e-04, +6.696e-05)
+std of the shifts (ddof 1): dA 1.173e-04, dw/w_inf 6.155e-05; mean shift (+3.946e-06, +1.199e-05)
+std of r_1 per component 1.433e+06, 6.581e+05; worst-case bound std_norm / sigma_min = 1.534e-04
+principal axes of the r_1 scatter (eigenvalues of the covariance): 1.45e+06, 6.30e+05
+
+## m9_outer refit, centres = the four seeded values, sigma = the seeded std in norm 1.577e6
+centre solves 4: r_1 +1.8766e+05-1.1515e+06i; -1.7821e+06-1.3611e+05i; +8.0106e+05-1.3738e+06i; +1.5691e+06-1.3125e+05i; mean +1.9393e+05-6.9816e+05i; half-range noise 1.676e+06
+dA solve r_1 +7.7442e+05+1.0671e+06i (offset 0.0002); dw solve r_1 -1.5955e+06+1.0567e+06i (offset 0.0001)
+J (rows re, im; columns A, w/w_inf) = [[2902450000.0, -17894300000.0], [8826325000.0, 17548650000.0]]; singular values 2.544e+10, 8.211e+09
+Newton step to the zero (+4.352e-05, +1.790e-05) -> zero A 2.719263, w/w_inf 1.000040
+error from the centre solves' half-range: noise / sigma_min = 2.041e-04; m7_outer's two-term estimate 3.961e-04
+error from sigma 1.58e+06 (the fixed-x std): sigma / sigma_min(J) = 1.921e-04
+significance of the offsets' responses (|dr| / sigma): A 1.18, w 1.59; J resolved at these offsets: False
+J is NOT resolved: the induced error is at least the offsets themselves (A 0.0002, w/w_inf 0.0001); sigma over the slope the response allows: 1.697e-04
+direction of the smallest singular value (A, w/w_inf) = (+0.984, -0.181): the worst-case error sigma/sigma_min = 1.921e-04 lies along it, so its w/w_inf part is 3.468e-05
+noise of one J entry from sigma: A column 5.58e+09, w column 1.12e+10 (per component, one draw), against sigma_min(J) 8.211e+09
+  centre solve 1 alone (ach5_0.105_fm1e-4_h51e-4): singular values 2.927e+10, 8.971e+09; sigma/sigma_min 1.758e-04; Newton step (+6.24e-05, +2.08e-05); response/sigma A 1.5, w 1.8
+  centre solve 2 alone (05_fm1e-4_h51e-4_seed_p1): singular values 1.649e+10, 8.564e+09; sigma/sigma_min 1.841e-04; Newton step (+1.49e-04, -6.36e-05); response/sigma A 1.8, w 0.8
+  centre solve 3 alone (05_fm1e-4_h51e-4_seed_p3): singular values 3.531e+10, 8.191e+09; sigma/sigma_min 1.925e-04; Newton step (+4.65e-05, +3.32e-05); response/sigma A 1.5, w 2.2
+  centre solve 4 alone (05_fm1e-4_h51e-4_seed_m3): singular values 3.431e+10, 4.151e+09; sigma/sigma_min 3.799e-04; Newton step (-1.02e-04, +6.24e-05); response/sigma A 0.9, w 2.1
+plug-in Monte Carlo (J taken as true, every r_1 redrawn with noise sigma, J refitted, 4000 draws): induced error sigma/sigma_min(J_fit) 16/50/84% = 1.25e-04 / 2.32e-04 / 7.22e-04; fraction of draws above 1e-4: 0.94; sigma_min(J_fit) 16/50/84% = 2.18e+09 / 6.79e+09 / 1.26e+10
+
+## same with the fixed-x sigma 7.7e5, for comparison
+centre solves 4: r_1 +1.8766e+05-1.1515e+06i; -1.7821e+06-1.3611e+05i; +8.0106e+05-1.3738e+06i; +1.5691e+06-1.3125e+05i; mean +1.9393e+05-6.9816e+05i; half-range noise 1.676e+06
+dA solve r_1 +7.7442e+05+1.0671e+06i (offset 0.0002); dw solve r_1 -1.5955e+06+1.0567e+06i (offset 0.0001)
+J (rows re, im; columns A, w/w_inf) = [[2902450000.0, -17894300000.0], [8826325000.0, 17548650000.0]]; singular values 2.544e+10, 8.211e+09
+Newton step to the zero (+4.352e-05, +1.790e-05) -> zero A 2.719263, w/w_inf 1.000040
+error from the centre solves' half-range: noise / sigma_min = 2.041e-04; m7_outer's two-term estimate 3.961e-04
+error from sigma 7.70e+05 (the fixed-x std): sigma / sigma_min(J) = 9.377e-05
+significance of the offsets' responses (|dr| / sigma): A 2.41, w 3.25; J resolved at these offsets: False
+J is NOT resolved: the induced error is at least the offsets themselves (A 0.0002, w/w_inf 0.0001); sigma over the slope the response allows: 8.287e-05
+direction of the smallest singular value (A, w/w_inf) = (+0.984, -0.181): the worst-case error sigma/sigma_min = 9.377e-05 lies along it, so its w/w_inf part is 1.693e-05
+noise of one J entry from sigma: A column 2.72e+09, w column 5.44e+09 (per component, one draw), against sigma_min(J) 8.211e+09
+  centre solve 1 alone (ach5_0.105_fm1e-4_h51e-4): singular values 2.927e+10, 8.971e+09; sigma/sigma_min 8.583e-05; Newton step (+6.24e-05, +2.08e-05); response/sigma A 3.0, w 3.7
+  centre solve 2 alone (05_fm1e-4_h51e-4_seed_p1): singular values 1.649e+10, 8.564e+09; sigma/sigma_min 8.991e-05; Newton step (+1.49e-04, -6.36e-05); response/sigma A 3.7, w 1.6
+  centre solve 3 alone (05_fm1e-4_h51e-4_seed_p3): singular values 3.531e+10, 8.191e+09; sigma/sigma_min 9.400e-05; Newton step (+4.65e-05, +3.32e-05); response/sigma A 3.2, w 4.4
+  centre solve 4 alone (05_fm1e-4_h51e-4_seed_m3): singular values 3.431e+10, 4.151e+09; sigma/sigma_min 1.855e-04; Newton step (-1.02e-04, +6.24e-05); response/sigma A 1.9, w 4.4
+plug-in Monte Carlo (J taken as true, every r_1 redrawn with noise sigma, J refitted, 4000 draws): induced error sigma/sigma_min(J_fit) 16/50/84% = 7.15e-05 / 9.80e-05 / 1.57e-04; fraction of draws above 1e-4: 0.48; sigma_min(J_fit) 16/50/84% = 4.92e+09 / 7.86e+09 / 1.08e+10

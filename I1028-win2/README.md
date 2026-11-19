@@ -21,3 +21,9 @@ Logs `logs/hier_nb_M9_polish5_0.11_approach5_0.105_fm1e-4_h51e-4_seed_{p1,m1,p3,
 - **How far five values pin the std** (stated now so nobody reads more into the number): with 4 degrees of freedom the true std per component is within [0.65, 2.4] x the measured one at 90%. A measured 1.5e6 therefore does not distinguish 1e6 from 2e6, and I report the interval beside the number.
 - **Also listed, descriptive only (not part of the decision):** each run's end r_3, r_5, r_7, r_9, and the difference of each r_1 from stage 1's, to see whether r_1 follows the end |r_3| (the rpi5 reading at M = 7, #1002/#1004) or the harmonics' perturbation.
 - **A run that caps before its FIXED-A line** has no r_1. The std is then taken over the values there are (n < 5, said in the post) and the interval widens.
+
+## Result (2026-11-19, 17:25 UTC the last run ended; reading 17:27 UTC)
+
+Runs (`logs/*.exit`): p3 exit 0 after 5763 s (16:01 UTC), m3 exit 0 after 8935 s (16:54), p1 exit 0 after 10356 s (17:18), **m1 capped at 10800 s (17:25) with no FIXED-A line** (10 level-5 solves done, 9 and 12 in the others; the machine was shared with win2b's jobs). So the statistic is over **n = 4** (stage 1, p1, p3, m3), by the rule above; the driver's plumbing mismatches: 0.
+`logs/reading_1028.txt` (`m9_seeded_std.py`, the pre-registered reading): std per component 1.433e6 (re), 6.58e5 (im), in norm **1.577e6**, 90% interval of the true std in norm [9.8e5, 4.6e6] (df 3); implied error std_norm / sigma_min(J) = 1.53e-4; decision band **between** (1e6 to 2e6): reported, the coordinator decides.
+`logs/posthoc_1028.txt` (`posthoc_1028.py` and `m9_outer.py` on the four values, written and run after the reading, descriptive, not in the decision): the shifts of the zero implied by each r_1 through #1012's J, and the J refit on the mean of the four centres.
