@@ -53,3 +53,7 @@ Machine dh170 (Fedora 45, i7-7700, 4 cores / 8 threads). Issue: https://github.c
   or of M 9 beyond k 9. M 9 at K 18 does not reach its own σ_{M+1} = σ_10 (k 21), so it has no residual there and no Δσ_10.
 - 2026-11-19 08:12 UTC, fourth launch (`run996d.sh`, coordinator's go): `M7_K15_dps180` ended exit 0 after 5487 s: **M 7 at 180 digits equals M 7 at 120 digits in every stored digit at σ_0 to σ_7** (difference 0.0 in the 20-digit JSONs, fit residuals equal in 2 digits), so
   the 120-digit M 7 is precise at the exact orders and the 1.7% mismatch with M 9 at σ_7 is not M 7's digits. σ_8 (= σ_{M+1} of M 7, k 17) is beyond this run's K 15 and is checked only by the 60-digit run's absence: unchecked at higher digits. `M9_K15_dps180` is still running (k 7 of 15 at 07:38).
+- 2026-11-19 08:52 UTC: `M9_K15_dps180` ended exit 0 after 7926 s: **M 9 at 180 digits equals M 9 at 120 digits in every stored digit at σ_0 to σ_7** (0.0 in the 20-digit JSONs; residuals equal). With M 7 (180 = 120 at σ_0 to σ_7), the precision question is closed for the exact orders:
+  neither model moves between 120 and 180 digits. The 1.7% of Δσ_8 (1.23e-10) by which M 7 and M 9 differ at σ_7 (0.16% at σ_6) is therefore the fit's own systematic between the two bases (77 and 93 columns, J 1000),
+  not digits. Not checked at higher digits: σ_8 of M 7 and M 9 (k 17, past K 15) and every σ_k beyond k 15. `agree996.py` and `exact996.py` now read the K 15 file of M 9 at 180 digits.
+  All #996 jobs have ended; no `amp_trunc_hiermodel.py` is running.

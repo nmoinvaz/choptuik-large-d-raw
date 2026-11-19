@@ -31,7 +31,7 @@ def log(name):
 R = {"M3_60": js("trunc_hier_M3_K18_J1000_w1.0000.json"), "M3_120": js("trunc_hier_M3_K18_J1000_w1.0000_dps120.json"),
      "M5_60": js("trunc_hier_M5_K18_J1000_w1.0000.json"), "M5_120": js("trunc_hier_M5_K18_J1000_w1.0000_dps120.json"),
      "M7_120": js("trunc_hier_M7_K18_J1000_w1.0000_dps120.json"), "M9_120": js("trunc_hier_M9_K18_J1000_w1.0000_dps120.json"),
-     "M9_180": js("trunc_hier_M9_K9_J1000_w1.0000_dps180.json"), "M7_180": js("trunc_hier_M7_K15_J1000_w1.0000_dps180.json")}
+     "M9_180": js("trunc_hier_M9_K15_J1000_w1.0000_dps180.json"), "M7_180": js("trunc_hier_M7_K15_J1000_w1.0000_dps180.json")}
 MOF = {"M3_60": 3, "M3_120": 3, "M5_60": 5, "M5_120": 5, "M7_120": 7, "M9_120": 9, "M9_180": 9, "M7_180": 7}
 
 

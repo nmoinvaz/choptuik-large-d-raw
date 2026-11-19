@@ -30,7 +30,7 @@ def read(name):
 
 
 RUNS = {"M3_60": "M3.log", "M3_120": "M3_dps120.log", "M5_60": "M5.log", "M5_120": "M5_dps120.log", "M7_60": "M7.log", "M7_120": "M7_dps120.log",
-        "M9_120": "M9_dps120.log", "M9_180": "M9_K9_dps180.log", "M7_180": "M7_K15_dps180.log"}
+        "M9_120": "M9_dps120.log", "M9_180": "M9_K15_dps180.log", "M7_180": "M7_K15_dps180.log"}
 PAIRS = {3: ("M3_60", "M3_120"), 5: ("M5_60", "M5_120"), 7: ("M7_120", "M7_180"), 9: ("M9_120", "M9_180")}   # M 7 has no higher-digit run of its own: its exact orders sigma_0..sigma_4 against M 9 at 180 digits (exact996.py has the rest)
 SHIFT = {3: ("M3_120", "M5_120"), 5: ("M5_120", "M7_120"), 7: ("M7_120", "M9_120")}   # Delta sigma_{M+1} = sigma^[M+2] - sigma^[M]
 
