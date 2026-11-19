@@ -12,3 +12,12 @@ nice 10, one process.
   (8.3e-5, 79.04, 3.232, 6.464) given by `--h8log`: x_Phi = (39789.7, 38781.0), C_E = 2.532706e+33.
 - `b5_threshold_superposition.log`: `b5_threshold.leading_data_bound` with its DELTA0 (0, 76.56, 3.23125, 6.46251),
   with the leading coefficients rounded up (0, 76.5602, 3.231259, 6.462517), and with (H8)'s rounded-up delta.
+
+## b5/: B5(1) recomputed (protocol: notes/P2_remaining.md 6.1 at 5e09a010)
+
+Code: `solver/proof/review_p2c/p2c_b5.py` on `wip/p2-b5` at 6487a5f7, mpmath (256 bits).
+- Stage A, `logs/model.log`, `phiz.log`, `phiz_mut_G0.log`: Lemma 1 against B8's reduced system, section 1.3's Phi_z
+  against the total derivative, Lemma 2's G0 against the eps -> 0 limit; K2 (G0's C B0 P/(2z) term dropped) must fail.
+- Stage B, `logs/residual*.log`: Lemma 3 from the eps-expansion on the inner series; K1 as the protocol wrote it
+  (`offsol`) and the off-solution control K1b (`offphi`).
+- `logs/exits.txt`: every run's exit code.
