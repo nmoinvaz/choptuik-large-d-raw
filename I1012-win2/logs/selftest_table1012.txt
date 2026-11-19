@@ -1,0 +1,12 @@
+# table1012.py checks, 10:32:07 UTC
+$ table1012.py --allow-missing (st6 not run yet)
+exit 0
+$ table1012.py --allow-missing --mutate=xi (must fail)
+CHECK FAILED #999 hier_nb_M9_polish5_0.11_approach5_0.105_win2.log: radii line says AP 0.105 XI 0.11, manifest AP 0.105 XI 0.12
+exit 1
+$ table1012.py --allow-missing --mutate=predict (must fail)
+CHECK FAILED #1012 st1 hier_nb_M9_polish5_0.11_approach5_0.105_fm1e-4_h51e-4_win2.log: K line says 10 residuals, manifest predict=False
+exit 1
+$ table1012.py --allow-missing --mutate=count (must fail)
+CHECK FAILED #1012 st1 hier_nb_M9_polish5_0.11_approach5_0.105_fm1e-4_h51e-4_win2.log: 5 level 5 (top) stop lines against 4 solved lines
+exit 1
