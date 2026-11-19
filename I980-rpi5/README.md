@@ -31,8 +31,8 @@ Level 5's first solve at each approach radius (the 0.1188 row is #974 run 1, the
 - Level 3: only 0.112 prints an iteration, `it 0 (lam 0.5)` at |r_3| 9.631e4 (2165 s, after a level-5 solve at 8.61), then the next trial's level-5 solves are at 1e5 and the run hits the 1 h cap at 3600 s. The others end with no accepted level-3 iteration:
   final |r_3| 5.2e5 (0.095, 3529 s), **9.3e4 (0.105, 1281 s)**, 5.3e5 (0.125, 3066 s); #974 run 1 (0.1188) had 5.2e5. None is near the 1e-6 bar, and r_1 is 1e9.
 - The M = 9 zero solve (#980's "then") is not run: no XI worked.
-- Not established: why the polish solve stops at 42.5. The K ratios of #974 (K[5,7]/K[7,7] 7e3, K[5,9]/K[9,9] 8e8) with level 7 at |r_7| 3e-8 to 4e-5 and level 9 at 2e-10 give a leakage into r_5 of at most about 0.3,
-  far below 42.5, so a plain leakage of the converged harmonics 7 and 9 into r_5 does not explain it by that estimate (block maxima, an order of magnitude at best).
+- Not established: why the polish solve stops at 42.5. The K ratios of #974 (K[5,7]/K[7,7] 7e3, K[5,9]/K[9,9] 8e8) with level 7 at |r_7| 3e-8 to 4e-5 and level 9 at 2e-10 to 5e-9 give a leakage into r_5 of about 0.2 to 4,
+  an order of magnitude or more below 42.5, so a plain leakage of the converged harmonics 7 and 9 into r_5 does not explain it by that estimate (block maxima, an order of magnitude at best).
 
 ## Recommended tasks (one line each; the coordinator files them)
 
