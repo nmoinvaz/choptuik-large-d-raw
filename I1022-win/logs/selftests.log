@@ -1,0 +1,45 @@
+$ -I C:/Users/nathan/Source/choptuik-i1018/solver/rt/rt_perturb.py --selftest --dir
+selftest --dir: realised 1.000000e-25, cosine with the planted row 1.000000000000000: PASS
+exit 0
+$ -I C:/Users/nathan/Source/choptuik-i1018/solver/rt/rt_perturb.py --selftest
+selftest: planted move 1e-25, realised 1.000000e-25: PASS
+exit 0
+$ -I C:/Users/nathan/Source/choptuik-i1018/solver/rt/rt_perturb.py --selftest --mutate
+selftest --mutate: planted move 1e-25, realised 0.000000e+00: FAIL
+exit 1
+$ check_1022.py --selftest
+  planted move along q (relative noise 1e-12): check passes (want pass), parallel 4.4e-12, in the plane 8.5e-14, outside the span 4.1e-12: ok
+  d = ac: check fails (want fail), parallel 1.4e+00, in the plane 1.0e+00, outside the span 1.0e-15: ok
+  d = a random combination of the deep span: check fails (want fail), parallel 1.2e+00, in the plane 6.0e-01, outside the span 1.0e-15: ok
+  d = a random vector: check fails (want fail), parallel 1.3e+00, in the plane 1.2e-02, outside the span 1.0e+00: ok
+  d = q plus 1e-6 of noise: check fails (want fail), parallel 4.3e-06, in the plane 5.0e-08, outside the span 4.1e-06: ok
+  d = q1 (the other complement direction, not parallel to q0): check fails (want fail), parallel 1.4e+00, in the plane 6.1e-16, outside the span 1.2e-15: ok
+selftest passed
+exit 0
+$ table_1022.py --selftest
+  all tangent: reading TANGENT at both sizes (want TANGENT at both sizes) ok
+  all at the edge: reading TANGENT at both sizes (want TANGENT at both sizes) ok
+  one just above the bar: reading mixed: 1e-18 UNDECIDED, 1e-17 TANGENT (want mixed: 1e-18 UNDECIDED, 1e-17 TANGENT) ok
+  leaves at 1e-17 in row 1: reading TANGENT at 1e-18, LEAVING at 1e-17 (want TANGENT at 1e-18, LEAVING at 1e-17) ok
+  leaves at 1e-17 in row 0 at 0.1: reading TANGENT at 1e-18, LEAVING at 1e-17 (want TANGENT at 1e-18, LEAVING at 1e-17) ok
+  leaves at 1e-18 in row 0: reading LEAVING already at 1e-18 (want LEAVING already at 1e-18) ok
+  one just under 0.1 at 1e-17: reading mixed: 1e-18 TANGENT, 1e-17 UNDECIDED (want mixed: 1e-18 TANGENT, 1e-17 UNDECIDED) ok
+  one just over 10: reading mixed: 1e-18 TANGENT, 1e-17 UNDECIDED (want mixed: 1e-18 TANGENT, 1e-17 UNDECIDED) ok
+  undecided beside leaving at 1e-17: reading TANGENT at 1e-18, LEAVING at 1e-17 (want TANGENT at 1e-18, LEAVING at 1e-17) ok
+  mutated tangent bar (1e-2): the 5e-3 case reads TANGENT at both sizes against mixed: 1e-18 UNDECIDED, 1e-17 UNDECIDED ok
+  mutated leaving rule (both rows for either): one row in the band reads mixed: 1e-18 TANGENT, 1e-17 UNDECIDED against TANGENT at 1e-18, LEAVING at 1e-17 ok
+  mutated band edges (open for closed): the edges 0.1 and 10 read UNDECIDED and UNDECIDED against LEAVING ok
+  an incomplete random run, an incomplete row: INCOMPLETE, INCOMPLETE (want INCOMPLETE) ok
+  median: geometric mean of the two middle ones for 12, the middle one for 3: ok
+  #963's c_d1e-20: median 5.4593e-24 against the stored 5.4593e-24 ok
+  #963's c_d1e-19: median 2.6809e-22 against the stored 2.6809e-22 ok
+  #963's c_d1e-18: median 4.0592e-21 against the stored 4.0592e-21 ok
+selftest passed
+exit 0
+$ run_1022.py --selftest
+  six good runs: exit 0 {'r0': 0, 'r1': 0, 'r2': 0, 'r3': 0, 'r4': 0, 'r5': 0} ok
+  cap hit: exit 5 {'r0': 0, 'slow': 5, 'after': 0} (want slow 5, the run after it still done) ok
+  a crash: exit 7 {'r0': 0, 'crash': 3} (want 7, after not run) ok
+  STOP file: exit 4 (want 4) ok
+selftest passed
+exit 0

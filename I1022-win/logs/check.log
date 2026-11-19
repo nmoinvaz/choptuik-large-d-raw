@@ -1,0 +1,17 @@
+max|z_C| 1.2910612e-01; max|a - c| 1.6958e-20, max|b - c| 2.7086e-20 (over max|z_C|); T1_c24: d = 4, B is 13665 x 4
+Q_c24 rows: norms 1.000000000000000 and 1.000000000000000, q_0 . q_1 = -9.02e-17
+
+| state | row | delta | realised max abs (z' - z) / max abs z | max abs of d / max abs d - q / max abs q | part in the plane of a - c, b - c | part outside the deep span | cos with a - c | cos with b - c | mu / max-norm | check |
+|---|---|---|---|---|---|---|---|---|---|---|
+| c_q0_d1e-18.npz | 0 | 1e-18 | 1.000000e-18 | 9.99e-15 | 1.38e-15 | 3.29e-15 | +2.56e-17 | -9.21e-16 | 0.0151 | pass |
+| c_q0_d1e-17.npz | 0 | 1e-17 | 1.000000e-17 | 1.22e-15 | 1.10e-15 | 9.55e-16 | +5.46e-17 | -9.90e-16 | 0.0151 | pass |
+| c_q1_d1e-18.npz | 1 | 1e-18 | 1.000000e-18 | 8.22e-15 | 4.67e-16 | 3.14e-15 | -4.43e-17 | -1.35e-16 | 0.0250 | pass |
+| c_q1_d1e-17.npz | 1 | 1e-17 | 1.000000e-17 | 1.22e-15 | 2.48e-16 | 1.61e-15 | -1.20e-16 | -1.44e-16 | 0.0250 | pass |
+| c_sum_d1e-20.npz | q_0 | 1e-20 | 1.000000e-20 | 1.22e+00 | 1.00e+00 | 2.38e-05 | +5.06e-01 | +9.57e-01 | 1.0000 | control: fails as it must |
+| c_sum_d1e-19.npz | q_0 | 1e-19 | 1.000000e-19 | 1.22e+00 | 1.00e+00 | 2.38e-05 | +5.06e-01 | +9.57e-01 | 1.0000 | control: fails as it must |
+| c_rand_d1e-18.npz | q_0 | 1e-18 | 1.000000e-18 | 1.69e+00 | 1.07e-02 | 1.00e+00 | +1.02e-02 | +5.52e-03 | 0.4774 | control: fails as it must |
+| c_rand_d1e-17.npz | q_0 | 1e-17 | 1.000000e-17 | 1.69e+00 | 1.07e-02 | 1.00e+00 | +1.02e-02 | +5.52e-03 | 0.4774 | control: fails as it must |
+
+the random move at 1e-18 against #963's stored c_d1e-18.npz: zh and zl equal bit for bit
+
+check_1022 passed
