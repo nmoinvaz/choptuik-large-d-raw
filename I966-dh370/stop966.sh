@@ -10,7 +10,7 @@ for p in $(cat $CG/cgroup.procs); do
   case "$c" in *ks_chain.py*) kc="$kc $p";; *anm_run.py*) ar="$ar $p";; esac
 done
 [ -n "$kc" ] && [ -n "$ar" ] || { log "stop966: pids not found in $U"; exit 1; }
-log "stop966 ($U, test step 1 failed the 1e-18 bar, coordinator's rule): TERM ks_chain.py$kc then anm_run.py$ar"
+log "stop966 ($U, ${2:-no reason given}): TERM ks_chain.py$kc then anm_run.py$ar"
 kill -TERM $kc; sleep 1; kill -TERM $ar
 t=$(date +%s)
 until [ "$(systemctl --user is-active $U)" != active ]; do [ $(( $(date +%s) - t )) -ge 300 ] && { log "stop966: $U still active 5 min after the TERM"; exit 1; }; sleep 3; done

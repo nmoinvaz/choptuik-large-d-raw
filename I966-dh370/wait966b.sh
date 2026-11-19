@@ -11,7 +11,7 @@ while sleep 15; do
     leg=$(basename $(dirname $lg)); [[ "$leg" < "$leg0" ]] && continue
     if grep -qE 'stopping \(stalled\)|no trial step accepted|octo-double Newton: [0-9]+ steps, max\|F\| [0-9.e+-]+, not converged' $lg; then echo "STALL or not converged in $lg"; grep -nE 'stopping \(stalled\)|no trial step accepted|not converged' $lg | tail -3 | cut -c1-200; exit 0; fi
     k=$(awk '/a_rule reseed:/{c=0} /^  on [0-9]+: \|F\| .* -> /{c++} END{print c+0}' $lg)
-    [ "$k" -ge 4 ] && { echo "CRAWL: $k iteration lines in the attempt of $lg"; grep -E '^  on [0-9]+: \|F\| ' $lg | tail -4 | cut -c1-200; exit 0; }
+    [ -z "$NOCRAWL" ] && [ "$k" -ge 4 ] && { echo "CRAWL: $k iteration lines in the attempt of $lg"; grep -E '^  on [0-9]+: \|F\| ' $lg | tail -4 | cut -c1-200; exit 0; }
   done
   a=$(wc -l < alerts966.txt 2>/dev/null || echo 0)
   if [ "$a" -gt "$a0" ]; then
