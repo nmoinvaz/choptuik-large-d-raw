@@ -12,3 +12,27 @@
 1033 run1 report exit 0 (expected 0) 2026-11-19 18:27:41 UTC
 1033 run2 cost exit 1 (expected 0) 2026-11-19 18:34:16 UTC
 1033 UNEXPECTED exit at run2 cost, stopping 2026-11-19 18:34:16 UTC
+1033 run3 solve start (run1033_run3.sh, after the coordinator's go), cap 10800 s, code 080acfa2 2026-11-19 18:37:05 UTC
+1033 gate1033r3.sh took over the run 3 cap: 10800 s from 18:37:05 UTC (kill at 21:37:05 UTC) on pid 32080 2026-11-19 18:38:25 UTC
+1033 run3 STOPPED by hand on the coordinator's hc (memory: win2 4.2 GB available, commit 94.6 of 101.5 GB, #1031's rustc 32.9 GB, K 49 22.3 GB): killed the script bashes 28832/22916/28040/33892, the python tree by exact pid 32080 (child 30900, command line checked), and the gate 17060; no output of run 3 beyond the start residual; rerun from scratch later 2026-11-19 18:53:57 UTC
+1033 v2 start, worktree 32e5825d 2026-11-19 21:55:21 UTC
+1033 run0 selftest ended within seconds, no root pid taken 2026-11-19 21:55:26 UTC
+1033 run0 selftest exit 0 (accepted: 0) wall 5s capped 0 2026-11-19 21:55:26 UTC
+1033 run0 selftest control lo ended within seconds, no root pid taken 2026-11-19 21:55:30 UTC
+1033 run0 selftest control lo exit 1 (accepted: 1) wall 4s capped 0 2026-11-19 21:55:30 UTC
+1033 run0 selftest control parity ended within seconds, no root pid taken 2026-11-19 21:55:33 UTC
+1033 run0 selftest control parity exit 1 (accepted: 1) wall 4s capped 0 2026-11-19 21:55:34 UTC
+1033 run0 selftest control dps40 ended within seconds, no root pid taken 2026-11-19 21:55:38 UTC
+1033 run0 selftest control dps40 exit 1 (accepted: 1) wall 4s capped 0 2026-11-19 21:55:38 UTC
+1033 run0 selftest control inverse ended within seconds, no root pid taken 2026-11-19 21:55:42 UTC
+1033 run0 selftest control inverse exit 1 (accepted: 1) wall 4s capped 0 2026-11-19 21:55:42 UTC
+1033 run0 selftest control gp ended within seconds, no root pid taken 2026-11-19 21:55:45 UTC
+1033 run0 selftest control gp exit 1 (accepted: 1) wall 3s capped 0 2026-11-19 21:55:45 UTC
+1033 run0 selftest control phase_gp ended within seconds, no root pid taken 2026-11-19 21:55:51 UTC
+1033 run0 selftest control phase_gp exit 1 (accepted: 1) wall 6s capped 0 2026-11-19 21:55:51 UTC
+1033 run0 selftest control lenient ended within seconds, no root pid taken 2026-11-19 21:55:55 UTC
+1033 run0 selftest control lenient exit 1 (accepted: 1) wall 4s capped 0 2026-11-19 21:55:55 UTC
+1033 run0 selftest control unbound ended within seconds, no root pid taken 2026-11-19 21:55:59 UTC
+1033 run0 selftest control unbound exit 1 (accepted: 1) wall 4s capped 0 2026-11-19 21:55:59 UTC
+1033 run0 passed: selftest exit 0, its eight controls exit 1 2026-11-19 21:55:59 UTC
+1033 run3 solve 1:384,0.4:192,0.5:192 root pid 23988, cap 10800 s 2026-11-19 21:56:03 UTC

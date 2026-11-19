@@ -205,3 +205,154 @@ Traceback (most recent call last):
     dh, dl, Fh, Fl, pmin, pmax = s.newton_mixed(zh, zl, **kw)
                                  ~~~~~~~~~~~~~~^^^^^^^^^^^^^^
 ValueError: singular or non-finite pivot at column 642 (NaN)
+== run3 solve: D:/choptuik-large-d-raw/T82-win/states/lowDhm_x0.000157-0.975_D3.0475_M384.npz --pairs 1:384,0.4:192,0.5:192 2026-11-19 18:37:05 UTC
+18:37:07 tmap_lowDhm_x0.000157-0.975_D3.0475_M384_L1_M384: D 3.0475, from M 384 to the arctan map L 1.0 at s0 0.000, M' 384
+18:37:41   tmap_lowDhm_x0.000157-0.975_D3.0475_M384_L1_M384: start |F| 2.25e-22 on its own plan, 2317 steps (stored plan)
+HEAD is now at 32e5825d LOW_D_SPEEDUP: the design, checks and runner commands of step 5's measurement
+== run0 selftest: tau_map_gain.py selftest 2026-11-19 21:55:21 UTC
+(1a) identity map: 0 differing words of 514 (PASS)
+(1b) uniform -> arctan(1.9, 0.6), M 32 -> 40: max error 2.7e-32 of the largest value (PASS; < 1e-28)
+(1b) uniform -> arctan(0.4, 0.3), M 32 -> 24: max error 3.8e-32 of the largest value (PASS; < 1e-28)
+(1b) arctan(1.9, 0.6) -> uniform, M 32 -> 48: max error 2.1e-32 of the largest value (PASS; < 1e-28)
+(1b) arctan(1.9, 0.6) -> arctan(1.2, 0.8), M 32 -> 32: max error 2.0e-32 of the largest value (PASS; < 1e-28)
+(1b) uniform -> arctan(fl(pi/4), 0.5), M 32 -> 32, a target 1e-17 from a source point: max error 4.6e-32 of the largest value (PASS; < 1e-28)
+(2a) mapped d/dtheta, arctan(1.9, 0.7), M 128: max error 2.9e-31 of the largest derivative (PASS; < 1e-26)
+(2b) mapped phase row: its sum differs from the uniform grid's by 8.7e-33 of sum |w p1| (PASS; < 1e-26)
+(3A) report on planted records: exit 0, modes needed for L 0.5 80 (want 0, 80): PASS
+(3B) report on planted records: exit 1, modes needed for L 0.5 80 (want 1, 80): PASS
+(3C) report on planted records: exit 0, modes needed for L 0.5 None (want 0, None): PASS
+(3D) report on planted records: exit 0, modes needed for L 0.5 80 (want 0, 80): PASS
+21:55:23   resuming t from its checkpoint (pass 3, 0 + 0 calls)
+(4) resume rules: other centre refused PASS; pass-3 result recovered PASS; only converged and saved results reused PASS
+selftest: PASS
+== run0 selftest control lo: tau_map_gain.py selftest --mutate lo 2026-11-19 21:55:26 UTC
+(1a) identity map: 257 differing words of 514 (FAIL)
+(1b) uniform -> arctan(1.9, 0.6), M 32 -> 40: max error 8.5e-17 of the largest value (FAIL; < 1e-28)
+(1b) uniform -> arctan(0.4, 0.3), M 32 -> 24: max error 7.9e-17 of the largest value (FAIL; < 1e-28)
+(1b) arctan(1.9, 0.6) -> uniform, M 32 -> 48: max error 6.8e-17 of the largest value (FAIL; < 1e-28)
+(1b) arctan(1.9, 0.6) -> arctan(1.2, 0.8), M 32 -> 32: max error 6.6e-17 of the largest value (FAIL; < 1e-28)
+(1b) uniform -> arctan(fl(pi/4), 0.5), M 32 -> 32, a target 1e-17 from a source point: max error 6.5e-17 of the largest value (FAIL; < 1e-28)
+(2a) mapped d/dtheta, arctan(1.9, 0.7), M 128: max error 2.9e-31 of the largest derivative (PASS; < 1e-26)
+(2b) mapped phase row: its sum differs from the uniform grid's by 8.7e-33 of sum |w p1| (PASS; < 1e-26)
+(3A) report on planted records: exit 0, modes needed for L 0.5 80 (want 0, 80): PASS
+(3B) report on planted records: exit 1, modes needed for L 0.5 80 (want 1, 80): PASS
+(3C) report on planted records: exit 0, modes needed for L 0.5 None (want 0, None): PASS
+(3D) report on planted records: exit 0, modes needed for L 0.5 80 (want 0, 80): PASS
+21:55:28   resuming t from its checkpoint (pass 3, 0 + 0 calls)
+(4) resume rules: other centre refused PASS; pass-3 result recovered PASS; only converged and saved results reused PASS
+selftest --mutate lo: FAIL
+== run0 selftest control parity: tau_map_gain.py selftest --mutate parity 2026-11-19 21:55:30 UTC
+(1a) identity map: 0 differing words of 514 (PASS)
+(1b) uniform -> arctan(1.9, 0.6), M 32 -> 40: max error 9.0e-01 of the largest value (FAIL; < 1e-28)
+(1b) uniform -> arctan(0.4, 0.3), M 32 -> 24: max error 1.4e+00 of the largest value (FAIL; < 1e-28)
+(1b) arctan(1.9, 0.6) -> uniform, M 32 -> 48: max error 9.5e-01 of the largest value (FAIL; < 1e-28)
+(1b) arctan(1.9, 0.6) -> arctan(1.2, 0.8), M 32 -> 32: max error 1.2e+00 of the largest value (FAIL; < 1e-28)
+(1b) uniform -> arctan(fl(pi/4), 0.5), M 32 -> 32, a target 1e-17 from a source point: max error 1.3e+00 of the largest value (FAIL; < 1e-28)
+(2a) mapped d/dtheta, arctan(1.9, 0.7), M 128: max error 2.9e-31 of the largest derivative (PASS; < 1e-26)
+(2b) mapped phase row: its sum differs from the uniform grid's by 8.7e-33 of sum |w p1| (PASS; < 1e-26)
+(3A) report on planted records: exit 0, modes needed for L 0.5 80 (want 0, 80): PASS
+(3B) report on planted records: exit 1, modes needed for L 0.5 80 (want 1, 80): PASS
+(3C) report on planted records: exit 0, modes needed for L 0.5 None (want 0, None): PASS
+(3D) report on planted records: exit 0, modes needed for L 0.5 80 (want 0, 80): PASS
+21:55:31   resuming t from its checkpoint (pass 3, 0 + 0 calls)
+(4) resume rules: other centre refused PASS; pass-3 result recovered PASS; only converged and saved results reused PASS
+selftest --mutate parity: FAIL
+== run0 selftest control dps40: tau_map_gain.py selftest --mutate dps40 2026-11-19 21:55:34 UTC
+(1a) identity map: 0 differing words of 514 (PASS)
+(1b) uniform -> arctan(1.9, 0.6), M 32 -> 40: max error 2.7e-32 of the largest value (PASS; < 1e-28)
+(1b) uniform -> arctan(0.4, 0.3), M 32 -> 24: max error 3.8e-32 of the largest value (PASS; < 1e-28)
+(1b) arctan(1.9, 0.6) -> uniform, M 32 -> 48: max error 2.1e-32 of the largest value (PASS; < 1e-28)
+(1b) arctan(1.9, 0.6) -> arctan(1.2, 0.8), M 32 -> 32: max error 2.0e-32 of the largest value (PASS; < 1e-28)
+(1b) uniform -> arctan(fl(pi/4), 0.5), M 32 -> 32, a target 1e-17 from a source point: max error 2.1e-25 of the largest value (FAIL; < 1e-28)
+(2a) mapped d/dtheta, arctan(1.9, 0.7), M 128: max error 2.9e-31 of the largest derivative (PASS; < 1e-26)
+(2b) mapped phase row: its sum differs from the uniform grid's by 8.7e-33 of sum |w p1| (PASS; < 1e-26)
+(3A) report on planted records: exit 0, modes needed for L 0.5 80 (want 0, 80): PASS
+(3B) report on planted records: exit 1, modes needed for L 0.5 80 (want 1, 80): PASS
+(3C) report on planted records: exit 0, modes needed for L 0.5 None (want 0, None): PASS
+(3D) report on planted records: exit 0, modes needed for L 0.5 80 (want 0, 80): PASS
+21:55:36   resuming t from its checkpoint (pass 3, 0 + 0 calls)
+(4) resume rules: other centre refused PASS; pass-3 result recovered PASS; only converged and saved results reused PASS
+selftest --mutate dps40: FAIL
+== run0 selftest control inverse: tau_map_gain.py selftest --mutate inverse 2026-11-19 21:55:38 UTC
+(1a) identity map: 0 differing words of 514 (PASS)
+(1b) uniform -> arctan(1.9, 0.6), M 32 -> 40: max error 2.7e-32 of the largest value (PASS; < 1e-28)
+(1b) uniform -> arctan(0.4, 0.3), M 32 -> 24: max error 3.8e-32 of the largest value (PASS; < 1e-28)
+(1b) arctan(1.9, 0.6) -> uniform, M 32 -> 48: max error 1.3e+00 of the largest value (FAIL; < 1e-28)
+(1b) arctan(1.9, 0.6) -> arctan(1.2, 0.8), M 32 -> 32: max error 1.5e+00 of the largest value (FAIL; < 1e-28)
+(1b) uniform -> arctan(fl(pi/4), 0.5), M 32 -> 32, a target 1e-17 from a source point: max error 4.6e-32 of the largest value (PASS; < 1e-28)
+(2a) mapped d/dtheta, arctan(1.9, 0.7), M 128: max error 2.9e-31 of the largest derivative (PASS; < 1e-26)
+(2b) mapped phase row: its sum differs from the uniform grid's by 8.7e-33 of sum |w p1| (PASS; < 1e-26)
+(3A) report on planted records: exit 0, modes needed for L 0.5 80 (want 0, 80): PASS
+(3B) report on planted records: exit 1, modes needed for L 0.5 80 (want 1, 80): PASS
+(3C) report on planted records: exit 0, modes needed for L 0.5 None (want 0, None): PASS
+(3D) report on planted records: exit 0, modes needed for L 0.5 80 (want 0, 80): PASS
+21:55:39   resuming t from its checkpoint (pass 3, 0 + 0 calls)
+(4) resume rules: other centre refused PASS; pass-3 result recovered PASS; only converged and saved results reused PASS
+selftest --mutate inverse: FAIL
+== run0 selftest control gp: tau_map_gain.py selftest --mutate gp 2026-11-19 21:55:42 UTC
+(1a) identity map: 0 differing words of 514 (PASS)
+(1b) uniform -> arctan(1.9, 0.6), M 32 -> 40: max error 2.7e-32 of the largest value (PASS; < 1e-28)
+(1b) uniform -> arctan(0.4, 0.3), M 32 -> 24: max error 3.8e-32 of the largest value (PASS; < 1e-28)
+(1b) arctan(1.9, 0.6) -> uniform, M 32 -> 48: max error 2.1e-32 of the largest value (PASS; < 1e-28)
+(1b) arctan(1.9, 0.6) -> arctan(1.2, 0.8), M 32 -> 32: max error 2.0e-32 of the largest value (PASS; < 1e-28)
+(1b) uniform -> arctan(fl(pi/4), 0.5), M 32 -> 32, a target 1e-17 from a source point: max error 4.6e-32 of the largest value (PASS; < 1e-28)
+(2a) mapped d/dtheta, arctan(1.9, 0.7), M 128: max error 3.1e-01 of the largest derivative (FAIL; < 1e-26)
+(2b) mapped phase row: its sum differs from the uniform grid's by 8.7e-33 of sum |w p1| (PASS; < 1e-26)
+(3A) report on planted records: exit 0, modes needed for L 0.5 80 (want 0, 80): PASS
+(3B) report on planted records: exit 1, modes needed for L 0.5 80 (want 1, 80): PASS
+(3C) report on planted records: exit 0, modes needed for L 0.5 None (want 0, None): PASS
+(3D) report on planted records: exit 0, modes needed for L 0.5 80 (want 0, 80): PASS
+21:55:43   resuming t from its checkpoint (pass 3, 0 + 0 calls)
+(4) resume rules: other centre refused PASS; pass-3 result recovered PASS; only converged and saved results reused PASS
+selftest --mutate gp: FAIL
+== run0 selftest control phase_gp: tau_map_gain.py selftest --mutate phase_gp 2026-11-19 21:55:45 UTC
+(1a) identity map: 0 differing words of 514 (PASS)
+(1b) uniform -> arctan(1.9, 0.6), M 32 -> 40: max error 2.7e-32 of the largest value (PASS; < 1e-28)
+(1b) uniform -> arctan(0.4, 0.3), M 32 -> 24: max error 3.8e-32 of the largest value (PASS; < 1e-28)
+(1b) arctan(1.9, 0.6) -> uniform, M 32 -> 48: max error 2.1e-32 of the largest value (PASS; < 1e-28)
+(1b) arctan(1.9, 0.6) -> arctan(1.2, 0.8), M 32 -> 32: max error 2.0e-32 of the largest value (PASS; < 1e-28)
+(1b) uniform -> arctan(fl(pi/4), 0.5), M 32 -> 32, a target 1e-17 from a source point: max error 4.6e-32 of the largest value (PASS; < 1e-28)
+(2a) mapped d/dtheta, arctan(1.9, 0.7), M 128: max error 2.9e-31 of the largest derivative (PASS; < 1e-26)
+(2b) mapped phase row: its sum differs from the uniform grid's by 1.9e-01 of sum |w p1| (FAIL; < 1e-26)
+(3A) report on planted records: exit 0, modes needed for L 0.5 80 (want 0, 80): PASS
+(3B) report on planted records: exit 1, modes needed for L 0.5 80 (want 1, 80): PASS
+(3C) report on planted records: exit 0, modes needed for L 0.5 None (want 0, None): PASS
+(3D) report on planted records: exit 0, modes needed for L 0.5 80 (want 0, 80): PASS
+21:55:47   resuming t from its checkpoint (pass 3, 0 + 0 calls)
+(4) resume rules: other centre refused PASS; pass-3 result recovered PASS; only converged and saved results reused PASS
+selftest --mutate phase_gp: FAIL
+== run0 selftest control lenient: tau_map_gain.py selftest --mutate lenient 2026-11-19 21:55:51 UTC
+(1a) identity map: 0 differing words of 514 (PASS)
+(1b) uniform -> arctan(1.9, 0.6), M 32 -> 40: max error 2.7e-32 of the largest value (PASS; < 1e-28)
+(1b) uniform -> arctan(0.4, 0.3), M 32 -> 24: max error 3.8e-32 of the largest value (PASS; < 1e-28)
+(1b) arctan(1.9, 0.6) -> uniform, M 32 -> 48: max error 2.1e-32 of the largest value (PASS; < 1e-28)
+(1b) arctan(1.9, 0.6) -> arctan(1.2, 0.8), M 32 -> 32: max error 2.0e-32 of the largest value (PASS; < 1e-28)
+(1b) uniform -> arctan(fl(pi/4), 0.5), M 32 -> 32, a target 1e-17 from a source point: max error 4.6e-32 of the largest value (PASS; < 1e-28)
+(2a) mapped d/dtheta, arctan(1.9, 0.7), M 128: max error 2.9e-31 of the largest derivative (PASS; < 1e-26)
+(2b) mapped phase row: its sum differs from the uniform grid's by 8.7e-33 of sum |w p1| (PASS; < 1e-26)
+(3A) report on planted records: exit 0, modes needed for L 0.5 80 (want 0, 80): PASS
+(3B) report on planted records: exit 0, modes needed for L 0.5 80 (want 1, 80): FAIL
+(3C) report on planted records: exit 0, modes needed for L 0.5 80 (want 0, None): FAIL
+(3D) report on planted records: exit 0, modes needed for L 0.5 80 (want 0, 80): PASS
+21:55:52   resuming t from its checkpoint (pass 3, 0 + 0 calls)
+(4) resume rules: other centre refused PASS; pass-3 result recovered PASS; only converged and saved results reused PASS
+selftest --mutate lenient: FAIL
+== run0 selftest control unbound: tau_map_gain.py selftest --mutate unbound 2026-11-19 21:55:55 UTC
+(1a) identity map: 0 differing words of 514 (PASS)
+(1b) uniform -> arctan(1.9, 0.6), M 32 -> 40: max error 2.7e-32 of the largest value (PASS; < 1e-28)
+(1b) uniform -> arctan(0.4, 0.3), M 32 -> 24: max error 3.8e-32 of the largest value (PASS; < 1e-28)
+(1b) arctan(1.9, 0.6) -> uniform, M 32 -> 48: max error 2.1e-32 of the largest value (PASS; < 1e-28)
+(1b) arctan(1.9, 0.6) -> arctan(1.2, 0.8), M 32 -> 32: max error 2.0e-32 of the largest value (PASS; < 1e-28)
+(1b) uniform -> arctan(fl(pi/4), 0.5), M 32 -> 32, a target 1e-17 from a source point: max error 4.6e-32 of the largest value (PASS; < 1e-28)
+(2a) mapped d/dtheta, arctan(1.9, 0.7), M 128: max error 2.9e-31 of the largest derivative (PASS; < 1e-26)
+(2b) mapped phase row: its sum differs from the uniform grid's by 8.7e-33 of sum |w p1| (PASS; < 1e-26)
+(3A) report on planted records: exit 0, modes needed for L 0.5 80 (want 0, 80): PASS
+(3B) report on planted records: exit 1, modes needed for L 0.5 80 (want 1, 80): PASS
+(3C) report on planted records: exit 0, modes needed for L 0.5 None (want 0, None): PASS
+(3D) report on planted records: exit 0, modes needed for L 0.5 80 (want 0, 80): PASS
+21:55:57   resuming t from its checkpoint (pass 3, 0 + 0 calls)
+21:55:57   resuming t from its checkpoint (pass 3, 0 + 0 calls)
+(4) resume rules: other centre refused FAIL; pass-3 result recovered PASS; only converged and saved results reused FAIL
+selftest --mutate unbound: FAIL
+== run3 solve 1:384,0.4:192,0.5:192: tau_map_gain.py solve D:/choptuik-large-d-raw/T82-win/states/lowDhm_x0.000157-0.975_D3.0475_M384.npz --pairs 1:384,0.4:192,0.5:192 --threads 8 --states D:/choptuik-large-d-raw/I1033-win2/states --out D:/choptuik-large-d-raw/I1033-win2/solve_D3.0475.jsonl 2026-11-19 21:55:59 UTC
+21:56:00 tmap_lowDhm_x0.000157-0.975_D3.0475_M384_L1_M384_s0.0000: D 3.0475, from M 384 to the arctan map L 1.0 at s0 0.000, M' 384
