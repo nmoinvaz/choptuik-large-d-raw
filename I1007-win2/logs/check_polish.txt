@@ -13,3 +13,6 @@ exit 0
 $ ... --mutate (must fail)
 r_5 polish 0.1150 (approach 0.1050) vs XI 0.125 AP 0.11499999999999999: FAIL
 exit 1
+$ check_polish.py logs/hier_nb_M9_polish5_0.12_approach5_0.105_v3_win2.log 0.12 0.105
+r_5 polish 0.1200 (approach 0.1050) vs XI 0.12 AP 0.105: ok
+r_5 polish 0.1200 (approach 0.1050) vs XI 0.13 AP 0.11499999999999999: FAIL

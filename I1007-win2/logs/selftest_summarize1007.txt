@@ -1,0 +1,13 @@
+# summarize1007.py checks, mutations of the 0.115 log, 07:34:30 UTC (count check now against the level 5 (top) stop lines)
+$ summarize1007.py 0.105 (real log)
+exit 0
+$ summarize1007.py 0.115 (real log)
+exit 0
+$ summarize1007.py 0.12 (real log)
+exit 0
+$ end value changed (r_5 1.2e+00 -> 9.9e+00 in the F_5/F_1 line): must trip END CHECK
+END CHECK: r_5 printed 9.9e+00 but the last level 5 solved line says 1.17e+00
+exit 1
+$ one level 5 solved line renamed: must trip COUNT CHECK
+COUNT CHECK FAILED: 2 rows against 3 level 5 (top) stop lines
+exit 1

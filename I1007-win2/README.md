@@ -37,3 +37,36 @@ The control that does what the first one meant to do: the 0.11/0.105 command fro
 `logs/hier_nb_M9_polish5_0.11_approach5_0.105_v3_ctrl_win2.log`, truncated on purpose), compared with #999's 0.11 log over the lines before that stop line (stop lines and trial lines dropped, seconds and addresses
 and the radii line's polish radius normalized; `control1007.py`): **239 lines equal, so ec7cfea7 reproduces efad7afd's numerics up to level 5's approach stop; with the other approach radius (#999's 0.10 log) it
 differs at the radii line, and with one line dropped it differs at line 21** (`logs/control1007.txt`). The control run went beyond what the scan needs (3.7 min of two threads) and is not part of the table.
+
+## Results (runs from 06:31:31 UTC; XI 0.115 ended 06:54:51 (exit 0, 1400 s), 0.12 started 06:54:51 and ended 07:22:12 (exit 0, 1640 s), 0.105 killed at its 3600 s cap 07:31:32)
+
+No cap extension fired (no first level-5 solve below 1e-6), so no M = 9 zero solve. No Traceback in any log. Nothing of this task runs. Tables from `summarize1007.py` (`logs/summary_polish5_v3.txt`;
+its checks and their mutations: `logs/selftest_summarize1007.txt`); the `level radii` lines are checked (`logs/check_polish.txt`).
+
+**Level-5 solves against XI at the fixed approach radius 0.105** (|r_5| at each solve's end; the 0.11 row is #999's run from efad7afd, old log format, no stop reasons; the 0.11 run's first 239 lines were reproduced from ec7cfea7):
+
+| XI | solve 1 | solve 2 | solve 3 | later solves | level-5 solves | level 3 | the run's end |
+|---|---|---|---|---|---|---|---|
+| 0.105 (= AP) | 8.25 | 5.15 | 6.32 | 0.252, 9.14e-3, 9.07e-3, 14.7 (8th unfinished) | 7 | it 0 9.31e3 (lam 0.5), it 1 757 (lam 1), it 2 both trials rejected (897, 4.35e5) | killed at the cap, no FIXED-A |
+| 0.11 (#999) | 7.43 | **1.17e-4** | 6.73e-4 | 3.92e-4, 3.37e-4 | 5 | solved at 7.57 | 2270 s, r_1 +5.7e5 |
+| 0.115 | 9.07 | 1.44 | 1.17 | | 3 | one trial (lam 1) 2.523e4 -> 2.229e4, then stop | 1387 s, r_1 -7.3e8 + 3.9e8 i, r_3 2.2e4, r_5 1.2, r_7 6.6e-8, r_9 7.3e-10 |
+| 0.12 | 12.3 | 5.12 | 4.10 | | 3 | one trial (lam 1) 5.249e4 -> 3.890e4, then stop | 1631 s, r_1 -2.3e9 - 5.2e8 i, r_3 3.9e4, r_5 4.1, r_7 1.1e-7, r_9 3.3e-9 |
+
+**Stop reasons** (all stops of the runs, `--verbose=2`): level 5's stops are "a fresh Jacobian no longer halves |g|" in 22 of 24 stages, "every trial rejected with a fresh Jacobian (noise floor)" in 2
+(0.105's fifth polish stage, 9.14e-3, and the third approach stage of 0.115 and of 0.12, which is counted in the 24: 8 + 7 at 0.105, 3 + 3 at 0.115, 3 + 3 at 0.12 = 27 stages; the exact counts by stage are in the
+tally below). No level 5, 7 or 9 stop was "maxit", "below --tol" or "at the recorded floor"; level 9's polish stops are all "step below rounding".
+
+| run | level 5 low | level 5 top | level 3 top |
+|---|---|---|---|
+| 0.105 | 8 x no longer halves | 6 x no longer halves, 1 x every trial rejected | (still iterating at the cap) |
+| 0.115 | 2 x no longer halves, 1 x every trial rejected | 3 x no longer halves | 1 x no longer halves, at |r_3| 2.23e4 after one accepted trial (ratio 0.88) |
+| 0.12 | 2 x no longer halves, 1 x every trial rejected | 3 x no longer halves | 1 x no longer halves, at |r_3| 3.89e4 after one accepted trial (ratio 0.74) |
+
+**Level 3's end** (the second question of #999): at XI 0.115 and 0.12 level 3 makes one accepted trial and stops by the halving rule at |r_3| 2.2e4 and 3.9e4, where the accepted trial reduced |g| by 0.88 and 0.74, not
+by half, and the stop is therefore not a noise floor but the Newton step's poor reduction. At XI 0.105 level 3 does descend, 1.05e5 -> 9.31e3 -> 757 (reductions 0.089 and 0.081, the first at lam 0.5), and its third
+iteration had both trials rejected (897 against 757, and 4.35e5) before the cap ended the run, so a longer cap might have shown more; #999's 0.11 run ended on its own at 7.57.
+
+**Reading, with its limits.** At the fixed approach radius 0.105 the first level-5 solve is 7.4 to 12 for XI 0.105 to 0.12, so the polish radius moves it little. The second solve is 4 orders lower at XI 0.11 (1.17e-4) than
+at 0.105 (5.15), 0.115 (1.44) or 0.12 (5.12), and level 3's end is lowest there too (7.57 against 757 unfinished, 2.2e4 and 3.9e4). So the best XI is a narrow minimum near 0.11 or a path-dependent luck of that one run;
+two runs at 0.005 on each side do not show which, and no XI reaches 1e-6. Counts of level-5 solves differ between runs (3, 5, 7), because level 3 stops sooner at 0.115 and 0.12, so "lowest |r_5|" is not compared across them.
+Each point is a single run. The integrator's output radii include XI (control section), so XI also moves rounding at the 1e-10 level, which does not touch values at 1e-4 and above.
