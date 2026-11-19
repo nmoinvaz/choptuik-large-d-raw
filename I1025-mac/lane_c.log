@@ -19,3 +19,35 @@
   C[Kk + 1] = (Kk * C[Kk] - (n - 1) * (cs(C, A2, Kk) - C[Kk]) + 2 * L * cs(C, G, Kk)) / (Kk + 1)
   aG = cs(A, Q2, Kk) + (n - 1) * (A[Kk] - cs(A, A2, Kk)) + 2 * L * cs(A, G, Kk)
   ax = a * ((p * p + m * m) + 2 * L * g + (n - 1) * (1 - a2)) / (2 * x)
+  mx = (-self.D(m, omega) - cx * m + c * m / x - pc + lt) / (x + c)
+{"D": 13.0, "l": 1, "kc": 31, "kappa": 0.7, "rk": 1, "reg": 0.0, "u0": 0.04, "Ks": 30, "src": "l1kc31L1025", "Delta": 0.9657534454884729, "Delta_src": 0.9657535011477957, "F": 1.9296340396794817e-10, "F_start": 1.9301693672791722e-10, "steps": 1665, "constraint": 9.075245284395357e-05, "dDelta_dF": 81738293.30341007, "lam_gauge": 0.8265608613176688, "lam_guess": 2.68, "lam": 2.6841484641099442, "gamma": 0.3725576335925953, "n_eval": 11, "n_signchanges": 1, "seconds": 247}
+  px = (-self.D(p, omega) + cx * p - c * p / x + pc - lt) / (x - c)
+{"D": 14.0, "l": 1, "kc": 31, "kappa": 0.7, "rk": 1, "reg": 0.0, "u0": 0.04, "Ks": 30, "src": "l1kc31L1025", "Delta": 0.9714908647244421, "Delta_src": 0.9714908647819005, "F": 2.416684322823171e-10, "F_start": 2.418268090477446e-10, "steps": 1608, "constraint": 0.0006312758264807905, "dDelta_dF": 758114398.800415, "lam_gauge": 0.8267506572494318, "lam_guess": 2.6841484641099442, "lam": 2.5652515351739726, "gamma": 0.38982531977402407, "n_eval": 19, "n_signchanges": 1, "seconds": 232}
+== exit 0
+== 2026-11-19 14:21:43 ell_refine.py l1kc39L1025 39 l1kc47L1025 47 1 13.5,14 2.63 --kappa 0.7 --u0 0.04 --Ks 30 --tol 1e-12
+  cx = c * ((n - 1) * (a2 - 1) - 2 * L * g) / x
+  ax = a * ((p * p + m * m) + 2 * L * g + (n - 1) * (1 - a2)) / (2 * x)
+  lt = L * c * a2 * q / x
+  px = (-self.D(p, omega) + cx * p - c * p / x + pc - lt) / (x - c)
+  mx = (-self.D(m, omega) - cx * m + c * m / x - pc + lt) / (x + c)
+  g = a2 * q * q
+  a2 = a * a
+  cx = c * ((n - 1) * (a2 - 1) - 2 * L * g) / x
+  ax = a * ((p * p + m * m) + 2 * L * g + (n - 1) * (1 - a2)) / (2 * x)
+  px = (-self.D(p, omega) + cx * p - c * p / x + pc - lt) / (x - c)
+  mx = (-self.D(m, omega) - cx * m + c * m / x - pc + lt) / (x + c)
+  lt = L * c * a2 * q / x
+  px = (-self.D(p, omega) + cx * p - c * p / x + pc - lt) / (x - c)
+  ax = a * ((p * p + m * m) + 2 * L * g + (n - 1) * (1 - a2)) / (2 * x)
+  px = (-self.D(p, omega) + cx * p - c * p / x + pc - lt) / (x - c)
+  mx = (-self.D(m, omega) - cx * m + c * m / x - pc + lt) / (x + c)
+  mx = (-self.D(m, omega) - cx * m + c * m / x - pc + lt) / (x + c)
+  cx = c * ((n - 1) * (a2 - 1) - 2 * L * g) / x
+  ax = a * ((p * p + m * m) + 2 * L * g + (n - 1) * (1 - a2)) / (2 * x)
+{"D": 13.5, "l": 1, "kc": 47, "kappa": 0.7, "rk": 1, "reg": 0.0, "u0": 0.04, "Ks": 30, "src": "l1kc39L1025", "Delta": 0.9676330577567794, "Delta_src": 0.9676342604515177, "F": 2.4963358689666423e-10, "F_start": 3.0923067747883063e-06, "steps": 2479, "constraint": 1.2121762790011303e-05, "dDelta_dF": 219405441.6865651, "lam_gauge": 0.8265671659324723, "lam_guess": 2.63, "lam": 2.6284135561345927, "gamma": 0.3804576329573584, "n_eval": 13, "n_signchanges": 1, "seconds": 587}
+  aG = cs(A, Q2, Kk) + (n - 1) * (A[Kk] - cs(A, A2, Kk)) + 2 * L * cs(A, G, Kk)
+  C[Kk + 1] = (Kk * C[Kk] - (n - 1) * (cs(C, A2, Kk) - C[Kk]) + 2 * L * cs(C, G, Kk)) / (Kk + 1)
+  aG = cs(A, Q2, Kk) + (n - 1) * (A[Kk] - cs(A, A2, Kk)) + 2 * L * cs(A, G, Kk)
+{"D": 14.0, "l": 1, "kc": 47, "kappa": 0.7, "rk": 1, "reg": 0.0, "u0": 0.04, "Ks": 30, "src": "l1kc39L1025", "Delta": 0.9714861425764711, "Delta_src": 0.9714879959109544, "F": 2.368924124949813e-10, "F_start": 7.263017326630344e-06, "steps": 2434, "constraint": 3.5135531228912315e-05, "dDelta_dF": 568751088.6222837, "lam_gauge": 0.8267491663382618, "lam_guess": 2.6284135561345927, "lam": 2.5656419546158022, "gamma": 0.3897659991882021, "n_eval": 20, "n_signchanges": 1, "seconds": 648}
+== exit 0
+== 2026-11-19 14:42:22 ell_leap.py l1kc47L1025p 1 47 data/sol_l1kc47L1025_D13.5000.npy 13.5 data/sol_l1kc47L1025_D14.0000.npy 14 15 0.25 --tol 1e-12 --cmax 1e-2
