@@ -9,8 +9,10 @@
 3. with --wt: each result JSON the runs wrote to WORKTREE/solver/inner_pert/data (tracked there from the Mac's) against HEAD's, leaf by
    leaf: equal, or the largest relative difference of the numbers (extra, not a criterion);
 4. c2's sign and c2 + lambda_1 at M = 1, 3, 5, read from l2_c2_M{1,3,5}.log (printed, not a pass/fail check).
---mutate runs the same checks on three altered copies of this folder's text (a digit of c2 in l2_c2_M5.log, a digit in l2_c2_summary.log's
-table, the exit line of l2_c2_checks_main.log): each must be reported as a difference, and the script then exits 1."""
+--mutate runs the same checks on three altered copies of this folder's text (a digit of c2 in l2_c2_M1.log, a digit of the M = 3 control line in
+l2_c2_summary.log, the exit line of l2_c2_checks_main.log): each must be reported (an exit or verdict check that was ok turns to DIFFER,
+or a log's count of differing lines rises: most logs differ from the Mac's already, so a flip alone would not show), and the script
+then exits 1."""
 import json, os, re, subprocess, sys
 
 HERE = os.path.dirname(os.path.abspath(__file__)); MAC = sys.argv[1]
@@ -42,10 +44,10 @@ def read(name, mut):
     if not os.path.exists(p):
         return None
     t = open(p).read()
-    if mut == "digit" and name == "l2_c2_M5":
-        t = re.sub(r"(l2: c2 = -3\.04584)1", r"\g<1>2", t, count=1)
+    if mut == "digit" and name == "l2_c2_M1":       # a line equal to the Mac's at base: its differing-line count must rise by one
+        t = t.replace("l2: c2 = -7.959089", "l2: c2 = -7.959088", 1)
     if mut == "table" and name == "l2_c2_summary":
-        t = t.replace("| 3 | -2.4825 |", "| 3 | -2.4826 |", 1)
+        t = t.replace("|c2_ctrl - c2| = 5.647", "|c2_ctrl - c2| = 5.648", 1)
     if mut == "exit" and name == "l2_c2_checks_main":
         t = re.sub(r"exit 1\s*$", "exit 0\n", t)
     return t
@@ -188,10 +190,12 @@ if not MUT:
     sys.exit(1 if bad or missing else 0)
 else:
     print("== controls: each altered copy must be reported")
+    ndiff = lambda d: int(m.group(1)) if (m := re.search(r"; (\d+) differ", d)) else 0
     base = {l: ok for l, ok, _ in checks()}
+    base_n = {l: ndiff(d) for l, _, d in checks()}
     caught = 0
     for mut in ("digit", "table", "exit"):
-        flipped = [l for l, ok, _ in checks(mut) if ok is False and base.get(l) is not False]
+        flipped = [l for l, ok, d in checks(mut) if (ok is False and base.get(l) is True) or (ndiff(d) > base_n.get(l, 0))]
         print(f"control {mut}: {len(flipped)} check(s) now reported: {flipped}")
         caught += bool(flipped)
     print(f"controls reported: {caught} of 3 (a control that is not reported would be a defect of this script)")

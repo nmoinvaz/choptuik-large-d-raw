@@ -1,0 +1,130 @@
+== c2 and lambda_1 (l2_c2_M{1,3,5}.log), rpi5 vs Mac (relative difference)
+M 1: l2 -7.959089 vs -7.959089 (0.0e+00), l2_ctrl -11.037374 vs -11.037374 (0.0e+00), l0 7.809440 vs 7.809440 (0.0e+00), sym 2.728833 vs 2.728833 (0.0e+00); c2 + lambda_1(l0) -0.149649 vs -0.149649
+M 3: l2 -2.482519 vs -2.482519 (0.0e+00), l2_ctrl -8.129231 vs -8.129231 (0.0e+00), l0 2.504136 vs 2.504136 (0.0e+00), sym 2.881863 vs 2.881863 (0.0e+00); c2 + lambda_1(l0) +0.021617 vs +0.021617
+M 5: l2 -3.045765 vs -3.045841 (2.5e-05), l2_ctrl -25.562085 vs -25.562628 (2.1e-05), l0 3.044200 vs 3.044279 (2.6e-05), sym 3.041506 vs 3.041583 (2.5e-05); c2 + lambda_1(l0) -0.001565 vs -0.001562
+== logs: sizes of the differences (timings masked)
+l2_c2_forcing: 13 lines equal; 0 lines with the same text and other numbers (largest relative 0.0e+00); 0 lines with other text
+l2_c2_forcing_p1: 15 lines equal; 0 lines with the same text and other numbers (largest relative 0.0e+00); 0 lines with other text
+l2_c2_checks_main: 1 lines equal; 9 lines with the same text and other numbers (largest relative 6.8e-01); 0 lines with other text
+      6.8e-01  line 8  number 8: 1.3e-13 vs 4.1e-13; diagnostic, l2: summed series - right-hand side by radius: |xi| 0.04: 
+      6.7e-01  line 9  number 8: 4.9e-12 vs 1.5e-11; diagnostic, l2_ctrl: summed series - right-hand side by radius: |xi| 0
+l2_c2_M1_planted: 2 lines equal; 7 lines with the same text and other numbers (largest relative 1.1e+00); 1 lines with other text
+      1.1e+00  line 8  number 7: 8.59e-12 vs -1.19e-12; lam it 7: lam 1.769122008426  g -2.841913e-04  Sch sv [1.23165776e+04 
+      3.6e-01  line 7  number 7: -3.36e-11 vs -2.16e-11; lam it 6: lam 1.769122008460  g +1.110077e-03  Sch sv [1.23165776e+04 
+      text  rpi5: lam it 2: lam 1.804689527996  g +1.363787e+06  Sch sv [13437.15571995   147.39072751]  r_H of the deflated directions 0.0e+00  step -3.10e-02 <t>
+            Mac:  lam it 2: lam 1.804689533585  g +1.363788e+06  Sch sv [13437.1559049    147.39075356]  r_H of the deflated directions 0.0e+00  step -3.10e-02 <t>
+l2_c2_M1: 6 lines equal; 2 lines with the same text and other numbers (largest relative 3.1e-02); 2 lines with other text
+      3.1e-02  line 3  number 1: 5.41e-05 vs 5.24e-05; mode d_s Z0: corrected jump 5.41e-05 against |Sch| |f2_1| 1.05e+06 <t>
+      1.7e-11  line 1  number 8: 1801.78 vs 1801.78; M 1: Sch(2) [[-7795.747650429712, 20252.463855310878], [-2989.39603366
+      text  rpi5:    F_lambda forcing against the d/dlambda component: raw difference 1.46e-01; after the local field's homogeneous part 9.83e-02; ell projections differ by 5.58e
+            Mac:     F_lambda forcing against the d/dlambda component: relative difference 1.46e-01 <t>
+      text  rpi5: wrote <dir>/l2_c2_M1_xi0.2_l2-l2_ctrl-l0-sym.json <t>
+            Mac:  wrote <dir>/l2_c2_M1_xi0.2.json <t>
+l2_c2_M3: 5 lines equal; 3 lines with the same text and other numbers (largest relative 8.4e-01); 2 lines with other text
+      8.4e-01  line 2  number 3: 0.00028 vs 4.4e-05; deflation of e|l and the forced directions: max |r_H| of the deflated 
+      2.1e-01  line 1  number 9: 1.4e-09 vs 1.1e-09; M 3: Sch(2) [[-43051.81042622788, 76918.01422473267], [38045.853889902
+      text  rpi5:    F_lambda forcing against the d/dlambda component: raw difference 1.72e-01; after the local field's homogeneous part 5.32e-03; ell projections differ by 2.60e
+            Mac:     F_lambda forcing against the d/dlambda component: relative difference 1.72e-01 <t>
+      text  rpi5: wrote <dir>/l2_c2_M3_xi0.2_l2-l2_ctrl-l0-sym.json <t>
+            Mac:  wrote <dir>/l2_c2_M3_xi0.2.json <t>
+l2_c2_M5: 1 lines equal; 7 lines with the same text and other numbers (largest relative 6.2e-01); 4 lines with other text
+      6.2e-01  line 3  number 1: 2.31 vs 6.11; mode d_s Z0: corrected jump 2.31e+00 against |Sch| |f2_1| 7.50e+06 <t>
+      5.1e-01  line 2  number 2: 4100 vs 2000; deflation of e|l and the forced directions: max |r_H| of the deflated 
+      text  rpi5:    F_lambda forcing against the d/dlambda component: raw difference 1.66e-01; after the local field's homogeneous part 1.26e-04; ell projections differ by 1.06e
+            Mac:     F_lambda forcing against the d/dlambda component: relative difference 1.66e-01 <t>
+      text  rpi5: wrote <dir>/l2_c2_M5_xi0.2_l2-l2_ctrl-l0-sym.json <t>
+            Mac:  wrote <dir>/l2_c2_M5_xi0.2.json <t>
+      text  rpi5: planted lambda_1 (M = 5), l0: 3.0442 against 3.0324, 0.39%: OK (bar 1%) <t>
+            Mac:  (none)
+l2_c2_M1_G: 8 lines equal; 2 lines with the same text and other numbers (largest relative 7.7e-03); 0 lines with other text
+      7.7e-03  line 3  number 1: 5.2e-05 vs 5.16e-05; mode d_s Z0: corrected jump 5.20e-05 against |Sch| |f2_1| 1.05e+06 <t>
+      1.7e-11  line 1  number 8: 1801.78 vs 1801.78; M 1: Sch(2) [[-7795.747650429712, 20252.463855310878], [-2989.39603366
+l2_c2_M3_G: 7 lines equal; 3 lines with the same text and other numbers (largest relative 5.5e-01); 0 lines with other text
+      5.5e-01  line 3  number 1: 0.000157 vs 0.000347; mode d_s Z0: corrected jump 1.57e-04 against |Sch| |f2_1| 8.43e+06 <t>
+      5.2e-01  line 2  number 2: 2.7e-05 vs 1.3e-05; deflation of e|l and the forced directions: max |r_H| of the deflated 
+l2_c2_M5_G: 3 lines equal; 7 lines with the same text and other numbers (largest relative 7.5e-01); 2 lines with other text
+      7.5e-01  line 2  number 3: 4.8 vs 1.2; deflation of e|l and the forced directions: max |r_H| of the deflated 
+      5.7e-01  line 3  number 1: 3.89 vs 9.15; mode d_s Z0: corrected jump 3.89e+00 against |Sch| |f2_1| 7.50e+06 <t>
+      text  rpi5: planted lambda_1 (M = 5), l0: 3.0443 against 3.0324, 0.39%: OK (bar 1%) <t>
+            Mac:  (none)
+      text  rpi5: planted lambda_1 (M = 5), sym: 3.0416 against 3.0324, 0.30%: OK (bar 1%) <t>
+            Mac:  (none)
+l2_c2_M5_mutate_gsign: 1 lines equal; 5 lines with the same text and other numbers (largest relative 6.6e-01); 3 lines with other text
+      6.6e-01  line 3  number 1: 2.91 vs 8.54; mode d_s Z0: corrected jump 2.91e+00 against |Sch| |f2_1| 7.50e+06 <t>
+      6.1e-01  line 2  number 2: 630 vs 1600; deflation of e|l and the forced directions: max |r_H| of the deflated 
+      text  rpi5: planted lambda_1 (M = 5), l0: -3.0443 against 3.0324, 200.39%: BAD (bar 1%) <t>
+            Mac:  PASS
+      text  rpi5: planted lambda_1 (M = 5), sym: -3.0416 against 3.0324, 200.30%: BAD (bar 1%) <t>
+            Mac:  (none)
+      text  rpi5: FAIL
+            Mac:  (none)
+l2_c2_summary: 5 lines equal; 11 lines with the same text and other numbers (largest relative 6.2e-01); 0 lines with other text
+      6.2e-01  line 13  number 2: 3.1e-07 vs 8.2e-07; mode (M = 5): corrected jump of d_s Z0 / (|Sch| |f2|) = 3.1e-07: OK (b
+      6.2e-01  line 5  number 10: 3.1e-07 vs 8.2e-07; | 5 | -3.0458 | -3.0474 to -3.0437 | 3.0442 | 3.0415 | -0.0016 | -0.00
+l2_c2_checks_ident: 2 lines equal; 6 lines with the same text and other numbers (largest relative 6.0e-01); 2 lines with other text
+      6.0e-01  line 7  number 5: 2.5e-15 vs 1e-15; 3. G: summed series = right-hand side at |xi| = 0.05; F(0) = 0; droppe
+      3.3e-01  line 4  number 9: 4.5e-14 vs 6.7e-14; 3. l2: summed series = right-hand side at |xi| = 0.05; F(0) = 0; dropp
+      text  rpi5: diagnostic, l2: summed series - right-hand side by radius: |xi| 0.04: 5.1e-12 (series truncation 1e-150); |xi| 0.05: 2.8e-12 (series truncation 3e-101); |xi| 0.
+            Mac:  (none)
+      text  rpi5: diagnostic, l2_ctrl: summed series - right-hand side by radius: |xi| 0.04: 6.4e-10 (series truncation 1e-150); |xi| 0.05: 2.2e-10 (series truncation 3e-101); |x
+            Mac:  (none)
+l2_c2_checks_series: 3 lines equal; 5 lines with the same text and other numbers (largest relative 3.3e-01); 2 lines with other text
+      3.3e-01  line 4  number 9: 4.5e-14 vs 6.7e-14; 3. l2: summed series = right-hand side at |xi| = 0.05; F(0) = 0; dropp
+      3.3e-01  line 3  number 9: 4.5e-14 vs 6.7e-14; 3. l0: summed series = right-hand side at |xi| = 0.05; F(0) = 0; dropp
+      text  rpi5: diagnostic, l2: summed series - right-hand side by radius: |xi| 0.04: 1.0e-06 (series truncation 1e-150); |xi| 0.05: 1.0e-06 (series truncation 3e-101); |xi| 0.
+            Mac:  (none)
+      text  rpi5: diagnostic, l2_ctrl: summed series - right-hand side by radius: |xi| 0.04: 1.0e-06 (series truncation 1e-150); |xi| 0.05: 1.0e-06 (series truncation 3e-101); |x
+            Mac:  (none)
+l2_c2_checks_force: 2 lines equal; 6 lines with the same text and other numbers (largest relative 3.3e-01); 3 lines with other text
+      3.3e-01  line 4  number 9: 4.5e-14 vs 6.7e-14; 3. l2: summed series = right-hand side at |xi| = 0.05; F(0) = 0; dropp
+      3.3e-01  line 3  number 9: 4.5e-14 vs 6.7e-14; 3. l0: summed series = right-hand side at |xi| = 0.05; F(0) = 0; dropp
+      text  rpi5: diagnostic, l2: summed series - right-hand side by radius: |xi| 0.04: 5.1e-12 (series truncation 1e-150); |xi| 0.05: 2.8e-12 (series truncation 3e-101); |xi| 0.
+            Mac:  (none)
+      text  rpi5: diagnostic, l2_ctrl: summed series - right-hand side by radius: |xi| 0.04: 6.4e-10 (series truncation 1e-150); |xi| 0.05: 2.2e-10 (series truncation 3e-101); |x
+            Mac:  (none)
+      text  rpi5: (none)
+            Mac:  exit
+l2_c2_checks_main (section): 1 lines equal; 7 lines with the same text and other numbers (largest relative 3.3e-01); 0 lines with other text
+      3.3e-01  line 4  number 9: 4.5e-14 vs 6.7e-14; 3. l2: summed series = right-hand side at |xi| = 0.05; F(0) = 0; dropp
+      3.3e-01  line 3  number 9: 4.5e-14 vs 6.7e-14; 3. l0: summed series = right-hand side at |xi| = 0.05; F(0) = 0; dropp
+== result JSONs against HEAD's (the Mac's tracked ones), leaf by leaf
+l2_c2_M1_xi0.2_l2-l0-G-sym.json: 40 numeric leaves differ (largest relative 6.8e-03), 0 non-numeric leaves differ
+      6.8e-03  /mode_jump: rpi5 5.20006e-05, Mac 5.16484e-05
+      6.8e-03  /mode_jump_raw: rpi5 5.20006e-05, Mac 5.16484e-05
+      1.1e-10  /G/e2: rpi5 0.0684489, Mac 0.0684489
+l2_c2_M1_xi0.2_l2-l2_ctrl-l0-sym.json: 36 numeric leaves differ (largest relative 3.3e-01), 4 non-numeric leaves differ
+      3.3e-01  /lamcheck: rpi5 0.0982944, Mac 0.146437
+      3.2e-02  /mode_jump: rpi5 5.4081e-05, Mac 5.23506e-05
+      3.2e-02  /mode_jump_raw: rpi5 5.4081e-05, Mac 5.23506e-05
+      other  /corr_l2_lam[0]: rpi5 '-264799.3887932958', Mac 'None'
+      other  /corr_l2_lam[1]: rpi5 '447591.16051385837', Mac 'None'
+l2_c2_M1_xi0.2_planted_lam.json: 1 numeric leaves differ (largest relative 2.0e-12), 0 non-numeric leaves differ
+      2.0e-12  /lam: rpi5 1.76912, Mac 1.76912
+l2_c2_M3_xi0.2_l2-l0-G-sym.json: 43 numeric leaves differ (largest relative 5.5e-01), 0 non-numeric leaves differ
+      5.5e-01  /mode_jump: rpi5 0.000157256, Mac 0.000346752
+      5.3e-01  /deflation_hist[1]: rpi5 2.74935e-05, Mac 1.29296e-05
+      4.2e-01  /deflation_hist[2]: rpi5 8.09468e-06, Mac 1.39422e-05
+l2_c2_M3_xi0.2_l2-l2_ctrl-l0-sym.json: 39 numeric leaves differ (largest relative 9.7e-01), 4 non-numeric leaves differ
+      9.7e-01  /lamcheck: rpi5 0.00531658, Mac 0.171545
+      8.4e-01  /deflation_hist[2]: rpi5 0.000280453, Mac 4.40472e-05
+      6.3e-01  /mode_jump_raw: rpi5 0.00337424, Mac 0.00123352
+      other  /corr_l2_lam[0]: rpi5 '2723714.3801095746', Mac 'None'
+      other  /corr_l2_lam[1]: rpi5 '4504578.076949188', Mac 'None'
+l2_c2_M5_xi0.2_l0-sym_gsign.json: 28 numeric leaves differ (largest relative 1.0e+00), 0 non-numeric leaves differ
+      1.0e+00  /gk/0[1]: rpi5 0, Mac -1.50463e-36
+      6.6e-01  /mode_jump: rpi5 2.90991, Mac 8.53578
+      6.1e-01  /deflation_hist[1]: rpi5 626.026, Mac 1588.52
+l2_c2_M5_xi0.2_l2-l0-G-sym.json: 45 numeric leaves differ (largest relative 1.0e+00), 0 non-numeric leaves differ
+      1.0e+00  /gk/0[1]: rpi5 0, Mac -1.50463e-36
+      7.6e-01  /deflation_hist[2]: rpi5 4.75844, Mac 1.16154
+      7.0e-01  /deflation_hist[3]: rpi5 0.485161, Mac 1.62009
+l2_c2_M5_xi0.2_l2-l2_ctrl-l0-sym.json: 41 numeric leaves differ (largest relative 1.0e+00), 4 non-numeric leaves differ
+      1.0e+00  /gk/0[1]: rpi5 0, Mac -1.50463e-36
+      1.0e+00  /lamcheck: rpi5 0.000125701, Mac 0.166405
+      6.2e-01  /mode_jump: rpi5 2.31039, Mac 6.11425
+      other  /corr_l2_lam[0]: rpi5 '1931961.1814385315', Mac 'None'
+      other  /corr_l2_lam[1]: rpi5 '4352739.324061029', Mac 'None'
+l2_c2_forcing.json: 0 numeric leaves differ (largest relative 0.0e+00), 2 non-numeric leaves differ
+      other  /symbols/C: rpi5 'C_k = d^k c/dt^k at fixed s', Mac 'c..c_ttt at fixed s'
+      other  /symbols/P: rpi5 'P_k = d^k Phi/dt^k at fixed s', Mac 'Phi_t..Phi_tttt at fixed s'
+l2_c2_forcing_p1.json: 0 numeric leaves differ (largest relative 0.0e+00), 0 non-numeric leaves differ

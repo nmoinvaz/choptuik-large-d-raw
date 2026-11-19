@@ -1,0 +1,212 @@
+== checks (exits, verdicts, the Mac's logs)
+ok      l2_mode_flat: exit 0, verdict PASS
+ok      l2_mode_check: exit 0, verdict PASS
+ok      l2_mode_check_curv: exit 1, verdict FAIL
+ok      l2_mode_first_order: exit 0, verdict PASS
+ok      l2_mode_first_order_print: exit 0, verdict PASS
+ok      l2_c2_forcing: exit 0, verdict PASS
+ok      l2_c2_forcing_p1: exit 0, verdict PASS
+ok      l2_c2_checks_main: exit 1, verdict FAIL
+ok      l2_c2_checks_ident: exit 1, verdict FAIL
+ok      l2_c2_checks_series: exit 1, verdict FAIL
+ok      l2_c2_checks_force: exit 1, verdict FAIL
+ok      l2_c2_M1_planted: exit 0, verdict PASS
+ok      l2_c2_M1: exit 0, verdict PASS
+ok      l2_c2_M3: exit 0, verdict PASS
+ok      l2_c2_M5: exit 0, verdict PASS
+ok      l2_c2_M1_G: exit 0, verdict PASS
+ok      l2_c2_M3_G: exit 0, verdict PASS
+ok      l2_c2_M5_G: exit 0, verdict PASS
+ok      l2_c2_M5_mutate_gsign: exit 1
+ok      l2_c2_summary: exit 0, verdict PASS
+ok      l2_c2_forcing = I1010-mac line by line
+ok      l2_c2_forcing_p1 = I1010-mac line by line
+DIFFER  l2_c2_checks_main = I1010-mac line by line  [11 lines vs 11; 9 differ
+      line 1
+        rpi5: 1. graph evaluator = SymForce (series orders < 60, and right-hand side at xi0): series y 1.7e-15, series c 2.2e-15, rhs 6.8e-13 (< 1e-11)  (as required)
+        Mac:  1. graph evaluator = SymForce (series orders < 60, and right-hand side at xi0): series y 1.8e-15, series c 1.5e-15, rhs 4.7e-13 (< 1e-11)  (as required)
+      line 2
+        rpi5: 2. l2_mode's l = 0 forcing, converted = FIRST_ORDER's s-translation breaking (untruncated, random data): max relative difference 1.2e-15 (< 1e-9)  (as required)
+        Mac:  2. l2_mode's l = 0 forcing, converted = FIRST_ORDER's s-translation breaking (untruncated, random data): max relative difference 1.1e-15 (< 1e-9)  (as required)
+      line 3
+        rpi5: 3. l0: summed series = right-hand side at |xi| = 0.05; F(0) = 0; dropped negative powers: 3.5e-12 (< 1e-10); |F(0)| 0.0e+00; dropped 4.5e-14 (< 1e-12); 196 nodes  (as required)
+        Mac:  3. l0: summed series = right-hand side at |xi| = 0.05; F(0) = 0; dropped negative powers: 2.6e-12 (< 1e-10); |F(0)| 0.0e+00; dropped 6.7e-14 (< 1e-12); 196 nodes  (as required)
+      line 4
+        rpi5: 3. l2: summed series = right-hand side at |xi| = 0.05; F(0) = 0; dropped negative powers: 2.8e-12 (< 1e-10); |F(0)| 0.0e+00; dropped 4.5e-14 (< 1e-12); 196 nodes  (as required)
+        Mac:  3. l2: summed series = right-hand side at |xi| = 0.05; F(0) = 0; dropped negative powers: 2.1e-12 (< 1e-10); |F(0)| 0.0e+00; dropped 6.7e-14 (< 1e-12); 196 nodes  (as required)]
+DIFFER  l2_c2_M1_planted = I1010-mac line by line  [11 lines vs 11; 8 differ
+      line 1
+        rpi5: lam it 0: lam 2.000000000000  g +1.981591e+07  Sch sv [21995.93109873  1801.77930646]  r_H of the deflated directions 0.0e+00  step -1.19e-01 <t>
+        Mac:  lam it 0: lam 2.000000000000  g +1.981591e+07  Sch sv [21995.93109873  1801.77930649]  r_H of the deflated directions 0.0e+00  step -1.19e-01 <t>
+      line 2
+        rpi5: lam it 1: lam 1.881313309240  g +5.910413e+06  Sch sv [16262.57950787   602.58716025]  r_H of the deflated directions 0.0e+00  step -7.66e-02 <t>
+        Mac:  lam it 1: lam 1.881313305347  g +5.910413e+06  Sch sv [16262.57934853   602.58713161]  r_H of the deflated directions 0.0e+00  step -7.66e-02 <t>
+      line 3
+        rpi5: lam it 2: lam 1.804689527996  g +1.363787e+06  Sch sv [13437.15571995   147.39072751]  r_H of the deflated directions 0.0e+00  step -3.10e-02 <t>
+        Mac:  lam it 2: lam 1.804689533585  g +1.363788e+06  Sch sv [13437.1559049    147.39075356]  r_H of the deflated directions 0.0e+00  step -3.10e-02 <t>
+      line 4
+        rpi5: lam it 3: lam 1.773717269494  g +1.548789e+05  Sch sv [12455.18033116    17.06510674]  r_H of the deflated directions 0.0e+00  step -4.51e-03 <t>
+        Mac:  lam it 3: lam 1.773717269535  g +1.548789e+05  Sch sv [12455.18033244    17.06510694]  r_H of the deflated directions 0.0e+00  step -4.51e-03 <t>]
+DIFFER  l2_c2_M1 = I1010-mac line by line  [11 lines vs 11; 4 differ
+      line 1
+        rpi5: M 1: Sch(2) [[-7795.747650429712, 20252.463855310878], [-2989.3960336680484, 2682.3369070977064]]  singular values [21995.93109873  1801.77930646]  (deflated r_H 0.0e+00) <t>
+        Mac:  M 1: Sch(2) [[-7795.747650419811, 20252.463855305796], [-2989.3960337172816, 2682.3369071358875]]  singular values [21995.93109873  1801.77930649]  (deflated r_H 0.0e+00) <t>
+      line 3
+        rpi5:    mode d_s Z0: corrected jump 5.41e-05 against |Sch| |f2_1| 1.05e+06 <t>
+        Mac:     mode d_s Z0: corrected jump 5.24e-05 against |Sch| |f2_1| 1.05e+06 <t>
+      line 4
+        rpi5:    F_lambda forcing against the d/dlambda component: raw difference 1.46e-01; after the local field's homogeneous part 9.83e-02; ell projections differ by 5.58e-02 <t>
+        Mac:     F_lambda forcing against the d/dlambda component: relative difference 1.46e-01 <t>
+      line 9
+        rpi5: wrote <dir>/l2_c2_M1_xi0.2_l2-l2_ctrl-l0-sym.json <t>
+        Mac:  wrote <dir>/l2_c2_M1_xi0.2.json <t>]
+DIFFER  l2_c2_M3 = I1010-mac line by line  [11 lines vs 11; 5 differ
+      line 1
+        rpi5: M 3: Sch(2) [[-43051.81042622788, 76918.01422473267], [38045.85388990245, -66940.75185389059]]  singular values [117039.50634967    380.13636148]  (deflated r_H 1.4e-09) <t>
+        Mac:  M 3: Sch(2) [[-43051.81042324814, 76918.0142303064], [38045.853894934895, -66940.75185684412]]  singular values [117039.50635554    380.13636719]  (deflated r_H 1.1e-09) <t>
+      line 2
+        rpi5:    deflation of e|l and the forced directions: max |r_H| of the deflated directions by iteration ['5.0e+08', '2.0e-04', '2.8e-04'] <t>
+        Mac:     deflation of e|l and the forced directions: max |r_H| of the deflated directions by iteration ['5.0e+08', '1.7e-04', '4.4e-05'] <t>
+      line 3
+        rpi5:    mode d_s Z0: corrected jump 3.55e-04 against |Sch| |f2_1| 8.43e+06 <t>
+        Mac:     mode d_s Z0: corrected jump 3.86e-04 against |Sch| |f2_1| 8.43e+06 <t>
+      line 4
+        rpi5:    F_lambda forcing against the d/dlambda component: raw difference 1.72e-01; after the local field's homogeneous part 5.32e-03; ell projections differ by 2.60e-03 <t>
+        Mac:     F_lambda forcing against the d/dlambda component: relative difference 1.72e-01 <t>]
+DIFFER  l2_c2_M5 = I1010-mac line by line  [13 lines vs 11; 13 differ
+      line 1
+        rpi5: M 5: Sch(2) [[-42278.74544206214, 76549.12932831755], [29574.544703700725, -53590.299561707296]]  singular values [1.06741909e+05 1.70971833e+01]  (deflated r_H 4.8e-05) <t>
+        Mac:  M 5: Sch(2) [[-42278.79330839179, 76549.15741872336], [29574.555483289267, -53590.259537910075]]  singular values [1.06741931e+05 1.70898451e+01]  (deflated r_H 4.0e-05) <t>
+      line 2
+        rpi5:    deflation of e|l and the forced directions: max |r_H| of the deflated directions by iteration ['1.6e+13', '4.1e+03', '3.9e+01', '4.5e+01'] <t>
+        Mac:     deflation of e|l and the forced directions: max |r_H| of the deflated directions by iteration ['1.6e+13', '2.0e+03', '4.6e+01', '3.5e+01'] <t>
+      line 3
+        rpi5:    mode d_s Z0: corrected jump 2.31e+00 against |Sch| |f2_1| 7.50e+06 <t>
+        Mac:     mode d_s Z0: corrected jump 6.11e+00 against |Sch| |f2_1| 7.50e+06 <t>
+      line 4
+        rpi5:    F_lambda forcing against the d/dlambda component: raw difference 1.66e-01; after the local field's homogeneous part 1.26e-04; ell projections differ by 1.06e-04 <t>
+        Mac:     F_lambda forcing against the d/dlambda component: relative difference 1.66e-01 <t>]
+DIFFER  l2_c2_M1_G = I1010-mac line by line  [11 lines vs 11; 2 differ
+      line 1
+        rpi5: M 1: Sch(2) [[-7795.747650429712, 20252.463855310878], [-2989.3960336680484, 2682.3369070977064]]  singular values [21995.93109873  1801.77930646]  (deflated r_H 0.0e+00) <t>
+        Mac:  M 1: Sch(2) [[-7795.747650419811, 20252.463855305796], [-2989.3960337172816, 2682.3369071358875]]  singular values [21995.93109873  1801.77930649]  (deflated r_H 0.0e+00) <t>
+      line 3
+        rpi5:    mode d_s Z0: corrected jump 5.20e-05 against |Sch| |f2_1| 1.05e+06 <t>
+        Mac:     mode d_s Z0: corrected jump 5.16e-05 against |Sch| |f2_1| 1.05e+06 <t>]
+DIFFER  l2_c2_M3_G = I1010-mac line by line  [11 lines vs 11; 3 differ
+      line 1
+        rpi5: M 3: Sch(2) [[-43051.81042622788, 76918.01422473267], [38045.85388990245, -66940.75185389059]]  singular values [117039.50634967    380.13636148]  (deflated r_H 1.4e-09) <t>
+        Mac:  M 3: Sch(2) [[-43051.81042324814, 76918.0142303064], [38045.853894934895, -66940.75185684412]]  singular values [117039.50635554    380.13636719]  (deflated r_H 1.1e-09) <t>
+      line 2
+        rpi5:    deflation of e|l and the forced directions: max |r_H| of the deflated directions by iteration ['1.4e+08', '2.7e-05', '8.1e-06'] <t>
+        Mac:     deflation of e|l and the forced directions: max |r_H| of the deflated directions by iteration ['1.4e+08', '1.3e-05', '1.4e-05'] <t>
+      line 3
+        rpi5:    mode d_s Z0: corrected jump 1.57e-04 against |Sch| |f2_1| 8.43e+06 <t>
+        Mac:     mode d_s Z0: corrected jump 3.47e-04 against |Sch| |f2_1| 8.43e+06 <t>]
+DIFFER  l2_c2_M5_G = I1010-mac line by line  [13 lines vs 11; 11 differ
+      line 1
+        rpi5: M 5: Sch(2) [[-42278.74544206214, 76549.12932831755], [29574.544703700725, -53590.299561707296]]  singular values [1.06741909e+05 1.70971833e+01]  (deflated r_H 4.8e-05) <t>
+        Mac:  M 5: Sch(2) [[-42278.79330839179, 76549.15741872336], [29574.555483289267, -53590.259537910075]]  singular values [1.06741931e+05 1.70898451e+01]  (deflated r_H 4.0e-05) <t>
+      line 2
+        rpi5:    deflation of e|l and the forced directions: max |r_H| of the deflated directions by iteration ['8.5e+12', '1.3e+03', '4.8e+00', '4.9e-01'] <t>
+        Mac:     deflation of e|l and the forced directions: max |r_H| of the deflated directions by iteration ['8.5e+12', '1.3e+03', '1.2e+00', '1.6e+00'] <t>
+      line 3
+        rpi5:    mode d_s Z0: corrected jump 3.89e+00 against |Sch| |f2_1| 7.50e+06 <t>
+        Mac:     mode d_s Z0: corrected jump 9.15e+00 against |Sch| |f2_1| 7.50e+06 <t>
+      line 5
+        rpi5:    l2: c2 = -3.045820 (left singular vector); phi e1 -3.046451, e2 -3.043754, f2 -3.047474 <t>
+        Mac:     l2: c2 = -3.045839 (left singular vector); phi e1 -3.046469, e2 -3.043773, f2 -3.047491 <t>]
+DIFFER  l2_c2_M5_mutate_gsign = I1010-mac line by line  [10 lines vs 8; 9 differ
+      line 1
+        rpi5: M 5: Sch(2) [[-42278.74544206214, 76549.12932831755], [29574.544703700725, -53590.299561707296]]  singular values [1.06741909e+05 1.70971833e+01]  (deflated r_H 4.8e-05) <t>
+        Mac:  M 5: Sch(2) [[-42278.79330839179, 76549.15741872336], [29574.555483289267, -53590.259537910075]]  singular values [1.06741931e+05 1.70898451e+01]  (deflated r_H 4.0e-05) <t>
+      line 2
+        rpi5:    deflation of e|l and the forced directions: max |r_H| of the deflated directions by iteration ['8.5e+12', '6.3e+02', '5.9e-01', '1.9e+00'] <t>
+        Mac:     deflation of e|l and the forced directions: max |r_H| of the deflated directions by iteration ['8.5e+12', '1.6e+03', '1.4e+00', '2.9e+00'] <t>
+      line 3
+        rpi5:    mode d_s Z0: corrected jump 2.91e+00 against |Sch| |f2_1| 7.50e+06 <t>
+        Mac:     mode d_s Z0: corrected jump 8.54e+00 against |Sch| |f2_1| 7.50e+06 <t>
+      line 4
+        rpi5:    l0: lambda_1 = -3.044284 (left singular vector); phi e1 -3.044826, e2 -3.042508, f2 -3.045705 <t>
+        Mac:     l0: lambda_1 = -3.044257 (left singular vector); phi e1 -3.044799, e2 -3.042482, f2 -3.045678 <t>]
+DIFFER  l2_c2_summary = I1010-mac line by line  [17 lines vs 17; 11 differ
+      line 3
+        rpi5: | 1 | -7.9591 | -9.0861 to -5.9481 | 7.8094 | 2.7288 | -0.1496 | -0.1496 | -11.04 | 5.1e-11 | 9.8e-02 | 5.6e-02 |
+        Mac:  | 1 | -7.9591 | -9.0861 to -5.9481 | 7.8094 | 2.7288 | -0.1496 | -0.1496 | -11.04 | 5.0e-11 | 9.8e-02 | 5.6e-02 |
+      line 4
+        rpi5: | 3 | -2.4825 | -2.5215 to -2.4505 | 2.5041 | 2.8819 | 0.0216 | 0.0216 | -8.13 | 4.2e-11 | 5.3e-03 | 2.6e-03 |
+        Mac:  | 3 | -2.4825 | -2.5215 to -2.4505 | 2.5041 | 2.8819 | 0.0216 | 0.0216 | -8.13 | 4.6e-11 | 5.3e-03 | 2.6e-03 |
+      line 5
+        rpi5: | 5 | -3.0458 | -3.0474 to -3.0437 | 3.0442 | 3.0415 | -0.0016 | -0.0016 | -25.56 | 3.1e-07 | 1.3e-04 | 1.1e-04 |
+        Mac:  | 5 | -3.0458 | -3.0475 to -3.0438 | 3.0443 | 3.0416 | -0.0016 | -0.0016 | -25.56 | 8.2e-07 | 1.3e-04 | 1.1e-04 |
+      line 7
+        rpi5: planted lambda_1 (M = 5), l0 (the converted forcing, the l = 2 code path): 3.0442 against 3.0324, 0.39%: OK (bar 1%)
+        Mac:  planted lambda_1 (M = 5), l0 (the converted forcing, the l = 2 code path): 3.0443 against 3.0324, 0.39%: OK (bar 1%)]
+DIFFER  l2_c2_checks_ident = section '=== --checks --mutate=ident' of l2_c2_checks.log  [10 lines vs 8; 9 differ
+      line 1
+        rpi5: 1. graph evaluator = SymForce (series orders < 60, and right-hand side at xi0): series y 1.7e-15, series c 2.2e-15, rhs 6.8e-13 (< 1e-11)  (as required)
+        Mac:  1. graph evaluator = SymForce (series orders < 60, and right-hand side at xi0): series y 1.8e-15, series c 1.5e-15, rhs 4.7e-13 (< 1e-11)  (as required)
+      line 3
+        rpi5: 3. l0: summed series = right-hand side at |xi| = 0.05; F(0) = 0; dropped negative powers: 3.5e-12 (< 1e-10); |F(0)| 0.0e+00; dropped 4.5e-14 (< 1e-12); 191 nodes  (as required)
+        Mac:  3. l0: summed series = right-hand side at |xi| = 0.05; F(0) = 0; dropped negative powers: 2.6e-12 (< 1e-10); |F(0)| 0.0e+00; dropped 6.7e-14 (< 1e-12); 191 nodes  (as required)
+      line 4
+        rpi5: 3. l2: summed series = right-hand side at |xi| = 0.05; F(0) = 0; dropped negative powers: 2.8e-12 (< 1e-10); |F(0)| 0.0e+00; dropped 4.5e-14 (< 1e-12); 191 nodes  (as required)
+        Mac:  3. l2: summed series = right-hand side at |xi| = 0.05; F(0) = 0; dropped negative powers: 2.1e-12 (< 1e-10); |F(0)| 0.0e+00; dropped 6.7e-14 (< 1e-12); 191 nodes  (as required)
+      line 5
+        rpi5: 3. l2_ctrl: summed series = right-hand side at |xi| = 0.05; F(0) = 0; dropped negative powers: 2.2e-10 (< 1e-10); |F(0)| 0.0e+00; dropped 3.0e-11 (< 1e-12); 841 nodes  (** NOT AS REQUIRED **)
+        Mac:  3. l2_ctrl: summed series = right-hand side at |xi| = 0.05; F(0) = 0; dropped negative powers: 1.7e-10 (< 1e-10); |F(0)| 0.0e+00; dropped 2.9e-11 (< 1e-12); 841 nodes  (** NOT AS REQUIRED **)]
+DIFFER  l2_c2_checks_series = section '=== --checks --mutate=series' of l2_c2_checks.log  [10 lines vs 8; 8 differ
+      line 1
+        rpi5: 1. graph evaluator = SymForce (series orders < 60, and right-hand side at xi0): series y 1.0e-06, series c 2.2e-15, rhs 6.8e-13 (< 1e-11)  (** NOT AS REQUIRED **)
+        Mac:  1. graph evaluator = SymForce (series orders < 60, and right-hand side at xi0): series y 1.0e-06, series c 1.5e-15, rhs 4.7e-13 (< 1e-11)  (** NOT AS REQUIRED **)
+      line 2
+        rpi5: 2. l2_mode's l = 0 forcing, converted = FIRST_ORDER's s-translation breaking (untruncated, random data): max relative difference 1.2e-15 (< 1e-9)  (as required)
+        Mac:  2. l2_mode's l = 0 forcing, converted = FIRST_ORDER's s-translation breaking (untruncated, random data): max relative difference 1.1e-15 (< 1e-9)  (as required)
+      line 3
+        rpi5: 3. l0: summed series = right-hand side at |xi| = 0.05; F(0) = 0; dropped negative powers: 1.0e-06 (< 1e-10); |F(0)| 0.0e+00; dropped 4.5e-14 (< 1e-12); 196 nodes  (** NOT AS REQUIRED **)
+        Mac:  3. l0: summed series = right-hand side at |xi| = 0.05; F(0) = 0; dropped negative powers: 1.0e-06 (< 1e-10); |F(0)| 0.0e+00; dropped 6.7e-14 (< 1e-12); 196 nodes  (** NOT AS REQUIRED **)
+      line 4
+        rpi5: 3. l2: summed series = right-hand side at |xi| = 0.05; F(0) = 0; dropped negative powers: 1.0e-06 (< 1e-10); |F(0)| 0.0e+00; dropped 4.5e-14 (< 1e-12); 196 nodes  (** NOT AS REQUIRED **)
+        Mac:  3. l2: summed series = right-hand side at |xi| = 0.05; F(0) = 0; dropped negative powers: 1.0e-06 (< 1e-10); |F(0)| 0.0e+00; dropped 6.7e-14 (< 1e-12); 196 nodes  (** NOT AS REQUIRED **)]
+DIFFER  l2_c2_checks_force = section '=== --checks --mutate=force' of l2_c2_checks.log  [10 lines vs 9; 9 differ
+      line 2
+        rpi5: 2. l2_mode's l = 0 forcing, converted = FIRST_ORDER's s-translation breaking (untruncated, random data): max relative difference 1.2e-15 (< 1e-9)  (as required)
+        Mac:  2. l2_mode's l = 0 forcing, converted = FIRST_ORDER's s-translation breaking (untruncated, random data): max relative difference 1.1e-15 (< 1e-9)  (as required)
+      line 3
+        rpi5: 3. l0: summed series = right-hand side at |xi| = 0.05; F(0) = 0; dropped negative powers: 3.5e-12 (< 1e-10); |F(0)| 0.0e+00; dropped 4.5e-14 (< 1e-12); 196 nodes  (as required)
+        Mac:  3. l0: summed series = right-hand side at |xi| = 0.05; F(0) = 0; dropped negative powers: 2.6e-12 (< 1e-10); |F(0)| 0.0e+00; dropped 6.7e-14 (< 1e-12); 196 nodes  (as required)
+      line 4
+        rpi5: 3. l2: summed series = right-hand side at |xi| = 0.05; F(0) = 0; dropped negative powers: 2.8e-12 (< 1e-10); |F(0)| 0.0e+00; dropped 4.5e-14 (< 1e-12); 196 nodes  (as required)
+        Mac:  3. l2: summed series = right-hand side at |xi| = 0.05; F(0) = 0; dropped negative powers: 2.1e-12 (< 1e-10); |F(0)| 0.0e+00; dropped 6.7e-14 (< 1e-12); 196 nodes  (as required)
+      line 5
+        rpi5: 3. l2_ctrl: summed series = right-hand side at |xi| = 0.05; F(0) = 0; dropped negative powers: 2.2e-10 (< 1e-10); |F(0)| 0.0e+00; dropped 3.0e-11 (< 1e-12); 849 nodes  (** NOT AS REQUIRED **)
+        Mac:  3. l2_ctrl: summed series = right-hand side at |xi| = 0.05; F(0) = 0; dropped negative powers: 1.7e-10 (< 1e-10); |F(0)| 0.0e+00; dropped 2.9e-11 (< 1e-12); 849 nodes  (** NOT AS REQUIRED **)]
+DIFFER  l2_c2_checks_main = section '=== --checks' of l2_c2_checks.log  [8 lines vs 8; 7 differ
+      line 1
+        rpi5: 1. graph evaluator = SymForce (series orders < 60, and right-hand side at xi0): series y 1.7e-15, series c 2.2e-15, rhs 6.8e-13 (< 1e-11)  (as required)
+        Mac:  1. graph evaluator = SymForce (series orders < 60, and right-hand side at xi0): series y 1.8e-15, series c 1.5e-15, rhs 4.7e-13 (< 1e-11)  (as required)
+      line 2
+        rpi5: 2. l2_mode's l = 0 forcing, converted = FIRST_ORDER's s-translation breaking (untruncated, random data): max relative difference 1.2e-15 (< 1e-9)  (as required)
+        Mac:  2. l2_mode's l = 0 forcing, converted = FIRST_ORDER's s-translation breaking (untruncated, random data): max relative difference 1.1e-15 (< 1e-9)  (as required)
+      line 3
+        rpi5: 3. l0: summed series = right-hand side at |xi| = 0.05; F(0) = 0; dropped negative powers: 3.5e-12 (< 1e-10); |F(0)| 0.0e+00; dropped 4.5e-14 (< 1e-12); 196 nodes  (as required)
+        Mac:  3. l0: summed series = right-hand side at |xi| = 0.05; F(0) = 0; dropped negative powers: 2.6e-12 (< 1e-10); |F(0)| 0.0e+00; dropped 6.7e-14 (< 1e-12); 196 nodes  (as required)
+      line 4
+        rpi5: 3. l2: summed series = right-hand side at |xi| = 0.05; F(0) = 0; dropped negative powers: 2.8e-12 (< 1e-10); |F(0)| 0.0e+00; dropped 4.5e-14 (< 1e-12); 196 nodes  (as required)
+        Mac:  3. l2: summed series = right-hand side at |xi| = 0.05; F(0) = 0; dropped negative powers: 2.1e-12 (< 1e-10); |F(0)| 0.0e+00; dropped 6.7e-14 (< 1e-12); 196 nodes  (as required)]
+== result JSONs against HEAD's (extra)
+   l2_c2_M1_xi0.2_l2-l0-G-sym.json: 40 numeric leaves differ (largest relative 6.82e-03), 0 other
+   l2_c2_M1_xi0.2_l2-l2_ctrl-l0-sym.json: 36 numeric leaves differ (largest relative 3.29e-01), 4 other
+   l2_c2_M1_xi0.2_planted_lam.json: 1 numeric leaves differ (largest relative 2.03e-12), 0 other
+   l2_c2_M3_xi0.2_l2-l0-G-sym.json: 43 numeric leaves differ (largest relative 1.13e+00), 0 other
+   l2_c2_M3_xi0.2_l2-l2_ctrl-l0-sym.json: 39 numeric leaves differ (largest relative 5.37e+00), 4 other
+   l2_c2_M5_xi0.2_l0-sym_gsign.json: 28 numeric leaves differ (largest relative 1.00e+00), 0 other
+   l2_c2_M5_xi0.2_l2-l0-G-sym.json: 45 numeric leaves differ (largest relative 3.10e+00), 0 other
+   l2_c2_M5_xi0.2_l2-l2_ctrl-l0-sym.json: 41 numeric leaves differ (largest relative 1.09e+00), 4 other
+   l2_c2_forcing.json: 0 numeric leaves differ (largest relative 0.00e+00), 2 other
+   l2_c2_forcing_p1.json: identical
+== c2 and lambda_1
+   M 1: c2 -7.9591 (negative), lambda_1 7.8094 (l0) / 2.7288 (SymForce), c2 + lambda_1 -0.1496 (1.92% of lambda_1)
+   M 3: c2 -2.4825 (negative), lambda_1 2.5041 (l0) / 2.8819 (SymForce), c2 + lambda_1 +0.0216 (0.86% of lambda_1)
+   M 5: c2 -3.0458 (negative), lambda_1 3.0442 (l0) / 3.0415 (SymForce), c2 + lambda_1 -0.0016 (0.05% of lambda_1)
+TOTAL differing: 14; missing: 0
