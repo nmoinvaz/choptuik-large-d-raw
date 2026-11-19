@@ -1,0 +1,16 @@
+O(1/n) background rules [2 s]
+1. l = 0 rows, p = 1 frame - p = q frame, W: 0  (as required) [4 s]
+1. l = 0 rows, p = 1 frame - p = q frame, E^t_t: 0  (as required) [4 s]
+2. conjugation by s cos^2 chi, W: 0  (as required) [5 s]
+2. conjugation by s cos^2 chi, E^t_t: 0  (as required) [5 s]
+2. conjugation by control s cos 2chi, W: -psi(s, t)  (as required) [7 s]
+2. conjugation by control s cos 2chi, E^t_t: gamma(s, t)/c(s, t)  (as required) [7 s]
+3. p1: O(1) parts zero; Ft = W: -2*(5*C0**3*P1**2*P2 - C0**3*P4 - 5*C0**2*C1*P1**3 + 6*C0**2*C1*P3 + 4*C0**2*C2*P2 + C0**2*C3*P1 - 15*C0*C1**2*P2 - 10*C0*C1*C2*P1 + 15*C1**3*P1)/C0**7; E^t_t: 2*(2*C0**2*P1**4 - C0**2*P1*P3 + C0**2*P2**2 + C0*C1*P1*P2 + C0*C2*P1**2 - 2*C1**2*P1**2)/C0**6 [39 s]
+3. p1_ctrl: O(1) parts zero; Ft = W: (-24*C0**7*P1**2*P2 + 5*C0**7*P4 + 24*C0**6*C1*P1**3 - 30*C0**6*C1*P3 - 20*C0**6*C2*P2 - 5*C0**6*C3*P1 + 75*C0**5*C1**2*P2 + 50*C0**5*C1*C2*P1 + 60*C0**5*P1**4*P2*s - 22*C0**5*P1**2*P4*s - 72*C0**5*P1*P2*P3*s - 16*C0**5*P2**3*s + 2*C0**5*P6*s - 75*C0**4*C1**3*P1 - 60*C0**4*C1*P1**5*s + 204*C0**4*C1*P1**2*P3*s + 264*C0**4*C1*P1*P2**2*s - 30*C0**4*C1*P5*s + 160*C0**4*C2*P1**2*P2*s - 40*C0**4*C2*P4*s + 22*C0**4*C3*P1**3*s - 30*C0**4*C3*P3*s - 12*C0**4*C4*P2*s - 2*C0**4*C5*P1*s - 810*C0**3*C1**2*P1**2*P2*s + 210*C0**3*C1**2*P4*s - 292*C0**3*C1*C2*P1**3*s + 420*C0**3*C1*C2*P3*s + 210*C0**3*C1*C3*P2*s + 42*C0**3*C1*C4*P1*s + 140*C0**3*C2**2*P2*s + 70*C0**3*C2*C3*P1*s + 562*C0**2*C1**3*P1**3*s - 840*C0**2*C1**3*P3*s - 1680*C0**2*C1**2*C2*P2*s - 420*C0**2*C1**2*C3*P1*s - 560*C0**2*C1*C2**2*P1*s + 1890*C0*C1**4*P2*s + 2520*C0*C1**3*C2*P1*s - 1890*C1**5*P1*s)/C0**11; E^t_t: -2*(-5*C0**6*P1**4 + 3*C0**6*P1*P3 - 2*C0**6*P2**2 - 5*C0**5*C1*P1*P2 - 3*C0**5*C2*P1**2 + 7*C0**4*C1**2*P1**2 + 8*C0**4*P1**6*s - 14*C0**4*P1**3*P3*s + C0**4*P1*P5*s - 2*C0**4*P2*P4*s + C0**4*P3**2*s + 42*C0**3*C1*P1**3*P2*s - 8*C0**3*C1*P1*P4*s + 6*C0**3*C1*P2*P3*s + 14*C0**3*C2*P1**4*s - 12*C0**3*C2*P1*P3*s + 8*C0**3*C2*P2**2*s - 3*C0**3*C3*P1*P2*s - C0**3*C4*P1**2*s - 42*C0**2*C1**2*P1**4*s + 39*C0**2*C1**2*P1*P3*s - 21*C0**2*C1**2*P2**2*s + 38*C0**2*C1*C2*P1*P2*s + 13*C0**2*C1*C3*P1**2*s + 11*C0**2*C2**2*P1**2*s - 63*C0*C1**3*P1*P2*s - 91*C0*C1**2*C2*P1**2*s + 84*C1**4*P1**2*s)/C0**10 [45 s]
+4. W: Ft(p1) - Ft(l2) = 0;  Ft(p1) + Ft(l0) - L0[(0, Phi_s)] = 0  (as required) [45 s]
+   control, W: Ft(p1_ctrl) + Ft(l0) - L0[(0, Phi_s)] nonzero; Ft(p1_ctrl) - Ft(l2_ctrl) = 0 [45 s]
+4. E^t_t: Ft(p1) - Ft(l2) = 0;  Ft(p1) + Ft(l0) - L0[(0, Phi_s)] = 0  (as required) [45 s]
+   control, E^t_t: Ft(p1_ctrl) + Ft(l0) - L0[(0, Phi_s)] nonzero; Ft(p1_ctrl) - Ft(l2_ctrl) = 0 [45 s]
+wrote /home/nathan/Source/cl-1036/solver/inner_pert/data/l2_c2_forcing_p1.json [45 s]
+PASS
+exit 0
