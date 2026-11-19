@@ -1,0 +1,7 @@
+A: #966 D 251.2845 at tol_od 1e-34, rule on: converged True (want True), by the floor rule True (want True), 1 records: ok
+B: the same, rule off: converged False (want False), by the floor rule False (want False), 1 records: ok
+C: dDelta 1e-20 (only the Delta test can refuse): converged True (want False), by the floor rule True (want False), 1 records: WRONG
+D: max |F| 1e-25, above floor_F: converged False (want False), by the floor rule False (want False), 1 records: ok
+E: max |dz| 1e-20, above floor_dz: converged False (want False), by the floor rule False (want False), 1 records: ok
+F: max |F| 1e-36, below tol: converged True (want True), by the floor rule False (want False), 1 records: ok
+FAIL (--mutate=nodelta)
