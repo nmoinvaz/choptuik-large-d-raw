@@ -43,7 +43,7 @@ def analyse(p0, R_centre, pa, ra, pw, rw, dA, dw, sigma=None, flip=False):
 
 
 def mc(J, sigma, dA, dw, ncentre, n=4000, seed=7, nonoise=False):
-    """Plug-in Monte Carlo (added after the data were read, 14:20 UTC): take J as the truth, redraw every r_1 with noise sigma (norm; sigma/sqrt2 per component),
+    """Plug-in Monte Carlo (added after the data were read, about 14:15 UTC): take J as the truth, redraw every r_1 with noise sigma (norm; sigma/sqrt2 per component),
     refit J as analyse() does, and return the draws of sigma_min(J_fit) and of the induced error sigma / sigma_min(J_fit)."""
     rng = np.random.default_rng(seed)
     s = 0.0 if nonoise else sigma / np.sqrt(2.0)
@@ -118,7 +118,7 @@ def main():
         print(f"significance of the offsets' responses (|dr| / sigma): A {out['snr_A']:.2f}, w {out['snr_w']:.2f}; J resolved at these offsets: {out['resolved']}")
         if not out["resolved"]:
             print(f"J is NOT resolved: the induced error is at least the offsets themselves (A {dA:g}, w/w_inf {dw:g}); sigma over the slope the response allows: {out['err_floor']:.3e}")
-        # added after the data were read (14:20 UTC): how well-determined is sigma_min(J) itself, and does the answer depend on which centre solve is used?
+        # added after the data were read (about 14:15 UTC): how well-determined is sigma_min(J) itself, and does the answer depend on which centre solve is used?
         U, S, Vt = np.linalg.svd(out["J"])
         print(f"direction of the smallest singular value (A, w/w_inf) = ({Vt[-1][0]:+.3f}, {Vt[-1][1]:+.3f}): the worst-case error sigma/sigma_min = {out['err_sigma']:.3e} lies along it, so its w/w_inf part is {abs(Vt[-1][1]) * out['err_sigma']:.3e}")
         print(f"noise of one J entry from sigma: A column {sigma / np.sqrt(2) / dA:.2e}, w column {sigma / np.sqrt(2) / dw:.2e} (per component, one draw), against sigma_min(J) {out['sv'][-1]:.3e}")
