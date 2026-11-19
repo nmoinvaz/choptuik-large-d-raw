@@ -1,0 +1,53 @@
+$ table_985.py --selftest
+  T1 d 1 clean: (H2) (want (H2)) ok
+  T1 d 2 clean: (H4) at k = 1/2 (want (H4) at k = 1/2) ok
+  T1 d 4 clean: (H4) with k = 3/2 as well (want (H4) with k = 3/2 as well) ok
+  T1 d 3 clean: NONE FITS (d = 3) (want NONE FITS (d = 3)) ok
+  T1 d 5 clean: NONE FITS (d = 5) (want NONE FITS (d = 5)) ok
+  T1 d 2 gap at the bar: (H4) at k = 1/2 (want (H4) at k = 1/2) ok
+  T1 d 2 gap just above the bar: NONE FITS (no clean gap) (want NONE FITS (no clean gap)) ok
+  T1 d 2 no gap value: NONE FITS (no clean gap) (want NONE FITS (no clean gap)) ok
+  T1 d 1 gap just above: NONE FITS (no clean gap) (want NONE FITS (no clean gap)) ok
+  T1 span shares 0.995, 0.999: deep span (want deep span) ok
+  T1 span share 0.99 exactly: deep span (want deep span) ok
+  T1 span share 0.989: between (want between) ok
+  T1 span share 0.9: between (want between) ok
+  T1 span share 0.89: not the root set's (want not the root set's) ok
+  T2_35 d 2 ratio just over 100: True (want True) ok
+  T2_35 d 2 ratio 99: False (want False) ok
+  T2_35 d 1 ratio 1000: False (want False) ok
+  T2_35 d 4 ratio 1e4: True (want True) ok
+  T2_20 ratio 1, best in: True (want True) ok
+  T2_20 ratio 3: True (want True) ok
+  T2_20 ratio 3.2: False (want False) ok
+  T2_20 ratio 1/3: True (want True) ok
+  T2_20 ratio 0.3: False (want False) ok
+  T2_20 best below: False (want False) ok
+  T2_20 best above: False (want False) ok
+  T2_20 best split: None (want None) ok
+  T2 incomplete: None (want None) ok
+  mutated bar 100 -> 10 (the ratio 50 case): (False, True) (want (False, True)) ok
+  mutated clean gap 1e-3 -> 1e-2 (gap 5e-3): ('NONE FITS (no clean gap)', '(H4) at k = 1/2') (want ('NONE FITS (no clean gap)', '(H4) at k = 1/2')) ok
+  control, equal (CRLF, other best line, a saved line): True (want True) ok
+  control, one character changed in start 7: False (want False) ok
+  control, one x line changed: False (want False) ok
+  control, 11 starts: False (want False) ok
+  control, log missing: False (want False) ok
+  control, #951's own log against itself: True (want True) ok
+  median: geometric mean of the two middle ones for 12: True (want True) ok
+  #963's c_d1e-20 median re-read: True (want True) ok
+selftest passed
+exit 0
+$ run_985.py --selftest
+  all as wanted, an expected exit 1 counts: exit 0 {'a': 0, 'b': 1, 'c': 0} (want 0) ok
+  an unexpected exit 1 stops: exit 7 {'a': 0, 'b': 1} (want 7) ok
+  a wanted exit 1 that is 0 stops (the control passed): exit 7 {'a': 0, 'b': 0} (want 7) ok
+  a run over its cap is killed, the next still runs, exit 5: exit 5 {'r': 5, 'n': 0} (want 5) ok
+  a short step over its cap stops: exit 7 {'a': 5} (want 7) ok
+  a missing input skips the step, exit 5: exit 5 {'a': 0, 'x': 'skipped', 'c': 0} (want 5) ok
+  a failed control stops with 8: exit 8 {'a': 0, 'ctl': 'control mismatch'} (want 8) ok
+  a good control goes on: exit 0 {'ctl': 'control ok', 'c': 0} (want 0) ok
+  STOP file: exit 4 {} (want 4) ok
+  the real step list: 18 steps in the order of #983's commands, wanted exits, caps, flags and input files ok
+selftest passed
+exit 0
