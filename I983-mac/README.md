@@ -12,7 +12,7 @@ Plan: notes/P7_scope.md §3.4 and §5 (main 4415514e). Nothing is solved here. E
 | code | `solver/rt/rt_chords.py` on branch `wip/p7-stage0` of choptuik-large-d at 6b9b23f8 (from main 4415514e). It uses `rt_perturb.diff` and `move`, `rt_constraint.omega5`, `rt_mp.RTmp`, `rt_horizon.exponents` and `rt_branch_cheb.py` unchanged |
 | interpreter | `/Users/nathan/venv-314/bin/python` (Python 3.14.7, python-flint 0.9.0, numpy 2.5.4, mpmath 1.3.0), `nice -n 10`, one process at a time (the subprocess of T0d runs while its parent waits) |
 
-## Readings, fixed before the first run (2026-11-19 00:05 UTC)
+## Readings, fixed before the first run (committed 2026-11-19 00:04 UTC, raw 23d33b4f; the run began 00:05)
 
 The thresholds are this README's, from the table of P7_scope.md §3.4. Shares and cosines are in the 2-norm of the
 unknown vector, as #969's are.
