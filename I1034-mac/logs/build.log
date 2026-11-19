@@ -1,0 +1,44 @@
+   Compiling crossbeam-utils v0.8.23
+   Compiling crossbeam-epoch v0.9.21
+   Compiling crossbeam-deque v0.8.8
+   Compiling rayon-core v1.13.0
+   Compiling either v1.19.0
+   Compiling rayon v1.12.0
+   Compiling multidouble v4.9.0
+   Compiling multisolver v0.1.1
+   Compiling multishoot v3.3.0
+   Compiling hpkernel v0.1.0 (/Users/nathan/Source/choptuik-large-d-1034/hp)
+warning: variable does not need to be mutable
+  --> src/fastmul_check.rs:95:17
+   |
+95 |             let mut int = |r: &mut Rng| -> Vec<OV> {
+   |                 ----^^^
+   |                 |
+   |                 help: remove this `mut`
+   |
+   = note: `#[warn(unused_mut)]` (part of `#[warn(unused)]`) on by default
+
+warning: function `fmadd` is never used
+   --> src/fastmul.rs:244:4
+    |
+244 | fn fmadd(a: f64, b: f64, c: f64) -> f64 {
+    |    ^^^^^
+    |
+    = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: function `bench` is never used
+   --> src/fastmul_check.rs:188:8
+    |
+188 | pub fn bench(name: &str, n: usize, reps: usize, inner: usize) {
+    |        ^^^^^
+
+warning: function `run` is never used
+   --> src/fastmul_check.rs:288:8
+    |
+288 | pub fn run(args: &[String]) -> i32 {
+    |        ^^^
+
+warning: `hpkernel` (lib test) generated 4 warnings (run `cargo fix --lib -p hpkernel --tests` to apply 1 suggestion)
+    Finished `release-dev` profile [optimized] target(s) in 14m 40s
+  Executable unittests src/lib.rs (/private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/afb99455-a815-419f-becf-38b07aee7d3a/scratchpad/i1034/target/release-dev/deps/_hpkernel-11c15757fedb978e)
+nice -n 10 lockf -k $SP/cargo_a.lock env CARGO_BUILD_JOBS=3  cargo test      1047.94s user 17.59s system 120% cpu 14:40.95 total

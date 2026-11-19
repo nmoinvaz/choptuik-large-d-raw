@@ -1,0 +1,19 @@
+
+running 1 test
+split 0, alpha 0, mutate 0: 18.8 s; the horizon block 18.7 s, of which middle terms 0.0 s and the u-order loop 0.0 s
+split 2, alpha 0, mutate 0: 17.0 s; the horizon block 16.1 s, of which middle terms 0.4 s and the u-order loop 10.8 s
+split 0, alpha 1, mutate 0: 19.1 s; the horizon block 19.0 s, of which middle terms 0.0 s and the u-order loop 0.0 s
+test split_tests::split_file has been running for over 60 seconds
+split 2, alpha 0, mutate 31: 16.5 s; the horizon block 16.5 s, of which middle terms 0.3 s and the u-order loop 11.3 s
+fast middle terms: 692 products, 692 block pairs, at most 1 blocks of a factor and 34 digits, max_frac 1.03e-4
+ k   d_split    d_oa       d_ctrl     |F_k|
+ 1   0.00e0   2.88e-111   0.00e0   2.72e76
+ 2   5.00e-112   3.78e-111   1.04e-1   2.35e74
+ 3   1.69e-111   5.20e-111   9.46e0   1.31e72
+ 4   2.28e-111   2.04e-111   5.87e14   1.32e70
+checksums: default 0b72ae83286b710d, split 75abefded38dcac8
+split 2, ks 240, 4 orders, 10 threads: default 18.8 s and 18.8 s, split 17.0 s and 17.0 s, ratio 1.11; order 1 0 rows differ; reruns 0 rows differ; worst d_split / threshold 1.12e-3; control 2.87e122
+test split_tests::split_file ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 40 filtered out; finished in 71.44s
+

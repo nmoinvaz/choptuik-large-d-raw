@@ -1,0 +1,25 @@
+11:16  up 21 days,  4:52, 5 users, load averages: 13.34 14.36 12.79
+bench flat1  n  128 (1 blocks x 1, 28 digits): naive 5.959 ms (5.759-6.098), fast 0.958 ms (0.934-0.969), ratio 6.22 (6.17-6.32), 5 reps of 122 [ok]
+   ms per product: digits and forward FFT 0.283 (the FFT 0.135), pointwise 0.241, inverse 0.075, extraction 0.109
+bench flat   n  128 (1 blocks x 1, 34 digits): naive 6.081 ms (5.945-6.508), fast 1.158 ms (1.127-1.269), ratio 5.14 (4.92-5.31), 5 reps of 122 [ok]
+   ms per product: digits and forward FFT 0.350 (the FFT 0.175), pointwise 0.357, inverse 0.095, extraction 0.130
+bench ramp   n  128 (2 blocks x 9, 36 digits): naive 6.369 ms (6.048-6.711), fast 2.834 ms (2.798-3.696), ratio 2.14 (1.82-2.29), 5 reps of 122 [ok]
+   ms per product: digits and forward FFT 0.902 (the FFT 0.459), pointwise 1.068, inverse 0.236, extraction 0.523
+bench bumpy  n  128 (12 blocks x 8, 36 digits): naive 6.037 ms (5.930-6.197), fast 6.658 ms (6.531-6.756), ratio 0.91 (0.90-0.92), 5 reps of 122 [ok]
+   ms per product: digits and forward FFT 1.606 (the FFT 0.711), pointwise 2.880, inverse 0.472, extraction 1.313
+bench flat1  n  251 (1 blocks x 1, 28 digits): naive 22.612 ms (22.543-22.820), fast 1.945 ms (1.857-2.045), ratio 11.59 (11.05-12.14), 5 reps of 31 [ok]
+   ms per product: digits and forward FFT 0.587 (the FFT 0.311), pointwise 0.490, inverse 0.175, extraction 0.216
+bench flat   n  251 (1 blocks x 2, 36 digits): naive 22.727 ms (22.597-22.928), fast 3.019 ms (2.974-3.029), ratio 7.53 (7.47-7.65), 5 reps of 31 [ok]
+   ms per product: digits and forward FFT 0.860 (the FFT 0.480), pointwise 1.041, inverse 0.294, extraction 0.320
+bench ramp   n  251 (6 blocks x 6, 36 digits): naive 22.909 ms (22.551-23.672), fast 7.052 ms (6.998-7.332), ratio 3.23 (3.20-3.26), 5 reps of 31 [ok]
+   ms per product: digits and forward FFT 1.921 (the FFT 1.091), pointwise 2.942, inverse 0.688, extraction 1.045
+bench bumpy  n  251 (13 blocks x 9, 36 digits): naive 23.060 ms (22.780-23.943), fast 14.277 ms (14.096-14.555), ratio 1.61 (1.58-1.70), 5 reps of 31 [ok]
+   ms per product: digits and forward FFT 3.682 (the FFT 1.822), pointwise 6.061, inverse 1.193, extraction 2.712
+bench flat1  n  512 (1 blocks x 1, 28 digits): naive 93.076 ms (92.413-93.816), fast 4.209 ms (3.888-4.289), ratio 21.97 (21.70-24.08), 5 reps of 7 [ok]
+   ms per product: digits and forward FFT 1.298 (the FFT 0.717), pointwise 1.054, inverse 0.404, extraction 0.441
+bench flat   n  512 (2 blocks x 3, 36 digits): naive 101.832 ms (93.759-106.068), fast 11.736 ms (11.608-11.885), ratio 8.68 (8.08-9.04), 5 reps of 7 [ok]
+   ms per product: digits and forward FFT 3.219 (the FFT 1.932), pointwise 4.795, inverse 1.241, extraction 1.373
+bench ramp   n  512 (6 blocks x 6, 36 digits): naive 102.787 ms (100.993-104.785), fast 16.688 ms (15.884-17.375), ratio 6.12 (6.03-6.47), 5 reps of 7 [ok]
+   ms per product: digits and forward FFT 4.645 (the FFT 2.846), pointwise 6.859, inverse 1.781, extraction 2.352
+bench bumpy  n  512 (14 blocks x 8, 36 digits): naive 101.656 ms (93.909-104.407), fast 32.986 ms (32.574-34.158), ratio 3.02 (2.85-3.17), 5 reps of 7 [ok]
+   ms per product: digits and forward FFT 9.505 (the FFT 4.658), pointwise 13.506, inverse 2.981, extraction 6.021
