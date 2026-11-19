@@ -1,0 +1,50 @@
+| run | sample | starts | printed max abs F | bounds printed | m (median of the bounds) | best bound | products per start (min, median, max) | starts at the 250 cap | worst max abs J x - v | start 0 mu share of x |
+|---|---|---|---|---|---|---|---|---|---|---|
+| T1_a | a | 12 | 4.39e-31 | 12 | 2.4630e-34 | 9.1360e-35 | 67, 67, 67 | 0 of 12 | 2.5e-18 | +1.00e+00 |
+| T1_b | b | 12 | 5.12e-31 | 12 | 2.4165e-33 | 8.5700e-34 | 67, 67, 67 | 0 of 12 | 4.4e-19 | +1.00e+00 |
+| T1_c24 | c | 24 | 6.91e-31 | 24 | 1.7063e-35 | 4.9970e-36 | 67, 67, 73 | 0 of 24 | 8.6e-16 | +1.00e+00 |
+
+Singular values of the x block relative to s_1 (the cutoff is 1e-4):
+
+| run | d | gap s_(d+1)/s_d | s_2 | s_3 | s_4 | s_5 | s_6 | s_7 | s_8 | s_4 / (1e-4 s_1) | s_5 / (1e-4 s_1) | chord shares in span(p_1..p_d) |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| T1_a | 4 | 1.95e-04 | 2.32e-02 | 3.47e-03 | 1.28e-03 | 2.50e-07 | 1.28e-07 | 2.57e-10 | 1.49e-10 | 12.823 | 2.50e-03 | k0b_D40_mutnorows_D40.0201_32x121.npz 1.000000; k0c_D40_mutnorows_D40.0201_32x121.npz 1.000000 |
+| T1_b | 4 | 1.98e-04 | 4.87e-01 | 6.72e-02 | 2.33e-02 | 4.62e-06 | 2.37e-06 | 4.75e-09 | 2.75e-09 | 233.151 | 4.62e-02 | k0_D40_mutnorows_D40.0201_32x121.npz 1.000000; k0c_D40_mutnorows_D40.0201_32x121.npz 1.000000 |
+| T1_c24 | 4 | 1.56e-04 | 1.11e-03 | 2.95e-04 | 1.54e-04 | 2.41e-08 | 1.63e-08 | 2.11e-11 | 1.76e-11 | 1.540 | 2.41e-04 | k0_D40_mutnorows_D40.0201_32x121.npz 1.000000; k0b_D40_mutnorows_D40.0201_32x121.npz 1.000000 |
+
+The bounds of each run, start 0 to 23:
+
+| start | T1_a | T1_b | T1_c24 |
+|---|---|---|---|
+| 0 | 1.669e-34 | 8.943e-34 | 9.037e-36 |
+| 1 | 1.419e-33 | 4.955e-33 | 5.274e-34 |
+| 2 | 1.879e-34 | 1.351e-33 | 9.177e-36 |
+| 3 | 4.960e-34 | 5.268e-33 | 2.986e-35 |
+| 4 | 9.889e-35 | 8.570e-34 | 5.510e-36 |
+| 5 | 1.348e-34 | 1.948e-33 | 8.180e-36 |
+| 6 | 2.873e-34 | 2.779e-33 | 1.962e-35 |
+| 7 | 8.550e-34 | 5.886e-33 | 4.064e-35 |
+| 8 | 2.576e-34 | 2.502e-33 | 1.484e-35 |
+| 9 | 2.355e-34 | 3.440e-33 | 1.476e-35 |
+| 10 | 9.136e-35 | 1.023e-33 | 4.997e-36 |
+| 11 | 1.274e-33 | 2.334e-33 | 6.164e-35 |
+| 12 | - | - | 3.327e-35 |
+| 13 | - | - | 1.048e-35 |
+| 14 | - | - | 9.693e-36 |
+| 15 | - | - | 1.062e-35 |
+| 16 | - | - | 5.670e-35 |
+| 17 | - | - | 9.389e-35 |
+| 18 | - | - | 7.653e-35 |
+| 19 | - | - | 1.299e-35 |
+| 20 | - | - | 7.058e-36 |
+| 21 | - | - | 2.046e-35 |
+| 22 | - | - | 2.739e-35 |
+| 23 | - | - | 2.730e-34 |
+
+Informational, against the stored rough logs of the same state:
+
+- T1_a against I943-win\logs\K0_D40_rough.log: 12 of 12 start lines equal in every character, 12 of 12 on max|x|, bound and products, 12 of 12 x / max|x| lines equal.
+- T1_b against I701-win\logs\K0b_D40_rough.log: 12 of 12 start lines equal in every character, 12 of 12 on max|x|, bound and products, 12 of 12 x / max|x| lines equal.
+- T1_c24 against I951-win\logs\K0c_D40_rough.log: 24 of 24 start lines equal in every character, 24 of 24 on max|x|, bound and products, 24 of 24 x / max|x| lines equal.
+
+Reading by the pre-set acceptance: **(H4) at k = 1/2 and 3/2 HOLDS** (all three give d = 4, a clean gap and chord shares at least 0.99).
