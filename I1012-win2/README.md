@@ -93,3 +93,17 @@ The end values are the accepted state's: r_5 3.9e-4 equals the third solve (3.86
 Level 7's and 9's solve ends beside level 5's (`levels1012.py`): in level 5's first solve level 7 has a median of 3.5e-5 and a maximum of 9.5e-5; in the later four solves level 7's median is 4.7e-8 to 1.1e-7 (maximum 6.9e-7) and level 9's about 1.1e-9 to 1.3e-9 (maximum 6.6e-9), three or more orders below level 5's ends.
 
 Reading: the larger level-5 step (`--h5=1e-4`) removes the first solve's stall at about 11 (1.7e-2), but level 5's later solves end at 4e-5 to 1.4e-3, no lower than the default step's 1e-4 to 7e-4, and level 3 ends at 21.5, worse than #999's 7.57 (one run each). So the Jacobian step is what limited the first solve; it does not limit the later solves or level 3.
+
+## Stages 3 and 4 stopped; stage 5 written down at 09:59 UTC 19 Nov before it starts (the coordinator's hc, ~09:55 UTC)
+
+**Stopped on the coordinator's word, by taskkill /T /F on their exact pids:** stage 4 (`--h5 --h7 --h9 = 1e-4`, pid 18224) at 09:56:54 UTC after 2940 s, and stage 3 (rtol 1e-14, pid 10848) at 09:56:50 after 4881 s. Their exit files say "exit 1": the kill. Readings (`logs/summary_stage4_at_stop.txt`, `logs/summary_stage3_at_stop.txt`, `logs/levels1012_stage{3,4}_at_stop.txt`):
+stage 4's first level-5 solve ended at 197 (levels 7 and 9 broken: level 7 solves 0.25 to 3.2, level 9 median 3e-5, 425 "every trial rejected"); stage 3's solves were 1.89e-2, 1.38e-3, 3.97e-4, no lower than the 1e-13 runs' band.
+Conclusion of the hc: levels 7 and 9 keep hier's default 1e-6 step, only level 5 needs a larger one; rtol 1e-14 is not needed.
+
+**Stage 5** (`chain1012e.py`, selftest and mutations in `logs/selftest_chain1012e.txt`), two runs side by side from `D:\choptuik-h9b` (299c4eb9), XI 0.11 / AP 0.105, `INNER_NB_RTOL=1e-13`, `--floor_max=1e-4 --verbose=2 --procs 2 --h3=1e-4`, BelowNormal, 3 h caps:
+- **(a) `--h5=3e-4`** (h7, h9 default; `--predict` and `--schur` on): brackets the level-5 step. Known first solves: default 1e-6: 11.9; 1e-4: 1.72e-2; 1e-3: 4.50e-2. Unit check: level 5's step is 300 x the default, other levels 1 x, a mutation expecting 100 fails (`unit_h53e-4_result.txt`).
+- **(b) `--h5=1e-4` without `--predict`** (`--schur` kept): tests whether the leakage Jacobian K that `--predict` uses for every nested re-solve keeps level 5's later solves at 4e-5 to 1.4e-3 (rpi5 found K's blocks 8e3 to 4e4 times larger at M = 9 than at M = 7). K is computed after level 5's first solve, so (b)'s first solve must equal stage 1's
+  (`--h5=1e-4` with `--predict`) line for line up to the `Jacobian K computed` line, which says 10 residuals with `--predict` and 8 without (the driver checks the count; `control1012e.py`, below, the lines). Both are plumbing controls that can fail.
+- **Reading of (b), written now:** K matters if a level-5 solve from the second on ends **below 1e-5** (a factor 4 under the lowest end, 4.25e-5, of the `--predict` runs), or if level 3 ends clearly below 21.5. The same 4e-5 to 1.4e-3 band means `--predict` is not what holds level 5 there; above 1.4e-3 (the highest end seen) means it was helping. Any level-5 solve below 1e-6 is the success of #1012.
+- **Reading of (a):** the first solve against 1.72e-2 (1e-4) and 4.5e-2 (1e-3), and the later solves against the same band; the best level-5 step is the one with the lowest first solve, reported with its later solves.
+- Report each level-5 solve's end and stop reason, and level 3's, as before (`summarize1007.py` v2 and `levels1012.py`).
