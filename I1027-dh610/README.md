@@ -26,3 +26,12 @@ one solve at the known M = 5 zero with F_7 = 0 (|F7/F5| 0.0574, |r_3| 2.4e-5 abo
 | `common1027.sh`, `run1027.sh` | paths and the driver (the commands are in it) |
 | `walk1027.py`, `eval1027.py` | the M = 7 walk, the readings' evaluator (selftest, mutations) |
 | `walks/`, `logs/`, `exits_1027.txt`, `memlog_1027.log` | one JSON per walk, each attempt's and walk's log, exits, alert-only memory log |
+
+## Results, 2026-11-19 (13:15-14:31 UTC; `logs/eval_all.log`, `eval_all.txt`)
+
+- Control PASS (`logs/walk_control_xi0.15.log`): 4 solves (each with one perturbed repeat), M = 7 zero (2.719236, 1.000024), 3.8e-6 and 6.8e-7 from the stored (2.71924, 1.000025); |F7/F5| 0.0573 (stored 0.0574).
+- xi1 0.15 (primary): both low-omega zeros DOES NOT (no M = 7 zero near it: the start solves stay at |r_3| 60 and 1.3e4).
+- xi1 0.25 (exploration, the control is not validated there): z2275 -> M = 7 zero (2.233308, 0.065740), z2584 -> (2.573290, 0.100532), converged with |r_3| about 1e-9. |F7/F5| 0.676 and 0.634 at those zeros (0.650 and 0.568 at the M = 5 zeros), |F5/F3| 0.587 and 0.555, M 5 -> 7 shift 0.027 and 0.042. DOES NOT (|F7/F5| >= 0.3).
+- xi1 0.2: start solves not converged (|r_3| 10 and 2.6e-6), ratios 0.620/0.575 and 0.570/0.507 at the M = 5 zeros.
+- `logs/radius_check_*`: the xi1 0.25 walks' best points solved again at xi1 0.2 and 0.3: |r_1| 0.03 to 0.28 against Jacobian singular values of 270 to 5e3, |F7/F5| and |F5/F3| equal to four digits at the three radii (0.6759/0.5868 and 0.6339/0.5553). `radius_check1027.py`.
+- Evaluator controls: `logs/eval_selftest.log` PASS; `logs/eval_mutate_shift.log` makes the control FAIL (exit 1); `logs/eval_mutate_ratio.log` turns the two converged walks UNDECIDED (the walks without an M = 7 zero stay DOES NOT).

@@ -1,0 +1,162 @@
+# INNER_NB_RTOL=1e-13 /home/nathan/Source/venv-i1026/bin/python -u hier_nb.py 7 2.227529226538 0.092573702535 --x=0.72859354955,0.00897547017477,0.409762701322,0.0251243728752,-0.523843574928,0.538007959355 --xi1=0.2 --pretune --fixA --schur --predict --floor --procs 2 --h3=1e-4 --verbose=2
+pretune level 7 (approach, xi 0.2000): start |r_7| 3.120e-05  [0 s]
+   it 0: |r_7| 3.312e-08  lam 1.0  B,C_7 -5.238435493571e-01 5.380080524873e-01  [0 s]
+pretune level 7 (polish, xi 0.2000): start |r_7| 3.312e-08  [0 s]
+   it 0: no decrease; stop at |r_7| 3.312e-08
+pretuned x [2.227529226538, 0.092573702535, 0.72859354955, 0.00897547017477, 0.409762701322, 0.0251243728752, -0.5238435493570994, 0.5380080524873104]
+M 7, xi1 0.2, fixed (A, w), procs 2; start x [2.227529227, 0.092573703, 0.72859355, 0.00897547, 0.409762701, 0.025124373, -0.523843549, 0.538008052]
+level radii (approach -> polish): r_1 0.2000 -> 0.2000, r_3 0.2000 -> 0.2000, r_5 0.2000 -> 0.2000, r_7 0.2000 -> 0.2000
+start residuals: |r_1| 0.00e+00  |r_3| 0.00e+00  |r_5| 0.00e+00  |r_7| 3.31e-08
+   level 7 (top): stop at |g| 3.31e-08 (noise floor)
+   level 7 solved: |r_7| 3.31e-08  (9 residuals, 1 s)  [1 s total]
+   level 7 (top): stop at |g| 3.31e-08 (noise floor)
+   level 7 solved: |r_7| 3.31e-08  (7 residuals, 0 s)  [2 s total]
+   level 7 solved: |r_7| 2.19e+02  (13 residuals, 2 s)  [5 s total]
+   level 7 (low): stop at |g| 5.13e+01 (noise floor)
+   level 7 solved: |r_7| 4.31e+01  (10 residuals, 0 s)  [5 s total]
+   level 7 (low): stop at |g| 4.31e+01 (noise floor)
+   level 7 solved: |r_7| 4.24e+01  (11 residuals, 0 s)  [6 s total]
+/home/nathan/Source/cl-995/solver/inner_stokes/hier.py:92: RuntimeWarning: overflow encountered in exp
+  z = q[nu % NTH] * r1 ** (2j * nu * w) * np.exp(lsc - np.log(2 * np.pi * abs(I.Kp(1j * nu * w))))
+   level 7 (low): stop at |g| 6.19e+01 (noise floor)
+   level 7 solved: |r_7| 3.78e+01  (11 residuals, 0 s)  [10 s total]
+level 5 it 0: |r_5| 6.192e+01  lam 1  x [2.227529227, 0.092573703, 0.72859355, 0.00897547, 0.832818253, -0.012483485, -0.622266048, 0.319744468]  [11 s, 178 residuals]
+   level 7 (low): stop at |g| 3.99e+01 (noise floor)
+   level 7 solved: |r_7| 3.81e+01  (12 residuals, 0 s)  [12 s total]
+   level 7 (low): stop at |g| 3.89e+01 (noise floor)
+   level 7 solved: |r_7| 3.79e+01  (12 residuals, 0 s)  [12 s total]
+   level 5 (top): stop at |g| 6.19e+01 (noise floor)
+   level 5 solved: |r_5| 6.19e+01  (201 residuals, 12 s)  [12 s total]
+   Jacobian K computed (8 residuals) [12 s]
+   K by level, max |d r_l / d x_nu| (rows l, columns nu): nu 1  nu 3  nu 5  nu 7
+     l 1: 2.10e+05  3.91e+06  6.19e+08  1.09e+07
+     l 3: 6.12e+04  1.09e+06  5.89e+07  2.93e+06
+     l 5: 2.29e+04  7.22e+05  7.11e+07  2.03e+06
+     l 7: 2.78e+04  2.39e+05  2.74e+07  8.67e+05
+   level 7 (low): stop at |g| 3.78e+01 (noise floor)
+   floor of level 7: |r_7| ~ 3.76e+01 (stop at 3x from now on)
+   level 7 solved: |r_7| 3.76e+01  (12 residuals, 0 s)  [13 s total]
+   level 7 solved: |r_7| 3.71e+01  (8 residuals, 0 s)  [13 s total]
+/home/nathan/Source/cl-995/solver/inner_stokes/hier.py:92: RuntimeWarning: overflow encountered in exp
+  z = q[nu % NTH] * r1 ** (2j * nu * w) * np.exp(lsc - np.log(2 * np.pi * abs(I.Kp(1j * nu * w))))
+   level 7 (low): stop at |g| inf (noise floor)
+/home/nathan/Source/cl-995/solver/inner_stokes/inner_np.py:159: RuntimeWarning: invalid value encountered in divide
+  h[nu] = B / 2j + C / 2
+/home/nathan/Source/cl-995/solver/inner_stokes/inner_np.py:47: RuntimeWarning: invalid value encountered in multiply
+  self.F *= self.odd
+/home/nathan/Source/cl-995/solver/inner_stokes/hier.py:82: RuntimeWarning: invalid value encountered in multiply
+  Fth = sum(v * np.exp(1j * mu * th) for mu, v in Fh.items()).real
+   level 7 (top): stop at |g| inf (noise floor)
+   level 7 solved: |r_7| inf  (15 residuals, 0 s)  [13 s total]
+   level 7 (low): stop at |g| inf (noise floor)
+   level 7 (top): stop at |g| inf (noise floor)
+   level 7 solved: |r_7| inf  (15 residuals, 0 s)  [13 s total]
+/home/nathan/Source/cl-995/solver/inner_stokes/hier.py:88: RuntimeWarning: overflow encountered in exp
+  q = np.fft.fft(Jth * np.exp(-Pi)) / NTH
+   level 7 (low): stop at |g| 1.13e+154 (noise floor)
+   level 7 solved: |r_7| 1.13e+154  (9 residuals, 10 s)  [23 s total]
+/home/nathan/Source/venv-i1026/lib/python3.14/site-packages/numpy/linalg/_linalg.py:2784: RuntimeWarning: overflow encountered in dot
+  sqnorm = x.dot(x)
+   level 7 (low): stop at |g| 3.54e+46 (noise floor)
+   level 7 solved: |r_7| 3.54e+46  (9 residuals, 11 s)  [34 s total]
+   level 7 (low): stop at |g| 1.31e+11 (noise floor)
+   level 7 solved: |r_7| 1.31e+11  (9 residuals, 0 s)  [34 s total]
+/home/nathan/Source/cl-995/solver/inner_stokes/hier.py:88: RuntimeWarning: invalid value encountered in multiply
+  q = np.fft.fft(Jth * np.exp(-Pi)) / NTH
+/home/nathan/Source/venv-i1026/lib/python3.14/site-packages/numpy/fft/_pocketfft.py:101: RuntimeWarning: invalid value encountered in fft
+  return ufunc(a, fct, axes=[(axis,), (), (axis,)], out=out)
+   level 7 (low): stop at |g| 2.06e+04 (noise floor)
+   level 7 solved: |r_7| 2.06e+04  (9 residuals, 4 s)  [38 s total]
+   level 5 (low): stop at |g| 2.97e+02 (noise floor)
+   level 7 (low): stop at |g| 3.71e+01 (noise floor)
+   level 7 solved: |r_7| 3.71e+01  (9 residuals, 0 s)  [38 s total]
+   level 7 (low): stop at |g| 4.92e+02 (noise floor)
+   level 7 solved: |r_7| 4.92e+02  (9 residuals, 2 s)  [40 s total]
+   level 7 (low): stop at |g| 1.92e+02 (noise floor)
+   level 7 solved: |r_7| 1.92e+02  (9 residuals, 0 s)  [40 s total]
+   level 7 (low): stop at |g| 8.26e+01 (noise floor)
+   level 7 solved: |r_7| 8.26e+01  (9 residuals, 0 s)  [40 s total]
+   level 7 (low): stop at |g| 4.83e+01 (noise floor)
+   level 7 solved: |r_7| 4.83e+01  (9 residuals, 0 s)  [41 s total]
+   floor of level 5: |r_5| ~ 2.15e+02 (stop at 3x from now on)
+   level 5 solved: |r_5| 2.15e+02  (131 residuals, 28 s)  [41 s total]
+/home/nathan/Source/cl-995/solver/inner_stokes/hier.py:92: RuntimeWarning: overflow encountered in exp
+  z = q[nu % NTH] * r1 ** (2j * nu * w) * np.exp(lsc - np.log(2 * np.pi * abs(I.Kp(1j * nu * w))))
+/home/nathan/Source/cl-995/solver/inner_stokes/inner_np.py:159: RuntimeWarning: invalid value encountered in divide
+  h[nu] = B / 2j + C / 2
+/home/nathan/Source/cl-995/solver/inner_stokes/inner_np.py:47: RuntimeWarning: invalid value encountered in multiply
+  self.F *= self.odd
+/home/nathan/Source/cl-995/solver/inner_stokes/hier.py:82: RuntimeWarning: invalid value encountered in multiply
+  Fth = sum(v * np.exp(1j * mu * th) for mu, v in Fh.items()).real
+/home/nathan/Source/cl-995/solver/inner_stokes/inner_np.py:159: RuntimeWarning: invalid value encountered in divide
+  h[nu] = B / 2j + C / 2
+/home/nathan/Source/cl-995/solver/inner_stokes/inner_np.py:47: RuntimeWarning: invalid value encountered in multiply
+  self.F *= self.odd
+/home/nathan/Source/cl-995/solver/inner_stokes/hier.py:82: RuntimeWarning: invalid value encountered in multiply
+  Fth = sum(v * np.exp(1j * mu * th) for mu, v in Fh.items()).real
+/home/nathan/Source/cl-995/solver/inner_stokes/hier.py:258: RuntimeWarning: invalid value encountered in subtract
+  cols = [(o[1][idx(l)] - g0) / hs[i] for i, o in enumerate(outs)]
+/home/nathan/Source/cl-995/solver/inner_stokes/hier.py:258: RuntimeWarning: invalid value encountered in subtract
+  cols = [(o[1][idx(l)] - g0) / hs[i] for i, o in enumerate(outs)]
+/home/nathan/Source/cl-995/solver/inner_stokes/inner_np.py:165: RuntimeWarning: overflow encountered in scalar power
+  return sum(abs(v) ** 2 for v in Fh.values())
+/home/nathan/Source/cl-995/solver/inner_stokes/hier.py:83: RuntimeWarning: overflow encountered in square
+  F2h = np.fft.fft(Fth ** 2) / NTH
+/home/nathan/Source/venv-i1026/lib/python3.14/site-packages/numpy/fft/_pocketfft.py:101: RuntimeWarning: invalid value encountered in fft
+  return ufunc(a, fct, axes=[(axis,), (), (axis,)], out=out)
+/home/nathan/Source/cl-995/solver/inner_stokes/hier.py:83: RuntimeWarning: invalid value encountered in divide
+  F2h = np.fft.fft(Fth ** 2) / NTH
+/home/nathan/Source/cl-995/solver/inner_stokes/hier.py:84: RuntimeWarning: invalid value encountered in divide
+  Pi = np.real(np.fft.ifft(np.where(kk != 0, F2h / (1j * kk + (kk == 0)), 0)) * NTH) / w
+/home/nathan/Source/cl-995/solver/inner_stokes/hier.py:88: RuntimeWarning: overflow encountered in exp
+  q = np.fft.fft(Jth * np.exp(-Pi)) / NTH
+/home/nathan/Source/venv-i1026/lib/python3.14/site-packages/numpy/linalg/_linalg.py:2784: RuntimeWarning: overflow encountered in dot
+  sqnorm = x.dot(x)
+/home/nathan/Source/cl-995/solver/inner_stokes/hier.py:88: RuntimeWarning: overflow encountered in exp
+  q = np.fft.fft(Jth * np.exp(-Pi)) / NTH
+/home/nathan/Source/cl-995/solver/inner_stokes/hier.py:88: RuntimeWarning: invalid value encountered in multiply
+  q = np.fft.fft(Jth * np.exp(-Pi)) / NTH
+/home/nathan/Source/cl-995/solver/inner_stokes/hier.py:88: RuntimeWarning: invalid value encountered in multiply
+  q = np.fft.fft(Jth * np.exp(-Pi)) / NTH
+/home/nathan/Source/venv-i1026/lib/python3.14/site-packages/numpy/fft/_pocketfft.py:101: RuntimeWarning: invalid value encountered in fft
+  return ufunc(a, fct, axes=[(axis,), (), (axis,)], out=out)
+   level 7 (low): stop at |g| 4.84e+01 (noise floor)
+   level 7 solved: |r_7| 4.84e+01  (9 residuals, 0 s)  [83 s total]
+   level 7 (low): stop at |g| 4.84e+01 (noise floor)
+   level 7 solved: |r_7| 4.84e+01  (9 residuals, 0 s)  [83 s total]
+   level 7 (low): stop at |g| inf (noise floor)
+   level 7 (top): stop at |g| inf (noise floor)
+   level 7 solved: |r_7| inf  (15 residuals, 0 s)  [83 s total]
+   level 7 (low): stop at |g| inf (noise floor)
+   level 7 (top): stop at |g| inf (noise floor)
+   level 7 solved: |r_7| inf  (15 residuals, 0 s)  [84 s total]
+/home/nathan/Source/cl-995/solver/inner_stokes/inner_np.py:165: RuntimeWarning: overflow encountered in scalar power
+  return sum(abs(v) ** 2 for v in Fh.values())
+/home/nathan/Source/cl-995/solver/inner_stokes/hier.py:83: RuntimeWarning: overflow encountered in square
+  F2h = np.fft.fft(Fth ** 2) / NTH
+/home/nathan/Source/cl-995/solver/inner_stokes/hier.py:83: RuntimeWarning: invalid value encountered in divide
+  F2h = np.fft.fft(Fth ** 2) / NTH
+/home/nathan/Source/cl-995/solver/inner_stokes/hier.py:84: RuntimeWarning: invalid value encountered in divide
+  Pi = np.real(np.fft.ifft(np.where(kk != 0, F2h / (1j * kk + (kk == 0)), 0)) * NTH) / w
+   level 7 (low): stop at |g| inf (noise floor)
+   level 7 (top): stop at |g| inf (noise floor)
+   level 7 solved: |r_7| inf  (15 residuals, 21 s)  [105 s total]
+   level 7 (low): stop at |g| nan (noise floor)
+   level 7 (top): stop at |g| nan (noise floor)
+   level 7 solved: |r_7| nan  (15 residuals, 4 s)  [109 s total]
+   level 7 (low): stop at |g| 1.31e+13 (noise floor)
+   level 7 (top): stop at |g| 1.31e+13 (noise floor)
+   level 7 solved: |r_7| 1.31e+13  (15 residuals, 0 s)  [109 s total]
+   level 7 (low): stop at |g| 2.00e+06 (noise floor)
+   level 7 (top): stop at |g| 2.00e+06 (noise floor)
+   level 7 solved: |r_7| 2.00e+06  (15 residuals, 18 s)  [127 s total]
+   level 5 (low): stop at |g| 2.16e+02 (noise floor)
+   level 7 (low): stop at |g| 4.84e+01 (noise floor)
+   level 7 solved: |r_7| 4.48e+01  (10 residuals, 0 s)  [127 s total]
+   level 5 solved: |r_5| 1.42e+02  (118 residuals, 45 s)  [127 s total]
+   level 3 solved: |r_3| 2.96e+03  (849 residuals, 127 s)  [127 s total]
+FIXED-A M 7: A 2.227529227  w/w_inf 0.092573703  (w 0.35383, Delta 17.75768)  <F^2> 3.3301  r_1 -1.9962e+03+2.5299e+03i  [127 s, 850 residuals]
+      F_3/F_1 = +0.327251+0.004029i   |.| 0.327275  arg +0.0123   r_3 3.0e+03
+      F_5/F_1 = +0.384622-0.005766i   |.| 0.384665  arg -0.0150   r_5 1.4e+02
+      F_7/F_1 = -0.285854+0.074019i   |.| 0.295282  arg +2.8882   r_7 4.5e+01
+      (uncorrected r_1 +3.3190e+02-2.2742e+02i)

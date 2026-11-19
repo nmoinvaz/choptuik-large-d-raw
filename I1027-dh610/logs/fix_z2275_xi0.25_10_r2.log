@@ -1,0 +1,246 @@
+# INNER_NB_RTOL=1e-13 /home/nathan/Source/venv-i1026/bin/python -u hier_nb.py 7 2.233566200638 0.064617755273 --x=0.735341926189,-0.00585892546572,0.455057320304,0.00121454410806,-0.203010922225,0.566263957994 --xi1=0.25 --pretune --fixA --schur --predict --floor --procs 2 --h3=1e-4 --verbose=2
+pretune level 7 (approach, xi 0.2313): start |r_7| 2.395e-05  [0 s]
+   it 0: |r_7| 5.109e-09  lam 1.0  B,C_7 -2.030109290185e-01 5.662639997862e-01  [0 s]
+pretune level 7 (polish, xi 0.2500): start |r_7| 4.235e+00  [0 s]
+   it 0: |r_7| 1.111e-01  lam 1.0  B,C_7 -1.937109797973e-01 5.760656890578e-01  [0 s]
+   it 1: |r_7| 3.499e-03  lam 1.0  B,C_7 -1.936917550533e-01 5.758586947155e-01  [0 s]
+   it 2: |r_7| 6.864e-05  lam 1.0  B,C_7 -1.936945107220e-01 5.758633900664e-01  [0 s]
+   it 3: |r_7| 8.397e-07  lam 1.0  B,C_7 -1.936944310959e-01 5.758633246513e-01  [0 s]
+   it 4: |r_7| 7.179e-09  lam 1.0  B,C_7 -1.936944325540e-01 5.758633248176e-01  [0 s]
+   it 5: |r_7| 1.468e-09  lam 1.0  B,C_7 -1.936944325416e-01 5.758633248360e-01  [0 s]
+   it 6: |r_7| 7.615e-10  lam 1.0  B,C_7 -1.936944325387e-01 5.758633248396e-01  [0 s]
+   it 7: |r_7| 4.392e-10  lam 0.5  B,C_7 -1.936944325393e-01 5.758633248398e-01  [0 s]
+   it 8: |r_7| 3.291e-10  lam 1.0  B,C_7 -1.936944325383e-01 5.758633248407e-01  [0 s]
+   it 9: |r_7| 2.400e-10  lam 1.0  B,C_7 -1.936944325390e-01 5.758633248401e-01  [0 s]
+   it 10: no decrease; stop at |r_7| 2.400e-10
+pretuned x [2.233566200638, 0.064617755273, 0.735341926189, -0.00585892546572, 0.455057320304, 0.00121454410806, -0.19369443253903446, 0.5758633248400871]
+M 7, xi1 0.25, fixed (A, w), procs 2; start x [2.233566201, 0.064617755, 0.735341926, -0.005858925, 0.45505732, 0.001214544, -0.193694433, 0.575863325]
+level radii (approach -> polish): r_1 0.2500 -> 0.2500, r_3 0.2500 -> 0.2500, r_5 0.2392 -> 0.2500, r_7 0.2313 -> 0.2500
+start residuals: |r_1| 0.00e+00  |r_3| 0.00e+00  |r_5| 0.00e+00  |r_7| 4.68e+00
+level 7 it 0: |r_7| 9.412e-11  lam 0.125  x [2.233566201, 0.064617755, 0.735341926, -0.005858925, 0.45505732, 0.001214544, -0.193694433, 0.575863325]  [2 s, 10 residuals]
+   level 7 (top): stop at |g| 9.41e-11 (noise floor)
+   level 7 solved: |r_7| 9.41e-11  (11 residuals, 1 s)  [2 s total]
+   level 7 (top): stop at |g| 9.41e-11 (noise floor)
+   level 7 solved: |r_7| 9.41e-11  (7 residuals, 0 s)  [2 s total]
+level 7 it 0: |r_7| 3.631e+01  lam 1  x [2.233566201, 0.064617755, 0.735341926, -0.005858925, 0.50631655, -0.34427899, -0.358015179, 0.195841343]  [3 s, 68 residuals]
+level 7 it 1: |r_7| 1.165e+01  lam 1  x [2.233566201, 0.064617755, 0.735341926, -0.005858925, 0.50631655, -0.34427899, -0.246133819, 0.299085275]  [3 s, 71 residuals]
+level 7 it 2: |r_7| 2.670e+00  lam 1  x [2.233566201, 0.064617755, 0.735341926, -0.005858925, 0.50631655, -0.34427899, -0.194675705, 0.32002977]  [3 s, 72 residuals]
+level 7 it 3: |r_7| 1.531e+00  lam 1  x [2.233566201, 0.064617755, 0.735341926, -0.005858925, 0.50631655, -0.34427899, -0.179648857, 0.32976624]  [3 s, 75 residuals]
+level 7 it 4: |r_7| 5.125e-01  lam 1  x [2.233566201, 0.064617755, 0.735341926, -0.005858925, 0.50631655, -0.34427899, -0.152098578, 0.349842961]  [3 s, 78 residuals]
+   level 7 solved: |r_7| 2.92e+00  (21 residuals, 0 s)  [3 s total]
+level 5 it 0: |r_5| 4.233e+01  lam 1  x [2.233566201, 0.064617755, 0.735341926, -0.005858925, 0.50631655, -0.34427899, -0.125420388, 0.36879244]  [4 s, 139 residuals]
+/home/nathan/Source/cl-995/solver/inner_stokes/hier.py:88: RuntimeWarning: overflow encountered in exp
+  q = np.fft.fft(Jth * np.exp(-Pi)) / NTH
+/home/nathan/Source/cl-995/solver/inner_stokes/hier.py:92: RuntimeWarning: overflow encountered in exp
+  z = q[nu % NTH] * r1 ** (2j * nu * w) * np.exp(lsc - np.log(2 * np.pi * abs(I.Kp(1j * nu * w))))
+   level 7 (low): stop at |g| 6.99e+05 (noise floor)
+/home/nathan/Source/cl-995/solver/inner_stokes/hier.py:88: RuntimeWarning: invalid value encountered in multiply
+  q = np.fft.fft(Jth * np.exp(-Pi)) / NTH
+/home/nathan/Source/venv-i1026/lib/python3.14/site-packages/numpy/fft/_pocketfft.py:101: RuntimeWarning: invalid value encountered in fft
+  return ufunc(a, fct, axes=[(axis,), (), (axis,)], out=out)
+   level 7 (top): stop at |g| 3.41e+05 (noise floor)
+   level 7 solved: |r_7| 3.41e+05  (15 residuals, 18 s)  [22 s total]
+   level 7 (low): stop at |g| 1.55e+03 (noise floor)
+   level 7 (top): stop at |g| 1.13e+03 (noise floor)
+   level 7 solved: |r_7| 1.13e+03  (15 residuals, 2 s)  [23 s total]
+   level 5 (low): stop at |g| 4.23e+01 (noise floor)
+   level 7 (low): stop at |g| 7.88e-01 (noise floor)
+   level 7 solved: |r_7| 2.92e+00  (10 residuals, 0 s)  [24 s total]
+   level 7 (low): stop at |g| 1.41e+05 (noise floor)
+/home/nathan/Source/venv-i1026/lib/python3.14/site-packages/numpy/linalg/_linalg.py:2784: RuntimeWarning: overflow encountered in dot
+  sqnorm = x.dot(x)
+   level 7 (top): stop at |g| 9.66e+04 (noise floor)
+   level 7 solved: |r_7| 9.66e+04  (15 residuals, 10 s)  [34 s total]
+   level 7 (low): stop at |g| 5.38e+02 (noise floor)
+   level 7 solved: |r_7| 3.38e+02  (12 residuals, 1 s)  [35 s total]
+   level 7 solved: |r_7| 1.21e+02  (12 residuals, 1 s)  [35 s total]
+level 7 it 0: |r_7| 2.422e+01  lam 0.0625  x [2.233566201, 0.064617755, 0.735341926, -0.005858925, 0.289651767, -0.196959968, 0.120973918, 0.555558689]  [36 s, 291 residuals]
+level 7 it 1: |r_7| 2.142e+00  lam 1  x [2.233566201, 0.064617755, 0.735341926, -0.005858925, 0.289651767, -0.196959968, 0.071289319, 0.563176916]  [36 s, 292 residuals]
+level 7 it 2: |r_7| 1.927e-01  lam 1  x [2.233566201, 0.064617755, 0.735341926, -0.005858925, 0.289651767, -0.196959968, 0.076708223, 0.565654644]  [36 s, 293 residuals]
+level 7 it 3: |r_7| 1.367e-02  lam 1  x [2.233566201, 0.064617755, 0.735341926, -0.005858925, 0.289651767, -0.196959968, 0.076222975, 0.565390518]  [36 s, 294 residuals]
+level 7 it 4: |r_7| 7.725e-04  lam 1  x [2.233566201, 0.064617755, 0.735341926, -0.005858925, 0.289651767, -0.196959968, 0.076257021, 0.56541137]  [36 s, 295 residuals]
+level 7 it 5: |r_7| 3.664e-05  lam 1  x [2.233566201, 0.064617755, 0.735341926, -0.005858925, 0.289651767, -0.196959968, 0.076255116, 0.56541012]  [36 s, 296 residuals]
+level 7 it 6: |r_7| 1.397e-06  lam 1  x [2.233566201, 0.064617755, 0.735341926, -0.005858925, 0.289651767, -0.196959968, 0.076255205, 0.565410183]  [36 s, 297 residuals]
+level 7 it 7: |r_7| 4.135e-08  lam 1  x [2.233566201, 0.064617755, 0.735341926, -0.005858925, 0.289651767, -0.196959968, 0.076255202, 0.56541018]  [36 s, 298 residuals]
+level 7 it 8: |r_7| 5.634e-09  lam 1  x [2.233566201, 0.064617755, 0.735341926, -0.005858925, 0.289651767, -0.196959968, 0.076255202, 0.565410181]  [36 s, 299 residuals]
+level 7 it 9: |r_7| 5.444e-09  lam 1  x [2.233566201, 0.064617755, 0.735341926, -0.005858925, 0.289651767, -0.196959968, 0.076255202, 0.565410181]  [36 s, 302 residuals]
+level 7 it 10: |r_7| 2.490e-09  lam 1  x [2.233566201, 0.064617755, 0.735341926, -0.005858925, 0.289651767, -0.196959968, 0.076255202, 0.565410181]  [36 s, 305 residuals]
+   level 7 (low): stop at |g| 2.49e-09 (noise floor)
+level 7 it 0: |r_7| 5.522e+00  lam 1  x [2.233566201, 0.064617755, 0.735341926, -0.005858925, 0.289651767, -0.196959968, 0.100603265, 0.591239876]  [36 s, 311 residuals]
+level 7 it 1: |r_7| 8.870e-02  lam 1  x [2.233566201, 0.064617755, 0.735341926, -0.005858925, 0.289651767, -0.196959968, 0.105114501, 0.583484999]  [36 s, 312 residuals]
+level 7 it 2: |r_7| 2.279e-03  lam 1  x [2.233566201, 0.064617755, 0.735341926, -0.005858925, 0.289651767, -0.196959968, 0.105325424, 0.583548133]  [36 s, 313 residuals]
+level 7 it 3: |r_7| 4.104e-05  lam 1  x [2.233566201, 0.064617755, 0.735341926, -0.005858925, 0.289651767, -0.196959968, 0.105330924, 0.583552298]  [36 s, 314 residuals]
+level 7 it 4: |r_7| 8.776e-07  lam 1  x [2.233566201, 0.064617755, 0.735341926, -0.005858925, 0.289651767, -0.196959968, 0.105330984, 0.583552397]  [36 s, 315 residuals]
+level 7 it 5: |r_7| 2.780e-08  lam 1  x [2.233566201, 0.064617755, 0.735341926, -0.005858925, 0.289651767, -0.196959968, 0.105330983, 0.583552398]  [36 s, 316 residuals]
+level 7 it 6: |r_7| 6.080e-10  lam 1  x [2.233566201, 0.064617755, 0.735341926, -0.005858925, 0.289651767, -0.196959968, 0.105330983, 0.583552398]  [36 s, 317 residuals]
+   level 7 (top): stop at |g| 6.08e-10 (noise floor)
+   level 7 solved: |r_7| 6.08e-10  (45 residuals, 1 s)  [36 s total]
+   level 7 solved: |r_7| 2.83e+01  (5 residuals, 0 s)  [37 s total]
+   level 7 (top): stop at |g| 1.69e+01 (noise floor)
+   level 7 solved: |r_7| 1.69e+01  (10 residuals, 0 s)  [37 s total]
+   level 5 (top): stop at |g| 4.15e+01 (noise floor)
+   level 5 solved: |r_5| 4.15e+01  (341 residuals, 36 s)  [37 s total]
+   Jacobian K computed (8 residuals) [37 s]
+   K by level, max |d r_l / d x_nu| (rows l, columns nu): nu 1  nu 3  nu 5  nu 7
+     l 1: 5.58e+03  1.31e+04  3.18e+04  3.84e+04
+     l 3: 6.93e+03  6.93e+03  1.44e+04  1.36e+04
+     l 5: 4.07e+03  3.17e+03  9.70e+03  9.43e+03
+     l 7: 1.89e+03  1.52e+03  3.78e+03  6.14e+03
+   floor of level 7: |r_7| ~ 3.01e+00 (stop at 3x from now on)
+   level 7 solved: |r_7| 3.01e+00  (5 residuals, 0 s)  [37 s total]
+   level 7 solved: |r_7| 3.49e+00  (4 residuals, 0 s)  [37 s total]
+   level 7 (low): stop at |g| 7.59e+23 (noise floor)
+   level 7 (top): stop at |g| 5.35e+22 (noise floor)
+   level 7 solved: |r_7| 5.35e+22  (15 residuals, 17 s)  [55 s total]
+/home/nathan/Source/cl-995/solver/inner_stokes/hier.py:92: RuntimeWarning: overflow encountered in scalar multiply
+  z = q[nu % NTH] * r1 ** (2j * nu * w) * np.exp(lsc - np.log(2 * np.pi * abs(I.Kp(1j * nu * w))))
+   level 7 (low): stop at |g| 2.23e+04 (noise floor)
+   level 7 solved: |r_7| 1.09e+04  (9 residuals, 0 s)  [55 s total]
+   level 7 solved: |r_7| 8.63e+01  (4 residuals, 0 s)  [55 s total]
+   level 7 (low): stop at |g| 3.88e+01 (noise floor)
+   level 7 solved: |r_7| 3.74e+01  (9 residuals, 0 s)  [55 s total]
+level 5 it 0: |r_5| 2.138e+01  lam 0.125  x [2.233566201, 0.064617755, 0.735341926, -0.005858925, 0.670861634, -0.456158236, -0.002523388, 0.173881114]  [56 s, 423 residuals]
+   level 7 solved: |r_7| 2.87e+01  (4 residuals, 0 s)  [56 s total]
+   level 7 solved: |r_7| 3.08e+01  (5 residuals, 0 s)  [56 s total]
+   level 5 (low): stop at |g| 2.14e+01 (noise floor)
+   level 7 (low): stop at |g| 4.11e+01 (noise floor)
+   level 7 solved: |r_7| 3.42e+01  (9 residuals, 0 s)  [56 s total]
+   level 7 (low): stop at |g| 2.84e+17 (noise floor)
+   level 7 solved: |r_7| 6.00e+16  (9 residuals, 8 s)  [65 s total]
+   level 7 (low): stop at |g| 2.80e+03 (noise floor)
+   level 7 solved: |r_7| 8.90e+03  (9 residuals, 0 s)  [65 s total]
+   level 7 solved: |r_7| 1.93e+02  (6 residuals, 0 s)  [65 s total]
+   level 7 solved: |r_7| 2.88e+01  (4 residuals, 0 s)  [65 s total]
+   level 7 solved: |r_7| 2.17e+01  (4 residuals, 0 s)  [65 s total]
+   level 7 (low): stop at |g| 3.70e+01 (noise floor)
+   level 7 solved: |r_7| 2.45e+01  (9 residuals, 0 s)  [66 s total]
+   level 5 (top): stop at |g| 2.35e+01 (noise floor)
+   floor of level 5: |r_5| ~ 2.35e+01 (stop at 3x from now on)
+   level 5 solved: |r_5| 2.35e+01  (131 residuals, 28 s)  [66 s total]
+level 7 it 0: |r_7| 2.372e+01  lam 1  x [2.233566201, 0.064617755, 0.567431974, -0.004521183, 0.827515558, -0.44026839, -0.153699324, -0.010495314]  [70 s, 839 residuals]
+level 7 it 1: |r_7| 7.821e+00  lam 1  x [2.233566201, 0.064617755, 0.567431974, -0.004521183, 0.827515558, -0.44026839, -0.201278379, -0.125415532]  [70 s, 842 residuals]
+level 7 it 2: |r_7| 4.516e-01  lam 1  x [2.233566201, 0.064617755, 0.567431974, -0.004521183, 0.827515558, -0.44026839, -0.191138193, -0.103707267]  [70 s, 843 residuals]
+level 7 it 3: |r_7| 3.132e-02  lam 1  x [2.233566201, 0.064617755, 0.567431974, -0.004521183, 0.827515558, -0.44026839, -0.191211834, -0.102372173]  [70 s, 844 residuals]
+level 7 it 4: |r_7| 1.571e-03  lam 1  x [2.233566201, 0.064617755, 0.567431974, -0.004521183, 0.827515558, -0.44026839, -0.19123493, -0.10228005]  [70 s, 845 residuals]
+level 7 it 5: |r_7| 5.434e-05  lam 1  x [2.233566201, 0.064617755, 0.567431974, -0.004521183, 0.827515558, -0.44026839, -0.191236799, -0.102275503]  [70 s, 846 residuals]
+level 7 it 6: |r_7| 9.892e-07  lam 1  x [2.233566201, 0.064617755, 0.567431974, -0.004521183, 0.827515558, -0.44026839, -0.191236906, -0.102275354]  [70 s, 847 residuals]
+level 7 it 7: |r_7| 1.677e-07  lam 1  x [2.233566201, 0.064617755, 0.567431974, -0.004521183, 0.827515558, -0.44026839, -0.191236911, -0.102275354]  [70 s, 848 residuals]
+level 7 it 8: |r_7| 1.278e-08  lam 1  x [2.233566201, 0.064617755, 0.567431974, -0.004521183, 0.827515558, -0.44026839, -0.191236911, -0.102275354]  [70 s, 849 residuals]
+level 7 it 9: |r_7| 4.825e-09  lam 1  x [2.233566201, 0.064617755, 0.567431974, -0.004521183, 0.827515558, -0.44026839, -0.191236911, -0.102275354]  [70 s, 852 residuals]
+   level 7 solved: |r_7| 8.46e+00  (20 residuals, 0 s)  [70 s total]
+   level 7 solved: |r_7| 8.46e+00  (8 residuals, 0 s)  [71 s total]
+   level 7 solved: |r_7| 4.99e+01  (5 residuals, 0 s)  [71 s total]
+   level 7 solved: |r_7| 3.76e+01  (4 residuals, 0 s)  [71 s total]
+   level 7 (low): stop at |g| 5.70e+74 (noise floor)
+   level 7 (top): stop at |g| 2.57e+74 (noise floor)
+   level 7 solved: |r_7| 2.57e+74  (15 residuals, 21 s)  [91 s total]
+   level 7 (low): stop at |g| 5.04e+26 (noise floor)
+   level 7 (top): stop at |g| 1.76e+26 (noise floor)
+   level 7 solved: |r_7| 1.76e+26  (15 residuals, 17 s)  [108 s total]
+   level 7 (low): stop at |g| 3.20e+06 (noise floor)
+   level 7 solved: |r_7| 1.82e+06  (9 residuals, 7 s)  [115 s total]
+   level 7 (low): stop at |g| 1.35e+03 (noise floor)
+   level 7 solved: |r_7| 7.60e+02  (9 residuals, 0 s)  [116 s total]
+   level 7 solved: |r_7| 2.28e+02  (8 residuals, 0 s)  [116 s total]
+   level 7 solved: |r_7| 1.18e+02  (5 residuals, 0 s)  [116 s total]
+   level 5 (top): stop at |g| 8.33e+01 (noise floor)
+   level 5 solved: |r_5| 8.33e+01  (98 residuals, 46 s)  [116 s total]
+   level 7 solved: |r_7| 7.42e+01  (7 residuals, 0 s)  [116 s total]
+   level 7 solved: |r_7| 7.70e+01  (8 residuals, 0 s)  [116 s total]
+   level 7 (low): stop at |g| 1.01e+04 (noise floor)
+   level 7 solved: |r_7| 7.18e+03  (9 residuals, 1 s)  [117 s total]
+   level 7 (low): stop at |g| 6.47e+02 (noise floor)
+   level 7 solved: |r_7| 5.36e+02  (9 residuals, 0 s)  [117 s total]
+   level 7 solved: |r_7| 1.30e+02  (6 residuals, 0 s)  [117 s total]
+level 5 it 0: |r_5| 6.583e+01  lam 0.25  x [2.233566201, 0.064617755, 0.65138695, -0.005190054, 0.01118778, -0.562086944, -0.22420376, -0.006775149]  [118 s, 987 residuals]
+   level 7 solved: |r_7| 8.64e+01  (4 residuals, 0 s)  [118 s total]
+   level 7 (low): stop at |g| 9.68e+01 (noise floor)
+   level 7 solved: |r_7| 8.64e+01  (9 residuals, 0 s)  [118 s total]
+   level 5 solved: |r_5| 7.56e+01  (68 residuals, 2 s)  [118 s total]
+   level 7 (low): stop at |g| 9.85e+01 (noise floor)
+   level 7 solved: |r_7| 8.21e+01  (9 residuals, 0 s)  [118 s total]
+   level 7 (low): stop at |g| 9.85e+01 (noise floor)
+   level 7 solved: |r_7| 8.21e+01  (9 residuals, 0 s)  [118 s total]
+   level 7 (low): stop at |g| 9.85e+01 (noise floor)
+   level 7 solved: |r_7| 8.20e+01  (9 residuals, 0 s)  [118 s total]
+   level 7 (low): stop at |g| 9.85e+01 (noise floor)
+   level 7 solved: |r_7| 8.20e+01  (9 residuals, 0 s)  [119 s total]
+   level 7 (low): stop at |g| 9.85e+01 (noise floor)
+   level 7 solved: |r_7| 8.21e+01  (9 residuals, 0 s)  [119 s total]
+   level 7 (low): stop at |g| 9.85e+01 (noise floor)
+   level 7 solved: |r_7| 8.21e+01  (9 residuals, 0 s)  [119 s total]
+   level 7 (low): stop at |g| 9.85e+01 (noise floor)
+   level 7 solved: |r_7| 8.21e+01  (9 residuals, 0 s)  [119 s total]
+   level 7 (low): stop at |g| 9.85e+01 (noise floor)
+   level 7 solved: |r_7| 8.21e+01  (9 residuals, 0 s)  [120 s total]
+   level 5 (low): stop at |g| 4.19e+01 (noise floor)
+   level 7 (low): stop at |g| 9.85e+01 (noise floor)
+   level 7 solved: |r_7| 8.21e+01  (9 residuals, 0 s)  [120 s total]
+   level 5 solved: |r_5| 3.71e+01  (81 residuals, 2 s)  [120 s total]
+   level 7 (low): stop at |g| 9.87e+01 (noise floor)
+   level 7 solved: |r_7| 7.76e+01  (9 residuals, 0 s)  [120 s total]
+   level 7 (low): stop at |g| 9.87e+01 (noise floor)
+   level 7 solved: |r_7| 7.76e+01  (9 residuals, 0 s)  [120 s total]
+   level 7 (low): stop at |g| 9.86e+01 (noise floor)
+   level 7 solved: |r_7| 7.75e+01  (9 residuals, 0 s)  [120 s total]
+   level 7 (low): stop at |g| 9.86e+01 (noise floor)
+   level 7 solved: |r_7| 7.76e+01  (9 residuals, 0 s)  [121 s total]
+   level 7 (low): stop at |g| 9.86e+01 (noise floor)
+   level 7 solved: |r_7| 7.76e+01  (9 residuals, 0 s)  [121 s total]
+   level 7 (low): stop at |g| 9.87e+01 (noise floor)
+   level 7 solved: |r_7| 7.76e+01  (9 residuals, 0 s)  [121 s total]
+   level 7 (low): stop at |g| 9.87e+01 (noise floor)
+   level 7 solved: |r_7| 7.76e+01  (9 residuals, 0 s)  [121 s total]
+   level 7 (low): stop at |g| 9.87e+01 (noise floor)
+   level 7 solved: |r_7| 7.76e+01  (9 residuals, 0 s)  [122 s total]
+   level 5 (low): stop at |g| 7.43e+01 (noise floor)
+   level 7 (low): stop at |g| 9.87e+01 (noise floor)
+   level 7 solved: |r_7| 7.76e+01  (9 residuals, 0 s)  [122 s total]
+   level 5 solved: |r_5| 5.74e+01  (81 residuals, 2 s)  [122 s total]
+   level 7 (low): stop at |g| 9.87e+01 (noise floor)
+   level 7 solved: |r_7| 7.49e+01  (9 residuals, 0 s)  [122 s total]
+   level 7 (low): stop at |g| 9.87e+01 (noise floor)
+   level 7 solved: |r_7| 7.49e+01  (9 residuals, 0 s)  [122 s total]
+   level 7 (low): stop at |g| 9.87e+01 (noise floor)
+   level 7 solved: |r_7| 7.47e+01  (9 residuals, 0 s)  [122 s total]
+   level 7 (low): stop at |g| 9.87e+01 (noise floor)
+   level 7 solved: |r_7| 7.48e+01  (9 residuals, 0 s)  [123 s total]
+   level 7 (low): stop at |g| 9.87e+01 (noise floor)
+   level 7 solved: |r_7| 7.48e+01  (9 residuals, 0 s)  [123 s total]
+   level 7 (low): stop at |g| 9.87e+01 (noise floor)
+   level 7 solved: |r_7| 7.49e+01  (9 residuals, 0 s)  [123 s total]
+   level 7 (low): stop at |g| 9.87e+01 (noise floor)
+   level 7 solved: |r_7| 7.49e+01  (9 residuals, 0 s)  [123 s total]
+   level 7 (low): stop at |g| 9.87e+01 (noise floor)
+   level 7 solved: |r_7| 7.49e+01  (9 residuals, 0 s)  [123 s total]
+   level 5 (low): stop at |g| 9.36e+01 (noise floor)
+   level 7 (low): stop at |g| 9.87e+01 (noise floor)
+   level 7 solved: |r_7| 7.49e+01  (9 residuals, 0 s)  [124 s total]
+   level 5 solved: |r_5| 7.46e+01  (81 residuals, 2 s)  [124 s total]
+   level 7 (low): stop at |g| 9.88e+01 (noise floor)
+   level 7 solved: |r_7| 7.34e+01  (9 residuals, 0 s)  [124 s total]
+   level 7 (low): stop at |g| 9.88e+01 (noise floor)
+   level 7 solved: |r_7| 7.34e+01  (9 residuals, 0 s)  [124 s total]
+   level 7 (low): stop at |g| 9.87e+01 (noise floor)
+   level 7 solved: |r_7| 7.33e+01  (9 residuals, 0 s)  [124 s total]
+   level 7 (low): stop at |g| 9.88e+01 (noise floor)
+   level 7 solved: |r_7| 7.33e+01  (9 residuals, 0 s)  [125 s total]
+   level 7 (low): stop at |g| 9.88e+01 (noise floor)
+   level 7 solved: |r_7| 7.34e+01  (9 residuals, 0 s)  [125 s total]
+   level 7 (low): stop at |g| 9.88e+01 (noise floor)
+   level 7 solved: |r_7| 7.34e+01  (9 residuals, 0 s)  [125 s total]
+   level 7 (low): stop at |g| 9.88e+01 (noise floor)
+   level 7 solved: |r_7| 7.34e+01  (9 residuals, 0 s)  [125 s total]
+   level 7 (low): stop at |g| 9.88e+01 (noise floor)
+   level 7 solved: |r_7| 7.34e+01  (9 residuals, 0 s)  [125 s total]
+   level 5 (low): stop at |g| 1.04e+02 (noise floor)
+   level 7 (low): stop at |g| 9.88e+01 (noise floor)
+   level 7 solved: |r_7| 7.34e+01  (9 residuals, 0 s)  [126 s total]
+   level 5 solved: |r_5| 8.43e+01  (81 residuals, 2 s)  [126 s total]
+   level 3 (top): stop at |g| 1.13e+02 (noise floor)
+   level 3 solved: |r_3| 1.13e+02  (1323 residuals, 125 s)  [126 s total]
+FIXED-A M 7: A 2.233566201  w/w_inf 0.064617755  (w 0.24698, Delta 25.44028)  <F^2> 3.1067  r_1 -2.7241e+00-1.7466e+02i  [126 s, 1324 residuals]
+      F_3/F_1 = +0.329223-0.002623i   |.| 0.329234  arg -0.0080   r_3 1.1e+02
+      F_5/F_1 = +0.300354-0.204229i   |.| 0.363211  arg -0.5971   r_5 2.4e+01
+      F_7/F_1 = -0.054012+0.047122i   |.| 0.071679  arg +2.4242   r_7 3.4e+01
+      (uncorrected r_1 -8.2605e+01-1.0681e+02i)

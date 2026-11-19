@@ -1,0 +1,222 @@
+# INNER_NB_RTOL=1e-13 /home/nathan/Source/venv-i1026/bin/python -u hier_nb.py 7 2.583887555618 0.141357651853 --x=0.821769921158,0.00689600056061,0.407900003339,0.0336450026799,0,0 --xi1=0.15 --pretune --fixA --schur --predict --floor --procs 2 --h3=1e-4 --verbose=2
+pretune level 7 (approach, xi 0.1500): start |r_7| 1.813e+03  [0 s]
+   it 0: no decrease; stop at |r_7| 1.813e+03
+pretune level 7 (polish, xi 0.1500): start |r_7| 1.813e+03  [0 s]
+   it 0: no decrease; stop at |r_7| 1.813e+03
+pretuned x [2.583887555618, 0.141357651853, 0.821769921158, 0.00689600056061, 0.407900003339, 0.0336450026799, 0.0, 0.0]
+M 7, xi1 0.15, fixed (A, w), procs 2; start x [2.583887556, 0.141357652, 0.821769921, 0.006896001, 0.407900003, 0.033645003, 0.0, 0.0]
+level radii (approach -> polish): r_1 0.1500 -> 0.1500, r_3 0.1500 -> 0.1500, r_5 0.1500 -> 0.1500, r_7 0.1500 -> 0.1500
+start residuals: |r_1| 0.00e+00  |r_3| 0.00e+00  |r_5| 0.00e+00  |r_7| 1.81e+03
+   level 7 (low): stop at |g| 1.81e+03 (noise floor)
+   level 7 (top): stop at |g| 1.81e+03 (noise floor)
+   level 7 solved: |r_7| 1.81e+03  (19 residuals, 1 s)  [2 s total]
+   level 7 (low): stop at |g| 1.81e+03 (noise floor)
+   level 7 (top): stop at |g| 1.81e+03 (noise floor)
+   level 7 solved: |r_7| 1.81e+03  (15 residuals, 0 s)  [2 s total]
+   level 7 (low): stop at |g| 1.81e+03 (noise floor)
+   level 7 (top): stop at |g| 1.81e+03 (noise floor)
+   level 7 solved: |r_7| 1.81e+03  (15 residuals, 0 s)  [4 s total]
+   level 7 (low): stop at |g| 1.81e+03 (noise floor)
+   level 7 (top): stop at |g| 1.81e+03 (noise floor)
+   level 7 solved: |r_7| 1.81e+03  (15 residuals, 0 s)  [4 s total]
+   level 7 (low): stop at |g| 1.81e+03 (noise floor)
+   level 7 (top): stop at |g| 1.81e+03 (noise floor)
+   level 7 solved: |r_7| 1.81e+03  (15 residuals, 0 s)  [5 s total]
+   level 7 (low): stop at |g| 1.81e+03 (noise floor)
+   level 7 (top): stop at |g| 1.81e+03 (noise floor)
+   level 7 solved: |r_7| 1.81e+03  (15 residuals, 0 s)  [5 s total]
+   level 7 (low): stop at |g| 1.81e+03 (noise floor)
+   level 7 (top): stop at |g| 1.81e+03 (noise floor)
+   level 7 solved: |r_7| 1.81e+03  (15 residuals, 0 s)  [6 s total]
+   level 7 (low): stop at |g| 1.81e+03 (noise floor)
+   level 7 (top): stop at |g| 1.81e+03 (noise floor)
+   level 7 solved: |r_7| 1.81e+03  (15 residuals, 0 s)  [6 s total]
+   level 7 (low): stop at |g| 2.21e+03 (noise floor)
+   level 7 (top): stop at |g| 2.21e+03 (noise floor)
+   level 7 solved: |r_7| 2.21e+03  (15 residuals, 0 s)  [7 s total]
+   level 7 (low): stop at |g| 2.01e+03 (noise floor)
+   level 7 (top): stop at |g| 2.01e+03 (noise floor)
+   level 7 solved: |r_7| 2.01e+03  (15 residuals, 0 s)  [8 s total]
+   level 7 (low): stop at |g| 1.91e+03 (noise floor)
+   level 7 (top): stop at |g| 1.91e+03 (noise floor)
+   level 7 solved: |r_7| 1.91e+03  (15 residuals, 0 s)  [8 s total]
+   level 7 (low): stop at |g| 1.86e+03 (noise floor)
+   level 7 (top): stop at |g| 1.86e+03 (noise floor)
+   level 7 solved: |r_7| 1.86e+03  (15 residuals, 0 s)  [8 s total]
+   level 7 (low): stop at |g| 1.84e+03 (noise floor)
+   level 7 (top): stop at |g| 1.84e+03 (noise floor)
+   level 7 solved: |r_7| 1.84e+03  (15 residuals, 0 s)  [9 s total]
+   level 7 (low): stop at |g| 1.83e+03 (noise floor)
+   level 7 (top): stop at |g| 1.83e+03 (noise floor)
+   level 7 solved: |r_7| 1.83e+03  (15 residuals, 0 s)  [9 s total]
+   level 5 (top): stop at |g| 2.69e+03 (noise floor)
+   level 5 solved: |r_5| 2.69e+03  (301 residuals, 9 s)  [9 s total]
+   Jacobian K computed (8 residuals) [10 s]
+   K by level, max |d r_l / d x_nu| (rows l, columns nu): nu 1  nu 3  nu 5  nu 7
+     l 1: 1.34e+11  1.10e+12  3.46e+13  7.00e+14
+     l 3: 1.88e+10  9.89e+10  9.43e+12  9.21e+13
+     l 5: 3.18e+09  3.87e+10  1.29e+12  2.25e+13
+     l 7: 3.87e+08  4.18e+09  1.92e+11  3.10e+12
+   level 7 (low): stop at |g| 1.81e+03 (noise floor)
+   level 7 (top): stop at |g| 1.81e+03 (noise floor)
+   floor of level 7: |r_7| ~ 1.81e+03 (stop at 3x from now on)
+   level 7 solved: |r_7| 1.81e+03  (15 residuals, 0 s)  [10 s total]
+   level 7 (low): stop at |g| 1.81e+03 (noise floor)
+   level 7 solved: |r_7| 1.81e+03  (9 residuals, 0 s)  [10 s total]
+   level 7 (low): stop at |g| 1.81e+03 (noise floor)
+   level 7 solved: |r_7| 1.81e+03  (9 residuals, 0 s)  [11 s total]
+   level 7 (low): stop at |g| 1.81e+03 (noise floor)
+   level 7 solved: |r_7| 1.81e+03  (9 residuals, 0 s)  [11 s total]
+   level 7 (low): stop at |g| 1.81e+03 (noise floor)
+   level 7 solved: |r_7| 1.81e+03  (9 residuals, 0 s)  [11 s total]
+   level 7 (low): stop at |g| 1.81e+03 (noise floor)
+   level 7 solved: |r_7| 1.81e+03  (9 residuals, 0 s)  [11 s total]
+   level 7 (low): stop at |g| 1.81e+03 (noise floor)
+   level 7 solved: |r_7| 1.81e+03  (9 residuals, 0 s)  [12 s total]
+   level 7 (low): stop at |g| 1.81e+03 (noise floor)
+   level 7 solved: |r_7| 1.81e+03  (9 residuals, 0 s)  [12 s total]
+   level 5 (low): stop at |g| 1.39e+04 (noise floor)
+   level 7 (low): stop at |g| 1.81e+03 (noise floor)
+   level 7 solved: |r_7| 1.81e+03  (9 residuals, 0 s)  [12 s total]
+   level 7 (low): stop at |g| 3.46e+03 (noise floor)
+   level 7 solved: |r_7| 3.46e+03  (9 residuals, 0 s)  [12 s total]
+   level 7 (low): stop at |g| 2.69e+03 (noise floor)
+   level 7 solved: |r_7| 2.69e+03  (9 residuals, 0 s)  [13 s total]
+   level 7 (low): stop at |g| 2.25e+03 (noise floor)
+   level 7 solved: |r_7| 2.25e+03  (9 residuals, 0 s)  [13 s total]
+   level 7 (low): stop at |g| 2.03e+03 (noise floor)
+   level 7 solved: |r_7| 2.03e+03  (9 residuals, 0 s)  [13 s total]
+   level 7 (low): stop at |g| 1.92e+03 (noise floor)
+   level 7 solved: |r_7| 1.92e+03  (9 residuals, 0 s)  [14 s total]
+   level 7 (low): stop at |g| 1.87e+03 (noise floor)
+   level 7 solved: |r_7| 1.87e+03  (9 residuals, 0 s)  [14 s total]
+   level 5 (top): stop at |g| 1.39e+04 (noise floor)
+   floor of level 5: |r_5| ~ 1.39e+04 (stop at 3x from now on)
+   level 5 solved: |r_5| 1.39e+04  (141 residuals, 4 s)  [14 s total]
+   level 7 (low): stop at |g| 1.86e+03 (noise floor)
+   level 7 solved: |r_7| 1.86e+03  (9 residuals, 0 s)  [17 s total]
+   level 7 (low): stop at |g| 1.86e+03 (noise floor)
+   level 7 solved: |r_7| 1.86e+03  (9 residuals, 0 s)  [17 s total]
+   level 7 (low): stop at |g| 1.86e+03 (noise floor)
+   level 7 solved: |r_7| 1.86e+03  (9 residuals, 0 s)  [17 s total]
+   level 7 (low): stop at |g| 1.86e+03 (noise floor)
+   level 7 solved: |r_7| 1.86e+03  (9 residuals, 0 s)  [17 s total]
+   level 7 (low): stop at |g| 1.86e+03 (noise floor)
+   level 7 solved: |r_7| 1.86e+03  (9 residuals, 0 s)  [18 s total]
+   level 7 (low): stop at |g| 1.86e+03 (noise floor)
+   level 7 solved: |r_7| 1.86e+03  (9 residuals, 0 s)  [18 s total]
+   level 7 (low): stop at |g| 1.86e+03 (noise floor)
+   level 7 solved: |r_7| 1.86e+03  (9 residuals, 0 s)  [18 s total]
+   level 7 (low): stop at |g| 1.86e+03 (noise floor)
+   level 7 solved: |r_7| 1.86e+03  (9 residuals, 0 s)  [18 s total]
+   level 5 (low): stop at |g| 1.43e+04 (noise floor)
+   level 7 (low): stop at |g| 1.86e+03 (noise floor)
+   level 7 solved: |r_7| 1.86e+03  (9 residuals, 0 s)  [19 s total]
+   level 5 solved: |r_5| 1.43e+04  (81 residuals, 2 s)  [19 s total]
+   level 7 (low): stop at |g| 1.84e+03 (noise floor)
+   level 7 solved: |r_7| 1.84e+03  (9 residuals, 0 s)  [19 s total]
+   level 7 (low): stop at |g| 1.84e+03 (noise floor)
+   level 7 solved: |r_7| 1.84e+03  (9 residuals, 0 s)  [19 s total]
+   level 7 (low): stop at |g| 1.84e+03 (noise floor)
+   level 7 solved: |r_7| 1.84e+03  (9 residuals, 0 s)  [19 s total]
+   level 7 (low): stop at |g| 1.84e+03 (noise floor)
+   level 7 solved: |r_7| 1.84e+03  (9 residuals, 0 s)  [20 s total]
+   level 7 (low): stop at |g| 1.84e+03 (noise floor)
+   level 7 solved: |r_7| 1.84e+03  (9 residuals, 0 s)  [20 s total]
+   level 7 (low): stop at |g| 1.84e+03 (noise floor)
+   level 7 solved: |r_7| 1.84e+03  (9 residuals, 0 s)  [20 s total]
+   level 7 (low): stop at |g| 1.84e+03 (noise floor)
+   level 7 solved: |r_7| 1.84e+03  (9 residuals, 0 s)  [21 s total]
+   level 7 (low): stop at |g| 1.84e+03 (noise floor)
+   level 7 solved: |r_7| 1.84e+03  (9 residuals, 0 s)  [21 s total]
+   level 5 (low): stop at |g| 1.41e+04 (noise floor)
+   level 7 (low): stop at |g| 1.84e+03 (noise floor)
+   level 7 solved: |r_7| 1.84e+03  (9 residuals, 0 s)  [21 s total]
+   level 5 solved: |r_5| 1.41e+04  (81 residuals, 2 s)  [21 s total]
+   level 7 (low): stop at |g| 1.83e+03 (noise floor)
+   level 7 solved: |r_7| 1.83e+03  (9 residuals, 0 s)  [21 s total]
+   level 7 (low): stop at |g| 1.83e+03 (noise floor)
+   level 7 solved: |r_7| 1.83e+03  (9 residuals, 0 s)  [22 s total]
+   level 7 (low): stop at |g| 1.83e+03 (noise floor)
+   level 7 solved: |r_7| 1.83e+03  (9 residuals, 0 s)  [22 s total]
+   level 7 (low): stop at |g| 1.83e+03 (noise floor)
+   level 7 solved: |r_7| 1.83e+03  (9 residuals, 0 s)  [22 s total]
+   level 7 (low): stop at |g| 1.83e+03 (noise floor)
+   level 7 solved: |r_7| 1.83e+03  (9 residuals, 0 s)  [22 s total]
+   level 7 (low): stop at |g| 1.83e+03 (noise floor)
+   level 7 solved: |r_7| 1.83e+03  (9 residuals, 0 s)  [23 s total]
+   level 7 (low): stop at |g| 1.83e+03 (noise floor)
+   level 7 solved: |r_7| 1.83e+03  (9 residuals, 0 s)  [23 s total]
+   level 7 (low): stop at |g| 1.83e+03 (noise floor)
+   level 7 solved: |r_7| 1.83e+03  (9 residuals, 0 s)  [23 s total]
+   level 5 (low): stop at |g| 1.40e+04 (noise floor)
+   level 7 (low): stop at |g| 1.83e+03 (noise floor)
+   level 7 solved: |r_7| 1.83e+03  (9 residuals, 0 s)  [23 s total]
+   level 5 solved: |r_5| 1.40e+04  (81 residuals, 2 s)  [23 s total]
+   level 7 (low): stop at |g| 1.82e+03 (noise floor)
+   level 7 solved: |r_7| 1.82e+03  (9 residuals, 0 s)  [24 s total]
+   level 7 (low): stop at |g| 1.82e+03 (noise floor)
+   level 7 solved: |r_7| 1.82e+03  (9 residuals, 0 s)  [24 s total]
+   level 7 (low): stop at |g| 1.82e+03 (noise floor)
+   level 7 solved: |r_7| 1.82e+03  (9 residuals, 0 s)  [24 s total]
+   level 7 (low): stop at |g| 1.82e+03 (noise floor)
+   level 7 solved: |r_7| 1.82e+03  (9 residuals, 0 s)  [25 s total]
+   level 7 (low): stop at |g| 1.82e+03 (noise floor)
+   level 7 solved: |r_7| 1.82e+03  (9 residuals, 0 s)  [25 s total]
+   level 7 (low): stop at |g| 1.82e+03 (noise floor)
+   level 7 solved: |r_7| 1.82e+03  (9 residuals, 0 s)  [25 s total]
+   level 7 (low): stop at |g| 1.82e+03 (noise floor)
+   level 7 solved: |r_7| 1.82e+03  (9 residuals, 0 s)  [25 s total]
+   level 7 (low): stop at |g| 1.82e+03 (noise floor)
+   level 7 solved: |r_7| 1.82e+03  (9 residuals, 0 s)  [26 s total]
+   level 5 (low): stop at |g| 1.39e+04 (noise floor)
+   level 7 (low): stop at |g| 1.82e+03 (noise floor)
+   level 7 solved: |r_7| 1.82e+03  (9 residuals, 0 s)  [26 s total]
+   level 5 solved: |r_5| 1.39e+04  (81 residuals, 2 s)  [26 s total]
+   level 7 (low): stop at |g| 1.82e+03 (noise floor)
+   level 7 solved: |r_7| 1.82e+03  (9 residuals, 0 s)  [26 s total]
+   level 7 (low): stop at |g| 1.82e+03 (noise floor)
+   level 7 solved: |r_7| 1.82e+03  (9 residuals, 0 s)  [26 s total]
+   level 7 (low): stop at |g| 1.82e+03 (noise floor)
+   level 7 solved: |r_7| 1.82e+03  (9 residuals, 0 s)  [27 s total]
+   level 7 (low): stop at |g| 1.82e+03 (noise floor)
+   level 7 solved: |r_7| 1.82e+03  (9 residuals, 0 s)  [27 s total]
+   level 7 (low): stop at |g| 1.82e+03 (noise floor)
+   level 7 solved: |r_7| 1.82e+03  (9 residuals, 0 s)  [27 s total]
+   level 7 (low): stop at |g| 1.82e+03 (noise floor)
+   level 7 solved: |r_7| 1.82e+03  (9 residuals, 0 s)  [28 s total]
+   level 7 (low): stop at |g| 1.82e+03 (noise floor)
+   level 7 solved: |r_7| 1.82e+03  (9 residuals, 0 s)  [28 s total]
+   level 7 (low): stop at |g| 1.82e+03 (noise floor)
+   level 7 solved: |r_7| 1.82e+03  (9 residuals, 0 s)  [28 s total]
+   level 5 (low): stop at |g| 1.39e+04 (noise floor)
+   level 7 (low): stop at |g| 1.82e+03 (noise floor)
+   level 7 solved: |r_7| 1.82e+03  (9 residuals, 0 s)  [28 s total]
+   level 5 solved: |r_5| 1.39e+04  (81 residuals, 2 s)  [28 s total]
+   level 7 (low): stop at |g| 1.81e+03 (noise floor)
+   level 7 solved: |r_7| 1.81e+03  (9 residuals, 0 s)  [29 s total]
+   level 7 (low): stop at |g| 1.81e+03 (noise floor)
+   level 7 solved: |r_7| 1.81e+03  (9 residuals, 0 s)  [29 s total]
+   level 7 (low): stop at |g| 1.81e+03 (noise floor)
+   level 7 solved: |r_7| 1.81e+03  (9 residuals, 0 s)  [29 s total]
+   level 7 (low): stop at |g| 1.81e+03 (noise floor)
+   level 7 solved: |r_7| 1.81e+03  (9 residuals, 0 s)  [29 s total]
+   level 7 (low): stop at |g| 1.81e+03 (noise floor)
+   level 7 solved: |r_7| 1.81e+03  (9 residuals, 0 s)  [30 s total]
+   level 7 (low): stop at |g| 1.81e+03 (noise floor)
+   level 7 solved: |r_7| 1.81e+03  (9 residuals, 0 s)  [30 s total]
+   level 7 (low): stop at |g| 1.81e+03 (noise floor)
+   level 7 solved: |r_7| 1.81e+03  (9 residuals, 0 s)  [30 s total]
+   level 7 (low): stop at |g| 1.81e+03 (noise floor)
+   level 7 solved: |r_7| 1.81e+03  (9 residuals, 0 s)  [30 s total]
+   level 5 (low): stop at |g| 1.39e+04 (noise floor)
+   level 7 (low): stop at |g| 1.81e+03 (noise floor)
+   level 7 solved: |r_7| 1.81e+03  (9 residuals, 0 s)  [31 s total]
+   level 5 solved: |r_5| 1.39e+04  (81 residuals, 2 s)  [31 s total]
+   level 3 (top): stop at |g| 6.43e+04 (noise floor)
+   level 3 solved: |r_3| 6.43e+04  (1069 residuals, 30 s)  [31 s total]
+FIXED-A M 7: A 2.583887556  w/w_inf 0.141357652  (w 0.54029, Delta 11.62932)  <F^2> 3.7597  r_1 +2.9035e+05+1.2200e+06i  [31 s, 1070 residuals]
+      F_3/F_1 = +0.318036+0.002669i   |.| 0.318047  arg +0.0084   r_3 6.4e+04
+      F_5/F_1 = +0.157863+0.013021i   |.| 0.158399  arg +0.0823   r_5 1.4e+04
+      F_7/F_1 = -0.000000+0.000000i   |.| 0.000000  arg +2.6012   r_7 1.8e+03
+      (uncorrected r_1 -1.7939e+02+4.3379e+03i)
