@@ -1,0 +1,14 @@
+# plumbing control, 08:12:35 UTC. REF = #1011 run 1's log; new logs from D:/choptuik-inner at 23844822, each stopped by pid at its first level-5 (low) stop line (an earlier attempt of this comparison used wrong file names and is not a result)
+$ control1012.py --h5=1e-6 log against REF (must pass: line for line to the first level-5 stop)
+hier_nb_M9_polish5_0.11_approach5_0.105_fm1e-4_h51e-6_ctrl_win2.log against hier_nb_M9_polish5_0.11_approach5_0.105_fm1e-4_win2.log: the first 446 lines (to the reference's first level-5 (low) stop, inclusive), equal: True
+exit 0
+$ control1012.py --h5=1e-4 log against REF (must differ)
+hier_nb_M9_polish5_0.11_approach5_0.105_fm1e-4_h51e-4_ctrl_win2.log against hier_nb_M9_polish5_0.11_approach5_0.105_fm1e-4_win2.log: the first 446 lines (to the reference's first level-5 (low) stop, inclusive), equal: False
+first difference at line 127:
+  new: level 9 it 0: |r_9| 2.250e-06  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008424422, 0.001512505, 0.000475367, 0.000122554, 2.6657e-05, 8.999e-06
+  ref: level 9 it 0: |r_9| 5.847e-06  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008422814, 0.001514899, 0.000475367, 0.000122554, 2.6654e-05, 9.001e-06
+exit 1
+$ control1012.py --h5=1e-6 log against REF, --mutate=shift (must differ)
+hier_nb_M9_polish5_0.11_approach5_0.105_fm1e-4_h51e-6_ctrl_win2.log against hier_nb_M9_polish5_0.11_approach5_0.105_fm1e-4_win2.log: the first 446 lines (to the reference's first level-5 (low) stop, i
+first difference at line 21:
+exit 1

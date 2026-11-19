@@ -1,0 +1,13 @@
+# control1012.py with the pool Traceback block dropped (as control989.py v2), 08:07:29 UTC; test log: I976-win2's M = 7 zero log, whose last 5 lines are the block
+$ selftest_traceback1012.py
+1. the pool block is dropped: True; 2. a real extra line is kept: True; 3. another Traceback is kept: True
+exit 0
+$ selftest_traceback1012.py --mutate=keep (the drop disabled: must fail)
+1. the pool block is dropped: False; 2. a real extra line is kept: True; 3. another Traceback is kept: True
+exit 1
+$ control1012.py on #1011 run 1's log against itself (must pass), then the shift mutation (must fail)
+hier_nb_M9_polish5_0.11_approach5_0.105_fm1e-4_win2.log against hier_nb_M9_polish5_0.11_approach5_0.105_fm1e-4_win2.log: the first 446 lines (to the reference's first level-5 (low) stop, inclusive), e
+exit 0
+hier_nb_M9_polish5_0.11_approach5_0.105_fm1e-4_win2.log against hier_nb_M9_polish5_0.11_approach5_0.105_fm1e-4_win2.log: the first 446 lines (to the reference's first level-5 (low) stop, inclusive), e
+first difference at line 21:
+exit 1
