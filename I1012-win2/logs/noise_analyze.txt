@@ -1,0 +1,25 @@
+# noise_analyze.py, 12:25:43 UTC
+$ noise_analyze.py
+| row | nested 1e-12: std / max dev | nested 1e-10: std / max dev | ratio of std (1e-10 / 1e-12) |
+|---|---|---|---|
+| r1 re | 5.94e+05 / 2.42e+06 | 6.97e+05 / 1.50e+06 | 1.17 |
+| r1 im | 4.92e+05 / 2.03e+06 | 5.94e+05 / 1.30e+06 | 1.21 |
+| r3 B | 2.27e+01 / 9.56e+01 | 2.81e+01 / 6.65e+01 | 1.24 |
+| r3 C | 6.66e+00 / 2.40e+01 | 1.02e+01 / 2.83e+01 | 1.52 |
+| r5 B | 8.25e-04 / 3.42e-03 | 1.19e-03 / 2.92e-03 | 1.44 |
+| r5 C | 1.89e-04 / 4.41e-04 | 3.42e-04 / 7.04e-04 | 1.81 |
+| r7 B | 2.20e-07 / 5.62e-07 | 3.32e-07 / 7.26e-07 | 1.51 |
+| r7 C | 2.73e-07 / 8.23e-07 | 3.38e-07 / 6.77e-07 | 1.24 |
+| r9 B | 6.73e-10 / 2.50e-09 | 1.27e-09 / 3.73e-09 | 1.89 |
+| r9 C | 2.55e-10 / 7.00e-10 | 1.72e-10 / 4.68e-10 | 0.68 |
+
+norm of the std over the two components: r5 8.46e-04 (1e-12), 1.24e-03 (1e-10); r3 2.36e+01; r1 7.71e+05; r7 3.51e-07; r9 7.20e-10
+x5-mode samples: 38 in the runs ['1e-12', '1e-9', '1e-8', '1e-7', '1e-6']; 8 with a response above 10 x the nested-start noise (8.5e-03)
+slope of the corrected r5 in (B5, C5) (S, r5 = S dx5): [[11954908.703647003, 1339742.6530893494], [-1748674.189370376, 11707680.066014381]]; singular values 1.22e+07, 1.17e+07; raw K block 5,5 max about 2.4e14
+relative fit residual over the responding samples: median 0.01, max 0.28
+x5 resolution the r5 noise corresponds to: sigma(r5) / singular value = 6.96e-11 and 7.24e-11 in (B5, C5) (relative to |x5| ~ 8.4e-3 and 1.5e-3: 8.3e-09, 4.8e-08)
+exit 0
+$ noise_analyze.py --mutate=shuffle (must fail)
+relative fit residual over the responding samples: median 1.01, max 1.40
+CHECK FAILED: the linear fit leaves a median residual of 30% or more of the response
+exit 1

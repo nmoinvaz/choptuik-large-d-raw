@@ -119,3 +119,39 @@ I stopped the hung selftest tree by pid, moved the two fake files to `void_mista
 A further slip: the original foreground loop kept running after I killed its first case and ran the remaining selftest cases concurrently with my rerun, which garbled a first set of results (`waited 30.5 s`, interleaved output); those numbers are void, and the rerun was made after no selftest process remained.
 
 Addendum (10:30 UTC): the old foreground loop's later cases, still running the buggy selftest code, created a SECOND pair of fake exit files at 10:24:28 UTC after I had moved the first pair; I found them at 10:28 (their time stamps and "exit 0" text are not the drivers' format), moved them to `void_mistaken_selftest/FAKE2_*`, confirmed no selftest process remained, and reran the selftest from a clean state (the real exit files absent before and after): it passes and its three mutations fail (`logs/selftest_chain1012f.txt`; its wait threshold was loosened from 2 s to 1 s because the files appear 2.5 s after the launch and the first check was 2.0 s). The stage-6 waiting driver was launched at 10:30:23 UTC (pid 27060) and has started nothing; the stage-5 runs (a: pid 34140, b: pid 20036) are untouched and still running.
+
+## The noise of r5, written down at 11:24 UTC 19 Nov before the measurement (the coordinator's hc, ~11:05 UTC, from xfchecks' #1021: M = 3 shows a residual whose noise exceeds what the step can resolve)
+
+**Measurement** (`noise_r5.py`, `noise_chain.py`; `D:/choptuik-h9b`, rtol 1e-13, default steps, no `--predict`): at ONE fixed x, #1012 stage 1's XI 0.11 state at its second level-5 solve's |r_5| = 4.254e-5 (from the log, 9 decimals; its corrected |r_5| is 5.9e-3 once rounded), the Schur-corrected residual
+(K from `leak_jac` at the nested-solved state, copied into a FRESH `Hier` per sample so that chord-Jacobian state cannot carry over) is recomputed after re-solving the nested levels 7 and 9 from starts perturbed by x (1 + rel u), u uniform(-1, 1), seed 1012. The spread of the corrected r_1, r_3, r_5, r_7, r_9 over the samples is the noise at that x.
+- **Control A** (`noise_r5_zero`, done 11:23): identical starts, 3 repeats from fresh objects: the spread must be exactly 0 (it is: every row 0.000e+00, 23 s per sample, setup 84 s; K's largest row-5 entry 2.0e17).
+- **Control B** (x5, rel 1e-12, 6 samples): perturbing the LEVEL-5 unknowns by 1e-12 relative must move r_5c by about K_55 dx_5 (about 2 expected from K = 2e17 and dx_5 ~ 1e-14 to 1e-15), i.e. clearly above the nested-start spread, else the measurement cannot see a signal.
+- **The measurement**: nested starts at rel 1e-12 (16 samples) and at rel 1e-10 (16 samples). If the spread of r_5c is the same at both (within a factor 2) it is NOISE of the evaluation; if it grows with rel (about x100) it is the response to the perturbation, not noise.
+- **Reading**, written now: the level-5 floor of 4e-5 to 1.4e-3 (every step, rtol and K setting tried) is explained by noise if the std of r_5c (either component) is at least 1e-5 and rel-independent; it is not if the std is below 1e-6. Between 1e-6 and 1e-5 is reported as unresolved. The omega error the noise induces needs M = 9's outer Jacobian, which does not exist here
+  (M = 7's has singular values 1e4 and 5e3); the std of the corrected r_1 under the same perturbations is reported as the noise on the outer residual, and the translation to omega is left to the coordinator.
+
+## The noise of the corrected r5 (results at 12:26 UTC 19 Nov; the reading was written at 11:24 UTC, before the data)
+
+Fixed x: #1012 stage 1's XI 0.11 state at |r_5| 4.254e-5 (9 decimals; corrected |r_5| there 5.9e-3, raw 3.2e-2), rtol 1e-13, default steps, `--schur` with K from `leak_jac` at the nested-solved state (largest row-5 entry of K 2.0e17, K_55 block about 2.4e14), a FRESH Hier per sample.
+Files: `noise_r5.py`, `noise_chain{,2,3}.py`, `noise_analyze.py`, `logs/noise_r5_*.{log,json}`, `logs/noise_analyze.txt`.
+
+| corrected residual | std, nested starts at 1e-12 rel (16) | std at 1e-10 rel (16) | ratio | max deviation (1e-12) |
+|---|---|---|---|---|
+| r_5 (B5, C5) | 8.3e-4, 1.9e-4 (norm 8.5e-4) | 1.2e-3, 3.4e-4 (norm 1.2e-3) | 1.4, 1.8 | 3.4e-3, 4.4e-4 |
+| r_3 (B3, C3) | 22.7, 6.7 (norm 24) | 28, 10 | 1.2, 1.5 | 96, 24 |
+| r_1 (re, im) | 5.9e5, 4.9e5 (norm 7.7e5) | 7.0e5, 5.9e5 | 1.2, 1.2 | 2.4e6, 2.0e6 |
+| r_7 (B7, C7) | 2.2e-7, 2.7e-7 | 3.3e-7, 3.4e-7 | 1.5, 1.2 | 5.6e-7, 8.2e-7 |
+| r_9 (B9, C9) | 6.7e-10, 2.5e-10 | 1.3e-9, 1.7e-10 | 1.9, 0.7 | 2.5e-9, 7.0e-10 |
+
+**Reading, against the cut written before the data:** the std of r_5c is above 1e-5 and the same at both perturbation sizes within a factor 2 (ratios 0.7 to 1.9 over all rows): it is the evaluation's NOISE, not a response to the perturbation.
+It sits on the floor of level 5 (the 8e-5 to 1.4e-3 ends of every step, rtol and K setting, and 4e-5 as a lower tail), and the corresponding noise of the higher rows sits on those rows' ends: level 3's ends 7.6 to 31 against std 24, and r_1's ends about 1e5 to 1.2e6 against std 7.7e5.
+So the runs end where their residual's noise is; nothing tried (step, rtol, nested steps, `--predict`) can lower an end below its noise.
+
+**Controls, with the corrections they forced.** A (zero perturbation, 3 repeats from fresh objects): every row's spread exactly 0, passed. B (the level-5 unknowns at 1e-12 rel, 6 samples): I had written that r_5c must move by about K_55 dx_5 (about 2) and it moved by about 1e-3, so
+**my expectation was wrong**: the corrected residual's slope in x_5 is the Schur complement, not K_55. B' (1e-9 and 1e-8 rel): the response was still at the noise, and my slope-fit check passed but its mutation (exchanging the two offset components of every sample) did NOT fail,
+because that only permutes the fitted matrix's columns: the check could not fail and I replaced the mutation by one that breaks the pairing (`--mutate=shuffle`: median residual 1.01 and CHECK FAILED, against 0.01 on the real data). B'' (1e-7 and 1e-6 rel, the solver's own finite-difference step is 1e-6): the slope is clean,
+S = [[1.20e7, 1.34e6], [-1.75e6, 1.17e7]] (singular values 1.22e7 and 1.17e7), the fit's median relative residual over the 8 samples above 10 x the noise 1%, max 28%. The Schur complement is 2e7 times smaller than K_55.
+**x_5's resolution** the r_5 noise corresponds to: sigma / S = 7e-11 in B5 and in C5, 8e-9 and 5e-8 of their values.
+
+**What it does not give:** the omega error. M = 9 has no outer Jacobian here (the corrected r_1's slope in (A, omega) at the inner-selected solution needs the dA and dw solves of M = 7's protocol, each noise-limited at M = 9); r_1's noise is 7.7e5 (std norm), 7 orders above M = 7's 0.02 to 0.3, and M = 7's J (singular values 1e4, 5e3) would turn it into an error of order 100 in (A, omega/omega_inf).
+Whether M = 9's J is larger by those orders is unmeasured. One fixed x, one state of the rounded log values, 16 samples per setting.
