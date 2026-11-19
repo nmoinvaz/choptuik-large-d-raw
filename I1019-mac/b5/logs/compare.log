@@ -1,0 +1,24 @@
+== constants (here over the box, 3073 cells; b5_bounds 145 cells)
+  Perron-weighted norm     here     0.941025  b5_bounds     0.966301  ratio 0.9738
+  R_Phi                    here      49.5804  b5_bounds      91.4613  ratio 0.5421
+  R_C                      here      3.34546  b5_bounds      3.42563  ratio 0.9766
+  T_F                      here      3.93443  b5_bounds      4.14972  ratio 0.9481
+  eps-part ell (largest)   here  4.99411e-14  b5_bounds  7.57669e-14  ratio 0.6591
+  L Phi-1<-C+0             here      245.712
+  L Phi+1<-C+0             here      199.466
+  L Phi+1<-C+2             here      144.038
+  L Phi-1<-C-2             here      112.436
+  L Phi+1<-P+1             here      98.0437
+  L Phi-1<-P-1             here      96.8733
+  b5_bounds' largest L entries: [[277.7634894143072, 'F-1<-C+0'], [235.3429840982354, 'F+1<-C+0'], [172.83411951151996, 'F+1<-C+2'], [144.56583082262884, 'F-1<-C-2'], [101.20733270380627, 'F+1<-P+1'], [99.99676506359492, 'F-1<-P-1'], [38.315835054189215, 'F-1<-P+1'], [36.125782180316136, 'F-1<-C+2'], [35.06083846110337, 'F+1<-P-1'], [30.714000292801213, 'F+1<-C-2']]
+== super-solutions, per component: here / b5_bounds
+  forcing only  certified here True, b5 True: P-1 0.244, P+1 0.244, Phi-1 0.247, Phi+1 0.246, C-2 0.170, C+0 0.192, C+2 0.166, th-2 0.880, th+0 0.880, th+2 0.880
+  unit P        certified here True, b5 True: P-1 0.710, P+1 0.707, Phi-1 0.678, Phi+1 0.675, C-2 0.698, C+0 0.696, C+2 0.687, th-2 0.000, th+0 0.000, th+2 0.000
+  unit Phi      certified here True, b5 True: P-1 0.432, P+1 0.431, Phi-1 0.436, Phi+1 0.436, C-2 0.233, C+0 0.293, C+2 0.223, th-2 0.000, th+0 0.000, th+2 0.000
+  unit C        certified here True, b5 True: P-1 0.602, P+1 0.598, Phi-1 0.603, Phi+1 0.598, C-2 0.895, C+0 0.839, C+2 0.897, th-2 0.000, th+0 0.000, th+2 0.000
+  unit theta    certified here True, b5 True: P-1 0.463, P+1 0.460, Phi-1 0.466, Phi+1 0.462, C-2 0.718, C+0 0.670, C+2 0.720, th-2 0.998, th+0 0.998, th+2 0.998
+  delta_ref     certified here True, b5 True: P-1 0.537, P+1 0.534, Phi-1 0.537, Phi+1 0.533, C-2 0.807, C+0 0.750, C+2 0.810, th-2 0.956, th+0 0.956, th+2 0.956
+  (theta components of the unit P, Phi, C cases are floors on both sides: 1e-8 here, 1e-3 in b5_bounds)
+flagged (ratio outside [1/3, 3], floors excluded): forcing only P-1, forcing only P+1, forcing only Phi-1, forcing only Phi+1, forcing only C-2, forcing only C+0, forcing only C+2, unit Phi C-2, unit Phi C+0, unit Phi C+2
+  R_Phi ratio 0.5421 x the unit-Phi amplification ratio 0.4363 = 0.2365 (the forcing-only Phi ratio is 0.2467)
+  C_E with this review's x_Phi for (H8) rounded up (18174.4, 17603.9): 1.1533e+33 = e^76.1279 (b5_jump: 2.532706e+33 = e^76.9146); not certified by reviewed code
