@@ -1,0 +1,18 @@
+### selftest 
+planted (response 100 sigma): max relative error of J 3.11e-02, snr 98.0 and 28.0, resolved True  -> ok
+planted (response 0.5 sigma): max relative error of J 6.09e+00, snr 1.0 and 1.6, resolved False  -> ok
+planted Monte Carlo (response 100 sigma): sigma_min 16/50/84% 5.794e+03 6.002e+03 6.209e+03 (true 6.007e+03), spread 1.07  -> ok
+planted Monte Carlo (response 0.5 sigma): sigma_min 16/50/84% 3.313e+03 1.138e+04 2.397e+04 (true 6.007e+03), spread 7.24  -> ok
+PASS
+### selftest --mutate=sign
+planted (response 100 sigma): max relative error of J 1.98e+00, snr 98.0 and 28.0, resolved True  -> FAIL
+planted (response 0.5 sigma): max relative error of J 6.09e+00, snr 1.0 and 1.6, resolved False  -> ok
+planted Monte Carlo (response 100 sigma): sigma_min 16/50/84% 5.794e+03 6.002e+03 6.209e+03 (true 6.007e+03), spread 1.07  -> ok
+planted Monte Carlo (response 0.5 sigma): sigma_min 16/50/84% 3.313e+03 1.138e+04 2.397e+04 (true 6.007e+03), spread 7.24  -> ok
+FAIL
+### selftest --mutate=nonoise
+planted (response 100 sigma): max relative error of J 3.11e-02, snr 98.0 and 28.0, resolved True  -> ok
+planted (response 0.5 sigma): max relative error of J 6.09e+00, snr 1.0 and 1.6, resolved False  -> ok
+planted Monte Carlo (response 100 sigma): sigma_min 16/50/84% 6.007e+03 6.007e+03 6.007e+03 (true 6.007e+03), spread 1.00  -> ok
+planted Monte Carlo (response 0.5 sigma): sigma_min 16/50/84% 6.007e+03 6.007e+03 6.007e+03 (true 6.007e+03), spread 1.00  -> FAIL
+FAIL

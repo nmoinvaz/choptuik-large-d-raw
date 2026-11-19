@@ -30,8 +30,9 @@ MANIFEST = [
     ("#1012 st4", "1012", "hier_nb_M9_polish5_0.11_approach5_0.105_fm1e-4_h5h7h91e-4_win2.log", "0.11", "0.105", "1e-4", "1e-4", "1e-13", True, "1e-4", "299c4eb9", False),
     ("#1012 st5a", "1012", "hier_nb_M9_polish5_0.11_approach5_0.105_fm1e-4_h53e-4_win2.log", "0.11", "0.105", "3e-4", "1e-6", "1e-13", True, "1e-4", "299c4eb9", False),
     ("#1012 st5b", "1012", "hier_nb_M9_polish5_0.11_approach5_0.105_fm1e-4_h51e-4_nopredict_win2.log", "0.11", "0.105", "1e-4", "1e-6", "1e-13", False, "1e-4", "299c4eb9", False),
-    ("#1012 st6c", "1012", "hier_nb_M9_polish5_0.11_approach5_0.105_fm1e-4_h53e-5_win2.log", "0.11", "0.105", "3e-5", "1e-6", "1e-13", True, "1e-4", "299c4eb9", False),
-    ("#1012 st6d", "1012", "hier_nb_M9_polish5_0.11_approach5_0.105_fm1e-4_h51e-5_win2.log", "0.11", "0.105", "1e-5", "1e-6", "1e-13", True, "1e-4", "299c4eb9", False),
+    ("#1012 st7 dA (A+2e-4, seeded)", "1012", "hier_nb_M9_polish5_0.11_approach5_0.105_fm1e-4_h51e-4_outer_dA_win2.log", "0.11", "0.105", "1e-4", "1e-6", "1e-13", True, "1e-4", "299c4eb9", False),
+    ("#1012 st7 dw (w+1e-4, seeded)", "1012", "hier_nb_M9_polish5_0.11_approach5_0.105_fm1e-4_h51e-4_outer_dw_win2.log", "0.11", "0.105", "1e-4", "1e-6", "1e-13", True, "1e-4", "299c4eb9", False),
+    ("#1012 st7 zero_repeat (unseeded)", "1012", "hier_nb_M9_polish5_0.11_approach5_0.105_fm1e-4_h51e-4_outer_zero_repeat_win2.log", "0.11", "0.105", "1e-4", "1e-6", "1e-13", True, "1e-4", "299c4eb9", False),
 ]
 
 

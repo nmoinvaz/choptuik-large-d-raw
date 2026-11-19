@@ -1,7 +1,7 @@
 """#1012 last stage: the slope of the corrected r_1 in (A, w/w_inf) at M = 9 from the M = 7 protocol's solves, and the error the r_1 noise induces through it.
 
     python m9_outer.py --centre LOG [LOG ...] --dA LOG --dw LOG [--sigma 7.7e5] [--dA_step 2e-4 --dw_step 1e-4]
-    python m9_outer.py --selftest [--mutate=sign]
+    python m9_outer.py --selftest [--mutate=sign|nonoise]
 
 The arithmetic is m7_outer.py local()'s, without its |r_3| < 1e-6 bar (M = 9 cannot meet it): r_0 = the mean of the centre solves' r_1; J = [(r_a - r_0)/dA, (r_w - r_0)/dw] with r_1 as (re, im);
 the zero is (A, w) of the centre point plus -J^-1 r_0; the half-range of the centre solves is m7_outer's `noise`; --sigma is the std of the corrected r_1 measured at a fixed x (noise_r5.py), a norm.
@@ -42,6 +42,21 @@ def analyse(p0, R_centre, pa, ra, pw, rw, dA, dw, sigma=None, flip=False):
     return out
 
 
+def mc(J, sigma, dA, dw, ncentre, n=4000, seed=7, nonoise=False):
+    """Plug-in Monte Carlo (added after the data were read, 14:20 UTC): take J as the truth, redraw every r_1 with noise sigma (norm; sigma/sqrt2 per component),
+    refit J as analyse() does, and return the draws of sigma_min(J_fit) and of the induced error sigma / sigma_min(J_fit)."""
+    rng = np.random.default_rng(seed)
+    s = 0.0 if nonoise else sigma / np.sqrt(2.0)
+    smin, err = [], []
+    for _ in range(n):
+        r0 = np.mean([rng.normal(0, s, 2) for _ in range(ncentre)], axis=0)
+        ra, rw = J[:, 0] * dA + rng.normal(0, s, 2), J[:, 1] * dw + rng.normal(0, s, 2)
+        Jf = np.column_stack([(ra - r0) / dA, (rw - r0) / dw])
+        v = np.linalg.svd(Jf, compute_uv=False)[-1]
+        smin.append(v); err.append(sigma / v)
+    return np.array(smin), np.array(err)
+
+
 def selftest(mut):
     rng = np.random.default_rng(1012)
     J0 = np.array([[1.2e4, -3.0e3], [2.0e3, 5.7e3]])
@@ -56,13 +71,22 @@ def selftest(mut):
         f = lambda p: J0 @ (p - z0) + noise()
         Rc = [f(p0), f(p0)]
         ra, rw = f(p0 + np.array([dA, 0])), f(p0 + np.array([0, dw]))
-        out = analyse(p0, Rc, p0 + np.array([dA, 0]), ra, p0 + np.array([0, dw]), rw, dA, dw, sigma=scale, flip=mut)
+        out = analyse(p0, Rc, p0 + np.array([dA, 0]), ra, p0 + np.array([0, dw]), rw, dA, dw, sigma=scale, flip=(mut == "sign"))
         err = np.abs(out["J"] - J0).max() / np.abs(J0).max()
         if label.startswith("response 100"):
             good = err < 0.05 and out["resolved"]
         else:
             good = (not out["resolved"]) and err > 0.05
         print(f"planted ({label}): max relative error of J {err:.2e}, snr {out['snr_A']:.1f} and {out['snr_w']:.1f}, resolved {out['resolved']}  -> {'ok' if good else 'FAIL'}")
+        ok = ok and good
+    # Monte Carlo of the refit: at a 100 sigma response sigma_min(J_fit) spreads by under 20% (16-84%) around the truth; at 0.5 sigma the spread is over a factor 2
+    sv0 = np.linalg.svd(J0, compute_uv=False)[-1]
+    for div in (100.0, 0.5):
+        sg = np.linalg.norm(J0[:, 0]) * dA / div
+        smin, _ = mc(J0, sg, dA, dw, 2, n=2000, nonoise=(mut == "nonoise"))
+        lo, md, hi = np.percentile(smin, [16, 50, 84])
+        good = (hi / lo < 1.2 and abs(md / sv0 - 1) < 0.1) if div == 100.0 else hi / lo > 2.0
+        print(f"planted Monte Carlo (response {div:g} sigma): sigma_min 16/50/84% {lo:.3e} {md:.3e} {hi:.3e} (true {sv0:.3e}), spread {hi / lo:.2f}  -> {'ok' if good else 'FAIL'}")
         ok = ok and good
     print("PASS" if ok else "FAIL")
     return 0 if ok else 1
@@ -71,7 +95,7 @@ def selftest(mut):
 def main():
     a = sys.argv[1:]
     if "--selftest" in a:
-        sys.exit(selftest("--mutate=sign" in a))
+        sys.exit(selftest("sign" if "--mutate=sign" in a else "nonoise" if "--mutate=nonoise" in a else None))
     g = lambda k, d=None: a[a.index(k) + 1] if k in a else d
     cen = []
     i = a.index("--centre") + 1
@@ -94,6 +118,16 @@ def main():
         print(f"significance of the offsets' responses (|dr| / sigma): A {out['snr_A']:.2f}, w {out['snr_w']:.2f}; J resolved at these offsets: {out['resolved']}")
         if not out["resolved"]:
             print(f"J is NOT resolved: the induced error is at least the offsets themselves (A {dA:g}, w/w_inf {dw:g}); sigma over the slope the response allows: {out['err_floor']:.3e}")
+        # added after the data were read (14:20 UTC): how well-determined is sigma_min(J) itself, and does the answer depend on which centre solve is used?
+        U, S, Vt = np.linalg.svd(out["J"])
+        print(f"direction of the smallest singular value (A, w/w_inf) = ({Vt[-1][0]:+.3f}, {Vt[-1][1]:+.3f}): the worst-case error sigma/sigma_min = {out['err_sigma']:.3e} lies along it, so its w/w_inf part is {abs(Vt[-1][1]) * out['err_sigma']:.3e}")
+        print(f"noise of one J entry from sigma: A column {sigma / np.sqrt(2) / dA:.2e}, w column {sigma / np.sqrt(2) / dw:.2e} (per component, one draw), against sigma_min(J) {out['sv'][-1]:.3e}")
+        for i, (pcen, rcen) in enumerate(pc):
+            o1 = analyse(p0, [rcen], pa, ra, pw, rw, dA, dw, sigma)
+            print(f"  centre solve {i + 1} alone ({cen[i].split('_win2')[0][-24:] or cen[i]}): singular values {o1['sv'][0]:.3e}, {o1['sv'][1]:.3e}; sigma/sigma_min {o1['err_sigma']:.3e}; Newton step ({o1['step'][0]:+.2e}, {o1['step'][1]:+.2e}); response/sigma A {o1['snr_A']:.1f}, w {o1['snr_w']:.1f}")
+        smin, err = mc(out["J"], sigma, dA, dw, len(pc))
+        lo, md, hi = np.percentile(err, [16, 50, 84])
+        print(f"plug-in Monte Carlo (J taken as true, every r_1 redrawn with noise sigma, J refitted, 4000 draws): induced error sigma/sigma_min(J_fit) 16/50/84% = {lo:.2e} / {md:.2e} / {hi:.2e}; fraction of draws above 1e-4: {np.mean(err > 1e-4):.2f}; sigma_min(J_fit) 16/50/84% = {np.percentile(smin, 16):.2e} / {np.percentile(smin, 50):.2e} / {np.percentile(smin, 84):.2e}")
 
 
 if __name__ == "__main__":

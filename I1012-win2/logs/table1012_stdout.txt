@@ -1,0 +1,21 @@
+| run | XI / AP | level-5 step | levels 7, 9 step | rtol | --predict | --floor_max | code | level-5 solve ends | level-5 stops | level 3 | end r_3, r_5, r_7, r_9 | how it ended |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| #999 | 0.13 / 0.1188 | 1e-6 | 1e-6 | 1e-13 | yes | - | efad7afd | 18.9, 14.5, 22.7, 11.1 | not printed (old format) | solved 2e+5 (no stop line printed) | 2e+5, 11, 8.6e-7, 3.4e-9 | own end, 2342 s |
+| #999 | 0.12 / 0.1188 | 1e-6 | 1e-6 | 1e-13 | yes | - | efad7afd | 6.47, 4.49, 6.81, 1.86 | not printed (old format) | 1 accepted it: 6e+4 (unfinished) | - | unfinished (no exit file), about 3568 s |
+| #999 | 0.11 / 0.105 | 1e-6 | 1e-6 | 1e-13 | yes | - | efad7afd | 7.43, 1.2e-4, 6.7e-4, 3.9e-4, 3.4e-4 | not printed (old format) | solved 7.57 (no stop line printed) | 7.6, 3.4e-4, 3e-8, 2.2e-10 | own end, 2261 s |
+| #999 | 0.10 / 0.095 | 1e-6 | 1e-6 | 1e-13 | yes | - | efad7afd | 11.4, 10.9, 7.85 | not printed (old format) | solved 2.9e+5 (no stop line printed) | 2.9e+5, 7.8, 7e-7, 6.5e-10 | own end, 1053 s |
+| #1007 | 0.105 / 0.105 | 1e-6 | 1e-6 | 1e-13 | yes | - | ec7cfea7 | 8.25, 5.15, 6.32, 0.252, 9.1e-3, 9.1e-3, 14.7 | 14 no longer halves; 1 every trial rejected | 2 accepted it: 9.3e+3, 757 (unfinished) | - | capped at 3601 s |
+| #1007 | 0.115 / 0.105 | 1e-6 | 1e-6 | 1e-13 | yes | - | ec7cfea7 | 9.07, 1.44, 1.17 | 5 no longer halves; 1 every trial rejected | stop no longer halves at 2.2e+4 | 2.2e+4, 1.2, 6.6e-8, 7.3e-10 | own end, 1387 s |
+| #1007 | 0.12 / 0.105 | 1e-6 | 1e-6 | 1e-13 | yes | - | ec7cfea7 | 12.3, 5.12, 4.1 | 5 no longer halves; 1 every trial rejected | stop no longer halves at 3.9e+4 | 3.9e+4, 4.1, 1.1e-7, 3.3e-9 | own end, 1631 s |
+| #1011 | 0.11 / 0.105 | 1e-6 | 1e-6 | 1e-13 | yes | 1e-4 | 656396fd | 11.9, 3.9e-5 | 4 every trial rejected | not reached | - | stopped by me after 1360 s |
+| #1011 | 0.105 / 0.105 | 1e-6 | 1e-6 | 1e-13 | yes | 1e-4 | 656396fd | 11.4, 11.5 | 4 every trial rejected | not reached | - | stopped by me after 1360 s |
+| #1012 st1 | 0.11 / 0.105 | 1e-4 | 1e-6 | 1e-13 | yes | 1e-4 | 23844822 | 0.0172, 4.3e-5, 3.9e-4, 6e-4, 1.4e-3 | 10 every trial rejected | 1 accepted it, stop every trial rejected at 21.5 | 22, 3.9e-4, 4.2e-7, 2.2e-9 | own end, 5042 s |
+| #1012 st1 | 0.105 / 0.105 | 1e-4 | 1e-6 | 1e-13 | yes | 1e-4 | 23844822 | 0.0125, 3.9e-3 | 5 every trial rejected | not reached | - | stopped by me after 3241 s |
+| #1012 st2 | 0.11 / 0.105 | 1e-3 | 1e-6 | 1e-13 | yes | 1e-4 | 23844822 | 0.045 | 3 every trial rejected | not reached | - | stopped by me after 780 s |
+| #1012 st3 | 0.11 / 0.105 | 1e-4 | 1e-6 | 1e-14 | yes | 1e-4 | 23844822 | 0.0189, 1.4e-3, 4e-4 | 6 every trial rejected | not reached | - | stopped by me after 4881 s |
+| #1012 st4 | 0.11 / 0.105 | 1e-4 | 1e-4 | 1e-13 | yes | 1e-4 | 299c4eb9 | 197 | 2 every trial rejected | not reached | - | stopped by me after 2940 s |
+| #1012 st5a | 0.11 / 0.105 | 3e-4 | 1e-6 | 1e-13 | yes | 1e-4 | 299c4eb9 | 0.0284, 7.3e-4, 7.9e-5, 1e-3, 1.1e-3, 2.8e-4, 3.5e-4 | 14 every trial rejected | 2 accepted it, stop every trial rejected at 25.2 | 25, 1.1e-3, 6.9e-8, 2.3e-10 | own end, 8914 s |
+| #1012 st5b | 0.11 / 0.105 | 1e-4 | 1e-6 | 1e-13 | no | 1e-4 | 299c4eb9 | 0.0172, 3.7e-4, 2.5e-4, 1.5e-4, 2e-4, 2.4e-4 | 12 every trial rejected | 1 accepted it, stop every trial rejected at 12.7 | 13, 1.6e-4, 2e-7, 8.6e-10 | own end, 7310 s |
+| #1012 st7 dA (A+2e-4, seeded) | 0.11 / 0.105 | 1e-4 | 1e-6 | 1e-13 | yes | 1e-4 | 299c4eb9 | 0.0188, 4.3e-4, 1.1e-3, 3e-4, 6.8e-4, 5.2e-4 | 12 every trial rejected | 1 accepted it, stop every trial rejected at 12.5 | 12, 3.1e-4, 7.4e-8, 1.5e-10 | own end, 5993 s |
+| #1012 st7 dw (w+1e-4, seeded) | 0.11 / 0.105 | 1e-4 | 1e-6 | 1e-13 | yes | 1e-4 | 299c4eb9 | 0.0149, 3.6e-4, 6.3e-4, 3.2e-4, 3.4e-4, 3.8e-4, 2.3e-4, 2.7e-4 | 16 every trial rejected | stop every trial rejected at 14.1 | 14, 3.6e-4, 2.8e-7, 1.3e-9 | own end, 5590 s |
+| #1012 st7 zero_repeat (unseeded) | 0.11 / 0.105 | 1e-4 | 1e-6 | 1e-13 | yes | 1e-4 | 299c4eb9 | 0.0192, 3.2e-4, 1.1e-4, 1.6e-4, 3.3e-4 | 10 every trial rejected | 1 accepted it, stop every trial rejected at 10.8 | 11, 1.1e-4, 1.6e-7, 1.7e-10 | own end, 5341 s |

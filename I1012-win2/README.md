@@ -170,3 +170,22 @@ I stopped the driver and its two runs by taskkill /T /F on their exact pids at 1
   noise taken two ways: **(i)** the std of the corrected r_1 measured at a fixed x, 7.7e5 (norm; components 5.9e5 and 4.9e5), and **(ii)** the half-range of the centre solves as m7_outer defines it. Other samples of r_1 at the same (A, omega) from this issue's other runs are listed as a check on the noise (stage 1: +1.9e5 - 1.15e6 i; 5(a): -1.72e6 - 1.94e6 i; 5(b): +4.3e5 + 3.4e5 i; #999: +5.7e5 - 8.9e4 i).
 - **Significance test, written now:** the response of r_1 to each offset divided by the noise (i). If either is below 3, J is NOT resolved at M = 7's offsets, so the error it induces is at least the offset itself (2e-4 in A, 1e-4 in w/w_inf), i.e. at or above the 1e-4 line.
 - **Decision rule (the coordinator's):** if the omega error comes out above 1e-4, M = 9 is not reachable in double precision at this radius, and #1012 is closed with that. M = 7 for comparison: J singular values 1.29e4 and 2.5e3, r_1 noise 0.164 (half-range), error 6.6e-5 (#989 at xi1 0.145).
+
+## The last stage's result (ended 14:12 UTC 19 Nov; all three solves exit 0 by themselves, 5343-6004 s, nothing capped, nothing left running)
+
+Logs `logs/hier_nb_M9_polish5_0.11_approach5_0.105_fm1e-4_h51e-4_outer_{dA,dw,zero_repeat}_win2.log`, analysis `logs/m9_outer_result.txt` (`m9_outer.py`, selftest `logs/selftest_m9_outer_v2.txt`: the planted truth passes, `--mutate=sign` and `--mutate=nonoise` fail), summaries `logs/summary_last_stage.txt`, the closing table `logs/table1012.md`.
+End values: dA r_1 +7.744e5 +1.067e6 i (level 5 ends 1.9e-2, 4.3e-4, 1.1e-3, 3.1e-4, 6.8e-4, 5.2e-4; r_3 12.5); dw r_1 -1.596e6 +1.057e6 i (8 level-5 solves ending 2.7e-4; r_3 14.1); zero_repeat r_1 +6.85e4 -6.73e6 i (5 solves, last 3.3e-4; r_3 10.8). Stage 1 (the other centre): r_1 +1.88e5 -1.15e6 i, r_3 21.5. No level-5 solve is below 1e-6.
+
+J (rows re, im; columns A, w/w_inf), centre = the mean of stage 1 and zero_repeat: [[3.23e9, -1.72e10], [2.50e10, 5.00e10]]; singular values 5.77e10 and 1.03e10 (M = 7: 1.29e4 and 2.5e3). Newton step (+1.04e-4, +2.7e-5), i.e. the zero at A 2.719323, w/w_inf 1.000049; the step is the size of the error below, so the zero is not located.
+Response of r_1 to the offsets / 7.7e5: A 6.6, w 6.9. **The reading written before the data expected "unresolved"; the data say resolved (above 3), so that expectation was wrong.**
+
+| error = noise / sigma_min(J) | noise | error | M = 7 (#989, xi1 0.145) |
+|---|---|---|---|
+| (i) fixed-x std of the corrected r_1 (the coordinator's 7.7e5) | 7.7e5 | 7.5e-5 | - |
+| (ii) half-range of the two centre solves (m7_outer's definition) | 2.79e6 | 2.7e-4 | 6.6e-5 (noise 0.164) |
+| m7_outer's two-term estimate with (ii) | | 8.5e-4 | |
+
+The worst-case direction is (A, w/w_inf) = (-0.914, +0.406), so the w/w_inf part of the error is 3.0e-5 under (i) and 1.1e-4 under (ii).
+Why (i) and (ii) differ: the two centre solves differ by 5.6e6 in r_1 (almost all in the imaginary part), 5.1 times the sqrt2 x 7.7e5 expected for two draws of (i). The other four samples of r_1 at this (A, w) (stage 1, 5(a), 5(b), #999) scatter by 1.5e6 in norm, consistent with (i); zero_repeat is the unseeded run (a different start from stage 1 and from dA and dw, which are seeded with Z's harmonics), and it is the outlier. The seeded and unseeded centres are not repeats of one start: that was the design, but it means (ii) mixes start-to-start scatter with evaluation noise, and I did not run a seeded repeat to separate them.
+J's own determination: one J entry carries noise sigma/sqrt2/offset = 2.7e9 (A column) and 5.4e9 (w column) against sigma_min = 1.03e10. A plug-in Monte Carlo (J taken as true, every r_1 redrawn at 7.7e5, J refitted; 4000 draws) gives the induced error 5.8e-5 / 7.6e-5 / 1.1e-4 at 16 / 50 / 84%, and 22% of the draws are above 1e-4. With stage 1 alone as the centre (response 3.0 and 3.7 sigma) the error is 8.6e-5; with zero_repeat alone (10 sigma), 7.3e-5.
+Verdict stated in the closing comment: the rule as written (7.7e5 through sigma_min) gives 7.5e-5, below 1e-4 by 25%, inside J's own uncertainty; the like-for-like estimator (ii) gives 2.7e-4, above. Not settled; the deciding measurement is a seeded repeat of the centre solve.
