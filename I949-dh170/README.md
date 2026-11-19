@@ -119,3 +119,34 @@ alert raised; `--mutate` turns the stability test off and fails).
 `selftest949.log` (exit 0): planted σ² = 0.3 (D* − D) exp(−2 · 0.405 (D − 232)), D* 260 and 262, on the five #941 states, five states
 at D 233 to 237 and five at D 232 to 240: model B returns D* to 1e-10 and c 0.3 (grid "941"), with s 0.405; the literal fit misses
 every time; a pure exponential gives no interior minimum. `selftest949_mutate.log` (exit 1): fold law (D* − D)² in the fit.
+
+## Closing summary (2026-11-19 22:45 UTC, the 48 h stop of 2026-11-19 22:42 UTC)
+
+**Answer.** No fold and no trigger on any chain through D 252.8861: σ_Δ falls as a plain exponential at 0.433 to 0.440 per unit D, σ_pair falls with no stable D* (the coordinator's rule was met at 0 of 44 states), and no fold window passed the validity rule. The one number still moving is ks_chain3b's trigger excess, +0.0801, +0.0803, +0.0827, +0.0896 over its last four states (D 251.2845 to 252.8861), against 0.10 at three states in a row. dh370's chain is paused for #1032 (raw 862ca41e), so there is no state past D 252.8861.
+
+What was read: 83 states in `track949.csv` (D 192 to 252.8861; ks_chain 39, ks_chain2 25, ks_chain3b 19), plus dh610's two I971 bases. ks_chain3 (dh370, ks 304 and up) never pushed a state. Largest trigger excess per chain: ks_chain +0.0313 (D 208, against s(ks)), ks_chain2 +0.0020 (D 233), ks_chain3b +0.0896 (D 252.8861); the last two against the frozen D-trend, which for ks_chain3b is my assumption (the coordinator's amendment names ks_chain2 only).
+
+| # | check | verdict | number |
+|---|---|---|---|
+| 1 | planted check of near_null on D 229.0509 | pass | `ctl_planted exit 0` (427 s) |
+| 2 | `--mutate=scale_block` | pass | `ctl_planted_mut exit 1` |
+| 3 | planted fold fit, D* 260 and 262, three grids | pass | D* 260.0000 and 262.0000 on all three grids, max residual 1.9e-14; control A misses each time; `fold949.py --selftest` exit 0 (rerun at close) |
+| 4 | its mutation | pass | `--selftest --mutate` exit 1 (rerun at close) |
+| 4a | validity rule's planted checks | pass | `selftest949.log` exit 0, its mutation exit 1 (27 no-fold windows valid: 0) |
+| 5 | slope over D 229 to 232 against #941 | pass | 0.4124, 0.4097, 0.4067, 0.4047 against 0.412, 0.410, 0.407, 0.405: largest difference 0.0004 |
+| 6 | every state's σ_Δ converged | pass | largest relative change over the last two iterations 3.7e-5 (D 247.2801), none over 1e-3, all 83 states |
+| 7 | null control on the backfill's windows | pass | no window valid; ks 211's D* 212.8 fails by condition 2 |
+| 8 | baseline frozen before leg 8 | pass | `baseline949.json` written 2026-11-18 00:01:39 UTC, the first ks 250 read started 00:01:42 UTC |
+
+Other checks rerun at close, all exit codes as required: `track949.py --selftest` 0 and `--mutate` 1, `pairfold949.py --selftest` 0 and `--mutate` 1, `relay_dh370_949.py --selftest` 0.
+
+Discrepancies and corrections, reported and not fixed:
+- The s(ks) baseline's ks dependence was really D dependence (#948: σ_Δ is the same from ks 240 to 320 at D 232), so later chains' triggers use the D-trend. The trigger baseline for dh370's ks_chain3b is my assumption.
+- Two forecasts of mine were wrong and were retracted on #949: that σ_2/σ_Δ would fall to 1.04 to 1.05 at D 247.28 with the Δ share dropping, and (07:21 UTC on 2026-11-19) that the trigger excess would pass 0.10 near D 250. It is +0.0896 at D 252.8861.
+- One ALERT in the whole run: the state at D 238.6789 lay 0.195 from the previous D* estimate (reported 2026-11-18 23:26 UTC, comment 6994662166); the estimate moved on to 239.25 to 239.39 and there was no zero.
+- My hc line of 2026-11-17 called σ_Δ "Delta"; it is the singular value of the Δ-mode vector, not Δ(D) (`compare_delta949.py`).
+- Reading, not a result: from D 251.2845 to 252.8861 the Δ share of σ_Δ's vector rose from 0.735 to 0.853 while σ_2/σ_Δ fell from 1.152 to 1.128, so the two lowest modes were still exchanging character at the end. The trigger and the fold fit follow σ_Δ as one branch.
+
+Recommended tasks (coordinator opens the issues):
+1. **Read ks_chain3b past D 252.8861.** What: when dh370's chain resumes after #1032, read each new state with `near_null.py --k=6 --its=32` through `queue_new949.py`, report the trigger excess and the σ_pair rule per state as here. Why: its excess is +0.0896 and rising, the only series near 0.10. Acceptance: three states in a row above 0.10 fire the trigger and a valid fold fit is then required before a fold is claimed; the planted controls (`fold949.py --selftest`, `--mutate`) pass at the start. Depends on: #966 and #1032 (the chain resuming).
+2. **A two-mode fit for the avoided crossing.** What: fit σ_Δ and σ_2 together with a 2 by 2 avoided-crossing law (each branch an exponential in D) to ks_chain3b's last states, and report whether the Δ branch's own slope stays at 0.433 to 0.440. Why: the single-branch trigger and fold fit read through a share change of 0.735 to 0.853. Acceptance: on planted two-branch series with a known gap and crossing D the fit recovers both within 0.1 in D, and the same fit with the gap set to zero is rejected by its own test; it then runs on the real states. Depends on: the 19 ks_chain3b states in `track949.csv` and `sig2_949.py`, no new run.
