@@ -1,0 +1,33 @@
+planted: P_K7_J500_t7.json against P_K7_J500_full.json: sigma_str, f, fit_info identical  (as required)
+planted: P_K7_J500_t9.json against P_K7_J500_full.json: sigma_str, f, fit_info identical  (as required)
+planted: P_K9_J500_p2_t9.json against P_K9_J500_p2_full.json: sigma_str, f, fit_info identical  (as required)
+planted control: --trunc 5 at K 7 against full: sigma_str differs, first at sigma_3  (as required)
+| M | J | n | \|sigma_n^[M] - sigma_n\| | fit error | two-J spread | 3 x max | holds |
+|---|---|---|---|---|---|---|---|
+| 3 | 1000 | 1 | 0.00e+00 | 3.96e-25 | 0.00e+00 | 1.19e-24 | yes |
+| 3 | 1000 | 2 | 0.00e+00 | 4.42e-25 | 0.00e+00 | 1.33e-24 | yes |
+| 3 | 1000 | 3 | 0.00e+00 | 2.36e-25 | 0.00e+00 | 7.09e-25 | yes |
+| 3 | 1500 | 1 | 0.00e+00 | 3.64e-27 | 0.00e+00 | 1.09e-26 | yes |
+| 3 | 1500 | 2 | 0.00e+00 | 3.92e-27 | 0.00e+00 | 1.18e-26 | yes |
+| 3 | 1500 | 3 | 0.00e+00 | 2.11e-27 | 0.00e+00 | 6.34e-27 | yes |
+| 5 | 1000 | 1 | 0.00e+00 | 3.96e-25 | 0.00e+00 | 1.19e-24 | yes |
+| 5 | 1000 | 2 | 0.00e+00 | 3.69e-25 | 0.00e+00 | 1.11e-24 | yes |
+| 5 | 1000 | 3 | 0.00e+00 | 1.97e-25 | 0.00e+00 | 5.92e-25 | yes |
+| 5 | 1000 | 4 | 0.00e+00 | 3.39e-24 | 0.00e+00 | 1.02e-23 | yes |
+| 5 | 1000 | 5 | 0.00e+00 | 4.35e-23 | 0.00e+00 | 1.31e-22 | yes |
+| 5 | 1500 | 1 | 0.00e+00 | 3.64e-27 | 0.00e+00 | 1.09e-26 | yes |
+| 5 | 1500 | 2 | 0.00e+00 | 3.30e-27 | 0.00e+00 | 9.91e-27 | yes |
+| 5 | 1500 | 3 | 0.00e+00 | 1.77e-27 | 0.00e+00 | 5.30e-27 | yes |
+| 5 | 1500 | 4 | 0.00e+00 | 6.55e-28 | 0.00e+00 | 1.96e-27 | yes |
+| 5 | 1500 | 5 | 0.00e+00 | 2.02e-28 | 0.00e+00 | 6.06e-28 | yes |
+control M 3: |sigma_3(--trunc-even 2) - sigma_3(--trunc 3)| = 7.497e-05 against 10 x max(fit 2.4e-25, spread 0.0e+00) = 2.36e-24; first differing sigma_n: 3  (as required)
+control M 5: |sigma_5(--trunc-even 4) - sigma_5(--trunc 5)| = 4.954e-08 against 10 x max(fit 4.4e-23, spread 0.0e+00) = 4.35e-22; first differing sigma_n: 5  (as required)
+J, phys: Delta sigma_4 = sigma_4 - sigma_4^[3] at J 1000 (-3.87889711136e-5 - 2.73405360428e-5j), at J 1500 (-4.07010094069e-5 - 2.86581174951e-5j)
+J, legacy: Delta sigma_4 = sigma_4 - sigma_4^[3] at J 1000 (-3.16748130073e-5 - 2.67328446519e-5j), at J 1500 (-3.35811717239e-5 - 2.80471163128e-5j)
+J: change from J 1000 to 1500, phys 2.322e-06 against legacy 2.315e-06 (bar: phys < 0.1 x legacy)  (NOT AS REQUIRED)
+Jlog M 3: Delta sigma_4 (log-separated) at J 1000 (1.3536587616493e-5 + 4.8420421773445e-6j), at J 1500 (1.3536587616524e-5 + 4.8420421773973e-6j); change 6.12e-17 against 0.1 x legacy 2.32e-07; log coefficient c = (0.00024005213067878 - 9.55122802485e-5j), relative J change 5.7e-17  (as required)
+   diagnostic: c / S_1^(1) = (4.54524e-6 + 3.16985e-6j); times ln 1.5: (1.84294e-6 + 1.28526e-6j); the no-log fit's drift of sigma_4^[3]: (1.91204e-6 + 1.31758e-6j); ratio 1.033
+Jlog M 5: Delta sigma_6 (log-separated) at J 1000 (-3.9787329862937e-9 + 9.6584813473129e-9j), at J 1500 (-3.97873298611e-9 + 9.6584813471592e-9j); change 2.40e-19 against 0.1 x legacy 2.32e-07; log coefficient c = (2.7216389677251e-8 + 9.7650289862166e-8j), relative J change 6.5e-12  (as required)
+   diagnostic: c / S_1^(1) = (-1.4269e-9 + 1.6406e-9j); times ln 1.5: (-5.78557e-10 + 6.65206e-10j); the no-log fit's drift of sigma_6^[5]: (-5.93605e-10 + 6.90241e-10j); ratio 1.033
+FAIL
+exit 1
