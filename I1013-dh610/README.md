@@ -34,4 +34,11 @@ gate's control run after the fact (--mutate=shift: located A moved by 2e-4), whi
 ## Later orders
 
 - (b), the coordinator's order after the pilot's gate: the pilot's 4 unresolved cells are recounted at xi1 0.25 and, if cells remain, at 0.17 (`run1013b.sh`, tags `pilot_r0.25`, `pilot_r0.17`, `eval1013.py` reads the counts; its control, the pilot's own count alone, fails with 4 unresolved cells). If they resolve (a zero they add is reported with its sign), the driver goes on to steps 3 to 5 above; if a rim cell stays unresolved at every radius it stops there (wf 1.11-1.21, outside step 3's box wf 0.2-1.1) and reports.
-- Step 6 (`run1013c.sh`, after step 5 ended normally): xfchecks' second M = 3 box for the upper chain of M = 1 zeros, `--A=3.6,5.1 --wf=0.5,1.3 --nA=6 --nwf=8` (tag `M3_upper`, 12 h cap), then its two recount rungs (xi1 0.25 and 0.17, tags `M3_upper_r0.25`, `M3_upper_r0.17`, 6 h caps).
+- Step 6 (`run1013c.sh`, xfchecks' second M = 3 box, `--A=3.6,5.1 --wf=0.5,1.3 --nA=6 --nwf=8`, tag `M3_upper`) was not run here: on the coordinator's order of 2026-11-19 ~10:25 UTC it moved to rpi5, and its unit (waiting for step 5, no argcount started) was stopped at 10:27 UTC (`exits_1013.txt`). The script stays as written.
+
+## Results of steps 2 and 3 (candidates' box), 2026-11-19
+
+- Step 2 (xi1 0.2, box A 1.9-3.9, wf 0.2-1.1, `--nA=8 --nwf=9`, 1257 s): 228 leaves after 52 splits, 1020 points, sum over leaves +1, 38 unresolved cells, one zero, sign +1 at (2.726476, 1.015603), the pilot's place (control met). Relocated at xi1 0.17 at the same place.
+- Step 3, xi1 0.25 rung (recount of the 38, 5188 s): 272 leaves after 78 splits, 961 points, sum over leaves 0, 32 unresolved cells, two zeros, sign -1 at (2.598600, 0.221757) and sign +1 at (2.844769, 0.217964); neither could be relocated at xi1 0.2 (every point near them is of no value there).
+- Step 3, xi1 0.17 rung (recount of the 32, 325 s): 32 leaves after 0 splits, 214 points (53 of no value), sum over leaves 0, 32 unresolved cells, no zero.
+- `persist_M3_cand.txt` is `persist1013.py --counts m3/count_M3_cand.json m3/count_M3_cand_r0.25.json m3/count_M3_cand_r0.17.json` (its `--counts` takes every file up to the next flag; the first version read only the first file, the output of that run was discarded). Step 6 is described above.
