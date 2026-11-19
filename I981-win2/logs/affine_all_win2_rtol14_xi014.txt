@@ -1,0 +1,25 @@
+# #981 labelled affine zeros of the solves, NOT accepted by the 1e-6 bar (affine_all.py, PYTHONPATH=solver/inner_stokes of D:/choptuik-inner)
+## run 1 (h3 1e-4), first attempts: zero, dA, dw, zero_repeat
+  2.719219000 1.000022000   r_1 -0.7299+0.9334i   |r_3| 5.5e-07   (hier_nb_M7_win2_rtol14_h3e4_xi014_zero.log)
+  2.719419000 1.000022000   r_1 +1.5919+1.4733i   |r_3| 6.7e-06  (above the bar)   (hier_nb_M7_win2_rtol14_h3e4_xi014_dA.log)
+  2.719219000 1.000122000   r_1 +0.1550+2.0496i   |r_3| 1.2e-06  (above the bar)   (hier_nb_M7_win2_rtol14_h3e4_xi014_dw.log)
+  2.719219000 1.000022000   r_1 -4.1810-0.4194i   |r_3| 2.9e-06  (above the bar)   (hier_nb_M7_win2_rtol14_h3e4_xi014_zero_repeat_r3high.log)
+NOT ACCEPTED by the 1e-6 bar: affine zero of all 4 solves: A 2.719468, w/w_inf 0.999923; J singular values [37683.2  5413.7]; residuals [1.853e+00 4.057e-12 4.056e-12 1.853e+00]
+## run 1 (h3 1e-4), lowest |r_3| per role: zero, dA_pert1, dw_pert1, zero_repeat_pert2
+  2.719219000 1.000022000   r_1 -0.7299+0.9334i   |r_3| 5.5e-07   (hier_nb_M7_win2_rtol14_h3e4_xi014_zero.log)
+  2.719419000 1.000022000   r_1 +0.0608-0.4264i   |r_3| 5.3e-07   (hier_nb_M7_win2_rtol14_h3e4_xi014_dA_pert1.log)
+  2.719219000 1.000122000   r_1 -0.4323+0.9833i   |r_3| 4.2e-07   (hier_nb_M7_win2_rtol14_h3e4_xi014_dw_pert1.log)
+  2.719219000 1.000022000   r_1 -0.2447+0.4300i   |r_3| 1.5e-06  (above the bar)   (hier_nb_M7_win2_rtol14_h3e4_xi014_zero_repeat_pert2_r3high.log)
+NOT ACCEPTED by the 1e-6 bar: affine zero of all 4 solves: A 2.719382, w/w_inf 1.000096; J singular values [6689.3 1691.9]; residuals [3.496e-01 5.591e-13 5.589e-13 3.496e-01]
+## run 2 (h3 1e-5), first attempts: zero, dA, dw, zero_repeat
+  2.719219000 1.000022000   r_1 -0.2476+1.4631i   |r_3| 3.2e-06  (above the bar)   (hier_nb_M7_win2_rtol14_h3e5_xi014_zero.log)
+  2.719419000 1.000022000   r_1 -1.2980-3.6076i   |r_3| 7.5e-06  (above the bar)   (hier_nb_M7_win2_rtol14_h3e5_xi014_dA_r3high.log)
+  2.719219000 1.000122000   r_1 +0.6174+3.2315i   |r_3| 5.8e-06  (above the bar)   (hier_nb_M7_win2_rtol14_h3e5_xi014_dw.log)
+  2.719219000 1.000022000   r_1 +2.3407+0.9087i   |r_3| 2.1e-06  (above the bar)   (hier_nb_M7_win2_rtol14_h3e5_xi014_zero_repeat.log)
+NOT ACCEPTED by the 1e-6 bar: affine zero of all 4 solves: A 2.719296, w/w_inf 1.000055; J singular values [32176.4 10649.5]; residuals [1.323e+00 2.167e-12 2.168e-12 1.323e+00]
+## run 2 (h3 1e-5), lowest |r_3| per role: zero_pert1, dA_pert2, dw_pert2, zero_repeat_pert1
+  2.719219000 1.000022000   r_1 +0.2179+0.9345i   |r_3| 6.5e-08   (hier_nb_M7_win2_rtol14_h3e5_xi014_zero_pert1.log)
+  2.719419000 1.000022000   r_1 +1.2258+0.1338i   |r_3| 1.5e-06  (above the bar)   (hier_nb_M7_win2_rtol14_h3e5_xi014_dA_pert2_r3high.log)
+  2.719219000 1.000122000   r_1 -2.4369+0.1514i   |r_3| 4.0e-07   (hier_nb_M7_win2_rtol14_h3e5_xi014_dw_pert2.log)
+  2.719219000 1.000022000   r_1 +0.3630+0.8129i   |r_3| 4.7e-07   (hier_nb_M7_win2_rtol14_h3e5_xi014_zero_repeat_pert1.log)
+NOT ACCEPTED by the 1e-6 bar: affine zero of all 4 solves: A 2.719380, w/w_inf 1.000060; J singular values [28445.5  4735. ]; residuals [9.465e-02 1.284e-12 1.284e-12 9.465e-02]

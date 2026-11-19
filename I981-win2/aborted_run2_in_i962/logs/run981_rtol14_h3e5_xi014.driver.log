@@ -1,0 +1,7 @@
+INNER_NB_RTOL=1e-14 cap 3 h, RUN_PY C:/Users/nathan/Source/venv-i962/Scripts/python.exe, RUN_SRC D:/choptuik-i962/solver/inner_stokes, perturb REL 1e-07 rngseed 976 max 3 repeats per solve, S --pretune --fixA --schur --predict --floor --procs 2 --h3=1e-5 (I981's copy of I976's run_job976.py)
+2026-11-19 00:12:01 UTC run: C:/Users/nathan/Source/venv-i962/Scripts/python.exe -u hier_nb.py 7 2.719219 1.000022 --x=0.148977988,0.014770713,0.008424206,0.001511189,0.000474205,0.00012168 --xi1=0.14 --pretune --fixA --schur --predict --floor --procs 2 --h3=1e-5 > D:\choptuik-i935-raw\I981-win2\logs\hier_nb_M7_win2_rtol14_h3e5_xi014_zero.log
+2026-11-19 00:12:02 UTC pid 2488
+2026-11-19 00:14:56 UTC zero try 0: r_1 -0.2476+1.4631i  |r_3| 3.20e-06  [174 s since start]
+2026-11-19 00:14:56 UTC zero: |r_3| 3.2e-06 not under 1e-06, repeat 1 from its first end state perturbed by 1e-07: x 0.1489782095,0.01477082671,0.008424258476,0.001511207065,0.0004742099802,0.0001216820021
+2026-11-19 00:14:56 UTC run: C:/Users/nathan/Source/venv-i962/Scripts/python.exe -u hier_nb.py 7 2.719219 1.000022 --x=0.1489782095,0.01477082671,0.008424258476,0.001511207065,0.0004742099802,0.0001216820021 --xi1=0.14 --pretune --fixA --schur --predict --floor --procs 2 --h3=1e-5 > D:\choptuik-i935-raw\I981-win2\logs\hier_nb_M7_win2_rtol14_h3e5_xi014_zero_pert1.log
+2026-11-19 00:14:56 UTC pid 30912
