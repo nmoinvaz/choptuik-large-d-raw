@@ -4,7 +4,7 @@
     python3 -I steps966.py CHAIN_OUT [--from D] [--to D] [--wall H]
     python3 -I steps966.py --selftest [--mutate]
 
-The last two columns are the base the step started from (D0) and its smallest pivot (p_min, pivots[0] of the record). One row per converged step of every leg's anm_run.jsonl: leg ks, D reached (the accepted attempt's), a, attempts, the a rule's
+'corrector s' is the accepted attempt's t_corr (its octo-double Newton, without the re-seed). The last two columns are the base the step started from (D0) and its smallest pivot (p_min, pivots[0] of the record). One row per converged step of every leg's anm_run.jsonl: leg ks, D reached (the accepted attempt's), a, attempts, the a rule's
 level at the accepted attempt (blank without the rule), the octo-double corrector's steps, the series seconds (t_coef) and the
 step seconds, the sum of the logged parts: t_coef plus, for each attempt, its re-seed seconds and t_corr. That sum leaves out each
 leg's base polish and the setup of each attempt, so it is the same quantity for ks_chain2 (whose log has no clock) and ks_chain3.
@@ -44,16 +44,17 @@ def rows(chain):
                 continue
             acc = [a for a in r["attempts"] if a["accepted"]][-1]
             out.append(dict(ks=int(m.group(2)), step=r["step"], D0=r["D0"], pmin=(r.get("pivots") or [None])[0], D=acc["D"], a=acc["a"], att=len(r["attempts"]),
-                            level=acc.get("rule_level"), cs=acc["steps"], series=r.get("t_coef", 0.0), sec=step_seconds(r)))
+                            level=acc.get("rule_level"), cs=acc["steps"], series=r.get("t_coef", 0.0), sec=step_seconds(r),
+                            corr=(r["attempts"][0] if MUTATE else acc).get("t_corr", 0.0)))
     return out
 
 
 def table(rs):
-    print("| ks | step | D | a | attempts | level | corrector steps | series s | step s | base D0 | base p_min |")
-    print("|---|---|---|---|---|---|---|---|---|---|---|")
+    print("| ks | step | D | a | attempts | level | corrector steps | corrector s | series s | step s | base D0 | base p_min |")
+    print("|---|---|---|---|---|---|---|---|---|---|---|---|")
     for r in rs:
         lv = "" if r["level"] is None else f"{r['level']:.4f}"
-        print(f"| {r['ks']} | {r['step']} | {r['D']:.4f} | {r['a']:.4f} | {r['att']} | {lv} | {r['cs']} | {r['series']:.0f} | {r['sec']:.0f} | {r['D0']:.4f} | {'' if r['pmin'] is None else format(r['pmin'], '.3e')} |")
+        print(f"| {r['ks']} | {r['step']} | {r['D']:.4f} | {r['a']:.4f} | {r['att']} | {lv} | {r['cs']} | {r['corr']:.0f} | {r['series']:.0f} | {r['sec']:.0f} | {r['D0']:.4f} | {'' if r['pmin'] is None else format(r['pmin'], '.3e')} |")
 
 
 def per_D(rs, lo, hi):
@@ -98,7 +99,8 @@ def selftest(mutate):
                 f.write(json.dumps(r) + "\n")
         rs = rows(t)
         want_sec = [100 + 1 + 7 + 20 + 30, 110 + 40 + 50]        # 158 and 200
-        res = [len(rs) == 2, [round(r["sec"]) for r in rs] == want_sec, rs[0]["att"] == 2, rs[0]["cs"] == 3, rs[1]["level"] is None]
+        res = [len(rs) == 2, [round(r["sec"]) for r in rs] == want_sec, rs[0]["att"] == 2, rs[0]["cs"] == 3, rs[1]["level"] is None,
+               [round(r["corr"]) for r in rs] == [20, 40]]
         pd = per_D(rs, 0, 100)
         res += [pd is not None and round(pd[3]) == round((158 + 200) / 2.0)]
         for i, r in enumerate(res):
