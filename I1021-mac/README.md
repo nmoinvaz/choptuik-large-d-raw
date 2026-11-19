@@ -35,3 +35,6 @@ cap at 1e7, A 4.3623 is valued at 0.17 with noise3 929. A 5.1123 is lost near 0.
 dh610's b21-25 is rerun at 998fd290 with `--retry` (`split/rerun2_b21-25.sh`). `diag/replay_runs.py` replays any
 cache's seeds; on the 964-line Mac cache it gives `seeds_replay.jsonl` byte for byte, and without the 0.2 file's
 seeds (R02N 0) 12 of 750 seeds differ.
+`split/rerun2_box.sh` does the same for dh610's 068913b4 jobs b11-15, b16-20 or b26-31, given as its fourth argument.
+It refuses while that job runs, or if its cache does not begin with the 617-line input or ends inside a line; these
+refusals were tested on scratch copies on the Mac.
