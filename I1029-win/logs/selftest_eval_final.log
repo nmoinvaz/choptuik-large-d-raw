@@ -1,0 +1,13 @@
+  |r| 0.6 (non-decay), eps 0.3, J agree: NON-DECAY CONFIRMED (|F7/F5| 0.6000, 0.6000; conv True) ok
+  |r| 0.055 (decay), eps 0.3: CONTRADICTED (|F7/F5| 0.0550, 0.0550; conv True) ok
+  |r| 0.25 (between), eps 0.3: UNDECIDED (|F7/F5| 0.2500, 0.2500; conv True) ok
+  |r| 0.6, eps 0.9 (last terms large): INCONCLUSIVE (the series does not converge at this point) (|F7/F5| 0.6000, 0.6000; conv False) ok
+  |r| 0.6, the J differ in |F_5/F_1| by 3e-3: INCONCLUSIVE (the series does not converge at this point) (|F7/F5| 0.6000, 0.5882; conv False) ok
+  |F7/F5| 0.30005 at J 1000, 0.29993 at J 750 (classes differ, the J agree): UNDECIDED (J 750 reads UNDECIDED, J 1000 reads CONFIRMED) (|F7/F5| 0.2999, 0.3001; conv True) ok
+  klass(0.3) = CONFIRMED (want CONFIRMED; the bars are inclusive): ok
+  klass(0.2) = CONTRADICTED (want CONTRADICTED; the bars are inclusive): ok
+  klass(0.29999999899999996) = UNDECIDED (want UNDECIDED; the bars are inclusive): ok
+  klass(0.200000001) = UNDECIDED (want UNDECIDED; the bars are inclusive): ok
+  last term of nu = 7: 1.378e-05 against planted 1.378e-05: ok
+  mutated bar (confirm at 0.2): the 'between' plant reads NON-DECAY CONFIRMED: flips, as it must
+selftest passed

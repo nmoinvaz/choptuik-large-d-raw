@@ -1,0 +1,8 @@
+tuned_profile.py --plant: exit 0 (want 0) ok
+    planted: recovered q - q0 = -6.94e-18, delta - delta0 = +2.78e-17  -> PASS | planted: max_nu |r_nu/r_1 - 1| = 3.75e-16 (geometric law)  -> PASS
+tuned_profile.py --plant --mutate=drift: exit 1 (want 1) ok
+    planted: recovered q - q0 = +1.64e-02, delta - delta0 = +8.90e-12  -> FAIL | planted: max_nu |r_nu/r_1 - 1| = 2.22e-01 (geometric law)  -> FAIL
+K 45 J 1250 file at A 2.72: F_3/F_1 = 0.054816 +0.005433i, reference 0.05482 + 0.00543i, |difference| 4.83e-06 (bar 0.0001): ok
+   |F_3/F_1| 0.05508, |F_5/F_3| 0.05720, |F_7/F_5| 0.05739 (known zero: 0.055-0.057 per pair), last terms nu 3, 5, 7: 3.8e-11 2.1e-11 1.2e-11
+control: against a reference 1% higher the check fails (5.55e-04 > 0.0001): ok
+checks passed
