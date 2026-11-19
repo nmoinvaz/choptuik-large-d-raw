@@ -35,3 +35,7 @@ Arc step 1 accepted (pilot2 step 1). pilot2's anm_run exited at 13:16:42 UTC (`-
 ## Arc step 2 (run1 step 0)
 
 run1 step 0 accepted: `run1/arc_001_D259.255103.npz`, series `run1/arcjet_000_D259.209603.npz`. Step lengths restart at `--a0 0.0455` and grow by `--a_grow 1.25`.
+
+## Arc step 3 (run1 step 1)
+
+run1 step 1 accepted: `run1/arc_002_*.npz`.

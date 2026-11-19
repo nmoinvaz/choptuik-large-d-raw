@@ -116,3 +116,142 @@ base polished at D rounded to double-double (259.2096028341638819607743779516869
   on 23: |F| 8.13e-64 converged, Delta 1.68350396451438433 +6.7856e-17
   corrector: 24 steps, pinned max|F| 8.13e-64 at D 259.25510263393520759, converged, 7446.4 s; denominators 1.00e+00, 1.00e+00, 1.00e+00, 1.00e+00, 1.00e+00, 1.00e+00, 1.00e+00, 1.00e+00, 1.00e+00, 1.00e+00, 1.00e+00, 1.00e+00, 1.00e+00, 1.00e+00, 1.00e+00, 1.00e+00, 1.00e+00, 1.00e+00, 1.00e+00, 1.00e+00, 1.00e+00, 1.00e+00, 1.00e+00, 1.00e+00, |b| 2.97e-03, 2.97e-03, 2.97e-03, 2.97e-03, 2.97e-03, 2.97e-03, 2.97e-03, 2.97e-03, 2.97e-03, 2.97e-03, 2.97e-03, 2.97e-03, 2.97e-03, 2.97e-03, 2.97e-03, 2.97e-03, 2.97e-03, 2.97e-03, 3.04e-03, 2.99e-03, 2.98e-03, 2.97e-03, 2.97e-03, 2.97e-03
 step 0: D0 259.209602834164, sign +1, a_max 2.620e+00, a 4.550e-02 (a_max), |t_D| base 1.000, cond max 1.0e+00 -> D 259.255102633935 in 24 its, max|F| 8.1e-64
+  coefficients_o: this hpkernel has no Solver.series_o (built before #914); the series by the jets
+  series at D 259.255102633935: pivots 3.1e-30..1.2e+37, |w_1| 3.266e-04, |w_N| 2.478e-24, 1080.8 s
+  attempt at D 259.311977383801 (the prediction moved -8.16e-31 in D, +1.23e-34 in Delta): predicted max|F| 2.61e-36, re-seed ok
+      border at D 259.3119773838013553002051471364452: g -8.16e-31, dD -1.56e-17 -> held, den 1.0000, |b| 0.0030, |a| 8.92e-16
+    on 0 chord 0: max|F| 3.01e+07, |dw| 3.086e+22
+  on 0: strong chord (4 weak directions), 1 steps after the full first step; theta at its point inf (bound 0.750): refused, 219.0 s
+    on 0 trial lam 1: max|F| 3.01e+07; simplified correction / |dz| = 1.146e+53 (bound 0.750); refused, 214.2 s
+      on 0, lam 1: projection failed (2): point max|F| 3.01e+07; u0 rung 1 its, |R| 1.45e+09 -> 1.45e+09, NOT converged; u0 quad-double 8 its, |R| 1.27e+08 -> 1.70e+06, NOT converged; ladder FAILED after 8 rungs, last rung u 0.300000 quad-double 8 its, |R| 1.23e+09 -> 1.70e+06, NOT converged
+    on 0 trial lam 0.5: max|F| 3.68e-30; simplified correction / |dz| = 5.014e-01 (bound 0.875); accepted, 251.54 s
+      border at D 259.3119773838013553002051471364452: g +7.79e-18, dD -1.56e-17 -> held, den 1.0000, |b| 0.0030, |a| 4.47e-16
+  on 0: |F| 2.61e-36 -> 3.68e-30, |dz| 8.92e-16 -> 4.47e-16, lam 0.5, dDelta +3.00e-16, piv 2.9e-30..1.3e+37, 799.26 s
+    on 1 trial lam 1: max|F| 3.72e-30; simplified correction / |dz| = 2.840e-05 (bound 0.750); accepted, 255.75 s
+      border at D 259.3119773838013553002051471364452: g +1.56e-17, dD -1.56e-17 -> held, den 1.0000, |b| 0.0030, |a| 1.50e-18
+  on 1: |F| 3.68e-30 -> 3.72e-30, |dz| 4.47e-16 -> 1.50e-18, lam 1, dDelta +1.50e-16, piv 2.9e-30..1.3e+37, 368.49 s
+    on 2 trial lam 1: max|F| 6.41e-35; simplified correction / |dz| = 7.590e-03 (bound 0.750); accepted, 183.47 s
+      border at D 259.3119773838013553002051471364452: g +1.56e-17, dD -1.56e-17 -> held, den 1.0000, |b| 0.0030, |a| 1.13e-20
+  on 2: |F| 3.72e-30 -> 6.41e-35, |dz| 1.50e-18 -> 1.13e-20, lam 1, dDelta -4.52e-19, piv 2.9e-30..1.3e+37, 296.24 s
+    on 3 trial lam 1: max|F| 4.09e-39; simplified correction / |dz| = 1.282e-07 (bound 0.750); accepted, 185.22 s
+      border at D 259.3119773838013553002051471364452: g +1.56e-17, dD -1.56e-17 -> held, den 1.0000, |b| 0.0030, |a| 1.45e-27
+  on 3: |F| 6.41e-35 -> 4.09e-39, |dz| 1.13e-20 -> 1.45e-27, lam 1, dDelta +1.13e-20, piv 2.9e-30..1.3e+37, 298.71 s
+    on 4 trial lam 1: max|F| 4.40e-17; simplified correction / |dz| = 3.323e+17 (bound 0.750); refused, 0.55 s
+    on 4 trial lam 0.5: max|F| 2.05e-39; simplified correction / |dz| = 5.000e-01 (bound 0.875); accepted, 183.96 s
+      border at D 259.3119773838013553002051471364452: g +1.56e-17, dD -1.56e-17 -> held, den 1.0000, |b| 0.0030, |a| 7.23e-28
+  on 4: |F| 4.09e-39 -> 2.05e-39, |dz| 1.45e-27 -> 7.23e-28, lam 0.5, dDelta -4.62e-28, piv 2.9e-30..1.3e+37, 298.14 s
+    on 5 trial lam 1: max|F| 1.10e-17; simplified correction / |dz| = 4.154e+16 (bound 0.750); refused, 0.54 s
+    on 5 trial lam 0.5: max|F| 1.02e-39; simplified correction / |dz| = 5.000e-01 (bound 0.875); accepted, 173.46 s
+      border at D 259.3119773838013553002051471364452: g +1.56e-17, dD -1.56e-17 -> held, den 1.0000, |b| 0.0030, |a| 3.62e-28
+  on 5: |F| 2.05e-39 -> 1.02e-39, |dz| 7.23e-28 -> 3.62e-28, lam 0.5, dDelta -2.31e-28, piv 2.9e-30..1.3e+37, 287.83 s
+    on 6 trial lam 1: max|F| 2.75e-18; simplified correction / |dz| = 5.191e+15 (bound 0.750); refused, 0.54 s
+    on 6 trial lam 0.5: max|F| 5.12e-40; simplified correction / |dz| = 5.000e-01 (bound 0.875); accepted, 184.63 s
+      border at D 259.3119773838013553002051471364452: g +1.56e-17, dD -1.56e-17 -> held, den 1.0000, |b| 0.0030, |a| 1.81e-28
+  on 6: |F| 1.02e-39 -> 5.12e-40, |dz| 3.62e-28 -> 1.81e-28, lam 0.5, dDelta -1.16e-28, piv 2.9e-30..1.3e+37, 298.7 s
+    on 7 trial lam 1: max|F| 6.88e-19; simplified correction / |dz| = 6.485e+14 (bound 0.750); refused, 0.54 s
+    on 7 trial lam 0.5: max|F| 2.56e-40; simplified correction / |dz| = 5.000e-01 (bound 0.875); accepted, 183.91 s
+      border at D 259.3119773838013553002051471364452: g +1.56e-17, dD -1.56e-17 -> held, den 1.0000, |b| 0.0030, |a| 9.04e-29
+  on 7: |F| 5.12e-40 -> 2.56e-40, |dz| 1.81e-28 -> 9.04e-29, lam 0.5, dDelta -5.78e-29, piv 2.9e-30..1.3e+37, 297.58 s
+    on 8 trial lam 1: max|F| 1.72e-19; simplified correction / |dz| = 8.098e+13 (bound 0.750); refused, 0.54 s
+    on 8 trial lam 0.5: max|F| 1.28e-40; simplified correction / |dz| = 5.000e-01 (bound 0.875); accepted, 185.27 s
+      border at D 259.3119773838013553002051471364452: g +1.56e-17, dD -1.56e-17 -> held, den 1.0000, |b| 0.0030, |a| 4.52e-29
+  on 8: |F| 2.56e-40 -> 1.28e-40, |dz| 9.04e-29 -> 4.52e-29, lam 0.5, dDelta -2.89e-29, piv 2.9e-30..1.3e+37, 299.56 s
+    on 9 trial lam 1: max|F| 4.30e-20; simplified correction / |dz| = 1.010e+13 (bound 0.750); refused, 0.54 s
+    on 9 trial lam 0.5: max|F| 6.40e-41; simplified correction / |dz| = 5.000e-01 (bound 0.875); accepted, 184.08 s
+      border at D 259.3119773838013553002051471364452: g +1.56e-17, dD -1.56e-17 -> held, den 1.0000, |b| 0.0030, |a| 2.26e-29
+  on 9: |F| 1.28e-40 -> 6.40e-41, |dz| 4.52e-29 -> 2.26e-29, lam 0.5, dDelta -1.44e-29, piv 2.9e-30..1.3e+37, 297.19 s
+    on 10 trial lam 1: max|F| 1.07e-20; simplified correction / |dz| = 1.258e+12 (bound 0.750); refused, 0.54 s
+    on 10 trial lam 0.5: max|F| 3.20e-41; simplified correction / |dz| = 5.000e-01 (bound 0.875); accepted, 183.76 s
+      border at D 259.3119773838013553002051471364452: g +1.56e-17, dD -1.56e-17 -> held, den 1.0000, |b| 0.0030, |a| 1.13e-29
+  on 10: |F| 6.40e-41 -> 3.20e-41, |dz| 2.26e-29 -> 1.13e-29, lam 0.5, dDelta -7.22e-30, piv 2.9e-30..1.3e+37, 297.34 s
+    on 11 trial lam 1: max|F| 2.69e-21; simplified correction / |dz| = 1.559e+11 (bound 0.750); refused, 0.55 s
+    on 11 trial lam 0.5: max|F| 1.60e-41; simplified correction / |dz| = 5.000e-01 (bound 0.875); accepted, 184.04 s
+      border at D 259.3119773838013553002051471364452: g +1.56e-17, dD -1.56e-17 -> held, den 1.0000, |b| 0.0030, |a| 5.65e-30
+  on 11: |F| 3.20e-41 -> 1.60e-41, |dz| 1.13e-29 -> 5.65e-30, lam 0.5, dDelta -3.61e-30, piv 2.9e-30..1.3e+37, 297.42 s
+    on 12 trial lam 1: max|F| 6.72e-22; simplified correction / |dz| = 1.917e+10 (bound 0.750); refused, 0.54 s
+    on 12 trial lam 0.5: max|F| 8.00e-42; simplified correction / |dz| = 5.000e-01 (bound 0.875); accepted, 184.45 s
+      border at D 259.3119773838013553002051471364452: g +1.56e-17, dD -1.56e-17 -> held, den 1.0000, |b| 0.0030, |a| 2.83e-30
+  on 12: |F| 1.60e-41 -> 8.00e-42, |dz| 5.65e-30 -> 2.83e-30, lam 0.5, dDelta -1.81e-30, piv 2.9e-30..1.3e+37, 301.3 s
+    on 13 trial lam 1: max|F| 1.68e-22; simplified correction / |dz| = 2.315e+09 (bound 0.750); refused, 0.55 s
+    on 13 trial lam 0.5: max|F| 4.00e-42; simplified correction / |dz| = 5.000e-01 (bound 0.875); accepted, 180.77 s
+      border at D 259.3119773838013553002051471364452: g +1.56e-17, dD -1.56e-17 -> held, den 1.0000, |b| 0.0030, |a| 1.41e-30
+  on 13: |F| 8.00e-42 -> 4.00e-42, |dz| 2.83e-30 -> 1.41e-30, lam 0.5, dDelta -9.03e-31, piv 2.9e-30..1.3e+37, 294.91 s
+    on 14 trial lam 1: max|F| 4.20e-23; simplified correction / |dz| = 2.692e+08 (bound 0.750); refused, 0.54 s
+    on 14 trial lam 0.5: max|F| 2.00e-42; simplified correction / |dz| = 5.000e-01 (bound 0.875); accepted, 178.82 s
+      border at D 259.3119773838013553002051471364452: g +1.56e-17, dD -1.56e-17 -> held, den 1.0000, |b| 0.0030, |a| 7.07e-31
+  on 14: |F| 4.00e-42 -> 2.00e-42, |dz| 1.41e-30 -> 7.07e-31, lam 0.5, dDelta -4.51e-31, piv 2.9e-30..1.3e+37, 292.18 s
+    on 15 trial lam 1: max|F| 1.05e-23; simplified correction / |dz| = 2.862e+07 (bound 0.750); refused, 0.53 s
+    on 15 trial lam 0.5: max|F| 1.00e-42; simplified correction / |dz| = 5.000e-01 (bound 0.875); accepted, 180.18 s
+      border at D 259.3119773838013553002051471364452: g +1.56e-17, dD -1.56e-17 -> held, den 1.0000, |b| 0.0030, |a| 3.53e-31
+  on 15: |F| 2.00e-42 -> 1.00e-42, |dz| 7.07e-31 -> 3.53e-31, lam 0.5, dDelta -2.26e-31, piv 2.9e-30..1.3e+37, 294.33 s
+    on 16 trial lam 1: max|F| 2.62e-24; simplified correction / |dz| = 3.785e+06 (bound 0.750); refused, 0.54 s
+    on 16 trial lam 0.5: max|F| 5.00e-43; simplified correction / |dz| = 5.000e-01 (bound 0.875); accepted, 179.32 s
+      border at D 259.3119773838013553002051471364452: g +1.56e-17, dD -1.56e-17 -> held, den 1.0000, |b| 0.0030, |a| 1.77e-31
+  on 16: |F| 1.00e-42 -> 5.00e-43, |dz| 3.53e-31 -> 1.77e-31, lam 0.5, dDelta -1.13e-31, piv 2.9e-30..1.3e+37, 293.47 s
+    on 17 trial lam 1: max|F| 6.56e-25; simplified correction / |dz| = 9.418e+05 (bound 0.750); refused, 0.54 s
+    on 17 trial lam 0.5: max|F| 2.50e-43; simplified correction / |dz| = 5.000e-01 (bound 0.875); accepted, 180.18 s
+      border at D 259.3119773838013553002051471364452: g +1.56e-17, dD -1.56e-17 -> held, den 1.0000, |b| 0.0030, |a| 8.83e-32
+  on 17: |F| 5.00e-43 -> 2.50e-43, |dz| 1.77e-31 -> 8.83e-32, lam 0.5, dDelta -5.64e-32, piv 2.9e-30..1.3e+37, 294.2 s
+    on 18 trial lam 1: max|F| 1.64e-25; simplified correction / |dz| = 2.349e+05 (bound 0.750); refused, 0.55 s
+    on 18 trial lam 0.5: max|F| 1.25e-43; simplified correction / |dz| = 5.000e-01 (bound 0.875); accepted, 180.79 s
+      border at D 259.3119773838013553002051471364452: g +1.56e-17, dD -1.56e-17 -> held, den 1.0000, |b| 0.0030, |a| 4.42e-32
+  on 18: |F| 2.50e-43 -> 1.25e-43, |dz| 8.83e-32 -> 4.42e-32, lam 0.5, dDelta -2.82e-32, piv 2.9e-30..1.3e+37, 294.93 s
+    on 19 trial lam 1: max|F| 4.10e-26; simplified correction / |dz| = 5.864e+04 (bound 0.750); refused, 0.54 s
+    on 19 trial lam 0.5: max|F| 6.25e-44; simplified correction / |dz| = 5.000e-01 (bound 0.875); accepted, 180.06 s
+      border at D 259.3119773838013553002051471364452: g +1.56e-17, dD -1.56e-17 -> held, den 1.0000, |b| 0.0030, |a| 2.21e-32
+  on 19: |F| 1.25e-43 -> 6.25e-44, |dz| 4.42e-32 -> 2.21e-32, lam 0.5, dDelta -1.41e-32, piv 2.9e-30..1.3e+37, 294.08 s
+    on 20 trial lam 1: max|F| 1.02e-26; simplified correction / |dz| = 1.465e+04 (bound 0.750); refused, 0.54 s
+    on 20 trial lam 0.5: max|F| 3.12e-44; simplified correction / |dz| = 5.000e-01 (bound 0.875); accepted, 180.96 s
+      border at D 259.3119773838013553002051471364452: g +1.56e-17, dD -1.56e-17 -> held, den 1.0000, |b| 0.0030, |a| 1.10e-32
+  on 20: |F| 6.25e-44 -> 3.12e-44, |dz| 2.21e-32 -> 1.10e-32, lam 0.5, dDelta -7.05e-33, piv 2.9e-30..1.3e+37, 295.6 s
+    on 21 trial lam 1: max|F| 2.56e-27; simplified correction / |dz| = 3.662e+03 (bound 0.750); refused, 0.54 s
+    on 21 trial lam 0.5: max|F| 1.56e-44; simplified correction / |dz| = 5.000e-01 (bound 0.875); accepted, 180.87 s
+      border at D 259.3119773838013553002051471364452: g +1.56e-17, dD -1.56e-17 -> held, den 1.0000, |b| 0.0030, |a| 5.52e-33
+  on 21: |F| 3.12e-44 -> 1.56e-44, |dz| 1.10e-32 -> 5.52e-33, lam 0.5, dDelta -3.53e-33, piv 2.9e-30..1.3e+37, 294.33 s
+    on 22 trial lam 1: max|F| 6.40e-28; simplified correction / |dz| = 9.153e+02 (bound 0.750); refused, 0.54 s
+    on 22 trial lam 0.5: max|F| 7.81e-45; simplified correction / |dz| = 5.000e-01 (bound 0.875); accepted, 180.32 s
+      border at D 259.3119773838013553002051471364452: g +1.56e-17, dD -1.56e-17 -> held, den 1.0000, |b| 0.0030, |a| 2.76e-33
+  on 22: |F| 1.56e-44 -> 7.81e-45, |dz| 5.52e-33 -> 2.76e-33, lam 0.5, dDelta -1.76e-33, piv 2.9e-30..1.3e+37, 294.01 s
+    on 23 trial lam 1: max|F| 1.60e-28; simplified correction / |dz| = 2.288e+02 (bound 0.750); refused, 0.55 s
+    on 23 trial lam 0.5: max|F| 3.90e-45; simplified correction / |dz| = 5.000e-01 (bound 0.875); accepted, 185.06 s
+      border at D 259.3119773838013553002051471364452: g +1.56e-17, dD -1.56e-17 -> held, den 1.0000, |b| 0.0030, |a| 1.38e-33
+  on 23: |F| 7.81e-45 -> 3.90e-45, |dz| 2.76e-33 -> 1.38e-33, lam 0.5, dDelta -8.81e-34, piv 2.9e-30..1.3e+37, 299.13 s
+    on 24 trial lam 1: max|F| 4.00e-29; simplified correction / |dz| = 5.720e+01 (bound 0.750); refused, 0.54 s
+    on 24 trial lam 0.5: max|F| 1.95e-45; simplified correction / |dz| = 5.000e-01 (bound 0.875); accepted, 184.81 s
+      border at D 259.3119773838013553002051471364452: g +1.56e-17, dD -1.56e-17 -> held, den 1.0000, |b| 0.0030, |a| 6.90e-34
+  on 24: |F| 3.90e-45 -> 1.95e-45, |dz| 1.38e-33 -> 6.90e-34, lam 0.5, dDelta -4.41e-34, piv 2.9e-30..1.3e+37, 299.22 s
+    on 25 trial lam 1: max|F| 1.00e-29; simplified correction / |dz| = 1.430e+01 (bound 0.750); refused, 0.55 s
+    on 25 trial lam 0.5: max|F| 9.76e-46; simplified correction / |dz| = 5.000e-01 (bound 0.875); accepted, 189.1 s
+      border at D 259.3119773838013553002051471364452: g +1.56e-17, dD -1.56e-17 -> held, den 1.0000, |b| 0.0030, |a| 3.45e-34
+  on 25: |F| 1.95e-45 -> 9.76e-46, |dz| 6.90e-34 -> 3.45e-34, lam 0.5, dDelta -2.20e-34, piv 2.9e-30..1.3e+37, 303.54 s
+    on 26 trial lam 1: max|F| 2.50e-30; simplified correction / |dz| = 3.575e+00 (bound 0.750); refused, 0.54 s
+    on 26 trial lam 0.5: max|F| 4.88e-46; simplified correction / |dz| = 5.000e-01 (bound 0.875); accepted, 185.52 s
+      border at D 259.3119773838013553002051471364452: g +1.56e-17, dD -1.56e-17 -> held, den 1.0000, |b| 0.0030, |a| 1.72e-34
+  on 26: |F| 9.76e-46 -> 4.88e-46, |dz| 3.45e-34 -> 1.72e-34, lam 0.5, dDelta -1.10e-34, piv 2.9e-30..1.3e+37, 300.68 s
+    on 27 trial lam 1: max|F| 6.25e-31; simplified correction / |dz| = 8.937e-01 (bound 0.750); refused, 0.54 s
+    on 27 trial lam 0.5: max|F| 2.44e-46; simplified correction / |dz| = 5.000e-01 (bound 0.875); accepted, 185.09 s
+      border at D 259.3119773838013553002051471364452: g +1.56e-17, dD -1.56e-17 -> held, den 1.0000, |b| 0.0030, |a| 8.62e-35
+  on 27: |F| 4.88e-46 -> 2.44e-46, |dz| 1.72e-34 -> 8.62e-35, lam 0.5, dDelta -5.51e-35, piv 2.9e-30..1.3e+37, 299.93 s
+    on 28 trial lam 1: max|F| 1.56e-31; simplified correction / |dz| = 2.234e-01 (bound 0.750); accepted, 0.53 s
+      border at D 259.3119773838013553002051471364452: g +1.56e-17, dD -1.56e-17 -> held, den 1.0000, |b| 0.0030, |a| 6.10e-39
+  on 28: |F| 2.44e-46 -> 1.56e-31, |dz| 8.62e-35 -> 6.10e-39, lam 1, dDelta -2.75e-35, piv 3.0e-30..1.3e+37, 114.23 s
+    on 29 trial lam 1: max|F| 1.02e-42; simplified correction / |dz| = 1.003e+00 (bound 0.750); refused, 0.54 s
+    on 29 trial lam 0.5: max|F| 7.82e-32; simplified correction / |dz| = 2.492e-01 (bound 0.875); accepted, 0.54 s
+      border at D 259.3119773838013553002051471364452: g +1.56e-17, dD -1.56e-17 -> held, den 1.0000, |b| 0.0030, |a| 1.53e-39
+  on 29: |F| 1.56e-31 -> 7.82e-32, |dz| 6.10e-39 -> 1.53e-39, lam 0.5, dDelta -6.10e-39, piv 2.9e-30..1.3e+37, 115.16 s
+    on 30 trial lam 1: max|F| 5.62e-44; simplified correction / |dz| = 9.911e-01 (bound 0.750); refused, 0.56 s
+    on 30 trial lam 0.5: max|F| 3.91e-32; simplified correction / |dz| = 7.478e-01 (bound 0.875); accepted, 0.54 s
+      border at D 259.3119773838013553002051471364452: g +1.56e-17, dD -1.56e-17 -> held, den 1.0000, |b| 0.0030, |a| 1.91e-39
+  on 30: |F| 7.82e-32 -> 3.91e-32, |dz| 1.53e-39 -> 1.91e-39, lam 0.5, dDelta +1.53e-39, piv 2.9e-30..1.3e+37, 116.2 s
+    on 31 trial lam 1: max|F| 1.03e-43; simplified correction / |dz| = 1.983e-01 (bound 0.750); accepted, 0.54 s
+      border at D 259.3119773838013553002051471364452: g +1.56e-17, dD -1.56e-17 -> held, den 1.0000, |b| 0.0030, |a| 3.77e-40
+  on 31: |F| 3.91e-32 -> 1.03e-43, |dz| 1.91e-39 -> 3.77e-40, lam 1, dDelta +1.91e-39, piv 2.9e-30..1.3e+37, 114.76 s
+    on 32 trial lam 1: max|F| 5.96e-45; simplified correction / |dz| = 5.383e-15 (bound 0.750); accepted, 0.54 s
+      border at D 259.3119773838013553002051471364452: g +1.56e-17, dD -1.56e-17 -> held, den 1.0000, |b| 0.0030, |a| 2.22e-54
+  on 32: |F| 1.03e-43 -> 5.96e-45, |dz| 3.77e-40 -> 2.22e-54, lam 1, dDelta +3.77e-40, piv 2.9e-30..1.3e+37, 115.04 s
+    on 33 trial lam 1: max|F| 7.42e-71; simplified correction / |dz| = 3.567e-12 (bound 0.750); accepted, 0.54 s
+      border at D 259.3119773838013553002051471364452: g +1.56e-17, dD -1.56e-17 -> held, den 1.0000, |b| 0.0030, |a| 7.93e-66
+  on 33: |F| 5.96e-45 -> 7.42e-71, |dz| 2.22e-54 -> 7.93e-66, lam 1, dDelta -2.22e-54, piv 2.9e-30..1.3e+37, 114.89 s
+  on 34: |F| 7.42e-71 converged, Delta 1.68349535975551690 +1.5325e-17
+  corrector: 35 steps, pinned max|F| 7.42e-71 at D 259.3119773838013553, converged, 9788.8 s; denominators 1.00e+00, 1.00e+00, 1.00e+00, 1.00e+00, 1.00e+00, 1.00e+00, 1.00e+00, 1.00e+00, 1.00e+00, 1.00e+00, 1.00e+00, 1.00e+00, 1.00e+00, 1.00e+00, 1.00e+00, 1.00e+00, 1.00e+00, 1.00e+00, 1.00e+00, 1.00e+00, 1.00e+00, 1.00e+00, 1.00e+00, 1.00e+00, 1.00e+00, 1.00e+00, 1.00e+00, 1.00e+00, 1.00e+00, 1.00e+00, 1.00e+00, 1.00e+00, 1.00e+00, 1.00e+00, 1.00e+00, |b| 2.97e-03, 3.00e-03, 3.00e-03, 2.97e-03, 2.97e-03, 2.97e-03, 2.97e-03, 2.97e-03, 2.97e-03, 2.97e-03, 2.97e-03, 2.97e-03, 2.97e-03, 2.97e-03, 2.97e-03, 2.97e-03, 2.97e-03, 2.97e-03, 2.97e-03, 2.97e-03, 2.97e-03, 2.97e-03, 2.97e-03, 2.97e-03, 2.97e-03, 2.97e-03, 2.97e-03, 2.97e-03, 2.97e-03, 2.98e-03, 2.97e-03, 2.97e-03, 2.97e-03, 2.97e-03, 2.97e-03
+step 1: D0 259.255102633935, sign +1, a_max 2.616e+00, a 5.687e-02 (a_max), |t_D| base 1.000, cond max 1.0e+00 -> D 259.311977383801 in 35 its, max|F| 7.4e-71
