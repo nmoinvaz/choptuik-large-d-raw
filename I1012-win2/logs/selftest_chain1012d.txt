@@ -1,0 +1,9 @@
+$ chain1012d.py --selftest 
+success notices 1 (want 1), first solve logged True, alive after the cap [] -> selftest PASS
+exit 0
+$ chain1012d.py --selftest --mutate=anysolve
+success notices 0 (want 1), first solve logged True, alive after the cap [] -> selftest FAIL
+exit 1
+$ chain1012d.py --selftest --mutate=nokill
+success notices 1 (want 1), first solve logged True, alive after the cap [9620] -> selftest FAIL
+exit 1

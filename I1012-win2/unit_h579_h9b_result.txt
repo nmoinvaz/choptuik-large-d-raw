@@ -1,0 +1,46 @@
+# unit check of --h5/--h7/--h9 plumbing on D:/choptuik-h9b (a git archive of main 299c4eb9's solver/inner_stokes; the run's code), 09:04:17 UTC
+$ unit_h579.py default
+case default level 3: step [1.48977988e-07 1.47707130e-08], [1. 1.] x the default (want 1.0), FD_STEP None -> ok
+case default level 5: step [8.424206e-09 2.719219e-09], [1. 1.] x the default (want 1.0), FD_STEP None -> ok
+case default level 7: step [2.719219e-09 2.719219e-09], [1. 1.] x the default (want 1.0), FD_STEP None -> ok
+case default level 9: step [2.719219e-09 2.719219e-09], [1. 1.] x the default (want 1.0), FD_STEP None -> ok
+exit 0
+$ unit_h579.py h5_1e-4
+case h5_1e-4 level 3: step [1.48977988e-07 1.47707130e-08], [1. 1.] x the default (want 1.0), FD_STEP None -> ok
+case h5_1e-4 level 5: step [8.424206e-07 2.719219e-07], [100. 100.] x the default (want 100.0), FD_STEP 0.0001 -> ok
+case h5_1e-4 level 7: step [2.719219e-09 2.719219e-09], [1. 1.] x the default (want 1.0), FD_STEP None -> ok
+case h5_1e-4 level 9: step [2.719219e-09 2.719219e-09], [1. 1.] x the default (want 1.0), FD_STEP None -> ok
+exit 0
+$ unit_h579.py h7_1e-4
+case h7_1e-4 level 3: step [1.48977988e-07 1.47707130e-08], [1. 1.] x the default (want 1.0), FD_STEP None -> ok
+case h7_1e-4 level 5: step [8.424206e-09 2.719219e-09], [1. 1.] x the default (want 1.0), FD_STEP None -> ok
+case h7_1e-4 level 7: step [2.719219e-07 2.719219e-07], [100. 100.] x the default (want 100.0), FD_STEP 0.0001 -> ok
+case h7_1e-4 level 9: step [2.719219e-09 2.719219e-09], [1. 1.] x the default (want 1.0), FD_STEP None -> ok
+exit 0
+$ unit_h579.py h9_1e-4
+case h9_1e-4 level 3: step [1.48977988e-07 1.47707130e-08], [1. 1.] x the default (want 1.0), FD_STEP None -> ok
+case h9_1e-4 level 5: step [8.424206e-09 2.719219e-09], [1. 1.] x the default (want 1.0), FD_STEP None -> ok
+case h9_1e-4 level 7: step [2.719219e-09 2.719219e-09], [1. 1.] x the default (want 1.0), FD_STEP None -> ok
+case h9_1e-4 level 9: step [2.719219e-07 2.719219e-07], [100. 100.] x the default (want 100.0), FD_STEP 0.0001 -> ok
+exit 0
+$ unit_h579.py h579_1e-4
+case h579_1e-4 level 3: step [1.48977988e-07 1.47707130e-08], [1. 1.] x the default (want 1.0), FD_STEP None -> ok
+case h579_1e-4 level 5: step [8.424206e-07 2.719219e-07], [100. 100.] x the default (want 100.0), FD_STEP 0.0001 -> ok
+case h579_1e-4 level 7: step [2.719219e-07 2.719219e-07], [100. 100.] x the default (want 100.0), FD_STEP 0.0001 -> ok
+case h579_1e-4 level 9: step [2.719219e-07 2.719219e-07], [100. 100.] x the default (want 100.0), FD_STEP 0.0001 -> ok
+exit 0
+$ unit_h579.py h579_1e-6
+case h579_1e-6 level 3: step [1.48977988e-07 1.47707130e-08], [1. 1.] x the default (want 1.0), FD_STEP None -> ok
+case h579_1e-6 level 5: step [8.424206e-09 2.719219e-09], [1. 1.] x the default (want 1.0), FD_STEP 1e-06 -> ok
+case h579_1e-6 level 7: step [2.719219e-09 2.719219e-09], [1. 1.] x the default (want 1.0), FD_STEP 1e-06 -> ok
+case h579_1e-6 level 9: step [2.719219e-09 2.719219e-09], [1. 1.] x the default (want 1.0), FD_STEP 1e-06 -> ok
+exit 0
+$ unit_h579.py wrongenv
+case wrongenv level 3: step [1.48977988e-07 1.47707130e-08], [1. 1.] x the default (want 1.0), FD_STEP None -> ok
+case wrongenv level 5: step [8.424206e-09 2.719219e-09], [1. 1.] x the default (want 1.0), FD_STEP None -> ok
+case wrongenv level 7: step [2.719219e-09 2.719219e-09], [1. 1.] x the default (want 1.0), FD_STEP None -> ok
+case wrongenv level 9: step [2.719219e-09 2.719219e-09], [1. 1.] x the default (want 1.0), FD_STEP None -> ok
+exit 0
+$ mutation: the h9 case's 100x read as 1x (must fail)
+case h9_1e-4 level 9: step [2.719219e-07 2.719219e-07], [100. 100.] x the default (want 1.0), FD_STEP 0.0001 -> FAIL
+exit 1
