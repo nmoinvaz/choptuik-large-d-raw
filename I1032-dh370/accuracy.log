@@ -1,0 +1,25 @@
+== accuracy 2026-11-19 19:38:48
+  reseed: this hpkernel has no Solver.residual_sub; each rung residual is taken from the full residual
+accuracy I966-dh370/ks_chain3b/leg06_D251.2845_ks293/anm_pin3_D251.8782.npz: D 251.878219928, {'file_parts': 8, 'read': 8, 'held': 'eight parts', 'plan': 'stored'}; the reference (the default projection of the state) pinned max|F| 1.68e-35, rung |R| 2.94e-36, 337 s
+  plant 1e-24 default: 'failed', rung |R| 1.18e+251, pinned max|F| 2.56e+252, distance from the reference 1.12e-02, 469 s
+  plant 1e-24 stop: 'failed', rung |R| 2.27e+234, pinned max|F| 3.72e+235, distance from the reference 7.81e-03, 396 s
+  plant 1e-24 o: 'u0o refused (floor)', rung |R| 2.27e+234, pinned max|F| 3.72e+235, distance from the reference 7.81e-03, 13 s
+    stop against the default: NOT ok
+    o against the default: NOT ok
+Traceback (most recent call last):
+  File "/home/nathan/Source/choptuik-large-d-1032/hp/proj_check.py", line 678, in <module>
+    sys.exit(cmds[sys.argv[1]](sys.argv[2:]))
+             ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/home/nathan/Source/choptuik-large-d-1032/hp/proj_check.py", line 582, in accuracy
+    zo = with_horizon(zp, p, rs)
+  File "/home/nathan/Source/choptuik-large-d-1032/hp/octo_corrector.py", line 581, in with_horizon
+    out, rs.last_o = rs.refine_o(out)
+                     ~~~~~~~~~~~^^^^^
+  File "/home/nathan/Source/choptuik-large-d-1032/hp/reseed.py", line 569, in refine_o
+    lu, since = QDLu(*[np.ascontiguousarray(b) for b in blk]), 0
+                ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nathan/Source/choptuik-large-d-961/.venv/lib/python3.14/site-packages/multidouble/__init__.py", line 159, in __init__
+    self._lu = _md.QDLu(*_parts(("a0", "a1", "a2", "a3"), a0, a1, a2, a3))
+               ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: A has a non-finite entry at (0, 26)
+exit 1

@@ -1,0 +1,11 @@
+== mock 2026-11-19 18:20:34
+  reseed: this hpkernel has no Solver.residual_sub; each rung residual is taken from the full residual
+A od_stop at a floor: default |R| 7.23e-20 -> 9.66e-36 -> 1.44e-35 -> 1.05e-35 -> 1.46e-35 -> 1.05e-35 -> 1.07e-35 -> 1.46e-35 -> 1.05e-35 -> 1.46e-35, end cap, calls {'residual/8': 10, 'jacobian_sub/4': 8}; od_stop 7.23e-20 -> 9.66e-36 -> 1.44e-35 -> 1.05e-35, end floor, calls {'residual/8': 4, 'jacobian_sub/4': 2}: PASS
+B od_stop, poor first LU: 7.23e-20 -> 4.00e-23 -> 1.46e-35 -> 1.07e-35 -> 1.46e-35, end floor: PASS
+C no floor: default 7.23e-20 -> 2.50e-41 -> 2.45e-62 -> 2.43e-83 (steps), od_stop 7.23e-20 -> 2.50e-41 -> 2.45e-62 -> 2.43e-83 (steps), the same bits: True: PASS
+D proj_start pred, the u0 path failing: default 'ladder' {'residual/2': 13, 'jacobian_sub/2': 1, 'residual/4': 7, 'jacobian_sub/4': 4}; pred 'pred' {'residual/4': 4, 'jacobian_sub/4': 4}; the same bits: True: PASS
+E every path failing: default 'failed' {'residual/2': 26, 'jacobian_sub/2': 2, 'residual/4': 24, 'jacobian_sub/4': 18}; pred 'failed' {'residual/4': 24, 'jacobian_sub/4': 18, 'residual/2': 26, 'jacobian_sub/2': 2}: PASS
+F ElimO proj_o: counts {'u0': 0, 'u0q': 0, 'ladder': 0, 'failed': 0, 'skipped': 0, 'u0o': 1}, rung |R| 7.23e-20 -> 2.50e-41 -> 2.45e-62 -> 2.43e-83, distance from the root 1.01e-21 -> 3.31e-84: PASS
+G res_rows through residual_sub, two, four and eight parts: PASS
+mock: PASS (all cases)
+exit 0
