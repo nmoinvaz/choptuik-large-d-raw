@@ -1,0 +1,72 @@
+# 2026-11-19 07:09:14 UTC worktree 76fdcbc92ed575badd6e6e5f6d4e49bc2aca4401, hp: multidouble's chunked f64 matrix products by branch patch, for the x
+# 2026-11-19 07:09:14 UTC load 7.64 5.40 5.12, used 20537 MiB, available 43553 MiB
+# 2026-11-19 07:09:14 UTC rustc 1.99.1 (58cf8f9c3 2026-10-13); cargo 1.99.1 (5f94df478 2026-08-27); maturin 1.16.0; Python 3.14.10; VIRTUAL_ENV=/home/nathan/Source/venv-ccc
+    Updating git repository `https://github.com/nmoinvaz/multidouble`
+🍹 Building a mixed python/rust project
+🐍 Found CPython 3.14 at /home/nathan/Source/venv-ccc/bin/python
+🔗 Found pyo3 bindings
+📡 Using build options features from pyproject.toml
+   Compiling target-lexicon v0.13.5
+   Compiling autocfg v1.5.1
+   Compiling crossbeam-utils v0.8.23
+   Compiling proc-macro2 v1.0.107
+   Compiling crossbeam-epoch v0.9.21
+   Compiling crossbeam-deque v0.8.8
+   Compiling unicode-ident v1.0.27
+   Compiling quote v1.0.47
+   Compiling rayon-core v1.13.0
+   Compiling num-traits v0.2.19
+   Compiling pyo3-macros-backend v0.30.1
+   Compiling libc v0.2.191
+   Compiling pyo3-build-config v0.30.1
+   Compiling syn v3.0.9
+   Compiling matrixmultiply v0.3.11
+   Compiling heck v0.5.0
+   Compiling either v1.19.0
+   Compiling rawpointer v0.2.1
+   Compiling num-complex v0.4.6
+   Compiling pyo3-ffi v0.30.1
+   Compiling pyo3 v0.30.1
+   Compiling rayon v1.12.0
+   Compiling numpy v0.30.0
+   Compiling num-integer v0.1.47
+   Compiling once_cell v1.21.4
+   Compiling ndarray v0.17.2
+   Compiling rustc-hash v2.1.3
+   Compiling multidouble v4.9.0 (https://github.com/nmoinvaz/multidouble?branch=perf%2Fdmat-apply-chunks#6dfd5b03)
+   Compiling pyo3-macros v0.30.1
+   Compiling multisolver v0.1.1
+   Compiling multishoot v3.3.0
+   Compiling hpkernel v0.1.0 (/home/nathan/Source/choptuik-large-d-ccc/hp)
+warning: use of deprecated type alias `multidouble::native::DotAcc`: renamed `DDotAcc`, like `QDotAcc` and `ODotAcc`
+  --> src/lib.rs:43:35
+   |
+43 |     pub use multidouble::native::{DotAcc, DV};
+   |                                   ^^^^^^
+   |
+   = note: `#[warn(deprecated)]` on by default
+
+warning: `hpkernel` (lib) generated 1 warning
+    Finished `release` profile [optimized] target(s) in 31m 17s
+📦 Built wheel for CPython 3.14 to /home/nathan/Source/choptuik-large-d-ccc/hp/dist/hpkernel-0.1.0-cp314-cp314-manylinux_2_34_x86_64.whl
+Processing ./dist/hpkernel-0.1.0-cp314-cp314-manylinux_2_34_x86_64.whl
+Installing collected packages: hpkernel
+Successfully installed hpkernel-0.1.0
+Collecting multidouble @ git+https://github.com/nmoinvaz/multidouble@482c683550de265c46e1ca836f89f71bea13c491#subdirectory=python
+  Using cached multidouble-0.1.0-cp314-cp314-linux_x86_64.whl
+Installing collected packages: multidouble
+Successfully installed multidouble-0.1.0
+hpkernel avx2 multidouble avx2
+# 2026-11-19 07:40:39 UTC hp/build.sh exit 0, 1885 s, unit memory.peak 23699 MiB
+hpkernel /home/nathan/Source/venv-ccc/lib/python3.14/site-packages/hpkernel/__init__.py
+multidouble /home/nathan/Source/venv-ccc/lib/python3.14/site-packages/multidouble/__init__.py
+isa avx2 avx2
+# 2026-11-19 07:40:40 UTC Cargo.lock multidouble 4.9.0 git+https://github.com/nmoinvaz/multidouble?branch=perf%2Fdmat-apply-chunks#6dfd5b03cd529b8be641e7ddaafcac94381bad09 
+# 2026-11-19 07:40:40 UTC Cargo.lock multishoot 3.3.0 registry+https://github.com/rust-lang/crates.io-index 
+# 2026-11-19 07:40:40 UTC Cargo.lock multisolver 0.1.1 registry+https://github.com/rust-lang/crates.io-index 
+name = "multidouble"
+version = "4.9.0"
+source = "git+https://github.com/nmoinvaz/multidouble?branch=perf%2Fdmat-apply-chunks#6dfd5b03cd529b8be641e7ddaafcac94381bad09"
+dependencies = [
+# 2026-11-19 07:40:40 UTC  Elapsed (wall clock) time (h:mm:ss or m:ss): 31:25.11; Maximum resident set size (kbytes): 24061000
+exit 0

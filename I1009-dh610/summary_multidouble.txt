@@ -1,0 +1,8 @@
+# 2026-11-19 08:29:17 UTC multidouble 6dfd5b0 start, load 5.38 5.40 5.32, rustc 1.99.1 (58cf8f9c3 2026-10-13)
+f64_matrix native: exit 0, 69 s; test f64_matrix_products_are_the_column_chains ... f64 lanes' D f against the column chains: 0 of 44640 entries differ;test f64_matrix_products_control_one_ulp ... control: 326 of 44640 entries differ;test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 30 filtered out; finished in 0.01s;
+f64_matrix portable: exit 0, 56 s; test f64_matrix_products_are_the_column_chains ... f64 lanes' D f against the column chains: 0 of 44640 entries differ;test f64_matrix_products_control_one_ulp ... control: 326 of 44640 entries differ;test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 30 filtered out; finished in 0.02s;
+bench dmat_f64 native: exit 101, 80 s, load at end 10.27 7.78 6.29
+# 2026-11-19 08:32:42 UTC multidouble done
+bench dmat_f64 native, LTO off, 16 codegen units: exit 101, 54 s, load at end 13.13 9.30 6.95
+bench dmat_f64 native, crate's bench profile, CFLAGS=-fno-lto: exit 0, 57 s, load at end 12.02 9.93 7.40
+bench dmat_f64 native, crate's bench profile, CFLAGS=-fno-lto: exit 0, 29 s, load at end 13.32 10.51 7.78

@@ -1,0 +1,62 @@
+   Compiling proc-macro2 v1.0.107
+   Compiling quote v1.0.47
+   Compiling unicode-ident v1.0.27
+   Compiling crossbeam-utils v0.8.23
+   Compiling serde_core v1.0.229
+   Compiling crossbeam-epoch v0.9.21
+   Compiling crossbeam-deque v0.8.8
+   Compiling zerocopy v0.8.63
+   Compiling either v1.19.0
+   Compiling rayon-core v1.13.0
+   Compiling serde v1.0.229
+   Compiling find-msvc-tools v0.1.15
+   Compiling zmij v1.0.23
+   Compiling shlex v2.0.1
+   Compiling syn v2.0.119
+   Compiling syn v3.0.9
+   Compiling autocfg v1.5.1
+   Compiling cc v1.10.0
+   Compiling num-traits v0.2.19
+   Compiling cfg-if v1.0.5
+   Compiling libc v0.2.191
+   Compiling serde_json v1.0.154
+   Compiling memchr v2.8.3
+   Compiling plotters-backend v0.3.7
+   Compiling alloca v0.4.0
+   Compiling regex-syntax v0.8.11
+   Compiling clap_lex v1.1.1
+   Compiling anstyle v1.0.14
+   Compiling itoa v1.0.18
+   Compiling ciborium-io v0.2.2
+   Compiling clap_builder v4.6.7
+   Compiling plotters-svg v0.3.7
+   Compiling rayon v1.12.0
+   Compiling serde_derive v1.0.229
+   Compiling zerocopy-derive v0.8.63
+   Compiling regex-automata v0.4.18
+   Compiling itertools v0.13.0
+   Compiling same-file v1.0.6
+   Compiling cast v0.3.0
+   Compiling regex v1.13.1
+   Compiling walkdir v2.5.0
+   Compiling page_size v0.6.0
+   Compiling tinytemplate v1.2.1
+   Compiling clap v4.6.7
+   Compiling plotters v0.3.7
+   Compiling half v2.7.1
+   Compiling anes v0.1.6
+   Compiling oorandom v11.1.5
+   Compiling ciborium-ll v0.2.2
+   Compiling multidouble v4.9.0 (/home/nathan/Source/multidouble-dmat)
+   Compiling ciborium v0.2.2
+   Compiling criterion-plot v0.8.2
+   Compiling criterion v0.8.2
+error: linking with `clang` failed: exit status: 1
+  |
+  = note:  "clang" "-m64" "<1 object files omitted>" "-Wl,--as-needed" "-Wl,-Bstatic" "/home/nathan/Source/multidouble-dmat/target/release/deps/rustcNU16nQ/liballoca-d2d32b91bf1f729e.rlib" "<sysroot>/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcompiler_builtins-*.rlib" "-Wl,-Bdynamic" "-lgcc_s" "-lutil" "-lrt" "-lpthread" "-lm" "-ldl" "-lc" "-L" "/home/nathan/Source/multidouble-dmat/target/release/deps/rustcNU16nQ/raw-dylibs" "-Wl,--eh-frame-hdr" "-Wl,-z,noexecstack" "-L" "/home/nathan/Source/multidouble-dmat/target/release/build/alloca-c0e9781684b408e8/out" "-L" "<sysroot>/lib/rustlib/x86_64-unknown-linux-gnu/lib" "-o" "/home/nathan/Source/multidouble-dmat/target/release/deps/field-25135152db361b4b" "-Wl,--gc-sections" "-pie" "-Wl,-z,relro,-z,now" "-Wl,-O1" "-Wl,--strip-debug" "-nodefaultlibs"
+  = note: some arguments are omitted. use `--verbose` to show all linker arguments
+  = note: /usr/bin/ld.bfd: /home/nathan/Source/multidouble-dmat/target/release/deps/rustcNU16nQ/liballoca-d2d32b91bf1f729e.rlib: error adding symbols: file format not recognized
+          clang: error: linker command failed with exit code 1 (use -v to see invocation)
+          
+
+error: could not compile `multidouble` (bench "field") due to 1 previous error

@@ -1,0 +1,64 @@
+warning: use of deprecated type alias `multidouble::native::DotAcc`: renamed `DDotAcc`, like `QDotAcc` and `ODotAcc`
+  --> src/lib.rs:43:35
+   |
+43 |     pub use multidouble::native::{DotAcc, DV};
+   |                                   ^^^^^^
+   |
+   = note: `#[warn(deprecated)]` on by default
+
+warning: use of deprecated type alias `multidouble::native::DotAcc`: renamed `DDotAcc`, like `QDotAcc` and `ODotAcc`
+  --> src/qd_residual.rs:12:17
+   |
+12 | use crate::dv::{DotAcc, DV};
+   |                 ^^^^^^
+
+warning: use of deprecated type alias `multidouble::native::DotAcc`: renamed `DDotAcc`, like `QDotAcc` and `ODotAcc`
+   --> src/qd_residual.rs:210:26
+    |
+210 |     d[7] = tacc!(da, db, DotAcc::zero(), |a: DotAcc, x: DV, y: DV| a.add_prod(x, y));
+    |                          ^^^^^^
+
+warning: use of deprecated type alias `multidouble::native::DotAcc`: renamed `DDotAcc`, like `QDotAcc` and `ODotAcc`
+   --> src/qd_residual.rs:210:46
+    |
+210 |     d[7] = tacc!(da, db, DotAcc::zero(), |a: DotAcc, x: DV, y: DV| a.add_prod(x, y));
+    |                                              ^^^^^^
+
+warning: use of deprecated type alias `multidouble::native::DotAcc`: renamed `DDotAcc`, like `QDotAcc` and `ODotAcc`
+   --> src/qd_residual.rs:214:26
+    |
+214 |     d[9] = tacc!(da, db, DotAcc::zero(), |a: DotAcc, x: DV, _y: DV| a.add(x));
+    |                          ^^^^^^
+
+warning: use of deprecated type alias `multidouble::native::DotAcc`: renamed `DDotAcc`, like `QDotAcc` and `ODotAcc`
+   --> src/qd_residual.rs:214:46
+    |
+214 |     d[9] = tacc!(da, db, DotAcc::zero(), |a: DotAcc, x: DV, _y: DV| a.add(x));
+    |                                              ^^^^^^
+
+warning: use of deprecated type alias `multidouble::native::DotAcc`: renamed `DDotAcc`, like `QDotAcc` and `ODotAcc`
+   --> src/qd_residual.rs:216:48
+    |
+216 |     d[10] = t!(da, |x: DV, i: usize| { let a = DotAcc { s: x.hi, e: db[i].lo }; a.finish() });
+    |                                                ^^^^^^
+
+warning: use of deprecated type alias `multidouble::native::DotAcc`: renamed `DDotAcc`, like `QDotAcc` and `ODotAcc`
+   --> src/qd_residual.rs:224:13
+    |
+224 | impl S0 for DotAcc {
+    |             ^^^^^^
+
+warning: `hpkernel` (lib test) generated 8 warnings
+    Finished `release` profile [optimized] target(s) in 0.06s
+     Running unittests src/lib.rs (target/release/deps/_hpkernel-e5f95215f634aeff)
+
+running 1 test
+M = 320, L = 28161, K = 21, 2832 Taylor steps, kt 36 kc 100 ks 250; Fun<4> work arrays 5.84 MB, D 0.82 MB (hi); form lane vectors
+  bitwise, lane vectors vs fields (blocks 0, 1, 10, 20, 21; Fu, Fun<4>, Fun<8>, Dtn<4>): 0 of 108800 entries differ
+  Fun<4> Taylor step (block 10), 18 alternating runs each: fields min 4.931 median 5.261 max 6.306 ms; lane vectors min 3.554 median 3.925 max 4.421 ms; ratio of medians 1.34x (of minima 1.39x)
+  Fun<4> group of block 10 (32 steps), 1 at once, 6 alternating runs: fields min 0.158 median 0.161 max 0.170 s; lane vectors min 0.116 median 0.117 max 0.119 s; ratio of medians 1.37x (of minima 1.36x)
+  Fun<4> tau derivatives of a step (2 kt applies): DMat::apply 1.314 ms, chunks of 8 columns 1.403 ms (0.94x), rows 1.546 ms (0.85x); 0 entries differ from DMat::apply
+test fill_bench::bench_fill ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 38 filtered out; finished in 8.84s
+

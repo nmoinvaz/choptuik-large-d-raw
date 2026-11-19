@@ -1,0 +1,51 @@
+   Compiling crossbeam-utils v0.8.23
+   Compiling serde_core v1.0.229
+   Compiling either v1.19.0
+   Compiling zerocopy v0.8.63
+   Compiling cfg-if v1.0.5
+   Compiling zmij v1.0.23
+   Compiling memchr v2.8.3
+   Compiling plotters-backend v0.3.7
+   Compiling regex-syntax v0.8.11
+   Compiling crossbeam-epoch v0.9.21
+   Compiling crossbeam-deque v0.8.8
+   Compiling rayon-core v1.13.0
+   Compiling clap_lex v1.1.1
+   Compiling anstyle v1.0.14
+   Compiling itoa v1.0.18
+   Compiling ciborium-io v0.2.2
+   Compiling clap_builder v4.6.7
+   Compiling rayon v1.12.0
+   Compiling serde v1.0.229
+   Compiling serde_json v1.0.154
+   Compiling regex-automata v0.4.18
+   Compiling half v2.7.1
+   Compiling ciborium-ll v0.2.2
+   Compiling plotters-svg v0.3.7
+   Compiling itertools v0.13.0
+   Compiling num-traits v0.2.19
+   Compiling libc v0.2.191
+   Compiling same-file v1.0.6
+   Compiling cast v0.3.0
+   Compiling walkdir v2.5.0
+   Compiling criterion-plot v0.8.2
+   Compiling page_size v0.6.0
+   Compiling plotters v0.3.7
+   Compiling regex v1.13.1
+   Compiling alloca v0.4.0
+   Compiling tinytemplate v1.2.1
+   Compiling ciborium v0.2.2
+   Compiling clap v4.6.7
+   Compiling oorandom v11.1.5
+   Compiling anes v0.1.6
+   Compiling criterion v0.8.2
+   Compiling multidouble v4.9.0 (/home/nathan/Source/multidouble-dmat)
+error: linking with `clang` failed: exit status: 1
+  |
+  = note:  "clang" "-m64" "/home/nathan/Source/multidouble-dmat/target/release/deps/rustcOJGe8z/symbols.o" "<17 object files omitted>" "-Wl,--as-needed" "-Wl,-Bstatic" "/home/nathan/Source/multidouble-dmat/target/release/deps/{libmultidouble-b5ed596ada6c1857,libcriterion-2cbc547ea44742ef,libpage_size-544516636cc8ab78,liblibc-242377a3aa49bdcb,liballoca-3cdab50f6214e0a9,libciborium-8edca62ac2ba9013,libciborium_ll-2dad44be08da9b51,libhalf-9b092f943afd259c,libcfg_if-47253df81ce75b95,libzerocopy-297c846c32636b0a,libciborium_io-eee645429e629f35,libclap-d60d07ab61b135b8,libclap_builder-1656841cbeb092b0,libclap_lex-4e3df3d4b1ed3035,libanstyle-b842c3a7d3cf3d03,liboorandom-09ab05b405011379,librayon-8ca8a4cde430cbb7,librayon_core-f1ca7ec2734afe73,libcrossbeam_deque-cf58026b71325d3f,libcrossbeam_epoch-61bc01b494362b30,libcrossbeam_utils-146ac74463b998d0,libanes-e2f39739d517a9b5,libplotters-c7a4e506c419ad41,libplotters_svg-5a90643c9112e59d,libnum_traits-802e9a62c2840e53,libplotters_backend-53f55272933c4baf,libtinytemplate-48462d9724bf00a1,libcriterion_plot-91aedec7761338d7,libitertools-d3479d7c416188d6,libeither-e74b4cfd837b54fd,libcast-0a2855e7821e9cb8,libwalkdir-3af41cb7a58e3264,libsame_file-ddc985f76ce41ada,libserde_json-cbf821bee6df1a61,libmemchr-0ef46d560e84a19b,libitoa-e8ffd2cbd2fc2b3b,libzmij-ad2207cf737ac162,libserde-2678157e2617927e,libserde_core-a5f1ca9fee9a19db,libregex-e541ed2be0a0cd80,libregex_automata-4b73736349e07752,libregex_syntax-738d3ec5aa0bcf25}.rlib" "<sysroot>/lib/rustlib/x86_64-unknown-linux-gnu/lib/{libstd-*,libpanic_unwind-*,libobject-*,libmemchr-*,libaddr2line-*,libgimli-*,libcfg_if-*,librustc_demangle-*,libstd_detect-*,libhashbrown-*,librustc_std_workspace_alloc-*,libminiz_oxide-*,libadler2-*,libunwind-*,liblibc-*,librustc_std_workspace_core-*,liballoc-*,libcore-*,libcompiler_builtins-*}.rlib" "-Wl,-Bdynamic" "-lgcc_s" "-lutil" "-lrt" "-lpthread" "-lm" "-ldl" "-lc" "-L" "/home/nathan/Source/multidouble-dmat/target/release/deps/rustcOJGe8z/raw-dylibs" "-Wl,--eh-frame-hdr" "-Wl,-z,noexecstack" "-L" "/home/nathan/Source/multidouble-dmat/target/release/build/alloca-a5b14d2dd1a44f14/out" "-L" "<sysroot>/lib/rustlib/x86_64-unknown-linux-gnu/lib" "-o" "/home/nathan/Source/multidouble-dmat/target/release/deps/field-32d71fd916e1c95f" "-Wl,--gc-sections" "-pie" "-Wl,-z,relro,-z,now" "-Wl,-O1" "-Wl,--strip-debug" "-nodefaultlibs"
+  = note: some arguments are omitted. use `--verbose` to show all linker arguments
+  = note: /usr/bin/ld.bfd: /home/nathan/Source/multidouble-dmat/target/release/deps/liballoca-3cdab50f6214e0a9.rlib: error adding symbols: file format not recognized
+          clang: error: linker command failed with exit code 1 (use -v to see invocation)
+          
+
+error: could not compile `multidouble` (bench "field") due to 1 previous error

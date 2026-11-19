@@ -1,0 +1,42 @@
+    Finished `bench` profile [optimized] target(s) in 0.05s
+     Running benches/field.rs (target/release/deps/field-25135152db361b4b)
+Gnuplot not found, using plotters backend
+Benchmarking f64 matrix product, Fun<4>, M = 80/chunks of 8 columns
+Benchmarking f64 matrix product, Fun<4>, M = 80/chunks of 8 columns: Warming up for 3.0000 s
+Benchmarking f64 matrix product, Fun<4>, M = 80/chunks of 8 columns: Collecting 20 samples in estimated 3.0001 s (2.0M iterations)
+Benchmarking f64 matrix product, Fun<4>, M = 80/chunks of 8 columns: Analyzing
+f64 matrix product, Fun<4>, M = 80/chunks of 8 columns
+                        time:   [1.5140 µs 1.5165 µs 1.5195 µs]
+Found 2 outliers among 20 measurements (10.00%)
+  1 (5.00%) high mild
+  1 (5.00%) high severe
+Benchmarking f64 matrix product, Fun<4>, M = 80/column loop
+Benchmarking f64 matrix product, Fun<4>, M = 80/column loop: Warming up for 3.0000 s
+Benchmarking f64 matrix product, Fun<4>, M = 80/column loop: Collecting 20 samples in estimated 3.0004 s (522k iterations)
+Benchmarking f64 matrix product, Fun<4>, M = 80/column loop: Analyzing
+f64 matrix product, Fun<4>, M = 80/column loop
+                        time:   [5.6357 µs 5.6877 µs 5.7495 µs]
+Found 5 outliers among 20 measurements (25.00%)
+  3 (15.00%) low severe
+  1 (5.00%) high mild
+  1 (5.00%) high severe
+
+Benchmarking f64 matrix product, Fun<4>, M = 320/chunks of 8 columns
+Benchmarking f64 matrix product, Fun<4>, M = 320/chunks of 8 columns: Warming up for 3.0000 s
+Benchmarking f64 matrix product, Fun<4>, M = 320/chunks of 8 columns: Collecting 20 samples in estimated 3.0026 s (113k iterations)
+Benchmarking f64 matrix product, Fun<4>, M = 320/chunks of 8 columns: Analyzing
+f64 matrix product, Fun<4>, M = 320/chunks of 8 columns
+                        time:   [20.517 µs 21.487 µs 22.224 µs]
+Found 5 outliers among 20 measurements (25.00%)
+  4 (20.00%) high mild
+  1 (5.00%) high severe
+Benchmarking f64 matrix product, Fun<4>, M = 320/column loop
+Benchmarking f64 matrix product, Fun<4>, M = 320/column loop: Warming up for 3.0000 s
+Benchmarking f64 matrix product, Fun<4>, M = 320/column loop: Collecting 20 samples in estimated 3.0008 s (84k iterations)
+Benchmarking f64 matrix product, Fun<4>, M = 320/column loop: Analyzing
+f64 matrix product, Fun<4>, M = 320/column loop
+                        time:   [35.822 µs 36.839 µs 37.633 µs]
+Found 3 outliers among 20 measurements (15.00%)
+  2 (10.00%) high mild
+  1 (5.00%) high severe
+
