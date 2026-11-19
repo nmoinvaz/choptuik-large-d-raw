@@ -1,0 +1,16 @@
+--sector over the box (3073 cells, 104 s): largest gamma entries Phi-1 <- C+0 35.689; Phi+1 <- C+0 28.972; Phi+1 <- C+2 20.921; Phi-1 <- C-2 16.331; Phi+1 <- P+1 14.241; Phi-1 <- P-1 14.071; Phi-1 <- P+1 5.4049; Phi-1 <- C+2 4.9251
+  R_C = 3.34546 (B5_inner.md 5.2: 3.43), T_F (eps -> 0 part) = 3.93443 (4.15)
+  S = C Phi + A2^0 on the truncated series: its z^0, z^1 coefficients (largest 8.4e-04) are balls around 0: True (dropped as Lemma 3's identity, exact division by z^2)
+  Lemma 3's formula against the eps-series: a centre check (over the box both sides are wide balls)
+  R_Phi (Lemma 3's formula on the cells, eta included, eps <= eps0) = 49.5804 (B5: 91.5)
+  eps-parts ell_j <= 4.99e-14 (G <= 2.241); Lambda_theta <= 3947.0; T_F with eps <= eps0 = 3.93204
+  L: f1 = 6.88477, largest entries Phi-1 <- C+0 245.71; Phi+1 <- C+0 199.47; Phi+1 <- C+2 144.04; Phi-1 <- C-2 112.44; Perron-weighted norm 0.94102 (B5: 0.9663)
+  super-solution, forcing only: certified True; x (max over harmonics) P 16.073, Phi 3781.8, C 0.43512, theta 7.8689
+  super-solution, unit P: certified True; x (max over harmonics) P 7.1354, Phi 1443.6, C 0.16326, theta 1.0e-8
+  super-solution, unit Phi: certified True; x (max over harmonics) P 0.043794, Phi 10.304, C 0.0010018, theta 1.0e-8
+  super-solution, unit C: certified True; x (max over harmonics) P 17.697, Phi 4164.0, C 1.4639, theta 1.0e-8
+  super-solution, unit theta: certified True; x (max over harmonics) P 0.078853, Phi 18.554, C 0.0065475, theta 1.0
+  super-solution, delta_ref: certified True; x (max over harmonics) P 210.51, Phi 49297.0, C 15.569, theta 27.869
+  super-solution, (H8) rounded up: certified True; x (max over harmonics) P 77.241, Phi 18174.0, C 5.2881, theta 14.333
+  x_Phi for (H8) rounded up: (mu = -1, +1) = (18174.35, 17603.9) (b5_jump with the same delta: 39789.7, 38781.0)
+(P2) every super-solution certified, Perron norm < 1, max x <= 1e12: PASS

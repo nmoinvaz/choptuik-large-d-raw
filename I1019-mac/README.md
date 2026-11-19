@@ -21,3 +21,7 @@ Code: `solver/proof/review_p2c/p2c_b5.py` on `wip/p2-b5` at 6487a5f7, mpmath (25
 - Stage B, `logs/residual*.log`: Lemma 3 from the eps-expansion on the inner series; K1 as the protocol wrote it
   (`offsol`) and the off-solution control K1b (`offphi`).
 - `logs/exits.txt`: every run's exit code.
+- Stage C, `run_c.sh` (code 5f58c30b), `logs/sector_*.log`, `p2c_b5_*.json`: the sector constants on 3073 cells (at the
+  box centre and over the box), L, the Perron norm and the certified super-solutions; the controls K3 (Phi <- C x 1.5,
+  the protocol's), its x 2 supplement and Phi <- P x 2 (B5_inner.md 6's own mutation). The box run was repeated at
+  d3d9cdef after its centre-only checks were made centre-only (`exits_c.txt` lists both; the numbers are the same).

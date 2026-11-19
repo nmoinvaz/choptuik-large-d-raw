@@ -1,0 +1,16 @@
+--sector at the box centre (769 cells, 51 s): largest gamma entries Phi-1 <- C+0 36.879; Phi+1 <- C+0 29.465; Phi+1 <- C+2 21.927; Phi-1 <- C-2 16.77; Phi+1 <- P+1 14.36; Phi-1 <- P-1 14.185; Phi-1 <- P+1 5.4426; Phi-1 <- C+2 4.996
+  R_C = 3.35914 (B5_inner.md 5.2: 3.43), T_F (eps -> 0 part) = 3.97504 (4.15)
+  S = C Phi + A2^0 on the truncated series: largest z^0, z^1 coefficient 6.9e-75 (exact division by z^2)
+  Lemma 3's formula at eps = 0 against this review's eps-series, 3 interior points: largest relative difference 1.89e-49: PASS
+  R_Phi (Lemma 3's formula on the cells, eta included, eps <= eps0) = 55.6324 (B5: 91.5)
+  eps-parts ell_j <= 7.0e-14 (G <= 3.14); Lambda_theta <= 3985.0; T_F with eps <= eps0 = 3.97
+  L: f1 = 6.88477, largest entries Phi-1 <- C+0 253.9; Phi+1 <- C+0 202.86; Phi+1 <- P+1 197.73; Phi-1 <- P-1 195.32; Perron-weighted norm 1.243 (B5: 0.9663) [mutate jacP2]
+  super-solution, forcing only: certified False; x (max over harmonics) P -3.527, Phi -829.89, C 0.02549, theta 7.9501
+  super-solution, unit P: certified False; x (max over harmonics) P -1.3965, Phi -563.87, C -0.016256, theta 1.0e-8
+  super-solution, unit Phi: certified False; x (max over harmonics) P -0.0085914, Phi -2.0215, C -9.9996e-5, theta 1.0e-8
+  super-solution, unit C: certified False; x (max over harmonics) P -3.693, Phi -868.95, C 1.0017, theta 1.0e-8
+  super-solution, unit theta: certified False; x (max over harmonics) P -0.016449, Phi -3.8703, C 0.0044287, theta 1.0
+  super-solution, delta_ref: certified False; x (max over harmonics) P -43.902, Phi -10565.0, C 10.095, theta 27.95
+  super-solution, (H8) rounded up: certified False; x (max over harmonics) P -16.249, Phi -3823.2, C 3.2837, theta 14.414
+  x_Phi for (H8) rounded up: (mu = -1, +1) = (-3899.568, -3823.227) (b5_jump with the same delta: 39789.7, 38781.0)
+(P2) every super-solution certified, Perron norm < 1, max x <= 1e12: FAIL
