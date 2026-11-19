@@ -144,7 +144,7 @@ Files: `noise_r5.py`, `noise_chain{,2,3}.py`, `noise_analyze.py`, `logs/noise_r5
 | r_9 (B9, C9) | 6.7e-10, 2.5e-10 | 1.3e-9, 1.7e-10 | 1.9, 0.7 | 2.5e-9, 7.0e-10 |
 
 **Reading, against the cut written before the data:** the std of r_5c is above 1e-5 and the same at both perturbation sizes within a factor 2 (ratios 0.7 to 1.9 over all rows): it is the evaluation's NOISE, not a response to the perturbation.
-It sits on the floor of level 5 (the 8e-5 to 1.4e-3 ends of every step, rtol and K setting, and 4e-5 as a lower tail), and the corresponding noise of the higher rows sits on those rows' ends: level 3's ends 7.6 to 31 against std 24, and r_1's ends about 1e5 to 1.2e6 against std 7.7e5.
+It sits on the floor of level 5 (the 8e-5 to 1.4e-3 ends of every step, rtol and K setting, and 4e-5 as a lower tail), and the corresponding noise of the higher rows sits on those rows' ends: level 3's ends 7.6 and 21.5 (the two finished runs that reached level 5's floor, #999 XI 0.11 and stage 1; stage 5's first level-3 iterations are 31 and 13) against std 24, and |r_1| at those ends 5.8e5 and 1.2e6 against std 7.7e5 (the finished runs where level 5 had not reached its floor end higher: r_3 2e4 to 3e5, |r_1| 8e8 to 3e10).
 So the runs end where their residual's noise is; nothing tried (step, rtol, nested steps, `--predict`) can lower an end below its noise.
 
 **Controls, with the corrections they forced.** A (zero perturbation, 3 repeats from fresh objects): every row's spread exactly 0, passed. B (the level-5 unknowns at 1e-12 rel, 6 samples): I had written that r_5c must move by about K_55 dx_5 (about 2) and it moved by about 1e-3, so
