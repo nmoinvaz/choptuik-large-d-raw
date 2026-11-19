@@ -20,3 +20,9 @@ boxes 11-31 go to dh610 as four jobs (`split/run_dh610.sh`, raw I1021-dh610). Ev
 holds all of I1013's points, and with --retry it computes only points without value, so it never computes a valued
 I1013 point again. The parts are merged into one cache, where a later record never replaces a valued one, and then
 recounted over all 32 boxes on the Mac at 068913b4 from the merged cache.
+
+Mac part (boxes 7-10, `run_b07-10.sh`): restarted 14:33:17 UTC, ended 19:36:28 UTC with exit 0. Its 432 new points
+are all valued by the continuation. Boxes 7-10 resolve with 0 unresolved cells (136 leaves after 44 splits,
+`m3/count_M3_cand_r0.17_fix_b07-10.json`). Box 7 holds a zero of sign -1, located at A 3.245478, w/w_inf 0.345851;
+the locate at xi1 0.2 did not find it. Bit checks (`argcount_samebits.py`, 3a76a2f9): I1013's 161 valued points and
+the split input's 562 keep their records, PASS; the `--mutate=flip` control exits 1.
