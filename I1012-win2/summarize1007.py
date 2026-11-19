@@ -48,11 +48,11 @@ for arg in sys.argv[1:]:
         if m: ends["r1"] = f"{m.group(1)} [{m.group(2)} s, {m.group(3)} residuals]"
     if ends:
         print("end values: " + ", ".join(f"{'r_1' if k == 'r1' else 'r_' + str(k)} {v}" for k, v in sorted(ends.items(), key=lambda kv: (isinstance(kv[0], str), kv[0]))))
-        for k in (3, 5, 7):                             # not 9: the last `level 9 solved` line is a trial's, not the end state's (#999's log too)
-            last = [re.match(rf"\s+level {k} solved: \|r_{k}\| (\S+)", l) for l in t]
-            last = [m.group(1) for m in last if m]
-            if k in ends and last and f"{float(last[-1]):.1e}" != f"{float(ends[k]):.1e}" and f"{float(last[-1]):.0e}" != f"{float(ends[k]):.0e}":
-                print(f"END CHECK: r_{k} printed {ends[k]} but the last level {k} solved line says {last[-1]}"); bad = 1
+        for k in (3, 5, 7, 9):                          # v2 (#1012): the end value is the ACCEPTED state's, so it must equal ONE of the level-k solves (to 2 digits), not the last
+            vals = [re.match(rf"\s+level {k} solved: \|r_{k}\| (\S+)", l) for l in t]
+            vals = [m.group(1) for m in vals if m]
+            if k in ends and vals and not any(f"{float(v):.1e}" == f"{float(ends[k]):.1e}" or f"{float(v):.0e}" == f"{float(ends[k]):.0e}" for v in vals):
+                print(f"END CHECK: r_{k} printed {ends[k]} but no level {k} solved line of the log has that value"); bad = 1
     else:
         print("no FIXED-A line (the run was stopped before the end)")
 sys.exit(bad)

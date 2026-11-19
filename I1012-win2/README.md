@@ -73,3 +73,23 @@ Reading of stage 3 (milestone 3, comment 7004516203): the rtol 1e-14 run's secon
   catch this. I added the 12 files of `solver/inner_amp/data` (a git archive of 299c4eb9, byte-equal to it) to `D:\choptuik-h9b` (adding files only; nothing was removed anywhere, `D:\choptuik-h9` is untouched), checked that `seed_from_C` loads from `h9b` (length 8) and fails from `h9` (the control), and relaunched at 09:07:53 UTC (pid 18224). No number comes from the crashed launch.
 - **Per-level report** (`levels1012.py`; check and mutation in `logs/selftest_levels1012.txt`). `logs/levels1012_so_far.txt` at 09:10 UTC, on the two live logs: during level 5's first solve (before the leakage Jacobian K exists) level 7's solves have a median of 3.5e-5 and a maximum of 9.5e-5 (rtol 1e-14: 4.2e-5 and 8.7e-5),
   the size of level 5's later ends; in the second and third solves level 7's median is 5e-8 to 1.1e-7 (maximum 7e-7) and level 9's about 1e-9 (maximum 6.5e-9), three or more orders below level 5's ends (4.25e-5, 3.86e-4).
+
+## Stage 1's XI 0.11 `--h5=1e-4` run finished by itself (09:38 UTC 19 Nov; started 08:12:48, ended 09:36:59, exit 0 after 5051 s, FIXED-A line, no Traceback)
+
+Files: `logs/summary_xi011_h5_1e-4_final.txt`, `logs/levels1012_xi011_h5_1e-4_final.txt`, `logs/selftest_summarize1007_v2.txt`.
+
+| quantity | this run (XI 0.11, AP 0.105, `--h5=1e-4`, rtol 1e-13) | #999 (same radii, default step, efad7afd) |
+|---|---|---|
+| level-5 solves, end |r_5| | 1.72e-2, 4.25e-5, 3.86e-4, 5.95e-4, 1.39e-3 | 7.43, 1.17e-4, 6.73e-4, 3.92e-4, 3.37e-4 |
+| stops of every level-5 stage | "every trial rejected with a fresh Jacobian" (10 of 10) | not printed (old format) |
+| level 3 | one accepted iteration (lam 1) to 21.5, then "every trial rejected" at 21.5 (27252 residuals, 5035 s) | solved at 7.57 |
+| end r_3, r_5, r_7, r_9 | 21.5, 3.9e-4, 4.2e-7, 2.2e-9 | 7.6, 3.4e-4, 3.0e-8, 2.2e-10 |
+| final r_1 | +1.9e5 - 1.2e6 i | +5.7e5 - 8.9e4 i |
+| wall time | 5051 s | 2270 s |
+
+The end values are the accepted state's: r_5 3.9e-4 equals the third solve (3.86e-4) and the fourth and fifth solves (5.95e-4, 1.39e-3) belong to rejected level-3 trials, so my summarizer's end check, which expected the last solve's value, fired on this log
+(the check's assumption was wrong, as it had been for r_9 in #999's log). It now requires the end value to equal one of the log's level-k solves (`summarize1007.py` v2 in this folder; real logs pass, changing r_5 or r_9 in the F_k/F_1 line trips it: `logs/selftest_summarize1007_v2.txt`; the copy in `I1007-win2` still has the stricter check).
+
+Level 7's and 9's solve ends beside level 5's (`levels1012.py`): in level 5's first solve level 7 has a median of 3.5e-5 and a maximum of 9.5e-5; in the later four solves level 7's median is 4.7e-8 to 1.1e-7 (maximum 6.9e-7) and level 9's about 1.1e-9 to 1.3e-9 (maximum 6.6e-9), three or more orders below level 5's ends.
+
+Reading: the larger level-5 step (`--h5=1e-4`) removes the first solve's stall at about 11 (1.7e-2), but level 5's later solves end at 4e-5 to 1.4e-3, no lower than the default step's 1e-4 to 7e-4, and level 3 ends at 21.5, worse than #999's 7.57 (one run each). So the Jacobian step is what limited the first solve; it does not limit the later solves or level 3.
