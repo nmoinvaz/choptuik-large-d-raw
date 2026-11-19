@@ -1,0 +1,12 @@
+$ chain1012f.py --selftest 
+waited 2.6 s (want >= 1; the wait files appear 2.5 s after the launch), success notices 1 (want 1), K mismatches 0 (want 0), alive after the cap [], the real stage-5 exit files untouched True -> selftest PASS
+exit 0
+$ chain1012f.py --selftest --mutate=nowait
+waited 0.0 s (want >= 1; the wait files appear 2.5 s after the launch), success notices 1 (want 1), K mismatches 0 (want 0), alive after the cap [], the real stage-5 exit files untouched True -> selftest FAIL
+exit 1
+$ chain1012f.py --selftest --mutate=anysolve
+waited 2.6 s (want >= 1; the wait files appear 2.5 s after the launch), success notices 0 (want 1), K mismatches 0 (want 0), alive after the cap [], the real stage-5 exit files untouched True -> selftest FAIL
+exit 1
+$ chain1012f.py --selftest --mutate=nokill
+waited 2.6 s (want >= 1; the wait files appear 2.5 s after the launch), success notices 1 (want 1), K mismatches 0 (want 0), alive after the cap [34284, 22436], the real stage-5 exit files untouched True -> selftest FAIL
+exit 1
