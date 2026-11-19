@@ -1,0 +1,8 @@
+$ chain999.py --selftest 
+2026-11-19 01:54:08 UTC selftest: capped ['capped', 'capped', 'capped'], alive after the cap [], third started after the first ended: True
+2026-11-19 01:54:08 UTC selftest PASS
+exit 0
+$ chain999.py --selftest --mutate=nokill
+2026-11-19 01:54:17 UTC selftest: capped ['capped', 'capped', 'capped'], alive after the cap [33588, 26496, 21180], third started after the first ended: True
+2026-11-19 01:54:17 UTC selftest FAIL
+exit 1

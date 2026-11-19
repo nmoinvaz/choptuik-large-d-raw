@@ -1,0 +1,16 @@
+# check_polish.py (v2, with the approach radius) on the new runs, 02:55:54 UTC
+$ check_polish.py logs/hier_nb_M9_polish5_0.11_approach5_0.105_win2.log 0.11 0.105
+r_5 polish 0.1100 (approach 0.1050) vs XI 0.11 AP 0.105: ok
+exit 0
+$ ... --mutate (must fail)
+r_5 polish 0.1100 (approach 0.1050) vs XI 0.12 AP 0.11499999999999999: FAIL
+exit 1
+$ check_polish.py logs/hier_nb_M9_polish5_0.10_approach5_0.095_win2.log 0.10 0.095
+r_5 polish 0.1000 (approach 0.0950) vs XI 0.1 AP 0.095: ok
+exit 0
+$ ... --mutate (must fail)
+r_5 polish 0.1000 (approach 0.0950) vs XI 0.11 AP 0.105: FAIL
+exit 1
+$ the old runs again with v2 (approach not given)
+r_5 polish 0.1200 (approach 0.1188) vs XI 0.12: ok
+r_5 polish 0.1300 (approach 0.1188) vs XI 0.13: ok

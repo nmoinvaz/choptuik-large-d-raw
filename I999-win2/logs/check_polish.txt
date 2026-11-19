@@ -1,0 +1,14 @@
+$ check_polish.py logs/hier_nb_M9_polish5_0.12_win2.log 0.12
+level radii (approach -> polish): r_1 0.1500 -> 0.1500, r_3 0.1500 -> 0.1500, r_5 0.1188 -> 0.1200, r_7 0.1028 -> 0.1500, r_9 0.0919 -> 0.1246
+r_5 polish 0.1200 (approach 0.1188) vs XI 0.12: ok
+exit 0
+$ check_polish.py ... 0.12 --mutate (must fail)
+r_5 polish 0.1200 (approach 0.1188) vs XI 0.13: FAIL
+exit 1
+$ check_polish.py logs/hier_nb_M9_polish5_0.13_win2.log 0.13
+level radii (approach -> polish): r_1 0.1500 -> 0.1500, r_3 0.1500 -> 0.1500, r_5 0.1188 -> 0.1300, r_7 0.1028 -> 0.1500, r_9 0.0919 -> 0.1246
+r_5 polish 0.1300 (approach 0.1188) vs XI 0.13: ok
+exit 0
+$ check_polish.py ... 0.13 --mutate (must fail)
+r_5 polish 0.1300 (approach 0.1188) vs XI 0.14: FAIL
+exit 1
