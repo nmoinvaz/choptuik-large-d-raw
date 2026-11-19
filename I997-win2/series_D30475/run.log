@@ -1,0 +1,38 @@
+base T82-win/states/lowDhm_x0.000157-0.975_D3.0475_M256.npz: D 3.0475, M 256, |F| 3.0e-28, pivots 6.5e-05..3.3e+01, 371 s
+  z_1: |z| 1.255e+04, |rhs| 1.20e+02, 4 products, converged True, 79 + 33 s
+  z_2: |z| 2.180e+05, |rhs| 6.15e+03, 4 products, converged True, 66 + 30 s
+  z_3: |z| 4.179e+06, |rhs| 3.96e+05, 4 products, converged True, 74 + 31 s
+  z_4: |z| 8.610e+07, |rhs| 3.30e+07, 4 products, converged True, 75 + 30 s
+  z_5: |z| 6.750e+11, |rhs| 2.32e+09, 4 products, converged True, 62 + 28 s
+  z_6: |z| 3.105e+16, |rhs| 4.82e+12, 3 products, converged True, 56 + 20 s
+  z_7: |z| 4.583e+21, |rhs| 6.02e+17, 3 products, converged True, 57 + 20 s
+  z_8: |z| 3.735e+26, |rhs| 6.02e+22, 3 products, converged True, 142 + 20 s
+  z_9: |z| 4.004e+31, |rhs| 6.41e+27, 3 products, converged True, 134 + 19 s
+  z_10: |z| 2.725e+36, |rhs| 5.00e+32, 3 products, converged True, 126 + 20 s
+  z_11: |z| 2.314e+41, |rhs| 4.28e+37, 3 products, converged True, 125 + 21 s
+  z_12: |z| 1.338e+46, |rhs| 2.74e+42, 3 products, converged True, 127 + 19 s
+  z_13: |z| 9.414e+50, |rhs| 1.97e+47, 3 products, converged True, 134 + 23 s
+  z_14: |z| 4.731e+55, |rhs| 1.06e+52, 3 products, converged True, 124 + 20 s
+  z_15: |z| 2.843e+60, |rhs| 6.59e+56, 3 products, converged True, 131 + 22 s
+  z_16: |z| 1.264e+65, |rhs| 3.06e+61, 3 products, converged True, 305 + 20 s
+  z_17: |z| 6.627e+69, |rhs| 1.68e+66, 3 products, converged True, 327 + 19 s
+  z_18: |z| 2.645e+74, |rhs| 6.81e+70, 3 products, converged True, 292 + 19 s
+  z_19: |z| 1.228e+79, |rhs| 3.35e+75, 3 products, converged True, 310 + 21 s
+  z_20: |z| 4.451e+83, |rhs| 1.21e+80, 3 products, converged True, 350 + 26 s
+series written to D:/choptuik-large-d-raw-743/I997-win2/series_D30475/series_D3.0475_M256_N20.npz: Delta_k = 2.466012e+00, 7.687729e+00, -4.976087e+01, 4.408425e+02, -4.990836e+03, 6.410186e+04, -8.786785e+05, 1.375709e+08, -1.336063e+13, -1.133064e+18, 9.275862e+22, 6.605353e+27, -4.449318e+32, -2.693770e+37, 1.562333e+42, 8.115919e+46, -4.186351e+51, -1.879966e+56, 8.834416e+60, 3.451367e+65, -1.505369e+70
+control (dimension frozen): |[F]_1| 0.00e+00, 0.0e+00 of the real one (fires); radii |z_k-1|/|z_k| 0.0576, 0.0522, 0.0485, 0.000128, 2.17e-05, 6.77e-06, 1.23e-05, 9.33e-06, 1.47e-05, 1.18e-05, 1.73e-05, 1.42e-05, 1.99e-05, 1.66e-05, 2.25e-05, 1.91e-05, 2.51e-05, 2.15e-05, 2.76e-05
+target D 3.0465: h -0.001000, |F| of the prediction nan on its own plan (31 steps)
+Traceback (most recent call last):
+  File "D:\choptuik-i962\hp\anm_lowd.py", line 178, in <module>
+    main()
+    ~~~~^^
+  File "D:\choptuik-i962\hp\anm_lowd.py", line 163, in main
+    nh, nl, hist = newton_solve(st, ph, pl, tol=1e-28, it_max=a.newton_its, verbose=True, jac="f64")
+                   ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nathan\Source\venv-i962\Lib\site-packages\hpkernel\driver.py", line 290, in newton_solve
+    dh, dl, Fh, Fl, pmin, pmax, info = newton_step(s, zh, zl, cur, mixed, gmres)
+                                       ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nathan\Source\venv-i962\Lib\site-packages\hpkernel\driver.py", line 206, in newton_step
+    dh, dl, Fh, Fl, pmin, pmax = s.newton_mixed(zh, zl, **kw)
+                                 ~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+ValueError: singular or non-finite pivot at column 0 (0)
