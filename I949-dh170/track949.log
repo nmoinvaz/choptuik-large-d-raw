@@ -70,9 +70,11 @@
  242.8630  291 4   8.5691e-17   3.2514e-11   0.970  0.021  1.4e-16  0.3666   0.3652  +0.460 +0.0565  -0.0114  -0.0188  v1/3+4
  243.8361  291 4   5.9894e-17   2.0345e-11   0.960  0.031  1.5e-13           0.3681  +0.482 +0.0594  -0.0061  -0.0142  v1/3+4
  244.7177  293 4   4.3117e-17   1.3586e-11   0.956  0.036  6.6e-11                                                     v1/3+4
- 247.2801  293 4   1.5936e-17   4.3958e-12   0.992  0.006  3.7e-05           0.3884  +0.440 +0.0830  +0.0207  +0.0108  v1/3+4
+ 245.5586  293 4   3.1350e-17   9.3856e-12   0.959  0.032  1.2e-08  0.3832   0.3790  +0.440 +0.0735  +0.0092  -0.0002  v1/3+4
+ 246.4399  293 4   2.2287e-17   6.3792e-12   0.976  0.016  1.2e-06  0.3931   0.3872  +0.438 +0.0817  +0.0195  +0.0095  v1/3+4
+ 247.2801  293 4   1.5936e-17   4.3958e-12   0.992  0.006  3.7e-05           0.3992  +0.443 +0.0938  +0.0336  +0.0230  v1/3+4
 
-states 72, not classified or not converged: 0
+states 74, not classified or not converged: 0
 
 criterion 5, intervals D 229.05 to 232.0: 0.4124, 0.4097, 0.4067, 0.4047 against #941's 0.412, 0.41, 0.407, 0.405: largest difference 0.0004: pass
 re-read of #941's state D 229.0509: sigma_Delta 1.7643947185e-14 here (ctl_planted) against 1.7643947185e-14 (relative difference 0.0e+00); Delta share 0.8784 against 0.8784
@@ -86,16 +88,16 @@ trigger, ks_chain (interval slope - s(ks) > 0.1, three consecutive states of one
 trigger, ks_chain2 (interval slope - the frozen D-trend 0.9692 -0.00245 D > 0.1, three in a row): not reached
   largest excess so far +0.0020 at D 233.0000; s(ks) is reported beside it in the table's excess column
 trigger, ks_chain3b (interval slope - the frozen D-trend 0.9692 -0.00245 D > 0.1, three in a row; the amendment for ks_chain2, applied to dh370 ks_chain3 and ks_chain3b by the same reasoning, not yet confirmed): not reached
-  largest excess so far +0.0219 at D 247.2801; s(ks) is reported beside it in the table's excess column
+  largest excess so far +0.0348 at D 247.2801; s(ks) is reported beside it in the table's excess column
 
 POST-FREEZE D-trend (the backfill's 20 same-ks interval slopes against D, never the trigger): linear 0.9692 -0.00245 D (largest backfill residual 0.036), quadratic 1.508 -0.00748 D +0.0000118 D^2 (largest residual 0.039)
   interval slope minus the D-trend (linear, quadratic) and minus the frozen s(ks), newest states of ks >= 250:
-    D  239.8562 ks 291: 0.3682  vs D lin -0.0158  vs D quad -0.0213  vs s(ks) +0.0595
-    D  240.8851 ks 291: 0.3654  vs D lin -0.0160  vs D quad -0.0222  vs s(ks) +0.0567
     D  241.8775 ks 291: 0.3644  vs D lin -0.0146  vs D quad -0.0214  vs s(ks) +0.0557
     D  242.8630 ks 291: 0.3652  vs D lin -0.0114  vs D quad -0.0188  vs s(ks) +0.0565
     D  243.8361 ks 291: 0.3681  vs D lin -0.0061  vs D quad -0.0142  vs s(ks) +0.0594
-    D  247.2801 ks 293: 0.3884  vs D lin +0.0207  vs D quad +0.0108  vs s(ks) +0.0830
+    D  245.5586 ks 293: 0.3790  vs D lin +0.0092  vs D quad -0.0002  vs s(ks) +0.0735
+    D  246.4399 ks 293: 0.3872  vs D lin +0.0195  vs D quad +0.0095  vs s(ks) +0.0817
+    D  247.2801 ks 293: 0.3992  vs D lin +0.0336  vs D quad +0.0230  vs s(ks) +0.0938
   coordinator's caveat (#948: sigma_Delta is the same from ks 240 to 320 at D 232, so the baseline's ks dependence is really D dependence): at the jump to ks 275 s(ks) reads about 0.04 below the D-trend (0.3364 at ks 275), so an excess near +0.04 against s(ks) there is not a fold; the 0.10 trigger is unaffected.
 
 ks ladder at one D (post-freeze report, coordinator's #949 note 2026-11-18; sigma_Delta against the chain's state at that D):
