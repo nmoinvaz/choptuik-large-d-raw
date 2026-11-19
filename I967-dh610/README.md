@@ -18,3 +18,5 @@ Files are added as the items run:
 | `step61_967.py`, `run_item3_967.sh`, `i3_*` | item 3 |
 
 A memory log run through `withmem967.sh` has no "end" line: systemd kills it with the unit when the script ends. A log with no ALERT line means no alert while the script ran.
+
+Item 3's files: `i3_control.log` and `i3_control/` (stages A, B, D, C of the control case, run before stage E was added), `i3_main.log` and `i3_main/` (A, B, D, E, C), `i3_control_E.log` and `i3_control_E/` (the control's stage E and its miss); the results are in each directory's `i3_<case>.json`. `run_item3_967.sh` ran the first two, `run_item3E_967.sh` the third. The main case ran at nice 19 from 22:22:38 UTC (beside #973's polishes), so its replay seconds are not clean.
