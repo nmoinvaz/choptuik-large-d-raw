@@ -1,0 +1,44 @@
+$ table_1006.py --selftest
+  all three d 4 clean: HOLDS (want HOLDS) ok
+  gap at the bar: HOLDS (want HOLDS) ok
+  share at the bar: HOLDS (want HOLDS) ok
+  gap just above the bar: DOES NOT HOLD (want DOES NOT HOLD) ok
+  share just under: DOES NOT HOLD (want DOES NOT HOLD) ok
+  no gap value: DOES NOT HOLD (want DOES NOT HOLD) ok
+  no share: DOES NOT HOLD (want DOES NOT HOLD) ok
+  d 3 at one: REOPENED (want REOPENED) ok
+  d 5 at one: REOPENED (want REOPENED) ok
+  d 7 at one: REOPENED (want REOPENED) ok
+  d 2 at one: DOES NOT HOLD (want DOES NOT HOLD) ok
+  d 1 at one: DOES NOT HOLD (want DOES NOT HOLD) ok
+  d 3 and a failed share: REOPENED (want REOPENED) ok
+  incomplete: INCOMPLETE (want INCOMPLETE) ok
+  no d: INCOMPLETE (want INCOMPLETE) ok
+  mutated gap bar 1e-3 -> 1e-2 (gap 5e-3): (False, True) (want (False, True)) ok
+  mutated share bar 0.99 -> 0.9 (share 0.95): (False, True) (want (False, True)) ok
+  mutated d == 4 -> d >= 4 (d 5 passes judge): (False, True) (want (False, True)) ok
+  mutated reopen d >= 5 -> d >= 6 (d 5): ('REOPENED', 'DOES NOT HOLD') (want ('REOPENED', 'DOES NOT HOLD')) ok
+  mutated reopen d == 3 dropped (d 3): ('REOPENED', 'DOES NOT HOLD') (want ('REOPENED', 'DOES NOT HOLD')) ok
+  compare 24 equal (CRLF, other best line, a saved line): (24, 24, 24) (want (24, 24, 24)) ok
+  compare, a residual differs only: every character 23, fields 24: (23, 24, 24) (want (23, 24, 24)) ok
+  compare, a product count differs too: 22 and 23: (22, 23) (want (22, 23)) ok
+  compare, one x line changed: 23 (want 23) ok
+  compare, 23 starts for n = 24: (None, None, None) (want (None, None, None)) ok
+  compare, log missing: (None, None, None) (want (None, None, None)) ok
+  T1_a's stored reference against itself on 12 starts: (12, 12, 12) (want (12, 12, 12)) ok
+  T1_b's stored reference against itself on 12 starts: (12, 12, 12) (want (12, 12, 12)) ok
+  T1_c24's stored reference against itself on 24 starts: (24, 24, 24) (want (24, 24, 24)) ok
+  median: geometric mean of the two middle ones for 12: True (want True) ok
+selftest passed
+exit 0
+$ run_1006.py --selftest
+  all as wanted, an expected exit 1 counts: exit 0 {'a': 0, 'b': 1, 'c': 0} (want 0) ok
+  an unexpected exit 1 stops: exit 7 {'a': 0, 'b': 1} (want 7) ok
+  a wanted exit 1 that is 0 stops (the control passed): exit 7 {'a': 0, 'b': 0} (want 7) ok
+  a run over its cap is killed, the next still runs, exit 5: exit 5 {'r': 5, 'n': 0} (want 5) ok
+  a short step over its cap stops: exit 7 {'a': 5} (want 7) ok
+  a missing input skips the step, exit 5: exit 5 {'a': 0, 'x': 'skipped', 'c': 0} (want 5) ok
+  STOP file: exit 4 {} (want 4) ok
+  the real step list: 8 steps, 12 / 12 / 24 starts, states a / b / c, chords the other two, caps and input files ok
+selftest passed
+exit 0
