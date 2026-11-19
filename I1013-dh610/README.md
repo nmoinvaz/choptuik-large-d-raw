@@ -30,3 +30,8 @@ Code: worktree `~/Source/cl-995` at fc7dee4d (branch wip/excited-zeros, `solver/
 Outcome so far: the selftest and its norecount mutation pass and fail as required; the pilot (912 s, 309 points) finds the known zero, but `gate1013.py` fails it on 4 unresolved cells (3 corner points of
 no value on the box's high-wf rim, see the issue), so `run1013.sh` stopped at the gate by design (exits_1013.txt) and the candidates' box and the recount rungs have not run. `logs/gate_pilot_control.log` is the
 gate's control run after the fact (--mutate=shift: located A moved by 2e-4), which fails on both the shift and the unresolved cells.
+
+## Later orders
+
+- (b), the coordinator's order after the pilot's gate: the pilot's 4 unresolved cells are recounted at xi1 0.25 and, if cells remain, at 0.17 (`run1013b.sh`, tags `pilot_r0.25`, `pilot_r0.17`, `eval1013.py` reads the counts; its control, the pilot's own count alone, fails with 4 unresolved cells). If they resolve (a zero they add is reported with its sign), the driver goes on to steps 3 to 5 above; if a rim cell stays unresolved at every radius it stops there (wf 1.11-1.21, outside step 3's box wf 0.2-1.1) and reports.
+- Step 6 (`run1013c.sh`, after step 5 ended normally): xfchecks' second M = 3 box for the upper chain of M = 1 zeros, `--A=3.6,5.1 --wf=0.5,1.3 --nA=6 --nwf=8` (tag `M3_upper`, 12 h cap), then its two recount rungs (xi1 0.25 and 0.17, tags `M3_upper_r0.25`, `M3_upper_r0.17`, 6 h caps).
