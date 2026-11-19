@@ -1,0 +1,31 @@
+# check_polish.py (XI AP) and control1011.py, 07:53:30 UTC, from the logs of the running jobs
+$ check_polish.py logs/hier_nb_M9_polish5_0.11_approach5_0.105_fm1e-4_win2.log 0.11 0.105
+r_5 polish 0.1100 (approach 0.1050) vs XI 0.11 AP 0.105: ok
+exit 0
+$ ... --mutate (must fail)
+r_5 polish 0.1100 (approach 0.1050) vs XI 0.12 AP 0.11499999999999999: FAIL
+exit 1
+$ check_polish.py logs/hier_nb_M9_polish5_0.105_approach5_0.105_fm1e-4_win2.log 0.105 0.105
+r_5 polish 0.1050 (approach 0.1050) vs XI 0.105 AP 0.105: ok
+exit 0
+$ ... --mutate (must fail)
+r_5 polish 0.1050 (approach 0.1050) vs XI 0.11499999999999999 AP 0.11499999999999999: FAIL
+exit 1
+$ control1011.py run 1 (XI 0.11) against #1007's truncated control run
+hier_nb_M9_polish5_0.11_approach5_0.105_fm1e-4_win2.log against hier_nb_M9_polish5_0.11_approach5_0.105_v3_ctrl_win2.log: 320 lines before the reference's first level-5 (low) stop, equal: True; the new log's next line is not that stop: level 5 it 0: |r_5| 1.097e+01  lam 0.5  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.00842351,
+exit 0
+$ control1011.py run 2 (XI 0.105) against #1007's XI 0.105 log
+hier_nb_M9_polish5_0.105_approach5_0.105_fm1e-4_win2.log against hier_nb_M9_polish5_0.105_approach5_0.105_v3_win2.log: 184 lines before the reference's first level-5 (low) stop, equal: True; the new log's next line is not that stop: level 5 it 0: |r_5| 1.153e+01  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008423776, 
+exit 0
+$ control1011.py run 2 against #1007's XI 0.115 log (other radii; must differ)
+hier_nb_M9_polish5_0.105_approach5_0.105_fm1e-4_win2.log against hier_nb_M9_polish5_0.115_approach5_0.105_v3_win2.log: 201 lines before the reference's first level-5 (low) stop, equal: False; the new log's next line is not that stop: level 9 it 1: |r_9| 1.379e-08  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008463134, 
+first difference at line 18:
+  new: level radii (approach -> polish): r_1 0.1500 -> 0.1500, r_3 0.1500 -> 0.1500, r_5 0.1050 -> 0.1050, r_7 0.1028 -> 0.1500, r_9 0.0919 -> 0.1246
+  ref: level radii (approach -> polish): r_1 0.1500 -> 0.1500, r_3 0.1500 -> 0.1500, r_5 0.1050 -> 0.1150, r_7 0.1028 -> 0.1500, r_9 0.0919 -> 0.1246
+exit 1
+$ control1011.py run 2 --mutate=shift (must differ)
+hier_nb_M9_polish5_0.105_approach5_0.105_fm1e-4_win2.log against hier_nb_M9_polish5_0.105_approach5_0.105_v3_win2.log: 184 lines before the reference's first level-5 (low) stop, equal: False; the new log's next line is not that stop: level 5 it 0: |r_5| 1.153e+01  lam 1  x [2.719219, 1.000022, 0.148977988, 0.014770713, 0.008423776, 
+first difference at line 21:
+  new:    level 9 (top): stop at |r_9| 1.52e-10: step below rounding
+  ref:    level 9 solved: |r_9| 1.52e-10  (3 residuals, T s)  [T s]
+exit 1

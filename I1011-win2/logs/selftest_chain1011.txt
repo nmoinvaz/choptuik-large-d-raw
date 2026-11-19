@@ -1,0 +1,12 @@
+$ chain1011.py --selftest 
+2026-11-19 07:40:58 UTC selftest: alive after the cap []; first-solve notice for stub 1 True, for stub 2 False (want False); later-solve notice for stub 2 True
+2026-11-19 07:40:58 UTC selftest PASS
+exit 0
+$ chain1011.py --selftest --mutate=nokill
+2026-11-19 07:41:02 UTC selftest: alive after the cap [26744, 33300]; first-solve notice for stub 1 True, for stub 2 False (want False); later-solve notice for stub 2 True
+2026-11-19 07:41:02 UTC selftest FAIL
+exit 1
+$ chain1011.py --selftest --mutate=anysolve
+2026-11-19 07:41:06 UTC selftest: alive after the cap []; first-solve notice for stub 1 True, for stub 2 True (want False); later-solve notice for stub 2 True
+2026-11-19 07:41:06 UTC selftest FAIL
+exit 1
