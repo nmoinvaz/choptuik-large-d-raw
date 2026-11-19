@@ -1,0 +1,91 @@
+D0 3.15, N 20, M 256, 160, 128
+k | Delta_k(M 256) | Delta_k(M 160) | Delta_k(M 128) | rel diff M 256 vs 160 | rel diff M 160 vs 128
+0 | 2.96131964246 | 2.96131964368 | 2.96131968783 | 4.14e-10 | 1.49e-8
+1 | 3.12500244501 | 3.12500241837 | 3.1249988396 | 8.53e-9 | 1.15e-6
+2 | -10.577406098 | -10.5774072222 | -10.5772930981 | 1.06e-7 | 1.08e-5
+3 | 34.2253868611 | 34.2254086169 | 34.2243462451 | 6.36e-7 | 3.1e-5
+4 | -129.331936839 | -129.330737088 | -129.348563801 | 9.28e-6 | 0.000138
+5 | 557.289563724 | 557.240449216 | 557.718894692 | 8.81e-5 | 0.000858
+6 | -2618.03623184 | -2617.25238205 | -2619.39715425 | 0.000299 | 0.000819
+7 | 13153.0739492 | 13005.6641386 | 12946.986752 | 0.0113 | 0.00453
+8 | 2744.98751648 | -67243.3342771 | -66331.5962792 | 1.04 | 0.0137
+9 | -177196016.957 | 357593.332298 | 390060.716938 | 497.0 | 0.0832
+10 | -17318725294.7 | -1888645.32797 | -1124520.51853 | 9.17e+3 | 0.68
+11 | 1.30699983833e+14 | 11925422.9773 | -411079772.505 | 1.1e+7 | 1.03
+12 | -1.67769007604e+16 | -755971489.593 | 4057695266.58 | 2.22e+7 | 1.19
+13 | -6.25201646404e+19 | 24585366899.7 | 2.8836937743e+12 | 2.54e+9 | 0.991
+14 | 1.84078402155e+22 | -1.34346861748e+13 | -9.25363970488e+13 | 1.37e+9 | 0.855
+15 | 2.02214955652e+25 | 8.64560444808e+14 | -1.32968418943e+16 | 2.34e+10 | 1.07
+16 | -9.17009454155e+27 | 5.35530481337e+18 | 7.27421768704e+17 | 1.71e+9 | 6.36
+17 | -4.43520242703e+30 | -1.26530199486e+21 | 4.01015666511e+19 | 3.51e+9 | 32.6
+18 | 2.9508368152e+33 | -9.86011027777e+23 | -3.59952893236e+21 | 2.99e+9 | 273.0
+19 | 6.10844352043e+35 | 4.19597507221e+26 | -3.00233436517e+22 | 1.46e+9 | 1.4e+4
+20 | -6.81904002715e+38 | 1.13480644122e+29 | 1.80439135408e+25 | 6.01e+9 | 6.29e+3
+
+partial sums at h = -0.01: k | per M: term Delta_k h^k, partial sum minus the reference | |z_k| h^k (max norm)
+M 256:
+   0  term       2.961  partial sum 2.96131964245600311  minus ref 0.03234   |z_k| h^k 1.945e+02
+   1  term    -0.03125  partial sum 2.93006961800587452  minus ref 0.001093   |z_k| h^k 1.742e+01
+   2  term   -0.001058  partial sum 2.9290118773960706  minus ref 3.558e-5   |z_k| h^k 1.478e+00
+   3  term   -3.423e-5  partial sum 2.92897765200920955  minus ref 1.35e-6   |z_k| h^k 9.693e-02
+   4  term   -1.293e-6  partial sum 2.92897635868984116  minus ref 5.711e-8   |z_k| h^k 5.945e-03
+   5  term   -5.573e-8  partial sum 2.92897630296088479  minus ref 1.381e-9   |z_k| h^k 3.466e-04
+   6  term   -2.618e-9  partial sum 2.92897630034284855  minus ref -1.237e-9   |z_k| h^k 6.198e-05
+   7  term  -1.315e-10  partial sum 2.92897630021131782  minus ref -1.369e-9   |z_k| h^k 1.274e-05
+   8  term   2.745e-13  partial sum 2.92897630021159231  minus ref -1.369e-9   |z_k| h^k 2.083e-05
+   9  term   1.772e-10  partial sum 2.92897630038878833  minus ref -1.191e-9   |z_k| h^k 2.754e-04
+  10  term  -1.732e-10  partial sum 2.92897630021560108  minus ref -1.365e-9   |z_k| h^k 4.538e-03
+  11  term   -1.307e-8  partial sum 2.92897628714560269  minus ref -1.443e-8   |z_k| h^k 5.982e-02
+  12  term   -1.678e-8  partial sum 2.92897627036870193  minus ref -3.121e-8   |z_k| h^k 8.549e-01
+  13  term    6.252e-7  partial sum 2.92897689557034834  minus ref 5.94e-7   |z_k| h^k 9.867e+00
+  14  term    1.841e-6  partial sum 2.92897873635436989  minus ref 2.435e-6   |z_k| h^k 1.158e+02
+  15  term   -2.022e-5  partial sum 2.92895851485880473  minus ref -1.779e-5   |z_k| h^k 1.220e+03
+  16  term    -9.17e-5  partial sum 2.92886681391338921  minus ref -0.0001095   |z_k| h^k 1.226e+04
+  17  term   0.0004435  partial sum 2.92931033415609242  minus ref 0.000334   |z_k| h^k 1.146e+05
+  18  term    0.002951  partial sum 2.93226117097128798  minus ref 0.003285   |z_k| h^k 1.131e+06
+  19  term   -0.006108  partial sum 2.92615272745085494  minus ref -0.002824   |z_k| h^k 8.472e+06
+  20  term    -0.06819  partial sum 2.85796232717932131  minus ref -0.07101   |z_k| h^k 8.162e+07
+M 160:
+   0  term       2.961  partial sum 2.96131964368061639  minus ref 0.03234   |z_k| h^k 1.936e+02
+   1  term    -0.03125  partial sum 2.93006961949692085  minus ref 0.001093   |z_k| h^k 1.775e+01
+   2  term   -0.001058  partial sum 2.92901187877470274  minus ref 3.558e-5   |z_k| h^k 1.449e+00
+   3  term   -3.423e-5  partial sum 2.92897765336608584  minus ref 1.352e-6   |z_k| h^k 9.401e-02
+   4  term   -1.293e-6  partial sum 2.92897636005871496  minus ref 5.848e-8   |z_k| h^k 5.025e-03
+   5  term   -5.572e-8  partial sum 2.92897630433467004  minus ref 2.754e-9   |z_k| h^k 3.180e-04
+   6  term   -2.617e-9  partial sum 2.92897630171741766  minus ref 1.372e-10   |z_k| h^k 5.504e-05
+   7  term  -1.301e-10  partial sum 2.92897630158736101  minus ref 7.102e-12   |z_k| h^k 2.728e-05
+   8  term  -6.724e-12  partial sum 2.92897630158063668  minus ref 3.777e-13   |z_k| h^k 1.871e-05
+   9  term  -3.576e-13  partial sum 2.92897630158027909  minus ref 2.009e-14   |z_k| h^k 1.281e-05
+  10  term  -1.889e-14  partial sum 2.9289763015802602  minus ref 1.201e-15   |z_k| h^k 6.850e-06
+  11  term  -1.193e-15  partial sum 2.92897630158025901  minus ref 7.99e-18   |z_k| h^k 4.160e-06
+  12  term   -7.56e-16  partial sum 2.92897630158025825  minus ref -7.48e-16   |z_k| h^k 1.826e-06
+  13  term  -2.459e-16  partial sum 2.92897630158025801  minus ref -9.938e-16   |z_k| h^k 9.985e-07
+  14  term  -1.343e-15  partial sum 2.92897630158025666  minus ref -2.337e-15   |z_k| h^k 3.979e-07
+  15  term  -8.646e-16  partial sum 2.9289763015802558  minus ref -3.202e-15   |z_k| h^k 1.799e-07
+  16  term   5.355e-14  partial sum 2.92897630158030935  minus ref 5.035e-14   |z_k| h^k 5.976e-07
+  17  term   1.265e-13  partial sum 2.92897630158043588  minus ref 1.769e-13   |z_k| h^k 3.603e-06
+  18  term   -9.86e-13  partial sum 2.92897630157944987  minus ref -8.091e-13   |z_k| h^k 2.941e-05
+  19  term  -4.196e-12  partial sum 2.9289763015752539  minus ref -5.005e-12   |z_k| h^k 1.494e-04
+  20  term   1.135e-11  partial sum 2.92897630158660196  minus ref 6.343e-12   |z_k| h^k 1.177e-03
+M 128:
+   0  term       2.961  partial sum 2.96131968782713785  minus ref 0.03234   |z_k| h^k 1.924e+02
+   1  term    -0.03125  partial sum 2.93006969943113438  minus ref 0.001093   |z_k| h^k 1.741e+01
+   2  term   -0.001058  partial sum 2.92901197012131946  minus ref 3.567e-5   |z_k| h^k 1.320e+00
+   3  term   -3.422e-5  partial sum 2.92897774577507435  minus ref 1.444e-6   |z_k| h^k 9.276e-02
+   4  term   -1.293e-6  partial sum 2.92897645228943634  minus ref 1.507e-7   |z_k| h^k 5.412e-03
+   5  term   -5.577e-8  partial sum 2.92897639651754687  minus ref 9.494e-8   |z_k| h^k 3.191e-04
+   6  term   -2.619e-9  partial sum 2.92897639389814971  minus ref 9.232e-8   |z_k| h^k 1.268e-04
+   7  term  -1.295e-10  partial sum 2.92897639376867985  minus ref 9.219e-8   |z_k| h^k 9.486e-05
+   8  term  -6.633e-12  partial sum 2.92897639376204669  minus ref 9.218e-8   |z_k| h^k 4.874e-05
+   9  term  -3.901e-13  partial sum 2.92897639376165662  minus ref 9.218e-8   |z_k| h^k 2.954e-05
+  10  term  -1.125e-14  partial sum 2.92897639376164538  minus ref 9.218e-8   |z_k| h^k 1.180e-05
+  11  term   4.111e-14  partial sum 2.92897639376168649  minus ref 9.218e-8   |z_k| h^k 6.488e-06
+  12  term   4.058e-15  partial sum 2.92897639376169055  minus ref 9.218e-8   |z_k| h^k 2.032e-06
+  13  term  -2.884e-14  partial sum 2.92897639376166171  minus ref 9.218e-8   |z_k| h^k 1.057e-06
+  14  term  -9.254e-15  partial sum 2.92897639376165245  minus ref 9.218e-8   |z_k| h^k 3.132e-07
+  15  term    1.33e-14  partial sum 2.92897639376166575  minus ref 9.218e-8   |z_k| h^k 2.320e-07
+  16  term   7.274e-15  partial sum 2.92897639376167303  minus ref 9.218e-8   |z_k| h^k 1.350e-06
+  17  term   -4.01e-15  partial sum 2.92897639376166902  minus ref 9.218e-8   |z_k| h^k 1.326e-05
+  18  term    -3.6e-15  partial sum 2.92897639376166542  minus ref 9.218e-8   |z_k| h^k 6.834e-05
+  19  term   3.002e-16  partial sum 2.92897639376166572  minus ref 9.218e-8   |z_k| h^k 5.850e-04
+  20  term   1.804e-15  partial sum 2.92897639376166752  minus ref 9.218e-8   |z_k| h^k 3.041e-03
