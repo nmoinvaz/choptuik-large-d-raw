@@ -356,3 +356,27 @@ selftest --mutate lenient: FAIL
 selftest --mutate unbound: FAIL
 == run3 solve 1:384,0.4:192,0.5:192: tau_map_gain.py solve D:/choptuik-large-d-raw/T82-win/states/lowDhm_x0.000157-0.975_D3.0475_M384.npz --pairs 1:384,0.4:192,0.5:192 --threads 8 --states D:/choptuik-large-d-raw/I1033-win2/states --out D:/choptuik-large-d-raw/I1033-win2/solve_D3.0475.jsonl 2026-11-19 21:55:59 UTC
 21:56:00 tmap_lowDhm_x0.000157-0.975_D3.0475_M384_L1_M384_s0.0000: D 3.0475, from M 384 to the arctan map L 1.0 at s0 0.000, M' 384
+21:56:35   tmap_lowDhm_x0.000157-0.975_D3.0475_M384_L1_M384_s0.0000: start |F| 2.25e-22 on its own plan, 2317 steps (stored plan)
+22:18:00     call 0: |F| 2.25e-22 -> 5.09e-28 |dz| 1.6e-14 lam 1 Delta 2.466012146521712 step 1274.4 s
+22:39:03     call 1: |F| 5.09e-28 -> 2.53e-29 |dz| 3.9e-14 lam 0.5 Delta 2.466012146521712 step 1239.1 s
+22:59:49     call 2: |F| 2.53e-29 converged; step 1234.9 s
+23:00:00 tmap_lowDhm_x0.000157-0.975_D3.0475_M384_L1_M384_s0.0000: Delta 2.4660121465217122 +3.149e-17, converged True, plans 2317 / 2317 / 2842 steps, 3835.5 s
+23:00:05 tmap_lowDhm_x0.000157-0.975_D3.0475_M384_L0.4_M192_s1.9635: D 3.0475, from M 384 to the arctan map L 0.4 at s0 1.963, M' 192
+23:00:17   tmap_lowDhm_x0.000157-0.975_D3.0475_M384_L0.4_M192_s1.9635: start |F| 9.88e-05 on its own plan, 2400 steps (stored plan split 2)
+23:03:18     call 0: |F| 9.88e-05 -> 2.82e-12 |dz| 6.8e-03 lam 1 Delta 2.466012146521457 step 179.6 s
+23:06:13     call 1: |F| 2.82e-12 -> 6.86e-22 |dz| 4.1e-09 lam 1 Delta 2.466012146521519 step 173.9 s
+23:06:14   tmap_lowDhm_x0.000157-0.975_D3.0475_M384_L0.4_M192_s1.9635: pass 2 on the pass-1 state's plan, 1355 steps
+23:07:55     call 0: |F| 6.86e-22 -> 1.11e-28 |dz| 4.1e-17 lam 1 Delta 2.466012146521519 step 98.8 s
+23:09:39     call 1: |F| 1.11e-28 -> 2.05e-29 |dz| 6.2e-25 lam 0.25 Delta 2.466012146521519 step 100.4 s
+23:11:23     call 2: |F| 2.05e-29 converged; step 102.3 s
+23:11:24 tmap_lowDhm_x0.000157-0.975_D3.0475_M384_L0.4_M192_s1.9635: Delta 2.4660121465215190 -2.502e-17, converged True, plans 2400 / 1355 / 1234 steps, 677.4 s
+23:11:29 tmap_lowDhm_x0.000157-0.975_D3.0475_M384_L0.5_M192_s1.9635: D 3.0475, from M 384 to the arctan map L 0.5 at s0 1.963, M' 192
+23:11:37   tmap_lowDhm_x0.000157-0.975_D3.0475_M384_L0.5_M192_s1.9635: start |F| 2.35e-04 on its own plan, 2302 steps (stored plan)
+23:14:27     call 0: |F| 2.35e-04 -> 1.14e-11 |dz| 1.0e-02 lam 1 Delta 2.466012146520454 step 168.6 s
+23:17:19     call 1: |F| 1.14e-11 -> 2.58e-21 |dz| 1.8e-08 lam 1 Delta 2.466012146522225 step 170.2 s
+23:17:21   tmap_lowDhm_x0.000157-0.975_D3.0475_M384_L0.5_M192_s1.9635: pass 2 on the pass-1 state's plan, 1388 steps
+23:19:11     call 0: |F| 2.58e-21 -> 2.99e-28 |dz| 6.8e-17 lam 1 Delta 2.466012146522225 step 108.0 s
+23:21:04     call 1: |F| 2.99e-28 -> 2.84e-29 |dz| 5.0e-25 lam 0.5 Delta 2.466012146522225 step 110.7 s
+23:22:55     call 2: |F| 2.84e-29 converged; step 108.8 s
+23:22:56 tmap_lowDhm_x0.000157-0.975_D3.0475_M384_L0.5_M192_s1.9635: Delta 2.4660121465222251 -1.629e-16, converged True, plans 2302 / 1388 / 1292 steps, 685.5 s
+== cost step1 M320 M384: tau_map_gain.py cost D:/choptuik-large-d-raw/T82-win/states/lowDhm_x0.000157-0.975_D3.0475_M320.npz D:/choptuik-large-d-raw/T82-win/states/lowDhm_x0.000157-0.975_D3.0475_M384.npz --threads 8 --reps 2 --out D:/choptuik-large-d-raw/I1033-win2/cost2.jsonl 2026-11-19 23:22:59 UTC
