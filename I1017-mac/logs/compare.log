@@ -1,0 +1,36 @@
+== d0 = 0: this review (p2c_h8_d0_0.json) against b8m_h8_K4_L73.89.log
+       part             here         b8m_h8   relative  bar, reading
+P      T      5.58564367e-12  8.22545477e-5        1.0  expected far below (B8's is a ball width around 0)
+P      R      7.74743647e-26 7.74743647e-26   2.57e-10  1e-2 (P3): PASS
+P      delta  5.58564367e-12  8.22545477e-5        1.0  
+Phi    T          76.5792184     76.5683875   0.000141  1e-3 (P3): PASS
+Phi    R          2.46266255      2.4625107    6.17e-5  factor 10 (P3): ratio 1.00006, PASS
+Phi    delta       79.041881     79.0308982   0.000139  
+C      T          3.23126343     3.23126344    1.35e-9  1e-3 (P3): PASS
+C      R       1.3538021e-27  1.3538021e-27   2.93e-17  1e-2 (P3): PASS
+C      delta      3.23126343     3.23126344    1.35e-9  
+theta  T          6.46340155     6.46315902    3.75e-5  1e-3 (P3): PASS
+theta  R      3.43522301e-14 3.43522301e-14   2.36e-10  1e-2 (P3): PASS
+theta  delta      6.46340155     6.46315902    3.75e-5  
+== d0 = 1e7: this review (p2c_h8_d0_1e7.json) against b8m_h8_K4_L73.89_d0_1e7.log
+       part             here         b8m_h8   relative  bar, reading
+P      T      5.58564367e-12  8.22545477e-5        1.0  expected far below (B8's is a ball width around 0)
+P      R      2.28976556e-24 2.28976556e-24   3.64e-10  1e-2 (P3): PASS
+P      delta  5.58564367e-12  8.22545477e-5        1.0  
+Phi    T          76.5792184     76.5683875   0.000141  1e-3 (P3): PASS
+Phi    R          45.7410854     45.7409335    3.32e-6  factor 10 (P4): ratio 1.0, PASS
+Phi    delta      122.320304     122.309321    8.98e-5  (P4): reported
+C      T          3.23126343     3.23126344    1.35e-9  1e-3 (P3): PASS
+C      R      1.04033177e-25 1.04033177e-25   2.75e-17  1e-2 (P3): PASS
+C      delta      3.23126343     3.23126344    1.35e-9  
+theta  T          6.46340155     6.46315902    3.75e-5  1e-3 (P3): PASS
+theta  R      6.29136685e-13 6.29136685e-13   2.36e-10  1e-2 (P3): PASS
+theta  delta      6.46340155     6.46315902    3.75e-5  
+== the box centre: this review's T parts against b8m_h8_centre.log (6 digits printed)
+  P      here  5.58426e-12  b8m_h8  5.58426e-12  equal
+  Phi    here      76.5602  b8m_h8      76.5602  equal
+  C      here      3.23126  b8m_h8      3.23126  equal
+  theta  here      6.46252  b8m_h8      6.46252  equal
+== K2 (h_S x (1 + 1e-3)): R_P here 7.75253298e-26 against b8m_h8 7.74743647e-26, relative 0.000658 (unperturbed 2.57e-10)
+   flagged at the protocol's 1e-2 bar: False. A bar between the unperturbed agreement and 0.00066 would flag it.
+comparison (P3, P4): PASS
