@@ -31,7 +31,8 @@ def main():
         pre = "b971_" if "I971-dh610/" in rel else ("c3b_" if "/ks_chain3b/" in rel else ("c3_" if "/ks_chain3/" in rel else ""))   # a name must tell the chains apart (ks 291 is in two)
         name = f"{pre}ks{m.group(1)}_D{d.group(1)}"
         if name not in have:
-            new.append(f"{name} {rel}")
+            its = " --its=32" if float(d.group(1)) > 247.5 else ""    # coordinator, 2026-11-19: --its=32 from D 248 on (sigma_Delta's convergence worsens as sigma_2/sigma_Delta -> 1)
+            new.append(f"{name} {rel}{its}")
             have.add(name)
     new.sort(key=lambda l: 0 if "_ks293_D247.28" in l.split()[0] or "D247.28" in l.split()[0] else 1)   # the coordinator's priority read (2026-11-19): ks_chain3b's D 247.28
     for l in new:

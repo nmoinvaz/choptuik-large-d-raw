@@ -17,17 +17,19 @@ for p in glob.glob(os.path.join(HERE, "c3b_ks*_D*.json")):
     d = max(range(len(v)), key=lambda i: v[i]["delta"])
     pair = [i for i in range(len(v)) if i != d and {("p1", 3), ("m_h", 3)} <= {(b, k) for b, k, _ in v[i]["top"]}]
     others = sorted((i for i in range(len(v)) if i != d and i not in pair), key=lambda i: v[i]["sigma"])
-    rows.append(dict(D=float(r["D"]), sd=v[d]["sigma"], share=v[d]["delta"], s2=v[others[0]]["sigma"], s2v=others[0] + 1, s2share=v[others[0]]["delta"],
+    mn = min(range(len(v)), key=lambda i: v[i]["sigma"])     # the lowest singular value of any character (what a singularity of the Jacobian would drive to zero)
+    rows.append(dict(D=float(r["D"]), smin=v[mn]["sigma"], minvec=mn + 1, minshare=v[mn]["delta"], sd=v[d]["sigma"], share=v[d]["delta"], s2=v[others[0]]["sigma"], s2v=others[0] + 1, s2share=v[others[0]]["delta"],
                      sp=math.sqrt(v[pair[0]]["sigma"] * v[pair[1]]["sigma"]) if len(pair) == 2 else float("nan"),
                      conv=[v[d]["conv"], v[others[0]]["conv"]] + [v[i]["conv"] for i in pair], dvec=d + 1))
 rows.sort(key=lambda r: r["D"])
 rows = rows[-N:]
+print("sigma_min is the lowest singular value of any character (vector, its Delta share): it is the quantity a singular Jacobian drives to zero, and equals sigma_Delta while vector 1 is the Delta mode.")
 print(f"{'D':>9} {'sigma_Delta':>12} {'Dshare':>7} {'sigma_2':>12} {'(vec, Dshare)':>14} {'s2/sD':>6} {'sigma_pair':>12}   convergence (Delta, sigma_2, pair)")
 for r in rows:
     print(f"{r['D']:9.4f} {r['sd']:12.4e} {r['share']:7.3f} {r['s2']:12.4e} {'(' + str(r['s2v']) + ', ' + format(r['s2share'], '.3f') + ')':>14} {r['s2'] / r['sd']:6.2f} {r['sp']:12.4e}   "
-          + " ".join(f"{c:.0e}" for c in r["conv"]))
+          + " ".join(f"{c:.0e}" for c in r["conv"]) + f"   sigma_min {r['smin']:.4e} (vec {r['minvec']}, Dshare {r['minshare']:.3f})")
 print("\nslopes -d ln sigma / dD over the interval ending at each state (positive = falling):")
 for a, b in zip(rows, rows[1:]):
     dD = b["D"] - a["D"]
     sl = lambda k: -math.log(b[k] / a[k]) / dD
-    print(f"  {a['D']:9.4f} -> {b['D']:9.4f} (dD {dD:.4f}): sigma_Delta {sl('sd'):+.4f}, sigma_2 {sl('s2'):+.4f}, sigma_pair {sl('sp'):+.4f}")
+    print(f"  {a['D']:9.4f} -> {b['D']:9.4f} (dD {dD:.4f}): sigma_Delta {sl('sd'):+.4f}, sigma_2 {sl('s2'):+.4f}, sigma_pair {sl('sp'):+.4f}, sigma_min {sl('smin'):+.4f}")
