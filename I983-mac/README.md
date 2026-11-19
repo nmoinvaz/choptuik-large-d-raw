@@ -83,3 +83,16 @@ two, or four if the k = 3/2 pair counts. T2 is needed if T1 reads two or four. T
 at D 30 alone could not decide. D 20 (above the band, where (H4) predicts no null direction) and D 35 (below it, where
 (H4) predicts the null pair) bracket the onset. #423's root-level bound at D 30 on 32 × 121, 1.35×10⁻³¹, is two to four decades
 above D 40's, and T2 would also read it.
+
+## T1's code, checked on the Mac (2026-11-19 00:40 UTC)
+
+`rt_sigma.py --save_x` and `rt_xcount.py` on `wip/p7-stage0` at b27f2297, run with `/Users/nathan/venv-qd/bin/python`
+and RT_FORMULATION.md 9.9's `MULTIDOUBLE_SITE` (venv-314's multidouble lacks `_dd_dot`). Logs `logs/t1_*.log`.
+
+| check | result |
+|---|---|
+| `rt_xcount.py --selftest` (planted non-normal J, d = 2 and 4, a pair at 1e-18) | PASS, exit 0 |
+| `rt_xcount.py --selftest --mutate=transpose` | FAIL, exit 1: the chords' share falls to 0.05 and 0.08 |
+| `rt_sigma.py --planted` against main 4415514e's | identical output, exit 0; `--mutate=shift` still exits 1 |
+| `rt_sigma.py --planted --deep 2` and `--deep 4` with `--save_x`, then `rt_xcount.py --expect 2` and `--expect 4` | d = 2 and d = 4 with clean gaps, exit 0; `--expect 4` on the d = 2 file exits 1 |
+| `rt_sigma.py cont_32x81_D15.0000 --rough --starts 2`, main against `--save_x` | the same output but the closing "saved" line; `rt_xcount.py` reads the file |
