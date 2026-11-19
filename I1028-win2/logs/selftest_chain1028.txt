@@ -1,0 +1,16 @@
+### selftest 
+2026-11-19 14:21:45 UTC command check p3: eps +3e-09, max |x/Z - 1 - eps| 2.6e-17 -> ok
+2026-11-19 14:21:45 UTC command check m3: eps -3e-09, max |x/Z - 1 - eps| 1.4e-16 -> ok
+commands carry the right factors: True; stubs 4 (want 4); readbacks ok 4 (want 4), flagged 0 (want 0), K lines ok 4 (want 4); alive after the cap [] -> selftest PASS
+### selftest --mutate=nofactor
+2026-11-19 14:21:50 UTC command check p3: eps +3e-09, max |x/Z - 1 - eps| 2.6e-17 -> ok
+2026-11-19 14:21:50 UTC command check m3: eps -3e-09, max |x/Z - 1 - eps| 1.4e-16 -> ok
+commands carry the right factors: False; stubs 4 (want 4); readbacks ok 4 (want 4), flagged 0 (want 0), K lines ok 4 (want 4); alive after the cap [] -> selftest FAIL
+### selftest --mutate=nokill
+2026-11-19 14:21:55 UTC command check p3: eps +3e-09, max |x/Z - 1 - eps| 2.6e-17 -> ok
+2026-11-19 14:21:55 UTC command check m3: eps -3e-09, max |x/Z - 1 - eps| 1.4e-16 -> ok
+commands carry the right factors: True; stubs 4 (want 4); readbacks ok 4 (want 4), flagged 0 (want 0), K lines ok 4 (want 4); alive after the cap [24152, 16432, 20104, 33832] -> selftest FAIL
+### selftest --mutate=badreadback
+2026-11-19 14:21:59 UTC command check p3: eps +3e-09, max |x/Z - 1 - eps| 2.6e-17 -> ok
+2026-11-19 14:21:59 UTC command check m3: eps -3e-09, max |x/Z - 1 - eps| 1.4e-16 -> ok
+commands carry the right factors: True; stubs 4 (want 4); readbacks ok 3 (want 4), flagged 1 (want 0), K lines ok 4 (want 4); alive after the cap [] -> selftest FAIL

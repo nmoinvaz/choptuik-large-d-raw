@@ -1,0 +1,15 @@
+### selftest 
+threshold edges [(990000.0, 'not triggered'), (1500000.0, 'between'), (2010000.0, 'not reachable')]: ok
+PASS
+### selftest --mutate=ddof0
+threshold edges [(990000.0, 'not triggered'), (1500000.0, 'between'), (2010000.0, 'not reachable')]: ok
+FAIL
+### selftest --mutate=thresholds
+threshold edges [(990000.0, 'not triggered'), (1500000.0, 'between'), (2010000.0, 'not reachable')]: FAIL [(1500000.0, 'between', 'not triggered')]
+FAIL
+### selftest --mutate=labels
+threshold edges [(990000.0, 'not triggered'), (1500000.0, 'between'), (2010000.0, 'not reachable')]: FAIL [(990000.0, 'not triggered', 'not reachable'), (2010000.0, 'not reachable', 'not triggered')]
+FAIL
+### selftest --mutate=dropcomp
+threshold edges [(990000.0, 'not triggered'), (1500000.0, 'between'), (2010000.0, 'not reachable')]: ok
+FAIL

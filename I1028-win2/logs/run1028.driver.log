@@ -1,0 +1,28 @@
+2026-11-19 14:21:45 UTC command check p1: eps +1e-09, max |x/Z - 1 - eps| 8.3e-17 -> ok
+2026-11-19 14:21:45 UTC command check m1: eps -1e-09, max |x/Z - 1 - eps| 8.3e-17 -> ok
+2026-11-19 14:21:45 UTC command check p3: eps +3e-09, max |x/Z - 1 - eps| 2.6e-17 -> ok
+2026-11-19 14:21:45 UTC command check m3: eps -3e-09, max |x/Z - 1 - eps| 1.4e-16 -> ok
+2026-11-19 14:21:50 UTC command check p1: eps +1e-09, max |x/Z - 1 - eps| 1.0e-09 -> FAIL
+2026-11-19 14:21:50 UTC command check m1: eps -1e-09, max |x/Z - 1 - eps| 8.3e-17 -> ok
+2026-11-19 14:21:50 UTC command check p3: eps +3e-09, max |x/Z - 1 - eps| 2.6e-17 -> ok
+2026-11-19 14:21:50 UTC command check m3: eps -3e-09, max |x/Z - 1 - eps| 1.4e-16 -> ok
+2026-11-19 14:21:55 UTC command check p1: eps +1e-09, max |x/Z - 1 - eps| 8.3e-17 -> ok
+2026-11-19 14:21:55 UTC command check m1: eps -1e-09, max |x/Z - 1 - eps| 8.3e-17 -> ok
+2026-11-19 14:21:55 UTC command check p3: eps +3e-09, max |x/Z - 1 - eps| 2.6e-17 -> ok
+2026-11-19 14:21:55 UTC command check m3: eps -3e-09, max |x/Z - 1 - eps| 1.4e-16 -> ok
+2026-11-19 14:21:59 UTC command check p1: eps +1e-09, max |x/Z - 1 - eps| 8.3e-17 -> ok
+2026-11-19 14:21:59 UTC command check m1: eps -1e-09, max |x/Z - 1 - eps| 8.3e-17 -> ok
+2026-11-19 14:21:59 UTC command check p3: eps +3e-09, max |x/Z - 1 - eps| 2.6e-17 -> ok
+2026-11-19 14:21:59 UTC command check m3: eps -3e-09, max |x/Z - 1 - eps| 1.4e-16 -> ok
+2026-11-19 14:25:04 UTC command check p1: eps +1e-09, max |x/Z - 1 - eps| 8.3e-17 -> ok
+2026-11-19 14:25:04 UTC command check m1: eps -1e-09, max |x/Z - 1 - eps| 8.3e-17 -> ok
+2026-11-19 14:25:04 UTC command check p3: eps +3e-09, max |x/Z - 1 - eps| 2.6e-17 -> ok
+2026-11-19 14:25:04 UTC command check m3: eps -3e-09, max |x/Z - 1 - eps| 1.4e-16 -> ok
+2026-11-19 14:25:15 UTC start (p1, harmonics x (1 +1e-09)) pid 22540: hier_nb.py 9 2.719219 1.000022 --x=0.148977988148978,0.014770713014770714,0.008424206008424208,0.0015111890015111892,0.00047420500047420504,0.00012168000012168001 --xi1=0.15 --pretune --fixA --schur --predict --procs 2 --h3=1e-4 --h5=1e-4 --floor_max=1e-4 --verbose=2 --approach=5:0.105 --polish=5:0.11 > logs/hier_nb_M9_polish5_0.11_approach5_0.105_fm1e-4_h51e-4_seed_p1_win2.log
+2026-11-19 14:25:15 UTC start (m1, harmonics x (1 -1e-09)) pid 33608: hier_nb.py 9 2.719219 1.000022 --x=0.148977987851022,0.014770712985229287,0.008424205991575794,0.001511188998488811,0.000474204999525795,0.00012167999987832 --xi1=0.15 --pretune --fixA --schur --predict --procs 2 --h3=1e-4 --h5=1e-4 --floor_max=1e-4 --verbose=2 --approach=5:0.105 --polish=5:0.11 > logs/hier_nb_M9_polish5_0.11_approach5_0.105_fm1e-4_h51e-4_seed_m1_win2.log
+2026-11-19 14:25:15 UTC start (p3, harmonics x (1 +3e-09)) pid 19140: hier_nb.py 9 2.719219 1.000022 --x=0.14897798844693397,0.014770713044312139,0.008424206025272619,0.0015111890045335671,0.000474205001422615,0.00012168000036504 --xi1=0.15 --pretune --fixA --schur --predict --procs 2 --h3=1e-4 --h5=1e-4 --floor_max=1e-4 --verbose=2 --approach=5:0.105 --polish=5:0.11 > logs/hier_nb_M9_polish5_0.11_approach5_0.105_fm1e-4_h51e-4_seed_p3_win2.log
+2026-11-19 14:25:15 UTC start (m3, harmonics x (1 -3e-09)) pid 10248: hier_nb.py 9 2.719219 1.000022 --x=0.14897798755306604,0.01477071295568786,0.008424205974727381,0.001511188995466433,0.000474204998577385,0.00012167999963496 --xi1=0.15 --pretune --fixA --schur --predict --procs 2 --h3=1e-4 --h5=1e-4 --floor_max=1e-4 --verbose=2 --approach=5:0.105 --polish=5:0.11 > logs/hier_nb_M9_polish5_0.11_approach5_0.105_fm1e-4_h51e-4_seed_m3_win2.log
+2026-11-19 14:25:25 UTC (p1) readback of the pretuned x line: harmonics / Z - 1 - eps max 8.3e-17, (A, w) ok: ok
+2026-11-19 14:25:25 UTC (m1) readback of the pretuned x line: harmonics / Z - 1 - eps max 8.3e-17, (A, w) ok: ok
+2026-11-19 14:25:25 UTC (p3) readback of the pretuned x line: harmonics / Z - 1 - eps max 2.6e-17, (A, w) ok: ok
+2026-11-19 14:25:35 UTC (m3) readback of the pretuned x line: harmonics / Z - 1 - eps max 1.4e-16, (A, w) ok: ok
