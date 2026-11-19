@@ -1,0 +1,5 @@
+Starting 18:13 UTC (winb, win laptop: Surface Laptop 4, i7-1185G7 x86-64, Windows 11). Main 51e33d8c (worktree `choptuik-i1039`, `solver/proof`), `venv-choptuik-314`: Python 3.14.10, python-flint 0.9.0, FLINT 3.6.0, mpmath 1.3.0, sympy 1.14.0, numpy 2.5.4. Raw folder `I1039-win/`, README first.
+
+The eight commands of §10.6, in rpi5's order, one at a time at BelowNormal (a 2 h cap each): `route3_bound.py --lemmas`, `--constants`, `--constants --J0=100`, `--check`, `--check --mutate=plant`, `--check --mutate=psi`, `route3_tuned.py 7 800`, `route3_tuned.py 7 800 --mutate=demix`. Logs have rpi5's names (`logs/<name>.log`, a last line `exit N`), so they compare against `I1030-rpi5/logs/` (raw cc9c41c5).
+
+Criteria as the issue fixes them: each run exits as §10 lists (verdicts 0, controls 1), every printed line equals rpi5's with `[N s]` timings masked, by an adaptation of `compare1030.py` with a control. A difference is reported with its size, not fixed. Estimate about 1 h (rpi5's eight took 82 min).

@@ -1,0 +1,20 @@
+kappa = 2.0, J0 = 100, w = [3.82213589362 +/- 4.27e-12], grid 48 x 48
+| perturbation | family | sup j^2 |C_lam| / nu^d, certified | lower bound (box centres) | d |
+|---|---|---|---|---|
+| m | nu - 2 | 0.56382 | 0.47186 | 1 |
+| m | 1 | 0.92291 | 0.90033 | 2 |
+| 0 | nu | 1.1028 | 0.99435 | 1 |
+| 0 | -1 | 1.0454 | 1.0071 | 2 |
+| 0 | 1 | 0.95300 | 0.91830 | 2 |
+| p | nu + 2 | 1.1775 | 1.0320 | 1 |
+| p | -1 | 2.6323 | 2.5528 | 2 |
+P = sup P_(nu+2) <= 1.63995e+5  (e^(pi w) = 1.63995e+5)
+W = sup nu |rho^(+-1)_j0| <= 4.240e-5  (hand tail at nu = 101: 1.21e-55)
+Cr(m) = sup j^2 |r_j| / (nu P |p|) <= 1.0351  (3 triples)
+Cr(0) = sup j^2 |r_j| / (nu P |p|) <= 2.0702  (6 triples)
+Cr(p) = sup j^2 |r_j| / (nu P |p|) <= 1.0351  (3 triples)
+C_m = 1.59898:  |DR_j/K_nu| <= C_m |p| nu / j^2  for j >= max(2.0 nu, 100)
+C_0 = 3.17310:  |DR_j/K_nu| <= C_0 |p| nu / j^2  for j >= max(2.0 nu, 100)
+C_p = 3.62864e+5:  |DR_j/K_nu| <= C_p |p| nu / j^2  for j >= max(2.0 nu, 100)
+PASS
+exit 0
