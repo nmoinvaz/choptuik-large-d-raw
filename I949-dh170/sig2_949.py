@@ -18,11 +18,17 @@ for p in glob.glob(os.path.join(HERE, "c3b_ks*_D*.json")):
     pair = [i for i in range(len(v)) if i != d and {("p1", 3), ("m_h", 3)} <= {(b, k) for b, k, _ in v[i]["top"]}]
     others = sorted((i for i in range(len(v)) if i != d and i not in pair), key=lambda i: v[i]["sigma"])
     mn = min(range(len(v)), key=lambda i: v[i]["sigma"])     # the lowest singular value of any character (what a singularity of the Jacobian would drive to zero)
-    rows.append(dict(D=float(r["D"]), smin=v[mn]["sigma"], minvec=mn + 1, minshare=v[mn]["delta"], sd=v[d]["sigma"], share=v[d]["delta"], s2=v[others[0]]["sigma"], s2v=others[0] + 1, s2share=v[others[0]]["delta"],
+    rows.append(dict(file=os.path.basename(p), D=float(r["D"]), smin=v[mn]["sigma"], minvec=mn + 1, minshare=v[mn]["delta"], sd=v[d]["sigma"], share=v[d]["delta"], s2=v[others[0]]["sigma"], s2v=others[0] + 1, s2share=v[others[0]]["delta"],
                      sp=math.sqrt(v[pair[0]]["sigma"] * v[pair[1]]["sigma"]) if len(pair) == 2 else float("nan"),
                      conv=[v[d]["conv"], v[others[0]]["conv"]] + [v[i]["conv"] for i in pair], dvec=d + 1))
-rows.sort(key=lambda r: r["D"])
-rows = rows[-N:]
+rows.sort(key=lambda r: (r["D"], r["file"]))
+uniq = []
+for r in rows:                     # two solves of one D (ks_chain3b re-solved D 251.2845 at a tighter tol_od): keep the later file, the series has one state per D
+    if uniq and abs(r["D"] - uniq[-1]["D"]) < 1e-6:
+        uniq[-1] = r
+    else:
+        uniq.append(r)
+rows = uniq[-N:]
 print("sigma_min is the lowest singular value of any character (vector, its Delta share): it is the quantity a singular Jacobian drives to zero, and equals sigma_Delta while vector 1 is the Delta mode.")
 print(f"{'D':>9} {'sigma_Delta':>12} {'Dshare':>7} {'sigma_2':>12} {'(vec, Dshare)':>14} {'s2/sD':>6} {'sigma_pair':>12}   convergence (Delta, sigma_2, pair)")
 for r in rows:
