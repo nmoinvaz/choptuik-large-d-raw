@@ -49,3 +49,17 @@ The coordinator's hc (2026-11-18 ~04:27 UTC): `find_record` takes the run's `--a
 - `w945i.sh`: glue, `w945h.sh` keyed on the `945g` lines (same stop rules: kill the leg's python tree on a `failed at M` line or after 30 h, notify on a pair record, STOP, Traceback, exit or a 3 h heartbeat).
 
 Started 04:28:31 UTC. The log's first lines are `resuming: M 320/384, last D 3.04335, 8.32 h used` and `--- D 3.04315 (from 3.04335), M 320 / 384`.
+
+## Result: the D 3.04315 pair (resume `run945j.sh`, main 82412047, `--chord_from 1e-16`)
+
+`leg/leg.jsonl` holds the pair (`decision` pair; `leg/leg_points.jsonl` holds the five point records) and the stop record (`reached the end of the D grid (3.0431)`). The run exited 0 after 56914 s (18:20:31 UTC 19 Nov).
+
+| | M 320 | M 384 |
+|---|---|---|
+| Delta (sum of the two doubles) | 2.4315907418847831523 | 2.4315907417839929569 |
+| floor \|F\| at accept | 7.35e-21 | 9.61e-25 |
+| dDelta_est | -1.01e-17 | -2.9e-22 |
+| steps of the plan | 14358 | 17096 |
+
+Delta(384) - Delta(320) = -1.00790195e-10 (`diff` in `leg.jsonl`). `sonic_gap_n` 1.5875e-06 at x 0.014236. The tails of M 384 are 2.6e-22 (centre) and 3.8e-65 (horizon), above 1e-30 at the centre (`tails_ok` false, no `--auto_nodes`).
+The run started before main b8e0e1c0, so its floor rule fired one full step late.
