@@ -1,0 +1,246 @@
+2026-11-20 17:28:04 UTC  start; base C:\Users\nathan\AppData\Local\Programs\Python\Python314\python.exe
+2026-11-20 17:28:04 UTC  first link on PATH: C:\Program Files\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\bin\HostX64\x64\link.EXE
+2026-11-20 17:28:04 UTC  rustc: C:\Users\nathan\.cargo\bin\rustc.EXE
+2026-11-20 17:28:04 UTC  cargo: C:\Users\nathan\.cargo\bin\cargo.EXE
+2026-11-20 17:28:04 UTC  git: C:\Program Files\Git\cmd\git.EXE
+2026-11-20 17:28:04 UTC  $ rustc --version
+rustc 1.95.0 (59807616e 2026-04-14)
+2026-11-20 17:28:04 UTC  exit 0 after 0.1 s
+2026-11-20 17:28:04 UTC  $ cargo --version
+cargo 1.95.0 (f2d3ce0bd 2026-03-21)
+2026-11-20 17:28:04 UTC  exit 0 after 0.1 s
+2026-11-20 17:28:04 UTC  $ C:\Users\nathan\AppData\Local\Programs\Python\Python314\python.exe -m venv C:\Users\nathan\Source\venv-md510
+2026-11-20 17:28:09 UTC  exit 0 after 5.1 s
+2026-11-20 17:28:09 UTC  $ C:\Users\nathan\Source\venv-md510\Scripts\python.exe --version
+Python 3.14.10
+2026-11-20 17:28:09 UTC  exit 0 after 0.0 s
+2026-11-20 17:28:09 UTC  $ C:\Users\nathan\Source\venv-md510\Scripts\python.exe -m pip install --no-cache-dir -r C:\Users\nathan\Source\choptuik-large-d\requirements.txt
+Collecting numpy==2.5.4 (from -r C:\Users\nathan\Source\choptuik-large-d\requirements.txt (line 3))
+  Downloading numpy-2.5.4-cp314-cp314-win_amd64.whl.metadata (6.6 kB)
+Collecting scipy==1.18.1 (from -r C:\Users\nathan\Source\choptuik-large-d\requirements.txt (line 4))
+  Downloading scipy-1.18.1-cp314-cp314-win_amd64.whl.metadata (61 kB)
+Collecting mpmath==1.3.0 (from -r C:\Users\nathan\Source\choptuik-large-d\requirements.txt (line 5))
+  Downloading mpmath-1.3.0-py3-none-any.whl.metadata (8.6 kB)
+Collecting sympy==1.14.0 (from -r C:\Users\nathan\Source\choptuik-large-d\requirements.txt (line 6))
+  Downloading sympy-1.14.0-py3-none-any.whl.metadata (12 kB)
+Collecting python-flint==0.9.0 (from -r C:\Users\nathan\Source\choptuik-large-d\requirements.txt (line 7))
+  Downloading python_flint-0.9.0-cp314-cp314-win_amd64.whl.metadata (24 kB)
+Collecting maturin==1.16.0 (from -r C:\Users\nathan\Source\choptuik-large-d\requirements.txt (line 8))
+  Downloading maturin-1.16.0-py3-none-win_amd64.whl.metadata (17 kB)
+Downloading numpy-2.5.4-cp314-cp314-win_amd64.whl (12.7 MB)
+   ---------------------------------------- 12.7/12.7 MB 8.0 MB/s  0:00:01
+Downloading scipy-1.18.1-cp314-cp314-win_amd64.whl (37.4 MB)
+   ---------------------------------------- 37.4/37.4 MB 8.4 MB/s  0:00:04
+Downloading mpmath-1.3.0-py3-none-any.whl (536 kB)
+   ---------------------------------------- 536.2/536.2 kB 8.8 MB/s  0:00:00
+Downloading sympy-1.14.0-py3-none-any.whl (6.3 MB)
+   ---------------------------------------- 6.3/6.3 MB 8.1 MB/s  0:00:00
+Downloading python_flint-0.9.0-cp314-cp314-win_amd64.whl (9.9 MB)
+   ---------------------------------------- 9.9/9.9 MB 6.0 MB/s  0:00:01
+Downloading maturin-1.16.0-py3-none-win_amd64.whl (10.6 MB)
+   ---------------------------------------- 10.6/10.6 MB 6.3 MB/s  0:00:01
+Installing collected packages: mpmath, sympy, python-flint, numpy, maturin, scipy
+
+Successfully installed maturin-1.16.0 mpmath-1.3.0 numpy-2.5.4 python-flint-0.9.0 scipy-1.18.1 sympy-1.14.0
+
+[notice] A new release of pip is available: 26.2.2 -> 26.3
+[notice] To update, run: C:\Users\nathan\Source\venv-md510\Scripts\python.exe -m pip install --upgrade pip
+2026-11-20 17:28:49 UTC  exit 0 after 40.3 s
+2026-11-20 17:28:49 UTC  requirements installed in 40 s
+2026-11-20 17:28:49 UTC  $ C:\Users\nathan\Source\venv-md510\Scripts\python.exe -m pip install --no-cache-dir -v multidouble @ git+https://github.com/nmoinvaz/multidouble@8c4360ac0be804d081faeea524e5c1c6e2fffaaa#subdirectory=python
+Using pip 26.2.2 from C:\Users\nathan\Source\venv-md510\Lib\site-packages\pip (python 3.14)
+Collecting multidouble @ git+https://github.com/nmoinvaz/multidouble@8c4360ac0be804d081faeea524e5c1c6e2fffaaa#subdirectory=python
+  Cloning https://github.com/nmoinvaz/multidouble (to revision 8c4360ac0be804d081faeea524e5c1c6e2fffaaa) to C:\Users\nathan\AppData\Local\Temp\pip-install-2grxr00k\multidouble_9d0118b105ff4300bee67bf88a46acd2
+  Running command git version
+  git version 2.56.0.windows.2
+  Running command git clone --filter=blob:none https://github.com/nmoinvaz/multidouble 'C:\Users\nathan\AppData\Local\Temp\pip-install-2grxr00k\multidouble_9d0118b105ff4300bee67bf88a46acd2'
+  Cloning into 'C:\Users\nathan\AppData\Local\Temp\pip-install-2grxr00k\multidouble_9d0118b105ff4300bee67bf88a46acd2'...
+  Updating files:   0% (1/165)
+  Updating files:   1% (2/165)
+  Updating files:   2% (4/165)
+  Updating files:   3% (5/165)
+  Updating files:   4% (7/165)
+  Updating files:   5% (9/165)
+  Updating files:   6% (10/165)
+  Updating files:   7% (12/165)
+  Updating files:   8% (14/165)
+  Updating files:   9% (15/165)
+  Updating files:  10% (17/165)
+  Updating files:  11% (19/165)
+  Updating files:  12% (20/165)
+  Updating files:  13% (22/165)
+  Updating files:  14% (24/165)
+  Updating files:  15% (25/165)
+  Updating files:  16% (27/165)
+  Updating files:  17% (29/165)
+  Updating files:  18% (30/165)
+  Updating files:  19% (32/165)
+  Updating files:  20% (33/165)
+  Updating files:  21% (35/165)
+  Updating files:  22% (37/165)
+  Updating files:  23% (38/165)
+  Updating files:  24% (40/165)
+  Updating files:  25% (42/165)
+  Updating files:  26% (43/165)
+  Updating files:  27% (45/165)
+  Updating files:  28% (47/165)
+  Updating files:  29% (48/165)
+  Updating files:  30% (50/165)
+  Updating files:  31% (52/165)
+  Updating files:  32% (53/165)
+  Updating files:  33% (55/165)
+  Updating files:  34% (57/165)
+  Updating files:  35% (58/165)
+  Updating files:  36% (60/165)
+  Updating files:  37% (62/165)
+  Updating files:  38% (63/165)
+  Updating files:  39% (65/165)
+  Updating files:  40% (66/165)
+  Updating files:  41% (68/165)
+  Updating files:  42% (70/165)
+  Updating files:  43% (71/165)
+  Updating files:  44% (73/165)
+  Updating files:  45% (75/165)
+  Updating files:  46% (76/165)
+  Updating files:  47% (78/165)
+  Updating files:  48% (80/165)
+  Updating files:  49% (81/165)
+  Updating files:  50% (83/165)
+  Updating files:  51% (85/165)
+  Updating files:  52% (86/165)
+  Updating files:  53% (88/165)
+  Updating files:  54% (90/165)
+  Updating files:  55% (91/165)
+  Updating files:  56% (93/165)
+  Updating files:  57% (95/165)
+  Updating files:  58% (96/165)
+  Updating files:  59% (98/165)
+  Updating files:  60% (99/165)
+  Updating files:  61% (101/165)
+  Updating files:  62% (103/165)
+  Updating files:  63% (104/165)
+  Updating files:  64% (106/165)
+  Updating files:  65% (108/165)
+  Updating files:  66% (109/165)
+  Updating files:  67% (111/165)
+  Updating files:  68% (113/165)
+  Updating files:  69% (114/165)
+  Updating files:  70% (116/165)
+  Updating files:  71% (118/165)
+  Updating files:  72% (119/165)
+  Updating files:  73% (121/165)
+  Updating files:  74% (123/165)
+  Updating files:  75% (124/165)
+  Updating files:  76% (126/165)
+  Updating files:  77% (128/165)
+  Updating files:  78% (129/165)
+  Updating files:  79% (131/165)
+  Updating files:  80% (132/165)
+  Updating files:  81% (134/165)
+  Updating files:  82% (136/165)
+  Updating files:  83% (137/165)
+  Updating files:  84% (139/165)
+  Updating files:  85% (141/165)
+  Updating files:  86% (142/165)
+  Updating files:  87% (144/165)
+  Updating files:  88% (146/165)
+  Updating files:  89% (147/165)
+  Updating files:  90% (149/165)
+  Updating files:  91% (151/165)
+  Updating files:  92% (152/165)
+  Updating files:  93% (154/165)
+  Updating files:  94% (156/165)
+  Updating files:  95% (157/165)
+  Updating files:  96% (159/165)
+  Updating files:  97% (161/165)
+  Updating files:  98% (162/165)
+  Updating files:  99% (164/165)
+  Updating files: 100% (165/165)
+  Updating files: 100% (165/165), done.
+  Running command git show-ref 8c4360ac0be804d081faeea524e5c1c6e2fffaaa
+  Running command git rev-parse -q --verify '8c4360ac0be804d081faeea524e5c1c6e2fffaaa^{commit}'
+  8c4360ac0be804d081faeea524e5c1c6e2fffaaa
+  Running command git rev-parse HEAD
+  8c4360ac0be804d081faeea524e5c1c6e2fffaaa
+  Resolved https://github.com/nmoinvaz/multidouble to commit 8c4360ac0be804d081faeea524e5c1c6e2fffaaa
+  Running command git rev-parse HEAD
+  8c4360ac0be804d081faeea524e5c1c6e2fffaaa
+  Installing build dependencies: started
+  Running command installing build dependencies for multidouble
+  Using pip 26.2.2 from C:\Users\nathan\Source\venv-md510\Lib\site-packages\pip (python 3.14)
+  Collecting maturin<2.0,>=1.7
+    Obtaining dependency information for maturin<2.0,>=1.7 from https://files.pythonhosted.org/packages/63/b8/c25ce706c4797ee1663bcf1f386ffe91d8a3b3589700a135a204b49bc4b0/maturin-1.16.0-py3-none-win_amd64.whl.metadata
+    Using cached maturin-1.16.0-py3-none-win_amd64.whl.metadata (17 kB)
+  Using cached maturin-1.16.0-py3-none-win_amd64.whl (10.6 MB)
+  Installing collected packages: maturin
+  Successfully installed maturin-1.16.0
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Running command Getting requirements to build wheel
+  Getting requirements to build wheel: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Running command Preparing metadata (pyproject.toml)
+  ðŸ\x8d¹ Building a mixed python/rust project
+  ðŸ\x90\x8d Found CPython 3.14 at C:\Users\nathan\Source\venv-md510\Scripts\python.exe
+  ðŸ”— Found pyo3 bindings
+  multidouble-5.1.0.dist-info
+  Checking for Rust toolchain....
+  Running `maturin pep517 write-dist-info --metadata-directory C:\Users\nathan\AppData\Local\Temp\pip-modern-metadata-h05dev3c --interpreter C:\Users\nathan\Source\venv-md510\Scripts\python.exe`
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Requirement already satisfied: numpy>=1.21 in C:\Users\nathan\Source\venv-md510\Lib\site-packages (from multidouble @ git+https://github.com/nmoinvaz/multidouble@8c4360ac0be804d081faeea524e5c1c6e2fffaaa#subdirectory=python) (2.5.4)
+Building wheels for collected packages: multidouble
+  Building wheel for multidouble (pyproject.toml): started
+  Running command Building wheel for multidouble (pyproject.toml)
+  Running `maturin pep517 build-wheel -i C:\Users\nathan\Source\venv-md510\Scripts\python.exe --compatibility off`
+  ðŸ\x8d¹ Building a mixed python/rust project
+  ðŸ\x90\x8d Found CPython 3.14 at C:\Users\nathan\Source\venv-md510\Scripts\python.exe
+  ðŸ”— Found pyo3 bindings
+     Compiling target-lexicon v0.13.5
+     Compiling autocfg v1.5.1
+     Compiling proc-macro2 v1.0.107
+     Compiling quote v1.0.47
+     Compiling unicode-ident v1.0.27
+     Compiling crossbeam-utils v0.8.23
+     Compiling crossbeam-epoch v0.9.21
+     Compiling pyo3-macros-backend v0.30.1
+     Compiling crossbeam-deque v0.8.8
+     Compiling num-traits v0.2.19
+     Compiling libc v0.2.191
+     Compiling matrixmultiply v0.3.11
+     Compiling rayon-core v1.13.0
+     Compiling heck v0.5.0
+     Compiling rawpointer v0.2.1
+     Compiling once_cell v1.21.4
+     Compiling either v1.19.0
+     Compiling pyo3-build-config v0.30.1
+     Compiling rustc-hash v2.1.3
+     Compiling syn v3.0.9
+     Compiling num-integer v0.1.47
+     Compiling num-complex v0.4.6
+     Compiling pyo3-ffi v0.30.1
+     Compiling pyo3 v0.30.1
+     Compiling numpy v0.30.0
+     Compiling ndarray v0.17.2
+     Compiling rayon v1.12.0
+     Compiling multidouble v5.1.0 (C:\Users\nathan\AppData\Local\Temp\pip-install-2grxr00k\multidouble_9d0118b105ff4300bee67bf88a46acd2)
+     Compiling pyo3-macros v0.30.1
+     Compiling multidouble-python v5.1.0 (C:\Users\nathan\AppData\Local\Temp\pip-install-2grxr00k\multidouble_9d0118b105ff4300bee67bf88a46acd2\python)
+      Finished `release` profile [optimized] target(s) in 1m 54s
+  ðŸ“¦ Built wheel for CPython 3.14 to C:\Users\nathan\AppData\Local\Temp\pip-install-2grxr00k\multidouble_9d0118b105ff4300bee67bf88a46acd2\python\target\wheels\multidouble-5.1.0-cp314-cp314-win_amd64.whl
+  C:\Users\nathan\AppData\Local\Temp\pip-install-2grxr00k\multidouble_9d0118b105ff4300bee67bf88a46acd2\python\target\wheels\multidouble-5.1.0-cp314-cp314-win_amd64.whl
+  Building wheel for multidouble (pyproject.toml): finished with status 'done'
+  Created wheel for multidouble: filename=multidouble-5.1.0-cp314-cp314-win_amd64.whl size=841406 sha256=8dcf6de8980c7b97bb31a2db6f13e40467918eb38cf82f8218e32e35ca20f61d
+  Stored in directory: C:\Users\nathan\AppData\Local\Temp\pip-ephem-wheel-cache-fvk2hla9\wheels\11\fd\06\1ab9967cdc5983002cde91bded0e7562a159b4030feabe9531
+Successfully built multidouble
+Installing collected packages: multidouble
+Successfully installed multidouble-5.1.0
+
+[notice] A new release of pip is available: 26.2.2 -> 26.3
+[notice] To update, run: C:\Users\nathan\Source\venv-md510\Scripts\python.exe -m pip install --upgrade pip
+2026-11-20 17:30:52 UTC  exit 0 after 122.7 s
+2026-11-20 17:30:52 UTC  multidouble pip install exit 0, build time 123 s (2.0 min)
+2026-11-20 17:30:52 UTC  multidouble-5.1.0.dist-info direct_url.json: {"subdirectory": "python", "url": "https://github.com/nmoinvaz/multidouble", "vcs_info": {"commit_id": "8c4360ac0be804d081faeea524e5c1c6e2fffaaa", "requested_revision": "8c4360ac0be804d081faeea524e5c1c6e2fffaaa", "vcs": "git"}}
+2026-11-20 17:30:52 UTC  $ C:\Users\nathan\Source\venv-md510\Scripts\python.exe -I -c import multidouble; print(multidouble.__file__, hasattr(multidouble, 'dd_logdet'), hasattr(multidouble, 'qd_logdet'))
+C:\Users\nathan\Source\venv-md510\Lib\site-packages\multidouble\__init__.py True True
+2026-11-20 17:30:52 UTC  exit 0 after 0.2 s
+2026-11-20 17:30:52 UTC  total 168 s
