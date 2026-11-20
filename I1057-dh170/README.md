@@ -37,6 +37,9 @@ States read: 3 (D 260.0073, 260.2515, 260.4708; `c3b_ks293_D<D>.log/.json`, 2 th
 | 260.2515 | 3.4717e-20 | 0.987 | 0.3613 | 0.3319 | +0.0294 | 4.5196e-20 (1.302) | 0.803 | 1.416e-14, +0.4527 | 279.299 (-1.457) / 278.514 (-1.298) | not met | +7.234e-42 |
 | 260.4708 | 3.1720e-20 | 0.960 | 0.4117 | 0.3313 | +0.0804 | 3.7538e-20 (1.183) | 0.847 | 1.282e-14, +0.4529 | 281.172 (-1.872) / 280.091 (-1.576) | not met | +1.650e-47 |
 
+
+The last read in words (D 260.4708, five latest states D 259.4568 to 260.4708): the fold fit gives D* 262.85 (s 0.190, 2.4 past the last state), conditions TTFF, not valid. The two-mode fit gives s1 0.3647, s2 0.7489, γ 0.0000, D_c 260.94 (0.47 past the window), rms of ln σ 1.08e-2, fitted Δ share 1.000 at every state against the measured 0.990, 0.991, 0.991, 0.987, 0.960. σ_Δ's slope 0.4117 (0.3471, 0.3613 before; baseline 0.3313), σ_2's slope 0.847 (rising for the eighth state), σ_2/σ_Δ 1.183 (falling for the sixth state), the pair fold D*(4), D*(5) 281.172 and 280.091 (shifts −1.872, −1.576, still moving by 1.5 to 1.9 per state): the σ_pair rule is not met. Pinned correction's Δ component +1.650e-47, far under the 1e-18 bar.
+
 | # | check | verdict | number |
 |---|---|---|---|
 | 1 | selftests first | pass | `selftests1057.log`: 7 selftests exit 0, 8 mutations exit 1; `stopcheck1057.py` 13 planted cases and its mutation (the band without its lower bound) fails |
