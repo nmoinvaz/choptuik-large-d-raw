@@ -1,0 +1,10 @@
+== 2026-11-20 11:08:58 #1025 route (c): E1's second implementation (coordinator 11:0x UTC). Written before the run.
+multidouble 5.1.0 (tag 8c4360ac; /Users/nathan/venv-1025dd, venv_1025dd.log): dd_logdet, a dense double-double LU with partial pivoting
+(the Rust crate's DDLu), and qd_logdet (quad-double), against ell_dd.lu_dd (banded, ddnp.py; shares no code with multidouble).
+Planted control: the selftest's ladder matrix (n 100, 20 values 1e-14 to 1e-26): dd_logdet and qd_logdet must give mpmath's exact sign.
+Real matrices: the float64 M (DSSEll.mode_matrix) at D 13, k_c 31, lam1 -/+ 0.02 (control) and at k_c 55, D 17.5, lam 1.93, 1.97, 1.935,
+1.945, 1.9505, 1.9515, 1.955, 1.965. Pass at each: dd_logdet's sign equals lu_dd's and |ln|det| difference| <= 1e-9. qd_logdet at the
+D 17.5 lambda 1.9505 and 1.9515 (where the float64 sign alternates): its sign must equal dd_logdet's.
+Reading: agreement says the double-double LU resolves the sign of the stored float64 M (E1), by two codes; it says nothing on whether that
+stored sign is right (the coordinator's caveat), which the dd build answers (dd_signtest_D17.5_criteria.log).
+== 2026-11-20 11:09:28 note: the planted ladder in e1_multidouble.py is one of the same construction as the selftest's (seed 11), not the selftest's matrix itself.
