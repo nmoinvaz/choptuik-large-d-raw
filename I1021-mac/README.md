@@ -116,3 +116,14 @@ floor 8.86), 8.2e-5 from the nearest 0.17 guard point (3.5534143, 0.41321881; |R
 of `loc/z16/` read 0.315-0.318 and fail, as they must), and `sheet_check.log` passes on the cell's edges. The M = 5
 start (`m5/m5_start.py --r1b`, new; without it the file has no zero located at 0.17 and exits 1) is
 `m5/z16_start.txt`.
+
+Box 16's -1 zero, M = 5 (20 Nov 03:44-04:06 UTC, `m5/`, summary `m5/z16_m5_summary.log` from `m5_read.py`): one
+fixed-(A, w) `hier.py 5 --fixA --schur` solve at the zero located at 0.18 (`z16_start.txt`), at xi1 0.17, then at
+#1026's radii 0.2 and 0.25. No first attempt reaches the bar (|r_3| 1.9e6, 1.1e6, 7.5e5). `m5/m5_repeat.py` (new)
+applies #1027's repeats (the protocol of #976, #977, #1002: up to three from the best end state, harmonics times
+1 + 1e-7 u, random.Random(1027); A and w as the FIXED-A line prints them, 3e-10 from the start). At 0.25 the first
+repeat converges (|r_3| 2.3e-7, |r_5| 2.2e-7): |F_5/F_3| 0.2913, under #1027's 0.3, so the zero is kept by that rule.
+At 0.2 the three repeats reach |r_3| 1.2e-4 to 2.0e-4 with the same 0.2913; the 0.2 and 0.25 harmonics agree to
+3.8e-5 (F_3/F_1) and 1.1e-5 (F_5/F_1). The control is checked at 0.2 only (`control_1026_xi0.2.log`, |F_5/F_3|
+0.0556); at 0.25 dh610's #1026 control did not converge (|r_3| 8.3e3) and the Mac's (`control_1026_xi0.25.log`) had
+not printed its start residuals after 20 min.
