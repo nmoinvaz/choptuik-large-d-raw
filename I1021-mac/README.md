@@ -45,3 +45,9 @@ point of the Mac cache, from its replayed seed. `start_noise.jsonl` covers the c
 `seeds_replay_1049.jsonl`, 20:07-20:26 UTC); together they are all 833 such points. None is above the cap of 1e2 or
 1e7, and every start passes |r3| <= 3 noise3; the largest start noise3 is 4.6e-4. The largest final noise3 in the
 cache is 4.73. So neither cap changes the bits of any Mac point.
+
+The same check for dh610's three parts at 068913b4 (b11-15, b16-20, b26-31), on their files of raw 7bb8f659 (20:11
+UTC): `seeds_dh610_b*.jsonl` (replayed seeds, lines 618 on), `start_noise_dh610_b*.jsonl` (230, 282 and 149
+continuation-valued points, 20:28-00:10 UTC, logs `start_noise_dh610_A.log` and `_B.log`). None of the 661 starts is
+above 1e2 or 1e7, every start passes |r3| <= 3 noise3, and the largest start noise3 is 5.7e-4. Three replayed points
+were lost by the continuation (b11-15 lines 652 and 659, b26-31 line 764, counted from 1).
