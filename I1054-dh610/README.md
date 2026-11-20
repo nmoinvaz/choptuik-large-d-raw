@@ -50,3 +50,9 @@ Worktree `~/Source/choptuik-large-d-1054` checked out at 4204c9f9 (`feat/exact-r
 
 `resolve251_r1b`: exit 0, 1462 s, unit `i1054b` (17:43:35 to 18:07:57 UTC, journal memory peak 295 MB, no memory alert), HEAD 4204c9f94d030aef508131c41a4573cd9b9de64e. `check251b.txt`: FAIL (no "attempt stopped": ok; "octo-double Newton: 1 steps, max|F| 2.0e-05": FAIL against 1e-50; no "base polish saved as": FAIL);
 its controls hold (the flag-off log passes, the stopped `resolve251_r1.log` fails). The log's "projection failed (n)" lines n = 1 to 12 are in `resolve251_r1b.log` and in the PR comment. "base polish not adopted (max|F| 2.0e-05 -> 2.0e-05)": no base is saved, so `delta251b.log` ends in a FileNotFoundError (exit 1).
+
+## Follow-up (20 Nov, coordinator's task): the flag-on pairs at D 246.44 and D 249.47
+
+Worktree at 4204c9f9 (no fetch, no rebuild), venv-i1054, unit `i1054c` (`run1054c.sh`, a braced block ending in `exit`): for `I966-dh370/ks_chain3b/leg01_D243.8361_ks293/anm_pin3_D246.4399.npz` and `leg02_D247.2801_ks293/anm_pin3_D249.4664.npz` (taken from origin/main by `git archive`:
+blobs 7ced8b8d and 7b642543) the flag-off and flag-on polish (`resolve<D>_r0`, `resolve<D>_r1`, the D 251.88 flags with `--log_proj 1`), `exact_recip_check.py delta` (`delta<D>.json`), then `check251b.py` on each of the four logs (`check_<D>_r<R>.txt`, the coordinator's convergence rule)
+and `fit_change.py` (`fit_change.txt`: the three changes against D and their rows' quoted errors, the least-squares line of log10|change| in D evaluated at 251.88, marked as an extrapolation; `fit_change_selftest*.txt`: its controls).
