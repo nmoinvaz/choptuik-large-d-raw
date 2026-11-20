@@ -1,0 +1,35 @@
+# 2026-11-20 22:34:21 UTC cmd: python3 -u anm_run.py /home/nathan/Source/choptuik-large-d-raw /home/nathan/Source/choptuik-large-d-raw/I1054-dh610/resolve242.8630_r1b --state I966-dh370/ks_chain3b/leg00_D237.7132_ks291/anm_pin3_D242.8630.npz --kfreeze 3 --held_fit data/held_fit.json --held_o 1 --N 31 --jet_o 1 --corrector od --tol_od 1e-60 --qd_it 40 --lam_stall 0.04 --od_junk 0 --reseed 2 --reseed_q 1 --reseed_o 3 --od_accept natural --od_strong 4 --reseed_start pred --reseed_qd_bar 1e-21 --threads 10 --steps 0 --save_base 1 --log_proj 1 --exact_recip 1 --od_start_F 0
+the horizon series' 1/k: the state was solved with exact_recip 0, this run takes 1
+held values from the fit data/held_fit.json (degree 8, 138 full-system states, D 38.020417-73.0), relative to the base
+the base keeps its stored plan (21 steps)
+      projection failed (1): point max|F| 1.00e-06; u0 rung 1 its, |R| 2.58e+21 -> 2.58e+21, NOT converged; u0 quad-double 8 its, |R| 5.19e+14 -> 4.04e+11, NOT converged; ladder FAILED after 8 rungs, last rung u 0.300000 quad-double 8 its, |R| 3.09e+16 -> 3.25e+13, NOT converged
+      projection failed (2): point max|F| 7.74e+114; u0 rung 1 its, |R| 7.20e+113 -> 7.20e+113, NOT converged; u0 quad-double 8 its, |R| 7.20e+113 -> 1.24e+111, NOT converged; ladder FAILED after 8 rungs, last rung u 0.300000 quad-double 8 its, |R| 3.70e+15 -> 2.81e+12, NOT converged
+    on 0 chord 0: max|F| 7.74e+114, |dw| 4.529e+114
+      projection failed (3): point max|F| nan; u0 rung 0 its, |R| nan -> nan, NOT converged; u0 quad-double 0 its, |R| nan -> nan, NOT converged; ladder FAILED after 3 rungs, last rung u 0.300000 quad-double 0 its, |R| nan -> nan, NOT converged, dropped [0.009375000000000001, 0.018750000000000003, 0.037500000000000006, 0.07500000000000001, 0.15000000000000002]
+  on 0: strong chord (4 weak directions), 1 steps after the full first step; theta at its point inf (bound 0.750): refused, 179.25 s
+      projection failed (4): point max|F| 7.74e+114; u0 rung 1 its, |R| 7.20e+113 -> 7.20e+113, NOT converged; u0 quad-double 8 its, |R| 7.20e+113 -> 1.24e+111, NOT converged; ladder FAILED after 8 rungs, last rung u 0.300000 quad-double 8 its, |R| 3.70e+15 -> 2.81e+12, NOT converged
+    on 0 trial lam 1: max|F| 7.74e+114; simplified correction / |dz| = 9.915e+125 (bound 0.750); refused, 172.95 s
+      projection failed (5): point max|F| 3.41e+109; u0 rung 1 its, |R| 2.90e+108 -> 2.90e+108, NOT converged; u0 quad-double 8 its, |R| 2.90e+108 -> 2.90e+108, NOT converged; ladder FAILED after 8 rungs, last rung u 0.300000 quad-double 8 its, |R| 1.14e+16 -> 8.49e+12, NOT converged
+    on 0 trial lam 0.5: max|F| 3.41e+109; simplified correction / |dz| = 4.127e+120 (bound 0.875); refused, 93.84 s
+      projection failed (6): point max|F| 1.02e+104; u0 rung 1 its, |R| 1.02e+103 -> 1.02e+103, NOT converged; u0 quad-double 8 its, |R| 1.02e+103 -> 1.02e+103, NOT converged; ladder FAILED after 8 rungs, last rung u 0.300000 quad-double 8 its, |R| 8.74e+15 -> 6.81e+12, NOT converged
+    on 0 trial lam 0.25: max|F| 1.02e+104; simplified correction / |dz| = 1.049e+115 (bound 0.938); refused, 95.23 s
+      projection failed (7): point max|F| 4.73e+98; u0 rung 1 its, |R| 9.45e+97 -> 9.45e+97, NOT converged; u0 quad-double 8 its, |R| 9.45e+97 -> 9.45e+97, NOT converged; ladder FAILED after 8 rungs, last rung u 0.300000 quad-double 8 its, |R| 1.19e+16 -> 9.20e+12, NOT converged
+    on 0 trial lam 0.125: max|F| 4.73e+98; simplified correction / |dz| = 1.558e+110 (bound 0.969); refused, 94.56 s
+      projection failed (8): point max|F| 2.57e+94; u0 rung 1 its, |R| 2.81e+93 -> 2.81e+93, NOT converged; u0 quad-double 8 its, |R| 2.81e+93 -> 4.55e+90, NOT converged; ladder FAILED after 8 rungs, last rung u 0.300000 quad-double 8 its, |R| 6.63e+16 -> 6.63e+16, NOT converged
+    on 0 trial lam 0.0625: max|F| 2.57e+94; simplified correction / |dz| = 4.309e+105 (bound 0.984); refused, 134.08 s
+      projection failed (9): point max|F| 1.21e+90; u0 rung 1 its, |R| 1.28e+89 -> 1.28e+89, NOT converged; u0 quad-double 8 its, |R| 1.28e+89 -> 2.15e+86, NOT converged; ladder FAILED after 8 rungs, last rung u 0.300000 quad-double 8 its, |R| 1.09e+16 -> 8.78e+12, NOT converged
+    on 0 trial lam 0.03125: max|F| 1.21e+90; simplified correction / |dz| = 1.511e+101 (bound 0.992); refused, 174.13 s
+      projection failed (10): point max|F| 6.50e+85; u0 rung 1 its, |R| 6.80e+84 -> 6.80e+84, NOT converged; u0 quad-double 8 its, |R| 6.80e+84 -> 1.07e+82, NOT converged; ladder FAILED after 8 rungs, last rung u 0.300000 quad-double 8 its, |R| 3.92e+16 -> 4.14e+13, NOT converged
+    on 0 trial lam 0.015625: max|F| 6.50e+85; simplified correction / |dz| = 7.816e+96 (bound 0.996); refused, 174.05 s
+      projection failed (11): point max|F| 3.38e+81; u0 rung 1 its, |R| 3.45e+80 -> 3.45e+80, NOT converged; u0 quad-double 8 its, |R| 3.45e+80 -> 3.45e+80, NOT converged; ladder FAILED after 8 rungs, last rung u 0.300000 quad-double 8 its, |R| 1.87e+16 -> 1.58e+13, NOT converged
+    on 0 trial lam 0.0078125: max|F| 3.38e+81; simplified correction / |dz| = 3.927e+92 (bound 0.998); refused, 91.75 s
+      projection failed (12): point max|F| 9.39e+76; u0 rung 1 its, |R| 1.26e+76 -> 1.26e+76, NOT converged; u0 quad-double 8 its, |R| 1.26e+76 -> 1.26e+76, NOT converged; ladder FAILED after 8 rungs, last rung u 0.300000 quad-double 8 its, |R| 3.01e+16 -> 2.47e+13, NOT converged
+    on 0 trial lam 0.00390625: max|F| 9.39e+76; simplified correction / |dz| = 8.647e+87 (bound 0.999); refused, 92.52 s
+  on 0: |F| 1.00e-06, |dz| 4.05e-06: no trial step accepted, stopping
+      elim projections {'u0': 0, 'u0q': 0, 'ladder': 0, 'failed': 12, 'skipped': 0}
+      projection failed (13): point max|F| 1.00e-06; u0 rung 1 its, |R| 2.58e+21 -> 2.58e+21, NOT converged; u0 quad-double 8 its, |R| 5.19e+14 -> 4.04e+11, NOT converged; ladder FAILED after 8 rungs, last rung u 0.300000 quad-double 8 its, |R| 3.09e+16 -> 3.25e+13, NOT converged
+      octo-double Newton: 1 steps, max|F| 1.0e-06, not converged; double-double |F| of its first two parts 3.9e+22
+base polish not adopted (max|F| 1.0e-06 -> 1.0e-06): the stored state is the base
+base I966-dh370/ks_chain3b/leg00_D237.7132_ks291/anm_pin3_D242.8630.npz: D 242.86299255, M 32, pin 3 (held [5, 7, 9, 11, 13]), |F| 3.9e+22; N 31, eps 1e-16, h_max 2.0, corrector od (junk_only False), tol 1.0e-20 x 1.45^(D - 242.86299), stalls accepted below 1e-17
+done
+exit 0
