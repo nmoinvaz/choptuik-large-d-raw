@@ -1,0 +1,16 @@
+== 2026-11-20 15:37:54 preflight of signtest_lowD_driver.sh on the Mac (coordinator's batch for rpi5: the 16 delta-table rows at D <= 14.5).
+signtest.py (blob 179ea09681b0a75f7cefdff98984b48051b3f085) now also takes --kappa= and --rk= (defaults 0.7 and 1, DSSEll's rk default is 1, so the
+default build is unchanged). With around=, it first checks that the flags rebuild the record's discrete system. The check needs |F| within
+1% of the record's, or within 1e-13 where F is rounding noise, and the same step count; otherwise it exits 3 without signs.
+syscheck stops after that check.
+Smoke test (WT choptuik-1025 at 505d8399, RAW the live raw clone, ROW_TIMEOUT 45, signtest_lowD_smoke.log):
+- First run: the planted control printed agree, agree, DISAGREE, but the driver stopped on it, because macOS grep has no \| alternation.
+  Fixed with grep -E (both greps).
+- Second run: inputs checked (25 blobs), planted control parsed, rows D 4 and D 5 timed out at 45 s, and the batch stopped after 2
+  consecutive timeouts as designed.
+System check of all 16 rows with their recorded flags (syscheck): same true at every row.
+- 15 rows give F equal to the record to all digits, with equal step counts.
+- D 6 (k_c 31) gave 2.767e-15 against 2.501e-15 with equal steps. That failed the first 1% rule and is why the 1e-13 floor was added.
+Control: D 5 run with the default flags (u0 0.04, Ks 30, kappa 0.7) instead of its own (0.01, 16, 0.5) gives F 2.4e-10 against 3.0e-15
+and 2863 steps against 5067, so same false, exit 3. The check fires.
+Not run: any full row (each took > 45 s here). On rpi5 at 2 threads the per-row timeout is 7200 s.

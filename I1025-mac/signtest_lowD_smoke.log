@@ -1,0 +1,18 @@
+== 2026-11-20 15:34:54 signtest_lowD_driver.sh: inputs checked; WT 505d839940456a3d04321d75cf66cc3b5bc831c4, signtest.py ea4090667f76e6e8c53fb9ac69376fd54572d261, PY /Users/nathan/venv-314/bin/python (numpy 2.5.4 scipy 1.18.1), 2 BLAS threads, row timeout 45 s
+== 2026-11-20 15:34:54 planted control
+planted: 0 singular values at 1e+00 of 1: signs [1.0, 1.0, 1.0, 1.0, 1.0, 1.0] -> agree
+planted: 40 singular values at 1e-13 of 1: signs [1.0, 1.0, 1.0, 1.0, 1.0, 1.0] -> agree
+planted: 40 singular values at 1e-19 of 1: signs [-1.0, -1.0, -1.0, 1.0, -1.0, -1.0] -> DISAGREE
+== 2026-11-20 15:34:54 row D 4 k_c 47: signtest.py /Users/nathan/Source/choptuik-1025/solver/matter/data/sol_l1_D4_kc47_D4.0000.npy 4 47 around=/Users/nathan/Source/choptuik-1025/solver/matter/data/l1_D4_kc47.jsonl:4:0.02 --u0=0.04 --Ks=30 --kappa=0.7 --rk=1
+signtest: /Users/nathan/Source/choptuik-1025/solver/matter/data/sol_l1_D4_kc47_D4.0000.npy D 4.0 k_c 47 at lam [8.390157888673963, 8.430157888673962]
+{"system_check": "sol_l1_D4_kc47_D4.0000.npy", "D": 4.0, "kc": 47, "u0": 0.04, "Ks": 30, "kappa": 0.7, "rk": 1, "F": 2.1574354168900455e-15, "F_record": 2.1574354168900455e-15, "steps": 6378, "steps_record": 6378, "same": true}
+== 2026-11-20 15:35:39 row D 4 k_c 47: TIMEOUT (exit 124)
+== 2026-11-20 15:35:39 row D 5 k_c 39: signtest.py /Users/nathan/Source/choptuik-large-d-raw-i1025/I810-mac/out/sol_l1kc39d5s810_D5.0000.npy 5 39 around=/Users/nathan/Source/choptuik-large-d-raw-i1025/I810-mac/out/l1kc39d5s810.jsonl:5:0.02 --u0=0.01 --Ks=16 --kappa=0.5 --rk=1
+signtest: /Users/nathan/Source/choptuik-large-d-raw-i1025/I810-mac/out/sol_l1kc39d5s810_D5.0000.npy D 5.0 k_c 39 at lam [4.620172992191951, 4.66017299219195]
+{"system_check": "sol_l1kc39d5s810_D5.0000.npy", "D": 5.0, "kc": 39, "u0": 0.01, "Ks": 16, "kappa": 0.5, "rk": 1, "F": 3.020864178106394e-15, "F_record": 3.020864178106394e-15, "steps": 5067, "steps_record": 5067, "same": true}
+== 2026-11-20 15:36:24 row D 5 k_c 39: TIMEOUT (exit 124)
+== 2026-11-20 15:36:24 STOP: two consecutive rows timed out or crashed
+== 2026-11-20 15:36:24 summary:
+D 4 k_c 47: TIMEOUT
+D 5 k_c 39: TIMEOUT
+== 2026-11-20 15:36:24 signtest_lowD_driver.sh done
