@@ -26,3 +26,10 @@ then `fastmul_planted` (est. 18 min each) [2]; 5. `highm_check.py` ref, scaled, 
 a0aada9b8fe95419), fast series' checksum 69ffd7e54fcf9637 (expected 30acdab9851616fb, the Mac's `I1034-mac/logs/v5_split_fast_accuracy.log`). Every other printed figure is identical to the Mac's (worst d_fast / threshold 2.11e-4, 5879
 products, max_frac 3.81e-5, controls 2.21e123 and 2.14e123). `cargo test` ran without RUSTFLAGS, so on multidouble's portable Sse2 backend, not the Avx2 one `hp/build.sh` uses; `step2b_native.sh` (added, same commit) repeats it with
 `RUSTFLAGS='-C target-cpu=native'`. `split_tests.rs`'s `synth()` builds its inputs with libm `tan`, `sin` and `cos`.
+
+## Step 6 (third attempt, `run1034_step6c.sh`, `--D_max 300`, OUT `step_s<S>_dmax300`) and the closing summary, 20 Nov 10:22 UTC
+
+The issue's command as written failed twice (relative OUT refused by raw_out.py; then, with an absolute OUT, a no-op run because `--D_max` defaults to 200 below the state's D 237.527): `step6_chain_s*.log`, `step6b_chain_s*.log`.
+Third attempt: `--series_split` 0, 1, 2 all exit 0 (955, 916, 800 s); the series saved in 280, 237 and 158 s; each step accepted at a 0.5 to D 238.026970387 with Delta 1.686998214543 (formula diff -1.5e-06), moved 2.4e-35, corrector 211, 215 and 184 s.
+`cmp_step6_1034.py` (`compare_step6_states.txt`, control `compare_step6_states_control.txt`): the accepted base `anm_pin3_D238.0270.npz` of step 1 is byte-identical to step 0's, step 2's differs in z3 to z7 (3461 to 5840 bytes each; z0 to z2 equal); the series files differ in `meta`
+only for step 1 (timings) and in z2 to z7 for step 2. Memory peaks (journal): unit i1034 26.8 GB (the build and the checks), i1034b 11.2 GB, i1034c 205 MB, i1034d 1.5 GB.
