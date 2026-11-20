@@ -47,6 +47,7 @@ ell_eigs.py <state> D kc lambda --r 0 --N 24 --p 12 --dlam 0 --no_polish_complex
 | `kc63_D16.5.log`, `out/l1kc63Fw1025b.jsonl`, `out/sol_l1kc63Fw1025b_D16.5000.npy`, `run_D16.5_1025.sh`, `start_D16.5_1025.cmd` | the k_c 63 refine at D 16.5 (the coordinator's job) and its launcher |
 | `signtest.log`, `out/signtest_l1kc63_1025.jsonl`, `run_signtests_1025.sh`, `start_signtests_1025.cmd` | xfkappa's `signtest.py` (raw `I1025-mac/signtest.py`, hash a2f53a90): the planted control, then the k_c 63 records at D 17.5, D 16.5 and D 17 (D 17 from 07:18 to 07:31 UTC), and the JSON lines alone |
 | `check_1025.py`, `check_D17.5_1025.log`, `check_D16.5_1025.log` | the coordinator's record checks (n_signchanges, 2% test or edge test, distance to the Mac's k_c 55 value); `python check_1025.py --selftest` passes |
+| `kc63_D16.75.log`, `run_D16.75_1025.sh`, `start_D16.75_1025.cmd`, `run_signtest_D16.75_1025.sh`, `run_signtest_kc71_1025.sh`, `start_signtest_D16.75_1025.cmd`, `start_signtest_kc71_1025.cmd` | the coordinator's job of 09:07 UTC (k_c 63 lambda at D 16.75 from win2b's k_c 55 state) with its launcher, and the two drivers that run `check_1025.py` and the signtest when the D 16.75 and k_c 71 records land (outputs `check_D16.75_1025.log`, `check_D16.5_kc71_1025.log`, `signtest.log`) |
 | `compare_leap_1025.py`, `compare_leap_1025.log` | the k_c 63 leap records against the Mac's k_c 55 leap records (`I1025-mac/out/l1kc55F1025.jsonl`, read by `git show`) at the common D |
 | `kc71_D16.5.log`, `out/sol_l1kc71Fw1025_D16.5000.npy`, `run_kc71_1025.sh`, `start_kc71_1025.cmd` | the coordinator's two jobs of 07:20 UTC in one driver: the D 17 signtest, then the k_c 71 refine at D 16.5 (its record `out/l1kc71Fw1025.jsonl` follows when it lands) |
 | `eigs_a.log`, `eigs_b.log` | **INVALID.** `ell_eigs` (Beyn's contour method) on the Mac's k_c 47 and 55 states at D 17.5, stopped at 03:21 UTC: its rank test printed `rank = p: raise --p` and M is ill-conditioned along the whole contour. Kept as written; no `out/eigs_win1025_*.jsonl` record was produced |
@@ -69,12 +70,25 @@ ell_eigs.py <state> D kc lambda --r 0 --N 24 --p 12 --dlam 0 --no_polish_complex
 | 03:59 | `run_signtests_1025.sh` started | the D 17.5 and D 16.5 k_c 63 records are suspect until xfkappa's `signtest.py` (raw `I1025-mac/signtest.py`, hash a2f53a90, extracted by `git show`) passes on them: agree true in both JSON lines and opposite signs at lam - 0.02 and lam + 0.02, run one at a time, 4 threads, timeout 7200. Its planted control printed agree, agree, DISAGREE (03:58:41); output `signtest.log`. A record whose signtest fails is not used |
 | 04:27 | the script's P1 subshell stopped by exact pid (winpid 1836, cygwin 782179), and the leap to D 18 started at once by `guard_leap_1025.py --now` at 4 BLAS threads | the coordinator's order, with the cores idle (CPU 43%). The leap needs only the saved D 17 and D 17.5 states, not lambda. P1's child, the k_c 63 refine of D 17.5, keeps running. With its subshells gone the script's main bash ended and wrote `== 2026-11-20 04:27:07 all done` into `checks.log`: that marks the script's end after these stops, not the lane's completion. `stop_P1_1025.log`, `leap_kc63.log`, `guard_1025.log`, `pre/selftest_guard_now.log` |
 | 07:19 | `run_kc71_1025.sh` started at 4 BLAS threads, BelowNormal, two jobs in order: (1) `signtest.py` of the k_c 63 D 17 record (lam 2.0265465, around lam -+ 0.02), then (2) `ell_refine.py l1kc63Fw1025b 63 l1kc71Fw1025 71 1 16.5 2.1454677 --kappa 0.7 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60`, k_c 71 lambda at D 16.5 from the k_c 63 D 16.5 state, 12 h timeout, log `kc71_D16.5.log` | the coordinator's order for the cores the finished refine jobs and signtests freed (the leap keeps its 4). At D 16.5 the k_c moves grow (47 to 55 +4.3e-3, 55 to 63 -1.37e-2), so k_c 63 is not converged there. Record checks for k_c 71: n_signchanges 1 and the 2% test against 2.1454677, then a signtest at lam -+ 0.02. Its first 20 min: check that the solve runs (no shape or memory error) and note its process memory |
+| 09:06 | k_c 63 lambda at D 16.75 started (`run_D16.75_1025.sh`, tag `l1kc63Fv1025`, 4 BLAS threads, BelowNormal, 12 h timeout): `ell_refine.py l1kc55Fv1025 55 l1kc63Fv1025 63 1 16.75 2.1096347 --kappa 0.7 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60`, log `kc63_D16.75.log`. At 09:05 the record check and signtest drivers (`run_signtest_kc71_1025.sh`, `run_signtest_D16.75_1025.sh`) were armed to run when each record lands | the coordinator's order for the 4 threads the finished leap freed. The input is win2b's k_c 55 state at D 16.75 and its record, taken by `git show origin/main:I1025-win2b/out/...` (origin/main f731f843, no checkout), blob ids d3dbb92d (state, 29048 bytes) and ece77d98 (record, 483 bytes), checked equal to `git hash-object --no-filters`; win2b's k_c 55 lambda there failed its checks but its state solve does not use lambda. The guess is the Mac's k_c 47 value 2.1096347. Record checks: n_signchanges 1, lam within 2% of 2.1096347, then a signtest at lam -+ 0.02 |
 
 The planted checks and the first-job checks (a), (b) of the scans below are as measured. They passed, and they do not make the scans' output valid.
 
-## Prediction for the k_c 71 run at D 16.5 (the coordinator's, written 2026-11-20 about 07:20 UTC, before the run)
+## First prediction for the k_c 71 run at D 16.5 (the coordinator's, written 2026-11-20 about 07:20 UTC, before the run; superseded by the restatement below)
 
 If the 63 to 71 move of lambda at D 16.5 is under 4.3e-3 in size, D 16.5 converges at k_c 71. If it is as large as 1.37e-2, D 16.5 is not resolved at any k_c run so far, and the slope table marks it so.
+
+## Restated prediction for the k_c 71 run at D 16.5 (the coordinator's hc, 2026-11-20 09:10 UTC, before the record lands)
+
+The first prediction's bars came from a k_c 55 record that is now dropped. With m = lambda_71 - lambda_63, where lambda_63 = 2.1454677 (the k_c 63 record at D 16.5, signtest passed):
+
+| outcome | condition |
+|---|---|
+| converging | abs(m) < 4.7e-3 and m <= 0 |
+| not resolved | abs(m) >= 9.35e-3 |
+| undecided | anything else |
+
+When this was written the k_c 71 lambda search was still running (`data/l1kc71Fw1025.jsonl` did not exist).
 
 ## Result (interim, first publish 2026-11-20 03:10 UTC, updated 09:05 UTC)
 
