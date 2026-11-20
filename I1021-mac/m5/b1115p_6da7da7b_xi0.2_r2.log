@@ -1,0 +1,13 @@
+# /Users/nathan/venv-314/bin/python -u hier.py 5 3.526470823 0.211495028 --x=0.9765115732,-0.0017632354,-0.5211594388,-0.1129528627 --fixA --schur --procs 1 --verbose=1 --xi1=0.2 (repeat 2 of b1115p_6da7da7b_xi0.2.log, perturbed 1e-7)
+M 5, xi1 0.2, fixed (A, w), procs 1; start x [3.526470823, 0.211495028, 0.976511573, -0.001763235, -0.521159439, -0.112952863]
+level radii (approach -> polish): r_1 0.2000 -> 0.2000, r_3 0.2000 -> 0.2000, r_5 0.1995 -> 0.2000
+start residuals: |r_1| 2.52e+06  |r_3| 1.71e+06  |r_5| 2.10e+05
+   level 5 solved: |r_5| 2.14e+05  (19 residuals, 822 s)  [822 s total]
+   Jacobian K computed (4 residuals) [823 s]
+   level 5 solved: |r_5| 2.14e+05  (15 residuals, 1021 s)  [1844 s total]
+   level 5 solved: |r_5| 2.14e+05  (15 residuals, 659 s)  [2503 s total]
+   level 5 solved: |r_5| 2.14e+05  (15 residuals, 672 s)  [3175 s total]
+/Users/nathan/Source/choptuik-large-d-1021c/solver/inner_stokes/hier.py:92: RuntimeWarning: overflow encountered in exp
+  z = q[nu % NTH] * r1 ** (2j * nu * w) * np.exp(lsc - np.log(2 * np.pi * abs(I.Kp(1j * nu * w))))
+   level 5 solved: |r_5| 7.61e+05  (14 residuals, 275 s)  [3450 s total]
+# m5_repeat: timed out after 3600 s

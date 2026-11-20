@@ -1,0 +1,35 @@
+7c7,10
+<     python m5_repeat.py CODE PY LOG"""
+---
+> An attempt that exceeds the 3600 s cap counts as failed (the log ends with TIMED), as one without a FIXED-A block does,
+> and the next repeat runs. --resume reuses an attempt log whose first line is this run's command for that repeat (the
+> same draw) and that has a FIXED-A block or TIMED; any other log is run again.
+>     python m5_repeat.py CODE PY LOG [--resume]"""
+10a14
+> resume = "--resume" in sys.argv[4:]
+11a16
+> TIMED = "# m5_repeat: timed out after 3600 s"
+41,45c46,58
+<     with open(log, "w") as fh:
+<         fh.write("# " + " ".join(arg) + f" (repeat {k} of {os.path.basename(log0)}, perturbed 1e-7)\n")
+<         fh.flush()
+<         subprocess.run(["nice", "-n", "19"] + arg, cwd=os.path.join(code, "solver", "inner_stokes"), stdout=fh,
+<                        stderr=subprocess.STDOUT, timeout=3600)
+---
+>     hdr = "# " + " ".join(arg) + f" (repeat {k} of {os.path.basename(log0)}, perturbed 1e-7)\n"
+>     old = open(log).read() if resume and os.path.exists(log) else None
+>     if old is not None and old.startswith(hdr) and (read(log) is not None or TIMED in old):
+>         print(f"repeat {k}: reused {os.path.basename(log)} (same command)", flush=True)
+>     else:
+>         with open(log, "w") as fh:
+>             fh.write(hdr)
+>             fh.flush()
+>             try:
+>                 subprocess.run(["nice", "-n", "19"] + arg, cwd=os.path.join(code, "solver", "inner_stokes"), stdout=fh,
+>                                stderr=subprocess.STDOUT, timeout=3600)
+>             except subprocess.TimeoutExpired:
+>                 fh.write(TIMED + "\n")
+48c61
+<         print(f"repeat {k}: no FIXED-A block", flush=True)
+---
+>         print(f"repeat {k}: " + ("timed out after 3600 s" if TIMED in open(log).read() else "no FIXED-A block"), flush=True)

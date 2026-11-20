@@ -99,3 +99,22 @@ counted attempt: 1.2e-4, 1.2e-6). At 0.15 the level-5 solves stop at hier's nois
 against 4.1e-7 to 2.3e-6 (nine stops) at 0.2, and level 3 stops at its noise floor at |g| 6.69e3. K's d r_3 / d x_3 grows from
 1.54e11 to 5.23e16 (3.4e5) and d r_5 / d x_5 from 7.73e8 to 3.53e13 (4.6e4). At box 16's (A, w) at 0.15 the floor of level 5
 is 1.4e5 to 6.8e5 times the 1e-6 solve bar.
+
+## b11-15's xi1 0.2 repeats: a timeout (written 14:21 UTC, before the continuation)
+
+`run_b1115p.sh` ran the first attempt (|r_3| 2e6, |r_5| 2.1e5, 905 s) and repeat 1 (|r_3| 3.3e6). Repeat 2 exceeded
+`m5_repeat.py`'s 3600 s cap per attempt, set before any of these runs. m5_repeat.py v1 did not catch the timeout and
+stopped (traceback in `../../m5/b1115p_repeat_xi0.2_crash.log`), so repeat 3 and the 0.15 leg did not run. Box 7's and
+box 16's repeats never reached the cap.
+
+Handling, with every bar and rule unchanged:
+
+- m5_repeat.py v2 (`../../m5/m5_repeat_v2.diff`) counts an attempt that exceeds the cap as failed, as one without a
+  FIXED-A block. The next repeat then runs.
+- `--resume` reuses an attempt log whose first line is the run's command for that repeat (the same draw of
+  random.Random(1027)).
+- The line v2 writes on a timeout, `# m5_repeat: timed out after 3600 s`, was appended by hand to
+  `m5/b1115p_6da7da7b_xi0.2_r2.log` at 14:21 UTC. Its command line matches the timed-out command in the traceback.
+- Tests (in the scratchpad): resume reuses repeats 1 and 2 and runs repeat 3. A changed command line on repeat 1 makes
+  it run again. A copy capped at 2 s with a sleeping stub records three timeouts and kills the stub.
+- `../run_b1115p_cont.sh` runs `m5_repeat.py --resume` and then `../run_m7d.sh b1115p`.

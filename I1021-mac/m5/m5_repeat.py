@@ -4,11 +4,16 @@ F_3/F_1, F_5/F_1 times A, as walk1026.py reads them), every harmonic times (1 + 
 random.Random(1027), one generator per solve; the first attempt under the bar counts, else the one of smallest |r_3|.
 Each attempt is `hier.py 5 A w --x=B3,C3,B5,C5 --fixA --schur --procs 1 --verbose=1 --xi1=XI` in CODE/solver/inner_stokes
 at nice 19, logged to LOG's name with _rK; then m5_read.py's verdict line. Exit 0 when an attempt is under the bar.
-    python m5_repeat.py CODE PY LOG"""
+An attempt that exceeds the 3600 s cap counts as failed (the log ends with TIMED), as one without a FIXED-A block does,
+and the next repeat runs. --resume reuses an attempt log whose first line is this run's command for that repeat (the
+same draw) and that has a FIXED-A block or TIMED; any other log is run again.
+    python m5_repeat.py CODE PY LOG [--resume]"""
 import os, random, re, subprocess, sys
 
 code, py, log0 = sys.argv[1:4]
+resume = "--resume" in sys.argv[4:]
 BAR = 1e-6
+TIMED = "# m5_repeat: timed out after 3600 s"
 here = os.path.dirname(os.path.abspath(__file__))
 
 
@@ -38,14 +43,22 @@ for k in range(1, 4):
     log = log0.replace(".log", f"_r{k}.log")
     arg = [py, "-u", "hier.py", "5", p["A"], p["w"], "--x=" + ",".join(f"{v:.10f}" for v in xp), "--fixA", "--schur",
            "--procs", "1", "--verbose=1", f"--xi1={p['xi']}"]
-    with open(log, "w") as fh:
-        fh.write("# " + " ".join(arg) + f" (repeat {k} of {os.path.basename(log0)}, perturbed 1e-7)\n")
-        fh.flush()
-        subprocess.run(["nice", "-n", "19"] + arg, cwd=os.path.join(code, "solver", "inner_stokes"), stdout=fh,
-                       stderr=subprocess.STDOUT, timeout=3600)
+    hdr = "# " + " ".join(arg) + f" (repeat {k} of {os.path.basename(log0)}, perturbed 1e-7)\n"
+    old = open(log).read() if resume and os.path.exists(log) else None
+    if old is not None and old.startswith(hdr) and (read(log) is not None or TIMED in old):
+        print(f"repeat {k}: reused {os.path.basename(log)} (same command)", flush=True)
+    else:
+        with open(log, "w") as fh:
+            fh.write(hdr)
+            fh.flush()
+            try:
+                subprocess.run(["nice", "-n", "19"] + arg, cwd=os.path.join(code, "solver", "inner_stokes"), stdout=fh,
+                               stderr=subprocess.STDOUT, timeout=3600)
+            except subprocess.TimeoutExpired:
+                fh.write(TIMED + "\n")
     q = read(log)
     if q is None:
-        print(f"repeat {k}: no FIXED-A block", flush=True)
+        print(f"repeat {k}: " + ("timed out after 3600 s" if TIMED in open(log).read() else "no FIXED-A block"), flush=True)
         continue
     print(f"repeat {k} {os.path.basename(log)}: |r_3| {q['r3']:.2g}, |r_5| {q['r5']:.2g}", flush=True)
     if (q["r3"] < BAR and q["r5"] < BAR) or q["r3"] < best["r3"]:
