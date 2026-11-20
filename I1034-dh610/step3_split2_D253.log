@@ -1,0 +1,31 @@
+# 2026-11-20 08:50:30 UTC cmd: python3 series_split_check.py /home/nathan/Source/choptuik-large-d-raw I608-dh610/restart4_d6/anm_pin3_D253.3382.npz --N 24 --threads 9 --Np 6 --split 2 --out /home/nathan/Source/choptuik-large-d-raw/I1034-dh610/split2_D253
+series_split_check I608-dh610/restart4_d6/anm_pin3_D253.3382.npz: D 253.33819991877826, ks 130, stored plan, N 24, Np 6, 9 threads, split form 2
+  newton_o at the state: 39.4 s
+  N 24: default 132.5 s, split 109.8 s, ratio 1.21
+ k   |z_k|      d_split    d_oa       d_split/thr  d_ctrl
+ 1   3.37e-04   0.00e+00   4.20e-36   0.00e+00     0.00e+00
+ 2   2.14e-06   4.60e-44   1.37e-33   3.37e-14     2.33e+28
+ 3   1.43e-06   1.87e-43   1.42e-33   1.32e-13     3.46e+53
+ 4   5.92e-07   4.10e-43   7.82e-34   5.25e-13     7.93e+78
+ 5   2.83e-08   3.49e-42   6.79e-33   5.13e-13     1.44e+105
+ 6   6.84e-08   1.39e-43   2.73e-33   5.07e-14     4.66e+129
+ 7   2.55e-08   3.84e-43   2.89e-33   1.33e-13   
+ 8   3.54e-09   1.67e-42   5.12e-33   3.25e-13   
+ 9   2.02e-10   9.00e-42   1.41e-32   6.36e-13   
+10   6.34e-11   5.84e-42   3.46e-33   1.69e-12   
+11   2.11e-11   2.33e-42   1.09e-33   2.14e-12   
+12   1.85e-12   1.60e-42   5.62e-33   2.85e-13   
+13   1.69e-13   2.30e-42   9.71e-33   2.36e-13   
+14   3.46e-14   3.71e-42   3.56e-33   1.04e-12   
+15   4.53e-15   3.42e-42   5.21e-34   6.57e-12   
+16   1.34e-15   6.12e-43   1.53e-33   4.00e-13   
+17   6.06e-17   2.10e-42   1.84e-32   1.14e-13   
+18   4.50e-17   1.80e-42   5.50e-33   3.27e-13   
+19   3.35e-18   7.17e-42   6.95e-33   1.03e-12   
+20   1.56e-18   2.50e-42   1.41e-33   1.78e-12   
+21   2.16e-19   1.24e-42   5.05e-33   2.45e-13   
+22   2.32e-20   1.53e-42   6.28e-33   2.43e-13   
+23   5.45e-21   2.06e-42   9.96e-34   2.06e-12   
+24   1.78e-22   3.03e-42   3.10e-32   9.79e-14   
+  PASS: z_1 the same bits, worst d_split / (1e3 d_oa) 6.57e-12; control (l = 1 dropped) 1.71e+159 times the threshold, fired
+exit 0

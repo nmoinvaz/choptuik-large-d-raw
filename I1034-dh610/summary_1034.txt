@@ -7,3 +7,8 @@ step2_split: expected exit 0, got 0, 1223 s (cap 3600 s) OK
    checksums in step2_split.log: split series' checksum 072e4ce86c49682c;fast series' checksum 69ffd7e54fcf9637; (expect split a0aada9b8fe95419, fast 30acdab9851616fb)
 step2_fastmul_planted: expected exit 0, got 0, 16 s (cap 3600 s) OK
 step5_ref: expected exit 0, got 0, 51 s (cap 1800 s) OK
+step5_scaled: expected exit 0, got 0, 453 s (cap 7200 s) OK
+step5_jets: expected exit 0, got 0, 97 s (cap 1800 s) OK
+step5_jets_kappa: expected exit 1, got 1, 96 s (cap 1800 s) OK
+step3_split2_D253: expected exit 0, got 0, 508 s (cap 16200 s) OK
+step2b_split_native (RUSTFLAGS target-cpu=native): expected exit 0, got 0, 1155 s; backends: ; checksums: split series' checksum 072e4ce86c49682c;fast series' checksum 69ffd7e54fcf9637;
