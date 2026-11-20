@@ -18,7 +18,36 @@ Above A 4.5 real points' noise reaches the fault level (#1021), so that part of 
 
 ## Runs
 
-(filled in below as the run goes)
+Driver started 2026-11-19 20:29:09 UTC at 998fd290 (`logs/driver.start`, `logs/driver.out`, `logs/exits.txt`). Selftest and the four mutations exited `0 1 1 1 1`, as required. The driver exited 0 at 2026-11-20 12:05:21 UTC.
+
+| Step | Ended (UTC) | Exit | Time | Points | Result |
+|---|---|---|---|---|---|
+| 1, count at xi1 0.17 (`m3/count_M3_upper_r0.17.json`) | 2026-11-20 07:33:49 | 0 | 39875 s (11 h 4 min) | 627 (614 valued, 13 no value) | 198 leaves after 58 splits, 185 resolved (winding 0), 13 unresolved cells, zeros [], boundary winding NaN |
+| 2, recount of the 13 cells at xi1 0.18 (`m3/count_M3_upper_r0.18.json`) | 2026-11-20 12:05:21 | 0 | 16291 s (4 h 32 min) | 69 (53 valued, 16 no value) | 13 leaves, all unresolved, 0 splits, leaf sum 0, zeros [], boundary winding NaN |
+
+Step 2's seed file `points_M3_r0.17.jsonl` is unchanged by it (627 lines, sha256 starts 944d2329b137d619). Each point is one record and one log line (627 and 69). Step 1's no-value points are in `logs/m3_upper_r0.17.log`.
+
+The 16 no-value points of step 2: 11 lost S3's zero in the continuation, and 5 stopped at the 2.4e6 right-hand-side call bound (xi1 0.2 or 0.25 start). No point reached the wall (3600 s) or the noise cap. A cell with a no-value corner stays unresolved, and every one of the 13 has at least one. Corners with a value, and the corners without, by cell (A range, w/w_inf range):
+
+| A | w/w_inf | Valued corners of 4 | Corners without value at 0.18 |
+|---|---|---|---|
+| 3.6123-3.8623 | 0.5065-0.6065 | 2 | (3.6123, 0.5065) RHS bound; (3.8623, 0.6065) S3 zero lost |
+| 3.6123-3.8623 | 0.6065-0.7065 | 2 | (3.6123, 0.7065) RHS bound; (3.8623, 0.6065) S3 zero lost |
+| 3.6123-3.8623 | 0.7065-0.8065 | 3 | (3.6123, 0.7065) RHS bound |
+| 3.6123-3.8623 | 1.0065-1.1065 | 2 | (3.6123, 1.1065) and (3.8623, 1.1065) S3 zero lost |
+| 3.6123-3.8623 | 1.1065-1.2065 | 1 | (3.6123, 1.1065), (3.8623, 1.1065), (3.8623, 1.2065) S3 zero lost |
+| 3.6123-3.8623 | 1.2065-1.3065 | 2 | (3.6123, 1.3065) and (3.8623, 1.2065) S3 zero lost |
+| 3.8623-4.1123 | 0.5065-0.6065 | 1 | (3.8623, 0.6065), (4.1123, 0.5065), (4.1123, 0.6065) S3 zero lost |
+| 3.8623-4.1123 | 1.1065-1.2065 | 1 | (3.8623, 1.1065), (3.8623, 1.2065) S3 zero lost; (4.1123, 1.2065) RHS bound |
+| 3.8623-4.1123 | 1.2065-1.3065 | 1 | (3.8623, 1.2065) S3 zero lost; (4.1123, 1.2065), (4.1123, 1.3065) RHS bound |
+| 4.1123-4.3623 | 0.5065-0.6065 | 2 | (4.1123, 0.5065) and (4.1123, 0.6065) S3 zero lost |
+| 4.1123-4.3623 | 0.6065-0.7065 | 2 | (4.1123, 0.6065) and (4.1123, 0.7065) S3 zero lost |
+| 4.1123-4.3623 | 1.1065-1.2065 | 3 | (4.1123, 1.2065) RHS bound |
+| 4.1123-4.3623 | 1.2065-1.3065 | 1 | (4.1123, 1.2065), (4.1123, 1.3065), (4.3623, 1.3065) RHS bound |
+
+Result for box A (3.6-4.35 x 0.5-1.3): no zero is counted at either rung, and the box's boundary winding is NaN because 13 cells (the same 13 at 0.17 and at 0.18) are unresolved. This run therefore gives no M = 3 zero that an M = 1 zero could persist to, and no statement that there is none either.
+
+Sheet check (xfchecks, #1013 comment 7034395925, raw d4231ed6) of step 1: the 185 resolved leaves and 11 of the 13 unresolved cells pass; 2 unresolved cells (A 4.1123-4.3623 x 0.5065-0.6065 and 0.6065-0.7065) fail, four points of column A 4.3623456 being on other sheets of S3 = 0. The fix attempt is `sheetfix/` (6da7da7b, raw e12701e3): both cells stay unresolved. Step 2 gives no winding, so there is nothing of it for a sheet check. The counts of step 1 stay on hold as the coordinator's note below says.
 
 ## Note from the coordinator, 2026-11-19 (about 00:30 UTC)
 
