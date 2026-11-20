@@ -25,3 +25,8 @@ T1 = 2.2432296517 - 2.2440428096 (P4's hybrid re-root of Fb at u0 0.04) = -8.13e
 That reading is provisional while P4 is stopped: the u0 0.04 root is P4's, and P4's control 2 is running.
 T2 (the cut alone, Ks 45 at u0 0.04) comes next, before the coordinator's rule (|d| > 3.33e-3) applies. If it did now, |T1| < 3.33e-3.
 For contrast, the float64 fixed-state shift was -0.134 and the float64 re-solve found no root at all.
+== 2026-11-20 21:33:43 T2 feasibility (lane_slotA.log, 20:54:55-21:07:00), read against the T2 addendum of u0resolve_criteria.log.
+ F1 PASS: worst tangent residual at u0 0.04 is 1.0e-07 at Ks 30 and 9.9e-19 at Ks 45, ratio 9.9e-12 (bar 1e-2).
+ F2 PASS: float64-vs-dd block-12 error 5.78e-11 at Ks 30 and 4.95e-11 at Ks 45, ratio 0.856 (bar 2).
+ So T2 goes on at Ks 45 and u0 0.04 (no Fi): lane_slotA2.sh runs the ell_refine re-solve (tag l1kc55Fk1025), then p1d_scan.py on it.
+ Slot A was idle from 21:07:00 to this start.

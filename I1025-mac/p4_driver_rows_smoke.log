@@ -1,0 +1,14 @@
+== 2026-11-20 21:38 UTC smoke test of p4_driver_rows.sh (blob e004c9ec5c722578b460a1354adc337626e75129), on the Mac, with no compute: python is replaced by a stand-in
+(scratchpad fakepy.sh) that runs the real python for -c and, for "-u p4_hybrid.py REC ST D", prints a fake result line and appends a fake
+record to P4_OUT (lam 2.244042809616683 for D 16, 2.1471 otherwise). WT a detached worktree at 505d8399, RAW the publish clone.
+Inputs, pins and the row list check are the real ones (Fz D 15.5 and Fu D 16.25 as test rows).
+ case                         expected                                    seen
+ pass                         cross-check PASS (+0.00e+00), row 2 PASS    as expected
+ off (D 16 lam +2e-5)         STOP: cross-check FAILED, no row 2          as expected
+ a state blob changed         refuse before any row, exit 2               as expected
+ a wrong ROWLIST_BLOB         refuse, exit 2                              as expected
+ a row without its timeout    refuse                                      as expected
+ crash (rows 2 and 3 exit 1)  CRASH, CRASH, STOP after two               as expected
+ slow (row 3 timeout 5 s)     TIMEOUT                                     as expected
+ norec (no record written)    FAIL (the jsonl's last record is D 16)      as expected
+ rerun into the same OUT      refuse                                      as expected

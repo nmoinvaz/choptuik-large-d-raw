@@ -1,0 +1,27 @@
+== 2026-11-20 20:54:55 ell_ddm.py sshres data/sol_l1kc55Fb1025_D16.0000.npy 16 55 2.2440428096 --us 0.04 --Ks 30
+  u 0.04: p' residual (mpmath, 60 digits), value 2.8e-19, tangents 1.0e-07
+  u 0.04: m' residual (mpmath, 60 digits), value 7.8e-18, tangents 5.1e-08
+  u 0.04: a' residual (mpmath, 60 digits), value 4.3e-19, tangents 1.0e-09
+  u 0.04: c' residual (mpmath, 60 digits), value 2.7e-21, tangents 8.6e-11
+  u 0.04: q' residual (mpmath, 60 digits), value 7.7e-20, tangents 5.0e-08
+check A2 D 16.0 k_c 55 lambda 2.2440428096: horizon series against the x-ODE, worst 1.0e-07 (bar 1e-18) -> FAIL
+== exit 1 2026-11-20 20:55:02
+== 2026-11-20 20:55:02 ell_ddm.py sshres data/sol_l1kc55Fb1025_D16.0000.npy 16 55 2.2440428096 --us 0.04 --Ks 45
+  u 0.04: p' residual (mpmath, 60 digits), value 4.3e-25, tangents 9.9e-19
+  u 0.04: m' residual (mpmath, 60 digits), value 7.1e-27, tangents 5.5e-19
+  u 0.04: a' residual (mpmath, 60 digits), value 1.1e-28, tangents 8.8e-20
+  u 0.04: c' residual (mpmath, 60 digits), value 1.2e-30, tangents 4.1e-21
+  u 0.04: q' residual (mpmath, 60 digits), value 1.9e-29, tangents 5.0e-19
+check A2 D 16.0 k_c 55 lambda 2.2440428096: horizon series against the x-ODE, worst 9.9e-19 (bar 1e-18) -> PASS
+== exit 0 2026-11-20 20:55:13
+== 2026-11-20 20:55:13 ell_ddm.py check data/sol_l1kc55Fb1025_D16.0000.npy 16 55 2.2440428096 --blocks 12 --Ks 30 --bar 1
+  block 12: 235 s
+  block 12: max |M_dd - M_f64| / max |M| = 5.78e-11
+check A D 16.0 k_c 55 lambda 2.2440428096: worst 5.78e-11 (bar 1) -> PASS; float64 102 s, double-double 235 s
+== exit 0 2026-11-20 21:00:51
+== 2026-11-20 21:00:51 ell_ddm.py check data/sol_l1kc55Fb1025_D16.0000.npy 16 55 2.2440428096 --blocks 12 --Ks 45 --bar 1
+  block 12: 274 s
+  block 12: max |M_dd - M_f64| / max |M| = 4.95e-11
+check A D 16.0 k_c 55 lambda 2.2440428096: worst 4.95e-11 (bar 1) -> PASS; float64 93 s, double-double 274 s
+== exit 0 2026-11-20 21:07:00
+== 2026-11-20 21:07:00 lane slotA (T2 feasibility) done

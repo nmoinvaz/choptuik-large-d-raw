@@ -74,3 +74,17 @@ root 2.244042809616683 to 1e-5, or winb's batch stops (p4_driver_w.sh).
 Both machines run the same p4_hybrid.py (blob a402559b) on code worktrees whose solver modules are identical to 505d8399.
 They start only if control 2 passes. In slot B the order is: lane A's paused D 17 row resumes, lane A's other rows follow, then the
 Mac's lane B rows.
+== 2026-11-20 21:39:30 AMENDMENT 7 (the coordinator's word, hc about 21:30 UTC), written before this row runs anywhere.
+Row added: k_c 71 at D 16.5, win2b's recheck l1kc71Fw1025c (float64 root 2.1471295563 from guess 2.1408016, ell_refine from winb's
+l1kc71Fw1025 state). winb's old k_c 71 value 2.1454677 is out. The row runs on win2b only, so no row runs twice.
+Driver: p4_driver_rows.sh (blob e004c9ec), which is p4_driver_w.sh with the rows read from a pinned row list and every input hashed with
+git hash-object --no-filters. Same p4_hybrid.py (a402559b), same worktree commit (505d8399), same pass rule (record system, one change on
+the grid and over all evaluations, noise-robust, bracket <= 1e-7), same cross-check row first (Fb, k_c 55, D 16 must give the Mac's
+2.244042809616683 to 1e-5, or the batch stops). Smoke test: p4_driver_rows_smoke.log.
+Row list: p4_rows_win2b.txt, the record and state pinned by blob once win2b's files are on raw (their blobs logged below before the run).
+Per-row cap 43200 s: from the Mac's hybrid costs (270 s per evaluation at k_c 55, 403 s at k_c 63, so about k_c^2.95) a k_c 71 row of 15
+evaluations takes about 2.4 h on the Mac and 4.3 h at winb's speed (1.78x the Mac's at k_c 55); the cap is 2.8x that.
+System check: amendment 5's (steps equal, |F| within 1% or 1e-13), against win2b's own record.
+Table: D 16.5 quotes k_c 71 only once this record's signtest passes on raw and collect adds it (no row without a passing signtest); this
+hybrid re-root is then the table's D 16.5 hybrid row. The Mac's k_c 63 D 16.5 row (Fw1025b, lane B) still runs: it gives the 63->71 step
+under the hybrid.
