@@ -188,3 +188,30 @@ b11-15's +1 at xi1 0.18 (`loc/run_loc4.sh`, 06:42-09:47 UTC on 20 Nov, `loc/b111
 floor 14.3), and again at 0.2, 3.7e-6 away (|R| 0.14, floor 0.77). Its points are on b11-15's sheet (|dF_3| to the nearest
 b11-15 point 1.6e-4 to 2.9e-3 at 0.18 and 3.2e-4 to 9.9e-4 at 0.2, `nearest_f3.log`), and the sheet check passes on the
 10 leaves (`sheet_check.log`). `m5/b1115p_start.txt` is the M = 5 start from the 0.18 location (`m5/m5_start.py`).
+
+Merge with b21-25-fu (20 Nov 15:21-15:22 UTC, `merge_fu/`, the coordinator's order: dh610's `I1021-dh610/b21-25-fu`
+at raw 18338ce4, #1021 comment 7039639393). Written before the recount of record.
+
+- `sheet_fu.sh` (`sheet_fu.log`): b21-25-fu's cache (1234 lines) is on one sheet along grid lines (0 of 1906 pairs
+  flagged, largest |dF_3| 0.056). On b21-25's leaves and on the leaves of all eight follow-up passes, 0 cells lie
+  across a switch (of 122, 21, 14, 3, 29, 5, 11, 8, 4). The planted switch fails.
+- `run.sh` is `../merge_dry/run.sh` with b21-25-fu's points file in place of b21-25's and the passes' leaves added to
+  the sheet check (`sheet_dry.sh`). Its inputs are listed in `in/SHA256SUMS`; the copies of other folders' files are
+  not committed. `spec.json` gives b21-25-fu's lines: 1043 is b11-15's line 661 and 1044 is
+  fu_seed's record (fix2931's line 889), both appended by dh610's `fu_append.py` with a `fu` key and otherwise the same
+  records; 1045-1234 are argcount 6da7da7b with its cap 1e7 (`fu_value.py` and the recounts).
+- `merged.jsonl`: 2630 lines, 2563 points, 2556 valued, 7 without value. Merge check PASS: largest final noise3
+  2.06e3, largest replayed start noise3 5.7e-4; the 28 points valued in one source and without value in another are
+  listed with both files and lines (`merge_check.log`). (3.6623456, 1.06904321) now comes from b21-25-fu's line 1044,
+  which precedes fix2931 in the merge order; (3.6623456, 0.20654321) comes from b11-15's line 661, as before. 90 points
+  are valued in two sources with different records (largest |dF_3| 6.5e-8, |dR|/|R| 0.017).
+- Sheet check of `merged.jsonl`: 0 of 4445 grid-line pairs flagged, 0 cells across a switch on all 13 leaves files.
+  samebits: the Mac cache's 994 valued records are unchanged. `--mutate=prefix`, `noise`, `switch` and `flip` fail.
+
+Recount of record (`final/run_record.sh ../merge_fu/merged.jsonl 1`, 1 process at nice 10; argcount 6da7da7b, default
+starts 0.25 then 0.2, `--retry`, cap 1e7; then the plant on a copy, samebits and the sheet check). Windings count only
+where the record's sheet check passes. Cells left unresolved go into the record as undecided, with the reason.
+dh610's follow-up names two: the box A 3.6623-3.9123 x w/w_inf 0.2065-0.3065, nan because its corner
+(3.9123456, 0.20654321) has no value in any start ("continuation lost S3's zero after [0.25, 0.24875]"), and four
+cells of w/w_inf 0.4065-0.5065, where |R| at (3.7560956, 0.43154321) and (3.8732831, 0.48779321) is 6.5-7.9 times the
+rounding floor sig0, under the 10 sigma guard.
