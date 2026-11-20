@@ -100,9 +100,10 @@
  258.4403  293 4   7.3810e-20   3.2082e-14   0.972  0.021  0.0e+00  0.5605   0.5819  +0.450 +0.2764  +0.2443  +0.2234  v1/3+4
  258.6851  293 4   6.4687e-20   2.8736e-14   0.979  0.013  0.0e+00  0.5142   0.5391  +0.450 +0.2336  +0.2021  +0.1810  v1/3+4
  258.9339  293 4   5.7266e-20   2.5689e-14   0.985  0.007  0.0e+00  0.4641   0.4898  +0.451 +0.1843  +0.1534  +0.1320  v1/3+4
- 259.1902  293 4   5.1169e-20   2.2884e-14   0.989  0.007  0.0e+00           0.4393  +0.451 +0.1338  +0.1035  +0.0818  v1/3+4
+ 259.1902  293 4   5.1169e-20   2.2884e-14   0.989  0.007  0.0e+00  0.4160   0.4393  +0.451 +0.1338  +0.1035  +0.0818  v1/3+4
+ 259.4568  293 4   4.6071e-20   2.0289e-14   0.990  0.007  2.6e-16           0.3937  +0.452 +0.0882  +0.0586  +0.0366  v1/3+4
 
-states 102, not classified or not converged: 0
+states 103, not classified or not converged: 0
 
 criterion 5, intervals D 229.05 to 232.0: 0.4124, 0.4097, 0.4067, 0.4047 against #941's 0.412, 0.41, 0.407, 0.405: largest difference 0.0004: pass
 re-read of #941's state D 251.2845: sigma_Delta 2.8219525563e-18 here (c3b_ks293_D251.2845_leg05) against 2.8219525563e-18 (relative difference 0.0e+00); Delta share 0.7348 against 0.7348
@@ -121,12 +122,12 @@ trigger, ks_chain3b (interval slope - the frozen D-trend 0.9692 -0.00245 D > 0.1
 
 POST-FREEZE D-trend (the backfill's 20 same-ks interval slopes against D, never the trigger): linear 0.9692 -0.00245 D (largest backfill residual 0.036), quadratic 1.508 -0.00748 D +0.0000118 D^2 (largest residual 0.039)
   interval slope minus the D-trend (linear, quadratic) and minus the frozen s(ks), newest states of ks >= 250:
-    D  257.9477 ks 293: 0.6312  vs D lin +0.2924  vs D quad +0.2720  vs s(ks) +0.3257
     D  258.1958 ks 293: 0.6136  vs D lin +0.2755  vs D quad +0.2548  vs s(ks) +0.3082
     D  258.4403 ks 293: 0.5819  vs D lin +0.2443  vs D quad +0.2234  vs s(ks) +0.2764
     D  258.6851 ks 293: 0.5391  vs D lin +0.2021  vs D quad +0.1810  vs s(ks) +0.2336
     D  258.9339 ks 293: 0.4898  vs D lin +0.1534  vs D quad +0.1320  vs s(ks) +0.1843
     D  259.1902 ks 293: 0.4393  vs D lin +0.1035  vs D quad +0.0818  vs s(ks) +0.1338
+    D  259.4568 ks 293: 0.3937  vs D lin +0.0586  vs D quad +0.0366  vs s(ks) +0.0882
   coordinator's caveat (#948: sigma_Delta is the same from ks 240 to 320 at D 232, so the baseline's ks dependence is really D dependence): at the jump to ks 275 s(ks) reads about 0.04 below the D-trend (0.3364 at ks 275), so an excess near +0.04 against s(ks) there is not a fold; the 0.10 trigger is unaffected.
 
 ks ladder at one D (post-freeze report, coordinator's #949 note 2026-11-18; sigma_Delta against the chain's state at that D):
@@ -222,4 +223,5 @@ fold rule on every five-state window (conditions: 1 residuals, 2 D* within 3 pas
   ks 293 (chain 3b) D 257.6920 to 258.6851: D* inf (s 0.593) conditions FFF- not valid
   ks 293 (chain 3b) D 257.9477 to 258.9339: D* inf (s 0.557) conditions FFF- not valid
   ks 293 (chain 3b) D 258.1958 to 259.1902: D* inf (s 0.512) conditions FFF- not valid
+  ks 293 (chain 3b) D 258.4403 to 259.4568: D* inf (s 0.463) conditions FFF- not valid
 null control: no backfill window is valid; ks 211's window D* 212.8: fails by condition 2
