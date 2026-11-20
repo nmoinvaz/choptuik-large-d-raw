@@ -10,8 +10,8 @@ Series (Delta_k = delta_hi + delta_lo summed with math.fsum; the M 256 series is
   m320own  series_D3.0475_M320_N12.npz (my lifted M 320 state, 4388-step plan)
 Pairs: M 320 own against M 320 T82 (the plan's and the state's share), M 384 against M 320 T82 and against M 320 own, M 320 T82 and own against
 M 256, M 384 against M 256. The relative difference is (A - B)/|B|. Control, written first: every series against itself reads 0, and a
-copy with order 5 scaled by 1 + 1e-4 reads 1.000e-04 at order 5 and 0 elsewhere. --mutate scales order 5 of m384 by 1 + 1e-4 and the pair table
-must change at order 5 only (by the expected amount), in every pair that has m384."""
+copy with order 5 scaled by 1 + 1e-4 reads 1.000e-04 at order 5 and 0 elsewhere. --mutate scales order 5 of m384 (m320t82 when there is no m384: stage 3 was stopped as unconverged and m384 is not used) by 1 + 1e-4 and the pair table
+must change at order 5 only (by the expected amount), in every pair that has that series."""
 import math
 import os
 import sys
@@ -25,7 +25,7 @@ FILES = {
     "m384": os.path.join(HERE, "series_D3.0475_M384_N12.npz"),
     "m320own": os.path.join(HERE, "series_D3.0475_M320_N12.npz"),
 }
-PAIRS = [("m320own", "m320t82"), ("m384", "m320t82"), ("m384", "m320own"), ("m320t82", "m256"), ("m320own", "m256"), ("m384", "m256")]
+PAIRS = [("m320own", "m320t82"), ("m320t82", "m256"), ("m320own", "m256"), ("m384", "m320t82"), ("m384", "m320own"), ("m384", "m256")]    # m384 is not used (unconverged)
 N = 13
 
 
@@ -55,20 +55,21 @@ def main():
     pairs = [(a, b) for a, b in PAIRS if a in have and b in have]
     base = {(a, b): rel(have[a], have[b]) for a, b in pairs}
     if mutate:
-        if "m384" not in have:
-            print("--mutate needs m384"); sys.exit(1)
-        d384 = list(have["m384"])
-        d384[5] *= 1 + 1e-4
+        mut_name = "m384" if "m384" in have else "m320t82"      # the series whose order 5 is scaled (m384 was never converged and is not used: stage 3 stopped)
+        if mut_name not in have:
+            print("--mutate needs m384 or m320t82"); sys.exit(1)
+        dm = list(have[mut_name])
+        dm[5] *= 1 + 1e-4
         good = True
         for a, b in pairs:
-            if a != "m384":
+            if a != mut_name:
                 continue
-            mut = rel(d384, have[b])
+            mut = rel(dm, have[b])
             diff = [i for i in range(N) if mut[i] != base[(a, b)][i]]
-            exp = 1e-4 * have["m384"][5] / abs(have[b][5])
+            exp = 1e-4 * have[mut_name][5] / abs(have[b][5])
             g = diff == [5] and abs((mut[5] - base[(a, b)][5]) - exp) < 1e-12
             good &= g
-            print(f"--mutate m384 order 5 x (1+1e-4), pair {a} vs {b}: table changes at orders {diff} by {mut[5] - base[(a, b)][5]:+.3e}: {'pass' if g else 'FAIL'}")
+            print(f"--mutate {mut_name} order 5 x (1+1e-4), pair {a} vs {b}: table changes at orders {diff} by {mut[5] - base[(a, b)][5]:+.3e}: {'pass' if g else 'FAIL'}")
         sys.exit(0 if good else 1)
     print("relative difference (A - B)/|B| per order k:")
     print(f"{'k':>2} " + " ".join(f"{a + ' v ' + b:>20}" for a, b in pairs))
