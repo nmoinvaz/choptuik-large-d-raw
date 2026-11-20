@@ -19,3 +19,10 @@ then `fastmul_planted` (est. 18 min each) [2]; 5. `highm_check.py` ref, scaled, 
 | file | what |
 |---|---|
 | `common1034.sh`, `run1034.sh` | paths and the driver (the commands are in it) |
+
+## Step 2 result (20 Nov 08:39 UTC) and an added run
+
+`step2_split` exit 0 (1223 s: compile and tests, 3 passed, 2 ignored: `bench_split`, `split_file`), `step2_fastmul_planted` exit 0 (16 s, 1 passed). The printed checksums are NOT the expected ones: split series' checksum 072e4ce86c49682c (expected
+a0aada9b8fe95419), fast series' checksum 69ffd7e54fcf9637 (expected 30acdab9851616fb, the Mac's `I1034-mac/logs/v5_split_fast_accuracy.log`). Every other printed figure is identical to the Mac's (worst d_fast / threshold 2.11e-4, 5879
+products, max_frac 3.81e-5, controls 2.21e123 and 2.14e123). `cargo test` ran without RUSTFLAGS, so on multidouble's portable Sse2 backend, not the Avx2 one `hp/build.sh` uses; `step2b_native.sh` (added, same commit) repeats it with
+`RUSTFLAGS='-C target-cpu=native'`. `split_tests.rs`'s `synth()` builds its inputs with libm `tan`, `sin` and `cos`.

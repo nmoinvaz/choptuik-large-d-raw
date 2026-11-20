@@ -1,0 +1,9 @@
+# 2026-11-20 07:18:21 UTC start, hp 9980cd93, Python 3.14.10, maturin maturin 1.16.0, multidouble version = "4.9.1", load 10.39 12.31 12.62
+step1_build: expected exit 0, got 0, 3554 s (cap 5580 s) OK
+hpkernel import: exit 0 hpkernel avx2 /home/nathan/Source/venv-i1034/lib/python3.14/site-packages/hpkernel/__init__.py multidouble avx2
+step_timing_ok: expected exit 0, got 1, 21 s (cap 1800 s) MISMATCH
+step_timing_mutate_drop: expected exit 1, got 1, 17 s (cap 1800 s) OK
+step2_split: expected exit 0, got 0, 1223 s (cap 3600 s) OK
+   checksums in step2_split.log: split series' checksum 072e4ce86c49682c;fast series' checksum 69ffd7e54fcf9637; (expect split a0aada9b8fe95419, fast 30acdab9851616fb)
+step2_fastmul_planted: expected exit 0, got 0, 16 s (cap 3600 s) OK
+step5_ref: expected exit 0, got 0, 51 s (cap 1800 s) OK
