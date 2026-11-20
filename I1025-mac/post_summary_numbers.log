@@ -118,3 +118,32 @@ delta -0.0998 is past -0.05 (within its k_c spread 8.3e-04, not a converged boun
 delta crosses 0 between D 16.5 and 17: D = 16.5693 (linear), k_c spread 16.5116 to 16.6154
 slope of delta per unit D over the last steps (± its k_c spread, the change between the two highest k_c, not a converged bound): D 14.5-15 -0.1425 ± 0.0031, D 15-15.5 -0.1572 ± 0.0050, D 15.5-16 -0.1855 ± 0.0115, D 16-16.25 -0.1743 ± 0.0284, D 16.25-16.5 -0.2014 ± 0.0651, D 16.5-17 -0.2318 ± 0.0290
 delta -0.0998 is past -0.05 (within its k_c spread 8.3e-04, not a converged bound: holds), slope -0.2318 ± 0.0290 per unit D at the last step: NOT levelling
+== 2026-11-20 09:08:04 rebuilt from the raw-data repository at f731f843 after win2b's signtest batch (k_c 55 D 16.5 and k_c 47 D 17 excluded)
+excluded: I1025-mac/out/l1kc47Fr1025.jsonl D 17 lambda 2.03637873040092: signtest disagrees at lam + 0.02 (signs -,-,-,+; win2b, I1025-win2b/signtest_list.log)
+excluded: I1025-mac/out/l1kc55Fs1025.jsonl D 17.5 lambda 1.9522284485089008: two sign changes in its bracket; det M's sign is noise past D 17 at k_c 55
+excluded: I1025-mac/out/l1kc55Fb1025.jsonl D 16.5 lambda 2.159124821824751: not a root: signtest resolved + at both lam -/+ 0.02 (win2b, I1025-win2b/signtest_list_kc55.log)
+excluded: I1025-win/out/l1kc63Fw1025.jsonl D 17.5 lambda 1.974481053107075: signtest disagrees at lam -/+ 0.02 (winb, out/signtest_l1kc63_1025.jsonl)
+excluded: I1025-win2b/out/l1kc55Fv1025.jsonl D 16.75 lambda 1.9304710762503938: lam 1.9305 is 7.8% off its guess 2.0928, and signtest disagrees at 1.91 and 1.95 (win2b)
+D 15: k_c [47, 55], lambda 2.4210057702, change from k_c 47 1.2e-03
+D 15.5: k_c [47, 55], lambda 2.3387882480, change from k_c 47 1.2e-03
+D 16: k_c [47, 55], lambda 2.2426280416, change from k_c 47 4.5e-03
+D 16.25: k_c [47, 55], lambda 2.1974112030, change from k_c 47 2.6e-03
+D 16.5: k_c [47, 63], lambda 2.1454677043, change from k_c 47 9.4e-03
+D 16.75: k_c [47], lambda 2.1096347269
+D 17: k_c [55, 63], lambda 2.0265464974, change from k_c 55 8.3e-04
+D 17.5: k_c [47], lambda 1.8831582966
+== signtested rows D 15-17 (all of them)
+| 15 | 13 | 2.4210058 | 55 | BAD (1.2e-03) | 4.4e-05 | 2.1396527 (1.4e-07) | 0.281353 | +0.283942 | 3.6576 | -0.0337 |
+| 15.5 | 13.5 | 2.3387882 | 55 | BAD (1.2e-03) | 9.2e-05 | 2.1360373 (1.0e-07) | 0.202751 | +0.205340 | 2.7371 | -0.0349 |
+| 16 | 14 | 2.2426280 | 55 | BAD (4.5e-03) | 1.8e-04 | 2.1326306 (3.4e-08) | 0.109997 | +0.112586 | 1.5400 | -0.0362 |
+| 16.25 | 14.25 | 2.1974112 | 55 | BAD (2.6e-03) | 2.6e-04 | 2.1309993 (1.9e-08) | 0.066412 | +0.069001 | 0.9464 | -0.0369 |
+| 16.5 | 14.5 | 2.1454677 | 63 | BAD (9.4e-03) | 7.0e-05 | 2.1294131 (3.9e-08) | 0.016055 | +0.018643 | 0.2328 | -0.0375 |
+| 16.75 | 14.75 | 2.1096347 | 47 | single k_c | 2.8e-03 | 2.1278699 (4.3e-08) | -0.018235 | -0.015646 | -0.2690 | -0.0382 |
+| 17 | 15 | 2.0265465 | 63 | BAD (8.3e-04) | 1.5e-04 | 2.1263679 (2.0e-08) | -0.099821 | -0.097233 | -1.4973 | -0.0388 |
+delta crosses 0 between D 16.5 and 16.75: D = 16.6171 (linear), k_c spread not measured (single k_c at D 16.75)
+slope of delta per unit D over the last steps (± its k_c spread, the change between the two highest k_c, not a converged bound): D 15-15.5 -0.1572 ± 0.0050, D 15.5-16 -0.1855 ± 0.0115, D 16-16.25 -0.1743 ± 0.0284, D 16.25-16.5 -0.2014 ± 0.0478, D 16.5-16.75 -0.1372 ± 0.0374, D 16.75-17 -0.3263 ± 0.0033
+delta -0.0998 is past -0.05 (within its k_c spread 8.3e-04, not a converged bound: holds), slope -0.3263 ± 0.0033 per unit D at the last step: NOT levelling
+== the same without D 16.75 (k_c 47 only)
+delta crosses 0 between D 16.5 and 17: D = 16.5693 (linear), k_c spread 16.5312 to 16.6021
+slope of delta per unit D over the last steps (± its k_c spread, the change between the two highest k_c, not a converged bound): D 15-15.5 -0.1572 ± 0.0050, D 15.5-16 -0.1855 ± 0.0115, D 16-16.25 -0.1743 ± 0.0284, D 16.25-16.5 -0.2014 ± 0.0478, D 16.5-17 -0.2318 ± 0.0204
+delta -0.0998 is past -0.05 (within its k_c spread 8.3e-04, not a converged bound: holds), slope -0.2318 ± 0.0204 per unit D at the last step: NOT levelling
