@@ -147,6 +147,7 @@ so the double-precision floor does not explain it:
   2.10e5 at 0.2. The solves end at |r_3| 3.2e6 (0.15) and 2.8e6 (0.2).
 - hier.py's xi1 0.2 attempts did not converge either: |r_3| 2.0e6 and 3.3e6, and two attempts past the 3600 s cap.
 
-So at b11-15's +1 the M = 5 solve finds no solution from the M = 3 zero's harmonics at either radius. The data do not
+So at b11-15's +1 the M = 5 solve finds no solution at either radius, from the M = 3 zero's harmonics (hier.py at
+0.2) or from its best 0.2 attempt (0.15 and the diagnostics). The data do not
 say whether an M = 5 zero lies near it. `k_ulp.py` gives boxes 7 and 16's per-step numbers in the notes too: one
 step of x_3 moves r_1 by about 11 (box 7) and 5.4e2 (box 16) at 0.15.
