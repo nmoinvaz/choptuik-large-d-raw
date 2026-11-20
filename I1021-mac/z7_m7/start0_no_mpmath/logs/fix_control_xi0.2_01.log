@@ -1,0 +1,11 @@
+# INNER_NB_RTOL=1e-13 /Users/nathan/venv-i1021nb/bin/python -u hier_nb.py 7 2.718579189230 0.999228403195 --x=0.149203574917,0.0147190524909,0.00840534690638,0.0014703451817,0,0 --xi1=0.2 --pretune --fixA --schur --predict --floor --procs 1 --h3=1e-4 --verbose=2
+Traceback (most recent call last):
+  File "/Users/nathan/Source/choptuik-large-d-1021nb/solver/inner_stokes/hier_nb.py", line 31, in <module>
+    import inner_nb                                         # noqa: E402
+    ^^^^^^^^^^^^^^^
+  File "/Users/nathan/Source/choptuik-large-d-1021nb/solver/inner_stokes/inner_nb.py", line 33, in <module>
+    import inner_np as I                                    # noqa: E402
+    ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nathan/Source/choptuik-large-d-1021nb/solver/inner_stokes/inner_np.py", line 22, in <module>
+    import mpmath as mp
+ModuleNotFoundError: No module named 'mpmath'

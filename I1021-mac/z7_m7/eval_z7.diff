@@ -1,0 +1,72 @@
+2,8c2,7
+< """eval_z16.py [--dir walks] [--mutate=shift|ratio] [--selftest [--break]]: the readings of box 16's zero at M = 7 (#1021), #1027's rule
+< through eval1027.py (copy of I1027-dh610's, unchanged). Per radius xi1 in (0.25, 0.2): the control walk (the known zero, #1027's; validated
+< there only at 0.15, so here a control failure is reported as a result), the M = 5 walk of box 16 (Z5, the M 3 -> 5 shift s35 = |Z5 - Z3|, Z3 the M = 3
+< zero's located place), the M = 7 walk from Z5 (|F7/F5| and |F5/F3| at its first solve, the M = 7 zero Z7, the M 5 -> 7 shift s57) and the M = 7 walk from the
+< input's own point (information). Verdict by eval1027.judge_zero: CONVERGES: |F7/F5| <= 0.2 at Z5 and a converged M = 7 walk with s57 < s35; DOES NOT:
+< |F7/F5| >= 0.3 or no M = 7 zero near it; UNDECIDED otherwise. With no M = 5 zero the M = 7 walk from the input's point is judged with s35 = 0 (the ratio
+< alone can give DOES NOT; CONVERGES cannot be reached). The evaluator is checked on #1027's validated control walk (xi1 0.15): it must pass, and with
+---
+> """eval_z7.py [--dir walks] [--mutate=shift|ratio] [--selftest [--break]]: the readings of box 7's zero at M = 7 (#1021; eval_z16.py of
+> I1021-dh610/z16_m7 at raw 5b72af8c with box 7's M = 3 zero, the control file's path, xi1 0.2 only and the M = 5 control added), #1027's rule
+> through eval1027.py (copy of I1027-dh610's, unchanged). At xi1 0.2: the M = 5 control walk (#1026's, judged by eval1026.py, unchanged), the control walk (the known zero, #1027's; validated
+> there only at 0.15, so here a control failure is reported as a result), the M = 5 walk of box 7 (Z5, the M 3 -> 5 shift s35 = |Z5 - Z3|, Z3 the M = 3
+> zero's located place), the M = 7 walk from Z5 (|F7/F5| and |F5/F3| at its first solve, the M = 7 zero Z7, the M 5 -> 7 shift s57). Verdict by eval1027.judge_zero: CONVERGES: |F7/F5| <= 0.2 at Z5 and a converged M = 7 walk with s57 < s35; DOES NOT:
+> |F7/F5| >= 0.3 or no M = 7 zero near it; UNDECIDED otherwise. With no M = 5 zero the verdict is UNDECIDED (box 7 has no input point to walk from). The evaluator is checked on #1027's validated control walk (xi1 0.15): it must pass, and with
+17a17
+> import eval1026 as E6  # noqa: E402
+19,20c19,20
+< Z3 = (3.553346604669114, 0.41317228451624904)      # the M = 3 zero's located place (inputs/z16_m7_inputs.json, m3_zero.located_r1b)
+< CTRL_FILE = "/home/nathan/Source/choptuik-large-d-raw/I1027-dh610/walks/walk_control_xi0.15.json"
+---
+> Z3 = (3.2454793232694903, 0.34585226845559425)     # box 7's M = 3 zero located at xi1 0.17 (I1021-mac/loc/z7_6da7da7b/count_M3_loc_z7_6da7da7b.json)
+> CTRL_FILE = os.path.join(HERE, "inputs", "walk_control_xi0.15.json")      # I1027-dh610/walks/ at raw 245cdef1
+33,34c33,34
+<         E.Z["z16"] = dict(M5=z5, s35=s35)
+<         lab, txt = E.judge_zero("z16", w7, mut)
+---
+>         E.Z["z7"] = dict(M5=z5, s35=s35)
+>         lab, txt = E.judge_zero("z7", w7, mut)
+41,42c41,42
+<     E.Z["z16"] = dict(M5=Z3, s35=0.0)
+<     lab, txt = E.judge_zero("z16", w7in, mut)
+---
+>     E.Z["z7"] = dict(M5=Z3, s35=0.0)
+>     lab, txt = E.judge_zero("z7", w7in, mut)
+64c64
+<     def mk(r75, conv=True, A=3.5533, w=0.4132, why="x"):
+---
+>     def mk(r75, conv=True, A=Z3[0], w=Z3[1], why="x"):
+68,72c68,72
+<     m5 = dict(verdict=dict(converged=True, A=3.5533 + 0.05, w=0.4132))          # s35 about 0.05
+<     got = [z16_verdict(m5, mk(0.1, A=3.5533 + 0.05 + 0.02), None, mut)[0],      # shift 0.02 < 0.05, ratio 0.1
+<            z16_verdict(m5, mk(0.35, A=3.5533 + 0.05 + 0.02), None, mut)[0],
+<            z16_verdict(m5, mk(0.25, A=3.5533 + 0.05 + 0.02), None, mut)[0],
+<            z16_verdict(m5, mk(0.1, A=3.5533 + 0.05 + 0.2), None, mut)[0],      # shift 0.2 > 0.05
+---
+>     m5 = dict(verdict=dict(converged=True, A=Z3[0] + 0.05, w=Z3[1]))          # s35 about 0.05
+>     got = [z16_verdict(m5, mk(0.1, A=Z3[0] + 0.05 + 0.02), None, mut)[0],      # shift 0.02 < 0.05, ratio 0.1
+>            z16_verdict(m5, mk(0.35, A=Z3[0] + 0.05 + 0.02), None, mut)[0],
+>            z16_verdict(m5, mk(0.25, A=Z3[0] + 0.05 + 0.02), None, mut)[0],
+>            z16_verdict(m5, mk(0.1, A=Z3[0] + 0.05 + 0.2), None, mut)[0],      # shift 0.2 > 0.05
+78c78
+<     print(f"selftest{' --break (--mutate=ratio inside)' if brk else ''}: z16 verdicts {got} (expect {want}): {'PASS' if ok else 'FAIL'}")
+---
+>     print(f"selftest{' --break (--mutate=ratio inside)' if brk else ''}: z7 verdicts {got} (expect {want}): {'PASS' if ok else 'FAIL'}")
+91c91,97
+<     for xi in ("0.25", "0.2"):
+---
+>     for xi in ("0.2",):
+>         c5 = load(d, "control5", xi)
+>         if c5:
+>             ok5, t5 = E6.judge_control(c5["verdict"])
+>             out.append(f"xi1 {xi} M = 5 control (#1026's, the known zero from its M = 3 place): {'PASS' if ok5 else 'FAIL'}: {t5}")
+>         else:
+>             out.append(f"xi1 {xi} M = 5 control: no walk")
+98,100c104,105
+<         lab, txt = z16_verdict(load(d, "z16m5", xi), load(d, "z16", xi), load(d, "z16in", xi), mut)
+<         out.append(f"xi1 {xi} z16: {lab}: {txt}")
+<         out.append(f"xi1 {xi} z16 from the input's point (information): {info_in(load(d, 'z16in', xi))}")
+---
+>         lab, txt = z16_verdict(load(d, "z7m5", xi), load(d, "z7", xi), None, mut)
+>         out.append(f"xi1 {xi} z7: {lab}: {txt}")

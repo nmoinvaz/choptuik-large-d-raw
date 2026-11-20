@@ -1,0 +1,34 @@
+# I1021-mac/z7_m7: box 7's zero at M = 7 by #1027's protocol and rule, xi1 0.2 only, on the Mac
+
+Machine: the Mac (Apple M5), helper session xfchecks. Issue https://github.com/nmoinvaz/choptuik-large-d/issues/1021, the
+coordinator's hc message of 20 Nov 2026 (about 06:50 UTC): box 7's sign -1 M = 3 zero by the route dh610 runs for box 16
+(I1021-dh610/z16_m7 at raw 5b72af8c), at xi1 0.2 only, with the known zero's controls at 0.2; #1027's rule unchanged.
+
+Code: `hier_nb.py` of choptuik-large-d at fc7dee4d (worktree `choptuik-large-d-1021nb`, detached, clean), as dh610's.
+Venv `/Users/nathan/venv-i1021nb` (new, uv): python 3.14.7, requirements.txt's pins (numpy 2.5.4, scipy 1.18.1, mpmath 1.3.0, ...), numba
+0.68.1, llvmlite 0.50.0 (dh610: python 3.14.10, numba 0.68.1). No venv on the Mac had numba. NUMBA_CACHE_DIR is in the
+session's scratchpad. `INNER_NB_RTOL=1e-13` at M = 7, as in #1027 (walk1027.py sets it).
+
+Files:
+- `dh610_5b72af8c/`: dh610's driver as fetched by `git show 5b72af8c:I1021-dh610/z16_m7/<file>` (`SHA256SUMS`).
+- `walk1026.py`, `walk1027.py`, `eval1027.py`, `z16_args.py`: dh610's copies, unchanged (byte for byte).
+  `eval1026.py`: I1026-dh610's at raw 245cdef1, unchanged, for the M = 5 control's reading.
+- `eval_z7.py`: dh610's `eval_z16.py` with box 7's M = 3 zero (A 3.2454793232694903, w/w_inf 0.34585226845559425,
+  located at xi1 0.17, `loc/z7_6da7da7b/`), the stored control's path (`inputs/walk_control_xi0.15.json`,
+  I1027-dh610/walks at 245cdef1), xi1 0.2 only, no walk from an input point (box 7 has none: with no M = 5 zero the
+  verdict is UNDECIDED), the M = 5 control's reading added, and the selftest's synthetic walks centered on box 7's
+  zero instead of box 16's (`eval_z7.diff`).
+- `common_z7.sh`, `run_z7.sh`: dh610's `common_z16.sh`, `run_z16.sh` with the Mac's paths, xi1 0.2 only, 1 process
+  per solve (dh610: 2) and each walk's cap twice dh610's, the M = 5 control (`walk1026.py control5` from the known
+  zero's M = 3 place with its M = 3 harmonics, #1026's control, which must reach the stored M = 5 zero within 1e-5),
+  and the compiled backend's checks of `inner_nb_checks.sh` (fc7dee4d), with their logs here instead of the worktree.
+- `inputs/z7_start.txt`: box 7's M = 3 zero and its M = 3 harmonics (B3, C3), from `m5/z7_start.txt`.
+
+Readings (fixed before the run; #1027's, `eval1027.py` through `eval_z7.py`): CONVERGES: |F_7/F_5| <= 0.2 at the
+first solve (at the M = 5 zero Z5) and the M = 7 walk converges with s57 = |Z7 - Z5| smaller than s35 = |Z5 - Z3|.
+DOES NOT: |F_7/F_5| >= 0.3, or no M = 7 zero near it. UNDECIDED otherwise, or when no M = 5 zero is found. The M = 7
+control was validated only at 0.15 (#1027), so its result at 0.2 is reported, not a gate.
+
+A first start (06:51:54 UTC) failed at import, every step at once: the venv had numpy, scipy and numba only, and
+inner_np.py imports mpmath (`start0_no_mpmath/`). With requirements.txt's pins installed the driver was started again at
+06:53:11 UTC; the evaluator's and the compiled backend's checks then give their expected exits (`exits_z7.txt`).
