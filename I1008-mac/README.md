@@ -75,3 +75,20 @@ double-double). Readings, fixed now:
    discrete system in those rows.
 3. If R in the rest rows is <= 1e-38 at h <= 1e-24, the hypothesis fails.
 4. Anything else is reported as it is.
+
+## floor4 result (written 2026-11-20 16:13 UTC)
+
+floor4 (floor4.log) is blind, so it gives no reading. At fixed z the residual has a smooth term R = 1.49e60 h^2 (157 at
+h = 1.03e-29, 1.49e20 at 1e-20, quadratic to three digits over nine decades, largest in the held rows 640-671), so a
+1e-36 non-smooth part is far below R at every h of one double-double ulp of D or more. The control did not fire: F_D
+times 1 + 1e-6 left R unchanged at h = 1e-20 (1.49e20), against the 10 times required. A test of the hypothesis needs
+the remainder past the jet, F(z_0, D + h) - sum_k h^k F_k to order 3 or more with the held fit's jets, which this
+probe does not form.
+
+## What the probe found (floor1-floor3)
+
+At run2's arc step 7 state (D 259.4858), the predicted max|F| that run2 logs is set after the re-seed by node 0's
+second block of rows (96-98, 126-127): 7.8e-36, 1.1e-35 and 1.87e-36 at a = 1e-4, 1e-3 and 0.0139, with no trend in a,
+and 1.9e-70 at a = 0. Before the re-seed the prediction misses linearly in a, mostly in the horizon rows (2.8e-27 per
+unit a); the re-seed's octo-double rungs converge to 2e-71..7e-71 and take the horizon rows to 1e-70..5e-68. So the
+floor is neither the re-seed's convergence nor the series' order, and a shorter arclength step does not lower it.

@@ -1,0 +1,36 @@
+hpkernel /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/afb99455-a815-419f-becf-38b07aee7d3a/scratchpad/floor_site/hpkernel/__init__.py
+code 6f401e0b
+ hp/anm_run.py   |  5 ++++
+ hp/arclength.py | 79 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++-
+ 2 files changed, 83 insertions(+), 1 deletion(-)
+start 2026-11-20 15:24:36
+horizon series to order 135 instead of the state's 135
+held values from the fit data/held_fit.json (degree 8, 138 full-system states, D 38.020417-73.0), relative to the base
+the base keeps its stored plan (21 steps)
+  on 0: |F| 1.94e-70 converged, Delta 1.68346908127357131 +1.4332e-17
+      elim projections {'u0': 0, 'u0q': 0, 'ladder': 0, 'failed': 0, 'skipped': 1}
+      octo-double Newton: 1 steps, max|F| 1.9e-70, converged; double-double |F| of its first two parts 3.2e+09
+base I1008-macm3/run2/arc_002_D259.485823.npz: D 259.485822608, M 32, pin 3 (held [5, 7, 9, 11, 13]), |F| 3.2e+09; N 24, eps 1e-14, h_max 1.0, corrector od (junk_only False), tol 1.0e-20 x 1.45^(D - 259.48582), stalls accepted below 1e-17
+  series at D 259.485822607779 read from /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/afb99455-a815-419f-becf-38b07aee7d3a/scratchpad/raw1008/I1008-macm3/run2/arcjet_002_D259.485823.npz: |w_1| 3.262e-04, |w_N| 4.689e-24
+Traceback (most recent call last):
+  File "/Users/nathan/Source/choptuik-large-d/hp/anm_run.py", line 1183, in <module>
+    main()
+    ~~~~^^
+  File "/Users/nathan/Source/choptuik-large-d/hp/anm_run.py", line 803, in main
+    sys.exit(arclength.run_chain(dict(opt=opt, raw=raw, out=out, D=D, M=M, nodes=nodes, kt=kt, kc=kc, ks=ks, kf=kf, N=N, segs=segs,
+             ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                      ks_held=ks_held, hfit=hfit, held_x=held_x, hparts=hparts, rows=rows, mk=mk, wrap_at=wrap_at,
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                      last_q=last_q, state_path=os.path.join(raw, opt["state"]), coefficients_o=coefficients_o,
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                      trend=opt["trend"])))
+                                      ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nathan/Source/choptuik-large-d/hp/arclength.py", line 838, in run_chain
+    return run_floor(c) if int(opt["arc_diag"]) == 2 else run_diag(c)
+           ~~~~~~~~~^^^
+  File "/Users/nathan/Source/choptuik-large-d/hp/arclength.py", line 996, in run_floor
+    offsets={k: int(v) for k, v in e0["rs"].off.items()} if e0["rs"] is not None else None, points=[])
+                ~~~^^^
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'function'
+exit 1
+end 2026-11-20 15:27:25

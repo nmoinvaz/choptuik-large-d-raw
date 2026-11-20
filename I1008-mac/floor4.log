@@ -1,0 +1,23 @@
+hpkernel /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/afb99455-a815-419f-becf-38b07aee7d3a/scratchpad/floor_site/hpkernel/__init__.py
+code 6f401e0b
+ hp/anm_run.py   |   7 ++++
+ hp/arclength.py | 127 +++++++++++++++++++++++++++++++++++++++++++++++++++++++-
+ 2 files changed, 133 insertions(+), 1 deletion(-)
+start 2026-11-20 16:09:09
+horizon series to order 135 instead of the state's 135
+held values from the fit data/held_fit.json (degree 8, 138 full-system states, D 38.020417-73.0), relative to the base
+the base keeps its stored plan (21 steps)
+  on 0: |F| 1.94e-70 converged, Delta 1.68346908127357131 +1.4332e-17
+      elim projections {'u0': 0, 'u0q': 0, 'ladder': 0, 'failed': 0, 'skipped': 1}
+      octo-double Newton: 1 steps, max|F| 1.9e-70, converged; double-double |F| of its first two parts 3.2e+09
+base I1008-macm3/run2/arc_002_D259.485823.npz: D 259.485822608, M 32, pin 3 (held [5, 7, 9, 11, 13]), |F| 3.2e+09; N 24, eps 1e-14, h_max 1.0, corrector od (junk_only False), tol 1.0e-20 x 1.45^(D - 259.48582), stalls accepted below 1e-17
+  series at D 259.485822607779 read from /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/afb99455-a815-419f-becf-38b07aee7d3a/scratchpad/raw1008/I1008-macm3/run2/arcjet_002_D259.485823.npz: |w_1| 3.262e-04, |w_N| 4.689e-24
+floor dh 1e-29 (used 1.026e-29): R max 1.57e+02 (held 1.57e+02, horizon 5.74e+01, rest 1.70e+01, top rows [671, 670, 640, 669, 641]); control 1.57e+02 (19 s)
+floor dh 1e-28 (used 1.002e-28): R max 1.50e+04 (held 1.50e+04, horizon 5.48e+03, rest 1.62e+03, top rows [671, 670, 640, 669, 641]); control 1.50e+04 (20 s)
+floor dh 1e-26 (used 1.000e-26): R max 1.50e+08 (held 1.50e+08, horizon 5.46e+07, rest 1.62e+07, top rows [671, 670, 640, 669, 641]); control 1.50e+08 (21 s)
+floor dh 1e-24 (used 1.000e-24): R max 1.50e+12 (held 1.50e+12, horizon 5.46e+11, rest 1.62e+11, top rows [671, 670, 640, 669, 641]); control 1.50e+12 (22 s)
+floor dh 1e-22 (used 1.000e-22): R max 1.50e+16 (held 1.50e+16, horizon 5.46e+15, rest 1.62e+15, top rows [671, 670, 640, 669, 641]); control 1.50e+16 (23 s)
+floor dh 1e-20 (used 1.000e-20): R max 1.49e+20 (held 1.49e+20, horizon 5.46e+19, rest 1.62e+19, top rows [671, 670, 640, 669, 641]); control 1.49e+20 (24 s)
+done
+exit 0
+end 2026-11-20 16:11:36

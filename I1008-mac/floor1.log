@@ -1,0 +1,23 @@
+hpkernel /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/afb99455-a815-419f-becf-38b07aee7d3a/scratchpad/floor_site/hpkernel/__init__.py
+code 6f401e0b
+ hp/anm_run.py   |  5 ++++
+ hp/arclength.py | 80 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++-
+ 2 files changed, 84 insertions(+), 1 deletion(-)
+start 2026-11-20 15:27:58
+horizon series to order 135 instead of the state's 135
+held values from the fit data/held_fit.json (degree 8, 138 full-system states, D 38.020417-73.0), relative to the base
+the base keeps its stored plan (21 steps)
+  on 0: |F| 1.94e-70 converged, Delta 1.68346908127357131 +1.4332e-17
+      elim projections {'u0': 0, 'u0q': 0, 'ladder': 0, 'failed': 0, 'skipped': 1}
+      octo-double Newton: 1 steps, max|F| 1.9e-70, converged; double-double |F| of its first two parts 3.2e+09
+base I1008-macm3/run2/arc_002_D259.485823.npz: D 259.485822608, M 32, pin 3 (held [5, 7, 9, 11, 13]), |F| 3.2e+09; N 24, eps 1e-14, h_max 1.0, corrector od (junk_only False), tol 1.0e-20 x 1.45^(D - 259.48582), stalls accepted below 1e-17
+  series at D 259.485822607779 read from /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/afb99455-a815-419f-becf-38b07aee7d3a/scratchpad/raw1008/I1008-macm3/run2/arcjet_002_D259.485823.npz: |w_1| 3.262e-04, |w_N| 4.689e-24
+floor series: a 0, D 259.485822607779: max|F| before the re-seed 7.69e-38 (held 7.69e-38, other 1.94e-70), after 7.69e-38 (held 7.69e-38, other 1.94e-70) (87 s)
+floor series: a 0.0001, D 259.48592260734: max|F| before the re-seed 2.77e-31 (held 4.59e-32, other 2.77e-31), after 7.78e-36 (held 7.69e-38, other 7.78e-36) (173 s)
+floor series: a 0.001, D 259.486822603391: max|F| before the re-seed 3.36e-30 (held 5.56e-31, other 3.36e-30), after 1.06e-35 (held 7.69e-38, other 1.06e-35) (253 s)
+floor series: a 0.0138854, D 259.499707984362: max|F| before the re-seed 4.23e-29 (held 7.00e-30, other 4.23e-29), after 1.87e-36 (held 7.69e-38, other 1.87e-36) (329 s)
+floor control (w_1 x (1 + 1e-20)): a 0.0138854, D 259.499707984362: max|F| before the re-seed 2.90e+16 (held 2.90e+16, other 1.06e+16), after none (460 s)
+floor control: FIRES (2.90e+16 against 4.23e-29); base at a = 0: NOT at its own level, or a = 0 not first
+done
+exit 1
+end 2026-11-20 15:38:23
