@@ -1,6 +1,6 @@
 # I1021-mac/z16_m7: box 16's zero at M = 7 on the Mac, at xi1 0.15 under the criteria fixed on #1048
 
-Machine: the Mac, helper session xfchecks, 1 nice-10 slot, one solve at a time. Issue #1021. Written 20 Nov 2026 08:57 UTC,
+Machine: the Mac, helper session xfchecks, 1 nice-10 slot, one solve at a time. Issue #1021. Written 20 Nov 2026 08:56 UTC,
 before the run. Code, venv and backend checks as `../z7_m7/README.md` (hier_nb.py at fc7dee4d, venv-i1021nb). Driver
 `../z7_m7/run_m7b.sh z16`; walks `../z7_m7/walk1026b.py`, `../z7_m7/walk1027b.py` (walk1026.py and walk1027.py with the bars
 as options); evaluator `../z7_m7/eval_m7b.py --box z16`. Start: box 16's M = 3 zero located at xi1 0.18 (at 0.17 the locate
