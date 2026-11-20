@@ -52,6 +52,12 @@ continuation-valued points, 20:28-00:10 UTC, logs `start_noise_dh610_A.log` and 
 above 1e2 or 1e7, every start passes |r3| <= 3 noise3, and the largest start noise3 is 5.7e-4. Three replayed points
 were lost by the continuation (b11-15 lines 652 and 659, b26-31 line 764, counted from 1).
 
+The lines the two parts added later, on their final files: b16-20 lines 900-951 (raw e5f860b6, seeds
+`seeds_dh610_b16-20_951.jsonl`, `start_noise_dh610_b16-20_after899.jsonl`, 52 points, log `_C.log`) and b11-15 lines
+850-1172 (raw 5247895e, seeds `seeds_dh610_b11-15_1172.jsonl`, whose first 232 rows are `seeds_dh610_b11-15.jsonl`
+byte for byte, `start_noise_dh610_b11-15_after849.jsonl`, 323 points, log `_D.log`, 00:43-02:05 UTC on 20 Nov). None
+of the 375 starts is above 1e2 or 1e7, every start passes |r3| <= 3 noise3, and the largest start noise3 is 9.1e-6.
+
 Sheets of S_3 = 0 (2026-11-20 00:16-00:37 UTC). `loc/`: box 16's -1 (b16-20's corner (3.5529706, 0.41279321),
 |R| 281 under 10 sigma 580) was recounted in one cell placing that corner at 0.4 of each range (`leaf_z16.jsonl`,
 `run_loc.sh`, 998fd290). With starts 0.2 first (`z16/`) and 0.25 first (`z16_s0.25-0.2/`) its five points have the
