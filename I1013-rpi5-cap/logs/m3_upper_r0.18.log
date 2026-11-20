@@ -36,3 +36,46 @@
   point A 3.6123456 wf 1.00654321: R -189491-431302j, |r3| 3.3e-07, continuation [0.2, 0.19, 0.18], 132 CPU s
   point A 3.8623456 wf 1.00654321: R 3.74858e+06+1.98545e+06j, |r3| 4.1e-06, continuation [0.2, 0.19, 0.18], 131 CPU s
   point A 3.8623456 wf 1.10654321: no value: continuation lost S3's zero after [], 730 CPU s
+  point A 3.6123456 wf 1.10654321: no value: continuation lost S3's zero after [], 1404 CPU s
+  point A 3.7373456 wf 1.00654321: R 1.17204e+06-922540j, |r3| 1.6e-06, continuation [0.2, 0.19, 0.18], 159 CPU s
+  point A 3.7998456 wf 1.00654321: R 2.58063e+06-304916j, |r3| 1.4e-06, continuation [0.2, 0.19, 0.18], 132 CPU s
+  point A 3.6748456 wf 1.00654321: R 237303-772845j, |r3| 8.9e-07, continuation [0.2, 0.19, 0.18], 134 CPU s
+  point A 3.7060956 wf 1.00654321: R 634198-898791j, |r3| 2.1e-06, continuation [0.2, 0.19, 0.18], 106 CPU s
+  point A 3.8310956 wf 1.00654321: R 3.28407e+06+569031j, |r3| 1.3e-06, continuation [0.2, 0.19, 0.18], 114 CPU s
+  point A 3.7685956 wf 1.00654321: R 1.83844e+06-760468j, |r3| 3e-06, continuation [0.2, 0.19, 0.18], 124 CPU s
+  point A 3.6435956 wf 1.00654321: R -29767.2-604161j, |r3| 6.6e-07, continuation [0.2, 0.19, 0.18], 125 CPU s
+  point A 3.6123456 wf 1.20654321: R 1.19512e+06+805921j, |r3| 7.2e-07, continuation [0.2, 0.19, 0.18], 174 CPU s
+  point A 3.8623456 wf 1.20654321: no value: continuation lost S3's zero after [], 761 CPU s
+  point A 3.8623456 wf 1.30654321: R 2.43414e+07-7.65992e+06j, |r3| 1e-05, continuation [0.2, 0.19, 0.18], 412 CPU s
+  point A 3.6123456 wf 1.30654321: no value: continuation lost S3's zero after [0.2, 0.1975, 0.195], 1349 CPU s
+/home/nathan/Source/cl-1013cap7/solver/inner_stokes/inner_np.py:223: RuntimeWarning: overflow encountered in exp
+  q = np.fft.fft(Jth * np.exp(-Pi)) / NTH
+/home/nathan/Source/cl-1013cap7/solver/inner_stokes/inner_np.py:223: RuntimeWarning: invalid value encountered in multiply
+  q = np.fft.fft(Jth * np.exp(-Pi)) / NTH
+/home/nathan/Source/venv-choptuik/lib/python3.13/site-packages/numpy/fft/_pocketfft.py:101: RuntimeWarning: invalid value encountered in fft
+  return ufunc(a, fct, axes=[(axis,), (), (axis,)], out=out)
+/home/nathan/Source/cl-1013cap7/solver/inner_stokes/inner_np.py:224: RuntimeWarning: overflow encountered in scalar power
+  sc = np.exp(1 / (2 * r1 * r1)) * r1 ** (-2 * F2mean(Fh))
+/home/nathan/Source/cl-1013cap7/solver/inner_stokes/inner_np.py:227: RuntimeWarning: invalid value encountered in scalar divide
+  z = q[nu % NTH] * r1 ** (2j * nu * w) * sc / (2 * np.pi * abs(Kp(1j * nu * w)))
+  point A 4.1123456 wf 0.50654321: no value: continuation lost S3's zero after [0.2, 0.195], 226 CPU s
+  point A 4.1123456 wf 0.60654321: no value: continuation lost S3's zero after [0.25, 0.24875, 0.24625, 0.245], 2067 CPU s
+  point A 4.1123456 wf 1.10654321: R -2.14097e+06+5.25182e+07j, |r3| 0.00024, continuation [0.2, 0.19, 0.18], 129 CPU s
+  point A 4.1123456 wf 1.20654321: no value: integration past 2.4e+06 right-hand-side calls at xi1 0.25, continuation [], 1099 CPU s
+  point A 4.1123456 wf 1.30654321: no value: integration past 2.4e+06 right-hand-side calls at xi1 0.25, continuation [], 1403 CPU s
+  point A 4.3623456 wf 0.60654321: R 2.44159e+10-1.06456e+11j, |r3| 20, continuation [0.2, 0.19, 0.18], 108 CPU s
+  point A 4.3623456 wf 0.50654321: R 8.90882e+09-3.09229e+09j, |r3| 1.1e+02, continuation [0.2, 0.19, 0.18], 131 CPU s
+  point A 4.3623456 wf 0.55654321: R 2.23817e+10-2.83393e+10j, |r3| 29, continuation [0.2, 0.19, 0.18], 148 CPU s
+  point A 4.3623456 wf 0.53154321: R 1.52485e+10-1.13771e+10j, |r3| 55, continuation [0.2, 0.19, 0.185, 0.18], 177 CPU s
+  point A 4.3623456 wf 0.70654321: R 8.77874e+11+5.72047e+11j, |r3| 0.21, continuation [0.2, 0.19, 0.18], 157 CPU s
+  point A 4.1123456 wf 0.70654321: no value: continuation lost S3's zero after [0.2, 0.19, 0.185, 0.18375], 374 CPU s
+/home/nathan/Source/cl-1013cap7/solver/inner_stokes/inner_np.py:223: RuntimeWarning: overflow encountered in exp
+  q = np.fft.fft(Jth * np.exp(-Pi)) / NTH
+/home/nathan/Source/cl-1013cap7/solver/inner_stokes/inner_np.py:223: RuntimeWarning: invalid value encountered in multiply
+  q = np.fft.fft(Jth * np.exp(-Pi)) / NTH
+/home/nathan/Source/venv-choptuik/lib/python3.13/site-packages/numpy/fft/_pocketfft.py:101: RuntimeWarning: invalid value encountered in fft
+  return ufunc(a, fct, axes=[(axis,), (), (axis,)], out=out)
+  point A 4.3623456 wf 0.65654321: no value: continuation lost S3's zero after [], 301 CPU s
+  point A 4.3623456 wf 1.10654321: R 3.98705e+08-1.24432e+08j, |r3| 0.0026, continuation [0.2, 0.19, 0.18], 134 CPU s
+  point A 4.3623456 wf 1.20654321: R 1.67638e+08+7.22799e+08j, |r3| 0.0028, continuation [0.2, 0.19, 0.18], 158 CPU s
+  point A 4.2373456 wf 1.10654321: R -6.92034e+07+3.29169e+07j, |r3| 5.9e-05, continuation [0.2, 0.19, 0.18], 141 CPU s
