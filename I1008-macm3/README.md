@@ -346,3 +346,27 @@ Step 8 was accepted at its first attempt with the same arclength a as step 7: wi
 New in the table: the target D 259.49970798 was attempted twice, from bases 0.0278 and 0.0139 below it (statement 6). The predicted max|F| was x6.1 lower from the shorter step, but the factor from predicted max|F| to first |dz| agreed within x1.04. For this one pair that is consistent with the factor belonging to the target D and not to the base. Over all 13 points the predicted max|F| shows no monotone trend with the D move (statement 7). The source of the 1e-36 floor is still not identified.
 
 I changed no flag. run2 goes on: the series at D 259.4997 is being formed (1050 to 1091 s at the last bases), then arc step 9's first attempt. By the grow rule, a step accepted at its first attempt grows the next one by `--a_grow 1.25`, so its arclength a should be 0.0138854375 x 1.25 = 0.017356796875. The log will show it. t_D is 0.9999956133, no turn, and D is 0.403562 below 259.903269724106.
+
+
+### run2 progress, arc step 9 attempt 1 in progress (2026-11-20 18:11 UTC)
+
+Arc step 9's first attempt (arclength a 0.01735679688 = step 8's a 0.0138854 x 1.25, as the grow rule gives, D move 0.017356721) from D 259.49970798436209 to D 259.517064705106 is in its corrector, 11 corrections done, none refused by the stall rule so far (`--lam_stall 0.04`). The 11 corrections took 10330 s. Last accepted state: arc step 8, t_D 0.9999956133, no turn recorded, D 0.403562 below 259.903269724106 at its D and 0.386205 below it at this attempt's D.
+
+| correction | accepted lam | max\|F\| before -> after | \|dz\| before -> after | refused trials | seconds |
+|---|---|---|---|---|---|
+| 0 | 0.125 | 3.46e-36 -> 1.45e-29 | 7.03e-15 -> 6.17e-15 | 4 | 1205.17 |
+| 1 | 0.125 | 1.45e-29 -> 2.44e-29 | 6.17e-15 -> 5.38e-15 | 3 | 967.02 |
+| 2 | 0.125 | 2.44e-29 -> 3.05e-29 | 5.38e-15 -> 4.69e-15 | 3 | 893.35 |
+| 3 | 0.0625 | 3.05e-29 -> 3.03e-29 | 4.69e-15 -> 4.39e-15 | 4 | 1075.14 |
+| 4 | 0.0625 | 3.03e-29 -> 2.99e-29 | 4.39e-15 -> 4.12e-15 | 4 | 1112.27 |
+| 5 | 0.0625 | 2.99e-29 -> 2.94e-29 | 4.12e-15 -> 3.86e-15 | 4 | 1100.98 |
+| 6 | 0.125 | 2.94e-29 -> 3.04e-29 | 3.86e-15 -> 3.37e-15 | 3 | 959.34 |
+| 7 | 0.125 | 3.04e-29 -> 3.00e-29 | 3.37e-15 -> 2.95e-15 | 3 | 886.4 |
+| 8 | 0.125 | 3.00e-29 -> 2.89e-29 | 2.95e-15 -> 2.59e-15 | 3 | 929.47 |
+| 9 | 0.25 | 2.89e-29 -> 2.95e-29 | 2.59e-15 -> 1.95e-15 | 2 | 677.76 |
+| 10 | 0.5 | 2.95e-29 -> 3.24e-29 | 1.95e-15 -> 9.87e-16 | 1 | 523.51 |
+
+Predicted max|F| 3.46e-36 (the prediction moved +3.55e-31 in D and -5.36e-35 in Delta at the re-seed), first |dz| 7.03e-15, first |dz| / predicted max|F| 2.03e+21 at this target D (the table of the last post gave 1.7e+21 at D 259.4997 and 2.2e+21 at D 259.5275). Refused trials so far 33 of 44 trial lines, 33 `projection failed` lines, refused trial lam 0.125 to 1 (trial |F| 8.63e+06 to 3.67e+09). Accepted lam so far: 0.125, 0.125, 0.125, 0.0625, 0.0625, 0.0625, 0.125, 0.125, 0.125, 0.25, 0.5.
+
+anm_run pid 98367: elapsed 12:00:07, 578.9% cpu, rss 331 MB; cap 36 h (SIGTERM at 2026-11-21 18:11:16 UTC).
+

@@ -266,3 +266,107 @@ step 1: D0 259.471937231205, sign +1, a_max 2.585e+00, a 1.389e-02 (a_max), |t_D
   corrector: 10 steps, pinned max|F| 2.48e-71 at D 259.49970798436210724, converged, 4593.6 s; denominators 1.00e+00, 1.00e+00, 1.00e+00, 1.00e+00, 1.00e+00, 1.00e+00, 1.00e+00, 1.00e+00, 1.00e+00, 1.00e+00, |b| 2.96e-03, 3.58e-03, 4.09e-03, 5.25e-03, 3.94e-03, 2.96e-03, 2.96e-03, 2.96e-03, 2.96e-03, 2.96e-03
 step 2: D0 259.485822607779, sign +1, a_max 2.543e+00, a 1.389e-02 (a_max), |t_D| base 1.000, cond max 1.0e+00 -> D 259.499707984362 in 10 its, max|F| 2.5e-71
   coefficients_o: this hpkernel has no Solver.series_o (built before #914); the series by the jets
+  series at D 259.499707984362: pivots 2.4e-30..1.4e+37, |w_1| 3.261e-04, |w_N| 3.725e-24, 1042.3 s
+  attempt at D 259.517064705106 (the prediction moved +3.55e-31 in D, -5.36e-35 in Delta): predicted max|F| 3.46e-36, re-seed ok
+      border at D 259.5170647051056548257723155439223: g +3.55e-31, dD +5.36e-17 -> held, den 1.0000, |b| 0.0030, |a| 7.03e-15
+    on 0 chord 0: max|F| 3.67e+09, |dw| 5.102e+24
+  on 0: strong chord (4 weak directions), 1 steps after the full first step; theta at its point inf (bound 0.750): refused, 234.45 s
+    on 0 trial lam 1: max|F| 3.67e+09; simplified correction / |dz| = 1.830e+54 (bound 0.750); refused, 232.37 s
+      on 0, lam 1: projection failed (2): point max|F| 3.67e+09; u0 rung 1 its, |R| 5.61e+09 -> 5.61e+09, NOT converged; u0 quad-double 8 its, |R| 2.16e+09 -> 2.62e+06, NOT converged; ladder FAILED after 8 rungs, last rung u 0.300000 quad-double 8 its, |R| 8.14e+08 -> 1.97e+06, NOT converged
+    on 0 trial lam 0.5: max|F| 2.34e+08; simplified correction / |dz| = 1.144e+53 (bound 0.875); refused, 223.26 s
+      on 0, lam 0.5: projection failed (3): point max|F| 2.34e+08; u0 rung 1 its, |R| 1.94e+09 -> 1.94e+09, NOT converged; u0 quad-double 8 its, |R| 3.81e+08 -> 2.31e+06, NOT converged; ladder FAILED after 8 rungs, last rung u 0.300000 quad-double 8 its, |R| 1.25e+09 -> 2.18e+06, NOT converged
+    on 0 trial lam 0.25: max|F| 1.60e+07; simplified correction / |dz| = 7.150e+51 (bound 0.938); refused, 169.25 s
+      on 0, lam 0.25: projection failed (4): point max|F| 1.60e+07; u0 rung 1 its, |R| 1.47e+09 -> 1.47e+09, NOT converged; u0 quad-double 8 its, |R| 1.33e+08 -> 1.80e+06, NOT converged; ladder FAILED after 8 rungs, last rung u 0.300000 quad-double 8 its, |R| 2.23e+09 -> 2.45e+06, NOT converged
+    on 0 trial lam 0.125: max|F| 1.45e-29; simplified correction / |dz| = 8.754e-01 (bound 0.969); accepted, 238.53 s
+      border at D 259.5170647051056548257723155439223: g -6.69e-18, dD +5.33e-17 -> held, den 1.0000, |b| 0.0037, |a| 6.17e-15
+  on 0: |F| 3.46e-36 -> 1.45e-29, |dz| 7.03e-15 -> 6.17e-15, lam 0.125, dDelta -7.03e-15, piv 2.4e-30..1.4e+37, 1205.17 s
+    on 1 trial lam 1: max|F| 2.35e+09; simplified correction / |dz| = 1.210e+54 (bound 0.750); refused, 222.8 s
+      on 1, lam 1: projection failed (5): point max|F| 2.35e+09; u0 rung 1 its, |R| 3.30e+09 -> 3.30e+09, NOT converged; u0 quad-double 8 its, |R| 1.76e+09 -> 3.47e+06, NOT converged; ladder FAILED after 8 rungs, last rung u 0.300000 quad-double 8 its, |R| 1.04e+09 -> 2.25e+06, NOT converged
+    on 1 trial lam 0.5: max|F| 1.62e+08; simplified correction / |dz| = 8.186e+52 (bound 0.875); refused, 227.06 s
+      on 1, lam 0.5: projection failed (6): point max|F| 1.62e+08; u0 rung 1 its, |R| 2.70e+09 -> 2.70e+09, NOT converged; u0 quad-double 8 its, |R| 1.56e+08 -> 1.93e+06, NOT converged; ladder FAILED after 8 rungs, last rung u 0.300000 quad-double 8 its, |R| 1.65e+09 -> 1.99e+06, NOT converged
+    on 1 trial lam 0.25: max|F| 1.58e+07; simplified correction / |dz| = 7.312e+51 (bound 0.938); refused, 169.85 s
+      on 1, lam 0.25: projection failed (7): point max|F| 1.58e+07; u0 rung 1 its, |R| 2.15e+09 -> 2.15e+09, NOT converged; u0 quad-double 8 its, |R| 1.34e+08 -> 1.94e+06, NOT converged; ladder FAILED after 8 rungs, last rung u 0.300000 quad-double 8 its, |R| 2.26e+09 -> 1.93e+06, NOT converged
+    on 1 trial lam 0.125: max|F| 2.44e-29; simplified correction / |dz| = 8.747e-01 (bound 0.969); accepted, 239.55 s
+      border at D 259.5170647051056548257723155439223: g -1.25e-17, dD +5.32e-17 -> held, den 1.0000, |b| 0.0049, |a| 5.38e-15
+  on 1: |F| 1.45e-29 -> 2.44e-29, |dz| 6.17e-15 -> 5.38e-15, lam 0.125, dDelta -6.17e-15, piv 2.4e-30..1.4e+37, 967.02 s
+    on 2 trial lam 1: max|F| 1.42e+09; simplified correction / |dz| = 8.021e+53 (bound 0.750); refused, 227.04 s
+      on 2, lam 1: projection failed (8): point max|F| 1.42e+09; u0 rung 1 its, |R| 2.43e+09 -> 2.43e+09, NOT converged; u0 quad-double 8 its, |R| 9.28e+08 -> 2.15e+06, NOT converged; ladder FAILED after 8 rungs, last rung u 0.300000 quad-double 8 its, |R| 1.93e+09 -> 1.92e+06, NOT converged
+    on 2 trial lam 0.5: max|F| 1.08e+08; simplified correction / |dz| = 5.920e+52 (bound 0.875); refused, 209.47 s
+      on 2, lam 0.5: projection failed (9): point max|F| 1.08e+08; u0 rung 1 its, |R| 1.35e+09 -> 1.35e+09, NOT converged; u0 quad-double 8 its, |R| 1.61e+08 -> 2.23e+06, NOT converged; ladder FAILED after 8 rungs, last rung u 0.300000 quad-double 8 its, |R| 1.18e+09 -> 1.77e+06, NOT converged
+    on 2 trial lam 0.25: max|F| 1.52e+07; simplified correction / |dz| = 7.262e+51 (bound 0.938); refused, 172.16 s
+      on 2, lam 0.25: projection failed (10): point max|F| 1.52e+07; u0 rung 1 its, |R| 6.48e+08 -> 6.48e+08, NOT converged; u0 quad-double 8 its, |R| 1.41e+08 -> 1.80e+06, NOT converged; ladder FAILED after 8 rungs, last rung u 0.300000 quad-double 8 its, |R| 9.76e+08 -> 2.02e+06, NOT converged
+    on 2 trial lam 0.125: max|F| 3.05e-29; simplified correction / |dz| = 8.745e-01 (bound 0.969); accepted, 175.83 s
+      border at D 259.5170647051056548257723155439223: g -1.76e-17, dD +5.32e-17 -> held, den 1.0000, |b| 0.0058, |a| 4.69e-15
+  on 2: |F| 2.44e-29 -> 3.05e-29, |dz| 5.38e-15 -> 4.69e-15, lam 0.125, dDelta -5.38e-15, piv 2.4e-30..1.4e+37, 893.35 s
+    on 3 trial lam 1: max|F| 8.32e+08; simplified correction / |dz| = 5.266e+53 (bound 0.750); refused, 227.53 s
+      on 3, lam 1: projection failed (11): point max|F| 8.32e+08; u0 rung 1 its, |R| 2.25e+09 -> 2.25e+09, NOT converged; u0 quad-double 8 its, |R| 5.03e+08 -> 1.94e+06, NOT converged; ladder FAILED after 8 rungs, last rung u 0.300000 quad-double 8 its, |R| 1.66e+09 -> 2.14e+06, NOT converged
+    on 3 trial lam 0.5: max|F| 6.94e+07; simplified correction / |dz| = 4.283e+52 (bound 0.875); refused, 169.03 s
+      on 3, lam 0.5: projection failed (12): point max|F| 6.94e+07; u0 rung 1 its, |R| 1.48e+09 -> 1.48e+09, NOT converged; u0 quad-double 8 its, |R| 1.43e+08 -> 1.99e+06, NOT converged; ladder FAILED after 8 rungs, last rung u 0.300000 quad-double 8 its, |R| 1.61e+09 -> 1.77e+06, NOT converged
+    on 3 trial lam 0.25: max|F| 1.41e+07; simplified correction / |dz| = 7.029e+51 (bound 0.938); refused, 168.59 s
+      on 3, lam 0.25: projection failed (13): point max|F| 1.41e+07; u0 rung 1 its, |R| 2.69e+09 -> 2.69e+09, NOT converged; u0 quad-double 8 its, |R| 1.34e+08 -> 1.72e+06, NOT converged; ladder FAILED after 8 rungs, last rung u 0.300000 quad-double 8 its, |R| 2.04e+09 -> 1.94e+06, NOT converged
+    on 3 trial lam 0.125: max|F| 9.23e+06; simplified correction / |dz| = 3.187e+51 (bound 0.969); refused, 169.71 s
+      on 3, lam 0.125: projection failed (14): point max|F| 9.23e+06; u0 rung 1 its, |R| 1.88e+09 -> 1.88e+09, NOT converged; u0 quad-double 8 its, |R| 1.23e+08 -> 1.98e+06, NOT converged; ladder FAILED after 8 rungs, last rung u 0.300000 quad-double 8 its, |R| 2.02e+09 -> 2.10e+06, NOT converged
+    on 3 trial lam 0.0625: max|F| 3.03e-29; simplified correction / |dz| = 9.374e-01 (bound 0.984); accepted, 233.48 s
+      border at D 259.5170647051056548257723155439223: g -1.98e-17, dD +5.32e-17 -> held, den 1.0000, |b| 0.0058, |a| 4.39e-15
+  on 3: |F| 3.05e-29 -> 3.03e-29, |dz| 4.69e-15 -> 4.39e-15, lam 0.0625, dDelta -4.69e-15, piv 2.4e-30..1.4e+37, 1075.14 s
+    on 4 trial lam 1: max|F| 6.27e+08; simplified correction / |dz| = 4.285e+53 (bound 0.750); refused, 222.19 s
+      on 4, lam 1: projection failed (15): point max|F| 6.27e+08; u0 rung 1 its, |R| 1.02e+09 -> 1.02e+09, NOT converged; u0 quad-double 8 its, |R| 4.56e+08 -> 2.51e+06, NOT converged; ladder FAILED after 8 rungs, last rung u 0.300000 quad-double 8 its, |R| 3.19e+09 -> 2.02e+06, NOT converged
+    on 4 trial lam 0.5: max|F| 5.45e+07; simplified correction / |dz| = 3.607e+52 (bound 0.875); refused, 221.78 s
+      on 4, lam 0.5: projection failed (16): point max|F| 5.45e+07; u0 rung 1 its, |R| 2.44e+09 -> 2.44e+09, NOT converged; u0 quad-double 8 its, |R| 1.48e+08 -> 2.10e+06, NOT converged; ladder FAILED after 8 rungs, last rung u 0.300000 quad-double 8 its, |R| 1.95e+09 -> 1.83e+06, NOT converged
+    on 4 trial lam 0.25: max|F| 1.30e+07; simplified correction / |dz| = 6.472e+51 (bound 0.938); refused, 168.72 s
+      on 4, lam 0.25: projection failed (17): point max|F| 1.30e+07; u0 rung 1 its, |R| 1.58e+09 -> 1.58e+09, NOT converged; u0 quad-double 8 its, |R| 1.55e+08 -> 2.17e+06, NOT converged; ladder FAILED after 8 rungs, last rung u 0.300000 quad-double 8 its, |R| 2.84e+09 -> 2.32e+06, NOT converged
+    on 4 trial lam 0.125: max|F| 8.94e+06; simplified correction / |dz| = 3.191e+51 (bound 0.969); refused, 169.09 s
+      on 4, lam 0.125: projection failed (18): point max|F| 8.94e+06; u0 rung 1 its, |R| 5.79e+08 -> 5.79e+08, NOT converged; u0 quad-double 8 its, |R| 1.03e+08 -> 2.11e+06, NOT converged; ladder FAILED after 8 rungs, last rung u 0.300000 quad-double 8 its, |R| 1.03e+09 -> 2.26e+06, NOT converged
+    on 4 trial lam 0.0625: max|F| 2.99e-29; simplified correction / |dz| = 9.375e-01 (bound 0.984); accepted, 223.25 s
+      border at D 259.5170647051056548257723155439223: g -2.19e-17, dD +5.33e-17 -> held, den 1.0000, |b| 0.0058, |a| 4.12e-15
+  on 4: |F| 3.03e-29 -> 2.99e-29, |dz| 4.39e-15 -> 4.12e-15, lam 0.0625, dDelta -4.39e-15, piv 2.4e-30..1.4e+37, 1112.27 s
+    on 5 trial lam 1: max|F| 4.74e+08; simplified correction / |dz| = 3.499e+53 (bound 0.750); refused, 222.85 s
+      on 5, lam 1: projection failed (19): point max|F| 4.74e+08; u0 rung 1 its, |R| 2.68e+09 -> 2.68e+09, NOT converged; u0 quad-double 8 its, |R| 4.40e+08 -> 2.39e+06, NOT converged; ladder FAILED after 8 rungs, last rung u 0.300000 quad-double 8 its, |R| 1.42e+09 -> 2.13e+06, NOT converged
+    on 5 trial lam 0.5: max|F| 4.31e+07; simplified correction / |dz| = 3.052e+52 (bound 0.875); refused, 199.76 s
+      on 5, lam 0.5: projection failed (20): point max|F| 4.31e+07; u0 rung 1 its, |R| 9.06e+08 -> 9.06e+08, NOT converged; u0 quad-double 8 its, |R| 1.36e+08 -> 3.03e+06, NOT converged; ladder FAILED after 8 rungs, last rung u 0.300000 quad-double 8 its, |R| 1.01e+09 -> 2.01e+06, NOT converged
+    on 5 trial lam 0.25: max|F| 1.20e+07; simplified correction / |dz| = 5.974e+51 (bound 0.938); refused, 168.7 s
+      on 5, lam 0.25: projection failed (21): point max|F| 1.20e+07; u0 rung 1 its, |R| 4.95e+08 -> 4.95e+08, NOT converged; u0 quad-double 8 its, |R| 1.02e+08 -> 1.67e+06, NOT converged; ladder FAILED after 8 rungs, last rung u 0.300000 quad-double 8 its, |R| 9.48e+08 -> 1.80e+06, NOT converged
+    on 5 trial lam 0.125: max|F| 8.63e+06; simplified correction / |dz| = 3.177e+51 (bound 0.969); refused, 168.46 s
+      on 5, lam 0.125: projection failed (22): point max|F| 8.63e+06; u0 rung 1 its, |R| 2.36e+09 -> 2.36e+09, NOT converged; u0 quad-double 8 its, |R| 1.56e+08 -> 1.76e+06, NOT converged; ladder FAILED after 8 rungs, last rung u 0.300000 quad-double 8 its, |R| 9.72e+08 -> 2.02e+06, NOT converged
+    on 5 trial lam 0.0625: max|F| 2.94e-29; simplified correction / |dz| = 9.375e-01 (bound 0.984); accepted, 233.87 s
+      border at D 259.5170647051056548257723155439223: g -2.39e-17, dD +5.33e-17 -> held, den 1.0000, |b| 0.0057, |a| 3.86e-15
+  on 5: |F| 2.99e-29 -> 2.94e-29, |dz| 4.12e-15 -> 3.86e-15, lam 0.0625, dDelta -4.12e-15, piv 2.4e-30..1.4e+37, 1100.98 s
+    on 6 trial lam 1: max|F| 3.60e+08; simplified correction / |dz| = 2.867e+53 (bound 0.750); refused, 226.75 s
+      on 6, lam 1: projection failed (23): point max|F| 3.60e+08; u0 rung 1 its, |R| 1.11e+09 -> 1.11e+09, NOT converged; u0 quad-double 8 its, |R| 3.32e+08 -> 2.09e+06, NOT converged; ladder FAILED after 8 rungs, last rung u 0.300000 quad-double 8 its, |R| 1.22e+09 -> 1.91e+06, NOT converged
+    on 6 trial lam 0.5: max|F| 3.42e+07; simplified correction / |dz| = 2.595e+52 (bound 0.875); refused, 221.26 s
+      on 6, lam 0.5: projection failed (24): point max|F| 3.42e+07; u0 rung 1 its, |R| 9.61e+08 -> 9.61e+08, NOT converged; u0 quad-double 8 its, |R| 1.30e+08 -> 2.13e+06, NOT converged; ladder FAILED after 8 rungs, last rung u 0.300000 quad-double 8 its, |R| 6.75e+08 -> 1.70e+06, NOT converged
+    on 6 trial lam 0.25: max|F| 1.11e+07; simplified correction / |dz| = 5.527e+51 (bound 0.938); refused, 168.77 s
+      on 6, lam 0.25: projection failed (25): point max|F| 1.11e+07; u0 rung 1 its, |R| 1.09e+09 -> 1.09e+09, NOT converged; u0 quad-double 8 its, |R| 1.35e+08 -> 1.98e+06, NOT converged; ladder FAILED after 8 rungs, last rung u 0.300000 quad-double 8 its, |R| 1.55e+09 -> 1.96e+06, NOT converged
+    on 6 trial lam 0.125: max|F| 3.04e-29; simplified correction / |dz| = 8.748e-01 (bound 0.969); accepted, 235.38 s
+      border at D 259.5170647051056548257723155439223: g -2.76e-17, dD +5.33e-17 -> held, den 1.0000, |b| 0.0058, |a| 3.37e-15
+  on 6: |F| 2.94e-29 -> 3.04e-29, |dz| 3.86e-15 -> 3.37e-15, lam 0.125, dDelta -3.86e-15, piv 2.4e-30..1.4e+37, 959.34 s
+    on 7 trial lam 1: max|F| 2.07e+08; simplified correction / |dz| = 1.909e+53 (bound 0.750); refused, 222.46 s
+      on 7, lam 1: projection failed (26): point max|F| 2.07e+08; u0 rung 1 its, |R| 1.73e+09 -> 1.73e+09, NOT converged; u0 quad-double 8 its, |R| 1.81e+08 -> 2.31e+06, NOT converged; ladder FAILED after 8 rungs, last rung u 0.300000 quad-double 8 its, |R| 1.78e+09 -> 1.79e+06, NOT converged
+    on 7 trial lam 0.5: max|F| 2.24e+07; simplified correction / |dz| = 1.937e+52 (bound 0.875); refused, 159.11 s
+      on 7, lam 0.5: projection failed (27): point max|F| 2.24e+07; u0 rung 1 its, |R| 1.27e+09 -> 1.27e+09, NOT converged; u0 quad-double 8 its, |R| 9.07e+07 -> 2.35e+06, NOT converged; ladder FAILED after 8 rungs, last rung u 0.300000 quad-double 8 its, |R| 1.11e+09 -> 1.99e+06, NOT converged
+    on 7 trial lam 0.25: max|F| 1.00e+07; simplified correction / |dz| = 5.223e+51 (bound 0.938); refused, 164.32 s
+      on 7, lam 0.25: projection failed (28): point max|F| 1.00e+07; u0 rung 1 its, |R| 9.97e+08 -> 9.97e+08, NOT converged; u0 quad-double 8 its, |R| 1.54e+08 -> 1.76e+06, NOT converged; ladder FAILED after 8 rungs, last rung u 0.300000 quad-double 8 its, |R| 1.51e+09 -> 1.80e+06, NOT converged
+    on 7 trial lam 0.125: max|F| 3.00e-29; simplified correction / |dz| = 8.750e-01 (bound 0.969); accepted, 233.47 s
+      border at D 259.5170647051056548257723155439223: g -3.08e-17, dD +5.33e-17 -> held, den 1.0000, |b| 0.0058, |a| 2.95e-15
+  on 7: |F| 3.04e-29 -> 3.00e-29, |dz| 3.37e-15 -> 2.95e-15, lam 0.125, dDelta -3.37e-15, piv 2.4e-30..1.4e+37, 886.4 s
+    on 8 trial lam 1: max|F| 1.20e+08; simplified correction / |dz| = 1.288e+53 (bound 0.750); refused, 203.47 s
+      on 8, lam 1: projection failed (29): point max|F| 1.20e+08; u0 rung 1 its, |R| 1.54e+09 -> 1.54e+09, NOT converged; u0 quad-double 8 its, |R| 1.57e+08 -> 3.74e+06, NOT converged; ladder FAILED after 8 rungs, last rung u 0.300000 quad-double 8 its, |R| 7.73e+08 -> 2.35e+06, NOT converged
+    on 8 trial lam 0.5: max|F| 1.55e+07; simplified correction / |dz| = 1.474e+52 (bound 0.875); refused, 213.73 s
+      on 8, lam 0.5: projection failed (30): point max|F| 1.55e+07; u0 rung 1 its, |R| 2.30e+09 -> 2.30e+09, NOT converged; u0 quad-double 8 its, |R| 1.19e+08 -> 2.49e+06, NOT converged; ladder FAILED after 8 rungs, last rung u 0.300000 quad-double 8 its, |R| 1.65e+09 -> 2.25e+06, NOT converged
+    on 8 trial lam 0.25: max|F| 9.00e+06; simplified correction / |dz| = 4.893e+51 (bound 0.938); refused, 170.5 s
+      on 8, lam 0.25: projection failed (31): point max|F| 9.00e+06; u0 rung 1 its, |R| 1.02e+09 -> 1.02e+09, NOT converged; u0 quad-double 8 its, |R| 1.31e+08 -> 1.80e+06, NOT converged; ladder FAILED after 8 rungs, last rung u 0.300000 quad-double 8 its, |R| 1.18e+09 -> 2.21e+06, NOT converged
+    on 8 trial lam 0.125: max|F| 2.89e-29; simplified correction / |dz| = 8.750e-01 (bound 0.969); accepted, 233.87 s
+      border at D 259.5170647051056548257723155439223: g -3.36e-17, dD +5.34e-17 -> held, den 1.0000, |b| 0.0056, |a| 2.59e-15
+  on 8: |F| 3.00e-29 -> 2.89e-29, |dz| 2.95e-15 -> 2.59e-15, lam 0.125, dDelta -2.95e-15, piv 2.4e-30..1.4e+37, 929.47 s
+    on 9 trial lam 1: max|F| 7.02e+07; simplified correction / |dz| = 8.852e+52 (bound 0.750); refused, 169.72 s
+      on 9, lam 1: projection failed (32): point max|F| 7.02e+07; u0 rung 1 its, |R| 1.85e+09 -> 1.85e+09, NOT converged; u0 quad-double 8 its, |R| 2.55e+08 -> 1.74e+06, NOT converged; ladder FAILED after 8 rungs, last rung u 0.300000 quad-double 8 its, |R| 1.08e+09 -> 2.14e+06, NOT converged
+    on 9 trial lam 0.5: max|F| 1.26e+07; simplified correction / |dz| = 1.142e+52 (bound 0.875); refused, 170.11 s
+      on 9, lam 0.5: projection failed (33): point max|F| 1.26e+07; u0 rung 1 its, |R| 9.73e+08 -> 9.73e+08, NOT converged; u0 quad-double 8 its, |R| 1.25e+08 -> 1.85e+06, NOT converged; ladder FAILED after 8 rungs, last rung u 0.300000 quad-double 8 its, |R| 1.20e+09 -> 2.03e+06, NOT converged
+    on 9 trial lam 0.25: max|F| 2.95e-29; simplified correction / |dz| = 7.505e-01 (bound 0.938); accepted, 229.81 s
+      border at D 259.5170647051056548257723155439223: g -3.85e-17, dD +5.34e-17 -> held, den 1.0000, |b| 0.0057, |a| 1.95e-15
+  on 9: |F| 2.89e-29 -> 2.95e-29, |dz| 2.59e-15 -> 1.95e-15, lam 0.25, dDelta -2.59e-15, piv 2.4e-30..1.4e+37, 677.76 s
+    on 10 trial lam 1: max|F| 2.39e+07; simplified correction / |dz| = 4.057e+52 (bound 0.750); refused, 173.54 s
+      on 10, lam 1: projection failed (34): point max|F| 2.39e+07; u0 rung 1 its, |R| 1.51e+09 -> 1.51e+09, NOT converged; u0 quad-double 8 its, |R| 1.92e+08 -> 2.21e+06, NOT converged; ladder FAILED after 8 rungs, last rung u 0.300000 quad-double 8 its, |R| 2.96e+09 -> 1.79e+06, NOT converged
+    on 10 trial lam 0.5: max|F| 3.24e-29; simplified correction / |dz| = 5.051e-01 (bound 0.875); accepted, 235.37 s
+      border at D 259.5170647051056548257723155439223: g -4.60e-17, dD +5.35e-17 -> held, den 1.0000, |b| 0.0060, |a| 9.87e-16
+  on 10: |F| 2.95e-29 -> 3.24e-29, |dz| 1.95e-15 -> 9.87e-16, lam 0.5, dDelta -1.95e-15, piv 2.3e-30..1.4e+37, 523.51 s
