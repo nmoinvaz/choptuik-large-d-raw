@@ -395,3 +395,62 @@ Predicted max|F| 3.46e-36 (the prediction moved +3.55e-31 in D and -5.36e-35 in 
 
 anm_run pid 98367: elapsed 12:06:59, 572.1% cpu, rss 72 MB; cap 36 h (SIGTERM at 2026-11-21 18:11:16 UTC).
 
+
+
+### run2: arc step 9 accepted at its first attempt (2026-11-20 18:48 UTC)
+
+| arc step | arclength a | D move | D | Delta | t_D start | t_D end | D below 259.903269724106 | corrections | accepted lam | ladder / failed / skipped | corrector s | refused attempts | first \|dz\| | first \|dz\| / a |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 5 (AB2) | 0.0444334 | 0.044433205 | 259.42750402623675 | 1.68347789279812 | 0.9999956072 | 0.9999956095 | 0.475766 | 9 | 0.25 x3, 0.5, 1 x5 | 11 / 9 / 0 | 5367.3 | 0 | 1.96e-15 | 4.41e-14 |
+| 6 | 0.0444334 | 0.044433205 | 259.47193723120494 | 1.68347117889185 | 0.9999956095 | 0.9999956118 | 0.431332 | 9 | 0.25 x3, 0.5, 1 x5 | 11 / 9 / 0 | 5222.6 | 0 | 2.89e-15 | 6.5e-14 |
+| 7 | 0.0138854375 | 0.013885377 | 259.48582260777852 | 1.68346908127357 | 0.9999956118 | 0.9999956126 | 0.417447 | 12 | 0.25 x2, 0.125 x3, 0.5, 1 x6 | 14 / 16 / 0 | 7284.8 | 2 | 4.76e-15 | 3.43e-13 |
+| 8 | 0.0138854375 | 0.013885377 | 259.49970798436211 | 1.68346698388404 | 0.9999956126 | 0.9999956133 | 0.403562 | 9 | 0.25 x2, 0.5, 1 x6 | 11 / 7 / 0 | 4593.6 | 0 | 3.16e-15 | 2.28e-13 |
+| 9 | 0.01735679688 | 0.017356721 | 259.51706470510565 | 1.68346436247007 | 0.9999956133 | 0.9999956142 | 0.386205 | 17 | 0.125 x6, 0.0625 x3, 0.25, 0.5, 1 x6 | 19 / 35 / 0 | 12934.4 | 0 | 7.03e-15 | 4.05e-13 |
+
+Accepted steps in run2: 4. No turn recorded (anm_run's own detection of D'(s) = 0 inside an accepted step). t_D has not changed sign. t_D start of the first step of run2 0.9999956095, end of the last 0.9999956142; its change per unit arclength over the last accepted step 5.186e-08.
+
+Step 9's accepted attempt: 33 refused trials (lam 0.125, 0.25, 0.5, 1, at corrections 0, 1, 10, 2, 3, 4, 5, 6, 7, 8, 9, 33 `projection failed` lines, trial |F| 8.63e+06 to 3.67e+09) and 1 refused strong-chord check(s), which together took 6628 s of the corrector's 12934.4 s. The series at the base took 1042.3 s (formed by the jets inside the run, which also saves its arcjet).
+
+anm_run pid 98367: elapsed 12:36:45, 542.2% cpu, rss 181 MB; run2 started 06:11:16 UTC, 12.61 h ago; cap 36 h (SIGTERM at 2026-11-21 18:11:16 UTC).
+
+Every attempt of every log, with the predicted max|F| (the series' residual at the re-seeded point, before any correction):
+
+| log | attempt | D move | D of the attempt | predicted max\|F\| | first \|dz\| | first \|dz\| / predicted max\|F\| | refused trial lam at correction 0 | accepted lam at correction 0 | accepted lam x first \|dz\| | corrector steps | corrector s | outcome |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| pilot2 | 1 | 0.045500 | 259.15272808 | 8.9e-36 | 5.37e-15 | 6.03e+20 | 1, 0.5 | 0.25 | 1.34e-15 | 33 | 11228.2 | accepted |
+| pilot2 | 2 | 0.056875 | 259.20960283 | 1.26e-36 | 4.6e-16 | 3.65e+20 | none | 1 | 4.6e-16 | 26 | 9721.7 | accepted |
+| run1 | 1 | 0.045500 | 259.25510263 | 1.4e-36 | 6.2e-16 | 4.43e+20 | none | 1 | 6.2e-16 | 24 | 7446.4 | accepted |
+| run1 | 2 | 0.056875 | 259.31197738 | 2.61e-36 | 8.92e-16 | 3.42e+20 | 1 | 0.5 | 4.46e-16 | 35 | 9788.8 | accepted |
+| run1 | 3 | 0.071093 | 259.38307082 | 1.66e-36 | 8.83e-16 | 5.32e+20 | 1 | 0.5 | 4.41e-16 | 36 | 9996.8 | accepted |
+| run1 | 4 | 0.088867 | 259.47193762 | 6.28e-36 | 9.21e-15 | 1.47e+21 | 1, 0.5, 0.25 | 0.125 | 1.15e-15 | 3 | 5338.2 | refused (stall rule) |
+| run1 | 5 | 0.044433 | 259.42750422 | 7.16e-36 | 4.82e-15 | 6.73e+20 | 1, 0.5, 0.25, 0.125 | 0.0625 | 3.01e-16 | 8 | 11457.4 | refused (stall rule) |
+| ab1 | 1 | 0.071093 | 259.38307082 | 1.66e-36 | 8.83e-16 | 5.32e+20 | 1 | 0.5 | 4.41e-16 | 7 | 2945.3 | accepted |
+| ab2 | 1 | 0.044433 | 259.42750403 | 2.97e-36 | 1.96e-15 | 6.6e+20 | 1, 0.5 | 0.25 | 4.9e-16 | 10 | 5367.3 | accepted |
+| run2 | 1 | 0.044433 | 259.47193723 | 2.2e-36 | 2.89e-15 | 1.31e+21 | 1, 0.5 | 0.25 | 7.23e-16 | 10 | 5222.6 | accepted |
+| run2 | 2 | 0.055542 | 259.52747874 | 3.77e-36 | 8.11e-15 | 2.15e+21 | 1, 0.5, 0.25 | 0.125 | 1.01e-15 | 4 | 5716.4 | refused (stall rule) |
+| run2 | 3 | 0.027771 | 259.49970798 | 1.14e-35 | 2.01e-14 | 1.76e+21 | 1, 0.5, 0.25, 0.125, 0.0625 | 0.03125 | 6.28e-16 | 2 | 3843.6 | refused (stall rule) |
+| run2 | 4 | 0.013885 | 259.48582261 | 2.86e-36 | 4.76e-15 | 1.66e+21 | 1, 0.5 | 0.25 | 1.19e-15 | 13 | 7284.8 | accepted |
+| run2 | 5 | 0.013885 | 259.49970798 | 1.87e-36 | 3.16e-15 | 1.69e+21 | 1, 0.5 | 0.25 | 7.9e-16 | 10 | 4593.6 | accepted |
+| run2 | 6 | 0.017357 | 259.51706471 | 3.46e-36 | 7.03e-15 | 2.03e+21 | 1, 0.5, 0.25 | 0.125 | 8.79e-16 | 18 | 12934.4 | accepted |
+
+15 attempts in 5 logs, 14 distinct points (run1's attempt 3 and ab1's attempt 1 are the same point).
+
+1. The predicted max|F| is 1.3e-36 to 1.1e-35 for D moves of 0.0139 to 0.0889. Over this range it does not fall with a shorter step. Ordered by D move, the predicted max|F| is 2.9e-36, 1.9e-36, 3.5e-36, 1.1e-35, 3e-36, 2.2e-36, 7.2e-36, 8.9e-36, 1.4e-36, 3.8e-36, 1.3e-36, 2.6e-36, 1.7e-36, 6.3e-36 (D moves 0.0139, 0.0139, 0.0174, 0.0278, 0.0444, 0.0444, 0.0444, 0.0455, 0.0455, 0.0555, 0.0569, 0.0569, 0.0711, 0.0889).
+
+2. First |dz| / predicted max|F| is 3.4e+20 to 6.7e+20 at the 7 points below D 259.45 and 1.3e+21 to 2.2e+21 at the 7 points above it. Ordered by D: 259.1527: 6e+20, 259.2096: 3.7e+20, 259.2551: 4.4e+20, 259.3120: 3.4e+20, 259.3831: 5.3e+20, 259.4275: 6.6e+20, 259.4275: 6.7e+20, 259.4719: 1.3e+21, 259.4719: 1.5e+21, 259.4858: 1.7e+21, 259.4997: 1.8e+21, 259.4997: 1.7e+21, 259.5171: 2e+21, 259.5275: 2.2e+21.
+
+3. At one D move (0.0444, 3 distinct points) the predicted max|F| is 2.2e-36, 3e-36, 7.2e-36, a spread of x3.3, against x9.0 over all 14 points.
+
+4. First |dz| runs from 4.6e-16 to 2e-14 (x44). At the 12 points where correction 0 accepts lam below 1, accepted lam times first |dz| is 3e-16 to 1.3e-15 (x4.5), and the smallest refused trial lam at correction 0 times first |dz| is 6e-16 to 2.7e-15. The two ranges overlap, so there is no sharp threshold in lam times |dz|.
+
+5. Arc step 9 took 3.88 h from arc step 8's record (14:54:30 UTC) to its own (18:47:28 UTC). Its 1 attempt took 12934.4 s of corrector time, and the series at its base 1042.3 s. Arc step 8: 1 attempt, 4593.6 s = 4593.6 s of corrector time, series 1049.9 s.
+
+6. The target D 259.49970798 was attempted from 2 bases: run2 attempt 3, D move 0.0278, predicted max|F| 1.14e-35, first |dz| 2.01e-14, ratio 1.76e+21, refused (stall rule); run2 attempt 5, D move 0.0139, predicted max|F| 1.87e-36, first |dz| 3.16e-15, ratio 1.69e+21, accepted. Predicted max|F| is x6.1 lower from the shorter step and the ratio differs by x1.04.
+
+7. Spearman rank correlation between D move and predicted max|F| over the 14 distinct attempts: -0.16 (ranks, ties by order; +1 is a monotone rise with the D move, -1 a monotone fall, 0 no trend).
+
+Step 9 was accepted at its first attempt, and a grew by `--a_grow 1.25` as the rule gives (0.0138854375 x 1.25 = 0.017356796875). It is the slowest first-attempt step so far: 3.88 h, 17 corrections, 12934.4 s of corrector time (33 refused trials took 6628 s of it), against 1.57 h and 4593.6 s for step 8. Its first |dz| 7.03e-15 is the largest of any accepted attempt. Accepted lam stayed at 0.125 (x6) and 0.0625 (x3) for the first nine corrections and never reached the stall rule's 0.04.
+
+The target D 259.5171 adds a point to statement 2: first |dz| / predicted max|F| is 2.03e+21 there (1.7e+21 at D 259.4997, 2.2e+21 at D 259.5275). Predicted max|F| was 3.46e-36, inside the 1.3e-36 to 1.1e-35 range of statement 1. Over 14 distinct points the rank correlation of the predicted max|F| with the D move is -0.16 (statement 7).
+
+I changed no flag. run2 is between steps now: the series at D 259.5171 is being formed (1042 to 1091 s at the last bases), then step 10's first attempt with a = 0.017356796875 x 1.25 = 0.0216959961 by the grow rule. I have not received the diagnostic command yet. t_D is 0.9999956142 and has not changed sign, no turn is recorded, and D is 0.386205 below 259.903269724106.
