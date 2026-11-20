@@ -1,0 +1,24 @@
+# 2026-11-20 15:24:05 UTC hp worktree 9980cd93, python C:/Users/nathan/Source/venv-i1034/Scripts/python.exe
+# load before:
+#   total cpu % (3 samples, 2 s apart): 12.1 8.1 0.6
+#   available GB: 56.3
+#   python processes: 0
+# cmd: step_timing_check.py --reps=2 --threads=4 --mutate=drop
+hpkernel C:\Users\nathan\Source\venv-i1034\Lib\site-packages\hpkernel (multidouble-4.9.1, multishoot-3.3.0); driver D:\choptuik-i1034\hp\python\hpkernel\driver.py
+highm15_D3.7000_M80.npz: D 3.7 M 80 N 5121, 97 plan steps, 4 threads, 2 reps; --mutate=drop
+  rep 0 block: wall    0.979 s, cpu     3.81 s; entries (residual, Jacobian, factorization, solve) 0.0340 0.0052 0.0211 0.0051; wall - entries 0.9135 s
+  rep 0 dense: wall    1.161 s, cpu     3.92 s; entries (residual, Jacobian, factorization, solve) 0.0352 0.8869 0.1570 0.0795; wall - entries 0.0026 s
+  rep 1 dense: wall    1.726 s, cpu     5.17 s; entries (residual, Jacobian, factorization, solve) 0.0334 1.0980 0.4549 0.0979; wall - entries 0.0422 s
+  rep 1 block: wall    1.778 s, cpu     6.06 s; entries (residual, Jacobian, factorization, solve) 0.0757 0.0041 0.0551 0.0063; wall - entries 1.6365 s
+1. FAIL: dense closure: the four entries miss at most 28.79% of a dense call (bar 0.5%)
+2. FAIL: block closure: (entries + C_b - wall) / wall is -28.19%, the median over the block calls (-13.0%, -43.3%; bar 5%); C is 3.14 CPU s
+3. PASS: the old reading falls short: the block call's second entry is at most 6.45e-03 of C_b (bar 0.1); it misses 99.35% of the Jacobian
+4. FAIL: the fixed reading: (newton_step's t_jac - C_b) / wall is +25.94%, the median over the block calls (bar 5%); t_fill is step_timing's second entry in every call: True
+5. PASS: the control can fire: the dense factorization is at least 13.52% of the call (over twice 0.5%)
+information: median process CPU seconds, block 4.94, dense 4.55 (+8.6%); the fastest block call's wall less its entries 0.913 s, the smallest dense second entry 0.887 s
+step_timing_check: FAIL (checks 1, 2, 4)
+exit 1
+# load after:
+#   total cpu % (3 samples, 2 s apart): 4.6 6.9 0
+#   available GB: 56.3
+#   python processes: 0

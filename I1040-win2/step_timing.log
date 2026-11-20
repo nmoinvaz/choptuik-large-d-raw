@@ -1,0 +1,26 @@
+# 2026-11-20 15:23:36 UTC hp worktree 9980cd93, python C:/Users/nathan/Source/venv-i1034/Scripts/python.exe
+# load before:
+#   total cpu % (3 samples, 2 s apart): 12.3 9.8 11.6
+#   available GB: 56.3
+#   python processes: 0
+# cmd: step_timing_check.py --reps=3 --threads=4
+hpkernel C:\Users\nathan\Source\venv-i1034\Lib\site-packages\hpkernel (multidouble-4.9.1, multishoot-3.3.0); driver D:\choptuik-i1034\hp\python\hpkernel\driver.py
+highm15_D3.7000_M80.npz: D 3.7 M 80 N 5121, 97 plan steps, 4 threads, 3 reps
+  rep 0 block: wall    0.968 s, cpu     3.70 s; entries (residual, Jacobian, factorization, solve) 0.0340 0.0051 0.0207 0.0055; wall - entries 0.9030 s
+  rep 0 dense: wall    1.215 s, cpu     4.12 s; entries (residual, Jacobian, factorization, solve) 0.0340 0.9406 0.1455 0.0925; wall - entries 0.0027 s
+  rep 1 dense: wall    1.895 s, cpu     5.69 s; entries (residual, Jacobian, factorization, solve) 0.0307 1.3881 0.2985 0.1307; wall - entries 0.0475 s
+  rep 1 block: wall    1.708 s, cpu     6.06 s; entries (residual, Jacobian, factorization, solve) 0.0560 0.0081 0.0768 0.0248; wall - entries 1.5428 s
+  rep 2 block: wall    1.554 s, cpu     5.86 s; entries (residual, Jacobian, factorization, solve) 0.0680 0.0042 0.0337 0.0129; wall - entries 1.4357 s
+  rep 2 dense: wall    2.065 s, cpu     6.77 s; entries (residual, Jacobian, factorization, solve) 0.0463 1.5531 0.3393 0.1186; wall - entries 0.0078 s
+1. FAIL: dense closure: the four entries miss at most 2.51% of a dense call (bar 0.5%)
+2. FAIL: block closure: (entries + C_b - wall) / wall is -21.28%, the median over the block calls (+19.2%, -21.6%, -21.3%; bar 5%); C is 4.17 CPU s
+3. PASS: the old reading falls short: the block call's second entry is at most 6.88e-03 of C_b (bar 0.1); it misses 99.31% of the Jacobian
+4. FAIL: the fixed reading: (newton_step's t_jac - C_b) / wall is +21.54%, the median over the block calls (bar 5%); t_fill is step_timing's second entry in every call: True
+5. PASS: the control can fire: the dense factorization is at least 11.97% of the call (over twice 0.5%)
+information: median process CPU seconds, block 5.86, dense 5.69 (+3.0%); the fastest block call's wall less its entries 0.903 s, the smallest dense second entry 0.941 s
+step_timing_check: FAIL (checks 1, 2, 4)
+exit 1
+# load after:
+#   total cpu % (3 samples, 2 s apart): 2.9 3 0.9
+#   available GB: 56.3
+#   python processes: 0
