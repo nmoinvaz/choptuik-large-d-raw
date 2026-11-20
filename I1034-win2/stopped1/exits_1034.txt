@@ -1,0 +1,5 @@
+1034 start run_all.sh 2026-11-20 06:32:34 UTC
+1034 build root pid 8284, cap 46980 s, want exit 0 2026-11-20 06:32:38 UTC
+1034 build exit 0 (want 0) wall 1995 s capped 0 OK 2026-11-20 07:05:52 UTC
+1034 STOPPED BY THE COORDINATOR (manual decision, hc received about 07:04 UTC; commit 102.0 of 103.6 GiB, K 49 J 1500 must not meet a failed allocation): I killed, by exact pid with taskkill /T /F, the driver bash 26024 (07:05:34 UTC, so no later step starts), the build's bash 8284 (about 07:05:48), then maturin 30728 and its cargo 5740, 5272 and rustc 7780 (about 07:06:04 UTC). Nothing else was touched.
+1034 NOTE: the line "build exit 0 (want 0) ... OK 07:05:52 UTC" above is an ARTIFACT of the kill (crun's wait returned 0 after its bash was killed). The build did NOT finish: no wheel in hp/dist, no hpkernel in venv-i1034 (versions.txt: ModuleNotFoundError). Steps 1, 5 and 2 and the #1040 check did not run.
