@@ -21,3 +21,6 @@
 1008m stop_ab2.py (first version) ended itself wrongly at 04:33:01 UTC: it read the base polish's 'on 0:' line (lam 1) as the attempt's correction 0; the attempt had not started (no 'attempt at D' line in ab2.log); fixed to read only lines after 'attempt at D' and re-armed 2026-11-20 04:33:22 UTC
 1008m stop_ab2.py watches ab2, anm_run pid 83930: SIGTERM at once if corrections 0 and 1 both accept lam <= 1/16 2026-11-20 04:33:23 UTC
 1008m stop_ab2.py: correction 0 accepted lam > 1/16 (lam {0: 0.25}), the rule cannot fire; ends 2026-11-20 05:00:14 UTC
+1008m ab2 cap moved to 10:10 UTC in place at the coordinator's order (hc 2026-11-20 ~05:05 UTC): capped_run.py (pid 83927) stopped by pid, anm_run pid 83930 continues, hold_run.py holds caffeinate -is -w and a deadline of 2026-11-20 10:10:00 UTC; the next 'ab2 exit' line is the stopped wrapper's, not anm_run's; anm_run's own stall rule (lam_stall 0.04) is unchanged and stop_ab2.py had ended (correction 0 accepted lam 0.25) 2026-11-20 05:06:10 UTC
+1008m hold_run: holding pid 83930 (caffeinate -is -w, pid 91733), deadline 2026-11-20 10:10:00 UTC 2026-11-20 05:06:10 UTC
+1008m ab2 exit 143 wall 3388s 2026-11-20 05:06:16 UTC
