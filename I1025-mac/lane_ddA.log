@@ -70,3 +70,14 @@ check A2 D 13.0 k_c 31 lambda 2.6841484641099442: horizon series against the x-O
   lambda 2.7041484641099442: dd signs agree True, dd +1 vs float64 +1; ln|det| dd -601.1549094817, float64 -601.1548989779
 == exit 0 2026-11-20 10:29:18
 == 2026-11-20 10:29:18 ell_ddm.py det data/sol_l1kc31L1025_D13.0000.npy 13 31 2.6641484641099442,2.7041484641099442 --out data/ell_ddm_checks_1025.jsonl --mutate=lam
+  lambda 2.664148464109944: dd M built in 130 s; dd LU signs [-1.0, -1.0, -1.0, -1.0, -1.0], ln|det| -826.034525098695 (spread over variants 1.4e-12), 2.9 s per LU
+  lambda 2.664148464109944: dd signs agree True, dd -1 vs float64 -1; ln|det| dd -826.0345250987, float64 -604.8978027897
+  lambda 2.7041484641099442: dd M built in 149 s; dd LU signs [-1.0, -1.0, -1.0, -1.0, -1.0], ln|det| -826.034525098695 (spread over variants 1.4e-12), 3.7 s per LU
+  lambda 2.7041484641099442: dd signs agree True, dd -1 vs float64 +1; ln|det| dd -826.0345250987, float64 -601.1548989779
+== exit 0 2026-11-20 10:34:57
+== 2026-11-20 10:34:57 ell_ddm.py root data/sol_l1kc31L1025_D13.0000.npy 13 31 2.6641484641099442 2.7041484641099442 --record 2.6841484641099442 --bar 1e-7 --out data/ell_ddm_checks_1025.jsonl
+  lambda 2.664148464109944: dd sign -1, ln|det| -604.8977914798 (164 s)
+  lambda 2.7041484641099442: dd sign +1, ln|det| -601.1549094817 (331 s)
+  lambda 2.6650739724539774: dd sign -1, ln|det| -604.8585665636 (481 s)
+  lambda 2.684611218281961: dd sign +1, ln|det| -606.7485672738 (624 s)
+  lambda 2.68204706440099: dd sign -1, ln|det| -605.4762095602 (741 s)

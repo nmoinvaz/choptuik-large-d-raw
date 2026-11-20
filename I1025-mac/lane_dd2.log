@@ -1,0 +1,31 @@
+== 2026-11-20 10:29:59 ell_dd.py scan data/sol_l1kc55Fs1025_D17.5000.npy 17.5 55 1.935,1.94,1.945,1.95,1.955,1.96,1.965 --out data/ell_dd_scan_1025.jsonl
+  sign, logdet = _umath_linalg.slogdet(a, signature=signature)
+  sign, logdet = _umath_linalg.slogdet(a, signature=signature)
+  sign, logdet = _umath_linalg.slogdet(a, signature=signature)
+lambda 1.935: float64 signs [1.0, 1.0, 1.0, 1.0, 1.0], LAPACK [1.0, 1.0, 1.0, 1.0, 1.0]: agree (46 s)
+lambda 1.94: float64 signs [1.0, 1.0, 1.0, 1.0, 1.0], LAPACK [1.0, 1.0, 1.0, 1.0, 1.0]: agree (47 s)
+lambda 1.945: float64 signs [-1.0, -1.0, -1.0, -1.0, -1.0], LAPACK [-1.0, -1.0, -1.0, -1.0, -1.0]: agree (47 s)
+lambda 1.95: float64 signs [-1.0, -1.0, -1.0, -1.0, -1.0], LAPACK [-1.0, -1.0, -1.0, -1.0, -1.0]: agree (46 s)
+lambda 1.955: float64 signs [1.0, 1.0, 1.0, 1.0, 1.0], LAPACK [1.0, 1.0, 1.0, 1.0, 1.0]: agree (50 s)
+lambda 1.96: float64 signs [-1.0, -1.0, -1.0, -1.0, -1.0], LAPACK [-1.0, -1.0, -1.0, -1.0, -1.0]: agree (50 s)
+lambda 1.965: float64 signs [-1.0, -1.0, -1.0, -1.0, -1.0], LAPACK [-1.0, -1.0, -1.0, -1.0, -1.0]: agree (51 s)
+== exit 0 2026-11-20 10:35:36
+== no float64 disagreement in 1.935-1.965: the finer scan
+== 2026-11-20 10:35:37 ell_dd.py scan data/sol_l1kc55Fs1025_D17.5000.npy 17.5 55 1.95,1.9505,1.951,1.9515,1.952,1.9525,1.953,1.9535,1.954,1.9545,1.955 --out data/ell_dd_scan_1025.jsonl
+  sign, logdet = _umath_linalg.slogdet(a, signature=signature)
+  sign, logdet = _umath_linalg.slogdet(a, signature=signature)
+  sign, logdet = _umath_linalg.slogdet(a, signature=signature)
+lambda 1.95: float64 signs [-1.0, -1.0, -1.0, -1.0, -1.0], LAPACK [-1.0, -1.0, -1.0, -1.0, -1.0]: agree (50 s)
+lambda 1.9505: float64 signs [1.0, 1.0, 1.0, 1.0, 1.0], LAPACK [1.0, 1.0, 1.0, 1.0, 1.0]: agree (50 s)
+lambda 1.951: float64 signs [1.0, 1.0, 1.0, 1.0, 1.0], LAPACK [1.0, 1.0, 1.0, 1.0, 1.0]: agree (54 s)
+lambda 1.9515: float64 signs [-1.0, -1.0, -1.0, -1.0, -1.0], LAPACK [-1.0, -1.0, -1.0, -1.0, -1.0]: agree (50 s)
+lambda 1.952: float64 signs [1.0, 1.0, 1.0, 1.0, 1.0], LAPACK [1.0, 1.0, 1.0, 1.0, 1.0]: agree (50 s)
+lambda 1.9525: float64 signs [-1.0, -1.0, -1.0, -1.0, -1.0], LAPACK [-1.0, -1.0, -1.0, -1.0, -1.0]: agree (49 s)
+lambda 1.953: float64 signs [1.0, 1.0, 1.0, 1.0, 1.0], LAPACK [1.0, 1.0, 1.0, 1.0, 1.0]: agree (48 s)
+lambda 1.9535: float64 signs [-1.0, -1.0, -1.0, -1.0, -1.0], LAPACK [-1.0, -1.0, -1.0, -1.0, -1.0]: agree (48 s)
+lambda 1.954: float64 signs [-1.0, -1.0, -1.0, -1.0, -1.0], LAPACK [-1.0, -1.0, -1.0, -1.0, -1.0]: agree (48 s)
+lambda 1.9545: float64 signs [-1.0, -1.0, -1.0, -1.0, -1.0], LAPACK [-1.0, -1.0, -1.0, -1.0, -1.0]: agree (48 s)
+lambda 1.955: float64 signs [1.0, 1.0, 1.0, 1.0, 1.0], LAPACK [1.0, 1.0, 1.0, 1.0, 1.0]: agree (49 s)
+== exit 0 2026-11-20 10:44:41
+== no noise window found: stop and report
+== 2026-11-20 10:44:41 lane dd2 done

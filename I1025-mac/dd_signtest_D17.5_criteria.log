@@ -1,0 +1,13 @@
+== 2026-11-20 10:48:08 #1025 route (c) milestone 4: the first sign test of the double-double mode matrix past D 17. Written before the run.
+Background: at k_c 55, D 17.5 the sign of the float64 det M agrees over 5 exact variants at every lambda, but flips erratically along lambda,
+>= 9 times over 1.935-1.965 at steps of 5e-4 (lane_dd2.log). So the rounding in M's construction sets the sign near the root.
+Code: ell_ddm.py det (wip/ell1-highD f0ceeb35); state sol_l1kc55Fs1025_D17.5000.npy.
+Run: the dd M at lam 1.935, 1.945, 1.9505, 1.9515, 1.955, 1.965 (where float64 reads +, -, +, -, +, -). At each: the dd LU sign over the 5
+exact variants, and the dd sign after relative noise eps * xi on the dd M's propagator entries (2 seeds; the -I blocks exact) at
+eps 1e-24, 1e-20, 1e-16 (the last two for information).
+Pass at a lambda: (i) the 5 dd signs agree; (ii) the noise at 1e-24 leaves the dd sign unchanged (both seeds).
+Control: --mutate=hionly (every dd result rounded to double) at 1.9505, 1.9515, 1.955 must give a sign pattern that differs from the dd one at
+>= 1 of the three; otherwise the test cannot tell dd from double there, and its reading is void.
+Reading: if (i) and (ii) hold at all 6 lambda and the control fires, the dd build resolves the sign of det M at k_c 55, D 17.5 (numerical
+evidence), and its sign pattern brackets the dd root for the next step. The number of dd sign changes over the 6 lambda is reported; a pattern
+with as many changes as float64's would say dd does not settle the question here.
