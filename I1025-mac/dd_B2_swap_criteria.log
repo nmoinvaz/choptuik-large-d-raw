@@ -1,0 +1,9 @@
+== 2026-11-20 10:59:31 #1025 route (c): check B2 FAILED (lane_ddA.log): the dd root at D 13, k_c 31 is 2.684148132800803 (bracket width 5e-11),
+-3.31e-7 from the float64 record 2.6841484641099442 (bar 1e-7). The work stops until the cause is known. Written before the diagnosis.
+Hypothesis: the float64 record is off, through the float64 horizon block (block 12), whose recursion is unstable (1.9e-11 from the dd block;
+A1 and dd_checkAB_criteria.log); blocks 0-11 agree to 8.2e-15, and the dd horizon series meets the x-ODE to 4.0e-25 (A2).
+Diagnosis (block swap, one way): the float64 M with its block 12 replaced by the dd block 12 (rounded to double), its root by brentq on the
+LAPACK sign (xtol 1e-11) in [lam1 - 0.02, lam1 + 0.02].
+Reading: hypothesis confirmed if the swapped root lies within 1e-8 of the dd root 2.684148132800803 (and so 3.3e-7 from the float64 record).
+If it stays within 1e-8 of the float64 record instead, block 12 is not the cause, and the port is suspect elsewhere (blocks 0-11 at 8e-15 would
+then matter, or the dd LU). Anything else: unexplained, report.
