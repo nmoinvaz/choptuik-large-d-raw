@@ -25,7 +25,7 @@ Steps (the coordinator's; `run1055.sh`, one at a time at nice 10, each under tim
 | `save_*.log`, `cmp_*.log` | the highm_check runs, flag off |
 | `planted.log`, `planted_control_n.log`, `selftest.log`, `cargo_test_plan_auto.log` | the PR's planted truth and its control, the report's selftest, the Rust tests |
 
-## Results (19:04 UTC, 20 Nov)
+## Results (19:02 UTC, 20 Nov)
 
 Every step passes: exits as expected, 0 differing rows in the three compares and the kappa control fails (28 of 28 differ), the planted check passes and its `--mutate n` control exits 1, `selftest` passes (12 of 12 faults fire), `cargo test plan_auto`: 5 passed, 3 ignored.
 The unit ran 18:09:59 to 19:00:49 UTC (50 min 52 s, 1 h 8 min CPU), journal memory peak 27 GB, no memory alert.
