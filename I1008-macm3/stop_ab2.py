@@ -20,7 +20,9 @@ log(f"stop_ab2.py watches {mode}, anm_run pid {pid}: SIGTERM at once if correcti
 lam = {}
 fired = False
 while alive(pid):
-    for l in open(f"{O}/{mode}.log").read().splitlines():
+    LL = open(f"{O}/{mode}.log").read().splitlines()
+    ia = next((i for i, l in enumerate(LL) if l.strip().startswith("attempt at D")), None)   # the base polish's own 'on 0:' lines come before it
+    for l in (LL[ia:] if ia is not None else []):
         m = COR.match(l)
         if m and int(m.group(1)) in (0, 1): lam[int(m.group(1))] = float(m.group(2))
     if any(v > 0.0625 for v in lam.values()):

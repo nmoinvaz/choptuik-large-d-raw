@@ -17,3 +17,7 @@
 1008m ab1 exit 0 wall 4563s 2026-11-20 04:08:58 UTC
 1008m ab2 start, main 997072bd6277515f189c0fae1cf7076ad65de7f6, state I1008-macm3/run1/arc_003_D259.383071.npz, steps 1, cap 7200 s, a0 0.0444334, extra: --arc_jet /Users/nathan/Source/choptuik-large-d-raw-903/I1008-macm3/run1/arcjet_003_D259.383071.npz --elim_switch 0 2026-11-20 04:09:48 UTC
 1008m stop_ab2.py watches ab2, anm_run pid 83930: SIGTERM at once if corrections 0 and 1 both accept lam <= 1/16 2026-11-20 04:10:00 UTC
+1008m stop_ab2.py: correction 0 accepted lam > 1/16 (lam {0: 1.0}), the rule cannot fire; ends 2026-11-20 04:33:01 UTC
+1008m stop_ab2.py (first version) ended itself wrongly at 04:33:01 UTC: it read the base polish's 'on 0:' line (lam 1) as the attempt's correction 0; the attempt had not started (no 'attempt at D' line in ab2.log); fixed to read only lines after 'attempt at D' and re-armed 2026-11-20 04:33:22 UTC
+1008m stop_ab2.py watches ab2, anm_run pid 83930: SIGTERM at once if corrections 0 and 1 both accept lam <= 1/16 2026-11-20 04:33:23 UTC
+1008m stop_ab2.py: correction 0 accepted lam > 1/16 (lam {0: 0.25}), the rule cannot fire; ends 2026-11-20 05:00:14 UTC
