@@ -1,0 +1,8 @@
+2c2
+< """walk1026b.py (walk1026.py with --r1bar, --stepbar, --posbar, --start_repeats N and --selftest [--mutate=noposbar|norepeat], #1021 rerun) NAME A W B3 C3 [--xi1 0.2] [--procs 2] [--maxit 25] [--tr 0.02,0.03] [--bar 1e-6] [--out walks] [--logs logs]: the outer (A, w/w_inf) Newton of the M = 5 selection from complete fixed-(A, w) solves, the
+---
+> """walk1026b.py (walk1026.py with --r1bar, --stepbar, --posbar, --start_repeats N, --x5 B5,C5 and --selftest [--mutate=noposbar|norepeat], #1021 rerun) NAME A W B3 C3 [--x5 B5,C5] [--xi1 0.2] [--procs 2] [--maxit 25] [--tr 0.02,0.03] [--bar 1e-6] [--out walks] [--logs logs]: the outer (A, w/w_inf) Newton of the M = 5 selection from complete fixed-(A, w) solves, the
+99a100,102
+>     x5 = opt("--x5", None)                                 # B5,C5 of the start solve (#1021 start rule, 20 Nov 12:26 UTC)
+>     if x5 is not None:
+>         x3 += [float(v) for v in x5.split(",")]

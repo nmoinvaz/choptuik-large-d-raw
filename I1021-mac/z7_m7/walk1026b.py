@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""walk1026b.py (walk1026.py with --r1bar, --stepbar, --posbar, --start_repeats N and --selftest [--mutate=noposbar|norepeat], #1021 rerun) NAME A W B3 C3 [--xi1 0.2] [--procs 2] [--maxit 25] [--tr 0.02,0.03] [--bar 1e-6] [--out walks] [--logs logs]: the outer (A, w/w_inf) Newton of the M = 5 selection from complete fixed-(A, w) solves, the
+"""walk1026b.py (walk1026.py with --r1bar, --stepbar, --posbar, --start_repeats N, --x5 B5,C5 and --selftest [--mutate=noposbar|norepeat], #1021 rerun) NAME A W B3 C3 [--x5 B5,C5] [--xi1 0.2] [--procs 2] [--maxit 25] [--tr 0.02,0.03] [--bar 1e-6] [--out walks] [--logs logs]: the outer (A, w/w_inf) Newton of the M = 5 selection from complete fixed-(A, w) solves, the
 route m7_outer.py's 'newton' mode took when hier's own level-1 Newton cannot be used (#1026). Why: started at a zero of the M = 3 problem, hier_nb.py 5's level-1 Newton stops at |r_1| = 121 without a step
 (its nested level-3 re-solves fail at the trial points, logs/probe_*), while a fixed-(A, w) solve from the M = 3 harmonics converges at the M = 5 zero and half-way (|r_3| 1e-8). Each point is
 `hier_nb.py 5 A w --x=B3,C3[,B5,C5] --fixA --schur --procs P --verbose=1 --xi1=XI` (cwd solver/inner_stokes of the worktree, the harmonics of the best earlier point as the start), a solve counts when |r_3| and |r_5|
@@ -97,6 +97,9 @@ def main(argv):
     r1bar = opt("--r1bar", '1e-2'); stepbar = float(opt("--stepbar", "3e-6")); posbar = opt("--posbar", None)
     bars = (None if r1bar is None else float(r1bar), stepbar, None if posbar is None else float(posbar))
     nrep = int(opt("--start_repeats", "0"))                # #1027's repeats of the start solve (0: none, walk1026's)
+    x5 = opt("--x5", None)                                 # B5,C5 of the start solve (#1021 start rule, 20 Nov 12:26 UTC)
+    if x5 is not None:
+        x3 += [float(v) for v in x5.split(",")]
     logdir = opt("--logs", os.path.join(HERE, "logs"))
     os.makedirs(out, exist_ok=True)
     pts, n = [], [0]

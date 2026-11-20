@@ -1,0 +1,11 @@
+2,3c2,3
+< """eval_m7b.py --box z7|z16 [--dir walks] [--xi 0.15] [--mutate=shift|ratio|pos7|nogate] [--selftest [--mutate=...]]: the readings
+< of #1021's rerun of box 7 or box 16 at M = 7 under the criteria the coordinator fixed on #1048 (closing comment 7034798454),
+---
+> """eval_m7b.py --box z7|z16|b1115p [--dir walks] [--xi 0.15] [--mutate=shift|ratio|pos7|nogate] [--selftest [--mutate=...]]: the readings
+> of #1021's rerun of box 7, box 16 or b11-15's +1 at M = 7 under the criteria the coordinator fixed on #1048 (closing comment 7034798454),
+28c28,29
+<       "z16": (3.553346604669114, 0.41317228451624904)}     # box 16's at xi1 0.18 (loc/z16_6da7da7b, located_r1b)
+---
+>       "z16": (3.553346604669114, 0.41317228451624904),     # box 16's at xi1 0.18 (loc/z16_6da7da7b, located_r1b)
+>       "b1115p": (3.52647082272762, 0.21149502797254496)}  # b11-15's +1 at xi1 0.18 (loc/b1115p_r0.18_6da7da7b, located)

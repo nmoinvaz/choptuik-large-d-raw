@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-"""eval_m7b.py --box z7|z16 [--dir walks] [--xi 0.15] [--mutate=shift|ratio|pos7|nogate] [--selftest [--mutate=...]]: the readings
-of #1021's rerun of box 7 or box 16 at M = 7 under the criteria the coordinator fixed on #1048 (closing comment 7034798454),
+"""eval_m7b.py --box z7|z16|b1115p [--dir walks] [--xi 0.15] [--mutate=shift|ratio|pos7|nogate] [--selftest [--mutate=...]]: the readings
+of #1021's rerun of box 7, box 16 or b11-15's +1 at M = 7 under the criteria the coordinator fixed on #1048 (closing comment 7034798454),
 before the rerun, with its amendment (at M = 7 the step and last-two-points bars stay walk1027's 3e-4, since its step
 noise is 1.7e-5). xi1 0.15. Walk bars, at one iteration: |r_1| of the best point <= 3.8e-2 (M = 5) or 0.24 (M = 7), the Newton
 step under 1e-5 (M = 5) or 3e-4 (M = 7) in A and in w/w_inf, and for the box walks the last two accepted walk points within
@@ -25,7 +25,8 @@ import eval1027 as E   # noqa: E402
 import eval1026 as E6  # noqa: E402
 
 Z3 = {"z7": (3.2454793232694903, 0.34585226845559425),     # box 7's M = 3 zero at xi1 0.17 (loc/z7_6da7da7b)
-      "z16": (3.553346604669114, 0.41317228451624904)}     # box 16's at xi1 0.18 (loc/z16_6da7da7b, located_r1b)
+      "z16": (3.553346604669114, 0.41317228451624904),     # box 16's at xi1 0.18 (loc/z16_6da7da7b, located_r1b)
+      "b1115p": (3.52647082272762, 0.21149502797254496)}  # b11-15's +1 at xi1 0.18 (loc/b1115p_r0.18_6da7da7b, located)
 CTRL7, POS, RTOL = (2.71924, 1.000025), 1e-5, 0.05
 BARS = {("control5", 5): [3.8e-2, 1e-5, None], ("control", 7): [0.24, 3e-4, None], ("box", 5): [3.8e-2, 1e-5, 1e-5], ("box", 7): [0.24, 3e-4, 3e-4]}
 CTRL_FILE = os.path.join(HERE, "inputs", "walk_control_xi0.15.json")
