@@ -9,7 +9,7 @@ out/ell_ddm_b12noise_1025.jsonl are correct and the numbers below come from them
     Power condition FAILS: no flip at any eps <= 1e-9. The ln shift is linear, (1.6-2.4)e8 * eps, so 0.16-0.24 at 1e-9.
     By the criteria the reading stops here. Against dd_b12_cause_note.log: the double-precision horizon blocks' errors (4.7e-11 to 1.9e-10)
     moved ln|det| by 0.12-2.5, 10-100x more than random noise of the same size. So those errors are structured, aligned with the
-    directions det is most sensitive to, and random noise is not a valid stand-in for them. The cause note's "random-size" picture is wrong.
+    directions det is most sensitive to, and random noise is not a valid stand-in for them. The cause note read the effect as set by the error size alone; that is wrong, the direction matters.
 (3) Hybrid bracket (dd_hybrid_bracket_criteria.log): hybrid +1 at 1.89, 1.90, 1.91, 1.92, 1.925 and -1 at 1.93 and at the six lambda of
     1.935-1.965. That is exactly one change, in (1.925, 1.93), and every lambda passes its 1e-15 noise test on blocks 0-11. ln|det| dips there:
     -1625.928 (1.92), -1626.827 (1.925), -1626.627 (1.93), -1625.331 (1.935). Float64 reads +1 at 1.93, against the hybrid's -1.
