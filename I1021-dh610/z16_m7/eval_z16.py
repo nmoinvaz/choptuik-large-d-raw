@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """eval_z16.py [--dir walks] [--mutate=shift|ratio] [--selftest [--break]]: the readings of box 16's zero at M = 7 (#1021), #1027's rule
-through eval1027.py (copy of I1027-dh610's, unchanged). Per radius xi1 in (0.25, 0.2): the control walk (the known zero, #1027's; validated
+through eval1027.py (copy of I1027-dh610's, unchanged). Per radius xi1 in (0.25, 0.2; the run's driver may run only 0.2): the control walk (the known zero, #1027's; validated
 there only at 0.15, so here a control failure is reported as a result), the M = 5 walk of box 16 (Z5, the M 3 -> 5 shift s35 = |Z5 - Z3|, Z3 the M = 3
 zero's located place), the M = 7 walk from Z5 (|F7/F5| and |F5/F3| at its first solve, the M = 7 zero Z7, the M 5 -> 7 shift s57) and the M = 7 walk from the
 input's own point (information). Verdict by eval1027.judge_zero: CONVERGES: |F7/F5| <= 0.2 at Z5 and a converged M = 7 walk with s57 < s35; DOES NOT:
@@ -95,8 +95,15 @@ def main(argv):
             out.append(f"xi1 {xi} control (the known zero at M = 7; validated only at 0.15 in #1027): {'PASS' if okc else 'FAIL'}: {tc}")
         else:
             out.append(f"xi1 {xi} control: no walk")
+        conv = bool(c and c["verdict"].get("converged"))
+        # the coordinator's rules (20 Nov): an M = 7 result at a radius counts only if this run's own control (#1027's, validated only at 0.15) converged at that
+        # radius; if it did not, the result is "no verdict at M = 7", with the control's residual
+        counts = conv
+        cres = "no control walk" if not c else (str(c["verdict"].get("why")) if not conv else "converged")
         lab, txt = z16_verdict(load(d, "z16m5", xi), load(d, "z16", xi), load(d, "z16in", xi), mut)
-        out.append(f"xi1 {xi} z16: {lab}: {txt}")
+        out.append(f"xi1 {xi} z16 [solved at xi1 {xi}, the start (A, w, x) is the input's, from its xi1 0.25 solve]: {lab}: {txt}")
+        out.append(f"xi1 {xi} z16 counts: {'yes, the control converged at this radius' if counts else 'NO: the control did not converge at this radius (' + cres + ')'}")
+        out.append(f"xi1 {xi} FINAL: {lab if counts else 'NO VERDICT at M = 7 (control residual: ' + cres + ')'}")
         out.append(f"xi1 {xi} z16 from the input's point (information): {info_in(load(d, 'z16in', xi))}")
     print("\n".join(out))
     return 0 if ok else 1

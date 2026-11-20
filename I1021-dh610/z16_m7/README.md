@@ -44,3 +44,11 @@ Newton step from the best point under 3e-4 in A and in w/w_inf.
 | `inputs/z16_m7_inputs.json` | the coordinator's inputs, as fetched |
 | `walk1026.py`, `walk1027.py`, `eval1027.py` | the #1026 / #1027 scripts, unchanged |
 | `eval_z16.py`, `z16_args.py`, `common_z16.sh`, `run_z16.sh` | the evaluator (selftest, `--break`, `--mutate=shift`), the argument helper and the driver (`exits_z16.txt`, `logs/`, `walks/`, `eval_z16.txt` when it runs) |
+
+## Driver change, 20 Nov 06:22 UTC
+
+The coordinator's rule (hc, 06:17 UTC): a result at xi1 0.25 counts only if this run's own 0.25 control converges; if it fails, only the 0.2 results count. The 0.25 control failed at its start (`walks/walk_control_xi0.25.json`: |r_3| 4.2e1 after the first attempt and three perturbed repeats, 1201 s). `walk_z16m5_xi0.25.json` also stopped at its start (|r_3| 1.7e3): `walk1026.py` starts an M = 5 solve from B3, C3 only (B5, C5 from hier's default), not from the input's four harmonics that xfchecks's solve converged from, so that failure is not a verdict on box 16's M = 5 at 0.25. `run_z16.sh` was stopped by pid (06:22 UTC, while `z16in_xi0.25` was 12 s into its first solve) and `run_z16b.sh` (radii 0.2 only, unit `i1021-z16b`, 06:22:48 UTC) runs the rest. The files of the stopped part stay in `walks/` and `logs/` and `exits_z16.txt` (0.25 results do not count).
+
+## Result, 20 Nov 07:02 UTC (`eval_z16.txt`; the driver's own evaluation before the gate edit is `eval_z16_driver_run.txt`)
+
+No verdict at M = 7 at either radius: #1027's M = 7 control did not converge at 0.25 (start solve |r_3| 4.2e1) or at 0.2 (|r_3| 2.4e-2, |r_5| 9.5e-7, |r_7| 1.0e-9), and the coordinator's rule (hc, 06:3x UTC) makes the control the gate at both radii. Box 16 at 0.2: M = 5 start solve |r_3| 1.7e-4 (no M = 5 zero), M = 7 from the input's point |F7/F5| 0.3140, |F5/F3| 0.3089 at the first solve and |r_3| 1.2e-4, |r_5| 4.8e-6, |r_7| 2.1e-6 at best (no M = 7 zero). The post on #1021 has the table. Evaluator controls: `logs/eval_selftest.log`, `logs/eval_selftest_break.log` (exit 1), `logs/eval_mutate_shift.log` (exit 1), `logs/eval_mutate_ratio.log`.

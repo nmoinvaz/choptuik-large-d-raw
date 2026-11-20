@@ -1,0 +1,9 @@
+evaluator on #1027's validated control walk (xi1 0.15), mutate '': PASS: zero (2.719236, 1.000024), stored (2.719240, 1.000025), difference (-3.82e-06, -6.78e-07); |F7/F5| at the M = 5 zero 0.0573 (stored 0.0574)
+xi1 0.25 control (the known zero at M = 7; validated only at 0.15 in #1027): FAIL: did not converge: the start solve did not converge: |r_3| 4.2e+01 |r_5| 9.3e-07 |r_7| 4.2e-10 not under 1e-06
+xi1 0.25 z16 [solved at xi1 0.25, the start (A, w, x) is the input's, from its xi1 0.25 solve]: UNDECIDED: no M = 5 zero: the start solve did not converge: |r_3| 1.7e+03 |r_5| 1.0e+02 not under 1e-06; and no M = 7 walk from the input's point
+xi1 0.25 z16 counts: NO: the 0.25 control did not converge in this run, so only the 0.2 results count
+xi1 0.25 z16 from the input's point (information): no walk from the input's point
+xi1 0.2 control (the known zero at M = 7; validated only at 0.15 in #1027): FAIL: did not converge: the start solve did not converge: |r_3| 2.4e-02 |r_5| 9.5e-07 |r_7| 1.0e-09 not under 1e-06
+xi1 0.2 z16 [solved at xi1 0.2, the start (A, w, x) is the input's, from its xi1 0.25 solve]: DOES NOT: no M = 5 zero: the start solve did not converge: |r_3| 1.7e-04 |r_5| 4.4e-07 not under 1e-06 (s35 undefined, taken as 0, so CONVERGES is not reachable); from the input's point: |F7/F5| 0.3140 and |F5/F3| 0.3089 at the M = 5 zero; no M = 7 zero: the start solve did not converge: |r_3| 1.2e-04 |r_5| 4.8e-06 |r_7| 2.1e-06 not under 1e-06
+xi1 0.2 z16 counts: yes
+xi1 0.2 z16 from the input's point (information): |F7/F5| 0.3140 and |F5/F3| 0.3089 at the input's point; no M = 7 zero: the start solve did not converge: |r_3| 1.2e-04 |r_5| 4.8e-06 |r_7| 2.1e-06 not under 1e-06

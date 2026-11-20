@@ -1,0 +1,16 @@
+z16 start, code fc7dee4d, load 8.75 10.37 11.22 2026-11-20 06:01:51 UTC
+z16 eval_z16 selftest exit 0 (0) 2026-11-20 06:01:51 UTC
+z16 eval_z16 selftest --break exit 1 (1) 2026-11-20 06:01:51 UTC
+z16 control_xi0.25 exit 1 (expected 0 or 1, not validated) wall 1201 s, cap 3600 s 2026-11-20 06:21:52 UTC
+z16 z16m5_xi0.25 exit 1 (expected 0 (M = 5 zero found)) wall 11 s, cap 3600 s 2026-11-20 06:22:03 UTC
+z16 z16_xi0.25 skipped: the M = 5 walk did not converge (logs/z16_args.log) 2026-11-20 06:22:03 UTC
+z16 driver run_z16.sh stopped by pid after the 0.25 control failed (the coordinator's rule: 0.25 results do not count); z16in_xi0.25 killed at 12 s 2026-11-20 06:22:29 UTC
+z16 start (run_z16b.sh, radii 0.2), code fc7dee4d, load 10.93 11.99 12.01 2026-11-20 06:22:48 UTC
+z16 eval_z16 selftest exit 0 (0) 2026-11-20 06:22:48 UTC
+z16 eval_z16 selftest --break exit 1 (1) 2026-11-20 06:22:48 UTC
+z16 control_xi0.2 exit 1 (expected 0 or 1, not validated) wall 846 s, cap 3600 s 2026-11-20 06:36:54 UTC
+z16 z16m5_xi0.2 exit 1 (expected 0 (M = 5 zero found)) wall 18 s, cap 3600 s 2026-11-20 06:37:12 UTC
+z16 z16_xi0.2 skipped: the M = 5 walk did not converge (logs/z16_args.log) 2026-11-20 06:37:12 UTC
+z16 z16in_xi0.2 exit 1 (expected 0 (information)) wall 1086 s, cap 9000 s 2026-11-20 06:55:18 UTC
+z16 eval_z16 exit 0 (0 when the control passes at a validated radius) 2026-11-20 06:55:18 UTC
+z16 all steps done 2026-11-20 06:55:18 UTC
