@@ -10,3 +10,7 @@ Started 2026-11-20 08:31 UTC. Beside #1014 step B1 (6 threads) and the #949 lane
 **Control, before the real runs.** `signtest.py planted` must print agree, agree, DISAGREE (the check can fail: the DISAGREE case has 40 singular values at 1e-19).
 
 **Setup.** Worktree `~/Source/choptuik-large-d-1025st` detached at origin/wip/ell1-highD (head recorded in the log below), the -935 venv's python (4.8.2 build, numpy and scipy), run from `solver/matter`, 4 BLAS threads, nice 10, one D at a time, `timeout 7200` each. The inputs are taken by `git show` from the raw clone's `origin/main` (no pull) into a fresh folder outside the raw repo and each `git hash-object` is logged in `hashes.txt` (inputs are already in the raw repo's I1025-mac; they are not copied here). Output: `signtest.log`.
+
+## Stopped at 2026-11-20 08:43 UTC (written 2026-11-20 08:43 UTC)
+
+The coordinator's hc ("8 logical CPUs, all already used; stop the signtest chain now by exact pid so B1 gets its 6 threads back; post what finished, the rest moved to win2b"). `run_signtest.sh` (852113), its `timeout` (852115) and the python (852116) were stopped by exact pid at 08:43:05 UTC, 10 min 44 s into D 15, which had printed only its header line. **No D finished: no row to keep.** What ran: the planted control (agree, agree, DISAGREE, `planted.log`) and the first 10 min of D 15 (`signtest.log`). The four records (D 15, 15.5, 16, 16.5) are not tested here; win2b takes them. The worktree `~/Source/choptuik-large-d-1025st` (detached at d4f0f854) is left in place, unused.
