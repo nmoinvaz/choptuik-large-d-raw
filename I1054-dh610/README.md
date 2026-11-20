@@ -39,3 +39,14 @@ Inputs not in the live raw clone (`I603-win2/.../anm_pin3_D241.9602.npz`, `I966-
 D 251.88, flag on: the log says `elim projections {'u0': 0, 'u0q': 0, 'ladder': 0, 'failed': 1, 'skipped': 0}: the start's projection failed, attempt stopped`. From `hp/octo_corrector.py` (`ElimO.project`) that error is raised only when the start's
 pinned quad-double max|F| is above `--elim_switch` (1e-15) and above `start_F` (1e-6), so with the flag on the stored state's residual is above 1e-6 (flag off: 4.55e-35, its start was skipped by the switch). The log does not print that value (a reading of the code, not tested).
 There is no "base polish not adopted" line and no "base polish saved" line: in `anm_run.py` the stopped attempt leaves no `od_F` and no `z8`, so the adoption branch saves nothing and prints nothing. Reported, not rerun, not changed.
+
+## Follow-up (20 Nov, coordinator's task): D 251.88 flag-on with `--od_start_F 0`
+
+Worktree `~/Source/choptuik-large-d-1054` checked out at 4204c9f9 (`feat/exact-recip-1043`; `git rev-parse HEAD` in `exits_1054.txt`, lines "1054b"), only `hp/anm_run.py`, `hp/arclength.py`, `hp/exact_recip_check.py` and the note changed since the 5f488e2b build, so venv-i1054 stands.
+`run1054b.sh` (unit `i1054b`): `resolve251_r1b` (the flag-on polish of the D 251.88 state with `--od_start_F 0 --log_proj 1`, otherwise the flags of `resolve251_r1`), then `check251b.py` (the coordinator's pass rule: no "attempt stopped", "octo-double Newton: K steps, max|F| X" with X <= 1e-50, "base polish saved as" after it), then `delta251b` against `resolve251_r0`'s base.
+`check251b.py` controls: the flag-off log prints PASS, the stopped flag-on log (`resolve251_r1.log`) prints FAIL.
+
+### Result (18:10 UTC, 20 Nov): the pass rule fails, no value
+
+`resolve251_r1b`: exit 0, 1462 s, unit `i1054b` (17:43:35 to 18:07:57 UTC, journal memory peak 295 MB, no memory alert), HEAD 4204c9f94d030aef508131c41a4573cd9b9de64e. `check251b.txt`: FAIL (no "attempt stopped": ok; "octo-double Newton: 1 steps, max|F| 2.0e-05": FAIL against 1e-50; no "base polish saved as": FAIL);
+its controls hold (the flag-off log passes, the stopped `resolve251_r1.log` fails). The log's "projection failed (n)" lines n = 1 to 12 are in `resolve251_r1b.log` and in the PR comment. "base polish not adopted (max|F| 2.0e-05 -> 2.0e-05)": no base is saved, so `delta251b.log` ends in a FileNotFoundError (exit 1).

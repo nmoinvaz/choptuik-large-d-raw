@@ -22,3 +22,8 @@ resolve251_r1: expected exit 0, got 0, 320 s (cap 32400 s) OK
 delta241: expected exit 0, got 0, 0 s (cap 1800 s) OK
 delta251: expected exit 0, got 1, 0 s (cap 1800 s) MISMATCH
 delta73: expected exit 0, got 0, 1 s (cap 1800 s) OK
+# 2026-11-20 17:43:35 UTC 1054b: HEAD before the checkout 5f488e2b229600d3e62a42bccbbfa40a89118980
+# 2026-11-20 17:43:35 UTC 1054b: HEAD 4204c9f94d030aef508131c41a4573cd9b9de64e; changed since 5f488e2b: hp/anm_run.py hp/arclength.py hp/exact_recip_check.py notes/EXACT_RECIP.md ; hp/src changes: 0 lines (must be 0)
+resolve251_r1b: expected exit 0, got 0, 1462 s (cap 32400 s) OK
+check251b (the coordinator's pass rule) on resolve251_r1b.log: exit 1: resolve251_r1b.log: FAIL; controls: resolve251_r0.log PASS (expected PASS), resolve251_r1.log FAIL (expected FAIL)
+delta251b: expected exit 0, got 1, 0 s MISMATCH (see the log: no flag-on base if the rule failed)
