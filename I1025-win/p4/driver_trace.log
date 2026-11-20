@@ -1,0 +1,83 @@
++ set -u
++ WT=C:/Users/nathan/Source/choptuik-i1025-lowd
++ RAW=C:/Users/nathan/Source/p4_1025/raw
++ OUT=C:/Users/nathan/Source/p4_1025/I1025-win/p4
++ PY=C:/Users/nathan/Source/venv-md510/Scripts/python.exe
++ TH=4
++ ROW_TIMEOUT=14400
++ WT_COMMIT=505d839940456a3d04321d75cf66cc3b5bc831c4
++ P4_BLOB=a402559b5d37661b49da50f07f877af21fd29b3a
++ MAC_ROOT=2.244042809616683
++ export OPENBLAS_NUM_THREADS=4 OMP_NUM_THREADS=4 MKL_NUM_THREADS=4 VECLIB_MAXIMUM_THREADS=4 RAYON_NUM_THREADS=4
++ OPENBLAS_NUM_THREADS=4
++ OMP_NUM_THREADS=4
++ MKL_NUM_THREADS=4
++ VECLIB_MAXIMUM_THREADS=4
++ RAYON_NUM_THREADS=4
++ export 'MSYS2_ARG_CONV_EXCL=*'
++ MSYS2_ARG_CONV_EXCL='*'
++ NICE=
++ nice -n 10 true
++ NICE='nice -n 10'
++ LOG=C:/Users/nathan/Source/p4_1025/I1025-win/p4/p4_w.log
++ JS=C:/Users/nathan/Source/p4_1025/I1025-win/p4/ell_p4_hybrid_1025_w.jsonl
++ '[' -f C:/Users/nathan/Source/p4_1025/I1025-win/p4/README.md ']'
++ '[' -e C:/Users/nathan/Source/p4_1025/I1025-win/p4/p4_w.log ']'
++ '[' -e C:/Users/nathan/Source/p4_1025/I1025-win/p4/ell_p4_hybrid_1025_w.jsonl ']'
+++ git -C C:/Users/nathan/Source/choptuik-i1025-lowd rev-parse HEAD
++ '[' 505d839940456a3d04321d75cf66cc3b5bc831c4 = 505d839940456a3d04321d75cf66cc3b5bc831c4 ']'
++ P4=C:/Users/nathan/Source/p4_1025/raw/I1025-mac/p4_hybrid.py
+++ git hash-object C:/Users/nathan/Source/p4_1025/raw/I1025-mac/p4_hybrid.py
++ '[' a402559b5d37661b49da50f07f877af21fd29b3a = a402559b5d37661b49da50f07f877af21fd29b3a ']'
++ INPUTS=$'\n5be40af42cdcf2c1c3751c1b28a03884759fcbd4 I1025-mac/out/l1kc55Fb1025.jsonl\n94c8b04878559d3ccdaef9535d4af6280d50edaf I1025-mac/out/sol_l1kc55Fb1025_D16.0000.npy\nd9238215c3e1cfbcdeb1f990de24c41860c4c46a I1025-mac/out/sol_l1kc55Fb1025_D14.5000.npy\n1679d5b7f5cd79e441ec33326076b842fdb74778 I1025-win2c/out/l1kc63Fz1025.jsonl\nadc28f39b243d6c1da4cdba68380c02e687b5243 I1025-win2c/out/sol_l1kc63Fz1025_D15.5000.npy\n10235f97e9b7c944579995ead4d527c38ce98f3a I1025-win2b/out/l1kc63Fu1025.jsonl\ne122f7ea2009a8fdb17eb7a8c567067bd8175ed3 I1025-win2b/out/sol_l1kc63Fu1025_D16.2500.npy\n'
++ bad=0
++ read -r b p
++ '[' -z '' ']'
++ continue
++ read -r b p
++ '[' -z 5be40af42cdcf2c1c3751c1b28a03884759fcbd4 ']'
++ '[' -f C:/Users/nathan/Source/p4_1025/raw/I1025-mac/out/l1kc55Fb1025.jsonl ']'
+++ git hash-object C:/Users/nathan/Source/p4_1025/raw/I1025-mac/out/l1kc55Fb1025.jsonl
++ '[' 5be40af42cdcf2c1c3751c1b28a03884759fcbd4 = 5be40af42cdcf2c1c3751c1b28a03884759fcbd4 ']'
++ read -r b p
++ '[' -z 94c8b04878559d3ccdaef9535d4af6280d50edaf ']'
++ '[' -f C:/Users/nathan/Source/p4_1025/raw/I1025-mac/out/sol_l1kc55Fb1025_D16.0000.npy ']'
+++ git hash-object C:/Users/nathan/Source/p4_1025/raw/I1025-mac/out/sol_l1kc55Fb1025_D16.0000.npy
++ '[' 94c8b04878559d3ccdaef9535d4af6280d50edaf = 94c8b04878559d3ccdaef9535d4af6280d50edaf ']'
++ read -r b p
++ '[' -z d9238215c3e1cfbcdeb1f990de24c41860c4c46a ']'
++ '[' -f C:/Users/nathan/Source/p4_1025/raw/I1025-mac/out/sol_l1kc55Fb1025_D14.5000.npy ']'
+++ git hash-object C:/Users/nathan/Source/p4_1025/raw/I1025-mac/out/sol_l1kc55Fb1025_D14.5000.npy
++ '[' d9238215c3e1cfbcdeb1f990de24c41860c4c46a = d9238215c3e1cfbcdeb1f990de24c41860c4c46a ']'
++ read -r b p
++ '[' -z 1679d5b7f5cd79e441ec33326076b842fdb74778 ']'
++ '[' -f C:/Users/nathan/Source/p4_1025/raw/I1025-win2c/out/l1kc63Fz1025.jsonl ']'
+++ git hash-object C:/Users/nathan/Source/p4_1025/raw/I1025-win2c/out/l1kc63Fz1025.jsonl
++ '[' f237b93e0d4fe43a11f3352c157f340b8c3eef2b = 1679d5b7f5cd79e441ec33326076b842fdb74778 ']'
++ echo 'refuse: C:/Users/nathan/Source/p4_1025/raw/I1025-win2c/out/l1kc63Fz1025.jsonl missing or not blob 1679d5b7f5cd79e441ec33326076b842fdb74778'
+refuse: C:/Users/nathan/Source/p4_1025/raw/I1025-win2c/out/l1kc63Fz1025.jsonl missing or not blob 1679d5b7f5cd79e441ec33326076b842fdb74778
++ bad=1
++ read -r b p
++ '[' -z adc28f39b243d6c1da4cdba68380c02e687b5243 ']'
++ '[' -f C:/Users/nathan/Source/p4_1025/raw/I1025-win2c/out/sol_l1kc63Fz1025_D15.5000.npy ']'
+++ git hash-object C:/Users/nathan/Source/p4_1025/raw/I1025-win2c/out/sol_l1kc63Fz1025_D15.5000.npy
++ '[' adc28f39b243d6c1da4cdba68380c02e687b5243 = adc28f39b243d6c1da4cdba68380c02e687b5243 ']'
++ read -r b p
++ '[' -z 10235f97e9b7c944579995ead4d527c38ce98f3a ']'
++ '[' -f C:/Users/nathan/Source/p4_1025/raw/I1025-win2b/out/l1kc63Fu1025.jsonl ']'
+++ git hash-object C:/Users/nathan/Source/p4_1025/raw/I1025-win2b/out/l1kc63Fu1025.jsonl
++ '[' 5ffcaec4e72de28b77d8cc432ee56526c8d51305 = 10235f97e9b7c944579995ead4d527c38ce98f3a ']'
++ echo 'refuse: C:/Users/nathan/Source/p4_1025/raw/I1025-win2b/out/l1kc63Fu1025.jsonl missing or not blob 10235f97e9b7c944579995ead4d527c38ce98f3a'
+refuse: C:/Users/nathan/Source/p4_1025/raw/I1025-win2b/out/l1kc63Fu1025.jsonl missing or not blob 10235f97e9b7c944579995ead4d527c38ce98f3a
++ bad=1
++ read -r b p
++ '[' -z e122f7ea2009a8fdb17eb7a8c567067bd8175ed3 ']'
++ '[' -f C:/Users/nathan/Source/p4_1025/raw/I1025-win2b/out/sol_l1kc63Fu1025_D16.2500.npy ']'
+++ git hash-object C:/Users/nathan/Source/p4_1025/raw/I1025-win2b/out/sol_l1kc63Fu1025_D16.2500.npy
++ '[' e122f7ea2009a8fdb17eb7a8c567067bd8175ed3 = e122f7ea2009a8fdb17eb7a8c567067bd8175ed3 ']'
++ read -r b p
++ '[' -z '' ']'
++ continue
++ read -r b p
++ '[' 1 = 0 ']'
++ exit 2
