@@ -1,0 +1,28 @@
+# 2026-11-20 18:09:59 UTC PR #1055 at 2928d458 against the venv-i1056 build (worktree /home/nathan/Source/choptuik-large-d-1056 at e208e136), main 4ac62582
+diff --stat e208e136 4ac62582 -- hp/src hp/Cargo.toml hp/Cargo.lock hp/pyproject.toml: files [ hp/src/split_tests.rs ] (1 file changed, 29 insertions(+))
+split_tests is declared in 4ac62582's hp/src/lib.rs as: #[cfg(test)] mod split_tests; 
+merge base of 4ac62582 and 2928d458: 4ac62582; the PR's files against it: hp/anm_run.py hp/data/plan_auto/planted.txt hp/lowD_dd.py hp/lowD_highM.py hp/plan_auto_gain.py hp/src/lib.rs hp/src/plan_auto.rs hp/src/python.rs notes/LARGE_D_WALL.md notes/LOW_D_SPEEDUP.md 
+control, diff --name-only e208e136 2928d458 -- hp/src: hp/src/lib.rs hp/src/plan_auto.rs hp/src/python.rs hp/src/split_tests.rs  (must list plan_auto.rs)
+pyproject multidouble pin, e208e136: multidouble @ git+https://github.com/nmoinvaz/multidouble@8c4360ac0be804d081faee; 2928d458: multidouble @ git+https://github.com/nmoinvaz/multidouble@8c4360ac0be804d081faee
+Cargo pins, e208e136: multishoot = { version = "=4.1.0", featu;multisolver = "=0.2.2"  # 0.2.0: quasi (;multidouble = "=5.1.0"  # 1.8.0: the pie;; 2928d458: multishoot = { version = "=4.1.0", featu;multisolver = "=0.2.2"  # 0.2.0: quasi (;multidouble = "=5.1.0"  # 1.8.0: the pie;
+venv-i1056's installed multidouble package, direct_url: {"subdirectory": "python", "url": "https://github.com/nmoinvaz/multidouble", "vcs_info": {"commit_id": "8c4360ac0be804d081faeea524e5c1c6e2fffaaa", "requested_revision": "8c4360ac0be804d081faeea524e5c1c6e2fffaaa", "vcs": "git"}}
+# python Python 3.14.10, maturin maturin 1.16.0, lock of 2928d458: ; "multidouble"version = "5.1.0"; "multishoot"version = "4.1.0"; "multisolver"version = "0.2.2"
+venv-i1055 before the build: multidouble package WARNING: Package(s) not found: multidouble
+build1055: expected exit 0, got 0, 1565 s (cap 5580 s), bit-identical rows 0, DIFFERS rows 0; last: hpkernel avx2 multidouble avx2 OK
+build1055 peak memory of the unit so far (venv and build): 27709 MiB
+venv-i1055's installed multidouble package, direct_url: {"subdirectory": "python", "url": "https://github.com/nmoinvaz/multidouble", "vcs_info": {"commit_id": "8c4360ac0be804d081faeea524e5c1c6e2fffaaa", "requested_revision": "8c4360ac0be804d081faeea524e5c1c6e2fffaaa", "vcs": "git"}}; names 8c4360ac: OK
+hpkernel import /home/nathan/Source/venv-i1056: hpkernel avx2 /home/nathan/Source/venv-i1056/lib/python3.14/site-packages/hpkernel/__init__.py multidouble avx2 has Solver.plan_auto False
+hpkernel import /home/nathan/Source/venv-i1055: hpkernel avx2 /home/nathan/Source/venv-i1055/lib/python3.14/site-packages/hpkernel/__init__.py multidouble avx2 has Solver.plan_auto True
+save_ref: expected exit 0, got 0, 42 s (cap 1800 s), bit-identical rows 0, DIFFERS rows 0; last: saved 72 hashes to /home/nathan/Source/choptuik-large-d-raw/I1055-dh610/REF.json OK
+save_scaled: expected exit 0, got 0, 305 s (cap 7200 s), bit-identical rows 0, DIFFERS rows 0; last: saved 22 hashes to /home/nathan/Source/choptuik-large-d-raw/I1055-dh610/SC.json OK
+save_jets: expected exit 0, got 0, 78 s (cap 1800 s), bit-identical rows 0, DIFFERS rows 0; last: saved 28 hashes, 3 plans and inputs to /home/nathan/Source/choptuik-large-d-raw/I1055-dh610/JETS.json OK
+cmp_ref: expected exit 0, got 0, 42 s (cap 1800 s), bit-identical rows 72, DIFFERS rows 0; last: PASS: 72 outputs bit-identical OK
+cmp_scaled: expected exit 0, got 0, 368 s (cap 7200 s), bit-identical rows 22, DIFFERS rows 0; last: PASS OK
+cmp_jets: expected exit 0, got 0, 78 s (cap 1800 s), bit-identical rows 28, DIFFERS rows 0; last: PASS: 28 outputs bit-identical OK
+cmp_jets_kappa: expected exit 1, got 1, 79 s (cap 1800 s), bit-identical rows 0, DIFFERS rows 28; last: FAIL: 28 of 28 outputs differ OK
+planted: expected exit 0, got 0, 5 s (cap 1800 s), bit-identical rows 0, DIFFERS rows 0; last:   data/plan_auto/planted.txt: the same (122 lines, 122 recomputed) OK
+planted_control_n: expected exit 1, got 1, 7 s (cap 1800 s), bit-identical rows 0, DIFFERS rows 0; last:     now    state 0.05 0.021740453155143478 -2.0477918697440557e-19 0.00016925940215049024 -4.0014799067162115e-21 OK
+selftest: expected exit 0, got 0, 1 s (cap 1800 s), bit-identical rows 0, DIFFERS rows 0; last: selftest Taylor rows NaN on the auto plan: exit 1 (want 1): pass OK
+cargo_test_plan_auto: expected exit 0, got 0, 479 s (cap 7200 s), bit-identical rows 0, DIFFERS rows 0; last:  OK
+cargo test: test plan_auto::tests::bench_step_cost ... ignored;test plan_auto::tests::jac_o_plans ... ignored;test plan_auto::tests::plan_orders ... ignored;test plan_auto::tests::planted_choice_is_least_cost ... ok;test plan_auto::tests::planted_paths_meet_exact_states ... ok;test plan_auto::tests::planted_choice_control_invert ... ok;test plan_auto::tests::planted_steps_control_n ... ok;test plan_auto::tests::planted_steps_equal_truth ... ok;test result: ok. 5 passed; 0 failed; 3 ignored; 0 measured; 44 filtered out; finished in 1.40s;
+unit memory peak at the end: 27709 MiB

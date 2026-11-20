@@ -1,0 +1,15 @@
+# 2026-11-20 18:52:49 UTC cmd: /home/nathan/Source/venv-i1055/bin/python plan_auto_gain.py selftest
+selftest both pass: exit 0 (want 0): pass
+selftest report --mutate delta: exit 1 (want 1): pass
+selftest Delta 1e-19 apart: exit 1 (want 1): pass
+selftest auto costs more: exit 1 (want 1): pass
+selftest |F| after 1e-27: exit 1 (want 1): pass
+selftest Taylor rows 1e-29: exit 1 (want 1): pass
+selftest abo auto costs more: exit 1 (want 1): pass
+selftest an arm missing: exit 1 (want 1): pass
+selftest no records: exit 1 (want 1): pass
+selftest |F| after NaN on the fixed plan: exit 1 (want 1): pass
+selftest |F| after NaN on the auto plan: exit 1 (want 1): pass
+selftest Taylor rows NaN on the stored plan: exit 1 (want 1): pass
+selftest Taylor rows NaN on the auto plan: exit 1 (want 1): pass
+exit 0

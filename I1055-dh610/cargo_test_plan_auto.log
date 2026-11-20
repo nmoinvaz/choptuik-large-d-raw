@@ -1,0 +1,29 @@
+# 2026-11-20 18:52:50 UTC cmd: cargo test --profile release-dev --lib plan_auto -- --nocapture
+   Compiling crossbeam-utils v0.8.23
+   Compiling crossbeam-epoch v0.9.21
+   Compiling crossbeam-deque v0.8.8
+   Compiling rayon-core v1.13.0
+   Compiling either v1.19.0
+   Compiling rayon v1.12.0
+   Compiling multidouble v5.1.0
+   Compiling multisolver v0.2.2
+   Compiling multishoot v4.1.0
+   Compiling hpkernel v0.1.0 (/home/nathan/Source/choptuik-large-d-1055/hp)
+    Finished `release-dev` profile [optimized] target(s) in 7m 58s
+     Running unittests src/lib.rs (target/release-dev/deps/_hpkernel-4f732ed32a731d07)
+
+running 8 tests
+test plan_auto::tests::bench_step_cost ... ignored
+test plan_auto::tests::jac_o_plans ... ignored
+test plan_auto::tests::plan_orders ... ignored
+test plan_auto::tests::planted_choice_is_least_cost ... ok
+order 38: 22 steps, largest end-state error 6.16e-33 (bound 2.20e-30)
+order 36: 25 steps, largest end-state error 6.16e-33 (bound 2.50e-30)
+test plan_auto::tests::planted_paths_meet_exact_states ... ok
+test plan_auto::tests::planted_choice_control_invert ... ok
+test plan_auto::tests::planted_steps_control_n ... ok
+test plan_auto::tests::planted_steps_equal_truth ... ok
+
+test result: ok. 5 passed; 0 failed; 3 ignored; 0 measured; 44 filtered out; finished in 1.40s
+
+exit 0
