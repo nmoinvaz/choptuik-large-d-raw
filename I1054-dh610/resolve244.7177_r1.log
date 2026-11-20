@@ -1,0 +1,9 @@
+# 2026-11-20 21:42:31 UTC cmd: python3 -u anm_run.py /home/nathan/Source/choptuik-large-d-raw /home/nathan/Source/choptuik-large-d-raw/I1054-dh610/resolve244.7177_r1 --state I966-dh370/ks_chain3b/leg01_D243.8361_ks293/anm_pin3_D244.7177.npz --kfreeze 3 --held_fit data/held_fit.json --held_o 1 --N 31 --jet_o 1 --corrector od --tol_od 1e-60 --qd_it 40 --lam_stall 0.04 --od_junk 0 --reseed 2 --reseed_q 1 --reseed_o 3 --od_accept natural --od_strong 4 --reseed_start pred --reseed_qd_bar 1e-21 --threads 10 --steps 0 --save_base 1 --log_proj 1 --exact_recip 1
+the horizon series' 1/k: the state was solved with exact_recip 0, this run takes 1
+held values from the fit data/held_fit.json (degree 8, 138 full-system states, D 38.020417-73.0), relative to the base
+the base keeps its stored plan (22 steps)
+      projection failed (1): point max|F| 1.85e-06; u0 rung 1 its, |R| 5.63e+22 -> 5.63e+22, NOT converged; u0 quad-double 8 its, |R| 7.52e+15 -> 6.12e+12, NOT converged; ladder FAILED after 8 rungs, last rung u 0.300000 quad-double 8 its, |R| 2.43e+17 -> 7.63e+16, NOT converged
+      elim projections {'u0': 0, 'u0q': 0, 'ladder': 0, 'failed': 1, 'skipped': 0}: the start's projection failed, attempt stopped
+base I966-dh370/ks_chain3b/leg01_D243.8361_ks293/anm_pin3_D244.7177.npz: D 244.717685501, M 32, pin 3 (held [5, 7, 9, 11, 13]), |F| 4.6e+23; N 31, eps 1e-16, h_max 2.0, corrector od (junk_only False), tol 1.0e-20 x 1.45^(D - 244.71769), stalls accepted below 1e-17
+done
+exit 0
