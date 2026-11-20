@@ -1,0 +1,29 @@
+digits8: worst |sum d 2^16r - x 2^k| = 5.000e-1 (pass <= 8)
+unit n 16 b_0 = 1: rel 4.26e-128 4.26e-128 differ 128, digits 28, blocks (1, 1)
+unit n 16 b_3 = 1: rel 4.26e-128 4.26e-128 differ 104, digits 28, blocks (1, 1)
+unit n 16 b_0 = 3: rel 4.46e-128 4.46e-128 differ 128, digits 28, blocks (1, 1)
+unit n 64 b_0 = 1: rel 4.43e-128 4.43e-128 differ 508, digits 28, blocks (1, 1)
+unit n 251 b_0 = 1: rel 4.51e-128 4.51e-128 differ 1987, digits 28, blocks (1, 1)
+unit n 251 b_0 = 0.7: rel 4.50e-128 4.50e-128 differ 2008, digits 28, blocks (1, 1)
+empty factors (both orders and both empty): zeros, PASS
+edges: n 8193 past the FFT tables rel 0.00e0; a lane scaled out of range rel 0.00e0 (max_frac 5.6e-9): PASS
+fastmul check: prec 424, spread 32; pass |c_fast - c_naive| <= 1e-120 |c_naive|, max_frac < 1/4
+case     n    blocks   pairs  digits  max_frac   rel |c|    rel |a|*|b|  differ | ctrl rel |c|  scale-only  blocks-only
+flat    128    1x1        1     32   3.58e-5   4.53e-128   4.01e-128      1024 | 3.88e-127    2.23e-117    4.53e-128   PASS
+holes   128    1x1        1     32   2.48e-5   4.48e-128   4.10e-128       888 | 1.80e-127    2.65e-117    4.48e-128   PASS
+ramp    128    2x9       10     36   1.53e-5   1.09e-127   4.26e-128      1024 | 1.17e-23 (fails)    1.17e-23    3.24e-127   PASS
+bumpy   128   12x8       51     36   8.58e-6   7.33e-127   4.21e-128      1024 | 1.38e-24 (fails)    8.19e-14    3.81e-126   PASS
+ints    128    1x1        1     28   1.18e-6   0.00e0   0.00e0         0 | 0.00e0    0.00e0    0.00e0   PASS
+flat    251    1x2        2     36   5.91e-5   1.79e-127   4.55e-128      2008 | 3.54e-113    3.52e-82    4.55e-128   PASS
+holes   251    1x2        2     36   3.67e-5   8.05e-128   4.39e-128      1749 | 1.48e-113    4.66e-83    4.45e-128   PASS
+ramp    251    6x4       12     36   3.43e-5   5.70e-128   4.53e-128      2008 | 7.25e-24 (fails)    7.25e-24    5.70e-128   PASS
+bumpy   251   13x9       54     36   1.53e-5   3.37e-126   4.35e-128      2008 | 6.25e-25 (fails)    1.18e0    3.37e-126   PASS
+ints    251    1x1        1     28   1.76e-6   0.00e0   0.00e0         0 | 0.00e0    0.00e0    0.00e0   PASS
+flat    512    2x3        4     36   6.48e-5   5.89e-127   4.12e-128      4095 | 5.76e-82    6.18e-13    6.09e-127   PASS
+holes   512    2x3        4     36   5.34e-5   2.12e-127   4.32e-128      3575 | 5.90e-81    1.82e-13    4.40e-127   PASS
+ramp    512    6x6       14     36   5.15e-5   4.30e-127   4.33e-128      4095 | 1.86e-23 (fails)    1.86e-23    4.30e-127   PASS
+bumpy   512   14x8       54     36   2.67e-5   2.78e-125   4.52e-128      4096 | 2.73e-24 (fails)    2.73e-24    2.78e-125   PASS
+ints    512    1x1        1     28   4.09e-6   0.00e0   0.00e0         0 | 0.00e0    0.00e0    0.00e0   PASS
+NaN controls: an output's NaN gives rel inf / inf, an input's NaN max_frac inf and rel inf: fail as they must
+fastmul check: PASS
+nice -n 10 $SP/i1034/bench_debug/debug/fastmul_bench --no-bench  208.86s user 1.55s system 81% cpu 4:19.02 total
