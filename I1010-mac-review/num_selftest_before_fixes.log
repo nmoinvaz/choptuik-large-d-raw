@@ -1,0 +1,20 @@
+FAIL  S1 an integration that fails, or stops short of its end point, raises RuntimeError:  failed: AssertionError: planted failure; short: no error [0 s]
+   zero it 0: |J| 2.03e+00  step 2.00e+00  x [2.5 0.8] [0 s]
+   zero it 1: |J| 2.08e+00  step 2.33e+00  x [ 4.50319496 -0.225     ] [0 s]
+   zero it 2: |J| 5.56e+00  step 2.44e+00  x [2.67092039 2.10972222] [0 s]
+   zero it 3: |J| 2.92e+00  step 2.60e+00  x [5.11584144 0.81786309] [0 s]
+   zero it 4: |J| 1.58e+00  step 2.57e+00  x [ 2.51437663 -0.20241773] [0 s]
+   zero it 5: |J| 6.86e+00  step 1.86e+00  x [4.54257525 2.36893054] [0 s]
+   zero it 6: |J| 2.24e+00  step 2.50e+00  x [2.68485302 0.97339956] [0 s]
+   zero it 7: |J| 2.65e+00  step 1.86e+01  x [ 5.18472629 -0.0269639 ] [0 s]
+FAIL  S2 own_zero on a function with no zero raises RuntimeError:  no error [0 s]
+FAIL  S3 a maximum of errors with a non-finite entry is inf:  NameError: name 'fin_max' is not defined [0 s]
+FAIL  S4 the comparison with l2_c2.py: UNVERIFIED when nothing was compared, FAIL on a difference or a nan:  NameError: name 'compare' is not defined [0 s]
+FAIL  S5 an unknown command, mutation or option exits 2 at once:  chekcs: still running after 20 s; --mutate=bgg: 0; --m=3: still running after 20 s [54 s]
+FAIL  S6 l2_c2_review_sym.py --mutate=sing (no such mutation) exits 2 at once:  exit 0 [85 s]
+FAIL  S7 l2_c2_review_sym.py without the stored forcings fails check K and exits 1:  exit 0; K line: PASS  K  data/l2_c2_forcing.json: its l2 [116 s]
+FAIL
+real 117.93
+user 112.02
+sys 1.08
+exit 1

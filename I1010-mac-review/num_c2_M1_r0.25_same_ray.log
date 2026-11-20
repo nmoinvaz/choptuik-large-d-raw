@@ -1,0 +1,41 @@
+M 1, x = [2.5421480475189 0.7769940136467], r1 0.250, ray arg xi^2 = pi/2 + 0.6283, r0 0.1259, series cut at j = 35 (4e-26), rtol 1e-12 [111 s]
+   mode d_s Z0: profile f2 = [-41.979377  22.648836], dc(0) = 2 g1 = [-3.231258  6.462517 -3.231258] [111 s]
+   jump of the mode over |A| |f2|: 4.9e-11; cond(A) 1.7e+01 [111 s]
+
+      phi       this code       l2_c2.py   rel diff
+l2    e1      -8.32247565    -8.32247565    3.6e-11
+l2    e2      -5.94806674    -5.94806674    7.7e-11
+l2    f2      -9.08611454    -9.08611454    2.8e-11
+l2    ell     -7.94356367    -7.95908853    2.0e-03
+l0    e1       8.13341780     8.13341780    3.6e-11
+l0    e2       6.01651567     6.01651566    7.8e-11
+l0    f2       8.81423936     8.81423936    2.7e-11
+l0    ell      7.79559916     7.80944033    1.8e-03
+G     e1      -0.18905786    -0.18905786    3.0e-11
+G     e2       0.06844892     0.06844892    2.2e-10
+G     f2      -0.27187518    -0.27187518    5.0e-11
+G     ell     -0.14796451    -0.14964820    1.1e-02
+sym   e1       2.93575322     2.93575322    7.6e-11
+sym   e2       1.58371484     1.58371484    2.6e-10
+sym   f2       3.37058527     3.37058527    5.1e-11
+sym   ell      2.71999277     2.72883295    3.2e-03
+l2c   e1      -2.86036018              -
+l2c   e2      -1.28133939              -
+l2c   f2      -3.36819254              -
+l2c   ell     -2.60837751              -
+Gc    e1       0.07539304              -
+Gc    e2       0.30237545              -
+Gc    f2       0.00239273              -
+Gc    ell      0.11161526              -
+
+12 values compared with l2_c2.py at tolerance 1e-06: PASS
+Sch(2), de-mixed: max relative difference from l2_c2.py 6.9e-01
+f2: max relative difference from l2_c2.py 0.0e+00
+linearity: c2 + lambda_1 - G over phi: 1.8e-14, 3.2e-14, 1.0e-14
+compact:   c2c + lambda_1(sym) - Gc over phi: -2.9e-14, -2.7e-14, -2.9e-14
+wrote /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/afb99455-a815-419f-becf-38b07aee7d3a/scratchpad/rev1010/final/num_c2_M1_r0.25_same_ray.json [111 s]
+PASS
+real 112.22
+user 108.11
+sys 0.49
+exit 0

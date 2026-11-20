@@ -1,0 +1,20 @@
+PASS  S1 an integration that fails, or stops short of its end point, raises RuntimeError:  failed: RuntimeError: the ray integration from 0.125935 to 0.2 stopp; short: RuntimeError: the ray integration from 0.125935 to 0.2 stopp [0 s]
+   zero it 0: |J| 2.03e+00  step 2.00e+00  x [2.5 0.8] [0 s]
+   zero it 1: |J| 2.08e+00  step 2.33e+00  x [ 4.50319496 -0.225     ] [0 s]
+   zero it 2: |J| 5.56e+00  step 2.44e+00  x [2.67092039 2.10972222] [0 s]
+   zero it 3: |J| 2.92e+00  step 2.60e+00  x [5.11584144 0.81786309] [0 s]
+   zero it 4: |J| 1.58e+00  step 2.57e+00  x [ 2.51437663 -0.20241773] [0 s]
+   zero it 5: |J| 6.86e+00  step 1.86e+00  x [4.54257525 2.36893054] [0 s]
+   zero it 6: |J| 2.24e+00  step 2.50e+00  x [2.68485302 0.97339956] [0 s]
+   zero it 7: |J| 2.65e+00  step 1.86e+01  x [ 5.18472629 -0.0269639 ] [0 s]
+PASS  S2 own_zero on a function with no zero raises RuntimeError:  RuntimeError: own_zero: no step below 1e-09 in 8 steps (last 1.86e+01); no zero  [0 s]
+PASS  S3 a maximum of errors with a non-finite entry is inf:  [inf, inf, inf, 0.001] [0 s]
+PASS  S4 the comparison with l2_c2.py: UNVERIFIED when nothing was compared, FAIL on a difference or a nan:  nothing compared: UNVERIFIED; equal: PASS; one off: FAIL; one nan: FAIL [0 s]
+PASS  S5 an unknown command, mutation or option exits 2 at once:  chekcs: 2; --mutate=bgg: 2; --m=3: 2 [3 s]
+PASS  S6 l2_c2_review_sym.py --mutate=sing (no such mutation) exits 2 at once:  exit 2 [4 s]
+PASS  S7 l2_c2_review_sym.py without the stored forcings fails check K and exits 1:  exit 1; K line: FAIL  K  data/l2_c2_forcing.json: its l2 [30 s]
+PASS
+real 30.90
+user 29.22
+sys 0.68
+exit 0

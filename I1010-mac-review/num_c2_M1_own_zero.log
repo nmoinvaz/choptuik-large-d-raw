@@ -1,27 +1,21 @@
    zero it 0: |J| 2.81e-11  step 4.01e-06  x [2.54215 0.77699] [0 s]
    zero it 1: |J| 2.09e-15  step 3.34e-10  x [2.54214805 0.77699401] [1 s]
-   zero it 2: |J| 8.22e-16  step 1.51e-10  x [2.54214805 0.77699401] [1 s]
-   zero it 3: |J| 1.42e-15  step 3.40e-10  x [2.54214805 0.77699401] [1 s]
-   zero it 4: |J| 8.90e-16  step 3.61e-10  x [2.54214805 0.77699401] [1 s]
-   zero it 5: |J| 2.40e-16  step 1.20e-10  x [2.54214805 0.77699401] [2 s]
-   zero it 6: |J| 4.02e-16  step 1.36e-10  x [2.54214805 0.77699401] [2 s]
-   zero it 7: |J| 4.62e-16  step 1.09e-10  x [2.54214805 0.77699401] [2 s]
-M 1, x = [2.5421480476482 0.77699401361  ], r1 0.200, ray arg xi^2 = pi/2 + 0.9000, r0 0.1423, series cut at j = 32 (2e-23), rtol 1e-12 [66 s]
-   mode d_s Z0: profile f2 = [-41.979377  22.648836], dc(0) = 2 g1 = [-3.231258  6.462517 -3.231258] [66 s]
-   jump of the mode over |A| |f2|: 1.2e-11; cond(A) 1.0e+01 [66 s]
+M 1, x = [2.542148047654  0.7769940136093], r1 0.200, ray arg xi^2 = pi/2 + 0.9000, r0 0.1423, series cut at j = 32 (2e-23), rtol 1e-12 [103 s]
+   mode d_s Z0: profile f2 = [-41.979377  22.648836], dc(0) = 2 g1 = [-3.231258  6.462517 -3.231258] [103 s]
+   jump of the mode over |A| |f2|: 1.6e-11; cond(A) 1.0e+01 [103 s]
 
       phi       this code       l2_c2.py   rel diff
 l2    e1      -8.32247566    -8.32247565    1.3e-09
-l2    e2      -5.94806675    -5.94806674    1.7e-09
+l2    e2      -5.94806675    -5.94806674    1.8e-09
 l2    f2      -9.08611455    -9.08611454    1.2e-09
 l2    ell     -7.95908854    -7.95908853    1.4e-09
 l0    e1       8.13341781     8.13341780    1.3e-09
 l0    e2       6.01651567     6.01651566    1.7e-09
 l0    f2       8.81423937     8.81423936    1.3e-09
 l0    ell      7.80944035     7.80944033    1.4e-09
-G     e1      -0.18905786    -0.18905786    7.3e-10
-G     e2       0.06844892     0.06844892    1.7e-09
-G     f2      -0.27187518    -0.27187518    6.1e-10
+G     e1      -0.18905786    -0.18905786    7.4e-10
+G     e2       0.06844892     0.06844892    1.8e-09
+G     f2      -0.27187518    -0.27187518    6.2e-10
 G     ell     -0.14964820    -0.14964820    1.4e-09
 sym   e1       2.93575323     2.93575322    2.3e-09
 sym   e2       1.58371485     1.58371484    4.4e-09
@@ -36,13 +30,14 @@ Gc    e2       0.30237545              -
 Gc    f2       0.00239273              -
 Gc    ell      0.11013115              -
 
+16 values compared with l2_c2.py at tolerance 1e-06: PASS
 Sch(2), de-mixed: max relative difference from l2_c2.py 3.8e-07
-f2: max relative difference from l2_c2.py 6.0e-11
-linearity: c2 + lambda_1 - G over phi: -3.3e-12, -2.7e-12, -3.5e-12
-compact:   c2c + lambda_1(sym) - Gc over phi: -3.3e-12, -2.8e-12, -3.4e-12
-wrote /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/afb99455-a815-419f-becf-38b07aee7d3a/scratchpad/rev1010/final/num_c2_M1_own_zero.json [66 s]
+f2: max relative difference from l2_c2.py 6.4e-11
+linearity: c2 + lambda_1 - G over phi: 1.5e-13, 1.4e-12, -2.4e-13
+compact:   c2c + lambda_1(sym) - Gc over phi: -2.5e-12, -3.5e-12, -2.2e-12
+wrote /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/afb99455-a815-419f-becf-38b07aee7d3a/scratchpad/rev1010/final/num_c2_M1_own_zero.json [103 s]
 PASS
-real 66.26
-user 66.03
-sys 0.13
+real 104.14
+user 101.54
+sys 0.44
 exit 0
