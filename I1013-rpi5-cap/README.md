@@ -19,3 +19,7 @@ Above A 4.5 real points' noise reaches the fault level (#1021), so that part of 
 ## Runs
 
 (filled in below as the run goes)
+
+## Note from the coordinator, 2026-11-19 (about 00:30 UTC)
+
+The run stays as it is, but its counts are not used until xfchecks' sheet check passes on them: the start radius can put a point on a different root of S3 = 0 (F3 on another sheet), and a winding across such a switch is invalid. The run changes nothing for this; the next #1013 post says so.
