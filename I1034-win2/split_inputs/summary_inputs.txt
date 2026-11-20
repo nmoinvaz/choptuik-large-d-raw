@@ -1,0 +1,25 @@
+# split_inputs start 2026-11-20 16:33:34 UTC, hp 1926c1c3002bdf9d29ea4b5a14b75811c82cd862, rustc 1.96.0 (ac68faa20 2026-05-25), RUSTFLAGS=''
+cargo_inputs: expected exit 0, got 0 capped 0 OK
+test split_tests::bench_split ... ignored
+test split_tests::split_fast_accuracy ...  k   d_fast     d_mid      d_oa       d_ctrl     |F_k|
+fast series' checksum bfab7c94d50d60b9
+test split_tests::split_file ... ignored
+test split_tests::split_inputs_hash ... split inputs: libm 55456d7ef2d3396a, state 52249698dc35cab9, planted 78f7357f4999efc3
+test split_tests::split_rel_non_finite ... rel of MAX against -MAX: inf
+test split_tests::split_series_accuracy ...  k   d_split    d_oa       d_ctrl     |F_k|
+split series' checksum 19412eac043921aa
+test result: ok. 4 passed; 0 failed; 2 ignored; 0 measured; 38 filtered out; finished in 81.13s
+VALUE libm: win2 MISSING Mac 82c612f380d2fcfc DIFFERENT
+VALUE state: win2 MISSING Mac 7efba3560fe23d45 DIFFERENT
+VALUE planted: win2 MISSING Mac 78f7357f4999efc3 DIFFERENT
+VALUE fast: win2 bfab7c94d50d60b9 Mac 30acdab9851616fb DIFFERENT
+VALUE split: win2 19412eac043921aa Mac a0aada9b8fe95419 DIFFERENT
+READING: NO READING: a value is missing
+# split_inputs done 2026-11-20 17:07:07 UTC
+# CORRECTION by hand at 17:08 UTC: the VALUE and READING lines above are WRONG for libm, state and planted ("MISSING", "NO READING"): run_inputs.sh looked for a line starting "split inputs:", but cargo prints that text on the same line as the test name ("test split_tests::split_inputs_hash ... split inputs: libm ..."). The log has the values (cargo_inputs.log):
+VALUE libm: win2 55456d7ef2d3396a Mac 82c612f380d2fcfc DIFFERENT
+VALUE state: win2 52249698dc35cab9 Mac 7efba3560fe23d45 DIFFERENT
+VALUE planted: win2 78f7357f4999efc3 Mac 78f7357f4999efc3 EQUAL
+VALUE fast: win2 bfab7c94d50d60b9 Mac 30acdab9851616fb DIFFERENT (as in the first run at 9980cd93)
+VALUE split: win2 19412eac043921aa Mac a0aada9b8fe95419 DIFFERENT (as in the first run at 9980cd93)
+READING (README order, applied by hand): 1, libm differs: expected, not a fault (the platforms' libm sin/cos/tan differ; the checksums part at the inputs). Readings 2 and 3 (the faults) do not apply: they need libm equal.
