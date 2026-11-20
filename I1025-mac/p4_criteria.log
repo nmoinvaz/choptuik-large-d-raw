@@ -47,3 +47,13 @@ The --quoted deviation for the D 16.75 row is accepted by the coordinator. p4_hy
 winb's real k_c 63 D 16.75 record is now on raw (I1025-win 89d98635, out/l1kc63Fv1025.jsonl, blob e70ae02c, taken by git show and
 checked): lam 2.0834870037231608, F 2.2186479658161227e-10, steps 2794. It replaces the stub (p4_stub_l1kc63Fv1025.jsonl, kept for the
 record), and the row runs with the normal system check (|F| within 1e-6, steps equal). The --quoted deviation is dropped; no row uses it.
+== 2026-11-20 18:20:48 AMENDMENT 5, reported to the coordinator. It was written AFTER lane A's first Windows-made row (winb's D 17) had started at
+17:31:06 under the old rule: that row printed "NOT the record system" for |F| 2.2770621748e-10 against 2.2759514360e-10 (4.9e-4 relative)
+at equal steps (2744), and it runs on; its check is read under this amendment from those printed values. Every later row uses it.
+The system check "|F| within 1e-6 relative of the record's F" cannot hold across machines. winb's signtest batch rebuilt Mac-made records
+with |F| off by 1.5e-4 to 1.3e-3 relative at equal step counts (raw I1025-win/signtest_lowD/signtest_lowD.jsonl, D 10.5-14.5): that is
+the BLAS and FFT rounding of the residual. So the 1e-6 rule would reject every Windows-made record on the Mac: D 15 (win2c), 15.5 (win2c),
+16.25 (win2b), 16.5, 16.75, 17 (winb). That rejection would be about the platform, not the discrete system.
+The check becomes signtest.py's (signtest_lowD_preflight.log): steps equal, and |F - F_record| <= max(1e-2 F_record, 1e-13). Its control
+fired there: D 5 with the wrong u0/Ks/kappa gave F 1e5x off and other steps. The Mac-made rows already run (Fb D 16) pass both forms.
+p4_hybrid.py prints both F values and the steps for every row, so the old rule can still be read from the logs.

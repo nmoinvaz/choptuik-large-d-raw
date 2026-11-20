@@ -1,0 +1,11 @@
+== 2026-11-20 18:21:51 P4's control against p4_criteria.log (out/ell_p4_hybrid_1025.jsonl, lane_p4a.log). Both runs are on Fb, k_c 55, D 16, the record's system.
+hybrid:          lam 2.2440428096, minus record +1.415e-3; 1 change over its 14 evaluations; bracket 3.4e-8; noise-robust.
+float64 control: lam 2.2427123728, minus record +8.43e-5; 1 change over its 26 evaluations; bracket 3.0e-8; noise-robust.
+The control did NOT fire: it shows neither more than one change nor a noise flip, so by the criteria P4 STOPS.
+Why it could not fire: brentq samples only near the one change it chases. The float64 flips seen by the fine scan (c1_scan.log: + - - + -
+at 2.24250..2.24266) lie between its evaluations. So the control as written was weak. The two searches still disagree by 1.33e-3 on
+one system, but the criteria did not name that as the control, so it is not used as one.
+Action: lane A's running row (D 17, k_c 63, pid 9474) was SIGSTOPped at 18:21:29, not killed, and lane B is held (p4_list_b.txt renamed
+p4_list_b.held.txt, so lane_p1d.sh's lane B call finds no list). Proposed to the coordinator, not run: a control matched to the noise, the
+hybrid at c1_scan's five lambda (2.24250-2.24266, where float64 reads + - - + -). The hybrid root is 2.24404, above all five, so they must
+all read one sign; a hybrid that flips there fails.

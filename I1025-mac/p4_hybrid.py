@@ -4,8 +4,9 @@
 --quoted: the record is a stub from a report (no record file on raw): its F is checked to 1%, its steps only if given."""
 import sys, os, json, time, numpy as np
 from scipy.optimize import brentq
-sys.path.insert(0, "/Users/nathan/Source/choptuik-1025/solver/matter")
-os.chdir("/Users/nathan/Source/choptuik-1025/solver/matter")
+WTM = os.environ.get("P4_WT_MATTER", "/Users/nathan/Source/choptuik-1025/solver/matter")   # solver/matter of the code worktree
+sys.path.insert(0, WTM)
+os.chdir(WTM)
 from dss_ell import DSSEll, NODES_STD
 import multidouble as md
 import ell_ddm
@@ -19,8 +20,8 @@ with np.errstate(all="ignore"):
     F = float(np.linalg.norm(S.residual(z[None, :])[0]))
 if quoted:   # a record known only from a report: F quoted to 3 digits (1%), steps not printed on raw (not checked)
     same = abs(F - rec["F"]) <= 1e-2 * rec["F"] and (rec.get("steps") is None or sum(steps.values()) == rec["steps"])
-else:
-    same = abs(F - rec["F"]) <= 1e-6 * rec["F"] and sum(steps.values()) == rec["steps"]
+else:        # amendment 5: steps equal, F to 1% (or 1e-13): cross-machine rounding moves F by up to ~1e-3 relative
+    same = abs(F - rec["F"]) <= max(1e-2 * rec["F"], 1e-13) and sum(steps.values()) == rec["steps"]
 print(f"D {D} k_c {kc} ({os.path.basename(st)}): |F| {F:.10e} (record {rec['F']:.10e}), steps {sum(steps.values())} (record "
       f"{rec['steps']}): {'the record system' if same else 'NOT the record system'}", flush=True)
 E = ell_ddm.DDEll(S)
@@ -66,9 +67,9 @@ br = min(changes, key=lambda p: abs(0.5 * (p[0] + p[1]) - root)) if root is not 
 robust = all(all(x == e["sign"] for x in e["noise"]) for e in ev.values())
 out = dict(D=D, kc=kc, mode="f64" if f64 else "hybrid", record=os.path.basename(recf), state=os.path.basename(st), F=F,
            record_system=same, quoted=quoted,
-           system_check=("|F| within 1% of the quoted F; steps unchecked (stub record)" if quoted else "|F| within 1e-6 and equal steps"), lam_record=rec["lam"], lam_guess=guess, lam=root, minus_record=(root - rec["lam"]) if root else None,
+           system_check=("|F| within 1% of the quoted F; steps unchecked (stub record)" if quoted else "|F| within 1% (or 1e-13) and equal steps"), lam_record=rec["lam"], lam_guess=guess, lam=root, minus_record=(root - rec["lam"]) if root else None,
            n_signchanges_grid=nch, n_changes_all=len(changes), bracket=br, bracket_width=(br[1] - br[0]) if br else None,
            noise_robust=robust, n_eval=len(ev), evals=ev, sec=round(time.time() - t0))
 print(f"D {D} k_c {kc} {out['mode']}: lam {root} minus record {out['minus_record']}; grid changes {nch}, changes over all "
       f"{len(ev)} evaluations {len(changes)}, bracket width {out['bracket_width']}, noise-robust {robust} ({out['sec']} s)", flush=True)
-open("data/ell_p4_hybrid_1025.jsonl", "a").write(json.dumps(out) + "\n")
+open(os.environ.get("P4_OUT", "data/ell_p4_hybrid_1025.jsonl"), "a").write(json.dumps(out) + "\n")
