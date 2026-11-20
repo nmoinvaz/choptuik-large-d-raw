@@ -40,3 +40,10 @@ with `run_m7b_v1.sh`, before the rule. Its box M = 5 walk runs `walk1026b.py` wi
 If the box's start solve fails here, the rule is applied in `rep3/`: a full run (controls and box) with `run_m7b.sh z16 3`,
 whose README is written before it starts. walk1027 already repeats every attempt (#1027), so the M = 7 start has its repeats
 in both runs.
+
+## Result of this run (09:17-09:34 UTC, `exits.txt`, `eval.txt`, `logs/`, `walks/`; no start repeats)
+
+18 of 18 checks give their expected exits. Gate: both controls PASS, with the same iterations and zeros as box 7's run
+(M = 5: iteration 5, 2.2e-6 and 1.4e-6 from the stored zero, 109 s; M = 7: iteration 1, 1.4e-6 and 6.1e-7, |F7/F5| 0.0573,
+916 s). Box 16's M = 5 walk fails at its start solve: |r_3| 2.6e6, |r_5| 3.1e3 (7 s), so there is no M = 5 zero. The reading
+is UNDECIDED, recorded but superseded: the repeat rule applies, and `rep3/` (from 09:35:56 UTC) is the run that counts.
