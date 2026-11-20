@@ -10,3 +10,9 @@ p4_list_b.held.txt, so lane_p1d.sh's lane B call finds no list). Proposed to the
 hybrid at c1_scan's five lambda (2.24250-2.24266, where float64 reads + - - + -). The hybrid root is 2.24404, above all five, so they must
 all read one sign; a hybrid that flips there fails.
 == 2026-11-20 18:23:42 the coordinator's ruling: the first control is recorded as BLIND (brentq never sampled the flips), not as passed. Control 2 replaces it (p4_criteria.log).
+== 2026-11-20 18:53:18 CONTROL 2 PASSES (p4_ctrl2.log, out/ell_p4_ctrl2_1025.jsonl). At 2.24250, 2.24254, 2.24258, 2.24262, 2.24266 the float64 det reads
++ - - + - again, the same signs as c1_scan.log, while the hybrid reads - at all five, each unchanged under the 1e-15 noise. The hybrid's
+ln|det| falls smoothly from -1574.8499 to -1574.9437, against float64's jumps between -1574.6 and -1578.5.
+So the hybrid is clean where float64 is noise. P4 resumes: lane A's D 17 row (pid 9474) got SIGCONT at the time above, lane_slotB.sh
+then runs the Mac's lane B rows, and winb's share starts on the coordinator's go. T1 at k_c 55 (-8.13e-4) is no longer provisional on
+this account.
