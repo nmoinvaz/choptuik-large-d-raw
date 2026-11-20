@@ -181,3 +181,10 @@ Box 7's -1 zero, M = 5 (20 Nov 06:40-06:46 UTC, `m5/`, summary `m5/z7_m5_summary
 rule: the 0.25 control never converged), then #1027's repeats (`z7_repeat_xi0.2.log`). The first attempt ends at
 |r_3| 2.2e3; the three repeats reach |r_3| 1.0e-5, 2.8e-6 and 6.9e-5 (|r_5| 9.1e-8 to 2.0e-7), none under the bar,
 all with |F_5/F_3| 0.3186 and the same printed harmonics. By the rule the M = 5 test gives no verdict on box 7.
+
+b11-15's +1 at xi1 0.18 (`loc/run_loc4.sh`, 06:42-09:47 UTC on 20 Nov, `loc/b1115p_r0.18_6da7da7b/`, log
+`loc/loc_b1115p_r0.18_6da7da7b.log`; seeded from the 0.17 relocation's points): the cell winds +1 (boundary winding 1.000),
+10 leaves after 3 splits, none unresolved, leaf sum 1. The zero is located at 0.18 at A 3.526471, w/w_inf 0.211495 (|R| 9.3,
+floor 14.3), and again at 0.2, 3.7e-6 away (|R| 0.14, floor 0.77). Its points are on b11-15's sheet (|dF_3| to the nearest
+b11-15 point 1.6e-4 to 2.9e-3 at 0.18 and 3.2e-4 to 9.9e-4 at 0.2, `nearest_f3.log`), and the sheet check passes on the
+10 leaves (`sheet_check.log`). `m5/b1115p_start.txt` is the M = 5 start from the 0.18 location (`m5/m5_start.py`).
