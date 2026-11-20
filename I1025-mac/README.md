@@ -70,3 +70,4 @@ Settings throughout: l = 1, kappa 0.7, u0 0.04, Ks 30. Seeds: #660's D = 10 stat
 | `u0resolve_note.log` | P1-prime's k_c 55 result: no lambda on the u0 0.02 re-solve (no float64 sign change on the 9-point grid) |
 | `signtest_lowD_driver_v2.sh`, `signtest_lowD_v2_smoke.log` | v2 of the low-D signtest driver: ROWS_D (which rows, in order), RESUME, BLAS_THREADS and Git Bash paths, so rows split across machines without repeats |
 | `p4_control_note.log` | P4's float64 control did not fire (1 change over 26 brentq evaluations), so P4 stopped; lane A paused, lane B held; a noise-matched control is proposed |
+| `p4_ctrl2.py`, `p4_ctrl2.log` | P4 control 2: the hybrid at the five lambda where the float64 fine scan flips (k_c 55, D 16); P4 resumes only if it reads one sign there (`out/ell_p4_ctrl2_1025.jsonl`) |

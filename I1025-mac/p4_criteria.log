@@ -57,3 +57,13 @@ the BLAS and FFT rounding of the residual. So the 1e-6 rule would reject every W
 The check becomes signtest.py's (signtest_lowD_preflight.log): steps equal, and |F - F_record| <= max(1e-2 F_record, 1e-13). Its control
 fired there: D 5 with the wrong u0/Ks/kappa gave F 1e5x off and other steps. The Mac-made rows already run (Fb D 16) pass both forms.
 p4_hybrid.py prints both F values and the steps for every row, so the old rule can still be read from the logs.
+== 2026-11-20 18:23:42 CONTROL 2 (the coordinator's word), written before it runs. The first control (--mutate=f64 brentq on Fb, k_c 55, D 16) is recorded
+as BLIND, not passed: brentq never sampled between the float64 flips (p4_control_note.log).
+Control 2 (p4_ctrl2.py, venv-1025dd): on the same state and system (Fb, k_c 55, D 16, u0 0.04, Ks 30; system check as amended), the
+hybrid at the five lambda of c1_scan.log, 2.24250, 2.24254, 2.24258, 2.24262 and 2.24266, where float64 reads + - - + -. The float64 det
+is evaluated alongside, as a check that this rebuild still shows the flips.
+Pass: the hybrid reads one sign at all five, and every one is unchanged under its 1e-15 noise on blocks 0-11 (2 seeds).
+Fail: any hybrid sign change among the five, or a noise flip. Then P4 stays stopped and is reported.
+Resume P4 (lane A's paused row, lane B, winb's share) only if control 2 passes.
+Amendment 5 is accepted by the coordinator. winb's D 17 row (lane A) is read under it, "written after the row started". Its old-rule
+reading is reported beside it: |F| 2.2770621748e-10 against 2.2759514360e-10, 4.9e-4 relative, equal steps 2744.
