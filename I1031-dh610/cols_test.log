@@ -62,3 +62,37 @@ warning: use of deprecated type alias `multidouble::native::DotAcc`: renamed `DD
 224 | impl S0 for DotAcc {
     |             ^^^^^^
 
+warning: `hpkernel` (lib test) generated 8 warnings
+    Finished `release-dev` profile [optimized] target(s) in 20m 13s
+     Running unittests src/lib.rs (target/release-dev/deps/_hpkernel-3ca1a55642ca5e75)
+
+running 2 tests
+  B 1 multidouble::dual::F8<multidouble::simd::backend::Sse2>: 0 of 13320 entries differ; control: 497 differ
+  B 3 multidouble::dual::F8<multidouble::simd::backend::Sse2>: 0 of 39960 entries differ; control: 1175 differ
+  B 1 multidouble::dual::Fu<multidouble::simd::backend::Sse2>: 0 of 13320 entries differ; control: 255 differ
+  B 2 multidouble::dual::Fu<multidouble::simd::backend::Sse2>: 0 of 26640 entries differ; control: 786 differ
+  M 8 multidouble::dual::Fu<multidouble::simd::backend::Sse2>: 0 of 37249 entries differ (parallel: 0); control: 543 differ
+  B 3 multidouble::dual::Fu<multidouble::simd::backend::Sse2>: 0 of 39960 entries differ; control: 61 differ
+  B 2 multidouble::dual::Fun<multidouble::simd::backend::Sse2, 1>: 0 of 26640 entries differ; control: 985 differ
+  B 1 multidouble::dual::Fun<multidouble::simd::backend::Sse2, 4>: 0 of 13320 entries differ; control: 840 differ
+  M 8 multidouble::dual::Fun<multidouble::simd::backend::Sse2, 4>: 0 of 37249 entries differ (parallel: 0); control: 278 differ
+  B 2 multidouble::dual::Fun<multidouble::simd::backend::Sse2, 4>: 0 of 26640 entries differ; control: 413 differ
+  M 8 multidouble::dual::Fun<multidouble::simd::backend::Sse2, 8>: 0 of 37249 entries differ (parallel: 0); control: 239 differ
+  B 3 multidouble::dual::Fun<multidouble::simd::backend::Sse2, 4>: 0 of 39960 entries differ; control: 321 differ
+  M 8 multidouble::dual::Dtn<multidouble::simd::backend::Sse2, 4>: 0 of 37249 entries differ (parallel: 0); control: 216 differ
+  B 1 multidouble::dual::Fun<multidouble::simd::backend::Sse2, 8>: 0 of 13320 entries differ; control: 258 differ
+  B 3 multidouble::dual::Fun<multidouble::simd::backend::Sse2, 8>: 0 of 39960 entries differ; control: 69 differ
+  B 1 multidouble::dual::Dtn<multidouble::simd::backend::Sse2, 4>: 0 of 13320 entries differ; control: 355 differ
+  B 2 multidouble::dual::Dtn<multidouble::simd::backend::Sse2, 4>: 0 of 26640 entries differ; control: 1153 differ
+Taylor coefficients, lane vectors against fields: 333000 entries compared, none differ
+test cols_tests::cols_coeffs_bitwise ... ok
+  M 16 multidouble::dual::Fu<multidouble::simd::backend::Sse2>: 0 of 148225 entries differ (parallel: 0); control: 1895 differ
+  M 16 multidouble::dual::Fun<multidouble::simd::backend::Sse2, 4>: 0 of 148225 entries differ (parallel: 0); control: 721 differ
+  M 16 multidouble::dual::Fun<multidouble::simd::backend::Sse2, 8>: 0 of 148225 entries differ (parallel: 0); control: 539 differ
+  M 16 multidouble::dual::Dtn<multidouble::simd::backend::Sse2, 4>: 0 of 148225 entries differ (parallel: 0); control: 796 differ
+  M 24 multidouble::dual::Fun<multidouble::simd::backend::Sse2, 4>: 0 of 332929 entries differ (parallel: 0); control: 1790 differ
+test cols_tests::cols_jacobian_bitwise ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 37 filtered out; finished in 22.87s
+
+exit 0

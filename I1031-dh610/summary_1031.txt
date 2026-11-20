@@ -1,1 +1,4 @@
 # 2026-11-20 06:22:48 UTC start, hp 5d0a96e6, cargo 1.99.1 (5f94df478 2026-08-27), rustc 1.99.1 (58cf8f9c3 2026-10-13), multidouble version = "4.9.1", load 10.93 11.99 12.01, CPU  12th Gen Intel(R) Core(TM) i7-12700
+cols_test (RUSTFLAGS ''): expected exit 0, got 0, 1237 s OK; '2 passed' lines 1 (1), '333000 none differ' lines 1 (1), tile lines 9 (22), tile lines not '0 differ with control > 0' 0 (0); backends:  22 backend::Sse2;; peak 
+cols_test_native (RUSTFLAGS '-C target-cpu=native'): expected exit 0, got 0, 1873 s OK; '2 passed' lines 1 (1), '333000 none differ' lines 1 (1), tile lines 9 (22), tile lines not '0 differ with control > 0' 0 (0); backends:  22 backend::Avx2;; peak 
+# 2026-11-20 07:14:38 UTC done

@@ -1,0 +1,12 @@
+cols_test.log: 22 control lines (expect 22), smallest K 61, last 'exit 0', problems []: PASS
+exit 0
+cols_test.log --mutate=differ: 22 control lines (expect 22), smallest K 61, last 'exit 0', problems [('differ', 'B 1 multidouble::dual::F8<multidouble::simd::backend::Sse2>: 3 of 13320 entries differ; control: 497')]: FAIL
+mutate differ exit 1 (1)
+cols_test.log --mutate=control: 22 control lines (expect 22), smallest K 0, last 'exit 0', problems [('control did not fire', 'B 1 multidouble::dual::F8<multidouble::simd::backend::Sse2>: 0 of 13320 entries differ; control: 0 d')]: FAIL
+mutate control exit 1 (1)
+cols_test_native.log: 22 control lines (expect 22), smallest K 61, last 'exit 0', problems []: PASS
+exit 0
+cols_test_native.log --mutate=differ: 22 control lines (expect 22), smallest K 61, last 'exit 0', problems [('differ', 'B 1 multidouble::dual::F8<multidouble::simd::backend::Avx2>: 3 of 13320 entries differ; control: 497')]: FAIL
+mutate differ exit 1 (1)
+cols_test_native.log --mutate=control: 22 control lines (expect 22), smallest K 0, last 'exit 0', problems [('control did not fire', 'B 1 multidouble::dual::F8<multidouble::simd::backend::Avx2>: 0 of 13320 entries differ; control: 0 d')]: FAIL
+mutate control exit 1 (1)
