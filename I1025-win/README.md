@@ -1,6 +1,6 @@
 # I1025-win: the l = 1 DSS solution at k_c 63 from D 17 to 20, its growth rate, and the eigenvalues near it on the Mac's k_c 47 and 55 states (#1025, winb's lane)
 
-Runner winb on the win laptop (Surface Laptop 4, i7-1185G7, 4 cores / 8 threads, 32 GB, Windows 11), agent claude-me2. Issue https://github.com/nmoinvaz/choptuik-large-d/issues/1025 (xfkappa's #1025, lane handed over by the coordinator). Status: **running** (started 2026-11-20 00:14:05 UTC; first publish 03:10 UTC; this README is rewritten at each publish).
+Runner winb on the win laptop (Surface Laptop 4, i7-1185G7, 4 cores / 8 threads, 32 GB, Windows 11), agent claude-me2. Issue https://github.com/nmoinvaz/choptuik-large-d/issues/1025 (xfkappa's #1025, lane handed over by the coordinator). Status: **running** (started 2026-11-20 00:14:05 UTC; publishes at 03:10 and 03:25 UTC; this README is rewritten at each publish). **The eigenvalue scans (`eigs_a.log`, `eigs_b.log`) are INVALID and were stopped at 03:21 UTC** (see Changes during the run).
 
 ## Question
 
@@ -44,8 +44,21 @@ ell_eigs.py <state> D kc lambda --r 0 --N 24 --p 12 --dlam 0 --no_polish_complex
 | `kc63_start.log`, `out/l1kc63Fw1025.jsonl`, `out/sol_l1kc63Fw1025_D*.npy` | k_c 63 at D 17 and 17.5 from k_c 55, with lambda; then lambda at D 18 to 20 |
 | `leap_kc63.log`, `out/l1kc63W1025.jsonl`, `out/sol_l1kc63W1025_D*.npy` | `ell_leap --fold` at k_c 63, D 17.5 to 20 |
 | `lam_kc63.log` | lambda at k_c 63 on the continuation's half-integer states |
-| `eigs_a.log`, `eigs_b.log`, `out/eigs_win1025_*.jsonl` | `ell_eigs`: the eigenvalues inside a circle around lambda_1 (Beyn), with the state checks |
+| `eigs_a.log`, `eigs_b.log` | **INVALID.** `ell_eigs` (Beyn's contour method) on the Mac's k_c 47 and 55 states at D 17.5, stopped at 03:21 UTC: its rank test printed `rank = p: raise --p` and M is ill-conditioned along the whole contour. Kept as written; no `out/eigs_win1025_*.jsonl` record was produced |
+| `guard_leap_1025.py`, `start_guard_1025.cmd`, `guard_1025.log`, `guard_main.log` | the guard that holds the k_c 63 leap at D 18 (coordinator's order) and its launcher and logs |
+| `stop_eigs_1025.log` | the stop of the eigenvalue scans: times, pids killed, cause |
+| `pre/selftest_guard.log`, `pre/selftest_guard_4threads.log` | the guard's selftests on dummy processes (2 BLAS threads, then 4 with the thread assertion) |
 | `main.log` | the script's own stdout and stderr |
+
+## Changes during the run
+
+| time (UTC) | change | why |
+|---|---|---|
+| 03:14 | `guard_leap_1025.py` started (selftest passed) | the coordinator's order: after D 17.5's lambda the k_c 63 leap goes only to D 18, as one cross-check of the Mac's k_c 55 there, under the same 12 h cap, then stops. The script's P1 subshell already holds `ell_leap.py ... 17.5 20 ...`, so the guard kills only that leap tree at its start and runs the identical command with `D_end` 18 (the leap clamps its last step to `D_end` and saves `sol_l1kc63W1025_D18.0000.npy`), then runs lambda at D 18 on that state (`ell_refine.py l1kc63W1025 63 l1kc63Fw1025 63 1 18 ...`) unless P2 did |
+| 03:21 | the eigenvalue scans P3a and P3b stopped by exact pid, their remaining jobs (a: k_c 47 at D 17 and 16; b: k_c 55 at D 17 and k_c 47 at D 16.5) not run | the coordinator's order. A control fired on them: Beyn's rank test prints `rank = p: raise --p` (line 30 of `eigs_a.log` and of `eigs_b.log`, with the singular values of A_0 from 1.2e+16 down to 4.4e+14 in a and 6.6e+17 down to 2.7e+15 in b), and M is ill-conditioned along the whole contour (12 scipy `LinAlgWarning`s per log, rcond 1e-18 to 1e-20). Their output is invalid until `ell_eigs` is fixed. I first read the logs with a filter that hid their indented lines and missed the `rank = p` line; xfkappa found it |
+| 03:23 | the guard restarted with 4 BLAS threads for the leap and the lambda run instead of the script's 2 (the guard had not acted yet) | the scans' cores are free, the coordinator's order. The k_c 63 refine of D 17.5 keeps the 2 threads it started with. Threads can change the last bits of a solve; the leap's converged states are judged by F and the psi-constraint as before |
+
+The planted checks and the first-job checks (a), (b) of the scans below are as measured. They passed, and they do not make the scans' output valid.
 
 ## Result (interim, first publish 2026-11-20 03:10 UTC)
 
@@ -72,6 +85,6 @@ lambda_1 at D 17 (`kc63_start.log`, `out/l1kc63Fw1025.jsonl`; the k_c 47 and 55 
 - The change of lambda_1 from k_c 55 to 63 is 8.3e-4, 13 times smaller than the move from k_c 47 to 55 and of the opposite sign. It does not meet the bar |dlambda| <= 1e-6, and is far below the resolution scale |S| 7.68e-2 the Mac quotes at D 17. lambda_1 at D 17 is 0.0291 above #994's 1.997411.
 - Cost: the D 17 start state was saved at 01:17 UTC (63 min after the start), the record came at about 03:08 UTC, 10420 s in all, with four processes running (the Mac's k_c 55 record took 1714 s). D 17.5 is next, then the continuation, and P2's lambda on its states.
 - The k_c 63 solve prints many numpy overflow and invalid-value RuntimeWarnings from `dss_ell.py` in `kc63_start.log` (trial steps of the Levenberg-Marquardt solve). The solve ended with F 2.3e-10 and no error; the Mac's k_c 55 start log has none.
-- The eigenvalue scans (`eigs_a.log`, `eigs_b.log`) are on their first state, D 17.5, after the checks; scipy prints `LinAlgWarning` (rcond 1e-18 to 1e-20) at the contour nodes. A state takes hours (24 contour nodes at 300 s each in job a, 490 s in job b).
+- The eigenvalue scans (`eigs_a.log`, `eigs_b.log`) are invalid: see Changes during the run (rank = p, ill-conditioned M along the contour). They were stopped at 03:21 UTC and are kept as written.
 
-Not yet: lambda_1 at D 17.5 and the k_c 63 continuation to D 20, lambda at D 18 to 20, the eigenvalue scans. The reading stays with #1025.
+Not yet: lambda_1 at D 17.5, the k_c 63 leap to D 18 and lambda at D 18. The eigenvalue scans are invalid and stopped. The reading stays with #1025.
