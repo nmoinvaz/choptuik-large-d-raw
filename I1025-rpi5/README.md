@@ -54,3 +54,18 @@ Observation, not a failure: D 12.5 and D 13 have 6 and 10 singular values below 
 1. Planted control agree, agree, DISAGREE: met, by v1 (15:41:48) and again by v2 (17:37:20).
 2. Verdict per row, counted only with PASS: all 9 PASS; nothing was retried or repaired.
 3. The result table is posted on #1025 (comment 7047740827, 2026-11-20 about 18:50 UTC). The raw record: `signtest_lowD.log`, `signtest_lowD.jsonl`, `signtest_lowD_rows/D<D>.log`, `signtest_lowD_planted.log` (v2's) and `signtest_lowD_planted_v1.log`.
+
+## Second job: more random Q at D 12.5 and 13 (coordinator, 2026-11-20, message about 18:50 UTC; written before the runs)
+Why: D 12.5 and D 13 PASS with 6 and 10 singular values below 1e-12 (smallest printed 9.2e-14 and 1.8e-14), and I suggested more random Q as margin. xfkappa's `I1025-mac/signtest_q.py` (raw 50a478fc, blob 0b7c6caf21df007292b8b0a6b9ac37e16275743c) is `signtest.py` (blob 179ea096) plus `--nq=N` (default 3, the same seed, so the first 3 Q are the same at any N). Criteria are xfkappa's `I1025-mac/signtest_moreq_criteria.log` (read before the run):
+1. The check that can fail: at `--nq=12` the first 4 signs (the LU's and the first 3 Q's) and `logabs` at each lambda equal this folder's nq=3 lines in `signtest_lowD.jsonl` (same machine, same inputs).
+2. The margin passes if all 13 signs agree at each lambda and the two lambda have opposite signs. A disagreement among the extra Q is reported; it does not undo the PASS by itself, the coordinator rules.
+Runs: k_c 39, lambda - 0.02 and + 0.02 of the record `l1kc39L1025` at D 12.5 and at D 13, with the record's u0 0.04, Ks 30, kappa 0.7, rk 1 (signtest_q.py's defaults). Command as the coordinator gave it, from `~/Source/choptuik-1025st/solver/matter` (worktree at 505d8399), RAW = `~/Source/choptuik-large-d-raw-964` (raw f99b8df9):
+`for D in 12.5 13; do OPENBLAS_NUM_THREADS=2 nice -n 10 ~/Source/venv-choptuik/bin/python -u $RAW/I1025-mac/signtest_q.py $RAW/I1025-mac/out/sol_l1kc39L1025_D$(printf %.4f $D).npy $D 39 around=$RAW/I1025-mac/out/l1kc39L1025.jsonl:$D:0.02 --nq=12 > signtest_moreq_D$D.log 2>&1; done`
+Output: `signtest_moreq_D12.5.log`, `signtest_moreq_D13.log`; `moreq.start` has the start and exit times. Beside it recount3 runs 4 processes at nice 10 (#1013), so the times are for a shared machine.
+
+### Result of the second job (2026-11-20, run 18:49:51 to 19:16:28 UTC, `moreq.start`; both rows exit 0)
+| D | lambda - 0.02, + 0.02 | signs (13 each) | first 4 signs and logabs vs the nq=3 lines | singular values below 1e-12 | time |
+|---|---|---|---|---|---|
+| 12.5 | 2.7123751, 2.7523751 | all -1, all +1 | equal, logabs bit-equal (diff 0) | 6 (nq=3: 6) | 12.9 min (380 s, 393 s per lambda) |
+| 13 | 2.6641825, 2.7041825 | all -1, all +1 | equal, logabs bit-equal (diff 0) | 10 (nq=3: 10) | 13.7 min (413 s, 407 s per lambda) |
+`moreq_check.py` prints this and exits 0; its three controls (`--mutate=signs`, `logabs`, `nq`) each exit 1. Both system checks printed `same: true`. Criteria met: (1) the first 4 signs and logabs equal the nq=3 lines at all four lambda; (2) all 13 signs agree at each lambda and the two lambda have opposite signs. No disagreement among the extra Q. The coordinator rules on what this does to the D 12.5 and D 13 rows (the PASS is not changed by this job).
