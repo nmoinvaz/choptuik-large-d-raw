@@ -1,0 +1,14 @@
+selftest (a): 8 planted cases (gamma 0.06, 0.15; s1/s2 0.43/0.47 and 0.47/0.43; D_c inside the window or up to 0.5 outside it)
+  gamma 0.06 s1 0.43 s2 0.47 D_c 253.000: fitted D_c 253.000 (+0.000), gamma 0.0600 (-0.0%), s1 0.4300, s2 0.4700, rms 4.9e-07: pass
+  gamma 0.06 s1 0.43 s2 0.47 D_c 253.500: fitted D_c 253.500 (+0.000), gamma 0.0600 (-0.0%), s1 0.4300, s2 0.4700, rms 4.9e-07: pass
+  gamma 0.06 s1 0.47 s2 0.43 D_c 253.000: fitted D_c 253.000 (+0.000), gamma 0.0600 (-0.0%), s1 0.4300, s2 0.4700, rms 4.9e-07: FAIL
+  gamma 0.06 s1 0.47 s2 0.43 D_c 252.500: fitted D_c 252.500 (+0.000), gamma 0.0600 (-0.0%), s1 0.4700, s2 0.4300, rms 4.9e-07: pass
+  gamma 0.15 s1 0.43 s2 0.47 D_c 253.000: fitted D_c 253.000 (+0.000), gamma 0.1500 (-0.0%), s1 0.4300, s2 0.4700, rms 4.9e-07: pass
+  gamma 0.15 s1 0.43 s2 0.47 D_c 253.500: fitted D_c 253.501 (+0.001), gamma 0.1500 (-0.0%), s1 0.4300, s2 0.4700, rms 4.9e-07: pass
+  gamma 0.15 s1 0.47 s2 0.43 D_c 253.000: fitted D_c 253.000 (+0.000), gamma 0.1500 (-0.0%), s1 0.4300, s2 0.4700, rms 4.9e-07: FAIL
+  gamma 0.15 s1 0.47 s2 0.43 D_c 252.500: fitted D_c 252.500 (+0.000), gamma 0.1500 (-0.0%), s1 0.4700, s2 0.4300, rms 4.9e-07: pass
+selftest (b): gamma 0 (true crossing, D_c 253.50): fitted gamma 0.0000, rms 5.1e-07: pass
+selftest (b): gamma 0 (true crossing, D_c 252.50): fitted gamma 0.0000, rms 4.7e-07: pass
+selftest (c): data with gamma 0.06: free fit rms 4.9e-07, gap-zero fit rms 8.4e-04: FAIL
+selftest (c): data with gamma 0.15: free fit rms 4.9e-07, gap-zero fit rms 4.3e-04: FAIL
+selftest: FAIL

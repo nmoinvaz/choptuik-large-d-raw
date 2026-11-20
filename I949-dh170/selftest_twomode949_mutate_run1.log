@@ -1,0 +1,17 @@
+selftest (a): 10 planted cases (gamma 0.06, 0.15; s1/s2 0.43/0.47 and 0.47/0.43; D_c 0.05 and 0.5 after the last state, or 0.05, 0.5 and 1.3 before it)
+  gamma 0.06 s1 0.43 s2 0.47 D_c 253.050: fitted D_c 253.050 (-0.000), gamma 0.0200 (-66.7%), s1 0.4300, s2 0.4700, rms 5.1e-07: FAIL
+  gamma 0.06 s1 0.43 s2 0.47 D_c 253.500: fitted D_c 253.500 (-0.000), gamma 0.0200 (-66.7%), s1 0.4300, s2 0.4700, rms 5.1e-07: FAIL
+  gamma 0.06 s1 0.47 s2 0.43 D_c 252.950: fitted D_c 252.950 (+0.000), gamma 0.0200 (-66.7%), s1 0.4700, s2 0.4300, rms 5.5e-07: FAIL
+  gamma 0.06 s1 0.47 s2 0.43 D_c 252.500: fitted D_c 252.500 (+0.000), gamma 0.0200 (-66.7%), s1 0.4700, s2 0.4300, rms 4.7e-07: FAIL
+  gamma 0.06 s1 0.47 s2 0.43 D_c 251.700: fitted D_c 251.700 (+0.000), gamma 0.0200 (-66.7%), s1 0.4700, s2 0.4300, rms 5.1e-07: FAIL
+  gamma 0.15 s1 0.43 s2 0.47 D_c 253.050: fitted D_c 253.050 (-0.000), gamma 0.0200 (-86.7%), s1 0.4300, s2 0.4700, rms 5.1e-07: FAIL
+  gamma 0.15 s1 0.43 s2 0.47 D_c 253.500: fitted D_c 253.500 (-0.000), gamma 0.0200 (-86.7%), s1 0.4300, s2 0.4700, rms 5.1e-07: FAIL
+  gamma 0.15 s1 0.47 s2 0.43 D_c 252.950: fitted D_c 252.950 (+0.000), gamma 0.0200 (-86.7%), s1 0.4700, s2 0.4300, rms 5.5e-07: FAIL
+  gamma 0.15 s1 0.47 s2 0.43 D_c 252.500: fitted D_c 252.500 (+0.000), gamma 0.0200 (-86.7%), s1 0.4700, s2 0.4300, rms 4.7e-07: FAIL
+  gamma 0.15 s1 0.47 s2 0.43 D_c 251.700: fitted D_c 251.700 (+0.000), gamma 0.0200 (-86.7%), s1 0.4700, s2 0.4300, rms 5.1e-07: FAIL
+selftest (b): gamma 0 (true crossing, D_c 253.50): fitted gamma 0.0200, rms 5.1e-07: FAIL
+selftest (b): gamma 0 (true crossing, D_c 252.50): fitted gamma 0.0200, rms 4.7e-07: FAIL
+selftest (c): data with gamma 0.06: free fit rms 5.1e-07, gap-zero fit rms 5.1e-07: FAIL
+selftest (c): data with gamma 0.15: free fit rms 5.1e-07, gap-zero fit rms 5.1e-07: FAIL
+selftest --mutate (coupling dropped): FAIL
+exit 1
