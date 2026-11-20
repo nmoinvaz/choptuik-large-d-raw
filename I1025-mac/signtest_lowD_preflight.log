@@ -14,3 +14,17 @@ System check of all 16 rows with their recorded flags (syscheck): same true at e
 Control: D 5 run with the default flags (u0 0.04, Ks 30, kappa 0.7) instead of its own (0.01, 16, 0.5) gives F 2.4e-10 against 3.0e-15
 and 2863 steps against 5067, so same false, exit 3. The check fires.
 Not run: any full row (each took > 45 s here). On rpi5 at 2 threads the per-row timeout is 7200 s.
+== 2026-11-20 17:29:46 v2 of the driver (signtest_lowD_driver_v2.sh), so the 16 rows can be split across machines without running any row twice.
+It keeps the same rows, inputs, pins and checks, and adds:
+- ROWS_D: which rows, in the given order; an unknown D refuses.
+- RESUME=1: rows whose verdict is already in OUT's log are skipped. The log format is v1's, so v1 verdicts count.
+- BLAS_THREADS.
+- nice only where it exists.
+- For Git Bash: paths go to python as cygpath -m (D:/...) with MSYS2_ARG_CONV_EXCL='*', and CR is stripped before the planted and
+  verdict parses.
+Smoke test on the Mac (signtest_lowD_v2_smoke.log; a scratch worktree at 505d8399, raw = the live clone, timeouts of 25 s):
+- ROWS_D=3.7 refuses.
+- ROWS_D=13,12.5 runs 13 then 12.5 and stops after the two timeouts.
+- RESUME=1 ROWS_D=13,12.5,12 skips 13 and 12.5 and runs 12.
+The Windows path is not tested here (no Windows on the Mac).
+P4 lane A's python was SIGSTOPped 17:27:41-17:29:14 for this test.

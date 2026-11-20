@@ -1,0 +1,44 @@
+== 2026-11-20 17:27:56 signtest_lowD_driver_v2.sh: inputs checked; WT 505d839940456a3d04321d75cf66cc3b5bc831c4, signtest.py 179ea09681b0a75f7cefdff98984b48051b3f085, PY /Users/nathan/venv-314/bin/python (numpy 2.5.4 scipy 1.18.1), 2 BLAS threads, row timeout 25 s, rows 13,12.5, resume 0
+== 2026-11-20 17:27:56 planted control
+planted: 0 singular values at 1e+00 of 1: signs [1.0, 1.0, 1.0, 1.0, 1.0, 1.0] -> agree
+planted: 40 singular values at 1e-13 of 1: signs [1.0, 1.0, 1.0, 1.0, 1.0, 1.0] -> agree
+planted: 40 singular values at 1e-19 of 1: signs [-1.0, -1.0, -1.0, 1.0, -1.0, -1.0] -> DISAGREE
+== 2026-11-20 17:27:57 row D 13 k_c 39: signtest.py /Users/nathan/Source/choptuik-large-d-raw-i1025/I1025-mac/out/sol_l1kc39L1025_D13.0000.npy 13 39 around=/Users/nathan/Source/choptuik-large-d-raw-i1025/I1025-mac/out/l1kc39L1025.jsonl:13:0.02 --u0=0.04 --Ks=30 --kappa=0.7 --rk=1
+signtest: /Users/nathan/Source/choptuik-large-d-raw-i1025/I1025-mac/out/sol_l1kc39L1025_D13.0000.npy D 13.0 k_c 39 at lam [2.664182472933395, 2.704182472933395]
+{"system_check": "sol_l1kc39L1025_D13.0000.npy", "D": 13.0, "kc": 39, "u0": 0.04, "Ks": 30, "kappa": 0.7, "rk": 1, "F": 2.0306964607991422e-10, "F_record": 2.0306964607991422e-10, "steps": 2092, "steps_record": 2092, "same": true}
+== 2026-11-20 17:28:22 row D 13 k_c 39: TIMEOUT (exit 124)
+== 2026-11-20 17:28:22 row D 12.5 k_c 39: signtest.py /Users/nathan/Source/choptuik-large-d-raw-i1025/I1025-mac/out/sol_l1kc39L1025_D12.5000.npy 12.5 39 around=/Users/nathan/Source/choptuik-large-d-raw-i1025/I1025-mac/out/l1kc39L1025.jsonl:12.5:0.02 --u0=0.04 --Ks=30 --kappa=0.7 --rk=1
+signtest: /Users/nathan/Source/choptuik-large-d-raw-i1025/I1025-mac/out/sol_l1kc39L1025_D12.5000.npy D 12.5 k_c 39 at lam [2.7123751032674472, 2.7523751032674473]
+{"system_check": "sol_l1kc39L1025_D12.5000.npy", "D": 12.5, "kc": 39, "u0": 0.04, "Ks": 30, "kappa": 0.7, "rk": 1, "F": 1.1571131774205641e-10, "F_record": 1.1571131774205641e-10, "steps": 2120, "steps_record": 2120, "same": true}
+== 2026-11-20 17:28:47 row D 12.5 k_c 39: TIMEOUT (exit 124)
+== 2026-11-20 17:28:47 STOP: two consecutive rows timed out or crashed
+== 2026-11-20 17:28:47 summary:
+D 13 k_c 39: TIMEOUT
+D 12.5 k_c 39: TIMEOUT
+== 2026-11-20 17:28:47 signtest_lowD_driver_v2.sh done
+== 2026-11-20 17:28:48 signtest_lowD_driver_v2.sh: inputs checked; WT 505d839940456a3d04321d75cf66cc3b5bc831c4, signtest.py 179ea09681b0a75f7cefdff98984b48051b3f085, PY /Users/nathan/venv-314/bin/python (numpy 2.5.4 scipy 1.18.1), 2 BLAS threads, row timeout 25 s, rows 13,12.5,12, resume 1
+== 2026-11-20 17:28:48 planted control
+planted: 0 singular values at 1e+00 of 1: signs [1.0, 1.0, 1.0, 1.0, 1.0, 1.0] -> agree
+planted: 40 singular values at 1e-13 of 1: signs [1.0, 1.0, 1.0, 1.0, 1.0, 1.0] -> agree
+planted: 40 singular values at 1e-19 of 1: signs [-1.0, -1.0, -1.0, 1.0, -1.0, -1.0] -> DISAGREE
+== 2026-11-20 17:28:48 row D 13 k_c 39: verdict already in the log, skipped (RESUME)
+== 2026-11-20 17:28:48 row D 12.5 k_c 39: verdict already in the log, skipped (RESUME)
+== 2026-11-20 17:28:48 row D 12 k_c 47: signtest.py /Users/nathan/Source/choptuik-large-d-raw-i1025/I1025-mac/out/sol_l1kc47r1025_D12.0000.npy 12 47 around=/Users/nathan/Source/choptuik-large-d-raw-i1025/I1025-mac/out/l1kc47r1025.jsonl:12:0.02 --u0=0.04 --Ks=30 --kappa=0.7 --rk=1
+signtest: /Users/nathan/Source/choptuik-large-d-raw-i1025/I1025-mac/out/sol_l1kc47r1025_D12.0000.npy D 12.0 k_c 47 at lam [2.752312368717462, 2.7923123687174622]
+{"system_check": "sol_l1kc47r1025_D12.0000.npy", "D": 12.0, "kc": 47, "u0": 0.04, "Ks": 30, "kappa": 0.7, "rk": 1, "F": 3.0696169436148904e-11, "F_record": 3.0696169436148904e-11, "steps": 2584, "steps_record": 2584, "same": true}
+== 2026-11-20 17:29:14 row D 12 k_c 47: TIMEOUT (exit 124)
+== 2026-11-20 17:29:14 summary:
+D 12 k_c 47: TIMEOUT
+== 2026-11-20 17:29:14 signtest_lowD_driver_v2.sh done
+== 2026-11-20 17:27:56 signtest_lowD_driver_v2.sh: inputs checked; WT 505d839940456a3d04321d75cf66cc3b5bc831c4, signtest.py 179ea09681b0a75f7cefdff98984b48051b3f085, PY /Users/nathan/venv-314/bin/python (numpy 2.5.4 scipy 1.18.1), 2 BLAS threads, row timeout 7200 s, rows 3.7, resume 0
+== 2026-11-20 17:27:56 planted control
+/Users/nathan/venv-314/lib/python3.14/site-packages/numpy/linalg/_linalg.py:2366: RuntimeWarning: divide by zero encountered in slogdet
+  sign, logdet = _umath_linalg.slogdet(a, signature=signature)
+/Users/nathan/venv-314/lib/python3.14/site-packages/numpy/linalg/_linalg.py:2366: RuntimeWarning: overflow encountered in slogdet
+  sign, logdet = _umath_linalg.slogdet(a, signature=signature)
+/Users/nathan/venv-314/lib/python3.14/site-packages/numpy/linalg/_linalg.py:2366: RuntimeWarning: invalid value encountered in slogdet
+  sign, logdet = _umath_linalg.slogdet(a, signature=signature)
+planted: 0 singular values at 1e+00 of 1: signs [1.0, 1.0, 1.0, 1.0, 1.0, 1.0] -> agree
+planted: 40 singular values at 1e-13 of 1: signs [1.0, 1.0, 1.0, 1.0, 1.0, 1.0] -> agree
+planted: 40 singular values at 1e-19 of 1: signs [-1.0, -1.0, -1.0, 1.0, -1.0, -1.0] -> DISAGREE
+== 2026-11-20 17:27:56 refuse: no row at D 3.7

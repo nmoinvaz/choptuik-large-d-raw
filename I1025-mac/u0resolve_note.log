@@ -8,3 +8,12 @@ The record check n_signchanges 1 fails, so by the criteria this record is not re
 The lane's signtest then stopped with IndexError, since there is no lambda for around= to take.
 Possible causes, none tested: an even number of roots between grid points, float64 sign noise at the grid points, or a root moved out of
 range. A hybrid (dd block 12) sign scan on this state at u0 0.02 would tell; it is proposed to the coordinator, not run.
+== 2026-11-20 16:48:08 k_c 63, D 16, re-solved at u0 0.02 (tag l1kc63Fh1025, out/l1kc63Fh1025.jsonl, state out/sol_l1kc63Fh1025_D16.0000.npy).
+LM went from F 2.19e-9 to 5.307e-10 in 5044 s (2.9x the u0 0.04 record's 1.83e-10). Delta 1.0017118972 against 1.0017134445 (-1.55e-6);
+steps 3526 against 2939.
+float64 lambda 2.3067266857, n_signchanges 1, n_eval 31. The signtest (--u0=0.02; system check same, F and steps equal) passes: -,-,-,- at
+2.28673 and +,+,+,+ at 2.32673.
+Record checks: n_signchanges 1 passes and the signtest passes, but the root is 2.71% above its guess 2.2459628, so the within-2% check
+FAILS. By u0resolve_criteria.log the float64 record is not read. Its float64 shift from u0 0.04 would be +6.08e-2.
+Per p1d_criteria.log the hybrid scan of this state decides instead. Its 7 lambda (2.15-2.33) include the float64 root's interval
+(2.28, 2.33).

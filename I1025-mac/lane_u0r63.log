@@ -1,0 +1,38 @@
+== 2026-11-20 15:18:09 ell_refine.py l1kc63Fm1025 63 l1kc63Fh1025 63 1 16 2.2459627535552045 --kappa 0.7 --u0 0.02 --Ks 30 --tol 1e-12 --wait 60
+  cx = c * ((n - 1) * (a2 - 1) - 2 * L * g) / x
+  px = (-self.D(p, omega) + cx * p - c * p / x + pc - lt) / (x - c)
+  mx = (-self.D(m, omega) - cx * m + c * m / x - pc + lt) / (x + c)
+  a2 = a * a
+  cx = c * ((n - 1) * (a2 - 1) - 2 * L * g) / x
+  ax = a * ((p * p + m * m) + 2 * L * g + (n - 1) * (1 - a2)) / (2 * x)
+  ax = a * ((p * p + m * m) + 2 * L * g + (n - 1) * (1 - a2)) / (2 * x)
+  pc = n * c * (p + m) / (2 * x)
+  cx = c * ((n - 1) * (a2 - 1) - 2 * L * g) / x
+  lt = L * c * a2 * q / x
+  px = (-self.D(p, omega) + cx * p - c * p / x + pc - lt) / (x - c)
+  mx = (-self.D(m, omega) - cx * m + c * m / x - pc + lt) / (x + c)
+  g = a2 * q * q
+  px = (-self.D(p, omega) + cx * p - c * p / x + pc - lt) / (x - c)
+  mx = (-self.D(m, omega) - cx * m + c * m / x - pc + lt) / (x + c)
+  lt = L * c * a2 * q / x
+  ax = a * ((p * p + m * m) + 2 * L * g + (n - 1) * (1 - a2)) / (2 * x)
+  pc = n * c * (p + m) / (2 * x)
+  px = (-self.D(p, omega) + cx * p - c * p / x + pc - lt) / (x - c)
+  ax = a * ((p * p + m * m) + 2 * L * g + (n - 1) * (1 - a2)) / (2 * x)
+  mx = (-self.D(m, omega) - cx * m + c * m / x - pc + lt) / (x + c)
+  sign, logdet = _umath_linalg.slogdet(a, signature=signature)
+  sign, logdet = _umath_linalg.slogdet(a, signature=signature)
+  sign, logdet = _umath_linalg.slogdet(a, signature=signature)
+{"D": 16.0, "l": 1, "kc": 63, "kappa": 0.7, "rk": 1, "reg": 0.0, "u0": 0.02, "Ks": 30, "src": "l1kc63Fm1025", "Delta": 1.001711897232043, "Delta_src": 1.0017134445071836, "F": 5.307245843276003e-10, "F_start": 2.1909594810568442e-09, "steps": 3526, "constraint": 2.8690648719694545e-05, "dDelta_dF": 122303363.36826302, "lam_gauge": 0.8349787569290354, "lam_guess": 2.2459627535552045, "lam": 2.3067266857471163, "gamma": 0.4335147315799635, "n_eval": 31, "n_signchanges": 1, "seconds": 5044}
+== exit 0 2026-11-20 16:42:16
+{"D": 16.0, "l": 1, "kc": 63, "kappa": 0.7, "rk": 1, "reg": 0.0, "u0": 0.02, "Ks": 30, "src": "l1kc63Fm1025", "Delta": 1.001711897232043, "Delta_src": 1.0017134445071836, "F": 5.307245843276003e-10, "F_start": 2.1909594810568442e-09, "steps": 3526, "constraint": 2.8690648719694545e-05, "dDelta_dF": 122303363.36826302, "lam_gauge": 0.8349787569290354, "lam_guess": 2.2459627535552045, "lam": 2.3067266857471163, "gamma": 0.4335147315799635, "n_eval": 31, "n_signchanges": 1, "seconds": 5044}
+== 2026-11-20 16:42:16 /Users/nathan/Source/choptuik-large-d-raw-i1025/I1025-mac/signtest.py data/sol_l1kc63Fh1025_D16.0000.npy 16 63 around=data/l1kc63Fh1025.jsonl:16:0.02 --u0=0.02 --Ks=30
+signtest: data/sol_l1kc63Fh1025_D16.0000.npy D 16.0 k_c 63 at lam [2.2867266857471162, 2.3267266857471163]
+{"system_check": "sol_l1kc63Fh1025_D16.0000.npy", "D": 16.0, "kc": 63, "u0": 0.02, "Ks": 30, "kappa": 0.7, "rk": 1, "F": 5.307245843276003e-10, "F_record": 5.307245843276003e-10, "steps": 3526, "steps_record": 3526, "same": true}
+  sign, logdet = _umath_linalg.slogdet(a, signature=signature)
+  sign, logdet = _umath_linalg.slogdet(a, signature=signature)
+  sign, logdet = _umath_linalg.slogdet(a, signature=signature)
+{"state": "sol_l1kc63Fh1025_D16.0000.npy", "D": 16.0, "kc": 63, "u0": 0.02, "Ks": 30, "lam": 2.2867266857471162, "signs": [-1.0, -1.0, -1.0, -1.0], "agree": true, "logabs": -1812.5189458886618, "n_below_1e_12": 54, "n_below_1e_15": 34, "smallest": [1.538931722310159e-17, 1.3818179804780958e-17, 5.443919744391139e-18], "sec": 154.3}
+{"state": "sol_l1kc63Fh1025_D16.0000.npy", "D": 16.0, "kc": 63, "u0": 0.02, "Ks": 30, "lam": 2.3267266857471163, "signs": [1.0, 1.0, 1.0, 1.0], "agree": true, "logabs": -1808.7203332692811, "n_below_1e_12": 54, "n_below_1e_15": 34, "smallest": [1.5593313198192764e-17, 7.238350818770603e-18, 2.63023460395327e-18], "sec": 132.0}
+== exit 0 2026-11-20 16:47:04
+== 2026-11-20 16:47:04 lane u0r 63 done

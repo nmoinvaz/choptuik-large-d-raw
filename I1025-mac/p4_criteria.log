@@ -43,3 +43,7 @@ Its hybrid re-root is appended to lane B, with the normal system check (|F| with
 k_c 55 re-root at D 16.25 stays and gives the hybrid 55 -> 63 move there.
 The --quoted deviation for the D 16.75 row is accepted by the coordinator. p4_hybrid.py now states it in that row's output record
 (fields quoted and system_check).
+== 2026-11-20 17:26:41 AMENDMENT 4, the coordinator's word, written before lane B starts.
+winb's real k_c 63 D 16.75 record is now on raw (I1025-win 89d98635, out/l1kc63Fv1025.jsonl, blob e70ae02c, taken by git show and
+checked): lam 2.0834870037231608, F 2.2186479658161227e-10, steps 2794. It replaces the stub (p4_stub_l1kc63Fv1025.jsonl, kept for the
+record), and the row runs with the normal system check (|F| within 1e-6, steps equal). The --quoted deviation is dropped; no row uses it.
