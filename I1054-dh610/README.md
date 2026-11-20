@@ -28,7 +28,7 @@ Inputs not in the live raw clone (`I603-win2/.../anm_pin3_D241.9602.npz`, `I966-
 | `delta251.log` | `exact_recip_check.py delta` at D 251.88 failed (exit 1, FileNotFoundError): the flag-on polish saved no base, see below |
 | `delta73.log`, `delta241.log`, `delta*.json` | the driver's own runs of the deltas, after the D 251.88 pair; the same values as the by-hand runs (`*_early.log`) |
 
-## Results (16:20 UTC, 20 Nov)
+## Results (16:13 UTC, 20 Nov)
 
 | D | flag off (`--exact_recip 0`) | flag on (`1`) | Delta(on) - Delta(off) |
 |---|---|---|---|
