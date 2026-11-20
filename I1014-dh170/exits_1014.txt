@@ -17,3 +17,16 @@
 1014 stage 5 (step C, my M 320 on the 1820-step planner plan) stopped on the stage 4 rule (z_1 at the 40-product cap means stop): unconverged, z_1 |z| 1.34e47 at 40 products (219 + 1001 s), base smallest pivot 1.1e-12; stopping python 823732 and wrapper 823730 by exact pid 2026-11-20 07:06:44 UTC
 1014 stage 5 exit 143 wall 5623 s 2026-11-20 07:06:50 UTC
 1014 stage B1 (lowD_dd.py --Ms 384 from T82-win's M 384 state on the planner's plan, --it_max 3, 6 threads) start 2026-11-20 07:06:59 UTC
+1014 B1 Newton call 1 landed: newton 0: |F| 2.25e-22 |dz| 2.09e-15 lam 1 dDelta +5.60e-31 Delta 2.466012146521712 piv 4.7e-05..4.2e+01  t 10345.5s; checkpoint copied, measuring max|F| 2026-11-20 10:00:19 UTC
+1014 B1 call 1: max|F| of the checkpoint 2.479e-28 (planted 1e-20 control reads 1.00e-20: ok) 2026-11-20 10:10:44 UTC
+1014 B1 call 1 at the floor (<= 1e-26): killing pid 839512 by exact pid 2026-11-20 10:10:44 UTC
+1014 B1 done, wall 11025 s: state lowD1014b_D3.0475_M384_ckpt_after_call1.npz copied to states/lowD1014b_D3.0475_M384.npz 2026-11-20 10:10:45 UTC
+1014 B2 plan control (--mutate must fail on its check): exit 1, result (3242, False): ok 2026-11-20 10:11:42 UTC
+1014 B2 plan tol_step 1e-40: (3242, False) 2026-11-20 10:12:40 UTC
+1014 B2 plan tol_step 1e-41: (3464, False) 2026-11-20 10:13:41 UTC
+1014 B2 plan tol_step 1e-42: (3698, False) 2026-11-20 10:14:44 UTC
+1014 B2 plan tol_step 1e-43: (3948, False) 2026-11-20 10:15:48 UTC
+1014 B2 plan tol_step 1e-44: (4213, False) 2026-11-20 10:16:55 UTC
+1014 B2 plan tol_step 1e-45: (4502, True) 2026-11-20 10:18:06 UTC
+1014 B2 plan: 4502 steps at tol_step 1e-45, state lowD1014b_D3.0475_M384_plan.npz 2026-11-20 10:18:06 UTC
+1014 B2 plan ready; waiting for B2_GO (the step count and cost estimate are posted first) 2026-11-20 10:18:06 UTC
