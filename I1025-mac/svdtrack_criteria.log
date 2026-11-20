@@ -1,0 +1,24 @@
+== 2026-11-20 06:41:48 #1025 SVD track (svdtrack.py), approved by the coordinator 06:3x UTC. Written before the control and D 17 runs.
+Question: does lambda_1's zero at k_c 55, D 17 sit in a regular singular value of M that rises out of the floor (a V, sigma = |g|, g' != 0),
+or inside the floor? Decides option (d) (a V-fit above the floor) and bears on why the lift moved the root (test (a), lane_a.log).
+Grid: lam1 and lam1 -/+ 0.03, 0.01, 0.003, 0.001; D 17 adds +0.0124, +0.0144, +0.0164 (around the lifted root 2.040111). SVD at each.
+Method (svdtrack.py docstring): right singular vectors of the smallest 150 triplets continued from 0.03 inward on each side by mutual best
+overlap >= 0.9; V candidate = log slope of sigma >= 0.5 from 0.03 to 0.01; a - and a + candidate are joined when their vectors overlap >= 0.9
+at the innermost offset both reach (>= 0.003 needed); g = -sigma (- side), +sigma (+ side); quadratic fits of g over (-/+0.03, -/+0.01) and
+over (-/+0.01, -/+0.003) give two predicted roots.
+Verdict 'regular': a joined pair with sigma >= 1.5e-14 sigma_max at both -/+0.01 whose two predicted roots lie within 1e-4 of lam1.
+'inside the floor': no V candidate on either side. 'mixed': anything else. Both of the latter read as not regular.
+Change from the 06:34 message (method only; bar, cut and offsets unchanged): the predicted root comes from fits of the signed sigma
+across the root, not from per-point Newton zeros with a central-difference M'. A Newton zero carries a curvature error (g''/2g') delta^2,
+about 1e-3 at delta 0.03 for g''/g' ~ 2, above the 1e-4 bar, and a difference M' carries rounding ~1e-15/h of sigma_max, near the slopes at
+issue. The fits have neither (planted: roots within 3e-8 with g''/g' = 4).
+Weight column (coordinator): for the pair's v at each offset, |V_f^T v|^2 against the floor subspaces V_f (sigma < 1e-14 sigma_max, the
+lift's) at lam1 - 0.01 and lam1 + 0.01, and the centre-odd share of |v|^2. At its own lambda the weight is 0 by orthogonality when v is
+above the cut, so the reading uses the other side's V_f. High: >= 0.1 at any offset against the other side's V_f; low: <= 1e-3.
+High with 'regular' = lambda_1's mode lives partly in the floor directions.
+Readings at D 17: regular + low weight -> (d) viable; the lift's shift came from coupling at the floor level, not from lambda_1's
+mode in the floor. Regular + high weight -> lambda_1's mode lives partly in those directions (the lift removes part of it).
+Not regular -> (d) not viable at D 17 on this test. The dips at +0.0144 are reported without a verdict.
+Controls: planted (code check, run 06:41:08, PASS: regular V -> regular; V buried in the floor -> mixed; --mutate=shift -> inside).
+Real control: D 13, k_c 31 (sol_l1kc31L1025_D13.0000.npy, lam1 2.6841484641099442) must read 'regular', and with --mutate=shift
+(grid and criterion centred at lam1 + 0.02) must not. Stop rule: if either control misreads, the D 17 run does not start.
