@@ -1,0 +1,26 @@
+# make_planb_1014.py tests on my lifted M 320 (states/lowD1014_D3.0475_M320.npz), 2026-11-20 06:55-06:58 UTC
+# first run (A, B pass as expected; C crashed: the mutate path wrote tb_C.npz_MUT, not a FAIL line, so it proved nothing); then the builder was fixed (_MUT before .npz) and C rerun
+A: 1e-32 hmax 0.05, need >= 1800 (expect pass, exit 0)
+plan tol_step 1e-32 hmax 0.05: 1820 steps (need >= 1800), max|F| 1.420e-27, vector identical True, meta keys kept True: pass
+exit 0
+B: same, need >= 2000 (expect FAIL, exit 1)
+plan tol_step 1e-32 hmax 0.05: 1820 steps (need >= 2000), max|F| 1.420e-27, vector identical True, meta keys kept True: FAIL
+exit 1
+C: --mutate, need >= 1800 (expect FAIL, exit 1)
+Traceback (most recent call last):
+  File "/home/nathan/Source/choptuik-large-d-raw/I1014-dh170/make_planb_1014.py", line 30, in <module>
+    zh2, zl2, m3 = load(dst)
+                   ~~~~^^^^^
+  File "/home/nathan/Source/choptuik-large-d-935/.venv/lib/python3.14/site-packages/hpkernel/driver.py", line 395, in load
+    d = np.load(path)
+  File "/home/nathan/Source/choptuik-large-d-935/.venv/lib/python3.14/site-packages/numpy/lib/_npyio_impl.py", line 454, in load
+    fid = stack.enter_context(open(os.fspath(file), "rb"))
+                              ~~~~^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/tmp/claude-1000/-home-nathan-Source-choptuik-large-d/026ace6b-8e85-4de1-9fd2-85ec04d52786/scratchpad/tb_C.npz_MUT'
+exit 1
+done
+# C rerun after the fix
+C: --mutate, need >= 1800 (expect FAIL line, exit 1)
+plan tol_step 1e-32 hmax 0.05: 1820 steps (need >= 1800), max|F| 9.019e-09, vector identical False, meta keys kept True: FAIL
+exit 1
+done

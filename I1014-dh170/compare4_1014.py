@@ -24,8 +24,11 @@ FILES = {
     "m320t82": os.path.join(HERE, "series_D3.0475_M320t82_N12.npz"),
     "m384": os.path.join(HERE, "series_D3.0475_M384_N12.npz"),
     "m320own": os.path.join(HERE, "series_D3.0475_M320_N12.npz"),
+    "m320p": os.path.join(HERE, "series_D3.0475_M320p_N12.npz"),       # my lifted M 320 on the planner's converged plan (1820 steps), step C
+    "m384p": os.path.join(HERE, "series_D3.0475_M384p_N12.npz"),       # M 384 lifted on the planner's converged plan, step B
 }
-PAIRS = [("m320own", "m320t82"), ("m320t82", "m256"), ("m320own", "m256"), ("m384", "m320t82"), ("m384", "m320own"), ("m384", "m256")]    # m384 is not used (unconverged)
+PAIRS = [("m384p", "m320p"), ("m320p", "m320own"), ("m384p", "m320own"), ("m320own", "m320t82"), ("m320t82", "m256"), ("m320own", "m256"),
+         ("m384", "m320t82"), ("m384", "m320own"), ("m384", "m256")]    # m384 and m320t82 are not used (unconverged); the coordinator's rule for B is the first pair, orders 3 to 6 at 1e-3
 N = 13
 
 
@@ -55,7 +58,7 @@ def main():
     pairs = [(a, b) for a, b in PAIRS if a in have and b in have]
     base = {(a, b): rel(have[a], have[b]) for a, b in pairs}
     if mutate:
-        mut_name = "m384" if "m384" in have else "m320t82"      # the series whose order 5 is scaled (m384 was never converged and is not used: stage 3 stopped)
+        mut_name = next(k for k in ("m384p", "m320p", "m384", "m320t82", "m320own") if k in have)      # the series whose order 5 is scaled (m384 was never converged and is not used: stage 3 stopped)
         if mut_name not in have:
             print("--mutate needs m384 or m320t82"); sys.exit(1)
         dm = list(have[mut_name])

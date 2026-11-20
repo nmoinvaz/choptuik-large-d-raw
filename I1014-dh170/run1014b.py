@@ -7,8 +7,12 @@
 Rules, fixed before the run (README "Step B"):
   stage 1  after each Newton call (a new `^  newton` line of stage1b.log) the checkpoint is copied and its max|F| measured by resid1014.py (planted +1e-20 control must read 1.0e-20);
            stop (exact pid) when max|F| <= 1e-26 (the floor class of my M 320, 1.4e-27) and use that checkpoint as the state; after call 3 with max|F| > 1e-26 stop and report (no series).
-  stage 2  anm_lowd.py as for M 320, same flags. Stopped by exact pid, unconverged, when the base's smallest pivot is below 1e-6, or z_1 needs more than 6 products or does not converge,
-           when the target stage runs more than 30 min after the series file is saved, or at 10 h of wall time. Wall times only are quoted (t_jac is the old LU-fill copy, #1040)."""
+  plan     (coordinator's hc, 2026-11-20 about 06:50 UTC, after step C's base pivot 1.1e-12 on 1820 steps) the lifted state gets a plan of at least 4388 steps, s.plan(zh, zl, tol_step, 0.05)
+           with the first tol_step of 1e-40, 1e-41, ... that gives that count (make_planb_1014.py: vector identical, max|F| <= 1e-26, its --mutate must fail). Then the driver logs the step count
+           and waits for the file B2_GO in this folder (I post the count and the cost estimate first, as the coordinator asked) before the series starts.
+  stage 2  anm_lowd.py as for M 320, same flags, on the state with the fine plan. Stopped by exact pid, unconverged, when the base's smallest pivot is below 1e-6, or z_1 needs more than 6
+           products or does not converge, when the target stage runs more than 30 min after the series file is saved, or at 14 h of wall time (the 10 h of the M 384 command is below the
+           7.9-9.4 h estimated for the series file at 4460 steps; it is a ceiling against a hang, not a result rule). Wall times only are quoted (t_jac is the old LU-fill copy, #1040)."""
 import os
 import re
 import shutil
@@ -23,7 +27,8 @@ PY = "/home/nathan/Source/choptuik-large-d-935/.venv/bin/python"
 START = f"{RAWL}/T82-win/states/lowDhm_x0.000157-0.975_D3.0475_M384.npz"
 NODES = "0.000157,0.000313,0.000625,0.00125,0.0025,0.005,0.01,0.02,0.05,0.1,0.16,0.23,0.3,0.4,0.5,0.6,0.7,0.8,0.9,0.95,0.975"
 LOG = f"{HERE}/exits_1014.txt"
-FLOOR, MAX_CALLS, PIVOT_MIN, MAX_PRODUCTS, CAP, RULE30 = 1e-26, 3, 1e-6, 6, 36000, 1800
+FLOOR, MAX_CALLS, PIVOT_MIN, MAX_PRODUCTS, CAP, RULE30 = 1e-26, 3, 1e-6, 6, 50400, 1800
+PLAN_MIN, PLAN_HMAX, PLAN_TOLS = 4388, 0.05, (1e-40, 1e-41, 1e-42, 1e-43, 1e-44, 1e-45)
 
 
 def say(msg):
@@ -45,6 +50,16 @@ def z1_info(text):
     """(products, converged) of the `  z_1:` line, or None"""
     m = re.search(r"^  z_1: .*?, (\d+) products, converged (True|False)", text, re.M)
     return (int(m.group(1)), m.group(2) == "True") if m else None
+
+
+def plan_steps(text):
+    """the step count of make_planb_1014.py's result line, or None"""
+    m = re.search(r"^plan tol_step \S+ hmax \S+: (\d+) steps .*: (pass|FAIL)$", text, re.M)
+    return (int(m.group(1)), m.group(2) == "pass") if m else None
+
+
+def plan_ok(got, minsteps=PLAN_MIN):
+    return bool(got) and got[1] and got[0] >= minsteps
 
 
 def stage1_decision(call, fmax, floor=FLOOR, max_calls=MAX_CALLS):
@@ -80,6 +95,14 @@ def selftest(mutate):
     print("selftest parsers (base pivot 2.8e-10; z_1 40 products False):", "pass" if base_pivot(txt) == 2.8e-10 and z1_info(txt) == (40, False) else "FAIL")
     nl = "  newton 0: |F| 2.25e-22 |dz| 1e-17 lam 1 dDelta 1e-30 Delta 2.4 piv 5.0e-05..4.5e+01  t 9423.6s\nother\n  newton 0: |F| 1e-27 ...\n"
     ok &= len(newton_lines(nl)) == 2
+    pl = "plan tol_step 1e-40 hmax 0.05: 4460 steps (need >= 4388), max|F| 1.4e-27, vector identical True, meta keys kept True: pass\n"
+    good = plan_steps(pl) == (4460, True) and plan_steps(pl.replace("pass", "FAIL")) == (4460, False) and plan_steps("nothing") is None
+    ok &= good
+    print("selftest plan line parsed (4460, True), FAIL -> False, junk -> None:", "pass" if good else "FAIL")
+    mn = 1 if mutate else PLAN_MIN
+    good = plan_ok((4460, True), mn) and not plan_ok((4000, True), mn) and not plan_ok((5000, False), mn) and not plan_ok(None, mn)
+    ok &= good
+    print("selftest plan bar (4460 ok; 4000 steps, a failed check and no result rejected):", "pass" if good else "FAIL")
     print("selftest newton lines counted 2:", "pass" if len(newton_lines(nl)) == 2 else "FAIL")
     print("selftest" + (" --mutate" if mutate else "") + ":", "pass" if ok else "FAIL")
     return ok
@@ -153,6 +176,39 @@ def stage1():
     return out
 
 
+def stage_plan(state):
+    """the lifted state with a plan of at least PLAN_MIN steps; (path, steps, tol) or None. The planted --mutate control must fail on the first tolerance tried."""
+    env = dict(os.environ, OPENBLAS_NUM_THREADS="1", OMP_NUM_THREADS="1")
+    out = f"{HERE}/states/lowD1014b_D3.0475_M384_plan.npz"
+    first = True
+    for tol in PLAN_TOLS:
+        cmd = ["nice", "-n", "10", PY, "-u", f"{HERE}/make_planb_1014.py", state, out, f"{tol:g}", str(PLAN_HMAX), str(PLAN_MIN)]
+        if first:
+            r = subprocess.run(cmd + ["--mutate"], cwd=f"{WT}/hp", env=env, capture_output=True, text=True)
+            open(f"{HERE}/plan_b_mutate.log", "w").write(r.stdout + r.stderr)
+            gm = plan_steps(r.stdout)
+            good = r.returncode == 1 and gm is not None and gm[1] is False      # a FAIL line from the check itself, not a crash
+            say(f"B2 plan control (--mutate must fail on its check): exit {r.returncode}, result {gm}: {'ok' if good else 'CONTROL DID NOT FAIL PROPERLY'}")
+            if not good:
+                return None
+            first = False
+        r = subprocess.run(cmd, cwd=f"{WT}/hp", env=env, capture_output=True, text=True)
+        open(f"{HERE}/plan_b_{tol:g}.log", "w").write(r.stdout + r.stderr)
+        got = plan_steps(r.stdout)
+        say(f"B2 plan tol_step {tol:g}: {got}")
+        if r.returncode == 0 and plan_ok(got):
+            return out, got[0], tol
+    return None
+
+
+def wait_go():
+    """the series starts only after I have posted the step count and cost estimate (file B2_GO)"""
+    say("B2 plan ready; waiting for B2_GO (the step count and cost estimate are posted first)")
+    while not os.path.exists(f"{HERE}/B2_GO"):
+        time.sleep(30)
+    say("B2_GO seen")
+
+
 def stage2(state):
     env = dict(os.environ, OPENBLAS_NUM_THREADS="1", OMP_NUM_THREADS="1", PYTHONFAULTHANDLER="1")
     ser = f"{HERE}/series_D3.0475_M384p_N12.npz"
@@ -188,6 +244,11 @@ if __name__ == "__main__":
     if "--selftest" in sys.argv:
         sys.exit(0 if selftest("--mutate" in sys.argv) else 1)
     s = stage1()
-    if s:
-        stage2(s)
+    p = stage_plan(s) if s else None
+    if s and not p:
+        say("B2 no plan reached the step count: series not run")
+    if p:
+        say(f"B2 plan: {p[1]} steps at tol_step {p[2]:g}, state {os.path.basename(p[0])}")
+        wait_go()
+        stage2(p[0])
     say("run1014b.py done")
