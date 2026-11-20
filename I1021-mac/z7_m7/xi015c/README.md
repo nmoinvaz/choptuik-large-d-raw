@@ -37,3 +37,13 @@ A walk's start solve (the fixed-(A, w) M = 5 or M = 7 solve at the previous M's 
 |r_3|. `walk1026b.py --start_repeats 3` (both M = 5 walks; `--selftest --mutate=norepeat` must exit 1); walk1027 repeats
 every attempt already. Every bar, the gate and the verdict rule are as above. Box 7's run in `../xi015b/` (no start
 repeats) stays recorded as undecided; this rerun is the one that counts.
+
+## Result (09:50-10:08 UTC, `exits.txt`, `eval.txt`, `logs/`, `walks/`)
+
+19 of 19 checks give their expected exits. Gate: both controls PASS (M = 5: 2.2e-6 and 1.4e-6 from the stored zero, 120 s;
+M = 7: 1.4e-6 and 6.1e-7, |F7/F5| 0.0573, 930 s). Box 7's M = 5 start solve fails with the three repeats: |r_3| 4.6e5 (|r_5|
+4.2e3) at the first attempt, then 4.8e4, 8.7e4 and 8.7e4 (|r_5| 1.2e2, 0.028, 0.37). The walk keeps the first repeat's
+(|r_3| 4.8e4), so there is no M = 5 zero, and the M = 7 walk did not run.
+
+Verdict, counted since both controls pass: **UNDECIDED** (#1027's rule with no M = 5 zero). This is the run that counts for
+box 7. `../xi015b/` (no start repeats) is recorded and superseded.
