@@ -25,3 +25,17 @@ Inputs not in the live raw clone (`I603-win2/.../anm_pin3_D241.9602.npz`, `I966-
 | `common1054.sh`, `run1054.sh`, `compare1050.py` | paths, the driver, the row-by-row comparator (a copy of I1050-dh610's) |
 | `resolve73_r{0,1}/`, `resolve241_r{0,1}/`, `resolve251_r{0,1}/` (+ `.log`) | the re-solves with `--exact_recip 0` and `1`; each folder holds the saved `base_pin<k>_D<D>.npz` |
 | `delta73.json`, `delta241.json` (`delta*_early.log`) | `exact_recip_check.py delta` on the D 73 and D 241.96 pairs, run by hand at 15:05 UTC while the D 251.88 pair ran (the driver reruns them after that pair, same inputs); D 73: Delta(on) - Delta(off) = +1.743109e-25 (a miss against 1e-25), D 241.96: +3.290002e-13 |
+| `delta251.log` | `exact_recip_check.py delta` at D 251.88 failed (exit 1, FileNotFoundError): the flag-on polish saved no base, see below |
+| `delta73.log`, `delta241.log`, `delta*.json` | the driver's own runs of the deltas, after the D 251.88 pair; the same values as the by-hand runs (`*_early.log`) |
+
+## Results (16:20 UTC, 20 Nov)
+
+| D | flag off (`--exact_recip 0`) | flag on (`1`) | Delta(on) - Delta(off) |
+|---|---|---|---|
+| 73.0 (T81) | exit 0, 121 s, 3 Newton steps, max\|F\| 2.6e-34 to 2.3e-83 | exit 0, 125 s, 4.4e-30 to 2.0e-73 | +1.743109e-25, a miss against the 1e-25 bound |
+| 241.96 (I603) | exit 0, 70 s, converged at once (2.0e-65) | exit 0, 2948 s, stalled at max\|F\| 6.8e-51 after 12 steps, base saved | +3.290002e-13 |
+| 251.88 (I966-dh370 leg 6) | exit 0, 3857 s, 7 steps, 4.55e-35 to 7.2e-82, base saved | exit 0, 320 s: "the start's projection failed, attempt stopped", no step, no base | none |
+
+D 251.88, flag on: the log says `elim projections {'u0': 0, 'u0q': 0, 'ladder': 0, 'failed': 1, 'skipped': 0}: the start's projection failed, attempt stopped`. From `hp/octo_corrector.py` (`ElimO.project`) that error is raised only when the start's
+pinned quad-double max|F| is above `--elim_switch` (1e-15) and above `start_F` (1e-6), so with the flag on the stored state's residual is above 1e-6 (flag off: 4.55e-35, its start was skipped by the switch). The log does not print that value (a reading of the code, not tested).
+There is no "base polish not adopted" line and no "base polish saved" line: in `anm_run.py` the stopped attempt leaves no `od_F` and no `z8`, so the adoption branch saves nothing and prints nothing. Reported, not rerun, not changed.
