@@ -68,3 +68,18 @@ Stage 2 ran from the call-4 checkpoint (`stage2_1014.sh`, started 2026-11-19 19:
 Reading (mine, not a verdict): orders 0 to 5 agree to 1.1e-4 or better, the relative difference growing about ×10 to ×50 per order; order 6 differs by 3.8e-3, above the 1e-3 of criterion 3, so **orders 3 to 6 do not all agree to 1e-3** (order 6 is 3.8 times over). Orders 7 and up are not the same series at the two M. The ratio Δ_k/Δ_k−1 follows one smooth sequence (3.12, 6.47, 8.86, 11.3, 12.8, 13.7) at both M, continues at M 320 to −14.32 at k = 7 and breaks at k = 8 (−77); at M 256 it breaks at k = 7 (−157). The full-vector radii |z_k−1|/|z_k| fall to 1e-5 from order 5 (printed by the control line in `stage2.log`). Whether D* 2.994 stands is the coordinator's rerun of `hp/series_singularity.py`.
 
 Discrepancy still open from stage 1 (reported, not fixed): the M 320 state's max|F| is 1.42e-27 (the residual's floor), above criterion 1's 1e-27; the coordinator replaced the bar by the floor reading (above).
+
+## T82-win's stored states against mine, found 2026-11-20 about 01:00 UTC (before the M 384 run)
+
+Measured with `resid1014.py` (one state per call, cwd outside the folder so `resid1014.json` is not overwritten; `resid_T82_M320_M384.log`, `resid_T82_M320.json`, `resid_T82_M384.json`), each state at its own stored step plan; the planted +1e-20 control reads 1.000e-20 on both (the check can fail).
+
+| state | step plan | max\|F\| | Δ (hi, lo) |
+|---|---|---|---|
+| mine, after call 4 (`states/lowD1014_D3.0475_M320.npz`) | 4388 steps | 1.420e-27 | 2.466012146559423, −7.12758549185511e-17 |
+| T82-win `lowDhm_..._D3.0475_M320.npz` | 1619 steps | **9.557e-29** | 2.466012146559423, −7.12758549186122e-17 |
+| T82-win `..._M256.npz` (plan only) | 1557 steps | not measured | |
+| T82-win `..._M384.npz` | 1623 steps | 1.369e-28 | 2.466012146521712, +3.14906e-17 |
+
+- Δ of T82-win's M 320 state and of mine agree to 6.1e-29 although the plans differ (1619 against 4388 steps) and the residuals differ (9.6e-29 against 1.4e-27). The vectors differ by at most 2.6e-14 (index 302 of 28161, max|z| 634). This supports the floor-reading decision (Δ's Newton correction is far below the M-to-M differences), and is independent of the floor argument.
+- Discrepancy (reported, not explained): the "evaluation floor" 1.42e-27 is the reading at my 4388-step plan only. T82-win's M 320 state reads 9.6e-29 on its 1619-step plan with the same evaluator, 15 times lower. The floor depends on the state or plan; I did not test which (evaluating one state on the other's plan mixes in the two plans' discretization, so it is no clean test).
+- Plan confound for the M-to-M comparisons: the M 256 series (dh610) starts from T82-win's M 256 state (1557 steps) and the M 384 series from T82-win's M 384 state (1623 steps), but my M 320 series starts from my own state (4388 steps). T82-win's own M 320 state (1619 steps, 9.6e-29) was not used for a series. Δ_(384) − Δ_(320) = −3.8e-11 (from the stored states), against −1.95e-9 for 320 − 256.
