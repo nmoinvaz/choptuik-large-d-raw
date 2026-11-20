@@ -41,7 +41,7 @@ States read: 3 (D 260.0073, 260.2515, 260.4708; `c3b_ks293_D<D>.log/.json`, 2 th
 |---|---|---|---|
 | 1 | selftests first | pass | `selftests1057.log`: 7 selftests exit 0, 8 mutations exit 1; `stopcheck1057.py` 13 planted cases and its mutation (the band without its lower bound) fails |
 | 2 | code unchanged | pass | 119 `cmp` matches against `I949-dh170/` (`setup1057.log`), `hashes1057.txt`; paths and labels only in `step1057.sh`, `run1057.sh`, `autoqueue1057.sh` |
-| 3 | every state's σ_Δ converged and its check | pass | 3 of 3 `check: pass`, ‖J v₁‖/σ₁ = 1.000000, σ_Δ converged to 3e-15, 0 and 1e-10 (D 260.0073, 260.2515, 260.4708) |
+| 3 | every state's σ_Δ converged and its check | pass | 3 of 3 `check: pass`, ‖J v₁‖/σ₁ = 1.000000, σ_Δ converged to 0, 3e-15 and 1e-10 (D 260.0073, 260.2515, 260.4708) |
 | 4 | rule (a), a TTTT fold window | not met | the windows ending D 260.0073 and 260.2515 read FFF− (no finite D*), the one ending D 260.4708 reads TTFF (D* 262.85, s 0.190, conditions 3 and 4 false) |
 | 5 | rule (b), excess within ±0.05 at 5 new states in a row | not met | 2 of 5 (+0.0146, +0.0294), then +0.0804 |
 | 6 | rule (c), dh370's leg boundary D 266.18 or a leg 11 restart at ks 315 | met | the restart, push fc4b254e, 17:36:36 UTC (leg 10 steps 14 to 17, D 260.2515 to 260.8483) |
@@ -51,8 +51,8 @@ States read: 3 (D 260.0073, 260.2515, 260.4708; `c3b_ks293_D<D>.log/.json`, 2 th
 Discrepancies and corrections, reported and not fixed:
 - Rule (c) had fired at 17:36 UTC, 4 minutes before my read of D 260.2515 started and 18 minutes before it ended. `stopcheck1057.py` sees only states I have read (D ≥ 266.18 or ks ≥ 315 in `track949.csv`), not dh370's pushes, and `leg11_D260.8483_ks315/` held only `anm_run.log` at that time. So two reads (D 260.2515 and 260.4708, 29 minutes of 2 threads) ran after the rule had fired. Not a wrong result: both are posted as rows.
 - The `-935` fast-forward at the #949 close (above, README log): the first start used `hp 17ae55bf`, restarted at `hp 787f1006` after 20 s.
-- Two counts in posted rows were corrected by comment id (σ_2/σ_Δ "third state" to "fourth", comment 7045634384).
-- `claimed949.txt` lists D 260.6706 and 260.8483 as claimed or queued (`queue949.txt`) although they were not read; a restart reads D 260.6706 first.
+- One count in a posted row was corrected by comment id (σ_2/σ_Δ "third state" to "fourth", comment 7045634384).
+- `claimed949.txt` lists D 260.6706 as claimed (the lane started it for 8 s) and `queue949.txt` has D 260.6706 and 260.8483, although neither was read; a restart must remove the D 260.6706 line from `claimed949.txt` first.
 - Reading, not a result: the first bump (D 253 to 259.7) had σ_2/σ_Δ rising from 1.1 to 1.85 with the Δ share falling to 0.9395; this second rise has σ_2/σ_Δ falling from 1.85 to 1.18 with the Δ share falling from 0.991 to 0.960. The two lowest modes are approaching each other, and the constant-slope two-mode law with γ = 0 does not describe it.
 
 Recommended tasks (coordinator opens the issues):
