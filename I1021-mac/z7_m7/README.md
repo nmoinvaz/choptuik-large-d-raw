@@ -32,3 +32,10 @@ control was validated only at 0.15 (#1027), so its result at 0.2 is reported, no
 A first start (06:51:54 UTC) failed at import, every step at once: the venv had numpy, scipy and numba only, and
 inner_np.py imports mpmath (`start0_no_mpmath/`). With requirements.txt's pins installed the driver was started again at
 06:53:11 UTC; the evaluator's and the compiled backend's checks then give their expected exits (`exits_z7.txt`).
+
+The gate (the coordinator, 20 Nov about 06:56 UTC, before any M = 7 solve of box 7 had ended): an M = 7 result at xi1
+0.2 counts only if #1027's M = 7 control converges at 0.2 in the same run; otherwise it is reported as no verdict at
+M = 7, with the control's residual. `eval_z7.py` applies it (`gated`, `ctrl_res`): with the control failing, the z7 line
+reads NO VERDICT, followed by what the ratios and shifts alone give and the control's last residuals. The selftest checks
+the gate (`logs/eval_gate_selftest.log`, exit 0), and `--mutate=nogate` drops it and must fail
+(`logs/eval_gate_selftestmutate=nogate.log`, exit 1). The run's final `eval_z7.py` call reads the gated file.

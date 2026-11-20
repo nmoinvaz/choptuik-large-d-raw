@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""eval_z7.py [--dir walks] [--mutate=shift|ratio] [--selftest [--break]]: the readings of box 7's zero at M = 7 (#1021; eval_z16.py of
+"""eval_z7.py [--dir walks] [--mutate=shift|ratio] [--selftest [--break] [--mutate=nogate]]: the readings of box 7's zero at M = 7 (#1021; eval_z16.py of
 I1021-dh610/z16_m7 at raw 5b72af8c with box 7's M = 3 zero, the control file's path, xi1 0.2 only and the M = 5 control added), #1027's rule
 through eval1027.py (copy of I1027-dh610's, unchanged). At xi1 0.2: the M = 5 control walk (#1026's, judged by eval1026.py, unchanged), the control walk (the known zero, #1027's; validated
 there only at 0.15, so here a control failure is reported as a result), the M = 5 walk of box 7 (Z5, the M 3 -> 5 shift s35 = |Z5 - Z3|, Z3 the M = 3
@@ -43,6 +43,20 @@ def z16_verdict(m5, w7, w7in, mut=""):
     return lab, why + " (s35 undefined, taken as 0, so CONVERGES is not reachable); from the input's point: " + txt
 
 
+def gated(lab, okc, mut=""):
+    """the coordinator's rule (20 Nov, about 06:56 UTC): an M = 7 result at xi1 0.2 counts only if #1027's M = 7 control
+    passes at 0.2 in the same run; --mutate=nogate drops the gate (the selftest must then fail)"""
+    return lab if (okc or mut == "nogate") else "NO VERDICT"
+
+
+def ctrl_res(c):
+    p = c["points"][-1] if c and c.get("points") else None
+    if not p or not p.get("r1"):
+        return "no solve of the control has residuals"
+    return (f"the control's last solve: |r_1| {math.hypot(*p['r1']):.3g}, |r_3| {p['r3']:.1e}, |r_5| {p['r5']:.1e}, "
+            f"|r_7| {p['r7']:.1e}")
+
+
 def info_in(w):
     if not w:
         return "no walk from the input's point"
@@ -58,7 +72,7 @@ def info_in(w):
     return s
 
 
-def selftest(brk):
+def selftest(brk, nogate=False):
     mut = "ratio" if brk else ""
 
     def mk(r75, conv=True, A=Z3[0], w=Z3[1], why="x"):
@@ -74,14 +88,17 @@ def selftest(brk):
            z16_verdict(dict(verdict=dict(converged=False, why="x")), None, mk(0.35), mut)[0],
            z16_verdict(dict(verdict=dict(converged=False, why="x")), None, mk(0.1), mut)[0]]
     want = ["CONVERGES", "DOES NOT", "UNDECIDED", "UNDECIDED", "DOES NOT", "DOES NOT", "UNDECIDED"]
-    ok = got == want
+    g = [gated("CONVERGES", True), gated("CONVERGES", False, "nogate" if nogate else ""), gated("DOES NOT", False)]
+    gw = ["CONVERGES", "NO VERDICT", "NO VERDICT"]
+    print(f"selftest gate{' --mutate=nogate' if nogate else ''}: {g} (expect {gw}): {'PASS' if g == gw else 'FAIL'}")
+    ok = got == want and g == gw
     print(f"selftest{' --break (--mutate=ratio inside)' if brk else ''}: z7 verdicts {got} (expect {want}): {'PASS' if ok else 'FAIL'}")
     return ok and (brk or E.selftest())
 
 
 def main(argv):
     if "--selftest" in argv:
-        return 0 if selftest("--break" in argv) else 1
+        return 0 if selftest("--break" in argv, "--mutate=nogate" in argv) else 1
     d = argv[argv.index("--dir") + 1] if "--dir" in argv else os.path.join(HERE, "walks")
     mut = next((a.split("=")[1] for a in argv if a.startswith("--mutate=")), "")
     out = []
@@ -96,13 +113,15 @@ def main(argv):
         else:
             out.append(f"xi1 {xi} M = 5 control: no walk")
         c = load(d, "control", xi)
+        okc = False
         if c:
             okc, tc = E.judge_control(c)
             out.append(f"xi1 {xi} control (the known zero at M = 7; validated only at 0.15 in #1027): {'PASS' if okc else 'FAIL'}: {tc}")
         else:
             out.append(f"xi1 {xi} control: no walk")
         lab, txt = z16_verdict(load(d, "z7m5", xi), load(d, "z7", xi), None, mut)
-        out.append(f"xi1 {xi} z7: {lab}: {txt}")
+        g = gated(lab, okc, mut)
+        out.append(f"xi1 {xi} z7: {g}: {txt}" + ("" if g == lab else f" (by the ratios and shifts alone: {lab}; not counted, since the M = 7 control at {xi} did not pass: {ctrl_res(c)})"))
     print("\n".join(out))
     return 0 if ok else 1
 
