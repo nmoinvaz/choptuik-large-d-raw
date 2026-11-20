@@ -35,3 +35,29 @@ step1_pass2 value exit 2 (0: all points accepted, 2: some stay unvalued) 2026-11
 step1_pass2 retest --mutate=f3 exit 1 (1: the control fired)
 step1_pass2 retest --mutate=lowguard exit 0 (1: the control fired)
 step1_pass2 recount start 2026-11-20 10:26:28
+step1_pass2 recount exit 0 2026-11-20 11:26:56
+step1_pass2 unresolved cells 3, accepted rows 4
+step1_pass3 value start 2026-11-20 11:26:56, cells 3
+step1_pass3 value exit 2 (0: all points accepted, 2: some stay unvalued) 2026-11-20 11:56:18
+step1_pass3 retest --mutate=f3 exit 1 (1: the control fired)
+step1_pass3 retest --mutate=lowguard exit 0 (1: the control fired)
+step1_pass3 recount start 2026-11-20 11:56:18
+step1_pass3 recount exit 0 2026-11-20 12:04:19
+step1_pass3 unresolved cells 1, accepted rows 4
+step 1 ends after 3 passes, 1 unresolved cells 2026-11-20 12:04:19
+step3_pass1 value start 2026-11-20 12:04:19, cells 5
+step3_pass1 value exit 2 (0: all points accepted, 2: some stay unvalued) 2026-11-20 12:16:42
+step3_pass1 retest --mutate=f3 exit 1 (1: the control fired)
+step3_pass1 retest --mutate=lowguard exit 1 (1: the control fired)
+step3_pass1 recount start 2026-11-20 12:16:42
+step3_pass1 recount exit 0 2026-11-20 12:22:55
+step3_pass1 unresolved cells 4, accepted rows 1
+step3_pass2 value start 2026-11-20 12:22:55, cells 4
+step3_pass2 value exit 2 (0: all points accepted, 2: some stay unvalued) 2026-11-20 12:31:26
+step3_pass2 retest --mutate=f3 exit 0 (1: the control fired)
+step3_pass2 retest --mutate=lowguard exit 1 (1: the control fired)
+step3_pass2 recount start 2026-11-20 12:31:26
+step3_pass2 recount exit 0 2026-11-20 12:31:26
+step3_pass2 unresolved cells 4, accepted rows 0
+step 3 ends: pass 2 left its cells unchanged 2026-11-20 12:31:26
+end 2026-11-20 12:31:26
