@@ -1,0 +1,31 @@
+# 2026-11-20 09:15:27 UTC cmd: python3 series_split_check.py /home/nathan/Source/choptuik-large-d-raw I903-win2/ks_chain/leg08_D232.0000_ks250/anm_pin3_D237.5270.npz --N 24 --threads 9 --Np 6 --split 2 --mutate 31 --out /home/nathan/Source/choptuik-large-d-raw/I1034-dh610/split2_D237_mut31
+series_split_check I903-win2/ks_chain/leg08_D232.0000_ks250/anm_pin3_D237.5270.npz: D 237.52697038650512, ks 250, stored plan, N 24, Np 6, 9 threads, split form 2, mutate 31 in the split form
+  newton_o at the state: 56.2 s
+  N 24: default 228.9 s, split 127.5 s, ratio 1.80
+ k   |z_k|      d_split    d_oa       d_split/thr  d_ctrl
+ 1   3.72e-04   0.00e+00   2.42e-48   0.00e+00     0.00e+00
+ 2   1.22e-06   8.91e+11   2.99e-43   2.98e+51     8.91e+11
+ 3   5.13e-09   1.22e+22   3.03e-41   4.03e+59     1.22e+22
+ 4   2.99e-09   1.33e+30   1.07e-41   1.24e+68     1.33e+30
+ 5   1.82e-09   1.38e+38   2.30e-42   5.99e+76     1.38e+38
+ 6   4.09e-11   3.87e+47   9.30e-42   4.17e+85     3.87e+47
+ 7   1.16e-10   8.63e+54   2.03e-43   4.25e+94   
+ 8   7.83e-12   8.04e+63   1.67e-43   4.81e+103   
+ 9   3.03e-12   1.31e+72   4.94e-44   2.65e+112   
+10   3.07e-13   8.17e+80   1.27e-44   6.42e+121   
+11   4.58e-14   3.45e+89   4.73e-44   7.30e+129   
+12   4.01e-15   2.49e+98   6.34e-45   3.92e+139   
+13   8.47e-16   7.42e+106   5.34e-44   1.39e+147   
+14   3.41e-17   1.16e+116   1.43e-44   8.11e+156   
+15   1.93e-17   1.29e+124   3.17e-44   4.07e+164   
+16   1.03e-18   1.53e+133   8.32e-45   1.84e+174   
+17   3.04e-19   3.27e+141   2.49e-44   1.31e+182   
+18   2.81e-20   2.23e+150   5.98e-45   3.73e+191   
+19   3.13e-21   1.26e+159   2.11e-44   5.98e+199   
+20   4.82e-22   5.17e+167   1.10e-44   4.70e+208   
+21   7.28e-23   2.16e+176   4.09e-45   5.29e+217   
+22   1.04e-23   9.52e+184   5.57e-45   1.71e+226   
+23   1.44e-24   4.34e+193   6.35e-45   6.83e+234   
+24   1.92e-25   2.06e+202   8.80e-45   2.34e+243   
+  FAIL: z_1 the same bits, worst d_split / (1e3 d_oa) 2.34e+243; control (l = 1 dropped) 4.17e+85 times the threshold, fired
+exit 1
