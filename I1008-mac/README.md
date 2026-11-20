@@ -24,3 +24,35 @@ Readings, fixed before the run:
 4. If max|F| before the re-seed is near 1e-36 at every a > 0 but at the base's level at a = 0, the floor is in the
    prediction (the series' low orders, the held values off the base, or the move to double-double D). The held/other
    split says which rows.
+
+## floor1 result, and floor2 (written 2026-11-20 15:40 UTC, before floor2 runs)
+
+floor1 (floor1.log, floor1/arc_floor.json; a first try died on a TypeError in the probe's own report,
+floor1_try1_typeerror.log): check 1b passed (the control raised max|F| to 2.9e16) and 1c passed (after the re-seed at
+a = 0.0138854375: 1.87e-36, run2's logged value exactly). Check 1a FAILED: at a = 0 the held rows read 7.69e-38 (other
+rows 1.94e-70). D is the same to 34 digits in the state, the series and the probe. Hypothesis: the held values are
+taken relative to a run's first state, run2's was ab2/arc_001, and this probe's is arc step 7's state, so the held
+rows carry the fit's offset between the two (run2's own base polish removed 4.37e-38 of the same kind at its start).
+floor2 tests it: the same command with --floor_polish 1 (the base polished first), and the re-seed's octo-double rung
+residuals logged. The hypothesis passes if the polished base reads <= 1e-60 in all rows and every after-re-seed max|F|
+at a > 0 stays within a factor 3 of floor1's (7.78e-36, 1.06e-35, 1.87e-36); otherwise it fails and floor1's readings
+are not made.
+
+## floor2 result, and floor3 (written 2026-11-20 15:58 UTC, before floor3 runs)
+
+floor2 (floor2.log): the polish took the base from 7.69e-38 to 1.17e-67 in 3 steps, and every after-re-seed max|F|
+equals floor1's, so both written criteria hold. But the second holds trivially: the predictions are formed from the
+series' own z_0, which the polish does not change, so floor2 did not test what it was meant to. The held-offset
+hypothesis rests instead on the polish line and on floor1's 1.87e-36 equalling run2's logged value, where run2's base
+has no such offset. New in floor2: the re-seed's octo-double rungs converge to 2e-71..7e-71 at every a. Rows: before
+the re-seed the max is in rows 736-767 (the a_h horizon data's rows), linear in a; after it the max is in rows 96-98
+and 126-127.
+
+floor3: floor1's command, with the rows split three ways (held, the 2M rows at the horizon data's offsets 704-767,
+the rest). Readings, fixed now:
+1. Checks as floor1's 1b and 1c (control fires; 1.87e-36 after the re-seed at a = 0.0138854375 within a factor 3).
+2. If the rest rows before the re-seed already read within a factor 3 of their after-re-seed value at each a > 0, the
+   floor is in the prediction's non-horizon part, and the re-seed only uncovers it.
+3. If the rest rows before the re-seed read <= 1e-38 at every a > 0 while after it they read >= 1e-36, the re-seed
+   puts it there.
+4. Anything else is reported as it is, with no reading.
