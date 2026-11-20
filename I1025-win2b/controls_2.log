@@ -1,0 +1,15 @@
+== planted control of signtest_mac.py (blob a0769780) 2026-11-20 15:31:16 UTC
+planted: 0 singular values at 1e+00 of 1: signs [1.0, 1.0, 1.0, 1.0, 1.0, 1.0] -> agree
+planted: 40 singular values at 1e-13 of 1: signs [1.0, 1.0, 1.0, 1.0, 1.0, 1.0] -> agree
+planted: 40 singular values at 1e-19 of 1: signs [-1.0, 1.0, 1.0, 1.0, 1.0, 1.0] -> DISAGREE
+== exit 0
+== check_1025_win.py --selftest
+  planted: guess 2.0, root 1.95 (2.5% away, w 0.06), edge rule: pass True expected, w 0.06, ok
+  planted: guess 2.0, root 1.99 (0.5% away, w 0.02), pct rule: pass True expected, w 0.02, ok
+  control: two sign changes: pass False expected, w 0.02, ok
+  control: root at the bracket's edge (1.8800001, w 0.06): pass False expected, w 0.06, ok
+  control: 2.5% from the guess under the pct rule: pass False expected, w 0.06, ok
+  planted: root above the guess (2.03, w 0.02): pass True expected, w 0.02, ok
+  distance to a reference value: -0.0022 ok
+selftest passed
+== exit 0
