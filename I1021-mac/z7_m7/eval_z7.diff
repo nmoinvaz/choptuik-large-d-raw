@@ -7,7 +7,7 @@
 < |F7/F5| >= 0.3 or no M = 7 zero near it; UNDECIDED otherwise. With no M = 5 zero the M = 7 walk from the input's point is judged with s35 = 0 (the ratio
 < alone can give DOES NOT; CONVERGES cannot be reached). The evaluator is checked on #1027's validated control walk (xi1 0.15): it must pass, and with
 ---
-> """eval_z7.py [--dir walks] [--mutate=shift|ratio] [--selftest [--break] [--mutate=nogate]]: the readings of box 7's zero at M = 7 (#1021; eval_z16.py of
+> """eval_z7.py [--dir walks] [--mutate=shift|ratio] [--selftest [--break] [--mutate=nogate]] [--xi 0.2|0.15]: the readings of box 7's zero at M = 7 (#1021; eval_z16.py of
 > I1021-dh610/z16_m7 at raw 5b72af8c with box 7's M = 3 zero, the control file's path, xi1 0.2 only and the M = 5 control added), #1027's rule
 > through eval1027.py (copy of I1027-dh610's, unchanged). At xi1 0.2: the M = 5 control walk (#1026's, judged by eval1026.py, unchanged), the control walk (the known zero, #1027's; validated
 > there only at 0.15, so here a control failure is reported as a result), the M = 5 walk of box 7 (Z5, the M 3 -> 5 shift s35 = |Z5 - Z3|, Z3 the M = 3
@@ -33,10 +33,11 @@
 ---
 >     E.Z["z7"] = dict(M5=Z3, s35=0.0)
 >     lab, txt = E.judge_zero("z7", w7in, mut)
-45a46,59
+45a46,60
 > def gated(lab, okc, mut=""):
 >     """the coordinator's rule (20 Nov, about 06:56 UTC): an M = 7 result at xi1 0.2 counts only if #1027's M = 7 control
->     passes at 0.2 in the same run; --mutate=nogate drops the gate (the selftest must then fail)"""
+>     passes at 0.2 in the same run; at 0.15 (about 07:00 UTC) both controls, #1026's M = 5 and #1027's M = 7, are gates,
+>     and main() gates on both at every radius; --mutate=nogate drops the gate (the selftest must then fail)"""
 >     return lab if (okc or mut == "nogate") else "NO VERDICT"
 > 
 > 
@@ -48,15 +49,15 @@
 >             f"|r_7| {p['r7']:.1e}")
 > 
 > 
-61c75
+61c76
 < def selftest(brk):
 ---
 > def selftest(brk, nogate=False):
-64c78
+64c79
 <     def mk(r75, conv=True, A=3.5533, w=0.4132, why="x"):
 ---
 >     def mk(r75, conv=True, A=Z3[0], w=Z3[1], why="x"):
-68,72c82,86
+68,72c83,87
 <     m5 = dict(verdict=dict(converged=True, A=3.5533 + 0.05, w=0.4132))          # s35 about 0.05
 <     got = [z16_verdict(m5, mk(0.1, A=3.5533 + 0.05 + 0.02), None, mut)[0],      # shift 0.02 < 0.05, ratio 0.1
 <            z16_verdict(m5, mk(0.35, A=3.5533 + 0.05 + 0.02), None, mut)[0],
@@ -68,7 +69,7 @@
 >            z16_verdict(m5, mk(0.35, A=Z3[0] + 0.05 + 0.02), None, mut)[0],
 >            z16_verdict(m5, mk(0.25, A=Z3[0] + 0.05 + 0.02), None, mut)[0],
 >            z16_verdict(m5, mk(0.1, A=Z3[0] + 0.05 + 0.2), None, mut)[0],      # shift 0.2 > 0.05
-77,78c91,95
+77,78c92,96
 <     ok = got == want
 <     print(f"selftest{' --break (--mutate=ratio inside)' if brk else ''}: z16 verdicts {got} (expect {want}): {'PASS' if ok else 'FAIL'}")
 ---
@@ -77,27 +78,31 @@
 >     print(f"selftest gate{' --mutate=nogate' if nogate else ''}: {g} (expect {gw}): {'PASS' if g == gw else 'FAIL'}")
 >     ok = got == want and g == gw
 >     print(f"selftest{' --break (--mutate=ratio inside)' if brk else ''}: z7 verdicts {got} (expect {want}): {'PASS' if ok else 'FAIL'}")
-84c101
+84c102
 <         return 0 if selftest("--break" in argv) else 1
 ---
 >         return 0 if selftest("--break" in argv, "--mutate=nogate" in argv) else 1
-91c108,114
+86a105
+>     xis = (argv[argv.index("--xi") + 1],) if "--xi" in argv else ("0.2",)
+91c110,117
 <     for xi in ("0.25", "0.2"):
 ---
->     for xi in ("0.2",):
+>     for xi in xis:
 >         c5 = load(d, "control5", xi)
+>         ok5 = False
 >         if c5:
 >             ok5, t5 = E6.judge_control(c5["verdict"])
 >             out.append(f"xi1 {xi} M = 5 control (#1026's, the known zero from its M = 3 place): {'PASS' if ok5 else 'FAIL'}: {t5}")
 >         else:
 >             out.append(f"xi1 {xi} M = 5 control: no walk")
-92a116
+92a119
 >         okc = False
-98,100c122,124
+98,100c125,128
 <         lab, txt = z16_verdict(load(d, "z16m5", xi), load(d, "z16", xi), load(d, "z16in", xi), mut)
 <         out.append(f"xi1 {xi} z16: {lab}: {txt}")
 <         out.append(f"xi1 {xi} z16 from the input's point (information): {info_in(load(d, 'z16in', xi))}")
 ---
 >         lab, txt = z16_verdict(load(d, "z7m5", xi), load(d, "z7", xi), None, mut)
->         g = gated(lab, okc, mut)
->         out.append(f"xi1 {xi} z7: {g}: {txt}" + ("" if g == lab else f" (by the ratios and shifts alone: {lab}; not counted, since the M = 7 control at {xi} did not pass: {ctrl_res(c)})"))
+>         g = gated(lab, okc and ok5, mut)
+>         why = " and ".join(s for s, k in (("the M = 5 control", ok5), ("the M = 7 control", okc)) if not k)
+>         out.append(f"xi1 {xi} z7: {g}: {txt}" + ("" if g == lab else f" (by the ratios and shifts alone: {lab}; not counted, since {why} at {xi} did not pass: {ctrl_res(c)})"))

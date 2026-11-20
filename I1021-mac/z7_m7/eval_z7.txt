@@ -1,0 +1,4 @@
+evaluator on #1027's validated control walk (xi1 0.15), mutate '': PASS: zero (2.719236, 1.000024), stored (2.719240, 1.000025), difference (-3.82e-06, -6.78e-07); |F7/F5| at the M = 5 zero 0.0573 (stored 0.0574)
+xi1 0.2 M = 5 control (#1026's, the known zero from its M = 3 place): PASS: zero (2.718579192, 0.999228404), stored (2.718579189, 0.999228404), difference (+2.87e-09, +5.34e-11)
+xi1 0.2 control (the known zero at M = 7; validated only at 0.15 in #1027): FAIL: did not converge: the start solve did not converge: |r_3| 5.6e-03 |r_5| 1.4e-06 |r_7| 2.7e-10 not under 1e-06
+xi1 0.2 z7: NO VERDICT: no M = 5 zero: the start solve did not converge: |r_3| 6.3e+04 |r_5| 1.8e+02 not under 1e-06; and no M = 7 walk from the input's point (by the ratios and shifts alone: UNDECIDED; not counted, since the M = 7 control at 0.2 did not pass: the control's last solve: |r_1| 57.6, |r_3| 5.6e-03, |r_5| 1.4e-06, |r_7| 2.7e-10)

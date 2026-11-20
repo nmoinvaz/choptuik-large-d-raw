@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""eval_z7.py [--dir walks] [--mutate=shift|ratio] [--selftest [--break] [--mutate=nogate]]: the readings of box 7's zero at M = 7 (#1021; eval_z16.py of
+"""eval_z7.py [--dir walks] [--mutate=shift|ratio] [--selftest [--break] [--mutate=nogate]] [--xi 0.2|0.15]: the readings of box 7's zero at M = 7 (#1021; eval_z16.py of
 I1021-dh610/z16_m7 at raw 5b72af8c with box 7's M = 3 zero, the control file's path, xi1 0.2 only and the M = 5 control added), #1027's rule
 through eval1027.py (copy of I1027-dh610's, unchanged). At xi1 0.2: the M = 5 control walk (#1026's, judged by eval1026.py, unchanged), the control walk (the known zero, #1027's; validated
 there only at 0.15, so here a control failure is reported as a result), the M = 5 walk of box 7 (Z5, the M 3 -> 5 shift s35 = |Z5 - Z3|, Z3 the M = 3
@@ -45,7 +45,8 @@ def z16_verdict(m5, w7, w7in, mut=""):
 
 def gated(lab, okc, mut=""):
     """the coordinator's rule (20 Nov, about 06:56 UTC): an M = 7 result at xi1 0.2 counts only if #1027's M = 7 control
-    passes at 0.2 in the same run; --mutate=nogate drops the gate (the selftest must then fail)"""
+    passes at 0.2 in the same run; at 0.15 (about 07:00 UTC) both controls, #1026's M = 5 and #1027's M = 7, are gates,
+    and main() gates on both at every radius; --mutate=nogate drops the gate (the selftest must then fail)"""
     return lab if (okc or mut == "nogate") else "NO VERDICT"
 
 
@@ -101,12 +102,14 @@ def main(argv):
         return 0 if selftest("--break" in argv, "--mutate=nogate" in argv) else 1
     d = argv[argv.index("--dir") + 1] if "--dir" in argv else os.path.join(HERE, "walks")
     mut = next((a.split("=")[1] for a in argv if a.startswith("--mutate=")), "")
+    xis = (argv[argv.index("--xi") + 1],) if "--xi" in argv else ("0.2",)
     out = []
     ok0, t0 = E.judge_control(json.load(open(CTRL_FILE)), mut)
     out.append(f"evaluator on #1027's validated control walk (xi1 0.15), mutate '{mut}': {'PASS' if ok0 else 'FAIL'}: {t0}")
     ok = ok0                                            # --mutate=shift moves the stored zero: the check must fail, exit 1
-    for xi in ("0.2",):
+    for xi in xis:
         c5 = load(d, "control5", xi)
+        ok5 = False
         if c5:
             ok5, t5 = E6.judge_control(c5["verdict"])
             out.append(f"xi1 {xi} M = 5 control (#1026's, the known zero from its M = 3 place): {'PASS' if ok5 else 'FAIL'}: {t5}")
@@ -120,8 +123,9 @@ def main(argv):
         else:
             out.append(f"xi1 {xi} control: no walk")
         lab, txt = z16_verdict(load(d, "z7m5", xi), load(d, "z7", xi), None, mut)
-        g = gated(lab, okc, mut)
-        out.append(f"xi1 {xi} z7: {g}: {txt}" + ("" if g == lab else f" (by the ratios and shifts alone: {lab}; not counted, since the M = 7 control at {xi} did not pass: {ctrl_res(c)})"))
+        g = gated(lab, okc and ok5, mut)
+        why = " and ".join(s for s, k in (("the M = 5 control", ok5), ("the M = 7 control", okc)) if not k)
+        out.append(f"xi1 {xi} z7: {g}: {txt}" + ("" if g == lab else f" (by the ratios and shifts alone: {lab}; not counted, since {why} at {xi} did not pass: {ctrl_res(c)})"))
     print("\n".join(out))
     return 0 if ok else 1
 

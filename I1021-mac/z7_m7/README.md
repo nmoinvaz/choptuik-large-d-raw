@@ -39,3 +39,16 @@ M = 7, with the control's residual. `eval_z7.py` applies it (`gated`, `ctrl_res`
 reads NO VERDICT, followed by what the ratios and shifts alone give and the control's last residuals. The selftest checks
 the gate (`logs/eval_gate_selftest.log`, exit 0), and `--mutate=nogate` drops it and must fail
 (`logs/eval_gate_selftestmutate=nogate.log`, exit 1). The run's final `eval_z7.py` call reads the gated file.
+
+xi1 0.2 (06:53-07:06 UTC; `exits_z7.txt`, `eval_z7.txt`, `logs/`, `walks/`; driver `run_z7_v181e77d6.sh`, the
+evaluator as gated below): #1026's M = 5 control PASSES, zero (2.718579192, 0.999228404), 2.9e-9 and 5e-11 from the
+stored one (7 solves, 86 s). #1027's M = 7 control FAILS: its start solve at the known zero's M = 5 zero stays at
+|r_3| 5.6e-3 after the three repeats (|r_5| 1.4e-6, |r_7| 2.7e-10, |r_1| 57.6, |F_7/F_5| 0.0573; dh610's box 16 run
+at 0.2: 2.4e-2). Box 7's M = 5 walk fails at its start solve (|r_3| 6.3e4, |r_5| 1.8e2; `hier_nb.py` prints start
+residuals 0 for r_1 and r_3, the radii LazyHier has not integrated yet), so the M = 7 walk did not run. Reading: NO
+VERDICT at M = 7 at 0.2, by the gate (the M = 7 control's residual above).
+
+xi1 0.15 (`xi015/`, `run_z7.sh 0.15`, from 07:07 UTC): the coordinator's order (about 07:00 UTC) after both controls
+failed at 0.2 in dh610's box 16 run. The control was validated at 0.15 in #1027. The same route at 0.15, with #1026's M = 5
+and #1027's M = 7 controls as gates (`eval_z7.py --xi 0.15` gates on both at every radius; at 0.2 the M = 5 control
+passed, so its reading is the same). `run_z7.sh` now takes the radius; the 0.2 run read `run_z7_v181e77d6.sh`.
