@@ -1,6 +1,6 @@
 # I1021-mac/z7_m7/xi015c: box 7's zero at M = 7, rerun once more at xi1 0.15 with start repeats (the run that counts)
 
-Machine: the Mac, helper session xfchecks, 1 nice-10 slot, one solve at a time. Issue #1021. Written 20 Nov 2026 09:22 UTC,
+Machine: the Mac, helper session xfchecks, 1 nice-10 slot, one solve at a time. Issue #1021. Written 20 Nov 2026 09:21 UTC,
 before the run. Code, venv and backend checks as `../README.md` (hier_nb.py at fc7dee4d, venv-i1021nb). Driver
 `../run_m7b.sh z7 3`; walks `../walk1026b.py`, `../walk1027b.py` (walk1026.py and walk1027.py with the bars as options,
 `../walk1026b.diff`, `../walk1027b.diff`); evaluator `../eval_m7b.py`. Start: box 7's M = 3 zero at xi1 0.17 with its M = 3
