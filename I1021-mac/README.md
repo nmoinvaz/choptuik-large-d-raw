@@ -215,3 +215,19 @@ dh610's follow-up names two: the box A 3.6623-3.9123 x w/w_inf 0.2065-0.3065, na
 (3.9123456, 0.20654321) has no value in any start ("continuation lost S3's zero after [0.25, 0.24875]"), and four
 cells of w/w_inf 0.4065-0.5065, where |R| at (3.7560956, 0.43154321) and (3.8732831, 0.48779321) is 6.5-7.9 times the
 rounding floor sig0, under the 10 sigma guard.
+
+dh610's controls in b21-25-fu (`merge_fu/fu_controls.py`, `fu_controls.log`; `--mutate=exits` flips one reported exit
+and fails, `fu_controls_mutate.log`). At the start the argcount selftests give 0 1 1 1 and fu_value's selftest and
+`--break` give 0 1. In each pass, the rows that the f3 and lowguard retests would change are recomputed from the pass's
+rows, without fu_value.py's code, and every exit in `exits_fu.txt` agrees with them:
+
+| step | f3 (F_3 + 0.3i) | lowguard (guard 1 sigma) |
+|---|---|---|
+| 1, passes 1-3 | fires (3, 4, 4 rows) | vacuous: no row is blocked by the guard alone |
+| 2, passes 1-3 | fires (4, 3, 3 rows) | fires (2, 3, 3 rows) |
+| 3, pass 1 | fires (1 row) | fires (17 rows) |
+| 3, pass 2 | vacuous: no row accepted | fires (12 rows) |
+
+In step 1 every rejected row has no value: pass 1, 9 rows where the continuation lost S3's zero; pass 2, 6 of those,
+1 at the right-hand-side bound and 1 at the wall bound; pass 3, 6 of those and 2 inner-solve step-size failures. So
+the lowguard mutation has nothing to change there, and its exit 0 tests nothing.

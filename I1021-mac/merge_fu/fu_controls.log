@@ -1,0 +1,14 @@
+pass          rows  accepted  f3: rows changed, exit (rows -> reported)  lowguard: rows changed, exit (rows -> reported)
+step1_pass1     12         3  f3:   3, 1 -> 1                           lowguard:   0, 0 -> 0 (vacuous)
+    rejected rows: 9 continuation lost S3's zero
+step1_pass2     12         4  f3:   4, 1 -> 1                           lowguard:   0, 0 -> 0 (vacuous)
+    rejected rows: 6 continuation lost S3's zero; 1 integration past 2.4e+06 right-hand-side calls; 1 wall bound 3600 s
+step1_pass3     12         4  f3:   4, 1 -> 1                           lowguard:   0, 0 -> 0 (vacuous)
+    rejected rows: 6 continuation lost S3's zero; 2 inner solve: Required step size is less than spa
+step2_pass1      6         4  f3:   4, 1 -> 1                           lowguard:   2, 1 -> 1
+step2_pass2      6         3  f3:   3, 1 -> 1                           lowguard:   3, 1 -> 1
+step2_pass3      6         3  f3:   3, 1 -> 1                           lowguard:   3, 1 -> 1
+step3_pass1     18         1  f3:   1, 1 -> 1                           lowguard:  17, 1 -> 1
+step3_pass2     12         0  f3:   0, 0 -> 0 (vacuous)                 lowguard:  12, 1 -> 1
+fu controls: PASS (0 reported exits disagree with the rows)
+exit 0
