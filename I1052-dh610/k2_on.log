@@ -1,0 +1,24 @@
+# 2026-11-20 11:04:47 UTC cwd /home/nathan/Source/choptuik-large-d-1052/hp cmd: /home/nathan/Source/venv-i1050/bin/python -u octo_corrector.py planted /home/nathan/Source/choptuik-large-d-raw T129-win2/chain/anm_pin3_D180.5246.npz --threads 10 --accept natural --qd 0 --broyden 1 --Delta_ref 1.700531269818162204386381200312492782858 --out /home/nathan/Source/choptuik-large-d-raw/I1052-dh610/k2_on
+planted T129-win2/chain/anm_pin3_D180.5246.npz: D 180.524614981, start = truth moved by 1e-12 relative in [0, 576); pinned max|F| (octo) truth 2.83e-30, start 3.39e-12; mutate_offset '', mutate 0
+  the system (#837): truth read in 4 of 4 parts, held values floats, plan made at the state; pinned max|F| (octo) at the truth 2.8253e-30
+    on 0 trial lam 1: max|F| 5.92e-16; simplified correction / |dz| = 7.775e-04 (bound 0.750); accepted, 3.88 s
+  on 0: |F| 3.39e-12 -> 5.92e-16, |dz| 9.96e-13 -> 7.75e-16, lam 1, dDelta -3.09e-17, piv 1.3e-09..1.3e+25, 3.88 s; updates begin (|db| / |dz| 4.985e-04), no factors there
+    on 1 update trial 1: max|F| 3.18e-21; Theta = |v| / |s| = 2.490e-04 (bound 0.500); accepted, 3.92 s
+  on 1: |F| 5.92e-16 -> 3.18e-21, |dz| 7.75e-16 -> 2.11e-19, lam 1, dDelta +3.10e-17, piv 1.3e-09..1.3e+25, 3.92 s; update 1, Theta 2.490e-04, quasi-Newton
+    on 2 update trial 2: max|F| 2.60e-24; Theta = |v| / |s| = 6.841e-04 (bound 0.500); accepted, 3.89 s
+  on 2: |F| 3.18e-21 -> 2.60e-24, |dz| 2.11e-19 -> 1.43e-22, lam 1, dDelta -2.35e-20, piv 1.3e-09..1.3e+25, 3.89 s; update 2, Theta 6.841e-04, quasi-Newton
+    on 3 update trial 3: max|F| 5.89e-28; Theta = |v| / |s| = 1.151e-03 (bound 0.500); accepted, 3.87 s
+  on 3: |F| 2.60e-24 -> 5.89e-28, |dz| 1.43e-22 -> 1.65e-25, lam 1, dDelta -3.78e-23, piv 1.3e-09..1.3e+25, 3.87 s; update 3, Theta 1.151e-03, quasi-Newton
+    on 4 update trial 4: max|F| 2.50e-16; Theta = |v| / |s| = 4.808e+02 (bound 0.500); refused, 0.34 s
+    on 4 trial lam 1: max|F| 4.59e-25; simplified correction / |dz| = 2.268e-14 (bound 0.750); accepted, 0.34 s
+  on 4: |F| 5.89e-28 -> 4.59e-25, |dz| 1.65e-25 -> 3.74e-39, lam 1, dDelta -3.35e-26, piv 1.3e-09..1.3e+25, 0.34 s; updates begin (|db| / |dz| 2.273e-14), no factors there
+    on 5 update trial 1: max|F| 1.16e-38; Theta = |v| / |s| = 1.000e+00 (bound 0.500); refused, 0.34 s
+    on 5 trial lam 1: max|F| 1.17e-50; simplified correction / |dz| = 1.000e+00 (bound 0.750); accepted, 0.35 s
+  on 5: |F| 4.59e-25 -> 1.17e-50, |dz| 1.02e-40 -> nan, lam 1, dDelta +1.36e-41, piv 1.3e-09..1.3e+25, 0.35 s; at tol, no factors there
+  on 6: |F| 1.17e-50 converged, Delta 1.70053126981816227 -6.7759e-17
+  od Broyden: 3 factorizations, 3 update steps, 2 refused
+  od: 7 steps, converged, pinned max|F| (octo) 1.17e-50, Delta 1.700531269818162204386381200312492665007, projections {'u0': 0, 'u0q': 5, 'ladder': 0, 'failed': 0, 'skipped': 5}, 131 s
+  od against the truth: dDelta 8.5495e-22
+  |Delta_od - Delta_qd| 1.1785e-34 (Delta_ref 1.700531269818162204386381200312492782858)
+  (a) PASS: od max|F| 1.17e-50 < 1e-40, |Delta_od - Delta_qd| <= 1e-30
+exit 0

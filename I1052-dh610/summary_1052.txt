@@ -1,0 +1,10 @@
+# 2026-11-20 10:57:57 UTC PR #1052 A/B: hp 2b883799 (B) against base 1c02b15b (A); kernel: /home/nathan/Source/venv-i1050/lib/python3.14/site-packages/hpkernel/__init__.py avx2
+k1_base: expected exit 0, got 0, 212 s (cap 5400 s) OK
+k1_off: expected exit 0, got 0, 198 s (cap 5400 s) OK
+k1_compare (k1_base against k1_off): expected exit 0 (bit for bit), got 0: bit for bit
+# Delta_ref (k1_off.json): 1.700531269818162204386381200312492782858
+k2_on: expected exit 0, got 0, 132 s (cap 5400 s) OK
+   k2_on: 1 lines with '(a) PASS'
+k1 control (k1_base against k2_on): expected exit 1 (DIFFER), got 1: DIFFER
+k2_mut_offset_qd: expected exit 1, got 1, 1168 s (cap 5400 s) OK
+k2_mut_10: expected exit 1, got 1, 346 s (cap 5400 s) OK
