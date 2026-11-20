@@ -56,3 +56,22 @@ the rest). Readings, fixed now:
 3. If the rest rows before the re-seed read <= 1e-38 at every a > 0 while after it they read >= 1e-36, the re-seed
    puts it there.
 4. Anything else is reported as it is, with no reading.
+
+## floor3 result, and floor4 (written 2026-11-20 16:08 UTC, before floor4 runs)
+
+floor3 (floor3.log): checks 1b and 1c pass again (control 2.9e16; 1.87e-36 at a = 0.0138854375). Neither reading 2
+nor 3 holds, so it is reported as it is. Before the re-seed every row group grows linearly in a (horizon 2.77e-31,
+3.36e-30, 4.23e-29; rest 4.44e-32, 5.38e-31, 6.76e-30 at a = 1e-4, 1e-3, 0.0139). After it, the horizon rows read
+3.1e-70, 3.7e-69, 4.7e-68, and the rest rows 7.78e-36, 1.06e-35, 1.87e-36, with no trend in a. They sit in rows 96-98
+and 126-127, node 0's second block of M (offsets: node i at 2M + 4Mi, M = 32), and at a = 0 they read 1.94e-70.
+
+Hypothesis: the residual's dependence on D is not smooth at about 1e-36 in those rows (a D-dependent coefficient
+rounded below octo-double), so any prediction at D != D_base misses by it and no shorter step helps. floor4 tests it at
+the base state, with z fixed: R(h) = F(z_0, D + h) - (D_h - D) F_D(z_0) for h = 1e-29 ... 1e-20 (D_h rounded to
+double-double). Readings, fixed now:
+1. Control: with F_D scaled by 1 + 1e-6, R must grow at the larger h (>= 10 times R at h = 1e-20), or the test is blind.
+2. If the rest rows' R stays >= 1e-37 and within a factor 10 of one value from h = 1e-29 to 1e-24, while a smooth F
+   predicts h^2 F_DD (far below 1e-37 there), the hypothesis holds: the floor is non-smooth D-dependence of the
+   discrete system in those rows.
+3. If R in the rest rows is <= 1e-38 at h <= 1e-24, the hypothesis fails.
+4. Anything else is reported as it is.
