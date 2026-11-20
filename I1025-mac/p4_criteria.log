@@ -1,0 +1,27 @@
+== 2026-11-20 15:21:37 #1025 P4: re-root each delta-table lambda record with the hybrid M on its own state. Written before any P4 run.
+Why: c1_scan_note.log (float64 det sign is noise within ~1e-4 of the k_c 55 D 16 root; the records' n_eval of 16-27, against 6 for a clean
+search, suggest the same elsewhere) and dd_B2_swap.log (the float64 horizon block biases the root, -3.31e-7 at D 13, k_c 31).
+Code: p4_hybrid.py (venv-1025dd). It builds DSSEll with the record's own Ks, u0, rk and kappa, freezes the steps on the state, and checks
+that this is the record's discrete system (|F| within 1e-6 relative of the record's F, and the same total step count). It then runs
+ell_refine.lam_root's search unchanged, from the record's own lam_guess, on the hybrid (float64 blocks 0-11, dd block 12 from DDEll on
+the same S, det by multidouble dd_logdet). Every evaluation is repeated with 1e-15 relative noise on blocks 0-11 (2 seeds).
+Records (the delta table, ell_lam_highD.json at e33a7bec, D 14.5-17.5): k_c 55 at D 14.5, 15, 15.5 (I1025-mac l1kc55Fb1025);
+k_c 63 at D 16 (I1025-mac l1kc63Fm1025); k_c 55 at D 16.25 (I1025-win2b l1kc55Fu1025, blob 23fca943, state 8991132e);
+k_c 63 at D 16.5 (I1025-win l1kc63Fw1025b, blob 893c3996, state 207b5514); k_c 47 at D 16.75 (I1025-mac l1kc47Fq1025);
+k_c 63 at D 17 (I1025-win l1kc63Fw1025, blob 7ee33d79, state 8c98bce4); k_c 47 at D 17.5 (I1025-mac l1kc47Fr1025).
+The off-Mac files were taken by git show from raw origin/main, and their hashes were checked.
+Pass per record: the record's system; one sign change on the search grid; exactly one sign change over all evaluations in lambda order;
+every evaluation's sign unchanged by the noise; final bracket width <= 1e-7. A record failing any of these is reported, not read.
+Control (must fire): the same search with --mutate=f64 (plain float64 M, the records' own det) on k_c 55 at D 16 (l1kc55Fb1025, not a
+table row; its float64 sign was seen to flip 3 times in 1.6e-4), run beside the hybrid on that state. It must show more than one sign change
+over its evaluations or a noise flip. If it does not, the hybrid's clean search is not shown to differ from float64's, and P4 stops.
+Report: hybrid minus float64 record per row, as a table on #1025, read as record noise plus horizon-block bias, not as truncation
+(coordinator's reading). Reference row: D 13, k_c 31, -3.31e-7 (dd_B2_swap.log).
+== 2026-11-20 15:27:19 AMENDMENT, the coordinator's word, written before the first P4 run. The list above stays as the record of the first plan
+(p4_list_a_v1.txt, p4_list_b_v1.txt).
+P4 re-roots the row the delta table quotes at each D, the top valid k_c. ell_delta collect now reads win2b's redos and win2c's k_c 63 at
+D 15 and 15.5 (branch 723b320d, all four signtested on raw), and winb's k_c 63 at D 16.75 stays out until its signtest is on raw.
+Changed rows: D 15 is now k_c 63 (I1025-win2c l1kc63Fy1025, blob 8354b0a7, state dbdc5983), replacing k_c 55 l1kc55Fb1025; D 15.5 is
+now k_c 63 (I1025-win2c l1kc63Fz1025, blob 1679d5b7, state adc28f39), replacing k_c 55 l1kc55Fb1025. Both were taken by git show from
+raw origin/main, hashes checked. The other seven rows are unchanged (D 16.5 and 17 stay k_c 63; D 16.75 and 17.5 stay k_c 47). The
+criteria, the control and the reading are unchanged.
