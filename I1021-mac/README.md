@@ -127,3 +127,9 @@ At 0.2 the three repeats reach |r_3| 1.2e-4 to 2.0e-4 with the same 0.2913; the 
 3.8e-5 (F_3/F_1) and 1.1e-5 (F_5/F_1). The control is checked at 0.2 only (`control_1026_xi0.2.log`, |F_5/F_3|
 0.0556); at 0.25 dh610's #1026 control did not converge (|r_3| 8.3e3) and the Mac's (`control_1026_xi0.25.log`) had
 not printed its start residuals after 20 min.
+
+`m5/z16_m7_inputs.json` (the coordinator's order, for dh610's M = 7 solve of box 16's zero): from the converged
+0.25 log by `m5/m5_inputs.py` (new; it refuses a log not under the bar, and refuses the 0.2 repeat): (A, w/w_inf)
+(3.553346605, 0.413172285) as the solve ran them, xi1 0.25, x = (B3, C3, B5, C5) = (0.843294116, 0.003092743,
+0.24539945, 0.010876743) from the last level-3 line (9 digits as printed), F_3/F_1, F_5/F_1, the residuals, the
+command, and the M = 3 zero's 0.18 location from the count file.
