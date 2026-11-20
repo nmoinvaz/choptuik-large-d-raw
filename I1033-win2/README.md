@@ -43,3 +43,7 @@ The coordinator's order after run 3's numbers met the condition for run 4: the n
 - job B: `--pairs 1:320,0.6:256,0.5:256,0.6:192,0.5:160,0.4:160,0.3:160,0.3:128,0.2:160,0.2:128`, cap 29160 s, `solve_D3.0475b.jsonl`, log `run1033_run4b.log`. Exit 1, wall 18765 s (L 0.6 at M' 256 not converged; L 0.2 at M' 160 and at M' 128 failed in pass 1, records without Delta).
 - report: `report $OUT/solve_D3.0475.jsonl $OUT/solve_D3.0475b.jsonl --ref A_M384 --ref2 A_M320 --cost cost2.jsonl` into `report_D3.0475_run4.json` (log `run1033_run4_report.log`), exit 1 (three checks FAIL: the identity plan size, L 0.6 and L 0.2 at their largest M'). Run 3's `report_D3.0475.json` stays.
 - exits and times: `exits_1033.txt`; pids: `run4_jobA.winpid`, `run4_jobB.winpid`.
+
+## Plan length against Delta - Delta(384) (analysis only, 2026-11-20, coordinator's hc after run 4)
+
+`plan_vs_delta_1033.py` reads the two `solve_D3.0475*.jsonl` files and T82-win's stored M 384 and M 320 states (Delta, stored plan steps), no solver; `--selftest` plants tables with a known verdict (true, reversed, mixed, empty hi group). Output: `plan_vs_delta_1033.md` (the table, the prediction's counts, the identity solves, the M' ladders) and `plan_vs_delta_1033.csv`. The report is not changed. Rules (groups, plan classes, verdict) are in the script's docstring.
