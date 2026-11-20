@@ -22,3 +22,8 @@ Steps, one at a time, nice 10, each under timeout (3 x its estimate) on its exac
 | file | what |
 |---|---|
 | `common1050.sh`, `run1050.sh`, `compare1050.py` | paths, the driver, the row-by-row comparison |
+
+## Result, 20 Nov 11:00 UTC
+
+New build `hp/build.sh` at 1c02b15b (multidouble 5.0.0, multishoot 4.0.0, multisolver 0.2.1 in the lock; hpkernel avx2): exit 0 in 1656 s. Step 5's four commands exit as the old build's (0, 0, 0, 1; 48, 434, 96 and 92 s against 51, 453, 97 and 96 s) and each log is identical row by row to
+`../I1034-dh610/step5_*.log` (the 9980cd93 build, same machine): ref 72 rows, scaled 22, jets 31 (28 outputs and three further lines), the kappa control 31, no differences (`compare_step5_*.txt`); `compare1050.py`'s control (`--mutate`) exits 1 for each (`compare_step5_*_control.txt`).

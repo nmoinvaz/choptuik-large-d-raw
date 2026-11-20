@@ -1,0 +1,12 @@
+# 2026-11-20 10:18:54 UTC hp new 1c02b15b against old 9980cd93; hp diff:  3 files changed, 10 insertions(+), 10 deletions(-)
+# python Python 3.14.10, maturin maturin 1.16.0, lock: ; "multidouble"version = "5.0.0"; "multishoot"version = "4.0.0"; "multisolver"version = "0.2.1"
+build1050: expected exit 0, got 0, 1656 s (cap 5580 s) OK
+hpkernel import: exit 0 hpkernel avx2 /home/nathan/Source/venv-i1050/lib/python3.14/site-packages/hpkernel/__init__.py multidouble avx2
+step5_ref: expected exit 0, got 0, 48 s (cap 1800 s) OK
+step5_scaled: expected exit 0, got 0, 434 s (cap 7200 s) OK
+step5_jets: expected exit 0, got 0, 96 s (cap 1800 s) OK
+step5_jets_kappa: expected exit 1, got 1, 92 s (cap 1800 s) OK
+compare step5_ref: exit 0 (0: bit-identical rows), control --mutate exit 1 (1): step5_ref.log against step5_ref.log: 72 rows old, 72 new, 1 verdict lines old, 1 new, 0 differences: IDENTICAL
+compare step5_scaled: exit 0 (0: bit-identical rows), control --mutate exit 1 (1): step5_scaled.log against step5_scaled.log: 22 rows old, 22 new, 2 verdict lines old, 2 new, 0 differences: IDENTICAL
+compare step5_jets: exit 0 (0: bit-identical rows), control --mutate exit 1 (1): step5_jets.log against step5_jets.log: 31 rows old, 31 new, 1 verdict lines old, 1 new, 0 differences: IDENTICAL
+compare step5_jets_kappa: exit 0 (0: bit-identical rows), control --mutate exit 1 (1): step5_jets_kappa.log against step5_jets_kappa.log: 31 rows old, 31 new, 1 verdict lines old, 1 new, 0 differences: IDENTICAL
