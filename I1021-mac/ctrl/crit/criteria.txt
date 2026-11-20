@@ -1,0 +1,32 @@
+per radius and M: converged noise solves of 5, sigma_1, walk bar 3 sigma_1, |mean r_1|
+  M 5 xi1 0.15: 5 of 5, sigma_1 0.0126, bar 0.0379, |mean r_1| 0.0113
+  M 5 xi1 0.175: 5 of 5, sigma_1 1.21e-05, bar 3.63e-05, |mean r_1| 9.18e-06
+  M 5 xi1 0.2: 5 of 5, sigma_1 5.5e-08, bar 1.65e-07, |mean r_1| 1.27e-07
+  M 5 xi1 0.225: 5 of 5, sigma_1 0.000711, bar 0.00213, |mean r_1| 0.000435
+  M 5 xi1 0.25: 5 of 5, sigma_1 0.000243, bar 0.000728, |mean r_1| 0.000853
+  M 7 xi1 0.15: 5 of 5, sigma_1 0.0815, bar 0.245, |mean r_1| 0.0226
+  M 7 xi1 0.175: 0 of 5, sigma_1 none, no bar
+  M 7 xi1 0.2: 0 of 5, sigma_1 none, no bar
+  M 7 xi1 0.225: 0 of 5, sigma_1 none, no bar
+  M 7 xi1 0.25: 0 of 5, sigma_1 none, no bar
+Mac M 5 xi1 0.15: PASS: stops at iteration 5 (|r_1| 0.0238 <= bar 0.0379), zero (2.718581347, 0.999229783), +2.16e-06, +1.38e-06 from the stored zero
+Mac M 5 xi1 0.2: needs a rerun: the old bar stopped it at iteration 4 (|r_1| 0.00641), above the bar 1.65e-07
+Mac M 7 xi1 0.15: PASS: stops at iteration 1 (|r_1| 0.14 <= bar 0.245), zero (2.719238563, 1.000025610), -1.44e-06, +6.10e-07 from the stored zero; |F7/F5| at the first solve 0.0573
+Mac M 7 xi1 0.2: no criterion: fewer than 2 converged noise solves at this M and radius
+dh610 M 5 xi1 0.15: FAIL: no iteration meets the bars (best |r_1| 0.0203, bar 0.0379); stopped by itself: no step reduced |r_1| with a converged solve (five halvings)
+dh610 M 5 xi1 0.2: needs a rerun: the old bar stopped it at iteration 4 (|r_1| 0.00627), above the bar 1.65e-07
+dh610 M 5 xi1 0.25: FAIL: no iteration: the start solve did not converge: |r_3| 8.3e+03 |r_5| 6.9e-10 not under 1e-06
+dh610 M 7 xi1 0.2: no criterion: fewer than 2 converged noise solves at this M and radius
+dh610 M 7 xi1 0.25: no criterion: fewer than 2 converged noise solves at this M and radius
+both controls passing under the proposed criteria, by machine and radius:
+  Mac xi1 0.15: M = 5 PASS, M = 7 PASS: YES
+  Mac xi1 0.175: M = 5 no walk, M = 7 no walk: no
+  Mac xi1 0.2: M = 5 needs a rerun, M = 7 no criterion: no
+  Mac xi1 0.225: M = 5 no walk, M = 7 no walk: no
+  Mac xi1 0.25: M = 5 no walk, M = 7 no walk: no
+  dh610 xi1 0.15: M = 5 FAIL, M = 7 no walk: no
+  dh610 xi1 0.175: M = 5 no walk, M = 7 no walk: no
+  dh610 xi1 0.2: M = 5 needs a rerun, M = 7 no criterion: no
+  dh610 xi1 0.225: M = 5 no walk, M = 7 no walk: no
+  dh610 xi1 0.25: M = 5 FAIL, M = 7 no criterion: no
+exit 0

@@ -44,3 +44,52 @@ pass. The stored control walks (`../z7_m7` at 0.2 and 0.15) are judged again und
 history decides it: a walk that met a bar at an iteration it ran would have stopped there (each iteration's test uses
 only points already solved); a walk that never met it would need a rerun, reported as such. No criterion is changed
 after any result of boxes 7 and 16 under them; the coordinator fixes the criteria for any rerun from this report.
+
+## Results (20 Nov, noise 07:30-08:45 UTC; `noise/points.jsonl`, `noise/table.jsonl`, `stall/`, `crit/criteria.txt`)
+
+Noise at the known zero (5 perturbed starts per row; sigma_1 is the spread over the converged starts; the |r_nu| are
+each solve's final values):
+
+| M | xi1 | converged | sigma_1 | 3 sigma_1 | \|mean r_1\| | \|r_3\| median, max | \|r_5\| median, max | \|r_7\| median, max |
+|---|---|---|---|---|---|---|---|---|
+| 5 | 0.15 | 5/5 | 1.3e-2 | 3.8e-2 | 1.1e-2 | 1.4e-8, 7.3e-8 | 8.9e-11, 1.8e-10 | |
+| 5 | 0.175 | 5/5 | 1.2e-5 | 3.6e-5 | 9.2e-6 | 2.0e-10, 2.5e-10 | 1.3e-10, 8.0e-10 | |
+| 5 | 0.2 | 5/5 | 5.5e-8 | 1.7e-7 | 1.3e-7 | 4.1e-10, 5.6e-10 | 2.8e-10, 4.8e-10 | |
+| 5 | 0.225 | 5/5 | 7.1e-4 | 2.1e-3 | 4.4e-4 | 9.3e-9, 1.4e-8 | 3.9e-10, 8.1e-10 | |
+| 5 | 0.25 | 5/5 | 2.4e-4 | 7.3e-4 | 8.5e-4 | 7.5e-9, 1.1e-8 | 3.5e-10, 5.0e-10 | |
+| 7 | 0.15 | 5/5 | 8.2e-2 | 2.4e-1 | 2.3e-2 | 1.2e-7, 2.6e-7 | 1.3e-10, 3.3e-10 | 6.5e-10, 7.7e-10 |
+| 7 | 0.175 | 0/5 | - | - | - | 1.4e-4, 2.3e-4 | 3.6e-9, 1.1e-8 | 5.2e-10, 7.1e-10 |
+| 7 | 0.2 | 0/5 | - | - | - | 1.3e-2, 1.8e-2 | 5.9e-7, 2.6e-6 | 6.5e-10, 8.9e-10 |
+| 7 | 0.225 | 0/5 | - | - | - | 2.2, 2.6 | 2.4e-6, 6.4e-6 | 6.2e-10, 4.3e-9 |
+| 7 | 0.25 | 0/5 | - | - | - | 3.7, 4.9 | 2.4e-6, 5.1e-6 | 6.4e-10, 9.1e-10 |
+
+The M = 5 solve converges at every radius. The M = 7 solve converges only at 0.15. The spread of r_1 over the five
+unconverged M = 7 solves is 0.5 at 0.175, 2.6e2 at 0.2, 1.7e4 at 0.225 and 5e4 at 0.25.
+
+The M = 7 stall at 0.2 (section 2, `stall/stall_control.txt`): the pre-registered reading gives harmonic 5 in all four
+attempts. It gives 5 at 0.15 as well, because at each radius at least one level-5 solve ends above 1e-6 right after a
+noise-floor stop, so the reading alone does not separate the radii. What separates them was found after the readings
+were fixed. The median final |r_5| of the level-5 solves is 1.06e-6 to 2.28e-6 at 0.2, with 2 to 8 solves per attempt
+above the bar. At 0.15 it is 3.2e-10 to 5.5e-10, with 1 above the bar. Level 3 above them stops at hier's noise floor,
+|r_3| 5.6e-3 to 5.2e-2. The same reading on the noise solves (`stall/stall_noise_M7.txt`, outside the pre-registered
+reading) gives these medians of final |r_5| by radius:
+- 0.15: 3e-10 to 7e-10.
+- 0.175: 4e-9 to 8e-9, while level 3 still ends at 2.5e-5 to 2.3e-4.
+- 0.2: 7.5e-7 to 1.65e-6.
+- 0.225: 1.5e-6 to 53. 0.25: 1.3e-6 to 8.8e2.
+
+At 0.225 and 0.25, 3 of the 5 starts also have level-7 solves that end above the bar after a noise-floor stop. So the
+first harmonic to stop falling moves up as xi1 grows: 3 at 0.175, 5 at 0.2, 7 in some starts at 0.225 and 0.25.
+
+Criteria and the controls under them (section 3, `crit/criteria.txt`):
+- **xi1 0.15: both controls pass, on the Mac's walks.** The M = 5 walk would stop at iteration 5 (|r_1| 0.024 against
+  the bar 0.038), with a zero 2.2e-6 and 1.4e-6 from the stored one. The M = 7 walk would stop at iteration 1 (|r_1| 0.14
+  against 0.24), 1.4e-6 and 6.1e-7 from #1027's zero, with |F7/F5| 0.0573.
+- **No other radius passes.** At 0.175 to 0.25 no M = 7 noise solve converges, so M = 7 has no criterion there. At 0.2
+  the M = 5 walks of both machines would need a rerun: under the bar 1.7e-7 their old stop at |r_1| 6.3e-3 to 6.4e-3 does
+  not count.
+- **dh610's M = 5 control at 0.15 still fails.** Its iteration 4 meets the walk bar (|r_1| 0.020) but not the unchanged
+  step bar (|dA| 4.5e-6 against 3e-6), and the walk then stops by itself. The Newton step's noise there is about
+  sigma_1 / sigma_min(J) = 1.3e-2 / 5.2e3 = 2.4e-6, taking sigma_min from the Mac walk's iteration 4. That is the size of
+  walk1026's 3e-6 step bar, so the step bar is the next limit at 0.15 for M = 5. It is not changed here; that is for the
+  coordinator.
