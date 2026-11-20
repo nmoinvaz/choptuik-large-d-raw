@@ -592,3 +592,64 @@ t_D is 0.9999956167 at the end of step 11 and has not changed sign, no turn is r
 The flags are the same: `run_restart.sh`'s F and ARC strings have the same md5 as `run_ab.sh`'s (268b00e0 and 5b67f35c, before `--a0`), and `ps` shows run3's anm_run with them. Only `--state`, `--steps` (14 = 20 minus the 6 accepted), `--a0` (0.033899993896484376 = 0.0271199951171875 x 1.25, the first-attempt length run2 would have used next) and the output folder (`run3`) differ, and `--elim_switch 0` stays. No `--arc_jet`: run3 forms the series at D 259.5659 itself on the new kernel. The cap is 70475 s from run3's start, so it ends at about 18:11:30 UTC on 2026-11-21, within 14 s of run2's 18:11:16.
 
 The turn stop watcher and the wake watcher are re-armed on run3. run3's `arc.jsonl` starts at step 0, so run3's step i is arc step 12 + i.
+
+### run3, arc step 12: attempt 1 at the arclength step a 0.0338999939 refused by the stall rule after 2 corrections, accepted lam 0.03125, 0.015625 (2026-11-20 23:24 UTC)
+
+Arc step 12 is not accepted yet. Its attempt 1 (a = 0.02711999512 x 1.25 = 0.0338999939, D move 0.033899845, checked: D move / a = 0.99999562 against t_D 0.99999562) from arc step 11's D 259.5658804822806 to D 259.599780327614 refused by the stall rule: on 1: lam at or below 0.04 twice in a row, stopping (stalled). The corrector line says 1744.4 s; its corrections took 1447 s (1272 s of trials and chord checks). The stall rule (`--lam_stall 0.04`) and `--qd_it 40` are as in run1; the stop watcher stays armed and anm_run goes on to the next attempt with a halved.
+
+Per trial (every refused trial's ladder failed: the point |F| is the one before projection, and the trial |F| after the failed projection is the same point):
+
+| correction | trial lam | projection | \|F\| before projection | trial max\|F\| (after) | simplified correction / \|dz\| (bound) | result | seconds |
+|---|---|---|---|---|---|---|---|
+| 0 | strong chord | not logged | not logged | | theta inf (bound 0.75) | refused | 97.71 |
+| 0 | 1 | attempted, ladder failed | 1.50e+12 | 1.50e+12 | 1.027e+56 (0.750) | refused | 94.34 |
+| 0 | 0.5 | attempted, ladder failed | 9.38e+10 | 9.38e+10 | 6.420e+54 (0.875) | refused | 94.59 |
+| 0 | 0.25 | attempted, ladder failed | 5.89e+09 | 5.89e+09 | 4.013e+53 (0.938) | refused | 93.7 |
+| 0 | 0.125 | attempted, ladder failed | 3.75e+08 | 3.75e+08 | 2.508e+52 (0.969) | refused | 90.26 |
+| 0 | 0.0625 | attempted, ladder failed | 2.51e+07 | 2.51e+07 | 1.567e+51 (0.984) | refused | 66.92 |
+| 0 | 0.03125 | projected, ladder converged | not logged | 2.97e-29 | 9.681e-01 (0.992) | accepted | 98.87 |
+| 1 | 1 | attempted, ladder failed | 1.85e+12 | 1.85e+12 | 9.687e+55 (0.750) | refused | 92.75 |
+| 1 | 0.5 | attempted, ladder failed | 1.16e+11 | 1.16e+11 | 6.076e+54 (0.875) | refused | 94.32 |
+| 1 | 0.25 | attempted, ladder failed | 7.42e+09 | 7.42e+09 | 3.866e+53 (0.938) | refused | 94.15 |
+| 1 | 0.125 | attempted, ladder failed | 5.04e+08 | 5.04e+08 | 2.610e+52 (0.969) | refused | 94.41 |
+| 1 | 0.0625 | attempted, ladder failed | 4.32e+07 | 4.32e+07 | 2.202e+51 (0.984) | refused | 91.59 |
+| 1 | 0.03125 | attempted, ladder failed | 1.07e+07 | 1.07e+07 | 3.515e+50 (0.992) | refused | 70.42 |
+| 1 | 0.015625 | projected, ladder converged | not logged | 3.72e-29 | 9.841e-01 (0.996) | accepted | 98.29 |
+
+Per correction:
+
+| correction | accepted lam | max\|F\| before -> after | \|dz\| before -> after | seconds |
+|---|---|---|---|---|
+| 0 | 0.03125 | 1.17e-35 -> 2.97e-29 | 4.83e-14 -> 4.58e-14 | 723.95 |
+| 1 | 0.015625 | 2.97e-29 -> 3.72e-29 | 4.58e-14 -> 4.45e-14 | 723.36 |
+
+First |dz| of every attempt against the arclength step a (D rises down the table; run1's last two are the refused attempts of arc step 5; AB1, AB2, run2 and run3 ran with `--elim_switch 0`; run3 is on main 8179068d and the new kernel):
+
+| run | arclength a | first \|dz\| | first \|dz\| / a | accepted lam at correction 0 |
+|---|---|---|---|---|
+| pilot2 | 0.0455 | 5.37e-15 | 1.18e-13 | 0.25 |
+| pilot2 | 0.056875 | 4.60e-16 | 8.09e-15 | 1 |
+| run1 | 0.0455 | 6.20e-16 | 1.36e-14 | 1 |
+| run1 | 0.056875 | 8.92e-16 | 1.57e-14 | 0.5 |
+| run1 | 0.07109375 | 8.83e-16 | 1.24e-14 | 0.5 |
+| run1 | 0.0888671875 | 9.21e-15 | 1.04e-13 | 0.125 |
+| run1 | 0.04443359375 | 4.82e-15 | 1.08e-13 | 0.0625 |
+| ab1 | 0.07109375 | 8.83e-16 | 1.24e-14 | 0.5 |
+| ab2 | 0.0444334 | 1.96e-15 | 4.41e-14 | 0.25 |
+| run2 | 0.0444334 | 2.89e-15 | 6.5e-14 | 0.25 |
+| run2 | 0.05554175 | 8.11e-15 | 1.46e-13 | 0.125 |
+| run2 | 0.027770875 | 2.01e-14 | 7.24e-13 | 0.03125 |
+| run2 | 0.0138854375 | 4.76e-15 | 3.43e-13 | 0.25 |
+| run2 | 0.0138854375 | 3.16e-15 | 2.28e-13 | 0.25 |
+| run2 | 0.01735679688 | 7.03e-15 | 4.05e-13 | 0.125 |
+| run2 | 0.02169599609 | 4.65e-15 | 2.14e-13 | 0.25 |
+| run2 | 0.02711999512 | 5.76e-15 | 2.12e-13 | 0.25 |
+| run3 | 0.0338999939 | 4.83e-14 | 1.42e-12 | 0.03125 |
+
+Next: anm_run's attempt 2 halves a to 0.01694999695 (D move 0.016949923); `--a_grow 1.25` and the halving allow up to 4 attempts per step, so up to 3 more. The series at arc step 11's D is in `run3/arcjet_000_D259.565880.npz` if a restart with another `--a0` is wanted (`--arc_jet` reads it, saving the 274.4 s of forming it); I have not changed anything.
+
+anm_run pid 54500: elapsed 47:44, 597.2% cpu, rss 339 MB; D 0.337389 below 259.903269724106 at arc step 11's D.
+
+Gain first |dz| / predicted max|F| of this attempt: 4.83e-14 / 1.17e-35 = 4.13e+21 at D 259.59978, against 3.33e+21 at D 259.5659 and 2.66e+21 at 259.5388 (the accepted steps 11 and 10 of run2). Its first |dz| is x2.4 the largest of the 17 earlier attempts (2.01e-14, run2).
+
+Kernel: the series at this base (D 259.56588) took 274.4 s on the new kernel (run3), against 1149.7 s at arc step 11's base and 1277.8 s at arc step 10's on the old one (run2), x4.2 and x4.7; the old figures include hours when #1058's builds and checks ran beside run2, no #1058 job ran beside run3. The 11 refused trials of over 5 s here took 89 s on average against 200 s for the 102 in run2 (the base D and the trial points differ, so this is not a like-for-like timing).
