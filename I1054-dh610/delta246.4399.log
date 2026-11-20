@@ -1,0 +1,18 @@
+# 2026-11-20 19:09:07 UTC cmd: python3 exact_recip_check.py delta /home/nathan/Source/choptuik-large-d-raw/I1054-dh610/resolve246.4399_r0/base_pin3_D246.4399.npz /home/nathan/Source/choptuik-large-d-raw/I1054-dh610/resolve246.4399_r1/base_pin3_D246.4399.npz --out /home/nathan/Source/choptuik-large-d-raw/I1054-dh610/delta246.4399.json
+Traceback (most recent call last):
+  File "/home/nathan/Source/choptuik-large-d-1054/hp/exact_recip_check.py", line 456, in <module>
+    sys.exit(main(sys.argv[1:]))
+             ~~~~^^^^^^^^^^^^^^
+  File "/home/nathan/Source/choptuik-large-d-1054/hp/exact_recip_check.py", line 444, in main
+    rec, ok = cmd_delta(args[1], args[2], opt.get("csv", os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "delta_all.csv")))
+              ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nathan/Source/choptuik-large-d-1054/hp/exact_recip_check.py", line 236, in cmd_delta
+    db, Db, mb = delta_of(b)
+                 ~~~~~~~~^^^
+  File "/home/nathan/Source/choptuik-large-d-1054/hp/exact_recip_check.py", line 225, in delta_of
+    d = np.load(path, allow_pickle=False)
+  File "/home/nathan/Source/venv-i1054/lib/python3.14/site-packages/numpy/lib/_npyio_impl.py", line 454, in load
+    fid = stack.enter_context(open(os.fspath(file), "rb"))
+                              ~~~~^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/nathan/Source/choptuik-large-d-raw/I1054-dh610/resolve246.4399_r1/base_pin3_D246.4399.npz'
+exit 1

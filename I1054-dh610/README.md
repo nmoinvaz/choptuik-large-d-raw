@@ -56,3 +56,9 @@ its controls hold (the flag-off log passes, the stopped `resolve251_r1.log` fail
 Worktree at 4204c9f9 (no fetch, no rebuild), venv-i1054, unit `i1054c` (`run1054c.sh`, a braced block ending in `exit`): for `I966-dh370/ks_chain3b/leg01_D243.8361_ks293/anm_pin3_D246.4399.npz` and `leg02_D247.2801_ks293/anm_pin3_D249.4664.npz` (taken from origin/main by `git archive`:
 blobs 7ced8b8d and 7b642543) the flag-off and flag-on polish (`resolve<D>_r0`, `resolve<D>_r1`, the D 251.88 flags with `--log_proj 1`), `exact_recip_check.py delta` (`delta<D>.json`), then `check251b.py` on each of the four logs (`check_<D>_r<R>.txt`, the coordinator's convergence rule)
 and `fit_change.py` (`fit_change.txt`: the three changes against D and their rows' quoted errors, the least-squares line of log10|change| in D evaluated at 251.88, marked as an extrapolation; `fit_change_selftest*.txt`: its controls).
+
+### Result (19:18 UTC, 20 Nov): both flag-on polishes stop at their start
+
+Unit `i1054c` ran 19:02:37 to 19:15:44 UTC (13 min, 1 h 59 min CPU, journal memory peak 256 MB, no memory alert), HEAD 4204c9f94d030aef508131c41a4573cd9b9de64e. Flag off converges at once at both D (1 Newton step, max|F| 7.6e-83 at D 246.44 and 1.8e-82 at D 249.47, 56 s and 60 s, bases saved).
+Flag on, default start bound (1e-6): "projection failed (1): point max|F| 3.29e-06" (D 246.44) and "9.02e-06" (D 249.47), then "the start's projection failed, attempt stopped" (333 s and 336 s), no base, so `delta246.4399.log` and `delta249.4664.log` end in a FileNotFoundError (exit 1) and `fit_change.txt`
+has one point ("need at least two points"). By the coordinator's reading (b) the number is the change at the last D where both converged, D 241.96: +3.290002e-13 (`delta241.json`).

@@ -28,3 +28,10 @@ resolve251_r1b: expected exit 0, got 0, 1462 s (cap 32400 s) OK
 check251b (the coordinator's pass rule) on resolve251_r1b.log: exit 1: resolve251_r1b.log: FAIL; controls: resolve251_r0.log PASS (expected PASS), resolve251_r1.log FAIL (expected FAIL)
 delta251b: expected exit 0, got 1, 0 s MISMATCH (see the log: no flag-on base if the rule failed)
 # 2026-11-20 19:02:37 UTC 1054c: HEAD 4204c9f94d030aef508131c41a4573cd9b9de64e, hpkernel /home/nathan/Source/venv-i1054/lib/python3.14/site-packages/hpkernel/__init__.py avx2
+resolve246.4399_r0: exit 0, 56 s (cap 21600 s); rule (check251b.py) exit 0: resolve246.4399_r0.log: PASS;       octo-double Newton: 1 steps, max|F| 7.6e-83, converged; double-double |F| of its first two parts 1.1e+24;base polish saved as /home/nathan/Source/choptuik-large-d-raw/I1054-dh610/resolve246.4399_r0/base_pin3_D246.4399.npz;
+resolve246.4399_r1: exit 0, 333 s (cap 21600 s); rule (check251b.py) exit 1: resolve246.4399_r1.log: FAIL;       elim projections {'u0': 0, 'u0q': 0, 'ladder': 0, 'failed': 1, 'skipped': 0}: the start's projection failed, attempt stopped;
+delta246.4399: exit 1: 
+resolve249.4664_r0: exit 0, 60 s (cap 21600 s); rule (check251b.py) exit 0: resolve249.4664_r0.log: PASS;       octo-double Newton: 1 steps, max|F| 1.8e-82, converged; double-double |F| of its first two parts 9.4e+25;base polish saved as /home/nathan/Source/choptuik-large-d-raw/I1054-dh610/resolve249.4664_r0/base_pin3_D249.4664.npz;
+resolve249.4664_r1: exit 0, 336 s (cap 21600 s); rule (check251b.py) exit 1: resolve249.4664_r1.log: FAIL;       elim projections {'u0': 0, 'u0q': 0, 'ladder': 0, 'failed': 1, 'skipped': 0}: the start's projection failed, attempt stopped;
+delta249.4664: exit 1: 
+fit_change.py delta241.json: exit 1; selftest exit 0 (0), --selftest --mutate exit 1 (1)
