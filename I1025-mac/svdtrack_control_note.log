@@ -43,3 +43,8 @@ planted regular V, --mutate=shift: verdict inside the floor, wanted not: OK
   pair (joined at 0.001, overlap 0.927): sigma at -0.01 2.477e-08, +0.01 2.623e-08 (cut 1.5e-14: True); roots outer 1.999897105066189, inner 2.000450007450481 (within 0.0001 of 2.0: False)
 planted V crossing coupled regular pairs (as at D 13): verdict mixed, wanted regular: BAD
 planted: FAIL
+== 2026-11-20 07:13:19 CORRECTION to the planted crossing case above. Its truth is det M's zero, not the V's own zero at 2.0: the
+V's 7x7 block [[g, k^T], [k, diag p]] has det = prod(p) (g - k^T p^-1 k), so the root is where g = sum k^2/p = 8.42e-10, at 2.00033677
+(numerical block determinant: 2.0003367661). Against it the majority-rule roots 1.999897 (outer) and 2.000450 (inner) are off by
+-4.40e-4 and +1.13e-4 (not -1.0e-4 and +4.5e-4). Both still miss the 1e-4 bar, so the reading stands. svdiso.py's planted uses the
+corrected truth.

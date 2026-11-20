@@ -1,0 +1,14 @@
+== 2026-11-20 07:13:19 #1025 isolation test (svdiso.py), approved by the coordinator 07:09 UTC. Written before the real runs.
+Question: is there a window near the root where lambda_1's V is isolated (no other singular value within a factor 3, so no avoided crossing
+bends it, and sigma >= 1e-14 sigma_max, above rounding), and does a sigma-fit there return the resolved det root? A pass at k_c 55, D 17
+makes option (d) viable; a fail leaves (c) as the only route found so far.
+Grid: lam1 -/+ 0.01, 3e-3, 1e-3, 3e-4, 1e-4, 3e-5, 1e-5, 3e-6, 1e-6 (18 SVDs). Method in the svdiso.py docstring: chains by mutual best
+overlap with overlap^2 >= 0.5, started at every unreached triplet; isolated points as above; V candidate = >= 2 isolated points with
+consecutive log-log slopes in [0.8, 1.2]; - and + candidates joined at overlap^2 >= 0.5; weighted quadratic fit of the signed sigma.
+Pass ('isolated V'): a joined pair whose fitted root lies within 1e-6 of lam1 (the resolved det record; record precision ~5e-8).
+Reported beside it: s' per side, the window, the expected root precision 2e-16/s', and for the pair's points |V_f^T v|^2 against the floor
+subspaces at lam1 -/+ 0.01 and the centre-odd share of |v|^2.
+Controls: planted (code check run before this log, PASS; output in svdiso_planted.log): regular V (slope 1e-8) pass, root +5.8e-10; V crossing coupled regular pairs
+as at D 13 pass, root -3.1e-12 from det's zero 2.00033677; V buried in the floor fail; crossing case with --mutate=shift fail.
+Real control: D 13, k_c 31 (sol_l1kc31L1025_D13.0000.npy, lam1 2.6841484641099442) must pass, and with --mutate=shift must fail.
+Stop rule: if either misreads, the D 17 run does not start. D 17: sol_l1kc55Fs1025_D17.0000.npy, lam1 2.025718689014619.
