@@ -1,0 +1,13 @@
+== 2026-11-20 04:17:44 #1025: pass criteria for the floor lift on real states, written before the runs (coordinator 2026-11-20 04:10 UTC)
+Tool: solver/matter/ell_lam.py (branch wip/ell1-highD). Root lam_A: sign change of det(M + W_A), W_A = floor_lift(M(ref_A))
+(singular directions below 1e-14 sigma_max), brentq xtol 1e-10. Second lift W_B from M(ref_B). Refs: guess - 0.1 and guess + 0.1.
+C1, the lift keeps regular eigenvalues (the established roots: k_c 55 at D 16.5 and 17, k_c 63 at D 17):
+  (a) det M changes sign between lam_A - 1e-8 and lam_A + 1e-8 (raw_within), with M's sign resolved under 3 rotations at lam_A -/+ 1e-6 (rotraw_agree);
+  (b) |lam_A - record| <= 1e-8 + 2e-8 record. The records' own brentq tolerance is xtol 2e-8 x lambda (about 4e-8), so (a) is the 1e-8
+      test of the lift on the same matrices, and (b) compares against the stored values at their own precision.
+C2, the lift does not depend on its reference (k_c 55 at D 17.5 and 18): det(M + W_B) changes sign between lam_A - 1e-6 and lam_A + 1e-6 (refB_within).
+C3, the lifted sign is resolved (all five): rotations agree at lam_A -/+ 1e-6 (rotA_agree), with opposite signs there (A_opposite).
+A failed C1 means the lift moves regular eigenvalues and is not used. A failed C2 means the fixed lift is not enough (refresh U_f, V_f
+per lambda or raise the precision). Either stops the lambda work past D 17 until the cause is known.
+Not tests: the scans of det M, det(M + W_A), det(M + W_B) at D 17.5 (1.70-2.15) and D 18 (1.55-2.10), step 0.05: every real root nearby.
+Planted (eigs_planted_lift.log): planted_ill --lift OK (exit 0), --mutate=nolift BAD (exit 1), planted OK, planted --mutate=beyn BAD.
