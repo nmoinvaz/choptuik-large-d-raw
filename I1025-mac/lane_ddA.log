@@ -9,3 +9,64 @@
   block 6: 10 s
   block 7: 10 s
   block 8: 13 s
+  block 9: 17 s
+  block 10: 21 s
+  block 11: 32 s
+  block 12: 35 s
+  block 0: max |M_dd - M_f64| / max |M| = 8.22e-15
+  block 1: max |M_dd - M_f64| / max |M| = 7.56e-16
+  block 2: max |M_dd - M_f64| / max |M| = 7.11e-16
+  block 3: max |M_dd - M_f64| / max |M| = 6.77e-16
+  block 4: max |M_dd - M_f64| / max |M| = 8.71e-16
+  block 5: max |M_dd - M_f64| / max |M| = 5.70e-16
+  block 6: max |M_dd - M_f64| / max |M| = 1.40e-15
+  block 7: max |M_dd - M_f64| / max |M| = 2.00e-15
+  block 8: max |M_dd - M_f64| / max |M| = 2.21e-15
+  block 9: max |M_dd - M_f64| / max |M| = 4.61e-15
+  block 10: max |M_dd - M_f64| / max |M| = 1.56e-15
+  block 11: max |M_dd - M_f64| / max |M| = 4.33e-15
+  block 12: max |M_dd - M_f64| / max |M| = 1.89e-11
+check A D 13.0 k_c 31 lambda 2.6841484641099442: worst 1.89e-11 (bar 1e-13) -> FAIL; float64 9 s, double-double 158 s
+== exit 1 2026-11-20 10:23:10
+== 2026-11-20 10:23:10 ell_ddm.py check data/sol_l1kc31L1025_D13.0000.npy 13 31 2.6841484641099442 --bar 1e-13 --out data/ell_ddm_checks_1025.jsonl --blocks 1,6,11 --mutate=lam
+  block 1: 2 s
+  block 6: 11 s
+  block 11: 36 s
+  block 1: max |M_dd - M_f64| / max |M| = 6.28e-02
+  block 6: max |M_dd - M_f64| / max |M| = 2.45e-01
+  block 11: max |M_dd - M_f64| / max |M| = 4.29e-01
+check A D 13.0 k_c 31 lambda 2.6841484641099442: worst 4.29e-01 (bar 1e-13) -> FAIL; float64 11 s, double-double 49 s [mutate lam]
+== exit 1 2026-11-20 10:24:11
+== 2026-11-20 10:24:11 ell_ddm.py sshres data/sol_l1kc31L1025_D13.0000.npy 13 31 2.6841484641099442 --us 0.01,0.005 --bar 1e-24 --out data/ell_ddm_checks_1025.jsonl
+  u 0.01: p' residual (mpmath, 60 digits), value 6.7e-26, tangents 2.0e-25
+  u 0.01: m' residual (mpmath, 60 digits), value 2.8e-28, tangents 4.3e-30
+  u 0.01: a' residual (mpmath, 60 digits), value 5.0e-30, tangents 2.3e-32
+  u 0.01: c' residual (mpmath, 60 digits), value 9.1e-31, tangents 2.3e-32
+  u 0.01: q' residual (mpmath, 60 digits), value 6.2e-33, tangents 1.7e-32
+  u 0.005: p' residual (mpmath, 60 digits), value 1.3e-25, tangents 4.0e-25
+  u 0.005: m' residual (mpmath, 60 digits), value 2.8e-28, tangents 2.2e-30
+  u 0.005: a' residual (mpmath, 60 digits), value 5.0e-30, tangents 2.4e-32
+  u 0.005: c' residual (mpmath, 60 digits), value 9.2e-31, tangents 2.3e-32
+  u 0.005: q' residual (mpmath, 60 digits), value 6.1e-33, tangents 8.9e-33
+check A2 D 13.0 k_c 31 lambda 2.6841484641099442: horizon series against the x-ODE, worst 4.0e-25 (bar 1e-24) -> PASS
+== exit 0 2026-11-20 10:24:15
+== 2026-11-20 10:24:15 ell_ddm.py sshres data/sol_l1kc31L1025_D13.0000.npy 13 31 2.6841484641099442 --us 0.01,0.005 --bar 1e-24 --out data/ell_ddm_checks_1025.jsonl --mutate=lam
+  u 0.01: p' residual (mpmath, 60 digits), value 6.7e-26, tangents 1.0e+00
+  u 0.01: m' residual (mpmath, 60 digits), value 2.8e-28, tangents 1.3e-02
+  u 0.01: a' residual (mpmath, 60 digits), value 5.0e-30, tangents 2.3e-32
+  u 0.01: c' residual (mpmath, 60 digits), value 9.1e-31, tangents 2.3e-32
+  u 0.01: q' residual (mpmath, 60 digits), value 6.2e-33, tangents 1.3e-32
+  u 0.005: p' residual (mpmath, 60 digits), value 1.3e-25, tangents 1.0e+00
+  u 0.005: m' residual (mpmath, 60 digits), value 2.8e-28, tangents 1.3e-02
+  u 0.005: a' residual (mpmath, 60 digits), value 5.0e-30, tangents 2.4e-32
+  u 0.005: c' residual (mpmath, 60 digits), value 9.2e-31, tangents 2.3e-32
+  u 0.005: q' residual (mpmath, 60 digits), value 6.1e-33, tangents 7.7e-33
+check A2 D 13.0 k_c 31 lambda 2.6841484641099442: horizon series against the x-ODE, worst 1.0e+00 (bar 1e-24) -> FAIL [mutate lam]
+== exit 1 2026-11-20 10:24:19
+== 2026-11-20 10:24:19 ell_ddm.py det data/sol_l1kc31L1025_D13.0000.npy 13 31 2.6641484641099442,2.7041484641099442 --out data/ell_ddm_checks_1025.jsonl
+  lambda 2.664148464109944: dd M built in 141 s; dd LU signs [-1.0, -1.0, -1.0, -1.0, -1.0], ln|det| -604.897791479787 (spread over variants 1.3e-12), 3.5 s per LU
+  lambda 2.664148464109944: dd signs agree True, dd -1 vs float64 -1; ln|det| dd -604.8977914798, float64 -604.8978027897
+  lambda 2.7041484641099442: dd M built in 115 s; dd LU signs [1.0, 1.0, 1.0, 1.0, 1.0], ln|det| -601.154909481702 (spread over variants 8.0e-13), 2.5 s per LU
+  lambda 2.7041484641099442: dd signs agree True, dd +1 vs float64 +1; ln|det| dd -601.1549094817, float64 -601.1548989779
+== exit 0 2026-11-20 10:29:18
+== 2026-11-20 10:29:18 ell_ddm.py det data/sol_l1kc31L1025_D13.0000.npy 13 31 2.6641484641099442,2.7041484641099442 --out data/ell_ddm_checks_1025.jsonl --mutate=lam

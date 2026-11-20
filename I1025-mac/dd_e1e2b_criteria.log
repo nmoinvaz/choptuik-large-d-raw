@@ -1,0 +1,11 @@
+== 2026-11-20 10:29:53 #1025 route (c), E1/E2 repeated inside the noise window (E1b/E2b). Written before the runs.
+Why: E1/E2 at k_c 55 D 17.5 (lane_dd.log, 10:27 UTC) passed at lam 1.93 and 1.97, but float64 resolved the sign there too, so the test had no
+power (the criteria of dd_e1e2_criteria.log lacked the power condition its selftest had). Code: wip/ell1-highD 3ea63d50.
+Step 1 (locate): ell_dd.py scan at k_c 55 D 17.5 (sol_l1kc55Fs1025_D17.5000.npy), lam 1.935 to 1.965 by 0.005: float64 signs over the 5 variants
+(lu_double and LAPACK). A lambda is in the noise window if those 10 signs disagree. If none disagrees, a second scan 1.950 to 1.955 by 0.0005;
+if still none, stop and report.
+Step 2: E1/E2 (ell_dd.py sens --blocks, as dd_e1e2_criteria.log) at the two window lambda nearest 1.9522 (the k_c 55 record), or the one if only one.
+Power condition: by construction float64 disagrees at the chosen lambda.
+Readings as in dd_e1e2_criteria.log, with the coordinator's rule: E1 resolves only the sign of the double-rounded M; only if E1 resolves at the
+chosen lambda AND E2 leaves the dd sign unchanged at 1e-16 (all blocks and each block) may a dd LU of the double M stand in for the port, still
+to be confirmed by the dd build at one D. If E1 does not resolve, or E2 flips at 1e-16, the entries need dd.
