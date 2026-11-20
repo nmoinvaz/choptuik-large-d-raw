@@ -66,8 +66,13 @@ ell_eigs.py <state> D kc lambda --r 0 --N 24 --p 12 --dlam 0 --no_polish_complex
 | 03:58 | the guard's lambda-at-D-18 phase turned off | the same order; the leap to D 18 stays and its state is kept for later (`pre/selftest_guard_nolam.log`) |
 | 03:59 | `run_signtests_1025.sh` started | the D 17.5 and D 16.5 k_c 63 records are suspect until xfkappa's `signtest.py` (raw `I1025-mac/signtest.py`, hash a2f53a90, extracted by `git show`) passes on them: agree true in both JSON lines and opposite signs at lam - 0.02 and lam + 0.02, run one at a time, 4 threads, timeout 7200. Its planted control printed agree, agree, DISAGREE (03:58:41); output `signtest.log`. A record whose signtest fails is not used |
 | 04:27 | the script's P1 subshell stopped by exact pid (winpid 1836, cygwin 782179), and the leap to D 18 started at once by `guard_leap_1025.py --now` at 4 BLAS threads | the coordinator's order, with the cores idle (CPU 43%). The leap needs only the saved D 17 and D 17.5 states, not lambda. P1's child, the k_c 63 refine of D 17.5, keeps running. With its subshells gone the script's main bash ended and wrote `== 2026-11-20 04:27:07 all done` into `checks.log`: that marks the script's end after these stops, not the lane's completion. `stop_P1_1025.log`, `leap_kc63.log`, `guard_1025.log`, `pre/selftest_guard_now.log` |
+| 07:19 | `run_kc71_1025.sh` started at 4 BLAS threads, BelowNormal, two jobs in order: (1) `signtest.py` of the k_c 63 D 17 record (lam 2.0265465, around lam -+ 0.02), then (2) `ell_refine.py l1kc63Fw1025b 63 l1kc71Fw1025 71 1 16.5 2.1454677 --kappa 0.7 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60`, k_c 71 lambda at D 16.5 from the k_c 63 D 16.5 state, 12 h timeout, log `kc71_D16.5.log` | the coordinator's order for the cores the finished refine jobs and signtests freed (the leap keeps its 4). At D 16.5 the k_c moves grow (47 to 55 +4.3e-3, 55 to 63 -1.37e-2), so k_c 63 is not converged there. Record checks for k_c 71: n_signchanges 1 and the 2% test against 2.1454677, then a signtest at lam -+ 0.02. Its first 20 min: check that the solve runs (no shape or memory error) and note its process memory |
 
 The planted checks and the first-job checks (a), (b) of the scans below are as measured. They passed, and they do not make the scans' output valid.
+
+## Prediction for the k_c 71 run at D 16.5 (the coordinator's, written 2026-11-20 about 07:20 UTC, before the run)
+
+If the 63 to 71 move of lambda at D 16.5 is under 4.3e-3 in size, D 16.5 converges at k_c 71. If it is as large as 1.37e-2, D 16.5 is not resolved at any k_c run so far, and the slope table marks it so.
 
 ## Result (interim, first publish 2026-11-20 03:10 UTC, updated 07:17 UTC)
 
