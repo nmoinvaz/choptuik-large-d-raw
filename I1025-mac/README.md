@@ -32,3 +32,7 @@ Settings throughout: l = 1, kappa 0.7, u0 0.04, Ks 30. Seeds: #660's D = 10 stat
 | `eigs_planted_ill_before.log` | ell_eigs.py planted_ill on the code before any fix: fails (rcond 1e-17 cases, and spurious values in an empty circle) |
 | `kink_criteria.log` | what separates an avoided crossing from a k_c error at D 16.5 (the steep stretch over D 16.5-17), written before lane J's results |
 | `lane_j.sh`, `lane_j.log`, `lane_j_a.log`, `lane_j_b.log` | lane J: lambda at k_c 55 at D 18.5-19.5 (J-a); after the leap, k_c 63 at D 16.5 and k_c 55, 47 at D 16.25, 16.75 (J-b; `out/l1kc63Fb1025.jsonl`, `out/l1kc{47,55}{Fq,Fp}1025.jsonl`) |
+| `detscan.py`, `detscan_kc55_D18.log` | sign and log\|det\| of M on 12 real lambda at k_c 55, D 18: every M finite, the sign flips 5 times over 1.77-1.96, so lambda_55(18) = 1.7662 is not established |
+| `signtest.py`, `signtest.log` | is sign(det M) resolved? LU(Q M) times sign(det Q) for 3 random orthogonal Q against LU(M); planted control (agrees at a 1e-13 floor, disagrees at 1e-19), then k_c 55 at D 18 (1.80 agrees, 1.84 not) and D 17 (2.00, 2.05 agree) |
+| `floormap.py`, `floormap.log` | where M's floor singular directions sit in the state layout (field, coefficient index), and whether they turn with lambda |
+| `lane_j_note.log` | J-a stopped by hand at 03:45 UTC (its lambda steps would read noise) |
