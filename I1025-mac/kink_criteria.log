@@ -1,0 +1,16 @@
+== 2026-11-20 03:23:34 #1025: what separates the two readings of the steep stretch over D 16.5-17, written before the results
+top-k_c lambda_1: D 16 2.2426280416 (k_c 55), D 16.5 2.1591248218 (55), D 17 2.0265464974 (63), D 17.5 1.9522284485 (55)
+slopes of lambda_1 per unit D: s(16-16.5) -0.16701, s(16.5-17) -0.26516, s(17-17.5) -0.14864
+shift of lambda_1(16.5) that makes s(16-16.5) = s(16.5-17): x = (s2 - s1)/4 = -0.02454
+  (the coordinator's scale, slope excess times 0.5 D: (s2 - s1) 0.5 = -0.04908; against the neighbours' mean, (s2 - (s1 + s3)/2) 0.5 = -0.05367)
+47 -> 55 move at D 16.5: +4.3033e-03
+T1 (direct, the k_c 63 lambda at D 16.5): m = lambda_63(16.5) - lambda_55(16.5).
+   k_c error at D 16.5 (reading B) if m <= x/2 = -0.01227;
+   steep stretch stays at higher k_c (needed for reading A) if |m| <= |47->55 move| = 4.3033e-03;
+   otherwise (between the two, or m > +4.3033e-03, the stretch growing at higher k_c): undecided.
+T2 (location, not a test): the quarter slopes of lambda_1 over D 16, 16.25, 16.5, 16.75, 17 at the top k_c, with the
+   47 -> 55 spread at D 16.25 and 16.75. Under A the steep part sits at 16.5-17 and stays; a k_c error at 16.5 alone
+   would show as a sawtooth about 16.5: s(16.25-16.5) and s(16.5-16.75) off the smooth curve by about +-x/0.25.
+T3 (reading A's other half, a neighbour eigenvalue approaching lambda_1 near D 16.5-17 in the eigenvalue scans): untested.
+   The scans as written are invalid (eigs_control.log, eigs_planted_ill_before.log); every post names reading A untested
+   until a fixed scan passes planted_ill.

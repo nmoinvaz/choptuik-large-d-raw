@@ -1,0 +1,20 @@
+# #1025: why winb's D 17.5 scans saturated A_0's rank (I1025-win eigs_a.log, eigs_b.log: 'rank = p', rcond ~1e-17
+# at all 12 contour points). Diagnostics on sol_l1kc31L1025_D13.0000.npy (k_c 31, D 13, lambda_1 2.6841485), with
+# lane I2's refine paused (SIGSTOP on its python) while they ran.
+== 2026-11-20 03:15:05 mfloor.py data/sol_l1kc31L1025_D13.0000.npy 13 31 2.6841485
+lam 2.6841485: n 2054, built in 21.4 s
+lam 3.1841485: n 2054, built in 19.0 s
+lam (2.6841485+0.3j): n 2054, built in 51.8 s
+lam 2.6841485: sigma_max 6.296e+00, below 1e-12 sigma_max 4, smallest 3.86e-14, sigma at the floor's edge 7.84e-12 / 3.38e-12
+lam 3.1841485: sigma_max 6.302e+00, below 1e-12 sigma_max 2, smallest 3.61e-12, sigma at the floor's edge 1.42e-11 / 3.63e-12
+lam (2.6841485+0.3j): sigma_max 6.297e+00, below 1e-12 sigma_max 4, smallest 6.24e-13, sigma at the floor's edge 7.74e-12 / 2.73e-12
+zero columns of M(lam1): 0, zero rows: 0
+floor of M(lam1) applied at lam 3.1841485: |M Vf| / sigma_max 1.90e-03, |Uf^H M| / sigma_max 7.02e-03
+floor of M(lam1) applied at lam (2.6841485+0.3j): |M Vf| / sigma_max 1.07e-03, |Uf^H M| / sigma_max 3.60e-03
+== 2026-11-20 03:17:17 mscale.py data/sol_l1kc31L1025_D13.0000.npy 13 31 2.6841485
+row scales 3.88e-01..1.61e+00, column scales 6.23e-01..3.72e+01
+lam 3.1841485: cond 1.74e+12, smallest 4 / max [2.25e-12 2.25e-12 5.75e-13 5.74e-13]; scaled cond 5.35e+10, smallest 4 / max [6.79e-11 6.78e-11 1.87e-11 1.87e-11]
+lam 2.6841485: cond 1.63e+14, smallest 4 / max [5.37e-13 4.24e-13 2.73e-13 6.12e-15]; scaled cond 6.20e+12, smallest 4 / max [1.29e-11 8.46e-12 5.42e-12 1.61e-13]
+lam 2.2841485: cond 3.75e+13, smallest 4 / max [1.12e-13 1.12e-13 2.67e-14 2.66e-14]; scaled cond 1.15e+12, smallest 4 / max [3.37e-12 3.36e-12 8.68e-13 8.68e-13]
+lam (2.6841485+0.3j): cond 1.01e+13, smallest 4 / max [4.34e-13 4.23e-13 1.02e-13 9.90e-14]; scaled cond 3.11e+11, smallest 4 / max [1.30e-11 1.27e-11 3.31e-12 3.22e-12]
+lam (2.6841485+1j): cond 1.00e+13, smallest 4 / max [4.48e-13 4.07e-13 1.00e-13 9.99e-14]; scaled cond 3.09e+11, smallest 4 / max [1.33e-11 1.22e-11 3.25e-12 3.23e-12]
