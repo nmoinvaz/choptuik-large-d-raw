@@ -60,6 +60,8 @@ def main():
     res = [math.log10(abs(p[1])) - (a + b * p[0]) for p in pts]
     pred = 10 ** (a + b * opt["--at"])
     print(f"least-squares line of log10|change| in D through {len(pts)} points: log10|change| = {a:.4f} + {b:.5f} D (a factor {10 ** b:.3f} per unit D), residuals {', '.join(f'{x:+.3f}' for x in res)} decades")
+    if len(pts) == 2:
+        print("the line goes through two points and has no spread (no residual to read)")
     print(f"EXTRAPOLATION (not a measurement) to D {opt['--at']}: |change| about {pred:.2e}, against the row's quoted error {opt['--err']:.1e}: {pred / opt['--err']:.2e} of it; the last point is {opt['--at'] - max(p[0] for p in pts):.2f} below")
     return 0
 

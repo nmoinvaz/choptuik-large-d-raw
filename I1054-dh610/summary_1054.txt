@@ -35,3 +35,24 @@ resolve249.4664_r0: exit 0, 60 s (cap 21600 s); rule (check251b.py) exit 0: reso
 resolve249.4664_r1: exit 0, 336 s (cap 21600 s); rule (check251b.py) exit 1: resolve249.4664_r1.log: FAIL;       elim projections {'u0': 0, 'u0q': 0, 'ladder': 0, 'failed': 1, 'skipped': 0}: the start's projection failed, attempt stopped;
 delta249.4664: exit 1: 
 fit_change.py delta241.json: exit 1; selftest exit 0 (0), --selftest --mutate exit 1 (1)
+# 2026-11-20 20:22:29 UTC 1054d: main 8179068da460fe6be81312602e4c9987d17d73a3 in /home/nathan/Source/choptuik-large-d-1059; hp changes against 5f488e2b (the build of venv-i1054): hp/Cargo.lock hp/Cargo.toml hp/pyproject.toml hp/src/lib.rs hp/src/plan_auto.rs hp/src/python.rs hp/src/qd_residual.rs hp/src/split_tests.rs 
+# 1054d: Solver.set_exact_recip in venv-i1054: True False (set_exact_recip, plan_auto)
+resolve246.4399_r1b: exit 0, 2157 s (cap 21600 s); resolve246.4399_r1b.log: not converged, projection_failed_lines 13, start_maxF 3.29e-06, first_step ('3.29e-06', '6.48e-05'), not_adopted True, steps 1, last_maxF 3.3e-06
+delta246.4399b: exit 1: 
+resolve249.4664_r1b: exit 0, 1714 s (cap 21600 s); resolve249.4664_r1b.log: not converged, projection_failed_lines 12, start_maxF 9.02e-06, first_step ('9.02e-06', '1.19e-03'), not_adopted True, steps 1, last_maxF 9e-06
+delta249.4664b: exit 1: 
+job 1: classify selftest exit 0 (0), --mutate exit 1 (1); fit_change.py delta241.json exit 1
+resolve242.8630_r0: exit 1, 0 s (cap 21600 s); resolve242.8630_r0.log: no Newton line
+resolve242.8630_r1: exit 1, 0 s (cap 21600 s); resolve242.8630_r1.log: no Newton line
+delta242.8630: exit 1: 
+resolve243.8361_r0: exit 1, 0 s (cap 21600 s); resolve243.8361_r0.log: no Newton line
+resolve243.8361_r1: exit 1, 1 s (cap 21600 s); resolve243.8361_r1.log: no Newton line
+delta243.8361: exit 1: 
+resolve244.7177_r0: exit 1, 0 s (cap 21600 s); resolve244.7177_r0.log: no Newton line
+resolve244.7177_r1: exit 1, 0 s (cap 21600 s); resolve244.7177_r1.log: no Newton line
+delta244.7177: exit 1: 
+resolve245.5586_r0: exit 1, 0 s (cap 21600 s); resolve245.5586_r0.log: no Newton line
+resolve245.5586_r1: exit 1, 0 s (cap 21600 s); resolve245.5586_r1.log: no Newton line
+delta245.5586: exit 1: 
+job 2: table_job2.md written for 242.8630 243.8361 244.7177 245.5586
+# 2026-11-20 21:27:55 UTC job 2 first try (21:26:59 to 21:27:01 UTC) stopped at once: its four input states were not in the live raw clone (my omission, not a result); its logs are in job2_try1_nostates/. Re-run after extracting them.

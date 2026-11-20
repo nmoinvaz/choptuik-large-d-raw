@@ -1,0 +1,15 @@
+# 2026-11-20 21:27:00 UTC cmd: python3 -u anm_run.py /home/nathan/Source/choptuik-large-d-raw /home/nathan/Source/choptuik-large-d-raw/I1054-dh610/resolve243.8361_r1 --state I966-dh370/ks_chain3b/leg00_D237.7132_ks291/anm_pin3_D243.8361.npz --kfreeze 3 --held_fit data/held_fit.json --held_o 1 --N 31 --jet_o 1 --corrector od --tol_od 1e-60 --qd_it 40 --lam_stall 0.04 --od_junk 0 --reseed 2 --reseed_q 1 --reseed_o 3 --od_accept natural --od_strong 4 --reseed_start pred --reseed_qd_bar 1e-21 --threads 10 --steps 0 --save_base 1 --log_proj 1 --exact_recip 1
+Traceback (most recent call last):
+  File "/home/nathan/Source/choptuik-large-d-1059/hp/anm_run.py", line 1236, in <module>
+    main()
+    ~~~~^^
+  File "/home/nathan/Source/choptuik-large-d-1059/hp/anm_run.py", line 545, in main
+    zh, zl, m = load_state(os.path.join(raw, opt["state"]))
+                ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nathan/Source/choptuik-large-d-1059/hp/anm_run.py", line 230, in load_state
+    d = np.load(path)
+  File "/home/nathan/Source/venv-i1054/lib/python3.14/site-packages/numpy/lib/_npyio_impl.py", line 454, in load
+    fid = stack.enter_context(open(os.fspath(file), "rb"))
+                              ~~~~^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/nathan/Source/choptuik-large-d-raw/I966-dh370/ks_chain3b/leg00_D237.7132_ks291/anm_pin3_D243.8361.npz'
+exit 1

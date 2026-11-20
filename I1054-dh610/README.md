@@ -62,3 +62,17 @@ and `fit_change.py` (`fit_change.txt`: the three changes against D and their row
 Unit `i1054c` ran 19:02:37 to 19:15:44 UTC (13 min, 1 h 59 min CPU, journal memory peak 256 MB, no memory alert), HEAD 4204c9f94d030aef508131c41a4573cd9b9de64e. Flag off converges at once at both D (1 Newton step, max|F| 7.6e-83 at D 246.44 and 1.8e-82 at D 249.47, 56 s and 60 s, bases saved).
 Flag on, default start bound (1e-6): "projection failed (1): point max|F| 3.29e-06" (D 246.44) and "9.02e-06" (D 249.47), then "the start's projection failed, attempt stopped" (333 s and 336 s), no base, so `delta246.4399.log` and `delta249.4664.log` end in a FileNotFoundError (exit 1) and `fit_change.txt`
 has one point ("need at least two points"). By the coordinator's reading (b) the number is the change at the last D where both converged, D 241.96: +3.290002e-13 (`delta241.json`).
+
+## Follow-up (20 Nov, coordinator's task): the two jobs of notes/EXACT_RECIP.md 3.6
+
+Worktree `~/Source/choptuik-large-d-1059` at main 8179068d (the note's own commit; 394c9f2d is its ancestor), venv-i1054's python (the only dh610 build with `Solver.set_exact_recip`, built at 5f488e2b; main's `hp/src` differs from that build's only by `plan_auto`, the #1056 pins and test modules, listed in `summary_1054.txt`). One unit `i1054d` (`run1054de.sh`):
+`run1054d.sh` job (1), `--od_start_F 0` at D 246.44 and 249.47 against the flag-off bases of the 3.5 batch (`resolve<D>_r1b`, `delta<D>b`), then `run1054e.sh` job (2), the default-bound pair at D 242.8630, 243.8361 (leg 0, ks 291), 244.7177 and 245.5586 (`resolve<D>_r0`, `_r1`, `delta<D>`).
+`classify.py` reads each log by the note's rule (converged, stopped at start, not converged; `--selftest` and `--selftest --mutate` are its controls), `table1054.py` builds the tables (`table_job1.md`, `table_job2.md`), `fit_change.py` the line through the converged changes (`fit_change_job1.txt`).
+
+## Job 2 first try (20 Nov, 21:27 UTC): no input states
+
+`run1054de.sh` chained into job 2 at 21:26:59 UTC and every run exited at once (`FileNotFoundError`): the four input states were not in the live raw clone and `run1054e.sh` does not extract them. Not a result; the logs are in `job2_try1_nostates/`. The four states were then extracted with `git archive origin/main I966-dh370/ks_chain3b/<S>.npz` (blobs ff8926fa, a3af7539, 56209d07, e8772fd6) and job 2 was run again with `run1054e.sh` as it is, unit `i1054e`.
+
+## Job 1 result (20 Nov, 21:28 UTC): no value at D 246.44 or 249.47
+
+`--od_start_F 0` with the flag on does not converge at either D: the projection fails at the start (u0 rung, quad-double u0 and ladder all NOT converged), the strong chord's first step is refused (theta inf), and no trial step is accepted. D 246.4399: pinned max|F| 3.29e-06, first step |dz| 6.48e-05, 13 "projection failed" lines, polish not adopted (3.3e-06 -> 3.3e-06), 2157 s. D 249.4664: 9.02e-06, |dz| 1.19e-03, 12 lines, 9.0e-06 -> 9.0e-06, 1714 s. Flag-off polishes of the same states converge in 1 step (7.6e-83, 1.8e-82). No change value and no extrapolation (`fit_change_job1.txt`: one point). Files: `resolve246.4399_r1b*`, `resolve249.4664_r1b*`, `table_job1.md`, `fit_change_job1.txt`, `summary_1054.txt`, `exits_1054.txt`. Posted on #1043 (comment 7051048042).
