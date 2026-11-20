@@ -1,0 +1,9 @@
+== 2026-11-20 18:45:49 #1025: more random Q at D 12.5 and 13 (rpi5's suggestion: 6 and 10 singular values below 1e-12 sigma_max, smallest 9e-14 and
+1.8e-14), as margin on rows that already PASS. Written before the runs.
+Tool: signtest_q.py (blob 0b7c6caf). It is signtest.py (blob 179ea096, left frozen because the finished low-D drivers pin it) with --nq=N.
+Same seed, so its first 3 Q are signtest.py's.
+Runs: --nq=12 at lambda -/+ 0.02 of k_c 39 D 12.5 and D 13 (l1kc39L1025), with the records' u0 0.04, Ks 30, kappa 0.7, rk 1.
+Check that can fail: the first 4 signs (the LU's and the first 3 Q's) and logabs at each lambda equal rpi5's nq=3 lines in
+I1025-rpi5/signtest_lowD.jsonl (same machine, same inputs).
+Margin passes if all 13 signs agree at each lambda and are opposite between the two. A disagreement among the extra Q is reported. It does
+not undo the PASS by itself; the coordinator rules.
