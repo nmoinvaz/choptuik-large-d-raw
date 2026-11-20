@@ -11,4 +11,5 @@ cp "$S/I1025-win/signtest_lowD/"*.md "$S/I1025-win/signtest_lowD/"*.sh "$D/"
 for f in signtest_lowD.log signtest_lowD.jsonl signtest_lowD_planted.log; do [ -f "$S/I1025-win/signtest_lowD/$f" ] && cp "$S/I1025-win/signtest_lowD/$f" "$D/"; done
 cp "$S/I1025-win/signtest_lowD/signtest_lowD_rows/"*.log "$D/signtest_lowD_rows/" 2>/dev/null || true
 cp "$S/prep_raw_inputs_1025.sh" "$S/prep_raw_inputs_1025.log" "$S/start_lowD_1025.cmd" "$S/publish_lowD_1025.sh" "$D/"
+cp "$S/I1025-win/signtest_lowD/"*.py "$D/" 2>/dev/null || true
 bash /c/Users/nathan/Source/choptuik-i1025/push_1025.sh "$1"

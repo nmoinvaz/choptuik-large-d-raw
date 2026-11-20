@@ -34,6 +34,28 @@ OUT is a staging folder outside the push worktree, `C:/Users/nathan/Source/signt
 - A row PASSES if both lambda - 0.02 and lambda + 0.02 have agree true and opposite signs. Exit 3 is SYSTEM MISMATCH (no signs); a timeout or crash counts toward the driver's stop rule (two in a row).
 - The driver has not been run on Windows before: a refusal or crash on a path is reported at once.
 
-## Status
+## Result (driver finished 2026-11-20 18:17:16 UTC, written 2026-11-20 18:17 UTC)
 
-Started 17:33:36 UTC: the driver's input checks passed (all 25 inputs, `signtest.py` blob, WT commit; numpy 2.5.4, scipy 1.18.1) and the planted control printed agree, agree, DISAGREE (`signtest_lowD_planted.log`). Row D 14.5 started at 17:33:39 UTC. Results follow in `signtest_lowD.log`, `signtest_lowD.jsonl`, `signtest_lowD_planted.log` and `signtest_lowD_rows/`.
+All seven rows PASS. Run from 17:33:36 to 18:17:16 UTC: inputs checked (all 25, `signtest.py` blob, WT commit; numpy 2.5.4, scipy 1.18.1), the planted control printed agree, agree, DISAGREE (`signtest_lowD_planted.log`), then the rows in the order D 14.5, 14, 13.5, 12, 11.5, 11, 10.5. Every row's system check had the same step count as its record and |F| within the record's (`same: true`), so each signtest ran on the record's own discrete system. A row passes if both lambda -+ 0.02 have agree true and opposite signs.
+
+| D | k_c | system check (F, record F, steps) | lam - 0.02 | signs | lam + 0.02 | signs | agree | below 1e-12 / 1e-15 | s | verdict |
+|---|---|---|---|---|---|---|---|---|---|---|
+| 14.5 | 55 | F 2.241e-10, record 2.240e-10, 2786 = 2786 steps, same true | 2.4760793 | -1, -1, -1, -1 | 2.5160793 | 1, 1, 1, 1 | true, true | 40 / 10 ; 40 / 10 | 276, 268 | PASS |
+| 14 | 47 | F 2.369e-10, record 2.369e-10, 2434 = 2434 steps, same true | 2.5456420 | -1, -1, -1, -1 | 2.5856420 | 1, 1, 1, 1 | true, true | 28 / 4 ; 28 / 4 | 172, 169 | PASS |
+| 13.5 | 47 | F 2.497e-10, record 2.496e-10, 2479 = 2479 steps, same true | 2.6084136 | -1, -1, -1, -1 | 2.6484136 | 1, 1, 1, 1 | true, true | 24 / 2 ; 24 / 2 | 162, 157 | PASS |
+| 12 | 47 | F 3.070e-11, record 3.070e-11, 2584 = 2584 steps, same true | 2.7523124 | -1, -1, -1, -1 | 2.7923124 | 1, 1, 1, 1 | true, true | 6 / 0 ; 6 / 0 | 170, 165 | PASS |
+| 11.5 | 47 | F 2.275e-11, record 2.272e-11, 2605 = 2605 steps, same true | 2.7829219 | -1, -1, -1, -1 | 2.8229219 | 1, 1, 1, 1 | true, true | 2 / 0 ; 2 / 0 | 171, 168 | PASS |
+| 11 | 47 | F 1.637e-11, record 1.635e-11, 2626 = 2626 steps, same true | 2.8160397 | -1, -1, -1, -1 | 2.8560397 | 1, 1, 1, 1 | true, true | 0 / 0 ; 0 / 0 | 181, 171 | PASS |
+| 10.5 | 47 | F 3.776e-12, record 3.774e-12, 2650 = 2650 steps, same true | 2.8529585 | -1, -1, -1, -1 | 2.8929585 | 1, 1, 1, 1 | true, true | 0 / 0 ; 0 / 0 | 190, 181 | PASS |
+
+Row wall times (4 BLAS threads, BelowNormal): D 14.5 9.1 min, D 14 5.7, D 13.5 5.4, D 12 5.6, D 11.5 5.7, D 11 5.9, D 10.5 6.2; 43.6 min for the seven rows. The counts of singular values of Q M below 1e-12 and 1e-15 fall from 40 and 10 at D 14.5 to 0 at D 11 and 10.5. The log's summary: seven lines `D <D> k_c <kc>: PASS`. A passing signtest checks the rounding of the determinant, not the accuracy of M's construction. The reading of the rows stays with #1025.
+
+## Files
+
+| file | what |
+|---|---|
+| `README.md` | this file (written before the run; the status and result sections updated) |
+| `signtest_lowD_driver_v2.sh` | the driver, byte-identical to raw `I1025-mac/signtest_lowD_driver_v2.sh` (blob c4f92d36) |
+| `signtest_lowD.log`, `signtest_lowD.jsonl`, `signtest_lowD_planted.log`, `signtest_lowD_rows/D*.log` | the driver's log, its 21 JSON lines (7 system checks and 14 signtest lines), the control and each row's full output |
+| `prep_raw_inputs_1025.sh`, `prep_raw_inputs_1025.log` | how the RAW input folder was made from pinned blobs by `git show` (22 files) |
+| `start_lowD_1025.cmd`, `publish_lowD_1025.sh`, `table_lowD_1025.py`, `fix_readme_lowD_1025.py` | the detached launcher, the copy-and-push script, the table and README patch scripts |
