@@ -1,0 +1,17 @@
+# 2026-11-20 08:17:35 UTC cmd: python3 step_timing_check.py --reps=3 --threads=4
+hpkernel /home/nathan/Source/venv-i1034/lib/python3.14/site-packages/hpkernel (multidouble-4.9.1, multishoot-3.3.0); driver /home/nathan/Source/choptuik-large-d-1034/hp/python/hpkernel/driver.py
+highm15_D3.7000_M80.npz: D 3.7 M 80 N 5121, 97 plan steps, 4 threads, 3 reps
+  rep 0 block: wall    1.920 s, cpu     6.82 s; entries (residual, Jacobian, factorization, solve) 0.0605 0.0099 0.0445 0.0042; wall - entries 1.8006 s
+  rep 0 dense: wall    1.805 s, cpu     6.17 s; entries (residual, Jacobian, factorization, solve) 0.0488 1.4160 0.2719 0.0664; wall - entries 0.0018 s
+  rep 1 dense: wall    2.549 s, cpu     9.29 s; entries (residual, Jacobian, factorization, solve) 0.0671 2.1844 0.2503 0.0378; wall - entries 0.0098 s
+  rep 1 block: wall    2.038 s, cpu     7.54 s; entries (residual, Jacobian, factorization, solve) 0.0390 0.0195 0.0815 0.0127; wall - entries 1.8854 s
+  rep 2 block: wall    7.732 s, cpu    26.71 s; entries (residual, Jacobian, factorization, solve) 0.1867 0.0141 0.0748 0.0060; wall - entries 7.4502 s
+  rep 2 dense: wall    4.093 s, cpu    15.29 s; entries (residual, Jacobian, factorization, solve) 0.1269 3.5838 0.3178 0.0615; wall - entries 0.0032 s
+1. PASS: dense closure: the four entries miss at most 0.39% of a dense call (bar 0.5%)
+2. FAIL: block closure: (entries + C_b - wall) / wall is +12.98%, the median over the block calls (+22.8%, +13.0%, -66.6%; bar 5%); C is 7.96 CPU s
+3. PASS: the old reading falls short: the block call's second entry is at most 9.09e-03 of C_b (bar 0.1); it misses 99.09% of the Jacobian
+4. FAIL: the fixed reading: (newton_step's t_jac - C_b) / wall is -12.02%, the median over the block calls (bar 5%); t_fill is step_timing's second entry in every call: True
+5. PASS: the control can fire: the dense factorization is at least 7.76% of the call (over twice 0.5%)
+information: median process CPU seconds, block 7.54, dense 9.29 (-18.8%); the fastest block call's wall less its entries 1.801 s, the smallest dense second entry 1.416 s
+step_timing_check: FAIL (checks 2, 4)
+exit 1

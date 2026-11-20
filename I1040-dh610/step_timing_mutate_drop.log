@@ -1,0 +1,15 @@
+# 2026-11-20 08:17:56 UTC cmd: python3 step_timing_check.py --reps=2 --threads=4 --mutate=drop
+hpkernel /home/nathan/Source/venv-i1034/lib/python3.14/site-packages/hpkernel (multidouble-4.9.1, multishoot-3.3.0); driver /home/nathan/Source/choptuik-large-d-1034/hp/python/hpkernel/driver.py
+highm15_D3.7000_M80.npz: D 3.7 M 80 N 5121, 97 plan steps, 4 threads, 2 reps; --mutate=drop
+  rep 0 block: wall    4.823 s, cpu    18.81 s; entries (residual, Jacobian, factorization, solve) 0.1241 0.0160 0.0702 0.0134; wall - entries 4.5994 s
+  rep 0 dense: wall    4.266 s, cpu    15.63 s; entries (residual, Jacobian, factorization, solve) 0.1059 3.6840 0.4015 0.0726; wall - entries 0.0019 s
+  rep 1 dense: wall    4.645 s, cpu    15.74 s; entries (residual, Jacobian, factorization, solve) 0.1088 4.1306 0.3286 0.0620; wall - entries 0.0148 s
+  rep 1 block: wall    2.637 s, cpu    10.21 s; entries (residual, Jacobian, factorization, solve) 0.0858 0.0118 0.0569 0.0053; wall - entries 2.4768 s
+1. FAIL: dense closure: the four entries miss at most 9.46% of a dense call (bar 0.5%)
+2. FAIL: block closure: (entries + C_b - wall) / wall is +7.43%, the median over the block calls (-23.7%, +38.6%; bar 5%); C is 13.75 CPU s
+3. PASS: the old reading falls short: the block call's second entry is at most 4.55e-03 of C_b (bar 0.1); it misses 99.55% of the Jacobian
+4. FAIL: the fixed reading: (newton_step's t_jac - C_b) / wall is -8.84%, the median over the block calls (bar 5%); t_fill is step_timing's second entry in every call: True
+5. PASS: the control can fire: the dense factorization is at least 7.08% of the call (over twice 0.5%)
+information: median process CPU seconds, block 14.51, dense 15.69 (-7.5%); the fastest block call's wall less its entries 2.477 s, the smallest dense second entry 3.684 s
+step_timing_check: FAIL (checks 1, 2, 4)
+exit 1
