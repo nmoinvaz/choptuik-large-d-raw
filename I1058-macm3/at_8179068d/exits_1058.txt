@@ -1,0 +1,12 @@
+1058m pip uninstall -y multidouble exit 0 (WARNING: Skipping multidouble as it is not installed.) 2026-11-20 20:23:18 UTC
+1058m build started: hp/build.sh at 8179068d in /Users/nathan/Source/choptuik-large-d-1058b/hp, CARGO_PROFILE_RELEASE_LTO=false CODEGEN_UNITS=16 CARGO_BUILD_JOBS=2, nice 19, pgid 41964; alert only (hc at under 3 GiB free disk or under 8% free memory), nothing is stopped 2026-11-20 20:23:18 UTC
+1058m build ended: exit 0, wall 1864 s, peak tree 11.41 GiB, import line hpkernel neon multidouble neon 2026-11-20 20:54:23 UTC
+1058m check ref started: cd hp && python3 highm_check.py ref --compare=$RAW/T81/ref_main.json --Ms=48,64,80 (nice 19, default 2 threads), pgid 49435 2026-11-20 20:54:30 UTC
+1058m check ref exit 0 (wanted 0: as wanted), wall 180 s, peak tree 0.80 GiB 2026-11-20 20:57:31 UTC
+1058m check scaled started: cd hp && python3 highm_check.py scaled --compare=$RAW/T81/scaled_main.json (nice 19, default 2 threads), pgid 50332 2026-11-20 20:57:31 UTC
+1058m check scaled exit 0 (wanted 0: as wanted), wall 1204 s, peak tree 0.99 GiB 2026-11-20 21:17:34 UTC
+1058m check jets started: cd hp && python3 highm_check.py jets --compare=$RAW/anm-mac/jets_inputs/jets_inputs.json (nice 19, default 2 threads), pgid 50584 2026-11-20 21:17:34 UTC
+1058m check jets exit 0 (wanted 0: as wanted), wall 241 s, peak tree 0.28 GiB 2026-11-20 21:21:35 UTC
+1058m check jets_mutate_kappa started: cd hp && python3 highm_check.py jets --compare=$RAW/anm-mac/jets_inputs/jets_inputs.json --mutate=kappa (nice 19, default 2 threads), pgid 50967 2026-11-20 21:21:35 UTC
+1058m check jets_mutate_kappa exit 1 (wanted 1: as wanted), wall 241 s, peak tree 0.25 GiB 2026-11-20 21:25:36 UTC
+1058m checks_1058.py ends 2026-11-20 21:25:36 UTC
