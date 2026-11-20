@@ -65,7 +65,7 @@ ell_eigs.py <state> D kc lambda --r 0 --N 24 --p 12 --dlam 0 --no_polish_complex
 
 The planted checks and the first-job checks (a), (b) of the scans below are as measured. They passed, and they do not make the scans' output valid.
 
-## Result (interim, first publish 2026-11-20 03:10 UTC)
+## Result (interim, first publish 2026-11-20 03:10 UTC, updated 06:15 UTC)
 
 The checks passed, and lambda_1 at D 17 is in at k_c 63. Everything else is still running.
 
@@ -92,6 +92,10 @@ lambda_1 at D 17 (`kc63_start.log`, `out/l1kc63Fw1025.jsonl`; the k_c 47 and 55 
 - The k_c 63 solve prints many numpy overflow and invalid-value RuntimeWarnings from `dss_ell.py` in `kc63_start.log` (trial steps of the Levenberg-Marquardt solve). The solve ended with F 2.3e-10 and no error; the Mac's k_c 55 start log has none.
 - The eigenvalue scans (`eigs_a.log`, `eigs_b.log`) are invalid: see Changes during the run (rank = p, ill-conditioned M along the contour). They were stopped at 03:21 UTC and are kept as written.
 
-Since the first publish (04:30 UTC): the k_c 63 states at D 17.5 (saved 03:40 UTC, a 31 min solve) and D 16.5 (saved 04:13 UTC, 43 min on 4 threads) are in `out/`, and the lambda searches of both are running, so there is no D 17.5 or D 16.5 record yet. Both records stay suspect until their signtest passes. The leap to D 18 runs since 04:27 UTC.
+Since the first publish (04:30 UTC), as of 06:10 UTC:
+
+- The k_c 63 states at D 17.5 (saved 03:40 UTC, a 31 min solve) and D 16.5 (saved 04:13 UTC, 43 min on 4 threads) are in `out/`. Their lambda searches are still running: D 17.5 for 2.5 h, D 16.5 for 1.9 h (the D 17 search took 1.8 h with four processes). There is no D 17.5 or D 16.5 record yet, so no record check and no signtest outcome. Both records stay suspect until their signtest passes.
+- The leap to D 18 (4 threads, since 04:27 UTC, no lambda) has taken one step, D 17.625, in 3266 s: constraint 5.93e-4, F 2.35e-10 (from a start of 6.1e-4), 2625 steps, Delta 1.0362004 (predicted 1.0361789), |dDelta/dF| 1.21e9, lam_gauge 0.8574. Its fold fields: sv_fold 0.0, cos_fold 0.0769, i_fold 2, n_null 59, sv_J_max 9.78, tan_norm 0.2036. They are in `out/l1kc63W1025.jsonl` and `leap_kc63.log`; the reading stays with the coordinator.
+- Pace, a projection and not a result: three steps remain to D 18 (17.75, 17.875, 18). At 3266 s each, about 2.7 h, so D 18 near 08:50 UTC if the load stays the same (three jobs on 8 threads: 2 + 4 + 4 BLAS threads, CPU load about 88%).
 
 Not yet: lambda_1 at D 17.5 and D 16.5 with their signtests, and the k_c 63 leap to D 18 (no lambda at D 18, by the coordinator's order). The eigenvalue scans are invalid and stopped. The reading stays with #1025.
