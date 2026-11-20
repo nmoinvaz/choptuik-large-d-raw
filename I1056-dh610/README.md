@@ -36,3 +36,6 @@ Pass: 0 differing rows in every compare, every kappa control fails, pip's direct
 
 Every step passes: exits as expected, 0 differing rows in every compare, both kappa controls fail, pip's direct_url names 8c4360ac, the planted logs equal in every printed digit (and the final states bit for bit), `--mutate_offset qd` exits 1.
 The unit ran 16:14:25 to 17:30:08 UTC (1 h 15 min, 4 h 30 min CPU), journal memory peak 27 GB, no memory alert.
+
+Added after the driver (17:31 to 17:33 UTC, by hand, commands in the PR comment): `exact_recip_check.py bits` of PR #1054 with venv-i1056's python against `bits242_i1050.json` (a copy of `I1054-dh610/bits242_main.json`, saved with venv-i1050): `bits242_i1056.log` exit 0, 0 of 6 outputs differ.
+Its control, `bits242_i1056_control.log`: the same compare against `bits242_i1050_mut.json` (one digit of the `newton_o` hash changed) exits 1. The script's own `--mutate=on` control needs `Solver.set_exact_recip`, which this build does not have, so it was not run.
