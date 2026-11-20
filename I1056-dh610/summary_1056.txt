@@ -1,0 +1,30 @@
+# 2026-11-20 16:14:26 UTC PR #1056 at e208e136 against the venv-i1050 build (worktree /home/nathan/Source/choptuik-large-d-1050 at 1c02b15b)
+diff 1c02b15b 08699de5 -- hp/src hp/Cargo.toml hp/Cargo.lock: 0 lines (must be 0) OK
+control, diff 1c02b15b e208e136 -- hp/Cargo.toml hp/Cargo.lock:  2 files changed, 9 insertions(+), 9 deletions(-) (must be non-empty) OK
+hp changes 1c02b15b -> e208e136:  7 files changed, 76 insertions(+), 20 deletions(-); files: hp/Cargo.lock hp/Cargo.toml hp/border_cost.py hp/fastmul_bench/Cargo.toml hp/modecount_cx/Cargo.lock hp/modecount_cx/Cargo.toml hp/pyproject.toml 
+hp/src changes 1c02b15b -> e208e136: 0 lines (must be 0)
+venv-i1050 build's lock: ; "multidouble"version = "5.0.0"; "multishoot"version = "4.0.0"; "multisolver"version = "0.2.1"
+pyproject multidouble pin, 1c02b15b: multidouble @ git+https://github.com/nmoinvaz/multidouble@482c683550de265c46e1ca836f89f71bea13c491#subdirectory=python; e208e136: multidouble @ git+https://github.com/nmoinvaz/multidouble@8c4360ac0be804d081faeea524e5c1c6e2fffaaa#subdirectory=python
+venv-i1050's installed multidouble package, direct_url: {"subdirectory": "python", "url": "https://github.com/nmoinvaz/multidouble", "vcs_info": {"commit_id": "482c683550de265c46e1ca836f89f71bea13c491", "requested_revision": "482c683550de265c46e1ca836f89f71bea13c491", "vcs": "git"}}
+# python Python 3.14.10, maturin maturin 1.16.0, lock of e208e136: ; "multidouble"version = "5.1.0"; "multishoot"version = "4.1.0"; "multisolver"version = "0.2.2"
+venv-i1056 before the build: multidouble package WARNING: Package(s) not found: multidouble
+build1056: expected exit 0, got 0, 1555 s (cap 5580 s), bit-identical rows 0, DIFFERS rows 0; last: hpkernel avx2 multidouble avx2 OK
+build1056 peak memory of the unit so far (venv and build): 27678 MiB
+venv-i1056's installed multidouble package, direct_url: {"subdirectory": "python", "url": "https://github.com/nmoinvaz/multidouble", "vcs_info": {"commit_id": "8c4360ac0be804d081faeea524e5c1c6e2fffaaa", "requested_revision": "8c4360ac0be804d081faeea524e5c1c6e2fffaaa", "vcs": "git"}}; names 8c4360ac: OK
+hpkernel import /home/nathan/Source/venv-i1050: hpkernel avx2 /home/nathan/Source/venv-i1050/lib/python3.14/site-packages/hpkernel/__init__.py multidouble avx2
+hpkernel import /home/nathan/Source/venv-i1056: hpkernel avx2 /home/nathan/Source/venv-i1056/lib/python3.14/site-packages/hpkernel/__init__.py multidouble avx2
+save_ref: expected exit 0, got 0, 43 s (cap 1800 s), bit-identical rows 0, DIFFERS rows 0; last: saved 72 hashes to /home/nathan/Source/choptuik-large-d-raw/I1056-dh610/REF.json OK
+save_scaled: expected exit 0, got 0, 305 s (cap 7200 s), bit-identical rows 0, DIFFERS rows 0; last: saved 22 hashes to /home/nathan/Source/choptuik-large-d-raw/I1056-dh610/SC.json OK
+save_jets: expected exit 0, got 0, 79 s (cap 1800 s), bit-identical rows 0, DIFFERS rows 0; last: saved 28 hashes, 3 plans and inputs to /home/nathan/Source/choptuik-large-d-raw/I1056-dh610/JETS.json OK
+cmp_ref: expected exit 0, got 0, 43 s (cap 1800 s), bit-identical rows 72, DIFFERS rows 0; last: PASS: 72 outputs bit-identical OK
+cmp_scaled: expected exit 0, got 0, 371 s (cap 7200 s), bit-identical rows 22, DIFFERS rows 0; last: PASS OK
+cmp_jets: expected exit 0, got 0, 79 s (cap 1800 s), bit-identical rows 28, DIFFERS rows 0; last: PASS: 28 outputs bit-identical OK
+cmp_jets_kappa: expected exit 1, got 1, 80 s (cap 1800 s), bit-identical rows 0, DIFFERS rows 28; last: FAIL: 28 of 28 outputs differ OK
+stored_ref: expected exit 0, got 0, 42 s (cap 1800 s), bit-identical rows 72, DIFFERS rows 0; last: PASS: 72 outputs bit-identical OK
+stored_scaled: expected exit 0, got 0, 379 s (cap 7200 s), bit-identical rows 22, DIFFERS rows 0; last: PASS OK
+stored_jets: expected exit 0, got 0, 79 s (cap 1800 s), bit-identical rows 28, DIFFERS rows 0; last: PASS: 28 outputs bit-identical OK
+stored_jets_kappa: expected exit 1, got 1, 79 s (cap 1800 s), bit-identical rows 0, DIFFERS rows 28; last: FAIL: 28 of 28 outputs differ OK
+planted_i1050: expected exit 0, got 0, 178 s (cap 5400 s), bit-identical rows 0, DIFFERS rows 0; last:   (a) PASS: od max|F| 6.86e-42 < 1e-40 OK
+planted_i1056: expected exit 0, got 0, 177 s (cap 5400 s), bit-identical rows 0, DIFFERS rows 0; last:   (a) PASS: od max|F| 6.86e-42 < 1e-40 OK
+planted_i1056_mut_offset_qd: expected exit 1, got 1, 1050 s (cap 5400 s), bit-identical rows 0, DIFFERS rows 0; last:   (a) FAIL: od max|F| 3.14e-12 < 1e-40 OK
+planted logs, venv-i1050 against venv-i1056: exit 0 (0: every printed digit equal): 14 lines of A, 14 of B, 13 lines with |F|, final lines: 2; 0 differ: IDENTICAL; comparator control (--mutate) exit 1 (1): 14 lines of A, 14 of B, 13 lines with |F|, final lines: 2; 1 differ: DIFFER; venv-i1056's base against its --mutate_offset qd run: exit 1 (1 expected, the logs differ): 14 lines of A, 78 of B, 13 lines with |F|, final lines: 2; 77 differ: DIFFER; final states npz: exit 0: bit for bit

@@ -1,0 +1,16 @@
+# 2026-11-20 17:09:41 UTC cmd: /home/nathan/Source/venv-i1056/bin/python -u octo_corrector.py planted /home/nathan/Source/choptuik-large-d-raw T129-win2/chain/anm_pin3_D180.5246.npz --threads 10 --accept natural --qd 0 --out /home/nathan/Source/choptuik-large-d-raw/I1056-dh610/planted_i1056
+planted T129-win2/chain/anm_pin3_D180.5246.npz: D 180.524614981, start = truth moved by 1e-12 relative in [0, 576); pinned max|F| (octo) truth 2.83e-30, start 3.39e-12; mutate_offset '', mutate 0
+  the system (#837): truth read in 4 of 4 parts, held values floats, plan made at the state; pinned max|F| (octo) at the truth 2.8253e-30
+    on 0 trial lam 1: max|F| 5.92e-16; simplified correction / |dz| = 7.775e-04 (bound 0.750); accepted, 3.63 s
+  on 0: |F| 3.39e-12 -> 5.92e-16, |dz| 9.96e-13 -> 7.75e-16, lam 1, dDelta -3.09e-17, piv 1.3e-09..1.3e+25, 36.4 s
+    on 1 trial lam 1: max|F| 1.63e-31; simplified correction / |dz| = 8.798e-09 (bound 0.750); accepted, 3.6 s
+  on 1: |F| 5.92e-16 -> 1.63e-31, |dz| 7.75e-16 -> 6.82e-24, lam 1, dDelta +3.09e-17, piv 1.3e-09..1.3e+25, 36.84 s
+    on 2 trial lam 1: max|F| 7.61e-22; simplified correction / |dz| = 5.750e-11 (bound 0.750); accepted, 0.31 s
+  on 2: |F| 1.63e-31 -> 7.61e-22, |dz| 6.82e-24 -> 6.36e-34, lam 1, dDelta +4.55e-25, piv 1.3e-09..1.3e+25, 33.49 s
+    on 3 trial lam 1: max|F| 6.86e-42; simplified correction / |dz| = 1.000e+00 (bound 0.750); accepted, 0.31 s
+  on 3: |F| 7.61e-22 -> 6.86e-42, |dz| 6.36e-34 -> 6.36e-34, lam 1, dDelta +1.18e-34, piv 1.3e-09..1.3e+25, 33.11 s
+  on 4: |F| 6.86e-42 converged, Delta 1.70053126981816227 -6.7759e-17
+  od: 5 steps, converged, pinned max|F| (octo) 6.86e-42, Delta 1.700531269818162204386381200312492782858, projections {'u0': 0, 'u0q': 3, 'ladder': 0, 'failed': 0, 'skipped': 3}, 176 s
+  od against the truth: dDelta 8.5495e-22
+  (a) PASS: od max|F| 6.86e-42 < 1e-40
+exit 0
