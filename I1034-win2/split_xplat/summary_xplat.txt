@@ -1,0 +1,24 @@
+# split_xplat start 2026-11-20 17:53:00 UTC, hp 7ca74dd51e2faf1d2cc0d955b2551af79c64ec2b, rustc 1.96.0 (ac68faa20 2026-05-25), RUSTFLAGS=''
+cargo_xplat: expected exit 0, got 0 capped 0 OK
+test split_tests::bench_split ... ignored
+test split_tests::split_fast_accuracy ...  k   d_fast     d_mid      d_oa       d_ctrl     |F_k|
+fast series' checksum bfab7c94d50d60b9
+test split_tests::split_file ... ignored
+test split_tests::split_inputs_hash ... split inputs: libm 55456d7ef2d3396a, state 52249698dc35cab9, planted 78f7357f4999efc3
+test split_tests::split_rel_non_finite ... rel of MAX against -MAX: inf
+test split_tests::split_series_accuracy ...  k   d_split    d_oa       d_ctrl     |F_k|
+split series' checksum 19412eac043921aa
+test split_tests::split_xplat ... split xplat: det vs libm 4.29e-16 (control 2.11e-5); inputs 5f95f417b17d3166, split a1ca213203d6e285, fast 47fd7fabd2134782
+test result: ok. 5 passed; 0 failed; 2 ignored; 0 measured; 38 filtered out; finished in 89.07s
+VALUE xplat inputs: win2 5f95f417b17d3166 | Mac 5f95f417b17d3166 | EQUAL
+VALUE xplat split: win2 a1ca213203d6e285 | Mac a1ca213203d6e285 | EQUAL
+VALUE xplat fast: win2 47fd7fabd2134782 | Mac 47fd7fabd2134782 | EQUAL
+VALUE xplat det vs libm: win2 4.29e-16 | Mac 4.29e-16 | information (depends on the platform's libm)
+VALUE xplat control: win2 2.11e-5 | Mac 2.11e-5 | information
+VALUE inputs libm: win2 55456d7ef2d3396a | Mac 82c612f380d2fcfc | DIFFERENT (win2 at 1926c1c3: 55456d7ef2d3396a)
+VALUE inputs state: win2 52249698dc35cab9 | Mac 7efba3560fe23d45 | DIFFERENT (win2 at 1926c1c3: 52249698dc35cab9)
+VALUE inputs planted: win2 78f7357f4999efc3 | Mac 78f7357f4999efc3 | EQUAL (win2 at 1926c1c3: 78f7357f4999efc3)
+VALUE libm-path fast checksum: win2 bfab7c94d50d60b9 | Mac 30acdab9851616fb | DIFFERENT (win2 at 9980cd93 and 1926c1c3: bfab7c94d50d60b9)
+VALUE libm-path split checksum: win2 19412eac043921aa | Mac a0aada9b8fe95419 | DIFFERENT (win2 at 9980cd93 and 1926c1c3: 19412eac043921aa)
+READING: READING 2: inputs, split and fast all equal the Mac's: the series' arithmetic has the same bits on win2 and the Mac; the checksum mismatch was the libm inputs alone
+# split_xplat done 2026-11-20 18:24:37 UTC
