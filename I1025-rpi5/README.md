@@ -32,4 +32,25 @@ All times UTC, 2026-11-20 (clock `date -u`).
 - 15:41:47 v1 driver started. Planted control: agree, agree, DISAGREE (raw aa769031). Verdicts: D 4 (k_c 47) PASS 31.4 min, D 5 (39) PASS 23.5 min, D 6 (31) PASS 8.4 min, D 7 (39) PASS 24.5 min, D 8 (39) PASS 27.4 min (verdict 17:37:06). Each row's system check was `same: true` (steps and |F| as in the record).
 - 17:37:07 after D 8's verdict: v1 driver stopped by pid (960854, `driver exit 143` in `driver.start`; killed first so it could not write a verdict). 17:37:07 to 17:37:08: D 9's signtest stopped by pid (975689 `timeout`, 975690 `python`). `ps` afterwards showed only recount3's 949245 and 949246 (its worker processes were not listed and kept running). D 9's partial v1 output (its first line) is `signtest_lowD_rows/D9.v1_killed.log`; D 9 has no verdict from v1.
 - 17:37:20 v2 started (the command above; `v2 start` in `driver.start`). Planted control again: agree, agree, DISAGREE. D 4 to 8 skipped (verdict already in the log). D 9 started again at 17:37:23.
-(the rest is filled in as the run goes)
+- 18:41:21 v2 done, exit 0 (`v2 exit` in `driver.start`): D 9, 10, 12.5 and 13 all PASS. The 9 rows of this machine are done; the other 7 rows are winb's.
+
+## Result (this machine's 9 rows; verdict is the driver's)
+| D | k_c | verdict | signs at lambda - 0.02 / + 0.02 | singular values below 1e-12 | smallest singular value printed (at - 0.02, + 0.02) | row time |
+|---|---|---|---|---|---|---|
+| 4 | 47 | PASS | -1 / +1, all 4 Q agree | 0 | 2.0e-8, 1.9e-8 | 31.4 min |
+| 5 | 39 | PASS | -1 / +1, agree | 0 | 2.5e-6, 2.4e-6 | 23.5 min |
+| 6 | 31 | PASS | -1 / +1, agree | 0 | 1.2e-5, 1.2e-5 | 8.4 min |
+| 7 | 39 | PASS | -1 / +1, agree | 0 | 5.0e-6, 5.3e-6 | 24.5 min |
+| 8 | 39 | PASS | -1 / +1, agree | 0 | 3.0e-7, 3.4e-7 | 27.4 min |
+| 9 | 39 | PASS | -1 / +1, agree | 0 | 9.4e-9, 1.1e-8 | 41.0 min (v2; v1's stopped start discarded) |
+| 10 | 39 | PASS | -1 / +1, agree | 0 | 1.1e-10, 1.5e-10 | 10.8 min |
+| 12.5 | 39 | PASS | -1 / +1, agree | 6 | 9.2e-14, 1.1e-13 | 6.1 min |
+| 13 | 39 | PASS | -1 / +1, agree | 10 | 1.8e-14, 2.0e-14 | 6.1 min |
+Every row's system check printed `same: true` (the record's step count and |F| within 1% of the record's or 1e-13). No SYSTEM MISMATCH, TIMEOUT or CRASH. Row times differ with the load: recount3 shares the 4 cores and each row has 2 BLAS threads.
+
+Observation, not a failure: D 12.5 and D 13 have 6 and 10 singular values below 1e-12 (the driver's counter; none below 1e-15 in any row), and the 4 random orthogonal Q still agree on the sign. The planted control has 40 singular values at 1e-13 (agree) and 40 at 1e-19 (DISAGREE), but its matrix is scaled to a largest value of about 1 and these are not, so I do not read the control as a margin for D 13.
+
+## Criteria met
+1. Planted control agree, agree, DISAGREE: met, by v1 (15:41:48) and again by v2 (17:37:20).
+2. Verdict per row, counted only with PASS: all 9 PASS; nothing was retried or repaired.
+3. The result table is posted on #1025 (comment id in the closing note of the post). The raw record: `signtest_lowD.log`, `signtest_lowD.jsonl`, `signtest_lowD_rows/D<D>.log`, `signtest_lowD_planted.log` (v2's) and `signtest_lowD_planted_v1.log`.
