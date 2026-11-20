@@ -1,6 +1,6 @@
 # I1025-win: the l = 1 DSS solution at k_c 63 from D 17 to 20, its growth rate, and the eigenvalues near it on the Mac's k_c 47 and 55 states (#1025, winb's lane)
 
-Runner winb on the win laptop (Surface Laptop 4, i7-1185G7, 4 cores / 8 threads, 32 GB, Windows 11), agent claude-me2. Issue https://github.com/nmoinvaz/choptuik-large-d/issues/1025 (xfkappa's #1025, lane handed over by the coordinator). Status: **running** (started 2026-11-20 00:14:05 UTC; this README is rewritten at each publish).
+Runner winb on the win laptop (Surface Laptop 4, i7-1185G7, 4 cores / 8 threads, 32 GB, Windows 11), agent claude-me2. Issue https://github.com/nmoinvaz/choptuik-large-d/issues/1025 (xfkappa's #1025, lane handed over by the coordinator). Status: **running** (started 2026-11-20 00:14:05 UTC; first publish 03:10 UTC; this README is rewritten at each publish).
 
 ## Question
 
@@ -47,6 +47,31 @@ ell_eigs.py <state> D kc lambda --r 0 --N 24 --p 12 --dlam 0 --no_polish_complex
 | `eigs_a.log`, `eigs_b.log`, `out/eigs_win1025_*.jsonl` | `ell_eigs`: the eigenvalues inside a circle around lambda_1 (Beyn), with the state checks |
 | `main.log` | the script's own stdout and stderr |
 
-## Result
+## Result (interim, first publish 2026-11-20 03:10 UTC)
 
-Not yet. Filled at the first publish.
+The checks passed, and lambda_1 at D 17 is in at k_c 63. Everything else is still running.
+
+Checks (the coordinator's):
+
+| check | result |
+|---|---|
+| `checks.log`: `ell_eigs.py planted` | exit 0, 6 of 6 true eigenvalues found (OK) |
+| `checks.log`: `planted --mutate=beyn` | exit 1, 0 of 6 found (BAD, as it must) |
+| `eigs_a.log` first job (k_c 47, D 17.5): check (a) <= 1e-6, (b) <= 1e-12 | (a) 1.1e-07 OK, (b) 0.0e+00 OK |
+| `eigs_b.log` first job (k_c 55, D 17.5): check (a), (b) | (a) 7.7e-08 OK, (b) 0.0e+00 OK |
+
+lambda_1 at D 17 (`kc63_start.log`, `out/l1kc63Fw1025.jsonl`; the k_c 47 and 55 values are the Mac's, I1025-mac):
+
+| k_c | lambda_1 | move to the next k_c | psi-constraint | delta = lambda_1 - lambda_0 (lambda_0 = 2.1263679, the Mac's D 17 value) |
+|---|---|---|---|---|
+| 47 | 2.0363787 | -1.066e-2 | 3.9e-3 | -0.08999 |
+| 55 | 2.0257187 | +8.278e-4 | 7.9e-4 | -0.10065 |
+| 63 | 2.0265465 | | 1.47e-4 | -0.09982 |
+
+- The k_c 63 solve: F 2.28e-10 (from a start of 1.0e-5), 2744 steps, Delta 1.0224394673 against the k_c 55 state's 1.0224395378 (change -7.1e-8), |dDelta/dF| 1.35e9; lambda found by one sign change of det M in 16 evaluations, guess 2.0257187 (k_c 55's value), gamma = 1/lambda = 0.493450.
+- The change of lambda_1 from k_c 55 to 63 is 8.3e-4, 13 times smaller than the move from k_c 47 to 55 and of the opposite sign. It does not meet the bar |dlambda| <= 1e-6, and is far below the resolution scale |S| 7.68e-2 the Mac quotes at D 17. lambda_1 at D 17 is 0.0291 above #994's 1.997411.
+- Cost: the D 17 start state was saved at 01:17 UTC (63 min after the start), the record came at about 03:08 UTC, 10420 s in all, with four processes running (the Mac's k_c 55 record took 1714 s). D 17.5 is next, then the continuation, and P2's lambda on its states.
+- The k_c 63 solve prints many numpy overflow and invalid-value RuntimeWarnings from `dss_ell.py` in `kc63_start.log` (trial steps of the Levenberg-Marquardt solve). The solve ended with F 2.3e-10 and no error; the Mac's k_c 55 start log has none.
+- The eigenvalue scans (`eigs_a.log`, `eigs_b.log`) are on their first state, D 17.5, after the checks; scipy prints `LinAlgWarning` (rcond 1e-18 to 1e-20) at the contour nodes. A state takes hours (24 contour nodes at 300 s each in job a, 490 s in job b).
+
+Not yet: lambda_1 at D 17.5 and the k_c 63 continuation to D 20, lambda at D 18 to 20, the eigenvalue scans. The reading stays with #1025.
