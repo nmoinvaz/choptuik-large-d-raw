@@ -1,0 +1,46 @@
+2c2
+< """walk1026.py NAME A W B3 C3 [--xi1 0.2] [--procs 2] [--maxit 25] [--tr 0.02,0.03] [--bar 1e-6] [--out walks] [--logs logs]: the outer (A, w/w_inf) Newton of the M = 5 selection from complete fixed-(A, w) solves, the
+---
+> """walk1026b.py (walk1026.py with --r1bar, --stepbar, --posbar and --selftest [--mutate=noposbar], #1021 rerun) NAME A W B3 C3 [--xi1 0.2] [--procs 2] [--maxit 25] [--tr 0.02,0.03] [--bar 1e-6] [--out walks] [--logs logs]: the outer (A, w/w_inf) Newton of the M = 5 selection from complete fixed-(A, w) solves, the
+43a44,66
+> def conv_test(step, rb, acc, bars, mut=""):
+>     """#1021 rerun criteria (coordinator, #1048's closing comment): at one iteration, (1) |r_1| of the best point <= R1BAR,
+>     (2) the Newton step under STEPBAR in A and in w/w_inf, (3) with POSBAR, the last two accepted walk points within POSBAR in A
+>     and in w/w_inf (2 accepted points needed); --mutate=noposbar drops (3) (the selftest must then fail)"""
+>     r1bar, stepbar, posbar = bars
+>     ok = abs(step[0]) < stepbar and abs(step[1]) < stepbar and (r1bar is None or float(np.hypot(*rb)) <= r1bar)
+>     if posbar is not None and mut != "noposbar":
+>         ok = ok and len(acc) >= 2 and abs(acc[-1][0] - acc[-2][0]) <= posbar and abs(acc[-1][1] - acc[-2][1]) <= posbar
+>     return bool(ok)
+> 
+> 
+> def selftest(mut):
+>     b = (3.8e-2, 1e-5, 1e-5)
+>     got = [conv_test([2e-6, 1e-6], [0.02, 0.0], [(1.0, 1.0), (1.0 + 4e-6, 1.0)], b, mut),
+>            conv_test([2e-6, 1e-6], [0.05, 0.0], [(1.0, 1.0), (1.0 + 4e-6, 1.0)], b, mut),
+>            conv_test([2e-5, 1e-6], [0.02, 0.0], [(1.0, 1.0), (1.0 + 4e-6, 1.0)], b, mut),
+>            conv_test([2e-6, 1e-6], [0.02, 0.0], [(1.0, 1.0), (1.0 + 4e-5, 1.0)], b, mut),
+>            conv_test([2e-6, 1e-6], [0.02, 0.0], [(1.0, 1.0)], b, mut)]
+>     want = [True, False, False, False, False]
+>     print(f"selftest{' --mutate=' + mut if mut else ''}: {got} (expect {want}): {'PASS' if got == want else 'FAIL'}")
+>     return got == want
+> 
+> 
+52a76,77
+>     r1bar = opt("--r1bar", '1e-2'); stepbar = float(opt("--stepbar", "3e-6")); posbar = opt("--posbar", None)
+>     bars = (None if r1bar is None else float(r1bar), stepbar, None if posbar is None else float(posbar))
+85a111
+>     acc = [(p0["A"], p0["w"])]                          # accepted walk points, for (3)
+89c115
+<         done = abs(step[0]) < 3e-6 and abs(step[1]) < 3e-6 and np.hypot(*rb) < 1e-2
+---
+>         done = conv_test(step, rb, acc, bars)
+93c119
+<                               newton_step=list(step), points=len(pts), xi1=xi)
+---
+>                               newton_step=list(step), points=len(pts), xi1=xi, bars=list(bars))
+109a136
+>         acc.append((newp["A"], newp["w"]))
+117a145,146
+>     if sys.argv[1:2] == ["--selftest"]:
+>         sys.exit(0 if selftest("noposbar" if "--mutate=noposbar" in sys.argv else "") else 1)
