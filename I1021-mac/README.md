@@ -51,3 +51,25 @@ UTC): `seeds_dh610_b*.jsonl` (replayed seeds, lines 618 on), `start_noise_dh610_
 continuation-valued points, 20:28-00:10 UTC, logs `start_noise_dh610_A.log` and `_B.log`). None of the 661 starts is
 above 1e2 or 1e7, every start passes |r3| <= 3 noise3, and the largest start noise3 is 5.7e-4. Three replayed points
 were lost by the continuation (b11-15 lines 652 and 659, b26-31 line 764, counted from 1).
+
+Sheets of S_3 = 0 (2026-11-20 00:16-00:37 UTC). `loc/`: box 16's -1 (b16-20's corner (3.5529706, 0.41279321),
+|R| 281 under 10 sigma 580) was recounted in one cell placing that corner at 0.4 of each range (`leaf_z16.jsonl`,
+`run_loc.sh`, 998fd290). With starts 0.2 first (`z16/`) and 0.25 first (`z16_s0.25-0.2/`) its five points have the
+same R, about 2.5e6, and F_3 0.040-0.071 - 0.060-0.075i, against 0.006 - 0.38i at b16-20's points beside them. The
+cause is the seed: `--seed` records kept only F3re, F3im and info, so a continuation-valued neighbour did not qualify,
+and the seed came from (3.0123456, 1.05654321), 0.84 away. 6da7da7b keeps 'fix' in seeds copied from another file or
+radius (`--seed`, `--r1b`), with a selftest case and `--mutate=seedfix`; `run_loc2.sh` relocates both zeros with it.
+The z7 runs at 998fd290 were stopped before writing a point. `diag/sheet_check.py`: consecutive valued points on
+leaf edges (or grid lines) are flagged at |dF_3| > 0.1; on a sheet F_3 does not depend on xi1 (common points of
+different radii agree to 2.3e-3), steps on a sheet reach 0.062, and the sheets seen are 0.16-0.42 apart.
+`diag/sheet_all.sh` runs it over every stored count (`sheet_all.log`): only #1020's ext count at 0.25 (22 of 429
+cells across a switch) and rpi5's upper box (3 points at A 4.3623456, w/w_inf 0.5065-0.6065) fail; the planted
+switch fires in both modes. `diag/sheet_connect.py` pools the 15 files (`sheet_connect_files.txt`, zeros in
+`zeros_cells.json`): the known zero, #1013's minus and plus, box 7's -1, box 16's -1 and b11-15's +1 lie on the
+known zero's sheet (largest step on the best path 0.0069-0.0092); #1020's new zero (2.338793, 0.096238) lies on
+another sheet (every path needs a step of 0.161 or more), so it is a zero of a different branch of S_3 = 0
+(`sheet_connect.log`; `--mutate=split` must and does cut box 7 off, `sheet_connect_mutate.log`).
+`diag/edge_cause.py`: b11-15's unresolved cells are under the 10 sigma guard at edge midpoints, (3.52562685,
+0.21279321) for the +1 pair, (3.640861, 0.344043) and (3.449943, 0.350293), and its two nan boxes have the two points
+without value. `m5/control_1026_xi0.2.log`: hier.py (numpy, 998fd290) gives #1026's control solve 01 (hier_nb,
+dh610) to its printed digits, F3/F1 0.053613+0.005223i, F5/F1 0.002949+0.000510i.
