@@ -1,0 +1,19 @@
+== 2026-11-20 09:18:46 #1025 route (c), first experiment (approved by the coordinator 09:1x UTC). Written before the runs.
+Question: is the det M sign failure at large D a problem of the LU's rounding, or of M's entries? It decides how much of mode_matrix
+needs double-double. Code: solver/matter/ell_dd.py (wip/ell1-highD), arithmetic ddnp.py (unchanged from wip/xf-checks 99ab0787).
+E1: the sign and ln|det| of the double M by a banded double-double LU with partial pivoting, over 5 variants that are exact in any
+    precision (M, M^T, 3 row/column scalings by random powers of 2), beside the same elimination in float64.
+E2: the dd sign after relative noise eps * xi (xi standard normal, 2 seeds) on M's propagator entries (the -I blocks stay exact): all
+    blocks at eps 1e-16, 1e-15, 1e-14; each of the 14 blocks alone at 1e-16.
+Runs: control D 13, k_c 31 (sol_l1kc31L1025_D13.0000.npy) at lam1 -/+ 0.02 (lam1 2.6841484641099442), then k_c 55, D 17.5
+(sol_l1kc55Fs1025_D17.5000.npy) at lam 1.93 and 1.97 (around the unestablished k_c 55 and 63 values 1.9522 and 1.9745).
+Control (must pass, or the D 17.5 reading is void and the work stops): at D 13 the dd signs agree over the 5 variants and equal the
+float64 signs; the signs at the two lambda are opposite (the root lies between); E2 leaves every dd sign unchanged at every eps.
+D 17.5 readings: E1 'dd-resolved' at a lambda if the 5 dd signs agree; E2 'entry-robust at eps' if every perturbed dd sign equals the
+unperturbed one (all blocks, and per block at 1e-16).
+Reading rule (coordinator): E1 alone resolves only the sign of the double-rounded M. Only if E1 resolves at both lambda AND E2 is
+entry-robust at 1e-16 for all blocks and for each block may a dd LU of the double M stand in for the port, and then it must still be
+confirmed by the dd build at one D. Otherwise the construction needs dd, and the per-block results at 1e-16 name the blocks.
+Code checks run before this log (Mac, 09:17 UTC): ell_dd.py selftest PASS ((a) banded n 80, ln|det| error 7.1e-15, bar 1e-12; (b)
+planted ladder n 100: dd sign exact at 5 of 5 variants, float64 misses at 4 of 5); --mutate=nopivot FAIL ((a) error 5.0e-8), as it
+must; ddnp.py selftest PASS (largest error 2.7e-32, limit 1e-30) and --mutate=twoprod FAIL (1e-16), as it must.
