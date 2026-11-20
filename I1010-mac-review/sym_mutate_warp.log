@@ -1,0 +1,31 @@
+PASS  A  Tangherlini is Ricci flat in the p = q frame (R_ab on the base, n = 3, 4, 7)   [1 s]
+PASS  B  diffeomorphism: first-order rows = Lie derivative of the zeroth-order rows (off shell, exact n)   [4 s]
+PASS  B2 that diffeomorphism is the linear map: Lie(flat metric) = k, warps shift by +-e/2, Phi by s Y2 Phi_s   [4 s]
+PASS  C0 background: mu = 2 s c_s/c from the chi-chi row, mu_t = 4 s Phi_s Phi_t from the t-s row   mu = [2*s*Derivative(c(s, t), s)/c(s, t)], mu_t = [4*s*Derivative(Phi(s, t), s)*Derivative(Phi(s, t), t)]   [5 s]
+PASS  C  spherical rows to O(1/n) = the hand-derived ones (mu free, off shell)   [5 s]
+PASS  C2 FIRST_ORDER.md section 1: FO_Y = -2c W and FO_C = -E to O(1/n) on the leading shell   [5 s]
+PASS  D0 l = 2: the O(1) parts of both rows vanish off shell   [6 s]
+PASS  D  l = 2: F2 = 2 s Y2 Q in both rows (on the leading shell)   [6 s]
+PASS  D1 the spherical O(1/n) rows are (Phi_s, -c_s) + 2 s Q   [6 s]
+PASS  E0 l = 0: F0 = -2 Q for the mode d_s(c, Phi) of the lapse c (off shell)   [6 s]
+PASS  E  identity: F2/(s Y2) + F0 = 0 in both rows, l = 0 mode d_s(c, Phi)   [9 s]
+PASS  E1 L0[(-c_s, 0)] = L0[(0, Phi_s)] on shell (their difference is L0 on the translation mode)   [9 s]
+PASS  E2 the l = 0 forcing of FIRST_ORDER.md's mode is its section 4 forcing in these rows   [11 s]
+PASS  E3 identity with FIRST_ORDER.md's l = 0 forcing: F2/(s Y2) + F0_FO = L0[(0, Phi_s)]   [14 s]
+PASS  Q  compact forms: F2/(s Y2) = (S_s - Y^2 S/4, S^2/2 - Y Y_s/2 + Y^4/8) and L0[(0, Phi_s)] = (-Y^2 S/2, Y Y_s/2 + Y^4/8), rows (W, E^t_t)   [15 s]
+PASS  F  F2[E]/c = the F[E^t_t] printed in L2_MODE.md section 8.3   [15 s]
+PASS  G  conjugation by s Y2 at O(1)   [17 s]
+PASS  G1 control: cos^2 chi in place of cos 2chi must not conjugate   [18 s]
+PASS  H  ((eps c)_t, eps Phi_t) is in the kernel of the l = 0 rows for every eps(t)   [18 s]
+FAIL  I  at O(1) the two rows see only V1 + V2 among the metric perturbations of relative order 1/n   g_ss, relative order 1/n: absent; g_s chi, relative order 1/n: absent; g_chi chi, relative order 1/n: absent; warp V1 = -V2: present; warp V1 = V2: present   [20 s]
+PASS  B3 L2_MODE.md 8.3's deformation is exactly Lie_xi(background) - k: L = s Y2 c_s, A = (s mu_s + mu) Y2, B = -mu sin 2chi, C = V = 0   [20 s]
+PASS  J  every other row vanishes on k at its natural order (so k/n is a second kernel element of the leading problem)   [22 s]
+PASS  J2 the chi-chi row at its natural order contains the second t-derivative of the metric function C   [23 s]
+PASS  P  p = 1 frame: the spherical rows are those of p = q exactly in n; on k the O(1) parts vanish and F2 = 2 s cos^2(chi) Q, so F2/(s Y2) is the p = q one   [24 s]
+PASS  K  data/l2_c2_forcing.json: its l2, l0 and G rows equal this derivation   [26 s]
+
+mutation warp: 1 check(s) failed: I
+real 26.44
+user 25.93
+sys 0.12
+exit 1

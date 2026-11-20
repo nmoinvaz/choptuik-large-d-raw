@@ -12,8 +12,9 @@ The review's own runs. Code at 60edcacf unless a commit is named; the c2 path of
 
 | file | command (from solver/inner_pert/) | result |
 | --- | --- | --- |
-| `sym.log` | `l2_c2_review_sym.py` | 25 checks, all passed, exit 0 |
+| `sym.log` | `l2_c2_review_sym.py` (09609067) | 25 checks, all passed, exit 0 |
 | `sym_mutate_{fibre,lin,bg,k,sign}.log` | `l2_c2_review_sym.py --mutate=NAME` | 11, 10, 1, 10 and 4 checks fail, exit 1 |
+| `sym_mutate_{hand,mu,warp,static}.log` | `l2_c2_review_sym.py --mutate=NAME` (09609067) | 10, 14, 1 and 1 checks fail, exit 1; with these every check fails under some mutation |
 | `num_checks.log` | `l2_c2_review_num.py checks` (13f4508b) | 7 planted checks, PASS, exit 0 |
 | `num_checks_mutate_{bg,lin,dlam,ser,fc}.log` | `l2_c2_review_num.py checks --mutate=NAME` (13f4508b) | checks 1-4; 2-4; 5; 6; 7 fail, exit 1 |
 | `num_c2_M1.log`, `.json` | `l2_c2_review_num.py c2` (9acabdd8) | M = 1 against l2_c2.py: max relative difference 1.3e-10, PASS |
