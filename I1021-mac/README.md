@@ -231,3 +231,20 @@ rows, without fu_value.py's code, and every exit in `exits_fu.txt` agrees with t
 In step 1 every rejected row has no value: pass 1, 9 rows where the continuation lost S3's zero; pass 2, 6 of those,
 1 at the right-hand-side bound and 1 at the wall bound; pass 3, 6 of those and 2 inner-solve step-size failures. So
 the lowguard mutation has nothing to change there, and its exit 0 tests nothing.
+
+The record's planted check, run beside the record (the coordinator's order, 20 Nov; written before the run). The plant
+(+1 at A 3.53, w/w_inf 0.555, in the cell A 3.4123-3.6623 x w/w_inf 0.5065-0.6065) runs now in `final/plant0/` on a copy
+of the record's input (`merge_fu/merged.jsonl`), with `run_record.sh`'s argcount arguments, 1 process at nice 10
+(`final/run_plant0.sh`). So it is done when the record ends. `run_record.sh`'s own plant, on the record's cache, still
+runs after the record. Criteria (`final/plant_check.py`; the issue's "a planted zero inside one of the 32 cells is
+counted"):
+
+1. the count lists one zero of sign +1 whose cell contains (3.53, 0.555);
+2. the box of the 32 that contains it has a resolved boundary winding;
+3. once the record ends (`--record`), that box winds the record's winding plus 1, every other box winds as in the
+   record, and the zeros outside the planted box are the record's.
+
+samebits: every valued record of `merged.jsonl` is unchanged in `plant0/`'s cache. Controls, which must fail:
+`plant_check.py --mutate=shift` (the plant point moved by one box), and the selftest's shift, nozero and norise cases
+(no planted zero; the planted box winding as in the record). On the stored count of b11-15's +1 at 0.18 the check passes
+with its zero's location and fails with `--mutate=shift`.
