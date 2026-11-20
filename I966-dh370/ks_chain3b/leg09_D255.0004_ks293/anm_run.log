@@ -46,3 +46,23 @@ step 1: D 255.397245158, pivots 2.2e-18..5.5e+48, |z_1| 3.34e-04, |z_N| 2.26e-24
       octo-double Newton: 4 steps, max|F| 1.7e-31, converged; double-double |F| of its first two parts 1.9e+28
     a 0.399 -> D 255.796001259: predicted |F| 5.00e+28, od 4 steps -> 1.91e+28 (tol 1.3e-20, stall accepted, Delta correction +0.0e+00), Delta 1.684034238824 (formula diff -1.6e-06), moved 1.8e-19, 2512 s
       Delta of the saved state, its eight parts summed exactly: 1.684034238823748176719101802674575623004
+step 2: the series saved as /home/nathan/Source/choptuik-large-d-raw-wt613/I966-dh370/ks_chain3b/leg09_D255.0004_ks293/jet_pin3_D255.7960.npz (8 parts, 397 s)
+step 2: D 255.796001259, pivots 1.8e-18..1.1e+48, |z_1| 3.34e-04, |z_N| 9.31e-25, ratios 2-5 329.5 67.6 3.4 9.2, a_max 1.654, 397 s
+  a_rule reseed: a_h tail e_N+1 2.99e-28 (ratio 3.10), level 0.00715 of the pole line 1.71e-39: a 0.3816
+    a 0.3816: re-seeded (ok), 238.29 s
+      horizon data refined in octo-double, rung max|R| 4.11e-14 -> 1.85e-25 -> 4.57e-25 -> 2.83e-26 -> 4.71e-26
+    on 0 chord 0: max|F| 1.09e+11, |dw| 4.682e+07
+  on 0: strong chord (4 weak directions), 1 steps after the full first step; theta at its point inf (bound 0.750): refused, 396.14 s
+    on 0 trial lam 1: max|F| 1.09e+11; simplified correction / |dz| = 1.717e+42 (bound 0.750); refused, 384.54 s
+      on 0, lam 1: projection failed (3): point max|F| 1.09e+11; own data quad-double 8 its, |R| 1.89e+10 -> 6.97e-09, NOT converged; u0 rung 1 its, |R| 9.95e+26 -> 9.95e+26, NOT converged; u0 quad-double 8 its, |R| 3.91e+24 -> 9.55e+20, NOT converged; ladder FAILED after 8 rungs, last rung u 0.300000 quad-double 8 its, |R| 8.08e+25 -> 1.97e+22, NOT converged
+    on 0 trial lam 0.5: max|F| 1.56e-25; simplified correction / |dz| = 5.000e-01 (bound 0.875); accepted, 278.57 s
+  on 0: |F| 9.27e-24 -> 1.56e-25, |dz| 2.40e-19 -> 1.20e-19, lam 0.5, dDelta -2.40e-19, piv 1.9e-18..1.0e+49, 1172.69 s
+    on 1 trial lam 1: max|F| 7.71e-30; simplified correction / |dz| = 3.495e-10 (bound 0.750); accepted, 266.47 s
+  on 1: |F| 1.56e-25 -> 7.71e-30, |dz| 1.20e-19 -> 4.19e-29, lam 1, dDelta -1.20e-19, piv 1.9e-18..1.0e+49, 380.35 s
+    on 2 trial lam 1: max|F| 3.52e-31; simplified correction / |dz| = 1.051e-14 (bound 0.750); accepted, 171.7 s
+  on 2: |F| 7.71e-30 -> 3.52e-31, |dz| 4.19e-29 -> 4.55e-43, lam 1, dDelta +4.19e-29, piv 1.9e-18..1.0e+49, 285.07 s
+  on 3: |F| 3.52e-31 above tol at the floor, own correction |dz| 4.55e-43, dDelta -4.55e-43: converged by the floor rule (|dDelta| <= 1e-30), Delta 1.68397506336342273 -7.9845e-17
+      elim projections {'u0': 0, 'u0q': 0, 'ladder': 0, 'failed': 3, 'skipped': 0, 'pred': 4}
+      octo-double Newton: 4 steps, max|F| 3.5e-31, converged; double-double |F| of its first two parts 1.9e+29
+    a 0.382 -> D 256.177610782: predicted |F| 1.53e+29, od 4 steps -> 1.87e+29 (tol 1.5e-20, stall accepted, Delta correction +0.0e+00), Delta 1.683975063363 (formula diff -1.6e-06), moved 2.4e-19, 2300 s
+      Delta of the saved state, its eight parts summed exactly: 1.683975063363422650744033598546412592903
