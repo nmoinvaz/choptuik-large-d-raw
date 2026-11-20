@@ -1,0 +1,15 @@
+# 2026-11-20 13:29:20 UTC PR #1054 at 5f488e2b against the venv-i1050 build; hp diff merge base -> head:  13 files changed, 951 insertions(+), 33 deletions(-)
+# python Python 3.14.10, maturin maturin 1.16.0, lock: ; "multidouble"version = "5.0.0"; "multishoot"version = "4.0.0"; "multisolver"version = "0.2.1"
+build1054: expected exit 0, got 0, 1594 s (cap 5580 s) OK
+hpkernel import: exit 0 hpkernel avx2 /home/nathan/Source/venv-i1054/lib/python3.14/site-packages/hpkernel/__init__.py multidouble avx2
+step5_ref: expected exit 0, got 0, 43 s (cap 1800 s) OK
+step5_scaled: expected exit 0, got 0, 372 s (cap 7200 s) OK
+step5_jets: expected exit 0, got 0, 78 s (cap 1800 s) OK
+step5_jets_kappa: expected exit 1, got 1, 78 s (cap 1800 s) OK
+compare step5_ref (against I1050-dh610, the venv-i1050 build): exit 0 (0: bit-identical rows), control --mutate exit 1 (1): step5_ref.log against step5_ref.log: 72 rows old, 72 new, 1 verdict lines old, 1 new, 0 differences: IDENTICAL
+compare step5_scaled (against I1050-dh610, the venv-i1050 build): exit 0 (0: bit-identical rows), control --mutate exit 1 (1): step5_scaled.log against step5_scaled.log: 22 rows old, 22 new, 2 verdict lines old, 2 new, 0 differences: IDENTICAL
+compare step5_jets (against I1050-dh610, the venv-i1050 build): exit 0 (0: bit-identical rows), control --mutate exit 1 (1): step5_jets.log against step5_jets.log: 31 rows old, 31 new, 1 verdict lines old, 1 new, 0 differences: IDENTICAL
+compare step5_jets_kappa (against I1050-dh610, the venv-i1050 build): exit 0 (0: bit-identical rows), control --mutate exit 1 (1): step5_jets_kappa.log against step5_jets_kappa.log: 31 rows old, 31 new, 1 verdict lines old, 1 new, 0 differences: IDENTICAL
+bits242_save (venv-i1050): expected exit 0, got 0, 47 s
+bits242_compare: expected exit 0, got 0, 47 s (cap 900 s) OK
+bits242_control: expected exit 1, got 1, 44 s (cap 900 s) OK
