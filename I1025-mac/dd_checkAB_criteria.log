@@ -1,0 +1,22 @@
+== 2026-11-20 09:42:15 #1025 route (c): checks A and B of the double-double mode matrix (solver/matter/ell_ddm.py, wip/ell1-highD e90b7d37),
+at D 13, k_c 31 (sol_l1kc31L1025_D13.0000.npy, lam1 2.6841484641099442 = the float64 record). Written before the formal runs.
+Development runs before this log, which shaped the checks:
+  - ell_ddm.py selftest PASS (exact tau operators vs DSSEll's float64 ones 4e-16; Ozaki products vs ddnp.matmul 2.6e-32; dual derivatives vs
+    analytic 4.4e-32), with --mutate=slices and --mutate=ops failing as they must.
+  - dd blocks vs float64: blocks 0-11 agree to 6e-16 - 8e-15 of each block's largest entry; block 12 (horizon series to the last node) differs by
+    1.9e-11. The float64 horizon series is unstable in its recursion: against the dd series its relative error grows from 1e-16 at order 0 to
+    3e-10 at order 5 and 1e-6 at order 10, and the port run with every low part dropped (double precision, same algorithm) shows the same growth
+    (1.8e-10 at order 5). So block 12 cannot be checked against float64.
+  - the horizon series against the x-ODE in mpmath (60 digits): at u 0.04 the tangents miss by 9e-15, the series' truncation at Ks = 30 (shared with
+    the float64 method); at u 0.01 by 1e-28 - 1e-32.
+Checks and bars:
+  A1: every block 0-11 of the dd M agrees with DSSEll.mode_matrix (float64, complex step) to 1e-13 of the block's largest entry, at lam1.
+      Block 12 is reported, with no bar. Control: --mutate=lam (tangents lose the lambda term) must fail.
+  A2: the dd horizon series (value and 4 tangent directions) satisfies the x-ODE evaluated in mpmath at u 0.01 and 0.005 to 1e-24 (relative to
+      the largest rhs value), so its truncation (about u^30) stays far below the bar. Control: --mutate=lam must fail.
+  B1: at lam1 - 0.02 and lam1 + 0.02 the dd det signs agree over the 5 exact variants, equal the float64 LAPACK signs (resolved at D 13), and
+      are opposite at the two lambda. Control: --mutate=lam must not show opposite signs (a lambda-free M has no root there) or must fail A1.
+  B2: the root of the dd det in [lam1 - 0.02, lam1 + 0.02] (brentq, xtol 1e-10) lies within 1e-7 of the float64 record (its own xtol is
+      2e-8 lam, about 5e-8).
+A pass of A1, A2, B1 and B2 means the port reproduces DSSEll's discrete operator and its lambda_1 at D 13. It does not yet show that dd resolves
+the sign at D 17.5; that is the next test, with its own criteria.
