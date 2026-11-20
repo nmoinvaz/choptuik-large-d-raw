@@ -380,3 +380,28 @@ selftest --mutate unbound: FAIL
 23:22:55     call 2: |F| 2.84e-29 converged; step 108.8 s
 23:22:56 tmap_lowDhm_x0.000157-0.975_D3.0475_M384_L0.5_M192_s1.9635: Delta 2.4660121465222251 -1.629e-16, converged True, plans 2302 / 1388 / 1292 steps, 685.5 s
 == cost step1 M320 M384: tau_map_gain.py cost D:/choptuik-large-d-raw/T82-win/states/lowDhm_x0.000157-0.975_D3.0475_M320.npz D:/choptuik-large-d-raw/T82-win/states/lowDhm_x0.000157-0.975_D3.0475_M384.npz --threads 8 --reps 2 --out D:/choptuik-large-d-raw/I1033-win2/cost2.jsonl 2026-11-19 23:22:59 UTC
+23:40:39 lowDhm_x0.000157-0.975_D3.0475_M320.npz: M 320, one f64 Newton call 536.7 s on its 1619-step plan, c(M) 3.315e-01 s per step (range 3.215e-01..3.315e-01 over 2)
+00:09:49 lowDhm_x0.000157-0.975_D3.0475_M384.npz: M 384, one f64 Newton call 874.7 s on its 1623-step plan, c(M) 5.390e-01 s per step (range 5.356e-01..5.390e-01 over 2)
+== cost step2 control plan_m: tau_map_gain.py cost D:/choptuik-large-d-raw/T82-win/states/lowDhm_x0.000157-0.975_D3.0475_M320.npz D:/choptuik-large-d-raw/T82-win/states/lowDhm_x0.000157-0.975_D3.0475_M384.npz --mutate plan_m --out D:/choptuik-large-d-raw/I1033-win2/cost2_control.jsonl 2026-11-20 00:10:01 UTC
+lowDhm_x0.000157-0.975_D3.0475_M384.npz: the plan was made at M 320, the state is at M 384; a measurement needs the plan of its own M
+== cost step3 D3.7 M128-256 and A M256: tau_map_gain.py cost data/lowD_states/highm15_D3.7000_M128.npz data/lowD_states/highm15_D3.7000_M160.npz data/lowD_states/highm15_D3.7000_M192.npz data/lowD_states/highm15_D3.7000_M256.npz D:/choptuik-large-d-raw/T82-win/states/lowDhm_x0.000157-0.975_D3.0475_M256.npz --threads 8 --reps 2 --out D:/choptuik-large-d-raw/I1033-win2/cost2.jsonl 2026-11-20 00:10:05 UTC
+00:10:14 highm15_D3.7000_M128.npz: M 128, one f64 Newton call 4.6 s on its 166-step plan, c(M) 2.775e-02 s per step (range 2.262e-02..2.775e-02 over 2)
+00:10:41 highm15_D3.7000_M160.npz: M 160, one f64 Newton call 13.1 s on its 256-step plan, c(M) 5.110e-02 s per step (range 5.050e-02..5.110e-02 over 2)
+00:11:23 highm15_D3.7000_M192.npz: M 192, one f64 Newton call 20.3 s on its 252-step plan, c(M) 8.063e-02 s per step (range 7.892e-02..8.063e-02 over 2)
+00:13:33 highm15_D3.7000_M256.npz: M 256, one f64 Newton call 65.0 s on its 377-step plan, c(M) 1.725e-01 s per step (range 1.674e-01..1.725e-01 over 2)
+00:22:21 lowDhm_x0.000157-0.975_D3.0475_M256.npz: M 256, one f64 Newton call 265.0 s on its 1557-step plan, c(M) 1.702e-01 s per step (range 1.669e-01..1.702e-01 over 2)
+== run3 report with cost2: tau_map_gain.py report D:/choptuik-large-d-raw/I1033-win2/solve_D3.0475.jsonl --ref D:/choptuik-large-d-raw/T82-win/states/lowDhm_x0.000157-0.975_D3.0475_M384.npz --ref2 D:/choptuik-large-d-raw/T82-win/states/lowDhm_x0.000157-0.975_D3.0475_M320.npz --cost D:/choptuik-large-d-raw/I1033-win2/cost2.jsonl --json D:/choptuik-large-d-raw/I1033-win2/report_D3.0475.json 2026-11-20 00:22:31 UTC
+reference: D:/choptuik-large-d-raw/T82-win/states/lowDhm_x0.000157-0.975_D3.0475_M384.npz: D 3.0475, uniform M 384, Delta 2.466012146521712 +3.149e-17, |Delta - Delta(ref2)| 3.77e-11
+cost against the uniform grid at M 384 on its own plan, 2842 steps; one Newton call there 1239.1 s
+| L | M' | Delta - ref | <1e-12 | <e_u | plan start | pass 2 | own | own/S_u | cost M^3 | cost c(M) | cost measured |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| 1 | 384 | +1.13e-30 | yes | yes | 2317 | 2317 | 2842 | 1.00 | 1.000 | 1.000 | 1.000 |
+| 0.5 | 192 | +5.13e-13 | yes | yes | 2302 | 1388 | 1292 | 0.45 | 0.057 | 0.068 | 0.088 |
+| 0.4 | 192 | -1.93e-13 | yes | yes | 2400 | 1355 | 1234 | 0.43 | 0.054 | 0.065 | 0.081 |
+modes needed for Delta to 1e-12 of the reference, per L (the smallest M' from which every larger M' tried converged and agrees):
+  L 1: M' 384 (1.00x fewer than M 384); own plan 2842 steps (1.00x); projected cost per call 1.000 (M^3), 1.000 (c(M)), 1.000 measured
+  L 0.5: M' 192 (2.00x fewer than M 384); own plan 1292 steps (0.45x); projected cost per call 0.057 (M^3), 0.068 (c(M)), 0.088 measured
+  L 0.4: M' 192 (2.00x fewer than M 384); own plan 1234 steps (0.43x); projected cost per call 0.054 (M^3), 0.065 (c(M)), 0.081 measured
+identity: L 1 at M 384 from M 384: Delta - stored Delta(M 384) +1.1e-30 (bound 1e-20), own plan 2842 against the stored 1623 steps (1.751; bound 10%): FAIL
+check: L 0.5 at its largest M' 192: |Delta - ref| 5.1e-13 against the uniform grid's own resolution error 3.8e-11: PASS
+check: L 0.4 at its largest M' 192: |Delta - ref| 1.9e-13 against the uniform grid's own resolution error 3.8e-11: PASS
