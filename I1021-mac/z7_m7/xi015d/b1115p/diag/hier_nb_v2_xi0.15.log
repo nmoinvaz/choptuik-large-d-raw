@@ -1,0 +1,21 @@
+# /Users/nathan/venv-i1021nb/bin/python -u hier_nb.py 5 3.526470822728 0.211495027973 --x=0.9765115091,-0.0017632354,-0.5211594906,-0.1129528605 --fixA --schur --procs 1 --verbose=2 --xi1=0.15 (diagnostic, nice 19, 2026-11-20 15:45:10 UTC)
+M 5, xi1 0.15, fixed (A, w), procs 1; start x [3.526470823, 0.211495028, 0.976511509, -0.001763235, -0.521159491, -0.11295286]
+level radii (approach -> polish): r_1 0.1500 -> 0.1500, r_3 0.1500 -> 0.1500, r_5 0.1500 -> 0.1500
+start residuals: |r_1| 0.00e+00  |r_3| 0.00e+00  |r_5| 7.73e+05
+   level 5 solved: |r_5| 7.66e+05  (12 residuals, 0 s)  [0 s total]
+   Jacobian K computed (4 residuals) [1 s]
+   K by level, max |d r_l / d x_nu| (rows l, columns nu): nu 1  nu 3  nu 5
+     l 1: 0.00e+00  9.64e+19  1.25e+18
+     l 3: 0.00e+00  9.65e+18  1.36e+17
+     l 5: 0.00e+00  8.11e+17  9.57e+15
+   level 5 (top): stop at |g| 7.66e+05 (noise floor)
+   level 5 solved: |r_5| 7.66e+05  (10 residuals, 0 s)  [1 s total]
+   level 5 solved: |r_5| 7.66e+05  (5 residuals, 0 s)  [1 s total]
+   level 5 solved: |r_5| 7.68e+05  (8 residuals, 0 s)  [1 s total]
+   level 5 solved: |r_5| 7.64e+05  (8 residuals, 0 s)  [1 s total]
+   level 3 solved: |r_3| 2.09e+06  (48 residuals, 1 s)  [1 s total]
+FIXED-A M 5: A 3.526470823  w/w_inf 0.211495028  (w 0.80836, Delta 7.77273)  <F^2> 6.8376  r_1 -1.5373e+07-1.4740e+07i  [1 s, 49 residuals]
+      F_3/F_1 = +0.276915-0.000500i   |.| 0.276916  arg -0.0018   r_3 2.1e+06
+      F_5/F_1 = -0.148097-0.031993i   |.| 0.151513  arg -2.9288   r_5 7.6e+05
+      (uncorrected r_1 +1.6756e+07+3.6909e+07i)
+# exit 0 2026-11-20 15:45:13 UTC

@@ -1,0 +1,43 @@
+# INNER_NB_RTOL=1e-14 /Users/nathan/venv-i1021nb/bin/python -u hier_nb.py 5 3.526470822728 0.211495027973 --x=0.9765115091,-0.0017632354,-0.5211594906,-0.1129528605 --fixA --schur --procs 1 --verbose=2 --xi1=0.2 (diagnostic, nice 19, 2026-11-20 15:47:06 UTC)
+M 5, xi1 0.2, fixed (A, w), procs 1; start x [3.526470823, 0.211495028, 0.976511509, -0.001763235, -0.521159491, -0.11295286]
+level radii (approach -> polish): r_1 0.2000 -> 0.2000, r_3 0.2000 -> 0.2000, r_5 0.1995 -> 0.2000
+start residuals: |r_1| 0.00e+00  |r_3| 0.00e+00  |r_5| 2.10e+05
+   level 5 (low): stop at |g| 2.10e+05 (noise floor)
+   level 5 (top): stop at |g| 2.14e+05 (noise floor)
+   level 5 solved: |r_5| 2.14e+05  (19 residuals, 3 s)  [3 s total]
+   Jacobian K computed (4 residuals) [3 s]
+   K by level, max |d r_l / d x_nu| (rows l, columns nu): nu 1  nu 3  nu 5
+     l 1: 0.00e+00  2.13e+14  2.11e+12
+     l 3: 0.00e+00  2.90e+13  3.37e+11
+     l 5: 0.00e+00  2.03e+12  4.89e+10
+   level 5 (low): stop at |g| 2.10e+05 (noise floor)
+   level 5 (top): stop at |g| 2.14e+05 (noise floor)
+   level 5 solved: |r_5| 2.14e+05  (15 residuals, 3 s)  [6 s total]
+   level 5 (low): stop at |g| 2.10e+05 (noise floor)
+   level 5 (top): stop at |g| 2.14e+05 (noise floor)
+   level 5 solved: |r_5| 2.14e+05  (15 residuals, 3 s)  [9 s total]
+   level 5 (low): stop at |g| 2.10e+05 (noise floor)
+   level 5 (top): stop at |g| 2.14e+05 (noise floor)
+   level 5 solved: |r_5| 2.14e+05  (15 residuals, 3 s)  [12 s total]
+/Users/nathan/Source/choptuik-large-d-1021nb/solver/inner_stokes/hier.py:88: RuntimeWarning: overflow encountered in exp
+  q = np.fft.fft(Jth * np.exp(-Pi)) / NTH
+/Users/nathan/Source/choptuik-large-d-1021nb/solver/inner_stokes/hier.py:92: RuntimeWarning: overflow encountered in exp
+  z = q[nu % NTH] * r1 ** (2j * nu * w) * np.exp(lsc - np.log(2 * np.pi * abs(I.Kp(1j * nu * w))))
+/Users/nathan/Source/choptuik-large-d-1021nb/solver/inner_stokes/hier.py:88: RuntimeWarning: invalid value encountered in multiply
+  q = np.fft.fft(Jth * np.exp(-Pi)) / NTH
+/Users/nathan/venv-i1021nb/lib/python3.14/site-packages/numpy/fft/_pocketfft.py:101: RuntimeWarning: invalid value encountered in fft
+  return ufunc(a, fct, axes=[(axis,), (), (axis,)], out=out)
+   level 5 (low): stop at |g| 1.34e+07 (noise floor)
+   level 5 (top): stop at |g| 1.33e+07 (noise floor)
+   level 5 solved: |r_5| 1.33e+07  (15 residuals, 6 s)  [19 s total]
+   level 5 (low): stop at |g| 3.49e+06 (noise floor)
+/Users/nathan/Source/choptuik-large-d-1021nb/solver/inner_stokes/hier.py:92: RuntimeWarning: overflow encountered in scalar multiply
+  z = q[nu % NTH] * r1 ** (2j * nu * w) * np.exp(lsc - np.log(2 * np.pi * abs(I.Kp(1j * nu * w))))
+   level 5 (top): stop at |g| 3.52e+06 (noise floor)
+   level 5 solved: |r_5| 3.52e+06  (15 residuals, 5 s)  [24 s total]
+   level 3 solved: |r_3| 2.85e+06  (99 residuals, 24 s)  [24 s total]
+FIXED-A M 5: A 3.526470823  w/w_inf 0.211495028  (w 0.80836, Delta 7.77273)  <F^2> 7.0622  r_1 +2.2042e+07+3.6157e+07i  [24 s, 100 residuals]
+      F_3/F_1 = +0.316886-0.111741i   |.| 0.336010  arg -0.3390   r_3 2.8e+06
+      F_5/F_1 = -0.147785-0.032030i   |.| 0.151216  arg -2.9282   r_5 3.5e+06
+      (uncorrected r_1 +9.4060e+06-2.5033e+08i)
+# exit 0 2026-11-20 15:47:31 UTC

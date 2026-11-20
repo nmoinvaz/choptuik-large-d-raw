@@ -118,3 +118,35 @@ Handling, with every bar and rule unchanged:
 - Tests (in the scratchpad): resume reuses repeats 1 and 2 and runs repeat 3. A changed command line on repeat 1 makes
   it run again. A copy capped at 2 s with a sleeping stub records three timeouts and kills the stub.
 - `../run_b1115p_cont.sh` runs `m5_repeat.py --resume` and then `../run_m7d.sh b1115p`.
+
+## Result, b11-15's +1 (15:22-15:44 UTC, `b1115p/exits.txt`, `b1115p/eval.txt`, `b1115p/logs/`, `b1115p/walks/`)
+
+The xi1 0.2 start. `../run_b1115p_cont.sh` (14:22-15:22 UTC) ran repeat 3, which also exceeded the 3600 s cap. Of the
+first attempt (|r_3| 2.0e6, |r_5| 2.1e5), repeat 1 (3.3e6, 2.1e5) and repeats 2 and 3 (timed out), the counted one is
+the first attempt, the one of smallest |r_3|. Its end state is the start (`b1115p/start02.txt`).
+
+The 22 checks, both gate walks and the evaluator give their expected exits. The box's M = 5 walk exits 1. Gate: both
+controls PASS, with the same numbers as boxes 7 and 16's runs (M = 5 control 124 s, M = 7 control 1144 s).
+
+b11-15's M = 5 start solve at xi1 0.15 does not converge: |r_3| 2.1e6, |r_5| 7.6e5 at the first attempt, then 2.4e6,
+2.0e6 and 1.5e6 at the three repeats (|r_5| 7.6e5 to 7.7e5). The walk keeps the third repeat. There is no M = 5 zero,
+and the M = 7 walk did not run. Verdict, counted since both controls pass: **UNDECIDED** (#1027's rule with no M = 5
+zero).
+
+Diagnostic (`b1115p/diag/`, `../diag_b1115p.sh` and `../diag_b1115p_rtol.sh`, nice 19; `k_ulp.py`, new, gives the
+residual change per double step of the harmonics from K). Unlike boxes 7 and 16, the solve fails at xi1 0.2 as well,
+so the double-precision floor does not explain it:
+
+- At 0.15 the level-5 solve stops at once at hier's noise floor, |g| 7.66e5. One double step of x_5 moves r_5 by
+  about 1.1 (K's d r_5 / d x_5 9.57e15).
+- At 0.2, from the same start, level 5 stops at its noise floor from the start, |g| 2.10e5, where one step of x_5 moves
+  r_5 by about 1.5e-5 (d r_5 / d x_5 1.38e11). The stop means no fresh-Jacobian trial reduces |g|, here far above
+  rounding. Level 3 then reaches |r_3| 3.4e-2 at harmonics far from the start (F_3/F_1 0.2449+0.1035i against
+  0.2769-0.0005i at the start), with |r_5| still 1.1e5.
+- With the integrator tolerance at 1e-14 (default 1e-12) the first level-5 stops are the same, 7.66e5 at 0.15 and
+  2.10e5 at 0.2. The solves end at |r_3| 3.2e6 (0.15) and 2.8e6 (0.2).
+- hier.py's xi1 0.2 attempts did not converge either: |r_3| 2.0e6 and 3.3e6, and two attempts past the 3600 s cap.
+
+So at b11-15's +1 the M = 5 solve finds no solution from the M = 3 zero's harmonics at either radius. The data do not
+say whether an M = 5 zero lies near it. `k_ulp.py` gives boxes 7 and 16's per-step numbers in the notes too: one
+step of x_3 moves r_1 by about 11 (box 7) and 5.4e2 (box 16) at 0.15.
