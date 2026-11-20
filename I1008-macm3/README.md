@@ -289,3 +289,60 @@ What the table says about the first |dz| (observed, not explained):
 - The first correction the corrector accepts at lam below 1 has a size lam times first |dz| of 3e-16 to 1.3e-15, a factor of 4.5, while the first |dz| spans a factor of 44 (statement 4). A larger first |dz| therefore means a smaller lam, more corrections before lam reaches 1, and the stall rule (lam at or below 0.04 twice in a row) once lam falls that low.
 
 The source of the 1e-36 floor is not identified. I changed no flag. The earlier options message is unanswered, so run2 goes on from arc step 7 as launched: the series at its D 259.4858226077785 is being formed now (1085 to 1091 s at the last two bases), then arc step 8's first attempt. Its a comes from anm_run's rule and goes in the next post. t_D is 0.9999956126 and has not changed sign, no turn is recorded, and D is 0.417447 below 259.903269724106.
+
+
+### run2: arc step 8 accepted at its first attempt (2026-11-20 14:56 UTC)
+
+| arc step | arclength a | D move | D | Delta | t_D start | t_D end | D below 259.903269724106 | corrections | accepted lam | ladder / failed / skipped | corrector s | refused attempts | first \|dz\| | first \|dz\| / a |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 5 (AB2) | 0.0444334 | 0.044433205 | 259.42750402623675 | 1.68347789279812 | 0.9999956072 | 0.9999956095 | 0.475766 | 9 | 0.25 x3, 0.5, 1 x5 | 11 / 9 / 0 | 5367.3 | 0 | 1.96e-15 | 4.41e-14 |
+| 6 | 0.0444334 | 0.044433205 | 259.47193723120494 | 1.68347117889185 | 0.9999956095 | 0.9999956118 | 0.431332 | 9 | 0.25 x3, 0.5, 1 x5 | 11 / 9 / 0 | 5222.6 | 0 | 2.89e-15 | 6.5e-14 |
+| 7 | 0.0138854375 | 0.013885377 | 259.48582260777852 | 1.68346908127357 | 0.9999956118 | 0.9999956126 | 0.417447 | 12 | 0.25 x2, 0.125 x3, 0.5, 1 x6 | 14 / 16 / 0 | 7284.8 | 2 | 4.76e-15 | 3.43e-13 |
+| 8 | 0.0138854375 | 0.013885377 | 259.49970798436211 | 1.68346698388404 | 0.9999956126 | 0.9999956133 | 0.403562 | 9 | 0.25 x2, 0.5, 1 x6 | 11 / 7 / 0 | 4593.6 | 0 | 3.16e-15 | 2.28e-13 |
+
+Accepted steps in run2: 3. No turn recorded (anm_run's own detection of D'(s) = 0 inside an accepted step). t_D has not changed sign. t_D start of the first step of run2 0.9999956095, end of the last 0.9999956133; its change per unit arclength over the last accepted step 5.188e-08.
+
+Step 8's accepted attempt: 5 refused trials (lam 0.5, 1, at corrections 0, 1, 2, 5 `projection failed` lines, trial |F| 1.2e+07 to 2.6e+08) and 1 refused strong-chord check(s), which together took 1273 s of the corrector's 4593.6 s. The series at the base took 1049.9 s (formed by the jets inside the run, which also saves its arcjet).
+
+anm_run pid 98367: elapsed 08:45:00, 573.7% cpu, rss 393 MB; run2 started 06:11:16 UTC, 8.75 h ago; cap 36 h (SIGTERM at 2026-11-21 18:11:16 UTC).
+
+Every attempt of every log, with the predicted max|F| (the series' residual at the re-seeded point, before any correction):
+
+| log | attempt | D move | D of the attempt | predicted max\|F\| | first \|dz\| | first \|dz\| / predicted max\|F\| | refused trial lam at correction 0 | accepted lam at correction 0 | accepted lam x first \|dz\| | corrector steps | corrector s | outcome |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| pilot2 | 1 | 0.045500 | 259.15272808 | 8.9e-36 | 5.37e-15 | 6.03e+20 | 1, 0.5 | 0.25 | 1.34e-15 | 33 | 11228.2 | accepted |
+| pilot2 | 2 | 0.056875 | 259.20960283 | 1.26e-36 | 4.6e-16 | 3.65e+20 | none | 1 | 4.6e-16 | 26 | 9721.7 | accepted |
+| run1 | 1 | 0.045500 | 259.25510263 | 1.4e-36 | 6.2e-16 | 4.43e+20 | none | 1 | 6.2e-16 | 24 | 7446.4 | accepted |
+| run1 | 2 | 0.056875 | 259.31197738 | 2.61e-36 | 8.92e-16 | 3.42e+20 | 1 | 0.5 | 4.46e-16 | 35 | 9788.8 | accepted |
+| run1 | 3 | 0.071093 | 259.38307082 | 1.66e-36 | 8.83e-16 | 5.32e+20 | 1 | 0.5 | 4.41e-16 | 36 | 9996.8 | accepted |
+| run1 | 4 | 0.088867 | 259.47193762 | 6.28e-36 | 9.21e-15 | 1.47e+21 | 1, 0.5, 0.25 | 0.125 | 1.15e-15 | 3 | 5338.2 | refused (stall rule) |
+| run1 | 5 | 0.044433 | 259.42750422 | 7.16e-36 | 4.82e-15 | 6.73e+20 | 1, 0.5, 0.25, 0.125 | 0.0625 | 3.01e-16 | 8 | 11457.4 | refused (stall rule) |
+| ab1 | 1 | 0.071093 | 259.38307082 | 1.66e-36 | 8.83e-16 | 5.32e+20 | 1 | 0.5 | 4.41e-16 | 7 | 2945.3 | accepted |
+| ab2 | 1 | 0.044433 | 259.42750403 | 2.97e-36 | 1.96e-15 | 6.6e+20 | 1, 0.5 | 0.25 | 4.9e-16 | 10 | 5367.3 | accepted |
+| run2 | 1 | 0.044433 | 259.47193723 | 2.2e-36 | 2.89e-15 | 1.31e+21 | 1, 0.5 | 0.25 | 7.23e-16 | 10 | 5222.6 | accepted |
+| run2 | 2 | 0.055542 | 259.52747874 | 3.77e-36 | 8.11e-15 | 2.15e+21 | 1, 0.5, 0.25 | 0.125 | 1.01e-15 | 4 | 5716.4 | refused (stall rule) |
+| run2 | 3 | 0.027771 | 259.49970798 | 1.14e-35 | 2.01e-14 | 1.76e+21 | 1, 0.5, 0.25, 0.125, 0.0625 | 0.03125 | 6.28e-16 | 2 | 3843.6 | refused (stall rule) |
+| run2 | 4 | 0.013885 | 259.48582261 | 2.86e-36 | 4.76e-15 | 1.66e+21 | 1, 0.5 | 0.25 | 1.19e-15 | 13 | 7284.8 | accepted |
+| run2 | 5 | 0.013885 | 259.49970798 | 1.87e-36 | 3.16e-15 | 1.69e+21 | 1, 0.5 | 0.25 | 7.9e-16 | 10 | 4593.6 | accepted |
+
+14 attempts in 5 logs, 13 distinct points (run1's attempt 3 and ab1's attempt 1 are the same point).
+
+1. The predicted max|F| is 1.3e-36 to 1.1e-35 for D moves of 0.0139 to 0.0889. Over this range it does not fall with a shorter step. Ordered by D move, the predicted max|F| is 2.9e-36, 1.9e-36, 1.1e-35, 3e-36, 2.2e-36, 7.2e-36, 8.9e-36, 1.4e-36, 3.8e-36, 1.3e-36, 2.6e-36, 1.7e-36, 6.3e-36 (D moves 0.0139, 0.0139, 0.0278, 0.0444, 0.0444, 0.0444, 0.0455, 0.0455, 0.0555, 0.0569, 0.0569, 0.0711, 0.0889).
+
+2. First |dz| / predicted max|F| is 3.4e+20 to 6.7e+20 at the 7 points below D 259.45 and 1.3e+21 to 2.2e+21 at the 6 points above it. Ordered by D: 259.1527: 6e+20, 259.2096: 3.7e+20, 259.2551: 4.4e+20, 259.3120: 3.4e+20, 259.3831: 5.3e+20, 259.4275: 6.6e+20, 259.4275: 6.7e+20, 259.4719: 1.3e+21, 259.4719: 1.5e+21, 259.4858: 1.7e+21, 259.4997: 1.8e+21, 259.4997: 1.7e+21, 259.5275: 2.2e+21.
+
+3. At one D move (0.0444, 3 distinct points) the predicted max|F| is 2.2e-36, 3e-36, 7.2e-36, a spread of x3.3, against x9.0 over all 13 points.
+
+4. First |dz| runs from 4.6e-16 to 2e-14 (x44). At the 11 points where correction 0 accepts lam below 1, accepted lam times first |dz| is 3e-16 to 1.3e-15 (x4.5), and the smallest refused trial lam at correction 0 times first |dz| is 6e-16 to 2.7e-15. The two ranges overlap, so there is no sharp threshold in lam times |dz|.
+
+5. Arc step 8 took 1.57 h from arc step 7's record (13:20:25 UTC) to its own (14:54:30 UTC). Its 1 attempt took 4593.6 s of corrector time, and the series at its base 1049.9 s. Arc step 7: 3 attempts, 5716.4 + 3843.6 + 7284.8 = 16844.8 s of corrector time, series 1085.3 s.
+
+6. The target D 259.49970798 was attempted from 2 bases: run2 attempt 3, D move 0.0278, predicted max|F| 1.14e-35, first |dz| 2.01e-14, ratio 1.76e+21, refused (stall rule); run2 attempt 5, D move 0.0139, predicted max|F| 1.87e-36, first |dz| 3.16e-15, ratio 1.69e+21, accepted. Predicted max|F| is x6.1 lower from the shorter step and the ratio differs by x1.04.
+
+7. Spearman rank correlation between D move and predicted max|F| over the 13 distinct attempts: -0.20 (ranks, ties by order; +1 is a monotone rise with the D move, -1 a monotone fall, 0 no trend).
+
+Step 8 was accepted at its first attempt with the same arclength a as step 7: with `--a_hold 1` a step that needed a halving keeps its length for the next one (anm_run.py line 114). It had no refused attempt and took 1.57 h, against 4.98 h for step 7.
+
+New in the table: the target D 259.49970798 was attempted twice, from bases 0.0278 and 0.0139 below it (statement 6). The predicted max|F| was x6.1 lower from the shorter step, but the factor from predicted max|F| to first |dz| agreed within x1.04. For this one pair that is consistent with the factor belonging to the target D and not to the base. Over all 13 points the predicted max|F| shows no monotone trend with the D move (statement 7). The source of the 1e-36 floor is still not identified.
+
+I changed no flag. run2 goes on: the series at D 259.4997 is being formed (1050 to 1091 s at the last bases), then arc step 9's first attempt. By the grow rule, a step accepted at its first attempt grows the next one by `--a_grow 1.25`, so its arclength a should be 0.0138854375 x 1.25 = 0.017356796875. The log will show it. t_D is 0.9999956133, no turn, and D is 0.403562 below 259.903269724106.
