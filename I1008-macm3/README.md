@@ -186,3 +186,5 @@ Next: anm_run's attempt 2 halves a to 0.027770875 (D move 0.027770753). If first
 
 anm_run pid 98367: elapsed 04:01:20, 124.5% cpu, rss 323 MB; D 0.431332 below 259.903269724106 at arc step 6's D.
 
+
+### run2: arc step 7, attempt 2 refused by the stall rule (2026-11-20 11:20 UTC)
