@@ -391,3 +391,56 @@ step 2: D0 259.485822607779, sign +1, a_max 2.543e+00, a 1.389e-02 (a_max), |t_D
   on 17: |F| 2.26e-71 converged, Delta 1.68346436247006959 -3.4315e-17
   corrector: 18 steps, pinned max|F| 2.26e-71 at D 259.51706470510565483, converged, 12934.4 s; denominators 1.00e+00, 1.00e+00, 1.00e+00, 1.00e+00, 1.00e+00, 1.00e+00, 1.00e+00, 1.00e+00, 1.00e+00, 1.00e+00, 1.00e+00, 1.00e+00, 1.00e+00, 1.00e+00, 1.00e+00, 1.00e+00, 1.00e+00, 1.00e+00, |b| 2.96e-03, 3.69e-03, 4.92e-03, 5.85e-03, 5.83e-03, 5.78e-03, 5.70e-03, 5.85e-03, 5.80e-03, 5.62e-03, 5.68e-03, 5.98e-03, 4.10e-03, 2.96e-03, 2.96e-03, 2.96e-03, 2.96e-03, 2.96e-03
 step 3: D0 259.499707984362, sign +1, a_max 2.569e+00, a 1.736e-02 (a_max), |t_D| base 1.000, cond max 1.0e+00 -> D 259.517064705106 in 18 its, max|F| 2.3e-71
+  coefficients_o: this hpkernel has no Solver.series_o (built before #914); the series by the jets
+  series at D 259.517064705106: pivots 2.4e-30..1.4e+37, |w_1| 3.261e-04, |w_N| 5.825e-24, 1277.8 s
+  attempt at D 259.538760606057 (the prediction moved +2.05e-32 in D, -3.10e-36 in Delta): predicted max|F| 1.75e-36, re-seed ok
+      border at D 259.5387606060570526421054532977895: g +2.05e-32, dD -3.07e-17 -> held, den 1.0000, |b| 0.0030, |a| 4.65e-15
+    on 0 chord 0: max|F| 3.97e+08, |dw| 2.672e+23
+  on 0: strong chord (4 weak directions), 1 steps after the full first step; theta at its point inf (bound 0.750): refused, 210.14 s
+    on 0 trial lam 1: max|F| 3.97e+08; simplified correction / |dz| = 2.900e+53 (bound 0.750); refused, 207.36 s
+      on 0, lam 1: projection failed (2): point max|F| 3.97e+08; u0 rung 1 its, |R| 2.47e+09 -> 2.47e+09, NOT converged; u0 quad-double 8 its, |R| 3.56e+08 -> 1.96e+06, NOT converged; ladder FAILED after 8 rungs, last rung u 0.300000 quad-double 8 its, |R| 2.15e+09 -> 1.80e+06, NOT converged
+    on 0 trial lam 0.5: max|F| 2.65e+07; simplified correction / |dz| = 1.812e+52 (bound 0.875); refused, 153.9 s
+      on 0, lam 0.5: projection failed (3): point max|F| 2.65e+07; u0 rung 1 its, |R| 7.23e+08 -> 7.23e+08, NOT converged; u0 quad-double 8 its, |R| 1.28e+08 -> 2.15e+06, NOT converged; ladder FAILED after 8 rungs, last rung u 0.300000 quad-double 8 its, |R| 1.89e+09 -> 1.77e+06, NOT converged
+    on 0 trial lam 0.25: max|F| 2.23e-29; simplified correction / |dz| = 7.497e-01 (bound 0.938); accepted, 216.77 s
+      border at D 259.5387606060570526421054532977895: g +7.68e-18, dD -3.05e-17 -> held, den 1.0000, |b| 0.0046, |a| 3.49e-15
+  on 0: |F| 1.75e-36 -> 2.23e-29, |dz| 4.65e-15 -> 3.49e-15, lam 0.25, dDelta +4.65e-15, piv 2.3e-30..1.4e+37, 890.01 s
+    on 1 trial lam 1: max|F| 1.51e+08; simplified correction / |dz| = 1.225e+53 (bound 0.750); refused, 196.49 s
+      on 1, lam 1: projection failed (4): point max|F| 1.51e+08; u0 rung 1 its, |R| 1.08e+09 -> 1.08e+09, NOT converged; u0 quad-double 8 its, |R| 3.10e+08 -> 2.70e+06, NOT converged; ladder FAILED after 8 rungs, last rung u 0.300000 quad-double 8 its, |R| 3.15e+09 -> 1.80e+06, NOT converged
+    on 1 trial lam 0.5: max|F| 1.59e+07; simplified correction / |dz| = 1.129e+52 (bound 0.875); refused, 154.42 s
+      on 1, lam 0.5: projection failed (5): point max|F| 1.59e+07; u0 rung 1 its, |R| 2.71e+09 -> 2.71e+09, NOT converged; u0 quad-double 8 its, |R| 1.23e+08 -> 2.21e+06, NOT converged; ladder FAILED after 8 rungs, last rung u 0.300000 quad-double 8 its, |R| 3.27e+09 -> 2.25e+06, NOT converged
+    on 1 trial lam 0.25: max|F| 3.05e-29; simplified correction / |dz| = 7.476e-01 (bound 0.938); accepted, 212.19 s
+      border at D 259.5387606060570526421054532977895: g +1.34e-17, dD -3.05e-17 -> held, den 1.0000, |b| 0.0058, |a| 2.59e-15
+  on 1: |F| 2.23e-29 -> 3.05e-29, |dz| 3.49e-15 -> 2.59e-15, lam 0.25, dDelta +3.49e-15, piv 2.3e-30..1.4e+37, 664.75 s
+    on 2 trial lam 1: max|F| 4.60e+07; simplified correction / |dz| = 4.815e+52 (bound 0.750); refused, 199.99 s
+      on 2, lam 1: projection failed (6): point max|F| 4.60e+07; u0 rung 1 its, |R| 2.13e+09 -> 2.13e+09, NOT converged; u0 quad-double 8 its, |R| 2.40e+08 -> 1.93e+06, NOT converged; ladder FAILED after 8 rungs, last rung u 0.300000 quad-double 8 its, |R| 1.41e+09 -> 1.81e+06, NOT converged
+    on 2 trial lam 0.5: max|F| 1.08e+07; simplified correction / |dz| = 7.002e+51 (bound 0.875); refused, 153.98 s
+      on 2, lam 0.5: projection failed (7): point max|F| 1.08e+07; u0 rung 1 its, |R| 2.02e+09 -> 2.02e+09, NOT converged; u0 quad-double 8 its, |R| 1.18e+08 -> 2.04e+06, NOT converged; ladder FAILED after 8 rungs, last rung u 0.300000 quad-double 8 its, |R| 1.23e+09 -> 1.77e+06, NOT converged
+    on 2 trial lam 0.25: max|F| 3.05e-29; simplified correction / |dz| = 7.488e-01 (bound 0.938); accepted, 213.29 s
+      border at D 259.5387606060570526421054532977895: g +1.77e-17, dD -3.06e-17 -> held, den 1.0000, |b| 0.0058, |a| 1.94e-15
+  on 2: |F| 3.05e-29 -> 3.05e-29, |dz| 2.59e-15 -> 1.94e-15, lam 0.25, dDelta +2.59e-15, piv 2.4e-30..1.4e+37, 669.05 s
+    on 3 trial lam 1: max|F| 1.50e+07; simplified correction / |dz| = 1.926e+52 (bound 0.750); refused, 151.7 s
+      on 3, lam 1: projection failed (8): point max|F| 1.50e+07; u0 rung 1 its, |R| 9.01e+08 -> 9.01e+08, NOT converged; u0 quad-double 8 its, |R| 1.43e+08 -> 2.01e+06, NOT converged; ladder FAILED after 8 rungs, last rung u 0.300000 quad-double 8 its, |R| 1.59e+09 -> 1.69e+06, NOT converged
+    on 3 trial lam 0.5: max|F| 3.13e-29; simplified correction / |dz| = 4.985e-01 (bound 0.875); accepted, 208.99 s
+      border at D 259.5387606060570526421054532977895: g +2.41e-17, dD -3.06e-17 -> held, den 1.0000, |b| 0.0059, |a| 9.79e-16
+  on 3: |F| 3.05e-29 -> 3.13e-29, |dz| 1.94e-15 -> 9.79e-16, lam 0.5, dDelta +1.94e-15, piv 2.4e-30..1.4e+37, 463.27 s
+    on 4 trial lam 1: max|F| 1.52e-29; simplified correction / |dz| = 7.150e-02 (bound 0.750); accepted, 199.22 s
+      border at D 259.5387606060570526421054532977895: g +3.06e-17, dD -3.07e-17 -> held, den 1.0000, |b| 0.0037, |a| 1.11e-16
+  on 4: |F| 3.13e-29 -> 1.52e-29, |dz| 9.79e-16 -> 1.11e-16, lam 1, dDelta +9.79e-16, piv 2.3e-30..1.4e+37, 301.15 s
+    on 5 trial lam 1: max|F| 3.72e-31; simplified correction / |dz| = 8.339e-03 (bound 0.750); accepted, 179.34 s
+      border at D 259.5387606060570526421054532977895: g +3.07e-17, dD -3.07e-17 -> held, den 1.0000, |b| 0.0030, |a| 8.96e-19
+  on 5: |F| 1.52e-29 -> 3.72e-31, |dz| 1.11e-16 -> 8.96e-19, lam 1, dDelta +2.14e-17, piv 2.3e-30..1.4e+37, 281.92 s
+    on 6 trial lam 1: max|F| 3.55e-35; simplified correction / |dz| = 5.002e-04 (bound 0.750); accepted, 152.88 s
+      border at D 259.5387606060570526421054532977895: g +3.07e-17, dD -3.07e-17 -> held, den 1.0000, |b| 0.0030, |a| 4.48e-22
+  on 6: |F| 3.72e-31 -> 3.55e-35, |dz| 8.96e-19 -> 4.48e-22, lam 1, dDelta -4.83e-19, piv 2.3e-30..1.4e+37, 254.83 s
+    on 7 trial lam 1: max|F| 5.37e-42; simplified correction / |dz| = 1.975e-08 (bound 0.750); accepted, 156.87 s
+      border at D 259.5387606060570526421054532977895: g +3.07e-17, dD -3.07e-17 -> held, den 1.0000, |b| 0.0030, |a| 8.85e-30
+  on 7: |F| 3.55e-35 -> 5.37e-42, |dz| 4.48e-22 -> 8.85e-30, lam 1, dDelta +8.86e-23, piv 2.3e-30..1.4e+37, 259.27 s
+    on 8 trial lam 1: max|F| 2.27e-57; simplified correction / |dz| = 1.318e-14 (bound 0.750); accepted, 160.42 s
+      border at D 259.5387606060570526421054532977895: g +3.07e-17, dD -3.07e-17 -> held, den 1.0000, |b| 0.0030, |a| 1.17e-43
+  on 8: |F| 5.37e-42 -> 2.27e-57, |dz| 8.85e-30 -> 1.17e-43, lam 1, dDelta -8.85e-30, piv 2.3e-30..1.4e+37, 267.18 s
+    on 9 trial lam 1: max|F| 1.46e-71; simplified correction / |dz| = 5.920e-30 (bound 0.750); accepted, 192.61 s
+      border at D 259.5387606060570526421054532977895: g +3.07e-17, dD -3.07e-17 -> held, den 1.0000, |b| 0.0030, |a| 1.93e-71
+  on 9: |F| 2.27e-57 -> 1.46e-71, |dz| 1.17e-43 -> 6.90e-73, lam 1, dDelta +9.47e-44, piv 2.3e-30..1.4e+37, 323.13 s
+  on 10: |F| 1.46e-71 converged, Delta 1.68346108620970747 +7.8299e-17
+  corrector: 11 steps, pinned max|F| 1.46e-71 at D 259.53876060605705264, converged, 4961.0 s; denominators 1.00e+00, 1.00e+00, 1.00e+00, 1.00e+00, 1.00e+00, 1.00e+00, 1.00e+00, 1.00e+00, 1.00e+00, 1.00e+00, 1.00e+00, |b| 2.96e-03, 4.56e-03, 5.82e-03, 5.85e-03, 5.94e-03, 3.67e-03, 2.96e-03, 2.96e-03, 2.96e-03, 2.96e-03, 2.96e-03
+step 4: D0 259.517064705106, sign +1, a_max 2.516e+00, a 2.170e-02 (a_max), |t_D| base 1.000, cond max 1.0e+00 -> D 259.538760606057 in 11 its, max|F| 1.5e-71
