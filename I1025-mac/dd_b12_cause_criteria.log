@@ -1,0 +1,17 @@
+== 2026-11-20 12:33:58 #1025 route (c): why the hionly control of the D 17.5 dd sign test did not fire. Written before the run.
+Facts (lane_dd17.log, dd_hybrid.log): at k_c 55, D 17.5 the dd M reads -1 at all 6 lambda (1.935-1.965), variants agree, robust to
+noise 1e-24..1e-16. The control --mutate=hionly (the dd build and LU in double arithmetic) also reads -1 at 1.9505, 1.9515, 1.955, with
+ln|det| 0.12-0.14 above the dd one, while the float64 build (DSSEll, complex step) reads +, -, + there with ln|det| off by 1.3-2.5.
+So by its criteria the sign test's reading is void. The hybrid (float64 blocks 0-11, dd block 12) matches the dd M's sign at all 6 lambda
+and its ln|det| to <= 2.5e-5 (H1 passes, its float64 control fires).
+Hypothesis: the float64 build's sign errors come from its block 12 (the horizon series to the last node), not from double rounding as
+such; the ddm algorithm's block 12 in double arithmetic (hionly) is much closer to the dd one.
+Run (dd_b12_cause.py, venv-1025dd): at lambda 1.9505 and 1.955, block 12 three ways: float64 DSSEll, the dd build, and the dd build under
+the hionly patch (applied in-process after the dd build, the same wrapper as ell_ddm's --mutate=hionly, then a fresh DDEll).
+Report: max|B - B_dd| / max|B_dd| and the largest column-wise ||b - b_dd|| / ||b_dd|| for B = float64 and B = hionly; the dets by
+multidouble dd_logdet of (a) float64 blocks 0-11 + dd block 12, (b) float64 blocks 0-11 + hionly block 12, (c) the plain float64 M.
+Consistency check that can fail: (a) reproduces dd_hybrid.log's ln|det| at these lambda to 1e-8.
+Prediction: the float64 block 12's error exceeds the hionly one's by >= 100x, and (b) reads -1 at both lambda.
+Reading: if both hold, the control failed to fire because the float64 build's error is in its horizon block's construction, and the
+float64 rounding of the ddm algorithm does not flip the sign in 1.935-1.965; a void reading of the dd sign test stays void, and the next
+dd check needs a control that is shown to flip a sign (proposal goes to t5). If (b) reads +, the hypothesis is wrong.

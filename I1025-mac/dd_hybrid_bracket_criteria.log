@@ -1,0 +1,10 @@
+== 2026-11-20 12:33:58 #1025 route (c): the hybrid M below the dd sign test's window, to bracket lambda_1 at k_c 55, D 17.5. Written before the run.
+Guide (not a result): ln|det| = c + b (lam - 1.95) + ln|lam - lam1| fitted to the 6 dd values gives lam1 ~ 1.9276 (rms 6e-4); the float64
+records give lambda_1(17) = 2.0265 at k_c 63 and slopes -0.20 to -0.23 per unit D, i.e. 1.91-1.93 at 17.5.
+Run: dd_hybrid.py (unchanged, venv-1025dd) at lam 1.89, 1.90, 1.91, 1.92, 1.925, 1.93; out data/ell_ddm_hybrid_1025.jsonl (appended).
+Pass at a lambda: the hybrid sign is unchanged by the 1e-15 noise on blocks 0-11 (both seeds).
+Reading: exactly one hybrid sign change over 1.89-1.965 (these 6 and the earlier 6 lambda), with every lambda passing, brackets lambda_1
+(numerical evidence once the dd M confirms the signs at both bracket ends, the check that can fail). More than one change, or a noise
+flip, means the hybrid does not resolve the sign there. No change means lambda_1 is below 1.89 or the det has no simple root here.
+Control: the plain float64 M's sign at each lambda (in the same run); the hybrid's reading counts only where the two constructions are
+told apart somewhere in the range, as at 1.935, 1.9505, 1.955.
