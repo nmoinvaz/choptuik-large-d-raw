@@ -39,3 +39,9 @@
 1008m run2 progress note 2: arc step 9 attempt 1 at correction 12, lam 1 reached 2026-11-20 18:18:15 UTC
 1008m run2 arc step 9 accepted at D 259.51706470510565 at its first attempt (a 0.017356796875, record 18:47:28 UTC); run continues 2026-11-20 18:48:01 UTC
 1008m run2 arc step 10 accepted at D 259.53876060605705 at its first attempt (a 0.02169599609375, record 20:31:29 UTC); run continues 2026-11-20 20:32:47 UTC
+1008m restart_watch_1008.py watches run2, anm_run pid 98367, 5 accepted steps: at the next accepted step stops it and starts run3 from that step's state on venv-macm3-1058b (the four checks at 8179068d are as wanted) 2026-11-20 21:25:51 UTC
+1008m run2 step 5 accepted (a 0.0271199951171875, 1 attempt(s), D 259.565880482280596091); SIGTERM anm_run pid 98367 for the restart as run3: state I1008-macm3/run2/arc_006_D259.565880.npz, a0 0.033899993896484376, steps 14, cap 70475 s 2026-11-20 22:36:40 UTC
+1008m run2 exit 241 wall 59133s 2026-11-20 22:36:49 UTC
+1008m run3 start, code main 8179068da460fe6be81312602e4c9987d17d73a3, venv /Users/nathan/Source/venv-macm3-1058b/bin/python: hpkernel.__file__ /Users/nathan/Source/venv-macm3-1058b/lib/python3.14/site-packages/hpkernel/__init__.py isa neon multidouble isa neon multidouble /Users/nathan/Source/venv-macm3-1058b/lib/python3.14/site-packages/multidouble/__init__.py python 3.14.3 ; state I1008-macm3/run2/arc_006_D259.565880.npz, steps 14, cap 70475 s, a0 0.033899993896484376, extra: --elim_switch 0 2026-11-20 22:36:54 UTC
+1008m stop_watch_1008.py ends (anm_run no longer running) 2026-11-20 22:37:16 UTC
+1008m stop_watch_1008.py watches run3, anm_run pid 54500: stops one accepted step after the step that holds the first turn 2026-11-20 22:37:25 UTC
