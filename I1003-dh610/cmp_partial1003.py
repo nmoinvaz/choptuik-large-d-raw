@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """cmp_partial1003.py PARTIAL.json REF.json [--mutate]: the partial file's sigma_str entries against the reference's, string by string
-(the partial file has no doubles). Pass: every entry equal (relative difference 0.0). --mutate changes one digit of the reference's entry 7 (the run must fail).
+(the partial file has no doubles). Pass: every entry the reference has is equal (relative difference 0.0); entries past the reference's are listed, not compared. --mutate changes one digit of the reference's entry 7 (the run must fail).
 Exit 1 on failure."""
 import json
 import sys
@@ -17,6 +17,9 @@ n = len(pil["sigma_str"])
 print(f"partial k_done {pil['k_done']} entries {n} vs reference entries {len(rs)} ; string compare only (no doubles in the partial file)")
 worst, bad = mp.mpf(0), []
 for k in range(n):
+    if k >= len(rs):
+        print(f"sigma_{k}: no reference entry (new in this run): {pil['sigma_str'][k]}")
+        continue
     p = [mp.mpf(x) for x in pil["sigma_str"][k]]
     r = [mp.mpf(x) for x in rs[k]]
     mod = max(mp.sqrt(r[0] ** 2 + r[1] ** 2), mp.sqrt(p[0] ** 2 + p[1] ** 2))
