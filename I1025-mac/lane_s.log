@@ -58,3 +58,22 @@ VERDICT D 13.0 k_c 31 (mutate shift): mixed
   sign, logdet = _umath_linalg.slogdet(a, signature=signature)
   sign, logdet = _umath_linalg.slogdet(a, signature=signature)
   sign, logdet = _umath_linalg.slogdet(a, signature=signature)
+{"D": 16.75, "l": 1, "kc": 47, "kappa": 0.7, "rk": 1, "reg": 0.0, "u0": 0.04, "Ks": 30, "src": "l1kc47Fx1025", "Delta": 1.0170564664768131, "Delta_src": 1.0170564664768236, "F": 2.171910410716261e-10, "F_start": 2.1721483292915582e-10, "steps": 2085, "constraint": 0.0028105329478793446, "dDelta_dF": 979510473.640779, "lam_gauge": 0.8433926329872362, "lam_guess": 2.0928, "lam": 2.1096347268613997, "gamma": 0.47401570862826375, "n_eval": 25, "n_signchanges": 1, "seconds": 1357}
+== exit 0 2026-11-20 07:36:40
+== 2026-11-20 07:36:40 ell_refine.py l1kc47Fx1025 47 l1kc47Fp1025 47 1 16.25 2.2009 --kappa 0.7 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60
+  cx = c * ((n - 1) * (a2 - 1) - 2 * L * g) / x
+  ax = a * ((p * p + m * m) + 2 * L * g + (n - 1) * (1 - a2)) / (2 * x)
+  lt = L * c * a2 * q / x
+  px = (-self.D(p, omega) + cx * p - c * p / x + pc - lt) / (x - c)
+  mx = (-self.D(m, omega) - cx * m + c * m / x - pc + lt) / (x + c)
+  a2 = a * a
+  cx = c * ((n - 1) * (a2 - 1) - 2 * L * g) / x
+  ax = a * ((p * p + m * m) + 2 * L * g + (n - 1) * (1 - a2)) / (2 * x)
+  pc = n * c * (p + m) / (2 * x)
+  px = (-self.D(p, omega) + cx * p - c * p / x + pc - lt) / (x - c)
+  mx = (-self.D(m, omega) - cx * m + c * m / x - pc + lt) / (x + c)
+  g = a2 * q * q
+  lt = L * c * a2 * q / x
+  mx = (-self.D(m, omega) - cx * m + c * m / x - pc + lt) / (x + c)
+  aG = cs(A, Q2, Kk) + (n - 1) * (A[Kk] - cs(A, A2, Kk)) + 2 * L * cs(A, G, Kk)
+  C[Kk + 1] = (Kk * C[Kk] - (n - 1) * (cs(C, A2, Kk) - C[Kk]) + 2 * L * cs(C, G, Kk)) / (Kk + 1)
