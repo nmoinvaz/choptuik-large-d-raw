@@ -95,7 +95,7 @@ When this was written the k_c 71 lambda search was still running (`data/l1kc71Fw
 
 The k_c 71 record (lam 2.1454677) counts only if both hold: (2) the lambda search from the guess 2.1408016 on the saved k_c 71 state (tag `l1kc71Fw1025c`) finds a root within 1e-6 of 2.1454677, with n_signchanges 1 and clear of its bracket's edges; and (1) the signtest at lam -+ 0.002 passes. Otherwise the root of (2) is reported as the k_c 71 value, with its own checks. Until then the record is suspect.
 
-## Result (interim, first publish 2026-11-20 03:10 UTC, updated 10:31 UTC)
+## Result (interim, first publish 2026-11-20 03:10 UTC, updated 10:50 UTC)
 
 The checks passed, and lambda_1 at D 17 is in at k_c 63. Everything else is still running.
 
@@ -224,6 +224,15 @@ The signtest (from 09:53:04 to 10:13:17 UTC, 4 threads; control agree, agree, DI
 Both lines agree, with the sign -1 at lam - 0.02 and +1 at lam + 0.02: pass, by the coordinator's rule. By the restated prediction table, m = lambda_71 - lambda_63 = -4.25e-9 (m <= 0, abs(m) < 4.7e-3) falls in the "converging" row.
 
 Flag, for the coordinator's reading: lam equals the guess to the last bit and sits on the lower edge of its bracket, which is the pattern the edge test is meant to catch. The signtest shows that the sign of det M changes somewhere between 2.1254677 and 2.1654677; it does not show where. The k_c 71 and k_c 63 gammas agree to 9 digits (0.466098837 and 0.466098836) while Delta moves by -7.4e-7 from k_c 63 to 71 (-5.1e-7 from k_c 55 to 63, with lambda moving -1.37e-2). I have not run a signtest at a smaller spacing around lam or a refine from another guess, which would show where in the interval the sign changes.
+
+### k_c 71 at D 16.5, check (1): the signtest at lam -+ 0.002 passes (10:31:00 to 10:50:01 UTC)
+
+| lambda | signs of det(QM), four random Q | agree | singular values below 1e-12 / 1e-15 | smallest three | seconds |
+|---|---|---|---|---|---|
+| 2.1434677 (lam - 0.002) | -1, -1, -1, -1 | true | 62 / 50 | 5.0e-18, 2.3e-18, 5.6e-19 | 571 |
+| 2.1474677 (lam + 0.002) | 1, 1, 1, 1 | true | 62 / 50 | 5.0e-18, 9.7e-19, 3.0e-19 | 570 |
+
+Both lines agree, with the sign -1 at lam - 0.002 and +1 at lam + 0.002: pass. The sign of det M changes between 2.1434677 and 2.1474677, so a root lies within 0.002 of 2.1454677, as far as the signtest resolves signs. Check (2), the lambda search from 2.1408016 on the same state (tag `l1kc71Fw1025c`, `kc71c_D16.5.log`), has run since 10:50:01 UTC; the record is suspect until it is in.
 
 ### k_c 63 at D 16.75 (running since 09:06:47 UTC, the coordinator's job)
 
