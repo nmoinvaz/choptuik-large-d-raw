@@ -85,3 +85,24 @@ recount's record of (3.6623456, 1.06904321), byte for byte line 889 of `fix2931/
 `--m3starts=0.2,0.25`, noise cap 1e7; trail 0.2-0.17, |r3| 1.26e-6, noise3 3.5e-6, F_3 0.005494 - 0.141795i). The
 sheet check passes with it appended to b21-25's final cache (0 of 1561 pairs flagged, |dF_3| 0.0025-0.0078 to its
 valued neighbours on A 3.6623456).
+
+Seeds under the seed bug (20 Nov, 03:20-03:30 UTC, `diag/seedfix_replay/`, `run.sh`, `compare.py`): every cache made
+with `--seed` before 6da7da7b replayed twice by `diag/replay_runs.py`, with the copies of the 0.2 file's records as that
+code made them and as 6da7da7b makes them (`--keepfix`, new). The replay now matches a batch's records by key, since
+argcount writes them as they return from db28e274 on; without `--keepfix` it gives the stored seed files byte for
+byte. 0 of 2339 seeds differ (Mac 835, b11-15 555, b16-20 334, b21-25 425, b26-31 190). The control, box 16's
+relocation at 998fd290 (`loc/z16`), differs in 4 of 5, as it must.
+
+Merge dry run (20 Nov, `merge_dry/`; `run.sh DH b21-25 CODE PY` with DH = I1021-dh610 at 19ad1c0e, CODE at 6da7da7b;
+inputs in `in/SHA256SUMS`, the dh610 and Mac points files are not copied here). Base: the Mac cache (1049 lines);
+parts: b11-15, b16-20, b21-25, b26-31, and `in/part_fix2931.jsonl` (the prefix and fix2931's records of
+(3.6623456, 1.06904321) and (3.7873456, 0.90654321), its lines 889 and 808). `merged.jsonl`: 2448 lines, 2386 points,
+2381 valued, 5 without value; `--mutate=prefix` fails. `diag/merge_check.py` (`spec.json`) finds each record's source:
+every continuation-valued record has final noise3 <= 1e7 (largest 2.06e3, b21-25 line 669, (3.9123456, 0.30654321))
+and start noise3 <= 1e7 by a replay row (largest 5.7e-4) or by its code's cap (728f59c7: 1e2, 998fd290: 1e7); 28
+points are valued in one source and without value in another, each listed with both files (`merge_check.log`);
+`--mutate=noise` fails. 90 points valued by two parts keep the first part's record; the two records agree to 6.5e-8
+in F_3 and within 1.41 sigma in R. The sheet check passes along grid lines (0 of 4102 pairs) and on every part's
+leaves (0 of 136, 179, 104, 122 and 45 cells), and the planted switch fails (`sheet_check.log`). samebits: the Mac
+cache is the merged file's first 1049 lines with all 994 valued records unchanged; each dh610 part is not a prefix by
+construction and differs only at those 90 points; `--mutate=flip` fails (`samebits.log`).
