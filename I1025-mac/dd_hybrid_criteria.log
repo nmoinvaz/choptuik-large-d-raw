@@ -1,0 +1,9 @@
+== 2026-11-20 11:19:50 #1025 route (c): the hybrid M (float64 DSSEll.mode_matrix with block 12, the horizon series to the last node, from the
+dd build) at k_c 55, D 17.5, the same 6 lambda as the dd sign test (dd_signtest_D17.5_criteria.log). Written before the run.
+Why: at D 13 swapping in the dd block 12 moved the float64 root onto the dd root to 2.3e-11 (dd_B2_swap.log). If the hybrid's sign equals the
+full dd M's at every lambda here, the float64 failure past D 17 is the horizon block, and the root finder can run on the hybrid at a fraction of
+the dd build's cost.
+At each lambda: the hybrid's det by multidouble dd_logdet (venv-1025dd); its sign under relative noise 1e-15 on blocks 0-11 (2 seeds), which
+stand for their float64 rounding; and |ln|det| hybrid - ln|det| dd|.
+H1 (pass): the hybrid's sign equals the dd M's at all 6 lambda, and is unchanged by the 1e-15 noise. Otherwise the hybrid is not enough at
+D 17.5. Control: the plain float64 M's sign (dd_logdet), which differs from the dd M's at 1.935 and 1.9505 at least if the dd pattern holds.
