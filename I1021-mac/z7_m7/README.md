@@ -52,3 +52,14 @@ xi1 0.15 (`xi015/`, `run_z7.sh 0.15`, from 07:07 UTC): the coordinator's order (
 failed at 0.2 in dh610's box 16 run. The control was validated at 0.15 in #1027. The same route at 0.15, with #1026's M = 5
 and #1027's M = 7 controls as gates (`eval_z7.py --xi 0.15` gates on both at every radius; at 0.2 the M = 5 control
 passed, so its reading is the same). `run_z7.sh` now takes the radius; the 0.2 run read `run_z7_v181e77d6.sh`.
+
+xi1 0.15 result (07:07-07:23 UTC, `xi015/`): the evaluator's and backend's checks give their expected exits again.
+#1026's M = 5 control FAILS: its walk stops at "no step reduced |r_1| with a converged solve (five halvings)" after 15
+solves (every |r_3| <= 6.6e-8), best |r_1| 2.1e-2 against the criterion's 1e-2, at (2.718582533, 0.999229421), 3.3e-6 in
+A and 1.0e-6 in w/w_inf from the stored zero. dh610's control at 0.15 failed the same way (|r_1| 1.4e-2), and the
+coordinator keeps it a fail. On the coordinator's word the driver was stopped by hand at 07:20:26 UTC, before box 7's
+walks. #1027's M = 7 control was already running and finished at 07:23 (4 solves): PASS, zero (2.719239, 1.000026),
+(-1.4e-6, +6.1e-7) from #1027's, |F_7/F_5| 0.0573 at the M = 5 zero (stored 0.0574). Reading (`xi015/eval_z7.txt`,
+`eval_z7.py --xi 0.15` by hand after the stop): NO VERDICT at M = 7 at 0.15, by the M = 5 control's gate. The no-verdict
+line now gives each failed control's own residuals. The first 0.15 reading named the M = 7 control's residuals instead,
+and was fixed before it was used. `logs/eval_z7_rerun.log` is the 0.2 reading with that text, with the same verdict.

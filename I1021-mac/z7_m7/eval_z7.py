@@ -50,12 +50,17 @@ def gated(lab, okc, mut=""):
     return lab if (okc or mut == "nogate") else "NO VERDICT"
 
 
-def ctrl_res(c):
+def ctrl_res(c, name="the control"):
+    """a failed control's residuals: its last solve's, and the best |r_1| when the walk stopped without converging"""
     p = c["points"][-1] if c and c.get("points") else None
     if not p or not p.get("r1"):
-        return "no solve of the control has residuals"
-    return (f"the control's last solve: |r_1| {math.hypot(*p['r1']):.3g}, |r_3| {p['r3']:.1e}, |r_5| {p['r5']:.1e}, "
-            f"|r_7| {p['r7']:.1e}")
+        return f"no solve of {name} has residuals"
+    s = (f"{name}'s last solve: |r_1| {math.hypot(*p['r1']):.3g}, |r_3| {p['r3']:.1e}, |r_5| {p['r5']:.1e}"
+         + (f", |r_7| {p['r7']:.1e}" if "r7" in p else ""))
+    b = c["verdict"].get("best")
+    if b and b.get("r1"):
+        s += f"; best |r_1| {math.hypot(*b['r1']):.3g} at ({b['A']:.9f}, {b['w']:.9f})"
+    return s
 
 
 def info_in(w):
@@ -124,8 +129,8 @@ def main(argv):
             out.append(f"xi1 {xi} control: no walk")
         lab, txt = z16_verdict(load(d, "z7m5", xi), load(d, "z7", xi), None, mut)
         g = gated(lab, okc and ok5, mut)
-        why = " and ".join(s for s, k in (("the M = 5 control", ok5), ("the M = 7 control", okc)) if not k)
-        out.append(f"xi1 {xi} z7: {g}: {txt}" + ("" if g == lab else f" (by the ratios and shifts alone: {lab}; not counted, since {why} at {xi} did not pass: {ctrl_res(c)})"))
+        why = "; ".join(f"{s} at {xi} did not pass: {ctrl_res(w, s)}" for s, k, w in (("the M = 5 control", ok5, c5), ("the M = 7 control", okc, c)) if not k)
+        out.append(f"xi1 {xi} z7: {g}: {txt}" + ("" if g == lab else f" (by the ratios and shifts alone: {lab}; not counted, since {why})"))
     print("\n".join(out))
     return 0 if ok else 1
 
