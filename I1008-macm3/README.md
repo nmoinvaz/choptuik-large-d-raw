@@ -80,3 +80,24 @@ so the stop rule cannot fire. `stop_ab2.py`'s first version read the base polish
 04:33:01 UTC; the fixed version (only lines after `attempt at D`) is armed since 04:33:23 UTC. The cap is capped_run.py's own timer (SIGTERM 06:09:48 UTC), left as is.
 AB2's cap moved to 2026-11-20 10:10:00 UTC at the coordinator's order (05:06 UTC): `capped_run.py` (pid 83927) stopped by pid, anm_run pid 83930 continues, `hold_run.py`
 holds `caffeinate -is -w 83930` and the new deadline (`exits_1008.txt`; its `ab2 exit 143 wall 3388s` line is the stopped wrapper's). anm_run's own stall rule is unchanged.
+
+## AB2 result: arc step 5 accepted (2026-11-20 06:08 UTC)
+
+**Arc step 5 is accepted, and t_D has not changed sign.** AB2 converged to `--tol_od 1e-60` (max|F| 6.57e-65, 10 corrector steps = 9 corrections and the check, corrector 5367.3 s) at D 259.42750402623674815, 0.044433205 above arc step 4's D. Accepted lam per correction: 0.25, 0.25, 0.25, 0.5, 1.0, 1.0, 1.0, 1.0, 1.0. Record counts: ladder 11, failed 9, skipped 0 (`--elim_switch 0`: nothing skipped). The log has 7 `projection failed` lines (numbered 2, 3, 4, 5, 6, 7, 8); I have not reconciled the record's 9 failed projections with them.
+
+Arclength steps so far (all from `arc.jsonl`; D move = a x t_D at the start, to 7 digits; `t_D` is the tangent's D component at the start and the end of the step):
+
+| arc step | run | arclength a | D | t_D start | t_D end | D below 259.903269724106 |
+|---|---|---|---|---|---|---|
+| 0 | pilot2/0 | 0.0455 | 259.15272808460191 | 0.9999955928 | 0.9999955952 | 0.750542 |
+| 1 | pilot2/1 | 0.056875 | 259.20960283416388 | 0.9999955952 | 0.9999955982 | 0.693667 |
+| 2 | run1/0 | 0.0455 | 259.25510263393521 | 0.9999955982 | 0.9999956006 | 0.648167 |
+| 3 | run1/1 | 0.056875 | 259.31197738380136 | 0.9999956006 | 0.9999956035 | 0.591292 |
+| 4 | run1/2 | 0.07109375 | 259.38307082137117 | 0.9999956035 | 0.9999956072 | 0.520199 |
+| 5 | ab2/0 | 0.0444334 | 259.42750402623675 | 0.9999956072 | 0.9999956095 | 0.475766 |
+
+t_D is 0.9999956095 and still rising, by 2.31e-09 over arc step 5 (5.2e-08 per unit of arclength) and 3.7e-09 over arc step 4 (5.21e-08 per unit), so there is no turn yet. D is 0.475766 below order 130's D_max, which is 10.7 steps of this length.
+
+Against run1's attempt 2 of the same step (default switch, arclength a 0.04443359375): refused by the stall rule after 8 corrections, lam 0.0625, 0.0625, 0.0625, 0.0625, 0.0625, 0.0625, 0.03125, 0.03125, 11457.4 s. AB2 differs in `--elim_switch 0` and in a (4.4e-6 relative shorter, your `--a0 0.0444334`), one run each, so this is one comparison, not a replicate. Refused trials in AB2: 7 (lam 1 or 0.5, every one with a failed projection ladder at point max|F| 1.31e+07 to 6.74e+08), none after correction 3; from correction 4 on every full step is accepted (lam 1).
+
+AB2 is over (anm_run pid 83930 ended on its own at 06:05:31 UTC, `done` in ab2.log; hold_run.py ended with deadline_hit False). `ab2/` holds arc.jsonl and arc_001_D259.427504.npz and no arcjet file (`ab1/` has none either, `run1/` has one per accepted step); the next step would need the series at D 259.42750402623675 computed or supplied. The code worktree `choptuik-large-d-1008` and the main checkout moved to main 9980cd93 (fast-forward) after AB2 ended.
