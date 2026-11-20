@@ -71,3 +71,4 @@ Settings throughout: l = 1, kappa 0.7, u0 0.04, Ks 30. Seeds: #660's D = 10 stat
 | `signtest_lowD_driver_v2.sh`, `signtest_lowD_v2_smoke.log` | v2 of the low-D signtest driver: ROWS_D (which rows, in order), RESUME, BLAS_THREADS and Git Bash paths, so rows split across machines without repeats |
 | `p4_control_note.log` | P4's float64 control did not fire (1 change over 26 brentq evaluations), so P4 stopped; lane A paused, lane B held; a noise-matched control is proposed |
 | `p4_ctrl2.py`, `p4_ctrl2.log` | P4 control 2: the hybrid at the five lambda where the float64 fine scan flips (k_c 55, D 16); P4 resumes only if it reads one sign there (`out/ell_p4_ctrl2_1025.jsonl`) |
+| `p4_driver_w.sh`, `p4_driver_w_smoke.log` | P4 share for another machine (winb): cross-check row first (Fb D 16, k_c 55, must match the Mac to 1e-5), then D 15.5 k_c 63, D 14.5 k_c 55, D 16.25 k_c 63; inputs pinned by blob; smoke-tested on the Mac (timeout and cross-check stop paths) |

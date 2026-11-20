@@ -17,3 +17,11 @@ Record checks: n_signchanges 1 passes and the signtest passes, but the root is 2
 FAILS. By u0resolve_criteria.log the float64 record is not read. Its float64 shift from u0 0.04 would be +6.08e-2.
 Per p1d_criteria.log the hybrid scan of this state decides instead. Its 7 lambda (2.15-2.33) include the float64 root's interval
 (2.28, 2.33).
+== 2026-11-20 18:35:51 P1-prime-d at k_c 55 (p1d_criteria.log; out/ell_p1d_1025.jsonl; lane_p1d.log).
+Hybrid scan on l1kc55Fh1025 (u0 0.02): - - - - + + + at 2.15 .. 2.33, exactly one change, every lambda noise-robust. Float64 reads + at all
+seven. Root (brentq on the hybrid): 2.2432296517, final bracket (2.2432296293, 2.2432296517), width 2.2e-8, 1 change over 13
+evaluations, noise-robust.
+T1 = 2.2432296517 - 2.2440428096 (P4's hybrid re-root of Fb at u0 0.04) = -8.13e-4. |T1| >= 3e-4, so T1 PASSES (measurable).
+That reading is provisional while P4 is stopped: the u0 0.04 root is P4's, and P4's control 2 is running.
+T2 (the cut alone, Ks 45 at u0 0.04) comes next, before the coordinator's rule (|d| > 3.33e-3) applies. If it did now, |T1| < 3.33e-3.
+For contrast, the float64 fixed-state shift was -0.134 and the float64 re-solve found no root at all.

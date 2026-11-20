@@ -67,3 +67,10 @@ Fail: any hybrid sign change among the five, or a noise flip. Then P4 stays stop
 Resume P4 (lane A's paused row, lane B, winb's share) only if control 2 passes.
 Amendment 5 is accepted by the coordinator. winb's D 17 row (lane A) is read under it, "written after the row started". Its old-rule
 reading is reported beside it: |F| 2.2770621748e-10 against 2.2759514360e-10, 4.9e-4 relative, equal steps 2744.
+== 2026-11-20 18:39:53 AMENDMENT 6 (the coordinator's word), written before lane B runs anywhere. Lane B is split, so no row runs twice.
+The Mac takes D 16.75 k_c 63 (winb's real record), D 16.5 k_c 63 and D 16 k_c 63 (p4_list_b_mac.txt).
+winb takes D 15.5 k_c 63, D 14.5 k_c 55 and D 16.25 k_c 63, after its cross-check row: Fb, k_c 55, D 16, which must give the Mac's hybrid
+root 2.244042809616683 to 1e-5, or winb's batch stops (p4_driver_w.sh).
+Both machines run the same p4_hybrid.py (blob a402559b) on code worktrees whose solver modules are identical to 505d8399.
+They start only if control 2 passes. In slot B the order is: lane A's paused D 17 row resumes, lane A's other rows follow, then the
+Mac's lane B rows.

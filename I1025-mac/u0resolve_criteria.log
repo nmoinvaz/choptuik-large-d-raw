@@ -22,3 +22,16 @@ Bars for a shift to count as the horizon truncation's effect:
 Also reported: d(63) - d(55) against the 55 -> 63 move at u0 0.04 (+3.33e-3), i.e. the k_c move at u0 0.02.
 Note on the coordinator's Ks 45 estimate (~1e-8 at k_c 63, D 16): the u^30 fit gives the residual's dependence on u at fixed Ks, not on Ks,
 so it does not predict Ks 45. The dd A2 at Ks 45 measures it instead.
+== 2026-11-20 18:39:43 T2 addendum (coordinator's go after 18:37 UTC), written before any T2 run. Slot A, after the k_c 63 scan. k_c 55, D 16, from Fb.
+Feasibility of Ks 45 at u0 0.04, on Fb's state at lam 2.2440428, Ks 45 against Ks 30 with everything else equal:
+ F1 (the cut falls): ell_ddm.py sshres --us 0.04. The worst tangent residual at Ks 45 must be <= 1e-2 times its Ks 30 value, so r <= 1e-2,
+    T2's condition.
+ F2 (the float64 series holds at order 45, needed by ell_refine's float64 background solve and grid): ell_ddm.py check --blocks 12. The
+    float64-vs-dd block-12 error at Ks 45 must be <= 2x its Ks 30 value.
+If F1 and F2 pass: ell_refine.py l1kc55Fb1025 55 l1kc55Fk1025 55 1 16 2.2426280416106374 --kappa 0.7 --u0 0.04 --Ks 45 --tol 1e-12
+--wait 60. The re-solve must reach F < 1e-8. Then p1d_scan.py on its state at the same 7 lambda, with the same rule: one robust change,
+then the hybrid root.
+T2 passes if |lam(Ks 45) - 2.2432296517| <= 3e-4, which is max(0.2 |T1|, 3e-4). If instead lam(Ks 45) stays within 3e-4 of
+2.2440428096 (u0 0.04, Ks 30), the shift is not the cut's. Anything else is reported as it is.
+If F1 or F2 fails: u0 0.03 (tag l1kc55Fi1025) instead, reported first, since it also lengthens the segment.
+T2's reading is reported to the coordinator before its rule is applied.
