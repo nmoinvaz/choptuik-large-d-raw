@@ -1,0 +1,18 @@
+== 2026-11-20 08:49:07 #1025: lane T-b's ell_refine (k_c 63, D 16 from l1kc55Fb1025) stopped at 08:28:53 with 'SVD did not converge'. Diagnosis (scratch scripts tb_diag*.py):
+  regrid finite True F0 2.620696790269746e-06 2 s
+  after refreeze |F| 2.620696790269746e-06 finite True
+  J shape (4135, 4135) finite True nonfinite count 0 max 5.904084915543769 170 s
+  numpy svd ok: s0 8.07729775496734 s_min 2.674615179183147e-17
+  numpy svd (vectors) ok
+  done 207 s
+     jac 0: |F| 1.832e-10 Delta 1.001713444510 mu 1e-07 corr 2 smin/smax 1.9e-17 (174 s)
+  SVD FAILED on (4135, 4135): finite True, nonfinite 0, max 5.904e+00
+  lm raised LinAlgError: SVD did not converge at 589 s
+  numpy 2.5.4 scipy 1.18.1
+  numpy gesdd: FAILED again: SVD did not converge 19 s
+  scipy gesvd: ok in 214 s, s0 8.077301e+00, s_min 2.919e-17, |U S Vt - J|/|J| 1.45e-14, |U^T U - I| 8.0e-13
+  So numpy's gesdd (macOS Accelerate) fails on a finite Jacobian at the second LM iterate; gesvd succeeds. The matrix (137 MB, scratch) is over raw's 90 MB limit and is not stored.
+== 2026-11-20 08:49:07 check of dss_ell.svd_robust (gesdd, gesvd when gesdd raises) on that matrix, and the control (plain np.linalg.svd must raise):
+  control: plain gesdd raised: SVD did not converge (control OK)
+svd fallback: gesdd did not converge, gesvd instead
+  svd_robust: |U S Vt - J| / |J| = 1.45e-14 (bar 1e-12): OK, s0 8.077301e+00, 231 s
