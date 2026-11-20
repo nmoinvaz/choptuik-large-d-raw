@@ -1,0 +1,16 @@
+capped_run: child pid 98367, cap 129600 s
+horizon series to order 135 instead of the state's 135
+  make_solver: this hpkernel has no octo_tangents (built before #921); the octo-double Jacobian takes one tangent per evaluation
+held values from the fit data/held_fit.json (degree 8, 138 full-system states, D 38.020417-73.0), relative to the base
+the base keeps its stored plan (21 steps)
+  reseed: this hpkernel has no Solver.residual_sub; each rung residual is taken from the full residual
+  reseed: this hpkernel has no Solver.jacobian_sub; each rung block is taken from the full Jacobian
+  PinnedO: this hpkernel has no Solver.newton_o_residual; each step forms its residual again
+  on 0: |F| 6.57e-65 converged, Delta 1.68347789279811799 -8.4699e-17
+      elim projections {'u0': 0, 'u0q': 0, 'ladder': 1, 'failed': 0, 'skipped': 0}
+      octo-double Newton: 1 steps, max|F| 6.6e-65, converged; double-double |F| of its first two parts 3.4e+09
+base I1008-macm3/ab2/arc_001_D259.427504.npz: D 259.427504026, M 32, pin 3 (held [5, 7, 9, 11, 13]), |F| 3.4e+09; N 24, eps 1e-14, h_max 1.0, corrector od (junk_only False), tol 1.0e-20 x 1.45^(D - 259.4275), stalls accepted below 1e-17
+  on 0: strong chord (4 weak directions), 1 steps after the full first step; theta at its point 2.071e-33 (bound 0.750): accepted, 357.14 s
+  on 0: |F| 4.37e-38 -> 7.21e-71, |dz| 4.66e-38 -> 2.97e-75, lam 1, dDelta -1.77e-39, piv 2.6e-30..1.3e+37, 639.07 s
+  on 1: |F| 7.21e-71 converged, Delta 1.68347789279811799 -8.4699e-17
+base polished at D rounded to double-double (259.4275040262367481536151164164618): max|F| 4.37e-38 -> 7.21e-71 in 2 steps, converged, Delta moved -1.77e-39
