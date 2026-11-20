@@ -41,11 +41,15 @@ ell_eigs.py <state> D kc lambda --r 0 --N 24 --p 12 --dlam 0 --no_polish_complex
 | `start_win1025.cmd` | the detached launcher |
 | `pre/` | the two planted checks run by hand before the start |
 | `checks.log` | `ell_eigs.py planted` (exit 0) and its mutation `--mutate=beyn` (exit 1), then the lane's end line |
-| `kc63_start.log`, `out/l1kc63Fw1025.jsonl`, `out/sol_l1kc63Fw1025_D*.npy` | k_c 63 at D 17 and 17.5 from k_c 55, with lambda; then lambda at D 18 to 20 |
-| `leap_kc63.log`, `out/l1kc63W1025.jsonl`, `out/sol_l1kc63W1025_D*.npy` | `ell_leap --fold` at k_c 63, D 17.5 to 20 |
-| `lam_kc63.log` | lambda at k_c 63 on the continuation's half-integer states |
+| `kc63_start.log`, `out/l1kc63Fw1025.jsonl`, `out/sol_l1kc63Fw1025_D*.npy` | k_c 63 at D 17 and 17.5 from k_c 55, with lambda (no lambda at D 18 to 20, by the coordinator's order) |
+| `leap_kc63.log`, `out/l1kc63W1025.jsonl`, `out/sol_l1kc63W1025_D*.npy` | `ell_leap --fold` at k_c 63, D 17.5 to 18 (D_end 18 in place of the script's 20) |
+| `lam_kc63.log` | lambda at k_c 63 on the continuation's half-integer states (never written: P2 stopped, see Changes) |
+| `kc63_D16.5.log`, `out/l1kc63Fw1025b.jsonl`, `out/sol_l1kc63Fw1025b_D16.5000.npy`, `run_D16.5_1025.sh`, `start_D16.5_1025.cmd` | the k_c 63 refine at D 16.5 (the coordinator's job) and its launcher |
+| `signtest.log`, `out/signtest_l1kc63_1025.jsonl`, `run_signtests_1025.sh`, `start_signtests_1025.cmd` | xfkappa's `signtest.py` (raw `I1025-mac/signtest.py`, hash a2f53a90): the planted control, then the D 17.5 and D 16.5 k_c 63 records, and the JSON lines alone |
+| `check_1025.py`, `check_D17.5_1025.log`, `check_D16.5_1025.log` | the coordinator's record checks (n_signchanges, 2% test or edge test, distance to the Mac's k_c 55 value); `python check_1025.py --selftest` passes |
 | `eigs_a.log`, `eigs_b.log` | **INVALID.** `ell_eigs` (Beyn's contour method) on the Mac's k_c 47 and 55 states at D 17.5, stopped at 03:21 UTC: its rank test printed `rank = p: raise --p` and M is ill-conditioned along the whole contour. Kept as written; no `out/eigs_win1025_*.jsonl` record was produced |
 | `guard_leap_1025.py`, `start_guard_1025.cmd`, `guard_1025.log`, `guard_main.log` | the guard that holds the k_c 63 leap at D 18 (coordinator's order) and its launcher and logs |
+| `stop_P1_1025.log`, `stop_P2_1025.log`, `guard_now_main.log`, `start_guard_now_1025.cmd` | the stops of the script's P1 and P2 subshells (exact pids) and the guard's `--now` mode that started the leap at 04:27 |
 | `stop_eigs_1025.log` | the stop of the eigenvalue scans: times, pids killed, cause |
 | `pre/selftest_guard.log`, `pre/selftest_guard_4threads.log` | the guard's selftests on dummy processes (2 BLAS threads, then 4 with the thread assertion) |
 | `main.log` | the script's own stdout and stderr |
@@ -65,7 +69,7 @@ ell_eigs.py <state> D kc lambda --r 0 --N 24 --p 12 --dlam 0 --no_polish_complex
 
 The planted checks and the first-job checks (a), (b) of the scans below are as measured. They passed, and they do not make the scans' output valid.
 
-## Result (interim, first publish 2026-11-20 03:10 UTC, updated 06:07 UTC)
+## Result (interim, first publish 2026-11-20 03:10 UTC, updated 07:17 UTC)
 
 The checks passed, and lambda_1 at D 17 is in at k_c 63. Everything else is still running.
 
@@ -92,10 +96,57 @@ lambda_1 at D 17 (`kc63_start.log`, `out/l1kc63Fw1025.jsonl`; the k_c 47 and 55 
 - The k_c 63 solve prints many numpy overflow and invalid-value RuntimeWarnings from `dss_ell.py` in `kc63_start.log` (trial steps of the Levenberg-Marquardt solve). The solve ended with F 2.3e-10 and no error; the Mac's k_c 55 start log has none.
 - The eigenvalue scans (`eigs_a.log`, `eigs_b.log`) are invalid: see Changes during the run (rank = p, ill-conditioned M along the contour). They were stopped at 03:21 UTC and are kept as written.
 
-Since the first publish (04:30 UTC), as of 06:06 UTC:
+Since the first publish, the k_c 63 records at D 17.5 and D 16.5 came in, and each went through the coordinator's checks and xfkappa's signtest. The D 17.5 record failed its signtest and is not used. The D 16.5 record passed.
 
-- The k_c 63 states at D 17.5 (saved 03:40 UTC, a 31 min solve) and D 16.5 (saved 04:13 UTC, 43 min on 4 threads) are in `out/`. Their lambda searches are still running: D 17.5 for 2.5 h, D 16.5 for 1.9 h (the D 17 search took 1.8 h with four processes). There is no D 17.5 or D 16.5 record yet, so no record check and no signtest outcome. Both records stay suspect until their signtest passes.
-- The leap to D 18 (4 threads, since 04:27 UTC, no lambda) has taken one step, D 17.625, in 3266 s: constraint 5.93e-4, F 2.35e-10 (from a start of 6.1e-4), 2625 steps, Delta 1.0362004 (predicted 1.0361789), |dDelta/dF| 1.21e9, lam_gauge 0.8574. Its fold fields: sv_fold 0.0, cos_fold 0.0769, i_fold 2, n_null 59, sv_J_max 9.78, tan_norm 0.2036. They are in `out/l1kc63W1025.jsonl` and `leap_kc63.log`; the reading stays with the coordinator.
-- Pace, a projection and not a result: three steps remain to D 18 (17.75, 17.875, 18). At 3266 s each, about 2.7 h, so D 18 near 08:50 UTC if the load stays the same (three jobs on 8 threads: 2 + 4 + 4 BLAS threads, CPU load about 88%).
+### D 17.5 at k_c 63: signtest fails, record not used
 
-Not yet: lambda_1 at D 17.5 and D 16.5 with their signtests, and the k_c 63 leap to D 18 (no lambda at D 18, by the coordinator's order). The eigenvalue scans are invalid and stopped. The reading stays with #1025.
+Record (`kc63_start.log`, `out/l1kc63Fw1025.jsonl`, written 06:45 UTC): lam 1.9744811, gamma 0.506462, n_eval 28, 13019 s from the start of the lane (the solved state was saved at 03:40 UTC), Delta 1.0334310 (k_c 55: 1.0334300), F 2.29e-10 from a start of 1.8e-5, 2649 steps, constraint 4.69e-4, |dDelta/dF| 1.15e9.
+
+The coordinator's checks (`check_D17.5_1025.log`, edge rule, reference the Mac's k_c 55 value 1.9522284):
+
+| item | value |
+|---|---|
+| n_signchanges | 1 (OK) |
+| guess | 2.0265465 (lambda at D 17, the only history point) |
+| bracket | w 0.06, grid 1.904954, 2.026546, 2.148139 (step 0.121593), root in [1.904954, 2.026546]; `check_1025.py` derives w as the first of 0.02, 0.06, 0.15, 0.35 whose grid holds the root, because the record does not keep it |
+| distance to the bracket's edges | 0.572 grid steps from the lower edge, 0.428 from the upper; the edge test (at least 0.05 steps from both, a bar I chose) passes |
+| 2% test | -2.57% from the guess, fails; it does not apply at D 17.5, by the coordinator's order |
+| lam minus the Mac's k_c 55 value | +2.225e-2 (+1.14%) |
+
+The signtest (control `planted` printed agree, agree, DISAGREE at 03:58 UTC; D 17.5 run from 06:45:45, 4 threads):
+
+| lambda | signs of det(QM), four random Q | agree | singular values below 1e-12 / 1e-15 | smallest three | seconds |
+|---|---|---|---|---|---|
+| 1.9544811 (lam - 0.02) | 1, -1, 1, -1 | false | 56 / 44 | 7.0e-18, 3.6e-18, 2.0e-18 | 580 |
+| 1.9944811 (lam + 0.02) | 1, 1, 1, -1 | false | 56 / 44 | 4.0e-18, 2.5e-18, 1.7e-20 | 458 |
+
+The pass condition is agree true in both lines and opposite signs at the two lambdas. Neither line agrees and the signs are not opposite, so the signtest fails and the record is not used. The lines resemble the planted DISAGREE case (40 singular values at 1e-19): the sign of det M at this state is set by the rounding floor, as xfkappa found at k_c 55.
+
+### D 16.5 at k_c 63: signtest passes
+
+Record (`kc63_D16.5.log`, `out/l1kc63Fw1025b.jsonl`, written 07:02 UTC): lam 2.1454677, gamma 0.466099, n_eval 27, 12759 s from the start at 03:29:33 UTC (state saved 04:13 UTC), Delta 1.0117782 (k_c 55: 1.0117787), F 2.06e-10 from a start of 5.3e-6, 2843 steps, constraint 6.95e-5, |dDelta/dF| 1.64e9.
+
+The checks (`check_D16.5_1025.log`, 2% rule): n_signchanges 1 (OK); guess 2.1591248 (the Mac's k_c 55 lambda at D 16.5), lam is -0.633% from it, so the 2% test passes; bracket w 0.02, grid 2.115942, 2.159125, 2.202307 (step 0.043182), root in [2.115942, 2.159125], 0.684 grid steps from the lower edge and 0.316 from the upper; lam minus the Mac's k_c 55 value -1.366e-2.
+
+The signtest (D 16.5 run from 07:03:03):
+
+| lambda | signs of det(QM), four random Q | agree | singular values below 1e-12 / 1e-15 | smallest three | seconds |
+|---|---|---|---|---|---|
+| 2.1254677 (lam - 0.02) | -1, -1, -1, -1 | true | 55 / 42 | 8.4e-18, 5.3e-18, 6.4e-19 | 386 |
+| 2.1654677 (lam + 0.02) | 1, 1, 1, 1 | true | 54 / 41 | 8.5e-18, 4.7e-18, 1.7e-18 | 365 |
+
+Both lines agree, with the sign -1 at lam - 0.02 and +1 at lam + 0.02: pass, by the coordinator's rule. The passing lines also count 54 and 55 singular values below 1e-12 (the failing D 17.5 lines count 56), so the pass rests on the four random Q agreeing in sign. The reading stays with the coordinator and the issue.
+
+### The leap to D 18 (4 threads, since 04:27 UTC, no lambda), as of 07:16 UTC
+
+| D | h | seconds | constraint | F | Delta | abs dDelta/dF | cos_fold | i_fold | n_null |
+|---|---|---|---|---|---|---|---|---|---|
+| 17.625 | 0.125 | 3266 | 5.93e-4 | 2.35e-10 | 1.0362004 | 1.21e9 | 0.0769 | 2 | 59 |
+| 17.75 | 0.125 | 3033 | 7.11e-4 | 2.43e-10 | 1.0389829 | 1.36e9 | 0.0258 | 3 | 57 |
+| 17.8125 | 0.0625 | 3062 | 7.75e-4 | 2.48e-10 | 1.0403799 | 1.46e9 | 0.0585 | 1 | 57 |
+
+After D 17.75 the leap's fold watch printed `sigma_reg 3.489e-11 -> 1.087e-11, |J^+ dF/dn| 0.204 -> 0.22; h -> 0.0625` and halved its step. Three steps remain (17.875, 17.9375, 18). At about 51 min each that is 2.5 h, so D 18 near 09:40 UTC under the same load (a projection). The leap stops at D 18 and takes no lambda there.
+
+### Not yet
+
+The leap's last three steps. The eigenvalue scans are invalid and stopped. The lane's k_c 63 values in use: lambda at D 17 (2.0265465; no signtest was asked for it) and at D 16.5 (2.1454677, signtest passed). D 17.5 has none. The reading stays with #1025.

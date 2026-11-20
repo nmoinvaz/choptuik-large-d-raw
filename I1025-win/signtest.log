@@ -3,3 +3,14 @@ planted: 0 singular values at 1e+00 of 1: signs [1.0, 1.0, 1.0, 1.0, 1.0, 1.0] -
 planted: 40 singular values at 1e-13 of 1: signs [1.0, 1.0, 1.0, 1.0, 1.0, 1.0] -> agree
 planted: 40 singular values at 1e-19 of 1: signs [1.0, -1.0, 1.0, -1.0, 1.0, 1.0] -> DISAGREE
 == exit 0 2026-11-20 03:58:43
+== 2026-11-20 06:45:45 signtest.py data/sol_l1kc63Fw1025_D17.5000.npy 17.5 63 around=data/l1kc63Fw1025.jsonl:17.5:0.02
+signtest: data/sol_l1kc63Fw1025_D17.5000.npy D 17.5 k_c 63 at lam [1.9544810531070749, 1.994481053107075]
+{"state": "sol_l1kc63Fw1025_D17.5000.npy", "D": 17.5, "kc": 63, "lam": 1.9544810531070749, "signs": [1.0, -1.0, 1.0, -1.0], "agree": false, "logabs": -1936.210780381384, "n_below_1e_12": 56, "n_below_1e_15": 44, "smallest": [6.965237570115852e-18, 3.5666661852482265e-18, 2.020195931959602e-18], "sec": 579.8}
+{"state": "sol_l1kc63Fw1025_D17.5000.npy", "D": 17.5, "kc": 63, "lam": 1.994481053107075, "signs": [1.0, 1.0, 1.0, -1.0], "agree": false, "logabs": -1932.9965952403888, "n_below_1e_12": 56, "n_below_1e_15": 44, "smallest": [4.0072312453686665e-18, 2.495950316207756e-18, 1.7368904055005236e-20], "sec": 457.5}
+== exit 0 2026-11-20 07:03:02
+== 2026-11-20 07:03:03 signtest.py data/sol_l1kc63Fw1025b_D16.5000.npy 16.5 63 around=data/l1kc63Fw1025b.jsonl:16.5:0.02
+signtest: data/sol_l1kc63Fw1025b_D16.5000.npy D 16.5 k_c 63 at lam [2.1254677042524617, 2.1654677042524617]
+{"state": "sol_l1kc63Fw1025b_D16.5000.npy", "D": 16.5, "kc": 63, "lam": 2.1254677042524617, "signs": [-1.0, -1.0, -1.0, -1.0], "agree": true, "logabs": -1903.1610756475452, "n_below_1e_12": 55, "n_below_1e_15": 42, "smallest": [8.405196564336e-18, 5.26660530213455e-18, 6.392063638945271e-19], "sec": 385.8}
+{"state": "sol_l1kc63Fw1025b_D16.5000.npy", "D": 16.5, "kc": 63, "lam": 2.1654677042524617, "signs": [1.0, 1.0, 1.0, 1.0], "agree": true, "logabs": -1898.6907984993722, "n_below_1e_12": 54, "n_below_1e_15": 41, "smallest": [8.48178673467557e-18, 4.71054391919802e-18, 1.7127687018253562e-18], "sec": 364.6}
+== exit 0 2026-11-20 07:15:33
+== 2026-11-20 07:15:33 both signtests done
