@@ -47,3 +47,20 @@ step 1: D 253.336485813, pivots 6.8e-18..1.2e+48, |z_1| 3.39e-04, |z_N| 2.17e-25
       octo-double Newton: 2 steps, max|F| 1.9e-32, converged; double-double |F| of its first two parts 3.2e+27
     a 0.427 -> D 253.763361338: predicted |F| 1.96e+28, od 2 steps -> 3.23e+27 (tol 1.4e-20, stall accepted, Delta correction +0.0e+00), Delta 1.684352469572 (formula diff -1.6e-06), moved 2.4e-20, 1666 s
       Delta of the saved state, its eight parts summed exactly: 1.684352469572138872919176247568915628380
+step 2: the series saved as /home/nathan/Source/choptuik-large-d-raw-wt613/I966-dh370/ks_chain3b/leg07_D252.8861_ks293/jet_pin3_D253.7634.npz (8 parts, 396 s)
+step 2: D 253.763361338, pivots 5.4e-18..3.0e+47, |z_1| 3.38e-04, |z_N| 2.62e-25, ratios 2-5 326.0 286.0 1.9 4.9, a_max 1.726, 396 s
+  a_rule reseed: a_h tail e_N+1 4.50e-29 (ratio 2.81), level 0.00715 of the pole line 3.38e-39: a 0.4136
+    a 0.4136: re-seeded (ok), 237.97 s
+      horizon data refined in octo-double, rung max|R| 1.44e-15 -> 8.17e-27 -> 9.29e-27 -> 8.88e-27
+    on 0 chord 0: max|F| 4.47e-17, |dw| 3.230e-33
+    on 0 chord 1: max|F| 8.82e-03, |dw| 5.096e-18
+  on 0: strong chord (4 weak directions), 2 steps after the full first step; theta at its point inf (bound 0.750): refused, 355.27 s
+    on 0 trial lam 1: max|F| 4.47e-17; simplified correction / |dz| = 2.810e-02 (bound 0.750); accepted, 207.88 s
+  on 0: |F| 5.19e-26 -> 4.47e-17, |dz| 2.64e-20 -> 8.62e-31, lam 1, dDelta +2.64e-20, piv 4.4e-18..1.7e+48, 675.01 s
+    on 1 trial lam 1: max|F| 1.18e-31; simplified correction / |dz| = 2.242e-01 (bound 0.750); accepted, 172.55 s
+  on 1: |F| 4.47e-17 -> 1.18e-31, |dz| 8.62e-31 -> 1.94e-31, lam 1, dDelta -8.62e-31, piv 4.3e-18..1.7e+48, 287.65 s
+  on 2: |F| 1.18e-31 above tol at the floor, own correction |dz| 1.94e-31, dDelta -1.94e-31: converged by the floor rule (|dDelta| <= 1e-30), Delta 1.68428730444257502 -6.0036e-17
+      elim projections {'u0': 0, 'u0q': 0, 'ladder': 0, 'failed': 0, 'skipped': 0, 'pred': 5}
+      octo-double Newton: 3 steps, max|F| 1.2e-31, converged; double-double |F| of its first two parts 9.1e+26
+    a 0.414 -> D 254.176932649: predicted |F| 4.08e+27, od 3 steps -> 9.14e+26 (tol 1.6e-20, stall accepted, Delta correction +0.0e+00), Delta 1.684287304443 (formula diff -1.6e-06), moved 2.6e-20, 1416 s
+      Delta of the saved state, its eight parts summed exactly: 1.684287304442574957269109891192315854668
