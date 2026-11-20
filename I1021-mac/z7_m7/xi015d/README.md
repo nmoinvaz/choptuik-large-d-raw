@@ -82,3 +82,20 @@ Diagnostic (`z7/diag/`, nice 19, the same hier_nb.py solve at verbose=2): from t
 |g| 3.2e-2 to 5.2e-2 (three stops), against 6.8e-8 to 4.4e-7 (seven stops) at 0.2. The largest entries of hier's Jacobian K
 grow from 0.2 to 0.15 by 5.4e5 (d r_3 / d x_3: 1.95e9 to 1.05e15) and 6.2e5 (d r_5 / d x_5: 1.80e7 to 1.12e13). So at box
 7's (A, w) at 0.15 the double-precision floor of level 5 is 3e4 to 5e4 times the 1e-6 solve bar.
+
+## Result, box 16 (12:43-12:54 UTC, `z16/exits.txt`, `z16/eval.txt`, `z16/logs/`, `z16/walks/`)
+
+The 22 checks, both gate walks and the evaluator give their expected exits. The box's M = 5 walk exits 1. Gate: both
+controls PASS, with the same numbers as box 7's run (the code is deterministic): M = 5 +2.16e-6 and +1.38e-6 (64 s), M = 7
+-1.43e-6 and +6.06e-7, |F7/F5| 0.0573 (531 s).
+
+Box 16's M = 5 start solve at xi1 0.15 does not converge: |r_3| 6.7e3, |r_5| 0.14 at the first attempt, then 6.4e3, 6.7e3
+and 6.5e3 at the three repeats (|r_5| 0.52, 0.47, 0.80). The walk keeps the first repeat (|r_3| 6.4e3). There is no M = 5
+zero, and the M = 7 walk did not run. Verdict, counted since both controls pass: **UNDECIDED** (#1027's rule with no M = 5
+zero).
+
+Diagnostic (`z16/diag/`, as box 7's): from the same start, hier_nb.py at xi1 0.2 reaches |r_3| 5.5e-4, |r_5| 9.9e-7 (hier.py's
+counted attempt: 1.2e-4, 1.2e-6). At 0.15 the level-5 solves stop at hier's noise floor, |g| 0.14 to 0.68 (four stops),
+against 4.1e-7 to 2.3e-6 (nine stops) at 0.2, and level 3 stops at its noise floor at |g| 6.69e3. K's d r_3 / d x_3 grows from
+1.54e11 to 5.23e16 (3.4e5) and d r_5 / d x_5 from 7.73e8 to 3.53e13 (4.6e4). At box 16's (A, w) at 0.15 the floor of level 5
+is 1.4e5 to 6.8e5 times the 1e-6 solve bar.
