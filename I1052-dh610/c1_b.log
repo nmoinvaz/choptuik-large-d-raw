@@ -1,0 +1,29 @@
+# 2026-11-20 12:14:48 UTC cwd /home/nathan/Source/choptuik-large-d-1052/hp cmd: /home/nathan/Source/venv-i1050/bin/python -u anm_run.py /home/nathan/Source/choptuik-large-d-raw /home/nathan/Source/choptuik-large-d-raw/I1052-dh610/c1_b --state I966-dh370/ks_chain3b/leg10_D256.1776_ks293/anm_pin3_D256.5265.npz --kfreeze 3 --held_fit data/held_fit.json --N 31 --eps 1e-14 --h_max 2 --threads 10 --corrector od --tol_od 2e-34 --qd_it 40 --lam_stall 0.04 --od_junk 0 --jet_o 1 --reseed 2 --reseed_q 1 --held_o 1 --reseed_o 3 --od_accept natural --od_strong 4 --reseed_start pred --jet_tangent_from 1 --series_split 1 --proj_start pred --reseed_o_stop 1 --od_floor_delta 1e-30 --proj_o 1 --reseed_qd_bar 1e-13 --ks 293 --keep_plan 0 --D_max 266.1776 --steps 1 --a_rule step --od_times 1 --a0 0.32135254397862245 --od_broyden 1
+horizon series to order 293 instead of the state's 293
+held values from the fit data/held_fit.json (degree 8, 138 full-system states, D 38.020417-73.0), relative to the base
+  on 0: |F| 4.96e-36 converged, Delta 1.68392111131797684 +8.3915e-17
+  od Broyden: 1 factorizations, 0 update steps, 0 refused
+  od times: 1 factorizations 84.8 s, 0 trial projections 0.0 s, 0 trial residuals and solves 0.0 s, updates 0.0 s
+      elim projections {'u0': 0, 'u0q': 0, 'ladder': 0, 'failed': 0, 'skipped': 0, 'u0o': 1}
+      octo-double Newton: 1 steps, max|F| 5.0e-36, converged; double-double |F| of its first two parts 2.8e+28
+base I966-dh370/ks_chain3b/leg10_D256.1776_ks293/anm_pin3_D256.5265.npz: D 256.526502359, M 32, pin 3 (held [5, 7, 9, 11, 13]), |F| 2.8e+28; N 31, eps 1e-14, h_max 2.0, corrector od (junk_only False), tol 1.0e-20 x 1.45^(D - 256.5265), stalls accepted below 1e-17
+step 0: D 256.526502359, pivots 1.6e-18..2.2e+49, |z_1| 3.32e-04, |z_N| 1.74e-21, ratios 2-5 329.9 44.9 33.9 0.2, a_max 1.286, 261 s
+    a 0.3214: re-seeded (ok), 115.81 s
+      horizon data refined in octo-double, rung max|R| 6.65e-14 -> 2.07e-29 -> 1.60e-29 -> 1.93e-30 -> 3.51e-31 -> 2.70e-31
+    on 0 chord 0: max|F| 4.07e-26, |dw| 7.111e-38
+    on 0 chord 1: max|F| 2.69e-26, |dw| 2.869e-37
+  on 0: strong chord (4 weak directions), 2 steps after the full first step; theta at its point inf (bound 0.750): refused, 268.99 s
+    on 0 trial lam 1: max|F| 4.07e-26; simplified correction / |dz| = 3.386e-11 (bound 0.750); accepted, 106.96 s
+  on 0: |F| 8.25e-27 -> 4.07e-26, |dz| 1.31e-20 -> 4.45e-31, lam 1, dDelta +1.31e-20, piv 1.4e-18..3.1e+49, 375.96 s; updates begin (|db| / |dz| 3.011e-11), no factors there
+    on 1 update trial 1: max|F| 1.21e-30; Theta = |v| / |s| = 1.193e+00 (bound 0.500); refused, 81.72 s
+    on 1 trial lam 1: max|F| 4.89e-31; simplified correction / |dz| = 4.659e-11 (bound 0.750); accepted, 83.52 s
+  on 1: |F| 4.07e-26 -> 4.89e-31, |dz| 7.63e-32 -> 3.55e-42, lam 1, dDelta -7.63e-32, piv 1.4e-18..3.1e+49, 143.69 s
+  on 2: |F| 4.89e-31 above tol at the floor, own correction |dz| 3.55e-42, dDelta -3.55e-42: converged by the floor rule (|dDelta| <= 1e-30), Delta 1.68387153968345116 +4.2741e-17
+  od Broyden: 3 factorizations, 0 update steps, 1 refused
+  od times: 3 factorizations 301.0 s, 3 trial projections 269.4 s, 3 trial residuals and solves 2.8 s, updates 0.0 s
+      elim projections {'u0': 0, 'u0q': 0, 'ladder': 0, 'failed': 0, 'skipped': 0, 'u0o_refused': 6, 'pred': 6}
+      octo-double Newton: 3 steps, max|F| 4.9e-31, converged; double-double |F| of its first two parts 5.5e+28
+    a 0.321 -> D 256.847854903: predicted |F| 1.03e+29, od 3 steps -> 5.49e+28 (tol 1.1e-20, stall accepted, Delta correction +0.0e+00), Delta 1.683871539683 (formula diff -1.6e-06), moved 1.3e-20, 924 s
+      Delta of the saved state, its eight parts summed exactly: 1.683871539683451200028452047224799948584
+done
+exit 0

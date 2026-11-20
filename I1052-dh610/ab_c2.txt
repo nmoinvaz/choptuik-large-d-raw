@@ -1,0 +1,13 @@
+ run  A steps  A LUs      A s  B steps  B LUs  B upd  B ref      B s
+   0        0      1                 0      1      0      0         
+   1        2      3    852.0        2      2      0      1    718.0
+seconds by part (--od_times 1): factorizations, trial projections, trial residuals and solves, updates
+  A run 0: 1 LUs 71 s, 0 projections 0 s, 0 residuals and solves 0 s, updates 0 s
+  A run 1: 3 LUs 308 s, 2 projections 145 s, 2 residuals and solves 2 s, updates 0 s
+  B run 0: 1 LUs 65 s, 0 projections 0 s, 0 residuals and solves 0 s, updates 0 s
+  B run 1: 2 LUs 199 s, 3 projections 196 s, 3 residuals and solves 3 s, updates 0 s
+(1) last runs converged: A True, B True
+(2) D_str A 257.1451913914569266661480639868386788293719291687, B 257.1451913914569266661480639868386788293719291687 (same); |Delta_B - Delta_A| 0.0 (bound 1e-30); max entry difference 0.0
+(3) factorizations in the last run: A 3, B 2 + 1 deferred to the next series
+gain: corrector seconds A 852.0, B 718.0 + 270 for the deferred LU (A's median per factorization) = 988; B / A 1.160
+PASS
