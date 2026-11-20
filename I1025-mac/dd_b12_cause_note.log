@@ -1,0 +1,18 @@
+== 2026-11-20 12:44:16 reading of dd_b12_cause.log against dd_b12_cause_criteria.log (numbers from out/ell_ddm_b12cause_1025.jsonl).
+Consistency check: PASS. (a) float64 blocks 0-11 + dd block 12 reproduces dd_hybrid.log's ln|det| exactly (difference 0.0 at both lambda).
+Prediction 1 (the float64 block 12's error exceeds hionly's by >= 100x): FAILS. Relative to the dd block 12:
+  lambda 1.9505: float64 7.66e-11 (worst column 1.93e-10), hionly 4.74e-11 (worst column 4.70e-11): ratio 1.6 (column 4.1)
+  lambda 1.955 : float64 8.43e-11 (worst column 1.91e-10), hionly 4.74e-11 (worst column 4.69e-11): ratio 1.8 (column 4.1)
+  hionly's lo parts are 0 (the mutation is applied).
+Prediction 2 ((b), float64 blocks 0-11 + hionly block 12, reads -1 at both lambda): HOLDS.
+ln|det| minus the dd M's: (b) +0.1432 and +0.1207; (c) plain float64 -1.3198 and -2.4675; (a) +2.4e-6 and +4.7e-7.
+(b) minus the full hionly M: +8.1e-7 and -3.2e-7, so the hionly M's whole offset from dd is its block 12.
+Reading: the hypothesis "the ddm algorithm's block 12 in double arithmetic is much closer to the dd one" is WRONG. Both double-precision
+horizon blocks are wrong by 5e-11 to 2e-10 relative, and that alone moves ln|det| by O(0.1-2.5); blocks 0-11 in double move it by
+<= 2.5e-5 (hybrid) and ~1e-6 (hionly). Whether the sign flips depends on the error's direction: hionly's left it alone at these lambda,
+float64's flipped it. So the control did not fire because a double-precision horizon block is a perturbation of size ~1e-10 whose effect on the sign is erratic,
+not because double arithmetic is harmless. det M at k_c 55, D 17.5 is sensitive at that level to block 12 and robust to 1e-14 noise in
+the whole M (E2) and 1e-15 noise on blocks 0-11 (hybrid).
+Consequence: the dd sign test stays void. A control for the next dd check must be matched to the error that flips the sign: relative
+noise on block 12 alone at a scan of sizes (1e-14 .. 1e-9, several seeds), which must flip the sign at >= 1 lambda at the double size
+(~1e-10) and must not at the dd size; plus the dd horizon series' own accuracy at D 17.5 (check A2's sshres there).

@@ -1,0 +1,69 @@
+== 2026-11-20 12:46:02 ell_ddm.py sshres data/sol_l1kc55Fs1025_D17.5000.npy 17.5 55 1.93 --us 0.01,0.005 --bar 1e-24 --out data/ell_ddm_checks_1025.jsonl
+  u 0.01: p' residual (mpmath, 60 digits), value 1.4e-24, tangents 3.1e-24
+  u 0.01: m' residual (mpmath, 60 digits), value 7.5e-27, tangents 2.0e-26
+  u 0.01: a' residual (mpmath, 60 digits), value 4.9e-29, tangents 4.4e-28
+  u 0.01: c' residual (mpmath, 60 digits), value 2.5e-30, tangents 4.3e-29
+  u 0.01: q' residual (mpmath, 60 digits), value 1.2e-32, tangents 1.9e-26
+  u 0.005: p' residual (mpmath, 60 digits), value 2.9e-24, tangents 6.1e-24
+  u 0.005: m' residual (mpmath, 60 digits), value 7.4e-27, tangents 2.9e-29
+  u 0.005: a' residual (mpmath, 60 digits), value 4.8e-29, tangents 3.3e-32
+  u 0.005: c' residual (mpmath, 60 digits), value 2.5e-30, tangents 1.8e-32
+  u 0.005: q' residual (mpmath, 60 digits), value 1.2e-32, tangents 2.0e-32
+check A2 D 17.5 k_c 55 lambda 1.93: horizon series against the x-ODE, worst 6.1e-24 (bar 1e-24) -> FAIL
+== exit 1 2026-11-20 12:46:07
+== 2026-11-20 12:46:07 ell_ddm.py sshres data/sol_l1kc55Fs1025_D17.5000.npy 17.5 55 1.93 --us 0.01,0.005 --bar 1e-24 --out data/ell_ddm_checks_1025.jsonl --mutate=lam
+  u 0.01: p' residual (mpmath, 60 digits), value 1.4e-24, tangents 1.0e+00
+  u 0.01: m' residual (mpmath, 60 digits), value 7.5e-27, tangents 5.8e-03
+  u 0.01: a' residual (mpmath, 60 digits), value 4.9e-29, tangents 4.4e-28
+  u 0.01: c' residual (mpmath, 60 digits), value 2.5e-30, tangents 4.3e-29
+  u 0.01: q' residual (mpmath, 60 digits), value 1.2e-32, tangents 1.9e-26
+  u 0.005: p' residual (mpmath, 60 digits), value 2.9e-24, tangents 1.0e+00
+  u 0.005: m' residual (mpmath, 60 digits), value 7.4e-27, tangents 5.8e-03
+  u 0.005: a' residual (mpmath, 60 digits), value 4.8e-29, tangents 3.1e-32
+  u 0.005: c' residual (mpmath, 60 digits), value 2.5e-30, tangents 1.8e-32
+  u 0.005: q' residual (mpmath, 60 digits), value 1.2e-32, tangents 1.6e-32
+check A2 D 17.5 k_c 55 lambda 1.93: horizon series against the x-ODE, worst 1.0e+00 (bar 1e-24) -> FAIL [mutate lam]
+== exit 1 2026-11-20 12:46:12
+== 2026-11-20 12:46:12 ell_ddm.py sshres data/sol_l1kc55Fs1025_D17.5000.npy 17.5 55 1.93 --us 0.04 --bar 1e-24
+  u 0.04: p' residual (mpmath, 60 digits), value 6.6e-19, tangents 3.9e-08
+  u 0.04: m' residual (mpmath, 60 digits), value 2.3e-17, tangents 2.0e-08
+  u 0.04: a' residual (mpmath, 60 digits), value 9.1e-19, tangents 3.2e-10
+  u 0.04: c' residual (mpmath, 60 digits), value 3.2e-21, tangents 3.2e-11
+  u 0.04: q' residual (mpmath, 60 digits), value 1.7e-19, tangents 1.9e-08
+check A2 D 17.5 k_c 55 lambda 1.93: horizon series against the x-ODE, worst 3.9e-08 (bar 1e-24) -> FAIL
+== exit 1 2026-11-20 12:46:16
+== 2026-11-20 12:46:16 dd_b12_noise.py 1.92,1.935,1.9505,1.955
++1.6e-12lam 1.92 eps 1e-20: signs [1.0, 1.0, 1.0, 1.0] (unperturbed +1), ln shifts , -2.0e-12lam 1.92 eps 1e-20: signs [1.0, 1.0, 1.0, 1.0] (unperturbed +1), ln shifts , +6.8e-13lam 1.92 eps 1e-20: signs [1.0, 1.0, 1.0, 1.0] (unperturbed +1), ln shifts , -2.3e-13
++1.1e-08lam 1.92 eps 1e-16: signs [1.0, 1.0, 1.0, 1.0] (unperturbed +1), ln shifts , -2.4e-08lam 1.92 eps 1e-16: signs [1.0, 1.0, 1.0, 1.0] (unperturbed +1), ln shifts , +1.6e-09lam 1.92 eps 1e-16: signs [1.0, 1.0, 1.0, 1.0] (unperturbed +1), ln shifts , -2.5e-10
++1.1e-06lam 1.92 eps 1e-14: signs [1.0, 1.0, 1.0, 1.0] (unperturbed +1), ln shifts , -2.4e-06lam 1.92 eps 1e-14: signs [1.0, 1.0, 1.0, 1.0] (unperturbed +1), ln shifts , +1.6e-07lam 1.92 eps 1e-14: signs [1.0, 1.0, 1.0, 1.0] (unperturbed +1), ln shifts , -2.5e-08
++1.1e-04lam 1.92 eps 1e-12: signs [1.0, 1.0, 1.0, 1.0] (unperturbed +1), ln shifts , -2.4e-04lam 1.92 eps 1e-12: signs [1.0, 1.0, 1.0, 1.0] (unperturbed +1), ln shifts , +1.6e-05lam 1.92 eps 1e-12: signs [1.0, 1.0, 1.0, 1.0] (unperturbed +1), ln shifts , -2.5e-06
++1.1e-03lam 1.92 eps 1e-11: signs [1.0, 1.0, 1.0, 1.0] (unperturbed +1), ln shifts , -2.4e-03lam 1.92 eps 1e-11: signs [1.0, 1.0, 1.0, 1.0] (unperturbed +1), ln shifts , +1.6e-04lam 1.92 eps 1e-11: signs [1.0, 1.0, 1.0, 1.0] (unperturbed +1), ln shifts , -2.7e-05
++1.1e-02lam 1.92 eps 1e-10: signs [1.0, 1.0, 1.0, 1.0] (unperturbed +1), ln shifts , -2.4e-02lam 1.92 eps 1e-10: signs [1.0, 1.0, 1.0, 1.0] (unperturbed +1), ln shifts , +1.5e-03lam 1.92 eps 1e-10: signs [1.0, 1.0, 1.0, 1.0] (unperturbed +1), ln shifts , -3.9e-04
++1.1e-01lam 1.92 eps 1e-09: signs [1.0, 1.0, 1.0, 1.0] (unperturbed +1), ln shifts , -2.4e-01lam 1.92 eps 1e-09: signs [1.0, 1.0, 1.0, 1.0] (unperturbed +1), ln shifts , +8.8e-03lam 1.92 eps 1e-09: signs [1.0, 1.0, 1.0, 1.0] (unperturbed +1), ln shifts , -1.7e-02
+lam 1.92: unperturbed +1 -1625.9279745800; smallest eps with a flip: None (140 s)
++3.0e-12lam 1.935 eps 1e-20: signs [-1.0, -1.0, -1.0, -1.0] (unperturbed -1), ln shifts , +0.0e+00lam 1.935 eps 1e-20: signs [-1.0, -1.0, -1.0, -1.0] (unperturbed -1), ln shifts , +1.1e-12lam 1.935 eps 1e-20: signs [-1.0, -1.0, -1.0, -1.0] (unperturbed -1), ln shifts , +4.5e-13
++2.0e-08lam 1.935 eps 1e-16: signs [-1.0, -1.0, -1.0, -1.0] (unperturbed -1), ln shifts , -7.1e-09lam 1.935 eps 1e-16: signs [-1.0, -1.0, -1.0, -1.0] (unperturbed -1), ln shifts , +1.6e-09lam 1.935 eps 1e-16: signs [-1.0, -1.0, -1.0, -1.0] (unperturbed -1), ln shifts , -4.0e-09
++2.0e-06lam 1.935 eps 1e-14: signs [-1.0, -1.0, -1.0, -1.0] (unperturbed -1), ln shifts , -7.1e-07lam 1.935 eps 1e-14: signs [-1.0, -1.0, -1.0, -1.0] (unperturbed -1), ln shifts , +1.6e-07lam 1.935 eps 1e-14: signs [-1.0, -1.0, -1.0, -1.0] (unperturbed -1), ln shifts , -4.0e-07
++2.0e-04lam 1.935 eps 1e-12: signs [-1.0, -1.0, -1.0, -1.0] (unperturbed -1), ln shifts , -7.1e-05lam 1.935 eps 1e-12: signs [-1.0, -1.0, -1.0, -1.0] (unperturbed -1), ln shifts , +1.6e-05lam 1.935 eps 1e-12: signs [-1.0, -1.0, -1.0, -1.0] (unperturbed -1), ln shifts , -4.0e-05
++2.0e-03lam 1.935 eps 1e-11: signs [-1.0, -1.0, -1.0, -1.0] (unperturbed -1), ln shifts , -7.1e-04lam 1.935 eps 1e-11: signs [-1.0, -1.0, -1.0, -1.0] (unperturbed -1), ln shifts , +1.5e-04lam 1.935 eps 1e-11: signs [-1.0, -1.0, -1.0, -1.0] (unperturbed -1), ln shifts , -4.0e-04
++2.0e-02lam 1.935 eps 1e-10: signs [-1.0, -1.0, -1.0, -1.0] (unperturbed -1), ln shifts , -7.2e-03lam 1.935 eps 1e-10: signs [-1.0, -1.0, -1.0, -1.0] (unperturbed -1), ln shifts , +1.4e-03lam 1.935 eps 1e-10: signs [-1.0, -1.0, -1.0, -1.0] (unperturbed -1), ln shifts , -4.2e-03
++2.0e-01lam 1.935 eps 1e-09: signs [-1.0, -1.0, -1.0, -1.0] (unperturbed -1), ln shifts , -8.1e-02lam 1.935 eps 1e-09: signs [-1.0, -1.0, -1.0, -1.0] (unperturbed -1), ln shifts , +1.5e-03lam 1.935 eps 1e-09: signs [-1.0, -1.0, -1.0, -1.0] (unperturbed -1), ln shifts , -5.9e-02
+lam 1.935: unperturbed -1 -1625.3310919043; smallest eps with a flip: None (127 s)
++9.1e-13lam 1.9505 eps 1e-20: signs [-1.0, -1.0, -1.0, -1.0] (unperturbed -1), ln shifts , -1.4e-12lam 1.9505 eps 1e-20: signs [-1.0, -1.0, -1.0, -1.0] (unperturbed -1), ln shifts , -4.5e-13lam 1.9505 eps 1e-20: signs [-1.0, -1.0, -1.0, -1.0] (unperturbed -1), ln shifts , -1.1e-12
++1.7e-08lam 1.9505 eps 1e-16: signs [-1.0, -1.0, -1.0, -1.0] (unperturbed -1), ln shifts , -1.3e-08lam 1.9505 eps 1e-16: signs [-1.0, -1.0, -1.0, -1.0] (unperturbed -1), ln shifts , -3.6e-10lam 1.9505 eps 1e-16: signs [-1.0, -1.0, -1.0, -1.0] (unperturbed -1), ln shifts , -2.8e-09
++1.7e-06lam 1.9505 eps 1e-14: signs [-1.0, -1.0, -1.0, -1.0] (unperturbed -1), ln shifts , -1.3e-06lam 1.9505 eps 1e-14: signs [-1.0, -1.0, -1.0, -1.0] (unperturbed -1), ln shifts , -3.6e-08lam 1.9505 eps 1e-14: signs [-1.0, -1.0, -1.0, -1.0] (unperturbed -1), ln shifts , -2.8e-07
++1.7e-04lam 1.9505 eps 1e-12: signs [-1.0, -1.0, -1.0, -1.0] (unperturbed -1), ln shifts , -1.3e-04lam 1.9505 eps 1e-12: signs [-1.0, -1.0, -1.0, -1.0] (unperturbed -1), ln shifts , -3.6e-06lam 1.9505 eps 1e-12: signs [-1.0, -1.0, -1.0, -1.0] (unperturbed -1), ln shifts , -2.8e-05
++1.7e-03lam 1.9505 eps 1e-11: signs [-1.0, -1.0, -1.0, -1.0] (unperturbed -1), ln shifts , -1.3e-03lam 1.9505 eps 1e-11: signs [-1.0, -1.0, -1.0, -1.0] (unperturbed -1), ln shifts , -3.7e-05lam 1.9505 eps 1e-11: signs [-1.0, -1.0, -1.0, -1.0] (unperturbed -1), ln shifts , -2.9e-04
++1.7e-02lam 1.9505 eps 1e-10: signs [-1.0, -1.0, -1.0, -1.0] (unperturbed -1), ln shifts , -1.3e-02lam 1.9505 eps 1e-10: signs [-1.0, -1.0, -1.0, -1.0] (unperturbed -1), ln shifts , -4.8e-04lam 1.9505 eps 1e-10: signs [-1.0, -1.0, -1.0, -1.0] (unperturbed -1), ln shifts , -3.0e-03
++1.7e-01lam 1.9505 eps 1e-09: signs [-1.0, -1.0, -1.0, -1.0] (unperturbed -1), ln shifts , -1.4e-01lam 1.9505 eps 1e-09: signs [-1.0, -1.0, -1.0, -1.0] (unperturbed -1), ln shifts , -1.5e-02lam 1.9505 eps 1e-09: signs [-1.0, -1.0, -1.0, -1.0] (unperturbed -1), ln shifts , -4.6e-02
+lam 1.9505: unperturbed -1 -1623.6053126590; smallest eps with a flip: None (123 s)
++1.8e-12lam 1.955 eps 1e-20: signs [-1.0, -1.0, -1.0, -1.0] (unperturbed -1), ln shifts , -1.4e-12lam 1.955 eps 1e-20: signs [-1.0, -1.0, -1.0, -1.0] (unperturbed -1), ln shifts , -6.8e-13lam 1.955 eps 1e-20: signs [-1.0, -1.0, -1.0, -1.0] (unperturbed -1), ln shifts , -6.8e-13
++1.6e-08lam 1.955 eps 1e-16: signs [-1.0, -1.0, -1.0, -1.0] (unperturbed -1), ln shifts , -1.4e-08lam 1.955 eps 1e-16: signs [-1.0, -1.0, -1.0, -1.0] (unperturbed -1), ln shifts , -7.9e-10lam 1.955 eps 1e-16: signs [-1.0, -1.0, -1.0, -1.0] (unperturbed -1), ln shifts , -2.8e-09
++1.6e-06lam 1.955 eps 1e-14: signs [-1.0, -1.0, -1.0, -1.0] (unperturbed -1), ln shifts , -1.4e-06lam 1.955 eps 1e-14: signs [-1.0, -1.0, -1.0, -1.0] (unperturbed -1), ln shifts , -7.9e-08lam 1.955 eps 1e-14: signs [-1.0, -1.0, -1.0, -1.0] (unperturbed -1), ln shifts , -2.8e-07
++1.6e-04lam 1.955 eps 1e-12: signs [-1.0, -1.0, -1.0, -1.0] (unperturbed -1), ln shifts , -1.4e-04lam 1.955 eps 1e-12: signs [-1.0, -1.0, -1.0, -1.0] (unperturbed -1), ln shifts , -7.9e-06lam 1.955 eps 1e-12: signs [-1.0, -1.0, -1.0, -1.0] (unperturbed -1), ln shifts , -2.8e-05
++1.6e-03lam 1.955 eps 1e-11: signs [-1.0, -1.0, -1.0, -1.0] (unperturbed -1), ln shifts , -1.4e-03lam 1.955 eps 1e-11: signs [-1.0, -1.0, -1.0, -1.0] (unperturbed -1), ln shifts , -8.0e-05lam 1.955 eps 1e-11: signs [-1.0, -1.0, -1.0, -1.0] (unperturbed -1), ln shifts , -2.8e-04
++1.6e-02lam 1.955 eps 1e-10: signs [-1.0, -1.0, -1.0, -1.0] (unperturbed -1), ln shifts , -1.4e-02lam 1.955 eps 1e-10: signs [-1.0, -1.0, -1.0, -1.0] (unperturbed -1), ln shifts , -9.0e-04lam 1.955 eps 1e-10: signs [-1.0, -1.0, -1.0, -1.0] (unperturbed -1), ln shifts , -3.0e-03
++1.6e-01lam 1.955 eps 1e-09: signs [-1.0, -1.0, -1.0, -1.0] (unperturbed -1), ln shifts , -1.5e-01lam 1.955 eps 1e-09: signs [-1.0, -1.0, -1.0, -1.0] (unperturbed -1), ln shifts , -1.9e-02lam 1.955 eps 1e-09: signs [-1.0, -1.0, -1.0, -1.0] (unperturbed -1), ln shifts , -4.5e-02
+lam 1.955: unperturbed -1 -1623.2530157778; smallest eps with a flip: None (117 s)
+== exit 0 2026-11-20 12:54:44
+== 2026-11-20 12:54:44 lane b12n done

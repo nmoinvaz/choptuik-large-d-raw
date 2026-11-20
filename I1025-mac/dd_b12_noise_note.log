@@ -1,0 +1,23 @@
+== 2026-11-20 12:55:50 reading of lane_b12n.log, lane_a2u.log, lane_a2k.log and dd_hybrid_bracket.log against their criteria logs.
+The per-eps lines of dd_b12_noise.py's log are garbled: a missing + joined the message into the separator. The records in
+out/ell_ddm_b12noise_1025.jsonl are correct and the numbers below come from them.
+(1) A2 at k_c 55, D 17.5, lam 1.93: FAIL against the D 13 bar 1e-24. Worst 6.1e-24 (p' tangents, u 0.005); 3.1e-24 at u 0.01.
+    --mutate=lam fails as it must (1.0). The residual doubles when u halves, at D 17.5 and at D 13 alike (D 13: 6.7e-26 -> 1.3e-25), so it is
+    rounding divided by u at the regular singular point, not truncation; at D 17.5 it is ~20x the D 13 level. The bar is not changed.
+(2) Block-12 noise on the hybrid at lam 1.92, 1.935, 1.9505, 1.955, 4 seeds:
+    Pass condition HOLDS: no flip and max |shift of ln|det|| <= 2.4e-8 at eps <= 1e-16.
+    Power condition FAILS: no flip at any eps <= 1e-9. The ln shift is linear, (1.6-2.4)e8 * eps, so 0.16-0.24 at 1e-9.
+    By the criteria the reading stops here. Against dd_b12_cause_note.log: the double-precision horizon blocks' errors (4.7e-11 to 1.9e-10)
+    moved ln|det| by 0.12-2.5, 10-100x more than random noise of the same size. So those errors are structured, aligned with the
+    directions det is most sensitive to, and random noise is not a valid stand-in for them. The cause note's "random-size" picture is wrong.
+(3) Hybrid bracket (dd_hybrid_bracket_criteria.log): hybrid +1 at 1.89, 1.90, 1.91, 1.92, 1.925 and -1 at 1.93 and at the six lambda of
+    1.935-1.965. That is exactly one change, in (1.925, 1.93), and every lambda passes its 1e-15 noise test on blocks 0-11. ln|det| dips there:
+    -1625.928 (1.92), -1626.827 (1.925), -1626.627 (1.93), -1625.331 (1.935). Float64 reads +1 at 1.93, against the hybrid's -1.
+    Per the criteria this is a bracket of lambda_1 at k_c 55, D 17.5 pending the dd M's confirmation at 1.925 and 1.93, which is not yet run.
+(4) Horizon series truncation at the solvers' u0 = 0.04, Ks = 30 (sshres --us 0.04, worst tangent residual relative to the largest rhs):
+    D 13 k_c 31 9.0e-15 | D 13.5 k_c 47 2.1e-9 | D 16 k_c 47 9.4e-10, k_c 55 1.0e-7, k_c 63 5.7e-6 | D 17 k_c 55 5.4e-8, k_c 63 3.0e-6 |
+    D 14.5 / 15 / 15.5 / 16.5 / 17.5 / 18 / 19 at k_c 55: 1.8e-7 / 1.5e-7 / 1.3e-7 / 7.4e-8 / 3.9e-8 / 2.8e-8 / 1.4e-8.
+    At k_c 63, D 16 it scales as u^30 (5.7e-6, 1.1e-9, 5.7e-15 at u 0.04, 0.03, 0.02; 5.5e-24 at 0.01 is rounding), so the series
+    converges and the error is the truncation at order 30. It grows ~50-100x per 8 in k_c and falls slowly with D.
+    It is shared by the float64 and dd builds and by every lambda record, and its effect on lambda is unmeasured. Until it is measured, the
+    k_c sequence of lambda mixes angular resolution with a horizon truncation that grows with k_c.

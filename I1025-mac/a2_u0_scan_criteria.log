@@ -1,0 +1,14 @@
+== 2026-11-20 12:47:55 #1025: the horizon series' truncation at the solvers' u0 = 0.04, Ks = 30, against D. Written before the run.
+Why: check A2's u 0.04 line (for information) reads 3.9e-8 in the tangents at k_c 55, D 17.5 (lane_b12n.log), against 9e-15 at D 13
+(dd_checkAB_criteria.log). That is the truncation of the perturbation series where block 12 hands to the segment, shared by the float64
+and dd builds, so it is a discretization error of every lambda record, not rounding.
+Run: ell_ddm.py sshres --us 0.04 (no bar of record; the printed FAIL is against the default bar) on the k_c 55 states at D 14.5, 15, 15.5,
+16, 16.5 (l1kc55Fb1025), 17, 18 (l1kc55Fs1025), 19 (l1kc55F1025), each at its lambda_1 record or estimate, and the D 13, k_c 31 state as the reference.
+D 17.5 is in lane_b12n.log. sshres fixes Ks = 30, so the Ks dependence is left for a follow-up.
+Reading: the D-trend of the worst tangent residual at u0. If it grows by orders from D 13 to 17.5, the lambda records past the D where it
+passes ~1e-10 need a Ks or u0 convergence test before they are trusted to the digits quoted; that test (lambda at Ks 40 or u0 0.02 against
+Ks 30, u0 0.04) is proposed to the coordinator, not started.
+== 2026-11-20 12:49:17 addendum, written before its run. The first scan (lane_a2u.log) jumps from 9.0e-15 at D 13 (k_c 31) to 1.8e-7 at D 14.5 (k_c 55),
+then falls with D to 1.4e-8 at D 19, so the jump is likely k_c, not D. Separation at fixed D: k_c 47 at D 13.5 and 16 (l1kc47L1025,
+l1kc47Fr1025), k_c 63 at D 16 and 17 (l1kc63Fm1025, l1kc63Fw1025), same command. Reading: if the residual at fixed D grows with k_c, the
+truncation is in the tangents' high harmonics; its effect on lambda is then part of what a Ks or u0 test must measure.
