@@ -10,7 +10,8 @@ Verdict 'regular': a pair with sigma >= cut sigma_max at -/+0.01 whose two predi
 'inside the floor': no V candidate on either side; 'mixed' otherwise. Exit 0 regular, 3 not regular, 1 error.
 Columns for each pair: |V_f^T v|^2 against the floor subspaces V_f (sigma < 1e-14 sigma_max) at lam1 -/+ 0.01
 (the lift's references in test (a); zero by orthogonality at its own lambda when v is above the cut), and the
-centre-odd share of |v|^2. --extra d1,d2,..: more + offsets, checked for a chain with a dip (sigma below half its
+centre-odd share of |v|^2. --track=majority links on overlap^2 >= 0.5 (the triplet carrying most of the
+direction) instead of overlap >= 0.9, so a V keeps its chain through an avoided crossing with a regular pair. --extra d1,d2,..: more + offsets, checked for a chain with a dip (sigma below half its
 neighbours') at the middle one. --mutate=shift centres the grid and the criterion at lam1 + 0.02 (must not read
 regular). planted: the same detector on synthetic M(lambda) with a known V (regular), a V buried in the floor and the
 shift mutation; exit 0 when all three read as they must.
@@ -22,6 +23,11 @@ import numpy as np
 
 CORE = [0.03, 0.01, 0.003, 0.001]
 OVL = 0.9
+TRACK = "0.9"                          # "majority": a link needs overlap^2 >= 0.5 instead of overlap >= 0.9
+
+
+def linked(o):
+    return o * o >= 0.5 if TRACK == "majority" else o >= OVL
 
 
 def svd_small(M, N):
@@ -37,7 +43,7 @@ def follow(pts):
     for a, b in zip(pts[:-1], pts[1:]):
         O = np.abs(a["V"].T @ b["V"])
         jb, ia = O.argmax(axis=1), O.argmax(axis=0)
-        links.append({i: int(jb[i]) for i in range(N) if ia[jb[i]] == i and O[i, jb[i]] >= OVL})
+        links.append({i: int(jb[i]) for i in range(N) if ia[jb[i]] == i and linked(O[i, jb[i]])})
     out = []
     for i in range(N):
         seq, cur = [i], i
@@ -73,7 +79,7 @@ def analyse(pt, centre, cut, tol, nodd, extra, log):
             if k < 2:
                 continue
             o = float(abs(pt[-CORE[k]]["V"][:, cm["seq"][k]] @ pt[CORE[k]]["V"][:, cp["seq"][k]]))
-            if o < OVL:
+            if not linked(o):
                 continue
             dd = np.array([-0.03, -0.01, -0.003, 0.003, 0.01, 0.03])
             g = np.array([-cm["sig"][0], -cm["sig"][1], -cm["sig"][2], cp["sig"][2], cp["sig"][1], cp["sig"][0]])
@@ -159,25 +165,36 @@ def main_state(a):
     return 0 if rec["verdict"] == "regular" else 3
 
 
-def planted_M(lam, s1, c, lam1=2.0, n=400, K=40):
+def planted_M(lam, s1, c, lam1=2.0, n=400, K=40, cross=False):
     g = np.random.default_rng(5)
     Q0L, Q0R = (np.linalg.qr(g.standard_normal((n, n)))[0] for _ in range(2))
     AL, AR = (0.3 * (B - B.T) / np.sqrt(n) for B in (g.standard_normal((n, n)) for _ in range(2)))
     from scipy.linalg import expm
     QL, QR = expm((lam - lam1) * AL) @ Q0L, expm((lam - lam1) * AR) @ Q0R
-    sig = np.concatenate([np.logspace(0, -9, n - K - 1), [s1 * (lam - lam1) + c * (lam - lam1) ** 2],
+    pairs = [1.2e-8, 1.22e-8, 1.4e-8, 1.41e-8, 2.05e-9, 2.06e-9] if cross else []
+    reg = np.logspace(0, -7 if cross else -9, n - K - 1 - len(pairs))
+    sig = np.concatenate([reg, pairs, [s1 * (lam - lam1) + c * (lam - lam1) ** 2],
                           np.logspace(-15, -17.5, K) * (1 + 0.3 * (lam - lam1))])
+    C = np.diag(sig)
+    if cross:                                          # the V couples to the pairs on its path: avoided crossings
+        iv = n - K - 1
+        for j, kap in zip(range(iv - 6, iv), (2e-9, 2e-9, 1e-9, 1e-9, 2e-10, 2e-10)):
+            C[iv, j] = C[j, iv] = kap
     E = 1e-16 * np.random.default_rng(int(abs(lam) * 1e9) % 2 ** 32).standard_normal((n, n)) / np.sqrt(n)
-    return (QL * sig) @ QR.T + E
+    return QL @ C @ QR.T + E
 
 
 def main_planted():
     ok = True
-    for name, s1, c, mut, want in (("regular V", 1e-10, 2e-10, None, "regular"),
-                                   ("V buried in the floor", 3e-14, 6e-14, None, "not"),
-                                   ("regular V, --mutate=shift", 1e-10, 2e-10, "shift", "not")):
+    print(f"planted, tracking rule {TRACK}", flush=True)
+    for name, s1, c, mut, cross, want in (("regular V", 1e-10, 2e-10, None, False, "regular"),
+                                          ("V buried in the floor", 3e-14, 6e-14, None, False, "not"),
+                                          ("regular V, --mutate=shift", 1e-10, 2e-10, "shift", False, "not"),
+                                          ("V crossing coupled regular pairs (as at D 13)", 2.5e-6, 5e-6, None, True,
+                                           "regular")):
         centre = 2.0 + (0.02 if mut else 0.0)
-        pt = {d: svd_small(planted_M(centre + d, s1, c), 150) for d in [0.0] + [s * x for x in CORE for s in (-1, 1)]}
+        pt = {d: svd_small(planted_M(centre + d, s1, c, cross=cross), 150)
+              for d in [0.0] + [s * x for x in CORE for s in (-1, 1)]}
         rec = analyse(pt, centre, 1.5e-14, 1e-4, 50, [], lambda m: print("  " + m))
         good = (rec["verdict"] == "regular") == (want == "regular")
         ok &= good
@@ -187,4 +204,7 @@ def main_planted():
 
 
 if __name__ == "__main__":
+    if "--track=majority" in sys.argv:
+        TRACK = "majority"
+        sys.argv.remove("--track=majority")
     sys.exit(main_planted() if sys.argv[1:2] == ["planted"] else main_state(sys.argv[1:]))
