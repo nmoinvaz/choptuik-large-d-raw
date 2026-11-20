@@ -40,3 +40,12 @@ A walk's start solve (the fixed-(A, w) M = 5 or M = 7 solve at the previous M's 
 every attempt already. Every bar, the gate and the verdict rule are as above. Why this run: box 16's run in `..` (09:17-09:34
 UTC, no start repeats) passed both controls, and its box M = 5 start solve failed (|r_3| 2.6e6, |r_5| 3.1e3). This rerun, in
 full (controls and box), is the one that counts.
+
+## Result (09:35-09:54 UTC, `exits.txt`, `eval.txt`, `logs/`, `walks/`)
+
+19 of 19 checks give their expected exits. Gate: both controls PASS (M = 5: 2.2e-6 and 1.4e-6 from the stored zero, 153 s;
+M = 7: 1.4e-6 and 6.1e-7, |F7/F5| 0.0573, 933 s). Box 16's M = 5 start solve fails with the three repeats: |r_3| 2.6e6
+(|r_5| 3.1e3) at the first attempt, then 2.3e6, 2.3e6 and 2.3e6 (|r_5| 0.29, 0.027, 0.31). The walk keeps the first
+repeat's, so there is no M = 5 zero and the M = 7 walk did not run.
+
+Verdict, counted since both controls pass: **UNDECIDED** (#1027's rule with no M = 5 zero).
