@@ -1,0 +1,10 @@
+| D | σ_Δ | Δ share | σ_Δ slope | baseline | excess | σ_2 (σ_2/σ_Δ) | σ_2 slope | σ_pair, slope | pair D*(4)/(5), shifts | rule | pinned Δ |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+Traceback (most recent call last):
+  File "/home/nathan/Source/choptuik-large-d-raw/I949-dh170/row949.py", line 86, in <module>
+    main()
+    ~~~~^^
+  File "/home/nathan/Source/choptuik-large-d-raw/I949-dh170/row949.py", line 75, in main
+    print(f"| {D:.4f} | {sd:.4e} | {float(r['delta_share']):.3f} | {float(r['interval_slope']):.4f} | {float(r['trigger_baseline']):.4f} | {float(r['trigger_excess']):+.4f} | "
+                                                                    ~~~~~^^^^^^^^^^^^^^^^^^^^^
+ValueError: could not convert string to float: ''

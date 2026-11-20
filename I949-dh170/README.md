@@ -176,3 +176,56 @@ First planted run of `twomode949.py` (`selftest_twomode949_first_run.log`, exit 
 Planted test of `twomode949.py` after the amendments (`selftest_twomode949.log`, exit 0): (a) all 10 planted cases recover D_c (to 1e-3) and γ (to 1e-3 relative) and s1, s2 exactly, rms 4.9e-7 (the planted noise); (b) γ = 0 returns γ = 0.0000; (c) the gap-zero fit on gapped data has rms 8.4e-4 and 4.3e-4 against the free fit's 4.9e-7 (rejected). A first rerun of the mutation (`selftest_twomode949_mutate_run1.log`) also dropped the coupling from the planted data, which made its failure uninformative; the final `--mutate` drops it from the fitter only, and then all 10 recoveries, (b) and (c) fail (`selftest_twomode949_mutate.log`, exit 1: the check can fail). `twomode949.py` runs on real states only while `selftest_twomode949.log` is newer than the script and ends `exit 0`. Not yet run on real states: three states past 0.10 do not exist yet (D 253.3365 is the first).
 
 **Stop rule changed again (coordinator's hc, 2026-11-20 about 03:16 UTC, after the trigger fired at D 254.1769):** the trigger is noted and the fits are read as I posted (no fold and no avoided crossing claimed). Keep reading new ks_chain3b states until 2026-11-21 02:00 UTC at 2 threads beside #1014; at each new state post its row and rerun both fits on the last five states (`step949.sh`: tracker, pair fold, `row949.py`, `twomode949.py 5`, `stopcheck949.py`); stop early, with a closing row, when the fold fit passes all four conditions or when the excess is below 0.10 for two states in a row. The fits' code (`fold949.py`, `twomode949.py`) and their pass criteria stay fixed while reading. I had started the close-out steps (a `STOP949`, the lane and sync killed by exact pid, 03:15:29 to 03:15:50 UTC, the lane idle, no read lost) before this order arrived; they were restarted at 03:15:50 UTC and the stray marker is kept as `STOP949.premature_2026-11-20`.
+
+## Closing summary of the reopening (2026-11-20 16:35 UTC, stop rule (b): the excess below 0.10 at two states in a row)
+
+**Answer.** No fold and no avoided crossing: ks_chain3b's trigger fired at D 254.1769 and the excess peaked at +0.2948 at D 257.6920, then fell back to +0.0598 and +0.0269 at D 259.4568 and 259.7352, so σ_Δ's slope went 0.44 to 0.633 and back to 0.360 against a baseline of 0.333, a bump on a plain exponential. None of the 30 fold windows of ks 293 passed the rule (TTTF three times, TTTT never), and the two-mode fit did not reproduce the measured Δ shares where it had a coupling. I stopped at D 259.7352 because the stop rule's second condition was met.
+
+States read since the reopening: 21 (D 253.3365 to 259.7352, `c3b_ks293_D<D>.log/.json`, 2 threads each, 791 to 2039 s; 40 ks_chain3b states in all). Not kept: the read of D 260.0073, stopped 114 s in at the stop (`c3b_ks293_D260.0073.log.aborted_at_stop`).
+
+| D | σ_Δ | Δ share | σ_Δ slope | baseline | excess | σ_2 (σ_2/σ_Δ) | σ_2 slope | σ_pair, slope | pair D*(4)/(5), shifts | rule | pinned Δ |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| 253.3365 | 1.1458e-18 | 0.925 | 0.4526 | 0.3491 | +0.1035 | 1.2922e-18 (1.128) | 0.454 | 3.086e-13, +0.4380 | 276.863 (-1.861) / 275.723 (-1.486) | not met | +2.120e-38 |
+| 253.7634 | 9.3704e-19 | 0.973 | 0.4713 | 0.3480 | +0.1233 | 1.0695e-18 (1.141) | 0.443 | 2.559e-13, +0.4384 | 276.426 (+0.437) / 276.564 (-0.842) | not met | -5.991e-32 |
+| 254.1769 | 7.6585e-19 | 0.990 | 0.4878 | 0.3470 | +0.1408 | 8.9434e-19 (1.168) | 0.432 | 2.134e-13, +0.4390 | 274.337 (+2.089) / 275.302 (+1.262) | not met | -1.935e-31 |
+| 254.5903 | 6.2379e-19 | 0.992 | 0.4963 | 0.3460 | +0.1504 | 7.4883e-19 (1.200) | 0.430 | 1.779e-13, +0.4397 | 272.238 (+2.100) / 273.188 (+2.114) | not met | -2.758e-33 |
+| 255.0004 | 5.0868e-19 | 0.990 | 0.4974 | 0.3450 | +0.1525 | 6.2593e-19 (1.231) | 0.437 | 1.485e-13, +0.4405 | 270.751 (+1.487) / 271.432 (+1.756) | not met | -6.349e-33 |
+| 255.3972 | 4.1783e-19 | 0.988 | 0.4958 | 0.3440 | +0.1519 | 5.2291e-19 (1.252) | 0.453 | 1.247e-13, +0.4415 | 269.866 (+0.884) / 270.286 (+1.146) | not met | -7.016e-46 |
+| 255.7960 | 3.4261e-19 | 0.984 | 0.4977 | 0.3430 | +0.1548 | 4.3297e-19 (1.264) | 0.473 | 1.045e-13, +0.4425 | 269.437 (+0.429) / 269.651 (+0.635) | not met | -1.467e-54 |
+| 256.1776 | 2.8214e-19 | 0.977 | 0.5088 | 0.3420 | +0.1668 | 3.5904e-19 (1.273) | 0.491 | 8.823e-14, +0.4436 | 269.375 (+0.062) / 269.416 (+0.235) | not met | -4.553e-43 |
+| 256.5265 | 2.3440e-19 | 0.966 | 0.5313 | 0.3411 | +0.1902 | 3.0183e-19 (1.288) | 0.497 | 7.555e-14, +0.4446 | 269.530 (-0.155) / 269.457 (-0.041) | not met | -3.115e-52 |
+| 256.8479 | 1.9567e-19 | 0.953 | 0.5620 | 0.3403 | +0.2217 | 2.5779e-19 (1.317) | 0.491 | 6.547e-14, +0.4455 | 269.844 (-0.314) / 269.683 (-0.225) | not met | +4.358e-47 |
+| 257.1452 | 1.6399e-19 | 0.943 | 0.5940 | 0.3396 | +0.2545 | 2.2394e-19 (1.366) | 0.473 | 5.734e-14, +0.4463 | 270.263 (-0.419) / 270.033 (-0.350) | not met | -6.487e-41 |
+| 257.4254 | 1.3785e-19 | 0.940 | 0.6196 | 0.3389 | +0.2807 | 1.9740e-19 (1.432) | 0.450 | 5.059e-14, +0.4471 | 270.717 (-0.454) / 270.472 (-0.439) | not met | -2.977e-48 |
+| 257.6920 | 1.1645e-19 | 0.943 | 0.6330 | 0.3382 | +0.2948 | 1.7617e-19 (1.513) | 0.427 | 4.489e-14, +0.4478 | 271.215 (-0.498) / 270.946 (-0.475) | not met | -8.939e-44 |
+| 257.9477 | 9.9094e-20 | 0.952 | 0.6312 | 0.3375 | +0.2937 | 1.5875e-19 (1.602) | 0.407 | 4.003e-14, +0.4484 | 271.708 (-0.493) / 271.445 (-0.498) | not met | -4.852e-45 |
+| 258.1958 | 8.5096e-20 | 0.962 | 0.6136 | 0.3369 | +0.2767 | 1.4387e-19 (1.691) | 0.396 | 3.581e-14, +0.4490 | 272.212 (-0.504) / 271.949 (-0.504) | not met | -1.362e-46 |
+| 258.4403 | 7.3810e-20 | 0.972 | 0.5819 | 0.3363 | +0.2456 | 1.3055e-19 (1.769) | 0.397 | 3.208e-14, +0.4496 | 272.768 (-0.555) / 272.480 (-0.532) | not met | -2.219e-49 |
+| 258.6851 | 6.4687e-20 | 0.979 | 0.5391 | 0.3357 | +0.2034 | 1.1800e-19 (1.824) | 0.413 | 2.874e-14, +0.4501 | 273.352 (-0.585) / 273.054 (-0.573) | not met | +1.123e-49 |
+| 258.9339 | 5.7266e-20 | 0.985 | 0.4898 | 0.3351 | +0.1547 | 1.0563e-19 (1.845) | 0.445 | 2.569e-14, +0.4506 | 273.986 (-0.634) / 273.672 (-0.618) | not met | +1.311e-49 |
+| 259.1902 | 5.1169e-20 | 0.989 | 0.4393 | 0.3345 | +0.1048 | 9.3052e-20 (1.819) | 0.495 | 2.288e-14, +0.4511 | 274.734 (-0.748) / 274.370 (-0.698) | not met | -5.413e-50 |
+| 259.4568 | 4.6071e-20 | 0.990 | 0.3937 | 0.3339 | +0.0598 | 8.0126e-20 (1.739) | 0.561 | 2.029e-14, +0.4515 | 275.570 (-0.836) / 275.166 (-0.796) | not met | +2.275e-51 |
+| 259.7352 | 4.1675e-20 | 0.991 | 0.3601 | 0.3332 | +0.0269 | 6.7021e-20 (1.608) | 0.641 | 1.789e-14, +0.4520 | 276.580 (-1.010) / 276.104 (-0.938) | not met | -3.409e-54 |
+
+| # | check | verdict | number |
+|---|---|---|---|
+| 1 | selftests of `track949`, `pairfold949`, `fold949`, `twomode949`, `stopcheck949`, `relay_dh370_949` rerun at close, each with its mutation | pass | `close_selftests949.log`: 6 selftests exit 0, 7 mutations exit 1, "all ok" |
+| 2 | planted two-branch test of `twomode949.py` before it touched a real state | pass | `selftest_twomode949.log` exit 0 (10 planted cases, D_c to 1e-3, γ to 1e-3 relative), its mutation exit 1 |
+| 3 | every state's σ_Δ converged and its check | pass | 21 of 21 `check: pass`, ‖J v₁‖/σ₁ = 1.000000, largest relative change over the last two iterations 1.8e-7 (D 253.3365) |
+| 4 | trigger (excess above 0.10 at three states in a row) | fired | D 254.1769 (+0.1035, +0.1233, +0.1408); 19 states above 0.10 (D 253.3365 to 259.1902); peak +0.2948 |
+| 5 | fold fit passes all four conditions (stop (a)) | not met | 0 of 30 ks 293 windows valid; TTTF at the windows ending D 254.1769, 257.1452, 257.4254; FFF− at the last seven windows |
+| 6 | excess below 0.10 at two states in a row (stop (b)) | met | +0.0598 (D 259.4568), +0.0269 (D 259.7352); stopped 2026-11-20 16:33 UTC |
+| 7 | σ_pair rule (last-4 and last-5 D* within 0.1, window shifts within 0.1, twice) | not met at any of 21 states | the pair's D*(4) went 276.9 (D 253.3365), 269.4 (D 255.8 to 256.2), 276.6 (D 259.7352), shifts −0.9 to −1.0 at the end |
+| 8 | two-mode fit, 19 windows (D 254.1769 to 259.7352) | no avoided crossing | γ > 0 in 9 windows (0.058 to 0.059, then 0.112 to 0.131), 0 in 10; rms of ln σ 8.6e-4 to 1.2e-2 (worst at the end); with γ > 0 the fitted Δ share is off by 0.14 to 0.54 at its worst state; with γ = 0 it is 1.000 (no mixing) against measured 0.94 to 0.99 |
+
+Discrepancies and corrections, reported and not fixed:
+- My read at D 255.7960 said the pair fold's D*(4)/D*(5) gap and shifts were shrinking by about half per state and so approaching the σ_pair rule. They then reversed (D* from 269.4 to 276.6, shifts to −1.0). That was a trend read from four states, not a result.
+- Five posts carried an error that I corrected by comment id within minutes: the two-mode gap sentence (7036856832), a raw hash taken from the live clone instead of the push (7037136236 said 6be60ab2, now 96319321), a Δ-share "first time" claim (7040325563), an arithmetic slip, 0.07 for 0.09 (7043705842), and a σ_2/σ_Δ "first time since D 257.4" claim (7044307881).
+- `row949.py N` fails with `ValueError` for N past the first state with a trigger baseline (N 40); N 21 works. Code unchanged. The output of the failed call is `closing_rows949_all.md.failed_N40`.
+- `pairfold949.py` prints the same ALERT about D 238.6789 at every run (the old one, reported 2026-11-18); it is not new.
+- The σ convergence estimate prints 0e+00 for σ_Δ from D 258.4403 on: the iteration changed nothing at that precision, and the check and ‖J v₁‖/σ₁ = 1 pass.
+- Reading, not a result: the Δ share of σ_Δ's vector fell from 0.992 (D 254.59) to 0.9395 (D 257.43) and returned to 0.991, σ_2's slope rose from 0.397 (D 258.44) to 0.641 and crossed σ_Δ's between D 258.93 and 259.19, and σ_2/σ_Δ peaked at 1.845 (D 258.93) then fell to 1.608. That is what two branches passing each other looks like, but the two-mode law with constant slopes does not fit it.
+
+Recommended tasks (coordinator opens the issues):
+1. **Read ks_chain3b past D 259.7352 to see whether the bump has closed.** What: read the next states of dh370's chain (D 260.0073 and on) with `near_null.py --k=6 --its=32`, report the excess and σ_Δ's slope per state. Why: the excess is +0.0269 and falling 0.03 to 0.05 per state; a return to 0 means the steepening was transient, a rise again means a second bump. Acceptance: the excess stays within ±0.05 for five states in a row, or the issue is reopened with the new peak; the planted controls (`close_selftests949.sh`) pass first. Depends on: dh370's chain being written past D 260.0073.
+2. **A two-mode fit with branch slopes that vary with D.** What: fit σ_Δ and σ_2 over D 256.5 to 259.7 with each branch's log slope linear in D (two more parameters), on its own planted test (known gap, known slope drift, recover D_c within 0.1 and γ within 20%, and the same fit with γ = 0 rejected). Why: the constant-slope law never reproduced the Δ-share dip. Acceptance: the fitted Δ share matches the measured one to 0.02 at every state of the window, or the fit is rejected by its own test. Depends on: the 12 states in `track949.csv` (D 256.5265 to 259.7352).

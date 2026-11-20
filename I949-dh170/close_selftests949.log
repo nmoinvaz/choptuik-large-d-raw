@@ -1,0 +1,27 @@
+track949.py --selftest -> exit 0 (want 0): ok
+selftest: pass
+track949.py --selftest --mutate -> exit 1 (want 1): ok
+selftest --mutate: FAIL
+pairfold949.py --selftest -> exit 0 (want 0): ok
+selftest: pass
+pairfold949.py --selftest --mutate -> exit 1 (want 1): ok
+selftest --mutate: FAIL
+fold949.py --selftest -> exit 0 (want 0): ok
+selftest: pass
+fold949.py --selftest --mutate -> exit 1 (want 1): ok
+selftest --mutate: FAIL
+twomode949.py --selftest -> exit 0 (want 0): ok
+selftest: pass
+twomode949.py --selftest --mutate -> exit 1 (want 1): ok
+selftest --mutate (coupling dropped): FAIL
+stopcheck949.py --selftest -> exit 0 (want 0): ok
+selftest: pass
+stopcheck949.py --selftest --mutate -> exit 1 (want 1): ok
+selftest --mutate: FAIL
+relay_dh370_949.py --selftest -> exit 0 (want 0): ok
+selftest: pass
+relay_dh370_949.py --selftest --mutate -> exit 1 (want 1): ok
+selftest --mutate=True: FAIL
+relay_dh370_949.py --selftest --mutate=sign -> exit 1 (want 1): ok
+selftest --mutate=sign: FAIL
+close selftests: all ok
