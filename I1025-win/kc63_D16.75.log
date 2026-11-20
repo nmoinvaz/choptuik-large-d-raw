@@ -2,4 +2,57 @@
 == git hash-object data/sol_l1kc55Fv1025_D16.7500.npy d3dbb92d25f3edab49b16719aade02400cba19aa  (git's blob id of I1025-win2b/out/sol_l1kc55Fv1025_D16.7500.npy at origin/main: d3dbb92d25f3edab49b16719aade02400cba19aa), 29048 bytes
 == git hash-object data/l1kc55Fv1025.jsonl 5ea1b2f0569d349d25ba467ca6f042c79ceea163  (git's blob id of I1025-win2b/out/l1kc55Fv1025.jsonl at origin/main: ece77d986c4260bdff7c761218533880d3fb9754), 483 bytes
 == 2026-11-20 09:06:47 ell_refine.py l1kc55Fv1025 55 l1kc63Fv1025 63 1 16.75 2.1096347 --kappa 0.7 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60
-== note 2026-11-20 09:07:09: the jsonl's plain git hash-object (5ea1b2f0) differs from its blob id because of the worktree's autocrlf filter; git hash-object --no-filters data/l1kc55Fv1025.jsonl = ece77d986c4260bdff7c761218533880d3fb9754 = the blob id, and cmp with git show is identical (483 bytes, no CR)
+C:\Users\nathan\Source\choptuik-i1025\solver\matter\dss_ell.py:211: RuntimeWarning: overflow encountered in multiply
+  a2 = a * a
+C:\Users\nathan\Source\choptuik-i1025\solver\matter\dss_ell.py:212: RuntimeWarning: overflow encountered in multiply
+  g = a2 * q * q
+C:\Users\nathan\Source\choptuik-i1025\solver\matter\dss_ell.py:213: RuntimeWarning: overflow encountered in multiply
+  cx = c * ((n - 1) * (a2 - 1) - 2 * L * g) / x
+C:\Users\nathan\Source\choptuik-i1025\solver\matter\dss_ell.py:213: RuntimeWarning: invalid value encountered in subtract
+  cx = c * ((n - 1) * (a2 - 1) - 2 * L * g) / x
+C:\Users\nathan\Source\choptuik-i1025\solver\matter\dss_ell.py:214: RuntimeWarning: overflow encountered in multiply
+  ax = a * ((p * p + m * m) + 2 * L * g + (n - 1) * (1 - a2)) / (2 * x)
+C:\Users\nathan\Source\choptuik-i1025\solver\matter\dss_ell.py:214: RuntimeWarning: overflow encountered in add
+  ax = a * ((p * p + m * m) + 2 * L * g + (n - 1) * (1 - a2)) / (2 * x)
+C:\Users\nathan\Source\choptuik-i1025\solver\matter\dss_ell.py:214: RuntimeWarning: invalid value encountered in add
+  ax = a * ((p * p + m * m) + 2 * L * g + (n - 1) * (1 - a2)) / (2 * x)
+C:\Users\nathan\Source\choptuik-i1025\solver\matter\dss_ell.py:216: RuntimeWarning: overflow encountered in multiply
+  pc = n * c * (p + m) / (2 * x)
+C:\Users\nathan\Source\choptuik-i1025\solver\matter\dss_ell.py:216: RuntimeWarning: overflow encountered in divide
+  pc = n * c * (p + m) / (2 * x)
+C:\Users\nathan\Source\choptuik-i1025\solver\matter\dss_ell.py:217: RuntimeWarning: overflow encountered in multiply
+  lt = L * c * a2 * q / x
+C:\Users\nathan\Source\choptuik-i1025\solver\matter\dss_ell.py:218: RuntimeWarning: overflow encountered in multiply
+  px = (-self.D(p, omega) + cx * p - c * p / x + pc - lt) / (x - c)
+C:\Users\nathan\Source\choptuik-i1025\solver\matter\dss_ell.py:218: RuntimeWarning: overflow encountered in divide
+  px = (-self.D(p, omega) + cx * p - c * p / x + pc - lt) / (x - c)
+C:\Users\nathan\Source\choptuik-i1025\solver\matter\dss_ell.py:218: RuntimeWarning: invalid value encountered in add
+  px = (-self.D(p, omega) + cx * p - c * p / x + pc - lt) / (x - c)
+C:\Users\nathan\Source\choptuik-i1025\solver\matter\dss_ell.py:219: RuntimeWarning: overflow encountered in multiply
+  mx = (-self.D(m, omega) - cx * m + c * m / x - pc + lt) / (x + c)
+C:\Users\nathan\Source\choptuik-i1025\solver\matter\dss_ell.py:219: RuntimeWarning: overflow encountered in divide
+  mx = (-self.D(m, omega) - cx * m + c * m / x - pc + lt) / (x + c)
+C:\Users\nathan\Source\choptuik-i1025\solver\matter\dss_ell.py:219: RuntimeWarning: invalid value encountered in subtract
+  mx = (-self.D(m, omega) - cx * m + c * m / x - pc + lt) / (x + c)
+C:\Users\nathan\Source\choptuik-i1025\solver\matter\dss_ell.py:219: RuntimeWarning: invalid value encountered in add
+  mx = (-self.D(m, omega) - cx * m + c * m / x - pc + lt) / (x + c)
+C:\Users\nathan\Source\choptuik-i1025\solver\matter\dss_ell.py:88: RuntimeWarning: invalid value encountered in matmul
+  return f @ self._Tm
+C:\Users\nathan\Source\choptuik-i1025\solver\matter\dss_ell.py:218: RuntimeWarning: invalid value encountered in subtract
+  px = (-self.D(p, omega) + cx * p - c * p / x + pc - lt) / (x - c)
+C:\Users\nathan\Source\choptuik-i1025\solver\matter\dss_ell.py:325: RuntimeWarning: overflow encountered in multiply
+  aG = cs(A, Q2, Kk) + (n - 1) * (A[Kk] - cs(A, A2, Kk)) + 2 * L * cs(A, G, Kk)
+C:\Users\nathan\Source\choptuik-i1025\solver\matter\dss_ell.py:325: RuntimeWarning: invalid value encountered in subtract
+  aG = cs(A, Q2, Kk) + (n - 1) * (A[Kk] - cs(A, A2, Kk)) + 2 * L * cs(A, G, Kk)
+C:\Users\nathan\Source\choptuik-i1025\solver\matter\dss_ell.py:213: RuntimeWarning: overflow encountered in divide
+  cx = c * ((n - 1) * (a2 - 1) - 2 * L * g) / x
+C:\Users\nathan\Source\choptuik-i1025\solver\matter\dss_ell.py:319: RuntimeWarning: invalid value encountered in multiply
+  P[Kk] = self.solve_periodic(kappa + 0 * r, -r, omega)
+C:\Users\nathan\Source\choptuik-i1025\solver\matter\dss_ell.py:214: RuntimeWarning: overflow encountered in divide
+  ax = a * ((p * p + m * m) + 2 * L * g + (n - 1) * (1 - a2)) / (2 * x)
+C:\Users\nathan\Source\choptuik-i1025\solver\matter\dss_ell.py:307: RuntimeWarning: invalid value encountered in add
+  C[Kk + 1] = (Kk * C[Kk] - (n - 1) * (cs(C, A2, Kk) - C[Kk]) + 2 * L * cs(C, G, Kk)) / (Kk + 1)
+C:\Users\nathan\Source\choptuik-i1025\solver\matter\dss_ell.py:217: RuntimeWarning: overflow encountered in divide
+  lt = L * c * a2 * q / x
+C:\Users\nathan\Source\choptuik-i1025\solver\matter\dss_ell.py:317: RuntimeWarning: overflow encountered in add
+  r = tau_term - wpu + cs(V, P, Kk) + cs(C, P, Kk) - 0.5 * n * cs(C, PM, Kk) + L * cs(C, H, Kk)
