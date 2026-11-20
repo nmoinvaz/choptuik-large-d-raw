@@ -8,7 +8,8 @@ state records (run track949.py first).
 (a) the latest five-state fold window of ks_chain3b reads TTTT and valid: report at once on #1057 and #966;
 (b) sigma_2/sigma_Delta below 1.05 at a state past D 259.7352: report at once (a near crossing: the two-mode fit is rerun with D-linear slopes);
 (c) |excess| <= 0.05 at the last 5 states in a row, all of them states past D 259.7352;
-(d) 2026-11-21 12:00 UTC has passed.
+(d) 2026-11-21 12:00 UTC has passed;
+(e) REPORT AT ONCE (coordinator, 20:4x UTC, not a stop): a classified state past the crossing (D > 260.85) with a Delta share of 0.9 or more, which triggers dh370's ks raise.
 The pushes of leg 11 (ks 315, a new order: flag it in each row) are listed from the raw repository's origin/main, as the autoqueue fetches it."""
 import calendar
 import csv
@@ -28,6 +29,8 @@ PUSH_REPO = os.path.expanduser("~/Source/choptuik-large-d-raw-push")
 ONE_SIDED = False                                       # --mutate: no lower bound on the band
 RATIO_LE = False                                        # --mutate: <= instead of <
 IGNORE_LEG11 = False                                    # --mutate: pushed leg 11 states are not listed
+D_CROSS, SHARE_E = 260.85, 0.9
+E_GT = False                                            # --mutate: share > 0.9 instead of >= 0.9
 
 
 def inside(x):
@@ -57,6 +60,8 @@ def evaluate(rows, fold_lines, now):
         run_new += 1
     out["run_new"] = run_new
     out["d"] = now >= DEADLINE
+    out["e_at"] = [r["D"] for r in rows if r["D"] > D_CROSS and r.get("share") is not None and (r["share"] > SHARE_E if E_GT else r["share"] >= SHARE_E)]
+    out["e"] = bool(out["e_at"])
     out["new"] = len(new)
     out["ratio_last"] = new[-1]["ratio"] if new else None
     return out
@@ -85,8 +90,8 @@ def unclassified(all_rows):
 
 
 def selftest(mutate):
-    global ONE_SIDED, RATIO_LE, IGNORE_LEG11
-    ONE_SIDED = RATIO_LE = IGNORE_LEG11 = mutate
+    global ONE_SIDED, RATIO_LE, IGNORE_LEG11, E_GT
+    ONE_SIDED = RATIO_LE = IGNORE_LEG11 = E_GT = mutate
     ok = True
 
     def mk(ex, rat=None, D0=259.7352, ks=293):
@@ -108,6 +113,9 @@ def selftest(mutate):
         ("sigma_2/sigma_Delta exactly 1.05 is not below", mk([0.1] * 3, [1.2, 1.1, 1.05]), F, t0, "b", False),
         ("the old state D 259.7352 at 1.0 does not count", mk([0.1] * 3, [1.0, 1.2, 1.2]), F, t0, "b", False),
         ("a ratio of None is not below", mk([0.1] * 2, [None, 1.2]), F, t0, "b", False),
+        ("a classified state past the crossing with share exactly 0.9 is reported", [dict(D=260.6706, ks=293, excess=0.2, ratio=1.1, share=0.781), dict(D=261.05, ks=293, excess=0.1, ratio=0.8, share=0.9)], F, t0, "e", True),
+        ("share 0.8999 past the crossing is not", [dict(D=260.6706, ks=293, excess=0.2, ratio=1.1, share=0.781), dict(D=261.05, ks=293, excess=0.1, ratio=0.8, share=0.8999)], F, t0, "e", False),
+        ("the pre-crossing states with share 0.99 do not count", [dict(D=259.7352, ks=293, excess=0.03, ratio=1.6, share=0.991), dict(D=260.4708, ks=293, excess=0.08, ratio=1.2, share=0.96)], F, t0, "e", False),
         ("before the deadline", mk([0.2]), F, DEADLINE - 1, "d", False),
         ("at the deadline", mk([0.2]), F, DEADLINE, "d", True),
     ]
@@ -152,7 +160,7 @@ def main():
     allr = [r for r in csv.DictReader(open(os.path.join(HERE, "track949.csv"))) if r["chain"] == "4"]
     for r in allr:
         if r["classified"] == "1":
-            rows.append(dict(D=float(r["D"]), ks=int(float(r["ks"])), excess=float(r["trigger_excess"]) if r["trigger_excess"] else None))
+            rows.append(dict(D=float(r["D"]), ks=int(float(r["ks"])), excess=float(r["trigger_excess"]) if r["trigger_excess"] else None, share=float(r["delta_share"]) if r["delta_share"] else None))
     rows.sort(key=lambda r: r["D"])
     ratios(rows)
     fold = [l for l in open(os.path.join(HERE, "track949.log")).read().splitlines() if "(chain 3b)" in l]
@@ -171,10 +179,11 @@ def main():
     except Exception as e:                              # the push listing is a convenience, not a stop condition
         print(f"push listing failed: {e}")
     msg = {"a": "a TTTT fold window (report at once on #1057 and #966)", "b": "sigma_2/sigma_Delta below 1.05 (report at once: a near crossing, rerun the two-mode fit with D-linear slopes)",
-           "c": f"the excess within +-{BAND} at {RUN} new states in a row", "d": "2026-11-21 12:00 UTC has passed"}
-    hit = [k for k in "abcd" if res[k]]
+           "c": f"the excess within +-{BAND} at {RUN} new states in a row", "d": "2026-11-21 12:00 UTC has passed",
+           "e": "REPORT AT ONCE on #1057 and #966: a classified state past the crossing has its Delta share back at 0.9 or more, which triggers dh370's ks raise"}
+    hit = [k for k in "abcde" if res[k]]
     for k in hit:
-        print(f"STOP CONDITION ({k}): {msg[k]}" + (f" at D {', '.join(f'{d:.4f}' for d in res['b_at'])}" if k == "b" else ""))
+        print(f"STOP CONDITION ({k}): {msg[k]}" + (f" at D {', '.join(f'{d:.4f}' for d in res['b_at'])}" if k == "b" else (f" at D {', '.join(f'{d:.4f}' for d in res['e_at'])}" if k == "e" else "")))
     if not hit:
         print("no stop condition")
 
