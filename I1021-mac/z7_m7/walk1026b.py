@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""walk1026b.py (walk1026.py with --r1bar, --stepbar, --posbar and --selftest [--mutate=noposbar], #1021 rerun) NAME A W B3 C3 [--xi1 0.2] [--procs 2] [--maxit 25] [--tr 0.02,0.03] [--bar 1e-6] [--out walks] [--logs logs]: the outer (A, w/w_inf) Newton of the M = 5 selection from complete fixed-(A, w) solves, the
+"""walk1026b.py (walk1026.py with --r1bar, --stepbar, --posbar, --start_repeats N and --selftest [--mutate=noposbar|norepeat], #1021 rerun) NAME A W B3 C3 [--xi1 0.2] [--procs 2] [--maxit 25] [--tr 0.02,0.03] [--bar 1e-6] [--out walks] [--logs logs]: the outer (A, w/w_inf) Newton of the M = 5 selection from complete fixed-(A, w) solves, the
 route m7_outer.py's 'newton' mode took when hier's own level-1 Newton cannot be used (#1026). Why: started at a zero of the M = 3 problem, hier_nb.py 5's level-1 Newton stops at |r_1| = 121 without a step
 (its nested level-3 re-solves fail at the trial points, logs/probe_*), while a fixed-(A, w) solve from the M = 3 harmonics converges at the M = 5 zero and half-way (|r_3| 1e-8). Each point is
 `hier_nb.py 5 A w --x=B3,C3[,B5,C5] --fixA --schur --procs P --verbose=1 --xi1=XI` (cwd solver/inner_stokes of the worktree, the harmonics of the best earlier point as the start), a solve counts when |r_3| and |r_5|
@@ -9,6 +9,7 @@ a trust region |dA| <= TR0, |dw| <= TR1 and halved up to four times when the sol
 (hier's default) until a solve gives them. Writes walks/walk_NAME_xiXI.json (every point, the verdict) and logs/fix_NAME_xiXI_N.log per solve."""
 import json
 import os
+import random
 import re
 import subprocess
 import sys
@@ -52,6 +53,22 @@ def conv_test(step, rb, acc, bars, mut=""):
     return bool(ok)
 
 
+def repeat_start(p, fn, rng, n, mut=""):
+    """the coordinator's rule (#1021, 20 Nov about 09:20 UTC): a walk's start solve may use #1027's perturbed repeats (as
+    m5/m5_repeat.py): up to N from the best attempt's end state, every harmonic times (1 + 1e-7 u), u uniform in (-1, 1) from
+    RNG (random.Random(1027), one per walk); the first attempt under the bar counts, else the one of smallest |r_3|.
+    fn(x, k) solves repeat k from x. --mutate=norepeat returns the first attempt (the selftest must then fail)"""
+    best = p
+    for k in range(1, n + 1):
+        if best["ok"] or not best.get("x") or mut == "norepeat":
+            break
+        xp = [v * (1 + 1e-7 * rng.uniform(-1, 1)) for v in best["x"]]
+        q = fn(xp, k)
+        if q.get("x") and (q["ok"] or q["r3"] < best["r3"]):
+            best = dict(q, first_attempt=dict(r3=p.get("r3"), r5=p.get("r5")), repeats=k)
+    return best
+
+
 def selftest(mut):
     b = (3.8e-2, 1e-5, 1e-5)
     got = [conv_test([2e-6, 1e-6], [0.02, 0.0], [(1.0, 1.0), (1.0 + 4e-6, 1.0)], b, mut),
@@ -60,8 +77,12 @@ def selftest(mut):
            conv_test([2e-6, 1e-6], [0.02, 0.0], [(1.0, 1.0), (1.0 + 4e-5, 1.0)], b, mut),
            conv_test([2e-6, 1e-6], [0.02, 0.0], [(1.0, 1.0)], b, mut)]
     want = [True, False, False, False, False]
-    print(f"selftest{' --mutate=' + mut if mut else ''}: {got} (expect {want}): {'PASS' if got == want else 'FAIL'}")
-    return got == want
+    seq = iter([dict(ok=False, r3=5e-5, x=[1.0]), dict(ok=True, r3=3e-8, x=[1.0]), dict(ok=True, r3=1e-9, x=[1.0])])
+    rp = repeat_start(dict(ok=False, r3=2e3, r5=1.0, x=[1.0]), lambda x, k: dict(next(seq), k=k), random.Random(1027), 3, mut)
+    rg, rw = (rp.get("repeats"), rp["ok"]), (2, True)
+    ok = got == want and rg == rw
+    print(f"selftest{' --mutate=' + mut if mut else ''}: {got} (expect {want}); start repeats (repeat, ok) {rg} (expect {rw}): {'PASS' if ok else 'FAIL'}")
+    return ok
 
 
 def main(argv):
@@ -75,6 +96,7 @@ def main(argv):
     out = opt("--out", os.path.join(HERE, "walks"))
     r1bar = opt("--r1bar", '1e-2'); stepbar = float(opt("--stepbar", "3e-6")); posbar = opt("--posbar", None)
     bars = (None if r1bar is None else float(r1bar), stepbar, None if posbar is None else float(posbar))
+    nrep = int(opt("--start_repeats", "0"))                # #1027's repeats of the start solve (0: none, walk1026's)
     logdir = opt("--logs", os.path.join(HERE, "logs"))
     os.makedirs(out, exist_ok=True)
     pts, n = [], [0]
@@ -92,6 +114,14 @@ def main(argv):
 
     verdict = [dict(converged=False, why="not finished")]
     p0 = run(A0, w0, x3)
+    if not p0["ok"] and nrep > 0:
+        rng = random.Random(1027)
+        p0 = repeat_start(p0, lambda x, k: solve(A0, w0, x, xi, procs, f"fix_{name}_xi{xi}_01_r{k}", logdir), rng, nrep)
+        p0["n"] = 1
+        pts[0] = p0
+        r = p0.get("r1")
+        print(f"point 1 after {p0.get('repeats', 0)} start repeats: " + (f"|r_1| {np.hypot(*r):.3e} |r_3| {p0['r3']:.1e} |r_5| {p0['r5']:.1e} {'ok' if p0['ok'] else 'NOT CONVERGED'}" if r else p0["why"]), flush=True)
+        json.dump(dict(name=name, xi1=xi, start=[A0, w0, *x3], points=pts, verdict=verdict[0]), open(path, "w"), indent=1)
     if not p0["ok"]:
         verdict[0] = dict(converged=False, why="the start solve did not converge: " + p0["why"])
         json.dump(dict(name=name, xi1=xi, start=[A0, w0, *x3], points=pts, verdict=verdict[0]), open(path, "w"), indent=1)
@@ -143,5 +173,5 @@ def main(argv):
 
 if __name__ == "__main__":
     if sys.argv[1:2] == ["--selftest"]:
-        sys.exit(0 if selftest("noposbar" if "--mutate=noposbar" in sys.argv else "") else 1)
+        sys.exit(0 if selftest(next((a.split("=")[1] for a in sys.argv if a.startswith("--mutate=")), "")) else 1)
     sys.exit(main(sys.argv[1:]))

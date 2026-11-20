@@ -1,0 +1,48 @@
+2c2
+< """walk1026b.py (walk1026.py with --r1bar, --stepbar, --posbar and --selftest [--mutate=noposbar], #1021 rerun) NAME A W B3 C3 [--xi1 0.2] [--procs 2] [--maxit 25] [--tr 0.02,0.03] [--bar 1e-6] [--out walks] [--logs logs]: the outer (A, w/w_inf) Newton of the M = 5 selection from complete fixed-(A, w) solves, the
+---
+> """walk1026b.py (walk1026.py with --r1bar, --stepbar, --posbar, --start_repeats N and --selftest [--mutate=noposbar|norepeat], #1021 rerun) NAME A W B3 C3 [--xi1 0.2] [--procs 2] [--maxit 25] [--tr 0.02,0.03] [--bar 1e-6] [--out walks] [--logs logs]: the outer (A, w/w_inf) Newton of the M = 5 selection from complete fixed-(A, w) solves, the
+11a12
+> import random
+54a56,71
+> def repeat_start(p, fn, rng, n, mut=""):
+>     """the coordinator's rule (#1021, 20 Nov about 09:20 UTC): a walk's start solve may use #1027's perturbed repeats (as
+>     m5/m5_repeat.py): up to N from the best attempt's end state, every harmonic times (1 + 1e-7 u), u uniform in (-1, 1) from
+>     RNG (random.Random(1027), one per walk); the first attempt under the bar counts, else the one of smallest |r_3|.
+>     fn(x, k) solves repeat k from x. --mutate=norepeat returns the first attempt (the selftest must then fail)"""
+>     best = p
+>     for k in range(1, n + 1):
+>         if best["ok"] or not best.get("x") or mut == "norepeat":
+>             break
+>         xp = [v * (1 + 1e-7 * rng.uniform(-1, 1)) for v in best["x"]]
+>         q = fn(xp, k)
+>         if q.get("x") and (q["ok"] or q["r3"] < best["r3"]):
+>             best = dict(q, first_attempt=dict(r3=p.get("r3"), r5=p.get("r5")), repeats=k)
+>     return best
+> 
+> 
+63,64c80,85
+<     print(f"selftest{' --mutate=' + mut if mut else ''}: {got} (expect {want}): {'PASS' if got == want else 'FAIL'}")
+<     return got == want
+---
+>     seq = iter([dict(ok=False, r3=5e-5, x=[1.0]), dict(ok=True, r3=3e-8, x=[1.0]), dict(ok=True, r3=1e-9, x=[1.0])])
+>     rp = repeat_start(dict(ok=False, r3=2e3, r5=1.0, x=[1.0]), lambda x, k: dict(next(seq), k=k), random.Random(1027), 3, mut)
+>     rg, rw = (rp.get("repeats"), rp["ok"]), (2, True)
+>     ok = got == want and rg == rw
+>     print(f"selftest{' --mutate=' + mut if mut else ''}: {got} (expect {want}); start repeats (repeat, ok) {rg} (expect {rw}): {'PASS' if ok else 'FAIL'}")
+>     return ok
+77a99
+>     nrep = int(opt("--start_repeats", "0"))                # #1027's repeats of the start solve (0: none, walk1026's)
+94a117,124
+>     if not p0["ok"] and nrep > 0:
+>         rng = random.Random(1027)
+>         p0 = repeat_start(p0, lambda x, k: solve(A0, w0, x, xi, procs, f"fix_{name}_xi{xi}_01_r{k}", logdir), rng, nrep)
+>         p0["n"] = 1
+>         pts[0] = p0
+>         r = p0.get("r1")
+>         print(f"point 1 after {p0.get('repeats', 0)} start repeats: " + (f"|r_1| {np.hypot(*r):.3e} |r_3| {p0['r3']:.1e} |r_5| {p0['r5']:.1e} {'ok' if p0['ok'] else 'NOT CONVERGED'}" if r else p0["why"]), flush=True)
+>         json.dump(dict(name=name, xi1=xi, start=[A0, w0, *x3], points=pts, verdict=verdict[0]), open(path, "w"), indent=1)
+146c176
+<         sys.exit(0 if selftest("noposbar" if "--mutate=noposbar" in sys.argv else "") else 1)
+---
+>         sys.exit(0 if selftest(next((a.split("=")[1] for a in sys.argv if a.startswith("--mutate=")), "")) else 1)

@@ -30,3 +30,13 @@ B3 0.7598443752, C3 0.0120820005). The M 3 to 5 shift is taken from that 0.18 lo
 These bars come from #1048's noise at the known zero, not from any box result. Controls of the code: `eval_m7b.py --selftest`
 exits 0, and `--mutate=shift`, `pos7`, `nogate` and `ratio` each exit 1; `walk1026b.py` and `walk1027b.py --selftest` exit 0,
 and `--mutate=noposbar` exits 1.
+
+## The repeat rule (the coordinator, #1021 comment 7035545338, 09:19 UTC, before box 16's result)
+
+A walk's start solve (the fixed-(A, w) M = 5 or M = 7 solve at the previous M's zero) may use #1027's three perturbed
+repeats (as `m5/m5_repeat.py`), and every bar, the gate and the verdict rule stay as above. This run started at 09:17 UTC
+with `run_m7b_v1.sh`, before the rule. Its box M = 5 walk runs `walk1026b.py` without repeats: the file was replaced at
+09:20:44 UTC by the version with `--start_repeats N`, which at the default 0 is the earlier code (`../z7_m7/walk1026b_v2.diff`).
+If the box's start solve fails here, the rule is applied in `rep3/`: a full run (controls and box) with `run_m7b.sh z16 3`,
+whose README is written before it starts. walk1027 already repeats every attempt (#1027), so the M = 7 start has its repeats
+in both runs.
