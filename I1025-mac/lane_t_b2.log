@@ -1,2 +1,10 @@
 == 2026-11-20 08:53:26 ell_refine.py l1kc55Fb1025 55 l1kc63Fm1025 63 1 16 2.2426280416106374 --kappa 0.7 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60
 svd fallback: gesdd did not converge, gesvd instead
+{"D": 16.0, "l": 1, "kc": 63, "kappa": 0.7, "rk": 1, "reg": 0.0, "u0": 0.04, "Ks": 30, "src": "l1kc55Fb1025", "Delta": 1.0017134445071836, "Delta_src": 1.0017135137307174, "F": 1.831265610321589e-10, "F_start": 2.620696790269746e-06, "steps": 2939, "constraint": 2.87752284221681e-05, "dDelta_dF": 1586157764.0361767, "lam_gauge": 0.8349780038875328, "lam_guess": 2.2426280416106374, "lam": 2.2459627535552045, "gamma": 0.44524335874095367, "n_eval": 26, "n_signchanges": 1, "seconds": 5004}
+== exit 0 2026-11-20 10:16:52
+== 2026-11-20 10:16:52 /Users/nathan/Source/choptuik-large-d-raw-i1025/I1025-mac/signtest.py data/sol_l1kc63Fm1025_D16.0000.npy 16 63 around=data/l1kc63Fm1025.jsonl:16:0.02
+signtest: data/sol_l1kc63Fm1025_D16.0000.npy D 16.0 k_c 63 at lam [2.2259627535552045, 2.2659627535552045]
+{"state": "sol_l1kc63Fm1025_D16.0000.npy", "D": 16.0, "kc": 63, "lam": 2.2259627535552045, "signs": [-1.0, -1.0, -1.0, -1.0], "agree": true, "logabs": -1862.1675598794388, "n_below_1e_12": 54, "n_below_1e_15": 38, "smallest": [1.4226011363506905e-17, 4.600128050485071e-18, 1.6472573070426703e-18], "sec": 98.5}
+{"state": "sol_l1kc63Fm1025_D16.0000.npy", "D": 16.0, "kc": 63, "lam": 2.2659627535552045, "signs": [1.0, 1.0, 1.0, 1.0], "agree": true, "logabs": -1857.230651952914, "n_below_1e_12": 54, "n_below_1e_15": 38, "smallest": [1.2093423144521618e-17, 7.048222880345222e-18, 3.570982396995574e-18], "sec": 101.4}
+== exit 0 2026-11-20 10:20:12
+== 2026-11-20 10:20:12 T-b2 done
