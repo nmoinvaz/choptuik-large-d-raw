@@ -1,0 +1,8 @@
+== 2026-11-20 14:38:54 reading of c1_scan.log and signtest_flags_check.log against c1_scan_criteria.log.
+signtest.py --u0/--Ks: PASS. With defaults it reproduces lane_t_b2.log's line bit for bit: signs -,-,-,-, logabs -1862.1675598794388,
+n_below 54/38, smallest 1.4226011363506905e-17, 4.600128050485071e-18, 1.6472573070426703e-18. It now also prints u0 and Ks.
+C1 scan (k_c 55, D 16, u0 0.04, float64): signs + - - + - at lam 2.24250, 2.24254, 2.24258, 2.24262, 2.24266, three changes in 1.6e-4,
+with ln|det| jumping between -1574.6 and -1578.5. So det's sign is noise there at the 4e-5 scale, and the k_c 55 D 16 record (2.2426280,
+signtest-passed at -/+ 0.02) is good only to about 1e-4, not to its 2e-8 xtol. The record's lam evaluated twice gives the same ln|det|
+to all digits (-1578.5866207975023), so M's build is reproducible and the noise is in the computed M itself, not run to run.
+The C1 miss (-1.03e-4) is this noise. For contrast, the D 17.5 hybrid (dd block 12) root converged cleanly to a 2.4e-8 bracket.

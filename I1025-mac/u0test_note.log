@@ -1,0 +1,30 @@
+== 2026-11-20 14:21:38 reading of lane_u0A.log and lane_u0B.log (D 16) against u0test_criteria.log; numbers from data/ell_u0test_1025.jsonl.
+| D 16 | u0 | lam | minus record | |F| at the state | n_signchanges | signs at root -/+ 0.02 |
+| k_c 55 | 0.04 | 2.2425247377 | -1.033e-4 | 1.785e-10 | 1 | |
+| k_c 55 | 0.03 | 2.2310540200 | -1.157e-2 | 3.724e-10 | 1 | |
+| k_c 55 | 0.02 | 2.1080703591 | -1.346e-1 | 3.638e-9  | 1 (6.0% below the guess) | -,-,+,- DISAGREE / +,+,+,+ |
+| k_c 63 | 0.04 | 2.2459628972 | +1.437e-7 | 1.831e-10 | 1 | |
+| k_c 63 | 0.02 | 2.2839647518 | +3.800e-2 | 2.191e-9  | 1 | -,-,-,- / +,+,+,+ agree |
+Premise (|F| the same at every u0 to 1e-12): FAILS. |F| is 1.8e-10 at u0 0.04, 2.8e-10 to 3.7e-10 at 0.03 and 2.2e-9 to 3.6e-9 at 0.02, so the
+state is not a solution of the u0 0.02 system to the level it solves the u0 0.04 one. My estimate from the series' value residual (<= 1.6e-16)
+was wrong: the change of F comes from elsewhere, most likely the longer horizon segment's integration (not checked).
+C1: k_c 63 PASSES (+1.4e-7); k_c 55 FAILS (-1.03e-4), most likely because the record froze its steps on its start state and this run on the
+final state (not checked).
+C2 (k_c 55): FAILS, |lam(0.03) - lam(0.02)| = 1.23e-1 against the bar 6.7e-3; so the fixed-state shift does not scale like the truncation.
+Reading: the test as posed cannot measure the truncation's effect on lambda. The fixed-state shifts (-1.34e-1 at k_c 55, +3.80e-2 at k_c 63)
+are not readings: lambda taken at a fixed state moves by far more than the k_c spread when the discrete system changes under it, by u0 here
+and probably by the step map in C1. The coordinator's rule is not applied to them. The question needs lambda on backgrounds re-solved at
+each u0 (ell_refine --u0 0.02 --Ks 30), with a signtest that builds the same u0.
+The D 17.5 hybrid's u0 0.02 part is stopped once its u0 0.04 root is written (lane_u0B_stop.log): at a fixed state it cannot be read either.
+k_c 63's u0 0.03 run (lane A) is left to finish, for C2 at k_c 63.
+C1's cause, checked after the note above: this run's discrete system is the record's. |F| at u0 0.04 equals the record's F to all printed
+digits (1.7853243545e-10), and the step count is the same (2565), so the steps-frozen-on-start explanation is wrong. The difference lies in
+locating the root itself. I gave the record's lam as the guess, so the middle grid point sat on the root (sign +, ln|det| -1578.59 against
+-1567 to -1576 at the ends). brentq on [2.1978, 2.2426] then took 21 evaluations against 6 at k_c 63, which points to a det whose sign is
+noisy within ~1e-4 of the root at k_c 55, D 16 (not yet checked by a scan).
+== 2026-11-20 14:34:19 the rest of the lanes.
+k_c 63, D 16, u0 0.03: lam 2.2434371004 (|F| 2.750e-10), -2.53e-3 from u0 0.04. C2 at k_c 63: |lam(0.03) - lam(0.02)| = 4.05e-2 against the
+bar 0.05 * 3.80e-2 = 1.9e-3, FAILS as at k_c 55.
+D 17.5, k_c 55, hybrid, u0 0.04: lam 1.9274980200 (6 evaluations; last bracket 1.9274979959 (+) to 1.9274980200 (-); |F| 2.418e-10),
+inside the bracket (1.925, 1.93), so C1 at D 17.5 PASSES. Every evaluated lambda is unchanged by 1e-15 noise on blocks 0-11.
+The u0 0.02 part printed |F| 1.608e-8 (premise fails, 67x) and was stopped at 14:33:10 (exit 143, lane_u0B_stop.log) before any root.

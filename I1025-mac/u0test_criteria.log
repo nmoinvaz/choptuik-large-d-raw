@@ -1,0 +1,25 @@
+== 2026-11-20 13:29:29 #1025: lambda_1 with the horizon series started at u0 0.02 against 0.04 (Ks 30), at fixed states. Written before the run.
+Why: dd_b12_noise_note.log (4): the series' truncation at u0 0.04 grows 50-100x per 8 in k_c (D 16: 9.4e-10, 1.0e-7, 5.7e-6 at k_c 47, 55, 63)
+and scales as u^30 (5.7e-15 at u 0.02). Coordinator's go, 2026-11-20 13:00 UTC.
+States: D 16 k_c 55 (out/sol_l1kc55Fb1025_D16.0000.npy, record 2.2426280416) and k_c 63 (out/sol_l1kc63Fm1025_D16.0000.npy, record
+2.2459627536); D 17.5 k_c 55 (out/sol_l1kc55Fs1025_D17.5000.npy, no valid record; hybrid bracket (1.925, 1.93)); D 17.5 k_c 63 (raw
+I1025-win/out/sol_l1kc63Fw1025_D17.5000.npy, record 1.974481 excluded) last, if time allows.
+One state serves both u0: its LM residual F is ~2e-10, while the background series' value residual at u0 0.04 is <= 1.6e-16; the script
+prints |F| at both u0, and they must agree to 1e-12 (absolute) or the fixed-state premise fails.
+Method (u0test.py): DSSEll(kc, NODES_STD, n = D - 2, ell 1, Ks 30, u0), freeze_from(state, 0.7); the horizon segment's step count follows
+its log length, so the step size is unchanged. Root: ell_refine.lam_root's logic copied unchanged (grid guess*(1 -/+ 0.02), brentq on
+sign * exp(ln|det| - ref), xtol 2e-8 * guess). D 16: float64 det (numpy slogdet, as the records), at u0 0.04, 0.02 and 0.03. D 17.5:
+the hybrid (float64 blocks 0-11, dd block 12 from DDEll on the same S), its det by multidouble dd_logdet, at u0 0.04 and 0.02.
+Checks that can fail:
+ C1 (consistency): at u0 0.04 the D 16 roots reproduce their records to 1e-6 (the records froze their steps on the start state, so not
+    exactly); the D 17.5 k_c 55 hybrid root lies in (1.925, 1.93). n_signchanges 1 on the grid at every run.
+ C2 (it is truncation): u0 0.03's truncation is 2e-4 of u0 0.04's at k_c 63, D 16, so at D 16 |lam(0.03) - lam(0.02)| must be
+    <= 0.05 |lam(0.04) - lam(0.02)| wherever |lam(0.04) - lam(0.02)| > 1e-6. Otherwise the shift is not the series' truncation (for example
+    the longer horizon segment's integration), and it is reported as such.
+ Signs: at u0 0.02 the LU sign check of signtest.py (LU(QM) sign(det Q), 3 random orthogonal Q) at root -/+ 0.02 at D 16.
+Reading (the coordinator's rule): d = lam(0.02) - lam(0.04). If |d| exceeds the k_c spread at that D (D 16: the 55 -> 63 move, 3.33e-3;
+D 17.5: 5e-3, the coordinator's figure, since no valid second k_c exists) at any run, the k_c sequences so far mix the two errors, and
+every lambda past D 15 needs u0 0.02 (or Ks raised) before any k_c reading. Also reported: d(63) - d(55) at D 16 against the 55 -> 63 move.
+Then, only if the D 17.5 root survives the u0 change (one sign change at u0 0.02 within 5e-3 of its u0 0.04 root), the dd M at 1.925 and
+1.93 (proposal 3), then proposal 2.
+== 2026-11-20 13:31:12 correction: the "13:00 UTC" of the coordinator's go in line 4 was not read from a clock; the go arrived by hc before this log's first line. No criterion is changed.

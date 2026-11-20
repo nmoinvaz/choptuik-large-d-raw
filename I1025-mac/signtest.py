@@ -3,7 +3,8 @@ of Q M, times sign(det Q), equals the sign from an LU of M. Rounding-floor singu
 usage (from solver/matter of a choptuik-large-d worktree, which supplies dss_ell):
   signtest.py planted
   signtest.py STATE D kc lam1,lam2,...
-  signtest.py STATE D kc around=RECORDS.jsonl:D:dl [dry]   (the record's lam at D, minus and plus dl; dry prints them)"""
+  signtest.py STATE D kc around=RECORDS.jsonl:D:dl [dry]   (the record's lam at D, minus and plus dl; dry prints them)
+  either form takes --u0=U --Ks=K (default 0.04 and 30, the values every record before #1025's u0 test used)"""
 import os, sys, time, json, numpy as np
 
 
@@ -40,7 +41,9 @@ if "dry" in sys.argv[5:]:
     sys.exit(0)
 from dss_ell import DSSEll, NODES_STD
 z = np.load(st)
-S = DSSEll(kc=kc, nodes=NODES_STD, n=D - 2, ell=1, Delta_ref=z[-1], Ks=30, u0=0.04)
+opt = dict(a[2:].split("=", 1) for a in sys.argv[5:] if a.startswith("--") and "=" in a)
+Ks, u0 = int(opt.get("Ks", 30)), float(opt.get("u0", 0.04))     # the records' horizon series; pass the record's own
+S = DSSEll(kc=kc, nodes=NODES_STD, n=D - 2, ell=1, Delta_ref=z[-1], Ks=Ks, u0=u0)
 S.freeze_from(z, 0.7)
 for l in lams:
     t = time.time()
@@ -48,6 +51,6 @@ for l in lams:
         M = S.mode_matrix(z, l)
     sv = np.linalg.svd(M, compute_uv=False)
     sg, la = signs(M)
-    print(json.dumps(dict(state=st.split("/")[-1], D=D, kc=kc, lam=l, signs=sg, agree=len(set(sg)) == 1, logabs=la,
+    print(json.dumps(dict(state=st.split("/")[-1], D=D, kc=kc, u0=u0, Ks=Ks, lam=l, signs=sg, agree=len(set(sg)) == 1, logabs=la,
                           n_below_1e_12=int(np.sum(sv < 1e-12 * sv[0])), n_below_1e_15=int(np.sum(sv < 1e-15 * sv[0])),
                           smallest=[float(v / sv[0]) for v in sv[-3:]], sec=round(time.time() - t, 1))), flush=True)

@@ -1,0 +1,8 @@
+== 2026-11-20 14:34:08 #1025: why the u0 test's C1 missed by 1.03e-4 at k_c 55, D 16 (u0test_note.log). Written before the run.
+Run (c1_scan.py, venv-314, the u0test.py system at u0 0.04): float64 slogdet of M at lam 2.24250, 2.24254, 2.24258, 2.24262, 2.24266, then
+the record 2.2426280416106374 twice (bitwise reproducibility of ln|det| in one process).
+Reading: more than one sign change over the five means det's sign is noise at the 1e-4 level there, so the k_c 55 D 16 record is good only to
+about that; exactly one change between 2.24250 and 2.24254 means this run's root is right and the record's root finder stopped on a
+noisy point; a ln|det| that differs between the two record evaluations means M's build is not reproducible bit for bit.
+Beside it: signtest.py with the new --u0/--Ks parsing, run with defaults on lane_t_b2.log's first case (k_c 63, D 16, lam 2.2259627535552045);
+it must reproduce that line's signs, logabs and smallest to all digits.
