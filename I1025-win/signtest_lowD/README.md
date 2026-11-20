@@ -36,4 +36,4 @@ OUT is a staging folder outside the push worktree, `C:/Users/nathan/Source/signt
 
 ## Status
 
-Not started. Results follow in `signtest_lowD.log`, `signtest_lowD.jsonl`, `signtest_lowD_planted.log` and `signtest_lowD_rows/`.
+Started 17:33:36 UTC: the driver's input checks passed (all 25 inputs, `signtest.py` blob, WT commit; numpy 2.5.4, scipy 1.18.1) and the planted control printed agree, agree, DISAGREE (`signtest_lowD_planted.log`). Row D 14.5 started at 17:33:39 UTC. Results follow in `signtest_lowD.log`, `signtest_lowD.jsonl`, `signtest_lowD_planted.log` and `signtest_lowD_rows/`.
