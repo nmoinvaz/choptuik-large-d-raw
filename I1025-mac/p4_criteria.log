@@ -102,3 +102,10 @@ runs on, so it starts no later row; Fv's output still goes to lane_p4b_mac.log a
 "== exit" line is lost (lane_slotB2.log records when its python ends). lane_slotB2.sh starts Fw1025b when pid 91081 has exited.
 No row runs twice. dh170 gets no lane B row: it would need its cross-check row (1-2 h) first, so the Mac's free slot ends Fm sooner,
 and P4's end is set by winb's and win2b's rows, not the Mac's.
+== 2026-11-20 23:31:53 AMENDMENT 9 (the coordinator's word), written before these rows run. dh170 (Linux, THREADS=4) re-roots the second-highest k_c
+at D 15, 15.5 and 17 (k_c 55: Fb D 15 lam 2.4210057702, Fb D 15.5 2.3387882480, Fs D 17 2.0257186890), so every D from 15 to 17 has
+hybrid values at its top two k_c once P4's rows land, and the table can quote a hybrid k_c spread (the coordinator's rule (3)).
+Driver p4_driver_rows.sh (blob e004c9ec), its cross-check row first (Fb, k_c 55, D 16, the Mac's root to 1e-5), row list
+p4_rows_dh170.txt (blob 31ce2b5810e88e14328217e79c0be2ccb649fda5), cap 21600 s per row (winb took 6722 s for a k_c 55 row). Same p4_hybrid.py, worktree commit, pass rule
+and system check (amendment 5) as before. These three records are not quoted rows, so they have no signtest; the hybrid's own checks
+(one change on the grid and over all evaluations, noise-robust) stand for their roots. No row runs elsewhere.

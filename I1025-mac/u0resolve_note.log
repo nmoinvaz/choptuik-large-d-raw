@@ -39,3 +39,6 @@ before its rule is applied.
  lam(Ks 45) - lam(u0 0.02) = +8.031e-4 > 3e-4: T2 does not pass. T1 (u0 0.02 - u0 0.04) = -8.132e-4.
  For the record: the u0 0.02 re-solve (Fh) has 3078 steps against 2565 and Delta 1.0017104864 against 1.0017135137 (-3.03e-6), so u0
  0.02 changed the discrete system's segment as well as the cut; the addendum does not separate those, and this note makes no claim.
+== 2026-11-20 23:31:53 The coordinator's ruling on T2: accepted as read. The Ks 30 cut moves lambda by 1.0e-5 at k_c 55, D 16 (Ks 45 against Ks 30),
+so the u0 0.02 rule does not apply and nothing is rerun at u0 0.02. T1 (-8.13e-4) is recorded as the change of the horizon segment's
+discrete system at u0 0.02 (3078 steps against 2565, Delta -3.03e-6), not as truncation, and no claim is made from it.
