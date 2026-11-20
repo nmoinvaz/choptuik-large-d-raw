@@ -1,0 +1,10 @@
+== 2026-11-20 08:21:59 #1025 lane T (coordinator, 08:2x UTC): two lambda jobs at D <= 17, where det M's sign is resolved. Written before the runs.
+(1) lambda at k_c 71 at D 17, from winb's k_c 63 D 17 state (raw I1025-win/out/sol_l1kc63Fw1025_D17.0000.npy, blob 8c98bce4, equal to the
+    Mac's copy), tag l1kc71Fm1025, guess 2.026546497375959 (the k_c 63 record). The 47->55 and 55->63 moves there were -1.07e-2, +8.3e-4.
+    Prediction (coordinator's): if |lambda_71 - lambda_63| < 8.3e-4, delta(17) = -0.0998 is converged to 1e-3. If not, D 17 is not resolved
+    at any k_c run so far, and the table marks it so.
+(2) lambda at k_c 63 at D 16, from the Mac's k_c 55 D 16 state (I1025-mac/out/sol_l1kc55Fb1025_D16.0000.npy, blob 94c8b048), tag
+    l1kc63Fm1025, guess 2.2426280416106374 (the k_c 55 record). It puts the D 16-16.5 slope on k_c 63 at both ends. A measurement, no
+    bar of its own: its 55->63 move is read beside the 47->55 move there (+4.5e-3) and D 16.5's 55->63 move (-1.37e-2).
+Record checks for both (as for winb's records): n_signchanges 1; lambda within 2% of the guess; signtest.py at lambda -/+ 0.02 agrees
+(rotation-resolved) with opposite signs at the two ends. A record failing any of them is not used.
