@@ -79,3 +79,9 @@ another sheet (every path needs a step of 0.161 or more), so it is a zero of a d
 0.21279321) for the +1 pair, (3.640861, 0.344043) and (3.449943, 0.350293), and its two nan boxes have the two points
 without value. `m5/control_1026_xi0.2.log`: hier.py (numpy, 998fd290) gives #1026's control solve 01 (hier_nb,
 dh610) to its printed digits, F3/F1 0.053613+0.005223i, F5/F1 0.002949+0.000510i.
+
+`fu_seed/point_3.6623456_1.06904321.jsonl` (20 Nov, the coordinator's order, for dh610's `b21-25-fu`): the fix2931
+recount's record of (3.6623456, 1.06904321), byte for byte line 889 of `fix2931/points_M3_r0.17.jsonl` (998fd290,
+`--m3starts=0.2,0.25`, noise cap 1e7; trail 0.2-0.17, |r3| 1.26e-6, noise3 3.5e-6, F_3 0.005494 - 0.141795i). The
+sheet check passes with it appended to b21-25's final cache (0 of 1561 pairs flagged, |dF_3| 0.0025-0.0078 to its
+valued neighbours on A 3.6623456).
