@@ -53,4 +53,4 @@ Observation, not a failure: D 12.5 and D 13 have 6 and 10 singular values below 
 ## Criteria met
 1. Planted control agree, agree, DISAGREE: met, by v1 (15:41:48) and again by v2 (17:37:20).
 2. Verdict per row, counted only with PASS: all 9 PASS; nothing was retried or repaired.
-3. The result table is posted on #1025 (comment id in the closing note of the post). The raw record: `signtest_lowD.log`, `signtest_lowD.jsonl`, `signtest_lowD_rows/D<D>.log`, `signtest_lowD_planted.log` (v2's) and `signtest_lowD_planted_v1.log`.
+3. The result table is posted on #1025 (comment 7047740827, 2026-11-20 about 18:50 UTC). The raw record: `signtest_lowD.log`, `signtest_lowD.jsonl`, `signtest_lowD_rows/D<D>.log`, `signtest_lowD_planted.log` (v2's) and `signtest_lowD_planted_v1.log`.
