@@ -159,3 +159,19 @@ res -> demixed_multi -> inner_np.jumps -> integrate -> solve_ivp). dh610's hier_
 The control has converged at 0.2 only, so box 16's M = 5 verdict is the one at 0.2, where no attempt reaches the bar
 (best |r_3| 1.2e-4 of three repeats): M = 5 gives no verdict on box 16. `m5/m5_read.py` reads the logs for
 `z16_m5_summary.log`.
+
+Box 7's -1 zero at 6da7da7b (`loc/run_loc2.sh`, 03:42-06:39 UTC on 20 Nov, `loc/z7_6da7da7b/`, log
+`loc/loc_z7_6da7da7b.log`): the relocation cell's boundary winds -1 at xi1 0.17 (83 points, 1 leaf). The zero is
+located at 0.17, A 3.245479, w/w_inf 0.345852 (|R| 0.358, floor 1.83), and at 0.18, 8.5e-6 away (|R| 0.054, floor
+0.222). Every point is on the Mac cache's sheet: |dF_3| to the nearest point of `m3/points_M3_r0.17.jsonl` is
+1.1e-8-9.8e-4 at 0.17 and 1.1e-8-8.5e-5 at 0.18 (`nearest_f3.log`), and `sheet_check.log` passes on the cell's
+edges. The M = 5 start from the 0.17 location is `m5/z7_start.txt`.
+
+b11-15's +1 at 6da7da7b (`loc/run_loc3.sh`, 06:09-06:40 UTC on 20 Nov, `loc/b1115p_6da7da7b/`, log
+`loc/loc_b1115p_6da7da7b.log`): the cell (`leaf_b1115p.jsonl`) winds +1 at xi1 0.17; after 1 split its 4 leaves keep
+2 unresolved cells, A 3.5131-3.5288 by w/w_inf 0.2078-0.2140 and 0.2140-0.2203, and its valued leaves sum to 0, so the
++1 lies in those two. Their shared edge holds one point under the 10 sigma guard, (3.5248456, 0.21404321): |R| 5995
+against 10 sigma 7277 (continuation-valued, noise3 35.9). The points are on b11-15's sheet (|dF_3| to the nearest
+b11-15 point 8.8e-5-2.4e-3, `nearest_f3.log`), and the sheet check passes on the 4 leaves (0 cells across a switch).
+`loc/run_loc4.sh` counts the same cell at 0.18 (located again at 0.2), seeded from these points, as box 16's zero
+was located at 0.18.
