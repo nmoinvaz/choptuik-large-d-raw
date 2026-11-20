@@ -81,5 +81,4 @@ Diagnostic (`z7/diag/`, nice 19, the same hier_nb.py solve at verbose=2): from t
 |r_3| 2.3e-5, |r_5| 2.0e-7 in 3 s, close to hier.py's 2.8e-6. At xi1 0.15 the level-5 solves stop at hier's noise floor,
 |g| 3.2e-2 to 5.2e-2 (three stops), against 6.8e-8 to 4.4e-7 (seven stops) at 0.2. The largest entries of hier's Jacobian K
 grow from 0.2 to 0.15 by 5.4e5 (d r_3 / d x_3: 1.95e9 to 1.05e15) and 6.2e5 (d r_5 / d x_5: 1.80e7 to 1.12e13). So at box
-7's (A, w) at 0.15 the double-precision floor of level 5 is 3e4 to 5e4 times the 1e-6 solve bar, and no start can meet
-the bar there in this code.
+7's (A, w) at 0.15 the double-precision floor of level 5 is 3e4 to 5e4 times the 1e-6 solve bar.
