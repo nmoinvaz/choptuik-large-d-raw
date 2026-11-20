@@ -137,6 +137,8 @@ def main():
     ap.add_argument("--append", action="store_true")
     ap.add_argument("--retest")
     ap.add_argument("--mutate", choices=["f3", "lowguard"])
+    ap.add_argument("--exclude", help='points "A,w;A,w" that are not valued here (default: the lines of exclude_points.txt '
+                                      'beside ROWS, if it exists); the coordinator\'s word on 20 Nov, 03:17 UTC')
     a = ap.parse_args()
     if a.selftest:
         return selftest(a.brk)
@@ -163,6 +165,13 @@ def main():
             if not has_value(r) and any(a0 - 1e-9 <= k[0] <= a1 + 1e-9 and w0 - 1e-9 <= k[1] <= w1 + 1e-9
                                         for a0, a1, w0, w1 in cells):
                 pts.append(k)
+    ex = a.exclude
+    if ex is None and os.path.exists(os.path.join(os.path.dirname(os.path.abspath(a.rows)), "exclude_points.txt")):
+        ex = open(os.path.join(os.path.dirname(os.path.abspath(a.rows)), "exclude_points.txt")).read().strip()
+    if ex:
+        gone = {ac.Multiplier.key(tuple(float(x) for x in s_.split(","))) for s_ in ex.replace("\n", ";").split(";") if s_.strip()}
+        print(f"excluded from valuing: {sorted(gone)}", flush=True)
+        pts = [p for p in pts if ac.Multiplier.key(p) not in gone]
     jobs, meta = [], []
     for p in pts:
         nb = ranked(recs, p, lambda r: ac.Multiplier.valued3(r) and finite(r.get("F3re")), 3)

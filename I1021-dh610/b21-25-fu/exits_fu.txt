@@ -1,0 +1,15 @@
+start 2026-11-20 03:16:00 code 6da7da7b python Python 3.14.10 2.5.4 1.18.1 1.3.0
+selftest 6da7da7b plain seedfix nocap lowcap exits: 0 1 1 1 
+fu_value selftest, --break exits: 0 1 (0 1)
+step2_pass1 value start 2026-11-20 03:16:05, cells 2
+step2_pass1 value exit 0 (0: all points accepted, 2: some stay unvalued) 2026-11-20 03:23:56
+step2_pass1 retest --mutate=f3 exit 1 (1: the control fired)
+step2_pass1 retest --mutate=lowguard exit 1 (1: the control fired)
+step2_pass1 recount start 2026-11-20 03:23:56
+step2_pass1 recount exit 0 2026-11-20 05:36:16
+step2_pass1 unresolved cells 2, accepted rows 4
+step2_pass2 value start 2026-11-20 05:36:16, cells 2
+step2_pass2 value exit 0 (0: all points accepted, 2: some stay unvalued) 2026-11-20 05:41:33
+step2_pass2 retest --mutate=f3 exit 1 (1: the control fired)
+step2_pass2 retest --mutate=lowguard exit 1 (1: the control fired)
+step2_pass2 recount start 2026-11-20 05:41:33
