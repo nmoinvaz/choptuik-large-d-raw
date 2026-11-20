@@ -175,3 +175,9 @@ against 10 sigma 7277 (continuation-valued, noise3 35.9). The points are on b11-
 b11-15 point 8.8e-5-2.4e-3, `nearest_f3.log`), and the sheet check passes on the 4 leaves (0 cells across a switch).
 `loc/run_loc4.sh` counts the same cell at 0.18 (located again at 0.2), seeded from these points, as box 16's zero
 was located at 0.18.
+
+Box 7's -1 zero, M = 5 (20 Nov 06:40-06:46 UTC, `m5/`, summary `m5/z7_m5_summary.log`): one fixed-(A, w)
+`hier.py 5 --fixA --schur` solve at the zero located at 0.17 (`z7_start.txt`), at xi1 0.2 only (the coordinator's
+rule: the 0.25 control never converged), then #1027's repeats (`z7_repeat_xi0.2.log`). The first attempt ends at
+|r_3| 2.2e3; the three repeats reach |r_3| 1.0e-5, 2.8e-6 and 6.9e-5 (|r_5| 9.1e-8 to 2.0e-7), none under the bar,
+all with |F_5/F_3| 0.3186 and the same printed harmonics. By the rule the M = 5 test gives no verdict on box 7.
