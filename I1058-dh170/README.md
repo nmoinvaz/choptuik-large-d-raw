@@ -1,0 +1,24 @@
+# I1058-dh170: hp at main 7ca74dd5 (multishoot 4.1.0, multisolver 0.2.2, multidouble 5.1.0) built on dh170 in a new venv with fat LTO, and the stored-reference checks
+
+Machine: dh170 (Fedora 45, i7-7700, 8 logical CPUs, 31 GB RAM, 8 GB zram swap). Issue: https://github.com/nmoinvaz/choptuik-large-d/issues/1058 (coordinator's hc 18:04 UTC, Nathan: "update all machines to latest multi libs").
+Worktree: `~/Source/choptuik-large-d-1058` (detached at 7ca74dd51e2faf1d2cc0d955b2551af79c64ec2b), venv `~/Source/choptuik-large-d-1058/.venv` (uv, Python 3.14.10, requirements.txt, maturin 1.16.0), made 2026-11-20 18:24 UTC. Running jobs and their venvs (`-935`, `-1014`) are not touched.
+Stored references: `~/scratch1058/raw` from raw origin/main fadd07fd (T81/ref_main.json, T81/scaled_main.json, anm-mac/jets_inputs/).
+
+## Steps (the issue)
+1. `PIP_NO_CACHE_DIR=1 pip uninstall -y multidouble` (nothing installed in a new venv), then `hp/build.sh` with the default release profile (fat LTO, one codegen unit), 6 cargo jobs, nice 15, `/usr/bin/time -v`. Log the time, the peak memory and pip's direct_url, which must name 8c4360ac.
+2. From `hp/`: `highm_check.py ref --compare=$RAW/T81/ref_main.json --Ms=48,64,80`, `scaled --compare=$RAW/T81/scaled_main.json`, `jets --compare=$RAW/anm-mac/jets_inputs/jets_inputs.json`, and `jets ... --mutate=kappa`, which must fail.
+3. Post a row on #1058: machine, venv path, build time and memory, the four exits.
+
+## Pass criteria, written before the build
+- Build exit 0; `direct_url.json` of the Python multidouble package names 8c4360ac0be804d081faeea524e5c1c6e2fffaaa; the .so's crate strings name multishoot 4.1.0, multisolver 0.2.2, multidouble 5.1.0.
+- ref exit 0 with "PASS: 72 outputs bit-identical"; scaled exit 0 with "PASS" (22 of 22); jets exit 0 with "PASS: 28 outputs bit-identical"; jets --mutate=kappa exit 1 ("FAIL: 28 of 28 outputs differ"). 0 differing rows in the three comparisons.
+- Any other result is a result, not fixed: report it with the exit and the lines.
+
+## Constraints (coordinator's hc 18:1x UTC)
+- The fat build runs alone after #1014's B2 run has exited and its series is posted; #1057's reads are paused during the build (the box has no margin: #935 peaked at 29.2 GB and #958 at 29.4 GB with LTO off; #1009 reached 26.7 GB after 14 minutes; fat LTO here is unmeasured).
+- The memory watchdog is alert-only: it logs ALERT lines (`mem1058.log`, `alert1058.log`) and an hc alert, and stops nothing (Nathan's standing rule). The build's processes get `oom_score_adj` 1000, so that if the kernel's OOM killer acts it takes the build and not another job; that stops nothing by itself.
+- `build1058.sh` starts only after the file `BUILD_GO` exists (I touch it after B2 has exited and the #1014 post is up) and no `anm_lowd.py`, `near_null.py` or `run1057.sh` process is running.
+
+## Log
+- 2026-11-20 18:24 UTC: folder, worktree, venv and stored references prepared; scripts follow.
+- 18:26 UTC: scripts written: `build1058.sh` (gate: `BUILD_GO` and no `anm_lowd.py`, `near_null.py` or `run1057.sh` running; fat LTO, 6 jobs, nice 15, `/usr/bin/time -v`, `oom_score_adj` 1000; the watchdog logs ALERT lines at MemAvailable under 2 GiB, 1 GiB and 0.5 GiB to `mem1058.log`, `alert1058.log`, `build.log` and sends an hc line, and stops nothing), `checks1058.sh` (the four checks, `summary_1058.txt`), `after_build1058.sh` (runs the checks only if the build exited 0). `selftest_build1058.sh` tests the watchdog with a dummy build (`sleep 6; exit 7`): thresholds above MemAvailable give one ALERT at level 3 and the build's own exit 7 comes through, only the 2 GiB threshold above gives one at level 1, thresholds of 1 KB give none (`selftest_build1058.log`: pass).
