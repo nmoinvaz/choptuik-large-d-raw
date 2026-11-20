@@ -126,3 +126,63 @@ Step 6's accepted attempt: 7 refused trials (lam 0.5, 1, at corrections 0, 1, 2,
 
 anm_run pid 98367: elapsed 02:11:29, 590.1% cpu, rss 348 MB; run2 started 06:11:16 UTC, 2.19 h ago; cap 36 h (SIGTERM at 2026-11-21 18:11:16 UTC).
 
+
+### run2: arc step 7, attempt 1 refused by the stall rule (2026-11-20 10:12 UTC)
+
+Arc step 7 is not accepted yet. Its first attempt (a = 0.0444334 x 1.25 = 0.05554175, D move 0.055541506, checked: D move / a = 0.99999561 against t_D 0.99999561) from arc step 6's D 259.47193723120494 to D 259.527478737559 refused by the stall rule: on 3: lam at or below 0.04 twice in a row, stopping (stalled). The corrections took 5073 s (4621 s of trials and chord checks). The stall rule (`--lam_stall 0.04`) and `--qd_it 40` are as in run1; the stop watcher stays armed and anm_run goes on to the next attempt with a halved.
+
+Per trial (every refused trial's ladder failed: the point |F| is the one before projection, and the trial |F| after the failed projection is the same point):
+
+| correction | trial lam | projection | \|F\| before projection | trial max\|F\| (after) | simplified correction / \|dz\| (bound) | result | seconds |
+|---|---|---|---|---|---|---|---|
+| 0 | strong chord | not logged | not logged | | theta inf (bound 0.75) | refused | 250.22 |
+| 0 | 1 | attempted, ladder failed | 6.49e+09 | 6.49e+09 | 2.783e+54 (0.750) | refused | 240.97 |
+| 0 | 0.5 | attempted, ladder failed | 4.13e+08 | 4.13e+08 | 1.739e+53 (0.875) | refused | 219.46 |
+| 0 | 0.25 | attempted, ladder failed | 2.76e+07 | 2.76e+07 | 1.087e+52 (0.938) | refused | 180.41 |
+| 0 | 0.125 | projected, ladder converged | not logged | 1.94e-29 | 8.753e-01 (0.969) | accepted | 247.7 |
+| 1 | 1 | attempted, ladder failed | 4.32e+09 | 4.32e+09 | 1.852e+54 (0.750) | refused | 240.43 |
+| 1 | 0.5 | attempted, ladder failed | 2.96e+08 | 2.96e+08 | 1.252e+53 (0.875) | refused | 239.39 |
+| 1 | 0.25 | attempted, ladder failed | 2.75e+07 | 2.75e+07 | 1.114e+52 (0.938) | refused | 234.66 |
+| 1 | 0.125 | projected, ladder converged | not logged | 3.30e-29 | 8.743e-01 (0.969) | accepted | 246.23 |
+| 2 | 1 | attempted, ladder failed | 2.69e+09 | 2.69e+09 | 1.236e+54 (0.750) | refused | 239.48 |
+| 2 | 0.5 | attempted, ladder failed | 2.00e+08 | 2.00e+08 | 9.092e+52 (0.875) | refused | 236.44 |
+| 2 | 0.25 | attempted, ladder failed | 2.48e+07 | 2.48e+07 | 1.106e+52 (0.938) | refused | 232.15 |
+| 2 | 0.125 | attempted, ladder failed | 1.14e+07 | 1.14e+07 | 3.539e+51 (0.969) | refused | 171.76 |
+| 2 | 0.0625 | attempted, ladder failed | 9.27e+06 | 9.27e+06 | 2.477e+51 (0.984) | refused | 171.41 |
+| 2 | 0.03125 | projected, ladder converged | not logged | 3.27e-29 | 9.687e-01 (0.992) | accepted | 239.31 |
+| 3 | 1 | attempted, ladder failed | 2.32e+09 | 2.32e+09 | 1.112e+54 (0.750) | refused | 239.5 |
+| 3 | 0.5 | attempted, ladder failed | 1.75e+08 | 1.75e+08 | 8.265e+52 (0.875) | refused | 227.26 |
+| 3 | 0.25 | attempted, ladder failed | 2.26e+07 | 2.26e+07 | 1.039e+52 (0.938) | refused | 167.46 |
+| 3 | 0.125 | attempted, ladder failed | 1.11e+07 | 1.11e+07 | 3.473e+51 (0.969) | refused | 177.55 |
+| 3 | 0.0625 | attempted, ladder failed | 9.14e+06 | 9.14e+06 | 2.485e+51 (0.984) | refused | 176.92 |
+| 3 | 0.03125 | projected, ladder converged | not logged | 3.24e-29 | 9.687e-01 (0.992) | accepted | 242.71 |
+
+Per correction:
+
+| correction | accepted lam | max\|F\| before -> after | \|dz\| before -> after | seconds |
+|---|---|---|---|---|
+| 0 | 0.125 | 3.77e-36 -> 1.94e-29 | 8.11e-15 -> 7.12e-15 | 1254.16 |
+| 1 | 0.125 | 1.94e-29 -> 3.30e-29 | 7.12e-15 -> 6.19e-15 | 1073.55 |
+| 2 | 0.03125 | 3.30e-29 -> 3.27e-29 | 6.19e-15 -> 6.00e-15 | 1403.1 |
+| 3 | 0.03125 | 3.27e-29 -> 3.24e-29 | 6.00e-15 -> 5.81e-15 | 1342.52 |
+
+First |dz| of every attempt against the arclength step a (D rises down the table; run1's last two are the refused attempts of arc step 5; AB1, AB2 and run2 ran with `--elim_switch 0`):
+
+| run | arclength a | first \|dz\| | first \|dz\| / a | accepted lam at correction 0 |
+|---|---|---|---|---|
+| pilot2 | 0.0455 | 5.37e-15 | 1.18e-13 | 0.25 |
+| pilot2 | 0.056875 | 4.60e-16 | 8.09e-15 | 1 |
+| run1 | 0.0455 | 6.20e-16 | 1.36e-14 | 1 |
+| run1 | 0.056875 | 8.92e-16 | 1.57e-14 | 0.5 |
+| run1 | 0.07109375 | 8.83e-16 | 1.24e-14 | 0.5 |
+| run1 | 0.0888671875 | 9.21e-15 | 1.04e-13 | 0.125 |
+| run1 | 0.04443359375 | 4.82e-15 | 1.08e-13 | 0.0625 |
+| ab1 | 0.07109375 | 8.83e-16 | 1.24e-14 | 0.5 |
+| ab2 | 0.0444334 | 1.96e-15 | 4.41e-14 | 0.25 |
+| run2 | 0.0444334 | 2.89e-15 | 6.5e-14 | 0.25 |
+| run2 | 0.05554175 | 8.11e-15 | 1.46e-13 | 0.125 |
+
+Next: anm_run's attempt 2 halves a to 0.027770875 (D move 0.027770753). If first |dz| / a stays at this attempt's 1.46e-13, its first |dz| is 4.05e-15, between 2.89e-15 (arc step 6, accepted lam 0.25 x3) and 4.82e-15 (run1's refused attempt 2 of arc step 5), and pilot2's step 0 was accepted at 5.37e-15 with lam 0.25, so the table does not fix where the crawl starts. A halved attempt costs about the corrector time of this one if it is refused as well (this attempt: 5073 s of corrections). The series at arc step 6's D is in `run2/arcjet_001_D259.471937.npz` if a restart with another `--a0` is wanted (`--arc_jet` reads it, saving the 1085 s of forming it); I have not changed anything.
+
+anm_run pid 98367: elapsed 04:01:20, 124.5% cpu, rss 323 MB; D 0.431332 below 259.903269724106 at arc step 6's D.
+
