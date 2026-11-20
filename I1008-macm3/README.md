@@ -112,3 +112,17 @@ Per arc step: arclength a (the D move named as such), D, t_D, the D distance to 
 
 ### run2 pilot: base polish passed (2026-11-20 06:36 UTC)
 Base polished: D 259.4275040262367481536151164164618, max|F| 4.37e-38 -> 7.21e-71 in 2 steps, converged, Delta moved -1.77e-39; no Traceback; the kernel-API notices are the ones AB1 and AB2 printed (no octo_tangents, residual_sub, jacobian_sub, newton_o_residual). The pilot condition (anm_run starts and passes its base polish on main 9980cd93 with the venv-macm3-main kernel) holds, so run2 continues on this worktree. Next in the log: the series at the base, computed (no arcjet), then arc step 6's first attempt. anm_run pid 98367 (elapsed 25:28, 592.3% cpu, rss 219 MB).
+
+### run2: arc step 6 accepted (2026-11-20 08:22 UTC)
+
+| arc step | arclength a | D move | D | Delta | t_D start | t_D end | D below 259.903269724106 | corrections | accepted lam | ladder / failed / skipped | corrector s | refused attempts | first \|dz\| | first \|dz\| / a |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 5 (AB2) | 0.0444334 | 0.044433205 | 259.42750402623675 | 1.68347789279812 | 0.9999956072 | 0.9999956095 | 0.475766 | 9 | 0.25 x3, 0.5, 1 x5 | 11 / 9 / 0 | 5367.3 | 0 | 1.96e-15 | 4.41e-14 |
+| 6 | 0.0444334 | 0.044433205 | 259.47193723120494 | 1.68347117889185 | 0.9999956095 | 0.9999956118 | 0.431332 | 9 | 0.25 x3, 0.5, 1 x5 | 11 / 9 / 0 | 5222.6 | 0 | 2.89e-15 | 6.5e-14 |
+
+Accepted steps in run2: 1. No turn recorded (anm_run's own detection of D'(s) = 0 inside an accepted step). t_D has not changed sign. t_D start of the first step of run2 0.9999956095, end of the last 0.9999956118; its change per unit arclength over the last accepted step 5.194e-08.
+
+Step 6's accepted attempt: 7 refused trials (lam 0.5, 1, at corrections 0, 1, 2, 3, 7 `projection failed` lines, trial |F| 9.64e+06 to 3.52e+08) and 1 refused strong-chord check(s), which together took 1574 s of the corrector's 5222.6 s. The series at the base took 1091.2 s (computed by the jets, no arcjet).
+
+anm_run pid 98367: elapsed 02:11:29, 590.1% cpu, rss 348 MB; run2 started 06:11:16 UTC, 2.19 h ago; cap 36 h (SIGTERM at 2026-11-21 18:11:16 UTC).
+
