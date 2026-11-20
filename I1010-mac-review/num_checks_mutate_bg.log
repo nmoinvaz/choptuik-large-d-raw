@@ -1,0 +1,20 @@
+   zero it 0: |J| 3.91e-08  step 1.12e-02  x [2.54215 0.77699] [0 s]
+   zero it 1: |J| 3.61e-09  step 6.11e-04  x [2.55334846 0.77565102] [1 s]
+   zero it 2: |J| 2.96e-11  step 6.18e-06  x [2.55395989 0.77518721] [1 s]
+   zero it 3: |J| 1.33e-15  step 5.58e-10  x [2.55396607 0.77518381] [2 s]
+   zero it 4: |J| 3.56e-16  step 1.04e-10  x [2.55396607 0.77518381] [2 s]
+   zero it 5: |J| 7.54e-16  step 1.80e-10  x [2.55396607 0.77518381] [3 s]
+   zero it 6: |J| 3.78e-16  step 7.12e-11  x [2.55396607 0.77518381] [3 s]
+   zero it 7: |J| 4.12e-16  step 2.22e-10  x [2.55396607 0.77518381] [3 s]
+FAIL  1. the M = 1 zero, own Newton on the raw jump, against the stored zero:  x = (2.553966070681, 0.775183810803), stored (2.542148047519, 0.776994013647), difference 1.2e-02 (< 1e-8) [3 s]
+FAIL  2. linear perturbation (profile sin, lam = 0) = d(jump)/dA by five-point differences:  relative 1.7e-02 (< 1e-6) [4 s]
+FAIL  3. exact modes: A(0) F' = 0 and A(1)(F + w F') = 0; control: A(0.5) is not singular:  |A(0) f|/|A| 1.8e-03, |A(1) f|/|A| 3.6e-04 (< 1e-6); A(0.5) sv ratio 2.0e-02 (> 1e-3); A(0) sv ratio 1.7e-03 [5 s]
+FAIL  4. lambda* of the M = 1 model against FIRST_ORDER.md:  lambda* = 1.7693318258, stored 1.7691220084, difference 2.1e-04 (< 1e-7) [7 s]
+PASS  5. d/dlambda of the mode (variational equation) = centred differences:  relative 1.4e-08 (< 1e-6) [8 s]
+PASS  6. forcings: summed series = Taylor-jet value at |xi| = 0.12 (all six):  max relative 1.1e-13 (< 1e-8) (series truncation 1e-27) [8 s]
+PASS  7. compact forms = t-derivative forms without truncation (l2, l0 against SymForce's terms, G):  max relative 2.5e-15 (< 1e-9) [11 s]
+FAIL
+real 12.36
+user 11.75
+sys 0.21
+exit 1

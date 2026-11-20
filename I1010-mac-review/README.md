@@ -8,14 +8,14 @@ sympy 1.14.0, numpy 2.5.4, scipy 1.18.1, mpmath 1.3.0), one process at nice 10. 
 `exit <code>`.
 
 The review's own runs. Code at 60edcacf unless a commit is named; the c2 path of l2_c2_review_num.py is the same in
-9acabdd8 and 60edcacf.
+9acabdd8, 60edcacf and 13f4508b (which adds the mutations bg, lin, dlam and ser, off by default).
 
 | file | command (from solver/inner_pert/) | result |
 | --- | --- | --- |
 | `sym.log` | `l2_c2_review_sym.py` | 25 checks, all passed, exit 0 |
 | `sym_mutate_{fibre,lin,bg,k,sign}.log` | `l2_c2_review_sym.py --mutate=NAME` | 11, 10, 1, 10 and 4 checks fail, exit 1 |
-| `num_checks.log` | `l2_c2_review_num.py checks` | 7 planted checks, PASS, exit 0 |
-| `num_checks_mutate_fc.log` | `l2_c2_review_num.py checks --mutate=fc` | check 7 fails, exit 1 |
+| `num_checks.log` | `l2_c2_review_num.py checks` (13f4508b) | 7 planted checks, PASS, exit 0 |
+| `num_checks_mutate_{bg,lin,dlam,ser,fc}.log` | `l2_c2_review_num.py checks --mutate=NAME` (13f4508b) | checks 1-4; 2-4; 5; 6; 7 fail, exit 1 |
 | `num_c2_M1.log`, `.json` | `l2_c2_review_num.py c2` (9acabdd8) | M = 1 against l2_c2.py: max relative difference 1.3e-10, PASS |
 | `num_c2_M1_mutate_fc.log` | `l2_c2_review_num.py c2 --mutate=fc` (9acabdd8) | FAIL, exit 1, as required |
 | `num_c2_M1_r0.25.log`, `.json` | `l2_c2_review_num.py c2 --r1=0.25 --delta=0.3927` | slices agree to 2.6e-10; the left-singular-vector value moves to -7.94356; PASS (slices only) |
