@@ -14,3 +14,9 @@ Code: `perf/tau-map-lowd` at 32e5825d (worktree `~/Source/choptuik-1033`), `note
 | `states/` | run 5's checkpoints and converged states (`tmap_*`) |
 | `report_D3.0444.json`, `report_D3.0444.txt` | the report with `--ref` M 384, `--ref2` M 320 and `--cost` win2's cost2 |
 | `memlog_1033.log`, `rss_1033.log` | alert-only memory log of the unit and the solve's RSS every 10 min |
+
+## Result, 20 Nov 08:45 UTC
+
+Run 5 ended `end 2026-11-20 08:38:59 UTC`: solve exit 0 (29 285 s, 8 h 08 min, six configurations, all converged), report exit 1 (one check: the own plan of L 1 at M 384 has 3785 steps against the stored 2796, 1.354 against the bound 10%; the Delta identities and both L checks pass), report `--mutate delta` exit 1 as required.
+`solve_D3.0444.jsonl` (six records), `solve_D3.0444.log`, `report_D3.0444.txt` and `.json`, `report_control_delta.txt`, `states/` (the six converged states), `exits_1033.txt`, `memlog_1033.log`, `rss_1033.log`.
+Per configuration (L, M'): Delta - ref, plan steps (start / pass 2 / own), solve seconds: (1, 384) 0, 3539 / 3539 / 3785, 13 363; (1, 320) +7.67e-11, 6226 / 3649 / 2831, 11 072; (0.5, 192) +1.12e-12, 2777 / 2091 / 1962, 1630; (0.5, 160) +1.57e-10, 2408 / 1985 / 1854, 1036; (0.4, 192) -3.49e-13, 2778 / 1958 / 1741, 1418; (0.4, 160) +1.96e-11, 2398 / 1800 / 1589, 727.

@@ -1,0 +1,17 @@
+reference: /home/nathan/Source/choptuik-large-d-raw-1033/T100-win2/states/lowDhm_x0.000157-0.975_D3.0444_M384.npz: D 3.044375, uniform M 384, Delta 2.441488095994242 -1.941e-16, |Delta - Delta(ref2)| 7.67e-11
+cost against the uniform grid at M 384 on its own plan, 3785 steps; one Newton call there 2726.2 s
+| L | M' | Delta - ref | <1e-12 | <e_u | plan start | pass 2 | own | own/S_u | cost M^3 | cost c(M) | cost measured |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| 1 | 320 | +7.67e-11 | no | yes | 6226 | 3649 | 2831 | 0.75 | 0.433 | 0.460 | 0.528 |
+| 1 | 384 | -3.33e-30 | yes | yes | 3539 | 3539 | 3785 | 1.00 | 1.000 | 1.000 | 1.000 |
+| 0.5 | 160 | +1.57e-10 | no | no | 2408 | 1985 | 1854 | 0.49 | 0.035 | 0.046 | 0.047 |
+| 0.5 | 192 | +1.12e-12 | no | yes | 2777 | 2091 | 1962 | 0.52 | 0.065 | 0.078 | 0.091 |
+| 0.4 | 160 | +1.96e-11 | no | yes | 2398 | 1800 | 1589 | 0.42 | 0.030 | 0.040 | 0.040 |
+| 0.4 | 192 | -3.49e-13 | yes | yes | 2778 | 1958 | 1741 | 0.46 | 0.057 | 0.069 | 0.065 |
+modes needed for Delta to 1e-12 of the reference, per L (the smallest M' from which every larger M' tried converged and agrees):
+  L 1: M' 384 (1.00x fewer than M 384); own plan 3785 steps (1.00x); projected cost per call 1.000 (M^3), 1.000 (c(M)), 1.000 measured
+  L 0.4: M' 192 (2.00x fewer than M 384); own plan 1741 steps (0.46x); projected cost per call 0.057 (M^3), 0.069 (c(M)), 0.065 measured
+identity: L 1 at M 384 from M 384: Delta - stored Delta(M 384) -3.3e-30 (bound 1e-20), own plan 3785 against the stored 2796 steps (1.354; bound 10%): FAIL
+identity: L 1 at M 320 from M 384: Delta - stored Delta(M 320) -5.6e-30 (bound 1e-20): PASS
+check: L 0.5 at its largest M' 192: |Delta - ref| 1.1e-12 against the uniform grid's own resolution error 7.7e-11: PASS
+check: L 0.4 at its largest M' 192: |Delta - ref| 3.5e-13 against the uniform grid's own resolution error 7.7e-11: PASS
