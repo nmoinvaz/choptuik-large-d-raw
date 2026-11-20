@@ -3,10 +3,12 @@
 under the same 12 h cap, then stops. ell_win1025.sh's P1 subshell is already parsed and starts `ell_leap.py ... 17.5 20 ...` when the D 17.5 start
 is done. This guard waits for that process, kills only its tree at its start (nothing is computed in its first minute), and runs the same
 command with D_end 18 in its place, appending to logs1025/leap_kc63.log with a header that says so. When the leap ends with exit 0 it runs
-lambda at D 18 on the k_c 63 state (P2 of the script would give up after 2 h on a missing state) unless a record with lambda at D 18 exists;
-if P2's ell_refine is alive it waits for it first.
+lambda at D 18 on the k_c 63 state only when cfg run_lam is set (off since 2026-11-20 ~03:58 UTC, the coordinator's order: the root finder lam_root
+fails past D 17, so no lambda is taken at D 18; the leap's state data/sol_l1kc63W1025_D18.0000.npy is kept for later); in that mode if P2's ell_refine
+is alive it waits for it first.
 
-usage (detached, BelowNormal): python guard_leap_1025.py            python guard_leap_1025.py --selftest
+usage (detached, BelowNormal): python guard_leap_1025.py [--now]    python guard_leap_1025.py --selftest
+--now (2026-11-20, the coordinator's order): do not wait for the script's leap, run the leap to D 18 at once (the script's P1 subshell is stopped by exact pid first).
 Exit: 0 done, 1 the replacement leap did not exit 0, 2 the lambda run did not exit 0, 4 STOP_GUARD_1025 file."""
 import json
 import os
@@ -96,24 +98,31 @@ def guard(cfg):
     gl = os.path.join(cfg["logs"], "guard_1025.log")
     th = str(cfg.get("threads", 4))          # 4 BLAS threads (the script used 2): the eigenvalue scans were stopped, the cores are free
     env = dict(os.environ, OPENBLAS_NUM_THREADS=th, OMP_NUM_THREADS=th, MKL_NUM_THREADS=th, PYTHONDONTWRITEBYTECODE="1")
-    logline(gl, f"{now()} UTC guard start; waiting for a python process with {cfg['leap_match']}")
-    while True:
-        if os.path.exists(cfg["stop"]):
-            logline(gl, f"{now()} UTC STOP file, guard ends")
-            return 4
-        tops = find_tops(cfg["leap_match"])
-        if tops:
-            break
-        time.sleep(cfg["poll"])
-    for pid in tops:
-        kill_tree(pid)
-    logline(gl, f"{now()} UTC killed the script's leap, pid(s) {tops}")
     ll = os.path.join(cfg["logs"], "leap_kc63.log")
-    logline(ll, f"== {now()} {' '.join(cfg['leap_cmd'][1:])}   (D_end 18 in place of the script's 20, the coordinator's order; {th} BLAS threads in place of 2, the scans having been stopped; the script's own leap was killed at its start)")
+    if cfg.get("now"):          # --now: the script's P1 subshell was stopped, so no leap of the script will start; run the leap at once
+        logline(gl, f"{now()} UTC guard start (--now): no script leap to wait for, running the leap to D 18 at once")
+        logline(ll, f"== {now()} {' '.join(cfg['leap_cmd'][1:])}   (D_end 18 in place of the script's 20 and {th} BLAS threads in place of 2, the coordinator's orders; started before D 17.5's lambda was done, the script's P1 subshell having been stopped so that its own leap never starts)")
+    else:
+        logline(gl, f"{now()} UTC guard start; waiting for a python process with {cfg['leap_match']}")
+        while True:
+            if os.path.exists(cfg["stop"]):
+                logline(gl, f"{now()} UTC STOP file, guard ends")
+                return 4
+            tops = find_tops(cfg["leap_match"])
+            if tops:
+                break
+            time.sleep(cfg["poll"])
+        for pid in tops:
+            kill_tree(pid)
+        logline(gl, f"{now()} UTC killed the script's leap, pid(s) {tops}")
+        logline(ll, f"== {now()} {' '.join(cfg['leap_cmd'][1:])}   (D_end 18 in place of the script's 20, the coordinator's order; {th} BLAS threads in place of 2, the scans having been stopped; the script's own leap was killed at its start)")
     rc = run_logged(cfg["leap_cmd"], cfg["cwd"], env, ll, CAP_S, cfg["stop"])
     logline(gl, f"{now()} UTC replacement leap ended, exit {rc}")
     if rc != 0:
         return 1 if rc is not None else 4
+    if not cfg.get("run_lam", True):
+        logline(gl, f"{now()} UTC lambda at D 18 not run (the coordinator's order of 2026-11-20: the root finder fails past D 17); the leap's state is kept")
+        return 0
     while not has_lam(cfg["jsonl"], 18.0):
         if find_tops(cfg["lam_match"]):          # P2's ell_refine is alive (it may be computing D 18): wait for it
             time.sleep(cfg["poll"])
@@ -171,6 +180,27 @@ def selftest():
         print(f"  lambda at D 18 already recorded: guard exit {rc}, no lambda run {'ok' if ok else 'WRONG'}")
         bad += not ok
         kill_tree(victim.pid)
+        # run_lam off: the leap is replaced and run, no lambda run, exit 0
+        victim = subprocess.Popen([sys.executable, "-c", "import time; time.sleep(300)", "ell_leap.py", "l1kcSELFTEST", "20"], creationflags=FLAGS)
+        time.sleep(3)
+        open(jsonl, "w").close()
+        cfg["run_lam"] = False
+        rc = guard(cfg)
+        ok = rc == 0 and not os.path.exists(os.path.join(logs, "lam_kc63.log")) and "lambda at D 18 not run" in open(os.path.join(logs, "guard_1025.log")).read()
+        print(f"  run_lam off: guard exit {rc}, no lambda run, the log says so {'ok' if ok else 'WRONG'}")
+        bad += not ok
+        kill_tree(victim.pid)
+        cfg["run_lam"] = True
+        # --now: no victim to kill, the replacement leap runs at once
+        os.remove(os.path.join(logs, "leap_kc63.log"))
+        cfg["now"] = True
+        cfg["run_lam"] = False
+        rc = guard(cfg)
+        lt = open(os.path.join(logs, "leap_kc63.log")).read()
+        ok = rc == 0 and "threads 4 4 4" in lt and "started before D 17.5's lambda was done" in lt
+        print(f"  --now: leap run at once, no wait: guard exit {rc} {'ok' if ok else 'WRONG'}")
+        bad += not ok
+        cfg["now"] = False
         # STOP file before any leap: exit 4
         open(stop, "w").write("x")
         cfg["leap_match"] = ["ell_leap.py", "l1kcNOSUCH"]
@@ -187,7 +217,7 @@ def main():
         sys.exit(selftest())
     matter = os.path.join(WT, "solver", "matter")
     logs = os.path.join(WT, "logs1025")
-    cfg = dict(logs=logs, cwd=matter, stop=os.path.join(WT, "STOP_GUARD_1025"), poll=10, jsonl=os.path.join(matter, "data", "l1kc63Fw1025.jsonl"),
+    cfg = dict(logs=logs, cwd=matter, stop=os.path.join(WT, "STOP_GUARD_1025"), poll=10, run_lam=False, now="--now" in sys.argv, jsonl=os.path.join(matter, "data", "l1kc63Fw1025.jsonl"),
                leap_match=["ell_leap.py", "l1kc63W1025"], lam_match=["ell_refine.py", "l1kc63W1025"],
                leap_cmd=[PY, "-u"] + LEAP, lam_cmd=[PY, "-u"] + LAM)
     sys.exit(guard(cfg))
