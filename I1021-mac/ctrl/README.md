@@ -69,7 +69,7 @@ unconverged M = 7 solves is 0.5 at 0.175, 2.6e2 at 0.2, 1.7e4 at 0.225 and 5e4 a
 The M = 7 stall at 0.2 (section 2, `stall/stall_control.txt`): the pre-registered reading gives harmonic 5 in all four
 attempts. It gives 5 at 0.15 as well, because at each radius at least one level-5 solve ends above 1e-6 right after a
 noise-floor stop, so the reading alone does not separate the radii. What separates them was found after the readings
-were fixed. The median final |r_5| of the level-5 solves is 1.06e-6 to 2.28e-6 at 0.2, with 2 to 8 solves per attempt
+were fixed. The median final |r_5| of the level-5 solves is 6.5e-7 to 2.3e-6 at 0.2, with 2 to 8 solves per attempt
 above the bar. At 0.15 it is 3.2e-10 to 5.5e-10, with 1 above the bar. Level 3 above them stops at hier's noise floor,
 |r_3| 5.6e-3 to 5.2e-2. The same reading on the noise solves (`stall/stall_noise_M7.txt`, outside the pre-registered
 reading) gives these medians of final |r_5| by radius:
@@ -79,7 +79,8 @@ reading) gives these medians of final |r_5| by radius:
 - 0.225: 1.5e-6 to 53. 0.25: 1.3e-6 to 8.8e2.
 
 At 0.225 and 0.25, 3 of the 5 starts also have level-7 solves that end above the bar after a noise-floor stop. So the
-first harmonic to stop falling moves up as xi1 grows: 3 at 0.175, 5 at 0.2, 7 in some starts at 0.225 and 0.25.
+failure reaches higher harmonics as xi1 grows. At 0.175 level 3 stops above the bar while level 5 ends near 1e-8. At
+0.2 level 5 ends near 1e-6. At 0.225 and 0.25 some level-7 solves stop as well.
 
 Criteria and the controls under them (section 3, `crit/criteria.txt`):
 - **xi1 0.15: both controls pass, on the Mac's walks.** The M = 5 walk would stop at iteration 5 (|r_1| 0.024 against
