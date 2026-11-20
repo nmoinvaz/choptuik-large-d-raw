@@ -1,0 +1,35 @@
+# trace of the 0.25 control: 6da7da7b, nice 19, stacks every 60 s, cap 300 s; start 2026-11-20 06:10:24
+M 5, xi1 0.25, fixed (A, w), procs 1; start x [2.726475886, 1.015603095, 0.144419478, 0.011087426, 0.00852798, 0.001528612]
+level radii (approach -> polish): r_1 0.2500 -> 0.2500, r_3 0.2500 -> 0.2500, r_5 0.1180 -> 0.2006
+Timeout (0:01:00)!
+Thread 0x000000020309bf80 (most recent call first):
+  File "/Users/nathan/Source/choptuik-large-d-1021b/solver/inner_stokes/inner_np.py", line ??? in mul
+  <invalid frame>
+Timeout (0:01:00)!
+Thread 0x000000020309bf80 (most recent call first):
+  File "/Users/nathan/venv-314/lib/python3.14/site-packages/scipy/integrate/_ivp/rk.py", line 64 in rk_step
+  File "/Users/nathan/venv-314/lib/python3.14/site-packages/scipy/integrate/_ivp/rk.py", line 144 in _step_impl
+  File "/Users/nathan/venv-314/lib/python3.14/site-packages/scipy/integrate/_ivp/base.py", line 201 in step
+  File "/Users/nathan/venv-314/lib/python3.14/site-packages/scipy/integrate/_ivp/ivp.py", line 660 in solve_ivp
+  File "/Users/nathan/Source/choptuik-large-d-1021b/solver/inner_stokes/inner_np.py", line 126 in integrate
+  File "/Users/nathan/Source/choptuik-large-d-1021b/solver/inner_stokes/inner_np.py", line 145 in jumps
+  File "hier.py", line 79 in demixed_multi
+  File "hier.py", line 205 in res_raw
+  File "hier.py", line 157 in res
+  File "hier.py", line 432 in main
+  File "hier.py", line 443 in <module>
+  File "<frozen runpy>", line 88 in _run_code
+  File "<frozen runpy>", line 98 in _run_module_code
+  File "<frozen runpy>", line 294 in run_path
+  File "/private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/0726f216-9eae-4698-9a94-e79a55d0f725/scratchpad/raw995/I1021-mac/m5/trace_run.py", line 10 in <module>
+Timeout (0:01:00)!
+Thread 0x000000020309bf80 (most recent call first):
+  File "/Users/nathan/venv-314/lib/python3.14/site-packages/numpy/linalg/_linalg.py", line ??? in norm
+  <invalid frame>
+Timeout (0:01:00)!
+Thread 0x000000020309bf80 (most recent call first):
+  File "/Users/nathan/Source/choptuik-large-d-1021b/solver/inner_stokes/inner_np.py", line 125 in <lambda>
+  File "/Users/nathan/venv-314/lib/python3.14/site-packages/scipy/integrate/_ivp/base.py", line 24 in fun_wrapped
+  File "/Users/nathan/venv-314/lib/python3.14/site-packages/scipy/integrate/_ivp/base.py", line ??? in fun
+  <invalid frame>
+# exit 124 2026-11-20 06:15:24

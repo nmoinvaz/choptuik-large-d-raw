@@ -5,6 +5,7 @@
 #   run_record.sh MERGED PROCS     MERGED: a merged.jsonl that passed merge_check and the sheet check
 # From I1021-mac/final. Writes record/ and plant/; record/exits.txt gets one line per step.
 set -u
+{ # read whole before it runs: an edit of this file cannot reach a running job
 MERGED=$1; PROCS=$2
 cd "$(dirname "$0")" || exit 1
 R=$(cd .. && pwd)
@@ -40,3 +41,5 @@ for L in record/leaves_M3_record_r0.17.jsonl lines; do
 done > record/sheet_check.log 2>&1
 grep -c 'sheet check: PASS' record/sheet_check.log | sed 's/^/sheet checks passed (of 2): /' >> $X
 echo "end $(date -u '+%F %T')" >> $X
+exit
+}

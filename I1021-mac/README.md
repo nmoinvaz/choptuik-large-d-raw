@@ -133,3 +133,29 @@ not printed its start residuals after 20 min.
 (3.553346605, 0.413172285) as the solve ran them, xi1 0.25, x = (B3, C3, B5, C5) = (0.843294116, 0.003092743,
 0.24539945, 0.010876743) from the last level-3 line (9 digits as printed), F_3/F_1, F_5/F_1, the residuals, the
 command, and the M = 3 zero's 0.18 location from the count file.
+
+Boxes 29-31 recount (`fix2931/`, `loc/run_loc.sh fix2931`, 998fd290, 00:17-04:09 UTC on 20 Nov): the 3 unresolved
+cells of `I1021-dh610/b26-31/leaves_M3_cand_r0.17_fix_b26-31_998fd290.jsonl`, recounted with `--retry` and starts
+0.2 then 0.25, seeded from `I1021-dh610/b26-31/points_M3_r0.2.jsonl`, on a copy of b26-31's 0.17 cache at raw
+e2bb13a0 (807 lines; the inputs are byte for byte dh610's raw files and are not copied here). Count
+(`count_M3_cand_r0.17_fix_b29-31_998fd290.json`): 54 leaves, 17 splits; boxes 29, 30 and 31 wind 0 (|boundary
+winding| at most 1.4e-16), leaf sums 0. Box 31 keeps 2 unresolved cells, A 3.8498-3.9123 by w/w_inf 1.0065-1.0315 and
+1.0315-1.0565, from one point without value at the midpoint of their shared edge: (3.8810956, 1.03154321), line 907,
+info 2.1e-4 at 0.17, fix.ok false with an empty trail. Since the box winds 0 and its valued leaves sum to 0, the two
+cells together hold 0. The sheet check passes on the leaves (0 of 54 cells across a switch) and along grid lines (0 of
+1429 pairs, largest |dF_3| 0.0479), and the planted switch fails (`sheet_check.log`, `sheet_check_mutate.log`). The
+argcount log of this run is lost. `run_loc.sh` was edited at 00:23 UTC while this job ran from it, and when argcount
+ended, bash read the edited file from its old offset. It ran the tail of the argcount line as a command, and that
+line's redirect rewrote `recount.log` with the error (the "exit 127" in `exits.txt`, and `run.out`). argcount wrote
+the points, leaves and count files itself, and they are whole. `loc/run_loc3.sh` and `final/run_record.sh` are now
+one block, which bash reads whole before it runs; a test with an in-place edit during a run misreads the plain form
+and not the block.
+
+The 0.25 control (20 Nov 04:06-06:06 UTC, `m5/control_1026_xi0.25.log`): it ended at its 2 h cap (exit 124) without
+printing its start residuals. `m5/trace_run.py` (new) dumps the stacks every 60 s; a rerun of 5 min at nice 19
+(`control_1026_xi0.25_trace.log`) is in the first residual throughout, in inner_np's DOP853 integration (hier.py
+res -> demixed_multi -> inner_np.jumps -> integrate -> solve_ivp). dh610's hier_nb run of the same solve
+(`I1026-dh610/logs/fix_control_xi0.25_01.log`) prints start residuals |r_1| = |r_3| = 0 and ends at |r_3| 8.3e3.
+The control has converged at 0.2 only, so box 16's M = 5 verdict is the one at 0.2, where no attempt reaches the bar
+(best |r_3| 1.2e-4 of three repeats): M = 5 gives no verdict on box 16. `m5/m5_read.py` reads the logs for
+`z16_m5_summary.log`.

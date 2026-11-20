@@ -3,6 +3,7 @@
 # (3.52562685, 0.21279321)) counted and located at xi1 0.17 and again at 0.18, argcount 6da7da7b, default starts,
 # in a box twice the leaf size that puts that midpoint at 0.4 of each range. Writes loc/b1115p_6da7da7b.
 set -u
+{ # read whole before it runs: an edit of this file cannot reach a running job
 C=/Users/nathan/Source/choptuik-large-d-1021b
 H=6da7da7be3f2325208f2d4f9570a5e5a8790bd78
 PY=/Users/nathan/venv-314/bin/python
@@ -17,3 +18,5 @@ echo "b1115p_6da7da7b start $(date -u '+%F %T')" >> $R/loc/exits.txt
 timeout 6h nice -n 10 $PY -u $AC $B --recount=$R/loc/leaf_b1115p.jsonl --seed=$R/loc/in/b11-15_points_M3_r0.17.jsonl \
   --out=$O --tag=M3_loc_b1115p_6da7da7b > $R/loc/loc_b1115p_6da7da7b.log 2>&1
 echo "b1115p_6da7da7b exit $? $(date -u '+%F %T')" >> $R/loc/exits.txt
+exit
+}
