@@ -30,3 +30,12 @@ For contrast, the float64 fixed-state shift was -0.134 and the float64 re-solve 
  F2 PASS: float64-vs-dd block-12 error 5.78e-11 at Ks 30 and 4.95e-11 at Ks 45, ratio 0.856 (bar 2).
  So T2 goes on at Ks 45 and u0 0.04 (no Fi): lane_slotA2.sh runs the ell_refine re-solve (tag l1kc55Fk1025), then p1d_scan.py on it.
  Slot A was idle from 21:07:00 to this start.
+== 2026-11-20 23:29:15 T2 reading (lane_slotA2.log, 21:33:59-23:17:45), against the T2 addendum of u0resolve_criteria.log. Reported to the coordinator
+before its rule is applied.
+ Re-solve l1kc55Fk1025 (Ks 45, u0 0.04, from Fb): F 1.78e-10 (< 1e-8), 2565 steps (Fb's count), Delta moved -7.0e-10 from Fb.
+ p1d_scan on it: the record system; hybrid signs - - - - + + +, one noise-robust change; root 2.2440327561, bracket 4.07e-8, 1 change
+ over 14 evaluations.
+ lam(Ks 45) - lam(u0 0.04, Ks 30) = -1.005e-5, within 3e-4: by the addendum, the u0 0.02 shift is NOT the cut's.
+ lam(Ks 45) - lam(u0 0.02) = +8.031e-4 > 3e-4: T2 does not pass. T1 (u0 0.02 - u0 0.04) = -8.132e-4.
+ For the record: the u0 0.02 re-solve (Fh) has 3078 steps against 2565 and Delta 1.0017104864 against 1.0017135137 (-3.03e-6), so u0
+ 0.02 changed the discrete system's segment as well as the cut; the addendum does not separate those, and this note makes no claim.

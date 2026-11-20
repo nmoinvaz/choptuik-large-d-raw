@@ -93,3 +93,12 @@ under the hybrid.
  I1025-win2b/out/sol_l1kc71Fw1025c_D16.5000.npy 8c8aa44e
  Row list I1025-mac/p4_rows_win2b.txt, blob e0c173234c69941b16135ea529145c391599d80a, cap 43200 s. The record's lam is 1.0e-7 below the
  2.1471295563 first relayed; the record is the source.
+== 2026-11-20 23:29:15 AMENDMENT 8 (my call, on the coordinator's offer of dh170 for lane B rows), written before these rows run.
+Lane B's D 16.75 k_c 63 row (Fv) started on the Mac at 22:16:04 and stays. Slot A is free since T2 ended (23:17:45), and P4 runs in any
+free slot (the coordinator's approval), so the D 16 k_c 63 row (Fm) runs in slot A now (p4_list_slotA.txt), and the D 16.5 k_c 63 row
+(Fw1025b) runs in slot B after Fv (p4_list_b_mac2.txt). Both lists equal lines 3 and 2 of p4_list_b_mac.txt, which is kept.
+Mechanism: lane B's list runner (lane_p4.sh, pid 91077) is stopped with SIGTERM while Fv's python (pid 91081, under its own timeout)
+runs on, so it starts no later row; Fv's output still goes to lane_p4b_mac.log and its record to the jsonl as before, only its
+"== exit" line is lost (lane_slotB2.log records when its python ends). lane_slotB2.sh starts Fw1025b when pid 91081 has exited.
+No row runs twice. dh170 gets no lane B row: it would need its cross-check row (1-2 h) first, so the Mac's free slot ends Fm sooner,
+and P4's end is set by winb's and win2b's rows, not the Mac's.

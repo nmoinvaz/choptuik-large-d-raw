@@ -1,0 +1,50 @@
+== 2026-11-20 21:33:59 ell_refine.py l1kc55Fb1025 55 l1kc55Fk1025 55 1 16 2.2426280416106374 --kappa 0.7 --u0 0.04 --Ks 45 --tol 1e-12 --wait 60
+  a2 = a * a
+  cx = c * ((n - 1) * (a2 - 1) - 2 * L * g) / x
+  ax = a * ((p * p + m * m) + 2 * L * g + (n - 1) * (1 - a2)) / (2 * x)
+  ax = a * ((p * p + m * m) + 2 * L * g + (n - 1) * (1 - a2)) / (2 * x)
+  pc = n * c * (p + m) / (2 * x)
+  px = (-self.D(p, omega) + cx * p - c * p / x + pc - lt) / (x - c)
+  mx = (-self.D(m, omega) - cx * m + c * m / x - pc + lt) / (x + c)
+  cx = c * ((n - 1) * (a2 - 1) - 2 * L * g) / x
+  lt = L * c * a2 * q / x
+  px = (-self.D(p, omega) + cx * p - c * p / x + pc - lt) / (x - c)
+  g = a2 * q * q
+  mx = (-self.D(m, omega) - cx * m + c * m / x - pc + lt) / (x + c)
+  cx = c * ((n - 1) * (a2 - 1) - 2 * L * g) / x
+  px = (-self.D(p, omega) + cx * p - c * p / x + pc - lt) / (x - c)
+  px = (-self.D(p, omega) + cx * p - c * p / x + pc - lt) / (x - c)
+  mx = (-self.D(m, omega) - cx * m + c * m / x - pc + lt) / (x + c)
+  aG = cs(A, Q2, Kk) + (n - 1) * (A[Kk] - cs(A, A2, Kk)) + 2 * L * cs(A, G, Kk)
+  C[Kk + 1] = (Kk * C[Kk] - (n - 1) * (cs(C, A2, Kk) - C[Kk]) + 2 * L * cs(C, G, Kk)) / (Kk + 1)
+  aG = cs(A, Q2, Kk) + (n - 1) * (A[Kk] - cs(A, A2, Kk)) + 2 * L * cs(A, G, Kk)
+  lt = L * c * a2 * q / x
+  pc = n * c * (p + m) / (2 * x)
+  mx = (-self.D(m, omega) - cx * m + c * m / x - pc + lt) / (x + c)
+  ax = a * ((p * p + m * m) + 2 * L * g + (n - 1) * (1 - a2)) / (2 * x)
+  sign, logdet = _umath_linalg.slogdet(a, signature=signature)
+  sign, logdet = _umath_linalg.slogdet(a, signature=signature)
+  sign, logdet = _umath_linalg.slogdet(a, signature=signature)
+{"D": 16.0, "l": 1, "kc": 55, "kappa": 0.7, "rk": 1, "reg": 0.0, "u0": 0.04, "Ks": 45, "src": "l1kc55Fb1025", "Delta": 1.0017135130338373, "Delta_src": 1.0017135137307174, "F": 1.7826547454548142e-10, "F_start": 1.785319014347594e-10, "steps": 2565, "constraint": 0.00018461131212340595, "dDelta_dF": 1698084099.2178788, "lam_gauge": 0.8349785933156316, "lam_guess": 2.2426280416106374, "lam": 2.250941809653696, "gamma": 0.4442584858085907, "n_eval": 18, "n_signchanges": 1, "seconds": 1626}
+== exit 0 2026-11-20 22:01:08
+{"D": 16.0, "l": 1, "kc": 55, "kappa": 0.7, "rk": 1, "reg": 0.0, "u0": 0.04, "Ks": 45, "src": "l1kc55Fb1025", "Delta": 1.0017135130338373, "Delta_src": 1.0017135137307174, "F": 1.7826547454548142e-10, "F_start": 1.785319014347594e-10, "steps": 2565, "constraint": 0.00018461131212340595, "dDelta_dF": 1698084099.2178788, "lam_gauge": 0.8349785933156316, "lam_guess": 2.2426280416106374, "lam": 2.250941809653696, "gamma": 0.4442584858085907, "n_eval": 18, "n_signchanges": 1, "seconds": 1626}
+== 2026-11-20 22:01:08 p1d_scan.py data/l1kc55Fk1025.jsonl data/sol_l1kc55Fk1025_D16.0000.npy 16 2.15,2.20,2.22,2.24,2.26,2.28,2.33
+D 16.0 k_c 55 u0 0.04 (sol_l1kc55Fk1025_D16.0000.npy): |F| 1.7826547455e-10 (record 1.7826547455e-10), steps 2565 (record 2565): the record system
+  lam 2.150000000000: hybrid -1 ln|det| -1579.8413689516 (noise 1e-15 on blocks 0-11: [-1.0, -1.0]); float64 -1 -1579.7798055474
+  lam 2.200000000000: hybrid -1 ln|det| -1575.6896698066 (noise 1e-15 on blocks 0-11: [-1.0, -1.0]); float64 -1 -1575.5443244006
+  lam 2.220000000000: hybrid -1 ln|det| -1574.3247843779 (noise 1e-15 on blocks 0-11: [-1.0, -1.0]); float64 -1 -1574.0626101385
+  lam 2.240000000000: hybrid -1 ln|det| -1574.1362018527 (noise 1e-15 on blocks 0-11: [-1.0, -1.0]); float64 -1 -1573.0749627756
+  lam 2.260000000000: hybrid +1 ln|det| -1570.7836746117 (noise 1e-15 on blocks 0-11: [1.0, 1.0]); float64 +1 -1571.3852705155
+  lam 2.280000000000: hybrid +1 ln|det| -1567.9925028109 (noise 1e-15 on blocks 0-11: [1.0, 1.0]); float64 +1 -1568.2456259083
+  lam 2.330000000000: hybrid +1 ln|det| -1562.1638994349 (noise 1e-15 on blocks 0-11: [1.0, 1.0]); float64 +1 -1562.2661941946
+scan: hybrid signs ['-', '-', '-', '-', '+', '+', '+'], changes 1, noise-robust True
+  lam 2.240676250077: hybrid -1 ln|det| -1574.2529666260 (noise 1e-15 on blocks 0-11: [-1.0, -1.0]); float64 -1 -1573.0281120544
+  lam 2.245971377417: hybrid +1 ln|det| -1574.2788935507 (noise 1e-15 on blocks 0-11: [1.0, 1.0]); float64 -1 -1573.3021492103
+  lam 2.243358133416: hybrid -1 ln|det| -1575.5926118558 (noise 1e-15 on blocks 0-11: [-1.0, -1.0]); float64 -1 -1573.1382248053
+  lam 2.243911789146: hybrid -1 ln|det| -1577.2561756690 (noise 1e-15 on blocks 0-11: [-1.0, -1.0]); float64 -1 -1572.9922667749
+  lam 2.244034933898: hybrid +1 ln|det| -1581.2925711730 (noise 1e-15 on blocks 0-11: [1.0, 1.0]); float64 -1 -1573.1928328279
+  lam 2.244032796780: hybrid +1 ln|det| -1585.2723231898 (noise 1e-15 on blocks 0-11: [1.0, 1.0]); float64 -1 -1573.1017639262
+  lam 2.244032756089: hybrid -1 ln|det| -1588.3501364779 (noise 1e-15 on blocks 0-11: [-1.0, -1.0]); float64 -1 -1572.9125485764
+root: hybrid lam 2.2440327560890942, final bracket (2.2440327560890942, 2.244032796779751) (width 4.07e-08), changes over all 14 evaluations 1, noise-robust True
+== exit 0 2026-11-20 23:17:45
+== 2026-11-20 23:17:45 lane slotA2 (T2) done
