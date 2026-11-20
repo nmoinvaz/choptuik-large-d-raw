@@ -1,0 +1,13 @@
+﻿# 2026-11-20 17:31:39Z C:\Users\nathan\Source\venv-md510\Scripts\python.exe -u D:\choptuik-i935-raw\I1025-win2d\logdet_check.py --mutate=lnd (BelowNormal, 1 BLAS thread)
+multidouble C:\Users\nathan\Source\venv-md510\Lib\site-packages\multidouble\__init__.py; numpy 2.5.4; python-flint 0.9.0; n 200, seed 20261120; negative d at [72, 123, 174]; |d| in [0.5049, 2.0056]; planted sign -1, sum ln|d_i| = 9.38166397280322819399823; --mutate=lnd
+dd_logdet: sign -1, ln|det| 9.38166397180322, min|u_kk| 6.2704e-01, max|u_kk| 6.9628e+00, 0.01 s
+control (row 0 negated): sign +1, ln|det| 9.38166397180322, |ln diff| from the unnegated 0.000e+00
+info: stored matrix by python-flint (600 bits): sign -1, ln|det| 9.381663971803219821749323 (ball radius [9.65e-176 +/- 7.76e-180])
+info: dd_logdet - stored +8.257e-16; planted - stored +1.000e-09 (the rounding in forming A in float64, with Q's departure from orthogonality)
+info: par=True: sign -1, ln|det| 9.38166397180322, same bits as par=False: True
+info: qd_logdet: sign -1, ln|det| 9.38166397180322, minus dd_logdet +0.000e+00, minus planted -1.000e-09
+1. sign PASS: dd_logdet -1, planted -1
+2. ln|det| FAIL: |dd_logdet - sum ln|d_i|| = 1.000e-09 (bar 1e-12)
+3. control PASS: row 0 negated gives sign +1 (must be +1), ln|det| moved 0.000e+00
+logdet_check: FAIL
+exit 

@@ -1,0 +1,3 @@
+﻿# 2026-11-20 17:31:56Z rerun of the two commands only to capture their exit codes (the first runs' ExitCode came back empty from Start-Process -PassThru); seeded, so the numbers are the same
+python logdet_check.py : exit 0; last line: logdet_check: PASS
+python logdet_check.py --mutate=lnd: exit 1; last line: logdet_check: FAIL
