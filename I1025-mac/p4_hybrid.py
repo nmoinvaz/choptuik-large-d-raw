@@ -65,7 +65,8 @@ changes = [(ls[j], ls[j + 1]) for j in range(len(ls) - 1) if sgs[j] != sgs[j + 1
 br = min(changes, key=lambda p: abs(0.5 * (p[0] + p[1]) - root)) if root is not None and changes else None
 robust = all(all(x == e["sign"] for x in e["noise"]) for e in ev.values())
 out = dict(D=D, kc=kc, mode="f64" if f64 else "hybrid", record=os.path.basename(recf), state=os.path.basename(st), F=F,
-           record_system=same, lam_record=rec["lam"], lam_guess=guess, lam=root, minus_record=(root - rec["lam"]) if root else None,
+           record_system=same, quoted=quoted,
+           system_check=("|F| within 1% of the quoted F; steps unchecked (stub record)" if quoted else "|F| within 1e-6 and equal steps"), lam_record=rec["lam"], lam_guess=guess, lam=root, minus_record=(root - rec["lam"]) if root else None,
            n_signchanges_grid=nch, n_changes_all=len(changes), bracket=br, bracket_width=(br[1] - br[0]) if br else None,
            noise_robust=robust, n_eval=len(ev), evals=ev, sec=round(time.time() - t0))
 print(f"D {D} k_c {kc} {out['mode']}: lam {root} minus record {out['minus_record']}; grid changes {nch}, changes over all "

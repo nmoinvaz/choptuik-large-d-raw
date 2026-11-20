@@ -36,3 +36,10 @@ Pass rules otherwise unchanged. The table takes this hybrid record as D 16.75's 
 It runs in lane B after P1-prime-d, as its first item.
 Also dropped from lane B: the D 17.5 k_c 47 row (l1kc47Fr1025). The table no longer quotes it (excluded at 505d8399, no signtest), so it is
 not a row the table quotes. Lane B's list is now: D 16.75 k_c 63 (stub), 16.5 k_c 63, 16 k_c 63, 15.5 k_c 63, 14.5 k_c 55.
+== 2026-11-20 15:54:59 AMENDMENT 3, the coordinator's word, written before lane B starts.
+D 16.25's quoted row is now k_c 63, win2b's l1kc63Fu1025 (2.1964309, collected at branch cdf4dffb; its signtest passes,
+raw I1025-win2b/signtest_kc63.log). Record blob 10235f97 and state blob e122f7ea, taken by git show from raw origin/main and checked.
+Its hybrid re-root is appended to lane B, with the normal system check (|F| within 1e-6 of 1.8839637548e-10, 2890 steps). Lane A's
+k_c 55 re-root at D 16.25 stays and gives the hybrid 55 -> 63 move there.
+The --quoted deviation for the D 16.75 row is accepted by the coordinator. p4_hybrid.py now states it in that row's output record
+(fields quoted and system_check).
