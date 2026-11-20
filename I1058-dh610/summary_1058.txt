@@ -1,0 +1,25 @@
+# 2026-11-20 21:57:03 UTC #1058 on dh610 at main 8179068da460fe6be81312602e4c9987d17d73a3, worktree /home/nathan/Source/choptuik-large-d-1058, venv /home/nathan/Source/venv-i1058
+lock of /home/nathan/Source/choptuik-large-d-1058: ; "multidouble"version = "5.1.0"; "multishoot"version = "4.1.0"; "multisolver"version = "0.2.2"
+pyproject multidouble pin: multidouble @ git+https://github.com/nmoinvaz/multidouble@8c4360ac0be804d081faeea524e5c1c6e2fffaaa#subdirectory=python
+hp/src last changed at 428b3ec2
+venv-i1058 before the uninstall: multidouble package WARNING: Package(s) not found: multidouble 
+venv-i1058 after the uninstall: WARNING: Package(s) not found: multidouble
+# python Python 3.14.10, maturin maturin 1.16.0, rustc 1.99.1 (58cf8f9c3 2026-10-13)
+build1058: expected exit 0, got 0, 1632 s (cap 5580 s); last: hpkernel avx2 multidouble avx2 OK
+build1058 peak memory of the unit so far (the venv and the build): 27930 MiB
+venv-i1058's installed multidouble package, direct_url: {"subdirectory": "python", "url": "https://github.com/nmoinvaz/multidouble", "vcs_info": {"commit_id": "8c4360ac0be804d081faeea524e5c1c6e2fffaaa", "requested_revision": "8c4360ac0be804d081faeea524e5c1c6e2fffaaa", "vcs": "git"}}; names 8c4360ac: OK
+control, venv-i1050's package (482c6835) read by the same test: names 8c4360ac: OK, it does not
+import /home/nathan/Source/venv-i1058: hpkernel avx2 multidouble avx2 set_exact_recip True plan_auto True /home/nathan/Source/venv-i1058/lib/python3.14/site-packages/hpkernel/__init__.py
+import /home/nathan/Source/venv-i1054: hpkernel avx2 multidouble avx2 set_exact_recip True plan_auto False /home/nathan/Source/venv-i1054/lib/python3.14/site-packages/hpkernel/__init__.py
+import /home/nathan/Source/venv-i1056: hpkernel avx2 multidouble avx2 set_exact_recip False plan_auto False /home/nathan/Source/venv-i1056/lib/python3.14/site-packages/hpkernel/__init__.py
+venv-i1058's _hpkernel .so sha1: d068e2c96428
+check_ref: expected exit 0, got 0, 43 s (cap 1800 s); last: PASS: 72 outputs bit-identical OK
+check_scaled: expected exit 0, got 0, 369 s (cap 7200 s); last: PASS OK
+check_jets: expected exit 0, got 0, 78 s (cap 1800 s); last: PASS: 28 outputs bit-identical OK
+check_jets_kappa: expected exit 1, got 1, 79 s (cap 1800 s); last: FAIL: 28 of 28 outputs differ OK
+check_ref: rows 'bit-identical' 73, DIFFERS 0
+check_scaled: rows 'bit-identical' 22, DIFFERS 0
+check_jets: rows 'bit-identical' 29, DIFFERS 0
+check_jets_kappa: rows 'bit-identical' 0, DIFFERS 28
+stored files sha1: a2c359d8145b 2d938c93b3a0 ee008fc8d8c5 
+peak memory of the unit after the checks: 27930 MiB
