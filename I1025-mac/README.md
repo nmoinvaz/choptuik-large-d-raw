@@ -38,4 +38,6 @@ Settings throughout: l = 1, kappa 0.7, u0 0.04, Ks 30. Seeds: #660's D = 10 stat
 | `lane_j_note.log` | J-a stopped by hand at 03:45 UTC (its lambda steps would read noise) |
 | `eigs_planted_lift.log` | ell_eigs.py with the floor lift: planted OK, planted --mutate=beyn BAD, planted_ill (no lift) BAD, planted_ill --lift OK, --lift --mutate=nolift BAD |
 | `lift_criteria.log` | the pass criteria for the lift on real states (C1 established roots, C2 reference independence, C3 resolved sign), written before lane K |
-| `lane_k.sh`, `lane_k.log`, `lane_k_a.log`, `lane_k_b.log` | lane K: ell_lam.py (lambda_1 with the lift) at k_c 55 D 16.5, 17, 17.5, 18, k_c 63 D 17, and lane J-b's D 16.25, 16.75 items (`out/ell_lam_lift_1025.jsonl`) |
+| `lane_k.sh`, `lane_k.log`, `lane_k_a.log`, `lane_k_b.log`, `lane_k_note.log` | lane K: ell_lam.py (lambda_1 with the lift) at k_c 55 D 16.5, 17, 17.5, 18, k_c 63 D 17, and lane J-b's D 16.25, 16.75 items (`out/ell_lam_lift_1025.jsonl`); stopped at 04:50 UTC after C1 failed at k_c 55, D 17 |
+| `lift_offset_prediction.log`, `lane_a.sh`, `lane_a.log` | test (a): the lift's root shift at k_c 55, D 17 against the reference's distance (0.01, 0.001), with the prediction written first (`out/ell_lam_offset_1025.jsonl`) |
+| `post_D18.5_numbers.log` | the numbers of the D 18.5 post |

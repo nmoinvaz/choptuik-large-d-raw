@@ -1,0 +1,10 @@
+== 2026-11-20 04:53:07 #1025 test (a): does the lift's root shift scale with the reference's distance? Written before the runs (coordinator 2026-11-20 ~04:55 UTC)
+State: k_c 55, D 17 (sol_l1kc55Fs1025_D17.0000.npy); M's own root there is resolved (rotation test), record 2.025718689014619.
+Measured at offset 0.1 (lane_k_a.log): lifted root (ref 1.9257, below) 2.040111069865, shift +1.44e-2; the second lift (ref 2.1257) not within 1e-6.
+Runs: ell_lam.py with refs record -/+ 0.01 and record -/+ 0.001, --all_roots (roots of det M, det(M + W_A), det(M + W_B), each to xtol 1e-10).
+Prediction if the cause is lambda_1's eigenvector leaning on a floor that turns with lambda: shift_A = root_A - root_M scales with the
+offset, about +1.4e-3 at 0.01 and +1.4e-4 at 0.001, and |shift_B| shrinks the same way.
+Read as confirmed if |shift_A(0.01)| / 1.44e-2 and |shift_A(0.001)| / |shift_A(0.01)| both lie in [0.05, 0.2] (0.1 within a factor 2).
+Read as not this cause if the shift shrinks by less than a factor 2 per decade (for instance a lift of directions that are not floor,
+the 1e-14 cut falling inside a continuum). Recorded beside it: the lifted count k at each reference (a k that grows near the root
+means lambda_1's own direction joined the floor).
