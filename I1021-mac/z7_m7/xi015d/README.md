@@ -66,3 +66,20 @@ counts, else the one of smallest |r_3|. `walk1026b.py --start_repeats 3` in both
 `--mutate=noposbar` (1), `walk1026b.py --mutate=norepeat` (1); the start-harmonics check on xi015c's first solve, which has
 two harmonics (1), and on the box walk's first solve (0); `inner_nb.py` capcheck (0), capcheck at MAXFEV 100 (1), check 1 3
 5 7 (0), check 3 5 `--mutate=sign` (1); `hier_nb.py selftest` (0), `--mutate=radius` (1).
+
+## Result, box 7 (12:33-12:43 UTC, `z7/exits.txt`, `z7/eval.txt`, `z7/logs/`, `z7/walks/`)
+
+The 22 checks, both gate walks and the evaluator give their expected exits. The box's M = 5 walk exits 1. Gate: both
+controls PASS (M = 5: +2.16e-6 and +1.38e-6 from the stored zero, 51 s; M = 7: -1.43e-6 and +6.06e-7, |F7/F5| 0.0573,
+556 s). The start-harmonics check confirms the box walk's first solve began from the four harmonics of the 0.2 iterate.
+
+Box 7's M = 5 start solve at xi1 0.15 does not converge: |r_3| 4.6e2, |r_5| 8.4e-2 at the first attempt (2 s), then 5.0e2,
+4.9e2 and 4.6e2 at the three repeats (|r_5| 7.9e-3, 0.10, 9.7e-2). The walk keeps the first attempt. There is no M = 5 zero,
+and the M = 7 walk did not run. Verdict, counted since both controls pass: **UNDECIDED** (#1027's rule with no M = 5 zero).
+
+Diagnostic (`z7/diag/`, nice 19, the same hier_nb.py solve at verbose=2): from the same start, hier_nb.py at xi1 0.2 reaches
+|r_3| 2.3e-5, |r_5| 2.0e-7 in 3 s, close to hier.py's 2.8e-6. At xi1 0.15 the level-5 solves stop at hier's noise floor,
+|g| 3.2e-2 to 5.2e-2 (three stops), against 6.8e-8 to 4.4e-7 (seven stops) at 0.2. The largest entries of hier's Jacobian K
+grow from 0.2 to 0.15 by 5.4e5 (d r_3 / d x_3: 1.95e9 to 1.05e15) and 6.2e5 (d r_5 / d x_5: 1.80e7 to 1.12e13). So at box
+7's (A, w) at 0.15 the double-precision floor of level 5 is 3e4 to 5e4 times the 1e-6 solve bar, and no start can meet
+the bar there in this code.
