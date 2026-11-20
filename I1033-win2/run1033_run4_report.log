@@ -1,0 +1,39 @@
+reference: D:/choptuik-large-d-raw/T82-win/states/lowDhm_x0.000157-0.975_D3.0475_M384.npz: D 3.0475, uniform M 384, Delta 2.466012146521712 +3.149e-17, |Delta - Delta(ref2)| 3.77e-11
+cost against the uniform grid at M 384 on its own plan, 2842 steps; one Newton call there 1239.1 s
+| L | M' | Delta - ref | <1e-12 | <e_u | plan start | pass 2 | own | own/S_u | cost M^3 | cost c(M) | cost measured |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| 1 | 320 | +3.77e-11 | no | yes | 4235 | 2136 | 1618 | 0.57 | 0.329 | 0.350 | 0.729 |
+| 1 | 384 | +1.13e-30 | yes | yes | 2317 | 2317 | 2842 | 1.00 | 1.000 | 1.000 | 1.000 |
+| 0.9 | 320 | +2.91e-12 | no | yes | 3918 | 1797 | 1437 | 0.51 | 0.293 | 0.311 | 0.588 |
+| 0.8 | 256 | +3.81e-11 | no | no | 3151 | 1888 | 1779 | 0.63 | 0.185 | 0.198 | 0.325 |
+| 0.8 | 320 | -1.74e-13 | yes | yes | 3736 | 1973 | 1885 | 0.66 | 0.384 | 0.408 | 0.673 |
+| 0.7 | 256 | +6.47e-13 | yes | yes | 3027 | 1991 | 1888 | 0.66 | 0.197 | 0.210 | 0.262 |
+| 0.7 | 320 | -3.19e-13 | yes | yes | 3510 | 2189 | 2063 | 0.73 | 0.420 | 0.447 | 0.711 |
+| 0.6 | 192 | +3.76e-11 | no | yes | 2325 | 1643 | 1516 | 0.53 | 0.067 | 0.080 | 0.132 |
+| 0.6 | 256 | -2.95e-13 | no | yes | 2939 | 1900 | 1900 | 0.67 | 0.198 | 0.211 | 0.357 |
+| 0.5 | 160 | +5.58e-11 | no | no | 1964 | 1313 | 1188 | 0.42 | 0.030 | 0.040 | 0.064 |
+| 0.5 | 192 | +5.13e-13 | yes | yes | 2302 | 1388 | 1292 | 0.45 | 0.057 | 0.068 | 0.088 |
+| 0.5 | 256 | -3.21e-13 | yes | yes | 2964 | 1702 | 1561 | 0.55 | 0.163 | 0.173 | 0.301 |
+| 0.4 | 160 | +8.36e-12 | no | yes | 2093 | 1218 | 1083 | 0.38 | 0.028 | 0.036 | 0.057 |
+| 0.4 | 192 | -1.93e-13 | yes | yes | 2400 | 1355 | 1234 | 0.43 | 0.054 | 0.065 | 0.081 |
+| 0.3 | 128 | +1.67e-12 | no | yes | 1850 | 1083 | 922 | 0.32 | 0.012 | 0.017 | 0.029 |
+| 0.3 | 160 | -3.23e-13 | yes | yes | 2308 | 1226 | 1058 | 0.37 | 0.027 | 0.035 | 0.058 |
+| 0.2 | 128 | failed: pass 1: no |F| below tol1 in it1 calls |
+| 0.2 | 160 | failed: pass 1: line search |
+modes needed for Delta to 1e-12 of the reference, per L (the smallest M' from which every larger M' tried converged and agrees):
+  L 1: M' 384 (1.00x fewer than M 384); own plan 2842 steps (1.00x); projected cost per call 1.000 (M^3), 1.000 (c(M)), 1.000 measured
+  L 0.8: M' 320 (1.20x fewer than M 384); own plan 1885 steps (0.66x); projected cost per call 0.384 (M^3), 0.408 (c(M)), 0.673 measured
+  L 0.7: M' 256 (1.50x fewer than M 384); own plan 1888 steps (0.66x); projected cost per call 0.197 (M^3), 0.210 (c(M)), 0.262 measured
+  L 0.5: M' 192 (2.00x fewer than M 384); own plan 1292 steps (0.45x); projected cost per call 0.057 (M^3), 0.068 (c(M)), 0.088 measured
+  L 0.4: M' 192 (2.00x fewer than M 384); own plan 1234 steps (0.43x); projected cost per call 0.054 (M^3), 0.065 (c(M)), 0.081 measured
+  L 0.3: M' 160 (2.40x fewer than M 384); own plan 1058 steps (0.37x); projected cost per call 0.027 (M^3), 0.035 (c(M)), 0.058 measured
+identity: L 1 at M 384 from M 384: Delta - stored Delta(M 384) +1.1e-30 (bound 1e-20), own plan 2842 against the stored 1623 steps (1.751; bound 10%): FAIL
+identity: L 1 at M 320 from M 384: Delta - stored Delta(M 320) +6.2e-29 (bound 1e-20): PASS
+check: L 0.9 at its largest M' 320: |Delta - ref| 2.9e-12 against the uniform grid's own resolution error 3.8e-11: PASS
+check: L 0.8 at its largest M' 320: |Delta - ref| 1.7e-13 against the uniform grid's own resolution error 3.8e-11: PASS
+check: L 0.7 at its largest M' 320: |Delta - ref| 3.2e-13 against the uniform grid's own resolution error 3.8e-11: PASS
+check: L 0.6 at its largest M' 256: not converged (it_max): FAIL
+check: L 0.5 at its largest M' 256: |Delta - ref| 3.2e-13 against the uniform grid's own resolution error 3.8e-11: PASS
+check: L 0.4 at its largest M' 192: |Delta - ref| 1.9e-13 against the uniform grid's own resolution error 3.8e-11: PASS
+check: L 0.3 at its largest M' 160: |Delta - ref| 3.2e-13 against the uniform grid's own resolution error 3.8e-11: PASS
+check: L 0.2 at its largest M' 160: not converged (pass 1: line search): FAIL
