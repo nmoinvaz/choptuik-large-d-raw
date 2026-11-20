@@ -1,0 +1,15 @@
+1058m pip uninstall -y multidouble exit 0 (WARNING: Skipping multidouble as it is not installed.) 2026-11-20 18:10:21 UTC
+1058m build started: hp/build.sh at 7ca74dd5 in /Users/nathan/Source/choptuik-large-d-1058/hp, CARGO_PROFILE_RELEASE_LTO=false CODEGEN_UNITS=16 CARGO_BUILD_JOBS=2, nice 19, pgid 27794 2026-11-20 18:10:21 UTC
+1058m build_1058.py (pid 27730) stopped by exact pid at the coordinator's order: the build guard must be alert only; the build's process group 27794 was not signalled and goes on; guard never fired 2026-11-20 18:17:43 UTC
+1058m watch_1058.py attached to the build's process group 27794; alert only (replaces build_1058.py's guard, which never fired and stopped nothing) 2026-11-20 18:17:43 UTC
+1058m build process group gone; build_info.txt written: build.sh wall 1907 s (31.8 min), user 2248.05 s, sys 68.81 s (time -l); build.sh exit: the driver was replaced mid-build, so the status is read from build.log: the import line is present: hpkernel neon multidouble neon 2026-11-20 18:42:17 UTC
+1058m check ref started: cd hp && python3 highm_check.py ref --compare=$RAW/T81/ref_main.json --Ms=48,64,80 (nice 19, default 2 threads), pgid 34143 2026-11-20 18:42:57 UTC
+1058m check ref exit 0 (wanted 0: as wanted), wall 150 s, peak tree 0.64 GiB 2026-11-20 18:45:28 UTC
+1058m check scaled started: cd hp && python3 highm_check.py scaled --compare=$RAW/T81/scaled_main.json (nice 19, default 2 threads), pgid 34543 2026-11-20 18:45:28 UTC
+1058m check scaled exit 0 (wanted 0: as wanted), wall 1173 s, peak tree 0.97 GiB 2026-11-20 19:05:01 UTC
+1058m check jets started: cd hp && python3 highm_check.py jets --compare=$RAW/anm-mac/jets_inputs/jets_inputs.json (nice 19, default 2 threads), pgid 36673 2026-11-20 19:05:01 UTC
+1058m check jets exit 0 (wanted 0: as wanted), wall 241 s, peak tree 0.26 GiB 2026-11-20 19:09:02 UTC
+1058m check jets_mutate_kappa started: cd hp && python3 highm_check.py jets --compare=$RAW/anm-mac/jets_inputs/jets_inputs.json --mutate=kappa (nice 19, default 2 threads), pgid 36722 2026-11-20 19:09:02 UTC
+1058m check jets_mutate_kappa exit 1 (wanted 1: as wanted), wall 241 s, peak tree 0.26 GiB 2026-11-20 19:13:02 UTC
+1058m checks_1058.py ends 2026-11-20 19:13:02 UTC
+1058m row for #1058 prepared: build and four checks as wanted (ref 0, scaled 0, jets 0, jets --mutate=kappa 1) 2026-11-20 19:14:37 UTC

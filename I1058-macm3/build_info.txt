@@ -1,0 +1,23 @@
+build.sh wall 1907 s (31.8 min), user 2248.05 s, sys 68.81 s (time -l)
+build.sh exit: the driver was replaced mid-build, so the status is read from build.log: the import line is present: hpkernel neon multidouble neon
+time -l maximum resident set size of the largest process: 11.23 GiB
+sampled peak of the build's process tree (30 s samples, 64 samples in mem.log): 10.97 GiB; lowest free memory 48%, lowest disk free 11.12 GiB
+$ -c import hpkernel, multidouble, sys; print('hpkernel', hpkernel.isa(), 'multidouble', multidouble.isa(), 'python', sys.version.split()[0]); print(hpkernel.__file__) -> exit 0
+hpkernel neon multidouble neon python 3.14.3
+/Users/nathan/Source/venv-macm3-1058/lib/python3.14/site-packages/hpkernel/__init__.py
+$ rustc --version -> exit 0
+rustc 1.99.1 (58cf8f9c3 2026-10-13)
+$ /Users/nathan/Source/venv-macm3-1058/bin/maturin --version -> exit 0
+maturin 1.16.0
+$ /Users/nathan/Source/venv-macm3-1058/bin/python3 -m pip list --format=freeze -> exit 0
+hpkernel==0.1.0
+maturin==1.16.0
+mpmath==1.3.0
+multidouble==5.1.0
+numpy==2.5.4
+pip==26.0
+python-flint==0.9.0
+scipy==1.18.1
+sympy==1.14.0
+multidouble-5.1.0.dist-info/direct_url.json: {"subdirectory": "python", "url": "https://github.com/nmoinvaz/multidouble", "vcs_info": {"commit_id": "8c4360ac0be804d081faeea524e5c1c6e2fffaaa", "requested_revision": "8c4360ac0be804d081faeea524e5c1c6e2fffaaa", "vcs": "git"}}
+_hpkernel.cpython-314-darwin.so sha1 a2de9b1ad744
