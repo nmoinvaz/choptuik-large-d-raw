@@ -1,0 +1,35 @@
+series present: m256, m320own, m384p ; missing: m320t82, m384, m320p
+control m256: itself 0 at every order, planted 1e-4 at order 5 reads 1.000e-04 and 0 elsewhere: pass
+control m320own: itself 0 at every order, planted 1e-4 at order 5 reads 1.000e-04 and 0 elsewhere: pass
+control m384p: itself 0 at every order, planted 1e-4 at order 5 reads 1.000e-04 and 0 elsewhere: pass
+relative difference (A - B)/|B| per order k:
+ k      m384p v m320own       m320own v m256
+ 0           -1.529e-11           -7.899e-10
+ 1           +1.132e-09           +5.317e-08
+ 2           -1.911e-08           -9.551e-07
+ 3           +1.523e-07           +8.349e-06
+ 4           -7.338e-07           -4.148e-05
+ 5           +2.791e-06           +1.055e-04
+ 6           +5.891e-06           -3.779e-03
+ 7           -4.380e-05           -9.082e-01
+ 8           +8.105e-01           +9.999e-01
+ 9           -1.001e+00           +1.000e+00
+10           -9.998e-01           -9.999e-01
+11           +1.001e+00           -1.000e+00
+12           +9.996e-01           +9.998e-01
+Delta_k ratio D_k/D_k-1:
+ k         m256      m320own        m384p
+ 1      +3.1175      +3.1175      +3.1175
+ 2      -6.4728      -6.4728      -6.4728
+ 3      -8.8592      -8.8593      -8.8593
+ 4      -11.321      -11.322      -11.322
+ 5      -12.844      -12.845      -12.845
+ 6      -13.708      -13.758      -13.758
+ 7      -156.57      -14.316      -14.316
+ 8       -97118      -77.256      -14.644
+ 9       +84806       -45698      +150.82
+10       -81865  +2.2544e+05       -89604
+11       +71210       -41006   +1.886e+05
+12       -67359  +2.0398e+05       -69266
+m384p v m320own: orders agreeing to 1e-3: [0, 1, 2, 3, 4, 5, 6, 7]; orders 3..6 all agree: True
+m320own v m256: orders agreeing to 1e-3: [0, 1, 2, 3, 4, 5]; orders 3..6 all agree: False
