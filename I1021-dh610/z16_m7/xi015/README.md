@@ -35,3 +35,10 @@ control's residual. Every point is solved at xi1 0.15 (the input's own (A, w, x)
 | file | what |
 |---|---|
 | `run_z16_015.sh`, `eval_z16_015.py`, `eval1026.py` | the driver, the evaluator with the gates, #1026's evaluator copy |
+
+## Result, 20 Nov 07:35 UTC (`eval_z16_015.txt`, `logs/eval_gates.log`)
+
+Gate M = 5 (#1026's control) FAILS at 0.15, kept as a fail on the coordinator's word (a pass on position after the result would loosen the criterion; AGENTS.md): 12 solves, best point (2.718572997, 0.999226050), 5.8e-6 in A and 2.4e-6 in w from the
+stored zero (inside the 1e-5 position bar), best |r_1| 2.0e-2 (components 1.4e-2 and -1.5e-2), stopped with "no step reduced |r_1| with a converged solve (five halvings)". Cause: the last five points (8 to 12), within 4.2e-6 in A and 1.5e-7 in w of each other, read |r_1| 6.6e-2,
+4.1e-2, 5.8e-2, 2.7e-2 and 3.0e-2, so the r_1 noise at 0.15 (about 3e-2 to 6e-2) is above the walk's convergence bar |r_1| < 1e-2: this control cannot pass at 0.15 as built. Gate M = 7 (#1027's control) PASSES: zero (2.719236, 1.000024), difference (-3.82e-6, -6.78e-7) from the stored
+(2.719240, 1.000025), |F7/F5| 0.0573 (stored 0.0574), 4 solves, 1438 s (loaded). So no box 16 walk was run: no verdict at M = 5 or M = 7 at 0.15.

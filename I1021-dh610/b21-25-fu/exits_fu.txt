@@ -24,3 +24,7 @@ step2_pass3 recount exit 0 2026-11-20 06:50:14
 step2_pass3 unresolved cells 4, accepted rows 3
 step 2 ends after 3 passes, 4 unresolved cells 2026-11-20 06:50:15
 step1_pass1 value start 2026-11-20 06:50:15, cells 3
+step1_pass1 value exit 2 (0: all points accepted, 2: some stay unvalued) 2026-11-20 07:03:15
+step1_pass1 retest --mutate=f3 exit 1 (1: the control fired)
+step1_pass1 retest --mutate=lowguard exit 0 (1: the control fired)
+step1_pass1 recount start 2026-11-20 07:03:16
