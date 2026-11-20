@@ -34,3 +34,12 @@ The coordinator's comment 7022166701 on #1033 (the bot reviews' fixes: checkpoin
 4. run 3's `report` with `--cost cost2.jsonl` (`report_D3.0475.json`).
 
 Run 1 (D 3.7: `check37.jsonl`, `solve37.jsonl`, `report37.json`) and the first run 0 ran at 080acfa2 and are not repeated. `cost.jsonl` (M 128 to 256, from run 2 at 080acfa2) is superseded: `Solver.step_timing()` has held only the LU fill, a copy, in its Jacobian entry since #523, so its seconds per step are not the Newton call's. It stays as it is.
+
+## Run 4 at 32e5825d (2026-11-20 00:23 to 06:31 UTC)
+
+The coordinator's order after run 3's numbers met the condition for run 4: the note's two ladder jobs of "Runs", side by side, 8 threads each, BelowNormal, from `D:/choptuik-i1033` at 32e5825d, launcher `run1033_run4.sh` (root pid and cap by exact pid with `rootpid1033p.ps1`).
+
+- job A: `solve A_M384 --pairs 0.9:320,0.8:320,0.7:320,0.8:256,0.7:256`, cap 34560 s, records appended to `solve_D3.0475.jsonl` (after run 3's three), log `run1033_run4a.log`. Exit 0, wall 22056 s.
+- job B: `--pairs 1:320,0.6:256,0.5:256,0.6:192,0.5:160,0.4:160,0.3:160,0.3:128,0.2:160,0.2:128`, cap 29160 s, `solve_D3.0475b.jsonl`, log `run1033_run4b.log`. Exit 1, wall 18765 s (L 0.6 at M' 256 not converged; L 0.2 at M' 160 and at M' 128 failed in pass 1, records without Delta).
+- report: `report $OUT/solve_D3.0475.jsonl $OUT/solve_D3.0475b.jsonl --ref A_M384 --ref2 A_M320 --cost cost2.jsonl` into `report_D3.0475_run4.json` (log `run1033_run4_report.log`), exit 1 (three checks FAIL: the identity plan size, L 0.6 and L 0.2 at their largest M'). Run 3's `report_D3.0475.json` stays.
+- exits and times: `exits_1033.txt`; pids: `run4_jobA.winpid`, `run4_jobB.winpid`.
