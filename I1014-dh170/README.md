@@ -109,3 +109,14 @@ T82-win's own M 320 state (plan 1619 steps): base max|F| 9.6e-29 (equals `resid1
 
 Stage 4 (series from T82-win's own M 320 state, 1619-step plan) printed `z_1: |z| 1.024e+08, |rhs| 1.20e+02, 40 products, converged False, 134 + 680 s` at 05:26 UTC (the base: |F| 9.6e-29, smallest pivot 1.8e-11, 3840 s). z_1 is at the 40-product cap, as M 384's was, so by the coordinator's rule I stopped it by exact pid (python 810248 and its wrapper 810246, TERM, `stage 4 exit 143 wall 4832 s`, 05:26:41 UTC, `exits_1014.txt`). No series file exists and its Δ_k are not used. |z_1| is 1.02e8 against 1.25e4 at dh610's M 256 and at my M 320. So T82-win's family cannot test the rule: only its M 256 converges, and its order 6 is untrusted.
 `plan_resid1014.py` (`plan_resid1014.log`) measures how T82-win's states stand on the planner's own plan (tol_step 1e-32, hmax 0.05, the one my lifted M 320 uses) for the proposal of a lifted M 384 pair (cost and its first Newton start).
+
+### `plan_resid1014.py` (2026-11-20 05:27 to 05:29 UTC, 3 threads, `plan_resid1014.log`), for the cost of a lifted M 384
+
+| state | stored plan | planner's own plan (tol_step 1e-32, hmax 0.05) | my 4388-step plan |
+|---|---|---|---|
+| mine, M 320 after call 4 | 4388 steps, 1.420e-27 | **1820 steps, 1.420e-27** | (is its plan) |
+| T82-win M 320 | 1619 steps, 9.557e-29 | 2392 steps, **2.425e-21** | 2.425e-21 |
+| T82-win M 384 | 1623 steps, 1.369e-28 | 2638 steps, **2.252e-22** | |
+
+Planted +1e-20 on my state reads 1.000e-20 (the check can fail). Controls as written before the runs: the stored-plan reading of my state reproduces 1.420e-27 (pass); the prediction that the planner would reproduce my 4388-step plan **failed**: on the converged state it gives 1820 steps. So my M 320 lift's 4388 steps came from planning on the unconverged lifted start vector, and a converged state needs 2.4 times fewer.
+Readings: (1) my state's max|F| is 1.420e-27 on 1820 and on 4388 steps alike, so the 1.42e-27 is not a property of the plan; (2) T82-win's states are solutions of their coarse plans only: on a converged plan their residual is 2.4e-21 (M 320, on 2392 and on 4388 steps alike) and 2.3e-22 (M 384). That is the discrepancy with my earlier "floor depends on the plan" text, partly resolved: T82-win's 9.6e-29 is specific to its coarse plan, mine is the same on any plan; why mine is 1.42e-27 and not lower is still not explained.
