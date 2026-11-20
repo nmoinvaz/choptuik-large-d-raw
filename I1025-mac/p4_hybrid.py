@@ -1,6 +1,7 @@
 """#1025 P4: re-root a lambda record with the hybrid M (float64 blocks 0-11, dd block 12) on its own state and discrete system
 (p4_criteria.log). usage (venv-1025dd): p4_hybrid.py RECORDS.jsonl STATE.npy D [--mutate=f64]
---mutate=f64: the same search on the plain float64 M (the hybrid's control)."""
+--mutate=f64: the same search on the plain float64 M (the hybrid's control).
+--quoted: the record is a stub from a report (no record file on raw): its F is checked to 1%, its steps only if given."""
 import sys, os, json, time, numpy as np
 from scipy.optimize import brentq
 sys.path.insert(0, "/Users/nathan/Source/choptuik-1025/solver/matter")
@@ -8,7 +9,7 @@ os.chdir("/Users/nathan/Source/choptuik-1025/solver/matter")
 from dss_ell import DSSEll, NODES_STD
 import multidouble as md
 import ell_ddm
-recf, st, D = sys.argv[1], sys.argv[2], float(sys.argv[3]); f64 = "--mutate=f64" in sys.argv
+recf, st, D = sys.argv[1], sys.argv[2], float(sys.argv[3]); f64 = "--mutate=f64" in sys.argv; quoted = "--quoted" in sys.argv
 rec = [json.loads(l) for l in open(recf) if json.loads(l).get("D") == D and json.loads(l).get("lam")][-1]
 kc, guess = rec["kc"], rec["lam_guess"]
 z = np.load(st)
@@ -16,7 +17,10 @@ S = DSSEll(kc=kc, nodes=NODES_STD, n=D - 2, ell=1, Delta_ref=z[-1], Ks=rec["Ks"]
 steps = S.freeze_from(z, rec["kappa"])
 with np.errstate(all="ignore"):
     F = float(np.linalg.norm(S.residual(z[None, :])[0]))
-same = abs(F - rec["F"]) <= 1e-6 * rec["F"] and sum(steps.values()) == rec["steps"]
+if quoted:   # a record known only from a report: F quoted to 3 digits (1%), steps not printed on raw (not checked)
+    same = abs(F - rec["F"]) <= 1e-2 * rec["F"] and (rec.get("steps") is None or sum(steps.values()) == rec["steps"])
+else:
+    same = abs(F - rec["F"]) <= 1e-6 * rec["F"] and sum(steps.values()) == rec["steps"]
 print(f"D {D} k_c {kc} ({os.path.basename(st)}): |F| {F:.10e} (record {rec['F']:.10e}), steps {sum(steps.values())} (record "
       f"{rec['steps']}): {'the record system' if same else 'NOT the record system'}", flush=True)
 E = ell_ddm.DDEll(S)

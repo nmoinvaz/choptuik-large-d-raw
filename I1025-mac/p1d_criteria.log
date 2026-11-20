@@ -1,0 +1,15 @@
+== 2026-11-20 15:51:27 #1025 P1-prime-d: the hybrid on the states re-solved at u0 0.02, D 16 (coordinator's go, with its additions). Written before the run.
+Why: u0resolve_note.log. At k_c 55, the u0 0.02 re-solve (l1kc55Fh1025) found no float64 sign change over 1.458-3.028.
+Code: p1d_scan.py (venv-1025dd). DSSEll is built with the record's u0 0.02, Ks 30, kappa 0.7 and rk 1, and the system check (|F| within 1%
+or 1e-13, the same steps) must pass. At lam 2.15, 2.20, 2.22, 2.24, 2.26, 2.28, 2.33: the hybrid det (float64 blocks 0-11, dd block 12
+from DDEll on the same S, multidouble dd_logdet), its sign under 1e-15 relative noise on blocks 0-11 (2 seeds), and the plain float64
+det alongside.
+Rule:
+ - If the hybrid shows exactly one sign change over the 7 lambda in order, and every lambda keeps its sign under the noise: bracket it with
+   brentq on the hybrid (xtol 2e-8 * lam, every evaluation noise-checked), as at D 17.5, and record the final bracket width.
+ - If it shows no change or several: stop there and report. No wider grid without the coordinator's word.
+Then T1 = hybrid root (u0 0.02, re-solved) minus hybrid root (u0 0.04) on the u0 0.04 state of the same k_c. That second root comes from
+P4's re-root of that record (Fb at D 16 for k_c 55 in lane A; Fm at D 16 for k_c 63 in lane B), not from the float64 record, which is good
+only to ~1e-4. T1 passes if |T1| >= 3e-4; T2 and the coordinator's rule then follow as in u0resolve_criteria.log.
+Order: k_c 55 (l1kc55Fh1025) first. Then k_c 63 (l1kc63Fh1025) by the same script and rule, if its re-solve reached F < 1e-8 and saved a
+state. Both run before P4 lane B, in the slot the k_c 63 re-solve frees.

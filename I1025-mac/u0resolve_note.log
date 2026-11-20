@@ -1,0 +1,10 @@
+== 2026-11-20 15:49:30 reading of lane_u0r55.log against u0resolve_criteria.log.
+k_c 55, D 16, re-solved at u0 0.02 (tag l1kc55Fh1025, out/l1kc55Fh1025.jsonl, state out/sol_l1kc55Fh1025_D16.0000.npy):
+LM went from F 3.64e-9 to 1.008e-9 in 1781 s. That is below the 1e-8 lambda gate, but 5x the u0 0.04 record's 1.79e-10.
+Delta 1.0017104864 against 1.0017135137 at u0 0.04 (-3.03e-6); steps 3078 against 2565.
+lambda: none. ell_refine.lam_root found no sign change of the float64 det over its 9 grid points: the guess 2.2426280 times
+(1 -/+ 0.02, 0.06, 0.15, 0.35), from 1.458 to 3.028.
+The record check n_signchanges 1 fails, so by the criteria this record is not read, and T1/T2 cannot be evaluated at k_c 55.
+The lane's signtest then stopped with IndexError, since there is no lambda for around= to take.
+Possible causes, none tested: an even number of roots between grid points, float64 sign noise at the grid points, or a root moved out of
+range. A hybrid (dd block 12) sign scan on this state at u0 0.02 would tell; it is proposed to the coordinator, not run.

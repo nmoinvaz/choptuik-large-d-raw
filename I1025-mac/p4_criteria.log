@@ -25,3 +25,14 @@ Changed rows: D 15 is now k_c 63 (I1025-win2c l1kc63Fy1025, blob 8354b0a7, state
 now k_c 63 (I1025-win2c l1kc63Fz1025, blob 1679d5b7, state adc28f39), replacing k_c 55 l1kc55Fb1025. Both were taken by git show from
 raw origin/main, hashes checked. The other seven rows are unchanged (D 16.5 and 17 stay k_c 63; D 16.75 and 17.5 stay k_c 47). The
 criteria, the control and the reading are unchanged.
+== 2026-11-20 15:52:39 AMENDMENT 2, the coordinator's word, written before this row's run (and before lane B starts).
+Added row: k_c 63 at D 16.75, winb's l1kc63Fv1025. Its signtest passes (win2b, raw I1025-win2b 67b7b294, signtest_kc63_D16.75.log), but
+its record jsonl never reached raw. The hybrid re-root runs on raw I1025-win/out/sol_l1kc63Fv1025_D16.7500.npy (blob 4ba2c6ed, taken by
+git show and checked) with a stub record, p4_stub_l1kc63Fv1025.jsonl. The stub holds the command line's settings and guess (u0 0.04,
+Ks 30, kappa 0.7, guess 2.1096347; I1025-win/kc63_D16.75.log) and the quoted lam 2.0834870 and F 2.22e-10.
+Its system check (p4_hybrid.py --quoted): |F| within 1% of 2.22e-10, since F is quoted to 3 digits. The step count is NOT checked: the log
+on raw does not print it, against the coordinator's instruction, which assumed it did.
+Pass rules otherwise unchanged. The table takes this hybrid record as D 16.75's k_c 63 row; until then D 16.75 has no k_c 63 row.
+It runs in lane B after P1-prime-d, as its first item.
+Also dropped from lane B: the D 17.5 k_c 47 row (l1kc47Fr1025). The table no longer quotes it (excluded at 505d8399, no signtest), so it is
+not a row the table quotes. Lane B's list is now: D 16.75 k_c 63 (stub), 16.5 k_c 63, 16 k_c 63, 15.5 k_c 63, 14.5 k_c 55.
