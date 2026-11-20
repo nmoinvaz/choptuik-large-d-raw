@@ -1,0 +1,64 @@
+# 2026-11-20 06:22:48 UTC cmd: RUSTFLAGS='' cargo test --profile release-dev --lib cols_ -- --nocapture
+    Updating crates.io index
+ Downloading crates ...
+  Downloaded multidouble v4.9.1
+   Compiling crossbeam-utils v0.8.23
+   Compiling crossbeam-epoch v0.9.21
+   Compiling crossbeam-deque v0.8.8
+   Compiling rayon-core v1.13.0
+   Compiling either v1.19.0
+   Compiling rayon v1.12.0
+   Compiling multidouble v4.9.1
+   Compiling multisolver v0.1.1
+   Compiling multishoot v3.3.0
+   Compiling hpkernel v0.1.0 (/home/nathan/Source/choptuik-large-d-1031/hp)
+warning: use of deprecated type alias `multidouble::native::DotAcc`: renamed `DDotAcc`, like `QDotAcc` and `ODotAcc`
+  --> src/lib.rs:43:35
+   |
+43 |     pub use multidouble::native::{DotAcc, DV};
+   |                                   ^^^^^^
+   |
+   = note: `#[warn(deprecated)]` on by default
+
+warning: use of deprecated type alias `multidouble::native::DotAcc`: renamed `DDotAcc`, like `QDotAcc` and `ODotAcc`
+  --> src/qd_residual.rs:12:17
+   |
+12 | use crate::dv::{DotAcc, DV};
+   |                 ^^^^^^
+
+warning: use of deprecated type alias `multidouble::native::DotAcc`: renamed `DDotAcc`, like `QDotAcc` and `ODotAcc`
+   --> src/qd_residual.rs:210:26
+    |
+210 |     d[7] = tacc!(da, db, DotAcc::zero(), |a: DotAcc, x: DV, y: DV| a.add_prod(x, y));
+    |                          ^^^^^^
+
+warning: use of deprecated type alias `multidouble::native::DotAcc`: renamed `DDotAcc`, like `QDotAcc` and `ODotAcc`
+   --> src/qd_residual.rs:210:46
+    |
+210 |     d[7] = tacc!(da, db, DotAcc::zero(), |a: DotAcc, x: DV, y: DV| a.add_prod(x, y));
+    |                                              ^^^^^^
+
+warning: use of deprecated type alias `multidouble::native::DotAcc`: renamed `DDotAcc`, like `QDotAcc` and `ODotAcc`
+   --> src/qd_residual.rs:214:26
+    |
+214 |     d[9] = tacc!(da, db, DotAcc::zero(), |a: DotAcc, x: DV, _y: DV| a.add(x));
+    |                          ^^^^^^
+
+warning: use of deprecated type alias `multidouble::native::DotAcc`: renamed `DDotAcc`, like `QDotAcc` and `ODotAcc`
+   --> src/qd_residual.rs:214:46
+    |
+214 |     d[9] = tacc!(da, db, DotAcc::zero(), |a: DotAcc, x: DV, _y: DV| a.add(x));
+    |                                              ^^^^^^
+
+warning: use of deprecated type alias `multidouble::native::DotAcc`: renamed `DDotAcc`, like `QDotAcc` and `ODotAcc`
+   --> src/qd_residual.rs:216:48
+    |
+216 |     d[10] = t!(da, |x: DV, i: usize| { let a = DotAcc { s: x.hi, e: db[i].lo }; a.finish() });
+    |                                                ^^^^^^
+
+warning: use of deprecated type alias `multidouble::native::DotAcc`: renamed `DDotAcc`, like `QDotAcc` and `ODotAcc`
+   --> src/qd_residual.rs:224:13
+    |
+224 | impl S0 for DotAcc {
+    |             ^^^^^^
+
