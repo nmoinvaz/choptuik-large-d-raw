@@ -79,6 +79,11 @@ def pushed_unread(paths, have):
     return unread, other
 
 
+def unclassified(all_rows):
+    """chain 4 states past D 259.7352 that track949.py leaves out because no vector has a Delta share above 0.5 (the two lowest vectors share the Delta mode: a crossing)"""
+    return [r for r in all_rows if r["classified"] == "0" and float(r["D"]) > D_FIRST_NEW and not IGNORE_LEG11]
+
+
 def selftest(mutate):
     global ONE_SIDED, RATIO_LE, IGNORE_LEG11
     ONE_SIDED = RATIO_LE = IGNORE_LEG11 = mutate
@@ -111,6 +116,11 @@ def selftest(mutate):
         good = got == want
         ok &= good
         print(f"selftest: {name}: {key} = {got} (want {want}): {'pass' if good else 'FAIL'}")
+    allr = [dict(D="260.6706", classified="1"), dict(D="260.8483", classified="0"), dict(D="250.0", classified="0")]
+    u = [r["D"] for r in unclassified(allr)]
+    good = u == ["260.8483"]
+    ok &= good
+    print(f"selftest: unclassified states past D 259.7352: {u} (want ['260.8483']; the classified one and the old one are not listed): {'pass' if good else 'FAIL'}")
     base = "I966-dh370/ks_chain3b/"
     paths = [base + "leg10_D256.1776_ks293/anm_pin3_D260.4708.npz", base + "leg10_D256.1776_ks293/anm_pin3_D260.6706.npz", base + "leg10_D256.1776_ks293/pred_pin3_D260.6706.npz",
              base + "leg11_D260.8483_ks315/anm_pin3_D261.0123.npz", base + "leg10_D256.1776_ks293/anm_pin3_D259.7352.npz"]
@@ -139,8 +149,9 @@ def main():
     if "--selftest" in sys.argv:
         sys.exit(0 if selftest("--mutate" in sys.argv) else 1)
     rows = []
-    for r in csv.DictReader(open(os.path.join(HERE, "track949.csv"))):
-        if r["chain"] == "4" and r["classified"] == "1":
+    allr = [r for r in csv.DictReader(open(os.path.join(HERE, "track949.csv"))) if r["chain"] == "4"]
+    for r in allr:
+        if r["classified"] == "1":
             rows.append(dict(D=float(r["D"]), ks=int(float(r["ks"])), excess=float(r["trigger_excess"]) if r["trigger_excess"] else None))
     rows.sort(key=lambda r: r["D"])
     ratios(rows)
@@ -150,6 +161,8 @@ def main():
     print(f"#1057 states past D 259.7352 read: {res['new']} (latest ks {rows[-1]['ks']}); last excess: {', '.join(ex)} (D {rows[-1]['D']:.4f}); "
           f"sigma_2/sigma_Delta {res['ratio_last']:.3f}; run of |excess| <= {BAND} at the end counting only new states: {res['run_new']} of {RUN}")
     print(f"latest fold window: {res['fold_line']}")
+    uc = unclassified(allr)
+    print("UNCLASSIFIED states past D 259.7352 (no vector with a Delta share above 0.5, left out of every series and fit): " + (", ".join(f"D {float(r['D']):.4f} (largest share {float(r['delta_share']):.3f})" for r in uc) if uc else "none"))
     try:
         have = {os.path.basename(p)[:-5] for p in os.listdir(HERE) if p.startswith("c3b_ks") and p.endswith(".json")}
         paths = subprocess.run(["git", "-C", PUSH_REPO, "ls-tree", "-r", "--name-only", "origin/main", "I966-dh370/ks_chain3b/"], capture_output=True, text=True, check=True).stdout.split()
