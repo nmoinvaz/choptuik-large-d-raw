@@ -1,2 +1,11 @@
 # 2026-11-20 14:07:44 UTC cmd: python3 -u anm_run.py /home/nathan/Source/choptuik-large-d-raw /home/nathan/Source/choptuik-large-d-raw/I1054-dh610/resolve73_r0 --state T81/conv_pin5_D73.0000_D73.000000.npz --kfreeze 13 --N 24 --corrector od --tol_od 1e-60 --qd_it 12 --threads 10 --steps 0 --save_base 1 --exact_recip 0
 base: double-double |F| 6.3e-21 <= --tol 1e-20, octo-double max|F| 2.6e-34 > --tol_od 1e-60: base polish runs
+  on 0: |F| 2.62e-34 -> 3.14e-32, |dz| 2.81e-16 -> 1.15e-30, lam 1, dDelta -2.76e-23, piv 2.9e-16..1.1e+09, 29.93 s
+  on 1: |F| 3.14e-32 -> 4.76e-60, |dz| 1.15e-30 -> 9.05e-42, lam 1, dDelta -1.11e-38, piv 2.9e-16..1.1e+09, 29.78 s
+  on 2: |F| 4.76e-60 -> 2.26e-83, |dz| 9.05e-42 -> 2.70e-81, lam 1, dDelta -2.05e-49, piv 2.9e-16..1.1e+09, 31.33 s
+  on 3: |F| 2.26e-83 converged, Delta 1.78123968193092619 +3.9940e-18
+      octo-double Newton: 4 steps, max|F| 2.3e-83, converged; double-double |F| of its first two parts 8.1e-21
+base polish saved as /home/nathan/Source/choptuik-large-d-raw/I1054-dh610/resolve73_r0/base_pin13_D73.0000.npz
+base T81/conv_pin5_D73.0000_D73.000000.npz: D 73.0, M 32, pin 13 (held []), |F| 8.1e-21; N 24, eps 1e-16, h_max 2.0, corrector od (junk_only False), tol 1.0e-20 x 1.45^(D - 73.0), stalls accepted below 1e-17
+done
+exit 0

@@ -23,3 +23,5 @@ Inputs not in the live raw clone (`I603-win2/.../anm_pin3_D241.9602.npz`, `I966-
 | file | what |
 |---|---|
 | `common1054.sh`, `run1054.sh`, `compare1050.py` | paths, the driver, the row-by-row comparator (a copy of I1050-dh610's) |
+| `resolve73_r{0,1}/`, `resolve241_r{0,1}/`, `resolve251_r{0,1}/` (+ `.log`) | the re-solves with `--exact_recip 0` and `1`; each folder holds the saved `base_pin<k>_D<D>.npz` |
+| `delta73.json`, `delta241.json` (`delta*_early.log`) | `exact_recip_check.py delta` on the D 73 and D 241.96 pairs, run by hand at 15:05 UTC while the D 251.88 pair ran (the driver reruns them after that pair, same inputs); D 73: Delta(on) - Delta(off) = +1.743109e-25 (a miss against 1e-25), D 241.96: +3.290002e-13 |
