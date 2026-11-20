@@ -110,8 +110,8 @@ construction and differs only at those 90 points; `--mutate=flip` fails (`samebi
 Box 16's -1 zero at 6da7da7b (`loc/run_loc2.sh`, 00:36-03:42 UTC on 20 Nov, `loc/z16_6da7da7b/`, log
 `loc/loc_z16_6da7da7b.log`): the relocation cell's boundary winds -1 at xi1 0.17 (32 points, 1 leaf). At 0.17 the
 zero is not located: the locate's last nine points lie under the 10 sigma guard (|R| 29-215 against sigma 58-126). At
-0.18 (`--r1b`, 61 points, sigma 4-9) it is located at A 3.553347, w/w_inf 0.413172 (|R| 0.96 at the last step, floor
-8.86), within 7e-5 of the last 0.17 points. Every point is on b16-20's sheet: |dF_3| to the nearest b16-20 point is
+0.18 (`--r1b`, 61 points, sigma 4.3-10.6) it is located at A 3.553347, w/w_inf 0.413172 (|R| 0.96 at the last step,
+floor 8.86), 8.2e-5 from the nearest 0.17 guard point (3.5534143, 0.41321881; |R| 28.9) and 6.5e-4 from the farthest. Every point is on b16-20's sheet: |dF_3| to the nearest b16-20 point is
 1.0e-4-1.8e-3 at 0.17 and 1.0e-4-2.4e-4 at 0.18 (`diag/nearest_f3.py`, `nearest_f3.log`; the 998fd290 bad-seed points
 of `loc/z16/` read 0.315-0.318 and fail, as they must), and `sheet_check.log` passes on the cell's edges. The M = 5
 start (`m5/m5_start.py --r1b`, new; without it the file has no zero located at 0.17 and exits 1) is
