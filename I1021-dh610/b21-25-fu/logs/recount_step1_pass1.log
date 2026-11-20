@@ -10,3 +10,35 @@
   point A 3.4748456 wf 0.98154321: R -226001-42893.3j, |r3| 7.7e-07, continuation [0.2, 0.19, 0.18, 0.17], 273 CPU s
   point A 3.4748456 wf 0.93154321: R -151811-170474j, |r3| 2.3e-06, continuation [0.2, 0.19, 0.18, 0.17], 330 CPU s
   point A 3.5998456 wf 0.98154321: R -71341-525677j, |r3| 3.1e-06, continuation [0.2, 0.19, 0.18, 0.17], 209 CPU s
+  point A 3.6310956 wf 0.93154321: R 563166-517246j, |r3| 5e-06, continuation [0.2, 0.19, 0.18, 0.17], 213 CPU s
+  point A 3.5060956 wf 0.93154321: R -118481-250814j, |r3| 7.2e-06, continuation [0.2, 0.19, 0.18, 0.17], 271 CPU s
+  point A 3.5685956 wf 0.93154321: R 85193.2-427743j, |r3| 4e-06, continuation [0.2, 0.19, 0.18, 0.17], 295 CPU s
+  point A 3.5060956 wf 0.98154321: R -244817-122722j, |r3| 3e-07, continuation [0.2, 0.19, 0.18, 0.17], 228 CPU s
+  point A 3.5685956 wf 0.98154321: R -185934-367393j, |r3| 3.4e-06, continuation [0.2, 0.19, 0.18, 0.17], 241 CPU s
+  point A 3.6310956 wf 0.98154321: R 129241-690372j, |r3| 6.7e-06, continuation [0.2, 0.19, 0.18, 0.17], 229 CPU s
+  point A 3.5060956 wf 0.91904321: R -78428.6-267261j, |r3| 6.1e-07, continuation [0.2, 0.19, 0.18, 0.17], 199 CPU s
+  point A 3.4435956 wf 0.94404321: R -172156-78449.2j, |r3| 7.2e-07, continuation [0.2, 0.19, 0.18, 0.17], 210 CPU s
+  point A 3.4435956 wf 0.91904321: R -139294-126672j, |r3| 1.4e-06, continuation [0.2, 0.19, 0.18, 0.17], 233 CPU s
+  point A 3.5060956 wf 0.94404321: R -156106-227827j, |r3| 2.5e-06, continuation [0.2, 0.19, 0.18, 0.17], 166 CPU s
+  point A 3.5685956 wf 0.91904321: R 151887-412981j, |r3| 2.4e-06, continuation [0.25, 0.24, 0.23, 0.22, 0.21, 0.2, 0.19, 0.18, 0.17], 214 CPU s
+  point A 3.5685956 wf 0.94404321: R 16209.4-430967j, |r3| 5.3e-06, continuation [0.2, 0.19, 0.18, 0.17], 202 CPU s
+  point A 3.6310956 wf 0.91904321: R 643462-428865j, |r3| 2.6e-05, continuation [0.25, 0.24, 0.23, 0.22, 0.21, 0.2, 0.19, 0.18, 0.17], 422 CPU s
+  point A 3.6310956 wf 0.94404321: R 468754-589896j, |r3| 2.2e-06, continuation [0.2, 0.19, 0.18, 0.17], 232 CPU s
+  point A 3.4435956 wf 0.96904321: R -190397-20240j, |r3| 1.2e-06, continuation [0.2, 0.19, 0.18, 0.17], 242 CPU s
+  point A 3.5060956 wf 0.96904321: no value: continuation lost S3's zero after [], 191 CPU s
+  point A 3.5685956 wf 0.96904321: R -121311-400947j, |r3| 7e-06, continuation [0.2, 0.19, 0.18, 0.17], 235 CPU s
+  point A 3.5060956 wf 0.99404321: R -263252-77254.9j, |r3| 1.9e-06, continuation [0.2, 0.19, 0.18, 0.17], 287 CPU s
+  point A 3.6310956 wf 0.96904321: R 248525-678364j, |r3| 8.6e-06, continuation [0.2, 0.19, 0.18, 0.17], 249 CPU s
+  point A 3.5685956 wf 0.99404321: R -245073-321726j, |r3| 2.5e-06, continuation [0.2, 0.19, 0.18, 0.17], 246 CPU s
+  point A 3.6310956 wf 0.99404321: R 8810.57-679156j, |r3| 4.1e-06, continuation [0.2, 0.19, 0.18, 0.17], 219 CPU s
+  point A 3.4435956 wf 0.99404321: no value: integration past 1e+07 right-hand-side calls at xi1 0.2325, continuation [0.25, 0.2475, 0.245, 0.2425, 0.24, 0.2375, 0.235, 0.23375], 2058 CPU s
+/home/nathan/Source/choptuik-1021-seed/solver/inner_stokes/inner_np.py:224: RuntimeWarning: overflow encountered in scalar power
+  sc = np.exp(1 / (2 * r1 * r1)) * r1 ** (-2 * F2mean(Fh))
+/home/nathan/Source/choptuik-1021-seed/solver/inner_stokes/inner_np.py:227: RuntimeWarning: invalid value encountered in scalar divide
+  z = q[nu % NTH] * r1 ** (2j * nu * w) * sc / (2 * np.pi * abs(Kp(1j * nu * w)))
+  point A 3.5373456 wf 1.05654321: no value: wall bound 3600 s at xi1 0.2375, continuation [0.25, 0.24], 3589 CPU s
+  point A 3.9123456 wf 0.20654321: no value: continuation lost S3's zero after [0.25, 0.24875], 82 CPU s
+  point A 3.6623456 wf 0.25654321: R 745168+170087j, |r3| 10, continuation [0.25, 0.24, 0.23, 0.22, 0.21, 0.2, 0.19, 0.18, 0.17], 89 CPU s
+  point A 3.6623456 wf 0.23154321: R 763213+408369j, |r3| 17, continuation [0.25, 0.24, 0.23, 0.22, 0.21, 0.2, 0.19, 0.18, 0.17], 97 CPU s
+  point A 3.6623456 wf 0.28154321: R 562217-36465j, |r3| 1.7, continuation [0.25, 0.24, 0.23, 0.22, 0.21, 0.2, 0.19, 0.18, 0.17], 112 CPU s
+M = 3 at xi1 0.17, recount of 3 unresolved cells of /home/nathan/Source/choptuik-large-d-raw-1021/I1021-dh610/b21-25-fu/cells_step1.jsonl, plant None: boundary winding nan, sum over leaves 0, 21 leaves after 6 splits, 1127 points, 5 unresolved cells, 8592 s
