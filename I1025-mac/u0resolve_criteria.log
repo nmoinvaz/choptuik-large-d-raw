@@ -1,0 +1,24 @@
+== 2026-11-20 15:17:59 #1025 P1-prime: lambda_1 on backgrounds re-solved at u0 0.02 (Ks 30), D 16, k_c 55 and 63. Written before the run.
+Why: u0test_note.log. At fixed states the premise failed, so only re-solved backgrounds measure the horizon truncation's effect on lambda.
+The coordinator approved this in its hc message after 14:42 UTC.
+Runs (lane_u0r.sh, venv-314, wip/ell1-highD 139e29d2 code, from solver/matter of choptuik-1025):
+  A: ell_refine.py l1kc55Fb1025 55 l1kc55Fh1025 55 1 16 2.2426280416106374 --kappa 0.7 --u0 0.02 --Ks 30 --tol 1e-12 --wait 60
+  B: ell_refine.py l1kc63Fm1025 63 l1kc63Fh1025 63 1 16 2.2459627535552045 --kappa 0.7 --u0 0.02 --Ks 30 --tol 1e-12 --wait 60
+  then on each new state: signtest.py around=<record>:16:0.02 --u0=0.02 --Ks=30 (raw I1025-mac/signtest.py, checked in c1_scan_note.log).
+Record checks (as for every record): n_signchanges 1, within 2% of the guess, and the u0-aware signtest agrees on both sides. A record that
+fails any of them is not read.
+Shift d = lambda(u0 0.02) - lambda(u0 0.04 record), per k_c. Its noise: the float64 det sign is noise over ~1.6e-4 around the k_c 55 root
+(c1_scan_note.log), so a float64 root is good to about 1e-4.
+Bars for a shift to count as the horizon truncation's effect:
+  T1 (measurable): |d| >= 3e-4 (3x that noise). Below it, the result is "no effect above 3e-4" at that k_c.
+  T2 (scaling, the cut alone): a third record changes only the cut, Ks 45 at u0 0.04 (segment unchanged), if the series holds at order 45
+     (my check before it starts: the dd series' A2 residual at u0 0.04 with Ks 45, and the float64 block 12 at Ks 45 against the dd one at
+     Ks 45 no worse than at Ks 30); otherwise u0 0.03 (tag Fi), which also lengthens the segment. With r the predicted truncation ratio
+     (Ks 45 or u0 0.03 residual over the u0 0.04 Ks 30 one, from the dd A2 measurement), the third root must satisfy
+     |lambda_3 - lambda(u0 0.02)| <= max(0.2 |d|, 3e-4) when r <= 1e-2. If it stays near the u0 0.04 value instead, the shift is not
+     the cut's.
+  The coordinator's rule, applied only if T1 and T2 pass: if |d| exceeds the k_c spread at D 16 (the 55 -> 63 move, 3.33e-3), the k_c
+  sequences so far mix the two errors, and every lambda past D 15 needs u0 0.02 (or Ks raised) before any k_c reading.
+Also reported: d(63) - d(55) against the 55 -> 63 move at u0 0.04 (+3.33e-3), i.e. the k_c move at u0 0.02.
+Note on the coordinator's Ks 45 estimate (~1e-8 at k_c 63, D 16): the u^30 fit gives the residual's dependence on u at fixed Ks, not on Ks,
+so it does not predict Ks 45. The dd A2 at Ks 45 measures it instead.
