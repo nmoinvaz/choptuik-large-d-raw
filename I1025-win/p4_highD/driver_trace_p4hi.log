@@ -1,0 +1,332 @@
++ set -u
++ WT=C:/Users/nathan/Source/choptuik-i1025-lowd
++ RAW=C:/Users/nathan/Source/p4hi_1025/raw
++ OUT=C:/Users/nathan/Source/p4hi_1025/I1025-win/p4_highD
++ WAITLOG=/c/Users/nathan/Source/p4_1025/I1025-win/p4/p4_w.log
++ PY=C:/Users/nathan/Source/venv-md510/Scripts/python.exe
++ TH=4
++ ROW_TIMEOUT=21600
++ WT_COMMIT=505d839940456a3d04321d75cf66cc3b5bc831c4
++ export OPENBLAS_NUM_THREADS=4 OMP_NUM_THREADS=4 MKL_NUM_THREADS=4 VECLIB_MAXIMUM_THREADS=4 RAYON_NUM_THREADS=4
++ OPENBLAS_NUM_THREADS=4
++ OMP_NUM_THREADS=4
++ MKL_NUM_THREADS=4
++ VECLIB_MAXIMUM_THREADS=4
++ RAYON_NUM_THREADS=4
++ export 'MSYS2_ARG_CONV_EXCL=*'
++ MSYS2_ARG_CONV_EXCL='*'
++++ dirname /c/Users/nathan/Source/p4hi_1025/p4hi_driver_1025.sh
+++ cd /c/Users/nathan/Source/p4hi_1025
+++ pwd
++ HERE=/c/Users/nathan/Source/p4hi_1025
++ LOG=C:/Users/nathan/Source/p4hi_1025/I1025-win/p4_highD/p4hi_w.log
++ JS=C:/Users/nathan/Source/p4hi_1025/I1025-win/p4_highD/ell_p4_hybrid_1025_w_highD.jsonl
++ '[' -f C:/Users/nathan/Source/p4hi_1025/I1025-win/p4_highD/README.md ']'
++ '[' -e C:/Users/nathan/Source/p4hi_1025/I1025-win/p4_highD/p4hi_w.log ']'
++ '[' -e C:/Users/nathan/Source/p4hi_1025/I1025-win/p4_highD/ell_p4_hybrid_1025_w_highD.jsonl ']'
+++ git -C C:/Users/nathan/Source/choptuik-i1025-lowd rev-parse HEAD
++ '[' 505d839940456a3d04321d75cf66cc3b5bc831c4 = 505d839940456a3d04321d75cf66cc3b5bc831c4 ']'
++ P4=C:/Users/nathan/Source/p4hi_1025/raw/I1025-mac/p4_hybrid.py
++ ST=C:/Users/nathan/Source/p4hi_1025/raw/I1025-mac/signtest.py
++ VD=/c/Users/nathan/Source/p4hi_1025/verdict_p4hi_1025.py
+++ git hash-object --no-filters C:/Users/nathan/Source/p4hi_1025/raw/I1025-mac/p4_hybrid.py
++ '[' a402559b5d37661b49da50f07f877af21fd29b3a = a402559b5d37661b49da50f07f877af21fd29b3a ']'
+++ git hash-object --no-filters C:/Users/nathan/Source/p4hi_1025/raw/I1025-mac/signtest.py
++ '[' 179ea09681b0a75f7cefdff98984b48051b3f085 = 179ea09681b0a75f7cefdff98984b48051b3f085 ']'
++ '[' -f /c/Users/nathan/Source/p4hi_1025/verdict_p4hi_1025.py ']'
++ ROWS=$'\nA 17.5 I1025-win/out/sol_l1kc63Fw1025_D17.5000.npy stub_rowA_l1kc63Fw1025_D17.5_trendguess.jsonl d85f7b71c2c1750ca91d941320b9f2cdf57fe029 1.9522\nB 17.75 I1025-win/out/sol_l1kc63W1025_D17.750000.npy stub_rowB_l1kc63W1025_D17.75_leapline.jsonl de9fc3e55aa46bafd4ef62536861f94aed9e3035 -\n'
++ bad=0
++ read -r n D st stub blob ref
++ '[' -z '' ']'
++ continue
++ read -r n D st stub blob ref
++ '[' -z A ']'
++ '[' -f C:/Users/nathan/Source/p4hi_1025/I1025-win/p4_highD/stub_rowA_l1kc63Fw1025_D17.5_trendguess.jsonl ']'
+++ git hash-object --no-filters C:/Users/nathan/Source/p4hi_1025/raw/I1025-win/out/sol_l1kc63Fw1025_D17.5000.npy
++ '[' d85f7b71c2c1750ca91d941320b9f2cdf57fe029 = d85f7b71c2c1750ca91d941320b9f2cdf57fe029 ']'
++ read -r n D st stub blob ref
++ '[' -z B ']'
++ '[' -f C:/Users/nathan/Source/p4hi_1025/I1025-win/p4_highD/stub_rowB_l1kc63W1025_D17.75_leapline.jsonl ']'
+++ git hash-object --no-filters C:/Users/nathan/Source/p4hi_1025/raw/I1025-win/out/sol_l1kc63W1025_D17.750000.npy
++ '[' de9fc3e55aa46bafd4ef62536861f94aed9e3035 = de9fc3e55aa46bafd4ef62536861f94aed9e3035 ']'
++ read -r n D st stub blob ref
++ '[' -z '' ']'
++ continue
++ read -r n D st stub blob ref
++ '[' 0 = 0 ']'
++ C:/Users/nathan/Source/venv-md510/Scripts/python.exe -c 'import numpy, scipy, mpmath, multidouble; multidouble.dd_logdet'
+++ wp C:/Users/nathan/Source/choptuik-i1025-lowd/solver/matter
+++ command -v cygpath
+++ cygpath -m C:/Users/nathan/Source/choptuik-i1025-lowd/solver/matter
+++ wp C:/Users/nathan/Source/p4hi_1025/I1025-win/p4_highD/ell_p4_hybrid_1025_w_highD.jsonl
+++ command -v cygpath
+++ cygpath -m C:/Users/nathan/Source/p4hi_1025/I1025-win/p4_highD/ell_p4_hybrid_1025_w_highD.jsonl
++ export P4_WT_MATTER=C:/Users/nathan/Source/choptuik-i1025-lowd/solver/matter P4_OUT=C:/Users/nathan/Source/p4hi_1025/I1025-win/p4_highD/ell_p4_hybrid_1025_w_highD.jsonl
++ P4_WT_MATTER=C:/Users/nathan/Source/choptuik-i1025-lowd/solver/matter
++ P4_OUT=C:/Users/nathan/Source/p4hi_1025/I1025-win/p4_highD/ell_p4_hybrid_1025_w_highD.jsonl
++ mkdir -p C:/Users/nathan/Source/p4hi_1025/I1025-win/p4_highD/rows
++ say 'p4hi_driver_1025.sh: inputs checked; WT 505d839940456a3d04321d75cf66cc3b5bc831c4, p4_hybrid.py a402559b, signtest.py 179ea096, PY C:/Users/nathan/Source/venv-md510/Scripts/python.exe, 4 threads, row timeout 21600 s; waiting for '\''/c/Users/nathan/Source/p4_1025/I1025-win/p4/p4_w.log'\'' to hold '\''p4_driver_w.sh done'\'''
++ tee -a C:/Users/nathan/Source/p4hi_1025/I1025-win/p4_highD/p4hi_w.log
+++ date -u '+%Y-%m-%d %H:%M:%S'
++ echo '== 2026-11-21 03:39:20 p4hi_driver_1025.sh: inputs checked; WT 505d839940456a3d04321d75cf66cc3b5bc831c4, p4_hybrid.py a402559b, signtest.py 179ea096, PY C:/Users/nathan/Source/venv-md510/Scripts/python.exe, 4 threads, row timeout 21600 s; waiting for '\''/c/Users/nathan/Source/p4_1025/I1025-win/p4/p4_w.log'\'' to hold '\''p4_driver_w.sh done'\'''
+== 2026-11-21 03:39:20 p4hi_driver_1025.sh: inputs checked; WT 505d839940456a3d04321d75cf66cc3b5bc831c4, p4_hybrid.py a402559b, signtest.py 179ea096, PY C:/Users/nathan/Source/venv-md510/Scripts/python.exe, 4 threads, row timeout 21600 s; waiting for '/c/Users/nathan/Source/p4_1025/I1025-win/p4/p4_w.log' to hold 'p4_driver_w.sh done'
++ grep -q 'p4_driver_w.sh done' /c/Users/nathan/Source/p4_1025/I1025-win/p4/p4_w.log
++ sleep 30
++ grep -q 'p4_driver_w.sh done' /c/Users/nathan/Source/p4_1025/I1025-win/p4/p4_w.log
++ sleep 30
++ grep -q 'p4_driver_w.sh done' /c/Users/nathan/Source/p4_1025/I1025-win/p4/p4_w.log
++ sleep 30
++ grep -q 'p4_driver_w.sh done' /c/Users/nathan/Source/p4_1025/I1025-win/p4/p4_w.log
++ sleep 30
++ grep -q 'p4_driver_w.sh done' /c/Users/nathan/Source/p4_1025/I1025-win/p4/p4_w.log
++ sleep 30
++ grep -q 'p4_driver_w.sh done' /c/Users/nathan/Source/p4_1025/I1025-win/p4/p4_w.log
++ sleep 30
++ grep -q 'p4_driver_w.sh done' /c/Users/nathan/Source/p4_1025/I1025-win/p4/p4_w.log
++ sleep 30
++ grep -q 'p4_driver_w.sh done' /c/Users/nathan/Source/p4_1025/I1025-win/p4/p4_w.log
++ sleep 30
++ grep -q 'p4_driver_w.sh done' /c/Users/nathan/Source/p4_1025/I1025-win/p4/p4_w.log
++ sleep 30
++ grep -q 'p4_driver_w.sh done' /c/Users/nathan/Source/p4_1025/I1025-win/p4/p4_w.log
++ sleep 30
++ grep -q 'p4_driver_w.sh done' /c/Users/nathan/Source/p4_1025/I1025-win/p4/p4_w.log
++ sleep 30
++ grep -q 'p4_driver_w.sh done' /c/Users/nathan/Source/p4_1025/I1025-win/p4/p4_w.log
++ sleep 30
++ grep -q 'p4_driver_w.sh done' /c/Users/nathan/Source/p4_1025/I1025-win/p4/p4_w.log
++ sleep 30
++ grep -q 'p4_driver_w.sh done' /c/Users/nathan/Source/p4_1025/I1025-win/p4/p4_w.log
++ sleep 30
++ grep -q 'p4_driver_w.sh done' /c/Users/nathan/Source/p4_1025/I1025-win/p4/p4_w.log
++ sleep 30
++ grep -q 'p4_driver_w.sh done' /c/Users/nathan/Source/p4_1025/I1025-win/p4/p4_w.log
++ sleep 30
++ grep -q 'p4_driver_w.sh done' /c/Users/nathan/Source/p4_1025/I1025-win/p4/p4_w.log
++ sleep 30
++ grep -q 'p4_driver_w.sh done' /c/Users/nathan/Source/p4_1025/I1025-win/p4/p4_w.log
++ sleep 30
++ grep -q 'p4_driver_w.sh done' /c/Users/nathan/Source/p4_1025/I1025-win/p4/p4_w.log
++ sleep 30
++ grep -q 'p4_driver_w.sh done' /c/Users/nathan/Source/p4_1025/I1025-win/p4/p4_w.log
++ sleep 30
++ grep -q 'p4_driver_w.sh done' /c/Users/nathan/Source/p4_1025/I1025-win/p4/p4_w.log
++ sleep 30
++ grep -q 'p4_driver_w.sh done' /c/Users/nathan/Source/p4_1025/I1025-win/p4/p4_w.log
++ sleep 30
++ grep -q 'p4_driver_w.sh done' /c/Users/nathan/Source/p4_1025/I1025-win/p4/p4_w.log
++ sleep 30
++ grep -q 'p4_driver_w.sh done' /c/Users/nathan/Source/p4_1025/I1025-win/p4/p4_w.log
++ sleep 30
++ grep -q 'p4_driver_w.sh done' /c/Users/nathan/Source/p4_1025/I1025-win/p4/p4_w.log
++ sleep 30
++ grep -q 'p4_driver_w.sh done' /c/Users/nathan/Source/p4_1025/I1025-win/p4/p4_w.log
++ sleep 30
++ grep -q 'p4_driver_w.sh done' /c/Users/nathan/Source/p4_1025/I1025-win/p4/p4_w.log
++ sleep 30
++ grep -q 'p4_driver_w.sh done' /c/Users/nathan/Source/p4_1025/I1025-win/p4/p4_w.log
++ sleep 30
++ grep -q 'p4_driver_w.sh done' /c/Users/nathan/Source/p4_1025/I1025-win/p4/p4_w.log
++ sleep 30
++ grep -q 'p4_driver_w.sh done' /c/Users/nathan/Source/p4_1025/I1025-win/p4/p4_w.log
++ sleep 30
++ grep -q 'p4_driver_w.sh done' /c/Users/nathan/Source/p4_1025/I1025-win/p4/p4_w.log
++ sleep 30
++ grep -q 'p4_driver_w.sh done' /c/Users/nathan/Source/p4_1025/I1025-win/p4/p4_w.log
++ sleep 30
++ grep -q 'p4_driver_w.sh done' /c/Users/nathan/Source/p4_1025/I1025-win/p4/p4_w.log
++ sleep 30
++ grep -q 'p4_driver_w.sh done' /c/Users/nathan/Source/p4_1025/I1025-win/p4/p4_w.log
++ sleep 30
++ grep -q 'p4_driver_w.sh done' /c/Users/nathan/Source/p4_1025/I1025-win/p4/p4_w.log
++ sleep 30
++ grep -q 'p4_driver_w.sh done' /c/Users/nathan/Source/p4_1025/I1025-win/p4/p4_w.log
++ sleep 30
++ grep -q 'p4_driver_w.sh done' /c/Users/nathan/Source/p4_1025/I1025-win/p4/p4_w.log
++ sleep 30
++ grep -q 'p4_driver_w.sh done' /c/Users/nathan/Source/p4_1025/I1025-win/p4/p4_w.log
++ sleep 30
++ grep -q 'p4_driver_w.sh done' /c/Users/nathan/Source/p4_1025/I1025-win/p4/p4_w.log
++ sleep 30
++ grep -q 'p4_driver_w.sh done' /c/Users/nathan/Source/p4_1025/I1025-win/p4/p4_w.log
++ sleep 30
++ grep -q 'p4_driver_w.sh done' /c/Users/nathan/Source/p4_1025/I1025-win/p4/p4_w.log
++ sleep 30
++ grep -q 'p4_driver_w.sh done' /c/Users/nathan/Source/p4_1025/I1025-win/p4/p4_w.log
++ sleep 30
++ grep -q 'p4_driver_w.sh done' /c/Users/nathan/Source/p4_1025/I1025-win/p4/p4_w.log
++ sleep 30
++ grep -q 'p4_driver_w.sh done' /c/Users/nathan/Source/p4_1025/I1025-win/p4/p4_w.log
++ sleep 30
++ grep -q 'p4_driver_w.sh done' /c/Users/nathan/Source/p4_1025/I1025-win/p4/p4_w.log
++ sleep 30
++ grep -q 'p4_driver_w.sh done' /c/Users/nathan/Source/p4_1025/I1025-win/p4/p4_w.log
++ sleep 30
++ grep -q 'p4_driver_w.sh done' /c/Users/nathan/Source/p4_1025/I1025-win/p4/p4_w.log
++ sleep 30
++ grep -q 'p4_driver_w.sh done' /c/Users/nathan/Source/p4_1025/I1025-win/p4/p4_w.log
++ sleep 30
++ grep -q 'p4_driver_w.sh done' /c/Users/nathan/Source/p4_1025/I1025-win/p4/p4_w.log
++ sleep 30
++ grep -q 'p4_driver_w.sh done' /c/Users/nathan/Source/p4_1025/I1025-win/p4/p4_w.log
++ sleep 30
++ grep -q 'p4_driver_w.sh done' /c/Users/nathan/Source/p4_1025/I1025-win/p4/p4_w.log
++ sleep 30
++ grep -q 'p4_driver_w.sh done' /c/Users/nathan/Source/p4_1025/I1025-win/p4/p4_w.log
++ sleep 30
++ grep -q 'p4_driver_w.sh done' /c/Users/nathan/Source/p4_1025/I1025-win/p4/p4_w.log
++ sleep 30
++ grep -q 'p4_driver_w.sh done' /c/Users/nathan/Source/p4_1025/I1025-win/p4/p4_w.log
++ sleep 30
++ grep -q 'p4_driver_w.sh done' /c/Users/nathan/Source/p4_1025/I1025-win/p4/p4_w.log
++ sleep 30
++ grep -q 'p4_driver_w.sh done' /c/Users/nathan/Source/p4_1025/I1025-win/p4/p4_w.log
++ sleep 30
++ grep -q 'p4_driver_w.sh done' /c/Users/nathan/Source/p4_1025/I1025-win/p4/p4_w.log
++ sleep 30
++ grep -q 'p4_driver_w.sh done' /c/Users/nathan/Source/p4_1025/I1025-win/p4/p4_w.log
++ sleep 30
++ grep -q 'p4_driver_w.sh done' /c/Users/nathan/Source/p4_1025/I1025-win/p4/p4_w.log
++ sleep 30
++ grep -q 'p4_driver_w.sh done' /c/Users/nathan/Source/p4_1025/I1025-win/p4/p4_w.log
++ sleep 30
++ grep -q 'p4_driver_w.sh done' /c/Users/nathan/Source/p4_1025/I1025-win/p4/p4_w.log
++ sleep 30
++ grep -q 'p4_driver_w.sh done' /c/Users/nathan/Source/p4_1025/I1025-win/p4/p4_w.log
++ sleep 30
++ grep -q 'p4_driver_w.sh done' /c/Users/nathan/Source/p4_1025/I1025-win/p4/p4_w.log
++ sleep 30
++ grep -q 'p4_driver_w.sh done' /c/Users/nathan/Source/p4_1025/I1025-win/p4/p4_w.log
++ sleep 30
++ grep -q 'p4_driver_w.sh done' /c/Users/nathan/Source/p4_1025/I1025-win/p4/p4_w.log
++ sleep 30
++ grep -q 'p4_driver_w.sh done' /c/Users/nathan/Source/p4_1025/I1025-win/p4/p4_w.log
++ sleep 30
++ grep -q 'p4_driver_w.sh done' /c/Users/nathan/Source/p4_1025/I1025-win/p4/p4_w.log
++ sleep 30
++ grep -q 'p4_driver_w.sh done' /c/Users/nathan/Source/p4_1025/I1025-win/p4/p4_w.log
++ sleep 30
++ grep -q 'p4_driver_w.sh done' /c/Users/nathan/Source/p4_1025/I1025-win/p4/p4_w.log
++ sleep 30
++ grep -q 'p4_driver_w.sh done' /c/Users/nathan/Source/p4_1025/I1025-win/p4/p4_w.log
++ sleep 30
++ grep -q 'p4_driver_w.sh done' /c/Users/nathan/Source/p4_1025/I1025-win/p4/p4_w.log
++ sleep 30
++ grep -q 'p4_driver_w.sh done' /c/Users/nathan/Source/p4_1025/I1025-win/p4/p4_w.log
++ sleep 30
++ grep -q 'p4_driver_w.sh done' /c/Users/nathan/Source/p4_1025/I1025-win/p4/p4_w.log
++ sleep 30
++ grep -q 'p4_driver_w.sh done' /c/Users/nathan/Source/p4_1025/I1025-win/p4/p4_w.log
++ sleep 30
++ grep -q 'p4_driver_w.sh done' /c/Users/nathan/Source/p4_1025/I1025-win/p4/p4_w.log
++ sleep 30
++ grep -q 'p4_driver_w.sh done' /c/Users/nathan/Source/p4_1025/I1025-win/p4/p4_w.log
++ sleep 30
++ grep -q 'p4_driver_w.sh done' /c/Users/nathan/Source/p4_1025/I1025-win/p4/p4_w.log
++ sleep 30
++ grep -q 'p4_driver_w.sh done' /c/Users/nathan/Source/p4_1025/I1025-win/p4/p4_w.log
++ sleep 30
++ grep -q 'p4_driver_w.sh done' /c/Users/nathan/Source/p4_1025/I1025-win/p4/p4_w.log
++ sleep 30
++ grep -q 'p4_driver_w.sh done' /c/Users/nathan/Source/p4_1025/I1025-win/p4/p4_w.log
++ say 'P4 driver done; rows start'
++ tee -a C:/Users/nathan/Source/p4hi_1025/I1025-win/p4_highD/p4hi_w.log
+++ date -u '+%Y-%m-%d %H:%M:%S'
++ echo '== 2026-11-21 04:18:57 P4 driver done; rows start'
+== 2026-11-21 04:18:57 P4 driver done; rows start
++ summary=
++ read -r n D st stub blob ref
++ '[' -z '' ']'
++ continue
++ read -r n D st stub blob ref
++ '[' -z A ']'
++ say 'row A D 17.5: p4_hybrid.py stub_rowA_l1kc63Fw1025_D17.5_trendguess.jsonl I1025-win/out/sol_l1kc63Fw1025_D17.5000.npy 17.5'
++ tee -a C:/Users/nathan/Source/p4hi_1025/I1025-win/p4_highD/p4hi_w.log
+++ date -u '+%Y-%m-%d %H:%M:%S'
++ echo '== 2026-11-21 04:18:57 row A D 17.5: p4_hybrid.py stub_rowA_l1kc63Fw1025_D17.5_trendguess.jsonl I1025-win/out/sol_l1kc63Fw1025_D17.5000.npy 17.5'
+== 2026-11-21 04:18:57 row A D 17.5: p4_hybrid.py stub_rowA_l1kc63Fw1025_D17.5_trendguess.jsonl I1025-win/out/sol_l1kc63Fw1025_D17.5000.npy 17.5
+++ wp C:/Users/nathan/Source/p4hi_1025/raw/I1025-mac/p4_hybrid.py
+++ command -v cygpath
+++ cygpath -m C:/Users/nathan/Source/p4hi_1025/raw/I1025-mac/p4_hybrid.py
+++ wp C:/Users/nathan/Source/p4hi_1025/I1025-win/p4_highD/stub_rowA_l1kc63Fw1025_D17.5_trendguess.jsonl
+++ command -v cygpath
+++ cygpath -m C:/Users/nathan/Source/p4hi_1025/I1025-win/p4_highD/stub_rowA_l1kc63Fw1025_D17.5_trendguess.jsonl
+++ wp C:/Users/nathan/Source/p4hi_1025/raw/I1025-win/out/sol_l1kc63Fw1025_D17.5000.npy
+++ command -v cygpath
+++ cygpath -m C:/Users/nathan/Source/p4hi_1025/raw/I1025-win/out/sol_l1kc63Fw1025_D17.5000.npy
++ timeout 21600 C:/Users/nathan/Source/venv-md510/Scripts/python.exe -u C:/Users/nathan/Source/p4hi_1025/raw/I1025-mac/p4_hybrid.py C:/Users/nathan/Source/p4hi_1025/I1025-win/p4_highD/stub_rowA_l1kc63Fw1025_D17.5_trendguess.jsonl C:/Users/nathan/Source/p4hi_1025/raw/I1025-win/out/sol_l1kc63Fw1025_D17.5000.npy 17.5
++ rc=0
++ grep -E '^D |^  lam' C:/Users/nathan/Source/p4hi_1025/I1025-win/p4_highD/rows/D17.5.log
++ tr -d '\r'
+++ tr -d '\r'
+++ grep -E '^D 17.5(\.0)? k_c [0-9]+ hybrid: lam'
+++ tail -1
++ line='D 17.5 k_c 63 hybrid: lam 1.9272222575778963 minus record -0.047258795529178554; grid changes 1, changes over all 8 evaluations 1, bracket width 2.7625999710068072e-08, noise-robust True (6556 s)'
++ v=
++ '[' 0 = 0 ']'
++ '[' -n 'D 17.5 k_c 63 hybrid: lam 1.9272222575778963 minus record -0.047258795529178554; grid changes 1, changes over all 8 evaluations 1, bracket width 2.7625999710068072e-08, noise-robust True (6556 s)' ']'
++ echo 'D 17.5 k_c 63 hybrid: lam 1.9272222575778963 minus record -0.047258795529178554; grid changes 1, changes over all 8 evaluations 1, bracket width 2.7625999710068072e-08, noise-robust True (6556 s)'
++ grep -q 'lam None'
++ say 'row A D 17.5: hybrid done; signtest at lam -/+ 0.02'
++ tee -a C:/Users/nathan/Source/p4hi_1025/I1025-win/p4_highD/p4hi_w.log
+++ date -u '+%Y-%m-%d %H:%M:%S'
++ echo '== 2026-11-21 06:08:19 row A D 17.5: hybrid done; signtest at lam -/+ 0.02'
+== 2026-11-21 06:08:19 row A D 17.5: hybrid done; signtest at lam -/+ 0.02
++ cd C:/Users/nathan/Source/choptuik-i1025-lowd/solver/matter
+++ wp C:/Users/nathan/Source/p4hi_1025/raw/I1025-mac/signtest.py
+++ command -v cygpath
+++ cygpath -m C:/Users/nathan/Source/p4hi_1025/raw/I1025-mac/signtest.py
+++ wp C:/Users/nathan/Source/p4hi_1025/raw/I1025-win/out/sol_l1kc63Fw1025_D17.5000.npy
+++ command -v cygpath
+++ cygpath -m C:/Users/nathan/Source/p4hi_1025/raw/I1025-win/out/sol_l1kc63Fw1025_D17.5000.npy
+++ wp C:/Users/nathan/Source/p4hi_1025/I1025-win/p4_highD/ell_p4_hybrid_1025_w_highD.jsonl
+++ command -v cygpath
+++ cygpath -m C:/Users/nathan/Source/p4hi_1025/I1025-win/p4_highD/ell_p4_hybrid_1025_w_highD.jsonl
++ timeout 7200 C:/Users/nathan/Source/venv-md510/Scripts/python.exe -u C:/Users/nathan/Source/p4hi_1025/raw/I1025-mac/signtest.py C:/Users/nathan/Source/p4hi_1025/raw/I1025-win/out/sol_l1kc63Fw1025_D17.5000.npy 17.5 63 around=C:/Users/nathan/Source/p4hi_1025/I1025-win/p4_highD/ell_p4_hybrid_1025_w_highD.jsonl:17.5:0.02
++ say 'row A D 17.5: signtest exit 0'
+++ date -u '+%Y-%m-%d %H:%M:%S'
++ tee -a C:/Users/nathan/Source/p4hi_1025/I1025-win/p4_highD/p4hi_w.log
++ echo '== 2026-11-21 06:23:26 row A D 17.5: signtest exit 0'
+== 2026-11-21 06:23:26 row A D 17.5: signtest exit 0
++ RA=
++ '[' 1.9522 '!=' - ']'
++ RA='--ref 1.9522'
++ tr -d '\r'
+++ wp /c/Users/nathan/Source/p4hi_1025/verdict_p4hi_1025.py
+++ command -v cygpath
+++ cygpath -m /c/Users/nathan/Source/p4hi_1025/verdict_p4hi_1025.py
++ tee C:/Users/nathan/Source/p4hi_1025/I1025-win/p4_highD/rows/verdict_D17.5.log
+++ wp C:/Users/nathan/Source/p4hi_1025/I1025-win/p4_highD/ell_p4_hybrid_1025_w_highD.jsonl
+++ command -v cygpath
+++ cygpath -m C:/Users/nathan/Source/p4hi_1025/I1025-win/p4_highD/ell_p4_hybrid_1025_w_highD.jsonl
+++ wp C:/Users/nathan/Source/p4hi_1025/I1025-win/p4_highD/rows/signtest_D17.5.log
+++ command -v cygpath
+++ cygpath -m C:/Users/nathan/Source/p4hi_1025/I1025-win/p4_highD/rows/signtest_D17.5.log
++ C:/Users/nathan/Source/venv-md510/Scripts/python.exe C:/Users/nathan/Source/p4hi_1025/verdict_p4hi_1025.py C:/Users/nathan/Source/p4hi_1025/I1025-win/p4_highD/ell_p4_hybrid_1025_w_highD.jsonl 17.5 C:/Users/nathan/Source/p4hi_1025/I1025-win/p4_highD/rows/signtest_D17.5.log --ref 1.9522
+++ grep -E '^VERDICT' C:/Users/nathan/Source/p4hi_1025/I1025-win/p4_highD/rows/verdict_D17.5.log
+++ tail -1
++ v='VERDICT D 17.5: FAIL lam 1.9272222575778963'
++ '[' -n 'VERDICT D 17.5: FAIL lam 1.9272222575778963' ']'
++ say 'row A D 17.5: VERDICT D 17.5: FAIL lam 1.9272222575778963'
++ tee -a C:/Users/nathan/Source/p4hi_1025/I1025-win/p4_highD/p4hi_w.log
+++ date -u '+%Y-%m-%d %H:%M:%S'
++ echo '== 2026-11-21 06:23:26 row A D 17.5: VERDICT D 17.5: FAIL lam 1.9272222575778963'
+== 2026-11-21 06:23:26 row A D 17.5: VERDICT D 17.5: FAIL lam 1.9272222575778963
++ summary=$'\nrow A D 17.5: VERDICT D 17.5: FAIL lam 1.9272222575778963'
++ read -r n D st stub blob ref
++ '[' -z B ']'
++ say 'row B D 17.75: p4_hybrid.py stub_rowB_l1kc63W1025_D17.75_leapline.jsonl I1025-win/out/sol_l1kc63W1025_D17.750000.npy 17.75'
++ tee -a C:/Users/nathan/Source/p4hi_1025/I1025-win/p4_highD/p4hi_w.log
+++ date -u '+%Y-%m-%d %H:%M:%S'
++ echo '== 2026-11-21 06:23:26 row B D 17.75: p4_hybrid.py stub_rowB_l1kc63W1025_D17.75_leapline.jsonl I1025-win/out/sol_l1kc63W1025_D17.750000.npy 17.75'
+== 2026-11-21 06:23:26 row B D 17.75: p4_hybrid.py stub_rowB_l1kc63W1025_D17.75_leapline.jsonl I1025-win/out/sol_l1kc63W1025_D17.750000.npy 17.75
+++ wp C:/Users/nathan/Source/p4hi_1025/raw/I1025-mac/p4_hybrid.py
+++ command -v cygpath
+++ cygpath -m C:/Users/nathan/Source/p4hi_1025/raw/I1025-mac/p4_hybrid.py
+++ wp C:/Users/nathan/Source/p4hi_1025/I1025-win/p4_highD/stub_rowB_l1kc63W1025_D17.75_leapline.jsonl
+++ command -v cygpath
+++ cygpath -m C:/Users/nathan/Source/p4hi_1025/I1025-win/p4_highD/stub_rowB_l1kc63W1025_D17.75_leapline.jsonl
+++ wp C:/Users/nathan/Source/p4hi_1025/raw/I1025-win/out/sol_l1kc63W1025_D17.750000.npy
+++ command -v cygpath
+++ cygpath -m C:/Users/nathan/Source/p4hi_1025/raw/I1025-win/out/sol_l1kc63W1025_D17.750000.npy
++ timeout 21600 C:/Users/nathan/Source/venv-md510/Scripts/python.exe -u C:/Users/nathan/Source/p4hi_1025/raw/I1025-mac/p4_hybrid.py C:/Users/nathan/Source/p4hi_1025/I1025-win/p4_highD/stub_rowB_l1kc63W1025_D17.75_leapline.jsonl C:/Users/nathan/Source/p4hi_1025/raw/I1025-win/out/sol_l1kc63W1025_D17.750000.npy 17.75

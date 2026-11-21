@@ -1,0 +1,24 @@
+== 2026-11-21 03:39:20 p4hi_driver_1025.sh: inputs checked; WT 505d839940456a3d04321d75cf66cc3b5bc831c4, p4_hybrid.py a402559b, signtest.py 179ea096, PY C:/Users/nathan/Source/venv-md510/Scripts/python.exe, 4 threads, row timeout 21600 s; waiting for '/c/Users/nathan/Source/p4_1025/I1025-win/p4/p4_w.log' to hold 'p4_driver_w.sh done'
+== 2026-11-21 04:18:57 P4 driver done; rows start
+== 2026-11-21 04:18:57 row A D 17.5: p4_hybrid.py stub_rowA_l1kc63Fw1025_D17.5_trendguess.jsonl I1025-win/out/sol_l1kc63Fw1025_D17.5000.npy 17.5
+D 17.5 k_c 63 (sol_l1kc63Fw1025_D17.5000.npy): |F| 2.2935928921e-10 (record 2.2919997575e-10), steps 2649 (record 2649): the record system
+  lam 1.889244000000: hybrid -1 ln|det| -1938.3962521745 (noise 1e-15 on blocks 0-11: [-1.0, -1.0])
+  lam 1.927800000000: hybrid +1 ln|det| -1940.6719754607 (noise 1e-15 on blocks 0-11: [1.0, 1.0])
+  lam 1.966356000000: hybrid +1 ln|det| -1934.5769779888 (noise 1e-15 on blocks 0-11: [1.0, 1.0])
+  lam 1.924208369615: hybrid -1 ln|det| -1939.1965236301 (noise 1e-15 on blocks 0-11: [-1.0, -1.0])
+  lam 1.927131542359: hybrid -1 ln|det| -1942.5600511834 (noise 1e-15 on blocks 0-11: [-1.0, -1.0])
+  lam 1.927219420494: hybrid -1 ln|det| -1946.0204039783 (noise 1e-15 on blocks 0-11: [-1.0, -1.0])
+  lam 1.927222257578: hybrid -1 ln|det| -1950.6616770073 (noise 1e-15 on blocks 0-11: [-1.0, -1.0])
+  lam 1.927222285204: hybrid +1 ln|det| -1948.2815728147 (noise 1e-15 on blocks 0-11: [1.0, 1.0])
+D 17.5 k_c 63 hybrid: lam 1.9272222575778963 minus record -0.047258795529178554; grid changes 1, changes over all 8 evaluations 1, bracket width 2.7625999710068072e-08, noise-robust True (6556 s)
+== 2026-11-21 06:08:19 row A D 17.5: hybrid done; signtest at lam -/+ 0.02
+== 2026-11-21 06:23:26 row A D 17.5: signtest exit 0
+D 17.5 k_c 63: hybrid lam 1.9272222575778963, guess 1.9278, record lam 1.974481053107075, 8 evaluations, bracket [1.9272222575778963, 1.927222285203896] (width 2.7625999710068072e-08), 6556 s
+edge rule: w 0.02, grid [1.889244, 1.9278, 1.966356] signs [-1.0, 1.0, 1.0], root in [1.889244, 1.927800], 0.985 grid steps from the lower edge, 0.015 from the upper (bar 0.05) -> FAIL
+hybrid minus the float64 record (row B: minus the guess): -4.725880e-02
+distance to the reference value 1.9522: -2.4978e-02 (-1.279%)
+signtest: lam 1.907222258 signs [-1.0, 1.0, -1.0, -1.0] agree False (56 sv below 1e-12, 519.5 s); lam 1.947222258 signs [-1.0, 1.0, -1.0, -1.0] agree False (56 sv below 1e-12, 384.7 s) -> FAIL
+checks: {"record_system": true, "grid_one_change": true, "all_one_change": true, "noise_robust": true, "bracket_le_1e-7": true, "edge_rule": false, "signtest_pm_0.02": false}
+VERDICT D 17.5: FAIL lam 1.9272222575778963
+== 2026-11-21 06:23:26 row A D 17.5: VERDICT D 17.5: FAIL lam 1.9272222575778963
+== 2026-11-21 06:23:26 row B D 17.75: p4_hybrid.py stub_rowB_l1kc63W1025_D17.75_leapline.jsonl I1025-win/out/sol_l1kc63W1025_D17.750000.npy 17.75

@@ -77,4 +77,25 @@ Timing, estimated from P4's k_c 63 rows (678 to 913 s per evaluation at 4 thread
 
 ## Status
 
-Not started. The Result section is written at the last push.
+Row A finished 2026-11-21 06:23:26 UTC (FAIL, below). Row B started 06:23:26 (system check true: |F| 2.4283364241e-10 against 2.4283364241e-10, 2598 steps). The Result section for row B is written at the last push.
+
+### Row A, D 17.5 k_c 63: hybrid root 1.9272222575778963, verdict FAIL (edge rule and signtest)
+
+| quantity | value |
+|---|---|
+| guess (fixed before the run) | 1.9278; root minus guess -5.78e-04 |
+| search | w 0.02 grid [1.889244, 1.9278, 1.966356], signs -1, +1, +1: one change; 8 evaluations (3 grid + 5 Brent) |
+| root, final bracket | 1.9272222575778963, [1.9272222575778963, 1.927222285203896], width 2.76e-08 |
+| record system | true (F 2.2935928921e-10 rebuilt against 2.2919997575e-10 in the record, 7e-04 relative, 2649 steps against 2649) |
+| sign changes | 1 on the grid, 1 over all 8 evaluations; noise robust True |
+| time | 6556 s, 04:18:57 to 06:08:19 UTC |
+| hybrid minus the float64 record (1.974481053107075, suspect) | -4.7259e-02 |
+| distance to the Mac's k_c 55 value 1.9522 | -2.4978e-02 (-1.279%) |
+| edge rule (bar 0.05 grid steps from both edges of the grid interval) | root in [1.889244, 1.9278]: 0.985 steps from the lower edge, **0.015 from the upper**: FAIL |
+| signtest at lambda -/+ 0.02 (float64 M, `signtest.py`) | lambda 1.907222258 and 1.947222258: signs from the LU of M and of three rotations Q M are [-1, +1, -1, -1] at both, agree False; 56 singular values below 1e-12 of the largest (44 below 1e-15); 519.5 s and 384.7 s: FAIL |
+
+Verdict by `verdict_p4hi_1025.py` (`rows/verdict_D17.5.log`): FAIL, two checks: edge rule and signtest. The record system, one change, noise robust and the 1e-7 bracket hold. Reported, not read.
+
+Two facts for the reader, not part of the verdict. The edge rule failed because the root lies 5.8e-04 below the guess, which is the grid's middle point and so the upper edge of the interval that holds the root; the root is not float-equal to the guess (the final bracket is 2.8e-08 wide). The signtest is the float64 test used on the records; it does not test the hybrid's double-double block. It fails at 1.907 and 1.947 as it failed at the float64 record's 1.9745 -/+ 0.02 (raw `I1025-win` 67a15ffb): 56 singular values below 1e-12 in both.
+
+CPU and memory: the hybrid phase of row A was not sampled (a miss on my side). The signtest python (7 threads, BelowNormal) at 06:09: 1.62 cores in a 10 s sample, working set 0.09 GB (peak 0.10), private 0.32 GB (peak 0.34). Row B's python (13 threads, BelowNormal) at 06:23:58: 1.73 cores in a 10 s sample, 1.47 cores since its start, working set 0.15 GB (peak 0.17), private 0.47 GB (peak 0.49). Laptop at 06:24: CPU 48 %, 14.28 GB free of 31.83 GB, commit 23.2 GB of limit 41.3 GB, page file 1.6 GB used of 9.7 GB, C: free 43.8 GB; two other sessions' single-thread pythons (4 and 7 GB) run beside.
