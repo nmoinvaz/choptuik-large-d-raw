@@ -1,6 +1,7 @@
 """#1025 D 18 / 18.5: the pass rules for a p4_hybrid.py root on a stub record (d18_criteria.log). The P4 rules (record system,
-one sign change on the window's grid, one over all evaluations, noise-robust, bracket <= 1e-7) plus the edge rule (the root at least
-0.05 grid steps from both edges of the grid interval that brackets it; I1025-win README's D 17.5 bar).
+one sign change on the window's grid, one over all evaluations, noise-robust, bracket <= 1e-7) plus the edge rule: the root at least
+0.05 grid steps from the window's outer grid point on its side (guess (1 - w) or guess (1 + w)), where a root could lie outside
+the window. The middle grid point is the guess, and a root near it is not flagged (the coordinator's amendment, 2026-11-21).
 usage: d18_check.py OUT.jsonl [D] | d18_check.py selftest"""
 import sys, json
 WS = (0.02, 0.06, 0.15, 0.35)                           # p4_hybrid's windows, relative to the guess
@@ -23,9 +24,9 @@ def check(r):
             win = (w, gr)
             if root is not None and i:
                 st = g * w; lo, hi = (root - gr[i[0]]) / st, (gr[i[0] + 1] - root) / st
-                edge = (lo, hi)
+                edge = (lo, hi, lo if i[0] == 0 else hi)   # the last: the distance from the outer grid point
             break
-    out["edge"] = edge is not None and min(edge) >= 0.05
+    out["edge"] = edge is not None and edge[2] >= 0.05
     ok = all(out.values()) and root is not None
     return ok, out, win, edge
 
@@ -34,7 +35,8 @@ def report(r):
     ok, out, win, edge = check(r)
     print(f"D {r['D']} k_c {r['kc']} {r['mode']}: lam {r['lam']!r}, guess {r['lam_guess']!r} ({(r['lam'] / r['lam_guess'] - 1) * 100:+.3f}%), "
           f"window {win[0] if win else None}, grid {[round(x, 7) for x in win[1]] if win else None}")
-    print(f"  edge distances (grid steps from the lower, upper edge): {None if edge is None else [round(x, 3) for x in edge]}")
+    print(f"  edge distances (grid steps from the interval's lower, upper edge; from the outer grid point): "
+          f"{None if edge is None else [round(x, 3) for x in edge]}")
     print("  " + ", ".join(f"{k} {'ok' if v else 'FAIL'}" for k, v in out.items()) + f" -> {'PASS' if ok else 'FAIL'}")
     return ok
 
@@ -45,8 +47,9 @@ if sys.argv[1] == "selftest":                           # planted records throug
         ev = {repr(l): dict(sign=s) for l, s in zip(grid, signs)}
         return dict(D=18.0, kc=63, mode="hybrid", lam=root, lam_guess=g, evals=ev, record_system=system, n_signchanges_grid=nch,
                     n_changes_all=nall, noise_robust=robust, bracket_width=bw)
-    cases = [("pass", rec(2.01, [1, 1, -1]), True), ("edge, 0.01 steps from the guess", rec(2.0004, [1, 1, -1]), False),
-             ("root equal to the guess", rec(2.0, [1, 1, -1]), False), ("two changes", rec(2.01, [1, 1, -1], nall=2), False),
+    cases = [("pass", rec(2.01, [1, 1, -1]), True), ("0.01 steps from the middle point (the guess)", rec(2.0004, [1, 1, -1]), True),
+             ("root at the middle point", rec(2.0, [1, 1, -1]), True), ("0.01 steps from the middle point, lower interval", rec(1.9996, [1, -1, -1]), True),
+             ("0.01 steps from the outer upper point", rec(2.0396, [1, 1, -1]), False), ("0.01 steps from the outer lower point", rec(1.9604, [1, -1, -1]), False), ("two changes", rec(2.01, [1, 1, -1], nall=2), False),
              ("not noise-robust", rec(2.01, [1, 1, -1], robust=False), False), ("not the record system", rec(2.01, [1, 1, -1], system=False), False),
              ("bracket 1e-6", rec(2.01, [1, 1, -1], bw=1e-6), False)]
     bad = 0

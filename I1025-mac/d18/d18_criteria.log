@@ -24,3 +24,17 @@ Stops: the root 21600 s; the signtest 3600 s. If any rule fails, no lambda is re
 Reading (the coordinator's, fixed): delta = lambda_1 - lambda_0 at D 18 (lambda_0 2.1207366, ell_delta's interpolation, error 2.2e-8) beside
 D 17's (float64 row -0.099821; P4 hybrid on that record -0.086428, 2.0399399 - 2.1263679). A delta that rises toward -0.003 means the
 branch turns back; one that keeps falling means it does not.
+== 2026-11-21 03:36:28 Amendment 1 (the coordinator's ruling, before the D 18 result exists; d18_root.log holds only the system check line). The edge rule
+guards the window's outer edges, where a root could lie outside the window; the middle grid point is the guess. So (f) now reads: the root
+at least 0.05 grid steps from the outer grid point on its side (guess (1 - w) or guess (1 + w)); a root near the middle point is not flagged.
+d18_check.py is now blob 08969ea2 (was d41b6e2f; lane_d18.sh pinned d41b6e2f at its start and calls the file after the root, so it runs the
+amended file). Its selftest (d18_check_selftest.log; v1 in d18_check_selftest_v1.log): 10 planted records, with roots at the middle point
+and 0.01 steps from it on either side that must pass, and roots 0.01 steps from either outer point that must fail: passes. No action on any
+P4 row (the ruling); d18_check_p4rows.log is rerun under the amended rule, for information (v1 in d18_check_p4rows_v1.log).
+== 2026-11-21 03:38:07 Step (2), the coordinator's rulings of 2026-11-21 (before any step (2) run): the k_c 63 leap D 18 -> 18.5 with winb's flags
+(--tol 1e-12 --fmax 1e-8 --cmax 1e-2 --fold), h 0.0625 (the step winb's fold watch had reached; its halving near D 17.75 stands), seeded with
+winb's D 17.9375 (blob a8f78f18, raw 747227de) and D 18 states, tag l1kc63Wm1025, 12 h cap (lane_d185.sh, which starts only if lane_d18.log
+shows D 18's rules, its signtest and the signtest's control all passing). The D 18.5 guess: the line through D 17's hybrid root at k_c 63
+(2.0399399392, the Mac's P4 re-root of winb's l1kc63Fw1025, its system read under P4 amendment 5) and the D 18 hybrid root, extrapolated
+to D 18.5 (d185_guess.py, blob de86edaa, checked on planted inputs). The lane writes its value into the README and this log before the
+D 18.5 root. The pass rules are unchanged (d18_check.py 08969ea2, then signtest.py at -/+ 0.02).

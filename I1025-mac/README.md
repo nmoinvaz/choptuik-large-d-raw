@@ -87,3 +87,9 @@ Written before the run (criteria in `d18/d18_criteria.log`, 2026-11-21 03:31:59 
   no sign change: -/+ 6% (1.6813818-1.8960263), then -/+ 15% (1.5203985-2.0570097), then -/+ 35% (1.1626577-2.4147505).
 - Pass: the P4 rules (record system, one sign change on the grid and over all evaluations, noise-robust, bracket <= 1e-7), the
   edge rule (root at least 0.05 grid steps from its interval's edges), then signtest.py at lam -/+ 0.02 (agree at both, opposite).
+- Amendment 1, 2026-11-21 03:36:28 UTC (the coordinator's ruling, before the D 18 result): the edge rule applies to the window's outer grid points
+  only (a root could lie outside the window there); a root near the middle point, the guess, is not flagged. `d18_check.py` blob
+  08969ea2; its selftest adds planted roots at and near the middle point that must pass (`d18/d18_criteria.log`).
+- Step (2), 2026-11-21 03:38:07 UTC, the coordinator's rulings: the leap D 18 -> 18.5 runs with winb's flags and h 0.0625, seeded with winb's D 17.9375
+  and D 18 states (tag l1kc63Wm1025, `d18/lane_d185.sh`), only if D 18 passes. The D 18.5 guess is the line through D 17's hybrid
+  root at k_c 63 (2.0399399392) and the D 18 hybrid root; its value goes here before the D 18.5 root. Pass rules unchanged.
