@@ -1,0 +1,28 @@
+plant merge, repeat equal: wanted 'merged 86 points (1.55 to 2.40)', not 'FAIL' -> ok
+plant merge, repeat ln|det| differs by 1e-3: wanted '-> FAIL', not 'merged 86' -> ok
+plant merge, repeat sign differs: wanted '-> FAIL', not 'merged 86' -> ok
+plant merge, no repeated point: wanted 'no repeated point in both files -> FAIL', not 'merged 86' -> ok
+plant merge, lambda 2.40 missing: wanted 'missing lambda: [2.4]', not 'merged 86' -> ok
+plant merge, records at another D: wanted 'records at a D other than 18.5', not 'merged 86' -> ok
+plant merge, a second point in both files: wanted 'are [1.97, 1.98], not [1.97] -> FAIL', not 'merged 86' -> ok
+plant merge, no merged file written when a check fails: wanted 'False' -> ok
+plant compare, change (1.67, 1.68) against the k_c 63 root 1.6772: STABLE: wanted 'k_c 55 change in (1.67, 1.68), minus-to-plus, ROBUST: STABLE' -> ok
+plant compare, the k_c 63 root is MATCHED: wanted 'k_c 63 root 1.6772: MATCHED, k_c 55 robust change minus-to-plus in (1.67, 1.68)' -> ok
+plant compare, change (1.66, 1.67) straddles the band edge: UNDETERMINED: wanted 'k_c 55 change in (1.66, 1.67), minus-to-plus, ROBUST: UNDETERMINED at the 0.01 step', not 'STABLE' -> ok
+plant compare, the k_c 63 root is UNDETERMINED: wanted 'k_c 63 root 1.6772: UNDETERMINED at the 0.01 step', not 'MATCHED' -> ok
+plant compare, change (1.69, 1.70) is 0.0128 or more away: k_c 55 ONLY: wanted 'k_c 55 change in (1.69, 1.70), minus-to-plus, ROBUST: k_c 55 ONLY', not 'STABLE' -> ok
+plant compare, the k_c 63 root has no k_c 55 change near it: k_c 63 ONLY: wanted 'k_c 63 root 1.6772: k_c 63 ONLY', not 'MATCHED' -> ok
+plant compare, no change at all: wanted 'SUMMARY: 0 robust k_c 55 change(s) in 1.55 to 2.40; none' -> ok
+plant compare, no change: the k_c 63 root is k_c 63 ONLY: wanted 'k_c 63 root 1.6772: k_c 63 ONLY' -> ok
+plant compare, a change above the k_c 63 coverage is not compared: wanted 'k_c 55 change in (2.24, 2.25), plus-to-minus, ROBUST: not compared (k_c 63 is not scanned over this bracket', not 'k_c 55 ONLY' -> ok
+plant compare, the coverage widened and no k_c 63 root there: k_c 55 ONLY: wanted 'k_c 55 change in (2.24, 2.25), plus-to-minus, ROBUST: k_c 55 ONLY' -> ok
+plant compare, a second k_c 63 root 2.245 inside the bracket's band: STABLE: wanted 'k_c 55 change in (2.24, 2.25), plus-to-minus, ROBUST: STABLE' -> ok
+plant compare, the second k_c 63 root is MATCHED: wanted 'k_c 63 root 2.245: MATCHED' -> ok
+plant compare, the change has a non-robust point: not counted: wanted 'NOT ROBUST (a point fails its noise test), not counted', not 'STABLE' -> ok
+plant compare, the k_c 63 root with only a non-robust change near it: UNDETERMINED: wanted 'k_c 63 root 1.6772: UNDETERMINED at the 0.01 step (k_c 55 change(s) touching its band: (1.67, 1.68) not robust)' -> ok
+plant compare, a k_c 63 root outside the k_c 55 window is not compared: wanted 'k_c 63 root 3.0: outside the k_c 55 window, not compared' -> ok
+plant reader on xfkappa's D 18 scan: lower change: wanted 'change in (1.77, 1.78): minus-to-plus, ROBUST' -> ok
+plant reader on xfkappa's D 18 scan: upper change: wanted 'change in (1.80, 1.81): plus-to-minus, ROBUST' -> ok
+plant reader on xfkappa's D 18.5 scan (k_c 63): one change: wanted 'change in (1.67, 1.68): minus-to-plus, ROBUST', not 'two robust changes' -> ok
+plant compare on xfkappa's k_c 63 D 18.5 scan itself: its change (1.67, 1.68) is STABLE against 1.6772: wanted 'change in (1.67, 1.68), minus-to-plus, ROBUST: STABLE' -> ok
+plant_checks_kc55 passes (files in C:\Users\nathan\AppData\Local\Temp\kc55_plant_4gbzz9qd)
