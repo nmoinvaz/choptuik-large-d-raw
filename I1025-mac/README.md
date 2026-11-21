@@ -131,3 +131,8 @@ Written before the run (criteria in `d18/d18_criteria.log`, 2026-11-21 03:31:59 
   estimator range [1.742506, 1.742860]; every point noise-robust; no ln|det| minimum without a sign change (`d18/d1825_scan.log`,
   `d18/d1825_scan_1025.jsonl`, `d18/d1825_scan_read.log`). Not two close roots and not none, so the coordinator rules. The sign at
   1.90 is minus at D 18 and plus at D 18.25 and 18.5. Slopes and rates: `d18/d1825_post_numbers.py`, `d18/d1825_post_numbers.log`.
+- 2026-11-21 13:28:16 UTC, the coordinator's ruling on (b): neither reading applies, (d) decides. A plus-to-minus root above 1.90 at D 18.5 means
+  one eigenvalue left upward and the two crossed; none there, with a minus-to-plus root above 1.90 at D 18, means two roots met and
+  left the real axis between D 18 and 18.25. Two labels are recorded: by orientation D 18.25's root continues D 18's lower root
+  (slopes from D 17.5, per unit D: -0.3045, -0.1299 to -0.1285, -0.2634 to -0.2611); by continuity it continues the upper root
+  (-0.2418 to -0.2392, -0.2605 to -0.2538, -0.2634 to -0.2611), intervals from the estimator ranges in `d18/d18d_continuity.log` (`d18/d18d_continuity.py`). Which continues lambda_1 is decided by (d) with both readings.
