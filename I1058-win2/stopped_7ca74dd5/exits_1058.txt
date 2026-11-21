@@ -1,0 +1,5 @@
+1058 start run_all.sh 2026-11-20 18:26:02 UTC
+1058 venv made, pip install -r requirements.txt exit 0 2026-11-20 18:26:55 UTC
+1058 pip uninstall -y multidouble exit 0 (WARNING: Skipping multidouble as it is not installed.) 2026-11-20 18:26:56 UTC
+1058 build root pid 35664, cap 54981 s, want exit 0 2026-11-20 18:26:57 UTC
+1058 STOPPED BY THE COORDINATOR'S ORDER (hc 2026-11-20 about 20:20 UTC: #1058's target moved from main 7ca74dd5 to 8179068d, "one 5 h build instead of two"; no memory pressure: commit 77 GB of 101.5, 21.9 GB available): killed by exact pid with taskkill /T /F at about 20:21 UTC, the driver bash 20300 first (so no later step starts), then run_build.sh's bash 9184, the build's bash 35664, nice 36836, maturin 29384, cargo 32828 and 23560, rustc 35736. Nothing else touched. The build had run 1 h 54 min (18:26:57 to about 20:21); it did not finish: no wheel, no hpkernel in venv-i1058. Its files are in stopped_7ca74dd5/ and its venv C:\Users\nathan\Source\venv-i1058 and worktree D:\choptuik-i1058 (at 7ca74dd5) stay, unused.
