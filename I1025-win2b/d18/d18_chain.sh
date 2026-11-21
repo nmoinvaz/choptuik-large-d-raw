@@ -5,7 +5,7 @@
 #      worktree D:/choptuik-1025p4 (505d8399), venv-md510, 4 threads, BelowNormal (set by launch_d18.ps1), cap 21600 s by exact pid.
 #  (2) d18_gate.py: P4 rules + the outer-grid-point edge rule (raw d18_check.py) + the root in the scan's bracket (1.800, 1.810). If it fails: stop and report.
 #  (3) ell_ddm.py selftest (exit 0) and selftest --mutate=slices (exit 1), then ell_ddm.py det at root -/+ 0.005, two processes in parallel (--noise 1e-24,1e-20,1e-16), worktree D:/choptuik-i1025d
-#      (48c36355, read only), venv-md510, 20 BLAS threads as at D 17, caps 21600 s each by exact pid (6 h, the coordinator's hc ~09:55 UTC 21 Nov, replacing 10800 s).
+#      (48c36355, read only), venv-md510, 20 BLAS threads as at D 17, caps 21600 s each by exact pid (6 h, the coordinator's hc ~09:53 UTC 21 Nov, replacing 10800 s).
 #  (4) read_d18_dd.py (winb's Amendment 3 reading with the offset 0.005).
 # Caps: taskkill /T /F of the exact root pid after a command-line check, not retried. One line per event in ../exits_1025.txt. usage: bash d18_chain.sh
 export PATH="/usr/bin:/bin:/mingw64/bin:$PATH"

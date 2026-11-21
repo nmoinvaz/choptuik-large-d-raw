@@ -100,3 +100,7 @@
 1025 d17dd FROM LOG: both records missing (cap during the float64 slogdet after the noise loop); signs read from det_lo.log and det_hi.log by dd/det_log_to_jsonl.py: lower 2.0200263141 minus x5 with noise minus, upper 2.0600263141 plus x5 with noise plus; read_d17_dd.py: ROOT PASSES (k_c error +8.637e-05) 2026-11-21 09:51:47 UTC
 1025 d17dd result posted on #1025 comment 7060861083, raw 9c8b7b71 2026-11-21 09:52:33 UTC
 1025 d18 chain restarted for the cap change (coordinator's hc: dd caps 10800 -> 21600 s): old chain stopped by exact pids (bash 28232 tree: hybrid 26024/35328) 3 min into the hybrid, nothing written but the record-system line (log kept in d18/aborted_0953/); README and d18_chain.sh changed and pushed first 2026-11-21 09:54:24 UTC
+1025 d18 chain waiting for the D 17 dd check to end 2026-11-21 09:54:47 UTC
+1025 d18 start: hybrid root on winb's k_c 63 D 18 state, guess 1.825, 4 threads (the D 17 dd check has ended) 2026-11-21 09:54:48 UTC
+1025 d18 hybrid kc63_D18 root pid 26844, cap 21600 s, want exit 0 2026-11-21 09:54:48 UTC
+1025 d18 relaunched: the hybrid runs again from the stub (pid 26844 with child 35864, BelowNormal, 4 threads, cap 21600 s, started 09:54:48 UTC); dd caps in d18_chain.sh now 21600 s each 2026-11-21 09:55:20 UTC
