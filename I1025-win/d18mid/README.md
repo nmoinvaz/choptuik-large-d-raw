@@ -1,6 +1,6 @@
 # I1025-win/d18mid: the hybrid sign scan at D 18.125, k_c 63, on xfkappa's leap state (winb)
 
-Written before the run (2026-11-21 13:38 UTC by my clock).
+Written before the run, 2026-11-21 13:36 UTC by my clock (the first push, a9e63b35, read 13:38 by a stamp I typed before checking the clock; corrected at 13:36 UTC).
 
 ## Order
 
@@ -69,4 +69,4 @@ Estimate: one hybrid evaluation took 700 s at 4 threads on this laptop (the D 18
 
 ## Status
 
-Not started (13:38 UTC).
+Not started (13:36 UTC).
