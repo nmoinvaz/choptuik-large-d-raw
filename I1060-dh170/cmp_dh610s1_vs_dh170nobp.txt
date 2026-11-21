@@ -1,0 +1,18 @@
+# extra comparison, information (not in the order): dh610's step 1 outputs (raw I1060-dh610 94a868a0: same main 8179068d build, i7-12700, base polish ON) against this run's (dh170 i7-7700, --base_polish 0), by cmp1060.py (controls ran at the start of this run: ctl_b/)
+2026-11-21 05:37:01 UTC
+== bits: dh610 step 1 state against this run's state
+bits: D_str equal True (260.8483415339, 260.8483415339), a equal True (0.1777320584971952, 0.1777320584971952)
+  exactly summed parts: Delta difference 4.127e-40, max |dS_i| 4.127e-40: DIFFER
+  information: parts with differing bytes {'z2': 2911, 'z3': 5751, 'z4': 5859, 'z5': 5775, 'z6': 5865, 'z7': 5816} (8 parts compared); M1 per part zh 0.0e+00, zl 0.0e+00, z2 6.7e-08, z3 1.9e+00, z4 1.4e+00, z5 9.6e-01, z6 1.5e+00, z7 1.4e+00
+DIFFERENT
+exit 1
+== files: series (jet_pin3_D260.6706.npz)
+files: 0 arrays identical, differing bytes {'z0': 1, 'z1': 130455, 'z2': 178870, 'z3': 179635, 'z4': 180390, 'z5': 175748, 'z6': 173339, 'z7': 173723}, arrays in one file only none, meta keys that differ ['t_coef']
+DIFFERENT
+exit 1
+== files: prediction (pred_pin3_D260.8483.npz)
+files: 1 arrays identical, differing bytes {'zl': 1226, 'z2': 5754, 'z3': 5782}, arrays in one file only none, meta keys that differ []
+DIFFERENT
+exit 1
+== control: the same comparison with one byte of this run's z3 flipped must differ
+DIFFERENT

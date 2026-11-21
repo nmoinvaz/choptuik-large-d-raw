@@ -13,3 +13,38 @@ step 0: D 260.670609475, pivots 1.5e-19..9.2e+50, |z_1| 3.24e-04, |z_N| 3.67e-14
     on 0 chord 2: max|F| 1.47e-11, |dw| 4.546e-31
   on 0: strong chord (4 weak directions), 3 steps after the full first step; theta at its point inf (bound 0.750): refused, 970.34 s
     on 0 trial lam 1: max|F| 1.63e-22; simplified correction / |dz| = 1.126e-06 (bound 0.750); accepted, 335.36 s
+  on 0: |F| 3.53e-27 -> 1.63e-22, |dz| 1.19e-20 -> 3.62e-31, lam 1, dDelta +1.19e-20, piv 1.4e-19..1.1e+51, 1437.12 s
+    on 1 trial lam 1: max|F| 1.88e-25; simplified correction / |dz| = 2.200e-06 (bound 0.750); accepted, 261.99 s
+  on 1: |F| 1.63e-22 -> 1.88e-25, |dz| 3.62e-31 -> 7.96e-37, lam 1, dDelta +3.62e-31, piv 1.4e-19..1.1e+51, 391.41 s
+    on 2 trial lam 1: max|F| 3.00e-38; simplified correction / |dz| = 7.166e-09 (bound 0.750); accepted, 28.34 s
+  on 2: |F| 1.88e-25 -> 3.00e-38, |dz| 7.96e-37 -> 5.70e-45, lam 1, dDelta +7.96e-37, piv 1.4e-19..1.1e+51, 186.21 s
+  on 3: |F| 3.00e-38 converged, Delta 1.68326475753407045 -7.6307e-17
+      elim projections {'u0': 0, 'u0q': 0, 'ladder': 0, 'failed': 0, 'skipped': 0, 'u0o_refused': 6, 'pred': 6, 'u0o': 1}
+      octo-double Newton: 4 steps, max|F| 3.0e-38, converged; double-double |F| of its first two parts 2.0e+30
+    a 0.178 -> D 260.848341534: predicted |F| 5.73e+30, od 4 steps -> 1.98e+30 (tol 1.1e-20, stall accepted, Delta correction +0.0e+00), Delta 1.683264757534 (formula diff -1.4e-06), moved 1.2e-20, 2503 s
+      Delta of the saved state, its eight parts summed exactly: 1.683264757534070378573492007334915999511
+done
+	Command being timed: "python3 -u anm_run.py /home/nathan/scratch1060/raw /home/nathan/Source/choptuik-large-d-raw/I1060-dh170/step17_s1_nobp --state I966-dh370/ks_chain3b/leg10_D256.1776_ks293/anm_pin3_D260.6706.npz --kfreeze 3 --held_fit data/held_fit.json --N 31 --eps 1e-14 --h_max 2 --threads 10 --corrector od --tol_od 2e-34 --qd_it 40 --lam_stall 0.04 --od_junk 0 --jet_o 1 --reseed 2 --reseed_q 1 --held_o 1 --reseed_o 3 --save_pred 1 --od_accept natural --save_jet 1 --od_strong 4 --reseed_start pred --a_rule reseed --a_scale 0.00715 --jet_tangent_from 1 --series_split 1 --a_rise 1 --proj_start pred --reseed_o_stop 1 --od_floor_delta 1e-30 --proj_o 1 --reseed_qd_bar 1e-13 --steps 1 --ks 293 --keep_plan 0 --D_max 300 --base_polish 0"
+	User time (seconds): 22613.14
+	System time (seconds): 60.67
+	Percent of CPU this job got: 648%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 58:18.17
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 2102320
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 6
+	Minor (reclaiming a frame) page faults: 938198
+	Voluntary context switches: 1252934
+	Involuntary context switches: 18100367
+	Swaps: 0
+	File system inputs: 7216
+	File system outputs: 4232
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+exit 0
