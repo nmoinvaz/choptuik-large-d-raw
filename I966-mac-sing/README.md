@@ -199,3 +199,34 @@ base only, from one approximant. **No real fold is read** from 260.8483 to 261.5
 envelope fit of 1.13 to 1.57, which includes the prefactor. So its point (262.39 to 262.66 ± 1.49 to 1.78i) is not the
 pair's. Its angle from the sign runs (43° to 60°) follows the Padé argument (38° to 60°). Leg 13's signs and the
 rough reading are in `signs966_leg13.txt` and `runs966_leg13.txt`.
+
+## Third request: leg 10, before the crossing (coordinator, 2026-11-21)
+
+**Inputs.** Leg 10's 18 jets, `I966-dh370/ks_chain3b/leg10_D256.1776_ks293/jet_pin3_D*.npz`, from 256.1776 to
+260.6706 (N 31, ks 293). Commands as before: `jet_singularity.py locate JETS --json OUT` and `singularity_type.py
+rows JETS --delta`.
+
+**The reading** (the coordinator's, fixed before the run): if the same pair, to 0.05, is seen from before the
+crossing, it does not come from the crossing. A pair that appears or moves only past 260.85 ties it to the crossing.
+
+How I apply it (`pairs10.py`, fixed before the run):
+
+- the reference is the pair of legs 13 and 14, 262.078 ± 0.973i;
+- "the same pair, to 0.05": a stable pole of `locate` (any of the four it keeps, not only the nearest) with
+  |D_re − 262.078| ≤ 0.05 and |D_im − 0.973| ≤ 0.05. From leg 10's bases the pair need not be the nearest
+  singularity, so the root-test match is not required here;
+- "seen from before the crossing": the same pair at three or more consecutive leg 10 bases. Then exit 0;
+- "appears only past 260.85": no leg 10 base shows it. Then exit 2;
+- "moves only past 260.85": leg 10 shows a pole off the axis, stable to 0.05 over three or more consecutive bases,
+  at more than 0.05 from the reference, and no base shows the reference pair. Reported with exit 2, and named as
+  the moved case;
+- anything else (the pair at only one or two bases): exit 3, undecided, reported as is;
+- a limit: `locate` keeps only the four nearest stable poles, so a pair behind four nearer ones would not show.
+
+Controls, each of which must change the verdict:
+
+- `--mutate=plant` adds the reference pole to every base's list (detection), and must give exit 0;
+- `--mutate=move` moves the reference by 0.1 in D_re. It must give a nonzero exit when the plain run gives 0, and is
+  vacuous otherwise.
+
+The fold reading for rows applies over leg 10 as before.
