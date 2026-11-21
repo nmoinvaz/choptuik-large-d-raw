@@ -110,3 +110,7 @@ Written before the run (criteria in `d18/d18_criteria.log`, 2026-11-21 03:31:59 
   count and bracket the robust sign changes; two changes means the pair persists, and the gap beside D 18's shows approach or separation.
 - 2026-11-21 07:44:51 UTC, before the D 18.5 scan: its reading rules and their selftest (`d18/d185_scan_read.py`, `d18/d185_scan_read_selftest.log`,
   `d18/lane_d185S.sh`; d18_criteria.log). D 18's gap is 0.0313-0.0327 by the estimator ranges (`d18/d185_scan_read_on_d18.log`).
+- D 18.5 (leap 07:41-08:44 UTC; scan 08:44-10:30 UTC), information: the leap reached D 18.5 in 8 steps (`d18/leap_kc63_d185.log`,
+  `d18/l1kc63Wm1025.jsonl`, every state `d18/sol_l1kc63Wm1025_D18.*.npy`). The scan has ONE robust sign change, in (1.67, 1.68),
+  estimator range [1.677016, 1.677225], every point noise-robust (`d18/d185_scan.log`, `d18/d185_scan_read.log`); not the two-change case,
+  so the coordinator rules. Slopes and ln|det| minima: `d18/d185_post_numbers.py`, `d18/d185_post_numbers.log` (2026-11-21 10:32:53 UTC).
