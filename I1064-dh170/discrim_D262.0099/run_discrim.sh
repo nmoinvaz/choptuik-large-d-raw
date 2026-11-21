@@ -1,0 +1,41 @@
+#!/bin/bash
+# #1064 part 8 (coordinator's hc ~21:15 UTC 21 Nov): the discriminating run: part 6's EXACT command (leg 13's flags with --tol_od 1e-60 --od_floor_delta 0, --steps 0 --keep_plan 1 --save_base 1 --ks 293, no --reseed_o_bar) on the build
+# of part 7 (anm_run.py from main 268a6b2d over the 8179068d-built kernel), same state; stopped by exact pid right after its first od line ('  on 0: |F| X -> Y', X is the start line); cap 1.5 h (timeout -s TERM 5400).
+P=/home/nathan/Source/choptuik-large-d-raw-1064w/I1064-dh170/discrim_D262.0099
+ROOT=/home/nathan/scratch949
+WT=/home/nathan/Source/choptuik-large-d-1058b
+PY=$WT/.venv/bin/python
+S=I966-dh370/ks_chain3b/leg14_D261.1415_ks293/anm_pin3_D262.0099.npz
+export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 PYTHONFAULTHANDLER=1 PATH=$WT/.venv/bin:$HOME/.local/bin:$HOME/.cargo/bin:$PATH VIRTUAL_ENV=$WT/.venv HP_DIR=$WT/hp
+say() { echo "== $(date -u '+%F %T') UTC $*" >> $P/exits_discrim.txt; }
+N=discrim_p6cmd_268a
+[ -e $P/$N.log ] && { say "refuse: $N.log exists (no overwrite)"; exit 3; }
+[ "$(git hash-object --no-filters $ROOT/$S | cut -c1-12)" = eb34f3c845a4 ] || { say "refuse: state blob is not eb34f3c845a4"; exit 2; }
+F="--kfreeze 3 --held_fit data/held_fit.json --N 31 --eps 1e-14 --h_max 2 --corrector od --tol_od 1e-60 --qd_it 40 --lam_stall 0.04 --od_junk 0 --jet_o 1 --reseed 2 --reseed_q 1 --held_o 1 --reseed_o 3 --save_pred 1 --od_accept own --save_jet 1 --od_strong 4 --reseed_start pred --a_rule reseed --a_scale 0.000715 --jet_tangent_from 1 --series_split 1 --a_rise 1 --proj_start pred --reseed_o_stop 1 --od_floor_delta 0 --proj_o 1 --reseed_qd_bar 1e-13"
+# anm_run.py from the main checkout at 268a6b2d (as part 7), over the venv's kernel
+WT2=/home/nathan/Source/choptuik-large-d-268a
+export HP_DIR=$WT2/hp
+cd $WT2/hp || exit 9
+mkdir -p $P/$N
+say "start $N: ks 293 keep_plan 1 from $S, load $(cut -d' ' -f1-3 /proc/loadavg)"
+s0=$(date +%s)
+nice -n 10 /usr/bin/time -v timeout -s TERM 5400 $PY -u anm_run.py $ROOT $P/$N --state $S $F --threads 4 --steps 0 --keep_plan 1 --save_base 1 --ks 293 > $P/$N.log 2>&1 &
+tp=$!
+while kill -0 $tp 2>/dev/null; do
+  av=$(awk '/MemAvailable/ {print int($2/1024)}' /proc/meminfo)
+  py=$(pgrep -P $(pgrep -P $tp | head -1) 2>/dev/null | head -1); rss=0
+  [ -n "$py" ] && rss=$(awk '/VmRSS/ {print int($2/1024)}' /proc/$py/status 2>/dev/null)
+  echo "$(date -u '+%T') $N MemAvailable $av MiB, anm_run pid ${py:-none} RSS ${rss:-0} MiB" >> $P/memlog_discrim.log
+  [ "$av" -lt 2048 ] && echo "ALERT $(date -u '+%T') $N MemAvailable $av MiB (alert only)" >> $P/alert_discrim.log
+  if grep -q "^  on 0: |F|" $P/$N.log && [ -z "$stopped" ]; then
+    stopped=1; pyp=$(pgrep -P $(pgrep -P $tp | head -1) 2>/dev/null | head -1); tmo=$(pgrep -P $tp | head -1)
+    say "$N: the first od line is out ($(grep -m1 '^  on 0: |F|' $P/$N.log | cut -c1-120)); TERM to python $pyp and timeout $tmo by exact pid (the order)"
+    kill -TERM $pyp $tmo 2>/dev/null
+  fi
+  sleep 30
+done
+wait $tp; rc=$?
+say "$N exit $rc, $(( $(date +%s) - s0 )) s wall"
+say "$N gate903d: $($PY -I $P/gate903d.py $P/$N.log)"
+say "$N gate973: $($PY -I $P/gate973.py $P/$N.log $P/$N)"
+say "done"
