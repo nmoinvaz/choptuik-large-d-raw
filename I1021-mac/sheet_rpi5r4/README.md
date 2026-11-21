@@ -32,6 +32,39 @@ exit 1.
    (lines 796 to 801), which argcount appends by design (`--retry` computes again the points without value). That case
    was added before this README was written, and the first form's output is kept (`prefix_keys_firstform.txt`).
 
-## Result
+## Result (rpi5's raw 7e0e9c22; run 2026-11-21 14:07 UTC (file time), logs `sheet_check.log`, `sheet_check_mutate.log`)
 
-(below, after the run)
+Every check passes, and the three controls fail.
+
+| check | valued points | pairs | largest \|dF_3\| | flagged |
+|---|---|---|---|---|
+| 0.18 cache, grid lines | 772 | 1311 | 0.0447 | 0 |
+| pool (sheetfix 0.17, then recount4's 0.18), grid lines | 1299 | 2353 | 0.0447 | 0 |
+| 0.18 cache, pass 1's 232 leaves | 772 | 816 | 0.0241 | 0 |
+| pool, pass 1's 232 leaves | 1299 | 823 | 0.024 | 0 |
+
+- `nearest_f3.py`: the 772 valued 0.18 records are within \|dF_3\| 0.0552 of their nearest sheetfix 0.17 point (the
+  nearest is 0 to 0.354 away, so this check is weak, as for recount3). The 619 valued 0.17 records are the sheetfix's
+  (distance 0, \|dF_3\| 0). Exit 0.
+- `prefix_keys.py` (criterion 4 read as prefix and keys): PASS, exit 0.
+  - recount3's 735 lines are recount4's first 735 lines.
+  - Of the old keys, 8 have later records. 3 are the accepted fu rows (lines 736 to 738), among them the guard point
+    (4.063517475, 0.51904321): its recount3 record is valued3 and guard-blocked at 9.18 sigma, and its fu default row
+    is at 18.3 sigma. The other 5 are `--retry` records of points without value, still without value (lines 796 to
+    801).
+- Controls:
+  - `--mutate=switch` flags 2 pairs (\|dF_3\| 0.297), exit 1;
+  - the 11 removed records give \|dF_3\| 0.35 to 0.433, exit 1;
+  - `prefix_keys.py --mutate=edit` exits 1.
+
+**samebits: the check's definition, not a real difference.** `argcount_samebits.py` counts a record as valued by info
+or fix ok, without the 10 sigma guard. So it compares recount3's guard-blocked row of (4.063517475, 0.51904321), which
+argcount itself treats as without value, with the fu row that lifted it. That is the change pass 1 was run to make. No
+old line changed, and every other later record is of the kinds above. Criterion 4 as written in `../rpi5_fu018/` is not
+met: it is reported as is, and samebits is not changed. The criterion was mine. Since the step existed to lift
+guard-blocked points, it should have exempted their accepted rows.
+
+**The counts can be read.** Criterion 5 is met. recount4's final count is pass 1's: 12 unresolved cells, 232 leaves,
+zeros none, with the blocking points named in its README (criterion 6). loc018's samebits (recount3 against loc018's
+copy) does not meet this case unless an argcount run appends a record for a valued3 key. Its runs append new Newton
+points and `--retry` records of points without value.
