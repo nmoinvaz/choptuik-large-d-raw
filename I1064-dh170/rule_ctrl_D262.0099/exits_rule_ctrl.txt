@@ -4,3 +4,8 @@
 == 2026-11-21 20:27:01 UTC rule_ctl262 gate903d (information, the 1e-60 gate): FAILED no octo-double Newton line
 == 2026-11-21 20:27:01 UTC done
 == 2026-11-21 20:27:59 UTC attempt 0 (20:26:31 to 20:27:01) exited at once: 'anm_run.py: unknown options [--reseed_o_bar]': leg 14's flag is not in the 8179068d build (main 268a6b2d added it, only hp/anm_run.py changed in that commit; dh370 ran it as eb7c3ae2). No run. Log kept as rule_ctl262_attempt0_unknown_option.log. Fix: a worktree ~/Source/choptuik-large-d-268a at 268a6b2d, anm_run.py and the hp python modules from there over the 8179068d-built kernel in the same venv (hp/src, Cargo.toml, Cargo.lock, pyproject.toml are identical between 8179068d and 268a6b2d; the python modules that differ: anm_run.py, arclength.py, octo_corrector.py (Broyden updates between the corrector's LUs, #1043 era: not switched on by leg 14's flags as far as I read them, which I did not verify), od_broyden*.py). The README's build line is amended accordingly.
+== 2026-11-21 20:28:03 UTC start rule_ctl262 (anm_run.py at 268a6b2d): ks 293 keep_plan 1 from I966-dh370/ks_chain3b/leg14_D261.1415_ks293/anm_pin3_D262.0099.npz, load 0.72 1.59 2.90
+== 2026-11-21 21:10:38 UTC rule_ctl262 exit 0, 2555 s wall
+== 2026-11-21 21:10:38 UTC rule_ctl262 rule_gate: PASS: polish converged (1 od steps, max|F| 1.6e-41); step accepted: a 0.091 -> D 262.101097567, od 3 steps -> 3.33e+31 (tol 1.0e-20); saved 1 anm_pin3 and 1 jet_pin3 file(s)
+== 2026-11-21 21:10:38 UTC rule_ctl262 gate903d (information, the 1e-60 gate): FAILED od steps 1 max|F| 1.6e-41 piv_min 3.0e-20
+== 2026-11-21 21:10:38 UTC done

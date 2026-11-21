@@ -1,0 +1,46 @@
+horizon series to order 293 instead of the state's 293
+held values from the fit data/held_fit.json (degree 8, 138 full-system states, D 38.020417-73.0), relative to the base
+the base keeps its stored plan (23 steps)
+  on 0: |F| 1.59e-41 converged, Delta 1.68309109015459857 -7.1515e-17
+      elim projections {'u0': 0, 'u0q': 0, 'ladder': 0, 'failed': 0, 'skipped': 0, 'u0o': 1}
+      octo-double Newton: 1 steps, max|F| 1.6e-41, converged; double-double |F| of its first two parts 4.0e+31
+base I966-dh370/ks_chain3b/leg14_D261.1415_ks293/anm_pin3_D262.0099.npz: D 262.009869398, M 32, pin 3 (held [5, 7, 9, 11, 13]), |F| 4.0e+31; N 31, eps 1e-14, h_max 2.0, corrector od (junk_only False), tol 1.0e-20 x 1.45^(D - 262.00987), stalls accepted below 1e-17
+step 0: the series saved as /home/nathan/Source/choptuik-large-d-raw-1064w/I1064-dh170/rule_ctrl_D262.0099/rule_ctl262/jet_pin3_D262.0099.npz (8 parts, 485 s)
+step 0: D 262.009869398, pivots 3.4e-20..1.4e+51, |z_1| 3.21e-04, |z_N| 1.53e-06, ratios 2-5 308.6 0.5 16.6 0.1, a_max 0.408, 485 s
+  a_rule reseed: a_h tail e_N+1 3.06e-10 (ratio 0.95), level 0.000715 of the pole line 2.27e-40: a 0.0912
+    a 0.0912: re-seeded (ok), 254.73 s
+      horizon data refined in octo-double, rung max|R| 7.42e-12 -> 5.87e-21 -> 5.81e-21 -> 3.55e-22 -> 5.31e-23 -> 4.25e-22
+    on 0 chord 0: max|F| 4.98e-28, |dw| 1.811e-38
+    on 0 chord 1: max|F| 2.91e-27, |dw| 4.068e-38
+  on 0: strong chord (4 weak directions), 2 steps after the full first step; theta at its point inf (bound 0.750): refused, 531.01 s
+  on 0: |F| 3.24e-23 -> 4.98e-28, |dz| 1.13e-27 -> 2.19e-34, lam 1, dDelta -1.13e-27, piv 3.0e-20..1.9e+51, 947.95 s
+  on 1: |F| 4.98e-28 -> 3.16e-36, |dz| 2.19e-34 -> 4.42e-45, lam 1, dDelta -2.19e-34, piv 3.0e-20..1.9e+51, 185.09 s
+  on 2: |F| 3.16e-36 converged, Delta 1.68307744759029099 -6.9040e-18
+      elim projections {'u0': 0, 'u0q': 0, 'ladder': 0, 'failed': 0, 'skipped': 0, 'u0o_refused': 4, 'pred': 4, 'u0o': 1}
+      octo-double Newton: 3 steps, max|F| 3.2e-36, converged; double-double |F| of its first two parts 3.3e+31
+    a 0.091 -> D 262.101097567: predicted |F| 4.48e+31, od 3 steps -> 3.33e+31 (tol 1.0e-20, stall accepted, Delta correction +0.0e+00), Delta 1.683077447590 (formula diff -2.4e-06), moved 1.1e-27, 1578 s
+      Delta of the saved state, its eight parts summed exactly: 1.683077447590290980118861193788571569662
+done
+	Command being timed: "timeout -s TERM 7200 /home/nathan/Source/choptuik-large-d-1058b/.venv/bin/python -u anm_run.py /home/nathan/scratch949 /home/nathan/Source/choptuik-large-d-raw-1064w/I1064-dh170/rule_ctrl_D262.0099/rule_ctl262 --state I966-dh370/ks_chain3b/leg14_D261.1415_ks293/anm_pin3_D262.0099.npz --kfreeze 3 --held_fit data/held_fit.json --N 31 --eps 1e-14 --h_max 2 --corrector od --tol_od 2e-34 --qd_it 40 --lam_stall 0.04 --od_junk 0 --jet_o 1 --reseed 2 --reseed_q 1 --held_o 1 --reseed_o 3 --save_pred 1 --od_accept own --save_jet 1 --od_strong 4 --reseed_start pred --a_rule reseed --a_scale 0.000715 --jet_tangent_from 1 --series_split 1 --a_rise 1 --proj_start pred --reseed_o_stop 1 --od_floor_delta 1e-30 --proj_o 1 --reseed_o_bar 1e-17 --reseed_qd_bar 1e-13 --threads 4 --steps 1 --keep_plan 1 --ks 293 --D_max 272.0099"
+	User time (seconds): 9484.10
+	System time (seconds): 11.08
+	Percent of CPU this job got: 373%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 42:23.52
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 2080604
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 1159510
+	Voluntary context switches: 410351
+	Involuntary context switches: 77308
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 3536
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
