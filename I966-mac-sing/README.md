@@ -327,3 +327,26 @@ reports it as a candidate. The pole is the real stable pole of `locate` (D_im �
   - within 0.1 of 1/2: a fold. A fold near D 265.08 would cap the ks 293 chain there;
   - within 0.2 of −1: a pole;
   - otherwise not resolved.
+
+### The planted check of (2): passes by its letter, but does not validate the estimator for the data
+
+Run 2026-11-21 14:51 UTC (file time) (`subdom_amp.txt`, `subdom_planted.txt`, `subdom_planted_move.txt`; 1.4 s, 43 MB per run):
+
+- Amplitudes (`amp` at 262.3756, the fixed fit over c_1..c_31): |A2|/|A1| 6.55. The fit does not describe Delta's
+  coefficients: the median relative misfit is 0.81 and the largest 1.06.
+- Planted check: the divided-out Dlog estimator gives s 2.7917, mu +0.5213 (spreads 1.8 and 0.65 over 20
+  approximants): PASS. `--mutate=move` gives s 3.2790 against 2.8: FAIL, as required.
+- Unjudged lines:
+  - the pole pair: s 2.7975, mu +0.5158;
+  - the division with s1 + 0.006: s 2.7905, mu +0.5222;
+  - **the plain Dlog without the division: s 2.7964, mu +0.5163.** It sees the planted point just as well. On the
+    data, the plain Dlog never sees anything near 265 (`type966_D*.txt`: D* 264 to 673).
+
+So this plant is easier than the data, and the division is not what finds the point in it.
+
+Diagnostic (`ampdiag.py` → `ampdiag.txt`, outside the protocol): the same fit over orders k0..31 for k0 1, 10, 16 and 21,
+with and without the second pair P2. Its misfit is 0.13 to 0.81, and |A2|/|A1| grows from 6.5 to 1.6e8 as k0 rises. So
+the square-root two-term model does not describe the data, and the data does not fix "the relative amplitudes" through
+it. At every fitted ratio, the plain Dlog recovers the planted point.
+
+The estimator has not been run on a real series. Its type reading waits for the coordinator's decision on the plant.
