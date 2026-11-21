@@ -165,7 +165,7 @@ def main():
     ratios(rows)
     fold = [l for l in open(os.path.join(HERE, "track949.log")).read().splitlines() if "(chain 3b)" in l]
     res = evaluate(rows, fold, time.time())
-    ex = [f"{r['excess']:+.4f}" for r in rows[-6:]]
+    ex = [f"{r['excess']:+.4f}" if r['excess'] is not None else "n/a (no interval slope: the previous state is unclassified)" for r in rows[-6:]]
     print(f"#1057 states past D 259.7352 read: {res['new']} (latest ks {rows[-1]['ks']}); last excess: {', '.join(ex)} (D {rows[-1]['D']:.4f}); "
           f"sigma_2/sigma_Delta {res['ratio_last']:.3f}; run of |excess| <= {BAND} at the end counting only new states: {res['run_new']} of {RUN}")
     print(f"latest fold window: {res['fold_line']}")
