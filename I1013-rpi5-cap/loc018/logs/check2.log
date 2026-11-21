@@ -1,0 +1,12 @@
+U1 box A 4.0562243-4.0718493 w 0.51393798-0.52643798 (inside U1 True): winding 1 (want +1), unresolved 0, zeros 1, counted, not located: PASS
+U2 box A 4.2637801-4.2794051 w 0.53949949-0.55199949 (inside U2 True): winding -1 (want -1), unresolved 0, zeros 1, located A 4.2700036 w 0.54450292 against stage 1's (4.2700301, 0.54449949): PASS
+C0: winding 0 (want 0), unresolved 0, zeros 0: PASS
+stage 2 check: PASS
+U1 box A 4.0562243-4.0718493 w 0.51393798-0.52643798 (inside U1 True): winding 1 (want +1), unresolved 0, zeros 1, counted, not located: PASS
+U2 box A 4.2637801-4.2794051 w 0.53949949-0.55199949 (inside U2 True): winding -1 (want -1), unresolved 0, zeros 1, located A 4.2700036 w 0.54450292 against stage 1's (4.2856551, 0.54449949): FAIL
+C0: winding 0 (want 0), unresolved 0, zeros 0: PASS
+stage 2 check --mutate=shift: FAIL
+U1 box A 4.0562243-4.0718493 w 0.51393798-0.52643798 (inside U1 True): winding 1 (want -1), unresolved 0, zeros 1: FAIL
+U2 box A 4.2637801-4.2794051 w 0.53949949-0.55199949 (inside U2 True): winding -1 (want +1), unresolved 0, zeros 1: FAIL
+C0: winding 0 (want 1), unresolved 0, zeros 0: FAIL
+stage 2 check --mutate=sign: FAIL
