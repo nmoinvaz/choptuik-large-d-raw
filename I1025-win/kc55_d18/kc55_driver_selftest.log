@@ -1,0 +1,9 @@
+== 2026-11-21 22:01:10 cap test: started pid 8416: C:/Users/nathan/Source/venv-md510/Scripts/python.exe -c import time; print('slow', flush=True); time.sleep(600) > C:/Users/nathan/Source/kc55_1025/kc55_selftest_a.log
+== 2026-11-21 22:01:11 cap test: free memory 12.73 GB (minimum so far 12.73)
+== 2026-11-21 22:01:41 cap test: CAP 20 s: killed pid 8416 (and its children) by exact pid: SUCCESS: The process with PID 17848 (child process of PID 8416) has been terminated.
+SUCCESS: The process with PID 8416 (child process of PID 5448) has been terminated. 
+== 2026-11-21 22:01:41 memory test (threshold 1000 GB: always below): started pid 9388: C:/Users/nathan/Source/venv-md510/Scripts/python.exe -c import time; print('slow', flush=True); time.sleep(600) > C:/Users/nathan/Source/kc55_1025/kc55_selftest_b.log
+== 2026-11-21 22:01:42 memory test (threshold 1000 GB: always below): free memory 12.79 GB (minimum so far 12.79)
+== 2026-11-21 22:01:42 memory test (threshold 1000 GB: always below): MEMORY STOP: free memory 12.79 GB is below 1000.0 GB: killed pid 9388 (and its children) by exact pid: SUCCESS: The process with PID 16488 (child process of PID 9388) has been terminated.
+SUCCESS: The process with PID 9388 (child process of PID 5448) has been terminated. 
+== 2026-11-21 22:01:44 selftest: killed at the cap; memory stop at 12.79 GB; dummy processes alive afterwards 0; ok
