@@ -162,3 +162,8 @@ D 18.5 root. The pass rules are unchanged (d18_check.py 08969ea2, then signtest.
    reader saw the 18 -> 18.0625 flip as well and printed no reading (d18f_iii_read.log, kept). Read as written (D 18.25 and 18.5 only,
    d18f_iii_refpts_1825_185.jsonl, d18f_iii_read_1825_185.log): one robust change, the crossing of 1.20 lies between D 18.25 and 18.3125.
    Information (d18f_iii_numbers.log): ln|det| at 1.20 rises with D at every step except 18.25 -> 18.3125 (-1913.07 -> -1914.05).
+== 2026-11-21 17:04:44 (ii) result (d1825_low_read.log): D 18.25 over 1.20-1.55, 12 points merged (8 at 0.05, 4 at 0.01 in (1.35, 1.40)),
+   all noise-robust; repeats 1.20 and 1.55 agree (0.0e+00). One robust change, in (1.38, 1.39), plus to minus in this state, range
+   [1.388522, 1.388581]; ln|det| has its least value at 1.39, beside it; no minimum without a change. Reading: it places the crossing root.
+   Information (d1825_low_numbers.log): to reach 1.20 by D 18.3125, where (iii) reads 1.20 flipped back, this root would move at least
+   3.0164 per unit D; tracking by position alone cannot tell it from another root crossing 1.20 there.

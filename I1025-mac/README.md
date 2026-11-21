@@ -175,3 +175,6 @@ Written before the run (criteria in `d18/d18_criteria.log`, 2026-11-21 03:31:59 
 - (iii) (16:19-16:27 UTC), information: lambda 1.20 is - at D 18.3125, 18.375, 18.4375, so the 1.20 crossing between D 18.25 and 18.5 lies
   between **D 18.25 and 18.3125** (`d18/d18f_iii.log`, `d18/d18f_iii_1025.jsonl`, `d18/d18f_iii_read_1825_185.log`). The lane's own reader
   call took the whole check file and printed no reading (`d18/d18f_iii_read.log`, kept); d18_criteria.log has the discrepancy.
+- (ii) (16:27-17:05 UTC), information: D 18.25 over 1.20-1.55 has ONE robust change, in **(1.38, 1.39)**, range [1.388522, 1.388581], with
+  ln|det|'s least value beside it; every point noise-robust, repeats agree (`d18/d1825_low.log`, `d18/d1825_lowfine.log`,
+  `d18/d1825_low_1025.jsonl`, `d18/d1825_lowfine_1025.jsonl`, `d18/d1825_low_read.log`; numbers `d18/d1825_low_numbers.py`, `.log`).
