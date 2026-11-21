@@ -123,3 +123,17 @@
 1025 d18 dd result: ROOT PASSES (lower + x5 noise +, upper - x5 noise -, plus below minus above), float64 signs opposite at both points; README updated 2026-11-21 14:03:47 UTC
 1025 d18 dd result posted on #1025 comment 7063794300, raw 7d54d10c; nothing runs, nothing queued 2026-11-21 14:04:08 UTC
 1025 d18mid README (window, lambda lists, reading, repeat check, controls), inputs and driver written, pushing before the run 2026-11-21 14:08:29 UTC
+1025 d18mid driver started, pre-checks 2026-11-21 14:08:43 UTC
+1025 d18mid pre-checks ok: pins, worktree 505d8399, record line, planted controls pass 2026-11-21 14:08:48 UTC
+1025 d18mid lambda lists: A 1.82,1.70,1.71,1.72,1.73,1.74,1.75,1.76,1.77,1.78,1.79,1.80,1.81 ; B 1.82,1.83,1.84,1.85,1.86,1.87,1.88,1.89,1.90,1.91,1.92,1.93,1.94,1.95 2026-11-21 14:08:48 UTC
+1025 d18mid sampler pid 4500 (every 60 s, samples.csv) 2026-11-21 14:08:48 UTC
+1025 d18mid scanA root pid 34808, cap 28800 s, want exit 0 2026-11-21 14:08:49 UTC
+1025 d18mid scanB root pid 35752, cap 28800 s, want exit 0 2026-11-21 14:08:49 UTC
+1025 d18mid both scans running since 14:08:49 UTC (record system ok on both: |F| 2.6777188645e-10 against 2.6753918624e-10, steps 2540); waiter armed to 17:05 UTC 2026-11-21 14:09:46 UTC
+1025 d18mid scanA exit 0 (want 0) wall 5814 s capped 0 OK 2026-11-21 15:45:43 UTC
+1025 d18mid scanB exit 0 (want 0) wall 6252 s capped 0 OK 2026-11-21 15:53:01 UTC
+1025 d18mid sampler pid 4500 ended 2026-11-21 15:53:02 UTC
+1025 d18mid merge: REPEAT CHECK at lambda 1.82: sign A +1 B +1; ln|det| A -1917.7593852316775 B -1917.7593852316775, difference 0.000e+00 (bar 1e-6); noise robust A True B True; float64 sign A -1 B -1; 506 s and 507 s - ; merged 26 points (1.70 to 1.95) into D:/choptuik-large-d-raw/I1025-win2b/d18mid/scan_merged.jsonl 2026-11-21 15:53:03 UTC
+1025 d18mid reading: change in (1.79, 1.80): minus-to-plus, ROBUST|ln|det| local minimum at 1.70 (ln -1918.890716): at the scan edge|ln|det| local minimum at 1.79 (ln -1921.620358): beside a change| 2026-11-21 15:53:04 UTC
+1025 d18mid done 2026-11-21 15:53:04 UTC
+1025 d18mid result: repeat check PASS (1.82: +1 both, ln|det| equal); one robust change (1.79, 1.80) minus-to-plus, no second change in 1.70-1.95, minima at 1.79 beside the change and at the 1.70 edge, none without a change; A 5814 s, B 6252 s 2026-11-21 15:54:29 UTC

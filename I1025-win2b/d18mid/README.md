@@ -73,8 +73,29 @@ At the repeated lambda 1.82 the two records (A's and B's) must have the same hyb
 
 `d18mid_driver.sh` (launcher `launch_d18mid.ps1`, BelowNormal): checks the pins, the worktree and the record line, runs the planted controls, starts the two processes and a passive sampler, then merges and reads. A sampler (`sample_d18mid.ps1`) writes every 60 s the machine cpu %, commit and free physical memory, and each `d18_hybsign.py` process's working set, private bytes, cpu seconds and priority, to `samples.csv` (reads only; ended by its exact pid). Output: `scanA.jsonl`, `scanB.jsonl`, `scan_merged.jsonl`, the logs `scanA_raw.log`, `scanB_raw.log`, `scanA.log`, `scanB.log`, `merge.log`, `reading.log`, `rc_A`, `rc_B`, and one line per event in `../exits_1025.txt` (prefix `1025 d18mid`). The driver's last lines are `1025 d18mid reading: ...` and `1025 d18mid done`. No RESUME: a stopped scan is reported, not retried.
 
-Estimate: not known on this machine. The D 18 hybrid (an evaluation of the same kind, 17 of them) took 8490 s here at 4 threads, so a point is of the order of 500 to 900 s with two processes running, and 14 points need 2 to 4 h. Other jobs of win2-build share the machine.
+Estimate (made before the run): not known on this machine; it came out at 425 to 507 s a point (see Result).
 
 ## Log
 
 (appended below as the run goes)
+
+- 2026-11-21 14:08:49 UTC: both scan processes started (A root pid 34808, B root pid 35752; the driver's pre-checks, including the 18 planted controls, passed at 14:08:48). Record system ok on both: |F| 2.6777188645e-10 against the record's 2.6753918624e-10, steps 2540 against 2540.
+- 2026-11-21 15:45:43 UTC: A ended, exit 0, 5814 s, not capped. 15:53:01 UTC: B ended, exit 0, 6252 s, not capped. 425 to 507 s a point. The sampler (`samples.csv`) was ended by its exact pid at 15:53:02.
+- 2026-11-21 15:53:04 UTC: merge and reading by the driver (`merge.log`, `reading.log`), done.
+
+## Result (15:53 UTC)
+
+**Repeat check (lambda 1.82, first in both halves): PASS.** Hybrid sign +1 in A and in B; ln|det| -1917.7593852316775 in both, difference 0.000e+00 (bar 1e-6); noise robust in both; float64 sign -1 in both; 506 s and 507 s. The merged 26-point scan was written (`scan_merged.jsonl`; the repeated point from A).
+
+**Reading (the pinned reader's output, `reading.log`):**
+
+- every point is noise robust (none fails its 1e-15 noise test);
+- hybrid signs: minus at 1.70 to 1.79, plus at 1.80 to 1.95;
+- **one robust change: (1.79, 1.80), minus-to-plus**; no other change in the window (no plus-to-minus change between 1.80 and 1.95, and none between 1.70 and 1.79);
+- ln|det| local minima: at 1.79 (ln -1921.620358) **beside the change**; at 1.70 (ln -1918.890716) **at the scan edge**; **none WITHOUT a change**;
+- the reader prints no gap line (that needs two robust changes);
+- float64 sign differs from the hybrid's at 9 of 26 points (1.80 to 1.88, where the hybrid is plus and float64 minus; information).
+
+Reported as the order fixes it, nothing further read: the minus-to-plus change at D 18 (bisected 1.7749781, in (1.77, 1.78) on xfkappa's scan) is in (1.79, 1.80) here; the plus-to-minus change that D 18 had in (1.80, 1.81) is not in 1.70 to 1.95 here; D 18.25's root (1.7425) is inside the window and shows no change at 1.74. The scan does not show what lies below 1.70, where the ln|det| minimum at the edge is.
+
+**cpu and memory (`samples.csv`, a sample every 60 s, 102 samples 14:08 to 15:52 UTC).** My two `d18_hybsign.py` processes (python child of each root; the roots are launcher stubs): A peak working set 1.02 GiB, private 1.62 GiB, 8541 cpu-s in 5814 s; B peak working set 0.62 GiB, private 1.32 GiB, 9208 cpu-s in 6252 s; both BelowNormal throughout; the two together at most 1.64 GiB working set and 2.82 GiB private in one sample. Machine: cpu mean 38.1% (1 s samples), max 69.4%; commit 45.5 to 50.4 of 101.5 GiB; free physical at least 50.5 GiB. Two other `d18_hybsign.py` processes (not mine; launcher stubs 15348 and 18128, pythons 34584 and 10848, from 14:28 UTC, still running at 15:52) shared the machine and are in the machine figures.
