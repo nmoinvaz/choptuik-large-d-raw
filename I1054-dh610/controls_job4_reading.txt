@@ -1,0 +1,10 @@
+# 2026-11-21 control of table1054g.py's reading (c), on copies of the real logs: ok = unchanged, mutA = the flag-off 'converged' of attempt 1 changed to 'not converged', mutB = its max|F| 8.6e-73 changed to 8.6e-50
+== ok
+  attempt 1: a 0.250 -> D 242.210237122: octo-double 3 steps, max|F| 8.6e-73, converged (at or below tol_od 1e-60); double-double |F| of its first two parts 8.81e+05; accepted
+  attempt 1: a 0.250 -> D 242.210237122: octo-double 3 steps, max|F| 2.1e-24, not converged; double-double |F| of its first two parts 1.23e+06; REFUSED
+== mutA
+  attempt 1: a 0.250 -> D 242.210237122: octo-double 3 steps, max|F| 8.6e-73, not converged; double-double |F| of its first two parts 8.81e+05; accepted
+  attempt 1: a 0.250 -> D 242.210237122: octo-double 3 steps, max|F| 2.1e-24, not converged; double-double |F| of its first two parts 1.23e+06; REFUSED
+== mutB
+  attempt 1: a 0.250 -> D 242.210237122: octo-double 3 steps, max|F| 8.6e-50, says converged, max|F| above tol_od; double-double |F| of its first two parts 8.81e+05; accepted
+  attempt 1: a 0.250 -> D 242.210237122: octo-double 3 steps, max|F| 2.1e-24, not converged; double-double |F| of its first two parts 1.23e+06; REFUSED

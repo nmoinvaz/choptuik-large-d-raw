@@ -1,0 +1,51 @@
+# 2026-11-20 23:29:17 UTC cmd: python3 -u anm_run.py /home/nathan/Source/choptuik-large-d-raw /home/nathan/Source/choptuik-large-d-raw/I1054-dh610/cont241_r1 --state /home/nathan/Source/choptuik-large-d-raw/I1054-dh610/resolve241_r1/base_pin3_D241.9602.npz --kfreeze 3 --held_fit data/held_fit.json --held_o 1 --N 24 --jet_o 1 --corrector od --tol_od 1e-60 --qd_it 12 --lam_stall 0.04 --od_junk 0 --reseed 2 --reseed_q 1 --reseed_o 3 --threads 10 --a0 0.25 --h_max 0.25 --a_grow 1 --steps 2 --D_max 300 --exact_recip 1
+held values from the fit data/held_fit.json (degree 8, 138 full-system states, D 38.020417-73.0), relative to the base
+the base keeps its stored plan (61 steps)
+    on 0 trial lam 1: max|F| 1.45e-21; raw |dz_t| 2.599e-26 vs |dz| 1.728e-28 (not <); refused, 70.88 s
+    on 0 trial lam 0.5: max|F| 3.62e-22; raw |dz_t| 6.661e-27 vs |dz| 1.728e-28 (not <); refused, 68.51 s
+    on 0 trial lam 0.25: max|F| 9.05e-23; raw |dz_t| 1.838e-27 vs |dz| 1.728e-28 (not <); refused, 68.41 s
+    on 0 trial lam 0.125: max|F| 2.26e-23; raw |dz_t| 6.712e-28 vs |dz| 1.728e-28 (not <); refused, 68.7 s
+    on 0 trial lam 0.0625: max|F| 5.66e-24; raw |dz_t| 6.473e-28 vs |dz| 1.728e-28 (not <); refused, 68.53 s
+  on 0: |F| 6.76e-51 -> 1.41e-24, |dz| 1.73e-28 -> 6.32e-29, lam 0.03125, dDelta +2.55e-29, piv 1.4e-25..2.9e+34, 416.45 s
+  on 1: |F| 1.41e-24 -> 9.87e-25, |dz| 6.32e-29 -> 4.46e-29, lam 1, dDelta -6.32e-29, piv 5.4e-25..2.9e+34, 69.29 s
+    on 2 trial lam 1: max|F| 7.91e-25; raw |dz_t| 6.663e-29 vs |dz| 4.464e-29 (not <); refused, 70.64 s
+  on 2: |F| 9.87e-25 -> 5.33e-25, |dz| 4.46e-29 -> 3.73e-29, lam 0.5, dDelta +4.46e-29, piv 8.3e-25..2.9e+34, 141.3 s
+  on 3: |F| 5.33e-25 -> 1.55e-24, |dz| 3.73e-29 -> 1.28e-29, lam 1, dDelta +3.73e-29, piv 2.0e-25..2.9e+34, 73.21 s
+    on 4 trial lam 1: max|F| 3.26e-25; raw |dz_t| 1.948e-29 vs |dz| 1.282e-29 (not <); refused, 68.57 s
+    on 4 trial lam 0.5: max|F| 8.58e-25; raw |dz_t| 2.444e-29 vs |dz| 1.282e-29 (not <); refused, 68.18 s
+    on 4 trial lam 0.25: max|F| 1.19e-24; raw |dz_t| 2.193e-29 vs |dz| 1.282e-29 (not <); refused, 71.12 s
+    on 4 trial lam 0.125: max|F| 1.37e-24; raw |dz_t| 1.839e-29 vs |dz| 1.282e-29 (not <); refused, 68.08 s
+    on 4 trial lam 0.0625: max|F| 1.46e-24; raw |dz_t| 1.588e-29 vs |dz| 1.282e-29 (not <); refused, 69.59 s
+    on 4 trial lam 0.03125: max|F| 1.51e-24; raw |dz_t| 1.442e-29 vs |dz| 1.282e-29 (not <); refused, 69.0 s
+    on 4 trial lam 0.015625: max|F| 1.53e-24; raw |dz_t| 1.364e-29 vs |dz| 1.282e-29 (not <); refused, 68.0 s
+    on 4 trial lam 0.0078125: max|F| 1.54e-24; raw |dz_t| 1.324e-29 vs |dz| 1.282e-29 (not <); refused, 67.93 s
+    on 4 trial lam 0.00390625: max|F| 1.55e-24; raw |dz_t| 1.303e-29 vs |dz| 1.282e-29 (not <); refused, 68.34 s
+  on 4: |F| 1.55e-24, |dz| 1.28e-29: no trial step accepted, stopping
+      elim projections {'u0': 0, 'u0q': 0, 'ladder': 0, 'failed': 0, 'skipped': 20}
+      octo-double Newton: 5 steps, max|F| 1.6e-24, not converged; double-double |F| of its first two parts 8.0e+05
+base polish not adopted (max|F| 6.8e-51 -> 1.6e-24): the stored state is the base
+base /home/nathan/Source/choptuik-large-d-raw/I1054-dh610/resolve241_r1/base_pin3_D241.9602.npz: D 241.960237122, M 32, pin 3 (held [5, 7, 9, 11, 13]), |F| 6.7e+05; N 24, eps 1e-16, h_max 0.25, corrector od (junk_only False), tol 1.0e-20 x 1.45^(D - 241.96024), stalls accepted below 1e-17
+step 0: D 241.960237122, pivots 4.6e-25..2.9e+34, |z_1| 3.64e-04, |z_N| 7.77e-29, ratios 2-5 310.5 279.8 266.4 215.5, a_max 2.382, 275 s
+    a 0.2500: re-seeded (ok), 25.77 s
+      horizon data refined in octo-double, rung max|R| 2.02e-27 -> 3.36e-60 -> 2.92e-68 -> 8.01e-76
+    on 0 trial lam 1: max|F| 2.57e-21; raw |dz_t| 4.281e-26 vs |dz| 2.185e-28 (not <); refused, 68.82 s
+    on 0 trial lam 0.5: max|F| 6.42e-22; raw |dz_t| 1.084e-26 vs |dz| 2.185e-28 (not <); refused, 68.68 s
+    on 0 trial lam 0.25: max|F| 1.61e-22; raw |dz_t| 2.853e-27 vs |dz| 2.185e-28 (not <); refused, 68.76 s
+    on 0 trial lam 0.125: max|F| 4.01e-23; raw |dz_t| 8.880e-28 vs |dz| 2.185e-28 (not <); refused, 68.98 s
+    on 0 trial lam 0.0625: max|F| 1.00e-23; raw |dz_t| 8.395e-28 vs |dz| 2.185e-28 (not <); refused, 69.22 s
+  on 0: |F| 2.69e-36 -> 2.51e-24, |dz| 2.19e-28 -> 6.87e-29, lam 0.03125, dDelta +3.81e-29, piv 1.5e-25..3.2e+34, 415.19 s
+  on 1: |F| 2.51e-24 -> 2.09e-24, |dz| 6.87e-29 -> 4.45e-30, lam 1, dDelta +6.87e-29, piv 1.7e-25..3.2e+34, 67.94 s
+    on 2 trial lam 1: max|F| 9.84e-25; raw |dz_t| 1.107e-27 vs |dz| 4.449e-30 (not <); refused, 68.55 s
+    on 2 trial lam 0.5: max|F| 1.29e-24; raw |dz_t| 3.710e-29 vs |dz| 4.449e-30 (not <); refused, 68.11 s
+    on 2 trial lam 0.25: max|F| 1.63e-24; raw |dz_t| 4.694e-30 vs |dz| 4.449e-30 (not <); refused, 68.7 s
+    on 2 trial lam 0.125: max|F| 1.84e-24; raw |dz_t| 4.577e-30 vs |dz| 4.449e-30 (not <); refused, 69.09 s
+    on 2 trial lam 0.0625: max|F| 1.96e-24; raw |dz_t| 4.511e-30 vs |dz| 4.449e-30 (not <); refused, 70.82 s
+    on 2 trial lam 0.03125: max|F| 2.03e-24; raw |dz_t| 4.479e-30 vs |dz| 4.449e-30 (not <); refused, 70.88 s
+    on 2 trial lam 0.015625: max|F| 2.06e-24; raw |dz_t| 4.464e-30 vs |dz| 4.449e-30 (not <); refused, 68.75 s
+    on 2 trial lam 0.0078125: max|F| 2.07e-24; raw |dz_t| 4.457e-30 vs |dz| 4.449e-30 (not <); refused, 68.78 s
+    on 2 trial lam 0.00390625: max|F| 2.08e-24; raw |dz_t| 4.453e-30 vs |dz| 4.449e-30 (not <); refused, 68.5 s
+  on 2: |F| 2.09e-24, |dz| 4.45e-30: no trial step accepted, stopping
+      elim projections {'u0': 0, 'u0q': 0, 'ladder': 0, 'failed': 0, 'skipped': 17}
+      octo-double Newton: 3 steps, max|F| 2.1e-24, not converged; double-double |F| of its first two parts 1.2e+06
+    a 0.250 -> D 242.210237122: predicted |F| 1.11e+06, od 3 steps -> 1.23e+06 (tol 1.1e-20), Delta 1.686261688523 (formula diff -1.5e-06), moved 7.0e-29, 1176 s
+exit 143

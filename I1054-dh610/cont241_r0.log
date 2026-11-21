@@ -1,0 +1,29 @@
+# 2026-11-20 23:13:16 UTC cmd: python3 -u anm_run.py /home/nathan/Source/choptuik-large-d-raw /home/nathan/Source/choptuik-large-d-raw/I1054-dh610/cont241_r0 --state /home/nathan/Source/choptuik-large-d-raw/I1054-dh610/resolve241_r0/base_pin3_D241.9602.npz --kfreeze 3 --held_fit data/held_fit.json --held_o 1 --N 24 --jet_o 1 --corrector od --tol_od 1e-60 --qd_it 12 --lam_stall 0.04 --od_junk 0 --reseed 2 --reseed_q 1 --reseed_o 3 --threads 10 --a0 0.25 --h_max 0.25 --a_grow 1 --steps 2 --D_max 300 --exact_recip 0
+held values from the fit data/held_fit.json (degree 8, 138 full-system states, D 38.020417-73.0), relative to the base
+the base keeps its stored plan (61 steps)
+  on 0: |F| 2.00e-65 converged, Delta 1.68630499666419720 +8.3683e-17
+      elim projections {'u0': 0, 'u0q': 0, 'ladder': 0, 'failed': 0, 'skipped': 1}
+      octo-double Newton: 1 steps, max|F| 2.0e-65, converged; double-double |F| of its first two parts 9.8e+05
+base /home/nathan/Source/choptuik-large-d-raw/I1054-dh610/resolve241_r0/base_pin3_D241.9602.npz: D 241.960237122, M 32, pin 3 (held [5, 7, 9, 11, 13]), |F| 9.8e+05; N 24, eps 1e-16, h_max 0.25, corrector od (junk_only False), tol 1.0e-20 x 1.45^(D - 241.96024), stalls accepted below 1e-17
+step 0: D 241.960237122, pivots 4.6e-25..2.9e+34, |z_1| 3.64e-04, |z_N| 8.02e-29, ratios 2-5 310.5 279.8 266.7 222.7, a_max 2.379, 208 s
+    a 0.2500: re-seeded (ok), 26.35 s
+      horizon data refined in octo-double, rung max|R| 1.10e-27 -> 4.90e-54 -> 7.89e-62 -> 1.26e-69
+  on 0: |F| 2.69e-36 -> 5.04e-37, |dz| 3.18e-36 -> 3.96e-54, lam 1, dDelta -1.53e-39, piv 3.8e-25..3.2e+34, 68.64 s
+  on 1: |F| 5.04e-37 -> 8.61e-73, |dz| 3.96e-54 -> 3.96e-54, lam 1, dDelta -1.36e-54, piv 3.8e-25..3.2e+34, 68.36 s
+  on 2: |F| 8.61e-73 converged, Delta 1.68626168852240710 +4.8540e-17
+      elim projections {'u0': 0, 'u0q': 0, 'ladder': 0, 'failed': 0, 'skipped': 3}
+      octo-double Newton: 3 steps, max|F| 8.6e-73, converged; double-double |F| of its first two parts 8.8e+05
+    a 0.250 -> D 242.210237122: predicted |F| 8.81e+05, od 3 steps -> 8.81e+05 (tol 1.1e-20, stall accepted, Delta correction +0.0e+00), Delta 1.686261688522 (formula diff -1.5e-06), moved 4.8e-35, 205 s
+      Delta of the saved state, its eight parts summed exactly: 1.686261688522407146929215459435212267676
+step 1: D 242.210237122, pivots 3.8e-25..3.2e+34, |z_1| 3.63e-04, |z_N| 1.58e-29, ratios 2-5 310.9 280.1 267.1 242.4, a_max 2.553, 207 s
+    a 0.2500: re-seeded (ok), 26.72 s
+      horizon data refined in octo-double, rung max|R| 1.99e-27 -> 4.10e-60 -> 9.14e-69 -> 3.34e-76
+  on 0: |F| 2.25e-35 -> 6.11e-37, |dz| 2.28e-35 -> 6.86e-54, lam 1, dDelta +3.68e-39, piv 3.4e-25..3.4e+34, 68.03 s
+  on 1: |F| 6.11e-37 -> 2.77e-72, |dz| 6.86e-54 -> 6.86e-54, lam 1, dDelta -2.16e-54, piv 3.4e-25..3.4e+34, 68.75 s
+  on 2: |F| 2.77e-72 converged, Delta 1.68621846876058457 +9.6896e-17
+      elim projections {'u0': 0, 'u0q': 0, 'ladder': 0, 'failed': 0, 'skipped': 3}
+      octo-double Newton: 3 steps, max|F| 2.8e-72, converged; double-double |F| of its first two parts 1.0e+06
+    a 0.250 -> D 242.460237122: predicted |F| 1.04e+06, od 3 steps -> 1.04e+06 (tol 1.2e-20, stall accepted, Delta correction +0.0e+00), Delta 1.686218468761 (formula diff -1.5e-06), moved 1.9e-34, 205 s
+      Delta of the saved state, its eight parts summed exactly: 1.686218468760584662553357358795422490451
+done
+exit 0
