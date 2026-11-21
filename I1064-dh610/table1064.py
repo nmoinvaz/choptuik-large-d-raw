@@ -9,7 +9,7 @@ import subprocess
 import sys
 
 d = sys.argv[1] if len(sys.argv) > 1 else os.path.dirname(os.path.abspath(__file__))
-exits = "".join(open(f"{d}/{n}").read() for n in ("exits_1064.txt", "exits_1064b.txt") if os.path.exists(f"{d}/{n}"))
+exits = "".join(open(f"{d}/{n}").read() for n in ("exits_1064.txt", "exits_1064b.txt", "exits_1064c.txt") if os.path.exists(f"{d}/{n}"))
 rows = []
 for log in sorted(glob.glob(f"{d}/ks[0-9]*.log"), key=lambda p: int(re.search(r"ks(\d+)\.log", p).group(1))):
     K = int(re.search(r"ks(\d+)\.log", log).group(1))

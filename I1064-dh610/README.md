@@ -55,3 +55,16 @@ Defect in `run1064.sh` (reported, not fixed there): each run's wall in `exits_10
 
 Information, not a verdict: the control's saved base against the stored leg 13 state (`delta1064_ctl_vs_leg13.*`): Delta equal in all 40 printed digits, difference 0.0 (xcheck passes). Per entry (exact sums of the eight parts, 769 entries):
 the polish moved 64 entries by up to 5.1e-49 (max |S| 1.683), the Delta entry by 0; `zh` and `zl` are byte-equal, `z2` to `z7` differ in 31 to 64 entries. `cmp1060.py bits` does not apply to a base file (no `a` in its meta).
+
+## Result of ks 295 and 297 (unit `i1064b`, 07:28:10 to 08:52:12 UTC, 21 Nov)
+
+Both failed the gate and both stopped themselves (exit 0, no cap): `exits_1064b.txt` has each run's own wall (30 s polls), `summary_1064b.txt` the verdicts, `table_1064b.md` the table.
+
+| K | own wall | gate | steps (max\|F\| before -> after, lam, seconds) | end |
+|---|---|---|---|---|
+| 295 | 4441 s | failed: 3 steps, max\|F\| 3.1e-08, not converged | 1.35e-11 -> 4.28e-07, 0.25, 1365; -> 1.09e-06, 0.031, 1142; -> 3.06e-08, 0.0078, 1594 | `lam at or below 0.04 twice in a row, stopping (stalled)` |
+| 297 | 5041 s | failed: 4 steps, max\|F\| 1.4e-08, not converged | 8.38e-12 -> 3.35e-11, 0.5, 1229; -> 2.52e-08, 0.125, 1404; -> 1.41e-08, 1, 197 | step 3: nine refused trials, `no trial step accepted, stopping` |
+
+Dry test of `run1064b.sh` (`dry_b/`, `check_dry1064b.txt`): passed; its ks 293 base is byte-identical to the control's in all eight parts.
+
+Second rung: no leg 14 state is flagged at a Delta share of 0.9 or more (dh170's #1057 read of D 261.6229, 08:26 UTC: 0.693), so ks 301 with 305 from the D 261.0721 state, as the coordinator's rule says (`run1064b.sh` with `R1_1064B="301 305"`, unit `i1064d`, memory log `memlog_1064d.log`).

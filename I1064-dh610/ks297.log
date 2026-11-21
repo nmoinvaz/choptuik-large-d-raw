@@ -1,0 +1,30 @@
+# 2026-11-21 07:28:10 UTC cmd: python3 -u anm_run.py /home/nathan/Source/choptuik-large-d-raw /home/nathan/Source/choptuik-large-d-raw/I1064-dh610/ks297 --state I966-dh370/ks_chain3b/leg13_D260.8483_ks293/anm_pin3_D261.0721.npz --kfreeze 3 --held_fit data/held_fit.json --N 31 --eps 1e-14 --h_max 2 --threads 10 --corrector od --tol_od 2e-34 --qd_it 40 --lam_stall 0.04 --od_junk 0 --jet_o 1 --reseed 2 --reseed_q 1 --held_o 1 --reseed_o 3 --save_pred 1 --od_accept own --save_jet 1 --od_strong 4 --reseed_start pred --a_rule reseed --a_scale 0.000715 --jet_tangent_from 1 --series_split 1 --a_rise 1 --proj_start pred --reseed_o_stop 1 --od_floor_delta 1e-30 --proj_o 1 --reseed_qd_bar 1e-13 --steps 0 --ks 297 --keep_plan 0 --save_base 1 --D_max 270.8483
+horizon series to order 297 instead of the state's 293
+held values from the fit data/held_fit.json (degree 8, 138 full-system states, D 38.020417-73.0), relative to the base
+    on 0 chord 0: max|F| 1.39e-15, |dw| 2.467e-32
+    on 0 chord 1: max|F| 1.77e+14, |dw| 3.315e+13
+  on 0: strong chord (4 weak directions), 2 steps after the full first step; theta at its point inf (bound 0.750): refused, 575.58 s
+    on 0 trial lam 1: max|F| 1.39e-15; raw |dz_t| 4.433e-16 vs |dz| 4.580e-19 (not <); refused, 335.17 s
+  on 0: |F| 8.38e-12 -> 3.35e-11, |dz| 4.58e-19 -> 1.22e-19, lam 0.5, dDelta +4.58e-19, piv 3.2e-16..1.1e+51, 1228.84 s
+    on 1 trial lam 1: max|F| 6.19e-14; raw |dz_t| 1.003e-14 vs |dz| 1.216e-19 (not <); refused, 334.73 s
+    on 1 trial lam 0.5: max|F| 2.43e-13; raw |dz_t| 9.060e-17 vs |dz| 1.216e-19 (not <); refused, 307.44 s
+    on 1 trial lam 0.25: max|F| 1.89e+10; raw |dz_t| 5.217e+04 vs |dz| 1.216e-19 (not <); refused, 460.77 s
+      on 1, lam 0.25: projection failed (2): point max|F| 1.89e+10; own data quad-double 8 its, |R| 3.33e+09 -> 6.07e-06, NOT converged; u0 rung 1 its, |R| 2.86e+30 -> 2.86e+30, NOT converged; u0 quad-double 8 its, |R| 9.11e+26 -> 2.22e+23, NOT converged; ladder FAILED after 8 rungs, last rung u 0.300000 quad-double 8 its, |R| 1.31e+28 -> 3.19e+24, NOT converged
+  on 1: |F| 3.35e-11 -> 2.52e-08, |dz| 1.22e-19 -> 3.44e-21, lam 0.125, dDelta -1.22e-19, piv 4.3e-13..1.1e+51, 1404.25 s
+  on 2: |F| 2.52e-08 -> 1.41e-08, |dz| 3.44e-21 -> 2.23e-22, lam 1, dDelta -3.44e-21, piv 6.9e-13..1.1e+51, 197.48 s
+    on 3 trial lam 1: max|F| 4.17e-12; raw |dz_t| 2.069e-19 vs |dz| 2.228e-22 (not <); refused, 280.02 s
+    on 3 trial lam 0.5: max|F| 4.07e-11; raw |dz_t| 8.067e-20 vs |dz| 2.228e-22 (not <); refused, 245.15 s
+    on 3 trial lam 0.25: max|F| 2.40e-11; raw |dz_t| 2.330e-19 vs |dz| 2.228e-22 (not <); refused, 259.33 s
+    on 3 trial lam 0.125: max|F| 3.15e-10; raw |dz_t| 9.963e-20 vs |dz| 2.228e-22 (not <); refused, 263.89 s
+    on 3 trial lam 0.0625: max|F| 1.12e-10; raw |dz_t| 1.722e-19 vs |dz| 2.228e-22 (not <); refused, 242.12 s
+    on 3 trial lam 0.03125: max|F| 1.02e-09; raw |dz_t| 5.020e-21 vs |dz| 2.228e-22 (not <); refused, 188.47 s
+    on 3 trial lam 0.015625: max|F| 1.75e-06; raw |dz_t| 2.234e-19 vs |dz| 2.228e-22 (not <); refused, 103.22 s
+    on 3 trial lam 0.0078125: max|F| 2.53e-10; raw |dz_t| 2.312e-20 vs |dz| 2.228e-22 (not <); refused, 155.84 s
+    on 3 trial lam 0.00390625: max|F| 9.38e-10; raw |dz_t| 1.902e-19 vs |dz| 2.228e-22 (not <); refused, 157.24 s
+  on 3: |F| 1.41e-08, |dz| 2.23e-22: no trial step accepted, stopping
+      elim projections {'u0': 0, 'u0q': 0, 'ladder': 0, 'failed': 2, 'skipped': 0, 'u0o_refused': 19, 'pred': 17}
+      octo-double Newton: 4 steps, max|F| 1.4e-08, not converged; double-double |F| of its first two parts 1.9e+31
+base polish not adopted (max|F| 8.4e-12 -> 1.4e-08): the stored state is the base
+base I966-dh370/ks_chain3b/leg13_D260.8483_ks293/anm_pin3_D261.0721.npz: D 261.072113467, M 32, pin 3 (held [5, 7, 9, 11, 13]), |F| 1.0e+32; N 31, eps 1e-14, h_max 2.0, corrector od (junk_only False), tol 1.0e-20 x 1.45^(D - 261.07211), stalls accepted below 1e-17
+done
+exit 0
