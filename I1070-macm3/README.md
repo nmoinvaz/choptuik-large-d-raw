@@ -132,3 +132,59 @@ otherwise the issue's: `--threads=6 --polish=2 --xtol=1e-11`. The wrapper is as 
 `run_1070.sh` and `check_cmd_1070.py` changed for this: `TAG`, and the checker's M 128 case now allows exactly the `--lam0` given on its
 command line (`check_cmd_1070.py M128 4.3977`: pass; `--selftest`: 15 cases, 12 broken, all fire, among them a different `--lam0`, a
 missing one, and `--polish=3` with it).
+
+### Rerun r2 result: one sign change, a root (pass)
+
+`TAG=_r2 run_1070.sh M128 4.3977`, started 2026-11-21 22:19:33 UTC, exit 0 at 23:41:37 UTC (capped_run wall 4924 s, own 4917.6 s, cap not
+reached), child pid 99867. Files: `run_M128_r2.log`, `lowD_gamma_D3.15_M128_r2.jsonl`, `table_M128_r2.md`, `res_M128_r2.log`,
+`res_summary_M128_r2.txt`, `res_stats_M128_r2.txt`, `exits_1070.txt`.
+
+| criterion (the issue's) | result | met |
+|---|---|---|
+| F after the polish below 1e-27 | 1.103e-28 (the polish: 6.69e-26 -> 1.29e-28 in 2 Newton steps, 752.0 s) | yes |
+| exactly one sign change in the bracket | `n_signchanges` 1: in the script's first grid (lam0 ± 1e-4: 4.3976 -, 4.3977 -, 4.3978 +) | yes |
+
+λ = 4.397784106690153, γ = 1/λ = 0.22738724224291604 (`n_det` 7; brentq `xtol` 1e-11 on λ, so γ is good to about 3e-13: the last two points
+4.397784106685 (-1) and 4.397784106690 (+1) bracket the root). The search stopped at its first width with a sign change, so the window
+beyond ±1e-4 was not scanned for further roots (the bracket holds one).
+
+The determinants near the root behave as a simple zero: the local slope of ln|det| against ln|λ - λ*| is 0.898, 0.952, 1.005, 1.000 over
+|λ - λ*| from 1.8e-4 to 1.4e-8 (`table_M128_r2.md`).
+
+Readings:
+- γ(3.15) at M 128 = 0.2273872422, against the coordinator's interpolation of the Vienna group's GammaList, γ 0.22728 to 0.227411 (comment 7070090021; an interpolation spread, not a bound): inside it, 2.38e-05 below its upper end and 1.07e-04 above its lower end.
+- The guess 4.3977 missed the root by 8.411e-05 in λ.
+- γ(3.15)/γ(3.5) = 0.70533, with γ(3.5) = 0.3223855827556097 (#628, M 128).
+- γ(160) − γ(128), the M error at D 3.15 (a resolution change, not a bound): from the M 160 run below.
+
+Resources, from `res_M128_r2.log`: polls 82 (60 s each), rss GB min 0.18 max 2.43 mean 1.64; cpu% (ps, 100 = one core) min 99.1 mean 498.1 max 558.9; load1 mean 18.71 max 39.10; free memory min 78%; free disk min 22.1 GiB. The pilot's, for comparison: polls 51 (60 s each), rss GB min 0.19 max 3.36 mean 1.89; cpu% (ps, 100 = one core) min 593.2 mean 598.9 max 600.0; load1 mean 6.33 max 9.62; free memory min 85%; free disk min 22.8 GiB. Each determinant took 594.8 s (min 532.7, max 613.0), against 308.3 s in the pilot; the
+polish 752.0 s against 294.6 s. The cpu of the process was lower (mean 498% against 599%) and the machine's load1 higher (mean 18.71,
+max 39.10, against 6.33 and 9.62). I do not know what else ran; the process list at the end showed nothing heavy.
+
+## M 160 run (after the pass; the issue's step 2, the coordinator's order "M 160 follows only after a pass", 2026-11-21 23:43 UTC)
+
+`run_1070.sh M160 4.397784106690153` (`lam0_M160.txt`: the r2 run's λ, as in `lowD_gamma_D3.15_M128_r2.jsonl`), the M 160 state
+(blob 2515013d1ed23e09e5ca7d4aee82ac5781f72d12), the same worktree (main 6c4d845d) and `venv-macm3-1058b`, 6 threads, `nice -n 10`, 6 h
+cap by exact pid. The issue's command (`issue_cmd.txt`, the M 128 pilot's) against mine (`my_cmd_M160.txt`), one token per line,
+`diff issue mine` (`cmd_diff_M160.txt`):
+
+```
+1c1
+< python3
+---
+> /Users/nathan/Source/venv-macm3-1058b/bin/python
+4,5c4,5
+< <raw>/I1070-macm3/lowD_gamma_D3.15_M128.jsonl
+< <raw>/I927-mac/inputs/lowDhm_x0.000625-0.9_D3.1500_M128.npz
+---
+> /Users/nathan/Source/choptuik-large-d-raw-903/I1070-macm3/lowD_gamma_D3.15_M160.jsonl
+> /Users/nathan/Source/choptuik-large-d-raw-749p/I927-mac/inputs/lowDhm_x0.000625-0.9_D3.1500_M160.npz
+8a9
+> --lam0=4.397784106690153
+```
+
+The differences: the interpreter, the two `<raw>` prefixes, M 128 -> M 160 in the output and state names (the issue's step 2 runs "the
+same with the M 160 state"), and the added `--lam0=4.397784106690153` (the issue's step 2: `--lam0` set to the M 128 λ). Flags otherwise the
+issue's. `check_cmd_1070.py M160 4.397784106690153`: pass. The window: the script's brackets widen to ±0.04 round that λ; the same
+acceptance (one sign change, F below 1e-27); stop and report otherwise. The cost: a determinant at M 160 is about (11521/9217)^3 = 1.95 times an M 128
+one (an estimate from the LU's cube law, not a measurement), so about 600 s at the pilot's speed and 1160 s at r2's.
