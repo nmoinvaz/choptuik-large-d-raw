@@ -1,0 +1,17 @@
+Re s = 1.4961 + 0.500436 D from 33 states of horizon_radius.csv (D 225.131 to 253.804); ks = ceil(4.4 Re s(leg end)) + -291
+  leg D 261.7748 -> 271.7748: ks 315
+  leg D 271.7748 -> 281.7748: ks 337
+  leg D 281.7748 -> 291.7748: ks 359
+  leg D 291.7748 -> 301.7748: ks 381
+  leg D 301.7748 -> 311.7748: ks 403
+  leg D 311.7748 -> 321.7748: ks 425
+  leg D 321.7748 -> 331.7748: ks 447
+  leg D 331.7748 -> 341.7748: ks 469
+  leg D 341.7748 -> 351.7748: ks 491
+  leg D 351.7748 -> 361.7748: ks 513
+  leg D 361.7748 -> 371.7748: ks 535
+  leg D 371.7748 -> 381.7748: ks 557
+  leg D 381.7748 -> 391.7748: ks 579
+  leg D 391.7748 -> 400.0000: ks 597
+leg 15: D 261.7748 -> 271.7748 at ks 315 from I966-dh370/ks_chain3b/leg14_D261.1415_ks293/anm_pin3_D261.7748.npz
+  /home/nathan/Source/choptuik-large-d-961/.venv/bin/python -u /home/nathan/Source/choptuik-large-d-966g/hp/anm_run.py /home/nathan/Source/choptuik-large-d-raw-wt613 /home/nathan/Source/choptuik-large-d-raw-wt613/I966-dh370/ks_chain3b/leg15_D261.7748_ks315 --state I966-dh370/ks_chain3b/leg14_D261.1415_ks293/anm_pin3_D261.7748.npz --kfreeze 3 --held_fit data/held_fit.json --N 31 --eps 1e-14 --h_max 2 --threads $T --corrector od --tol_od 2e-34 --qd_it 40 --lam_stall 0.04 --od_junk 0 --jet_o 1 --reseed 2 --reseed_q 1 --held_o 1 --reseed_o 3 --save_pred 1 --od_accept own --save_jet 1 --od_strong 4 --reseed_start pred --a_rule reseed --a_scale 0.000715 --jet_tangent_from 1 --series_split 1 --a_rise 1 --proj_start pred --reseed_o_stop 1 --od_floor_delta 1e-30 --proj_o 1 --reseed_o_bar 1e-17 --reseed_qd_bar 1e-13 --steps 400 --ks 315 --keep_plan 0 --D_max 271.7748
