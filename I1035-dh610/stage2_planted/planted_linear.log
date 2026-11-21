@@ -1,0 +1,11 @@
+# 2026-11-21 20:53:20 UTC factored_raise.py /home/nathan/Source/choptuik-large-d-raw /home/nathan/Source/choptuik-large-d-raw/I1035-dh610/stage2_planted/planted_linear --state I1064-dh610/ho2_D237.7132/ks307/base_pin3_D237.7132.npz --ks 315 --threads 10 --ref I1064-dh170/p315/ks315/base_pin3_D237.7132.npz --bar 1e-60 --mutate=linear
+hpkernel /home/nathan/Source/venv-i1058/lib/python3.14/site-packages/hpkernel/__init__.py (avx2; multidouble-5.1.0, multishoot-4.1.0); built from /home/nathan/Source/choptuik-large-d-1058 at HEAD 8179068da460fe6be81312602e4c9987d17d73a3 (hp/src clean: True); this script at bae00edf8262053122eaf03daadfd318da6a78eb
+state I1064-dh610/ho2_D237.7132/ks307/base_pin3_D237.7132.npz: D 237.71323490142822265625, ks 307 -> 315, M 32, plan stored; mode linear, rung a, tol 1e-80, projection bar 1e-60, threads 10
+  start projection: rung max|R| 7.75e-41 -> 3.03e-63 -> 1.72e-85 (floor)
+  on 0: max|F| 5.385e-38, |dz| 4.679e-27, dDelta +4.679e-27, piv 3.2e-15..6.3e+42, 117.4 s
+    lam 1: 1 stage(s), max|F| 2.151e-55, theta 1.828e-26: accepted, 26.1 s
+  on 1: max|F| 2.151e-55, |dz| 8.551e-53, dDelta +8.551e-53, piv 3.2e-15..6.3e+42, 138.7 s
+    lam 1: 1 stage(s), max|F| 4.370e-87, theta 3.099e-38: accepted, 18.8 s
+  on 2: max|F| 4.370e-87 converged (the accepted trial)
+raise converged (converged) after 3 line(s), last max|F| 4.370e-87; Delta moved by +4.678695e-27; written raise_pin3_D237.7132.npz; 314 s
+against I1064-dh170/p315/ks315/base_pin3_D237.7132.npz (ks 315, plan the same): largest entry difference 3.182e-90 at entry 25, Delta -2.537e-93; the raise moved Delta by +4.678695e-27, the reference's by +4.678695e-27: PASS (bar 1e-60)

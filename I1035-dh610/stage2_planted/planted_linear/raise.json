@@ -1,0 +1,122 @@
+{
+ "cmd": "factored_raise",
+ "argv": [
+  "/home/nathan/Source/choptuik-large-d-raw",
+  "/home/nathan/Source/choptuik-large-d-raw/I1035-dh610/stage2_planted/planted_linear",
+  "--state",
+  "I1064-dh610/ho2_D237.7132/ks307/base_pin3_D237.7132.npz",
+  "--ks",
+  "315",
+  "--threads",
+  "10",
+  "--ref",
+  "I1064-dh170/p315/ks315/base_pin3_D237.7132.npz",
+  "--bar",
+  "1e-60",
+  "--mutate=linear"
+ ],
+ "state": "I1064-dh610/ho2_D237.7132/ks307/base_pin3_D237.7132.npz",
+ "ks_from": 307,
+ "ks": 315,
+ "mode": "linear",
+ "rung": "a",
+ "tol": 1e-80,
+ "converged": true,
+ "why": "converged",
+ "hist": [
+  {
+   "it": 0,
+   "F": 5.385229237599544e-38,
+   "dz": 4.678695038828657e-27,
+   "dDelta": 4.678695038828657e-27,
+   "trials": [
+    {
+     "stages": 1,
+     "proj": [
+      {
+       "hist": [
+        1.3024960874137794e-16,
+        1.7079100649634167e-37,
+        5.229717148855474e-53,
+        3.6151366753426604e-68,
+        2.681295379528401e-83
+       ],
+       "end": "floor",
+       "line": "rung max|R| 1.30e-16 -> 1.71e-37 -> 5.23e-53 -> 3.62e-68 -> 2.68e-83 (floor)"
+      }
+     ],
+     "lam": 1.0,
+     "F": 2.150772251281733e-55,
+     "theta": 1.8276240575998765e-26,
+     "accepted": true
+    }
+   ],
+   "piv": [
+    3.1859123527784037e-15,
+    6.319307558789506e+42
+   ],
+   "line": "piv 3.2e-15..6.3e+42"
+  },
+  {
+   "it": 1,
+   "F": 2.150772251281733e-55,
+   "dz": 8.550895611136442e-53,
+   "dDelta": 8.550895611136442e-53,
+   "trials": [
+    {
+     "stages": 1,
+     "proj": [
+      {
+       "hist": [
+        2.2667865984096671e-66,
+        1.1933253457964829e-90
+       ],
+       "end": "floor",
+       "line": "rung max|R| 2.27e-66 -> 1.19e-90 (floor)"
+      }
+     ],
+     "lam": 1.0,
+     "F": 4.369511336524955e-87,
+     "theta": 3.098893120926416e-38,
+     "accepted": true
+    }
+   ],
+   "piv": [
+    3.1859123527784037e-15,
+    6.319307558789506e+42
+   ],
+   "line": "piv 3.2e-15..6.3e+42"
+  },
+  {
+   "it": 2,
+   "F": 4.369511336524955e-87,
+   "trials": []
+  }
+ ],
+ "dDelta": 4.678695038828657e-27,
+ "kernel": {
+  "path": "/home/nathan/Source/venv-i1058/lib/python3.14/site-packages/hpkernel/__init__.py",
+  "isa": "avx2",
+  "crates": [
+   "multidouble-5.1.0",
+   "multishoot-4.1.0"
+  ],
+  "wheel": "/home/nathan/Source/choptuik-large-d-1058/hp/dist/hpkernel-0.1.0-cp314-cp314-manylinux_2_34_x86_64.whl",
+  "build_worktree": "/home/nathan/Source/choptuik-large-d-1058",
+  "build_worktree_head": "8179068da460fe6be81312602e4c9987d17d73a3",
+  "build_worktree_src_clean": true,
+  "script_head": "bae00edf8262053122eaf03daadfd318da6a78eb"
+ },
+ "seconds": 314,
+ "compare": {
+  "ref": "I1064-dh170/p315/ks315/base_pin3_D237.7132.npz",
+  "ref_ks": 315,
+  "same_plan": true,
+  "bar": 1e-60,
+  "dDelta_ref": 4.678695038828657e-27,
+  "max": 3.1817496174914644e-90,
+  "at": 25,
+  "delta": -2.5366511420909698e-93,
+  "ok": true
+ }
+}

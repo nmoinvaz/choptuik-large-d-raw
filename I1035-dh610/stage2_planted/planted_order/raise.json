@@ -1,0 +1,158 @@
+{
+ "cmd": "factored_raise",
+ "argv": [
+  "/home/nathan/Source/choptuik-large-d-raw",
+  "/home/nathan/Source/choptuik-large-d-raw/I1035-dh610/stage2_planted/planted_order",
+  "--state",
+  "I1064-dh610/ho2_D237.7132/ks307/base_pin3_D237.7132.npz",
+  "--ks",
+  "315",
+  "--threads",
+  "10",
+  "--ref",
+  "I1064-dh170/p315/ks315/base_pin3_D237.7132.npz",
+  "--bar",
+  "1e-60",
+  "--mutate=order"
+ ],
+ "state": "I1064-dh610/ho2_D237.7132/ks307/base_pin3_D237.7132.npz",
+ "ks_from": 307,
+ "ks": 314,
+ "mode": "factored",
+ "rung": "a",
+ "tol": 1e-80,
+ "converged": true,
+ "why": "converged",
+ "hist": [
+  {
+   "it": 0,
+   "F": 5.322136729255424e-38,
+   "dz": 4.617503303413521e-27,
+   "dDelta": 4.617503303413521e-27,
+   "trials": [
+    {
+     "stages": 1,
+     "proj": [
+      {
+       "hist": [
+        1.7596198460158321e-43,
+        3.884950947231531e-66,
+        1.1546810580704925e-88
+       ],
+       "end": "floor",
+       "line": "rung max|R| 1.76e-43 -> 3.88e-66 -> 1.15e-88 (floor)"
+      }
+     ],
+     "lam": 1.0,
+     "F": 2.1031556504432808e-55,
+     "theta": 1.813954091227478e-26,
+     "accepted": true
+    }
+   ],
+   "piv": [
+    3.1859123527784037e-15,
+    6.319307558789506e+42
+   ],
+   "line": "piv 3.2e-15..6.3e+42",
+   "t2_check": 2.6891395289153337e-22,
+   "tau": 0.0009765625,
+   "w": 8.80599214990801e-59
+  },
+  {
+   "it": 1,
+   "F": 2.1031556504432808e-55,
+   "dz": 8.37593900848335e-53,
+   "dDelta": 8.37593900848335e-53,
+   "trials": [
+    {
+     "stages": 1,
+     "proj": [
+      {
+       "hist": [
+        9.900907700103977e-84
+       ],
+       "end": "floor",
+       "line": "rung max|R| 9.90e-84 (floor)"
+      }
+     ],
+     "lam": 1.0,
+     "F": 2.6732473707004164e-80,
+     "theta": 3.327627965189493e-38,
+     "accepted": true
+    }
+   ],
+   "piv": [
+    3.1859123527784037e-15,
+    6.319307558789506e+42
+   ],
+   "line": "piv 3.2e-15..6.3e+42",
+   "t2_check": 3.028524905530414e-16,
+   "tau": 0.0009765625,
+   "w": 9.709340891415804e-109
+  },
+  {
+   "it": 2,
+   "F": 2.6732473707004164e-80,
+   "dz": 5.05830404399409e-90,
+   "dDelta": -2.5946114844853577e-96,
+   "trials": [
+    {
+     "stages": 1,
+     "proj": [
+      {
+       "hist": [
+        1.6109571390401574e-72,
+        1.4234372455450109e-89
+       ],
+       "end": "floor",
+       "line": "rung max|R| 1.61e-72 -> 1.42e-89 (floor)"
+      }
+     ],
+     "lam": 1.0,
+     "F": 4.216575502072972e-86,
+     "theta": 0.5752322261843827,
+     "accepted": true
+    }
+   ],
+   "piv": [
+    3.1859123527784037e-15,
+    6.319307558789506e+42
+   ],
+   "line": "piv 3.2e-15..6.3e+42",
+   "t2_check": 32.23681105881111,
+   "tau": 9.313225746154785e-10,
+   "w": 2.5987271877839e-113
+  },
+  {
+   "it": 3,
+   "F": 4.216575502072972e-86,
+   "trials": []
+  }
+ ],
+ "dDelta": 4.617503303413521e-27,
+ "kernel": {
+  "path": "/home/nathan/Source/venv-i1058/lib/python3.14/site-packages/hpkernel/__init__.py",
+  "isa": "avx2",
+  "crates": [
+   "multidouble-5.1.0",
+   "multishoot-4.1.0"
+  ],
+  "wheel": "/home/nathan/Source/choptuik-large-d-1058/hp/dist/hpkernel-0.1.0-cp314-cp314-manylinux_2_34_x86_64.whl",
+  "build_worktree": "/home/nathan/Source/choptuik-large-d-1058",
+  "build_worktree_head": "8179068da460fe6be81312602e4c9987d17d73a3",
+  "build_worktree_src_clean": true,
+  "script_head": "bae00edf8262053122eaf03daadfd318da6a78eb"
+ },
+ "seconds": 483,
+ "compare": {
+  "ref": "I1064-dh170/p315/ks315/base_pin3_D237.7132.npz",
+  "ref_ks": 315,
+  "same_plan": true,
+  "bar": 1e-60,
+  "dDelta_ref": 4.678695038828657e-27,
+  "max": 6.119173541513614e-29,
+  "at": 768,
+  "delta": -6.119173541513614e-29,
+  "ok": false
+ }
+}

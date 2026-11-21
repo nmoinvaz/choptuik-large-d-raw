@@ -15,3 +15,16 @@ Runs go to `stage2/` as the coordinator's command arrives; everything below is w
 `cmddiff1035.py NAME --actual CMD | --log LOG` reduces both commands to the tokens of the `factored_raise.py` invocation ($RAW, $OUT, $P0, $PR substituted) and prints their unified diff and `cmddiff NAME: EMPTY` or `DIFFERS` (exit 0 only when empty); `ref/commands_hc_1035.txt` holds his command lines verbatim (the message of 21 Nov, §5.3 for the two information runs). `--selftest` plants the slips (the order run without `--mutate=order`, a wrong `--ks`, bar, state path, thread count: each must differ) and `--break` fails as it must. From now on `run1035_order.sh` diffs the exact command array it is about to run, keeps the output in `stage2_planted/cmddiff_<run>.txt` and the exits log, and does not launch on a diff.
 
 Retroactive, from the logs' first lines (`stage2_planted/cmddiff_retro.txt`): `planted` EMPTY, `planted_old` EMPTY, and `planted_order_NOMUTATE` DIFFERS by the missing `--mutate=order` line, which is the slip. `planted_linear` is diffed when it has started (its log is the source).
+
+## Stage 2 result (21 Nov; units `i1035a` 20:24:14 to 20:59:20 UTC and `i1035b` 20:59:36 to 21:08:37 UTC)
+
+Header of every log: `hpkernel .../site-packages/hpkernel/__init__.py (avx2; multidouble-5.1.0, multishoot-4.1.0); built from /home/nathan/Source/choptuik-large-d-1058 at HEAD 8179068d (hp/src clean: True); this script at bae00edf8262...`; no `notice:` line in any log. Selftest 19 of 19 (exit 0), `--mutate=nopred` exit 1 (rules met). Command diffs against the coordinator's: `planted`, `planted_old`, `planted_linear` and the rerun `planted_order` EMPTY (`stage2_planted/cmddiff_*.txt`, `cmddiff_retro.txt`); the first `planted_order` (`planted_order_NOMUTATE`, run1035.sh omitted `--mutate=order`: my slip) differs by that flag and is not the control.
+
+| run | exit | wall | Newton lines | last max\|F\| | Delta moved | largest entry difference against dh170's ks 315 base | verdict |
+|---|---|---|---|---|---|---|---|
+| `planted` | 0 | 278 s | 4 | 5.817e-87 | +4.678695e-27 | 4.449e-90 (entry 3) | **PASS** (bar 1e-60), plan the same |
+| `planted_order` (`--mutate=order`, ks 307 -> 314) | 1 | 483 s | 4 | 4.217e-86 | +4.617503e-27 | 6.119e-29 (entry 768) | **FAIL (bar 1e-60)**: the control fails as it must, by the comparison, the raise having converged |
+| `planted_old` (information) | 1 | 1123 s | 8 | 2.477e-13 | +1.523811e-26 | 1.056e-26 | NOT converged (no trial accepted at line 7: theta up to 5e17, every lam refused) |
+| `planted_linear` (information) | 0 | 314 s | 3 | 4.370e-87 | +4.678695e-27 | 3.182e-90 (entry 25) | PASS |
+
+Resources (60 s samples): CPU 700 to 830% on 10 threads, peak sampled RSS 0.32 to 0.40 GB, MemAvailable 57 to 61 GB, load 11 to 16 beside #1067's 10. The predictor's t^2 check at the last step of `planted` and `planted_order` is flagged ("no pair of TAUS passed the t^2 check (last 5.74e+00 and 3.22e+01); its w is used, flagged"), at |dz| 1e-90. The `old` run's failure is against §5.3's expectation that old and linear both converge here: `--mutate=old` has no projection at all, while hp's own corrector (dh170's part 4) has ElimO's. Stage 3 waits for the coordinator's word.
