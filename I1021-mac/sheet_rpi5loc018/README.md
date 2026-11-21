@@ -41,3 +41,4 @@ Every check passes, and the three controls fail.
   --mutate=edit` exits 1.
 
 So loc018's new points pass the sheet check, and its result can be used (criterion 5 of `../rpi5_loc018/`).
+Note: `prefix_keys.py` prints "recount4's first lines" by its fixed wording; here it compares recount3 with loc018.
