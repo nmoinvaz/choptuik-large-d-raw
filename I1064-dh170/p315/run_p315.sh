@@ -10,8 +10,8 @@ S=I973-dh610/ks307_r2/base_pin3_D237.7132.npz
 PY=$WT/.venv/bin/python
 export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 PYTHONFAULTHANDLER=1 PATH=$WT/.venv/bin:$HOME/.local/bin:$HOME/.cargo/bin:$PATH VIRTUAL_ENV=$WT/.venv HP_DIR=$WT/hp
 say() { echo "== $(date -u '+%F %T') UTC $*" >> $P/exits_p315.txt; }
-# leg 13's flags (I966-dh370 ks_chain3b_q_dry.log, line 17) with --tol_od 1e-60 as #973/ladder966 used for base polishes (README), threads 4, and the order's --steps 0 --keep_plan 0 --save_base 1 --ks K
-F="--kfreeze 3 --held_fit data/held_fit.json --N 31 --eps 1e-14 --h_max 2 --corrector od --tol_od 1e-60 --qd_it 40 --lam_stall 0.04 --od_junk 0 --jet_o 1 --reseed 2 --reseed_q 1 --held_o 1 --reseed_o 3 --save_pred 1 --od_accept own --save_jet 1 --od_strong 4 --reseed_start pred --a_rule reseed --a_scale 0.000715 --jet_tangent_from 1 --series_split 1 --a_rise 1 --proj_start pred --reseed_o_stop 1 --od_floor_delta 1e-30 --proj_o 1 --reseed_qd_bar 1e-13"
+# leg 13's flags (I966-dh370 ks_chain3b_q_dry.log, line 17) with --tol_od 1e-60 as #973/ladder966 used for base polishes and --od_floor_delta 0 (coordinator's hc 16:2x UTC: leg 13's 1e-30 ends the corrector by the floor rule near 1e-41, dh610's comment 7065633932) (README), threads 4, and the order's --steps 0 --keep_plan 0 --save_base 1 --ks K
+F="--kfreeze 3 --held_fit data/held_fit.json --N 31 --eps 1e-14 --h_max 2 --corrector od --tol_od 1e-60 --qd_it 40 --lam_stall 0.04 --od_junk 0 --jet_o 1 --reseed 2 --reseed_q 1 --held_o 1 --reseed_o 3 --save_pred 1 --od_accept own --save_jet 1 --od_strong 4 --reseed_start pred --a_rule reseed --a_scale 0.000715 --jet_tangent_from 1 --series_split 1 --a_rise 1 --proj_start pred --reseed_o_stop 1 --od_floor_delta 0 --proj_o 1 --reseed_qd_bar 1e-13"
 say "armed: waiting for the #1025 lane (pid $LANE)"
 while kill -0 $LANE 2>/dev/null; do sleep 30; done
 say "gate open: the lane has exited, load $(cut -d' ' -f1-3 /proc/loadavg)"
