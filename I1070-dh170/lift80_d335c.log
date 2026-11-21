@@ -1,0 +1,53 @@
+D 3.35 M 80: L 4481, steps 389, start |F| 6.8e-01
+D 3.35 M 80: Newton call 1 of at most 14
+  newton 0: |F| 6.81e-01 |dz| 1.24e+02 lam 0.00195 dDelta +6.73e-06 Delta 3.323468824351581 piv 1.9e-03..1.2e+02  t 11.7s
+D 3.35 M 80: Newton call 2 of at most 14
+  newton 0: |F| 6.79e-01 |dz| 5.24e+00 lam 0.0625 dDelta -2.80e-04 Delta 3.323189304544053 piv 1.9e-03..2.8e+03  t 12.1s
+D 3.35 M 80: Newton call 3 of at most 14
+  newton 0: |F| 6.39e-01 |dz| 3.90e+00 lam 0.0625 dDelta -7.34e-05 Delta 3.323115920037917 piv 2.1e-03..2.6e+03  t 10.9s
+D 3.35 M 80: Newton call 4 of at most 14
+  newton 0: |F| 6.07e-01 |dz| 3.04e+00 lam 0.25 dDelta +1.48e-04 Delta 3.323264127051418 piv 2.1e-03..2.4e+03  t 11.0s
+D 3.35 M 80: Newton call 5 of at most 14
+  newton 0: |F| 5.16e-01 |dz| 3.68e+00 lam 0.25 dDelta -1.18e-03 Delta 3.322079960966756 piv 2.0e-03..1.8e+03  t 11.0s
+D 3.35 M 80: Newton call 6 of at most 14
+  newton 0: |F| 3.54e-01 |dz| 8.04e+01 lam 0.0156 dDelta +8.68e-04 Delta 3.322948009705723 piv 5.5e-04..1.6e+03  t 13.7s
+D 3.35 M 80: Newton call 7 of at most 14
+  newton 0: |F| 2.40e-01 |dz| 1.32e+01 lam 0.0625 dDelta -1.47e-03 Delta 3.321481755251409 piv 2.0e-03..1.5e+03  t 11.8s
+D 3.35 M 80: Newton call 8 of at most 14
+  newton 0: |F| 5.23e-02 |dz| 1.15e+01 lam 0.0312 dDelta +1.27e-04 Delta 3.321608794729819 piv 1.6e-03..1.5e+03  t 12.2s
+D 3.35 M 80: Newton call 9 of at most 14
+  newton 0: |F| 5.12e-02 |dz| 1.15e+01 lam 0.0312 dDelta +1.73e-04 Delta 3.321781626575417 piv 1.6e-03..1.4e+03  t 12.0s
+D 3.35 M 80: Newton call 10 of at most 14
+  newton 0: |F| 5.16e-02 |dz| 1.95e+00 lam 0.0625 dDelta +2.52e-04 Delta 3.322033307261365 piv 1.6e-03..1.3e+03  t 12.1s
+D 3.35 M 80: Newton call 11 of at most 14
+  newton 0: |F| 5.14e-02 |dz| 2.27e+01 lam 0.0312 dDelta +1.64e-04 Delta 3.322197037155537 piv 1.6e-03..1.2e+03  t 13.0s
+D 3.35 M 80: Newton call 12 of at most 14
+  newton 0: |F| 3.79e-02 |dz| 1.63e+01 lam 0.00781 dDelta +1.20e-04 Delta 3.322316901122580 piv 1.8e-03..1.2e+03  t 13.6s
+D 3.35 M 80: Newton call 13 of at most 14
+  newton 0: |F| 3.77e-02 |dz| 1.78e+00 lam 0.125 dDelta +1.70e-04 Delta 3.322486667401081 piv 1.8e-03..1.3e+03  t 12.0s
+D 3.35 M 80: Newton call 14 of at most 14
+  newton 0: |F| 3.42e-02 |dz| 2.32e+00 lam 0.125 dDelta +7.15e-05 Delta 3.322558160549555 piv 1.8e-03..1.1e+03  t 11.8s
+D 3.35 M 80: NOT converged, |F| 2.8e-02 after 14 iterations (170s); stopping
+	Command being timed: "timeout -s TERM 7200 /home/nathan/Source/choptuik-large-d-1058b/.venv/bin/python -u lowD_dd.py /home/nathan/Source/choptuik-large-d-raw-1064w/I1070-dh170/lift80_d335c.jsonl --start /home/nathan/scratch1070/T39-win/hp/data/lowD_states/lowDvh96_D3.3500_M96.npz --Ms 80 --nodes 0.005,0.01,0.02,0.05,0.1,0.16,0.23,0.3,0.4,0.5,0.6,0.7,0.8 --kt 36 --kcs 100 --ks 250 --jac f64 --tol 1e-29 --threads 4 --tag lowD1070c"
+	User time (seconds): 632.97
+	System time (seconds): 4.85
+	Percent of CPU this job got: 374%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:50.14
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 420724
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 3239734
+	Voluntary context switches: 7660
+	Involuntary context switches: 5609
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 3712
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
