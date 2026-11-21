@@ -1,0 +1,36 @@
+horizon series to order 293 instead of the state's 293
+held values from the fit data/held_fit.json (degree 8, 138 full-system states, D 38.020417-73.0), relative to the base
+the base keeps its stored plan (23 steps)
+    on 0 chord 0: max|F| 6.38e-26, |dw| 4.790e-38
+    on 0 chord 1: max|F| 1.48e-26, |dw| 4.902e-38
+    on 0 chord 2: max|F| 1.30e-25, |dw| 3.400e-37
+  on 0: strong chord (4 weak directions), 3 steps after the full first step; theta at its point inf (bound 0.750): refused, 830.66 s
+  on 0: |F| 3.88e-25 -> 6.38e-26, |dz| 3.05e-45 -> 2.90e-45, lam 1, dDelta -3.05e-45, piv 3.4e-20..1.4e+51, 1274.54 s
+    on 1 trial lam 1: max|F| 3.94e-22; raw |dz_t| 2.427e-41 vs |dz| 2.896e-45 (not <); refused, 450.8 s
+  on 1: |F| 6.38e-26 -> 1.13e-26, |dz| 2.90e-45 -> 1.52e-45, lam 0.5, dDelta +2.90e-45, piv 3.4e-20..1.4e+51, 861.52 s
+    on 2 trial lam 1: max|F| 3.23e-24; raw |dz_t| 3.765e-44 vs |dz| 1.521e-45 (not <); refused, 417.45 s
+    on 2 trial lam 0.5: max|F| 2.15e-19; raw |dz_t| 1.260e-36 vs |dz| 1.521e-45 (not <); refused, 415.91 s
+Command terminated by signal 15
+	Command being timed: "timeout -s TERM 10800 /home/nathan/Source/choptuik-large-d-1058b/.venv/bin/python -u anm_run.py /home/nathan/scratch949 /home/nathan/Source/choptuik-large-d-raw-1064w/I1064-dh170/gate_ctrl_D262.0099/ctl293_kp1 --state I966-dh370/ks_chain3b/leg14_D261.1415_ks293/anm_pin3_D262.0099.npz --kfreeze 3 --held_fit data/held_fit.json --N 31 --eps 1e-14 --h_max 2 --corrector od --tol_od 1e-60 --qd_it 40 --lam_stall 0.04 --od_junk 0 --jet_o 1 --reseed 2 --reseed_q 1 --held_o 1 --reseed_o 3 --save_pred 1 --od_accept own --save_jet 1 --od_strong 4 --reseed_start pred --a_rule reseed --a_scale 0.000715 --jet_tangent_from 1 --series_split 1 --a_rise 1 --proj_start pred --reseed_o_stop 1 --od_floor_delta 0 --proj_o 1 --reseed_qd_bar 1e-13 --threads 4 --steps 0 --keep_plan 1 --save_base 1 --ks 293"
+	User time (seconds): 13537.95
+	System time (seconds): 20.50
+	Percent of CPU this job got: 374%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 1:00:25
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 263388
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 12397404
+	Voluntary context switches: 19679
+	Involuntary context switches: 104808
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 72
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
