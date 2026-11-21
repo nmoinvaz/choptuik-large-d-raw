@@ -68,3 +68,9 @@ guard-blocked points, it should have exempted their accepted rows.
 zeros none, with the blocking points named in its README (criterion 6). loc018's samebits (recount3 against loc018's
 copy) does not meet this case unless an argcount run appends a record for a valued3 key. Its runs append new Newton
 points and `--retry` records of points without value.
+
+**Retest controls, recomputed from the rows** (`../merge_fu/fu_controls.py` on `rows_pass1.jsonl` and `rows_pass2.jsonl`
+renamed to its pattern; `fu_controls_recount4.txt`, exit 0; `--mutate=exits` exits 1):
+- pass 1: f3 changes 9 rows and lowguard 7; both exit 1, as reported;
+- pass 2: f3 changes 0 rows (vacuous: no row was accepted), exit 0 as reported; lowguard changes 10, exit 1 as
+  reported.
