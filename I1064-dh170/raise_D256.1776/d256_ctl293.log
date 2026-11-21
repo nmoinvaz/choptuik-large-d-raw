@@ -4,3 +4,36 @@ held values from the fit data/held_fit.json (degree 8, 138 full-system states, D
     on 0 chord 1: max|F| 1.56e-30, |dw| 6.423e-40
     on 0 chord 2: max|F| 1.69e-31, |dw| 1.239e-39
   on 0: strong chord (4 weak directions), 3 steps after the full first step; theta at its point 5.136e-12 (bound 0.750): accepted, 1247.67 s
+  on 0: |F| 1.80e-31 -> 6.68e-27, |dz| 1.16e-20 -> 3.29e-37, lam 1, dDelta +1.16e-20, piv 1.9e-18..1.0e+49, 1718.48 s
+  on 1: |F| 6.68e-27 -> 6.54e-29, |dz| 3.29e-37 -> 1.65e-47, lam 1, dDelta -3.29e-37, piv 1.9e-18..1.0e+49, 415.08 s
+  on 2: |F| 6.54e-29 -> 3.43e-30, |dz| 1.65e-47 -> 8.18e-51, lam 1, dDelta +1.65e-47, piv 1.9e-18..1.0e+49, 415.02 s
+  on 3: |F| 3.43e-30 -> 3.39e-31, |dz| 8.18e-51 -> 4.86e-54, lam 1, dDelta -8.18e-51, piv 1.9e-18..1.0e+49, 402.55 s
+    on 4 trial lam 1: max|F| 8.59e-27; raw |dz_t| 5.604e-49 vs |dz| 4.861e-54 (not <); refused, 402.89 s
+    on 4 trial lam 0.5: max|F| 2.17e-28; raw |dz_t| 1.247e-51 vs |dz| 4.861e-54 (not <); refused, 415.02 s
+    on 4 trial lam 0.25: max|F| 1.88e-25; raw |dz_t| 2.596e-47 vs |dz| 4.861e-54 (not <); refused, 414.03 s
+    on 4 trial lam 0.125: max|F| 1.95e-30; raw |dz_t| 1.455e-53 vs |dz| 4.861e-54 (not <); refused, 430.4 s
+  on 4: |F| 3.39e-31 -> 6.25e-32, |dz| 4.86e-54 -> 4.00e-54, lam 0.0625, dDelta +4.86e-54, piv 1.9e-18..1.0e+49, 2103.57 s
+Command terminated by signal 15
+	Command being timed: "timeout -s TERM 10800 /home/nathan/Source/choptuik-large-d-1058b/.venv/bin/python -u anm_run.py /home/nathan/scratch1064b/raw /home/nathan/Source/choptuik-large-d-raw-1064w/I1064-dh170/raise_D256.1776/d256_ctl293 --state I966-dh370/ks_chain3b/leg09_D255.0004_ks293/anm_pin3_D256.1776.npz --kfreeze 3 --held_fit data/held_fit.json --N 31 --eps 1e-14 --h_max 2 --corrector od --tol_od 1e-60 --qd_it 40 --lam_stall 0.04 --od_junk 0 --jet_o 1 --reseed 2 --reseed_q 1 --held_o 1 --reseed_o 3 --save_pred 1 --od_accept own --save_jet 1 --od_strong 4 --reseed_start pred --a_rule reseed --a_scale 0.000715 --jet_tangent_from 1 --series_split 1 --a_rise 1 --proj_start pred --reseed_o_stop 1 --od_floor_delta 0 --proj_o 1 --reseed_qd_bar 1e-13 --threads 4 --steps 0 --keep_plan 0 --save_base 1 --ks 293"
+	User time (seconds): 21957.53
+	System time (seconds): 25.66
+	Percent of CPU this job got: 376%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 1:37:17
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 264468
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 15236203
+	Voluntary context switches: 31734
+	Involuntary context switches: 176164
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 112
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
