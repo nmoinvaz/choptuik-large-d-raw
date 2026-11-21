@@ -1,0 +1,29 @@
+# registered 2026-11-21 02:39:50 UTC, before any state past D 261.0721 is read: windows A8 and B7 (fit on states through D 261.0721) and alpha1057.py's forecast (r between 0 and the last step's rate)
+window A8: fit on D 259.7352 to 261.0721, gamma 0.0583, D_c 260.697, rms 1.00e-03
+        D  sigma_lowest  sigma_upper  upper/lowest  model share of the lowest
+ 261.1500    1.8114e-20   2.4513e-20         1.353                      0.038
+ 261.2000    1.7136e-20   2.3917e-20         1.396                      0.031
+ 261.2500    1.6196e-20   2.3334e-20         1.441                      0.026
+ 261.3000    1.5294e-20   2.2761e-20         1.488                      0.022
+window B7: fit on D 260.0073 to 261.0721, gamma 0.0584, D_c 260.692, rms 2.77e-04
+        D  sigma_lowest  sigma_upper  upper/lowest  model share of the lowest
+ 261.1500    1.8126e-20   2.4462e-20         1.350                      0.039
+ 261.2000    1.7154e-20   2.3849e-20         1.390                      0.032
+ 261.2500    1.6218e-20   2.3247e-20         1.433                      0.027
+ 261.3000    1.5321e-20   2.2657e-20         1.479                      0.023
+        D  share v1  share v2       w  alpha deg  rate deg/D
+ 260.2515    0.9870    0.0052  0.9922       4.13            
+ 260.4708    0.9599    0.0323  0.9922      10.39        28.5
+ 260.6706    0.7810    0.2113  0.9922      27.48        85.5
+ 260.8483    0.4979    0.4943  0.9922      44.90        98.0
+ 260.9271    0.4353    0.5569  0.9922      48.52        46.0
+ 261.0721    0.4056    0.5866  0.9922      50.25        11.9
+item (e): share of v2 >= 0.9 needs alpha >= 72.2 degrees (w 0.9922); last step's rate 11.9 deg/D reaches it 1.84 of D past D 261.0721 (a lower bound on the distance if the rate keeps falling)
+forecast, registered alpha1057.py: share of v2 = w sin^2(alpha), alpha = 50.25 + r (D - 261.0721), r between 0 and 11.9 deg/D
+        D  v2 share, r=0  v2 share, r=last/2  v2 share, r=last
+ 261.0000          0.587               0.579             0.572
+ 261.0500          0.587               0.584             0.582
+ 261.1000          0.587               0.589             0.592
+ 261.2000          0.587               0.600             0.612
+ 261.4000          0.587               0.620             0.652
+ 261.6000          0.587               0.640             0.691
