@@ -89,3 +89,12 @@
 1025 d18 hybrid kc63_D18 root pid 35680, cap 21600 s, want exit 0 2026-11-21 07:45:02 UTC
 1025 d18 ABORTED the early start: the chain's wait pattern matched its own log line, so the hybrid began at 07:45:02 while the D 17 dd points still ran; stopped by exact pids (python 35680 with its child, chain bash 11764) at 07:46; the log is kept in d18/aborted_0745/; the chain is fixed (start-of-line pattern) and relaunched 2026-11-21 07:46:28 UTC
 1025 d18 chain waiting for the D 17 dd check to end 2026-11-21 07:46:30 UTC
+1025 d17dd det_lo cap 10800 s reached, killing the tree of pid 34904 2026-11-21 09:49:09 UTC
+1025 d17dd det_lo exit 1 (want 0) wall 10812 s capped 1 MISMATCH 2026-11-21 09:49:10 UTC
+1025 d17dd det_hi cap 10800 s reached, killing the tree of pid 35576 2026-11-21 09:49:11 UTC
+1025 d17dd det_hi exit 1 (want 0) wall 10813 s capped 1 MISMATCH 2026-11-21 09:49:11 UTC
+1025 d17dd dd reading: FileNotFoundError: [Errno 2] No such file or directory: 'D:/choptuik-large-d-raw/I1025-win2b/d17/dd/ell_ddm_d17_lo.jsonl' 2026-11-21 09:49:11 UTC
+1025 d17dd done 2026-11-21 09:49:11 UTC
+1025 d18 start: hybrid root on winb's k_c 63 D 18 state, guess 1.825, 4 threads (the D 17 dd check has ended) 2026-11-21 09:49:43 UTC
+1025 d18 hybrid kc63_D18 root pid 26024, cap 21600 s, want exit 0 2026-11-21 09:49:43 UTC
+1025 d17dd FROM LOG: both records missing (cap during the float64 slogdet after the noise loop); signs read from det_lo.log and det_hi.log by dd/det_log_to_jsonl.py: lower 2.0200263141 minus x5 with noise minus, upper 2.0600263141 plus x5 with noise plus; read_d17_dd.py: ROOT PASSES (k_c error +8.637e-05) 2026-11-21 09:51:47 UTC
