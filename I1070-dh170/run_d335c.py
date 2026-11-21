@@ -112,7 +112,9 @@ def lift():
                 chosen = dst
                 m.kill(proc, f"call {n} {verdict} (max|F| {F:.3e})")
                 break
-            if verdict in ("stalled", "stop-control"):
+            if verdict == "stalled":
+                say(f"lift call {n}: decide said stalled; not acted on (the run ends by itself at its 14 calls or on a failure; run 1 was cut short at call 5 by this rule while max|F| was still falling)")
+            if verdict == "stop-control":
                 m.kill(proc, f"call {n} {verdict}")
                 return None, verdict, Fs
         if proc.poll() is not None:

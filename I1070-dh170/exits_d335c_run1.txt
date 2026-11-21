@@ -1,0 +1,10 @@
+== 2026-11-21 23:40:31 UTC lift start: -s TERM 7200 /home/nathan/Source/choptuik-large-d-1058b/.venv/bin/python -u lowD_dd.py /home/nathan/Source/choptuik-large-d-raw-1064w/I1070-dh170/lift80_d335c.jsonl --start /home/nathan/scratch1070/T39-win/hp/data/lowD_states/lowDvh96_D3.3500_M96.npz --Ms 80 --nodes 0.005,0.01,0.02,0.05,0.1,0.16,0.23,0.3,0.4,0.5,0.6,0.7,0.8 --kt 36 --kcs 100 --ks 250 --jac f64 --tol 1e-29 --threads 4 --tag lowD1070c
+== 2026-11-21 23:40:53 UTC lift Newton call 1 landed: newton 0: |F| 6.81e-01 |dz| 1.24e+02 lam 0.00195 dDelta +6.73e-06 Delta 3.323468824351581 piv 1.9e-03..1.2e+02  t 11.7s; checkpoint copied, max|F| 0.679, planted +1e-20 reads 0.679
+== 2026-11-21 23:40:53 UTC lift call 1: decide -> continue
+== 2026-11-21 23:41:14 UTC lift Newton call 3 landed: newton 0: |F| 6.39e-01 |dz| 3.90e+00 lam 0.0625 dDelta -7.34e-05 Delta 3.323115920037917 piv 2.1e-03..2.6e+03  t 11.3s; checkpoint copied, max|F| 0.6066, planted +1e-20 reads 0.6066
+== 2026-11-21 23:41:14 UTC lift call 3: decide -> continue
+== 2026-11-21 23:41:36 UTC lift Newton call 5 landed: newton 0: |F| 5.16e-01 |dz| 3.68e+00 lam 0.25 dDelta -1.18e-03 Delta 3.322079960966756 piv 2.0e-03..1.8e+03  t 11.5s; checkpoint copied, max|F| 0.3541, planted +1e-20 reads 0.3541
+== 2026-11-21 23:41:36 UTC lift call 5: decide -> stalled
+== 2026-11-21 23:41:36 UTC call 5 stalled: TERM to pids [1223435, 1223436, 1223437], the session this script started (by exact pid)
+== 2026-11-21 23:41:37 UTC STOP: the lift did not reach a converged M 80 state (verdict stalled, max|F| after the calls [0.679, 0.6066, 0.3541]); gamma at M 80 not started
+== 2026-11-21 23:41:37 UTC done
