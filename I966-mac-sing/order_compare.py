@@ -3,12 +3,14 @@
 Every stable pole of each jet (locate's, up to four, folded to Im >= 0) is listed. Each K 307 pole is paired with the
 nearest K 395 pole within 0.05 |s| (locate's clustering tolerance); unpaired poles are "not seen in both" and get no
 reading. A paired move (max |dRe|, |dIm|) above 0.01 reads "truncation", else "neither at this resolution". Poles
-within 0.1 of P2 258.361 +- 2.269i, P1 262.081 +- 0.973i and the real 265.078 are named. --mutate=move adds 0.02 to
+within 0.1 of P2 258.361 +- 2.269i, P1 262.081 +- 0.973i, the real 265.078 and 254.6766 +- 3.5009i are named;
+the read value of each is its most-populated cluster within 0.1 (accepted 2026-11-21, #1064). --mutate=move adds 0.02 to
 the K 395 pole nearest P2, which must read "truncation" for P2 when P2 is seen."""
 import json, sys
 mut = "--mutate=move" in sys.argv
 A, B = (json.load(open(f))[0] for f in sys.argv[1:3])
-NAMES = {"P2": complex(258.361, 2.269), "P1": complex(262.081, 0.973), "real 265.078": complex(265.078, 0.0)}
+NAMES = {"P2": complex(258.361, 2.269), "P1": complex(262.081, 0.973), "real 265.078": complex(265.078, 0.0),
+         "254.68 pair": complex(254.6766, 3.5009)}
 z = lambda p: complex(p["D_re"], p["D_im"])
 def name(p):
     return next((k for k, v in NAMES.items() if abs(z(p) - v) <= 0.1), "")
@@ -34,7 +36,16 @@ for p in pa:
 for i, q in enumerate(pb):
     if i not in used:
         print(f"  {q['D_re']:.4f} +- {q['D_im']:.4f}i{' (' + name(q) + ')' if name(q) else ''}: not seen at K 307, no reading")
-for k in NAMES:
-    if not any(name(p) == k for p in pa) or not any(name(q) == k for q in pb):
+print("named poles (the read values: the most-populated stable cluster within 0.1 of each, in each jet):")
+for k, v in NAMES.items():
+    ca = [p for p in pa if abs(z(p) - v) <= 0.1]
+    cb = [q for q in pb if abs(z(q) - v) <= 0.1]
+    if not ca or not cb:
         print(f"  {k}: not seen in both, no reading")
+        continue
+    p = max(ca, key=lambda x: (x["n"], -abs(z(x) - v)))
+    q = max(cb, key=lambda x: (x["n"], -abs(z(x) - v)))
+    mv = max(abs(p["D_re"] - q["D_re"]), abs(p["D_im"] - q["D_im"]))
+    print(f"  {k}: {p['D_re']:.4f} +- {p['D_im']:.4f}i (n {p['n']}) -> {q['D_re']:.4f} +- {q['D_im']:.4f}i (n {q['n']}): "
+          f"move {mv:.4f}: {'truncation' if mv > 0.01 else 'neither at this resolution'}" + (" (--mutate=move)" if mut else ""))
 sys.exit(0)

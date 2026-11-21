@@ -575,3 +575,13 @@ P2, P1 or the real pole.
 At both bases fewer than four poles are kept, so the limit hides nothing: P1 and the real pole are not stable poles
 there. From 256.1776 an order arm can read P2 and the pair 254.68 ± 3.50i. From 250.7060 it can read neither P2 nor
 anything of the front. The pair 254.6766 ± 3.5009i is at the same place, to 1e-4, from both bases.
+
+**Accepted (2026-11-21 17:45:32 UTC, #1064's newest comment):**
+- the order arm at D 256.1776 reads P2, as its most-populated cluster within 0.1 of 258.361 ± 2.269i (the n 9 one in the
+  dry run), and the pair near 254.6766 ± 3.5009i, the same way;
+- D 250.7060 is only a chain-start test and gets no reading;
+- the real pole's direct test is the plan arm (b) at D 262.7908.
+
+`order_compare.py` reads named poles by that rule: for each of P2, P1, the real pole and 254.677 ± 3.501i, the
+most-populated stable cluster within 0.1 of it in each jet. That is the read value. The pairing of all poles is
+reported beside it.
