@@ -1,0 +1,11 @@
+# (a5) on dh370: started 2026-11-21 19:59:41 UTC, load 9.50 9.69 9.92
+inputs: state blob d15cb96c37f580a848328d29c2f69f4d121fc057, in-chain jet blob 287f4d70e93e61026bf580573c152be57090677e (both equal dh610's), dh610's (a5) jet sha256 b2322860723e03af (equal)
+hpkernel.__file__ /home/nathan/Source/choptuik-large-d-961/.venv/lib/python3.14/site-packages/hpkernel/__init__.py
+hpkernel.isa() avx2
+code: 299728b7 in /home/nathan/Source/choptuik-large-d-966g; python Python 3.14.10 from /home/nathan/Source/choptuik-large-d-961/.venv; env BLAS variables = 1 as in dh610's harness (the chain itself ran without them)
+controls: jetdiff selftest exit 0 (0), --break exit 1 (1), in-chain jet against itself exit 0 (0); jetbits selftest exit 0 (0), --break exit 1 (1); row0check selftest exit 0 (0), --break exit 1 (1), in-chain jet row 0 against the stored state exit 0 (0)
+a5 restart: exit 0, wall 1432 s; jet sha256 1af7da5b4b25cebf; log lines: the base keeps its stored plan (23 steps)|base polish skipped (--base_polish 0): the stored state is the base|step 0: the series saved as /home/nathan/Source/choptuik-large-d-raw-wt613/I1064-dh370/a5_restart/a5_restart/jet_pin3_D262.7908.npz (8 parts, 1431 s)|
+jetdiff a5dh370_vs_dh610_a5: exit 0: largest relative difference per coefficient 0.0000e+00 at order None, unknown None; 0 of 24608 coefficients above 1e-40; bits: exit 0: identical bit for bit (all eight parts, all coefficients)
+jetdiff a5dh370_vs_inchain: exit 1: largest relative difference per coefficient 8.2447e-28 at order 13, unknown 526; 22305 of 24608 coefficients above 1e-40; bits: exit 1: DIFFERENT: differing entries per part [0, 22187, 23102, 23839, 23839, 23780, 22816, 22816]
+a5 (dh370) jet row 0 against the stored state: exit 0: order-0 row against the stored state: differing entries per part [0, 0, 0, 0, 0, 0, 0, 0], largest relative difference 0.0000e+00
+a5 on dh370 done
