@@ -1,9 +1,8 @@
-/home/nathan/Source/choptuik-large-d-raw/I1057-dh170/share_trigger1057.py:63: SyntaxWarning: "\/" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\/"? A raw string is also an option.
-  open(stub, "w").write('#!/bin/bash\nf=$(dirname $0)/count_${1//\//_}; n=$(cat $f 2>/dev/null || echo 0); echo $((n+1)) > $f\n'
-selftest: v1 share exactly 0.9 past the crossing: targets None (want ['nathans-macbook-air-m5-3/t5', 'dh610-fedora/t1g']): FAIL
-selftest: v1 share 0.8999: targets None (want None): pass
-selftest: v2 share 0.95: targets ['nathans-macbook-air-m5-3/t5'] (want ['nathans-macbook-air-m5-3/t5']): pass
-selftest: a state before the crossing with v1 share 0.99: targets None (want None): pass
-selftest: the crossing state itself, D 260.8483, share 0.498: targets None (want None): pass
-selftest: stub hc sends [] (want the coordinator once, dh610 twice: the first dh610 send fails and is retried once): FAIL
+selftest: v1 share exactly 0.9 past the crossing: (targets, #1064 line) None (want (['nathans-macbook-air-m5-3/t5'], True)): FAIL
+selftest: v1 share 0.8999: (targets, #1064 line) None (want None): pass
+selftest: v2 share 0.95 (coordinator only, no #1064 comment): (targets, #1064 line) (['nathans-macbook-air-m5-3/t5'], False) (want (['nathans-macbook-air-m5-3/t5'], False)): pass
+selftest: a state before the crossing with v1 share 0.99: (targets, #1064 line) None (want None): pass
+selftest: the crossing state itself, D 260.8483, share 0.498: (targets, #1064 line) None (want None): pass
+selftest: stub hc sends [] (want the coordinator twice: the first send fails and is retried once, marked as a possible duplicate): FAIL
+selftest: stub gh calls 0 (want one #1064 comment naming the file on one line): FAIL
 selftest --mutate: FAIL
