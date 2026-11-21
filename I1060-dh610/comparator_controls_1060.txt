@@ -1,0 +1,32 @@
+== bits REF REF (must be identical, exit 0)
+bits: D_str equal True (260.8483415339, 260.8483415339), a equal True (0.1777320584971952, 0.1777320584971952), parts with differing bytes none (8 parts compared)
+identical
+exit 0
+== bits REF REF --mutate (one byte flipped, must report a difference, exit 1)
+bits (--mutate: one byte of NEW z3 flipped): D_str equal True (260.8483415339, 260.8483415339), a equal True (0.1777320584971952, 0.1777320584971952), parts with differing bytes {'z3': 1} (8 parts compared)
+DIFFERENT
+exit 1
+plant EPS 1e-120: wrote /tmp/claude-1000/-home-nathan-Source-choptuik-large-d/76cb7ef8-c87a-4718-949b-eca5410b9b5d/scratchpad/planted_1e-120.npz (exact sums moved by EPS * 1.68326 * s_i, re-split into eight parts)
+== close REF planted 1e-120 (1e-120 must agree, 1e-90 must disagree)
+close (tol 1e-100): Delta REF 1.683264757534070378561608, relative difference 6.667e-121; M2 (exact sums, vs max |S| 1.68326) 1.0e-120
+  M1 per part (max |dpart| / max |part|): zh 0.0e+00, zl 0.0e+00, z2 0.0e+00, z3 0.0e+00, z4 0.0e+00, z5 0.0e+00, z6 5.2e-22, z7 7.7e-06
+agree
+exit 0
+plant EPS 1e-90: wrote /tmp/claude-1000/-home-nathan-Source-choptuik-large-d/76cb7ef8-c87a-4718-949b-eca5410b9b5d/scratchpad/planted_1e-90.npz (exact sums moved by EPS * 1.68326 * s_i, re-split into eight parts)
+== close REF planted 1e-90 (1e-120 must agree, 1e-90 must disagree)
+close (tol 1e-100): Delta REF 1.683264757534070378561608, relative difference 6.667e-91; M2 (exact sums, vs max |S| 1.68326) 1.0e-90
+  M1 per part (max |dpart| / max |part|): zh 0.0e+00, zl 0.0e+00, z2 0.0e+00, z3 0.0e+00, z4 0.0e+00, z5 1.7e-09, z6 1.5e+00, z7 1.5e+00
+DISAGREE
+exit 1
+== files REF REF jet (identical, exit 0)
+files: 8 arrays identical, differing bytes none, arrays in one file only none, meta keys that differ []
+identical
+exit 0
+== files REF REF jet --mutate (exit 1)
+files (--mutate: one byte of NEW z0 flipped): 7 arrays identical, differing bytes {'z0': 1}, arrays in one file only none, meta keys that differ []
+DIFFERENT
+exit 1
+== files pred vs pred --mutate
+files (--mutate: one byte of NEW zh flipped): 3 arrays identical, differing bytes {'zh': 1}, arrays in one file only none, meta keys that differ []
+DIFFERENT
+exit 1
