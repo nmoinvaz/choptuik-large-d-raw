@@ -1,0 +1,38 @@
+Traceback (most recent call last):
+  File "/home/nathan/Source/choptuik-large-d-1058b/hp/lowD_gamma.py", line 95, in <module>
+    main()
+    ~~~~^^
+  File "/home/nathan/Source/choptuik-large-d-1058b/hp/lowD_gamma.py", line 81, in main
+    zh, zl, _ = newton_solve(s, zh, zl, tol=1e-29, it_max=int(opts["polish"]), verbose=True)
+                ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nathan/Source/choptuik-large-d-1058b/.venv/lib/python3.14/site-packages/hpkernel/driver.py", line 304, in newton_solve
+    dh, dl, Fh, Fl, pmin, pmax, info = newton_step(s, zh, zl, cur, mixed, gmres)
+                                       ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nathan/Source/choptuik-large-d-1058b/.venv/lib/python3.14/site-packages/hpkernel/driver.py", line 212, in newton_step
+    dh, dl, Fh, Fl, pmin, pmax = s.newton(zh, zl)
+                                 ~~~~~~~~^^^^^^^^
+ValueError: newton: the dense n x n path is limited to M <= 128 (memory); at M = 160 use newton_mixed (block storage)
+Command exited with non-zero status 1
+	Command being timed: "timeout -s TERM 21600 /home/nathan/Source/choptuik-large-d-1058b/.venv/bin/python -u hp/lowD_gamma.py /home/nathan/Source/choptuik-large-d-raw-1064w/I1070-dh170/lowD_gamma_D3.15_M160.jsonl /home/nathan/scratch1070/I927-mac/inputs/lowDhm_x0.000625-0.9_D3.1500_M160.npz --threads=4 --polish=2 --xtol=1e-11 --lam0=4.3977"
+	User time (seconds): 2.43
+	System time (seconds): 0.05
+	Percent of CPU this job got: 118%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:02.10
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 101492
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 16977
+	Voluntary context switches: 17
+	Involuntary context switches: 34
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 8
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 1

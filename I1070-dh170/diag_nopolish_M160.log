@@ -1,0 +1,19 @@
+lowDhm_x0.000625-0.9_D3.1500_M160.npz: D 3.15 M 160 |F| 1.8e-30, guess lam 4.397700
+Traceback (most recent call last):
+  File "/home/nathan/Source/choptuik-large-d-1058b/hp/lowD_gamma.py", line 95, in <module>
+    main()
+    ~~~~^^
+  File "/home/nathan/Source/choptuik-large-d-1058b/hp/lowD_gamma.py", line 86, in main
+    lam, nch, nev = find_lam(s, zh, zl, lam0, log, xtol=float(opts.get("xtol", 1e-11)))
+                    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nathan/Source/choptuik-large-d-1058b/hp/lowD_gamma.py", line 42, in find_lam
+    sg = [sd(l)[0] for l in grid]
+          ~~^^^
+  File "/home/nathan/Source/choptuik-large-d-1058b/hp/lowD_gamma.py", line 34, in sd
+    sg, la, pmin, pmax = s.mode_det(zh, zl, float(lam), 0.0)
+                         ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: mode_det: the dense n x n path is limited to M <= 128 (memory); at M = 160 use newton_mixed (block storage)
+
+real	0m2.488s
+user	0m4.646s
+sys	0m0.095s
