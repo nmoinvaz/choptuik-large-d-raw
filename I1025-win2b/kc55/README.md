@@ -107,3 +107,63 @@ xfkappa's k_c 63 scan of 2.10 to 2.40 came in meanwhile (#1025 comment 706762781
 **A fact beside the rule, not part of it:** the k_c 55 scan has a ln|det| local minimum at 1.68 WITHOUT a change, at the place of the k_c 63 root. ln|det| at 1.66, 1.67, 1.68, 1.69, 1.70: k_c 55 -1604.311, -1604.975, **-1605.632**, -1605.513, -1604.727 (sign minus at all five); k_c 63 -1901.001, -1901.777, **-1902.632**, -1901.013, -1900.337 (minus, minus, plus, plus, plus). Both have their minimum at 1.68; at k_c 55 the sign does not change. A step of 0.01 cannot tell a near miss from two roots inside one step or a double root. Nothing is read from this; a finer k_c 55 scan around 1.66 to 1.70 would decide it, and is the coordinator's to order.
 
 **cpu and memory (`samples.csv`, a sample every 60 s, 218 samples 18:41:25 to 22:23:12 UTC; my processes only).** The two python children (pids 30920 and 36440; the roots are launcher stubs): peak working set 0.80 GiB and private 1.30 GiB each; 18787 and 19220 cpu-s in 13060 and 13342 s; BelowNormal throughout; together at most 1.30 GiB working set and 2.45 GiB private in one sample. Machine: cpu mean 36.9% (1 s samples), max 53.7%; commit 46.4 to 56.8 of 101.5 GiB; free physical at least 44.7 GiB.
+
+---
+
+# Part 2: the finer scan, lambda 1.660 to 1.700 at 0.002 (win2b)
+
+Written before the run, 2026-11-21 22:30 UTC by `date -u`. Part 1 above (lambda 1.55 to 2.40 at 0.01) is done; its files are unchanged, and the files of this part have the prefix `fine_`.
+
+## Order
+
+The coordinator (hc, about 22:26 UTC 21 Nov, after Part 1's result, "yes to the finer scan"): k_c 55 at D 18.5, the same state and record, lambda 1.660 to 1.700 at 0.002 (21 points), with the same script, noise test and float64 sign. Two processes, with 1.680 run in both as the check, 4 threads each, BelowNormal, 8 h caps. Window and reading go into this README first, raw `I1025-win2b/kc55`. Post on #1025.
+
+Reading (the coordinator's, fixed before the run): **two robust changes inside the window mean a close pair at k_c 55 where k_c 63 has one root at 1.6772, and report the pair's positions and gap. No change, with the ln|det| minimum resolved, means a near miss: k_c 55 has no root there.**
+
+## Inputs
+
+The same as Part 1 (`in/pins.txt`, all blobs checked again by the driver before the start): scanner `d18_hybsign.py` e089207a, state `sol_l1kc55F1025_D18.500000.npy` 04e93d6b, record `l1kc55F1025.jsonl` 0fb77df8 (one D 18.5 line: F 2.6618688406954084e-10, 2149 steps). The system check is the script's own first line (the record system, else exit 3 and the driver stops). Worktree `D:/choptuik-1025p4` at 505d8399, venv-md510, 4 BLAS and rayon threads per process, BelowNormal. Plus Part 1's 0.01 scan `scan_merged.jsonl` (blob 24179d07661c86d192d397e39688fe6365a05ddf), for the overlap comparison and the endpoint signs.
+
+winb's pinned reader prints lambda to two decimals, which a 0.002 grid cannot use, and `merge_scan.py` has the step 0.01 in it. New scripts of this part (mine; blobs): `merge_fine.py` e42b2c19 (the same logic and bar as `merge_scan.py`, step and three decimals as arguments), `read_fine.py` fe01f2e5 (the pinned reader's definitions with the step as a parameter, lambda to three decimals, and the fixed reading below), `plant_checks_fine.py` 9d816ad8, `fine_driver.sh` f9548b7b (launcher `launch_fine.ps1`), the sampler `sample_kc55.ps1` 9437f3ef (unchanged).
+
+## Window and lambda lists, fixed before the run
+
+Window: lambda 1.660 to 1.700 at 0.002, 21 points. It holds the 0.01 scan's points 1.66, 1.68 and 1.70 (sign minus at all three) and the whole band of the k_c 63 root 1.6772 (bracket (1.67, 1.68), bisected 1.6772091); the 0.01 scan's ln|det| minimum at k_c 55 is at 1.68.
+
+| process | lambda, in this order | evaluations |
+|---|---|---|
+| A | 1.680, then 1.660, 1.662, ..., 1.678 | 11 |
+| B | 1.680 again, then 1.682, 1.684, ..., 1.700 | 11 |
+
+The repeated point (1.680, first in both) makes 22 evaluations for 21 distinct points. Caps 28800 s (8 h) each by the exact pid of the root process (`taskkill /T /F /PID`) after a check that its command line contains `d18_hybsign.py`; a cap is not retried.
+
+## Reading, fixed now (`read_fine.py`)
+
+Definitions as in the pinned reader: a point is robust if the hybrid's sign survives its 1e-15 noise test (2 seeds); a change is two consecutive points of different hybrid sign, robust if both are; orientation minus-to-plus or plus-to-minus; a ln|det| local minimum is an interior point below both neighbours', "beside a change" if a neighbour's sign differs, else "WITHOUT a change"; a point at the window's end below its only neighbour is "at the scan edge". Then, the coordinator's reading:
+
+- **two robust changes inside the window**: a close pair at k_c 55 where k_c 63 has one root. Report the pair's positions (the two brackets, 0.002 wide, with the det-linear estimate of each root as information: the line through the bracket's det = sign exp(ln), xfkappa's estimator, which gives 1.677016 on the k_c 63 scan) and the gap (between the brackets, the two extremes, and centre to centre);
+- **no robust change, with the ln|det| minimum resolved** (an interior local minimum WITHOUT a change, below both neighbours): a near miss; k_c 55 has no root there;
+- no change with the minimum at the window's edge: reported as "minimum not resolved" (not a near miss by the reading);
+- any other count of robust changes (1, 3, 4, ...): reported as OTHER, not covered by the fixed reading. The 0.01 scan had sign minus at 1.66 and at 1.70, so an odd number of changes between them is impossible; the reader checks this window's endpoint signs against them (`--ends -,-`) and prints INCONSISTENT if they differ;
+- a change that touches a non-robust point is listed and not counted;
+- the float64 sign and the orientation are reported as printed; orientation readings wait for xfkappa's sign-convention check.
+
+A step of 0.002 cannot exclude two roots closer together than 0.002; that is stated with the result, not read.
+
+## Repeat check, fixed now
+
+At the repeated lambda 1.680 the two records (A's and B's) must have the same hybrid sign and ln|det| equal to 1e-6 (`merge_fine.py`; the gate). The merged 21-point scan is written, and the reader run, only if this check passes, the two files share exactly the point 1.680, every record is at D 18.5 and all 21 lambda are present. In addition `merge_fine.py` compares every point the 0.01 scan also holds (1.660, 1.680, 1.700) with that scan's record, sign and ln|det| to 1e-6, and prints AGREES or DIFFERS for each (information, not a gate). The results are written into this README after the run.
+
+## Controls, before the run
+
+`plant_checks_fine.py`, 28 cases (`plant_checks_fine.log`, rerun by the driver as `plant_checks_fine_run.log`; the driver does not start the scan unless it passes): `merge_fine.py` merges equal repeats, reports a prior value that agrees and ones that differ, fails on a ln|det| difference of 1e-3, a flipped repeat sign, no repeated point, a second point in both files, a missing lambda and records at another D, and writes no merged file then; `read_fine.py` on planted 21-point scans reports a pair with its positions and gap (the planted pair gives brackets (1.674, 1.676) and (1.682, 1.684), gap 0.006 to 0.010, centre to centre 0.0080), a near miss with the minimum's depth for a V at 1.680, "minimum not resolved" for a minimum at the edge, OTHER for one change (with INCONSISTENT endpoints) and for four, OTHER with a non-robust change not counted, and a grid gap; and it agrees with winb's pinned reader on three real 0.01 scans (the k_c 55 and k_c 63 D 18.5 scans and xfkappa's D 18 scan: the same changes and the same minima) and gives xfkappa's det-linear estimate 1.677016 on the k_c 63 scan. All 28 pass first time.
+
+## Run
+
+`fine_driver.sh` (launcher `launch_fine.ps1`, BelowNormal): checks the pins, the worktree, the record line and the 0.01 scan's blob, runs the planted controls, starts the two processes and the passive sampler (`fine_samples.csv`, a sample every 60 s, only my `d18_hybsign.py` processes), then merges and reads. Output: `fine_scanA.jsonl`, `fine_scanB.jsonl`, `fine_scan_merged.jsonl`, `fine_scanA_raw.log`, `fine_scanB_raw.log`, `fine_scanA.log`, `fine_scanB.log`, `fine_merge.log`, `fine_reading.log`, `fine_rc_A`, `fine_rc_B`, and one line per event in `../exits_1025.txt` (prefix `1025 kc55fine`); the last lines are `1025 kc55fine reading: ...` and `1025 kc55fine done`.
+
+Estimate: Part 1 took 262 to 429 s a point (mean 303 s) with two processes running; 11 evaluations per process take about 55 to 80 minutes.
+
+## Log (Part 2)
+
+(appended below as the run goes)
