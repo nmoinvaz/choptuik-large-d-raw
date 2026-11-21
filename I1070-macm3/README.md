@@ -188,3 +188,36 @@ same with the M 160 state"), and the added `--lam0=4.397784106690153` (the issue
 issue's. `check_cmd_1070.py M160 4.397784106690153`: pass. The window: the script's brackets widen to ±0.04 round that λ; the same
 acceptance (one sign change, F below 1e-27); stop and report otherwise. The cost: a determinant at M 160 is about (11521/9217)^3 = 1.95 times an M 128
 one (an estimate from the LU's cube law, not a measurement), so about 600 s at the pilot's speed and 1160 s at r2's.
+
+### M 160 run: refused at its first Newton step (stop), and `mode_det` refuses M 160 too
+
+`run_1070.sh M160 4.397784106690153` started 2026-11-21 23:44:28 UTC (child pid 3205) and exited 1 after 10 s (`exits_1070.txt`, `run_M160.log`);
+no record was written (`lowD_gamma_D3.15_M160.jsonl` does not exist). The log:
+
+```
+capped_run: child pid 3205, cap 21600 s
+Traceback (most recent call last):
+  File "/Users/nathan/Source/choptuik-large-d-1070/hp/lowD_gamma.py", line 95, in <module>
+    main()
+    ~~~~^^
+  File "/Users/nathan/Source/choptuik-large-d-1070/hp/lowD_gamma.py", line 81, in main
+    zh, zl, _ = newton_solve(s, zh, zl, tol=1e-29, it_max=int(opts["polish"]), verbose=True)
+                ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nathan/Source/venv-macm3-1058b/lib/python3.14/site-packages/hpkernel/driver.py", line 304, in newton_solve
+    dh, dl, Fh, Fl, pmin, pmax, info = newton_step(s, zh, zl, cur, mixed, gmres)
+                                       ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nathan/Source/venv-macm3-1058b/lib/python3.14/site-packages/hpkernel/driver.py", line 212, in newton_step
+    dh, dl, Fh, Fl, pmin, pmax = s.newton(zh, zl)
+                                 ~~~~~~~~^^^^^^^^
+ValueError: newton: the dense n x n path is limited to M <= 128 (memory); at M = 160 use newton_mixed (block storage)
+capped_run: exit 1 wall 10 s cap_hit False
+```
+
+Cause: the kernel's dense n x n paths (`newton`, `jacobian`, `mode_matrix`, `mode_det`, `lu_factor`, `lm_steps`) stop at M = 128 (`DENSE_M_MAX`, `hp/src/python.rs`),
+and above it only `newton_mixed` in block storage runs. `notes/HIGH_M.md` ("Not supported in block storage"): "the mode matrix (γ). Above M = 128
+the dense paths (... `mode_matrix`, `mode_det`, ...) refuse ... So the exact double-double Jacobian, the Levenberg–Marquardt fallback and γ stop at
+M = 128." So the `--polish=2` Newton step fails first, but dropping `--polish` would not help: `Solver.mode_det` begins with `dense_ok`. Probe (`probe_mode_det_M160.py`,
+output `probe_mode_det_M160.txt`, 2026-11-21 23:45 UTC, 2 threads, 1.3 s, no output file): `ValueError mode_det: the dense n x n path is limited to M <= 128 (memory); at M = 160 use newton_mixed (block storage) (1.3 s)`.
+
+The issue's step 2 cannot run with `hp/lowD_gamma.py` on this kernel, at any `--polish`. Stop; no workaround tried and none started (a block-storage determinant or a
+different M pair needs the coordinator's word). The only D 3.15 states in raw `I927-mac/inputs/` are M 128 and M 160. So γ(160) − γ(128) at D 3.15 is not available.
