@@ -19,6 +19,9 @@ Files:
   start projection, then Delta moves of 1e-16, 1e-15 and 1e-14 from the linear and the second-order predictors.
 - `raisecheck_ma_D262.log/.json`: the same with the chain's ElimO rung (the m and a rows for m_h and a_h).
 - `rung_cols_D262_ks315.json`: the rung's Jacobian columns (finite differences at 1e-60 relative), shared by both.
+  Its `state_id` was added by hand after the a columns were formed (the record says so), before the cache check
+  existed; the 'ma' run then read it.
+- `raisecheck_old_D262.log/.json`: the old map's miss along the same Delta moves (`--oldonly 1`, the stored data held).
 - `queue.log`, `run_raisecheck2.sh`: the run order.
 - `raisecheck_D262_stopped.log`: the first launch (19:32 UTC, the 'ma' rung with a full Jacobian and no column cache),
   stopped by its exact pid after 9.7 min, before any column was written, when the run was split into the two above.
