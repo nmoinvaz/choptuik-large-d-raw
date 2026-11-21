@@ -1,0 +1,15 @@
+map for s2 2.8: c 1.264; images: pair |w| 1.2105, P2 1.3676, infinity 1.2152, real point 1
+j  0, |A2|/|A1| 6.5497e+00: plain Dlog, square-root pair: s 2.7964 (spread 2.1e+00), mu +0.5163 (spread 1.2e+00), 16 approximants -> meets the bars
+j  1, |A2|/|A1| 3.2749e+00: plain Dlog, square-root pair: s 2.7958 (spread 4.5e+00), mu +0.5292 (spread 2.9e+00), 17 approximants -> meets the bars
+j  2, |A2|/|A1| 1.6374e+00: plain Dlog, square-root pair: s 2.7803 (spread 1.0e+00), mu +0.5686 (spread 9.2e-01), 16 approximants -> FAILS the bars
+j  2, |A2|/|A1| 1.6374e+00, square-root pair: mapped s 2.8378, mu +0.5445 (spreads in w 9.9e-02, in mu 1.2e+00), 21 approximants -> FAIL; --mutate=move s 3.9591, mu +0.1934 (spreads in w 1.2e-01, in mu 1.3e+00), 21 approximants -> fails (as required)
+j  2, |A2|/|A1| 1.6374e+00, pole pair: mapped s 2.7906, mu +0.5615 (spreads in w 1.9e+00, in mu 1.9e+00), 16 approximants -> FAIL; --mutate=move s 3.2917, mu +0.5554 (spreads in w 1.6e+00, in mu 2.1e+00), 15 approximants -> fails (as required)
+      reported, not judged (P2 added): mapped s 2.9763, mu +0.4147 (spreads in w 1.0e-01, in mu 1.2e+00), 21 approximants -> would fail
+      reported, not judged (map with s2 + 0.01): mapped s 2.8403, mu +0.5427 (spreads in w 9.9e-02, in mu 1.2e+00), 21 approximants -> would fail
+      reported, not judged (map with s1 + 0.006): mapped s 2.8426, mu +0.5411 (spreads in w 9.8e-02, in mu 1.2e+00), 21 approximants -> would fail
+j  3, |A2|/|A1| 8.1872e-01, square-root pair: mapped s 3.1107, mu +0.4023 (spreads in w 1.1e-01, in mu 1.0e+00), 21 approximants -> FAIL; --mutate=move s 4.1944, mu +0.0533 (spreads in w 1.2e-01, in mu 1.1e+00), 21 approximants -> fails (as required)
+j  3, |A2|/|A1| 8.1872e-01, pole pair: mapped s 2.7792, mu +0.6179 (spreads in w 5.0e+00, in mu 1.9e+00), 17 approximants -> FAIL; --mutate=move s 3.2802, mu +0.6065 (spreads in w 2.9e+00, in mu 1.8e+00), 16 approximants -> fails (as required)
+j  4, |A2|/|A1| 4.0936e-01, square-root pair: mapped s 3.0951, mu +0.5263 (spreads in w 1.5e-01, in mu 1.0e+00), 21 approximants -> FAIL; --mutate=move s 4.1771, mu +0.3010 (spreads in w 1.1e-01, in mu 9.0e-01), 21 approximants -> fails (as required)
+j  4, |A2|/|A1| 4.0936e-01, pole pair: mapped s 2.7585, mu +0.7113 (spreads in w 9.6e+00, in mu 2.8e+00), 17 approximants -> FAIL; --mutate=move s 3.2571, mu +0.6928 (spreads in w 1.7e+00, in mu 1.5e+00), 16 approximants -> fails (as required)
+conformal-map type check (j* = 2): FAIL: type not resolved at N 31
+exit 2

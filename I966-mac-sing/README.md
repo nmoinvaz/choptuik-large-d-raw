@@ -422,3 +422,31 @@ Reading (1), base 1 of 3 (262.4705): the real stable pole is at 265.0780 (4 appr
 
 Reading (1), base 2 of 3 (262.5706): the real stable pole is at 265.0778 (4 approximants); 265.0780 at base 1. Pending (exit 3).
 | 262.6802 | cdc91937 | 262.0871 ± 0.9709i (9 approximants) | 1.1410, 1.1426, −0.14% | PASS (0), FAIL (1) | 262.3202 (+21.8), 272.3348 (-20.768) |
+
+## Reading (1): MET (`reading1.py` → `reading1.txt`, exit 0)
+
+| base | real stable pole (approximants) |
+|---|---|
+| 262.4705 | 265.0780 (4) |
+| 262.5706 | 265.0778 (4) |
+| 262.6802 | 265.0778 (4) |
+
+The mean is 265.0779, and the largest |Re − mean| is 0.0001, against the bound 0.01. **A real singularity of the order-293
+system is read near D 265.078, type unknown.** The control `--mutate=shift` (+0.02 at the first base) gives 0.0135,
+NOT met, exit 1 (`reading1_shift.txt`).
+
+## The conformal-map type check: FAIL (`confmap_scan.txt`, 2026-11-21 16:44 UTC file time, exit 2; 8.6 s, 41 MB)
+
+The map for s2 2.8 has c 1.264, which puts the pair at |w| 1.2105, P2 at 1.3676 and infinity at 1.2152. j* = 2, as in
+`subdom_scan.txt`.
+
+| j | \|A2\|/\|A1\| | mapped, square-root pair | mapped, pole pair | move control |
+|---|---|---|---|---|
+| 2 | 1.6374 | s 2.8378, mu +0.5445: FAIL (s) | s 2.7906, mu +0.5615: FAIL | fails at both |
+| 3 | 0.8187 | s 3.1107, mu +0.4023: FAIL | s 2.7792, mu +0.6179: FAIL | fails at both |
+| 4 | 0.4094 | s 3.0951, mu +0.5263: FAIL (s) | s 2.7585, mu +0.7113: FAIL | fails at both |
+
+For the square-root pair, mu is within 10% at j 2 and 4, but s misses the 0.5% bar by 0.038 and 0.295. The spreads
+over approximants in mu are 1.0 to 1.2. Unjudged at j 2: P2 added gives s 2.9763, mu +0.4147; s2 + 0.01 and s1 + 0.006
+give s 2.84, mu +0.54. **By the fixed protocol, the type stays not resolved at N 31.** The mapped estimator is not run
+on a real series.
