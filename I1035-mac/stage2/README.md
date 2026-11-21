@@ -20,3 +20,5 @@ Files:
 - `raisecheck_ma_D262.log/.json`: the same with the chain's ElimO rung (the m and a rows for m_h and a_h).
 - `rung_cols_D262_ks315.json`: the rung's Jacobian columns (finite differences at 1e-60 relative), shared by both.
 - `queue.log`, `run_raisecheck2.sh`: the run order.
+- `raisecheck_D262_stopped.log`: the first launch (19:32 UTC, the 'ma' rung with a full Jacobian and no column cache),
+  stopped by its exact pid after 9.7 min, before any column was written, when the run was split into the two above.

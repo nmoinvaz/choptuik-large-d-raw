@@ -1,0 +1,28 @@
+  model, factored: not converged (it_max) in 12 line(s), |z - truth| 2.05e-17; expected to converge: WRONG
+  model, old: not converged (it_max) in 12 line(s), |z - truth| 2.05e-17; expected to fail: ok
+  model, linear: not converged (no trial accepted) in 1 line(s), |z - truth| 1.0e-10; expected to fail: ok
+  model, nopred: not converged (no trial accepted) in 1 line(s), |z - truth| 1.0e-10; expected to fail: ok
+  model, sign: not converged (no trial accepted) in 1 line(s), |z - truth| 1.0e-10; expected to fail: ok
+  state writer on I1064-dh610_ho2_D237.7132_ks307_base_pin3_D237.7132.npz: parts and meta read back exactly, keys as save_o
+  comparison of unequal lengths: refused (lengths 769 and 768): ok
+  comparison, one entry moved by 1e-65: largest difference 1.000e-65 at 5, within the bar 1e-60: ok
+  comparison, one entry moved by 1e-55: largest difference 1.000e-55 at 5, above the bar 1e-60: ok
+  gate, part 4 (a) 1e-62: pass ((a) the start line: octo-double max|F| 1.0e-62, polish skipped); expected pass: ok
+  gate, part 4 (a) 5e-60: fail (no octo-double Newton line and no skipped polish at or below 1e-60); expected fail: ok
+  gate, part 4 (b): pass ((b) the last octo-double Newton line: 1 steps, max|F| 2.7e-86, converged; base saved True); expected pass: ok
+  gate, part 4 (b) no base: fail ((b) the last octo-double Newton line: 1 steps, max|F| 2.7e-86, converged; base saved False); expected fail: ok
+  gate, part 4 (b) not converged: fail ((b) the last octo-double Newton line: 1 steps, max|F| 2.7e-86, not converged; base saved True); expected fail: ok
+  gate, part 4 (b) 2e-34: fail ((b) the last octo-double Newton line: 1 steps, max|F| 2.0e-34, converged; base saved True); expected fail: ok
+  gate, part 4 empty: fail (no octo-double Newton line and no skipped polish at or below 1e-60); expected fail: ok
+  gate, chain (a) 1e-35: pass ((a) the start line: octo-double max|F| 1.0e-35, polish skipped); expected pass: ok
+  gate, chain (b) 2.5e-34: pass ((b) the last octo-double Newton line: 1 steps, max|F| 2.5e-34, converged; base saved True); expected pass: ok
+  gate, chain (b) no base: fail ((b) the last octo-double Newton line: 1 steps, max|F| 2.7e-86, converged; base saved False); expected fail: ok
+  gate, chain (b) not converged: fail ((b) the last octo-double Newton line: 1 steps, max|F| 2.7e-86, not converged; base saved True); expected fail: ok
+  gate, chain empty: fail (no octo-double Newton line and no skipped polish); expected fail: ok
+  gate, step: pass (jet written, step accepted and saved); expected pass: ok
+  gate, step no jet: fail (jet MISSING, step accepted and saved); expected fail: ok
+  gate, step stopped: fail (jet written, step accepted and saved, stopped); expected fail: ok
+  gate, step not saved: fail (jet written, step NOT saved); expected fail: ok
+  gate, step, a path with a space: pass (jet written, step accepted and saved); expected pass: ok
+selftest --mutate=old: 25 of 26 pass; FAIL: model factored (--mutate=old)
+old exit 1
