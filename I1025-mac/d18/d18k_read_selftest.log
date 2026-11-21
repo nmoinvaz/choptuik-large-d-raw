@@ -1,0 +1,13 @@
+planted: k_c 55 at 1.6995 and 1.8650: stable: PASS (read stable)
+planted: k_c 55 at 1.6995 and 1.8810 (0.0135 off): dependent: PASS (read dependent)
+planted: k_c 55 one root only: dependent: PASS (read dependent)
+planted: k_c 55 three roots: dependent: PASS (read dependent)
+planted: a non-robust point beside a change: no reading: PASS (read coordinator)
+selftest: PASS
+planted: k_c 55 at 1.6995 and 1.8650: stable: PASS (read stable)
+planted: k_c 55 at 1.6995 and 1.8810 (0.0135 off): dependent: FAIL (read stable)
+planted: k_c 55 one root only: dependent: PASS (read dependent)
+planted: k_c 55 three roots: dependent: PASS (read dependent)
+planted: a non-robust point beside a change: no reading: PASS (read coordinator)
+selftest: FAIL [mutate tol]
+exit codes: selftest 0, --mutate=tol 1 (must be 0 and 1)

@@ -191,3 +191,6 @@ Written before the run (criteria in `d18/d18_criteria.log`, 2026-11-21 03:31:59 
   delta [+0.199108, +0.199473] against lambda_0(18.25); ln|det|'s least value beside it; every point noise-robust, repeats agree
   (`d18/d1825_hi.log`, `d18/d1825_hifine.log`, `d18/d1825_hi_1025.jsonl`, `d18/d1825_hifine_1025.jsonl`, `d18/d1825_hi_read.log`;
   `d18/d1825_g_numbers.py`, `d18/d1825_g_numbers.log`). D 18.25's map over 1.20-2.60 is then 1.3885, 1.7425 and 2.3185.
+- 2026-11-21 22:37:27 UTC, (k), the coordinator's next task, **window written before it runs** (`d18/lane_d18k.sh`): D 17.75 at **k_c 55** (the Mac's
+  `out/sol_l1kc55F1025_D17.750000.npy` on its record line), the hybrid over **lambda 1.65 to 1.90 at 0.01 (26 points)**. Reading: both
+  changes within 0.01 of k_c 63's at D 17.75 (dh170: 1.6990 and 1.8672-1.8678) mean k_c-stable there; anything else k_c-dependent.
