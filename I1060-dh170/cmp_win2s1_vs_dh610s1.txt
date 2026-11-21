@@ -1,0 +1,20 @@
+# extra, information (not in the order): win2's re-planned step 17 (raw I1060-win2 cee1f1b1, step17_s1: main 8179068d, Windows, --keep_plan 0 as leg 10, base polish at its default, series_split 1) against dh610's step 1 (Linux, the same flags) and against leg 10's stored state, by cmp1060.py (its controls ran first at the start of the runs; the byte-flip control below)
+2026-11-21 06:38:56 UTC
+== bits: win2 re-planned state against dh610's step 1 state
+bits: D_str equal True (260.8483415339, 260.8483415339), a equal True (0.1777320584971952, 0.1777320584971952)
+  exactly summed parts: Delta difference 0, max |dS_i| 0: equal
+  information: parts with differing bytes none (8 parts compared); M1 per part zh 0.0e+00, zl 0.0e+00, z2 0.0e+00, z3 0.0e+00, z4 0.0e+00, z5 0.0e+00, z6 0.0e+00, z7 0.0e+00
+identical
+exit 0
+== files: series, win2 re-planned against dh610's
+files: 8 arrays identical, differing bytes none, arrays in one file only none, meta keys that differ ['t_coef']
+identical
+exit 0
+== bits: leg 10's stored state against win2's re-planned state
+bits: D_str equal True (260.8483415339, 260.8483415339), a equal True (0.1777320584971952, 0.1777320584971952)
+  exactly summed parts: Delta difference 1.188e-20, max |dS_i| 1.188e-20: DIFFER
+  information: parts with differing bytes {'zl': 3938, 'z2': 5812, 'z3': 5772, 'z4': 5873, 'z5': 5772, 'z6': 5872, 'z7': 5822} (8 parts compared); M1 per part zh 0.0e+00, zl 1.1e-04, z2 2.0e+00, z3 1.6e+00, z4 1.5e+00, z5 1.0e+00, z6 1.1e+00, z7 1.0e+00
+DIFFERENT
+exit 1
+== control: one byte of z3 flipped must differ
+DIFFERENT
