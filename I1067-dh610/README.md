@@ -13,3 +13,7 @@ Everything below is written as the run goes.
 - `run1067_s1.py` (stage 1; `--selftest` 14 cases, `--selftest --mutate` fails as it must), `run1067_s23.py` (the plan and the series; `--selftest`, `--mutate`), `run1067.sh` (stage 1, then stages 2 and 3 only if stage 1 chose a state), `start_1067.sh` (unit `i1067a`, memory log `memlog_i1067a.log`).
 - Stage 1 started 17:44:20 UTC 21 Nov in the worktree `~/Source/choptuik-large-d-1067` (detached at main 276aa1cd, venv-i1058, 10 threads, `nice -n 10`). Plan comment: https://github.com/nmoinvaz/choptuik-large-d/issues/1067#issuecomment-7066706257.
 - Logs as they come: `stage1.log`, `exits_1067.txt` (every decision with its time), `rss_1067.txt` (RSS, peak RSS, MemAvailable, load every 60 s), `m512b.jsonl`, `states/`.
+
+## Pilot report (first Newton call, 20:20 UTC 21 Nov)
+
+First Newton call of `lowD_dd.py --Ms 512`: wall since the start 9340 s, the call's own `t` 9214.3 s; start max|F| 9.2e-07; line `newton 0: |F| 9.23e-07 |dz| 4.70e-03 lam 1 dDelta -1.31e-13 Delta 2.466012146521581 piv 4.0e-05..2.6e+01`; peak RSS 3.46 GiB (1.9 GiB for most of the call); about 940 to 970% CPU (10 threads); MemAvailable 58.4 to 59.8 GB. The stop rule (8 h, 45 GB) did not trip. Call 2 started 20:20 UTC. Posted as a comment on #1067.
