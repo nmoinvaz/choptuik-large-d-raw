@@ -495,3 +495,5 @@ one-off series is ordered from this check. With N, the pole-pair and weaker-poin
 for example the mapped square-root pair at j 4 goes from +0.70 at N 47 to +0.67 at N 63. And j* stays at 2 as the plain
 Dlog improves with them.
 | 262.7908 | 8caffc64 | 262.0871 ± 0.9709i (9 approximants) | 1.1974, 1.2043, −0.57% | PASS (0), FAIL (1) | 262.5082 (+29.6), 515.1630 (+2.826) |
+
+Note at 262.7908: the real singularity read near 265.078 is listed at 265.0778, now with 6 approximants (4 before), 2.29 ahead. That is within 0.0002 of the three bases of reading (1).
