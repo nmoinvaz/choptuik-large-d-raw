@@ -109,3 +109,39 @@ ratio fit. The root test |c_31|^(−1/31) falls from 2.132 to 1.757 over the bas
 run, radius from that root test) puts a pair at 262.60 ± 1.56i at D0 261.1415 and at 262.39 ± 1.52i at D0 261.5124.
 That reading is not a validated estimator. `jet_singularity.py locate` (Delta's Padé poles, #799's other step) would
 test it; it was not run here.
+
+## Second request: locate on leg 14, then rows and locate over leg 13 (coordinator, 2026-11-21)
+
+**Command.** #799 ran Delta's locate through `I799-dh370/report799.py`. That script calls
+`row_series(Z, "delta")` and `locate_one(c, m["D"], label="delta")` of `jet_singularity.py`, with no other arguments.
+`jet_singularity.py locate JET.npz ... --json OUT` runs the same function on the same row (`--row delta` is the
+default), at DPS 80:
+
+    python jet_singularity.py locate JET.npz ... --json OUT
+
+It reports these, each with D_re = D0 + Re s and D_im = Im s:
+- the stable Padé poles of Delta's series: clusters over M 2..10 within 0.05 relative, in at least 3 M, not doublets,
+  not inside 0.85 of the root-test radius, |s| at most 50, folded to Im ≥ 0; the four nearest are kept;
+- the recurrence fit;
+- Domb-Sykes;
+- the root-test radius (upper envelope of |c_k| fitted over k N/2..N).
+
+**Leg 13's jets** are at raw 98227588: 260.8483, 260.9271, 261.0721 and 261.1415, N 31, ks 293. Its 261.1415 jet
+is not bit-identical to leg 14's 261.1415 jet: its state was not re-converged as leg 14's base was. Delta's c_k
+differ by at most 1.4e-13 relative (`deltadiff.py` → `deltadiff_261.1415.txt`). The base counts once, as leg 14's.
+Leg 13's copy is run too, as a check of how sensitive the estimators are to that difference.
+
+**The locate reading** (the coordinator's, fixed before the run): a conjugate pair of Delta's Padé poles, stable to
+0.05 in real and imaginary part across three or more bases, at a distance matching the root test, confirms the pair.
+Otherwise the diagnostic stays unvalidated. How I apply it, fixed before the run:
+
+- a pair: a stable pole of `locate` with D_im > 0.05 (its conjugate is implied by the fold to Im ≥ 0);
+- stable across bases: at each base, the nearest such pole. Over three or more consecutive bases (leg 13 and leg 14
+  in order of D), the range (max − min) of its D_re is at most 0.05, and so is the range of its D_im;
+- distance matching the root test: |s| within 5% of `locate`'s root-test radius at each of those bases (#799's bar 2
+  used 5%);
+- if the nearest pair fails, another chain of pairs that meets all three is reported as well, and named as found
+  after the nearest one failed.
+
+**Rows over leg 13.** `singularity_type.py rows --delta` on leg 13's four jets. The fold readings above apply over
+leg 13 and leg 14 together.
