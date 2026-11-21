@@ -56,18 +56,22 @@ The driver's header line prints `multidouble ?` because the package has no `__ve
 
 ## Status
 
-Progress push at 2026-11-21 03:31 UTC (the coordinator asked for progress): rows 1 to 3 are done and PASS, row 4 is running (7 evaluations, 1.61e-03 bracket). `p4_w.log` and `ell_p4_hybrid_1025_w.jsonl` hold rows 1 to 3; `p4_rows/D16.25.log` is the live log of row 4 (partial). The Result section is written at the last push.
+Finished: the driver ended at 2026-11-21 04:18:49 UTC (`p4_driver_w.sh done` in `p4_w.log`). All four rows PASS. A progress push at 03:31 UTC (raw 151d7752) came before row 4 ended. The follow-on rows (D 17.5 and 17.75, the coordinator's next order) are in `I1025-win/p4_highD`.
 
-### Rows so far (UTC; 4 threads, BelowNormal)
+### Result: the four rows (UTC; 4 threads, BelowNormal)
 
 | row | D, k_c | lambda (hybrid) | minus float64 record | evaluations | final bracket | noise robust | time | verdict |
 |---|---|---|---|---|---|---|---|---|
 | 1, cross-check | 16, 55 | 2.2440427049579905 | +1.4147e-03 | 13 | 2.77e-08 | True | 6722 s, 18:58:54 to 20:51:01 | PASS |
 | 2 | 15.5, 63 | 2.3361355728260387 | +4.5299e-04 | 12 | 3.22e-08 | True | 10953 s, 20:51:02 to 23:53:40 (beside the #1058 hp build) | PASS |
 | 3 | 14.5, 55 | 2.4960783095120362 | -9.922e-07 | 15 | 2.49e-08 | True | 8057 s, 23:53:40 to 02:08:03 | PASS |
-| 4 | 16.25, 63 | running | | 7 at 03:27:09 (3 grid + 4 Brent) | [2.195797442666, 2.197411200000] = 1.61e-03 | so far True | started 02:08:04 | running |
+| 4 | 16.25, 63 | 2.1964398450242686 | +8.927e-06 | 11 | 2.20e-08 | True | 7840 s, 02:08:04 to 04:18:48 | PASS |
 
-Row 4 so far: record system true (abs(F) 1.8842488019e-10 against 1.8839637548e-10, 2890 steps against 2890); grid 2.153463 (-1), 2.197411 (+1), 2.241359 (+1), one sign change; the float64 record 2.196430918 lies inside the bracket. Rows 1 to 3 needed 5, 3 and 5 more evaluations after the bracket first fell under 2e-03, so row 4 needs 3 to 5 more. Time per evaluation (setup included): 517 s (row 1), 913 s (row 2, with the build), 537 s (row 3), 678 s (row 4 so far). ETA 04:01 to 04:23 UTC, about 04:12; the row timeout is 06:08:04 UTC.
+Row 4: record system true (abs(F) 1.8842488019e-10 against 1.8839637548e-10, 2890 steps against 2890); grid 2.153463 (-1), 2.197411 (+1), 2.241359 (+1), one sign change on the grid and one over all 11 evaluations (3 grid + 8 Brent); final bracket [2.196439823049, 2.196439845024] of width 2.20e-08; noise robust; the float64 record 2.196430918 lies 8.9e-06 below the hybrid root.
+
+The driver's summary: D 16 PASS 2.2440427049579905, D 15.5 PASS 2.3361355728260387, D 14.5 PASS 2.4960783095120362, D 16.25 PASS 2.1964398450242686. The cross-check passed (-1.05e-07 against the Mac's root, bar 1e-5). No timeout or crash.
+
+Time per evaluation, setup included: 517 s (row 1, 13 evaluations), 913 s (row 2, 12), 537 s (row 3, 15), 713 s (row 4, 11). Rows 2 and 4 share k_c 63. Row 2 ran beside the #1058 hp build (120 of its 183 min) and the build's four checks (24 min), row 4 ran without them (another session's single-thread job ran beside it from 03:08 UTC): 913 against 713 s per evaluation is 1.28 times. The ratio is approximate, since the rows are different problems.
 
 ### Cross-check, row 1: PASS
 
