@@ -9,7 +9,7 @@ import subprocess
 import sys
 
 d = sys.argv[1] if len(sys.argv) > 1 else os.path.dirname(os.path.abspath(__file__))
-exits = "".join(open(f"{d}/{n}").read() for n in ("exits_1064.txt", "exits_1064b.txt", "exits_1064c.txt") if os.path.exists(f"{d}/{n}"))
+exits = "".join(open(f"{d}/{n}").read() for n in ("exits_1064.txt", "exits_1064b.txt", "exits_1064c.txt", "exits_1064d.txt") if os.path.exists(f"{d}/{n}"))
 rows = []
 for log in sorted(glob.glob(f"{d}/ks[0-9]*.log"), key=lambda p: int(re.search(r"ks(\d+)\.log", p).group(1))):
     K = int(re.search(r"ks(\d+)\.log", log).group(1))
@@ -18,6 +18,8 @@ for log in sorted(glob.glob(f"{d}/ks[0-9]*.log"), key=lambda p: int(re.search(r"
     m = re.search(rf"1064 ks{K} exit (\S+) wall (\d+) s", exits)
     capped = re.search(rf"1064 ks{K} cap ", exits) is not None
     st = re.search(r"^\s*on 0: \|F\| ([0-9.]+e[+-]\d+)", text, re.M)
+    rs = re.search(r"^base re-seeded at ks \d+ \(--reseed_base 1\), [0-9.]+ s: octo-double max\|F\| (\S+?)(?:,|$)", text, re.M)
+    rs = f"re-seeded, max|F| {rs.group(1)}" if rs else ("FAILED" if re.search(r"^base re-seed at ks \d+ FAILED", text, re.M) else "-")
     its = []
     for ln in text.splitlines():
         s = ln.strip()
@@ -37,10 +39,10 @@ for log in sorted(glob.glob(f"{d}/ks[0-9]*.log"), key=lambda p: int(re.search(r"
         rows_ = j.get("csv_rows") or []
         near = rows_[0] if rows_ else None
         dl = (f"{j['change']:+.6e} (same D {j['same_D']}" + (f"; nearest quoted row D {float(near['D']):.4f}, error {near['err']} ({near['err_kind']})" if near else "") + ")")
-    rows.append((K, (m.group(1) if m else "?") + (" (capped)" if capped else ""), m.group(2) if m else "?", st.group(1) if st else "-", g, "; ".join(its) or "no iteration lines", dl))
-print("| K | exit | wall s | start max|F| at order K | verdict | iterations (|F| before -> after, seconds) | Delta(K) - Delta(293) |")
-print("|---|---|---|---|---|---|---|")
-for K, rc, w, f0, g, its, dl in rows:
-    print(f"| {K} | {rc} | {w} | {f0} | {g} | {its} | {dl or '-'} |")
+    rows.append((K, (m.group(1) if m else "?") + (" (capped)" if capped else ""), m.group(2) if m else "?", st.group(1) if st else "-", g, "; ".join(its) or "no iteration lines", dl, rs))
+print("| K | exit | wall s | start max|F| at order K | base re-seed (--reseed_base 1) | verdict | iterations (|F| before -> after, seconds) | Delta(K) - Delta(293) |")
+print("|---|---|---|---|---|---|---|---|")
+for K, rc, w, f0, g, its, dl, rs in rows:
+    print(f"| {K} | {rc} | {w} | {f0} | {rs} | {g} | {its} | {dl or '-'} |")
 print()
 print("Wall of ks293 to ks318 (exits_1064.txt) is taken after the whole rung ended, so a run that ended earlier shows its rung's wall; from ks295 on (exits_1064b.txt) it is each run's own, in 30 s polls.")

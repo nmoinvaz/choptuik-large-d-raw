@@ -110,3 +110,23 @@ Reading (the coordinator's): a converging ks 294 means a ladder of +1 raises is 
 ## Pair 2 moved to win2 (coordinator, 11:3x UTC 21 Nov)
 
 The coordinator moved ks 315 from D 260.0073 and D 259.4568 to win2. I stopped `start_1064_next.sh` by its exact pid (1024638) at 11:31:02 UTC, while `i1064g` was still running (the units are in systemd's app.slice, not children of the starter; `i1064g` ran on and ended at 11:38:00 UTC). Units `i1064h` and `i1064i` never started and there are no `k315_*` folders here. The two states were extracted from raw origin/main (blobs 7d45e683 and 7e2452f7) and are not used by me.
+
+## The re-seeded base: `--reseed_base 1` (coordinator, ~11:35 UTC 21 Nov; main 276aa1cd)
+
+Worktree `~/Source/choptuik-large-d-1060` moved from 8179068d to 276aa1cd (detached; `git log -1` shows it, tree clean; origin/main's head at the 11:32 UTC fetch). `run1064c.sh` pins 8179068d and no longer runs on it. `hp/` changed from 8179068d: `anm_run.py`, `arclength.py`, `ks_chain.py`, `octo_corrector.py` (Broyden updates, off by default), `od_broyden_ab.py`, `od_broyden_check.py`; `pyproject.toml`, `Cargo.toml` and `build.sh` unchanged (venv-i1058's kernel stays).
+
+From `I966-dh370/ks_chain3b/leg14_D261.1415_ks293/anm_pin3_D261.6229.npz` (blob e0737904), leg 13's line plus `--reseed_base 1`, the gate and 7200 s caps of `run1064c.sh`: the control ks 293 alone, then ks 315 and ks 294 side by side. `run1064d.sh` (a copy of `run1064c.sh`: HEAD pinned to 276aa1cd, `--reseed_base 1`, the log's `base re-seed` line copied to `summary_1064d.txt`, the control's Delta against both earlier controls), `check_dry1064d.py` (selftest of 11 cases, `--break` exits 1), `table1064.py` (new column for the re-seed line; planted re-seeded and FAILED lines and logs without a line were checked). Unit `i1064j` (`start_1064_rb.sh`), folder `rb_D261.6229/`, memory log `memlog_i1064j.log`.
+
+Dry runs (`dry_1064d.sh`, 11:40 to 11:48 UTC, `dry_d1/`, `dry_d2/`):
+- `dry_d2` (control killed at the 45 s cap): passed.
+- `dry_d1` (pass path, 420 s cap, rung 294): failed at the cap, not by the harness. The control printed `base re-seeded at ks 293 (--reseed_base 1), 87.69 s: octo-double max|F| 7.4e-25` (the stored state's own start was 1.96e-36, converged at once without the flag) and was in its first chord at the cap, 3.76e-27. Not rerun at a larger cap: that is the real run.
+
+Pilot (`pilot_1064d.sh`, `dry_d3/`, 11:49 to 11:52 UTC): the real command at ks 294 and ks 315 side by side, each stopped by TERM to its exact pid at its `base re-seed` line.
+
+| K | start max\|F\| without the flag (this state) | re-seeded max\|F\| with the flag | re-seed seconds | refinement rung max\|R\| |
+|---|---|---|---|---|
+| 293 (`dry_d1`) | 1.96e-36 | 7.4e-25 | 87.7 | 3.31e-12 to 1.25e-25 |
+| 294 | 2.25e-09 | 2.3e-09 | 110.4 | 3.31e-12 to 3.84e-10 |
+| 315 | 1.15e-08 (win2's, comments 7060065590, 7060623893) | 1.1e-08 | 127.5 | 3.31e-12 to 1.93e-09 |
+
+The two earlier ks 293 controls of this state (`k294_D261.6229/ks293` and `leg14_D261.6229/ks293`) against each other: Delta difference 0.0, xcheck 0 (`dry_d3/delta_earlier_vs_earlier0.*`).
