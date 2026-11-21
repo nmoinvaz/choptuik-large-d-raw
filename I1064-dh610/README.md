@@ -238,3 +238,16 @@ Folder `front_D262.7908/` (`run1064_front2.sh`, main 276aa1cd, venv-i1058, `nice
 | (c') ks 395 | 395, 1 | D 237.7132, my ks 395 base | 1 step, 1.1e-86 | 677 s | 5de37a18 (21) |
 
 (a) against dh370's jet (`jetdiff1064.py`, exact sums): largest relative difference per coefficient 6.0466e-14 at order 3, unknown 618; 23839 of 24608 above 1e-40 (all but 705 of order 0's 769); per-order max and median in `jetstats_a_vs_dh370.txt`: the reading "to 1e-40" does not hold (discrepancy reported, not fixed). (b) against (a): 1.7855e-12 at order 3, unknown 618. The ks 395 jet against the ks 307 jet: 4.1267e-11 at order 23, unknown 540, all 24608 above 1e-40.
+
+## The front control's thread test (coordinator, comment 7067246958; unit `i1064s`, 18:27:29 to 18:47:56 UTC)
+
+Folder `front_D262.7908/thread_test/` (`run1064_front3.sh`, main 276aa1cd, venv-i1058, `nice -n 10`, 10 threads, one run after the other; `jetbits1064.py` and `jetstats1064.py` are new). dh370's launcher (`I966-dh370/run966s.sh`, `T=10`) uses `--threads 10`, as (a), and sets no OPENBLAS/OMP/MKL variable; `leg14_args966.txt` is not on raw. (a2) = (a) unchanged; (a3) = (a) with `env -u OPENBLAS_NUM_THREADS -u OMP_NUM_THREADS -u MKL_NUM_THREADS` (my harness sets them to 1). Both ran 600 s (30 s polls), jet 444 s and 447 s, polish 1 step at 6.0e-37, plan hash 2f2fb22d (23 steps, kept).
+
+| comparison | bits | largest relative difference per coefficient |
+|---|---|---|
+| (a2) against (a) | identical bit for bit (all eight parts, all 24608 coefficients) | 0 |
+| (a3) against (a) | identical bit for bit | 0 |
+| (a3) against dh370's jet | different in 23839 coefficients (part 0: 1112 entries; the lower parts 22866 to 23903) | 6.0466e-14 at order 3, unknown 618; 23839 above 1e-40 |
+| (a2) against dh370's jet | the same as (a3)'s | the same |
+
+The per-order table of (a3) against dh370's (`jetstats_a3_vs_dh370.txt`) is the same as (a)'s in `../jetstats_a_vs_dh370.txt` (diff empty). By the coordinator's reading, (a3) is as far from dh370's jet as (a) is, so the cause is not the thread environment: the build or kernel. dh370's leg 14 ran python code at 1aa4a4fb (branch wip/elim-projections) with an hpkernel built from 40f4b4a5 (multishoot 3.3.0, multisolver 0.1.1, multidouble 4.9.0; no `Solver.residual_sub`, a line in its `anm_run.log`); main 276aa1cd has multishoot 4.1.0, multisolver 0.2.2, multidouble 5.1.0. Not varied: `--threads` itself.
