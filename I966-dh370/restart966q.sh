@@ -31,7 +31,7 @@ PY
 )
 log "resume state D $D0, PAD $PAD"
 F3=$(sed -n 's/^F3="\(.*\)"$/\1/p' $OUT/run966.sh)
-F3e="${F3/--a_scale 0.0715/--a_scale 0.00715} --a_rise 1"
+F3e="${F3/--a_scale 0.0715/--a_scale 0.000715} --a_rise 1"
 F3e="${F3e/--tol_od 1e-60/--tol_od 2e-34} --proj_start pred --reseed_o_stop 1 --od_floor_delta 1e-30 --proj_o 1"
 F3e="${F3e/--od_accept natural/--od_accept own}"
 BASE=I903-win2/ks_chain2/leg00_D232.0000_ks291/anm_pin3_D237.7132.npz
@@ -43,7 +43,7 @@ log "dry: $l0"
 ok=1
 echo "$l0" | grep -q "at ks 293 from .*anm_pin3_D$D0.npz" || ok=0
 echo "$cmd" | grep -q -- "-966g/hp/anm_run.py" || ok=0
-[ "$(echo "$cmd" | grep -o -- '--a_scale 0.00715' | wc -l)" = 1 ] || ok=0
+[ "$(echo "$cmd" | grep -o -- '--a_scale 0.000715' | wc -l)" = 1 ] || ok=0
 [ "$(echo "$cmd" | grep -o -- '--a_scale' | wc -l)" = 1 ] || ok=0
 echo "$cmd" | grep -q -- '--a_rise 1 ' || ok=0
 echo "$cmd" | grep -q -- '--reseed_qd_bar 1e-13' || ok=0

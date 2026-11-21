@@ -1,0 +1,26 @@
+horizon series to order 293 instead of the state's 293
+held values from the fit data/held_fit.json (degree 8, 138 full-system states, D 38.020417-73.0), relative to the base
+  reseed: this hpkernel has no Solver.residual_sub; each rung residual is taken from the full residual
+  on 0: |F| 4.22e-36 converged, Delta 1.68326475753407045 -7.6319e-17
+      elim projections {'u0': 0, 'u0q': 0, 'ladder': 0, 'failed': 0, 'skipped': 0, 'u0o': 1}
+      octo-double Newton: 1 steps, max|F| 4.2e-36, converged; double-double |F| of its first two parts 1.4e+31
+base I966-dh370/ks_chain3b/leg10_D256.1776_ks293/anm_pin3_D260.8483.npz: D 260.848341534, M 32, pin 3 (held [5, 7, 9, 11, 13]), |F| 1.4e+31; N 31, eps 1e-14, h_max 2.0, corrector od (junk_only False), tol 1.0e-20 x 1.45^(D - 260.84834), stalls accepted below 1e-17
+step 0: the series saved as /home/nathan/Source/choptuik-large-d-raw-wt613/I966-dh370/ks_chain3b/leg13_D260.8483_ks293/jet_pin3_D260.8483.npz (8 parts, 388 s)
+step 0: D 260.848341534, pivots 1.4e-19..1.1e+51, |z_1| 3.24e-04, |z_N| 9.13e-13, ratios 2-5 338.2 3.2 2.1 4.4, a_max 0.658, 388 s
+  a_rule reseed: a_h tail e_N+1 1.14e-17 (ratio 1.92), level 0.000715 of the pole line 3.29e-40: a 0.1575
+    a 0.1575: re-seeded (ok), 181.35 s
+      horizon data refined in octo-double, rung max|R| 1.98e-12 -> 5.18e-13 -> 6.29e-14 -> 4.27e-14
+    on 0 chord 0: max|F| 9.51e-26, |dw| 4.251e-37
+    on 0 chord 1: max|F| 2.41e+12, |dw| 5.332e+08
+  on 0: strong chord (4 weak directions), 2 steps after the full first step; theta at its point inf (bound 0.750): refused, 642.82 s
+    on 0 trial lam 1: max|F| 9.51e-26; raw |dz_t| 5.457e-20 vs |dz| 1.298e-21 (not <); refused, 352.83 s
+  on 0: |F| 5.06e-14 -> 2.20e-12, |dz| 1.30e-21 -> 1.29e-22, lam 0.5, dDelta +1.30e-21, piv 6.0e-17..1.1e+51, 1287.25 s
+    on 1 trial lam 1: max|F| 6.38e-23; raw |dz_t| 5.534e-20 vs |dz| 1.293e-22 (not <); refused, 292.17 s
+    on 1 trial lam 0.5: max|F| 2.11e-16; raw |dz_t| 3.423e-20 vs |dz| 1.293e-22 (not <); refused, 316.06 s
+  on 1: |F| 2.20e-12 -> 7.54e-11, |dz| 1.29e-22 -> 5.52e-24, lam 0.25, dDelta -1.29e-22, piv 1.4e-15..1.1e+51, 898.45 s
+    on 2 trial lam 1: max|F| 1.32e-21; raw |dz_t| 5.524e-20 vs |dz| 5.518e-24 (not <); refused, 299.26 s
+    on 2 trial lam 0.5: max|F| 6.92e-16; raw |dz_t| 8.306e-20 vs |dz| 5.518e-24 (not <); refused, 307.52 s
+    on 2 trial lam 0.25: max|F| 7.06e-14; raw |dz_t| 1.682e-21 vs |dz| 5.518e-24 (not <); refused, 287.45 s
+    on 2 trial lam 0.125: max|F| 7.44e-13; raw |dz_t| 4.452e-23 vs |dz| 5.518e-24 (not <); refused, 287.37 s
+    on 2 trial lam 0.0625: max|F| 4.16e-13; raw |dz_t| 2.843e-21 vs |dz| 5.518e-24 (not <); refused, 288.42 s
+  on 2: |F| 7.54e-11 -> 1.57e-11, |dz| 5.52e-24 -> 1.40e-24, lam 0.03125, dDelta +5.52e-24, piv 2.7e-16..1.1e+51, 1760.73 s

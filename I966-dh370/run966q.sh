@@ -124,7 +124,7 @@ for s in "$@"; do
     stage ks_chain3m $OUT/ks_chain3b_m.log $PY -u ks_chain.py $RAW $OUT/ks_chain3b --state $BASE --D_stop 400 --mult 4.4 --pad $PAD -- $F3m --reseed_qd_bar 1e-13 --steps 400 || exit 1 ;;
   chainq)      # coordinator's A/B (hc 2026-11-20, NOT STARTED before his confirmation): chainm's flags with --od_accept own (hp's own trial test, the default) for natural; same state, same code (1aa4a4fb), PAD from the environment
     [ -n "$PAD" ] || { log "chainq: PAD not set"; exit 9; }
-    F3q="${F3/--a_scale 0.0715/--a_scale 0.00715} --a_rise 1"
+    F3q="${F3/--a_scale 0.0715/--a_scale 0.000715} --a_rise 1"   # 0.000715 = 0.00715 / a_drop 10: the level the failed re-seed set, so the first attempt's a is attempt 2's 0.1575
     F3q="${F3q/--tol_od 1e-60/--tol_od 2e-34} --proj_start pred --reseed_o_stop 1 --od_floor_delta 1e-30 --proj_o 1"
     [[ "$F3q" == *"--od_accept natural"* ]] || { log "chainq: F3 has no --od_accept natural to replace"; exit 9; }
     F3q="${F3q/--od_accept natural/--od_accept own}"

@@ -1,0 +1,44 @@
+horizon series to order 293 instead of the state's 293
+held values from the fit data/held_fit.json (degree 8, 138 full-system states, D 38.020417-73.0), relative to the base
+  reseed: this hpkernel has no Solver.residual_sub; each rung residual is taken from the full residual
+  on 0: |F| 4.22e-36 converged, Delta 1.68326475753407045 -7.6319e-17
+      elim projections {'u0': 0, 'u0q': 0, 'ladder': 0, 'failed': 0, 'skipped': 0, 'u0o': 1}
+      octo-double Newton: 1 steps, max|F| 4.2e-36, converged; double-double |F| of its first two parts 1.4e+31
+base I966-dh370/ks_chain3b/leg10_D256.1776_ks293/anm_pin3_D260.8483.npz: D 260.848341534, M 32, pin 3 (held [5, 7, 9, 11, 13]), |F| 1.4e+31; N 31, eps 1e-14, h_max 2.0, corrector od (junk_only False), tol 1.0e-20 x 1.45^(D - 260.84834), stalls accepted below 1e-17
+step 0: the series saved as /home/nathan/Source/choptuik-large-d-raw-wt613/I966-dh370/ks_chain3b/leg12_D260.8483_ks293/jet_pin3_D260.8483.npz (8 parts, 412 s)
+step 0: D 260.848341534, pivots 1.4e-19..1.1e+51, |z_1| 3.24e-04, |z_N| 9.13e-13, ratios 2-5 338.2 3.2 2.1 4.4, a_max 0.658, 412 s
+  a_rule reseed: a_h tail e_N+1 1.14e-17 (ratio 1.92), level 0.00715 of the pole line 3.28e-40: a 0.1693
+    a 0.1693: re-seeded (FAILED, prediction kept), 288.51 s; rung u 0.3000 not converged at |R| 1.07e-08 after 8 steps
+      elim projections {'u0': 0, 'u0q': 0, 'ladder': 0, 'failed': 1, 'skipped': 0, 'u0o_refused': 1}: the start's projection failed, attempt stopped
+    a 0.169 -> D 261.017603726: predicted |F| 9.93e+30, od 0 steps -> 9.93e+30 (tol 1.1e-20), Delta 1.683239484992 (formula diff -1.4e-06), moved 0.0e+00, 430 s
+    a 0.1575: re-seeded (ok), 207.83 s
+      horizon data refined in octo-double, rung max|R| 1.98e-12 -> 5.18e-13 -> 6.29e-14 -> 4.27e-14
+    on 0 chord 0: max|F| 9.51e-26, |dw| 4.251e-37
+    on 0 chord 1: max|F| 2.41e+12, |dw| 5.332e+08
+  on 0: strong chord (4 weak directions), 2 steps after the full first step; theta at its point inf (bound 0.750): refused, 710.04 s
+    on 0 trial lam 1: max|F| 9.51e-26; simplified correction / |dz| = 9.997e-01 (bound 0.750); refused, 278.54 s
+    on 0 trial lam 0.5: max|F| 2.20e-12; simplified correction / |dz| = 5.816e+00 (bound 0.875); refused, 202.33 s
+    on 0 trial lam 0.25: max|F| 1.23e-14; simplified correction / |dz| = 9.342e-01 (bound 0.938); accepted, 203.62 s
+  on 0: |F| 5.06e-14 -> 1.23e-14, |dz| 1.30e-21 -> 4.96e-21, lam 0.25, dDelta +1.30e-21, piv 9.0e-19..1.1e+51, 1511.14 s
+    on 1 trial lam 1: max|F| 1.53e-24; simplified correction / |dz| = 1.005e+00 (bound 0.750); refused, 247.06 s
+    on 1 trial lam 0.5: max|F| 1.72e-14; simplified correction / |dz| = 2.465e+00 (bound 0.875); refused, 273.13 s
+    on 1 trial lam 0.25: max|F| 3.91e-14; simplified correction / |dz| = 6.003e-01 (bound 0.938); accepted, 270.36 s
+  on 1: |F| 1.23e-14 -> 3.91e-14, |dz| 4.96e-21 -> 3.30e-21, lam 0.25, dDelta +4.96e-21, piv 1.9e-18..1.1e+51, 915.5 s
+    on 2 trial lam 1: max|F| 2.59e-23; simplified correction / |dz| = 9.834e-01 (bound 0.750); refused, 312.62 s
+    on 2 trial lam 0.5: max|F| 4.24e-15; simplified correction / |dz| = 1.217e+00 (bound 0.875); refused, 288.2 s
+    on 2 trial lam 0.25: max|F| 3.24e-14; simplified correction / |dz| = 1.957e+00 (bound 0.938); refused, 295.94 s
+    on 2 trial lam 0.125: max|F| 2.48e-12; simplified correction / |dz| = 3.742e+01 (bound 0.969); refused, 260.53 s
+    on 2 trial lam 0.0625: max|F| 2.85e-15; simplified correction / |dz| = 9.959e-01 (bound 0.984); refused, 282.66 s
+    on 2 trial lam 0.03125: max|F| 3.09e-13; simplified correction / |dz| = 3.377e-01 (bound 0.992); accepted, 250.47 s
+  on 2: |F| 3.91e-14 -> 3.09e-13, |dz| 3.30e-21 -> 1.58e-22, lam 0.03125, dDelta +3.30e-21, piv 2.4e-17..1.1e+51, 1814.57 s
+    on 3 trial lam 1: max|F| 1.90e-22; simplified correction / |dz| = 9.990e-01 (bound 0.750); refused, 208.67 s
+    on 3 trial lam 0.5: max|F| 1.07e-09; simplified correction / |dz| = 1.391e+03 (bound 0.875); refused, 172.86 s
+    on 3 trial lam 0.25: max|F| 1.07e-05; simplified correction / |dz| = 5.662e+10 (bound 0.938); refused, 55.08 s
+    on 3 trial lam 0.125: max|F| 5.51e-15; simplified correction / |dz| = 1.004e+00 (bound 0.969); refused, 220.61 s
+    on 3 trial lam 0.0625: max|F| 3.43e-14; simplified correction / |dz| = 1.011e+00 (bound 0.984); refused, 220.31 s
+    on 3 trial lam 0.03125: max|F| 4.28e-14; simplified correction / |dz| = 1.007e+00 (bound 0.992); refused, 220.14 s
+    on 3 trial lam 0.015625: max|F| 1.64e-15; simplified correction / |dz| = 1.000e+00 (bound 0.996); refused, 236.99 s
+    on 3 trial lam 0.0078125: max|F| 1.16e-14; simplified correction / |dz| = 1.000e+00 (bound 0.998); refused, 228.96 s
+    on 3 trial lam 0.00390625: max|F| 7.17e-15; simplified correction / |dz| = 1.000e+00 (bound 0.999); refused, 219.65 s
+  on 3: |F| 3.09e-13, |dz| 1.58e-22: no trial step accepted, stopping
+      elim projections {'u0': 0, 'u0q': 0, 'ladder': 0, 'failed': 1, 'skipped': 0, 'u0o_refused': 24, 'pred': 23}
