@@ -1,0 +1,6 @@
+== 2026-11-21 22:38:34 UTC stage 1 start: -s TERM 14400 /home/nathan/Source/choptuik-large-d-1058b/.venv/bin/python -u lowD_dd.py /home/nathan/Source/choptuik-large-d-raw-1064w/I1070-dh170/m96.jsonl --start /home/nathan/scratch1070/I927-mac/inputs/lowDhm_x0.000625-0.9_D3.1500_M128.npz --Ms 96 --nodes 0.000625,0.00125,0.0025,0.005,0.01,0.02,0.05,0.1,0.16,0.23,0.3,0.4,0.5,0.6,0.7,0.8,0.9 --kt 36 --kcs 100 --ks 250 --jac f64 --tol 1e-29 --threads 4 --tag lowD1070
+== 2026-11-21 22:39:17 UTC stage 1 Newton call 1 landed: newton 0: |F| 7.31e-04 |dz| 1.48e+00 lam 1 dDelta +1.48e-06 Delta 2.961321170059160 piv 3.1e-04..2.3e+01  t 22.8s; checkpoint copied, max|F| 8.518e-07, planted +1e-20 reads 8.518e-07
+== 2026-11-21 22:39:17 UTC stage 1 call 1: decide -> stop-control
+== 2026-11-21 22:39:17 UTC call 1 stop-control: TERM to pids [1216326, 1216327, 1216328], the session this script started (by exact pid)
+== 2026-11-21 22:39:18 UTC STOP: stage 1 did not reach a converged M 96 state (verdict stop-control, max|F| after the calls [8.518e-07]); stage 2 not started
+== 2026-11-21 22:39:18 UTC done

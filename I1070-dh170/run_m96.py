@@ -20,14 +20,19 @@ NODES = "0.000625,0.00125,0.0025,0.005,0.01,0.02,0.05,0.1,0.16,0.23,0.3,0.4,0.5,
 CKPT = f"{WT}/hp/data/lowD_states/lowD1070_D3.1500_M96_ckpt.npz"
 FINAL = f"{WT}/hp/data/lowD_states/lowD1070_D3.1500_M96.npz"
 M96 = f"{P}/states/lowD1070_D3.1500_M96.npz"
-CONV, FLOOR, GAIN = 1e-27, 1e-26, 2.0
+CONV, FLOOR, GAIN, VIS = 1e-27, 1e-26, 2.0, 1e-22
 
 
-def decide(Fs, ctl, conv=CONV, floor=FLOOR, gain=GAIN):
-    """Fs: the measured max|F| of the checkpoints after Newton calls 1..n; ctl: the planted +1e-20 control reading. Returns 'stop-control', 'converged', 'floor', 'stalled' or 'continue'."""
-    if not (abs(ctl - 1e-20) < 1e-22):
-        return "stop-control"
+def decide(Fs, ctl, conv=CONV, floor=FLOOR, gain=GAIN, vis=VIS):
+    """Fs: the measured max|F| of the checkpoints after Newton calls 1..n; ctl: the planted +1e-20 control reading. Returns 'stop-control', 'converged', 'floor', 'stalled' or 'continue'.
+    The planted 1e-20 changes max|F| only where max|F| is below about 1e-22 (vis): there the reading must be 1e-20 within 1e-22. Above it the max masks the plant, and the reading
+    must be at least the as-saved max|F| (a plant cannot lower it)."""
     F = Fs[-1]
+    if F <= vis:
+        if not abs(ctl - 1e-20) < 1e-22:
+            return "stop-control"
+    elif not ctl >= F * (1 - 1e-3):
+        return "stop-control"
     if F <= conv:
         return "converged"
     if F <= floor and len(Fs) >= 2 and F > Fs[-2] / gain:
@@ -38,12 +43,13 @@ def decide(Fs, ctl, conv=CONV, floor=FLOOR, gain=GAIN):
 
 
 def selftest(mutate):
-    g = 1.2 if mutate else GAIN
-    cases = [(([1e-12, 3e-20, 2e-28], 1e-20), "converged"), (([1e-12, 4e-27], 1e-20), "continue"), (([1e-12, 4e-27, 3e-27], 1e-20), "floor"), (([1e-12, 4e-27, 1e-27 * 1.5], 1e-20), "continue"),
-             (([1e-12, 1e-20, 6e-21, 5e-21], 1e-20), "stalled"), (([1e-12, 2e-28], 3e-21), "stop-control"), (([1e-12, 1e-22], 1e-20), "continue")]
+    g, v = (1.2, 1e30) if mutate else (GAIN, VIS)
+    cases = [(([1e-12, 3e-20, 2e-28], 1e-20), "converged"), (([1e-12, 4e-27], 1e-20), "continue"), (([1e-12, 4e-27, 3e-27], 1e-20), "floor"), (([1e-12, 4e-27, 1.5e-27], 1e-20), "continue"),
+             (([1e-12, 1e-20, 6e-21, 5e-21], 1e-20), "stalled"), (([1e-12, 2e-28], 3e-21), "stop-control"), (([1e-12, 1e-22], 1e-20), "continue"),
+             (([8.518e-07], 8.518e-07), "continue"), (([8.518e-07], 1e-08), "stop-control"), (([1e-12, 4e-12, 9e-13], 1.2e-12), "continue"), (([1e-9, 5e-23], 5e-23), "stop-control")]
     ok = True
     for (Fs, ctl), want in cases:
-        got = decide(Fs, ctl, gain=g)
+        got = decide(Fs, ctl, gain=g, vis=v)
         print(f"selftest: {'pass' if got == want else 'FAIL'}: Fs {Fs} ctl {ctl}: want {want}, got {got}")
         ok &= got == want
     return ok
