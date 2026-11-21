@@ -381,3 +381,37 @@ It replaces the planted check above (`subdom.py scan`):
 stops too. Its mu drifts up as the point weakens (+0.57, +0.63, +0.71), and it misses the 0.5% bar on s. Dividing out
 the pair does not make it better than the plain estimator in this plant. The estimator is not run on a real series.
 Reading (1), the position, runs at the next bases.
+
+## The conformal-map route: fixed 2026-11-21 14:57:55 UTC (the coordinator's order, before any planted or real run)
+
+**Order.** Reading (1) comes first, over the next three new bases. If the position does not hold, this route stops
+there. If it holds, the planted check below runs. Only if that passes does the estimator run on the three bases of (1).
+
+**The map** (`confmap.py`). A Möbius map of the unit disk onto the disk |h − c| < R, with R = s2 − c:
+h = φ(w) = c + R (w − a) / (1 − a w), a = c / R. It sends w = 0 to h = 0 and w = 1 to the real point s2. Its other
+images:
+- the conjugate pair s1 and P2 = 258.3606 ± 2.2688i map outside the unit disk;
+- infinity maps to w = 1/a.
+
+c is chosen on a grid of 0.001 to maximize the smallest of |w(s1)|, |w(P2)| and 1/a. For the plant's geometry
+(262.3756, s2 2.8) that is c 1.264: pair at |w| 1.2105, P2 at 1.3676, infinity at 1.2152, the real point at 1. At a
+real base, s1 is the base's nearest stable pole off the axis, and s2 is the real stable pole from `locate`, minus D0.
+
+**The mapped estimator.**
+- Delta's c_1..c_N are composed with φ to give the series d_1..d_N of f(φ(w)), exactly from c_1..c_N, since φ(0) = 0.
+- `singularity_type.dlog_fit` is applied to d.
+- Its real pole w* maps back to s = φ(w*). The exponent is unchanged by the map.
+
+**The planted check** (`confmap.py scan`, the strict protocol of 14:53:52):
+- the plant of `subdom.py`: the pair at s1 = −0.2946 + 0.9729i with A1 from `amp`, and the real square-root point
+  at 2.8, N 31, noise 1e-12, with |A2|/|A1| = 6.5497 / 2^j;
+- j* is the first j at which the plain Dlog (unmapped) fails the bars (|mu − 0.5| ≤ 0.05, |s − 2.8| ≤ 0.014) on the
+  square-root-pair plant;
+- at j*, j* + 1 and j* + 2, the mapped estimator must meet the bars for the square-root pair and for the pole pair;
+- `--mutate=move` must fail at each of the six: the point is built at 3.3, the map is built for 2.8, and it is judged
+  against 2.8;
+- reported, not judged: the plant with P2 added (as a square-root pair, at A1's amplitude), and the map built with s2
+  off by 0.01 and with s1 off by 0.006.
+
+If it fails, the type stays not resolved at N 31. If it passes, the type comes from the median mu over the three
+bases of (1): within 0.1 of 1/2 a fold, within 0.2 of −1 a pole, otherwise not resolved.
