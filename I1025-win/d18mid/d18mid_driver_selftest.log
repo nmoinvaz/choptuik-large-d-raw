@@ -1,0 +1,6 @@
+== 2026-11-21 13:35:04 started quick pid 9996: C:/Users/nathan/Source/venv-md510/Scripts/python.exe -c import time; print('quick', flush=True); time.sleep(12) > C:/Users/nathan/Source/d18mid_1025/d18mid_selftest_a.log
+== 2026-11-21 13:35:04 started slow pid 12268: C:/Users/nathan/Source/venv-md510/Scripts/python.exe -c import time; print('slow', flush=True); time.sleep(600) > C:/Users/nathan/Source/d18mid_1025/d18mid_selftest_b.log
+== 2026-11-21 13:35:24 quick pid 9996 ended with exit 0 after 20 s
+== 2026-11-21 13:35:34 CAP 30 s: killed slow pid 12268 (and its children) by exact pid: SUCCESS: The process with PID 3932 (child process of PID 12268) has been terminated.
+SUCCESS: The process with PID 12268 (child process of PID 10868) has been terminated. 
+== 2026-11-21 13:35:40 selftest: [0, 'killed at the cap']; 16 sample rows, field counts {12}; dummy processes alive afterwards 0; ok

@@ -1,0 +1,16 @@
+== B = ok
+A: 13 records, B: 14 records
+REPEAT CHECK at lambda 1.82: sign A -1 B -1; ln|det| A -1923.5081549673966 B -1923.5081546673966, difference 3.000e-07 (bar 1e-6); noise robust A True B True; float64 sig
+merged 26 points (1.70 to 1.95) into vtest/merged_ok.jsonl
+== B = bad_ln
+A: 13 records, B: 14 records
+REPEAT CHECK at lambda 1.82: sign A -1 B -1; ln|det| A -1923.5081549673966 B -1923.5081249673967, difference 3.000e-05 (bar 1e-6); noise robust A True B True; float64 sig
+the repeat check failed: no merged scan
+== B = bad_sign
+A: 13 records, B: 14 records
+REPEAT CHECK at lambda 1.82: sign A -1 B +1; ln|det| A -1923.5081549673966 B -1923.5081549673966, difference 0.000e+00 (bar 1e-6); noise robust A True B True; float64 sig
+the repeat check failed: no merged scan
+== B = short
+A: 13 records, B: 5 records
+REPEAT CHECK at lambda 1.82: sign A -1 B -1; ln|det| A -1923.5081549673966 B -1923.5081549673966, difference 0.000e+00 (bar 1e-6); noise robust A True B True; float64 sig
+missing lambda: [1.87, 1.88, 1.89, 1.9, 1.91, 1.92, 1.93, 1.94, 1.95] -> no merged scan
