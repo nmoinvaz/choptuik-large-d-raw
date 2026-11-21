@@ -167,3 +167,8 @@ Written before the run (criteria in `d18/d18_criteria.log`, 2026-11-21 03:31:59 
   Beside it: `d18/d18_refsign_steps.log` (two of three flips line up with an inner step change, one does not) and
   `d18/d18_refsign_parity.log` (the root-count parity each state's own signs imply; `d18/d18_refsign_parity.py`, with copies of dh170's
   D 17.75 scans). Not "the convention holds", so (e) did not run (`d18/lane_d18e.log`); the coordinator rules.
+- 2026-11-21 16:17:22 UTC, the coordinator's rulings after the check, **windows written before each runs** (`d18/lane_d18f.sh`, d18_criteria.log):
+  (iii) lambda 1.20 on the leap's D 18.3125, 18.375, 18.4375 (localizes the 1.20 flip between D 18.25 and 18.5); (ii) D 18.25 over
+  **1.20 to 1.55 at 0.05**, then 0.01 inside each bracket; (i) (e) as queued, as maps within one state. A robust change places the
+  crossing root. Roots are tracked across D by position and continuity within each state's map; orientation enters across D only
+  through the reference signs. (iv), the dd sign at 1.20 for D 18 and 18.0625, goes to winb.

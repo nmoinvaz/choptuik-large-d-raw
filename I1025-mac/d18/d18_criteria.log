@@ -139,3 +139,21 @@ D 18.5 root. The pass rules are unchanged (d18_check.py 08969ea2, then signtest.
    The reading is not "the convention holds", so lane_d18e.sh stopped before (e) (16:13:03), as written; the coordinator rules.
    Beside it (d18_refsign_steps.log): flips lined up with an inner step change at 17.75 -> 18 and 18.25 -> 18.5, not at 18 -> 18.0625;
    inner step changes without a flip at 18.0625 -> 18.125 and 18.125 -> 18.1875. Parity each state's own signs imply: d18_refsign_parity.log.
+== 2026-11-21 16:17:22 the coordinator's rulings after the sign-convention check (hc), in this order, one process at a time (lane_d18f.sh), written before
+   each runs. From now on roots are tracked across D by position and continuity within each state's map; orientation enters across D
+   only through the reference signs. (iv), the dd M sign at 1.20 for D 18 and 18.0625, goes to winb (a dd sign that disagrees with the
+   hybrid's voids the crossing reading there).
+   (iii) the hybrid sign at **lambda 1.20** (noise test, float64 beside) on the leap's states D 18.3125, 18.375, 18.4375 (record 08f4dbf3),
+       read in D order with the check's D 18.25 (+) and D 18.5 (-). Reading (the coordinator's): a robust change places the crossing root,
+       here between the two consecutive states whose signs differ. Mine: more than one change is listed, the coordinator rules; a
+       non-robust point is not counted.
+   (ii) D 18.25 (eae8ca02): the hybrid over **lambda 1.20 to 1.55 at 0.05 (8 points)**, 1.20 repeating the check's and 1.55 (b)'s; then
+       **at 0.01 inside each bracket with a sign change** (4 points each; more than 4 brackets: STOP). Reading (the coordinator's): a robust
+       change places the crossing root. Mine: read on the merged points; one robust change in 1.20-1.55 places it (0.01 bracket,
+       estimator range); more than one: listed, the coordinator rules; ln|det| minima without a change are reported (a pair closer than
+       0.05 can hide there, not refined unless the coordinator rules); repeated points must agree (sign, ln|det| to 1e-6).
+   (i) (e) as queued, windows unchanged (D 18.5 2.10-2.40, then D 18.25 1.95-2.25, 31 points each), as maps within one state, not as
+       orientation tests across D. Reading unchanged: a plus-to-minus root in the window, in that state's own signs, places the rising
+       eigenvalue; its delta against lambda_0 at that D (d18e_read.py 24ef6598).
+   d18f_read.py (blob 5fb96dce): 6 planted cases PASS, --mutate=refine (each bracket one coarse step too low) FAILS (d18f_read_selftest.log).
+   lane_d18f.sh started 16:19:06 UTC.
