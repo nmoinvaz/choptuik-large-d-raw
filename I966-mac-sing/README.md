@@ -366,3 +366,18 @@ It replaces the planted check above (`subdom.py scan`):
 - If no j up to 40 has the plain Dlog failing, or the divided-out estimator fails at any of the six, the type stays
   not resolved at N 31. `scan` exits 0 when the check passes, 2 otherwise.
 - Reading (1) runs as set.
+
+### Result of the amended type check (`subdom_scan.txt`, 2026-11-21 14:55 UTC file time, exit 2; 6.3 s, 42 MB)
+
+| j | \|A2\|/\|A1\| | plain Dlog, square-root pair | divided-out, square-root pair | divided-out, pole pair | move control |
+|---|---|---|---|---|---|
+| 0 | 6.5497 | s 2.7964, mu +0.5163: meets | | | |
+| 1 | 3.2749 | s 2.7958, mu +0.5292: meets | | | |
+| 2 (j*) | 1.6374 | s 2.7803, mu +0.5686: fails | s 2.7834, mu +0.5707: FAIL | s 2.7898, mu +0.5617: FAIL | fails at both |
+| 3 | 0.8187 | | s 2.7649, mu +0.6264: FAIL | s 2.7823, mu +0.6186: FAIL | fails at both |
+| 4 | 0.4094 | | s 2.7352, mu +0.7143: FAIL | s 2.7587, mu +0.7090: FAIL | fails at both |
+
+**The type stays not resolved at N 31.** Where the plain Dlog stops recovering the point, the divided-out estimator
+stops too. Its mu drifts up as the point weakens (+0.57, +0.63, +0.71), and it misses the 0.5% bar on s. Dividing out
+the pair does not make it better than the plain estimator in this plant. The estimator is not run on a real series.
+Reading (1), the position, runs at the next bases.
