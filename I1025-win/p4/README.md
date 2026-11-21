@@ -56,7 +56,18 @@ The driver's header line prints `multidouble ?` because the package has no `__ve
 
 ## Status
 
-First push, after the cross-check (`p4_w.log`, 20:51:02 UTC). Rows 2 to 4 are running. The Result section is written at the last push.
+Progress push at 2026-11-21 03:31 UTC (the coordinator asked for progress): rows 1 to 3 are done and PASS, row 4 is running (7 evaluations, 1.61e-03 bracket). `p4_w.log` and `ell_p4_hybrid_1025_w.jsonl` hold rows 1 to 3; `p4_rows/D16.25.log` is the live log of row 4 (partial). The Result section is written at the last push.
+
+### Rows so far (UTC; 4 threads, BelowNormal)
+
+| row | D, k_c | lambda (hybrid) | minus float64 record | evaluations | final bracket | noise robust | time | verdict |
+|---|---|---|---|---|---|---|---|---|
+| 1, cross-check | 16, 55 | 2.2440427049579905 | +1.4147e-03 | 13 | 2.77e-08 | True | 6722 s, 18:58:54 to 20:51:01 | PASS |
+| 2 | 15.5, 63 | 2.3361355728260387 | +4.5299e-04 | 12 | 3.22e-08 | True | 10953 s, 20:51:02 to 23:53:40 (beside the #1058 hp build) | PASS |
+| 3 | 14.5, 55 | 2.4960783095120362 | -9.922e-07 | 15 | 2.49e-08 | True | 8057 s, 23:53:40 to 02:08:03 | PASS |
+| 4 | 16.25, 63 | running | | 7 at 03:27:09 (3 grid + 4 Brent) | [2.195797442666, 2.197411200000] = 1.61e-03 | so far True | started 02:08:04 | running |
+
+Row 4 so far: record system true (abs(F) 1.8842488019e-10 against 1.8839637548e-10, 2890 steps against 2890); grid 2.153463 (-1), 2.197411 (+1), 2.241359 (+1), one sign change; the float64 record 2.196430918 lies inside the bracket. Rows 1 to 3 needed 5, 3 and 5 more evaluations after the bracket first fell under 2e-03, so row 4 needs 3 to 5 more. Time per evaluation (setup included): 517 s (row 1), 913 s (row 2, with the build), 537 s (row 3), 678 s (row 4 so far). ETA 04:01 to 04:23 UTC, about 04:12; the row timeout is 06:08:04 UTC.
 
 ### Cross-check, row 1: PASS
 

@@ -166,3 +166,81 @@
 ++ command -v cygpath
 ++ cygpath -m C:/Users/nathan/Source/p4_1025/raw/I1025-win2c/out/sol_l1kc63Fz1025_D15.5000.npy
 + timeout 14400 nice -n 10 C:/Users/nathan/Source/venv-md510/Scripts/python.exe -u C:/Users/nathan/Source/p4_1025/raw/I1025-mac/p4_hybrid.py C:/Users/nathan/Source/p4_1025/raw/I1025-win2c/out/l1kc63Fz1025.jsonl C:/Users/nathan/Source/p4_1025/raw/I1025-win2c/out/sol_l1kc63Fz1025_D15.5000.npy 15.5
++ rc=0
++ grep -E '^D |^  lam' C:/Users/nathan/Source/p4_1025/I1025-win/p4/p4_rows/D15.5.log
++ tr -d '\r'
+++ tr -d '\r'
+++ grep -E '^D 15.5(\.0)? k_c [0-9]+ hybrid: lam'
+++ tail -1
++ line='D 15.5 k_c 63 hybrid: lam 2.3361355728260387 minus record 0.00045299021400246886; grid changes 1, changes over all 12 evaluations 1, bracket width 3.223946531960564e-08, noise-robust True (10953 s)'
++ '[' 0 = 0 ']'
++ '[' -n 'D 15.5 k_c 63 hybrid: lam 2.3361355728260387 minus record 0.00045299021400246886; grid changes 1, changes over all 12 evaluations 1, bracket width 3.223946531960564e-08, noise-robust True (10953 s)' ']'
+++ tail -1 C:/Users/nathan/Source/p4_1025/I1025-win/p4/ell_p4_hybrid_1025_w.jsonl
+++ C:/Users/nathan/Source/venv-md510/Scripts/python.exe -c $'import sys, json; r = json.loads(sys.stdin.read())\nok = r["record_system"] and r["n_signchanges_grid"] == 1 and r["n_changes_all"] == 1 and r["noise_robust"] and (r["bracket_width"] or 1) <= 1e-7\nprint(("PASS" if ok else "FAIL") + " lam " + repr(r["lam"]))'
+++ tr -d '\r'
++ v='PASS lam 2.3361355728260387'
++ fails=0
++ say 'row D 15.5: PASS lam 2.3361355728260387'
++ tee -a C:/Users/nathan/Source/p4_1025/I1025-win/p4/p4_w.log
+++ date -u '+%Y-%m-%d %H:%M:%S'
++ echo '== 2026-11-20 23:53:40 row D 15.5: PASS lam 2.3361355728260387'
+== 2026-11-20 23:53:40 row D 15.5: PASS lam 2.3361355728260387
++ summary=$'\nD 16: PASS lam 2.2440427049579905\nD 15.5: PASS lam 2.3361355728260387'
++ '[' 0 = 1 ']'
++ '[' 0 -ge 2 ']'
++ read -r rec st D
++ '[' -z I1025-mac/out/l1kc55Fb1025.jsonl ']'
++ say 'row D 14.5: p4_hybrid.py I1025-mac/out/l1kc55Fb1025.jsonl I1025-mac/out/sol_l1kc55Fb1025_D14.5000.npy 14.5'
++ tee -a C:/Users/nathan/Source/p4_1025/I1025-win/p4/p4_w.log
+++ date -u '+%Y-%m-%d %H:%M:%S'
++ echo '== 2026-11-20 23:53:40 row D 14.5: p4_hybrid.py I1025-mac/out/l1kc55Fb1025.jsonl I1025-mac/out/sol_l1kc55Fb1025_D14.5000.npy 14.5'
+== 2026-11-20 23:53:40 row D 14.5: p4_hybrid.py I1025-mac/out/l1kc55Fb1025.jsonl I1025-mac/out/sol_l1kc55Fb1025_D14.5000.npy 14.5
+++ wp C:/Users/nathan/Source/p4_1025/raw/I1025-mac/p4_hybrid.py
+++ command -v cygpath
+++ cygpath -m C:/Users/nathan/Source/p4_1025/raw/I1025-mac/p4_hybrid.py
+++ wp C:/Users/nathan/Source/p4_1025/raw/I1025-mac/out/l1kc55Fb1025.jsonl
+++ command -v cygpath
+++ cygpath -m C:/Users/nathan/Source/p4_1025/raw/I1025-mac/out/l1kc55Fb1025.jsonl
+++ wp C:/Users/nathan/Source/p4_1025/raw/I1025-mac/out/sol_l1kc55Fb1025_D14.5000.npy
+++ command -v cygpath
+++ cygpath -m C:/Users/nathan/Source/p4_1025/raw/I1025-mac/out/sol_l1kc55Fb1025_D14.5000.npy
++ timeout 14400 nice -n 10 C:/Users/nathan/Source/venv-md510/Scripts/python.exe -u C:/Users/nathan/Source/p4_1025/raw/I1025-mac/p4_hybrid.py C:/Users/nathan/Source/p4_1025/raw/I1025-mac/out/l1kc55Fb1025.jsonl C:/Users/nathan/Source/p4_1025/raw/I1025-mac/out/sol_l1kc55Fb1025_D14.5000.npy 14.5
++ rc=0
++ grep -E '^D |^  lam' C:/Users/nathan/Source/p4_1025/I1025-win/p4/p4_rows/D14.5.log
++ tr -d '\r'
+++ tr -d '\r'
+++ grep -E '^D 14.5(\.0)? k_c [0-9]+ hybrid: lam'
+++ tail -1
++ line='D 14.5 k_c 55 hybrid: lam 2.4960783095120362 minus record -9.92198240901132e-07; grid changes 1, changes over all 15 evaluations 1, bracket width 2.4901248174558077e-08, noise-robust True (8057 s)'
++ '[' 0 = 0 ']'
++ '[' -n 'D 14.5 k_c 55 hybrid: lam 2.4960783095120362 minus record -9.92198240901132e-07; grid changes 1, changes over all 15 evaluations 1, bracket width 2.4901248174558077e-08, noise-robust True (8057 s)' ']'
+++ tail -1 C:/Users/nathan/Source/p4_1025/I1025-win/p4/ell_p4_hybrid_1025_w.jsonl
+++ C:/Users/nathan/Source/venv-md510/Scripts/python.exe -c $'import sys, json; r = json.loads(sys.stdin.read())\nok = r["record_system"] and r["n_signchanges_grid"] == 1 and r["n_changes_all"] == 1 and r["noise_robust"] and (r["bracket_width"] or 1) <= 1e-7\nprint(("PASS" if ok else "FAIL") + " lam " + repr(r["lam"]))'
+++ tr -d '\r'
++ v='PASS lam 2.4960783095120362'
++ fails=0
++ say 'row D 14.5: PASS lam 2.4960783095120362'
++ tee -a C:/Users/nathan/Source/p4_1025/I1025-win/p4/p4_w.log
+++ date -u '+%Y-%m-%d %H:%M:%S'
++ echo '== 2026-11-21 02:08:03 row D 14.5: PASS lam 2.4960783095120362'
+== 2026-11-21 02:08:03 row D 14.5: PASS lam 2.4960783095120362
++ summary=$'\nD 16: PASS lam 2.2440427049579905\nD 15.5: PASS lam 2.3361355728260387\nD 14.5: PASS lam 2.4960783095120362'
++ '[' 0 = 1 ']'
++ '[' 0 -ge 2 ']'
++ read -r rec st D
++ '[' -z I1025-win2b/out/l1kc63Fu1025.jsonl ']'
++ say 'row D 16.25: p4_hybrid.py I1025-win2b/out/l1kc63Fu1025.jsonl I1025-win2b/out/sol_l1kc63Fu1025_D16.2500.npy 16.25'
+++ date -u '+%Y-%m-%d %H:%M:%S'
++ tee -a C:/Users/nathan/Source/p4_1025/I1025-win/p4/p4_w.log
++ echo '== 2026-11-21 02:08:04 row D 16.25: p4_hybrid.py I1025-win2b/out/l1kc63Fu1025.jsonl I1025-win2b/out/sol_l1kc63Fu1025_D16.2500.npy 16.25'
+== 2026-11-21 02:08:04 row D 16.25: p4_hybrid.py I1025-win2b/out/l1kc63Fu1025.jsonl I1025-win2b/out/sol_l1kc63Fu1025_D16.2500.npy 16.25
+++ wp C:/Users/nathan/Source/p4_1025/raw/I1025-mac/p4_hybrid.py
+++ command -v cygpath
+++ cygpath -m C:/Users/nathan/Source/p4_1025/raw/I1025-mac/p4_hybrid.py
+++ wp C:/Users/nathan/Source/p4_1025/raw/I1025-win2b/out/l1kc63Fu1025.jsonl
+++ command -v cygpath
+++ cygpath -m C:/Users/nathan/Source/p4_1025/raw/I1025-win2b/out/l1kc63Fu1025.jsonl
+++ wp C:/Users/nathan/Source/p4_1025/raw/I1025-win2b/out/sol_l1kc63Fu1025_D16.2500.npy
+++ command -v cygpath
+++ cygpath -m C:/Users/nathan/Source/p4_1025/raw/I1025-win2b/out/sol_l1kc63Fu1025_D16.2500.npy
++ timeout 14400 nice -n 10 C:/Users/nathan/Source/venv-md510/Scripts/python.exe -u C:/Users/nathan/Source/p4_1025/raw/I1025-mac/p4_hybrid.py C:/Users/nathan/Source/p4_1025/raw/I1025-win2b/out/l1kc63Fu1025.jsonl C:/Users/nathan/Source/p4_1025/raw/I1025-win2b/out/sol_l1kc63Fu1025_D16.2500.npy 16.25
