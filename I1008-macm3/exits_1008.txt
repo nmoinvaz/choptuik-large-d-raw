@@ -52,3 +52,8 @@
 1008m chk_old start (series check at run3's first base, nice 19), code main 9980cd9355cc195c03851f7a0ae65cd272403048, venv /Users/nathan/Source/venv-macm3-main/bin/python: hpkernel.__file__ /Users/nathan/Source/venv-macm3-main/lib/python3.14/site-packages/hpkernel/__init__.py isa neon multidouble isa neon multidouble /Users/nathan/Source/venv-macm3-main/lib/python3.14/site-packages/multidouble/__init__.py python 3.14.3 ; state I1008-macm3/run2/arc_006_D259.565880.npz, cap 14400 s, a0 0.033899993896484376, F md5 a4a4301bd5773c0cd0565aaa2ada4666, ARC md5 95d6d9cef1a1ad0a0aecf9e46cdfad37 2026-11-21 02:11:23 UTC
 1008m chk_series_watch.py watches chk_old, anm_run pid 70031: stops it once its series is saved, then compares it with run3/arcjet_000 2026-11-21 02:11:25 UTC
 1008m run3 arc step 13 accepted at its first attempt (a 0.004237499237060547, D 259.57435544360826, record 02:48:34 UTC); run continues, next first attempt a 0.005296874046325684 by the a_grow rule 2026-11-21 02:50:00 UTC
+1008m chk_old: series line seen; SIGTERM anm_run pid 70031 2026-11-21 03:25:01 UTC
+1008m chk_old exit 241 wall 4423s 2026-11-21 03:25:06 UTC
+1008m chk_old: compare_arcjet.py rc 1: NOT EQUAL. 2026-11-21 03:25:06 UTC
+1008m chk_series_watch.py ends 2026-11-21 03:25:06 UTC
+1008m chk_old result: series at run2/arc_006_D259.565880.npz on the old code and kernel (9980cd93, venv-macm3-main) is bit-identical to run3/arcjet_000 (153800 doubles; meta equal apart from run3's extra key exact_recip); chk_old_compare.txt 2026-11-21 03:26:17 UTC

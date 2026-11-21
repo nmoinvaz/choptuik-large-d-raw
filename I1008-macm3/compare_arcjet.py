@@ -18,8 +18,10 @@ P(f"A {a_path}\nB {b_path}")
 if sorted(A.files) != sorted(B.files):
     P(f"STRUCTURE MISMATCH: keys {sorted(A.files)} vs {sorted(B.files)}"); sys.exit(2)
 ma, mb = json.loads(str(A["meta"])), json.loads(str(B["meta"]))
-meta_eq = {k: (ma.get(k) == mb.get(k)) for k in sorted(set(ma) | set(mb))}
-P("meta fields equal (exact):", ", ".join(f"{k} {v}" for k, v in meta_eq.items()))
+meta_eq = {k: (ma[k] == mb[k]) for k in sorted(set(ma) & set(mb))}
+only_a, only_b = {k: ma[k] for k in sorted(set(ma) - set(mb))}, {k: mb[k] for k in sorted(set(mb) - set(ma))}
+P("meta fields in both files, equal (exact):", ", ".join(f"{k} {v}" for k, v in meta_eq.items()))
+P(f"meta keys only in A: {only_a or 'none'}; only in B: {only_b or 'none'} (not compared; the code that wrote the newer file adds keys)")
 Z = {}
 for q in range(8):
     za, zb = np.ascontiguousarray(A[f"z{q}"]), np.ascontiguousarray(B[f"z{q}"])
@@ -32,7 +34,7 @@ nd = {q: int(bit_ne[q].sum()) for q in range(8)}
 P(f"shape per part ({N1}, {L}); elements that differ bitwise per part: " + ", ".join(f"z{q} {nd[q]}" for q in range(8)) + f" of {N1 * L} each")
 equal = all(v == 0 for v in nd.values()) and all(meta_eq.values())
 if equal:
-    P("EQUAL: every part of every order is bit-identical, and the meta fields (D_str, N, parts, jet, norms, pivots) are identical.")
+    P("EQUAL: every part of every order is bit-identical, and the meta fields present in both files (" + ", ".join(meta_eq) + ") are identical.")
     sys.exit(0)
 P("NOT EQUAL.")
 P("\n| order k | parts that differ | elements that differ (of all parts) | largest part-wise relative difference \\|a-b\\|/\\|a\\| | at part | full-value relative difference, element-wise max | full-value relative difference, norm-wise (max-norm) |\n|---|---|---|---|---|---|---|")

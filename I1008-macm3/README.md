@@ -954,3 +954,26 @@ The first |dz| is 9.50e-16 and the predicted max|F| 1.03e-36, so the gain first 
 From arc_001 the first |dz| is x0.061 and the predicted max|F| x0.23 of what they were from arc_006 for the same target, and at the same a (0.0042375, step 12's accepted attempt, target D 259.5701) x0.11 and x0.41. So the gain is not a function of the target D alone: statement 2's rise with D compares points from different bases, and the one pair at one D shows x0.26 here. Every attempt from arc_006 has been hard (4 attempts, 3 refused, 15 corrections for the accepted one); the one attempt so far from a base that run3 made itself is easy. I do not know the cause. The series check on `venv-macm3-main` at arc_006 (code 9980cd93, nice 19, started 02:11:23 UTC, in the base polish at 02:48 UTC) will say whether the kernel differs at that base.
 
 Next attempt: a_prev x 1.25 = 0.004237499237060547 x 1.25 = 0.005296874046325684 (D move 0.0052968508), which I will check against the next attempt's D move when its log line prints. At that a the 0.328914 to 259.903269724106 is 77.6 steps; the 12 steps that remain of `--steps 14` could cover 0.2871 at most (to D 259.8615) if each is accepted at its first attempt with growth. The cap leaves 15.37 h. I changed no flag and restarted nothing; run3 goes on to its cap as ordered.
+
+### Series check: run3's first base on the old kernel, equal (2026-11-21 03:26 UTC)
+
+Result: **equal.** The series at `run2/arc_006_D259.565880.npz` (D 259.565880482281, N 24) formed by the old code and kernel is bit for bit the series run3 formed on main 8179068d and the new kernel. There is no part-wise relative difference to report: it is 0 at every order.
+
+| | old (the check) | new (run3) |
+|---|---|---|
+| code | `choptuik-large-d-1008` at 9980cd93 | `choptuik-large-d-1008b` at 8179068d |
+| kernel | `venv-macm3-main`, `_hpkernel` .so sha1 baaf3435bca7 | `venv-macm3-1058b`, 6d8213c28d71 |
+| series path | the jets (this hpkernel has no `Solver.series_o`) | `series_o` |
+| priority | nice 19, beside run3 | nice 10, alone |
+| series seconds | 1825.8 | 274.4 |
+| arcjet file | `chk_old/arcjet_000_D259.565880.npz` | `run3/arcjet_000_D259.565880.npz` |
+
+What was compared (`compare_arcjet.py`): the eight parts z0 to z7 of the series, each 25 orders x 769 elements, as 64-bit patterns. 0 of 19225 elements differ in each part, 153800 doubles in all. The meta fields present in both files (D_str, N, jet, norms, parts, pivots) are identical. The only difference is a key: run3's file has `exact_recip: 0`, which the new code adds. The base polish before the series also agrees line for line apart from the times: strong chord theta 6.454e-34, max|F| 8.84e-38 -> 4.68e-71 in 2 steps, Delta moved -3.97e-39, pivots 2.3e-30..1.4e+37, |w_1| 3.260e-04, |w_N| 6.313e-24.
+
+How it ran: `chk_series_old.sh` is run3's command with the output folder `chk_old` and `--steps 1` (a token diff against run3's `ps` line shows only those two differences), `--threads 6`, no `--arc_jet`. It started at 02:11:23 UTC, formed the series (about 02:54:35 to 03:25:01 UTC), and `chk_series_watch.py` stopped it by the exact pid 70031 once the series line printed. No attempt started (0 `attempt at D` lines). Run3 went on beside it unchanged: step 13 was accepted at 02:48:34 UTC, 0.70 h after step 12.
+
+The script's first verdict was NOT EQUAL with an empty per-order table, because it counted the extra `exact_recip` key as a difference. I changed it to compare the keys both files have and to list the others; the first output is kept as `chk_old_compare_first.txt`. Its controls: identical input gives EQUAL, and one planted ulp in part 3 at order 17 is found (part-wise relative difference 1.131e-16, order 17, part 3, 1 of 25 orders).
+
+So the kernel's series does not explain the hard attempts from arc_006. The old build's log shows what else it lacks: `Solver.residual_sub` and `Solver.jacobian_sub` (the re-seed's ladder takes the full residual and Jacobian), `Solver.newton_o_residual` (PinnedO), and the octo-tangent Jacobian. The re-seed, the predicted max|F| and the corrector all run after the series, so attempt 1 at arc_006 (predicted max|F| 1.17e-35, first |dz| 4.83e-14 at a 0.0339) is not compared yet.
+
+Next check, not started: the old code with `--arc_jet run3/arcjet_000_D259.565880.npz` (the series is equal, so it is skipped), nice 19, stopped at the first attempt's predicted max|F| and first |dz|, to see whether 1.17e-35 and 4.83e-14 reproduce. The base polish alone took about 43 min beside run3, so it would take about 1.5 to 2 h. I run it when you say so.
