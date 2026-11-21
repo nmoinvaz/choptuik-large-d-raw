@@ -2,6 +2,7 @@
 Readings fixed in I966-mac-sing/README.md (2026-11-21 14:49:34 UTC) before this script read a real series.
     python subdom.py amp CODE JET.npz S1RE S1IM D2 [--json OUT]    amplitudes of the pair and the real point at a base
     python subdom.py planted CODE AMP.json [--mutate=move]          the planted check
+    python subdom.py scan CODE AMP.json                             the amended type check (exit 0 pass, 2 not resolved)
     python subdom.py real CODE JET.npz LOCATE.json                  the estimator on Delta's series at a base
 CODE: the folder holding singularity_type.py and jet_singularity.py (main 607c1df3).
 Estimator: g'/g (g = df/dh, singularity_type.dlog_series) has a simple pole with residue mu - 1 at each algebraic
@@ -149,6 +150,47 @@ def planted(argv):
     return 0 if ok else 1
 
 
+def scan(argv):
+    """the amended type check (README, fixed 2026-11-21 14:53:52 UTC): the plant's |A2|/|A1| = ratio / 2^j until the
+    plain Dlog fails the bars on the square-root-pair plant (j*); then at j*, j* + 1, j* + 2 the divided-out estimator
+    must pass for the square-root pair and the pole pair, and --mutate=move (point at 3.3) must fail at each"""
+    st = st_import(argv[0])
+    mp.mp.dps = DPS
+    a = json.load(open(argv[1]))
+    A1 = complex(*a["A1"])
+    r0 = a["ratio"]
+    sign = 1.0 if a["A2"] >= 0 else -1.0
+    judge = lambda e: e is not None and abs(e[1] - 0.5) <= 0.05 and abs(e[0] - S2) <= 0.005 * S2
+    jstar = None
+    for j in range(0, 41):
+        A2 = sign * abs(A1) * r0 / 2 ** j
+        e_sq = st.dlog_fit(plant(A1, A2, S1, S2, 0.5))
+        e_po = st.dlog_fit(plant(A1, A2, S1, S2, -1.0))
+        print(f"j {j:2d}, |A2|/|A1| {r0 / 2 ** j:.4e}: plain Dlog, square-root pair: {fmt(e_sq)} -> "
+              f"{'meets' if judge(e_sq) else 'FAILS'} the bars; pole pair: {fmt(e_po)} -> {'meets' if judge(e_po) else 'fails'}",
+              flush=True)
+        if not judge(e_sq):
+            jstar = j
+            break
+    if jstar is None:
+        print("the plain Dlog meets the bars at every j up to 40: no plant reproduces its failure on the data; "
+              "type not resolved at N 31")
+        return 2
+    ok = True
+    for j in (jstar, jstar + 1, jstar + 2):
+        A2 = sign * abs(A1) * r0 / 2 ** j
+        for name, mu1 in (("square-root pair", 0.5), ("pole pair", -1.0)):
+            e = sub_dlog(st, plant(A1, A2, S1, S2, mu1), S1)
+            em = sub_dlog(st, plant(A1, A2, S1, S2 + 0.5, mu1), S1)
+            good, moved = judge(e), judge(em)
+            ok &= good and not moved
+            print(f"j {j:2d}, |A2|/|A1| {r0 / 2 ** j:.4e}, {name}: divided-out Dlog {fmt(e)} -> {'PASS' if good else 'FAIL'}; "
+                  f"--mutate=move {fmt(em)} -> {'fails (as required)' if not moved else 'PASSES (control did not fire)'}",
+                  flush=True)
+    print(f"type check (j* = {jstar}): {'PASS: the estimator may read the type' if ok else 'FAIL: type not resolved at N 31'}")
+    return 0 if ok else 2
+
+
 def real(argv):
     code, jet, loc = argv[0], argv[1], argv[2]
     st = st_import(code)
@@ -176,6 +218,8 @@ if __name__ == "__main__":
         sys.exit(amp(sys.argv[2:]))
     if cmd == "planted":
         sys.exit(planted(sys.argv[2:]))
+    if cmd == "scan":
+        sys.exit(scan(sys.argv[2:]))
     if cmd == "real":
         sys.exit(real(sys.argv[2:]))
     sys.exit(__doc__)
