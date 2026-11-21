@@ -53,4 +53,24 @@ Code: scans from worktree `choptuik-i1025-lowd` at 505d8399 (`P4_WT_MATTER`; the
 
 ## Status
 
-Not started (18:20 UTC).
+Done 2026-11-21 21:48:29 UTC; the result is in the section below.
+
+
+## Result (2026-11-21 18:20:58 to 21:48:29 UTC; written 21:57 UTC): the root ROSE through 1.20
+
+Both states ran xfkappa's (ii) to its end: the 12 points at 0.05 (D 18.0625 ended 20:51:58 after 9060 s, D 18 at 20:53:28 after 9150 s), the refine step (`rows/refine_*.log`) gave the 0.01 points 1.26, 1.27, 1.28, 1.29 (D 18.0625) and 1.16, 1.17, 1.18, 1.19 (D 18), one bracket each, and the fine scans ended 21:45:13 (D 18.0625, 3195 s) and 21:47:18 (D 18, 3230 s), exit 0. No cap was hit. Every point is noise-robust (16 per state, the 12 coarse and 4 fine); the float64 sign equals the hybrid's at all 32, and its sign changes are in the same two 0.01 brackets.
+
+**The read is on my own points** (`read_D18.0625_noref.log`, `read_D18_noref.log`, `read_scanlow_noref_1025.log`). The read that includes xfkappa's check file (`read_D18.0625.log`, `read_D18.log`, `read_scanlow_1025.log`, the driver's default summary) prints STOP-level for D 18 (the repeated 1.20 point disagrees by +3.4e-06 in ln|det|: my value -1929.5742506441 against the Mac's -1929.5742472863; D 18.0625 differs by +1.55e-06, -1923.7847401605 against -1923.7847417121, same signs at both): a value from the Mac against a value from this laptop, with a 1e-6 bar. The two reads give the same changes, the same positions and the same ranges; only the repeat flag differs.
+
+| state | hybrid signs (16 points) | robust change | position: det-linear, four-estimator range (information, not a bound) | ln\|det\| minima |
+|---|---|---|---|---|
+| D 18.0625 | plus at 1.00 to 1.28, minus at 1.29 to 1.55 | (1.28, 1.29), plus to minus | 1.286725, [1.286725, 1.286798] | 1.29 (ln -1927.1872, 0.72 and 1.45 below its neighbours), beside the change; none without a change |
+| D 18 | plus at 1.00 to 1.17, minus at 1.18 to 1.55 | (1.17, 1.18), plus to minus | 1.172260, [1.172260, 1.172327] | 1.17 (ln -1932.1668, 1.65 and 1.23 below its neighbours), beside the change; none without a change |
+
+ln|det| at D 18.0625: 1.00 -1919.042, 1.05 -1920.507, 1.10 -1921.780, 1.15 -1922.860, 1.20 -1923.785, 1.25 -1924.807, 1.26 -1925.124, 1.27 -1925.581, 1.28 -1926.468, 1.29 -1927.187, 1.30 -1925.738, 1.35 -1923.901, 1.40 -1922.934, 1.45 -1922.118, 1.50 -1921.365, 1.55 -1920.652. At D 18: 1.00 -1925.731, 1.05 -1927.584, 1.10 -1928.733, 1.15 -1929.947, 1.16 -1930.521, 1.17 -1932.167, 1.18 -1930.936, 1.19 -1930.065, 1.20 -1929.574, 1.25 -1928.247, 1.30 -1927.348, 1.35 -1926.560, 1.40 -1925.840, 1.45 -1925.177, 1.50 -1924.571, 1.55 -1924.028. Each state has one dip, beside its change; no minimum without a change in the window, so the 0.05 grid shows no hidden pair of roots in 1.00 to 1.55 on either state.
+
+**Reading (the coordinator's, fixed before the run): a robust change in (1.20, 1.30) at D 18.0625 and one in (1.00, 1.20) at D 18: the root ROSE through 1.20.** Its rate from the two positions: (1.286725 - 1.172260) / 0.0625 = **+1.8314 per unit D** (the extremes of the two ranges give +1.8304 to +1.8326).
+
+Against the 1.3885 root at D 18.25 (xfkappa's (ii), range [1.388522, 1.388581]), the numbers only: from D 18.0625 (1.286725) to D 18.25 a track would need +0.5428 per unit D; from D 18 (1.172260) to D 18.25, +0.8650 per unit D; the rate between D 18 and D 18.0625 is +1.8314. The comparison, one track or two roots, is the coordinator's.
+
+CPU and memory (`rows/scanlow_samples.csv`, every 60 s, 810 rows; peaks are the process counters, read at the end): the four scan pythons (BelowNormal, up to 13 threads): D 18.0625 coarse 12939 cpu s in 9060 s (1.43 cores on average) and fine 4524 cpu s in 3195 s (1.42); D 18 coarse 13087 cpu s in 9150 s (1.43) and fine 4497 cpu s in 3230 s (1.39); working set peak 1.056 GB and private bytes peak 1.63 GB in each. Laptop: cpu 27 to 84 %; free memory from 25.3 GB down to **1.39 GB** and commit up to 37.0 GB of the 41.3 GB limit, because of another job on this laptop (a 19 GB working-set, 25 GB private python that is not mine; the harness stopped my background waiter at about 20:5x for it); nothing of mine was stopped and no scan was affected.
