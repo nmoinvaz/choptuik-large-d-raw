@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """table1064f.py DIR | --selftest [--break]: the readings of run1064f.sh (#1064, the largest order a polish reaches at D 237.7132) from DIR: per run (ks307 the control, ks331, ks347: <label>.log,
-exits_1064f.txt, delta1064_<label>.json) the gate's verdict, exit and wall, the start |F| (the first 'on 0: |F|' value), the lines of the octo-double corrector (the first strong chord and each step with
+exits_1064f.txt, delta1064_<label>.json) the verdict of gate1064f.py (converged with max|F| <= 1e-60, GMAX1064F for a dry test), exit and wall, the start |F| (the first 'on 0: |F|' value), the lines of the octo-double corrector (the first strong chord and each step with
 |F| before -> after, lam and seconds, or converged) and, for a converged rung, Delta(K) - Delta(307).
 Reading (the coordinator's, fixed before the run): the largest converging K is the order for a new chain from D 237.7.
 --selftest runs planted logs and the #973 log of the stored state's own polish through the same parser, each with its expected cells, and exits 0 when all are as expected; --break flips one expectation and must exit 1."""
@@ -77,7 +77,7 @@ def table(d):
         if not os.path.exists(log):
             continue
         text = open(log, errors="replace").read()
-        g = subprocess.run([sys.executable, f"{here}/gate1064.py", log, f"{d}/{L}"], capture_output=True, text=True).stdout.strip()
+        g = subprocess.run([sys.executable, f"{here}/gate1064f.py", log, f"{d}/{L}", os.environ.get("GMAX1064F", "1e-60")], capture_output=True, text=True).stdout.strip()
         m = re.search(rf"1064 {L} exit (\S+) wall (\d+) s", exits)
         capped = re.search(rf"1064 {L} cap ", exits) is not None
         dj = f"{d}/delta1064_{L}.json"
