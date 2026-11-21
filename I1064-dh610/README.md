@@ -68,3 +68,12 @@ Both failed the gate and both stopped themselves (exit 0, no cap): `exits_1064b.
 Dry test of `run1064b.sh` (`dry_b/`, `check_dry1064b.txt`): passed; its ks 293 base is byte-identical to the control's in all eight parts.
 
 Second rung: no leg 14 state is flagged at a Delta share of 0.9 or more (dh170's #1057 read of D 261.6229, 08:26 UTC: 0.693), so ks 301 with 305 from the D 261.0721 state, as the coordinator's rule says (`run1064b.sh` with `R1_1064B="301 305"`, unit `i1064d`, memory log `memlog_1064d.log`).
+
+## ks 301 and 305 stopped; ks 293, 295 and 297 from D 261.6229 (coordinator, 08:54 UTC 21 Nov)
+
+Unit `i1064d` (ks 301 and 305 from D 261.0721, `run1064b.sh` with `R1_1064B="301 305"`, from 08:53:51 UTC) was stopped at the coordinator's order: TERM to its exact pids 1018097 and 1018102 at 08:54:47 UTC, both exit 143 after 60 s (no cap line; `exits_1064b.txt`). `ks301.log` and `ks305.log` hold the first minute only and are no result.
+
+Instead: ks 293 (the control) alone, then ks 295 and 297 side by side, from `I966-dh370/ks_chain3b/leg14_D261.1415_ks293/anm_pin3_D261.6229.npz` (blob e0737904cb191e88a688df2e3968222c0920d3e5, extracted from raw origin/main commit 98e9e284), same flags (leg 13's line, as for every rung), gate and 7200 s caps. Folder `leg14_D261.6229/`, script `run1064c.sh` (env `ST1064C`, `STBLOB1064C`, `TAG1064C`, `R_1064C`), unit `i1064e` from 09:02:12 UTC, memory log `memlog_1064e.log`.
+Reading (the coordinator's): small jumps converging here while 315 and 316 fail (win2's, comment 7060065590) means a ladder of small raises can lift the order; all failing means the raise waits for a state past the crossing (Delta share at or above 0.9).
+
+Dry tests before the unit (`dry_c1/`, `dry_c2/`, `check_dry1064c.txt` in each; `check_dry1064c.py` has a selftest of nine cases and `--break` exits 1): pass path (control converged in 120 s, max|F| 2.0e-36; ks 297 killed at the 240 s cap by its exact pid; the control against the stored state has Delta difference 0.0, xcheck passes) and control-failed path (control killed at 45 s, `control failed: rungs not started`, no rung started). Both passed.
