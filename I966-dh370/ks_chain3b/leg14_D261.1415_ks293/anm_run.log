@@ -443,3 +443,32 @@ step 24: D 263.443893754, pivots 2.3e-20..4.7e+51, |z_1| 3.19e-04, |z_N| 1.19e-1
   on 0: |F| 9.74e-25 -> 1.62e-11, |dz| 2.82e-22 -> 1.23e-22, lam 0.5, dDelta -2.82e-22, piv 1.4e-17..3.6e+51, 925.63 s
     on 1 trial lam 1: max|F| 4.52e-22; raw |dz_t| 2.642e-22 vs |dz| 1.234e-22 (not <); refused, 314.3 s
   on 1: |F| 1.62e-11 -> 1.16e-14, |dz| 1.23e-22 -> 2.44e-23, lam 0.5, dDelta +1.23e-22, piv 1.3e-19..3.6e+51, 626.1 s
+    on 2 trial lam 1: max|F| 5.96e-24; raw |dz_t| 2.269e-22 vs |dz| 2.444e-23 (not <); refused, 317.76 s
+    on 2 trial lam 0.5: max|F| 5.16e-22; raw |dz_t| 2.147e-22 vs |dz| 2.444e-23 (not <); refused, 306.23 s
+    on 2 trial lam 0.25: max|F| 5.67e-19; raw |dz_t| 2.064e-22 vs |dz| 2.444e-23 (not <); refused, 314.07 s
+    on 2 trial lam 0.125: max|F| 1.35e-17; raw |dz_t| 2.057e-22 vs |dz| 2.444e-23 (not <); refused, 315.42 s
+    on 2 trial lam 0.0625: max|F| 6.78e-16; raw |dz_t| 5.779e-23 vs |dz| 2.444e-23 (not <); refused, 332.69 s
+    on 2 trial lam 0.03125: max|F| 8.31e-13; raw |dz_t| 5.898e-23 vs |dz| 2.444e-23 (not <); refused, 294.85 s
+    on 2 trial lam 0.015625: max|F| 1.33e-12; raw |dz_t| 7.181e-23 vs |dz| 2.444e-23 (not <); refused, 295.06 s
+    on 2 trial lam 0.0078125: max|F| 1.25e-11; raw |dz_t| 5.477e-23 vs |dz| 2.444e-23 (not <); refused, 294.51 s
+    on 2 trial lam 0.00390625: max|F| 3.15e-17; raw |dz_t| 2.853e-22 vs |dz| 2.444e-23 (not <); refused, 316.41 s
+  on 2: |F| 1.16e-14, |dz| 2.44e-23: no trial step accepted, stopping
+      elim projections {'u0': 0, 'u0q': 0, 'ladder': 0, 'failed': 1, 'skipped': 0, 'u0o_refused': 16, 'pred': 15}
+      octo-double Newton: 3 steps, max|F| 1.2e-14, not converged; double-double |F| of its first two parts 1.3e+32
+    a 0.085 -> D 263.52853203: predicted |F| 1.68e+31, od 3 steps -> 1.29e+32 (tol 2.4e-20), Delta 1.682867523200 (formula diff -2.2e-06), moved 7.9e-23, 4840 s
+    a 0.0423: re-seeded (ok), 140.65 s
+      horizon data refined in octo-double, rung max|R| 8.66e-12 -> 4.98e-22 -> 4.98e-22 -> 1.36e-28 -> 1.90e-28 -> 1.33e-28
+    on 0 chord 0: max|F| 2.05e-10, |dw| 2.328e-31
+    on 0 chord 1: max|F| 8.79e+22, |dw| 1.867e+23
+  on 0: strong chord (4 weak directions), 2 steps after the full first step; theta at its point inf (bound 0.750): refused, 581.73 s
+  on 0: |F| 4.93e-26 -> 2.05e-10, |dz| 1.42e-22 -> 1.22e-24, lam 1, dDelta -1.42e-22, piv 2.5e-15..4.2e+51, 867.17 s
+    on 1 trial lam 1: max|F| 4.68e-21; raw |dz_t| 1.217e-24 vs |dz| 1.217e-24 (not <); refused, 314.61 s
+  on 1: |F| 2.05e-10 -> 3.09e-20, |dz| 1.22e-24 -> 6.09e-25, lam 0.5, dDelta -1.22e-24, piv 2.4e-20..4.2e+51, 629.24 s
+  on 2: |F| 3.09e-20 -> 5.34e-27, |dz| 6.09e-25 -> 7.32e-30, lam 1, dDelta +6.09e-25, piv 2.4e-20..4.2e+51, 307.15 s
+  on 3: |F| 5.34e-27 -> 3.46e-28, |dz| 7.32e-30 -> 9.00e-40, lam 1, dDelta +7.32e-30, piv 2.4e-20..4.2e+51, 337.7 s
+  on 4: |F| 3.46e-28 -> 1.19e-41, |dz| 9.00e-40 -> 2.22e-48, lam 1, dDelta +9.00e-40, piv 2.4e-20..4.2e+51, 134.93 s
+  on 5: |F| 1.19e-41 converged, Delta 1.68287368730333364 -6.2564e-17
+      elim projections {'u0': 0, 'u0q': 0, 'ladder': 0, 'failed': 1, 'skipped': 0, 'u0o_refused': 8, 'pred': 7, 'u0o': 1}
+      octo-double Newton: 6 steps, max|F| 1.2e-41, converged; double-double |F| of its first two parts 8.2e+31
+    a 0.042 -> D 263.486212892: predicted |F| 4.06e+32, od 6 steps -> 8.18e+31 (tol 2.4e-20, stall accepted, Delta correction +0.0e+00), Delta 1.682873687303 (formula diff -2.2e-06), moved 1.4e-22, 2607 s
+      Delta of the saved state, its eight parts summed exactly: 1.682873687303333580408654581415173730343
