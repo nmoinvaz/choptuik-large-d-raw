@@ -350,3 +350,19 @@ the square-root two-term model does not describe the data, and the data does not
 it. At every fitted ratio, the plain Dlog recovers the planted point.
 
 The estimator has not been run on a real series. Its type reading waits for the coordinator's decision on the plant.
+
+### The type check of (2), as amended: fixed 2026-11-21 14:53:52 UTC (the coordinator's, before any real run)
+
+It replaces the planted check above (`subdom.py scan`):
+
+- The plant is as above: the pair at s1 = −0.2946 + 0.9729i with A1 from `amp`, and the real square-root point at
+  2.8, N 31, noise 1e-12. Only A2 changes: |A2|/|A1| = 6.5497 / 2^j for j = 0, 1, 2, ... (to j = 40 at most).
+- **Realism:** j* is the first j at which the plain Dlog (`singularity_type.dlog_fit`, no division) fails the bars
+  (|mu − 0.5| ≤ 0.05 and |s − 2.8| ≤ 0.014) on the square-root-pair plant, as it fails on the data. The scan's plain
+  results for the pole pair are reported beside it.
+- **Pass:** at j*, j* + 1 and j* + 2, the divided-out estimator meets the same bars on the square-root-pair plant and
+  on the pole-pair plant (mu1 = −1). `--mutate=move` (the point built at 3.3, judged against 2.8) fails at each of the
+  six.
+- If no j up to 40 has the plain Dlog failing, or the divided-out estimator fails at any of the six, the type stays
+  not resolved at N 31. `scan` exits 0 when the check passes, 2 otherwise.
+- Reading (1) runs as set.
