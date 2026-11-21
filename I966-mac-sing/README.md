@@ -585,3 +585,4 @@ anything of the front. The pair 254.6766 ± 3.5009i is at the same place, to 1e-
 `order_compare.py` reads named poles by that rule: for each of P2, P1, the real pole and 254.677 ± 3.501i, the
 most-populated stable cluster within 0.1 of it in each jet. That is the read value. The pairing of all poles is
 reported beside it.
+| 262.8471 | 9c9ba932 | 262.0871 ± 0.9709i (9 approximants) | 1.2381, 1.2383, −0.02% | PASS (0), FAIL (1) | 262.8519 (+30.7), no Dlog estimate |
