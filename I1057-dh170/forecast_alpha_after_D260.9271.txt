@@ -1,0 +1,16 @@
+# registered 2026-11-21 02:13:45 UTC, before any state past D 260.9271 is read (alpha1057.py, states through D 260.9271)
+        D  share v1  share v2       w  alpha deg  rate deg/D
+ 260.2515    0.9870    0.0052  0.9922       4.13            
+ 260.4708    0.9599    0.0323  0.9922      10.39        28.5
+ 260.6706    0.7810    0.2113  0.9922      27.48        85.5
+ 260.8483    0.4979    0.4943  0.9922      44.90        98.0
+ 260.9271    0.4353    0.5569  0.9922      48.52        46.0
+item (e): share of v2 >= 0.9 needs alpha >= 72.2 degrees (w 0.9922); last step's rate 46.0 deg/D reaches it 0.52 of D past D 260.9271 (a lower bound on the distance if the rate keeps falling)
+forecast, registered alpha1057.py: share of v2 = w sin^2(alpha), alpha = 48.52 + r (D - 260.9271), r between 0 and 46.0 deg/D
+        D  v2 share, r=0  v2 share, r=last/2  v2 share, r=last
+ 261.0000          0.557               0.586             0.614
+ 261.0500          0.557               0.605             0.652
+ 261.1000          0.557               0.625             0.690
+ 261.2000          0.557               0.663             0.760
+ 261.4000          0.557               0.735             0.879
+ 261.6000          0.557               0.802             0.959
