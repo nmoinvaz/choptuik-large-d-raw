@@ -1,0 +1,10 @@
+# 2026-11-21 00:23:57 UTC cmd: python3 -u anm_run.py /home/nathan/Source/choptuik-large-d-raw /home/nathan/Source/choptuik-large-d-raw/I1054-dh610/resolve242.2102_r0 --state /home/nathan/Source/choptuik-large-d-raw/I1054-dh610/cont241_r0/anm_pin3_D242.2102.npz --kfreeze 3 --held_fit data/held_fit.json --held_o 1 --N 31 --jet_o 1 --corrector od --tol_od 1e-60 --qd_it 40 --lam_stall 0.04 --od_junk 0 --reseed 2 --reseed_q 1 --reseed_o 3 --od_accept natural --od_strong 4 --reseed_start pred --reseed_qd_bar 1e-21 --threads 10 --steps 0 --save_base 1 --log_proj 1 --exact_recip 0
+held values from the fit data/held_fit.json (degree 8, 138 full-system states, D 38.020417-73.0), relative to the base
+the base keeps its stored plan (61 steps)
+  on 0: |F| 8.61e-73 converged, Delta 1.68626168852240710 +4.8540e-17
+      elim projections {'u0': 0, 'u0q': 0, 'ladder': 0, 'failed': 0, 'skipped': 1}
+      octo-double Newton: 1 steps, max|F| 8.6e-73, converged; double-double |F| of its first two parts 8.8e+05
+base polish saved as /home/nathan/Source/choptuik-large-d-raw/I1054-dh610/resolve242.2102_r0/base_pin3_D242.2102.npz
+base /home/nathan/Source/choptuik-large-d-raw/I1054-dh610/cont241_r0/anm_pin3_D242.2102.npz: D 242.210237122, M 32, pin 3 (held [5, 7, 9, 11, 13]), |F| 8.8e+05; N 31, eps 1e-16, h_max 2.0, corrector od (junk_only False), tol 1.0e-20 x 1.45^(D - 242.21024), stalls accepted below 1e-17
+done
+exit 0
