@@ -482,7 +482,7 @@ itself to reach D 265.
   any of the six.
 - **N 63, M 3..19** (`scanN63.txt`, 144.9 s, 41 MB): j* = 2 (plain Dlog s 2.7898, mu +0.5558). The mapped estimator
   passes one of six (square-root pair at j 2: s 2.7938, mu +0.5484). The divided-out estimator passes none.
-- The move control fails at every one of the 24 runs per N.
+- The move control fails at all 12 of its runs per N (3 ratios, 2 pair types, 2 estimators).
 
 | N | j* | plain Dlog at j* (s, mu) | divided-out: passes of 6 | mapped: passes of 6 | mapped, square-root pair, mu at j 2, 3, 4 |
 |---|---|---|---|---|---|
