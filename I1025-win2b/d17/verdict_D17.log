@@ -1,0 +1,7 @@
+D 17.0 k_c 71 hybrid: lam 2.0400263140919073, guess 2.0392799 (+0.037%), window 0.02, grid [1.9984943, 2.0392799, 2.0800655]
+  edge distances (grid steps from the interval's lower, upper edge; from the outer grid point): [0.018, 0.982, 0.982]
+  record_system ok, grid_changes ok, changes_all ok, noise_robust ok, bracket ok, edge ok -> PASS
+signtest: lam 2.020026314 signs [-1.0, -1.0, -1.0, 1.0] agree False (64 sv below 1e-12, 688.6 s); lam 2.060026314 signs [1.0, 1.0, -1.0, 1.0] agree False (64 sv below 1e-12, 608.8 s); system line same True -> FAIL
+hybrid minus the Mac's float64 record 2.0379024670520076: +2.123847e-03
+k_c ERROR at D 17: lambda_71(17) - 2.0399399392 = +8.637489e-05 (D 16.5: -6.631269e-04; the guess assumed -6.6e-4: guess 2.0392799 -> root minus guess +7.464141e-04)
+VERDICT D 17.0 k_c 71: FAIL (rules pass, signtest FAIL) lam 2.0400263140919073
