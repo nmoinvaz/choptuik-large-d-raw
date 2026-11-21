@@ -102,3 +102,5 @@ Written before the run (criteria in `d18/d18_criteria.log`, 2026-11-21 03:31:59 
   is - at 1.70-1.77, + at 1.78-1.80, - at 1.81-1.90, two sign changes in (1.77, 1.78) and (1.80, 1.81), every point
   noise-robust (`d18/d18_scan.log`, `d18/d18_scan_1025.jsonl`); estimates and delta in `d18/d18_scan_place.log`
   (`d18_scan_place.py`). win2's dd M gave -, +, - at the first grid (comment 7059272560).
+  The post's numbers (gap, slopes from D 17 and 17.5): `d18/d18_post_numbers.py`, `d18/d18_post_numbers.log`; it reads
+  `d18/winb_p4hi_rowA_copy.jsonl`, a copy of `I1025-win/p4_highD/ell_p4_hybrid_1025_w_highD.jsonl` at raw 8452bfa5.
