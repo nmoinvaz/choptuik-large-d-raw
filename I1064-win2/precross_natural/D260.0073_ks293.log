@@ -1,0 +1,10 @@
+# 2026-11-21 12:25:23 UTC cmd: C:/Users/nathan/Source/venv-i1058b/Scripts/python.exe -u anm_run.py D:/choptuik-large-d-raw-push D:/choptuik-i935-raw/I1064-win2/precross_natural/D260.0073_ks293 --state I966-dh370/ks_chain3b/leg10_D256.1776_ks293/anm_pin3_D260.0073.npz --kfreeze 3 --held_fit data/held_fit.json --N 31 --eps 1e-14 --h_max 2 --threads 10 --corrector od --tol_od 2e-34 --qd_it 40 --lam_stall 0.04 --od_junk 0 --jet_o 1 --reseed 2 --reseed_q 1 --held_o 1 --reseed_o 3 --save_pred 1 --od_accept natural --save_jet 1 --od_strong 4 --reseed_start pred --a_rule reseed --a_scale 0.000715 --jet_tangent_from 1 --series_split 1 --a_rise 1 --proj_start pred --reseed_o_stop 1 --od_floor_delta 1e-30 --proj_o 1 --reseed_qd_bar 1e-13 --steps 0 --ks 293 --keep_plan 0 --save_base 1 --D_max 270.8483
+horizon series to order 293 instead of the state's 293
+held values from the fit data/held_fit.json (degree 8, 138 full-system states, D 38.020417-73.0), relative to the base
+  on 0: |F| 3.97e-36 converged, Delta 1.68339065769672547 +7.7616e-18
+      elim projections {'u0': 0, 'u0q': 0, 'ladder': 0, 'failed': 0, 'skipped': 0, 'u0o': 1}
+      octo-double Newton: 1 steps, max|F| 4.0e-36, converged; double-double |F| of its first two parts 7.1e+30
+base polish saved as D:/choptuik-i935-raw/I1064-win2/precross_natural/D260.0073_ks293\base_pin3_D260.0073.npz
+base I966-dh370/ks_chain3b/leg10_D256.1776_ks293/anm_pin3_D260.0073.npz: D 260.007266321, M 32, pin 3 (held [5, 7, 9, 11, 13]), |F| 7.1e+30; N 31, eps 1e-14, h_max 2.0, corrector od (junk_only False), tol 1.0e-20 x 1.45^(D - 260.00727), stalls accepted below 1e-17
+done
+exit 0
