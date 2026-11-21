@@ -450,3 +450,26 @@ For the square-root pair, mu is within 10% at j 2 and 4, but s misses the 0.5% b
 over approximants in mu are 1.0 to 1.2. Unjudged at j 2: P2 added gives s 2.9763, mu +0.4147; s2 + 0.01 and s1 + 0.006
 give s 2.84, mu +0.54. **By the fixed protocol, the type stays not resolved at N 31.** The mapped estimator is not run
 on a real series.
+
+## The plant protocol at N 47 and N 63: fixed 2026-11-21 16:45:57 UTC (the coordinator's, before the run)
+
+**Reading** (the coordinator's): the order of a one-off series to compute at D 262.7908 is the smallest N at which one
+of the two estimators (divided-out or mapped) passes all six. If neither passes by N 63, the type waits for the chain
+itself to reach D 265.
+
+**What changes with N** (`scanN.py N`; written before it runs):
+- The geometry is the same: s1 = −0.2946 + 0.9729i, s2 2.8, A1 and the start ratio 6.5497 from `amp`, noise 1e-12,
+  P2 for the map. The plant gains orders 32 to N.
+- j* is found again at each N, with the plain Dlog at that N's degrees.
+- **The Padé degrees grow with N.** As written, both estimators use M 3 to 9 (L ≤ M + 1). So they read at most the
+  first 21 coefficients, and the plants' first 31 coefficients and noise draws are the same at every N. With those
+  degrees, N 47 and N 63 would repeat N 31 exactly and could not decide anything. So M runs from 3 to
+  M_max = ⌊(N − 1)/3⌋ − 1, which uses the same two thirds of the Dlog series as at N 31:
+  - N 31: M_max 9, as before;
+  - N 47: M_max 14;
+  - N 63: M_max 19.
+
+  The same rule holds for the plain Dlog (`singularity_type.MS`), the divided-out estimator and the mapped one.
+- As a check that this reasoning holds, `scanN.py N --mmax 9` runs the old degrees at N 47 and must reproduce N 31's
+  verdicts.
+- Bars, pair types, the move control and exits are unchanged: exit 0 when one estimator passes all six, 2 otherwise.
