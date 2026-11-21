@@ -1,0 +1,70 @@
+2026-11-20 21:29:42 UTC  start (second); worktree C:\Users\nathan\Source\choptuik-i1058-hp, venv C:\Users\nathan\Source\venv-i1058
+2026-11-20 21:29:42 UTC  worktree HEAD 8179068da460fe6be81312602e4c9987d17d73a3
+2026-11-20 21:29:42 UTC  venv reused; multidouble/hpkernel entries in site-packages: []
+2026-11-20 21:29:42 UTC  first link on PATH (windows): C:\Program Files\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\bin\HostX64\x64\link.EXE
+2026-11-20 21:29:42 UTC  $ C:\Program Files\Git\usr\bin\bash.exe -c type -a link | head -3; type -a bash | head -3; command -v rustc cargo git nice; rustc --version; cargo --version
+link is /c/Program Files/Microsoft Visual Studio/18/Community/VC/Tools/MSVC/14.51.36231/bin/HostX64/x64/link
+link is /usr/bin/link
+bash is /c/Users/nathan/AppData/Local/Microsoft/WindowsApps/bash
+bash is /usr/bin/bash
+/c/Users/nathan/.cargo/bin/rustc
+/c/Users/nathan/.cargo/bin/cargo
+/cmd/git
+/usr/bin/nice
+rustc 1.95.0 (59807616e 2026-04-14)
+cargo 1.95.0 (f2d3ce0bd 2026-03-21)
+2026-11-20 21:29:43 UTC  exit 0 after 0.6 s
+2026-11-20 21:29:43 UTC  env CARGO_PROFILE_RELEASE_LTO=false
+2026-11-20 21:29:43 UTC  env CARGO_PROFILE_RELEASE_CODEGEN_UNITS=16
+2026-11-20 21:29:43 UTC  env PIP_NO_CACHE_DIR=1
+2026-11-20 21:29:43 UTC  env CARGO_BUILD_JOBS=None
+2026-11-20 21:29:43 UTC  $ C:\Users\nathan\Source\venv-i1058\Scripts\python.exe -m pip uninstall -y multidouble
+WARNING: Skipping multidouble as it is not installed.
+2026-11-20 21:29:44 UTC  exit 0 after 0.9 s
+2026-11-20 21:29:44 UTC  multidouble uninstall exit 0 (a warning that it is not installed is fine)
+2026-11-20 21:29:44 UTC  $ C:\Users\nathan\Source\venv-i1058\Scripts\python.exe -m pip list --format=freeze
+maturin==1.16.0
+mpmath==1.3.0
+numpy==2.5.4
+pip==26.2.2
+python-flint==0.9.0
+scipy==1.18.1
+sympy==1.14.0
+2026-11-20 21:29:45 UTC  exit 0 after 0.6 s
+2026-11-20 21:29:45 UTC  build start (hp/build.sh): CARGO_PROFILE_RELEASE_LTO=false CARGO_PROFILE_RELEASE_CODEGEN_UNITS=16
+2026-11-20 21:29:45 UTC  $ C:\Program Files\Git\usr\bin\bash.exe -c cd /c/Users/nathan/Source/choptuik-i1058-hp/hp && /usr/bin/bash build.sh
+2026-11-20 23:29:50 UTC  exit 0 after 7205.9 s (output in hp1058b_build_output.log)
+2026-11-20 23:29:50 UTC  hp/build.sh exit 0, build time 7206 s (120.1 min)
+2026-11-20 23:29:50 UTC  multidouble-5.1.0.dist-info direct_url.json: {"subdirectory": "python", "url": "https://github.com/nmoinvaz/multidouble", "vcs_info": {"commit_id": "8c4360ac0be804d081faeea524e5c1c6e2fffaaa", "requested_revision": "8c4360ac0be804d081faeea524e5c1c6e2fffaaa", "vcs": "git"}}
+2026-11-20 23:29:50 UTC  $ C:\Users\nathan\Source\venv-i1058\Scripts\python.exe -I -c import hpkernel, multidouble; print('hpkernel', hpkernel.isa(), 'multidouble', multidouble.isa(), multidouble.__file__)
+hpkernel avx512 multidouble avx512 C:\Users\nathan\Source\venv-i1058\Lib\site-packages\multidouble\__init__.py
+2026-11-20 23:29:51 UTC  exit 0 after 0.2 s
+2026-11-20 23:29:51 UTC  $ C:\Users\nathan\Source\venv-i1058\Scripts\python.exe -m pip list --format=freeze
+hpkernel==0.1.0
+maturin==1.16.0
+mpmath==1.3.0
+multidouble==5.1.0
+numpy==2.5.4
+pip==26.2.2
+python-flint==0.9.0
+scipy==1.18.1
+sympy==1.14.0
+2026-11-20 23:29:51 UTC  exit 0 after 0.4 s
+2026-11-20 23:29:51 UTC  check ref: python highm_check.py ref --compare=C:/Users/nathan/Source/hp1058_winb/raw/T81/ref_main.json --Ms=48,64,80
+2026-11-20 23:29:51 UTC  $ C:\Users\nathan\Source\venv-i1058\Scripts\python.exe -u highm_check.py ref --compare=C:/Users/nathan/Source/hp1058_winb/raw/T81/ref_main.json --Ms=48,64,80
+2026-11-20 23:31:59 UTC  exit 0 after 128.2 s (output in check_ref.log)
+2026-11-20 23:31:59 UTC  check ref: exit 0 (as expected), 128 s
+2026-11-20 23:31:59 UTC  check scaled: python highm_check.py scaled --compare=C:/Users/nathan/Source/hp1058_winb/raw/T81/scaled_main.json
+2026-11-20 23:31:59 UTC  $ C:\Users\nathan\Source\venv-i1058\Scripts\python.exe -u highm_check.py scaled --compare=C:/Users/nathan/Source/hp1058_winb/raw/T81/scaled_main.json
+2026-11-20 23:49:33 UTC  exit 0 after 1053.6 s (output in check_scaled.log)
+2026-11-20 23:49:33 UTC  check scaled: exit 0 (as expected), 1054 s
+2026-11-20 23:49:33 UTC  check jets: python highm_check.py jets --compare=C:/Users/nathan/Source/hp1058_winb/raw/anm-mac/jets_inputs/jets_inputs.json
+2026-11-20 23:49:33 UTC  $ C:\Users\nathan\Source\venv-i1058\Scripts\python.exe -u highm_check.py jets --compare=C:/Users/nathan/Source/hp1058_winb/raw/anm-mac/jets_inputs/jets_inputs.json
+2026-11-20 23:53:11 UTC  exit 0 after 218.0 s (output in check_jets.log)
+2026-11-20 23:53:11 UTC  check jets: exit 0 (as expected), 218 s
+2026-11-20 23:53:11 UTC  check jets_mutate_kappa: python highm_check.py jets --compare=C:/Users/nathan/Source/hp1058_winb/raw/anm-mac/jets_inputs/jets_inputs.json --mutate=kappa
+2026-11-20 23:53:11 UTC  $ C:\Users\nathan\Source\venv-i1058\Scripts\python.exe -u highm_check.py jets --compare=C:/Users/nathan/Source/hp1058_winb/raw/anm-mac/jets_inputs/jets_inputs.json --mutate=kappa
+2026-11-20 23:56:50 UTC  exit 1 after 219.5 s (output in check_jets_mutate_kappa.log)
+2026-11-20 23:56:50 UTC  check jets_mutate_kappa: exit 1 (as expected), 219 s
+2026-11-20 23:56:50 UTC  checks: all four as expected {"ref": {"exit": 0, "expected": "0", "ok": true, "sec": 128.2}, "scaled": {"exit": 0, "expected": "0", "ok": true, "sec": 1053.6}, "jets": {"exit": 0, "expected": "0", "ok": true, "sec": 218.0}, "jets_mutate_kappa": {"exit": 1, "expected": "nonzero", "ok": true, "sec": 219.5}}
+2026-11-20 23:56:50 UTC  hp1058b driver done
