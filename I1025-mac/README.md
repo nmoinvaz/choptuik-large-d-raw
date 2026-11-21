@@ -93,3 +93,6 @@ Written before the run (criteria in `d18/d18_criteria.log`, 2026-11-21 03:31:59 
 - Step (2), 2026-11-21 03:38:07 UTC, the coordinator's rulings: the leap D 18 -> 18.5 runs with winb's flags and h 0.0625, seeded with winb's D 17.9375
   and D 18 states (tag l1kc63Wm1025, `d18/lane_d185.sh`), only if D 18 passes. The D 18.5 guess is the line through D 17's hybrid
   root at k_c 63 (2.0399399392) and the D 18 hybrid root; its value goes here before the D 18.5 root. Pass rules unchanged.
+- (B), 2026-11-21 04:38:40 UTC, the coordinator's order after D 18 failed rule (b) (grid -, +, - at 1.75293, 1.78870, 1.82448): the full dd M's sign
+  at 1.788704083622953 and 1.8 against the hybrid's, with ell_ddm's planted control, readings fixed before the run
+  (`d18/d18_dd_criteria.log`, `d18/lane_d18b.sh`); on reading (1), the hybrid scan over 1.70-1.90 at 0.01 follows. The leap stays off.
