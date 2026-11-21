@@ -22,3 +22,30 @@ checks: {"record_system": true, "grid_one_change": true, "all_one_change": true,
 VERDICT D 17.5: FAIL lam 1.9272222575778963
 == 2026-11-21 06:23:26 row A D 17.5: VERDICT D 17.5: FAIL lam 1.9272222575778963
 == 2026-11-21 06:23:26 row B D 17.75: p4_hybrid.py stub_rowB_l1kc63W1025_D17.75_leapline.jsonl I1025-win/out/sol_l1kc63W1025_D17.750000.npy 17.75
+D 17.75 k_c 63 (sol_l1kc63W1025_D17.750000.npy): |F| 2.4283364241e-10 (record 2.4283364241e-10), steps 2598 (record 2598): the record system
+  lam 1.848280000000: hybrid +1 ln|det| -1932.9928400319 (noise 1e-15 on blocks 0-11: [1.0, 1.0])
+  lam 1.886000000000: hybrid -1 ln|det| -1932.0526309654 (noise 1e-15 on blocks 0-11: [-1.0, -1.0])
+  lam 1.923720000000: hybrid -1 ln|det| -1929.9752755697 (noise 1e-15 on blocks 0-11: [-1.0, -1.0])
+  lam 1.858873968062: hybrid +1 ln|det| -1933.4971328445 (noise 1e-15 on blocks 0-11: [1.0, 1.0])
+  lam 1.871944924509: hybrid -1 ln|det| -1933.8776958143 (noise 1e-15 on blocks 0-11: [-1.0, -1.0])
+  lam 1.866638232226: hybrid +1 ln|det| -1935.4211127799 (noise 1e-15 on blocks 0-11: [1.0, 1.0])
+  lam 1.867572417546: hybrid +1 ln|det| -1937.6236370880 (noise 1e-15 on blocks 0-11: [1.0, 1.0])
+  lam 1.867685818993: hybrid -1 ln|det| -1942.8315666645 (noise 1e-15 on blocks 0-11: [-1.0, -1.0])
+  lam 1.867685201726: hybrid +1 ln|det| -1942.9744261213 (noise 1e-15 on blocks 0-11: [1.0, 1.0])
+  lam 1.867685488352: hybrid -1 ln|det| -1945.0907134576 (noise 1e-15 on blocks 0-11: [-1.0, -1.0])
+  lam 1.867685457533: hybrid +1 ln|det| -1943.7057928079 (noise 1e-15 on blocks 0-11: [1.0, 1.0])
+D 17.75 k_c 63 hybrid: lam 1.8676854883516376 minus record -0.018314511648362286; grid changes 1, changes over all 11 evaluations 1, bracket width 3.08190541975506e-08, noise-robust True (8566 s)
+== 2026-11-21 08:46:18 row B D 17.75: hybrid done; signtest at lam -/+ 0.02
+== 2026-11-21 09:04:56 row B D 17.75: signtest exit 0
+D 17.75 k_c 63: hybrid lam 1.8676854883516376, guess 1.886, record lam 1.886, 11 evaluations, bracket [1.8676854575325834, 1.8676854883516376] (width 3.08190541975506e-08), 8566 s
+edge rule (amended 06:30 UTC, outer grid points only): w 0.02, grid [1.84828, 1.886, 1.92372] signs [1.0, -1.0, -1.0], root 1.867685488: 0.514 grid steps from the lower outer point, 1.486 from the upper outer point (bar 0.05) -> pass
+  as first written (both edges of the bracketing interval [1.848280, 1.886000]): 0.514 and 0.486 steps -> pass (not decisive)
+hybrid minus the float64 record (row B: minus the guess): -1.831451e-02
+float64 signtest (no longer a criterion): lam 1.847685488 signs [1.0, 1.0, -1.0, 1.0] agree False (56 sv below 1e-12, 569.7 s); lam 1.887685488 signs [-1.0, -1.0, -1.0, 1.0] agree False (56 sv below 1e-12, 545.7 s) -> fail
+checks: {"record_system": true, "grid_one_change": true, "all_one_change": true, "noise_robust": true, "bracket_le_1e-7": true, "edge_rule_amended_outer_points": true} | informational: {"edge_rule_as_first_written_both_edges_of_interval": true, "float64_signtest_pm_0.02": false}
+VERDICT D 17.75: checks 1-5 and the amended edge rule PASS; dd sign check (ell_ddm at lam -/+ 0.02) PENDING; lam 1.8676854883516376
+== 2026-11-21 09:04:57 row B D 17.75: VERDICT D 17.75: checks 1-5 and the amended edge rule PASS; dd sign check (ell_ddm at lam -/+ 0.02) PENDING; lam 1.8676854883516376
+== 2026-11-21 09:04:57 summary:
+row A D 17.5: VERDICT D 17.5: FAIL lam 1.9272222575778963
+row B D 17.75: VERDICT D 17.75: checks 1-5 and the amended edge rule PASS; dd sign check (ell_ddm at lam -/+ 0.02) PENDING; lam 1.8676854883516376
+== 2026-11-21 09:04:57 p4hi_driver_1025.sh done

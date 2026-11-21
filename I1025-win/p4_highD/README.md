@@ -77,7 +77,7 @@ Timing, estimated from P4's k_c 63 rows (678 to 913 s per evaluation at 4 thread
 
 ## Status
 
-Row A finished 2026-11-21 06:23:26 UTC (FAIL, below). Row B started 06:23:26 (system check true: |F| 2.4283364241e-10 against 2.4283364241e-10, 2598 steps). The Result section for row B is written at the last push.
+Row A finished 2026-11-21 06:23:26 UTC (FAIL, below). Row B ran 06:23:26 to 08:46:18 (system check true: |F| 2.4283364241e-10 against 2.4283364241e-10, 2598 steps); its result is in the section "Row B" below, its dd sign check runs (Amendment 2).
 
 ### Row A, D 17.5 k_c 63: hybrid root 1.9272222575778963, verdict as first computed FAIL (edge rule and signtest); amended below
 
@@ -148,4 +148,24 @@ Reading, accepted: the root passes if the two counting dd signs are opposite, in
 The orientation is reported as information. The coordinator's note: at D 18 win2's dd signs read -, +, - at 1.7529, 1.7887 and 1.8245, so two roots, and the upper one has row B's orientation (plus below, minus above); row A's root at D 17.5 has the usual one; a flip between D 17.5 and D 17.75 would mean a second eigenvalue now lies below this root.
 
 Code: `read_ddB_1025.py` is now version 2 (v1, `read_ddB_1025_v1.py`, had minus-lower/plus-upper only). The running driver calls it with three arguments, unchanged; it reads the hybrid record at the dd records' D from the follow-on's own jsonl. Planted cases (usual and flipped hybrid, dd -/+, +/-, +/+, a disagreeing variant): `read_ddB_selftest_1025.py`, `read_ddB_selftest_1025.log`, all six as wanted.
+
+## Row B, D 17.75 k_c 63: hybrid root 1.8676854883516376; checks 1 to 5 and the amended edge rule PASS; dd sign check pending (08:46:18 to 09:05 UTC)
+
+| quantity | value |
+|---|---|
+| guess (fixed before the run) | 1.8860; root minus guess -1.8315e-02 (stub `lam` is the guess, so this is not a record difference) |
+| search | w 0.02 grid [1.84828, 1.886, 1.92372], signs +1, -1, -1: one change, **plus below and minus above**; 11 evaluations (3 grid + 8 Brent) |
+| root, final bracket | 1.8676854883516376, [1.8676854575325834, 1.8676854883516376], width 3.08e-08 |
+| record system | true (|F| 2.4283364241e-10 against 2.4283364241e-10 in the leap line, 2598 steps against 2598) |
+| sign changes | 1 on the grid, 1 over all 11 evaluations; noise robust True |
+| time | 8566 s, 06:23:26 to 08:46:18 UTC |
+| edge rule (amended: outer grid points) | 0.514 steps from the lower outer point, 1.486 from the upper: pass (as first written, both edges of [1.84828, 1.886]: 0.514 and 0.486: pass) |
+| float64 `signtest.py` at lambda -/+ 0.02 (information only) | lambda 1.847685488: signs [+1, +1, -1, +1], lambda 1.887685488: [-1, -1, -1, +1]; agree False at both; 56 singular values below 1e-12; 569.7 s and 545.7 s |
+| verdict (`rows/verdict_D17.75.log`) | checks 1-5 and the amended edge rule PASS; dd sign check PENDING |
+
+The dd sign check (Amendments 2 and 3) started 08:46:48 UTC by itself: `ell_ddm.py det` on `sol_l1kc63W1025_D17.750000.npy` (blob de9fc3e5) at 1.8476854883516376 (launcher pid 16660, python 6788) and 1.8876854883516376 (launcher pid 9440, python 4984), `--noise 1e-24,1e-20,1e-16`, 4 threads each, BelowNormal, 3 h caps by exact pid (11:46:48 UTC). Logs `rows/ddB_lo.log`, `rows/ddB_hi.log`, `ddB_w.log`.
+
+Orientation, as information (Amendment 3): row B's hybrid reads plus below and minus above; row A's root at D 17.5 and the four P4 rows read minus below and plus above. The coordinator's reading: at D 18 win2's dd signs read -, +, - at 1.7529, 1.7887 and 1.8245 (two roots, the upper with row B's orientation), and a flip between D 17.5 and D 17.75 would mean a second eigenvalue now lies below this root. Whether row B's dd signs flip too is decided by the dd check.
+
+CPU and memory (samples; the hybrid phase of row A was not sampled): row B's hybrid python (11 to 13 threads, BelowNormal): 1.73 cores in a 10 s sample at 06:23:58, 1.66 at 06:27:20, 1.15 at 07:01:58; 1.42 to 1.62 cores since start; working set 0.15 to 0.60 GB (peak 0.90 GB), private 0.47 to 1.08 GB (peak 1.38 GB). The dd pythons (7 threads, BelowNormal) at 08:47:09: 1.11 cores each, working set 0.07 GB (peak 0.10), private 0.45 GB (peak 0.47); laptop CPU 83 % (the float64 signtest ran beside), 14.6 GB free of 31.83 GB, commit 26.1 GB of limit 41.3 GB.
 

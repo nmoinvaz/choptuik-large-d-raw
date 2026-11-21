@@ -330,3 +330,77 @@
 ++ command -v cygpath
 ++ cygpath -m C:/Users/nathan/Source/p4hi_1025/raw/I1025-win/out/sol_l1kc63W1025_D17.750000.npy
 + timeout 21600 C:/Users/nathan/Source/venv-md510/Scripts/python.exe -u C:/Users/nathan/Source/p4hi_1025/raw/I1025-mac/p4_hybrid.py C:/Users/nathan/Source/p4hi_1025/I1025-win/p4_highD/stub_rowB_l1kc63W1025_D17.75_leapline.jsonl C:/Users/nathan/Source/p4hi_1025/raw/I1025-win/out/sol_l1kc63W1025_D17.750000.npy 17.75
++ rc=0
++ grep -E '^D |^  lam' C:/Users/nathan/Source/p4hi_1025/I1025-win/p4_highD/rows/D17.75.log
++ tr -d '\r'
+++ tr -d '\r'
+++ grep -E '^D 17.75(\.0)? k_c [0-9]+ hybrid: lam'
+++ tail -1
++ line='D 17.75 k_c 63 hybrid: lam 1.8676854883516376 minus record -0.018314511648362286; grid changes 1, changes over all 11 evaluations 1, bracket width 3.08190541975506e-08, noise-robust True (8566 s)'
++ v=
++ '[' 0 = 0 ']'
++ '[' -n 'D 17.75 k_c 63 hybrid: lam 1.8676854883516376 minus record -0.018314511648362286; grid changes 1, changes over all 11 evaluations 1, bracket width 3.08190541975506e-08, noise-robust True (8566 s)' ']'
++ echo 'D 17.75 k_c 63 hybrid: lam 1.8676854883516376 minus record -0.018314511648362286; grid changes 1, changes over all 11 evaluations 1, bracket width 3.08190541975506e-08, noise-robust True (8566 s)'
++ grep -q 'lam None'
++ say 'row B D 17.75: hybrid done; signtest at lam -/+ 0.02'
+++ date -u '+%Y-%m-%d %H:%M:%S'
++ tee -a C:/Users/nathan/Source/p4hi_1025/I1025-win/p4_highD/p4hi_w.log
++ echo '== 2026-11-21 08:46:18 row B D 17.75: hybrid done; signtest at lam -/+ 0.02'
+== 2026-11-21 08:46:18 row B D 17.75: hybrid done; signtest at lam -/+ 0.02
++ cd C:/Users/nathan/Source/choptuik-i1025-lowd/solver/matter
+++ wp C:/Users/nathan/Source/p4hi_1025/raw/I1025-mac/signtest.py
+++ command -v cygpath
+++ cygpath -m C:/Users/nathan/Source/p4hi_1025/raw/I1025-mac/signtest.py
+++ wp C:/Users/nathan/Source/p4hi_1025/raw/I1025-win/out/sol_l1kc63W1025_D17.750000.npy
+++ command -v cygpath
+++ cygpath -m C:/Users/nathan/Source/p4hi_1025/raw/I1025-win/out/sol_l1kc63W1025_D17.750000.npy
+++ wp C:/Users/nathan/Source/p4hi_1025/I1025-win/p4_highD/ell_p4_hybrid_1025_w_highD.jsonl
+++ command -v cygpath
+++ cygpath -m C:/Users/nathan/Source/p4hi_1025/I1025-win/p4_highD/ell_p4_hybrid_1025_w_highD.jsonl
++ timeout 7200 C:/Users/nathan/Source/venv-md510/Scripts/python.exe -u C:/Users/nathan/Source/p4hi_1025/raw/I1025-mac/signtest.py C:/Users/nathan/Source/p4hi_1025/raw/I1025-win/out/sol_l1kc63W1025_D17.750000.npy 17.75 63 around=C:/Users/nathan/Source/p4hi_1025/I1025-win/p4_highD/ell_p4_hybrid_1025_w_highD.jsonl:17.75:0.02
++ say 'row B D 17.75: signtest exit 0'
++ tee -a C:/Users/nathan/Source/p4hi_1025/I1025-win/p4_highD/p4hi_w.log
+++ date -u '+%Y-%m-%d %H:%M:%S'
++ echo '== 2026-11-21 09:04:56 row B D 17.75: signtest exit 0'
+== 2026-11-21 09:04:56 row B D 17.75: signtest exit 0
++ RA=
++ '[' - '!=' - ']'
++ tr -d '\r'
+++ wp /c/Users/nathan/Source/p4hi_1025/verdict_p4hi_1025.py
+++ command -v cygpath
+++ cygpath -m /c/Users/nathan/Source/p4hi_1025/verdict_p4hi_1025.py
++ tee C:/Users/nathan/Source/p4hi_1025/I1025-win/p4_highD/rows/verdict_D17.75.log
+++ wp C:/Users/nathan/Source/p4hi_1025/I1025-win/p4_highD/ell_p4_hybrid_1025_w_highD.jsonl
+++ command -v cygpath
+++ cygpath -m C:/Users/nathan/Source/p4hi_1025/I1025-win/p4_highD/ell_p4_hybrid_1025_w_highD.jsonl
+++ wp C:/Users/nathan/Source/p4hi_1025/I1025-win/p4_highD/rows/signtest_D17.75.log
+++ command -v cygpath
+++ cygpath -m C:/Users/nathan/Source/p4hi_1025/I1025-win/p4_highD/rows/signtest_D17.75.log
++ C:/Users/nathan/Source/venv-md510/Scripts/python.exe C:/Users/nathan/Source/p4hi_1025/verdict_p4hi_1025.py C:/Users/nathan/Source/p4hi_1025/I1025-win/p4_highD/ell_p4_hybrid_1025_w_highD.jsonl 17.75 C:/Users/nathan/Source/p4hi_1025/I1025-win/p4_highD/rows/signtest_D17.75.log
+++ grep -E '^VERDICT' C:/Users/nathan/Source/p4hi_1025/I1025-win/p4_highD/rows/verdict_D17.75.log
+++ tail -1
++ v='VERDICT D 17.75: checks 1-5 and the amended edge rule PASS; dd sign check (ell_ddm at lam -/+ 0.02) PENDING; lam 1.8676854883516376'
++ '[' -n 'VERDICT D 17.75: checks 1-5 and the amended edge rule PASS; dd sign check (ell_ddm at lam -/+ 0.02) PENDING; lam 1.8676854883516376' ']'
++ say 'row B D 17.75: VERDICT D 17.75: checks 1-5 and the amended edge rule PASS; dd sign check (ell_ddm at lam -/+ 0.02) PENDING; lam 1.8676854883516376'
++ tee -a C:/Users/nathan/Source/p4hi_1025/I1025-win/p4_highD/p4hi_w.log
+++ date -u '+%Y-%m-%d %H:%M:%S'
++ echo '== 2026-11-21 09:04:57 row B D 17.75: VERDICT D 17.75: checks 1-5 and the amended edge rule PASS; dd sign check (ell_ddm at lam -/+ 0.02) PENDING; lam 1.8676854883516376'
+== 2026-11-21 09:04:57 row B D 17.75: VERDICT D 17.75: checks 1-5 and the amended edge rule PASS; dd sign check (ell_ddm at lam -/+ 0.02) PENDING; lam 1.8676854883516376
++ summary=$'\nrow A D 17.5: VERDICT D 17.5: FAIL lam 1.9272222575778963\nrow B D 17.75: VERDICT D 17.75: checks 1-5 and the amended edge rule PASS; dd sign check (ell_ddm at lam -/+ 0.02) PENDING; lam 1.8676854883516376'
++ read -r n D st stub blob ref
++ '[' -z '' ']'
++ continue
++ read -r n D st stub blob ref
++ say $'summary:\nrow A D 17.5: VERDICT D 17.5: FAIL lam 1.9272222575778963\nrow B D 17.75: VERDICT D 17.75: checks 1-5 and the amended edge rule PASS; dd sign check (ell_ddm at lam -/+ 0.02) PENDING; lam 1.8676854883516376'
++ tee -a C:/Users/nathan/Source/p4hi_1025/I1025-win/p4_highD/p4hi_w.log
+++ date -u '+%Y-%m-%d %H:%M:%S'
++ echo $'== 2026-11-21 09:04:57 summary:\nrow A D 17.5: VERDICT D 17.5: FAIL lam 1.9272222575778963\nrow B D 17.75: VERDICT D 17.75: checks 1-5 and the amended edge rule PASS; dd sign check (ell_ddm at lam -/+ 0.02) PENDING; lam 1.8676854883516376'
+== 2026-11-21 09:04:57 summary:
+row A D 17.5: VERDICT D 17.5: FAIL lam 1.9272222575778963
+row B D 17.75: VERDICT D 17.75: checks 1-5 and the amended edge rule PASS; dd sign check (ell_ddm at lam -/+ 0.02) PENDING; lam 1.8676854883516376
++ say 'p4hi_driver_1025.sh done'
++ tee -a C:/Users/nathan/Source/p4hi_1025/I1025-win/p4_highD/p4hi_w.log
+++ date -u '+%Y-%m-%d %H:%M:%S'
++ echo '== 2026-11-21 09:04:57 p4hi_driver_1025.sh done'
+== 2026-11-21 09:04:57 p4hi_driver_1025.sh done
++ exit
