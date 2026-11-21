@@ -6,3 +6,10 @@ comparator controls: all as required (ctl_*.txt: bits identical exit 0, bits --m
 step17_s1: expected exit 0, got 0, 622 s wall (cap 10800 s) capped 0
 step17_s2: expected exit 0, got 0, 703 s wall (cap 10800 s) capped 0
 report_1060w.md written
+# 2026-11-21 02:26:15 UTC controls 1 and 2 start
+step17_s1b: expected exit 0, got 0, 624 s wall (cap 2400 s) capped 0 (control 1: S = 1 again)
+control 1: S = 1 again vs the first S = 1: state bits exit 0 (0 = identical in all eight parts), series file exit 0, prediction file exit 0, close exit 0 (ctl1_*.txt)
+control 1 records: first S = 1 {'a': 0.1777320584971952, 'D': '260.84834153394379127610669399928156053647398948669', 'od': 4, 't_coef': 138.8, 't_corr': 376.6} | S = 1 again {'a': 0.1777320584971952, 'D': '260.84834153394379127610669399928156053647398948669', 'od': 4, 't_coef': 139.1, 't_corr': 379.5}
+split2_D260: series_split_check.py exit 0 (want 0), 742 s wall (cap 2700 s) capped 0 (control 2)
+# 2026-11-21 02:49:17 UTC control 2b (--mutate 31) start
+split2_D260_mut31: series_split_check.py --mutate 31 exit 1 (want 1), 396 s wall (cap 2700 s) capped 0 (control 2b)
