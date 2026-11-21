@@ -25,6 +25,25 @@ The first attempt (target main 7ca74dd5, worktree `D:/choptuik-i1058`, venv `ven
 3. The `ref` against the T45 Windows reference is information; a difference there would be reported with the same detail.
 4. The exit line of `build.times` is crun's wait on the build's bash; it is a build result only if `hpkernel` imports and `versions.txt` shows the new crates (the stopped #1034 build's "exit 0" was a kill artifact, remembered here).
 
-## Result
+## Result (written 2026-11-21 01:50 UTC)
 
-Not yet run.
+**The build at main 8179068d passes: exit 0, pip's direct_url names 8c4360ac, and every stored-reference check has 0 differing rows with its control behaving.**
+
+| item | value |
+|---|---|
+| machine, venv | win2 (desktop-pc, Core Ultra 7 265K, 20 threads, 95 GB), `C:\Users\nathan\Source\venv-i1058b`, worktree `D:\choptuik-i1058b` at main 8179068d |
+| build | `hp/build.sh` fat LTO, `CARGO_BUILD_JOBS=8`, BelowNormal, `PIP_NO_CACHE_DIR=1`: **exit 0, 19007 s = 5 h 16 min 47 s** (20:24:09 to 01:40:55 UTC), cap 54981 s not reached; rustc 1.96.0, maturin 1.16.0 |
+| import | `hpkernel` isa **avx2**, multidouble avx2; `hp/Cargo.lock`: multidouble **5.1.0**, multishoot **4.1.0**, multisolver **0.2.2**; the `.pyd` carries the path strings `multidouble-5.1.0` and `multishoot-4.1.0`; `.pyd` sha256 ee09ddfe53c7db0563ef113b6cf650daca869553d8f995832d93e660c2661730 |
+| pip's direct_url (multidouble 5.1.0 package) | url `https://github.com/nmoinvaz/multidouble`, subdirectory `python`, **commit_id 8c4360ac0be804d081faeea524e5c1c6e2fffaaa** (requested_revision the same); `pip uninstall -y multidouble` before the build was the expected no-op in the new venv |
+| memory (alert-only watches, 30 s samples, 629 samples) | the big rustc peaked at **35.70 GB working set, 36.61 GB private**; **commit peak 80.8 GB** (00:33:40 UTC) of 101.47; **minimum available 18.15 GB**; page file allocation stayed 6144 MB; `alerts.log` never written; none of the coordinator's triggers fired. Nothing else of mine ran beside it |
+| `highm_check.py ref --compare=T81/ref_main.json --Ms=48,64,80` | **exit 0**, 72 of 72 outputs bit-identical, 79 s |
+| `scaled --compare=T81/scaled_main.json` | **exit 0**, 22 of 22 bit-identical; its control (scale wrong at order 7, M = 192) changes the Newton step: fires; 508 s |
+| `jets --compare=anm-mac/jets_inputs/jets_inputs.json` | **exit 0**, 28 of 28 bit-identical, 126 s; only the M 32 input differs from the reference's (`21b5b259...` against `710ec990...`, the expected numpy resampling of AGENTS.md), the M 48 and M 64 inputs are the same |
+| `jets ... --mutate=kappa` | **exit 1** as required, 28 of 28 outputs differ, 125 s |
+| information: `ref --compare=T45-win/.../ref_new.json` (win2's own Windows reference) | exit 0, 72 of 72 bit-identical, 77 s |
+
+Pass rule of the issue: 0 differing rows. It holds for ref, scaled and jets; the control differs in all 28 rows as it must. Against #1034's run at main 9980cd93 (multidouble 4.9.1, multishoot 3.3.0), whose reference checks passed the same way, the new crates and the hp code up to 8179068d (plan_auto, set_exact_recip, with their flags off by default) moved no bit of what these checks reach; the checks do not reach a code path that those flags switch on. The label `(step 5)` in the first line of `summary_1058.txt` is left over from the script this one was copied from; these are the issue's step 2.
+
+The first attempt (target 7ca74dd5, stopped at 1 h 54 min by the coordinator's order) is in `stopped_7ca74dd5/`.
+
+Files: `build.log`, `build.times`, `versions.txt`, `ref_t81.log`, `ref_t45.log`, `scaled.log`, `jets.log`, `jets_kappa.log`, `summary_1058.txt`, `exits_1058.txt`, `mem.log`, `commit.log`, `input_sha256.txt`, `requirements.txt`, the pip logs, the scripts, `stopped_7ca74dd5/`.
