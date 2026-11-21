@@ -12,9 +12,12 @@ N=rule_ctl262
 [ -e $P/$N.log ] && { say "refuse: $N.log exists (no overwrite)"; exit 3; }
 [ "$(git hash-object --no-filters $ROOT/$S | cut -c1-12)" = eb34f3c845a4 ] || { say "refuse: state blob is not eb34f3c845a4"; exit 2; }
 F="--kfreeze 3 --held_fit data/held_fit.json --N 31 --eps 1e-14 --h_max 2 --corrector od --tol_od 2e-34 --qd_it 40 --lam_stall 0.04 --od_junk 0 --jet_o 1 --reseed 2 --reseed_q 1 --held_o 1 --reseed_o 3 --save_pred 1 --od_accept own --save_jet 1 --od_strong 4 --reseed_start pred --a_rule reseed --a_scale 0.000715 --jet_tangent_from 1 --series_split 1 --a_rise 1 --proj_start pred --reseed_o_stop 1 --od_floor_delta 1e-30 --proj_o 1 --reseed_o_bar 1e-17 --reseed_qd_bar 1e-13"
-cd $WT/hp || exit 9
+# anm_run.py from the main checkout at 268a6b2d (the commit with --reseed_o_bar, leg 14's flag; 8179068d lacks it), over the venv's kernel (hp/src, Cargo and pyproject unchanged between the two)
+WT2=/home/nathan/Source/choptuik-large-d-268a
+export HP_DIR=$WT2/hp
+cd $WT2/hp || exit 9
 mkdir -p $P/$N
-say "start $N: ks 293 keep_plan 1 from $S, load $(cut -d' ' -f1-3 /proc/loadavg)"
+say "start $N (anm_run.py at 268a6b2d): ks 293 keep_plan 1 from $S, load $(cut -d' ' -f1-3 /proc/loadavg)"
 s0=$(date +%s)
 nice -n 10 /usr/bin/time -v timeout -s TERM 7200 $PY -u anm_run.py $ROOT $P/$N --state $S $F --threads 4 --steps 1 --keep_plan 1 --ks 293 --D_max 272.0099 > $P/$N.log 2>&1 &
 tp=$!
