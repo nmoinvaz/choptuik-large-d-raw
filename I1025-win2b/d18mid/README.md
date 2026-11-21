@@ -104,7 +104,7 @@ Reported as the order fixes it, nothing further read: the minus-to-plus change a
 
 # Part 2: the same D 18.0625 state above the window, lambda 1.95 to 2.35 (win2b)
 
-Written before the run, 2026-11-21 15:59 UTC by `date -u`. Part 1 above (lambda 1.70 to 1.95) is done; its files are unchanged, and the files of this part have the prefix `up_`.
+Written before the run (the push was at 15:58:30 UTC by `date -u`; I typed 15:59 before reading the clock, corrected here after the start). Part 1 above (lambda 1.70 to 1.95) is done; its files are unchanged, and the files of this part have the prefix `up_`.
 
 ## Order
 
@@ -155,3 +155,25 @@ Estimate (from Part 1: 425 to 507 s a point with two processes): 21 points take 
 ## Log (Part 2)
 
 (appended below as the run goes)
+- 2026-11-21 15:58:51 UTC: both scan processes started (A root pid 20080, B root pid 8028; pre-checks including the 25 planted controls passed at 15:58:51). Record system ok on both: |F| 2.6777188645e-10 against the record's 2.6753918624e-10, steps 2540 against 2540.
+- 2026-11-21 18:33:55 UTC: B ended, exit 0, 9304 s, not capped. 18:34:07 UTC: A ended, exit 0, 9316 s, not capped. 423 to 532 s a point. The sampler (`up_samples.csv`, my processes only) was ended by its exact pid at 18:34:08.
+- 2026-11-21 18:34:08 to 18:34:10 UTC: merge, reading and rate by the driver (`up_merge.log`, `up_reading.log`, `up_rate.log`), done. In the driver's `exits_1025.txt` line for the merge the repeat-check segment is empty: my `cut -c1-200` truncated that line before the `sed` that takes its verdict (the same in Part 1's line). The verdict is in `up_merge.log`.
+
+## Result (Part 2, 18:35 UTC)
+
+**Repeat check (lambda 1.95, first in both halves): PASS.** Hybrid sign +1 in A and in B; ln|det| -1913.464809719331 in both, difference 0.000e+00 (bar 1e-6); noise robust in both; float64 sign +1 in both; 491 s and 485 s. **Comparison with Part 1's 1.95 (information): AGREES**, sign +1 and ln|det| -1913.464809719331, difference 0.000e+00 (a different pair of processes, two hours apart). The merged 41-point scan was written (`up_scan_merged.jsonl`; the repeated point from A).
+
+**Reading (the pinned reader and `rate_up.py`, as fixed before the run):**
+
+- every point is noise robust (none fails its 1e-15 noise test);
+- hybrid signs: plus at 1.95 to 2.33, minus at 2.34 and 2.35;
+- **one robust change: (2.33, 2.34), plus-to-minus**, so by the coordinator's reading the root is placed there;
+- `rate_up.py`: from D 18's root 1.8074339746330934 the rise is 0.5226 to 0.5326 in 0.0625 D, **8.361 to 8.521 per unit D** (the ordered bar was at least 2.3 per unit D; 2.281 at the window's lower end);
+- ln|det| local minima: at 2.33 (ln -1906.677998) beside the change; at 1.95 (ln -1913.464810) at the scan edge; none without a change. The edge minimum at 1.95 is the window's end: with Part 1's 1.94 (ln -1913.734, plus) the combined scan has no minimum there;
+- no gap line (it needs two robust changes in one scan);
+- the float64 sign differs from the hybrid's at 3 of 41 points (2.31, 2.32, 2.33; information);
+- orientation: as the reader prints it, plus-to-minus, the orientation of D 18's upper root; **the orientation reading waits for xfkappa's sign-convention check** (not read here).
+
+Beside, as facts and not read: the minus-to-plus change that was at 1.7749781 at D 18 is in (1.79, 1.80) at D 18.0625 (Part 1), a rise of 0.240 to 0.400 per unit D (the bracket (1.79, 1.80) against 1.7749781 over 0.0625 D).
+
+**cpu and memory (`up_samples.csv`, a sample every 60 s, 153 samples 15:58:51 to 18:34:06 UTC; my processes only).** A's python child (pid 9064): peak working set 0.84 GiB, private 1.56 GiB, 13770 cpu-s in 9316 s; B's (pid 19084): peak working set 0.99 GiB, private 1.62 GiB, 13761 cpu-s in 9304 s; BelowNormal throughout (the roots are launcher stubs); the two together at most 1.59 GiB working set and 2.88 GiB private in one sample. Machine: cpu mean 32.8% (1 s samples), max 65.0%; commit 47.2 to 50.1 of 101.5 GiB; free physical at least 50.3 GiB.

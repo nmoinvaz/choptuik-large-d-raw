@@ -139,3 +139,18 @@
 1025 d18mid result: repeat check PASS (1.82: +1 both, ln|det| equal); one robust change (1.79, 1.80) minus-to-plus, no second change in 1.70-1.95, minima at 1.79 beside the change and at the 1.70 edge, none without a change; A 5814 s, B 6252 s 2026-11-21 15:54:29 UTC
 1025 d18mid result posted on #1025 comment 7065241916, raw 9ecc62ed (the first push had been rejected, rebased and pushed again); nothing runs, nothing queued 2026-11-21 15:55:26 UTC
 1025 d18up README Part 2 (window 1.95-2.35, lists, reading, repeat check, controls), scripts written, pushing before the run 2026-11-21 15:58:30 UTC
+1025 d18up driver started, pre-checks 2026-11-21 15:58:44 UTC
+1025 d18up pre-checks ok: pins, worktree 505d8399, record line, planted controls pass 2026-11-21 15:58:51 UTC
+1025 d18up lambda lists: A 1.95,1.96,1.97,1.98,1.99,2.00,2.01,2.02,2.03,2.04,2.05,2.06,2.07,2.08,2.09,2.10,2.11,2.12,2.13,2.14,2.15 ; B 1.95,2.16,2.17,2.18,2.19,2.20,2.21,2.22,2.23,2.24,2.25,2.26,2.27,2.28,2.29,2.30,2.31,2.32,2.33,2.34,2.35 2026-11-21 15:58:51 UTC
+1025 d18up sampler pid 24932 (every 60 s, up_samples.csv) 2026-11-21 15:58:51 UTC
+1025 d18up scanA root pid 20080, cap 28800 s, want exit 0 2026-11-21 15:58:51 UTC
+1025 d18up scanB root pid 8028, cap 28800 s, want exit 0 2026-11-21 15:58:51 UTC
+1025 d18up both scans running since 15:58:51 UTC (record system ok on both: |F| 2.6777188645e-10 against 2.6753918624e-10, steps 2540); waiter armed to 18:55 UTC 2026-11-21 15:59:44 UTC
+1025 d18up scanB exit 0 (want 0) wall 9304 s capped 0 OK 2026-11-21 18:33:55 UTC
+1025 d18up scanA exit 0 (want 0) wall 9316 s capped 0 OK 2026-11-21 18:34:07 UTC
+1025 d18up sampler pid 24932 ended 2026-11-21 18:34:08 UTC
+1025 d18up merge:  ; AGREES (information, not a gate) ; merged 41 points (1.95 to 2.35) into D:/choptuik-large-d-raw/I1025-win2b/d18mid/up_scan_merged.jsonl 2026-11-21 18:34:08 UTC
+1025 d18up reading: change in (2.33, 2.34): plus-to-minus, ROBUST|ln|det| local minimum at 1.95 (ln -1913.464810): at the scan edge|ln|det| local minimum at 2.33 (ln -1906.677998): beside a change| 2026-11-21 18:34:09 UTC
+1025 d18up rate: plus-to-minus change in (2.33, 2.34), ROBUST: from D 18's root 1.8074339746330934 the rise is 0.5226 to 0.5326 in 0.0625 D, i.e. 8.361 to 8.521 per unit D|RATE: 1 robust plus-to-minus change(s) place the root| 2026-11-21 18:34:10 UTC
+1025 d18up done 2026-11-21 18:34:10 UTC
+1025 d18up result: repeat check PASS (1.95, equal ln|det|, also equal to Part 1's); ONE robust plus-to-minus change in (2.33, 2.34): the root is placed, rise 8.361 to 8.521 per unit D from D 18's 1.8074339746; minima at 2.33 (beside the change) and the 1.95 window edge, none without a change; float64 differs at 3 of 41; scans 9304 s and 9316 s, no cap; orientation reading waits for xfkappa's check 2026-11-21 18:35:33 UTC
