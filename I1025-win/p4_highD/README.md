@@ -227,7 +227,7 @@ dd check, only if the hybrid's checks all pass (otherwise the driver stops, repo
 
 Run: `d185_driver_1025.py` (launcher `start_d185_1025.cmd`, BelowNormal, log `d185_w.log`; output `ell_p4_hybrid_1025_w_highD_d185.jsonl`, `rows/D18.5.log`, `rows/dd185_{lo,hi}.log`, `rows/dd185_reading.log`). A sampler thread writes every 60 s each child's cpu seconds, working set, private bytes and their peaks, and the laptop's free memory, cpu load and commit, to `rows/d185_samples.csv`, so the end-of-run peaks are logged this time. Estimate: hybrid about 11 evaluations at 13 to 14 min (about 2.5 h), dd about 1.8 h in parallel; no RESUME.
 
-Status: started 10:42:23 UTC; hybrid done 11:53:13 (section "D 18.5 hybrid result" below); dd check running since 11:53:13.
+Status: started 10:42:23 UTC; hybrid done 11:53:13 (section "D 18.5 hybrid result" below); dd check done 13:32:24 (section "D 18.5 dd result" below): ROOT PASSES.
 
 Sampler note (10:57 UTC): the driver's own sampler thread broke at 10:54 UTC. Its PowerShell number format `N1` puts a thousands separator into cpu seconds above 1000, so a CSV line split into one field too many; the exception is caught and logged as `sampler: ValueError(...)` in `d185_w.log` once a minute from then on, and the run itself is untouched. `rows/d185_samples.csv` holds the driver's samples from 10:45 to 10:53 UTC. An external sampler, `sample_d185_1025.ps1` (read-only, BelowNormal, started 10:55 UTC for the driver's python, pid 12848; same columns, invariant number format), writes `rows/d185_samples2.csv` every 60 s for the rest of the run, for the hybrid and the dd stages.
 
@@ -249,4 +249,19 @@ Sampler note (10:57 UTC): the driver's own sampler thread broke at 10:54 UTC. It
 The hybrid python's last sample (11:52:12 UTC, `rows/d185_samples2.csv`): 5984 cpu s in 4236 s (1.41 cores on average), working set 0.597 GB (peak 0.919 GB), private bytes 1.081 GB (peak 1.400 GB), 11 threads, BelowNormal.
 
 dd check started 11:53:13 UTC by itself: `ell_ddm.py det` on the same state at 1.6572090983230803 (root - 0.02; launcher pid 7060) and 1.6972090983230803 (root + 0.02; launcher pid 14804), `--noise 1e-24,1e-20,1e-16`, 4 threads each, BelowNormal, caps 21600 s each (17:53:13 UTC) by exact pid. Estimate, from row B's two processes (6572 s and 6582 s): about 13:45 UTC.
+
+## D 18.5 dd result (11:53:13 to 13:32:24 UTC): ROOT PASSES (minus below, plus above); the D 18.5 root 1.6772090983230803 passes every check
+
+`ell_ddm.py det` on `sol_l1kc63Wm1025_D18.500000.npy` (blob 33c1a58b), `--noise 1e-24,1e-20,1e-16`, two processes in parallel, 4 threads each, BelowNormal, caps 6 h not reached (5920 s and 5950 s, both exit 0); `rows/dd185_lo.log`, `rows/dd185_hi.log`, `rows/ell_ddm_D18.5_{lo,hi}.jsonl`, `rows/dd185_reading.log`:
+
+| point | dd M built | dd LU signs, 5 exact variants | LU time | noise 1e-24 / 1e-20 / 1e-16 (2 seeds each) | ln\|det\| dd | float64 (`det`'s own) | counts |
+|---|---|---|---|---|---|---|---|
+| root - 0.02 = 1.6572090983230803 (pid 7060) | 3058 s | -1 x5 (spread 2.5e-12) | 220.4 s | -1 at all | -1900.8761376389 | **+1**, -1900.3708955721 | yes |
+| root + 0.02 = 1.6972090983230803 (pid 14804) | 3082 s | +1 x5 (spread 1.4e-12) | 219.3 s | +1 at all | -1900.4949561074 | +1 | yes |
+
+Hybrid signs at the evaluations nearest these points: -1 at 1.643558 (1.4e-02 below the lower point) and +1 at 1.710642 (1.3e-02 above the upper point). **Reading (Amendment 3): ROOT PASSES**: the counting dd signs are opposite and each equals the hybrid's nearest sign; orientation minus below, plus above (the usual one). Information: `det`'s plain float64 sign is +1 at the lower point where the dd sign is -1 (float64 wrong there), and agrees at the upper point.
+
+The D 18.5 root at k_c 63 is **1.6772090983230803** (hybrid, bracket 1.68e-08, inside (1.67, 1.68), inside xfkappa's estimator range 1.677016 to 1.677225), with its dd sign check passed.
+
+CPU and memory (`rows/d185_samples2.csv`, every 60 s, peaks are the process counters): the dd pythons (BelowNormal, up to 10 and 13 threads): last samples 6652 and 6626 cpu s in about 5920 s (1.12 cores on average); working set peak 1.916 and 1.886 GB; private bytes peak 2.152 and 2.122 GB (the peaks come in the LU phase; working set 0.2 GB at the end). The hybrid python: 5984 cpu s in 4236 s (1.41 cores), working set peak 0.919 GB, private peak 1.400 GB. Laptop during the dd: cpu 46 to 99 %, free memory at least 12.3 GB of 31.83 GB, commit at most 24.2 GB of limit 41.3 GB; during the hybrid: cpu 35 to 79 %, free at least 12.6 GB, commit at most 26.9 GB. Other sessions' single-thread pythons ran beside.
 
