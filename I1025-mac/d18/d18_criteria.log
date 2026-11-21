@@ -174,3 +174,13 @@ D 18.5 root. The pass rules are unchanged (d18_check.py 08969ea2, then signtest.
 == 2026-11-21 21:19:30 (e) D 18.25 result (d1825_e_read.log): over 1.95-2.25, 31 points, all + and noise-robust; the repeat 1.95 agrees
    (0.0e+00); no change, no ln|det| minimum without a change. Reading: not placed. Information (d1825_e_numbers.log): 2.25 + and the reference
    2.60 - in this state, so (2.25, 2.60) holds an odd count; ln|det| still rises at 2.25 (last step +0.1275, shrinking). lane_d18f.sh done.
+== 2026-11-21 21:22:44 the coordinator's ruling after (e) (hc), written before it runs (lane_d18g.sh): D 18.5 over 2.40-2.60 is win2's (I1025-win2/d185map
+   window A), left out here. (g) D 18.25 (eae8ca02, record 08f4dbf3): the hybrid over **lambda 2.25 to 2.60 at 0.05 (8 points)**, 2.25 repeating
+   (e)'s and 2.60 the check's; then **0.01 inside each bracket with a sign change** (4 points each; more than 4 brackets: STOP). Noise test and
+   float64 sign beside each. Reading, (ii)'s (d18f_read.py window, 5fb96dce): a robust change places the upper root; one robust change in
+   2.25-2.60 places it (0.01 bracket, estimator range); more than one: listed, the coordinator rules; repeats must agree. Its delta against
+   lambda_0(18.25) = 2.1194153766 (ell_delta.lam0_at) is reported from the estimator range (d1825_g_numbers.py).
+== 2026-11-21 22:34:07 (g) result (d1825_hi_read.log): D 18.25 over 2.25-2.60, 12 points merged (8 at 0.05, 4 at 0.01 in (2.30, 2.35)), all
+   noise-robust; repeats 2.25 and 2.60 agree (0.0e+00). One robust change, in (2.31, 2.32), plus to minus in this state, range
+   [2.318523, 2.318888]; ln|det| least at 2.32, beside it; no minimum without a change. Reading: it places the upper root.
+   delta against lambda_0(18.25) 2.1194153766: [+0.199108, +0.199473] (d1825_g_numbers.log). PROVISIONAL (no dd check).

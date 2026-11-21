@@ -184,3 +184,10 @@ Written before the run (criteria in `d18/d18_criteria.log`, 2026-11-21 03:31:59 
 - (e) D 18.25 (18:54-21:20 UTC), information: over 1.95-2.25 the hybrid is + at all 31 points, every point noise-robust, the repeat agrees:
   **not placed** (`d18/d1825_scanup.log`, `d18/d1825_scanup_1025.jsonl`, `d18/d1825_e_read.log`). With the reference 2.60 (-) this state's
   odd count lies in (2.25, 2.60) (`d18/d18e_numbers.py`, `d18/d1825_e_numbers.log`). lane_d18f.sh is done.
+- 2026-11-21 21:22:44 UTC, (g), the coordinator's ruling after (e), **window written before it runs** (`d18/lane_d18g.sh`): D 18.25 over **lambda 2.25 to
+  2.60 at 0.05**, then 0.01 inside the bracket; (ii)'s reading, a robust change places the upper root, with its delta against lambda_0(18.25).
+  D 18.5 over 2.40-2.60 is win2's (I1025-win2/d185map).
+- (g) (21:23-22:34 UTC), information: D 18.25 over 2.25-2.60 has ONE robust change, in **(2.31, 2.32)**, range [2.318523, 2.318888],
+  delta [+0.199108, +0.199473] against lambda_0(18.25); ln|det|'s least value beside it; every point noise-robust, repeats agree
+  (`d18/d1825_hi.log`, `d18/d1825_hifine.log`, `d18/d1825_hi_1025.jsonl`, `d18/d1825_hifine_1025.jsonl`, `d18/d1825_hi_read.log`;
+  `d18/d1825_g_numbers.py`, `d18/d1825_g_numbers.log`). D 18.25's map over 1.20-2.60 is then 1.3885, 1.7425 and 2.3185.
