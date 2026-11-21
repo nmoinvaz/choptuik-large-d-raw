@@ -21,3 +21,7 @@
 1057 c3b_ks293_D260.9271 exit 0 wall 1055 s 2026-11-21 02:03:44
 1057 c3b_ks293_D261.0721 start 2026-11-21 02:16:47 lane 1 hp 787f1006 I966-dh370/ks_chain3b/leg13_D260.8483_ks293/anm_pin3_D261.0721.npz --its=32, load 4.85 4.67 4.81
 1057 c3b_ks293_D261.0721 exit 0 wall 969 s 2026-11-21 02:32:56
+1057 c3b_ks293_D261.1415 start 2026-11-21 04:37:16 lane 1 hp 787f1006 I966-dh370/ks_chain3b/leg13_D260.8483_ks293/anm_pin3_D261.1415.npz --its=32, load 9.22 6.93 5.01
+1057 c3b_ks293_D261.1415 exit 0 wall 1757 s 2026-11-21 05:06:33
+1057 lane 1 RESTARTED 2026-11-21 05:06:59 UTC between reads, without the outer nice (old pids 967105, 967113 stopped by exact pid, idle after the D 261.1415 exit): reads now run at nice 10 instead of 19 so that #1060's anm_run at 19 gives them priority; new pids below
+1057 lane 1 new pids: systemd-inhibit 1043068, run1057.sh 1043076
