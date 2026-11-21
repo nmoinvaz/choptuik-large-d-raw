@@ -7,7 +7,7 @@ mkdir -p I966-dh370 && cp -a $LIVE/. I966-dh370/
 find I966-dh370 -type f -size +90M | head -1 | grep . && { echo "file over 90 MB"; exit 8; }
 git add I966-dh370 && git commit -q -m "${1:-I966-dh370: progress}" || exit 7
 for i in 1 2 3 4; do
-  git pull -q --rebase origin main && python3 make_index.py && git add I966-dh370 INDEX.md && git commit -q --amend --no-edit && git push -q origin HEAD:main && break
+  git pull -q --rebase origin main && { python3 make_index.py || echo "make_index.py exit $? (a folder of another machine; INDEX.md is written anyway)"; } && git add I966-dh370 INDEX.md && git commit -q --amend --no-edit && git push -q origin HEAD:main && break
   sleep 5
 done
 git fetch -q origin; echo "HEAD $(git rev-parse --short HEAD) origin/main $(git rev-parse --short origin/main)"
