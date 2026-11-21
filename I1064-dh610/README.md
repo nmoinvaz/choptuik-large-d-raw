@@ -214,3 +214,14 @@ Order: from the same ks 307 base (`I973-dh610/ks307_r2/base_pin3_D237.7132.npz`,
 Files: `run1064h.sh` (the ks 307 control is not rerun: its base is `ho2_D237.7132/ks307/base_pin3_D237.7132.npz`, blob 861c79ff, whose gate passed; the script checks both), `table1064h.py` (12 planted cases, `--break` exits 1; p_min = the smallest `piv` of the log's step lines, with the rows of K 307, 331, 347 from `ho2_D237.7132/`), `check_dry1064h.py` (12 planted cases, `--break` exits 1), `dry_1064h.sh`, `start_1064_ho3.sh` (unit `i1064p`, folder `ho3_D237.7132/`, `memlog_i1064p.log`), `chain_1064h.sh`.
 
 Dry runs (`dry_1064h.sh`, 16:56:06 to 17:01:37 UTC, `dry_h1/`, `dry_h2/`; both passed `check_dry1064h.py`): the pass path (300 s cap): ks395 and ks443 started together with `--od_floor_delta 0`, `--tol_od 1e-60`, their own `--ks`, were TERMed by their exact pids at 300 s (exit 143, gate failed), no ks307 run; the no-control path (`CTL1064H` a missing file): "the ks 307 control base is missing ... stop", nothing started. `chain_1064h.sh` then started `i1064p` at 17:01:37 UTC.
+
+## Result of the K 395 and 443 run (unit `i1064p`, 17:01:37 to 17:26:38 UTC 21 Nov)
+
+Folder `ho3_D237.7132/` (`run1064h.sh`, main 276aa1cd, venv-i1058, `nice -n 10`, 10 threads each, `memlog_i1064p.log` without an alert, `--od_floor_delta 0`, `--tol_od 1e-60`, gate max|F| <= 1e-60 and base saved). Both rungs converged:
+
+| run | start max\|F\| | last octo-double Newton line | own wall | Delta(K) - Delta(307) | p_min (log's smallest `piv`) |
+|---|---|---|---|---|---|
+| ks 395 | 5.71e-36 | 4 steps, max\|F\| 1.1e-86 | 1351 s | +4.77173e-27 | 3.2e-15 |
+| ks 443 | 5.71e-36 | 4 steps, max\|F\| 4.2e-86 | 1501 s | +4.77175e-27 | 3.2e-15 |
+
+Delta(443) - Delta(395) = +1.6571e-32 (exact, xcheck 0). p_min is 3.2e-15 and p_max 6.3e+42 at K 307, 331, 347, 395 and 443, at every step (two printed digits). The first strong chord was refused (theta inf) at K 395 and 443, accepted at 307, 331 and 347. Largest converging K: 443 (none above was run). Posted as a comment on #1064.

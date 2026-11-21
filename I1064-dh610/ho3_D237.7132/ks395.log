@@ -1,3 +1,16 @@
 # 2026-11-21 17:01:37 UTC cmd: python3 -u anm_run.py /home/nathan/Source/choptuik-large-d-raw /home/nathan/Source/choptuik-large-d-raw/I1064-dh610/ho3_D237.7132/ks395 --state I973-dh610/ks307_r2/base_pin3_D237.7132.npz --kfreeze 3 --held_fit data/held_fit.json --N 31 --eps 1e-14 --h_max 2 --threads 10 --corrector od --tol_od 1e-60 --qd_it 40 --lam_stall 0.04 --od_junk 0 --jet_o 1 --reseed 2 --reseed_q 1 --held_o 1 --reseed_o 3 --save_pred 1 --od_accept own --save_jet 1 --od_strong 4 --reseed_start pred --a_rule reseed --a_scale 0.000715 --jet_tangent_from 1 --series_split 1 --a_rise 1 --proj_start pred --reseed_o_stop 1 --od_floor_delta 0 --proj_o 1 --reseed_qd_bar 1e-13 --steps 0 --ks 395 --keep_plan 0 --save_base 1 --D_max 270.8483
 horizon series to order 395 instead of the state's 307
 held values from the fit data/held_fit.json (degree 8, 138 full-system states, D 38.020417-73.0), relative to the base
+    on 0 chord 0: max|F| 6.94e-39, |dw| 5.170e-45
+    on 0 chord 1: max|F| 1.19e-38, |dw| 5.489e-44
+  on 0: strong chord (4 weak directions), 2 steps after the full first step; theta at its point inf (bound 0.750): refused, 522.77 s
+  on 0: |F| 5.71e-36 -> 6.94e-39, |dz| 3.51e-24 -> 2.15e-47, lam 1, dDelta -3.51e-24, piv 3.2e-15..6.3e+42, 919.54 s
+  on 1: |F| 6.94e-39 -> 4.05e-46, |dz| 2.15e-47 -> 3.09e-65, lam 1, dDelta +2.15e-47, piv 3.2e-15..6.3e+42, 136.7 s
+  on 2: |F| 4.05e-46 -> 1.15e-86, |dz| 3.09e-65 -> 1.10e-79, lam 1, dDelta +3.09e-65, piv 3.2e-15..6.3e+42, 134.64 s
+  on 3: |F| 1.15e-86 converged, Delta 1.68705448620253429 +2.8557e-17
+      elim projections {'u0': 0, 'u0q': 0, 'ladder': 0, 'failed': 0, 'skipped': 3, 'u0o_refused': 3, 'pred': 3}
+      octo-double Newton: 4 steps, max|F| 1.1e-86, converged; double-double |F| of its first two parts 3.0e+27
+base polish saved as /home/nathan/Source/choptuik-large-d-raw/I1064-dh610/ho3_D237.7132/ks395/base_pin3_D237.7132.npz
+base I973-dh610/ks307_r2/base_pin3_D237.7132.npz: D 237.713234901, M 32, pin 3 (held [5, 7, 9, 11, 13]), |F| 3.0e+27; N 31, eps 1e-14, h_max 2.0, corrector od (junk_only False), tol 1.0e-20 x 1.45^(D - 237.71323), stalls accepted below 1e-17
+done
+exit 0
