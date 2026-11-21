@@ -1,0 +1,20 @@
+  model, factored: not converged (no trial accepted) in 1 line(s), |z - truth| 1.0e-10; expected to converge: WRONG
+  model, old: not converged (it_max) in 12 line(s), |z - truth| 2.05e-17; expected to fail: ok
+  model, linear: not converged (no trial accepted) in 1 line(s), |z - truth| 1.0e-10; expected to fail: ok
+  model, nopred: not converged (no trial accepted) in 1 line(s), |z - truth| 1.0e-10; expected to fail: ok
+  model, sign: not converged (no trial accepted) in 1 line(s), |z - truth| 1.0e-10; expected to fail: ok
+  state writer on base_pin3_D237.7132.npz: parts and meta read back exactly, keys as save_o
+  comparison, one entry moved by 1e-65: largest difference 1.000e-65 at 5, within the bar 1e-60: ok
+  comparison, one entry moved by 1e-55: largest difference 1.000e-55 at 5, above the bar 1e-60: ok
+  gate, polish (a) 1e-62: pass ((a) the start line: octo-double max|F| 1.0e-62, polish skipped); expected pass: ok
+  gate, polish (a) 5e-60: fail (no octo-double Newton line and no skipped polish at or below 1e-60); expected fail: ok
+  gate, polish (b): pass ((b) the last octo-double Newton line: 1 steps, max|F| 2.7e-86, converged; base saved True); expected pass: ok
+  gate, polish (b) no base: fail ((b) the last octo-double Newton line: 1 steps, max|F| 2.7e-86, converged; base saved False); expected fail: ok
+  gate, polish (b) not converged: fail ((b) the last octo-double Newton line: 1 steps, max|F| 2.7e-86, not converged; base saved True); expected fail: ok
+  gate, polish (b) 2e-34: fail ((b) the last octo-double Newton line: 1 steps, max|F| 2.0e-34, converged; base saved True); expected fail: ok
+  gate, polish empty: fail (no octo-double Newton line and no skipped polish at or below 1e-60); expected fail: ok
+  gate, step: pass (jet written, step accepted and saved); expected pass: ok
+  gate, step no jet: fail (jet MISSING, step accepted and saved); expected fail: ok
+  gate, step stopped: fail (jet written, step accepted and saved, stopped); expected fail: ok
+  gate, step not saved: fail (jet written, step NOT saved); expected fail: ok
+selftest --mutate=nopred: 18 of 19 pass; FAIL: model factored (--mutate=nopred)
