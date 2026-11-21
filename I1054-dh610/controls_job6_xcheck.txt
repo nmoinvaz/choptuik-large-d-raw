@@ -1,0 +1,18 @@
+== ok (must exit 0)
+  ctl D 242.2102: |change| 3.440e-13, must be above 1e-30: ok
+  off D 242.2102: |change| 3.000e-48, must be at or below 1e-30: ok
+  on D 242.2102: |change| 2.000e-47, must be at or below 1e-30: ok
+xcheck PASS
+exit 0
+== ok --mutate (must exit 1)
+  ctl D 242.2102: |change| 3.440e-13, must be above 1e-30 (--mutate: reversed): FAIL
+  off D 242.2102: |change| 3.000e-48, must be at or below 1e-30 (--mutate: reversed): FAIL
+  on D 242.2102: |change| 2.000e-47, must be at or below 1e-30 (--mutate: reversed): FAIL
+xcheck FAIL
+exit 1
+== bad (off change 4e-20, must exit 1)
+  ctl D 242.2102: |change| 3.440e-13, must be above 1e-30: ok
+  off D 242.2102: |change| 4.000e-20, must be at or below 1e-30: FAIL
+  on D 242.2102: |change| 2.000e-47, must be at or below 1e-30: ok
+xcheck FAIL
+exit 1
