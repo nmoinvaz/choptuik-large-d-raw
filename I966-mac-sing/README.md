@@ -277,3 +277,5 @@ hold, the radius on the real line is smallest at D0 ≈ 262.08, at about 0.973.
 | 261.7748 | e544743f | 262.0768 ± 0.9733i (9 approximants) | 1.0212, 1.0199, +0.12% | PASS (0), FAIL (1) | 261.9763 (+38.3), 264.4613 (+0.085) |
 | 261.8239 | f54bd692 | 262.0767 ± 0.9734i (9 approximants) | 1.0027, 1.0063, −0.36% | PASS (0), FAIL (1) | 261.9000 (+40.0), 293.3994 (+1.328) |
 | 261.9176 | 80d803ea | 262.0887 ± 0.9705i (9 approximants) | 0.9816, 0.9865, −0.50% | PASS (0), FAIL (1) | 261.9070 (+43.4), no Dlog estimate |
+
+Note from 261.9176: three stable clusters sit at every base since 261.0721, at 262.0767 ± 0.9734i, 262.0827 ± 0.9721i and 262.0887 ± 0.9705i (`locate966_D*.json`). As the base nears Re 262.08, the one with the smallest Im becomes the nearest, so the table's pole changes cluster there; none of them moved. The recurrence fit stays at 262.0828 ± 0.9722i.
