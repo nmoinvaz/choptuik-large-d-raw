@@ -977,3 +977,80 @@ The script's first verdict was NOT EQUAL with an empty per-order table, because 
 So the kernel's series does not explain the hard attempts from arc_006. The old build's log shows what else it lacks: `Solver.residual_sub` and `Solver.jacobian_sub` (the re-seed's ladder takes the full residual and Jacobian), `Solver.newton_o_residual` (PinnedO), and the octo-tangent Jacobian. The re-seed, the predicted max|F| and the corrector all run after the series, so attempt 1 at arc_006 (predicted max|F| 1.17e-35, first |dz| 4.83e-14 at a 0.0339) is not compared yet.
 
 Next check, not started: the old code with `--arc_jet run3/arcjet_000_D259.565880.npz` (the series is equal, so it is skipped), nice 19, stopped at the first attempt's predicted max|F| and first |dz|, to see whether 1.17e-35 and 4.83e-14 reproduce. The base polish alone took about 43 min beside run3, so it would take about 1.5 to 2 h. I run it when you say so.
+
+### run3, arc step 14: attempt 1 at the arclength step a 0.005296874046 refused by the stall rule after 3 corrections, accepted lam 0.0625, 0.015625, 0.015625 (2026-11-21 03:48 UTC)
+
+Arc step 14 is not accepted yet. Its attempt 1 (a = 0.004237499237 x 1.25 = 0.005296874046, D move 0.0052968508, checked: D move / a = 0.99999562 against t_D 0.99999562) from arc step 13's D 259.57435544360826 to D 259.57965229444 refused by the stall rule: on 2: lam at or below 0.04 twice in a row, stopping (stalled). The corrector line says 3088.8 s; its corrections took 2692 s (2351 s of trials and chord checks). The stall rule (`--lam_stall 0.04`) and `--qd_it 40` are as in run1; the stop watcher stays armed and anm_run goes on to the next attempt with a halved.
+
+Per trial (every refused trial's ladder failed: the point |F| is the one before projection, and the trial |F| after the failed projection is the same point):
+
+| correction | trial lam | projection | \|F\| before projection | trial max\|F\| (after) | simplified correction / \|dz\| (bound) | result | seconds |
+|---|---|---|---|---|---|---|---|
+| 0 | strong chord | not logged | not logged | | theta inf (bound 0.75) | refused | 172.52 |
+| 0 | 1 | attempted, ladder failed | 2.67e+11 | 2.67e+11 | 3.200e+55 (0.750) | refused | 151.96 |
+| 0 | 0.5 | attempted, ladder failed | 1.67e+10 | 1.67e+10 | 2.000e+54 (0.875) | refused | 163.39 |
+| 0 | 0.25 | attempted, ladder failed | 1.06e+09 | 1.06e+09 | 1.250e+53 (0.938) | refused | 165.26 |
+| 0 | 0.125 | attempted, ladder failed | 6.89e+07 | 6.89e+07 | 7.812e+51 (0.969) | refused | 154.69 |
+| 0 | 0.0625 | projected, ladder converged | not logged | 4.41e-29 | 9.362e-01 (0.984) | accepted | 171.09 |
+| 1 | 1 | attempted, ladder failed | 3.62e+11 | 3.62e+11 | 3.284e+55 (0.750) | refused | 157.43 |
+| 1 | 0.5 | attempted, ladder failed | 2.30e+10 | 2.30e+10 | 2.080e+54 (0.875) | refused | 135.45 |
+| 1 | 0.25 | attempted, ladder failed | 1.53e+09 | 1.53e+09 | 1.387e+53 (0.938) | refused | 104.06 |
+| 1 | 0.125 | attempted, ladder failed | 1.25e+08 | 1.25e+08 | 1.136e+52 (0.969) | refused | 97.92 |
+| 1 | 0.0625 | attempted, ladder failed | 1.85e+07 | 1.85e+07 | 1.749e+51 (0.984) | refused | 73.19 |
+| 1 | 0.03125 | attempted, ladder failed | 1.06e+07 | 1.06e+07 | 7.253e+50 (0.992) | refused | 71.81 |
+| 1 | 0.015625 | projected, ladder converged | not logged | 4.62e-29 | 9.843e-01 (0.996) | accepted | 99.05 |
+| 2 | 1 | attempted, ladder failed | 3.40e+11 | 3.40e+11 | 3.128e+55 (0.750) | refused | 96.23 |
+| 2 | 0.5 | attempted, ladder failed | 2.16e+10 | 2.16e+10 | 1.983e+54 (0.875) | refused | 99.18 |
+| 2 | 0.25 | attempted, ladder failed | 1.45e+09 | 1.45e+09 | 1.328e+53 (0.938) | refused | 98.46 |
+| 2 | 0.125 | attempted, ladder failed | 1.20e+08 | 1.20e+08 | 1.109e+52 (0.969) | refused | 96.85 |
+| 2 | 0.0625 | attempted, ladder failed | 1.87e+07 | 1.87e+07 | 1.785e+51 (0.984) | refused | 73.43 |
+| 2 | 0.03125 | attempted, ladder failed | 1.10e+07 | 1.10e+07 | 7.728e+50 (0.992) | refused | 72.95 |
+| 2 | 0.015625 | projected, ladder converged | not logged | 4.83e-29 | 9.843e-01 (0.996) | accepted | 95.72 |
+
+Per correction:
+
+| correction | accepted lam | max\|F\| before -> after | \|dz\| before -> after | seconds |
+|---|---|---|---|---|
+| 0 | 0.0625 | 8.03e-36 -> 4.41e-29 | 2.80e-14 -> 2.58e-14 | 1141.54 |
+| 1 | 0.015625 | 4.41e-29 -> 4.62e-29 | 2.58e-14 -> 2.53e-14 | 828.51 |
+| 2 | 0.015625 | 4.62e-29 -> 4.83e-29 | 2.53e-14 -> 2.48e-14 | 721.99 |
+
+First |dz| of every attempt against the arclength step a (D rises down the table; run1's last two are the refused attempts of arc step 5; AB1, AB2, run2 and run3 ran with `--elim_switch 0`; run3 is on main 8179068d and the new kernel):
+
+| run | arclength a | first \|dz\| | first \|dz\| / a | accepted lam at correction 0 |
+|---|---|---|---|---|
+| pilot2 | 0.0455 | 5.37e-15 | 1.18e-13 | 0.25 |
+| pilot2 | 0.056875 | 4.60e-16 | 8.09e-15 | 1 |
+| run1 | 0.0455 | 6.20e-16 | 1.36e-14 | 1 |
+| run1 | 0.056875 | 8.92e-16 | 1.57e-14 | 0.5 |
+| run1 | 0.07109375 | 8.83e-16 | 1.24e-14 | 0.5 |
+| run1 | 0.0888671875 | 9.21e-15 | 1.04e-13 | 0.125 |
+| run1 | 0.04443359375 | 4.82e-15 | 1.08e-13 | 0.0625 |
+| ab1 | 0.07109375 | 8.83e-16 | 1.24e-14 | 0.5 |
+| ab2 | 0.0444334 | 1.96e-15 | 4.41e-14 | 0.25 |
+| run2 | 0.0444334 | 2.89e-15 | 6.5e-14 | 0.25 |
+| run2 | 0.05554175 | 8.11e-15 | 1.46e-13 | 0.125 |
+| run2 | 0.027770875 | 2.01e-14 | 7.24e-13 | 0.03125 |
+| run2 | 0.0138854375 | 4.76e-15 | 3.43e-13 | 0.25 |
+| run2 | 0.0138854375 | 3.16e-15 | 2.28e-13 | 0.25 |
+| run2 | 0.01735679688 | 7.03e-15 | 4.05e-13 | 0.125 |
+| run2 | 0.02169599609 | 4.65e-15 | 2.14e-13 | 0.25 |
+| run2 | 0.02711999512 | 5.76e-15 | 2.12e-13 | 0.25 |
+| run3 | 0.0338999939 | 4.83e-14 | 1.42e-12 | 0.03125 |
+| run3 | 0.01694999695 | 3.43e-14 | 2.02e-12 | 0.03125 |
+| run3 | 0.008474998474 | 1.56e-14 | 1.84e-12 | 0.0625 |
+| run3 | 0.004237499237 | 8.73e-15 | 2.06e-12 | 0.125 |
+| run3 | 0.004237499237 | 9.50e-16 | 2.24e-13 | 1 |
+| run3 | 0.005296874046 | 2.80e-14 | 5.29e-12 | 0.0625 |
+
+Next: anm_run's attempt 2 halves a to 0.002648437023 (D move 0.0026484254); `--a_grow 1.25` and the halving allow up to 4 attempts per step, so up to 3 more. The series at arc step 13's D is in `run3/arcjet_002_D259.574355.npz` if a restart with another `--a0` is wanted (`--arc_jet` reads it, saving the 485.0 s of forming it); I have not changed anything.
+
+anm_run pid 54500: elapsed 05:11:59, 589.0% cpu, rss 378 MB; D 0.328914 below 259.903269724106 at arc step 13's D.
+
+Attempts from one base (a: predicted max|F|, first |dz|, outcome), for every arc step with more than one attempt: arc step 7: 0.055542: 3.77e-36, 8.11e-15, refused, 0.027771: 1.14e-35, 2.01e-14, refused, 0.013885: 2.86e-36, 4.76e-15, accepted; arc step 12: 0.0339: 1.17e-35, 4.83e-14, refused, 0.01695: 9.49e-36, 3.43e-14, refused, 0.008475: 4.44e-36, 1.56e-14, refused, 0.0042375: 2.51e-36, 8.73e-15, accepted. Over the same base, the predicted max|F| does not follow a in run2 either.
+
+Gain first |dz| / predicted max|F| of this attempt: 2.8e-14 / 8.03e-36 = 3.49e+21 at D 259.57965, against 2.66e+21 at D 259.5388 (accepted step 10), 3.33e+21 at D 259.5659 (accepted step 11), 3.48e+21 at D 259.5701 (accepted step 12), 9.22e+20 at D 259.5744 (accepted step 13). Its first |dz| is x0.6 the largest of the 22 earlier attempts (4.83e-14, run3).
+
+Series seconds at run3's bases so far: 274.4, 289.8, 485.0 (the base of this attempt took 485.0 s); the old-kernel series check ran at nice 19 beside run3 from 02:11 to 03:25 UTC.
+
+Correction to my step 13 post, which read step 13's easy attempt (first |dz| 9.50e-16, gain 9.22e+20, from run3's own base arc_001) against the hard ones from the reloaded arc_006 as an effect of the base. This attempt starts from another base run3 made itself, arc_002, and is hard again: first |dz| 2.80e-14, gain 3.49e+21, accepted lam 0.0625, then 0.015625 twice. Of the seven attempts at D 259.5659 to 259.5998 (steps 11 to 14), six have a gain of 3.3e+21 to 4.1e+21 and one, step 13's, 9.22e+20. So the reload is not what made arc_006's attempts hard, and step 13's attempt is the exception. The series check is not affected: the series at arc_006 is equal on both kernels.
