@@ -1,0 +1,36 @@
+horizon series to order 307 instead of the state's 307
+held values from the fit data/held_fit.json (degree 8, 138 full-system states, D 38.020417-73.0), relative to the base
+    on 0 chord 0: max|F| 4.33e-44, |dw| 1.489e-49
+  on 0: strong chord (4 weak directions), 1 steps after the full first step; theta at its point 6.124e-24 (bound 0.750): accepted, 545.22 s
+  on 0: |F| 5.71e-36 -> 1.10e-41, |dz| 3.51e-24 -> 2.15e-47, lam 1, dDelta -3.51e-24, piv 3.2e-15..6.3e+42, 969.51 s
+  on 1: |F| 1.10e-41 -> 4.91e-52, |dz| 2.15e-47 -> 2.68e-76, lam 1, dDelta +2.15e-47, piv 3.2e-15..6.3e+42, 156.92 s
+  on 2: |F| 4.91e-52 -> 3.47e-86, |dz| 2.68e-76 -> 4.71e-90, lam 1, dDelta -2.68e-76, piv 3.2e-15..6.3e+42, 157.53 s
+  on 3: |F| 3.47e-86 converged, Delta 1.68705448620253429 +2.8557e-17
+      elim projections {'u0': 0, 'u0q': 0, 'ladder': 0, 'failed': 0, 'skipped': 3, 'u0o_refused': 3, 'pred': 3}
+      octo-double Newton: 4 steps, max|F| 3.5e-86, converged; double-double |F| of its first two parts 2.8e+19
+base polish saved as /home/nathan/Source/choptuik-large-d-raw-1064w/I1064-dh170/p315/ks307_ctl/base_pin3_D237.7132.npz
+base I973-dh610/ks307_r2/base_pin3_D237.7132.npz: D 237.713234901, M 32, pin 3 (held [5, 7, 9, 11, 13]), |F| 2.8e+19; N 31, eps 1e-14, h_max 2.0, corrector od (junk_only False), tol 1.0e-20 x 1.45^(D - 237.71323), stalls accepted below 1e-17
+done
+	Command being timed: "timeout -s TERM 10800 /home/nathan/Source/choptuik-large-d-1058b/.venv/bin/python -u anm_run.py /home/nathan/scratch1064b/raw /home/nathan/Source/choptuik-large-d-raw-1064w/I1064-dh170/p315/ks307_ctl --state I973-dh610/ks307_r2/base_pin3_D237.7132.npz --kfreeze 3 --held_fit data/held_fit.json --N 31 --eps 1e-14 --h_max 2 --corrector od --tol_od 1e-60 --qd_it 40 --lam_stall 0.04 --od_junk 0 --jet_o 1 --reseed 2 --reseed_q 1 --held_o 1 --reseed_o 3 --save_pred 1 --od_accept own --save_jet 1 --od_strong 4 --reseed_start pred --a_rule reseed --a_scale 0.000715 --jet_tangent_from 1 --series_split 1 --a_rise 1 --proj_start pred --reseed_o_stop 1 --od_floor_delta 0 --proj_o 1 --reseed_qd_bar 1e-13 --threads 4 --steps 0 --keep_plan 0 --save_base 1 --ks 307"
+	User time (seconds): 5459.82
+	System time (seconds): 9.29
+	Percent of CPU this job got: 379%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 24:02.60
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 232368
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 5579385
+	Voluntary context switches: 10827
+	Involuntary context switches: 44828
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 192
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
