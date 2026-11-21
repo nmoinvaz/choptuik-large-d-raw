@@ -64,4 +64,48 @@ When the two estimators disagree, both are reported, and no fold is read.
 
 ## Results
 
-(below, as they land)
+**The planted control** (`planted.txt`, `planted_move.txt`; identical to `I799-dh370/type799_planted.txt`): the clean
+and near plants pass, and the contaminated ones fail as documented. Under `--mutate=move` all six fail. Both conditions
+hold. 2.6 s and 42 MB each.
+
+**Leg 14, five bases** (`type966_leg14.txt`, 2026-11-21 08:08:19 to 08:09:05 UTC, exit 0; 46.2 s user, 0.09 s sys,
+49.2 MB maximum resident). Delta's own series:
+
+| D0 | ratio: D* (s) | ratio: mu | ratio spreads (s, mu) | Dlog: D* (s) | Dlog: mu | Dlog spreads (s, mu) |
+|---|---|---|---|---|---|---|
+| 261.1415 | 261.1846 (0.0431) | +37.44 | 0.14, 4.0 | 265.8674 (4.7259) | +1.052 | 1.5e3, 6.3e3 |
+| 261.2061 | 261.6154 (0.4094) | +26.33 | 0.55, 12 | 266.4851 (5.2791) | +0.985 | 50, 9.3 |
+| 261.2697 | 261.2047 (−0.0650) | +35.65 | 0.24, 11 | 269.6315 (8.3617) | +0.934 | 7.4, 3.3 |
+| 261.3914 | 261.3478 (−0.0435) | +46.20 | 0.61, 87 | 264.6647 (3.2733) | +0.991 | 19, 0.31 |
+| 261.5124 | 261.9057 (0.3933) | +42.26 | 17, 160 | 265.1132 (3.6008) | +1.058 | 20, 0.34 |
+
+The 24 rows of largest |z_8| (median, and range over rows):
+
+| D0 | ratio: D* | ratio: mu | Dlog: D* | Dlog: mu |
+|---|---|---|---|---|
+| 261.1415 | 260.757 (260.345 to 261.185) | +33.0 (+29.1 to +48.9) | 320.730 (265.867 to 502.786) | +1.388 (+0.861 to +2.498) |
+| 261.2061 | 261.276 (260.859 to 261.615) | +37.5 (+25.9 to +41.7) | 295.389 (266.485 to 317.554) | +1.211 (+0.985 to +2.115) |
+| 261.2697 | 261.314 (260.987 to 261.425) | +34.4 (+28.4 to +38.2) | 295.566 (269.631 to 454.070) | +1.196 (+0.934 to +2.107) |
+| 261.3914 | 261.400 (261.204 to 261.823) | +33.1 (+30.2 to +48.2) | 306.965 (264.665 to 382.858) | +1.258 (+0.991 to +1.416) |
+| 261.5124 | 261.747 (261.662 to 261.906) | +38.2 (+36.0 to +42.3) | 451.974 (265.113 to 523.881) | +2.019 (+1.058 to +2.437) |
+
+**Reading: none is read.**
+
+- Delta's ratio D* jumps between 261.18 and 261.91 (range 0.72), and s is negative at two bases.
+- Delta's Dlog D* lies between 264.66 and 269.63 (range 4.97).
+- No three bases agree to 0.01 in either estimator.
+- mu is outside the S band at every base: +26 to +46 by the ratio fit, +0.93 to +1.06 by Dlog. The Dlog medians are
+  residues within about 0.07 of 0, where the doublet filter sits (0.05). That is the mark of a spurious pole, not of a
+  singularity.
+
+**Diagnostic, outside the criteria** (`signs.py` → `signs966_leg14.txt`, `runs.py` → `runs966_leg14.txt`). At every
+base, Delta's c_1..c_31 change sign in runs of 3 or 4:
+
+    D0 261.1415  ----++++----++++----+++----++++
+    D0 261.5124  ---+++---+++---+++---+++---+++-
+
+A conjugate pair off the real axis gives this pattern, and a single real singularity does not; it also breaks the
+ratio fit. The root test |c_31|^(−1/31) falls from 2.132 to 1.757 over the bases. A rough reading (angle π / mean inner
+run, radius from that root test) puts a pair at 262.60 ± 1.56i at D0 261.1415 and at 262.39 ± 1.52i at D0 261.5124.
+That reading is not a validated estimator. `jet_singularity.py locate` (Delta's Padé poles, #799's other step) would
+test it; it was not run here.
