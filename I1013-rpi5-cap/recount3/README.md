@@ -107,6 +107,6 @@ Of the 16 retried points of step 2, 10 now have a value, 5 are without value aga
 
 ### Discrepancies (reported, not fixed)
 - The count says 719 points and the file has 720 distinct keys: the difference is the one retried point that was never requested (explained above; no other difference).
-- The depth-0 leaves at 3.6123-3.8623 x 1.0065-1.1065 and 4.1123-4.3623 x 1.1065-1.2065 are unresolved although all four corners have a value. I did not look into why.
+- 4 unresolved leaves have a value at all four corners: the depth-0 leaves 3.6123-3.8623 x 1.0065-1.1065 and 4.1123-4.3623 x 1.1065-1.2065, and the depth-3 leaves 4.0498-4.0811 x 0.5065-0.5190 and 0.5190-0.5315. I did not look into why argcount leaves them unresolved.
 - 4 points reached the 1e7 right-hand-side bound or the step-size error (rows 3 to 6 above) and 1 point the 3600 s wall bound; 2 more lost S3's zero. The 7 cells at w/w_inf 1.0065-1.3065 stay unresolved.
 
