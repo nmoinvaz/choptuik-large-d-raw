@@ -194,3 +194,15 @@ Folder `ho_D237.7132/` (`run1064f.sh`, main 276aa1cd, venv-i1058, `nice -n 10`, 
 The first attempt's control ended at max|F| 1.1e-41 by leg 13's floor rule (`--od_floor_delta 1e-30`), failing the gate max|F| <= 1e-60. The coordinator approved the same three runs with `--od_floor_delta 0` (off, the default), the rest of leg 13's line and `--tol_od 1e-60` unchanged, the same gate (`gate1064f.py`). `run1064g.sh` is `run1064f.sh` with that flag (asserted in the script, whose assertion fires on `1e-30`: checked by hand), new output names, the unit guard extended and `table1064g.py` (the table script reading `exits_1064g.txt`; `--selftest` passes, `--break` exits 1); `start_1064_ho2.sh` starts unit `i1064o` into `ho2_D237.7132/` (memory log `memlog_i1064o.log`). Started at 16:26:29 UTC without new dry tests (the coordinator: "Start now"; only the flag changed); the plan comment 7065209051 records the change and its cause.
 
 Control of the second attempt (`ho2_D237.7132/`, unit `i1064o`): ks 307 with `--od_floor_delta 0` converged at 16:34:59 UTC, 4 steps, max|F| 3.5e-86 (start 5.71e-36; step 0 1.10e-41, step 1 4.91e-52, step 2 3.47e-86), own wall 510 s: passed the gate max|F| <= 1e-60. ks331 and ks347 started at 16:34:59 UTC (caps end by 18:35 UTC); their results come in their own section. Comment 7065850851.
+
+## Result of the D 237.7132 run, second attempt (unit `i1064o`, 16:26:29 to 16:52:30 UTC 21 Nov)
+
+Folder `ho2_D237.7132/` (`run1064g.sh`, main 276aa1cd, venv-i1058, `nice -n 10`, 10 threads each, `memlog_i1064o.log` without an alert, `--tol_od 1e-60`, `--od_floor_delta 0`, gate max|F| <= 1e-60 and base saved). All three runs converged at the same state start |F| 5.71e-36:
+
+| run | last octo-double Newton line | own wall | Delta(K) - Delta(307) |
+|---|---|---|---|
+| ks 307 (control) | 4 steps, max\|F\| 3.5e-86 | 510 s | - (against the stored state: -3.51486e-24) |
+| ks 331 | 4 steps, max\|F\| 1.0e-86 | 1051 s | +4.77171e-27 |
+| ks 347 | 4 steps, max\|F\| 4.1e-86 | 1051 s | +4.77172e-27 |
+
+Delta(347) - Delta(331) from the two stored changes: +1.85e-32. xcheck 0 on all three deltas. The largest converging K among 331 and 347 is 347; no larger K was run. Posted as a comment on #1064.
