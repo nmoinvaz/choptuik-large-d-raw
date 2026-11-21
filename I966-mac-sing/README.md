@@ -617,3 +617,4 @@ pole should take over. The per-base table gains a column `265.078 − D0` beside
 | × 1.00 with `--mutate=scale` | NOT THERE (flipped) | 1 |
 
 All four are as required.
+| 262.9679 | 85493cd1 | 262.0871 ± 0.9709i (9 approximants) | 1.3145, 1.3165, −0.15% | 2.1101 | PASS (0), FAIL (1) | 262.7822 (+43.0), 310.9014 (+1.681) |
