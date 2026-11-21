@@ -192,3 +192,40 @@ CPU and memory of the dd pythons (7 then 4 to 9 threads, BelowNormal, samples; b
 
 Row A (D 17.5): hybrid root 1.9272222575778963; checks 1 to 5 and the amended edge rule PASS; its dd sign check is win2's and is pending. Row B (D 17.75): hybrid root 1.8676854883516376; all checks PASS including the dd sign check. D 18 and D 18.5 are xfkappa's on the Mac and were not run here.
 
+## D 18.5 root (the coordinator's order, hc about 10:35 UTC by my clock; written before the run, 2026-11-21 10:43 UTC)
+
+Order: the root at D 18.5. xfkappa's scan there (#1025 comment 7061322463, raw `I1025-mac/d18/`, 36 points at step 0.01 over 1.55 to 1.90 on the leap's D 18.5 state) finds one robust change in (1.67, 1.68), estimator range 1.677016 to 1.677225, usual orientation (minus below, plus above; information, not a bar). Bisect it with `p4_hybrid.py` on xfkappa's leap state with guess 1.6771, so the w 0.02 grid holds only this root. Same rules: system check, P4 rules, the outer-edge rule, and a bracket check that the root lies in (1.67, 1.68). Then the dd M check at root -/+ 0.02 by `ell_ddm.py`, two processes, 6 h caps, with the Amendment 3 reader. Guess, window and readings written here before the run. Post on #1025 with cpu and memory.
+
+| item | value |
+|---|---|
+| state | raw `I1025-mac/d18/sol_l1kc63Wm1025_D18.500000.npy`, blob 33c1a58b82229d55661cbd5e79d2c1fce0c0717c (raw commit 500b1ed2; k_c 63) |
+| record | the leap's D 18.5 line of raw `I1025-mac/d18/l1kc63Wm1025.jsonl`, blob 08f4dbf367edba55814e5cf989ccd32a9a5dbe67: F 2.7672415504278416e-10, 2461 steps, kappa 0.7, u0 0.04, Ks 30 (rk 1 by default); a leap state, so no lambda |
+| stub | `stub_d185_l1kc63Wm1025_D18.5_leapline.jsonl` (`make_stub_d185_1025.py`, `make_stub_d185_1025.log`): the leap line unchanged plus `lam_guess` = 1.6771 and `lam` = the guess (placeholder, as for row B: `minus_record` is root minus guess, not a record) |
+| system check, smoke test 10:38:59 UTC (`signtest.py ... syscheck`, `smoke_syscheck_d185.log`) | F 2.7712865521590816e-10 rebuilt against 2.7672415504278416e-10 (1.46e-03 relative, inside 1%), 2461 steps against 2461: same true |
+| code | hybrid: worktree `choptuik-i1025-lowd` at 505d8399 (rows A and B's), `p4_hybrid.py` a402559b; dd: `choptuik-i1025d` at 48c36355 (row B's), `ell_ddm.py`; PY `venv-md510`; BelowNormal; 4 BLAS and rayon threads per process |
+
+Guess and window (the coordinator's guess, fixed before the run):
+
+| w | 0.02 | 0.06 | 0.15 | 0.35 |
+|---|---|---|---|---|
+| guess 1.6771 | [1.643558, 1.710642] | [1.576474, 1.777726] | [1.425535, 1.928665] | [1.090115, 2.264085] |
+
+The first grid is 1.643558, 1.6771, 1.710642. xfkappa's scan shows one change in 1.55 to 1.90, in (1.67, 1.68), so the first window should hold only this root; the guess lies inside the estimator range, so the sign at the middle point can read either way, and the change then sits in the lower or the upper interval. The search is `p4_hybrid.py`'s, unchanged (`brentq` inside the grid interval, xtol 2e-8 * guess).
+
+Rules, fixed before the run (`verdict_d185_1025.py`, `rows/verdict_D18.5.log`):
+
+1. record system true (steps equal, |F| within 1% of the record's or 1e-13);
+2. one sign change on the search grid, and one over all evaluations;
+3. every evaluation's sign unchanged under 1e-15 relative noise on blocks 0 to 11 (2 seeds);
+4. final bracket at most 1e-7;
+5. outer-edge rule (Amendment 1): the root is inside the window and at least 0.05 grid steps from its outer grid points guess * (1 -/+ w);
+6. bracket check: the root and its final bracket lie strictly inside (1.67, 1.68).
+
+The float64 `signtest.py` is not run (Amendment 1: it is information only, and the sign check is the dd M). The orientation (signs at the final bracket's ends) is printed as information; the expected one is the usual (minus below, plus above).
+
+dd check, only if the hybrid's checks all pass (otherwise the driver stops, reports, and the coordinator decides): `ell_ddm.py det <state> 18.5 63 <root -/+ 0.02> --noise 1e-24,1e-20,1e-16 --out rows/ell_ddm_D18.5_{lo,hi}.jsonl`, two processes in parallel, each capped at 6 h (21600 s) and killed at the cap by its exact pid (`taskkill /PID <pid> /T /F`, as tested in `ddB_driver_selftest.log` and `d185_driver_selftest.log`). Reading (Amendment 3, `read_ddB_1025.py` v2): the root passes if the two counting dd signs are opposite, in either orientation, and each equals the hybrid's sign at the evaluation nearest it; the same sign at both means no root between them; a sign that does not count (5 exact variants disagree, or 1e-24 noise changes it) means neither reading applies. A sign counts if its 5 variants agree and 1e-24 noise leaves it unchanged.
+
+Run: `d185_driver_1025.py` (launcher `start_d185_1025.cmd`, BelowNormal, log `d185_w.log`; output `ell_p4_hybrid_1025_w_highD_d185.jsonl`, `rows/D18.5.log`, `rows/dd185_{lo,hi}.log`, `rows/dd185_reading.log`). A sampler thread writes every 60 s each child's cpu seconds, working set, private bytes and their peaks, and the laptop's free memory, cpu load and commit, to `rows/d185_samples.csv`, so the end-of-run peaks are logged this time. Estimate: hybrid about 11 evaluations at 13 to 14 min (about 2.5 h), dd about 1.8 h in parallel; no RESUME.
+
+Status: not started (10:43 UTC).
+

@@ -1,0 +1,6 @@
+== 2026-11-21 10:40:48 started quick pid 14072: C:/Users/nathan/Source/venv-md510/Scripts/python.exe -c import time, numpy; a = numpy.ones((3000, 3000)); print('quick', flush=True); time.sleep(25) > C:/Users/nathan/Source/p4hi_1025/d185_selftest_a.log
+== 2026-11-21 10:40:48 started slow pid 17412: C:/Users/nathan/Source/venv-md510/Scripts/python.exe -c import time; print('slow', flush=True); time.sleep(600) > C:/Users/nathan/Source/p4hi_1025/d185_selftest_b.log
+== 2026-11-21 10:41:18 quick pid 14072 ended with exit 0 after 30 s
+== 2026-11-21 10:41:28 CAP 40 s: killed slow pid 17412 (and its children) by exact pid: SUCCESS: The process with PID 13376 (child process of PID 17412) has been terminated.
+SUCCESS: The process with PID 17412 (child process of PID 1792) has been terminated. 
+== 2026-11-21 10:41:28 selftest: exit codes [0, 'killed at the cap']; 10 sample rows; slow-child processes alive afterwards 0; ok
