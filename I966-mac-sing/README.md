@@ -599,3 +599,21 @@ pole should take over. The per-base table gains a column `265.078 − D0` beside
   chain's path;
 - the root test more than 5% above 265.078 − D0 at two bases in a row means the pole is not there;
 - `--mutate=scale` multiplies each root test by 1.2, which must read "not there" once two bases past 263.5 exist.
+
+**Amended (2026-11-21 18:07:04 UTC, the coordinator's):**
+- (1) a root test more than 5% *below* 265.078 − D0 at two bases in a row past 263.5 means some other singularity is
+  nearer. It is reported as that, with no reading on the real pole. `reading_real.py` exits 0 when the pole is
+  confirmed, 1 when it is not there, 2 when another singularity is nearer, and 3 while pending.
+- (2) a planted check before any real base: synthetic rows at D 263.6 and 263.7, with radii (265.078 − D) × 1.00, ×
+  1.20 and × 0.80, must give confirm, not there and nearer singularity. `--mutate=scale` must flip the × 1.00 case.
+
+**Planted check of `reading_real.py`** (`planted_real/`, synthetic rows at D 263.6 and 263.7 with no poles):
+
+| radius | reading | exit |
+|---|---|---|
+| (265.078 − D) × 1.00 | CONFIRMED | 0 |
+| × 1.20 | NOT THERE | 1 |
+| × 0.80 | ANOTHER SINGULARITY NEARER | 2 |
+| × 1.00 with `--mutate=scale` | NOT THERE (flipped) | 1 |
+
+All four are as required.
