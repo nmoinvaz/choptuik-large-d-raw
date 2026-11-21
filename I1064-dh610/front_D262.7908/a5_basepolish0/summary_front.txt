@@ -1,0 +1,9 @@
+controls: jetdiff selftest exit 0 (0), --break exit 1 (1), dh370's jet against itself exit 0 (0); jetbits selftest exit 0 (0), --break exit 1 (1), (a)'s jet against itself exit 0 (0)
+row0check controls: selftest exit 0 (0), --break exit 1 (1), dh370's jet row 0 against the stored state exit 0 (0, identical), (a)'s jet row 0 exit 1 (1, differs): order-0 row against the stored state: differing entries per part [0, 0, 0, 0, 0, 0, 0, 0], largest relative difference 0.0000e+00 | order-0 row against the stored state: differing entries per part [0, 0, 29, 64, 64, 64, 64, 50], largest relative difference 9.1386e-46
+a5_basepolish0: state I966-dh370/ks_chain3b/leg14_D261.1415_ks293/anm_pin3_D262.7908.npz, ks 293, keep_plan 1, exit 0, own wall 570 s (30 s polls); jet b2322860723e03af
+a5_basepolish0 polish/jet lines: the base keeps its stored plan (23 steps)|base polish skipped (--base_polish 0): the stored state is the base|step 0: the series saved as /home/nathan/Source/choptuik-large-d-raw/I1064-dh610/front_D262.7908/a5_basepolish0/a5_basepolish0/jet_pin3_D262.7908.npz (8 parts, 563 s)|
+a5_basepolish0 plan: no base saved (the polish was not adopted or did not run)
+jetdiff a5_vs_dh370: exit 1: largest relative difference per coefficient 8.2447e-28 at order 13, unknown 526; 22305 of 24608 coefficients above 1e-40; bits: exit 1: DIFFERENT: differing entries per part [0, 22187, 23102, 23839, 23839, 23780, 22816, 22816]
+jetdiff a5_vs_a: exit 1: largest relative difference per coefficient 6.0466e-14 at order 3, unknown 618; 23839 of 24608 coefficients above 1e-40; bits: exit 1: DIFFERENT: differing entries per part [1112, 23839, 23868, 23903, 23903, 23852, 22880, 22866]
+a5 jet row 0 against the stored state: exit 0: order-0 row against the stored state: differing entries per part [0, 0, 0, 0, 0, 0, 0, 0], largest relative difference 0.0000e+00
+front a5 done
