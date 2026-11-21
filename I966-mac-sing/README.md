@@ -528,3 +528,7 @@ Each is read with `newjet.sh TAG RAWPATH`: `newbase.sh`'s steps, with outputs na
   - (a) against dh370's jet: Delta's c_k relative differences (`deltadiff.py`) and the two locate results, which
     must agree to the printed digit;
   - `front_compare.py --mutate=move` adds 0.02 to (c)'s real pole, and must read "truncation".
+
+**Accepted by the coordinator (2026-11-21 17:37:45 UTC, before any front jet):** the P1 rule stands, and the decision rests on the real
+pole. Its spread over bases is 0.0001, so 0.01 is a clear test. P1's clusters sit 0.01 apart, the size of the bar, so
+a P1 move is reported but decides nothing alone. The three readings go to #1064 once (c) is read.
