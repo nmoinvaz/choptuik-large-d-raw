@@ -3,3 +3,17 @@
 == 2026-11-21 13:36:57 pins ok; scans: A d18_hybsign.py C:/Users/nathan/Source/d18mid_1025/raw/I1025-mac/d18/l1kc63Wm1025.jsonl C:/Users/nathan/Source/d18mid_1025/raw/I1025-mac/d18/sol_l1kc63Wm1025_D18.125000.npy 18.125 1.82,1.70,1.71,1.72,1.73,1.74,1.75,1.76,1.77,1.78,1.79,1.80,1.81 C:/Users/nathan/Source/d18mid_1025/I1025-win/d18mid/d18mid_scanA_1025.jsonl; B ... 1.82,1.83,1.84,1.85,1.86,1.87,1.88,1.89,1.90,1.91,1.92,1.93,1.94,1.95 C:/Users/nathan/Source/d18mid_1025/I1025-win/d18mid/d18mid_scanB_1025.jsonl; 4 threads each, BelowNormal, cap 28800 s each
 == 2026-11-21 13:36:57 started scanA pid 13996: C:/Users/nathan/Source/venv-md510/Scripts/python.exe -u C:/Users/nathan/Source/d18mid_1025/raw/I1025-mac/d18/d18_hybsign.py C:/Users/nathan/Source/d18mid_1025/raw/I1025-mac/d18/l1kc63Wm1025.jsonl C:/Users/nathan/Source/d18mid_1025/raw/I1025-mac/d18/sol_l1kc63Wm1025_D18.125000.npy 18.125 1.82,1.70,1. > C:/Users/nathan/Source/d18mid_1025/I1025-win/d18mid/rows/d18mid_scanA_raw.log
 == 2026-11-21 13:36:57 started scanB pid 17300: C:/Users/nathan/Source/venv-md510/Scripts/python.exe -u C:/Users/nathan/Source/d18mid_1025/raw/I1025-mac/d18/d18_hybsign.py C:/Users/nathan/Source/d18mid_1025/raw/I1025-mac/d18/l1kc63Wm1025.jsonl C:/Users/nathan/Source/d18mid_1025/raw/I1025-mac/d18/sol_l1kc63Wm1025_D18.125000.npy 18.125 1.82,1.83,1. > C:/Users/nathan/Source/d18mid_1025/I1025-win/d18mid/rows/d18mid_scanB_raw.log
+== 2026-11-21 16:36:58 scanA pid 13996 ended with exit 0 after 10800 s
+== 2026-11-21 16:47:18 scanB pid 17300 ended with exit 0 after 11420 s
+== 2026-11-21 16:47:18 both scans ended: [0, 0]
+== 2026-11-21 16:47:18 A: 13 records, B: 14 records
+== 2026-11-21 16:47:18 REPEAT CHECK at lambda 1.82: sign A -1 B -1; ln|det| A -1915.151114652328 B -1915.151114652328, difference 0.000e+00 (bar 1e-6); noise robust A True B True; float64 sign A -1 B -1; 981 s and 982 s -> PASS
+== 2026-11-21 16:47:18 merged 26 points (1.70 to 1.95) into C:/Users/nathan/Source/d18mid_1025/I1025-win/d18mid/d18mid_scan_1025.jsonl
+== 2026-11-21 16:47:18 D 18.125 k_c 63: 26 points, lam 1.7 to 1.95, state sol_l1kc63Wm1025_D18.125000.npy
+== 2026-11-21 16:47:18 points whose hybrid sign is NOT noise robust: none
+== 2026-11-21 16:47:18 signs (hybrid): 1.70:+ 1.71:+ 1.72:+ 1.73:+ 1.74:+ 1.75:+ 1.76:+ 1.77:+ 1.78:- 1.79:- 1.80:- 1.81:- 1.82:- 1.83:- 1.84:- 1.85:- 1.86:- 1.87:- 1.88:- 1.89:- 1.90:- 1.91:- 1.92:- 1.93:- 1.94:- 1.95:-
+== 2026-11-21 16:47:18 change in (1.77, 1.78): plus-to-minus, ROBUST
+== 2026-11-21 16:47:18 ln|det| local minimum at 1.70 (ln -1916.955451): at the scan edge
+== 2026-11-21 16:47:18 ln|det| local minimum at 1.77 (ln -1919.138722): beside a change
+== 2026-11-21 16:47:18 float64 sign differs from the hybrid's at 7 of 26 points: ['1.70', '1.72', '1.73', '1.74', '1.75', '1.76', '1.77'] (information)
+== 2026-11-21 16:48:28 d18mid_driver_1025.py done

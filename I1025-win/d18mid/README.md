@@ -69,7 +69,7 @@ Estimate: one hybrid evaluation took 700 s at 4 threads on this laptop (the D 18
 
 ## Status
 
-Not started (13:36 UTC).
+Done 2026-11-21 16:48:28 UTC (the result section below).
 
 ## Repeat check, first result (13:54 UTC, from the first point of each half; `merge_d18mid_1025.py` on the two scan files)
 
@@ -77,3 +77,28 @@ At lambda 1.82 (computed first in both processes, 981 s and 982 s): hybrid sign 
 
 Timing: a point takes about 980 s with the two processes running together (the laptop at 90 % cpu; one process alone took 700 s a point at D 18.5), so A (13 points) ends about 17:10 and B (14 points) about 17:30 UTC.
 
+
+
+## Result (2026-11-21 13:36:57 to 16:47:18 UTC; written 16:50 UTC)
+
+The two halves ran 13:36:57 to 16:36:58 (A, 13 points, 10800 s, exit 0) and to 16:47:18 (B, 14 points, 11420 s, exit 0); neither hit its cap. `d18mid_scan_1025.jsonl` holds the 26 merged points (1.70 to 1.95 at 0.01), `rows/d18mid_reading.log` the reading, `rows/d18mid_merge.log` the repeat check. Record system true in both processes (|F| 2.7166033527e-10 against 2.7117344114e-10, 2528 steps against 2528).
+
+**Repeat check (final): PASS.** At lambda 1.82, computed first in both halves (981 s and 982 s): hybrid sign -1 in A and in B; ln|det| -1915.151114652328 in both, difference 0.000e+00 (bar 1e-6); noise robust in both; float64 sign -1 in both. All 26 lambda from 1.70 to 1.95 are present once in the merged file.
+
+**The scan, read as the coordinator fixed it:**
+
+| item | value |
+|---|---|
+| noise robustness | every one of the 26 points is noise robust |
+| hybrid signs | plus at 1.70 to 1.77 (8 points), minus at 1.78 to 1.95 (18 points) |
+| robust changes | **one**: in (1.77, 1.78), **plus-to-minus** |
+| ln\|det\| local minima | 1.77 (ln -1919.1387), **beside the change**; 1.70 (ln -1916.9555), **at the scan edge** (it lies 0.024 below the value at 1.71, -1916.9318; at 1.77 the dip is 1.4 below both neighbours) |
+| ln\|det\| local minima without a change | none inside the window; the 1.70 point is the window's edge |
+| second change | none in 1.70 to 1.95, so no gap can be given at D 18.125 |
+| float64 beside the hybrid (information) | its sign differs from the hybrid's at 7 of 26 points: 1.70, 1.72, 1.73, 1.74, 1.75, 1.76, 1.77 |
+
+ln|det| along the scan (hybrid): 1.70 -1916.955, 1.71 -1916.932, 1.72 -1916.932, 1.73 -1916.968, 1.74 -1917.059, 1.75 -1917.248, 1.76 -1917.659, 1.77 -1919.139, 1.78 -1917.760, 1.79 -1916.734, 1.80 -1916.092, 1.81 -1915.586, 1.82 -1915.151, then rising by 0.3 to 0.4 per step to 1.95 (-1910.983).
+
+For the coordinator's rules: D 18.125 shows one robust change, not two, so there is no gap to set beside D 18's 0.0325; and it is not "no change where the pair was": the one change sits in (1.77, 1.78), where D 18's minus-to-plus change was, with the orientation plus-to-minus, the orientation of D 18's upper change. Nothing near (1.80, 1.81), where D 18's upper root was, changes sign. The ln|det| profile has its one dip, at 1.77, and no dip near 1.80 to 1.81 (there ln|det| rises steadily). The scan's lower edge, 1.70, is where ln|det| turns down slightly (a possible further minimum below 1.70 is outside the window). Which reading applies is the coordinator's; the numbers above are the evidence.
+
+**CPU and memory** (`rows/d18mid_samples.csv`, every 60 s, 730 rows; the peaks are the process counters): the two scan pythons (BelowNormal, up to 13 threads): A 15027 cpu s in 10800 s (1.39 cores on average), B 15982 cpu s in 11420 s (1.40 cores); working set peak 1.056 GB in both; private bytes peak 1.630 and 1.629 GB. Laptop: cpu 26 to 93 %, free memory at least 12.0 GB of 31.83 GB, commit at most 26.4 GB of limit 41.3 GB; other sessions' single-thread pythons ran beside. A point took 640 to 1070 s (981 s at 1.82), about 800 s on average, with the two processes together. The driver ended at 16:48:28 and the lambda 1.20 dd check (`I1025-win/d18ref120`) started at 16:48:57 UTC.
