@@ -219,6 +219,8 @@ The repeated point (1.86, first in both; no k_c 63 root is near it) makes 57 eva
 
 ## Reading, fixed now (`kc_compare2.py`, `read_fine.py`, `dip_fit2.py`)
 
+*(Amended by the coordinator before any result, recorded 2026-11-21 23:33 UTC: the rule compares the k_c 55 change's det-linear estimate with the k_c 63 root; the bracket-distance rule below stays as information. See "Amendment 1" at the end of this part.)*
+
 A **k_c 55 change** is two consecutive points of different hybrid sign, both passing their 1e-15 noise test (robust); it lies in its bracket (a, b), b - a = 0.02. **"Within 0.02 of a k_c 63 root r"** is read as: the distance from r to the bracket [a, b] is at most 0.02 (0 if r is inside). That is the coordinator's two-class rule:
 
 - a k_c 55 change within 0.02 of a k_c 63 root: **STABLE**;
@@ -246,3 +248,17 @@ Estimate: Part 1 took 262 to 429 s a point at D 18.5 with two processes running;
 ## Log (Part 3)
 
 (appended below as the run goes)
+- 2026-11-21 23:29:10 UTC: both scan processes started (A root pid 35644, B root pid 17192; the driver's pre-checks, including the 26 planted controls, passed at 23:29:08). **System check, first line of each log: "the record system" on both**: |F| 2.7802867306e-10 against the record's 2.7770681699e-10 (0.12%), steps 2190 against 2190.
+
+## Amendment 1 to Part 3's reading (the coordinator's hc, received about 23:30 UTC 21 Nov; recorded 2026-11-21 23:33 UTC by `date -u`)
+
+**Before any result:** the scan had started at 23:29:10 UTC and no point had finished when the hc arrived (both processes had printed their system-check line only; at 23:31:44 UTC each log held 0 points).
+
+The coordinator's tightening of "within 0.02", made before any result: **compare the k_c 55 change's det-linear estimate (as d18f_read and xfkappa's readers compute it) with the k_c 63 root. Within 0.02 is stable; otherwise the root depends on k_c. The bracket-to-root distance, with its inside and straddling marks, stays in the report as information. A bracket as wide as the band would otherwise let a 0.04 difference count as stable.**
+
+What changed and what did not:
+
+- **The rule is now:** a robust k_c 55 change is STABLE if its det-linear estimate is within 0.02 of a k_c 63 root (1.3885, 1.7425, 2.3187), else k_c-DEPENDENT (k_c 55 only); a k_c 63 root with no robust k_c 55 change whose estimate is within 0.02 is k_c-DEPENDENT (k_c 63 only); a k_c 63 root with only a non-robust change near it is UNDETERMINED; a change outside the k_c 63 coverage is not compared. This replaces "the distance from the root to the 0.02-wide bracket is at most 0.02" of the "Reading, fixed now" section above (my reading of "within 0.02", which the coordinator has tightened).
+- **The estimate** is the zero of the line through the bracket's two points of f = sign x exp(ln - ref), ref the scan's largest ln|det| (it cancels): x_a + (x_b - x_a) f_a / (f_a - f_b), the formula of `changes()` in xfkappa's `d185_scan_read.py` (raw `I1025-mac/d18`, blob 7c9d400fd0966a35ac306b5495febb4ec4efe7da, kept in `in/`, `in/pins_amend_1.txt`; its `lin`, which `d18f_read.py` (5fb96dce) uses through that module). It is the same as the det-linear estimate `read_fine.py` printed in Part 2 (1.677016 on the k_c 63 scan). The planted controls check this script's estimate against xfkappa's own `changes()` on a real scan to 5e-7.
+- **Kept as information in every line:** the bracket-to-root distance with its mark (wholly inside the band, straddling its edge, or outside it), and the summary's counts of the marks. The orientation is printed as information and not used; orientation readings wait for xfkappa's sign-convention check. The ln|det| minima without a change and the dip fits are unchanged.
+- **Files:** `kc_compare2.py` is replaced (new blob 809f5fa8; the first version, the bracket rule, is kept as `kc_compare2_v1_bracket_rule.py`, a7289a19); `plant_checks_d1825.py` is replaced (new blob 91c4abe7; the first version is kept as `plant_checks_d1825_v1.py`, c98856e2). `d1825_driver.sh` (68969ab8) is not changed: it is running, and its reading step calls `kc_compare2.py` by path with the same arguments when the scans end, so it uses the amended version. The driver's pre-check at 23:29:08 UTC ran the first controls (26 cases, the bracket rule, all passing); the amended controls (29 cases: the amendment case, in which a bracket straddling the band edge and 0.0085 from a root has its estimate 0.0276 away and is now k_c-DEPENDENT, and the estimate against xfkappa's code) were run by hand at 23:33 UTC and pass (`plant_checks_d1825_amended.log`). `merge_fine.py`, `read_fine.py` and `dip_fit2.py` are unchanged. The "26 cases" of Part 3's Controls section describes the first version.

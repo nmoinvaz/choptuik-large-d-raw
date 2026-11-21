@@ -1,0 +1,27 @@
+plant compare, change (1.38, 1.40) wholly inside the band of 1.3885: STABLE: wanted 'k_c 55 change in (1.380, 1.400), plus-to-minus, ROBUST: STABLE (the bracket is wholly inside the band 1.3685 to 1.4085 of the k_c 63 root 1.3885; the k_c 63 root's orientation is plus-to-minus, the same (information))' -> ok
+plant compare, change (1.74, 1.76): STABLE, orientation the same: wanted 'k_c 55 change in (1.740, 1.760), minus-to-plus, ROBUST: STABLE (the bracket is wholly inside the band 1.7225 to 1.7625 of the k_c 63 root 1.7425; the k_c 63 root's orientation is minus-to-plus, the same (information))' -> ok
+plant compare, change (2.30, 2.32): STABLE: wanted 'k_c 55 change in (2.300, 2.320), plus-to-minus, ROBUST: STABLE (the bracket is wholly inside the band 2.2987 to 2.3387 of the k_c 63 root 2.3187' -> ok
+plant compare, all three k_c 63 roots MATCHED: wanted 'k_c 63 root 2.3187: MATCHED by the k_c 55 robust change in (2.300, 2.320) (wholly inside its band)' -> ok
+plant compare, the summary of three wholly stable: wanted 'SUMMARY: 3 robust k_c 55 change(s); stable: 3 wholly inside a band + 0 straddling a band edge; k_c-dependent: 0 k_c 55 only + 0 k_c 63 only; undetermined 0; not compared 0' -> ok
+plant compare, change (1.36, 1.38) straddles the band edge: STABLE by the rule, marked: wanted 'k_c 55 change in (1.360, 1.380), plus-to-minus, ROBUST: STABLE (within 0.02 of the k_c 63 root 1.3885: distance 0.0085 from the bracket, which straddles the band edge, so the root may be up to 0.0285 from it', not 'wholly inside the band 1.3685' -> ok
+plant compare, the straddling case is counted separately: wanted 'stable: 2 wholly inside a band + 1 straddling a band edge' -> ok
+plant compare, change (1.62, 1.64) is 0.1025 from the nearest k_c 63 root: k_c-DEPENDENT (k_c 55 only): wanted 'k_c 55 change in (1.620, 1.640), plus-to-minus, ROBUST: k_c-DEPENDENT (k_c 55 only: no k_c 63 root within 0.02; the nearest k_c 63 root 1.7425 is 0.1025 from the bracket)' -> ok
+plant compare, the root 1.3885 has no k_c 55 change within 0.02: k_c-DEPENDENT (k_c 63 only): wanted 'k_c 63 root 1.3885: k_c-DEPENDENT (k_c 63 only: no k_c 55 change, robust or not, within 0.02 of it)' -> ok
+plant compare, the summary of dependent: wanted 'k_c-dependent: 1 k_c 55 only + 1 k_c 63 only' -> ok
+plant compare, no change at all: three k_c 63 only: wanted 'k_c-dependent: 0 k_c 55 only + 3 k_c 63 only; undetermined 0; not compared 0' -> ok
+plant compare, a non-robust point at the change near 1.3885: not counted: wanted 'NOT ROBUST (a point fails its noise test), not counted', not 'k_c 55 change in (1.380, 1.400), plus-to-minus, ROBUST' -> ok
+plant compare, the root 1.3885 with only a non-robust change near it: UNDETERMINED: wanted 'k_c 63 root 1.3885: UNDETERMINED (only non-robust k_c 55 change(s) within 0.02: (1.380, 1.400))' -> ok
+plant compare, a k_c 55 change above the k_c 63 coverage is not compared: wanted 'k_c 55 change in (2.300, 2.320), plus-to-minus, ROBUST: not compared (k_c 63 is not scanned over this bracket', not 'k_c-DEPENDENT (k_c 55 only' -> ok
+plant compare, the orientation of the k_c 55 change is the opposite of the k_c 63 root's: printed: wanted 'the k_c 63 root's orientation is plus-to-minus, the opposite (information)' -> ok
+plant merge at step 0.02, repeat equal: wanted 'merged 56 points (1.300 to 2.400)', not '-> FAIL' -> ok
+plant merge at step 0.02: no prior scan, no PRIOR line: wanted 'REPEAT CHECK at lambda 1.860', not 'PRIOR SCAN' -> ok
+plant merge at step 0.02, repeat ln|det| differs by 1e-3: wanted '-> FAIL', not 'merged 56' -> ok
+plant merge at step 0.02, lambda 2.40 missing: wanted 'missing lambda: [2.4]', not 'merged 56' -> ok
+plant reader at step 0.02: the first change: wanted 'change in (1.38, 1.40): plus-to-minus, ROBUST' -> ok
+plant reader at step 0.02: the third change: wanted 'change in (2.30, 2.32): plus-to-minus, ROBUST' -> ok
+plant dip fit: its own planted truths and minimum finder pass: wanted 'selftest passes' -> ok
+plant dip fit on a planted complex-pair dip near 1.906 without a change: found: wanted 'ln|det| local minima WITHOUT a change: [1.9]' -> ok
+plant dip fit on the planted dip: l0 recovered (1.906, e 0.06): wanted 'l0 1.9060' -> ok
+plant dip fit on the planted dip: e recovered and resolved: wanted 'e 0.0600', not 'NOT RESOLVED at this step' -> ok
+plant dip fit on a scan whose minimum is beside a change: none to fit: wanted 'ln|det| local minima WITHOUT a change: none' -> ok
+plant_checks_d1825 passes (files in C:\Users\nathan\AppData\Local\Temp\d1825_plant_2fhkk167)
