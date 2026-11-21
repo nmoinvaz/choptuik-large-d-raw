@@ -9,3 +9,9 @@ pass 1 retest --mutate=lowguard exit 1 (1 fired, 0 changed no decision)
 pass 1 recount exit 0 2026-11-21 09:29:16
 pass 1 unresolved cells 12
 pass 2 value start 2026-11-21 09:29:16 leaves leaves_M3_recount4_pass1_r0.18.jsonl cache 801 lines
+pass 2 value exit 2 (0 all accepted, 2 some not) 2026-11-21 14:01:48: accepted 0 of 7 points, appended to the cache
+pass 2 retest --mutate=f3 exit 0 (1 fired, 0 changed no decision)
+pass 2 retest --mutate=lowguard exit 1 (1 fired, 0 changed no decision)
+pass 2 accepted no point: end
+samebits recount3 -> recount4 exit 1 (0)
+end 2026-11-21 14:01:48
