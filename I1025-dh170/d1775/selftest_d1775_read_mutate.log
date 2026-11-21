@@ -1,0 +1,5 @@
+selftest: two changes, all robust: 2 change(s) [(1.72, 1.73, '- to +'), (1.75, 1.76, '+ to -')] (want 2 [(1.72, 1.73, '- to +'), (1.75, 1.76, '+ to -')]): pass
+selftest: two changes, a non-robust point at the second: 2 change(s) [(1.72, 1.73, '- to +'), (1.75, 1.76, '+ to -')] (want 1 [(1.72, 1.73, '- to +')]): FAIL
+selftest: one change: 1 change(s) [(1.73, 1.74, '+ to -')] (want 1 [(1.73, 1.74, '+ to -')]): pass
+selftest: no change: 0 change(s) [] (want 0 []): pass
+selftest --mutate: FAIL
