@@ -126,3 +126,20 @@ Discrepancy in the design of job 4, reported not fixed: job 4's F (the coordinat
 ## Job 6 (21 Nov, coordinator's task after job 5): job 4 again with 3.5's Newton flags, 4 steps of 0.25
 
 `run1054i.sh`: `anm_run.py` from `hp/` of `~/Source/choptuik-large-d-1043g` (main 796f4bac), venv-i1054, from `resolve241_r0` and `resolve241_r1` (`base_pin3_D241.9602.npz`), `--exact_recip 0` then `1`, F = job 4's with 3.5's Newton flags and `--N 31 --qd_it 40 --lam_stall 0.04` (job 2's values), `--od_accept natural --od_strong 4 --reseed_start pred --reseed_qd_bar 1e-21`, `--a0 0.25 --h_max 0.25 --a_grow 1 --steps 4 --D_max 300`; outputs `job6_r0`, `job6_r1` (states at D 242.2102, 242.4602, 242.7102, 242.9602), logs `job6_r<R>.log`. Reading (b): the runs go one after the other (10 threads each, as job 4), `refusal.py` is polled every 30 s on the running log and kills the running pid at its first refused attempt; if the flag-off run refuses, the flag-on run is not started (both stop). The flag-on base polish's first line is read first (reading (c)); the run goes on to its first attempt as in job 4. Afterwards `exact_recip_check.py delta` of the two states at each common D (`delta_job6_<D>.json`), and consistency checks (`xcheck_job6.py`, bound fixed before the run: two converged solves of the same equations at the same D agree in Delta to 1e-30): job 4's flag-off state against job 6's, job 5's flag-on polish against job 6's, both at D 242.2102 and 242.4602, and the control, job 6's flag-off state against job 5's flag-on polish, which must exceed 1e-30 (the flag's own change, about 3e-13). Planted test of the check: `controls_job6_xcheck.txt` (a 4e-20 gap fails, `--mutate` exits 1). `table1054i.py` builds `table_job6.md`.
+
+### Job 6 result (21 Nov, 02:57 UTC)
+
+Both runs exit 0 with no refusal (`refusal_job6_r0.txt`, `refusal_job6_r1.txt`, `refusal_selftest_job6.txt`). Flag off 01:00:14 to 01:53:17 UTC (3183 s), flag on 01:53:17 to 02:56:51 UTC (3814 s). The unit `i1054i` took 1 h 56 min 38 s of wall clock, 16 h 20 min of CPU and a 7 GB memory peak (journal); `memlog_1054i.log` has no alert line.
+
+`table_job6.md` has each log's first polish line and each attempt read by its octo-double line, then the table of Delta(on) - Delta(off) at each common D. Flag on, the base polish converged (4 steps, max|F| 1.2e-93), so reading (c) does not apply. All eight attempts were accepted at a = 0.25 with no halving.
+
+| D | change (on - off) | nearest row, quoted error | share | change / (+3.290002e-13) |
+|---|---|---|---|---|
+| 242.2102 | +3.443409e-13 | D 241.9602, 3.8e-11 | 9.06e-03 | 1.05 |
+| 242.4602 | +2.798345e-13 | D 242.7053, 3.4e-11 | 8.23e-03 | 0.851 |
+| 242.7102 | +8.833605e-14 | D 242.7053, 3.4e-11 | 2.60e-03 | 0.268 |
+| 242.9602 | -2.824433e-13 | D 242.7053, 3.4e-11 | 8.31e-03 | -0.858 |
+
+`data/delta_all.csv` has rows at D 241.9602, 242.7053 and 243.6366 only, so the D 242.9602 share uses a row 0.255 away and the D 242.7102 share a row 0.005 away.
+
+`xcheck_job6.txt` (`xcheck_job6.py`, bound 1e-30, fixed before the run; `controls_job6_xcheck.txt` and `--mutate` exit 1): job 6's flag-off state against job 4's at D 242.2102 and 242.4602, 3.6e-64 and 2.2e-54; job 6's flag-on state against job 5's polish at the same two D, 1.4e-61 and 1.8e-72; the control (job 6's flag-off against job 5's flag-on polish) 3.443e-13 and 2.798e-13, above the bound. The checks share the code, the build and the equations.
