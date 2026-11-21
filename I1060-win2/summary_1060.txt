@@ -25,3 +25,8 @@ part 2 done, report_1060_p2.md written
 split2_D261: series_split_check.py  exit 0 (want 0), 757 s wall (cap 10800 s) capped 0
 split2_D261_mut31: series_split_check.py --mutate 31 exit 1 (want 1), 410 s wall (cap 10800 s) capped 0
 part 3 done
+# 2026-11-21 04:47:42 UTC controls (1) N 31 and (2) keep_plan 1 start
+split2_D260_N31: series_split_check.py --N 31 exit 0 (want 0), 1077 s wall (cap 10800 s) capped 0 (control 1)
+step17_k1_s1: expected exit 0, got 0, 574 s wall (cap 10800 s) capped 0 (control 2, --keep_plan 1)
+step17_k1_s2: expected exit 0, got 0, 547 s wall (cap 10800 s) capped 0 (control 2, --keep_plan 1)
+controls (1) and (2) done, report_1060_q.md written
