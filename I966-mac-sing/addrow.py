@@ -14,15 +14,15 @@ d = re.search(r"Delta dlog: D\* (\S+) \(s \S+\), mu (\S+)", ty)
 fmt = lambda x: f"{float(x):+.1f}"
 rows = f"{r.group(1)} ({fmt(r.group(2))}), " + (f"{d.group(1)} ({float(d.group(2)):+.3f})" if d else "no Dlog estimate")
 diff = diff.replace("-", "−")
-row_readme = f"| {D} | {raw} | {re_} ± {im}i ({n} approximants) | {root}, {dist}, {diff} | {'PASS (0)' if ok else 'FAIL (1)'}, {'FAIL (1)' if okm else 'PASS (0)'} | {rows} |"
-row_comment = f"| {D} | {raw} | {re_} ± {im}i ({n} approximants) | {root}, {dist}, {diff} | {'PASS' if ok else 'FAIL'}, {'FAIL' if okm else 'PASS'} | {rows} |"
+row_readme = f"| {D} | {raw} | {re_} ± {im}i ({n} approximants) | {root}, {dist}, {diff} | {265.078 - float(D):.4f} | {'PASS (0)' if ok else 'FAIL (1)'}, {'FAIL (1)' if okm else 'PASS (0)'} | {rows} |"
+row_comment = f"| {D} | {raw} | {re_} ± {im}i ({n} approximants) | {root}, {dist}, {diff} | {265.078 - float(D):.4f} | {'PASS' if ok else 'FAIL'}, {'FAIL' if okm else 'PASS'} | {rows} |"
 open(readme, "a").write(row_readme + "\n")
 s = open(cin).read()
 rows_t = re.findall(r"^\| 26\d\.\d+ \|.*\|$", s, flags=re.M)
 s = s.replace(rows_t[-1], rows_t[-1] + "\n" + row_comment)
 bases = [x.split("|")[1].strip() for x in rows_t] + [D]
 s = re.sub(r"At [0-9., and]+ Re stays at 262\.08", "At " + (", ".join(bases[:-1]) + " and " + bases[-1]) + " Re stays at 262.08"
-           if ok and all("PASS" in x.split("|")[5] for x in rows_t) else "At " + ", ".join(bases) + " see the table", s)
+           if ok and all("PASS" in x.split("|")[6] for x in rows_t) else "At " + ", ".join(bases) + " see the table", s)
 s = re.sub(r"last update \S+ \S+ UTC", f"last update {stamp} UTC", s)
 s = re.sub(r"Raw: `I966-mac-sing/` at \w+\.", f"Raw: `I966-mac-sing/` at {push}.", s)
 open(cout, "w").write(s)

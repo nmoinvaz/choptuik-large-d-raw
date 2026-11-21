@@ -270,26 +270,26 @@ hold, the radius on the real line is smallest at D0 ≈ 262.08, at about 0.973.
 
 ## Next bases (`newbase.sh`, `nextcheck.py`; outputs `*_D<base>.*`, `exits_new.txt`)
 
-| D0 | raw | nearest stable pole off the axis | root test, \|D0 − P1\|, difference | nextcheck, move control | Delta: ratio D* (mu), Dlog D* (mu) |
-|---|---|---|---|---|---|
-| 261.6229 | 3a4c2671 | 262.0768 ± 0.9734i (9 approximants) | 1.0841, 1.0754, +0.81% | PASS (0), FAIL (1) | 261.4735 (+32.1), 270.3069 (+1.108) |
-| 261.6746 | 3dfb078d | 262.0767 ± 0.9733i (9 approximants) | 1.0537, 1.0544, −0.06% | PASS (0), FAIL (1) | 261.7282 (+39.2), 270.3444 (+1.145) |
-| 261.7748 | e544743f | 262.0768 ± 0.9733i (9 approximants) | 1.0212, 1.0199, +0.12% | PASS (0), FAIL (1) | 261.9763 (+38.3), 264.4613 (+0.085) |
-| 261.8239 | f54bd692 | 262.0767 ± 0.9734i (9 approximants) | 1.0027, 1.0063, −0.36% | PASS (0), FAIL (1) | 261.9000 (+40.0), 293.3994 (+1.328) |
-| 261.9176 | 80d803ea | 262.0887 ± 0.9705i (9 approximants) | 0.9816, 0.9865, −0.50% | PASS (0), FAIL (1) | 261.9070 (+43.4), no Dlog estimate |
+| D0 | raw | nearest stable pole off the axis | root test, \|D0 − P1\|, difference | 265.078 − D0 | nextcheck, move control | Delta: ratio D* (mu), Dlog D* (mu) |
+|---|---|---|---|---|---|---|
+| 261.6229 | 3a4c2671 | 262.0768 ± 0.9734i (9 approximants) | 1.0841, 1.0754, +0.81% | 3.4551 | PASS (0), FAIL (1) | 261.4735 (+32.1), 270.3069 (+1.108) |
+| 261.6746 | 3dfb078d | 262.0767 ± 0.9733i (9 approximants) | 1.0537, 1.0544, −0.06% | 3.4034 | PASS (0), FAIL (1) | 261.7282 (+39.2), 270.3444 (+1.145) |
+| 261.7748 | e544743f | 262.0768 ± 0.9733i (9 approximants) | 1.0212, 1.0199, +0.12% | 3.3032 | PASS (0), FAIL (1) | 261.9763 (+38.3), 264.4613 (+0.085) |
+| 261.8239 | f54bd692 | 262.0767 ± 0.9734i (9 approximants) | 1.0027, 1.0063, −0.36% | 3.2541 | PASS (0), FAIL (1) | 261.9000 (+40.0), 293.3994 (+1.328) |
+| 261.9176 | 80d803ea | 262.0887 ± 0.9705i (9 approximants) | 0.9816, 0.9865, −0.50% | 3.1604 | PASS (0), FAIL (1) | 261.9070 (+43.4), no Dlog estimate |
 
 Note from 261.9176: three stable clusters sit at every base since 261.0721. Since 261.3914 they lie at 262.0767 to 262.0771 ± 0.9731 to 0.9734i, 262.0826 to 262.0830 ± 0.9719 to 0.9721i, and 262.0882 to 262.0887 ± 0.9705i (`locate966_leg14.json`, `locate966_D*.json`). As the base nears Re 262.08, the one with the smallest Im becomes the nearest, so the table's pole changes cluster there; none of them moved. The recurrence fit stays at 262.0828 ± 0.9722i.
-| 262.0099 | bb7b64f3 | 262.0887 ± 0.9705i (9 approximants) | 0.9617, 0.9755, −1.41% | PASS (0), FAIL (1) | 261.8773 (+43.0), 274.3542 (+1.257) |
-| 262.1011 | ae5cce13 | 262.0887 ± 0.9705i (9 approximants) | 0.9615, 0.9731, −1.19% | PASS (0), FAIL (1) | 261.5218 (+28.8), 282.6851 (+1.124) |
+| 262.0099 | bb7b64f3 | 262.0887 ± 0.9705i (9 approximants) | 0.9617, 0.9755, −1.41% | 3.0681 | PASS (0), FAIL (1) | 261.8773 (+43.0), 274.3542 (+1.257) |
+| 262.1011 | ae5cce13 | 262.0887 ± 0.9705i (9 approximants) | 0.9615, 0.9731, −1.19% | 2.9769 | PASS (0), FAIL (1) | 261.5218 (+28.8), 282.6851 (+1.124) |
 
 Note at 262.1011: the base has passed Re 262.08 (the pair now lies at arg 90.7° to 91.4°). The root test is 0.9615, its smallest so far, against the nearest cluster's distance of 0.9706. A real stable pole appears there for the first time, at 265.0469 (4 approximants, 2.95 ahead); none of the 32 earlier bases (256.1776 to 262.0099) lists one. One base is no reading, so the watcher follows it.
-| 262.1920 | dce381d5 | 262.0885 ± 0.9707i (9 approximants) | 0.9824, 0.9792, +0.33% | PASS (0), FAIL (1) | 262.2638 (+37.8), 273.2447 (+1.093) |
+| 262.1920 | dce381d5 | 262.0885 ± 0.9707i (9 approximants) | 0.9824, 0.9792, +0.33% | 2.8860 | PASS (0), FAIL (1) | 262.2638 (+37.8), 273.2447 (+1.093) |
 
 Note at 262.1920: past Re 262.08 the root test rises again (0.9615 at 262.1011, 0.9824 here), as a fixed pair's distance does. The real stable pole is listed a second time, at 265.0816 (4 approximants), 0.035 from 265.0469 at the previous base. Rows give no real reading near it (Dlog D* 273.24, mu +1.093).
-| 262.2833 | dcd2f585 | 262.0882 ± 0.9705i (9 approximants) | 0.9916, 0.9937, −0.21% | PASS (0), FAIL (1) | 262.3443 (+28.9), 359.9728 (+0.786) |
+| 262.2833 | dcd2f585 | 262.0882 ± 0.9705i (9 approximants) | 0.9916, 0.9937, −0.21% | 2.7947 | PASS (0), FAIL (1) | 262.3443 (+28.9), 359.9728 (+0.786) |
 
 Note at 262.2833: the root test rises to 0.9916 (−0.21% from |D0 − P1|). The real stable pole is listed a third time, at 265.0779 (4 approximants). Over 262.1011 to 262.2833 it is 265.0469, 265.0816 and 265.0779, a range of 0.035, so it does not hold to 0.01. Locate gives it no exponent, and rows give no real reading near it (Dlog D* 359.97 here). No fold is read.
-| 262.3756 | 3fcc674b | 262.0872 ± 0.9710i (9 approximants) | 1.0122, 1.0165, −0.43% | PASS (0), FAIL (1) | 262.4502 (+30.7), 672.9987 (+3.803) |
+| 262.3756 | 3fcc674b | 262.0872 ± 0.9710i (9 approximants) | 1.0122, 1.0165, −0.43% | 2.7024 | PASS (0), FAIL (1) | 262.4502 (+30.7), 672.9987 (+3.803) |
 
 Note at 262.3756: the root test is 1.0122 (−0.43% from |D0 − P1|). The real stable pole is listed a fourth time, at 265.0788 (4 approximants, 2.70 ahead). Over its last three bases (262.1920 to 262.3756) it is 265.0816, 265.0779 and 265.0788, a range of 0.0037, under 0.01. The fixed fold reading is on rows' estimators of Delta, which do not see it (they track the nearer pair; Dlog D* 673.0 here), and locate gives it no exponent. So no fold is read, and it is reported as a candidate: a real Padé pole held to 0.004 over three bases.
 
@@ -415,13 +415,13 @@ real base, s1 is the base's nearest stable pole off the axis, and s2 is the real
 
 If it fails, the type stays not resolved at N 31. If it passes, the type comes from the median mu over the three
 bases of (1): within 0.1 of 1/2 a fold, within 0.2 of −1 a pole, otherwise not resolved.
-| 262.4705 | fcf73363 | 262.0871 ± 0.9709i (9 approximants) | 1.0472, 1.0480, −0.08% | PASS (0), FAIL (1) | 262.6633 (+27.9), 334.4578 (+1.601) |
+| 262.4705 | fcf73363 | 262.0871 ± 0.9709i (9 approximants) | 1.0472, 1.0480, −0.08% | 2.6075 | PASS (0), FAIL (1) | 262.6633 (+27.9), 334.4578 (+1.601) |
 
 Reading (1), base 1 of 3 (262.4705): the real stable pole is at 265.0780 (4 approximants). `reading1.py` (pending, exit 3) gives the verdict once three new bases have landed; its control `--mutate=shift` adds 0.02 to the first base.
-| 262.5706 | 86484665 | 262.0871 ± 0.9709i (9 approximants) | 1.0866, 1.0892, −0.23% | PASS (0), FAIL (1) | 262.5092 (+34.9), 325.0839 (+2.356) |
+| 262.5706 | 86484665 | 262.0871 ± 0.9709i (9 approximants) | 1.0866, 1.0892, −0.23% | 2.5074 | PASS (0), FAIL (1) | 262.5092 (+34.9), 325.0839 (+2.356) |
 
 Reading (1), base 2 of 3 (262.5706): the real stable pole is at 265.0778 (4 approximants); 265.0780 at base 1. Pending (exit 3).
-| 262.6802 | cdc91937 | 262.0871 ± 0.9709i (9 approximants) | 1.1410, 1.1426, −0.14% | PASS (0), FAIL (1) | 262.3202 (+21.8), 272.3348 (-20.768) |
+| 262.6802 | cdc91937 | 262.0871 ± 0.9709i (9 approximants) | 1.1410, 1.1426, −0.14% | 2.3978 | PASS (0), FAIL (1) | 262.3202 (+21.8), 272.3348 (-20.768) |
 
 ## Reading (1): MET (`reading1.py` → `reading1.txt`, exit 0)
 
@@ -494,7 +494,7 @@ itself to reach D 265.
 one-off series is ordered from this check. With N, the pole-pair and weaker-point cases move toward mu 1/2 only slowly,
 for example the mapped square-root pair at j 4 goes from +0.70 at N 47 to +0.67 at N 63. And j* stays at 2 as the plain
 Dlog improves with them.
-| 262.7908 | 8caffc64 | 262.0871 ± 0.9709i (9 approximants) | 1.1974, 1.2043, −0.57% | PASS (0), FAIL (1) | 262.5082 (+29.6), 515.1630 (+2.826) |
+| 262.7908 | 8caffc64 | 262.0871 ± 0.9709i (9 approximants) | 1.1974, 1.2043, −0.57% | 2.2872 | PASS (0), FAIL (1) | 262.5082 (+29.6), 515.1630 (+2.826) |
 
 Note at 262.7908: the real singularity read near 265.078 is listed at 265.0778, now with 6 approximants (4 before), 2.29 ahead. That is within 0.0002 of the three bases of reading (1).
 
@@ -585,6 +585,17 @@ anything of the front. The pair 254.6766 ± 3.5009i is at the same place, to 1e-
 `order_compare.py` reads named poles by that rule: for each of P2, P1, the real pole and 254.677 ± 3.501i, the
 most-populated stable cluster within 0.1 of it in each jet. That is the read value. The pairing of all poles is
 reported beside it.
-| 262.8471 | 9c9ba932 | 262.0871 ± 0.9709i (9 approximants) | 1.2381, 1.2383, −0.02% | PASS (0), FAIL (1) | 262.8519 (+30.7), no Dlog estimate |
+| 262.8471 | 9c9ba932 | 262.0871 ± 0.9709i (9 approximants) | 1.2381, 1.2383, −0.02% | 2.2309 | PASS (0), FAIL (1) | 262.8519 (+30.7), no Dlog estimate |
 
 Note at 262.8471: the real pole is at 265.0778 (6 approximants). The ratio fit gives s 0.0048 with a small spread (6.1e-3), but mu +30.65, far outside the square-root band, at one base only, so no fold is read.
+
+## The real pole on the chain's path: reading fixed 2026-11-21 18:05:25 UTC (the coordinator's, #966 comment 7066990195)
+
+P1 stays the nearest singularity until D 263.425, where P1 and the real pole are both 1.653 away. Past that, the real
+pole should take over. The per-base table gains a column `265.078 − D0` beside the root test.
+
+**Reading** (`reading_real.py`):
+- two bases in a row with D0 > 263.5 and the root test within 5% of 265.078 − D0 confirm the real pole on the
+  chain's path;
+- the root test more than 5% above 265.078 − D0 at two bases in a row means the pole is not there;
+- `--mutate=scale` multiplies each root test by 1.2, which must read "not there" once two bases past 263.5 exist.
