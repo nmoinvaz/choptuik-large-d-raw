@@ -187,3 +187,62 @@ The ln|det| over the window falls from -1604.3106 at 1.660 to -1605.7210 at 1.68
 **Information, beside the reading, not part of it** (`fine_dip_fit.py`, `fine_dip_fit.log`; a model fit, not a root search; the script first recovers two planted truths): the 21 ln|det| values are fitted to a + ln((l - l0)^2 + e^2) + b (l - l0) + c (l - l0)^2 (a pair of complex roots l0 +- i e times a smooth factor) with l0 = 1.68434 and e = 0.01275, max residual 2.3e-4, rms 1.0e-4, while a quartic polynomial leaves 3.9e-2 and a quadratic 0.21. Within that model the roots are off the real axis by 0.0128, and l0 is 0.0071 above the k_c 63 root 1.6772091. A step of 0.002 cannot exclude two real roots closer together than 0.002; the smooth, shallow minimum shows no sign of one.
 
 **cpu and memory (`fine_samples.csv`, a sample every 60 s, 50 samples 22:31:22 to 23:21:29 UTC; my processes only).** The two python children (pids 26000 and 34952; the roots are launcher stubs): peak working set 0.69 and 0.70 GiB, private 1.11 and 1.27 GiB; 4235 and 4233 cpu-s in about 3010 s; BelowNormal throughout; together at most 1.19 GiB working set and 2.37 GiB private in one sample. Machine: cpu mean 31.1% (1 s samples), max 46.3%; commit 50.3 to 54.0 of 101.5 GiB; free physical at least 49.4 GiB.
+
+---
+
+# Part 3: the k_c test at D 18.25, lambda 1.30 to 2.40 at 0.02 (win2b)
+
+Written before the run, 2026-11-21 23:28 UTC by `date -u`. Parts 1 and 2 above (D 18.5) are done; their files are unchanged, and the files of this part have the prefix `d1825_`.
+
+## Order
+
+The coordinator (hc, about 23:25 UTC 21 Nov, after Part 2's near miss): the k_c test at D 18.25, completing the set (xfkappa D 17.75, winb D 18, win2b D 18.5, win2 k_c 71 at D 18.5). Scan the Mac's k_c 55 state raw `I1025-mac/out/sol_l1kc55F1025_D18.250000.npy` (its record line, system check first) over 1.30 to 2.40 at 0.02 (56 points), with the same script, noise test and float64 sign. Two processes with one point repeated as the check, 4 threads each, BelowNormal, 8 h caps. Window and reading go into this README first, raw `I1025-win2b/kc55`. Post on #1025.
+
+Reading (the coordinator's, fixed before the run): compare with k_c 63 at D 18.25 (xfkappa, comment 7070296128: 1.3885, 1.7425, 2.3187). **Each k_c 55 change within 0.02 of a k_c 63 root counts as stable; the rest are k_c-dependent. Report any ln|det| minimum without a change, with the dip fit.**
+
+## Inputs (raw origin/main b247f0e8, taken by `git show`, checked with `git hash-object --no-filters`; `in/pins_d1825.txt`, `in/pins_d1825_state.txt`)
+
+The same as Part 1 (scanner `d18_hybsign.py` e089207a, record `l1kc55F1025.jsonl` 0fb77df8, winb's reader 017ae1da) and the new state: `I1025-mac/out/sol_l1kc55F1025_D18.250000.npy` (29048 bytes), blob cbaffca8ea07b6079ae436dfd7fcd9b1a9f57143. The record has one D 18.25 line (line 8: k_c 55, F 2.777068169891278e-10, 2190 steps, kappa 0.7, u0 0.04, Ks 30, h 0.0625). **The system check is the script's own first line** (|F| within 1% of the record's F and equal steps, else "NOT the record system", exit 3, before any lambda; the driver then stops and nothing is read). Worktree `D:/choptuik-1025p4` at 505d8399, venv-md510, 4 BLAS and rayon threads per process, BelowNormal.
+
+The k_c 63 side is xfkappa's comment 7070296128: D 18.25's map over 1.20 to 2.60 on one state (93 merged points), three roots with their estimator ranges: 1.388522 to 1.388581, 1.742506 to 1.742860, 2.318523 to 2.318888 (hybrid, provisional, no dd check); the signs run plus at 1.20, then minus, plus, minus across the three roots, and minus at 2.60, so the roots are plus-to-minus, minus-to-plus, plus-to-minus. The coordinator's figures 1.3885, 1.7425, 2.3187 are used.
+
+## Window and lambda lists, fixed before the run
+
+Window: lambda 1.30 to 2.40 at 0.02, 56 points. It holds the three k_c 63 roots (1.3885, 1.7425, 2.3187, all inside) and is inside the k_c 63 map (1.20 to 2.60).
+
+| process | lambda, in this order | evaluations |
+|---|---|---|
+| A | 1.86, then 1.30, 1.32, ..., 1.84 | 29 |
+| B | 1.86 again, then 1.88, 1.90, ..., 2.40 | 28 |
+
+The repeated point (1.86, first in both; no k_c 63 root is near it) makes 57 evaluations for 56 distinct points. Caps 28800 s (8 h) each by the exact pid of the root process (`taskkill /T /F /PID`) after a check that its command line contains `d18_hybsign.py`; a cap is not retried.
+
+## Reading, fixed now (`kc_compare2.py`, `read_fine.py`, `dip_fit2.py`)
+
+A **k_c 55 change** is two consecutive points of different hybrid sign, both passing their 1e-15 noise test (robust); it lies in its bracket (a, b), b - a = 0.02. **"Within 0.02 of a k_c 63 root r"** is read as: the distance from r to the bracket [a, b] is at most 0.02 (0 if r is inside). That is the coordinator's two-class rule:
+
+- a k_c 55 change within 0.02 of a k_c 63 root: **STABLE**;
+- a k_c 55 change farther than 0.02 from every k_c 63 root: **k_c-DEPENDENT (k_c 55 only)**;
+- a k_c 63 root with no robust k_c 55 change within 0.02: **k_c-DEPENDENT (k_c 63 only)**.
+
+The bracket is as wide as the band, so each STABLE change is also marked **wholly inside** the band [r - 0.02, r + 0.02] (the k_c 55 root is certainly within 0.02 of r) or **straddling the band edge** (the root may be up to 0.04 from r); both count as stable by the rule, and the two counts are printed. (At D 18.5 the band was 0.01 and the rule stricter, with an UNDETERMINED class; here the coordinator's rule is the one stated above.) A change that touches a non-robust point is listed and not counted, and a k_c 63 root with only such a change near it is UNDETERMINED; a k_c 55 change outside the k_c 63 coverage (1.20 to 2.60) would be not compared. The orientation of each change is printed beside its k_c 63 match as information; **the rule does not use orientation, and all orientation readings wait for xfkappa's sign-convention check.**
+
+**Every ln|det| local minimum without a change** (the pinned reader's definition: an interior point below both neighbours', the hybrid sign the same on both sides) is reported by `read_fine.py` and fitted by `dip_fit2.py` with the dip model of Part 2's `fine_dip_fit.py` (ln|det| = a + ln((l - l0)^2 + e^2) + b (l - l0) + c (l - l0)^2, a complex pair l0 +- i e times a smooth factor), over the 11 points around the minimum, with the 1-sigma uncertainties from the Jacobian and a quartic and a quadratic polynomial over the same points. At a step of 0.02 the fit is coarse: it is flagged NOT RESOLVED when |e| is below half a step or its uncertainty exceeds |e|. The fit is information, a model and not a root search. The line "FINE READING" that `read_fine.py` prints is Part 2's rule and is not used here.
+
+## Repeat check, fixed now
+
+At the repeated lambda 1.86 the two records (A's and B's) must have the same hybrid sign and ln|det| equal to 1e-6 (`merge_fine.py`, step 0.02; the gate). The merged 56-point scan is written, and the reading run, only if this check passes, the two files share exactly the point 1.86, every record is at D 18.25 and all 56 lambda are present. The result is written into this README after the run.
+
+## Controls, before the run
+
+`plant_checks_d1825.py`, 26 cases (`plant_checks_d1825.log`, rerun by the driver as `plant_checks_d1825_run.log`; the driver does not start the scan unless it passes): `kc_compare2.py` on planted 56-point scans with the three k_c 63 roots gives STABLE (wholly inside) and MATCHED for brackets over all three roots, STABLE marked "straddles the band edge" for a bracket 0.0085 from a root, k_c-DEPENDENT (k_c 55 only) for a bracket 0.1025 from the nearest root and k_c-DEPENDENT (k_c 63 only) for a root with no change near it (and for all three with no change at all), "not counted" and UNDETERMINED for a change with a non-robust point, "not compared" above a narrower coverage, and the orientation the same or the opposite; `merge_fine.py` at step 0.02 merges an equal repeat (no prior scan) and fails on a ln|det| difference of 1e-3 and on a missing lambda; `read_fine.py` at step 0.02 prints the changes with two-decimal brackets; `dip_fit2.py` recovers a resolved planted pair (e = 0.06) and an unresolved one is flagged NOT RESOLVED (e = 0.004), finds a planted smooth complex-pair dip without a change (l0 and e recovered) and finds none beside a change. All 26 pass; a first run had 2 cases wrong, both my planted cases (a planted parabola for the dip fit and a V placed where no change was), which I corrected before the run, not a script.
+
+## Run
+
+`d1825_driver.sh` (launcher `launch_d1825.ps1`, BelowNormal): checks the pins, the worktree and the record line, runs the planted controls, starts the two processes and the passive sampler (`d1825_samples.csv`, a sample every 60 s, only my `d18_hybsign.py` processes), then merges and reads. Blobs of the new scripts (mine): `kc_compare2.py` a7289a19, `dip_fit2.py` 8a876f65, `plant_checks_d1825.py` c98856e2, `d1825_driver.sh` 68969ab8; `merge_fine.py` e42b2c19, `read_fine.py` fe01f2e5 and the sampler 9437f3ef as in Part 2. Output: `d1825_scanA.jsonl`, `d1825_scanB.jsonl`, `d1825_scan_merged.jsonl`, `d1825_scanA_raw.log`, `d1825_scanB_raw.log`, `d1825_scanA.log`, `d1825_scanB.log`, `d1825_merge.log`, `d1825_reading.log`, `d1825_compare.log`, `d1825_dipfit.log`, `d1825_rc_A`, `d1825_rc_B`, and one line per event in `../exits_1025.txt` (prefix `1025 kc55d1825`); the last lines are `1025 kc55d1825 reading: ...`, `compare: ...`, `dip fit: ...` and `done`.
+
+Estimate: Part 1 took 262 to 429 s a point at D 18.5 with two processes running; 28 to 29 evaluations per process take about 2.5 to 3.5 h. The 3 h progress post is due if it is still running then.
+
+## Log (Part 3)
+
+(appended below as the run goes)
