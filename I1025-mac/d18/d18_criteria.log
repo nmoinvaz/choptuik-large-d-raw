@@ -119,3 +119,16 @@ D 18.5 root. The pass rules are unchanged (d18_check.py 08969ea2, then signtest.
    (0.0e+00). Over 1.55-2.10 D 18 has two robust changes, (1.77, 1.78) minus to plus and (1.80, 1.81) plus to minus, and no ln|det| minimum
    without a sign change. By the ruling on (b): case (1) needs a plus-to-minus root above 1.90 at D 18.5 (none, d2); case (2) needs a
    minus-to-plus root above 1.90 at D 18 (none). Neither applies; the coordinator rules. Across-D sign comparisons wait for lane_d18r.sh.
+== 2026-11-21 15:36:53 the coordinator's ruling after (d) (hc): neither (1) nor (2). If the convention holds, the parity reading stands (one root crossed
+   2.10 upward between D 18 and 18.5, at 0.58 per unit D or more); with the gap closing from D 17.75 (0.172) to D 18 (0.032) that is the
+   pattern of an avoided crossing near D 18.05, the lower turning down and the upper turning up past 2.10. Not a reading until the
+   convention check is in.
+   (e), queued after the check, ONLY if its reading is that the convention holds (lane_d18e.sh; any other verdict stops it, reported):
+   D 18.5, the leap's state 33c1a58b and record 08f4dbf3: the hybrid scan over **lambda 2.10 to 2.40 at 0.01 (31 points)**, 2.10 repeating (d)'s;
+   then D 18.25, state eae8ca02: **lambda 1.95 to 2.25 at 0.01 (31 points)**, 1.95 repeating (b)'s. Noise test and float64 sign beside each.
+   Reading, fixed (the coordinator's): a plus-to-minus root in each window places the rising eigenvalue; report its delta against
+   lambda_0 at that D. Added (mine, for the cases it leaves open): no plus-to-minus change in the window: not placed; more than one change
+   in the window, or a minus-to-plus one: all listed, the coordinator rules; a repeated point that disagrees (sign, or ln|det| by more
+   than 1e-6): STOP-level, no reading; a change touching a non-robust point is not counted. Reader d18e_read.py, selftest before the run.
+   d18e_read.py (blob 24ef6598): 4 planted cases PASS, --mutate=orient (the rising root read as minus to plus) FAILS (d18e_read_selftest.log);
+   on D 18.5's 1.90-2.10 it reads "not placed", as it must (d18e_read_on_d185hi.log). lane_d18e.sh started 15:39:03, waits on lane_d18r.sh.

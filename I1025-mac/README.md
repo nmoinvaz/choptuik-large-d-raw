@@ -157,3 +157,7 @@ Written before the run (criteria in `d18/d18_criteria.log`, 2026-11-21 03:31:59 
   ln|det| minimum without a sign change (`d18/d18_scanhi.log`, `d18/d18_scanhi_1025.jsonl`, `d18/d18_d_read.log`, `d18/d1825_d_read.log`;
   numbers `d18/d18_d_numbers.py`, `d18/d18_d_numbers.log`). Neither case of the ruling on (b) applies. Comparisons across D wait for the
   sign-convention check.
+- 2026-11-21 15:36:53 UTC, (e), the coordinator's ruling after (d), **windows written before it runs**, queued after the sign-convention check and run
+  only if it reads that the convention holds (`d18/lane_d18e.sh`): D 18.5 over **lambda 2.10 to 2.40 at 0.01 (31 points)**, then D 18.25
+  over **1.95 to 2.25 at 0.01 (31 points)**, noise test and float64 sign. Reading: a plus-to-minus root in each window places the rising
+  eigenvalue, with its delta against lambda_0 at that D (d18_criteria.log).
