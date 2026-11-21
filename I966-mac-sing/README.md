@@ -473,3 +473,24 @@ itself to reach D 265.
 - As a check that this reasoning holds, `scanN.py N --mmax 9` runs the old degrees at N 47 and must reproduce N 31's
   verdicts.
 - Bars, pair types, the move control and exits are unchanged: exit 0 when one estimator passes all six, 2 otherwise.
+
+## Result at N 47 and N 63 (`exits_scanN.txt`, 2026-11-21 16:47:02 to 16:50:30 UTC; all exit 2)
+
+- **The check:** `scanN.py 47 --mmax 9` (`scanN47_m9.txt`, 11.0 s) reproduces the N 31 numbers of `subdom_scan.txt` and
+  `confmap_scan.txt` to the printed digit. So the old degrees could not have decided anything.
+- **N 47, M 3..14** (`scanN47.txt`, 50.1 s, 41 MB): j* = 2 (plain Dlog s 2.7857, mu +0.5623). Neither estimator passes
+  any of the six.
+- **N 63, M 3..19** (`scanN63.txt`, 144.9 s, 41 MB): j* = 2 (plain Dlog s 2.7898, mu +0.5558). The mapped estimator
+  passes one of six (square-root pair at j 2: s 2.7938, mu +0.5484). The divided-out estimator passes none.
+- The move control fails at every one of the 24 runs per N.
+
+| N | j* | plain Dlog at j* (s, mu) | divided-out: passes of 6 | mapped: passes of 6 | mapped, square-root pair, mu at j 2, 3, 4 |
+|---|---|---|---|---|---|
+| 31 | 2 | 2.7803, +0.5686 | 0 | 0 | +0.5445, +0.4023, +0.5263 |
+| 47 | 2 | 2.7857, +0.5623 | 0 | 0 | +0.5614, +0.6145, +0.7001 |
+| 63 | 2 | 2.7898, +0.5558 | 0 | 1 | +0.5484, +0.5924, +0.6658 |
+
+**Reading: neither estimator passes all six by N 63, so the type waits for the chain itself to reach D 265.** No
+one-off series is ordered from this check. With N, the pole-pair and weaker-point cases move toward mu 1/2 only slowly,
+for example the mapped square-root pair at j 4 goes from +0.70 at N 47 to +0.67 at N 63. And j* stays at 2 as the plain
+Dlog improves with them.
