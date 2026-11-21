@@ -1,0 +1,19 @@
+plant merge, repeat equal: wanted 'merged 26 points', not 'FAIL' -> ok
+plant merge, repeat ln|det| differs by 1e-3: wanted '-> FAIL', not 'merged 26' -> ok
+plant merge, repeat sign differs: wanted '-> FAIL', not 'merged 26' -> ok
+plant merge, no repeated point: wanted 'no repeated point in both files -> FAIL', not 'merged 26' -> ok
+plant merge, lambda 1.95 missing: wanted 'missing lambda: [1.95]', not 'merged 26' -> ok
+plant merge, no merged file written when the check fails: wanted 'False' -> ok
+plant reader, planted two changes: first: wanted 'change in (1.77, 1.78): minus-to-plus, ROBUST' -> ok
+plant reader, planted two changes: second: wanted 'change in (1.80, 1.81): plus-to-minus, ROBUST' -> ok
+plant reader, planted two changes: gap: wanted 'centre to centre 0.030' -> ok
+plant reader, planted minimum at 1.80 sits next to the change at (1.80, 1.81): wanted 'ln|det| local minimum at 1.80 (ln -1900.000000): beside a change', not 'WITHOUT a change' -> ok
+plant reader, a point of the first change fails its noise test: wanted 'NOT ROBUST (a point fails its noise test)', not 'two robust changes' -> ok
+plant reader, signs negated: orientation swaps: wanted 'change in (1.77, 1.78): plus-to-minus, ROBUST' -> ok
+plant reader, no change, a minimum: wanted 'no change of the hybrid sign over the window' -> ok
+plant reader, no change, the minimum is without a change: wanted 'ln|det| local minimum at 1.80 (ln -1900.000000): WITHOUT a change' -> ok
+plant reader on xfkappa's D 18 scan: lower change: wanted 'change in (1.77, 1.78): minus-to-plus, ROBUST' -> ok
+plant reader on xfkappa's D 18 scan: upper change: wanted 'change in (1.80, 1.81): plus-to-minus, ROBUST' -> ok
+plant reader on xfkappa's D 18 scan: gap: wanted 'centre to centre 0.030' -> ok
+plant reader on xfkappa's D 18.5 scan: one change: wanted 'change in (1.67, 1.68): minus-to-plus, ROBUST', not 'two robust changes' -> ok
+plant_checks passes (files in C:\Users\nathan\AppData\Local\Temp\d18mid_plant_olfhv0pc)
