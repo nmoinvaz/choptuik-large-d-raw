@@ -2,13 +2,14 @@
 
 Machine: mac (Apple M5), the #1062 reviewer subagent. Issue: https://github.com/nmoinvaz/choptuik-large-d/issues/1062
 
-Code: branch review/p6-route3 of choptuik-large-d (44ffbd1f), `solver/proof/review_p6/`, venv-314 (mpmath 1.3.0,
+Code: branch review/p6-route3 of choptuik-large-d (febd41a5; explicit.py's and controls.py's logs, 44ffbd1f for the rest), `solver/proof/review_p6/`, venv-314 (mpmath 1.3.0,
 sympy 1.14.0; python-flint 0.9.0 and FLINT 3.6.0 only for amp_flint.py and cert_digits). One process at a time at
 nice 10. Notes: notes/P6_route3_review.md. The runs of record used the same code, up to output formatting.
 
 - `ampcheck.log`: PC1, the review's model against amp_flint.py run as a black box; PASS, worst 2.5e-37
 - `ampcheck_droppair.log`: M6, one ordered lapse pair dropped; FAIL, exit 1
-- `explicit.log`, `explicit.json`: the seven explicit sups (mpmath.iv adaptive bisection), PC2, PC3; PASS
+- `explicit.log`, `explicit.json`: the seven explicit sups (mpmath.iv adaptive bisection), PC2 (explicit terms, and
+  explicit plus interior against the increment), PC3; PASS
 - `explicit_demix.log`, `explicit_dropfar.log`, `explicit_g2.log`: M1, M2, M4; FAIL, exit 1
 - `interior.log`, `interior.json`: Cr in B4 mode and tight mode by direct summation to j = 2000, P, W; PASS
 - `interior_nuprefac.log`, `interior_dropii.log`: M3, M5; FAIL, exit 1
@@ -19,5 +20,5 @@ nice 10. Notes: notes/P6_route3_review.md. The runs of record used the same code
 - `constants.log`, `constants.json`: the assembled C'_mu, whole-sum constants and Lambda_head against the certificate
 - `tailcheck.log`: PC9, the constants against exact increments, odd nu = 3..21, j < 1000; PASS
 - `tailcheck_plant.log`: the planted violation; FAIL, exit 1
-- `controls.log`: every control in one run; PASS
+- `controls.log`: every control in one run, a mutation caught only on exit 1 with a printed failed check; PASS
 - `cert_digits.log`: route3_bound.py's certified constants printed to 12 digits (for finding 1)
