@@ -1,0 +1,30 @@
+selftest: planted [(1.2, 2.2, 1), (2.54, 0.777, 1), (3.4, 0.36, -1), (3.45, 0.37, 1)]; found [(1.2, 2.2, 1), (2.54, 0.777, 1), (3.4, 0.36, -1), (3.45, 0.37, 1)]; boundary winding 2.000; points 1815: PASS
+selftest recount: 6 cells unresolved by the hole, 0 after the recount; found [(1.2, 2.2, 1), (2.54, 0.777, 1), (3.4, 0.36, -1), (3.45, 0.37, 1)]: PASS
+selftest M = 3 acceptance: trail [0.2, 0.19, 0.18, 0.17], stops [[0.25, 'noise3 1.8e+10 above the cap 1e+07']], end |v - v*| 2.6e-10: PASS
+selftest M = 3 start order 0.2, 0.25: starts evaluated [0.2], trail [0.2, 0.19, 0.18, 0.17], stops [], end |v - v*| 2.6e-10: PASS
+selftest M = 3 acceptance at noise3 990: trail [0.2, 0.19, 0.18, 0.17], stops [[0.25, 'noise3 1.8e+10 above the cap 1e+07']], end |v - v*| 0: PASS
+selftest M = 3 seed from a continuation-valued neighbour: seed (0.0060005, -0.3829243): PASS
+selftest --mutate=nocap: planted [(1.2, 2.2, 1), (2.54, 0.777, 1), (3.4, 0.36, -1), (3.45, 0.37, 1)]; found [(1.2, 2.2, 1), (2.54, 0.777, 1), (3.4, 0.36, -1), (3.45, 0.37, 1)]; boundary winding 2.000; points 1815: PASS
+selftest recount: 6 cells unresolved by the hole, 0 after the recount; found [(1.2, 2.2, 1), (2.54, 0.777, 1), (3.4, 0.36, -1), (3.45, 0.37, 1)]: PASS
+selftest M = 3 acceptance --mutate=nocap: trail [0.25, 0.24, 0.23, 0.22, 0.21, 0.2, 0.19, 0.18, 0.17], stops [], end |v - v*| 0.23: FAIL
+selftest M = 3 start order 0.2, 0.25: starts evaluated [0.2], trail [0.2, 0.19, 0.18, 0.17], stops [], end |v - v*| 2.6e-10: PASS
+selftest M = 3 acceptance at noise3 1.8e+10: trail [0.25, 0.24, 0.23, 0.22, 0.21, 0.2, 0.19, 0.18, 0.17], stops [], end |v - v*| 0.23: FAIL
+selftest --mutate=starts: planted [(1.2, 2.2, 1), (2.54, 0.777, 1), (3.4, 0.36, -1), (3.45, 0.37, 1)]; found [(1.2, 2.2, 1), (2.54, 0.777, 1), (3.4, 0.36, -1), (3.45, 0.37, 1)]; boundary winding 2.000; points 1815: PASS
+selftest recount: 6 cells unresolved by the hole, 0 after the recount; found [(1.2, 2.2, 1), (2.54, 0.777, 1), (3.4, 0.36, -1), (3.45, 0.37, 1)]: PASS
+selftest M = 3 acceptance --mutate=starts: trail [0.2, 0.19, 0.18, 0.17], stops [[0.25, 'noise3 1.8e+10 above the cap 1e+07']], end |v - v*| 2.6e-10: PASS
+selftest M = 3 start order 0.2, 0.25: starts evaluated [0.25, 0.2], trail [0.2, 0.19, 0.18, 0.17], stops [[0.25, 'noise3 1.8e+10 above the cap 1e+07']], end |v - v*| 2.6e-10: FAIL
+selftest M = 3 acceptance at noise3 990: trail [0.2, 0.19, 0.18, 0.17], stops [[0.25, 'noise3 1.8e+10 above the cap 1e+07']], end |v - v*| 0: PASS
+selftest --mutate=norecount: planted [(1.2, 2.2, 1), (2.54, 0.777, 1), (3.4, 0.36, -1), (3.45, 0.37, 1)]; found [(1.2, 2.2, 1), (2.54, 0.777, 1), (3.4, 0.36, -1), (3.45, 0.37, 1)]; boundary winding 2.000; points 1815: PASS
+selftest recount: 6 cells unresolved by the hole, 6 after the recount; found [(1.2, 2.2, 1), (2.54, 0.777, 1)]: FAIL
+selftest --mutate=lowcap: planted [(1.2, 2.2, 1), (2.54, 0.777, 1), (3.4, 0.36, -1), (3.45, 0.37, 1)]; found [(1.2, 2.2, 1), (2.54, 0.777, 1), (3.4, 0.36, -1), (3.45, 0.37, 1)]; boundary winding 2.000; points 1815: PASS
+selftest recount: 6 cells unresolved by the hole, 0 after the recount; found [(1.2, 2.2, 1), (2.54, 0.777, 1), (3.4, 0.36, -1), (3.45, 0.37, 1)]: PASS
+selftest M = 3 acceptance --mutate=lowcap: trail [0.2, 0.19, 0.18, 0.17], stops [[0.25, 'noise3 1.8e+10 above the cap 1e+07']], end |v - v*| 2.6e-10: PASS
+selftest M = 3 start order 0.2, 0.25: starts evaluated [0.2], trail [0.2, 0.19, 0.18, 0.17], stops [], end |v - v*| 2.6e-10: PASS
+selftest M = 3 acceptance at noise3 nan: trail [], stops [[0.25, 'noise3 1.8e+10 above the cap 100'], [0.2, 'noise3 990 above the cap 100']], end |v - v*| inf: FAIL
+selftest --mutate=seedfix: planted [(1.2, 2.2, 1), (2.54, 0.777, 1), (3.4, 0.36, -1), (3.45, 0.37, 1)]; found [(1.2, 2.2, 1), (2.54, 0.777, 1), (3.4, 0.36, -1), (3.45, 0.37, 1)]; boundary winding 2.000; points 1815: PASS
+selftest recount: 6 cells unresolved by the hole, 0 after the recount; found [(1.2, 2.2, 1), (2.54, 0.777, 1), (3.4, 0.36, -1), (3.45, 0.37, 1)]: PASS
+selftest M = 3 acceptance --mutate=seedfix: trail [0.2, 0.19, 0.18, 0.17], stops [[0.25, 'noise3 1.8e+10 above the cap 1e+07']], end |v - v*| 2.6e-10: PASS
+selftest M = 3 start order 0.2, 0.25: starts evaluated [0.2], trail [0.2, 0.19, 0.18, 0.17], stops [], end |v - v*| 2.6e-10: PASS
+selftest M = 3 acceptance at noise3 990: trail [0.2, 0.19, 0.18, 0.17], stops [[0.25, 'noise3 1.8e+10 above the cap 1e+07']], end |v - v*| 0: PASS
+selftest M = 3 seed from a continuation-valued neighbour: seed (0.0056425, -0.0880019): FAIL
+argcount selftest, nocap, starts, norecount, lowcap, seedfix exits: 0 1 1 1 1 1
