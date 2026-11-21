@@ -5,7 +5,7 @@
 #      worktree D:/choptuik-1025p4 (505d8399), venv-md510, 4 threads, BelowNormal (set by launch_d18.ps1), cap 21600 s by exact pid.
 #  (2) d18_gate.py: P4 rules + the outer-grid-point edge rule (raw d18_check.py) + the root in the scan's bracket (1.800, 1.810). If it fails: stop and report.
 #  (3) ell_ddm.py selftest (exit 0) and selftest --mutate=slices (exit 1), then ell_ddm.py det at root -/+ 0.005, two processes in parallel (--noise 1e-24,1e-20,1e-16), worktree D:/choptuik-i1025d
-#      (48c36355, read only), venv-md510, 20 BLAS threads as at D 17, caps 10800 s each by exact pid.
+#      (48c36355, read only), venv-md510, 20 BLAS threads as at D 17, caps 21600 s each by exact pid (6 h, the coordinator's hc ~09:55 UTC 21 Nov, replacing 10800 s).
 #  (4) read_d18_dd.py (winb's Amendment 3 reading with the offset 0.005).
 # Caps: taskkill /T /F of the exact root pid after a command-line check, not retried. One line per event in ../exits_1025.txt. usage: bash d18_chain.sh
 export PATH="/usr/bin:/bin:/mingw64/bin:$PATH"
@@ -83,9 +83,9 @@ crun selftest_slices 1 1800 ell_ddm.py $D/dd/selftest_slices.log $D/dd/rc_slices
 r1=$(cut -d' ' -f1 $D/dd/rc_selftest); r2=$(cut -d' ' -f1 $D/dd/rc_slices)
 if [ "$r1" != 0 ] || [ "$r2" != 1 ]; then log "STOP: the dd selftests are not as required (selftest exit $r1 want 0, slices exit $r2 want 1)"; log "done"; exit 1; fi
 log "dd selftests as required; the two det points start in parallel"
-crun det_lo 0 10800 ell_ddm.py $D/dd/det_lo.log $D/dd/rc_lo "$PYH" -u ell_ddm.py det $ST 18 63 $LAMLO --noise 1e-24,1e-20,1e-16 --out $WD/dd/ell_ddm_d18_lo.jsonl &
+crun det_lo 0 21600 ell_ddm.py $D/dd/det_lo.log $D/dd/rc_lo "$PYH" -u ell_ddm.py det $ST 18 63 $LAMLO --noise 1e-24,1e-20,1e-16 --out $WD/dd/ell_ddm_d18_lo.jsonl &
 p1=$!
-crun det_hi 0 10800 ell_ddm.py $D/dd/det_hi.log $D/dd/rc_hi "$PYH" -u ell_ddm.py det $ST 18 63 $LAMHI --noise 1e-24,1e-20,1e-16 --out $WD/dd/ell_ddm_d18_hi.jsonl &
+crun det_hi 0 21600 ell_ddm.py $D/dd/det_hi.log $D/dd/rc_hi "$PYH" -u ell_ddm.py det $ST 18 63 $LAMHI --noise 1e-24,1e-20,1e-16 --out $WD/dd/ell_ddm_d18_hi.jsonl &
 p2=$!
 wait $p1 $p2
 # ---- (4) the reading
