@@ -190,7 +190,7 @@ def stage1():
     say(f"lowD_dd.py pid {proc.pid}")
     ck = f"{WT}/hp/data/lowD_states/lowD1067_D3.0475_M512_ckpt.npz"
     final = f"{WT}/hp/data/lowD_states/lowD1067_D3.0475_M512.npz"
-    seen, chosen, peak, last_rss_log, first_done = 0, None, 0, 0.0, False
+    seen, chosen, peak, last_rss_log, first_done = RESUME, None, 0, 0.0, bool(RESUME)     # a resumed launch has landed RESUME calls and passed the pilot
     rssf = open(f"{HERE}/rss_1067.txt", "a")
     while True:
         time.sleep(20)
