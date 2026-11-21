@@ -70,3 +70,10 @@ Estimate: one hybrid evaluation took 700 s at 4 threads on this laptop (the D 18
 ## Status
 
 Not started (13:36 UTC).
+
+## Repeat check, first result (13:54 UTC, from the first point of each half; `merge_d18mid_1025.py` on the two scan files)
+
+At lambda 1.82 (computed first in both processes, 981 s and 982 s): hybrid sign -1 in A and -1 in B; ln|det| -1915.151114652328 in A and -1915.151114652328 in B, difference 0.000e+00 (bar 1e-6); noise robust True in both; float64 sign -1 in both. **PASS.** The final check on the merged run is repeated at the end.
+
+Timing: a point takes about 980 s with the two processes running together (the laptop at 90 % cpu; one process alone took 700 s a point at D 18.5), so A (13 points) ends about 17:10 and B (14 points) about 17:30 UTC.
+
