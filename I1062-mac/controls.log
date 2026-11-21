@@ -1,0 +1,18 @@
+start 2026-11-21 02:53
+| mutation | script | expected exit | exit | lines that fired |
+|---|---|---|---|---|
+| none | ampcheck.py  | 0 | 0 | - |
+| M6 droppair | ampcheck.py --mutate=droppair | 1 | 1 | PC1 FAIL: worst relative difference 3.35 (bar 1.0e-30) |
+| none | explicit.py --quick | 0 | 0 | - |
+| M1 demix | explicit.py --quick --mutate=demix | 1 | 1 | mu = nu-2, family nu - 2: deg_j D = 7, max deg_j N = 6, d = 1, scaled exponents >= (0, -1); mu = nu-2, family 1: deg_j D = 7, max deg_j N = 6, d = 2, scaled exponents >= (0, -1): UNB; mu = nu+0, family -1: deg_j D = 7, max deg_j N = 6, d = 2, scaled exponents >= (0, -1): UN |
+| M2 dropfar | explicit.py --quick --mutate=dropfar | 1 | 1 | explicit.py FAIL |
+| M4 g2 | explicit.py --quick --mutate=g2 | 1 | 1 | explicit.py FAIL |
+| none | interior.py --J1=100 | 0 | 0 | - |
+| M3 nuprefac | interior.py --J1=100 --mutate=nuprefac | 1 | 1 | B4 prefactor bounds >= exact prefactors (nu = 3..41, j >= 2 nu): NO; interior.py FAIL [2s] |
+| M5 dropii | interior.py --J1=100 --mutate=dropii | 1 | 1 | nu = 1 equality test, majorant vs sum of |interior terms|: worst relative difference 0.074; interior.py FAIL [2s] |
+| none | head.py --check | 0 | 0 | - |
+| M7 a0 (did not fire, see notes 6) | head.py --check --mutate=a0 | 0 | 0 | - |
+| M7' b7 | head.py --check --mutate=b7 | 1 | 1 | head.py --check FAIL |
+controls.py PASS
+exit 0
+end 2026-11-21 02:55
