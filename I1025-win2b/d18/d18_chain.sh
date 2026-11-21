@@ -17,12 +17,12 @@ WT=/d/choptuik-1025p4; WTW=D:/choptuik-1025p4
 W=/d/choptuik-i1025d
 ST=$WD/in/sol_l1kc63W1025_D18.000000.npy; STUB=$WD/in/stub_l1kc63W1025_D18_guess1.825.jsonl; JS=$WD/ell_p4_hybrid_1025_w_d18.jsonl
 cd $D || exit 9
-log "chain waiting for the D 17 dd check to end (d17dd done or STOP)"
+log "chain waiting for the D 17 dd check to end"
 for i in $(seq 1 1440); do
-  grep -aq "d17dd done\|d17dd STOP" $EX && break
+  grep -aqE "^1025 d17dd (done|STOP)" $EX && break      # start of line: this script's own log lines begin "1025 d18"
   sleep 30
 done
-grep -aq "d17dd done\|d17dd STOP" $EX || { log "STOP: the D 17 dd check did not end within 12 h, nothing started"; exit 9; }
+grep -aqE "^1025 d17dd (done|STOP)" $EX || { log "STOP: the D 17 dd check did not end within 12 h, nothing started"; exit 9; }
 [ "$(git -C $WT rev-parse HEAD)" = 505d839940456a3d04321d75cf66cc3b5bc831c4 ] || { log "not started: $WT is not at 505d8399"; exit 9; }
 [ "$(git -C $W rev-parse HEAD | cut -c1-8)" = 48c36355 ] || { log "not started: $W is not at 48c36355"; exit 9; }
 chk() { [ "$(git hash-object --no-filters $D/in/$1)" = "$2" ] || { log "not started: in/$1 is not blob ${2:0:8}"; exit 9; }; }
