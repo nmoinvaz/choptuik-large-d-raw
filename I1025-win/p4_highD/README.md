@@ -227,5 +227,26 @@ dd check, only if the hybrid's checks all pass (otherwise the driver stops, repo
 
 Run: `d185_driver_1025.py` (launcher `start_d185_1025.cmd`, BelowNormal, log `d185_w.log`; output `ell_p4_hybrid_1025_w_highD_d185.jsonl`, `rows/D18.5.log`, `rows/dd185_{lo,hi}.log`, `rows/dd185_reading.log`). A sampler thread writes every 60 s each child's cpu seconds, working set, private bytes and their peaks, and the laptop's free memory, cpu load and commit, to `rows/d185_samples.csv`, so the end-of-run peaks are logged this time. Estimate: hybrid about 11 evaluations at 13 to 14 min (about 2.5 h), dd about 1.8 h in parallel; no RESUME.
 
-Status: not started (10:42 UTC).
+Status: started 10:42:23 UTC; hybrid done 11:53:13 (section "D 18.5 hybrid result" below); dd check running since 11:53:13.
+
+Sampler note (10:57 UTC): the driver's own sampler thread broke at 10:54 UTC. Its PowerShell number format `N1` puts a thousands separator into cpu seconds above 1000, so a CSV line split into one field too many; the exception is caught and logged as `sampler: ValueError(...)` in `d185_w.log` once a minute from then on, and the run itself is untouched. `rows/d185_samples.csv` holds the driver's samples from 10:45 to 10:53 UTC. An external sampler, `sample_d185_1025.ps1` (read-only, BelowNormal, started 10:55 UTC for the driver's python, pid 12848; same columns, invariant number format), writes `rows/d185_samples2.csv` every 60 s for the rest of the run, for the hybrid and the dd stages.
+
+## D 18.5 hybrid result (10:42:23 to 11:53:13 UTC): root 1.6772090983230803, every hybrid check PASSES; dd check pending
+
+| quantity | value |
+|---|---|
+| search | w 0.02 grid [1.643558, 1.6771, 1.710642], signs -1, -1, +1: one change, in the upper interval [1.6771, 1.710642]; 6 evaluations (3 grid + 3 Brent) |
+| root, final bracket | 1.6772090983230803, [1.6772090815512417, 1.6772090983230803], width 1.68e-08 |
+| root minus guess | +1.091e-04 (the stub's lam is the guess, so not a record difference); inside xfkappa's estimator range 1.677016 to 1.677225 |
+| record system | true (|F| 2.7720397892e-10 against 2.7672415504e-10, 1.7e-03 relative; 2461 steps against 2461) |
+| sign changes | 1 on the grid, 1 over all 6 evaluations; noise robust True |
+| time | 4236 s in `p4_hybrid.py` (4250 s with the driver) |
+| outer-edge rule | 1.003 grid steps from the lower outer point, 0.997 from the upper: pass |
+| bracket check | the root and its final bracket lie inside (1.67, 1.68): pass |
+| orientation (information) | minus below, plus above (the usual one), as in xfkappa's scan |
+| verdict (`rows/verdict_D18.5.log`) | every check PASS; dd sign check PENDING |
+
+The hybrid python's last sample (11:52:12 UTC, `rows/d185_samples2.csv`): 5984 cpu s in 4236 s (1.41 cores on average), working set 0.597 GB (peak 0.919 GB), private bytes 1.081 GB (peak 1.400 GB), 11 threads, BelowNormal.
+
+dd check started 11:53:13 UTC by itself: `ell_ddm.py det` on the same state at 1.6572090983230803 (root - 0.02; launcher pid 7060) and 1.6972090983230803 (root + 0.02; launcher pid 14804), `--noise 1e-24,1e-20,1e-16`, 4 threads each, BelowNormal, caps 21600 s each (17:53:13 UTC) by exact pid. Estimate, from row B's two processes (6572 s and 6582 s): about 13:45 UTC.
 

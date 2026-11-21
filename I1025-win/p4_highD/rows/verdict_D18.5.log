@@ -1,0 +1,7 @@
+D 18.5 k_c 63: hybrid lam 1.6772090983230803, guess 1.6771, 6 evaluations, bracket [1.6772090815512417, 1.6772090983230803] (width 1.677183858461717e-08), 4236 s; system: |F| 2.7720397892e-10, record_system True
+edge rule (amended, outer grid points only): w 0.02, grid [1.643558, 1.6771, 1.710642] signs [-1.0, -1.0, 1.0], root 1.677209098: 1.003 grid steps from the lower outer point, 0.997 from the upper outer point (bar 0.05) -> pass
+bracket check: root 1.6772090983230803 and final bracket [1.6772090815512417, 1.6772090983230803] inside (1.67, 1.68) -> pass
+orientation (information): sign -1 at the bracket's lower end, +1 at the upper end: minus below, plus above (the usual one)
+hybrid minus the stub's lam (the guess, not a record): +1.090983e-04
+checks: {"record_system": true, "grid_one_change": true, "all_one_change": true, "noise_robust": true, "bracket_le_1e-7": true, "edge_rule_amended_outer_points": true, "root_and_bracket_in_(1.67,1.68)": true}
+VERDICT D 18.5: every check above PASS (record system, one change on the grid and over all evaluations, noise robust, bracket <= 1e-7, amended edge rule, bracket check); dd sign check (ell_ddm at lam -/+ 0.02) PENDING; lam 1.6772090983230803
