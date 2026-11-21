@@ -1,0 +1,13 @@
+planted: shift EPS*max|S|*s_last = -1.122099362e-20; exact_recip_check delta gives -1.122099362e-20 (--mutate, expected moved by 1e-25): difference -1.0e-25 (bound 1e-30, truth nonzero): FAIL
+Traceback (most recent call last):
+  File "D:\choptuik-i935-raw\I1064-win2\xcheck1064.py", line 72, in <module>
+    rc = planted(args[1], args[2], mut)
+  File "D:\choptuik-i935-raw\I1064-win2\xcheck1064.py", line 64, in planted
+    ok_p = pair(ref, pl, js, False)
+  File "D:\choptuik-i935-raw\I1064-win2\xcheck1064.py", line 30, in pair
+    (da, Da), (db, Db) = frac_delta(a), frac_delta(b)
+                         ~~~~~~~~~~^^^
+  File "D:\choptuik-i935-raw\I1064-win2\xcheck1064.py", line 26, in frac_delta
+    return cmp1060.exact(d)[-1], cmp1060.meta(d)["D_str"]
+           ^^^^^^^^^^^^^
+AttributeError: module 'cmp1060' has no attribute 'exact'
