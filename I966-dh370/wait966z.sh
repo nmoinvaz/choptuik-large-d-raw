@@ -6,7 +6,7 @@ cd /home/nathan/Source/choptuik-large-d-raw-wt613/I966-dh370 || exit 9
 LG=ks_chain3b/$3/anm_run.log; bb=${4:-0}; fb=${5:-0}; sb=${6:-0}
 CAPTS=$(date -u -d "${7:-2026-11-22 04:18:00}" +%s); SINCE=${8:-2026-11-21T18:19:00Z}
 touch alerts966.txt; e0=$(grep -c '^966 ks_chain3[a-z0-9]* exit' exits_966.txt); a0=$(wc -l < alerts966.txt); lastgh=0
-Q='[.[]|select((.body|test("reading_real|path reading";"i")) and (.id!=7067155180) and ((.body|startswith("ks_chain3b (dh370"))|not) and ((.body|startswith("dh370"))|not))]'
+Q='[.[]|select((.body|test("reading_real|path reading";"i")) and (.id!=7067155180) and (.id!=7060114909) and (.id!=7067019274) and (.id!=7066990195) and ((.body|startswith("ks_chain3b (dh370"))|not) and ((.body|startswith("dh370"))|not))]'
 while sleep 15; do
   n=$(cat ks_chain3b/leg*/anm_run.jsonl 2>/dev/null | grep -c '"converged": true')
   [ "$n" -ge $(( $1 + ${2:-1} )) ] && { echo "STEP records $n"; exit 0; }
@@ -15,6 +15,9 @@ while sleep 15; do
   if [ $((now - lastgh)) -ge 150 ]; then lastgh=$now
     hits=$(gh api "repos/nmoinvaz/choptuik-large-d/issues/comments?since=$SINCE&per_page=100" --jq "$Q|length" 2>/dev/null)
     if [ "${hits:-0}" -gt 0 ]; then echo "READING candidates ($hits)"; gh api "repos/nmoinvaz/choptuik-large-d/issues/comments?since=$SINCE&per_page=100" --jq "$Q|.[]|{id,created_at,url:.html_url,head:(.body[:300])}" 2>/dev/null; exit 0; fi
+    # xfchecks' running per-base table (#966 comment 7060114909, edited as bases land): wake when it lists two bases at D 263.5 or more
+    rows=$(gh api repos/nmoinvaz/choptuik-large-d/issues/comments/7060114909 --jq .body 2>/dev/null | grep -cE '^\| (263\.[5-9]|26[4-9]\.)')
+    [ "${rows:-0}" -ge 2 ] && [ "${rows:-0}" -gt "${TROWS:-1}" ] && { echo "xfchecks TABLE lists $rows bases at D >= 263.5 (comment 7060114909): look for its reading"; exit 0; }
   fi
   b=$(grep -c 'above --reseed_o_bar' $LG 2>/dev/null)
   [ "${b:-0}" -gt "$bb" ] && { echo "reseed_o_bar SKIP ($b > $bb)"; grep -n 'above --reseed_o_bar' $LG | tail -2 | cut -c1-240; exit 0; }
