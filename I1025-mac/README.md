@@ -172,3 +172,6 @@ Written before the run (criteria in `d18/d18_criteria.log`, 2026-11-21 03:31:59 
   **1.20 to 1.55 at 0.05**, then 0.01 inside each bracket; (i) (e) as queued, as maps within one state. A robust change places the
   crossing root. Roots are tracked across D by position and continuity within each state's map; orientation enters across D only
   through the reference signs. (iv), the dd sign at 1.20 for D 18 and 18.0625, goes to winb.
+- (iii) (16:19-16:27 UTC), information: lambda 1.20 is - at D 18.3125, 18.375, 18.4375, so the 1.20 crossing between D 18.25 and 18.5 lies
+  between **D 18.25 and 18.3125** (`d18/d18f_iii.log`, `d18/d18f_iii_1025.jsonl`, `d18/d18f_iii_read_1825_185.log`). The lane's own reader
+  call took the whole check file and printed no reading (`d18/d18f_iii_read.log`, kept); d18_criteria.log has the discrepancy.
