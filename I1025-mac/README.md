@@ -145,3 +145,15 @@ Written before the run (criteria in `d18/d18_criteria.log`, 2026-11-21 03:31:59 
   D 17.75, 18, 18.0625, 18.125, 18.1875, 18.25 and 18.5. Both reference signs constant across D: the convention holds and orientations
   compare. A flip at both between two states: a global flip, and orientations compare only within one state. A flip at one only: a
   root crossed it, and the coordinator rules. Beside it: which state quantities change sign (`d18/d18_state_signs.log`: none).
+- The D 18.5 reader rerun with win2b's bisected D 18 upper root 1.8074339746 (dd check passed, comment 7063794300) as REF_HI
+  (`d18/d185_scan_read_refhi.log`; the first run `d18/d185_scan_read.log` is kept): the control passes, D 18's estimator ranges contain
+  both bisected roots; one robust change, as before. winb's bisected D 18.5 root 1.6772090983 (dd check passed, 7063376602) lies in
+  D 18.5's range [1.677016, 1.677225].
+- 2026-11-21 15:08:33 UTC, the coordinator's ruling on the open case, before the reference signs: a flip at one reference alone is a root crossing
+  it, and orientations compare between those two states from the side whose reference held. Beside the signs: whether a flip lines
+  up with a step-count change of the inner segments ('log' and the segments ending at or below x 0.16), `d18/d18_refsign_steps.py`.
+- (d) D 18 (14:26-15:34 UTC), information: over 1.90-2.10 the hybrid is - at all 21 points, every point noise-robust; the repeated
+  point 1.90 agrees. Over 1.55-2.10 D 18 has two robust changes, (1.77, 1.78) minus to plus and (1.80, 1.81) plus to minus, and no
+  ln|det| minimum without a sign change (`d18/d18_scanhi.log`, `d18/d18_scanhi_1025.jsonl`, `d18/d18_d_read.log`, `d18/d1825_d_read.log`;
+  numbers `d18/d18_d_numbers.py`, `d18/d18_d_numbers.log`). Neither case of the ruling on (b) applies. Comparisons across D wait for the
+  sign-convention check.

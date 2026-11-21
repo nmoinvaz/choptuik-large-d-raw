@@ -106,3 +106,16 @@ D 18.5 root. The pass rules are unchanged (d18_check.py 08969ea2, then signtest.
    Information beside it: which of the state's quantities change sign between consecutive states (d18_state_signs.py, run at
    15:04:18 UTC on the 13 states 17.75-18.5: no block flips, block cosines +0.999848 or more, d18_state_signs.log); and each state's frozen
    step counts per segment (d18_state_steps.py, after the test), since M's discrete system changes between states.
+== 2026-11-21 15:08:33 the coordinator's ruling on the open case (hc), fixed before the reference signs are known (lane_d18r.sh still waits on (d)):
+   one reference flipping alone between two states reads a root crossing that reference; orientations then compare between those two
+   states from the side whose reference held (roots counted from that end). A non-robust reference point is not counted (stands).
+   Report beside the reference signs whether a flip lines up with a step-count change of the inner segments. Inner segments, defined
+   now (before the signs, after the counts were seen): the centre series to node 0.02 ('log') and the segments ending at or below
+   x 0.16, four in all; every changed segment is listed beside them. The pinned reader (6ae9035e) prints the one-reference case as
+   'the coordinator rules'; the ruling is applied after the lane by d18_refsign_steps.py, which also lists the step changes per pair.
+   d18_refsign_steps.py (blob d5b1e50a): 2 planted cases PASS, --mutate=shift (each pair given the next pair's step changes) FAILS
+   (d18_refsign_steps_selftest.log). It runs after lane_d18r.sh, on its d18_refsign_1025.jsonl and the same 7 states and records.
+== 2026-11-21 15:33:45 (d) D 18 result (d18_d_read.log): over 1.90-2.10, 21 points, all noise-robust and -; the repeated point 1.90 agrees
+   (0.0e+00). Over 1.55-2.10 D 18 has two robust changes, (1.77, 1.78) minus to plus and (1.80, 1.81) plus to minus, and no ln|det| minimum
+   without a sign change. By the ruling on (b): case (1) needs a plus-to-minus root above 1.90 at D 18.5 (none, d2); case (2) needs a
+   minus-to-plus root above 1.90 at D 18 (none). Neither applies; the coordinator rules. Across-D sign comparisons wait for lane_d18r.sh.
