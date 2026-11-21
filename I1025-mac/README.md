@@ -73,3 +73,17 @@ Settings throughout: l = 1, kappa 0.7, u0 0.04, Ks 30. Seeds: #660's D = 10 stat
 | `p4_ctrl2.py`, `p4_ctrl2.log` | P4 control 2: the hybrid at the five lambda where the float64 fine scan flips (k_c 55, D 16); P4 resumes only if it reads one sign there (`out/ell_p4_ctrl2_1025.jsonl`) |
 | `p4_driver_w.sh`, `p4_driver_w_smoke.log` | P4 share for another machine (winb): cross-check row first (Fb D 16, k_c 55, must match the Mac to 1e-5), then D 15.5 k_c 63, D 14.5 k_c 55, D 16.25 k_c 63; inputs pinned by blob; smoke-tested on the Mac (timeout and cross-check stop paths) |
 | `signtest_q.py`, `signtest_moreq_criteria.log` | signtest.py plus --nq= (more random Q; signtest.py itself frozen for the drivers' pins), for the margin runs at D 12.5 and 13 |
+| `d18/` (criteria `d18/d18_criteria.log`, `d18_guess.py`, `d18_check.py`, `lane_d18.sh`) | lambda_1 at D 18 (then D 18.5), k_c 63, with the hybrid M on winb's leap state, the coordinator's task of 2026-11-21; see below |
+
+## D 18, k_c 63 (the coordinator's task of 2026-11-21)
+
+Written before the run (criteria in `d18/d18_criteria.log`, 2026-11-21 03:31:59 UTC).
+
+- State: winb's leap state `I1025-win/out/sol_l1kc63W1025_D18.000000.npy` (raw bbbfd1bf, blob 45e72c6a), copied to `d18/`.
+  Its float64 record is the leap's D 18 line (Delta 1.0445951948, F 2.63e-10, 2552 steps), which has no lambda.
+- Guess: 1.7887040836, linear in D through the signtested k_c 63 rows, 2.1454677043 at D 16.5 and 2.0265464974 at D 17
+  (slope -0.2378424 per unit D; `d18/d18_guess.log`).
+- Window: p4_hybrid.py's ladder, unchanged. First the grid 1.7529300, 1.7887041, 1.8244782 (guess -/+ 2%). Only if that grid has
+  no sign change: -/+ 6% (1.6813818-1.8960263), then -/+ 15% (1.5203985-2.0570097), then -/+ 35% (1.1626577-2.4147505).
+- Pass: the P4 rules (record system, one sign change on the grid and over all evaluations, noise-robust, bracket <= 1e-7), the
+  edge rule (root at least 0.05 grid steps from its interval's edges), then signtest.py at lam -/+ 0.02 (agree at both, opposite).

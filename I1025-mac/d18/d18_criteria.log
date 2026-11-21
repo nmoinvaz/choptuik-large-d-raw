@@ -1,0 +1,26 @@
+== 2026-11-21 03:31:59 #1025, the coordinator's task of 2026-11-21: lambda_1 at D 18 (then D 18.5), k_c 63, with the hybrid M. Written before the run.
+Why: past D 17 only the hybrid M (float64 blocks 0-11, dd block 12) gives a trustworthy det sign. #1044 (the M = 5 port) starts only if
+D 18 to 20 does not show delta turning back.
+Input: winb's leap state I1025-win/out/sol_l1kc63W1025_D18.000000.npy (raw bbbfd1bf, blob 45e72c6a5c22ee3f0196f7b08f07fecfe3a07b21),
+copied to d18/. Its float64 record: the leap's D 18 line in I1025-win/out/l1kc63W1025.jsonl (blob c33039df; Delta 1.0445951948, F 2.63e-10,
+2552 steps, kappa 0.7, u0 0.04, Ks 30, rk 1; no lambda). Stub d18_stub_l1kc63W1025.jsonl (blob 2cfdb833, from d18_guess.py, blob 9a3849b4):
+that line plus lam_guess; lam is set to the guess (p4_hybrid's filter needs one), so its minus_record reads root minus guess.
+Guess (d18_guess.log): linear in D through the signtested k_c 63 rows, 2.1454677043 at D 16.5 (I1025-win l1kc63Fw1025b) and 2.0265464974
+at D 17 (l1kc63Fw1025); slope -0.2378424 per unit D; guess at D 18 1.7887040836.
+Window: p4_hybrid.py's ladder, unchanged: grid guess x (1 - w, 1, 1 + w) at w = 0.02 (1.7529300, 1.7887041, 1.8244782); only if that grid has
+no sign change, w = 0.06 (1.6813818-1.8960263), then 0.15 (1.5203985-2.0570097), then 0.35 (1.1626577-2.4147505).
+Code: p4_hybrid.py (blob a402559b, unchanged) on worktree choptuik-1025 (wip/ell1-highD e73be52d; solver code identical to 505d8399, only
+ell_delta.py and data changed); venv-1025dd (multidouble 5.1.0 dd_logdet); 4 BLAS and rayon threads, nice 10, one process.
+Pass (d18_check.py, blob d41b6e2f; all must hold): (a) the record's discrete system (|F| within 1% of 2.63e-10, 2552 steps); (b) one sign
+change on the window's grid; (c) one sign change over all evaluations; (d) noise-robust (1e-15 noise on blocks 0-11, 2 seeds, at every
+evaluation); (e) bracket <= 1e-7; (f) the edge rule: the root at least 0.05 grid steps from both edges of its grid interval.
+Then the signtest: signtest.py (blob 179ea096) around= a copy of the stub with lam = the hybrid root, at lam -/+ 0.02, --u0=0.04 --Ks=30
+--kappa=0.7 --rk=1. Pass: its system check holds, the float64 signs agree at both lambda, and the two signs are opposite.
+Controls: d18_check.py selftest (7 planted records; the 6 bad ones must fail): passes (d18_check_selftest.log). signtest.py planted runs
+first in the lane and must report agree, agree, DISAGREE for floors 1, 1e-13, 1e-19 (as in every earlier run, e.g. signtest.log).
+Information, not a pass rule: d18_check.py on the P4 rows already in (d18_check_p4rows.log) finds D 15 k_c 63's hybrid root 0.026 grid
+steps from its interval's upper edge (the grid point at its guess), under the 0.05 bar; P4's rules did not include the edge rule.
+Stops: the root 21600 s; the signtest 3600 s. If any rule fails, no lambda is read at D 18 and step (2) (the leap to D 18.5) does not start.
+Reading (the coordinator's, fixed): delta = lambda_1 - lambda_0 at D 18 (lambda_0 2.1207366, ell_delta's interpolation, error 2.2e-8) beside
+D 17's (float64 row -0.099821; P4 hybrid on that record -0.086428, 2.0399399 - 2.1263679). A delta that rises toward -0.003 means the
+branch turns back; one that keeps falling means it does not.
