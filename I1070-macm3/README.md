@@ -221,3 +221,42 @@ output `probe_mode_det_M160.txt`, 2026-11-21 23:45 UTC, 2 threads, 1.3 s, no out
 
 The issue's step 2 cannot run with `hp/lowD_gamma.py` on this kernel, at any `--polish`. Stop; no workaround tried and none started (a block-storage determinant or a
 different M pair needs the coordinator's word). The only D 3.15 states in raw `I927-mac/inputs/` are M 128 and M 160. So γ(160) − γ(128) at D 3.15 is not available.
+
+## D 3.425 pair, no lift: M 96 then M 128 from T39's stored states (the coordinator's order, 2026-11-21 23:48 UTC)
+
+The order (hc, 2026-11-21 after the PASS of r2; #1070's comment 7071100314 lists the first values): resolution pairs at D 3.45 (dh170) and D 3.425 (macm3b), both
+from T39's stored M 96 and M 128 states, so no lift is needed. `hp/lowD_gamma.py` on each, `--threads=6 --polish=2 --xtol=1e-11 --lam0=3.23409`
+(the Vienna group's γ 0.3092057 interpolated at D 3.425; 1/0.3092057 = 3.234093032566993), `nice -n 10`, cap 3 h each (10800 s, by exact pid), M 96 first,
+then M 128 with `--lam0` set to M 96's λ. Readings as in the issue: each run ends with exactly one sign change in its bracket and F after the polish below
+1e-27 (if not, report and stop); report γ(128) − γ(96), a resolution change and not a bound, and both against 0.3092057.
+
+- Inputs: raw `T39-win/hp/data/lowD_states/lowDvh41_D3.4250_M96.npz` (blob 6b371fff7f184e647d29b4ad8c9d1e7885df0566, 87310 bytes) and `..._M128.npz`
+  (blob a2c3c011391d2d36421716199941f0442924bcf9, 115986 bytes); both blobs are the same at origin/main (920cf2cf0, fetched 2026-11-21) and in the `raw-749p` clone the
+  runs read them from. States: D 3.425, kt 36, kc 100, ks 250, 13 nodes (0.005 … 0.8), 5377 (M 96) and 7169 (M 128) unknowns.
+- Code and build as for the D 3.15 runs: worktree `choptuik-large-d-1070` at origin/main 6c4d845d (still origin/main at this start; no change to `hp/lowD_gamma.py`, `hp/src`,
+  `hp/python`, `Cargo.toml` or `pyproject.toml` since), `venv-macm3-1058b`.
+- Scripts: `run_1070_D3425.sh M96|M128 LAM0` (output `lowD_gamma_D3.425_<M>.jsonl`, log `run_D3.425_<M>.log`), `check_cmd_1070_D3425.py M96|M128 LAM0` against the issue's pilot command
+  (`--selftest`: 13 cases, 11 broken: threads, polish, xtol, the wrong M, the wrong D, a missing or extra or different `--lam0`, `python3`, a dropped `-u`; all fire),
+  `table_1070.py LABEL LOGFILE JSONL` (the determinant table), `watch_1070.py D3.425_M96` (resources, alert-only).
+
+### M 96 command, against the issue's
+
+The issue's pilot command (`issue_cmd.txt`) and mine (`my_cmd_D3425_M96.txt`, from `DRY=1 run_1070_D3425.sh M96 3.23409`), one token per line, `diff issue mine` (`cmd_diff_D3425_M96.txt`):
+
+```
+1c1
+< python3
+---
+> /Users/nathan/Source/venv-macm3-1058b/bin/python
+4,5c4,5
+< <raw>/I1070-macm3/lowD_gamma_D3.15_M128.jsonl
+< <raw>/I927-mac/inputs/lowDhm_x0.000625-0.9_D3.1500_M128.npz
+---
+> /Users/nathan/Source/choptuik-large-d-raw-903/I1070-macm3/lowD_gamma_D3.425_M96.jsonl
+> /Users/nathan/Source/choptuik-large-d-raw-749p/T39-win/hp/data/lowD_states/lowDvh41_D3.4250_M96.npz
+8a9
+> --lam0=3.23409
+```
+
+The differences: the interpreter, the output name, the state (D 3.425 M 96 from T39 for the issue's D 3.15 M 128 input) and the added `--lam0=3.23409` (the order). Flags
+otherwise the issue's. `check_cmd_1070_D3425.py M96 3.23409`: pass. The M 128 command's diff goes in a section below when it starts.
