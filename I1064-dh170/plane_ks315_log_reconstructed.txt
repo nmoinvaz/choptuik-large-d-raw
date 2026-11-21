@@ -1,0 +1,33 @@
+RECONSTRUCTED, not the original file. The original `plane_ks315.log` (design 3, run 14:04:48 to 14:18:19 UTC, exit 0, 811 s wall) was overwritten by my mistaken relaunch of `run_plane.sh 315 0 ks315` at 14:21:51 UTC (the launch was meant for design 4's script; stopped by exact pid within seconds, the wrapper truncates its log). The lines below are copied from the terminal output I read at 14:18 (the first 60 lines, cut to 260 columns) and from the monitor events for Q4, Q5 and the controls. `plane_ks315.json` (written at 14:18) is the original and complete record of the numbers; the `/usr/bin/time -v` block of that run is lost (wall 811 s from exits_1064dh170.txt; memlog_plane_ks315.log holds the MemAvailable and RSS samples, RSS 163 MiB at 14:17:49).
+I966-dh370/ks_chain3b/leg14_D261.1415_ks293/anm_pin3_D262.0099.npz: D 262.01, ks 315 (the state's 293), plan made again, M 32, kfreeze 3
+octo-double LU 268 s, pivots 3.4e-20..1.4e+51
+sigma_1, sigma_2 6.379796e-21, 2.058597e-20; v_1.v_2 7.21e-68
+a_1 = u_1.R -7.766565986e-35, a_2 = u_2.R -1.32296151e-34
+
+| theta | A_1 | A_2 | E_1 | E_2 | F_1 | F_2 | worst fit misfit (Q1) |
+|---|---|---|---|---|---|---|---|
+| 0 | 1.27e+10 | -9.38e+8 | -1.0939e+80 | 8.0832e+78 | 5.07e+112 | -3.75e+111 | 1.2e-12 |
+| 15 | 8.02e+12 | -1.93e+12 | -1.4057e+81 | 3.1425e+80 | 9.08e+113 | -2.05e+113 | 6.1e-11 |
+| 30 | 6.55e+12 | -1.53e+12 | -5.5538e+81 | 1.3272e+81 | 2.89e+114 | -6.9e+113 | 1.2e-11 |
+| 45 | -4.95e+13 | 1.18e+13 | -1.2461e+82 | 2.9811e+81 | 6.53e+114 | -1.56e+114 | 4.0e-11 |
+| 60 | 5.79e+13 | -1.35e+13 | -1.9283e+82 | 4.5453e+81 | 1.19e+115 | -2.81e+114 | 3.0e-11 |
+| 75 | 2.12e+13 | -5.26e+12 | -2.2183e+82 | 5.1074e+81 | 1.3e+115 | -3.0e+114 | 1.0e-11 |
+| 90 | 2.25e+12 | -5.0e+11 | -1.9365e+82 | 4.3113e+81 | 8.98e+114 | -2.0e+114 | 1.2e-12 |
+| 105 | -7.83e+12 | 2.13e+12 | -1.2576e+82 | 2.6576e+81 | 7.11e+114 | -1.5e+114 | 8.0e-12 |
+| 120 | 2.28e+13 | -4.58e+12 | -5.6457e+81 | 1.0828e+81 | 3.81e+114 | -7.42e+113 | 4.2e-11 |
+| 135 | -5.76e+12 | 8.52e+11 | -1.4493e+81 | 2.1447e+80 | 7.6e+113 | -1.12e+113 | 4.0e-11 |
+| 150 | -2.71e+11 | 5.59e+10 | -1.1935e+80 | -2.2616e+78 | 4.01e+112 | 4.04e+111 | 2.5e-10 |
+| 165 | 7.7e+9 | -7.22e+9 | -1.6755e+78 | -2.5248e+78 | 1.06e+111 | 1.36e+111 | 4.6e-11 |
+(144 residual evaluations, 492 s)
+E_1(theta) = sum c_kl cos^k sin^l: c = [-1.0939e+80, -1.539e+81, -8.345e+81, -2.0483e+82, -1.9365e+82]; A_1 form coefficients [-2.73e+12, 3.7e+12, 1.2e+13]
+E_2(theta) = sum c_kl cos^k sin^l: c = [8.0832e+78, 3.0358e+80, 2.0717e+81, 5.2296e+81, 4.3113e+81]; A_2 form coefficients [6.04e+11, -9.3e+11, -2.68e+12]
+Q2 the quartic forms reproduce the twelve E_i within 1.6e-16 of max |E_i|
+Q3 axes against design 2's table: worst relative difference 0.000242
+E_1(theta) over 720 directions: max -1.5878e+78 at 166.25 deg, min -2.2183e+82; E_2: max 5.1134e+81, min -6.4881e+78
+
+the model system (even parts, odd terms 1e-8 and smaller of a_i at these sizes): 0 real root direction(s)
+Q4 planted root (theta* 40 deg, rho* 1.5e-29), a_pl = (5.0519e-34, -1.2113e-34): 2 model root(s); closest relative error 6.63e-6: pass
+Q5 no model root to refine (vacuous)
+
+controls: Q1 pass, Q2 pass, Q3 pass, Q4 pass, Q5 pass
+check: pass

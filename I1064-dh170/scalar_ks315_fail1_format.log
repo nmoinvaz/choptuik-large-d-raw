@@ -1,0 +1,39 @@
+I966-dh370/ks_chain3b/leg14_D261.1415_ks293/anm_pin3_D262.0099.npz: D 262.01, ks 315 (the state's 293), plan made again, M 32, kfreeze 3
+octo-double LU 262 s, pivots 3.4e-20..1.4e+51
+start residual: max|R| (pinned, F - c) 1.671e-30
+sigma_1 6.379796e-21, sigma_2 2.058597e-20, sigma_3 5.6296e-15; subspace iteration converged to 0.0e+00, 0.0e+00
+sigma_i from ||J^-T v_i||: 6.379795565e-21, 2.058596726e-20 (subspace iteration: 6.3797955649e-21, 2.0585967262e-20); u_1.u_2 1.29e-16
+refined v_1, v_2 (5 s): norms 1.0, 1.0; v_1.v_2 -3.4e-67; f64 v_i . refined v_i: 1.000000000000, 1.000000000000
+a_1 = u_1.R -7.766565986e-35, a_2 = u_2.R -1.32296151e-34 (residual_o; newton_o's residual gives -7.766565986e-35, -1.32296151e-34, relative difference 0.0e+00)
+Traceback (most recent call last):
+  File "/home/nathan/Source/choptuik-large-d-raw-p4/I1064-dh170/scalar_eq1064.py", line 366, in <module>
+    sys.exit(main())
+             ~~~~^^
+  File "/home/nathan/Source/choptuik-large-d-raw-p4/I1064-dh170/scalar_eq1064.py", line 224, in main
+    print(f"part 1 ({opts['ref']}): u_1.R {rr[0]:.6e}, u_2.R {rr[1]:.6e}; relative difference {d0:.1e}", flush=True)
+                                          ^^^^^^^^^^^
+TypeError: unsupported format string passed to mpf.__format__
+Command exited with non-zero status 1
+	Command being timed: "/home/nathan/Source/choptuik-large-d-1058b/.venv/bin/python -u /home/nathan/Source/choptuik-large-d-raw-p4/I1064-dh170/scalar_eq1064.py /home/nathan/scratch949 I966-dh370/ks_chain3b/leg14_D261.1415_ks293/anm_pin3_D262.0099.npz --ks=315 --keep_plan=0 --its=32 --threads=4 --json=/home/nathan/Source/choptuik-large-d-raw-p4/I1064-dh170/scalar_ks315.json --ref=/home/nathan/Source/choptuik-large-d-raw-p4/I1064-dh170/raise_test_ks315.json"
+	User time (seconds): 1100.02
+	System time (seconds): 1.14
+	Percent of CPU this job got: 311%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 5:53.47
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 162500
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 364374
+	Voluntary context switches: 2546
+	Involuntary context switches: 53346
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 24
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 1
