@@ -1,0 +1,1 @@
+C:\Users\nathan\Source\venv-md510\Scripts\python.exe: can't open file 'D:\\choptuik-i935-raw\\I1025-win2\\d185map\\points_table_map.py': [Errno 2] No such file or directory

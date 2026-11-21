@@ -19,3 +19,7 @@ Other win2 folders of this issue: `I1025-win2b/` (win2b's k_c 55 re-solves), `I1
 ## d18hi (2026-11-21)
 
 [d18hi/](d18hi/README.md): the cross-machine control (the Mac's D 18 point at lambda 1.8: agrees) and the D 18.1875 hybrid scan above the d18mid window, lambda 1.95 to 2.35: no robust change; README first, readings fixed before the run.
+
+## d185map (2026-11-21)
+
+[d185map/](d185map/README.md): the k_c 63 map at D 18.5 over lambda 1.00 to 2.60 (windows A = 2.40 to 2.60 and B = 1.00 to 1.55, B split in two) beside xfkappa's scans: two roots, 1.677016 (- to +) and 2.420394 (+ to -); README first, the restart record at its top.

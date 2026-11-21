@@ -1,0 +1,23 @@
+scan_A: 21 rows, scan_B1: 28 rows, scan_B2: 29 rows, the first run's stopped B: 1 rows
+repeat 2.40 (window A): win2 +1 -1887.2954134028, xfkappa +1 -1887.2954204508, ln difference +7.048e-06 (bar 1e-2): agree
+repeat 1.55 (window B1): win2 -1 -1899.8808977561, xfkappa -1 -1899.8809001372, ln difference +2.381e-06 (bar 1e-2): agree
+repeat 1.55 (window B2): win2 -1 -1899.8808977561, xfkappa -1 -1899.8809001372, ln difference +2.381e-06 (bar 1e-2): agree
+the first run's stopped B against B2/B1 (same machine, same code: sign equal and ln|det| within 1e-6):
+reader on: d185_scan_1025.jsonl, d185_scanhi_1025.jsonl, d185_scanup_1025.jsonl, map_A_new.jsonl, map_B_new.jsonl
+
+D 18.5, files ['d185_scan_1025.jsonl', 'd185_scanhi_1025.jsonl', 'd185_scanup_1025.jsonl', 'map_A_new.jsonl', 'map_B_new.jsonl']; lambda_0 2.1181259879 (error 5.6e-09)
+points 161, 1.00 to 2.60; not noise-robust: none
+signs: 1.00- 1.01- 1.02- 1.03- 1.04- 1.05- 1.06- 1.07- 1.08- 1.09- 1.10- 1.11- 1.12- 1.13- 1.14- 1.15- 1.16- 1.17- 1.18- 1.19- 1.20- 1.21- 1.22- 1.23- 1.24- 1.25- 1.26- 1.27- 1.28- 1.29- 1.30- 1.31- 1.32- 1.33- 1.34- 1.35- 1.36- 1.37- 1.38- 1.39- 1.40- 1.41- 1.42- 1.43- 1.44- 1.45- 1.46- 1.47- 1.48- 1.49- 1.50- 1.51- 1.52- 1.53- 1.54- 1.55- 1.56- 1.57- 1.58- 1.59- 1.60- 1.61- 1.62- 1.63- 1.64- 1.65- 1.66- 1.67- 1.68+ 1.69+ 1.70+ 1.71+ 1.72+ 1.73+ 1.74+ 1.75+ 1.76+ 1.77+ 1.78+ 1.79+ 1.80+ 1.81+ 1.82+ 1.83+ 1.84+ 1.85+ 1.86+ 1.87+ 1.88+ 1.89+ 1.90+ 1.91+ 1.92+ 1.93+ 1.94+ 1.95+ 1.96+ 1.97+ 1.98+ 1.99+ 2.00+ 2.01+ 2.02+ 2.03+ 2.04+ 2.05+ 2.06+ 2.07+ 2.08+ 2.09+ 2.10+ 2.11+ 2.12+ 2.13+ 2.14+ 2.15+ 2.16+ 2.17+ 2.18+ 2.19+ 2.20+ 2.21+ 2.22+ 2.23+ 2.24+ 2.25+ 2.26+ 2.27+ 2.28+ 2.29+ 2.30+ 2.31+ 2.32+ 2.33+ 2.34+ 2.35+ 2.36+ 2.37+ 2.38+ 2.39+ 2.40+ 2.41+ 2.42+ 2.43- 2.44- 2.45- 2.46- 2.47- 2.48- 2.49- 2.50- 2.51- 2.52- 2.53- 2.54- 2.55- 2.56- 2.57- 2.58- 2.59- 2.60-
+repeated points: [(1.9, 'agree', '+0.0e+00'), (2.1, 'agree', '+0.0e+00')]
+  root in (1.67, 1.68), - to +: det-linear 1.677016, range [1.677016, 1.677225], delta -0.441110
+  root in (2.42, 2.43), + to -: det-linear 2.420394, range [2.420394, 2.420550], delta +0.302268
+robust sign changes: 2; touching a non-robust point (not counted): none
+ln|det| local minima without a sign change: none
+float64 sign changes: 4 in [(1.63, 1.64), (1.64, 1.65), (1.66, 1.67), (2.42, 2.43)]; float64 differs from the hybrid at 2 of 161 points
+
+information:
+  lambda 1.20: xfkappa's sign-convention reference -1 (ln -1896.58714190); win2 -1 (ln -1896.58714060); same sign True, ln difference +1.30e-06
+  lambda 2.60: xfkappa's sign-convention reference -1 (ln -1880.06922532); win2 -1 (ln -1880.06922392); same sign True, ln difference +1.41e-06
+  signs at the window ends: 1.00 -1, 1.55 -1, 2.40 +1, 2.60 -1
+  window B (1.00 to 1.55): 56 points, sign changes between neighbours (any, robust or not): none
+  window A (2.40 to 2.60): 21 points, sign changes between neighbours (any, robust or not): [(2.42, 2.43)]
