@@ -230,3 +230,40 @@ Controls, each of which must change the verdict:
   vacuous otherwise.
 
 The fold reading for rows applies over leg 10 as before.
+
+## Results of the third request (2026-11-21 08:20:39 to 08:24:22 UTC, `exits3.txt`, all exit 0)
+
+**The pair, from leg 10** (`locate966_leg10.txt` and `.json`, 55.5 s, 49 MB; `pairs10.py` → `pairs10_966.txt`,
+exit 0). **The pair is seen before the crossing, so it does not come from the crossing.** It is among `locate`'s
+stable poles at the 15 consecutive bases from 257.1452 to 260.6706, at 262.0783 to 262.0847 ± 0.9684 to 0.9758i
+(ranges 0.0063 and 0.0074, against 0.05). Its clusters grow from 3 approximants at the far bases to 9 near the
+crossing.
+
+At the first three bases (256.1776 to 256.8479) it is not a stable pole. Those bases list three stable poles, below
+the limit of four, so the limit did not hide it.
+
+The controls exit as required: `--mutate=plant` 0 (`pairs10_966_plant.txt`), and `--mutate=move` 2
+(`pairs10_966_move.txt`; not vacuous, since the plain run gave 0).
+
+Two other stable pairs are at every leg 10 base:
+- P2 = 258.36 ± 2.27i (258.3531 to 258.3646 ± 2.2679 to 2.2962i), all 18 bases;
+- 254.68 ± 3.50i, at 9 of the 18.
+
+**Rows over leg 10** (`type966_leg10.txt`, 166.7 s, 43 MB). No real fold is read.
+- Delta's ratio D* jumps at every base (s from −0.60 to +0.46, mu +14 to +42).
+- Dlog's mu is in the S band at no base. It reads P (−0.81) at 259.4568 only, at s 11.3, and gives no estimate at
+  260.0073.
+- No three bases agree to 0.01.
+
+**Diagnostic, outside the criteria: the root test against the two pairs** (`geom.py` → `geom966.txt`). Over all 26
+bases of legs 10, 13 and 14 (256.1776 to 261.5124), the root-test radius of Delta's series equals the distance from
+the base to the nearer of two fixed points to 2.2%:
+- P1 = 262.0810 ± 0.9729i, the median over 23 bases;
+- P2 = 258.3606 ± 2.2688i, the median over 25.
+
+P2 is the nearer up to 259.4568, and P1 from 259.7352. The root test is smallest near 258.44 (2.2690, against
+P2's imaginary part 2.2688), as a fixed pair's distance is when the chain passes its real part.
+
+**For the next bases** (fixed before any of them lands): Re of the pair is read as staying at 262.08 when the nearest
+stable pole off the axis is within 0.05 of P1 in D_re and D_im, and the root test is within 5% of |D0 − P1|. If both
+hold, the radius on the real line is smallest at D0 ≈ 262.08, at about 0.973.
