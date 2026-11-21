@@ -1,0 +1,34 @@
+[     0.0s] hpkernel /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/afb99455-a815-419f-becf-38b07aee7d3a/scratchpad/i1043/site/hpkernel/__init__.py
+[     0.3s] start D 4.0 M 96 K 11 L 4609: hp |F| 1.832e-30, Delta 3.4454524022279109
+[     0.3s] Jacobian at D 4.0: hp's f64 Jacobian, its band rows replaced by the warped band's (forward differences)
+[     8.1s]   hp Jacobian (short band plan): 8s, 0.17 GB
+[     9.0s]   band Jacobian: 1s ({'band_steps': 21, 'min_gp': 0.09021887496814011, 'min_gm': 0.11523436800057402, 'min_c_minus_x': 0.08963296526149578})
+[     9.4s]   LU: 0s, |u_kk| 1.202e-03..5.748e+00
+[     9.4s]   Jacobian and LU: 9s
+[     9.8s]   D 4.0 it 0: |F| 4.847e-09 (band rows 4.847e-09), dDelta +2.946e-15, band {'band_steps': 21, 'min_gp': 0.09021887496814011, 'min_gm': 0.11523436800057402, 'min_c_minus_x': 0.08963296526149578}
+[     9.9s]   D 4.0 it 1: |F| 5.230e+00 (band rows 2.442e-15), dDelta +9.359e-04, band {'band_steps': 21, 'min_gp': 0.09021887497878292, 'min_gm': 0.11523436798539347, 'min_c_minus_x': 0.08963296527187543}
+/Users/nathan/Source/choptuik-lowd-sonic/solver/lowd_sonic/band.py:118: RuntimeWarning: overflow encountered in multiply
+  a2 = a * a
+/Users/nathan/Source/choptuik-lowd-sonic/solver/lowd_sonic/band.py:119: RuntimeWarning: overflow encountered in multiply
+  G = (n - 1) * c * (a2 - 1)
+/Users/nathan/Source/choptuik-lowd-sonic/solver/lowd_sonic/band.py:120: RuntimeWarning: overflow encountered in multiply
+  pm = 0.5 * n * c * (p + m)
+/Users/nathan/Source/choptuik-lowd-sonic/solver/lowd_sonic/band.py:121: RuntimeWarning: overflow encountered in multiply
+  Rp = G * p - c * p + pm
+/Users/nathan/Source/choptuik-lowd-sonic/solver/lowd_sonic/band.py:121: RuntimeWarning: invalid value encountered in subtract
+  Rp = G * p - c * p + pm
+/Users/nathan/Source/choptuik-lowd-sonic/solver/lowd_sonic/band.py:122: RuntimeWarning: overflow encountered in multiply
+  Rm = -G * m + c * m - pm
+/Users/nathan/Source/choptuik-lowd-sonic/solver/lowd_sonic/band.py:122: RuntimeWarning: invalid value encountered in add
+  Rm = -G * m + c * m - pm
+/Users/nathan/Source/choptuik-lowd-sonic/solver/lowd_sonic/band.py:127: RuntimeWarning: overflow encountered in multiply
+  out[..., 2, :] = hz * (a * (p * p + m * m) + (n - 1) * (a - a * a2)) / (2 * x)
+/Users/nathan/Source/choptuik-lowd-sonic/solver/lowd_sonic/band.py:127: RuntimeWarning: invalid value encountered in add
+  out[..., 2, :] = hz * (a * (p * p + m * m) + (n - 1) * (a - a * a2)) / (2 * x)
+/Users/nathan/Source/choptuik-lowd-sonic/solver/lowd_sonic/band.py:120: RuntimeWarning: invalid value encountered in add
+  pm = 0.5 * n * c * (p + m)
+/Users/nathan/venv-314/lib/python3.14/site-packages/numpy/fft/_pocketfft.py:101: RuntimeWarning: invalid value encountered in rfft_n_even
+  return ufunc(a, fct, axes=[(axis,), (), (axis,)], out=out)
+[    10.0s]   D 4.0: residual not finite
+[    10.0s]   D 4.0: Delta 3.4463883516731766, expected 3.4454524022 +- 2e-09: FAIL (diff +9.359e-04)
+[    10.0s] D 4.0: converged False its 3 Delta 3.4463883516731766 band {'band_steps': 21, 'min_gp': -0.2090959059675043, 'min_gm': -0.18909590596750428, 'min_c_minus_x': nan}

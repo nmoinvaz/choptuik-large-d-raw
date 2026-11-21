@@ -1,0 +1,17 @@
+[     0.0s] hpkernel /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/afb99455-a815-419f-becf-38b07aee7d3a/scratchpad/i1043/site/hpkernel/__init__.py
+[     0.5s] renoded to 13 nodes [0.01, 0.02, 0.05, 0.1, 0.16, 0.23, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]; plan steps 151
+[     0.6s] start D 4.0 M 96 K 13 L 5377: hp |F| 2.098e-16, Delta 3.4454524022279109
+[     0.6s] Jacobian at D 4.0: hp's f64 Jacobian, its band rows replaced by the warped band's (forward differences)
+[     7.2s]   hp Jacobian (short band plan): 7s, 0.23 GB
+[     8.0s]   band Jacobian: 1s ({'band_steps': 21, 'min_gp': 0.09022114175304563, 'min_gm': 0.1152343974765119, 'min_c_minus_x': 0.08963570475889023})
+[     8.5s]   LU: 1s, |u_kk| 1.202e-03..8.306e+00
+[     8.5s]   Jacobian and LU: 8s
+[     8.8s]   D 4.0 it 0: |F| 3.467e-03 (band rows 3.467e-03), dDelta -5.236e-05, band {'band_steps': 21, 'min_gp': 0.09022114175304563, 'min_gm': 0.1152343974765119, 'min_c_minus_x': 0.08963570475889023}
+[     9.0s]   D 4.0 it 1: |F| 3.020e-05 (band rows 7.334e-06), dDelta +1.948e-05, band {'band_steps': 21, 'min_gp': 0.0903385735324098, 'min_gm': 0.11540200089262843, 'min_c_minus_x': 0.08975084317457091}
+[     9.1s]   D 4.0 it 2: |F| 4.905e-07 (band rows 1.359e-07), dDelta +9.574e-08, band {'band_steps': 21, 'min_gp': 0.09033812646976883, 'min_gm': 0.11540143992408171, 'min_c_minus_x': 0.08975039943102756}
+[     9.2s]   D 4.0 it 3: |F| 5.730e-09 (band rows 2.301e-09), dDelta -3.579e-09, band {'band_steps': 21, 'min_gp': 0.0903381211430549, 'min_gm': 0.11540143406052966, 'min_c_minus_x': 0.08975039415145351}
+[     9.3s]   D 4.0 it 4: |F| 1.258e-10 (band rows 3.907e-11), dDelta -1.395e-11, band {'band_steps': 21, 'min_gp': 0.09033812117567083, 'min_gm': 0.11540143408637749, 'min_c_minus_x': 0.08975039418378306}
+[     9.5s]   D 4.0 it 5: |F| 2.980e-12 (band rows 1.106e-12), dDelta +2.839e-13, band {'band_steps': 21, 'min_gp': 0.09033812117661814, 'min_gm': 0.11540143408751058, 'min_c_minus_x': 0.08975039418471753}
+[     9.6s]   D 4.0 it 6: |F| 7.668e-14 (band rows 3.197e-14), dDelta +2.047e-15, band {'band_steps': 21, 'min_gp': 0.09033812117660557, 'min_gm': 0.11540143408750095, 'min_c_minus_x': 0.08975039418470497}
+[     9.6s]   D 4.0: Delta 3.4454196092434652, expected 3.4454524022 +- 2e-09: FAIL (diff -3.279e-05)
+[     9.6s] D 4.0: converged True its 7 Delta 3.4454196092434652 band {'band_steps': 21, 'min_gp': 0.09033812117660557, 'min_gm': 0.11540143408750095, 'min_c_minus_x': 0.08975039418470497}
