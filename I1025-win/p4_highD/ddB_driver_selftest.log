@@ -1,0 +1,8 @@
+== 2026-11-21 06:30:10 started pid 4436: C:/Users/nathan/Source/venv-md510/Scripts/python.exe -c import time; print('quick child', flush=True); time.sleep(3) > C:/Users/nathan/Source/p4hi_1025/ddB_selftest_a.log
+== 2026-11-21 06:30:10 started pid 15596: C:/Users/nathan/Source/venv-md510/Scripts/python.exe -c import time; print('slow child', flush=True); time.sleep(600) > C:/Users/nathan/Source/p4hi_1025/ddB_selftest_b.log
+== 2026-11-21 06:30:31 pid 4436: child pids 
+== 2026-11-21 06:30:32 pid 15596: child pids 7664
+== 2026-11-21 06:30:32 pid 4436 ended with exit 0 after 21 s
+== 2026-11-21 06:30:32 CAP 6 s: killed pid 15596 (and its children) by exact pid: SUCCESS: The process with PID 7664 (child process of PID 15596) has been terminated.
+SUCCESS: The process with PID 15596 (child process of PID 16320) has been terminated. 
+== 2026-11-21 06:30:32 selftest: exit codes [0, 'killed at the cap'] in 22 s; processes of the slow child still alive: 0

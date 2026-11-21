@@ -106,3 +106,36 @@ CPU and memory: the hybrid phase of row A was not sampled (a miss on my side). T
 2. Sign check. The float64 signtest cannot test this root: the float64 M's sign is noise past D 17, as the D 17.5 record's own failed signtest showed. The sign check moves to the full dd M: win2 runs `ell_ddm` at lambda 1.9072 and 1.9472 on this D 17.5 state (`I1025-win/out/sol_l1kc63Fw1025_D17.5000.npy`, blob d85f7b71). Row A stays pending that check. Row B gets the same treatment, at its root -/+ 0.02. The driver still runs `signtest.py` after each row and the verdict prints it, as information and not as a criterion.
 
 Status after the amendment: row A, checks 1 to 5 and the amended edge rule PASS, dd sign check pending (win2). Row B, running.
+
+## Amendment 2, the coordinator's order (hc, about 06:27 UTC by my clock): row B's dd sign check is mine, after row B ends
+
+Reason: win2 already runs five dd processes at about 1.5 h each, so winb runs row B's check itself. Row A's check stays with win2.
+
+Setup, written before row B's root is known (2026-11-21 06:31 UTC):
+
+| item | value |
+|---|---|
+| code worktree | `C:/Users/nathan/Source/choptuik-i1025d`, detached at wip/ell1-highD 48c36355d1ba64de4e3112ed968fd6c034384551 (`ell_lam_signtested: winb's k_c 63 record at D 16.75 passed its signtest (#1025)`), made with `core.autocrlf=false`; `solver/matter/ell_ddm.py` |
+| python | `C:/Users/nathan/Source/venv-md510` (as P4), BelowNormal |
+| commands source | raw `I1025-mac/d18/d18_dd_criteria.log` at commit b2f21b10 (blob 73c6e5ba9f1feb25c2ae964d66e161c9489c8bfb), xfkappa's D 18 (B) criteria, and `I1025-mac/dd_signtest_D17.5_criteria.log` |
+| state | `I1025-win/out/sol_l1kc63W1025_D17.750000.npy`, blob de9fc3e55aa46bafd4ef62536861f94aed9e3035 (the hybrid row B's state; k_c 63, Ks 30, u0 0.04, kappa 0.7, rk 1 are `ell_ddm._setup`'s settings, the records') |
+
+The criteria file's commands, quoted (its D 18 state and lambda in place of mine):
+
+- `ell_ddm.py selftest must PASS, and ell_ddm.py selftest --mutate=slices must FAIL; otherwise stop.`
+- `ell_ddm.py det STATE 18 63 1.788704083622953,1.8 --noise 1e-24,1e-20,1e-16 (5 exact variants; noise on the dd propagator entries, 2 seeds).`
+- `A sign counts: dd, if its 5 variants agree and 1e-24 noise leaves it unchanged (both seeds), as in dd_signtest_D17.5_criteria.log.`
+- Stops there: `selftests 1800 s each; ... the dd det 10800 s`. The `--mutate=hionly` information run of that file is not part of this order and is not run.
+
+Selftests, run now (from `solver/matter`, 2 threads, `rows/ddB_selftest_ddm.log`, `rows/ddB_selftest_ddm_mutate_slices.log`, 06:28:43 to 06:28:45 UTC): `ell_ddm.py selftest` PASS (exit 0: operators 4.2e-16, 2.2e-16, 8.7e-18, 5.2e-18, 3.5e-16 against the bar 1e-14; Ozaki product 6.2e-30 against 1e-28; dual derivative 4.4e-32 against 1e-28); `ell_ddm.py selftest --mutate=slices` FAIL (exit 1: Ozaki product 3.0e-14 against 1e-28, BAD), as wanted.
+
+Run, fixed before row B's root is known:
+
+1. When `p4hi_w.log` shows `row B D 17.75: hybrid done`, `ddB_driver_1025.py` reads the root from `ell_p4_hybrid_1025_w_highD.jsonl` and starts two processes in parallel (4 BLAS threads each, BelowNormal): `ell_ddm.py det <state> 17.75 63 <root - 0.02> --noise 1e-24,1e-20,1e-16 --out rows/ell_ddm_B_D17.75_lo.jsonl` and the same at `<root + 0.02>` (`..._hi.jsonl`), logs `rows/ddB_lo.log`, `rows/ddB_hi.log`. If the hybrid row has no root the driver stops and says so.
+2. Cap 3 h (10800 s) each. At the cap the driver kills the process it started by its exact pid (`taskkill /PID <pid> /T /F`: the venv launcher and its child, both by pid, never by name). The pids are logged in `ddB_w.log`. Selftest of that runner (a 3 s child ends, a 600 s child is killed at a 6 s cap, 0 left alive): `ddB_driver_selftest.log`.
+3. Reading, fixed now (the coordinator's): minus at the lower point and plus at the upper means the root passes; the same sign at both means no root between them. A dd sign counts only if its 5 exact variants agree and 1e-24 noise leaves it unchanged (both seeds); 1e-20 and 1e-16 are information. If a sign does not count at either point, neither reading applies and that is reported. `read_ddB_1025.py` reads the two records (planted cases: root passes, same sign, a disagreeing variant, and a lambda mismatch; `vtest` not published).
+4. The float64 `signtest.py` of the main driver still runs after row B and is information only. The hybrid's verdict line says `dd sign check PENDING` until this reading.
+5. Post on #1025 with cpu and memory when it ends.
+
+Row B is at its hybrid phase (started 06:23:26). Estimated: hybrid ends about 08:15 to 08:50, the dd runs about 1 to 3 h after that.
+
