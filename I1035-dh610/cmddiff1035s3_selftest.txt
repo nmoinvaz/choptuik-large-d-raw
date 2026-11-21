@@ -1,0 +1,17 @@
+  correct real: empty: ok
+  correct real_old: empty: ok
+  correct polish293: empty: ok
+  correct step293: empty: ok
+  correct gate: empty: ok
+  correct polish315: empty: ok
+  correct delta: empty: ok
+  slip real_old without --mutate=old (the slip of 21 Nov): differs (expected differs): ok
+  slip real with --tol 1e-60: differs (expected differs): ok
+  slip polish293 with --ks 315: differs (expected differs): ok
+  slip step293 with --steps 0: differs (expected differs): ok
+  slip step293 on the wrong state: differs (expected differs): ok
+  slip polish293 with --tol_od 1e-60: differs (expected differs): ok
+  slip polishgate on the wrong folder: differs (expected differs): ok
+  slip real_old on the ks 293 state: differs (expected differs): ok
+  --var B293 an allowed alternative accepted; a foreign path refused: ok
+selftest PASS

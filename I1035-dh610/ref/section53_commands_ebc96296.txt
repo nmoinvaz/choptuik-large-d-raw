@@ -1,0 +1,29 @@
+P0=I1064-dh610/ho2_D237.7132/ks307/base_pin3_D237.7132.npz            # blob 861c79ff
+PR=I1064-dh170/p315/ks315/base_pin3_D237.7132.npz                     # blob 0f4858ee
+S3=I966-dh370/ks_chain3b/leg14_D261.1415_ks293/anm_pin3_D262.0099.npz # blob eb34f3c8
+python3 factored_raise.py selftest $RAW/$P0                            # 26 of 26 pass, exit 0
+python3 factored_raise.py selftest $RAW/$P0 --mutate=nopred            # exit 1
+# stage 2
+nice -n 10 python3 -u factored_raise.py $RAW $OUT/planted --state $P0 --ks 315 --threads 10 --ref $PR --bar 1e-60 > $OUT/planted.log 2>&1              # PASS, exit 0
+nice -n 10 python3 -u factored_raise.py $RAW $OUT/planted_order --state $P0 --ks 315 --threads 10 --ref $PR --bar 1e-60 --mutate=order > $OUT/planted_order.log 2>&1   # FAIL, exit 1
+nice -n 10 python3 -u factored_raise.py $RAW $OUT/planted_old --state $P0 --ks 315 --threads 10 --ref $PR --bar 1e-60 --mutate=old > $OUT/planted_old.log 2>&1        # information
+nice -n 10 python3 -u factored_raise.py $RAW $OUT/planted_linear --state $P0 --ks 315 --threads 10 --ref $PR --bar 1e-60 --mutate=linear > $OUT/planted_linear.log 2>&1  # information
+# stage 3: the chain's own arguments (leg 14's line, without --steps, --ks and --keep_plan)
+L14="--kfreeze 3 --held_fit data/held_fit.json --N 31 --eps 1e-14 --h_max 2 --threads 10 --corrector od --tol_od 2e-34 --qd_it 40 --lam_stall 0.04 --od_junk 0 --jet_o 1 --reseed 2 --reseed_q 1 --held_o 1 --reseed_o 3 --save_pred 1 --od_accept own --save_jet 1 --od_strong 4 --reseed_start pred --a_rule reseed --a_scale 0.000715 --jet_tangent_from 1 --series_split 1 --a_rise 1 --proj_start pred --reseed_o_stop 1 --od_floor_delta 1e-30 --proj_o 1 --reseed_o_bar 1e-17 --reseed_qd_bar 1e-13 --D_max 271.1415"
+# the control first, at ks 293
+nice -n 10 python3 -u anm_run.py $RAW $OUT/polish293 --state $S3 $L14 --steps 0 --ks 293 --keep_plan 1 --save_base 1 > $OUT/polish293.log 2>&1
+python3 factored_raise.py polishgate $OUT/polish293.log $OUT/polish293 # PASS, exit 0
+B293=I1035-<machine>/stage2/polish293/base_pin3_D262.0099.npz         # if the polish was skipped: $S3
+nice -n 10 python3 -u anm_run.py $RAW $OUT/step293 --state $B293 $L14 --steps 1 --ks 293 --keep_plan 1 > $OUT/step293.log 2>&1
+python3 factored_raise.py stepgate $OUT/step293.log $OUT/step293       # PASS, exit 0; else nothing is judged
+# the raise and its controls
+nice -n 10 python3 -u factored_raise.py $RAW $OUT/real --state $S3 --ks 315 --threads 10 --tol 1e-50 > $OUT/real.log 2>&1                   # converged, exit 0
+nice -n 10 python3 -u factored_raise.py $RAW $OUT/real_old --state $S3 --ks 315 --threads 10 --tol 1e-50 --mutate=old > $OUT/real_old.log 2>&1         # exit 1
+nice -n 10 python3 -u factored_raise.py $RAW $OUT/real_linear --state $S3 --ks 315 --threads 10 --tol 1e-50 --mutate=linear > $OUT/real_linear.log 2>&1  # exit 1
+# the polish and the step at ks 315
+nice -n 10 python3 -u anm_run.py $RAW $OUT/polish315 --state I1035-<machine>/stage2/real/raise_pin3_D262.0099.npz $L14 --steps 0 --ks 315 --keep_plan 1 --save_base 1 > $OUT/polish315.log 2>&1
+python3 factored_raise.py polishgate $OUT/polish315.log $OUT/polish315 # PASS, exit 0
+B=I1035-<machine>/stage2/polish315/base_pin3_D262.0099.npz            # if the polish was skipped: the raised state
+nice -n 10 python3 -u anm_run.py $RAW $OUT/step315 --state $B $L14 --steps 1 --ks 315 --keep_plan 1 > $OUT/step315.log 2>&1
+python3 factored_raise.py stepgate $OUT/step315.log $OUT/step315       # PASS, exit 0
+python3 exact_recip_check.py delta $RAW/$S3 $RAW/$B --out $OUT/delta_315_vs_293.json   # Delta(315) - Delta(293)
