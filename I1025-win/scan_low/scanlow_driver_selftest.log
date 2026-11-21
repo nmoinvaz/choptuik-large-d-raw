@@ -1,0 +1,6 @@
+== 2026-11-21 18:19:14 slow: started pid 6336: C:/Users/nathan/Source/venv-md510/Scripts/python.exe -c import time; print('slow', flush=True); time.sleep(600) > C:/Users/nathan/Source/scanlow_1025/scanlow_selftest_slow.log
+== 2026-11-21 18:19:14 quick: started pid 6208: C:/Users/nathan/Source/venv-md510/Scripts/python.exe -c import time; print('quick', flush=True); time.sleep(8) > C:/Users/nathan/Source/scanlow_1025/scanlow_selftest_quick.log
+== 2026-11-21 18:19:24 quick: pid 6208 ended with exit 0 after 10 s
+== 2026-11-21 18:19:44 slow: CAP 25 s: killed pid 6336 (and its children) by exact pid: SUCCESS: The process with PID 10476 (child process of PID 6336) has been terminated.
+SUCCESS: The process with PID 6336 (child process of PID 10448) has been terminated. 
+== 2026-11-21 18:19:48 selftest: {'quick': 0, 'slow': 'killed at the cap'}; dummy processes alive afterwards 0; ok
