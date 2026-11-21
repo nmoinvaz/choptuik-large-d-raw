@@ -421,3 +421,4 @@ Reading (1), base 1 of 3 (262.4705): the real stable pole is at 265.0780 (4 appr
 | 262.5706 | 86484665 | 262.0871 ± 0.9709i (9 approximants) | 1.0866, 1.0892, −0.23% | PASS (0), FAIL (1) | 262.5092 (+34.9), 325.0839 (+2.356) |
 
 Reading (1), base 2 of 3 (262.5706): the real stable pole is at 265.0778 (4 approximants); 265.0780 at base 1. Pending (exit 3).
+| 262.6802 | cdc91937 | 262.0871 ± 0.9709i (9 approximants) | 1.1410, 1.1426, −0.14% | PASS (0), FAIL (1) | 262.3202 (+21.8), 272.3348 (-20.768) |
