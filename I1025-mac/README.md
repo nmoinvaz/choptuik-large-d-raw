@@ -178,3 +178,6 @@ Written before the run (criteria in `d18/d18_criteria.log`, 2026-11-21 03:31:59 
 - (ii) (16:27-17:05 UTC), information: D 18.25 over 1.20-1.55 has ONE robust change, in **(1.38, 1.39)**, range [1.388522, 1.388581], with
   ln|det|'s least value beside it; every point noise-robust, repeats agree (`d18/d1825_low.log`, `d18/d1825_lowfine.log`,
   `d18/d1825_low_1025.jsonl`, `d18/d1825_lowfine_1025.jsonl`, `d18/d1825_low_read.log`; numbers `d18/d1825_low_numbers.py`, `.log`).
+- (e) D 18.5 (17:05-18:54 UTC), information: over 2.10-2.40 the hybrid is + at all 31 points, every point noise-robust, repeats agree:
+  **not placed** (`d18/d185_scanup.log`, `d18/d185_scanup_1025.jsonl`, `d18/d185_e_read.log`). With the reference 2.60 (-) the odd count
+  of this state lies in (2.40, 2.60); ln|det| peaks at 2.38 and falls to 2.40 (`d18/d185_e_numbers.py`, `d18/d185_e_numbers.log`).
