@@ -418,3 +418,4 @@ bases of (1): within 0.1 of 1/2 a fold, within 0.2 of −1 a pole, otherwise not
 | 262.4705 | fcf73363 | 262.0871 ± 0.9709i (9 approximants) | 1.0472, 1.0480, −0.08% | PASS (0), FAIL (1) | 262.6633 (+27.9), 334.4578 (+1.601) |
 
 Reading (1), base 1 of 3 (262.4705): the real stable pole is at 265.0780 (4 approximants). `reading1.py` (pending, exit 3) gives the verdict once three new bases have landed; its control `--mutate=shift` adds 0.02 to the first base.
+| 262.5706 | 86484665 | 262.0871 ± 0.9709i (9 approximants) | 1.0866, 1.0892, −0.23% | PASS (0), FAIL (1) | 262.5092 (+34.9), 325.0839 (+2.356) |
