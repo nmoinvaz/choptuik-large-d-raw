@@ -60,3 +60,4 @@ Slips: two launches (08:39:39 and 08:40:31 UTC) stopped at their own controls be
 `cmp1060.py`; both are in `stopped_first_try/` and `stopped_second_try/`. The third launch (08:41:25) is the run above.
 
 See [natural/](natural/README.md) for the same rungs with `--od_accept natural` (README first, readings fixed before the runs).
+See [precross/](precross/README.md) for ks 315 from two states before the crossing (D 260.0073, D 259.4568).
