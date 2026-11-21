@@ -17,7 +17,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import alpha1057 as al  # noqa: E402
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-NAMES = ["260.9271", "261.0721", "261.1415", "261.2061", "261.2697", "261.3914", "261.5124"]
+NAMES = ["260.9271", "261.0721", "261.1415", "261.2061", "261.2697", "261.3914", "261.5124", "261.6229"]
 DEG = 2
 
 
