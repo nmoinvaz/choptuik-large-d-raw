@@ -136,3 +136,7 @@ Written before the run (criteria in `d18/d18_criteria.log`, 2026-11-21 03:31:59 
   left the real axis between D 18 and 18.25. Two labels are recorded: by orientation D 18.25's root continues D 18's lower root
   (slopes from D 17.5, per unit D: -0.3045, -0.1299 to -0.1285, -0.2634 to -0.2611); by continuity it continues the upper root
   (-0.2418 to -0.2392, -0.2605 to -0.2538, -0.2634 to -0.2611), intervals from the estimator ranges in `d18/d18d_continuity.log` (`d18/d18d_continuity.py`). Which continues lambda_1 is decided by (d) with both readings.
+- (d) D 18.5 (13:23-14:26 UTC), information: over 1.90-2.10 the hybrid is + at all 21 points, every point noise-robust; the repeated
+  point 1.90 agrees with the first scan. Over 1.55-2.10 D 18.5 has one robust change, (1.67, 1.68), minus to plus, and no ln|det|
+  minimum without a sign change: **reading (d2)**, the plus-to-minus root is not in 1.90-2.10 (`d18/d185_scanhi.log`,
+  `d18/d185_scanhi_1025.jsonl`, `d18/d185_d_read.log`; numbers `d18/d185_d_numbers.py`, `d18/d185_d_numbers.log`).
