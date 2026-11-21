@@ -1,0 +1,42 @@
+I966-dh370/ks_chain3b/leg14_D261.1415_ks293/anm_pin3_D262.0099.npz: D 262.01, ks 293 (the state's 293), plan stored, M 32, kfreeze 3
+octo-double LU 229 s, pivots 3.4e-20..1.4e+51
+start residual: max|R| (pinned, F - c) 1.476e-41, max|F| (unpinned) 7.660e-04
+||J v_1|| = 6.3798e-21 at 140 digits (4 s); ||J v_1|| / sigma_1 = 1.000000
+route B (J v_1 / sigma_1 at 140 digits): u_1.R 4.5399879e-68; route A (sigma_1 J^-T v_1): 4.5399879e-68; relative difference of the magnitudes 6.3e-24
+planted R_pl = J w, |w| 1.000e-10 (0 s): (u_1.R_pl)/sigma_1 1.000000e-10 (|w| 1.000000e-10, relative error 1.3e-16); largest |u_i.R_pl| (i > 1) over |u_1.R_pl| 2.1e-08; v_1.J^-1 R_pl 1.000000e-10 (relative error 1.3e-16): planted check pass (each within 1e-6)
+
+| i | sigma_i | Delta share of v_i | u_i.R | (u_i.R)/sigma_i | V^T(pinned step)_i | u_i.F (unpinned) | (u_i.F)/sigma_i |
+|---|---|---|---|---|---|---|---|
+| 1 | 6.3798e-21 | 9.205e-01 | +4.5400e-68 | +7.1162e-48 | -7.1162e-48 | +1.9547e-21 | +3.0639e-01 |
+| 2 | 2.0586e-20 | 7.174e-02 | -1.2438e-67 | -6.0419e-48 | +6.0419e-48 | -5.7046e-22 | -2.7711e-02 |
+| 3 | 5.6296e-15 | 3.477e-03 | -1.6370e-65 | -2.9079e-51 | +2.9079e-51 | -3.6092e-19 | -6.4112e-05 |
+| 4 | 7.2366e-15 | 3.855e-03 | -9.0611e-66 | -1.2521e-51 | +1.2521e-51 | +5.4809e-19 | +7.5738e-05 |
+| 5 | 4.0307e-13 | 1.245e-06 | -5.9445e-65 | -1.4748e-52 | +1.4748e-52 | +2.7230e-16 | +6.7558e-04 |
+| 6 | 2.7677e-12 | 1.335e-06 | -8.7815e-64 | -3.1728e-52 | +3.1728e-52 | +1.2427e-15 | +4.4900e-04 |
+
+the pinned Newton step: |dz| 9.335e-48, max 8.446e-48, Delta component +8.446e-48
+  sigma_1 converged to 0.0e+00; ||J v_1||/sigma_1 1.000000; route B 6.3e-24
+check: pass
+	Command being timed: "/home/nathan/Source/choptuik-large-d-1058b/.venv/bin/python -u /home/nathan/Source/choptuik-large-d-raw-p4/I1064-dh170/raise_test1064.py /home/nathan/scratch949 I966-dh370/ks_chain3b/leg14_D261.1415_ks293/anm_pin3_D262.0099.npz --ks=293 --keep_plan=1 --k=6 --its=32 --threads=4 --json=/home/nathan/Source/choptuik-large-d-raw-p4/I1064-dh170/raise_test_ks293.json"
+	User time (seconds): 938.97
+	System time (seconds): 1.44
+	Percent of CPU this job got: 315%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 4:57.73
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 190816
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 425610
+	Voluntary context switches: 2475
+	Involuntary context switches: 59498
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 264
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
