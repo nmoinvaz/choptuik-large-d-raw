@@ -321,8 +321,8 @@ reports it as a candidate. The pole is the real stable pole of `locate` (D_im �
   - it passes if the estimator recovers mu to 10% (|mu − 0.5| ≤ 0.05) and the point's distance to 0.5% (|s − 2.8|
     ≤ 0.014);
   - `--mutate=move` builds the point at 2.8 + 0.5 and judges it against 2.8, which must fail;
-  - reported beside it, not judged: the same plant with a pole pair (mu1 = −1), and the plain Dlog estimator without
-    the division.
+  - reported beside it, not judged: the same plant with a pole pair (mu1 = −1), the plain Dlog estimator without
+    the division, and the division with s1 off by 0.006 (the three clusters' spread; the data's s1 is not exact).
 - **Reading, once (1) is met:** the type comes from the median of the estimator's mu over the three bases of (1):
   - within 0.1 of 1/2: a fold. A fold near D 265.08 would cap the ks 293 chain there;
   - within 0.2 of −1: a pole;
