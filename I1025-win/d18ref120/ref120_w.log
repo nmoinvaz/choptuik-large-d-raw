@@ -1,0 +1,14 @@
+== 2026-11-21 16:20:39 ref120_driver_1025.py: the lambda 1.20 dd check; waiting for the D 18.125 scan driver (pid 10592, C:/Users/nathan/Source/d18mid_1025/I1025-win/d18mid/d18mid_w.log)
+== 2026-11-21 16:48:57 the D 18.125 scan driver has ended; checking pins
+== 2026-11-21 16:48:57 pins ok; dd: lambda 1.2 on D 18 (blob 45e72c6a) and D 18.0625 (blob f2307f0e), cap 21600 s each
+== 2026-11-21 16:48:57 started dd_D18 pid 16400: C:/Users/nathan/Source/venv-md510/Scripts/python.exe -u ell_ddm.py det C:/Users/nathan/Source/ref120_1025/raw/I1025-win/out/sol_l1kc63W1025_D18.000000.npy 18.0 63 1.2 --noise 1e-24,1e-20,1e-16 --out C:/Users/nathan/Source/ref120_1025/I1025-win/d18ref120/rows/ell_ddm_D18_lam1.2.jsonl > C:/Users/nathan/Source/ref120_1025/I1025-win/d18ref120/rows/dd_D18_lam1.2.log
+== 2026-11-21 16:48:57 started dd_D18.0625 pid 7560: C:/Users/nathan/Source/venv-md510/Scripts/python.exe -u ell_ddm.py det C:/Users/nathan/Source/ref120_1025/raw/I1025-mac/d18/sol_l1kc63Wm1025_D18.062500.npy 18.0625 63 1.2 --noise 1e-24,1e-20,1e-16 --out C:/Users/nathan/Source/ref120_1025/I1025-win/d18ref120/rows/ell_ddm_D18.0625_lam1.2.jsonl > C:/Users/nathan/Source/ref120_1025/I1025-win/d18ref120/rows/dd_D18.0625_lam1.2.log
+== 2026-11-21 18:11:18 dd_D18.0625 pid 7560 ended with exit 0 after 4940 s
+== 2026-11-21 18:11:28 dd_D18 pid 16400 ended with exit 0 after 4950 s
+== 2026-11-21 18:11:28 both dd processes ended: [0, 0]
+== 2026-11-21 18:11:28 D 18.0, lambda 1.2: dd sign -1.0, counts True; 5 variants [-1.0, -1.0, -1.0, -1.0, -1.0] agree True, noise {'1e-24': [-1.0, -1.0], '1e-20': [-1.0, -1.0], '1e-16': [-1.0, -1.0]}, ln|det| dd -1929.5742427948, float64 sign -1.0 ln -1929.5350242155
+== 2026-11-21 18:11:28    hybrid (xfkappa) at 1.20: sign -1, ln|det| -1929.5742472863; dd ln minus hybrid ln +0.0000
+== 2026-11-21 18:11:28 D 18.0625, lambda 1.2: dd sign 1.0, counts True; 5 variants [1.0, 1.0, 1.0, 1.0, 1.0] agree True, noise {'1e-24': [1.0, 1.0], '1e-20': [1.0, 1.0], '1e-16': [1.0, 1.0]}, ln|det| dd -1923.7847412305, float64 sign 1.0 ln -1923.7596497450
+== 2026-11-21 18:11:28    hybrid (xfkappa) at 1.20: sign +1, ln|det| -1923.7847417121; dd ln minus hybrid ln +0.0000
+== 2026-11-21 18:11:28 DDREAD: CROSSING CONFIRMED: dd equals the hybrid at both (D 18 minus, D 18.0625 plus), a root crossing lambda 1.20 between D 18 and D 18.0625
+== 2026-11-21 18:12:38 ref120_driver_1025.py done

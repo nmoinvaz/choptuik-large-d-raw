@@ -45,4 +45,18 @@ A dd sign counts if its 5 exact variants agree and 1e-24 noise leaves it unchang
 
 ## Status
 
-Not started (16:20 UTC).
+Done 2026-11-21 18:11:28 UTC; the result is in the section below.
+
+
+## Result (2026-11-21 16:48:57 to 18:11:28 UTC; written 18:13 UTC): CROSSING CONFIRMED
+
+`ell_ddm.py det <state> <D> 63 1.2 --noise 1e-24,1e-20,1e-16`, two processes in parallel, 4 threads each, BelowNormal, 6 h caps not reached (4940 s for D 18.0625, pid 7560, and 4950 s for D 18, pid 16400; both exit 0); `ref120_w.log`, `rows/dd_*_lam1.2.log`, `rows/ell_ddm_*_lam1.2.jsonl`, `rows/ref120_reading.log`:
+
+| state | dd M built | dd LU signs, 5 exact variants | LU time | noise 1e-24 / 1e-20 / 1e-16 (2 seeds each) | ln\|det\| dd | hybrid (xfkappa): sign, ln\|det\| | dd ln minus hybrid ln | float64 (`det`'s own) | counts |
+|---|---|---|---|---|---|---|---|---|---|
+| D 18 (blob 45e72c6a) | 2435 s | -1 x5 (spread 2.7e-12) | 172.7 s | -1 at all | -1929.5742427948 | -1, -1929.5742472863 | +4.5e-06 | -1, -1929.5350242155 | yes |
+| D 18.0625 (blob f2307f0e) | 2423 s | +1 x5 (spread 4.1e-12) | 172.6 s | +1 at all | -1923.7847412305 | +1, -1923.7847417121 | +4.8e-07 | +1, -1923.7596497450 | yes |
+
+**Reading (the coordinator's, fixed before the run): dd equals the hybrid at both (D 18 minus, D 18.0625 plus), so a root crossing lambda 1.20 between D 18 and D 18.0625 is confirmed.** Both dd signs count (5 variants agree, 1e-24 noise leaves them unchanged). No structured hybrid error shows at either reference: the dd and hybrid ln|det| agree to 4.5e-06 and 4.8e-07 (the hybrid differs from the full dd M only in building blocks 0 to 11 in float64). Information: `det`'s plain float64 sign also agrees with the dd at both states.
+
+CPU and memory (`rows/ref120_samples.csv`, every 60 s, 326 rows; the peaks are the process counters, read at the end of the run): the two dd pythons (BelowNormal, up to 13 and 10 threads): D 18 5585 cpu s in 4950 s (1.13 cores on average), D 18.0625 5489 cpu s in 4940 s (1.11 cores); working set peak 1.888 and 1.906 GB, private bytes peak 2.123 and 2.142 GB (the peaks come in the LU phase; working set 0.22 GB at the last sample). Laptop: cpu 25 to 77 %, free memory 18.5 to 25.0 GB of 31.83 GB, commit at most 18.1 GB of limit 41.3 GB; no other job of mine ran beside, other sessions' pythons did.
