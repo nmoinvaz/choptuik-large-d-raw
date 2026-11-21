@@ -1,0 +1,7 @@
+| K | exit | wall s | verdict | iterations (|F| before -> after, seconds) | Delta(K) - Delta(293) |
+|---|---|---|---|---|---|
+| 293 | 0 | 92 | converged: last octo-double Newton line 1 steps, max|F| 2.0e-36, converged, base saved True | step 0: 1.96e-36 converged | - |
+| 315 | 0 | 6797 | failed: last octo-double Newton line 10 steps, max|F| 5.7e-11, not converged, base saved True | first strong chord (4 weak directions), 2 steps after the full first step; theta at its point inf (bound 0.750) (refused, 407.36 s); step 0: 1.15e-08 -> 9.63e-10, 653.31 s; step 1: 9.63e-10 -> 3.46e-10, 672.84 s; step 2: 3.46e-10 -> 2.88e-11, 529.84 s; step 3: 2.88e-11 -> 1.23e-09, 931.21 s; step 4: 1.23e-09 -> 5.46e-10, 197.32 s; step 5: 5.46e-10 -> 2.14e-10, 649.3 s; step 6: 2.14e-10 -> 4.18e-11, 901.0 s; step 7: 4.18e-11 -> 5.53e-12, 151.55 s; step 8: 5.53e-12 -> 5.66e-11, 839.59 s | - |
+| 316 | 0 | 4057 | failed: last octo-double Newton line 6 steps, max|F| 2.1e-12, not converged, base saved True | first strong chord (4 weak directions), 2 steps after the full first step; theta at its point inf (bound 0.750) (refused, 393.68 s); step 0: 1.15e-08 -> 9.38e-11, 648.63 s; step 1: 9.38e-11 -> 1.43e-10, 464.98 s; step 2: 1.43e-10 -> 7.78e-11, 256.22 s; step 3: 7.78e-11 -> 4.56e-11, 335.73 s; step 4: 4.56e-11 -> 2.32e-11, 1035.55 s; step 5: 2.32e-11 -> 2.11e-12, 979.44 s | - |
+
+Wall of ks293 to ks318 (exits_1064.txt) is taken after the whole rung ended, so a run that ended earlier shows its rung's wall; from ks295 on (exits_1064b.txt) it is each run's own, in 30 s polls.

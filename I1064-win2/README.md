@@ -59,3 +59,4 @@ the machine throughout.
 Slips: two launches (08:39:39 and 08:40:31 UTC) stopped at their own controls before any rung started, on `xcheck1064.py`'s import of
 `cmp1060.py`; both are in `stopped_first_try/` and `stopped_second_try/`. The third launch (08:41:25) is the run above.
 
+See [natural/](natural/README.md) for the same rungs with `--od_accept natural` (README first, readings fixed before the runs).
