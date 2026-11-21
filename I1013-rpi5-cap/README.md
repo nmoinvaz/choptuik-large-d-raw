@@ -49,6 +49,8 @@ Result for box A (3.6-4.35 x 0.5-1.3): no zero is counted at either rung, and th
 
 Sheet check (xfchecks, #1013 comment 7034395925, raw d4231ed6) of step 1: the 185 resolved leaves and 11 of the 13 unresolved cells pass; 2 unresolved cells (A 4.1123-4.3623 x 0.5065-0.6065 and 0.6065-0.7065) fail, four points of column A 4.3623456 being on other sheets of S3 = 0. The fix attempt is `sheetfix/` (6da7da7b, raw e12701e3): both cells stay unresolved. Step 2 gives no winding, so there is nothing of it for a sheet check. The counts of step 1 stay on hold as the coordinator's note below says.
 
+Recount3 (coordinator task, 2026-11-20 12:31:26 to 2026-11-21 00:13:02 UTC, exit 0, 42096 s; folder `recount3/`, README there): the 13 unresolved cells recounted at xi1 0.18 at 6da7da7b with `--retry`, `--m3maxrhs=1e7` and the sheetfix seeds, from step 2's cache without its 11 off-sheet records. Count as printed: 214 leaves after 67 splits, 719 points, 13 unresolved cells, zeros none, boundary winding nan (6 of the 13 boxes have a boundary corner without value; two boxes show +1 and -1 with unresolved leaves inside). 4 of step 1's cells are now resolved with W 0, the 2 cells at w/w_inf 0.5065-0.6065 were split to depth 3, the 7 cells at 1.0065-1.3065 stay unresolved. The counts stay on hold until xfchecks' sheet check passes on `recount3/m3/points_M3_r0.18.jsonl`.
+
 ## Note from the coordinator, 2026-11-19 (about 00:30 UTC)
 
 The run stays as it is, but its counts are not used until xfchecks' sheet check passes on them: the start radius can put a point on a different root of S3 = 0 (F3 on another sheet), and a winding across such a switch is invalid. The run changes nothing for this; the next #1013 post says so.
