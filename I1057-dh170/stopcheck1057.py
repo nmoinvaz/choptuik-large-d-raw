@@ -8,7 +8,7 @@ state records (run track949.py first).
 (a) the latest five-state fold window of ks_chain3b reads TTTT and valid: report at once on #1057 and #966;
 (b) sigma_2/sigma_Delta below 1.05 at a state past D 259.7352: report at once (a near crossing: the two-mode fit is rerun with D-linear slopes);
 (c) |excess| <= 0.05 at the last 5 states in a row, all of them states past D 259.7352;
-(d) 2026-11-21 12:00 UTC has passed;
+(d) 2026-11-21 16:00 UTC has passed (coordinator, hc 11:2x UTC, amended from 12:00: keep the lane and the watcher until the first state at or above 0.9 is read and sent, or until 16:00 UTC, whichever is first);
 (e) REPORT AT ONCE (coordinator, 20:4x UTC, not a stop): a classified state past the crossing (D > 260.85) with a Delta share of 0.9 or more, which triggers dh370's ks raise.
 The pushes of leg 11 (ks 315, a new order: flag it in each row) are listed from the raw repository's origin/main, as the autoqueue fetches it."""
 import calendar
@@ -24,7 +24,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 BAND, RUN, RATIO = 0.05, 5, 1.05
 D_FIRST_NEW = 259.9                                     # states past D 259.7352 are the new ones
-DEADLINE = calendar.timegm((2026, 11, 21, 12, 0, 0))
+DEADLINE = calendar.timegm((2026, 11, 21, 16, 0, 0))
 PUSH_REPO = os.path.expanduser("~/Source/choptuik-large-d-raw-push")
 ONE_SIDED = False                                       # --mutate: no lower bound on the band
 RATIO_LE = False                                        # --mutate: <= instead of <
@@ -179,7 +179,7 @@ def main():
     except Exception as e:                              # the push listing is a convenience, not a stop condition
         print(f"push listing failed: {e}")
     msg = {"a": "a TTTT fold window (report at once on #1057 and #966)", "b": "sigma_2/sigma_Delta below 1.05 (report at once: a near crossing, rerun the two-mode fit with D-linear slopes)",
-           "c": f"the excess within +-{BAND} at {RUN} new states in a row", "d": "2026-11-21 12:00 UTC has passed",
+           "c": f"the excess within +-{BAND} at {RUN} new states in a row", "d": "2026-11-21 16:00 UTC has passed (amended from 12:00)",
            "e": "REPORT AT ONCE on #1057 and #966: a classified state past the crossing has its Delta share back at 0.9 or more, which triggers dh370's ks raise"}
     hit = [k for k in "abcde" if res[k]]
     for k in hit:
