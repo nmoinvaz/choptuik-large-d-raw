@@ -19,3 +19,11 @@ win2 takes the split-2 A/B (step 2). dh610 runs only step 1 after #1043 job 6: l
 ## Second amendment (01:58 UTC, 21 Nov, coordinator's hc): leg 10's line exactly as it ran, `--series_split 1`
 
 The first amendment's S = 0 is replaced: `run1060.sh` now runs S = 1 only (leg 10's own line, `--series_split 1`, `--steps 1`, `--D_max 300`, absolute OUT `step17_s1/`). The comparison with the stored D 260.8483 state is judged, as win2's comparator note says, on Delta and the exactly summed parts (`cmp1060.py bits`: each component's eight parts summed as exact rationals, Delta and every S_i equal, D_str and a equal); the bytes that differ per part and the per-part M1 are printed as information. Controls (`comparator_controls_1060_exact.txt`): the state against itself exits 0; one byte of z3 flipped, and one byte of z7 (a change of 4.4e-134 in a sum), each exit 1; a planted 1e-120 shift exits 1 with Delta difference -1.1e-120 while its z7 M1 reads 7.7e-06. `run1060.sh` reruns all of them before the step.
+
+## Result (21 Nov, 03:18 UTC): step 1, leg 10's step 17 at its own `--series_split 1`
+
+Unit `i1060` 02:57:05 to 03:18:22 UTC, `step17_s1` exit 0, 1275 s (cap 10800 s), venv-i1058, worktree `~/Source/choptuik-large-d-1060` clean at 8179068d, `nice -n 10`, alert-only memory log `memlog_1060.log`.
+The comparator controls ran first and were as required (`ctl_*.txt`, `comparator_controls_1060*.txt`). `a` and D_str equal leg 10's, so the stop rule did not apply. The verdict of `cmp1060.py bits`
+(Delta and every exactly summed part) is DIFFERENT: Delta of this run's state 1.683264757534070378573492007334915999511, leg 10's 1.683264757534070378561608147670576687234, difference 1.188e-20, and the largest
+difference of any component's exact sum, max |dS_i|, is the same 1.188e-20. `cmp_s1_vs_leg10.txt` and `report_1060.md` have the full lines; `series_pred_by_order_1060.txt` the per-order series and prediction differences
+(exact sums, information; its controls run first).
