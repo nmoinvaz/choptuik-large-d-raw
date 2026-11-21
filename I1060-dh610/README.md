@@ -15,3 +15,7 @@ Here: the same with `--state I966-dh370/ks_chain3b/leg10_D256.1776_ks293/anm_pin
 ## Amendment (01:52 UTC, 21 Nov, coordinator's hc)
 
 win2 takes the split-2 A/B (step 2). dh610 runs only step 1 after #1043 job 6: leg 10's step 17 at `--series_split 0` on venv-i1058, which must equal the stored D 260.8483 state bit for bit (and, as before, the same a and D_str), with the comparator control. `run1060.sh` now loops over S = 0 only and `report1060.py` reads `step17_s0/`; the S = 1, 2 and 0 plan above is superseded. Leg 10's own line has `--series_split 1`; the coordinator's S = 0 is run as asked, and S = 1 is not run unless asked.
+
+## Second amendment (01:58 UTC, 21 Nov, coordinator's hc): leg 10's line exactly as it ran, `--series_split 1`
+
+The first amendment's S = 0 is replaced: `run1060.sh` now runs S = 1 only (leg 10's own line, `--series_split 1`, `--steps 1`, `--D_max 300`, absolute OUT `step17_s1/`). The comparison with the stored D 260.8483 state is judged, as win2's comparator note says, on Delta and the exactly summed parts (`cmp1060.py bits`: each component's eight parts summed as exact rationals, Delta and every S_i equal, D_str and a equal); the bytes that differ per part and the per-part M1 are printed as information. Controls (`comparator_controls_1060_exact.txt`): the state against itself exits 0; one byte of z3 flipped, and one byte of z7 (a change of 4.4e-134 in a sum), each exit 1; a planted 1e-120 shift exits 1 with Delta difference -1.1e-120 while its z7 M1 reads 7.7e-06. `run1060.sh` reruns all of them before the step.

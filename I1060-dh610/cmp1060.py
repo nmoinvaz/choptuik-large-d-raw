@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 """cmp1060.py: the comparator of #1060 (states of anm_run.py, eight parts zh zl z2..z7 and a `meta`).
-  cmp1060.py bits REF NEW [--mutate]      every part byte for byte, D_str and the step's a equal. Exit 0 when all are identical, 1 when not. --mutate: one byte of NEW's z3 flipped in
-                                          memory first (the control: the comparison must report a difference, exit 1).
+  cmp1060.py bits REF NEW [--mutate [KEY]] the verdict is Delta and the exactly summed parts (each component's eight parts summed as exact rationals: Delta, the last component, and every S_i
+                                          equal), with D_str and the step's a equal; exit 0 when they are, 1 when not. Per part, the bytes that differ and M1 (max |dpart| / max |part|)
+                                          are printed as information. --mutate: one byte of NEW's KEY (z3 by default; z7 is the smallest) flipped in memory first (the control: the
+                                          verdict must be a difference, exit 1).
   cmp1060.py close REF NEW [--tol 1e-100] the agreement of two states that need not be bit for bit, three readings (exact sums at 600 bits):
                                           Delta   |Delta(NEW) - Delta(REF)| / |Delta(REF)|, Delta the last component;
                                           M1      per part k, max_i |NEW_k,i - REF_k,i| / max_i |REF_k,i| (the issue's words: "each part's max");
@@ -35,11 +37,18 @@ def sums(d):
     return [mp.fsum(mp.mpf(float(d[k][i])) for k in KEYS if k in d) for i in range(n)]
 
 
+def exact(d):
+    """each component's parts summed as exact rationals"""
+    from fractions import Fraction
+    return [sum((Fraction(float(d[k][i])) for k in KEYS if k in d), Fraction(0)) for i in range(len(d["zh"]))]
+
+
 def cmd_bits(a, b, mutate):
     A, B = load(a), load(b)
     if mutate:
-        B["z3"] = B["z3"].copy()
-        B["z3"].view(np.uint8).reshape(-1)[0] ^= 1
+        key = mutate if isinstance(mutate, str) else "z3"
+        B[key] = B[key].copy()
+        B[key].view(np.uint8).reshape(-1)[0] ^= 1
     ma, mb = meta(A), meta(B)
     bad = {}
     for k in KEYS:
@@ -51,9 +60,15 @@ def cmd_bits(a, b, mutate):
             bad[k] = -1
     sD = ma["D_str"] == mb["D_str"]
     sa = ma["a"] == mb["a"]
-    print(f"bits{' (--mutate: one byte of NEW z3 flipped)' if mutate else ''}: D_str equal {sD} ({ma['D_str'][:14]}, {mb['D_str'][:14]}), a equal {sa} ({ma['a']!r}, {mb['a']!r}), "
-          f"parts with differing bytes {bad if bad else 'none'} ({len(KEYS)} parts compared)")
-    ok = sD and sa and not bad
+    EA, EB = exact(A), exact(B)
+    dD = EB[-1] - EA[-1]
+    dS = max(abs(x - y) for x, y in zip(EA, EB))
+    sums_equal = dD == 0 and dS == 0
+    m1 = {k: float(np.max(np.abs(B[k] - A[k])) / np.max(np.abs(A[k]))) if np.max(np.abs(A[k])) > 0 else float("nan") for k in KEYS if k in A and k in B}
+    print(f"bits{' (--mutate: one byte of NEW ' + (mutate if isinstance(mutate, str) else 'z3') + ' flipped)' if mutate else ''}: D_str equal {sD} ({ma['D_str'][:14]}, {mb['D_str'][:14]}), a equal {sa} ({ma['a']!r}, {mb['a']!r})")
+    print(f"  exactly summed parts: Delta difference {mp.nstr(mp.mpf(dD.numerator) / dD.denominator, 4) if dD else 0}, max |dS_i| {mp.nstr(mp.mpf(dS.numerator) / dS.denominator, 4) if dS else 0}: {'equal' if sums_equal else 'DIFFER'}")
+    print(f"  information: parts with differing bytes {bad if bad else 'none'} ({len(KEYS)} parts compared); M1 per part " + ", ".join(f"{k} {v:.1e}" for k, v in m1.items()))
+    ok = sD and sa and sums_equal
     print("identical" if ok else "DIFFERENT")
     return 0 if ok else 1
 
@@ -120,7 +135,11 @@ def cmd_plant(eps, a, out):
 if __name__ == "__main__":
     c = sys.argv[1]
     if c == "bits":
-        sys.exit(cmd_bits(sys.argv[2], sys.argv[3], "--mutate" in sys.argv))
+        mu = False
+        if "--mutate" in sys.argv:
+            i = sys.argv.index("--mutate")
+            mu = sys.argv[i + 1] if i + 1 < len(sys.argv) and sys.argv[i + 1].startswith("z") else True
+        sys.exit(cmd_bits(sys.argv[2], sys.argv[3], mu))
     if c == "files":
         sys.exit(cmd_files(sys.argv[2], sys.argv[3], "--mutate" in sys.argv))
     if c == "close":

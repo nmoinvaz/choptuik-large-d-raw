@@ -1,8 +1,8 @@
 #!/bin/bash
 # #1060 on dh610, after #1043 job 6: leg 10's step 17 (D 260.6706 -> 260.8483, a 0.1777) of dh370's ks_chain3b run again on venv-i1058 (main 8179068d, worktree -1060), with leg 10's own anm_run command line
 # (the dry log I966-dh370/ks_chain3b_m_dry.log, run966m.sh chainm: F3m + --reseed_qd_bar 1e-13 --steps 400 --ks 293 --keep_plan 0 --D_max 266.1776) with --steps 1, --D_max 300 and an absolute OUT.
-# Amended by the coordinator (hc, 21 Nov): only step 1 on dh370's side, S = 0 (the issue's "split 0"; leg 10's own line says --series_split 1), which must equal the stored state bit for bit;
-# the split-2 A/B is win2's. A braced block ending in exit.
+# Amended by the coordinator (hc, 21 Nov, twice): only step 1, leg 10's line exactly as it ran (--series_split 1), which must equal the stored state bit for bit, judged on Delta and the exactly summed
+# parts (cmp1060.py bits), the per-part bytes and M1 as information; the split-2 A/B is win2's. A braced block ending in exit.
 {
 RAW=/home/nathan/Source/choptuik-large-d-raw; OUT=$RAW/I1060-dh610
 W=/home/nathan/Source/choptuik-large-d-1060; VENV=/home/nathan/Source/venv-i1058
@@ -21,12 +21,14 @@ cd $OUT
 c=0
 python3 cmp1060.py bits $REFD/anm_pin3_D260.8483.npz $REFD/anm_pin3_D260.8483.npz > ctl_bits.txt 2>&1; [ $? = 0 ] || c=1
 python3 cmp1060.py bits $REFD/anm_pin3_D260.8483.npz $REFD/anm_pin3_D260.8483.npz --mutate > ctl_bits_mutate.txt 2>&1; [ $? = 1 ] || c=1
+python3 cmp1060.py bits $REFD/anm_pin3_D260.8483.npz $REFD/anm_pin3_D260.8483.npz --mutate z7 > ctl_bits_mutate_z7.txt 2>&1; [ $? = 1 ] || c=1
 python3 cmp1060.py files $REFD/jet_pin3_D260.6706.npz $REFD/jet_pin3_D260.6706.npz --mutate > ctl_files_mutate.txt 2>&1; [ $? = 1 ] || c=1
 for E in 1e-120 1e-90; do python3 cmp1060.py plant $E $REFD/anm_pin3_D260.8483.npz $OUT/planted_$E.npz > ctl_plant_$E.txt 2>&1; python3 cmp1060.py close $REFD/anm_pin3_D260.8483.npz $OUT/planted_$E.npz > ctl_close_$E.txt 2>&1; r=$?; [ $E = 1e-120 ] && [ $r != 0 ] && c=1; [ $E = 1e-90 ] && [ $r != 1 ] && c=1; done
+python3 cmp1060.py bits $REFD/anm_pin3_D260.8483.npz $OUT/planted_1e-120.npz > ctl_bits_planted.txt 2>&1; [ $? = 1 ] || c=1
 echo "comparator controls: $([ $c = 0 ] && echo 'all as required' || echo WRONG) (ctl_*.txt)" >> $SUM; log "comparator controls c=$c"
 [ $c = 0 ] || exit 1
 cd $W/hp || exit 1
-for S in 0; do
+for S in 1; do
   cd $W/hp
   CMD="python3 -u anm_run.py $RAW $OUT/step17_s$S --state I966-dh370/ks_chain3b/leg10_D256.1776_ks293/anm_pin3_D260.6706.npz --kfreeze 3 --held_fit data/held_fit.json --N 31 --eps 1e-14 --h_max 2 --threads 10 --corrector od --tol_od 2e-34 --qd_it 40 --lam_stall 0.04 --od_junk 0 --jet_o 1 --reseed 2 --reseed_q 1 --held_o 1 --reseed_o 3 --save_pred 1 --od_accept natural --save_jet 1 --od_strong 4 --reseed_start pred --a_rule reseed --a_scale 0.00715 --jet_tangent_from 1 --series_split $S --a_rise 1 --proj_start pred --reseed_o_stop 1 --od_floor_delta 1e-30 --proj_o 1 --reseed_qd_bar 1e-13 --steps 1 --ks 293 --keep_plan 0 --D_max 300"
   { echo "# $(stamp) UTC cmd: $CMD"; } > $OUT/step17_s$S.log
