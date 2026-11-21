@@ -145,3 +145,57 @@ Otherwise the diagnostic stays unvalidated. How I apply it, fixed before the run
 
 **Rows over leg 13.** `singularity_type.py rows --delta` on leg 13's four jets. The fold readings above apply over
 leg 13 and leg 14 together.
+
+## Results of the second request (2026-11-21 08:14:12 to 08:15:15 UTC, `exits2.txt`, all exit 0)
+
+**Locate** (`locate966_leg14.txt` and `.json`, 14.6 s; `locate966_leg13.txt` and `.json`, 11.0 s; 49 MB). The pair
+reading (`pairs.py` → `pairs966.txt`, exit 0):
+
+| D0 | nearest stable pole off the axis: D* | \|s\| | arg | approximants | root test | \|s\| / root − 1 |
+|---|---|---|---|---|---|---|
+| 260.8483 | 262.0784 ± 0.9730i | 1.5683 | 38.3° | 9 | 1.5682 | +0.01% |
+| 260.9271 | 262.0784 ± 0.9730i | 1.5074 | 40.2° | 9 | 1.4927 | +0.98% |
+| 261.0721 | 262.0783 ± 0.9730i | 1.3997 | 44.0° | 9 | 1.4120 | −0.87% |
+| 261.1415 | 262.0784 ± 0.9730i | 1.3507 | 46.1° | 9 | 1.3533 | −0.19% |
+| 261.2061 | 262.0784 ± 0.9730i | 1.3068 | 48.1° | 9 | 1.3244 | −1.33% |
+| 261.2697 | 262.0784 ± 0.9731i | 1.2652 | 50.3° | 9 | 1.2636 | +0.13% |
+| 261.3914 | 262.0767 ± 0.9731i | 1.1902 | 54.8° | 9 | 1.1963 | −0.51% |
+| 261.5124 | 262.0771 ± 0.9731i | 1.1251 | 59.9° | 9 | 1.1327 | −0.67% |
+
+**The pair is confirmed by the fixed reading.** All 8 bases (260.8483 to 261.5124) match the root test to 1.4%. Over
+them, D_re ranges over 0.0017 (262.0767 to 262.0784) and D_im over 0.0001 (0.9730 to 0.9731), against the bound 0.05.
+
+Controls of `pairs.py`, each exit 1 as required:
+- `--mutate=drift` adds 0.03 per base to D_re (`pairs966_drift.txt`);
+- `--mutate=root` scales the root test by 1.1 (`pairs966_root.txt`).
+
+The first form of the control shifted only the last base by 0.1. It could not fail, since the other 7 bases still
+held (exit 0), so it was replaced after its first run.
+
+Beside the nearest pole, at every base:
+- a second and third stable cluster within 0.012 of it (262.0826 to 262.0886, ± 0.9705 to 0.9721i);
+- `locate`'s recurrence fit at 262.0825 to 262.0826 ± 0.9721i;
+- a farther stable pair behind the bases at 258.3606 ± 2.2687i (3 to 5 approximants; not listed at 261.5124).
+
+The type of the pair's singularity (pole or branch point) is not read here. Whether the pair moves with the horizon
+order, as #1008 found for order 130's fold, is not tested.
+
+The duplicate base 261.1415: leg 13's copy gives the same nearest pole to the last printed digit (D_re and D_im
+differences 0.0) and a root test 2.2e-16 away.
+
+**Rows over leg 13** (`type966_leg13.txt`, 37.1 s, 43 MB). Delta's own series:
+
+| D0 | ratio: D* (s) | ratio: mu | Dlog: D* (s) | Dlog: mu |
+|---|---|---|---|---|
+| 260.8483 | 260.9714 (0.1230) | +23.74 | 262.7834 (1.9351) | +1.057 |
+| 260.9271 | 261.2662 (0.3391) | +35.18 | 269.9989 (9.0718) | +0.349 (S, spreads 0: one approximant) |
+| 261.0721 | 261.0477 (−0.0244) | +43.78 | 264.4827 (3.4106) | +1.055 |
+| 261.1415 | 261.1846 (0.0431) | +37.44 | 265.8674 (4.7259) | +1.052 |
+
+Over legs 13 and 14 (8 bases), no three bases agree on D* to 0.01 in either estimator. mu is in the S band at one
+base only, from one approximant. **No real fold is read** from 260.8483 to 261.5124.
+
+**The first diagnostic was wrong in its radius.** Its root test |c_31|^(−1/31) is 1.76 to 2.45, against `locate`'s
+envelope fit of 1.13 to 1.57, which includes the prefactor. So its point (262.39 to 262.66 ± 1.49 to 1.78i) is not the
+pair's. Its angle from the sign runs (43° to 60°) follows the Padé argument (38° to 60°). Leg 13's signs and the
+rough reading are in `signs966_leg13.txt` and `runs966_leg13.txt`.
