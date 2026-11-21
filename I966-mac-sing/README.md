@@ -287,3 +287,5 @@ Note at 262.1011: the base has passed Re 262.08 (the pair now lies at arg 90.7°
 
 Note at 262.1920: past Re 262.08 the root test rises again (0.9615 at 262.1011, 0.9824 here), as a fixed pair's distance does. The real stable pole is listed a second time, at 265.0816 (4 approximants), 0.035 from 265.0469 at the previous base. Rows give no real reading near it (Dlog D* 273.24, mu +1.093).
 | 262.2833 | dcd2f585 | 262.0882 ± 0.9705i (9 approximants) | 0.9916, 0.9937, −0.21% | PASS (0), FAIL (1) | 262.3443 (+28.9), 359.9728 (+0.786) |
+
+Note at 262.2833: the root test rises to 0.9916 (−0.21% from |D0 − P1|). The real stable pole is listed a third time, at 265.0779 (4 approximants). Over 262.1011 to 262.2833 it is 265.0469, 265.0816 and 265.0779, a range of 0.035, so it does not hold to 0.01. Locate gives it no exponent, and rows give no real reading near it (Dlog D* 359.97 here). No fold is read.
