@@ -1,4 +1,4 @@
-# I1064-dh610: base polishes from the chain's front, leg 13's D 261.0721 state of ks_chain3b, at ks 293 (control), 315, 316, 317 and 318
+# I1064-dh610: base polishes from the chain's front, leg 13's D 261.0721 state of ks_chain3b, at ks 293 (control), 315, 316, 317, 318, then 295, 297, 301 and 305
 
 Machine: dh610 (Fedora desktop, Linux 7.3, i7-12700, 20 threads, 62 GB). Issue: https://github.com/nmoinvaz/choptuik-large-d/issues/1064
 
@@ -25,3 +25,18 @@ with both states at the same D to 50 digits (`exact_recip_check.py delta`, then 
 
 Note on `gate973.py` (reported, not changed): its regex `(NOT converged|converged)` does not match the lower-case `not converged` that anm_run.py of main 796f4bac and 8179068d prints, so a last line
 `not converged` is skipped and an earlier `converged` line would be read. `gate1064.py` matches both cases and reads the last line (its selftest has both).
+
+## Added rungs (coordinator, 05:24 UTC 21 Nov)
+
+After rung 2 (ks 315 capped, exit 143; ks 316 stopped itself, exit 0, `octo-double Newton: 4 steps, max|F| 3.2e-10, not converged`), the coordinator asked for rung 3 (317, 318) to run, then ks 295 with 297,
+then 301 with 305, the same flags, caps and gate. The control is the converged ks 293 of unit `i1064`.
+
+Defect in `run1064.sh` (reported, not fixed there): each run's wall in `exits_1064.txt` is taken after the whole rung ended, so ks 316 (which ended itself, no `cap` line) shows the rung's 7232 s.
+`run1064b.sh` takes each run's own wall (the first 30 s poll that finds its pid gone), and `table1064.py` marks capped runs and says which walls are which.
+
+| file | what |
+|---|---|
+| `run1064b.sh` | the unit's script for ks 295, 297, 301, 305 (preflight, controls, the two rungs, deltas against the ks 293 base, table); env `OUT1064`, `CAP1064`, `R1_1064B`, `R2_1064B`, `THR1064B` are for the dry test only |
+| `check_dry1064b.py` | the pass test of the dry run (ks 293 against ks 315 at a 240 s cap: 293 converges on its own, 315 is killed by its exact pid, the walls differ); `--selftest` has a pass case and five broken ones, `--break` exits 1 |
+| `exits_1064b.txt`, `summary_1064b.txt`, `memlog_1064b.log`, `table_1064b.md` | the unit's exits, verdicts, alert-only memory log and the table of every rung |
+| `dry_b/` | the dry test's output and `check_dry1064b.txt` |
