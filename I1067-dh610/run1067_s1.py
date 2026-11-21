@@ -11,7 +11,10 @@ and --threads 10 (the issue's thread budget; B2 used 6). The first Newton call i
   floor  after each Newton call the checkpoint is copied and its max|F| measured (resid1014.py; its planted +1e-20 control must read 1.0e-20 within 1e-22); the state is accepted at the evaluation
          floor when Delta's own Newton correction on that call, |dDelta| of its newton line, is below 1e-25 (the lowD_dd.py run is then stopped by exact pid); lowD_dd.py's own convergence
          (--tol 1e-29) ends it too, its final state being taken; after call 3 (--it_max 3) not accepted: stop and report, no later stage.
-Every 60 s the main process's RSS, peak RSS, MemAvailable and the load go to rss_1067.txt."""
+Every 60 s the main process's RSS, peak RSS, MemAvailable and the load go to rss_1067.txt.
+Amendment of 21 Nov 20:50 UTC (after the first launch's call 1): dh170's planted +1e-20 control cannot read a checkpoint whose max|F| is above 1e-20 (call 1's checkpoint reads 9.6e-13), and the script killed
+the healthy run on it. The measurement control is now scaled to the checkpoint (resid1067.py: P = 1e3 times the as-saved max|F|, reading within [P/2, 2P]) and a failed control only marks the measurement
+unvalidated; the run is never stopped by it (the stop rules above and the Delta correction decide). Env RESUME_CALLS=k resumes the run after k landed calls from the checkpoint (lowD_dd.py --resume, --it_max 3 - k)."""
 import hashlib
 import os
 import re
@@ -29,6 +32,7 @@ START_BLOB = "74daf429300c75c3deea191702e638ef24fd8993"
 NODES = "0.000157,0.000313,0.000625,0.00125,0.0025,0.005,0.01,0.02,0.05,0.1,0.16,0.23,0.3,0.4,0.5,0.6,0.7,0.8,0.9,0.95,0.975"
 LOG = f"{HERE}/exits_1067.txt"
 WALL_FIRST, RSS_MAX, DDELTA_FLOOR, MAX_CALLS = 8 * 3600, 45e9, 1e-25, 3
+RESUME = int(os.environ.get("RESUME_CALLS", "0"))      # calls already landed in an earlier launch (its checkpoint resumes)
 
 
 def say(msg):
@@ -89,6 +93,13 @@ def selftest(mutate):
         g = got == want
         ok &= g
         print(f"selftest case {i}: {got!r} (want {want!r}): {'pass' if g else 'FAIL'}")
+    cases2 = [(plant_ok(9.55e-13, 9.55e-10, 9.55e-10), True), (plant_ok(9.55e-13, 9.55e-10, 9.55e-13), False), (plant_ok(1e-28, 1e-20, 1.0e-20), True), (plant_ok(9.55e-13, 1e-20, 9.55e-13), False)]
+    if mutate:
+        cases2 = [(not plant_ok(9.55e-13, 9.55e-10, 9.55e-10), True), (plant_ok(9.55e-13, 9.55e-10, 9.55e-13) or True, False), (plant_ok(1e-28, 1e-20, 1.0e-20), True), (plant_ok(9.55e-13, 1e-20, 9.55e-13), False)]
+    for i, (got, want) in enumerate(cases2):
+        g = got == want
+        ok &= g
+        print(f"selftest plant case {i}: {got!r} (want {want!r}): {'pass' if g else 'FAIL'}")
     line = "  newton 0: |F| 2.25e-22 |dz| 1.0e-17 lam 1 dDelta -1.2e-30 Delta 2.4 piv 5.0e-05..4.5e+01  t 9423.6s"
     info = newton_info(line)
     g = info == (0, 2.25e-22, 1e-17, 1.0, -1.2e-30, 9423.6) and newton_info("other line") is None and len(newton_lines(line + "\nother\n" + line)) == 2
@@ -105,7 +116,12 @@ def selftest(mutate):
     return ok
 
 
-def resid(state, tag):
+def plant_ok(F, P, reading):
+    """the planted control: the reading after planting P must be within [P/2, 2P] and above the as-saved max|F| F"""
+    return P / 2 <= reading <= 2 * P and reading > F
+
+
+def resid_old(state, tag):
     """max|F| of a checkpoint by resid1014.py (2 threads, nice 19) with its planted +1e-20 control; (F, control) or raises"""
     out = f"{HERE}/resid_{tag}.log"
     with open(out, "w") as f:
@@ -113,6 +129,20 @@ def resid(state, tag):
                        env=dict(os.environ, OPENBLAS_NUM_THREADS="1", OMP_NUM_THREADS="1"))
     d = {k: float(v) for k, v in re.findall(r"(as saved|\+1e-20): max\|F\| ([0-9.eE+-]+)", open(out).read())}
     return d["as saved"], d["+1e-20"]
+
+
+def resid(state, tag, factor=1.0):
+    """max|F| of a checkpoint by resid1067.py (2 threads, nice 19): (F as saved, P nominal, F planted); a first call reads the as-saved value, a second plants factor times the nominal P = 1e3 times it (factor 0: nothing planted,
+    the control must then report the miss: the demonstration asked for on #1067)"""
+    env = dict(os.environ, OPENBLAS_NUM_THREADS="1", OMP_NUM_THREADS="1")
+    out = f"{HERE}/resid_{tag}.log"
+    with open(out, "w") as f:
+        subprocess.run(["nice", "-n", "19", PY, "-u", f"{HERE}/resid1067.py", "2", state], cwd=HERE, stdout=f, stderr=subprocess.STDOUT, check=True, env=env)
+        F = float(re.search(r"as saved: max\|F\| ([0-9.eE+-]+)", open(out).read()).group(1))
+        P = max(1e-20, 1e3 * F)
+        subprocess.run(["nice", "-n", "19", PY, "-u", f"{HERE}/resid1067.py", "2", state, "--plant", f"{factor * P:.3e}"], cwd=HERE, stdout=f, stderr=subprocess.STDOUT, check=True, env=env)
+    m = re.findall(r"planted (?:[0-9.eE+-]+|none): max\|F\| ([0-9.eE+-]+)", open(out).read())
+    return F, P, float(m[-1])
 
 
 def kill(proc, why):
@@ -150,9 +180,10 @@ def stage1():
     t0 = time.time()
     say(f"worktree {WT} at {head}, venv-i1058, start {START} (blob {START_BLOB}), load {open('/proc/loadavg').read().split()[0]}")
     say("stage 1 (lowD_dd.py --Ms 512 from the M 384 state, --it_max 3, 10 threads) start")
-    logf = open(f"{HERE}/stage1.log", "w")
+    logf = open(f"{HERE}/stage1.log" if not RESUME else f"{HERE}/stage1_resume{RESUME}.log", "w")
+    LOGP = f"{HERE}/stage1.log" if not RESUME else f"{HERE}/stage1_resume{RESUME}.log"
     cmd = ["nice", "-n", "10", PY, "-u", "lowD_dd.py", f"{HERE}/m512b.jsonl", "--start", START, "--Ms", "512", "--nodes", NODES, "--kt", "36", "--kcs", "100", "--ks", "250", "--jac", "f64",
-           "--tol", "1e-29", "--it_max", str(MAX_CALLS), "--threads", "10", "--tag", "lowD1067"]
+           "--tol", "1e-29", "--it_max", str(MAX_CALLS - RESUME), "--threads", "10", "--tag", "lowD1067"] + (["--resume"] if RESUME else [])
     logf.write("# cmd (cwd hp/): " + " ".join(cmd) + "\n")
     logf.flush()
     proc = subprocess.Popen(cmd, cwd=f"{WT}/hp", env=env, stdout=logf, stderr=subprocess.STDOUT)
@@ -175,12 +206,12 @@ def stage1():
             kill(proc, f"pilot stop rule: {why} (peak RSS {peak / 1048576:.1f} GiB, wall {int(time.time() - t0)} s)")
             say("task stopped by the pilot stop rule: report, no later stage")
             return None
-        text = open(f"{HERE}/stage1.log").read()
+        text = open(LOGP).read()
         nl = newton_lines(text)
-        n = sum(1 for l in nl if newton_info(l) is not None)
+        n = sum(1 for l in nl if newton_info(l) is not None) + RESUME
         if n > seen and os.path.exists(ck):
             seen = n
-            info = newton_info([l for l in nl if newton_info(l) is not None][-1])
+            info = newton_info([l for l in nl if newton_info(l) is not None][-1])   # the last newton line of this launch
             if not first_done:
                 first_done = True
                 say(f"PILOT: first Newton call landed after {int(time.time() - t0)} s wall since the start (its own t {info[5]} s): start |F| {start_F(text)}, line |F| {info[1]:.2e} |dz| {info[2]:.2e} "
@@ -188,12 +219,9 @@ def stage1():
             dst = f"{HERE}/states/lowD1067_D3.0475_M512_ckpt_after_call{n}.npz"
             shutil.copy2(ck, dst)
             say(f"Newton call {n} landed: {nl[-1].strip()[:170]}; checkpoint copied, measuring max|F|")
-            F, ctl = resid(dst, f"after_call{n}")
-            good = abs(ctl - 1e-20) < 1e-22
-            say(f"call {n}: max|F| of the checkpoint {F:.3e} (planted 1e-20 control reads {ctl:.2e}: {'ok' if good else 'CONTROL FAILED'})")
-            if not good:
-                kill(proc, "control failed")
-                return None
+            F, P, ctl = resid(dst, f"after_call{n}")
+            good = plant_ok(F, P, ctl)
+            say(f"call {n}: max|F| of the checkpoint {F:.3e} (planted {P:.2e} control reads {ctl:.2e}: {'ok' if good else 'CONTROL FAILED: the measurement is unvalidated, the run goes on'})")
             d = call_decision(n, info[4])
             if d == "floor":
                 kill(proc, f"call {n}: Delta's Newton correction {info[4]:+.2e} below {DDELTA_FLOOR:.0e}, accepted at the floor")
@@ -205,7 +233,7 @@ def stage1():
                 return None
         if proc.poll() is not None:
             say(f"lowD_dd.py exited {proc.returncode} after {int(time.time() - t0)} s (peak RSS {peak / 1048576:.2f} GiB)")
-            if os.path.exists(final) and "converged" in open(f"{HERE}/stage1.log").read().lower() and proc.returncode == 0:
+            if os.path.exists(final) and "converged" in open(LOGP).read().lower() and proc.returncode == 0:
                 chosen = final
             break
     if chosen is None:
