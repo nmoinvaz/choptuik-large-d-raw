@@ -96,3 +96,9 @@ Written before the run (criteria in `d18/d18_criteria.log`, 2026-11-21 03:31:59 
 - (B), 2026-11-21 04:38:40 UTC, the coordinator's order after D 18 failed rule (b) (grid -, +, - at 1.75293, 1.78870, 1.82448): the full dd M's sign
   at 1.788704083622953 and 1.8 against the hybrid's, with ell_ddm's planted control, readings fixed before the run
   (`d18/d18_dd_criteria.log`, `d18/lane_d18b.sh`); on reading (1), the hybrid scan over 1.70-1.90 at 0.01 follows. The leap stays off.
+- Results, information (no lambda_1 is read at D 18 under the criteria): (B) at 05:46:43 UTC gave reading (1), the full dd M + at
+  1.788704083622953 and 1.8 like the hybrid (`d18/d18_ddm.log`, `d18/d18_dd_read.log`); the hionly control kept both signs and
+  spread its variants 4.9e-4 and 3.3e-4 against 4.5e-12 and 3.0e-12 (`d18/d18_ddm_hionly.log`). (A), 06:18-07:34 UTC: the hybrid
+  is - at 1.70-1.77, + at 1.78-1.80, - at 1.81-1.90, two sign changes in (1.77, 1.78) and (1.80, 1.81), every point
+  noise-robust (`d18/d18_scan.log`, `d18/d18_scan_1025.jsonl`); estimates and delta in `d18/d18_scan_place.log`
+  (`d18_scan_place.py`). win2's dd M gave -, +, - at the first grid (comment 7059272560).
