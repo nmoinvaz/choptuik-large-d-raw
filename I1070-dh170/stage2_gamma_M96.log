@@ -1,0 +1,38 @@
+  newton 0: |F| 3.74e-29 |dz| 8.25e-27 lam 0.125 dDelta +7.34e-32 Delta 2.961321309196662 piv 3.1e-04..2.3e+01  t 87.5s
+  newton 1: |F| 3.63e-29 |dz| 6.67e-27 lam 1 dDelta +5.19e-32 Delta 2.961321309196662 piv 3.1e-04..2.3e+01  t 173.4s
+lowD1070_D3.1500_M96.npz: D 3.15 M 96 |F| 3.0e-29, guess lam 4.397700
+    lam 4.397600000000: sign -1 ln|det| 2120.729570 pivots 2.80e-04..2.23e+03 (139.8 s)
+    lam 4.397700000000: sign -1 ln|det| 2120.118294 pivots 2.80e-04..2.23e+03 (143.9 s)
+    lam 4.397800000000: sign -1 ln|det| 2117.033775 pivots 2.80e-04..2.23e+03 (147.5 s)
+    lam 4.396700000000: sign -1 ln|det| 2121.875297 pivots 2.80e-04..2.22e+03 (143.3 s)
+    lam 4.398700000000: sign +1 ln|det| 2122.867403 pivots 2.80e-04..2.24e+03 (208.4 s)
+    lam 4.397760137027: sign -1 ln|det| 2119.297681 pivots 2.80e-04..2.23e+03 (133.1 s)
+    lam 4.397806123434: sign +1 ln|det| 2116.015961 pivots 2.80e-04..2.23e+03 (134.3 s)
+    lam 4.397804458559: sign -1 ln|det| 2112.403262 pivots 2.80e-04..2.23e+03 (140.8 s)
+    lam 4.397804502295: sign -1 ln|det| 2105.468893 pivots 2.80e-04..2.23e+03 (212.0 s)
+    lam 4.397804502338: sign -1 ln|det| 2093.356403 pivots 4.39e-09..2.23e+03 (142.2 s)
+    lam 4.397804502343: sign +1 ln|det| 2103.326209 pivots 9.39e-05..2.23e+03 (145.2 s)
+{"D": 3.15, "M": 96, "F": 2.980415107538135e-29, "lam": 4.3978045023377454, "gamma": 0.22738618769170593, "lam_guess": 4.3977, "n_signchanges": 1, "n_det": 11, "state": "lowD1070_D3.1500_M96.npz", "seconds": 1864.7}
+	Command being timed: "timeout -s TERM 10800 /home/nathan/Source/choptuik-large-d-1058b/.venv/bin/python -u hp/lowD_gamma.py /home/nathan/Source/choptuik-large-d-raw-1064w/I1070-dh170/lowD_gamma_D3.15_M96.jsonl /home/nathan/Source/choptuik-large-d-raw-1064w/I1070-dh170/states/lowD1070_D3.1500_M96.npz --threads=4 --polish=2 --xtol=1e-11 --lam0=4.3977"
+	User time (seconds): 6607.18
+	System time (seconds): 23.57
+	Percent of CPU this job got: 355%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 31:05.10
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 1701532
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 14495982
+	Voluntary context switches: 10550
+	Involuntary context switches: 56275
+	Swaps: 0
+	File system inputs: 336
+	File system outputs: 240
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

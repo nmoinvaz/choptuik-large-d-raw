@@ -48,3 +48,43 @@ Run 1 (launched 22:38:34 UTC): stage 1 start |F| 7.3e-04 (671 steps, n 6913); Ne
 **What I changed, and what I did not:** `decide()` now applies the strict reading (planted within 1e-22 of 1e-20) when max|F| <= 1e-22, which includes every case that can declare converged (<= 1e-27) or the floor (<= 1e-26); above 1e-22 the control is that the planted reading is at least the as-saved max|F| (a plant cannot lower the maximum), which a wrong measurement can still fail. No threshold on max|F| changed. `--selftest` now has 11 cases and passes; the mutated run (the old rule applied everywhere, and the floor gain 2 -> 1.2) exits 1 with 4 cases failing, including the F 8.518e-07 case that fired live (`selftest_decide_mutate.log`). Run 2 starts from the M 128 input again, not from the checkpoint (45 s of run 1 are not reused).
 **Predictions against run 1:** I predicted 3 to 10 min per Newton call: call 1 took 22.8 s. I did not predict the start |F| 7.3e-04 (the M 128 state resampled to M 96) nor the max|F| after call 1, 8.518e-07 (a gain of 860).
 **Predictions for run 2, added after call 1 (the earlier ones above stand for the rest):** 5 to 8 Newton calls in all to max|F| <= 1e-26 (about 60%), each about 20 to 60 s, so stage 1 takes 3 to 8 min (about 60%).
+
+## Result of run 2 of the M 96 pair (written 2026-11-21 23:14:38 UTC): PASS, gamma(3.15) at M 96 = 0.22738618769170593
+**Stage 1** (`stage1_m96.log`, `exits_m96.txt`; run 2 started 22:40:18 UTC, done 22:42:09 UTC, wall 111 s): converged at Newton call 4. Start |F| 7.31e-04 (the M 128 state resampled to M 96; 671 steps, n 6913).
+| call | `|F|` at its start | `|dz|` | Delta after the step | seconds | max\|F\| of the checkpoint (`resid1070.py`) | planted +1e-20 reads |
+|---|---|---|---|---|---|---|
+| 1 | 7.31e-04 | 1.48 | 2.961321170059160 | 21.6 | 8.518e-07 | 8.518e-07 (masked) |
+| 2 | 8.52e-07 | 1.07e-03 | 2.961321309196560 | 37.5 | 9.339e-12 | 9.339e-12 (masked) |
+| 3 | 9.34e-12 | 2.90e-09 | 2.961321309196662 | 22.3 | 1.15e-22 | 1e-20 |
+| 4 | 1.15e-22 | 1.77e-19 | 2.961321309196662 | 22.5 | 3.737e-29 | 1e-20 |
+`decide()` said converged at call 4 (max|F| <= 1e-27); the script stopped lowD_dd.py during call 5 by the pids of its session and took the call 4 checkpoint as the M 96 state: `states/lowD1070_D3.1500_M96.npz`, git blob e540d3e7d2e84b34227cb5e6328245f8190be797, 168282 bytes. Delta(96) = 2.961321309196662 + (-1.9781123151858868e-16); Delta(128) of the input = 2.961319687827138 + (-1.0086792570140185e-16); Delta(96) - Delta(128) = 1.62137e-06 (sum of the parts, 60 digits; the last Newton step moved Delta by +8.92e-23).
+**Stage 2** (`stage2_gamma_M96.log`, `lowD_gamma_D3.15_M96.jsonl`; 22:42:09 to 23:13:30 UTC, script 1864.7 s): the polish took 2 Newton steps (|F| 3.74e-29 with lam 0.125, then 3.63e-29), to F 2.98e-29 after it; 11 determinants.
+| lam | sign | ln\|det\| | min pivot | seconds |
+|---|---|---|---|---|
+| 4.3976 | -1 | 2120.729570 | 2.80e-04 | 139.8 |
+| 4.3977 | -1 | 2120.118294 | 2.80e-04 | 143.9 |
+| 4.3978 | -1 | 2117.033775 | 2.80e-04 | 147.5 |
+| 4.3967 | -1 | 2121.875297 | 2.80e-04 | 143.3 |
+| 4.3987 | +1 | 2122.867403 | 2.80e-04 | 208.4 |
+| 4.397760137027 | -1 | 2119.297681 | 2.80e-04 | 133.1 |
+| 4.397806123434 | +1 | 2116.015961 | 2.80e-04 | 134.3 |
+| 4.397804458559 | -1 | 2112.403262 | 2.80e-04 | 140.8 |
+| 4.397804502295 | -1 | 2105.468893 | 2.80e-04 | 212.0 |
+| 4.397804502338 (4.3978045023377454) | -1 | 2093.356403 | 4.39e-09 | 142.2 |
+| 4.397804502343 | +1 | 2103.326209 | 9.39e-05 | 145.2 |
+The first grid (lam0 +- 1e-4) had none, the second (+- 1e-3) had 4.3967 -1 and 4.3987 +1: one change, between 4.3978 and 4.3987; brentq took it to xtol 1e-11. Record: lam 4.3978045023377454, gamma 0.22738618769170593, F 2.980415107538135e-29, n_signchanges 1, n_det 11 (the xtol is the root search's stopping tolerance, not an error bar of the discretization). ln|det| falls toward the root (2112.4 at 4.4e-8 from it, 2105.5 at 4.3e-11, 2093.4 at the reported root) and the smallest pivot at it is 4.39e-9 against 2.80e-04 elsewhere.
+**Acceptance (the issue's, `accept_1070.py`): PASS.** n_signchanges 1; F after the polish 2.98e-29 (below 1e-27). Its own controls (`selftest_accept.log`, `selftest_accept_mutate.log`) passed and failed as required before the runs. gamma(3.15) at M 96 lies inside the interpolation of Ecker, Ecker, Grumiller and Jechtl's GammaList quoted in the issue, 0.227280 to 0.227411 (an interpolation spread, not an enclosure); 1.4e-5 from 0.2274.
+**gamma(128) - gamma(96):** not available yet: macm3b's M 128 rerun (`--lam0 4.3977`, started 22:19:33 UTC) had no record on origin/main at 23:13 UTC (`I1070-macm3/` holds the pilot's, `lowD_gamma_D3.15_M128.jsonl`, with no sign change). Their pilot's M 128 state has Delta 2.961319687827138, the input's, as above.
+**Predictions against the result:**
+| prediction | result |
+|---|---|
+| 3 to 5 Newton calls (about 80%) | 4: right |
+| each call 3 to 10 min; stage 1 15 to 50 min (about 60%) | 21.6 to 37.5 s per call, stage 1 111 s: wrong by an order of magnitude |
+| after call 1: 5 to 8 calls in all, 3 to 8 min (about 60%) | 4 calls, 111 s: wrong |
+| stage 1 converged or at the floor (about 85%), max|F| <= 1e-27 (about 60%) | converged, 3.737e-29: right |
+| Delta(96) - Delta(128) between 1e-10 and 1e-6 (about 65%) | 1.62e-06: just outside |
+| stage 2: a sign change (about 80%), exactly one (about 85%), F below 1e-27 (about 65%) | right in all three |
+| |gamma(128) - gamma(96)| between 1e-8 and 1e-5 (about 70%) | not yet known |
+| stage 2 wall 0.7 to 2 h (about 60%); inside the 3 h cap (about 85%) | 31 min, inside the cap: the first wrong, the second right |
+Not predicted: the start |F| 7.31e-04.
+**Resources** (4 threads at nice 10, nothing else of mine running; MemAvailable stayed above 27.9 GiB, no alert): stage 1 111 s wall, one memory sample 476 MiB RSS at 268% CPU (its `time -v` block was lost when the script stopped it); stage 2 wall 31:05.10, user 6607.18 s, system 23.57 s, 355% CPU, max RSS 1701532 kB (1.62 GiB, `time -v`; the 60 s samples in `memlog_m96.log` peaked at 1056 MiB). Run 1 (45 s, stopped by the mis-specified control, above) is kept as `run1_stage1_m96.log`.
