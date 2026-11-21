@@ -1,0 +1,9 @@
+# 2026-11-21 20:26:14 UTC cmd: python3 -u anm_run.py /home/nathan/Source/choptuik-large-d-raw-wt613 /home/nathan/Source/choptuik-large-d-raw-wt613/I1064-dh370/a5_noblas/a5_noblas --state I966-dh370/ks_chain3b/leg14_D261.1415_ks293/anm_pin3_D262.7908.npz --kfreeze 3 --held_fit data/held_fit.json --N 31 --eps 1e-14 --h_max 2 --threads 4 --corrector od --tol_od 2e-34 --qd_it 40 --lam_stall 0.04 --od_junk 0 --jet_o 1 --reseed 2 --reseed_q 1 --held_o 1 --reseed_o 3 --save_pred 1 --od_accept own --save_jet 2 --od_strong 4 --reseed_start pred --a_rule reseed --a_scale 0.000715 --jet_tangent_from 1 --series_split 1 --a_rise 1 --proj_start pred --reseed_o_stop 1 --od_floor_delta 1e-30 --proj_o 1 --reseed_o_bar 1e-17 --reseed_qd_bar 1e-13 --D_max 271.1415 --base_polish 0 --steps 1 --ks 293 --keep_plan 1 --save_base 1
+horizon series to order 293 instead of the state's 293
+held values from the fit data/held_fit.json (degree 8, 138 full-system states, D 38.020417-73.0), relative to the base
+the base keeps its stored plan (23 steps)
+base polish skipped (--base_polish 0): the stored state is the base
+base I966-dh370/ks_chain3b/leg14_D261.1415_ks293/anm_pin3_D262.7908.npz: D 262.790817662, M 32, pin 3 (held [5, 7, 9, 11, 13]), |F| 4.0e+31; N 31, eps 1e-14, h_max 2.0, corrector od (junk_only False), tol 1.0e-20 x 1.45^(D - 262.79082), stalls accepted below 1e-17
+step 0: the series saved as /home/nathan/Source/choptuik-large-d-raw-wt613/I1064-dh370/a5_noblas/a5_noblas/jet_pin3_D262.7908.npz (8 parts, 1404 s)
+done (--save_jet 2: the series alone)
+exit 0
