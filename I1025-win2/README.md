@@ -15,3 +15,7 @@ Other win2 folders of this issue: `I1025-win2b/` (win2b's k_c 55 re-solves), `I1
 ## d18mid (2026-11-21)
 
 [d18mid/](d18mid/README.md): xfkappa's hybrid sign scan at D 18.1875 (k_c 63), lambda 1.70 to 1.95 at 0.01, two processes; README first, readings fixed before the run.
+
+## d18hi (2026-11-21)
+
+[d18hi/](d18hi/README.md): the cross-machine control (the Mac's D 18 point at lambda 1.8: agrees) and the D 18.1875 hybrid scan above the d18mid window, lambda 1.95 to 2.35: no robust change; README first, readings fixed before the run.
