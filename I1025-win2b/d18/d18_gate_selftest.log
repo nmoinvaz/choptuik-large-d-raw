@@ -1,0 +1,9 @@
+selftest upper root, + - -: rules pass, bracket pass -> PASS (want PASS) ok
+selftest lower root 1.7750 (not in the bracket): rules FAIL, bracket FAIL -> FAIL (want FAIL) ok
+selftest root 1.8063 but two grid changes: rules FAIL, bracket pass -> FAIL (want FAIL) ok
+selftest root 1.8063 not noise-robust: rules FAIL, bracket pass -> FAIL (want FAIL) ok
+selftest root 1.8063 not the record system: rules FAIL, bracket pass -> FAIL (want FAIL) ok
+selftest root 1.8063, bracket 1e-6: rules FAIL, bracket pass -> FAIL (want FAIL) ok
+selftest root 1.7900 (inside the window, outside the scan bracket): rules FAIL, bracket FAIL -> FAIL (want FAIL) ok
+selftest root 0.03 steps from the outer lower point (1.7895): rules FAIL, bracket FAIL -> FAIL (want FAIL) ok
+selftest passes

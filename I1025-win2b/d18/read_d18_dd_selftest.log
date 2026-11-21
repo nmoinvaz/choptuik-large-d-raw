@@ -1,0 +1,9 @@
+selftest upper-root orientation, hybrid +,-; dd +,-: ROOT PASSES: the counting dd signs are opposite and equal  (want ROOT PASSES) ok
+selftest usual orientation, hybrid -,+; dd -,+: ROOT PASSES: the counting dd signs are opposite and equal  (want ROOT PASSES) ok
+selftest dd +,+: NO ROOT BETWEEN THEM: the same sign (+1) at both points (want NO ROOT) ok
+selftest dd -,-: NO ROOT BETWEEN THEM: the same sign (-1) at both points (want NO ROOT) ok
+selftest dd -,+ against hybrid +,-: DD DISAGREES WITH THE HYBRID: opposite dd signs (-1, +1) b (want DD DISAGREES) ok
+selftest a variant disagrees at the lower: NEITHER READING APPLIES: a dd sign does not count at the l (want NEITHER) ok
+selftest 1e-24 noise flips the upper: NEITHER READING APPLIES: a dd sign does not count at the u (want NEITHER) ok
+selftest record lambda is root -/+ 0.02, not 0.005: NEITHER READING APPLIES: the record lambda differs from ro (want NEITHER) ok
+selftest passes
