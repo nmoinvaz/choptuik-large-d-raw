@@ -1,0 +1,18 @@
+# extra comparison, information (not in the order): win2's --keep_plan 1 step 17 (raw I1060-win2 cee1f1b1, step17_k1_s1: same main 8179068d, Windows, base polish at its default) against this run's (dh170 Linux, i7-7700), by cmp1060.py (controls ran first, ctl_c/)
+2026-11-21 06:38:05 UTC
+== bits: win2's state against this run's state
+bits: D_str equal True (260.8483415339, 260.8483415339), a equal True (0.1777320584971952, 0.1777320584971952)
+  exactly summed parts: Delta difference 0, max |dS_i| 0: equal
+  information: parts with differing bytes none (8 parts compared); M1 per part zh 0.0e+00, zl 0.0e+00, z2 0.0e+00, z3 0.0e+00, z4 0.0e+00, z5 0.0e+00, z6 0.0e+00, z7 0.0e+00
+identical
+exit 0
+== files: series (jet_pin3_D260.6706.npz)
+files: 8 arrays identical, differing bytes none, arrays in one file only none, meta keys that differ ['t_coef']
+identical
+exit 0
+== files: prediction (pred_pin3_D260.8483.npz)
+files: 4 arrays identical, differing bytes none, arrays in one file only none, meta keys that differ []
+identical
+exit 0
+== control: win2's state against itself with one byte of z3 flipped must differ
+DIFFERENT
