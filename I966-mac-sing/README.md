@@ -586,3 +586,5 @@ anything of the front. The pair 254.6766 ± 3.5009i is at the same place, to 1e-
 most-populated stable cluster within 0.1 of it in each jet. That is the read value. The pairing of all poles is
 reported beside it.
 | 262.8471 | 9c9ba932 | 262.0871 ± 0.9709i (9 approximants) | 1.2381, 1.2383, −0.02% | PASS (0), FAIL (1) | 262.8519 (+30.7), no Dlog estimate |
+
+Note at 262.8471: the real pole is at 265.0778 (6 approximants). The ratio fit gives s 0.0048 with a small spread (6.1e-3), but mu +30.65, far outside the square-root band, at one base only, so no fold is read.
