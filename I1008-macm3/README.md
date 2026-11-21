@@ -1054,3 +1054,76 @@ Gain first |dz| / predicted max|F| of this attempt: 2.8e-14 / 8.03e-36 = 3.49e+2
 Series seconds at run3's bases so far: 274.4, 289.8, 485.0 (the base of this attempt took 485.0 s); the old-kernel series check ran at nice 19 beside run3 from 02:11 to 03:25 UTC.
 
 Correction to my step 13 post, which read step 13's easy attempt (first |dz| 9.50e-16, gain 9.22e+20, from run3's own base arc_001) against the hard ones from the reloaded arc_006 as an effect of the base. This attempt starts from another base run3 made itself, arc_002, and is hard again: first |dz| 2.80e-14, gain 3.49e+21, accepted lam 0.0625, then 0.015625 twice. Of the seven attempts at D 259.5659 to 259.5998 (steps 11 to 14), six have a gain of 3.3e+21 to 4.1e+21 and one, step 13's, 9.22e+20. So the reload is not what made arc_006's attempts hard, and step 13's attempt is the exception. The series check is not affected: the series at arc_006 is equal on both kernels.
+
+### run3, arc step 14: attempt 2 at the arclength step a 0.002648437023 refused by the stall rule after 3 corrections, accepted lam 0.125, 0.03125, 0.03125 (2026-11-21 04:23 UTC)
+
+Arc step 14 is not accepted yet. Its attempt 2 (a = 0.004237499237 x 1.25 / 2 = 0.002648437023, D move 0.0026484254, checked: D move / a = 0.99999562 against t_D 0.99999562) from arc step 13's D 259.57435544360826 to D 259.577003869024 refused by the stall rule: on 2: lam at or below 0.04 twice in a row, stopping (stalled). The corrector line says 2108.1 s; its corrections took 1801 s (1533 s of trials and chord checks). The stall rule (`--lam_stall 0.04`) and `--qd_it 40` are as in run1; the stop watcher stays armed and anm_run goes on to the next attempt with a halved.
+
+Per trial (every refused trial's ladder failed: the point |F| is the one before projection, and the trial |F| after the failed projection is the same point):
+
+| correction | trial lam | projection | \|F\| before projection | trial max\|F\| (after) | simplified correction / \|dz\| (bound) | result | seconds |
+|---|---|---|---|---|---|---|---|
+| 0 | strong chord | not logged | not logged | | theta inf (bound 0.75) | refused | 101.15 |
+| 0 | 1 | attempted, ladder failed | 1.51e+10 | 1.51e+10 | 3.789e+54 (0.750) | refused | 97.05 |
+| 0 | 0.5 | attempted, ladder failed | 9.54e+08 | 9.54e+08 | 2.368e+53 (0.875) | refused | 94.25 |
+| 0 | 0.25 | attempted, ladder failed | 6.23e+07 | 6.23e+07 | 1.480e+52 (0.938) | refused | 90.11 |
+| 0 | 0.125 | projected, ladder converged | not logged | 4.09e-29 | 8.727e-01 (0.969) | accepted | 98.26 |
+| 1 | 1 | attempted, ladder failed | 1.44e+10 | 1.44e+10 | 3.006e+54 (0.750) | refused | 96.59 |
+| 1 | 0.5 | attempted, ladder failed | 9.63e+08 | 9.63e+08 | 2.001e+53 (0.875) | refused | 93.48 |
+| 1 | 0.25 | attempted, ladder failed | 8.12e+07 | 8.12e+07 | 1.681e+52 (0.938) | refused | 90.74 |
+| 1 | 0.125 | attempted, ladder failed | 1.52e+07 | 1.52e+07 | 2.850e+51 (0.969) | refused | 72.73 |
+| 1 | 0.0625 | attempted, ladder failed | 9.41e+06 | 9.41e+06 | 1.327e+51 (0.984) | refused | 72.59 |
+| 1 | 0.03125 | projected, ladder converged | not logged | 4.18e-29 | 9.686e-01 (0.992) | accepted | 98.55 |
+| 2 | 1 | attempted, ladder failed | 1.24e+10 | 1.24e+10 | 2.669e+54 (0.750) | refused | 95.74 |
+| 2 | 0.5 | attempted, ladder failed | 8.31e+08 | 8.31e+08 | 1.788e+53 (0.875) | refused | 96.78 |
+| 2 | 0.25 | attempted, ladder failed | 7.20e+07 | 7.20e+07 | 1.545e+52 (0.938) | refused | 91.9 |
+| 2 | 0.125 | attempted, ladder failed | 1.48e+07 | 1.48e+07 | 2.793e+51 (0.969) | refused | 72.47 |
+| 2 | 0.0625 | attempted, ladder failed | 9.50e+06 | 9.50e+06 | 1.372e+51 (0.984) | refused | 72.49 |
+| 2 | 0.03125 | projected, ladder converged | not logged | 4.25e-29 | 9.686e-01 (0.992) | accepted | 97.91 |
+
+Per correction:
+
+| correction | accepted lam | max\|F\| before -> after | \|dz\| before -> after | seconds |
+|---|---|---|---|---|
+| 0 | 0.125 | 3.97e-36 -> 4.09e-29 | 1.33e-14 -> 1.15e-14 | 570.42 |
+| 1 | 0.03125 | 4.09e-29 -> 4.18e-29 | 1.15e-14 -> 1.11e-14 | 614.21 |
+| 2 | 0.03125 | 4.18e-29 -> 4.25e-29 | 1.11e-14 -> 1.07e-14 | 616.61 |
+
+First |dz| of every attempt against the arclength step a (D rises down the table; run1's last two are the refused attempts of arc step 5; AB1, AB2, run2 and run3 ran with `--elim_switch 0`; run3 is on main 8179068d and the new kernel):
+
+| run | arclength a | first \|dz\| | first \|dz\| / a | accepted lam at correction 0 |
+|---|---|---|---|---|
+| pilot2 | 0.0455 | 5.37e-15 | 1.18e-13 | 0.25 |
+| pilot2 | 0.056875 | 4.60e-16 | 8.09e-15 | 1 |
+| run1 | 0.0455 | 6.20e-16 | 1.36e-14 | 1 |
+| run1 | 0.056875 | 8.92e-16 | 1.57e-14 | 0.5 |
+| run1 | 0.07109375 | 8.83e-16 | 1.24e-14 | 0.5 |
+| run1 | 0.0888671875 | 9.21e-15 | 1.04e-13 | 0.125 |
+| run1 | 0.04443359375 | 4.82e-15 | 1.08e-13 | 0.0625 |
+| ab1 | 0.07109375 | 8.83e-16 | 1.24e-14 | 0.5 |
+| ab2 | 0.0444334 | 1.96e-15 | 4.41e-14 | 0.25 |
+| run2 | 0.0444334 | 2.89e-15 | 6.5e-14 | 0.25 |
+| run2 | 0.05554175 | 8.11e-15 | 1.46e-13 | 0.125 |
+| run2 | 0.027770875 | 2.01e-14 | 7.24e-13 | 0.03125 |
+| run2 | 0.0138854375 | 4.76e-15 | 3.43e-13 | 0.25 |
+| run2 | 0.0138854375 | 3.16e-15 | 2.28e-13 | 0.25 |
+| run2 | 0.01735679688 | 7.03e-15 | 4.05e-13 | 0.125 |
+| run2 | 0.02169599609 | 4.65e-15 | 2.14e-13 | 0.25 |
+| run2 | 0.02711999512 | 5.76e-15 | 2.12e-13 | 0.25 |
+| run3 | 0.0338999939 | 4.83e-14 | 1.42e-12 | 0.03125 |
+| run3 | 0.01694999695 | 3.43e-14 | 2.02e-12 | 0.03125 |
+| run3 | 0.008474998474 | 1.56e-14 | 1.84e-12 | 0.0625 |
+| run3 | 0.004237499237 | 8.73e-15 | 2.06e-12 | 0.125 |
+| run3 | 0.004237499237 | 9.50e-16 | 2.24e-13 | 1 |
+| run3 | 0.005296874046 | 2.80e-14 | 5.29e-12 | 0.0625 |
+| run3 | 0.002648437023 | 1.33e-14 | 5.02e-12 | 0.125 |
+
+Next: anm_run's attempt 3 halves a to 0.001324218512 (D move 0.0013242127); `--a_grow 1.25` and the halving allow up to 4 attempts per step, so up to 2 more. First |dz| went from 2.8e-14 at a = 0.005296874046 to 1.33e-14 at a = 0.002648437023: a factor 0.48 for an a ratio of 0.5, so first |dz| / a went from 5.29e-12 to 5.02e-12. A first |dz| proportional to a (run1's two refused attempts of arc step 5 gave 9.21e-15 at a 0.0888671875 and 4.82e-15 at a 0.04443359375) would have fallen to 1.4e-14. Same base, same series, same re-seed code; the predicted max|F| is 3.97e-36 here against 8.03e-36 for the longer step. The series at arc step 13's D is in `run3/arcjet_002_D259.574355.npz` if a restart with another `--a0` is wanted (`--arc_jet` reads it, saving the 485.0 s of forming it); I have not changed anything.
+
+anm_run pid 54500: elapsed 05:46:55, 585.8% cpu, rss 462 MB; D 0.328914 below 259.903269724106 at arc step 13's D.
+
+Attempts from one base (a: predicted max|F|, first |dz|, outcome), for every arc step with more than one attempt: arc step 7: 0.055542: 3.77e-36, 8.11e-15, refused, 0.027771: 1.14e-35, 2.01e-14, refused, 0.013885: 2.86e-36, 4.76e-15, accepted; arc step 12: 0.0339: 1.17e-35, 4.83e-14, refused, 0.01695: 9.49e-36, 3.43e-14, refused, 0.008475: 4.44e-36, 1.56e-14, refused, 0.0042375: 2.51e-36, 8.73e-15, accepted; arc step 14: 0.0052969: 8.03e-36, 2.80e-14, refused, 0.0026484: 3.97e-36, 1.33e-14, refused. Predicted max|F| fell at every halving of a at arc step(s) 12, 14 and not at arc step(s) 7.
+
+Gain first |dz| / predicted max|F| of this attempt: 1.33e-14 / 3.97e-36 = 3.35e+21 at D 259.577, against 2.66e+21 at D 259.5388 (accepted step 10), 3.33e+21 at D 259.5659 (accepted step 11), 3.48e+21 at D 259.5701 (accepted step 12), 9.22e+20 at D 259.5744 (accepted step 13). Its first |dz| is x0.3 the largest of the 23 earlier attempts (4.83e-14, run3).
+
+Series seconds at run3's bases so far: 274.4, 289.8, 485.0 (the base of this attempt took 485.0 s); the old-kernel series check ran at nice 19 beside run3 from 02:11 to 03:25 UTC.
