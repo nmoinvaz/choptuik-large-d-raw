@@ -1,0 +1,5 @@
+# The commands of the coordinator's message of 2026-11-21 (#1035 stage 2 planted run), and of notes/FACTORED_HORIZON.md 5.3 for the two information runs, verbatim apart from line breaks. $RAW, $OUT, $P0 and $PR as there.
+timeout -s TERM 7200 nice -n 10 python3 -u factored_raise.py $RAW $OUT/planted --state $P0 --ks 315 --threads 10 --ref $PR --bar 1e-60 > $OUT/planted.log 2>&1; echo "planted exit $?"
+timeout -s TERM 7200 nice -n 10 python3 -u factored_raise.py $RAW $OUT/planted_order --state $P0 --ks 315 --threads 10 --ref $PR --bar 1e-60 --mutate=order > $OUT/planted_order.log 2>&1; echo "order exit $?"
+nice -n 10 python3 -u factored_raise.py $RAW $OUT/planted_old --state $P0 --ks 315 --threads 10 --ref $PR --bar 1e-60 --mutate=old > $OUT/planted_old.log 2>&1        # information
+nice -n 10 python3 -u factored_raise.py $RAW $OUT/planted_linear --state $P0 --ks 315 --threads 10 --ref $PR --bar 1e-60 --mutate=linear > $OUT/planted_linear.log 2>&1  # information

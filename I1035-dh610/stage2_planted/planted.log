@@ -2,3 +2,16 @@
 hpkernel /home/nathan/Source/venv-i1058/lib/python3.14/site-packages/hpkernel/__init__.py (avx2; multidouble-5.1.0, multishoot-4.1.0); built from /home/nathan/Source/choptuik-large-d-1058 at HEAD 8179068da460fe6be81312602e4c9987d17d73a3 (hp/src clean: True); this script at bae00edf8262053122eaf03daadfd318da6a78eb
 state I1064-dh610/ho2_D237.7132/ks307/base_pin3_D237.7132.npz: D 237.71323490142822265625, ks 307 -> 315, M 32, plan stored; mode factored, rung a, tol 1e-80, projection bar 1e-60, threads 10
   start projection: rung max|R| 7.75e-41 -> 3.03e-63 -> 1.72e-85 (floor)
+  on 0: max|F| 5.385e-38, |dz| 4.679e-27, dDelta +4.679e-27, predictor |w| 8.95e-59 (t^2 check 2.8e-22 at tau 0.000976562), piv 3.2e-15..6.3e+42, 79.1 s
+    lam 1: 1 stage(s), max|F| 2.151e-55, theta 1.828e-26: accepted, 5.9 s
+  on 1: max|F| 2.151e-55, |dz| 8.551e-53, dDelta +8.551e-53, predictor |w| 1.02e-108 (t^2 check 1.0e-15 at tau 0.000976562), piv 3.2e-15..6.3e+42, 75.2 s
+    lam 1: 1 stage(s), max|F| 2.968e-80, theta 6.734e-38: accepted, 2.3 s
+    predictor: t^2 check 1.04e+01 at tau 0.000976562 above 0.1; a smaller tau
+    predictor: t^2 check 1.68e+01 at tau 9.53674e-07 above 0.1; a smaller tau
+    predictor: t^2 check 5.74e+00 at tau 9.31323e-10 above 0.1; a smaller tau
+    predictor: no pair of TAUS passed the t^2 check (last 5.74e+00); its w is used, flagged
+  on 2: max|F| 2.968e-80, |dz| 9.968e-90, dDelta -2.587e-96, predictor |w| 1.06e-112 (t^2 check 5.7e+00 at tau 9.31323e-10), piv 3.2e-15..6.3e+42, 84.5 s
+    lam 1: 1 stage(s), max|F| 5.817e-87, theta 4.223e-01: accepted, 6.0 s
+  on 3: max|F| 5.817e-87 converged (the accepted trial)
+raise converged (converged) after 4 line(s), last max|F| 5.817e-87; Delta moved by +4.678695e-27; written raise_pin3_D237.7132.npz; 278 s
+against I1064-dh170/p315/ks315/base_pin3_D237.7132.npz (ks 315, plan the same): largest entry difference 4.449e-90 at entry 3, Delta -2.539e-93; the raise moved Delta by +4.678695e-27, the reference's by +4.678695e-27: PASS (bar 1e-60)
