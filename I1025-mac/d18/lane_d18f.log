@@ -1,0 +1,93 @@
+== 2026-11-21 16:19:06 pins checked: d18_hybsign e089207a, d18f_read 5fb96dce, d18e_read 24ef6598, d18d_read 6b608903, d18c_read 1383470f, d185_scan_read 7c9d400f, record 08f4dbf3, states eae8ca02, 33c1a58b, d8bbd43b, aa044592, 16a17e5f, refsign 3e2d8b4e, scans a66a2a4a, 90540daf, 496f4b63; solver code = 505d8399, ell_delta = 48c36355
+== 2026-11-21 16:19:06 (iii) D 18.3125: the hybrid at 1.20 (timeout 900 s)
+== 2026-11-21 16:21:37 (iii) D 18.3125 exit 0
+== 2026-11-21 16:21:37 (iii) D 18.375: the hybrid at 1.20 (timeout 900 s)
+== 2026-11-21 16:24:07 (iii) D 18.375 exit 0
+== 2026-11-21 16:24:07 (iii) D 18.4375: the hybrid at 1.20 (timeout 900 s)
+== 2026-11-21 16:26:52 (iii) D 18.4375 exit 0
+D 18.3125 k_c 63: |F| 2.7865896510e-10 (record 2.7865896510e-10), steps 2496 (record 2496): the record system
+  sign, logdet = _umath_linalg.slogdet(a, signature=signature)
+  sign, logdet = _umath_linalg.slogdet(a, signature=signature)
+  sign, logdet = _umath_linalg.slogdet(a, signature=signature)
+  lam 1.2: hybrid -1 ln|det| -1914.0471125812 (noise 1e-15 on blocks 0-11: [-1.0, -1.0]); float64 -1 -1914.9484534906 (150 s)
+D 18.375 k_c 63: |F| 2.7910721275e-10 (record 2.7910721275e-10), steps 2483 (record 2483): the record system
+  sign, logdet = _umath_linalg.slogdet(a, signature=signature)
+  sign, logdet = _umath_linalg.slogdet(a, signature=signature)
+  sign, logdet = _umath_linalg.slogdet(a, signature=signature)
+  lam 1.2: hybrid -1 ln|det| -1907.6995315555 (noise 1e-15 on blocks 0-11: [-1.0, -1.0]); float64 -1 -1908.3841899171 (149 s)
+D 18.4375 k_c 63: |F| 2.7871059443e-10 (record 2.7871059443e-10), steps 2471 (record 2471): the record system
+  sign, logdet = _umath_linalg.slogdet(a, signature=signature)
+  sign, logdet = _umath_linalg.slogdet(a, signature=signature)
+  sign, logdet = _umath_linalg.slogdet(a, signature=signature)
+  lam 1.2: hybrid -1 ln|det| -1903.3414841812 (noise 1e-15 on blocks 0-11: [-1.0, -1.0]); float64 -1 -1903.5102952566 (163 s)
+dseq at lambda 1.20:
+  d18_refsign_1025.jsonl: 14 records, 14 used
+  d18f_iii_1025.jsonl: 3 records, 3 used
+lambda 1.20: D 17.75 -, D 18 -, D 18.0625 +, D 18.125 +, D 18.1875 +, D 18.25 +, D 18.3125 -, D 18.375 -, D 18.4375 -, D 18.5 -
+robust changes: [(18.0, 18.0625), (18.25, 18.3125)]; touching a non-robust point (not counted): none
+no reading: changes [(18.0, 18.0625), (18.25, 18.3125)], non-robust none; the coordinator rules
+== 2026-11-21 16:26:52 (iii) reader exit 0
+== 2026-11-21 16:26:52 (iii) done
+== 2026-11-21 16:26:52 (ii) D 18.25: the hybrid at 1.20,1.25,1.30,1.35,1.40,1.45,1.50,1.55 (timeout 3600 s)
+== 2026-11-21 16:51:22 (ii) coarse exit 0
+== 2026-11-21 16:51:22 (ii) D 18.25 inside the brackets: the hybrid at 1.36,1.37,1.38,1.39 (timeout 3600 s)
+== 2026-11-21 17:04:44 (ii) fine exit 0
+D 18.25 k_c 63: |F| 2.7741124007e-10 (record 2.7741124007e-10), steps 2506 (record 2506): the record system
+  sign, logdet = _umath_linalg.slogdet(a, signature=signature)
+  sign, logdet = _umath_linalg.slogdet(a, signature=signature)
+  sign, logdet = _umath_linalg.slogdet(a, signature=signature)
+  lam 1.2: hybrid +1 ln|det| -1913.0661947555 (noise 1e-15 on blocks 0-11: [1.0, 1.0]); float64 +1 -1913.0737410078 (168 s)
+  lam 1.25: hybrid +1 ln|det| -1913.7462436329 (noise 1e-15 on blocks 0-11: [1.0, 1.0]); float64 +1 -1913.7347732055 (171 s)
+  lam 1.3: hybrid +1 ln|det| -1914.2776209755 (noise 1e-15 on blocks 0-11: [1.0, 1.0]); float64 +1 -1914.2459175570 (167 s)
+  lam 1.35: hybrid +1 ln|det| -1915.0039929833 (noise 1e-15 on blocks 0-11: [1.0, 1.0]); float64 +1 -1914.8268247240 (168 s)
+  lam 1.4: hybrid -1 ln|det| -1916.0099320536 (noise 1e-15 on blocks 0-11: [-1.0, -1.0]); float64 +1 -1915.7547854882 (169 s)
+  lam 1.45: hybrid -1 ln|det| -1914.0617543808 (noise 1e-15 on blocks 0-11: [-1.0, -1.0]); float64 -1 -1916.0299794940 (207 s)
+  lam 1.5: hybrid -1 ln|det| -1913.1781665070 (noise 1e-15 on blocks 0-11: [-1.0, -1.0]); float64 -1 -1914.4663096450 (195 s)
+  lam 1.55: hybrid -1 ln|det| -1912.5236552261 (noise 1e-15 on blocks 0-11: [-1.0, -1.0]); float64 +1 -1913.9186264207 (225 s)
+D 18.25 k_c 63: |F| 2.7741124007e-10 (record 2.7741124007e-10), steps 2506 (record 2506): the record system
+  sign, logdet = _umath_linalg.slogdet(a, signature=signature)
+  sign, logdet = _umath_linalg.slogdet(a, signature=signature)
+  sign, logdet = _umath_linalg.slogdet(a, signature=signature)
+  lam 1.36: hybrid +1 ln|det| -1915.2682563872 (noise 1e-15 on blocks 0-11: [1.0, 1.0]); float64 +1 -1914.8269446164 (224 s)
+  lam 1.37: hybrid +1 ln|det| -1915.6594755501 (noise 1e-15 on blocks 0-11: [1.0, 1.0]); float64 +1 -1915.1652663521 (196 s)
+  lam 1.38: hybrid +1 ln|det| -1916.3895839087 (noise 1e-15 on blocks 0-11: [1.0, 1.0]); float64 +1 -1915.0089653432 (188 s)
+  lam 1.39: hybrid -1 ln|det| -1918.1414697215 (noise 1e-15 on blocks 0-11: [-1.0, -1.0]); float64 +1 -1915.5349534857 (192 s)
+window D 18.25 1.20-1.55:
+  d18_refsign_1025.jsonl: 14 records, 1 used
+  d1825_scan_1025.jsonl: 41 records, 11 used
+  d1825_low_1025.jsonl: 8 records, 8 used
+  d1825_lowfine_1025.jsonl: 4 records, 4 used
+window 1.20-1.55: 12 points; not noise-robust: none
+signs: 1.20+ 1.25+ 1.30+ 1.35+ 1.36+ 1.37+ 1.38+ 1.39- 1.40- 1.45- 1.50- 1.55-
+repeated points: [(1.2, 'agree', '+0.0e+00'), (1.55, 'agree', '+0.0e+00')]
+  change in (1.38, 1.39), + to - in this state: det-linear 1.388522, range [1.388522, 1.388581]
+robust changes in the window: 1; touching a non-robust point (not counted): none
+ln|det| local minima without a sign change in the window: none
+reading: one robust change in the window, in (1.38, 1.39): it places the crossing root
+float64 in the window: sign changes [(1.4, 1.45), (1.5, 1.55)]; differs from the hybrid at 3 of 12 points
+== 2026-11-21 17:04:44 (ii) reader exit 0
+== 2026-11-21 17:04:44 (ii) done
+== 2026-11-21 17:04:44 (e) D 18.5: the hybrid at 2.10,2.11,2.12,2.13,2.14,2.15,2.16,2.17,2.18,2.19,2.20,2.21,2.22,2.23,2.24,2.25,2.26,2.27,2.28,2.29,2.30,2.31,2.32,2.33,2.34,2.35,2.36,2.37,2.38,2.39,2.40 (timeout 10800 s)
+== 2026-11-21 18:53:53 (e) D 18.5 scan exit 0
+D 18.5, files ['d185_scan_1025.jsonl', 'd185_scanhi_1025.jsonl', 'd185_scanup_1025.jsonl']; 86 points 1.55 to 2.40
+window 2.10-2.40: 31 points; not noise-robust: none
+signs: 2.10+ 2.11+ 2.12+ 2.13+ 2.14+ 2.15+ 2.16+ 2.17+ 2.18+ 2.19+ 2.20+ 2.21+ 2.22+ 2.23+ 2.24+ 2.25+ 2.26+ 2.27+ 2.28+ 2.29+ 2.30+ 2.31+ 2.32+ 2.33+ 2.34+ 2.35+ 2.36+ 2.37+ 2.38+ 2.39+ 2.40+
+repeated points: [(1.9, 'agree', '+0.0e+00'), (2.1, 'agree', '+0.0e+00')]
+robust changes in the window: 0; touching a non-robust point (not counted): none
+ln|det| local minima without a sign change in the window: none
+reading: no plus-to-minus change in the window: the rising eigenvalue is not placed
+float64 in the window: sign changes none; differs from the hybrid at 0 of 31 points
+== 2026-11-21 18:53:53 (e) D 18.5 reader exit 0
+== 2026-11-21 18:53:53 (e) D 18.5 done
+== 2026-11-21 18:53:53 (e) D 18.25: the hybrid at 1.95,1.96,1.97,1.98,1.99,2.00,2.01,2.02,2.03,2.04,2.05,2.06,2.07,2.08,2.09,2.10,2.11,2.12,2.13,2.14,2.15,2.16,2.17,2.18,2.19,2.20,2.21,2.22,2.23,2.24,2.25 (timeout 10800 s)
+== 2026-11-21 21:19:30 (e) D 18.25 scan exit 0
+D 18.25, files ['d1825_scan_1025.jsonl', 'd1825_scanup_1025.jsonl']; 71 points 1.55 to 2.25
+window 1.95-2.25: 31 points; not noise-robust: none
+signs: 1.95+ 1.96+ 1.97+ 1.98+ 1.99+ 2.00+ 2.01+ 2.02+ 2.03+ 2.04+ 2.05+ 2.06+ 2.07+ 2.08+ 2.09+ 2.10+ 2.11+ 2.12+ 2.13+ 2.14+ 2.15+ 2.16+ 2.17+ 2.18+ 2.19+ 2.20+ 2.21+ 2.22+ 2.23+ 2.24+ 2.25+
+repeated points: [(1.95, 'agree', '+0.0e+00')]
+robust changes in the window: 0; touching a non-robust point (not counted): none
+ln|det| local minima without a sign change in the window: none
+reading: no plus-to-minus change in the window: the rising eigenvalue is not placed
+float64 in the window: sign changes none; differs from the hybrid at 0 of 31 points
+== 2026-11-21 21:19:30 (e) D 18.25 reader exit 0
+== 2026-11-21 21:19:30 lane d18f done
