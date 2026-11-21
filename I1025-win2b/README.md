@@ -46,3 +46,7 @@ Controls before the jobs (`controls_2.log`, 15:31 UTC): `signtest_mac.py planted
 ## P4 (amendment 7), cross-check
 
 2026-11-20 23:29:25 UTC: the cross-check row (Fb, D 16, k_c 55) PASSED: hybrid root 2.2440431253968165 against the Mac's 2.244042809616683 (+3.16e-07, bar 1e-5), 6149 s. Row 2 (k_c 71, D 16.5) started 23:29:25 UTC. Details in `p4/README.md`, driver log `p4/p4_w.log`.
+
+## P4 (amendment 7), done
+
+2026-11-21 03:55:18 UTC: `p4_driver_rows.sh` exit 0, both rows PASS. Row 2 (k_c 71, D 16.5, `l1kc71Fw1025c`): hybrid root 2.1459968362025212, bracket width 2.14e-8, 15 evaluations, noise-robust, 15950 s; minus the float64 record 2.1471294562703465 is -1.1326e-3. Row 1 (the cross-check, Fb, D 16, k_c 55): 2.2440431253968165 (+3.16e-07 against the Mac's 2.244042809616683). Details and output blobs in `p4/README.md`; outputs `p4/p4_w.log`, `p4/ell_p4_hybrid_1025_w.jsonl`, `p4/p4_rows/`.
