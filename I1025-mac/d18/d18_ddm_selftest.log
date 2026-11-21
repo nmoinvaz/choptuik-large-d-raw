@@ -1,0 +1,8 @@
+selftest operators vs DSSEll's float64 ones (k_c 15, N 48): Bodd 4.2e-16, Beven 3.3e-16, Sodd 8.7e-18, Seven 3.5e-18, Dm 2.8e-16 (bar 1e-14): OK
+selftest Ozaki product (5 slices, levels >= 2 summed in float64) vs ddnp.matmul: largest error 6.2e-30 of the row's largest entry (bar 1e-28): OK
+selftest dual derivative vs the analytic one in double-double: 4.4e-32 (bar 1e-28): OK
+selftest: PASS
+selftest operators vs DSSEll's float64 ones (k_c 15, N 48): Bodd 4.2e-16, Beven 3.3e-16, Sodd 8.7e-18, Seven 3.5e-18, Dm 2.8e-16 (bar 1e-14): OK
+selftest Ozaki product (2 slices, levels >= 2 summed in float64) vs ddnp.matmul: largest error 3.0e-14 of the row's largest entry (bar 1e-28): BAD
+selftest dual derivative vs the analytic one in double-double: 4.4e-32 (bar 1e-28): OK
+selftest: FAIL [mutate slices]

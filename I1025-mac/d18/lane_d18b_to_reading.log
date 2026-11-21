@@ -1,0 +1,32 @@
+== 2026-11-21 04:38:39 pins checked: state 45e72c6a, stub 2cfdb833, d18_hybsign e089207a, d18_dd_read ddf56fc9, solver code = 505d8399; waiting for pids 31442 37845
+== 2026-11-21 04:52:10 pids 31442 37845 have exited
+D 18.0 k_c 63 hybrid: lam 1.774978102731286 minus record -0.013725980891666989; grid changes 2, changes over all 13 evaluations 2, bracket width 1.9770083570236352e-08, noise-robust True (4678 s)
+== 2026-11-21 04:52:10 1. planted control: ell_ddm.py selftest (must PASS), then --mutate=slices (must FAIL)
+selftest: PASS
+selftest: FAIL [mutate slices]
+== 2026-11-21 04:52:10 2. the hybrid at lam 1.8 (timeout 3600 s)
+D 18.0 k_c 63: |F| 2.6296169382e-10 (record 2.6303452558e-10), steps 2552 (record 2552): the record system
+  sign, logdet = _umath_linalg.slogdet(a, signature=signature)
+  sign, logdet = _umath_linalg.slogdet(a, signature=signature)
+  sign, logdet = _umath_linalg.slogdet(a, signature=signature)
+  lam 1.8: hybrid +1 ln|det| -1925.0182289868 (noise 1e-15 on blocks 0-11: [1.0, 1.0]); float64 +1 -1920.9910370828 (353 s)
+== 2026-11-21 04:58:05 hybrid at 1.8 exit 0
+== 2026-11-21 04:58:05 3. the full dd M at 1.788704083622953,1.8 (timeout 10800 s)
+  lambda 1.788704083622953: dd M built in 1060 s; dd LU signs [1.0, 1.0, 1.0, 1.0, 1.0], ln|det| -1924.919350765955 (spread over variants 4.5e-12), 37.0 s per LU
+  lambda 1.788704083622953: relative noise 1e-24 on the dd propagator entries: dd signs [1.0, 1.0]
+  lambda 1.788704083622953: relative noise 1e-20 on the dd propagator entries: dd signs [1.0, 1.0]
+  lambda 1.788704083622953: relative noise 1e-16 on the dd propagator entries: dd signs [1.0, 1.0]
+  lambda 1.788704083622953: dd signs agree True, dd +1 vs float64 +1; ln|det| dd -1924.9193507660, float64 -1920.9114204174
+  lambda 1.8: dd M built in 978 s; dd LU signs [1.0, 1.0, 1.0, 1.0, 1.0], ln|det| -1925.018732230150 (spread over variants 3.0e-12), 36.0 s per LU
+  lambda 1.8: relative noise 1e-24 on the dd propagator entries: dd signs [1.0, 1.0]
+  lambda 1.8: relative noise 1e-20 on the dd propagator entries: dd signs [1.0, 1.0]
+  lambda 1.8: relative noise 1e-16 on the dd propagator entries: dd signs [1.0, 1.0]
+  lambda 1.8: dd signs agree True, dd +1 vs float64 +1; ln|det| dd -1925.0187322301, float64 -1920.9910370828
+== 2026-11-21 05:46:43 dd det exit 0
+| lambda | hybrid sign | hybrid ln abs det | hybrid noise-robust | dd sign | dd ln abs det | dd 5 variants agree | dd 1e-24 noise unchanged | float64 sign | dd minus hybrid ln |
+|---|---|---|---|---|---|---|---|---|---|
+| 1.788704083622953 | +1 | -1924.9188779406 | True | +1 | -1924.9193507660 | True | True | +1 | -4.73e-04 |
+| 1.8 | +1 | -1925.0182289868 | True | +1 | -1925.0187322301 | True | True | +1 | -5.03e-04 |
+reading (1): dd agrees with the hybrid at every lambda; the hybrid's sign changes are real
+== 2026-11-21 05:46:43 reading code 0
+== 2026-11-21 05:46:43 4. information: the dd M with --mutate=hionly at 1.788704083622953,1.8 (timeout 7200 s)
