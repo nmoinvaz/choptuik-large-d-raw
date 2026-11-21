@@ -283,3 +283,4 @@ Note from 261.9176: three stable clusters sit at every base since 261.0721. Sinc
 | 262.1011 | ae5cce13 | 262.0887 ± 0.9705i (9 approximants) | 0.9615, 0.9731, −1.19% | PASS (0), FAIL (1) | 261.5218 (+28.8), 282.6851 (+1.124) |
 
 Note at 262.1011: the base has passed Re 262.08 (the pair now lies at arg 90.7° to 91.4°). The root test is 0.9615, its smallest so far, against the nearest cluster's distance of 0.9706. A real stable pole appears there for the first time, at 265.0469 (4 approximants, 2.95 ahead); none of the 32 earlier bases (256.1776 to 262.0099) lists one. One base is no reading, so the watcher follows it.
+| 262.1920 | dce381d5 | 262.0885 ± 0.9707i (9 approximants) | 0.9824, 0.9792, +0.33% | PASS (0), FAIL (1) | 262.2638 (+37.8), 273.2447 (+1.093) |
