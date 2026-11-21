@@ -1,0 +1,18 @@
+== planted pass
+D 16.5 k_c 71 hybrid: lam 2.1459968362025212, guess 2.1408016 (+0.243%), window 0.02, grid [2.0979856, 2.1408016, 2.1836176]
+  edge distances (grid steps from the interval's lower, upper edge; from the outer grid point): [0.121, 0.879, 0.879]
+  record_system ok, grid_changes ok, changes_all ok, noise_robust ok, bracket ok, edge ok -> PASS
+signtest: lam 2.125996836 signs [-1, -1, -1, -1] agree True (3 sv below 1e-12, 1 s); lam 2.165996836 signs [1, 1, 1, 1] agree True (3 sv below 1e-12, 1 s); system line same True -> pass
+hybrid minus the Mac's float64 record 2.0379024670520076: -1.132620e-03
+k_c ERROR at D 17: lambda_71(17) - 2.0399399392 = +1.060569e-01 (D 16.5: -6.631269e-04; the guess assumed -6.6e-4: guess 2.1408016 -> root minus guess +5.195236e-03)
+VERDICT D 16.5 k_c 71: PASS (rules pass, signtest pass) lam 2.1459968362025212
+exit 0
+== planted same
+D 16.5 k_c 71 hybrid: lam 2.1459968362025212, guess 2.1408016 (+0.243%), window 0.02, grid [2.0979856, 2.1408016, 2.1836176]
+  edge distances (grid steps from the interval's lower, upper edge; from the outer grid point): [0.121, 0.879, 0.879]
+  record_system ok, grid_changes ok, changes_all ok, noise_robust ok, bracket ok, edge ok -> PASS
+signtest: lam 2.125996836 signs [-1, -1, -1, -1] agree True (3 sv below 1e-12, 1 s); lam 2.165996836 signs [-1, -1, -1, -1] agree True (3 sv below 1e-12, 1 s); system line same True -> FAIL
+hybrid minus the Mac's float64 record 2.0379024670520076: -1.132620e-03
+k_c ERROR at D 17: lambda_71(17) - 2.0399399392 = +1.060569e-01 (D 16.5: -6.631269e-04; the guess assumed -6.6e-4: guess 2.1408016 -> root minus guess +5.195236e-03)
+VERDICT D 16.5 k_c 71: FAIL (rules pass, signtest FAIL) lam 2.1459968362025212
+exit 0
