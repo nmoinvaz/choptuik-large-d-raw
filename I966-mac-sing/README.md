@@ -267,3 +267,9 @@ P2's imaginary part 2.2688), as a fixed pair's distance is when the chain passes
 **For the next bases** (fixed before any of them lands): Re of the pair is read as staying at 262.08 when the nearest
 stable pole off the axis is within 0.05 of P1 in D_re and D_im, and the root test is within 5% of |D0 − P1|. If both
 hold, the radius on the real line is smallest at D0 ≈ 262.08, at about 0.973.
+
+## Next bases (`newbase.sh`, `nextcheck.py`; outputs `*_D<base>.*`, `exits_new.txt`)
+
+| D0 | raw | nearest stable pole off the axis | root test, \|D0 − P1\|, difference | nextcheck, move control | Delta: ratio D* (mu), Dlog D* (mu) |
+|---|---|---|---|---|---|
+| 261.6229 | 3a4c2671 | 262.0768 ± 0.9734i (9 approximants) | 1.0841, 1.0754, +0.81% | PASS (0), FAIL (1) | 261.4735 (+32.1), 270.3069 (+1.108) |
