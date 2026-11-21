@@ -93,4 +93,21 @@ Caps: 12 h per value step, 16 h per recount, 2 passes.
 - `select_points.py` on the record's leaves gives the 20 points (`in/select_dry.txt`).
 - The driver refuses, with exit 1, when `I1021-rpi5/fu021` exists, when an input differs from its sha256 (a line
   added to the record's count), and when a script is changed (a line added to `select_points.py`).
-- Pilot, one guard point through `fu_value.py --points` (6 variants, 2 processes): pending, below.
+- Pilot (`pilot/pilot.log`, `pilot/rows_pilot.jsonl`; 2026-11-21 21:03 to 21:07 UTC, exit 0): the guard point
+  (3.52562685, 0.21279321) through `fu_value.py --points`, 6 variants on 2 processes. The record has it at |R| 3108,
+  sigma 668, 4.65 sigma.
+
+  | variant | \|R\| | sigma | \|R\|/sigma | accepted | CPU s |
+  |---|---|---|---|---|---|
+  | default | 3010 | 192 | 15.7 | yes (R within 0.038 of the record's) | 92 |
+  | rhs1e7 | 3010 | 192 | 15.7 | yes | 92 |
+  | s0.2 | 3170 | 247 | 12.8 | yes | 45 |
+  | seed2 | 3020 | 601 | 5.02 | no | 87 |
+  | seed3 | 3080 | 780 | 3.96 | no | 86 |
+  | s0.2seed2 | 3130 | 467 | 6.71 | no | 54 |
+
+  |R| agrees within 6% over the variants and with the record. sigma, the rounding floor each run estimates, ranges from
+  192 to 780, against the record's 668. So at this point the 10 sigma guard is decided by the spread of sigma between
+  runs more than by |R|. The default variant starts from fu_value's nearest-neighbour seed, not argcount's, so it is
+  not a bit reproduction (as in `../rpi5_fu018/`). rpi5's numerics differ from the Mac's, so this does not decide its
+  run.
