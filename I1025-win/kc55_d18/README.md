@@ -48,3 +48,17 @@ python -u d18_hybsign.py <l1kc55F1025.jsonl> <sol_l1kc55F1025_D18.000000.npy> 18
 ## Status
 
 Not started (22:02 UTC).
+
+
+## Change: the memory watcher is alert-only (the coordinator's correction, received 22:03 UTC by my clock; done 22:04:06 to 22:05:08 UTC)
+
+**Reason:** Nathan's standing rule is no guard that kills processes for memory; alert-only watchers are fine. The coordinator's order of about 22:00 UTC ("if free memory falls below 1 GB, stop the scan by exact pid and report") broke it, and he corrected it: make the memory watcher alert-only, stop only the watcher by its exact pid, do not touch the scan, do not edit the running driver script, start an alert-only watcher (free memory every 15 s, below 1 GB one hc alert, repeated at most every 30 min, no kill), and record the change, its time and the reason here. The section "Memory rule and cap" above is superseded from 22:04:06 UTC.
+
+**What was done, and one fact the order did not foresee:** the memory guard was not a separate process. It was the polling loop inside the driver python (`kc55_driver_1025.py`, pid 16660), which also held the scan's 8 h cap, the sampler and the final reading. So the only way to stop the guard by an exact pid was to stop that driver python: `Stop-Process -Id 16660` at 22:04:06 UTC (exact pid, no children; its launcher stub 16184 ended with it). **The scan was not touched:** its launcher (pid 17520) and worker (pid 532) kept running at BelowNormal, its output file and log are unchanged, and the system check line was already in its log. The driver script file was not edited (it stays in this folder as it ran).
+
+**Replacements, started 22:05:08 UTC (`start_kc55_aux_1025.cmd`, BelowNormal, detached):**
+
+- `kc55_watch_alert_1025.py` (pid 10108): the alert-only watcher. Free physical memory every 15 s; below 1 GB one hc alert to the coordinator, repeated at most every 30 min while it stays below; it kills nothing; it ends when the scan's launcher pid is gone. Log `rows/kc55_memwatch.log`; a dry run (threshold 1000 GB, nothing sent) printed the alert text (`rows/kc55_memwatch_dry.log`).
+- `kc55_finish_1025.py` (pid 5288): replaces the driver's other parts. It waits for the scan pid, starts the read-only sampler (same CSV, `rows/kc55_samples.csv`), applies the order's **8 h time cap** (not a memory rule) by the exact pid 17520 at 2026-11-22 06:02:36 UTC if the scan is still running, and when the scan has ended with all 16 points it runs `d18f_read.py window` and `read_kc55_1025.py` exactly as the driver would have (log `kc55_w.log`).
+
+The reading is unchanged. The coordinator accepts the case the order does not name (two changes in the right places with the orientation reversed) as printed and rules on it if it occurs.

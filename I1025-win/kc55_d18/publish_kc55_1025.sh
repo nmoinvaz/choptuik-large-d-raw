@@ -12,7 +12,7 @@ cp "$O/README.md" "$O/stub_kc55_D18.jsonl" "$D/"
 for f in "$O"/kc55_w.log "$O"/scan_kc55_D18_1025.jsonl "$O"/scan_kc55_D18.log "$O"/read_*.log; do [ -f "$f" ] && cp "$f" "$D/"; done
 cp "$O/rows/"* "$D/rows/" 2>/dev/null || true
 for f in prep_kc55_inputs_1025.sh prep_kc55_pins_1025.txt prep_kc55_inputs_1025.log kc55_driver_1025.py read_kc55_1025.py sample_driver3_1025.ps1 start_kc55_1025.cmd \
-         smoke_syscheck_kc55_1025.cmd smoke_syscheck_kc55.log kc55_driver_selftest.log publish_kc55_1025.sh kc55_driver_stdout.log; do
+         smoke_syscheck_kc55_1025.cmd smoke_syscheck_kc55.log kc55_driver_selftest.log publish_kc55_1025.sh kc55_driver_stdout.log kc55_watch_alert_1025.py kc55_finish_1025.py start_kc55_aux_1025.cmd; do
   [ -f "$S/$f" ] && cp "$S/$f" "$D/"
 done
 [ -f "$S/vtest/kc63_D18_control.log" ] && cp "$S/vtest/kc63_D18_control.log" "$D/vtest/"
