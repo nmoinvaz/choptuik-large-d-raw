@@ -147,13 +147,38 @@ def main():
     ok_p = bool(err1 <= 1e-6 and errk <= 1e-6 and errstep <= 1e-6)
     print(f"planted R_pl = J w, |w| {wn:.3e} ({time.time() - t2:.0f} s): (u_1.R_pl)/sigma_1 {rowsP[0]['step']:.6e} (|w| {wn:.6e}, relative error {err1:.1e}); largest |u_i.R_pl| (i > 1) over |u_1.R_pl| {errk:.1e}; "
           f"v_1.J^-1 R_pl {v1dz:.6e} (relative error {errstep:.1e}): planted check {'pass' if ok_p else 'FAIL'} (each within 1e-6)", flush=True)
+    # the probe (--probe=1): the residual after the full pinned step, and along v_1 the quadratic term (the second derivative q) and the basin radius 2 sigma_1 / q
+    probe = None
+    if opts.get("probe", "0") == "1":
+        z8 = [np.ascontiguousarray(np.asarray(p)) for p in load_o(os.path.join(raw, st))[0]]
+        R0 = float(np.abs(R8[0] + R8[1]).max())
+
+        def Rmax_at(z8x):
+            Fx = s.residual_o([np.ascontiguousarray(np.asarray(p)) for p in z8x])
+            Rx = od_axpy(-1.0, *c8, *[np.ascontiguousarray(np.asarray(p)) for p in Fx])
+            return Rx
+        zn = od_axpy(1.0, *[np.asarray(p) for p in dpin8], *z8)
+        Rn = Rmax_at(zn)
+        after = float(np.abs(np.asarray(Rn[0]) + np.asarray(Rn[1])).max())
+        print(f"probe: max|R| at the start {R0:.3e}; at z + (the full pinned step) {after:.3e}", flush=True)
+        probe = dict(R_start=R0, R_after_full_step=after, along_v1=[])
+        v1 = [np.ascontiguousarray(x8[q]) for q in range(8)]                      # v_1 refined, eight parts
+        for t in (1e-85, 1e-80, 1e-75, 1e-70, 1e-60, 1e-40, 1e-30, 1e-24, 1e-22, 1e-20, 1e-18):
+            zt = od_axpy(t, *v1, *z8)
+            Rt = Rmax_at(zt)
+            d8 = od_axpy(-1.0, *[np.ascontiguousarray(np.asarray(p)) for p in R8], *[np.ascontiguousarray(np.asarray(p)) for p in Rt])   # R(z + t v_1) - R(z)
+            dmax = float(np.abs(np.asarray(d8[0]) + np.asarray(d8[1])).max())
+            lin = t * float(sig[0])
+            q = 2.0 * dmax / (t * t) if dmax > 1.5 * lin else float("nan")
+            print(f"probe: t {t:.0e}: max|R(z + t v_1) - R(z)| {dmax:.3e}; the linear term sigma_1 t {lin:.3e}; ratio {dmax / lin:.3e}" + (f"; q = 2 max/t^2 = {q:.3e}, basin radius 2 sigma_1/q = {2 * sig[0] / q:.2e}" if q == q else ""), flush=True)
+            probe["along_v1"].append(dict(t=t, dmax=dmax, linear=lin, q=q))
     # the report
     blocks = nn.layout(M, len(nodes))
     d1 = np.asarray(dpin8[0]) + np.asarray(dpin8[1])
     vt = [float(V[:, i] @ d1) for i in range(k)]
     print(f"\n| i | sigma_i | Delta share of v_i | u_i.R | (u_i.R)/sigma_i | V^T(pinned step)_i | u_i.F (unpinned) | (u_i.F)/sigma_i |\n|---|---|---|---|---|---|---|---|")
     rec = dict(state=st, D=float(m["D"]), ks=ks, plan="stored" if keep_plan else "new", maxR=Rmax, maxF=Fmax, ratio=ratio, planted=dict(ok=ok_p, err1=err1, errk=errk, errstep=errstep, w_norm=wn),
-               routeB_rel=relB, rows=[], pinned_step=dict(norm=float(np.linalg.norm(d1)), delta=float(d1[-1]), max=float(np.abs(d1).max())))
+               routeB_rel=relB, probe=probe, rows=[], pinned_step=dict(norm=float(np.linalg.norm(d1)), delta=float(d1[-1]), max=float(np.abs(d1).max())))
     for i in range(k):
         dsh = float(V[-1, i] ** 2)
         print(f"| {i + 1} | {sig[i]:.4e} | {dsh:.3e} | {rowsR[i]['uF']:+.4e} | {rowsR[i]['step']:+.4e} | {vt[i]:+.4e} | {rowsF[i]['uF']:+.4e} | {rowsF[i]['step']:+.4e} |")

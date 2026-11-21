@@ -1,0 +1,54 @@
+I966-dh370/ks_chain3b/leg14_D261.1415_ks293/anm_pin3_D262.0099.npz: D 262.01, ks 315 (the state's 293), plan made again, M 32, kfreeze 3
+octo-double LU 238 s, pivots 3.4e-20..1.4e+51
+start residual: max|R| (pinned, F - c) 1.671e-30, max|F| (unpinned) 7.660e-04
+||J v_1|| = 6.3798e-21 at 140 digits (5 s); ||J v_1|| / sigma_1 = 1.000000
+route B (J v_1 / sigma_1 at 140 digits): u_1.R -7.766566e-35; route A (sigma_1 J^-T v_1): -7.766566e-35; relative difference of the magnitudes 1.1e-16
+planted R_pl = J w, |w| 1.000e-10 (0 s): (u_1.R_pl)/sigma_1 1.000000e-10 (|w| 1.000000e-10, relative error 0.0e+00); largest |u_i.R_pl| (i > 1) over |u_1.R_pl| 4.9e-09; v_1.J^-1 R_pl 1.000000e-10 (relative error 0.0e+00): planted check pass (each within 1e-6)
+probe: max|R| at the start 1.671e-30; at z + (the full pinned step) 8.601e+29
+probe: t 1e-85: max|R(z + t v_1) - R(z)| 4.423e-78; the linear term sigma_1 t 6.380e-106; ratio 6.933e+27; q = 2 max/t^2 = 8.846e+92, basin radius 2 sigma_1/q = 1.44e-113
+probe: t 1e-80: max|R(z + t v_1) - R(z)| 1.136e-77; the linear term sigma_1 t 6.380e-101; ratio 1.780e+23; q = 2 max/t^2 = 2.272e+83, basin radius 2 sigma_1/q = 5.62e-104
+probe: t 1e-75: max|R(z + t v_1) - R(z)| 1.670e-77; the linear term sigma_1 t 6.380e-96; ratio 2.618e+18; q = 2 max/t^2 = 3.340e+73, basin radius 2 sigma_1/q = 3.82e-94
+probe: t 1e-70: max|R(z + t v_1) - R(z)| 9.867e-78; the linear term sigma_1 t 6.380e-91; ratio 1.547e+13; q = 2 max/t^2 = 1.973e+63, basin radius 2 sigma_1/q = 6.47e-84
+probe: t 1e-60: max|R(z + t v_1) - R(z)| 7.073e-72; the linear term sigma_1 t 6.380e-81; ratio 1.109e+09; q = 2 max/t^2 = 1.415e+49, basin radius 2 sigma_1/q = 9.02e-70
+probe: t 1e-40: max|R(z + t v_1) - R(z)| 7.073e-32; the linear term sigma_1 t 6.380e-61; ratio 1.109e+29; q = 2 max/t^2 = 1.415e+49, basin radius 2 sigma_1/q = 9.02e-70
+probe: t 1e-30: max|R(z + t v_1) - R(z)| 7.073e-12; the linear term sigma_1 t 6.380e-51; ratio 1.109e+39; q = 2 max/t^2 = 1.415e+49, basin radius 2 sigma_1/q = 9.02e-70
+probe: t 1e-24: max|R(z + t v_1) - R(z)| 7.073e+00; the linear term sigma_1 t 6.380e-45; ratio 1.109e+45; q = 2 max/t^2 = 1.415e+49, basin radius 2 sigma_1/q = 9.02e-70
+probe: t 1e-22: max|R(z + t v_1) - R(z)| 7.073e+04; the linear term sigma_1 t 6.380e-43; ratio 1.109e+47; q = 2 max/t^2 = 1.415e+49, basin radius 2 sigma_1/q = 9.02e-70
+probe: t 1e-20: max|R(z + t v_1) - R(z)| 7.073e+08; the linear term sigma_1 t 6.380e-41; ratio 1.109e+49; q = 2 max/t^2 = 1.415e+49, basin radius 2 sigma_1/q = 9.02e-70
+probe: t 1e-18: max|R(z + t v_1) - R(z)| 6.626e+12; the linear term sigma_1 t 6.380e-39; ratio 1.039e+51; q = 2 max/t^2 = 1.325e+49, basin radius 2 sigma_1/q = 9.63e-70
+
+| i | sigma_i | Delta share of v_i | u_i.R | (u_i.R)/sigma_i | V^T(pinned step)_i | u_i.F (unpinned) | (u_i.F)/sigma_i |
+|---|---|---|---|---|---|---|---|
+| 1 | 6.3798e-21 | 9.205e-01 | -7.7666e-35 | -1.2174e-14 | +1.2174e-14 | +1.9547e-21 | +3.0639e-01 |
+| 2 | 2.0586e-20 | 7.174e-02 | -1.3230e-34 | -6.4265e-15 | +6.4265e-15 | -5.7046e-22 | -2.7711e-02 |
+| 3 | 5.6296e-15 | 3.477e-03 | +8.4163e-34 | +1.4950e-19 | -1.4950e-19 | -3.6092e-19 | -6.4112e-05 |
+| 4 | 7.2366e-15 | 3.855e-03 | +7.4908e-34 | +1.0351e-19 | -1.0351e-19 | +5.4809e-19 | +7.5738e-05 |
+| 5 | 5.4457e-13 | 2.205e-06 | -4.2075e-43 | -7.7263e-31 | +1.9722e-31 | +3.6541e-16 | +6.7100e-04 |
+| 6 | 9.7293e-13 | 4.225e-08 | +9.0453e-43 | +9.2970e-31 | -5.7932e-31 | -3.4941e-17 | -3.5913e-05 |
+
+the pinned Newton step: |dz| 1.377e-14, max 9.959e-15, Delta component -9.959e-15
+  sigma_1 converged to 0.0e+00; ||J v_1||/sigma_1 1.000000; route B 1.1e-16
+check: pass
+	Command being timed: "/home/nathan/Source/choptuik-large-d-1058b/.venv/bin/python -u /home/nathan/Source/choptuik-large-d-raw-p4/I1064-dh170/raise_test1064.py /home/nathan/scratch949 I966-dh370/ks_chain3b/leg14_D261.1415_ks293/anm_pin3_D262.0099.npz --ks=315 --keep_plan=0 --k=6 --its=32 --threads=4 --json=/home/nathan/Source/choptuik-large-d-raw-p4/I1064-dh170/raise_test_ks315q.json --probe=1"
+	User time (seconds): 1034.76
+	System time (seconds): 1.24
+	Percent of CPU this job got: 304%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 5:40.10
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 204676
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 413056
+	Voluntary context switches: 2636
+	Involuntary context switches: 62736
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 72
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

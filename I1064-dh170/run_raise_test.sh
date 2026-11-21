@@ -10,7 +10,7 @@ say() { echo "== $(date -u '+%F %T') UTC $*" >> $D/exits_1064dh170.txt; }
 cd $HP || exit 9
 say "start $TAG: ks $KS keep_plan $KP"
 s0=$(date +%s)
-nice -n 10 /usr/bin/time -v $PY -u $D/raise_test1064.py $RAW $ST --ks=$KS --keep_plan=$KP --k=6 --its=32 --threads=4 --json=$D/raise_test_$TAG.json $EXTRA > $D/raise_test_$TAG.log 2>&1 &
+nice -n 10 /usr/bin/time -v $PY -u $D/raise_test1064.py $RAW $ST --ks=$KS --keep_plan=$KP --k=6 --its=32 --threads=4 --json=$D/raise_test_$TAG.json --probe=1 $EXTRA > $D/raise_test_$TAG.log 2>&1 &
 tp=$!; echo $tp > $D/time_pid_$TAG.txt
 while kill -0 $tp 2>/dev/null; do
   if [ $(( $(date +%s) - s0 )) -gt 14400 ]; then py=$(ps -o pid= --ppid $tp | head -1 | tr -d ' '); say "4 h cap: TERM to python pid $py and time pid $tp"; kill -TERM $py $tp 2>/dev/null; break; fi
