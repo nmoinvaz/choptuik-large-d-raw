@@ -1,0 +1,27 @@
+horizon series to order 293 instead of the state's 293
+held values from the fit data/held_fit.json (degree 8, 138 full-system states, D 38.020417-73.0), relative to the base
+  reseed: this hpkernel has no Solver.residual_sub; each rung residual is taken from the full residual
+  on 0: |F| 4.00e-36 converged, Delta 1.68322098538660914 -1.0666e-16
+      elim projections {'u0': 0, 'u0q': 0, 'ladder': 0, 'failed': 0, 'skipped': 0, 'u0o': 1}
+      octo-double Newton: 1 steps, max|F| 4.0e-36, converged; double-double |F| of its first two parts 7.2e+30
+base I966-dh370/ks_chain3b/leg13_D260.8483_ks293/anm_pin3_D261.1415.npz: D 261.141522927, M 32, pin 3 (held [5, 7, 9, 11, 13]), |F| 7.2e+30; N 31, eps 1e-14, h_max 2.0, corrector od (junk_only False), tol 1.0e-20 x 1.45^(D - 261.14152), stalls accepted below 1e-17
+step 0: the series saved as /home/nathan/Source/choptuik-large-d-raw-wt613/I966-dh370/ks_chain3b/leg14_D261.1415_ks293/jet_pin3_D261.1415.npz (8 parts, 393 s)
+step 0: D 261.141522927, pivots 1.1e-19..1.1e+51, |z_1| 3.23e-04, |z_N| 6.47e-11, ratios 2-5 332.2 2.1 4.6 0.7, a_max 0.571, 393 s
+  a_rule reseed: a_h tail e_N+1 6.06e-15 (ratio 1.35), level 0.000715 of the pole line 3.01e-40: a 0.1291
+    a 0.1291: re-seeded (ok), 68.19 s
+      horizon data refined in octo-double, rung max|R| 8.56e-13 -> 1.07e-05
+    a 0.1291: refinement ended at rung max|R| 1.07e-05, above --reseed_o_bar 1e-17: not corrected
+    a 0.129 -> D 261.270631612: predicted |F| 4.05e+31, od 0 steps -> nan (tol 1.0e-20), Delta 1.683201707595 (formula diff -1.4e-06), moved 0.0e+00, 0 s
+    a 0.0646: re-seeded (ok), 147.08 s
+      horizon data refined in octo-double, rung max|R| 6.60e-13 -> 3.54e-25 -> 3.53e-25 -> 1.12e-29 -> 7.20e-30 -> 1.78e-29
+    on 0 chord 0: max|F| 1.64e-28, |dw| 3.263e-39
+    on 0 chord 1: max|F| 4.34e-27, |dw| 1.013e-38
+  on 0: strong chord (4 weak directions), 2 steps after the full first step; theta at its point inf (bound 0.750): refused, 582.88 s
+  on 0: |F| 3.10e-28 -> 1.64e-28, |dz| 6.78e-20 -> 3.06e-31, lam 1, dDelta -6.78e-20, piv 1.0e-19..1.1e+51, 983.26 s
+  on 1: |F| 1.64e-28 -> 7.41e-22, |dz| 3.06e-31 -> 2.72e-40, lam 1, dDelta -3.06e-31, piv 1.0e-19..1.1e+51, 316.15 s
+  on 2: |F| 7.41e-22 -> 4.40e-36, |dz| 2.72e-40 -> 2.73e-40, lam 1, dDelta +2.72e-40, piv 1.0e-19..1.1e+51, 134.71 s
+  on 3: |F| 4.40e-36 converged, Delta 1.68321134730491351 +8.5959e-17
+      elim projections {'u0': 0, 'u0q': 0, 'ladder': 0, 'failed': 0, 'skipped': 0, 'u0o_refused': 5, 'pred': 5, 'u0o': 1}
+      octo-double Newton: 4 steps, max|F| 4.4e-36, converged; double-double |F| of its first two parts 7.5e+30
+    a 0.065 -> D 261.20607727: predicted |F| 2.24e+30, od 4 steps -> 7.49e+30 (tol 1.0e-20, stall accepted, Delta correction +0.0e+00), Delta 1.683211347305 (formula diff -1.4e-06), moved 6.8e-20, 1760 s
+      Delta of the saved state, its eight parts summed exactly: 1.683211347304913593686701987193883150140
