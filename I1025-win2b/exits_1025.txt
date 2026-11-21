@@ -156,3 +156,19 @@
 1025 d18up result: repeat check PASS (1.95, equal ln|det|, also equal to Part 1's); ONE robust plus-to-minus change in (2.33, 2.34): the root is placed, rise 8.361 to 8.521 per unit D from D 18's 1.8074339746; minima at 2.33 (beside the change) and the 1.95 window edge, none without a change; float64 differs at 3 of 41; scans 9304 s and 9316 s, no cap; orientation reading waits for xfkappa's check 2026-11-21 18:35:33 UTC
 1025 d18up result posted on #1025 comment 7067373436, raw bef17e78; nothing runs, nothing queued 2026-11-21 18:36:08 UTC
 1025 kc55 README (window 1.55-2.40, lists, k_c-stable reading, repeat check, controls), inputs and driver written, pushing before the run 2026-11-21 18:41:02 UTC
+1025 kc55 driver started, pre-checks 2026-11-21 18:41:17 UTC
+1025 kc55 pre-checks ok: pins, worktree 505d8399, record line, planted controls pass 2026-11-21 18:41:23 UTC
+1025 kc55 lambda lists: A 1.97,1.55,1.56,1.57,1.58,1.59,1.60,1.61,1.62,1.63,1.64,1.65,1.66,1.67,1.68,1.69,1.70,1.71,1.72,1.73,1.74,1.75,1.76,1.77,1.78,1.79,1.80,1.81,1.82,1.83,1.84,1.85,1.86,1.87,1.88,1.89,1.90,1.91,1.92,1.93,1.94,1.95,1.96 ; B 1.97,1.98,1.99,2.00,2.01,2.02,2.03,2.04,2.05,2.06,2.07,2.08,2.09,2.10,2.11,2.12,2.13,2.14,2.15,2.16,2.17,2.18,2.19,2.20,2.21,2.22,2.23,2.24,2.25,2.26,2.27,2.28,2.29,2.30,2.31,2.32,2.33,2.34,2.35,2.36,2.37,2.38,2.39,2.40 2026-11-21 18:41:25 UTC
+1025 kc55 sampler pid 22224 (every 60 s, samples.csv) 2026-11-21 18:41:25 UTC
+1025 kc55 scanA root pid 29936, cap 28800 s, want exit 0 2026-11-21 18:41:25 UTC
+1025 kc55 scanB root pid 24624, cap 28800 s, want exit 0 2026-11-21 18:41:25 UTC
+1025 kc55 both scans running since 18:41:25 UTC; the system check passes on both (|F| 2.6646072378e-10 against the record's 2.6618688407e-10, steps 2149 against 2149); waiter armed to 21:35 UTC 2026-11-21 18:42:33 UTC
+1025 kc55 progress post (3 h) on #1025 comment 7069589234: 66 of 86 points, ETA ~22:35 UTC 2026-11-21 21:36:26 UTC
+1025 kc55 scanA exit 0 (want 0) wall 13060 s capped 0 OK 2026-11-21 22:19:05 UTC
+1025 kc55 scanB exit 0 (want 0) wall 13342 s capped 0 OK 2026-11-21 22:23:47 UTC
+1025 kc55 sampler pid 22224 ended 2026-11-21 22:23:48 UTC
+1025 kc55 merge: PASS ; merged 86 points (1.55 to 2.40) into D:/choptuik-large-d-raw/I1025-win2b/kc55/scan_merged.jsonl 2026-11-21 22:23:49 UTC
+1025 kc55 reading: change in (1.87, 1.88): minus-to-plus, ROBUST|change in (2.21, 2.22): plus-to-minus, ROBUST|ln|det| local minimum at 1.68 (ln -1605.631561): WITHOUT a change|ln|det| local minimum at 1.87 (ln -1602.160580): beside a change|ln|det| local minimum at 2.21 (ln -1594.539028): beside a change|two robust changes (minus-to-plus in (1.87, 1.88), plus-to-minus in (2.21, 2.22)): gap between 0.33 and 0.35, centre to | 2026-11-21 22:23:49 UTC
+1025 kc55 compare: k_c 55 change in (1.87, 1.88), minus-to-plus, ROBUST: k_c 55 ONLY (the bracket is outside the band of every k_c 63 root [1.6772])|k_c 55 change in (2.21, 2.22), plus-to-minus, ROBUST: not compared (k_c 63 is not scanned over this bracket, coverage 1.55 to 2.10)|k_c 63 root 1.6772: k_c 63 ONLY (no k_c 55 change, robust or not, touches its band 1.6672 to 1.6872)|SUMMARY: 2 robust k_c 55 change(s) in 1.55 to 2.40; (1.87, 1.88) minus-to-plus, (2.21, 2.22) plus-to-minus| 2026-11-21 22:23:49 UTC
+1025 kc55 done 2026-11-21 22:23:49 UTC
+1025 kc55 result: repeat check PASS; k_c 55 robust changes (1.87,1.88) minus-to-plus and (2.21,2.22) plus-to-minus, both k_c 55 ONLY against k_c 63's only root 1.6772 (k_c 63 coverage widened to 2.40 by xfkappa's scan, read from raw); 1.6772 is k_c 63 ONLY; ln|det| minimum WITHOUT a change at 1.68 at k_c 55 (near the k_c 63 root); no k_c-stable root; scans 13060 s and 13342 s, no cap 2026-11-21 22:25:58 UTC

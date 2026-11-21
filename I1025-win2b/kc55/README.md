@@ -74,3 +74,36 @@ Estimate: not known at k_c 55. At k_c 63 a point took 425 to 530 s with two proc
 ## Log
 
 (appended below as the run goes)
+- 2026-11-21 18:41:25 UTC: both scan processes started (A root pid 29936, B root pid 24624; the driver's pre-checks, including the 27 planted controls, passed at 18:41:23). **System check, first line of each log: "the record system" on both**: |F| 2.6646072378e-10 against the record's 2.6618688407e-10 (0.10%), steps 2149 against 2149.
+- 2026-11-21 21:35 UTC (3 h progress post, comment 7069589234): 66 of 86 distinct points done (A 33 evaluations, B 34), 274 to 429 s a point (mean 308 s), no point fails its noise test. Interim signs, not read: minus at 1.55 to 1.86 (no change, which covers the whole band of the k_c 63 root 1.6772), plus at 1.97 to 2.21, minus at 2.22 to 2.30 (a robust plus-to-minus change in (2.21, 2.22)); A still has 1.87 to 1.96 and B 2.31 to 2.40. The formal reading is made on the merged scan after the repeat check.
+- 2026-11-21 18:41:25 to 22:23:49 UTC: A ended 22:19:05 (exit 0, 13060 s) and B 22:23:47 (exit 0, 13342 s), neither capped; 262 to 429 s a point (mean 303 s). The sampler (`samples.csv`) was ended by its exact pid at 22:23:48. Merge, reading and comparison by the driver at 22:23:49 (`merge.log`, `reading.log`, `compare.log`).
+
+## Result (22:30 UTC)
+
+**Repeat check (lambda 1.97, first in both halves): PASS.** Hybrid sign +1 in A and B; ln|det| -1597.118812893949 in both, difference 0.000e+00 (bar 1e-6); noise robust in both; float64 sign +1 in both; 288 s and 291 s. The merged 86-point scan was written (`scan_merged.jsonl`).
+
+**Reading (the pinned reader, `reading.log`):**
+
+- every point is noise robust (none fails its 1e-15 noise test);
+- hybrid signs: minus at 1.55 to 1.87 (33 points), plus at 1.88 to 2.21 (34), minus at 2.22 to 2.40 (19);
+- **two robust changes: (1.87, 1.88) minus-to-plus and (2.21, 2.22) plus-to-minus** (the reader's gap line, centre to centre 0.340, carries its fixed D 18 reference text 0.0325 and is not a k_c comparison);
+- ln|det| local minima: at 1.87 (ln -1602.160580) beside a change; at 2.21 (ln -1594.539028) beside a change; **at 1.68 (ln -1605.631561) WITHOUT a change**;
+- the float64 sign differs from the hybrid's at 1 of 86 points (1.88; information).
+
+**Comparison with k_c 63 at D 18.5 (`kc55_compare.py`, the rule fixed before the run).**
+
+First run, as the driver did it (k_c 63 coverage 1.55 to 2.10, root 1.6772; `compare.log`): (1.87, 1.88) **k_c 55 ONLY**; (2.21, 2.22) not compared (above the coverage); k_c 63 root 1.6772: **k_c 63 ONLY**.
+
+xfkappa's k_c 63 scan of 2.10 to 2.40 came in meanwhile (#1025 comment 7067627814, 18:56 UTC; raw `I1025-mac/d18/d185_scanup_1025.jsonl` blob 9f3e31e5, and `d185_scanhi_1025.jsonl` blob 496f4b63 for 1.90 to 2.10, both taken at raw origin/main 65c4f990 and kept in `in/`). I read the raw files myself: with the Mac's 1.55 to 1.90 scan (blob 90540daf) the three give 86 points over 1.55 to 2.40 at the same state, all noise robust, and the pinned reader finds **one robust change, (1.67, 1.68) minus-to-plus**, plus at every point from 1.68 to 2.40 (`in/kc63_d185_merged_1.55-2.40.jsonl`, `kc63_d185_reading.log`). That is the "rerun with --cov63 1.55,2.40" the README fixed. Second run (`compare_cov240.log`, coverage 1.55 to 2.40, root 1.6772):
+
+| k_c 55 or k_c 63 root | bracket or value | verdict by the rule |
+|---|---|---|
+| k_c 55, minus-to-plus | (1.87, 1.88) | k_c 55 ONLY (outside the band 1.6672 to 1.6872 of the only k_c 63 root) |
+| k_c 55, plus-to-minus | (2.21, 2.22) | k_c 55 ONLY (k_c 63 has no root in 1.55 to 2.40 apart from 1.6772) |
+| k_c 63, minus-to-plus | 1.6772 (bracket (1.67, 1.68)) | k_c 63 ONLY (no k_c 55 change, robust or not, touches 1.6672 to 1.6872) |
+
+**By the letter: no root of D 18.5 in 1.55 to 2.40 is k_c-stable** (none at both k_c within 0.01); each of the three depends on the discretization.
+
+**A fact beside the rule, not part of it:** the k_c 55 scan has a ln|det| local minimum at 1.68 WITHOUT a change, at the place of the k_c 63 root. ln|det| at 1.66, 1.67, 1.68, 1.69, 1.70: k_c 55 -1604.311, -1604.975, **-1605.632**, -1605.513, -1604.727 (sign minus at all five); k_c 63 -1901.001, -1901.777, **-1902.632**, -1901.013, -1900.337 (minus, minus, plus, plus, plus). Both have their minimum at 1.68; at k_c 55 the sign does not change. A step of 0.01 cannot tell a near miss from two roots inside one step or a double root. Nothing is read from this; a finer k_c 55 scan around 1.66 to 1.70 would decide it, and is the coordinator's to order.
+
+**cpu and memory (`samples.csv`, a sample every 60 s, 218 samples 18:41:25 to 22:23:12 UTC; my processes only).** The two python children (pids 30920 and 36440; the roots are launcher stubs): peak working set 0.80 GiB and private 1.30 GiB each; 18787 and 19220 cpu-s in 13060 and 13342 s; BelowNormal throughout; together at most 1.30 GiB working set and 2.45 GiB private in one sample. Machine: cpu mean 36.9% (1 s samples), max 53.7%; commit 46.4 to 56.8 of 101.5 GiB; free physical at least 44.7 GiB.
