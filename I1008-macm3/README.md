@@ -798,3 +798,81 @@ Attempts from one base (a: predicted max|F|, first |dz|, outcome), for every arc
 Gain first |dz| / predicted max|F| of this attempt: 1.56e-14 / 4.44e-36 = 3.51e+21 at D 259.57436, against 3.33e+21 at D 259.5659 and 2.66e+21 at 259.5388 (the accepted steps 11 and 10 of run2). Its first |dz| is x0.3 the largest of the 19 earlier attempts (4.83e-14, run3).
 
 Kernel: the series at this base (D 259.56588) took 274.4 s on the new kernel (run3), against 1149.7 s at arc step 11's base and 1277.8 s at arc step 10's on the old one (run2), x4.2 and x4.7; the old figures include hours when #1058's builds and checks ran beside run2, no #1058 job ran beside run3. The 22 refused trials of over 5 s here took 85 s on average against 200 s for the 102 in run2 (the base D and the trial points differ, so this is not a like-for-like timing).
+
+### run3: arc step 12 accepted at its fourth attempt (2026-11-21 02:08 UTC)
+
+| arc step | arclength a | D move | D | Delta | t_D start | t_D end | D below 259.903269724106 | corrections | accepted lam | ladder / failed / skipped | corrector s | refused attempts | first \|dz\| | first \|dz\| / a |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 5 (AB2) | 0.0444334 | 0.044433205 | 259.42750402623675 | 1.68347789279812 | 0.9999956072 | 0.9999956095 | 0.475766 | 9 | 0.25 x3, 0.5, 1 x5 | 11 / 9 / 0 | 5367.3 | 0 | 1.96e-15 | 4.41e-14 |
+| 6 | 0.0444334 | 0.044433205 | 259.47193723120494 | 1.68347117889185 | 0.9999956095 | 0.9999956118 | 0.431332 | 9 | 0.25 x3, 0.5, 1 x5 | 11 / 9 / 0 | 5222.6 | 0 | 2.89e-15 | 6.5e-14 |
+| 7 | 0.0138854375 | 0.013885377 | 259.48582260777852 | 1.68346908127357 | 0.9999956118 | 0.9999956126 | 0.417447 | 12 | 0.25 x2, 0.125 x3, 0.5, 1 x6 | 14 / 16 / 0 | 7284.8 | 2 | 4.76e-15 | 3.43e-13 |
+| 8 | 0.0138854375 | 0.013885377 | 259.49970798436211 | 1.68346698388404 | 0.9999956126 | 0.9999956133 | 0.403562 | 9 | 0.25 x2, 0.5, 1 x6 | 11 / 7 / 0 | 4593.6 | 0 | 3.16e-15 | 2.28e-13 |
+| 9 | 0.01735679688 | 0.017356721 | 259.51706470510565 | 1.68346436247007 | 0.9999956133 | 0.9999956142 | 0.386205 | 17 | 0.125 x6, 0.0625 x3, 0.25, 0.5, 1 x6 | 19 / 35 / 0 | 12934.4 | 0 | 7.03e-15 | 4.05e-13 |
+| 10 | 0.02169599609 | 0.021695901 | 259.53876060605705 | 1.68346108620971 | 0.9999956142 | 0.9999956153 | 0.364509 | 10 | 0.25 x3, 0.5, 1 x6 | 12 / 9 / 0 | 4961.0 | 0 | 4.65e-15 | 2.14e-13 |
+| 11 | 0.02711999512 | 0.027119876 | 259.5658804822806 | 1.68345699168165 | 0.9999956153 | 0.9999956167 | 0.337389 | 11 | 0.25 x3, 0.125, 0.5, 1 x6 | 13 / 11 / 0 | 6357.0 | 0 | 5.76e-15 | 2.12e-13 |
+| 12 | 0.004237499237 | 0.0042374807 | 259.57011796294397 | 1.68345635199211 | 0.9999956167 | 0.9999956169 | 0.333152 | 15 | 0.125 x6, 0.25 x2, 0.5, 1 x6 | 17 / 24 / 0 | 4937.4 | 3 | 8.73e-15 | 2.06e-12 |
+
+Accepted steps in run2 and run3: 7 (6 and 1). No turn recorded (anm_run's own detection of D'(s) = 0 inside an accepted step). t_D has not changed sign. t_D start of the first step of run2 0.9999956095, end of the last 0.9999956169; its change per unit arclength over the last accepted step 5.177e-08.
+
+Step 12's accepted attempt: 23 refused trials (lam 0.25, 0.5, 1, at corrections 0, 1, 2, 3, 4, 5, 6, 7, 8, 23 `projection failed` lines, trial |F| 8.77e+06 to 2.1e+09) and 1 refused strong-chord check(s), which together took 1982 s of the corrector's 4937.4 s. The series at the base took 274.4 s (formed inside the run, which also saves its arcjet).
+
+anm_run pid 54500 (run3): elapsed 03:31:26, 582.5% cpu, rss 1601 MB; run3 started 22:36:54 UTC, 3.52 h ago; cap 70475 s from its start (SIGTERM at 2026-11-21 18:11:29 UTC).
+
+Every attempt of every log, with the predicted max|F| (the series' residual at the re-seeded point, before any correction):
+
+| log | attempt | D move | D of the attempt | predicted max\|F\| | first \|dz\| | first \|dz\| / predicted max\|F\| | refused trial lam at correction 0 | accepted lam at correction 0 | accepted lam x first \|dz\| | corrector steps | corrector s | outcome |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| pilot2 | 1 | 0.045500 | 259.15272808 | 8.9e-36 | 5.37e-15 | 6.03e+20 | 1, 0.5 | 0.25 | 1.34e-15 | 33 | 11228.2 | accepted |
+| pilot2 | 2 | 0.056875 | 259.20960283 | 1.26e-36 | 4.6e-16 | 3.65e+20 | none | 1 | 4.6e-16 | 26 | 9721.7 | accepted |
+| run1 | 1 | 0.045500 | 259.25510263 | 1.4e-36 | 6.2e-16 | 4.43e+20 | none | 1 | 6.2e-16 | 24 | 7446.4 | accepted |
+| run1 | 2 | 0.056875 | 259.31197738 | 2.61e-36 | 8.92e-16 | 3.42e+20 | 1 | 0.5 | 4.46e-16 | 35 | 9788.8 | accepted |
+| run1 | 3 | 0.071093 | 259.38307082 | 1.66e-36 | 8.83e-16 | 5.32e+20 | 1 | 0.5 | 4.41e-16 | 36 | 9996.8 | accepted |
+| run1 | 4 | 0.088867 | 259.47193762 | 6.28e-36 | 9.21e-15 | 1.47e+21 | 1, 0.5, 0.25 | 0.125 | 1.15e-15 | 3 | 5338.2 | refused (stall rule) |
+| run1 | 5 | 0.044433 | 259.42750422 | 7.16e-36 | 4.82e-15 | 6.73e+20 | 1, 0.5, 0.25, 0.125 | 0.0625 | 3.01e-16 | 8 | 11457.4 | refused (stall rule) |
+| ab1 | 1 | 0.071093 | 259.38307082 | 1.66e-36 | 8.83e-16 | 5.32e+20 | 1 | 0.5 | 4.41e-16 | 7 | 2945.3 | accepted |
+| ab2 | 1 | 0.044433 | 259.42750403 | 2.97e-36 | 1.96e-15 | 6.6e+20 | 1, 0.5 | 0.25 | 4.9e-16 | 10 | 5367.3 | accepted |
+| run2 | 1 | 0.044433 | 259.47193723 | 2.2e-36 | 2.89e-15 | 1.31e+21 | 1, 0.5 | 0.25 | 7.23e-16 | 10 | 5222.6 | accepted |
+| run2 | 2 | 0.055542 | 259.52747874 | 3.77e-36 | 8.11e-15 | 2.15e+21 | 1, 0.5, 0.25 | 0.125 | 1.01e-15 | 4 | 5716.4 | refused (stall rule) |
+| run2 | 3 | 0.027771 | 259.49970798 | 1.14e-35 | 2.01e-14 | 1.76e+21 | 1, 0.5, 0.25, 0.125, 0.0625 | 0.03125 | 6.28e-16 | 2 | 3843.6 | refused (stall rule) |
+| run2 | 4 | 0.013885 | 259.48582261 | 2.86e-36 | 4.76e-15 | 1.66e+21 | 1, 0.5 | 0.25 | 1.19e-15 | 13 | 7284.8 | accepted |
+| run2 | 5 | 0.013885 | 259.49970798 | 1.87e-36 | 3.16e-15 | 1.69e+21 | 1, 0.5 | 0.25 | 7.9e-16 | 10 | 4593.6 | accepted |
+| run2 | 6 | 0.017357 | 259.51706471 | 3.46e-36 | 7.03e-15 | 2.03e+21 | 1, 0.5, 0.25 | 0.125 | 8.79e-16 | 18 | 12934.4 | accepted |
+| run2 | 7 | 0.021696 | 259.53876061 | 1.75e-36 | 4.65e-15 | 2.66e+21 | 1, 0.5 | 0.25 | 1.16e-15 | 11 | 4961.0 | accepted |
+| run2 | 8 | 0.027120 | 259.56588048 | 1.73e-36 | 5.76e-15 | 3.33e+21 | 1, 0.5 | 0.25 | 1.44e-15 | 12 | 6357.0 | accepted |
+| run3 | 1 | 0.033900 | 259.59978033 | 1.17e-35 | 4.83e-14 | 4.13e+21 | 1, 0.5, 0.25, 0.125, 0.0625 | 0.03125 | 1.51e-15 | 2 | 1744.4 | refused (stall rule) |
+| run3 | 2 | 0.016950 | 259.58283040 | 9.49e-36 | 3.43e-14 | 3.61e+21 | 1, 0.5, 0.25, 0.125, 0.0625 | 0.03125 | 1.07e-15 | 2 | 1680.9 | refused (stall rule) |
+| run3 | 3 | 0.008475 | 259.57435544 | 4.44e-36 | 1.56e-14 | 3.51e+21 | 1, 0.5, 0.25, 0.125 | 0.0625 | 9.75e-16 | 5 | 3216.5 | refused (stall rule) |
+| run3 | 4 | 0.004237 | 259.57011796 | 2.51e-36 | 8.73e-15 | 3.48e+21 | 1, 0.5, 0.25 | 0.125 | 1.09e-15 | 16 | 4937.4 | accepted |
+
+21 attempts in 6 logs, 20 distinct points (run1's attempt 3 and ab1's attempt 1 are the same point).
+
+1. The predicted max|F| is 1.3e-36 to 1.2e-35 for D moves of 0.0042 to 0.0889. Over this range it does not fall with a shorter step. Ordered by D move, the predicted max|F| is 2.5e-36, 4.4e-36, 2.9e-36, 1.9e-36, 9.5e-36, 3.5e-36, 1.7e-36, 1.7e-36, 1.1e-35, 1.2e-35, 3e-36, 2.2e-36, 7.2e-36, 8.9e-36, 1.4e-36, 3.8e-36, 1.3e-36, 2.6e-36, 1.7e-36, 6.3e-36 (D moves 0.0042, 0.0085, 0.0139, 0.0139, 0.0169, 0.0174, 0.0217, 0.0271, 0.0278, 0.0339, 0.0444, 0.0444, 0.0444, 0.0455, 0.0455, 0.0555, 0.0569, 0.0569, 0.0711, 0.0889).
+
+2. First |dz| / predicted max|F| is 3.4e+20 to 6.7e+20 at the 7 points below D 259.45 and 1.3e+21 to 4.1e+21 at the 13 points above it. Ordered by D: 259.1527: 6e+20, 259.2096: 3.7e+20, 259.2551: 4.4e+20, 259.3120: 3.4e+20, 259.3831: 5.3e+20, 259.4275: 6.6e+20, 259.4275: 6.7e+20, 259.4719: 1.3e+21, 259.4719: 1.5e+21, 259.4858: 1.7e+21, 259.4997: 1.8e+21, 259.4997: 1.7e+21, 259.5171: 2e+21, 259.5275: 2.2e+21, 259.5388: 2.7e+21, 259.5659: 3.3e+21, 259.5701: 3.5e+21, 259.5744: 3.5e+21, 259.5828: 3.6e+21, 259.5998: 4.1e+21.
+
+3. At one D move (0.0444, 3 distinct points) the predicted max|F| is 2.2e-36, 3e-36, 7.2e-36, a spread of x3.3, against x9.3 over all 20 points.
+
+4. First |dz| runs from 4.6e-16 to 4.8e-14 (x105). At the 18 points where correction 0 accepts lam below 1, accepted lam times first |dz| is 3e-16 to 1.5e-15 (x5.0), and the smallest refused trial lam at correction 0 times first |dz| is 6e-16 to 3e-15. The two ranges overlap, so there is no sharp threshold in lam times |dz|.
+
+5. Arc step 12 took 3.50 h from arc step 11's record (22:36:37 UTC) to its own (02:06:24 UTC). Its 4 attempts took 1744.4 + 1680.9 + 3216.5 + 4937.4 = 11579.2 s of corrector time, and the series at its base 274.4 s. Arc step 11: 1 attempt, 6357.0 s = 6357.0 s of corrector time, series 1149.7 s.
+
+6. The target D 259.49970798 was attempted from 2 bases: run2 attempt 3, D move 0.0278, predicted max|F| 1.14e-35, first |dz| 2.01e-14, ratio 1.76e+21, refused (stall rule); run2 attempt 5, D move 0.0139, predicted max|F| 1.87e-36, first |dz| 3.16e-15, ratio 1.69e+21, accepted. Predicted max|F| is x6.1 lower from the shorter step and the ratio differs by x1.04.
+
+7. Spearman rank correlation between D move and predicted max|F| over the 20 distinct attempts: -0.14 (ranks, ties by order; +1 is a monotone rise with the D move, -1 a monotone fall, 0 no trend).
+
+Step 12 (run3's step 0, the first on main 8179068d and the new kernel) was accepted at its fourth attempt, after three refusals by the stall rule (`--lam_stall 0.04`). The accepted attempt is a = 0.0271199951171875 x 1.25 / 8 = 0.004237499237060547, D move 0.0042374807, D 259.57011796294397, t_D 0.9999956169 at the end. No turn is recorded, t_D has not changed sign, and D is 0.333152 below 259.903269724106.
+
+The four attempts, from one base (D 259.5658804822806):
+
+| attempt | a | D | predicted max\|F\| | first \|dz\| | gain first \|dz\| / predicted max\|F\| | accepted lam at correction 0 | corrections | corrector s | outcome |
+|---|---|---|---|---|---|---|---|---|---|
+| 1 | 0.0339 | 259.59978 | 1.17e-35 | 4.83e-14 | 4.13e+21 | 0.03125 | 2 | 1744.4 | refused (stall rule) |
+| 2 | 0.01695 | 259.58283 | 9.49e-36 | 3.43e-14 | 3.61e+21 | 0.03125 | 2 | 1680.9 | refused (stall rule) |
+| 3 | 0.008475 | 259.57436 | 4.44e-36 | 1.56e-14 | 3.51e+21 | 0.0625 | 5 | 3216.5 | refused (stall rule) |
+| 4 | 0.0042375 | 259.57012 | 2.51e-36 | 8.73e-15 | 3.48e+21 | 0.125 | 15 | 4937.4 | accepted |
+
+At this base the predicted max|F| fell with every halving of a, by x0.81, x0.47 and x0.57, and the first |dz| fell with it (x0.71, x0.45, x0.56). Statement 1 pools twenty points from different bases and shows no fall with the D move (rank correlation -0.14, statement 7), and at arc step 7's base run2's predicted max|F| was not monotone in a (3.77e-36, 1.14e-35, 2.86e-36 for a 0.0555, 0.0278, 0.0139). The gain keeps rising with D (3.48e+21 at D 259.5701, 3.33e+21 at 259.5659, 2.66e+21 at 259.5388). The attempt that was accepted took lam x first |dz| = 1.09e-15 at correction 0, inside the range of statement 4. The three refused attempts took 6641.8 s of corrector time and the accepted one 4937.4 s, of which 23 refused trials and 1 refused strong-chord check took 1982 s; the series at the base took 274.4 s on the new kernel.
+
+Next attempt: with `--a_hold 1` an accepted step that needed a refusal sets a_prev = a / 1.25, so the next first attempt is a_prev x 1.25 = 0.004237499237060547 again; I will check it against the next attempt's D move when its log line prints. At that a the 0.333152 to 259.903269724106 is 78.6 steps. The 13 steps that remain of `--steps 14`, each accepted at its first attempt with `--a_grow 1.25`, would cover at most 0.2914 (a from 0.0042375 to 0.0771), to D 259.8615 and 0.0418 short of 259.903269724106. The cap leaves 16.06 h, which at the accepted attempt's 4937.4 s plus the series's 274.4 s per step is 11.1 steps, and at step 11's 6357.0 s plus 274.4 s is 8.7. I changed no flag and restarted nothing.
+
+Open question for you, not started: the predicted max|F| at this base (1.17e-35 at a 0.0339) is 6.8 times that of the previous step's accepted attempt (1.73e-36 at a 0.0271) for a 1.25 times longer step, and it is the first step after the kernel change. #1058's four checks say the new kernel gives the same bits as the old one on the stored references. To tell the base from the kernel, I could form the series at `run2/arc_006_D259.565880.npz` on `venv-macm3-main` (the old kernel, code 9980cd93) and compare it with run3's `arcjet_000_D259.565880.npz` bit for bit. Run2's series took 1042.3 to 1277.8 s at steps 9 to 11, so it would run for about 20 min beside run3, at nice 19, and slow it; I run nothing beside run3 without your word.
