@@ -139,3 +139,13 @@ Run, fixed before row B's root is known:
 
 Row B is at its hybrid phase (started 06:23:26). Estimated: hybrid ends about 08:15 to 08:50, the dd runs about 1 to 3 h after that.
 
+## Amendment 3, the coordinator's word, stamped 2026-11-21 07:33 UTC (received about 07:32 by my clock), ruled before any dd result existed
+
+Why it was asked: row B's hybrid grid (w 0.02, guess 1.8860) read +1 at 1.84828, -1 at 1.886 and -1 at 1.92372, one change with plus below and minus above, while row A and the four P4 rows read minus below and plus above. The reading fixed in Amendment 2 (minus at the lower point and plus at the upper means the root passes) covers only the second orientation. I asked at 07:2x UTC, before the dd records existed, and proposed the reading below.
+
+Reading, accepted: the root passes if the two counting dd signs are opposite, in either orientation, and each equals the hybrid's sign at the hybrid evaluation nearest that point (the hybrid's own evaluations, `ell_p4_hybrid_1025_w_highD.jsonl`). The same sign at both means no root between them. A sign that does not count (5 exact variants disagree, or 1e-24 noise changes it) means neither reading applies. Opposite counting signs that differ from the hybrid's nearest ones are reported as the dd disagreeing with the hybrid, not as a pass. The counting rule, the points, the commands and the caps of Amendment 2 are unchanged.
+
+The orientation is reported as information. The coordinator's note: at D 18 win2's dd signs read -, +, - at 1.7529, 1.7887 and 1.8245, so two roots, and the upper one has row B's orientation (plus below, minus above); row A's root at D 17.5 has the usual one; a flip between D 17.5 and D 17.75 would mean a second eigenvalue now lies below this root.
+
+Code: `read_ddB_1025.py` is now version 2 (v1, `read_ddB_1025_v1.py`, had minus-lower/plus-upper only). The running driver calls it with three arguments, unchanged; it reads the hybrid record at the dd records' D from the follow-on's own jsonl. Planted cases (usual and flipped hybrid, dd -/+, +/-, +/+, a disagreeing variant): `read_ddB_selftest_1025.py`, `read_ddB_selftest_1025.log`, all six as wanted.
+
