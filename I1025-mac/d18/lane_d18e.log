@@ -1,0 +1,15 @@
+== 2026-11-21 15:39:03 pins checked: d18_hybsign e089207a, d18e_read 24ef6598, d18d_read 6b608903, d18c_read 1383470f, d185_scan_read 7c9d400f, d18_refsign_steps d5b1e50a, d18_refsign_read 6ae9035e, record 08f4dbf3, states 33c1a58b (D 18.5) and eae8ca02 (D 18.25), scans 90540daf, 496f4b63, a66a2a4a; solver code = 505d8399, ell_delta = 48c36355; waiting for pid 85446
+== 2026-11-21 16:13:03 pid 85446 has exited
+== 2026-11-21 16:12:45 lane d18r done
+d18_refsign_1025.jsonl: 14 records; step counts of 7 states (totals equal the records)
+D 17.75 -> 18: 2.60 only; inner segments changed {'log': (100, 102), '0.02-0.05': (29, 30), '0.05-0.1': (49, 50), '0.1-0.16': (56, 57)}; others changed 9 (0.16-0.23, 0.23-0.3, 0.3-0.4, 0.4-0.5, 0.5-0.6, 0.6-0.7, 0.7-0.8, 0.8-0.9, 0.96-0.9); ruling: a root crossed 2.60, orientations compare from the 1.20 side (roots counted from 1.20)
+D 18 -> 18.0625: 1.20 only; inner segments changed none; others changed 6 (0.4-0.5, 0.5-0.6, 0.6-0.7, 0.7-0.8, 0.8-0.9, 0.96-0.9); ruling: a root crossed 1.20, orientations compare from the 2.60 side (roots counted from 2.60)
+D 18.0625 -> 18.125: none; inner segments changed {'log': (102, 103)}; others changed 7 (0.3-0.4, 0.4-0.5, 0.5-0.6, 0.6-0.7, 0.7-0.8, 0.8-0.9, 0.96-0.9)
+D 18.125 -> 18.1875: none; inner segments changed {'log': (103, 104), '0.02-0.05': (30, 31), '0.05-0.1': (50, 51), '0.1-0.16': (57, 58)}; others changed 7 (0.3-0.4, 0.4-0.5, 0.5-0.6, 0.6-0.7, 0.7-0.8, 0.8-0.9, 0.96-0.9)
+D 18.1875 -> 18.25: none; inner segments changed none; others changed 7 (0.3-0.4, 0.4-0.5, 0.5-0.6, 0.6-0.7, 0.7-0.8, 0.8-0.9, 0.96-0.9)
+D 18.25 -> 18.5: 1.20 only; inner segments changed {'log': (104, 107), '0.02-0.05': (31, 32), '0.05-0.1': (51, 52), '0.1-0.16': (58, 59)}; others changed 9 (0.16-0.23, 0.23-0.3, 0.3-0.4, 0.4-0.5, 0.5-0.6, 0.6-0.7, 0.7-0.8, 0.8-0.9, 0.96-0.9); ruling: a root crossed 1.20, orientations compare from the 2.60 side (roots counted from 2.60)
+flips: 3; lined up with an inner step change: [(17.75, 18.0), (18.25, 18.5)]; not lined up: [(18.0, 18.0625)]
+inner step changes without a flip: [(18.0625, 18.125), (18.125, 18.1875)]
+== 2026-11-21 16:13:03 d18_refsign_steps exit 0
+no convention reading: one reference flips alone at [(17.75, 18.0, '2.60 only'), (18.0, 18.0625, '1.20 only'), (18.25, 18.5, '1.20 only')] (a root crossed it); global flips at none; the coordinator rules
+== 2026-11-21 16:13:03 STOP: the sign-convention check does not read that the convention holds; (e) does not run, the coordinator rules

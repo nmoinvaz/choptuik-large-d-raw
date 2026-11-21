@@ -161,3 +161,9 @@ Written before the run (criteria in `d18/d18_criteria.log`, 2026-11-21 03:31:59 
   only if it reads that the convention holds (`d18/lane_d18e.sh`): D 18.5 over **lambda 2.10 to 2.40 at 0.01 (31 points)**, then D 18.25
   over **1.95 to 2.25 at 0.01 (31 points)**, noise test and float64 sign. Reading: a plus-to-minus root in each window places the rising
   eigenvalue, with its delta against lambda_0 at that D (d18_criteria.log).
+- Sign-convention check (15:34-16:13 UTC), information: no global flip between any two of the seven states; one reference flips
+  alone at D 17.75 -> 18 (2.60), 18 -> 18.0625 (1.20) and 18.25 -> 18.5 (1.20), each a root crossing that reference by the ruling;
+  every point noise-robust, float64 agrees at all 14 (`d18/d18_refsign.log`, `d18/d18_refsign_1025.jsonl`, `d18/d18_refsign_read.log`).
+  Beside it: `d18/d18_refsign_steps.log` (two of three flips line up with an inner step change, one does not) and
+  `d18/d18_refsign_parity.log` (the root-count parity each state's own signs imply; `d18/d18_refsign_parity.py`, with copies of dh170's
+  D 17.75 scans). Not "the convention holds", so (e) did not run (`d18/lane_d18e.log`); the coordinator rules.

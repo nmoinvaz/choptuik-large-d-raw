@@ -132,3 +132,10 @@ D 18.5 root. The pass rules are unchanged (d18_check.py 08969ea2, then signtest.
    than 1e-6): STOP-level, no reading; a change touching a non-robust point is not counted. Reader d18e_read.py, selftest before the run.
    d18e_read.py (blob 24ef6598): 4 planted cases PASS, --mutate=orient (the rising root read as minus to plus) FAILS (d18e_read_selftest.log);
    on D 18.5's 1.90-2.10 it reads "not placed", as it must (d18e_read_on_d185hi.log). lane_d18e.sh started 15:39:03, waits on lane_d18r.sh.
+== 2026-11-21 16:12:45 sign-convention check result (d18_refsign_read.log): all 14 reference points noise-robust; float64 agrees with
+   the hybrid at all 14. Signs (1.20, 2.60): D 17.75 (-, +), 18 (-, -), 18.0625 (+, -), 18.125 (+, -), 18.1875 (+, -), 18.25 (+, -), 18.5 (-, -).
+   No global flip between any pair. One reference flips alone at 17.75 -> 18 (2.60), 18 -> 18.0625 (1.20) and 18.25 -> 18.5 (1.20): by the
+   ruling on the open case, each reads a root crossing that reference, orientations comparing from the side whose reference held.
+   The reading is not "the convention holds", so lane_d18e.sh stopped before (e) (16:13:03), as written; the coordinator rules.
+   Beside it (d18_refsign_steps.log): flips lined up with an inner step change at 17.75 -> 18 and 18.25 -> 18.5, not at 18 -> 18.0625;
+   inner step changes without a flip at 18.0625 -> 18.125 and 18.125 -> 18.1875. Parity each state's own signs imply: d18_refsign_parity.log.
