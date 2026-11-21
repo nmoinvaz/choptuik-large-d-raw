@@ -19,3 +19,24 @@ Controls, which must fail: `--mutate=switch` on the pool, and `nearest_f3.py` on
 (`recount3/removed_11_points.jsonl`). Dry run on rpi5's plan commit 41f18b75 (the cache before the run, 58 lines; in
 the scratchpad): all checks pass (0 of 37 and 0 of 1117 pairs flagged, |dF_3| to the sheetfix at most 0.0399), and
 both controls fail (the 11 removed records |dF_3| 0.35 to 0.433).
+
+## Result (rpi5's raw 8dafdc05; run 2026-11-21 00:18 UTC)
+
+recount3 ended 2026-11-21 00:13:02 UTC with exit 0. Every check passes, and both controls fail.
+
+| check | valued points | pairs | largest \|dF_3\| | flagged |
+|---|---|---|---|---|
+| 0.18 cache, grid lines | 712 | 1201 | 0.0447 | 0 |
+| pool (sheetfix 0.17, then 0.18), grid lines | 1241 | 2243 | 0.0447 | 0 |
+| 0.18 cache, recount3's 214 leaves | 712 | 757 | 0.0241 | 0, 0 of 214 cells across a switch |
+| pool, recount3's 214 leaves | 1241 | 766 | 0.024 | 0, 0 of 214 cells across a switch |
+
+- `nearest_f3.py`: each of the 712 valued 0.18 records is within \|dF_3\| 0.0552 of its nearest sheetfix 0.17 point.
+  recount3's 0.17 file is the sheetfix's file (the same sha256), so its 619 valued records give distance 0 and
+  \|dF_3\| 0.
+- This check is weak here: 622 of the 712 valued 0.18 points have no sheetfix point at the same place. For 342 of them,
+  the nearest is more than 0.1 away in (A, 2.5 w/w_inf), and up to 0.354. The grid-line checks of the pool compare
+  neighbours directly.
+- Controls: `--mutate=switch` flags 2 pairs, exit 1; the 11 removed records give \|dF_3\| 0.35 to 0.433, exit 1.
+
+So recount3's count passes the sheet check on all 214 leaves. The check does not decide its 13 unresolved cells.
