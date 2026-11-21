@@ -87,7 +87,8 @@ argcount then recounts the three boxes with recount3's arguments, at nice 10, wi
 recount3's cache with loc018's.
 
 **Criteria** (fixed before rpi5's run). The fallback point in 1 and the optional location in 2 were added after the
-Mac's dry run, where U1's Newton left the cell's double after 18 steps at its noise floor (below).
+Mac's dry run, where U1's Newton left the cell's double after 18 steps at its noise floor (below). The sign test of a
+location in 2 was added after the Mac's stage 2 pilot, where argcount's Newton in B1 ended with Jacobian sign −1.
 
 1. Stage 1 (`locate018.py check`):
    - for C0 on the planted map, Newton ends within 0.05 of C0's size of P0 in each coordinate, with sign +1;
@@ -100,8 +101,9 @@ Mac's dry run, where U1's Newton left the cell's double after 18 steps at its no
 2. Stage 2 (`locate018.py check2` on the plain count):
    - each box B lies inside its union;
    - B winds W(U) (B1 +1, B2 −1), resolved, with no unresolved leaf and exactly one zero, of that sign;
-   - if argcount locates that zero, it lies inside B, within 0.1 of B's size of stage 1's point in each coordinate.
-     If not, the zero is reported as counted, not located;
+   - if argcount locates that zero, and Newton's end has Jacobian sign W(U) and |R| at most 10 sigma (stage 1's
+     test), it lies inside B, within 0.1 of B's size of stage 1's point in each coordinate. If not, the zero is
+     reported as counted, not located;
    - C0 winds 0, resolved, with no zero;
    - with `--mutate=sign`, the check fails. With `--mutate=shift` it fails when a zero is located, and is vacuous
      otherwise.
@@ -114,7 +116,7 @@ Mac's dry run, where U1's Newton left the cell's double after 18 steps at its no
 5. xfchecks' sheet check of loc018's new points (as `../sheet_rpi5r3/`) passes before the result is used.
 
 **What a pass shows.** In each lower cell, a zero of sign W(U), counted in a box under 0.02 that lies inside U. It is
-located when argcount's Newton ends there. By additivity, the rest of U (U minus B) then winds 0. It is not checked
+located when argcount's Newton ends there with the Jacobian sign W(U). By additivity, the rest of U (U minus B) then winds 0. It is not checked
 for a pair of opposite sign, since argcount's resolution test applies to whole cells only.
 
 **Cost.** Stage 1 needs at most 3 targets × 20 steps × 3 points, and fewer if Newton settles. Stage 2 needs each box's
@@ -144,4 +146,19 @@ inner_nb, Nathan's call.
   amendment, `check` gives exit 0, and `--mutate=shift` and `--mutate=sign` give exit 1. The amended
   `locate018.py --selftest` (check exits for plain, shift, sign, U1 nearest, U1 none: `[0, 1, 1, 0, 2]`; check2 PASS
   FAIL FAIL PASS PASS) exits 0.
-- Stage 2 (the driver's two recounts, 2 processes, on the dry run's cache and boxes): running; the result goes here.
+- Stage 2 (the driver's two recounts, 2 processes, on the dry run's cache and the boxes of `boxes`). The plain count
+  took 7000 s and exited 0 at 2026-11-21 03:37:38 UTC. All 3 boxes resolved, with 0 splits:
+
+  | box | winding | min \|R\| on its boundary | zeros | argcount's Newton end at 0.18 | check2 |
+  |---|---|---|---|---|---|
+  | B1 (U1) | +1 | 7.47e4 | 1, W +1 | (4.0626872, 0.51901285), \|R\| 1.52 sigma, Jacobian sign −1 | PASS: counted, not located |
+  | B2 (U2) | −1 | 1.59e6 | 1, W −1 | (4.2700545, 0.54447535), \|R\| 0.095 sigma, Jacobian sign −1 | PASS: located, 7.1e-5 and 1e-7 from stage 1's point |
+  | C0 | −7.1e-17 | 2.19e6 | 0 | | PASS |
+
+  At 0.17 (`--r1b`), neither zero was located. B1's Newton end has the sign opposite to B1's winding, at the noise
+  floor. Its first form, which did not test the sign, called B1's zero located. `check2` now applies stage 1's test of a
+  location (sign W(U), at most 10 sigma). With it, check2 and its shift and sign mutations exit `0 1 1`, and the shift
+  fires on B2. The amended `locate018.py --selftest` (check2 PASS FAIL FAIL PASS PASS, then U1's Newton end with sign
+  −W: PASS, and with the shift FAIL; U1 reported not located) exits 0. A copy without the sign test fails the selftest
+  (exit 1).
+- The planted recount: running; the result goes here.

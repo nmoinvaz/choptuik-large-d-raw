@@ -48,7 +48,7 @@ echo "stage 1 check, --mutate=shift, --mutate=sign exits: $s (0 both unions or 2
 case "$s" in "0 1 1"|"2 1 1") ;; *) echo "stage 1 does not pass: end" >> "$X"; exit 1;; esac
 # stage 2: relocation boxes B1, B2 and the control box C0, recounted plain and with the plant at P0
 $PY "$D/locate018.py" boxes "$OUT/locate.json" > "$OUT/leaf_boxes.jsonl"
-P0=$($PY -c "import sys; sys.path.insert(0, '$D'); import locate018 as L; print(f'{L.P0[0]},{L.P0[1]}')")
+P0=$($PY -B -c "import sys; sys.path.insert(0, '$D'); import locate018 as L; print(f'{L.P0[0]},{L.P0[1]}')")
 B="--M=3 --recount=$OUT/leaf_boxes.jsonl --r1=0.18 --r1b=0.17 --seed=$SEED --m3fix --m3starts=0.2,0.25 --m3maxrhs=1e7"
 B="$B --m3wall=3600 --m3noisecap=1e7 --procs=4 --retry --out=$OUT/m3"
 for t in plain plant; do

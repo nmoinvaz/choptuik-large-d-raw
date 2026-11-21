@@ -16,9 +16,11 @@ double after 18 steps at its noise floor):
     10 sigma there ("located"); otherwise the smallest-|R| point of this run inside U, if its |R| is at most 10 sigma
     ("nearest"). Exit 0 when C0 passes and both unions have a point, 2 when C0 passes and one has, 1 otherwise.
   check2 (stage 2, argcount's plain recount of the boxes): each box B lies inside its union and winds W(U), resolved,
-    with no unresolved leaf and exactly one zero, of sign W(U); when argcount locates that zero, it lies inside B and
-    within 0.1 of B's size of stage 1's point in each coordinate (else the zero is reported as counted, not located);
-    C0 winds 0, resolved, with no zero. Exit 0 when every box passes.
+    with no unresolved leaf and exactly one zero, of sign W(U); when argcount locates that zero (Newton's end with
+    Jacobian sign W(U) and |R| at most 10 sigma, as in stage 1), it lies inside B and within 0.1 of B's size of stage
+    1's point in each coordinate (else the zero is reported as counted, not located); C0 winds 0, resolved, with no
+    zero. Exit 0 when every box passes. The sign test of "located" was added after the Mac's stage 2 pilot, where
+    argcount's Newton in B1 ended at 1.5 sigma with Jacobian sign -1.
   The planted recount (--plant=P0) is checked against the plain one by plant_check.py.
 --mutate=shift moves the expected point by one box width in A (P0 in check, stage 1's points in check2); --mutate=sign
 flips the expected signs. Each must make its check fail (in check2 the shift fires only on a located zero). --selftest
@@ -145,12 +147,15 @@ def check2(K, res, mutate=None, out=print):
                 p[0] += DA
             one = len(zs) == 1 and zs[0]["W"] == W
             z = zs[0]["located"] if one else None
-            near = z is None or (inside((z["A"], z["wf"]), cb) and abs(z["A"] - p[0]) <= 0.1 * DA
-                                 and abs(z["wf"] - p[1]) <= 0.1 * DW)
+            loc = z is not None and z["sign"] == W and z["absF"] <= 10 * z["floor"]   # stage 1's "located"
+            near = not loc or (inside((z["A"], z["wf"]), cb) and abs(z["A"] - p[0]) <= 0.1 * DA
+                               and abs(z["wf"] - p[1]) <= 0.1 * DW)
             g = res_ok and inU and one and near
             out(f"{name} box A {cb[0]:.7f}-{cb[1]:.7f} w {cb[2]:.8f}-{cb[3]:.8f} (inside {name} {inU}): winding {wb:.4g} "
                 f"(want {W:+d}), unresolved {b['unresolved'] if b else None}, zeros {len(zs)}"
-                + (f", located A {z['A']:.7f} w {z['wf']:.8f} against stage 1's ({p[0]:.7f}, {p[1]:.8f})" if z
+                + (f", located A {z['A']:.7f} w {z['wf']:.8f} against stage 1's ({p[0]:.7f}, {p[1]:.8f})" if loc
+                   else f", counted; Newton ended at A {z['A']:.7f} w {z['wf']:.8f}, |R| {z['absF'] / z['floor']:.3g} "
+                        f"sigma, Jacobian sign {z['sign']:+d}: not located" if z
                    else ", counted, not located" if one else "")
                 + f": {'PASS' if g else 'FAIL'}")
         ok &= g
@@ -185,9 +190,14 @@ if __name__ == "__main__":
         r1 += [check(synthetic(u)[0], out=lambda s: None) for u in ("nearest", "none")]
         r2 = [check2(K, res, m, out=lambda s: None) for m in (None, "shift", "sign")]
         r2 += [check2(*reversed(synthetic(u)), out=lambda s: None) for u in ("nearest", "none")]
+        Kb, o = json.loads(json.dumps(K)), []
+        Kb["zeros"][0]["located"]["sign"] *= -1           # U1's Newton ends with the Jacobian sign -W(U1)
+        r2 += [check2(Kb, res, out=o.append), check2(Kb, res, "shift", out=lambda s: None)]
+        nl = any(s.startswith("U1") and s.endswith("not located: PASS") for s in o)
         print(f"selftest check exits: plain, shift, sign, U1 nearest, U1 none: {r1} (must be [0, 1, 1, 0, 2]); "
-              f"check2: {['PASS' if x else 'FAIL' for x in r2]} (must be PASS FAIL FAIL PASS PASS)")
-        sys.exit(0 if r1 == [0, 1, 1, 0, 2] and r2 == [True, False, False, True, True] else 1)
+              f"check2: {['PASS' if x else 'FAIL' for x in r2]} (must be PASS FAIL FAIL PASS PASS PASS FAIL); "
+              f"U1 with sign -W reported not located: {nl} (must be True)")
+        sys.exit(0 if r1 == [0, 1, 1, 0, 2] and r2 == [True, False, False, True, True, True, False] and nl else 1)
     if a[0] == "run":
         procs = int(a[a.index("--procs") + 1]) if "--procs" in a else 4
         run(a[1], a[2], a[3], a[4], procs)
