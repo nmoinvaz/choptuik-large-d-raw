@@ -532,3 +532,35 @@ Each is read with `newjet.sh TAG RAWPATH`: `newbase.sh`'s steps, with outputs na
 **Accepted by the coordinator (2026-11-21 17:37:45 UTC, before any front jet):** the P1 rule stands, and the decision rests on the real
 pole. Its spread over bases is 0.0001, so 0.01 is a clear test. P1's clusters sit 0.01 apart, the size of the bar, so
 a P1 move is reported but decides nothing alone. The three readings go to #1064 once (c) is read.
+
+### Amendment (2026-11-21 17:41:18 UTC, the coordinator's, #1064 comment of 17:40:24 UTC; before any front jet is read)
+
+**Run (c) is dropped.** At the front the raise fails even for one added order (dh170's part 3). It is replaced by
+**(c′)**: two jets at D 237.7132, ks 307 and ks 395 (`I1064-dh610/front_D262.7908/order_arm_D237.7132/`).
+
+**(a) against (b)** at D 262.7908 is unchanged. `front_compare.py` takes two files, (a) and (b), and reads only
+(a) − (b). If (b) fails at its first step, that failure is its result.
+
+**(c′)'s reading:** every stable pole within reach of each jet is reported (`order_compare.py K307.json K395.json`).
+P2 (258.361 ± 2.269i) is expected nearest, at distance 20.8, and P1 and the real pole at 265.078 are read only if
+seen. A pole that moves by more than 0.01 between K 307 and K 395 belongs to the truncation. A pole not seen in both
+gets no reading.
+
+How poles are matched (fixed now): each stable pole of K 307 is paired with the nearest stable pole of K 395 within
+0.05 |s| (locate's own clustering tolerance). An unpaired pole is "not seen in both". The move is the larger of |ΔRe|
+and |ΔIm|. The poles within 0.1 of P2, P1 or 265.078 are named.
+
+Control: `--mutate=move` adds 0.02 to K 395's pole nearest P2. It must read "truncation" for P2, when P2 is seen.
+
+**Dry run of `order_compare.py` on a real base at D 237.7132** (dh370's `leg00_D237.7132_ks291/jet_pin3_D237.7132.npz`,
+ks 291, given as both K 307 and K 395; a tool test, not a reading; `locate966_dry_leg00_D237.7132.txt`):
+- the root-test radius is 8.606;
+- the stable poles are 238.0752 ± 8.4379i (|s| 8.446, n 5), 234.4315 ± 8.0070i (8.653, n 3) and 242.2589 ± 7.7834i
+  (9.014, n 4);
+- P2 (|s| 20.8), P1 (24.4) and the real pole at 265.078 (27.4) are not listed. `locate` keeps the four nearest stable
+  poles, so from this D the poles of the front lie behind nearer ones;
+- the tool pairs the three poles with moves of 0, and `--mutate=move` reads "truncation" for the moved pole. For P2
+  the control is vacuous, since P2 is not seen.
+
+If the ks 307 and ks 395 jets look like this one, (c′) reads only these poles at |s| 8.4 to 9.0 and gives no reading for
+P2, P1 or the real pole.
