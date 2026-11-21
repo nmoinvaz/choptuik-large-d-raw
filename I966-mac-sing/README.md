@@ -289,3 +289,4 @@ Note at 262.1920: past Re 262.08 the root test rises again (0.9615 at 262.1011, 
 | 262.2833 | dcd2f585 | 262.0882 ± 0.9705i (9 approximants) | 0.9916, 0.9937, −0.21% | PASS (0), FAIL (1) | 262.3443 (+28.9), 359.9728 (+0.786) |
 
 Note at 262.2833: the root test rises to 0.9916 (−0.21% from |D0 − P1|). The real stable pole is listed a third time, at 265.0779 (4 approximants). Over 262.1011 to 262.2833 it is 265.0469, 265.0816 and 265.0779, a range of 0.035, so it does not hold to 0.01. Locate gives it no exponent, and rows give no real reading near it (Dlog D* 359.97 here). No fold is read.
+| 262.3756 | 3fcc674b | 262.0872 ± 0.9710i (9 approximants) | 1.0122, 1.0165, −0.43% | PASS (0), FAIL (1) | 262.4502 (+30.7), 672.9987 (+3.803) |
