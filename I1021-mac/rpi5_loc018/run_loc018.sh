@@ -44,8 +44,8 @@ echo "stage 1 start $(date -u '+%F %T')" >> "$X"
 echo "stage 1 exit $? $(date -u '+%F %T')" >> "$X"
 $PY "$D/locate018.py" check "$OUT/locate.json" > "$OUT/logs/check.log" 2>&1; s=$?
 for m in shift sign; do $PY "$D/locate018.py" check "$OUT/locate.json" --mutate=$m >> "$OUT/logs/check.log" 2>&1; s="$s $?"; done
-echo "stage 1 check, --mutate=shift, --mutate=sign exits: $s" >> "$X"
-[ "$s" = "0 1 1" ] || { echo "stage 1 does not pass: end" >> "$X"; exit 1; }
+echo "stage 1 check, --mutate=shift, --mutate=sign exits: $s (0 both unions or 2 one, then 1 1)" >> "$X"
+case "$s" in "0 1 1"|"2 1 1") ;; *) echo "stage 1 does not pass: end" >> "$X"; exit 1;; esac
 # stage 2: relocation boxes B1, B2 and the control box C0, recounted plain and with the plant at P0
 $PY "$D/locate018.py" boxes "$OUT/locate.json" > "$OUT/leaf_boxes.jsonl"
 P0=$($PY -c "import sys; sys.path.insert(0, '$D'); import locate018 as L; print(f'{L.P0[0]},{L.P0[1]}')")

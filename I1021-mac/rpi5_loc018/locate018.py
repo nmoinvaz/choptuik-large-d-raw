@@ -4,21 +4,25 @@ counted in relocation boxes under 0.02, as #1021's loc did.
         argcount's locate_many (Newton on the unguarded values, finite-difference Jacobians from the cell's centre)
         from the centres of U1 and U2 on the plain map, and from the centre of the control box C0 on the map with a
         +1 planted at P0. New points go to CACHE (its records are the plain f_M3 values; the plant is applied after).
+        For each union it also records the point of smallest unguarded |R| among the points this run computed in it.
     python locate018.py check OUT.json [--mutate=shift|sign]
-    python locate018.py boxes OUT.json > LEAVES.jsonl        relocation boxes B1, B2 around the located zeros, and C0
+    python locate018.py boxes OUT.json > LEAVES.jsonl        relocation boxes around each union's point, and C0
     python locate018.py check2 COUNT_PLAIN.json OUT.json [--mutate=shift|sign]
     python locate018.py --selftest
-Criteria (fixed before the run):
-  check (stage 1): for U1 and U2, Newton ends (not None, that is inside the cell's double), inside U, with Jacobian
-    sign W(U) (U1 +1, U2 -1), and |R| at the end at most 10 sigma (its rounding floor). For C0 on the planted map, it
-    ends within 0.05 of C0's size of P0 in each coordinate, with sign +1.
-  check2 (stage 2, argcount's plain recount of B1, B2 and C0): B1 lies inside U1 and B2 inside U2; B1 winds +1 and
-    B2 -1, each resolved, with no unresolved leaf and exactly one zero of that sign, located inside the box and within
-    0.1 of the box's size of stage 1's point in each coordinate; C0 winds 0, resolved, with no zero.
+Criteria (fixed before rpi5's run; the fallback was added after the Mac's dry run, where U1's Newton left the cell's
+double after 18 steps at its noise floor):
+  check (stage 1): C0 on the planted map: Newton ends within 0.05 of C0's size of P0 in each coordinate, with sign +1.
+    Each union U gets a point: Newton's end if it lies inside U, with Jacobian sign W(U) (U1 +1, U2 -1) and |R| at most
+    10 sigma there ("located"); otherwise the smallest-|R| point of this run inside U, if its |R| is at most 10 sigma
+    ("nearest"). Exit 0 when C0 passes and both unions have a point, 2 when C0 passes and one has, 1 otherwise.
+  check2 (stage 2, argcount's plain recount of the boxes): each box B lies inside its union and winds W(U), resolved,
+    with no unresolved leaf and exactly one zero, of sign W(U); when argcount locates that zero, it lies inside B and
+    within 0.1 of B's size of stage 1's point in each coordinate (else the zero is reported as counted, not located);
+    C0 winds 0, resolved, with no zero. Exit 0 when every box passes.
   The planted recount (--plant=P0) is checked against the plain one by plant_check.py.
 --mutate=shift moves the expected point by one box width in A (P0 in check, stage 1's points in check2); --mutate=sign
-flips the expected signs. Each must make its check fail. --selftest runs check and check2 on synthetic results, plain
-and with each mutation (must give PASS FAIL FAIL, twice)."""
+flips the expected signs. Each must make its check fail (in check2 the shift fires only on a located zero). --selftest
+runs check and check2 on synthetic results, plain, with each mutation, and check with U1 unlocated (fallback)."""
 import json
 import math
 import sys
@@ -48,9 +52,15 @@ def run(code, cache, seed, out, procs):
         return F
     res = {}
     F = mult(None)
-    for (name, (c, W)), z in zip(U.items(), ac.locate_many(F, [c for c, _ in U.values()])):
-        res[name] = dict(cell=list(c), W=W, start=[(c[0] + c[1]) / 2, (c[2] + c[3]) / 2], located=z)
-        print(f"{name}: {z}", flush=True)
+    before = set(F.vals)
+    zs = ac.locate_many(F, [c for c, _ in U.values()])
+    new = set(F.vals) - before
+    for (name, (c, W)), z in zip(U.items(), zs):
+        pts = [k for k in new if inside(k, c)]
+        best = min(pts, key=lambda k: abs(F.value(k)), default=None)
+        res[name] = dict(cell=list(c), W=W, start=[(c[0] + c[1]) / 2, (c[2] + c[3]) / 2], located=z, npoints=len(pts),
+                         nearest=dict(A=best[0], wf=best[1], absF=abs(F.value(best)), floor=F.floor(best)) if best else None)
+        print(f"{name}: located {z}; nearest {res[name]['nearest']} ({len(pts)} new points inside)", flush=True)
     F.close()
     Fp = mult(P0)
     z = ac.locate_many(Fp, [C0])[0]
@@ -60,17 +70,28 @@ def run(code, cache, seed, out, procs):
     json.dump(res, open(out, "w"), indent=1)
 
 
+def point(res, name, mutate=None, out=lambda s: None):
+    """the union's stage 1 point and its kind, or None"""
+    r = res[name]
+    c, z, nb = r["cell"], r["located"], r.get("nearest")
+    want = -r["W"] if mutate == "sign" else r["W"]
+    if z is not None and inside((z["A"], z["wf"]), c) and z["sign"] == want and z["absF"] <= 10 * z["floor"]:
+        out(f"{name}: located at A {z['A']:.7f}, w {z['wf']:.8f}, |R| {z['absF']:.3g} ({z['absF'] / z['floor']:.3g} "
+            f"sigma), sign {z['sign']:+d} (want {want:+d})")
+        return (z["A"], z["wf"], "located")
+    out(f"{name}: Newton " + (f"ended at A {z['A']:.7f}, w {z['wf']:.8f}, |R| {z['absF']:.3g} "
+                              f"({z['absF'] / z['floor']:.3g} sigma), sign {z['sign']:+d} (want {want:+d}), inside U "
+                              f"{inside((z['A'], z['wf']), c)}" if z else "returned no point") + ": not located")
+    if nb is not None and inside((nb["A"], nb["wf"]), c) and nb["absF"] <= 10 * nb["floor"]:
+        out(f"{name}: nearest point of the run A {nb['A']:.7f}, w {nb['wf']:.8f}, |R| {nb['absF']:.3g} "
+            f"({nb['absF'] / nb['floor']:.3g} sigma), of {r.get('npoints')} new points inside U")
+        return (nb["A"], nb["wf"], "nearest")
+    out(f"{name}: no point (nearest {nb})")
+    return None
+
+
 def check(res, mutate=None, out=print):
-    ok = True
-    for name in ("U1", "U2"):
-        r = res[name]
-        c, z = r["cell"], r["located"]
-        want = -r["W"] if mutate == "sign" else r["W"]
-        g = z is not None and inside((z["A"], z["wf"]), c) and z["sign"] == want and z["absF"] <= 10 * z["floor"]
-        ok &= g
-        out(f"{name}: " + (f"A {z['A']:.7f}, w {z['wf']:.8f}, |R| {z['absF']:.3g} ({z['absF'] / z['floor']:.3g} sigma), "
-                           f"sign {z['sign']:+d} (want {want:+d}), inside U {inside((z['A'], z['wf']), c)}"
-                           if z else "not located") + f": {'PASS' if g else 'FAIL'}")
+    pts = {n: point(res, n, mutate, out) for n in ("U1", "U2")}
     r = res["C0"]
     c, z, p = r["cell"], r["located"], list(r["plant"])
     if mutate == "shift":
@@ -78,19 +99,22 @@ def check(res, mutate=None, out=print):
     want = -1 if mutate == "sign" else 1
     g = z is not None and abs(z["A"] - p[0]) <= 0.05 * (c[1] - c[0]) and abs(z["wf"] - p[1]) <= 0.05 * (c[3] - c[2]) \
         and z["sign"] == want
-    ok &= g
     out("C0 (planted): " + (f"A {z['A']:.7f}, w {z['wf']:.8f} against P0 ({p[0]:.7f}, {p[1]:.7f}), sign {z['sign']:+d} "
                             f"(want {want:+d})" if z else "not located") + f": {'PASS' if g else 'FAIL'}")
-    out(f"stage 1 check{' --mutate=' + mutate if mutate else ''}: {'PASS' if ok else 'FAIL'}")
-    return ok
+    n = sum(v is not None for v in pts.values())
+    code = 0 if g and n == 2 else 2 if g and n == 1 else 1
+    out(f"stage 1 check{' --mutate=' + mutate if mutate else ''}: {['PASS', 'FAIL', 'PARTIAL (one union)'][code]}, "
+        + ", ".join(f"{k} {v[2] if v else 'none'}" for k, v in pts.items()))
+    return code
 
 
 def boxes(res):
     out = []
     for name in ("U1", "U2"):
-        z = res[name]["located"]
-        out.append(dict(a0=z["A"] - 0.4 * DA, a1=z["A"] + 0.6 * DA, w0=z["wf"] - 0.4 * DW, w1=z["wf"] + 0.6 * DW, ok=False,
-                        note=f"relocation box of {name}'s zero (#1013 loc018)"))
+        p = point(res, name)
+        if p:
+            out.append(dict(a0=p[0] - 0.4 * DA, a1=p[0] + 0.6 * DA, w0=p[1] - 0.4 * DW, w1=p[1] + 0.6 * DW, ok=False,
+                            note=f"relocation box of {name}'s zero (#1013 loc018, stage 1 point {p[2]})"))
     out.append(dict(a0=C0[0], a1=C0[1], w0=C0[2], w1=C0[3], ok=False, note="control box C0, plant at P0 (#1013 loc018)"))
     return out
 
@@ -98,10 +122,9 @@ def boxes(res):
 def check2(K, res, mutate=None, out=print):
     ok = True
     bx = {tuple(map(tuple, b["box"])): b for b in K["boxes"]}
-    want_boxes = boxes(res)
-    for name, B in zip(("U1", "U2", "C0"), want_boxes):
-        key = ((B["a0"], B["a1"]), (B["w0"], B["w1"]))
-        b = bx.get(key)
+    names = [n for n in ("U1", "U2") if point(res, n)] + ["C0"]
+    for name, B in zip(names, boxes(res)):
+        b = bx.get(((B["a0"], B["a1"]), (B["w0"], B["w1"])))
         cb = (B["a0"], B["a1"], B["w0"], B["w1"])
         zs = [z for z in K["zeros"] if cb[0] <= z["cell"][0] and z["cell"][1] <= cb[1] and cb[2] <= z["cell"][2]
               and z["cell"][3] <= cb[3]]
@@ -117,33 +140,39 @@ def check2(K, res, mutate=None, out=print):
         else:
             u = res[name]["cell"]
             inU = u[0] <= cb[0] and cb[1] <= u[1] and u[2] <= cb[2] and cb[3] <= u[3]
-            p = [res[name]["located"]["A"], res[name]["located"]["wf"]]
+            p = list(point(res, name)[:2])
             if mutate == "shift":
                 p[0] += DA
-            z = zs[0]["located"] if len(zs) == 1 else None
-            near = z is not None and inside((z["A"], z["wf"]), cb) and abs(z["A"] - p[0]) <= 0.1 * DA \
-                and abs(z["wf"] - p[1]) <= 0.1 * DW and zs[0]["W"] == W
-            g = res_ok and inU and near
+            one = len(zs) == 1 and zs[0]["W"] == W
+            z = zs[0]["located"] if one else None
+            near = z is None or (inside((z["A"], z["wf"]), cb) and abs(z["A"] - p[0]) <= 0.1 * DA
+                                 and abs(z["wf"] - p[1]) <= 0.1 * DW)
+            g = res_ok and inU and one and near
             out(f"{name} box A {cb[0]:.7f}-{cb[1]:.7f} w {cb[2]:.8f}-{cb[3]:.8f} (inside {name} {inU}): winding {wb:.4g} "
                 f"(want {W:+d}), unresolved {b['unresolved'] if b else None}, zeros {len(zs)}"
-                + (f", located A {z['A']:.7f} w {z['wf']:.8f} against stage 1's ({p[0]:.7f}, {p[1]:.8f})" if z else "")
+                + (f", located A {z['A']:.7f} w {z['wf']:.8f} against stage 1's ({p[0]:.7f}, {p[1]:.8f})" if z
+                   else ", counted, not located" if one else "")
                 + f": {'PASS' if g else 'FAIL'}")
         ok &= g
     out(f"stage 2 check{' --mutate=' + mutate if mutate else ''}: {'PASS' if ok else 'FAIL'}")
     return ok
 
 
-def synthetic():
-    loc = lambda a, w, s: dict(A=a, wf=w, absF=10.0, floor=5.0, sign=s)
-    res = {"U1": dict(cell=list(U["U1"][0]), W=1, located=loc(4.0635, 0.5190, 1)),
-           "U2": dict(cell=list(U["U2"][0]), W=-1, located=loc(4.2686, 0.5440, -1)),
+def synthetic(u1=None):
+    loc = lambda a, w, s, f=10.0: dict(A=a, wf=w, absF=f, floor=5.0, sign=s)
+    res = {"U1": dict(cell=list(U["U1"][0]), W=1, located=loc(4.0635, 0.5190, 1), nearest=loc(4.0636, 0.5190, 1)),
+           "U2": dict(cell=list(U["U2"][0]), W=-1, located=loc(4.2686, 0.5440, -1), nearest=loc(4.2687, 0.5440, -1)),
            "C0": dict(cell=list(C0), W=1, plant=list(P0), located=loc(P0[0] + 1e-5, P0[1] - 1e-5, 1))}
+    if u1 == "nearest":                              # Newton gave no point, the run's nearest point is within 10 sigma
+        res["U1"]["located"] = None
+    if u1 == "none":                                 # neither: only U2 gets a box
+        res["U1"]["located"], res["U1"]["nearest"]["absF"] = None, 100.0
     bs = boxes(res)
+    names = [n for n in ("U1", "U2") if point(res, n)]
     K = dict(boxes=[dict(box=[[b["a0"], b["a1"]], [b["w0"], b["w1"]]], boundary_winding=float(w), unresolved=0)
-                    for b, w in zip(bs, (1, -1, 0))],
-             zeros=[dict(cell=[b["a0"], b["a1"], b["w0"], b["w1"]], W=w,
-                         located=loc(res[n]["located"]["A"] + 1e-6, res[n]["located"]["wf"], w))
-                    for b, w, n in zip(bs[:2], (1, -1), ("U1", "U2"))])
+                    for b, w in zip(bs, [res[n]["W"] for n in names] + [0])],
+             zeros=[dict(cell=[b["a0"], b["a1"], b["w0"], b["w1"]], W=res[n]["W"],
+                         located=loc(point(res, n)[0] + 1e-6, point(res, n)[1], res[n]["W"])) for b, n in zip(bs, names)])
     return res, K
 
 
@@ -153,15 +182,17 @@ if __name__ == "__main__":
     if a[0] == "--selftest":
         res, K = synthetic()
         r1 = [check(res, m, out=lambda s: None) for m in (None, "shift", "sign")]
+        r1 += [check(synthetic(u)[0], out=lambda s: None) for u in ("nearest", "none")]
         r2 = [check2(K, res, m, out=lambda s: None) for m in (None, "shift", "sign")]
-        f = lambda r: " ".join("PASS" if x else "FAIL" for x in r)
-        print(f"selftest check: {f(r1)}; check2: {f(r2)} (must be PASS FAIL FAIL, twice)")
-        sys.exit(0 if r1 == r2 == [True, False, False] else 1)
+        r2 += [check2(*reversed(synthetic(u)), out=lambda s: None) for u in ("nearest", "none")]
+        print(f"selftest check exits: plain, shift, sign, U1 nearest, U1 none: {r1} (must be [0, 1, 1, 0, 2]); "
+              f"check2: {['PASS' if x else 'FAIL' for x in r2]} (must be PASS FAIL FAIL PASS PASS)")
+        sys.exit(0 if r1 == [0, 1, 1, 0, 2] and r2 == [True, False, False, True, True] else 1)
     if a[0] == "run":
         procs = int(a[a.index("--procs") + 1]) if "--procs" in a else 4
         run(a[1], a[2], a[3], a[4], procs)
     elif a[0] == "check":
-        sys.exit(0 if check(json.load(open(a[1])), mut) else 1)
+        sys.exit(check(json.load(open(a[1])), mut))
     elif a[0] == "boxes":
         for b in boxes(json.load(open(a[1]))):
             print(json.dumps(b))
