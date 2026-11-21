@@ -120,7 +120,14 @@ Written before the run (criteria in `d18/d18_criteria.log`, 2026-11-21 03:31:59 
   one of the pair. (b) D 18.25 on the leap's state, **lambda 1.55 to 1.95 at 0.01 (41 points)**: places the roots halfway. Both report
   where ln|det| has a local minimum without a sign change.
 - reader `d18/d18c_read.py` (blob 1383470f): 6 planted cases PASS, `--mutate=nominima` FAILS (`d18/d18c_read_selftest.log`); on (A) alone it reads (a2) and on the D 18.5 scan it finds one change, as before.
+- (a) (10:36-11:21 UTC), information: no sign change below 1.70 at D 18, every point noise-robust; with (A), two robust changes over
+  1.55-1.90, in (1.77, 1.78) and (1.80, 1.81), and no ln|det| minimum without a sign change: reading (a2) (`d18/d18_scanlow.log`,
+  `d18/d18_scanlow_1025.jsonl`, `d18/d18c_a_read.log`).
 - 2026-11-21 11:24:43 UTC, (d), queued after (b), **windows written before it runs**: D 18.5 over **lambda 1.90 to 2.10 at 0.01 (21 points)**, then D 18
   over **1.90 to 2.10 at 0.01 (21 points)** (`d18/lane_d18d.sh`). Reading: a robust change above 1.90 at D 18.5 is where D 18's
   plus-to-minus root went; none up to 2.10 means it is not in that range. Every root is reported with its orientation (d18_criteria.log).
 - reader `d18/d18d_read.py` (blob 6b608903): 3 planted cases PASS, `--mutate=orient` FAILS (`d18/d18d_read_selftest.log`).
+- (b) (11:21-13:23 UTC), information: D 18.25 has ONE robust sign change over 1.55-1.95, in (1.74, 1.75), minus to plus,
+  estimator range [1.742506, 1.742860]; every point noise-robust; no ln|det| minimum without a sign change (`d18/d1825_scan.log`,
+  `d18/d1825_scan_1025.jsonl`, `d18/d1825_scan_read.log`). Not two close roots and not none, so the coordinator rules. The sign at
+  1.90 is minus at D 18 and plus at D 18.25 and 18.5. Slopes and rates: `d18/d1825_post_numbers.py`, `d18/d1825_post_numbers.log`.
