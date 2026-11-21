@@ -1,0 +1,15 @@
+# 2026-11-21 04:31:08 UTC cmd: python3 -u anm_run.py /home/nathan/scratch1060/raw /home/nathan/Source/choptuik-large-d-raw/I1060-dh170/step17_s1_nobp --state I966-dh370/ks_chain3b/leg10_D256.1776_ks293/anm_pin3_D260.6706.npz --kfreeze 3 --held_fit data/held_fit.json --N 31 --eps 1e-14 --h_max 2 --threads 10 --corrector od --tol_od 2e-34 --qd_it 40 --lam_stall 0.04 --od_junk 0 --jet_o 1 --reseed 2 --reseed_q 1 --held_o 1 --reseed_o 3 --save_pred 1 --od_accept natural --save_jet 1 --od_strong 4 --reseed_start pred --a_rule reseed --a_scale 0.00715 --jet_tangent_from 1 --series_split 1 --a_rise 1 --proj_start pred --reseed_o_stop 1 --od_floor_delta 1e-30 --proj_o 1 --reseed_qd_bar 1e-13 --steps 1 --ks 293 --keep_plan 0 --D_max 300 --base_polish 0
+horizon series to order 293 instead of the state's 293
+held values from the fit data/held_fit.json (degree 8, 138 full-system states, D 38.020417-73.0), relative to the base
+base polish skipped (--base_polish 0): the stored state is the base
+base I966-dh370/ks_chain3b/leg10_D256.1776_ks293/anm_pin3_D260.6706.npz: D 260.670609475, M 32, pin 3 (held [5, 7, 9, 11, 13]), |F| 6.3e+30; N 31, eps 1e-14, h_max 2.0, corrector od (junk_only False), tol 1.0e-20 x 1.45^(D - 260.67061), stalls accepted below 1e-17
+step 0: the series saved as /home/nathan/Source/choptuik-large-d-raw/I1060-dh170/step17_s1_nobp/jet_pin3_D260.6706.npz (8 parts, 571 s)
+step 0: D 260.670609475, pivots 1.5e-19..9.2e+50, |z_1| 3.24e-04, |z_N| 3.67e-14, ratios 2-5 339.4 4.6 1.9 2.5, a_max 0.733, 571 s
+  a_rule reseed: a_h tail e_N+1 2.53e-18 (ratio 1.65), level 0.00715 of the pole line 3.48e-40: a 0.1777
+    a 0.1777: re-seeded (ok), 365.6 s
+      horizon data refined in octo-double, rung max|R| 2.26e-12 -> 7.18e-25 -> 7.13e-25 -> 5.30e-27 -> 5.22e-29 -> 3.55e-27
+    on 0 chord 0: max|F| 1.63e-22, |dw| 9.676e-36
+    on 0 chord 1: max|F| 1.09e-21, |dw| 1.586e-35
+    on 0 chord 2: max|F| 1.47e-11, |dw| 4.546e-31
+  on 0: strong chord (4 weak directions), 3 steps after the full first step; theta at its point inf (bound 0.750): refused, 970.34 s
+    on 0 trial lam 1: max|F| 1.63e-22; simplified correction / |dz| = 1.126e-06 (bound 0.750); accepted, 335.36 s
