@@ -1,0 +1,11 @@
+1060 start 2026-11-21 01:56:08 UTC
+1060 comparator controls c=0 2026-11-21 01:56:10 UTC
+1060 step17_s0 root pid 21116, cap 10800 s, want exit 0 2026-11-21 01:56:11 UTC
+1060 STOPPED BY THE COORDINATOR'S ORDER (hc 2026-11-21 about 01:57 UTC: "Leg 10 runs --series_split 1, so the A/B is 1 against 2. Stop the S = 0 run now by its exact pid ... and run S = 1, then S = 2, with nothing else changed"): the S = 0 run (started 01:56:11 UTC, about 1.5 min in, no accepted state) was killed by exact pid with taskkill /T /F: the driver bash 5152 first (so no later run starts), its children 11760 and 32120, the python 21116 and its child 7844. Nothing else touched. Its partial output and log are in stopped_s0/.
+1060 start 2026-11-21 01:58:19 UTC
+1060 comparator controls c=0 2026-11-21 01:58:22 UTC
+1060 step17_s1 root pid 35560, cap 10800 s, want exit 0 2026-11-21 01:58:22 UTC
+1060 step17_s1 exit 0 (want 0) wall 622 s capped 0 OK 2026-11-21 02:08:44 UTC
+1060 step17_s2 root pid 27516, cap 10800 s, want exit 0 2026-11-21 02:08:45 UTC
+1060 step17_s2 exit 0 (want 0) wall 703 s capped 0 OK 2026-11-21 02:20:27 UTC
+1060 done 2026-11-21 02:20:29 UTC
