@@ -94,4 +94,19 @@ Reading (the coordinator's): all failing means the raise waits for a state past 
 ## Two pairs (coordinator, 09:5x UTC 21 Nov): ks 294 from D 261.6229 and D 261.0721, then ks 315 from leg 10's D 260.0073 and D 259.4568
 
 Each state: its own ks 293 control first, then the K rung, as one `run1064c.sh` instance per state (units `i1064f`, `i1064g` for pair 1 from 09:57:59 UTC; `i1064h`, `i1064i` for pair 2, started when pair 1's units have ended), folders `k294_D261.6229/`, `k294_D261.0721/`, `k315_D260.0073/`, `k315_D259.4568/`. States (all under `I966-dh370/ks_chain3b/` in the raw repository, blobs checked on extraction): `leg14_D261.1415_ks293/anm_pin3_D261.6229.npz` e0737904cb19, `leg13_D260.8483_ks293/anm_pin3_D261.0721.npz` bd2c69a4d3fd, `leg10_D256.1776_ks293/anm_pin3_D260.0073.npz` 7d45e68357a3, `anm_pin3_D259.4568.npz` 7e2452f7d7f4. Same flags (leg 13's line), gate and 7200 s caps; `table1064.py` gets a column for each rung's start max|F| at order K (the log's step 0 `|F|`).
-Readings (the coordinator's): a converging ks 294 means a ladder of +1 raises is open; a converging ks 315 before the crossing means the chain can rerun from that state at order 315; if nothing converges, the start |F| against D for all the states. Starter `start_1064_next.sh` is in the session scratchpad, not here; it only launches the four units.
+Readings (the coordinator's): a converging ks 294 means a ladder of +1 raises is open; a converging ks 315 before the crossing means the chain can rerun from that state at order 315; if nothing converges, the start |F| against D for all the states. `start_1064_next.sh` only launches the four units.
+
+## Result of pair 1: ks 294 from D 261.6229 and from D 261.0721 (units `i1064f` and `i1064g`, from 09:57:59 UTC, 21 Nov)
+
+Folders `k294_D261.6229/` and `k294_D261.0721/` (`table_1064c.md`, `exits_1064c.txt`, `summary_1064c.txt`, `ks293.log`, `ks294.log`, `gate_ks<K>.txt`). No memory alert (`memlog_i1064f.log`, `memlog_i1064g.log`). Both ks 293 controls converged (120 s each, max|F| 2.0e-36 and 1.5e-36), the control's base against its stored state has Delta difference 0.0 (xcheck 0). Both ks 294 runs stopped themselves, neither at the cap.
+
+| state | start max\|F\| at order 294 | own wall | end |
+|---|---|---|---|
+| D 261.6229 (leg 14) | 2.25e-09 | 4021 s | step 0: strong chord refused (512 s), trial lam 1 refused, then 2.25e-09 -> 1.58e-08 at lam 0.5 (1062 s); step 1: nine trials lam 1 to 0.0039 refused, `no trial step accepted, stopping` at 1.6e-08; not converged, base not saved |
+| D 261.0721 (leg 13) | 1.33e-11 | 5881 s | step 0: strong chord refused (549 s), 1.33e-11 -> 4.07e-12 (1614 s); step 1 -> 1.25e-09 (1446 s); step 2 -> 1.15e-09 (1189 s); step 3 -> 6.79e-10 (1270 s), `lam at or below 0.04 twice in a row, stopping (stalled)`; not converged, base not saved |
+
+Reading (the coordinator's): a converging ks 294 means a ladder of +1 raises is open. Neither converged, so it is not open from either state with the old-order base.
+
+## Pair 2 moved to win2 (coordinator, 11:3x UTC 21 Nov)
+
+The coordinator moved ks 315 from D 260.0073 and D 259.4568 to win2. I stopped `start_1064_next.sh` by its exact pid (1024638) at 11:31:02 UTC, while `i1064g` was still running (the units are in systemd's app.slice, not children of the starter; `i1064g` ran on and ended at 11:38:00 UTC). Units `i1064h` and `i1064i` never started and there are no `k315_*` folders here. The two states were extracted from raw origin/main (blobs 7d45e683 and 7e2452f7) and are not used by me.
