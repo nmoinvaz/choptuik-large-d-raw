@@ -564,3 +564,14 @@ ks 291, given as both K 307 and K 395; a tool test, not a reading; `locate966_dr
 
 If the ks 307 and ks 395 jets look like this one, (c′) reads only these poles at |s| 8.4 to 9.0 and gives no reading for
 P2, P1 or the real pole.
+
+**Dry runs for the moved order arm** (amendment 2, #1064 comment 7066694656; tool runs, not readings):
+
+| base (dh370's jet, ks 293) | root test | stable poles kept (limit 4) | P2 / P1 / real 265.078 (distance) |
+|---|---|---|---|
+| leg10 D 256.1776 (raw 448fdb5f) | 3.1433 | 258.3605 ± 2.2688i (n 9), 258.3536 ± 2.2962i (n 3), 254.6766 ± 3.5009i (n 7) | P2 seen (3.15); P1 (5.98) and the real pole (8.90) not seen |
+| leg02 D 250.7060 (raw 02063e60) | 4.7038 | 250.9407 ± 4.7832i (n 9), 254.6766 ± 3.5008i (n 7), 247.0562 ± 6.2843i (n 5) | none seen (7.98, 11.42, 14.37) |
+
+At both bases fewer than four poles are kept, so the limit hides nothing: P1 and the real pole are not stable poles
+there. From 256.1776 an order arm can read P2 and the pair 254.68 ± 3.50i. From 250.7060 it can read neither P2 nor
+anything of the front. The pair 254.6766 ± 3.5009i is at the same place, to 1e-4, from both bases.
