@@ -157,3 +157,11 @@ Files: `run1064e.sh` (a braced block; runs `ks293`, `ks315own`, `ks315nat`; summ
 Dry runs (`dry_1064e.sh`, 14:47 to 14:54 UTC, `dry_e1/`, `dry_e2/`, both passed `check_dry1064e.py`):
 - `dry_e1` (pass path, 300 s cap): the control converged in 1 step at max|F| 3.9e-36 with no projection (`elim projections ... 'skipped': 1`), own wall 90 s; Delta against the stored state 0.0, against the re-seeded control (`rb_D262.0099/ks293`) -1.01579e-19 (xcheck 0 both). `ks315own` and `ks315nat` started at 14:48:58 with `--elim_switch 1e-9`, `--od_accept own` and `natural`, no `--reseed_base`, and were TERMed by their exact pids at 300 s (exit 143); neither had printed an `on` line by then.
 - `dry_e2` (control killed at the 45 s cap): "control failed: rungs not started", no rung.
+
+## The largest order a polish reaches at D 237.7132 (coordinator follow-on, 21 Nov; main 276aa1cd)
+
+Order: from `I973-dh610/ks307_r2/base_pin3_D237.7132.npz` (blob 5b10a9fd, ks 307, the #973 polish from the ks 291 state), leg 13's line with `--steps 0 --keep_plan 0 --save_base 1 --ks K` (no `--reseed_base`, no `--elim_switch`): the control ks 307 first, then K = 331 and 347 side by side, 7200 s caps by exact pid, the gate of `run1064d.sh`. Reading (the coordinator's): the largest converging K is the order for a new chain from D 237.7; report the od lines and Delta(K) - Delta(307). Plan comment 7065209051.
+
+Files: `run1064f.sh` (runs `ks307`, `ks331`, `ks347` into `ho_D237.7132/`; summary and `table_1064f.md` via `table1064f.py`), `table1064f.py` (`--selftest` 9 cases including the #973 `ks307_r2.log`, `--break` exits 1), `check_dry1064f.py` (13 planted cases, `--break` exits 1), `dry_1064f.sh`, `start_1064_ho.sh` (unit `i1064n`, memory log `memlog_i1064n.log`), `chain_1064f.sh` (waits for unit `i1064m`, runs the dry tests, starts `i1064n` only when both pass).
+
+The projection-switch run (unit `i1064m`, `sw_D262.0099/`, started 14:54:52 UTC) is still running at the time of this commit; its results come in their own section.
