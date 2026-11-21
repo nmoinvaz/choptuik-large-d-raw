@@ -78,7 +78,7 @@ Estimate: not known at k_c 55. At k_c 63 a point took 425 to 530 s with two proc
 - 2026-11-21 21:35 UTC (3 h progress post, comment 7069589234): 66 of 86 distinct points done (A 33 evaluations, B 34), 274 to 429 s a point (mean 308 s), no point fails its noise test. Interim signs, not read: minus at 1.55 to 1.86 (no change, which covers the whole band of the k_c 63 root 1.6772), plus at 1.97 to 2.21, minus at 2.22 to 2.30 (a robust plus-to-minus change in (2.21, 2.22)); A still has 1.87 to 1.96 and B 2.31 to 2.40. The formal reading is made on the merged scan after the repeat check.
 - 2026-11-21 18:41:25 to 22:23:49 UTC: A ended 22:19:05 (exit 0, 13060 s) and B 22:23:47 (exit 0, 13342 s), neither capped; 262 to 429 s a point (mean 303 s). The sampler (`samples.csv`) was ended by its exact pid at 22:23:48. Merge, reading and comparison by the driver at 22:23:49 (`merge.log`, `reading.log`, `compare.log`).
 
-## Result (22:30 UTC)
+## Result (22:25 UTC, by `date -u`)
 
 **Repeat check (lambda 1.97, first in both halves): PASS.** Hybrid sign +1 in A and B; ln|det| -1597.118812893949 in both, difference 0.000e+00 (bar 1e-6); noise robust in both; float64 sign +1 in both; 288 s and 291 s. The merged 86-point scan was written (`scan_merged.jsonl`).
 
