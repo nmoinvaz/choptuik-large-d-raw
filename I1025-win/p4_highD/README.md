@@ -192,7 +192,7 @@ CPU and memory of the dd pythons (7 then 4 to 9 threads, BelowNormal, samples; b
 
 Row A (D 17.5): hybrid root 1.9272222575778963; checks 1 to 5 and the amended edge rule PASS; its dd sign check is win2's and is pending. Row B (D 17.75): hybrid root 1.8676854883516376; all checks PASS including the dd sign check. D 18 and D 18.5 are xfkappa's on the Mac and were not run here.
 
-## D 18.5 root (the coordinator's order, hc about 10:35 UTC by my clock; written before the run, 2026-11-21 10:43 UTC)
+## D 18.5 root (the coordinator's order, hc about 10:35 UTC by my clock; written before the run, 2026-11-21 10:42 UTC; the first push, fe704bd5, read 10:43 by a mistyped stamp of mine)
 
 Order: the root at D 18.5. xfkappa's scan there (#1025 comment 7061322463, raw `I1025-mac/d18/`, 36 points at step 0.01 over 1.55 to 1.90 on the leap's D 18.5 state) finds one robust change in (1.67, 1.68), estimator range 1.677016 to 1.677225, usual orientation (minus below, plus above; information, not a bar). Bisect it with `p4_hybrid.py` on xfkappa's leap state with guess 1.6771, so the w 0.02 grid holds only this root. Same rules: system check, P4 rules, the outer-edge rule, and a bracket check that the root lies in (1.67, 1.68). Then the dd M check at root -/+ 0.02 by `ell_ddm.py`, two processes, 6 h caps, with the Amendment 3 reader. Guess, window and readings written here before the run. Post on #1025 with cpu and memory.
 
@@ -227,5 +227,5 @@ dd check, only if the hybrid's checks all pass (otherwise the driver stops, repo
 
 Run: `d185_driver_1025.py` (launcher `start_d185_1025.cmd`, BelowNormal, log `d185_w.log`; output `ell_p4_hybrid_1025_w_highD_d185.jsonl`, `rows/D18.5.log`, `rows/dd185_{lo,hi}.log`, `rows/dd185_reading.log`). A sampler thread writes every 60 s each child's cpu seconds, working set, private bytes and their peaks, and the laptop's free memory, cpu load and commit, to `rows/d185_samples.csv`, so the end-of-run peaks are logged this time. Estimate: hybrid about 11 evaluations at 13 to 14 min (about 2.5 h), dd about 1.8 h in parallel; no RESUME.
 
-Status: not started (10:43 UTC).
+Status: not started (10:42 UTC).
 
