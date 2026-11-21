@@ -11,3 +11,7 @@ This folder holds the dd-M work only; each subfolder has its own README.md (firs
 | `d17p5/` | `ell_ddm.py det` at D 17.5, k_c 63 (winb's state `sol_l1kc63Fw1025_D17.5000.npy`) at lambda 1.9072222575778963 and 1.9472222575778963 around winb's hybrid root 1.9272222575778963. The two points; pushed whole after they ended |
 
 Other win2 folders of this issue: `I1025-win2b/` (win2b's k_c 55 re-solves), `I1025-win2c/` (k_c 63 lambda_1 at D 15 and 15.5 with signtests), `I1025-win2d/` (the venv with multidouble 5.1.0 and its planted dd_logdet check).
+
+## d18mid (2026-11-21)
+
+[d18mid/](d18mid/README.md): xfkappa's hybrid sign scan at D 18.1875 (k_c 63), lambda 1.70 to 1.95 at 0.01, two processes; README first, readings fixed before the run.
