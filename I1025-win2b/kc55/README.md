@@ -167,3 +167,23 @@ Estimate: Part 1 took 262 to 429 s a point (mean 303 s) with two processes runni
 ## Log (Part 2)
 
 (appended below as the run goes)
+- 2026-11-21 22:31:22 UTC: both scan processes started (A root pid 32696, B root pid 34144; the driver's pre-checks, including the 28 planted controls, passed at 22:31:21). **System check, first line of each log: "the record system" on both**: |F| 2.6646072378e-10 against the record's 2.6618688407e-10 (0.10%), steps 2149 against 2149.
+- 2026-11-21 22:31:22 to 23:21:40 UTC: B ended 23:21:31 (exit 0, 3009 s) and A 23:21:40 (exit 0, 3018 s), neither capped; 264 to 282 s a point (mean 273 s). The sampler (`fine_samples.csv`) was ended by its exact pid at 23:21:41. Merge and reading by the driver at 23:21:44 (`fine_merge.log`, `fine_reading.log`).
+
+## Result (Part 2, 23:23 UTC by `date -u`)
+
+**Repeat check (lambda 1.680, first in both halves): PASS.** Hybrid sign -1 in A and B; ln|det| -1605.631560677098 in both, difference 0.000e+00 (bar 1e-6); noise robust in both; float64 sign -1 in both; 280 s and 280 s. **Comparison with the 0.01 scan (information): AGREES at all five shared points** (1.660, 1.670, 1.680, 1.690, 1.700: sign minus, ln|det| equal to the last digit). The merged 21-point scan was written (`fine_scan_merged.jsonl`).
+
+**Reading (`read_fine.py`, as fixed before the run):**
+
+- every point is noise robust, and the hybrid sign is minus at all 21 points: **no change** (the endpoint signs, minus at 1.660 and at 1.700, are consistent with the 0.01 scan);
+- one ln|det| local minimum, **at 1.684 (ln -1605.721024), interior and WITHOUT a change**, below its neighbours by 0.0225 (1.682) and 0.0258 (1.686): **resolved**;
+- **FINE READING: NEAR MISS.** No robust change and a resolved minimum: k_c 55 has no root there, by the coordinator's reading;
+- the float64 sign equals the hybrid's at all 21 points (information);
+- no pair: no two changes, so no positions or gap to report.
+
+The ln|det| over the window falls from -1604.3106 at 1.660 to -1605.7210 at 1.684 and rises to -1604.7270 at 1.700; the differences between consecutive points run smoothly from -0.1211 to -0.1460 (at 1.670 to 1.672), through -0.0225 and +0.0258 at the minimum, to +0.1661 (at 1.696 to 1.698), with no jump. The 0.01 scan's minimum at 1.68 (ln -1605.632) was a grid point beside the true minimum, 1.684.
+
+**Information, beside the reading, not part of it** (`fine_dip_fit.py`, `fine_dip_fit.log`; a model fit, not a root search; the script first recovers two planted truths): the 21 ln|det| values are fitted to a + ln((l - l0)^2 + e^2) + b (l - l0) + c (l - l0)^2 (a pair of complex roots l0 +- i e times a smooth factor) with l0 = 1.68434 and e = 0.01275, max residual 2.3e-4, rms 1.0e-4, while a quartic polynomial leaves 3.9e-2 and a quadratic 0.21. Within that model the roots are off the real axis by 0.0128, and l0 is 0.0071 above the k_c 63 root 1.6772091. A step of 0.002 cannot exclude two real roots closer together than 0.002; the smooth, shallow minimum shows no sign of one.
+
+**cpu and memory (`fine_samples.csv`, a sample every 60 s, 50 samples 22:31:22 to 23:21:29 UTC; my processes only).** The two python children (pids 26000 and 34952; the roots are launcher stubs): peak working set 0.69 and 0.70 GiB, private 1.11 and 1.27 GiB; 4235 and 4233 cpu-s in about 3010 s; BelowNormal throughout; together at most 1.19 GiB working set and 2.37 GiB private in one sample. Machine: cpu mean 31.1% (1 s samples), max 46.3%; commit 50.3 to 54.0 of 101.5 GiB; free physical at least 49.4 GiB.

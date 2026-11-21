@@ -174,3 +174,17 @@
 1025 kc55 result: repeat check PASS; k_c 55 robust changes (1.87,1.88) minus-to-plus and (2.21,2.22) plus-to-minus, both k_c 55 ONLY against k_c 63's only root 1.6772 (k_c 63 coverage widened to 2.40 by xfkappa's scan, read from raw); 1.6772 is k_c 63 ONLY; ln|det| minimum WITHOUT a change at 1.68 at k_c 55 (near the k_c 63 root); no k_c-stable root; scans 13060 s and 13342 s, no cap 2026-11-21 22:25:58 UTC
 1025 kc55 result posted on #1025 comment 7070186508, raw 4a388f97; nothing runs, nothing queued 2026-11-21 22:26:56 UTC
 1025 kc55fine README Part 2 (window 1.660-1.700 at 0.002, lists, reading, repeat check, controls), scripts written, pushing before the run 2026-11-21 22:30:54 UTC
+1025 kc55fine driver started, pre-checks 2026-11-21 22:31:10 UTC
+1025 kc55fine pre-checks ok: pins, worktree 505d8399, record line, planted controls pass 2026-11-21 22:31:21 UTC
+1025 kc55fine lambda lists: A 1.680,1.660,1.662,1.664,1.666,1.668,1.670,1.672,1.674,1.676,1.678 ; B 1.680,1.682,1.684,1.686,1.688,1.690,1.692,1.694,1.696,1.698,1.700 2026-11-21 22:31:21 UTC
+1025 kc55fine sampler pid 38228 (every 60 s, fine_samples.csv) 2026-11-21 22:31:22 UTC
+1025 kc55fine scanA root pid 32696, cap 28800 s, want exit 0 2026-11-21 22:31:22 UTC
+1025 kc55fine scanB root pid 34144, cap 28800 s, want exit 0 2026-11-21 22:31:22 UTC
+1025 kc55fine both scans running since 22:31:22 UTC; the system check passes on both (|F| 2.6646072378e-10 against the record's 2.6618688407e-10, steps 2149 against 2149) 2026-11-21 22:32:25 UTC
+1025 kc55fine scanB exit 0 (want 0) wall 3009 s capped 0 OK 2026-11-21 23:21:31 UTC
+1025 kc55fine scanA exit 0 (want 0) wall 3018 s capped 0 OK 2026-11-21 23:21:40 UTC
+1025 kc55fine sampler pid 38228 ended 2026-11-21 23:21:41 UTC
+1025 kc55fine merge: PASS ; prior scan: AGREES (info AGREES (info AGREES (info AGREES (info AGREES (info  ; merged 21 points (1.660 to 1.700) into D:/choptuik-large-d-raw/I1025-win2b/kc55/fine_scan_merged.jso 2026-11-21 23:21:44 UTC
+1025 kc55fine reading: no change of the hybrid sign over the window|ln|det| local minimum at 1.684 (ln -1605.721024): WITHOUT a change (below the left neighbour by 0.0225, the right by 0.0258)|endpoint signs: - at 1.660, - at 1.700 (the 0.01 scan: -, -) -> consistent|FINE READING: NEAR MISS. No robust change; the ln|det| minimum is resolved: an interior local minimum WITHOUT a change at 1.684 (ln -1605.721024, below its neighbours by | 2026-11-21 23:21:44 UTC
+1025 kc55fine done 2026-11-21 23:21:45 UTC
+1025 kc55fine result: repeat check PASS (1.680, equal ln|det|, 5 shared points agree with the 0.01 scan); no change in 1.660-1.700, interior ln|det| minimum at 1.684 WITHOUT a change (resolved): NEAR MISS, no k_c 55 root; model fit l0 1.68434 +- 0.01275 i (information); scans 3009 s and 3018 s, no cap 2026-11-21 23:23:14 UTC

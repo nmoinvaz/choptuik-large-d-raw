@@ -1,0 +1,29 @@
+plant merge, repeat equal: wanted 'merged 21 points (1.660 to 1.700)', not '-> FAIL' -> ok
+plant merge, the prior scan: 1.680 agrees (the planted ln is the same): wanted 'PRIOR SCAN at lambda 1.680 (the 0.01 scan, D 18.5): sign -1 against -1; ln|det| -1605.0 against -1605.0, difference 0.000e+00 (bar 1e-6) -> AGREES' -> ok
+plant merge, the prior scan: 1.660 differs (planted ln -1604.311 against the V's -1605.0+16=-1589): wanted 'PRIOR SCAN at lambda 1.660 (the 0.01 scan, D 18.5): sign -1 against -1;', not 'no merged' -> ok
+plant merge, a prior value that differs is DIFFERS: wanted '-> DIFFERS (information, not a gate)' -> ok
+plant merge, repeat ln|det| differs by 1e-3: wanted '-> FAIL', not 'merged 21' -> ok
+plant merge, repeat sign differs: wanted '-> FAIL', not 'merged 21' -> ok
+plant merge, no repeated point: wanted 'no repeated point in both files -> FAIL', not 'merged 21' -> ok
+plant merge, lambda 1.700 missing: wanted 'missing lambda: [1.7]', not 'merged 21' -> ok
+plant merge, records at another D: wanted 'records at a D other than 18.5', not 'merged 21' -> ok
+plant merge, a second point in both files: wanted 'are [1.68, 1.682], not [1.68] -> FAIL', not 'merged 21' -> ok
+plant merge, no merged file written when a check fails: wanted 'False' -> ok
+plant reader, a planted pair: the first change: wanted 'change in (1.674, 1.676): minus-to-plus, ROBUST' -> ok
+plant reader, a planted pair: the second change: wanted 'change in (1.682, 1.684): plus-to-minus, ROBUST' -> ok
+plant reader, a planted pair: positions and gap: wanted 'FINE READING: PAIR. Two robust changes inside the window: minus-to-plus in (1.674, 1.676) and plus-to-minus in (1.682, 1.684); gap between the brackets 0.006 to 0.010, centre to centre 0.0080' -> ok
+plant reader, a planted pair: the endpoints are consistent: wanted '-> consistent' -> ok
+plant reader, no change, a V minimum at 1.680: a near miss, resolved: wanted 'FINE READING: NEAR MISS. No robust change; the ln|det| minimum is resolved: an interior local minimum WITHOUT a change at 1.680' -> ok
+plant reader, no change: the minimum's depth is printed: wanted 'ln|det| local minimum at 1.680 (ln -1605.000000): WITHOUT a change (below the left neighbour by 1.6000, the right by 1.6000)' -> ok
+plant reader, no change, the minimum at the scan edge: not resolved: wanted 'FINE READING: NO CHANGE, MINIMUM NOT RESOLVED', not 'NEAR MISS' -> ok
+plant reader, one change only: OTHER, not covered: wanted 'FINE READING: OTHER. 1 robust change(s) inside the window; the fixed reading covers 0 and 2', not 'PAIR' -> ok
+plant reader, one change only: the endpoint signs are inconsistent with the 0.01 scan: wanted '-> INCONSISTENT' -> ok
+plant reader, four changes: OTHER: wanted 'FINE READING: OTHER. 4 robust change(s)', not 'PAIR' -> ok
+plant reader, a pair with a non-robust point: one change is not counted, so OTHER: wanted 'NOT ROBUST (a point fails its noise test)', not 'PAIR' -> ok
+plant reader, the non-robust change is noted: wanted '(1 non-robust change(s) not counted)' -> ok
+plant reader, a grid gap is flagged: wanted 'GRID GAPS' -> ok
+plant read_fine against the pinned reader on the k_c 55 D 18.5 scan: 2 change line(s) and 3 minimum line(s) the same -> ok
+plant read_fine against the pinned reader on the k_c 63 D 18.5 scan (merged, 1.55 to 2.40): 1 change line(s) and 2 minimum line(s) the same -> ok
+plant read_fine against the pinned reader on xfkappa's D 18 scan: 2 change line(s) and 2 minimum line(s) the same -> ok
+plant reader on the k_c 63 D 18.5 scan: xfkappa's det-linear estimate: wanted 'det-linear estimate 1.677016' -> ok
+plant_checks_fine passes (files in C:\Users\nathan\AppData\Local\Temp\kc55fine_plant_vgrfomp2)
