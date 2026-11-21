@@ -1,0 +1,47 @@
+I966-dh370/ks_chain3b/leg14_D261.1415_ks293/anm_pin3_D262.0099.npz: D 262.01, ks 310 (the state's 293), plan made again, M 32, kfreeze 3
+L = 769; octo-double LU 403 s, pivots 3.4e-20..1.4e+51
+sigma_1, sigma_2 from ||J^-T v||: 6.379795565e-21, 2.058596726e-20; a_1 = u_1.R -7.756691082e-35, a_2 = u_2.R -1.32324523e-34; v_1.v_2 -2.18e-68, u_1.u_2 2.19e-16
+t = 0: FAILED (diverged (|dw| > 1), 2 steps): |P R| 1.72e+12, |dw| 4.20e+19; g_1(0) = -4.67785e+6, g_2(0) = 1.31935e+6 (a_1 -7.75669e-35, a_2 -1.32325e-34); Delta 1.6830910901545984965
+  t = 0 step 1: |P R| 1.670e-30, |dw| 2.337e-20, passes 4
+  t = 0 step 2: |P R| 1.719e+12, |dw| 4.205e+19, passes 7
+strong chord step at t = 0: max|dw| 2.337e-20; sigma_1..8: 6.380e-21 2.059e-20 5.630e-15 7.237e-15 1.212e-12 1.619e-12 2.578e-12 4.715e-12
+u_k . R(z_0), k = 1..8: -7.757e-35 -1.323e-34 8.414e-34 7.479e-34 1.506e-34 1.891e-35 1.164e-35 -2.21e-35
+v_k . dw, k = 1..8: -1.268e-37 -2.611e-38 1.495e-19 1.034e-19 7.066e-32 -1.23e-31 5.597e-31 -6.244e-32
+| lambda | max abs R(z_0 - lambda x) | max abs R / lambda^2 | u_k.R, k = 1..8 |
+|---|---|---|---|
+| 1e-12 | 1.744e-12 | 1.744e+12 | -7.76e-35 -1.32e-34 8.41e-34 7.48e-34 1.51e-34 1.89e-35 1.16e-35 -2.21e-35 |
+| 1e-11 | 1.744e-10 | 1.744e+12 | -7.76e-35 -1.32e-34 8.41e-34 7.48e-34 1.51e-34 1.89e-35 1.16e-35 -2.21e-35 |
+| 1e-10 | 1.744e-08 | 1.744e+12 | -5.45e-34 -3.9e-37 8.97e-34 5.41e-34 1.47e-34 -4.28e-34 -4.78e-34 -5.07e-34 |
+| 1e-9 | 1.744e-06 | 1.744e+12 | -4.68e-30 1.32e-30 5.55e-31 -2.07e-30 -3.68e-32 -4.47e-30 -4.9e-30 -4.85e-30 |
+| 1e-8 | 1.744e-04 | 1.744e+12 | -4.68e-26 1.32e-26 5.54e-27 -2.07e-26 -3.69e-28 -4.47e-26 -4.9e-26 -4.85e-26 |
+| 1e-7 | 1.744e-02 | 1.744e+12 | -4.68e-22 1.32e-22 5.54e-23 -2.07e-22 -3.69e-24 -4.47e-22 -4.9e-22 -4.85e-22 |
+| 1e-6 | 1.744e+00 | 1.744e+12 | -4.68e-18 1.32e-18 5.54e-19 -2.07e-18 -3.69e-20 -4.47e-18 -4.9e-18 -4.85e-18 |
+| 1e-5 | 1.744e+02 | 1.744e+12 | -4.68e-14 1.32e-14 5.54e-15 -2.07e-14 -3.69e-16 -4.47e-14 -4.9e-14 -4.85e-14 |
+| 1e-4 | 1.744e+04 | 1.744e+12 | -4.68e-10 1.32e-10 5.54e-11 -2.07e-10 -3.69e-12 -4.47e-10 -4.9e-10 -4.85e-10 |
+| 1e-3 | 1.744e+06 | 1.744e+12 | -4.68e-6 1.32e-6 5.54e-7 -2.07e-6 -3.69e-8 -4.47e-6 -4.9e-6 -4.85e-6 |
+| 1e-2 | 1.744e+08 | 1.744e+12 | -0.0468 0.0132 0.00554 -0.0207 -0.000369 -0.0447 -0.049 -0.0485 |
+| 1e-1 | 1.744e+10 | 1.744e+12 | -468.0 132.0 55.4 -207.0 -3.69 -447.0 -490.0 -485.0 |
+| 1e0 | 1.719e+12 | 1.719e+12 | -4.68e+6 1.32e+6 5.54e+5 -2.07e+6 -3.69e+4 -4.47e+6 -4.9e+6 -4.85e+6 |
+	Command being timed: "/home/nathan/Source/choptuik-large-d-1058b/.venv/bin/python -u /home/nathan/Source/choptuik-large-d-raw-p4/I1064-dh170/ls1064.py /home/nathan/scratch949 I966-dh370/ks_chain3b/leg14_D261.1415_ks293/anm_pin3_D262.0099.npz --ks=310 --keep_plan=0 --its=32 --threads=4 --json=/home/nathan/Source/choptuik-large-d-raw-p4/I1064-dh170/ls_ks310.json --t0_only=1 --lam=1"
+	User time (seconds): 1248.69
+	System time (seconds): 1.69
+	Percent of CPU this job got: 206%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 10:04.32
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 170240
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 396941
+	Voluntary context switches: 2230
+	Involuntary context switches: 351866
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 48
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

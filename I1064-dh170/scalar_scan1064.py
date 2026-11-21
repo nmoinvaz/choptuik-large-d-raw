@@ -188,6 +188,22 @@ def main():
                 extra[t] = [proj(i, Rt) for i in range(2, KINFO)]
         return cache[key]
 
+    if opts.get("p1_only") == "1":
+        # the mutation check of P1 (the planted control alone, the same code as below): unmutated it must pass, with the shift 1.5 times too large it must fail
+        tstar = 3e-42
+        res = {}
+        for mut in (False, True):
+            c = G(0, tstar)[0] * (mp.mpf("1.5") if mut else 1)
+            pl = find_roots(G, 0, a[0], shift=c)
+            hit = [r for r in pl if r["t"] is not None and abs(r["t"] - tstar) / tstar <= 1e-6]
+            inbr = [r for r in pl if r["side"] > 0 and r["lo"] <= tstar <= r["hi"]]
+            res[mut] = bool(hit) and bool(inbr)
+            print(f"P1 {'MUTATED (shift x1.5)' if mut else 'unmutated'}: planted root t* = 3e-42 along v_1 (shift {nstr(c, 6)}): {len(pl)} sign change(s); bracket of t*'s decade: {'yes' if inbr else 'NO'}; "
+                  f"returned {', '.join(f'{r['t']:.9e}' for r in pl if r['t'] is not None) or 'none'}: {'pass' if res[mut] else 'FAIL'}", flush=True)
+        okm = res[False] and not res[True]
+        print(f"mutation check of P1: unmutated {'pass' if res[False] else 'FAIL'}, mutated {'FAIL (as required)' if not res[True] else 'pass (the control did not fire)'}")
+        print("check:", "pass" if okm else "FAIL")
+        return 0 if okm else 1
     t1 = time.time()
     rec = dict(state=st, ks=ks, plan="stored" if keep_plan else "new", sigma=[nstr(x, 12) for x in sg], a=[nstr(x, 12) for x in a], scan={}, roots={}, controls={})
     for j in (0, 1):

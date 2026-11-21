@@ -216,6 +216,32 @@ def main():
     def Gdir(th, t):
         thf = float(th)
         return Gs(t * float(mp.cos(th)), t * float(mp.sin(th)))
+    if opts.get("q4_only") == "1":
+        # the mutation check of Q4 (the planted control alone, the model coefficients read from --model_from): unmutated it must pass, with E_1 of the wrong sign it must fail
+        mj = json.load(open(opts["model_from"]))
+        Acoef = [[mp.mpf(x) for x in mj["Acoef1"]], [mp.mpf(x) for x in mj["Acoef2"]]]
+        Ebase = [[mp.mpf(x) for x in mj["Ecoef1"]], [mp.mpf(x) for x in mj["Ecoef2"]]]
+        ths_p, rho_p = mp.pi * 40 / 180, mp.mpf(1.5e-29)
+        sp = (float(rho_p * mp.cos(ths_p)), float(rho_p * mp.sin(ths_p)))
+        gz = Gs(*sp)
+        apl = [a[i] - gz[i] for i in range(2)]
+
+        def near(th, r):
+            dth = abs((th - ths_p + mp.pi / 2) % mp.pi - mp.pi / 2)
+            return max(dth / ths_p, abs(mp.sqrt(r) - rho_p) / rho_p)
+        res = {}
+        for mut in (False, True):
+            Ecoef_s = [list(Ebase[0]), list(Ebase[1])]
+            if mut:
+                Ecoef_s[0] = [-x for x in Ecoef_s[0]]
+            rts = model_roots(apl, Acoef, Ecoef_s)
+            best = min((near(th, r) for th, r in rts), default=None)
+            res[mut] = bool(best is not None and best <= 1e-3)
+            print(f"Q4 {'MUTATED (E_1 sign)' if mut else 'unmutated'}: planted root (theta* 40 deg, rho* 1.5e-29), a_pl = ({nstr(apl[0], 5)}, {nstr(apl[1], 5)}): {len(rts)} model root(s); closest relative error {'none' if best is None else nstr(best, 3)}: {'pass' if res[mut] else 'FAIL'}", flush=True)
+        okm = res[False] and not res[True]
+        print(f"mutation check of Q4: unmutated {'pass' if res[False] else 'FAIL'}, mutated {'FAIL (as required)' if not res[True] else 'pass (the control did not fire)'}")
+        print("check:", "pass" if okm else "FAIL")
+        return 0 if okm else 1
     ctl = {}
     rec = dict(state=st, ks=ks, plan="stored" if keep_plan else "new", a=[nstr(x, 12) for x in a], controls={}, dirs=[])
     t1 = time.time()

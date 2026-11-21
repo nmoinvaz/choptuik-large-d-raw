@@ -1,0 +1,33 @@
+I966-dh370/ks_chain3b/leg14_D261.1415_ks293/anm_pin3_D262.0099.npz: D 262.01, ks 315 (the state's 293), plan made again, M 32, kfreeze 3
+octo-double LU 425 s, pivots 3.4e-20..1.4e+51
+start residual: max|R| (pinned, F - c) 1.671e-30
+sigma_1..6 6.3798e-21, 2.0586e-20, 5.6296e-15, 7.2366e-15, 5.4457e-13, 9.7293e-13; sigma_1, sigma_2 converged to 0.0e+00, 0.0e+00
+refined v_1, v_2: norms 1.0, 1.0; v_1.v_2 -3.4e-67; sigma_i from ||J^-T v_i||: 6.379795565e-21, 2.058596726e-20
+a_1 = u_1.R -7.766565986e-35, a_2 = u_2.R -1.32296151e-34 (newton_o's residual: -7.766565986e-35, -1.32296151e-34; relative difference 0.0e+00)
+P1 unmutated: planted root t* = 3e-42 along v_1 (shift -7.76657e-35): 4 sign change(s); bracket of t*'s decade: yes; returned 3.000000000e-42, 3.900912430e-34, 9.676492218e-12, -9.676492218e-12: pass
+P1 MUTATED (shift x1.5): planted root t* = 3e-42 along v_1 (shift -1.16498e-34): 4 sign change(s); bracket of t*'s decade: NO; returned 2.440917316e-29, 9.676492218e-12, -2.440916974e-29, -9.676492218e-12: FAIL
+mutation check of P1: unmutated pass, mutated FAIL (as required)
+check: pass
+	Command being timed: "/home/nathan/Source/choptuik-large-d-1058b/.venv/bin/python -u /home/nathan/Source/choptuik-large-d-raw-p4/I1064-dh170/scalar_scan1064.py /home/nathan/scratch949 I966-dh370/ks_chain3b/leg14_D261.1415_ks293/anm_pin3_D262.0099.npz --ks=315 --keep_plan=0 --its=32 --threads=4 --json=/home/nathan/Source/choptuik-large-d-raw-p4/I1064-dh170/scan_p1mut.json --p1_only=1"
+	User time (seconds): 2458.65
+	System time (seconds): 2.77
+	Percent of CPU this job got: 165%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 24:48.05
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 171540
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 688913
+	Voluntary context switches: 4105
+	Involuntary context switches: 479897
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 40
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

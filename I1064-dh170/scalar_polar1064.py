@@ -226,11 +226,19 @@ def main():
         return Gs(float(r * mp.cos(th)), float(r * mp.sin(th)))
     t1 = time.time()
     grid = {}
-    print("\n| theta | " + " | ".join(f"g_1 at e={e:g}" for e in EXP[::2]) + " |\n|---|" + "---|" * len(EXP[::2]), flush=True)
-    for thd in THD:
-        for e in EXP:
-            grid[(thd, e)] = Gp(thd, e)
-        print(f"| {thd} | " + " | ".join(nstr(grid[(thd, e)][0], 3) for e in EXP[::2]) + " |", flush=True)
+    if opts.get("grid_from"):
+        # the mutation run of D2: the grid read from an earlier run's json (8 digits), D2 evaluates the true map only at s* and in Newton
+        gj = json.load(open(opts["grid_from"]))["grid"]
+        for thd in THD:
+            for e in EXP:
+                grid[(thd, e)] = tuple(mp.mpf(x) for x in gj[f"{thd}"][f"{e:g}"])
+        print(f"grid read from {opts['grid_from']}", flush=True)
+    else:
+        print("\n| theta | " + " | ".join(f"g_1 at e={e:g}" for e in EXP[::2]) + " |\n|---|" + "---|" * len(EXP[::2]), flush=True)
+        for thd in THD:
+            for e in EXP:
+                grid[(thd, e)] = Gp(thd, e)
+            print(f"| {thd} | " + " | ".join(nstr(grid[(thd, e)][0], 3) for e in EXP[::2]) + " |", flush=True)
     print(f"({len(cache)} residual evaluations, {time.time() - t1:.0f} s)", flush=True)
     rec["grid"] = {f"{thd}": {f"{e:g}": [nstr(grid[(thd, e)][0], 8), nstr(grid[(thd, e)][1], 8)] for e in EXP} for thd in THD}
 
@@ -359,23 +367,31 @@ def main():
                 w3 = max(w3, abs(gp[i] - gm[i]) / abs(gp[i]))
     ctl["D3"] = bool(w3 <= 1e-3)
     print(f"D3 G(-s) against G(s) at theta 0, 45, 90, 135 and e = -16, -14: worst relative difference {nstr(w3, 3)}", flush=True)
-    # D2 planted
+    # D2 planted (with --grid_from: both the unmutated and the shifted-by-1.5 variants, the mutation check: unmutated must pass, mutated must fail)
     thp, rhop = mp.pi / 4, mp.mpf("3e-17")
     sstar = (float(rhop * mp.cos(thp)), float(rhop * mp.sin(thp)))
     gst = Gs(*sstar)
-    shift = [gst[0] * (mp.mpf("1.5") if opts.get("mutate") == "shift" else 1), gst[1] * (mp.mpf("1.5") if opts.get("mutate") == "shift" else 1)]
-    rowsp, candp = candidates(shift=shift, a_ref=[a[0] - shift[0], a[1] - shift[1]])
-    hit = []
-    for thd_c, rho_c in candp:
-        th = mp.pi * thd_c / 180
-        sv, gend, relp = newton([rho_c * mp.cos(th), rho_c * mp.sin(th)], shift=shift)
-        err = max(abs(sv[0] - sstar[0]) / abs(sstar[0]), abs(sv[1] - sstar[1]) / abs(sstar[1]))
-        okc = bool(err <= 1e-6)
-        print(f"D2 planted s* = 3e-17 (cos 45, sin 45), shift G(s*){' x1.5 (MUTATE)' if opts.get('mutate') == 'shift' else ''}: candidate near theta {float(thd_c):.2f}, rho {nstr(rho_c, 4)} -> Newton s = ({nstr(sv[0], 8)}, {nstr(sv[1], 8)}), relative error vs s* {nstr(err, 3)}: {'found' if okc else 'no'}", flush=True)
-        if okc:
-            hit.append(sv)
-    ctl["D2"] = bool(hit)
-    print(f"D2 planted joint root: {len(candp)} candidate(s), {'recovered' if hit else 'NOT recovered'}", flush=True)
+
+    def planted(mut):
+        f = mp.mpf("1.5") if mut else 1
+        shift = [gst[0] * f, gst[1] * f]
+        rowsp, candp = candidates(shift=shift, a_ref=[a[0] - shift[0], a[1] - shift[1]])
+        hit = []
+        for thd_c, rho_c in candp:
+            th = mp.pi * thd_c / 180
+            sv, gend, relp = newton([rho_c * mp.cos(th), rho_c * mp.sin(th)], shift=shift)
+            err = max(abs(sv[0] - sstar[0]) / abs(sstar[0]), abs(sv[1] - sstar[1]) / abs(sstar[1]))
+            okc = bool(err <= 1e-6)
+            print(f"D2 planted s* = 3e-17 (cos 45, sin 45), shift G(s*){' x1.5 (MUTATED)' if mut else ''}: candidate near theta {float(thd_c):.2f}, rho {nstr(rho_c, 4)} -> Newton s = ({nstr(sv[0], 8)}, {nstr(sv[1], 8)}), relative error vs s* {nstr(err, 3)}: {'found' if okc else 'no'}", flush=True)
+            if okc:
+                hit.append(sv)
+        print(f"D2 planted joint root{' (MUTATED)' if mut else ''}: {len(candp)} candidate(s), {'recovered' if hit else 'NOT recovered'}", flush=True)
+        return bool(hit)
+    if opts.get("grid_from"):
+        r0, r1 = planted(False), planted(True)
+        ctl["D2 mutation check (unmutated passes, mutated fails)"] = bool(r0 and not r1)
+    else:
+        ctl["D2"] = planted(opts.get("mutate") == "shift")
     rec["controls"] = {k: bool(v) for k, v in ctl.items()}
     print("\ncontrols: " + ", ".join(f"{k} {'pass' if v else 'FAIL'}" for k, v in sorted(ctl.items())))
     ok = all(ctl.values())
