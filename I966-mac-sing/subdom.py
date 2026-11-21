@@ -50,14 +50,14 @@ def plant(A1, A2, s1, s2, mu1=0.5, seed=1):
     return out
 
 
-def sub_dlog(st, c, s1):
+def sub_dlog(st, c, s1, Ms=range(3, 10)):
     """(s, mu, spread of s, spread of mu, n) of the real pole nearest the origin of a(h) g'/g, or None"""
     q = st.dlog_series(c)
     s1 = mp.mpc(s1.real, s1.imag)
     a1, a2 = -2 * mp.re(1 / s1), abs(1 / s1) ** 2
     qt = [q[k] + (a1 * q[k - 1] if k >= 1 else 0) + (a2 * q[k - 2] if k >= 2 else 0) for k in range(len(q))]
     res = []
-    for M in range(3, 10):
+    for M in Ms:
         for L in (M - 1, M, M + 1):
             if L + M + 1 > len(qt) or L < 0:
                 continue
