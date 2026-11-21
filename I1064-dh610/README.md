@@ -77,3 +77,16 @@ Instead: ks 293 (the control) alone, then ks 295 and 297 side by side, from `I96
 Reading (the coordinator's): small jumps converging here while 315 and 316 fail (win2's, comment 7060065590) means a ladder of small raises can lift the order; all failing means the raise waits for a state past the crossing (Delta share at or above 0.9).
 
 Dry tests before the unit (`dry_c1/`, `dry_c2/`, `check_dry1064c.txt` in each; `check_dry1064c.py` has a selftest of nine cases and `--break` exits 1): pass path (control converged in 120 s, max|F| 2.0e-36; ks 297 killed at the 240 s cap by its exact pid; the control against the stored state has Delta difference 0.0, xcheck passes) and control-failed path (control killed at 45 s, `control failed: rungs not started`, no rung started). Both passed.
+
+## Result of ks 293, 295 and 297 from D 261.6229 (unit `i1064e`, 09:02:12 to 09:54:43 UTC, 21 Nov)
+
+Folder `leg14_D261.6229/` (`table_1064c.md`, `exits_1064c.txt`, `summary_1064c.txt`, `ks<K>.log`, `gate_ks<K>.txt`). No memory alert (`memlog_1064e.log`).
+
+| K | own wall | gate | start max\|F\| at order K | end |
+|---|---|---|---|---|
+| 293 (control) | 90 s | converged: 1 step, max\|F\| 2.0e-36, base saved | 1.96e-36 | |
+| 295 | 3060 s | failed: 1 step, max\|F\| 6.3e-09, not converged, base not saved | 6.34e-09 | step 0: strong chord refused (530 s), nine trials lam 1 to 0.0039 refused (151 to 299 s), `no trial step accepted, stopping` |
+| 297 | 3060 s | failed: 1 step, max\|F\| 5.1e-09, not converged, base not saved | 5.13e-09 | step 0: strong chord refused (539 s), nine trials lam 1 to 0.0039 refused (140 to 288 s), `no trial step accepted, stopping` |
+
+Both rungs stopped themselves (exit 0, no cap line). The two walls are the same 30 s poll. Information: the control's base against the stored D 261.6229 state: Delta equal in all 40 printed digits (difference 0.0, xcheck passes); 64 of 769 entries moved by up to 1.05e-52 (exact sums), `zh` and `zl` byte-equal.
+Reading (the coordinator's): all failing means the raise waits for a state past the crossing. With win2's ks 315 and 316 from the same state (comment 7060623893, also failed), all four raises tried here failed.
