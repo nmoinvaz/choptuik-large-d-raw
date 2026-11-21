@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""check_dry1064f.py MODE DIR CAP [TOL] | --selftest [--break]: the pass test of run1064f.sh's two dry runs (OUT1064=DIR, CAP1064=CAP, the state of the real run).
+"""check_dry1064f.py MODE DIR CAP [TOL [TOLR]] | --selftest [--break]: the pass test of run1064f.sh's two dry runs (OUT1064=DIR, CAP1064=CAP, the state of the real run).
 MODE pass (CAP 600): ks307 exits 0 on its own, converged, below CAP by 30 s; ks331 and ks347 start after it, each is TERMed by its exact pid at CAP (exit 143, gate failed);
-the control's delta line against the stored state has exit 0 and xcheck 0; the three command lines carry --od_accept own, --tol_od TOL (TOL 2e-34 for the dry run, whose env TOL1064F and GMAX1064F set it; the real run's default is 1e-60), their own --ks, and neither --elim_switch nor --reseed_base; the summary has the control's
+the control's delta line against the stored state has exit 0 and xcheck 0; the three command lines carry --od_accept own, --tol_od TOL for the control and TOLR for the rungs (the dry run: TOL 2e-34 by env TOL1064F and GMAX1064F, TOLR 1e-60; the real run's default is 1e-60 for all), their own --ks, and neither --elim_switch nor --reseed_base; the summary has the control's
 'first two on-lines'; the table has the two rung rows, marked capped; the script ends with 'done'.
 MODE ctlfail (CAP 45): ks307 is TERMed by its exact pid (exit 143, gate failed), 'control failed: rungs not started' is logged, neither rung is started, and it ends with 'done'.
 Exit 0 pass, 1 otherwise. --selftest runs planted folders through the same function: the pass cases must pass, each broken case must fail; --break expects a pass case to fail and so must exit 1."""
@@ -17,7 +17,8 @@ def rd(p):
     return open(p).read() if os.path.exists(p) else ""
 
 
-def check(mode, d, cap, tol="1e-60"):
+def check(mode, d, cap, tol="1e-60", tolr=None):
+    tolr = tolr or tol
     ex = rd(f"{d}/exits_1064f.txt")
     bad = []
 
@@ -43,8 +44,9 @@ def check(mode, d, cap, tol="1e-60"):
             c = (re.search(r"cmd: (.*)", rd(f"{d}/{L}.log")) or [None, ""])[1]
             if "--od_accept own" not in c:
                 bad.append(f"{L}.log's command has no --od_accept own")
-            if f"--tol_od {tol} " not in c:
-                bad.append(f"{L}.log's command has no --tol_od {tol}")
+            want = tol if L == "ks307" else tolr
+            if f"--tol_od {want} " not in c:
+                bad.append(f"{L}.log's command has no --tol_od {want}")
             if f"--ks {k} " not in c + " ":
                 bad.append(f"{L}.log's command has no --ks {k}")
             for fl in ("--elim_switch", "--reseed_base"):
@@ -79,7 +81,7 @@ def planted(mode, d, drop=None, extra=None, gate="failed: no octo-double Newton 
                  "1064 delta1064_ctl_vs_state exit 0 xcheck 0 2026-11-21 09:12:20 UTC",
                  "1064 done 2026-11-21 09:12:31 UTC"]
         for L, k in (("ks307", 307), ("ks331", 331), ("ks347", 347)):
-            c = CMD.format(k=k + 1 if (bad_ks and L == "ks347") else k, tol="1e-60" if (bad_tol and L == "ks347") else "2e-34")
+            c = CMD.format(k=k + 1 if (bad_ks and L == "ks347") else k, tol=("2e-34" if bad_tol else "1e-60") if L == "ks347" else ("2e-34" if L == "ks307" else "1e-60"))
             if bad_cmd and L == "ks331":
                 c = c.replace("--steps", bad_cmd + " --steps")
             open(f"{d}/{L}.log", "w").write(c)
@@ -110,7 +112,7 @@ def selftest(brk):
              ("pass", "ks331's command has --elim_switch", {"bad_cmd": "--elim_switch 1e-9"}, False),
              ("pass", "ks331's command has --reseed_base", {"bad_cmd": "--reseed_base 1"}, False),
              ("pass", "ks347's command has the wrong --ks", {"bad_ks": True}, False),
-             ("pass", "ks347's command has --tol_od 1e-60 where the dry sets 2e-34", {"bad_tol": True}, False),
+             ("pass", "ks347's command has --tol_od 2e-34 where the dry sets 1e-60", {"bad_tol": True}, False),
              ("pass", "summary lacks the first two on-lines", {"f2": False}, False),
              ("ctlfail", "ctlfail case", {}, True),
              ("ctlfail", "ks331 started after a failed control", {"extra": "1064 ks331 started, pid 9 x"}, False),
@@ -122,7 +124,7 @@ def selftest(brk):
     for mode, name, kw, want in cases:
         with tempfile.TemporaryDirectory() as d:
             planted(mode, d, **kw)
-            bad = check(mode, d, 600 if mode == "pass" else 45, "2e-34")
+            bad = check(mode, d, 600 if mode == "pass" else 45, "2e-34", "1e-60")
         ok = (not bad) == want
         print(f"  {mode}: {name}: {'pass' if not bad else 'fail'} (expected {'pass' if want else 'fail'}): {'ok' if ok else 'WRONG'}")
         n += not ok
@@ -133,7 +135,7 @@ def selftest(brk):
 if __name__ == "__main__":
     if sys.argv[1] == "--selftest":
         sys.exit(selftest("--break" in sys.argv))
-    bad = check(sys.argv[1], sys.argv[2], int(sys.argv[3]), sys.argv[4] if len(sys.argv) > 4 else "1e-60")
+    bad = check(sys.argv[1], sys.argv[2], int(sys.argv[3]), sys.argv[4] if len(sys.argv) > 4 else "1e-60", sys.argv[5] if len(sys.argv) > 5 else None)
     for b in bad:
         print("FAIL:", b)
     print("dry test", sys.argv[1], "FAILED" if bad else "PASSED")
