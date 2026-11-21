@@ -1,0 +1,14 @@
+U1: located at A 4.0624743, w 0.51893798, |R| 763 (0.338 sigma), sign +1 (want +1)
+U2: located at A 4.2700301, w 0.54449949, |R| 5.92e+04 (0.334 sigma), sign -1 (want -1)
+C0 (planted): A 3.9623456, w 0.56154320 against P0 (3.9623456, 0.5615432), sign +1 (want +1): PASS
+stage 1 check: PASS, U1 located, U2 located
+U1: located at A 4.0624743, w 0.51893798, |R| 763 (0.338 sigma), sign +1 (want +1)
+U2: located at A 4.2700301, w 0.54449949, |R| 5.92e+04 (0.334 sigma), sign -1 (want -1)
+C0 (planted): A 3.9623456, w 0.56154320 against P0 (3.9779706, 0.5615432), sign +1 (want +1): FAIL
+stage 1 check --mutate=shift: FAIL, U1 located, U2 located
+U1: Newton ended at A 4.0624743, w 0.51893798, |R| 763 (0.338 sigma), sign +1 (want -1), inside U True: not located
+U1: nearest point of the run A 4.0623102, w 0.51888029, |R| 492 (0.151 sigma), of 60 new points inside U
+U2: Newton ended at A 4.2700301, w 0.54449949, |R| 5.92e+04 (0.334 sigma), sign -1 (want +1), inside U True: not located
+U2: nearest point of the run A 4.2701146, w 0.54447804, |R| 7.71e+03 (0.177 sigma), of 60 new points inside U
+C0 (planted): A 3.9623456, w 0.56154320 against P0 (3.9623456, 0.5615432), sign +1 (want -1): FAIL
+stage 1 check --mutate=sign: FAIL, U1 nearest, U2 nearest

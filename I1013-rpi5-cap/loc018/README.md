@@ -34,4 +34,13 @@ From the live raw clone root (`$PWD` as RAW):
 ## Runs
 Start 2026-11-21 14:04:04 UTC. Before stage 1 (from `logs/exits.txt`): argcount selftest and 5 mutations `0 1 1 1 1 1`;
 locate018 and plant_check selftests `0 0`; union_winding PASS and `--mutate=conj` FAIL, exits `0 1`. Stage 1 started 14:04:11.
+Stage 1 (`locate018.py run`) exit 0, 14:04:11-15:31:17 UTC (1 h 27 min). `locate018.py check` exits `0 1 1` (plain, `--mutate=shift`, `--mutate=sign`), as required (`logs/check.log`):
+
+| target | Newton's end (argcount `locate_many`, 0.18) | sign | \|R\| | stage 1 |
+|---|---|---|---|---|
+| U1 (want +1) | (4.0624743, 0.51893798), inside U1 | +1 | 763 (0.338 sigma) | located |
+| U2 (want -1) | (4.2700301, 0.54449949), inside U2 | -1 | 5.92e4 (0.334 sigma) | located |
+| C0 planted at P0 (3.9623456, 0.5615432) | (3.9623456, 0.5615432) to 1e-13 | +1 | 1.9e-7 | PASS |
+
+The shift control (P0 moved one box width in A) FAILs and the sign control FAILs, as required. Under the sign mutation both unions are reported "not located, nearest": U1 (4.0623102, 0.51888029), 0.151 sigma, and U2 (4.2701146, 0.54447804), 0.177 sigma, of 60 new points each. `leaf_boxes.jsonl` holds the three relocation boxes (B1 A 4.0562-4.0718 x w 0.51394-0.52644, B2 A 4.2638-4.2794 x w 0.53950-0.55200, C0). Stage 2 plain recount started 15:31:17.
 (filled in as the run goes)
