@@ -121,6 +121,17 @@ run.
 - On recount3's leaves file, the `--auto` selection gives exactly the 9 points above (45 runs).
 - The driver refuses, with exit 1, when `recount4/` exists, when an input differs from its sha256 (one line added to
   the leaves file), and when `fu_value018.py` is changed.
-- One guard point, (4.2685956, 0.54404321), through `fu_value018.py --points` at xi1 0.18. The default row gives
-  |R| 4e5, sigma 1.15e5 (rpi5: 4.26e4), |dF_3| 0.007 and no acceptance, 59 CPU s. Its R is within 0.099 relative of
-  recount3's record, from the Mac's build of the same code.
+- One guard point, (4.2685956, 0.54404321), through `fu_value018.py --points` at xi1 0.18 (exit 2, no row accepted).
+  The default row's R is within 0.099 relative of recount3's record, from the Mac's build of the same code. Every row
+  has |dF_3| 0.007, so the guard is the only test that blocks:
+
+  | variant | \|R\| | sigma | \|R\|/sigma | CPU s |
+  |---|---|---|---|---|
+  | default | 4e5 | 1.15e5 | 3.48 | 59 |
+  | s0.25 | 3.95e5 | 1.04e5 | 3.81 | 145 |
+  | seed2 | 4.08e5 | 4.26e4 | 9.58 | 57 |
+  | seed3 | 4.09e5 | 4.26e4 | 9.6 | 75 |
+  | s0.25seed2 | 4.01e5 | 4.26e4 | 9.42 | 149 |
+
+  recount3's record on rpi5 has sigma 4.26e4 and |R|/sigma 9.8. So on the Mac no variant lifts this point over
+  10 sigma. rpi5's numerics differ, so this does not decide its run.
