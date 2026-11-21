@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""report1060.py: #1060's report from step17_s<S>/ (S 1, 2, 0): the step's a, D, series, corrector and wall seconds against leg 10's step 17 (dh370, I966-dh370/ks_chain3b/leg10_D256.1776_ks293/anm_run.jsonl),
+"""report1060.py: #1060's report from step17_s0/ (the split-2 A/B is win2's): the step's a, D, series, corrector and wall seconds against leg 10's step 17 (dh370, I966-dh370/ks_chain3b/leg10_D256.1776_ks293/anm_run.jsonl),
 and cmp1060.py's readings: each run's accepted state, series (jet_pin3_D260.6706.npz) and prediction (pred_pin3_D260.8483.npz) against leg 10's byte for byte (bits, files), then S = 2 and S = 0 against S = 1
 (bits, and close for the agreement to 1e-100)."""
 import json
@@ -39,7 +39,7 @@ print()
 summ = open(H + "summary_1060.txt").read() if os.path.exists(H + "summary_1060.txt") else ""
 print("| run | exit, wall | a | D | attempts, od steps | series s | corrector s | state vs leg 10 (bits) | series file vs leg 10 | prediction vs leg 10 |")
 print("|---|---|---|---|---|---|---|---|---|---|")
-for S in (1, 2, 0):
+for S in (0,):
     m = re.search(rf"step17_s{S}: exit (\d+), (\d+) s wall", summ)
     t = times(rec(H + f"step17_s{S}/anm_run.jsonl"))
     N = H + f"step17_s{S}/anm_pin3_D260.8483.npz"
@@ -54,13 +54,3 @@ for S in (1, 2, 0):
     rp, tp = cmp("files", REFD + "pred_pin3_D260.8483.npz", H + f"step17_s{S}/pred_pin3_D260.8483.npz")
     word = lambda r, tx: "identical" if r == 0 else "DIFFERENT: " + re.sub(r"^.*?(parts with differing bytes|differing bytes)", r"\1", tx.splitlines()[0])[:150]  # noqa: E731
     print(f"| split {S} | exit {m.group(1)}, {m.group(2)} s | {t['a']!r} | {t['D'][:14]} | {t['attempts']}, {t['od_steps']} | {t['t_coef']:.0f} | {t['t_corr']:.0f} | {word(rb, tb)} | {word(rj, tj)} | {word(rp, tp)} |")
-print()
-print("agreement with step 1 (split 1, leg 10's own line):")
-n1 = H + "step17_s1/anm_pin3_D260.8483.npz"
-for S in (2, 0):
-    n = H + f"step17_s{S}/anm_pin3_D260.8483.npz"
-    if os.path.exists(n1) and os.path.exists(n):
-        print(f"  split {S} vs split 1, bits: {cmp('bits', n1, n)[1].splitlines()[-2][:260]}")
-        print(f"  split {S} vs split 1, close (tol 1e-100): " + " / ".join(cmp("close", n1, n, "--tol", "1e-100")[1].splitlines()))
-    else:
-        print(f"  split {S}: no state")
