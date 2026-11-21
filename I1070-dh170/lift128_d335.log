@@ -1,0 +1,28 @@
+D 3.35 M 128: L 7169, steps 505, start |F| 3.0e+08
+D 3.35 M 128: Newton call 1 of at most 14
+  newton 0: |F| 3.04e+08: no decrease along the f64-Jacobian step; retrying with the exact Jacobian
+  newton 0: |F| 3.04e+08: no decrease along the Newton step, giving up
+D 3.35 M 128: NOT converged, |F| 3.0e+08 after 1 iterations (937s); stopping
+	Command being timed: "timeout -s TERM 10800 /home/nathan/Source/choptuik-large-d-1058b/.venv/bin/python -u lowD_dd.py /home/nathan/Source/choptuik-large-d-raw-1064w/I1070-dh170/lift128_d335.jsonl --start /home/nathan/scratch1070/T39-win/hp/data/lowD_states/lowDvh96_D3.3500_M96.npz --Ms 128 --nodes 0.005,0.01,0.02,0.05,0.1,0.16,0.23,0.3,0.4,0.5,0.6,0.7,0.8 --kt 36 --kcs 100 --ks 250 --jac f64 --tol 1e-29 --threads 4 --tag lowD1070b"
+	User time (seconds): 3485.17
+	System time (seconds): 7.98
+	Percent of CPU this job got: 372%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 15:36.86
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 1340492
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 2383463
+	Voluntary context switches: 2080
+	Involuntary context switches: 364908
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 392
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

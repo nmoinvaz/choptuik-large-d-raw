@@ -1,0 +1,9 @@
+Traceback (most recent call last):
+  File "/home/nathan/Source/choptuik-large-d-1058b/hp/lowD_dd.py", line 600, in <module>
+    main()
+    ~~~~^^
+  File "/home/nathan/Source/choptuik-large-d-1058b/hp/lowD_dd.py", line 543, in main
+    s = make_solver(D, M, nodes=nodes, kt=a.kt, kc=a.kcs, ks=a.ks, threads=a.threads)
+  File "/home/nathan/Source/choptuik-large-d-1058b/.venv/lib/python3.14/site-packages/hpkernel/driver.py", line 97, in make_solver
+    s = Solver(M, float(nh[0]), float(nl[0]), dh, dl, ph, pl, nodes, segs or [], kt, kc, ks, threads, a, b, match_node)
+ValueError: M must be one of 8, 16, 32, 40, 48, 64, 80, 96, 128, 160, 192, 256, 320, 384, 512

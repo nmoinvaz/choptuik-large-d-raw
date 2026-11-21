@@ -1,0 +1,33 @@
+  newton 0: |F| 7.65e-30 converged (last |dz| 1.3e-26) Delta 3.323462091675794
+lowDvh96_D3.3500_M96.npz: D 3.35 M 96 |F| 7.7e-30, guess lam 3.409400
+    lam 3.409300000000: sign -1 ln|det| 1161.812031 pivots 1.22e-03..1.02e+02 (181.2 s)
+    lam 3.409400000000: sign -1 ln|det| 1160.715951 pivots 1.22e-03..1.02e+02 (181.6 s)
+    lam 3.409500000000: sign +1 ln|det| 1160.909054 pivots 1.22e-03..1.02e+02 (186.6 s)
+    lam 3.409445187354: sign -1 ln|det| 1157.153151 pivots 1.22e-03..1.02e+02 (213.3 s)
+    lam 3.409446476108: sign +1 ln|det| 1150.247294 pivots 1.22e-03..1.02e+02 (102.6 s)
+    lam 3.409446474818: sign -1 ln|det| 1142.935949 pivots 1.22e-03..1.02e+02 (88.6 s)
+    lam 3.409446474823: sign +1 ln|det| 1144.506520 pivots 1.22e-03..1.02e+02 (88.0 s)
+{"D": 3.35, "M": 96, "F": 7.65441597097263e-30, "lam": 3.409446474818443, "gamma": 0.29330274206849105, "lam_guess": 3.4094, "n_signchanges": 1, "n_det": 7, "state": "lowDvh96_D3.3500_M96.npz", "seconds": 1159.6}
+	Command being timed: "timeout -s TERM 10800 /home/nathan/Source/choptuik-large-d-1058b/.venv/bin/python -u hp/lowD_gamma.py /home/nathan/Source/choptuik-large-d-raw-1064w/I1070-dh170/lowD_gamma_D3.35_M96.jsonl /home/nathan/scratch1070/T39-win/hp/data/lowD_states/lowDvh96_D3.3500_M96.npz --threads=4 --polish=2 --xtol=1e-11 --lam0=3.4094"
+	User time (seconds): 4497.36
+	System time (seconds): 22.42
+	Percent of CPU this job got: 389%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 19:19.98
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 1083788
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 9103481
+	Voluntary context switches: 5157
+	Involuntary context switches: 328580
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 200
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

@@ -102,3 +102,35 @@ Commands, from `~/Source/choptuik-large-d-1058b` (hp 8179068d) at nice 10: A: `p
 - B2: one sign change about 85% (given A has one); 8 to 12 determinants at about 155 s each (n 7169), 20 to 45 min (about 65%);
 - |gamma(128) - gamma(96)| between 1e-9 and 1e-6 about 60%;
 - gamma(96) within 1e-5 of 0.2933033 about 65%, gamma(128) within 1e-6 about 45%.
+
+## Result of the D 3.35 pair (written 2026-11-21 23:38:28 UTC): A passes, gamma(3.35, M 96) = 0.29330274206849105; the lift to M 128 fails, so B2 is not run
+**A (gamma at M 96)** (`stageA_gamma96_d335.log`, `lowD_gamma_D3.35_M96.jsonl`; 23:18:12 to 23:37:33 UTC, script 1159.6 s): the polish found the input at the floor (|F| 7.65e-30, converged at its first step, no step taken); 7 determinants.
+| lam | sign | ln\|det\| | seconds |
+|---|---|---|---|
+| 3.4093 | -1 | 1161.812031 | 181.2 |
+| 3.4094 | -1 | 1160.715951 | 181.6 |
+| 3.4095 | +1 | 1160.909054 | 186.6 |
+| 3.409445187354 | -1 | 1157.153151 | 213.3 |
+| 3.409446476108 | +1 | 1150.247294 | 102.6 |
+| 3.409446474818 | -1 | 1142.935949 | 88.6 |
+| 3.409446474823 | +1 | 1144.506520 | 88.0 |
+The first grid (lam0 +- 1e-4) held the change (-1 at 3.4094, +1 at 3.4095); brentq took it to xtol 1e-11. Record: lam 3.409446474818443, gamma 0.29330274206849105, F 7.65441597097263e-30, n_signchanges 1, n_det 7. Acceptance (`accept_1070.py`): PASS. Against the Vienna GammaList value 0.2933033 (seven digits, so a rounding of 5e-8): gamma(96) - 0.2933033 = -5.58e-07, 11 times that rounding. The determinants ran 181 to 213 s beside the lift and 88 to 103 s after it ended. Resources: wall 19:19.98, user 4497.36 s, 389% CPU, max RSS 1083788 kB (1.03 GiB).
+**B1 (the lift to M 128)** (`lift128_d335.log`, `lift128_d335.jsonl`; 23:18:12 to 23:33:53 UTC): FAILED at its first Newton call. Start |F| 3.04e+08 (L 7169, 505 steps); "no decrease along the f64-Jacobian step; retrying with the exact Jacobian", then "no decrease along the Newton step, giving up"; `converged: false, failed: line search`, 936.5 s, exit 0, Delta unchanged. The orchestrator stopped B (`exits_d335.txt`: "STOP: the lift did not reach a converged M 128 state"); B2 was not started and no gamma(128) exists. Failed state `states/lowD1070b_D3.3500_M128_fail.npz` (blob d2adfb27124516a53fe34f683c3b9eb590b91bbc). Resources: wall 15:36.86, user 3485.17 s, 372% CPU, max RSS 1340492 kB (1.28 GiB).
+**Diagnostics outside the order** (all read-only: `lowD_dd.py --start_residual_only`, 6 s each, no solve; logs `diag_startres_*_d335.log`). They do not repair the lift.
+| start state, target M | start max\|F\| | per block (14 blocks at 13 nodes) |
+|---|---|---|
+| D 3.35 M 96, M 96 (its own plan, f64) | 1.30e-14 | 1.1e-16 to 2.8e-16 in every block |
+| D 3.35 M 96, lifted to M 128 | 3.04e+08 | block 0: 3.0e+08; then 4.1e-05 5.3e-05 1.6e-05 1.9e-08 1.6e-09 3.8e-10 1.2e-10 5.2e-11 3.3e-11 1.4e-11 1.0e-11 7.7e-12 1.1e-11 |
+| D 3.15 M 96 (my state of the M 96 pair, 17 nodes from 0.000625), lifted to M 128 | 1.16e-03 | every block between 5e-08 and 1.2e-03 |
+So the upward lift works in general (the D 3.15 control), and the 3e8 sits in block 0 of the D 3.35 state, whose nodes start at 0.005 (the D 3.15 states start at 0.000625). I did not find why. `--reintegrate` (node states recomputed from the centre data) gives NaN from block 3 on at M 96 and M 128 alike and leaves block 0 unchanged: no help. The kernel's allowed M are 8, 16, 32, 40, 48, 64, 80, 96, 128, 160, ... (the error of `--Ms 104,112,...` in `diag_startres_Mscan_d335.log`): there is no M between 96 and 128, so a staged lift is not available.
+**What T39 saw at this D** (its `lowD_logs/local_t41.log`, read as data): continuing at M 128 downward from its D 3.4 state, D 3.3875 converged (|F| 3.5e-30, 14 steps, 2636 s), D 3.375 stalled (|F| 6.7e-05 after 24 steps, 5733 s) and D 3.35 failed at its first step (start |F| 0.65, "giving up", 1487 s). Those are continuations in D from M 128 states, not lifts, and the D 3.35 M 128 state does not exist in T39-win except as `lowDvh41_D3.3500_M128_fail.npz`.
+**Predictions against the result:**
+| prediction | result |
+|---|---|
+| A: change in the first grid (about 55%); exactly one (about 90%); F below 1e-27 (about 70%) | right in all three (F 7.65e-30) |
+| A: 8 to 14 determinants | 7: wrong |
+| A: wall 8 to 25 min (about 65%) | 19.3 min: right (the n^3 scaling to 65 s per determinant was wrong: 88 to 103 s alone) |
+| B1: converged at <= 1e-27 (about 75%); 4 to 6 calls, 2 to 8 min | failed at call 1 after 15.6 min: the 20% case, as T39's failed M 128 at this D allowed |
+| B2 (one change, 8 to 12 determinants, 20 to 45 min) and |gamma(128) - gamma(96)| in 1e-9 to 1e-6 | not run |
+| gamma(96) within 1e-5 of 0.2933033 (about 65%) | 5.6e-07: right; gamma(128): not run |
+**Not run (the coordinator's choice):** the M 128 lift needs another route. Ones I can see, none started: (a) a smaller-x0 node set for D 3.35 (the D 3.15 control lifts), which re-nodes the state (lowD_dd has the machinery) and is a larger task; (b) continuation at M 128 in small D steps down from T39's converged D 3.3875 state (T39 stalled at 3.375 with its steps, so the steps would be smaller, at 2636 s a point); (c) a resolution estimate from below instead, gamma at M 80 (lowD_dd --Ms 80 from this state, a downward lift as the D 3.15 one) beside gamma(96).
