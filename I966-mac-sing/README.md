@@ -641,3 +641,4 @@ Correction and addition at 263.0929 (from this base on, `locate6.py` also lists 
 | 263.2241 | 73f15ecb | 262.0870 ± 0.9708i (9 approximants) | 1.4975, 1.5011, −0.23% | 1.8539 | PASS (0), FAIL (1) | 262.5934 (+32.5), 274.9322 (+1.161) |
 
 Note at 263.2241: the root test is 1.4975, along |D0 − P1| (−0.23%), and 19.2% below 265.078 − D0 (1.8539); the path reading is pending until 263.5. The 6-pole list has 4 stable poles in all: the pair clusters 262.0870 ± 0.9708i (n 9) and 262.0786 ± 0.9729i (n 6), the real pole 265.0778 (now n 8), and the second real pole at 267.1586 (n 3, 0.017 from 267.1413 at 263.0929). The second real pole is information only.
+| 263.3677 | 5d3c1f2f | 262.0870 ± 0.9708i (8 approximants) | 1.6098, 1.6131, −0.21% | 1.7103 | PASS (0), FAIL (1) | 264.2710 (+47.4), 265.1721 (+0.701) |
