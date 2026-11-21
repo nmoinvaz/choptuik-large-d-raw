@@ -225,3 +225,16 @@ Folder `ho3_D237.7132/` (`run1064h.sh`, main 276aa1cd, venv-i1058, `nice -n 10`,
 | ks 443 | 5.71e-36 | 4 steps, max\|F\| 4.2e-86 | 1501 s | +4.77175e-27 | 3.2e-15 |
 
 Delta(443) - Delta(395) = +1.6571e-32 (exact, xcheck 0). p_min is 3.2e-15 and p_max 6.3e+42 at K 307, 331, 347, 395 and 443, at every step (two printed digits). The first strong chord was refused (theta inf) at K 395 and 443, accepted at 307, 331 and 347. Largest converging K: 443 (none above was run). Posted as a comment on #1064.
+
+## The front test (coordinator, 21 Nov, comments 7066596082 and 7066657942; units `i1064q` stopped, `i1064r` 17:42:03 to 18:22:21 UTC)
+
+Folder `front_D262.7908/` (`run1064_front2.sh`, main 276aa1cd, venv-i1058, `nice -n 10`, 10 threads; leg 14's arguments from `I966-dh370/ks_chain3b_s_dry.log` with `--steps 1`, `--save_jet 2`, `--save_base 1`). The first launch (unit `i1064q`, 17:39:04) was stopped by exact pids at 17:41 on the amendment (no (c), the order arm (c') instead); its partial output is in `front_D262.7908_first_launch_stopped/`. Jets (named by run): `jet_a_ks293_keepplan1.npz`, `jet_b_ks293_replan.npz`, `order_arm_D237.7132/jet_ks307.npz`, `order_arm_D237.7132/jet_ks395.npz` (sha256 in `jets_sha256.txt`).
+
+| run | ks, keep_plan | start state | polish | jet | plan hash (steps) |
+|---|---|---|---|---|---|
+| (a) control | 293, 1 | D 262.7908, leg 14 | 1 step, max\|F\| 6.0e-37, converged | 247 s | 2f2fb22d (23), the state's own |
+| (b) re-planned | 293, 0 | the same | 1 step, 2.6e-36, converged | 444 s | 3229ae03 (23) |
+| (c') ks 307 | 307, 1 | D 237.7132, my control base | 1 step, 3.5e-86 | 466 s | 5de37a18 (21) |
+| (c') ks 395 | 395, 1 | D 237.7132, my ks 395 base | 1 step, 1.1e-86 | 677 s | 5de37a18 (21) |
+
+(a) against dh370's jet (`jetdiff1064.py`, exact sums): largest relative difference per coefficient 6.0466e-14 at order 3, unknown 618; 23839 of 24608 above 1e-40 (all but 705 of order 0's 769); per-order max and median in `jetstats_a_vs_dh370.txt`: the reading "to 1e-40" does not hold (discrepancy reported, not fixed). (b) against (a): 1.7855e-12 at order 3, unknown 618. The ks 395 jet against the ks 307 jet: 4.1267e-11 at order 23, unknown 540, all 24608 above 1e-40.

@@ -1,0 +1,20 @@
+controls: jetdiff selftest exit 0 (0), --break exit 1 (1), dh370's jet against itself exit 0 (0); planhash selftest exit 0 (0), --break exit 1 (1)
+state's own plan (D 262.7908): 2f2fb22dd077f6b5f99063883c023ba9c90c7a8895a0b94fa645a6d17650fb7d 23 steps
+ks 307 base's own plan (D 237.7132): 5de37a18b32a413b6211c681755d4c425677a5101fa74737b0791101d7df86ab 21 steps
+ks 395 base's own plan (D 237.7132): 5de37a18b32a413b6211c681755d4c425677a5101fa74737b0791101d7df86ab 21 steps
+a_ks293_keepplan1: state I966-dh370/ks_chain3b/leg14_D261.1415_ks293/anm_pin3_D262.7908.npz, ks 293, keep_plan 1, exit 0, own wall 330 s (30 s polls); jet 573bf691181b6aef
+a_ks293_keepplan1 polish/jet lines: the base keeps its stored plan (23 steps)|      octo-double Newton: 1 steps, max|F| 6.0e-37, converged; double-double |F| of its first two parts 4.0e+31|base polish saved as /home/nathan/Source/choptuik-large-d-raw/I1064-dh610/front_D262.7908/a_ks293_keepplan1/base_pin3_D262.7908.npz|step 0: the series saved as /home/nathan/Source/choptuik-large-d-raw/I1064-dh610/front_D262.7908/a_ks293_keepplan1/jet_pin3_D262.7908.npz (8 parts, 247 s)|
+a_ks293_keepplan1 plan: 2f2fb22dd077f6b5f99063883c023ba9c90c7a8895a0b94fa645a6d17650fb7d 23 steps
+b_ks293_replan: state I966-dh370/ks_chain3b/leg14_D261.1415_ks293/anm_pin3_D262.7908.npz, ks 293, keep_plan 0, exit 0, own wall 600 s (30 s polls); jet 23627bbab58ad644
+b_ks293_replan polish/jet lines:       octo-double Newton: 1 steps, max|F| 2.6e-36, converged; double-double |F| of its first two parts 4.0e+31|base polish saved as /home/nathan/Source/choptuik-large-d-raw/I1064-dh610/front_D262.7908/b_ks293_replan/base_pin3_D262.7908.npz|step 0: the series saved as /home/nathan/Source/choptuik-large-d-raw/I1064-dh610/front_D262.7908/b_ks293_replan/jet_pin3_D262.7908.npz (8 parts, 444 s)|
+b_ks293_replan plan: 3229ae035b99781146c827ebb295000a46f18de0820da67cde795a608d80cdfb 23 steps
+order_arm_D237.7132/ks307: state I1064-dh610/ho2_D237.7132/ks307/base_pin3_D237.7132.npz, ks 307, keep_plan 1, exit 0, own wall 600 s (30 s polls); jet f31d055aaa3dd08a
+order_arm_D237.7132/ks307 polish/jet lines: the base keeps its stored plan (21 steps)|      octo-double Newton: 1 steps, max|F| 3.5e-86, converged; double-double |F| of its first two parts 2.8e+19|base polish saved as /home/nathan/Source/choptuik-large-d-raw/I1064-dh610/front_D262.7908/order_arm_D237.7132/ks307/base_pin3_D237.7132.npz|step 0: the series saved as /home/nathan/Source/choptuik-large-d-raw/I1064-dh610/front_D262.7908/order_arm_D237.7132/ks307/jet_pin3_D237.7132.npz (8 parts, 466 s)|
+order_arm_D237.7132/ks307 plan: 5de37a18b32a413b6211c681755d4c425677a5101fa74737b0791101d7df86ab 21 steps
+order_arm_D237.7132/ks395: state I1064-dh610/ho3_D237.7132/ks395/base_pin3_D237.7132.npz, ks 395, keep_plan 1, exit 0, own wall 870 s (30 s polls); jet 26f8d05979ffa75e
+order_arm_D237.7132/ks395 polish/jet lines: the base keeps its stored plan (21 steps)|      octo-double Newton: 1 steps, max|F| 1.1e-86, converged; double-double |F| of its first two parts 3.0e+27|base polish saved as /home/nathan/Source/choptuik-large-d-raw/I1064-dh610/front_D262.7908/order_arm_D237.7132/ks395/base_pin3_D237.7132.npz|step 0: the series saved as /home/nathan/Source/choptuik-large-d-raw/I1064-dh610/front_D262.7908/order_arm_D237.7132/ks395/jet_pin3_D237.7132.npz (8 parts, 677 s)|
+order_arm_D237.7132/ks395 plan: 5de37a18b32a413b6211c681755d4c425677a5101fa74737b0791101d7df86ab 21 steps
+jetdiff a_vs_dh370: exit 1: largest relative difference per coefficient 6.0466e-14 at order 3, unknown 618; 23839 of 24608 coefficients above 1e-40
+jetdiff b_vs_a: exit 1: largest relative difference per coefficient 1.7855e-12 at order 3, unknown 618; 23839 of 24608 coefficients above 1e-40
+jetdiff order_arm_ks395_vs_ks307: exit 1: largest relative difference per coefficient 4.1267e-11 at order 23, unknown 540; 24608 of 24608 coefficients above 1e-40
+front done
