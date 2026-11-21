@@ -90,3 +90,19 @@ D 18.5 root. The pass rules are unchanged (d18_check.py 08969ea2, then signtest.
    agrees (same sign, ln|det| difference 0.0e+00). With 1.55-1.90: one robust change in 1.55-2.10, (1.67, 1.68), minus to plus; no ln|det|
    minimum without a sign change. Reading (d2): the plus-to-minus root is not in 1.90-2.10 at D 18.5. Information (d185_d_numbers.log):
    ln|det| rises over 1.90-2.10 by 0.1747 to 0.1977 per 0.01.
+== 2026-11-21 15:05:29 the coordinator's check of det's sign convention across the k_c 63 states (hc), queued after (d) (lane_d18r.sh), written before it runs.
+   Cause: win2's partial D 18.1875 scan (leap state 3f06b92e) reads + at 1.70-1.75 and - at 1.83-1.85, while D 18 and D 18.25 read - at 1.70.
+   Run: the hybrid sign (d18_hybsign.py e089207a, noise test 1e-15 on blocks 0-11, 2 seeds, float64 sign beside) at lambda 1.20 and 2.60
+   on each k_c 63 state, in D order: D 17.75 (winb, de9fc3e5, record winb_l1kc63W1025_copy.jsonl c33039df), D 18 (winb, 45e72c6a, stub
+   2cfdb833), D 18.0625, 18.125, 18.1875, 18.25 (the leap: f2307f0e, 5bf7b711, 3f06b92e, eae8ca02) and D 18.5 (33c1a58b), record 08f4dbf3.
+   No root expected at the references: the known real roots at these D lie in 1.677-1.87 (dh170's D 17.75 scan 1.68-1.95: changes in
+   (1.69, 1.70) and (1.86, 1.87); D 18, 18.25, 18.5 as posted); lambda_0 (2.12) is the scalar's rate, another M. Nothing is known in
+   1.20-1.55 or 2.10-2.60 at these D: the basis is that no root is known there, not a scan.
+   Reading, fixed (the coordinator's): both reference signs constant across D means the convention holds and orientations compare.
+   A flip at both references between two consecutive states means a global flip, so orientations compare only within one state.
+   Added (mine, for the cases the reading leaves open): a flip at one reference only between two states is a root crossing that
+   reference, not a convention reading, and the coordinator rules; a reference point that is not noise-robust is not counted, and a
+   pair touching it gets no reading. Reader d18_refsign_read.py, selftest before the run.
+   Information beside it: which of the state's quantities change sign between consecutive states (d18_state_signs.py, run at
+   15:04:18 UTC on the 13 states 17.75-18.5: no block flips, block cosines +0.999848 or more, d18_state_signs.log); and each state's frozen
+   step counts per segment (d18_state_steps.py, after the test), since M's discrete system changes between states.

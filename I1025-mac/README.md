@@ -140,3 +140,8 @@ Written before the run (criteria in `d18/d18_criteria.log`, 2026-11-21 03:31:59 
   point 1.90 agrees with the first scan. Over 1.55-2.10 D 18.5 has one robust change, (1.67, 1.68), minus to plus, and no ln|det|
   minimum without a sign change: **reading (d2)**, the plus-to-minus root is not in 1.90-2.10 (`d18/d185_scanhi.log`,
   `d18/d185_scanhi_1025.jsonl`, `d18/d185_d_read.log`; numbers `d18/d185_d_numbers.py`, `d18/d185_d_numbers.log`).
+- 2026-11-21 15:05:29 UTC, the coordinator's check of det's sign convention across states, **queued after (d), reading written before it runs**
+  (`d18/lane_d18r.sh`, d18_criteria.log): the hybrid sign with the noise test at **lambda 1.20 and 2.60** on every k_c 63 state at
+  D 17.75, 18, 18.0625, 18.125, 18.1875, 18.25 and 18.5. Both reference signs constant across D: the convention holds and orientations
+  compare. A flip at both between two states: a global flip, and orientations compare only within one state. A flip at one only: a
+  root crossed it, and the coordinator rules. Beside it: which state quantities change sign (`d18/d18_state_signs.log`: none).

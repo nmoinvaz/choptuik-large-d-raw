@@ -1,0 +1,13 @@
+planted: constant signs: holds: PASS (read holds)
+planted: a flip at both and back (D 18.1875 alone flipped): two global flips: PASS (read global flip)
+planted: 2.60 alone flips between D 18.25 and 18.5: one reference: PASS (read one reference)
+planted: a non-robust 1.20 at D 18.0625: unresolved: PASS (read unresolved)
+planted: a missing point: incomplete: PASS (read incomplete)
+selftest: PASS
+planted: constant signs: holds: PASS (read holds)
+planted: a flip at both and back (D 18.1875 alone flipped): two global flips: FAIL (read holds)
+planted: 2.60 alone flips between D 18.25 and 18.5: one reference: PASS (read one reference)
+planted: a non-robust 1.20 at D 18.0625: unresolved: FAIL (read holds)
+planted: a missing point: incomplete: PASS (read incomplete)
+selftest: FAIL [mutate ends]
+exit codes: selftest 0, --mutate=ends 1 (must be 0 and 1)
