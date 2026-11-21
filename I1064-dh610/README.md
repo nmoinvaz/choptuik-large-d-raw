@@ -167,3 +167,15 @@ Files: `run1064f.sh` (runs `ks307`, `ks331`, `ks347` into `ho_D237.7132/`; summa
 The projection-switch run (unit `i1064m`, `sw_D262.0099/`, started 14:54:52 UTC) is still running at the time of this commit; its results come in their own section.
 
 Change at 15:56 UTC 21 Nov (coordinator, before the dry tests): `--tol_od 1e-60` instead of 2e-34 (as #973's polishes and dh170's ks 315 rung from this base), and the gate is the octo-double Newton converged with max|F| <= 1e-60 and the base saved: `gate1064f.py` (new; `--selftest` 11 cases, `--break` exits 1), used by `run1064f.sh` and `table1064f.py` (`gate1064.py` is untouched, as the running `i1064m` uses it). `--od_floor_delta 1e-30` stays in leg 13's line, so a floor-rule end above 1e-60 fails the gate; the line is reported either way. The dry run sets `TOL1064F=2e-34` and `GMAX1064F=2e-34` (a control at 1e-60 could take tens of minutes); `check_dry1064f.py` takes the tolerance as its fourth argument. The plan comment 7065209051 is updated.
+
+## Result of the projection-switch run (unit `i1064m`, 14:54:52 to 15:58:24 UTC 21 Nov)
+
+Folder `sw_D262.0099/` (`run1064e.sh`, main 276aa1cd, venv-i1058, `nice -n 10`, 10 threads each, `memlog_i1064m.log` without an alert). Posted as comment 7065294371.
+
+| run | `--od_accept` | start max\|F\| (first `on 0:`) | verdict | own wall |
+|---|---|---|---|---|
+| ks 293 control | own | 3.93e-36 | converged, 1 step, 3.9e-36 | 90 s |
+| ks 315 | own | 1.67e-30 | 1 step, 1.7e-30, not converged (stopped itself: no trial step accepted) | 3721 s |
+| ks 315 | natural | 1.67e-30 | the same | 3211 s |
+
+The ks 315 trial points (nine, lam 1 to 0.0039) have max|F| 8.60e+29 down to 1.95e+20, each halving of lam dividing it by 16.0 (15.97 to 16.35), the same in both runs; the Newton correction has |dz| 9.96e-15. The stored state stays the base; no base saved, no Delta(315). The control's Delta: 0.0 against the stored state, -1.01579e-19 against the re-seeded control of this state. Readings (coordinator's): start |F| near 1e-30 (here at most 1e-28): yes, 1.67e-30; a converging 315: no; a first step raising |F| by many orders (here at least 1e3): yes, 5.2e+59 times the start at lam 1 (read from the trial points, not an accepted step).

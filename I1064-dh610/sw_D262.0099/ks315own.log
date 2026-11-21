@@ -19,3 +19,12 @@ held values from the fit data/held_fit.json (degree 8, 138 full-system states, D
       on 0, lam 0.015625: projection failed (9): point max|F| 5.00e+22; own data quad-double 8 its, |R| 5.31e+21 -> 1.30e+18, NOT converged; u0 rung 1 its, |R| 8.10e+31 -> 8.10e+31, NOT converged; u0 quad-double 8 its, |R| 1.43e+28 -> 1.43e+28, NOT converged; ladder FAILED after 8 rungs, last rung u 0.300000 quad-double 8 its, |R| 1.29e+29 -> 1.29e+29, NOT converged
     on 0 trial lam 0.0078125: max|F| 3.13e+21; raw |dz_t| 2.174e+16 vs |dz| 9.959e-15 (not <); refused, 223.2 s
       on 0, lam 0.0078125: projection failed (10): point max|F| 3.13e+21; own data quad-double 8 its, |R| 3.32e+20 -> 8.11e+16, NOT converged; u0 rung 1 its, |R| 6.34e+31 -> 6.34e+31, NOT converged; u0 quad-double 8 its, |R| 8.31e+28 -> 8.31e+28, NOT converged; ladder FAILED after 8 rungs, last rung u 0.300000 quad-double 8 its, |R| 3.84e+29 -> 2.28e+26, NOT converged
+    on 0 trial lam 0.00390625: max|F| 1.95e+20; raw |dz_t| 5.351e+15 vs |dz| 9.959e-15 (not <); refused, 224.17 s
+      on 0, lam 0.00390625: projection failed (11): point max|F| 1.95e+20; own data quad-double 8 its, |R| 2.07e+19 -> 5.06e+15, NOT converged; u0 rung 1 its, |R| 3.68e+31 -> 3.68e+31, NOT converged; u0 quad-double 8 its, |R| 4.54e+28 -> 4.54e+28, NOT converged; ladder FAILED after 8 rungs, last rung u 0.300000 quad-double 8 its, |R| 1.94e+30 -> 1.13e+27, NOT converged
+  on 0: |F| 1.67e-30, |dz| 9.96e-15: no trial step accepted, stopping
+      elim projections {'u0': 0, 'u0q': 0, 'ladder': 0, 'failed': 11, 'skipped': 1, 'u0o_refused': 11}
+      octo-double Newton: 1 steps, max|F| 1.7e-30, not converged; double-double |F| of its first two parts 7.4e+32
+base polish not adopted (max|F| 1.7e-30 -> 1.7e-30): the stored state is the base
+base I966-dh370/ks_chain3b/leg14_D261.1415_ks293/anm_pin3_D262.0099.npz: D 262.009869398, M 32, pin 3 (held [5, 7, 9, 11, 13]), |F| 7.4e+32; N 31, eps 1e-14, h_max 2.0, corrector od (junk_only False), tol 1.0e-20 x 1.45^(D - 262.00987), stalls accepted below 1e-17
+done
+exit 0
