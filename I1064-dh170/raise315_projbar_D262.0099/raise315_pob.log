@@ -1,0 +1,31 @@
+horizon series to order 315 instead of the state's 293
+held values from the fit data/held_fit.json (degree 8, 138 full-system states, D 38.020417-73.0), relative to the base
+--ks changes the horizon order, so the base is planned again (compare with --ks of the state's own order and --keep_plan 0, which moves Delta by itself past D 230)
+    on 0 chord 0: max|F| 2.88e+11, |dw| 1.504e+08
+  on 0: strong chord (4 weak directions), 1 steps after the full first step; theta at its point inf (bound 0.750): refused, 638.39 s
+    on 0 trial lam 1: max|F| 2.88e+11; raw |dz_t| 1.679e+08 vs |dz| 5.646e-20 (not <); refused, 797.28 s
+      on 0, lam 1: projection failed (3): point max|F| 2.88e+11; own data quad-double 8 its, |R| 4.87e+10 -> 1.08e-06, NOT converged; u0 rung 1 its, |R| 1.12e+31 -> 1.12e+31, NOT converged; u0 quad-double 8 its, |R| 2.00e+28 -> 9.00e+24, NOT converged; ladder FAILED after 8 rungs, last rung u 0.300000 quad-double 8 its, |R| 1.73e+29 -> 4.95e+25, NOT converged
+Command terminated by signal 15
+	Command being timed: "timeout -s TERM 10800 /home/nathan/Source/choptuik-large-d-1058b/.venv/bin/python -u anm_run.py /home/nathan/scratch949 /home/nathan/Source/choptuik-large-d-raw-1064w/I1064-dh170/raise315_projbar_D262.0099/raise315_pob --state I966-dh370/ks_chain3b/leg14_D261.1415_ks293/anm_pin3_D262.0099.npz --kfreeze 3 --held_fit data/held_fit.json --N 31 --eps 1e-14 --h_max 2 --corrector od --tol_od 1e-60 --qd_it 40 --lam_stall 0.04 --od_junk 0 --jet_o 1 --reseed 2 --reseed_q 1 --held_o 1 --reseed_o 3 --save_pred 1 --od_accept own --save_jet 1 --od_strong 4 --reseed_start pred --a_rule reseed --a_scale 0.000715 --jet_tangent_from 1 --series_split 1 --a_rise 1 --proj_start pred --reseed_o_stop 1 --od_floor_delta 0 --proj_o 1 --reseed_qd_bar 1e-13 --proj_o_bar 2e-34 --threads 4 --steps 0 --keep_plan 1 --save_base 1 --ks 315"
+	User time (seconds): 6995.91
+	System time (seconds): 17.70
+	Percent of CPU this job got: 378%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 30:50.75
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 235484
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 10772279
+	Voluntary context switches: 8198
+	Involuntary context switches: 56212
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 24
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
