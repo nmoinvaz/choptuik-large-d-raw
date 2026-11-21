@@ -415,3 +415,4 @@ real base, s1 is the base's nearest stable pole off the axis, and s2 is the real
 
 If it fails, the type stays not resolved at N 31. If it passes, the type comes from the median mu over the three
 bases of (1): within 0.1 of 1/2 a fold, within 0.2 of −1 a pole, otherwise not resolved.
+| 262.4705 | fcf73363 | 262.0871 ± 0.9709i (9 approximants) | 1.0472, 1.0480, −0.08% | PASS (0), FAIL (1) | 262.6633 (+27.9), 334.4578 (+1.601) |
