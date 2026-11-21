@@ -54,3 +54,12 @@ D 18.5 root. The pass rules are unchanged (d18_check.py 08969ea2, then signtest.
      root at D 18 is in, the reader is run again with it as REF_HI, and both runs are kept.
    - selftest (d185_scan_read_selftest.log): 6 planted cases PASS; --mutate=noise and --mutate=shift FAIL, as they must.
    - correction: the D 18 gap 0.0313 sent before used the upper root's det-linear estimate, the low end of its range; by the ranges it is 0.0313-0.0327.
+== 2026-11-21 10:35:13 the coordinator's ruling after the D 18.5 scan (hc): (a), then (b); (c) later. Both with the noise test and the float64 sign
+   (d18_hybsign.py e089207a), one process at a time (lane_d18c.sh).
+   (a) D 18, winb's state and stub as (A): the hybrid scan over lambda 1.55 to 1.69 at 0.01 (15 points), read together with (A)'s
+       1.70-1.90. Reading, fixed: a robust change below 1.70 at D 18 means a third root there, and D 18.5's single root at 1.677 likely
+       continues it, so the D 18 pair at 1.775 and 1.806 has merged and left the real axis between D 18 and 18.5. No change below 1.70
+       means D 18.5's root continues one of the pair, and the other's fate is open.
+   (b) D 18.25, the leap's state sol_l1kc63Wm1025_D18.250000.npy and its record line: the hybrid scan over 1.55 to 1.95 at 0.01
+       (41 points). Reading, fixed: it places the roots halfway; two close roots, or none where the pair was, tells whether they meet.
+   Both: say where ln|det| has a local minimum without a sign change (a near-tangent pair can give no change).

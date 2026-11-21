@@ -114,3 +114,9 @@ Written before the run (criteria in `d18/d18_criteria.log`, 2026-11-21 03:31:59 
   `d18/l1kc63Wm1025.jsonl`, every state `d18/sol_l1kc63Wm1025_D18.*.npy`). The scan has ONE robust sign change, in (1.67, 1.68),
   estimator range [1.677016, 1.677225], every point noise-robust (`d18/d185_scan.log`, `d18/d185_scan_read.log`); not the two-change case,
   so the coordinator rules. Slopes and ln|det| minima: `d18/d185_post_numbers.py`, `d18/d185_post_numbers.log` (2026-11-21 10:32:53 UTC).
+- 2026-11-21 10:35:13 UTC, the coordinator's ruling after the D 18.5 scan, **windows written before each runs** (`d18/lane_d18c.sh`, d18_criteria.log):
+  (a) D 18 on winb's state, the hybrid scan over **lambda 1.55 to 1.69 at 0.01 (15 points)**, read with (A)'s 1.70-1.90: a robust change
+  below 1.70 means a third root at D 18 (the D 18 pair then merged and left the real axis by D 18.5); none means D 18.5's root continues
+  one of the pair. (b) D 18.25 on the leap's state, **lambda 1.55 to 1.95 at 0.01 (41 points)**: places the roots halfway. Both report
+  where ln|det| has a local minimum without a sign change.
+- reader `d18/d18c_read.py` (blob 1383470f): 6 planted cases PASS, `--mutate=nominima` FAILS (`d18/d18c_read_selftest.log`); on (A) alone it reads (a2) and on the D 18.5 scan it finds one change, as before.
