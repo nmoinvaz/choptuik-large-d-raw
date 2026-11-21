@@ -292,3 +292,38 @@ Note at 262.2833: the root test rises to 0.9916 (−0.21% from |D0 − P1|). The
 | 262.3756 | 3fcc674b | 262.0872 ± 0.9710i (9 approximants) | 1.0122, 1.0165, −0.43% | PASS (0), FAIL (1) | 262.4502 (+30.7), 672.9987 (+3.803) |
 
 Note at 262.3756: the root test is 1.0122 (−0.43% from |D0 − P1|). The real stable pole is listed a fourth time, at 265.0788 (4 approximants, 2.70 ahead). Over its last three bases (262.1920 to 262.3756) it is 265.0816, 265.0779 and 265.0788, a range of 0.0037, under 0.01. The fixed fold reading is on rows' estimators of Delta, which do not see it (they track the nearer pair; Dlog D* 673.0 here), and locate gives it no exponent. So no fold is read, and it is reported as a candidate: a real Padé pole held to 0.004 over three bases.
+
+## The real pole near D 265.08: readings fixed 2026-11-21 14:49:34 UTC (the coordinator's, before any further base)
+
+The real stable Padé pole was listed at 262.1011 (265.0469), 262.1920 (265.0816), 262.2833 (265.0779) and 262.3756
+(265.0788). Those four bases are not counted below.
+
+**(1) Position.** Over the next three new bases, the real stable Padé pole's Re lies within 0.01 of its mean (max |Re −
+mean| ≤ 0.01). Then a real singularity of the order-293 system near that D is read, type unknown. Until then each base
+reports it as a candidate. The pole is the real stable pole of `locate` (D_im ≤ 0.05) nearest the base.
+
+**(2) Type** (`subdom.py`, written before it reads a real series):
+
+- The estimator is the Dlog estimator on Delta's series with the nearest conjugate pair divided out. g'/g (g = df/dh)
+  has a simple pole at each algebraic singularity, with residue mu − 1. It is multiplied by
+  a(h) = (1 − h/s1)(1 − h/s̄1), with s1 the base's nearest stable pole off the axis from `locate`. That cancels the
+  pair's poles. The Padé approximants [L/M] (M 3 to 9, L M − 1 to M + 1) of a·g'/g give the real pole nearest the
+  origin (Re > 0, |Im| below 5% of the modulus), as in `singularity_type.py`. At that pole, mu = 1 + residue / a(s).
+  Poles with a corrected residue within 0.05 of 0 or of +1 are skipped, as there. The result is the median over the
+  approximants, with its spread.
+- **The planted check comes first:**
+  - the plant is a conjugate square-root pair at the latest base's s1 (P1 − 262.3756 = −0.2946 + 0.9729i), plus a
+    real square-root point at s2 = 2.8;
+  - the amplitude ratio is as in the data: a least-squares fit of Delta's c_1..c_31 at 262.3756 to
+    2 Re(A1 b_k / s1^k) + A2 b_k / s2^k, with b_k the coefficients of (1 − x)^(1/2) and s2 = 265.0788 − 262.3756.
+    The fit assumes square roots; the fitted |A2| / |A1| is used;
+  - N 31, relative noise 1e-12 (`singularity_type.py`'s);
+  - it passes if the estimator recovers mu to 10% (|mu − 0.5| ≤ 0.05) and the point's distance to 0.5% (|s − 2.8|
+    ≤ 0.014);
+  - `--mutate=move` builds the point at 2.8 + 0.5 and judges it against 2.8, which must fail;
+  - reported beside it, not judged: the same plant with a pole pair (mu1 = −1), and the plain Dlog estimator without
+    the division.
+- **Reading, once (1) is met:** the type comes from the median of the estimator's mu over the three bases of (1):
+  - within 0.1 of 1/2: a fold. A fold near D 265.08 would cap the ks 293 chain there;
+  - within 0.2 of −1: a pole;
+  - otherwise not resolved.
