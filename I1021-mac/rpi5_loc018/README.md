@@ -161,4 +161,21 @@ inner_nb, Nathan's call.
   fires on B2. The amended `locate018.py --selftest` (check2 PASS FAIL FAIL PASS PASS, then U1's Newton end with sign
   −W: PASS, and with the shift FAIL; U1 reported not located) exits 0. A copy without the sign test fails the selftest
   (exit 1).
-- The planted recount: running; the result goes here.
+- The planted recount (`--plant=P0`) took 7502 s and exited 0 at 2026-11-21 05:42:41 UTC. All 3 boxes resolved, with
+  0 splits:
+
+  | box | winding | min \|R\| on its boundary | Newton's end at 0.18 | at 0.17 (`--r1b`) |
+  |---|---|---|---|---|
+  | B1 | +1 | 9.71e3 | (4.0623348, 0.51888722), 0.69 sigma, Jacobian sign +1 | (4.0545235, 0.51642301), 2.65 sigma, sign −1 |
+  | B2 | −1 | 4.84e5 | (4.2699461, 0.54447456), 0.46 sigma, sign −1 | not located |
+  | C0 | +1 | 1.47e4 | P0 to 5.9e-14, sign +1 | P0, sign +1 |
+
+  `plant_check.py` passes (one +1 zero whose cell contains P0; C0 winds the plain winding plus 1; B1 and B2 as in the
+  plain count; the zeros outside C0 the plain count's), and with `--mutate=shift` it fails: exits `0 1`. Its line
+  "same 32 boxes" is the copied script's fixed text; here it compares the 3 boxes.
+- The planted factor (A − A0) + 2i (wf − wf0) is zero-free in B1 and preserves orientation, so a simple zero of the
+  map keeps its Jacobian sign under it. In B1, Newton's end has sign −1 on the plain map and +1 on the planted map, at
+  points 3.5e-4 apart in A. So at B1's noise floor, Newton's Jacobian sign is not determined. That is why `check2`
+  reports B1's zero as counted, not located. B2's sign is −1 in both runs.
+- Stage 2 on the Mac: check2 `0 1 1` and plant_check `0 1`, as the criteria require. This is a dry run, on the Mac's
+  build and its own points. It does not stand for rpi5's run.
