@@ -618,3 +618,18 @@ pole should take over. The per-base table gains a column `265.078 − D0` beside
 
 All four are as required.
 | 262.9679 | 85493cd1 | 262.0871 ± 0.9709i (9 approximants) | 1.3145, 1.3165, −0.15% | 2.1101 | PASS (0), FAIL (1) | 262.7822 (+43.0), 310.9014 (+1.681) |
+
+## The front jets (dh610, raw 8bf5af2a): read 2026-11-21 18:26 UTC; the plan arm waits on the control
+
+The jets' sha256 match dh610's `jets_sha256.txt`. (b)'s plan differs from (a)'s: 3229ae03… against 2f2fb22d…, 23 steps
+each. The order arm's two bases share plan 5de37a18… (21 steps).
+
+| comparison | Delta's c_k, largest relative difference | real pole 265.0778 | P1 (n 9 cluster) 262.0871 ± 0.9709i | other poles | reading |
+|---|---|---|---|---|---|
+| dh370's jet against (a) (`front_dh370_vs_a.txt`) | 1.5e-17 (k 11) | difference 0 (double) | 0 | the n 7 and n 4 clusters: 0 | information: the control's size is invisible at the 0.01 scale |
+| (a) against (b) (`front_a_vs_b.txt`) | 4.0e-16 (k 11) | 0 | 0 | 0; root test 2.2e-16 | moves 0 < 0.01: not the plan at this resolution (**waiting on the control**) |
+| (c′) K 307 against K 395 at D 237.7132 (`order_k307_vs_k395.txt`) | (dh610: whole jet 4.1e-11) | not seen | not seen | 238.0752 ± 8.4379i, 234.4315 ± 8.0070i, 242.2589 ± 7.7834i: at most 5.3e-15 | near poles: neither at this resolution. P2 and the 254.68 pair are not seen from D 237.7, so no reading |
+
+Controls: `front_compare.py --mutate=move` reads "plan" for the moved real pole, and `order_compare.py --mutate=move`
+reads "truncation" for the moved pole. The near poles at D 237.7132 are also those of dh370's ks 291 jet (the dry run),
+to the printed digit.
