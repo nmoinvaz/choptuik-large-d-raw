@@ -3,3 +3,6 @@ start 2026-11-21 00:33:05 Linux 6.17.0-1021-raspi aarch64
 argcount selftest, nocap, starts, norecount, lowcap, seedfix exits: 0 1 1 1 1 1
 fu_value018 selftest, --break exits: 0 1
 pass 1 value start 2026-11-21 00:33:12 leaves leaves_M3_recount3_r0.18.jsonl cache 735 lines
+pass 1 value exit 2 (0 all accepted, 2 some not) 2026-11-21 05:29:58: accepted 3 of 9 points, appended to the cache
+pass 1 retest --mutate=f3 exit 1 (1 fired, 0 changed no decision)
+pass 1 retest --mutate=lowguard exit 1 (1 fired, 0 changed no decision)
