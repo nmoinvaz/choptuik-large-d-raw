@@ -1,0 +1,24 @@
+planted: reference: two robust changes, planted roots inside their ranges: PASS
+planted: a non-robust point beside the lower change: one robust change, one listed: PASS
+planted: a complex pair: no change: PASS
+planted: gap change +0.0050: reads ('separate',), planted roots inside their ranges: PASS
+planted: gap change -0.0050: reads ('approach',), planted roots inside their ranges: PASS
+planted: gap change +0.0003: reads ('separate', 'not resolved by the scan'), planted roots inside their ranges: PASS
+selftest: PASS
+exit 0
+planted: reference: two robust changes, planted roots inside their ranges: PASS
+planted: a non-robust point beside the lower change: one robust change, one listed: FAIL
+planted: a complex pair: no change: PASS
+planted: gap change +0.0050: reads ('separate',), planted roots inside their ranges: PASS
+planted: gap change -0.0050: reads ('approach',), planted roots inside their ranges: PASS
+planted: gap change +0.0003: reads ('separate', 'not resolved by the scan'), planted roots inside their ranges: PASS
+selftest: FAIL [mutate noise]
+exit 1
+planted: reference: two robust changes, planted roots inside their ranges: FAIL
+planted: a non-robust point beside the lower change: one robust change, one listed: PASS
+planted: a complex pair: no change: PASS
+planted: gap change +0.0050: reads ('separate',), planted roots inside their ranges: FAIL
+planted: gap change -0.0050: reads ('approach',), planted roots inside their ranges: FAIL
+planted: gap change +0.0003: reads ('separate', 'not resolved by the scan'), planted roots inside their ranges: FAIL
+selftest: FAIL [mutate shift]
+exit 1

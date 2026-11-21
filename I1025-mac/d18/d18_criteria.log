@@ -38,3 +38,19 @@ shows D 18's rules, its signtest and the signtest's control all passing). The D 
 (2.0399399392, the Mac's P4 re-root of winb's l1kc63Fw1025, its system read under P4 amendment 5) and the D 18 hybrid root, extrapolated
 to D 18.5 (d185_guess.py, blob de86edaa, checked on planted inputs). The lane writes its value into the README and this log before the
 D 18.5 root. The pass rules are unchanged (d18_check.py 08969ea2, then signtest.py at -/+ 0.02).
+== 2026-11-21 07:41:01 the coordinator's ruling after (A) (hc, about 07:40 UTC): start the leap D 18 -> 18.5 now, as staged (tag l1kc63Wm1025, h 0.0625,
+   seeds winb's D 17.9375 and D 18 states, winb's flags, 12 h cap; lane_d185L.sh). The leap continues the state, not an eigenvalue, so two
+   roots at D 18 do not block it. At D 18.5, in place of the single-root run: the hybrid sign scan as (A) (d18_hybsign.py, noise test,
+   float64 sign beside each) over lambda 1.55 to 1.90 at 0.01 (36 points). Reading, fixed now: count and bracket the robust sign changes.
+   Two changes means the pair persists; their gap beside D 18's shows whether they approach or separate. delta(17.5) and both D 18
+   roots stay provisional until their dd checks. win2b bisects D 18's upper root.
+== 2026-11-21 07:44:51 the D 18.5 scan's reading rules (d185_scan_read.py blob 7c9d400f, lane_d185S.sh), written before the scan:
+   - a sign change counts as robust when both its grid points are noise-robust; a change touching a non-robust point is listed, not counted.
+   - each robust change is bracketed by its grid points (0.01). Its estimator range is the span of four root estimates inside the bracket
+     (det linear; two quadratics; one cubic), information and not a bound. Control on real data: D 18's ranges must contain D 18's bisected
+     lower root 1.7749781027 (they do: [1.774793, 1.775263], d185_scan_read_on_d18.log); if a control fails, the gap is read from the brackets only.
+   - gap reading, for two robust changes: the D 18.5 gap interval against D 18's ([0.031320, 0.032657]: the bisected lower root and the upper's
+     range [1.806298, 1.807635]); wholly below: approach; wholly above: separate; else not resolved by the scan. When win2b's bisected upper
+     root at D 18 is in, the reader is run again with it as REF_HI, and both runs are kept.
+   - selftest (d185_scan_read_selftest.log): 6 planted cases PASS; --mutate=noise and --mutate=shift FAIL, as they must.
+   - correction: the D 18 gap 0.0313 sent before used the upper root's det-linear estimate, the low end of its range; by the ranges it is 0.0313-0.0327.

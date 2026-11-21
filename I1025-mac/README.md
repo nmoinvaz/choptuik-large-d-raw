@@ -104,3 +104,9 @@ Written before the run (criteria in `d18/d18_criteria.log`, 2026-11-21 03:31:59 
   (`d18_scan_place.py`). win2's dd M gave -, +, - at the first grid (comment 7059272560).
   The post's numbers (gap, slopes from D 17 and 17.5): `d18/d18_post_numbers.py`, `d18/d18_post_numbers.log`; it reads
   `d18/winb_p4hi_rowA_copy.jsonl`, a copy of `I1025-win/p4_highD/ell_p4_hybrid_1025_w_highD.jsonl` at raw 8452bfa5.
+- 2026-11-21 07:41:01 UTC, the coordinator's ruling after (A): the leap D 18 -> 18.5 starts now as staged (`d18/lane_d185L.sh`, log
+  `d18/leap_kc63_d185.log`); two roots at D 18 do not block it. At D 18.5, in place of the single-root run, the hybrid sign scan as (A).
+  **Window, written before the scan runs: lambda 1.55 to 1.90 at 0.01 (36 points)**, noise test and float64 sign beside each. Reading:
+  count and bracket the robust sign changes; two changes means the pair persists, and the gap beside D 18's shows approach or separation.
+- 2026-11-21 07:44:51 UTC, before the D 18.5 scan: its reading rules and their selftest (`d18/d185_scan_read.py`, `d18/d185_scan_read_selftest.log`,
+  `d18/lane_d185S.sh`; d18_criteria.log). D 18's gap is 0.0313-0.0327 by the estimator ranges (`d18/d185_scan_read_on_d18.log`).
