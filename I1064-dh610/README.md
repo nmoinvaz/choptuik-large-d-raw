@@ -130,3 +130,7 @@ Pilot (`pilot_1064d.sh`, `dry_d3/`, 11:49 to 11:52 UTC): the real command at ks 
 | 315 | 1.15e-08 (win2's, comments 7060065590, 7060623893) | 1.1e-08 | 127.5 | 3.31e-12 to 1.93e-09 |
 
 The two earlier ks 293 controls of this state (`k294_D261.6229/ks293` and `leg14_D261.6229/ks293`) against each other: Delta difference 0.0, xcheck 0 (`dry_d3/delta_earlier_vs_earlier0.*`).
+
+## Rung change (coordinator, ~11:5x UTC 21 Nov): ks 315 at D 261.6229 and at D 262.0099 instead of ks 294
+
+dh170's #1057 trigger: the first chain state with the Delta share at or above 0.9 is `I966-dh370/ks_chain3b/leg14_D261.1415_ks293/anm_pin3_D262.0099.npz` (D 262.0099, share 0.9205; blob eb34f3c845a485d606907b6f7ba2dc9ef429aaf1, raw commit b8cccc18, extracted from origin/main with the blob checked). Unit `i1064j` (control only, from 11:52:12 UTC) was stopped by TERM to its exact pid 1036631 at 11:53:50 UTC (its control exits 143, "control failed: rungs not started"; no rung had started); its output is `rb_D261.6229_i1064j_stopped/`. Restart through `start_1064_rb2.sh` at 11:54:30 UTC: two instances of `run1064d.sh` (unchanged) with `R_1064D=315`, unit `i1064k` (D 261.6229, `rb_D261.6229/`) and unit `i1064l` (D 262.0099, `rb_D262.0099/`), each its own ks 293 control with `--reseed_base 1` first. At D 262.0099 there is no earlier control, so the two "earlier control" paths are the stored state and `delta1064_ctl_vs_earlier*` repeat `delta1064_ctl_vs_state`. No new dry run.
