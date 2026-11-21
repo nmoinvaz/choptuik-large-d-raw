@@ -206,3 +206,11 @@ Folder `ho2_D237.7132/` (`run1064g.sh`, main 276aa1cd, venv-i1058, `nice -n 10`,
 | ks 347 | 4 steps, max\|F\| 4.1e-86 | 1051 s | +4.77172e-27 |
 
 Delta(347) - Delta(331) from the two stored changes: +1.85e-32. xcheck 0 on all three deltas. The largest converging K among 331 and 347 is 347; no larger K was run. Posted as a comment on #1064.
+
+## K 395 and 443 at D 237.7132 from the ks 307 base (coordinator, 21 Nov ~16:55 UTC; unit `i1064p`)
+
+Order: from the same ks 307 base (`I973-dh610/ks307_r2/base_pin3_D237.7132.npz`, blob 5b10a9fd), K 395 and 443 side by side with the flags of the last run (`--od_floor_delta 0`, `--tol_od 1e-60`), the gate max|F| <= 1e-60 and base saved (`gate1064f.py`) and 7200 s caps; report Delta(K) - Delta(307) and each base's smallest pivot p_min. Readings (coordinator): the largest converging K sets the new chain's starting order; a p_min that grows with K would mean the higher order also helps the conditioning (FACTORED_HORIZON.md section 4); my threshold for "grows", written before the run: p_min above 3.3e-15 (K 307, 331, 347 all print 3.2e-15 in the logs of `ho2_D237.7132/`). Plan comment 7066068505.
+
+Files: `run1064h.sh` (the ks 307 control is not rerun: its base is `ho2_D237.7132/ks307/base_pin3_D237.7132.npz`, blob 861c79ff, whose gate passed; the script checks both), `table1064h.py` (12 planted cases, `--break` exits 1; p_min = the smallest `piv` of the log's step lines, with the rows of K 307, 331, 347 from `ho2_D237.7132/`), `check_dry1064h.py` (12 planted cases, `--break` exits 1), `dry_1064h.sh`, `start_1064_ho3.sh` (unit `i1064p`, folder `ho3_D237.7132/`, `memlog_i1064p.log`), `chain_1064h.sh`.
+
+Dry runs (`dry_1064h.sh`, 16:56:06 to 17:01:37 UTC, `dry_h1/`, `dry_h2/`; both passed `check_dry1064h.py`): the pass path (300 s cap): ks395 and ks443 started together with `--od_floor_delta 0`, `--tol_od 1e-60`, their own `--ks`, were TERMed by their exact pids at 300 s (exit 143, gate failed), no ks307 run; the no-control path (`CTL1064H` a missing file): "the ks 307 control base is missing ... stop", nothing started. `chain_1064h.sh` then started `i1064p` at 17:01:37 UTC.
