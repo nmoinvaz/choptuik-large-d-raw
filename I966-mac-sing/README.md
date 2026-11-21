@@ -273,3 +273,4 @@ hold, the radius on the real line is smallest at D0 ≈ 262.08, at about 0.973.
 | D0 | raw | nearest stable pole off the axis | root test, \|D0 − P1\|, difference | nextcheck, move control | Delta: ratio D* (mu), Dlog D* (mu) |
 |---|---|---|---|---|---|
 | 261.6229 | 3a4c2671 | 262.0768 ± 0.9734i (9 approximants) | 1.0841, 1.0754, +0.81% | PASS (0), FAIL (1) | 261.4735 (+32.1), 270.3069 (+1.108) |
+| 261.6746 | 3dfb078d | 262.0767 ± 0.9733i (9 approximants) | 1.0537, 1.0544, −0.06% | PASS (0), FAIL (1) | 261.7282 (+39.2), 270.3444 (+1.145) |
