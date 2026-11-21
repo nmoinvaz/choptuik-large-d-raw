@@ -634,3 +634,5 @@ Controls: `front_compare.py --mutate=move` reads "plan" for the moved real pole,
 reads "truncation" for the moved pole. The near poles at D 237.7132 are also those of dh370's ks 291 jet (the dry run),
 to the printed digit.
 | 263.0929 | dd1d7743 | 262.0871 ± 0.9709i (9 approximants) | 1.4090, 1.4038, +0.37% | 1.9851 | PASS (0), FAIL (1) | 263.0409 (+42.7), 270.9619 (+1.093) |
+
+Note at 263.0929: the root test is 1.4090, still along |D0 − P1| (+0.37%), and 29.0% below 265.078 − D0 (1.9851); the path reading is pending until 263.5. The real pole is at 265.0778 (6 approximants). A second real stable pole appears, at 267.1413 (3 approximants, the stability minimum). locate now keeps four poles (two pair clusters and the two real poles), so the limit is reached, and the n 4 cluster at 262.0768 is no longer listed.
