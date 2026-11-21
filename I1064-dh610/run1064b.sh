@@ -1,5 +1,5 @@
 #!/bin/bash
-# #1064, the coordinator's extension of 21 Nov (05:24 UTC): ks 295 with 297, then 301 with 305 side by side, the same flags, caps and gate as run1064.sh. The control (ks 293) is the one
+# #1064, the coordinator's extension of 21 Nov (05:24 UTC): ks 295 with 297 side by side (a second rung, if env R2_1064B names one), the same flags, caps and gate as run1064.sh. The control (ks 293) is the one
 # run1064.sh made ($SD/ks293, gate converged), so Delta(K) - Delta(293) is taken against its base. Each run is capped at CAP s by TERM to its exact pid (KILL after four more 30 s polls).
 # A run's own wall is the first 30 s poll that finds its pid gone (run1064.sh took the wall after the whole rung ended). A braced block ending in exit.
 # Env for the dry test only: OUT1064 (output folder), CAP1064, R1_1064B, R2_1064B (the K of each rung; R2 may be empty), THR1064B.
@@ -63,7 +63,7 @@ run_rung() {  # K...: start them together, cap each, record exit, own wall and t
     log "ks$K exit ${RC[$K]} wall ${WALL[$K]} s gate ${GATE[$K]}"
   done
 }
-R1=${R1_1064B-295 297}; R2=${R2_1064B-301 305}
+R1=${R1_1064B-295 297}; R2=${R2_1064B-}   # the coordinator's change of 21 Nov 07:19 UTC: the second rung (301 with 305, or ks 315 and 316 from a later chain state) is decided after ks 295 and 297
 run_rung $R1
 run_rung $R2
 cd $WT/hp

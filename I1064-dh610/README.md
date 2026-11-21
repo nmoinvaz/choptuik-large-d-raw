@@ -40,3 +40,18 @@ Defect in `run1064.sh` (reported, not fixed there): each run's wall in `exits_10
 | `check_dry1064b.py` | the pass test of the dry run (ks 293 against ks 315 at a 240 s cap: 293 converges on its own, 315 is killed by its exact pid, the walls differ); `--selftest` has a pass case and five broken ones, `--break` exits 1 |
 | `exits_1064b.txt`, `summary_1064b.txt`, `memlog_1064b.log`, `table_1064b.md` | the unit's exits, verdicts, alert-only memory log and the table of every rung |
 | `dry_b/` | the dry test's output and `check_dry1064b.txt` |
+
+## Result of rungs 1 to 3 (unit `i1064`, 03:20:43 to 07:23:17 UTC, 21 Nov)
+
+| K | exit | verdict (gate) | end |
+|---|---|---|---|
+| 293 (control) | 0 | converged: 1 step, max\|F\| 1.5e-36, base saved | 90 s |
+| 315 | 143 | failed: no octo-double Newton line | TERM to its exact pid at 7200 s (05:22:15), in step 3's trials |
+| 316 | 0 | failed: 4 steps, max\|F\| 3.2e-10, not converged, no base saved | stopped itself: `no trial step accepted, stopping` |
+| 317 | 143 | failed: no octo-double Newton line | TERM at 7200 s (07:22:47) after `no trial step accepted, stopping` (max\|F\| 1.66e-10), before its final Newton line |
+| 318 | 143 | failed: no octo-double Newton line | TERM at 7200 s (07:22:47), in step 2's trials (max\|F\| 1.05e-09 after step 1) |
+
+`table_1064.md` has the iteration lines. The `wall` in `exits_1064.txt` and in the table is the rung's (7232 s for both of a rung), not each run's own (defect of `run1064.sh`, see above).
+
+Information, not a verdict: the control's saved base against the stored leg 13 state (`delta1064_ctl_vs_leg13.*`): Delta equal in all 40 printed digits, difference 0.0 (xcheck passes). Per entry (exact sums of the eight parts, 769 entries):
+the polish moved 64 entries by up to 5.1e-49 (max |S| 1.683), the Delta entry by 0; `zh` and `zl` are byte-equal, `z2` to `z7` differ in 31 to 64 entries. `cmp1060.py bits` does not apply to a base file (no `a` in its meta).
