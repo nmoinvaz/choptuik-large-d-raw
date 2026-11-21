@@ -1,16 +1,19 @@
+start 2026-11-21 03:27
 C'_(nu-2) (B4) <= 4.8738   certificate 28.449: implied
 C'_(nu+0) (B4) <= 9.7996   certificate 56.874: implied
-C'_(nu+2) (B4) <= 892790.0   certificate 4.7661e6: implied
+C'_(nu+2) (B4) <= 892790   certificate 4.7661e6: implied
   whole sum (B4), mu = nu-2: sup e^(-0.736 nu)(H + C' nu/(j0-1)) <= 0.18959 at nu = 3 (nu >= 101: <= 1.54e-26);  certificate 1.0534
   whole sum (B4), mu = nu+0: sup e^(-0.736 nu)(H + C' nu/(j0-1)) <= 0.41788 at nu = 3 (nu >= 101: <= 3.07e-26);  certificate 2.1427
-  whole sum (B4), mu = nu+2: sup e^(-0.736 nu)(H + C' nu/(j0-1)) <= 32715.0 at nu = 3 (nu >= 101: <= 2.52e-21);  certificate 1.7463e5
+  whole sum (B4), mu = nu+2: sup e^(-0.736 nu)(H + C' nu/(j0-1)) <= 32715 at nu = 3 (nu >= 101: <= 2.52e-21);  certificate 1.7463e5
 C'_(nu-2) (tight) <= 2.3885   certificate 28.449: implied
 C'_(nu+0) (tight) <= 5.3958   certificate 56.874: implied
-C'_(nu+2) (tight) <= 578160.0   certificate 4.7661e6: implied
+C'_(nu+2) (tight) <= 578160   certificate 4.7661e6: implied
   whole sum (tight), mu = nu-2: sup e^(-0.736 nu)(H + C' nu/(j0-1)) <= 0.098526 at nu = 3 (nu >= 101: <= 1.54e-26);  certificate 1.0534
   whole sum (tight), mu = nu+0: sup e^(-0.736 nu)(H + C' nu/(j0-1)) <= 0.25652 at nu = 3 (nu >= 101: <= 3.07e-26);  certificate 2.1427
-  whole sum (tight), mu = nu+2: sup e^(-0.736 nu)(H + C' nu/(j0-1)) <= 21188.0 at nu = 3 (nu >= 101: <= 2.52e-21);  certificate 1.7463e5
-Lambda_head, mu = nu-2: <= 0.011013 at nu = 3;  certificate 0.011012
-Lambda_head, mu = nu+0: <= 0.058818 at nu = 3;  certificate 0.058818
-Lambda_head, mu = nu+2: <= 3.3073 at nu = 3;  certificate 3.3073
-constants exit 0
+  whole sum (tight), mu = nu+2: sup e^(-0.736 nu)(H + C' nu/(j0-1)) <= 21188 at nu = 3 (nu >= 101: <= 2.52e-21);  certificate 1.7463e5
+Lambda_head, mu = nu-2: <= 0.011013 at nu = 3;  certificate 0.011012, an upper bound of e^(-0.736*3) H(3) >= 0.0110124257: NO (reported as finding 1; a comparison, not a check of this script)
+Lambda_head, mu = nu+0: <= 0.058818 at nu = 3;  certificate 0.058818, an upper bound of e^(-0.736*3) H(3) >= 0.0588179762: yes
+Lambda_head, mu = nu+2: <= 3.3073 at nu = 3;  certificate 3.3073, an upper bound of e^(-0.736*3) H(3) >= 3.30727822: yes
+constants.py PASS: every C' at most the certificate's C
+exit 0
+end 2026-11-21 03:27

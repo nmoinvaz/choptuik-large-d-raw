@@ -2,9 +2,10 @@
 
 Machine: mac (Apple M5), the #1062 reviewer subagent. Issue: https://github.com/nmoinvaz/choptuik-large-d/issues/1062
 
-Code: branch review/p6-route3 of choptuik-large-d (febd41a5; explicit.py's and controls.py's logs, 44ffbd1f for the rest), `solver/proof/review_p6/`, venv-314 (mpmath 1.3.0,
+Code: branch review/p6-route3 of choptuik-large-d (43e2ca8a), `solver/proof/review_p6/`, venv-314 (mpmath 1.3.0,
 sympy 1.14.0; python-flint 0.9.0 and FLINT 3.6.0 only for amp_flint.py and cert_digits). One process at a time at
-nice 10. Notes: notes/P6_route3_review.md. The runs of record used the same code, up to output formatting.
+nice 10. Notes: notes/P6_route3_review.md. Every log except cert_digits.log is the rerun of record at 43e2ca8a
+(2026-11-21 03:16-03:44 UTC), after the bot reviews of #1063; its numbers equal the first run's, up to formatting.
 
 - `ampcheck.log`: PC1, the review's model against amp_flint.py run as a black box; PASS, worst 2.5e-37
 - `ampcheck_droppair.log`: M6, one ordered lapse pair dropped; FAIL, exit 1
