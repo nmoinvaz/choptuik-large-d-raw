@@ -497,3 +497,34 @@ Dlog improves with them.
 | 262.7908 | 8caffc64 | 262.0871 ± 0.9709i (9 approximants) | 1.1974, 1.2043, −0.57% | PASS (0), FAIL (1) | 262.5082 (+29.6), 515.1630 (+2.826) |
 
 Note at 262.7908: the real singularity read near 265.078 is listed at 265.0778, now with 6 approximants (4 before), 2.29 ahead. That is within 0.0002 of the three bases of reading (1).
+
+## The front test at D 262.7908 (#1064, dh610's three jets): how they are read, fixed 2026-11-21 17:36:02 UTC
+
+**Inputs.** dh610 pushes three jets to `I1064-dh610/front_D262.7908/`, all from dh370's base
+`anm_pin3_D262.7908.npz`:
+- (a) ks 293 on the state's plan, the control;
+- (b) ks 293 re-planned;
+- (c) ks 395.
+
+Each is read with `newjet.sh TAG RAWPATH`: `newbase.sh`'s steps, with outputs named by tag.
+
+**Readings** (the coordinator's, in #1064's last comment):
+- the real pole's Re moving by more than 0.01 from (a) to (b) means it belongs to the plan;
+- moving by more than 0.01 from (b) to (c) means it belongs to the truncation;
+- under 0.01 in both means neither, at this resolution;
+- P1 is read the same way, in Re and Im.
+
+**What is compared** (`front_compare.py`, fixed before any of the three lands):
+- **The real pole:** locate's real stable pole (D_im ≤ 0.05) nearest 265.078, within 0.5 of it. If a jet has none,
+  that is reported as no real pole, and no move is read for it.
+- **P1:** locate lists up to three stable clusters near the pair, at about 262.0768, 262.0829 and 262.0871, about
+  0.01 apart. "The nearest pole" can switch cluster between runs, and that alone would fake a move of about 0.01. So
+  P1 is the cluster off the axis with the most approximants, ties going to the one nearest 262.081 ± 0.973i. Its move
+  is read against the same rule in the other jet.
+- Reported beside them, not read:
+  - every cluster matched to its nearest in the other jet;
+  - locate's recurrence fit, one value per series.
+- **Control checks:**
+  - (a) against dh370's jet: Delta's c_k relative differences (`deltadiff.py`) and the two locate results, which
+    must agree to the printed digit;
+  - `front_compare.py --mutate=move` adds 0.02 to (c)'s real pole, and must read "truncation".
