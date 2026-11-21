@@ -13,6 +13,7 @@ echo "  locate exit $?" >> $X
 /usr/bin/time -l nice -n 19 $P -I $C/singularity_type.py rows $W/jetsnew/$B.npz --delta > type966_D$D.txt 2> type966_D$D.time
 echo "  rows exit $?" >> $X
 $P -I $W/nextcheck.py $O/locate966_D$D.json > nextcheck966_D$D.txt; echo "  nextcheck exit $?" >> $X
+nice -n 19 $P -I $W/locate6.py $C $W/jetsnew/$B.npz --json $O/locate6_D$D.json > locate6_D$D.txt; echo "  locate6 exit $?" >> $X
 $P -I $W/nextcheck.py $O/locate966_D$D.json --mutate=move > nextcheck966_D${D}_move.txt; echo "  nextcheck --mutate=move exit $? (1)" >> $X
 echo "  end $(date -u '+%F %T')" >> $X
 exit
