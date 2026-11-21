@@ -99,3 +99,59 @@ Estimate (made before the run): not known on this machine; it came out at 425 to
 Reported as the order fixes it, nothing further read: the minus-to-plus change at D 18 (bisected 1.7749781, in (1.77, 1.78) on xfkappa's scan) is in (1.79, 1.80) here; the plus-to-minus change that D 18 had in (1.80, 1.81) is not in 1.70 to 1.95 here; D 18.25's root (1.7425) is inside the window and shows no change at 1.74. The scan does not show what lies below 1.70, where the ln|det| minimum at the edge is.
 
 **cpu and memory (`samples.csv`, a sample every 60 s, 102 samples 14:08 to 15:52 UTC).** My two `d18_hybsign.py` processes (python child of each root; the roots are launcher stubs): A peak working set 1.02 GiB, private 1.62 GiB, 8541 cpu-s in 5814 s; B peak working set 0.62 GiB, private 1.32 GiB, 9208 cpu-s in 6252 s; both BelowNormal throughout; the two together at most 1.64 GiB working set and 2.82 GiB private in one sample. Machine: cpu mean 38.1% (1 s samples), max 69.4%; commit 45.5 to 50.4 of 101.5 GiB; free physical at least 50.5 GiB. Two other `d18_hybsign.py` processes (not mine; launcher stubs 15348 and 18128, pythons 34584 and 10848, from 14:28 UTC, still running at 15:52) shared the machine and are in the machine figures.
+
+---
+
+# Part 2: the same D 18.0625 state above the window, lambda 1.95 to 2.35 (win2b)
+
+Written before the run, 2026-11-21 15:59 UTC by `date -u`. Part 1 above (lambda 1.70 to 1.95) is done; its files are unchanged, and the files of this part have the prefix `up_`.
+
+## Order
+
+The coordinator (hc, about 15:58 UTC 21 Nov): where D 18's plus-to-minus root went. At D 18 it sat at 1.8074 and at D 18.0625 there is none in 1.70 to 1.95. Scan the same D 18.0625 state above the window: lambda 1.95 to 2.35 at 0.01 (41 points), same script, noise test, float64 sign, two processes with 1.95 repeated in both as the check (it also repeats Part 1's 1.95), 4 threads each, BelowNormal, 8 h caps. Window and reading go into this README first, raw `I1025-win2b/d18mid`. Post on #1025.
+
+Reading (the coordinator's, fixed before the run): **a robust plus-to-minus change places the root, which then rose at least 2.3 per unit D. None up to 2.35 means it is not there.** xfkappa's check of the determinant's sign convention across these states reports about 16:20 UTC, and **all orientation readings wait for it**: this post reports the orientation as the reader prints it (the det sign of this scan's own convention) and reads nothing from the orientation until that check is in.
+
+## Inputs
+
+The same as Part 1 (`in/pins.txt`, `in/pins_check.log`, all blobs checked again by the driver before the start): scanner `d18_hybsign.py` e089207a, state `sol_l1kc63Wm1025_D18.062500.npy` f2307f0e, leap record `l1kc63Wm1025.jsonl` 08f4dbf3 (D 18.0625 line: F 2.6753918623791614e-10, 2540 steps), winb's reader `read_d18mid_1025.py` 017ae1da. Worktree `D:/choptuik-1025p4` at 505d8399, venv-md510, 4 BLAS and rayon threads per process, BelowNormal. Plus Part 1's merged scan `scan_merged.jsonl` (blob 8b0c3bfc01d19768df4a20de2e2f0d8017887089), for the 1.95 comparison.
+
+New scripts of this part (mine; blobs): `merge_up.py` 3c648aa9, `rate_up.py` af1d97cd, `plant_checks_up.py` 00e68429, `d18up_driver.sh` 5e4d74e4 (launcher `launch_d18up.ps1`), the sampler `sample_d18mid.ps1` 9437f3ef (unchanged). winb's `merge_d18mid_1025.py` is not used here: it hard-codes the window 1.70 to 1.95. `merge_up.py` has the same logic and bar with this window.
+
+## Window and lambda lists, fixed before the run
+
+Window: lambda 1.95 to 2.35 at 0.01, 41 points. D 18's upper root was 1.8074339746 (my hybrid root, comment 7062464335); a root at 1.95 or above at D 18.0625 means a rise of at least (1.95 - 1.8074339746) / 0.0625 = 2.281 per unit D at the window's lower end; the coordinator's "at least 2.3" is that figure rounded, and the window's top, 2.35, is a rise of 8.7 per unit D.
+
+| process | lambda, in this order | points |
+|---|---|---|
+| A | 1.95, then 1.96, 1.97, ..., 2.15 | 21 |
+| B | 1.95 again, then 2.16, 2.17, ..., 2.35 | 21 |
+
+The repeated point (1.95, first in both) makes 42 evaluations for 41 distinct points. Caps 28800 s (8 h) each by the exact pid of the root process (`taskkill /T /F /PID`) after a check that its command line contains `d18_hybsign.py`; a cap is not retried.
+
+## Reading, fixed now
+
+As Part 1 (the pinned reader, the same definitions): every robust change with its orientation, and every ln|det| local minimum without a change, with the added line of `rate_up.py`:
+
+- a **robust plus-to-minus change** (two consecutive points, plus then minus, both passing the 1e-15 noise test) places the root in that bracket; `rate_up.py` prints the rise from D 18's root 1.8074339746330934 over 0.0625 in D, per unit D, at the bracket's two ends;
+- **no robust plus-to-minus change from 1.95 to 2.35**: the root is not there (the coordinator's reading); a change that touches a non-robust point is listed and not counted;
+- other changes (minus-to-plus), ln|det| minima and the float64 sign are reported as the reader prints them;
+- orientation readings wait for xfkappa's sign-convention check (see the Order).
+
+## Repeat check, fixed now
+
+At the repeated lambda 1.95 the two records (A's and B's) must have the same hybrid sign and ln|det| equal to 1e-6 (`merge_up.py`; it is the gate). The merged 41-point scan is written, and the reader run, only if this check passes, every record is at D 18.0625 and every lambda from 1.95 to 2.35 is present. In addition `merge_up.py` compares A's 1.95 with Part 1's 1.95 (sign +1, ln|det| -1913.464809719331, noise robust, float64 +1) at the same bar and prints AGREES or DIFFERS; that is information, not a gate. The results are written into this README after the run.
+
+## Controls, before the run
+
+`plant_checks_up.py`, 25 cases (`plant_checks_up.log`, rerun by the driver as `plant_checks_up_run.log`; the driver does not start the scan unless it passes): `merge_up.py` merges equal repeats and fails on a ln|det| difference of 1e-3, on a flipped repeat sign, with no repeated point, with a second point in both files, with lambda 2.35 missing and with records at another D, and writes no merged file then; it reports a prior scan that agrees and one that differs by 5e-3 (the merge still written); `rate_up.py` finds a planted plus-to-minus change in (2.10, 2.11) and prints its rise (4.681 to 4.841 per unit D), says "the root is not there" for a scan without one, for a change with a non-robust point and for a minus-to-plus change only, and reads xfkappa's D 18 scan's own plus-to-minus change; the pinned reader finds the planted changes, orientation and minimum "WITHOUT a change", and gives winb's quoted readings on xfkappa's D 18 scan. All 25 pass.
+
+## Run
+
+`d18up_driver.sh` (launcher `launch_d18up.ps1`, BelowNormal): checks the pins, the worktree, the record line and the first window's scan blob, runs the planted controls, starts the two processes and the passive sampler (`up_samples.csv`, a sample every 60 s, only the processes whose command line holds this folder's `d18_hybsign.py` path, so win2-build's own scan on this machine is not in it), then merges, reads and runs `rate_up.py`. Output: `up_scanA.jsonl`, `up_scanB.jsonl`, `up_scan_merged.jsonl`, `up_scanA_raw.log`, `up_scanB_raw.log`, `up_scanA.log`, `up_scanB.log`, `up_merge.log`, `up_reading.log`, `up_rate.log`, `up_rc_A`, `up_rc_B`, and one line per event in `../exits_1025.txt` (prefix `1025 d18up`); the last lines are `1025 d18up reading: ...`, `1025 d18up rate: ...` and `1025 d18up done`.
+
+Estimate (from Part 1: 425 to 507 s a point with two processes): 21 points take about 2.5 to 3 h per process, in parallel; the 3 h progress post is due if it is still running then.
+
+## Log (Part 2)
+
+(appended below as the run goes)

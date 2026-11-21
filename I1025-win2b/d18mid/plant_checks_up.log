@@ -1,0 +1,26 @@
+plant merge, repeat equal: wanted 'merged 41 points (1.95 to 2.35)', not 'FAIL' -> ok
+plant merge, the prior scan agrees: wanted '-> AGREES (information, not a gate)' -> ok
+plant merge, the prior scan differs by 5e-3: reported, the merge still written: wanted '-> DIFFERS (information, not a gate)', not 'no merged scan' -> ok
+plant merge, repeat ln|det| differs by 1e-3: wanted '-> FAIL', not 'merged 41' -> ok
+plant merge, repeat sign differs: wanted '-> FAIL', not 'merged 41' -> ok
+plant merge, no repeated point: wanted 'no repeated point in both files -> FAIL', not 'merged 41' -> ok
+plant merge, lambda 2.35 missing: wanted 'missing lambda: [2.35]', not 'merged 41' -> ok
+plant merge, records at another D: wanted 'records at a D other than 18.0625', not 'merged 41' -> ok
+plant merge, a second point in both files: wanted 'are [1.95, 2.16], not [1.95] -> FAIL', not 'merged 41' -> ok
+plant merge, no merged file written when a check fails: wanted 'False' -> ok
+plant rate, planted change (2.10, 2.11): wanted 'plus-to-minus change in (2.10, 2.11), ROBUST: from D 18's root 1.8074339746330934 the rise is 0.2926 to 0.3026 in 0.0625 D, i.e. 4.681 to 4.841 per unit D' -> ok
+plant rate, one robust change places the root: wanted 'RATE: 1 robust plus-to-minus change(s) place the root', not 'not there' -> ok
+plant reader, planted plus-to-minus change: wanted 'change in (2.10, 2.11): plus-to-minus, ROBUST' -> ok
+plant reader, the V minimum at 2.15 has the same sign on both sides: wanted 'ln|det| local minimum at 2.15 (ln -1900.000000): WITHOUT a change' -> ok
+plant rate, no change: the root is not there: wanted 'RATE: no robust plus-to-minus change from 1.95 to 2.35: the root is not there' -> ok
+plant reader, no change: wanted 'no change of the hybrid sign over the window' -> ok
+plant reader, no change: the V minimum at 2.15 is WITHOUT a change: wanted 'ln|det| local minimum at 2.15 (ln -1900.000000): WITHOUT a change' -> ok
+plant rate, the change has a non-robust point: not counted: wanted 'NOT ROBUST (a point fails its noise test)', not 'place the root' -> ok
+plant rate, the change has a non-robust point: the root is not placed: wanted 'the root is not there' -> ok
+plant reader, a non-robust point at the change: wanted 'NOT ROBUST (a point fails its noise test)' -> ok
+plant rate, only a minus-to-plus change: not a plus-to-minus change: wanted 'the root is not there' -> ok
+plant reader, signs negated: minus-to-plus: wanted 'change in (2.10, 2.11): minus-to-plus, ROBUST' -> ok
+plant reader on xfkappa's D 18 scan: lower change: wanted 'change in (1.77, 1.78): minus-to-plus, ROBUST' -> ok
+plant reader on xfkappa's D 18 scan: upper change: wanted 'change in (1.80, 1.81): plus-to-minus, ROBUST' -> ok
+plant rate on xfkappa's D 18 scan: its own plus-to-minus change (1.80, 1.81) is read against D 18's root: wanted 'plus-to-minus change in (1.80, 1.81), ROBUST' -> ok
+plant_checks_up passes (files in C:\Users\nathan\AppData\Local\Temp\d18up_plant_2ua3lb7a)
