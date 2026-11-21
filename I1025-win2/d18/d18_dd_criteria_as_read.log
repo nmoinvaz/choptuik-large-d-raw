@@ -1,0 +1,23 @@
+== 2026-11-21 04:37:53 #1025 D 18 (B), the coordinator's order of 2026-11-21 04:3x: is the hybrid's sign trustworthy at D 18? Written before the run.
+Why: the D 18 hybrid root run (lane_d18.sh) read -, +, - on its +-2% grid (1.75293, 1.78870, 1.82448), two sign changes, both robust to its
+1e-15 noise test, so it fails rule (b) and no lambda is read at D 18 (d18_criteria.log). The bisection of its lower interval (near 1.7749777)
+finishes and its root is recorded as information only. The leap to D 18.5 stays off until this is settled.
+State and system: winb's leap state sol_l1kc63W1025_D18.000000.npy (blob 45e72c6a), k_c 63, Ks 30, u0 0.04, kappa 0.7, rk 1 (ell_ddm._setup's
+settings, the record's; the root run's system check passed: |F| 2.6296e-10 against 2.6303e-10, 2552 steps).
+Runs, in order, one process, 4 threads, nice 10 (lane_d18b.sh, after lane_d18.sh and lane_d185.sh exit):
+  1. planted control: ell_ddm.py selftest must PASS, and ell_ddm.py selftest --mutate=slices must FAIL; otherwise stop.
+  2. the hybrid at lam 1.8 (d18_hybsign.py, blob e089207a: p4_hybrid's sd(), with its 1e-15 noise test; the hybrid at 1.788704083622953, the
+     grid's middle point, is the root run's own evaluation).
+  3. the full dd M: ell_ddm.py det STATE 18 63 1.788704083622953,1.8 --noise 1e-24,1e-20,1e-16 (5 exact variants; noise on the dd propagator
+     entries, 2 seeds).
+  4. information: the same with --mutate=hionly (every dd result rounded to double), and the float64 sign that det prints.
+A sign counts: dd, if its 5 variants agree and 1e-24 noise leaves it unchanged (both seeds), as in dd_signtest_D17.5_criteria.log; the hybrid,
+if its 1e-15 noise test leaves it unchanged. d18_dd_read.py (blob ddf56fc9; selftest 5 planted cases, d18_dd_read_selftest.log) reads them.
+Readings (the coordinator's, fixed):
+  (1) dd agrees with the hybrid at both lambda: the two sign changes are real, two eigenvalues lie near lambda_1 at D 18 (bears on #1044's
+      exchange reading). Then (A): the hybrid scan over 1.70 to 1.90 at 0.01 (21 points, d18_hybsign.py, each with the noise test), to count
+      and place the sign changes. Its reading: the sign sequence, the brackets of each change, and any point whose sign is not noise-robust.
+  (2) dd disagrees at either lambda: the hybrid is not trustworthy at D 18, and no hybrid root past D 17.5 is read until the cause is known.
+      The dd and hybrid determinants are reported side by side.
+  If a sign does not count at either lambda, neither reading applies; that is reported, and (A) does not start.
+Stops: selftests 1800 s each; the hybrid at 1.8, 3600 s; the dd det 10800 s; hionly 7200 s; (A) 21600 s.
