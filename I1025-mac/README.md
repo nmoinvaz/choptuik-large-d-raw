@@ -120,3 +120,7 @@ Written before the run (criteria in `d18/d18_criteria.log`, 2026-11-21 03:31:59 
   one of the pair. (b) D 18.25 on the leap's state, **lambda 1.55 to 1.95 at 0.01 (41 points)**: places the roots halfway. Both report
   where ln|det| has a local minimum without a sign change.
 - reader `d18/d18c_read.py` (blob 1383470f): 6 planted cases PASS, `--mutate=nominima` FAILS (`d18/d18c_read_selftest.log`); on (A) alone it reads (a2) and on the D 18.5 scan it finds one change, as before.
+- 2026-11-21 11:24:43 UTC, (d), queued after (b), **windows written before it runs**: D 18.5 over **lambda 1.90 to 2.10 at 0.01 (21 points)**, then D 18
+  over **1.90 to 2.10 at 0.01 (21 points)** (`d18/lane_d18d.sh`). Reading: a robust change above 1.90 at D 18.5 is where D 18's
+  plus-to-minus root went; none up to 2.10 means it is not in that range. Every root is reported with its orientation (d18_criteria.log).
+- reader `d18/d18d_read.py` (blob 6b608903): 3 planted cases PASS, `--mutate=orient` FAILS (`d18/d18d_read_selftest.log`).

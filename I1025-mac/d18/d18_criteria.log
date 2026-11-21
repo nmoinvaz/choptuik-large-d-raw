@@ -63,3 +63,12 @@ D 18.5 root. The pass rules are unchanged (d18_check.py 08969ea2, then signtest.
    (b) D 18.25, the leap's state sol_l1kc63Wm1025_D18.250000.npy and its record line: the hybrid scan over 1.55 to 1.95 at 0.01
        (41 points). Reading, fixed: it places the roots halfway; two close roots, or none where the pair was, tells whether they meet.
    Both: say where ln|det| has a local minimum without a sign change (a near-tangent pair can give no change).
+== 2026-11-21 11:24:43 the coordinator's input after (a) (hc): orientations. At D 18 the lower root (1.775) goes minus to plus and the upper (1.806) plus
+   to minus; D 18.5's root (1.677) goes minus to plus, so by sign it continues D 18's lower root, and the upper root's partner in sign lies
+   outside 1.55-1.90 at D 18.5. (Basis checked: dss_ell.layout's sizes depend on k_c and the nodes only, so M has the same size and
+   ordering at every D of these k_c 63 states, and the det's sign convention is the same.)
+   (d), queued after (b) (lane_d18d.sh): D 18.5 from 1.90 to 2.10 at 0.01 (21 points, the leap's state and record), then D 18 from
+   1.90 to 2.10 at 0.01 (21 points, winb's state and stub), noise test and float64 sign. The 1.90 points repeat the earlier scans' and
+   must agree with them (same sign, ln|det| to 1e-6), a reproducibility check.
+   Reading, fixed: a robust change above 1.90 at D 18.5 is where the plus-to-minus root went; none up to 2.10 means it is not in that
+   range. Every root is reported with its orientation in all three scans (D 18, 18.25, 18.5); reader d18d_read.py.
