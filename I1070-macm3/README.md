@@ -97,3 +97,38 @@ lam_guess(3.5) = 3.092124 against 1/gamma(3.5) = 3.101876 (#628's M 128 gamma 0.
 Resources, from `res_M128.log`: polls 51 (60 s each), rss GB min 0.19 max 3.36 mean 1.89; cpu% (ps, 100 = one core) min 593.2 mean 598.9 max 600.0; load1 mean 6.33 max 9.62; free memory min 85%; free disk min 22.8 GiB
 
 Machine after the pilot (22:15 UTC): cpu 86.6% idle, free memory 85%, free disk 23 GiB.
+
+## Rerun r2: the M 128 command with `--lam0 4.3977` (the coordinator's order, 2026-11-21 22:19 UTC)
+
+Cause of the pilot's stop: the guess (`lam_guess(3.15)`, a quadratic extrapolation from D 3.64 to 3.70) gave λ 3.7137, γ 0.2693. The coordinator's
+comment on #1070 (7070090021): Ecker, Ecker, Grumiller and Jechtl's GammaList (their `complete_data/GammaList.dat`, read as data) has
+γ 0.2225464 at D 3.14 and 0.2486066 at D 3.2; interpolated to D 3.15 through three or four of their points γ 0.227280 to 0.227411, so
+λ 4.3973 to 4.3999 (an interpolation spread, not a bound). The order: the issue's M 128 command with `--lam0 4.3977`, otherwise
+unchanged, cap 6 h; the script's brackets widen to ±0.04, which covers λ 4.358 to 4.438. Readings as before: exactly one sign change
+in the bracket and F after the polish below 1e-27; then γ(3.15) at M 128 is compared with their interpolated 0.2274. If there is still
+no sign change in the bracket, stop and report. M 160 follows only after a pass.
+
+Command, the issue's (`issue_cmd.txt`) against mine (`my_cmd_M128_r2.txt`, from `TAG=_r2 DRY=1 run_1070.sh M128 4.3977`), one token per
+line, `diff issue mine` (`cmd_diff_M128_r2.txt`):
+
+```
+1c1
+< python3
+---
+> /Users/nathan/Source/venv-macm3-1058b/bin/python
+4,5c4,5
+< <raw>/I1070-macm3/lowD_gamma_D3.15_M128.jsonl
+< <raw>/I927-mac/inputs/lowDhm_x0.000625-0.9_D3.1500_M128.npz
+---
+> /Users/nathan/Source/choptuik-large-d-raw-903/I1070-macm3/lowD_gamma_D3.15_M128_r2.jsonl
+> /Users/nathan/Source/choptuik-large-d-raw-749p/I927-mac/inputs/lowDhm_x0.000625-0.9_D3.1500_M128.npz
+8a9
+> --lam0=4.3977
+```
+
+The differences: the interpreter, the two `<raw>` prefixes, the output name `..._M128_r2.jsonl` (a new file, so that the pilot's record and this run's
+do not mix; `run_1070.sh` takes a `TAG` env for it and the log is `run_M128_r2.log`), and the added `--lam0=4.3977` (the order). Flags
+otherwise the issue's: `--threads=6 --polish=2 --xtol=1e-11`. The wrapper is as before (`caffeinate -is nice -n 10 capped_run.py 21600`).
+`run_1070.sh` and `check_cmd_1070.py` changed for this: `TAG`, and the checker's M 128 case now allows exactly the `--lam0` given on its
+command line (`check_cmd_1070.py M128 4.3977`: pass; `--selftest`: 15 cases, 12 broken, all fire, among them a different `--lam0`, a
+missing one, and `--polish=3` with it).
