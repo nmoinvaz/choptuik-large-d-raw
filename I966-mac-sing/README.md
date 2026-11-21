@@ -290,3 +290,5 @@ Note at 262.1920: past Re 262.08 the root test rises again (0.9615 at 262.1011, 
 
 Note at 262.2833: the root test rises to 0.9916 (−0.21% from |D0 − P1|). The real stable pole is listed a third time, at 265.0779 (4 approximants). Over 262.1011 to 262.2833 it is 265.0469, 265.0816 and 265.0779, a range of 0.035, so it does not hold to 0.01. Locate gives it no exponent, and rows give no real reading near it (Dlog D* 359.97 here). No fold is read.
 | 262.3756 | 3fcc674b | 262.0872 ± 0.9710i (9 approximants) | 1.0122, 1.0165, −0.43% | PASS (0), FAIL (1) | 262.4502 (+30.7), 672.9987 (+3.803) |
+
+Note at 262.3756: the root test is 1.0122 (−0.43% from |D0 − P1|). The real stable pole is listed a fourth time, at 265.0788 (4 approximants, 2.70 ahead). Over its last three bases (262.1920 to 262.3756) it is 265.0816, 265.0779 and 265.0788, a range of 0.0037, under 0.01. The fixed fold reading is on rows' estimators of Delta, which do not see it (they track the nearer pair; Dlog D* 673.0 here), and locate gives it no exponent. So no fold is read, and it is reported as a candidate: a real Padé pole held to 0.004 over three bases.
