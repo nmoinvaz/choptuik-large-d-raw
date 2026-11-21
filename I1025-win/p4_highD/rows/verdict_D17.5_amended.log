@@ -1,0 +1,8 @@
+D 17.5 k_c 63: hybrid lam 1.9272222575778963, guess 1.9278, record lam 1.974481053107075, 8 evaluations, bracket [1.9272222575778963, 1.927222285203896] (width 2.7625999710068072e-08), 6556 s
+edge rule (amended 06:30 UTC, outer grid points only): w 0.02, grid [1.889244, 1.9278, 1.966356] signs [-1.0, 1.0, 1.0], root 1.927222258: 0.985 grid steps from the lower outer point, 1.015 from the upper outer point (bar 0.05) -> pass
+  as first written (both edges of the bracketing interval [1.889244, 1.927800]): 0.985 and 0.015 steps -> fail (not decisive)
+hybrid minus the float64 record (row B: minus the guess): -4.725880e-02
+distance to the reference value 1.9522: -2.4978e-02 (-1.279%)
+float64 signtest (no longer a criterion): lam 1.907222258 signs [-1.0, 1.0, -1.0, -1.0] agree False (56 sv below 1e-12, 519.5 s); lam 1.947222258 signs [-1.0, 1.0, -1.0, -1.0] agree False (56 sv below 1e-12, 384.7 s) -> fail
+checks: {"record_system": true, "grid_one_change": true, "all_one_change": true, "noise_robust": true, "bracket_le_1e-7": true, "edge_rule_amended_outer_points": true} | informational: {"edge_rule_as_first_written_both_edges_of_interval": false, "float64_signtest_pm_0.02": false}
+VERDICT D 17.5: checks 1-5 and the amended edge rule PASS; dd sign check (ell_ddm at lam -/+ 0.02) PENDING; lam 1.9272222575778963

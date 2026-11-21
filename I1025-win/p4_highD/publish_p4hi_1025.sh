@@ -12,7 +12,7 @@ cp "$O/README.md" "$O/"stub_*.jsonl "$D/"
 for f in p4hi_w.log ell_p4_hybrid_1025_w_highD.jsonl; do [ -f "$O/$f" ] && cp "$O/$f" "$D/"; done
 cp "$O/rows/"* "$D/rows/" 2>/dev/null || true
 for f in prep_p4hi_inputs_1025.sh prep_p4hi_inputs_1025.log make_stubs_p4hi_1025.py make_stubs_p4hi_1025.log smoke_syscheck_p4hi_1025.cmd \
-         smoke_syscheck_A.log smoke_syscheck_B.log p4hi_driver_1025.sh verdict_p4hi_1025.py start_p4hi_1025.cmd driver_trace_p4hi.log publish_p4hi_1025.sh; do
+         smoke_syscheck_A.log smoke_syscheck_B.log p4hi_driver_1025.sh verdict_p4hi_1025.py verdict_p4hi_1025_v1.py start_p4hi_1025.cmd driver_trace_p4hi.log publish_p4hi_1025.sh; do
   [ -f "$S/$f" ] && cp "$S/$f" "$D/"
 done
 bash /c/Users/nathan/Source/choptuik-i1025/push_1025.sh "$1"

@@ -51,7 +51,7 @@ Other readings of the trend, for scale: linear from the last two rows 1.9127 (A)
 
 ## Pass rules (fixed before the runs)
 
-A row PASSES if all hold:
+A row PASSES if all hold (rules 5 and 6 are amended after row A: see Amendment 1 at the end):
 
 1. record system true: steps equal and |F| within 1% of the record's or 1e-13 (amendment 5), rebuilt by `p4_hybrid.py` from the stub's `F` and `steps`;
 2. one sign change on the search grid, and one over all evaluations in lambda order;
@@ -79,7 +79,7 @@ Timing, estimated from P4's k_c 63 rows (678 to 913 s per evaluation at 4 thread
 
 Row A finished 2026-11-21 06:23:26 UTC (FAIL, below). Row B started 06:23:26 (system check true: |F| 2.4283364241e-10 against 2.4283364241e-10, 2598 steps). The Result section for row B is written at the last push.
 
-### Row A, D 17.5 k_c 63: hybrid root 1.9272222575778963, verdict FAIL (edge rule and signtest)
+### Row A, D 17.5 k_c 63: hybrid root 1.9272222575778963, verdict as first computed FAIL (edge rule and signtest); amended below
 
 | quantity | value |
 |---|---|
@@ -99,3 +99,10 @@ Verdict by `verdict_p4hi_1025.py` (`rows/verdict_D17.5.log`): FAIL, two checks: 
 Two facts for the reader, not part of the verdict. The edge rule failed because the root lies 5.8e-04 below the guess, which is the grid's middle point and so the upper edge of the interval that holds the root; the root is not float-equal to the guess (the final bracket is 2.8e-08 wide). The signtest is the float64 test used on the records; it does not test the hybrid's double-double block. It fails at 1.907 and 1.947 as it failed at the float64 record's 1.9745 -/+ 0.02 (raw `I1025-win` 67a15ffb): 56 singular values below 1e-12 in both.
 
 CPU and memory: the hybrid phase of row A was not sampled (a miss on my side). The signtest python (7 threads, BelowNormal) at 06:09: 1.62 cores in a 10 s sample, working set 0.09 GB (peak 0.10), private 0.32 GB (peak 0.34). Row B's python (13 threads, BelowNormal) at 06:23:58: 1.73 cores in a 10 s sample, 1.47 cores since its start, working set 0.15 GB (peak 0.17), private 0.47 GB (peak 0.49). Laptop at 06:24: CPU 48 %, 14.28 GB free of 31.83 GB, commit 23.2 GB of limit 41.3 GB, page file 1.6 GB used of 9.7 GB, C: free 43.8 GB; two other sessions' single-thread pythons (4 and 7 GB) run beside.
+
+## Amendment 1, the coordinator's word, stamped 2026-11-21 06:30 UTC (received about 06:26 UTC by my clock), after row A's result (06:23:26) and before row B's
+
+1. Edge rule. The coordinator's ruling of 03:36 meant the window's outer grid points only, where a root could lie outside the window. The text above (both edges of the bracketing grid interval) also catches a root next to the middle point, and the coordinator misread it when approving it at 03:39 (their error). The rule for rows A and B is the 03:36 one: the root is inside the window and at least 0.05 grid steps from its outer grid points guess * (1 -/+ w). Row A under it: grid [1.889244, 1.9278, 1.966356], root 1.9272222576 is 0.985 steps from the lower outer point and 1.015 from the upper: PASS (`rows/verdict_D17.5_amended.log`). The first-written rule's numbers (0.985 and 0.015 steps, fail) stay in that log as information. `verdict_p4hi_1025.py` is now version 2; version 1 (`verdict_p4hi_1025_v1.py`) gave the FAIL at 06:23 (`rows/verdict_D17.5.log`, kept).
+2. Sign check. The float64 signtest cannot test this root: the float64 M's sign is noise past D 17, as the D 17.5 record's own failed signtest showed. The sign check moves to the full dd M: win2 runs `ell_ddm` at lambda 1.9072 and 1.9472 on this D 17.5 state (`I1025-win/out/sol_l1kc63Fw1025_D17.5000.npy`, blob d85f7b71). Row A stays pending that check. Row B gets the same treatment, at its root -/+ 0.02. The driver still runs `signtest.py` after each row and the verdict prints it, as information and not as a criterion.
+
+Status after the amendment: row A, checks 1 to 5 and the amended edge rule PASS, dd sign check pending (win2). Row B, running.
