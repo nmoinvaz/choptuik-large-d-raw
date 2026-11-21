@@ -1,0 +1,15 @@
+# I1064-dh170/gate_ctrl_D262.0099: the stage-3 gate's control for #1035, the D 262.0099 ks 293 state polished at its own plan (part 6 of #1064)
+
+Machine dh170 (Fedora 45, i7-7700, 8 logical CPUs, 31 GiB RAM). Issue https://github.com/nmoinvaz/choptuik-large-d/issues/1064. Written 2026-11-21 19:21:59 UTC, before the run (the run starts after part 5 is posted, as the order says).
+
+Order (coordinator's hc ~19:2x UTC 21 Nov), quoted: "the next task after the D 256.1776 pair (post that first): the stage-3 gate's control for #1035. Take the D 262.0099 ks 293 state of your part 3 and polish it with part 4's command at --ks 293 --keep_plan 1 (the state's own plan; --tol_od 1e-60 --od_floor_delta 0 --steps 0 --save_base 1, gate903d and gate973), 4 threads, nice 10, cap 3 h, output to raw I1064-dh170/gate_ctrl_D262.0099/. Reading, fixed now: if it converges by the gates (max|F| <= 1e-60), the gate can judge a raise there. If it stops above 1e-60 (for example at the floor near 2e-34, as your part 3 controls did), the gate cannot, and the pass rule for a raise is changed before any raise runs. Report the od lines, the final max|F| and p_min on #1064, then reply."
+
+**State:** `I966-dh370/ks_chain3b/leg14_D261.1415_ks293/anm_pin3_D262.0099.npz` (git blob eb34f3c845a485d606907b6f7ba2dc9ef429aaf1; the part 3 state, in `~/scratch949`), ks 293, M 32, D 262.0099. Its pinned residual on its own plan: max|R| 1.476e-41 (part 1's ks 293 run); its Newton step on that plan |dz| 9.3e-48 (part 1).
+**Command** (`run_gate_ctrl.sh`): part 4's: leg 13's flags (`I966-dh370/ks_chain3b_q_dry.log` line 17) with `--tol_od 1e-60 --od_floor_delta 0`, `--threads 4 --steps 0 --keep_plan 1 --save_base 1 --ks 293`, `nice -n 10`, `timeout -s TERM 10800`, build main 8179068d, memory watcher alert-only; gates `gate903d.py` (the first od Newton line converged with max|F| <= 1e-60; prints piv_min) and `gate973.py` (the last such line plus a saved base). `--keep_plan 1` keeps the state's stored plan (the order's difference to part 4's re-plan at load, which moved part 4's ks 307 control by -3.5e-24 and the D 256.1776 control by +1.16e-20).
+**Reported:** the od lines, the final max|F|, p_min (the low end of the od lines' `piv a..b`; gate903d's piv_min), the gate lines, wall, cpu and memory.
+**Reading, fixed now (the coordinator's):** converges by the gates (max|F| <= 1e-60) = the gate can judge a raise at D 262.0099; stops above 1e-60 = it cannot, and the pass rule for a raise is changed before any raise runs.
+**Predictions, registered before the run (pushed with this README):**
+- converges by the gates (about 65%): 3 to 4 od steps, final max|F| about 1e-86 as in part 4's polishes (4 steps to 2.7e-86 and 3.5e-86 at D 237.7), because the state starts at 1.5e-41 on its own plan, where part 4's controls started at 5.7e-36 after a re-plan and converged; the D 256.1776 control (start 1.8e-31 after the re-plan) stalled, so the plan, not D, is what differs;
+- the strong chord accepts after 1 to 3 steps; no od trial refused;
+- p_min about 3e-20 (part 1's ks 315 LU at this state: pivots 3.4e-20 .. 1.4e51; ks 293 close to it);
+- wall 20 to 40 min at 4 threads.
