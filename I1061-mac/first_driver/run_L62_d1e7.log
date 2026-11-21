@@ -1,0 +1,11 @@
+# p2c_b8_boot --L0=62 --d0=1e7 --json=/Users/nathan/Source/choptuik-large-d-raw-i1061/I1061-mac/run_L62_d1e7.json  (python-flint, 256 bits)
+Traceback (most recent call last):
+  File "/Users/nathan/Source/choptuik-large-d-1061/solver/proof/review_p2c/p2c_b8_boot.py", line 822, in <module>
+    main()
+    ~~~~^^
+  File "/Users/nathan/Source/choptuik-large-d-1061/solver/proof/review_p2c/p2c_b8_boot.py", line 800, in main
+    r = run_L0(L0, d0, domain, at, res=res)
+  File "/Users/nathan/Source/choptuik-large-d-1061/solver/proof/review_p2c/p2c_b8_boot.py", line 551, in run_L0
+    log(f"  L0 = {L0}: iterate passed Hmax, retrying with Hmax = {[f'{v:.3g}' for v in Hmax]}")
+                                                                     ^^^^^^^
+TypeError: unsupported format string passed to flint.types.arb.arb.__format__

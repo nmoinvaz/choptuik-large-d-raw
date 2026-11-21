@@ -1,0 +1,37 @@
+== run_L62_d0: p2c_b8_boot.py --L0=62 --json=/Users/nathan/Source/choptuik-large-d-raw-i1061/I1061-mac/run_L62_d0.json (2026-11-21 03:23)
+   exit 0
+L0 = 62: CLOSED h = (6.5804e+06, 1.7724e+07, 1.0560e+06, 3.2089e+05), P(h)/h = (0.9999, 0.9999, 0.9999, 0.9999), rho(J) = 0.8797, by h*+tu, rho_max = 0.01013, s_* = 0.1636, K_F = 2.0334, H_F = 14.393, N_F = 98.6, gamma_F = 0.5479, S at F[20.00000000000000000000000000000000000000000000000000000000000000000000000000..], beta at F[20.00000000000000000000000000000000000000000000000000000000000000000000000000..], 379 cells, 38 s
+# 114 s
+== K3_kappa0.02: p2c_b8_boot.py --L0=73.89 --kappa=0.02 --json=/Users/nathan/Source/choptuik-large-d-raw-i1061/I1061-mac/K3_kappa0.02.json (2026-11-21 03:25)
+   exit 2
+L0 = 73.89: NOT CLOSED (decay margin s_* = [-0.08265 +/- 2.24e-6] not positive)
+# 42 s
+== K4_tauD10: p2c_b8_boot.py --L0=62 --mutate=tauD10 --json=/Users/nathan/Source/choptuik-large-d-raw-i1061/I1061-mac/K4_tauD10.json (2026-11-21 03:25)
+   exit 0
+L0 = 62: CLOSED h = (5.0323e+07, 1.3554e+08, 6.1104e+06, 2.0286e+06), P(h)/h = (0.9999, 0.9999, 0.9999, 0.9999), rho(J) = 0.9156, by h*+tu, rho_max = 0.01013, s_* = 0.1636, K_F = 2.0334, H_F = 14.393, N_F = 98.6, gamma_F = 0.5479, S at F[20.00000000000000000000000000000000000000000000000000000000000000000000000000..], beta at F[20.00000000000000000000000000000000000000000000000000000000000000000000000000..], 379 cells, 40 s
+# 200 s
+== bisect_D_d0: p2c_b8_boot.py --bisect=56,62 --json=/Users/nathan/Source/choptuik-large-d-raw-i1061/I1061-mac/bisect_D_d0.json (2026-11-21 03:29)
+   exit 0
+BISECT d0 = 0, domain D: closes at ln n0 = 59.9375, not at 59.75
+# 1466 s
+== bisect_D_d1e7: p2c_b8_boot.py --bisect=62,74 --d0=1e7 --json=/Users/nathan/Source/choptuik-large-d-raw-i1061/I1061-mac/bisect_D_d1e7.json (2026-11-21 03:53)
+   exit 0
+BISECT d0 = 1e7, domain D: closes at ln n0 = 70.4375, not at 70.25
+# 1472 s
+== bisect_Dp_d0: p2c_b8_boot.py --bisect=54,62 --domain=Dprime --json=/Users/nathan/Source/choptuik-large-d-raw-i1061/I1061-mac/bisect_Dp_d0.json (2026-11-21 04:18)
+   exit 0
+BISECT d0 = 0, domain Dprime: closes already at the lower end 54.0
+# 162 s
+== bisect_Dp_d1e7: p2c_b8_boot.py --bisect=56,74 --d0=1e7 --domain=Dprime --json=/Users/nathan/Source/choptuik-large-d-raw-i1061/I1061-mac/bisect_Dp_d1e7.json (2026-11-21 04:20)
+   exit 0
+BISECT d0 = 1e7, domain Dprime: closes already at the lower end 56.0
+# 251 s
+== fine_L62_d0: p2c_b8_boot.py --L0=62 --n1c=320 --n0c=48 --json=/Users/nathan/Source/choptuik-large-d-raw-i1061/I1061-mac/fine_L62_d0.json (2026-11-21 04:25)
+   exit 0
+L0 = 62: CLOSED h = (6.5804e+06, 1.7724e+07, 1.0560e+06, 3.2089e+05), P(h)/h = (0.9999, 0.9999, 0.9999, 0.9999), rho(J) = 0.8797, by h*+tu, rho_max = 0.01013, s_* = 0.1636, K_F = 2.0334, H_F = 14.393, N_F = 98.6, gamma_F = 0.5479, S at F[20.00000000000000000000000000000000000000000000000000000000000000000000000000..], beta at F[20.00000000000000000000000000000000000000000000000000000000000000000000000000..], 747 cells, 87 s
+# 250 s
+== fine_L73.89_d1e7: p2c_b8_boot.py --L0=73.89 --d0=1e7 --n1c=320 --n0c=48 --json=/Users/nathan/Source/choptuik-large-d-raw-i1061/I1061-mac/fine_L73.89_d1e7.json (2026-11-21 04:29)
+   exit 0
+L0 = 73.89: CLOSED h = (1.0192e+08, 1.3755e+08, 1.1820e+07, 1.2734e+07), P(h)/h = (0.9999, 0.9999, 0.9999, 0.9999), rho(J) = 0.6859, by h*+tu, rho_max = 0.00850, s_* = 0.1875, K_F = 1.7634, H_F = 14.047, N_F = 117.5, gamma_F = 0.4151, S at F[20.00000000000000000000000000000000000000000000000000000000000000000000000000..], beta at F[20.00000000000000000000000000000000000000000000000000000000000000000000000000..], 747 cells, 84 s
+# 245 s
+== done 2026-11-21 04:33

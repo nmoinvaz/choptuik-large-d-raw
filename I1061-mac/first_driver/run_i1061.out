@@ -1,0 +1,85 @@
+== series_centre: p2c_b8_series.py --centre (2026-11-21 02:37)
+   exit 0
+  rho4  max(m - 2j) = 0; sum_m |coef|: j=5: 9.321e+5, j=6: 1.075e+7, j=7: 9.907e+7, j=8: 6.398e+8
+STRUCTURE PASS
+== series_box: p2c_b8_series.py (2026-11-21 02:37)
+   exit 0
+  rho4  max(m - 2j) = 0; sum_m |coef|: j=5: 9.325e+5, j=6: 1.076e+7, j=7: 9.913e+7, j=8: 6.406e+8
+STRUCTURE PASS
+== K1_series_atom: p2c_b8_series.py --centre --mutate=atom (2026-11-21 02:37)
+   exit 1
+  rho4  max(m - 2j) = 0; sum_m |coef|: j=5: 9.321e+5, j=6: 1.075e+7, j=7: 9.905e+7, j=8: 6.398e+8
+STRUCTURE FAIL
+== identities: p2c_b8_boot.py --check=identities (2026-11-21 02:37)
+   exit 0
+   V: 5.88e-75 ok
+IDENTITIES PASS
+== K2_identities_rho2: p2c_b8_boot.py --check=identities --mutate=drop_rho2 (2026-11-21 02:37)
+   exit 1
+   V: 5.88e-75 ok
+IDENTITIES FAIL
+== K2_identities_W2: p2c_b8_boot.py --check=identities --mutate=drop_W2 (2026-11-21 02:37)
+   exit 1
+   V: 5.88e-75 ok
+IDENTITIES FAIL
+== instances: p2c_b8_boot.py --check=instances --L0=73.89 (2026-11-21 02:37)
+   exit 0
+   F[20.00000000000000000000000000000000000000000000000000000000000000000000000000..] locS=0.491 IS=0.349 locB=0.689 IB=0.520 Ic=0.654
+INSTANCES PASS: largest exact/bound = 1.000000
+== K2_instances_rho2: p2c_b8_boot.py --check=instances --L0=73.89 --mutate=bound_rho2 (2026-11-21 02:37)
+   exit 1
+   F[20.00000000000000000000000000000000000000000000000000000000000000000000000000..] locS=0.912 IS=0.436 locB=0.690 IB=0.520 Ic=0.654
+INSTANCES FAIL: largest exact/bound = 124710412102671372159895470080.000000
+== K2_instances_W2: p2c_b8_boot.py --check=instances --L0=73.89 --mutate=bound_W2 (2026-11-21 02:37)
+   exit 1
+   F[20.00000000000000000000000000000000000000000000000000000000000000000000000000..] locS=0.491 IS=0.531 locB=0.689 IB=0.520 Ic=0.654
+INSTANCES FAIL: largest exact/bound = 397.607586
+== insens_prodrule: p2c_b8_boot.py --check=instances --L0=73.89 --mutate=prodrule (2026-11-21 02:37)
+   exit 0
+   F[20.00000000000000000000000000000000000000000000000000000000000000000000000000..] locS=0.491 IS=0.573 locB=0.689 IB=0.761 Ic=0.654
+INSTANCES PASS: largest exact/bound = 1.000000
+== kernel: p2c_b8_boot.py --check=kernel (2026-11-21 02:37)
+   exit 0
+# p2c_b8_boot --check=kernel  (python-flint, 256 bits)
+KERNEL PASS: max of Re(lam dx)/|lam dx| + sin(kappa_margin) = -9.1267e-13
+== K3_kernel_kappa: p2c_b8_boot.py --check=kernel --mutate=kappa (2026-11-21 02:37)
+   exit 1
+# p2c_b8_boot --check=kernel --mutate=kappa  (python-flint, 256 bits)
+KERNEL FAIL: max of Re(lam dx)/|lam dx| + sin(kappa_margin) = 9.3898e-02
+== gains: p2c_b8_boot.py --check=gains (2026-11-21 02:38)
+   exit 0
+   r=14.00 arg=0.863: integral/w = 1.5945e-01, gain = 3.1570e+00, ratio 0.051
+GAINS PASS: largest integral/gain = 0.1060
+== insens_gains_kappa: p2c_b8_boot.py --check=gains --mutate=kappa (2026-11-21 02:38)
+   exit 0
+   r=14.00 arg=0.863: integral/w = 1.5945e-01, gain = 2.6213e+00, ratio 0.061
+GAINS PASS: largest integral/gain = 0.1185
+== closure_planted: p2c_b8_boot.py --check=closure_planted (2026-11-21 02:38)
+   exit 0
+  threshold 58.9464; L = 58.746: closed = False, L = 59.146: closed = True
+CLOSURE_PLANTED PASS
+== run_L73.89_d0: p2c_b8_boot.py --L0=73.89 --json=/Users/nathan/Source/choptuik-large-d-raw-i1061/I1061-mac/run_L73.89_d0.json (2026-11-21 02:38)
+   exit 0
+L0 = 73.89: CLOSED h = (1.6263e+06, 4.3804e+06, 4.3790e+05, 1.1245e+05), P(h)/h = (0.9999, 0.9999, 0.9999, 0.9999), rho(J) = 0.6479, t = 0.0001, rho_max = 0.00850, s_* = 0.1875, K_F = 1.7634, H_F = 14.047, N_F = 117.5, gamma_F = 0.4151, S at F[20.00000000000000000000000000000000000000000000000000000000000000000000000000..], beta at F[20.00000000000000000000000000000000000000000000000000000000000000000000000000..], 379 cells, 39 s
+# 76 s
+== run_L73.89_d1e7: p2c_b8_boot.py --L0=73.89 --d0=1e7 --json=/Users/nathan/Source/choptuik-large-d-raw-i1061/I1061-mac/run_L73.89_d1e7.json (2026-11-21 02:39)
+   exit 0
+L0 = 73.89: CLOSED h = (1.1838e+08, 1.8190e+08, 1.3479e+07, 1.3265e+07), P(h)/h = (0.9999, 0.9999, 0.9999, 0.9999), rho(J) = 0.7303, t = 0.0001, rho_max = 0.00850, s_* = 0.1875, K_F = 1.7634, H_F = 14.047, N_F = 117.5, gamma_F = 0.4151, S at F[20.00000000000000000000000000000000000000000000000000000000000000000000000000..], beta at F[20.00000000000000000000000000000000000000000000000000000000000000000000000000..], 379 cells, 36 s
+# 36 s
+== run_L62_d1e7: p2c_b8_boot.py --L0=62 --d0=1e7 --json=/Users/nathan/Source/choptuik-large-d-raw-i1061/I1061-mac/run_L62_d1e7.json (2026-11-21 02:39)
+   exit 1
+                                                                     ^^^^^^^
+TypeError: unsupported format string passed to flint.types.arb.arb.__format__
+== K3_kappa0.02: p2c_b8_boot.py --L0=73.89 --kappa=0.02 --json=/Users/nathan/Source/choptuik-large-d-raw-i1061/I1061-mac/K3_kappa0.02.json (2026-11-21 02:40)
+   exit 2
+L0 = 73.89: NOT CLOSED (decay margin s_* = [-0.08265 +/- 2.24e-6] not positive)
+# 41 s
+== K4_tauD10: p2c_b8_boot.py --L0=62 --mutate=tauD10 --json=/Users/nathan/Source/choptuik-large-d-raw-i1061/I1061-mac/K4_tauD10.json (2026-11-21 02:41)
+   exit 0
+L0 = 62: CLOSED h = (6.6768e+07, 1.7984e+08, 8.1554e+06, 2.6906e+06), P(h)/h = (0.9999, 0.9999, 0.9999, 0.9999), rho(J) = 0.9367, t = 0.0001, rho_max = 0.01013, s_* = 0.1636, K_F = 2.0334, H_F = 14.393, N_F = 98.6, gamma_F = 0.5479, S at F[20.00000000000000000000000000000000000000000000000000000000000000000000000000..], beta at F[20.00000000000000000000000000000000000000000000000000000000000000000000000000..], 379 cells, 39 s
+# 78 s
+== bisect_D_d0: p2c_b8_boot.py --bisect=50,62 --json=/Users/nathan/Source/choptuik-large-d-raw-i1061/I1061-mac/bisect_D_d0.json (2026-11-21 02:42)
+   exit 0
+BISECT d0 = 0, domain D: closes at ln n0 = 60.125, not at 59.9375
+# 1304 s
+== bisect_D_d1e7: p2c_b8_boot.py --bisect=56,74 --d0=1e7 --json=/Users/nathan/Source/choptuik-large-d-raw-i1061/I1061-mac/bisect_D_d1e7.json (2026-11-21 03:04)
