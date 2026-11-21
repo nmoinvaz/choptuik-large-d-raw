@@ -27,3 +27,11 @@ The comparator controls ran first and were as required (`ctl_*.txt`, `comparator
 (Delta and every exactly summed part) is DIFFERENT: Delta of this run's state 1.683264757534070378573492007334915999511, leg 10's 1.683264757534070378561608147670576687234, difference 1.188e-20, and the largest
 difference of any component's exact sum, max |dS_i|, is the same 1.188e-20. `cmp_s1_vs_leg10.txt` and `report_1060.md` have the full lines; `series_pred_by_order_1060.txt` the per-order series and prediction differences
 (exact sums, information; its controls run first).
+
+## Step 2 (coordinator's follow-on after #1064, 21 Nov): leg 10's step 17 at split 1 with `--base_polish 0`
+
+`run1060b.sh` (step 1's script with the names changed and `--base_polish 0` added at the end of the command; OUT `step17_s1_nobp/`, log `step17_s1_nobp.log`, `exits_1060b.txt`, `summary_1060b.txt`,
+`report_1060b.md` from `report1060b.py`, comparator controls rerun into `ctl_b/`, `cmp_s1_nobp_vs_leg10.txt`) and `seriesdiff1060.py` (the per-order series and prediction differences against leg 10's, by
+exact sums, with its own controls). Reading, the coordinator's, fixed before the run: equal bits (D_str, `a`, Delta and the exactly summed parts) mean the 1.188e-20 of step 1 came from the base polish, so main's build
+reproduces dh370's chain; unequal bits with the base unmoved (series row 0 equal to the stored base) mean the build (1aa4a4fb python on the 40f4b4a5 kernel, against main 8179068d) or the platform, and
+the report says which if the logs tell. `report1060b.py --selftest` runs the three branches of that reading, `--break` must exit 1.
