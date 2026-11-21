@@ -134,3 +134,16 @@ The two earlier ks 293 controls of this state (`k294_D261.6229/ks293` and `leg14
 ## Rung change (coordinator, ~11:5x UTC 21 Nov): ks 315 at D 261.6229 and at D 262.0099 instead of ks 294
 
 dh170's #1057 trigger: the first chain state with the Delta share at or above 0.9 is `I966-dh370/ks_chain3b/leg14_D261.1415_ks293/anm_pin3_D262.0099.npz` (D 262.0099, share 0.9205; blob eb34f3c845a485d606907b6f7ba2dc9ef429aaf1, raw commit b8cccc18, extracted from origin/main with the blob checked). Unit `i1064j` (control only, from 11:52:12 UTC) was stopped by TERM to its exact pid 1036631 at 11:53:50 UTC (its control exits 143, "control failed: rungs not started"; no rung had started); its output is `rb_D261.6229_i1064j_stopped/`. Restart through `start_1064_rb2.sh` at 11:54:30 UTC: two instances of `run1064d.sh` (unchanged) with `R_1064D=315`, unit `i1064k` (D 261.6229, `rb_D261.6229/`) and unit `i1064l` (D 262.0099, `rb_D262.0099/`), each its own ks 293 control with `--reseed_base 1` first. At D 262.0099 there is no earlier control, so the two "earlier control" paths are the stored state and `delta1064_ctl_vs_earlier*` repeat `delta1064_ctl_vs_state`. No new dry run.
+
+## Result of the re-seeded base run (units `i1064k` and `i1064l`, 11:54:30 to 14:39:33 UTC 21 Nov)
+
+Folders `rb_D261.6229/` and `rb_D262.0099/` (`run1064d.sh` unchanged, main 276aa1cd, venv-i1058, `nice -n 10`, 10 threads each, memory logs `memlog_i1064k.log` and `memlog_i1064l.log` without an alert). The ks 293 controls with `--reseed_base 1` converged; the ks 315 runs did not (capped at 7200 s by TERM to pids 1040361 and 1041200, exit 143, no octo-double Newton line). Posted as comment 7064299181.
+
+| state | K | re-seed line max\|F\| | first `on 0:` \|F\| | verdict | own wall |
+|---|---|---|---|---|---|
+| D 261.6229 | 293 control | 7.4e-25 | 3.39e-24 | converged, 4 steps, 4.3e-40 | 2040 s |
+| D 261.6229 | 315 | 1.1e-08 | 1.89e-12 | capped, 3 steps taken | 7231 s |
+| D 262.0099 | 293 control | 3.9e-25 | 1.84e-26 | converged, 5 steps, 2.5e-34 (floor rule) | 2670 s |
+| D 262.0099 | 315 | 4.0e-11 | 5.43e-10 | capped, 3 steps taken | 7231 s |
+
+Control Delta against the earlier ks 293 controls: D 261.6229 -3.11364e-20 (all three comparisons, as both earlier controls equal the stored state); D 262.0099 +1.01579e-19 (the stored state only). Projection failures in the ks 315 logs: 7 and 12; none in the ks 293 logs. Discrepancy reported: the pilot's "within 4% of the old start |F|" compared the re-seed line's max|F| with the old runs' first `on 0:` |F|; the re-seeded run's own first `on 0:` |F| at ks 315, D 261.6229 is 1.89e-12 against 1.15e-08 (win2, old base). What the first `on 0:` |F| measures against the re-seed line's is not established. `table_1064d.md` in each folder has the iteration lines.

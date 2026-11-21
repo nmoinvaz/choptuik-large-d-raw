@@ -1,0 +1,6 @@
+| K | exit | wall s | start max|F| at order K | base re-seed (--reseed_base 1) | verdict | iterations (|F| before -> after, seconds) | Delta(K) - Delta(293) |
+|---|---|---|---|---|---|---|---|
+| 293 | 0 | 2670 | 1.84e-26 | re-seeded, max|F| 3.9e-25 | converged: last octo-double Newton line 5 steps, max|F| 2.5e-34, converged, base saved True | first strong chord (4 weak directions), 3 steps after the full first step; theta at its point 1.453e-10 (bound 0.750) (accepted, 968.3 s); step 0: 1.84e-26 -> 3.96e-27, 1299.14 s; step 1: 3.96e-27 -> 2.47e-17, 280.85 s; step 2: 2.47e-17 -> 6.98e-26, 544.43 s; step 3: 6.98e-26 -> 2.54e-34, 113.07 s | - |
+| 315 | 143 (capped) | 7231 | 5.43e-10 | re-seeded, max|F| 4.0e-11 | failed: no octo-double Newton line | first strong chord (4 weak directions), 1 steps after the full first step; theta at its point inf (bound 0.750) (refused, 232.58 s); step 0: 5.43e-10 -> 9.35e-11, 2204.95 s; step 1: 9.35e-11 -> 7.93e-10, 1771.45 s; step 2: 7.93e-10 -> 2.69e-08, 2537.4 s | - |
+
+Wall of ks293 to ks318 (exits_1064.txt) is taken after the whole rung ended, so a run that ended earlier shows its rung's wall; from ks295 on (exits_1064b.txt) it is each run's own, in 30 s polls.

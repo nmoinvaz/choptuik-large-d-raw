@@ -1,3 +1,20 @@
 # 2026-11-21 11:54:31 UTC cmd: python3 -u anm_run.py /home/nathan/Source/choptuik-large-d-raw /home/nathan/Source/choptuik-large-d-raw/I1064-dh610/rb_D262.0099/ks293 --state I966-dh370/ks_chain3b/leg14_D261.1415_ks293/anm_pin3_D262.0099.npz --kfreeze 3 --held_fit data/held_fit.json --N 31 --eps 1e-14 --h_max 2 --threads 10 --corrector od --tol_od 2e-34 --qd_it 40 --lam_stall 0.04 --od_junk 0 --jet_o 1 --reseed 2 --reseed_q 1 --held_o 1 --reseed_o 3 --save_pred 1 --od_accept own --save_jet 1 --od_strong 4 --reseed_start pred --a_rule reseed --a_scale 0.000715 --jet_tangent_from 1 --series_split 1 --a_rise 1 --proj_start pred --reseed_o_stop 1 --od_floor_delta 1e-30 --proj_o 1 --reseed_qd_bar 1e-13 --reseed_base 1 --steps 0 --ks 293 --keep_plan 0 --save_base 1 --D_max 270.8483
 horizon series to order 293 instead of the state's 293
 held values from the fit data/held_fit.json (degree 8, 138 full-system states, D 38.020417-73.0), relative to the base
+base re-seeded at ks 293 (--reseed_base 1), 113.11 s: octo-double max|F| 3.9e-25, refinement rung max|R| 4.90e-12 -> 2.25e-23 -> 2.25e-23 -> 8.20e-25 -> 5.35e-28 -> 2.61e-28 -> 6.41e-26
+    on 0 chord 0: max|F| 4.69e-25, |dw| 7.199e-38
+    on 0 chord 1: max|F| 3.63e-27, |dw| 6.807e-38
+    on 0 chord 2: max|F| 3.47e-27, |dw| 2.347e-38
+  on 0: strong chord (4 weak directions), 3 steps after the full first step; theta at its point 1.453e-10 (bound 0.750): accepted, 968.3 s
+  on 0: |F| 1.84e-26 -> 3.96e-27, |dz| 1.02e-19 -> 2.12e-29, lam 1, dDelta +1.02e-19, piv 3.4e-20..1.4e+51, 1299.14 s
+  on 1: |F| 3.96e-27 -> 2.47e-17, |dz| 2.12e-29 -> 1.34e-32, lam 1, dDelta +2.12e-29, piv 4.0e-20..1.4e+51, 280.85 s
+    on 2 trial lam 1: max|F| 3.68e-27; raw |dz_t| 1.340e-32 vs |dz| 1.340e-32 (not <); refused, 248.52 s
+  on 2: |F| 2.47e-17 -> 6.98e-26, |dz| 1.34e-32 -> 6.70e-33, lam 0.5, dDelta +1.34e-32, piv 3.4e-20..1.4e+51, 544.43 s
+  on 3: |F| 6.98e-26 -> 2.54e-34, |dz| 6.70e-33 -> 1.83e-42, lam 1, dDelta -6.70e-33, piv 3.4e-20..1.4e+51, 113.07 s
+  on 4: |F| 2.54e-34 above tol at the floor, own correction |dz| 1.83e-42, dDelta +1.83e-42: converged by the floor rule (|dDelta| <= 1e-30), Delta 1.68309109015459857 -7.1414e-17
+      elim projections {'u0': 0, 'u0q': 0, 'ladder': 0, 'failed': 0, 'skipped': 0, 'u0o_refused': 9, 'pred': 9, 'u0o': 1}
+      octo-double Newton: 5 steps, max|F| 2.5e-34, converged; double-double |F| of its first two parts 1.6e+31
+base polish saved as /home/nathan/Source/choptuik-large-d-raw/I1064-dh610/rb_D262.0099/ks293/base_pin3_D262.0099.npz
+base I966-dh370/ks_chain3b/leg14_D261.1415_ks293/anm_pin3_D262.0099.npz: D 262.009869398, M 32, pin 3 (held [5, 7, 9, 11, 13]), |F| 1.6e+31; N 31, eps 1e-14, h_max 2.0, corrector od (junk_only False), tol 1.0e-20 x 1.45^(D - 262.00987), stalls accepted below 1e-17
+done
+exit 0
