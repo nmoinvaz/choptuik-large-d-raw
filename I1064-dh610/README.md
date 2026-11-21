@@ -251,3 +251,16 @@ Folder `front_D262.7908/thread_test/` (`run1064_front3.sh`, main 276aa1cd, venv-
 | (a2) against dh370's jet | the same as (a3)'s | the same |
 
 The per-order table of (a3) against dh370's (`jetstats_a3_vs_dh370.txt`) is the same as (a)'s in `../jetstats_a_vs_dh370.txt` (diff empty). By the coordinator's reading, (a3) is as far from dh370's jet as (a) is, so the cause is not the thread environment: the build or kernel. dh370's leg 14 ran python code at 1aa4a4fb (branch wip/elim-projections) with an hpkernel built from 40f4b4a5 (multishoot 3.3.0, multisolver 0.1.1, multidouble 4.9.0; no `Solver.residual_sub`, a line in its `anm_run.log`); main 276aa1cd has multishoot 4.1.0, multisolver 0.2.2, multidouble 5.1.0. Not varied: `--threads` itself.
+
+## (a4) the thread counts, and (a) on dh370's kernel (coordinator's go; unit `i1064t`, 18:53:56 to 19:43:01 UTC)
+
+Folder `front_D262.7908/a4_dh370build/` (`run1064_front45.sh`; smoke test of the two 966g configurations in `front_D262.7908/a4_dh370build_smoke/`). (a4): (a) with `--threads 5` (wall 1080 s, jet 764 s) and `--threads 20` (540 s, jet 396 s): both identical to (a) bit for bit (`jetbits1064.py`), gate passed. (2): the kernel of dh370's leg 14 is the hpkernel built from 40f4b4a5; its sources (hp/src, Cargo.toml, Cargo.lock, hp/python, pyproject.toml, build.sh) are identical to d96a09a1's (`git diff` empty), so `~/Source/choptuik-large-d-967/.venv` (avx2, no `residual_sub`) is used as is. 1aa4a4fb has no `--reseed_o_bar` (268a6b2d added it), so dh370's code at leg 14 is not known. g1: python of a worktree at 1aa4a4fb (`~/Source/choptuik-large-d-1064g`) with that kernel, leg 14's arguments without `--reseed_o_bar`, dh370's launcher environment; g2: python of main 276aa1cd with that kernel, (a)'s arguments and environment. Both ran 630 s (jets 463 s and 447 s), plan hash 2f2fb22d.
+
+| comparison | bits | largest relative difference |
+|---|---|---|
+| g1 against (a) | identical | 0 |
+| g2 against (a) | identical | 0 |
+| g1 against dh370's jet | differs in 23839 coefficients | 6.0466e-14 at order 3, unknown 618 (the per-order table equals (a)'s) |
+| g2 against dh370's jet | the same | the same |
+
+By the coordinator's reading (g1 not equal to dh370's jet): the cause is still unknown. Observation, not a test: the order-0 row of dh370's jet is identical to the stored state file in all eight parts, while my jets' order-0 row (my polished base) differs from the stored state in 64 entries of parts 2 to 7, by up to 9.1e-46 relative (`order0_rows1064.py`, `front_D262.7908/order0_rows_output.txt`): my runs polish the base first (the start's `u0o` projection), dh370's step-18 jet was taken from the stored state itself.
