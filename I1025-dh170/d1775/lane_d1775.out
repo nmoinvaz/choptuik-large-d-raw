@@ -1,0 +1,16 @@
+== 2026-11-21 07:58:46 pins checked: state de9fc3e5 (D 17.75), record c33039df, D 18 state 45e72c6a, D 18 stub 2cfdb833, d18_hybsign e089207a, worktree 505d8399 clean; /home/nathan/Source/choptuik-large-d-1058b/.venv/bin/python; 4 threads
+== 2026-11-21 07:58:46 1. planted control: ell_ddm.py selftest (must PASS), then --mutate=slices (must FAIL), 1800 s each
+selftest: PASS
+selftest: FAIL [mutate slices]
+== 2026-11-21 07:58:47 2. cross-check (v2, replaces the failed 1e-6 ln criterion of v1): the hybrid at D 18 at xfkappa's three grid points 1.752930001950494, 1.788704083622953, 1.824478165295412 must give his signs -1, +1, -1 (ell_d18_hybrid_1025.jsonl, blob fbeaa7a1), each noise-robust, with ln|det| within 1e-2 of his; 3600 s per point
+D 18.0 k_c 63: |F| 2.6321260095e-10 (record 2.6303452558e-10), steps 2552 (record 2552): the record system
+  lam 1.752930001950494: hybrid -1 ln|det| -1924.0788971545 (noise 1e-15 on blocks 0-11: [-1.0, -1.0]); float64 +1 -1923.9589853261 (445 s)
+  lam 1.788704083622953: hybrid +1 ln|det| -1924.9188651960 (noise 1e-15 on blocks 0-11: [1.0, 1.0]); float64 +1 -1921.9334841205 (506 s)
+  lam 1.824478165295412: hybrid -1 ln|det| -1923.0186262628 (noise 1e-15 on blocks 0-11: [-1.0, -1.0]); float64 +1 -1921.3686477547 (529 s)
+== 2026-11-21 08:23:29 cross-check exit 0
+== 2026-11-21 08:23:30 cross-check: PASS 1.752930: sign -1 (xfkappa -1) robust True ln -1924.0788972 (xfkappa -1924.0789064, diff +9.23e-06) float64 +1 | 1.788704: sign +1 (xfkappa +1) robust True ln -1924.9188652 (xfkappa -1924.9188779, diff +1.27e-05) float64 +1 | 1.824478: sign -1 (xfkappa -1) robust True ln -1923.0186263 (xfkappa -1923.0186016, diff -2.47e-05) float64 +1
+== 2026-11-21 08:23:30 3. the scan (A) at D 17.75: lam 1.70,1.71,1.72,1.73,1.74,1.75,1.76,1.77,1.78,1.79,1.80,1.81,1.82,1.83,1.84,1.85,1.86,1.87,1.88,1.89,1.90,1.91,1.92,1.93,1.94,1.95; 8 h cap (28800 s) by exact pid
+== 2026-11-21 08:23:30 scan started under /usr/bin/time pid 1085943
+== 2026-11-21 11:44:53 scan exit 0, 12083 s wall
+== 2026-11-21 11:44:53 reading: READING: one robust sign change: only one eigenvalue crosses in the range
+== 2026-11-21 11:44:53 lane d1775 done
