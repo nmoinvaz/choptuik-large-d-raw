@@ -494,3 +494,4 @@ itself to reach D 265.
 one-off series is ordered from this check. With N, the pole-pair and weaker-point cases move toward mu 1/2 only slowly,
 for example the mapped square-root pair at j 4 goes from +0.70 at N 47 to +0.67 at N 63. And j* stays at 2 as the plain
 Dlog improves with them.
+| 262.7908 | 8caffc64 | 262.0871 ± 0.9709i (9 approximants) | 1.1974, 1.2043, −0.57% | PASS (0), FAIL (1) | 262.5082 (+29.6), 515.1630 (+2.826) |
