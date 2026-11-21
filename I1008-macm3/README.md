@@ -1198,3 +1198,88 @@ Attempts from one base (a: predicted max|F|, first |dz|, outcome), for every arc
 Gain first |dz| / predicted max|F| of this attempt: 6.69e-14 / 1.97e-35 = 3.4e+21 at D 259.57568, against 2.66e+21 at D 259.5388 (accepted step 10), 3.33e+21 at D 259.5659 (accepted step 11), 3.48e+21 at D 259.5701 (accepted step 12), 9.22e+20 at D 259.5744 (accepted step 13). Its first |dz| is x1.4 the largest of the 24 earlier attempts (4.83e-14, run3).
 
 Series seconds at run3's bases so far: 274.4, 289.8, 485.0 (the base of this attempt took 485.0 s); the old-kernel series check ran at nice 19 beside run3 from 02:11 to 03:25 UTC.
+
+### run3, arc step 14: attempt 4 at the arclength step a 0.0006621092558 refused by the stall rule, the run ended after 2 corrections, accepted lam 0.03125, 0.0078125 (2026-11-21 05:44 UTC)
+
+Arc step 14 is not accepted yet. Its attempt 4 (a = 0.004237499237 x 1.25 / 8 = 0.0006621092558, D move 0.00066210635, checked: D move / a = 0.99999562 against t_D 0.99999562) from arc step 13's D 259.57435544360826 to D 259.575017549962 refused by the stall rule: on 1: lam at or below 0.04 twice in a row, stopping (stalled). The corrector line says 1864.9 s; its corrections took 1563 s (1386 s of trials and chord checks). The stall rule (`--lam_stall 0.04`) and `--qd_it 40` are as in run1; this was the 4th and last attempt, so anm_run ended the run (see the end of this note).
+
+Per trial (every refused trial's ladder failed: the point |F| is the one before projection, and the trial |F| after the failed projection is the same point):
+
+| correction | trial lam | projection | \|F\| before projection | trial max\|F\| (after) | simplified correction / \|dz\| (bound) | result | seconds |
+|---|---|---|---|---|---|---|---|
+| 0 | strong chord | not logged | not logged | | theta inf (bound 0.75) | refused | 100.75 |
+| 0 | 1 | attempted, ladder failed | 4.87e+12 | 4.87e+12 | 2.883e+56 (0.750) | refused | 96.67 |
+| 0 | 0.5 | attempted, ladder failed | 3.04e+11 | 3.04e+11 | 1.802e+55 (0.875) | refused | 97.04 |
+| 0 | 0.25 | attempted, ladder failed | 1.91e+10 | 1.91e+10 | 1.126e+54 (0.938) | refused | 96.17 |
+| 0 | 0.125 | attempted, ladder failed | 1.20e+09 | 1.20e+09 | 7.038e+52 (0.969) | refused | 95.46 |
+| 0 | 0.0625 | attempted, ladder failed | 7.83e+07 | 7.83e+07 | 4.399e+51 (0.984) | refused | 89.89 |
+| 0 | 0.03125 | projected, ladder converged | not logged | 4.63e-29 | 9.681e-01 (0.992) | accepted | 98.41 |
+| 1 | 1 | attempted, ladder failed | 7.76e+12 | 7.76e+12 | 3.352e+56 (0.750) | refused | 96.27 |
+| 1 | 0.5 | attempted, ladder failed | 4.87e+11 | 4.87e+11 | 2.101e+55 (0.875) | refused | 97.0 |
+| 1 | 0.25 | attempted, ladder failed | 3.09e+10 | 3.09e+10 | 1.333e+54 (0.938) | refused | 96.32 |
+| 1 | 0.125 | attempted, ladder failed | 2.06e+09 | 2.06e+09 | 8.895e+52 (0.969) | refused | 95.77 |
+| 1 | 0.0625 | attempted, ladder failed | 1.65e+08 | 1.65e+08 | 7.213e+51 (0.984) | refused | 93.61 |
+| 1 | 0.03125 | attempted, ladder failed | 2.35e+07 | 2.35e+07 | 1.064e+51 (0.992) | refused | 72.46 |
+| 1 | 0.015625 | attempted, ladder failed | 1.16e+07 | 1.16e+07 | 4.171e+50 (0.996) | refused | 62.39 |
+| 1 | 0.0078125 | projected, ladder converged | not logged | 4.90e-29 | 9.921e-01 (0.998) | accepted | 97.76 |
+
+Per correction:
+
+| correction | accepted lam | max\|F\| before -> after | \|dz\| before -> after | seconds |
+|---|---|---|---|---|
+| 0 | 0.03125 | 1.70e-35 -> 4.63e-29 | 5.71e-14 -> 5.45e-14 | 763.1 |
+| 1 | 0.0078125 | 4.63e-29 -> 4.90e-29 | 5.45e-14 -> 5.37e-14 | 800.36 |
+
+First |dz| of every attempt against the arclength step a (D rises down the table; run1's last two are the refused attempts of arc step 5; AB1, AB2, run2 and run3 ran with `--elim_switch 0`; run3 is on main 8179068d and the new kernel):
+
+| run | arclength a | first \|dz\| | first \|dz\| / a | accepted lam at correction 0 |
+|---|---|---|---|---|
+| pilot2 | 0.0455 | 5.37e-15 | 1.18e-13 | 0.25 |
+| pilot2 | 0.056875 | 4.60e-16 | 8.09e-15 | 1 |
+| run1 | 0.0455 | 6.20e-16 | 1.36e-14 | 1 |
+| run1 | 0.056875 | 8.92e-16 | 1.57e-14 | 0.5 |
+| run1 | 0.07109375 | 8.83e-16 | 1.24e-14 | 0.5 |
+| run1 | 0.0888671875 | 9.21e-15 | 1.04e-13 | 0.125 |
+| run1 | 0.04443359375 | 4.82e-15 | 1.08e-13 | 0.0625 |
+| ab1 | 0.07109375 | 8.83e-16 | 1.24e-14 | 0.5 |
+| ab2 | 0.0444334 | 1.96e-15 | 4.41e-14 | 0.25 |
+| run2 | 0.0444334 | 2.89e-15 | 6.5e-14 | 0.25 |
+| run2 | 0.05554175 | 8.11e-15 | 1.46e-13 | 0.125 |
+| run2 | 0.027770875 | 2.01e-14 | 7.24e-13 | 0.03125 |
+| run2 | 0.0138854375 | 4.76e-15 | 3.43e-13 | 0.25 |
+| run2 | 0.0138854375 | 3.16e-15 | 2.28e-13 | 0.25 |
+| run2 | 0.01735679688 | 7.03e-15 | 4.05e-13 | 0.125 |
+| run2 | 0.02169599609 | 4.65e-15 | 2.14e-13 | 0.25 |
+| run2 | 0.02711999512 | 5.76e-15 | 2.12e-13 | 0.25 |
+| run3 | 0.0338999939 | 4.83e-14 | 1.42e-12 | 0.03125 |
+| run3 | 0.01694999695 | 3.43e-14 | 2.02e-12 | 0.03125 |
+| run3 | 0.008474998474 | 1.56e-14 | 1.84e-12 | 0.0625 |
+| run3 | 0.004237499237 | 8.73e-15 | 2.06e-12 | 0.125 |
+| run3 | 0.004237499237 | 9.50e-16 | 2.24e-13 | 1 |
+| run3 | 0.005296874046 | 2.80e-14 | 5.29e-12 | 0.0625 |
+| run3 | 0.002648437023 | 1.33e-14 | 5.02e-12 | 0.125 |
+| run3 | 0.001324218512 | 6.69e-14 | 5.05e-11 | 0.015625 |
+| run3 | 0.0006621092558 | 5.71e-14 | 8.62e-11 | 0.03125 |
+
+Attempts from one base (a: predicted max|F|, first |dz|, outcome), for every arc step with more than one attempt: arc step 7: 0.055542: 3.77e-36, 8.11e-15, refused, 0.027771: 1.14e-35, 2.01e-14, refused, 0.013885: 2.86e-36, 4.76e-15, accepted; arc step 12: 0.0339: 1.17e-35, 4.83e-14, refused, 0.01695: 9.49e-36, 3.43e-14, refused, 0.008475: 4.44e-36, 1.56e-14, refused, 0.0042375: 2.51e-36, 8.73e-15, accepted; arc step 14: 0.0052969: 8.03e-36, 2.80e-14, refused, 0.0026484: 3.97e-36, 1.33e-14, refused, 0.0013242: 1.97e-35, 6.69e-14, refused, 0.00066211: 1.70e-35, 5.71e-14, refused. Predicted max|F| fell at every halving of a at arc step(s) 12 and not at arc step(s) 7, 14.
+
+Gain first |dz| / predicted max|F| of this attempt: 5.71e-14 / 1.7e-35 = 3.36e+21 at D 259.57502, against 2.66e+21 at D 259.5388 (accepted step 10), 3.33e+21 at D 259.5659 (accepted step 11), 3.48e+21 at D 259.5701 (accepted step 12), 9.22e+20 at D 259.5744 (accepted step 13). Its first |dz| is x0.9 the largest of the 25 earlier attempts (6.69e-14, run3).
+
+Series seconds at run3's bases so far: 274.4, 289.8, 485.0 (the base of this attempt took 485.0 s); the old-kernel series check ran at nice 19 beside run3 from 02:11 to 03:25 UTC.
+
+All 4 attempts of arc step 14, from arc step 13's D 259.57435544360826 (t_D 0.9999956172):
+
+| attempt | a | D | predicted max\|F\| | first \|dz\| | gain first \|dz\| / predicted max\|F\| | accepted lam (per correction) | corrections | corrector s | outcome |
+|---|---|---|---|---|---|---|---|---|---|
+| 1 | 0.005296874046 | 259.579652294 | 8.03e-36 | 2.80e-14 | 3.49e+21 | 0.0625, 0.015625, 0.015625 | 3 | 3088.8 | refused (stall rule) |
+| 2 | 0.002648437023 | 259.577003869 | 3.97e-36 | 1.33e-14 | 3.35e+21 | 0.125, 0.03125, 0.03125 | 3 | 2108.1 | refused (stall rule) |
+| 3 | 0.001324218512 | 259.575679656 | 1.97e-35 | 6.69e-14 | 3.4e+21 | 0.015625, 0.015625 | 2 | 1918.1 | refused (stall rule) |
+| 4 | 0.0006621092558 | 259.57501755 | 1.70e-35 | 5.71e-14 | 3.36e+21 | 0.03125, 0.0078125 | 2 | 1864.9 | refused (stall rule) |
+
+**Run3 has ended, and nothing is running.** anm_run exited with rc 1 at 05:26:31 UTC after 24577 s (6.83 h; `capped_run: exit 1 ... cap_hit False`): this was the 4th attempt, the most `arclength.py` allows per step, and the log ends with `step 2: D0 259.574355443608 ... -> NOT converged` and `done` (its printed a 3.311e-04 is this attempt's a halved once more). The record in `run3/arc.jsonl` has `converged: false` and four attempts. Run3 made 2 accepted steps (arc steps 12 and 13) of the 14 asked, and ended 12.7 h before its cap (18:11:29 UTC). The stop watcher and the wake watcher ended with it.
+
+The last accepted state is `run3/arc_002_D259.574355.npz` (arc step 13, D 259.57435544360826, t_D 0.9999956172, D 0.328914 below 259.903269724106), and its series is saved as `run3/arcjet_002_D259.574355.npz`. No turn is recorded and t_D has not changed sign.
+
+What the four attempts say: the first |dz| is 1.33e-14 to 6.69e-14 at a from 0.0053 to 0.00066, all above the largest first |dz| of any accepted attempt so far (8.73e-15, step 12), and the gain is 3.35e+21 to 3.49e+21 in all four. The predicted max|F| (3.97e-36 to 1.97e-35) fell from a 0.0053 to 0.0026 and then rose, so it does not follow a. The same base, series and re-seed give the same numbers at the same a, so a restart from this state at one of these four values would repeat them; another `--a0` gives a new sample of the predicted max|F|.
+
+Per your order I restart nothing and change no flag until you answer. A restart is `run_restart.sh run4 STEPS CAP I1008-macm3/run3/arc_002_D259.574355.npz A0 I1008-macm3/run3/arcjet_002_D259.574355.npz` (the same flags, code 8179068d, venv-macm3-1058b; `--arc_jet` skips the 485 s series), and the cap would need setting. #1008 stays open with `running` until you say.
