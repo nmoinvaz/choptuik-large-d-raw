@@ -1,0 +1,53 @@
+# 2026-11-22 03:50:08 UTC cmd: C:/Users/nathan/Source/venv-md510/Scripts/python.exe -u ell_leap.py l1kc71Lw1025 1 71 data/sol_l1kc71Wm1025_D18.4375.npy 18.4375 data/sol_l1kc71Wm1025_D18.5000.npy 18.5 20 0.0625 --tol 1e-12 --fmax 1e-8 --cmax 1e-2 --fold (cwd D:/choptuik-i1025k71/solver/matter, 4 threads)
+D:\choptuik-i1025k71\solver\matter\dss_ell.py:211: RuntimeWarning: overflow encountered in multiply
+  a2 = a * a
+D:\choptuik-i1025k71\solver\matter\dss_ell.py:213: RuntimeWarning: invalid value encountered in subtract
+  cx = c * ((n - 1) * (a2 - 1) - 2 * L * g) / x
+D:\choptuik-i1025k71\solver\matter\dss_ell.py:214: RuntimeWarning: overflow encountered in multiply
+  ax = a * ((p * p + m * m) + 2 * L * g + (n - 1) * (1 - a2)) / (2 * x)
+D:\choptuik-i1025k71\solver\matter\dss_ell.py:214: RuntimeWarning: invalid value encountered in add
+  ax = a * ((p * p + m * m) + 2 * L * g + (n - 1) * (1 - a2)) / (2 * x)
+D:\choptuik-i1025k71\solver\matter\dss_ell.py:216: RuntimeWarning: overflow encountered in multiply
+  pc = n * c * (p + m) / (2 * x)
+D:\choptuik-i1025k71\solver\matter\dss_ell.py:218: RuntimeWarning: overflow encountered in multiply
+  px = (-self.D(p, omega) + cx * p - c * p / x + pc - lt) / (x - c)
+D:\choptuik-i1025k71\solver\matter\dss_ell.py:219: RuntimeWarning: overflow encountered in multiply
+  mx = (-self.D(m, omega) - cx * m + c * m / x - pc + lt) / (x + c)
+D:\choptuik-i1025k71\solver\matter\dss_ell.py:212: RuntimeWarning: overflow encountered in multiply
+  g = a2 * q * q
+D:\choptuik-i1025k71\solver\matter\dss_ell.py:217: RuntimeWarning: overflow encountered in multiply
+  lt = L * c * a2 * q / x
+D:\choptuik-i1025k71\solver\matter\dss_ell.py:219: RuntimeWarning: invalid value encountered in add
+  mx = (-self.D(m, omega) - cx * m + c * m / x - pc + lt) / (x + c)
+D:\choptuik-i1025k71\solver\matter\dss_ell.py:88: RuntimeWarning: invalid value encountered in matmul
+  return f @ self._Tm
+D:\choptuik-i1025k71\solver\matter\dss_ell.py:216: RuntimeWarning: overflow encountered in divide
+  pc = n * c * (p + m) / (2 * x)
+D:\choptuik-i1025k71\solver\matter\dss_ell.py:218: RuntimeWarning: invalid value encountered in add
+  px = (-self.D(p, omega) + cx * p - c * p / x + pc - lt) / (x - c)
+D:\choptuik-i1025k71\solver\matter\dss_ell.py:218: RuntimeWarning: invalid value encountered in subtract
+  px = (-self.D(p, omega) + cx * p - c * p / x + pc - lt) / (x - c)
+D:\choptuik-i1025k71\solver\matter\dss_ell.py:219: RuntimeWarning: overflow encountered in divide
+  mx = (-self.D(m, omega) - cx * m + c * m / x - pc + lt) / (x + c)
+D:\choptuik-i1025k71\solver\matter\dss_ell.py:219: RuntimeWarning: invalid value encountered in subtract
+  mx = (-self.D(m, omega) - cx * m + c * m / x - pc + lt) / (x + c)
+D:\choptuik-i1025k71\solver\matter\dss_ell.py:213: RuntimeWarning: overflow encountered in multiply
+  cx = c * ((n - 1) * (a2 - 1) - 2 * L * g) / x
+D:\choptuik-i1025k71\solver\matter\dss_ell.py:85: RuntimeWarning: invalid value encountered in matmul
+  return f @ self._Dm
+D:\choptuik-i1025k71\solver\matter\dss_ell.py:213: RuntimeWarning: overflow encountered in divide
+  cx = c * ((n - 1) * (a2 - 1) - 2 * L * g) / x
+D:\choptuik-i1025k71\solver\matter\dss_ell.py:214: RuntimeWarning: overflow encountered in divide
+  ax = a * ((p * p + m * m) + 2 * L * g + (n - 1) * (1 - a2)) / (2 * x)
+D:\choptuik-i1025k71\solver\matter\dss_ell.py:214: RuntimeWarning: overflow encountered in add
+  ax = a * ((p * p + m * m) + 2 * L * g + (n - 1) * (1 - a2)) / (2 * x)
+D:\choptuik-i1025k71\solver\matter\dss_ell.py:325: RuntimeWarning: overflow encountered in multiply
+  aG = cs(A, Q2, Kk) + (n - 1) * (A[Kk] - cs(A, A2, Kk)) + 2 * L * cs(A, G, Kk)
+D:\choptuik-i1025k71\solver\matter\dss_ell.py:325: RuntimeWarning: invalid value encountered in subtract
+  aG = cs(A, Q2, Kk) + (n - 1) * (A[Kk] - cs(A, A2, Kk)) + 2 * L * cs(A, G, Kk)
+D:\choptuik-i1025k71\solver\matter\dss_ell.py:217: RuntimeWarning: overflow encountered in divide
+  lt = L * c * a2 * q / x
+D:\choptuik-i1025k71\solver\matter\dss_ell.py:218: RuntimeWarning: overflow encountered in divide
+  px = (-self.D(p, omega) + cx * p - c * p / x + pc - lt) / (x - c)
+{"D": 18.5625, "l": 1, "kc": 71, "kappa": 0.7, "u0": 0.04, "Ks": 30, "Delta": 1.0574800979029286, "Delta_pred": 1.0574753418494913, "F": 2.8228808430021793e-10, "F_start": 5.306961846061257e-05, "steps": 2759, "constraint": 0.0010633951552074417, "dDelta_dF": 1379445387.8682053, "lam_gauge": 0.877486341109094, "h": 0.0625, "seconds": 3512, "sv_J_small": [4.372222106740532e-16, 4.640525904212182e-16, 6.320505851020599e-16, 8.391443519022064e-16], "sv_J_max": 10.820159239851199, "cos_t_v": [0.056608724945862055, 0.04217448928126662, 0.025865898146405, 0.01234343466460609], "sv_B_min": 1.1721642945200868e-17, "sv_B_max": 10.820159465265856, "tan_norm": 0.2910466014155716, "sv_fold": 4.372222106740532e-16, "cos_fold": 0.056608724945862055, "i_fold": 0, "n_null": 65, "sv_reg_small": [2.7741977943979775e-11, 2.7830574167987142e-11, 4.435390898684084e-11, 2.478683463113498e-09], "cos_t_reg": [0.002455618880434662, 0.0001014015835435652, 0.012005035669556869, 0.01355486325972383]}
+{"D": 18.625, "l": 1, "kc": 71, "kappa": 0.7, "u0": 0.04, "Ks": 30, "Delta": 1.0589349147169471, "Delta_pred": 1.058930148305688, "F": 2.8072045484608474e-10, "F_start": 5.266955485564124e-05, "steps": 2748, "constraint": 0.0011295582227332697, "dDelta_dF": 1214228285.1341136, "lam_gauge": 0.8789794003000535, "h": 0.0625, "seconds": 4530, "sv_J_small": [4.1124895247140263e-16, 5.508230082977287e-16, 8.498961556827362e-16, 8.498961556827362e-16], "sv_J_max": 10.890518244258951, "cos_t_v": [0.005731827845391767, 0.023112192961561678, 0.013038469585784258, 0.040288573726043865], "sv_B_min": 1.5399060122048206e-17, "sv_B_max": 10.890518464081254, "tan_norm": 0.30305442486768325, "sv_fold": 8.498961556827362e-16, "cos_fold": 0.040288573726043865, "i_fold": 3, "n_null": 65, "sv_reg_small": [3.0487635347575885e-11, 3.0539179697568845e-11, 4.9400982191079694e-11, 2.5656872912903085e-09], "cos_t_reg": [0.0007878120225995589, 0.006631883392047266, 0.00799921850256238, 0.02554836243392572]}
