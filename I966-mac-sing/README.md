@@ -650,3 +650,4 @@ Note at 263.4439, past the crossover 263.425 and short of 263.5: locate now puts
 | 263.4862 | 8f72baad | 262.0863 ± 0.9713i (8 approximants) | 1.7150, 1.7091, +0.34% | 1.5918 | PASS (0), FAIL (1) | 263.3823 (+41.6), 275.4795 (+0.603) |
 
 Note at 263.4862 (leg 15's first base, before 263.5, not read): locate puts the real pole nearest (|s| 1.591, against P1 at 1.704). The root test is 1.7150, which follows |D0 − P1| (1.7091, +0.34%), and is 7.74% above 265.078 − D0 (1.5918). This is the first base where the root test sits more than 5% above the real distance; the reading counts only bases past 263.5. 6-pole list, 5 in all: 265.0773 (n 8), 265.0787 (n 5), the pair clusters (n 8, n 5), 267.1727 (n 4). Rows' Dlog gives D* 275.48, mu +0.603, from one approximant: no reading.
+| 263.5312 | 23e8c453 | 262.0854 ± 0.9713i (8 approximants) | 1.6381, 1.7463, −6.20% | 1.5468 | FAIL (1), FAIL (1) | 263.6322 (+36.1), 286.2576 (-35.332) |
