@@ -1,0 +1,8 @@
+reference: /home/nathan/Source/choptuik-large-d-raw-push960/I927-mac/inputs/lowDhm_x0.000625-0.9_D3.1500_M128.npz: D 3.15, uniform M 128, Delta 2.961319687827138 -1.009e-16
+cost against the uniform grid at M 128 on its own plan, 240 steps; one Newton call there 16.9 s
+| L | M' | Delta - ref | <1e-12 | <e_u | plan start | pass 2 | own | own/S_u | cost M^3 | cost c(M) | cost measured |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| 1 | 128 | +7.27e-31 | yes | - | 244 | 244 | 240 | 1.00 | 1.000 | - | 1.000 |
+modes needed for Delta to 1e-12 of the reference, per L (the smallest M' from which every larger M' tried converged and agrees):
+  L 1: M' 128 (1.00x fewer than M 128); own plan 240 steps (1.00x); projected cost per call 1.000 (M^3), 1.000 measured
+identity: L 1 at M 128 from M 128: Delta - stored Delta(M 128) +7.3e-31 (bound 1e-20), own plan 240 against the stored 236 steps (1.017; bound 10%): PASS
