@@ -2,8 +2,8 @@
 < # #1025 kc79_d19125 step 2 (t5's order): hybrid sign scan of the accepted k_c 79 D 19.125 state, lambda 1.44 to 1.58 at 0.01 (15 values) plus a
 < # repeat of 1.50 (on another process than the first 1.50), 6 processes of 1 thread, nice 10, with d18_hybsign.py (e089207a, unmodified), then dh170's
 ---
-> # #1025 kc79_d195 step 2 (t5's order): hybrid sign scan of the accepted k_c 79 D 19.5 state, lambda 1.30 to 1.50 at 0.01 (21 values) plus a
-> # repeat of 1.40 (on another process than the first 1.40), 4 processes of 1 thread, nice 10, with d18_hybsign.py (e089207a, unmodified), then dh170's
+> # #1025 kc79_d195 step 2 (t5's order): hybrid sign scan of the accepted k_c 79 D 19.5 state, lambda 1.30 to 1.40 at 0.01 (11 values) plus a
+> # repeat of 1.35 (on another process than the first 1.35; t5's split: dh610 scans 1.41 to 1.50 plus a repeat of 1.45 on the same state), 4 processes of 1 thread, nice 10, with d18_hybsign.py (e089207a, unmodified), then dh170's
 6c6
 < OUT=/home/nathan/Source/choptuik-large-d-raw-wt613/I1025-dh370/kc79_d19125
 ---
@@ -21,9 +21,9 @@
 < NP=6
 < step "scan starts: D $D, ${#LAMS[@]} values (1.44 to 1.58 and the repeat of 1.50), $NP procs x 1 thread, nice 10; state sol_${TAG}_D19.1250.npy $(blob $STATE), record $(blob $STUB)"
 ---
-> print(*[f'{v/100:.2f}' for v in range(130, 151)] + ['1.40'], sep='\n')")
+> print(*[f'{v/100:.2f}' for v in range(130, 141)] + ['1.35'], sep='\n')")
 > NP=4
-> step "scan starts: D $D, ${#LAMS[@]} values (1.30 to 1.50 and the repeat of 1.40), $NP procs x 1 thread, nice 10; state sol_${TAG}_D19.5000.npy $(blob $STATE), record $(blob $STUB)"
+> step "scan starts: D $D, ${#LAMS[@]} values (1.30 to 1.40 and the repeat of 1.35), $NP procs x 1 thread, nice 10; state sol_${TAG}_D19.5000.npy $(blob $STATE), record $(blob $STUB)"
 28c28
 <       $PY -u $OUT/in/d18_hybsign.py $STUB $STATE $D "$mine" $SCAN/scan_D19.125_p$p.jsonl > $SCAN/scan_p$p.log 2>&1
 ---
@@ -39,4 +39,4 @@
 43c43
 < $PY -I read_lower.py $SCAN 1.44 1.58 > $OUT/read_lower.txt 2>&1; step "read_lower.py exit $? (reading in read_lower.txt)"
 ---
-> $PY -I read_lower.py $SCAN 1.30 1.50 > $OUT/read_lower.txt 2>&1; step "read_lower.py exit $? (reading in read_lower.txt)"
+> $PY -I read_lower.py $SCAN 1.30 1.40 > $OUT/read_lower.txt 2>&1; step "read_lower.py exit $? (reading in read_lower.txt)"

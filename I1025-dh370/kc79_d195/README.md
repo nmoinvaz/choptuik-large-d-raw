@@ -7,10 +7,10 @@ Written before the run (the regrid started 2026-11-22 18:37:34 UTC by the clock)
 The k_c 79 line of lambda_1, after `../kc79_d19125/` (raw c58e5052: one root in 1.44 to 1.58, lambda_1 1.505784).
 
 1. Regrid win2's k_c 71 D 19.5 state (leg 2 of the k_c 71 leap, tag `l1kc71Lw1025b`) to k_c 79 exactly as at D 19.125: win2's `kc71_syscheck.py` on the source first, `ell_refine.py`, accepted only by `kc79_syscheck_1025.py` and its two controls. 6 threads, nice 10, a systemd unit (`i1025k795`).
-2. Scan the accepted state with `d18_hybsign.py` (e089207a, unmodified), lambda 1.30 to 1.50 at 0.01 (21 values) plus a repeat of 1.40, on 4 processes of 1 thread (the D 19.125 scan measured 3813 to 3897 s per point with 6 processes and 2021 to 2081 s with 4: six are memory-bound here), read with dh170's `read_lower.py`.
+2. Scan the accepted state with `d18_hybsign.py` (e089207a, unmodified), on 4 processes of 1 thread (the D 19.125 scan measured 3813 to 3897 s per point with 6 processes and 2021 to 2081 s with 4: six are memory-bound here), read with dh170's `read_lower.py`. **Split (t5's change, after the regrid was accepted and pushed):** this folder scans lambda 1.30 to 1.40 at 0.01 (11 values) plus a repeat of 1.35; dh610 scans 1.41 to 1.50 plus a repeat of 1.45 on the same state (after a Linux-to-Linux control on the D 19.125 k_c 79 point). I read my half with `read_lower.py`; t5 reads the joined window 1.30 to 1.50. A change between 1.40 and 1.41 straddles the halves: I report the edge sign at 1.40 and the reading of my half only. (The first launch, on the full window 1.30 to 1.50, was stopped 1 min after its start with no point done; `scan_attempt1_full_window_stopped/`, `steps.txt`.)
 3. Report every robust change with its det-linear estimate and range, the edge signs, any ln|det| minimum without a change; they are k_c 79 roots. Stop and report on a refusal, a failed control or a regrid that does not converge. Report each step's verdict with the raw commit; post on #1025.
 
-Estimate (t5): regrid about 45 min, scan 6 rounds of about 35 min.
+Estimate (t5): regrid about 45 min, scan 6 rounds of about 35 min for the full window; 3 rounds (4, 4, 4 evaluations) for this half.
 
 ## Prediction (information, not a pass rule)
 
@@ -50,8 +50,9 @@ The scan starts only after the verdict is ACCEPTED; each scan process first prin
 
 ## Cost, written before the run
 
-The D 19.125 regrid: 2576 s on 6 threads, 2949 steps, peak RSS 1.47 GB. Expect the same, 45 min. The scan: 22 evaluations on 4 processes are 6 rounds (4, 4, 4, 4, 4, 2); at about 2050 s per point that is about 3.5 h (the last round has two processes).
+The D 19.125 regrid: 2576 s on 6 threads, 2949 steps, peak RSS 1.47 GB. Expect the same, 45 min. The scan: 12 evaluations on 4 processes are 3 rounds (4, 4, 4); at about 2050 s per point that is about 1.8 h.
 
 ## Status
 
-Written as the run goes.
+- 18:37:38 UTC source check accepted (|F| 3.5040e-10 against the record's 3.5028e-10, 2587 steps; both controls exit 1); regrid started.
+- 19:14:58 UTC regrid exit 0 in 2240 s (peak RSS 1.20 GB); 19:15:02 `kc79_syscheck_1025.py` ACCEPTED (|F| 3.5123e-10, 2879 steps, constraint 1.273e-3, Delta 1.0798406632; k_c 71: 3.5028e-10, 2587, 2.467e-3, 1.0798467019), both controls exit 1. State and record pushed at raw f40a4556.

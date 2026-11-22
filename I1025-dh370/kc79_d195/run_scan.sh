@@ -1,6 +1,6 @@
 #!/bin/bash
-# #1025 kc79_d195 step 2 (t5's order): hybrid sign scan of the accepted k_c 79 D 19.5 state, lambda 1.30 to 1.50 at 0.01 (21 values) plus a
-# repeat of 1.40 (on another process than the first 1.40), 4 processes of 1 thread, nice 10, with d18_hybsign.py (e089207a, unmodified), then dh170's
+# #1025 kc79_d195 step 2 (t5's order): hybrid sign scan of the accepted k_c 79 D 19.5 state, lambda 1.30 to 1.40 at 0.01 (11 values) plus a
+# repeat of 1.35 (on another process than the first 1.35; t5's split: dh610 scans 1.41 to 1.50 plus a repeat of 1.45 on the same state), 4 processes of 1 thread, nice 10, with d18_hybsign.py (e089207a, unmodified), then dh170's
 # read_lower.py (89309d3c) and its selftest and mutations. No hc from here.
 {
 OUT=/home/nathan/Source/choptuik-large-d-raw-wt613/I1025-dh370/kc79_d195
@@ -17,9 +17,9 @@ grep -q '^ACCEPTED' $OUT/VERDICT.txt || { step "SCAN STOP: no ACCEPTED verdict";
 [ "$(blob $OUT/in/read_lower.py)" = 89309d3c ] || { step "SCAN STOP: read_lower.py is not 89309d3c"; exit 1; }
 cp $STATE $STUB $OUT/in/
 mapfile -t LAMS < <(python3 -I -c "
-print(*[f'{v/100:.2f}' for v in range(130, 151)] + ['1.40'], sep='\n')")
+print(*[f'{v/100:.2f}' for v in range(130, 141)] + ['1.35'], sep='\n')")
 NP=4
-step "scan starts: D $D, ${#LAMS[@]} values (1.30 to 1.50 and the repeat of 1.40), $NP procs x 1 thread, nice 10; state sol_${TAG}_D19.5000.npy $(blob $STATE), record $(blob $STUB)"
+step "scan starts: D $D, ${#LAMS[@]} values (1.30 to 1.40 and the repeat of 1.35), $NP procs x 1 thread, nice 10; state sol_${TAG}_D19.5000.npy $(blob $STATE), record $(blob $STUB)"
 pids=()
 for ((p = 0; p < NP; p++)); do
   mine=""
@@ -40,7 +40,7 @@ $PY -I read_lower.py selftest > $OUT/selftest_read_lower.txt 2>&1; e0=$?
 $PY -I read_lower.py selftest --mutate=shift > $OUT/selftest_read_lower_shift.txt 2>&1; e1=$?
 $PY -I read_lower.py selftest --mutate=round2 > $OUT/selftest_read_lower_round2.txt 2>&1; e2=$?
 step "read_lower selftest exit $e0 (0 wanted); mutations shift exit $e1, round2 exit $e2 (1 wanted each)"
-$PY -I read_lower.py $SCAN 1.30 1.50 > $OUT/read_lower.txt 2>&1; step "read_lower.py exit $? (reading in read_lower.txt)"
+$PY -I read_lower.py $SCAN 1.30 1.40 > $OUT/read_lower.txt 2>&1; step "read_lower.py exit $? (reading in read_lower.txt)"
 echo "SCAN DONE $(stamp) UTC" > $OUT/SCAN_DONE.txt
 step "scan done"
 exit 0
