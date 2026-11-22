@@ -26,3 +26,45 @@ Inputs (copied from `../kc71_d19125/in/`, raw ee09203f; pinned by `git hash-obje
 Estimate (coordinator's): about 1 h; points took 780 s alone and 1065 to 1380 s beside other jobs in the D 19.125 scan.
 
 Written as the run goes.
+
+## Scan (22 Nov, 15:00:58 to 16:17:27 UTC): 21 points and the repeat, one robust change
+
+Six processes, all exit 0 (`exits_kc71low.txt`), each logged the record system first (|F| 2.7637774095e-10 against the record's 2.7619908383e-10, steps 2676 = 2676). Points took 939 to 1289 s (the control of `../kc71_d19125/` alone: 778 s). Files: `scan/scan_D19.0_p<p>.jsonl`, merged `scan/scan_D19.0_1025.jsonl`, `read_lower.txt`, logs `scan/scan_p<p>.log`.
+
+| lambda_1 | hybrid sign | hybrid ln\|det\| | float64 sign | float64 ln\|det\| | s |
+|---|---|---|---|---|---|
+| 1.0 | + | -2186.7648661808 | + | -2186.6841 | 1204 |
+| 1.02 | + | -2188.0496617573 | + | -2188.0142 | 1180 |
+| 1.04 | + | -2189.3319828598 | + | -2189.4156 | 1189 |
+| 1.06 | + | -2190.6128380338 | + | -2190.5168 | 1182 |
+| 1.08 | + | -2191.8934784858 | + | -2192.0683 | 1183 |
+| 1.1 | + | -2193.1755059682 | + | -2193.1741 | 1179 |
+| 1.12 | + | -2194.4610304093 | + | -2194.4731 | 1247 |
+| 1.14 | + | -2195.7529952200 | + | -2195.5617 | 1275 |
+| 1.16 | + | -2197.0557015139 | + | -2197.0406 | 1235 |
+| 1.18 | + | -2198.3758539482 | + | -2198.4297 | 1239 |
+| 1.2 | + | -2199.7246163686 | + | -2199.8598 | 943 |
+| 1.2 | + | -2199.7246163686 | + | -2199.8598 | 1289 |
+| 1.22 | + | -2201.1219673874 | + | -2201.4398 | 1188 |
+| 1.24 | + | -2202.6076768105 | + | -2202.6709 | 1194 |
+| 1.26 | + | -2204.2776729186 | + | -2203.8031 | 1189 |
+| 1.28 | + | -2206.5201023492 | + | -2205.2253 | 1193 |
+| 1.3 | - | -2208.0155456237 | + | -2208.6466 | 1192 |
+| 1.32 | - | -2208.1870658478 | - | -2208.8987 | 1185 |
+| 1.34 | - | -2208.8251782442 | - | -2210.3403 | 1245 |
+| 1.36 | - | -2208.8126883466 | - | -2208.9430 | 939 |
+| 1.38 | - | -2208.4009090881 | - | -2208.1456 | 943 |
+| 1.4 | - | -2208.0745088743 | - | -2208.0621 | 939 |
+
+The second 1.2 row is the repeat (process 3); its hybrid sign and ln|det| equal the first (process 4) bit for bit.
+
+Reading (`read_lower.py scan 1.00 1.40`, dh170's, unedited; `read_lower.txt`):
+- 21 distinct points, all noise-robust (both noise seeds agree with the hybrid sign); no non-robust point;
+- hybrid signs, as printed: + from 1.00 to 1.28, - from 1.30 to 1.40; endpoints + at 1.00 and - at 1.40;
+- robust change: between 1.280 and 1.300, + to -, det-linear 1.296338, estimator range [1.285131, 1.296338] (a spread over interpolation choices, not an enclosure; the bracket is the 0.02 grid step); this is the lower root of k_c 71 at D 19, physical status open;
+- ln|det| local minimum without a sign change: lambda 1.34, depth 0.0125 (ln|det| -2208.8252 against the lower neighbour's -2208.8127 at 1.36; the reader's depth is the smaller neighbour minus the point); no other;
+- the repeat of 1.20: `repeat_check.py` PASS, 2 evaluations agree;
+- the float64 sign differs from the hybrid at 1.30 only (hybrid -, float64 +), as in the earlier scans: the hybrid is read;
+- orientation is as printed and not compared across D. Information only: k_c 71 at D 19.125 has changes 1.488137 (+ to -) and 1.511209 (- to +) (`../kc71_d19125/`), and win2's D 19 scan has the change 1.536547 (- to +); the k_c 63 lower root at D 19 is 1.4832 (the coordinator's number), so from k_c 63 to 71 the lower root moved by about -0.19 (1.4832 to 1.296338, -0.187).
+
+Acceptance: no control rerun (the order); the control of `../kc71_d19125/` passed and the lane script refused to start without its PASS; system check on all six processes; reader selftest 0 and mutations `shift` 1, `round2` 1 (`selftest_exits.txt`: 0 1 1 0 as wanted); the repeat agrees.
