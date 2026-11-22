@@ -59,4 +59,20 @@ xfkappa's `d18_hybsign.py REC STATE 18.5 1.66,1.67,1.68,1.69 OUT` (`I1025-mac/d1
 
 ## Status
 
-Not started yet.
+Part 1 done and accepted (below). Part 2, the scan, started 08:07:27 UTC by the regrid driver, and is running when this was pushed (2026-11-22 08:08:59 UTC).
+
+## Result of part 1: the regrid (06:36:00 to 08:06:15 UTC, exit 0, 5415 s; the record's own `seconds`: 5409)
+
+`ell_refine.py l1kc71Wm1025 71 l1kc79Wm1025 79 1 18.5 2.1181259879 --kappa 0.7 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma` (the command above), against win2's k_c 71 source record (blob 1609d76b):
+
+| | k_c 79 (this run) | k_c 71 (the source) |
+|---|---|---|
+| \|F\| | 2.8698182683e-10 | 2.8314362448e-10 |
+| F_start (after the regrid, before the solve) | 4.754e-06 | 1.259e-05 |
+| steps | 3083 | 2772 |
+| constraint | 3.998e-04 | 9.994e-04 |
+| Delta | 1.0560293274 | 1.0560300475 (the k_c 79 value is 7.2e-07 lower) |
+
+**Acceptance (`syscheck.txt`): ACCEPTED.** The record's |F| 2.87e-10 is inside the class bar (1e-9); the saved state reproduces its record: `freeze_from` gives **3083 steps = the record's** and the state's |F| is 2.8698182683e-10, equal to the record's. The controls on the same numbers refuse (|F| x 1.5, steps + 1), and so do `--mutate=F` (exit 1) and `--mutate=steps` (exit 1) on the real files (`syscheck_mutate.txt`). Before the run: the selftest (`selftest_syscheck79.txt`) and win2's original `kc71_syscheck.py` on win2's k_c 71 state (`control_kc71_syscheck.txt`) both passed on this machine. Blobs: state `sol_l1kc79Wm1025_D18.5000.npy` 81bcbd7e (41528 bytes), record `l1kc79Wm1025.jsonl` b930dfd7.
+
+**Cost (the pilot's numbers; `rows/regrid_samples.csv`, a line every 60 s, 176 samples):** 5415 s wall, cpu 9802 s (about 1.8 cores), peak working set 2.19 GB and peak private 2.48 GB (the largest python), at 4 threads, BelowNormal. The laptop's free memory fell to 4.79 GB at the sampler's lines (07:46 UTC) and to 3.52 GB at the watcher's 15 s polls and its commit rose from 11 to 32.6 GB (peak 07:54) while the regrid's worker held 0.93 GB working set and 1.26 GB private, so the drop came from another job on the laptop, not from the regrid; no alert fired (`rows/regrid_memwatch.log`). The win2 comparison: 3372 s at k_c 71 on a Core Ultra 7 265K.
