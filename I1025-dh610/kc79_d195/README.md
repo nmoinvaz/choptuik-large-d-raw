@@ -34,3 +34,34 @@ Written as the run goes.
 - hybrid sign -1 = dh370's -1; both noise seeds -1 (noise_robust True);
 - **ln|det| -2537.823195774449 against dh370's -2537.823195774449: relative difference 0.000e+00 (bar 1e-9): PASS**; the float64 ln -2534.506173253555 and sign -1 also equal dh370's.
 The bar was not touched. The scan of the order (`lane_kc79_d195_scan.sh`, unit `i1025o`) started at 19:30:05 UTC on dh370's D 19.5 state and record (raw f40a4556; `sol_l1kc79dh370d195_D19.5000.npy` 9528b355, `l1kc79dh370d195.jsonl` 5777d2a2): lambda 1.41, 1.42, 1.43, 1.44, 1.45, 1.45 (the repeat, process 5; its original runs on process 4), 1.46 to 1.50; 11 evaluations on 6 processes of 1 thread, nice 10, log `exits_kc79_d195_scan.txt`; the reading is `read_lower.py scan 1.41 1.50` and `repeat_check.py` (`read_lower.txt`), selftests wanted 0 1 1 0 (`selftest_exits.txt`: 0 1 1 0). The k_c 79 line puts lambda_1 near 1.404 at D 19.5 (information, not a pass rule); dh370 scans 1.30 to 1.40.
+
+## Result (22 Nov, 19:30:05 to 20:18:08 UTC): no robust change in 1.41 to 1.50 at D 19.5; the hybrid sign is - at every point
+
+All six processes exit 0 (`exits_kc79_d195_scan.txt`; process walls 25:58 for process 5 and 47:50 to 48:02 for processes 0 to 4; peak RSS 1.76 GB for the one-point process and 2.19 to 2.28 GB for the two-point processes). The system check printed "the record system" on all six: |F| 3.5131804762e-10 against the record's 3.5122938292e-10 (relative 2.5e-4, inside the 1e-2 bar), steps 2879 = 2879. The pre-run checks passed (`selftest_exits.txt`: read_lower 0, shift 1, round2 1, repeat_check 0). 11 evaluations, all noise-robust. A point took 1555 to 1575 s in round 1 (six processes) and 1301 to 1309 s in round 2 (five).
+
+| lambda_1 | process | hybrid sign | ln\|det\| | noise_robust | float64 sign | point sec |
+|---|---|---|---|---|---|---|
+| 1.41 | 0 | -1 | -2502.1781329648 | True | +1 | 1559 |
+| 1.42 | 1 | -1 | -2501.8886318716 | True | -1 | 1571 |
+| 1.43 | 2 | -1 | -2501.8025259883 | True | -1 | 1565 |
+| 1.44 | 3 | -1 | -2501.8067714610 | True | -1 | 1567 |
+| 1.45 | 4 | -1 | -2501.8606474471 | True | -1 | 1575 |
+| 1.45 (repeat) | 5 | -1 | -2501.8606474471 | True | -1 | 1555 |
+| 1.46 | 0 | -1 | -2501.9447414019 | True | -1 | 1309 |
+| 1.47 | 1 | -1 | -2502.0481285884 | True | -1 | 1309 |
+| 1.48 | 2 | -1 | -2502.1641331420 | True | -1 | 1309 |
+| 1.49 | 3 | -1 | -2502.2885417251 | True | -1 | 1308 |
+| 1.50 | 4 | -1 | -2502.4181119799 | True | -1 | 1301 |
+
+Reading (`read_lower.txt`, `read_lower.py` dh170's, unedited):
+- **Robust changes:** none. No change touches a non-robust point.
+- **Edge signs:** - at 1.41 (the sign t5 asked for) and - at 1.50; the signs are - at every one of the ten lambda.
+- **ln|det| minima without a sign change:** none.
+- **Repeat of 1.45:** agrees, bit-identical (`repeat_check.py` PASS; ln -2501.8606474471 on process 4 and on process 5).
+- **Float64:** its sign differs from the hybrid at 1.41 only; the hybrid is the reading.
+- ln|det| has a maximum at 1.43 (-2501.8025). It falls toward 1.50 by 0.616 in seven steps of 0.01 and toward 1.41 by 0.289 in the last step (1.42 to 1.41; the step before, 1.43 to 1.42, is -0.086).
+
+### Beside the lambda_1 line (information, not a pass rule; roots named by position)
+
+- The k_c 79 line of lambda_1 (the root near it at D 19.0 and D 19.125: 1.539658 and 1.505784; k_c 71's root near the line, 1.5365, 1.5112, 1.4907, 1.4750 at D 19, 19.125, 19.1875, 19.25, as the coordinator reads them) puts it near 1.398 to 1.404 at D 19.5, below this window's edge at 1.41. No root of k_c 79 was found in 1.41 to 1.50 at D 19.5, and the sign at 1.41 is -. A root below 1.41 is not excluded: this scan stops at 1.41, and dh370's scan of 1.30 to 1.40 reads that part.
+- At D 19.125 the k_c 79 scan has its one root at 1.505784 (dh370, raw c58e5052), above this window's edge at 1.50; the sign at 1.50 is - here.
