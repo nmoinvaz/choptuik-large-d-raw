@@ -47,7 +47,7 @@ python -u d18_hybsign.py <l1kc55F1025.jsonl> <sol_l1kc55F1025_D18.000000.npy> 18
 
 ## Status
 
-Not started (22:02 UTC).
+Scan done 2026-11-22 00:08:51 UTC; the result is in the section below.
 
 
 ## Change: the memory watcher is alert-only (the coordinator's correction, received 22:03 UTC by my clock; done 22:04:06 to 22:05:08 UTC)
@@ -62,3 +62,22 @@ Not started (22:02 UTC).
 - `kc55_finish_1025.py` (pid 5288): replaces the driver's other parts. It waits for the scan pid, starts the read-only sampler (same CSV, `rows/kc55_samples.csv`), applies the order's **8 h time cap** (not a memory rule) by the exact pid 17520 at 2026-11-22 06:02:36 UTC if the scan is still running, and when the scan has ended with all 16 points it runs `d18f_read.py window` and `read_kc55_1025.py` exactly as the driver would have (log `kc55_w.log`).
 
 The reading is unchanged. The coordinator accepts the case the order does not name (two changes in the right places with the orientation reversed) as printed and rules on it if it occurs.
+
+
+## Result (scan 2026-11-21 22:02:36 to 2026-11-22 00:08:51 UTC; written 03:28 UTC): ONE robust change, so by the fixed reading the D 18 pair DEPENDS on k_c
+
+The scan ended by itself at 00:08:51 UTC with all 16 points written (2 h 6 min, 417 to 533 s a point; no cap hit, no memory alert; its exit code was not recorded, the finisher is not its parent). `kc55_finish_1025.py` ran the reader and the reading at once (`kc55_w.log`, `read_kc55_D18.log`, `read_kc55_1025.log`). I did not see it until the coordinator's ping at about 03:30 UTC: the harness had reaped my background waiter earlier for memory, I had not restarted it, and the finisher did not send an hc. This README, the push and the post are from that ping. (From the next task on, a driver sends its own hc when it ends.)
+
+| item | value |
+|---|---|
+| points | 16 of 16, lambda 1.70 to 1.85 at 0.01; every point noise-robust (1e-15 on blocks 0 to 11, two seeds) |
+| record system | true (|F| 2.7206437480e-10 against 2.7150279608e-10, 2230 steps against 2230) |
+| hybrid signs | minus at 1.70 to 1.80, plus at 1.81 to 1.85 |
+| robust changes | **one**, in (1.80, 1.81), minus to plus: det-linear 1.809055, four-estimator range [1.809055, 1.809155] |
+| ln\|det\| | 1.70 -1623.240, 1.71 -1622.142, 1.72 -1621.656, 1.73 -1621.364, 1.74 -1621.180, 1.75 -1621.074, 1.76 -1621.039, 1.77 -1621.076, 1.78 -1621.207, 1.79 -1621.484, 1.80 -1622.096, **1.81 -1624.355**, 1.82 -1621.694, 1.83 -1620.913, 1.84 -1620.363, 1.85 -1619.871 |
+| ln\|det\| minima | 1.81 (-1624.355), beside the change; none without a change in the window (the reader's list); the lower edge 1.70 is the lowest value of the window and still falling toward the edge (1.10 below the value at 1.71), a possible minimum below 1.70 that this scan cannot see |
+| float64 (information) | no sign change; its sign is minus at all 16 points and differs from the hybrid's at 5 of 16 (1.81 to 1.85) |
+
+**Reading (the coordinator's, fixed before the run, applied as written above): not the same two changes within 0.01, so any other pattern: the D 18 pair DEPENDS on k_c.** At k_c 63 (same window, same reader) the changes are at 1.775263 (minus to plus) and 1.806298 (plus to minus); at k_c 55 there is one change, at 1.809055 (minus to plus), 0.0028 above k_c 63's upper position, and none near 1.775. The hybrid's overall sign is not comparable across states, so I draw nothing from the orientations (the reversed-orientation case of my reading does not arise: there is one change, not two).
+
+CPU and memory (`rows/kc55_samples.csv`, every 60 s, 124 rows; peaks are the process counters; the first minute of samples is from the stopped driver's sampler, the rest from the finisher's): the scan python (pid 532, BelowNormal, up to 14 threads) used 10558 cpu s in 7455 s (1.42 cores on average); working set peak 0.809 GB; private bytes peak 1.299 GB. Laptop: cpu 25 to 77 %; free memory 4.7 to 23.3 GB (the alert-only watcher's minimum 4.78 GB, 0 alerts, nothing below 1 GB); commit at most 30.0 GB of the 41.3 GB limit; other sessions' pythons ran beside.
