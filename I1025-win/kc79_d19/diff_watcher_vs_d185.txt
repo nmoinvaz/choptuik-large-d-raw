@@ -1,0 +1,19 @@
+--- kc79_watch_alert_1025.py (D 18.5)
++++ kc79d19_watch_alert_1025.py (D 19)
+@@ -2,2 +2,2 @@
+-"""#1025 winb (successor session), the k_c 79 check: an ALERT-ONLY memory watcher (Nathan's standing rule: no guard that kills processes for memory). Polls the laptop's free physical
+-memory (FreePhysicalMemory, the figure the samplers log) every 15 s; below 1 GB it sends the coordinator t2j ONE hc alert, repeated at most every 30 min while the memory stays below
++"""#1025 winb (successor session), the k_c 79 check at D 19: an ALERT-ONLY memory watcher (Nathan's standing rule: no guard that kills processes for memory). Polls the laptop's free physical
++memory (FreePhysicalMemory, the figure the samplers log) every 15 s; below 1 GB it sends the coordinator t5 ONE hc alert, repeated at most every 30 min while the memory stays below
+@@ -5 +5 @@
+-usage: kc79_watch_alert_1025.py DRIVER_PID LABEL [--dry] [--threshold GB] [--max-polls N]     (--dry prints the alert instead of sending it; used for the test)"""
++usage: kc79d19_watch_alert_1025.py DRIVER_PID LABEL [--dry] [--threshold GB] [--max-polls N]     (--dry prints the alert instead of sending it; used for the test)"""
+@@ -9 +9 @@
+-COORD = "nathans-macbook-air-m5-3/t2j"
++COORD = "nathans-macbook-air-m5-3/t5"
+@@ -14 +14 @@
+-LOG = f"C:/Users/nathan/Source/kc79_1025/I1025-win/kc79_d185/rows/{label}_memwatch{'_dry' if dry else ''}.log"
++LOG = f"C:/Users/nathan/Source/kc79d19_1025/I1025-win/kc79_d19/rows/{label}_memwatch{'_dry' if dry else ''}.log"
+@@ -40 +40 @@
+-            msg = (f"winb ALERT {datetime.datetime.now(datetime.timezone.utc):%H:%M} UTC: free physical memory {f:.2f} GB, below {thr:g} GB. The k_c 79 {label} stage (driver pid {pid}) is "
++            msg = (f"winb ALERT {datetime.datetime.now(datetime.timezone.utc):%H:%M} UTC: free physical memory {f:.2f} GB, below {thr:g} GB. The k_c 79 D 19 {label} stage (driver pid {pid}) is "

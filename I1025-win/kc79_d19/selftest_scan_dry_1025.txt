@@ -1,0 +1,22 @@
+## bad windows
+-- window ''
+REFUSE: the window is not a comma-separated list of numbers: 
+exit 2
+-- window '1.5'
+REFUSE: the window needs at least two distinct values in (0, 10): 1.5
+exit 2
+-- window '1.5,1.5'
+REFUSE: the window needs at least two distinct values in (0, 10): 1.5,1.5
+exit 2
+-- window '1.5,abc'
+REFUSE: the window is not a comma-separated list of numbers: 1.5,abc
+exit 2
+-- window '1.5,11'
+REFUSE: the window needs at least two distinct values in (0, 10): 1.5,11
+exit 2
+## good window, dry
+== 2026-11-22 09:47:08 kc79d19_scan_driver_1025.py: the k_c 79 hybrid scan at D 19, window 1.55,1.56,1.57,1.58 (dry run); checking pins
+== 2026-11-22 09:47:08 REFUSE: regrid_accepted.txt does not exist
+== 2026-11-22 09:47:08 DRY: a real run would stop here
+== 2026-11-22 09:47:09 DRY: would start d18_hybsign.py C:/Users/nathan/Source/kc79d19_1025/I1025-win/kc79_d19/l1kc79W19m1025.jsonl C:/Users/nathan/Source/kc79d19_1025/I1025-win/kc79_d19/sol_l1kc79W19m1025_D19.0000.npy 19 1.55,1.56,1.57,1.58 C:/Users/nathan/Source/kc79d19_1025/I1025-win/kc79_d19/scan_kc79_D19_1025.jsonl (cwd C:/Users/nathan/Source/choptuik-i1025k79/solver/matter, 4 threads, BelowNormal, cap 28800 s); reader window 1.55 1.58; nothing started
+exit 0

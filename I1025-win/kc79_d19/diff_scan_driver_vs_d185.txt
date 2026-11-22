@@ -1,0 +1,110 @@
+--- kc79_scan_driver_1025.py (D 18.5)
++++ kc79d19_scan_driver_1025.py (D 19)
+@@ -2,2 +2,2 @@
+-"""#1025 winb (successor session), the k_c 79 convergence check at D 18.5, PART 2, the hybrid scan (t5's order via t1w, confirmed by the coordinator t2j by hc after my 06:30 UTC report on 22 Nov):
+-xfkappa's d18_hybsign.py (raw I1025-mac/d18, blob e089207a, unchanged) on the accepted k_c 79 state sol_l1kc79Wm1025_D18.5000.npy and its record, lambda 1.66, 1.67, 1.68, 1.69 (4 points),
++"""#1025 winb, the k_c 79 hybrid scan at D 19 (t5's order, hc of 2026-11-22 ~09:41 UTC; the window is t5's to give and is an argument, so the driver needs no edit):
++xfkappa's d18_hybsign.py (raw I1025-mac/d18, blob e089207a, unchanged) on the accepted k_c 79 state sol_l1kc79W19m1025_D19.0000.npy and its record, at the lambda list WINDOW (comma-separated),
+@@ -5,3 +5,3 @@
+-(exit 3 if the state does not come back). Starts only when regrid_accepted.txt exists. Memory: no guard, the alert-only watcher is its own process. Then d18f_read.py window and
+-read_kc79_1025.py (the robust minus-to-plus change's det-linear estimate beside 1.677016 and 1.675995), and an hc to the coordinator t2j.
+-usage: kc79_scan_driver_1025.py"""
++(exit 3 if the state does not come back). Starts only when regrid_accepted.txt exists and the scan file does not. Memory: no guard, the alert-only watcher is its own process. Then d18f_read.py window
++(xfkappa's reader: every robust change with its det-linear estimate and range) and an hc to the coordinator t5. Never started by the regrid driver.
++usage: kc79d19_scan_driver_1025.py LAMBDA_LIST [--dry]     e.g. 1.55,1.56,1.57,1.58     (--dry: runs the checks, prints the planned command, starts nothing)"""
+@@ -10,2 +10,2 @@
+-S = "C:/Users/nathan/Source/kc79_1025"
+-OUT = S + "/I1025-win/kc79_d185"
++S = "C:/Users/nathan/Source/kc79d19_1025"
++OUT = S + "/I1025-win/kc79_d19"
+@@ -16 +16 @@
+-COORD = "nathans-macbook-air-m5-3/t2j"
++COORD = "nathans-macbook-air-m5-3/t5"
+@@ -19,3 +19,3 @@
+-TAG = "l1kc79Wm1025"
+-STATE, REC = OUT + f"/sol_{TAG}_D18.5000.npy", OUT + f"/{TAG}.jsonl"
+-SCAN, LOG = OUT + "/scan_kc79_D185_1025.jsonl", OUT + "/kc79_scan_w.log"
++TAG = "l1kc79W19m1025"
++STATE, REC = OUT + f"/sol_{TAG}_D19.0000.npy", OUT + f"/{TAG}.jsonl"
++SCAN, LOG = OUT + "/scan_kc79_D19_1025.jsonl", OUT + "/kc79d19_scan_w.log"
+@@ -23 +23,14 @@
+-LAMS = "1.66,1.67,1.68,1.69"
++DRY = "--dry" in sys.argv
++args = [a for a in sys.argv[1:] if not a.startswith("--")]
++if len(args) != 1:
++    print("usage: kc79d19_scan_driver_1025.py LAMBDA_LIST [--dry]"); sys.exit(2)
++LAMS = args[0]
++try:
++    LV = [float(v) for v in LAMS.split(",")]
++except ValueError:
++    print("REFUSE: the window is not a comma-separated list of numbers:", LAMS); sys.exit(2)
++if len(LV) < 2 or len(set(LV)) != len(LV) or not all(0.0 < v < 10.0 for v in LV):
++    print("REFUSE: the window needs at least two distinct values in (0, 10):", LAMS); sys.exit(2)
++LO, HI = f"{min(LV):g}", f"{max(LV):g}"
++if DRY:
++    LOG = LOG + ".dry"
+@@ -41,0 +55,9 @@
++def refuse(m, h):
++    say("REFUSE: " + m)
++    if DRY:
++        say("DRY: a real run would stop here")
++        return
++    hc(h)
++    sys.exit(2)
++
++
+@@ -43,2 +65,3 @@
+-open(OUT + "/rows/scan_driver.pid", "w").write(str(os.getpid()))
+-say("kc79_scan_driver_1025.py: the k_c 79 hybrid scan at D 18.5; checking pins")
++if not DRY:
++    open(OUT + "/rows/scan_driver.pid", "w").write(str(os.getpid()))
++say(f"kc79d19_scan_driver_1025.py: the k_c 79 hybrid scan at D 19, window {LAMS}{' (dry run)' if DRY else ''}; checking pins")
+@@ -46 +69 @@
+-    say("REFUSE: regrid_accepted.txt does not exist"); hc("not started: the regrid is not accepted."); sys.exit(2)
++    refuse("regrid_accepted.txt does not exist", "not started: the regrid is not accepted.")
+@@ -50 +73 @@
+-        say(f"REFUSE: {fn} is blob {got}, not {want}"); hc(f"not started: pin {fn} is blob {got[:8]}."); sys.exit(2)
++        refuse(f"{fn} is blob {got}, not {want}", f"not started: pin {fn} is blob {got[:8]}.")
+@@ -52 +75,3 @@
+-    say(f"REFUSE: worktree not at 48c36355 or {SCAN} exists"); hc("not started: worktree or scan file check failed."); sys.exit(2)
++    refuse(f"worktree not at 48c36355 or {SCAN} exists", "not started: worktree or scan file check failed.")
++if DRY:
++    say(f"DRY: would start d18_hybsign.py {REC} {STATE} 19 {LAMS} {SCAN} (cwd {WTM}, 4 threads, BelowNormal, cap {CAP} s); reader window {LO} {HI}; nothing started"); sys.exit(0)
+@@ -55 +80 @@
+-wat = subprocess.Popen([PY, "-u", S + "/kc79_watch_alert_1025.py", str(os.getpid()), "scan"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, stdin=subprocess.DEVNULL,
++wat = subprocess.Popen([PY, "-u", S + "/kc79d19_watch_alert_1025.py", str(os.getpid()), "scan"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, stdin=subprocess.DEVNULL,
+@@ -59,3 +84,3 @@
+-cmd = [PY, "-u", SCANNER, REC, STATE, "18.5", LAMS, SCAN]
+-p = subprocess.Popen(cmd, cwd=WTM, env=env, stdout=open(OUT + "/rows/scan_kc79_raw.log", "w"), stderr=subprocess.STDOUT, stdin=subprocess.DEVNULL, creationflags=0x00004000 | 0x08000000)
+-say(f"scan: started pid {p.pid}: d18_hybsign.py {REC} {STATE} 18.5 {LAMS} {SCAN}")
++cmd = [PY, "-u", SCANNER, REC, STATE, "19", LAMS, SCAN]
++p = subprocess.Popen(cmd, cwd=WTM, env=env, stdout=open(OUT + "/rows/scan_kc79d19_raw.log", "w"), stderr=subprocess.STDOUT, stdin=subprocess.DEVNULL, creationflags=0x00004000 | 0x08000000)
++say(f"scan: started pid {p.pid}: d18_hybsign.py {REC} {STATE} 19 {LAMS} {SCAN}")
+@@ -72,2 +97,2 @@
+-with open(OUT + "/scan_kc79_D185.log", "w") as g:
+-    for ln in open(OUT + "/rows/scan_kc79_raw.log", errors="replace"):
++with open(OUT + "/scan_kc79_D19.log", "w") as g:
++    for ln in open(OUT + "/rows/scan_kc79d19_raw.log", errors="replace"):
+@@ -78,2 +103,2 @@
+-    hc(f"the scan did NOT finish (exit {rc}; 3 means the state is not the record system). Points so far in scan_kc79_D185_1025.jsonl. No reading.")
+-    time.sleep(70); samp.kill(); say("kc79_scan_driver_1025.py done (no reading)"); sys.exit(1)
++    hc(f"the scan did NOT finish (exit {rc}; 3 means the state is not the record system). Points so far in scan_kc79_D19_1025.jsonl. No reading.")
++    time.sleep(70); samp.kill(); say("kc79d19_scan_driver_1025.py done (no reading)"); sys.exit(1)
+@@ -81 +106 @@
+-r = sh([PY, READER, "window", "18.5", "1.66", "1.69", SCAN], cwd=WTM, env=renv)
++r = sh([PY, READER, "window", "19", LO, HI, SCAN], cwd=WTM, env=renv)
+@@ -83,4 +108,2 @@
+-open(OUT + "/read_kc79_D185.log", "w").write(txt + "\n")
+-r2 = sh([PY, S + "/read_kc79_1025.py", OUT + "/read_kc79_D185.log"])
+-open(OUT + "/read_kc79_1025.log", "w").write(r2.stdout + r2.stderr)
+-for ln in (txt + "\n" + r2.stdout).splitlines():
++open(OUT + "/read_kc79_D19.log", "w").write(txt + "\n")
++for ln in txt.splitlines():
+@@ -88,2 +111,2 @@
+-last = [l for l in r2.stdout.splitlines() if l.startswith("READING")]
+-hc(f"the scan ended (exit 0, {time.time() - t0:.0f} s, 4 points). {last[0] if last else 'see read_kc79_1025.log'} Raw I1025-win/kc79_d185 after my next push; I post on #1025 next.")
++chg = [l.strip() for l in txt.splitlines() if "change in" in l]
++hc(f"the scan ended (exit 0, {time.time() - t0:.0f} s, window {LAMS}). Reader (d18f_read.py window 19 {LO} {HI}): " + ("; ".join(chg) if chg else "no change line") + ". Raw I1025-win/kc79_d19 after my next push; no reading by me, you rule.")
+@@ -92 +115 @@
+-say("kc79_scan_driver_1025.py done")
++say("kc79d19_scan_driver_1025.py done")
