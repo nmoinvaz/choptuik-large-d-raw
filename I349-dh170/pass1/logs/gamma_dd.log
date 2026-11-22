@@ -1,0 +1,12 @@
+$ cd /home/nathan/Source/choptuik-large-d/_i349/run && python3 hp/gamma_dd.py   [threads 2, nice 19, load 5.0, 2026-11-22 05:40:29 UTC]
+Traceback (most recent call last):
+  File "/home/nathan/Source/choptuik-large-d/_i349/run/hp/gamma_dd.py", line 57, in <module>
+    from hpkernel.driver import dd_from_mp, make_solver, load, lm_solve, newton_solve, plow_odd, resample_z  # noqa: E402
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ModuleNotFoundError: No module named 'hpkernel'
+$ cd /home/nathan/Source/choptuik-large-d/_i349/run/hp && python3 gamma_dd.py   [threads 2, nice 19, load 5.0, 2026-11-22 05:40:31 UTC]
+Traceback (most recent call last):
+  File "/home/nathan/Source/choptuik-large-d/_i349/run/hp/gamma_dd.py", line 57, in <module>
+    from hpkernel.driver import dd_from_mp, make_solver, load, lm_solve, newton_solve, plow_odd, resample_z  # noqa: E402
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ModuleNotFoundError: No module named 'hpkernel'

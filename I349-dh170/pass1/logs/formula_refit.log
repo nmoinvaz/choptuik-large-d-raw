@@ -1,0 +1,20 @@
+$ cd /home/nathan/Source/choptuik-large-d/_i349/run/solver/data && python3 ../formula_all.py --refit   [threads 4, nice 10, load 2.1, 2026-11-22 06:49:16 UTC]
+stored (data/formula_coefficients.json, 2026-10-19):
+Delta: p = +1.6438975180e+00 +4.0378045077e+01 +2.5233285989e+02 +2.0673502321e+02 -3.5709850575e+02 +3.1347320996e+02 -4.1891374574e+02 +3.2695252782e+02 -1.6050467699e+02
+       q = 1 +1.8251453626e+01 +6.8182050167e+01
+gamma: p = +5.0000000000e-01 +1.8083629635e+01 +1.5241588758e+02 -5.2341588541e+01 +9.9259594505e+00 -9.8386450353e+01 +7.4529506074e+01 -4.8272358903e+01
+       q = 1 +3.7683686025e+01 +3.4245505235e+02
+poles (D): [np.float64(-3.24), np.float64(-11.011)] [np.float64(-13.298), np.float64(-20.386)]
+refit here: Delta p = +1.6438976401e+00 +4.0360770683e+01 +2.5207897041e+02 +2.0630430045e+02 -3.5630543255e+02 +3.1238281365e+02 -4.1737118726e+02 +3.2563176869e+02 -1.5994086735e+02  q = 1 +1.8240954557e+01 +6.8093371932e+01
+            gamma p = +5.0000000000e-01 +1.8097981372e+01 +1.5262372278e+02 -5.2413566222e+01 +9.9491375008e+00 -9.8531330412e+01 +7.4643275573e+01 -4.8343104250e+01  q = 1 +3.7712390871e+01 +3.4291409880e+02
+refit - stored: Delta 1.9e-09, gamma 7.0e-10 on 4.0-30.2; Delta +7.8e-09 at D 61, +1.7e-08 at D 80
+
+| D range | Delta: max |formula - computed| | precision | gamma: max |formula - computed| | precision |
+Traceback (most recent call last):
+  File "/home/nathan/Source/choptuik-large-d/_i349/run/solver/data/../formula_all.py", line 110, in <module>
+    main()
+    ~~~~^^
+  File "/home/nathan/Source/choptuik-large-d/_i349/run/solver/data/../formula_all.py", line 100, in main
+    ed = np.abs(rat(pd, qd, 1 / (D[m] - 2)) - y[m]).max()
+                    ^^
+NameError: name 'pd' is not defined. Did you mean: 'id'?

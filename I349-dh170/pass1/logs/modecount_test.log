@@ -1,0 +1,22 @@
+$ cd /home/nathan/Source/choptuik-large-d/_i349/run && python3 hp/modecount_test.py   [threads 2, nice 19, load 5.0, 2026-11-22 05:40:37 UTC]
+Traceback (most recent call last):
+  File "/home/nathan/Source/choptuik-large-d/_i349/run/hp/modecount_test.py", line 104, in <module>
+    main()
+    ~~~~^^
+  File "/home/nathan/Source/choptuik-large-d/_i349/run/hp/modecount_test.py", line 34, in main
+    from modecount_common import setup, horizon_poles
+  File "/home/nathan/Source/choptuik-large-d/_i349/run/hp/modecount_common.py", line 31, in <module>
+    from hpkernel.driver import load, save, make_solver, newton_solve, dmat_odd, phase_weights, plow_odd, dd_from_mp, resample_z, lm_solve  # noqa: E402
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ModuleNotFoundError: No module named 'hpkernel'
+$ cd /home/nathan/Source/choptuik-large-d/_i349/run/hp && python3 modecount_test.py   [threads 2, nice 19, load 4.9, 2026-11-22 05:40:37 UTC]
+Traceback (most recent call last):
+  File "/home/nathan/Source/choptuik-large-d/_i349/run/hp/modecount_test.py", line 104, in <module>
+    main()
+    ~~~~^^
+  File "/home/nathan/Source/choptuik-large-d/_i349/run/hp/modecount_test.py", line 34, in main
+    from modecount_common import setup, horizon_poles
+  File "/home/nathan/Source/choptuik-large-d/_i349/run/hp/modecount_common.py", line 31, in <module>
+    from hpkernel.driver import load, save, make_solver, newton_solve, dmat_odd, phase_weights, plow_odd, dd_from_mp, resample_z, lm_solve  # noqa: E402
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ModuleNotFoundError: No module named 'hpkernel'

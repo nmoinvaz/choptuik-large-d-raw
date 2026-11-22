@@ -1,0 +1,46 @@
+$ cd /home/nathan/Source/choptuik-large-d/_i349/run/hp && python3 lowD_formula.py /home/nathan/Source/choptuik-large-d/_i349/ecc   [threads 2, nice 19, load 4.6, 2026-11-22 06:49:47 UTC]
+their Delta: 145 points, D = 3.046-4; gamma: 40 points, D = 3.2-4
+
+Delta: held-out max error (fit on D >= 3.1, predict below; fit on D <= 3.9, predict above); max fit residual
+  power K = 3: below 3.9e-02, above 2.5e-02; residual 6.2e-03 p = 0.161
+  power K = 4: below 2.3e-02, above 2.0e-02; residual 3.0e-03 p = 0.141
+  power K = 5: below 1.6e-02, above 1.6e-02; residual 1.6e-03 p = 0.126
+  power K = 6: below 1.0e-02, above 1.5e-02; residual 6.1e-04 p = 0.110
+  sqrt  K = 3: below 2.3e-02, above 1.7e-02; residual 7.9e-03
+  sqrt  K = 4: below 1.3e-02, above 9.2e-03; residual 2.4e-03
+  sqrt  K = 5: below 3.6e-03, above 2.0e-03; residual 3.9e-04
+  sqrt  K = 6: below 7.6e-04, above 4.2e-04; residual 5.0e-05
+  log   K = 3: below 8.9e-02, above 6.6e-02; residual 3.0e-02
+  log   K = 4: below 4.9e-02, above 3.7e-02; residual 8.2e-03
+  log   K = 5: below 2.8e-02, above 2.4e-02; residual 3.6e-03
+  log   K = 6: below 1.7e-02, above 1.8e-02; residual 1.6e-03
+  poly  K = 3: below 1.5e-01, above 2.9e-01; residual 8.6e-02
+  poly  K = 4: below 8.3e-02, above 1.5e-01; residual 3.1e-02
+  poly  K = 5: below 5.4e-02, above 1.4e-01; residual 1.3e-02
+  poly  K = 6: below 3.7e-02, above 1.4e-01; residual 7.4e-03
+
+gamma: held-out max error (fit on D >= 3.3, predict below; fit on D <= 3.9, predict above); max fit residual
+  power K = 3: below 2.5e-04, above 1.9e-04; residual 3.1e-05 p = 0.348
+  power K = 4: below 1.5e-04, above 1.4e-04; residual 1.0e-05 p = 0.332
+  power K = 5: below 7.7e-05, above 6.1e-05; residual 3.2e-06 p = 0.313
+  power K = 6: below 4.3e-05, above 6.1e-05; residual 1.5e-06 p = 0.286
+  sqrt  K = 3: below 4.1e-04, above 1.4e-04; residual 6.7e-05
+  sqrt  K = 4: below 2.1e-04, above 7.1e-05; residual 1.9e-05
+  sqrt  K = 5: below 3.8e-05, above 1.4e-05; residual 2.9e-06
+  sqrt  K = 6: below 4.6e-06, above 4.5e-06; residual 1.0e-06
+  log   K = 3: below 1.7e-03, above 6.5e-04; residual 2.5e-04
+  log   K = 4: below 7.1e-04, above 2.6e-04; residual 6.7e-05
+  log   K = 5: below 2.8e-04, above 1.2e-04; residual 1.8e-05
+  log   K = 6: below 1.0e-04, above 5.4e-05; residual 4.0e-06
+  poly  K = 3: below 4.3e-03, above 2.9e-03; residual 1.0e-03
+  poly  K = 4: below 1.8e-03, above 1.4e-03; residual 2.2e-04
+  poly  K = 5: below 8.0e-04, above 7.4e-04; residual 7.7e-05
+  poly  K = 6: below 3.8e-04, above 3.7e-04; residual 1.9e-05
+
+chosen: a polynomial in sqrt(D - 3), degree 8 for Delta and 6 for gamma, on all their points D <= 4
+  Delta = +1.752403*s^0 +2.486429*s^1 +8.257623*s^2 -29.245836*s^3 +44.944706*s^4 -45.106964*s^5 +30.660868*s^6 -12.653060*s^7 +2.349289*s^8   (s = sqrt(D - 3); max residual 8.2e-06)
+  gamma = +0.081437*s^0 +0.285158*s^1 +0.634589*s^2 -1.439299*s^3 +1.261792*s^4 -0.547493*s^5 +0.097777*s^6   (max residual 1.0e-06)
+  against our double-double Delta at D = 3.7, 3.72, 3.74, 3.75, 3.76, 3.78, 3.8, 4: -2.9e-06, -1.5e-06, -2.2e-07, +3.9e-07, +9.3e-07, +1.8e-06, +2.2e-06, +4.2e-06
+  against our double-double gamma at D = 4.0: +7.8e-08
+  against our double-double gamma at D = 3.7: +4.5e-08
+  the value at D = 3 (the constant term) is not determined by these data: across degrees 6: 1.724, 7: 1.739, 8: 1.752, 9: 1.769, 10: 1.788, 11: 1.803 (Delta); 5: 0.070, 6: 0.081, 7: 0.096, 8: 0.171, 9: 0.444 (gamma)

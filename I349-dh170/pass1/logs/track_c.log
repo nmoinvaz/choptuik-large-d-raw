@@ -1,0 +1,42 @@
+$ cd /home/nathan/Source/choptuik-large-d/_i349/run && python3 hp/track_c.py   [threads 2, nice 19, load 8.8, 2026-11-22 06:52:14 UTC]
+Track C (#801): Delta(D) at D 250-400 from a 1/n series matched to the data below D 245 (pre-registered on #801).
+
+Data: data/delta_all.csv rows of kind dd (err_kind "check", cleaned as dd_fits_mp.clean), qd ("starts") and chain_fit,
+D_min <= D <= 245.64; Delta = the sum of the four parts, sigma = err floored at 1e-16.
+Fit: Delta = sum_{j<=K} a_j eps^j,
+eps in {1/(D-2), 1/(D-1), 1/D}, K in {12, 14, 16, 18, 20}, D_min in {10, 20, 30}: weighted least squares in arb at
+256 bits (Chebyshev basis over the fitted eps range; normal equations), accepted when chi^2/dof <= 4. At each target:
+the median of the accepted fits, E = F max(h, s), h half their range, s the central fit's propagated data error (from
+the inverse normal matrix), F from the planted test.
+
+    cd hp && python3 track_c.py planted [--out=FILE]         P0-P4 on the real D grid with noise N(0, sigma)
+    cd hp && python3 track_c.py real [--F=1] [--out=FILE]     the real data
+    cd hp && python3 track_c.py csv [--out=data/delta_series.csv]    the series for hp/export_delta_all.py (#804)
+
+csv: the estimate at D 250, 260, ..., 400 (use "row", the table's series rows) and at every chain_fit row of
+data/delta_all.csv past D 245.64 (use "chain", for the exporter's check of the weak pivot's err, #806): Delta in two
+parts, E, h, s and err_kind ("series fits" where h >= s, else "series data"), with the fingerprint of the rows fitted
+(export_delta_all.series_input) in every row. A last row, D inf with use "limit", is the series' limit, which the
+exporter does not read.
+
+$ cd /home/nathan/Source/choptuik-large-d/_i349/run/hp && python3 track_c.py   [threads 2, nice 19, load 8.8, 2026-11-22 06:52:15 UTC]
+Track C (#801): Delta(D) at D 250-400 from a 1/n series matched to the data below D 245 (pre-registered on #801).
+
+Data: data/delta_all.csv rows of kind dd (err_kind "check", cleaned as dd_fits_mp.clean), qd ("starts") and chain_fit,
+D_min <= D <= 245.64; Delta = the sum of the four parts, sigma = err floored at 1e-16.
+Fit: Delta = sum_{j<=K} a_j eps^j,
+eps in {1/(D-2), 1/(D-1), 1/D}, K in {12, 14, 16, 18, 20}, D_min in {10, 20, 30}: weighted least squares in arb at
+256 bits (Chebyshev basis over the fitted eps range; normal equations), accepted when chi^2/dof <= 4. At each target:
+the median of the accepted fits, E = F max(h, s), h half their range, s the central fit's propagated data error (from
+the inverse normal matrix), F from the planted test.
+
+    cd hp && python3 track_c.py planted [--out=FILE]         P0-P4 on the real D grid with noise N(0, sigma)
+    cd hp && python3 track_c.py real [--F=1] [--out=FILE]     the real data
+    cd hp && python3 track_c.py csv [--out=data/delta_series.csv]    the series for hp/export_delta_all.py (#804)
+
+csv: the estimate at D 250, 260, ..., 400 (use "row", the table's series rows) and at every chain_fit row of
+data/delta_all.csv past D 245.64 (use "chain", for the exporter's check of the weak pivot's err, #806): Delta in two
+parts, E, h, s and err_kind ("series fits" where h >= s, else "series data"), with the fingerprint of the rows fitted
+(export_delta_all.series_input) in every row. A last row, D inf with use "limit", is the series' limit, which the
+exporter does not read.
+

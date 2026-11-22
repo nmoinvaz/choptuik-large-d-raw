@@ -1,0 +1,532 @@
+108 rows, 21 with an invocation quoted (arguments or a directory), 87 named scripts, 41 with quoted numbers (203 numbers), 10 marked not run before the pass
+stale spans: [] | lost locators: []
+
+git_clone_raw  [README line 2215, est 1]  
+   quoted:  git clone https://github.com/nmoinvaz/choptuik-large-d-raw ../choptuik-large-d-raw
+   run:     cd . && git clone https://github.com/nmoinvaz/choptuik-large-d-raw ../choptuik-large-d-raw
+   files:   ../choptuik-large-d-raw/INDEX.md
+
+pip_install  [README line 2197, est 1]  (skip: build: no builds on this pass (coordinator))
+   quoted:  pip install .
+   run:     cd . && pip install .
+
+cargo_test  [README line 2198, est 1]  (skip: cargo build: no builds on this pass (coordinator))
+   quoted:  cargo test --release
+   run:     cd . && cargo test --release
+
+test_bindings  [README line 2199, est 1]  
+   quoted:  python tests/test_bindings.py
+   run:     cd . && python3 tests/test_bindings.py
+   files:   tests/test_bindings.py
+
+build_sh_main  [README line 2200, est 1]  (skip: build: no builds on this pass (coordinator))
+   quoted:  ./build.sh main
+   run:     cd . && ./build.sh main
+
+hp_build_sh  [README line 2183, est 1]  (skip: build: no builds on this pass (coordinator))
+   quoted:  hp/build.sh
+   run:     cd . && hp/build.sh
+
+reproduce_sh  [README line 2170, est 3]  
+   quoted:  ./reproduce.sh
+   run:     cd . && ./reproduce.sh
+
+reproduce_sh_full  [README line 2179, est 3]  
+   quoted:  --full
+   run:     cd . && ./reproduce.sh --full
+
+check_numbers  [README line 2160, est 3]  
+   quoted:  check_numbers.py
+   run:     cd . && python3 check_numbers.py
+
+check_numbers_selftest  [README line 2160, est 2]  
+   quoted:  check_numbers.py
+   run:     cd . && python3 check_numbers.py --selftest
+
+mutation_controls  [README line 2158, est 2]  
+   quoted:  solver/proof/mutation_controls.py
+   run:     cd . && python3 solver/proof/mutation_controls.py
+   number:  eight versions [eq] = ['8']
+
+plot_delta  [README line 246, est 2]  
+   quoted:  cd solver/data && python3 ../plot_delta.py --raw ../../../choptuik-large-d-raw
+   run:     cd solver/data && python3 ../plot_delta.py --raw ../../../choptuik-large-d-raw
+   files:   solver/delta.svg
+
+formula_refit  [README line 312, est 2]  
+   quoted:  python3 ../formula_all.py --refit
+   run:     cd solver/data && python3 ../formula_all.py --refit
+
+formula_all  [README line 299, est 2]  
+   quoted:  solver/formula_all.py
+   run:     cd solver/data && python3 ../formula_all.py
+   files:   solver/data/formula_coefficients.json
+   number:  D = 4 [eq] = ['3.4454524', '0.3739610']
+
+rational_fit  [README line 299, est 2]  
+   quoted:  solver/rational_fit.py
+   run:     cd . && python3 solver/rational_fit.py
+
+formula_cut_fit  [README line 331, est 3]  
+   quoted:  hp/formula_cut_fit.py
+   run:     cd . && python3 hp/formula_cut_fit.py
+   files:   hp/data/formula_cut.json
+   number:  limit [eq] = ['1.643893745']
+
+formula_cut  [README line 335, est 2]  
+   quoted:  hp/formula_cut.py
+   run:     cd . && python3 hp/formula_cut.py
+
+lowD_max  [README line 363, est 1]  
+   quoted:  cd hp && python3 lowD_max.py
+   run:     cd hp && python3 lowD_max.py
+   files:   hp/data/lowD_dd_t79.jsonl
+   number:  maximum [eq] = ['3.755725', '3.46677169']
+
+export_lowD  [README line 379, est 2]  
+   quoted:  hp/export_lowD.py
+   run:     cd . && python3 hp/export_lowD.py
+
+export_dd  [README line 380, est 2]  
+   quoted:  hp/export_dd.py
+   run:     cd . && python3 hp/export_dd.py
+
+export_delta_all  [README line 548, est 3]  
+   quoted:  cd hp && python3 export_delta_all.py ../../choptuik-large-d-raw
+   run:     cd hp && python3 export_delta_all.py ../../choptuik-large-d-raw
+   files:   hp/data/delta_all.csv
+
+export_delta_all_verify  [README line 548, est 3]  
+   quoted:  --verify
+   run:     cd hp && python3 export_delta_all.py ../../choptuik-large-d-raw --verify
+
+plot_lowD_values  [README line 380, est 2]  
+   quoted:  hp/plot_lowD_values.py
+   run:     cd . && python3 hp/plot_lowD_values.py
+   files:   hp/lowD_values.svg
+
+lowD_formula  [README line 390, est 2]  
+   quoted:  hp/lowD_formula.py
+   run:     cd . && python3 hp/lowD_formula.py
+   number:  delta poly [eq] = ['1.752403', '2.486429', '8.257623', '-29.245836', '44.944706', '-45.106964', '30.660868', '-12.653060', '2.349289']
+   number:  gamma poly [eq] = ['0.081437', '0.285158', '0.634589', '-1.439299', '1.261792', '-0.547493', '0.097777']
+
+plot_lowD_limits  [README line 412, est 2]  
+   quoted:  hp/plot_lowD_limits.py
+   run:     cd . && python3 hp/plot_lowD_limits.py
+   files:   hp/lowD_limits.svg, hp/data/published_lowD_limits.json
+
+plot_lowD_logslope  [README line 429, est 2]  
+   quoted:  hp/plot_lowD_logslope.py
+   run:     cd . && python3 hp/plot_lowD_logslope.py
+   files:   hp/lowD_logslope.svg
+
+lowD_logslope  [README line 429, est 2]  
+   quoted:  hp/lowD_logslope.py
+   run:     cd . && python3 hp/lowD_logslope.py
+   number:  prediction [eq] = ['0.1441', '0.1418']
+
+gamma_dd  [README line 457, est 3]  
+   quoted:  hp/gamma_dd.py
+   run:     cd . && python3 hp/gamma_dd.py
+   files:   hp/data/gamma_dd.jsonl, hp/data/local/gamma_dd.jsonl
+
+gamma_m48_gap  [README line 461, est 3]  
+   quoted:  hp/gamma_m48_gap.py
+   run:     cd . && python3 hp/gamma_m48_gap.py
+
+gamma_compare  [README line 465, est 1]  
+   quoted:  cd hp && python3 gamma_compare.py data/gamma_dd.jsonl data/local/gamma_dd.jsonl
+   run:     cd hp && python3 gamma_compare.py data/gamma_dd.jsonl data/local/gamma_dd.jsonl
+   files:   hp/data/gamma_dd.jsonl, hp/data/local/gamma_dd.jsonl
+   number:  lambda-2 by powers [eq] = ['2.4×10⁻⁴', '6.7×10⁻⁵', '1.9×10⁻⁵', '5.5×10⁻⁶', '1.6×10⁻⁶', '2.2×10⁻⁶']
+   number:  lambda series [eq] = ['3.0324', '34.3', '0.7581']
+
+plot_extrapolation  [README line 499, est 2]  
+   quoted:  solver/plot_extrapolation.py
+   run:     cd . && python3 solver/plot_extrapolation.py
+   files:   solver/extrapolation.svg
+
+values_table  [README line 563, est 2]  
+   quoted:  cd hp && python3 values_table.py
+   run:     cd hp && python3 values_table.py
+   number:  D = 4 [eq] = ['3.445452402', '0.37396072']
+   number:  gamma(70) [eq] = ['0.490552']
+   number:  gamma(100) [eq] = ['0.493134']
+   number:  gamma(1000) [eq] = ['0.499250']
+
+track_c  [README line 567, est 3]  
+   quoted:  hp/track_c.py
+   run:     cd . && python3 hp/track_c.py
+   number:  series [eq] = ['1.684955205950', '8.1×10⁻¹¹', '1.678171015417', '1.25×10⁻¹⁰', '1.669658064111', '2.31×10⁻¹⁰']
+   number:  limit [eq] = ['1.6438937453', '1.85×10⁻⁹']
+
+track_c_fold  [README line 2014, est 3]  
+   quoted:  hp/track_c_fold.py
+   run:     cd . && python3 hp/track_c_fold.py
+   files:   hp/data/fold_259.csv
+
+plot_physics  [README line 580, est 1]  
+   quoted:  solver/plot_physics.py
+   run:     cd . && python3 solver/plot_physics.py
+   files:   solver/physics.svg
+
+modecount_test  [README line 602, est 3]  
+   quoted:  hp/modecount_test.py
+   run:     cd . && python3 hp/modecount_test.py
+
+dd_D5  [README line 654, est 3]  
+   quoted:  hp/compare/dd_D5.py
+   run:     cd . && python3 hp/compare/dd_D5.py
+   files:   hp/compare/dd_D5.log
+   number:  D = 5 [eq] = ['3.22170194461806', '3.22170194462672']
+
+data_all  [README line 657, est 2]  
+   quoted:  solver/data_all.py
+   run:     cd . && python3 solver/data_all.py
+   number:  D = 5 f64 [eq] = ['3.221701945']
+
+cmp_ecker  [README line 660, est 1]  
+   quoted:  hp/compare/cmp_ecker.py
+   run:     cd . && python3 hp/compare/cmp_ecker.py
+   number:  moves [eq] = ['1.66×10⁻⁴']
+
+identity_check  [README line 687, est 2]  
+   quoted:  I200-mac/identity_check.py
+   run:     cd . && python3 ../choptuik-large-d-raw/I200-mac/identity_check.py
+   files:   ../choptuik-large-d-raw/I200-mac/identity_check.py
+
+plot_solver_limits  [README line 757, est 2]  
+   quoted:  hp/plot_solver_limits.py
+   run:     cd . && python3 hp/plot_solver_limits.py
+   files:   hp/solver_limits.svg, hp/data/delta_all.csv
+
+rv2_noise  [README line 785, est 2]  
+   quoted:  hp/review/rv2_noise.py
+   run:     cd . && python3 hp/review/rv2_noise.py
+   number:  rms [eq] = ['7.2×10⁻¹⁸']
+
+dd_fits_clean  [README line 794, est 3]  
+   quoted:  hp/dd_fits_mp.py --clean
+   run:     cd . && python3 hp/dd_fits_mp.py --clean --dmax=60.1
+   number:  dropped [eq] = ['25']
+
+dd_fits_10_45  [README line 816, est 3]  
+   quoted:  hp/dd_fits_mp.py 10 45 --clean --dmax=60.1
+   run:     cd . && python3 hp/dd_fits_mp.py 10 45 --clean --dmax=60.1
+   number:  1/D, degree 16 [eq] = ['4.1×10⁻¹⁵', '5.6×10⁻¹³', '1.64389375']
+   number:  1/D, degree 18 [eq] = ['4.1×10⁻¹⁵', '1.6×10⁻¹²', '1.64389377']
+   number:  1/(D-2), degree 18 [eq] = ['4.0×10⁻¹⁵', '3.1×10⁻¹²', '1.64389377']
+   number:  (D-2)^{-1/2}, degree 20 [eq] = ['4.0×10⁻¹⁵', '1.3×10⁻¹¹', '1.638']
+   number:  D^{-1/2}, degree 20 [eq] = ['3.9×10⁻¹⁵', '1.4×10⁻¹⁰', '1.556']
+
+dd_fits_10_375  [README line 816, est 3]  
+   quoted:  10 37.5 --clean --dmax=60.1
+   run:     cd . && python3 hp/dd_fits_mp.py 10 37.5 --clean --dmax=60.1
+   number:  1/D, degree 16 [eq] = ['4.2×10⁻¹¹']
+   number:  1/D, degree 18 [eq] = ['1.4×10⁻¹⁰']
+   number:  1/(D-2), degree 18 [eq] = ['7.7×10⁻¹¹']
+   number:  (D-2)^{-1/2}, degree 20 [eq] = ['6.6×10⁻¹⁰']
+   number:  D^{-1/2}, degree 20 [eq] = ['5.3×10⁻⁹']
+
+dd_fits_mixed  [README line 839, est 3]  
+   quoted:  hp/dd_fits_mp.py 10 45 --clean --mixed --dmax=60.1
+   run:     cd . && python3 hp/dd_fits_mp.py 10 45 --clean --mixed --dmax=60.1
+   number:  coefficient [eq] = ['3×10⁻⁵', '6×10⁻⁷']
+   number:  limits [eq] = ['1.643893736', '1.643893754']
+
+dd_fits_1e9  [README line 846, est 3]  
+   quoted:  hp/dd_fits_mp.py 10 1e9 --clean --dmax=60.1
+   run:     cd . && python3 hp/dd_fits_mp.py 10 1e9 --clean --dmax=60.1
+   number:  limits [eq] = ['1.643893744', '1.643893753']
+
+dinf_budget  [README line 851, est 3]  
+   quoted:  hp/dinf_budget.py
+   run:     cd . && python3 hp/dinf_budget.py
+   number:  range [eq] = ['1.643893744', '1.643893763', '1.643893754']
+
+planted_dinf  [README line 872, est 3]  
+   quoted:  hp/planted_dinf.py
+   run:     cd . && python3 hp/planted_dinf.py
+   files:   hp/data/planted_dinf.log
+
+rv2_planted  [README line 879, est 3]  
+   quoted:  hp/review/rv2_planted.py
+   run:     cd . && python3 hp/review/rv2_planted.py
+   number:  offset [eq] = ['0.78']
+
+largeD_scaling  [README line 954, est 2]  
+   quoted:  hp/largeD_scaling.py
+   run:     cd . && python3 hp/largeD_scaling.py
+
+largeD_F  [README line 954, est 2]  
+   quoted:  hp/largeD_F.py
+   run:     cd . && python3 hp/largeD_F.py
+   number:  D = 20 [eq] = ['3.480', '0.130', '0.024', '3.021', '6.162']
+   number:  D = 30 [eq] = ['3.212', '0.105', '0.016', '3.201', '5.218']
+   number:  D = 40 [eq] = ['3.086', '0.093', '0.012', '3.304', '4.804']
+   number:  D = 50 [eq] = ['3.011', '0.085', '0.0097', '3.372', '4.568']
+   number:  D = 60 [eq] = ['2.962', '0.080', '0.0085', '3.421', '4.416']
+
+plot_echo  [README line 251, est 2]  
+   quoted:  hp/plot_echo.py
+   run:     cd . && python3 hp/plot_echo.py
+   files:   hp/data/echo_shapes.csv, hp/echo_shapes.svg
+
+states_module  [README line 2186, est 1]  (skip: a module the profile scripts import (where the states are read from), not a command; the README quotes no invocation)
+   quoted:  hp/states.py
+   run:     cd . && python3 hp/states.py
+   files:   hp/data/states
+
+plot_wave_family  [README line 978, est 2]  
+   quoted:  hp/plot_wave_family.py
+   run:     cd . && python3 hp/plot_wave_family.py
+   files:   hp/wave_family.svg
+
+largeD_expand  [README line 1050, est 2]  
+   quoted:  largeD_expand.py 4
+   run:     cd . && python3 solver/largeD_expand.py 4
+
+largeD_formal_check  [README line 197, est 2]  
+   quoted:  solver/largeD_formal_check.py
+   run:     cd . && python3 solver/largeD_formal_check.py
+
+largeD_fast_transport  [README line 1195, est 2]  
+   quoted:  solver/largeD_fast_transport.py
+   run:     cd . && python3 solver/largeD_fast_transport.py
+   number:  no gravity [eq] = ['5.6×10⁻²', '2.9×10⁻²', '1.5×10⁻²', '7.5×10⁻³', '3.8×10⁻³']
+   number:  with gravity [eq] = ['0.57', '0.26', '0.13', '0.062', '0.031']
+
+largeD_fast_transport_full  [README line 1206, est 2]  
+   quoted:  solver/largeD_fast_transport_full.py
+   run:     cd . && python3 solver/largeD_fast_transport_full.py
+   number:  full background [eq] = ['0.62', '0.28', '0.135', '0.066', '0.032']
+
+largeD_transport_sympy  [README line 199, est 2]  
+   quoted:  solver/largeD_transport_sympy.py
+   run:     cd . && python3 solver/largeD_transport_sympy.py
+
+largeD_exponent  [README line 1224, est 2]  
+   quoted:  hp/largeD_exponent.py
+   run:     cd . && python3 hp/largeD_exponent.py
+   number:  n<G(1)>/2 [eq] = ['2.038', '2.435', '2.678', '2.844', '2.964']
+   number:  <F^2> [eq] = ['6.162', '5.218', '4.804', '4.568', '4.416']
+   number:  shift [eq] = ['2.63', '2.95', '3.12', '3.23', '3.30']
+
+plot_light_cone  [README line 1245, est 1]  
+   quoted:  hp/plot_light_cone.py
+   run:     cd . && python3 hp/plot_light_cone.py
+   files:   hp/light_cone.svg
+
+largeD_linear_late  [README line 1257, est 2]  
+   quoted:  solver/largeD_linear_late.py
+   run:     cd . && python3 solver/largeD_linear_late.py
+   number:  1/\\sqrt2 [eq] = ['0.0069', '-1.5703', '-0.52', '-4.50']
+   number:  0\.8 [eq] = ['0.291', '-1.5704', '-0.55', '-4.27']
+   number:  0\.9 [eq] = ['0.728', '-1.5694', '-0.47', '-4.26']
+
+largeD_dingle_K  [README line 1280, est 2]  
+   quoted:  solver/largeD_dingle_K.py
+   run:     cd . && python3 solver/largeD_dingle_K.py
+   number:  K ratio [eq] = ['1.08', '+0.06', '1.01', '-0.10', '0.9936', '+0.0022', '1.0006', '-0.0002', '1.0010', '-0.0015']
+
+largeD_linear_poles  [README line 1333, est 2]  
+   quoted:  solver/largeD_linear_poles.py
+   run:     cd . && python3 solver/largeD_linear_poles.py
+
+largeD_linear_poisson  [README line 1334, est 2]  
+   quoted:  solver/largeD_linear_poisson.py
+   run:     cd . && python3 solver/largeD_linear_poisson.py
+
+euler_late  [README line 1340, est 2]  
+   quoted:  solver/largeD_prop4/
+   run:     cd . && python3 solver/largeD_prop4/euler_late.py
+   number:  deviation [eq] = ['-0.9×10⁻³', '-2.3×10⁻³']
+
+kcheck  [README line 1340, est 2]  
+   quoted:  kcheck.py
+   run:     cd . && python3 solver/largeD_prop4/kcheck.py
+   number:  1 + c/k [eq] = ['3.65']
+
+switch2  [README line 1340, est 2]  
+   quoted:  switch2.py
+   run:     cd . && python3 solver/largeD_prop4/switch2.py
+   number:  singulant [eq] = ['−3.135']
+
+largeD_linear_truncation  [README line 1364, est 2]  
+   quoted:  solver/largeD_linear_truncation.py
+   run:     cd . && python3 solver/largeD_linear_truncation.py
+   number:  x = 0.9 [eq] = ['4×10⁻⁴⁰', '7e-21', '10⁻²³', '2×10⁻⁷']
+
+largeD_stokes_C  [README line 1521, est 2]  
+   quoted:  solver/largeD_stokes_C.py
+   run:     cd . && python3 solver/largeD_stokes_C.py
+   number:  ratios [eq] = ['1.00014', '1.0013']
+   number:  n(ratio-1) [eq] = ['13.9', '-7.6', '14.6']
+
+largeD_inner  [README line 1562, est 2]  
+   quoted:  solver/largeD_inner.py
+   run:     cd . && python3 solver/largeD_inner.py
+
+hier_schur  [README line 1436, est 3]  
+   quoted:  hier.py --schur
+   run:     cd . && python3 solver/inner_stokes/hier.py --schur
+
+largeD_Fratios  [README line 1569, est 2]  
+   quoted:  hp/largeD_Fratios.py
+   run:     cd . && python3 hp/largeD_Fratios.py
+   number:  ratios [eq] = ['0.0552', '0.0549', '0.0034', '0.0032', '0.058', '0.0041']
+
+amp_series  [README line 1562, est 2]  
+   quoted:  amp_series.py
+   run:     cd . && python3 solver/inner_amp/amp_series.py
+   number:  agreement [le] = ['2×10⁻¹⁶', '4×10⁻¹⁶']
+
+amp_flint_par  [README line 1586, est 1]  
+   quoted:  solver/inner_amp/amp_flint_par.py --fit phys
+   run:     cd . && python3 solver/inner_amp/amp_flint_par.py --fit phys
+   files:   solver/inner_amp/data/sigF_w1.0000_K15_J750_phys.json, solver/inner_amp/data/sigF_w1.0000_K15_J1000_phys.json
+
+zero_selection  [README line 1587, est 2]  
+   quoted:  zero_selection.py
+   run:     cd . && python3 solver/inner_amp/zero_selection.py
+
+arg_crossing  [README line 1587, est 2]  
+   quoted:  arg_crossing.py
+   run:     cd . && python3 solver/inner_amp/arg_crossing.py
+
+amp_flint  [README line 1590, est 3]  (skip: named as the legacy basis; no invocation or number quoted, and it is the serial reference (AGENTS.md: hours))
+   quoted:  amp_flint.py
+   run:     cd . && python3 solver/inner_amp/amp_flint.py
+
+harm_pred  [README line 1709, est 2]  
+   quoted:  harm_pred.py
+   run:     cd . && python3 solver/inner_amp/harm_pred.py
+   number:  tracks [eq] = ['0.126', '0.099', '0.087', '0.080', '0.075', '0.130', '0.105', '0.093', '0.085', '0.080']
+
+plot_selection  [README line 1715, est 2]  
+   quoted:  solver/plot_selection.py
+   run:     cd . && python3 solver/plot_selection.py
+   files:   solver/selection.svg
+
+plot_spectrum  [README line 1733, est 2]  
+   quoted:  solver/plot_spectrum.py
+   run:     cd . && python3 solver/plot_spectrum.py
+   files:   solver/spectrum.svg
+
+expand_pert  [README line 1748, est 2]  
+   quoted:  solver/inner_pert/expand_pert.py
+   run:     cd . && python3 solver/inner_pert/expand_pert.py
+
+heat_form  [README line 203, est 1]  
+   quoted:  solver/inner_pert/heat_form.py
+   run:     cd . && python3 solver/inner_pert/heat_form.py
+
+rw_map  [README line 1811, est 1]  
+   quoted:  solver/inner_pert/rw_map.py
+   run:     cd . && python3 solver/inner_pert/rw_map.py
+
+pert_check  [README line 1752, est 2]  
+   quoted:  pert_check.py
+   run:     cd . && python3 solver/inner_pert/pert_check.py
+   number:  residual [le] = ['6×10⁻³⁰']
+
+pert_check2  [README line 1754, est 2]  
+   quoted:  pert_check2.py
+   run:     cd . && python3 solver/inner_pert/pert_check2.py
+   number:  residual [le] = ['10⁻¹⁷⁷']
+
+pert_check3  [README line 1836, est 2]  
+   quoted:  solver/inner_pert/pert_check3.py 45 11
+   run:     cd . && python3 solver/inner_pert/pert_check3.py 45 11
+   number:  relative [le] = ['10⁻¹⁸⁰']
+   number:  misses [eq] = ['7.5']
+
+plot_first_order  [README line 1876, est 2]  
+   quoted:  solver/plot_first_order.py
+   run:     cd . && python3 solver/plot_first_order.py
+   files:   solver/first_order.svg
+
+eeg20  [README line 740, est 2]  
+   quoted:  solver/eeg20/
+   run:     cd . && python3 solver/eeg20/eeg20.py
+   number:  ratio [eq] = ['0.98', '1.06']
+
+tilt  [README line 740, est 2]  
+   quoted:  solver/eeg20/
+   run:     cd . && python3 solver/eeg20/tilt.py
+   number:  tilt [eq] = ['0.69', '0.78', '0.84', '0.88']
+
+maxc  [README line 740, est 2]  
+   quoted:  solver/eeg20/
+   run:     cd . && python3 solver/eeg20/maxc.py
+   number:  ratio [eq] = ['0.36', '0.86']
+
+struct_css  [README line 1894, est 2]  
+   quoted:  solver/matter/struct_*.py
+   run:     cd . && python3 solver/matter/struct_css.py
+
+struct_eqs  [README line 1894, est 2]  
+   quoted:  solver/matter/struct_*.py
+   run:     cd . && python3 solver/matter/struct_eqs.py
+
+struct_inner  [README line 1894, est 2]  
+   quoted:  solver/matter/struct_*.py
+   run:     cd . && python3 solver/matter/struct_inner.py
+
+struct_outer  [README line 1894, est 2]  
+   quoted:  solver/matter/struct_*.py
+   run:     cd . && python3 solver/matter/struct_outer.py
+
+struct_symmetry  [README line 1894, est 2]  
+   quoted:  solver/matter/struct_*.py
+   run:     cd . && python3 solver/matter/struct_symmetry.py
+
+plot_matter  [README line 1911, est 2]  
+   quoted:  solver/plot_matter.py
+   run:     cd . && python3 solver/plot_matter.py
+   files:   solver/matter.svg
+
+singularity_type  [README line 2006, est 2]  
+   quoted:  hp/singularity_type.py planted
+   run:     cd . && python3 hp/singularity_type.py planted
+   number:  sqrt exponent [eq] = ['0.5']
+
+horizon_toy  [README line 2020, est 2]  
+   quoted:  hp/horizon_toy.py
+   run:     cd . && python3 hp/horizon_toy.py
+
+plot_dropoffs  [README line 2038, est 2]  
+   quoted:  hp/plot_dropoffs.py
+   run:     cd . && python3 hp/plot_dropoffs.py
+   files:   hp/large_d_dropoffs.svg
+
+plot_gamma  [README line 2107, est 2]  
+   quoted:  solver/plot_gamma.py
+   run:     cd . && python3 solver/plot_gamma.py
+   files:   solver/gamma.svg
+
+plot_modecount  [README line 2114, est 2]  
+   quoted:  hp/plot_modecount.py
+   run:     cd . && python3 hp/plot_modecount.py
+   files:   hp/modecount.svg
+
+fast_eigenvalues  [README line 215, est 1]  
+   quoted:  solver/proof/fast_eigenvalues.py
+   run:     cd . && python3 solver/proof/fast_eigenvalues.py
+
+fixed_point  [README line 206, est 1]  (skip: named as the code of certified lemmas; the README quotes no invocation and no number (PROOF.md and proof/A_certify.md hold the commands: out of scope))
+   quoted:  fixed_point.py
+   run:     cd . && python3 solver/proof/fixed_point.py
+
+fixed_point_M  [README line 206, est 1]  (skip: named as the code of certified lemmas; the README quotes no invocation and no number (PROOF.md and proof/A_certify.md hold the commands: out of scope))
+   quoted:  fixed_point_M.py
+   run:     cd . && python3 solver/proof/fixed_point_M.py
+
+validated_int  [README line 206, est 1]  (skip: named as the code of certified lemmas; the README quotes no invocation and no number (PROOF.md and proof/A_certify.md hold the commands: out of scope))
+   quoted:  validated_int.py
+   run:     cd . && python3 solver/proof/validated_int.py
+
+krawczyk  [README line 206, est 1]  (skip: named as the code of certified lemmas; the README quotes no invocation and no number (PROOF.md and proof/A_certify.md hold the commands: out of scope))
+   quoted:  krawczyk.py
+   run:     cd . && python3 solver/proof/krawczyk.py

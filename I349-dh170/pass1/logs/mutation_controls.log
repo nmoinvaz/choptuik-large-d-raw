@@ -1,0 +1,10 @@
+$ cd /home/nathan/Source/choptuik-large-d/_i349/run && python3 solver/proof/mutation_controls.py   [threads 2, nice 19, load 8.8, 2026-11-22 03:37:59 UTC]
+C0 clean twin                            test PASS (expected PASS); margins +7.925e-10, +9.247e-10  -> as expected
+C1 jump sign flipped                     test FAIL (expected FAIL); margins -5.886e+01, -2.198e+01  -> as expected
+C2 conjugation dropped                   test FAIL (expected FAIL); margins -2.004e+00, -3.469e-01  -> as expected
+C3 equivalent form -conj(J)              test PASS (expected PASS); margins +7.907e-10, +9.224e-10; K overlaps C0's K: True  -> as expected
+C4 normalization x2                      test PASS (expected PASS); margins +7.925e-10, +9.247e-10; K identical to C0's to 30 digits: True  -> as expected
+C5 zero planted outside (2h, 0)          test FAIL (expected FAIL); margins -1.208e-09, +9.247e-10  -> as expected
+C6 zero planted inside (h/2, -3h/10)     test PASS (expected PASS); margins +2.925e-10, +6.441e-10; K overlaps C0's zero + d: True; rejects zero + d + (h/4, 0): True  -> as expected
+C7 point enclosure widened by 1e-9       test FAIL (expected FAIL); margins -4.263e-08, -3.039e-08  -> as expected
+8 of 8 controls behaved as expected (box half-width h = 1e-9, xi1 = 0.3)

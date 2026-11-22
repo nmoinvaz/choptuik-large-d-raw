@@ -1,0 +1,10 @@
+$ cd /home/nathan/Source/choptuik-large-d/_i349/run/solver/data && python3 ../plot_delta.py --raw ../../../choptuik-large-d-raw   [threads 2, nice 19, load 9.2, 2026-11-22 09:00:52 UTC]
+  T73 and T75 (the 0.7 layout) against the formula: 4.3e-08
+double-double: 1008 points 30.2-67.77, formula within 5.8e-08; 41 below D = 4; pinned runs to 78.10, formula within 4.8e-06
+  band D 3.04315-8.25: Delta to 2.1e-11 (median, negative: below the resolution; largest 5.2e-09 at D 4.25; double-double, M 48-384 (T79 above D = 4))
+  band D 8.25-67.7671: Delta to 2.0e-15 (median, negative: below the resolution; largest 2.0e-15 at D 67.7671; double-double continuation)
+  band D 67.7671-73.2657: Delta to -2.2e-16 (median, negative: below the resolution; largest 8.4e-15 at D 73.1; pinned runs, pin 7 against pin 5)
+  band D 73.2657-78.1049: Delta to 3.4e-07 (median, negative: below the resolution; largest 8.3e-07 at D 75; pinned runs, last node 0.8 against 0.85)
+wrote ../delta.svg: 86 fitted + 8 held-out points (max formula error 2.1e-06)
+Δ = 1.64389 +10.37/D^1 -28.36/D^2 +239/D^3 -2245/D^4 … (degree 10, fit 10 ≤ D ≤ 30.2)
+γ = 1/2 -0.7585/D^1 +8.284/D^2 -126/D^3 +1845/D^4 … (degree 10, fit 10 ≤ D ≤ 30.2)

@@ -1,0 +1,9 @@
+$ cd /home/nathan/Source/choptuik-large-d/_i349/run/hp && python3 gamma_compare.py data/gamma_dd.jsonl data/local/gamma_dd.jsonl   [threads 2, nice 19, load 8.6, 2026-11-22 03:37:40 UTC]
+Traceback (most recent call last):
+  File "/home/nathan/Source/choptuik-large-d/_i349/run/hp/gamma_compare.py", line 17, in <module>
+    from gamma_dd import gamma_formula  # noqa: E402
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nathan/Source/choptuik-large-d/_i349/run/hp/gamma_dd.py", line 57, in <module>
+    from hpkernel.driver import dd_from_mp, make_solver, load, lm_solve, newton_solve, plow_odd, resample_z  # noqa: E402
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ModuleNotFoundError: No module named 'hpkernel'

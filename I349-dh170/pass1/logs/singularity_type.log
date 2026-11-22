@@ -1,0 +1,18 @@
+$ cd /home/nathan/Source/choptuik-large-d/_i349/run && python3 hp/singularity_type.py planted   [threads 2, nice 19, load 9.1, 2026-11-22 05:12:34 UTC]
+planted: s1 1.17
+  S clean        mu +0.5: ratio s 1.1700 (spread 1.0e-11), mu +0.5000 (spread 3.2e-10) -> ok (S); dlog s 1.1700 (spread 9.4e-13), mu +0.5000 (spread 2.3e-12) over 21 approximants -> ok (S); pass
+  S contaminated mu +0.5: ratio s 1.2003 (spread 4.8e-01), mu -0.1472 (spread 1.5e+01) -> off (unclassified); dlog s 1.1689 (spread 1.4e-01), mu +0.5633 (spread 3.2e-01) over 21 approximants -> off (S); FAIL
+  P clean        mu -1.0: ratio s 1.1700 (spread 1.1e-11), mu -1.0000 (spread 3.7e-10) -> ok (P); dlog s 1.1700 (spread 2.1e-11), mu -1.0000 (spread 3.6e-10) over 21 approximants -> ok (P); pass
+  P contaminated mu -1.0: ratio s 1.2097 (spread 5.5e-01), mu -1.9204 (spread 1.8e+01) -> off (unclassified); dlog s 1.1647 (spread 9.8e-01), mu -0.8690 (spread 6.4e+00) over 20 approximants -> off (P); FAIL
+  S near (s1 0.457) mu +0.5: ratio s 0.4579 (spread 4.6e-04), mu +0.4344 (spread 3.3e-02) -> off (S); dlog s 0.4568 (spread 5.4e-03), mu +0.5307 (spread 4.3e-02) over 21 approximants -> ok (S); pass
+  P near (s1 0.457) mu -1.0: ratio s 0.4581 (spread 6.7e-04), mu -1.0821 (spread 5.1e-02) -> ok (P); dlog s 0.4573 (spread 3.7e-02), mu -1.0071 (spread 2.0e+00) over 21 approximants -> ok (P); pass
+planted: FAIL
+$ cd /home/nathan/Source/choptuik-large-d/_i349/run/hp && python3 singularity_type.py planted   [threads 2, nice 19, load 9.2, 2026-11-22 05:13:00 UTC]
+planted: s1 1.17
+  S clean        mu +0.5: ratio s 1.1700 (spread 1.0e-11), mu +0.5000 (spread 3.2e-10) -> ok (S); dlog s 1.1700 (spread 9.4e-13), mu +0.5000 (spread 2.3e-12) over 21 approximants -> ok (S); pass
+  S contaminated mu +0.5: ratio s 1.2003 (spread 4.8e-01), mu -0.1472 (spread 1.5e+01) -> off (unclassified); dlog s 1.1689 (spread 1.4e-01), mu +0.5633 (spread 3.2e-01) over 21 approximants -> off (S); FAIL
+  P clean        mu -1.0: ratio s 1.1700 (spread 1.1e-11), mu -1.0000 (spread 3.7e-10) -> ok (P); dlog s 1.1700 (spread 2.1e-11), mu -1.0000 (spread 3.6e-10) over 21 approximants -> ok (P); pass
+  P contaminated mu -1.0: ratio s 1.2097 (spread 5.5e-01), mu -1.9204 (spread 1.8e+01) -> off (unclassified); dlog s 1.1647 (spread 9.8e-01), mu -0.8690 (spread 6.4e+00) over 20 approximants -> off (P); FAIL
+  S near (s1 0.457) mu +0.5: ratio s 0.4579 (spread 4.6e-04), mu +0.4344 (spread 3.3e-02) -> off (S); dlog s 0.4568 (spread 5.4e-03), mu +0.5307 (spread 4.3e-02) over 21 approximants -> ok (S); pass
+  P near (s1 0.457) mu -1.0: ratio s 0.4581 (spread 6.7e-04), mu -1.0821 (spread 5.1e-02) -> ok (P); dlog s 0.4573 (spread 3.7e-02), mu -1.0071 (spread 2.0e+00) over 21 approximants -> ok (P); pass
+planted: FAIL

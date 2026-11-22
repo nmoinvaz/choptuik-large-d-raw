@@ -1,0 +1,17 @@
+$ cd /home/nathan/Source/choptuik-large-d/_i349/run && python3 check_numbers.py --selftest   [threads 2, nice 19, load 8.7, 2026-11-22 03:37:54 UTC]
+Traceback (most recent call last):
+  File "/home/nathan/Source/choptuik-large-d/_i349/run/check_numbers.py", line 3860, in <module>
+    main()
+    ~~~~^^
+  File "/home/nathan/Source/choptuik-large-d/_i349/run/check_numbers.py", line 3832, in main
+    groups = [(fn.__name__, fn()) for fn in CHECKS]
+                            ~~^^
+  File "/home/nathan/Source/choptuik-large-d/_i349/run/check_numbers.py", line 430, in hopf_law
+    import hopf_amp_mode as H
+  File "/home/nathan/Source/choptuik-large-d/_i349/run/hp/hopf_amp_mode.py", line 35, in <module>
+    from gamma_dd import best_solver  # noqa: E402
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nathan/Source/choptuik-large-d/_i349/run/hp/gamma_dd.py", line 57, in <module>
+    from hpkernel.driver import dd_from_mp, make_solver, load, lm_solve, newton_solve, plow_odd, resample_z  # noqa: E402
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ModuleNotFoundError: No module named 'hpkernel'

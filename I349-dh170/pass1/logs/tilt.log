@@ -1,0 +1,14 @@
+$ cd /home/nathan/Source/choptuik-large-d/_i349/run && python3 solver/eeg20/tilt.py   [threads 2, nice 19, load 8.9, 2026-11-22 04:37:33 UTC]
+Traceback (most recent call last):
+  File "/home/nathan/Source/choptuik-large-d/_i349/run/solver/eeg20/tilt.py", line 11, in <module>
+    from largeD_profiles import profile, harmonics
+  File "/home/nathan/Source/choptuik-large-d/_i349/run/solver/eeg20/../../hp/largeD_profiles.py", line 4, in <module>
+    from hpkernel.driver import make_solver, load
+ModuleNotFoundError: No module named 'hpkernel'
+$ cd /home/nathan/Source/choptuik-large-d/_i349/run/solver/eeg20 && python3 tilt.py   [threads 2, nice 19, load 8.9, 2026-11-22 04:37:34 UTC]
+Traceback (most recent call last):
+  File "/home/nathan/Source/choptuik-large-d/_i349/run/solver/eeg20/tilt.py", line 11, in <module>
+    from largeD_profiles import profile, harmonics
+  File "/home/nathan/Source/choptuik-large-d/_i349/run/solver/eeg20/../../hp/largeD_profiles.py", line 4, in <module>
+    from hpkernel.driver import make_solver, load
+ModuleNotFoundError: No module named 'hpkernel'

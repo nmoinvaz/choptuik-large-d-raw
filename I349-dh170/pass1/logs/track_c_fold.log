@@ -1,0 +1,38 @@
+$ cd /home/nathan/Source/choptuik-large-d/_i349/run && python3 hp/track_c_fold.py   [threads 2, nice 19, load 8.4, 2026-11-22 06:55:08 UTC]
+Could track C miss a fold of the continuum near D 260? The largest planted square root its fit and checks pass (#835).
+
+    cd hp && python3 track_c_fold.py run [--out=FILE] [--Ds=259,260,...]
+
+The plant (#835): Delta_plant(D) = Delta_real(D) + a g(D) on track C's real grid and sigma (track_c.load_real), with
+g = sqrt(D*_p - D) - r(D) and r the weighted least-squares fit of sqrt(D*_p - D) over all points by the form of track
+C's central fit (1/(D-1), K 20). Every plant goes through track_c's own all_fits, levels and estimate.
+
+Flagged (registered on #835 before any bound was computed): track C gives no estimate or its D0 is no longer 10, which
+happens when fewer than 5 of the D_min-10 fits keep chi^2/dof <= 4 (how P1 and P2 showed, by an exploding E).
+|a|_max(D*_p), per sign: the largest |a| with every plant from 0 to a unflagged. Each fit's weighted residual is linear
+in a (least squares), so its chi^2 is a quadratic in a and its acceptance thresholds are exact; the bound is verified
+through the full code path, unflagged at 0.9 |a|_max and flagged at 1.1 |a|_max. Reported beside it: |a| at which the
+first of the 135 fits changes acceptance, and at 0.9 |a|_max the shift of Delta(250), Delta(300), Delta(400) and
+Delta_inf against E, E, and the central fit's largest residual on D 150-245 (the real data's 2.76 sigma).
+Checks: a = 0 reproduces the stored series rows (data/delta_series.csv) at D 300, 400 and the limit to their E;
+a = 0.035 at D*_p 259.903 (the chain's own fold, #829) must be flagged.
+
+$ cd /home/nathan/Source/choptuik-large-d/_i349/run/hp && python3 track_c_fold.py   [threads 2, nice 19, load 8.2, 2026-11-22 06:55:08 UTC]
+Could track C miss a fold of the continuum near D 260? The largest planted square root its fit and checks pass (#835).
+
+    cd hp && python3 track_c_fold.py run [--out=FILE] [--Ds=259,260,...]
+
+The plant (#835): Delta_plant(D) = Delta_real(D) + a g(D) on track C's real grid and sigma (track_c.load_real), with
+g = sqrt(D*_p - D) - r(D) and r the weighted least-squares fit of sqrt(D*_p - D) over all points by the form of track
+C's central fit (1/(D-1), K 20). Every plant goes through track_c's own all_fits, levels and estimate.
+
+Flagged (registered on #835 before any bound was computed): track C gives no estimate or its D0 is no longer 10, which
+happens when fewer than 5 of the D_min-10 fits keep chi^2/dof <= 4 (how P1 and P2 showed, by an exploding E).
+|a|_max(D*_p), per sign: the largest |a| with every plant from 0 to a unflagged. Each fit's weighted residual is linear
+in a (least squares), so its chi^2 is a quadratic in a and its acceptance thresholds are exact; the bound is verified
+through the full code path, unflagged at 0.9 |a|_max and flagged at 1.1 |a|_max. Reported beside it: |a| at which the
+first of the 135 fits changes acceptance, and at 0.9 |a|_max the shift of Delta(250), Delta(300), Delta(400) and
+Delta_inf against E, E, and the central fit's largest residual on D 150-245 (the real data's 2.76 sigma).
+Checks: a = 0 reproduces the stored series rows (data/delta_series.csv) at D 300, 400 and the limit to their E;
+a = 0.035 at D*_p 259.903 (the chain's own fold, #829) must be flagged.
+

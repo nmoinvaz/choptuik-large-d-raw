@@ -1,0 +1,2626 @@
+[
+ {
+  "id": "git_clone_raw",
+  "line": 2215,
+  "span": "git clone https://github.com/nmoinvaz/choptuik-large-d-raw ../choptuik-large-d-raw",
+  "explicit": true,
+  "cwd": ".",
+  "argv": [
+   "git",
+   "clone",
+   "https://github.com/nmoinvaz/choptuik-large-d-raw",
+   "../choptuik-large-d-raw"
+  ],
+  "files": [
+   "../choptuik-large-d-raw/INDEX.md"
+  ],
+  "quotes": [],
+  "est": 1,
+  "skip": null,
+  "regen": [],
+  "note": ""
+ },
+ {
+  "id": "pip_install",
+  "line": 2197,
+  "span": "pip install .",
+  "explicit": true,
+  "cwd": ".",
+  "argv": [
+   "pip",
+   "install",
+   "."
+  ],
+  "files": [],
+  "quotes": [],
+  "est": 1,
+  "skip": "build: no builds on this pass (coordinator)",
+  "regen": [],
+  "note": ""
+ },
+ {
+  "id": "cargo_test",
+  "line": 2198,
+  "span": "cargo test --release",
+  "explicit": true,
+  "cwd": ".",
+  "argv": [
+   "cargo",
+   "test",
+   "--release"
+  ],
+  "files": [],
+  "quotes": [],
+  "est": 1,
+  "skip": "cargo build: no builds on this pass (coordinator)",
+  "regen": [],
+  "note": ""
+ },
+ {
+  "id": "test_bindings",
+  "line": 2199,
+  "span": "python tests/test_bindings.py",
+  "explicit": true,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "tests/test_bindings.py"
+  ],
+  "files": [
+   "tests/test_bindings.py"
+  ],
+  "quotes": [],
+  "est": 1,
+  "skip": null,
+  "regen": [],
+  "note": ""
+ },
+ {
+  "id": "build_sh_main",
+  "line": 2200,
+  "span": "./build.sh main",
+  "explicit": true,
+  "cwd": ".",
+  "argv": [
+   "./build.sh",
+   "main"
+  ],
+  "files": [],
+  "quotes": [],
+  "est": 1,
+  "skip": "build: no builds on this pass (coordinator)",
+  "regen": [],
+  "note": ""
+ },
+ {
+  "id": "hp_build_sh",
+  "line": 2183,
+  "span": "hp/build.sh",
+  "explicit": false,
+  "cwd": ".",
+  "argv": [
+   "hp/build.sh"
+  ],
+  "files": [],
+  "quotes": [],
+  "est": 1,
+  "skip": "build: no builds on this pass (coordinator)",
+  "regen": [],
+  "note": ""
+ },
+ {
+  "id": "reproduce_sh",
+  "line": 2170,
+  "span": "./reproduce.sh",
+  "explicit": false,
+  "cwd": ".",
+  "argv": [
+   "./reproduce.sh"
+  ],
+  "files": [],
+  "quotes": [],
+  "est": 3,
+  "skip": null,
+  "regen": [],
+  "note": "README: about 6 minutes on a busy 2-core machine, 2-3 on an idle laptop"
+ },
+ {
+  "id": "reproduce_sh_full",
+  "line": 2179,
+  "span": "--full",
+  "explicit": false,
+  "cwd": ".",
+  "argv": [
+   "./reproduce.sh",
+   "--full"
+  ],
+  "files": [],
+  "quotes": [],
+  "est": 3,
+  "skip": null,
+  "regen": [],
+  "note": "README: --full adds the Proposition 4 check"
+ },
+ {
+  "id": "check_numbers",
+  "line": 2160,
+  "span": "check_numbers.py",
+  "explicit": false,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "check_numbers.py"
+  ],
+  "files": [],
+  "quotes": [],
+  "est": 3,
+  "skip": null,
+  "regen": [],
+  "note": "README: ties more than 800 quoted numbers to their source files"
+ },
+ {
+  "id": "check_numbers_selftest",
+  "line": 2160,
+  "span": "check_numbers.py",
+  "explicit": false,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "check_numbers.py",
+   "--selftest"
+  ],
+  "files": [],
+  "quotes": [],
+  "est": 2,
+  "skip": null,
+  "regen": [],
+  "note": "README: a self-test shows each check would catch a one-digit change (the flag is SETUP.md's)"
+ },
+ {
+  "id": "mutation_controls",
+  "line": 2158,
+  "span": "solver/proof/mutation_controls.py",
+  "explicit": false,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "solver/proof/mutation_controls.py"
+  ],
+  "files": [],
+  "quotes": [
+   {
+    "label": "eight versions",
+    "mode": "eq",
+    "tokens": [
+     "8"
+    ]
+   }
+  ],
+  "est": 2,
+  "skip": null,
+  "regen": [],
+  "note": ""
+ },
+ {
+  "id": "plot_delta",
+  "line": 246,
+  "span": "cd solver/data && python3 ../plot_delta.py --raw ../../../choptuik-large-d-raw",
+  "explicit": true,
+  "cwd": "solver/data",
+  "argv": [
+   "python3",
+   "../plot_delta.py",
+   "--raw",
+   "../../../choptuik-large-d-raw"
+  ],
+  "files": [
+   "solver/delta.svg"
+  ],
+  "quotes": [],
+  "est": 2,
+  "skip": null,
+  "regen": [
+   "solver/delta.svg"
+  ],
+  "note": ""
+ },
+ {
+  "id": "formula_refit",
+  "line": 312,
+  "span": "python3 ../formula_all.py --refit",
+  "explicit": true,
+  "cwd": "solver/data",
+  "argv": [
+   "python3",
+   "../formula_all.py",
+   "--refit"
+  ],
+  "files": [],
+  "quotes": [],
+  "est": 2,
+  "skip": null,
+  "regen": [],
+  "note": "README: the coefficients move by up to 0.7% and the values by 1e-9 (fitted range), 1e-7 (D = 80) in another environment"
+ },
+ {
+  "id": "formula_all",
+  "line": 299,
+  "span": "solver/formula_all.py",
+  "explicit": false,
+  "cwd": "solver/data",
+  "argv": [
+   "python3",
+   "../formula_all.py"
+  ],
+  "files": [
+   "solver/data/formula_coefficients.json"
+  ],
+  "quotes": [
+   {
+    "label": "D = 4",
+    "mode": "eq",
+    "tokens": [
+     "3.4454524",
+     "0.3739610"
+    ]
+   }
+  ],
+  "est": 2,
+  "skip": null,
+  "regen": [],
+  "note": "README gives the path from the root; the script reads data/ and runs from solver/data"
+ },
+ {
+  "id": "rational_fit",
+  "line": 299,
+  "span": "solver/rational_fit.py",
+  "explicit": false,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "solver/rational_fit.py"
+  ],
+  "files": [],
+  "quotes": [],
+  "est": 2,
+  "skip": null,
+  "regen": [],
+  "note": ""
+ },
+ {
+  "id": "formula_cut_fit",
+  "line": 331,
+  "span": "hp/formula_cut_fit.py",
+  "explicit": false,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "hp/formula_cut_fit.py"
+  ],
+  "files": [
+   "hp/data/formula_cut.json"
+  ],
+  "quotes": [
+   {
+    "label": "limit",
+    "mode": "eq",
+    "tokens": [
+     "1.643893745"
+    ]
+   }
+  ],
+  "est": 3,
+  "skip": null,
+  "regen": [],
+  "note": ""
+ },
+ {
+  "id": "formula_cut",
+  "line": 335,
+  "span": "hp/formula_cut.py",
+  "explicit": false,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "hp/formula_cut.py"
+  ],
+  "files": [],
+  "quotes": [],
+  "est": 2,
+  "skip": null,
+  "regen": [],
+  "note": ""
+ },
+ {
+  "id": "lowD_max",
+  "line": 363,
+  "span": "cd hp && python3 lowD_max.py",
+  "explicit": true,
+  "cwd": "hp",
+  "argv": [
+   "python3",
+   "lowD_max.py"
+  ],
+  "files": [
+   "hp/data/lowD_dd_t79.jsonl"
+  ],
+  "quotes": [
+   {
+    "label": "maximum",
+    "mode": "eq",
+    "tokens": [
+     "3.755725",
+     "3.46677169"
+    ]
+   }
+  ],
+  "est": 1,
+  "skip": null,
+  "regen": [],
+  "note": ""
+ },
+ {
+  "id": "export_lowD",
+  "line": 379,
+  "span": "hp/export_lowD.py",
+  "explicit": false,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "hp/export_lowD.py"
+  ],
+  "files": [],
+  "quotes": [],
+  "est": 2,
+  "skip": null,
+  "regen": [],
+  "note": ""
+ },
+ {
+  "id": "export_dd",
+  "line": 380,
+  "span": "hp/export_dd.py",
+  "explicit": false,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "hp/export_dd.py"
+  ],
+  "files": [],
+  "quotes": [],
+  "est": 2,
+  "skip": null,
+  "regen": [],
+  "note": ""
+ },
+ {
+  "id": "export_delta_all",
+  "line": 548,
+  "span": "cd hp && python3 export_delta_all.py ../../choptuik-large-d-raw",
+  "explicit": true,
+  "cwd": "hp",
+  "argv": [
+   "python3",
+   "export_delta_all.py",
+   "../../choptuik-large-d-raw"
+  ],
+  "files": [
+   "hp/data/delta_all.csv"
+  ],
+  "quotes": [],
+  "est": 3,
+  "skip": null,
+  "regen": [
+   "hp/data/delta_all.csv"
+  ],
+  "note": ""
+ },
+ {
+  "id": "export_delta_all_verify",
+  "line": 548,
+  "span": "--verify",
+  "explicit": false,
+  "cwd": "hp",
+  "argv": [
+   "python3",
+   "export_delta_all.py",
+   "../../choptuik-large-d-raw",
+   "--verify"
+  ],
+  "files": [],
+  "quotes": [],
+  "est": 3,
+  "skip": null,
+  "regen": [],
+  "note": "README: --verify checks every row against its source"
+ },
+ {
+  "id": "plot_lowD_values",
+  "line": 380,
+  "span": "hp/plot_lowD_values.py",
+  "explicit": false,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "hp/plot_lowD_values.py"
+  ],
+  "files": [
+   "hp/lowD_values.svg"
+  ],
+  "quotes": [],
+  "est": 2,
+  "skip": null,
+  "regen": [
+   "hp/lowD_values.svg"
+  ],
+  "note": ""
+ },
+ {
+  "id": "lowD_formula",
+  "line": 390,
+  "span": "hp/lowD_formula.py",
+  "explicit": false,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "hp/lowD_formula.py"
+  ],
+  "files": [],
+  "quotes": [
+   {
+    "label": "delta poly",
+    "mode": "eq",
+    "tokens": [
+     "1.752403",
+     "2.486429",
+     "8.257623",
+     "-29.245836",
+     "44.944706",
+     "-45.106964",
+     "30.660868",
+     "-12.653060",
+     "2.349289"
+    ]
+   },
+   {
+    "label": "gamma poly",
+    "mode": "eq",
+    "tokens": [
+     "0.081437",
+     "0.285158",
+     "0.634589",
+     "-1.439299",
+     "1.261792",
+     "-0.547493",
+     "0.097777"
+    ]
+   }
+  ],
+  "est": 2,
+  "skip": null,
+  "regen": [],
+  "note": ""
+ },
+ {
+  "id": "plot_lowD_limits",
+  "line": 412,
+  "span": "hp/plot_lowD_limits.py",
+  "explicit": false,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "hp/plot_lowD_limits.py"
+  ],
+  "files": [
+   "hp/lowD_limits.svg",
+   "hp/data/published_lowD_limits.json"
+  ],
+  "quotes": [],
+  "est": 2,
+  "skip": null,
+  "regen": [
+   "hp/lowD_limits.svg"
+  ],
+  "note": ""
+ },
+ {
+  "id": "plot_lowD_logslope",
+  "line": 429,
+  "span": "hp/plot_lowD_logslope.py",
+  "explicit": false,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "hp/plot_lowD_logslope.py"
+  ],
+  "files": [
+   "hp/lowD_logslope.svg"
+  ],
+  "quotes": [],
+  "est": 2,
+  "skip": null,
+  "regen": [
+   "hp/lowD_logslope.svg"
+  ],
+  "note": ""
+ },
+ {
+  "id": "lowD_logslope",
+  "line": 429,
+  "span": "hp/lowD_logslope.py",
+  "explicit": false,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "hp/lowD_logslope.py"
+  ],
+  "files": [],
+  "quotes": [
+   {
+    "label": "prediction",
+    "mode": "eq",
+    "tokens": [
+     "0.1441",
+     "0.1418"
+    ]
+   }
+  ],
+  "est": 2,
+  "skip": null,
+  "regen": [],
+  "note": ""
+ },
+ {
+  "id": "gamma_dd",
+  "line": 457,
+  "span": "hp/gamma_dd.py",
+  "explicit": false,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "hp/gamma_dd.py"
+  ],
+  "files": [
+   "hp/data/gamma_dd.jsonl",
+   "hp/data/local/gamma_dd.jsonl"
+  ],
+  "quotes": [],
+  "est": 3,
+  "skip": null,
+  "regen": [],
+  "note": ""
+ },
+ {
+  "id": "gamma_m48_gap",
+  "line": 461,
+  "span": "hp/gamma_m48_gap.py",
+  "explicit": false,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "hp/gamma_m48_gap.py"
+  ],
+  "files": [],
+  "quotes": [],
+  "est": 3,
+  "skip": null,
+  "regen": [],
+  "note": ""
+ },
+ {
+  "id": "gamma_compare",
+  "line": 465,
+  "span": "cd hp && python3 gamma_compare.py data/gamma_dd.jsonl data/local/gamma_dd.jsonl",
+  "explicit": true,
+  "cwd": "hp",
+  "argv": [
+   "python3",
+   "gamma_compare.py",
+   "data/gamma_dd.jsonl",
+   "data/local/gamma_dd.jsonl"
+  ],
+  "files": [
+   "hp/data/gamma_dd.jsonl",
+   "hp/data/local/gamma_dd.jsonl"
+  ],
+  "quotes": [
+   {
+    "label": "lambda-2 by powers",
+    "mode": "eq",
+    "tokens": [
+     "2.4×10⁻⁴",
+     "6.7×10⁻⁵",
+     "1.9×10⁻⁵",
+     "5.5×10⁻⁶",
+     "1.6×10⁻⁶",
+     "2.2×10⁻⁶"
+    ]
+   },
+   {
+    "label": "lambda series",
+    "mode": "eq",
+    "tokens": [
+     "3.0324",
+     "34.3",
+     "0.7581"
+    ]
+   }
+  ],
+  "est": 1,
+  "skip": null,
+  "regen": [],
+  "note": ""
+ },
+ {
+  "id": "plot_extrapolation",
+  "line": 499,
+  "span": "solver/plot_extrapolation.py",
+  "explicit": false,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "solver/plot_extrapolation.py"
+  ],
+  "files": [
+   "solver/extrapolation.svg"
+  ],
+  "quotes": [],
+  "est": 2,
+  "skip": null,
+  "regen": [
+   "solver/extrapolation.svg"
+  ],
+  "note": ""
+ },
+ {
+  "id": "values_table",
+  "line": 563,
+  "span": "cd hp && python3 values_table.py",
+  "explicit": true,
+  "cwd": "hp",
+  "argv": [
+   "python3",
+   "values_table.py"
+  ],
+  "files": [],
+  "quotes": [
+   {
+    "label": "D = 4",
+    "mode": "eq",
+    "tokens": [
+     "3.445452402",
+     "0.37396072"
+    ]
+   },
+   {
+    "label": "gamma(70)",
+    "mode": "eq",
+    "tokens": [
+     "0.490552"
+    ]
+   },
+   {
+    "label": "gamma(100)",
+    "mode": "eq",
+    "tokens": [
+     "0.493134"
+    ]
+   },
+   {
+    "label": "gamma(1000)",
+    "mode": "eq",
+    "tokens": [
+     "0.499250"
+    ]
+   }
+  ],
+  "est": 2,
+  "skip": null,
+  "regen": [],
+  "note": ""
+ },
+ {
+  "id": "track_c",
+  "line": 567,
+  "span": "hp/track_c.py",
+  "explicit": false,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "hp/track_c.py"
+  ],
+  "files": [],
+  "quotes": [
+   {
+    "label": "series",
+    "mode": "eq",
+    "tokens": [
+     "1.684955205950",
+     "8.1×10⁻¹¹",
+     "1.678171015417",
+     "1.25×10⁻¹⁰",
+     "1.669658064111",
+     "2.31×10⁻¹⁰"
+    ]
+   },
+   {
+    "label": "limit",
+    "mode": "eq",
+    "tokens": [
+     "1.6438937453",
+     "1.85×10⁻⁹"
+    ]
+   }
+  ],
+  "est": 3,
+  "skip": null,
+  "regen": [],
+  "note": ""
+ },
+ {
+  "id": "track_c_fold",
+  "line": 2014,
+  "span": "hp/track_c_fold.py",
+  "explicit": false,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "hp/track_c_fold.py"
+  ],
+  "files": [
+   "hp/data/fold_259.csv"
+  ],
+  "quotes": [],
+  "est": 3,
+  "skip": null,
+  "regen": [],
+  "note": ""
+ },
+ {
+  "id": "plot_physics",
+  "line": 580,
+  "span": "solver/plot_physics.py",
+  "explicit": false,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "solver/plot_physics.py"
+  ],
+  "files": [
+   "solver/physics.svg"
+  ],
+  "quotes": [],
+  "est": 1,
+  "skip": null,
+  "regen": [
+   "solver/physics.svg"
+  ],
+  "note": ""
+ },
+ {
+  "id": "modecount_test",
+  "line": 602,
+  "span": "hp/modecount_test.py",
+  "explicit": false,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "hp/modecount_test.py"
+  ],
+  "files": [],
+  "quotes": [],
+  "est": 3,
+  "skip": null,
+  "regen": [],
+  "note": ""
+ },
+ {
+  "id": "dd_D5",
+  "line": 654,
+  "span": "hp/compare/dd_D5.py",
+  "explicit": false,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "hp/compare/dd_D5.py"
+  ],
+  "files": [
+   "hp/compare/dd_D5.log"
+  ],
+  "quotes": [
+   {
+    "label": "D = 5",
+    "mode": "eq",
+    "tokens": [
+     "3.22170194461806",
+     "3.22170194462672"
+    ]
+   }
+  ],
+  "est": 3,
+  "skip": null,
+  "regen": [],
+  "note": ""
+ },
+ {
+  "id": "data_all",
+  "line": 657,
+  "span": "solver/data_all.py",
+  "explicit": false,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "solver/data_all.py"
+  ],
+  "files": [],
+  "quotes": [
+   {
+    "label": "D = 5 f64",
+    "mode": "eq",
+    "tokens": [
+     "3.221701945"
+    ]
+   }
+  ],
+  "est": 2,
+  "skip": null,
+  "regen": [],
+  "note": ""
+ },
+ {
+  "id": "cmp_ecker",
+  "line": 660,
+  "span": "hp/compare/cmp_ecker.py",
+  "explicit": false,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "hp/compare/cmp_ecker.py"
+  ],
+  "files": [],
+  "quotes": [
+   {
+    "label": "moves",
+    "mode": "eq",
+    "tokens": [
+     "1.66×10⁻⁴"
+    ]
+   }
+  ],
+  "est": 1,
+  "skip": null,
+  "regen": [],
+  "note": "needs a clone of github.com/EckerChristian/CriticalSpacetimeCrystal as data (not run as code)"
+ },
+ {
+  "id": "identity_check",
+  "line": 687,
+  "span": "I200-mac/identity_check.py",
+  "explicit": false,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "../choptuik-large-d-raw/I200-mac/identity_check.py"
+  ],
+  "files": [
+   "../choptuik-large-d-raw/I200-mac/identity_check.py"
+  ],
+  "quotes": [],
+  "est": 2,
+  "skip": null,
+  "regen": [],
+  "note": ""
+ },
+ {
+  "id": "plot_solver_limits",
+  "line": 757,
+  "span": "hp/plot_solver_limits.py",
+  "explicit": false,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "hp/plot_solver_limits.py"
+  ],
+  "files": [
+   "hp/solver_limits.svg",
+   "hp/data/delta_all.csv"
+  ],
+  "quotes": [],
+  "est": 2,
+  "skip": null,
+  "regen": [
+   "hp/solver_limits.svg"
+  ],
+  "note": ""
+ },
+ {
+  "id": "rv2_noise",
+  "line": 785,
+  "span": "hp/review/rv2_noise.py",
+  "explicit": false,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "hp/review/rv2_noise.py"
+  ],
+  "files": [],
+  "quotes": [
+   {
+    "label": "rms",
+    "mode": "eq",
+    "tokens": [
+     "7.2×10⁻¹⁸"
+    ]
+   }
+  ],
+  "est": 2,
+  "skip": null,
+  "regen": [],
+  "note": ""
+ },
+ {
+  "id": "dd_fits_clean",
+  "line": 794,
+  "span": "hp/dd_fits_mp.py --clean",
+  "explicit": true,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "hp/dd_fits_mp.py",
+   "--clean",
+   "--dmax=60.1"
+  ],
+  "files": [],
+  "quotes": [
+   {
+    "label": "dropped",
+    "mode": "eq",
+    "tokens": [
+     "25"
+    ]
+   }
+  ],
+  "est": 3,
+  "skip": null,
+  "regen": [],
+  "note": "the README gives --dmax=60.1 in the same sentence; its number is for that pair"
+ },
+ {
+  "id": "dd_fits_10_45",
+  "line": 816,
+  "span": "hp/dd_fits_mp.py 10 45 --clean --dmax=60.1",
+  "explicit": true,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "hp/dd_fits_mp.py",
+   "10",
+   "45",
+   "--clean",
+   "--dmax=60.1"
+  ],
+  "files": [],
+  "quotes": [
+   {
+    "label": "1/D, degree 16",
+    "mode": "eq",
+    "tokens": [
+     "4.1×10⁻¹⁵",
+     "5.6×10⁻¹³",
+     "1.64389375"
+    ]
+   },
+   {
+    "label": "1/D, degree 18",
+    "mode": "eq",
+    "tokens": [
+     "4.1×10⁻¹⁵",
+     "1.6×10⁻¹²",
+     "1.64389377"
+    ]
+   },
+   {
+    "label": "1/(D-2), degree 18",
+    "mode": "eq",
+    "tokens": [
+     "4.0×10⁻¹⁵",
+     "3.1×10⁻¹²",
+     "1.64389377"
+    ]
+   },
+   {
+    "label": "(D-2)^{-1/2}, degree 20",
+    "mode": "eq",
+    "tokens": [
+     "4.0×10⁻¹⁵",
+     "1.3×10⁻¹¹",
+     "1.638"
+    ]
+   },
+   {
+    "label": "D^{-1/2}, degree 20",
+    "mode": "eq",
+    "tokens": [
+     "3.9×10⁻¹⁵",
+     "1.4×10⁻¹⁰",
+     "1.556"
+    ]
+   }
+  ],
+  "est": 3,
+  "skip": null,
+  "regen": [],
+  "note": ""
+ },
+ {
+  "id": "dd_fits_10_375",
+  "line": 816,
+  "span": "10 37.5 --clean --dmax=60.1",
+  "explicit": true,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "hp/dd_fits_mp.py",
+   "10",
+   "37.5",
+   "--clean",
+   "--dmax=60.1"
+  ],
+  "files": [],
+  "quotes": [
+   {
+    "label": "1/D, degree 16",
+    "mode": "eq",
+    "tokens": [
+     "4.2×10⁻¹¹"
+    ]
+   },
+   {
+    "label": "1/D, degree 18",
+    "mode": "eq",
+    "tokens": [
+     "1.4×10⁻¹⁰"
+    ]
+   },
+   {
+    "label": "1/(D-2), degree 18",
+    "mode": "eq",
+    "tokens": [
+     "7.7×10⁻¹¹"
+    ]
+   },
+   {
+    "label": "(D-2)^{-1/2}, degree 20",
+    "mode": "eq",
+    "tokens": [
+     "6.6×10⁻¹⁰"
+    ]
+   },
+   {
+    "label": "D^{-1/2}, degree 20",
+    "mode": "eq",
+    "tokens": [
+     "5.3×10⁻⁹"
+    ]
+   }
+  ],
+  "est": 3,
+  "skip": null,
+  "regen": [],
+  "note": ""
+ },
+ {
+  "id": "dd_fits_mixed",
+  "line": 839,
+  "span": "hp/dd_fits_mp.py 10 45 --clean --mixed --dmax=60.1",
+  "explicit": true,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "hp/dd_fits_mp.py",
+   "10",
+   "45",
+   "--clean",
+   "--mixed",
+   "--dmax=60.1"
+  ],
+  "files": [],
+  "quotes": [
+   {
+    "label": "coefficient",
+    "mode": "eq",
+    "tokens": [
+     "3×10⁻⁵",
+     "6×10⁻⁷"
+    ]
+   },
+   {
+    "label": "limits",
+    "mode": "eq",
+    "tokens": [
+     "1.643893736",
+     "1.643893754"
+    ]
+   }
+  ],
+  "est": 3,
+  "skip": null,
+  "regen": [],
+  "note": ""
+ },
+ {
+  "id": "dd_fits_1e9",
+  "line": 846,
+  "span": "hp/dd_fits_mp.py 10 1e9 --clean --dmax=60.1",
+  "explicit": true,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "hp/dd_fits_mp.py",
+   "10",
+   "1e9",
+   "--clean",
+   "--dmax=60.1"
+  ],
+  "files": [],
+  "quotes": [
+   {
+    "label": "limits",
+    "mode": "eq",
+    "tokens": [
+     "1.643893744",
+     "1.643893753"
+    ]
+   }
+  ],
+  "est": 3,
+  "skip": null,
+  "regen": [],
+  "note": ""
+ },
+ {
+  "id": "dinf_budget",
+  "line": 851,
+  "span": "hp/dinf_budget.py",
+  "explicit": false,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "hp/dinf_budget.py"
+  ],
+  "files": [],
+  "quotes": [
+   {
+    "label": "range",
+    "mode": "eq",
+    "tokens": [
+     "1.643893744",
+     "1.643893763",
+     "1.643893754"
+    ]
+   }
+  ],
+  "est": 3,
+  "skip": null,
+  "regen": [],
+  "note": ""
+ },
+ {
+  "id": "planted_dinf",
+  "line": 872,
+  "span": "hp/planted_dinf.py",
+  "explicit": false,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "hp/planted_dinf.py"
+  ],
+  "files": [
+   "hp/data/planted_dinf.log"
+  ],
+  "quotes": [],
+  "est": 3,
+  "skip": null,
+  "regen": [],
+  "note": ""
+ },
+ {
+  "id": "rv2_planted",
+  "line": 879,
+  "span": "hp/review/rv2_planted.py",
+  "explicit": false,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "hp/review/rv2_planted.py"
+  ],
+  "files": [],
+  "quotes": [
+   {
+    "label": "offset",
+    "mode": "eq",
+    "tokens": [
+     "0.78"
+    ]
+   }
+  ],
+  "est": 3,
+  "skip": null,
+  "regen": [],
+  "note": ""
+ },
+ {
+  "id": "largeD_scaling",
+  "line": 954,
+  "span": "hp/largeD_scaling.py",
+  "explicit": false,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "hp/largeD_scaling.py"
+  ],
+  "files": [],
+  "quotes": [],
+  "est": 2,
+  "skip": null,
+  "regen": [],
+  "note": ""
+ },
+ {
+  "id": "largeD_F",
+  "line": 954,
+  "span": "hp/largeD_F.py",
+  "explicit": false,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "hp/largeD_F.py"
+  ],
+  "files": [],
+  "quotes": [
+   {
+    "label": "D = 20",
+    "mode": "eq",
+    "tokens": [
+     "3.480",
+     "0.130",
+     "0.024",
+     "3.021",
+     "6.162"
+    ]
+   },
+   {
+    "label": "D = 30",
+    "mode": "eq",
+    "tokens": [
+     "3.212",
+     "0.105",
+     "0.016",
+     "3.201",
+     "5.218"
+    ]
+   },
+   {
+    "label": "D = 40",
+    "mode": "eq",
+    "tokens": [
+     "3.086",
+     "0.093",
+     "0.012",
+     "3.304",
+     "4.804"
+    ]
+   },
+   {
+    "label": "D = 50",
+    "mode": "eq",
+    "tokens": [
+     "3.011",
+     "0.085",
+     "0.0097",
+     "3.372",
+     "4.568"
+    ]
+   },
+   {
+    "label": "D = 60",
+    "mode": "eq",
+    "tokens": [
+     "2.962",
+     "0.080",
+     "0.0085",
+     "3.421",
+     "4.416"
+    ]
+   }
+  ],
+  "est": 2,
+  "skip": null,
+  "regen": [],
+  "note": ""
+ },
+ {
+  "id": "plot_echo",
+  "line": 251,
+  "span": "hp/plot_echo.py",
+  "explicit": false,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "hp/plot_echo.py"
+  ],
+  "files": [
+   "hp/data/echo_shapes.csv",
+   "hp/echo_shapes.svg"
+  ],
+  "quotes": [],
+  "est": 2,
+  "skip": null,
+  "regen": [
+   "hp/echo_shapes.svg",
+   "hp/data/echo_shapes.csv"
+  ],
+  "note": ""
+ },
+ {
+  "id": "states_module",
+  "line": 2186,
+  "span": "hp/states.py",
+  "explicit": false,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "hp/states.py"
+  ],
+  "files": [
+   "hp/data/states"
+  ],
+  "quotes": [],
+  "est": 1,
+  "skip": "a module the profile scripts import (where the states are read from), not a command; the README quotes no invocation",
+  "regen": [],
+  "note": ""
+ },
+ {
+  "id": "plot_wave_family",
+  "line": 978,
+  "span": "hp/plot_wave_family.py",
+  "explicit": false,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "hp/plot_wave_family.py"
+  ],
+  "files": [
+   "hp/wave_family.svg"
+  ],
+  "quotes": [],
+  "est": 2,
+  "skip": null,
+  "regen": [
+   "hp/wave_family.svg"
+  ],
+  "note": ""
+ },
+ {
+  "id": "largeD_expand",
+  "line": 1050,
+  "span": "largeD_expand.py 4",
+  "explicit": true,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "solver/largeD_expand.py",
+   "4"
+  ],
+  "files": [],
+  "quotes": [],
+  "est": 2,
+  "skip": null,
+  "regen": [],
+  "note": ""
+ },
+ {
+  "id": "largeD_formal_check",
+  "line": 197,
+  "span": "solver/largeD_formal_check.py",
+  "explicit": false,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "solver/largeD_formal_check.py"
+  ],
+  "files": [],
+  "quotes": [],
+  "est": 2,
+  "skip": null,
+  "regen": [],
+  "note": ""
+ },
+ {
+  "id": "largeD_fast_transport",
+  "line": 1195,
+  "span": "solver/largeD_fast_transport.py",
+  "explicit": false,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "solver/largeD_fast_transport.py"
+  ],
+  "files": [],
+  "quotes": [
+   {
+    "label": "no gravity",
+    "mode": "eq",
+    "tokens": [
+     "5.6×10⁻²",
+     "2.9×10⁻²",
+     "1.5×10⁻²",
+     "7.5×10⁻³",
+     "3.8×10⁻³"
+    ]
+   },
+   {
+    "label": "with gravity",
+    "mode": "eq",
+    "tokens": [
+     "0.57",
+     "0.26",
+     "0.13",
+     "0.062",
+     "0.031"
+    ]
+   }
+  ],
+  "est": 2,
+  "skip": null,
+  "regen": [],
+  "note": ""
+ },
+ {
+  "id": "largeD_fast_transport_full",
+  "line": 1206,
+  "span": "solver/largeD_fast_transport_full.py",
+  "explicit": false,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "solver/largeD_fast_transport_full.py"
+  ],
+  "files": [],
+  "quotes": [
+   {
+    "label": "full background",
+    "mode": "eq",
+    "tokens": [
+     "0.62",
+     "0.28",
+     "0.135",
+     "0.066",
+     "0.032"
+    ]
+   }
+  ],
+  "est": 2,
+  "skip": null,
+  "regen": [],
+  "note": ""
+ },
+ {
+  "id": "largeD_transport_sympy",
+  "line": 199,
+  "span": "solver/largeD_transport_sympy.py",
+  "explicit": false,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "solver/largeD_transport_sympy.py"
+  ],
+  "files": [],
+  "quotes": [],
+  "est": 2,
+  "skip": null,
+  "regen": [],
+  "note": ""
+ },
+ {
+  "id": "largeD_exponent",
+  "line": 1224,
+  "span": "hp/largeD_exponent.py",
+  "explicit": false,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "hp/largeD_exponent.py"
+  ],
+  "files": [],
+  "quotes": [
+   {
+    "label": "n<G(1)>/2",
+    "mode": "eq",
+    "tokens": [
+     "2.038",
+     "2.435",
+     "2.678",
+     "2.844",
+     "2.964"
+    ]
+   },
+   {
+    "label": "<F^2>",
+    "mode": "eq",
+    "tokens": [
+     "6.162",
+     "5.218",
+     "4.804",
+     "4.568",
+     "4.416"
+    ]
+   },
+   {
+    "label": "shift",
+    "mode": "eq",
+    "tokens": [
+     "2.63",
+     "2.95",
+     "3.12",
+     "3.23",
+     "3.30"
+    ]
+   }
+  ],
+  "est": 2,
+  "skip": null,
+  "regen": [],
+  "note": ""
+ },
+ {
+  "id": "plot_light_cone",
+  "line": 1245,
+  "span": "hp/plot_light_cone.py",
+  "explicit": false,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "hp/plot_light_cone.py"
+  ],
+  "files": [
+   "hp/light_cone.svg"
+  ],
+  "quotes": [],
+  "est": 1,
+  "skip": null,
+  "regen": [
+   "hp/light_cone.svg"
+  ],
+  "note": ""
+ },
+ {
+  "id": "largeD_linear_late",
+  "line": 1257,
+  "span": "solver/largeD_linear_late.py",
+  "explicit": false,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "solver/largeD_linear_late.py"
+  ],
+  "files": [],
+  "quotes": [
+   {
+    "label": "1/\\\\sqrt2",
+    "mode": "eq",
+    "tokens": [
+     "0.0069",
+     "-1.5703",
+     "-0.52",
+     "-4.50"
+    ]
+   },
+   {
+    "label": "0\\.8",
+    "mode": "eq",
+    "tokens": [
+     "0.291",
+     "-1.5704",
+     "-0.55",
+     "-4.27"
+    ]
+   },
+   {
+    "label": "0\\.9",
+    "mode": "eq",
+    "tokens": [
+     "0.728",
+     "-1.5694",
+     "-0.47",
+     "-4.26"
+    ]
+   }
+  ],
+  "est": 2,
+  "skip": null,
+  "regen": [],
+  "note": ""
+ },
+ {
+  "id": "largeD_dingle_K",
+  "line": 1280,
+  "span": "solver/largeD_dingle_K.py",
+  "explicit": false,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "solver/largeD_dingle_K.py"
+  ],
+  "files": [],
+  "quotes": [
+   {
+    "label": "K ratio",
+    "mode": "eq",
+    "tokens": [
+     "1.08",
+     "+0.06",
+     "1.01",
+     "-0.10",
+     "0.9936",
+     "+0.0022",
+     "1.0006",
+     "-0.0002",
+     "1.0010",
+     "-0.0015"
+    ]
+   }
+  ],
+  "est": 2,
+  "skip": null,
+  "regen": [],
+  "note": ""
+ },
+ {
+  "id": "largeD_linear_poles",
+  "line": 1333,
+  "span": "solver/largeD_linear_poles.py",
+  "explicit": false,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "solver/largeD_linear_poles.py"
+  ],
+  "files": [],
+  "quotes": [],
+  "est": 2,
+  "skip": null,
+  "regen": [],
+  "note": ""
+ },
+ {
+  "id": "largeD_linear_poisson",
+  "line": 1334,
+  "span": "solver/largeD_linear_poisson.py",
+  "explicit": false,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "solver/largeD_linear_poisson.py"
+  ],
+  "files": [],
+  "quotes": [],
+  "est": 2,
+  "skip": null,
+  "regen": [],
+  "note": ""
+ },
+ {
+  "id": "euler_late",
+  "line": 1340,
+  "span": "solver/largeD_prop4/",
+  "explicit": false,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "solver/largeD_prop4/euler_late.py"
+  ],
+  "files": [],
+  "quotes": [
+   {
+    "label": "deviation",
+    "mode": "eq",
+    "tokens": [
+     "-0.9×10⁻³",
+     "-2.3×10⁻³"
+    ]
+   }
+  ],
+  "est": 2,
+  "skip": null,
+  "regen": [],
+  "note": ""
+ },
+ {
+  "id": "kcheck",
+  "line": 1340,
+  "span": "kcheck.py",
+  "explicit": false,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "solver/largeD_prop4/kcheck.py"
+  ],
+  "files": [],
+  "quotes": [
+   {
+    "label": "1 + c/k",
+    "mode": "eq",
+    "tokens": [
+     "3.65"
+    ]
+   }
+  ],
+  "est": 2,
+  "skip": null,
+  "regen": [],
+  "note": ""
+ },
+ {
+  "id": "switch2",
+  "line": 1340,
+  "span": "switch2.py",
+  "explicit": false,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "solver/largeD_prop4/switch2.py"
+  ],
+  "files": [],
+  "quotes": [
+   {
+    "label": "singulant",
+    "mode": "eq",
+    "tokens": [
+     "−3.135"
+    ]
+   }
+  ],
+  "est": 2,
+  "skip": null,
+  "regen": [],
+  "note": ""
+ },
+ {
+  "id": "largeD_linear_truncation",
+  "line": 1364,
+  "span": "solver/largeD_linear_truncation.py",
+  "explicit": false,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "solver/largeD_linear_truncation.py"
+  ],
+  "files": [],
+  "quotes": [
+   {
+    "label": "x = 0.9",
+    "mode": "eq",
+    "tokens": [
+     "4×10⁻⁴⁰",
+     "7e-21",
+     "10⁻²³",
+     "2×10⁻⁷"
+    ]
+   }
+  ],
+  "est": 2,
+  "skip": null,
+  "regen": [],
+  "note": ""
+ },
+ {
+  "id": "largeD_stokes_C",
+  "line": 1521,
+  "span": "solver/largeD_stokes_C.py",
+  "explicit": false,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "solver/largeD_stokes_C.py"
+  ],
+  "files": [],
+  "quotes": [
+   {
+    "label": "ratios",
+    "mode": "eq",
+    "tokens": [
+     "1.00014",
+     "1.0013"
+    ]
+   },
+   {
+    "label": "n(ratio-1)",
+    "mode": "eq",
+    "tokens": [
+     "13.9",
+     "-7.6",
+     "14.6"
+    ]
+   }
+  ],
+  "est": 2,
+  "skip": null,
+  "regen": [],
+  "note": ""
+ },
+ {
+  "id": "largeD_inner",
+  "line": 1562,
+  "span": "solver/largeD_inner.py",
+  "explicit": false,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "solver/largeD_inner.py"
+  ],
+  "files": [],
+  "quotes": [],
+  "est": 2,
+  "skip": null,
+  "regen": [],
+  "note": ""
+ },
+ {
+  "id": "hier_schur",
+  "line": 1436,
+  "span": "hier.py --schur",
+  "explicit": true,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "solver/inner_stokes/hier.py",
+   "--schur"
+  ],
+  "files": [],
+  "quotes": [],
+  "est": 3,
+  "skip": null,
+  "regen": [],
+  "note": "the README quotes the flag, not an M"
+ },
+ {
+  "id": "largeD_Fratios",
+  "line": 1569,
+  "span": "hp/largeD_Fratios.py",
+  "explicit": false,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "hp/largeD_Fratios.py"
+  ],
+  "files": [],
+  "quotes": [
+   {
+    "label": "ratios",
+    "mode": "eq",
+    "tokens": [
+     "0.0552",
+     "0.0549",
+     "0.0034",
+     "0.0032",
+     "0.058",
+     "0.0041"
+    ]
+   }
+  ],
+  "est": 2,
+  "skip": null,
+  "regen": [],
+  "note": ""
+ },
+ {
+  "id": "amp_series",
+  "line": 1562,
+  "span": "amp_series.py",
+  "explicit": false,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "solver/inner_amp/amp_series.py"
+  ],
+  "files": [],
+  "quotes": [
+   {
+    "label": "agreement",
+    "mode": "le",
+    "tokens": [
+     "2×10⁻¹⁶",
+     "4×10⁻¹⁶"
+    ]
+   }
+  ],
+  "est": 2,
+  "skip": null,
+  "regen": [],
+  "note": ""
+ },
+ {
+  "id": "amp_flint_par",
+  "line": 1586,
+  "span": "solver/inner_amp/amp_flint_par.py --fit phys",
+  "explicit": true,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "solver/inner_amp/amp_flint_par.py",
+   "--fit",
+   "phys"
+  ],
+  "files": [
+   "solver/inner_amp/data/sigF_w1.0000_K15_J750_phys.json",
+   "solver/inner_amp/data/sigF_w1.0000_K15_J1000_phys.json"
+  ],
+  "quotes": [],
+  "est": 1,
+  "skip": null,
+  "regen": [],
+  "note": "python-flint at 640 bits; AGENTS.md: hours per omega, with positional omega, K, J, bits"
+ },
+ {
+  "id": "zero_selection",
+  "line": 1587,
+  "span": "zero_selection.py",
+  "explicit": false,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "solver/inner_amp/zero_selection.py"
+  ],
+  "files": [],
+  "quotes": [],
+  "est": 2,
+  "skip": null,
+  "regen": [],
+  "note": ""
+ },
+ {
+  "id": "arg_crossing",
+  "line": 1587,
+  "span": "arg_crossing.py",
+  "explicit": false,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "solver/inner_amp/arg_crossing.py"
+  ],
+  "files": [],
+  "quotes": [],
+  "est": 2,
+  "skip": null,
+  "regen": [],
+  "note": ""
+ },
+ {
+  "id": "amp_flint",
+  "line": 1590,
+  "span": "amp_flint.py",
+  "explicit": false,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "solver/inner_amp/amp_flint.py"
+  ],
+  "files": [],
+  "quotes": [],
+  "est": 3,
+  "skip": "named as the legacy basis; no invocation or number quoted, and it is the serial reference (AGENTS.md: hours)",
+  "regen": [],
+  "note": ""
+ },
+ {
+  "id": "harm_pred",
+  "line": 1709,
+  "span": "harm_pred.py",
+  "explicit": false,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "solver/inner_amp/harm_pred.py"
+  ],
+  "files": [],
+  "quotes": [
+   {
+    "label": "tracks",
+    "mode": "eq",
+    "tokens": [
+     "0.126",
+     "0.099",
+     "0.087",
+     "0.080",
+     "0.075",
+     "0.130",
+     "0.105",
+     "0.093",
+     "0.085",
+     "0.080"
+    ]
+   }
+  ],
+  "est": 2,
+  "skip": null,
+  "regen": [],
+  "note": ""
+ },
+ {
+  "id": "plot_selection",
+  "line": 1715,
+  "span": "solver/plot_selection.py",
+  "explicit": false,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "solver/plot_selection.py"
+  ],
+  "files": [
+   "solver/selection.svg"
+  ],
+  "quotes": [],
+  "est": 2,
+  "skip": null,
+  "regen": [
+   "solver/selection.svg"
+  ],
+  "note": ""
+ },
+ {
+  "id": "plot_spectrum",
+  "line": 1733,
+  "span": "solver/plot_spectrum.py",
+  "explicit": false,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "solver/plot_spectrum.py"
+  ],
+  "files": [
+   "solver/spectrum.svg"
+  ],
+  "quotes": [],
+  "est": 2,
+  "skip": null,
+  "regen": [
+   "solver/spectrum.svg"
+  ],
+  "note": ""
+ },
+ {
+  "id": "expand_pert",
+  "line": 1748,
+  "span": "solver/inner_pert/expand_pert.py",
+  "explicit": false,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "solver/inner_pert/expand_pert.py"
+  ],
+  "files": [],
+  "quotes": [],
+  "est": 2,
+  "skip": null,
+  "regen": [],
+  "note": ""
+ },
+ {
+  "id": "heat_form",
+  "line": 203,
+  "span": "solver/inner_pert/heat_form.py",
+  "explicit": false,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "solver/inner_pert/heat_form.py"
+  ],
+  "files": [],
+  "quotes": [],
+  "est": 1,
+  "skip": null,
+  "regen": [],
+  "note": ""
+ },
+ {
+  "id": "rw_map",
+  "line": 1811,
+  "span": "solver/inner_pert/rw_map.py",
+  "explicit": false,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "solver/inner_pert/rw_map.py"
+  ],
+  "files": [],
+  "quotes": [],
+  "est": 1,
+  "skip": null,
+  "regen": [],
+  "note": ""
+ },
+ {
+  "id": "pert_check",
+  "line": 1752,
+  "span": "pert_check.py",
+  "explicit": false,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "solver/inner_pert/pert_check.py"
+  ],
+  "files": [],
+  "quotes": [
+   {
+    "label": "residual",
+    "mode": "le",
+    "tokens": [
+     "6×10⁻³⁰"
+    ]
+   }
+  ],
+  "est": 2,
+  "skip": null,
+  "regen": [],
+  "note": ""
+ },
+ {
+  "id": "pert_check2",
+  "line": 1754,
+  "span": "pert_check2.py",
+  "explicit": false,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "solver/inner_pert/pert_check2.py"
+  ],
+  "files": [],
+  "quotes": [
+   {
+    "label": "residual",
+    "mode": "le",
+    "tokens": [
+     "10⁻¹⁷⁷"
+    ]
+   }
+  ],
+  "est": 2,
+  "skip": null,
+  "regen": [],
+  "note": ""
+ },
+ {
+  "id": "pert_check3",
+  "line": 1836,
+  "span": "solver/inner_pert/pert_check3.py 45 11",
+  "explicit": true,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "solver/inner_pert/pert_check3.py",
+   "45",
+   "11"
+  ],
+  "files": [],
+  "quotes": [
+   {
+    "label": "relative",
+    "mode": "le",
+    "tokens": [
+     "10⁻¹⁸⁰"
+    ]
+   },
+   {
+    "label": "misses",
+    "mode": "eq",
+    "tokens": [
+     "7.5"
+    ]
+   }
+  ],
+  "est": 2,
+  "skip": null,
+  "regen": [],
+  "note": ""
+ },
+ {
+  "id": "plot_first_order",
+  "line": 1876,
+  "span": "solver/plot_first_order.py",
+  "explicit": false,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "solver/plot_first_order.py"
+  ],
+  "files": [
+   "solver/first_order.svg"
+  ],
+  "quotes": [],
+  "est": 2,
+  "skip": null,
+  "regen": [
+   "solver/first_order.svg"
+  ],
+  "note": ""
+ },
+ {
+  "id": "eeg20",
+  "line": 740,
+  "span": "solver/eeg20/",
+  "explicit": false,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "solver/eeg20/eeg20.py"
+  ],
+  "files": [],
+  "quotes": [
+   {
+    "label": "ratio",
+    "mode": "eq",
+    "tokens": [
+     "0.98",
+     "1.06"
+    ]
+   }
+  ],
+  "est": 2,
+  "skip": null,
+  "regen": [],
+  "note": ""
+ },
+ {
+  "id": "tilt",
+  "line": 740,
+  "span": "solver/eeg20/",
+  "explicit": false,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "solver/eeg20/tilt.py"
+  ],
+  "files": [],
+  "quotes": [
+   {
+    "label": "tilt",
+    "mode": "eq",
+    "tokens": [
+     "0.69",
+     "0.78",
+     "0.84",
+     "0.88"
+    ]
+   }
+  ],
+  "est": 2,
+  "skip": null,
+  "regen": [],
+  "note": ""
+ },
+ {
+  "id": "maxc",
+  "line": 740,
+  "span": "solver/eeg20/",
+  "explicit": false,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "solver/eeg20/maxc.py"
+  ],
+  "files": [],
+  "quotes": [
+   {
+    "label": "ratio",
+    "mode": "eq",
+    "tokens": [
+     "0.36",
+     "0.86"
+    ]
+   }
+  ],
+  "est": 2,
+  "skip": null,
+  "regen": [],
+  "note": ""
+ },
+ {
+  "id": "struct_css",
+  "line": 1894,
+  "span": "solver/matter/struct_*.py",
+  "explicit": false,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "solver/matter/struct_css.py"
+  ],
+  "files": [],
+  "quotes": [],
+  "est": 2,
+  "skip": null,
+  "regen": [],
+  "note": ""
+ },
+ {
+  "id": "struct_eqs",
+  "line": 1894,
+  "span": "solver/matter/struct_*.py",
+  "explicit": false,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "solver/matter/struct_eqs.py"
+  ],
+  "files": [],
+  "quotes": [],
+  "est": 2,
+  "skip": null,
+  "regen": [],
+  "note": ""
+ },
+ {
+  "id": "struct_inner",
+  "line": 1894,
+  "span": "solver/matter/struct_*.py",
+  "explicit": false,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "solver/matter/struct_inner.py"
+  ],
+  "files": [],
+  "quotes": [],
+  "est": 2,
+  "skip": null,
+  "regen": [],
+  "note": ""
+ },
+ {
+  "id": "struct_outer",
+  "line": 1894,
+  "span": "solver/matter/struct_*.py",
+  "explicit": false,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "solver/matter/struct_outer.py"
+  ],
+  "files": [],
+  "quotes": [],
+  "est": 2,
+  "skip": null,
+  "regen": [],
+  "note": ""
+ },
+ {
+  "id": "struct_symmetry",
+  "line": 1894,
+  "span": "solver/matter/struct_*.py",
+  "explicit": false,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "solver/matter/struct_symmetry.py"
+  ],
+  "files": [],
+  "quotes": [],
+  "est": 2,
+  "skip": null,
+  "regen": [],
+  "note": ""
+ },
+ {
+  "id": "plot_matter",
+  "line": 1911,
+  "span": "solver/plot_matter.py",
+  "explicit": false,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "solver/plot_matter.py"
+  ],
+  "files": [
+   "solver/matter.svg"
+  ],
+  "quotes": [],
+  "est": 2,
+  "skip": null,
+  "regen": [
+   "solver/matter.svg"
+  ],
+  "note": ""
+ },
+ {
+  "id": "singularity_type",
+  "line": 2006,
+  "span": "hp/singularity_type.py planted",
+  "explicit": true,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "hp/singularity_type.py",
+   "planted"
+  ],
+  "files": [],
+  "quotes": [
+   {
+    "label": "sqrt exponent",
+    "mode": "eq",
+    "tokens": [
+     "0.5"
+    ]
+   }
+  ],
+  "est": 2,
+  "skip": null,
+  "regen": [],
+  "note": ""
+ },
+ {
+  "id": "horizon_toy",
+  "line": 2020,
+  "span": "hp/horizon_toy.py",
+  "explicit": false,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "hp/horizon_toy.py"
+  ],
+  "files": [],
+  "quotes": [],
+  "est": 2,
+  "skip": null,
+  "regen": [],
+  "note": ""
+ },
+ {
+  "id": "plot_dropoffs",
+  "line": 2038,
+  "span": "hp/plot_dropoffs.py",
+  "explicit": false,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "hp/plot_dropoffs.py"
+  ],
+  "files": [
+   "hp/large_d_dropoffs.svg"
+  ],
+  "quotes": [],
+  "est": 2,
+  "skip": null,
+  "regen": [
+   "hp/large_d_dropoffs.svg"
+  ],
+  "note": ""
+ },
+ {
+  "id": "plot_gamma",
+  "line": 2107,
+  "span": "solver/plot_gamma.py",
+  "explicit": false,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "solver/plot_gamma.py"
+  ],
+  "files": [
+   "solver/gamma.svg"
+  ],
+  "quotes": [],
+  "est": 2,
+  "skip": null,
+  "regen": [
+   "solver/gamma.svg"
+  ],
+  "note": ""
+ },
+ {
+  "id": "plot_modecount",
+  "line": 2114,
+  "span": "hp/plot_modecount.py",
+  "explicit": false,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "hp/plot_modecount.py"
+  ],
+  "files": [
+   "hp/modecount.svg"
+  ],
+  "quotes": [],
+  "est": 2,
+  "skip": null,
+  "regen": [
+   "hp/modecount.svg"
+  ],
+  "note": ""
+ },
+ {
+  "id": "fast_eigenvalues",
+  "line": 215,
+  "span": "solver/proof/fast_eigenvalues.py",
+  "explicit": false,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "solver/proof/fast_eigenvalues.py"
+  ],
+  "files": [],
+  "quotes": [],
+  "est": 1,
+  "skip": null,
+  "regen": [],
+  "note": ""
+ },
+ {
+  "id": "fixed_point",
+  "line": 206,
+  "span": "fixed_point.py",
+  "explicit": false,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "solver/proof/fixed_point.py"
+  ],
+  "files": [],
+  "quotes": [],
+  "est": 1,
+  "skip": "named as the code of certified lemmas; the README quotes no invocation and no number (PROOF.md and proof/A_certify.md hold the commands: out of scope)",
+  "regen": [],
+  "note": ""
+ },
+ {
+  "id": "fixed_point_M",
+  "line": 206,
+  "span": "fixed_point_M.py",
+  "explicit": false,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "solver/proof/fixed_point_M.py"
+  ],
+  "files": [],
+  "quotes": [],
+  "est": 1,
+  "skip": "named as the code of certified lemmas; the README quotes no invocation and no number (PROOF.md and proof/A_certify.md hold the commands: out of scope)",
+  "regen": [],
+  "note": ""
+ },
+ {
+  "id": "validated_int",
+  "line": 206,
+  "span": "validated_int.py",
+  "explicit": false,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "solver/proof/validated_int.py"
+  ],
+  "files": [],
+  "quotes": [],
+  "est": 1,
+  "skip": "named as the code of certified lemmas; the README quotes no invocation and no number (PROOF.md and proof/A_certify.md hold the commands: out of scope)",
+  "regen": [],
+  "note": ""
+ },
+ {
+  "id": "krawczyk",
+  "line": 206,
+  "span": "krawczyk.py",
+  "explicit": false,
+  "cwd": ".",
+  "argv": [
+   "python3",
+   "solver/proof/krawczyk.py"
+  ],
+  "files": [],
+  "quotes": [],
+  "est": 1,
+  "skip": "named as the code of certified lemmas; the README quotes no invocation and no number (PROOF.md and proof/A_certify.md hold the commands: out of scope)",
+  "regen": [],
+  "note": ""
+ }
+]

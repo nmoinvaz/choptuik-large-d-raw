@@ -1,0 +1,14 @@
+$ cd /home/nathan/Source/choptuik-large-d/_i349/run/hp && python3 plot_solver_limits.py ../../choptuik-large-d-raw   [threads 2, nice 19, load 8.0, 2026-11-22 06:51:05 UTC]
+solver                                            rows      D from        D to  err from    err to
+double-double (hp/, M ≤ 384)                      1262     3.04315    67.76709   1.1e-22   5.2e-09
+double-double, pinned runs                         838    67.76758    73.26572   2.4e-23   1.1e-14
+quad-double, full system (qd_window.py)             53    67.74220    73.00000   2.4e-23   2.4e-23
+ANM chain, quad-double corrector                   145    74.00000   214.50000   1.4e-15   3.3e-11
+ANM chain, octo-double corrector                   198   214.60000   259.89944   2.9e-11   1.5e+00
+1/n series fit: an extrapolation, not a solve       16   250.00000   400.00000   8.1e-11   2.3e-10
+
+sonic closing (I933-win2, M 384, line through D 3.04335, 3.04355, 3.04375): D 3.043122
+quad-double corrector: last row D 214.5000; octo-double corrector: first row D 214.6000
+fold of the discrete system (fold_259.csv, median of the kept estimates): D* 259.9033
+
+wrote /home/nathan/Source/choptuik-large-d/_i349/run/hp/solver_limits.svg

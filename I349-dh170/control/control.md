@@ -1,0 +1,20 @@
+plant 'number planted': `| 3.755725 | 3.46677169 |` -> `| 3.755725 | 3.46677179 |`
+plant 'command changed': `python3 lowD_max.py`)` -> `python3 lowD_maxx.py`)`
+plant 'number planted in a second row': `| 1000 | 1.65424086 | 0.499250 |` -> `| 1000 | 1.65424086 | 0.499251 |`
+
+| row | real README | number planted | command changed | number planted in a second row |
+|---|---|---|---|---|
+| lowD_max | OK | FAIL: maximum: not printed: 3.46677179 (nearest printed 3.46677, 7 digits agree) | FAIL: STALE: the span is not in the README | OK |
+| values_table | OK | OK | OK | FAIL: gamma(1000): not printed: 0.499251 (nearest printed 0.499250, 5 digits agree) |
+| plot_light_cone | OK | OK | OK | OK |
+| heat_form | OK | OK | OK | OK |
+| rw_map | OK | OK | OK | OK |
+| ctl_exit | FAIL: exit 1 | FAIL: exit 1 | FAIL: exit 1 | FAIL: exit 1 |
+| ctl_file | FAIL: missing: hp/no_such_file.csv | FAIL: missing: hp/no_such_file.csv | FAIL: missing: hp/no_such_file.csv | FAIL: missing: hp/no_such_file.csv |
+| ctl_ok | OK | OK | OK | OK |
+
+synthetic rows: ctl_exit and ctl_file flag, ctl_ok passes: True
+plant 'number planted': flagged ['lowD_max'], expected ['lowD_max']: True
+plant 'command changed': flagged ['lowD_max'], expected ['lowD_max']: True
+plant 'number planted in a second row': flagged ['values_table'], expected ['values_table']: True
+CONTROL PASSED

@@ -1,0 +1,42 @@
+$ cd /home/nathan/Source/choptuik-large-d/_i349/run && python3 solver/rational_fit.py   [threads 4, nice 10, load 2.9, 2026-11-22 06:49:24 UTC]
+Traceback (most recent call last):
+  File "/home/nathan/Source/choptuik-large-d/_i349/run/solver/rational_fit.py", line 89, in <module>
+    main()
+    ~~~~^^
+  File "/home/nathan/Source/choptuik-large-d/_i349/run/solver/rational_fit.py", line 53, in main
+    D, y, s, g = data()
+                 ~~~~^^
+  File "/home/nathan/Source/choptuik-large-d/_i349/run/solver/rational_fit.py", line 21, in data
+    return load_all()
+  File "/home/nathan/Source/choptuik-large-d/_i349/run/solver/data_all.py", line 72, in load_all
+    D, y, s, g = step_converged(Dmin=8.0)
+                 ~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/home/nathan/Source/choptuik-large-d/_i349/run/solver/final_fit.py", line 44, in step_converged
+    o = old_load()
+  File "/home/nathan/Source/choptuik-large-d/_i349/run/solver/data_best.py", line 6, in load
+    rows = _load()
+  File "/home/nathan/Source/choptuik-large-d/_i349/run/solver/formula_zoo.py", line 10, in load
+    for l in open("scan_down_kc47.jsonl"):
+             ~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'scan_down_kc47.jsonl'
+$ cd /home/nathan/Source/choptuik-large-d/_i349/run/solver && python3 rational_fit.py   [threads 4, nice 10, load 2.9, 2026-11-22 06:49:27 UTC]
+Traceback (most recent call last):
+  File "/home/nathan/Source/choptuik-large-d/_i349/run/solver/rational_fit.py", line 89, in <module>
+    main()
+    ~~~~^^
+  File "/home/nathan/Source/choptuik-large-d/_i349/run/solver/rational_fit.py", line 53, in main
+    D, y, s, g = data()
+                 ~~~~^^
+  File "/home/nathan/Source/choptuik-large-d/_i349/run/solver/rational_fit.py", line 21, in data
+    return load_all()
+  File "/home/nathan/Source/choptuik-large-d/_i349/run/solver/data_all.py", line 72, in load_all
+    D, y, s, g = step_converged(Dmin=8.0)
+                 ~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/home/nathan/Source/choptuik-large-d/_i349/run/solver/final_fit.py", line 44, in step_converged
+    o = old_load()
+  File "/home/nathan/Source/choptuik-large-d/_i349/run/solver/data_best.py", line 6, in load
+    rows = _load()
+  File "/home/nathan/Source/choptuik-large-d/_i349/run/solver/formula_zoo.py", line 10, in load
+    for l in open("scan_down_kc47.jsonl"):
+             ~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'scan_down_kc47.jsonl'

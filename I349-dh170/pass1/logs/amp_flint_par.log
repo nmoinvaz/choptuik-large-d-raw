@@ -1,0 +1,18 @@
+$ cd /home/nathan/Source/choptuik-large-d/_i349/run && python3 solver/inner_amp/amp_flint_par.py --fit phys   [threads 2, nice 19, load 8.7, 2026-11-22 03:37:46 UTC]
+Traceback (most recent call last):
+  File "/home/nathan/Source/choptuik-large-d/_i349/run/solver/inner_amp/amp_flint_par.py", line 801, in <module>
+    main(sys.argv)
+    ~~~~^^^^^^^^^^
+  File "/home/nathan/Source/choptuik-large-d/_i349/run/solver/inner_amp/amp_flint_par.py", line 762, in main
+    wf, K, J = float(argv[1]), int(argv[2]), int(argv[3])
+                     ~~~~^^^
+IndexError: list index out of range
+$ cd /home/nathan/Source/choptuik-large-d/_i349/run/solver/inner_amp && python3 amp_flint_par.py --fit phys   [threads 2, nice 19, load 8.7, 2026-11-22 03:37:47 UTC]
+Traceback (most recent call last):
+  File "/home/nathan/Source/choptuik-large-d/_i349/run/solver/inner_amp/amp_flint_par.py", line 801, in <module>
+    main(sys.argv)
+    ~~~~^^^^^^^^^^
+  File "/home/nathan/Source/choptuik-large-d/_i349/run/solver/inner_amp/amp_flint_par.py", line 762, in main
+    wf, K, J = float(argv[1]), int(argv[2]), int(argv[3])
+                     ~~~~^^^
+IndexError: list index out of range

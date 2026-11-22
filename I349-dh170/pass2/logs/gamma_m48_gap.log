@@ -1,0 +1,39 @@
+$ cd /home/nathan/Source/choptuik-large-d/_i349/run && python3 hp/gamma_m48_gap.py   [threads 2, nice 19, load 5.3, 2026-11-22 07:23:31 UTC]
+gamma_dd's D 50 M 48 self-convergence gap (#266): two M = 48 solutions of one layout, the direction their difference
+lies in, and which of them is converged.
+
+    python3 hp/gamma_m48_gap.py solve OUTDIR STATE --path=gamma|r2|polish [--M=48] [--kf=13] [--threads=1] [--it=14]
+    python3 hp/gamma_m48_gap.py analyze OUT.jsonl A.npz B.npz [--w=24] [--lam] [--threads=1] [--mutate=plant]
+        [--save_dirs=DIRS.npz]
+    python3 hp/gamma_m48_gap.py qd OUTDIR STATE.npz [--plan=REF.npz] [--kf=13] [--it=8] [--tol=1e-45] [--mutate=N]
+    python3 hp/gamma_m48_gap.py lam OUT.jsonl STATE.npz [...] [--plan=REF.npz] [--kf=13|none]
+    python3 hp/gamma_m48_gap.py lamres OUT.jsonl STATE.npz --base=LAM [--h=5e-14] [--eps=1e-30,...] [--n=2] [--plan=REF]
+
+solve: an M = 32 state taken to M = 48 by one of two paths, saved as OUTDIR/<stem>_M<M>_<path>.npz with a record in
+  OUTDIR/solve.jsonl.
+  gamma: gamma_dd.py --M48's path before #271 (its --mutate=old_rule), call for call (resample_z in f64 with lo dropped, p1 projected onto the cut, Newton to
+    max(10 |F_32|, 1e-27), Levenberg-Marquardt when Newton stops above 1e-20).
+  r2: review R2's path (hp/review/rv2_resolve.py --M 48 --corrector dnp: resample_dd at 40 digits, deflated Newton to
+    1e-40 with w = 16, then Newton to 1e-40).
+  polish: STATE is already at M; plain Newton to 1e-40 on its own layout (tells whether the first path stopped early).
+analyze: A and B on one solver (B's segment plan; A's own plan is compared with it). For each: max |F| in double-double
+  and in quad-double (the same dd state, evaluated in quad-double), per block, the linearised Delta correction
+  -dDelta/dF . F, the Newton step's Delta component and norm, both series' truncation (series_truncation.measure), and
+  with --lam lam located as gamma_dd.py does. Then at B the w weakest right singular directions of the Jacobian
+  (inverse subspace iteration on (J^T J)^-1 with the double-double LU, then Rayleigh-Ritz; the unscaled Jacobian as the
+  solver uses it), the difference d = A - B projected on them, the Newton step at A projected on -d, and d's and the
+  weakest directions' tau-harmonic content per field.
+  Control (--mutate=plant): A is replaced by B plus 1e-12 along the third weakest direction and 1e-20 along a strong
+  one (random, orthogonal to the weak subspace); the projection must return 1e-12 on that direction to 1e-6, below
+  1e-18 on the others, and the strong part outside the weak subspace (exit 1 if not). --mutate=plant_strong swaps the
+  two amplitudes, and the check must fail.
+qd: STATE polished by the quad-double Newton (Solver.newton_q, plain, hpkernel.driver.newton_qd) on the M = 48 layout
+  with the cut, the segment plan of --plan's state (default STATE's own), so that two states can be polished on one
+  system. Saves OUTDIR/<stem>_qd.npz (four parts) and a record in OUTDIR/qd.jsonl with Delta to 30 digits.
+  --mutate=N passes Ctx::mutate N to every call (the controls of the quad-double lanes).
+lam: lam located on each state as gamma_dd.py does (find_lam, brentq xtol 1e-14), then refined inside +-2e-13 in
+  double-double lam (lam_fine: base + t, brentq on t with xtol 1e-19); a four-part state is rounded to its first two parts. Also records |F| and the linearised Delta
+  correction -dDelta/dF . F at the state (est).
+lamres: the det root's resolution on one state (see cmd_lamres): the root interpolated inside base +- h, on the state
+  and on copies with relative noise eps.
+

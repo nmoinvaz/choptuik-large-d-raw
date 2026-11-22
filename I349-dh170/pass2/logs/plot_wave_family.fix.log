@@ -1,0 +1,20 @@
+$ cd /home/nathan/Source/choptuik-large-d/_i349/run/hp && python3 plot_wave_family.py ../../choptuik-large-d-raw   [threads 2, nice 19, load 4.4, 2026-11-22 07:31:54 UTC]
+322 solutions, D 38.0204 to 245.637 (138 full)
+| D | Delta | sqrt(D-2) |c1| | |c1|/|c3| | |c3|/|c5| | |c5|/|c7| | kind |
+|---|---|---|---|---|---|---|
+| 38.02 | 1.9006420096 | 3.10594 | 10.54 | 7.67 | 6.83 | full |
+| 52.04 | 1.8342193502 | 2.99989 | 11.89 | 8.91 | 7.93 | full |
+| 73.00 | 1.7812396819 | 2.91859 | 13.20 | 10.25 | 9.16 | full |
+| 100.00 | 1.7450264844 | 2.86452 | 14.25 | 11.46 | 10.30 | chain |
+| 150.00 | 1.7118670266 | 2.81600 | 15.36 | 12.88 | 11.72 | chain |
+| 200.00 | 1.6950887525 | 2.79179 | 15.98 | 13.76 | 12.66 | chain |
+| 245.64 | 1.6856769201 | 2.77830 | 16.34 | 14.31 | 13.27 | chain |
+D 38.02, the wave built up harmonic by harmonic (largest miss over one period):
+  up to harmonic 1: miss 5.286e-02
+  up to harmonic 3: miss 7.276e-03
+  up to harmonic 5: miss 1.089e-03
+  up to harmonic 7: miss 1.701e-04
+  up to harmonic 13: miss 0.000e+00
+D 38.02: max|p(0.7)| / (0.7 max|p1|) = 0.8958
+D 245.64: max|p(0.7)| / (0.7 max|p1|) = 0.9830
+wrote /home/nathan/Source/choptuik-large-d/_i349/run/hp/wave_family.svg

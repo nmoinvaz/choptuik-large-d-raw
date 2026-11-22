@@ -1,0 +1,34 @@
+$ cd /home/nathan/Source/choptuik-large-d/_i349/run && python3 hp/plot_dropoffs.py   [threads 2, nice 19, load 8.0, 2026-11-22 06:51:17 UTC]
+large_d_dropoffs.svg: the drop-offs of the continuation's step in D, and the walls that set them.
+
+Top: each large-D run's step in D (the records of plot_point_spacing.py: data/delta_dd.csv, the cloud pilot and T48),
+with the stalls named by their cause. Bottom: u·κ, double-double's unit roundoff u = 2^-104 times the Jacobian's
+condition number at converged states (hp/stall_margin.py's runs in folder T76 of the raw-data repository), for the
+full system with harmonics to 13 solved and for the pinned systems (p1's harmonics above 9, 7 or 5 held), the full
+system's power-law fit in n = D - 2 (README, "Why the solver stalls": n^38.9, reaching 1 at D = 59.9, the stall at
+60.96), and the crossings of 1 the same slope predicts for the pinned systems from their last measured points, and
+for quad-double (u = 2^-208) for the full system. A wall of this kind moves when the arithmetic or the harmonic set
+changes; the walls at 73.27 and 78.1 (notes/QUAD_DOUBLE.md 12.4, 12.7) are the horizon block's, not precision.
+Prints the numbers and writes data/dropoffs.json (what the README quotes). Standard library and numpy; the primitives
+are data_graphs.py.
+
+    git clone https://github.com/nmoinvaz/choptuik-large-d-raw ../choptuik-large-d-raw   (beside the repository, once)
+    cd hp && python3 plot_dropoffs.py ../../choptuik-large-d-raw/T76
+
+$ cd /home/nathan/Source/choptuik-large-d/_i349/run/hp && python3 plot_dropoffs.py   [threads 2, nice 19, load 8.1, 2026-11-22 06:51:19 UTC]
+large_d_dropoffs.svg: the drop-offs of the continuation's step in D, and the walls that set them.
+
+Top: each large-D run's step in D (the records of plot_point_spacing.py: data/delta_dd.csv, the cloud pilot and T48),
+with the stalls named by their cause. Bottom: u·κ, double-double's unit roundoff u = 2^-104 times the Jacobian's
+condition number at converged states (hp/stall_margin.py's runs in folder T76 of the raw-data repository), for the
+full system with harmonics to 13 solved and for the pinned systems (p1's harmonics above 9, 7 or 5 held), the full
+system's power-law fit in n = D - 2 (README, "Why the solver stalls": n^38.9, reaching 1 at D = 59.9, the stall at
+60.96), and the crossings of 1 the same slope predicts for the pinned systems from their last measured points, and
+for quad-double (u = 2^-208) for the full system. A wall of this kind moves when the arithmetic or the harmonic set
+changes; the walls at 73.27 and 78.1 (notes/QUAD_DOUBLE.md 12.4, 12.7) are the horizon block's, not precision.
+Prints the numbers and writes data/dropoffs.json (what the README quotes). Standard library and numpy; the primitives
+are data_graphs.py.
+
+    git clone https://github.com/nmoinvaz/choptuik-large-d-raw ../choptuik-large-d-raw   (beside the repository, once)
+    cd hp && python3 plot_dropoffs.py ../../choptuik-large-d-raw/T76
+

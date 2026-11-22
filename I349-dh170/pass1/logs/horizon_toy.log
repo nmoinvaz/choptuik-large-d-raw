@@ -1,0 +1,22 @@
+$ cd /home/nathan/Source/choptuik-large-d/_i349/run && python3 hp/horizon_toy.py   [threads 2, nice 19, load 9.4, 2026-11-22 05:13:23 UTC]
+| s (D ~ 2s + 4) | P | (a) series: terms, correct digits at u0 | (b) integral from u = 0 | (c) outward shot from 0.01: digits lost |
+|---|---|---|---|---|
+| 0.5 (~5) | 16 | 20 terms, 16.8 digits | converges | 0.7 |
+| 0.5 (~5) | 32 | 30 terms, 33.3 digits | converges | 0.7 |
+| 0.5 (~5) | 64 | 47 terms, 64.5 digits | converges | 0.7 |
+| 2.5 (~9) | 16 | 21 terms, 16.4 digits | diverges as t^-2.5 unless its first 3 Taylor terms are subtracted | 3.6 |
+| 2.5 (~9) | 32 | 31 terms, 32.5 digits | diverges as t^-2.5 unless its first 3 Taylor terms are subtracted | 3.6 |
+| 2.5 (~9) | 64 | 48 terms, 64.6 digits | diverges as t^-2.5 unless its first 3 Taylor terms are subtracted | 3.6 |
+| 10.5 (~25) | 16 | 23 terms, 16.3 digits | diverges as t^-10.5 unless its first 11 Taylor terms are subtracted | 15.5 |
+| 10.5 (~25) | 32 | 33 terms, 32.5 digits | diverges as t^-10.5 unless its first 11 Taylor terms are subtracted | 15.5 |
+| 10.5 (~25) | 64 | 50 terms, 64.8 digits | diverges as t^-10.5 unless its first 11 Taylor terms are subtracted | 15.5 |
+| 20.5 (~45) | 16 | 23 terms, 16.6 digits | diverges as t^-20.5 unless its first 21 Taylor terms are subtracted | 30.2 (more than P: no digits left) |
+| 20.5 (~45) | 32 | 34 terms, 32.6 digits | diverges as t^-20.5 unless its first 21 Taylor terms are subtracted | 30.2 |
+| 20.5 (~45) | 64 | 52 terms, 64.8 digits | diverges as t^-20.5 unless its first 21 Taylor terms are subtracted | 30.2 |
+| 40.5 (~85) | 16 | 19 terms, 16.8 digits | diverges as t^-40.5 unless its first 41 Taylor terms are subtracted | 59.8 (more than P: no digits left) |
+| 40.5 (~85) | 32 | 30 terms, 32.7 digits | diverges as t^-40.5 unless its first 41 Taylor terms are subtracted | 59.8 (more than P: no digits left) |
+| 40.5 (~85) | 64 | 54 terms, 64.7 digits | diverges as t^-40.5 unless its first 41 Taylor terms are subtracted | 59.8 |
+| 98.5 (~201) | 16 | 18 terms, 16.4 digits | diverges as t^-98.5 unless its first 99 Taylor terms are subtracted | 145.4 (more than P: no digits left) |
+| 98.5 (~201) | 32 | 27 terms, 32.4 digits | diverges as t^-98.5 unless its first 99 Taylor terms are subtracted | 145.4 (more than P: no digits left) |
+| 98.5 (~201) | 64 | 45 terms, 64.3 digits | diverges as t^-98.5 unless its first 99 Taylor terms are subtracted | 145.4 (more than P: no digits left) |
+(a) every case keeps at least P - 3 digits: PASS

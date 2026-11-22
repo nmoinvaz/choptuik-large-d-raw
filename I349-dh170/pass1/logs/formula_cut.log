@@ -1,0 +1,36 @@
+$ cd /home/nathan/Source/choptuik-large-d/_i349/run && python3 hp/formula_cut.py   [threads 2, nice 19, load 9.0, 2026-11-22 03:38:24 UTC]
+    D 3-3.1: 14 points, largest |model - point| 5.0e-10
+    D 3.1-4.01: 28 points, largest |model - point| 6.9e-10
+    D 4.01-8.3: 22 points, largest |model - point| 1.2e-10
+    D 8.3-30: 184 points, largest |model - point| 5.5e-16
+    D 30-68: 987 points, largest |model - point| 5.4e-15
+    the unresolved M 48 rows 4.25-8.2 (not fitted, accuracy unmeasured): largest |model - row| 5.3e-09 at D 4.25
+(1) 1235 points: largest |model - point| / sigma 521.30 at D 6.25, against 3.5: FAIL
+(2) D     3.1: series 2.773310704082243, integral 2.773310704082243, |difference| 2.04e-58
+(2) D       4: series 3.445452402227821, integral 3.445452402227821, |difference| 1.8e-58
+(2) D      10: series 2.521078919561945, integral 2.521078919561945, |difference| 9.89e-59
+(2) D      30: series 1.964957899257702, integral 1.964957899257702, |difference| 3.76e-59
+(2) D   67.77: series 1.791484686632656, integral 1.791484686632656, |difference| 4.04e-60
+(2) D     100: series 1.74502648443306, integral 1.74502648443306, |difference| 4.98e-60
+(2) D    1000: series 1.654240854194864, integral 1.654240854194864, |difference| 1.28e-59
+(2) integral = series to 1e-25: PASS
+(3) Delta_inf 1.64389374520412, Delta(3) 1.9189792 (stored 1.6438937452041199, 1.91897918): PASS
+rho on the cut: max |rho| 3.55e+9, 23 sign changes (the series' continuation, not data)
+$ cd /home/nathan/Source/choptuik-large-d/_i349/run/hp && python3 formula_cut.py   [threads 2, nice 19, load 8.6, 2026-11-22 03:39:03 UTC]
+    D 3-3.1: 14 points, largest |model - point| 5.0e-10
+    D 3.1-4.01: 28 points, largest |model - point| 6.9e-10
+    D 4.01-8.3: 22 points, largest |model - point| 1.2e-10
+    D 8.3-30: 184 points, largest |model - point| 5.5e-16
+    D 30-68: 987 points, largest |model - point| 5.4e-15
+    the unresolved M 48 rows 4.25-8.2 (not fitted, accuracy unmeasured): largest |model - row| 5.3e-09 at D 4.25
+(1) 1235 points: largest |model - point| / sigma 521.30 at D 6.25, against 3.5: FAIL
+(2) D     3.1: series 2.773310704082243, integral 2.773310704082243, |difference| 2.04e-58
+(2) D       4: series 3.445452402227821, integral 3.445452402227821, |difference| 1.8e-58
+(2) D      10: series 2.521078919561945, integral 2.521078919561945, |difference| 9.89e-59
+(2) D      30: series 1.964957899257702, integral 1.964957899257702, |difference| 3.76e-59
+(2) D   67.77: series 1.791484686632656, integral 1.791484686632656, |difference| 4.04e-60
+(2) D     100: series 1.74502648443306, integral 1.74502648443306, |difference| 4.98e-60
+(2) D    1000: series 1.654240854194864, integral 1.654240854194864, |difference| 1.28e-59
+(2) integral = series to 1e-25: PASS
+(3) Delta_inf 1.64389374520412, Delta(3) 1.9189792 (stored 1.6438937452041199, 1.91897918): PASS
+rho on the cut: max |rho| 3.55e+9, 23 sign changes (the series' continuation, not data)

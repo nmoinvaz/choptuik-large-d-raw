@@ -1,0 +1,19 @@
+$ cd /home/nathan/Source/choptuik-large-d/_i349/run && python3 solver/proof/fast_eigenvalues.py   [threads 2, nice 19, load 8.7, 2026-11-22 03:37:52 UTC]
+leading Jacobian / n on the slow manifold:
+⎡     c             c           c⋅p       ⎤
+⎢────────────  ────────────  ──────────  0⎥
+⎢2⋅x⋅(-c + x)  2⋅x⋅(-c + x)  x⋅(-c + x)   ⎥
+⎢                                         ⎥
+⎢    -c            -c           c⋅p       ⎥
+⎢───────────   ───────────   ─────────   0⎥
+⎢2⋅x⋅(c + x)   2⋅x⋅(c + x)   x⋅(c + x)    ⎥
+⎢                                         ⎥
+⎢                               -1        ⎥
+⎢     0             0           ───      0⎥
+⎢                                x        ⎥
+⎢                                         ⎥
+⎢                                c        ⎥
+⎢     0             0            ─       0⎥
+⎣                                x        ⎦
+eigenvalues: {-1/x: 1, c**2/(x*(-c**2 + x**2)): 1, 0: 2}
+lambda_u(c=1) + Phi'(x) = 0

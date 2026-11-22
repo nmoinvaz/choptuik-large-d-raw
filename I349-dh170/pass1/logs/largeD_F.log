@@ -1,0 +1,14 @@
+$ cd /home/nathan/Source/choptuik-large-d/_i349/run && python3 hp/largeD_F.py   [threads 2, nice 19, load 8.9, 2026-11-22 03:41:03 UTC]
+Traceback (most recent call last):
+  File "/home/nathan/Source/choptuik-large-d/_i349/run/hp/largeD_F.py", line 3, in <module>
+    from largeD_profiles import solver_for, harmonics
+  File "/home/nathan/Source/choptuik-large-d/_i349/run/hp/largeD_profiles.py", line 4, in <module>
+    from hpkernel.driver import make_solver, load
+ModuleNotFoundError: No module named 'hpkernel'
+$ cd /home/nathan/Source/choptuik-large-d/_i349/run/hp && python3 largeD_F.py   [threads 2, nice 19, load 8.9, 2026-11-22 03:41:04 UTC]
+Traceback (most recent call last):
+  File "/home/nathan/Source/choptuik-large-d/_i349/run/hp/largeD_F.py", line 3, in <module>
+    from largeD_profiles import solver_for, harmonics
+  File "/home/nathan/Source/choptuik-large-d/_i349/run/hp/largeD_profiles.py", line 4, in <module>
+    from hpkernel.driver import make_solver, load
+ModuleNotFoundError: No module named 'hpkernel'
