@@ -1,0 +1,105 @@
+# diagnostics of the #997 rerun's anm_lowd.py (pid 1155857), read-only, 2026-11-22 13:40:46 UTC
+## anm_lowd.log with file times
+mtime 2026-11-22 05:21:57.010790633 -0800, size 763
+# cmd (cwd hp/): nice -n 10 /home/nathan/Source/venv-i1058/bin/python -u anm_lowd.py /home/nathan/Source/choptuik-large-d-raw /home/nathan/Source/choptuik-large-d-raw/I997-dh610/series_D304315_r2 --state /home/nathan/Source/choptu
+base /home/nathan/Source/choptuik-large-d-raw/I945-win2/leg/states/lowD343_D3.043150_M320.npz: D 3.04315, M 320, |F| 7.3e-21, pivots 2.1e-10..4.3e+01, 16268 s$
+/home/nathan/Source/venv-i1058/lib/python3.14/site-packages/numpy/linalg/_linalg.py:2784: RuntimeWarning: overflow encountered in dot$
+  sqnorm = x.dot(x)$
+
+## anm_lowd.jsonl
+mtime 2026-11-22 03:03:36.876788147 -0800, size 289
+
+## py-spy
+/usr/bin/which: no py-spy in (/home/nathan/.cargo/bin:/home/nathan/.local/bin:/home/nathan/bin:/usr/local/bin:/usr/bin)
+/usr/bin/which: no py-spy in (/home/nathan/Source/venv-i1058/bin)
+
+## /proc/1155857/status (selected)
+State:	S (sleeping)
+VmPeak:	 4979036 kB
+VmHWM:	 1578928 kB
+VmRSS:	 1301288 kB
+Threads:	11
+voluntary_ctxt_switches:	47
+nonvoluntary_ctxt_switches:	196
+wchan main: futex_do_wait
+## per-thread: tid state utime stime (ticks, 100/s) wchan
+1155857 S 1374 4 futex_do_wait
+1155934 S 1798315 7040 futex_do_wait
+1155935 S 1588759 8822 futex_do_wait
+1155936 S 1674180 7029 futex_do_wait
+1155937 S 1617991 8858 futex_do_wait
+1155938 S 1547573 8624 futex_do_wait
+1155939 S 1597857 8242 futex_do_wait
+1155940 S 1607330 8348 futex_do_wait
+1155941 R 1569482 8228 0
+1155942 S 1595841 8293 futex_do_wait
+1155943 S 1605394 8286 futex_do_wait
+## cpu over 10 s (main process ticks)
+ticks 16285882 -> 16286879 (997 per 10 s = 99% of one core)
+## RSS timeline since the base line (every 10 min), kB
+11:11:51 rss_kB pcpu pcpu
+11:21:51 rss_kB pcpu pcpu
+11:31:51 rss_kB pcpu pcpu
+11:41:51 rss_kB pcpu pcpu
+11:51:51 rss_kB pcpu pcpu
+12:01:51 rss_kB pcpu pcpu
+12:11:51 rss_kB pcpu pcpu
+12:21:51 rss_kB pcpu pcpu
+12:31:51 rss_kB pcpu pcpu
+12:41:51 rss_kB pcpu pcpu
+12:51:51 rss_kB pcpu pcpu
+13:01:51 rss_kB pcpu pcpu
+13:11:51 rss_kB pcpu pcpu
+13:21:51 rss_kB pcpu pcpu
+13:31:51 rss_kB pcpu pcpu
+## cmdline
+/home/nathan/Source/venv-i1058/bin/python -u anm_lowd.py /home/nathan/Source/choptuik-large-d-raw /home/nathan/Source/choptuik-large-d-raw/I997-dh610/series_D304315_r2 --state /home/nathan/Source/chop
+
+## open files
+      2 /home/nathan/Source/choptuik-large-d-raw/I997-dh610/series_D304315_r2/anm_lowd.log
+      1 /home/nathan/Source/choptuik-large-d-raw/I997-dh610/series_D304315_r2/anm_lowd.jsonl
+      1 /home/nathan/.local/share/uv/python/cpython-3.14.10-linux-x86_64-gnu/bin/python3.14
+      1 /dev/null
+      1 0
+
+## RSS timeline since the base line (kB; every 10 min; the column above was mis-cut)
+11:11:51 rss_kB 1417968 memavail_GB 34
+11:21:51 rss_kB 1417968 memavail_GB 52
+11:31:51 rss_kB 1418000 memavail_GB 35
+11:41:51 rss_kB 1418000 memavail_GB 35
+11:51:51 rss_kB 1289288 memavail_GB 31
+12:01:51 rss_kB 1287284 memavail_GB 26
+12:11:51 rss_kB 1268240 memavail_GB 29
+12:21:51 rss_kB 1275444 memavail_GB 46
+12:31:51 rss_kB 1297688 memavail_GB 31
+12:41:51 rss_kB 1287396 memavail_GB 34
+12:51:51 rss_kB 1297204 memavail_GB 35
+13:01:51 rss_kB 1292688 memavail_GB 32
+13:11:51 rss_kB 1282396 memavail_GB 30
+13:21:51 rss_kB 1300248 memavail_GB 29
+13:31:51 rss_kB 1277672 memavail_GB 29
+
+## reading (the second session's, 13:4x UTC)
+- The log's last write is 13:21:57 UTC (mtime above, local -0800 converted): the RuntimeWarning 'overflow encountered in dot / sqnorm = x.dot(x)' was written 2 h 18 min after the base line (11:03:51) and nothing since (19 min at 13:40:46). anm_lowd.py prints nothing between the base line and the first z_k line (its stages after the base: the dimension-frozen control jet and its dd_norm, then order 1's jet, dd_norm of the right-hand side, GMRES), so which of them raised the warning is not known.
+- Only one of 11 threads runs (99% of one core over 10 s, ticks above); the 10 workers sit in futex_do_wait with 15.5k to 18k CPU seconds each from the base stage.
+- py-spy is not installed (no install made); no stack sample. VmHWM 1.58 GB, VmRSS 1.30 GB, State S/R, wchan futex_do_wait.
+- #1067's anm_lowd (same code, M 512, base smallest pivot 4.0e-05) printed z_1 (718 + 375 s) through z_5 since its base line at 11:08:56 UTC and has no RuntimeWarning in its log; this run's base smallest pivot is 2.1e-10.
+
+## second sample 2026-11-22 13:59:16 UTC (before the stop rule at 14:03:51)
+anm_lowd.log mtime 2026-11-22 05:58:54.379927379 -0800, size 846
+ 3.04315, M 320, |F| 7.3e-21, pivots 2.1e-10..4.3e+01, 16268 s
+/home/nathan/Source/venv-i1058/lib/python3.14/site-packages/numpy/linalg/_linalg.py:2784: RuntimeWarning: overflow encountered in dot
+  sqnorm = x.dot(x)
+  z_1: |z| 1.955e+256, |rhs| 1.36e+02, 40 products, converged False, 1171 + 7956 s
+grep: /proc/1155857/status: No such file or directory
+awk: fatal: cannot open file `/proc/1155857/stat' for reading: No such file or directory
+awk: fatal: cannot open file `/proc/1155857/stat' for reading: No such file or directory
+main process CPU: 0% of one core over 10 s
+awk: fatal: cannot open file `/proc/1155857/task/*/stat' for reading: No such file or directory
+cat: '/proc/1155857/task/*/wchan': No such file or directory
+*  
+open fds: 0
+
+## after the stop (13:59:11 UTC)
+The second sample above found no process: anm_lowd.py had printed its first and only z line at 13:58:54 UTC (the log's last write) and the monitor sent TERM to the exact pid at 13:59:11 UTC (17 s later, by its 20 s polling) on the rule "an order's solve does not converge". The stop was not the order-2 bar (14:03:51 UTC). The line: `z_1: |z| 1.955e+256, |rhs| 1.36e+02, 40 products, converged False, 1171 + 7956 s`.
+Derived from the log times (estimates; GMRES products assumed equal in cost): order 1 started 13:58:54 - 9127 s = 11:26:47 UTC (the dimension-frozen control took about 23 min after the base line at 11:03:51); its jet took 1171 s (ends about 11:46:18, the RSS drop in the timeline above); the GMRES took 7956 s for 40 products, about 199 s each; the overflow warning at 13:21:57 UTC is 5739 s into the GMRES, about the 29th product, when the iterate's squared norm passed 1.8e308 (norm above 1e154); the iterate ended at 1.955e+256.
