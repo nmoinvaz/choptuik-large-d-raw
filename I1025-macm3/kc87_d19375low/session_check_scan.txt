@@ -1,0 +1,112 @@
+# session check, 2026-11-22 22:46:03 UTC: parent chain of each pid (the given ones and their descendants) up to pid 1 (pid ppid pgid sess tty command); fails if 'claude' is in a chain
+
+pid 65274 (/bin/bash /Users/nathan/Source/choptuik-large-d-raw-903/I102):
+   65274 ppid      1 pgid  65273 tty  ??  /bin/bash /Users/nathan/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_d19375low/run_scan.sh
+       1 ppid      0 pgid      1 tty  ??  /sbin/launchd
+  chain ends at pid 1 (/sbin/launchd), 2 processes
+
+pid 65275 (/usr/bin/caffeinate -is /bin/bash /Users/nathan/Source/chopt):
+   65275 ppid  65274 pgid  65273 tty  ??  /usr/bin/caffeinate -is /bin/bash /Users/nathan/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_d19
+   65274 ppid      1 pgid  65273 tty  ??  /bin/bash /Users/nathan/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_d19375low/run_scan.sh
+       1 ppid      0 pgid      1 tty  ??  /sbin/launchd
+  chain ends at pid 1 (/sbin/launchd), 3 processes
+
+pid 65352 (/bin/bash /Users/nathan/Source/choptuik-large-d-raw-903/I102):
+   65352 ppid  65274 pgid  65273 tty  ??  /bin/bash /Users/nathan/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_d19375low/run_scan.sh
+   65274 ppid      1 pgid  65273 tty  ??  /bin/bash /Users/nathan/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_d19375low/run_scan.sh
+       1 ppid      0 pgid      1 tty  ??  /sbin/launchd
+  chain ends at pid 1 (/sbin/launchd), 3 processes
+
+pid 65354 (/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.):
+   65354 ppid  65352 pgid  65273 tty  ??  /opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/Resources/Python
+   65352 ppid  65274 pgid  65273 tty  ??  /bin/bash /Users/nathan/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_d19375low/run_scan.sh
+   65274 ppid      1 pgid  65273 tty  ??  /bin/bash /Users/nathan/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_d19375low/run_scan.sh
+       1 ppid      0 pgid      1 tty  ??  /sbin/launchd
+  chain ends at pid 1 (/sbin/launchd), 4 processes
+
+pid 65355 (/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.):
+   65355 ppid  65354 pgid  65273 tty  ??  /opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/Resources/Python
+   65354 ppid  65352 pgid  65273 tty  ??  /opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/Resources/Python
+   65352 ppid  65274 pgid  65273 tty  ??  /bin/bash /Users/nathan/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_d19375low/run_scan.sh
+   65274 ppid      1 pgid  65273 tty  ??  /bin/bash /Users/nathan/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_d19375low/run_scan.sh
+       1 ppid      0 pgid      1 tty  ??  /sbin/launchd
+  chain ends at pid 1 (/sbin/launchd), 5 processes
+
+pid 65361 (/bin/bash /Users/nathan/Source/choptuik-large-d-raw-903/I102):
+   65361 ppid  65274 pgid  65273 tty  ??  /bin/bash /Users/nathan/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_d19375low/run_scan.sh
+   65274 ppid      1 pgid  65273 tty  ??  /bin/bash /Users/nathan/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_d19375low/run_scan.sh
+       1 ppid      0 pgid      1 tty  ??  /sbin/launchd
+  chain ends at pid 1 (/sbin/launchd), 3 processes
+
+pid 65363 (/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.):
+   65363 ppid  65361 pgid  65273 tty  ??  /opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/Resources/Python
+   65361 ppid  65274 pgid  65273 tty  ??  /bin/bash /Users/nathan/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_d19375low/run_scan.sh
+   65274 ppid      1 pgid  65273 tty  ??  /bin/bash /Users/nathan/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_d19375low/run_scan.sh
+       1 ppid      0 pgid      1 tty  ??  /sbin/launchd
+  chain ends at pid 1 (/sbin/launchd), 4 processes
+
+pid 65364 (/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.):
+   65364 ppid  65363 pgid  65273 tty  ??  /opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/Resources/Python
+   65363 ppid  65361 pgid  65273 tty  ??  /opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/Resources/Python
+   65361 ppid  65274 pgid  65273 tty  ??  /bin/bash /Users/nathan/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_d19375low/run_scan.sh
+   65274 ppid      1 pgid  65273 tty  ??  /bin/bash /Users/nathan/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_d19375low/run_scan.sh
+       1 ppid      0 pgid      1 tty  ??  /sbin/launchd
+  chain ends at pid 1 (/sbin/launchd), 5 processes
+
+pid 65370 (/bin/bash /Users/nathan/Source/choptuik-large-d-raw-903/I102):
+   65370 ppid  65274 pgid  65273 tty  ??  /bin/bash /Users/nathan/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_d19375low/run_scan.sh
+   65274 ppid      1 pgid  65273 tty  ??  /bin/bash /Users/nathan/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_d19375low/run_scan.sh
+       1 ppid      0 pgid      1 tty  ??  /sbin/launchd
+  chain ends at pid 1 (/sbin/launchd), 3 processes
+
+pid 65372 (/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.):
+   65372 ppid  65370 pgid  65273 tty  ??  /opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/Resources/Python
+   65370 ppid  65274 pgid  65273 tty  ??  /bin/bash /Users/nathan/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_d19375low/run_scan.sh
+   65274 ppid      1 pgid  65273 tty  ??  /bin/bash /Users/nathan/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_d19375low/run_scan.sh
+       1 ppid      0 pgid      1 tty  ??  /sbin/launchd
+  chain ends at pid 1 (/sbin/launchd), 4 processes
+
+pid 65373 (/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.):
+   65373 ppid  65372 pgid  65273 tty  ??  /opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/Resources/Python
+   65372 ppid  65370 pgid  65273 tty  ??  /opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/Resources/Python
+   65370 ppid  65274 pgid  65273 tty  ??  /bin/bash /Users/nathan/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_d19375low/run_scan.sh
+   65274 ppid      1 pgid  65273 tty  ??  /bin/bash /Users/nathan/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_d19375low/run_scan.sh
+       1 ppid      0 pgid      1 tty  ??  /sbin/launchd
+  chain ends at pid 1 (/sbin/launchd), 5 processes
+
+pid 65379 (/bin/bash /Users/nathan/Source/choptuik-large-d-raw-903/I102):
+   65379 ppid  65274 pgid  65273 tty  ??  /bin/bash /Users/nathan/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_d19375low/run_scan.sh
+   65274 ppid      1 pgid  65273 tty  ??  /bin/bash /Users/nathan/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_d19375low/run_scan.sh
+       1 ppid      0 pgid      1 tty  ??  /sbin/launchd
+  chain ends at pid 1 (/sbin/launchd), 3 processes
+
+pid 65381 (/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.):
+   65381 ppid  65379 pgid  65273 tty  ??  /opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/Resources/Python
+   65379 ppid  65274 pgid  65273 tty  ??  /bin/bash /Users/nathan/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_d19375low/run_scan.sh
+   65274 ppid      1 pgid  65273 tty  ??  /bin/bash /Users/nathan/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_d19375low/run_scan.sh
+       1 ppid      0 pgid      1 tty  ??  /sbin/launchd
+  chain ends at pid 1 (/sbin/launchd), 4 processes
+
+pid 65382 (/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.):
+   65382 ppid  65381 pgid  65273 tty  ??  /opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/Resources/Python
+   65381 ppid  65379 pgid  65273 tty  ??  /opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/Resources/Python
+   65379 ppid  65274 pgid  65273 tty  ??  /bin/bash /Users/nathan/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_d19375low/run_scan.sh
+   65274 ppid      1 pgid  65273 tty  ??  /bin/bash /Users/nathan/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_d19375low/run_scan.sh
+       1 ppid      0 pgid      1 tty  ??  /sbin/launchd
+  chain ends at pid 1 (/sbin/launchd), 5 processes
+
+pid 65388 (/bin/bash /Users/nathan/Source/choptuik-large-d-raw-903/I102):
+   65388 ppid  65274 pgid  65273 tty  ??  /bin/bash /Users/nathan/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_d19375low/run_scan.sh
+   65274 ppid      1 pgid  65273 tty  ??  /bin/bash /Users/nathan/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_d19375low/run_scan.sh
+       1 ppid      0 pgid      1 tty  ??  /sbin/launchd
+  chain ends at pid 1 (/sbin/launchd), 3 processes
+
+pid 65761 (sleep 60):
+   65761 ppid  65388 pgid  65273 tty  ??  sleep 60
+   65388 ppid  65274 pgid  65273 tty  ??  /bin/bash /Users/nathan/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_d19375low/run_scan.sh
+   65274 ppid      1 pgid  65273 tty  ??  /bin/bash /Users/nathan/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_d19375low/run_scan.sh
+       1 ppid      0 pgid      1 tty  ??  /sbin/launchd
+  chain ends at pid 1 (/sbin/launchd), 4 processes
+
+for comparison, this checker's own chain: 65928:/opt/homebrew/ <- 65925:/bin/zsh -c so <- 4486:claude --resum <- 4485:/Users/nathan/ <- 1392:/Users/nathan/ <- 1386:/Users/nathan/ <- 1385:sshd-session:  ...
+claude in any chain of the run: False; tty of the pids: ?? (?? = no controlling terminal)

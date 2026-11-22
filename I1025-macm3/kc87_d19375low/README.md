@@ -54,5 +54,5 @@ Scan time: p0 and p1 have four points of about 950 to 1000 s (the k_c 87 scan ab
 
 | step | verdict | numbers | time (UTC) |
 |---|---|---|---|
-| pins and `kc87_syscheck_1025.py` on the state | not started | | |
-| scan | not started | | |
+| pins and `kc87_syscheck_1025.py` on the state | accepted again; selftest exit 0, state check exit 0, `--mutate=F` and `--mutate=steps` exit 1 | pins ok (state 448970da, record f399e0f2); available memory 18.1 GiB | 22:44:42 (2 s) |
+| scan (`run_scan.sh`), started 22:44:42 | running: 4 processes of 1 thread (child pids 65355, 65364, 65373, 65382, launcher 65274, `session_check_scan.txt`: every chain ends at launchd, no claude, tty ??), each printed `the record system` | | |
