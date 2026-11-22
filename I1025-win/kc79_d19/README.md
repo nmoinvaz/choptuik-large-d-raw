@@ -1,6 +1,6 @@
 # I1025-win/kc79_d19: win2's k_c 71 D 19 state regridded to k_c 79 (winb)
 
-Written before the run (c776847d), updated with the regrid result 2026-11-22 12:56:21 UTC (substituted from `date -u` when pushed). The regrid is done and accepted; the scan runs on t5's window (see Status).
+Written before the run (c776847d), updated with the regrid result 2026-11-22 15:55:06 UTC (substituted from `date -u` when pushed). The regrid is done and accepted; the scan runs on t5's window (see Status).
 
 Runner: the winb session (surface-laptop-4, 4 cores, 8 threads, 32 GB), the same one that ran `../kc79_d185/` (raw commit b895f104: the D 18.5 root at k_c 79 is 1.676555, the same root as k_c 71's 1.675995 by t5's ruling). The coordinator is t5.
 
@@ -80,7 +80,7 @@ The k_c 71 source record at D 19: |F| 2.7620e-10, 2676 steps, constraint 1.592e-
 
 The regrid started 11:20:27 UTC, outside my terminal (`Win32_Process.Create` of `cmd.exe /c start_kc79d19_regrid_1025.cmd`; chain cmd 8264 <- driver 16988 and 20268 <- `ell_refine.py` 20304 and 18948), BelowNormal, 4 threads, cap 21600 s; free memory 24.1 GB, cpu 23% before the start, the I129 jobs of the other project beside it (t5: inside the 6-thread budget; no hold). The regrid ended 12:53:45 UTC (exit 0), the check ran 12:53:51 (exit 0, both `--mutate` controls exit 1).
 
-**The scan was started on t5's window** (hc, about 12:55 UTC): `start_kc79d19_scan_1025.cmd "1.475,1.48,1.485,1.49,1.53,1.535,1.54,1.545"`, started 12:55:41 UTC through `Win32_Process.Create`, scanner `d18_hybsign.py` (e089207a, unchanged) pid 10616 under driver pid 2028, BelowNormal, 4 threads, cap 28800 s, alert-only watcher and sampler as at the regrid. t5's reason for two brackets: k_c 63 at D 19 has two robust changes, + to - at 1.4832 and - to + at 1.5380 (dh370, raw a45fc80f), and at D 19.09375 they are 0.0205 apart (dh610, f2405ef9), so they may be about to meet; each bracket runs 0.007 beyond its k_c 63 root on each side. t5's estimate: about 3 h. The reader's output will follow in a later section; **this section is the regrid only.** Pushed 2026-11-22 12:56:21 UTC.
+**The scan was started on t5's window** (hc, about 12:55 UTC): `start_kc79d19_scan_1025.cmd "1.475,1.48,1.485,1.49,1.53,1.535,1.54,1.545"`, started 12:55:41 UTC through `Win32_Process.Create`, scanner `d18_hybsign.py` (e089207a, unchanged) pid 10616 under driver pid 2028, BelowNormal, 4 threads, cap 28800 s, alert-only watcher and sampler as at the regrid. t5's reason for two brackets: k_c 63 at D 19 has two robust changes, + to - at 1.4832 and - to + at 1.5380 (dh370, raw a45fc80f), and at D 19.09375 they are 0.0205 apart (dh610, f2405ef9), so they may be about to meet; each bracket runs 0.007 beyond its k_c 63 root on each side. t5's estimate: about 3 h. The scan ended 15:53:27 UTC (exit 0, 10665 s); its result is the last section, after the regrid's. Pushed 2026-11-22 15:55:06 UTC.
 
 ## Result: the regrid (2026-11-22, 11:20:30 to 12:53:45 UTC)
 
@@ -114,3 +114,39 @@ Check (`syscheck.txt`, exit 0): record \|F\| 2.8482007333e-10, state \|F\| 2.848
 Estimate was 1.5 to 2 h wall (5400 to 7200 s), cpu 10000 to 13000 s, private 2.5 to 3 GB: wall inside, cpu a little under, private at the low end. No alert from the watcher. The other project's jobs cost 3% of the wall time here.
 
 Files here: `regrid_summary.txt` (the driver's line), `regrid_accepted.txt`, `l1kc79W19m1025.jsonl` (the record), `sol_l1kc79W19m1025_D19.0000.npy` (the state, the scan's input), `syscheck.txt`, `syscheck_mutate.txt`, `regrid.log`, `kc79_regrid_w.log`, `rows/`.
+
+## Result: the scan at D 19 (2026-11-22, 12:55:41 to 15:53:27 UTC)
+
+Window (t5's, 8 points, two brackets): 1.475, 1.48, 1.485, 1.49, 1.53, 1.535, 1.54, 1.545. Scanner `d18_hybsign.py` (e089207a, unchanged) on the accepted k_c 79 state above, one process, exit 0, 10665 s (1320 to 1344 s per point; t5's estimate was about 3 h). Reader `d18f_read.py window 19 1.475 1.545` (5fb96dce), printed as is in `read_kc79_D19.log` (full driver log `kc79d19_scan_w.log`, per-point lines `scan_kc79_D19.log`, records `scan_kc79_D19_1025.jsonl`):
+
+```
+window D 19 1.48-1.54:
+  scan_kc79_D19_1025.jsonl: 8 records, 8 used
+window 1.48-1.54: 8 points; not noise-robust: none
+signs: 1.48+ 1.48+ 1.49+ 1.49+ 1.53+ 1.53+ 1.54- 1.54-
+repeated points: none
+  change in (1.53, 1.54), + to - in this state: det-linear 1.539658, range [1.539658, 1.539672]
+robust changes in the window: 1; touching a non-robust point (not counted): none
+ln|det| local minima without a sign change in the window: none
+reading: one robust change in the window, in (1.53, 1.54): it places the crossing root
+float64 in the window: sign changes none; differs from the hybrid at 2 of 8 points
+```
+
+The reader prints its lambdas to two decimals, so the `signs:` line and the window label show 1.475 and 1.48 both as 1.48, 1.535 as 1.53, 1.545 as 1.54. The points as run, with the signs from the scan records (hybrid sign beside the 1e-15 noise test on blocks 0-11, two seeds, and the float64 sign), lowest first:
+
+| lambda | hybrid sign | noise test (2 seeds) | float64 sign | ln\|det\| (hybrid) | seconds |
+|---|---|---|---|---|---|
+| 1.475 | + | +, + | + | -2543.2199 | 1325 |
+| 1.480 | + | +, + | + | -2543.2268 | 1327 |
+| 1.485 | + | +, + | + | -2543.2454 | 1320 |
+| 1.490 | + | +, + | + | -2543.2765 | 1322 |
+| 1.530 | + | +, + | + | -2544.4918 | 1326 |
+| 1.535 | + | +, + | + | -2545.1752 | 1344 |
+| 1.540 | - | -, - | + | -2547.7866 | 1343 |
+| 1.545 | - | -, - | + | -2544.9585 | 1344 |
+
+So the reader's "(1.53, 1.54)" is the bracket (1.535, 1.54) of the points as run. The one change is + to - there, det-linear **1.539658**, range [1.539658, 1.539672]. **No change in 1.475 to 1.49** (hybrid and float64 both + at all four points, all noise-robust, no ln|det| minimum without a sign change in the window). The float64 sign differs from the hybrid at 1.54 and 1.545 (float64 + there), as the reader prints: float64 shows no sign change in the window.
+
+**Ruling (t5, hc of 2026-11-22 after the scan ended; mine is the reading above only):** the change at 1.539658 is lambda_1, the same root as k_c 71's 1.536547 (+3.1e-3) and k_c 63's 1.537988 (+1.7e-3), inside the 0.01 bar by position. The three span 3.1e-3, a spread over k_c, not monotone, and not above dh370's planted det-linear error of about 3e-3. No change in 1.475 to 1.49: k_c 79's lower root is not where k_c 63's was (1.483). The orientation printed here is + to -; the k_c 63 change at 1.5380 is - to + (dh370, as t5 wrote it). The orientation label is each scan's own convention (as at D 18.5); t5 rules by position, not orientation. Next scan (on t5's word): the k_c 79 lower root at D 19 on this same state, its window sized after dh610's k_c 71 low window (1.00 to 1.40, ending near 16:20 UTC).
+
+**Cost** (sampler `rows/scan_samples.csv`): wall 10665 s for 8 points (D 18.5: 5535 s for 4 points), peak private 2.45 GB, peak working set 1.68 GB, lowest free memory 22.2 GB, laptop cpu 28 to 73% (mean 47%) with the two I129 jobs of the other project beside it, no watcher alert. Nothing else of mine runs.
