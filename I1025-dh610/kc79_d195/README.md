@@ -26,3 +26,11 @@ Inputs (dh370's, raw `I1025-dh370/kc79_d19125/` at c58e5052, copied to `in/`; pi
 - the control prints the record system and matches dh370's sign and ln|det| to 1e-9 relative; otherwise stop and report, no scan. The scan has its own lane, written after the state arrives.
 
 Written as the run goes.
+
+## Control (22 Nov, 19:16:46 to 19:29:24 UTC): PASS, bit-identical to dh370's row
+
+`d18_hybsign.py` at D 19.125, k_c 79, lambda 1.50 on dh370's state and record, 1 process of 1 thread: exit 0, wall 758 s (the point's own 756 s), peak RSS 1.77 GB (`control/control.log`, `control/control_check.txt`, `exits_kc79_d195.txt`).
+- the record system: |F| 2.9254572718e-10 against the record's 2.9245143117e-10 (relative 3.2e-4, inside the check's 1e-2 bar), steps 2949 = 2949; the printed |F| is the one dh370's log prints;
+- hybrid sign -1 = dh370's -1; both noise seeds -1 (noise_robust True);
+- **ln|det| -2537.823195774449 against dh370's -2537.823195774449: relative difference 0.000e+00 (bar 1e-9): PASS**; the float64 ln -2534.506173253555 and sign -1 also equal dh370's.
+The bar was not touched. The scan of the order (`lane_kc79_d195_scan.sh`, unit `i1025o`) started at 19:30:05 UTC on dh370's D 19.5 state and record (raw f40a4556; `sol_l1kc79dh370d195_D19.5000.npy` 9528b355, `l1kc79dh370d195.jsonl` 5777d2a2): lambda 1.41, 1.42, 1.43, 1.44, 1.45, 1.45 (the repeat, process 5; its original runs on process 4), 1.46 to 1.50; 11 evaluations on 6 processes of 1 thread, nice 10, log `exits_kc79_d195_scan.txt`; the reading is `read_lower.py scan 1.41 1.50` and `repeat_check.py` (`read_lower.txt`), selftests wanted 0 1 1 0 (`selftest_exits.txt`: 0 1 1 0). The k_c 79 line puts lambda_1 near 1.404 at D 19.5 (information, not a pass rule); dh370 scans 1.30 to 1.40.
