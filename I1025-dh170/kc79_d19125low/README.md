@@ -50,3 +50,30 @@ One process of 4 threads for the control, then two of 4 threads at nice 10. Noth
 
 ## Log
 - 2026-11-22 18:27:52 UTC: folder, scripts, pins, controls and the reading prepared before any run. Selftests: `control_check_k79.py` PASS and its mutate FAIL; `read_lower.py` PASS, `shift` and `round2` FAIL; `repeat_check.py` and `cross_check.py` PASS (`selftest_exits.txt`: 0 1 0 1 1 0 0). Dry runs: the control's pins pass; the scan refuses without a control PASS (as it must).
+
+## Result (written 2026-11-22 22:17:46 UTC)
+Control PASS (18:41:32 UTC, ln|det| relative difference 1.075e-15, bar 1e-9). **Both scan processes exit 0**: p0 (unit `i1025-k79a`) 18:41:41 to 22:03:47 UTC, 12126 s (3:21:56 by /usr/bin/time), 9 evaluations; p1 (`i1025-k79b`) 18:41:45 to 22:16:52, 12906 s (3:34:58), 10 evaluations. Both system checks passed (|F| 2.9245852083e-10 against the record's 2.9245143117e-10, 2949 steps equal); every point noise-robust (19 of 19 evaluations); the repeat of 1.30 (on p1, the first on p0) bit-identical (ln|det| -2529.5273571200623, sign, noise, float64); the seam, my 1.44 against dh370's, equal (sign -1, ln|det| difference -4.5e-13, `cross_check.py` PASS). Seconds per point 1321 to 1440 side by side, 776 for p1's last point (alone). Peak RSS 2.26 and 2.25 GiB (2365140 and 2361152 kB), lowest MemAvailable 24.2 and 24.6 GiB (24753 and 25181 MiB), no ALERT. The reader unit `i1025-k79read` ran at 22:16:53 UTC, exit 0 (`read_k79.txt`, `exits_read.txt`).
+
+**Hybrid signs, as printed, lambda 1.10 to 1.44 at 0.02: minus from 1.10 to 1.22, plus from 1.24 to 1.40, minus at 1.42 and 1.44; edge signs minus and minus.** Two robust changes (both neighbours noise-robust), no change touching a non-robust point:
+| position | bracket | orientation as printed | det-linear estimate | estimator range |
+|---|---|---|---|---|
+| the lower of the two | (1.22, 1.24) | - to + | **1.231731** | [1.223731, 1.231731] |
+| the upper of the two | (1.40, 1.42) | + to - | **1.400174** | [1.400072, 1.400174] |
+The estimator range is the spread over the interpolation choices of `d185_scan_read.changes`, not an enclosure; the first range is wide (0.008) because ln|det| is smooth there (-2525.225, -2527.684, -2528.033 at 1.20, 1.22, 1.24); the second sits within 0.0002 above the grid point 1.40, where ln|det| falls to -2539.836 (-2533.745 at 1.38, -2535.103 at 1.42). No ln|det| local minimum without a sign change. The float64 sign differs from the hybrid at 9 of 18 points (information).
+
+**By position (t5's rule), beside k_c 71 at D 19.125 (dh610, raw ee09203f; information, not a pass rule):** k_c 71's roots there are 1.488137 (the rising root) and 1.511209 (the root near lambda_1's line); k_c 79's root near lambda_1's line is 1.505784 (dh370, raw 282c8fe2). In 1.10 to 1.44 k_c 79 has **two roots, near 1.2317 and 1.4002**: the 1.4002 root is 0.0879 below k_c 71's rising root (1.488137); the 1.2317 root is 0.2564 below it, and k_c 71 was not scanned below 1.44 at D 19.125 (dh610's window), so it has no k_c 71 counterpart in the data. This scan cannot say which of the two continues k_c 71's rising root, or whether the 1.2317 root is k_c-stable. At D 19 the order's rising root sat at 1.483 (k_c 63) and 1.296 (k_c 71), 0.187 apart for 8 more k_c.
+
+## Predictions against the result
+| prediction | result |
+|---|---|
+| control passes at 1e-9 (90%); both system checks pass (90%); the repeat agrees (90%); every point noise-robust (65% per process); the seam 1.44 equals dh370's sign (90%) | yes (1.075e-15); yes; yes (bit-identical); yes, 19 of 19; yes (ln difference -4.5e-13) |
+| one robust change, + to - as printed, 50%; none 30%; two or more 15%; other 5% | **two** (the 15% case): near 1.2317 and 1.4002, by position; neither is the expected single change near 1.30 (the 1.2317 root is 0.068 below it, the 1.4002 root 0.100 above) |
+| if one, within 0.10 of 1.30 (55% of those) | not applicable (two) |
+| float64 differs at no more than 5 points per process (50%) | p0 **no** (6), p1 yes (3) |
+| the scan could take 5 to 8 h (cap at risk) | **no**: 3.4 h and 3.6 h (a point 1321 to 1440 s beside the other process, 793 s alone); inside the caps. The ETA I gave t5 after the first points (22:35) was 18 min late |
+| max RSS below 2.5 GiB (80%) | yes, 2.26 GiB |
+
+## Log
+- 2026-11-22 18:28:02 UTC: control started; 18:41:32 PASS; 18:41:41 and 18:41:45 the two scan processes started with the reader unit.
+- 2026-11-22 22:03:47 and 22:16:52 UTC: the processes ended; 22:16:53 the reader ran.
+- 2026-11-22 22:17:46 UTC: result written (this section).
