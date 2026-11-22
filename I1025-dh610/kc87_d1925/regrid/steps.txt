@@ -3,3 +3,11 @@
 2026-11-22 22:25:10 UTC selftests: kc79_syscheck exit 0, kc87_syscheck exit 0 (0 wanted)
 2026-11-22 22:25:14 UTC source check (kc79_syscheck_1025.py on macm3's k_c 79 D 19.25 state): exit 0 (0 wanted); controls --mutate=F exit 1, --mutate=steps exit 1 (1 wanted each); kc87_syscheck on the k_c 79 source exit 1 (1 wanted)
 2026-11-22 22:25:14 UTC dry run: the regrid is not started
+2026-11-22 22:26:25 UTC start (load 1.40 2.80 4.31, MemAvailable 42194508 kB)
+2026-11-22 22:26:25 UTC pins checked (in_blobs.txt), diff of the two checks rebuilt (3 changed lines), worktree 48c36355: dss_ell, ell_ddm, ell_dd, ddnp equal 505d8399; ell_refine.py 631e5801; lambda_0(19.25) 2.1144367878; Python 3.14.10, multidouble avx2
+2026-11-22 22:26:25 UTC selftests: kc79_syscheck exit 0, kc87_syscheck exit 0 (0 wanted)
+2026-11-22 22:26:29 UTC source check (kc79_syscheck_1025.py on macm3's k_c 79 D 19.25 state): exit 0 (0 wanted); controls --mutate=F exit 1, --mutate=steps exit 1 (1 wanted each); kc87_syscheck on the k_c 79 source exit 1 (1 wanted)
+2026-11-22 22:26:29 UTC regrid starts: nice -n 10 timeout 21600 /home/nathan/Source/venv-i1058/bin/python -u ell_refine.py l1kc79macm3 79 l1kc87dh610d1925 87 1 19.25 2.1144367878 --kappa 0.7 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma
+2026-11-22 23:21:22 UTC regrid exit 0, wall 3293 s
+2026-11-22 23:21:27 UTC kc87 syscheck exit 0 (0 wanted); controls --mutate=F exit 1, --mutate=steps exit 1 (1 wanted each); kc79_syscheck on the k_c 87 result exit 1 (1 wanted)
+2026-11-22 23:21:27 UTC verdict: ACCEPTED 2026-11-22 23:21:27 UTC

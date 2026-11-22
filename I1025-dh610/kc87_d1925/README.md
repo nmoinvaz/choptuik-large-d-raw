@@ -43,5 +43,10 @@ The regrid exits 0 and is accepted (85%), in 3200 to 3600 s with about 3220 step
 ## Status (22 Nov)
 
 - 22:25:14 UTC the dry run of the regrid lane passed the pins, the selftests and the source check (see Acceptance 1); nothing started yet.
+- 22:26:29 UTC the regrid started (unit `i1025r`, 8 threads; the source check of the real run passed again: exit 0, controls exit 1, 1; the k_c 87 check refuses the k_c 79 source). 23:21:27 UTC ACCEPTED (below). 23:22:11 UTC the scan lane's dry run passed (pins, selftests 0 1 1 0).
 
-Written as the run goes.
+## Regrid result (22 Nov, 22:26:29 to 23:21:27 UTC): ACCEPTED
+
+`ell_refine.py` (8 threads, nice 10, unit `i1025r`) exited 0 after 3293 s (the record's own 3291 s); peak sampled RSS 2.27 GB, 773 to 777% CPU; no size or array error (`regrid/regrid.log`, `regrid/regrid_samples.csv`, `regrid/steps.txt`). Its log carries 21 numpy RuntimeWarnings (overflow, invalid value) from `dss_ell.py` lines 88, 211 to 219, 325 and 334 in the solver's trial evaluations (the D 19.5 regrid's log had 25 of the same kind at the same lines); the acceptance is the check below, not the log.
+- Record `l1kc87dh610d1925.jsonl` (blob fb0c7e77) and state `sol_l1kc87dh610d1925_D19.2500.npy` (blob 1dd46e46, copied to `in/`; `in_blobs_regrid.txt`): k_c 87 at D 19.25, |F| 3.1106067183e-10, F_start 3.943e-06, 3222 steps, constraint 5.413e-04, Delta 1.0737644588 (macm3's k_c 79 source: |F| 3.0661e-10, 2925 steps, constraint 9.574e-04, Delta 1.0737660558; k_c 87's Delta is 1.597e-06 below). The prediction was about 3220 steps and 3200 to 3600 s: 3222 steps and 3293 s.
+- **Acceptance:** `kc87_syscheck_1025.py` exit 0 (the state's |F| equals the record's, `freeze_from` gives 3222 steps = the record's); `--mutate=F` exit 1 (the state's |F| is not within 1% of 1.5 times the record's), `--mutate=steps` exit 1 (`freeze_from` gives 3222, the record 3223); extra control: `kc79_syscheck_1025.py` on the k_c 87 result exit 1 ("the record is not k_c 79 at D 19.25 (kc 87, D 19.25)"). Verdict `regrid/VERDICT.txt`: ACCEPTED 23:21:27 UTC.
