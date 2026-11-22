@@ -31,7 +31,7 @@ START = f"{HERE}/ref/lowD1014b_D3.0475_M384.npz"
 START_BLOB = "74daf429300c75c3deea191702e638ef24fd8993"
 NODES = "0.000157,0.000313,0.000625,0.00125,0.0025,0.005,0.01,0.02,0.05,0.1,0.16,0.23,0.3,0.4,0.5,0.6,0.7,0.8,0.9,0.95,0.975"
 LOG = f"{HERE}/exits_1067.txt"
-WALL_FIRST, RSS_MAX, DDELTA_FLOOR, MAX_CALLS = 8 * 3600, 45e9, 1e-25, 3
+WALL_FIRST, RSS_MAX, DDELTA_FLOOR, MAX_CALLS = 8 * 3600, 45e9, 1e-25, int(os.environ.get("MAX_CALLS_TOTAL", "3"))   # MAX_CALLS_TOTAL: calls in all, 4 for the launch of call 4 (the coordinator's (B) of 22 Nov)
 RESUME = int(os.environ.get("RESUME_CALLS", "0"))      # calls already landed in an earlier launch (its checkpoint resumes)
 
 
@@ -168,6 +168,12 @@ def memavail_kb():
     return int(m.group(1)) if m else None
 
 
+def build_cmd():
+    """lowD_dd.py's command (cwd hp/): run1014b.py's B1 with --Ms 512, --start, the output paths, --threads 10 and, on a resume, --resume and --it_max MAX_CALLS - RESUME"""
+    return ["nice", "-n", "10", PY, "-u", "lowD_dd.py", f"{HERE}/m512b.jsonl", "--start", START, "--Ms", "512", "--nodes", NODES, "--kt", "36", "--kcs", "100", "--ks", "250", "--jac", "f64",
+           "--tol", "1e-29", "--it_max", str(MAX_CALLS - RESUME), "--threads", "10", "--tag", "lowD1067"] + (["--resume"] if RESUME else [])
+
+
 def stage1():
     if hashlib.sha1(b"blob %d\0" % os.path.getsize(START) + open(START, "rb").read()).hexdigest() != START_BLOB:
         say("the start state's blob differs from " + START_BLOB + ": stop")
@@ -182,8 +188,7 @@ def stage1():
     say("stage 1 (lowD_dd.py --Ms 512 from the M 384 state, --it_max 3, 10 threads) start")
     logf = open(f"{HERE}/stage1.log" if not RESUME else f"{HERE}/stage1_resume{RESUME}.log", "w")
     LOGP = f"{HERE}/stage1.log" if not RESUME else f"{HERE}/stage1_resume{RESUME}.log"
-    cmd = ["nice", "-n", "10", PY, "-u", "lowD_dd.py", f"{HERE}/m512b.jsonl", "--start", START, "--Ms", "512", "--nodes", NODES, "--kt", "36", "--kcs", "100", "--ks", "250", "--jac", "f64",
-           "--tol", "1e-29", "--it_max", str(MAX_CALLS - RESUME), "--threads", "10", "--tag", "lowD1067"] + (["--resume"] if RESUME else [])
+    cmd = build_cmd()
     logf.write("# cmd (cwd hp/): " + " ".join(cmd) + "\n")
     logf.flush()
     proc = subprocess.Popen(cmd, cwd=f"{WT}/hp", env=env, stdout=logf, stderr=subprocess.STDOUT)
@@ -247,6 +252,9 @@ def stage1():
 
 
 if __name__ == "__main__":
+    if "--print-cmd" in sys.argv:
+        print(" ".join(build_cmd()))
+        sys.exit(0)
     if "--selftest" in sys.argv:
         sys.exit(0 if selftest("--mutate" in sys.argv) else 1)
     s = stage1()
