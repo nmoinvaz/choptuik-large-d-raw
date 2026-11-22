@@ -670,3 +670,5 @@ Planted check of the disagreeing case (rows at D 263.6, 263.7, 263.8; radii (265
 
 The first planted cases and the `--mutate=scale` control give the same readings as before.
 | 263.5762 | cc8c996a | 262.0851 ± 0.9713i (8 approximants) | 1.5509, 1.7839, −13.06% | 1.5018 | FAIL (1), FAIL (1) | 263.8292 (+25.6), no Dlog estimate |
+
+Note at 263.5762, the second counted base: the root test is 1.5509, within 5% of 265.078 − D0 (1.5018, +3.27%). With 263.5312 above (+5.90%), the counted bases disagree (above, in), so the reading is pending (`reading_real_D263.5762.txt`, exit 3). The next base and the one after decide by the first two consecutive with the same verdict. Its excess over 265.078 − D0 went +7.74% (263.4862, not counted), +5.90% and +3.27%. `--mutate=scale` now reads NOT THERE, as required. The pair check fails on its root-test half (−13.06% from |D0 − P1| 1.7839), as expected past the crossover; P1 holds at 262.0851 ± 0.9713i. 6-pole list, 5 in all: 265.0773 (n 8), 265.0787 (n 5), the pair (n 8, n 5), 267.1714 (n 4).
