@@ -1,0 +1,10 @@
+2026-11-22 22:21:35 UTC start (load 0.44 1.73 3.80)
+2026-11-22 22:21:35 UTC inputs pinned (in_blobs.txt: 11 files; state ab514df3, record ee94e902, kc71_syscheck 4cd86cd4, kc79_syscheck 29dce7ea)
+2026-11-22 22:21:35 UTC worktree 48c36355: dss_ell, ell_ddm, ell_dd, ddnp equal 505d8399; ell_refine.py 631e5801; Python 3.14.10, multidouble avx2
+2026-11-22 22:21:35 UTC selftests: kc79_syscheck exit 0, kc71_syscheck exit 0 (0 wanted)
+2026-11-22 22:21:39 UTC STEP 1 source check (win2's kc71_syscheck.py on the k_c 71 D 19.75 state): exit 0 (0 wanted); controls --mutate=F exit 1, --mutate=steps exit 1 (1 wanted each)
+2026-11-22 22:21:39 UTC STEP 2 regrid starts: nice -n 10 timeout 21600 /home/nathan/Source/choptuik-large-d-1058b/.venv/bin/python -u ell_refine.py l1kc71Lw1025b 71 l1kc79dh170d1975 79 1 19.75 2.1120935738 --kappa 0.7 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma
+2026-11-22 23:01:49 UTC regrid exit 0, wall 2410 s
+2026-11-22 23:01:54 UTC syscheck exit 0 (0 wanted); controls --mutate=F exit 1, --mutate=steps exit 1 (1 wanted each)
+2026-11-22 23:01:54 UTC verdict: ACCEPTED 2026-11-22 23:01:54 UTC
+2026-11-22 23:02:14 UTC scan starts: D 19.75, 13 evaluations (1.27 to 1.38 and the repeat of 1.32), 4 procs x 1 thread, nice 10; state sol_l1kc79dh170d1975_D19.7500.npy f2ad34b5, record 0508163e

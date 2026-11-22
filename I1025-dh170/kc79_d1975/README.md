@@ -49,7 +49,11 @@ dh370's regrids: 2576 s (D 19.125) and 2240 s (D 19.5) on 6 threads, peak RSS 1.
 - the float64 sign differs from the hybrid at more than half the points about 50% (as at D 19.5: opposite at every point); a lane of 4 rounds takes 2 to 2.8 h about 60%; peak RSS below 2.5 GiB about 90%.
 
 ## Budget
-The regrid: 8 threads at nice 10 (all of this machine). The scan: 4 processes of 1 thread at nice 10. Nothing else of mine runs; no other job on dh370... on dh170 at 22:18 UTC (load average 0.2).
+The regrid: 8 threads at nice 10 (all of this machine). The scan: 4 processes of 1 thread at nice 10. Nothing else of mine runs; no other job on dh170 at 22:18 UTC (load average 0.2).
 
 ## Log
 - 2026-11-22 22:21:22 UTC: folder, inputs, drivers, worktree and the reading prepared before any run. Reader selftest exit 0, `shift` and `round2` exit 1, `repeat_check.py` exit 0 (`selftest_exits_pre.txt`; the drivers run them again). Dry run of `run_regrid.sh`: pins and worktree checks pass (`dry_steps_regrid.txt`).
+- 2026-11-22 22:21:35 to 22:21:39 UTC: `run_regrid.sh` started as unit `i1025-k79r`; STEP 1 (source check) ACCEPTED at 22:21:39 (record |F| 4.0732333920e-10, 2552 steps; this machine's state |F| 4.0720551300e-10, freeze_from 2552; both controls exit 1); the regrid started at 22:21:39 UTC. (The Budget line's typo, 'dh370... on dh170', is fixed.)
+- 2026-11-22 22:21:39 to 23:01:49 UTC: **STEP 2 regrid** (`ell_refine.py`, 8 threads, nice 10, unit `i1025-k79r`): exit 0, wall 2410 s (the record's step 2408 s), peak RSS 1.81 GiB (sampled every 60 s, 40 samples). The state: |F| 4.0158668855e-10 (F at the start 2.104e-5), 2839 steps, psi-constraint 1.652e-3, Delta 1.0860054437 (the k_c 71 source's 1.0860122540). 23:01:54 UTC **ACCEPTED** by `kc79_syscheck_1025.py` (|F| in the record class and the step count comes back: 2839 = 2839); controls: `--mutate=F` (record |F| x 1.5) exit 1, `--mutate=steps` (steps + 1) exit 1. State `sol_l1kc79dh170d1975_D19.7500.npy` blob f2ad34b5, record `l1kc79dh170d1975.jsonl` blob 0508163e.
+- 2026-11-22 23:02:14 UTC: **STEP 3 scan** started as unit `i1025-k79s` (4 processes of 1 thread, nice 10, 13 evaluations); all four print the record system (|F| 4.0206992553e-10 against the record's 4.0158668855e-10, 2839 steps equal).
+- 2026-11-22 23:02:49 UTC: step 2 logged (this entry).
