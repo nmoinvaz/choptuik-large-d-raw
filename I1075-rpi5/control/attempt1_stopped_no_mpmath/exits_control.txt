@@ -1,0 +1,15 @@
+== 2026-11-22 21:26:17 UTC control: pins checked, worktree 505d8399 clean; python Python 3.14.10; 3 threads
+== 2026-11-22 21:26:17 UTC control: imports exit 0 (0 wanted): lam0_at 19.5 2.1132623525 lam0_at 20.0 2.1110019498 
+== 2026-11-22 21:26:18 UTC control: ell_refine.py -h (argparse at import; imports dss_ell) exit 0 (0 wanted)
+== 2026-11-22 21:26:18 UTC control: control_check selftest exit 0 (0 wanted), --mutate exit 1 (1 wanted)
+== 2026-11-22 21:26:18 UTC control: control started under /usr/bin/time pid 1831545 (lambda 1.50, D 19.125, k_c 79)
+== 2026-11-22 21:26:48 UTC control: control scan exit 1, 30 s wall
+Traceback (most recent call last):
+  File "/home/nathan/Source/choptuik-large-d-raw/I1075-rpi5/in/control_check_k79.py", line 51, in <module>
+    ok, msg = check(open(log).read(), pick(rowf), pick(reff))
+                                      ~~~~^^^^^^
+  File "/home/nathan/Source/choptuik-large-d-raw/I1075-rpi5/in/control_check_k79.py", line 50, in <lambda>
+    pick = lambda f: [json.loads(l) for l in open(f) if l.strip() and abs(json.loads(l)["lam"] - lam) < 1e-9][-1]
+                                             ~~~~^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/nathan/Source/choptuik-large-d-raw/I1075-rpi5/control/scan_D19.125_p0.jsonl'
+== 2026-11-22 21:26:48 UTC control: CONTROL FAIL (control_check exit 1, scan exit 1)

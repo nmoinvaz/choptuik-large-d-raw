@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/home/nathan/Source/choptuik-large-d-raw/I1075-rpi5/in/control_check_k79.py", line 51, in <module>
+    ok, msg = check(open(log).read(), pick(rowf), pick(reff))
+                                      ~~~~^^^^^^
+  File "/home/nathan/Source/choptuik-large-d-raw/I1075-rpi5/in/control_check_k79.py", line 50, in <lambda>
+    pick = lambda f: [json.loads(l) for l in open(f) if l.strip() and abs(json.loads(l)["lam"] - lam) < 1e-9][-1]
+                                             ~~~~^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/nathan/Source/choptuik-large-d-raw/I1075-rpi5/control/scan_D19.125_p0.jsonl'
