@@ -54,6 +54,14 @@ dh610's k_c 71 scan of D 19.125 (raw ee09203f, `I1025-dh610/kc71_d19125/read_low
 
 winb's regrid at D 19: 5595 s on 4 threads (cpu about 1.8 cores), 2976 steps, peak private 2.5 to 3 GB. Here 6 threads, alone on the machine after the k_c 63 leap ends at 15:06 UTC: expect 1 to 1.5 h. The scan's points take about 1900 s each at k_c 63 on 1 thread (and 1650 s with 5 processes); k_c 79 is larger, so expect longer; the first point's time is reported.
 
-## Status
+## Status (22 Nov 2026)
 
-Written as the run goes.
+| step | verdict | numbers | time (UTC) |
+|---|---|---|---|
+| source check (win2's `kc71_syscheck.py`) | accepted, both controls exit 1, selftests 0 | state |F| 2.8443e-10, 2651 steps = record's | 15:08 |
+| regrid (`ell_refine.py`, exit 0) | accepted by `kc79_syscheck_1025.py`, both controls exit 1 | |F| 2.9245e-10, 2949 steps, constraint 8.306e-4, Delta 1.0707569213 (k_c 71: 2.8422e-10, 2651, 1.784e-3, 1.0707594252) | 15:08 to 15:51 (2576 s, peak RSS 1.47 GB) |
+| scan (`run_scan.sh`, unit i1025s79) | done, 16 evaluations, all six processes exit 0 and printed the record system | one robust change, - to + in (1.50, 1.51), det-linear 1.505784, range [1.505586, 1.505784]; none elsewhere in 1.44 to 1.58; repeat of 1.50 bit-identical | 15:52 to 18:34 (3813 to 3897 s per point with 6 processes, 2021 to 2081 s with 4) |
+| reader (`read_lower.py` 89309d3c) | selftest exit 0, mutations shift and round2 exit 1 | `read_lower.txt` | 18:34 |
+
+Beside (information): k_c 71 at D 19.125 has + to - at 1.488137 and - to + at 1.511209 (dh610, raw ee09203f); k_c 63 has none in 1.505 to 1.545 (dh610, raw fedc68ff). The lower root has no counterpart at k_c 79 in 1.44 to 1.58.
+Float64 sign: - at all points, differs from the hybrid at 1.51 to 1.58; not used.
