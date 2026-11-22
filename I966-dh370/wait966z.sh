@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 # leg 14 pause watch (coordinator 2026-11-21 18:18 UTC, #903 comment 7067155180): wakes on a new accepted state (STEP), on a comment since $SINCE that names xfchecks' reading
-# ("reading_real" or "path reading", not my own posts and not the coordinator's order 7067155180), on the cap time $CAP (UTC), and on the usual triggers (bar skip, FAILED re-seed, stalled
+# (a NEW xfchecks comment mentioning "reading"; its running table 7060114909 and planted check 7067019274 are excluded by id; coordinator and other comments are not matched), on the cap time $CAP (UTC), and on the usual triggers (bar skip, FAILED re-seed, stalled
 # or refused corrector, a non-refinement alert, a chain exit, a Traceback). usage: bash wait966z.sh SEEN N LEGDIR BAR_BASE FAILED_BASE STALL_BASE [CAP='2026-11-22 04:18:00'] [SINCE=2026-11-21T18:19:00Z]
 cd /home/nathan/Source/choptuik-large-d-raw-wt613/I966-dh370 || exit 9
 LG=ks_chain3b/$3/anm_run.log; bb=${4:-0}; fb=${5:-0}; sb=${6:-0}
 CAPTS=$(date -u -d "${7:-2026-11-22 04:18:00}" +%s); SINCE=${8:-2026-11-21T18:19:00Z}
 touch alerts966.txt; e0=$(grep -c '^966 ks_chain3[a-z0-9]* exit' exits_966.txt); a0=$(wc -l < alerts966.txt); lastgh=0
-Q='[.[]|select((.body|test("reading_real|path reading";"i")) and (.id!=7067155180) and (.id!=7060114909) and (.id!=7067019274) and (.id!=7066990195) and ((.body|startswith("ks_chain3b (dh370"))|not) and ((.body|startswith("dh370"))|not))]'
+Q='[.[]|select((.body|startswith("xfchecks")) and (.body|test("reading";"i")) and (.id!=7060114909) and (.id!=7067019274))]'
 while sleep 15; do
   n=$(cat ks_chain3b/leg*/anm_run.jsonl 2>/dev/null | grep -c '"converged": true')
   [ "$n" -ge $(( $1 + ${2:-1} )) ] && { echo "STEP records $n"; exit 0; }
