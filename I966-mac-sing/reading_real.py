@@ -3,7 +3,9 @@
 more than 5% above 265.078 - D0 at two bases in a row means it is not there; more than 5% below it at two bases in a
 row means another singularity is nearer, with no reading on the real pole (amended 2026-11-21).
     python reading_real.py LOCATE_D*.json ... [--mutate=scale]
-Exit 0 confirmed, 1 not there, 2 another singularity nearer, 3 pending. --mutate=scale multiplies each root test by 1.2, which must read 'not there'
+Exit 0 confirmed, 1 not there, 2 another singularity nearer, 3 pending.
+When counted bases disagree there is no reading yet; it continues base by base, and the first two consecutive counted
+bases with the same verdict decide, under the chain's cap (amended 2026-11-22). --mutate=scale multiplies each root test by 1.2, which must read 'not there'
 once two bases past 263.5 exist."""
 import json, sys
 scale = 1.2 if "--mutate=scale" in sys.argv else 1.0
@@ -24,5 +26,7 @@ for a, b in zip(seq, seq[1:]):
         code, v = 1, "NOT THERE: the root test stays more than 5% above 265.078 - D0"; break
     if a == b == "below":
         code, v = 2, "ANOTHER SINGULARITY NEARER: the root test stays more than 5% below 265.078 - D0; no reading on the real pole"; break
+if code == 3 and len(seq) >= 2:
+    v = f"pending: the counted bases disagree so far ({', '.join(seq)}); the first two consecutive with the same verdict decide"
 print(f"reading: {v}" + (" (--mutate=scale)" if scale != 1.0 else ""))
 sys.exit(code)

@@ -653,3 +653,19 @@ Note at 263.4862 (leg 15's first base, before 263.5, not read): locate puts the 
 | 263.5312 | 23e8c453 | 262.0854 ± 0.9713i (8 approximants) | 1.6381, 1.7463, −6.20% | 1.5468 | FAIL (1), FAIL (1) | 263.6322 (+36.1), 286.2576 (-35.332) |
 
 Note at 263.5312, the first base past 263.5: the path reading's first counted base. The root test is 1.6381, 5.90% above 265.078 − D0 (1.5468), so "above by more than 5%"; a second base decides. It fell from 1.7150 at 263.4862, by 0.077, while 265.078 − D0 fell by 0.045. The pair check fails for the first time, on its root-test half: the root test is 6.20% below |D0 − P1| (1.7463). P1 itself holds, at 262.0854 ± 0.9713i (within 0.05). Past the crossover at 263.425 the real pole is the nearer (locate: |s| 1.546, P1 1.742), so the root test is not expected to follow |D0 − P1|. This is not a move of P1. 6-pole list, 5 in all: 265.0773 (n 8), 265.0787 (n 5), the pair (n 8, n 5), 267.1723 (n 4).
+
+**Amended again (2026-11-22 00:10:38 UTC, the coordinator's, #966 newest comment; before the 263.5762 jet):** if the counted bases
+disagree, there is no reading yet. It continues base by base, and the first two consecutive counted bases with the same
+verdict decide, under the chain's cap. `reading_real.py` already decided at the first agreeing consecutive pair; it now
+also says when the counted bases disagree. The planted check of this case is in `planted_real/` (`out_mix_*.txt`).
+
+Planted check of the disagreeing case (rows at D 263.6, 263.7, 263.8; radii (265.078 − D) × the factors):
+
+| factors | counted verdicts | reading | exit |
+|---|---|---|---|
+| 1.00, 1.20, 1.00 | in, above, in | pending (they disagree) | 3 |
+| 1.00, 1.20, 1.20 | in, above, above | NOT THERE | 1 |
+| 1.20, 1.00, 1.00 | above, in, in | CONFIRMED | 0 |
+| 1.00, 1.20, 0.80 | in, above, below | pending | 3 |
+
+The first planted cases and the `--mutate=scale` control give the same readings as before.
