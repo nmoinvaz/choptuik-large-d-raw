@@ -1,6 +1,6 @@
 # I1025-win/kc79_d19: win2's k_c 71 D 19 state regridded to k_c 79 (winb)
 
-Written before the run, 2026-11-22 09:49:39 UTC (substituted from `date -u` when pushed). Nothing has been run for D 19 yet; the D 19 state of win2 has not landed.
+Written before the run, 2026-11-22 11:21:36 UTC (substituted from `date -u` when pushed). Nothing has been run for D 19 yet; the D 19 state of win2 has not landed.
 
 Runner: the winb session (surface-laptop-4, 4 cores, 8 threads, 32 GB), the same one that ran `../kc79_d185/` (raw commit b895f104: the D 18.5 root at k_c 79 is 1.676555, the same root as k_c 71's 1.675995 by t5's ruling). The coordinator is t5.
 
@@ -65,9 +65,20 @@ From the D 18.5 regrid on this laptop (`../kc79_d185/`): 5415 s wall, cpu 9802 s
 
 Started outside my terminal as at D 18.5: `Win32_Process.Create` of `cmd.exe /c start_kc79d19_regrid_1025.cmd` (BelowNormal, one python process tree, 4 threads), which starts the driver, its sampler and its alert-only watcher (free physical memory every 15 s, one hc alert to t5 below 1 GB, at most every 30 min, kills nothing). The scan is started only on t5's window: `start_kc79d19_scan_1025.cmd "L1,L2,..."` the same way, 8 h cap.
 
+## The source that landed (found by the waiter at 11:20:08 UTC; `prep_kc79d19_find_1025.py` exit 0)
+
+| item | raw path | blob |
+|---|---|---|
+| win2's k_c 71 D 19 state (leap) | `I1025-win2/kc71_leap/states/sol_l1kc71Lw1025_D19.0000.npy` | f320a4c14208a5bc49a09242f3aadfbcfa3579f7 |
+| its record (all leap points; the D 19.0 line is used) | `I1025-win2/kc71_leap/states/l1kc71Lw1025.jsonl` | b60528cd4702e361229636070ad8dbd99c7cf608 |
+| win2's acceptance check | `I1025-win2/kc71_leap/kc71_syscheck.py` | 4cd86cd4c9001d7472fc5df625b0635e1884bf81 (equal to `kc71_d185/`'s) |
+| win2's README (the leap, for reference) | `I1025-win2/kc71_leap/README.md` | 2da802bd32e6e3205866eb62b91eb78d4233a62d |
+
+The k_c 71 source record at D 19: |F| 2.7620e-10, 2676 steps, constraint 1.592e-3, Delta 1.067771890015 (F_start 5.038e-05, the leap step's 1272 s). **win2's `kc71_syscheck.py` accepts it on this machine** (`control_kc71_syscheck.txt`: the state's |F| 2.7629e-10, `freeze_from` gives 2676 steps = the record's, both controls refused), and the selftest of `kc79_syscheck_1025.py` passes (`selftest_syscheck79.txt`). The pins and config are `prep_kc79d19_pins_1025.txt` and `kc79d19_cfg_1025.txt`.
+
 ## Status
 
-Waiting for win2's D 19 state (2026-11-22 09:49:39 UTC).
+The regrid started 11:20:27 UTC, outside my terminal (`Win32_Process.Create` of `cmd.exe /c start_kc79d19_regrid_1025.cmd`; chain cmd 8264 <- driver 16988 and 20268 <- `ell_refine.py` 20304 and 18948), BelowNormal, 4 threads, cap 21600 s; free memory 24.1 GB, cpu 23% before the start, the I129 jobs of the other project beside it (t5: inside the 6-thread budget; no hold). The scan is not started (t5 gives the window). Pushed 2026-11-22 11:21:36 UTC.
 
 ## Result
 
