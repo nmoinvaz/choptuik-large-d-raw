@@ -1,0 +1,4 @@
+series present: m512, m384p ; missing: none
+control m512: itself 0 at every order, planted 1e-4 at order 5 reads 1.000e-04 and 0 elsewhere: pass
+control m384p: itself 0 at every order, planted 1e-4 at order 5 reads 1.000e-04 and 0 elsewhere: pass
+--mutate m512 order 5 x (1+1e-4), pair m512 vs m384p: table changes at orders [5] by +1.000e-04: pass

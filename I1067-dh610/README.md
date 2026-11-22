@@ -58,3 +58,29 @@ Plan: the control (`--mutate`) failed on its check as it must (5610 steps, max|F
 ## Series: base line (22 Nov, 11:08:56 UTC)
 
 `anm_lowd.py` (pid 1137400) printed its `base` line 5 h 03 min after its start (06:06:07 UTC): `D 3.0475, M 512, |F| 1.0e-28, pivots 4.0e-05..2.6e+01, 18145 s` (L 45057, 5610 steps; `series512/anm_lowd.jsonl`). The smallest pivot is above the script's 1e-6 bar. The base stage took 18145 s = 5.04 h at 10 threads, nice 10, beside #997's rerun (10 threads) and another project's job; RSS 2.4 GB, MemAvailable 37 GB, load 13 at the line. The orders follow; no further stop rule applies until the series file is saved (then the target stage's 30 min) except the 30 h cap, which is at 12:06 UTC on 23 Nov.
+
+## Series end (22 Nov, 18:35:57 UTC): the M 512 series is saved; M 512 and M 384 agree to 1e-3 through order 8; orders 9 to 12 differ by order 1
+
+**Run.** `anm_lowd.py --N 12 --target 3.0474 --threads 10` (pid 1137400, nice 10), start 06:06:07 UTC: base line 18145 s (|F| 1.0e-28, pivots 4.0e-05 to 2.6e+01, above the 1e-6 bar), coefficients z_1 to z_12 24269 s (jets 16855 s, solves 7414 s; each z_k 4 products, converged), series saved 18:05:08 UTC (`series_D3.0475_M512_N12.npz`, 9.4 MB, blob 3ce6fe45; list below), the target stage printed its prediction (D 3.0474, h -1.0e-04, |F| of the prediction 4.31e-09 on its own plan of 7254 steps, 383 s; `series512/anm_lowd.jsonl`) and was stopped past 30 min after the save by the script's rule (TERM to the exact pid at 18:35:08 UTC, exit -15, wall 44941 s; `exits_1067.txt`). Peak RSS 4.32 GB (`rss_1067_series.txt`), 10 threads, no Traceback. Dimension-frozen control: |[F]_1| = 0 (fires). The series' Delta_k, k = 0 to 12: 2.466012, 7.687729, -49.76091, 440.8462, -4991.047, 64108.80, -881994.6, 1.262635e+07, -1.847620e+08, 2.647849e+09, -2.317446e+13, 2.517921e+18, 5.379777e+23.
+
+**Step 4, M 512 against M 384** (`compare4_1067.py`, blob 35efb7ae, derived from dh170's `compare4_1014.py`, blob aa941ad7, copy in `ref/`: only FILES, PAIRS and the mutated series differ, the control code is unchanged; M 384 is `ref/series_D3.0475_M384p_N12.npz`, I1014-dh170's step B on the planner's converged plan of 4502 steps, blob fb93dbfc; `compare4_M512.log`). Controls: every series against itself reads 0 at every order and a planted 1e-4 at order 5 reads 1.000e-04 there and 0 elsewhere (pass, both series); `--mutate` (order 5 of M 512 scaled by 1 + 1e-4) changes the pair table at order 5 only, by +1.000e-04 (pass, `compare4_M512_mutate.log`).
+
+| k | (M 512 - M 384) / abs(M 384) |
+|---|---|
+| 0 | -1.302e-13 |
+| 1 | +9.010e-12 |
+| 2 | -1.730e-10 |
+| 3 | +2.061e-09 |
+| 4 | -1.699e-08 |
+| 5 | +1.020e-07 |
+| 6 | -4.733e-07 |
+| 7 | +4.986e-06 |
+| 8 | +7.376e-04 |
+| 9 | +1.095 |
+| 10 | -1.009 |
+| 11 | -0.9947 |
+| 12 | +1.016 |
+
+- Orders agreeing to 1e-3: 0 to 8 (order 8 at 7.4e-4, inside the bar by a factor 1.4); orders 3 to 6 all agree (2.1e-9 to 4.7e-7). The difference grows with the order, by about 8 to 10 per order from order 3 to 7 and by 148 from order 7 to 8.
+- Ratios D_k / D_(k-1), M 512 and M 384: equal to 5 digits through order 7 (-14.316), -14.633 and -14.644 at order 8; at order 9 -14.331 and +150.82; at order 10 -8752 and -89604. Whether order 9 of M 512 is converged is not shown by this pair (M 384's order 9 is not); a third M would be needed.
+- Not done here (the coordinator's, per the issue): the rerun of `hp/series_singularity.py` on the agreeing orders, the windows 3..8 and 4..8, and plant P2's reading at the same window. The series file is in this folder for it.
