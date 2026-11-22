@@ -673,3 +673,20 @@ The first planted cases and the `--mutate=scale` control give the same readings 
 
 Note at 263.5762, the second counted base: the root test is 1.5509, within 5% of 265.078 − D0 (1.5018, +3.27%). With 263.5312 above (+5.90%), the counted bases disagree (above, in), so the reading is pending (`reading_real_D263.5762.txt`, exit 3). The next base and the one after decide by the first two consecutive with the same verdict. Its excess over 265.078 − D0 went +7.74% (263.4862, not counted), +5.90% and +3.27%. `--mutate=scale` now reads NOT THERE, as required. The pair check fails on its root-test half (−13.06% from |D0 − P1| 1.7839), as expected past the crossover; P1 holds at 262.0851 ± 0.9713i. 6-pole list, 5 in all: 265.0773 (n 8), 265.0787 (n 5), the pair (n 8, n 5), 267.1714 (n 4).
 | 263.5987 | 7d6e1e09 | 262.0851 ± 0.9713i (8 approximants) | 1.5052, 1.8028, −16.50% | 1.4793 | FAIL (1), FAIL (1) | 263.3884 (+47.6), no Dlog estimate |
+
+## The path reading: CONFIRMED at D 263.5987 (`reading_real_D263.5987.txt`, exit 0)
+
+| base | root test | 265.078 − D0 | root test / (265.078 − D0) − 1 | verdict |
+|---|---|---|---|---|
+| 263.4862 (not counted, before 263.5) | 1.7150 | 1.5918 | +7.74% | — |
+| 263.5312 | 1.6381 | 1.5468 | +5.90% | above |
+| 263.5762 | 1.5509 | 1.5018 | +3.27% | within 5% |
+| 263.5987 | 1.5052 | 1.4793 | +1.75% | within 5% |
+
+The first two consecutive counted bases with the same verdict are 263.5762 and 263.5987, both within 5%. **So the real
+singularity near D 265.078 is on the chain's path:** past the crossover, the root-test radius of Delta's series falls
+along 265.078 − D0. Its type stays not resolved at N 31 (the divided-out and conformal-map checks fail at N 31, 47 and
+63). The control `--mutate=scale` reads NOT THERE, as required (`reading_real_D263.5987_scale.txt`). At 263.5987:
+- locate's real stable pole is at 265.0768 (9 approximants) and 265.0787 (5);
+- P1 holds at 262.0851 ± 0.9713i (the pair check fails on its root-test half, −16.5%, as expected past the crossover);
+- 267.1638 (n 4) persists, information only.
