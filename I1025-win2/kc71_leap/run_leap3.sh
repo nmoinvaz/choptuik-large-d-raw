@@ -1,0 +1,57 @@
+#!/bin/bash
+# #1025 kc71_leap on win2, THIRD LEG (the coordinator's hc of 2026-11-22 ~23:30 UTC: Nathan said yes to the leap past D 20, toward D 21): a new ell_leap.py run from leg 2's last two saved states whose records reproduce
+# (leg2_pick.py --tag l1kc71Lw1025b --log leap2.log: D 19.9375 and D 20), with the same flags (winb's: --tol 1e-12 --fmax 1e-8 --cmax 1e-2 --fold), h 0.0625, to D_end 21, 4 BLAS threads, BelowNormal (the caller sets it),
+# a cap of 43200 s (12 h) by the exact root pid. usage: run_leap3.sh DA DB H   (DRY=1: the pin checks and the command only). The third leg writes data/l1kc71Lw1025c.jsonl and sol_l1kc71Lw1025c_D*.npy, copied into
+# states/ by a copier loop. Driver lines go to exits_kcl3.txt and summary_kcl3.txt; the leg's output is leap3.log.
+export PATH="/usr/bin:/bin:/mingw64/bin:$PATH"
+OUT=/d/choptuik-i935-raw/I1025-win2/kc71_leap
+. $OUT/lib_kcl.sh
+EX=$OUT/exits_kcl3.txt
+SUM=$OUT/summary_kcl3.txt
+PY=C:/Users/nathan/Source/venv-md510/Scripts/python.exe
+WOUT=D:/choptuik-i935-raw/I1025-win2/kc71_leap
+WT=/d/choptuik-i1025k71
+WTM=D:/choptuik-i1025k71/solver/matter
+DATA=$WT/solver/matter/data
+TAG1=l1kc71Lw1025b
+TAG2=l1kc71Lw1025c
+DA=$1; DB=$2; H=$3
+export OPENBLAS_NUM_THREADS=4 OMP_NUM_THREADS=4 MKL_NUM_THREADS=4 RAYON_NUM_THREADS=4 PYTHONFAULTHANDLER=1
+bad=0
+chk() { local h; h=$(git hash-object --no-filters "$1"); case "$h" in $2*) ;; *) log "leg3 refuse: $3 is blob $h, not $2"; bad=1;; esac; }
+[ -n "$DA" ] && [ -n "$DB" ] && [ -n "$H" ] || { echo "usage: run_leap3.sh DA DB H"; exit 2; }
+chk $WT/solver/matter/ell_leap.py 1eb873e4 "ell_leap.py"
+[ "$(git -C $WT rev-parse HEAD | cut -c1-8)" = 48c36355 ] || { log "leg3 refuse: the worktree is not at 48c36355"; bad=1; }
+git -C $WT diff --quiet 505d839940456a3d04321d75cf66cc3b5bc831c4 -- solver/matter/dss_ell.py solver/matter/ell_ddm.py solver/matter/ell_dd.py solver/matter/ddnp.py || { log "leg3 refuse: the worktree's solver code differs from 505d8399"; bad=1; }
+SA=$(printf "sol_${TAG1}_D%.6f.npy" $DA); SB=$(printf "sol_${TAG1}_D%.6f.npy" $DB)
+for f in $SA $SB; do [ -s $DATA/$f ] || { log "leg3 refuse: no $DATA/$f"; bad=1; }; cmp -s $DATA/$f $OUT/states/$f || { log "leg3 refuse: $f differs from or is missing in states/"; bad=1; }; done
+for f in $DATA/${TAG2}.jsonl $OUT/leap3.finished $OUT/leap3.log; do [ -e $f ] && { log "leg3 refuse: $f exists"; bad=1; }; done
+[ $bad = 0 ] || exit 2
+CMD="$PY -u ell_leap.py $TAG2 1 71 data/$SA $DA data/$SB $DB 21 $H --tol 1e-12 --fmax 1e-8 --cmax 1e-2 --fold"
+log "leg3 pins checked: ell_leap.py 1eb873e4, worktree 48c36355 with solver code = 505d8399, seeds $SA blob $(git hash-object --no-filters $DATA/$SA | cut -c1-8) and $SB blob $(git hash-object --no-filters $DATA/$SB | cut -c1-8)"
+if [ "$DRY" = 1 ]; then echo "DRY: cd $WTM && $CMD"; exit 0; fi
+copier() {
+  while [ ! -e $OUT/leap3.finished ]; do
+    for f in $DATA/sol_${TAG2}_D*.npy $DATA/sol_${TAG2}_last.npy $DATA/sol_${TAG2}_prev.npy $DATA/${TAG2}.jsonl; do
+      [ -e "$f" ] || continue
+      b=$(basename $f)
+      if [ $(( $(date +%s) - $(date -r "$f" +%s) )) -ge 30 ] && ! cmp -s "$f" "$OUT/states/$b"; then cp "$f" "$OUT/states/$b"; fi
+    done
+    sleep 120
+  done
+  for f in $DATA/sol_${TAG2}_D*.npy $DATA/sol_${TAG2}_last.npy $DATA/sol_${TAG2}_prev.npy $DATA/${TAG2}.jsonl; do [ -e "$f" ] && cp "$f" "$OUT/states/$(basename $f)"; done
+}
+copier &
+cp_pid=$!
+cd $WT/solver/matter || exit 1
+{ echo "# $(date -u '+%F %T') UTC cmd: $CMD (cwd $WTM, 4 threads)"; } > $OUT/leap3.log
+s0=$(date +%s)
+crun leap3 0 43200 ell_leap.py $CMD >> $OUT/leap3.log 2>&1
+rc=$RC; w=$(( $(date +%s) - s0 ))
+echo "exit $rc" >> $OUT/leap3.log
+echo "leap3: exit $rc, $w s$([ "$CAPPED" = 1 ] && echo ", capped at 43200 s"): $(grep -E '^(reached|stop at)' $OUT/leap3.log | tail -n 1)" >> $SUM; log "leg3 exit $rc wall $w s capped $CAPPED"
+touch $OUT/leap3.finished
+wait $cp_pid
+echo "kcl leap3 done" >> $SUM
+touch $OUT/all3.done
+exit 0
