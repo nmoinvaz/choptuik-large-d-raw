@@ -16,6 +16,8 @@ Estimate (t5): regrid about 45 min, scan 6 rounds of about 35 min for the full w
 
 lambda_1's straight line through k_c 79's D 19 value 1.539658 (winb, `I1025-win/kc79_d19/read_kc79_D19.log`: the change in (1.53, 1.54), + to - in that state) and D 19.125 value 1.505784 (`../kc79_d19125/read_lower.txt`) has slope -0.2709 per unit D and reaches about 1.4041 at D 19.5 (t5: near 1.405), inside the window. win2's k_c 71 scan of D 19.5 (raw `I1025-win2/kc71_leap/scan_D19.5_P*.jsonl`) was still running at 18:36 UTC (6 of 21 points); I report beside it when its reading is posted. k_c 79 at D 19.125 has no lower root in 1.44 to 1.58 (dh170 scans 1.10 to 1.44 on that state, raw `I1025-dh170/kc79_d19125low`).
 
+Update (t5's hc, about 20:00 UTC; information, not a pass rule): roots are identified by position, not by sign orientation, across D as well as across k_c, and posts call them "the root near lambda_1's line" and "the rising root". macm3's k_c 79 scan at D 19.25 (raw cc30e59c, `I1025-macm3/kc79_d1925/read_lower.txt`) has one robust change, det-linear 1.469975, the root near lambda_1's line there; the line through it and D 19.125's 1.505784 has slope -0.2865 per unit D and reaches about 1.3984 at D 19.5 (t5: about 1.398). t5 reads k_c 71's roots near k_c 79's lambda_1 as 1.5365, 1.5112, 1.4907, 1.4750 at D 19, 19.125, 19.1875, 19.25, and its rising root as 1.296, 1.488, about 1.58, 1.661, crossing lambda_1's line between D 19.125 and 19.1875. A rising root at D 19.5 lies well above 1.50, outside this folder's window 1.30 to 1.40 and dh610's 1.41 to 1.50.
+
 ## Inputs (raw origin/main, pinned by `git hash-object --no-filters`; `run_regrid.sh` refuses any other blob and copies them to `in/`)
 
 | item | raw path | blob |
