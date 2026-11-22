@@ -4,3 +4,6 @@ argcount selftest, nocap, starts, norecount, lowcap, seedfix exits: 0 1 1 1 1 1
 fu_value selftest, --break, prefix_keys --mutate=edit exits: 0 1 1
 pass 1 select: 20 points without value in 33 unresolved leaves; 0 already run; 20 to run
 pass 1 value start 2026-11-21 21:09:44 leaves leaves_M3_record_r0.17.jsonl cache 3229 lines
+pass 1 value exit 2 (0 all accepted, 2 some not) 2026-11-22 00:24:55: accepted 13 of 20 points, appended to the cache
+pass 1 retest --mutate=f3 exit 1 (1 fired, 0 changed no decision)
+pass 1 retest --mutate=lowguard exit 1 (1 fired, 0 changed no decision)
