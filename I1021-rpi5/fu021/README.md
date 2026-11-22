@@ -93,3 +93,93 @@ were already running as its children).
   | (3.527579975, 0.21279321) | guard, 6.85 sigma | 1: s0.2 (16.9 sigma, dF3 0.00049) | default and rhs1e7 6.85, seed2 6.48, seed3 9.72, s0.2seed2 8.06 |
   | (3.7248456, 1.08154321) | noise3 above the cap | 3: seed2, s0.2seed2, seed3 (\|R\|/sigma 1.29e5, dF3 0.0052; seed3 past 1e7 RHS calls, accepted) | default, s0.2, rhs1e7: noise3 2.45e7 above the cap 1e7 at xi1 0.25 |
 - The recount of the 11 cells (`M3_fu021_pass2_r0.17`, 16 h cap) started 08:20:52 UTC.
+- Recount `M3_fu021_pass2_r0.17` 2026-11-22 08:20:52 to 10:57:18 UTC (exit 0, 9386 s, 2 h 36 min of the 16 h cap; 18554 CPU s
+  summed from the log's `CPU s` fields): 518 leaves after 169 splits, 3302 points, **17 unresolved leaves (was 23 after
+  pass 1 and 33 in the record)**, leaf sum 1, boundary winding nan, 1 zero counted (the same +1 as after pass 1). Cache 3372 ->
+  3397 lines at xi1 0.17 (`m3/points_M3_r0.17.jsonl`, sha256 981f49fc...), 1212 lines at xi1 0.2.
+- The driver stopped after pass 2 because it runs at most 2 passes; it did not test whether a pass 3 would have new points.
+
+### End
+Driver start 2026-11-21 21:09:37 UTC, `driver exit 0` 2026-11-22 10:57:19 UTC (13 h 48 min), `end` line in `logs/exits.txt`.
+
+| step | time (UTC) | exit |
+|---|---|---|
+| argcount selftest, 5 mutations | 21:09 | `0 1 1 1 1 1` |
+| fu_value selftest, `--break`, prefix_keys `--mutate=edit` | | `0 1 1` |
+| pass 1 value, 20 points x 6 variants | 21:09:44-00:24:55 | 2 (13 of 20 accepted) |
+| pass 1 retests f3, lowguard | | 1, 1 (fired) |
+| pass 1 recount | 00:25-07:15:46 | 0 (23 unresolved leaves) |
+| pass 2 value, 3 points x 6 variants | 07:15:46-08:20:52 | 0 (3 of 3 accepted) |
+| pass 2 retests f3, lowguard | | 1, 1 (fired: f3 plain 6 / mutated 0; lowguard plain 6 / mutated 11) |
+| pass 2 recount | 08:20:52-10:57:18 | 0 (17 unresolved leaves) |
+| prefix_keys record -> fu021 | | 0 |
+| samebits record -> fu021 | | 1 (reported only, below) |
+
+### Boxes at the end (the record's 11 unresolved cells), from `m3/count_M3_fu021_pass2_r0.17.json`
+| box A x wf | unresolved leaves, record -> pass 1 -> pass 2 | boundary winding, record -> pass 2 | leaf sum |
+|---|---|---|---|
+| 3.1623-3.4123 x 0.2065-0.3065 | 2 -> 2 -> 2 | -1 -> -1 | 0 |
+| 3.1623-3.4123 x 0.9065-1.0065 | 1 -> 0 -> 0 | nan -> 0 | 0 |
+| 3.1623-3.4123 x 1.0065-1.1065 | 1 -> 2 -> 0 | nan -> 0 | 0 |
+| 3.4123-3.6623 x 0.2065-0.3065 | 2 -> 2 -> 2 | +1 -> +1 | 0 |
+| 3.4123-3.6623 x 0.3065-0.4065 | 4 -> 2 -> 2 | 0 -> 0 | 1 (the counted +1) |
+| 3.4123-3.6623 x 0.4065-0.5065 | 4 -> 4 -> 4 | -1 -> -1 | 0 |
+| 3.6623-3.9123 x 0.2065-0.3065 | 1 -> 1 -> 1 | nan -> nan | 0 |
+| 3.6623-3.9123 x 0.3065-0.4065 | 2 -> 2 -> 2 | +1 -> +1 | 0 |
+| 3.6623-3.9123 x 0.4065-0.5065 | 5 -> 4 -> 4 | 0 -> 0 | 0 |
+| 3.6623-3.9123 x 0.9065-1.0065 | 7 -> 0 -> 0 | 0 -> 0 | 0 |
+| 3.6623-3.9123 x 1.0065-1.1065 | 4 -> 4 -> 0 | 0 -> 0 | 0 |
+
+4 of the 11 boxes are resolved with W 0 (the two upper boxes at wf 0.9065-1.0065 and 1.0065-1.1065 of A 3.1623-3.4123, and the
+two at A 3.6623-3.9123). 7 boxes keep unresolved leaves. Counts are as printed and stay on hold until xfchecks' sheet check
+of the final cache.
+
+### Unresolved leaves at the end, named (`logs/leftovers_pass2.log`, `leftovers.py` sha256 71966928..., exit 0 PASS, on the final cache)
+17 of 17 unresolved leaves have a named point; 16 are blocked by the guard alone, 1 by a lost S3 zero. Controls:
+`--mutate=drop` exit 1 (16 of 17 named), `--mutate=unguard` exit 1 (stops at a point not in the cache, (3.3185956,
+0.22216821)).
+
+| blocking point (A, wf) | leaves | cause at the end | variants (default, rhs1e7, s0.2, seed2, seed3, s0.2seed2) |
+|---|---|---|---|
+| (3.3185956, 0.22529321) | 2 | guard, 9.24 sigma | 8.66, 8.66, 8.41, 4.5, 3.44, 3.43 (all valued) |
+| (3.5266034, 0.21279321) | 2 | guard, 2.26 sigma | not run: the point came from pass 2's recount (a bisection beside the accepted (3.52562685, 0.21279321)), and the driver stops at 2 passes |
+| (3.6408612, 0.34404321) | 2 | guard, 6.22 sigma | 3.21, 3.21, 6.69, 6.76, 6.97, 4.8 |
+| (3.5529706, 0.41279321) | 4 | guard, 4.85 sigma | 3.89, 3.89, 4.25, 3.87, 2.84, 3.94 |
+| (3.8420331, 0.35029321) | 2 | guard, 0.415 sigma | 0.58, 0.58, 1.32, 0.234, 0.448, 1.37 |
+| (3.7560956, 0.43154321) | 2 | guard, 7.57 sigma | 2.84, 2.84, 7.76, 8.06, 4.79, 3.71 |
+| (3.8732831, 0.48779321) | 2 | guard, 6.98 sigma | 4.14, 4.14, 5.81, 7.78, 6.27, 6.94 |
+| (3.9123456, 0.20654321) | 1 | continuation lost S3's zero after [0.25, 0.24875] | S3 lost in default, rhs1e7, s0.2, seed2, seed3; s0.2seed2 valued at 57.3 sigma but |dF3| to the nearest valued neighbour 0.113 above the 0.1 limit, so not accepted |
+
+### Criteria (the driver README's)
+| # | criterion | result |
+|---|---|---|
+| 1 | selftests `0 1 1 1 1 1`, `0 1 1` | met |
+| 2 | a row accepted only by fu_value.py's tests | met: 16 rows (13 in pass 1, 3 in pass 2) |
+| 3 | `--mutate=f3` fires in every pass that accepted a row, `--mutate=lowguard` where the guard alone blocked a row | met: pass 1 exits 1, 1; pass 2 exits 1, 1 (pass 2 accepted the guard point (3.527579975, 0.21279321)) |
+| 4 | prefix_keys record -> fu021 exit 0 | met (exit 0; `logs/prefix_keys.log`). `argcount_samebits.py` exits 1, reported only, below |
+| 5 | counts on hold until xfchecks' sheet check of fu021's new points | pass 1's cache (3369 lines) passed (#1021 comment 7075944014); the final cache (3397 lines) is pending |
+| 6 | 0 unresolved leaves, or each unresolved leaf named with blocking points and each variant's cause | met by naming: 17 leaves, table above, `leftovers.py` PASS with both controls |
+
+### Discrepancies and notes (reported, not fixed)
+- `argcount_samebits.py` exit 1: `logs/samebits.log`: 3147 valued points in the record, 3140 with the same record in fu021; old
+  points without value 8, of which valued now 6; the record's 3229 lines are fu021's first lines unchanged. The 7 differing keys
+  are the 7 guard-blocked points that fu lifted in pass 1 ((3.44994325625, 0.35029321), (3.52562685, 0.21279321),
+  (3.83812685, 0.34091821), (3.840079975, 0.34404321), (3.8498456, 0.35341821), (3.85375185, 0.35654321), (3.8654706,
+  0.485058835)): their old record counts as valued for samebits' `valued()` (no guard), and the accepted fu row is a later record
+  with other bits. The same cause as recount4's exit 1 in #1013; criterion 4 uses prefix_keys, which accepts them.
+- The +1 zero: argcount's own count line prints "located at A 3.446204, wf 0.347602 (|R| 1.7e+01, Jacobian sign +1); at xi1 0.2:
+  A 3.446218, wf 0.347607", while the earlier posts and the pass 1 section above call it "counted, not located" (the earlier
+  session's reading of loc018's rule: |R| 16.8 is below the noise floor 36.1 at xi1 0.17, and at 0.2 |R| 0.0423 is at the floor
+  0.0411). No loc018-style confirmation (relocation box, planted control) was run for it, so it is an unconfirmed Newton point
+  inside a box of 2 unresolved leaves, not a confirmed location.
+- The pass 1 and pass 2 value-step CPU in the earlier posts (34764 s and 11912 s) were summed with a narrower pattern; summed
+  over every `CPU s` field of the logs they are 37419 s and 12070 s (below).
+- Pass 2 ran only the 3 points that were new: the driver's selection skips points an earlier pass already ran (10 points
+  without value in the 23 leaves, 7 already run).
+
+### Cost and load
+CPU summed over every `CPU s` field of the four logs: pass 1 value 37419 s (120 runs), pass 1 recount 53040 s (188 point lines),
+pass 2 value 12070 s (18 runs), pass 2 recount 18554 s (25 point lines): 121083 s (33.6 h of CPU in 13 h 48 min of wall, about
+2.4 cores on average; another project's `winding2.py` jobs shared the cores for part of the time). Memory, sampled with `ps`
+and `free -m` (no peak recorded): main process 38-45 MB, spawn workers 81-106 MB, the system 2.1-2.5 GB used of 7.9 GB, swap 487
+MB of 1 GB in use (from before the run).

@@ -1,0 +1,49 @@
+# leftovers.py (sha256 71966928...) on fu021's final cache m3/points_M3_r0.17.jsonl (3397 lines, sha256 981f49fc...) and pass 2's leaves, A 0.17; controls follow
+leaf A 3.2873456-3.3185956 w 0.21904321-0.23154321 (depth 3): unresolved here; 1 boundary points without value
+    (3.3185956, 0.22529321): guard, |R|/sigma 9.24
+leaf A 3.3185956-3.3498456 w 0.21904321-0.23154321 (depth 3): unresolved here; 1 boundary points without value
+    (3.3185956, 0.22529321): guard, |R|/sigma 9.24
+leaf A 3.5217206-3.5373456 w 0.20654321-0.21279321 (depth 4): unresolved here; 1 boundary points without value
+    (3.5266034, 0.21279321): guard, |R|/sigma 2.26
+leaf A 3.5217206-3.5373456 w 0.21279321-0.21904321 (depth 4): unresolved here; 1 boundary points without value
+    (3.5266034, 0.21279321): guard, |R|/sigma 2.26
+leaf A 3.6310956-3.6623456 w 0.33154321-0.34404321 (depth 3): unresolved here; 1 boundary points without value
+    (3.6408612, 0.34404321): guard, |R|/sigma 6.22
+leaf A 3.6310956-3.6623456 w 0.34404321-0.35654321 (depth 3): unresolved here; 1 boundary points without value
+    (3.6408612, 0.34404321): guard, |R|/sigma 6.22
+leaf A 3.5373456-3.5529706 w 0.40654321-0.41279321 (depth 4): unresolved here; 1 boundary points without value
+    (3.5529706, 0.41279321): guard, |R|/sigma 4.85
+leaf A 3.5529706-3.5685956 w 0.40654321-0.41279321 (depth 4): unresolved here; 1 boundary points without value
+    (3.5529706, 0.41279321): guard, |R|/sigma 4.85
+leaf A 3.5373456-3.5529706 w 0.41279321-0.41904321 (depth 4): unresolved here; 1 boundary points without value
+    (3.5529706, 0.41279321): guard, |R|/sigma 4.85
+leaf A 3.5529706-3.5685956 w 0.41279321-0.41904321 (depth 4): unresolved here; 1 boundary points without value
+    (3.5529706, 0.41279321): guard, |R|/sigma 4.85
+leaf A 3.6623456-3.9123456 w 0.20654321-0.30654321 (depth 0): unresolved here; 1 boundary points without value
+    (3.9123456, 0.20654321): continuation lost S3's zero after [0.25, 0.24875]
+leaf A 3.8342206-3.8498456 w 0.34404321-0.35029321 (depth 4): unresolved here; 1 boundary points without value
+    (3.8420331, 0.35029321): guard, |R|/sigma 0.415
+leaf A 3.8342206-3.8498456 w 0.35029321-0.35654321 (depth 4): unresolved here; 1 boundary points without value
+    (3.8420331, 0.35029321): guard, |R|/sigma 0.415
+leaf A 3.7248456-3.7873456 w 0.40654321-0.43154321 (depth 2): unresolved here; 1 boundary points without value
+    (3.7560956, 0.43154321): guard, |R|/sigma 7.57
+leaf A 3.7248456-3.7873456 w 0.43154321-0.45654321 (depth 2): unresolved here; 1 boundary points without value
+    (3.7560956, 0.43154321): guard, |R|/sigma 7.57
+leaf A 3.8654706-3.8810956 w 0.48154321-0.48779321 (depth 4): unresolved here; 1 boundary points without value
+    (3.8732831, 0.48779321): guard, |R|/sigma 6.98
+leaf A 3.8654706-3.8810956 w 0.48779321-0.49404321 (depth 4): unresolved here; 1 boundary points without value
+    (3.8732831, 0.48779321): guard, |R|/sigma 6.98
+17 unresolved leaves, 17 with a named point, 16 blocked by the guard alone
+causes over the named points: 16 guard; 1 continuation lost S3's zero after [0.25, 0.24875]
+leftovers check: PASS
+exit 0
+
+## --mutate=drop (must exit 1)
+17 unresolved leaves, 16 with a named point, 15 blocked by the guard alone
+causes over the named points: 15 guard; 1 continuation lost S3's zero after [0.25, 0.24875]
+leftovers check (--mutate=drop): FAIL
+exit 1
+
+## --mutate=unguard (must exit 1)
+1 points not in the cache, e.g. [(3.3185956, 0.22216820999999998)]: nothing is computed here
+exit 1
