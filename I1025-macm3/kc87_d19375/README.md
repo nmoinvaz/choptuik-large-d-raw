@@ -71,7 +71,7 @@ Scan: number of robust changes in 1.40 to 1.50: none (10%), one (55%), two (30%)
 |---|---|---|---|
 | source check (`kc79_syscheck_1025.py`) | accepted; selftests (kc79 and kc87 checks) exit 0; controls `--mutate=F` and `--mutate=steps` exit 1; extra control: `kc87_syscheck_1025.py` on the k_c 79 source exits 1 ("the record is not k_c 87 at D 19.375 (kc 79, D 19.375)") | state \|F\| 3.2694081469e-10 = the record's; `freeze_from` 2903 steps = the record's | 21:32:47 (3 s) |
 | regrid (`ell_refine.py`, exit 0), child pid 52756, own session (`session_check_regrid.txt`: every chain ends at launchd, no claude, tty ??) | **accepted** by `kc87_syscheck_1025.py` (selftest exit 0); controls `--mutate=F` and `--mutate=steps` exit 1; extra control: `kc79_syscheck_1025.py` on the k_c 87 result exits 1 ("the record is not k_c 79 at D 19.375 (kc 87, D 19.375)") | |F| 3.2909e-10, 3195 steps (freeze_from 3195 = the record's), constraint 6.308e-04, Delta 1.0767926055 (k_c 79: 1.0767941558; difference -1.550e-06); capped_run wall 1051 s (steps.txt: 1081 s with the start), the record's 1044 s; 1 core (ps %cpu 100 of 600 allowed), rss max 2.68 GB (17 samples of 60 s); 23 RuntimeWarning lines of `dss_ell.py` (dh610's D 19.5 log: 25 of the same kind) | 21:32:47 to 21:50:51 (18.1 min with the checks) |
-| scan (`run_scan.sh`), started 21:51:23 | running: 4 processes of 1 thread (child pids 55184, 55195, 55283, 55292, launcher 55079, `session_check_scan.txt`: every chain ends at launchd, no claude, tty ??), each printed `the record system`; available memory 17.4 GiB before the start (need 6.4) | | |
+| scan (`run_scan.sh`), 4 processes of 1 thread, all exit 0, each printed `the record system` | done, 12 evaluations (11 values and the repeat of 1.45); reader selftest exit 0, mutations `shift` and `round2` exit 1 | **one robust change**: - to + in (1.430, 1.440), det-linear 1.434463, range [1.434463, 1.434787], +0.002911 from k_c 79's root near the line (1.431552); no root near 1.469771 in 1.40 to 1.50; edge signs - at 1.40 and + at 1.50; repeat of 1.45 bit-identical | 21:51:23 to 22:39:41 (48.3 min; 913 to 1004 s per point; rss per process 2.77 to 3.59 GB) |
 
 ### Regrid result (22 Nov 2026, 21:32:47 to 21:50:51 UTC): ACCEPTED
 
@@ -79,3 +79,44 @@ Record `l1kc87macm3d19375.jsonl` (blob f399e0f2) and state `sol_l1kc87macm3d1937
 `ell_refine.py` exit 0, capped_run wall 1051 s (the record's own 1044 s, x1.58 of my k_c 79 regrid's 662 s; dh610's k_c 87 against dh370's k_c 79: x1.44); 1 core, rss max 2.68 GB; load average 3.4 to 6.9 during the regrid (the system process `mediaanalysisd` held one core throughout; not mine); disk 25 GiB free.
 Acceptance as fixed: `kc87_syscheck_1025.py` exit 0, `--mutate=F` exit 1 (the state's |F| is not within 1% of 1.5 times the record's), `--mutate=steps` exit 1 (freeze_from 3195, the record 3196); `kc79_syscheck_1025.py` on the k_c 87 result exit 1. `VERDICT.txt`: ACCEPTED 21:50:51 UTC.
 My predictions: the regrid accepted: yes; about 3200 steps: 3195; about 16 min (12 to 25): 18.0 min; rss max about 3.3 GB: missed (2.68 GB).
+
+### Scan result (22 Nov 2026, scan 21:51:23 to 22:39:41 UTC, 48.3 min)
+
+All four processes exit 0 and each printed `the record system` (|F| 3.2908845347e-10, 3195 steps = the record's). 12 evaluations (11 values and the repeat of 1.45), each 913 to 1004 s (mean 959 s; the first four, all started together, 992 to 1004 s, the later eight 913 to 965 s) beside the other three processes.
+Reader `read_lower.py` (89309d3c, unedited): selftest exit 0, mutations `shift` and `round2` each exit 1 (`selftest_read_lower*.txt`); reading in `read_lower.txt`.
+
+| lambda | process | hybrid sign | ln\|det\| | noise-robust | float64 sign | seconds |
+|---|---|---|---|---|---|---|
+| 1.40 | p0 | - | -2851.061450 | yes | - | 992 |
+| 1.41 | p1 | - | -2851.143394 | yes | + | 1001 |
+| 1.42 | p2 | - | -2851.465812 | yes | - | 1004 |
+| 1.43 | p3 | - | -2852.443809 | yes | + | 1004 |
+| 1.44 | p0 | + | -2852.228344 | yes | + | 952 |
+| 1.45 | p1 | + | -2851.065706 | yes | + | 964 |
+| 1.45 (repeat) | p3 | + | -2851.065706 | yes | + | 913 |
+| 1.46 | p2 | + | -2850.490977 | yes | + | 965 |
+| 1.47 | p3 | + | -2850.110602 | yes | + | 965 |
+| 1.48 | p0 | + | -2849.838429 | yes | + | 914 |
+| 1.49 | p1 | + | -2849.642939 | yes | + | 915 |
+| 1.50 | p2 | + | -2849.512005 | yes | + | 914 |
+
+- **One robust change, called by position: the root near lambda_1's line, in (1.430, 1.440), - to + as printed, det-linear 1.434463, estimator range [1.434463, 1.434787].** The range is a spread over interpolation choices, not an enclosure; the bracket is the 0.01 grid step. Orientation is printed, not used to identify a root and not compared across D or k_c.
+- **Near 1.4316 (k_c 79's root near the line): yes.** The change at 1.434463 is +0.002911 from 1.431552.
+- **Near 1.4698 (k_c 79's second root): no root in 1.40 to 1.50.** The signs are + at every point from 1.44 to 1.50 and ln|det| rises monotonically there (-2852.228 at 1.44, -2851.066, -2850.491, -2850.111, -2849.838, -2849.643, -2849.512 at 1.50), with no dip; the one change in the window is 0.035308 from 1.469771.
+- Edge signs: - at 1.40, + at 1.50. All 12 evaluations are noise-robust; no change touches a non-robust point. ln|det| minima without a sign change: none (the dip at 1.43, -2852.444, sits beside the change).
+- Repeat of 1.45 (process 3 against process 1): sign, noise signs, float64 sign and ln|det| (-2851.065706073056) bit-identical: yes.
+- The float64 sign differs from the hybrid at 2 points (1.41 and 1.43: hybrid -, float64 +); not used.
+- Called **k_c 87 root (macOS build)**: numerical evidence, not yet physical.
+
+Beside (information, not a pass rule), by position, with other runners' posted numbers (win2's comment 7086874570 for k_c 71 at D 19.375, dh370's and dh610's for D 19.5; not rechecked here):
+
+| k_c | D 19.375, root near the line | D 19.375, second root | D 19.5, root near the line | D 19.5, second root |
+|---|---|---|---|---|
+| 71 | 1.437773 (win2) | 1.543839 (win2) | 1.371531 (win2) | 1.449187 (win2) |
+| 79 | 1.431552 (mine) | 1.469771 (mine) | 1.397565 (dh370) | none in 1.30 to 1.50 (dh370, dh610) |
+| 87 | 1.434463 (this scan) | none in 1.40 to 1.50 (this scan) | 1.399169 (dh610) | not read: window 1.36 to 1.44 |
+
+The root near the line at D 19.375 spans 0.006221 across k_c 71, 79, 87 (1.437773, 1.431552, 1.434463) and is not monotone in k_c; the second root falls from 1.543839 (k_c 71) to 1.469771 (k_c 79), -0.074068, and is not in 1.40 to 1.50 at k_c 87.
+What the scan does not say: where the second root went. Continuing the k_c 71 to 79 step (-0.074) would put it near 1.396, 0.004 below this window's lower edge (an extrapolation of two numbers, not a reading); it could also be within one 0.01 cell of the root near the line (an odd number of changes in the bracket (1.43, 1.44) is possible), or absent at k_c 87. A window below 1.40 at k_c 87, D 19.375 would show the first case. Nothing is said outside 1.40 to 1.50. I start nothing without the coordinator's word.
+My predictions: the source and the regrid accepted: yes; one robust change (55%): yes; a change within 0.03 of 1.431552 (70%): yes (0.0029); a change within 0.01 of 1.469771 (25%): no (0.0353); the scan about 50 min (40 to 70): 48.3 min; each process about 1.6 GB: missed (below).
+Resources (`scan/scan_samples.csv`, 49 rounds of 60 s, log only): rss per process peak 2.77 to 3.59 GB (median of all samples 2.03 GB), the four together peak 11.22 GB (22:29:34; median 8.17 GB); free memory by `memory_pressure` 79 to 86%; disk 25 GiB free throughout; 17.4 GiB available before the start. My 1.6 GB per process estimate was low by about a factor 2 (the k_c 79 scans' 1.3 GB was never sampled either); the 10 GiB gate would have been below the peak sum if less had been available.
