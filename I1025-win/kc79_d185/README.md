@@ -59,7 +59,7 @@ xfkappa's `d18_hybsign.py REC STATE 18.5 1.66,1.67,1.68,1.69 OUT` (`I1025-mac/d1
 
 ## Status
 
-Part 1 done and accepted. Part 2, the scan, started 08:07:27 UTC and ended 09:39:42 UTC, exit 0 (both results below; pushed 2026-11-22 09:41:23 UTC). Reading: one robust change, + to - in this state, det-linear **1.676555** in range [1.676555, 1.676918]; `read_kc79_1025.py` printed "not the expected pattern", so there is no lambda_1 line from the script and **t5 rules** (by position).
+Part 1 done and accepted. Part 2, the scan, started 08:07:27 UTC and ended 09:39:42 UTC, exit 0 (both results below; pushed 2026-11-22 09:41:23 UTC). Reading: one robust change, + to - in this state, det-linear **1.676555** in range [1.676555, 1.676918]; `read_kc79_1025.py` printed "not the expected pattern", so there is no lambda_1 line from the script. **t5's ruling (hc, received by 09:41 UTC): the same root as k_c 71's, so the D 18.5 root is k_c-stable over k_c 63, 71 and 79.**
 
 ## Result of part 1: the regrid (06:36:00 to 08:06:15 UTC, exit 0, 5415 s; the record's own `seconds`: 5409)
 
@@ -99,7 +99,7 @@ k_c 79, D 18.5, window 1.66-1.69: signs 1.66+ 1.67+ 1.68- 1.69-
 READING: not the expected pattern (1 robust change(s), 0 minus-to-plus, clean): no lambda_1 value; the coordinator rules
 ```
 
-The reading fixed before the run named a minus-to-plus change. k_c 71's signs at 1.55 to 1.67 were minus and k_c 79's at 1.66 and 1.67 are plus, so the change reads plus to minus. The determinant's overall sign is each scan's own and can flip with k_c, so the orientation is not compared across k_c (t5's ruling, as at D 18.125). **I did not edit `read_kc79_1025.py`** (t5: leave it as fixed). The line below is my arithmetic, not a script line, and **t5 rules** on it.
+The reading fixed before the run named a minus-to-plus change. k_c 71's signs at 1.55 to 1.67 were minus and k_c 79's at 1.66 and 1.67 are plus, so the change reads plus to minus. The determinant's overall sign is each scan's own and can flip with k_c, so the orientation is not compared across k_c (t5's ruling, as at D 18.125). **I did not edit `read_kc79_1025.py`** (t5: leave it as fixed). The table below is my arithmetic, not a script line. The ruling follows it.
 
 | k_c | lambda_1 at D 18.5 | step from the previous k_c |
 |---|---|---|
@@ -108,6 +108,10 @@ The reading fixed before the run named a minus-to-plus change. k_c 71's signs at
 | 79 | 1.676555 (det-linear; range 1.676555 to 1.676918) | +5.60e-4 |
 
 k_c 79 minus k_c 71 is +5.60e-4 and k_c 79 minus k_c 63 is -4.61e-4. The one robust change is inside 0.01 of k_c 71's root. The step 71 to 79 reverses the direction of the step 63 to 71 and is about half its size, so the k_c 79 value lies between the other two and the three values are not monotone. The range's upper end, 1.676918, is 9.2e-4 above k_c 71's value and 9.8e-5 below k_c 63's.
+
+### t5's ruling on the reading (hc from the coordinator t5, received by 09:41 UTC)
+
+The robust change at det-linear 1.676555 (range up to 1.676918) is the same root as k_c 71's 1.675995 (+5.6e-4, inside the 0.01 position bar; orientation not compared across k_c). So the D 18.5 root is **k_c-stable over k_c 63, 71 and 79: 1.675995 to 1.677016, a spread of 1.02e-3 over k_c, not a bound, and not monotone.** The script lines above are kept as printed.
 
 ### Cost of the scan (`rows/scan_samples.csv`, a line every 60 s, 91 samples of the worker)
 
