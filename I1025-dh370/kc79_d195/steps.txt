@@ -4,3 +4,8 @@
 2026-11-22 18:37:34 UTC selftests: kc79_syscheck exit 0, kc71_syscheck exit 0 (0 wanted)
 2026-11-22 18:37:38 UTC source check (win2's kc71_syscheck.py on the k_c 71 D 19.5 state): exit 0 (0 wanted); controls --mutate=F exit 1, --mutate=steps exit 1 (1 wanted each)
 2026-11-22 18:37:38 UTC regrid starts: nice -n 10 timeout 21600 /home/nathan/Source/choptuik-large-d-1058b/.venv/bin/python -u ell_refine.py l1kc71Lw1025b 71 l1kc79dh370d195 79 1 19.5 2.1132623525 --kappa 0.7 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma
+2026-11-22 19:14:58 UTC regrid exit 0, wall 2240 s
+2026-11-22 19:15:02 UTC syscheck exit 0 (0 wanted); controls --mutate=F exit 1, --mutate=steps exit 1 (1 wanted each)
+2026-11-22 19:15:02 UTC verdict: ACCEPTED 2026-11-22 19:15:02 UTC
+2026-11-22 19:15:18 UTC scan starts: D 19.5, 22 values (1.30 to 1.50 and the repeat of 1.40), 4 procs x 1 thread, nice 10; state sol_l1kc79dh370d195_D19.5000.npy 9528b355, record 5777d2a2
+2026-11-22 19:16:30 UTC t5's change: scan only lambda 1.30 to 1.40 (11 values) plus a repeat of 1.35 (dh610 scans 1.41 to 1.50 plus a repeat of 1.45 on the same state); unit i1025s795 stopped 1 min after its start (full window 1.30 to 1.50, no point finished), its files kept in scan_attempt1_full_window_stopped/
