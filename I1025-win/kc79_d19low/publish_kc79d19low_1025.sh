@@ -17,7 +17,7 @@ for f in "$O"/*; do [ -f "$f" ] && cp "$f" "$D/"; done
 cp "$O/rows/"* "$D/rows/" 2>/dev/null || true
 sed -i "s/@@T@@/$T/g" "$D/README.md"
 for f in make_d19low_1025.py diff_scan_driver_vs_d19.txt diff_watcher_vs_d19.txt prep_kc79d19low_pins_1025.txt kc79d19low_scan_driver_1025.py kc79d19low_watch_alert_1025.py sample_driver4_1025.ps1 \
-         start_kc79d19low_scan_1025.cmd keepawake_1025.py session_check_1025.ps1 selftest_scan_dry_1025.txt kc79d19low_scan_driver_stdout.log publish_kc79d19low_1025.sh; do
+         start_kc79d19low_scan_1025.cmd go_kc79d19low_scan_1025.cmd kc79d19low_scan_first_try_stdout.log keepawake_1025.py session_check_1025.ps1 selftest_scan_dry_1025.txt kc79d19low_scan_driver_stdout.log publish_kc79d19low_1025.sh; do
   [ -f "$S/$f" ] && cp "$S/$f" "$D/"
 done
 bash /c/Users/nathan/Source/choptuik-i1025/push_1025.sh "$1"

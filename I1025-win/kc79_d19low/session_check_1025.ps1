@@ -1,13 +1,14 @@
 # session_check_1025.ps1 LABEL ROOTPID [ROOTPID ...]: the Windows counterpart of macm3's session_check_1025.py (raw I1025-macm3/kc79_d1925): from one Win32_Process snapshot, the parent chain of each given pid and of
-# every descendant of the given pids, up to the first parent that is not running (pid ppid session start-UTC name and command), written to session_check_LABEL.txt next to this script's OUT folder.
+# every descendant of the given pids (a child older than its parent is a reused parent pid and is left out), up to the first parent that is not running (pid ppid session start-UTC name and command), written to session_check_LABEL.txt next to this script's OUT folder.
 # Exit 1 if 'claude' is in any chain (the run would be tied to the claude.exe session); the Windows Terminal / OpenConsole handoff win2 found is reported beside it (WindowsTerminal, OpenConsole,
 # wt.exe in a chain, and a conhost started with --headless). The checker's own chain is listed for comparison.
 param([string]$Label, [int[]]$Pids)
 $out = 'C:\Users\nathan\Source\kc79d19low_1025\I1025-win\kc79_d19low'
 $T = @{}
 Get-CimInstance Win32_Process | ForEach-Object { $T[[int]$_.ProcessId] = $_ }
-function Kids($p) { $k = @($T.Values | Where-Object { [int]$_.ParentProcessId -eq $p -and [int]$_.ProcessId -ne $p } | ForEach-Object { [int]$_.ProcessId }); $k + @($k | ForEach-Object { Kids $_ }) }
-function Chain($p) { $c = @(); $seen = @{}; while ($T.ContainsKey($p) -and -not $seen[$p]) { $seen[$p] = $true; $c += $T[$p]; $p = [int]$T[$p].ParentProcessId }; $c }
+# Windows reuses pids: a process whose recorded parent pid now names a process that started AFTER it was not started by it. A child counts only if it is not older than its parent.
+function Kids($p) { $k = @($T.Values | Where-Object { [int]$_.ParentProcessId -eq $p -and [int]$_.ProcessId -ne $p -and $_.CreationDate -ge $T[$p].CreationDate } | ForEach-Object { [int]$_.ProcessId }); $k + @($k | ForEach-Object { Kids $_ }) }
+function Chain($p) { $c = @(); $seen = @{}; while ($T.ContainsKey($p) -and -not $seen[$p]) { $seen[$p] = $true; $c += $T[$p]; $q = [int]$T[$p].ParentProcessId; if ($T.ContainsKey($q) -and $T[$q].CreationDate -gt $T[$p].CreationDate) { break }; $p = $q }; $c }
 $todo = @(); foreach ($p in $Pids) { foreach ($q in @($p) + @(Kids $p)) { if ($todo -notcontains $q) { $todo += $q } } }
 $L = @("# session check, $((Get-Date).ToUniversalTime().ToString('yyyy-MM-dd HH:mm:ss')) UTC: parent chain of each pid (the given ones and their descendants) up to the first parent that is not running (pid ppid session start-UTC command); fails if 'claude' is in a chain")
 $claude = $false; $wt = $false; $headless = $false

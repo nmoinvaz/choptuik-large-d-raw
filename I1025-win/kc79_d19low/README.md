@@ -1,6 +1,6 @@
 # I1025-win/kc79_d19low: the k_c 79 lower-root scan at D 19 (winb)
 
-Written before the run, 2026-11-22 21:07:11 UTC (substituted from `date -u` when pushed). Nothing has been run for this folder yet.
+Written before the run, 2026-11-22 21:09:24 UTC (substituted from `date -u` when pushed). Nothing has been run for this folder yet.
 
 Runner: the winb session (surface-laptop-4, 4 cores, 8 threads, 32 GB), the same one that ran `../kc79_d185/`, `../kc79_d19/` (raw commit 010273bc: D 19 regrid accepted, 8-point scan read as lambda_1 = 1.539658 at k_c 79) and `../kc79_d1925/`. The coordinator is t5.
 
@@ -66,7 +66,16 @@ Started outside my terminal: `Win32_Process.Create` of `conhost.exe --headless c
 
 ## Status
 
-Not started yet; it starts right after this README is pushed (2026-11-22 21:07:11 UTC). The D 19.25 regrid is stopped and superseded (`../kc79_d1925/`).
+**Running since 2026-11-22 21:08:04 UTC** (driver start; the scanner at 21:08:05). The D 19.25 regrid is stopped and superseded (`../kc79_d1925/`). README first: bbf7a4a0.
+
+- **First try, 21:07:26 UTC, failed before anything started.** `conhost.exe --headless cmd.exe /c start_kc79d19low_scan_1025.cmd "<window>"` lost the quotes, cmd split the window at the commas, the driver printed its usage and exited 2 (`kc79d19low_scan_first_try_stdout.log`, `rows/launcher_pid_scan_first_try.txt`). No scan file, no sampler, no helper was created. Fix: `go_kc79d19low_scan_1025.cmd` holds the call with the quoted window and is the file launched headless.
+- **Chain** (`rows/launcher_pid_scan.txt`: 24316): conhost --headless 24316 <- cmd 21256 <- driver launcher 2624 and driver 23340 <- scanner 21572 and 21304 (7 threads), watcher 21300 and 20308, sampler 8824, keep-awake helper 2768 and 24272. All python and powershell processes are BelowNormal (the cmd and the headless conhost are idle at Normal). The pairs are the venv launcher and the interpreter.
+- **Session check** (`session_check_scan.txt`, 21:08:34 UTC): no `claude` in any chain, no Windows Terminal / OpenConsole / wt, a headless conhost in the chain; every chain ends WmiPrvSE <- svchost <- services <- wininit. My first version of the check listed the other project's I129 jobs as children of my scanner, because Windows reuses pids (cmd 1532, started 17:27, records the parent pid 21304, which my scanner's child took at 21:08). It now leaves out a child that is older than its parent; the saved file is from the fixed version.
+- **Record check:** `d18_hybsign.py` printed `D 19.0 k_c 79: |F| 2.8482007333e-10 (record 2.8482007333e-10), steps 2976 (record 2976): the record system`. The reader's selftest exited 0 and its two controls 1, 1 (`selftest_read_lower_1025.txt`).
+- **Keep-awake:** helper pid 24272 set `SetThreadExecutionState(ES_CONTINUOUS | ES_SYSTEM_REQUIRED)` at 21:08:06 UTC and holds it until the driver pid 23340 ends (`rows/scan_keepawake.log`).
+- **ETA:** 12 points at about 1333 s each (the first D 19 scan: 1320 to 1344 s) is about 16,000 s, so the scan ends about 01:35 UTC on 2026-11-23. The first point (0.92) should print about 21:30 UTC. Free memory 22.1 GB at the start, the two I129 jobs of the other project beside it.
+
+Pushed 2026-11-22 21:09:24 UTC.
 
 ## Result
 

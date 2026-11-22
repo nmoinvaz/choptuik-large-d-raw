@@ -109,7 +109,7 @@ s = common(open(A + "/publish_kc79d19_1025.sh").read())
 s = sub(s, "copy the staged k_c 79 D 19 folder", "copy the staged k_c 79 D 19 low-scan folder", 1, "pub head")
 i, j = s.index("for f in make_d19_1025.py"), s.index("  [ -f \"$S/$f\" ] && cp")
 files = ("for f in make_d19low_1025.py diff_scan_driver_vs_d19.txt diff_watcher_vs_d19.txt prep_kc79d19low_pins_1025.txt kc79d19low_scan_driver_1025.py kc79d19low_watch_alert_1025.py sample_driver4_1025.ps1 \\\n"
-         "         start_kc79d19low_scan_1025.cmd keepawake_1025.py session_check_1025.ps1 selftest_scan_dry_1025.txt kc79d19low_scan_driver_stdout.log publish_kc79d19low_1025.sh; do\n")
+         "         start_kc79d19low_scan_1025.cmd go_kc79d19low_scan_1025.cmd kc79d19low_scan_first_try_stdout.log keepawake_1025.py session_check_1025.ps1 selftest_scan_dry_1025.txt kc79d19low_scan_driver_stdout.log publish_kc79d19low_1025.sh; do\n")
 s = s[:i] + files + s[j:]
 made["publish_kc79d19low_1025.sh"] = s
 
