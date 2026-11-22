@@ -1,0 +1,28 @@
+step 2: D 263.576212892, pivots 2.4e-20..2.9e+51, |z_1| 3.18e-04, |z_N| 1.89e-13, ratios 2-5 346.8 47.6 0.2 2.0, a_max 0.693, 401 s
+a_rule reseed: a_h tail e_N+1 1.57e-17 (ratio 1.46), level 0.000715 of the pole line 1.35e-40: a 0.0450 (capped)
+
+### attempt 1: a 0.0450: re-seeded (ok), 150.06 s
+  horizon data refined in octo-double, rung max|R| 2.37e-11 -> 6.84e-20 -> 6.83e-20 -> 1.25e-26 -> 3.94e-26 -> 1.37e-26 -> 6.85e-27
+| it | chord check | max abs F before to after | lam accepted | abs dz before to after | smallest pivot | refused trials (lam: max abs F, raw abs dz_t / abs dz) | s |
+|---|---|---|---|---|---|---|---|
+| 0 | theta inf refused | 8.31e-25 to 1.92e-15 | 0.5 | 3.45e-20 to 3.91e-22 | 9.8e-20 | 1: 9.87e-05, 9.295e-19 / 3.451e-20 | 1055.43 |
+| 1 | - | 1.92e-15 to 4.59e-15 | 0.03125 | 3.91e-22 to 3.69e-22 | 3.5e-19 | 1: 5.98e-05, 1.155e-19 / 3.914e-22; 0.5: 3.89e-26, 1.706e-20 / 3.914e-22; 0.25: 1.03e-19, 1.712e-20 / 3.914e-22; 0.125: 1.05e-20, 1.720e-20 / 3.914e-22; 0.0625: 8.63e-18, 1.480e-20 / 3.914e-22 | 1965.68 |
+| 2 | - | no trial accepted | - | - | - | 1: 1.25e-03, 1.823e-17 / 3.689e-22; 0.5: 3.28e-25, 1.706e-20 / 3.689e-22; 0.25: 9.53e-22, 1.715e-20 / 3.689e-22; 0.125: 5.15e-22, 1.720e-20 / 3.689e-22; 0.0625: 1.20e-22, 1.722e-20 / 3.689e-22; 0.03125: 6.10e-18, 1.565e-20 / 3.689e-22; 0.015625: 1.80e-24, 1.724e-20 / 3.689e-22; 0.0078125: 5.40e-22, 1.724e-20 / 3.689e-22; 0.00390625: 2.49e-21, 1.724e-20 / 3.689e-22 | - |
+  elim projections {'u0': 0, 'u0q': 0, 'ladder': 0, 'failed': 1, 'skipped': 0, 'u0o_refused': 20, 'pred': 19}
+  octo-double Newton: 3 steps, max|F| 4.6e-15, not converged; double-double |F| of its first two parts 2.1e+32
+  a 0.045 -> D 263.621212892: predicted |F| 8.85e+31, od 3 steps -> 2.15e+32 (tol 1.1e-20), Delta 1.682854030413 (formula diff -2.1e-06), moved 1.7e-20, 6578 s
+
+### attempt 2: a 0.0225: re-seeded (ok), 142.17 s
+  horizon data refined in octo-double, rung max|R| 1.57e-11 -> 2.05e-21 -> 2.05e-21 -> 1.64e-27 -> 1.53e-27 -> 1.70e-27
+| it | chord check | max abs F before to after | lam accepted | abs dz before to after | smallest pivot | refused trials (lam: max abs F, raw abs dz_t / abs dz) | s |
+|---|---|---|---|---|---|---|---|
+| 0 | theta inf refused | 1.04e-26 to 3.77e-15 | 1 | 1.75e-20 to 1.78e-29 | 2.8e-19 | none | 874.12 |
+| 1 | - | 3.77e-15 to 1.89e-25 | 0.5 | 1.78e-29 to 1.24e-29 | 2.5e-20 | 1: 6.78e-28, 2.133e-29 / 1.785e-29 | 687.36 |
+| 2 | - | 1.89e-25 to 2.78e-25 | 1 | 1.24e-29 to 9.33e-39 | 2.5e-20 | none | 337.3 |
+| 3 | - | 2.78e-25 to 1.04e-38 | 1 | 9.33e-39 to 2.10e-44 | 2.5e-20 | none | 136.76 |
+  elim projections {'u0': 0, 'u0q': 0, 'ladder': 0, 'failed': 1, 'skipped': 0, 'u0o_refused': 7, 'pred': 6, 'u0o': 1}
+  octo-double Newton: 5 steps, max|F| 1.0e-38, converged; double-double |F| of its first two parts 1.1e+32
+  a 0.022 -> D 263.598712892: predicted |F| 6.90e+31, od 5 steps -> 1.11e+32 (tol 1.0e-20, stall accepted, Delta correction +0.0e+00), Delta 1.682857305173 (formula diff -2.1e-06), moved 1.7e-20, 2365 s
+
+### attempt 3: a 0.0450: re-seeded (ok), 147.8 s
+  horizon data refined in octo-double, rung max|R| 1.39e-11 -> 1.19e-20 -> 1.19e-20 -> 8.02e-29 -> 4.63e-29 -> 1.06e-28
