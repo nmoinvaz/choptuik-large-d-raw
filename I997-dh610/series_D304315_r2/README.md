@@ -29,3 +29,7 @@ Selftests: `run997d.py --selftest` (13 cases: the order parser, the base parser,
 Launch: `start997d.sh` (unit `i997t`, under `systemd-inhibit`, memory log `memlog_i997t.log`: alert only), then `run997d.sh`, `run997d.py`. Logs as they come: `exits_997d.txt` (decisions with times), `anm_lowd.log`, `rss_997d.log` (RSS, CPU, MemAvailable, load every 60 s).
 
 Written as the run goes.
+
+## Base line (22 Nov, 11:03:51 UTC)
+
+The `base` line landed 16282 s (4 h 31 min) after the start (06:32:28 UTC); its own clock reads 16268 s (4.52 h), so the 8 h base cap (14:32 UTC) held with 3.5 h to spare. `base ...: D 3.04315, M 320, |F| 7.3e-21, pivots 2.1e-10..4.3e+01, 16268 s` (`anm_lowd.log`; the state's floor is 7.35e-21, #945). During the base stage: about 130% CPU for the first 15 min (the plan's checks), then 900% to 955%; RSS 0.49 to 1.4 GB; MemAvailable 36 to 56 GB; load 12 to 22 beside #1067's 10 threads and the other project's job (`rss_997d.log`). Order 2's 3 h bar runs from this line: 14:03:51 UTC.
