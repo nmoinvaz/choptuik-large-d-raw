@@ -87,9 +87,13 @@ Tools written for it (new files, none of the running ones touched; each was test
 
 The D 19 window is as written above and in the pre-run post: lambda 1.40 to 1.80 at 0.01 (41 points), path 1.545995, four processes (P1 1.40 to 1.50, P2 1.51 to 1.60 with 1.50 repeated first in both of the pair, P3 1.61 to 1.70, P4 1.71 to 1.80 with 1.70 repeated first), 4 threads each, BelowNormal. D 19.5 and D 20 follow the coordinator's rule above.
 
-## Result
+## Result at D 19 (the scan ended 13:19 UTC 22 Nov; details in `read_D19.txt` and `points_D19.md`)
 
-Not yet run.
+**lambda_1(D 19) = 1.536547 at k_c 71** (det-linear estimate; the robust minus-to-plus change lies in the bracket (1.53, 1.54); estimator range [1.536547, 1.536678], a spread over four estimator choices, not an enclosure), 0.009448 below the path 1.545995, delta against lambda_0 (2.1156378446, error 4e-8) = -0.579091. By the reading fixed before the run this is the reading: one robust change in 41 points, no second change within 0.03 or anywhere, no ln|det| minimum without a change, all 41 points noise robust, the repeats at 1.50 (P1, P2) and 1.70 (P3, P4) agree to 0.0 (bar 1e-6), the system check of every process passed (|F| 2.7619908383e-10, 2676 steps), exit 0 for all four processes (P1 7389 s, P2 7385 s, P3 6776 s, P4 7358 s, no cap). The edge rule was not triggered (the root is 0.137 from the window edge 1.40). With lambda_1(18.5) = 1.675995 the secant slope is -0.278896 per unit D. Information: the float64 sign differs from the hybrid at 8 of 41 points (1.43, 1.47 to 1.53) and shows three spurious sign changes in (1.42, 1.47).
+
+D 19.5 window by the coordinator's rule (`next_window.py 19.5`): p(19.5) = 1.536547 + (-0.278896)(0.5) = 1.397099, centre 1.40, **lambda 1.20 to 1.60 at 0.01 (41 points)**, path 1.397099; four processes P1 1.30 then 1.20 to 1.29, P2 1.30 then 1.31 to 1.40, P3 1.50 then 1.41 to 1.49, P4 1.50 then 1.51 to 1.60 (the pair repeats are 1.30 and 1.50).
+
+
 
 ## Processes outside the terminal (the coordinator's hc, 2026-11-22 ~08:00 UTC)
 
