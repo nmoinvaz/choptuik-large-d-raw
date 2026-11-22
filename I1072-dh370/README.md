@@ -31,3 +31,15 @@ Solves: minutes to an hour each at M' <= 128. gamma: about 170 s per determinant
 ## Status
 
 - Step 0 (21:03 to 21:08 UTC, unit i1072a, `step0.txt`): `tau_map_gain.py selftest` exit 0 and `--mutate gp` exit 1 as required; `lowD_gamma.py --selftest` exit 0, identity bit for bit (ln|det| 1033.5811009326815 both); `--selftest --break` prints FAIL (the control fires: L 0.99 gives sign -1, ln|det| 1045.2428843957728) **but exits 0, not 1**: `main()`'s return value is dropped by `if __name__ == "__main__": main()` in the branch's `lowD_gamma.py` (a discrepancy with the issue's "exit 1", reported to t5, code not edited; fix `sys.exit(main())`). My `make_solver_mapped` construction in `run0.sh` used M 24, which the kernel does not allow; re-run with M 96 it constructs a Solver in 0.6 s, and the passing selftest built the mapped solver the same way: it runs on this hp build.
+- Step 1 (21:09:46 to 21:18:40 UTC, unit i1072b, `step1.txt`, `solve_D3.15.log`, `solve_D3.15.jsonl`; worktree 46a8dac5): **0 of 4 configurations converged; no mapped state was saved, so step 2 and its selftest have no input.** Wall 534 s, exit 1.
+
+| L | M' | start |F| (own plan) | plan steps (split) | result | wall |
+|---|---|---|---|---|---|
+| 0.5 | 96 | 1.76 | 634 (2) | pass 1: no |F| below tol1 in it1 = 4 calls: |F| 1.76, 1.75, 1.72, 1.71, 1.62 (|dz| 24, 9.3, 12, 45) | 94 s |
+| 0.5 | 128 | 3.49e+29 | 826 (2) | pass 1: line search at call 0 (the dd4 Jacobian retry fails too) | 163 s |
+| 0.4 | 96 | 6.56e+21 | 732 (2) | pass 1: line search at call 0 (dd4 retry fails) | 71 s |
+| 0.4 | 128 | 9.98e+51 | 960 (4) | pass 1: line search at call 0 (dd4 retry fails) | 194 s |
+
+  The interpolated start of the best case is still O(1) away (|F| 1.76); the other three evaluate to 1e21 to 1e52 on the source's own plan (a RuntimeWarning for overflow in the residual norm). The code is the same that passes `tau_map_gain.py selftest` (interpolation and mapped inputs against closed forms). Not tried (needs t5's word): the identity control `--pairs 1:128` (L 1 at the state's own M), a continuation in L from a converged mapped state (the tool takes a mapped state as the source: `tau_map_gain.py` line 522 reads its `map`), a larger `--it1` for L 0.5 at M' 96.
+- Information from t5 (#1073, rpi5, raw d481a3a3): Ecker et al.'s gamma at D 3.15 interpolates to 0.22739 with about 1e-5 of spread (an interpolation spread, not a bound); our uniform 0.2273872422 lies inside it. They have no gamma below D 3.1, so step 3 at D 3.0444 has no outside target. The acceptance stays against our uniform gamma(128) and its 1.05e-6.
+- The second worktree `~/Source/choptuik-large-d-1072b` is at ae96bcc6 (t5's fix: `sys.exit(main())`, the one-line diff to 46a8dac5; `lowD_gamma.py` blob 2e55d695, the other three scripts unchanged). Its step 0 and step 1 selftest calls run before step 2.
