@@ -1,0 +1,73 @@
+/home/nathan/Source/choptuik-large-d-1025leap/solver/matter/dss_ell.py:211: RuntimeWarning: overflow encountered in multiply
+  a2 = a * a
+/home/nathan/Source/choptuik-large-d-1025leap/solver/matter/dss_ell.py:213: RuntimeWarning: invalid value encountered in subtract
+  cx = c * ((n - 1) * (a2 - 1) - 2 * L * g) / x
+/home/nathan/Source/choptuik-large-d-1025leap/solver/matter/dss_ell.py:214: RuntimeWarning: overflow encountered in multiply
+  ax = a * ((p * p + m * m) + 2 * L * g + (n - 1) * (1 - a2)) / (2 * x)
+/home/nathan/Source/choptuik-large-d-1025leap/solver/matter/dss_ell.py:214: RuntimeWarning: invalid value encountered in add
+  ax = a * ((p * p + m * m) + 2 * L * g + (n - 1) * (1 - a2)) / (2 * x)
+/home/nathan/Source/choptuik-large-d-1025leap/solver/matter/dss_ell.py:216: RuntimeWarning: overflow encountered in multiply
+  pc = n * c * (p + m) / (2 * x)
+/home/nathan/Source/choptuik-large-d-1025leap/solver/matter/dss_ell.py:218: RuntimeWarning: overflow encountered in multiply
+  px = (-self.D(p, omega) + cx * p - c * p / x + pc - lt) / (x - c)
+/home/nathan/Source/choptuik-large-d-1025leap/solver/matter/dss_ell.py:219: RuntimeWarning: overflow encountered in multiply
+  mx = (-self.D(m, omega) - cx * m + c * m / x - pc + lt) / (x + c)
+/home/nathan/Source/choptuik-large-d-1025leap/solver/matter/dss_ell.py:213: RuntimeWarning: overflow encountered in multiply
+  cx = c * ((n - 1) * (a2 - 1) - 2 * L * g) / x
+/home/nathan/Source/choptuik-large-d-1025leap/solver/matter/dss_ell.py:217: RuntimeWarning: overflow encountered in multiply
+  lt = L * c * a2 * q / x
+/home/nathan/Source/choptuik-large-d-1025leap/solver/matter/dss_ell.py:218: RuntimeWarning: invalid value encountered in subtract
+  px = (-self.D(p, omega) + cx * p - c * p / x + pc - lt) / (x - c)
+/home/nathan/Source/choptuik-large-d-1025leap/solver/matter/dss_ell.py:219: RuntimeWarning: invalid value encountered in add
+  mx = (-self.D(m, omega) - cx * m + c * m / x - pc + lt) / (x + c)
+/home/nathan/Source/choptuik-large-d-1025leap/solver/matter/dss_ell.py:88: RuntimeWarning: invalid value encountered in matmul
+  return f @ self._Tm
+/home/nathan/Source/choptuik-large-d-1025leap/solver/matter/dss_ell.py:212: RuntimeWarning: overflow encountered in multiply
+  g = a2 * q * q
+/home/nathan/Source/choptuik-large-d-1025leap/solver/matter/dss_ell.py:213: RuntimeWarning: overflow encountered in divide
+  cx = c * ((n - 1) * (a2 - 1) - 2 * L * g) / x
+/home/nathan/Source/choptuik-large-d-1025leap/solver/matter/dss_ell.py:214: RuntimeWarning: overflow encountered in divide
+  ax = a * ((p * p + m * m) + 2 * L * g + (n - 1) * (1 - a2)) / (2 * x)
+/home/nathan/Source/choptuik-large-d-1025leap/solver/matter/dss_ell.py:217: RuntimeWarning: overflow encountered in divide
+  lt = L * c * a2 * q / x
+/home/nathan/Source/choptuik-large-d-1025leap/solver/matter/dss_ell.py:325: RuntimeWarning: overflow encountered in multiply
+  aG = cs(A, Q2, Kk) + (n - 1) * (A[Kk] - cs(A, A2, Kk)) + 2 * L * cs(A, G, Kk)
+/home/nathan/Source/choptuik-large-d-1025leap/solver/matter/dss_ell.py:218: RuntimeWarning: overflow encountered in divide
+  px = (-self.D(p, omega) + cx * p - c * p / x + pc - lt) / (x - c)
+/home/nathan/Source/choptuik-large-d-1025leap/solver/matter/dss_ell.py:334: RuntimeWarning: overflow encountered in subtract
+  rest = tau_term - zmu - cs(V, M, Kk) - cs(C, M, Kk) + 0.5 * n * cs(C, PM, Kk) - L * cs(C, H, Kk)
+/home/nathan/Source/choptuik-large-d-1025leap/solver/matter/dss_ell.py:214: RuntimeWarning: overflow encountered in add
+  ax = a * ((p * p + m * m) + 2 * L * g + (n - 1) * (1 - a2)) / (2 * x)
+/home/nathan/Source/choptuik-large-d-1025leap/solver/matter/dss_ell.py:218: RuntimeWarning: invalid value encountered in add
+  px = (-self.D(p, omega) + cx * p - c * p / x + pc - lt) / (x - c)
+/home/nathan/Source/choptuik-large-d-1025leap/solver/matter/dss_ell.py:219: RuntimeWarning: overflow encountered in divide
+  mx = (-self.D(m, omega) - cx * m + c * m / x - pc + lt) / (x + c)
+/home/nathan/Source/choptuik-large-d-1025leap/solver/matter/dss_ell.py:219: RuntimeWarning: invalid value encountered in subtract
+  mx = (-self.D(m, omega) - cx * m + c * m / x - pc + lt) / (x + c)
+/home/nathan/Source/choptuik-large-d-1025leap/solver/matter/dss_ell.py:216: RuntimeWarning: overflow encountered in divide
+  pc = n * c * (p + m) / (2 * x)
+{"D": 18.46875, "l": 1, "kc": 63, "kappa": 0.7, "u0": 0.04, "Ks": 30, "Delta": 1.0553016756863807, "Delta_pred": 1.0552998256555495, "F": 2.7809094294490853e-10, "F_start": 2.0057144386775452e-05, "steps": 2466, "constraint": 0.001844249215980808, "dDelta_dF": 1576946256.0497735, "lam_gauge": 0.8752795479527354, "h": 0.03125, "seconds": 2527, "sv_J_small": [1.2452779348418723e-16, 2.986191953858483e-16, 3.259721185812904e-16, 6.216817311993744e-16], "sv_J_max": 10.714920448378273, "cos_t_v": [0.06825815706331367, 0.015324090643173341, 0.012383175799987203, 0.02215231355185587], "sv_B_min": 6.4706927390623425e-19, "sv_B_max": 10.714920682151616, "tan_norm": 0.40139964134522643, "sv_fold": 1.2452779348418723e-16, "cos_fold": 0.06825815706331367, "i_fold": 0, "n_null": 57, "sv_reg_small": [3.671004633682564e-11, 3.9347429201794136e-11, 4.042135173474081e-11, 2.3601197403935775e-09], "cos_t_reg": [0.021817229139447888, 0.005577366138577029, 0.004095490335312052, 0.0021459330615605033]}
+reached D 18.46875
+	Command being timed: "timeout 10800 /home/nathan/Source/choptuik-large-d-1058b/.venv/bin/python -u ell_leap.py l1kc63dh1025 1 63 /home/nathan/scratch1025kc/in2/sol_l1kc63Wm1025_D18.375000.npy 18.375 /home/nathan/scratch1025kc/in2/sol_l1kc63Wm1025_D18.437500.npy 18.4375 18.46875 0.03125 --tol 1e-12 --fmax 1e-8 --cmax 1e-2 --fold"
+	User time (seconds): 9444.77
+	System time (seconds): 43.84
+	Percent of CPU this job got: 363%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 43:32.88
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 1464524
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 13337591
+	Voluntary context switches: 945
+	Involuntary context switches: 938032
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 480
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

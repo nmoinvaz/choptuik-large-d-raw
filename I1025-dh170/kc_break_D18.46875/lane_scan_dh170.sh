@@ -28,7 +28,7 @@ done
 for f in $SCAN $RAW; do [ -e $f ] && { say "refuse: $f exists"; bad=1; }; done
 $PY -c "import numpy, scipy, mpmath, multidouble; multidouble.dd_logdet" || { say "refuse: $PY lacks numpy/scipy/mpmath/multidouble.dd_logdet"; bad=1; }
 [ $bad = 0 ] || exit 2
-[ -n "${DRYRUN:-}" ] && L=/tmp/claude-1000/-home-nathan-Source-choptuik-large-d/026ace6b-8e85-4de1-9fd2-85ec04d52786/scratchpad/dry_exits_kc$KC.txt
+[ -n "${DRYRUN:-}" ] && L=/tmp/claude-1000/-home-nathan-Source-choptuik-large-d/7c1b4b7a-a1d6-4c3c-bd98-f629e5f34799/scratchpad/dry_exits_kc$KC.txt
 say "pins checked: state $(basename $ST) $STH, record $(basename $REC) $RECH, d18_hybsign e089207a, worktree 505d8399 clean; $PY; 4 threads"
 [ -n "${DRYRUN:-}" ] && { say "dry run: pins ok, nothing started"; exit 0; }
 cd $W

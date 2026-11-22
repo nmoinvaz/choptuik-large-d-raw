@@ -43,3 +43,21 @@ No second route to the state (an interpolating predictor from D 18.4375 and D 18
 
 ## Log
 - 2026-11-22 06:48:32 UTC: folder, scripts, controls and pins prepared; the commands, window and reading are fixed above before any run. Controls run: `ctl_accept.log` (4 of 4 as wanted), reader selftest PASS and both mutations FAIL, `repeat_check.py selftest` PASS.
+- 2026-11-22 06:49:06 and 06:49:13 UTC: the two leaps started side by side (pids 1309918, 1310453), controls first: selftest PASS and mutate FAIL, accept_check exit 0 and 3, both k_c.
+- 2026-11-22 07:21:25 UTC: **k_c 55 state accepted.** One step of ell_leap.py, h 0.03125, no halving; the leap's record row: |F| 2.6892152e-10 (F at the secant start 2.0e-5), 2153 steps, psi-constraint 2.8569e-3, Delta 1.0552647782 (the secant predictor 1.0552629), 1836 s in the step, 1926 s wall, max RSS 1.08 GiB. The rebuild by accept_check.py equals the record row to all printed digits. State `sol_l1kc55dh1025_D18.468750.npy` blob 567279bf, record `l1kc55dh1025.jsonl` blob 51a516f2.
+- 2026-11-22 07:32:48 UTC: **k_c 63 state accepted.** One step, h 0.03125, no halving; |F| 2.7809094e-10 (secant start 2.0e-5), 2466 steps, psi-constraint 1.8442e-3, Delta 1.0553016757 (predictor 1.0552998), 2527 s in the step, 2619 s wall, max RSS 1.40 GiB. Rebuild equals the record row. State `sol_l1kc63dh1025_D18.468750.npy` blob 75a6b7d5, record `l1kc63dh1025.jsonl` blob c19b9501.
+- 2026-11-22 07:33:17 and 07:33:20 UTC: the two scan lanes started (pins ok, planted selftest PASS and mutate FAIL, system check passes: k_c 63 |F| 2.7809094294e-10 against the record's, 2466 steps; k_c 55 2.6892152453e-10, 2153 steps), then `read_kcbreak.sh`. i349's `largeD_linear_poisson.py` (one thread, nice 19, started by t2d's agent) runs beside them; mine stay at 4 + 4 threads, nice 10, as at D 18.4375, which makes 9 threads on 8 CPUs with theirs yielding.
+- 2026-11-22 07:33:53 UTC: results of step 1 written (this section).
+
+## Step 1 against the predictions
+| prediction | result |
+|---|---|
+| each leap reaches D 18.46875 in one step without halving (90%, 85%); both accepted (85%) | yes, yes; both accepted |
+| Delta within 1e-5 of 1.0553016 (k_c 63) and 1.0552647 (k_c 55) (90%) | 1.0553016757 and 1.0552647782: 8e-8 each |
+| psi-constraint within 20% of 1.85e-3 and 2.86e-3 (85%) | 1.844e-3 and 2.857e-3 |
+| |F| between 1e-11 and 1e-9 (85%) | 2.78e-10 and 2.69e-10 |
+| 300 to 2400 s per leap (70%) | k_c 55 1836 s yes; **k_c 63 2527 s no**, the two ran side by side (k_c 63's step ran 32 min beside k_c 55's) |
+
+## Notes
+- `accept_check.py`'s docstring was edited (one phrase) after its four controls (`ctl_accept.log`) ran and before the leaps; the code lines are unchanged. Its controls were repeated at the start of each leap lane (`ctl_leap_accept_kc*.log`: exit 0 and 3 as wanted).
+- The record rows of both states are the leap's own, written on this machine; the Mac's D 18.4375 records were rebuilt here with |F| equal within 0.16%, and the new rows rebuild to the printed digits (same machine, same thread count).

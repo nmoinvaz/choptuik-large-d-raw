@@ -1,0 +1,15 @@
+== 2026-11-22 06:49:13 UTC k_c 55: pins checked: seeds D 18.375 6a1df3d65f5baa6611feaea06cf8fa631cadea21 and D 18.4375 2b8864095ed78a4a9d7999d6f9bc26114e64ed65, ell_leap 1eb873e4, worktree 505d8399 clean; /home/nathan/Source/choptuik-large-d-1058b/.venv/bin/python; 4 threads
+== 2026-11-22 06:49:13 UTC k_c 55: 1. planted control: ell_ddm.py selftest (must PASS), then --mutate=slices (must FAIL), 1800 s each
+selftest: PASS
+selftest: FAIL [mutate slices]
+== 2026-11-22 06:49:14 UTC k_c 55: 2. accept_check.py controls on the D 18.4375 state: its own record row must give exit 0, the D 18.5 row exit 3
+D 18.4375 k_c 55: |F| 2.7115343168e-10 (record 2.7071892717e-10), steps 2157 (record 2157): the record system
+D 18.5 k_c 55: |F| 1.2803759816e-03 (record 2.6618688407e-10), steps 2157 (record 2149): NOT the record system
+== 2026-11-22 06:49:17 UTC k_c 55: 3. leap: ell_leap.py l1kc55dh1025 1 55 D 18.375, 18.4375 -> 18.46875, h 0.03125 (3 h cap by exact pid)
+== 2026-11-22 06:49:17 UTC k_c 55: leap started under /usr/bin/time pid 1310453
+== 2026-11-22 07:21:23 UTC k_c 55: leap exit 0 (timeout 124), 1926 s wall
+reached D 18.46875
+== 2026-11-22 07:21:24 UTC k_c 55: state sol_l1kc55dh1025_D18.468750.npy blob 567279bfb3b3f813d54ec9ee3fbdcdb2fbfffb16; record l1kc55dh1025.jsonl blob 51a516f2df35fd29763bb084e39bf812ee5a87f9
+D 18.46875 k_c 55: |F| 2.6892152453e-10 (record 2.6892152453e-10), steps 2153 (record 2153): the record system
+== 2026-11-22 07:21:25 UTC k_c 55: ACCEPTED: state D 18.46875 accepted (leap bars met, the record-system check passed, exit 0)
+== 2026-11-22 07:21:25 UTC k_c 55: lane leap kc55 done
