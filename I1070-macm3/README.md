@@ -337,3 +337,77 @@ watcher: 59 polls, first 2026-11-22 00:07:47 UTC, last 2026-11-22 01:06:00 UTC (
 Against the issue's pass rule (F after the polish below 1e-27; exactly one sign change in the bracket): F after the polish is 2.61e-30 (met, the log's
 "|F| 2.6e-30"); the bracket is **not decided**: the first grid (lam0 ± 1e-4) has one sign change, but brentq had done one evaluation and the run has no `n_signchanges`, no λ and no γ.
 So there is no γ(128) at D 3.425 and no γ(128) − γ(96); the interval above is the signs' bracket of an unfinished search, not a value.
+
+## D 3.425 M 128, rerun r2 (the coordinator's order after the outage, 2026-11-22 17:19 UTC)
+
+The first M 128 run did not finish (section above). The coordinator relayed that commit to raw main as dcd0eb19 and approved a rerun: the same D 3.425 M 128 command and pass rule,
+6 threads, `nice -n 10`, cap 3 h (10800 s) by exact pid, `--lam0` M 96's λ (3.2341077237548475). Changes for this machine (it rebooted at about 17:02 UTC and its load is still high from that; started anyway):
+1. Own session: `launch_1070.py` double-forks with `setsid` (parent launchd, pid 1; no controlling terminal; stdin /dev/null), so ending the terminal or the claude session cannot end the run.
+   The wrapper keeps `caffeinate -is` (idle and system sleep). A session check (the parent chain of each pid up to pid 1, with no claude) goes into `session_check_D3.425_M128_r2.txt` after the start.
+2. The watcher logs a UTC timestamp on every poll (as before), and now ends its log with a line "process N is gone (the watcher is alive: an end, not a stall of the machine)" when the process ends;
+   it is started in its own session too. A stall of the machine shows as a gap in the polls with no such line.
+3. `run_1070_D3425.sh` takes `TAG=_r2` for the output names (the first run's files stay as they are): `lowD_gamma_D3.425_M128_r2.jsonl`, `run_D3.425_M128_r2.log`, `res_D3.425_M128_r2.log`, label `D3.425 M128_r2`
+   in `exits_1070.txt`, and it logs the load at the start (loadavg, uptime, free memory, the 5 busiest processes).
+
+Command, the issue's (`issue_cmd.txt`) against mine (`my_cmd_D3425_M128_r2.txt`, from `TAG=_r2 DRY=1 run_1070_D3425.sh M128 3.2341077237548475`), `diff issue mine` (`cmd_diff_D3425_M128_r2.txt`):
+
+```
+1c1
+< python3
+---
+> /Users/nathan/Source/venv-macm3-1058b/bin/python
+4,5c4,5
+< <raw>/I1070-macm3/lowD_gamma_D3.15_M128.jsonl
+< <raw>/I927-mac/inputs/lowDhm_x0.000625-0.9_D3.1500_M128.npz
+---
+> /Users/nathan/Source/choptuik-large-d-raw-903/I1070-macm3/lowD_gamma_D3.425_M128_r2.jsonl
+> /Users/nathan/Source/choptuik-large-d-raw-749p/T39-win/hp/data/lowD_states/lowDvh41_D3.4250_M128.npz
+8a9
+> --lam0=3.2341077237548475
+```
+
+Against the first M 128 run's command (`cmd_diff_D3425_M128_vs_first.txt`): only the output name differs (`_r2`):
+
+```
+4c4
+< /Users/nathan/Source/choptuik-large-d-raw-903/I1070-macm3/lowD_gamma_D3.425_M128.jsonl
+---
+> /Users/nathan/Source/choptuik-large-d-raw-903/I1070-macm3/lowD_gamma_D3.425_M128_r2.jsonl
+```
+
+Code worktree `choptuik-large-d-1070` (main 6c4d845d) and `venv-macm3-1058b`, the same as the first run; state blob a2c3c011391d2d36421716199941f0442924bcf9. `TAG=_r2 check_cmd_1070_D3425.py M128 3.2341077237548475`: pass (`--selftest`: 13 cases, 11 broken, with and without the tag).
+
+### r2 start (2026-11-22 17:19:52 UTC)
+
+Started by `launch_1070.py ... TAG=_r2 -- /bin/bash run_1070_D3425.sh M128 3.2341077237548475` (output `launcher_D3.425_M128_r2.out`): wrapper pid 11408, capped_run.py 11430, caffeinate 11431,
+`hp/lowD_gamma.py` (the child pid in `run_D3.425_M128_r2.log`) 11432, cap 10800 s, so it ends by 20:19:52 UTC at the latest. The load at the start is in `exits_1070.txt` (loadavg 18.70, 23.62, 20.73 after 17 min of uptime;
+free memory 92%; the busiest process `mediaanalysisd` at 112.6% cpu). `session_check_D3.425_M128_r2.txt` (from `session_check_1070.py`, one `ps` snapshot at 17:21:05 UTC): every process of the run
+has parent chain ... -> bash wrapper -> launchd (pid 1), tty ?? (no controlling terminal), and no command in any chain contains "claude" (the checker's own chain, for comparison, goes through the claude session and sshd).
+The watcher's first start (17:20 UTC, `/usr/bin/python3`, Python 3.9) failed at its first line (`datetime.UTC` does not exist there; `watcher_D3.425_M128_r2_try1.out`) and was restarted at 17:20:54 UTC with the venv python
+(pid 12220), so `res_D3.425_M128_r2.log` starts 62 s after the run's start; the run's own log is complete.
+
+### D 3.425 M 128, rerun r2 result: one sign change, a root (pass; written 2026-11-22 17:41 UTC)
+
+`TAG=_r2 run_1070_D3425.sh M128 3.2341077237548475`, started 2026-11-22 17:19:52 UTC, exit 0 at 17:40:43 UTC (capped_run wall 1251 s, own 1243.6 s, cap 10800 s not reached), child pid 11432.
+Files: `run_D3.425_M128_r2.log`, `lowD_gamma_D3.425_M128_r2.jsonl`, `table_D3.425_M128_r2.md`, `res_D3.425_M128_r2.log` (ends with "process 11432 is gone (the watcher is alive: an end, not a stall of the machine)"),
+`res_summary_D3.425_M128_r2.txt`, `res_stats_D3.425_M128_r2.txt`, `exits_1070.txt`, `launcher_D3.425_M128_r2.out`, `session_check_D3.425_M128_r2.txt`.
+
+| criterion (the issue's) | result | met |
+|---|---|---|
+| F after the polish below 1e-27 | 2.613e-30 (Newton step 0 found the state converged, \|dz\| 1.2e-25, no step taken) | yes |
+| exactly one sign change in the bracket | `n_signchanges` 1 (grid lam0 ± 1e-4: 3.2340077 -, 3.2341077 -, 3.2342077 +) | yes |
+
+| | λ | γ = 1/λ |
+|---|---|---|
+| M 96 (`lowD_gamma_D3.425_M96.jsonl`) | 3.2341077237548475 | 0.3092042954088694 |
+| M 128 (r2) | 3.2341078267095367 | 0.3092042855656502 |
+| M 128 − M 96 | 1.0295e-07 | -9.8432e-09 (relative -3.18e-08) |
+| − Vienna 0.3092057 | | M 96: -1.4046e-06; M 128: -1.4144e-06 (relative -4.57e-06) |
+
+γ(128) − γ(96) = -9.8432e-09 is a resolution change, not a bound. 6 determinants, brentq `xtol` 1e-11 on λ, so each γ is good to about 1e-12. The two are 1.4e-6 below the Vienna value, and their difference
+is 0.70% of that offset (9.843e-09 against 1.4144e-06): the offset is not the resolution. The first four determinants of this run print the same signs and the same ln|det| (to the six printed decimals) as the first run's four (section above): 1379.034911, 1372.224936,
+1379.172234, 1369.525716. The interrupted run's signs-only bracket for the difference, (-9.560e-06, -9.181e-09), holds -9.843e-09. Determinants took 165.7 to 225.4 s (mean 192.2), against 330 s at the first run's start;
+the load1 in the res log was mean 20.7, max 30.2 over its 20 polls (the first run's 59 polls: mean 20.8, max 42.7). The local slope of ln|det| against ln|λ − λ*| is 1.010 and 1.000 for the two points on the same side
+of the root (the table's first pair, -66.7, joins points on opposite sides of the root: not a slope).
+
+Resources, `res_D3.425_M128_r2.log`: polls 20 (60 s each), rss GB min 0.21 max 2.34 mean 1.38; cpu% (ps, 100 = one core) min 589.4 mean 596.2 max 600.0; load1 mean 20.72 max 30.21; free memory min 92%; free disk min 23.9 GiB. No watcher alert.

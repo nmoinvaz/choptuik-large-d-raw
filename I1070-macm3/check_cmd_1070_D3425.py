@@ -5,6 +5,7 @@ Usage: check_cmd_1070_D3425.py M96|M128 LAM0 | --selftest. Allowed differences: 
 --lam0=LAM0 (the order). Everything else must be the issue's token. Exit 0 pass, 1 fail."""
 import os, subprocess, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
+TAG = os.environ.get("TAG", "")
 ISSUE = "python3 -u hp/lowD_gamma.py <raw>/I1070-macm3/lowD_gamma_D3.15_M128.jsonl <raw>/I927-mac/inputs/lowDhm_x0.000625-0.9_D3.1500_M128.npz --threads=6 --polish=2 --xtol=1e-11"
 def check(mode, cmd, lam):
     a = ISSUE.split(); b = cmd.split(); bad = []
@@ -15,7 +16,7 @@ def check(mode, cmd, lam):
     if not b[0].endswith("/venv-macm3-1058b/bin/python"): bad.append("interpreter is not venv-macm3-1058b")
     for i, (x, y) in enumerate(zip(a, b)):
         if i == 0: continue
-        if i == 3 and not y.endswith(f"/I1070-macm3/lowD_gamma_D3.425_{mode}.jsonl"): bad.append(f"output {y}")
+        if i == 3 and not y.endswith(f"/I1070-macm3/lowD_gamma_D3.425_{mode}{TAG}.jsonl"): bad.append(f"output {y}")
         elif i == 4 and not y.endswith(f"/T39-win/hp/data/lowD_states/lowDvh41_D3.4250_{mode}.npz"): bad.append(f"state {y}")
         elif i not in (3, 4) and x != y: bad.append(f"token {i}: {y} vs {x}")
     return bad

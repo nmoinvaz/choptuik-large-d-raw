@@ -20,7 +20,7 @@ while not (os.path.exists(f"{O}/run_{mode}.log") and open(f"{O}/run_{mode}.log")
 pid = int(re.search(r"child pid (\d+)", open(f"{O}/run_{mode}.log").readline()).group(1))
 rows = []; low_d = low_m = False
 with open(f"{O}/res_{mode}.log", "a") as lg:
-    lg.write(f"# {now()} watch_1070.py {mode}: pid {pid}, poll {dt:.0f} s; columns: time, rss_GB, cpu_pct, free_mem_pct, free_disk_GiB, load1\n")
+    lg.write(f"# {now()} watch_1070.py {mode}: pid {pid}, poll {dt:.0f} s; columns: time (UTC, on every poll), rss_GB, cpu_pct, free_mem_pct, free_disk_GiB, load1\n")
     while alive(pid):
         r = subprocess.run(["ps", "-o", "rss=,%cpu=", "-p", str(pid)], capture_output=True, text=True).stdout.split()
         if len(r) == 2:
@@ -29,6 +29,8 @@ with open(f"{O}/res_{mode}.log", "a") as lg:
             if fd < 3 and not low_d: low_d = True; alert(f"free disk {fd:.1f} GiB < 3 GiB")
             if 0 <= fm < 8 and not low_m: low_m = True; alert(f"free memory {fm}% < 8%")
         time.sleep(dt)
+    with open(f"{O}/res_{mode}.log", "a") as lg:
+        lg.write(f"# {now()} process {pid} is gone (the watcher is alive: an end, not a stall of the machine); {len(rows)} polls\n")
     if rows:
         with open(f"{O}/res_summary_{mode}.txt", "w") as f:
             f.write(f"{mode} pid {pid}, {len(rows)} polls of {dt:.0f} s, ended {now()}\npeak rss {max(r[0] for r in rows):.2f} GB\n"
