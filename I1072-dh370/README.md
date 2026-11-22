@@ -44,6 +44,16 @@ Step 2 then runs on the converged L 0.5 and 0.4 states at M' 96 and 128, as writ
 - Acceptance as written: each gamma at M' 128 within 1.05e-6 of the uniform gamma(128) = 0.22738724224291604 (raw `I1070-macm3/lowD_gamma_D3.15_M128_r2.jsonl`, blob b9da6a94: 1 sign change, |F| 1.1e-28, 7 determinants); every run ends with exactly one sign change in its bracket and |F| below 1e-27. Reported beside it (not a pass rule): gamma(L 0.7, M' 128) - gamma(L 0.7, M' 96) against the uniform 1.05e-6 (the uniform gamma(96) is 0.22738618769170593, raw `I1070-dh170/lowD_gamma_D3.15_M96.jsonl`, blob 3f0e2256, difference 1.0546e-6), and Ecker et al.'s 0.22739 within about 1e-5 (#1073).
 - Tighter maps at D 3.15 (L 0.6, or L 0.5 straight from M 160) wait. Step 3 at D 3.0444 starts from #1033's converged L 0.4 M' 160 state (dh610), which came from a well-resolved M 384 source: L 0.4 at M' 128 from it.
 
+## Step 3 (t5's order after the gain was read; written before the run, 2026-11-22 22:51 UTC by the clock)
+
+`run_step3.sh` (unit `i1072e`, 6 threads, nice 10, worktree 1072b at ae96bcc6) waits for step 2 to end with `STEP2_DONE.txt` (L 0.9 at M' 128 passing its acceptance); if step 2 stops it does not run (`STEP3_NOT_RUN.txt`). Then, stopping at the first failure:
+- The source: #1033's converged L 0.4 M' 160 state `I1033-dh610/states/tmap_lowDhm_x0.000157-0.975_D3.0444_M384_L0.4_M160_s1.9635.npz` (raw 55a49ace, blob 9ccd7a9e, 361814 bytes). Its meta: D 3.044375 (the "3.0444" of the name and the issue), M' 160, kt 36, kc 100, ks 250, 21 nodes, map [1.9634954084936205, 0.4]; the map and s0 are kept (`--s0 1.9634954084936205`; the saved names print it as 1.9635). It came from a well-resolved uniform M 384 source.
+- 3b: `tau_map_gain.py solve <that state> --pairs 0.4:128 --s0 1.9634954084936205 --states states3 --out solve_step3.jsonl --threads 6`; if the M' 128 solve fails from the M' 160 state: report and stop.
+- 3c: L 0.4 at M' 96 from the M' 128 state, same s0.
+- 3d: the gp selftest, `lowD_gamma.py --selftest <the uniform D 3.15 M 128 state> <the D 3.044375 M' 128 state> --threads=6`, exit 0 (its part (1), the identity check, needs a uniform state of M <= 128, so it runs on the D 3.15 one; part (2), the gp control, on the mapped D 3.044375 state).
+- 3e: gamma at M' 128 and at M' 96, `lowD_gamma.py gamma_D3.0444.jsonl <state> --threads=6 --lam0=<lam_guess> --xtol=1e-11`. `lam_guess` extrapolates the table's first three entries (D 3.15, 3.425, 3.475) below D 3.15: lam_guess(3.0444) = 5.140624480111626 (gamma 0.19452889505328846), and at the state's own D 3.044375, which the script uses by default, 5.1408197887863025 (gamma 0.19452150456261963). I pass the latter: the guess only places the bracket.
+- Report (no pass rule; there is no outside target: Ecker et al.'s gamma stops at D 3.1, #1073): gamma(3.0444) at M' 128 and at M' 96, and their difference as a resolution change, not a bound; each run's sign changes and |F|.
+
 ## Cost (the issue's estimate)
 
 Solves: minutes to an hour each at M' <= 128. gamma: about 170 s per determinant at M 128 (#1070's D 3.15), 7 to 11 determinants per state. Steps 0 to 2 about 3 to 5 h; step 3 a similar time.
