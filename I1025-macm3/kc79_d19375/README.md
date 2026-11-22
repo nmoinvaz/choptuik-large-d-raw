@@ -64,5 +64,9 @@ win2's k_c 71 scan at D 19.375 (window 1.30 to 1.60) runs now; dh370 and dh610 s
 My own predictions (written before any run): source check passes with 2609 steps and both controls exit 1 (95%); the regrid is accepted (85%) with about 2900 steps (2925 at D 19.25 against the k_c 71 record's 2630: x1.112 of 2609 is 2902), taking about 10 min (the D 19.25 regrid: 581 s);
 the scan takes about 55 min (5 points a process at about 650 s); the scan shows one root in 1.42 to 1.44 near the line (55%), two roots in the window (25%), no root (10%), another count (10%).
 
-## Status
-(filled as the steps finish)
+## Status (22 Nov 2026)
+
+| step | verdict | numbers | time (UTC) |
+|---|---|---|---|
+| source check (win2's `kc71_syscheck.py`) | accepted; selftests exit 0; controls `--mutate=F` and `--mutate=steps` exit 1 | state \|F\| 3.2279802889e-10 against the record's 3.2292404728e-10 (0.04% apart, bar 1%); `freeze_from` 2609 steps = the record's | 20:15 (2 s) |
+| regrid (`ell_refine.py`), started 20:15:26 | running (child pid 41987, own session: `session_check_regrid.txt`, every chain ends at launchd, no claude, tty ??) | | |
