@@ -70,10 +70,11 @@ The estimator range is the spread over the interpolation choices of `d185_scan_r
 | one robust change, + to - as printed, 50%; none 30%; two or more 15%; other 5% | **two** (the 15% case): near 1.2317 and 1.4002, by position; neither is the expected single change near 1.30 (the 1.2317 root is 0.068 below it, the 1.4002 root 0.100 above) |
 | if one, within 0.10 of 1.30 (55% of those) | not applicable (two) |
 | float64 differs at no more than 5 points per process (50%) | p0 **no** (6), p1 yes (3) |
-| the scan could take 5 to 8 h (cap at risk) | **no**: 3.4 h and 3.6 h (a point 1321 to 1440 s beside the other process, 793 s alone); inside the caps. The ETA I gave t5 after the first points (22:35) was 18 min late |
+| the scan could take 5 to 8 h (cap at risk) | **no**: 3.4 h and 3.6 h (a point 1321 to 1440 s beside the other process, 793 s alone); inside the caps. The ETA I gave t5 after the first points (22:35) was 18 min later than the actual end (22:17) |
 | max RSS below 2.5 GiB (80%) | yes, 2.26 GiB |
 
 ## Log
 - 2026-11-22 18:28:02 UTC: control started; 18:41:32 PASS; 18:41:41 and 18:41:45 the two scan processes started with the reader unit.
 - 2026-11-22 22:03:47 and 22:16:52 UTC: the processes ended; 22:16:53 the reader ran.
 - 2026-11-22 22:17:46 UTC: result written (this section).
+- 2026-11-22 22:18:00 UTC: wording fixed in the predictions table (my ETA of 22:35 was 18 min later than the actual end, not the scan late).
