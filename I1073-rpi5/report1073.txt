@@ -1,0 +1,147 @@
+parsed: 79 Delta rows (24 with 128, 25 with 256, 79 with 512, 0 with 1024); 79 gamma rows (71 with 512, 0 with another resolution)
+their lists: DeltaList 269 entries, D 3.046 to 5.5; GammaList 122 entries, D 3.1 to 5.5
+
+ACCEPTANCE at D 3.7 (|theirs - ours| <= 1e-7, theirs = highest resolution = 512 modes (FortranData has no 1024 directory), ours = M 80, dd)
+  Delta  theirs 3.465200504469  ours 3.465200483544  diff +2.09e-08  ok
+  gamma  theirs 0.348650264  ours 0.3486501896  diff +7.44e-08  ok
+  mutation shift: off
+
+THEIR Delta PER RESOLUTION, D <= 3.6 (FortranData; 1024 does not exist there), and the change between resolutions
+      D   Delta(128)    Delta(256)    Delta(512)     256-128    512-256   ratio  | gamma(512)  [no gamma at 128/256]
+  3.1000             -             -   2.773310705          -          -       -  | 0.200572328
+  3.1010             -             -   2.777820512          -          -       -  | 0.201017225
+  3.1030             -             -   2.786729800          -          -       -  | 0.202321315
+  3.1040             -             -   2.791130260          -          -       -  | 0.202893832
+  3.1050             -             -   2.795495233          -          -       -  | 0.203514900
+  3.1060             -             -   2.799825184          -          -       -  | 0.204110147
+  3.1070             -             -   2.804120565          -          -       -  | 0.204710911
+  3.1080             -             -   2.808381823          -          -       -  | 0.205314613
+  3.1090             -             -   2.812609393          -          -       -  | 0.205847613
+  3.1100             -             -   2.816803700          -          -       -  | 0.206450439
+  3.1110             -             -   2.820965163          -          -       -  | 0.207044985
+  3.1120             -             -   2.825094191          -          -       -  | 0.207612617
+  3.1130             -             -   2.829191185          -          -       -  | 0.208188087
+  3.1140             -             -   2.833256539          -          -       -  | 0.208752004
+  3.1150             -             -   2.837290637          -          -       -  | 0.209323134
+  3.1160             -             -   2.841293858          -          -       -  | 0.209886543
+  3.1170             -             -   2.845266572          -          -       -  | 0.210451626
+  3.1180             -             -   2.849209142          -          -       -  | 0.211002229
+  3.1190             -             -   2.853121926          -          -       -  | 0.211556246
+  3.1200             -             -   2.857005272          -          -       -  | 0.212109582
+  3.1210             -             -   2.860859524          -          -       -  | 0.212657135
+  3.1220             -             -   2.864685019          -          -       -  | 0.213202861
+  3.1230             -             -   2.868482088          -          -       -  | 0.213744366
+  3.1240             -             -   2.872251055          -          -       -  | 0.214286085
+  3.1250             -             -   2.875992238          -          -       -  | 0.214821198
+  3.1260             -             -   2.879705951          -          -       -  | 0.215355495
+  3.1270             -             -   2.883392501          -          -       -  | 0.215885694
+  3.1280             -             -   2.887052190          -          -       -  | 0.216414145
+  3.1290             -             -   2.890685314          -          -       -  | 0.216939551
+  3.1300             -             -   2.894292165          -          -       -  | 0.217462373
+  3.1310             -             -   2.897873030          -          -       -  | 0.217981820
+  3.1320             -             -   2.901428189          -          -       -  | 0.218499709
+  3.1330             -             -   2.904957919          -          -       -  | 0.219013877
+  3.1340             -             -   2.908462492          -          -       -  | 0.219527004
+  3.1350             -             -   2.911942176          -          -       -  | 0.220036041
+  3.1400             -             -   2.928976300          -          -       -  | 0.222546353
+  3.1450   2.944306784   2.944181061   2.945425834   -1.3e-04   +1.2e-03    -9.9  | -
+  3.1500   2.960394672   2.960274286   2.961319642   -1.2e-04   +1.0e-03    -8.7  | -
+  3.1550   2.975917451   2.975803266   2.976684418   -1.1e-04   +8.8e-04    -7.7  | -
+  3.1600   2.990907060   2.990799534   2.991544911   -1.1e-04   +7.5e-04    -6.9  | -
+  3.1650   3.005392161   3.005291461   3.005924121   -1.0e-04   +6.3e-04    -6.3  | -
+  3.1700   3.019398653   3.019304743   3.019843470   -9.4e-05   +5.4e-04    -5.7  | -
+  3.1750   3.032950084   3.032862790   3.033322949   -8.7e-05   +4.6e-04    -5.3  | -
+  3.1800   3.046067988   3.045987041   3.046381257   -8.1e-05   +3.9e-04    -4.9  | -
+  3.2000   3.094578249   3.094519240   3.094739902   -5.9e-05   +2.2e-04    -3.7  | 0.248606550
+  3.2500   3.193122146   3.193095643   3.193154172   -2.7e-05   +5.9e-05    -2.2  | 0.266030600
+  3.3000   3.267206755   3.267194198   3.267212633   -1.3e-05   +1.8e-05    -1.5  | 0.280713667
+  3.3500   3.323461827   3.323455503   3.323462085   -6.3e-06   +6.6e-06    -1.0  | 0.293303335
+  3.4000   3.366252533   3.366249206   3.366251792   -3.3e-06   +2.6e-06    -0.8  | 0.304246720
+  3.4500   3.398625349   3.398623558   3.398624652   -1.8e-06   +1.1e-06    -0.6  | 0.313862203
+  3.5000   3.422791417   3.422790443   3.422790935   -9.7e-07   +4.9e-07    -0.5  | 0.322385723
+  3.5500   3.440402648   3.440402118   3.440402350   -5.3e-07   +2.3e-07    -0.4  | 0.329998087
+  3.6000   3.452721157   3.452720868   3.452720982   -2.9e-07   +1.1e-07    -0.4  | 0.336841126
+rows D <= 3.6: 53; with 128: 17; with 512: 53; any gamma at 128/256/1024: 0
+
+THEIR C++ DATA (CppData, critcoll_data.json: Delta in Initial_Conditions; no gamma; Ntau = 2 x Fourier modes)
+  critcoll_data.json: 269 D, Ntau 2048 (1024 modes) at 58 D from 3.046 to 3.096, Ntau 1024 (512 modes) above; all converged: True
+  512 -> 1024 modes (simulation_data_512.json against data_lowD_1024_1.json), common D:
+    D 3.0940: Delta(512) 2.745446918458  Delta(1024) 2.745446917470  1024-512 -9.88e-10
+    D 3.0950: Delta(512) 2.750189420232  Delta(1024) 2.750189420301  1024-512 +6.94e-11
+    D 3.0960: Delta(512) 2.754891763683  Delta(1024) 2.754891763684  1024-512 +1.12e-12
+  critcoll_data.json entries with mismatchNorm 1.0, IterNewton 0, PrecisionNewton 0.1 (no C++ solve): 207 of 269, D 3.101 to 5.5; entries with a solve: 62, D 3.046 to 3.1
+  the no-solve entries against the Fortran 512 value: 78 common D, max |diff| 5.0e-13 (equal to 12 digits: they are not an independent check)
+  solved C++ entry against Fortran 512 at D 3.1: Delta C++ 2.773310704495 (Ntau 1024, mismatch 5.9e-14) Fortran 2.773310704600 diff -1.05e-10
+
+THEIR GAMMA BESIDE OURS (their gamma: 512 modes, GammaList; off-grid: interpolation spread of up to 4 Lagrange choices that bracket D, not a bound)
+  D 3.0444: no data below D 3.1: nearest 3.1 gamma 0.200572328, 0.0556 away
+  D 3.0475: no data below D 3.1: nearest 3.1 gamma 0.200572328, 0.0525 away
+  D 3.15: between their 3.14 (0.222546353) and 3.2 (0.248606550); interpolated in D 0.2273899 to 0.2273965 (spread 6.6e-06)
+      in ln(D-3): 0.2273877 to 0.2273951 (spread 7.4e-06)
+      the bracketing choices (cubic 2+2, cubic 4 nearest if it brackets, quartic 2+3, quartic 3+2), in D: 0.2273936, 0.2273899, 0.2273965; in ln(D-3): 0.2273888, 0.2273877, 0.2273951
+      in their Delta (Delta(D) 2.961319642, on their grid): 0.2273827 to 0.2273947 (spread 1.2e-05)
+      ours M 128: 0.2273872422 (M 96: 0.2273861877, step +1.1e-06); theirs - ours: in D +2.66e-06 to +9.29e-06, in ln(D-3) +4.97e-07 to +7.91e-06, in Delta -4.55e-06 to +7.49e-06
+  D 3.425: between their 3.4 (0.304246720) and 3.45 (0.313862203); interpolated in D 0.3092038 to 0.3092057 (spread 1.9e-06)
+      in ln(D-3): 0.3092041 to 0.3092042 (spread 5.8e-08)
+      the bracketing choices (cubic 2+2, cubic 4 nearest if it brackets, quartic 2+3, quartic 3+2), in D: 0.3092057, 0.3092057, 0.3092044, 0.3092038; in ln(D-3): 0.3092042, 0.3092042, 0.3092042, 0.3092041
+      ours M 128: 0.3092042856 (M 96: 0.3092042954, step -9.8e-09); theirs - ours: in D -5.15e-07 to +1.42e-06, in ln(D-3) -1.55e-07 to -9.70e-08
+  D 3.475: between their 3.45 (0.313862203) and 3.5 (0.322385723); interpolated in D 0.3182479 to 0.3182492 (spread 1.3e-06)
+      in ln(D-3): 0.3182481 to 0.3182481 (spread 3.5e-08)
+      the bracketing choices (cubic 2+2, cubic 4 nearest if it brackets, quartic 2+3, quartic 3+2), in D: 0.3182492, 0.3182492, 0.3182482, 0.3182479; in ln(D-3): 0.3182481, 0.3182481, 0.3182481, 0.3182481
+      ours M 128: 0.3182480362 (M 96: 0.3182480317, step +4.6e-09); theirs - ours: in D -1.70e-07 to +1.12e-06, in ln(D-3) +3.25e-08 to +6.76e-08
+  D 3.5: on their grid: 0.322385723
+      ours M 128: 0.3223855828 (M 96: 0.3223855790, step +3.8e-09); theirs - ours: in D +1.40e-07 to +1.40e-07, in ln(D-3) +1.40e-07 to +1.40e-07, in Delta +1.40e-07 to +1.40e-07
+  their gamma against ours at every common D <= 3.7 (theirs 512 modes; ours the highest M; M step = highest minus next lower M)
+    D 3.35   theirs 0.293303335  ours M 96 0.2933027421  theirs - ours +5.93e-07  (M step no lower M)
+    D 3.45   theirs 0.313862203  ours M 128 0.3138622497  theirs - ours -4.64e-08  (M step +5.2e-10)
+    D 3.5    theirs 0.322385723  ours M 128 0.3223855828  theirs - ours +1.40e-07  (M step +3.8e-09)
+    D 3.6    theirs 0.336841126  ours M 96 0.3368409842  theirs - ours +1.42e-07  (M step no lower M)
+    D 3.7    theirs 0.348650264  ours M 80 0.3486501896  theirs - ours +7.46e-08  (M step -8.4e-08)
+  power-law extrapolation of their gamma to D 3.0444 and 3.0475 (ln gamma against ln(D - 3), their D in [3.1, 3.2]; extrapolation, NOT data):
+    degree 1 (37 points): gamma(3.0444) 0.15577, gamma(3.0475) 0.15907, local exponent at D 3.1 0.311
+    degree 2 (37 points): gamma(3.0444) 0.15596, gamma(3.0475) 0.15924, local exponent at D 3.1 0.310
+
+THEIR DELTA (DeltaList: C++, 1024 modes below D 3.097) BESIDE OURS (hp/data/delta_all.csv, dd)
+  their lowest D 3.046; ours at 3.04375 2.436459113273 (err 8.8e-11), at 3.0475 2.466012146522 (err 3.8e-11)
+  D 3.0475: theirs 2.466012147213  ours 2.466012146522  theirs - ours +6.91e-10
+  D 3.04375 is 0.00225 below their lowest D: no data. Cubic extrapolation from their [3.046, 3.0465, 3.047, 3.0475]: 2.436459532, ours 2.436459113, extrapolation - ours +4.2e-07 (extrapolation, NOT data)
+  all common D <= 3.6 (16): theirs - ours
+    D 3.0475    theirs 2.466012147213  ours 2.466012146522  diff +6.91e-10  (our err 3.8e-11)
+    D 3.05      theirs 2.484927164291  ours 2.484927163788  diff +5.03e-10  (our err 2.1e-11)
+    D 3.075     theirs 2.646840791049  ours 2.646840788172  diff +2.88e-09  (our err 5.0e-11)
+    D 3.1       theirs 2.773310704600  ours 2.773310704082  diff +5.18e-10  (our err 7.2e-13)
+    D 3.125     theirs 2.875992238133  ours 2.875992237914  diff +2.20e-10  (our err 1.9e-10)
+    D 3.15      theirs 2.961319642404  ours 2.961319642456  diff -5.16e-11  (our err 9.3e-12)
+    D 3.175     theirs 3.033322949418  ours 3.033322949632  diff -2.14e-10  (our err 3.3e-10)
+    D 3.2       theirs 3.094739902479  ours 3.094737432702  diff +2.47e-06  (our err 2.4e-11)
+    D 3.25      theirs 3.193154171615  ours 3.193153813772  diff +3.58e-07  (our err 1.4e-11)
+    D 3.3       theirs 3.267212633294  ours 3.267212567388  diff +6.59e-08  (our err 1.9e-10)
+    D 3.35      theirs 3.323462085040  ours 3.323462070731  diff +1.43e-08  (our err 7.3e-11)
+    D 3.4       theirs 3.366251791567  ours 3.366251788054  diff +3.51e-09  (our err 3.5e-12)
+    D 3.45      theirs 3.398624651937  ours 3.398624650535  diff +1.40e-09  (our err 6.2e-12)
+    D 3.5       theirs 3.422790934985  ours 3.422790933088  diff +1.90e-09  (our err 6.4e-13)
+    D 3.55      theirs 3.440402350104  ours 3.440402346213  diff +3.89e-09  (our err 1.6e-13)
+    D 3.6       theirs 3.452720982099  ours 3.452720974608  diff +7.49e-09  (our err 2.1e-11)
+
+Delta/(2 gamma) FROM THEIR DATA AGAINST D (Delta: DeltaList, gamma: GammaList, both 512 modes at D >= 3.097)
+      D     Delta       gamma     Delta/(2 gamma)   dln(gamma)/dln(Delta) to the row above
+  3.1000    2.773311   0.2005723     6.913493      
+  3.1100    2.816804   0.2064504     6.821985      1.856
+  3.1190    2.853122   0.2115562     6.743176      1.907
+  3.1290    2.890685   0.2169396     6.662421      1.921
+  3.1400    2.928976   0.2225464     6.580598      1.939
+  3.2000    3.094740   0.2486066     6.224172      2.012
+  3.2500    3.193154   0.2660306     6.001479      2.164
+  3.3000    3.267213   0.2807137     5.819476      2.343
+  3.3500    3.323462   0.2933033     5.665572      2.570
+  3.4000    3.366252   0.3042467     5.532109      2.863
+  3.4500    3.398625   0.3138622     5.414199      3.251
+  3.5000    3.422791   0.3223857     5.308534      3.782
+  3.5500    3.440402   0.3299981     5.212761      4.547
+  3.6000    3.452721   0.3368411     5.125148      5.742
+  3.7000    3.465201   0.3486503     4.969451      9.551
+  3.8000    3.465896   0.3584880     4.834047      138.629
+  3.9000    3.458488   0.3668157     4.714204      -10.733
+  4.0000    3.445453   0.3739607     4.606705      -5.109
+  grid points D <= 4: 49; adjacent pairs where R rises with D: 0
+  R(3.1) 6.9135, R(3.14) 6.5806, R(3.2) 6.2242, R(3.5) 5.3085, R(4.0) 4.6067
