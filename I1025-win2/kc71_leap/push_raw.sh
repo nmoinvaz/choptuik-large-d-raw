@@ -9,8 +9,8 @@ git pull --rebase origin main 2>&1 | tail -n 1
 mkdir -p $W/I1025-win2/kc71_leap
 cp -r $S/. $W/I1025-win2/kc71_leap/
 find $W/I1025-win2/kc71_leap -name __pycache__ -type d -prune -exec rm -r {} + 2>/dev/null || true
-python make_index.py > /dev/null
-git add I1025-win2/kc71_leap INDEX.md
+# INDEX.md is not regenerated: this folder is already indexed, and make_index.py exits 1 while another agent's folder lacks its README title line
+git add I1025-win2/kc71_leap
 git commit -q -m "$1" || { echo "nothing to commit"; exit 0; }
 git pull --rebase origin main 2>&1 | tail -n 1
 git push origin HEAD:main 2>&1 | tail -n 1
