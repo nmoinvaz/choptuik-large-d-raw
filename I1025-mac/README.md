@@ -204,3 +204,5 @@ Written before the run (criteria in `d18/d18_criteria.log`, 2026-11-21 03:31:59 
 - (m) (00:25-01:52 UTC), information: D 18.125 at k_c 55 has one robust change over 1.65-1.90, at **1.772947-1.773343**, 9.36e-4 from
   k_c 63's 1.772012 (winb): **reading k_c-stable at D 18.125**; no ln|det| minimum without a change (`d18/d18125k55_scan.log`,
   `d18/d18125k55_scan_1025.jsonl`, `d18/d18125k55_read.log`; path and differences `d18/d18125k_numbers.py`, `d18/d18125k_numbers.log`).
+- 2026-11-22 02:56:36 UTC, `kc_break/`: where lambda_1's branch stops being k_c-stable; D 18.3125 at k_c 55 and k_c 63 side by side over **lambda 1.62 to
+  1.80 at 0.01**, window and reading in `kc_break/README.md`, written before the run.
