@@ -1,0 +1,4 @@
+2026-11-22 21:20 UTC, rpi5, system python3 -I (stdlib only), nice -n 10, main bd34b720, their repository f002d0af
+analyze1074.py: exit 0 (acceptance 1 and 2 pass; verdict theirs)
+analyze1074.py --mutate=shift (ours + 1e-6 at D 3.7): exit 1 (acceptance 1 fails, as required)
+analyze1074.py --mutate=trend (d(3.2) x 3): exit 1 (verdict not "theirs", as required)

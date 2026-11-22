@@ -1,0 +1,142 @@
+ACCEPTANCE 1, D 3.7: theirs 512 3.465200504469 (complete_data/FortranData/dim3.7000/512/Delta.out), ours M 80 3.465200483544, diff +2.09e-08  ok (bar 1e-7)
+ACCEPTANCE 2, D 3.2: theirs 512 3.094739902479, ours 3.094737432702 (M 192), theirs - ours +2.470e-06  ok (in [2.45e-6, 2.55e-6))
+  mutation: trend
+
+1. THEIR RUNS, D 3.1 to 3.3 (Delta.out of FortranData/dim<D>/<res>/; 512-mode neighbours differences and divided second differences)
+      D       Delta(128)      Delta(256)      Delta(512)     512 - prev D  slope(512)  2nd diff(512)
+  3.1000                                  2.773310704600                                       
+  3.1010                                  2.777820511942  +4.509807e-03    +4.50981            
+  3.1030                                  2.786729799544  +8.909288e-03    +4.45464    -18.3878
+  3.1040                                  2.791130259681  +4.400460e-03    +4.40046    -18.0612
+  3.1050                                  2.795495233005  +4.364973e-03    +4.36497    -17.7434
+  3.1060                                  2.799825183503  +4.329950e-03    +4.32995    -17.5114
+  3.1070                                  2.804120565408  +4.295382e-03    +4.29538    -17.2843
+  3.1080                                  2.808381823331  +4.261258e-03    +4.26126    -17.0620
+  3.1090                                  2.812609392728  +4.227569e-03    +4.22757    -16.8443
+  3.1100                                  2.816803700053  +4.194307e-03    +4.19431    -16.6310
+  3.1110                                  2.820965163006  +4.161463e-03    +4.16146    -16.4222
+  3.1120                                  2.825094191148  +4.129028e-03    +4.12903    -16.2174
+  3.1130                                  2.829191185379  +4.096994e-03    +4.09699    -16.0170
+  3.1140                                  2.833256538882  +4.065354e-03    +4.06535    -15.8204
+  3.1150                                  2.837290637081  +4.034098e-03    +4.03410    -15.6277
+  3.1160                                  2.841293857840  +4.003221e-03    +4.00322    -15.4387
+  3.1170                                  2.845266571709  +3.972714e-03    +3.97271    -15.2534
+  3.1180                                  2.849209142118  +3.942570e-03    +3.94257    -15.0717
+  3.1190                                  2.853121925572  +3.912783e-03    +3.91278    -14.8935
+  3.1200                                  2.857005271858  +3.883346e-03    +3.88335    -14.7186
+  3.1210                                  2.860859524140  +3.854252e-03    +3.85425    -14.5470
+  3.1220                                  2.864685019290  +3.825495e-03    +3.82550    -14.3786
+  3.1230                                  2.868482087922  +3.797069e-03    +3.79707    -14.2133
+  3.1240                                  2.872251054588  +3.768967e-03    +3.76897    -14.0510
+  3.1250                                  2.875992238133  +3.741184e-03    +3.74118    -13.8916
+  3.1260                                  2.879705951013  +3.713713e-03    +3.71371    -13.7353
+  3.1270                                  2.883392501044  +3.686550e-03    +3.68655    -13.5814
+  3.1280                                  2.887052189950  +3.659689e-03    +3.65969    -13.4306
+  3.1290                                  2.890685314296  +3.633124e-03    +3.63312    -13.2823
+  3.1300                                  2.894292165498  +3.606851e-03    +3.60685    -13.1366
+  3.1310                                  2.897873029870  +3.580864e-03    +3.58086    -12.9934
+  3.1320                                  2.901428188921  +3.555159e-03    +3.55516    -12.8527
+  3.1330                                  2.904957918975  +3.529730e-03    +3.52973    -12.7145
+  3.1340                                  2.908462492219  +3.504573e-03    +3.50457    -12.5784
+  3.1350                                  2.911942175889  +3.479684e-03    +3.47968    -12.4448
+  3.1400                                  2.928976300197  +1.703412e-02    +3.40682    -12.1431
+  3.1450  2.944306783646  2.944181060965  2.945425834258  +1.644953e-02    +3.28991    -11.6918
+  3.1500  2.960394671564  2.960274286325  2.961319642404  +1.589381e-02    +3.17876    -11.1145
+  3.1550  2.975917450564  2.975803266303  2.976684418495  +1.536478e-02    +3.07296    -10.5806
+  3.1600  2.990907059866  2.990799534288  2.991544911495  +1.486049e-02    +2.97210    -10.0857
+  3.1650  3.005392160889  3.005291461423  3.005924121310  +1.437921e-02    +2.87584     -9.6257
+  3.1700  3.019398652742  3.019304743220  3.019843469605  +1.391935e-02    +2.78387     -9.1972
+  3.1750  3.032950084464  3.032862789704  3.033322949418  +1.347948e-02    +2.69590     -8.7974
+  3.1800  3.046067987817  3.045987041328  3.046381256745  +1.305831e-02    +2.61166     -8.4234
+  3.2000  3.094578249015  3.094519240090  3.094739902479  +4.835865e-02    +2.41793     -7.7492
+  3.2500  3.193122146244  3.193095642579  3.193154171615  +9.841427e-02    +1.96829     -6.4235
+  3.3000  3.267206754570  3.267194198500  3.267212633294  +7.405846e-02    +1.48117     -4.8712
+
+   settings of their 512-mode runs (shoot_inner.par); a row is printed where a field changes from the previous D
+    3.1000  ny=1024 xleft=0.0001 xmid=0.03 eps=1e-06 errmax=1e-14 useloggrid=T nleft=7500 nright=6500 tstep=2 debug=T
+    3.1150  tstep 2 -> 1
+    3.1190  tstep 1 -> 2
+    3.1200  errmax 1e-14 -> 1e-13; tstep 2 -> 1
+    3.1230  errmax 1e-13 -> 1e-14
+    3.1240  errmax 1e-14 -> 1e-13
+    3.1250  eps 1e-06 -> 1e-08; errmax 1e-13 -> 1e-14
+    3.1260  eps 1e-08 -> 1e-06
+    3.1270  xmid 0.03 -> 0.04
+    3.1400  xmid 0.04 -> 0.05
+    3.1450  xmid 0.05 -> 0.04
+    3.1500  tstep 1 -> 2; debug T -> F
+    3.1550  tstep 2 -> 1; debug F -> T
+    3.2000  xleft 0.0001 -> 0.001; xmid 0.04 -> 0.1; eps 1e-06 -> 1e-08; nleft 7500 -> 4000; nright 6500 -> 4000; tstep 1 -> 2; debug T -> F
+   class (xleft, nleft, nright) changes between D [(3.18, 3.2)]
+   128 and 256 runs, D 3.145 to 3.3: 1 distinct setting(s) of (xleft, xmid, nleft, nright, eps, tstep)
+
+2. OUR VALUES, D 3.1 to 3.3 (hp/data/delta_dd.csv; the M sequence from every hp/data/**/*.jsonl record of Delta at that D)
+  D 3.1      Delta 2.773310704082  run lowD-M320  M-difference err 7.2e-13 (dM)  F 1.304e-28  max dDelta/dF 1.543e+01
+           M sequence (distinct M): M 160 2.773310731669, M 192 2.773310704629, M 256 2.773310704083, M 320 2.773310704082
+           steps: M 160->192: -2.70e-08; M 192->256: -5.46e-10; M 256->320: -7.18e-13
+  D 3.1125   Delta 2.827146667534  run lowD-M256  M-difference err 3.8e-10 (dM)  F 9.628e-29  max dDelta/dF 5.754e-01
+           M sequence (distinct M): M 160 2.827146674775, M 192 2.827146667911, M 256 2.827146667534
+           steps: M 160->192: -6.86e-09; M 192->256: -3.77e-10
+  D 3.11875  Delta 2.852146502873  run lowD-M256  M-difference err 2.8e-10 (dM)  F 2.363e-29  max dDelta/dF 5.484e-01
+           M sequence (distinct M): M 160 2.852146506396, M 192 2.852146503156, M 256 2.852146502873
+           steps: M 160->192: -3.24e-09; M 192->256: -2.84e-10
+  D 3.125    Delta 2.875992237914  run lowD-M256  M-difference err 1.9e-10 (dM)  F 9.419e-29  max dDelta/dF 5.210e-01
+           M sequence (distinct M): M 160 2.875992239880, M 192 2.875992238102, M 256 2.875992237914
+           steps: M 160->192: -1.78e-09; M 192->256: -1.88e-10
+  D 3.15     Delta 2.961319642456  run lowD-M256  M-difference err 9.3e-12 (dM)  F 1.237e-29  max dDelta/dF 4.307e-01
+           M sequence (distinct M): M 128 2.961319687827, M 160 2.961319643681, M 192 2.961319642465, M 256 2.961319642456
+           steps: M 128->160: -4.41e-08; M 160->192: -1.22e-09; M 192->256: -9.27e-12
+  D 3.175    Delta 3.033322949632  run lowD-M192  M-difference err 3.3e-10 (dM)  F 3.137e-29  max dDelta/dF 5.158e-01
+           M sequence (distinct M): M 128 3.033322956340, M 160 3.033322949962, M 192 3.033322949632
+           steps: M 128->160: -6.38e-09; M 160->192: -3.30e-10
+  D 3.2      Delta 3.094737432702  run lowD-M192  M-difference err 2.4e-11 (dM)  F 7.040e-29  max dDelta/dF 1.821e+00
+           M sequence (distinct M): M 128 3.094737439039, M 160 3.094737432726, M 192 3.094737432702
+           steps: M 128->160: -6.31e-09; M 160->192: -2.42e-11
+  D 3.25     Delta 3.193153813772  run lowD-M192  M-difference err 1.4e-11 (dM)  F 7.807e-29  max dDelta/dF 3.442e-01
+           M sequence (distinct M): M 96 3.193153876364, M 128 3.193153814766, M 160 3.193153813786, M 192 3.193153813772
+           steps: M 96->128: -6.16e-08; M 128->160: -9.80e-10; M 160->192: -1.37e-11
+  D 3.3      Delta 3.267212567388  run lowD-M160  M-difference err 1.9e-10 (dM)  F 2.663e-29  max dDelta/dF 3.504e-01
+           M sequence (distinct M): M 80 3.267213030958, M 96 3.267212611623, M 128 3.267212567574, M 160 3.267212567388
+           steps: M 80->96: -4.19e-07; M 96->128: -4.40e-08; M 128->160: -1.86e-10
+
+3. d(D) = theirs 512 (DeltaList) - ours, all common D to 3.6
+  D 3.0475   d +6.911e-10  (our M-difference err 3.8e-11)
+  D 3.05     d +5.029e-10  (our M-difference err 2.1e-11)  x0.728 vs D 3.0475
+  D 3.075    d +2.877e-09  (our M-difference err 5.0e-11)  x5.72 vs D 3.05
+  D 3.1      d +5.177e-10  (our M-difference err 7.2e-13)  x0.18 vs D 3.075
+  D 3.125    d +2.198e-10  (our M-difference err 1.9e-10)  x0.425 vs D 3.1
+  D 3.15     d -5.157e-11  (our M-difference err 9.3e-12)  x0.235 vs D 3.125
+  D 3.175    d -2.144e-10  (our M-difference err 3.3e-10)  x4.16 vs D 3.15
+  D 3.2      d +7.409e-06  (our M-difference err 2.4e-11)  x3.46e+04 vs D 3.175
+  D 3.25     d +3.578e-07  (our M-difference err 1.4e-11)  x0.0483 vs D 3.2
+  D 3.3      d +6.591e-08  (our M-difference err 1.9e-10)  x0.184 vs D 3.25
+  D 3.35     d +1.431e-08  (our M-difference err 7.3e-11)  x0.217 vs D 3.3
+  D 3.4      d +3.513e-09  (our M-difference err 3.5e-12)  x0.246 vs D 3.35
+  D 3.45     d +1.402e-09  (our M-difference err 6.2e-12)  x0.399 vs D 3.4
+  D 3.5      d +1.897e-09  (our M-difference err 6.4e-13)  x1.35 vs D 3.45
+  D 3.55     d +3.891e-09  (our M-difference err 1.6e-13)  x2.05 vs D 3.5
+  D 3.6      d +7.491e-09  (our M-difference err 2.1e-11)  x1.93 vs D 3.55
+  largest jump in |d|: x3.46e+04 between D 3.175 and 3.2; next x5.72 between 3.05 and 3.075
+  (a) their 512 settings change between D (3.18, 3.2); d jumps between D 3.175 and 3.2: same interval
+  (b) ln d quadratic through D [3.25, 3.3, 3.35, 3.4, 3.45] (max fit residual in ln d 0.09) extrapolated to 3.2: 2.709e-06; d(3.2) +7.409e-06; ratio 2.73  OFF trend (factor 1.5)
+      d at 3.175 -2.14e-10: the trend continued to 3.175 would give 8.04e-06
+
+(c) LEAVE-ONE-OUT CUBIC RESIDUALS inside each series (bracketing 2+2 nearest others; 'x' = one-sided at an end), D 3.1 to 3.35
+  theirs 512 (48 points): 3.14:-2.4e-07b  3.145:-3.6e-07b  3.15:-3.2e-07b  3.155:-2.9e-07b  3.16:-2.6e-07b  3.165:-2.4e-07b  3.17:-2.2e-07b  3.175:-4.4e-07b  3.18:-4.2e-06b  3.2:-9.5e-05b  3.25:-4.3e-04b  3.3:+7.4e-04x
+  ours (10 points): 3.15:-1.2e-04b  3.175:-1.8e-04b  3.2:-2.7e-04b  3.25:-4.7e-04b  3.3:+7.8e-04x
+  A step of 2.5e-6 at a point shows in its residual only if the smooth residual there is well below 2.5e-6: at D 3.2 the sparse neighbours
+  (3.18, 3.25, 3.3 in theirs; 3.175, 3.25, 3.3 in ours) give residuals of order 1e-4 to 1e-2: this test cannot see the step at 3.2.
+
+(d) OUR M SEQUENCES: last M step at each D (the M-difference stored with the value)
+  D 3.1      M 256->320: -7.18e-13  stored err 7.2e-13
+  D 3.1125   M 192->256: -3.77e-10  stored err 3.8e-10
+  D 3.11875  M 192->256: -2.84e-10  stored err 2.8e-10
+  D 3.125    M 192->256: -1.88e-10  stored err 1.9e-10
+  D 3.15     M 192->256: -9.27e-12  stored err 9.3e-12
+  D 3.175    M 160->192: -3.30e-10  stored err 3.3e-10
+  D 3.2      M 160->192: -2.42e-11  stored err 2.4e-11
+  D 3.25     M 160->192: -1.37e-11  stored err 1.4e-11
+  D 3.3      M 128->160: -1.86e-10  stored err 1.9e-10
+  D 3.2's stored M difference 2.4e-11 is within 10x the largest of its neighbours' (3.175, 3.25, 3.3)
+
+VERDICT (rule in README): undecided  [(a) True, (b) False, (d) True]
