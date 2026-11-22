@@ -296,3 +296,44 @@ Resources: polls 17 (60 s each), rss GB min 0.16 max 1.46 mean 0.86; cpu% (ps, 1
 ```
 
 The differences: the interpreter, the output name, the state, and the added `--lam0=3.2341077237548475`. Flags otherwise the issue's. `check_cmd_1070_D3425.py M128 3.2341077237548475`: pass.
+
+### D 3.425 M 128: did NOT finish, no result (written 2026-11-22 17:17 UTC, after the machine's reboot)
+
+The M 128 run (`run_1070_D3425.sh M128 3.2341077237548475`, started 2026-11-22 00:07:27 UTC, child pid 8671, cap 10800 s) has **no record** (`lowD_gamma_D3.425_M128.jsonl` does not exist)
+and **no exit line** (no `capped_run: exit` in `run_D3.425_M128.log`, no exit line in `exits_1070.txt`). Its files stop in the middle of the search: the log's last line is the 4th determinant
+(finished 00:56:23 UTC), and the watcher's last poll is 2026-11-22 01:06:00 UTC, with the process alive (rss 1.48 GB, 363% cpu, in its 5th determinant); `res_summary_D3.425_M128.txt` does not
+exist because the watcher did not end. The file times 17:06 PST (`res_D3.425_M128.log`) and 16:56 PST (`run_D3.425_M128.log`) are the last writes, not an end. The machine was unreachable
+afterwards and rebooted at about 17:02 UTC on 22 Nov (the coordinator's account); I do not know what stopped the process at about 01:06 UTC (I found no panic report in
+`/Library/Logs/DiagnosticReports` and no sleep or shutdown event near 17:06 PST in `pmset -g log`). Nothing was rerun or restarted.
+
+What the files hold (`partial_D3425_M128.py` computes it from them; output `partial_D3.425_M128.txt`):
+
+```
+files: ['partial_D3.425_M128.txt', 'res_D3.425_M128.log', 'run_D3.425_M128.log']
+record lowD_gamma_D3.425_M128.jsonl exists: False
+exits_1070.txt lines for M128: 1 -> ['1070m D3.425 M128 start ... 2026-11-22 00:07:27 UTC']
+capped_run exit line in the log: False
+polish: ['newton 0: |F| 2.61e-30 converged (last |dz| 1.2e-25) Delta 3.383586550373866']
+
+| # | lam | sign | ln|det| | pivots | s |
+|---|---|---|---|---|---|
+| 0 | 3.234007723755 | -1 | 1379.034911 | 9.32e-04..8.75e+01 | 330.2 |
+| 1 | 3.234107723755 | -1 | 1372.224936 | 9.32e-04..8.75e+01 | 329.9 |
+| 2 | 3.234207723755 | +1 | 1379.172234 | 9.32e-04..8.85e+01 | 947.2 |
+| 3 | 3.234107819785 | -1 | 1369.525716 | 9.32e-04..8.75e+01 | 1122.5 |
+
+sign -1 up to lam 3.234107819785, sign +1 from lam 3.234207723755 (the only sign change among the 4 determinants): the root lies in (3.234107819785, 3.234207723755)
+M 96's root lam 3.2341077237548475, gamma 0.3092042954088694: the root's lower end exceeds M 96's lam by 9.603e-08
+gamma(128) is therefore in (0.3091947350, 0.3092042862); gamma(128) - gamma(96) in (-9.560e-06, -9.181e-09); this is a bracket of an unfinished search, not a value
+Vienna 0.3092057 lies 1.414e-06 above the bracket's upper end (1/3.234107820) and 1.097e-05 above its lower end: the unfinished bracket does not hold 0.3092057
+determinant seconds: 330.2, 329.9, 947.2, 1122.5; sum 2730
+
+watcher: 59 polls, first 2026-11-22 00:07:47 UTC, last 2026-11-22 01:06:00 UTC (run start 00:07:27 UTC, so 3513 s in); no res_summary file (the watcher did not end)
+  the process was alive at the last poll: rss 1.48 GB, cpu 363%
+  rss GB max 1.98 mean 1.32; cpu% min 256 mean 401 max 556; load1 mean 20.8 max 42.7; free memory min 75%; free disk min 19.3 GiB
+  cpu% mean of the first 16 polls 531, of the last 43 352; load1 mean 9.8 and 24.8
+```
+
+Against the issue's pass rule (F after the polish below 1e-27; exactly one sign change in the bracket): F after the polish is 2.61e-30 (met, the log's
+"|F| 2.6e-30"); the bracket is **not decided**: the first grid (lam0 ± 1e-4) has one sign change, but brentq had done one evaluation and the run has no `n_signchanges`, no λ and no γ.
+So there is no γ(128) at D 3.425 and no γ(128) − γ(96); the interval above is the signs' bracket of an unfinished search, not a value.
