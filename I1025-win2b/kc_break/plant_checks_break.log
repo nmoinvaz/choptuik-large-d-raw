@@ -1,0 +1,33 @@
+plant compare, the k_c 55 change in the same bracket: difference 0, STABLE: wanted 'k_c 55 minus k_c 63 = +0.000000 -> STABLE (within 0.01)' -> ok
+plant compare, the reading for a stable root: wanted 'READING: the root is STABLE at D 18.375 (the k_c 55 estimate within 0.01 of the k_c 63 root)' -> ok
+plant compare, the estimates are the bracket midpoints: wanted 'k_c 63 robust change in (1.700, 1.710), minus-to-plus: det-linear estimate 1.705000' -> ok
+plant compare, the k_c 55 change 0.02 away: BREAKS, further off: wanted 'k_c 55 minus k_c 63 = +0.020000 -> BREAKS (beyond 0.01; the k_c 55 root is further off)' -> ok
+plant compare, the reading for a root further off: wanted 'READING: the root BREAKS by D 18.375 (the k_c 55 root is further off than 0.01)', not 'STABLE at D 18.375' -> ok
+plant compare, the k_c 55 change exactly 0.010 away is within the bar: wanted 'k_c 55 minus k_c 63 = +0.010000 -> STABLE (within 0.01)' -> ok
+plant compare, the k_c 55 change below: the sign of the difference is printed: wanted 'k_c 55 minus k_c 63 = -0.010000 -> STABLE' -> ok
+plant compare, a tilted estimate: the bracket midpoint 1.715 would be 0.010 away, the estimate 1.719526 is 0.0145 away: BREAKS: wanted 'estimate 1.719526: k_c 55 minus k_c 63 = +0.014526 -> BREAKS' -> ok
+plant compare, no k_c 55 change in the window: BREAKS (no k_c 55 root): wanted 'PAIRING k_c 63 root 1.705000: no k_c 55 robust change in the window -> BREAKS (no k_c 55 root there)' -> ok
+plant compare, no k_c 55 change: the reading: wanted 'READING: the root BREAKS by D 18.375 (no k_c 55 root in the window)' -> ok
+plant compare, no k_c 63 change: the fixed reading does not cover it: wanted 'NO k_c 63 ROOT in the window: the fixed reading does not cover this', not 'READING: the root' -> ok
+plant compare, a non-robust k_c 55 change is not counted: wanted 'k_c 55 change in (1.700, 1.710), minus-to-plus: NOT ROBUST (a point fails its noise test), not counted, det-linear estimate 1.705000' -> ok
+plant compare, a non-robust k_c 55 change only: BREAKS (no robust k_c 55 root): wanted 'READING: the root BREAKS by D 18.375 (no k_c 55 root in the window)', not 'STABLE at D 18.375' -> ok
+plant compare, the orientation of the k_c 55 change is the opposite: information: wanted 'Information: orientation the opposite' -> ok
+plant compare, two k_c 63 changes: OTHER: wanted 'READING: OTHER, 2 k_c 63 robust change(s) (the fixed reading is for one root)' -> ok
+plant compare, a second k_c 55 change with no k_c 63 root near it is listed: wanted 'k_c 55 robust change in (1.760, 1.770), estimate 1.765000: paired with no k_c 63 root' -> ok
+plant estimate against xfkappa's changes() on the k_c 63 D 18.5 scan: his lin [1.6770155598238], this script's [1.677016] -> ok
+plant compare, a scan against itself on real data: difference 0, STABLE, 1.677016: wanted 'k_c 55 minus k_c 63 = +0.000000 -> STABLE' -> ok
+plant repeat, equal: merged: wanted 'merged 19 points (1.620 to 1.800)', not '-> FAIL' -> ok
+plant repeat, equal: the check line: wanted 'REPEAT CHECK at lambda 1.710: sign first +1 second +1' -> ok
+plant repeat, ln|det| differs by 1e-3: FAIL: wanted '-> FAIL', not 'merged 19' -> ok
+plant repeat, the sign differs: FAIL: wanted '-> FAIL', not 'merged 19' -> ok
+plant repeat, no repeated point: FAIL: wanted 'REPEAT CHECK: the lambda occurring more than once are [], not [1.71] -> FAIL', not 'merged 19' -> ok
+plant repeat, lambda 1.80 missing: wanted 'missing lambda: [1.8]', not 'merged 19' -> ok
+plant repeat, records at another k_c: wanted 'records at another D or k_c', not 'merged 19' -> ok
+plant repeat, the point three times: FAIL: wanted '-> FAIL', not 'merged 19' -> ok
+plant repeat, no merged file written when a check fails: wanted 'False' -> ok
+plant reader at step 0.01: the change: wanted 'change in (1.70, 1.71): minus-to-plus, ROBUST' -> ok
+plant dip fit 3: its own planted truths pass: wanted 'selftest passes' -> ok
+plant dip fit 3 on a planted pair inside the scan: found, l0 and e recovered, resolved: wanted 'l0 1.70000', not 'NOT RESOLVED' -> ok
+plant dip fit 3 on that dip: the resolved statement: wanted 'resolved at this step, l0 inside the window, the model fits better than the quartic' -> ok
+plant dip fit 3 on a scan with no dip: none: wanted 'ln|det| local minima WITHOUT a change: none' -> ok
+plant_checks_break passes (files in C:\Users\nathan\AppData\Local\Temp\kcbreak_plant_t4_v1hso)
