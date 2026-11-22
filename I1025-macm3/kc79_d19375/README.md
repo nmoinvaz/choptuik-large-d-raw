@@ -69,4 +69,5 @@ the scan takes about 55 min (5 points a process at about 650 s); the scan shows 
 | step | verdict | numbers | time (UTC) |
 |---|---|---|---|
 | source check (win2's `kc71_syscheck.py`) | accepted; selftests exit 0; controls `--mutate=F` and `--mutate=steps` exit 1 | state \|F\| 3.2279802889e-10 against the record's 3.2292404728e-10 (0.04% apart, bar 1%); `freeze_from` 2609 steps = the record's | 20:15 (2 s) |
-| regrid (`ell_refine.py`), started 20:15:26 | running (child pid 41987, own session: `session_check_regrid.txt`, every chain ends at launchd, no claude, tty ??) | | |
+| regrid (`ell_refine.py`, exit 0), child pid 41987, own session (`session_check_regrid.txt`: every chain ends at launchd, no claude, tty ??) | **accepted** by `kc79_syscheck_1025.py` (selftest exit 0); controls `--mutate=F` and `--mutate=steps` exit 1 | |F| 3.2694e-10, 2903 steps (freeze_from 2903 = the record's), constraint 1.107e-03, Delta 1.0767941558 (k_c 71: 1.0767972284; difference -3.073e-06); capped_run wall 671 s, the record's 662 s; 1 core (ps %cpu 100 of 600 allowed), rss max 2.83 GB (11 samples of 60 s); 18 RuntimeWarning lines of `dss_ell.py` | 20:15 to 20:27 (722 s with the checks) |
+| scan (`run_scan.sh`), started 20:27:48 | running: 4 processes of 1 thread, each printed `the record system`; available memory 16.0 GiB before the start (need 5.2) | | |
