@@ -1,6 +1,6 @@
 # I1025-win/kc79_d19: win2's k_c 71 D 19 state regridded to k_c 79 (winb)
 
-Written before the run, 2026-11-22 11:21:36 UTC (substituted from `date -u` when pushed). Nothing has been run for D 19 yet; the D 19 state of win2 has not landed.
+Written before the run (c776847d), updated with the regrid result 2026-11-22 12:56:21 UTC (substituted from `date -u` when pushed). The regrid is done and accepted; the scan runs on t5's window (see Status).
 
 Runner: the winb session (surface-laptop-4, 4 cores, 8 threads, 32 GB), the same one that ran `../kc79_d185/` (raw commit b895f104: the D 18.5 root at k_c 79 is 1.676555, the same root as k_c 71's 1.675995 by t5's ruling). The coordinator is t5.
 
@@ -78,8 +78,39 @@ The k_c 71 source record at D 19: |F| 2.7620e-10, 2676 steps, constraint 1.592e-
 
 ## Status
 
-The regrid started 11:20:27 UTC, outside my terminal (`Win32_Process.Create` of `cmd.exe /c start_kc79d19_regrid_1025.cmd`; chain cmd 8264 <- driver 16988 and 20268 <- `ell_refine.py` 20304 and 18948), BelowNormal, 4 threads, cap 21600 s; free memory 24.1 GB, cpu 23% before the start, the I129 jobs of the other project beside it (t5: inside the 6-thread budget; no hold). The scan is not started (t5 gives the window). Pushed 2026-11-22 11:21:36 UTC.
+The regrid started 11:20:27 UTC, outside my terminal (`Win32_Process.Create` of `cmd.exe /c start_kc79d19_regrid_1025.cmd`; chain cmd 8264 <- driver 16988 and 20268 <- `ell_refine.py` 20304 and 18948), BelowNormal, 4 threads, cap 21600 s; free memory 24.1 GB, cpu 23% before the start, the I129 jobs of the other project beside it (t5: inside the 6-thread budget; no hold). The regrid ended 12:53:45 UTC (exit 0), the check ran 12:53:51 (exit 0, both `--mutate` controls exit 1).
 
-## Result
+**The scan was started on t5's window** (hc, about 12:55 UTC): `start_kc79d19_scan_1025.cmd "1.475,1.48,1.485,1.49,1.53,1.535,1.54,1.545"`, started 12:55:41 UTC through `Win32_Process.Create`, scanner `d18_hybsign.py` (e089207a, unchanged) pid 10616 under driver pid 2028, BelowNormal, 4 threads, cap 28800 s, alert-only watcher and sampler as at the regrid. t5's reason for two brackets: k_c 63 at D 19 has two robust changes, + to - at 1.4832 and - to + at 1.5380 (dh370, raw a45fc80f), and at D 19.09375 they are 0.0205 apart (dh610, f2405ef9), so they may be about to meet; each bracket runs 0.007 beyond its k_c 63 root on each side. t5's estimate: about 3 h. The reader's output will follow in a later section; **this section is the regrid only.** Pushed 2026-11-22 12:56:21 UTC.
 
-Not yet run.
+## Result: the regrid (2026-11-22, 11:20:30 to 12:53:45 UTC)
+
+**ACCEPTED.** win2's k_c 71 D 19 state regridded to k_c 79 converged (exit 0) and `kc79_syscheck_1025.py` accepts it, with both controls refused.
+
+| | k_c 71 source (win2, leap) | k_c 79 (this run) |
+|---|---|---|
+| \|F\| | 2.7620e-10 | 2.8482e-10 |
+| F_start | 5.038e-05 | 8.701e-06 |
+| steps | 2676 | 2976 |
+| constraint | 1.592e-3 | 7.276e-4 |
+| Delta | 1.067771890015 | 1.067770436307 |
+| seconds | 1272 (the leap step) | 5580 (record), 5595 (wall) |
+
+Delta(k_c 79) - Delta(k_c 71) = -1.4537e-6 (Delta_src in the record, 1.0677718900145, is the k_c 71 value). Both \|F\| are below the 1e-9 bar. At D 18.5 the k_c 79 record had \|F\| 2.8698e-10 and 3083 steps.
+
+Check (`syscheck.txt`, exit 0): record \|F\| 2.8482007333e-10, state \|F\| 2.8482007333e-10 (equal), `freeze_from` gives 2976 steps = the record's; controls on the same numbers refused (\|F\| x 1.5, steps + 1). Through the file (`syscheck_mutate.txt`): `--mutate=F` exit 1 (state's \|F\| not within 1% of 4.2723e-10), `--mutate=steps` exit 1 (`freeze_from` 2976 vs the record's 2977), both wanted. The source check by win2's `kc71_syscheck.py` before the start is `control_kc71_syscheck.txt` (accepted, both controls refused).
+
+**Cost, against the estimate and the D 18.5 run** (sampler `rows/regrid_samples.csv`, a line per stage every 60 s):
+
+| | D 18.5 regrid | D 19 regrid |
+|---|---|---|
+| wall | 5415 s | 5595 s (+180 s, +3.3%) |
+| cpu | 9802 s | 9425 s |
+| peak working set | 2.19 GB | 2.19 GB |
+| peak private | 2.48 GB | 2.48 GB |
+| steps | 3083 | 2976 |
+| lowest free memory | not in this table | 22.1 GB (watcher) / 22.66 GB (sampler) |
+| machine | idle | two I129 `harm_circles.py` jobs of the other project beside it, laptop cpu 37 to 85%, mean 50% |
+
+Estimate was 1.5 to 2 h wall (5400 to 7200 s), cpu 10000 to 13000 s, private 2.5 to 3 GB: wall inside, cpu a little under, private at the low end. No alert from the watcher. The other project's jobs cost 3% of the wall time here.
+
+Files here: `regrid_summary.txt` (the driver's line), `regrid_accepted.txt`, `l1kc79W19m1025.jsonl` (the record), `sol_l1kc79W19m1025_D19.0000.npy` (the state, the scan's input), `syscheck.txt`, `syscheck_mutate.txt`, `regrid.log`, `kc79_regrid_w.log`, `rows/`.
