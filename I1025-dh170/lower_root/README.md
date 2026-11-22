@@ -59,20 +59,20 @@ The order says no scan has looked below 1.62 at D 18.5. The Mac's scan `d185_sca
 - 2026-11-22 11:40:35 UTC: folder, scripts, controls and pins prepared; the windows, the reading and the prediction are fixed above before any run. Controls run now: `read_lower.py` selftest PASS, `--mutate=shift` and `--mutate=round2` FAIL; `read_d19.py` selftest PASS and `--mutate=shift` FAIL; `cross_check_mac.py` and `repeat_check.py` selftests PASS; dry runs of both lanes pass their pins.
 
 ## Result (written 2026-11-22 14:59:06 UTC)
-Both lanes exit 0, system checks passed (lane A |F| 2.7728396616e-10 against the record's 2.7672415504e-10, 2461 steps; lane B 2.6199729092e-10 against 2.6210543403e-10, 2368 steps), every point noise-robust, both repeats bit-identical (lane A's 1.30: ln|det| -1898.608474126855, lane B's 1.510: -1874.413401245264). The reader exit 0 at 14:57:55 UTC (`read_lower.txt`, `exits_read.txt`). Peak RSS 1.44 and 1.43 GiB, lowest MemAvailable 25.7 and 25.7 GiB (26484 and 26280 MiB), no ALERT line.
+Both lanes exit 0, system checks passed (lane A |F| 2.7728396616e-10 against the record's 2.7672415504e-10, 2461 steps; lane B 2.6199729092e-10 against 2.6210543403e-10, 2368 steps), every point noise-robust, both repeats bit-identical (lane A's 1.30: ln|det| -1898.608474126855, lane B's 1.510: -1874.413401245264). The reader exit 0 at 14:57:55 UTC (`read_lower.txt`, `exits_read.txt`). Peak RSS 1.44 and 1.43 GiB, lowest MemAvailable 25.9 and 25.7 GiB (26484 and 26280 MiB), no ALERT line.
 
 | | lane A (D 18.5, lambda 1.20 to 1.54, 19 evaluations) | lane B (D 19.03125, lambda 1.470 to 1.550, 18 evaluations) |
 |---|---|---|
 | started, ended (UTC), exit | 11:41:05, 14:57:40, 0 | 11:41:09, 14:46:33, 0 |
 | wall | 11795 s (3:16:29 by /usr/bin/time) | 11124 s (3:05:23) |
-| seconds per point | 401 to 672, mean 620 (the last two after lane B ended: 499 and 401) | 604 to 635, mean 618 |
+| seconds per point | 401 to 672, mean 620 (the last two, 499 and 401, ran mostly after lane B ended at 14:46:33) | 604 to 635, mean 618 |
 | hybrid signs | all minus, 1.20 to 1.54 | plus from 1.470 to 1.520, minus from 1.525 to 1.550 |
 | robust changes | **none** | **one**, (1.520, 1.525), plus to minus as printed: det-linear 1.523736, estimator range [1.523601, 1.523736]; none minus to plus |
 | ln|det| minima without a sign change | none (ln|det| falls monotonically, -1896.587 at 1.20 to -1899.868 at 1.54) | none |
 | repeat | 1.30 agrees (`repeat_check.py` PASS, the reader's check 'agree') | 1.510 agrees |
 | float64 sign differs from the hybrid | none | 3 of 18 (1.530, 1.535, 1.540: minus against plus; float64 reads +-+++-- from 1.520 to 1.550) |
 
-- **Cross-machine control, lane A:** the 1.20 point reads minus and noise-robust, as the Mac's reference point on the same state; its ln|det| -1896.5871396622 against the Mac's -1896.5871419008, difference 2.24e-6, flagged above 1e-6 (information). The seam: lane A's 1.54 is minus and the Mac's 1.55 (and its 1.55 to 1.61) is minus, so an even number of changes between them. With the Mac's scan, the hybrid sign of this state has no change from 1.20 to 1.67; lambda_1 (minus to plus) is at 1.677.
+- **Cross-machine control, lane A:** the 1.20 point reads minus and noise-robust, as the Mac's reference point on the same state; its ln|det| -1896.5871396622 against the Mac's -1896.5871419008, difference 2.24e-6, flagged above 1e-6 (information). The seam: lane A's 1.54 is minus and the Mac's 1.55 (and its 1.55 to 1.61) is minus, so an even number of changes between them. With the Mac's scan, the hybrid sign of this state has no change on the grids from 1.20 to 1.67; lambda_1 (minus to plus) is at 1.677.
 - **Parity note:** lane A shows 0 changes (the 40% case); a lone lower root near 1.29 is not there, no change in (1.28, 1.30).
 - **Second reader:** the unmodified `read_d19.py` reads lane A the same (0 changes, repeat agrees).
 - **Reader controls (run before the lanes):** `read_lower.py` selftest passes, `--mutate=shift` and `--mutate=round2` each exit 1; `read_d19.py` selftest passes and `--mutate=shift` exits 1; `repeat_check.py` and `cross_check_mac.py` selftests pass.
@@ -94,5 +94,6 @@ Both lanes exit 0, system checks passed (lane A |F| 2.7728396616e-10 against the
 
 ## Log
 - 2026-11-22 11:41:04 to 11:41:11 UTC: lanes A, B and the reader started (units `i1025-lowA`, `i1025-lowB`, `i1025-lowread`).
-- 2026-11-22 12:39 UTC to 14:46 UTC: lane B's plus-to-minus change appeared at the point 1.525 (12:5x UTC) and was reported to t5 at once; the rest of lane B stayed minus.
+- 2026-11-22 13:45 UTC (by the points' seconds): lane B's plus-to-minus change appeared at the point 1.525 (the 12th evaluation); I reported it to t5 once the point was read, a few minutes later; the rest of lane B stayed minus.
 - 2026-11-22 14:59:06 UTC: result written (this section).
+- 2026-11-22 14:59:30 UTC: corrected the MemAvailable GiB figures, lane A's last two point times, the time of lane B's change and a phrase on the Mac's scan in the Result section (the first push 592dc6c9 had them wrong).
