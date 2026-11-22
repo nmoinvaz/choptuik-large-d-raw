@@ -72,7 +72,7 @@ Both lanes ran to the end in the rerun (units `i1025-kc55b`, `i1025-kc63b`, `i10
 | started, ended (UTC), exit | 08:00:46, 10:41:08, 0 | 08:00:43, 11:30:18, 0 |
 | wall | 9622 s (2:40:14 by /usr/bin/time) | 12575 s (3:29:29) |
 | seconds per point | 400-579, mean 458 | 399-955, mean 598 (643-955 for the first 9 points beside the k_c 55 lane, about 400 after it ended) |
-| max RSS, lowest MemAvailable | 1.08 GiB, 26.8 GiB | 1.42 GiB, 26.8 GiB |
+| max RSS, lowest MemAvailable | 1.08 GiB, 26.1 GiB | 1.42 GiB, 26.1 GiB |
 | hybrid signs, 1.62 to 1.80 | -------++++++++---- (1.62-1.68 minus, 1.69-1.76 plus, 1.77-1.80 minus) | -------++++++++++++ (1.62-1.68 minus, 1.69-1.80 plus) |
 | robust changes (det-linear estimate; estimator range = spread over the interpolation choices of d185_scan_read.changes, not an enclosure) | (1.68, 1.69): 1.687055 [1.686989, 1.687055]; (1.76, 1.77): 1.767385 [1.767385, 1.767820] | (1.68, 1.69): 1.684495 [1.684495, 1.684710]; none other |
 | ln|det| minima without a sign change | none | none |
@@ -96,3 +96,4 @@ Both lanes ran to the end in the rerun (units `i1025-kc55b`, `i1025-kc63b`, `i10
 | float64 differs at no more than 5 of 21: k_c 55 (70%), k_c 63 (30%) | k_c 55 yes (0); k_c 63 yes (4) |
 | wall: k_c 55 2.4 to 2.8 h, k_c 63 3.2 to 4.0 h (65%); inside the 8 h cap (95%); RSS below 2.5 GiB (90%) | 2.67 h yes; 3.49 h yes; yes; 1.08 and 1.42 GiB yes |
 - 2026-11-22 11:31:33 UTC: step 2 written (this section); the rerun's points equal the killed run's.
+- 2026-11-22 11:32:20 UTC: corrected the lowest MemAvailable (26754 and 26776 MiB = 26.1 GiB, not 26.8) in the table above and in the #1025 comment.
