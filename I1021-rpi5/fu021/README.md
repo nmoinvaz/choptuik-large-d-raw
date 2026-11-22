@@ -81,3 +81,15 @@ were already running as its children).
   4 `noise3` above the cap 1e7 at xi1 0.25, 2 and 1 lost S3's zero.
 - The driver then started pass 2 on its own (07:15:46): 10 points without value in the 23 leaves, 7 already run, 3 to run
   (3.3498456, 1.05654321), (3.527579975, 0.21279321), (3.7248456, 1.08154321); 18 runs, 12 h cap.
+
+### Pass 2
+- Value step 2026-11-22 07:15:46 to 08:20:52 UTC (1 h 05 min, exit 0): 3 of 3 points accepted, cache 3369 -> 3372 lines;
+  11912 CPU s summed from the log. Retests: `--mutate=f3` exit 1 (plain accepts 6, mutated 0); `--mutate=lowguard` exit 1
+  (plain 6, mutated 11). Rows `rows_pass2.jsonl`, log `logs/value_pass2.log`.
+
+  | point (A, wf) | record's blocker | variants accepted (of 6) | result |
+  |---|---|---|---|
+  | (3.3498456, 1.05654321) | S3's zero lost | 2: s0.2, s0.2seed2 (\|R\|/sigma 2.19e6, dF3 0.0092) | lost in default, rhs1e7, seed2 (after [0.25, 0.24]), seed3 |
+  | (3.527579975, 0.21279321) | guard, 6.85 sigma | 1: s0.2 (16.9 sigma, dF3 0.00049) | default and rhs1e7 6.85, seed2 6.48, seed3 9.72, s0.2seed2 8.06 |
+  | (3.7248456, 1.08154321) | noise3 above the cap | 3: seed2, s0.2seed2, seed3 (\|R\|/sigma 1.29e5, dF3 0.0052; seed3 past 1e7 RHS calls, accepted) | default, s0.2, rhs1e7: noise3 2.45e7 above the cap 1e7 at xi1 0.25 |
+- The recount of the 11 cells (`M3_fu021_pass2_r0.17`, 16 h cap) started 08:20:52 UTC.

@@ -11,3 +11,6 @@ pass 1 recount exit 0 2026-11-22 07:15:46
 pass 1 unresolved leaves 23
 pass 2 select: 10 points without value in 23 unresolved leaves; 7 already run; 3 to run
 pass 2 value start 2026-11-22 07:15:46 leaves leaves_M3_fu021_pass1_r0.17.jsonl cache 3369 lines
+pass 2 value exit 0 (0 all accepted, 2 some not) 2026-11-22 08:20:52: accepted 3 of 3 points, appended to the cache
+pass 2 retest --mutate=f3 exit 1 (1 fired, 0 changed no decision)
+pass 2 retest --mutate=lowguard exit 1 (1 fired, 0 changed no decision)
