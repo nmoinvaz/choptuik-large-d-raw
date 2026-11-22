@@ -32,3 +32,19 @@ Its keys are `round(lambda, 4)`, its change finder takes the real x of each poin
 Estimate (coordinator's): about 40 min; at D 19.09375 the points took 567 to 860 s each with six processes beside the series, three rounds here.
 
 Written as the run goes.
+
+Scan started 12:55:17 UTC (unit `i1025g`; processes: 0: 1.5050, 1.5200, 1.5350; 1: 1.5075, 1.5225, 1.5375; 2: 1.5100, 1.5250, 1.5400; 3: 1.5125, 1.5275, 1.5425; 4: 1.5150, 1.5300, 1.5450; 5: 1.5175, 1.5325, then the repeat 1.5250). The plan post on #1025 (comment 7079443157) was made at 12:55:15 UTC, before the start.
+
+## Scan (22 Nov, 12:55:17 to 13:37:06 UTC): no sign change in 1.505 to 1.545; ln|det| falls steeply toward the left edge
+
+Six processes of 1 thread at nice 10, exits 0 at 13:35:54, 13:36:45, 13:36:54, 13:37:06 UTC (and two earlier); each point 743 to 915 s, wall per process 40:21 to 41:49, peak RSS 1.32 to 1.38 GB each, 34 to 56 GB available (`scan/sampler.log`). The system check printed `the record system` on all six (|F| 2.7003646772e-10 against the record's 2.7024818242e-10, steps 2354 = 2354, `scan/scan_p<p>.log`). The merged file is `scan/scan_D19.125_1025.jsonl`; the reading and the exact-lambda table are in `read_lower.txt` (dh170's `read_lower.py`, unedited).
+
+Reading (orientation as printed, not compared across D):
+- all 17 lambda values have hybrid sign - (all noise-robust, both seeds -); robust changes: 0; changes touching a non-robust point: none; endpoint signs - at 1.505 and - at 1.545; the float64 sign is also - at every point (no difference from the hybrid here);
+- ln|det| has no local minimum in the interior (`read_lower.py`: none). It rises monotonically from the left edge: the smallest ln|det| of the scan is at the left edge, lambda 1.505, -1868.0525644321, and the neighbour differences shrink from 1.3558 (1.505 to 1.5075) through 0.5022, 0.2974, 0.2029, ... to 0.0139 (1.5425 to 1.545), a slope of 542 per unit lambda at the left end and 5.6 at the right end;
+- crude single-pole fit of the leftmost points, ln|det| = c + ln(lambda - lambda_0) + d (lambda - 1.51) (an illustration, not a measurement; the model is mine): lambda_0 = 1.50420 for the leftmost 4, 5, 6 and 8 points alike, rms residual of ln|det| 1.5e-4, 2.9e-4, 5.2e-4, 1.2e-3. A simple zero of det just below the window, 0.0008 under its edge, would look like this. Nothing in the window shows a zero on the right: there ln|det| flattens (slope 5.6) as it rises away from the left edge;
+- the repeat of 1.525 (process 5, original on process 2) is bit-identical (`repeat_check.py`: PASS).
+
+Against the two model predictions (information, not pass rules): the linear model's two changes near 1.5204 and 1.5295 are not there; the square-root model's no change is there, but its minimum without a change near 1.525 is not (ln|det| has no interior minimum). Neither prediction describes this window. At D 19.09375 the lower change was at 1.511102 and the upper at 1.531607 (`../d1909/`); a zero near 1.5042 would be 0.0069 below the lower one. Whether it is the lower root, and where the upper root went (past 1.545, or merged), the scan does not say: its window is cut at both ends.
+
+Acceptance: the system check passes on all six processes; the reader's selftest passes and its mutations fail (`selftest_exits.txt` 0 1 1 0 0 1 1); the repeat agrees. All met. The result is "no robust change"; the coordinator's fallback readings are given above (smallest ln|det| of the scan 1.505, -1868.0525644321, at the edge; no minimum without a change).
