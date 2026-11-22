@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "<string>", line 4, in <module>
+    s = tau_map.make_solver_mapped(3.15, 24, 0.5, 0.4, threads=2)
+  File "/home/nathan/Source/choptuik-large-d-1072/hp/tau_map.py", line 78, in make_solver_mapped
+    return Solver(M, float(nh[0]), float(nl[0]), dh, dl, ph, pl, nodes, segs or [], kt, kc, ks, threads, None, None, match_node)
+ValueError: M must be one of 8, 16, 32, 40, 48, 64, 80, 96, 128, 160, 192, 256, 320, 384, 512

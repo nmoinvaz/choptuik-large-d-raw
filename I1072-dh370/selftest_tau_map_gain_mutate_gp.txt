@@ -1,0 +1,15 @@
+(1a) identity map: 0 differing words of 514 (PASS)
+(1b) uniform -> arctan(1.9, 0.6), M 32 -> 40: max error 2.7e-32 of the largest value (PASS; < 1e-28)
+(1b) uniform -> arctan(0.4, 0.3), M 32 -> 24: max error 3.8e-32 of the largest value (PASS; < 1e-28)
+(1b) arctan(1.9, 0.6) -> uniform, M 32 -> 48: max error 2.1e-32 of the largest value (PASS; < 1e-28)
+(1b) arctan(1.9, 0.6) -> arctan(1.2, 0.8), M 32 -> 32: max error 2.0e-32 of the largest value (PASS; < 1e-28)
+(1b) uniform -> arctan(fl(pi/4), 0.5), M 32 -> 32, a target 1e-17 from a source point: max error 4.6e-32 of the largest value (PASS; < 1e-28)
+(2a) mapped d/dtheta, arctan(1.9, 0.7), M 128: max error 3.1e-01 of the largest derivative (FAIL; < 1e-26)
+(2b) mapped phase row: its sum differs from the uniform grid's by 8.7e-33 of sum |w p1| (PASS; < 1e-26)
+(3A) report on planted records: exit 0, modes needed for L 0.5 80 (want 0, 80): PASS
+(3B) report on planted records: exit 1, modes needed for L 0.5 80 (want 1, 80): PASS
+(3C) report on planted records: exit 0, modes needed for L 0.5 None (want 0, None): PASS
+(3D) report on planted records: exit 0, modes needed for L 0.5 80 (want 0, 80): PASS
+21:03:30   resuming t from its checkpoint (pass 3, 0 + 0 calls)
+(4) resume rules: other centre refused PASS; pass-3 result recovered PASS; only converged and saved results reused PASS
+selftest --mutate gp: FAIL

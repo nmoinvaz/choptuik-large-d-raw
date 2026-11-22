@@ -1,0 +1,9 @@
+2026-11-22 21:03:25 UTC step 0 starts; worktree 46a8dac5; load 0.53 2.08 3.73
+2026-11-22 21:03:28 UTC tau_map_gain.py selftest exit 0 (0 wanted)
+2026-11-22 21:03:30 UTC tau_map_gain.py selftest --mutate gp exit 1 (1 wanted)
+2026-11-22 21:05:55 UTC lowD_gamma.py --selftest (M96 D 3.7 state) exit 0 (0 wanted)
+2026-11-22 21:08:23 UTC lowD_gamma.py --selftest --break exit 0 (1 wanted)
+2026-11-22 21:08:23 UTC make_solver_mapped constructs a solver: exit 1 (0 wanted); ValueError: M must be one of 8, 16, 32, 40, 48, 64, 80, 96, 128, 160, 192, 256, 320, 384, 512
+2026-11-22 21:08:23 UTC STEP 0 FAIL exits 0 1 0 0 1 (0 1 0 1 0 wanted)
+2026-11-22 21:09:14 UTC NOTE 1: the make_solver_mapped construction above failed on MY test input (M 24 is not an allowed kernel size: 8, 16, 32, 40, 48, 64, 80, 96, 128, 160, 192, 256, 320, 384, 512), not on the build. Re-run by hand with M 96 (make_solver_mapped(3.15, 96, s0 0.5, L 0.4, threads=6)): constructed a Solver in 0.6 s, exit 0. The passing lowD_gamma selftest also built the mapped solver (M 96, L 1) through make_solver_mapped.
+2026-11-22 21:09:14 UTC NOTE 2 (DISCREPANCY with the issue's step 0, reported, code not edited): lowD_gamma.py --selftest --break prints "lowD_gamma selftest --break: FAIL" (identity DIFFERENT as it must: uniform sign +1 ln|det| 1033.5811009326815, mapped L 0.99 sign -1 ln|det| 1045.2428843957728) but exits 0, not 1: selftest() returns 1 and main() returns it, but the last lines are 'if __name__ == "__main__": main()', so the return value is dropped and every selftest exits 0 (a failing identity check would also exit 0). The printed verdict is correct. A one-line fix is sys.exit(main()).
