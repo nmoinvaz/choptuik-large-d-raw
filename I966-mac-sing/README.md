@@ -669,3 +669,4 @@ Planted check of the disagreeing case (rows at D 263.6, 263.7, 263.8; radii (265
 | 1.00, 1.20, 0.80 | in, above, below | pending | 3 |
 
 The first planted cases and the `--mutate=scale` control give the same readings as before.
+| 263.5762 | cc8c996a | 262.0851 ± 0.9713i (8 approximants) | 1.5509, 1.7839, −13.06% | 1.5018 | FAIL (1), FAIL (1) | 263.8292 (+25.6), no Dlog estimate |
