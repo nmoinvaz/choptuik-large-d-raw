@@ -1,6 +1,8 @@
 # I1025-win/kc79_d1925: win2's k_c 71 D 19.25 state regridded to k_c 79 (winb)
 
-Written before the run, 2026-11-22 16:18:01 UTC (substituted from `date -u` when pushed). Nothing has been run for D 19.25 yet.
+**SUPERSEDED, STOPPED, NOT ACCEPTED (2026-11-22 21:03 UTC, t5's order).** The regrid below was stopped by exact pid after 4 h 45 m wall and 15,084 s of cpu (1.6 times D 19's total) without ending; it produced no state and no record. macm3 regridded k_c 79 at D 19.25 in 10 min, accepted it and scanned it: raw `I1025-macm3/kc79_d1925` (5dd45fae and cc30e59c, lambda_1 1.469975). Details, the standby that froze the run for 2 h 12 m and the pids are in `regrid_stopped.txt`; see Status and Result at the end. The text below is the README as written before the run.
+
+Written before the run, 2026-11-22 16:17:34 UTC (the first push, 5943dfbd; the status line was added at 16:18:01 UTC, ee9b8680, and the later stamp of this sentence in that push was wrong). Nothing had been run for D 19.25 when it was written.
 
 Runner: the winb session (surface-laptop-4, 4 cores, 8 threads, 32 GB), the same one that ran `../kc79_d185/` and `../kc79_d19/` (raw commit 010273bc: the D 19 regrid accepted at |F| 2.8482e-10 in 5595 s, the 8-point scan read as lambda_1 = 1.539658 at k_c 79). The coordinator is t5.
 
@@ -75,8 +77,14 @@ Started outside my terminal: `Win32_Process.Create` of `cmd.exe /c start_kc79d19
 
 ## Status
 
-The source passed win2's `kc71_syscheck.py` on this machine (`control_kc71_syscheck.txt`: state |F| 3.0025e-10, `freeze_from` 2630 steps = the record's, both controls refused) and the selftest of `kc79_syscheck_1025.py` passed (`selftest_syscheck79.txt`). The regrid started 16:17:46 UTC, outside my terminal (`Win32_Process.Create` of `cmd.exe /c start_kc79d1925_regrid_1025.cmd`; chain cmd 20456 <- driver 15552 and 10848 <- `ell_refine.py` 13124 and 5368), BelowNormal, 4 threads, cap 21600 s; free memory 24.2 GB before the start, two I129 jobs of the other project (`harm_circles.py`, boxes p085_l3 and p7603_l2) beside it. No scan is started. Pushed 2026-11-22 16:18:01 UTC.
+The source passed win2's `kc71_syscheck.py` on this machine (`control_kc71_syscheck.txt`: state |F| 3.0025e-10, `freeze_from` 2630 steps = the record's, both controls refused) and the selftest of `kc79_syscheck_1025.py` passed (`selftest_syscheck79.txt`). The regrid started 16:17:46 UTC, outside my terminal (`Win32_Process.Create` of `cmd.exe /c start_kc79d1925_regrid_1025.cmd`; chain cmd 20456 <- driver 15552 and 10848 <- `ell_refine.py` 13124 and 5368), BelowNormal, 4 threads, cap 21600 s; free memory 24.2 GB before the start, two I129 jobs of the other project (`harm_circles.py`, boxes p085_l3 and p7603_l2) beside it. No scan is started. Pushed 2026-11-22 16:18:01 UTC (ee9b8680).
+
+## Stopped, superseded (2026-11-22 21:03 UTC)
+
+t5's order (received about 21:03 UTC, after my 21:02 report of the standby): stop the regrid now by exact pid and record it here as superseded, because macm3 regridded k_c 79 at D 19.25 in 10 min, accepted and scanned it (raw `I1025-macm3/kc79_d1925`, 5dd45fae and cc30e59c: lambda_1 1.469975) and this run had used 1.6 times D 19's cpu with no sign of the end. `taskkill /PID 15552 /T /F` ended the whole tree (driver 15552 and 10848, `ell_refine.py` 13124 and 5368, watcher 16080 and 19516, sampler 15912) at 21:03:18 to 21:03:22 UTC; each pid was then checked gone. `ell_refine` had used 15,084 s of cpu in 4 h 45 m of wall time (D 19: 9,425 s cpu, 5595 s wall).
+
+The wall time included Modern Standby (System event log, UTC): in 18:47:03, out 20:19:51; in 20:20:54, out 20:35:57 and 20:50:55; awake since 20:58:16. The sampler shows about 2 h 12 m with about 150 s of cpu done. The standby cost wall time, not cpu: the cpu alone was already 1.6 times D 19's total. Evidence and the pids: `regrid_stopped.txt`, `rows/regrid_samples.csv`.
 
 ## Result
 
-Not yet run.
+**No result.** The regrid did not end: no state, no record, no `regrid_accepted.txt`, no `regrid_summary.txt`, no check run on a k_c 79 state. The D 19.25 k_c 79 state of record is macm3's, not mine. Nothing was rerun. Pushed 2026-11-22 21:04:48 UTC.

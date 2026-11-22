@@ -1,0 +1,17 @@
+The D 19.25 k_c 79 regrid of this folder was STOPPED by the coordinator's order and is SUPERSEDED. It is not accepted: no state, no record, no regrid_accepted.txt, no regrid_summary.txt.
+
+Order (t5's hc, 2026-11-22, received about 21:03 UTC, answering my 21:02 report): stop the regrid now, by exact pid; macm3 regridded k_c 79 at D 19.25 in 10 min, accepted and scanned it (raw I1025-macm3/kc79_d1925, 5dd45fae and cc30e59c: lambda_1 1.469975), and this run had used 1.6 times D 19's cpu with no sign of the end.
+
+Stopped 2026-11-22 21:03:18 to 21:03:22 UTC (the PowerShell call's own UTC clock):`taskkill /PID 15552 /T /F` ended the tree (driver 15552 and 10848, ell_refine 13124 and 5368, watcher 16080 and 19516, sampler 15912 and the console hosts below them); the same pids were then checked gone one by one.
+ell_refine 5368 at 21:03:18 UTC: cpu 15,084.3 s, private 1.15 GB, 4 h 45 m 32 s after the 16:17:46 start. D 19's regrid had used 9,425 s of cpu in 5595 s wall.
+
+Why it was slow in wall time, from the System event log (UTC) and the sampler (rows/regrid_samples.csv, a line every 60 s):
+  Modern Standby: in 17:41:00, out 18:01:49 (the run kept going: cpu 8,161.8 at 17:40:48, 10,125.6 at 18:01:23);
+  in 18:47:03, out 20:19:51 (frozen); in 20:20:54, out 20:35:57 and again out 20:50:55 (frozen); out 20:58:16, awake since.
+  sampler lines regular to 18:46:43 (cpu 14,527.8), none until 20:20:36 (14,594.0), none until 20:58:35 (14,677.4), regular after that.
+  About 2 h 12 m of wall time with about 150 s of cpu done.
+The standby explains the lost wall time, not the cpu: 15,084 s of cpu is 1.6 times D 19's total. ell_refine prints nothing until it ends, so there is no progress figure.
+
+The macm3 record, read from raw I1025-macm3/kc79_d1925/l1kc79macm3.jsonl (not checked by me): D 19.25, k_c 79, |F| 3.066e-10, 2925 steps, constraint 9.574e-4, Delta 1.0737660558, seconds 578 (macOS build). Its VERDICT.txt reads "ACCEPTED 2026-11-22 19:28:18 UTC".
+
+Nothing else of this run is alive. The other project's I129 jobs (harm_circles.py, pids 16852 and 17116) were not touched.
