@@ -197,3 +197,7 @@ Written before the run (criteria in `d18/d18_criteria.log`, 2026-11-21 03:31:59 
 - (k) (22:39-00:20 UTC), information: D 17.75 at k_c 55 has two robust changes over 1.65-1.90, at **1.671325-1.671698** and
   **1.867058-1.867857**. Against k_c 63 (dh170) the upper root agrees to 1.34e-4 (1.867192) and the lower does not (0.0276 from 1.698929):
   **reading k_c-dependent at D 17.75**, by the lower root (`d18/d1775k55_scan.log`, `d18/d1775k55_scan_1025.jsonl`, `d18/d1775k55_read.log`).
+- 2026-11-22 00:24:24 UTC, (m), the coordinator's next task, **window written before it runs** (`d18/lane_d18m.sh`): D 18.125 at **k_c 55** (the
+  Mac's `out/sol_l1kc55F1025_D18.125000.npy` on its record line), the hybrid over **lambda 1.65 to 1.90 at 0.01 (26 points)**. Reading: a
+  k_c 55 root within 0.01 of k_c 63's (winb's D 18.125 scan, one change in (1.77, 1.78)) means k_c-stable there; none, or a different place,
+  k_c-dependent. Every ln|det| minimum without a change is reported with a dip fit.

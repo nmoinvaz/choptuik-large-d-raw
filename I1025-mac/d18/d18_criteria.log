@@ -204,3 +204,18 @@ D 18.5 root. The pass rules are unchanged (d18_check.py 08969ea2, then signtest.
    (1.67, 1.68) [1.671325, 1.671698] and (1.86, 1.87) [1.867058, 1.867857]; no ln|det| minimum without a change. Against k_c 63: the upper
    root matches (1.867058 against 1.867192, -0.000134); the lower does not (nearest 0.027604 from 1.698929). Reading: k_c-dependent at
    D 17.75 (one of two matched). In each state's own signs k_c 55 reads + to - then - to +, k_c 63 - to + then + to - (not compared).
+== 2026-11-22 00:24:24 the coordinator's next task (hc): the k_c test where the two roots meet. (m) D 18.125 at k_c 55, written before it runs
+   (lane_d18m.sh): the Mac's state out/sol_l1kc55F1025_D18.125000.npy (88ccda5c) on its record line in out/l1kc55F1025.jsonl (0fb77df8;
+   D 18.125: F 2.7638e-10, 2209 steps), system check first; the hybrid over **lambda 1.65 to 1.90 at 0.01 (26 points)**, noise test and
+   float64 sign beside each. Compared with k_c 63 at D 18.125: winb's scan I1025-win/d18mid/d18mid_scan_1025.jsonl (raw cbbc9e0e, copied as
+   winb_d18mid_scan_copy.jsonl, 6b7a4aa5; 1.70-1.95, leap state 5bf7b711), one robust change in (1.77, 1.78), its det-linear estimate by
+   the same estimator as below.
+   Reading, fixed (the coordinator's): a k_c 55 root within 0.01 of k_c 63's means the root there is k_c-stable; none, or a different place,
+   means k_c-dependent at D 18.125. Made exact (mine): the k_c 63 root's det-linear estimate against the nearest robust k_c 55 change's;
+   within 0.01: stable; else dependent; a change touching a non-robust point: no reading; unmatched k_c 55 changes are listed.
+   Every ln|det| local minimum without a sign change (in either scan) is reported with a dip fit, information: over the minimum and up to
+   two points each side, ln|det| = c + s (lambda - lambda_min) + ln|(lambda - a)^2 + beta|; beta > 0 reads a complex pair a +- i sqrt(beta),
+   beta < 0 two real roots a +- sqrt(-beta) inside the grid. Reader d18k2_read.py, selftest before the run.
+   k_c 63 at D 18.125 by the same estimator: (1.77, 1.78), det-linear 1.772012, range [1.772012, 1.772404]. d18k2_read.py (blob 52f31e53):
+   5 planted cases PASS (a complex pair and a real pair inside one bracket among them); --mutate=tol and --mutate=dip (beta forced
+   positive) FAIL (d18k2_read_selftest.log). lane_d18m.sh started 00:25:29 UTC; the system check passed (|F| 2.7637952785e-10, 2209 steps).
