@@ -32,3 +32,13 @@ Inputs (winb's, raw `I1025-win/kc79_d19/` at f712f94c or later, the state and re
 Estimate (coordinator's): about 45 min; winb's points took 1325 to 1344 s on a 4-core Windows laptop.
 
 Written as the run goes.
+
+## Control (22 Nov, 16:18:46 to 16:38:09 UTC): FAIL on the ln|det| bar; no scan
+
+`d18_hybsign.py` at D 19.0, k_c 79, lambda 1.54 on winb's state and record, 1 process of 1 thread: wall 1163 s (the point's own 1156 s; winb's was 1343 s on Windows), peak RSS 1.84 GB, exit 0 (`control/control.log`, `control/control_check.txt`, `exits_kc79.txt`). The lane script stopped at the check, as written, and no scan started (the scan unit and the waiters ended with it; nothing was loosened).
+- the record system: |F| 2.8477474518e-10 against the record's 2.8482007333e-10 (relative 1.6e-4, inside the check's 1e-2 bar), steps 2976 = 2976;
+- hybrid sign -1 = winb's -1; both noise seeds -1 (noise_robust True);
+- **ln|det| -2547.7914967589 against winb's -2547.786620251229: difference -4.877e-3, relative 1.914e-06 against the bar 1e-06: FAIL**;
+- float64: sign -1 here against +1 in winb's row, ln -2544.9175487167 against -2544.7945061325 (difference -0.123, relative 4.8e-05); the float64 sign is not a determinant sign in these scans;
+- for comparison, the k_c 71 control of `../kc71_d19125/` (win2's Windows build) differed by 1.4e-4 absolute, 6.158e-08 relative, and its float64 ln by 4.5.
+Cause not diagnosed. Not run: a repeat of the control on this machine, or at another thread count, which would show how far this machine's own ln|det| moves between builds of the same run (the d18 hybrid's float64 blocks 0 to 11 come from `S.mode_matrix` in float64, and a 1e-15 perturbation of them is the noise test).
