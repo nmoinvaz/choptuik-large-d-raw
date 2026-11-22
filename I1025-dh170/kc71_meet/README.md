@@ -54,3 +54,35 @@ One process of 4 threads for the control, then two of 4 threads at nice 10. Noth
 - 2026-11-22 16:16:19 UTC: **lane 2 (D 19.25) stopped on t5's order** (hc, about 16:15: stop the unit after the point in flight lands; dh610 reruns the whole D 19.25 window on 6 processes after about 17:15 and my points become a cross-machine check). Lane 2's fourth point had landed at 16:16:03, 2 s before my waiter (`stop_lane2_after_point.sh`, `stop_lane2.log`) started; it would have held lane 2 for a fifth point, so I stopped the waiter and ran `systemctl --user stop i1025-kc71b` at once; the fifth point (1.46, started 16:16:03) was lost, 16 s of work. Lane 2's four finished points (all hybrid +1, noise-robust, float64 +1; sec per point 956, 911, 915, 912): lambda 1.42 ln|det| -2186.7628971332; 1.43 -2187.2342474896; 1.44 -2187.7516439930; 1.45 -2188.3515899133. The folder was renamed `lane2/` to `lane2_stopped/`, nothing deleted (its `exits.txt` has a line for the stop).
 - 2026-11-22 16:16:33 UTC: the reader unit `i1025-kc71read` (`read_kc71.sh`, which waits for both lanes) was stopped and `i1025-kc71read1` started on `read_kc71_lane1.sh` (the same reading of lane 1 only, lane 2's four points listed beside). Lane 1 (unit `i1025-kc71a`, D 19.1875, 4 of 18 evaluations at 957, 914, 913, 913 s side by side) runs on alone: new ETA about 18:35 UTC at about 585 s a point (the control alone took 571 s).
 - 2026-11-22 16:16:59 UTC: the stop recorded (this entry).
+
+## Result (written 2026-11-22 18:23:42 UTC)
+Control PASS (15:14:13 UTC, 6.158e-08). **Lane 1 (D 19.1875, unit `i1025-kc71a`): 15:14:21 to 18:22:18 UTC, exit 0, 11277 s wall (3:07:51 by /usr/bin/time), 18 evaluations (17 values and the repeat), system check passed (|F| 2.9139860911e-10 against the record's 2.9139861587e-10, 2639 steps equal), every point noise-robust (18 of 18), the repeat of 1.50 bit-identical (ln|det| -2195.029459185477, sign, noise and float64), peak RSS 1.83 GiB (1913720 kB), lowest MemAvailable 25.0 GiB (25593 MiB), no ALERT.** Seconds per point 957, 914, 913, 913 beside lane 2 (side by side), then 529 to 553 alone after lane 2 was stopped. The reader unit `i1025-kc71read1` (`read_kc71_lane1.sh`) ran at 18:22:34 UTC, exit 0 (`read_kc71.txt`, `exits_read.txt`). **Lane 2 (D 19.25)** was stopped on t5's order at 16:16:19 UTC after 4 points (1.42 to 1.45, all hybrid +1; table above); dh610 reruns that window.
+
+| | lane 1, D 19.1875 | dh610, D 19.125 (raw ee09203f) |
+|---|---|---|
+| hybrid signs, as printed | + from 1.42 to 1.49, - from 1.50 to 1.58 | + from 1.44 to 1.48, - at 1.49, 1.50, 1.51, + from 1.52 to 1.58 |
+| robust changes | **one**: (1.490, 1.500), + to -, det-linear **1.490692**, estimator range [1.490489, 1.490692] | two: + to - 1.488137 [1.486996, 1.488137]; - to + 1.511209 [1.511209, 1.511571] |
+| - to + change | **none up to 1.58** | 1.511209 |
+| ln|det| minima without a sign change inside the window | none | none |
+| endpoint signs | + at 1.42, - at 1.58 | + at 1.44, + at 1.58 |
+| float64 sign differs from the hybrid | 10 of 18 (1.43 to 1.47 and 1.52, 1.55 to 1.58) | 2 of 16 |
+
+The estimator range is the spread over the interpolation choices of `d185_scan_read.changes`, not an enclosure. Orientation is as printed and not compared across D.
+- **The + to - change moved +0.002555 in 0.0625 of D** (1.488137 to 1.490692, +0.041 per unit D).
+- **The - to + change of D 19.125 (1.511209) is not in the window at D 19.1875:** the pair does not meet inside 1.42 to 1.58. The window's endpoint signs went from (+, +) at D 19.125 to (+, -): the sign at lambda 1.58 flipped between the two D, which is a root crossing 1.58 (or a convention flip, which the sign at 1.42 to 1.44, + at both D, does not support).
+- **Information, not read (outside and at the edge of the window):** ln|det| falls from -2195.116 at 1.55 to -2195.536, -2196.245 and **-2199.392 at 1.58**, the lowest value of the scan above 1.49, with the sign still minus. A root just above 1.58 fits that; the det-linear extrapolation of the last two points puts it near 1.5804. The reader looks for interior minima only, so it does not flag a minimum at the scan edge; the window ends at 1.58 and cannot resolve it. If a - to + change sits there, the two changes moved from 0.0231 apart (D 19.125) to about 0.090 apart: they separated, they did not meet. This needs a window above 1.58 at D 19.1875.
+
+## Predictions against the result
+| prediction | result |
+|---|---|
+| control passes (90%); system check passes in both lanes (90%); both repeats agree (90%) | yes; lane 1 yes, lane 2 yes at its start (stopped after 4 points); lane 1's repeat agrees, lane 2 never reached its repeat |
+| every point noise-robust, about 75% per lane | lane 1 18 of 18, lane 2 4 of 4 |
+| D 19.1875: no robust change 45%, two changes 40%, one change 10%, other 5% | **one change** (the 10% case) |
+| D 19.25: none 50%, two 35%, one 10% | not read: 4 points only (all +); dh610's rerun |
+| a ln|det| minimum without a change in a lane without changes (70%) | not applicable (lane 1 has a change); one possible at the edge (1.58), unread |
+| float64 differs at no more than 5 points per lane (65%) | **no**: lane 1 10 of 18 |
+| seconds a point beside the other lane 650 to 900 s (60%); a lane 3.3 to 4.5 h (55%); inside the 8 h caps (95%); RSS below 2.5 GiB (90%) | 913 to 957 s beside the other lane (just above), 529 to 553 s alone; lane 1 3.13 h (below the range: lane 2 was stopped); yes; 1.83 GiB yes |
+
+## Log
+- 2026-11-22 18:22:18 UTC: lane 1 ended, exit 0; 18:22:34 the reader ran.
+- 2026-11-22 18:23:42 UTC: result written (this section).

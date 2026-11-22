@@ -1,0 +1,17 @@
+=== lane 1, D 19.1875: read_lower.py lane1 1.42 1.58
+points 17 in 1.420-1.580; not noise-robust: none
+hybrid signs: 1.420+ 1.430+ 1.440+ 1.450+ 1.460+ 1.470+ 1.480+ 1.490+ 1.500- 1.510- 1.520- 1.530- 1.540- 1.550- 1.560- 1.570- 1.580-
+float64 sign differs from the hybrid sign at: [(1.43, '+', '-'), (1.44, '+', '-'), (1.45, '+', '-'), (1.46, '+', '-'), (1.47, '+', '-'), (1.52, '-', '+'), (1.55, '-', '+'), (1.56, '-', '+'), (1.57, '-', '+'), (1.58, '-', '+')]
+repeated points: [(1.5, 'agree')]
+  robust change (1.490, 1.500), + to -, det-linear 1.490692, range [1.490489, 1.490692]
+robust changes: 1; touching a non-robust point (not counted): none
+ln|det| local minima without a sign change: none
+endpoint signs: + at 1.420, - at 1.580
+read_lower exit 0
+repeat check lane1/scan_D19.1875_p0.jsonl: lambda [1.5]: [2] evaluations each, agree -> PASS
+repeat_check exit 0
+=== lane 2 (D 19.25), stopped after 4 points: hybrid sign and ln|det| per point (for the comparison with dh610's rerun)
+  lam 1.42: hybrid +1 ln|det| -2186.7628971332 noise_robust True float64 +1 (956 s)
+  lam 1.43: hybrid +1 ln|det| -2187.2342474896 noise_robust True float64 +1 (911 s)
+  lam 1.44: hybrid +1 ln|det| -2187.7516439930 noise_robust True float64 +1 (915 s)
+  lam 1.45: hybrid +1 ln|det| -2188.3515899133 noise_robust True float64 +1 (912 s)
