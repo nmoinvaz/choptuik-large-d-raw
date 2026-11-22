@@ -1,0 +1,54 @@
+--- prep_kc79d19_find_1025.py
++++ prep_kc79d1925_find_1025.py
+@@ -2 +2 @@
+-"""#1025 winb, k_c 79 at D 19: looks in raw origin/main (the push worktree, fetched) for win2's k_c 71 D 19 state from its leap (I1025-win2/..., sol_l1kcL71*_D19.0000.npy or _D19.000000.npy)
++"""#1025 winb, k_c 79 at D 19.25: looks in raw origin/main (the push worktree, fetched) for win2's k_c 71 D 19.25 state from its leap (I1025-win2/..., sol_l1kcL71*_D19.2500.npy or _D19.250000.npy)
+@@ -4,2 +4,2 @@
+-writes prep_kc79d19_pins_1025.txt (blob and raw path per line) and kc79d19_cfg_1025.txt (SRC, SRCSTATE, SRCREC, SRCCHECK), and copies the state into the worktree's data/ under the name
+-ell_refine.py reads (sol_SRC_D19.0000.npy). Exit 0 found and prepared, 3 not there yet, 1 anything else wrong (more than one candidate tag, a pin mismatch, no D 19 line in the record).
++writes prep_kc79d1925_pins_1025.txt (blob and raw path per line) and kc79d1925_cfg_1025.txt (SRC, SRCSTATE, SRCREC, SRCCHECK), and copies the state into the worktree's data/ under the name
++ell_refine.py reads (sol_SRC_D19.2500.npy). Exit 0 found and prepared, 3 not there yet, 1 anything else wrong (more than one candidate tag, a pin mismatch, no D 19.25 line in the record).
+@@ -9 +9 @@
+-S = "C:/Users/nathan/Source/kc79d19_1025"
++S = "C:/Users/nathan/Source/kc79d1925_1025"
+@@ -12 +12 @@
+-FIXED = [l.split() for l in open(S + "/prep_kc79d19_pins_fixed.txt") if l.strip()]
++FIXED = [l.split() for l in open(S + "/prep_kc79d1925_pins_fixed.txt") if l.strip()]
+@@ -28,2 +28,2 @@
+-DV = float(REH) if REH else 19.0
+-PAT = re.compile(r"^(I1025-win2/.+)/sol_(l1kc71L[A-Za-z0-9]*)_D" + (re.escape(f"{DV:.6f}") if REH else r"19\.0000(00)?") + r"\.npy$")
++DV = float(REH) if REH else 19.25
++PAT = re.compile(r"^(I1025-win2/.+)/sol_(l1kc71L[A-Za-z0-9]*)_D" + (re.escape(f"{DV:.6f}") if REH else r"19\.2500(00)?") + r"\.npy$")
+@@ -51,7 +51,9 @@
+-    t0 = {"I1025-win2/kc71_leap/states/sol_l1kc71Lw1025_D18.750000.npy": "a"}
+-    t1 = dict(t0, **{"I1025-win2/kc71_leap/states/sol_l1kc71Lw1025_D19.000000.npy": "b"})
+-    t2 = dict(t1, **{"I1025-win2/kc71_leap/states/sol_l1kc71Lw1025_D19.0000.npy": "b"})
+-    t3 = dict(t2, **{"I1025-win2/kc71_leap/states/sol_l1kc71Lw1025b_D19.0000.npy": "c"})
+-    t4 = dict(t1, **{"I1025-win2/kc71_leap/states/sol_l1kc71Lw1025_D19.0000.npy": "x"})
+-    cases = [("D 18.75 only", t0, "none"), ("the .6f name only", t1, "ok"), ("both names, equal blobs", t2, "ok"), ("two tags", t3, "many"), ("two names, different blobs", t4, "differ"),
+-             ("a k_c 63 state at D 19", {"I1025-win2/x/sol_l1kc63Lw1025_D19.0000.npy": "d"}, "none"), ("D 19.5", {"I1025-win2/kc71_leap/states/sol_l1kc71Lw1025_D19.500000.npy": "e"}, "none")]
++    P = "I1025-win2/kc71_leap/states/sol_l1kc71Lw1025"
++    t0 = {P + "_D19.187500.npy": "a"}
++    t1 = dict(t0, **{P + "_D19.250000.npy": "b"})
++    t2 = dict(t1, **{P + "_D19.2500.npy": "b"})
++    t3 = dict(t2, **{P + "b_D19.2500.npy": "c"})
++    t4 = dict(t1, **{P + "_D19.2500.npy": "x"})
++    cases = [("D 19.1875 only", t0, "none"), ("the .6f name only", t1, "ok"), ("both names, equal blobs", t2, "ok"), ("two tags", t3, "many"), ("two names, different blobs", t4, "differ"),
++             ("a k_c 63 state at D 19.25", {"I1025-win2/x/sol_l1kc63Lw1025_D19.250000.npy": "d"}, "none"), ("D 19.0", {P + "_D19.000000.npy": "e"}, "none"),
++             ("D 19.3125", {P + "_D19.312500.npy": "f"}, "none"), ("D 19.25 in a k_c 79 tag", {"I1025-win2/x/sol_l1kc79Lw1025_D19.250000.npy": "g"}, "none")]
+@@ -73 +75 @@
+-    print("not there yet: no sol_l1kc71L*_D19.0000(00).npy under I1025-win2/ on origin/main")
++    print("not there yet: no sol_l1kc71L*_D19.2500(00).npy under I1025-win2/ on origin/main")
+@@ -79 +81 @@
+-    print(f"the two D 19 state files differ ({r0[1]}): stop"); sys.exit(1)
++    print(f"the two D 19.25 state files differ ({r0[1]}): stop"); sys.exit(1)
+@@ -102,2 +104,2 @@
+-print(f"record D 19 line: kc {r.get('kc')}, F {r.get('F')}, steps {r.get('steps')}, constraint {r.get('constraint')}, Delta {r.get('Delta')}, h/seconds {r.get('seconds')}")
+-dst = f"{WTD}/sol_{tag}_D19.0000.npy"
++print(f"record D 19.25 line: kc {r.get('kc')}, F {r.get('F')}, steps {r.get('steps')}, constraint {r.get('constraint')}, Delta {r.get('Delta')}, h/seconds {r.get('seconds')}")
++dst = f"{WTD}/sol_{tag}_D19.2500.npy"
+@@ -113,2 +115,2 @@
+-open(S + ("/rehearsal_pins.txt" if REH else "/prep_kc79d19_pins_1025.txt"), "w").write("".join(f"{b} {p}\n" for b, p in pins))
+-open(S + ("/rehearsal_cfg.txt" if REH else "/kc79d19_cfg_1025.txt"), "w").write(f"SRC={tag}\nSRCSTATE={state}\nSRCREC={rec}\nSRCCHECK={check}\n")
++open(S + ("/rehearsal_pins.txt" if REH else "/prep_kc79d1925_pins_1025.txt"), "w").write("".join(f"{b} {p}\n" for b, p in pins))
++open(S + ("/rehearsal_cfg.txt" if REH else "/kc79d1925_cfg_1025.txt"), "w").write(f"SRC={tag}\nSRCSTATE={state}\nSRCREC={rec}\nSRCCHECK={check}\n")

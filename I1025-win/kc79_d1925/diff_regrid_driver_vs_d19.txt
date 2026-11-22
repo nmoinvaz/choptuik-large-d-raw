@@ -1,0 +1,73 @@
+--- kc79d19_regrid_driver_1025.py
++++ kc79d1925_regrid_driver_1025.py
+@@ -2,4 +2,4 @@
+-"""#1025 winb, the k_c 79 regrid at D 19 (t5's order, hc of 2026-11-22 ~09:41 UTC): win2's accepted k_c 71 D 19 state (from its leap, raw I1025-win2/kc71_leap, found by prep_kc79d19_find_1025.sh) is
+-regridded to k_c 79 with the same command as at D 18.5 (raw I1025-win/kc79_d185), only D, the source tag and the lambda_0 argument changed:
+-  D 18.5: ell_refine.py l1kc71Wm1025 71 l1kc79Wm1025 79 1 18.5 2.1181259879 --kappa 0.7 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma
+-  D 19:   ell_refine.py SRC 71 l1kc79W19m1025 79 1 19 2.1156378446 --kappa 0.7 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma     (SRC and the pins from kc79d19_cfg_1025.txt; lambda_0 unused with --no-gamma)
++"""#1025 winb, the k_c 79 regrid at D 19.25 (t5's order, hc of 2026-11-22 ~16:10 UTC): win2's accepted k_c 71 D 19.25 state (from its leap, raw I1025-win2/kc71_leap, found by prep_kc79d1925_find_1025.py) is
++regridded to k_c 79 with the same command as at D 19 (raw I1025-win/kc79_d19), only D, the output tag and the lambda_0 argument changed:
++  D 19:    ell_refine.py SRC 71 l1kc79W19m1025 79 1 19 2.1156378446 --kappa 0.7 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma
++  D 19.25: ell_refine.py SRC 71 l1kc79W1925m1025 79 1 19.25 2.1144367878 --kappa 0.7 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma     (SRC and the pins from kc79d1925_cfg_1025.txt; lambda_0 unused with --no-gamma)
+@@ -8,2 +8,2 @@
+-converge stops here with a report. THE SCAN IS NOT STARTED (t5 gives the window); kc79d19_scan_driver_1025.py takes it as an argument. Memory: no guard, the alert-only watcher is a separate process.
+-usage: kc79d19_regrid_driver_1025.py [--selftest]"""
++converge stops here with a report. NO SCAN IS STARTED (the window comes from the coordinator); kc79d1925_scan_driver_1025.py takes it as an argument. Memory: no guard, the alert-only watcher is a separate process.
++usage: kc79d1925_regrid_driver_1025.py [--selftest]"""
+@@ -12,2 +12,2 @@
+-S = "C:/Users/nathan/Source/kc79d19_1025"
+-OUT = S + "/I1025-win/kc79_d19"
++S = "C:/Users/nathan/Source/kc79d1925_1025"
++OUT = S + "/I1025-win/kc79_d1925"
+@@ -21,4 +21,4 @@
+-CFG = {"SRC": "none"} if ST else dict(l.strip().split("=", 1) for l in open(S + "/kc79d19_cfg_1025.txt") if "=" in l and not l.startswith("#"))
+-SRC, TAG = CFG["SRC"], "l1kc79W19m1025"
+-STATE_N = f"sol_{TAG}_D19.0000.npy"
+-PINS = {} if ST else {p: b for b, p in (ln.split() for ln in open(S + "/prep_kc79d19_pins_1025.txt"))}
++CFG = {"SRC": "none"} if ST else dict(l.strip().split("=", 1) for l in open(S + "/kc79d1925_cfg_1025.txt") if "=" in l and not l.startswith("#"))
++SRC, TAG = CFG["SRC"], "l1kc79W1925m1025"
++STATE_N = f"sol_{TAG}_D19.2500.npy"
++PINS = {} if ST else {p: b for b, p in (ln.split() for ln in open(S + "/prep_kc79d1925_pins_1025.txt"))}
+@@ -75 +75 @@
+-say("kc79d19_regrid_driver_1025.py: the k_c 79 regrid at D 19; checking pins")
++say("kc79d1925_regrid_driver_1025.py: the k_c 79 regrid at D 19.25; checking pins")
+@@ -91 +91 @@
+-if blob(WTM + f"/data/sol_{SRC}_D19.0000.npy") != PINS[CFG["SRCSTATE"]]:
++if blob(WTM + f"/data/sol_{SRC}_D19.2500.npy") != PINS[CFG["SRCSTATE"]]:
+@@ -96 +96 @@
+-say(f"pins ok (blobs in prep_kc79d19_pins_1025.txt; worktree 48c36355 with solver code = 505d8399 and ell_delta/ell_refine = 48c36355); python {PY}")
++say(f"pins ok (blobs in prep_kc79d1925_pins_1025.txt; worktree 48c36355 with solver code = 505d8399 and ell_delta/ell_refine = 48c36355); python {PY}")
+@@ -100 +100 @@
+-wat = subprocess.Popen([PY, "-u", S + "/kc79d19_watch_alert_1025.py", str(os.getpid()), "regrid"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, stdin=subprocess.DEVNULL,
++wat = subprocess.Popen([PY, "-u", S + "/kc79d1925_watch_alert_1025.py", str(os.getpid()), "regrid"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, stdin=subprocess.DEVNULL,
+@@ -112 +112 @@
+-r2 = sh([PY, SY71, RAW + "/" + CFG["SRCREC"], WTM + f"/data/sol_{SRC}_D19.0000.npy", "19", WTM], env=env)
++r2 = sh([PY, SY71, RAW + "/" + CFG["SRCREC"], WTM + f"/data/sol_{SRC}_D19.2500.npy", "19.25", WTM], env=env)
+@@ -114 +114 @@
+-say(f"control: win2's kc71_syscheck.py on win2's k_c 71 D 19 state: exit {r2.returncode} (0 wanted), {time.time() - t0:.0f} s")
++say(f"control: win2's kc71_syscheck.py on win2's k_c 71 D 19.25 state: exit {r2.returncode} (0 wanted), {time.time() - t0:.0f} s")
+@@ -120 +120 @@
+-cmd = ["-u", "ell_refine.py", SRC, "71", TAG, "79", "1", "19", "2.1156378446", "--kappa", "0.7", "--u0", "0.04", "--Ks", "30", "--tol", "1e-12", "--wait", "60", "--no-gamma"]
++cmd = ["-u", "ell_refine.py", SRC, "71", TAG, "79", "1", "19.25", "2.1144367878", "--kappa", "0.7", "--u0", "0.04", "--Ks", "30", "--tol", "1e-12", "--wait", "60", "--no-gamma"]
+@@ -139 +139 @@
+-    a = sh([PY, SY, rec, state, "19", WTM], env=env)
++    a = sh([PY, SY, rec, state, "19.25", WTM], env=env)
+@@ -141,2 +141,2 @@
+-    m1 = sh([PY, SY, rec, state, "19", WTM, "--mutate=F"], env=env)
+-    m2 = sh([PY, SY, rec, state, "19", WTM, "--mutate=steps"], env=env)
++    m1 = sh([PY, SY, rec, state, "19.25", WTM, "--mutate=F"], env=env)
++    m2 = sh([PY, SY, rec, state, "19.25", WTM, "--mutate=steps"], env=env)
+@@ -166 +166 @@
+-    srcj = [json.loads(x) for x in open(RAW + "/" + CFG["SRCREC"]) if x.strip() and json.loads(x).get("D") == 19.0][-1]
++    srcj = [json.loads(x) for x in open(RAW + "/" + CFG["SRCREC"]) if x.strip() and json.loads(x).get("D") == 19.25][-1]
+@@ -170 +170 @@
+-        f"steps {recj.get('steps')}, constraint {recj.get('constraint')}, Delta {recj.get('Delta')}; the k_c 71 source record at D 19: |F| {srcj.get('F')}, steps {srcj.get('steps')}, constraint {srcj.get('constraint')}, Delta {srcj.get('Delta')}; {verdict}{(': ' + why) if why else ''}; "
++        f"steps {recj.get('steps')}, constraint {recj.get('constraint')}, Delta {recj.get('Delta')}; the k_c 71 source record at D 19.25: |F| {srcj.get('F')}, steps {srcj.get('steps')}, constraint {srcj.get('constraint')}, Delta {srcj.get('Delta')}; {verdict}{(': ' + why) if why else ''}; "
+@@ -174 +174 @@
+-sh([HC, "send", COORD, f"winb ({datetime.datetime.now(datetime.timezone.utc):%H:%M} UTC), #1025 k_c 79 regrid at D 19 finished: {summ}. Raw I1025-win/kc79_d19 after my next push. "
++sh([HC, "send", COORD, f"winb ({datetime.datetime.now(datetime.timezone.utc):%H:%M} UTC), #1025 k_c 79 regrid at D 19.25 finished: {summ}. Raw I1025-win/kc79_d1925 after my next push. "
+@@ -177,2 +177,2 @@
+-say("scan not started: the window is the coordinator's to give (kc79d19_scan_driver_1025.py WINDOW)")
+-say("kc79d19_regrid_driver_1025.py done")
++say("scan not started: the window is the coordinator's to give (kc79d1925_scan_driver_1025.py WINDOW)")
++say("kc79d1925_regrid_driver_1025.py done")
