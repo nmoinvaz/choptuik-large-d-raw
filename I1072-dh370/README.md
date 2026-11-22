@@ -55,3 +55,16 @@ Solves: minutes to an hour each at M' <= 128. gamma: about 170 s per determinant
 - Information from t5 (#1073, rpi5, raw d481a3a3): Ecker et al.'s gamma at D 3.15 interpolates to 0.22739 with about 1e-5 of spread (an interpolation spread, not a bound); our uniform 0.2273872422 lies inside it. They have no gamma below D 3.1, so step 3 at D 3.0444 has no outside target. The acceptance stays against our uniform gamma(128) and its 1.05e-6.
 - Step 0 rerun on ae96bcc6 (2026-11-22 21:26 UTC, `selftest_lowD_gamma_ae96bcc6.txt`, `selftest_lowD_gamma_break_ae96bcc6.txt`, `steps_new.txt`): `lowD_gamma.py --selftest data/lowD_states/highm15_D3.7000_M96.npz --threads=6` **exit 0** and with `--break` **exit 1**, as the issue wants (beside the old runs on 46a8dac5: 0 and 0).
 - The second worktree `~/Source/choptuik-large-d-1072b` is at ae96bcc6 (t5's fix: `sys.exit(main())`, the one-line diff to 46a8dac5; `lowD_gamma.py` blob 2e55d695, the other three scripts unchanged). Its step 0 and step 1 selftest calls run before step 2.
+- Amended step 1 (21:21:13 to 21:35:37 UTC, unit i1072c, `steps_new.txt`, `solve_new.log`, `solve_new.jsonl`, worktree 1072b at ae96bcc6; **stopped at 1c, the first failure**):
+
+| stage | result | numbers |
+|---|---|---|
+| step 0 rerun on ae96bcc6 | PASS | `lowD_gamma.py --selftest` exit 0, `--break` exit 1 |
+| 1a identity control (L 1 at M 128 from the M 128 state) | PASS, 36 s | the tool's report: Delta - stored Delta(M 128) +7.3e-31 (bound 1e-20); own plan 240 against the stored 236 steps (1.017; bound 10%) |
+| s0 for the continuation | `pick_s0` for L 0.5 on the M 160 state | 1.832595714594046, fixed for 1b and 1c |
+| 1b, L 0.9 at M' 128 from the uniform M 160 state | converged, 155 s | start |F| 6.06e-05 (stored plan), calls 6.06e-05, 2.11e-09, then pass 2; Delta 2.96131965418243; plans 710 / 322 / 241 steps |
+| 1b, L 0.7 at M' 128 from the uniform M 160 state | converged, 212 s | start |F| 2.20e-05 (stored plan), calls 2.20e-05, 2.44e-10; Delta 2.9613196425536543; plans 685 / 352 / 292 steps |
+| 1c, L 0.5 at M' 128 from the L 0.7 M' 128 state | **FAILED, 158 s**: pass 1: line search at call 0 (dd4 retry fails too) | start |F| 1.08e+11 on a split-2 plan (749 steps; the converged L 0.9 and 0.7 started on the stored plan, unsplit) |
+| 1c, L 0.4 at M' 128, L 0.5 and 0.4 at M' 96 | not run (the driver stops at the first failure) | |
+
+  Beside (information): the stored uniform Delta(M 128) is 2.961319687827138 and Delta(M 160) 2.9613196436806164 (difference -4.41e-8); L 0.7 at M' 128 is -1.1e-9 from the M 160 value and L 0.9 +1.05e-8. Converged states saved in `states2/` (L 1 at M 128, L 0.9 and L 0.7 at M' 128). Gain per the issue's step 2 is not measured yet (no gamma run).
