@@ -61,3 +61,38 @@ No second route to the state (an interpolating predictor from D 18.4375 and D 18
 ## Notes
 - `accept_check.py`'s docstring was edited (one phrase) after its four controls (`ctl_accept.log`) ran and before the leaps; the code lines are unchanged. Its controls were repeated at the start of each leap lane (`ctl_leap_accept_kc*.log`: exit 0 and 3 as wanted).
 - The record rows of both states are the leap's own, written on this machine; the Mac's D 18.4375 records were rebuilt here with |F| equal within 0.16%, and the new rows rebuild to the printed digits (same machine, same thread count).
+- 2026-11-22 07:57 UTC: the terminal that owned both scan lanes and `read_kcbreak.sh` was closed (the coordinator: exit 129, SIGHUP) and all three died. Finished before that: k_c 63 one evaluation (lambda 1.71, 787 s), k_c 55 three (1.71, 1.62, 1.63, 504, 458 and 457 s); the evaluations in progress were lost. Their partial output (scan jsonl and raw, exits, time_pid, memlog, lane .out, selftest logs, the empty reader .out; 15 files) is kept in `killed_0757/`, nothing deleted. The two states were not touched.
+- 2026-11-22 08:00:43 to 08:00:47 UTC: both lanes and the reader restarted from the start with the same scripts, arguments, threads (4 + 4) and nice 10, each as a systemd user unit (`i1025-kc63b`, `i1025-kc55b`, `i1025-readb`, started by `systemd-run --user --unit=... --working-directory=<this folder>`; the lanes under `systemd-inhibit --what=sleep`), so no terminal owns them. Both system checks again equal their records (k_c 63 |F| 2.7809094294e-10, 2466 steps; k_c 55 2.6892152453e-10, 2153), planted selftest PASS and mutate FAIL. 2026-11-22 08:01:25 UTC: this line written.
+
+## Result of step 2 (written 2026-11-22 11:31:33 UTC)
+Both lanes ran to the end in the rerun (units `i1025-kc55b`, `i1025-kc63b`, `i1025-readb`; the first run was killed at 07:57 UTC, see Log): 21 of 21 evaluations each, system check passed, every point noise-robust, the 1.71 repeats (first, middle, last) bit-identical in both scans (`repeat_check.py` PASS on both, the reader's own check on k_c 55 'agree'). Reader exit 0 at 11:30:31 UTC, output `kc_break_read.txt`.
+
+| | k_c 55 | k_c 63 |
+|---|---|---|
+| started, ended (UTC), exit | 08:00:46, 10:41:08, 0 | 08:00:43, 11:30:18, 0 |
+| wall | 9622 s (2:40:14 by /usr/bin/time) | 12575 s (3:29:29) |
+| seconds per point | 400-579, mean 458 | 399-955, mean 598 (643-955 for the first 9 points beside the k_c 55 lane, about 400 after it ended) |
+| max RSS, lowest MemAvailable | 1.08 GiB, 26.8 GiB | 1.42 GiB, 26.8 GiB |
+| hybrid signs, 1.62 to 1.80 | -------++++++++---- (1.62-1.68 minus, 1.69-1.76 plus, 1.77-1.80 minus) | -------++++++++++++ (1.62-1.68 minus, 1.69-1.80 plus) |
+| robust changes (det-linear estimate; estimator range = spread over the interpolation choices of d185_scan_read.changes, not an enclosure) | (1.68, 1.69): 1.687055 [1.686989, 1.687055]; (1.76, 1.77): 1.767385 [1.767385, 1.767820] | (1.68, 1.69): 1.684495 [1.684495, 1.684710]; none other |
+| ln|det| minima without a sign change | none | none |
+| float64 sign differs from the hybrid | 0 of 21 | 4 of 21 (plus from 1.65 to 1.68: a spurious change in (1.64, 1.65)) |
+
+**Reading, as fixed: k_c-stable at D 18.46875.** The lambda_1 root (the k_c 63 change nearest 1.685): k_c 63 1.684495, k_c 55 1.687055 (+0.002560, within 0.01). The break therefore lies in (18.46875, 18.5). The estimator ranges leave the gap between +0.00228 and +0.00256. The signs are each state's own and are not compared.
+- Unmatched k_c 55 change: 1.767385 (the second root family). k_c 63 has no change in 1.69 to 1.80 (plus throughout), so by the fixed reading (each k_c 63 root matched) nothing unmatched on the k_c 63 side; the pair of second roots, k_c 63 at 1.791027 and k_c 55 at 1.784813 at D 18.4375, are now at least 0.033 apart: k_c 55's moved down 0.0174, k_c 63's is not in the window (above 1.80 or gone). Information, outside the reading; the window cannot say which.
+- The k_c 55 minus k_c 63 gap at the lambda_1 root: +0.002573 at D 18.4375, +0.002560 at D 18.46875 (det-linear estimates, 0.01 grid). k_c 63's root path: 1.692919 (D 18.4375), 1.684495 (D 18.46875, det-linear), 1.677209 (D 18.5, bisected root, comment 7070186508). At D 18.5 k_c 55 has no root there. So the k_c 55 root keeps its offset up to D 18.46875 and is gone at D 18.5.
+- The 0.01 grid cannot exclude two more k_c 55 roots inside (1.68, 1.69): an odd count of changes shows one, not how many.
+
+**Rerun against the killed run:** the killed run's four finished points (k_c 55: 1.71, 1.62, 1.63; k_c 63: 1.71, in `killed_0757/`) equal the rerun's, sign, ln|det|, float64 ln|det| and noise signs, bit for bit (checked on the jsonl).
+
+## Step 2 against the predictions
+| prediction | result |
+|---|---|
+| system check passes both (95%); repeat check passes both (90%) | yes; yes |
+| every point noise-robust: k_c 63 (75%), k_c 55 (70%) | yes, yes |
+| k_c 63's lambda_1 root in (1.68, 1.69) (70%) | yes, 1.684495 (the straight line gave 1.685064) |
+| a second robust change in the window at k_c 63 (50%) | **no**: none; the second root left the window |
+| reading: stable 45%, breaks with a minimum without a change 30%, breaks with a further change 10%, no reading 15% | stable |
+| float64 differs at no more than 5 of 21: k_c 55 (70%), k_c 63 (30%) | k_c 55 yes (0); k_c 63 yes (4) |
+| wall: k_c 55 2.4 to 2.8 h, k_c 63 3.2 to 4.0 h (65%); inside the 8 h cap (95%); RSS below 2.5 GiB (90%) | 2.67 h yes; 3.49 h yes; yes; 1.08 and 1.42 GiB yes |
+- 2026-11-22 11:31:33 UTC: step 2 written (this section); the rerun's points equal the killed run's.
