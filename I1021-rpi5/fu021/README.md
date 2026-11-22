@@ -51,10 +51,13 @@ were already running as its children).
   lines. Retests `--mutate=f3` and `--mutate=lowguard` exit 1 (fired). Posted on #1021, comment 7071556113.
 - Recount of the 11 cells `M3_fu021_pass1_r0.17` 2026-11-22 00:25 to 07:15:46 UTC (exit 0, 24650 s, 6 h 51 min of the 16 h
   cap; 53040 CPU s summed from the log's `CPU s` fields, about 2.15 cores on average beside another project's
-  `winding2.py`): 512 leaves after 167 splits, 23 unresolved leaves (was 33 in the record), 1 zero (+1, cell A 3.4436-3.4592,
+  `winding2.py`): 512 leaves after 167 splits, 23 unresolved leaves (was 33 in the record), 1 zero counted (+1, cell A 3.4436-3.4592,
   wf 0.3440-0.3503), boundary winding nan. Cache 3242 -> 3369 lines at xi1 0.17 (the 61 later points are xi1 0.2 points in
-  `m3/points_M3_r0.2.jsonl`). The located zero: at xi1 0.17 (3.446204, 0.347602), Jacobian sign +1, |R| 16.8 against a noise
-  floor of 36.1 (below it); at xi1 0.2 (3.446218, 0.347607), |R| 0.0423 against a floor of 0.0411 (at it).
+  `m3/points_M3_r0.2.jsonl`). The zero is counted, not located (the rule of #1013's loc018): argcount's Newton point at xi1 0.17 is
+  (3.446204, 0.347602), Jacobian sign +1, with |R| 16.8 against a noise floor of 36.1 (below it); at xi1 0.2 (3.446218, 0.347607), |R| 0.0423 against a floor of 0.0411 (at it).
+- Sheet check of pass 1 (xfchecks, raw `I1021-dh370/sheet_fu021p1` 929dceca, #1021 comment 7075944014, inputs verified against
+  c31e459b): leaves 0 flagged (largest |dF3| 0.0394), lines 0 flagged (0.056), switch controls fail, prefix_keys passes
+  (13 accepted fu rows, 1 `--retry` record). Pass 1's counts can be read. The same check covers pass 2's new points.
 - Boxes (the record's 11 unresolved cells), from `m3/count_M3_fu021_pass1_r0.17.json`:
 
   | box A x wf | unresolved leaves, record -> pass 1 | boundary winding, record -> pass 1 | leaf sum |
@@ -63,7 +66,7 @@ were already running as its children).
   | 3.1623-3.4123 x 0.9065-1.0065 | 1 -> 0 | nan -> 0 | 0 |
   | 3.1623-3.4123 x 1.0065-1.1065 | 1 -> 2 | nan -> 0 | 0 |
   | 3.4123-3.6623 x 0.2065-0.3065 | 2 -> 2 | +1 -> +1 | 0 |
-  | 3.4123-3.6623 x 0.3065-0.4065 | 4 -> 2 | 0 -> 0 | 1 (the located +1) |
+  | 3.4123-3.6623 x 0.3065-0.4065 | 4 -> 2 | 0 -> 0 | 1 (the counted +1) |
   | 3.4123-3.6623 x 0.4065-0.5065 | 4 -> 4 | -1 -> -1 | 0 |
   | 3.6623-3.9123 x 0.2065-0.3065 | 1 -> 1 | nan -> nan | 0 |
   | 3.6623-3.9123 x 0.3065-0.4065 | 2 -> 2 | +1 -> +1 | 0 |
@@ -71,7 +74,7 @@ were already running as its children).
   | 3.6623-3.9123 x 0.9065-1.0065 | 7 -> 0 | 0 -> 0 | 0 |
   | 3.6623-3.9123 x 1.0065-1.1065 | 4 -> 4 | 0 -> 0 | 0 |
 
-  Two boxes are resolved with W 0. In the box A 3.4123-3.6623 x 0.3065-0.4065 the located +1 sits against a boundary winding
+  Two boxes are resolved with W 0. In the box A 3.4123-3.6623 x 0.3065-0.4065 the counted +1 sits against a boundary winding
   of 0, with 2 leaves unresolved. Zeros of the record outside these 11 cells are not part of this recount.
 - Named blockers (`logs/leftovers_pass1.log`, `leftovers.py` sha256 71966928..., exit 0 PASS, run on the first 3369 lines of
   the cache): 23 of 23 unresolved leaves have a named point; 16 blocked by the guard alone (|R|/sigma 0.415 to 9.24);
