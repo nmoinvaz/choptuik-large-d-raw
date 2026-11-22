@@ -81,5 +81,9 @@ My own predictions (written before any run): the source check passes with 2630 s
 record's 2651 for k_c 71, so about 2930 steps here); the regrid's wall is 0.5 to 1.5 h (70%); the scan shows exactly one robust change in 1.42 to 1.52 (70%), none (15%), two (15%); a single change lies within 0.02 of 1.472 (75% given one);
 the scan's points take 25 to 60 min each on 1 thread with 4 processes (65%), the scan 1.5 to 3 h.
 
-## Status
-(filled as the steps finish)
+## Status (22 Nov 2026)
+
+| step | verdict | numbers | time (UTC) |
+|---|---|---|---|
+| source check (win2's `kc71_syscheck.py`) | accepted; selftests exit 0; controls `--mutate=F` and `--mutate=steps` exit 1 | state \|F\| 2.9977946350e-10 against the record's 3.0023964493e-10 (0.15% apart, bar 1%); `freeze_from` 2630 steps = the record's | 19:18 (1 s) |
+| regrid (`ell_refine.py`), started 19:18:15 | running (child pid 31141, own session: `session_check_regrid.txt`, every chain ends at launchd, no claude, tty ??) | | |
