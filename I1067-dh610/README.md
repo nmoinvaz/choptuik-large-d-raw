@@ -28,3 +28,13 @@ First Newton call of `lowD_dd.py --Ms 512`: wall since the start 9340 s, the cal
 ## Command diff of the resumed stage 1 (the coordinator's request of 21 Nov)
 
 `cmddiff_stage1_resume.txt`: the command of the resumed launch (unit `i1067c`, first line of `stage1_resume1.log`) against the command of the plan comment 7066706257, tokens, python3 against the venv's python normalized: `--it_max 3` becomes `2` and `--resume` is added, both intended (calls 2 and 3 after the call-1 checkpoint), nothing else.
+
+## Calls 2 and 3 (resumed launch `i1067c`)
+
+| call | landed | the call's own time | `|F|` at its start | `|dz|` | dDelta | max\|F\| of the checkpoint after it |
+|---|---|---|---|---|---|---|
+| 1 (first launch) | 20:20:00 | 9214 s | 9.23e-07 | 4.70e-03 | -1.31e-13 | 9.551e-13 |
+| 2 | 23:23:51 | 10160 s | 9.55e-13 | 5.82e-10 | -1.90e-13 | 5.764e-22 |
+| 3 | 01:49:31 | 8728 s | 5.76e-22 | 2.70e-18 | +1.15e-24 | **2.109e-28** |
+
+The scaled control read ok at calls 2 and 3 (call 3: as-saved 2.109e-28, planted 1.00e-20, reading 1.00e-20). After call 3 the script's rule (Delta's correction on the call below 1e-25) read +1.15e-24, "still at or above 1e-25", and the script sent TERM to the exact pid 1093339 at 01:54:13 UTC (lowD_dd.py had reached `--it_max`; no final state file was written; the call-3 checkpoint `states/lowD1067_D3.0475_M512_ckpt_after_call3.npz` is the state) and ran no later stage. run1014b.py's own bar (max|F| <= 1e-26) is met by 2.109e-28 (M 384's plan state: 2.479e-28). Which rule governs is the coordinator's to say.
