@@ -1,0 +1,17 @@
+== 2026-11-22 16:41:05 UTC kc79_spread: pins checked, worktree 505d8399 clean, spread_read selftest as wanted (0 1), MemAvailable 36204936 kB, 1-thread control max RSS 1842228 kB; runs: 2 threads, then 4 threads
+== 2026-11-22 16:41:05 UTC kc79_spread: dry run: nothing started
+== 2026-11-22 16:41:13 UTC kc79_spread: pins checked, worktree 505d8399 clean, spread_read selftest as wanted (0 1), MemAvailable 36224860 kB, 1-thread control max RSS 1842228 kB; runs: 2 threads, then 4 threads
+== 2026-11-22 16:41:13 UTC kc79_spread: control at OMP/OPENBLAS/MKL = 2: D 19.0, k_c 79, lambda 1.54, 1 process, cap 10800 s by exact pid
+== 2026-11-22 17:13:07 UTC kc79_spread: control at 2 threads: exit 0, wall 1914 s, max RSS 1842512 kB, max nlwp 3
+== 2026-11-22 17:13:07 UTC kc79_spread: control at OMP/OPENBLAS/MKL = 4: D 19.0, k_c 79, lambda 1.54, 1 process, cap 10800 s by exact pid
+== 2026-11-22 17:42:37 UTC kc79_spread: control at 4 threads: exit 0, wall 1770 s, max RSS 1844336 kB, max nlwp 7
+=== spread_read.py (1, 2, 4 threads against winb's row)
+  1 thread(s): sign -1, ln|det| -2547.7914967589, |F| 2.8477474518e-10, noise_robust True, float64 sign -1 ln -2544.9175487167, 1156 s
+  2 thread(s): sign -1, ln|det| -2547.7914967590, |F| 2.8491364722e-10, noise_robust True, float64 sign -1 ln -2543.3869299893, 1910 s
+  4 thread(s): sign -1, ln|det| -2547.7914967589, |F| 2.8479332052e-10, noise_robust True, float64 sign +1 ln -2545.4447720998, 1766 s
+  winb (Windows): sign -1, ln|det| -2547.7866202512, float64 sign +1 ln -2544.7945061325, 1343 s
+  relative differences from winb's ln|det| (1, 2, 4 threads): 1.914e-06, 1.914e-06, 1.914e-06; cross-machine (1 thread) 1.914e-06, half of it 9.570e-07
+  own relative spread (max - min) / mean |ln|: 2.856e-15
+  VERDICT: own spread < 1e-7: the cross-machine difference is real; k_c 79 scans stay on winb's machine (the coordinator's)
+spread_read exit 0
+== 2026-11-22 17:42:37 UTC kc79_spread: spread done; reading in spread_read.txt

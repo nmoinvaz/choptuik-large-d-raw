@@ -1,0 +1,9 @@
+=== spread_read.py (1, 2, 4 threads against winb's row)
+  1 thread(s): sign -1, ln|det| -2547.7914967589, |F| 2.8477474518e-10, noise_robust True, float64 sign -1 ln -2544.9175487167, 1156 s
+  2 thread(s): sign -1, ln|det| -2547.7914967590, |F| 2.8491364722e-10, noise_robust True, float64 sign -1 ln -2543.3869299893, 1910 s
+  4 thread(s): sign -1, ln|det| -2547.7914967589, |F| 2.8479332052e-10, noise_robust True, float64 sign +1 ln -2545.4447720998, 1766 s
+  winb (Windows): sign -1, ln|det| -2547.7866202512, float64 sign +1 ln -2544.7945061325, 1343 s
+  relative differences from winb's ln|det| (1, 2, 4 threads): 1.914e-06, 1.914e-06, 1.914e-06; cross-machine (1 thread) 1.914e-06, half of it 9.570e-07
+  own relative spread (max - min) / mean |ln|: 2.856e-15
+  VERDICT: own spread < 1e-7: the cross-machine difference is real; k_c 79 scans stay on winb's machine (the coordinator's)
+spread_read exit 0

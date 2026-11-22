@@ -50,3 +50,19 @@ Order (t5): "(b), and no bar change until the cause is known": rerun the same co
 Reading, fixed before the runs (the coordinator's): own spread at least half the cross-machine 1.914e-6 (9.57e-7) means build rounding at k_c 79's size, and the k_c 79 bar is set from the measured spread; own spread below 1e-7 means the cross-machine difference is real, and k_c 79 scans stay on winb's machine; in between, neither rule applies (reported, not decided). `spread_read.py` computes the spread as (max - min) divided by the mean |ln|det|| of the three, and the cross-machine difference as the 1-thread value against winb's; its selftest has four planted triples (spreads 0, 3e-7, 1e-6, unequal signs) and a not-the-record-system log, and `--mutate` (lower bar 1e-5) must make it fail (`selftest_spread_exits.txt`: 0 1). It refuses to read when a log is not the record system or the hybrid signs differ among the runs.
 
 Commands: `lane_kc79_spread.sh` (started by `start_kc79_spread.sh`, log `exits_kc79_spread.txt`): the pins as above, the worktree clean at 505d8399, then the two runs one after the other (so that the threads in use stay at 20 or fewer: 6 of the D 19.25 scan + 4 + #1067's 10), each `OMP_NUM_THREADS = OPENBLAS_NUM_THREADS = MKL_NUM_THREADS = N`, VECLIB and RAYON left at 1 as in the 1-thread control, nice 10, cap 3 h by exact pid, `d18_hybsign.py in/l1kc79W19m1025.jsonl in/sol_l1kc79W19m1025_D19.0000.npy 19.0 1.54 control_tN/scan_D19.0_p0.jsonl`; a sampler logs the process's thread count (nlwp) every 30 s to `control_tN/sampler.log` to show that the BLAS threads were present. Then `spread_read.py` writes `spread_read.txt`.
+
+## The control's own spread: result (22 Nov, 16:41:13 to 17:42:37 UTC): own spread 2.9e-15, below 1e-7
+
+Both reruns exited 0 on the record system (`control_t2/`, `control_t4/`; `exits_kc79_spread.txt`, `spread_read.txt`). The samplers show the BLAS threads were present: max nlwp 3 at N = 2 and 7 at N = 4 (`sampler.log`; pcpu 178 and 348). The reruns ran beside the k_c 71 D 19.25 scan (6 processes) and the #1067 series (10 threads), so their walls are longer than the 1-thread control's.
+
+| threads | hybrid sign | ln\|det\| | vs winb's -2547.786620251229 (relative) | \|F\| printed (record 2.8482007333e-10) | float64 sign, ln | point sec |
+|---|---|---|---|---|---|---|
+| 1 | -1 (noise_robust) | -2547.7914967589 | -1.9140e-06 | 2.8477474518e-10 | -1, -2544.9175 | 1156 |
+| 2 | -1 (noise_robust) | -2547.7914967590 | -1.9140e-06 | 2.8491364722e-10 | -1, -2543.3869 | 1910 |
+| 4 | -1 (noise_robust) | -2547.7914967589 | -1.9140e-06 | 2.8479332052e-10 | +1, -2545.4448 | 1766 |
+| winb (Windows) | -1 | -2547.786620251229 | | | +1, -2544.7945 | 1343 |
+
+- Own spread of ln|det| over 1, 2, 4 threads: (max - min) / mean |ln| = 2.856e-15 (7.3e-12 absolute). The cross-machine difference is -4.8765077e-3 absolute (1.914e-6 relative) at each thread count, the same to 1e-12.
+- Fixed reading (the coordinator's): spread below 1e-7 means the cross-machine difference is real, and k_c 79 scans stay on winb's machine. The bar was not changed.
+- Information: the printed |F| moves by 4.9e-4 relative with thread count (all three inside the check's 1e-2 of the record); the float64 ln moves by 2.06 (8.1e-4 relative) and its sign flips at 4 threads; winb's float64 ln lies inside that range. The hybrid ln|det| is stable to 3e-15 through all of it.
+- What this test varies and what it does not: the thread count changes the BLAS reduction order only. It does not change the compiled kernel or libm that assemble `S.mode_matrix`, so the hypothesis written above (blocks 0 to 11 depend on the build's last digits) is neither shown nor excluded. Measured at one lambda (1.54) only: whether the offset is smooth in lambda is not tested.
