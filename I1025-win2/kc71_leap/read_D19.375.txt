@@ -1,0 +1,18 @@
+D 19.375, k_c 71, path 1.400000, files ['scan_D19.375_P1.jsonl', 'scan_D19.375_P2.jsonl', 'scan_D19.375_P3.jsonl', 'scan_D19.375_P4.jsonl']
+repeat 1.37 (P1, P2): +1 -2187.4123089902 and +1 -2187.4123089902, difference +0.00e+00 (bar 1e-6): agree
+repeat 1.53 (P3, P4): -1 -2191.5342178872 and -1 -2191.5342178872, difference +0.00e+00 (bar 1e-6): agree
+lambda_0(D 19.375) = 2.1138515550 (error 5.0e-06); 31 points, 1.30 to 1.60
+points 31, 1.30 to 1.60; not noise-robust: none
+signs: 1.30+ 1.31+ 1.32+ 1.33+ 1.34+ 1.35+ 1.36+ 1.37+ 1.38+ 1.39+ 1.40+ 1.41+ 1.42+ 1.43+ 1.44- 1.45- 1.46- 1.47- 1.48- 1.49- 1.50- 1.51- 1.52- 1.53- 1.54- 1.55+ 1.56+ 1.57+ 1.58+ 1.59+ 1.60+
+repeated points: [(1.37, 'agree', '+0.0e+00'), (1.53, 'agree', '+0.0e+00')]
+  root in (1.43, 1.44), + to -: det-linear 1.437773, range [1.436731, 1.437773], delta -0.676078
+  root in (1.54, 1.55), - to +: det-linear 1.543839, range [1.543839, 1.544160], delta -0.570013
+robust sign changes: 2; touching a non-robust point (not counted): none
+ln|det| local minima without a sign change: none
+float64 sign changes: 8 in [(1.46, 1.47), (1.47, 1.48), (1.48, 1.49), (1.49, 1.5), (1.5, 1.51), (1.51, 1.52), (1.55, 1.56), (1.56, 1.57)]; float64 differs from the hybrid at 9 of 31 points
+window: lambda 1.30 to 1.60 (31 points)
+
+THE READING (fixed before the run): the robust minus-to-plus root nearest the extrapolated path 1.400000 is lambda_1 at D 19.375; two within 0.03 or a missing root: reported, not read
+  robust root in (1.43, 1.44), + to -: det-linear 1.437773, range [1.436731, 1.437773], +0.037773 from the path, delta from lambda_0 -0.676078
+  robust root in (1.54, 1.55), - to +: det-linear 1.543839, range [1.543839, 1.544160], +0.143839 from the path, delta from lambda_0 -0.570013
+LAMBDA_1: 1.543839 (bracket (1.54, 1.55), range [1.543839, 1.544160]), the robust minus-to-plus root nearest the path, 0.143839 away; delta against lambda_0 = -0.570013
