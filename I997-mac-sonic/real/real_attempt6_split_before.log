@@ -1,0 +1,79 @@
+start 2026-11-21 23:32:53 UTC
+[     0.0s] hpkernel /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/afb99455-a815-419f-becf-38b07aee7d3a/scratchpad/i1043/site/hpkernel/__init__.py
+[    36.2s] renoded to 15 nodes [0.000157, 0.000625, 0.00125, 0.0025, 0.005, 0.01, 0.02, 0.05, 0.1, 0.23, 0.4, 0.6, 0.8, 0.95, 0.975]; plan steps 2609
+[    36.2s] plan outside the band split 2 times (4 next to the band): 3768 steps with the band's own
+[    54.4s] start D 3.045 M 320 K 15 L 20481: hp |F| 1.772e-22, Delta 2.4464747275328005
+[    65.8s] warp designed at D 3.045: unwarped band 16802 steps, g* min 1.0596e-04, max|phi| 1.582e-04
+[    65.8s] Jacobian at D 3.045: hp's f64 Jacobian and LU, its band rows corrected to the warped band's by Woodbury
+[  3553.6s]   hp Jacobian and LU: 3488s
+[  3562.6s]   band Jacobian loaded from /Users/nathan/Source/raw-i997-live/I997-mac-sonic/real/states/band_jac_D3.045_M320.npy ({'band_steps': 3632, 'min_gp': 0.0014775740868211277, 'min_gm': 0.02235585410962035, 'min_c_minus_x': 0.0001059582271377077})
+[  3596.0s]   W = J0^-1 R and T W: 33s, |u_kk(T W)| 5.598e-01..8.339e+01
+[  3596.0s]   Jacobian and LU: 3530s
+[  3616.0s]   D 3.045 it 0: |F| 2.269e-08 (band rows 2.269e-08), dDelta -1.329e-15, band {'band_steps': 3632, 'min_gp': 0.0014775740868211277, 'min_gm': 0.02235585410962035, 'min_c_minus_x': 0.0001059582271377077}
+[  3631.5s]   D 3.045 it 1: |F| 1.954e-13 (band rows 1.954e-13), dDelta -7.476e-15, band {'band_steps': 3632, 'min_gp': 0.0014775740868138358, 'min_gm': 0.0223558541096145, 'min_c_minus_x': 0.00010595822714816114}
+[  3631.5s]   D 3.045: Delta 2.4464747275327916, expected 2.4464747274661773 +- 1e-08: OK (diff +6.661e-11)
+[  3631.5s] D 3.045: converged True its 2 Delta 2.4464747275327916 band {'band_steps': 3632, 'min_gp': 0.0014775740868138358, 'min_gm': 0.0223558541096145, 'min_c_minus_x': 0.00010595822714816114}
+[  3651.1s]   D 3.04375 it 0: |F| 3.044e-08 (band rows 3.044e-08), dDelta -1.014e-14, band {'band_steps': 3784, 'min_gp': 0.0013604125043092294, 'min_gm': 0.022201295120630356, 'min_c_minus_x': 3.5876730842493085e-05}
+[  3666.0s]   D 3.04375 it 1: |F| 1.352e-08 (band rows 2.257e-09), dDelta -2.175e-15, band {'band_steps': 3784, 'min_gp': 0.0013604125043172872, 'min_gm': 0.02220129512063449, 'min_c_minus_x': 3.5876730858292946e-05}
+[  3681.2s]   D 3.04375 it 2: |F| 1.261e-08 (band rows 2.552e-09), dDelta +2.590e-14, band {'band_steps': 3784, 'min_gp': 0.0013604125043174568, 'min_gm': 0.022201295120636223, 'min_c_minus_x': 3.5876730863845796e-05}
+[  3696.0s]   D 3.04375 it 3: |F| 1.324e-08 (band rows 2.573e-09), dDelta +1.602e-15, band {'band_steps': 3784, 'min_gp': 0.001360412504320548, 'min_gm': 0.022201295120635865, 'min_c_minus_x': 3.5876730861274936e-05}
+[  3709.1s]   D 3.04375 it 4: |F| 1.178e-08 (band rows 2.797e-09), dDelta -2.218e-15, band {'band_steps': 3784, 'min_gp': 0.0013604125043196942, 'min_gm': 0.02220129512063647, 'min_c_minus_x': 3.5876730866272674e-05}
+[  3722.6s]   D 3.04375 it 5: |F| 1.192e-08 (band rows 2.958e-09), dDelta +2.894e-14, band {'band_steps': 3784, 'min_gp': 0.001360412504321582, 'min_gm': 0.0222012951206357, 'min_c_minus_x': 3.5876730865894504e-05}
+[  3737.0s]   D 3.04375 it 6: |F| 2.249e-08 (band rows 4.072e-09), dDelta -2.312e-14, band {'band_steps': 3784, 'min_gp': 0.0013604125043230495, 'min_gm': 0.02220129512062962, 'min_c_minus_x': 3.587673082657179e-05}
+[  3752.4s]   D 3.04375 it 7: |F| 2.114e-08 (band rows 3.402e-09), dDelta -3.015e-15, band {'band_steps': 3784, 'min_gp': 0.0013604125043216247, 'min_gm': 0.022201295120630758, 'min_c_minus_x': 3.58767308309936e-05}
+[  3767.5s]   D 3.04375 it 8: |F| 2.118e-08 (band rows 3.424e-09), dDelta +3.761e-14, band {'band_steps': 3784, 'min_gp': 0.001360412504322255, 'min_gm': 0.022201295120629738, 'min_c_minus_x': 3.587673083190607e-05}
+[  3783.6s]   D 3.04375 it 9: |F| 1.885e-08 (band rows 3.568e-09), dDelta +5.270e-14, band {'band_steps': 3784, 'min_gp': 0.0013604125043217706, 'min_gm': 0.022201295120631237, 'min_c_minus_x': 3.587673083215934e-05}
+[  3798.8s]   D 3.04375 it 10: |F| 2.128e-08 (band rows 3.134e-09), dDelta -3.150e-13, band {'band_steps': 3784, 'min_gp': 0.0013604125043217745, 'min_gm': 0.022201295120633693, 'min_c_minus_x': 3.587673083034135e-05}
+[  3814.0s]   D 3.04375 it 11: |F| 3.178e-08 (band rows 5.855e-09), dDelta +1.638e-14, band {'band_steps': 3784, 'min_gp': 0.0013604125043272799, 'min_gm': 0.0222012951206162, 'min_c_minus_x': 3.587673081769868e-05}
+[  3829.5s]   D 3.04375 it 12: |F| 3.272e-08 (band rows 6.029e-09), dDelta +1.640e-13, band {'band_steps': 3784, 'min_gp': 0.0013604125043266647, 'min_gm': 0.022201295120616995, 'min_c_minus_x': 3.58767308164757e-05}
+[  3845.3s]   D 3.04375 it 13: |F| 3.125e-08 (band rows 4.669e-09), dDelta +8.294e-16, band {'band_steps': 3784, 'min_gp': 0.0013604125043210906, 'min_gm': 0.022201295120629495, 'min_c_minus_x': 3.587673082421257e-05}
+[  3860.4s]   D 3.04375 it 14: |F| 2.856e-08 (band rows 4.934e-09), dDelta +5.858e-15, band {'band_steps': 3784, 'min_gp': 0.0013604125043220915, 'min_gm': 0.022201295120627094, 'min_c_minus_x': 3.587673082432706e-05}
+[  3875.2s]   D 3.04375 it 15: |F| 3.456e-08 (band rows 4.686e-09), dDelta +2.464e-14, band {'band_steps': 3784, 'min_gp': 0.0013604125043232248, 'min_gm': 0.02220129512062305, 'min_c_minus_x': 3.5876730813913515e-05}
+[  3889.8s]   D 3.04375 it 16: |F| 5.063e-08 (band rows 8.372e-09), dDelta -1.174e-14, band {'band_steps': 3784, 'min_gp': 0.0013604125043476713, 'min_gm': 0.022201295120609886, 'min_c_minus_x': 3.587673076774732e-05}
+[  3905.6s]   D 3.04375 it 17: |F| 4.568e-08 (band rows 1.044e-08), dDelta -3.668e-15, band {'band_steps': 3784, 'min_gp': 0.0013604125043390786, 'min_gm': 0.02220129512061087, 'min_c_minus_x': 3.5876730778042903e-05}
+[  3920.5s]   D 3.04375 it 18: |F| 5.021e-08 (band rows 9.855e-09), dDelta +1.712e-15, band {'band_steps': 3784, 'min_gp': 0.0013604125043467441, 'min_gm': 0.02220129512062708, 'min_c_minus_x': 3.587673079994032e-05}
+[  3935.2s]   D 3.04375 it 19: |F| 4.341e-08 (band rows 9.622e-09), dDelta -1.093e-15, band {'band_steps': 3784, 'min_gp': 0.001360412504346379, 'min_gm': 0.0222012951206198, 'min_c_minus_x': 3.5876730795811676e-05}
+[  3950.7s]   D 3.04375 it 20: |F| 5.543e-08 (band rows 8.769e-09), dDelta +2.205e-14, band {'band_steps': 3784, 'min_gp': 0.0013604125043532155, 'min_gm': 0.022201295120610885, 'min_c_minus_x': 3.5876730766937204e-05}
+[  3967.0s]   D 3.04375 it 21: |F| 6.955e-08 (band rows 1.041e-08), dDelta -1.524e-14, band {'band_steps': 3784, 'min_gp': 0.0013604125043625106, 'min_gm': 0.022201295120616242, 'min_c_minus_x': 3.587673076189263e-05}
+[  3983.2s]   D 3.04375 it 22: |F| 6.634e-08 (band rows 1.213e-08), dDelta -8.196e-15, band {'band_steps': 3784, 'min_gp': 0.001360412504364342, 'min_gm': 0.02220129512060269, 'min_c_minus_x': 3.587673074691329e-05}
+[  3999.0s]   D 3.04375 it 23: |F| 6.843e-08 (band rows 1.448e-08), dDelta -2.843e-15, band {'band_steps': 3784, 'min_gp': 0.001360412504364476, 'min_gm': 0.02220129512061937, 'min_c_minus_x': 3.587673077905772e-05}
+[  4015.9s]   D 3.04375 it 24: |F| 6.300e-08 (band rows 1.308e-08), dDelta +1.091e-14, band {'band_steps': 3784, 'min_gp': 0.001360412504371388, 'min_gm': 0.022201295120615347, 'min_c_minus_x': 3.587673076832325e-05}
+[  4032.3s]   D 3.04375 it 25: |F| 9.648e-08 (band rows 1.704e-08), dDelta +2.251e-14, band {'band_steps': 3784, 'min_gp': 0.001360412504401779, 'min_gm': 0.022201295120604987, 'min_c_minus_x': 3.5876730689329145e-05}
+[  4048.3s]   D 3.04375 it 26: |F| 1.242e-07 (band rows 1.546e-08), dDelta -2.224e-15, band {'band_steps': 3784, 'min_gp': 0.0013604125044003824, 'min_gm': 0.022201295120607728, 'min_c_minus_x': 3.587673072588497e-05}
+[  4063.6s]   D 3.04375 it 27: |F| 8.635e-08 (band rows 1.917e-08), dDelta -4.775e-15, band {'band_steps': 3784, 'min_gp': 0.001360412504390156, 'min_gm': 0.02220129512061867, 'min_c_minus_x': 3.587673072749653e-05}
+[  4078.7s]   D 3.04375 it 28: |F| 1.033e-07 (band rows 1.929e-08), dDelta -5.991e-15, band {'band_steps': 3784, 'min_gp': 0.001360412504394965, 'min_gm': 0.022201295120625183, 'min_c_minus_x': 3.58767307480478e-05}
+[  4094.1s]   D 3.04375 it 29: |F| 1.140e-07 (band rows 1.883e-08), dDelta +3.167e-14, band {'band_steps': 3784, 'min_gp': 0.001360412504421336, 'min_gm': 0.02220129512062987, 'min_c_minus_x': 3.5876730720861214e-05}
+[  4108.8s]   D 3.04375 it 30: |F| 1.598e-07 (band rows 2.536e-08), dDelta +5.664e-15, band {'band_steps': 3784, 'min_gp': 0.001360412504464927, 'min_gm': 0.022201295120632163, 'min_c_minus_x': 3.587673059753799e-05}
+[  4123.5s]   D 3.04375 it 31: |F| 1.342e-07 (band rows 2.043e-08), dDelta -8.274e-15, band {'band_steps': 3784, 'min_gp': 0.0013604125044305111, 'min_gm': 0.022201295120664127, 'min_c_minus_x': 3.5876730726811315e-05}
+[  4138.3s]   D 3.04375 it 32: |F| 1.474e-07 (band rows 2.597e-08), dDelta -9.754e-15, band {'band_steps': 3784, 'min_gp': 0.0013604125044440138, 'min_gm': 0.022201295120621987, 'min_c_minus_x': 3.587673070210712e-05}
+[  4152.8s]   D 3.04375 it 33: |F| 2.042e-07 (band rows 2.619e-08), dDelta -5.147e-15, band {'band_steps': 3784, 'min_gp': 0.0013604125044787297, 'min_gm': 0.022201295120630793, 'min_c_minus_x': 3.587673065560265e-05}
+[  4166.0s]   D 3.04375 it 34: |F| 2.006e-07 (band rows 3.025e-08), dDelta +2.414e-14, band {'band_steps': 3784, 'min_gp': 0.0013604125045063877, 'min_gm': 0.02220129512067319, 'min_c_minus_x': 3.5876730675142576e-05}
+[  4179.7s]   D 3.04375 it 35: |F| 2.652e-07 (band rows 3.177e-08), dDelta +4.558e-15, band {'band_steps': 3784, 'min_gp': 0.0013604125044964922, 'min_gm': 0.022201295120621675, 'min_c_minus_x': 3.587673061640831e-05}
+[  4193.6s]   D 3.04375 it 36: |F| 2.082e-07 (band rows 2.658e-08), dDelta +1.617e-15, band {'band_steps': 3784, 'min_gp': 0.0013604125044656607, 'min_gm': 0.022201295120664613, 'min_c_minus_x': 3.5876730765556364e-05}
+[  4208.1s]   D 3.04375 it 37: |F| 2.141e-07 (band rows 2.816e-08), dDelta -1.578e-14, band {'band_steps': 3784, 'min_gp': 0.0013604125045089928, 'min_gm': 0.022201295120655634, 'min_c_minus_x': 3.5876730670658316e-05}
+[  4221.5s]   D 3.04375 it 38: |F| 3.779e-07 (band rows 5.180e-08), dDelta -2.315e-14, band {'band_steps': 3784, 'min_gp': 0.0013604125045657367, 'min_gm': 0.022201295120657022, 'min_c_minus_x': 3.587673053334975e-05}
+[  4235.9s]   D 3.04375 it 39: |F| 2.827e-07 (band rows 5.014e-08), dDelta +4.147e-14, band {'band_steps': 3784, 'min_gp': 0.001360412504524981, 'min_gm': 0.022201295120729755, 'min_c_minus_x': 3.587673076597443e-05}
+[  4249.6s]   D 3.04375 it 40: |F| 3.001e-07 (band rows 4.543e-08), dDelta +1.101e-14, band {'band_steps': 3784, 'min_gp': 0.0013604125044906026, 'min_gm': 0.02220129512067103, 'min_c_minus_x': 3.587673073780426e-05}
+[  4263.0s]   D 3.04375 it 41: |F| 2.414e-07 (band rows 3.816e-08), dDelta -6.697e-15, band {'band_steps': 3784, 'min_gp': 0.001360412504512636, 'min_gm': 0.022201295120719323, 'min_c_minus_x': 3.5876730769339796e-05}
+[  4277.3s]   D 3.04375 it 42: |F| 2.885e-07 (band rows 4.810e-08), dDelta -6.034e-14, band {'band_steps': 3784, 'min_gp': 0.0013604125045710291, 'min_gm': 0.022201295120736625, 'min_c_minus_x': 3.587673066148683e-05}
+[  4293.0s]   D 3.04375 it 43: |F| 4.200e-07 (band rows 7.758e-08), dDelta +5.326e-15, band {'band_steps': 3784, 'min_gp': 0.0013604125045481733, 'min_gm': 0.02220129512065345, 'min_c_minus_x': 3.587673055167884e-05}
+[  4307.7s]   D 3.04375 it 44: |F| 3.106e-07 (band rows 7.349e-08), dDelta +3.951e-14, band {'band_steps': 3784, 'min_gp': 0.0013604125044567868, 'min_gm': 0.022201295120731053, 'min_c_minus_x': 3.5876730879567595e-05}
+[  4321.4s]   D 3.04375 it 45: |F| 3.535e-07 (band rows 6.408e-08), dDelta +8.895e-15, band {'band_steps': 3784, 'min_gp': 0.0013604125045655147, 'min_gm': 0.022201295120675174, 'min_c_minus_x': 3.587673066783939e-05}
+[  4335.0s]   D 3.04375 it 46: |F| 3.205e-07 (band rows 5.819e-08), dDelta -4.046e-14, band {'band_steps': 3784, 'min_gp': 0.0013604125045441442, 'min_gm': 0.022201295120711423, 'min_c_minus_x': 3.587673066810827e-05}
+[  4348.3s]   D 3.04375 it 47: |F| 4.755e-07 (band rows 9.598e-08), dDelta -3.830e-14, band {'band_steps': 3784, 'min_gp': 0.001360412504584047, 'min_gm': 0.022201295120710274, 'min_c_minus_x': 3.587673049082994e-05}
+[  4362.6s]   D 3.04375 it 48: |F| 4.131e-07 (band rows 9.435e-08), dDelta +4.777e-14, band {'band_steps': 3784, 'min_gp': 0.0013604125044921703, 'min_gm': 0.022201295120612842, 'min_c_minus_x': 3.5876730701565884e-05}
+[  4375.1s]   D 3.04375 it 49: |F| 4.111e-07 (band rows 9.580e-08), dDelta +1.430e-14, band {'band_steps': 3784, 'min_gp': 0.0013604125045579055, 'min_gm': 0.022201295120643533, 'min_c_minus_x': 3.5876730747322685e-05}
+[  4388.0s]   D 3.04375 it 50: |F| 4.919e-07 (band rows 9.461e-08), dDelta -1.381e-14, band {'band_steps': 3784, 'min_gp': 0.001360412504695189, 'min_gm': 0.022201295120577752, 'min_c_minus_x': 3.5876730351469197e-05}
+[  4400.4s]   D 3.04375 it 51: |F| 4.519e-07 (band rows 8.455e-08), dDelta -1.062e-13, band {'band_steps': 3784, 'min_gp': 0.0013604125045988884, 'min_gm': 0.022201295120586034, 'min_c_minus_x': 3.5876730410127136e-05}
+[  4412.7s]   D 3.04375 it 52: |F| 8.513e-07 (band rows 1.264e-07), dDelta +3.567e-14, band {'band_steps': 3784, 'min_gp': 0.0013604125047847917, 'min_gm': 0.022201295120352682, 'min_c_minus_x': 3.5876730200012225e-05}
+[  4425.4s]   D 3.04375 it 53: |F| 5.595e-07 (band rows 1.218e-07), dDelta +4.085e-15, band {'band_steps': 3784, 'min_gp': 0.0013604125046347139, 'min_gm': 0.022201295120442926, 'min_c_minus_x': 3.587673041830289e-05}
+[  4438.5s]   D 3.04375 it 54: |F| 5.906e-07 (band rows 1.700e-07), dDelta -2.934e-14, band {'band_steps': 3784, 'min_gp': 0.0013604125044152633, 'min_gm': 0.022201295120462552, 'min_c_minus_x': 3.5876730652126265e-05}
+[  4453.6s]   D 3.04375 it 55: |F| 7.905e-07 (band rows 1.193e-07), dDelta -7.006e-14, band {'band_steps': 3784, 'min_gp': 0.001360412504855244, 'min_gm': 0.022201295120237132, 'min_c_minus_x': 3.587672950829644e-05}
+[  4467.5s]   D 3.04375 it 56: |F| 6.922e-07 (band rows 1.275e-07), dDelta -1.310e-13, band {'band_steps': 3784, 'min_gp': 0.001360412504506116, 'min_gm': 0.02220129512024916, 'min_c_minus_x': 3.587672992886627e-05}
+[  4482.6s]   D 3.04375 it 57: |F| 8.687e-07 (band rows 2.071e-07), dDelta +6.945e-14, band {'band_steps': 3784, 'min_gp': 0.0013604125043321707, 'min_gm': 0.022201295120080736, 'min_c_minus_x': 3.587673021917398e-05}
+[  4496.4s]   D 3.04375 it 58: |F| 8.370e-07 (band rows 2.074e-07), dDelta +7.528e-14, band {'band_steps': 3784, 'min_gp': 0.0013604125045219516, 'min_gm': 0.022201295120240657, 'min_c_minus_x': 3.587673016388314e-05}
+[  4509.5s]   D 3.04375 it 59: |F| 8.040e-07 (band rows 2.257e-07), dDelta -1.027e-13, band {'band_steps': 3784, 'min_gp': 0.0013604125040653976, 'min_gm': 0.022201295119752603, 'min_c_minus_x': 3.587673025540021e-05}
+[  4509.5s]   D 3.04375: Delta 2.4364591133605904, expected 2.436459113272686 +- 1e-08: FAIL (diff +8.790e-11)
+[  4509.5s] D 3.04375: converged False its 60 Delta 2.4364591133605904 band {'band_steps': 3784, 'min_gp': 0.0013604125040653976, 'min_gm': 0.022201295119752603, 'min_c_minus_x': 3.587673025540021e-05}
+exit 1
+end 2026-11-22 00:48:03 UTC

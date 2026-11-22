@@ -19,3 +19,12 @@ node; ecker_gap.py: the Vienna group's data). Note: notes/LOW_D_SONIC.md on that
   band; `p3_transLU.log`: the same check after the LU was changed to factor in place.
 - `planted/jachp_*`: the chord with hp's Jacobian (any M) at D 3.7 M 128 for test warps A 1.5e-4, 5e-4 (plain) and
   5e-4, 1.5e-3 with Anderson mixing (`--aa_m 8`).
+- `planted/wood_*`, `planted/rejac_*`: the Woodbury form of the Newton matrix at D 3.7, M 128 (test warp, control,
+  replanning, split plans), and the per-D and per-iteration Jacobians at D 3.7 -> 3.69 on a state resampled to M 128.
+- `real/`: the test at M 320 from hp's D 3.045 state (raw `T82-win/states/lowDhm_x0.000157-0.975_D3.0450_M320.npz`, with
+  hp's M 320 states at 3.04375, 3.04355, 3.04335, 3.04315 from `T105-win2/`, `I343-win2/`, `I945-win2/` as history).
+  `run_real.sh` is the last attempt's command; attempts 1-6 are `real_attempt<k>_*.log/jsonl` (1: dense Jacobian
+  refused at M 320; 2: hp's Jacobian with Anderson mixing, diverged at 3.045; 3: Woodbury, D 3.045 passed, non-finite at
+  3.04375; 4: replanned, diverged; 5: plan split after the Jacobian, diverged; 6: plan split before the Jacobian, D 3.045
+  passed, chord stalled at 3.04375 near |F| 1e-8). `states/`: the D 3.045 solution (attempt 3), the warp phi and the
+  band Jacobian at 3.045. `plancheck.py/.log`: hp's residual blocks at that solution on the stored and split plans.

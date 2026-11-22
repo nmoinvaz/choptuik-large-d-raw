@@ -1,0 +1,20 @@
+start 2026-11-21 19:52:20 UTC
+[     0.0s] hpkernel /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/afb99455-a815-419f-becf-38b07aee7d3a/scratchpad/i1043/site/hpkernel/__init__.py
+[    33.7s] renoded to 15 nodes [0.000157, 0.000625, 0.00125, 0.0025, 0.005, 0.01, 0.02, 0.05, 0.1, 0.23, 0.4, 0.6, 0.8, 0.95, 0.975]; plan steps 2609
+[    50.6s] start D 3.045 M 320 K 15 L 20481: hp |F| 1.772e-22, Delta 2.4464747275328005
+[    63.7s] warp designed at D 3.045: unwarped band 16802 steps, g* min 1.0596e-04, max|phi| 1.582e-04
+[    63.7s] Jacobian at D 3.045: hp's f64 Jacobian and LU, its band rows corrected to the warped band's by Woodbury
+[  2484.4s]   hp Jacobian and LU: 2421s
+[  5052.8s]   band Jacobian: 2557s ({'band_steps': 3632, 'min_gp': 0.0014775740868211277, 'min_gm': 0.02235585410962035, 'min_c_minus_x': 0.0001059582271377077})
+[  5081.8s]   W = J0^-1 R and T W: 29s, |u_kk(T W)| 5.425e-01..1.622e+02
+[  5081.8s]   Jacobian and LU: 5018s
+[  5092.8s]   D 3.045 it 0: |F| 2.269e-08 (band rows 2.269e-08), dDelta -1.601e-15, band {'band_steps': 3632, 'min_gp': 0.0014775740868211277, 'min_gm': 0.02235585410962035, 'min_c_minus_x': 0.0001059582271377077}
+[  5100.8s]   D 3.045 it 1: |F| 1.883e-13 (band rows 1.883e-13), dDelta -7.501e-15, band {'band_steps': 3632, 'min_gp': 0.0014775740868126037, 'min_gm': 0.022355854109614486, 'min_c_minus_x': 0.00010595822715017342}
+[  5100.8s]   D 3.045: Delta 2.4464747275327916, expected 2.4464747274661773 +- 1e-08: OK (diff +6.661e-11)
+[  5100.8s] D 3.045: converged True its 2 Delta 2.4464747275327916 band {'band_steps': 3632, 'min_gp': 0.0014775740868126037, 'min_gm': 0.022355854109614486, 'min_c_minus_x': 0.00010595822715017342}
+[  5112.1s]   D 3.04375 it 0: |F| 3.044e-08 (band rows 3.044e-08), dDelta +2.052e-12, band {'band_steps': 3784, 'min_gp': 0.0013604125043092294, 'min_gm': 0.022201295120630356, 'min_c_minus_x': 3.5876730842493085e-05}
+[  5119.6s]   D 3.04375: residual not finite
+[  5119.6s]   D 3.04375: Delta 2.4364591133628783, expected 2.436459113272686 +- 1e-08: FAIL (diff +9.019e-11)
+[  5119.6s] D 3.04375: converged False its 2 Delta 2.4364591133628783 band {'band_steps': 3784, 'min_gp': 0.0013604125667285244, 'min_gm': 0.022201295127687305, 'min_c_minus_x': 3.58771415069261e-05}
+exit 1
+end 2026-11-21 21:17:41 UTC

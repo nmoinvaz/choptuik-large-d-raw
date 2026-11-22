@@ -1,0 +1,38 @@
+start 2026-11-21 21:19:42 UTC
+[     0.0s] hpkernel /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/afb99455-a815-419f-becf-38b07aee7d3a/scratchpad/i1043/site/hpkernel/__init__.py
+[    29.3s] renoded to 15 nodes [0.000157, 0.000625, 0.00125, 0.0025, 0.005, 0.01, 0.02, 0.05, 0.1, 0.23, 0.4, 0.6, 0.8, 0.95, 0.975]; plan steps 2609
+[    43.6s] start D 3.045 M 320 K 15 L 20481: hp |F| 1.772e-22, Delta 2.4464747275328005
+[    54.1s] warp designed at D 3.045: unwarped band 16802 steps, g* min 1.0596e-04, max|phi| 1.582e-04
+[    54.1s] Jacobian at D 3.045: hp's f64 Jacobian and LU, its band rows corrected to the warped band's by Woodbury
+[  2833.6s]   hp Jacobian and LU: 2779s
+[  5254.3s]   band Jacobian: 2414s ({'band_steps': 3632, 'min_gp': 0.0014775740868211277, 'min_gm': 0.02235585410962035, 'min_c_minus_x': 0.0001059582271377077})
+[  5278.4s]   W = J0^-1 R and T W: 24s, |u_kk(T W)| 5.425e-01..1.622e+02
+[  5278.4s]   Jacobian and LU: 5224s
+[  5286.2s]   D 3.045: hp's plan outside the band from the start state: 1088 steps (4s)
+[  5294.3s]   D 3.045 it 0: |F| 2.269e-08 (band rows 2.269e-08), dDelta +1.092e-13, band {'band_steps': 3632, 'min_gp': 0.0014775740868211277, 'min_gm': 0.02235585410962035, 'min_c_minus_x': 0.0001059582271377077}
+[  5302.7s]   D 3.045 it 1: |F| 1.254e-08 (band rows 1.165e-11), dDelta +6.854e-14, band {'band_steps': 3632, 'min_gp': 0.0014775740869648515, 'min_gm': 0.022355854109600528, 'min_c_minus_x': 0.00010595822691253018}
+[  5310.1s]   D 3.045 it 2: |F| 1.264e-08 (band rows 1.147e-11), dDelta -1.534e-13, band {'band_steps': 3632, 'min_gp': 0.0014775740869627959, 'min_gm': 0.02235585410958763, 'min_c_minus_x': 0.00010595822693184459}
+[  5317.5s]   D 3.045 it 3: |F| 1.954e-09 (band rows 1.521e-12), dDelta -2.126e-14, band {'band_steps': 3632, 'min_gp': 0.001477574086846263, 'min_gm': 0.022355854109608095, 'min_c_minus_x': 0.00010595822706722068}
+[  5324.6s]   D 3.045 it 4: |F| 3.050e-09 (band rows 1.157e-12), dDelta +2.425e-14, band {'band_steps': 3632, 'min_gp': 0.0014775740868183723, 'min_gm': 0.022355854109610312, 'min_c_minus_x': 0.00010595822711544078}
+[  5331.5s]   D 3.045 it 5: |F| 5.669e-09 (band rows 1.281e-12), dDelta +4.844e-08, band {'band_steps': 3632, 'min_gp': 0.0014775740868150354, 'min_gm': 0.022355854109610846, 'min_c_minus_x': 0.0001059582271261024}
+/Users/nathan/Source/choptuik-lowd-sonic/solver/lowd_sonic/band.py:120: RuntimeWarning: overflow encountered in multiply
+  a2 = a * a
+/Users/nathan/Source/choptuik-lowd-sonic/solver/lowd_sonic/band.py:122: RuntimeWarning: overflow encountered in multiply
+  pm = 0.5 * n * c * (p + m)
+/Users/nathan/Source/choptuik-lowd-sonic/solver/lowd_sonic/band.py:123: RuntimeWarning: overflow encountered in multiply
+  Rp = G * p - c * p + pm
+/Users/nathan/Source/choptuik-lowd-sonic/solver/lowd_sonic/band.py:123: RuntimeWarning: invalid value encountered in subtract
+  Rp = G * p - c * p + pm
+/Users/nathan/Source/choptuik-lowd-sonic/solver/lowd_sonic/band.py:124: RuntimeWarning: overflow encountered in multiply
+  Rm = -G * m + c * m - pm
+/Users/nathan/Source/choptuik-lowd-sonic/solver/lowd_sonic/band.py:124: RuntimeWarning: invalid value encountered in add
+  Rm = -G * m + c * m - pm
+/Users/nathan/Source/choptuik-lowd-sonic/solver/lowd_sonic/band.py:129: RuntimeWarning: overflow encountered in multiply
+  out[..., 2, :] = hz * (a * (p * p + m * m) + (n - 1) * (a - a * a2)) / (2 * x)
+/Users/nathan/Source/choptuik-lowd-sonic/solver/lowd_sonic/band.py:129: RuntimeWarning: invalid value encountered in add
+  out[..., 2, :] = hz * (a * (p * p + m * m) + (n - 1) * (a - a * a2)) / (2 * x)
+[  5338.5s]   D 3.045: residual not finite; per block (node index, last = horizon, then phase): 1.2e+132 nan nan nan nan nan nan nan nan nan nan nan 4.5e+01 2.6e+01 2.6e+01 1.1e+153 1.1e-06
+[  5338.5s]   D 3.045: Delta 2.4464747759751004, expected 2.4464747274661773 +- 1e-08: FAIL (diff +4.851e-08)
+[  5338.5s] D 3.045: converged False its 7 Delta 2.4464747759751004 band {'band_steps': 3632, 'min_gp': 0.0023546945808736648, 'min_gm': 0.022356744152696402, 'min_c_minus_x': 0.0023546933681242704}
+exit 1
+end 2026-11-21 22:48:41 UTC

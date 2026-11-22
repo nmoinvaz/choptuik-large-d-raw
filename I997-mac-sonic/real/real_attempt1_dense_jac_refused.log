@@ -1,0 +1,16 @@
+start 2026-11-21 19:06:30 UTC
+[     0.0s] hpkernel /private/tmp/claude-501/-Users-nathan-Source-choptuik-large-d/afb99455-a815-419f-becf-38b07aee7d3a/scratchpad/i1043/site/hpkernel/__init__.py
+[    28.8s] renoded to 15 nodes [0.000157, 0.000625, 0.00125, 0.0025, 0.005, 0.01, 0.02, 0.05, 0.1, 0.23, 0.4, 0.6, 0.8, 0.95, 0.975]; plan steps 2609
+[    43.5s] start D 3.045 M 320 K 15 L 20481: hp |F| 1.772e-22, Delta 2.4464747275328005
+[    54.3s] warp designed at D 3.045: unwarped band 16802 steps, g* min 1.0596e-04, max|phi| 1.582e-04
+[    54.3s] Jacobian at D 3.045: hp's f64 Jacobian, its band rows replaced by the warped band's (forward differences)
+Traceback (most recent call last):
+  File "/Users/nathan/Source/choptuik-lowd-sonic/solver/lowd_sonic/hybrid.py", line 324, in <module>
+    main()
+    ~~~~^^
+  File "/Users/nathan/Source/choptuik-lowd-sonic/solver/lowd_sonic/hybrid.py", line 240, in main
+    J = np.asarray(hy0.s.jacobian_f64(zh, zl))
+                   ~~~~~~~~~~~~~~~~~~^^^^^^^^
+ValueError: jacobian_f64: the dense n x n path is limited to M <= 128 (memory); at M = 320 use newton_mixed (block storage)
+exit 1
+end 2026-11-21 19:07:28 UTC
