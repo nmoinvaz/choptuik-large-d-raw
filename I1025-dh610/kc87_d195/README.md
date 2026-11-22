@@ -33,3 +33,7 @@ dh370's command for k_c 79 at D 19.5 with the source tag, the target tag, k_c 79
 The scan lane is written after the verdict. Each scan process first prints `the record system` (`d18_hybsign.py`'s check of the state against its record), and anything else is a stop. The k_c 87 control of this machine against another machine's row does not exist (no other machine has this state); the record system check and the repeat are the controls of the scan.
 
 Written as the run goes.
+
+## Status (22 Nov)
+
+- 20:22:44 UTC the source check passed (dh370's k_c 79 D 19.5 state: |F| 3.5136527614e-10 against the record's 3.5122938292e-10, steps 2879 = 2879; `--mutate=F` and `--mutate=steps` exit 1; selftests 0; the k_c 87 check refuses the k_c 79 source), the regrid started (unit `i1025p`, 8 threads; 313 MB RSS and 747% CPU at 1 min, no size or array error). The scan lane `lane_kc87_scan.sh` (unit `i1025q`, `start_kc87_scan.sh`) is written and waits for `regrid/VERDICT.txt` to read ACCEPTED and for `in_blobs_regrid.txt` (the blobs of the regridded state and record, written after the regrid): lambda 1.36 to 1.44 at 0.01 plus a repeat of 1.40, ten evaluations, the repeat on process 5 and its original on process 4, `read_lower.py scan 1.36 1.44` and `repeat_check.py` (`read_lower.txt`).
