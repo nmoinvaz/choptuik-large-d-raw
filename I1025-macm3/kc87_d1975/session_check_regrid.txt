@@ -1,0 +1,42 @@
+# session check, 2026-11-22 23:36:16 UTC: parent chain of each pid (the given ones and their descendants) up to pid 1 (pid ppid pgid sess tty command); fails if 'claude' is in a chain
+
+pid 72769 (/bin/bash /Users/nathan/Source/choptuik-large-d-raw-903/I102):
+   72769 ppid      1 pgid  72768 tty  ??  /bin/bash /Users/nathan/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_d1975/run_regrid.sh
+       1 ppid      0 pgid      1 tty  ??  /sbin/launchd
+  chain ends at pid 1 (/sbin/launchd), 2 processes
+
+pid 72770 (/usr/bin/caffeinate -is /bin/bash /Users/nathan/Source/chopt):
+   72770 ppid  72769 pgid  72768 tty  ??  /usr/bin/caffeinate -is /bin/bash /Users/nathan/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_d19
+   72769 ppid      1 pgid  72768 tty  ??  /bin/bash /Users/nathan/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_d1975/run_regrid.sh
+       1 ppid      0 pgid      1 tty  ??  /sbin/launchd
+  chain ends at pid 1 (/sbin/launchd), 3 processes
+
+pid 72869 (/bin/bash /Users/nathan/Source/choptuik-large-d-raw-903/I102):
+   72869 ppid  72769 pgid  72768 tty  ??  /bin/bash /Users/nathan/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_d1975/run_regrid.sh
+   72769 ppid      1 pgid  72768 tty  ??  /bin/bash /Users/nathan/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_d1975/run_regrid.sh
+       1 ppid      0 pgid      1 tty  ??  /sbin/launchd
+  chain ends at pid 1 (/sbin/launchd), 3 processes
+
+pid 72871 (/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.):
+   72871 ppid  72869 pgid  72768 tty  ??  /opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/Resources/Python
+   72869 ppid  72769 pgid  72768 tty  ??  /bin/bash /Users/nathan/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_d1975/run_regrid.sh
+   72769 ppid      1 pgid  72768 tty  ??  /bin/bash /Users/nathan/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_d1975/run_regrid.sh
+       1 ppid      0 pgid      1 tty  ??  /sbin/launchd
+  chain ends at pid 1 (/sbin/launchd), 4 processes
+
+pid 72878 (/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.):
+   72878 ppid  72871 pgid  72768 tty  ??  /opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/Resources/Python
+   72871 ppid  72869 pgid  72768 tty  ??  /opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/Resources/Python
+   72869 ppid  72769 pgid  72768 tty  ??  /bin/bash /Users/nathan/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_d1975/run_regrid.sh
+   72769 ppid      1 pgid  72768 tty  ??  /bin/bash /Users/nathan/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_d1975/run_regrid.sh
+       1 ppid      0 pgid      1 tty  ??  /sbin/launchd
+  chain ends at pid 1 (/sbin/launchd), 5 processes
+
+pid 72885 (sleep 60):
+   72885 ppid  72769 pgid  72768 tty  ??  sleep 60
+   72769 ppid      1 pgid  72768 tty  ??  /bin/bash /Users/nathan/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_d1975/run_regrid.sh
+       1 ppid      0 pgid      1 tty  ??  /sbin/launchd
+  chain ends at pid 1 (/sbin/launchd), 3 processes
+
+for comparison, this checker's own chain: 73051:/opt/homebrew/ <- 73048:/bin/zsh -c so <- 4486:claude --resum <- 4485:/Users/nathan/ <- 1392:/Users/nathan/ <- 1386:/Users/nathan/ <- 1385:sshd-session:  ...
+claude in any chain of the run: False; tty of the pids: ?? (?? = no controlling terminal)
