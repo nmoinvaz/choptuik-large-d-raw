@@ -260,3 +260,39 @@ The issue's pilot command (`issue_cmd.txt`) and mine (`my_cmd_D3425_M96.txt`, fr
 
 The differences: the interpreter, the output name, the state (D 3.425 M 96 from T39 for the issue's D 3.15 M 128 input) and the added `--lam0=3.23409` (the order). Flags
 otherwise the issue's. `check_cmd_1070_D3425.py M96 3.23409`: pass. The M 128 command's diff goes in a section below when it starts.
+
+### D 3.425 M 96: one sign change, a root (pass)
+
+`run_1070_D3425.sh M96 3.23409`, started 2026-11-21 23:49:09 UTC, exit 0 at 2026-11-22 00:05:50 UTC (capped_run wall 1001 s, own 994.1 s, cap 10800 s not reached), child pid 6992.
+Files: `run_D3.425_M96.log`, `lowD_gamma_D3.425_M96.jsonl`, `table_D3.425_M96.md`, `res_D3.425_M96.log`, `res_stats_D3.425_M96.txt`, `exits_1070.txt`.
+
+| criterion (the issue's) | result | met |
+|---|---|---|
+| F after the polish below 1e-27 | 3.094e-30 (the polish: Newton step 0 found the state converged, \|F\| 3.09e-30, last \|dz\| 5.3e-26, so no step was taken) | yes |
+| exactly one sign change in the bracket | `n_signchanges` 1 (grid lam0 ± 1e-4: 3.23399 -, 3.23409 -, 3.23419 +) | yes |
+
+λ = 3.2341077237548475, γ = 1/λ = 0.3092042954088694 (`n_det` 7, 130.8 s per determinant; brentq `xtol` 1e-11 on λ, so γ is good to about 1e-12). Against the Vienna value 0.3092057: γ(96) − 0.3092057 = -1.405e-06 (relative -4.54e-06).
+The guess 3.23409 missed the root by 1.772e-05 in λ. Near the root the local slope of ln|det| against ln|λ − λ*| is 0.708, 1.034, 0.997 (|λ − λ*| 1.2e-4 to 7.5e-7).
+Resources: polls 17 (60 s each), rss GB min 0.16 max 1.46 mean 0.86; cpu% (ps, 100 = one core) min 449.2 mean 537.6 max 554.3; load1 mean 9.15 max 15.54; free memory min 79%; free disk min 20.0 GiB.
+
+### M 128 command (`--lam0` = M 96's λ, as ordered; 2026-11-22 00:06 UTC)
+
+`run_1070_D3425.sh M128 3.2341077237548475` (`lam0_D3425_M128.txt`: the M 96 run's λ from `lowD_gamma_D3.425_M96.jsonl`), the T39 M 128 state, cap 3 h (10800 s) by exact pid. The issue's command against mine
+(`my_cmd_D3425_M128.txt`), one token per line, `diff issue mine` (`cmd_diff_D3425_M128.txt`):
+
+```
+1c1
+< python3
+---
+> /Users/nathan/Source/venv-macm3-1058b/bin/python
+4,5c4,5
+< <raw>/I1070-macm3/lowD_gamma_D3.15_M128.jsonl
+< <raw>/I927-mac/inputs/lowDhm_x0.000625-0.9_D3.1500_M128.npz
+---
+> /Users/nathan/Source/choptuik-large-d-raw-903/I1070-macm3/lowD_gamma_D3.425_M128.jsonl
+> /Users/nathan/Source/choptuik-large-d-raw-749p/T39-win/hp/data/lowD_states/lowDvh41_D3.4250_M128.npz
+8a9
+> --lam0=3.2341077237548475
+```
+
+The differences: the interpreter, the output name, the state, and the added `--lam0=3.2341077237548475`. Flags otherwise the issue's. `check_cmd_1070_D3425.py M128 3.2341077237548475`: pass.
