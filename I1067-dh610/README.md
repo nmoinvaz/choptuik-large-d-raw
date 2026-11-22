@@ -42,3 +42,15 @@ The scaled control read ok at calls 2 and 3 (call 3: as-saved 2.109e-28, planted
 ## Call 4 (the coordinator's (B) of 22 Nov; unit `i1067d`, started 01:56:27 UTC)
 
 The issue's rule (Delta's own Newton correction below 1e-25) is kept. `run1067_call4.sh`: `lowD_dd.py --resume --it_max 1` from the call-3 checkpoint (blob 9be82013, checked), the command diffed before the launch against run1014b.py's B1 command by `cmddiff1067.py` (selftest and `--break` pass): `cmddiff_stage1_call4.txt` shows only the expected options differ (jsonl path, `--start`, `--Ms` 384 to 512, `--it_max` to 1, `--threads` 6 to 10, `--tag`, `--resume` added; `--nodes`, `--kt`, `--kcs`, `--ks`, `--jac`, `--tol` equal). If call 4's dDelta is below 1e-25 the state after call 4 is accepted and `run1067_s23.py` runs the fine plan and the series; if not, stop and report calls 2, 3 and 4's corrections (-1.90e-13, +1.15e-24, call 4's). Reporting on #1067 only at those ends.
+
+## Call 4 decision, the plan and the series start (22 Nov; the script's own steps while the first session was at its usage limit)
+
+The first session (dh610-me2) hit its usage limit at about 05:59 UTC; the script went on by its own rules and a second session took over at 06:19 UTC. Call 4 landed at 05:35:47 UTC (the call's own time 13120 s): `newton 0: |F| 2.11e-28 |dz| 7.16e-24 lam 1 dDelta -1.60e-30 Delta 2.466012146521391`. The checkpoint's max|F| is 1.002e-28 (scaled control: planted 1.00e-20 read 1.00e-20, ok; `resid_after_call4.log`). Delta's Newton correction -1.60e-30 is below 1e-25, so the state was accepted at the floor at 06:03:35 UTC (TERM to the exact pid 1120488 at `--it_max`): stage 1 wall 14828 s, peak RSS 3.45 GiB, `states/lowD1067_D3.0475_M512.npz` (blob a3dee6b6).
+
+| call | dDelta (Delta's own Newton correction) |
+|---|---|
+| 2 | -1.90e-13 |
+| 3 | +1.15e-24 |
+| 4 | -1.60e-30 |
+
+Plan: the control (`--mutate`) failed on its check as it must (5610 steps, max|F| 9.019e-09, vector not identical; `plan_mutate.log`); the plan at tol_step 1e-45, hmax 0.05 has 5610 steps, max|F| 1.002e-28, vector identical, 151 s for both runs (`plan_1e-45.log`; `states/lowD1067_D3.0475_M512_plan.npz`). Series (`run1067_s23.py` pid 1120473, `anm_lowd.py` pid 1137400, nice 10, 10 threads) started 06:06:07 UTC; command in `series512.log`; rss every 60 s in `rss_1067_series.txt`. At 06:26 UTC it had no `base` line yet (RSS 1.56 GB, 36 GB available). The 10 threads of the stopped #997 pilot are idle; the other project's I96 job runs beside it.
