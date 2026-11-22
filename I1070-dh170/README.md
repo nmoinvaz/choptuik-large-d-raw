@@ -185,3 +185,37 @@ Order (coordinator's hc after my 23:46 UTC report: "no on --it_max 60 ... D 3.35
 - B: a sign change in the first grid about 90% (lam0 = A's lam); exactly one about 90%; F below 1e-27 about 70%; 7 to 12 determinants at 150 to 220 s each (n 7169), so 20 to 40 min (about 60%);
 - |gamma(128) - gamma(96)| between 1e-10 and 1e-7 about 65% (the stored states' Delta differ by 1.45e-09 here, against 1.6e-6 at D 3.15; #628 had 3.77e-9 at D 3.5);
 - gamma(96) within 1e-6 of 0.3138622 about 60% (D 3.35 was 5.6e-7 below it, D 3.5 was 1.4e-7 from the list), gamma(128) within 1e-6 about 65%.
+
+## Result of the D 3.45 pair (written 2026-11-22 00:20:50 UTC): both PASS; gamma(96) = 0.3138622492236686, gamma(128) = 0.3138622497447941, gamma(128) - gamma(96) = +5.211e-10
+**A (M 96)** (`stageA_gamma96_d345.log`, `lowD_gamma_D3.45_M96.jsonl`; 23:47:49 to 23:57:09 UTC, script 559.3 s): the polish found the input at the floor (|F| 7.02e-30, converged at its first step, no step taken); 6 determinants. Record: lam 3.1861111123541552, gamma 0.3138622492236686, F 7.019629461302597e-30, n_signchanges 1, n_det 6. Acceptance: PASS.
+| lam | sign | ln\|det\| | seconds |
+|---|---|---|---|
+| 3.18601 | -1 | 1021.134 | 81.7 |
+| 3.18611 | -1 | 1016.677 | 84.8 |
+| 3.18621 | +1 | 1021.216 | 81.6 |
+| 3.186111056259 | -1 | 1013.690 | 87.5 |
+| 3.186111112354 | +1 | 1003.645 | 84.8 |
+| 3.186111112349 | -1 | 1003.698 | 88.0 |
+**B (M 128, lam0 = A's lam 3.1861111123541552)** (`stageB_gamma128_d345.log`, `lowD_gamma_D3.45_M128.jsonl`; 23:57:09 to 00:20:29 UTC on 22 Nov, script 1390.0 s): the polish found the input at the floor (|F| 5.05e-30, no step taken); 6 determinants. Record: lam 3.186111107064052, gamma 0.3138622497447941, F 5.047477198250068e-30, n_signchanges 1, n_det 6. Acceptance: PASS.
+| lam | sign | ln\|det\| | seconds |
+|---|---|---|---|
+| 3.186011112354 | -1 | 1336.366 | 204.9 |
+| 3.186111112354 | +1 | 1326.589 | 208.3 |
+| 3.186211112354 | +1 | 1336.506 | 209.3 |
+| 3.186111106682 | -1 | 1323.961 | 212.4 |
+| 3.186111107064 | -1 | 1311.575 | 213.6 |
+| 3.186111107069 | +1 | 1319.625 | 211.8 |
+The M 128 root lies below the M 96 root: lam(96) - lam(128) = 5.290e-09. The xtol 1e-11 of each search is its stopping tolerance, not an error bar of the discretization.
+**The resolution change at D 3.45, named as such (two resolutions, not a bound):** gamma(128) - gamma(96) = 0.3138622497447941 - 0.3138622492236686 = +5.211e-10 (decimal arithmetic on the two records).
+**Against the Vienna GammaList value 0.3138622** (seven digits, so a rounding of 5e-8): gamma(96) - 0.3138622 = +4.922e-08; gamma(128) - 0.3138622 = +4.974e-08. Both lie inside that rounding half-unit and both round to the printed 0.3138622; the list's seven digits do not resolve a difference below 5e-8. For comparison, D 3.35's gamma(96) lay 5.6e-07 below its Vienna value (no M 128 there), and #628's gamma(3.5) differs from the list by 1.4e-7 (M 128). Delta(128) - Delta(96) of the stored states was -1.45e-09.
+**Predictions against the result:**
+| prediction | result |
+|---|---|
+| A: change in the first grid (about 85%), exactly one (about 90%), F below 1e-27 (about 75%) | right in all three (F 7.0e-30) |
+| B: change in the first grid (about 90%), exactly one (about 90%), F below 1e-27 (about 70%) | right in all three (F 5.0e-30) |
+| 7 to 12 determinants in A and in B | 6 in each: wrong |
+| A wall 10 to 22 min (about 65%) | 9.3 min (559 s): just below |
+| B wall 20 to 40 min (about 60%) | 23.2 min: right |
+| |gamma(128) - gamma(96)| between 1e-10 and 1e-7 (about 65%) | 5.2e-10: right |
+| gamma(96) and gamma(128) within 1e-6 of 0.3138622 (about 60%, about 65%) | 4.9e-08 and 5.0e-08: right |
+**Resources** (4 threads each, nice 10, nothing else running, sequential as ordered): A wall 9:19.71, user 2141.75 s, 385% CPU, max RSS 1069900 kB (1.02 GiB); B wall 23:10.39, user 5442.87 s, 393% CPU, max RSS 1945512 kB (1.86 GiB); MemAvailable never below 27706 MiB, no alert. Determinants took 82 to 88 s at M 96 (n 5377) and 205 to 214 s at M 128 (n 7169).
