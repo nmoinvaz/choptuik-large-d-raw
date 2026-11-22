@@ -10,7 +10,8 @@ Machine dh610 (Fedora 45, i7-12700, 20 threads, 62 GB). Issue: https://github.co
 | 19.0 | - to + | 1.536547 | win2, raw 2c37fd37 |
 | 19.125 | + to - | 1.488137 (bracket 1.48 to 1.49, range [1.486996, 1.488137]) | `../kc71_d19125/` |
 | 19.125 | - to + | 1.511209 (bracket 1.51 to 1.52, range [1.511209, 1.511571]) | `../kc71_d19125/` |
-| 19.25 | | this scan | here |
+| 19.25 | + to - | 1.475019 (bracket 1.47 to 1.48, range [1.474292, 1.475019]) | this scan, below |
+| 19.25 | - to + | none in 1.42 to 1.58 | this scan, below |
 
 Straight lines through the two D values (two points make a line, not a law; the changes are not known to be the same roots from D 19 to D 19.125): the + to - change rises at 1.5344 per unit D (1.296338 to 1.488137) and would be near 1.680 at D 19.25, above the window; the - to + change falls at -0.2027 per unit D (1.536547 to 1.511209) and would be near 1.486 at D 19.25. The two lines cross near D 19.138, before D 19.25. dh170's lane-2 points: hybrid sign + at 1.42, 1.43, 1.44, 1.45 (ln|det| -2186.7629, -2187.2342, -2187.7516, -2188.3516).
 
@@ -36,3 +37,47 @@ Inputs (win2's, raw `I1025-win2/kc71_leap/states/` at 8e4797ff, taken with `git 
 Estimate (coordinator's): about 45 min; three rounds of about 800 to 1300 s.
 
 Written as the run goes.
+
+## Result (22 Nov, 16:39:14 to 17:50:46 UTC): one robust change at D 19.25, + to - at 1.475019; no - to + in 1.42 to 1.58
+
+All six processes exit 0 (`exits_kc71_1925.txt`; process walls 1:07:58 to 1:11:31, peak RSS 1.80 to 1.84 GB). The system check printed "the record system" on all six: |F| 3.0030932411e-10 against the record's 3.0023964493e-10 (relative 2.3e-4, inside the 1e-2 bar), steps 2630 = 2630. The pre-run checks passed (`selftest_exits.txt`: read_lower 0, shift 1, round2 1, repeat_check 0, compare_dh170 0, its mutate 1). 18 evaluations, all noise-robust.
+
+| lambda_1 | hybrid sign | ln\|det\| | noise_robust | float64 sign | point sec |
+|---|---|---|---|---|---|
+| 1.42 | +1 | -2186.7628971332 | True | +1 | 1469 |
+| 1.43 | +1 | -2187.2342474896 | True | +1 | 1353 |
+| 1.44 | +1 | -2187.7516439930 | True | +1 | 1336 |
+| 1.45 | +1 | -2188.3515899133 | True | +1 | 1412 |
+| 1.46 | +1 | -2189.1298753385 | True | +1 | 1365 |
+| 1.47 | +1 | -2190.5588672101 | True | +1 | 1345 |
+| 1.48 | -1 | -2190.5665073022 | True | -1 | 1611 |
+| 1.49 | -1 | -2189.7782028658 | True | +1 | 1429 |
+| 1.50 | -1 | -2189.5168753548 | True | +1 | 1262 |
+| 1.50 (repeat) | -1 | -2189.5168753548 | True | +1 | 1468 |
+| 1.51 | -1 | -2189.4185209552 | True | +1 | 1607 |
+| 1.52 | -1 | -2189.4004382420 | True | +1 | 1319 |
+| 1.53 | -1 | -2189.4305023039 | True | +1 | 1637 |
+| 1.54 | -1 | -2189.4932534773 | True | +1 | 1210 |
+| 1.55 | -1 | -2189.5802760321 | True | +1 | 1354 |
+| 1.56 | -1 | -2189.6875362666 | True | -1 | 1332 |
+| 1.57 | -1 | -2189.8126182179 | True | +1 | 1251 |
+| 1.58 | -1 | -2189.9555598713 | True | +1 | 1392 |
+
+Reading (`read_lower.txt`, `read_lower.py` dh170's, unedited):
+- **Robust change:** (1.47, 1.48), + to -, det-linear 1.475019, estimator range [1.474292, 1.475019] (a spread over interpolation choices, not an enclosure; the bracket is the 0.01 grid step). One robust change; none touches a non-robust point.
+- **Edge signs:** + at 1.42, - at 1.58. The signs are - from 1.48 to 1.58 inclusive: no - to + change in the window.
+- **ln|det| minima without a sign change:** none.
+- **Repeat of 1.50:** agrees, bit-identical (`repeat_check.py` PASS; ln -2189.5168753548 on process 2 and on process 5).
+- **Float64:** its sign differs from the hybrid at nine points (1.49 to 1.55, 1.57, 1.58); the hybrid is the reading.
+- **Cross-machine check (information, bar 1e-9 relative; dh170's lane 2, 4 threads each, against this machine's 1 thread):** `compare_dh170.py` PASS at the four shared points 1.42 to 1.45: sign, noise_robust and float64 sign equal; ln|det| relative differences 0, 4.2e-16, 2.1e-16, 2.1e-16.
+
+### Beside the earlier changes (information, not a pass rule; orientation as printed, not compared across D)
+
+| D | + to - | - to + |
+|---|---|---|
+| 19.0 | 1.296338 (this machine) | 1.536547 (win2) |
+| 19.125 | 1.488137 | 1.511209 |
+| 19.25 | 1.475019 | none in 1.42 to 1.58 (- at 1.58) |
+
+- The straight lines of the table above (+ to - near 1.680, - to + near 1.486 at D 19.25) are not matched: the + to - change is at 1.475019 (it moved by -0.013119 from D 19.125, after +0.191799 from D 19.0 to D 19.125), and the - to + change of D 19.125 is not in the window.
+- ln|det| falls toward the upper edge in steps of -0.1073 (1.55 to 1.56), -0.1251 and -0.1429 (1.57 to 1.58), so a change above 1.58 is possible. Not scanned: the window is not widened without the coordinator's word. Whether the changes at the three D values are the same roots is not known from these points.
