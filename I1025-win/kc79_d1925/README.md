@@ -1,6 +1,6 @@
 # I1025-win/kc79_d1925: win2's k_c 71 D 19.25 state regridded to k_c 79 (winb)
 
-Written before the run, 2026-11-22 16:17:30 UTC (substituted from `date -u` when pushed). Nothing has been run for D 19.25 yet.
+Written before the run, 2026-11-22 16:18:01 UTC (substituted from `date -u` when pushed). Nothing has been run for D 19.25 yet.
 
 Runner: the winb session (surface-laptop-4, 4 cores, 8 threads, 32 GB), the same one that ran `../kc79_d185/` and `../kc79_d19/` (raw commit 010273bc: the D 19 regrid accepted at |F| 2.8482e-10 in 5595 s, the 8-point scan read as lambda_1 = 1.539658 at k_c 79). The coordinator is t5.
 
@@ -75,7 +75,7 @@ Started outside my terminal: `Win32_Process.Create` of `cmd.exe /c start_kc79d19
 
 ## Status
 
-Not started yet: this README is pushed first. Pushed 2026-11-22 16:17:30 UTC.
+The source passed win2's `kc71_syscheck.py` on this machine (`control_kc71_syscheck.txt`: state |F| 3.0025e-10, `freeze_from` 2630 steps = the record's, both controls refused) and the selftest of `kc79_syscheck_1025.py` passed (`selftest_syscheck79.txt`). The regrid started 16:17:46 UTC, outside my terminal (`Win32_Process.Create` of `cmd.exe /c start_kc79d1925_regrid_1025.cmd`; chain cmd 20456 <- driver 15552 and 10848 <- `ell_refine.py` 13124 and 5368), BelowNormal, 4 threads, cap 21600 s; free memory 24.2 GB before the start, two I129 jobs of the other project (`harm_circles.py`, boxes p085_l3 and p7603_l2) beside it. No scan is started. Pushed 2026-11-22 16:18:01 UTC.
 
 ## Result
 
