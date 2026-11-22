@@ -1,0 +1,26 @@
+# dry run, planned window
+== 2026-11-22 21:06:52 kc79d19low_scan_driver_1025.py: the k_c 79 hybrid scan at D 19, window 0.92,0.96,1.00,1.04,1.08,1.12,1.16,1.20,1.24,1.28,1.32,1.12 (dry run); checking pins
+== 2026-11-22 21:06:53 read_lower.py selftest exit 0 and its two --mutate controls exit 1, 1 as wanted
+== 2026-11-22 21:06:53 DRY: would start d18_hybsign.py C:/Users/nathan/Source/kc79d19_1025/I1025-win/kc79_d19/l1kc79W19m1025.jsonl C:/Users/nathan/Source/kc79d19_1025/I1025-win/kc79_d19/sol_l1kc79W19m1025_D19.0000.npy 19 0.92,0.96,1.00,1.04,1.08,1.12,1.16,1.20,1.24,1.28,1.32,1.12 C:/Users/nathan/Source/kc79d19low_1025/I1025-win/kc79_d19low/scan_kc79_D19low_p0.jsonl (cwd C:/Users/nathan/Source/choptuik-i1025k79/solver/matter, 4 threads, BelowNormal, cap 28800 s); reader window 0.92 1.32; nothing started
+exit 0
+# window 1.0
+REFUSE: the window needs at least two distinct values in (0, 10), none more than twice: 1.0
+exit 2
+# window 1.0,1.0
+REFUSE: the window needs at least two distinct values in (0, 10), none more than twice: 1.0,1.0
+exit 2
+# window 1.0,1.0,1.0,1.2
+REFUSE: the window needs at least two distinct values in (0, 10), none more than twice: 1.0,1.0,1.0,1.2
+exit 2
+# window abc,1.0
+REFUSE: the window is not a comma-separated list of numbers: abc,1.0
+exit 2
+# window 0.5,0,1.0
+REFUSE: the window needs at least two distinct values in (0, 10), none more than twice: 0.5,0,1.0
+exit 2
+# window 0.5,10,1.0
+REFUSE: the window needs at least two distinct values in (0, 10), none more than twice: 0.5,10,1.0
+exit 2
+# window 0.5,11
+REFUSE: the window needs at least two distinct values in (0, 10), none more than twice: 0.5,11
+exit 2
