@@ -77,3 +77,22 @@ So rpi5 is not a bit-twin of the Linux builds (dh170 differs from dh370 by 1.1e-
 is 1.7e-8 away. The plain float64 determinant's sign (ill-conditioned, not used) differs too. By the order, rpi5's scans are read only on its own regrids, as winb's: the D 20 state
 is regridded here, so nothing in step 2 or 3 depends on the other machines' absolute ln|det|. The time of this point at 3 threads alone is 2666 s (dh370: 2055 to 3813 s on 1 thread of an i7-8700).
 Not done (not asked): a 1-thread repeat on this machine (would say whether the offset depends on the thread count here) and the ln|det| response to the 1e-15 noise of blocks 0-11.
+
+## Step 2 and 3 inputs, pinned at 23:30 UTC 2026-11-22 (written before the regrid starts)
+
+win2 pushed the k_c 71 D 20 state at raw d79713bf (23:28 UTC, "the leap reached D_end 20"). Its record is `states/l1kc71Lw1025b.jsonl` (11 lines, D 20 the last: |F| 4.526e-10, 2514 steps, Delta 1.0922691334595107);
+the state file `sol_l1kc71Lw1025b_D20.000000.npy` is the same bytes as the `_D20.0000`, `_last` copies. `kc79_d20/run_regrid.sh` refuses any other blob:
+
+| item | raw path (origin/main d79713bf) | blob |
+|---|---|---|
+| k_c 71 D 20 state | `I1025-win2/kc71_leap/states/sol_l1kc71Lw1025b_D20.000000.npy` | 970fde73 |
+| its records | `I1025-win2/kc71_leap/states/l1kc71Lw1025b.jsonl` | 8f86af85 |
+| source check (win2's) | `I1025-win2/kc71_leap/kc71_syscheck.py` | 4cd86cd4 |
+| result check | `I1025-dh370/kc79_d195/in/kc79_syscheck_1025.py` | 29dce7ea |
+| scanner | `I1025-mac/d18/d18_hybsign.py` | e089207a |
+| reader | `I1025-dh170/lower_root/read_lower.py` | 89309d3c |
+| reader's helper | `I1025-dh170/lower_root/d185_scan_read.py` | 7c9d400f |
+
+Plan: step 2 as ordered (selftests of both checks; win2's check on the source with its two controls, both must exit 1; the regrid to k_c 79, tag `l1kc79rpi5d20`, lambda_0 2.1110019498 from
+`ell_delta.lam0_at(20)`, 3 threads, nice 10, cap 12 h; `kc79_syscheck_1025.py` and its two controls, both must exit 1). Step 3 only on ACCEPTED. A control that does not fire, or a refusal,
+stops the run and is reported. I did not open win2's own D 20 k_c 79 folder (`I1025-win2/kc79_d20/`): my scans are read on my regrid only.
