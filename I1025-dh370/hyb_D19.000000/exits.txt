@@ -1,0 +1,5 @@
+2026-11-22 08:35:26 UTC scan D 19 lambda 1.40..1.80 (41 values), 6 procs x 1 threads, nice 10
+2026-11-22 09:21:09 UTC renice scan procs to 19 (coordinator t5): 1915181 1915183 1915185 1915188 1915189 1915190 1919753 1919754 
+2026-11-22 09:21:16 UTC correction: the renice applied to the six scan pids 1915181 1915183 1915185 1915188 1915189 1915190; 1919753 and 1919754 were transient shell wrappers
+2026-11-22 09:25:16 UTC renice the six scan pids back to 10 (coordinator t5 correction: back to option a)
+2026-11-22 09:25:36 UTC correction: renice back to 10 was refused (Permission denied, RLIMIT_NICE 0); the six scan pids are still at nice 19, no restart
