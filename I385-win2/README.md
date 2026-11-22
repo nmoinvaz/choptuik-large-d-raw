@@ -63,4 +63,11 @@ Full table: `comparison.md`. Reading fixed before the run: x, omega, omega1, lam
 Not passing in this interpreter, and not because of the files: it stops at its `hopf_law` check (`hp/hopf_amp_mode.py` imports
 `hp/gamma_dd.py`, which imports the Rust module `hpkernel`), and venv-md510 does not have `hpkernel`. `check_numbers.py` reads none
 of the three replaced files (it reads `first_order_hier_*.json`; grep for `first_order_M` finds no use). Venvs on this machine with
-`hpkernel`: venv-i1058b, venv-md491, venv-hp and others. Not run with any of them: the task names venv-md510.
+`hpkernel`: venv-i1058b, venv-md491, venv-hp and others.
+
+The coordinator then had it run with venv-i1058b's python (import only, nothing installed; one thread; worktree root, after the
+commit 482adb4d that holds the new files): `check_numbers_selftest_i1058b.log`, exit 1. Last two lines: `2259 of 2262 checks
+pass` and `selftest: 2262 of 2262 checks reject a value shifted by one unit`. The three failing checks are the group
+`formula_refit` (0 of 3: the refit of the 4-30.2 formula against the stored Delta and gamma, `formula_all.refit_distance()`,
+computed 0.0 where 1 is quoted), which does not read the three files. `first_order` (11 of 11) and `first_order_lam` (4 of 4)
+pass. Reported, not fixed, not investigated.
