@@ -24,6 +24,17 @@ gamma stops at D 3.15 (#1070: gamma(128) = 0.2273872422, M error gamma(128) - ga
 - hp build: `~/Source/choptuik-large-d-1058b/.venv` (Python 3.14, multidouble 5.1.0, `hpkernel` `.so` of 2026-11-20 13:43 local), built at main 8179068d (#1058). `git diff 8179068d 46a8dac5 -- hp/src hp/Cargo.toml hp/Cargo.lock hp/pyproject.toml hp/build.sh` is empty, so the kernel's sources are the branch's; no rebuild (a release build is 1.4 h and 24 GB here). Whether `make_solver_mapped` runs on it is step 0's check.
 - Input of step 1 (raw clone at 254ae431 on this machine): `I927-mac/inputs/lowDhm_x0.000625-0.9_D3.1500_M128.npz`, blob df2ab378. `data/lowD_states/highm15_D3.7000_M96.npz` (blob 3eeee450) is in the repository.
 
+## Step 1 amended (t5, #1072 comment, after the failure; written before these runs, 2026-11-22 21:20 UTC by the clock)
+
+Hypothesis, not yet shown: #1033 mapped a well-resolved uniform state (M 384) down to M' 160 to 192, while here the source was the uniform M 128 state, barely resolved at D 3.15, and the map concentrates points where M 128 resolves least. No code change; the same acceptance for step 2. All of it runs from the worktree `~/Source/choptuik-large-d-1072b` at ae96bcc6 (t5's `sys.exit(main())` fix; `tau_map.py`, `tau_map_gain.py`, `raw_out.py` and the kernel sources unchanged; `lowD_gamma.py` blob 2e55d695). `run_new.sh` (unit `i1072c`, 6 threads, nice 10), each stage stopping at the first failure (`STOP_*.txt`) and reporting:
+
+0. The two step-0 selftest calls on ae96bcc6: `lowD_gamma.py --selftest data/lowD_states/highm15_D3.7000_M96.npz --threads=6` exit 0 and with `--break` exit 1 (the old runs on 46a8dac5 gave 0 and 0).
+1a. The identity control: `tau_map_gain.py solve I927-mac/inputs/lowDhm_x0.000625-0.9_D3.1500_M128.npz --pairs 1:128 ...` must converge, and `tau_map_gain.py report --ref` (the tool's own check) must show its Delta within 1e-20 of the state's stored Delta and its plan within 10% of the stored one.
+1b. The better source, the uniform M 160 state `I927-mac/inputs/lowDhm_x0.000625-0.9_D3.1500_M160.npz`: first print `pick_s0` for L 0.5 on it (`resolve_s0(path, 0.5, None)`) and pass it as `--s0` to every solve of 1b and 1c; then `solve ... --pairs 0.9:128` and `--pairs 0.7:128` (two invocations in place of one `--pairs 0.9:128,0.7:128`, so that a failure at L 0.9 stops before L 0.7). If L 0.9 does not converge: report and stop (the map, not the source, is the problem at D 3.15).
+1c. Continuation in L at M' 128, each solve from the previous converged mapped state as its source: 0.7 to 0.5 to 0.4; then M' 96 at L 0.5 and at L 0.4, each from the M' 128 state of its L.
+
+Step 2 then runs on the converged L 0.5 and 0.4 states at M' 96 and 128, as written, with step 1's selftest (the gp control on a mapped state) on ae96bcc6 (exit 0).
+
 ## Cost (the issue's estimate)
 
 Solves: minutes to an hour each at M' <= 128. gamma: about 170 s per determinant at M 128 (#1070's D 3.15), 7 to 11 determinants per state. Steps 0 to 2 about 3 to 5 h; step 3 a similar time.
@@ -42,4 +53,5 @@ Solves: minutes to an hour each at M' <= 128. gamma: about 170 s per determinant
 
   The interpolated start of the best case is still O(1) away (|F| 1.76); the other three evaluate to 1e21 to 1e52 on the source's own plan (a RuntimeWarning for overflow in the residual norm). The code is the same that passes `tau_map_gain.py selftest` (interpolation and mapped inputs against closed forms). Not tried (needs t5's word): the identity control `--pairs 1:128` (L 1 at the state's own M), a continuation in L from a converged mapped state (the tool takes a mapped state as the source: `tau_map_gain.py` line 522 reads its `map`), a larger `--it1` for L 0.5 at M' 96.
 - Information from t5 (#1073, rpi5, raw d481a3a3): Ecker et al.'s gamma at D 3.15 interpolates to 0.22739 with about 1e-5 of spread (an interpolation spread, not a bound); our uniform 0.2273872422 lies inside it. They have no gamma below D 3.1, so step 3 at D 3.0444 has no outside target. The acceptance stays against our uniform gamma(128) and its 1.05e-6.
+- Step 0 rerun on ae96bcc6 (2026-11-22 21:26 UTC, `selftest_lowD_gamma_ae96bcc6.txt`, `selftest_lowD_gamma_break_ae96bcc6.txt`, `steps_new.txt`): `lowD_gamma.py --selftest data/lowD_states/highm15_D3.7000_M96.npz --threads=6` **exit 0** and with `--break` **exit 1**, as the issue wants (beside the old runs on 46a8dac5: 0 and 0).
 - The second worktree `~/Source/choptuik-large-d-1072b` is at ae96bcc6 (t5's fix: `sys.exit(main())`, the one-line diff to 46a8dac5; `lowD_gamma.py` blob 2e55d695, the other three scripts unchanged). Its step 0 and step 1 selftest calls run before step 2.
