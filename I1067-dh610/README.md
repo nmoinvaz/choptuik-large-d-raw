@@ -54,3 +54,7 @@ The first session (dh610-me2) hit its usage limit at about 05:59 UTC; the script
 | 4 | -1.60e-30 |
 
 Plan: the control (`--mutate`) failed on its check as it must (5610 steps, max|F| 9.019e-09, vector not identical; `plan_mutate.log`); the plan at tol_step 1e-45, hmax 0.05 has 5610 steps, max|F| 1.002e-28, vector identical, 151 s for both runs (`plan_1e-45.log`; `states/lowD1067_D3.0475_M512_plan.npz`). Series (`run1067_s23.py` pid 1120473, `anm_lowd.py` pid 1137400, nice 10, 10 threads) started 06:06:07 UTC; command in `series512.log`; rss every 60 s in `rss_1067_series.txt`. At 06:26 UTC it had no `base` line yet (RSS 1.56 GB, 36 GB available). The 10 threads of the stopped #997 pilot are idle; the other project's I96 job runs beside it.
+
+## Series: base line (22 Nov, 11:08:56 UTC)
+
+`anm_lowd.py` (pid 1137400) printed its `base` line 5 h 03 min after its start (06:06:07 UTC): `D 3.0475, M 512, |F| 1.0e-28, pivots 4.0e-05..2.6e+01, 18145 s` (L 45057, 5610 steps; `series512/anm_lowd.jsonl`). The smallest pivot is above the script's 1e-6 bar. The base stage took 18145 s = 5.04 h at 10 threads, nice 10, beside #997's rerun (10 threads) and another project's job; RSS 2.4 GB, MemAvailable 37 GB, load 13 at the line. The orders follow; no further stop rule applies until the series file is saved (then the target stage's 30 min) except the 30 h cap, which is at 12:06 UTC on 23 Nov.
