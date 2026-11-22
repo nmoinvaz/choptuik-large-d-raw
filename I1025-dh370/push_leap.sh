@@ -13,6 +13,7 @@ cp -u $LIVE/kc63_leap/leap.log $LIVE/kc63_leap/exits_leap.txt I1025-dh370/kc63_l
 for f in README.md read_d19.py scan_hyb.sh check_states.py push_leap.sh run1025cont.sh; do cp -u $LIVE/$f I1025-dh370/ 2>/dev/null; done
 [ -d $LIVE/kc63_leap_cont ] && { mkdir -p I1025-dh370/kc63_leap_cont; cp -u $LIVE/kc63_leap_cont/* I1025-dh370/kc63_leap_cont/; }
 [ -d $LIVE/kc79_d19125 ] && { mkdir -p I1025-dh370/kc79_d19125; cp -ru $LIVE/kc79_d19125/. I1025-dh370/kc79_d19125/ 2>/dev/null; }
+[ -d $LIVE/kc79_d195 ] && { mkdir -p I1025-dh370/kc79_d195; cp -ru $LIVE/kc79_d195/. I1025-dh370/kc79_d195/ 2>/dev/null; }
 [ -d $LIVE/hyb_D19.000000 ] && { mkdir -p I1025-dh370/hyb_D19.000000; cp -u $LIVE/hyb_D19.000000/* I1025-dh370/hyb_D19.000000/ 2>/dev/null; }
 python3 make_index.py 2>&1 | tail -1
 git add I1025-dh370 INDEX.md

@@ -1,0 +1,42 @@
+2,3c2,3
+< # #1025 kc79_d19125 step 2 (t5's order): hybrid sign scan of the accepted k_c 79 D 19.125 state, lambda 1.44 to 1.58 at 0.01 (15 values) plus a
+< # repeat of 1.50 (on another process than the first 1.50), 6 processes of 1 thread, nice 10, with d18_hybsign.py (e089207a, unmodified), then dh170's
+---
+> # #1025 kc79_d195 step 2 (t5's order): hybrid sign scan of the accepted k_c 79 D 19.5 state, lambda 1.30 to 1.50 at 0.01 (21 values) plus a
+> # repeat of 1.40 (on another process than the first 1.40), 4 processes of 1 thread, nice 10, with d18_hybsign.py (e089207a, unmodified), then dh170's
+6c6
+< OUT=/home/nathan/Source/choptuik-large-d-raw-wt613/I1025-dh370/kc79_d19125
+---
+> OUT=/home/nathan/Source/choptuik-large-d-raw-wt613/I1025-dh370/kc79_d195
+9c9
+< TAG=l1kc79dh370; D=19.125
+---
+> TAG=l1kc79dh370d195; D=19.5
+11c11
+< STATE=$WTM/data/sol_${TAG}_D19.1250.npy; STUB=$WTM/data/$TAG.jsonl
+---
+> STATE=$WTM/data/sol_${TAG}_D19.5000.npy; STUB=$WTM/data/$TAG.jsonl
+20,22c20,22
+< print(*[f'{v/100:.2f}' for v in range(144, 159)] + ['1.50'], sep='\n')")
+< NP=6
+< step "scan starts: D $D, ${#LAMS[@]} values (1.44 to 1.58 and the repeat of 1.50), $NP procs x 1 thread, nice 10; state sol_${TAG}_D19.1250.npy $(blob $STATE), record $(blob $STUB)"
+---
+> print(*[f'{v/100:.2f}' for v in range(130, 151)] + ['1.40'], sep='\n')")
+> NP=4
+> step "scan starts: D $D, ${#LAMS[@]} values (1.30 to 1.50 and the repeat of 1.40), $NP procs x 1 thread, nice 10; state sol_${TAG}_D19.5000.npy $(blob $STATE), record $(blob $STUB)"
+28c28
+<       $PY -u $OUT/in/d18_hybsign.py $STUB $STATE $D "$mine" $SCAN/scan_D19.125_p$p.jsonl > $SCAN/scan_p$p.log 2>&1
+---
+>       $PY -u $OUT/in/d18_hybsign.py $STUB $STATE $D "$mine" $SCAN/scan_D19.5_p$p.jsonl > $SCAN/scan_p$p.log 2>&1
+33c33
+< cat $SCAN/scan_D19.125_p*.jsonl | python3 -I -c "
+---
+> cat $SCAN/scan_D19.5_p*.jsonl | python3 -I -c "
+36c36
+< open('$SCAN/scan_D19.125_1025.jsonl', 'w').write(''.join(json.dumps(r) + '\n' for r in rows)); print(len(rows), 'points')" >> $OUT/steps.txt
+---
+> open('$SCAN/scan_D19.5_1025.jsonl', 'w').write(''.join(json.dumps(r) + '\n' for r in rows)); print(len(rows), 'points')" >> $OUT/steps.txt
+43c43
+< $PY -I read_lower.py $SCAN 1.44 1.58 > $OUT/read_lower.txt 2>&1; step "read_lower.py exit $? (reading in read_lower.txt)"
+---
+> $PY -I read_lower.py $SCAN 1.30 1.50 > $OUT/read_lower.txt 2>&1; step "read_lower.py exit $? (reading in read_lower.txt)"
