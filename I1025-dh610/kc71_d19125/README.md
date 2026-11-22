@@ -24,3 +24,50 @@ Inputs (raw origin/main fedc68ff, copied to `in/`, pinned by `git hash-object --
 Estimate (coordinator's): about 45 min; win2's points took 671 s each on Windows; the control here measures one point alone, and the scan runs three rounds.
 
 Written as the run goes.
+
+## Control (22 Nov, 13:42:21 to 13:55:19 UTC): PASS
+
+`d18_hybsign.py` at D 19.0, k_c 71, lambda 1.55 on win2's state and record, 1 process of 1 thread: wall 778 s (the point's own 775 s; win2's was 671 s on Windows), peak RSS 1.56 GB, exit 0 (`control/control.log`, `control/control_check.txt`; the checker's message labels the reference "dh370", a leftover string of the d1909 copy, the reference is win2's row `in/ref_win2_scan_D19_P2.jsonl`).
+- the record system: |F| 2.7637774095e-10 against the record's 2.7619908383e-10 (win2's own log shows 2.7619908383e-10; the 6.5e-4 relative difference is inside the check's 1e-2 bar and the steps equal, 2676 = 2676), noting a Windows and a Linux build;
+- hybrid sign +1 = win2's; ln|det| -2208.9791860890 against win2's -2208.97905006932, relative difference 6.158e-08 (bar 1e-06); both noise seeds +1;
+- the float64 sign +1 equals win2's too, with ln|det| -2211.7827794789 against win2's -2207.274918285948 (float64 values differ by 4.5, as in the k_c 63 control).
+
+Scan started 13:55:19 UTC on 6 processes (peak RSS of the control 1.56 GB, 6 x that fits in the 30 GB available). Points take about 780 s alone and 800 to 900 s beside the other runs; three rounds end near 14:50 UTC.
+
+## Scan (22 Nov, 13:55:19 to 14:56:10 UTC): 15 points and the repeat, two robust changes
+
+Six processes, all exit 0 (`exits_kc71.txt`), each logged the record system first (|F| 2.8436825420e-10 against the record's 2.8421697420e-10, steps 2651 = 2651). Points took 1065 to 1380 s each beside the other runs (the control alone: 778 s). Files: `scan/scan_D19.125_p<p>.jsonl`, merged `scan/scan_D19.125_1025.jsonl`, `read_lower.txt`, logs `scan/scan_p<p>.log`.
+
+| lambda_1 | hybrid sign | hybrid ln\|det\| | float64 sign | float64 ln\|det\| | s |
+|---|---|---|---|---|---|
+| 1.44 | + | -2200.2158683400 | + | -2200.7690 | 1350 |
+| 1.45 | + | -2200.7709471405 | + | -2198.5641 | 1361 |
+| 1.46 | + | -2201.4134587150 | + | -2201.2072 | 1310 |
+| 1.47 | + | -2202.2262366179 | - | -2200.3327 | 1339 |
+| 1.48 | + | -2203.4969803381 | + | -2200.5475 | 1373 |
+| 1.49 | - | -2204.9714703424 | + | -2201.6460 | 1380 |
+| 1.5 | - | -2204.1731401735 | - | -2200.5331 | 1092 |
+| 1.5 | - | -2204.1731401735 | - | -2200.5331 | 1176 |
+| 1.51 | - | -2205.7298526121 | - | -2205.2004 | 1183 |
+| 1.52 | + | -2203.7457971907 | + | -2203.7806 | 1158 |
+| 1.53 | + | -2202.8034093328 | + | -2202.1814 | 1172 |
+| 1.54 | + | -2202.2631656217 | + | -2202.3600 | 1167 |
+| 1.55 | + | -2201.8926029996 | + | -2202.4863 | 1201 |
+| 1.56 | + | -2201.6209927474 | + | -2202.4852 | 1122 |
+| 1.57 | + | -2201.4169757782 | + | -2200.9305 | 1065 |
+| 1.58 | + | -2201.2646088986 | + | -2203.5831 | 1134 |
+
+The second 1.5 row is the repeat (process 3); its hybrid sign and ln|det| equal the first (process 0) bit for bit.
+
+Reading (`read_lower.py scan 1.44 1.58`, dh170's, unedited; `read_lower.txt`):
+- 15 distinct points, all noise-robust (both noise seeds agree with the hybrid sign); no non-robust point;
+- hybrid signs, as printed: + from 1.44 to 1.48, - at 1.49, 1.50, 1.51, + from 1.52 to 1.58; endpoints + and +;
+- robust change 1: between 1.480 and 1.490, + to -, det-linear 1.488137, estimator range [1.486996, 1.488137];
+- robust change 2: between 1.510 and 1.520, - to +, det-linear 1.511209, estimator range [1.511209, 1.511571];
+- the ranges are spreads over interpolation choices, not enclosures; the brackets are the grid steps (0.01);
+- ln|det| local minima without a sign change: none (the two minima, 1.49 and 1.51 with the global one at 1.51, -2205.7298526121, each sit beside a change);
+- the repeat of 1.50: `repeat_check.py` PASS, 2 evaluations agree;
+- the float64 sign differs from the hybrid at 1.47 (hybrid +, float64 -) and 1.49 (hybrid -, float64 +), as in the k_c 63 scans: float64 is not a determinant sign here, the hybrid is read;
+- orientation is as printed and not compared across D. Information only: the straight line of lambda_1 gave about 1.502, between the two changes (0.0231 apart); which change, if any, continues win2's D 19 change at 1.536547 is not decided here. The D 19 rows in `in/ref_win2_scan_D19_P2.jsonl` cover 1.50 to 1.60 only; the coordinator's remark "none near 1.4832" at D 19 comes from win2's full scan, not read here.
+
+Acceptance: control passed; system check on all six processes; reader selftest 0 and mutations `shift` 1, `round2` 1 (`selftest_exits.txt`: 0 1 1 0 0 1 as wanted); the repeat agrees. Roots are k_c 71 roots at D 19.125, not yet physical ones.
