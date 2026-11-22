@@ -1,0 +1,36 @@
+=== lane A: read_lower.py A 1.20 1.54
+points 18 in 1.200-1.540; not noise-robust: none
+hybrid signs: 1.200- 1.220- 1.240- 1.260- 1.280- 1.300- 1.320- 1.340- 1.360- 1.380- 1.400- 1.420- 1.440- 1.460- 1.480- 1.500- 1.520- 1.540-
+float64 sign differs from the hybrid sign at: none
+repeated points: [(1.3, 'agree')]
+robust changes: 0; touching a non-robust point (not counted): none
+ln|det| local minima without a sign change: none
+endpoint signs: - at 1.200, - at 1.540
+read_lower exit 0
+repeat check laneA/scan_D18.5_p0.jsonl: lambda [1.3]: [2] evaluations each, agree -> PASS
+repeat_check exit 0
+=== lane B: read_lower.py B 1.47 1.55
+points 17 in 1.470-1.550; not noise-robust: none
+hybrid signs: 1.470+ 1.475+ 1.480+ 1.485+ 1.490+ 1.495+ 1.500+ 1.505+ 1.510+ 1.515+ 1.520+ 1.525- 1.530- 1.535- 1.540- 1.545- 1.550-
+float64 sign differs from the hybrid sign at: [(1.53, '-', '+'), (1.535, '-', '+'), (1.54, '-', '+')]
+repeated points: [(1.51, 'agree')]
+  robust change (1.520, 1.525), + to -, det-linear 1.523736, range [1.523601, 1.523736]
+robust changes: 1; touching a non-robust point (not counted): none
+ln|det| local minima without a sign change: none
+endpoint signs: + at 1.470, - at 1.550
+read_lower exit 0
+repeat check laneB/scan_D19.03125_p0.jsonl: lambda [1.51]: [2] evaluations each, agree -> PASS
+repeat_check exit 0
+=== lane A against the Mac's D 18.5 data
+cross-machine overlap at D 18.5: lambda [1.2]; sign or robustness differs at none; ln difference {1.2: 2.2386475393432193e-06}; above 1e-6 at [1.2] -> PASS
+overlap exit 0
+seam at D 18.5: lane A's highest lambda 1.540 sign -; the Mac's lowest above it 1.550 sign - -> equal: an even number of changes in the gap (information)
+seam exit 0
+=== lane A with the unmodified read_d19.py (blob 13bd4997), second reader
+points 18 in 1.20-1.54; not noise-robust: none
+hybrid signs: 1.20- 1.22- 1.24- 1.26- 1.28- 1.30- 1.32- 1.34- 1.36- 1.38- 1.40- 1.42- 1.44- 1.46- 1.48- 1.50- 1.52- 1.54-
+float64 sign differs from the hybrid sign at: none
+repeated points: [(1.3, 'agree')]
+robust changes: 0; touching a non-robust point (not counted): none
+ln|det| local minima without a sign change: none
+read_d19 exit 0

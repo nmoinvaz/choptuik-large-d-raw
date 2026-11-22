@@ -57,3 +57,42 @@ The order says no scan has looked below 1.62 at D 18.5. The Mac's scan `d185_sca
 
 ## Log
 - 2026-11-22 11:40:35 UTC: folder, scripts, controls and pins prepared; the windows, the reading and the prediction are fixed above before any run. Controls run now: `read_lower.py` selftest PASS, `--mutate=shift` and `--mutate=round2` FAIL; `read_d19.py` selftest PASS and `--mutate=shift` FAIL; `cross_check_mac.py` and `repeat_check.py` selftests PASS; dry runs of both lanes pass their pins.
+
+## Result (written 2026-11-22 14:59:06 UTC)
+Both lanes exit 0, system checks passed (lane A |F| 2.7728396616e-10 against the record's 2.7672415504e-10, 2461 steps; lane B 2.6199729092e-10 against 2.6210543403e-10, 2368 steps), every point noise-robust, both repeats bit-identical (lane A's 1.30: ln|det| -1898.608474126855, lane B's 1.510: -1874.413401245264). The reader exit 0 at 14:57:55 UTC (`read_lower.txt`, `exits_read.txt`). Peak RSS 1.44 and 1.43 GiB, lowest MemAvailable 25.7 and 25.7 GiB (26484 and 26280 MiB), no ALERT line.
+
+| | lane A (D 18.5, lambda 1.20 to 1.54, 19 evaluations) | lane B (D 19.03125, lambda 1.470 to 1.550, 18 evaluations) |
+|---|---|---|
+| started, ended (UTC), exit | 11:41:05, 14:57:40, 0 | 11:41:09, 14:46:33, 0 |
+| wall | 11795 s (3:16:29 by /usr/bin/time) | 11124 s (3:05:23) |
+| seconds per point | 401 to 672, mean 620 (the last two after lane B ended: 499 and 401) | 604 to 635, mean 618 |
+| hybrid signs | all minus, 1.20 to 1.54 | plus from 1.470 to 1.520, minus from 1.525 to 1.550 |
+| robust changes | **none** | **one**, (1.520, 1.525), plus to minus as printed: det-linear 1.523736, estimator range [1.523601, 1.523736]; none minus to plus |
+| ln|det| minima without a sign change | none (ln|det| falls monotonically, -1896.587 at 1.20 to -1899.868 at 1.54) | none |
+| repeat | 1.30 agrees (`repeat_check.py` PASS, the reader's check 'agree') | 1.510 agrees |
+| float64 sign differs from the hybrid | none | 3 of 18 (1.530, 1.535, 1.540: minus against plus; float64 reads +-+++-- from 1.520 to 1.550) |
+
+- **Cross-machine control, lane A:** the 1.20 point reads minus and noise-robust, as the Mac's reference point on the same state; its ln|det| -1896.5871396622 against the Mac's -1896.5871419008, difference 2.24e-6, flagged above 1e-6 (information). The seam: lane A's 1.54 is minus and the Mac's 1.55 (and its 1.55 to 1.61) is minus, so an even number of changes between them. With the Mac's scan, the hybrid sign of this state has no change from 1.20 to 1.67; lambda_1 (minus to plus) is at 1.677.
+- **Parity note:** lane A shows 0 changes (the 40% case); a lone lower root near 1.29 is not there, no change in (1.28, 1.30).
+- **Second reader:** the unmodified `read_d19.py` reads lane A the same (0 changes, repeat agrees).
+- **Reader controls (run before the lanes):** `read_lower.py` selftest passes, `--mutate=shift` and `--mutate=round2` each exit 1; `read_d19.py` selftest passes and `--mutate=shift` exits 1; `repeat_check.py` and `cross_check_mac.py` selftests pass.
+
+**Against D 19 (dh370, raw dd910799; k_c 63; orientation is not compared across D, so this is arithmetic and no reading):** D 19: plus to minus at 1.483165, minus to plus at 1.537988 (lambda_1). D 19.03125 (here): plus to minus at 1.523736 only, none minus to plus up to 1.550. If the orientations carry over, the plus-to-minus change moved +0.0406 in 0.03125 of D (+1.30 per unit D, against +0.39 in the order's line) and the minus-to-plus change is above 1.55 (while lambda_1 fell -0.28 per unit D from D 18.5 to D 19). If the sign convention flipped between the two states, the one change here is lambda_1 moved -0.0143 (-0.46 per unit D) and the other root is below 1.47 or gone. This window cannot say which; the other change's position and orientation can, at D 19.03125 outside 1.47 to 1.55. The lower root is a k_c 63 root, not yet a physical one (t5: win2's k_c 71 scan at D 19 has one change, 1.536547, and none near 1.4832).
+
+## Predictions against the result
+| prediction | result |
+|---|---|
+| system checks pass 95%; repeats agree 90%; every point noise-robust (A 65%, B 80%) | yes; yes; yes, yes |
+| lane A's 1.20 equals the Mac's sign (90%); its ln|det| within 1e-6 (60%) | yes; **no**, 2.24e-6 |
+| lane A: 0 changes 40%, 2 changes 25%, 1 change 25% | 0 |
+| lane B: both changes inside 1.47 to 1.55 (80%) | **no**, one |
+| lane B: lower bracket within 0.01 of (1.495, 1.500) (55%) | **no**: the one change is 0.025 away |
+| lane B: the lambda_1 bracket within 0.01 of (1.525, 1.530) (60%) | position yes, (1.520, 1.525); orientation as printed no (plus to minus) |
+| their gap smaller than D 19's 0.0548 (85%) | not defined: one change |
+| float64 differs at no more than 5 points: A 40%, B 60% | A yes (0), B yes (3) |
+| wall 2.1 to 3.4 h 65%; inside 8 h 95%; RSS below 2.5 GiB 90% | 3.28 h and 3.09 h yes; yes; yes |
+
+## Log
+- 2026-11-22 11:41:04 to 11:41:11 UTC: lanes A, B and the reader started (units `i1025-lowA`, `i1025-lowB`, `i1025-lowread`).
+- 2026-11-22 12:39 UTC to 14:46 UTC: lane B's plus-to-minus change appeared at the point 1.525 (12:5x UTC) and was reported to t5 at once; the rest of lane B stayed minus.
+- 2026-11-22 14:59:06 UTC: result written (this section).
