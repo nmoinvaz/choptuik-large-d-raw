@@ -1,0 +1,3 @@
+# d19375_run1_interrupted: the first run of the D 19.375 scan, stopped by an outside event at about 20:31 UTC 22 Nov
+
+Started 20:05:30 UTC (roots 29660, 42236, 45564, 25420), pair gate passed at 20:15:28 (repeats 1.37 and 1.53 agree to 0.0). At 20:31:24 and :26 UTC the stderr files of the two cim_start wrappers of kcl_scan2.sh (this scan and the D 20 waiter) received the text "^C", and both trees were gone with no cap or gate kill logged by the driver. The leap and the samplers (same launcher) were not affected. The cause is not known. Each process had finished 2 points (6 distinct points: 1.30, 1.37, 1.38, 1.46, 1.53, 1.54); those records are kept here and not used in the reading. The scan was started again from the beginning at the same window.
