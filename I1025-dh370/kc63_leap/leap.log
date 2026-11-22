@@ -1,0 +1,66 @@
+== 2026-11-22 03:06:03 -u ell_leap.py l1kc63dh370 1 63 sol_l1kc63Wm1025_D18.437500.npy 18.4375 sol_l1kc63Wm1025_D18.500000.npy 18.5 20 0.0625 --tol 1e-12 --fmax 1e-8 --cmax 1e-2 --fold (6 threads, nice 10, timeout 43200 s)
+/home/nathan/Source/choptuik-large-d-1025/solver/matter/dss_ell.py:213: RuntimeWarning: overflow encountered in multiply
+  cx = c * ((n - 1) * (a2 - 1) - 2 * L * g) / x
+/home/nathan/Source/choptuik-large-d-1025/solver/matter/dss_ell.py:214: RuntimeWarning: overflow encountered in multiply
+  ax = a * ((p * p + m * m) + 2 * L * g + (n - 1) * (1 - a2)) / (2 * x)
+/home/nathan/Source/choptuik-large-d-1025/solver/matter/dss_ell.py:217: RuntimeWarning: overflow encountered in multiply
+  lt = L * c * a2 * q / x
+/home/nathan/Source/choptuik-large-d-1025/solver/matter/dss_ell.py:88: RuntimeWarning: invalid value encountered in matmul
+  return f @ self._Tm
+/home/nathan/Source/choptuik-large-d-1025/solver/matter/dss_ell.py:218: RuntimeWarning: overflow encountered in multiply
+  px = (-self.D(p, omega) + cx * p - c * p / x + pc - lt) / (x - c)
+/home/nathan/Source/choptuik-large-d-1025/solver/matter/dss_ell.py:219: RuntimeWarning: overflow encountered in multiply
+  mx = (-self.D(m, omega) - cx * m + c * m / x - pc + lt) / (x + c)
+/home/nathan/Source/choptuik-large-d-1025/solver/matter/dss_ell.py:211: RuntimeWarning: overflow encountered in multiply
+  a2 = a * a
+/home/nathan/Source/choptuik-large-d-1025/solver/matter/dss_ell.py:213: RuntimeWarning: invalid value encountered in subtract
+  cx = c * ((n - 1) * (a2 - 1) - 2 * L * g) / x
+/home/nathan/Source/choptuik-large-d-1025/solver/matter/dss_ell.py:214: RuntimeWarning: invalid value encountered in add
+  ax = a * ((p * p + m * m) + 2 * L * g + (n - 1) * (1 - a2)) / (2 * x)
+/home/nathan/Source/choptuik-large-d-1025/solver/matter/dss_ell.py:216: RuntimeWarning: overflow encountered in multiply
+  pc = n * c * (p + m) / (2 * x)
+/home/nathan/Source/choptuik-large-d-1025/solver/matter/dss_ell.py:214: RuntimeWarning: overflow encountered in divide
+  ax = a * ((p * p + m * m) + 2 * L * g + (n - 1) * (1 - a2)) / (2 * x)
+/home/nathan/Source/choptuik-large-d-1025/solver/matter/dss_ell.py:218: RuntimeWarning: invalid value encountered in subtract
+  px = (-self.D(p, omega) + cx * p - c * p / x + pc - lt) / (x - c)
+/home/nathan/Source/choptuik-large-d-1025/solver/matter/dss_ell.py:219: RuntimeWarning: invalid value encountered in add
+  mx = (-self.D(m, omega) - cx * m + c * m / x - pc + lt) / (x + c)
+/home/nathan/Source/choptuik-large-d-1025/solver/matter/dss_ell.py:213: RuntimeWarning: overflow encountered in divide
+  cx = c * ((n - 1) * (a2 - 1) - 2 * L * g) / x
+/home/nathan/Source/choptuik-large-d-1025/solver/matter/dss_ell.py:217: RuntimeWarning: overflow encountered in divide
+  lt = L * c * a2 * q / x
+/home/nathan/Source/choptuik-large-d-1025/solver/matter/dss_ell.py:325: RuntimeWarning: overflow encountered in multiply
+  aG = cs(A, Q2, Kk) + (n - 1) * (A[Kk] - cs(A, A2, Kk)) + 2 * L * cs(A, G, Kk)
+/home/nathan/Source/choptuik-large-d-1025/solver/matter/dss_ell.py:212: RuntimeWarning: overflow encountered in multiply
+  g = a2 * q * q
+/home/nathan/Source/choptuik-large-d-1025/solver/matter/dss_ell.py:218: RuntimeWarning: overflow encountered in divide
+  px = (-self.D(p, omega) + cx * p - c * p / x + pc - lt) / (x - c)
+/home/nathan/Source/choptuik-large-d-1025/solver/matter/dss_ell.py:218: RuntimeWarning: invalid value encountered in add
+  px = (-self.D(p, omega) + cx * p - c * p / x + pc - lt) / (x - c)
+/home/nathan/Source/choptuik-large-d-1025/solver/matter/dss_ell.py:219: RuntimeWarning: overflow encountered in divide
+  mx = (-self.D(m, omega) - cx * m + c * m / x - pc + lt) / (x + c)
+/home/nathan/Source/choptuik-large-d-1025/solver/matter/dss_ell.py:214: RuntimeWarning: overflow encountered in add
+  ax = a * ((p * p + m * m) + 2 * L * g + (n - 1) * (1 - a2)) / (2 * x)
+/home/nathan/Source/choptuik-large-d-1025/solver/matter/dss_ell.py:216: RuntimeWarning: overflow encountered in divide
+  pc = n * c * (p + m) / (2 * x)
+/home/nathan/Source/choptuik-large-d-1025/solver/matter/dss_ell.py:219: RuntimeWarning: invalid value encountered in subtract
+  mx = (-self.D(m, omega) - cx * m + c * m / x - pc + lt) / (x + c)
+{"D": 18.5625, "l": 1, "kc": 63, "kappa": 0.7, "u0": 0.04, "Ks": 30, "Delta": 1.0574735632219059, "Delta_pred": 1.0574687875092208, "F": 2.7468336727593604e-10, "F_start": 5.304608645061468e-05, "steps": 2450, "constraint": 0.0020515129464256615, "dDelta_dF": 1231243424.3043654, "lam_gauge": 0.8774878734070416, "h": 0.0625, "seconds": 1321, "sv_J_small": [1.351664972367089e-16, 3.4546182806402634e-16, 4.785614063725251e-16, 5.655281009743812e-16], "sv_J_max": 10.820146038100534, "cos_t_v": [0.04733952335318274, 0.10638047074239249, 0.007036927441938434, 0.024023580496774694], "sv_B_min": 1.3376507642524622e-18, "sv_B_max": 10.820146263507286, "tan_norm": 1.6942833158258108, "sv_fold": 3.4546182806402634e-16, "cos_fold": 0.10638047074239249, "i_fold": 1, "n_null": 57, "sv_reg_small": [4.509852609283165e-11, 4.534977127164652e-11, 4.697044228218564e-11, 2.4980984871301262e-09], "cos_t_reg": [0.008298504703454068, 0.012940544051700658, 0.002753143289203252, 0.010554396292143586]}
+/home/nathan/Source/choptuik-large-d-1025/solver/matter/dss_ell.py:85: RuntimeWarning: invalid value encountered in matmul
+  return f @ self._Dm
+/home/nathan/Source/choptuik-large-d-1025/solver/matter/dss_ell.py:325: RuntimeWarning: invalid value encountered in subtract
+  aG = cs(A, Q2, Kk) + (n - 1) * (A[Kk] - cs(A, A2, Kk)) + 2 * L * cs(A, G, Kk)
+{"D": 18.625, "l": 1, "kc": 63, "kappa": 0.7, "u0": 0.04, "Ks": 30, "Delta": 1.0589276450631098, "Delta_pred": 1.058922744929869, "F": 2.7160160507721264e-10, "F_start": 5.264687790476652e-05, "steps": 2438, "constraint": 0.002197540350379257, "dDelta_dF": 1048895247.4649818, "lam_gauge": 0.8789815615118138, "h": 0.0625, "seconds": 1322, "sv_J_small": [7.992131396351684e-17, 2.410247481490361e-16, 6.476336691425113e-16, 8.375257283281064e-16], "sv_J_max": 10.890500036169412, "cos_t_v": [0.01490470427084718, 0.023113407084632626, 0.01256600328216683, 0.09871505754739993], "sv_B_min": 1.34492745724443e-17, "sv_B_max": 10.890500255981552, "tan_norm": 1.3343351443888052, "sv_fold": 8.375257283281064e-16, "cos_fold": 0.09871505754739993, "i_fold": 3, "n_null": 56, "sv_reg_small": [1.2441224863776807e-11, 4.915522648953098e-11, 4.9475093896540144e-11, 5.3545384243972394e-11], "cos_t_reg": [0.08388979111176477, 0.0046260157662521865, 0.011921013662047, 0.0010994178566123554]}
+fold watch: sigma_reg 4.510e-11 -> 1.244e-11, |J^+ dF/dn| 1.69 -> 1.33; h -> 0.03125
+{"D": 18.65625, "l": 1, "kc": 63, "kappa": 0.7, "u0": 0.04, "Ks": 30, "Delta": 1.0596566466033126, "Delta_pred": 1.0596546859837117, "F": 2.702751145445942e-10, "F_start": 1.961393176569441e-05, "steps": 2433, "constraint": 0.002273059510784627, "dDelta_dF": 972663144.8796744, "lam_gauge": 0.8797347970564556, "h": 0.03125, "seconds": 1333, "sv_J_small": [7.958552568224393e-17, 3.651397705536127e-16, 4.3055724617323347e-16, 5.936872769251293e-16], "sv_J_max": 10.925738109456304, "cos_t_v": [0.05628068570073831, 0.0019400870605818413, 0.0024082034499020256, 0.09395775581891319], "sv_B_min": 4.071674667406044e-17, "sv_B_max": 10.925738326434791, "tan_norm": 1.186351445455109, "sv_fold": 5.936872769251293e-16, "cos_fold": 0.09395775581891319, "i_fold": 3, "n_null": 56, "sv_reg_small": [1.3727986151823662e-11, 5.131439706744727e-11, 5.1657000437237926e-11, 5.689322539345791e-11], "cos_t_reg": [0.07722295315237987, 0.008165647843414822, 0.01231736743247717, 0.000962501164186874]}
+{"D": 18.6875, "l": 1, "kc": 63, "kappa": 0.7, "u0": 0.04, "Ks": 30, "Delta": 1.0603859046997757, "Delta_pred": 1.0603856481435154, "F": 2.682788243962412e-10, "F_start": 1.30116198992856e-05, "steps": 2426, "constraint": 0.00234992962921717, "dDelta_dF": 904170043.6168866, "lam_gauge": 0.880491710178196, "h": 0.03125, "seconds": 1319, "sv_J_small": [1.0994669440034004e-16, 4.1602090372276955e-16, 5.480089697625359e-16, 5.571222644374928e-16], "sv_J_max": 10.961021178607597, "cos_t_v": [0.10398249399547016, 0.06885595339086384, 0.06717712531158704, 0.006499400843244744], "sv_B_min": 2.4123293913560802e-17, "sv_B_max": 10.96102139279515, "tan_norm": 1.068965019249255, "sv_fold": 1.0994669440034004e-16, "cos_fold": 0.10398249399547016, "i_fold": 0, "n_null": 56, "sv_reg_small": [1.5031555164921197e-11, 5.3514152677429454e-11, 5.4095935307650376e-11, 6.016778737022802e-11], "cos_t_reg": [0.07142777715800512, 0.008401728277339437, 0.011198352796127667, 0.0011333648568293618]}
+/home/nathan/Source/choptuik-large-d-1025/solver/matter/dss_ell.py:334: RuntimeWarning: overflow encountered in subtract
+  rest = tau_term - zmu - cs(V, M, Kk) - cs(C, M, Kk) + 0.5 * n * cs(C, PM, Kk) - L * cs(C, H, Kk)
+{"D": 18.71875, "l": 1, "kc": 63, "kappa": 0.7, "u0": 0.04, "Ks": 30, "Delta": 1.0611165300343888, "Delta_pred": 1.0611151627962387, "F": 2.666890735388948e-10, "F_start": 1.295133483018742e-05, "steps": 2423, "constraint": 0.0024285155994755113, "dDelta_dF": 851848325.4526739, "lam_gauge": 0.8812527197177501, "h": 0.03125, "seconds": 1321, "sv_J_small": [1.495819609358468e-16, 3.730935624471488e-16, 5.87568327895453e-16, 7.672204199646136e-16], "sv_J_max": 10.996346047724737, "cos_t_v": [0.008967008150377823, 0.130146582895703, 0.045301770643599915, 0.014366398192355814], "sv_B_min": 8.31857531013484e-18, "sv_B_max": 10.996346259124607, "tan_norm": 0.959796813495498, "sv_fold": 3.730935624471488e-16, "cos_fold": 0.130146582895703, "i_fold": 1, "n_null": 56, "sv_reg_small": [1.6283949542173147e-11, 5.58552285397383e-11, 5.652222443294411e-11, 6.31286622666042e-11], "cos_t_reg": [0.06567652163444428, 0.00761482548922588, 0.011408740606064335, 0.002046713604130548]}
+/home/nathan/Source/choptuik-large-d-1025/solver/matter/dss_ell.py:215: RuntimeWarning: invalid value encountered in add
+  qx = (p + m) / (2 * x)
+/home/nathan/Source/choptuik-large-d-1025/solver/matter/dss_ell.py:216: RuntimeWarning: invalid value encountered in add
+  pc = n * c * (p + m) / (2 * x)
+{"D": 18.75, "l": 1, "kc": 63, "kappa": 0.7, "u0": 0.04, "Ks": 30, "Delta": 1.0618485111806937, "Delta_pred": 1.0618471553690019, "F": 2.653325925121139e-10, "F_start": 1.2905738377034861e-05, "steps": 2417, "constraint": 0.002508874392685065, "dDelta_dF": 798821198.8361973, "lam_gauge": 0.882016941216019, "h": 0.03125, "seconds": 1316, "sv_J_small": [7.914745689163807e-17, 3.8069478964329776e-16, 5.8340950192365e-16, 6.2801639451972635e-16], "sv_J_max": 11.031719582133675, "cos_t_v": [0.09942869971234597, 0.023316171821455716, 0.036943432532472224, 0.015701182024703466], "sv_B_min": 8.091111532488157e-17, "sv_B_max": 11.031719790752335, "tan_norm": 0.8814501915670071, "sv_fold": 7.914745689163807e-17, "cos_fold": 0.09942869971234597, "i_fold": 0, "n_null": 56, "sv_reg_small": [1.7644668267790673e-11, 5.821566876985495e-11, 5.891890584765924e-11, 6.658083487057348e-11], "cos_t_reg": [0.06015344045726903, 0.008632938719797966, 0.010948356758955247, 0.0030264344890448807]}
+{"D": 18.78125, "l": 1, "kc": 63, "kappa": 0.7, "u0": 0.04, "Ks": 30, "Delta": 1.0625818235457067, "Delta_pred": 1.0625804923269986, "F": 2.634190758117469e-10, "F_start": 1.2852368597766284e-05, "steps": 2410, "constraint": 0.0025908436761523834, "dDelta_dF": 755483255.0938464, "lam_gauge": 0.8827840366751118, "h": 0.03125, "seconds": 1317, "sv_J_small": [1.8763224548259672e-16, 3.36871443033965e-16, 3.9196043673855195e-16, 5.519945348487362e-16], "sv_J_max": 11.067144461224917, "cos_t_v": [0.06972251061845097, 0.08644801861006556, 0.1146481534468325, 0.06850793932551086], "sv_B_min": 4.934422648879468e-18, "sv_B_max": 11.067144667070162, "tan_norm": 0.8004392407734057, "sv_fold": 3.9196043673855195e-16, "cos_fold": 0.1146481534468325, "i_fold": 2, "n_null": 56, "sv_reg_small": [1.89999030665444e-11, 6.063286346217312e-11, 6.124370967429772e-11, 6.993099829649461e-11], "cos_t_reg": [0.05498225516069554, 0.008888596305509082, 0.009472400708362288, 0.004447601547210786]}
+{"D": 18.8125, "l": 1, "kc": 63, "kappa": 0.7, "u0": 0.04, "Ks": 30, "Delta": 1.0633160162831543, "Delta_pred": 1.0633151359107198, "F": 2.622420917743539e-10, "F_start": 1.2796714452122198e-05, "steps": 2406, "constraint": 0.0026745409386263004, "dDelta_dF": 715724495.8741893, "lam_gauge": 0.8835547834233838, "h": 0.03125, "seconds": 1317, "sv_J_small": [2.0507269552007778e-16, 3.030111145105851e-16, 4.403900839827515e-16, 4.847903021599864e-16], "sv_J_max": 11.102614595372524, "cos_t_v": [0.1360203732225756, 0.036026839801775075, 0.021200384986965495, 0.026066991247216734], "sv_B_min": 1.0399543557390867e-16, "sv_B_max": 11.102614798449627, "tan_norm": 0.7402169228980279, "sv_fold": 2.0507269552007778e-16, "cos_fold": 0.1360203732225756, "i_fold": 0, "n_null": 56, "sv_reg_small": [2.034201886377321e-11, 6.312618633963098e-11, 6.391823333493459e-11, 7.31421236601372e-11], "cos_t_reg": [0.04944897780491115, 0.009111761494640592, 0.009979848234743178, 0.004887555201322565]}
