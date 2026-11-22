@@ -70,4 +70,56 @@ the scan takes about 55 min (5 points a process at about 650 s); the scan shows 
 |---|---|---|---|
 | source check (win2's `kc71_syscheck.py`) | accepted; selftests exit 0; controls `--mutate=F` and `--mutate=steps` exit 1 | state \|F\| 3.2279802889e-10 against the record's 3.2292404728e-10 (0.04% apart, bar 1%); `freeze_from` 2609 steps = the record's | 20:15 (2 s) |
 | regrid (`ell_refine.py`, exit 0), child pid 41987, own session (`session_check_regrid.txt`: every chain ends at launchd, no claude, tty ??) | **accepted** by `kc79_syscheck_1025.py` (selftest exit 0); controls `--mutate=F` and `--mutate=steps` exit 1 | |F| 3.2694e-10, 2903 steps (freeze_from 2903 = the record's), constraint 1.107e-03, Delta 1.0767941558 (k_c 71: 1.0767972284; difference -3.073e-06); capped_run wall 671 s, the record's 662 s; 1 core (ps %cpu 100 of 600 allowed), rss max 2.83 GB (11 samples of 60 s); 18 RuntimeWarning lines of `dss_ell.py` | 20:15 to 20:27 (722 s with the checks) |
-| scan (`run_scan.sh`), started 20:27:48 | running: 4 processes of 1 thread, each printed `the record system`; available memory 16.0 GiB before the start (need 5.2) | | |
+| scan (`run_scan.sh`), 4 processes of 1 thread, all exit 0, each printed `the record system` | done, 20 evaluations (19 values and the repeat of 1.43); reader selftest exit 0, mutations `shift` and `round2` exit 1 | **two robust changes**: + to - in (1.430, 1.440), det-linear 1.431552, range [1.431039, 1.431552]; - to + in (1.460, 1.470), det-linear 1.469771, range [1.469771, 1.469819]; edge signs + at 1.34 and + at 1.52; repeat of 1.43 bit-identical | 20:27:48 to 21:26:07 (58.3 min; 622 to 747 s per point) |
+
+### Scan result (22 Nov 2026, scan 20:27:48 to 21:26:07 UTC, 58.3 min)
+
+All four processes exit 0 and each printed `the record system` (|F| 3.2694081469e-10, 2903 steps = the record's). 20 evaluations (19 values and the repeat of 1.43), each 622 to 747 s (mean 694 s; the first eight points 622 to 641 s, the later twelve 718 to 747 s) beside the other three processes.
+Reader `read_lower.py` (89309d3c, unedited): selftest exit 0, mutations `shift` and `round2` each exit 1 (`selftest_read_lower*.txt`); reading in `read_lower.txt`.
+
+| lambda | process | hybrid sign | ln\|det\| | noise-robust | float64 sign | seconds |
+|---|---|---|---|---|---|---|
+| 1.34 | p0 | + | -2520.153598 | yes | + | 632 |
+| 1.35 | p1 | + | -2520.167524 | yes | + | 641 |
+| 1.36 | p2 | + | -2520.342583 | yes | + | 641 |
+| 1.37 | p3 | + | -2520.617386 | yes | + | 640 |
+| 1.38 | p0 | + | -2520.971810 | yes | + | 622 |
+| 1.39 | p1 | + | -2521.404391 | yes | + | 629 |
+| 1.40 | p2 | + | -2521.930505 | yes | + | 633 |
+| 1.41 | p3 | + | -2522.596198 | yes | - | 633 |
+| 1.42 | p0 | + | -2523.549418 | yes | - | 730 |
+| 1.43 | p1 | + | -2526.226082 | yes | + | 741 |
+| 1.43 (repeat) | p3 | + | -2526.226082 | yes | + | 720 |
+| 1.44 | p2 | - | -2524.531701 | yes | - | 745 |
+| 1.45 | p3 | - | -2524.306936 | yes | + | 741 |
+| 1.46 | p0 | - | -2524.697160 | yes | + | 733 |
+| 1.47 | p1 | + | -2528.450591 | yes | + | 747 |
+| 1.48 | p2 | + | -2524.334183 | yes | + | 747 |
+| 1.49 | p3 | + | -2523.553692 | yes | + | 746 |
+| 1.50 | p0 | + | -2523.077272 | yes | + | 723 |
+| 1.51 | p1 | + | -2522.732337 | yes | + | 723 |
+| 1.52 | p2 | + | -2522.461798 | yes | + | 718 |
+
+- **Two robust changes, called by position.**
+  The root near lambda_1's line: + to - as printed in (1.430, 1.440), det-linear 1.431552, estimator range [1.431039, 1.431552].
+  The second root, 0.038219 above it: - to + as printed in (1.460, 1.470), det-linear 1.469771, estimator range [1.469771, 1.469819].
+  The range is a spread over interpolation choices, not an enclosure; the bracket is the 0.01 grid step. Orientation is printed, not used to identify a root and not compared across D.
+- Edge signs: + at 1.34, + at 1.52 (at D 19.25: + at 1.42, - at 1.52; nothing is drawn from the orientation). All 20 evaluations are noise-robust; no change touches a non-robust point. ln|det| minima without a sign change: none (the dips at 1.43, -2526.226, and at 1.47, -2528.451, sit beside the two changes).
+- Repeat of 1.43 (process 3 against process 1): sign, noise signs, float64 sign and ln|det| (-2526.226081788902) bit-identical: yes.
+- The float64 sign differs from the hybrid at 4 points (1.41 and 1.42: hybrid +, float64 -; 1.45 and 1.46: hybrid -, float64 +); not used.
+- Called **k_c 79 roots (macOS build)**: numerical evidence, not yet physical.
+
+Beside (information, not a pass rule), by position:
+
+| quantity | value |
+|---|---|
+| line's prediction at D 19.375, last difference | 1.434166 (the root near the line is -0.002614 from it) |
+| line's prediction, second difference | 1.432231 (the root near the line is -0.000679 from it) |
+| k_c 79 root near the line at D 19, 19.125, 19.25, 19.375 | 1.539658, 1.505784, 1.469975, 1.431552 |
+| differences per 0.125 in D | -0.033874, -0.035809, -0.038423 (second differences -0.001935, -0.002614) |
+| second root at D 19.375 against the D 19.25 root (1.469975) | -0.000204 |
+| spacing of the two roots at D 19.375 | 0.038219 (k_c 71 at D 19.5, win2, a different D: 0.077656 between 1.371531 and 1.449187) |
+
+This scan does not say which of the two k_c 79 roots at D 19.375 continues the D 19.25 root (the second root is 0.000204 from it; the root near the line is on the line's extrapolation to 0.0007 to 0.0026); that needs a D between 19.25 and 19.375, or a window below 1.34 and above 1.52 at D 19.375. The window ends at 1.34 and 1.52: nothing is said outside it.
+My predictions: source accepted with 2609 steps and both controls: yes; the regrid accepted: yes, with 2903 steps (I said about 2900) in 671 s (about 10 min: yes); the scan about 55 min: 58.3 min; the scan's count: missed (I gave one root near the line 55%, two roots 25%; the scan has two).
+Resources: the scan processes were not sampled (the regrid's samples: 1 core, rss max 2.83 GB); available memory 16.0 GiB before the scan, 86% free by `memory_pressure` after it.
