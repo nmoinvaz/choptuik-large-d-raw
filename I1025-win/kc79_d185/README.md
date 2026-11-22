@@ -59,7 +59,7 @@ xfkappa's `d18_hybsign.py REC STATE 18.5 1.66,1.67,1.68,1.69 OUT` (`I1025-mac/d1
 
 ## Status
 
-Part 1 done and accepted (below). Part 2, the scan, started 08:07:27 UTC by the regrid driver, and is running when this was pushed (2026-11-22 08:08:59 UTC).
+Part 1 done and accepted. Part 2, the scan, started 08:07:27 UTC and ended 09:39:42 UTC, exit 0 (both results below; pushed 2026-11-22 09:41:23 UTC). Reading: one robust change, + to - in this state, det-linear **1.676555** in range [1.676555, 1.676918]; `read_kc79_1025.py` printed "not the expected pattern", so there is no lambda_1 line from the script and **t5 rules** (by position).
 
 ## Result of part 1: the regrid (06:36:00 to 08:06:15 UTC, exit 0, 5415 s; the record's own `seconds`: 5409)
 
@@ -76,3 +76,50 @@ Part 1 done and accepted (below). Part 2, the scan, started 08:07:27 UTC by the 
 **Acceptance (`syscheck.txt`): ACCEPTED.** The record's |F| 2.87e-10 is inside the class bar (1e-9); the saved state reproduces its record: `freeze_from` gives **3083 steps = the record's** and the state's |F| is 2.8698182683e-10, equal to the record's. The controls on the same numbers refuse (|F| x 1.5, steps + 1), and so do `--mutate=F` (exit 1) and `--mutate=steps` (exit 1) on the real files (`syscheck_mutate.txt`). Before the run: the selftest (`selftest_syscheck79.txt`) and win2's original `kc71_syscheck.py` on win2's k_c 71 state (`control_kc71_syscheck.txt`) both passed on this machine. Blobs: state `sol_l1kc79Wm1025_D18.5000.npy` 81bcbd7e (41528 bytes), record `l1kc79Wm1025.jsonl` b930dfd7.
 
 **Cost (the pilot's numbers; `rows/regrid_samples.csv`, a line every 60 s, 176 samples):** 5415 s wall, cpu 9802 s (about 1.8 cores), peak working set 2.19 GB and peak private 2.48 GB (the largest python), at 4 threads, BelowNormal. The laptop's free memory fell to 4.79 GB at the sampler's lines (07:46 UTC) and to 3.52 GB at the watcher's 15 s polls and its commit rose from 11 to 32.6 GB (peak 07:54) while the regrid's worker held 0.93 GB working set and 1.26 GB private, so the drop came from another job on the laptop, not from the regrid; no alert fired (`rows/regrid_memwatch.log`). The win2 comparison: 3372 s at k_c 71 on a Core Ultra 7 265K.
+
+## Result of part 2: the scan (08:07:27 to 09:39:42 UTC, exit 0, 5535 s)
+
+`d18_hybsign.py` (e089207a) on the accepted k_c 79 state and record, lambda 1.66 to 1.69, one process, 4 threads, BelowNormal. It re-checked the record system first (exit 0, not 3). Raw rows `scan_kc79_D185_1025.jsonl`, log `scan_kc79_D185.log` and `rows/scan_kc79_raw.log`.
+
+| lambda | hybrid sign | ln\|det\| (hybrid) | noise test (2 seeds) | float64 sign | ln\|det\| (float64) | seconds |
+|---|---|---|---|---|---|---|
+| 1.66 | + | -2577.5965 | +, + robust | + | -2576.8027 | 1345 |
+| 1.67 | + | -2578.3432 | +, + robust | + | -2576.9962 | 1395 |
+| 1.68 | - | -2578.9865 | -, - robust | + | -2578.8756 | 1396 |
+| 1.69 | - | -2577.3990 | -, - robust | + | -2582.3358 | 1387 |
+
+The float64 sign is plus at all four points and differs from the hybrid at 1.68 and 1.69; the float64 scan has no sign change, as the reader prints.
+
+### The reading, as the scripts printed it (`read_kc79_D185.log`, `read_kc79_1025.log`, 09:39:42 UTC)
+
+```
+k_c 79, D 18.5, window 1.66-1.69: signs 1.66+ 1.67+ 1.68- 1.69-
+   robust change in (1.67, 1.68), + to - in this state: det-linear 1.676555, range [1.676555, 1.676918]
+   points not noise-robust: none; changes touching a non-robust point (not counted): none; ln|det| minima without a sign change: none; float64: sign changes none; differs from the hybrid at 2 of 4 points
+READING: not the expected pattern (1 robust change(s), 0 minus-to-plus, clean): no lambda_1 value; the coordinator rules
+```
+
+The reading fixed before the run named a minus-to-plus change. k_c 71's signs at 1.55 to 1.67 were minus and k_c 79's at 1.66 and 1.67 are plus, so the change reads plus to minus. The determinant's overall sign is each scan's own and can flip with k_c, so the orientation is not compared across k_c (t5's ruling, as at D 18.125). **I did not edit `read_kc79_1025.py`** (t5: leave it as fixed). The line below is my arithmetic, not a script line, and **t5 rules** on it.
+
+| k_c | lambda_1 at D 18.5 | step from the previous k_c |
+|---|---|---|
+| 63 | 1.677016 | |
+| 71 | 1.675995 | -1.021e-3 |
+| 79 | 1.676555 (det-linear; range 1.676555 to 1.676918) | +5.60e-4 |
+
+k_c 79 minus k_c 71 is +5.60e-4 and k_c 79 minus k_c 63 is -4.61e-4. The one robust change is inside 0.01 of k_c 71's root. The step 71 to 79 reverses the direction of the step 63 to 71 and is about half its size, so the k_c 79 value lies between the other two and the three values are not monotone. The range's upper end, 1.676918, is 9.2e-4 above k_c 71's value and 9.8e-5 below k_c 63's.
+
+### Cost of the scan (`rows/scan_samples.csv`, a line every 60 s, 91 samples of the worker)
+
+One compute process (worker pid 17432, launcher 1884 idle): 5535 s wall, cpu 7959 s (about 1.4 cores), peak working set 1.68 GB, peak private 2.45 GB, 4 threads (12 threads at the peak), BelowNormal. The laptop's free memory stayed at or above 22.56 GB, commit at most 11.6 GB; the alert-only watcher raised no alert (`rows/scan_memwatch.log`). Nothing else of mine ran.
+
+### Exit codes and notes
+
+| step | exit |
+|---|---|
+| regrid (`ell_refine.py`, 5415 s) | 0, accepted |
+| scan (`d18_hybsign.py`, 5535 s) | 0 |
+| `d18f_read.py window 18.5 1.66 1.69` | 0 |
+| `read_kc79_1025.py` | 0 (printed "not the expected pattern") |
+
+The scan driver and watcher had the coordinator's old address (t2j) hard-coded for their hc; the scan-end report to t5 was sent by hand at 09:42 UTC. The scan and regrid ran detached (WMI lineage), outside my terminal.
