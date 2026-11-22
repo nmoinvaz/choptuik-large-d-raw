@@ -72,3 +72,27 @@ Estimate: at k_c 63 a point took 425 to 530 s with two processes running, at k_c
 ## Log
 
 (appended below as the run goes)
+- 2026-11-22 03:01:25 UTC: both scan processes started (k_c 63 root pid 27816, k_c 55 root pid 39740; the driver's pre-checks, including the 32 planted controls, passed at 03:01:22). **System check, first line of each log: "the record system" on both**: k_c 63 |F| 2.7938227524e-10 against the record's 2.7910721275e-10 (0.10%), steps 2483 against 2483; k_c 55 |F| 2.7478780671e-10 against 2.7434693797e-10 (0.16%), steps 2169 against 2169.
+- 2026-11-22 about 03:05 UTC: the coordinator's hc: keep the repeat at lambda 1.71 (it costs two points and checks determinism inside each process); report its |det| difference beside the result; the rest of the plan stands as written. The post will give, per k_c, the ln|det| difference of the two 1.71 records (the bar is 1e-6) and their sign agreement.
+- 2026-11-22 04:43:05 UTC: the k_c 55 scan ended, exit 0, wall 6102 s, not capped. 05:45:51 UTC: the k_c 63 scan ended, exit 0, wall 9868 s, not capped. The driver merged both scans (repeat checks PASS), read both and compared at 05:45:59 UTC (`done` line in `../exits_1025.txt`). The runner that started the scans hit its usage limit at that moment; its successor (a new session on win2, started 06:20 UTC) found the files, checked them against the logs and wrote the Result below and the post at 2026-11-22 06:30 UTC.
+
+## Result (the driver's output, read and posted by the successor session; nothing recomputed)
+
+**By the fixed reading the root is STABLE at D 18.375: both k_c have one robust change in (1.70, 1.71), and the k_c 55 estimate is 0.000850 above the k_c 63 root (bar 0.01).**
+
+| item | k_c 63 | k_c 55 |
+|---|---|---|
+| system check (first line) | the record system: \|F\| 2.7938227524e-10 (record 2.7910721275e-10), steps 2483 (2483) | the record system: \|F\| 2.7478780671e-10 (record 2.7434693797e-10), steps 2169 (2169) |
+| points | 19, lambda 1.62 to 1.80 at 0.01, all noise robust | 19, same, all noise robust |
+| robust change | (1.70, 1.71), plus to minus | (1.70, 1.71), minus to plus |
+| det-linear estimate (xfkappa's `changes()`) | 1.709004 | 1.709853 |
+| estimator range, 4 estimates (information) | [1.709004, 1.709163] | [1.709853, 1.709859] |
+| repeat at 1.71, hybrid sign | -1 and -1 | +1 and +1 |
+| repeat at 1.71, ln\|det\| difference (bar 1e-6) | 0.000e+00 | 0.000e+00 |
+| float64 sign differs from the hybrid | 8 of 19 points (1.63 to 1.70) | 1 of 19 (1.71) |
+| ln\|det\| minima without a change | none | none |
+| wall (exit) | 9868 s (0) | 6102 s (0) |
+
+d = estimate(k_c 55) - estimate(k_c 63) = +0.000850: STABLE. Information, not read: the orientation is the opposite (plus to minus at k_c 63, minus to plus at k_c 55; waits for xfkappa's sign-convention check) and the two estimator ranges do not overlap. The 0.00085 is a difference of two det-linear point estimates inside one 0.01 bracket, so it is not an error bar on either root. The fine reading of `read_fine.py` (0.002 scan rule) says OTHER at both k_c (one robust change; not used here).
+
+The points are in `b63_scan_merged.jsonl` and `b55_scan_merged.jsonl` (19 each), the raw records with both 1.71 evaluations in `b63_scan.jsonl` and `b55_scan.jsonl`.

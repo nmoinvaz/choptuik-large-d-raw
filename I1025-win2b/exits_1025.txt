@@ -209,3 +209,22 @@
 1025 kc55d1825 result: repeat check PASS (1.86); two robust k_c 55 changes (1.74,1.76) plus-to-minus est 1.742625 STABLE vs k_c 63 root 1.7425, and (1.94,1.96) minus-to-plus est 1.946659 k_c 55 ONLY; k_c 63 roots 1.3885 and 2.3187 k_c 63 ONLY; ln|det| minimum without a change at 1.46 (shallow), dip fit l0 1.658 outside its window, not read; scans 9280 s and 8933 s, no cap 2026-11-22 02:05:24 UTC
 1025 kc55d1825 result posted on #1025 comment 7072669877, raw 1ddc991b; nothing runs, nothing queued 2026-11-22 02:06:07 UTC
 1025 kcbreak README (window 1.62-1.80 at 0.01 at both k_c, the reading, the repeat check, controls), inputs and driver written, pushing before the run 2026-11-22 03:00:43 UTC
+1025 kcbreak driver started, pre-checks 2026-11-22 03:01:07 UTC
+1025 kcbreak pre-checks ok: pins, worktree 505d8399, both record lines, planted controls pass 2026-11-22 03:01:22 UTC
+1025 kcbreak lambda list (both k_c): 1.62,1.63,1.64,1.65,1.66,1.67,1.68,1.69,1.70,1.71,1.72,1.73,1.74,1.75,1.76,1.77,1.78,1.79,1.80,1.71 2026-11-22 03:01:23 UTC
+1025 kcbreak sampler pid 27040 (every 60 s, samples.csv) 2026-11-22 03:01:23 UTC
+1025 kcbreak scan_kc63 root pid 27816, cap 28800 s, want exit 0 2026-11-22 03:01:25 UTC
+1025 kcbreak scan_kc55 root pid 39740, cap 28800 s, want exit 0 2026-11-22 03:01:25 UTC
+1025 kcbreak both scans running since 03:01:25 UTC; the system check passes on both (k_c 63 |F| 2.7938227524e-10 against 2.7910721275e-10, steps 2483; k_c 55 |F| 2.7478780671e-10 against 2.7434693797e-10, steps 2169) 2026-11-22 03:02:25 UTC
+1025 kcbreak scan_kc55 exit 0 (want 0) wall 6102 s capped 0 OK 2026-11-22 04:43:05 UTC
+1025 kcbreak scan_kc63 exit 0 (want 0) wall 9868 s capped 0 OK 2026-11-22 05:45:51 UTC
+1025 kcbreak sampler pid 27040 ended 2026-11-22 05:45:52 UTC
+1025 kcbreak merge k_c 63: PASS ; merged 19 points (1.620 to 1.800) into D:/choptuik-large-d-raw/I1025-win2b/kc_break/b63_scan_merged. 2026-11-22 05:45:52 UTC
+1025 kcbreak merge k_c 55: PASS ; merged 19 points (1.620 to 1.800) into D:/choptuik-large-d-raw/I1025-win2b/kc_break/b55_scan_merged. 2026-11-22 05:45:52 UTC
+1025 kcbreak reading k_c 63: change in (1.70, 1.71): plus-to-minus, ROBUST; det-linear estimate 1.709004 (information)|ln|det| local minimum at 1.62 (ln -1907.651774): at the scan edge (below its neighbour by 0.0281)|ln|det| local minimum at 1.71 (ln -1910.825496): beside a change (below the left neighbour by 2.2012, the right by 2.7228)|endpoint signs: + at 1.62, - at 1.80| 2026-11-22 05:45:56 UTC
+1025 kcbreak dip fit k_c 63: D 18.375 k_c 63: 19 points, step 0.01; ln|det| local minima WITHOUT a change: none| 2026-11-22 05:45:56 UTC
+1025 kcbreak reading k_c 55: change in (1.70, 1.71): minus-to-plus, ROBUST; det-linear estimate 1.709853 (information)|ln|det| local minimum at 1.71 (ln -1611.412851): beside a change (below the left neighbour by 4.2076, the right by 4.3093)|endpoint signs: - at 1.62, + at 1.80| 2026-11-22 05:45:59 UTC
+1025 kcbreak dip fit k_c 55: D 18.375 k_c 55: 19 points, step 0.01; ln|det| local minima WITHOUT a change: none| 2026-11-22 05:45:59 UTC
+1025 kcbreak compare: k_c 63 robust change in (1.700, 1.710), plus-to-minus: det-linear estimate 1.709004, estimator range [1.709004, 1.709163] (4 estimates)|k_c 55 robust change in (1.700, 1.710), minus-to-plus: det-linear estimate 1.709853, estimator range [1.709853, 1.709859] (4 estimates)|PAIRING k_c 63 root 1.709004 (bracket (1.700, 1.710), plus-to-minus) with the nearest k_c 55 robust change in (1.700, 1.710), minus-to-plus, estimate 1.709853: k_c 55 minus k_c 63 = +0.000850 -> STABLE (within 0.01). Information: orientation the opposite; the |READING: the root is STABLE at D 18.375 (the k_c 55 estimate within 0.01 of the k_c 63 root)|SUMMARY: k_c 63 1 robust change(s), k_c 55 1 robust change(s); verdicts ['STABLE']| 2026-11-22 05:45:59 UTC
+1025 kcbreak done 2026-11-22 05:45:59 UTC
+1025 kcbreak README Result written by the successor session; pushing raw and posting 2026-11-22 06:30:32 UTC
