@@ -1,3 +1,7 @@
+planted: a root in the middle of the window: edge None, expected None: PASS
+planted: a root 0.03 above the low edge: edge low, expected None: FAIL
+planted: a root 0.02 below the high edge: edge high, expected high: PASS
+planted: a root 0.031 above the low edge: edge None, expected None: PASS
 planted: a clear root: read, expected not read: FAIL
 planted: two minus-to-plus roots within 0.03 of the path: not read, expected not read: PASS
 planted: no minus-to-plus root: not read, expected not read: PASS

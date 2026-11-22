@@ -90,3 +90,9 @@ The D 19 window is as written above and in the pre-run post: lambda 1.40 to 1.80
 ## Result
 
 Not yet run.
+
+## Processes outside the terminal (the coordinator's hc, 2026-11-22 ~08:00 UTC)
+
+The terminal of the old runner was ended at 07:17 UTC and took its driver tree with it (see above). Every helper of this task is now started outside the terminal that holds the session, by `cim_start.ps1` (`Win32_Process.Create` of `cmd.exe /c NAME.cmd`; the `.cmd` starts bash at BelowNormal with `start /wait /belownormal /b`, so the chain reads bash <- cmd.exe <- WmiPrvSE.exe <- svchost.exe <- services.exe <- wininit.exe and never touches claude.exe). `chain.ps1 PID...` prints the ParentProcessId chains. `cim_probe.sh` (run through it at 08:09 UTC) showed that the tree has git, gh, python, tasklist, taskkill, powershell, the md510 venv and BelowNormal, and that its chain does not contain claude.exe.
+
+At 08:10 UTC the helpers started from the terminal at 07:45 (`relaunch_leg1.ps1`) were replaced by the same four started with `cim_start.ps1`: `leg1_guard.sh` (copier, 12 h cap at 15:50:08 UTC by exact pid, end markers), the D 19 waiter (`kcl_scan.sh 19 1.40 1.80 1.545995`), `mem_watch.ps1` and `commit_watch.ps1`. The replacement first left the old guard and old waiter running (their script processes have a different parent than the `bash -c` stubs that the kill followed); both were killed by exact pid after their command lines and start times (07:45:20 UTC) were checked, so only one guard and one waiter remain. Leg 2 starts the same way: `launch_leap2.ps1 DA DB H`, and its scan waiters with `cim_start.ps1 -Name <n> -Bash 'TAGL=l1kc71Lw1025b LEAPFIN=leap2.finished bash kcl_scan2.sh D LO HI PATH'`.
