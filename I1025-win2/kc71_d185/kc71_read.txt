@@ -1,0 +1,24 @@
+reference roots recomputed from the input files: k_c 63 [1.677016, 2.420394] (expected [1.677016, 2.420394]), k_c 55 [1.873934, 2.213669] (expected [1.873934, 2.213669])
+scan files: scan_P1.jsonl 12 rows, scan_P2.jsonl 13 rows, scan_P3.jsonl 12 rows, scan_P4.jsonl 13 rows
+repeat 1.77 (P1, P2): +1 -2236.0928122605 and +1 -2236.0928122605, difference +0.00e+00 (bar 1e-6): agree
+repeat 2.25 (P3, P4): -1 -2222.9234889399 and -1 -2222.9234889399, difference +0.00e+00 (bar 1e-6): agree
+
+D 18.5, k_c 71, files ['scan_P1.jsonl', 'scan_P2.jsonl', 'scan_P3.jsonl', 'scan_P4.jsonl']; lambda_0 2.1181259879 (error 5.6e-09)
+points 48, 1.55 to 2.49; not noise-robust: none
+signs: 1.55- 1.57- 1.59- 1.61- 1.63- 1.65- 1.67- 1.69+ 1.71+ 1.73+ 1.75+ 1.77+ 1.79+ 1.81- 1.83- 1.85- 1.87- 1.89- 1.91- 1.93- 1.95- 1.97- 1.99- 2.01- 2.03- 2.05- 2.07- 2.09- 2.11- 2.13- 2.15- 2.17- 2.19- 2.21- 2.23- 2.25- 2.27- 2.29- 2.31- 2.33- 2.35- 2.37- 2.39- 2.41- 2.43- 2.45- 2.47- 2.49-
+repeated points: [(1.77, 'agree', '+0.0e+00'), (2.25, 'agree', '+0.0e+00')]
+  root in (1.67, 1.69), - to +: det-linear 1.675995, range [1.675995, 1.676550], delta -0.442131
+  root in (1.79, 1.81), + to -: det-linear 1.809322, range [1.809322, 1.809619], delta -0.308804
+robust sign changes: 2; touching a non-robust point (not counted): none
+ln|det| local minima without a sign change: none
+float64 sign changes: 2 in [(1.65, 1.67), (1.85, 1.87)]; float64 differs from the hybrid at 4 of 48 points
+
+THE READING (fixed before the run): each k_c 71 root against the k_c 63 roots [1.677016, 2.420394] and the k_c 55 roots [1.873934, 2.213669], bar 0.02:
+  k_c 71 root in (1.67, 1.69), - to +: det-linear 1.675995, range [1.675995, 1.676550]: nearest k_c 63 root 0.001021 away, nearest k_c 55 root 0.197939 away: 63-near
+  k_c 71 root in (1.79, 1.81), + to -: det-linear 1.809322, range [1.809322, 1.809619]: nearest k_c 63 root 0.132306 away, nearest k_c 55 root 0.064612 away: neither
+OVERALL: neither: not converged at these k_c (classes: 63-near, neither)
+
+information:
+  hybrid signs at the 48 lambda points of this grid that k_c 63 also has: equal at 17, opposite at 31 (the orientation labels are each scan's own det-sign convention: no reading from them)
+  hybrid signs at the 43 lambda points of this grid that k_c 55 also has: equal at 20, opposite at 23 (the orientation labels are each scan's own det-sign convention: no reading from them)
+  signs by lambda (k_c 71): 1.55- 1.57- 1.59- 1.61- 1.63- 1.65- 1.67- 1.69+ 1.71+ 1.73+ 1.75+ 1.77+ 1.79+ 1.81- 1.83- 1.85- 1.87- 1.89- 1.91- 1.93- 1.95- 1.97- 1.99- 2.01- 2.03- 2.05- 2.07- 2.09- 2.11- 2.13- 2.15- 2.17- 2.19- 2.21- 2.23- 2.25- 2.27- 2.29- 2.31- 2.33- 2.35- 2.37- 2.39- 2.41- 2.43- 2.45- 2.47- 2.49-

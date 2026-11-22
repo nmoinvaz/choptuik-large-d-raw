@@ -1,0 +1,11 @@
+controls: kc71_syscheck selftest 0 (0); kc71_read selftest 0 (0), --break 1 (1); pair_check selftest 0 (0), --break 1 (1); d18d_read selftest 0 (0), --mutate=orient 1 (1)
+regrid: exit 0, 3372 s
+acceptance check: exit 0, 0 s: ACCEPTED: the record class's |F| with a step count that comes back
+pair gate: passed after 828 s: PAIRS: both agree
+scan_P3: exit 0, 9384 s, 12 points
+scan_P1: exit 0, 9437 s, 12 points
+scan_P4: exit 0, 10270 s, 13 points
+scan_P2: exit 0, 10301 s, 13 points
+kc71_read: exit 0: OVERALL: neither: not converged at these k_c (classes: 63-near, neither)
+points_table_kc71: exit 0
+kc71 done (pair gate pass)

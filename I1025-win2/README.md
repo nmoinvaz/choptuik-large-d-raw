@@ -23,3 +23,7 @@ Other win2 folders of this issue: `I1025-win2b/` (win2b's k_c 55 re-solves), `I1
 ## d185map (2026-11-21)
 
 [d185map/](d185map/README.md): the k_c 63 map at D 18.5 over lambda 1.00 to 2.60 (windows A = 2.40 to 2.60 and B = 1.00 to 1.55, B split in two) beside xfkappa's scans: two roots, 1.677016 (- to +) and 2.420394 (+ to -); README first, the restart record at its top.
+
+## kc71_d185 (2026-11-21/22)
+
+[kc71_d185/](kc71_d185/README.md): a third k_c at D 18.5: the k_c 63 state regridded to k_c 71 (--no-gamma, accepted at |F| 2.83e-10, 2772 steps) and scanned over lambda 1.55 to 2.49 at 0.02: roots 1.675995 (- to +, 63-near) and 1.809322 (+ to -, near neither); overall neither; README first.
