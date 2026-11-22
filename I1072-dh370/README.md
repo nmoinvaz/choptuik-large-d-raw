@@ -35,6 +35,15 @@ Hypothesis, not yet shown: #1033 mapped a well-resolved uniform state (M 384) do
 
 Step 2 then runs on the converged L 0.5 and 0.4 states at M' 96 and 128, as written, with step 1's selftest (the gp control on a mapped state) on ae96bcc6 (exit 0).
 
+## Second amendment (t5, after 1c's stop; option C with one more solve; written before these runs, 2026-11-22 21:38 UTC by the clock)
+
+`run_step2.sh` (unit `i1072d`, 6 threads, nice 10, worktree 1072b at ae96bcc6), stopping at the first failure:
+- 1d: L 0.7 at M' 96 from the converged L 0.7 M' 128 state (same map and s0 1.832595714594046). If it fails, step 2 runs on the M' 128 states only, and the report says so.
+- 2a: the gp selftest on the converged L 0.7 M' 128 state: `lowD_gamma.py --selftest <uniform M 128 state> <that state> --threads=6`, exit 0.
+- 2b: gamma, `lowD_gamma.py gamma_D3.15.jsonl <state> --threads=6 --lam0=4.397784106690153 --xtol=1e-11`, on L 0.7 at M' 128, L 0.7 at M' 96 (if 1d converged) and L 0.9 at M' 128, each followed by `accept_gamma.py` (written here; its selftest and its three mutations shift, sign and F, which must each exit 1, run first).
+- Acceptance as written: each gamma at M' 128 within 1.05e-6 of the uniform gamma(128) = 0.22738724224291604 (raw `I1070-macm3/lowD_gamma_D3.15_M128_r2.jsonl`, blob b9da6a94: 1 sign change, |F| 1.1e-28, 7 determinants); every run ends with exactly one sign change in its bracket and |F| below 1e-27. Reported beside it (not a pass rule): gamma(L 0.7, M' 128) - gamma(L 0.7, M' 96) against the uniform 1.05e-6 (the uniform gamma(96) is 0.22738618769170593, raw `I1070-dh170/lowD_gamma_D3.15_M96.jsonl`, blob 3f0e2256, difference 1.0546e-6), and Ecker et al.'s 0.22739 within about 1e-5 (#1073).
+- Tighter maps at D 3.15 (L 0.6, or L 0.5 straight from M 160) wait. Step 3 at D 3.0444 starts from #1033's converged L 0.4 M' 160 state (dh610), which came from a well-resolved M 384 source: L 0.4 at M' 128 from it.
+
 ## Cost (the issue's estimate)
 
 Solves: minutes to an hour each at M' <= 128. gamma: about 170 s per determinant at M 128 (#1070's D 3.15), 7 to 11 determinants per state. Steps 0 to 2 about 3 to 5 h; step 3 a similar time.
@@ -68,3 +77,4 @@ Solves: minutes to an hour each at M' <= 128. gamma: about 170 s per determinant
 | 1c, L 0.4 at M' 128, L 0.5 and 0.4 at M' 96 | not run (the driver stops at the first failure) | |
 
   Beside (information): the stored uniform Delta(M 128) is 2.961319687827138 and Delta(M 160) 2.9613196436806164 (difference -4.41e-8); L 0.7 at M' 128 is -1.1e-9 from the M 160 value and L 0.9 +1.05e-8. Converged states saved in `states2/` (L 1 at M 128, L 0.9 and L 0.7 at M' 128). Gain per the issue's step 2 is not measured yet (no gamma run).
+- Second amendment, 1d and 2a (unit i1072d, 21:38 to 21:58 UTC, `steps_step2.txt`): `accept_gamma.py` selftest exit 0 and its three mutations (shift, sign, F) exit 1. **1d passes**: L 0.7 at M' 96 from the L 0.7 M' 128 state converged in 66 s, Delta 2.9613196528022181, plans 555 / 307 / 264 steps (the L 0.7 M' 128 Delta is 2.9613196425536543, difference +1.02e-8; the uniform M 160 Delta 2.9613196436806164). **2a passes** (`selftest_gp_L07_M128.txt`, exit 0): the identity at M 128 equal bit for bit (ln|det| 2791.4473628999385 uniform and mapped L 1) and the gp control on the L 0.7 M' 128 state moves ln|det| from 2661.729124000186 to 2667.6043583769124.
