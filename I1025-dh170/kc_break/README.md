@@ -35,3 +35,44 @@ For the k_c 63 robust change in 1.62 to 1.80: if k_c 55 has a robust change whos
 
 ## Log
 - 2026-11-22 02:59:17 UTC: folder, scripts and inputs prepared; the window, the reading and the controls are fixed above before any run. Reader selftest 02:58 UTC: PASS, both mutations FAIL.
+
+## Takeover
+- 2026-11-22 03:32:56 UTC: the first runner on dh170 hit the account's usage limit at its prompt and stopped. Both lanes and the reading waiter (`read_kcbreak.sh`) kept running as its children; I (the second runner, started by the coordinator at about 06:20 UTC) touched none of them.
+- The k_c 55 lane ended at 05:35:39 UTC, exit 0, while the first runner was blocked; it was unread until 06:26 UTC. No ALERT line, no exit other than 0.
+- The reading ran by its own script at 06:39:13 UTC, with the scans, the reader and its selftests exactly as pinned above. I added nothing to the scans or the reader.
+
+## Result (written 2026-11-22 06:40:26 UTC)
+Both lanes ran to the end: 21 of 21 evaluations each, system check passed, every point noise-robust, the 1.71 repeats (first, middle, last) bit-identical in both scans (ln|det| difference 0.0, sign, noise and float64 sign equal).
+
+| | k_c 55 | k_c 63 |
+|---|---|---|
+| system check |F| (record), steps | 2.7115343168e-10 (2.7071892717e-10, +0.16%), 2157 (2157) | 2.7868995770e-10 (2.7871059443e-10, -0.007%), 2471 (2471) |
+| exit, wall | 0, 9369 s (2:35:59 by /usr/bin/time) | 0, 13164 s (3:39:16) |
+| seconds per point | 420-473, mean 446 | 467-740, mean 626 (660-740 for the 13 points beside the k_c 55 lane, 467-516 for the 8 after it ended) |
+| max RSS | 1.10 GiB | 1.42 GiB |
+| hybrid signs, 1.62 to 1.80 | --------+++++++++-- (1.62 to 1.69 minus, 1.70 to 1.78 plus, 1.79 and 1.80 minus) | --------++++++++++- (1.62 to 1.69 minus, 1.70 to 1.79 plus, 1.80 minus) |
+| robust changes (det-linear estimate; estimator range = spread over the interpolation choices of d185_scan_read.changes, not an enclosure) | (1.69, 1.70): 1.695491 [1.695417, 1.695491]; (1.78, 1.79): 1.784813 [1.784813, 1.785358] | (1.69, 1.70): 1.692919 [1.692919, 1.692979]; (1.79, 1.80): 1.791027 [1.791027, 1.791218] |
+| ln|det| minima without a sign change | none | none |
+| float64 sign differs from the hybrid | 1 of 21 evaluations (at 1.70) | 11 of 21 |
+
+Max RSS from /usr/bin/time -v: k_c 55 1155948 kB (1.10 GiB), k_c 63 1487748 kB (1.42 GiB).
+
+**Reading, as fixed (the reader's output is kc_break_read.txt): k_c-stable at D 18.4375.** Both k_c 63 roots have a k_c 55 root within 0.01: 1.692919 against 1.695491 (k_c 55 minus k_c 63 +0.002573), and 1.791027 against 1.784813 (-0.006214). No unmatched k_c 55 change. The signs are each state's own and are not compared.
+- The first root is the one on the k_c 63 path of comment 7072529186 (that path's straight line between D 18.25 and D 18.5 gave 1.6935). The second root, at 1.791, is another root of the window; the coordinator's rule was written for one root, and the reader applies it to each.
+- The 0.01 grid cannot exclude two more k_c 55 roots inside (1.69, 1.70): an odd count of changes shows one, not how many. At D 18.5 k_c 55 has no root there: win2b's fine scan finds a ln|det| minimum at 1.684 without a sign change (comment 7070843891; its complex-pair fit is information only). So the break lies between D 18.4375 and D 18.5.
+
+## Predictions against the result
+| prediction | result |
+|---|---|
+| system check passes in both lanes (95%); repeat check bit-identical in both (90%) | yes, yes |
+| every point noise-robust, k_c 63 (80%) and k_c 55 (70%) | yes, yes |
+| k_c 63: exactly one robust change in the window (85%) | **no: two**, (1.69, 1.70) and (1.79, 1.80); the first is in (1.69, 1.70) as predicted (65%) |
+| reading: stable 40%, breaks with one further change 20%, breaks with a ln|det| minimum 30%, no reading 10% | stable |
+| a ln|det| minimum without a change, its dip fit a complex pair (70%) | no minimum without a change in either scan; no dip fit |
+| float64 differs at 5 of 21 or fewer in each lane (70%) | k_c 55 yes (1); **k_c 63 no (11)** |
+| wall 1.8 to 2.8 h per lane (65%), both inside the 8 h cap (95%) | k_c 55 2.60 h yes; **k_c 63 3.66 h no** (626 s a point beside the other lane); both inside the cap |
+| max RSS below 2.5 GiB each (90%) | yes (1.10 and 1.42 GiB) |
+
+## Log
+- 2026-11-22 06:39:13 UTC: reader ran, exit 0.
+- 2026-11-22 06:40:26 UTC: result written.
