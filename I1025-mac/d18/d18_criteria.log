@@ -219,3 +219,7 @@ D 18.5 root. The pass rules are unchanged (d18_check.py 08969ea2, then signtest.
    k_c 63 at D 18.125 by the same estimator: (1.77, 1.78), det-linear 1.772012, range [1.772012, 1.772404]. d18k2_read.py (blob 52f31e53):
    5 planted cases PASS (a complex pair and a real pair inside one bracket among them); --mutate=tol and --mutate=dip (beta forced
    positive) FAIL (d18k2_read_selftest.log). lane_d18m.sh started 00:25:29 UTC; the system check passed (|F| 2.7637952785e-10, 2209 steps).
+== 2026-11-22 01:51:50 (m) result (d18125k55_read.log): D 18.125 at k_c 55 over 1.65-1.90, 26 points, all noise-robust; one robust change,
+   (1.77, 1.78) [1.772947, 1.773343]; no ln|det| minimum without a change in either scan (no dip fit needed). Against k_c 63's 1.772012:
+   +0.000936, within 0.01. Reading: the root there is k_c-stable at D 18.125. Information (d18125k_numbers.log): k_c 55 - k_c 63 is
+   -0.000134 at D 17.75 and +0.000936 here; the k_c 63 path through the k_c-stable roots has slopes -0.2401, -0.2390, -0.2834, -0.2360, -0.2612.

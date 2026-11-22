@@ -201,3 +201,6 @@ Written before the run (criteria in `d18/d18_criteria.log`, 2026-11-21 03:31:59 
   Mac's `out/sol_l1kc55F1025_D18.125000.npy` on its record line), the hybrid over **lambda 1.65 to 1.90 at 0.01 (26 points)**. Reading: a
   k_c 55 root within 0.01 of k_c 63's (winb's D 18.125 scan, one change in (1.77, 1.78)) means k_c-stable there; none, or a different place,
   k_c-dependent. Every ln|det| minimum without a change is reported with a dip fit.
+- (m) (00:25-01:52 UTC), information: D 18.125 at k_c 55 has one robust change over 1.65-1.90, at **1.772947-1.773343**, 9.36e-4 from
+  k_c 63's 1.772012 (winb): **reading k_c-stable at D 18.125**; no ln|det| minimum without a change (`d18/d18125k55_scan.log`,
+  `d18/d18125k55_scan_1025.jsonl`, `d18/d18125k55_read.log`; path and differences `d18/d18125k_numbers.py`, `d18/d18125k_numbers.log`).
