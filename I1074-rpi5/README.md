@@ -38,13 +38,13 @@ While checking the layout I had listed their runs' `shoot_inner.par` for 3.1 to 
 128 and 256 runs have the same settings at all D. I also saw our M sequence at 3.2 (3.0947374390 at M 128, 3.0947374327 at M 160 and 192).
 Tests (b) and (c) were defined after that but before their numbers were computed.
 
-## Result (run 2026-11-22 21:3x to 21:4x UTC; exits.txt, sha256.txt)
+## Result (run 2026-11-22 21:16 to 21:20 UTC; exits.txt, sha256.txt)
 
 **The step is theirs: their 512-mode runs change grid settings between D 3.18 and 3.2, and our D 3.2 is converged and on its own curve.**
 Acceptance passes: D 3.7 theirs 3.465200504469, ours (M 80) 3.465200483544, +2.09e-8 (bar 1e-7); D 3.2 theirs - ours +2.470e-6. Controls:
 `--mutate=shift` fails acceptance 1 (exit 1), `--mutate=trend` (d(3.2) x 3) makes the verdict "not theirs" (exit 1).
 
-**(a) Their settings** (`shoot_inner.par` of the 512-mode runs; D 3.1 to 3.35, 48 runs below 3.2 plus 3.2, 3.25, 3.3, 3.35):
+**(a) Their settings** (`shoot_inner.par` of the 512-mode runs; D 3.1 to 3.35: 44 runs at 3.1 to 3.18, then 3.2, 3.25, 3.3, 3.35):
 
 | | D 3.1 to 3.18 | D 3.2 to 3.35 |
 |---|---|---|
@@ -54,8 +54,8 @@ Acceptance passes: D 3.7 theirs 3.465200504469, ours (M 80) 3.465200483544, +2.0
 | eps | 1e-6 (1e-8 at 3.125) | 1e-8 |
 | tstep, errmax, debug | vary from run to run (1 or 2; 1e-14 or 1e-13; T or F) | 2, 1e-14, F |
 
-xleft, nleft and nright change only between D 3.18 and 3.2. The other fields that vary below 3.18 do so among runs that all agree with
-ours to 3e-9, so they do not matter at that level. Their 128 and 256 runs (D 3.145 to 3.3) have one setting at every D (xleft 1e-3, xmid
+xleft, nleft and nright change only between D 3.18 and 3.2. The other fields vary below 3.18 (tstep, errmax, eps, debug, xmid); the four runs there that
+have a value of ours (3.1, 3.125, 3.15, 3.175) differ in them and agree with ours to 5e-10 or better. Their 128 and 256 runs (D 3.145 to 3.3) have one setting at every D (xleft 1e-3, xmid
 0.1, 3000/3000 points, eps 1e-8, tstep 2).
 
 | D | 3.0475 | 3.05 | 3.075 | 3.1 | 3.125 | 3.15 | 3.175 | **3.2** | 3.25 | 3.3 | 3.35 | 3.4 | 3.45 | 3.5 | 3.55 | 3.6 |
