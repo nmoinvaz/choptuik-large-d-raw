@@ -411,3 +411,24 @@ the load1 in the res log was mean 20.7, max 30.2 over its 20 polls (the first ru
 of the root (the table's first pair, -66.7, joins points on opposite sides of the root: not a slope).
 
 Resources, `res_D3.425_M128_r2.log`: polls 20 (60 s each), rss GB min 0.21 max 2.34 mean 1.38; cpu% (ps, 100 = one core) min 589.4 mean 596.2 max 600.0; load1 mean 20.72 max 30.21; free memory min 92%; free disk min 23.9 GiB. No watcher alert.
+
+### Note on the Vienna offset at D 3.425 (the coordinator's, 2026-11-22, after the relay of the r2 result as raw main 392ae38d)
+
+The 1.41e-6 between γ(128) = 0.3092042856 (and γ(96)) and 0.3092057 is against the coordinator's interpolation of the Vienna group's list (the coordinator's README line 229), not against a value of their list at D 3.425.
+At D 3.475 that interpolation was off by 1.25e-5 (the coordinator's figure; I did not check it), so the 1.41e-6 is not a discrepancy. The M 96 to M 128 difference (-9.843e-9) does not depend on it.
+
+## D 3.15 M 96 state for the M error: none of the ordered name on raw (stop; written 2026-11-22 17:44 UTC)
+
+The order (hc after the relay of the r2 result as raw main 392ae38d): "if an M 96 state at D 3.15 exists on raw (look under I927-mac/inputs and the other low-D input folders for
+lowDhm_*_D3.1500_M96.npz), run lowD_gamma.py on it with --lam0 set to the M 128 lambda at D 3.15, same flags, own session and caffeinate as r2, 3 h cap, and report gamma(128)-gamma(96) at D 3.15 as the M error.
+If no such state exists, report that and stop; do not make one without my word."
+
+Search: `git ls-tree -r --name-only` of raw main 392ae38dac (fetched over https, read-only), all paths (`search_D3.15_M96_raw_392ae38d.txt`):
+- **No file `lowDhm_*_D3.1500_M96.npz` exists** (nor any `lowDhm_*M96*`). `I927-mac/inputs/` holds the D 3.15 M 128 and M 160 states only.
+- Outside that name there are two sets of D 3.15 M 96 states: (a) dh170's, `I1070-dh170/states/lowD1070_D3.1500_M96.npz` (git blob e540d3e7d2e84b34227cb5e6328245f8190be797) and its four checkpoints
+  `..._ckpt_after_call1..4.npz`: the M 128 input resampled to M 96 and re-converged in 4 Newton calls (dh170's README, "M 96 pair"); meta D 3.15, M 96, kt 36, kc 100, ks 250, 17 nodes, 6913 unknowns, loadable by
+  `hpkernel.driver.load`; (b) ten `taumap-mac/states/tm_*_D3.1500_M96*.npz`, another family (meta `tau_map`, 18 nodes, 7297 unknowns), not examined as `lowD_gamma.py` inputs.
+- I did not run anything and made no state: the ordered file does not exist, and (a) is a state someone made (a lift), which the order says not to make without the coordinator's word, though it already exists and
+  `lowD_gamma.py` has already run on it (dh170, `I1070-dh170/lowD_gamma_D3.15_M96.jsonl`: F 2.980e-29, one sign change, 11 determinants, 1864.7 s, `--lam0=4.3977`, λ 4.3978045023377454, γ 0.22738618769170593).
+- From the two records (`lowD_gamma_D3.15_M128_r2.jsonl` here, dh170's M 96): λ(96) − λ(128) = 2.0396e-05; **γ(128) − γ(96) = 1.0546e-06**, the same 1.05e-6 as in the coordinator's comment 7071100314. A rerun of
+  `lowD_gamma.py` on dh170's M 96 state on this machine, with `--lam0` the M 128 λ, would reproduce dh170's number or not (a check of it, on another machine); it would take about 7 to 11 determinants at M 96's 130 s, 15 to 25 min (an estimate).
