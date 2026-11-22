@@ -87,4 +87,35 @@ the scan's points take 25 to 60 min each on 1 thread with 4 processes (65%), the
 |---|---|---|---|
 | source check (win2's `kc71_syscheck.py`) | accepted; selftests exit 0; controls `--mutate=F` and `--mutate=steps` exit 1 | state \|F\| 2.9977946350e-10 against the record's 3.0023964493e-10 (0.15% apart, bar 1%); `freeze_from` 2630 steps = the record's | 19:18 (1 s) |
 | regrid (`ell_refine.py`, exit 0), child pid 31141, own session (`session_check_regrid.txt`: every chain ends at launchd, no claude, tty ??) | **accepted** by `kc79_syscheck_1025.py` (selftest exit 0); controls `--mutate=F` and `--mutate=steps` exit 1 | |F| 3.0661e-10, 2925 steps (freeze_from 2925 = the record's), constraint 9.574e-04, Delta 1.0737660558 (k_c 71: 1.0737683214; difference -2.266e-06); capped_run wall 581 s, the record's 578 s; 1 core (ps %cpu 100 of 600 allowed), rss max 2.33 GB (9 samples of 60 s); 23 RuntimeWarnings of `dss_ell.py` (dh370's D 19.125 log: 24 of the same lines) | 19:18 to 19:28 (601 s with the checks) |
-| scan (`run_scan.sh`), started 19:28:57 | running: 4 processes of 1 thread, each printed `the record system` (|F| 3.0660787498e-10 = the record's, 2925 steps = the record's); available memory 12.0 GiB before the start (need 5.2) | | |
+| scan (`run_scan.sh`), 4 processes of 1 thread, all exit 0, each printed `the record system` | done, 12 evaluations; reader selftest exit 0, mutations `shift` and `round2` exit 1 | one robust change, + to - in (1.46, 1.47), det-linear 1.469975, range [1.469970, 1.469975]; no other; edge signs + at 1.42, - at 1.52; repeat of 1.47 bit-identical | 19:28:57 to 20:01:15 (600 to 661 s per point) |
+
+### Scan result (22 Nov 2026, scan 19:28:57 to 20:01:15 UTC, 32.3 min)
+
+All four processes exit 0 and each printed `the record system` (|F| 3.0660787498e-10, 2925 steps = the record's). 12 evaluations (11 values and the repeat of 1.47), each 600 to 661 s (mean 639 s) beside the other three processes.
+Reader `read_lower.py` (89309d3c, unedited): selftest exit 0, mutations `shift` and `round2` each exit 1 (`selftest_read_lower*.txt`); reading in `read_lower.txt`.
+
+| lambda | process | hybrid sign | ln\|det\| | noise-robust | float64 sign | seconds |
+|---|---|---|---|---|---|---|
+| 1.42 | p0 | + | -2520.621180 | yes | + | 600 |
+| 1.43 | p1 | + | -2520.996459 | yes | + | 605 |
+| 1.44 | p2 | + | -2521.433684 | yes | + | 607 |
+| 1.45 | p3 | + | -2521.985804 | yes | + | 608 |
+| 1.46 | p0 | + | -2522.823344 | yes | + | 647 |
+| 1.47 | p1 | - | -2528.805069 | yes | + | 654 |
+| 1.47 (repeat) | p3 | - | -2528.805069 | yes | + | 656 |
+| 1.48 | p2 | - | -2523.091130 | yes | + | 654 |
+| 1.49 | p3 | - | -2522.530382 | yes | + | 655 |
+| 1.50 | p0 | - | -2522.252161 | yes | + | 656 |
+| 1.51 | p1 | - | -2522.087142 | yes | + | 661 |
+| 1.52 | p2 | - | -2521.982283 | yes | + | 660 |
+
+- **One robust change, + to - as printed, in (1.460, 1.470), det-linear 1.469975, estimator range [1.469970, 1.469975].** The range is a spread over interpolation choices, not an enclosure; the bracket is the 0.01 grid step. Orientation is as printed, not compared across D.
+- Edge signs: + at 1.42, - at 1.52. All 12 evaluations are noise-robust. ln|det| minima without a sign change: none (ln|det| is -2522.823 at 1.46, -2528.805 at 1.47, -2523.091 at 1.48: the dip at 1.47 sits beside the change).
+- Repeat of 1.47 (process 3 against process 1): sign, noise signs, float64 sign and ln|det| (-2528.8050685050607) bit-identical: yes.
+- The float64 sign is + at every point and differs from the hybrid at 1.47 to 1.52 (6 points); not used.
+- Called a **k_c 79 root (macOS build)**: numerical evidence, not yet physical.
+
+Beside (information, not a pass rule): the line's prediction was 1.4719; the change is at 1.469975, -0.001935 from it (k_c 79 through 1.539658 at D 19, 1.505784 at D 19.125, 1.469975 at D 19.25: successive differences -0.033874 and -0.035809 per 0.125 in D, slope -0.2865 per unit D against the line's -0.2710).
+k_c 71 at D 19.25 (dh610): + to - at 1.475019 (range [1.474292, 1.475019]); k_c 79 is -0.005044 from it. At D 19.125 the k_c 79 change (- to + at 1.505784) was 0.005425 below k_c 71's - to + change (1.511209). Whether these are the same roots across D and k_c is not known from these points.
+My predictions: one robust change in 1.42 to 1.52 (70%): yes; within 0.02 of 1.472 (75% given one): yes (0.0019); source and regrid accepted: yes; the regrid's steps about 2930: 2925; the regrid's wall 0.5 to 1.5 h: missed (10 min); a scan point 25 to 60 min: missed (10 to 11 min), the scan 1.5 to 3 h: missed (32 min).
+Resources: the scan processes were not sampled (the regrid's samples: 1 core, rss max 2.33 GB); available memory before the scan 12.0 GiB.
