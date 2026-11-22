@@ -232,3 +232,42 @@ Order (coordinator's hc after my 00:21 UTC D 3.45 report: "both PASS accepted"),
 - B: a sign change in the first grid about 90%; exactly one about 90%; F below 1e-27 about 75%; 5 to 8 determinants at 205 to 215 s, so 20 to 30 min (about 65%);
 - |gamma(128) - gamma(96)| between 1e-10 and 1e-8 about 75% (5.2e-10 at D 3.45, 3.77e-9 at D 3.5 in #628; the stored Delta differ by 1.6e-9 here);
 - both gamma within 1e-6 of 0.3182605 about 55% (the interpolation's own error is the unknown).
+
+## Result of the D 3.475 pair (written 2026-11-22 01:02:50 UTC): both PASS; gamma(96) = 0.31824803167618887, gamma(128) = 0.3182480362494697, gamma(128) - gamma(96) = +4.573e-09
+**A (M 96)** (`stageA_gamma96_d3475.log`, `lowD_gamma_D3.475_M96.jsonl`; 00:22:14 to 00:39:04 UTC, script 985.3 s): the polish found the input at the floor (|F| 5.98e-30, no step taken); 11 determinants. Record: lam 3.1422032517627017, gamma 0.31824803167618887, F 5.9750050594669605e-30, n_signchanges 1, n_det 11. Acceptance: PASS. The root lies 1.23e-04 above lam0 (3.14208), just outside the first grid (+- 1e-4): the first grid (3.14198, 3.14208, 3.14218) was all -1, the second (3.14108 -1, 3.14308 +1) held the change.
+| lam | sign | ln\|det\| | seconds |
+|---|---|---|---|
+| 3.14198 | -1 | 992.019 | 83.4 |
+| 3.14208 | -1 | 991.478 | 86.6 |
+| 3.14218 | -1 | 989.862 | 86.3 |
+| 3.14108 | -1 | 993.164 | 82.6 |
+| 3.14308 | +1 | 993.963 | 89.5 |
+| 3.142156875966 | -1 | 990.541 | 87.9 |
+| 3.142204819124 | +1 | 987.178 | 84.0 |
+| 3.142203213255 | -1 | 983.471 | 83.7 |
+| 3.142203251731 | -1 | 976.365 | 84.5 |
+| 3.142203251763 | -1 | 964.188 | 87.2 |
+| 3.142203251768 | +1 | 974.522 | 83.0 |
+**B (M 128, lam0 = A's lam 3.1422032517627017)** (`stageB_gamma128_d3475.log`, `lowD_gamma_D3.475_M128.jsonl`; 00:39:04 to 01:02:24 UTC, script 1394.7 s): the polish found the input at the floor (|F| 2.77e-30, no step taken); 6 determinants. Record: lam 3.142203206608683, gamma 0.3182480362494697, F 2.7733391199176196e-30, n_signchanges 1, n_det 6. Acceptance: PASS.
+| lam | sign | ln\|det\| | seconds |
+|---|---|---|---|
+| 3.142103251763 | -1 | 1292.571 | 203.9 |
+| 3.142203251763 | +1 | 1284.938 | 212.1 |
+| 3.142303251763 | +1 | 1292.711 | 207.7 |
+| 3.142203203342 | -1 | 1282.312 | 214.4 |
+| 3.142203206609 | -1 | 1271.949 | 214.5 |
+| 3.142203206614 | +1 | 1275.809 | 215.8 |
+The M 128 root lies below the M 96 root: lam(96) - lam(128) = 4.515e-08. The xtol 1e-11 of each search is its stopping tolerance, not an error bar of the discretization.
+**The resolution change at D 3.475, named as such (two resolutions, not a bound):** gamma(128) - gamma(96) = 0.3182480362494697 - 0.31824803167618887 = +4.573e-09 (decimal arithmetic on the two records). For comparison: +5.211e-10 at D 3.45 (this task's last pair) and 3.77e-9 at D 3.5 (#628, M 128 - M 96): the three are not monotone in D, and I do not interpret that.
+**Against the interpolated Vienna value 0.3182605** (the coordinator's interpolation through D 3.4, 3.45 and 3.5, not a list entry): gamma(96) - 0.3182605 = -1.2468e-05; gamma(128) - 0.3182605 = -1.2464e-05. The offset is the same for both resolutions to 4.6e-09, 250 times the list's seven-digit rounding (5e-8) and 2700 times the resolution change, so it is not a resolution effect; whether it is the interpolation's or ours the data here do not settle. A rough check of the size of a three-point interpolation error (my arithmetic, no bound): the same quadratic through our own values at D 3.35 (M 96), 3.45 (M 128) and 3.5 (#628, M 128) gives 0.3182703 at 3.475, 2.2e-05 above our gamma(128), the opposite sign and about twice the size of the offset, so an interpolation error of order 1e-5 is expected from three points here. At D 3.45, where the list has its own entry, our gamma agrees with it to its rounding (+4.97e-08 against 5e-8). A four-point or higher interpolation of the list, or a list entry near 3.475 if there is one, would settle it; I have not read the list.
+**Predictions against the result:**
+| prediction | result |
+|---|---|
+| A: change in the first grid (about 90%) | in the second grid, the root 1.23e-04 above lam0: wrong |
+| A: exactly one (about 90%), F below 1e-27 (about 75%) | right (F 6.0e-30) |
+| A: 5 to 8 determinants, 7 to 12 min | 11 determinants, 16.4 min: wrong |
+| B: change in the first grid (about 90%), exactly one (about 90%), F below 1e-27 (about 75%) | right in all three (F 2.8e-30) |
+| B: 5 to 8 determinants, 20 to 30 min (about 65%) | 6 determinants, 23.3 min: right |
+| |gamma(128) - gamma(96)| between 1e-10 and 1e-8 (about 75%) | 4.6e-09: right |
+| both gamma within 1e-6 of 0.3182605 (about 55%) | 1.25e-05 below: wrong (the interpolation's error, from the check above, is of that order) |
+**Resources** (4 threads each, nice 10, nothing else running, sequential as ordered): A wall 16:25.68, user 3821.85 s, 389% CPU, max RSS 1083456 kB (1.03 GiB); B wall 23:15.16, user 5460.33 s, 392% CPU, max RSS 1938872 kB (1.85 GiB); MemAvailable never below 27704 MiB, no alert. Determinants took 83 to 90 s at M 96 and 204 to 216 s at M 128.

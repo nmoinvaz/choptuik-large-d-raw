@@ -1,0 +1,32 @@
+  newton 0: |F| 2.77e-30 converged (last |dz| 9.1e-26) Delta 3.411619640915351
+lowDvh41_D3.4750_M128.npz: D 3.475 M 128 |F| 2.8e-30, guess lam 3.142203
+    lam 3.142103251763: sign -1 ln|det| 1292.570717 pivots 7.65e-04..5.33e+01 (203.9 s)
+    lam 3.142203251763: sign +1 ln|det| 1284.938203 pivots 7.65e-04..5.33e+01 (212.1 s)
+    lam 3.142303251763: sign +1 ln|det| 1292.711386 pivots 7.65e-04..5.34e+01 (207.7 s)
+    lam 3.142203203342: sign -1 ln|det| 1282.311893 pivots 7.65e-04..5.33e+01 (214.4 s)
+    lam 3.142203206609: sign -1 ln|det| 1271.949096 pivots 2.92e-04..5.33e+01 (214.5 s)
+    lam 3.142203206614: sign +1 ln|det| 1275.809287 pivots 7.65e-04..5.33e+01 (215.8 s)
+{"D": 3.475, "M": 128, "F": 2.7733391199176196e-30, "lam": 3.142203206608683, "gamma": 0.3182480362494697, "lam_guess": 3.1422032517627017, "n_signchanges": 1, "n_det": 6, "state": "lowDvh41_D3.4750_M128.npz", "seconds": 1394.7}
+	Command being timed: "timeout -s TERM 7200 /home/nathan/Source/choptuik-large-d-1058b/.venv/bin/python -u hp/lowD_gamma.py /home/nathan/Source/choptuik-large-d-raw-1064w/I1070-dh170/lowD_gamma_D3.475_M128.jsonl /home/nathan/scratch1070/T39-win/hp/data/lowD_states/lowDvh41_D3.4750_M128.npz --threads=4 --polish=2 --xtol=1e-11 --lam0=3.1422032517627017"
+	User time (seconds): 5460.33
+	System time (seconds): 22.00
+	Percent of CPU this job got: 392%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 23:15.16
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 1938872
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 13116403
+	Voluntary context switches: 6601
+	Involuntary context switches: 42380
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 192
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
