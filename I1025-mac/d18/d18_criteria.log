@@ -200,3 +200,7 @@ D 18.5 root. The pass rules are unchanged (d18_check.py 08969ea2, then signtest.
    d18k_read.py (blob 15c62ca5): 5 planted cases PASS, --mutate=tol (tolerance 0.02) FAILS (d18k_read_selftest.log); the first draft's
    non-robust case planted the point where no change touches it, and the planted data were fixed, not the reader. lane_d18k.sh started
    22:38:36 UTC; the system check passed (|F| 2.5562572431e-10, 2270 steps, equal to the record).
+== 2026-11-22 00:19:51 (k) result (d1775k55_read.log): D 17.75 at k_c 55 over 1.65-1.90, 26 points, all noise-robust. Two robust changes,
+   (1.67, 1.68) [1.671325, 1.671698] and (1.86, 1.87) [1.867058, 1.867857]; no ln|det| minimum without a change. Against k_c 63: the upper
+   root matches (1.867058 against 1.867192, -0.000134); the lower does not (nearest 0.027604 from 1.698929). Reading: k_c-dependent at
+   D 17.75 (one of two matched). In each state's own signs k_c 55 reads + to - then - to +, k_c 63 - to + then + to - (not compared).
