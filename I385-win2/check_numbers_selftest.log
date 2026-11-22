@@ -1,0 +1,17 @@
+Traceback (most recent call last):
+  File "D:\choptuik-i385\check_numbers.py", line 3860, in <module>
+    main()
+    ~~~~^^
+  File "D:\choptuik-i385\check_numbers.py", line 3832, in main
+    groups = [(fn.__name__, fn()) for fn in CHECKS]
+                            ~~^^
+  File "D:\choptuik-i385\check_numbers.py", line 430, in hopf_law
+    import hopf_amp_mode as H
+  File "D:\choptuik-i385\hp\hopf_amp_mode.py", line 35, in <module>
+    from gamma_dd import best_solver  # noqa: E402
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\choptuik-i385\hp\gamma_dd.py", line 57, in <module>
+    from hpkernel.driver import dd_from_mp, make_solver, load, lm_solve, newton_solve, plow_odd, resample_z  # noqa: E402
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ModuleNotFoundError: No module named 'hpkernel'
+exit 1
