@@ -36,3 +36,45 @@ The coordinator's message named `scan_hyb.sh (b2fbeba6)` and `read_d19.py (dd910
 Estimate (coordinator's): setup about 20 min, the scan 1 to 1.5 h on 6 processes; the 1-thread time of one point is measured by the control (dh370's timed point took 735 s on 6 threads).
 
 Written as the run goes.
+
+## Control (22 Nov, 12:04:45 to 12:13:42 UTC): PASS
+
+`d18_hybsign.py` at D 19.0, lambda 1.55 on dh370's state and record, 1 process of 1 thread: wall 537 s (the point's own 535 s; dh370's timed point took 735 s on 6 threads), peak RSS 1.12 GB, exit 0 (`control/control.log`, `control/control_check.txt`).
+- the record system: |F| 2.6104982620e-10 against the record's 2.6080821854e-10, steps 2374 = 2374;
+- hybrid sign +1 = dh370's, ln|det| -1878.1161801633 = dh370's -1878.116180163286, relative difference 0 (the bar is 1e-6; the printed ln has ten decimals, `control_check.py` compares the full floats);
+- noise-robust: both seeds +1.
+- the float64 sign beside it differs from dh370's: here sign -1, ln|det| -1878.0453604869; dh370's row has sign +1, ln|det| -1880.5874620354. It is the plain float64 slogdet of the unscaled blocks, which the hybrid replaces (its blocks 0-11 are float64 too, block 12 is double-double), and it is not part of the control's bar; reported as a disagreement with dh370's float64 row (thread count 1 here, 6 there).
+
+Scan started 12:13:42 UTC on 6 processes; one point costs about 540 s on one thread, so the longest process (3 points: lambda 1.480, 1.510, 1.540 on process 0; 1.485, 1.515, repeat 1.510 on process 1) ends near 12:45 UTC.
+
+## Scan (22 Nov, 12:13:42 to 12:51:26 UTC): both roots are still there at D 19.09375
+
+Six processes of 1 thread at nice 10 (`scan/`), exits 0 at 12:41:37, 12:41:43, 12:50:51, 12:51:26 UTC (and two earlier); each point 567 to 860 s (the control's 535 s was run alone), wall per process 27:51 to 37:44, peak RSS 1.30 to 1.36 GB each, 36 to 56 GB available, load 5 to 12 (`scan/sampler.log`). The system check printed `the record system` on all six (|F| 2.6666494365e-10 against the record's 2.6665561747e-10, steps 2359 = 2359, `scan/scan_p<p>.log`). `scan/scan_D19.09375_1025.jsonl` is the merged file; the reading is `read_lower.txt` (dh170's `read_lower.py`, blob 89309d3c, run with its selftest and mutations before the start).
+
+| lambda | hybrid sign | ln\|det\| | noise-robust | float64 sign |
+|---|---|---|---|---|
+| 1.480 | + | -1867.3408088559 | yes | + |
+| 1.485 | + | -1867.7532532817 | yes | + |
+| 1.490 | + | -1868.2150939343 | yes | + |
+| 1.495 | + | -1868.7505890083 | yes | + |
+| 1.500 | + | -1869.4099943488 | yes | + |
+| 1.505 | + | -1870.3354617898 | yes | + |
+| 1.510 | + | -1872.6550208164 | yes | + |
+| 1.510 (repeat) | + | -1872.6550208164 | yes | + |
+| 1.515 | - | -1871.3913024720 | yes | + |
+| 1.520 | - | -1871.0945024343 | yes | + |
+| 1.525 | - | -1871.3486835703 | yes | + |
+| 1.530 | - | -1872.5429585918 | yes | + |
+| 1.535 | + | -1871.7957682652 | yes | + |
+| 1.540 | + | -1870.8148780892 | yes | + |
+
+Reading (orientation as printed, not compared across D):
+- robust change (1.510, 1.515), + to -: det-linear 1.511102, estimator range [1.510769, 1.511102];
+- robust change (1.530, 1.535), - to +: det-linear 1.531607, estimator range [1.531607, 1.531755];
+- changes touching a non-robust point: none; ln|det| minima without a sign change: none; endpoint signs + at 1.480 and + at 1.540; all 13 points noise-robust;
+- the repeat of 1.510 (process 1, original on process 0) is bit-identical in sign, noise signs, float64 sign and ln|det| (`repeat_check.py`: PASS);
+- the float64 sign is + at every one of the 13 points, so it shows no sign change; the hybrid shows two. Reported as a difference between the float64 slogdet and the hybrid at 1.515 to 1.530 (the same float64 difference as in the control).
+
+The two roots are 0.020505 apart (det-linear estimates), against 0.0548 at D 19 (the coordinator's 1.4832 and 1.5380 from dh370): the lower one moved up by 0.0279, the upper one down by 0.0064 in 0.09375 of D. A straight line through these two D values (a two-point extrapolation, not a measurement; the tracks' curvature is unknown) closes the gap about 0.056 above D 19.09375, at D 19.150 and lambda 1.5278.
+
+Acceptance: the control matches; the system check passes on all six processes; the reader's selftest passes and its mutations fail (`selftest_exits.txt` 0 1 1 0 0 1); the repeat agrees. All met.
