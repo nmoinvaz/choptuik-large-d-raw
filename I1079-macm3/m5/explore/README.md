@@ -45,5 +45,5 @@ Run 2026-11-23 17:40:05 to 2026-11-23 17:40:21 UTC (16 s wall) under `caffeinate
 
 - max|Y| is not printed by `hier_nb.py` at `--verbose` 1 or 2 (the code has no such line).
 - The control's start solves converge at xi1 0.15 and 0.17 (|r_3| 1.0e-8 and 6.0e-9), as at 0.2 (2.7e-8).
-- x1 and x2 do not converge at 0.15 or 0.17. x1 at 0.17: level 5 stops at 7e-4 to 3e-3, level 3 at 9.9e4. x2: level 5 does not move from its start at 0.15 and 0.17 (|r_5| 3.2e6 and 4.8e6 before and after), level 3 ends at 2.0e7 and 6.8e7.
+- x1 and x2 do not converge at 0.15 or 0.17. x1 at 0.17: level 5 ends at 7.3e-4 to 2.7e-3 in its four solves, level 3 at 9.9e4. x2: level 5 does not move from its start at 0.15 and 0.17 (|r_5| 3.2e6 and 4.8e6 before and after), level 3 ends at 2.0e7 and 6.8e7.
 - `--verbose=2` on x1 at 0.2 (`logs/start_x1_xi0.2_v2.log`, the same numbers as the verbose-1 start): level 5 ends at |r_5| 2.1e-6, 9.6e-7, 2.9e3 and 1.9e-6 in its four solves; the level-3 solve prints no iteration line and ends with "level 3 (top): stop at |r_3| 2.10e+05: a fresh Jacobian no longer halves |g|" after 142 residuals. That stop is the one `hier.py`'s `--floor_max` comment describes for M = 9 (#1007), and 2.1e5 is far above any noise floor. The log does not show the first step's trial lengths (`--verbose=3` does).
