@@ -1,6 +1,6 @@
 # I1025-win/kc95_d19: k_c 95 at D 19, regridded from my accepted k_c 87 D 19 state, then a scan of both roots' windows (winb)
 
-Written before the run, 2026-11-23 12:41:47 UTC (substituted from `date -u` when pushed; nothing had been run for this folder when the order, the predictions and the estimates below were written; the Status and Result sections are added after the runs).
+Written before the run, 2026-11-23 15:38:35 UTC (substituted from `date -u` when pushed; nothing had been run for this folder when the order, the predictions and the estimates below were written; the Status and Result sections are added after the runs).
 
 Runner: the winb session (surface-laptop-4, 4 cores, 8 threads, 32 GB), the same one that ran `../kc79_d19/`, `../kc79_d19low/` (raw 40f1a01a), `../kc79_d19gap/` (raw fee69df5) and `../kc87_d19/` (raw 3b833805: the k_c 87 regrid and scan this run starts from). The coordinator is t5.
 
@@ -87,8 +87,45 @@ Started outside my terminal: `Win32_Process.Create` of `conhost.exe --headless c
 - **Machine at the start:** on AC (battery status 2), clock 2995 MHz of 2995 MHz max, free physical memory 23.3 GB; beside it the other project's I114 `convergence.py` jobs (python 880 and 4940), not touched.
 - **ETA** (estimates above): the regrid ends about 15:30 UTC (range 15:20 to 16:15), the scan about 01:00 UTC on 2026-11-24 (range 23:30 to 03:30).
 
-Pushed 2026-11-23 12:41:47 UTC.
+**Step 1 ended 2026-11-23 15:31:53 UTC, ACCEPTED 15:32:07 UTC. Step 2 (the scan) started by itself 2026-11-23 15:33:18 UTC**, the same headless chain (conhost 10264 <- cmd 1540 <- scan driver launcher 25760 and driver 18544 <- sampler 24408, alert-only watcher 8440, keep-awake helper 5776, `d18_hybsign.py` 21196). Session check for the scan chain (`session_check_scan.txt`, exit 0): no `claude` in any chain, no Windows Terminal / OpenConsole / wt, a headless conhost in the chain. The scan driver's own checks passed first: the `read_lower.py` selftest exit 0 and its two `--mutate` controls exit 1, 1; the marker's blobs match the files; `d18_hybsign.py` accepted the state ("D 19.0 k_c 95: |F| 2.9307510343e-10 (record 2.9307510343e-10), steps 3575 (record 3575): the record system"). First sampler rows: 4 threads, free memory 23.2 GB.
+
+Pushed 2026-11-23 15:38:35 UTC.
 
 ## Result
 
-Not yet run.
+### Step 1: the regrid (ACCEPTED)
+
+`ell_refine.py l1kc87wind19 87 l1kc95wind19 95 1 19.0 2.1156378446 --kappa 0.7 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma`, cwd `choptuik-i1025k79/solver/matter` (48c36355), one process, 4 threads, BelowNormal, started through `conhost.exe --headless cmd.exe /c` outside my terminal.
+
+| item | k_c 87 at D 19 (source) | k_c 95 at D 19 (result) |
+|---|---|---|
+| \|F\| | 2.9006474406e-10 | 2.9307510343e-10 |
+| F_start | 2.9922068e-06 | 1.183945e-06 |
+| steps | 3276 | 3575 |
+| constraint | 3.9191e-4 | 1.3979e-4 |
+| Delta | 1.0677698834525378 | 1.0677693701519553 |
+| wall s | 7965 | 10230 (record's seconds 10224) |
+| cpu s | 13782 | 18179 |
+| peak private GB | 2.94 | 3.45 |
+
+**Delta(k_c 95) minus Delta(k_c 87) = -5.133005824831116e-07** at D 19 (relative -4.81e-7). The step before it, Delta(k_c 87) minus Delta(k_c 79), was -5.528545e-07. Information, not compared.
+
+Verdict (`regrid_summary.txt`, `syscheck*.txt`):
+
+| check | wanted | got |
+|---|---|---|
+| source, k_c 87 check | exit 0 | 0 |
+| source, k_c 87 check `--mutate=F`, `--mutate=steps` | 1, 1 | 1, 1 |
+| source, k_c 95 check | exit 1 (refuses) | 1 ("the record is not k_c 95 at D 19 (kc 87, D 19.0)") |
+| result, k_c 95 check | 0 | 0 ("ACCEPTED: the record class's \|F\| with a step count that comes back"; state \|F\| 2.9307510343e-10, `freeze_from` 3575 steps) |
+| result, k_c 95 selftest (after) | 0 | 0 |
+| result, `--mutate=F` / `--mutate=steps` | 1 / 1 | 1 / 1 (state \|F\| not within 1 % of 4.396e-10; 3575 against 3576) |
+| result, k_c 87 check | 1 (refuses) | 1 ("the record is not k_c 87 at D 19 (kc 95, D 19)") |
+
+Marker `regrid_accepted.txt` (written by the driver): `ACCEPTED 2026-11-23 15:32:07 UTC`, state blob 6b187ef3, record blob d7dc1532 (the local files hash to those; the marker itself 66ef045f).
+
+Memory: lowest free physical memory 20.88 GB (sampler), 20.31 GB (watcher, to 15:33), 0 alerts; peak working set 3.12 GB, peak commit 13.7 GB. Sampler: 170 stamps, largest gap 63 s. Standby: none (no event 506 or 507; the only System events in the window are two zero-delta clock writes by SurfaceService at 12:43:26 and 12:43:27 UTC). Keep-awake: held for 10335 s and cleared. Estimates before the run: 2.7 to 3.5 h (9500 to 12000 s); it took 2.84 h (10230 s, x 1.28 on the k_c 87 regrid).
+
+### Step 2: the scan
+
+Running. The reading is written when it ends.
