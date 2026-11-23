@@ -132,4 +132,50 @@ Delta(k_c 79) minus Delta(k_c 71) = -1.5719e-5 (at D 20: -1.1878e-5). Files: `so
 
 Delta(k_c 87) minus Delta(k_c 79) = -3.6088e-6 (at D 20: -2.9719e-6). Files: `sol_l1kc87win2d2025_D20.2500.npy`, `l1kc87win2d2025.jsonl`, `rec_k87_D20.2500.jsonl`, `regrid87_accepted.txt`.
 
-**Step 3, the k_c 87 scan** started 10:14:17 UTC (eight processes of one thread, Normal priority, roots 26568, 37616, 7636, 11268, 45632, 5132, 44716, 45808), lists as above; the system check of every process passed (|F| 4.5117744977e-10 against the record's 4.5095811903e-10, 3042 steps = the record's). Its reading follows when it ends.
+**Step 3, the k_c 87 scan: done** (started 10:14:17 UTC, eight processes of one thread, Normal priority; ended 12:08:37 UTC; `scan_k87d2025_p1..p8.jsonl`; exit 0 for all eight, 6823 to 6858 s, 3 evaluations each, 2190 to 2326 s a point (mean 2276 s), no cap). The system check of every process passed ("the record system": |F| 4.5117744977e-10 against the record's 4.5095811903e-10, 3042 steps = the record's). **The repeat of 1.160 (P1, P2) agrees: sign -1 and ln|det| -2731.7353253669 in both (bar 1e-6); the gate passed after 2365 s.**
+
+**A defect of the driver, found at the reading and corrected here:** `read_lower.py` reads every `scan_*_p*.jsonl` of the folder it is given, and `scan87_d2025.sh` gave it this folder, which also holds the k_c 79 scan's files. Its printed reading (`read_lower_k87_D2025.txt`: 8 robust changes, 13 DISAGREE repeats) therefore mixes the two k_c at the 13 values of the 0.01 grid and is void. The reading below is of a folder with the eight k_c 87 files alone (`read87/`, copies; reader blob 89309d3c unchanged; selftest 0, `--mutate=shift` and `--mutate=round2` exit 1) and is the one that counts: `read_lower_k87_D2025_only87.txt`.
+
+`read_lower.py read87 1.13 1.24`, as it prints: 23 points in 1.130 to 1.240, none not noise robust; hybrid signs minus at 1.130 to 1.165, **plus at 1.170 to 1.240** (every value, to the window's edge); the float64 sign differs from the hybrid at 1.17 only (information); repeated points 1.16 agree; **one robust change: (1.165, 1.170), minus to plus, det-linear estimate 1.165265, estimator range [1.165184, 1.165265]** (a spread over estimator choices, not an enclosure); changes touching a non-robust point: none; ln|det| local minima without a sign change: none; endpoint signs minus at 1.130 and plus at 1.240.
+
+**By position, beside k_c 79 at the same D 20.25:**
+
+| root | k_c 79 | k_c 87 | k_c 87 minus k_c 79 |
+|---|---|---|---|
+| near lambda_1's line (minus to plus) | 1.165140 (bracket (1.160, 1.170)) | 1.165265 (bracket (1.165, 1.170)) | +0.000125 |
+| the second (plus to minus) | 1.203492 (bracket (1.200, 1.210)) | none in 1.130 to 1.240 | above 1.240 if it exists |
+
+The first root moves by 0.000125 between k_c 79 and k_c 87, inside the 0.002 written before (the coordinator's rule: the root that stays within 0.002 between k_c 79 and 87 is lambda_1). The second root does not: at the 12 values the two scans share (1.13 to 1.24 by 0.01) the signs agree for 1.13 to 1.20 and differ for 1.21 to 1.24 (k_c 79 minus, k_c 87 plus), and ln|det| at k_c 87 falls steadily from -2732.43 (1.20) to -2734.27 (1.24) with no sign change. So the second root moved above 1.240 (by more than 0.036) or left the window, which is the behavior the rule names for a discretization root; where it is at k_c 87 the window does not show (a scan above 1.240 would).
+
+lambda_1 against D at k_c 79 and k_c 87 (D 20 values from `../kc79_d20/` and `../kc87_d20/`, D 18.5 and D 19.5 the coordinator's): k_c 79 1.248340 (D 20) to 1.165140 (D 20.25), slope -0.3328 per unit D; k_c 87 1.247484 to 1.165265, slope -0.3289 per unit D; the earlier slopes -0.28 (D 18.5 to 19.5) and -0.30 (D 19.5 to 20, from 1.398 and 1.248340).
+
+<details><summary>All 24 evaluations (hybrid sign, ln abs det, noise test, float64 sign, seconds)</summary>
+
+| lambda | process | hybrid sign | ln abs det | noise (2 seeds) | float64 sign | s |
+|---|---|---|---|---|---|---|
+| 1.130 | P1 | - | -2727.8671 | -,- | - | 2312 |
+| 1.135 | P1 | - | -2728.3469 | -,- | - | 2195 |
+| 1.140 | P2 | - | -2728.8542 | -,- | - | 2309 |
+| 1.145 | P2 | - | -2729.4013 | -,- | - | 2192 |
+| 1.150 | P3 | - | -2730.0113 | -,- | - | 2319 |
+| 1.155 | P3 | - | -2730.7358 | -,- | - | 2316 |
+| 1.160 | P1 | - | -2731.7353 | -,- | - | 2326 |
+| 1.160 | P2 | - | -2731.7353 | -,- | - | 2325 |
+| 1.165 | P3 | - | -2735.3473 | -,- | - | 2199 |
+| 1.170 | P4 | + | -2732.4630 | +,+ | - | 2312 |
+| 1.175 | P4 | + | -2732.0747 | +,+ | + | 2314 |
+| 1.180 | P4 | + | -2731.9875 | +,+ | + | 2198 |
+| 1.185 | P5 | + | -2732.0212 | +,+ | + | 2317 |
+| 1.190 | P5 | + | -2732.1209 | +,+ | + | 2315 |
+| 1.195 | P5 | + | -2732.2620 | +,+ | + | 2199 |
+| 1.200 | P6 | + | -2732.4316 | +,+ | + | 2324 |
+| 1.205 | P6 | + | -2732.6221 | +,+ | + | 2317 |
+| 1.210 | P6 | + | -2732.8285 | +,+ | + | 2198 |
+| 1.215 | P7 | + | -2733.0475 | +,+ | + | 2303 |
+| 1.220 | P7 | + | -2733.2766 | +,+ | + | 2304 |
+| 1.225 | P7 | + | -2733.5141 | +,+ | + | 2201 |
+| 1.230 | P8 | + | -2733.7587 | +,+ | + | 2319 |
+| 1.235 | P8 | + | -2734.0093 | +,+ | + | 2323 |
+| 1.240 | P8 | + | -2734.2650 | +,+ | + | 2190 |
+
+</details>
