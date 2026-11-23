@@ -59,6 +59,43 @@ ell_leap.py l1kc79Lw1025f 1 79 data/sol_l1kc79Lw1025d_D20.843750.npy 20.84375 da
 
 New tag `l1kc79Lw1025f` (own record file and states; the seeds are tag d's, blobs d4a9414b and 2f6d6b8a, record file of tag d e443a587 with 4 records, equal to the copies in `states/`), files `leap7.log`, `exits_leap7.txt`, `summary_leap7.txt`, `leap7.finished`, `all7.done`; 4 BLAS threads, cap 43200 s (12 h from the restart) by the exact root pid. The old leap (tag d, root pid 43740, worker 30648) and its guard (pid 35888) are killed by exact pid after command-line checks; the old driver (`run_leap5.sh`, pid 44404) then finishes by itself (final copy, `all5.done`), and the new driver waits for `all5.done` and refuses if the old guard had stopped the leap. The seeds are re-checked by `kc79_syscheck_1025.py` (dry run: selftest 0, D 20.84375 and D 20.875 accepted, `--mutate=F` and `--mutate=steps` exit 1). The new guard (`leap_guard.py` f1fe7c7c with `--seeds` = the two seeds' own records, which carry n_null and cos_t_reg; table `leap7_points.txt`, stop file `leap7_STOP.txt`) is the same rule as before. Tag d keeps its four points (D 20.78125, 20.8125, 20.84375, 20.875); the D 20.890625 step in flight when the restart began is discarded.
 
+## The coordinator's ruling on the criterion (hc ~21:00 UTC 23 Nov): the fold reading by tracked modes
+
+The written-before criterion "k_c 79's sigma_reg stays above leg 4's" is violated from D 20.875 (k_c 79 sigma_reg 1.377e-11 at D 20.875 and 1.435e-11 at D 20.90625 against k_c 71's 1.848e-11 and 1.934e-11), but sigma_reg = `sv_reg_small[0]` is the smallest singular value above the null cutoff 1e-12 sigma_max, so in both legs it is the mode that ENTERED above the cutoff (k_c 71 at D 20.75, k_c 79 at D 20.875), not a mode that fell.
+
+The ruling (the coordinator's, verbatim): "the written-before criterion 'k_c 79 sigma_reg stays above leg 4's' FAILS as written from D 20.875; the cause is the entering mode (k_c 71 at D 20.75, k_c 79 at D 20.875), the same artifact as ruling (b), so it is not read as a fold. Replacement, fixed now for every later point of both legs: a fold signature is (i) a regular mode's singular value (tracked by identity across points, entries included once tracked) falling at 3 consecutive points while its tangent |cos| rises above 0.3, or (ii) dDelta/dD changing sign. Report in each row: the tracked weak mode's sigma, the sigma of the mode with the largest tangent |cos| and that cos, and dDelta/dD. The guard's own stop rule is unchanged."
+
+The tool: `../kc71_leap/mode_tracker.py` (reads the records' four-value lists `sv_reg_small`, `cos_t_reg` and `n_null`; identity across two points by the change of n_null: unchanged -> same order; n_null -1 = a mode entered, the first value is new; n_null +1 = the weakest sank below the cutoff; a mode is tracked once it has a predecessor; the tracked weak mode is the smallest sigma among tracked modes). Controls (`../kc71_leap/mode_tracker_tests/`): `--selftest` exits 0 (an entry; three falls with cos 0.35 flagged at the third and not the second; three falls at cos 0.2 not flagged; two falls then a rise not flagged; a slope sign change flagged as (ii); an exit); `--mutate=count` (two falls suffice), `--mutate=cos` (cos ignored) and `--mutate=entry` (entries mapped as no change) each exit 1. The guards (`leap_guard.py`) are unchanged.
+
+Result so far (every point from D 20.6875 to D 21.03125 at k_c 71, tags c and e; every point with a predecessor at k_c 79, tags d and f; no fold signature in any row, (i) or (ii)):
+
+k_c 71:
+
+| D | dDelta/dD | n_null | tracked weak mode: sigma (x prev) | largest-cos mode: sigma, cos | longest fall run, its cos | signature | entry |
+|---|---|---|---|---|---|---|---|
+| 20.6875 | +0.026304 | 64 | m0 4.747e-11 (x1.086) | m2 2.756e-10 cos 0.0398 | 0 falls, cos 0.014 | none |  |
+| 20.75 | +0.026405 | 63 | m0 5.134e-11 (x1.082) | new 1.451e-11 cos 0.0505 | 0 falls, cos 0.042 | none | entered m4 |
+| 20.78125 | +0.026472 | 63 | m4 1.546e-11 (x1.065) | m4 1.546e-11 cos 0.0480 | 0 falls, cos 0.043 | none |  |
+| 20.8125 | +0.026530 | 63 | m4 1.673e-11 (x1.082) | m4 1.673e-11 cos 0.0457 | 0 falls, cos 0.043 | none |  |
+| 20.84375 | +0.026568 | 63 | m4 1.752e-11 (x1.048) | m2 3.159e-10 cos 0.0450 | 0 falls, cos 0.045 | none |  |
+| 20.875 | +0.026601 | 63 | m4 1.848e-11 (x1.055) | m2 3.250e-10 cos 0.0461 | 0 falls, cos 0.046 | none |  |
+| 20.90625 | +0.026644 | 63 | m4 1.934e-11 (x1.047) | m2 3.338e-10 cos 0.0473 | 0 falls, cos 0.047 | none |  |
+| 20.9375 | +0.026693 | 63 | m4 2.029e-11 (x1.049) | m2 3.436e-10 cos 0.0485 | 0 falls, cos 0.048 | none |  |
+| 20.96875 | +0.026737 | 63 | m4 2.107e-11 (x1.039) | m2 3.530e-10 cos 0.0495 | 0 falls, cos 0.050 | none |  |
+| 21 | +0.026769 | 63 | m4 2.154e-11 (x1.022) | m2 3.626e-10 cos 0.0508 | 0 falls, cos 0.051 | none |  |
+| 21.03125 | +0.026800 | 63 | m4 2.222e-11 (x1.032) | m2 3.736e-10 cos 0.0519 | 0 falls, cos 0.052 | none |  |
+
+k_c 79:
+
+| D | dDelta/dD | n_null | tracked weak mode: sigma (x prev) | largest-cos mode: sigma, cos | longest fall run, its cos | signature | entry |
+|---|---|---|---|---|---|---|---|
+| 20.8125 | +0.026490 | 72 | m0 3.937e-11 (x1.040) | m1 1.485e-10 cos 0.0219 | 0 falls, cos 0.008 | none |  |
+| 20.84375 | +0.026507 | 72 | m0 4.103e-11 (x1.042) | m1 1.509e-10 cos 0.0222 | 0 falls, cos 0.008 | none |  |
+| 20.875 | +0.026524 | 71 | m0 4.267e-11 (x1.040) | new 1.377e-11 cos 0.0479 | 0 falls, cos 0.002 | none | entered m4 |
+| 20.90625 | +0.026584 | 71 | m4 1.435e-11 (x1.042) | m4 1.435e-11 cos 0.0448 | 0 falls, cos 0.005 | none |  |
+
+In both legs the tracked weak mode rises at every step (k_c 79 x1.040 to x1.042 per 0.03125 in D); at k_c 71 its growth per step slows from x1.082 (D 20.8125) to x1.022 (D 21.0) and x1.032 (D 21.03125), still a rise. The largest tangent |cos| is at most 0.052 (k_c 71) and 0.048 (k_c 79).
+
 ## Result
 
 Not yet run.
