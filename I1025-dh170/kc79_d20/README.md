@@ -59,3 +59,36 @@ The regrid: 8 threads at nice 10 (all of this machine). The scan: 4 processes of
 - **The regrid beside win2's** (Windows, Core Ultra 7 265K, 8 threads, 5273 s; raw 9e520757 and `I1025-win2/kc79_d20/`): |F| **4.4057739182e-10** against 4.4104844173e-10 (ratio 0.99893); steps **2800** against 2800 (equal); psi-constraint **2.1021859e-3** against 2.1020999e-3 (+8.6e-8); Delta **1.092259276533** against **1.092257255093** (dh170 minus win2: **+2.021e-6**); F at the start 2.8185648415e-5 against 2.8185648415e-5. Both from the k_c 71 source (|F| 4.5262043273e-10, 2514 steps, constraint 3.6653e-3, Delta 1.092269133460): Delta k_c 79 minus the source is -9.857e-6 here and -1.188e-5 at win2.
 - 2026-11-23 07:53:32 UTC: **STEP 3 scan** started as unit `i1025-k79d20s` (4 processes of 1 thread, nice 10, 12 evaluations); all four print the record system (|F| 4.4056529223e-10 against the record's 4.4057739182e-10, 2800 steps equal).
 - 2026-11-23 07:54:17 UTC: step 2 logged (this entry).
+
+## Result (written 2026-11-23 10:39:31 UTC)
+Steps 1 and 2 as logged (ACCEPTED 07:13:27 and 07:53:21 UTC). **Step 3:** unit `i1025-k79d20s` exit 0; processes p3, p0, p1, p2 exit 0 at 10:38:24, 10:38:53, 10:38:58 and 10:38:59 UTC; all four printed the record system (|F| 4.4056529223e-10 against the record's 4.4057739182e-10, 2800 steps equal); **12 of 12 evaluations noise-robust**; the repeat of 1.25 (the first on p1, the repeat last on p3) **bit-identical** (hybrid +1, ln|det| -2452.015688737278, float64 ln|det| -2450.3944602494494, noise [1, 1]; `repeat_check.py` PASS); `read_lower.py` selftest exit 0, `--mutate=shift` and `--mutate=round2` exit 1; reader exit 0 (`read_lower.txt`). Seconds per point 3250 to 3379 (three rounds side by side), wall 2:44:51 to 2:45:27 by /usr/bin/time; peak RSS 2.15 to 2.21 GiB (2257408 to 2314264 kB); lowest MemAvailable 22616 MiB = 22.1 GiB over 165 samples during the scan and 26.9 GiB (27503 MiB, 39 samples) during the regrid; no memory alert (`alert.log` does not exist).
+
+**Hybrid signs, as printed, lambda 1.20 to 1.30: minus from 1.20 to 1.24, plus from 1.25 to 1.30; edge signs minus and plus.** One robust change, none touching a non-robust point:
+| position | bracket | orientation as printed | det-linear estimate | estimator range |
+|---|---|---|---|---|
+| **the root near lambda_1's line, k_c 79, D 20, dh170 (Linux)** | (1.24, 1.25) | - to + | **1.246581** | [1.242925, 1.246581] |
+The estimator range is the spread over the interpolation choices of `d185_scan_read.changes`, not an enclosure. No ln|det| minimum without a sign change in 1.20 to 1.30 (win2's one at 1.31, depth 0.0356, is outside this window). The float64 sign differs from the hybrid at 2 of 12 evaluations (1.23, 1.24; plus where the hybrid is minus). ln|det|: 1.20 -2445.6955, 1.21 -2446.7549, 1.22 -2447.9214, 1.23 -2449.2952, 1.24 -2451.3607, 1.25 -2452.0157, 1.26 -2451.9524, 1.27 -2452.4727, 1.28 -2453.2192, 1.29 -2454.0640, 1.30 -2454.7718.
+
+**The regrid beside win2's** (the same k_c 71 source, 970fde73 / 8f86af85; win2: Windows, Core Ultra 7 265K, 8 threads, 5273 s; dh170: Linux, i7-7700, 8 threads, 2389 s):
+| | dh170 | win2 |
+|---|---|---|
+| |F| | 4.4057739182e-10 | 4.4104844173e-10 (ratio 0.99893) |
+| steps | 2800 | 2800 |
+| psi-constraint | 2.1021859e-3 | 2.1020999e-3 |
+| Delta | **1.092259276533** | **1.092257255093** (dh170 minus win2: **+2.021e-6**) |
+**The root near lambda_1's line at D 20, by position:** dh170 (Linux) **1.246581** [1.242925, 1.246581]; win2 (Windows) **1.248340** [1.244440, 1.248340]; both in the bracket (1.24, 1.25). **The D 20 build spread, Linux minus Windows, is -0.001759** (the det-linear estimates; both on the same source and the same command). It is below the 0.003 to 0.03 that t5 wrote before the run. Earlier build comparisons of this root: 0.0032 at D 19.5 (macm3 against dh610, k_c 87) and 0.0136 at D 19.75 (macOS against Linux, k_c 87); here Linux against Windows at k_c 79, a different pair.
+
+## Predictions against the result
+| prediction | result |
+|---|---|
+| t5's, written before the run: one robust change in (1.20, 1.30), 0.003 to 0.03 from 1.248340 | one change in (1.24, 1.25); **0.001759 from 1.248340, below the bracket** |
+| mine: source check passes with all four controls firing (95%); regrid accepted with both controls firing (85%); regrid 2200 to 3600 s (65%); steps equal to 2800 (45%); |F| within 5% of win2's (80%) | yes; yes; yes, 2389 s; yes, equal; yes, 0.1% |
+| Delta within 1e-6 of win2's 1.092257255093 (50%) | **no**: +2.021e-6 |
+| scan: every point noise-robust (75%); the repeat bit-identical (90%); exactly one robust change (85%) | yes, 12 of 12; yes; yes |
+| distance from 1.248340: below 0.003 about 25%, 0.003 to 0.03 about 55%, above 0.03 about 10%; Linux below win2's (60%) | below 0.003 (the 25% case): 0.001759; Linux below: yes |
+| the float64 sign differs from the hybrid at more than half the points (40%) | **no**: 2 of 12 |
+| the scan 2.7 to 3.3 h (65%); peak RSS of a scan process below 3 GiB (85%) | yes, 2.75 h (2:44:51 to 2:45:27 each); yes, 2.21 GiB. My ETA to t5 (10:40 UTC) was 1 min after the end (10:38:59) |
+
+## Log
+- 2026-11-23 08:50 UTC: round 1 landed (1.20 to 1.23, all minus); 09:45: round 2 landed (partial reading 1.246581, reported to t5 and unchanged by round 3); 10:38:24 to 10:38:59 UTC: round 3 and the driver's reading finished.
+- 2026-11-23 10:39:31 UTC: result written (this section).
