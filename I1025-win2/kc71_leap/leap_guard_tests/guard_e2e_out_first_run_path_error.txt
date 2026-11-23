@@ -1,0 +1,15 @@
+cos 0.6 (rule 2)                   mutate=None : STOP True  dummy alive False rows 2  OK  [STOP at D 20.8125: max cos_t_reg 0.6 >= 0.5; leap root pid 12368: killed; 2026-11-23 12:18:39 UTC]
+cos 0.6, mutate=cos                mutate=cos  : STOP False dummy alive True  rows 2  OK  [-]
+n_null +1, cos 0.35 (rule 3)       mutate=None : STOP True  dummy alive False rows 2  OK  [STOP at D 20.8125: n_null rose 63 -> 64 with max cos_t_reg 0.35 >= 0.3; leap root pid 12088: killed; 2026-11-23 12:19:29 UTC]
+n_null +1, cos 0.35, mutate=nnull  mutate=nnull: STOP False dummy alive True  rows 2  OK  [-]
+slope turns (rule 1)               mutate=None : STOP True  dummy alive False rows 2  OK  [STOP at D 20.8125: dDelta/dD turned: -0.2929 after 0.027; leap root pid 23968: killed; 2026-11-23 12:20:20 UTC]
+slope turns, mutate=slope          mutate=slope: STOP False dummy alive True  rows 2  OK  [-]
+Traceback (most recent call last):
+  File "C:\Users\nathan\AppData\Local\Temp\claude\e3626a297248d1d0\3f3995a8-c32d-4981-a849-bcc7bfef8de1\scratchpad\guard_e2e_b.py", line 96, in <module>
+    run("D 20.75-like: n_null -1, cos .051", None, nn(62, 0.051), want_stop=False),
+    ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nathan\AppData\Local\Temp\claude\e3626a297248d1d0\3f3995a8-c32d-4981-a849-bcc7bfef8de1\scratchpad\guard_e2e_b.py", line 23, in run
+    os.makedirs(d)
+    ~~~~~~~~~~~^^^
+  File "<frozen os>", line 236, in makedirs
+NotADirectoryError: [WinError 267] The directory name is invalid: 'C:\\Users\\nathan\\AppData\\Local\\Temp\\claude\\e3626a297248d1d0\\3f3995a8-c32d-4981-a849-bcc7bfef8de1\\scratchpad\\guard_e2e_b_D 20.75-like: n_null -1, cos .051_041831'
