@@ -57,3 +57,39 @@ The regrid: 8 threads at nice 10 (all of this machine). The scan: 4 processes of
 - **The regrid beside the k_c 71 source and the D 20 ratios:** |F| **4.6763736498e-10** (source 4.8617065437e-10, ratio 0.96188; the D 20 ratio 0.97339 gave 4.7323e-10, -1.18%); steps **2731** (source 2453, ratio 1.1133; the D 20 ratio 1.1138 gave 2732); psi-constraint **3.2382273e-3** (source 5.2446740e-3, ratio 0.61743; the D 20 ratio 0.57354 gave 3.0080e-3, +7.65%); Delta **1.105055446478** (source 1.105077888484: k_c 79 minus the source **-2.2442e-5**; D 20: -9.857e-6); F at the start 4.9820694e-5.
 - 2026-11-23 11:35:51 UTC: **STEP 3 scan** started as unit `i1025-k79d205s` (4 processes of 1 thread, nice 10, 10 evaluations); all four print the record system (|F| 4.6786148313e-10 against the record's 4.6763736498e-10, 2731 steps equal).
 - 2026-11-23 11:36:43 UTC: step 2 logged (this entry).
+
+## Result (written 2026-11-23 13:43:57 UTC)
+Steps 1 and 2 as logged (ACCEPTED 10:43:40 and 11:35:37 UTC). **Step 3:** unit `i1025-k79d205s` exit 0; processes p2, p3, p1, p0 exit 0 at 13:22:31, 13:22:51, 13:42:54 and 13:43:02 UTC; all four printed the record system (|F| 4.6786148313e-10 against the record's 4.6763736498e-10, 2731 steps equal); **10 of 10 evaluations noise-robust**; the repeat of 1.12 (the first on p0, the repeat last on p1) **bit-identical** (hybrid +1, ln|det| -2391.4860573718984, float64 ln|det| -2391.237076265184, noise [1, 1]; `repeat_check.py` PASS); `read_lower.py` selftest exit 0, `--mutate=shift` and `--mutate=round2` exit 1; reader exit 0 (`read_lower.txt`). Seconds per point 3159 to 3262 in rounds 1 and 2 (four processes side by side) and 1207 and 1217 in round 3 (two processes); wall per process 1:46:39 to 2:07:11 by /usr/bin/time, the scan 2:07:12 (11:35:51 to 13:43:03); peak RSS 2.11 to 2.23 GiB; lowest MemAvailable 22.1 GiB (scan, 127 samples) and 26.8 GiB (regrid); no memory alert (`alert.log` does not exist).
+
+**Hybrid signs, as printed, lambda 1.00 to 1.24: minus at 1.00, 1.03, 1.06; plus at 1.09, 1.12, 1.15, 1.18, 1.21, 1.24; edge signs minus and plus; the float64 sign equals the hybrid at all 10 evaluations.** One robust change, none touching a non-robust point:
+| position | bracket | orientation as printed | det-linear estimate | estimator range |
+|---|---|---|---|---|
+| **the change near 1.08, k_c 79, D 20.5, dh170 (Linux)** | (1.06, 1.09) | - to + | **1.087574** | [1.062870, 1.087574] |
+The estimator range is the spread over the interpolation choices of `d185_scan_read.changes`, not an enclosure; on a grid of 0.03 the estimate is good to about the bracket. **There is no second change in 1.09 to 1.24**: the sign is plus at six consecutive points, and no ln|det| minimum without a sign change was found. ln|det|: 1.00 -2382.4046, 1.03 -2385.0181, 1.06 -2388.1449, 1.09 -2390.5755, 1.12 -2391.4861, 1.15 -2393.0830, 1.18 -2394.8791, 1.21 -2396.7901, 1.24 -2398.8077; the differences per 0.03 from 1.09 on are -0.9106, -1.5969, -1.7961, -1.9110, -2.0176 (no dip). Parity: the edge signs are unequal, an odd number of changes in the window, which one change satisfies.
+**What the scan does not show:** whether a pair of changes closer together than 0.03 lies between two grid points of 1.09 to 1.24 (equal signs, a dip that falls between points), or whether the root that t5 puts at 1.203492 at D 20.25 lies outside 1.00 to 1.24. A root moving at -0.18 per unit D would sit near 1.16; none is there.
+
+**The regrid beside the k_c 71 source and the D 20 ratios** (source: leg 3's record row; D 20 ratios from kc79_d20):
+| | dh170 k_c 79 | source k_c 71 | the D 20 ratios gave |
+|---|---|---|---|
+| |F| | 4.6763736498e-10 | 4.8617065437e-10 (ratio 0.96188) | 4.7323e-10 |
+| steps | 2731 | 2453 (ratio 1.1133) | 2732 |
+| psi-constraint | 3.2382273e-3 | 5.2446740e-3 (ratio 0.61743) | 3.0080e-3 |
+| Delta | **1.105055446478** | 1.105077888484 (k_c 79 minus source **-2.2442e-5**) | -9.857e-6 |
+
+## Predictions against the result
+| prediction | result |
+|---|---|
+| t5's, written before the run: two robust changes, near 1.08 and near 1.16, each within about 0.03 | **the first is there**: (1.06, 1.09), 1.087574 (0.0076 above 1.08); **the second is not**: sign plus at 1.09 to 1.24, no dip |
+| mine: source check passes with all four controls firing (95%); regrid accepted with both controls firing (85%) | yes; yes |
+| the regrid takes 2000 to 3000 s (70%) | **no**: 3112 s (D 20: 2389 s) |
+| steps between 2600 and 2900 (65%); |F| within 10% of 4.7323e-10 (75%); psi-constraint within 15% of 3.0080e-3 (70%) | yes, 2731; yes, -1.18%; yes, +7.65% |
+| Delta minus the source between -1.5e-5 and -5e-6 (65%) | **no**: -2.2442e-5 |
+| every point noise-robust (70%); the repeat bit-identical (90%) | yes, 10 of 10; yes |
+| exactly two robust changes (60%), one (18%), none (7%), three or more (15%) | **one** (the 18% case) |
+| the edge signs equal (65%) | **no**: minus at 1.00, plus at 1.24 (consistent with one change) |
+| the float64 sign differs from the hybrid at more than half the points (25%) | no: 0 of 10 |
+| the scan 2.4 to 3.1 h (65%) | **no**: 2.12 h (the third round had two processes, 1207 and 1217 s per point); peak RSS below 3 GiB (85%): yes, 2.23 GiB. My ETA to t5 (14:20 UTC) was 37 min after the end |
+
+## Log
+- 2026-11-23 12:30 UTC: round 1 landed (1.00 to 1.09: minus, minus, minus, plus); 13:22: round 2 landed (partial reading, reported to t5: one change in (1.06, 1.09), none near 1.16; unchanged by round 3); 13:42:54 to 13:43:03 UTC: round 3 and the driver's reading finished.
+- 2026-11-23 13:43:57 UTC: result written (this section).
