@@ -119,3 +119,90 @@ The order (hc, coordinator t5, in part): "Run step 4 now: d18_hybsign.py on linR
 - linRe: signs -, +, + at 1.32, 1.33, 1.34 (75%); one robust change, in (1.32, 1.33); its det-linear root is within 2e-05 of dh170's 1.325410 (85%; the state is 4.0e-10 from dh170's, and the build effect on ln|det| of the cross-check, 1e-04 to 8e-04 in absolute ln, moves the root by about 1e-06).
 - macRe: one robust change in (1.32, 1.33) (65%) or in (1.33, 1.34) (30%); its root is above linRe's (85%) and nearer to linRe's than to macm3's 1.338993 (95%).
 - The difference of the two roots is between 0.0015 and 0.0040 (65%), that is, about the span between the two linear expectations; within 30% of 0.0022 (0.0015 to 0.0028) 35%; below 0.001 (the states agree as far as three points can tell) 10%; above 0.0136 x 0.5 = 0.0068 (little pull in the root) 10%.
+
+## Step 4 result (2026-11-23 08:44 UTC; the tables are printed by `summarize_step4.py` into `summary_step4.txt` from `scan/`, `in/ref_*` and `read_lower_*.txt`)
+
+Everything ran as ordered. All 6 processes exited 0 and printed "the record system" (|F| printed 3.9881e-10 for linRe against its record 3.9854e-10, 3.9854e-10 for macRe against 3.9851e-10; steps 3124 = the record's). The lane started at 08:04:15 UTC; the points took 2114 to 2128 s and the last ended 08:39:47 UTC. The pre-run checks passed (reader selftests `0 1 1 0`, `step4_roots.py selftest` 0 and `--mutate` 1, the reader on the reference rows gives 1.325410 and 1.338993). No memory alert. The k_c 87 roots are not yet physical.
+
+**Reading** (`read_lower_lin.txt`, `read_lower_mac.txt`, `step4_roots.txt`): both states have hybrid signs -, +, + at 1.32, 1.33, 1.34, every point noise-robust, and one robust change in (1.32, 1.33), "- to +" as the reader prints it. The root is the root near lambda_1's line:
+
+| source | root (det-linear) | estimator range (spread over interpolation choices, not an enclosure) | bracket |
+|---|---|---|---|
+| dh170's own rows, state 352107a8 (his machine) | 1.325410 | 1.325410 (two points) | (1.32, 1.33) |
+| linRe | 1.327228 | [1.326584, 1.327228] | (1.32, 1.33) |
+| macRe | 1.325815 | [1.325087, 1.325815] | (1.32, 1.33) |
+| macm3's own rows, state 5825f5d0 (macOS) | 1.338993 | [1.337945, 1.338993] | (1.33, 1.34) |
+
+- linRe minus dh170's: +0.001818. macRe minus macm3's: -0.013178. macRe minus dh170's: +0.000405.
+- **macRe minus linRe: -0.001413** at |dz| 1.2693e-06, that is -1113 per unit, against +0.013583 at 7.9032e-06, +1719 per unit, before. The two estimator ranges allow a difference from -0.002141 to -0.000769 (-1687 to -606 per unit); all negative.
+- The roots of the two re-converged states are 9.6 times closer than those of the start states (0.001413 against 0.013583) for a |dz| 6.2 times smaller, and the macOS-started state's root now lies below the Linux-started one's, where before it lay above.
+- macm3's start state gave signs -, -, + (1.32, 1.33, 1.34); macRe gives -, +, +, the pattern of dh170's state at 1.32 and 1.33.
+
+```
+| source | lambda | hybrid sign | noise signs | noise robust | float64 sign | ln of abs det | seconds |
+|---|---|---|---|---|---|---|---|
+| dh170's own rows (his machine), state 352107a8 | 1.32 | - | -- | True | + | -2806.4460599255 | 5077 |
+| dh170's own rows (his machine), state 352107a8 | 1.33 | + | ++ | True | + | -2806.6102602939 | 5063 |
+| macm3's own rows (macOS), state 5825f5d0 | 1.32 | - | -- | True | + | -2804.4449626178 | 847 |
+| macm3's own rows (macOS), state 5825f5d0 | 1.33 | - | -- | True | + | -2805.7089895001 | 847 |
+| macm3's own rows (macOS), state 5825f5d0 | 1.34 | + | ++ | True | + | -2807.8988919101 | 838 |
+| my Linux build on macm3's state (../cross_macm3_d1975) | 1.32 | - | -- | True | + | -2804.4450916765 | 2368 |
+| my Linux build on macm3's state (../cross_macm3_d1975) | 1.33 | - | -- | True | + | -2805.7095712224 | 2386 |
+| my Linux build on macm3's state (../cross_macm3_d1975) | 1.34 | + | ++ | True | - | -2807.8980447977 | 2385 |
+| linRe, this step | 1.32 | - | -- | True | + | -2806.0300899137 | 2120 |
+| linRe, this step | 1.33 | + | ++ | True | + | -2806.9886015473 | 2126 |
+| linRe, this step | 1.34 | + | ++ | True | + | -2806.0559715167 | 2128 |
+| macRe, this step | 1.32 | - | -- | True | - | -2806.3441147084 | 2127 |
+| macRe, this step | 1.33 | + | ++ | True | - | -2806.6731504483 | 2127 |
+| macRe, this step | 1.34 | + | ++ | True | - | -2805.9812220593 | 2114 |
+
+det-linear root of each source's sign change between neighbours (det = sign x exp(ln), taken relative to the lower point's ln), as the reader's estimate; the same arithmetic as `read_lower.py`'s det-linear value:
+| source | bracket | det-linear | ln(upper) - ln(lower) |
+|---|---|---|---|
+| dh170's own rows (his machine), state 352107a8 | (1.32, 1.33) | 1.325410 | -0.164200 |
+| macm3's own rows (macOS), state 5825f5d0 | (1.33, 1.34) | 1.338993 | -2.189902 |
+| my Linux build on macm3's state (../cross_macm3_d1975) | (1.33, 1.34) | 1.338992 | -2.188474 |
+| linRe, this step | (1.32, 1.33) | 1.327228 | -0.958512 |
+| macRe, this step | (1.32, 1.33) | 1.325815 | -0.329036 |
+
+ln of abs det, differences between sources at the same lambda (the first source minus the second):
+| pair | 1.32 | 1.33 | 1.34 |
+|---|---|---|---|
+| linRe minus dh170's own rows | +0.415970 | -0.378341 | n/a |
+| linRe minus macRe | +0.314025 | -0.315451 | -0.074749 |
+| macRe minus macm3's own rows | -1.899152 | -0.964161 | +1.917670 |
+| macRe minus my Linux build on macm3's state | -1.899023 | -0.963579 | +1.916823 |
+| my Linux build on macm3's state minus macm3's own rows | -0.000129 | -0.000582 | +0.000847 |
+| my Linux build on macm3's state minus dh170's own rows | +2.000968 | +0.900689 | n/a |
+
+ln of abs det difference per unit of norm dz (L2 of the state difference, Delta included):
+| pair | norm dz | 1.32 | 1.33 | 1.34 |
+|---|---|---|---|---|
+| linRe minus macRe (same build) | 1.2693e-06 | +2.474e+05 | -2.485e+05 | -5.889e+04 |
+| macRe minus Linux build on macm3's state (same build) | 7.0747e-06 | -2.684e+05 | -1.362e+05 | +2.709e+05 |
+| Linux build on macm3's state minus dh170's own rows (two machines) | 7.9032e-06 | +2.532e+05 | +1.140e+05 | n/a |
+| macRe minus dh170's own rows (two machines) | 1.2689e-06 | +8.034e+04 | -4.956e+04 | n/a |
+| linRe minus dh170's own rows (two machines) | 4.0279e-10 | +1.033e+09 | -9.393e+08 | n/a |
+
+root difference macRe minus linRe: det-linear -0.001413; over the two estimator ranges (linRe [1.326584, 1.327228], macRe [1.325087, 1.325815]) from -0.002141 to -0.000769
+```
+
+**What the ln|det| tables show.** (1) For the pairs on one build, ln|det| changes by about 2.5e+05 per unit of |dz| (linRe and macRe; macRe and the Linux build on macm3's state), and macm3's own macOS rows differ from the Linux build on the same state by at most 8.5e-04 in ln|det|. (2) linRe against dh170's own rows differs by +0.416 (1.32) and -0.378 (1.33) in ln|det| for |dz| 4.0279e-10, about 4000 times more per unit; macRe is nearer to dh170's rows (+0.102, -0.063) than linRe is. Two readings of (2) that I have not separated: (a) dh170's evaluation (his machine; his points took about 5060 s) differs from mine by about 0.4 in ln|det|, which the macOS-against-Linux comparison does not show; (b) ln|det| is that steep along the directions the Levenberg-Marquardt step moved (|J dz| / |dz| = 2.9e-03, against 8e-07 for the other pair; that step lowered |F| by 0.055%). The test that separates them is dh170's start state (blob 352107a8) evaluated on this build at 1.32 and 1.33: under (a) it differs from his rows by about 0.4 and matches linRe's within about 1e-04; under (b) it matches his rows (-2806.4461, -2806.6103) within about 1e-03. It is not run (not ordered).
+
+**What is not known:** whether the roots of states this close are reproducible below about 0.002: the root differs by 0.0018 between dh170's rows and linRe and by 0.0014 between linRe and macRe, with the interpolation spread of three points about 0.0007, and the shift is not a constant per |dz| (the sign reversed).
+
+### Predictions against outcomes (registered before the run)
+
+| prediction | outcome |
+|---|---|
+| all 6 exit 0 and print the record system (95%) | yes |
+| each point 2200 to 2900 s (70%), the six end 2400 to 2800 s after the start | no: 2114 to 2128 s, ended 2132 s after the start; the ETA I sent the coordinator (08:44 to 08:51) was late |
+| linRe: signs -, +, + (75%); one robust change in (1.32, 1.33) | yes; yes |
+| linRe root within 2e-05 of dh170's 1.325410 (85%) | no: +0.001818 |
+| macRe: one robust change in (1.32, 1.33) (65%) | yes |
+| macRe root above linRe's (85%) | no: below by 0.001413 (by 0.000769 to 0.002141 over the ranges) |
+| macRe root nearer linRe's than macm3's 1.338993 (95%) | yes (0.0014 against 0.0132) |
+| the difference between 0.0015 and 0.0040 (65%) | no: 0.0014 in size, and the other way round |
+| within 30% of 0.0022 (35%), below 0.001 (10%), above 0.0068 (10%) | no, no, no |
+
+The coordinator's written-before readings: "roots within 0.002 in (1.32, 1.33)" holds as read (both roots in (1.32, 1.33), 0.0014 apart, each within 0.0018 of dh170's 1.325410). "If the roots differ by about 0.0022, the root moves linearly with dz and the build spread shrinks with re-convergence on one build": the roots differ by 0.0014, with the opposite sign to the earlier difference, so a constant shift per |dz| is not supported; the spread between the two states' roots did shrink (0.0136 to 0.0014).

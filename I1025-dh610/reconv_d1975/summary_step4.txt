@@ -1,0 +1,46 @@
+| source | lambda | hybrid sign | noise signs | noise robust | float64 sign | ln of abs det | seconds |
+|---|---|---|---|---|---|---|---|
+| dh170's own rows (his machine), state 352107a8 | 1.32 | - | -- | True | + | -2806.4460599255 | 5077 |
+| dh170's own rows (his machine), state 352107a8 | 1.33 | + | ++ | True | + | -2806.6102602939 | 5063 |
+| macm3's own rows (macOS), state 5825f5d0 | 1.32 | - | -- | True | + | -2804.4449626178 | 847 |
+| macm3's own rows (macOS), state 5825f5d0 | 1.33 | - | -- | True | + | -2805.7089895001 | 847 |
+| macm3's own rows (macOS), state 5825f5d0 | 1.34 | + | ++ | True | + | -2807.8988919101 | 838 |
+| my Linux build on macm3's state (../cross_macm3_d1975) | 1.32 | - | -- | True | + | -2804.4450916765 | 2368 |
+| my Linux build on macm3's state (../cross_macm3_d1975) | 1.33 | - | -- | True | + | -2805.7095712224 | 2386 |
+| my Linux build on macm3's state (../cross_macm3_d1975) | 1.34 | + | ++ | True | - | -2807.8980447977 | 2385 |
+| linRe, this step | 1.32 | - | -- | True | + | -2806.0300899137 | 2120 |
+| linRe, this step | 1.33 | + | ++ | True | + | -2806.9886015473 | 2126 |
+| linRe, this step | 1.34 | + | ++ | True | + | -2806.0559715167 | 2128 |
+| macRe, this step | 1.32 | - | -- | True | - | -2806.3441147084 | 2127 |
+| macRe, this step | 1.33 | + | ++ | True | - | -2806.6731504483 | 2127 |
+| macRe, this step | 1.34 | + | ++ | True | - | -2805.9812220593 | 2114 |
+
+det-linear root of each source's sign change between neighbours (det = sign x exp(ln), taken relative to the lower point's ln), as the reader's estimate; the same arithmetic as `read_lower.py`'s det-linear value:
+| source | bracket | det-linear | ln(upper) - ln(lower) |
+|---|---|---|---|
+| dh170's own rows (his machine), state 352107a8 | (1.32, 1.33) | 1.325410 | -0.164200 |
+| macm3's own rows (macOS), state 5825f5d0 | (1.33, 1.34) | 1.338993 | -2.189902 |
+| my Linux build on macm3's state (../cross_macm3_d1975) | (1.33, 1.34) | 1.338992 | -2.188474 |
+| linRe, this step | (1.32, 1.33) | 1.327228 | -0.958512 |
+| macRe, this step | (1.32, 1.33) | 1.325815 | -0.329036 |
+
+ln of abs det, differences between sources at the same lambda (the first source minus the second):
+| pair | 1.32 | 1.33 | 1.34 |
+|---|---|---|---|
+| linRe minus dh170's own rows | +0.415970 | -0.378341 | n/a |
+| linRe minus macRe | +0.314025 | -0.315451 | -0.074749 |
+| macRe minus macm3's own rows | -1.899152 | -0.964161 | +1.917670 |
+| macRe minus my Linux build on macm3's state | -1.899023 | -0.963579 | +1.916823 |
+| my Linux build on macm3's state minus macm3's own rows | -0.000129 | -0.000582 | +0.000847 |
+| my Linux build on macm3's state minus dh170's own rows | +2.000968 | +0.900689 | n/a |
+
+ln of abs det difference per unit of norm dz (L2 of the state difference, Delta included):
+| pair | norm dz | 1.32 | 1.33 | 1.34 |
+|---|---|---|---|---|
+| linRe minus macRe (same build) | 1.2693e-06 | +2.474e+05 | -2.485e+05 | -5.889e+04 |
+| macRe minus Linux build on macm3's state (same build) | 7.0747e-06 | -2.684e+05 | -1.362e+05 | +2.709e+05 |
+| Linux build on macm3's state minus dh170's own rows (two machines) | 7.9032e-06 | +2.532e+05 | +1.140e+05 | n/a |
+| macRe minus dh170's own rows (two machines) | 1.2689e-06 | +8.034e+04 | -4.956e+04 | n/a |
+| linRe minus dh170's own rows (two machines) | 4.0279e-10 | +1.033e+09 | -9.393e+08 | n/a |
+
+root difference macRe minus linRe: det-linear -0.001413; over the two estimator ranges (linRe [1.326584, 1.327228], macRe [1.325087, 1.325815]) from -0.002141 to -0.000769
