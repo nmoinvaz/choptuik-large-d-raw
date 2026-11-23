@@ -70,7 +70,7 @@ def track(recs, mutate=None):
         longest = max((nfalls[nid[i]], i) for i in tracked)[1] if tracked else None
         rows.append(dict(D=b["D"], slope=slope, n_null=b["n_null"], weak=None if w is None else (nid[w], b["sv_reg_small"][w], ratio[nid[w]]),
                          big=(nid[c] if m[c] is not None else "new", b["sv_reg_small"][c], cos[c]),
-                         run=None if longest is None else (nfalls[nid[longest]], cos[longest]), sig=sig or ["none"], entered=[nid[i] for i, j in enumerate(m) if j is None]))
+                         run=None if longest is None else (nfalls[nid[longest]], cos[longest], nid[longest], b["sv_reg_small"][longest]), sig=sig or ["none"], entered=[nid[i] for i, j in enumerate(m) if j is None]))
         ids, falls, prev_slope = nid, nfalls, slope
     return rows
 
@@ -78,7 +78,7 @@ def track(recs, mutate=None):
 def fmt(r):
     w = "-" if r["weak"] is None else "m%d %.3e (x%.3f)" % r["weak"]
     big = "%s %.3e cos %.4f" % (("m%d" % r["big"][0]) if r["big"][0] != "new" else "new", r["big"][1], r["big"][2])
-    run = "-" if r["run"] is None else "%d falls, cos %.3f" % r["run"]
+    run = "-" if r["run"] is None else "%d falls (m%d %.3e), cos %.3f" % (r["run"][0], r["run"][2], r["run"][3], r["run"][1])
     ent = ("entered " + ",".join("m%d" % e for e in r["entered"])) if r["entered"] else ""
     return "| %.8g | %+.6f | %d | %s | %s | %s | %s | %s |" % (r["D"], r["slope"], r["n_null"], w, big, run, "/".join(r["sig"]), ent)
 
