@@ -54,6 +54,23 @@ BelowNormal, caps 28800 s by the exact root pids, `P4_WT_MATTER` the k_c 79 work
 
 Both drivers start outside the terminal through `../kc71_leap/cim_start.ps1`, BelowNormal, as soon as this README is pushed and the plan is posted on #1025: the regrid driver at once, the scan driver waits for `regrid_accepted.txt`. No script sends hc; verdicts are read from `summary_kc87.txt` and `exits_kc87.txt` and reported by hand.
 
-## Result
+## Result (so far)
 
-Not yet run.
+**Source (02:59 UTC 23 Nov): accepted by the k_c 79 check, refused by the k_c 87 check** (`source_kc79_syscheck*.txt`, `source_kc87_syscheck.txt`; rehearsal in `rehearsal/`).
+
+**Step 1, the regrid: ACCEPTED** (started 02:59:20 UTC, exit 0 at 04:55:32 UTC, 6972 s, uncapped, 8 threads, BelowNormal, root pid 35008, beside leg 3 of the leap; `regrid.log`): `kc87_syscheck_1025.py` exit 0, its selftest exit 0, controls on the same numbers refused, `--mutate=F` and `--mutate=steps` each exit 1, and `kc79_syscheck_1025.py` refuses the result ("the record is not k_c 79 at D 20 (kc 87, D 20.0)") (`syscheck*.txt`).
+
+| | k_c 79 source (win2, D 20) | k_c 87 (this regrid) |
+|---|---|---|
+| \|F\| | 4.4105e-10 | 4.3393e-10 |
+| steps | 2800 | 3082 |
+| constraint | 2.102e-3 | 1.265e-3 |
+| Delta | 1.092257255093 | 1.092254283228 |
+| F_start | 2.819e-05 | 8.339e-06 |
+| seconds | 5273 | 6960 |
+
+Delta(k_c 87) minus Delta(k_c 79) = -2.9719e-6 (k_c 79 minus k_c 71 at D 20: -1.1878e-5). Files: `sol_l1kc87win2d20_D20.0000.npy`, `l1kc87win2d20.jsonl`, `rec_k87_D20.0000.jsonl`, `regrid_accepted.txt`. **A flaw of mine, found at the end of the regrid:** the driver's last step, the one-line python that writes `regrid_accepted.txt`, got MSYS paths and wrote an empty file (its output was lost; the scan driver, which only waits for the file to exist, started on it, after the record and the state existed and the checks above had passed). The line was written again from the two records at 04:57 UTC and appended to `summary_kc87.txt`.
+
+**Step 2, the scan** started 04:56:10 UTC (seven processes of one thread, roots 34832, 17036, 19024, 34052, 18224, 22888, 35108); the system check of every process passed (|F| 4.3349897102e-10 against the record's 4.3393255460e-10, 3082 steps = the record's). Result below when it ends.
+
+Not yet run: the scan's reading.
