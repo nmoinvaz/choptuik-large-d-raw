@@ -1,0 +1,2 @@
+@echo off
+start "" /wait /belownormal /b "C:\Program Files\Git\bin\bash.exe" -c "export PATH=/usr/bin:$PATH; cd /d/choptuik-i935-raw/I1025-win2/kc71_leap && powershell -NoProfile -File D:/choptuik-i935-raw/I1025-win2/kc71_leap/mem_watch.ps1 -Out D:/choptuik-i935-raw/I1025-win2/kc71_leap/leg6" 1>> D:\choptuik-i935-raw\I1025-win2\kc71_leap\leg6_mem_watch.stdout 2>> D:\choptuik-i935-raw\I1025-win2\kc71_leap\leg6_mem_watch.stderr
