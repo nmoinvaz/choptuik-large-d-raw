@@ -29,3 +29,6 @@ Written 2026-11-23 02:14 UTC, after the run started at 02:13:42 UTC (the coordin
 | time (UTC) | milestone |
 |---|---|
 | 02:13:42 | driver started (`logs/exits.txt`: start line, python versions); preflight `value_mp.py check1` running |
+| 02:28 | preflight command 1, `value_mp.py check1 --n=1`: PASS at (2.5123456, 1.20654321), 870.0 s: |R_mp - R_f64| 1.824e-06 against the float64 sigma 3.893e-06, |v_mp - v_f64| 2.22e-16, sigma_mp 1.71e-24, |R|/sigma_mp 8.49e+26 |
+| 02:50 | preflight command 2, `check1 --mutate=conv`: FAIL as it must, 1365.6 s (|R_mp - R_f64| 5.683e+10, |v_mp - v_f64| 7.43e-02). **Preflight line: `value_mp check1, check1 --mutate=conv exits: 0 1`** (the pass) |
+| 02:50:58 | pass 1 select: 8 points without value in 17 unresolved leaves; 0 already run; 8 to run (the driver's README says the 16 sigma-guard leaves are named by 7 points); pass 1 value started, cache 3397 lines |
