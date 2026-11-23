@@ -10,7 +10,7 @@ The coordinator's prediction, written before this run: k_c 87's rising root has 
 The k_c 71 to 79 step at D 19.375 (1.543839 to 1.469771, -0.074068) put on 1.469771 gives 1.395703 (my own second extrapolation, from numbers already posted; both are in the window).
 
 Scan the same state, lambda 1.28 to 1.40 at 0.01 (13 values) plus a repeat of 1.34, 4 processes of 1 thread, nice 10, own session under caffeinate; read with `read_lower.py` with its selftest and mutations.
-Report every robust change by position and whether one sits in 1.33 to 1.40. Stop and report if available memory falls under 2 GiB (the earlier scan's four processes peaked at 11.2 GB against 17.4 GiB available). Post on #1025; send the verdict with the raw commit. Stop and report on any failure; change no code.
+Report every robust change by position and whether one sits in 1.33 to 1.40. Memory: the order said to stop and report under 2 GiB; the coordinator corrected it on 2026-11-22 (Nathan's rule of 2026-11-08: no guard stops or kills a process for memory), so the watcher only alerts (the earlier scan's four processes peaked at 11.2 GB against 17.4 GiB available). Post on #1025; send the verdict with the raw commit. Stop and report on any failure; change no code.
 
 ## Inputs (pinned by `git hash-object --no-filters`; `prepare_inputs.sh` copies them with `git cat-file blob` into `in/`; `run_scan.sh` checks `in/` and the worktree's copies again)
 
@@ -33,7 +33,7 @@ Code, build and venv as `../kc79_d19375/README.md` and `../kc87_d19375/README.md
 2. `d18_hybsign.py STUB STATE 19.375 "<lambdas>" OUT` in 4 processes, each under `capped_run.py 28800` by exact pid: p0 1.28,1.32,1.36,1.40; p1 1.29,1.33,1.37 and the repeat 1.34; p2 1.30,1.34,1.38; p3 1.31,1.35,1.39 (the repeat of 1.34 runs on another process than the first 1.34);
 3. a sampler (log only, never stops or kills anything) writes rss, cpu, available GiB, free memory percent and free disk every 60 s into `scan/scan_samples.csv`;
 4. `read_lower.py selftest`, its mutations `shift` and `round2` (each must exit 1), and `read_lower.py scan 1.28 1.40`; the point 1.40 was also evaluated in `../kc87_d19375/`, and `cross_run_1.40.txt` compares the two (information).
-My watcher is alert-only (it ends and tells me when available memory is under 2 GiB or free disk under 3 GiB); the stop on the coordinator's 2 GiB rule is mine, by exact pid.
+My watcher was alert-only (it ended and told me when available memory was under 2 GiB or free disk under 3 GiB); no process was to be stopped for memory (the order's stop rule was corrected by the coordinator on 2026-11-22, after this scan). Available memory never fell under 10.5 GiB during it.
 
 ## Acceptance (fixed before the run)
 
