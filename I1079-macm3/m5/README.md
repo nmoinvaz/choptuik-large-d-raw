@@ -75,15 +75,15 @@ From #1080's comment 7111416293, copied verbatim here at 2026-11-23 19:20 UTC, b
 
 How the code applies it (`run_walk_mp.sh`, `walk_report.py`): "located" is `zero_mp.py`'s own rule (exit 0: the last |R| under 1e3 sigma_mp, or the next step under 1e-13 with |R| what that step removes); (ii) is `value_mp.py pointv` at the located walk's last (A, w/w_inf) and last v with `--r1=0.2`, then |R_1| against 1e3 sigma; (iii) is the Euclidean norm in (A, w/w_inf) from the box centre to the walk's last point (`walk_report.py shift`), against 0.14035 (x1) and 0.20993 (x2). The located point is the last row's (A, w/w_inf), the centre of the last iteration, not the point after its unapplied step. The control is the coordinator's, on dh370; I do not run it, and no reading of mine counts until it passes.
 
-Commands, from `solver/inner_stokes` of the worktree \`~/Source/choptuik-large-d-1080mp2\` at a0441d8b (no tracked changes), venv \`~/Source/venv-macm3-1058b\`, nice 10, detached under \`caffeinate -is\`:
+Commands, from `solver/inner_stokes` of the worktree `~/Source/choptuik-large-d-1080mp2` at a0441d8b (no tracked changes), venv `~/Source/venv-macm3-1058b`, nice 10, detached under `caffeinate -is`:
 ```
 python3 zero_mp.py selftest ; python3 zero_mp.py selftest --mutate=sign        (the first lands, the second must fail)
 python3 zero_mp.py 3.446218246366727 0.347606965217407 - m5/walk_x1.jsonl --M=5 --v0=<x1fm's solved v, full digits> --procs=5 --iters=8
 python3 value_mp.py pointv <A> <WF> --M=5 --v=<last v> --r1=0.2          (only after a located end)
 ```
-x1's undamped start on 176daf53 was stopped at 19:19 UTC after 63 CPU minutes with no result, by the order above. Its log is \`explore_mp/logs/pointv_x1.log\` (the command only).
+x1's undamped start on 176daf53 was stopped at 19:19 UTC after 63 CPU minutes with no result, by the order above. Its log is `explore_mp/logs/pointv_x1.log` (the command only).
 
-Files: \`run_walk_mp.sh\`, \`walk_report.py\`, \`walk_x1.jsonl\` (one row per iteration), \`logs/walk_x1.log\`, \`logs/walk_x1_table.md\`, \`logs/pointv_r0.2_x1.log\`, \`exits_walk.txt\`, \`memlog_walk.log\`.
+Files: `run_walk_mp.sh`, `walk_report.py`, `walk_x1.jsonl` (one row per iteration), `logs/walk_x1.log`, `logs/walk_x1_table.md`, `logs/pointv_r0.2_x1.log`, `exits_walk.txt`, `memlog_walk.log`.
 
 ## Results
 

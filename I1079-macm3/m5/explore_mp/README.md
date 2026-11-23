@@ -31,4 +31,12 @@ Per run the report (`report_mp.py report`, `logs/report.txt`) gives |r3| and |r5
 
 ## Results
 
-(none yet)
+EXPLORATORY. The commands and the numbers per run are in `logs/report.txt` (176daf53) and `logs/report2.txt` (`pointv2_x2`, a0441d8b); the post is #1080 comment 7116694219.
+
+| run | code | \|r3\| | \|r5\| | \|R1\|/sig | valued | seconds |
+|---|---|---|---|---|---|---|
+| x1fm | 176daf53 | 1.9e-28 | 2.0e-30 | 2.0e22 | True | 3657 |
+| x2 | 176daf53 | 1.7e6 | 2.4e5 | 0.023 | False | 3286 |
+| x2 rerun | a0441d8b | 1.2e-19 | 1.8e-20 | 0.173 | False | 14371 |
+
+The x2 rerun ends above the loop's tolerance (1e-28 at dps 34), with dr1 / max|r_rest| = 3.2e26 and dR (the two precisions' R1) 2.3e6.
