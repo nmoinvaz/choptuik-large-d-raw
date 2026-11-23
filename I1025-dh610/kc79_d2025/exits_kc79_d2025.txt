@@ -1,3 +1,21 @@
 == 2026-11-23 10:11:14 UTC kc79_d2025: pins checked (in_blobs.txt, worktrees 1025g 48c36355 and 1025f 505d8399, ell_refine.py 631e5801, ell_delta.py fde699f5, lambda_0(20.25) 2.109906384, MemAvailable 61268112 kB, load 1.04 1.79 3.91, Python 3.14.10)
 == 2026-11-23 10:11:14 UTC kc79_d2025: selftests as wanted (kc79_syscheck, kc71_syscheck, read_lower, mutate shift, mutate round2, repeat_check, kc79_read, mutate: 0 0 0 1 1 0 0 1)
 == 2026-11-23 10:11:14 UTC kc79_d2025: dry run: nothing started
+== 2026-11-23 10:11:51 UTC kc79_d2025: pins checked (in_blobs.txt, worktrees 1025g 48c36355 and 1025f 505d8399, ell_refine.py 631e5801, ell_delta.py fde699f5, lambda_0(20.25) 2.109906384, MemAvailable 61279232 kB, load 1.09 1.72 3.81, Python 3.14.10)
+== 2026-11-23 10:11:51 UTC kc79_d2025: selftests as wanted (kc79_syscheck, kc71_syscheck, read_lower, mutate shift, mutate round2, repeat_check, kc79_read, mutate: 0 0 0 1 1 0 0 1)
+== 2026-11-23 10:12:00 UTC kc79_d2025: source check: kc71_syscheck.py exit 0 (ACCEPTED: the record class's |F| with a step count that comes back); controls --mutate=F exit 1, --mutate=steps exit 1 (1 wanted each)
+== 2026-11-23 10:12:00 UTC kc79_d2025: regrid starts: nice -n 10 timeout 21600 /home/nathan/Source/venv-i1058/bin/python -u ell_refine.py l1kc71Lw1025c 71 l1kc79dh610d2025 79 1 20.25 2.1099063840 --kappa 0.7 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma
+== 2026-11-23 10:48:04 UTC kc79_d2025: ell_refine exit 0, wall 2164 s
+== 2026-11-23 10:48:07 UTC kc79_d2025: acceptance: kc79_syscheck_1025.py exit 0; controls --mutate=F exit 1, --mutate=steps exit 1 (1 wanted each): controls on the same numbers: record |F| x 1.5 refused: True; record steps + 1 refused: True D 20.25 k_c 79: record |F| 4.6188739816e-10, F_start 3.761e-05, steps 2762, constraint 2.629e-03, Delta 1.098607545025, 2162 s; state |F| 4.6188739816e-10, freeze_from steps 2762 ACCEPTED: the record class's |F| with a step count that comes back 
+== 2026-11-23 10:48:07 UTC kc79_d2025: regrid ACCEPTED
+== 2026-11-23 10:48:07 UTC kc79_d2025: scan: lambda 1.13 to 1.24 and a repeat of 1.16 (13 evaluations), lists 1.13,1.17,1.21,1.16 1.14,1.18,1.22 1.15,1.19,1.23 1.16,1.20,1.24, 4 processes of 1 thread, nice 10, cap 28800 s each
+2026-11-23 11:34:49 UTC scan p3 (1.16,1.20,1.24) exit 0
+2026-11-23 11:34:52 UTC scan p1 (1.14,1.18,1.22) exit 0
+2026-11-23 11:34:52 UTC scan p2 (1.15,1.19,1.23) exit 0
+2026-11-23 11:46:37 UTC scan p0 (1.13,1.17,1.21,1.16) exit 0
+== 2026-11-23 11:46:37 UTC kc79_d2025: p0: D 20.25 k_c 79: |F| 4.6181941293e-10 (record 4.6188739816e-10), steps 2762 (record 2762): the record system
+== 2026-11-23 11:46:37 UTC kc79_d2025: p1: D 20.25 k_c 79: |F| 4.6181941293e-10 (record 4.6188739816e-10), steps 2762 (record 2762): the record system
+== 2026-11-23 11:46:37 UTC kc79_d2025: p2: D 20.25 k_c 79: |F| 4.6181941293e-10 (record 4.6188739816e-10), steps 2762 (record 2762): the record system
+== 2026-11-23 11:46:37 UTC kc79_d2025: p3: D 20.25 k_c 79: |F| 4.6181941293e-10 (record 4.6188739816e-10), steps 2762 (record 2762): the record system
+13 points
+== 2026-11-23 11:46:37 UTC kc79_d2025: scan done; readings in read_lower.txt and kc79_read.txt; kc79 done

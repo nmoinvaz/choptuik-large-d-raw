@@ -38,3 +38,62 @@ Threads: this uses 8 (regrid) or 4 (scan) beside the #1076 recount's 12 processe
 
 ## Status
 - 2026-11-23 10:11:42 UTC: folder, inputs, lane and the reading prepared before any run.
+
+## Result (2026-11-23 11:49 UTC; the tables are printed by `summarize_kc79.py` into `summary_kc79.txt`, `in/kc79_read.py` into `kc79_read.txt`, `read_lower.py` and `repeat_check.py` into `read_lower.txt`)
+
+Everything ran as ordered, all exit 0. Source: `kc71_syscheck.py` ACCEPTED, its two controls exit 1 (10:12:00 UTC). Regrid: `ell_refine.py` exit 0, 2164 s wall (10:12:00 to 10:48:04 UTC; win2's 4977 s on Windows), **ACCEPTED** by `kc79_syscheck_1025.py` at 10:48:07 (exit 0; |F| 4.6188739816e-10 and 2762 steps come back; its two controls exit 1). Scan: 13 evaluations on 4 processes, each printing "the record system" (|F| 4.6181941293e-10 against the record's 4.6188739816e-10, steps 2762), 10:48:07 to 11:46:37 UTC (p0 with four points last). No memory alert. The k_c 79 roots are not yet physical.
+
+```
+| record | this machine (Linux) | win2 (Windows) | difference |
+|---|---|---|---|
+| F_start | 3.760619529562024e-05 | 3.760619529560235e-05 | +1.789e-17 |
+| F | 4.6188739816379066e-10 | 4.613302409241101e-10 | +5.572e-13 |
+| steps | 2762 | 2762 | +0.000e+00 |
+| constraint | 0.002629070151119348 | 0.0026290648606842578 | +5.290e-09 |
+| Delta | 1.098607545025376 | 1.0986072751302585 | +2.699e-07 |
+| seconds | 2162 | 4977 |  |
+| Delta minus its k_c 71 source | -1.544936e-05 | -1.571926e-05 | |
+
+| lambda | hybrid sign (mine, win2) | noise signs (robust) | float64 sign (mine, win2) | ln of abs det (mine, win2) | mine minus win2 | seconds (mine) |
+|---|---|---|---|---|---|---|
+| 1.13 | -, - | -- (True) | +, + | -2419.383324, -2419.413476 | +0.030151 | 955 |
+| 1.14 | -, - | -- (True) | -, + | -2420.531984, -2420.584874 | +0.052891 | 955 |
+| 1.15 | -, - | -- (True) | -, + | -2421.862865, -2421.977642 | +0.114777 | 957 |
+| 1.16 | -, - | -- (True) | +, + | -2423.760696, -2424.284117 | +0.523421 | 699 |
+| 1.16 | -, - | -- (True) | +, + | -2423.760696, -2424.284117 | +0.523421 | 957 |
+| 1.17 | +, + | ++ (True) | +, + | -2424.873017, -2424.340132 | -0.532885 | 928 |
+| 1.18 | +, + | ++ (True) | +, + | -2424.728919, -2424.428845 | -0.300074 | 923 |
+| 1.19 | +, + | ++ (True) | -, + | -2425.517906, -2425.149435 | -0.368471 | 925 |
+| 1.20 | -, + | -- (True) | +, + | -2429.238333, -2426.967110 | -2.271223 | 924 |
+| 1.21 | -, - | -- (True) | +, + | -2426.047688, -2426.344530 | +0.296842 | 926 |
+| 1.22 | -, - | -- (True) | +, + | -2425.752597, -2425.871194 | +0.118597 | 924 |
+| 1.23 | -, - | -- (True) | -, + | -2425.765702, -2425.834485 | +0.068784 | 921 |
+| 1.24 | -, - | -- (True) | -, + | -2425.915865, -2425.962114 | +0.046249 | 919 |
+
+scan points: 13 evaluations, seconds per point min 699, median 925, max 957, sum 11913; outside 800 to 1800 s: 1
+```
+
+**Reading** (`read_lower.txt`): hybrid signs - at 1.13 to 1.16, + at 1.17 to 1.19, - at 1.20 to 1.24, every point noise-robust (float64 signs differ from the hybrid at 1.13, 1.16, 1.19, 1.20, 1.21, 1.22, as the reader prints them); the repeat of 1.16 (on p0, its original on p3) agrees in sign, noise signs, float64 sign and ln|det| (`repeat_check.py` PASS). Two robust changes, by position beside win2's:
+
+```
+hybrid signs: 1.130- 1.140- 1.150- 1.160- 1.170+ 1.180+ 1.190+ 1.200- 1.210- 1.220- 1.230- 1.240-
+robust changes: 2 (win2's: 2)
+| position | mine: bracket, orientation, det-linear, estimator range | win2's: det-linear, range | mine minus win2's | same orientation | within 0.005 |
+|---|---|---|---|---|---|
+| 1 | (1.160, 1.170), - to +, 1.167526, [1.163712, 1.167526] | 1.165140, [1.162108, 1.165140] | +0.002386 | True | True |
+| 2 | (1.190, 1.200), + to -, 1.199763, [1.199698, 1.199763] | 1.203492, [1.202702, 1.203492] | -0.003729 | True | True |
+```
+
+- **Both are within the coordinator's 0.005 of win2's:** the first (1.160, 1.170) "- to +" at 1.167526 against 1.165140 (+0.002386; the estimator ranges, spreads over interpolation choices and not enclosures, overlap: [1.163712, 1.167526] and [1.162108, 1.165140]); the second at 1.199763 against 1.203492 (-0.003729; ranges [1.199698, 1.199763] and [1.202702, 1.203492], which do not overlap, a gap of 0.0029).
+- **The second change sits one grid cell lower:** my bracket is (1.190, 1.200) and win2's (1.200, 1.210), because the hybrid sign at 1.20 is - here and + on win2's build; the root lies within 0.0004 of the grid point 1.20 on this build and 0.0035 above it on win2's. The two scans' ln|det| differ by +0.03 to +0.12 away from the changes and by up to 0.53 (1.16, 1.17) and 2.27 (1.20) beside them, as a shift of the det's zero would give.
+- The regrids differ little: same step count (2762), Delta +2.70e-07 and norm F +0.12% against win2's, the same k_c 79 minus k_c 71 shift of Delta to 2.7e-07 (-1.5449e-05 here, -1.5719e-05 there). The root shifts of +0.0024 and -0.0037 are of the size of the regrid reproducibility measured in `../repro_d1975` (0.0051 between two thread counts at D 19.75).
+
+### Predictions against outcomes (registered before the run)
+| prediction | outcome |
+|---|---|
+| source accepted (95%); regrid exit 0 (95%), 1500 to 3500 s (65%), accepted (90%), 2762 steps (85%), norm F 3.5e-10 to 6e-10 (80%), Delta within 1e-6 of win2's (70%) | yes to all: 2164 s, 2762 steps, 4.6189e-10, +2.7e-07 |
+| each scan point 800 to 1800 s (60%) | no for one: 12 of 13 evaluations took 919 to 957 s, one (1.16 on p3) 699 s |
+| all 4 exit 0 with the record system (90%); the repeat of 1.16 agrees (85%) | yes; yes |
+| two robust changes (85%); win2's orientations (80%); signs - at 1.13 and 1.24 (85%) | yes; yes; yes |
+| first within 0.005 of 1.165140 (50%); second within 0.005 of 1.203492 (55%); both (35%) | yes (+0.002386); yes (-0.003729); yes |
+The coordinator's written-before ("two robust changes near win2's 1.165140 and 1.203492, each within about 0.005 of win2's, the regrid reproducibility") holds as read, on the det-linear estimates.
