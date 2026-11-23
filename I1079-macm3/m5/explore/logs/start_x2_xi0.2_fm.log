@@ -1,0 +1,117 @@
+# cd /Users/nathan/Source/choptuik-large-d/solver/inner_stokes && nice -n 10 /Users/nathan/Source/venv-macm3-i1080/bin/python -u hier_nb.py 5 3.526473056696 0.211497981391 --x=0.9765085452,-0.0017633195 --fixA --schur --procs 2 --verbose=2 --xi1=0.2 --floor_max=1e-3
+M 5, xi1 0.2, fixed (A, w), procs 2; start x [3.526473057, 0.211497981, 0.976508545, -0.00176332, 0.026652899, 0.003934666]
+level radii (approach -> polish): r_1 0.2000 -> 0.2000, r_3 0.2000 -> 0.2000, r_5 0.1995 -> 0.2000
+start residuals: |r_1| 0.00e+00  |r_3| 0.00e+00  |r_5| 8.88e+06
+level 5 it 0: |r_5| 2.398e+06  lam 0.5  x [3.526473057, 0.211497981, 0.976508545, -0.00176332, -0.799998498, 0.222795657]  [0 s, 7 residuals]
+level 5 it 1: |r_5| 1.596e+06  lam 1  x [3.526473057, 0.211497981, 0.976508545, -0.00176332, -0.399366993, 0.056008411]  [0 s, 10 residuals]
+level 5 it 2: |r_5| 2.667e+05  lam 1  x [3.526473057, 0.211497981, 0.976508545, -0.00176332, -0.50977581, -0.054668622]  [0 s, 11 residuals]
+level 5 it 3: |r_5| 2.497e+05  lam 1  x [3.526473057, 0.211497981, 0.976508545, -0.00176332, -0.529082797, -0.166746755]  [1 s, 14 residuals]
+   level 5 (low): stop at |r_5| 2.50e+05: every trial rejected with a fresh Jacobian (noise floor)
+   level 5 (top): stop at |r_5| 2.57e+05: every trial rejected with a fresh Jacobian (noise floor)
+   level 5 solved: |r_5| 2.57e+05  (24 residuals, 0 s)  [1 s total]
+   Jacobian K computed (4 residuals) [1 s]
+   K by level, max |d r_l / d x_nu| (rows l, columns nu): nu 1  nu 3  nu 5
+     l 1: 0.00e+00  5.28e+14  1.27e+13
+     l 3: 0.00e+00  6.07e+13  1.53e+12
+     l 5: 0.00e+00  4.62e+12  1.13e+11
+   level 5 (low): stop at |r_5| 2.50e+05: every trial rejected with a fresh Jacobian (noise floor)
+   level 5 (top): stop at |r_5| 2.57e+05: every trial rejected with a fresh Jacobian (noise floor)
+   level 5 solved: |r_5| 2.57e+05  (15 residuals, 0 s)  [1 s total]
+/Users/nathan/Source/choptuik-large-d/solver/inner_stokes/hier.py:92: RuntimeWarning: overflow encountered in exp
+  z = q[nu % NTH] * r1 ** (2j * nu * w) * np.exp(lsc - np.log(2 * np.pi * abs(I.Kp(1j * nu * w))))
+   level 5 (low): stop at |r_5| 1.17e+07: every trial rejected with a fresh Jacobian (noise floor)
+   level 5 (top): stop at |r_5| 1.17e+07: every trial rejected with a fresh Jacobian (noise floor)
+   level 5 solved: |r_5| 1.17e+07  (15 residuals, 1 s)  [2 s total]
+level 5 it 0: |r_5| 2.166e+05  lam 0.0625  x [3.526473057, 0.211497981, 1.111048923, -0.334569458, -0.580698143, 0.23996168]  [3 s, 113 residuals]
+level 5 it 2: |r_5| 2.592e+04  lam 0.5  x [3.526473057, 0.211497981, 1.111048923, -0.334569458, -0.517560505, 0.352127082]  [3 s, 123 residuals]
+level 5 it 3: |r_5| 9.555e+03  lam 0.25  x [3.526473057, 0.211497981, 1.111048923, -0.334569458, -0.510987193, 0.363118107]  [3 s, 128 residuals]
+level 5 it 4: |r_5| 2.033e+03  lam 1  x [3.526473057, 0.211497981, 1.111048923, -0.334569458, -0.502382596, 0.373777476]  [3 s, 129 residuals]
+level 5 it 5: |r_5| 1.624e+01  lam 1  x [3.526473057, 0.211497981, 1.111048923, -0.334569458, -0.502395333, 0.373532975]  [3 s, 130 residuals]
+level 5 it 6: |r_5| 1.106e+00  lam 1  x [3.526473057, 0.211497981, 1.111048923, -0.334569458, -0.502392395, 0.373538515]  [3 s, 131 residuals]
+level 5 it 7: |r_5| 2.426e-02  lam 1  x [3.526473057, 0.211497981, 1.111048923, -0.334569458, -0.502392446, 0.373538325]  [3 s, 132 residuals]
+level 5 it 8: |r_5| 1.028e-02  lam 1  x [3.526473057, 0.211497981, 1.111048923, -0.334569458, -0.502392433, 0.373538344]  [3 s, 135 residuals]
+   level 5 (low): stop at |r_5| 1.03e-02: every trial rejected with a fresh Jacobian (noise floor)
+   level 5 (top): stop at |r_5| 2.41e+03: every trial rejected with a fresh Jacobian (noise floor)
+   level 5 solved: |r_5| 2.41e+03  (38 residuals, 0 s)  [3 s total]
+level 3 it 0: |r_3| 3.348e+05  lam 0.5  x [3.526473057, 0.211497981, 1.111048923, -0.334569458, -0.502392433, 0.373538344]  [3 s, 144 residuals]
+level 5 it 0: |r_5| 8.889e+04  lam 1  x [3.526473057, 0.211497981, 1.135617529, -0.400230467, -0.548496713, 0.265141428]  [3 s, 147 residuals]
+level 5 it 1: |r_5| 5.942e+03  lam 0.5  x [3.526473057, 0.211497981, 1.135617529, -0.400230467, -0.557299931, 0.259093085]  [3 s, 149 residuals]
+level 5 it 2: |r_5| 1.422e+02  lam 0.5  x [3.526473057, 0.211497981, 1.135617529, -0.400230467, -0.556845803, 0.259327868]  [3 s, 151 residuals]
+level 5 it 3: |r_5| 1.393e+02  lam 0.25  x [3.526473057, 0.211497981, 1.135617529, -0.400230467, -0.556879681, 0.259286896]  [3 s, 156 residuals]
+level 5 it 4: |r_5| 1.755e+01  lam 1  x [3.526473057, 0.211497981, 1.135617529, -0.400230467, -0.556939899, 0.25918092]  [3 s, 157 residuals]
+level 5 it 5: |r_5| 6.728e-01  lam 1  x [3.526473057, 0.211497981, 1.135617529, -0.400230467, -0.556943282, 0.259176869]  [3 s, 158 residuals]
+level 5 it 6: |r_5| 2.964e-02  lam 1  x [3.526473057, 0.211497981, 1.135617529, -0.400230467, -0.55694342, 0.2591767]  [3 s, 159 residuals]
+level 5 it 7: |r_5| 1.917e-02  lam 1  x [3.526473057, 0.211497981, 1.135617529, -0.400230467, -0.556943418, 0.259176705]  [3 s, 162 residuals]
+   level 5 (low): stop at |r_5| 1.92e-02: every trial rejected with a fresh Jacobian (noise floor)
+   level 5 (top): stop at |r_5| 3.11e+03: every trial rejected with a fresh Jacobian (noise floor)
+   level 5 solved: |r_5| 3.11e+03  (27 residuals, 0 s)  [3 s total]
+level 5 it 0: |r_5| 4.640e+04  lam 1  x [3.526473057, 0.211497981, 1.123333226, -0.367399962, -0.537766484, 0.302975129]  [3 s, 174 residuals]
+level 5 it 1: |r_5| 1.430e+03  lam 1  x [3.526473057, 0.211497981, 1.123333226, -0.367399962, -0.531484723, 0.316500841]  [3 s, 175 residuals]
+level 5 it 2: |r_5| 1.352e+03  lam 1  x [3.526473057, 0.211497981, 1.123333226, -0.367399962, -0.532467929, 0.314912234]  [3 s, 178 residuals]
+level 5 it 3: |r_5| 8.596e+00  lam 1  x [3.526473057, 0.211497981, 1.123333226, -0.367399962, -0.532498466, 0.314998592]  [3 s, 179 residuals]
+level 5 it 4: |r_5| 4.194e-01  lam 1  x [3.526473057, 0.211497981, 1.123333226, -0.367399962, -0.532499956, 0.314997334]  [3 s, 180 residuals]
+level 5 it 5: |r_5| 6.923e-02  lam 1  x [3.526473057, 0.211497981, 1.123333226, -0.367399962, -0.532499875, 0.314997407]  [3 s, 181 residuals]
+level 5 it 6: |r_5| 3.632e-02  lam 1  x [3.526473057, 0.211497981, 1.123333226, -0.367399962, -0.532499884, 0.314997388]  [3 s, 184 residuals]
+level 5 it 7: |r_5| 1.419e-02  lam 1  x [3.526473057, 0.211497981, 1.123333226, -0.367399962, -0.532499875, 0.314997404]  [3 s, 187 residuals]
+   level 5 (low): stop at |r_5| 1.42e-02: every trial rejected with a fresh Jacobian (noise floor)
+   level 5 (top): stop at |r_5| 2.48e+03: every trial rejected with a fresh Jacobian (noise floor)
+   level 5 solved: |r_5| 2.48e+03  (25 residuals, 0 s)  [3 s total]
+level 5 it 0: |r_5| 1.483e+04  lam 1  x [3.526473057, 0.211497981, 1.117191074, -0.35098471, -0.519277986, 0.341126488]  [3 s, 199 residuals]
+level 5 it 1: |r_5| 3.192e+02  lam 1  x [3.526473057, 0.211497981, 1.117191074, -0.35098471, -0.518321875, 0.343922383]  [3 s, 200 residuals]
+level 5 it 2: |r_5| 1.667e+02  lam 1  x [3.526473057, 0.211497981, 1.117191074, -0.35098471, -0.518499409, 0.343692536]  [3 s, 203 residuals]
+level 5 it 3: |r_5| 1.977e+00  lam 1  x [3.526473057, 0.211497981, 1.117191074, -0.35098471, -0.518516895, 0.343686328]  [3 s, 204 residuals]
+level 5 it 4: |r_5| 7.454e-02  lam 1  x [3.526473057, 0.211497981, 1.117191074, -0.35098471, -0.518516157, 0.343687508]  [3 s, 205 residuals]
+level 5 it 5: |r_5| 2.300e-02  lam 1  x [3.526473057, 0.211497981, 1.117191074, -0.35098471, -0.518516191, 0.343687455]  [3 s, 208 residuals]
+level 5 it 6: |r_5| 1.605e-02  lam 1  x [3.526473057, 0.211497981, 1.117191074, -0.35098471, -0.518516187, 0.343687459]  [3 s, 211 residuals]
+level 5 it 7: |r_5| 1.343e-02  lam 1  x [3.526473057, 0.211497981, 1.117191074, -0.35098471, -0.518516189, 0.343687458]  [3 s, 214 residuals]
+   level 5 (low): stop at |r_5| 1.34e-02: every trial rejected with a fresh Jacobian (noise floor)
+   level 5 (top): stop at |r_5| 2.39e+03: every trial rejected with a fresh Jacobian (noise floor)
+   level 5 solved: |r_5| 2.39e+03  (27 residuals, 0 s)  [3 s total]
+level 5 it 0: |r_5| 5.153e+03  lam 1  x [3.526473057, 0.211497981, 1.114119999, -0.342777084, -0.510231288, 0.358585779]  [3 s, 226 residuals]
+level 5 it 1: |r_5| 4.287e+02  lam 1  x [3.526473057, 0.211497981, 1.114119999, -0.342777084, -0.51068978, 0.358505352]  [4 s, 227 residuals]
+level 5 it 2: |r_5| 5.506e+01  lam 1  x [3.526473057, 0.211497981, 1.114119999, -0.342777084, -0.510761052, 0.358453267]  [4 s, 228 residuals]
+level 5 it 3: |r_5| 7.025e+00  lam 1  x [3.526473057, 0.211497981, 1.114119999, -0.342777084, -0.5107702, 0.358446585]  [4 s, 229 residuals]
+level 5 it 4: |r_5| 8.842e-01  lam 1  x [3.526473057, 0.211497981, 1.114119999, -0.342777084, -0.510771371, 0.358445727]  [4 s, 230 residuals]
+level 5 it 5: |r_5| 1.538e-01  lam 1  x [3.526473057, 0.211497981, 1.114119999, -0.342777084, -0.510771521, 0.358445615]  [4 s, 231 residuals]
+level 5 it 6: |r_5| 8.569e-03  lam 1  x [3.526473057, 0.211497981, 1.114119999, -0.342777084, -0.510771541, 0.358445605]  [4 s, 232 residuals]
+level 5 it 8: |r_5| 5.604e-03  lam 0.5  x [3.526473057, 0.211497981, 1.114119999, -0.342777084, -0.510771538, 0.358445608]  [4 s, 244 residuals]
+   level 5 (low): stop at |r_5| 5.60e-03: every trial rejected with a fresh Jacobian (noise floor)
+   level 5 (top): stop at |r_5| 2.39e+03: every trial rejected with a fresh Jacobian (noise floor)
+   level 5 solved: |r_5| 2.39e+03  (30 residuals, 0 s)  [4 s total]
+level 5 it 0: |r_5| 5.962e+02  lam 1  x [3.526473057, 0.211497981, 1.112584461, -0.338673271, -0.506801056, 0.365716315]  [4 s, 256 residuals]
+level 5 it 1: |r_5| 7.422e+00  lam 1  x [3.526473057, 0.211497981, 1.112584461, -0.338673271, -0.506665138, 0.365951911]  [4 s, 257 residuals]
+level 5 it 2: |r_5| 2.680e-01  lam 1  x [3.526473057, 0.211497981, 1.112584461, -0.338673271, -0.506667921, 0.365947632]  [4 s, 258 residuals]
+level 5 it 3: |r_5| 1.793e-02  lam 1  x [3.526473057, 0.211497981, 1.112584461, -0.338673271, -0.506667894, 0.365947695]  [4 s, 259 residuals]
+level 5 it 4: |r_5| 1.383e-02  lam 1  x [3.526473057, 0.211497981, 1.112584461, -0.338673271, -0.506667891, 0.365947697]  [4 s, 262 residuals]
+level 5 it 5: |r_5| 1.342e-02  lam 1  x [3.526473057, 0.211497981, 1.112584461, -0.338673271, -0.506667903, 0.365947682]  [4 s, 265 residuals]
+   level 5 (low): stop at |r_5| 1.34e-02: every trial rejected with a fresh Jacobian (noise floor)
+   level 5 (top): stop at |r_5| 2.40e+03: every trial rejected with a fresh Jacobian (noise floor)
+   level 5 solved: |r_5| 2.40e+03  (21 residuals, 0 s)  [4 s total]
+level 5 it 0: |r_5| 1.197e+02  lam 1  x [3.526473057, 0.211497981, 1.111816692, -0.336621364, -0.504504452, 0.369803591]  [4 s, 277 residuals]
+level 5 it 1: |r_5| 2.860e+00  lam 1  x [3.526473057, 0.211497981, 1.111816692, -0.336621364, -0.504551164, 0.369733587]  [4 s, 278 residuals]
+level 5 it 2: |r_5| 7.304e-02  lam 1  x [3.526473057, 0.211497981, 1.111816692, -0.336621364, -0.50455247, 0.36973169]  [4 s, 279 residuals]
+level 5 it 3: |r_5| 2.240e-02  lam 1  x [3.526473057, 0.211497981, 1.111816692, -0.336621364, -0.504552502, 0.369731644]  [4 s, 282 residuals]
+   level 5 (low): stop at |r_5| 2.24e-02: every trial rejected with a fresh Jacobian (noise floor)
+   level 5 (top): stop at |r_5| 2.40e+03: every trial rejected with a fresh Jacobian (noise floor)
+   level 5 solved: |r_5| 2.40e+03  (17 residuals, 0 s)  [4 s total]
+level 5 it 0: |r_5| 2.212e+06  lam 1  x [3.526473057, 0.211497981, 1.333169979, -0.401589597, 0.367904979, 1.140186498]  [4 s, 363 residuals]
+level 5 it 1: |r_5| 6.259e+05  lam 0.5  x [3.526473057, 0.211497981, 1.333169979, -0.401589597, 0.321303904, 1.211966583]  [5 s, 365 residuals]
+level 5 it 3: |r_5| 1.661e+05  lam 1  x [3.526473057, 0.211497981, 1.333169979, -0.401589597, 0.348882532, 1.228417781]  [5 s, 374 residuals]
+level 5 it 4: |r_5| 5.740e+04  lam 1  x [3.526473057, 0.211497981, 1.333169979, -0.401589597, 0.345547595, 1.229127027]  [5 s, 377 residuals]
+level 5 it 5: |r_5| 4.994e+02  lam 1  x [3.526473057, 0.211497981, 1.333169979, -0.401589597, 0.345730203, 1.228053149]  [5 s, 378 residuals]
+level 5 it 6: |r_5| 4.880e+00  lam 1  x [3.526473057, 0.211497981, 1.333169979, -0.401589597, 0.345735986, 1.22804914]  [5 s, 379 residuals]
+level 5 it 7: |r_5| 1.625e-01  lam 1  x [3.526473057, 0.211497981, 1.333169979, -0.401589597, 0.345736137, 1.228049234]  [5 s, 380 residuals]
+level 5 it 8: |r_5| 1.334e-01  lam 0.25  x [3.526473057, 0.211497981, 1.333169979, -0.401589597, 0.345736138, 1.228049236]  [5 s, 385 residuals]
+   level 5 (low): stop at |r_5| 1.33e-01: every trial rejected with a fresh Jacobian (noise floor)
+   level 5 (top): stop at |r_5| 9.01e+03: every trial rejected with a fresh Jacobian (noise floor)
+   level 5 solved: |r_5| 9.01e+03  (36 residuals, 0 s)  [5 s total]
+   level 5 (low): stop at |r_5| 9.37e+05: every trial rejected with a fresh Jacobian (noise floor)
+level 5 it 0: |r_5| 3.873e+05  lam 0.125  x [3.526473057, 0.211497981, 1.222109451, -0.368079527, -0.500917497, 0.276859046]  [5 s, 409 residuals]
+   level 5 (top): stop at |r_5| 3.87e+05: every trial rejected with a fresh Jacobian (noise floor)
+   level 5 solved: |r_5| 3.87e+05  (17 residuals, 0 s)  [5 s total]
+   level 3 (top): stop at |r_3| 3.35e+05: every trial rejected with a fresh Jacobian (noise floor)
+   level 3 solved: |r_3| 3.35e+05  (410 residuals, 5 s)  [5 s total]
+FIXED-A M 5: A 3.526473057  w/w_inf 0.211497981  (w 0.80837, Delta 7.77262)  <F^2> 7.0872  r_1 +1.8029e+06+1.1398e+05i  [5 s, 411 residuals]
+      F_3/F_1 = +0.315060-0.094874i   |.| 0.329034  arg -0.2925   r_3 3.3e+05
+      F_5/F_1 = -0.142463+0.105924i   |.| 0.177526  arg +2.5023   r_5 2.4e+03
+      (uncorrected r_1 +4.8832e+04+1.0667e+06i)
