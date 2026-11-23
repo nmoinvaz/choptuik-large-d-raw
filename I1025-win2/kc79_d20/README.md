@@ -60,4 +60,44 @@ Both drivers start outside the terminal through `../kc71_leap/cim_start.ps1` (th
 
 ## Result
 
-Not yet run.
+**Step 0, the leap:** leg 2 reached D 20 at 23:25:55 UTC 22 Nov (exit 0); the regrid driver's first attempt stopped at 23:26:15 UTC because `leap2.finished` precedes the leap driver's final copy by up to 120 s (the regrid had not started; its wait now uses `all2.done`; the stale refusal is `regrid_refused_by_race_2326.txt`); both drivers were started again at 23:26:56.
+
+**Step 1, the k_c 71 source: accepted** (23:29 UTC): `kc71_syscheck.py` on the leap's D 20 state: record |F| 4.5262e-10, the state's |F| 4.5298e-10, `freeze_from` 2514 steps = the record's, both built-in controls refused, `--mutate=F` and `--mutate=steps` exit 1 (`source_syscheck*.txt`).
+
+**Step 2, the regrid: ACCEPTED** (started 23:29:03 UTC, exit 0 at 00:57:04 UTC, 5281 s, uncapped, 8 threads, BelowNormal; `regrid.log`): `kc79_syscheck_1025.py` exit 0, controls refused, `--mutate=F` and `--mutate=steps` exit 1 (`syscheck*.txt`).
+
+| | k_c 71 source (leap, D 20) | k_c 79 (this regrid) |
+|---|---|---|
+| \|F\| | 4.5262e-10 | 4.4105e-10 |
+| steps | 2514 | 2800 |
+| constraint | 3.665e-3 | 2.102e-3 |
+| Delta | 1.092269133460 | 1.092257255093 |
+| F_start | 4.510e-05 | 2.819e-05 |
+| seconds | 1799 (the leap step) | 5273 |
+
+Delta(k_c 79) minus Delta(k_c 71) = -1.1878e-5 (winb at D 19: -1.4537e-6). Files: `sol_l1kc79W20m1025_D20.0000.npy` (the state), `l1kc79W20m1025.jsonl`, `rec_k79_D20.0000.jsonl`, `regrid_accepted.txt`.
+
+**Step 3, the scan: done** (started 00:57:26 UTC, six processes of one thread, BelowNormal; ended 01:58:52 UTC; `scan_k79d20_p1..p6.jsonl`; exit 0 for all six: P1 3688 s, P2 3679 s with 3 evaluations, P3 to P6 2618 to 2645 s with 2; 1047 to 1332 s a point, mean 1272 s; no cap). The system check of every process passed (|F| 4.4074291692e-10 against the record's 4.4104844173e-10, 2800 steps = the record's). **The repeat of 1.26 (P1, P2) agrees: sign +1 and ln|det| -2452.1340938248 in both, difference 0.0 (bar 1e-6); the gate passed after 1339 s.** The session lost its connection to the API from about 01:00 to 02:50 UTC (the home network was down); the runs, started outside the terminal, were not affected.
+
+`read_lower.py 1.20 1.32` as it prints (`read_lower_k79_D20.txt`): 13 points in 1.200 to 1.320, none not noise robust; hybrid signs minus at 1.20 to 1.24 and plus at 1.25 to 1.32; the float64 sign differs from the hybrid sign at none; repeated points 1.26 agree; **one robust change in (1.240, 1.250), minus to plus, det-linear estimate 1.248340, estimator range [1.244440, 1.248340]** (a spread over estimator choices, not an enclosure); changes touching a non-robust point: none; ln|det| local minima without a sign change: (1.31, 0.0356) (ln|det| -2455.0577 at 1.31 against -2454.8054 at 1.30 and -2455.0222 at 1.32); endpoint signs minus at 1.20, plus at 1.32. The line of k_c 79 (1.5397, 1.5058, 1.4700, 1.4316, 1.3976 at D 19 to 19.5) put lambda_1 near 1.25 to 1.26 (information): the root found is 1.2483.
+
+<details><summary>All 14 evaluations (hybrid sign, ln abs det, noise test, float64 sign, seconds)</summary>
+
+| lambda | process | hybrid sign | ln abs det | noise (2 seeds) | float64 sign | s |
+|---|---|---|---|---|---|---|
+| 1.20 | P1 | - | -2445.6599 | -,- | - | 1314 |
+| 1.21 | P1 | - | -2446.7056 | -,- | - | 1051 |
+| 1.22 | P2 | - | -2447.8471 | -,- | - | 1332 |
+| 1.23 | P2 | - | -2449.1630 | -,- | - | 1047 |
+| 1.24 | P3 | - | -2450.9527 | -,- | - | 1294 |
+| 1.25 | P3 | + | -2452.5667 | +,+ | + | 1330 |
+| 1.26 | P1 | + | -2452.1341 | +,+ | + | 1307 |
+| 1.26 | P2 | + | -2452.1341 | +,+ | + | 1292 |
+| 1.27 | P4 | + | -2452.5892 | +,+ | + | 1308 |
+| 1.28 | P4 | + | -2453.3066 | +,+ | + | 1318 |
+| 1.29 | P5 | + | -2454.1278 | +,+ | + | 1290 |
+| 1.30 | P5 | + | -2454.8054 | +,+ | + | 1321 |
+| 1.31 | P6 | + | -2455.0577 | +,+ | + | 1296 |
+| 1.32 | P6 | + | -2455.0222 | +,+ | + | 1313 |
+
+</details>
