@@ -1,0 +1,60 @@
+## zero 1 (M3x1E2_h1e-12_w1e-13): this machine (c40fbc77, python-flint 0.9.0) against macm3's JSONs (in/macm3/)
+
+| item | this machine | macm3 |
+|---|---|---|
+| box kind | box | box |
+| box M | 3 | 3 |
+| box h | 1e-12 | 1e-12 |
+| box w | ['1e-13'] | ['1e-13'] |
+| box steps | [726, 397, 57] | [726, 397, 57] |
+| box prec | 256 | 256 |
+| box sec | 404 | 217 |
+| point steps, sec | [726, 397, 57], 404 | [726, 397, 57], 216 |
+| box p equals point p; box p equals macm3's p | True; True | True |
+| chart bx['C'] strings identical; max abs entry difference | True; 0.000e+00 | |
+| box path, start identical to macm3's | True, False | |
+| point g_rad, Dg_rad | 1.571e-21, 5.265e-09 | 1.571e-21, 5.206e-09 |
+| rel_margins | [0.4683, 0.6191, 0.9974, 0.9979] | [0.7025, 0.7575, 0.9974, 0.9978] |
+| point Dgt0 column radii (max over rows) | [1.734e-09, 6.882e-09, 1.268e-09, 1.27e-09] | [1.73e-09, 6.818e-09, 1.265e-09, 1.265e-09] |
+| box Jbox column radii (max over rows) | [9.256e-05, 0.0003444, 8.875e-05, 8.846e-05] | [9.461e-05, 0.0003508, 9.071e-05, 9.035e-05] |
+| g radius per component | [1.413e-21, 1.458e-21, 1.574e-21, 1.516e-21] | [1.413e-21, 1.458e-21, 1.574e-21, 1.516e-21] |
+| g_rad (max) | 1.57378e-21 | 1.57378e-21 |
+| |Yg| midpoint per row | [3.255e-29, 2.357e-29, 4.164e-39, 7.668e-39] | [3.255e-29, 2.357e-29, 4.164e-39, 7.668e-39] |
+| Yg radius per row | [1.787e-18, 1.389e-18, 1.07e-21, 7.98e-22] | [1.787e-18, 1.389e-18, 1.07e-21, 7.98e-22] |
+| (I-YJ)X term radius per row | [5.317e-13, 3.809e-13, 2.62e-16, 2.075e-16] | [2.975e-13, 2.425e-13, 2.614e-16, 2.195e-16] |
+| YJ max radius | 0.406741 | 0.228404 |
+| |K| upper per row | [5.317e-13, 3.809e-13, 2.62e-16, 2.075e-16] | [2.975e-13, 2.425e-13, 2.614e-16, 2.195e-16] |
+| krawczyk_test rel_margins | [0.4683, 0.6191, 0.9974, 0.9979] | [0.7025, 0.7575, 0.9974, 0.9978] |
+
+control: the margins recomputed here against krawczyk_test's own: max difference 0.00e+00 (bar 1e-12): ok
+
+## zero 2 (M3x2E2_h1e-12_w1e-12): this machine (c40fbc77, python-flint 0.9.0) against macm3's JSONs (in/macm3/)
+
+| item | this machine | macm3 |
+|---|---|---|
+| box kind | box | box |
+| box M | 3 | 3 |
+| box h | 1e-12 | 1e-12 |
+| box w | ['1e-12'] | ['1e-12'] |
+| box steps | [718, 394, 64] | [718, 394, 64] |
+| box prec | 256 | 256 |
+| box sec | 401 | 227 |
+| point steps, sec | [718, 394, 64], 400 | [718, 394, 64], 248 |
+| box p equals point p; box p equals macm3's p | True; True | True |
+| chart bx['C'] strings identical; max abs entry difference | True; 0.000e+00 | |
+| box path, start identical to macm3's | True, False | |
+| point g_rad, Dg_rad | 6.113e-23, 1.848e-09 | 7.422e-23, 1.727e-09 |
+| rel_margins | [0.7114, 0.5277, 0.9812, 0.9922] | [0.9434, 0.9445, 0.9877, 0.9951] |
+| point Dgt0 column radii (max over rows) | [5.208e-10, 2.236e-09, 4.341e-10, 4.285e-10] | [4.977e-10, 2.097e-09, 4.131e-10, 4.08e-10] |
+| box Jbox column radii (max over rows) | [0.0001051, 0.0004195, 0.0001064, 0.0001048] | [6.327e-05, 0.0002523, 6.478e-05, 6.374e-05] |
+| g radius per component | [6.136e-23, 4.633e-23, 5.947e-23, 5.155e-23] | [7.438e-23, 4.808e-23, 5.979e-23, 6.082e-23] |
+| g_rad (max) | 6.13604e-23 | 7.43806e-23 |
+| |Yg| midpoint per row | [2.494e-29, 3.955e-29, 1.568e-36, 1.246e-36] | [2.494e-29, 3.955e-29, 1.568e-36, 1.246e-36] |
+| Yg radius per row | [7.305e-20, 1.198e-19, 1.697e-21, 5.48e-22] | [4.421e-20, 6.945e-20, 2.084e-21, 6.153e-22] |
+| (I-YJ)X term radius per row | [2.886e-13, 4.723e-13, 1.883e-14, 7.789e-15] | [5.659e-14, 5.547e-14, 1.234e-14, 4.882e-15] |
+| YJ max radius | 0.271484 | 0.0319822 |
+| |K| upper per row | [2.886e-13, 4.723e-13, 1.883e-14, 7.789e-15] | [5.659e-14, 5.547e-14, 1.234e-14, 4.882e-15] |
+| krawczyk_test rel_margins | [0.7114, 0.5277, 0.9812, 0.9922] | [0.9434, 0.9445, 0.9877, 0.9951] |
+
+control: the margins recomputed here against krawczyk_test's own: max difference 0.00e+00 (bar 1e-12): ok
+

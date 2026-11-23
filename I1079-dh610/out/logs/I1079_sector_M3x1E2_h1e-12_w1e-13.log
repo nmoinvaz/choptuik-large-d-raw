@@ -1,0 +1,14 @@
+centre x = ['3.4462182463667271490386733954779389341791395421154', '0.34760696521740738663621806885938050845968811925454', '0.80541758638529232157836211658860517241492322884730', '0.011780043848505832311374493364082518021457993309432'] (--x)
+lemma S (M = 3) on D (R+ = 0.1^2 = 0.01, U0 = sqrt2/R+ = 141.4), parameters x^ +- 1e-6: N = 62, k = 20 (forcing allows 61), a_eff = 0.2536
+M = 3, r0 = [0.10000 +/- 1e-10] (R = r0^2), arg xi = 1.178097, kernel rate a = 0.25355, splitting plain: N = 62 terms, weight exponent k = 20 (forcing allows 61)
+  residual numerators: lower coefficients all contain 0: True; first nonzero orders [61, 62] (structural, >= N - 1: True)
+  forcing ||T(0)||_w <= 2.912e+32
+  largest Lipschitz entries (unweighted): v+3<-p+3 1.89, v-3<-p-3 1.89, v+1<-p+1 1.28, v-1<-p-1 1.28, v+1<-p+3 0.839, v-1<-p-3 0.839
+  contraction constant (weighted max norm) <= 0.6961
+  ball rho = 3.834e+33: ||T(0)|| + Lip rho = 2.960e+33 < rho: True
+  => fixed point exists and is unique in the ball: True; |eta| <= 1.94e-07 at |z| = R (p, v, c variables)
+  D covers the real segment 0 < xi <= 0.08409, and directions arg z <= 3pi/4 - 0.4 up to |xi| = 0.06240 (|u| >= 256.8)
+old sector lemma (M = 3, rays |arg xi - 3pi/8| <= 0.2, |xi| <= 0.1, diag): contraction 0.6839, F + Lip rho < rho: True, ok True
+flat estimate (M = 3) on 0 < z <= Z = 0.004489 (xi <= 0.06700), plain, a_r = 0.4102: ||T0|| <= Lambda = 0.2426 < 1: True; largest entries v+3<-p+3 0.477, v-3<-p-3 0.477, v+1<-p+1 0.313, v-1<-p-1 0.313
+flat estimate (M = 3) on 0 < z <= Z = 0.004489 (xi <= 0.06700), diag, a_r = 0.4035: ||T0|| <= Lambda = 0.2223 < 1: True; largest entries v+3<-p+3 0.485, v-3<-p-3 0.485, v+1<-p+1 0.318, v-1<-p-1 0.318
+ALL CHECKS PASS (M = 3): True
