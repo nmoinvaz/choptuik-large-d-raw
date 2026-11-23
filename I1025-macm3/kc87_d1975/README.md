@@ -11,7 +11,7 @@ Roots are read by position, never by sign orientation, across D as well as acros
 1. **Source:** dh170's accepted k_c 79 D 19.75 state and record (raw `I1025-dh170/kc79_d1975/`, `sol_l1kc79dh170d1975_D19.7500.npy` blob f2ad34b5 and `l1kc79dh170d1975.jsonl` blob 0508163e, pinned at raw 5d0c8f74). `kc79_syscheck_1025.py` on it first, with its two controls.
 2. **Regrid** to k_c 87 with `ell_refine.py` as at D 19.375 (`../kc87_d19375/`) and as dh610 did at D 19.5 (lambda_0 from `ell_delta.lam0_at(19.75)`, `--no-gamma`). Accept the k_c 87 state only by dh610's `kc87_syscheck_1025.py` (blob 6df5d960) with both controls; the k_c 79 check must refuse it. 6 threads, nice 10, own session.
 3. **Scan** the accepted state with `d18_hybsign.py` (unmodified): lambda 1.26 to 1.40 at 0.01 (15 values) plus a repeat of 1.33, 4 processes of 1 thread, nice 10, own session under caffeinate; read with `read_lower.py` with its selftest and mutations.
-Stop and report on any failure; change no code. Stop and report if available memory falls under 2 GiB (the k_c 87 scans at D 19.375 peaked at 11.2 GB for the four against 17 to 18 GiB available). Post on #1025; send each step's verdict with the raw commit.
+Stop and report on any failure; change no code. Memory (the coordinator's correction of 2026-11-22, Nathan's rule of 2026-11-08: no guard stops or kills a process for memory): my watcher only alerts, by posting the free memory to the coordinator when available memory is under 2 GiB, free memory under 8% or free disk under 3 GiB; the only refusal is to start the scan with less than 12 GiB available (the k_c 87 scans at D 19.375 peaked at 11.2 GB for the four against 17 to 18 GiB available). Post on #1025; send each step's verdict with the raw commit.
 
 ## Inputs (pinned by `git hash-object --no-filters`; `prepare_inputs.sh` copies them with `git cat-file blob` into `in/`; `run_regrid.sh` and `run_scan.sh` check `in/` again)
 
@@ -42,7 +42,7 @@ The D 19.375 command was `ell_refine.py l1kc79macm3d19375 79 l1kc87macm3d19375 8
 
 Scan (`run_scan.sh`, after ACCEPTED, at least 12 GiB available): `d18_hybsign.py STUB STATE 19.75 "<lambdas>" OUT` in 4 processes, each under `capped_run.py 28800` by exact pid: p0 1.26,1.30,1.34,1.38; p1 1.27,1.31,1.35,1.39; p2 1.28,1.32,1.36 and the repeat 1.33; p3 1.29,1.33,1.37,1.40 (the repeat of 1.33 runs on another process than the first 1.33).
 A sampler (log only) writes rss, cpu, available GiB, free memory percent and free disk every 60 s into `scan/scan_samples.csv`. Then `read_lower.py selftest`, its mutations `shift` and `round2` (each must exit 1), and `read_lower.py scan 1.26 1.40`.
-Own session: `launch_1070.py` (double fork, `setsid`) running `caffeinate -is /bin/bash run_*.sh`; `session_check_*.txt` after each start. My watcher is alert-only (ends and tells me when available memory is under 2 GiB or free disk under 3 GiB); the stop on the 2 GiB rule is mine, by exact pid.
+Own session: `launch_1070.py` (double fork, `setsid`) running `caffeinate -is /bin/bash run_*.sh`; `session_check_*.txt` after each start. My watcher is alert-only (it posts the free memory or disk to the coordinator by hc, at most once per 10 min, and never stops, kills or signals a process; replaced at about 00:50 UTC, while the scan ran, after the coordinator's correction). The only kill in these lanes is `capped_run.py`'s wall-clock cap (28800 s for a scan process, 21600 s for the regrid), not a memory rule.
 
 ## Acceptance (fixed before the run)
 
