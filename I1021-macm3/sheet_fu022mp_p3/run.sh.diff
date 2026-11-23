@@ -1,0 +1,26 @@
+2c2
+< # #1021 sheet check of rpi5's fu021 pass 1 (README.md): bash run.sh RAW PY WORK
+---
+> # #1021 sheet check of macm3's fu022mp cache after pass 3 (README.md): bash run.sh RAW PY WORK
+6c6
+< REV=${REV:-c31e459b}
+---
+> REV=${REV:-81794560}
+14,16c14,16
+< get I1021-rpi5/fu021/m3/points_M3_r0.17.jsonl "$WORK/fu/points_M3_r0.17.jsonl"
+< get I1021-rpi5/fu021/m3/leaves_M3_fu021_pass1_r0.17.jsonl "$WORK/fu/leaves_M3_fu021_pass1_r0.17.jsonl"
+< get I1021-rpi5/fu021/m3/count_M3_fu021_pass1_r0.17.json "$WORK/fu/count_M3_fu021_pass1_r0.17.json"
+---
+> get I1021-macm3/fu022mp/m3/points_M3_r0.17.jsonl "$WORK/fu/points_M3_r0.17.jsonl"
+> get I1021-macm3/fu022mp/m3/leaves_M3_fu022mp_pass3_r0.17.jsonl "$WORK/fu/leaves_M3_fu022mp_pass3_r0.17.jsonl"
+> get I1021-macm3/fu022mp/m3/count_M3_fu022mp_pass3_r0.17.json "$WORK/fu/count_M3_fu022mp_pass3_r0.17.json"
+20,21c20,21
+< CACHE=$WORK/fu/points_M3_r0.17.jsonl; LEAVES=$WORK/fu/leaves_M3_fu021_pass1_r0.17.jsonl
+< COUNT=$WORK/fu/count_M3_fu021_pass1_r0.17.json; RECORD=$WORK/rec/points_M3_r0.17.jsonl
+---
+> CACHE=$WORK/fu/points_M3_r0.17.jsonl; LEAVES=$WORK/fu/leaves_M3_fu022mp_pass3_r0.17.jsonl
+> COUNT=$WORK/fu/count_M3_fu022mp_pass3_r0.17.json; RECORD=$WORK/rec/points_M3_r0.17.jsonl
+24c24
+<   (cd "$WORK" && sha256sum fu/* rec/* scripts/* && wc -l fu/*.jsonl rec/*.jsonl); } > "$HERE/sha256.txt"
+---
+>   (cd "$WORK" && shasum -a 256 fu/* rec/* scripts/* && wc -l fu/*.jsonl rec/*.jsonl); } > "$HERE/sha256.txt"
