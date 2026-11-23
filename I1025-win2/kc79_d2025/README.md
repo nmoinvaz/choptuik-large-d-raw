@@ -119,4 +119,17 @@ Delta(k_c 79) minus Delta(k_c 71) = -1.5719e-5 (at D 20: -1.1878e-5). Files: `so
 
 </details>
 
-**Step 3 (k_c 87), in progress:** the source was accepted by the k_c 79 check and refused by the k_c 87 check at 08:10 UTC; the regrid started 08:10:35 UTC beside the step-2 scan (the gate measured 8 logical cores idle, the rule's minimum; `exits_kc87.txt`), root pid 40780, 8 threads, Normal priority. Its result and scan follow.
+**Step 3, the k_c 87 regrid: ACCEPTED** (started 08:10:35 UTC beside the step-2 scan, the gate having measured exactly 8 logical cores idle, the rule's minimum; exit 0 at 10:13:37 UTC, 7385 s, uncapped, 8 threads, Normal priority, root pid 40780, beside leg 3 of the leap; `regrid87.log`). The source (the accepted k_c 79 D 20.25 state, blob 51b3973a, record file f6f5a3ab) was accepted by `kc79_syscheck_1025.py` (controls exit 1) and refused by `kc87_syscheck_1025.py` first (`source_kc79_syscheck*.txt`, `source_kc87_syscheck.txt`). Result: `kc87_syscheck_1025.py` exit 0, selftest 0, controls refused, `--mutate=F` and `--mutate=steps` exit 1, and `kc79_syscheck_1025.py` refuses it ("the record is not k_c 79 at D 20.25 (kc 87, D 20.25)") (`syscheck87*.txt`, `syscheck_kc79_on_k87_result.txt`).
+
+| | k_c 79 source (D 20.25) | k_c 87 (this regrid) |
+|---|---|---|
+| \|F\| | 4.6133e-10 | 4.5096e-10 |
+| steps | 2762 | 3042 |
+| constraint | 2.629e-3 | 1.625e-3 |
+| Delta | 1.098607275130 | 1.098603666283 |
+| F_start | 3.761e-05 | 1.066e-05 |
+| seconds | 4977 | 7378 |
+
+Delta(k_c 87) minus Delta(k_c 79) = -3.6088e-6 (at D 20: -2.9719e-6). Files: `sol_l1kc87win2d2025_D20.2500.npy`, `l1kc87win2d2025.jsonl`, `rec_k87_D20.2500.jsonl`, `regrid87_accepted.txt`.
+
+**Step 3, the k_c 87 scan** started 10:14:17 UTC (eight processes of one thread, Normal priority, roots 26568, 37616, 7636, 11268, 45632, 5132, 44716, 45808), lists as above; the system check of every process passed (|F| 4.5117744977e-10 against the record's 4.5095811903e-10, 3042 steps = the record's). Its reading follows when it ends.
