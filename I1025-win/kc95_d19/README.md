@@ -1,6 +1,6 @@
 # I1025-win/kc95_d19: k_c 95 at D 19, regridded from my accepted k_c 87 D 19 state, then a scan of both roots' windows (winb)
 
-Written before the run, 2026-11-23 12:40:56 UTC (substituted from `date -u` when pushed; nothing had been run for this folder when the order, the predictions and the estimates below were written; the Status and Result sections are added after the runs).
+Written before the run, 2026-11-23 12:41:47 UTC (substituted from `date -u` when pushed; nothing had been run for this folder when the order, the predictions and the estimates below were written; the Status and Result sections are added after the runs).
 
 Runner: the winb session (surface-laptop-4, 4 cores, 8 threads, 32 GB), the same one that ran `../kc79_d19/`, `../kc79_d19low/` (raw 40f1a01a), `../kc79_d19gap/` (raw fee69df5) and `../kc87_d19/` (raw 3b833805: the k_c 87 regrid and scan this run starts from). The coordinator is t5.
 
@@ -77,9 +77,17 @@ Started outside my terminal: `Win32_Process.Create` of `conhost.exe --headless c
 
 ## Status
 
-Not started when this README was written.
+**Step 1 running since 2026-11-23 12:41:11 UTC** (the chain started through `Win32_Process.Create` of `conhost.exe --headless cmd.exe /c go_kc95d19_1025.cmd`). README first: a5ebee62 (pushed before the start).
 
-Pushed 2026-11-23 12:40:56 UTC.
+- **Chain** (`rows/launcher_pid_regrid.txt`: 10264): conhost --headless 10264 <- cmd 1540 <- regrid driver launcher 2000 and driver 23384 <- sampler 20132, alert-only watcher 15320, keep-awake helper 10568 (interpreter 20172), and the checks and the regrid below it. The python and powershell processes are BelowNormal.
+- **Session check** (`session_check_regrid.txt`, exit 0): no `claude` in any chain, no Windows Terminal / OpenConsole / wt, a headless conhost in the chain, every chain ends wininit.
+- **Before the regrid** (12:41:11 to 12:41:23 UTC): the pins matched; the selftests of both checks exited 0; the source checks were as ordered: the k_c 87 check exit 0 on the source, `--mutate=F` and `--mutate=steps` exit 1, the k_c 95 check exit 1 (it refuses the source; `source_kc*_syscheck*.txt`). 12 s in all.
+- **Regrid:** pid 21772 started 12:41:23 UTC: `ell_refine.py l1kc87wind19 87 l1kc95wind19 95 1 19.0 2.1156378446 --kappa 0.7 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma`, cwd the worktree's `solver/matter`, 4 threads, BelowNormal, cap 21600 s by the exact pid.
+- **Keep-awake:** helper 10568 holds `SetThreadExecutionState(ES_CONTINUOUS | ES_SYSTEM_REQUIRED)` until the regrid driver 23384 ends (`rows/regrid_keepawake.log`); the scan driver starts its own.
+- **Machine at the start:** on AC (battery status 2), clock 2995 MHz of 2995 MHz max, free physical memory 23.3 GB; beside it the other project's I114 `convergence.py` jobs (python 880 and 4940), not touched.
+- **ETA** (estimates above): the regrid ends about 15:30 UTC (range 15:20 to 16:15), the scan about 01:00 UTC on 2026-11-24 (range 23:30 to 03:30).
+
+Pushed 2026-11-23 12:41:47 UTC.
 
 ## Result
 
