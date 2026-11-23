@@ -1,0 +1,31 @@
+# I1021-macm3: #1076's fu022mp run on macm3, fu021's guard-blocked points valued with the M = 3 inner solve in mpmath
+
+Machine `macm3` (Apple M3, 8 CPUs, 24 GB, macOS 26.3.1, arm64; runner macm3b). Issues https://github.com/nmoinvaz/choptuik-large-d/issues/1076 and https://github.com/nmoinvaz/choptuik-large-d/issues/1021.
+Written 2026-11-23 02:14 UTC, after the run started at 02:13:42 UTC (the coordinator's order came first; this README is the runner's). The driver, its criteria and its checks are the coordinator's, `../I1021-mac/fu022mp/README.md`; this folder holds what the run writes.
+
+## What is here
+
+    I1021-macm3/
+      README.md           this file
+      fu022mp/            the driver's output (OUT of run_fu022mp.sh): logs/exits.txt (progress), logs/*.log, m3/ (the cache and the recount's files), rows_passN.jsonl
+      runner/             the runner's own files: the launcher's output, the launcher pid, the session check
+
+## The run (the coordinator's, hc 2026-11-23 about 02:10 UTC)
+
+- Code: worktree `~/Source/choptuik-inner-mp` of choptuik-large-d, detached at **cc3c58e0ce4de673e77e36f6ed420a00a28cc657** ("value_mp: batch reads --points=, refuses a malformed list; valued needs |r_3| < 1e-8"), `git status --porcelain -- solver` empty.
+- Raw clone `~/Source/choptuik-large-d-raw-749p` at origin/main 0f3e5ef915 (I1021-mac/fu022mp/CODE_COMMIT reads cc3c58e0..., run_fu022mp.sh takes 5 arguments, the last a label). The run writes into it; nothing is pulled or reset there while the run lasts. Pushes come from the separate worktree `~/Source/choptuik-large-d-raw-1076p`, with the run's files copied in.
+- Python `~/Source/venv-macm3-1058b/bin/python`: 3.14.3, numpy 2.5.4, scipy 1.18.1, mpmath 1.3.0.
+- Command, from the raw clone's root, in its own session (`launch_1070.py`: double fork and `setsid`, parent launchd, no controlling terminal) under `caffeinate -is`, output in the runner's private folder:
+
+      bash I1021-mac/fu022mp/run_fu022mp.sh ~/Source/choptuik-inner-mp ~/Source/venv-macm3-1058b/bin/python "$PWD" 3 macm3
+
+  3 processes for the valuing; the driver sets 1 thread per BLAS and nices the steps at 10; the recount uses `--procs=4`.
+- Launcher pid 98824 (child pids in `runner/session_check_fu022mp.txt`: every chain ends at launchd, no claude, tty ??).
+- Memory (the coordinator's correction of 2026-11-22): alerts only. My monitor posts the free memory to the coordinator when available memory is under 2 GiB, free memory under 8% or free disk under 3 GiB, and never stops, kills or signals a process. The driver's own stops (the preflight, a failed step, the cap of 16 h on the recount) apply.
+- Reported to the coordinator and pushed here at each milestone: the preflight line, each pass's select line, the value step's last line and each row's |R|/sigma_mp and valued, the recount's exit and unresolved leaves, and prefix_keys' exit.
+
+## Status
+
+| time (UTC) | milestone |
+|---|---|
+| 02:13:42 | driver started (`logs/exits.txt`: start line, python versions); preflight `value_mp.py check1` running |
