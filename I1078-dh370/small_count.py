@@ -45,9 +45,10 @@ if __name__ == "__main__":
         sys.exit(selftest())
     for line in open(sys.argv[1]):
         r = json.loads(line)
-        c = count(r["small"], r["M"])
-        K = len(r["small"])
-        print(f"lambda {r['lam']}, n {r['n']}: the {K} smallest scaled float64 pivots span {min(abs(v) for _, v in r['small']):.3e} .. {max(abs(v) for _, v in r['small']):.3e} (scaled pmin {r['pmin']:.3e}, pmax {r['pmax']:.3e})")
+        K = r["n"] // (4 * r["M"]) - 1                      # nodes: n = 4 M (K + 1)
+        c = count(r["small"], r["M"], K)
+        Ks = len(r["small"])
+        print(f"lambda {r['lam']}, n {r['n']}: the {Ks} smallest scaled float64 pivots span (K = {K} nodes) {min(abs(v) for _, v in r['small']):.3e} .. {max(abs(v) for _, v in r['small']):.3e} (scaled pmin {r['pmin']:.3e}, pmax {r['pmax']:.3e})")
         for t in THR:
             n, cens, blocks, jr = c[t]
-            print(f"  below {t:g}: {n}{' (censored: all ' + str(K) + ' are below, so at least ' + str(K) if cens else ''}{')' if cens else ''}; by block {dict(blocks)}; grid points j {jr[0]} .. {jr[1]}")
+            print(f"  below {t:g}: {n}{' (censored: all ' + str(Ks) + ' are below, so at least ' + str(Ks) if cens else ''}{')' if cens else ''}; by block {dict(blocks)}; grid points j {jr[0]} .. {jr[1]}")
