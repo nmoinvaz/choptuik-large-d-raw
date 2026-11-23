@@ -24,3 +24,4 @@ t5: each iteration takes about 30 to 60 min (macm3 measured about 80 s for one M
 ## Status
 
 Written as the run goes.
+- **The control walk started** at 19:50:39 UTC by the clock (unit i1080a, `steps_control.txt`): worktree and code pins accepted, `zero_mp.py selftest` exit 0 and its `--mutate=sign` control exit 1, then the walk: 5 workers at nice 10, about 100% CPU each, load 2.8 before it (nothing else of mine runs). Started right after #1078's diagnostic (a) ended (decisive: its smallest equilibrated pivot stayed at 4.38e-29), no #1078 follow-up having been ordered.
