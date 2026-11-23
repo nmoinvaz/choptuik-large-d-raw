@@ -3,7 +3,8 @@
 # the k_c 87 regrid (../kc87_d195/lane_kc87_regrid.sh: worktree 48c36355, `--kappa 0.7 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma`, lambda_0(19.5) = 2.1132623525 from ell_delta.lam0_at). The source is checked first with
 # kc87_syscheck_1025.py (must accept, both controls refuse); the result is accepted only by kc95_syscheck_1025.py (the k_c 87 check with the k_c test changed to 95, its message and the selftest's planted record, nothing else,
 # kc95_syscheck_1025.diff), its selftest and both controls (must refuse), and the k_c 87 check must refuse the result. 8 threads, nice 10, cap 21600 s, a systemd unit (i1025t). Free memory: the lane refuses to start with
-# less than 8 GiB available and terminates ell_refine (exact pid) if MemAvailable falls below 4 GiB. Steps and verdicts go to regrid/steps.txt and regrid/VERDICT.txt. usage: bash lane_kc95_regrid.sh [dry]
+# less than 8 GiB available; nothing is stopped or terminated for memory (the coordinator's correction of 23 Nov, Nathan's rule of 2026-11-08): below 4 GiB the sampler only writes regrid/MEMALERT.txt, which the runner
+# session posts to the coordinator. Steps and verdicts go to regrid/steps.txt and regrid/VERDICT.txt. usage: bash lane_kc95_regrid.sh [dry]
 {
 set -u
 MODE=${1:-}
@@ -62,19 +63,14 @@ step "regrid starts: $CMD"
 ( while sleep 60; do
     echo "$(stamp),$(ps -C python -o rss=,pcpu=,nlwp=,args= | grep 'ell_refine.py' | grep -v grep | head -1 | cut -d' ' -f1-4)" >> $OUT/regrid_samples.csv
     av=$(awk '/MemAvailable/ {print $2}' /proc/meminfo)
-    if [ "$av" -lt $MEMSTOP ]; then
-      pp=$(pgrep -f "^$PY -u ell_refine.py $SRC 87 $TAG 95 " | tr '\n' ' ')
-      echo "MemAvailable $av kB below 4 GiB at $(stamp) UTC; TERM to pid(s) $pp" > $OUT/STOPMEM.txt
-      step "STOP: MemAvailable $av kB is below 4 GiB; TERM to ell_refine pid(s) $pp"
-      [ -n "$pp" ] && kill -TERM $pp
-    fi
+    [ "$av" -lt $MEMSTOP ] && echo "$(stamp) UTC MemAvailable $av kB below 4 GiB (alert only; nothing is stopped)" >> $OUT/MEMALERT.txt
   done ) &
 SAMP=$!
 t0=$(date +%s)
 ( cd $WTM && $CMD >> $OUT/regrid.log 2>&1 ); rc=$?
 kill $SAMP 2>/dev/null
 step "regrid exit $rc, wall $(( $(date +%s) - t0 )) s"
-[ $rc = 0 ] || stop "the regrid exit $rc (0 wanted; 124 is the cap; 143 after a memory stop)"
+[ $rc = 0 ] || stop "the regrid exit $rc (0 wanted; 124 is the cap)"
 [ -s $WTM/data/$TAG.jsonl ] && [ -s $WTM/data/sol_${TAG}_D19.5000.npy ] || stop "the regrid wrote no record or state"
 cp $WTM/data/$TAG.jsonl $F/ ; cp $WTM/data/sol_${TAG}_D19.5000.npy $F/
 # the acceptance: kc95_syscheck_1025.py with its two controls; the k_c 87 check must refuse the k_c 95 result

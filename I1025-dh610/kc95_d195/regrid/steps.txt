@@ -3,3 +3,8 @@
 2026-11-23 00:48:18 UTC selftests: kc87_syscheck exit 0, kc95_syscheck exit 0 (0 wanted)
 2026-11-23 00:48:22 UTC source check (kc87_syscheck_1025.py on my k_c 87 D 19.5 state): exit 0 (0 wanted); controls --mutate=F exit 1, --mutate=steps exit 1 (1 wanted each); kc95_syscheck on the k_c 87 source exit 1 (1 wanted)
 2026-11-23 00:48:22 UTC dry run: the regrid is not started
+2026-11-23 00:49:27 UTC start (load 1.10 2.67 4.01, MemAvailable 40733452 kB)
+2026-11-23 00:49:27 UTC pins checked (in_blobs.txt), diff of the two checks rebuilt (3 changed lines), worktree 48c36355: dss_ell, ell_ddm, ell_dd, ddnp equal 505d8399; ell_refine.py 631e5801; lambda_0(19.5) 2.1132623525; Python 3.14.10, multidouble avx2
+2026-11-23 00:49:27 UTC selftests: kc87_syscheck exit 0, kc95_syscheck exit 0 (0 wanted)
+2026-11-23 00:49:32 UTC source check (kc87_syscheck_1025.py on my k_c 87 D 19.5 state): exit 0 (0 wanted); controls --mutate=F exit 1, --mutate=steps exit 1 (1 wanted each); kc95_syscheck on the k_c 87 source exit 1 (1 wanted)
+2026-11-23 00:49:32 UTC regrid starts: nice -n 10 timeout 21600 /home/nathan/Source/venv-i1058/bin/python -u ell_refine.py l1kc87dh610d195 87 l1kc95dh610d195 95 1 19.5 2.1132623525 --kappa 0.7 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma

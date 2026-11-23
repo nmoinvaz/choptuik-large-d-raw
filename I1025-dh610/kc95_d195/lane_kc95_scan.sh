@@ -3,7 +3,8 @@
 # #1025 kc95_d195 (dh610), step 2 of the coordinator's order of 23 Nov: d18_hybsign.py at D 19.5, k_c 95, on the regridded state and record that regrid/VERDICT.txt accepted (their blobs are in in_blobs_regrid.txt),
 # lambda 1.380 to 1.420 at 0.005 (9 values) plus a repeat of 1.400 (10 evaluations) over 4 processes of 1 thread, nice 10; value i goes to process i mod 4 (I1025-dh370/scan_hyb.sh's splitting); the repeat is put last
 # (index 9), so that it runs on process 1 while its original (index 4) runs on process 0. The reading is dh170's read_lower.py (it keys and prints lambda to three decimals, for a 0.005 grid). d18_hybsign.py is xfkappa's,
-# blob e089207a, unmodified. Free memory: the lane refuses to start with less than 4 x 4 GB + 4 GB available, and terminates its own python processes (exact pids) if MemAvailable falls below 4 GiB (the order's "stop under 4 GiB").
+# blob e089207a, unmodified. Free memory: the lane refuses to start with less than 4 x 4 GB + 4 GB available; nothing is stopped or terminated for memory (the coordinator's correction of 23 Nov, Nathan's rule of 2026-11-08):
+# below 4 GiB the sampler only writes scan/MEMALERT.txt, which the runner session posts to the coordinator.
 # usage: bash lane_kc95_scan.sh [dry]
 set -u
 MODE=${1:-}
@@ -59,16 +60,10 @@ done
 ( while kill -0 ${pids[0]} 2>/dev/null || kill -0 ${pids[1]} 2>/dev/null || kill -0 ${pids[2]} 2>/dev/null || kill -0 ${pids[3]} 2>/dev/null; do
     avs=$(awk '/MemAvailable/ {print $2}' /proc/meminfo)
     echo "$(date -u '+%F %T') UTC alive $(pgrep -f 'd18_hybsign.py.*kc95_d195' | wc -l) python, RSS_kB $(ps -eo rss,cmd | awk '/d18_hybsign.py.*kc95_d195/ && !/awk|time|timeout/ {s+=$1} END {print s+0}'), MemAvailable_kB $avs, load $(cut -d' ' -f1 /proc/loadavg), points $(cat $F/scan/scan_D19.5_p*.jsonl 2>/dev/null | wc -l)" >> $F/scan/sampler.log
-    if [ "$avs" -lt $MEMSTOP ]; then
-      pp=$(pgrep -f "^$PY -u $IN/d18_hybsign.py $IN/l1kc95dh610d195" | tr '\n' ' ')
-      echo "MemAvailable $avs kB below 4 GiB at $(date -u '+%F %T') UTC; TERM to pid(s) $pp" > $F/scan/STOPMEM.txt
-      say "STOP: MemAvailable $avs kB is below 4 GiB; TERM to my d18_hybsign pid(s) $pp"
-      [ -n "$pp" ] && kill -TERM $pp
-    fi
+    [ "$avs" -lt $MEMSTOP ] && echo "$(date -u '+%F %T') UTC MemAvailable $avs kB below 4 GiB (alert only; nothing is stopped)" >> $F/scan/MEMALERT.txt
     sleep 30
   done ) &
 wait "${pids[@]}"
-[ -e $F/scan/STOPMEM.txt ] && { say "STOP: the scan was terminated for memory (scan/STOPMEM.txt); no reading"; exit 3; }
 for p in 0 1 2 3; do grep -vE 'Warning|^  [a-z]+ = |slogdet' $F/scan/scan_p$p.raw > $F/scan/scan_p$p.log; head -1 $F/scan/scan_p$p.log | tee -a $L | cut -c1-200; done
 cat $F/scan/scan_D19.5_p*.jsonl | $PY -I -c "
 import sys, json
