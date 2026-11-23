@@ -106,3 +106,19 @@ The log's 26 numpy overflow warnings (`dss_ell.py` 214, 334) are in the Newton t
 the scan was launched only at 02:52:20 UTC (1 h 32 min late).
 
 **Step 3 started 02:52:20 UTC:** unit `i1075s`, `kc79_d20/run_scan.sh` (3 processes x 1 thread, nice 10; p0 1.22 1.25 1.27 1.30, p1 1.23 1.26 1.28 1.31, p2 1.24 1.27 1.29 1.32; 1.27 on p0 and its repeat on p2).
+
+## Stopped
+
+**Stopped 2026-11-23 06:18 UTC by Nathan's decision (relayed by t5): rpi5 is no longer used by this project. Partial, round 1 only.** Unit `i1075s` was stopped 3 h 26 min into round 2 (lambda 1.25, 1.26 and the
+repeat of 1.27 were running; none finished, no process of the scan is left, MemAvailable 6.37 GB after). Step 3 is therefore not done: the 12 evaluations, `read_lower.py` (selftest, mutations, reading) and the
+bit-for-bit repeat of 1.27 did not run, so there is no reading of lambda_1 at D 20 from rpi5.
+
+What exists: step 0 passes; step 1 control reported (1.691e-8, accepted as read); step 2 accepted (source check, regrid, result check, both controls fire; `kc79_d20/`); step 3 round 1 (`kc79_d20/scan/`):
+
+| lambda | process | hybrid sign | ln\|det\| | noise robust | seconds |
+|---|---|---|---|---|---|
+| 1.22 | p0 | -1 | -2447.8556885675216 | yes | 9975 |
+| 1.23 | p1 | -1 | -2449.1766137128707 | yes | 9950 |
+| 1.24 | p2 | -1 | -2450.9861362758456 | yes | 9981 |
+
+Each process printed `the record system` first (\|F\| 4.4032e-10 against the record's 4.4010e-10, 2800 steps). Three signs of the same value are no reading of a root, so no lambda_1 estimate or range is given.
