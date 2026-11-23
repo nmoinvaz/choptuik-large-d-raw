@@ -14,7 +14,8 @@ set -u
 D=$1; C=$2; PRED=$3
 RAW=/home/nathan/Source/choptuik-large-d-raw; LEG=$RAW/I1025-dh610/kc79_leg; F=$LEG/D$D; IN=$LEG/in; DIN=$F/in; S=$F/scan; RG=$F/src
 WT=/home/nathan/Source/choptuik-large-d-1025g; WTM=$WT/solver/matter; WTF=/home/nathan/Source/choptuik-large-d-1025f; WF=$WTF/solver/matter; PY=/home/nathan/Source/venv-i1058/bin/python
-Df=$(printf '%.6f' $D); STATE=$DIN/sol_l1kc79Lw1025d_D$Df.npy; REC=$DIN/l1kc79Lw1025d.jsonl; TAG=l1kc79Lw1025d
+TAG=$(cat $F/tag.txt 2>/dev/null || echo l1kc79Lw1025d)   # win2's leap tag of this point (D<D>/tag.txt; d when absent)
+Df=$(printf '%.6f' $D); STATE=$DIN/sol_${TAG}_D$Df.npy; REC=$DIN/${TAG}.jsonl
 L=$F/exits_leg.txt; MEMSTOP=4194304; PUSH=/tmp/claude-1000/-home-nathan-Source-choptuik-large-d/4ef2cfd3-77e8-4b1b-9eda-6fb9da54dcb9/scratchpad/push_folder.sh
 export PYTHONDONTWRITEBYTECODE=1
 say() { echo "== $(date -u '+%Y-%m-%d %H:%M:%S') UTC kc79_leg D $D: $*" | tee -a $L; }

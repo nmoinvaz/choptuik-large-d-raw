@@ -13,7 +13,9 @@ for x in rows:
 t = [x["sec"] for x in rows]
 print()
 print(f"scan points: {len(rows)} evaluations, seconds per point min {min(t)}, median {statistics.median(t):.0f}, max {max(t)}, sum {sum(t)}; outside 900 to 1900 s: {[(round(x['lam'], 3), x['sec']) for x in rows if not 900 <= x['sec'] <= 1900]}")
-rec = [r for r in rd(f"D{D}/in/l1kc79Lw1025d.jsonl") if r["D"] == float(D)][-1]
+import os
+tag = open(f"D{D}/tag.txt").read().strip() if os.path.exists(f"D{D}/tag.txt") else "l1kc79Lw1025d"
+rec = [r for r in rd(f"D{D}/in/{tag}.jsonl") if r["D"] == float(D)][-1]
 print(f"win2's record at D {D}: |F| {rec['F']!r}, steps {rec['steps']}, constraint {rec['constraint']!r}, Delta {rec['Delta']!r}, h {rec.get('h')}, seconds {rec.get('seconds')}")
 fl = [x for x in rows if (x["f64_sign"] > 0) != (x["sign"] > 0)]
 print(f"float64 sign differs from the hybrid at: {[round(x['lam'], 3) for x in fl]}")

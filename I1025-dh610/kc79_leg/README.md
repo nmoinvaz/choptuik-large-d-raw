@@ -38,6 +38,8 @@ Win2's cadence on this leg is about 80 minutes a point (D 20.78125 pushed 15:10 
 | D | state commit | source check | window | robust change (det-linear, bracket) | minus prediction | repeat | verdict |
 |---|---|---|---|---|---|---|---|
 | 20.84375 | 876aab69 (win2, 17:56 UTC) | ACCEPTED (controls 1 1) | 0.945 to 0.975 | 0.958120, bracket (0.955, 0.960), range [0.957532, 0.958120] | +0.000120 (prediction 0.958) | bit-identical | one change, within 0.01; scan 17:57 to 18:28 UTC |
+| 20.875 | 784040c7 (win2, 19:15 UTC) | ACCEPTED (controls 1 1) | 0.930 to 0.960 | 0.947951, bracket (0.945, 0.950), range [0.947354, 0.947951] | +0.000951 (prediction 0.947) | bit-identical | one change, within 0.01; scan 19:17 to 19:58 UTC; float64 sign differs from the hybrid at 0.945 (hybrid read) |
 
 ## Status
 - 2026-11-23 16:59 UTC: folder, pilots, lane and the reading prepared before any run; units for D 20.84375, 20.875 and 20.90625 wait for their states on origin.
+- 2026-11-23 20:01 UTC: D 20.875 done (row above). win2's leap restarted under tag l1kc79Lw1025f from D 20.84375 and D 20.875 (coordinator's ruling, quoted in `../../I1025-win2/kc79_leap/README.md`); the D 20.875 state stands as the leg point. Points from D 20.90625 on come under tag f: `D<D>/tag.txt` names the tag, and `fetch_point.sh`, `lane_leg.sh`, `summarize_leg.py` read it (d when absent; D 20.84375 and D 20.875 re-summarize byte-identically, `fetch_point.sh` pins D 20.875 to the run's blobs).
