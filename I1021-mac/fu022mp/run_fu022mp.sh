@@ -2,15 +2,17 @@
 # #1076 fu022mp: fu021's guard-blocked points valued with the M = 3 inner solve in mpmath (value_mp.py batch), then
 # the recount of the record's 11 cells with the record's arguments; at most 2 passes, as run_fu021.sh. A pass with no
 # new point, a pass that values no point, or a count with 0 unresolved leaves ends the run. Criteria in README.md.
-#   run_fu022mp.sh CODE PY RAW PROCS    CODE: a worktree at the commit in README.md; PY: python with numpy, scipy,
-#                                       mpmath; RAW: the raw clone's root; PROCS: processes for the valuing
-# Reads I1021-rpi5/fu021 and I1021-mac/rpi5_fu021; writes I1021-<host>/fu022mp (OUT, must not exist).
+#   run_fu022mp.sh CODE PY RAW PROCS LABEL    CODE: a worktree at the commit in README.md; PY: python with numpy, scipy,
+#                                       mpmath; RAW: the raw clone's root; PROCS: processes for the valuing;
+#                                       LABEL: the machine's label (macm3, rpi5, ...)
+# Reads I1021-rpi5/fu021 and I1021-mac/rpi5_fu021; writes I1021-<LABEL>/fu022mp (OUT, must not exist).
 set -u
 { # read whole before it runs
-CODE=$1; PY=$2; RAW=$3; PROCS=$4
+CODE=$1; PY=$2; RAW=$3; PROCS=$4; LABEL=$5
 COMMIT=$(cat "$RAW/I1021-mac/fu022mp/CODE_COMMIT")
 D=$RAW/I1021-mac/fu022mp; F21=$RAW/I1021-rpi5/fu021/m3; S21=$RAW/I1021-mac/rpi5_fu021
-OUT=$RAW/I1021-$(hostname -s | tr 'A-Z' 'a-z' | cut -c1-12)/fu022mp
+OUT=$RAW/I1021-$LABEL/fu022mp
+[ -n "$LABEL" ] && [ "$LABEL" != mac ] || { echo "LABEL must name the machine, not mac"; exit 1; }
 IS=$CODE/solver/inner_stokes
 sha() { if command -v sha256sum > /dev/null; then sha256sum "$@"; else shasum -a 256 "$@"; fi; }
 [ "$(git -C "$CODE" rev-parse HEAD)" = "$COMMIT" ] || { echo "CODE is not at $COMMIT"; exit 1; }
@@ -37,7 +39,7 @@ for n in 1 2; do
   echo "pass $n select: $(cat "$OUT/logs/select_pass$n.log")" >> "$X"
   [ -n "$PTS" ] || { echo "pass $n has no new point: end" >> "$X"; break; }
   echo "pass $n value start $(date -u '+%F %T') cache $(wc -l < "$C") lines" >> "$X"
-  (cd "$IS" && nice -n 10 $PY -u value_mp.py batch "$C" "$R" --points "$PTS" --procs="$PROCS" > "$OUT/logs/value_pass$n.log" 2>&1); v=$?
+  (cd "$IS" && nice -n 10 $PY -u value_mp.py batch "$C" "$R" --points="$PTS" --procs="$PROCS" > "$OUT/logs/value_pass$n.log" 2>&1); v=$?
   echo "pass $n value exit $v $(date -u '+%F %T'): $(tail -1 "$OUT/logs/value_pass$n.log")" >> "$X"
   DONE="$DONE $R"
   [ $v = 0 ] || { echo "pass $n value step failed: end" >> "$X"; break; }
