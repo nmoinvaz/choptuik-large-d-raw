@@ -78,3 +78,10 @@ Memory (alert-only): 89 samples, the largest child RSS 3.99 GB, the lowest avail
 | 20.78125 | 0.979332 | 0.977136 to 0.979332 | -0.3343 (-0.4046 to -0.3343) |
 
 The line for the next point: through D 20.75 and D 20.78125, slope -0.3343: lambda_1 at D 20.8125 is 0.9689, so its window is 0.92 to 1.02 by 0.01 plus a repeat (written when that point lands).
+
+
+## D 20.8125
+
+Written 2026-11-23 16:34 UTC, before the run. **Inputs** (`D20.8125/pins.txt`): state `sol_l1kc79Lw1025d_D20.812500.npy` blob 141bc9bc, record file `l1kc79Lw1025d.jsonl` blob b60b5403 (2 lines), both at raw c39988cb (win2's leap point 2: Delta 1.1132588598411506, |F| 4.670554648802493e-10, 2696 steps, constraint 4.1224e-03, 4866 s).
+**Window** (the rule: the line through the last two lambda_1 points, plus and minus 0.05): D 20.75 0.989779 and D 20.78125 0.979332 give slope -0.3343 per unit D, so lambda_1 at D 20.8125 is 0.9689; the window is 0.92 to 1.02 by 0.01 (11 values) plus a repeat of 0.97 (nearest the line, on another process than the first 0.97): 12 evaluations. **2 processes** (beside the #1079 runs, the coordinator's word), each of 1 thread.
+**Prediction** (mine, written before the run): **one robust change near 0.969, within 0.01, and no other change in 0.92 to 1.02.**

@@ -43,9 +43,9 @@ nice -n 10 $PY -I $L/common/in/kc79_syscheck_1025.py $STUB $STATE $D $WTM --muta
 step "source check (kc79_syscheck_1025.py on win2's k_c 79 D $D state): exit $s0 (0 wanted); controls --mutate=F exit $s1, --mutate=steps exit $s2 (1 wanted each): $(tail -2 $OUT/syscheck.txt | head -1 | cut -c1-220)"
 if [ $s0 = 0 ] && [ $s1 = 1 ] && [ $s2 = 1 ]; then echo "ACCEPTED $(stamp) UTC" > $OUT/VERDICT.txt; else stop "the source check or a control did not read as written (exit $s0, $s1, $s2)"; fi
 step "verdict: ACCEPTED"
-NP=4
+NP=${NP:-4}
 AVAIL=$(availgib)
-step "memory before the scan: about $AVAIL GiB available (free+inactive+speculative+purgeable), $(memory_pressure | tail -1 | sed 's/.*: //') free by memory_pressure; 4 processes of about 1.3 to 3.2 GB (D 20.75: largest child 3.16 GB)"
+step "memory before the scan: about $AVAIL GiB available (free+inactive+speculative+purgeable), $(memory_pressure | tail -1 | sed 's/.*: //') free by memory_pressure; $NP processes of about 1.3 to 4 GB each (D 20.78125: largest child 3.99 GB)"
 python3 -c "import sys; sys.exit(0 if $AVAIL >= 8 else 1)" || stop "less than 8 GiB available"
 # the values: LO..HI by 0.01, then the repeat on another process than the first one (round-robin by index; the repeat goes to the next process)
 BASE=(); for ((v = LO; v <= HI; v++)); do BASE+=("$(python3 -c "print('%.2f' % ($v / 100))")"); done
