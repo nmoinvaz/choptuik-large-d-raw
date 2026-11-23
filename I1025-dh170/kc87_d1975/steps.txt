@@ -1,0 +1,11 @@
+2026-11-23 02:57:33 UTC start (load 0.19 0.12 0.13, MemAvailable 28556 MiB)
+2026-11-23 02:57:33 UTC inputs pinned (in_blobs.txt: 12 files; source state f2ad34b5, record 0508163e, kc87_syscheck 6df5d960, kc79_syscheck 29dce7ea)
+2026-11-23 02:57:33 UTC kc87_syscheck_1025.py = kc79_syscheck_1025.py with 3 lines changed; the rebuilt diff's hunks equal dh610's (kc87_diff_rebuilt.txt)
+2026-11-23 02:57:33 UTC worktree 48c36355: dss_ell, ell_ddm, ell_dd, ddnp equal 505d8399; ell_refine.py 631e5801; the worktree's source state and record equal the pins; Python 3.14.10, multidouble avx2
+2026-11-23 02:57:33 UTC selftests: kc79_syscheck exit 0, kc87_syscheck exit 0 (0 wanted)
+2026-11-23 02:57:39 UTC STEP 1 source check (kc79_syscheck_1025.py on dh170's k_c 79 D 19.75 state): exit 0 (0 wanted); controls --mutate=F exit 1, --mutate=steps exit 1 (1 wanted each); kc87_syscheck_1025.py on the k_c 79 source exit 1 (1 wanted)
+2026-11-23 02:57:39 UTC STEP 2 regrid starts: nice -n 10 timeout 21600 /home/nathan/Source/choptuik-large-d-1058b/.venv/bin/python -u ell_refine.py l1kc79dh170d1975 79 l1kc87dh170d1975 87 1 19.75 2.1120935738 --kappa 0.7 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma
+2026-11-23 04:10:51 UTC regrid exit 0, wall 4392 s
+2026-11-23 04:10:58 UTC kc87 syscheck exit 0 (0 wanted); controls --mutate=F exit 1, --mutate=steps exit 1 (1 wanted each); kc79_syscheck_1025.py on the k_c 87 result exit 1 (1 wanted)
+2026-11-23 04:10:58 UTC verdict: ACCEPTED 2026-11-23 04:10:58 UTC
+2026-11-23 04:11:15 UTC scan starts: D 19.75, 8 evaluations (1.30 to 1.36 and the repeat of 1.33), 4 procs x 1 thread, nice 10; state sol_l1kc87dh170d1975_D19.7500.npy 352107a8, record 6078a0b4
