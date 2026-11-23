@@ -1,0 +1,9 @@
+2026-11-23 00:57:37 UTC start (loadavg { 1.72 4.06 5.79 }, free memory 86%, disk 25Gi free)
+2026-11-23 00:57:37 UTC inputs pinned in in/ (state 9528b355 and record 5777d2a2 from raw f40a4556 (dh370's k_c 79 D 19.5); kc87_syscheck 6df5d960 from raw ec9fb489; kc79_syscheck 29dce7ea, d18_hybsign e089207a, read_lower 89309d3c, d185_scan_read 7c9d400f from raw 8e4797ff)
+2026-11-23 00:57:37 UTC kc87_syscheck_1025.py = kc79_syscheck_1025.py with 3 lines changed; the rebuilt diff's hunks equal dh610's (kc87_diff_rebuilt.txt)
+2026-11-23 00:57:37 UTC worktree 505d8399, ell_refine.py 631e5801 (dh370's), clean outside solver/matter/data; Python 3.14.3, multidouble isa neon
+2026-11-23 00:57:37 UTC lambda_0 = ell_delta.lam0_at(19.5, *lam0_table()) = 2.1132623525 (ell_delta.py blob 059180e6; --no-gamma does not use it)
+2026-11-23 00:57:37 UTC selftests: kc79_syscheck exit 0, kc87_syscheck exit 0 (0 wanted)
+2026-11-23 00:57:39 UTC source check (kc79_syscheck_1025.py on dh370's k_c 79 D 19.5 state): exit 0 (0 wanted); controls --mutate=F exit 1, --mutate=steps exit 1 (1 wanted each); kc87_syscheck_1025.py on the k_c 79 source exit 1 (1 wanted)
+2026-11-23 00:57:39 UTC regrid starts: nice -n 10 /Users/nathan/Source/venv-macm3-1058b/bin/python -u /Users/nathan/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_d195/capped_run.py 21600 /Users/nathan/Source/venv-macm3-1058b/bin/python -u ell_refine.py l1kc79dh370d195 79 l1kc87macm3d195 87 1 19.5 2.1132623525 --kappa 0.7 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma
+2026-11-23 00:57:40 UTC regrid child pid 85165 (capped_run wrapper 85156)

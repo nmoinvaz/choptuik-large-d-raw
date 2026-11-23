@@ -78,6 +78,6 @@ Robust changes in 1.28 to 1.42: none (3%), one (30%), two (60%), more (7%). The 
 
 | step | verdict | numbers | time (UTC) |
 |---|---|---|---|
-| source check | not started | | |
-| regrid | not started | | |
+| source check (`kc79_syscheck_1025.py`) | accepted; selftests (kc79 and kc87 checks) exit 0; controls `--mutate=F` and `--mutate=steps` exit 1; extra control: `kc87_syscheck_1025.py` on the k_c 79 source exits 1 ("the record is not k_c 87 at D 19.5 (kc 79, D 19.5)") | state \|F\| 3.5116419026e-10 against the record's 3.5122938292e-10 (0.0186% apart, bar 1%; dh610's machine: 3.5136527614e-10); `freeze_from` 2879 steps = the record's | 00:57:39 (2 s) |
+| regrid (`ell_refine.py`), child pid 85165, own session (`session_check_regrid.txt`: every chain ends at launchd, no claude, tty ??) | running | | started 00:57:39 |
 | scan | not started | | |
