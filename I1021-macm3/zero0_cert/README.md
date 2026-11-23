@@ -106,3 +106,28 @@ R = 2.2171e-11 + 6.3687e-11i; J = [[4149.86, 3330.21], [-4997.25, 9471.99]], det
 
 The box centers are A 2.72647588563088 and w/w_inf 1.015603094857735: the last row is -5.3e-17 and +4.9e-15 from them, the unapplied-step point -1.5e-17 and -1.8e-15; the box's radii are 5.59e-13 and 2.98e-13.
 The prediction's first clause (inside the certified box, both coordinates): **met**. Its F_3 clause: see the point run below (the files of `zero_mp.py` do not hold the tuned F_3).
+
+## Results of the point run (13:24:01 to 13:30:59 UTC, 1 process, `zero0_point.sh`; the row's own time 417.7 s)
+
+`value_mp.py point 2.72647588563088 1.01560309485774 0.00554371294405835 -0.0722097392350385` (the last row's floats), exit 0: `zero0_point.json`, `logs/steps_point.txt`, `logs/zero0_point.err` (empty).
+The row is valued (r_3 = (1.56e-37, 2.23e-37), max|Y| 1.083, calls [7, 2], 63 steps, mp_dps [34, 42], order [40, 50]), and its R, sigma_mp and |R|/sigma_mp are those of `zero_mp.py`'s evaluation at iteration 0, to every printed digit.
+
+| | value in the row | enclosure from the log's B3 and C3 | inside? (nearest edge; half-width) | minus the midpoint |
+|---|---|---|---|---|
+| `F3re` = Re F_3 = C3/2 | 0.005543712944058285 | [0.00554371294405395, 0.00554371294406275] | **inside** (4.34e-15; 4.40e-15) | -6.5e-17 |
+| `F3im` = Im F_3 = -B3/2 | -0.07220973923503762 | [-0.072209739235115, -0.072209739234962] | **inside** (7.56e-14; 7.65e-14) | +8.8e-16 |
+
+The midpoint (0.00554371294405835, -0.0722097392350385) is also the start F_3 given with `--f3`. The prediction's clause "its tuned F_3 matches (C3 - i B3)/2 to about 1e-11": **met**, the tuned F_3 differs
+from it by 6.5e-17 and 8.8e-16, and lies inside the enclosures of Re F_3 and Im F_3 (that is, of C3/2 and -B3/2) from the log.
+
+## Verdict on the prediction (the coordinator's, written before the run)
+
+| clause | result |
+|---|---|
+| the final point lies inside the certified box, A in [2.72647588563032, 2.72647588563144] | **met**: A 2.726475885630880, 5.60e-13 from the nearer edge |
+| and w/w_inf in [1.01560309485743, 1.01560309485804] | **met**: 1.015603094857740, 3.00e-13 from the nearer edge |
+| its tuned F_3 matches (C3 - i B3)/2 to about 1e-11 | **met**: differences 6.5e-17 (Re) and 8.8e-16 (Im), both inside the enclosures |
+
+zero_mp located at iteration 0 (the start, the box's center, is the final point; no Newton step was applied): the Newton step from it is 3.7e-17 in A (0.08 ulp) and 6.7e-15 in w/w_inf (30 ulp, 2.2% of the box's
+w/w_inf radius 2.98e-13), so the zero of value_mp's R_1 at xi1 0.17 lies within 6.7e-15 of the certified box's center, inside the box. This compares value_mp's zero with the box's A and w/w_inf, and the tuned F_3 with its F_3;
+it does not check the box itself.
