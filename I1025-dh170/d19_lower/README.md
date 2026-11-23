@@ -88,3 +88,47 @@ t5: "change: dh610 scans the k_c 95 state itself now (its threads were idle), so
 - **Open in this folder:** the k_c 87 scan (unit `i1025-d19k87s`, 8 evaluations, round 1 landed 19:41 UTC; round 2: 1.425, 1.535, 1.545 and the repeat of 1.415, ends about 21:10 UTC), then `k87/read_lower.txt`, the README's Result and predictions table for stage k87, the push, the post on #1025 and the report to t5.
 - t5's note (23 Nov): dh610's and my rows of the same state were bit-identical at D 20.5 (raw 6b99c854), so the two Linux builds have so far behaved as one; both provenances are reported all the same.
 - 2026-11-23 20:08:28 UTC: this change logged.
+
+## Result of stage k87 (written 2026-11-23 21:09:35 UTC; the folder's last stage, see "Stage k95 moved to dh610")
+Steps 1 and 2 as logged (ACCEPTED 16:53:41 and 18:10:07 UTC). **Step 3:** unit `i1025-d19k87s` exit 0; processes p0, p2, p1, p3 exit 0 at 21:08:23, 21:08:23, 21:08:28 and 21:08:49 UTC; all four printed the record system (|F| 2.8974544839e-10 against the record's 2.8977626488e-10, 3276 steps equal); **8 of 8 evaluations noise-robust**; the repeat of 1.415 (the first on p0, the repeat on p3) **bit-identical** (hybrid +1, ln|det| -2883.7414921113777, float64 ln|det| -2880.2037511659414, noise [1, 1]; `repeat_check.py` PASS); `read_lower.py` selftest exit 0, `--mutate=shift` and `--mutate=round2` exit 1; reader exit 0 on both windows (`read_lower.txt`). Seconds per point 5399 to 5428 in round 1 and 5274 to 5277 in round 2 (four processes side by side); wall per process 2:58:00 to 2:58:25 by /usr/bin/time, the scan 2:58:26 (10706 s; 18:10:23 to 21:08:49); peak RSS 2.52 to 2.62 GiB; lowest MemAvailable 20.6 GiB (scan, 178 samples) and 25.8 GiB (regrid); no memory alert (`alert.log` does not exist).
+
+**Hybrid signs, as printed.** Window 1 (1.405 to 1.425): minus at 1.405, 1.410; plus at 1.415, 1.420, 1.425; edge signs minus and plus. Window 2 (1.535 to 1.545): plus at 1.535, minus at 1.545. **Two robust changes, one per window**, none touching a non-robust point:
+| position | bracket | orientation as printed | det-linear estimate | estimator range |
+|---|---|---|---|---|
+| **the lower root, k_c 87, D 19, dh170 (Linux)** | (1.410, 1.415) | - to + | **1.414576** | [1.414549, 1.414576] |
+| **lambda_1 (the root near lambda_1's line), k_c 87, D 19, dh170 (Linux)** | (1.535, 1.545) | + to - | **1.539751** | [1.539751, 1.539751] (two points: one interpolation, no spread) |
+The estimator range is the spread over the interpolation choices of `d185_scan_read.changes`, not an enclosure; the bracket is the 0.005 grid step in window 1 and 0.010 in window 2. No ln|det| minimum without a sign change in either window. ln|det|: 1.405 -2880.5582, 1.410 -2881.3634, 1.415 -2883.7415, 1.420 -2881.3151, 1.425 -2880.7328 (a dip at the lower root); 1.535 -2882.0418, 1.545 -2881.9421. The float64 sign differs from the hybrid at 1.415, 1.420, 1.425 and 1.535 (float64 reads minus at all seven distinct points): 5 of the 8 evaluations, 4 of the 7 distinct points. **Float64 alone would have placed the lower root at or above 1.425 and lambda_1 at or above 1.545**; the dd block decides both.
+
+**By position, beside winb's (Windows) at D 19:**
+| root | k_c 79 (winb) | k_c 87 (winb, 0.025 grid) | k_c 87 (dh170, 0.005 / 0.010 grid) | dh170 minus winb at k_c 87 | k_c 87 minus k_c 79 (dh170 against winb's k_c 79) |
+|---|---|---|---|---|---|
+| lower root | 1.410862 | 1.414532 [1.412419, 1.414532] | **1.414576** [1.414549, 1.414576] | **+0.000044** | +0.003714 |
+| lambda_1 | 1.539658 | 1.538986 [1.538986, 1.539478] | **1.539751** | **+0.000765** (0.000273 above the top of winb's range) | +0.000093 |
+t5's written prediction (the lower root within 0.005 of 1.414532 and lambda_1 within 0.005 of 1.538986; "the build and regrid spread is about 0.003 at this D"): met for both, on the det-linear estimates. The two builds differ here by 0.00004 (lower root) and 0.0008 (lambda_1; winb's own estimate is from a 0.025 grid, mine from a 0.010 bracket). The lower root's change from k_c 79 to k_c 87 is +0.0037 (winb's k_c 79 against my k_c 87, a Windows regrid against a Linux one; winb's own k_c 79 to k_c 87 pair is +0.0037 as well). The k_c 95 reading is dh610's (`I1025-dh610/d19_k95/scan/`).
+
+**The regrid beside winb's** (Windows, 7965 s) and the k_c 79 source:
+| | dh170 k_c 87 (Linux, 4578 s) | winb k_c 87 | source k_c 79 (winb) |
+|---|---|---|---|
+| |F| | 2.8977626488e-10 | 2.900647440612e-10 (ratio 0.99901) | 2.8482007333e-10 |
+| steps | 3276 | 3276 (equal) | 2976 |
+| psi-constraint | 3.9188058e-4 | 3.9191275e-4 (ratio 0.99992) | 7.2755023e-4 |
+| Delta | **1.067769696966** | 1.067769883453 (dh170 minus winb **-1.8649e-7**) | 1.067770436307 (k_c 87 minus k_c 79: here **-7.3934e-7**, winb -5.5285e-7) |
+
+## Predictions against the result (stage k87)
+| prediction | result |
+|---|---|
+| t5's, written before the run: the lower root within 0.005 of 1.414532 and lambda_1 within 0.005 of 1.538986 | **met**: 1.414576 (+0.000044) and 1.539751 (+0.000765) |
+| mine: the k_c 79 check accepts winb's state on Linux with all four controls firing (85%); the regrid accepted with both controls and the k_c 79 check refusing (80%) | yes (state |F| +0.10% of the record's, `freeze_from` 2976 = 2976); yes |
+| the regrid takes 4000 to 5800 s (65%); steps within 5 of winb's 3276 (60%); |F| within 1% of winb's (70%) | yes, 4578 s; yes, equal; yes, 0.1% |
+| Delta within 5e-6 of winb's (85%), within 1e-6 (35%) | yes; yes (-1.8649e-7) |
+| every point noise-robust (65%); the repeat of 1.415 bit-identical (90%) | yes, 8 of 8; yes |
+| window 1 exactly one robust change (85%), in (1.410, 1.415) (40%), its estimate within 0.005 of 1.414532 (70%) | yes; **yes** (the 40% case; (1.415, 1.420) was 30%); yes |
+| window 2 exactly one robust change (85%), its estimate within 0.005 of 1.538986 (70%) | yes; yes |
+| edge signs unequal in both windows (85%) | yes |
+| the float64 sign differs from the hybrid at more than half the points (25%) | **yes**: 5 of 8 evaluations (4 of 7 distinct points), the 25% case |
+| the scan 2.6 to 3.3 h (65%, revised grid); peak RSS of a scan process below 3.5 GiB (85%) | yes, 2.97 h; yes, 2.62 GiB. My ETA to t5 (21:10 UTC) was 1 min after the end (21:08:49) |
+Stage k95's predictions were about a regrid and a scan that moved to dh610; they do not apply here.
+
+## Log
+- 2026-11-23 19:41 UTC: round 1 landed (1.405 to 1.420: minus, minus, plus, plus; partial reading sent to t5: the lower root in (1.410, 1.415), 1.414576, unchanged by round 2); 21:08:23 to 21:08:49 UTC: round 2 and the driver's reading finished.
+- 2026-11-23 21:09:35 UTC: result written (this section). Nothing of mine is running on dh170.
