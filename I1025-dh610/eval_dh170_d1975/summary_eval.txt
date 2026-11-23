@@ -1,0 +1,10 @@
+| lambda | ln of abs det this build on dh170's state | ln of abs det dh170's row | difference | same float | hybrid sign (mine, his) | f64 sign (mine, his) | f64 ln (mine, his) | seconds (mine, his) |
+|---|---|---|---|---|---|---|---|---|
+| 1.32 | -2806.446059925529 | -2806.446059925529 | +0.000e+00 | True | -1, -1 | +1, +1 | -2804.101651107922, -2804.101651107922 | 986, 5077 |
+| 1.33 | -2806.61026029386 | -2806.61026029386 | +0.000e+00 | True | +1, +1 | +1, +1 | -2804.1707360292753, -2804.1707360292753 | 987, 5063 |
+
+norm dz (dh170's state, linRe) 4.0279e-10
+ln of abs det, linRe minus dh170's state (both on this build or his, which agree), per unit of norm dz:
+  1.32: +0.415970, +1.033e+09 per unit
+  1.33: -0.378341, -9.393e+08 per unit
+the same-build pairs of the step 4 result were about 2.5e+05 per unit (linRe, macRe: 2.474e+05, -2.485e+05); ratio at 1.32: 4174

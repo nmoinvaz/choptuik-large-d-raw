@@ -99,3 +99,69 @@ dh170's machine, as far as his folder says (`../../I1025-dh170/kc87_d1975/README
 
 ## Status
 - 2026-11-23 08:48:52 UTC: folder, inputs, selftests, machine information and lane prepared before any run.
+
+## Result (2026-11-23 09:07 UTC; tables printed by `summarize_eval.py` into `summary_eval.txt`, by `in/eval_compare.py` into `eval_compare.txt`, by `in/freeze_compare.py` into `run/freeze_compare.txt`)
+
+Everything ran as ordered. Both d18 processes exited 0 and printed "the record system" first (|F| 3.9877716759e-10 against the record's 3.9876058940e-10, steps 3124 = the record's). The lane started 08:49:22 UTC; the points took 986 s and 987 s (two processes of 1 thread, nice 10) and the last ended 09:05:52 UTC. No memory alert (peak RSS 2.12 GB per process). The k_c 87 roots are not yet physical.
+
+**Reading by the rules written before the run: (b), and in the strongest form: this build gives dh170's rows bit for bit.** ln|det| of dh170's state at 1.32 and 1.33 is the same float as his rows (difference exactly 0), and so are the hybrid signs (-, +), the noise signs, the float64 signs and the float64 ln|det|. (a), that the two Linux machines evaluate ln|det| differently, is refuted for this state: an i7-12700 and an i7-7700, both single-threaded, give the same bits.
+
+```
+| lambda | ln of abs det this build on dh170's state | ln of abs det dh170's row | difference | same float | hybrid sign (mine, his) | f64 sign (mine, his) | f64 ln (mine, his) | seconds (mine, his) |
+|---|---|---|---|---|---|---|---|---|
+| 1.32 | -2806.446059925529 | -2806.446059925529 | +0.000e+00 | True | -1, -1 | +1, +1 | -2804.101651107922, -2804.101651107922 | 986, 5077 |
+| 1.33 | -2806.61026029386 | -2806.61026029386 | +0.000e+00 | True | +1, +1 | +1, +1 | -2804.1707360292753, -2804.1707360292753 | 987, 5063 |
+
+norm dz (dh170's state, linRe) 4.0279e-10
+ln of abs det, linRe minus dh170's state (both on this build or his, which agree), per unit of norm dz:
+  1.32: +0.415970, +1.033e+09 per unit
+  1.33: -0.378341, -9.393e+08 per unit
+the same-build pairs of the step 4 result were about 2.5e+05 per unit (linRe, macRe: 2.474e+05, -2.485e+05); ratio at 1.32: 4174
+```
+
+```
+| lambda | this build on dh170's state | hybrid sign | noise signs | float64 sign | dh170's rows (his machine) | linRe (this build) | mine minus his | mine minus linRe | his minus linRe |
+|---|---|---|---|---|---|---|---|---|---|
+| 1.32 | -2806.4460599255 | - | -- (robust True) | + | -2806.4460599255 (-) | -2806.0300899137 (-) | +0.000000 | -0.415970 | -0.415970 |
+| 1.33 | -2806.6102602939 | + | ++ (robust True) | + | -2806.6102602939 (+) | -2806.9886015473 (+) | +0.000000 | +0.378341 | +0.378341 |
+det-linear root in (1.32, 1.33) from the two points: this build on dh170's state 1.325410
+reading by the rules written before the run: (b)  [(b) |mine - his| <= 1e-3 at both; (a) |mine - linRe| <= 1e-4 and |mine - his| >= 0.1 at both; (c) otherwise]
+```
+
+**So the +0.416 (1.32) and -0.378 (1.33) in ln|det|, and the +0.001818 in the root, between dh170's rows and linRe come from the state move itself, 4.0279e-10 (L2, Delta included):** 1.03e+09 and 9.4e+08 per unit of |dz|, about 4200 times the rate between states along the soft directions (2.5e+05 per unit, `../reconv_d1975`). The move was an LM step along directions of gain |J dz| / |dz| = 2.9e-03 (`../reconv_d1975/cond/dh170_lin.txt`). I did not find why ln|det| is that steep there.
+
+**The discrete system is not what differs** (information step): all four states have the same 13 segments and 3124 steps, and no segment differs in any of the six pairs; the two controls passed (a state against itself 0 segments, kappa 0.69 against 0.7 changes all 13, 3169 steps).
+
+```
+dh170 start: 13 segments, 3124 steps, |F| at this freeze 3.9877716759e-10 (its record 3.9876058940e-10)
+linRe: 13 segments, 3124 steps, |F| at this freeze 3.9880759383e-10 (its record 3.9854188111e-10)
+macRe: 13 segments, 3124 steps, |F| at this freeze 3.9853657073e-10 (its record 3.9851106831e-10)
+macm3 start: 13 segments, 3124 steps, |F| at this freeze 3.9889482683e-10 (its record 3.9801703237e-10)
+
+dh170 start against linRe: 0 segments differ
+dh170 start against macRe: 0 segments differ
+dh170 start against macm3 start: 0 segments differ
+linRe against macRe: 0 segments differ
+linRe against macm3 start: 0 segments differ
+macRe against macm3 start: 0 segments differ
+
+control 1: dh170's state against itself: 0 segments differ (wanted 0)
+control 2: dh170's state at kappa 0.7 against kappa 0.69: 13 segments differ, 3169 steps (wanted at least 1)
+```
+
+**Machines** (the coordinator's request; this machine above in `machine_dh610.txt`). Both: Fedora 45, python 3.14.10, multidouble 5.1.0 avx2, venv from `requirements.txt` (numpy 2.5.4, scipy 1.18.1 pinned). This one: i7-12700, scipy-openblas 0.3.34.106.0, core Haswell. dh170's: i7-7700 (his folder); his OpenBLAS core type is not in his folder, the coordinator asked him; the bit-identity above does not prove the cores are the same, it shows this state's evaluation is.
+
+**Not tested:** whether a rerun of the same `ell_refine` from the same state ends at the same state (the residual's trailing digits depend on the thread count: |F| of this state is 3.9876058940e-10 at 8 threads and 3.9877716759e-10 at 1); if reruns end 1e-10 apart along such directions, the root would move by about a tenth of the 0.0018 or more at the rate above, from rounding alone.
+
+### Predictions against outcomes (registered before the run)
+
+| prediction | outcome |
+|---|---|
+| both exit 0 and print the record system (95%) | yes |
+| the printed norm F equals the record's 3.9876058940e-10 to 8 digits (85%) | no: 3.9877716759e-10, 4.2e-05 higher; dh170's own d18 prints the same number |
+| each point 1900 to 2200 s (65%) | no: 986 s and 987 s with two processes (six processes took 2114 to 2128 s); the lane ended 09:05:52, my ETA to the coordinator (09:21 to 09:26) was 15 to 20 minutes late |
+| reading (b) 60%, (a) 10%, (c) 30% | (b), bit for bit; (a) refuted |
+| hybrid signs -, + (90%) | yes |
+| two-point det-linear root within 1e-4 of 1.325410 (60%) | yes, 1.325410 |
+| dh170's state against linRe differs in a step count (70%); linRe against macRe (85%); dh170's against macm3's (90%) | no, no, no: 0 segments differ in all six pairs |
+| the two freeze controls pass (95%) | yes |
