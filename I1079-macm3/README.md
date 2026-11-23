@@ -172,3 +172,22 @@ For x1 at h = 1e-12 and 1e-13 the outer margins (-73.3 and -736 in row A; -49.5 
 - **x1: the binding quantity is the radius of (Y g(p^)) in the outer rows, 7.37e-11 (A) and 5.00e-11 (w/w_inf)**, independent of the box: it needs h above 7.4e-11, where the Jacobian enclosure terms are 80 h (h = 1e-10). The radius of g(p^) is 5.4e-14 (Theorem A(M = 3)'s fundamental: 1.7e-16), and the Schur complement has a singular value of 3.6e-5. No pair of the grid, and none of the 1e-10 run, comes near passing in the outer rows (best -10.5).
 - **x2: the binding row is w/w_inf at 2.5 h**: the (Y g) radius 1.2 h (1.2e-11) plus the w/w_inf column's Jacobian-enclosure radius 1.0 h plus the A column 0.3 h; the A row (1.7 h) and the B3 row (1.2 w) are next. Every row is within a factor 2.5 of passing; the two parts that sum to it are the radius of (Y g(p^)) (g radius about 1.2e-14) and the radius of the outer-column enclosure of Y Dg(X), and they pull h in opposite directions (the first needs h above about 1.2e-11, the second falls with a smaller h).
 - Both zeros: at (1e-11, 1e-12) the inner rows pass at x1 and C3 passes at x2 (B3 is -0.231), so the failure is mainly in the outer rows, in two quantities that the box shape does not change (the radius of g(p^)) or changes only against the other (the Jacobian enclosure's radius over the box). Not tested: h between 1e-11 and 1e-10, w above 1e-12, a higher Taylor order or smaller steps for the centre trajectory (which would shrink the radius of g(p^)); the coordinator names any of these.
+
+
+## Round 3 (the coordinator's order after round 2, raw 61e151fa; written 2026-11-23 14:44 UTC, before the runs)
+
+The coordinator's words: round 2 accepted; "the outer rows' floor is g(p^)'s radius (5.4e-14) through the small Schur value. Remedy documented in `certify_M.py`: a separate C^1 point run at p^ (no box spread) and `krawczyk` with `--point`.
+Step: `certify_M.py point 3 --p=<x1 refine centre> --out=data/A_M_point_M3x1.json --log=...` and the same for x2 (2 at a time); report each point run's g(p^) radius. Then `krawczyk --box=<each of the 12 boxes per zero> --point=<that zero's
+point run>` (seconds each) and the margins tables. For any box that passes: controls and `certify_M_recheck.py` (with `--point` if it takes it; else say so) with their mutations, then stop and report. If none passes, the binding row and quantity
+at the best box, and stop."
+
+**Prediction (the coordinator's, written before):** the point run's g radius falls well below 5.4e-14 (toward the fundamental's 1.7e-16) and a box near h 1e-12 passes at x2, perhaps at x1.
+
+**What I run** (`runner/round3.sh`, own session under caffeinate, `nice -n 10`, 1 thread per BLAS; code unchanged: main at a4cd5eaa, python-flint 0.9.0, FLINT 3.6.0):
+1. `certify_M.py point 3 --p=<p_out of data/A_M_refine_M3_xN.json> --out=data/A_M_point_M3xN.json --log=logs/A_M_point_M3xN.log`, N = 1, 2, 2 at a time. The `--p` strings are the refine file's `p_out` strings, which are also the `p` of every box run (checked: `krawczyk_test` asserts `pt["p"] == bx["p"]`).
+   Each point run's g(p^) radius is printed (`g_rad` in the json).
+2. `certify_M.py krawczyk --box=data/A_M_box_M3xN_hH_wW.json --point=data/A_M_point_M3xN.json` for the 12 boxes of round 2 per zero (h in 1e-11, 1e-12, 1e-13; w in 1e-15, 1e-14, 1e-13, 1e-12), and as an extra for the 1e-10 run;
+   no `--hier`. With `--point`, g(p^) and Y come from the point run and the box run supplies Dg over the box (`krawczyk_test`).
+3. For every box that passes: `certify_M.py controls --box=... --point=...` (the usage line gives `--point`; exit 0 iff C0 to C8 as expected). `certify_M_recheck.py` takes `--sub` and `--mutate` only and reads the box file alone, so it **has no `--point`**: for a
+   passing box I run it as it is (its verdict then uses the box run's own g(p^), so it may not agree) and its `--mutate` (must fail), and I say which it is.
+4. If none passes: the binding row and quantity at the best box (largest smallest margin), by the same row-by-row breakdown as before (my read-only `diagnose.py`, with the point run's g(p^) and Y for these tests), and I stop.
