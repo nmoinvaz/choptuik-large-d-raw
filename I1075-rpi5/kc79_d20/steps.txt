@@ -4,3 +4,8 @@
 2026-11-22 23:30:05 UTC selftests: kc79_syscheck exit 0, kc71_syscheck exit 0 (0 wanted)
 2026-11-22 23:30:13 UTC source check (win2's kc71_syscheck.py on the k_c 71 D 20 state): exit 0 (0 wanted); controls --mutate=F exit 1, --mutate=steps exit 1 (1 wanted each)
 2026-11-22 23:30:13 UTC regrid starts: nice -n 10 timeout 43200 /home/nathan/Source/venv-1025/bin/python -u ell_refine.py l1kc71Lw1025b 71 l1kc79rpi5d20 79 1 20.0 2.1110019498 --kappa 0.7 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma
+2026-11-23 01:19:44 UTC regrid exit 0, wall 6571 s
+2026-11-23 01:19:55 UTC syscheck exit 0 (0 wanted); controls --mutate=F exit 1, --mutate=steps exit 1 (1 wanted each)
+2026-11-23 01:19:55 UTC verdict: ACCEPTED 2026-11-23 01:19:55 UTC
+2026-11-23 02:52:20 UTC (outage 01:00-02:50 UTC: the regrid had finished at 01:19:44 and been ACCEPTED at 01:19:55; scan launched on t5's order after the outage)
+2026-11-23 02:52:20 UTC scan starts: D 20.0, 12 evaluations (1.22 to 1.32 and the repeat of 1.27), 3 procs x 1 thread, nice 10; state sol_l1kc79rpi5d20_D20.0000.npy f936e1ef, record e9e90691

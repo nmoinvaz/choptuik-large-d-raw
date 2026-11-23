@@ -96,3 +96,13 @@ the state file `sol_l1kc71Lw1025b_D20.000000.npy` is the same bytes as the `_D20
 Plan: step 2 as ordered (selftests of both checks; win2's check on the source with its two controls, both must exit 1; the regrid to k_c 79, tag `l1kc79rpi5d20`, lambda_0 2.1110019498 from
 `ell_delta.lam0_at(20)`, 3 threads, nice 10, cap 12 h; `kc79_syscheck_1025.py` and its two controls, both must exit 1). Step 3 only on ACCEPTED. A control that does not fire, or a refusal,
 stops the run and is reported. I did not open win2's own D 20 k_c 79 folder (`I1025-win2/kc79_d20/`): my scans are read on my regrid only.
+
+**Step 2, win2's D 20 state regridded to k_c 79: ACCEPTED** (`kc79_d20/`; 23:30:13 to 01:19:44 UTC, wall 6571 s on 3 threads; the check at 01:19:55). `kc79_syscheck_1025.py` (29dce7ea; selftest exit 0)
+on the result `sol_l1kc79rpi5d20_D20.0000.npy` (blob f936e1ef, record e9e90691): record \|F\| 4.4010e-10, state \|F\| 4.4010e-10, `freeze_from` 2800 steps = the record's, "ACCEPTED"; controls
+`--mutate=F` exit 1 ("not within 1%"), `--mutate=steps` exit 1 ("2800 steps, the record 2801"). Delta 1.09225861232563 (k_c 71: 1.0922691334595107), F_start 2.8186e-5, constraint 2.102e-3.
+The log's 26 numpy overflow warnings (`dss_ell.py` 214, 334) are in the Newton trial steps; dh370's D 19.5 regrid log has 21.
+
+**Outage.** The home network was down about 01:00 to 02:50 UTC 2026-11-23; the session lost the API, the Pi and its unit ran on. The regrid ended and was accepted at 01:19, the waiter caught it at 01:20, and
+the scan was launched only at 02:52:20 UTC (1 h 32 min late).
+
+**Step 3 started 02:52:20 UTC:** unit `i1075s`, `kc79_d20/run_scan.sh` (3 processes x 1 thread, nice 10; p0 1.22 1.25 1.27 1.30, p1 1.23 1.26 1.28 1.31, p2 1.24 1.27 1.29 1.32; 1.27 on p0 and its repeat on p2).
