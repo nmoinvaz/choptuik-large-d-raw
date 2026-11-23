@@ -95,6 +95,21 @@ def report(d, inputs):
             print(f"| {name} | {xi} | ({r['A']:.9f}, {r['w']:.9f}) | {r['r1']:.2e} | {r['r3']:.1e} | {r['r5']:.1e} | {r['solves']} | ({r['step'][0]:+.1e}, {r['step'][1]:+.1e}) | "
                   f"({r['d53'][0]:+.5f}, {r['d53'][1]:+.5f}), {r['s53']:.5f} | {r['F5F3']:.3f} |")
     print()
+    print("Start solve of each walk (A, w/w_inf and the harmonics at the M = 3 zero; F_nu/F_1 from the solve; the walk goes on only when |r_3|, |r_5| are under 1e-6)")
+    print()
+    print("| walk | xi1 | \\|r1\\| | \\|r3\\| | \\|r5\\| | \\|F3\\| | \\|F5\\| | \\|F5\\|/\\|F3\\| | walk |")
+    print("|---|---|---|---|---|---|---|---|---|")
+    for name in ("control", "x1", "x2"):
+        for xi in RADII:
+            p = os.path.join(d, f"walk_{name}_xi{xi}.json")
+            if not os.path.exists(p):
+                continue
+            w = json.load(open(p))
+            q = w["points"][0]
+            f3, f5 = math.hypot(*q["F3"]), math.hypot(*q["F5"])
+            end = "converged, %d solves" % w["verdict"]["points"] if w["verdict"]["converged"] else ("start solve not converged" if str(w["verdict"]["why"]).startswith("the start solve") else str(w["verdict"]["why"])[:40].replace("|", "/"))
+            print(f"| {name} | {xi} | {math.hypot(*q['r1']):.2e} | {q['r3']:.1e} | {q['r5']:.1e} | {f3:.4f} | {f5:.4f} | {f5 / f3:.4f} | {end} |")
+    print()
     for name in ("x1", "x2"):
         c = box_centre(name, inputs)
         v, why, row = res[name]
