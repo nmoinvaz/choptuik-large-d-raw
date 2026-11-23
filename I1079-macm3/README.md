@@ -103,3 +103,21 @@ The midpoints of all terms are zero (Y is the midpoint's inverse). So, per row:
 - **Inner rows (B3, C3)**: K leaves X because the outer columns' entries of Y Dg(X) have radius 5.7e-3 and 2.1e-2 in the B3 row (x1; 0.20 and 0.68 at x2) and times h = 1e-10 they are 1400 to 5300 w (x1), 5e4 to 1.7e5 w (x2) with w = 4e-16; and the radius of g(p^) itself, 5.4e-14 (x1) and 1.2e-14 (x2), already gives (Y g) radii of 100 w and 77 w (x1), 751 w and 315 w (x2).
 
 So the obstacle is a scale mismatch of the box, not a failure of the path, the start data or a singularity: h = 1e-10 and w = 4e-16 are Theorem A(M = 3)'s, where the inner block has singular values 1e7; at these zeros the inner block is 0.02 to 1.9, the Schur complement has a singular value of 3e-5, and the enclosure radius of Dg over the box and of g(p^) (5e-14 to 1e-14) are far above what the inner width w = 4e-16 and outer width h can absorb. I have not tested any other box: whether a smaller h and a larger w pass is not known. A box run takes 2 minutes here (1 process), the test seconds.
+
+
+## Round 2 (the coordinator's order after the diagnosis, raw 38e524a4; written 2026-11-23 14:15 UTC, before the runs)
+
+The coordinator's words: "an exact diagnosis; the box scale it is. Go on both: (a) `krawczyk --best` on the two existing runs; (b) box reruns at each zero for h in {1e-11, 1e-12, 1e-13} x w in {1e-15, 1e-14, 1e-13, 1e-12}
+(12 runs per zero, 2 at a time, about 2 min each), each followed by `krawczyk` (no `--hier`) and its relative margins. Report the margins table per zero. For any box that passes: controls (C0-C8, exit 0 iff all as expected) and
+`certify_M_recheck.py` with its `--mutate` (must fail), as the issue says; then stop and report. If none passes, name the binding row and quantity at the best box (as you did) and stop."
+
+**Prediction (the coordinator's, written before):** the best box lies near h about 1e-12 with w about 1e-14 to 1e-13 (the outer columns' radius scales with the box; g(p^)'s radius, about 5e-14, floors h near 1e-13).
+
+**What I run** (`runner/scan.sh`, own session under caffeinate, `nice -n 10`, 1 thread per BLAS; the two zeros side by side, so 2 processes at a time; code unchanged: main at a4cd5eaa, python-flint 0.9.0, FLINT 3.6.0):
+- (a) `certify_M.py krawczyk --box=data/A_M_box_M3x{1,2}_1e-10.json --best` (outer sub-boxes h' = 0.9^k h with the run's inner widths kept; seconds).
+- (b) for each zero N in {1, 2}, h in {1e-11, 1e-12, 1e-13}, w in {1e-15, 1e-14, 1e-13, 1e-12}: `certify_M.py box 3 --centre=data/A_M_refine_M3_xN.json --use_out --h=H --w=W --out=data/A_M_box_M3xN_hH_wW.json --log=logs/A_M_box_M3xN_hH_wW.log`,
+  then `certify_M.py krawczyk --box=data/A_M_box_M3xN_hH_wW.json > logs/A_M_krawczyk_M3xN_hH_wW.log` (no `--hier`); its exit and relative margins (A, w/w_inf, B3, C3) go to `steps.txt` and into the margins table. A box run that ends with an exception is recorded and not
+  repeated (`proof/A_M.md` section 7).
+- For every box whose test passes (exit 0): `controls --box=...` (exit 0 iff C0 to C8 are as expected), `certify_M_recheck.py <box>` (exit 0, the same verdict) and `certify_M_recheck.py <box> --mutate` (must exit nonzero); a result that is not as expected is a STOP line.
+- If no box passes: the binding row and quantity at the best box (the one with the largest smallest margin), by the same row-by-row breakdown as before (`diagnose.py`, read-only), and I stop. `--hier` stays not applicable and is not run.
+- Output names: `data/A_M_box_M3xN_hH_wW.json` (not the `.ckpt` files), `logs/A_M_*M3xN_hH_wW*.log`, the same copying into this folder as before.
