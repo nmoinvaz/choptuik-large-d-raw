@@ -14,7 +14,13 @@ find $W/I1025-win2/$1 -name __pycache__ -type d -prune -exec rm -r {} + 2>/dev/n
 ( cd $W/I1025-win2/$1 && git ls-files . | while read -r f; do [ -e "$S/$f" ] || git rm -q -f "$f"; done )
 git add I1025-win2/$1
 git commit -q -m "$2" || { echo "nothing to commit"; exit 0; }
-git pull --rebase origin main 2>&1 | tail -n 1
-git push origin HEAD:main 2>&1 | tail -n 1
-git log -1 --format='pushed %h'
+# a rejected push (someone pushed in between) is retried after a rebase, up to 4 times; 'pushed' is printed only when origin/main holds the commit
+ok=0
+for try in 1 2 3 4; do
+  git pull --rebase origin main 2>&1 | tail -n 1
+  if git push origin HEAD:main > /dev/null 2>&1; then ok=1; break; fi
+  sleep 3
+done
+git fetch -q origin
+if [ $ok = 1 ] && [ "$(git rev-list --left-right --count HEAD...origin/main | cut -f1)" = 0 ]; then git log -1 --format='pushed %h'; else echo 'PUSH FAILED'; exit 1; fi
 git rev-list --left-right --count HEAD...origin/main
