@@ -55,3 +55,37 @@ The regrid: 8 threads at nice 10 (all of this machine). The scan: 4 processes of
 - 2026-11-23 04:11:14 to 04:11:15 UTC: **STEP 3 scan** started as unit `i1025-k87s` (4 processes of 1 thread, nice 10, 8 evaluations); all four print the record system (|F| 3.9877716759e-10 against the record's 3.9876058940e-10, 3124 steps equal).
 - 2026-11-23 04:12:00 UTC: steps 1 and 2 logged (this entry).
 - 2026-11-23 05:36 UTC: **round 1 of the scan landed** (each process's first point, 5037 to 5077 s each side by side): lambda 1.30, 1.31, 1.32, 1.33: hybrid -1, -1, -1, +1, all noise-robust; `partial_round1_rows.jsonl` holds the four rows as the scan wrote them (`scan/scan_D19.75_p<p>.jsonl`, still being appended by round 2). **Partial reading** (the same `read_lower.py` on a scratch copy outside this folder; the final reading is the driver's after round 2): one robust change in (1.32, 1.33), - to + as printed, det-linear 1.325410, range [1.324928, 1.325410]; beside it dh170's k_c 79 1.326378 (-0.000968) and macm3's k_c 87 1.338993 (-0.013583). Reported to t5 at 05:36 UTC. At t5's request (2026-11-23 05:41:09 UTC) the folder was pushed with these rows while the scan keeps running (a copy through `push_raw_p4_dh170.sh` into a separate worktree; the scan's files were only read).
+
+## Result (written 2026-11-23 06:59:24 UTC)
+Steps 1 and 2 as logged (ACCEPTED 02:57:39 and 04:10:58 UTC). **Step 3:** unit `i1025-k87s` exit 0; processes p1, p2, p0, p3 exit 0 at 06:58:00, 06:58:27, 06:58:37 and 06:58:48 UTC; all four printed the record system (|F| 3.9877716759e-10 against the record's 3.9876058940e-10, 3124 steps equal); **8 of 8 evaluations noise-robust**; the repeat of 1.33 (on p3, after the first 1.33, the order's split) **bit-identical** (hybrid +1, ln|det| -2806.61026029386, float64 ln|det| -2804.1707360292753, noise [1, 1]; `repeat_check.py` PASS); `read_lower.py` selftest exit 0, `--mutate=shift` and `--mutate=round2` exit 1; reader exit 0 (`read_lower.txt`). Seconds per point 4951 to 5077 (two rounds side by side), wall 2:46:45 to 2:47:33 by /usr/bin/time; peak RSS 2.55 to 2.69 GiB (2674400 to 2823124 kB); lowest MemAvailable in the samples 21 to 22 GiB; no alert (`alert.log` does not exist).
+
+**Hybrid signs, as printed, lambda 1.30 to 1.36: minus at 1.30, 1.31, 1.32; plus at 1.33, 1.34, 1.35, 1.36; edge signs minus and plus.** One robust change, none touching a non-robust point:
+| position | bracket | orientation as printed | det-linear estimate | estimator range |
+|---|---|---|---|---|
+| **the root near lambda_1's line, k_c 87, D 19.75, dh170 (Linux)** | (1.32, 1.33) | - to + | **1.325410** | [1.324682, 1.325410] |
+The estimator range is the spread over the interpolation choices of `d185_scan_read.changes`, not an enclosure (round 2 widened its low end from the partial's 1.324928). No ln|det| minimum without a sign change. The float64 sign differs from the hybrid at 3 of 8 evaluations (1.31, 1.32, 1.36). ln|det|: 1.30 -2805.3980, 1.31 -2805.1761, 1.32 -2806.4461, 1.33 -2806.6103, 1.34 -2805.9654, 1.35 -2805.9139, 1.36 -2806.0550. The window does not hold macm3's second root (1.276162).
+
+**By position, beside the others at D 19.75** (the root near lambda_1's line):
+| | position | difference from this scan's 1.325410 |
+|---|---|---|
+| dh170, k_c 79, Linux (raw ceee4bc8) | 1.326378 [1.324044, 1.326378] | +0.000968 |
+| **dh170, k_c 87, Linux (here)** | **1.325410** [1.324682, 1.325410] | 0 |
+| macm3, k_c 87, macOS, regridded from the same dh170 k_c 79 state (raw 03c79c79) | 1.338993 [1.337945, 1.338993] | +0.013583 |
+The k_c effect on Linux (k_c 79 to k_c 87, same build): **-0.000968**. The build effect at k_c 87 (macm3 minus dh170, same source and command): **+0.013583**. The 0.0126 split between the two earlier readings (macm3's 1.338993 minus 1.326378 = +0.012615) is the sum, +0.013583 - 0.000968; by the order's own prediction ("k_c: this root at about 1.339 within 0.003 of macm3's; build: near 1.326") it is the build case: this root is 0.0136 below macm3's and 0.001 below dh170's k_c 79.
+**The regrids beside each other** (the same source, Delta 1.0860054437, |F| 4.0158668855e-10, 2839 steps): dh170 (Linux, 8 threads of an i7-7700, 4392 s) |F| 3.987605894e-10, 3124 steps, psi-constraint 9.695747e-4, Delta 1.0860022726; macm3 (macOS, an M3, 6 threads, 1181 s) |F| 3.980170324e-10, 3124 steps, psi-constraint 9.697299e-4, Delta 1.086003680648846; dh170 minus macm3: |F| ratio 1.00187, Delta **-1.408e-6**, psi-constraint -1.55e-7.
+
+## Predictions against the result
+| prediction | result |
+|---|---|
+| the order's: k_c: root near 1.339 within about 0.003 of macm3's; build: near 1.326 | **build**: 1.325410, 0.0136 below macm3's |
+| mine: within 0.003 of 1.339 40%; between 1.329 and 1.336 35%; within 0.003 of 1.326 15%; none or two or more 10% | the 15% case |
+| source check passes with all four controls firing (95%); regrid exit 0, accepted with both controls firing and the k_c 79 check refusing (85%); regrid 2500 to 4500 s (65%); steps within 5 of macm3's 3124 (55%); |F| below 1e-9 (95%) | yes; yes; yes (4392 s, near the top); yes (equal, 3124); yes (3.99e-10) |
+| Delta within 1e-8 of macm3's 1.086003680648846 (55%) | **no**: -1.408e-6 |
+| scan: every point noise-robust (70%); the repeat bit-identical (90%); exactly one robust change (85%) | yes, 8 of 8; yes; yes |
+| float64 sign differs from the hybrid at more than half the points (50%) | **no**: 3 of 8 |
+| regrid about 1 h and scan 2 to 3 h (65%); peak RSS of a scan process below 3.5 GiB (80%) | 1.22 h and 2.79 h (yes); 2.69 GiB (yes). My ETA of 06:30 to 06:45 UTC for the scan was about 15 min early; the end was 06:58:48 |
+
+## Log
+- 2026-11-23 05:36 UTC: round 1 landed (partial reading, 1.325410); 05:41 UTC pushed at t5's request (raw 3584c7e9, `partial_round1_rows.jsonl`).
+- 2026-11-23 06:58:00 to 06:58:48 UTC: round 2 and the driver's reading finished.
+- 2026-11-23 06:59:24 UTC: result written (this section).
