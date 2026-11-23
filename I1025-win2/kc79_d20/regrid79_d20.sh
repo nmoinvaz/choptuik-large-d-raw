@@ -32,7 +32,8 @@ for f in $DATA/${TAG}.jsonl $DATA/sol_${TAG}_D${F4}.npy $OUT/regrid_accepted.txt
 log "kc79 regrid pins checked (inputs 29dce7ea 4cd86cd4, ell_refine 631e5801, ell_delta fde699f5, worktree 48c36355 with solver code = 505d8399), D $STD, tag $TAG"
 log "kc79 regrid waits for $STS and its record line"
 until [ -e $STS ] && [ -e $ST4 ] && [ $(( $(date +%s) - $(date -r $STS +%s) )) -ge 60 ] && [ $(( $(date +%s) - $(date -r $ST4 +%s) )) -ge 60 ] && grep -q "\"D\": $(python -I -c "print(repr(float('$STD')))")," $RECS 2>/dev/null; do
-  [ -e $KC/leap2.finished ] && { [ ! -e $STS ] && refuse "the leap ended without the D $STD state" 3; }
+  # the leap driver writes leap2.finished BEFORE its copier's final copy (up to 120 s later) and all2.done after it: give up only once all2.done exists and the state is still missing
+  [ -e $KC/all2.done ] && { [ ! -e $STS ] && refuse "the leap ended without the D $STD state" 3; }
   sleep 30
 done
 cmp -s $STS $ST4 || refuse "the .6f and .4f state files of D $STD differ"
