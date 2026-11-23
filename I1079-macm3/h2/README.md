@@ -62,7 +62,7 @@ the state set's radius over X grows to 3.59e-10 (x1) and 2.75e-10 (x2) at |u| = 
 ## H2 verdict (2026-11-23, rows 17:13 to 17:21, check and inclusion 17:21 to 17:23 UTC; python-flint 0.9.0, FLINT 3.6.0)
 
 **Verdict: H2 holds at both excited zeros: a complete lemma 6b1(3) covering over p^ +- 1e-11, which contains each certified box's hull, and the inclusion of the hull in the covering's box holds.** Each zero: all 12 rows (0 to 11) saved, 183 discs, every disc `ok True` (none `ok False`, none underflowed); `check --json` PASS; `c1check` True; `mutate --j=11`: 0 of 12 discs certified; inclusion HOLD, its selftest PASS.
-`rows` ran as two processes per zero (rows 0, 2, 4, 6, 8, 10 and 1, 3, 5, 7, 9: 482 s and 427 s (x1: 508 s and 427 s), x2: 482 s and 399 s), `steps_h2.txt`; the committed run folders are `lemma6b1_runs_M3_exc1/` and `_exc2/` (`ray.json` 2.3 MB, `row_00.json` to `row_11.json`), the check's json `lemma6b1_check_M3_exc{1,2}.json`.
+`rows` ran as two processes per zero (rows 0, 2, 4, 6, 8, 10 and rows 1, 3, 5, 7, 9; x1: 508 s and 427 s, x2: 482 s and 399 s, `steps_h2.txt`); the committed run folders are `lemma6b1_runs_M3_exc1/` and `_exc2/` (`ray.json` 2.3 MB, `row_00.json` to `row_11.json`), the check's json `lemma6b1_check_M3_exc{1,2}.json`.
 
 | | x1 (box M3x1E2 (1e-12, 1e-13), tag `_exc1`) | x2 (box M3x2E2 (1e-12, 1e-12), tag `_exc2`) | fundamental (A_lemmas_M 5.3, 10) |
 |---|---|---|---|
