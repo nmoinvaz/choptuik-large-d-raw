@@ -59,3 +59,32 @@ coordinator; nothing is stopped.
 The zero is located (the script's exit 0 under the rule above) within 1e-4 of (3.446204, 0.347602) and within 1e-7 of argcount's xi1 0.2 location
 (A 3.4462179745523085, wf 0.347606798417216; the coordinator gave it as 3.446218, 0.347607, printed to 6 digits), with orientation +1 (argcount's sign). Reported: each iteration's line,
 the last row's point to 15 digits and the point after the unapplied step, |R|/sigma_mp, the orientation, and each part of the prediction as met or not met.
+
+## Results (run 2026-11-23 11:18:28 to 13:08:08 UTC, 6580 s, code 2dada6c475470843f476235758da91853b31d059)
+
+Checks first: `zero_mp.py selftest` exit 0, `selftest --mutate=sign` exit 1 (`logs/checks.txt`). The run: **exit 0, "located"** (`logs/zero1_run.log`,
+`logs/steps.txt`): after the row of iteration 2 the next step was below the float64 coordinate grid (1.49e-16 in A, 1.34e-17 in w_f) and |R| 5.518e-11 equals the
+step's 5.518e-11 (the new rule; |R| is not below 1e3 sigma_mp = 1.18e-15). All 5 evaluations of each iteration were valued. The cache is unchanged (3605 lines, sha256 8d7cb732...).
+
+| it | A | w_f | \|R\| | sigma_mp | \|R\|/sigma_mp | orientation | dA | dwf |
+|---|---|---|---|---|---|---|---|---|
+| 0 | 3.446204000000000 | 0.347602000000000 | 2.600 | 4.46e-18 | 5.83e+17 | +1 | +1.4246e-05 | +4.9647e-06 |
+| 1 | 3.446218246464588 | 0.347606964686522 | 2.896e-04 | 1.20e-18 | 2.41e+14 | +1 | -9.7861e-11 | +5.3089e-10 |
+| 2 | 3.446218246366727 | 0.347606965217407 | 5.518e-11 | 1.18e-18 | 4.69e+07 | +1 | +1.4904e-16 | -1.3364e-17 |
+
+- **Final point** (the last row, as the script prints it; the floats are A 3.446218246366727, wf 0.3476069652174074): A **3.446218246366727**, w_f **0.347606965217407**;
+  R = -5.06e-13 - 5.5175e-11i, |R| 5.518e-11, sigma_mp 1.18e-18, **|R|/sigma_mp 4.69e+07**, orientation (sign det J, det J 5.997e+10) **+1** in all three rows. The unapplied step
+  (0.34 ulp of A, 0.24 ulp of w_f) points to A 3.4462182463667271717, w_f 0.347606965217407402: the last row's point is the float64 grid point nearest the Newton root.
+- |R| fell by 8977 and then by 5.25e6 per iteration; the steps fell from 1.4e-05 to 5.3e-10 to 1.5e-16.
+- Against argcount's float64 locations of pass 3's count: (+1.382e-05, +5.163e-06) from its xi1 0.17 location (3.446204430851929, 0.3476018025467941), 1.475e-05 away
+  (there |F| 16.8 against a floor of 36.1), and **(+2.718e-07, +1.668e-07) from its xi1 0.2 location (3.4462179745523085, 0.347606798417216), 3.189e-07 away** (there |F| 0.0423 against a floor of 0.0411).
+
+**The prediction** (written before):
+- Located (exit 0) at the script's rule: **met**.
+- Within 1e-4 of (3.446204, 0.347602): **met**, 1.51e-05.
+- Within 1e-7 of argcount's xi1 0.2 location: **not met**, 3.19e-07 (the full-precision floats of the count file; the 6-digit print (3.446218, 0.347607) cannot resolve 1e-7, and the final point rounds to the same 6 digits).
+- Orientation +1: **met** in every row.
+
+I draw no conclusion about why the xi1 0.2 location differs by 3.2e-07; it is argcount's float64 location at xi1 0.2, and the zero_mp point is at xi1 0.17.
+
+Time per iteration (5 workers): 2136 to 2360 s, 1666 to 2170 s, 1289 to 2050 s (sum 29311 s of evaluations); iteration 0 ended 11:58:00, iteration 1 at 12:34:10, the run at 13:08:08 UTC.
