@@ -15,3 +15,7 @@ pass 2 value start 2026-11-23 05:11:34 cache     3440 lines
 pass 2 value exit 0 2026-11-23 06:36:12: valued 11 of 11 points (skipped 0); rows in /Users/nathan/Source/choptuik-large-d-raw-749p/I1021-macm3/fu022mp/rows_pass2.jsonl
 pass 2 recount command: cd /Users/nathan/Source/choptuik-inner-mp/solver/inner_stokes && OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 nice -n 10 /Users/nathan/Source/venv-macm3-1058b/bin/python /Users/nathan/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_d195/capped_run.py 57600 /Users/nathan/Source/venv-macm3-1058b/bin/python -u argcount.py --M=3 --recount=/Users/nathan/Source/choptuik-large-d-raw-749p/I1021-mac/rpi5_fu021/in/cells_unresolved11.jsonl --r1=0.17 --r1b=0.2 --seed=/Users/nathan/Source/choptuik-large-d-raw-749p/I1021-macm3/fu022mp/m3/points_M3_r0.2.jsonl --m3fix --m3maxrhs=2.4e6 --m3wall=3600 --m3noisecap=1e7 --procs=4 --retry --out=/Users/nathan/Source/choptuik-large-d-raw-749p/I1021-macm3/fu022mp/m3 --tag=M3_fu022mp_pass2_r0.17 > /Users/nathan/Source/choptuik-large-d-raw-749p/I1021-macm3/fu022mp/logs/recount_pass2_hand.log 2>&1
 pass 2 recount start 2026-11-23 06:36:12 cache     3451 lines
+pass 2 recount exit 0 2026-11-23 06:56:23 (0 wanted; 124 is the cap)
+pass 2 unresolved leaves (len of the unresolved list in /Users/nathan/Source/choptuik-large-d-raw-749p/I1021-macm3/fu022mp/m3/count_M3_fu022mp_pass2_r0.17.json): 17
+prefix_keys fu021 -> fu022mp (pass 2) exit 0 (0) 2026-11-23 06:56:23
+hand pass 2 done 2026-11-23 06:56:23
