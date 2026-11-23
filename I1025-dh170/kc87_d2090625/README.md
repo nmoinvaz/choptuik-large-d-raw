@@ -1,0 +1,49 @@
+# I1025-dh170/kc87_d2090625: #1025 k_c 87 at D 20.90625 on Linux, regridded from win2's restarted k_c 79 leap state
+
+Machine dh170 (Fedora 45, i7-7700, 8 logical CPUs, 31 GiB RAM). Issue https://github.com/nmoinvaz/choptuik-large-d/issues/1025. Written 2026-11-23 21:13:22 UTC, before any run of this folder. Raw origin/main when the inputs were taken: 26ff4d02.
+
+## Order (the coordinator t5's #1025 comment 7114111635 and hc, 23 Nov), quoted in part
+"**D 19 at k_c 87 on Linux, read; next for dh170: k_c 87 at the leg's far end.** ... **Task, dh170** (8 threads, nice 10; raw `I1025-dh170/kc87_d2090625/`, README first): k_c 87 at D 20.90625, the restarted k_c 79 leap's first point (win2 raw 8eb8aea0: state 6fe9c615, record eaed44a3, tag l1kc79Lw1025f; pin by blob). 1. `kc79_syscheck_1025.py` accepts the source on Linux (controls exit 1). 2. `ell_refine.py l1kc79Lw1025f 79 l1kc87dh170e 87 1 20.90625 <lam0_at(20.90625)> --kappa 0.7 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma`, accepted by `kc87_syscheck_1025.py` (controls exit 1, the k_c 79 check refusing). 3. `d18_hybsign` on a 0.005 grid over +-0.015 around dh610's k_c 79 reading at this D (due ~21:30; I relay it), plus a repeat of the middle point; `read_lower`. **Written before:** k_c 87 within 0.002 of k_c 79 at this D (at D 20.5 the step was 0.00013). A step above 0.004 widens lambda_1's error near D 21 and is reported as such. **Estimate:** about 1.3 h regrid and 3 h scan. **Depends on:** dh610's k_c 79 reading, for the window only."
+Roots are read by position, never by sign orientation (t5). lambda_0(20.90625) = **2.1071243934** (`ell_delta.lam0_at(20.90625, *ell_delta.lam0_table())[0]`, printed by the driver and checked against this number before the regrid).
+
+## Inputs (copies in `in/`; `in_blobs.txt` lists their `git hash-object --no-filters` blobs and both drivers refuse any other blob)
+| item | raw path | blob |
+|---|---|---|
+| win2's restarted k_c 79 leap state at D 20.90625 (the source), commit 8eb8aea0 "restarted k_c 79 leap state D 20.90625 (tag l1kc79Lw1025f)"; the raw file `sol_l1kc79Lw1025f_D20.906250.npy` is also `sol_l1kc79Lw1025f_last.npy` (the same blob). Here it is `sol_l1kc79Lw1025f_D20.9062.npy`: `ell_refine.py` reads `sol_<tag>_D{D:.4f}.npy`, which for D 20.90625 is `D20.9062` | I1025-win2/kc79_leap/states/sol_l1kc79Lw1025f_D20.906250.npy | 6fe9c615 |
+| its record: one row, D 20.90625, k_c 79: |F| 4.6559593046e-10, 2687 steps, psi-constraint 4.4147397e-3, Delta 1.115746826512, F at the start 1.0410615e-5, h 0.03125, kappa 0.7, u0 0.04, Ks 30 | I1025-win2/kc79_leap/states/l1kc79Lw1025f.jsonl | eaed44a3 |
+| the k_c 79 check; dh610's k_c 87 check and its diff (the blobs of d19_lower) | I1025-win/kc79_d19/kc79_syscheck_1025.py; I1025-dh610/kc87_d195/in/kc87_syscheck_1025.py and the diff | 29dce7ea; 6df5d960; dfb42ff7 |
+| the scanner, unmodified; its change finder | I1025-mac/d18/d18_hybsign.py; d185_scan_read.py | e089207a; 7c9d400f |
+| reader (mine); `repeat_check.py` (dh610's) | I1025-dh170/lower_root/read_lower.py; I1025-dh610/kc71_d19125/in/repeat_check.py | 89309d3c; aaf598a9 |
+Code: the worktree of the earlier D 19.75, D 20.x and D 19 tasks, unchanged: `~/Source/choptuik-large-d-1025k79` at 48c36355 (`dss_ell.py`, `ell_ddm.py`, `ell_dd.py`, `ddnp.py` equal 505d8399's, `ell_refine.py` 631e5801, `ell_delta.py` fde699f5), python `~/Source/choptuik-large-d-1058b/.venv` (3.14.10, multidouble 5.1.0, avx2). The source state is copied into the worktree's `solver/matter/data/` as `sol_l1kc79Lw1025f_D20.9062.npy` (blob checked). The drivers are `run_regrid.sh` and `run_scan.sh`, the `d19_lower` drivers made flat (no stage folder) with the tag, D, lambda_0, blobs and one window; `stage.conf` holds the names and blobs.
+
+## Reference numbers (information, not a pass rule)
+- **The k_c 79 to k_c 87 steps I have already measured on this machine's regrids:** D 19 (winb's k_c 79 to my k_c 87; `d19_lower`, raw 26ff4d02): |F| ratio 1.01740, steps ratio 1.1008 (2976 to 3276), constraint ratio 0.5386, Delta k_c 87 minus k_c 79 -7.3934e-7, wall 4578 s. D 19.75 (my k_c 79 to my k_c 87; `kc87_d1975`): |F| ratio 0.99296, steps ratio 1.1004 (2839 to 3124), constraint ratio 0.5869, Delta -3.1711e-6, wall 4392 s. Applied to this source: steps **2957**, |F| **4.62e-10 to 4.74e-10**, constraint **2.38e-3 to 2.59e-3**, Delta k_c 87 minus k_c 79 **between -3.2e-6 and -7.4e-7**.
+- **Roots at D 19 and k_c 79 at D 20.5** (information for the size of a k_c step): D 19 lambda_1 1.539751 (k_c 87, mine) against 1.539658 (k_c 79, winb); at D 20.5 the k_c 71 to k_c 79 lambda_1 step was 0.00013 (t5). dh610's k_c 79 reading at D 20.90625 is relayed by t5 (due about 21:30 UTC) and recorded here before the scan.
+
+## Commands (systemd user units, so no terminal owns them)
+**Regrid** (`run_regrid.sh`, unit `i1025-k87e-r` under `systemd-inhibit`, 8 threads, nice 10; stops at the first failure; writes `steps.txt` and `VERDICT.txt`): in `solver/matter`,
+
+    nice -n 10 timeout 21600 env OMP_NUM_THREADS=8 OPENBLAS_NUM_THREADS=8 MKL_NUM_THREADS=8 ~/Source/choptuik-large-d-1058b/.venv/bin/python -u ell_refine.py \
+      l1kc79Lw1025f 79 l1kc87dh170e 87 1 20.90625 2.1071243934 --kappa 0.7 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma
+
+preceded by the pins, the worktree checks, the lambda_0 check, the two selftests, the 3-line diff check of the checks (the rebuilt diff's hunks must equal dh610's) and the source check.
+**Scan** (`run_scan.sh`, unit `i1025-k87e-s`, after VERDICT ACCEPTED; the lists are written to `stage.conf` and logged below before it starts): 4 processes of 1 thread at nice 10, `d18_hybsign.py` on the accepted state. **The grid rule fixed now:** m = dh610's k_c 79 det-linear estimate at D 20.90625 rounded to the nearest 0.005; the 7 values m-0.015, m-0.010, ..., m+0.015 and a repeat of m (8 evaluations, 2 rounds of 4): p0 m, m+0.015; p1 m-0.005, m+0.010; p2 m+0.005, m-0.015; p3 m-0.010 and the repeat m (on another process than the first m). Round 1 is the four points nearest m. Then `read_lower.py in/... scan m-0.015 m+0.015`, its selftest and both mutations, and `repeat_check.py`.
+
+## Acceptance (the order's, fixed before the run)
+1. **Source.** `kc79_syscheck_1025.py` accepts win2's state and record on this machine (|F| at most 1e-9, `freeze_from` gives 2687, |F| within 1%), `--mutate=F` and `--mutate=steps` exit 1, both selftests exit 0, and `kc87_syscheck_1025.py` refuses the source (exit 1). Otherwise no regrid.
+2. **Regrid.** `ell_refine.py` exits 0 (the cap 21600 s is a stop); `kc87_syscheck_1025.py` accepts the result (k_c 87 at D 20.90625, |F| at most 1e-9, `freeze_from` gives the record's steps, |F| within 1%), both controls exit 1, and `kc79_syscheck_1025.py` refuses the result (exit 1).
+3. **Scan.** Each process prints the record system; `read_lower.py` selftest exit 0, mutations `shift` and `round2` exit 1; the repeat of m agrees (sign, ln|det| within 1e-6, noise signs, float64 sign). A stop at any step: I report and change nothing.
+
+## Reading, fixed now (by position)
+Every robust change (both neighbouring points noise-robust) with bracket (0.005 wide), det-linear estimate and estimator range (the spread over the interpolation choices of `d185_scan_read.changes`, not an enclosure), orientation as printed (information); the edge signs; changes touching a non-robust point listed and not counted; every ln|det| minimum without a sign change flagged; the repeat's bits. **Written before (t5's):** k_c 87 within 0.002 of k_c 79 at this D, the two read by their det-linear estimates, with both brackets and ranges quoted; a step above 0.004 is reported as widening lambda_1's error near D 21. Between 0.002 and 0.004 I report the number and make no ruling. Parity: the window should hold one change (edge signs unequal) if the root is inside it.
+
+## Predictions, registered before the runs (mine, information)
+- The k_c 79 check accepts win2's state on Linux with all four controls firing about 90%; the regrid is accepted with both controls firing and the k_c 79 check refusing about 85%; the regrid takes 4200 to 6200 s about 65% (D 19: 4578 s; D 19.75: 4392 s; t5: about 1.3 h).
+- Steps within 20 of 2957 about 70%; |F| between 4.5e-10 and 4.9e-10 about 80%; psi-constraint between 2.2e-3 and 2.8e-3 about 70%; Delta k_c 87 minus k_c 79 between -3e-5 and -1e-6 about 75% (the step grew with D: -7.4e-7, -3.2e-6).
+- The scan: every point noise-robust about 70%; the repeat bit-identical about 90%; exactly one robust change in the window about 80% (none about 12%, two or more about 8%); its det-linear estimate within 0.002 of dh610's k_c 79 estimate about 60%, within 0.004 about 85%; edge signs unequal about 80%; the float64 sign differs from the hybrid at more than half the points about 40%; the scan 2.4 to 3.1 h (two rounds of about 4500 to 5000 s, fewer steps than at D 19) about 65% (t5: about 3 h); peak RSS of a scan process below 3.5 GiB about 90%.
+
+## Budget
+The regrid: 8 threads at nice 10 (all of this machine). The scan: 4 processes of 1 thread at nice 10. Nothing else of mine runs. Memory: alert only (`alert.log` if MemAvailable falls below 2048 MiB; nothing is stopped for memory). Estimate: regrid about 1.3 h (ends about 22:30 UTC), scan about 2.8 h (about 01:20 UTC on 24 Nov).
+
+## Log
+- 2026-11-23 21:13:22 UTC: folder, inputs, drivers and the reading prepared before any run. Selftests: `read_lower.py` exit 0, `shift` and `round2` exit 1, `repeat_check.py`, `kc79_syscheck_1025.py` and `kc87_syscheck_1025.py` exit 0 (`selftest_exits_pre.txt`; the drivers run them again). Dry run of `run_regrid.sh`: the pins, the 3-line diff check (the rebuilt diff's hunks equal dh610's), the worktree checks and lambda_0(20.90625) = 2.1071243934 pass (`dry_steps_regrid.txt`). The scan driver is the d19_lower driver, which was tested on a scratch stage there; its list and window are set after the relay.
