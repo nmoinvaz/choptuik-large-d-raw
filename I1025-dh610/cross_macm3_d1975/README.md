@@ -45,3 +45,33 @@ Code: scan worktree `~/Source/choptuik-large-d-1025f` at 505d8399 (clean), check
 
 ## Status
 - 2026-11-23 05:39:51 UTC: folder, inputs, lane and the reading prepared before any run. The D 19.75 k_c 95 scan (../kc95_d1975, unit i1025w) is running beside (started 05:08:36 UTC, 4 processes).
+- 05:40:00 to 05:40:05 UTC: pins, selftests (kc87_syscheck 0, compare 0, compare --mutate 1) and the check: `kc87_syscheck_1025.py` accepts macm3's state on Linux (exit 0; state |F| 3.9889482683e-10 against the record's 3.9801703237e-10, 0.22% apart; `freeze_from` 3124 = 3124), `--mutate=F` and `--mutate=steps` exit 1 (`run/syscheck*.txt`). The three evaluations started 05:40:05 UTC (unit `i1025x`, 3 processes of 1 thread, nice 10, beside the four k_c 95 processes of `../kc95_d1975`); process 0 printed the record system (|F| 3.9889482683e-10, steps 3124 = 3124).
+- 05:42:11 UTC (during the evaluations): the coordinator sent dh170's Linux rows: raw I1025-dh170/kc87_d1975 at 3584c7e9, `partial_round1_rows.jsonl` (state 352107a8, record 6078a0b4; rows 1.30 to 1.33 of his round 1; 1.34 comes in his round 2). Copied unchanged as `in/ref_dh170_scan_D19.75_1025.jsonl` (blob 0336f50f, `in_blobs_dh170.txt`); his 1.32 and 1.33 rows match the signs derived from the order (-, +), so the derivation above stands for 1.34 only. His rows replace the derived signs in the table for 1.32 and 1.33 (as the coordinator asked).
+- Same time: `compare_cross.py` is now v2 (blob babdf10d; v1, blob 93d5e98d, the one the lane pinned at the start, is kept as `compare_cross_v1.py`). The only change: a lambda that dh170's file has no row for (1.34 now) takes the derived sign and is labelled so, where v1 would have stopped on the missing row; the readings A and B, the rule and the table are unchanged; selftest exit 0 (one case added for the partial file), `selftest --mutate` exit 1. The lane's last step runs the file as it stands then (v2), and the comparison is rerun when dh170's 1.34 row lands.
+
+## Result (23 Nov, 05:40:05 to 06:19:54 UTC): READING A. Linux on macm3's state gives macm3's signs at all three lambda
+
+The check accepted (Status above); the three processes exited 0 after 39:32, 39:49 and 39:49 (`exits_cross.txt`), each printing "the record system" (|F| 3.9889482683e-10 against the record's 3.9801703237e-10, steps 3124 = 3124); peak RSS 2.06, 2.11 and 2.21 GB; sampled summed RSS at most 4.48 GB, MemAvailable at least 25.93 GB, load at most 8.35; no memory alert (no `run/MEMALERT.txt`, no `ALERTS.txt`). The table is `compare.txt` (written by `compare_cross.py` v2, unedited), the rows are `run/xscan_D19.75_1025.jsonl`.
+
+| lambda_1 | machine and state | hybrid sign | noise signs | robust | float64 sign | ln\|det\| | point sec |
+|---|---|---|---|---|---|---|---|
+| 1.32 | **Linux on macm3's state** | -1 | -1, -1 | True | +1 | -2804.4450916765 | 2368 |
+| 1.32 | macm3 on its state (macOS, its scan file) | -1 | -1, -1 | True | +1 | -2804.4449626178 | 847 |
+| 1.32 | dh170 on the Linux state (his round 1, raw 3584c7e9) | -1 | -1, -1 | True | +1 | -2806.4460599255 | 5077 |
+| 1.33 | **Linux on macm3's state** | -1 | -1, -1 | True | +1 | -2805.7095712224 | 2386 |
+| 1.33 | macm3 on its state (original; its repeat is bit-identical) | -1 | -1, -1 | True | +1 | -2805.7089895001 | 828 |
+| 1.33 | dh170 on the Linux state | +1 | +1, +1 | True | +1 | -2806.6102602939 | 5063 |
+| 1.34 | **Linux on macm3's state** | +1 | +1, +1 | True | **-1** | -2807.8980447977 | 2385 |
+| 1.34 | macm3 on its state | +1 | +1, +1 | True | +1 | -2807.8988919101 | 838 |
+| 1.34 | dh170 on the Linux state | not yet (his round 2) | | | | | |
+
+- **Reading, by the rule written before the run:** the Linux hybrid signs on macm3's state are -, -, + at 1.32, 1.33, 1.34, equal to macm3's own at all three, so **A**: the states differ, and the determinant code agrees across builds. They differ from dh170's at 1.33 (+1 on his state), so B does not hold whatever his 1.34 row is (that sign is still the derived one, labelled so in `compare.txt`, and does not enter the decision). Every point is noise-robust on both sides. Beside the reading: the order's second line (the macOS evaluation differs) is not what this shows.
+- **ln|det| of the same state on the two builds** (Linux minus macm3): -1.2906e-4, -5.8172e-4, +8.4711e-4 at 1.32, 1.33, 1.34, relative 4.6e-8, 2.1e-7, 3.0e-7: not equal to the 1e-9 bar of the earlier same-state control (information, not a pass rule here; the sign changes between lambda, so it is no constant offset), but below 1e-6.
+- **The same lambda on the two states** (both on Linux): dh170's state minus macm3's in ln|det|: -2.0010 at 1.32 and -0.9007 at 1.33. So the evaluation difference between the builds (1.3e-4 and 5.8e-4 in ln|det|) is 6.4e-5 and 6.5e-4 of the difference between the states (2.0 and 0.90): about 1500 to 15000 times smaller at these two lambda.
+- **The states (computed here from the two blobs, 5695 entries each):** their last entry Delta differs by 1.408e-6 (macm3's 1.086003680648846, dh170's 1.0860022726137006); the rest differ by an L2 norm of 7.78e-6 (the coordinator's "7 x 10^-6"; the state's own L2 norm without Delta is 4.993, so 1.6e-6 relative), the largest single entry difference 4.95e-6 (index 43). The two |F| are 3.9801703e-10 and 3.9876059e-10.
+- **Float64 sign:** it differs between the builds on the same state at 1.34 (Linux -1, macOS +1), and from the hybrid at 1.34 on Linux; the hybrid is the reading, as everywhere.
+- **Not shown here:** which part of the regrid made the two states differ (the Delta row, thread or build differences in `ell_refine.py`); the order's first line says lambda_1 is then fixed only to about 0.014 at D 19.75 unless the states are converged further. dh170's 1.34 row (his round 2) will complete the table; the comparison will be rerun then (`python3 compare_cross.py run/xscan_D19.75_1025.jsonl in/ref_macm3_scan_D19.75_1025.jsonl <his rows>`).
+
+Predictions (written before the run): the check accepts with both controls firing (90%): yes. Reading A 65%: yes. ln|det| relative difference below 1e-9 (35%): no, 4.6e-8 to 3.0e-7; below 1e-6 (75%): yes. A point 1800 to 2500 s: yes (2368 to 2386 s), the three together about 40 min: yes (39:49).
+
+These are k_c 87 evaluations of macm3's state, not yet physical.
