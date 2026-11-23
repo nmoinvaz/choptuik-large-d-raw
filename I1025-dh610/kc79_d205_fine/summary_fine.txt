@@ -1,0 +1,16 @@
+| lambda | hybrid sign (this build k_c 79, dh170 k_c 79, this build k_c 87) | noise signs (robust) | float64 sign | ln of abs det (this build k_c 79, dh170 k_c 79) | seconds |
+|---|---|---|---|---|---|
+| 1.060 | -, -, - | -- (True) | - | -2388.1448941613307, -2388.1448941613307 | 1205 |
+| 1.065 | -, n/a, - | -- (True) | - | -2388.83942149182, n/a | 889 |
+| 1.070 | -, n/a, - | -- (True) | - | -2389.7144772346082, n/a | 1203 |
+| 1.075 | -, n/a, - | -- (True) | + | -2391.2221684074034, n/a | 1193 |
+| 1.080 | +, n/a, + | ++ (True) | + | -2391.417485918185, n/a | 1196 |
+| 1.085 | +, n/a, + | ++ (True) | + | -2390.722431641437, n/a | 897 |
+| 1.090 | +, +, + | ++ (True) | + | -2390.5755060955885, -2390.5755060955885 | 1194 |
+
+scan points: 7 evaluations, seconds per point min 889, median 1194, max 1205, sum 7777; outside 800 to 1700 s: []
+
+control: the two-point root of dh170's rows at 1.06 and 1.09 is 1.087574; his reader's det-linear is 1.087574; difference -3.91e-08 (bar 1e-5): ok
+two-point root of this build's k_c 79 rows at 1.06 and 1.09: 1.087574 (minus dh170's reader -3.91e-08)
+this scan's reader (0.005 grid, k_c 79): det-linear 1.077743; this machine's k_c 87 (0.005 grid, ../kc87_d205): 1.077872; k_c 79 minus k_c 87 -0.000129
+coarse (0.03 grid) minus fine, k_c 79: +0.009831; k_c 87: +0.010167 (the k_c 87 rows' two-point value 1.088039)

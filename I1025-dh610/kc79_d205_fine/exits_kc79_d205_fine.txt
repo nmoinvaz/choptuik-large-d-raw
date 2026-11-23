@@ -1,3 +1,20 @@
 == 2026-11-23 16:16:41 UTC kc79_d205_fine: pins checked (in_blobs.txt, worktrees 1025g 48c36355 and 1025f 505d8399, MemAvailable 60491060 kB, load 3.06 3.12 4.22, Python 3.14.10)
 == 2026-11-23 16:16:41 UTC kc79_d205_fine: selftests as wanted (kc79_syscheck, read_lower, mutate shift, mutate round2, fine_read, mutate, rows_check, mutate: 0 0 1 1 0 1 0 1)
 == 2026-11-23 16:16:41 UTC kc79_d205_fine: dry run: nothing started
+== 2026-11-23 16:16:51 UTC kc79_d205_fine: pins checked (in_blobs.txt, worktrees 1025g 48c36355 and 1025f 505d8399, MemAvailable 60456724 kB, load 4.40 3.43 4.31, Python 3.14.10)
+== 2026-11-23 16:16:52 UTC kc79_d205_fine: selftests as wanted (kc79_syscheck, read_lower, mutate shift, mutate round2, fine_read, mutate, rows_check, mutate: 0 0 1 1 0 1 0 1)
+== 2026-11-23 16:17:10 UTC kc79_d205_fine: source check: kc79_syscheck_1025.py exit 0; controls --mutate=F exit 1, --mutate=steps exit 1 (1 wanted each): controls on the same numbers: record |F| x 1.5 refused: True; record steps + 1 refused: True D 20.5 k_c 79: record |F| 4.6763736498e-10, F_start 4.982e-05, steps 2731, constraint 3.238e-03, Delta 1.105055446478, 3109 s; state |F| 4.6780067895e-10, freeze_from steps 2731 ACCEPTED: the record class's |F| with a step count that comes back 
+== 2026-11-23 16:17:10 UTC kc79_d205_fine: scan: lambda 1.060 to 1.090 by 0.005 (7 evaluations), lists 1.060,1.085 1.090,1.065 1.070 1.075 1.080, 5 processes of 1 thread, nice 10, cap 28800 s each
+2026-11-23 16:37:06 UTC scan p3 (1.075) exit 0
+2026-11-23 16:37:09 UTC scan p4 (1.080) exit 0
+2026-11-23 16:37:16 UTC scan p2 (1.070) exit 0
+2026-11-23 16:51:56 UTC scan p1 (1.090,1.065) exit 0
+2026-11-23 16:52:14 UTC scan p0 (1.060,1.085) exit 0
+== 2026-11-23 16:52:14 UTC kc79_d205_fine: p0: D 20.5 k_c 79: |F| 4.6786148313e-10 (record 4.6763736498e-10), steps 2731 (record 2731): the record system
+== 2026-11-23 16:52:14 UTC kc79_d205_fine: p1: D 20.5 k_c 79: |F| 4.6786148313e-10 (record 4.6763736498e-10), steps 2731 (record 2731): the record system
+== 2026-11-23 16:52:14 UTC kc79_d205_fine: p2: D 20.5 k_c 79: |F| 4.6786148313e-10 (record 4.6763736498e-10), steps 2731 (record 2731): the record system
+== 2026-11-23 16:52:14 UTC kc79_d205_fine: p3: D 20.5 k_c 79: |F| 4.6786148313e-10 (record 4.6763736498e-10), steps 2731 (record 2731): the record system
+== 2026-11-23 16:52:14 UTC kc79_d205_fine: p4: D 20.5 k_c 79: |F| 4.6786148313e-10 (record 4.6763736498e-10), steps 2731 (record 2731): the record system
+7 points
+== 2026-11-23 16:52:14 UTC kc79_d205_fine: rows_check.py (1.060 and 1.090 against dh170's rows) exit 0: PASS: lambda 1.06: sign -1 (dh170 -1), ln|det| -2388.1448941 PASS: lambda 1.09: sign +1 (dh170 +1), ln|det| -2390.5755060 
+== 2026-11-23 16:52:14 UTC kc79_d205_fine: scan done; readings in read_lower.txt, fine_read.txt, rows_check.txt; kc79_fine done
