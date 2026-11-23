@@ -1,3 +1,23 @@
 == 2026-11-23 11:51:54 UTC kc87_d2025: pins checked (in_blobs.txt, worktrees 1025g 48c36355 and 1025f 505d8399, ell_refine.py 631e5801, ell_delta.py fde699f5, lambda_0(20.25) 2.109906384, MemAvailable 60965212 kB, load 1.31 2.12 3.31, Python 3.14.10)
 == 2026-11-23 11:51:54 UTC kc87_d2025: selftests as wanted (kc79_syscheck, kc87_syscheck, read_lower, mutate shift, mutate round2, repeat_check, kc87_read, mutate: 0 0 0 1 1 0 0 1)
 == 2026-11-23 11:51:54 UTC kc87_d2025: dry run: nothing started
+== 2026-11-23 11:52:43 UTC kc87_d2025: pins checked (in_blobs.txt, worktrees 1025g 48c36355 and 1025f 505d8399, ell_refine.py 631e5801, ell_delta.py fde699f5, lambda_0(20.25) 2.109906384, MemAvailable 60954156 kB, load 1.25 1.99 3.21, Python 3.14.10)
+== 2026-11-23 11:52:43 UTC kc87_d2025: selftests as wanted (kc79_syscheck, kc87_syscheck, read_lower, mutate shift, mutate round2, repeat_check, kc87_read, mutate: 0 0 0 1 1 0 0 1)
+== 2026-11-23 11:52:54 UTC kc87_d2025: source check: kc79_syscheck_1025.py exit 0 (ACCEPTED: the record class's |F| with a step count that comes back); its controls --mutate=F exit 1, --mutate=steps exit 1 (1 wanted each); kc87_syscheck_1025.py on it exit 1 (1 wanted: NOT ACCEPTED: the record is not k_c 87 at D 20.25 (kc 79, D 20.25))
+== 2026-11-23 11:52:54 UTC kc87_d2025: regrid starts: nice -n 10 timeout 21600 /home/nathan/Source/venv-i1058/bin/python -u ell_refine.py l1kc79dh610d2025 79 l1kc87dh610d2025 87 1 20.25 2.1099063840 --kappa 0.7 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma
+== 2026-11-23 12:39:12 UTC kc87_d2025: ell_refine exit 0, wall 2778 s
+== 2026-11-23 12:39:16 UTC kc87_d2025: acceptance: kc87_syscheck_1025.py exit 0; controls --mutate=F exit 1, --mutate=steps exit 1 (1 wanted each); kc79_syscheck_1025.py on the result exit 1 (1 wanted): controls on the same numbers: record |F| x 1.5 refused: True; record steps + 1 refused: True D 20.25 k_c 87: record |F| 4.5111769568e-10, F_start 1.066e-05, steps 3042, constraint 1.625e-03, Delta 1.098603430828, 2775 s; state |F| 4.5111769568e-10, freeze_from steps 3042 ACCEPTED: the record class's |F| with a step count that comes back 
+== 2026-11-23 12:39:16 UTC kc87_d2025: regrid ACCEPTED
+== 2026-11-23 12:39:16 UTC kc87_d2025: scan: lambda 1.14 to 1.22 and a repeat of 1.17 (10 evaluations), lists 1.14,1.19 1.15,1.20 1.16,1.21 1.17,1.22 1.18,1.17, 5 processes of 1 thread, nice 10, cap 28800 s each
+2026-11-23 13:33:34 UTC scan p3 (1.17,1.22) exit 0
+2026-11-23 13:33:41 UTC scan p1 (1.15,1.20) exit 0
+2026-11-23 13:33:41 UTC scan p0 (1.14,1.19) exit 0
+2026-11-23 13:33:47 UTC scan p4 (1.18,1.17) exit 0
+2026-11-23 13:33:59 UTC scan p2 (1.16,1.21) exit 0
+== 2026-11-23 13:33:59 UTC kc87_d2025: p0: D 20.25 k_c 87: |F| 4.5142771610e-10 (record 4.5111769568e-10), steps 3042 (record 3042): the record system
+== 2026-11-23 13:33:59 UTC kc87_d2025: p1: D 20.25 k_c 87: |F| 4.5142771610e-10 (record 4.5111769568e-10), steps 3042 (record 3042): the record system
+== 2026-11-23 13:33:59 UTC kc87_d2025: p2: D 20.25 k_c 87: |F| 4.5142771610e-10 (record 4.5111769568e-10), steps 3042 (record 3042): the record system
+== 2026-11-23 13:33:59 UTC kc87_d2025: p3: D 20.25 k_c 87: |F| 4.5142771610e-10 (record 4.5111769568e-10), steps 3042 (record 3042): the record system
+== 2026-11-23 13:33:59 UTC kc87_d2025: p4: D 20.25 k_c 87: |F| 4.5142771610e-10 (record 4.5111769568e-10), steps 3042 (record 3042): the record system
+10 points
+== 2026-11-23 13:33:59 UTC kc87_d2025: scan done; readings in read_lower.txt and kc87_read.txt; kc87 done
