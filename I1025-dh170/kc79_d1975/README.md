@@ -57,3 +57,29 @@ The regrid: 8 threads at nice 10 (all of this machine). The scan: 4 processes of
 - 2026-11-22 22:21:39 to 23:01:49 UTC: **STEP 2 regrid** (`ell_refine.py`, 8 threads, nice 10, unit `i1025-k79r`): exit 0, wall 2410 s (the record's step 2408 s), peak RSS 1.81 GiB (sampled every 60 s, 40 samples). The state: |F| 4.0158668855e-10 (F at the start 2.104e-5), 2839 steps, psi-constraint 1.652e-3, Delta 1.0860054437 (the k_c 71 source's 1.0860122540). 23:01:54 UTC **ACCEPTED** by `kc79_syscheck_1025.py` (|F| in the record class and the step count comes back: 2839 = 2839); controls: `--mutate=F` (record |F| x 1.5) exit 1, `--mutate=steps` (steps + 1) exit 1. State `sol_l1kc79dh170d1975_D19.7500.npy` blob f2ad34b5, record `l1kc79dh170d1975.jsonl` blob 0508163e.
 - 2026-11-22 23:02:14 UTC: **STEP 3 scan** started as unit `i1025-k79s` (4 processes of 1 thread, nice 10, 13 evaluations); all four print the record system (|F| 4.0206992553e-10 against the record's 4.0158668855e-10, 2839 steps equal).
 - 2026-11-22 23:02:49 UTC: step 2 logged (this entry).
+
+## Result (written 2026-11-23 02:53:16 UTC; the scan ended at 02:05:32 UTC during an outage of the home network, 01:00 to 02:50 UTC, that cut my session from the API; every run was a systemd user unit and kept going; I read and checked the results after the outage)
+**Steps 1 and 2:** step 1 ACCEPTED 22:21:39 UTC, regrid exit 0 in 2410 s, ACCEPTED 23:01:54 UTC (see the Log). **Step 3:** unit `i1025-k79s` exit 0; processes p3, p2, p1 exit 0 at 01:50:11, 01:50:19, 01:50:23 UTC and p0 at 02:05:31; all four printed the record system (|F| 4.0206992553e-10 against the record's 4.0158668855e-10, 2839 steps equal); **13 of 13 evaluations noise-robust**; the repeat of 1.32 (the first on p1, the repeat last on p0) bit-identical (ln|det| -2478.947320280177, sign, noise, float64; `repeat_check.py` PASS); `read_lower.py` selftest exit 0, `--mutate=shift` and `--mutate=round2` exit 1; reader exit 0 (`read_lower.txt`). Seconds per point 3326 to 3412 side by side (three rounds), 904 for p0's last point alone; wall 2:47:57 to 2:48:09 (p1, p2, p3) and 3:03:17 (p0) by /usr/bin/time; peak RSS 2.19 to 2.22 GiB (2296464 to 2331252 kB); no ALERT file (this driver has no sampler).
+
+**Hybrid signs, as printed, lambda 1.27 to 1.38: plus from 1.27 to 1.32, minus from 1.33 to 1.38; edge signs plus and minus.** One robust change, none touching a non-robust point:
+| position | bracket | orientation as printed | det-linear estimate | estimator range |
+|---|---|---|---|---|
+| **the root near lambda_1's line, k_c 79, D 19.75** | (1.32, 1.33) | + to - | **1.326378** | [1.324044, 1.326378] |
+The estimator range is the spread over the interpolation choices of `d185_scan_read.changes`, not an enclosure. No ln|det| minimum without a sign change (ln|det| falls to -2479.513 at 1.33, beside the change, rises to -2479.032 at 1.34 and falls slowly to -2480.105 at 1.38). The float64 sign differs from the hybrid at 4 of 13 evaluations (1.30, 1.32 twice, 1.33).
+
+**By position, the track of the k_c 79 root near lambda_1's line** (D: lambda): 19: 1.539658 (winb); 19.125: 1.505784 (dh370); 19.25: 1.469975 (macm3); 19.375: 1.4316 (t5's list); 19.5: 1.397565 (dh370); **19.75: 1.326378 (here)**. The step from D 19.5 is -0.071187 in 0.25 D, **-0.2847 per unit D**; the earlier slopes are -0.2710, -0.2865, -0.307 and -0.2723. The extrapolations of the README (1.3209 to 1.3296; t5's 1.325) bracket it: the estimate is 0.0014 above 1.325. The rising root (1.4002 at D 19.125, 1.4698 at D 19.375, t5's line) is above this window, and the window holds no other change.
+
+## Predictions against the result
+| prediction | result |
+|---|---|
+| source check passes with both controls firing (95%); regrid exits 0 (90%); accepted with both controls firing (85%); regrid 2000 to 3500 s (65%) | yes; yes; yes; yes, 2410 s |
+| scan: every point noise-robust (75%); the repeat of 1.32 agrees (90%) | yes, 13 of 13; yes, bit-identical |
+| exactly one robust change in the window (65%), within 0.02 of 1.325 (about 60% of those) | one, 0.0014 above 1.325 |
+| the float64 sign differs from the hybrid at more than half the points (50%) | **no**: 4 of 13 |
+| a lane of 4 rounds takes 2 to 2.8 h (60%); peak RSS below 2.5 GiB (90%) | **no**: p0 3.05 h (3 rounds beside the others at 3330 to 3410 s, then one point alone, 904 s; dh370's points took 1971 to 2068 s on its 6-core machine); the ETA I sent t5 (02:48) was 43 min later than the end (02:05); yes, 2.22 GiB |
+
+## Log
+- 2026-11-22 22:21:35 to 23:01:54 UTC: steps 1 and 2 (see above and `steps.txt`); 23:02:14 the scan started (unit `i1025-k79s`).
+- 2026-11-23 00:55 UTC: after rounds 1 and 2 (8 of 13) I ran the same reader on a scratch copy outside this folder: one change in (1.32, 1.33), 1.326378; the final reading above is unchanged by rounds 3 and 4.
+- 2026-11-23 01:50 to 02:05 UTC: the scan finished and the driver ran the reader (steps.txt), while my session was cut off from the API (the network outage). 02:52 UTC: I read the logs and wrote this section.
+- 2026-11-23 02:53:16 UTC: result written (this section).
