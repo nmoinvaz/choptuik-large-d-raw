@@ -7,3 +7,13 @@
 2026-11-23 00:57:39 UTC source check (kc79_syscheck_1025.py on dh370's k_c 79 D 19.5 state): exit 0 (0 wanted); controls --mutate=F exit 1, --mutate=steps exit 1 (1 wanted each); kc87_syscheck_1025.py on the k_c 79 source exit 1 (1 wanted)
 2026-11-23 00:57:39 UTC regrid starts: nice -n 10 /Users/nathan/Source/venv-macm3-1058b/bin/python -u /Users/nathan/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_d195/capped_run.py 21600 /Users/nathan/Source/venv-macm3-1058b/bin/python -u ell_refine.py l1kc79dh370d195 79 l1kc87macm3d195 87 1 19.5 2.1132623525 --kappa 0.7 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma
 2026-11-23 00:57:40 UTC regrid child pid 85165 (capped_run wrapper 85156)
+2026-11-23 01:09:41 UTC regrid exit 0 (capped_run's; 0 wanted, 124 is the cap), wall 722 s
+2026-11-23 01:09:43 UTC kc87 syscheck exit 0 (0 wanted); controls --mutate=F exit 1, --mutate=steps exit 1 (1 wanted each); kc79_syscheck_1025.py on the k_c 87 result exit 1 (1 wanted)
+2026-11-23 01:09:43 UTC verdict: ACCEPTED 2026-11-23 01:09:43 UTC
+2026-11-23 01:09:43 UTC comparison with dh610's regrid (compare_dh610_regrid.txt, information): exit 0
+2026-11-23 01:10:06 UTC memory before the scan: about 17.1 GiB available (free+inactive+speculative+purgeable), 86% free by memory_pressure; the k_c 87 scans at D 19.375 and D 19.75 peaked at 11.2 to 11.3 GB for 4 processes (2.6 to 4.3 GB each)
+2026-11-23 01:10:06 UTC scan starts: D 19.5, 16 values (1.28 to 1.42 and the repeat of 1.35), 4 procs x 1 thread, nice 10; state sol_l1kc87macm3d195_D19.5000.npy e76cf3db, record 95bf4e22
+2026-11-23 01:10:08 UTC proc 0 lambda 1.28,1.32,1.36,1.40: capped_run child pid 87483 (cap 28800 s)
+2026-11-23 01:10:10 UTC proc 1 lambda 1.29,1.33,1.37,1.41: capped_run child pid 87557 (cap 28800 s)
+2026-11-23 01:10:12 UTC proc 2 lambda 1.30,1.34,1.38,1.35: capped_run child pid 87645 (cap 28800 s)
+2026-11-23 01:10:14 UTC proc 3 lambda 1.31,1.35,1.39,1.42: capped_run child pid 87654 (cap 28800 s)
