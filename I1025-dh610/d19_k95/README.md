@@ -78,7 +78,7 @@ Winb's reference summaries (copied from `I1025-dh170/d19_lower/k87/in/`, blobs i
 Right: exit 0, the k_c 95 check accepting with controls 1 1, the k_c 87 check refusing, steps 3575 +- 40, the Delta difference, the constraint. WRONG: the wall (3000 to 4500 s), norm F (3e-10 to 5e-10: 2.9326e-10), the lane's end time (19:20 to 19:55 UTC: 20:05).
 
 
-## Next order: the scan of this k_c 95 state at D 19 (coordinator t5, hc 2026-11-23 about 20:08 UTC; written 20:12 UTC, before the scan)
+## Next order: the scan of this k_c 95 state at D 19 (coordinator t5, hc 2026-11-23 about 20:08 UTC; written 20:10 UTC, before the scan)
 "Next, now, 6 processes at nice 10 (the leg lane keeps priority at ~20:40): the k_c 95 scan of YOUR state at D 19 (#1025, D 19 lower root): d18_hybsign at 1.395-1.435 by 0.005 (9 points, matching winb's Windows k_c 95 window) plus a repeat of 1.415 on another process, and lambda_1 bracketed by 1.535 and 1.545 (12 evaluations, 2 rounds), read_lower on each window. Written before (README): the lower root moving < 0.002 from k_c 87's 1.414576 (dh170, Linux) = converges; > 0.004 or absent in 1.395-1.435 = discretization; lambda_1 within 0.005 of 1.539. Raw I1025-dh610/d19_k95/scan/. dh170 drops its k_c 95 stage; I tell it."
 The k_c 95 roots are not yet physical. Roots are read by position, never by sign orientation; the orientation is printed as the reader prints it and not compared across D or k_c.
 
@@ -98,8 +98,94 @@ The k_c 95 roots are not yet physical. Roots are read by position, never by sign
 - The pinned copies are accepted with controls 1 1 and the k_c 87 check refusing (96%); all six processes print the record system (92%); every point noise-robust (70%); the repeat of 1.415 bit-identical (90%).
 - Window 1 holds exactly one robust change (85%), edge signs unequal (88%); its det-linear estimate within 0.002 of 1.414576 (75%), 0.002 to 0.004 away (12%), more than 0.004 away or no change (13%); its bracket (1.410, 1.415) (50%), (1.415, 1.420) (40%). Window 2 holds one change with unequal signs at 1.535 and 1.545 (85%), its estimate within 0.005 of 1.539 (75%).
 - The float64 sign differs from the hybrid at more than half of window 1's points (30%; at D 19.75, k_c 95, 3 of 7 differed).
-- Seconds per point 2300 to 3200 s (65%; k_c 95 at D 19.5: 2238 to 2514 s, at D 19.75: 2442 to 2770 s, four processes beside the other jobs; now 6 processes, the leg lane's 8 from about 20:40 and the recount's 2); round 1 ends by 21:10 UTC (70%) and the lane at 21:30 to 22:10 UTC (60%), started about 20:14 UTC; peak RSS per process below 3.6 GiB (85%; 3.14 to 3.33 GB at D 19.5 and D 19.75).
+- Seconds per point 2300 to 3200 s (65%; k_c 95 at D 19.5: 2238 to 2514 s, at D 19.75: 2442 to 2770 s, four processes beside the other jobs; now 6 processes, the leg lane's 8 from about 20:40 and the recount's 2); round 1 ends by 21:10 UTC (70%) and the lane at 21:30 to 22:10 UTC (60%), started about 20:11 UTC; peak RSS per process below 3.6 GiB (85%; 3.14 to 3.33 GB at D 19.5 and D 19.75).
 - Threads: 6 here + the leg lane's 8 (D 20.90625 from about 20:40, about 45 min) + the recount's 2 = 16 of 20, under the 20 (the recount's nominal 12 would make 26; it really runs 2 processes). Nothing is stopped for memory.
 
 ### Status
-- 2026-11-23 20:12 UTC: README, lane and notifier written; dry run passed (20:09:56 UTC); the scan starts after this README is on origin.
+- 2026-11-23 20:10 UTC: README, lane and notifier written; dry run passed (20:09:56 UTC); the scan starts after this README is on origin.
+
+- 2026-11-23 20:10:48 UTC the scan started after the source check passed (kc95 exit 0, controls 1 1, kc87 check 1); 22:57:03 to 23:18:43 UTC the six processes ended, all exit 0; 23:18:43 UTC the reading written (`read_lower_scan.txt`), lane exit 0 (`exits_d19k95_scan.txt`).
+
+### Result (`python3 -I summarize_d19k95_scan.py > summary_scan.txt` prints everything below from the files; selftest exit 0, `selftest --mutate` exit 1, `--mutate` on the real files exit 1 = "control FIRED", `summary_scan_mutate.txt`)
+| lambda | process | round | hybrid sign | noise signs (robust) | float64 sign | ln of abs det | seconds |
+|---|---|---|---|---|---|---|---|
+| 1.395 | p0 | 2 | - | -- (True) | - | -3246.20111370251 | 6562 |
+| 1.400 | p1 | 2 | - | -- (True) | - | -3246.2115799315034 | 5551 |
+| 1.405 | p3 | 1 | - | -- (True) | - | -3246.224671370778 | 4812 |
+| 1.410 | p1 | 1 | - | -- (True) | - | -3246.240334708994 | 5717 |
+| 1.415 | p0 | 1 | - | -- (True) | - | -3246.25854191131 | 3763 |
+| 1.415 | p5 | 1 | - | -- (True) | - | -3246.25854191131 | 4845 |
+| 1.420 | p2 | 1 | - | -- (True) | - | -3246.279299139076 | 5380 |
+| 1.425 | p4 | 1 | - | -- (True) | - | -3246.3026403437366 | 4987 |
+| 1.430 | p2 | 2 | - | -- (True) | - | -3246.328632507956 | 5029 |
+| 1.435 | p3 | 2 | - | -- (True) | - | -3246.3573767144894 | 5158 |
+| 1.535 | p4 | 2 | - | -- (True) | + | -3249.124221488627 | 5837 |
+| 1.545 | p5 | 2 | + | ++ (True) | + | -3249.1473200273435 | 5928 |
+
+evaluations 12 of 12; seconds per point min 3763, median 5380, max 6562; not noise-robust: none
+float64 sign differs from the hybrid in window 1 at 0 of 10 evaluations: none; the repeat of 1.415 (p0 round 1, p5 round 1): ln|det| -3246.25854191131 and -3246.25854191131, bit-identical in sign, noise, float64 and ln|det|: True
+
+source check on the pinned copies: kc95 exit 0, controls 1 1, kc87 check 1; processes that printed the record system: 6 of 6; peak RSS per process (time -v) [3.12, 3.07, 3.14, 3.09, 3.07, 3.1] GiB; process exits: 6 of 6 with exit 0; scan done line: 23:18:43
+round 1 ended (start 20:10:48 UTC + the latest first-point seconds 5717) at 21:46 UTC
+
+window 1 (1.395 to 1.435): hybrid signs 1.395- 1.400- 1.405- 1.410- 1.415- 1.420- 1.425- 1.430- 1.435-; robust changes 0: []
+
+window 2 (1.535 to 1.545): hybrid signs 1.535- 1.545+; robust changes 1: [(1.535, 1.545, '- to +', 1.540058, (1.540058, 1.540058))]
+
+repeat_check.py (merged scan file): lambda [1.415]: [2] evaluations each, agree -> PASS
+
+the coordinator's rule, window 1 (all 9 points): ABSENT in the window: discretization
+lambda_1, window 2 (both points): roots [1.540058]; within 0.005 of 1.539: True (+0.001058)
+
+| prediction (registered before the run) | result | verdict |
+|---|---|---|
+| pinned copies accepted, controls 1 1, kc87 refuses (96%) | exits (0, 1, 1, 1) | right |
+| all six print the record system (92%) | 6 of 6 | right |
+| every point noise-robust (70%) | 12 of 12 | right |
+| repeat of 1.415 bit-identical (90%) | True | right |
+| window 1: exactly one robust change (85%) | 0 | WRONG |
+| window 1: edge signs unequal (88%) | - at 1.395, - at 1.435 | WRONG |
+| window 1: estimate within 0.002 of 1.414576 (75%) | none | WRONG |
+| window 1: bracket (1.410, 1.415) (50%) or (1.415, 1.420) (40%) | None | WRONG |
+| window 2: one change, signs unequal (85%) | 1 change, - at 1.535, + at 1.545 | right |
+| window 2: estimate within 0.005 of 1.539 (75%) | [1.540058] | right |
+| float64 sign differs from the hybrid at more than half of window 1 (30%; right = it happened) | 0 of 10 evaluations | WRONG |
+| seconds per point 2300 to 3200 s (65%) | 3763 to 6562 | WRONG |
+| round 1 ends by 21:10 UTC (70%) | 21:46 | WRONG |
+| lane ends 21:30 to 22:10 UTC (60%) | 23:18:43 | WRONG |
+| peak RSS per process below 3.6 GiB (85%) | max 3.14 GiB | right |
+
+```
+=== read_lower.py /home/nathan/Source/choptuik-large-d-raw/I1025-dh610/d19_k95/scan 1.395 1.435
+points 9 in 1.395-1.435; not noise-robust: none
+hybrid signs: 1.395- 1.400- 1.405- 1.410- 1.415- 1.420- 1.425- 1.430- 1.435-
+float64 sign differs from the hybrid sign at: none
+repeated points: [(1.415, 'agree')]
+robust changes: 0; touching a non-robust point (not counted): none
+ln|det| local minima without a sign change: none
+endpoint signs: - at 1.395, - at 1.435
+read_lower exit 0
+=== read_lower.py /home/nathan/Source/choptuik-large-d-raw/I1025-dh610/d19_k95/scan 1.535 1.545
+points 2 in 1.535-1.545; not noise-robust: none
+hybrid signs: 1.535- 1.545+
+float64 sign differs from the hybrid sign at: [(1.535, '-', '+')]
+repeated points: [(1.415, 'agree')]
+  robust change (1.535, 1.545), - to +, det-linear 1.540058, range [1.540058, 1.540058]
+robust changes: 1; touching a non-robust point (not counted): none
+ln|det| local minima without a sign change: none
+endpoint signs: - at 1.535, + at 1.545
+read_lower exit 0
+=== repeat_check.py (merged scan file)
+repeat check /home/nathan/Source/choptuik-large-d-raw/I1025-dh610/d19_k95/scan/scan_D19.0_1025.jsonl: lambda [1.415]: [2] evaluations each, agree -> PASS
+repeat_check exit 0
+```
+
+- **Window 1 (1.395 to 1.435; 9 grid points, 10 evaluations): no change.** The hybrid sign is - at every point, every point is noise-robust, the float64 sign agrees with the hybrid at all of them, the edge signs are equal, and there is no ln|det| minimum without a sign change (`read_lower.py`). ln|det| falls without a dip from -3246.20111 at 1.395 to -3246.35738 at 1.435. By the coordinator's rule, written before the run: **a lower root absent from 1.395 to 1.435 = discretization**. dh170's Linux k_c 87 root 1.414576 has no counterpart in this k_c 95 state within 0.02 of it. (This is the order's rule applied as written; a wider or finer scan of this state was not ordered and not run.)
+- **Window 2 (1.535 to 1.545): one change** between 1.535 and 1.545, "- to +" as printed, det-linear **1.540058**. The window holds two points, so the estimator range collapses to one value; it is not an enclosure, and the bracket is the grid step 0.01. 1.540058 lies +0.001058 from 1.539, within the order's 0.005 (winb's Windows values are 1.539658 at k_c 79 and 1.538986 at k_c 87). The float64 sign at 1.535 is + against the hybrid's - (the hybrid's noise test is robust there); the hybrid is read.
+- **The repeat of 1.415** (p0 and p5) is bit-identical in sign, noise signs, float64 sign and ln|det| (`repeat_check.py` PASS).
+- **Checks and resources:** source check on the pinned copies passed with both controls exit 1 and the k_c 87 check refusing; all six processes printed the record system (|F| 2.9323981061e-10 against the record's 2.9326405268e-10, 3575 steps equal); peak RSS 3.07 to 3.14 GiB per process (`/usr/bin/time -v`); no `MEMALERT_scan.txt` (MemAvailable stayed above 46 GB); load median 16.00 over `scan/sampler.log` (the leg lane's 8 processes ran from 20:46 to 21:57 and from 22:08 to 23:14 UTC, the recount's 2 throughout).
+- **What the data do not say.** Where a lower root of this state lies, if it lies in the range scanned at all: the scan covered 1.395 to 1.435 and 1.535 to 1.545 only. This state differs from winb's k_c 95 state: Delta here minus winb's is -2.8332e-7, and Delta(k_c 95) - Delta(k_c 87) is -6.1013e-7 here against -5.1330e-7 for winb (`summary.txt`). winb's k_c 95 scan is not on origin, so no comparison of the readings is possible yet.
+- **Seconds per point were 3763 to 6562 s**, not 2300 to 3200 s: the machine ran 16 threads of mine (6 + 8 + 2) for most of the time, at a load median of 16. Round 1 ended at 21:46 UTC and the lane at 23:18:43 UTC.
+
+### Scan predictions scorecard (written before the scan; "right" = the predicted event happened)
+The table above carries the scorecard rows from `summarize_d19k95_scan.py`. The case registered at 13% (more than 0.004 away, or no change in window 1) is the one that happened.

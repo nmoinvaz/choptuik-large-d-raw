@@ -1,0 +1,9 @@
+  roots [1.4146]: converges (expected converges): ok
+  roots [1.417]: converges (expected no ruling): WRONG
+  roots [1.42]: converges (expected discretization): WRONG
+  roots []: ABSENT in the window: discretization (expected ABSENT in the window: discretization): ok
+  roots [1.4146, 1.42]: more than one root in the window: no ruling (reported) (expected more than one root in the window: no ruling (reported)): ok
+  lambda_1 roots [1.5392]: True (expected True): ok
+  lambda_1 roots [1.545]: False (expected False): ok
+  lambda_1 roots []: False (expected False): ok
+selftest --mutate FAIL

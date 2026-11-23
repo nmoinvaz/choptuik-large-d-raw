@@ -1,0 +1,49 @@
+| lambda | process | round | hybrid sign | noise signs (robust) | float64 sign | ln of abs det | seconds |
+|---|---|---|---|---|---|---|---|
+| 1.395 | p0 | 2 | - | -- (True) | - | -3246.20111370251 | 6562 |
+| 1.400 | p1 | 2 | - | -- (True) | - | -3246.2115799315034 | 5551 |
+| 1.405 | p3 | 1 | - | -- (True) | - | -3246.224671370778 | 4812 |
+| 1.410 | p1 | 1 | - | -- (True) | - | -3246.240334708994 | 5717 |
+| 1.415 | p0 | 1 | - | -- (True) | - | -3246.25854191131 | 3763 |
+| 1.415 | p5 | 1 | - | -- (True) | - | -3246.25854191131 | 4845 |
+| 1.420 | p2 | 1 | - | -- (True) | - | -3246.279299139076 | 5380 |
+| 1.425 | p4 | 1 | - | -- (True) | - | -3246.3026403437366 | 4987 |
+| 1.430 | p2 | 2 | - | -- (True) | - | -3246.328632507956 | 5029 |
+| 1.435 | p3 | 2 | - | -- (True) | - | -3246.3573767144894 | 5158 |
+| 1.535 | p4 | 2 | - | -- (True) | + | -3249.124221488627 | 5837 |
+| 1.545 | p5 | 2 | + | ++ (True) | + | -3249.1473200273435 | 5928 |
+
+evaluations 12 of 12; seconds per point min 3763, median 5380, max 6562; not noise-robust: none
+float64 sign differs from the hybrid in window 1 at 0 of 10 evaluations: none; the repeat of 1.415 (p0 round 1, p5 round 1): ln|det| -3246.25854191131 and -3246.25854191131, bit-identical in sign, noise, float64 and ln|det|: True
+
+source check on the pinned copies: kc95 exit 0, controls 1 1, kc87 check 1; processes that printed the record system: 6 of 6; peak RSS per process (time -v) [3.12, 3.07, 3.14, 3.09, 3.07, 3.1] GiB; process exits: 6 of 6 with exit 0; scan done line: 23:18:43
+round 1 ended (start 20:10:48 UTC + the latest first-point seconds 5717) at 21:46 UTC
+
+window 1 (1.395 to 1.435): hybrid signs 1.395- 1.400- 1.405- 1.410- 1.415- 1.420- 1.425- 1.430- 1.435-; robust changes 0: []
+
+window 2 (1.535 to 1.545): hybrid signs 1.535- 1.545+; robust changes 1: [(1.535, 1.545, '- to +', 1.540058, (1.540058, 1.540058))]
+
+repeat_check.py (merged scan file): lambda [1.415]: [2] evaluations each, agree -> PASS
+
+the coordinator's rule, window 1 (all 9 points): ABSENT in the window: discretization
+lambda_1, window 2 (both points): roots [1.540058]; within 0.005 of 1.539: True (+0.001058)
+
+| prediction (registered before the run) | result | verdict |
+|---|---|---|
+| pinned copies accepted, controls 1 1, kc87 refuses (96%) | exits (0, 1, 1, 1) | right |
+| all six print the record system (92%) | 6 of 6 | right |
+| every point noise-robust (70%) | 12 of 12 | right |
+| repeat of 1.415 bit-identical (90%) | True | right |
+| window 1: exactly one robust change (85%) | 0 | WRONG |
+| window 1: edge signs unequal (88%) | - at 1.395, - at 1.435 | WRONG |
+| window 1: estimate within 0.002 of 1.414576 (75%) | none | WRONG |
+| window 1: bracket (1.410, 1.415) (50%) or (1.415, 1.420) (40%) | None | WRONG |
+| window 2: one change, signs unequal (85%) | 1 change, - at 1.535, + at 1.545 | right |
+| window 2: estimate within 0.005 of 1.539 (75%) | [1.540058] | right |
+| float64 sign differs from the hybrid at more than half of window 1 (30%; right = it happened) | 0 of 10 evaluations | WRONG |
+| seconds per point 2300 to 3200 s (65%) | 3763 to 6562 | WRONG |
+| round 1 ends by 21:10 UTC (70%) | 21:46 | WRONG |
+| lane ends 21:30 to 22:10 UTC (60%) | 23:18:43 | WRONG |
+| peak RSS per process below 3.6 GiB (85%) | max 3.14 GiB | right |
+mutate: the window-1 verdict 'ABSENT in the window: discretization' against 'converges' with the estimate moved by +0.003 (or planted at the reference when absent)
+mutate: control FIRED (exit 1)

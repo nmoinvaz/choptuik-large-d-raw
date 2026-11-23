@@ -1,2 +1,20 @@
 == 2026-11-23 20:09:56 UTC d19_k95 scan: pins checked (in_blobs_scan.txt, in_blobs_regrid.txt, checks, d18_hybsign e089207a, worktrees 1025g 48c36355 and 1025f 505d8399 clean, Python 3.14.10), selftests as wanted (kc95_syscheck, read_lower, mutate shift, mutate round2, repeat_check: 0 0 1 1 0); MemAvailable 60442852 kB, load 3.08 6.21 11.18; lists 1.415,1.395 1.410,1.400 1.420,1.430 1.405,1.435 1.425,1.535 1.415,1.545
 == 2026-11-23 20:09:56 UTC d19_k95 scan: dry run: nothing started
+== 2026-11-23 20:10:41 UTC d19_k95 scan: pins checked (in_blobs_scan.txt, in_blobs_regrid.txt, checks, d18_hybsign e089207a, worktrees 1025g 48c36355 and 1025f 505d8399 clean, Python 3.14.10), selftests as wanted (kc95_syscheck, read_lower, mutate shift, mutate round2, repeat_check: 0 0 1 1 0); MemAvailable 60441200 kB, load 3.04 5.76 10.79; lists 1.415,1.395 1.410,1.400 1.420,1.430 1.405,1.435 1.425,1.535 1.415,1.545
+== 2026-11-23 20:10:48 UTC d19_k95 scan: source check on the pinned copies: kc95_syscheck exit 0 (0 wanted); controls --mutate=F exit 1, --mutate=steps exit 1 (1 wanted each); kc87_syscheck exit 1 (1 wanted)
+== 2026-11-23 20:10:48 UTC d19_k95 scan: scan: D 19.0, k_c 95, 12 evaluations, lists 1.415,1.395 1.410,1.400 1.420,1.430 1.405,1.435 1.425,1.535 1.415,1.545, 6 processes of 1 thread, nice 10, cap 28800 s each by timeout
+2026-11-23 22:57:03 UTC scan p3 (1.405,1.435) exit 0
+2026-11-23 23:02:58 UTC scan p0 (1.415,1.395) exit 0
+2026-11-23 23:04:21 UTC scan p2 (1.420,1.430) exit 0
+2026-11-23 23:10:25 UTC scan p5 (1.415,1.545) exit 0
+2026-11-23 23:11:19 UTC scan p4 (1.425,1.535) exit 0
+2026-11-23 23:18:43 UTC scan p1 (1.410,1.400) exit 0
+== 2026-11-23 23:18:43 UTC d19_k95 scan: p0: D 19.0 k_c 95: |F| 2.9323981061e-10 (record 2.9326405268e-10), steps 3575 (record 3575): the record system
+== 2026-11-23 23:18:43 UTC d19_k95 scan: p1: D 19.0 k_c 95: |F| 2.9323981061e-10 (record 2.9326405268e-10), steps 3575 (record 3575): the record system
+== 2026-11-23 23:18:43 UTC d19_k95 scan: p2: D 19.0 k_c 95: |F| 2.9323981061e-10 (record 2.9326405268e-10), steps 3575 (record 3575): the record system
+== 2026-11-23 23:18:43 UTC d19_k95 scan: p3: D 19.0 k_c 95: |F| 2.9323981061e-10 (record 2.9326405268e-10), steps 3575 (record 3575): the record system
+== 2026-11-23 23:18:43 UTC d19_k95 scan: p4: D 19.0 k_c 95: |F| 2.9323981061e-10 (record 2.9326405268e-10), steps 3575 (record 3575): the record system
+== 2026-11-23 23:18:43 UTC d19_k95 scan: p5: D 19.0 k_c 95: |F| 2.9323981061e-10 (record 2.9326405268e-10), steps 3575 (record 3575): the record system
+12 points
+== 2026-11-23 23:18:43 UTC d19_k95 scan: reading: hybrid signs: 1.395- 1.400- 1.405- 1.410- 1.415- 1.420- 1.425- 1.430- 1.435-|robust changes: 0; touching a non-robust point (not counted): none|hybrid signs: 1.535- 1.545+|  robust change (1.535, 1.545), - to +, det-linear 1.540058, range [1.540058, 1.540058]|robust changes: 1; touching a non-robust point (not counted): none|repeat check /home/nathan/Source/choptuik-large-d-raw/I1025-dh610/d19_k95/scan/scan_D19.0_1025.jsonl: lambda [1.415]: [2] evaluations each, agree -> PASS|
+== 2026-11-23 23:18:43 UTC d19_k95 scan: scan done; reading in read_lower_scan.txt
