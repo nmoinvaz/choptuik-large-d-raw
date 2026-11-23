@@ -121,3 +121,54 @@ The coordinator's words: "an exact diagnosis; the box scale it is. Go on both: (
 - For every box whose test passes (exit 0): `controls --box=...` (exit 0 iff C0 to C8 are as expected), `certify_M_recheck.py <box>` (exit 0, the same verdict) and `certify_M_recheck.py <box> --mutate` (must exit nonzero); a result that is not as expected is a STOP line.
 - If no box passes: the binding row and quantity at the best box (the one with the largest smallest margin), by the same row-by-row breakdown as before (`diagnose.py`, read-only), and I stop. `--hier` stays not applicable and is not run.
 - Output names: `data/A_M_box_M3xN_hH_wW.json` (not the `.ckpt` files), `logs/A_M_*M3xN_hH_wW*.log`, the same copying into this folder as before.
+
+
+## Round 2 results (2026-11-23, scan 14:15:41 to 14:40:13 UTC, 24.5 min for 24 boxes, 2 at a time)
+
+**Verdict: none of the 24 boxes passes the Krawczyk test (exit 1 each), and `--best` finds no passing outer sub-box on the two 1e-10 runs. No box run raised an exception. Controls and the recheck were therefore not run (no passing box); nothing else was changed.**
+(a) `certify_M.py krawczyk --box=data/A_M_box_M3x{1,2}_1e-10.json --best` (`logs/A_M_krawczyk_M3x*_1e-10_best.log`): "largest passing outer half-width with the run's inner widths: None" for both zeros (exit 1, margins as before).
+(b) relative margins (A / w/w_inf / B3 / C3; positive iff that row of K(X) is inside X), `logs/A_M_krawczyk_M3xN_hH_wW.log`, exits in `steps.txt`:
+
+### x1
+
+| h (rows), w (columns) | 1e-15 | 1e-14 | 1e-13 | 1e-12 |
+|---|---|---|---|---|
+| 1e-11 | -9.43 / -6.14 / -60.3 / -46.1 | -12.4 / -8.86 / -5.82 / -4.42 | -13.7 / -9.21 / +0.302 / +0.483 | -10.5 / -7.34 / +0.936 / +0.948 |
+| 1e-12 | -73.3 / -49.5 / -39.3 / -30.1 | -73.1 / -49.3 / -3.03 / -2.11 | -73.6 / -49.7 / +0.596 / +0.688 | -73.3 / -49.5 / +0.96 / +0.969 |
+| 1e-13 | -736 / -499 / -39 / -29.9 | -736 / -499 / -3 / -2.09 | -736 / -499 / +0.6 / +0.691 | -736 / -499 / +0.96 / +0.969 |
+
+### x2
+
+| h (rows), w (columns) | 1e-15 | 1e-14 | 1e-13 | 1e-12 |
+|---|---|---|---|---|
+| 1e-11 | -1.46 / -3.11 / -1.16e+03 / -423 | -1.48 / -3.14 / -115 / -41.3 | -0.865 / -1.88 / -9.57 / -3.22 | -0.674 / -1.51 / -0.231 / +0.599 |
+| 1e-12 | -3.46 / -5.74 / -276 / -81.4 | -3.7 / -6.12 / -26.4 / -7.17 | -3.5 / -5.77 / -1.71 / +0.207 | -4.07 / -6.76 / +0.708 / +0.912 |
+| 1e-13 | -66 / -113 / -374 / -98.2 | -65.9 / -113 / -36.5 / -8.92 | -66 / -113 / -2.75 / +0.007 | -69.2 / -107 / +0.684 / +0.898 |
+
+**Best box per zero** (largest smallest margin): x1 and x2 both at (h, w) = (1e-11, 1e-12): x1 margins -10.531, -7.344, +0.936, +0.948 (binding row A); x2 -0.674, -1.512, -0.231, +0.599 (binding row w/w_inf, then A and B3).
+
+**The prediction (the coordinator's, before): "the best box lies near h about 1e-12 with w about 1e-14 to 1e-13"** is not borne out: the best boxes are at the grid's largest h (1e-11) and largest w (1e-12) at both zeros. The inner rows (B3, C3) pass for w >= 1e-13 (x1) and for w = 1e-12 (x2; C3 also at 1e-13 with h = 1e-12), as the diagnosis said. The outer rows get worse as h shrinks below 1e-11,
+and the reason is the floor, not the box: the radius of (Y g(p^)) in the outer rows does not depend on the box (`logs/I1079_diagnose_M3xN_hH_wW.log`, the row-by-row breakdown of `krawczyk_test`'s arithmetic, my read-only `diagnose.py`):
+
+| | g(p^) radius (all 12 boxes) | (Y g) radius, row A | (Y g) radius, row w/w_inf |
+|---|---|---|---|
+| x1 | 5.4e-14 | 7.37e-11 in every box | 5.00e-11 in every box |
+| x2 | 0.87e-14 to 1.3e-14 | 4.2e-12 to 1.5e-11 | 6.2e-12 to 2.5e-11 |
+
+For x1 at h = 1e-12 and 1e-13 the outer margins are exactly 1 - 7.4e-11/h (-73.3 and -736) and 1 - 5.0e-11/h (-49.5 and -499). The h-dependent part of K is the radius of (I - Y Dg(X)) X in the outer columns, in units of h: x1 row A at h = 1e-10: 80 (17 + 64), at h = 1e-11: 4 (0.8 + 3.2); x2 row w/w_inf at h = 1e-10: 132, at h = 1e-11: 1.3 (0.3 + 1.0).
+
+**Binding row and quantity at the best boxes** (h = 1e-11, w = 1e-12; in units of the half-width of the row):
+
+| zero | row | \|K_i\| | (Y g) radius | column A | column w/w_inf | columns B3, C3 |
+|---|---|---|---|---|---|---|
+| x1 | A | 11.5 h | 7.4 h | 0.8 h | 3.2 h | 0.1 h each |
+| x1 | w/w_inf | 8.3 h | 5.0 h | 0.6 h | 2.6 h | 0.1 h each |
+| x1 | B3, C3 | 0.1 w | 0.0 w | 0 | 0 | 0 |
+| x2 | A | 1.7 h | 0.7 h | 0.2 h | 0.7 h | 0 |
+| x2 | w/w_inf | 2.5 h | 1.2 h | 0.3 h | 1.0 h | 0 |
+| x2 | B3 | 1.2 w | 0.4 w | 0.2 w | 0.6 w | 0 |
+| x2 | C3 | 0.4 w | 0.1 w | 0.1 w | 0.2 w | 0 |
+
+- **x1: the binding quantity is the radius of (Y g(p^)) in the outer rows, 7.37e-11 (A) and 5.00e-11 (w/w_inf)**, independent of the box: it needs h above 7.4e-11, where the Jacobian enclosure terms are 80 h (h = 1e-10). The radius of g(p^) is 5.4e-14 (Theorem A(M = 3)'s fundamental: 1.7e-16), and the Schur complement has a singular value of 3.6e-5. No pair of the grid, and none of the 1e-10 run, comes near passing in the outer rows (best -10.5).
+- **x2: the binding row is w/w_inf at 2.5 h**: the (Y g) radius 1.2 h (1.2e-11) plus the w/w_inf column's Jacobian-enclosure radius 1.0 h plus the A column 0.3 h; the A row (1.7 h) and the B3 row (1.2 w) are next. Every row is within a factor 2.5 of passing; the two parts that sum to it are the radius of (Y g(p^)) (g radius about 1.2e-14) and the radius of the outer-column enclosure of Y Dg(X), and they pull h in opposite directions (the first needs h above about 1.2e-11, the second falls with a smaller h).
+- Both zeros: the inner rows pass for w = 1e-12, so the failure is in the outer rows, in two quantities that the box shape does not change (the radius of g(p^)) or changes only against the other (the Jacobian enclosure's radius over the box). Not tested: h between 1e-11 and 1e-10, w above 1e-12, a higher Taylor order or smaller steps for the centre trajectory (which would shrink the radius of g(p^)); the coordinator names any of these.

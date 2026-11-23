@@ -1,0 +1,41 @@
+# session check, 2026-11-23 14:16:06 UTC: parent chain of each pid (the given ones and their descendants) up to pid 1 (pid ppid pgid sess tty command); fails if 'claude' is in a chain
+
+pid 99553 (/bin/bash /Users/nathan/Source/choptuik-large-d-raw-903/I107):
+   99553 ppid      1 pgid  99552 tty  ??  /bin/bash /Users/nathan/Source/choptuik-large-d-raw-903/I1079-macm3/scan.sh
+       1 ppid      0 pgid      1 tty  ??  /sbin/launchd
+  chain ends at pid 1 (/sbin/launchd), 2 processes
+
+pid 99554 (/usr/bin/caffeinate -is /bin/bash /Users/nathan/Source/chopt):
+   99554 ppid  99553 pgid  99552 tty  ??  /usr/bin/caffeinate -is /bin/bash /Users/nathan/Source/choptuik-large-d-raw-903/I1079-macm3/scan.sh
+   99553 ppid      1 pgid  99552 tty  ??  /bin/bash /Users/nathan/Source/choptuik-large-d-raw-903/I1079-macm3/scan.sh
+       1 ppid      0 pgid      1 tty  ??  /sbin/launchd
+  chain ends at pid 1 (/sbin/launchd), 3 processes
+
+pid 99651 (/bin/bash /Users/nathan/Source/choptuik-large-d-raw-903/I107):
+   99651 ppid  99553 pgid  99552 tty  ??  /bin/bash /Users/nathan/Source/choptuik-large-d-raw-903/I1079-macm3/scan.sh
+   99553 ppid      1 pgid  99552 tty  ??  /bin/bash /Users/nathan/Source/choptuik-large-d-raw-903/I1079-macm3/scan.sh
+       1 ppid      0 pgid      1 tty  ??  /sbin/launchd
+  chain ends at pid 1 (/sbin/launchd), 3 processes
+
+pid 99652 (/bin/bash /Users/nathan/Source/choptuik-large-d-raw-903/I107):
+   99652 ppid  99553 pgid  99552 tty  ??  /bin/bash /Users/nathan/Source/choptuik-large-d-raw-903/I1079-macm3/scan.sh
+   99553 ppid      1 pgid  99552 tty  ??  /bin/bash /Users/nathan/Source/choptuik-large-d-raw-903/I1079-macm3/scan.sh
+       1 ppid      0 pgid      1 tty  ??  /sbin/launchd
+  chain ends at pid 1 (/sbin/launchd), 3 processes
+
+pid 99657 (/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.):
+   99657 ppid  99651 pgid  99552 tty  ??  /opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/Resources/Python
+   99651 ppid  99553 pgid  99552 tty  ??  /bin/bash /Users/nathan/Source/choptuik-large-d-raw-903/I1079-macm3/scan.sh
+   99553 ppid      1 pgid  99552 tty  ??  /bin/bash /Users/nathan/Source/choptuik-large-d-raw-903/I1079-macm3/scan.sh
+       1 ppid      0 pgid      1 tty  ??  /sbin/launchd
+  chain ends at pid 1 (/sbin/launchd), 4 processes
+
+pid 99658 (/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.):
+   99658 ppid  99652 pgid  99552 tty  ??  /opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/Resources/Python
+   99652 ppid  99553 pgid  99552 tty  ??  /bin/bash /Users/nathan/Source/choptuik-large-d-raw-903/I1079-macm3/scan.sh
+   99553 ppid      1 pgid  99552 tty  ??  /bin/bash /Users/nathan/Source/choptuik-large-d-raw-903/I1079-macm3/scan.sh
+       1 ppid      0 pgid      1 tty  ??  /sbin/launchd
+  chain ends at pid 1 (/sbin/launchd), 4 processes
+
+for comparison, this checker's own chain: 99723:/opt/homebrew/ <- 99546:/bin/zsh -c so <- 4486:claude --resum <- 4485:/Users/nathan/ <- 1392:/Users/nathan/ <- 1:/sbin/launchd ...
+claude in any chain of the run: False; tty of the pids: ?? (?? = no controlling terminal)

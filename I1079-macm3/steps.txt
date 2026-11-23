@@ -59,3 +59,155 @@ verify A_M_recheck_M3x2_1e-10 end 2026-11-23 14:11:21 exit 1:    C3       in [-0
 verify A_M_recheck_M3x2_1e-10_mutate command: cd /Users/nathan/Source/choptuik-large-d-1079/solver/proof && nice -n 10 /Users/nathan/Source/venv-macm3-1058b/bin/python certify_M_recheck.py data/A_M_box_M3x2_1e-10.json --mutate > logs/A_M_recheck_M3x2_1e-10_mutate.log 2>&1
 verify A_M_recheck_M3x2_1e-10_mutate end 2026-11-23 14:11:22 exit 1:    C3       in [-1.9390548207055392, -1.939054820493026]
 verify done 2026-11-23 14:11:22
+scan start 2026-11-23 14:15:41
+scan A_M_krawczyk_M3x1_1e-10_best command: cd /Users/nathan/Source/choptuik-large-d-1079/solver/proof && nice -n 10 /Users/nathan/Source/venv-macm3-1058b/bin/python certify_M.py krawczyk --box=data/A_M_box_M3x1_1e-10.json --best > logs/A_M_krawczyk_M3x1_1e-10_best.log 2>&1
+scan A_M_krawczyk_M3x1_1e-10_best end 2026-11-23 14:15:41 exit 1:    C3       in [0.0117800434246785, 0.0117800442723332]  (radius 4.24e-10)
+scan A_M_krawczyk_M3x2_1e-10_best command: cd /Users/nathan/Source/choptuik-large-d-1079/solver/proof && nice -n 10 /Users/nathan/Source/venv-macm3-1058b/bin/python certify_M.py krawczyk --box=data/A_M_box_M3x2_1e-10.json --best > logs/A_M_krawczyk_M3x2_1e-10_best.log 2>&1
+scan A_M_krawczyk_M3x2_1e-10_best end 2026-11-23 14:15:41 exit 1:    C3       in [-0.00176332366250728, -0.00176331538265630]  (radius 4.14e-09)
+scan box M3x1_h1e-11_w1e-15 start 2026-11-23 14:15:41
+scan A_M_box_M3x1_h1e-11_w1e-15_stdout command: cd /Users/nathan/Source/choptuik-large-d-1079/solver/proof && nice -n 10 /Users/nathan/Source/venv-macm3-1058b/bin/python certify_M.py box 3 --centre=data/A_M_refine_M3_x1.json --use_out --h=1e-11 --w=1e-15 --out=data/A_M_box_M3x1_h1e-11_w1e-15.json --log=logs/A_M_box_M3x1_h1e-11_w1e-15.log > logs/A_M_box_M3x1_h1e-11_w1e-15_stdout.log 2>&1
+scan box M3x2_h1e-11_w1e-15 start 2026-11-23 14:15:41
+scan A_M_box_M3x2_h1e-11_w1e-15_stdout command: cd /Users/nathan/Source/choptuik-large-d-1079/solver/proof && nice -n 10 /Users/nathan/Source/venv-macm3-1058b/bin/python certify_M.py box 3 --centre=data/A_M_refine_M3_x2.json --use_out --h=1e-11 --w=1e-15 --out=data/A_M_box_M3x2_h1e-11_w1e-15.json --log=logs/A_M_box_M3x2_h1e-11_w1e-15.log > logs/A_M_box_M3x2_h1e-11_w1e-15_stdout.log 2>&1
+scan A_M_box_M3x2_h1e-11_w1e-15_stdout end 2026-11-23 14:17:39 exit 0: box run M = 3: steps [718, 394, 64], 118 s
+scan A_M_krawczyk_M3x2_h1e-11_w1e-15 command: cd /Users/nathan/Source/choptuik-large-d-1079/solver/proof && nice -n 10 /Users/nathan/Source/venv-macm3-1058b/bin/python certify_M.py krawczyk --box=data/A_M_box_M3x2_h1e-11_w1e-15.json > logs/A_M_krawczyk_M3x2_h1e-11_w1e-15.log 2>&1
+scan A_M_krawczyk_M3x2_h1e-11_w1e-15 end 2026-11-23 14:17:39 exit 1:    C3       in [-0.00176331953568539, -0.00176331950947819]  (radius 1.31e-11)
+scan margins M3x2_h1e-11_w1e-15 exit 1: Krawczyk M = 3: K(X) in int X: False; relative margins -1.464, -3.112, -1161.626, -422.575
+scan box M3x2_h1e-11_w1e-14 start 2026-11-23 14:17:39
+scan A_M_box_M3x2_h1e-11_w1e-14_stdout command: cd /Users/nathan/Source/choptuik-large-d-1079/solver/proof && nice -n 10 /Users/nathan/Source/venv-macm3-1058b/bin/python certify_M.py box 3 --centre=data/A_M_refine_M3_x2.json --use_out --h=1e-11 --w=1e-14 --out=data/A_M_box_M3x2_h1e-11_w1e-14.json --log=logs/A_M_box_M3x2_h1e-11_w1e-14.log > logs/A_M_box_M3x2_h1e-11_w1e-14_stdout.log 2>&1
+scan A_M_box_M3x1_h1e-11_w1e-15_stdout end 2026-11-23 14:17:40 exit 0: box run M = 3: steps [726, 397, 57], 119 s
+scan A_M_krawczyk_M3x1_h1e-11_w1e-15 command: cd /Users/nathan/Source/choptuik-large-d-1079/solver/proof && nice -n 10 /Users/nathan/Source/venv-macm3-1058b/bin/python certify_M.py krawczyk --box=data/A_M_box_M3x1_h1e-11_w1e-15.json > logs/A_M_krawczyk_M3x1_h1e-11_w1e-15.log 2>&1
+scan A_M_krawczyk_M3x1_h1e-11_w1e-15 end 2026-11-23 14:17:40 exit 1:    C3       in [0.0117800438432823, 0.0117800438537293]  (radius 5.22e-12)
+scan margins M3x1_h1e-11_w1e-15 exit 1: Krawczyk M = 3: K(X) in int X: False; relative margins -9.428, -6.140, -60.345, -46.060
+scan box M3x1_h1e-11_w1e-14 start 2026-11-23 14:17:40
+scan A_M_box_M3x1_h1e-11_w1e-14_stdout command: cd /Users/nathan/Source/choptuik-large-d-1079/solver/proof && nice -n 10 /Users/nathan/Source/venv-macm3-1058b/bin/python certify_M.py box 3 --centre=data/A_M_refine_M3_x1.json --use_out --h=1e-11 --w=1e-14 --out=data/A_M_box_M3x1_h1e-11_w1e-14.json --log=logs/A_M_box_M3x1_h1e-11_w1e-14.log > logs/A_M_box_M3x1_h1e-11_w1e-14_stdout.log 2>&1
+scan A_M_box_M3x2_h1e-11_w1e-14_stdout end 2026-11-23 14:19:37 exit 0: box run M = 3: steps [718, 394, 64], 118 s
+scan A_M_krawczyk_M3x2_h1e-11_w1e-14 command: cd /Users/nathan/Source/choptuik-large-d-1079/solver/proof && nice -n 10 /Users/nathan/Source/venv-macm3-1058b/bin/python certify_M.py krawczyk --box=data/A_M_box_M3x2_h1e-11_w1e-14.json > logs/A_M_krawczyk_M3x2_h1e-11_w1e-14.log 2>&1
+scan A_M_krawczyk_M3x2_h1e-11_w1e-14 end 2026-11-23 14:19:37 exit 1:    C3       in [-0.00176331953578382, -0.00176331950937976]  (radius 1.32e-11)
+scan margins M3x2_h1e-11_w1e-14 exit 1: Krawczyk M = 3: K(X) in int X: False; relative margins -1.483, -3.144, -115.426, -41.345
+scan box M3x2_h1e-11_w1e-13 start 2026-11-23 14:19:37
+scan A_M_box_M3x2_h1e-11_w1e-13_stdout command: cd /Users/nathan/Source/choptuik-large-d-1079/solver/proof && nice -n 10 /Users/nathan/Source/venv-macm3-1058b/bin/python certify_M.py box 3 --centre=data/A_M_refine_M3_x2.json --use_out --h=1e-11 --w=1e-13 --out=data/A_M_box_M3x2_h1e-11_w1e-13.json --log=logs/A_M_box_M3x2_h1e-11_w1e-13.log > logs/A_M_box_M3x2_h1e-11_w1e-13_stdout.log 2>&1
+scan A_M_box_M3x1_h1e-11_w1e-14_stdout end 2026-11-23 14:19:40 exit 0: box run M = 3: steps [726, 397, 57], 119 s
+scan A_M_krawczyk_M3x1_h1e-11_w1e-14 command: cd /Users/nathan/Source/choptuik-large-d-1079/solver/proof && nice -n 10 /Users/nathan/Source/venv-macm3-1058b/bin/python certify_M.py krawczyk --box=data/A_M_box_M3x1_h1e-11_w1e-14.json > logs/A_M_krawczyk_M3x1_h1e-11_w1e-14.log 2>&1
+scan A_M_krawczyk_M3x1_h1e-11_w1e-14 end 2026-11-23 14:19:40 exit 1:    C3       in [0.0117800438415060, 0.0117800438555057]  (radius 7.00e-12)
+scan margins M3x1_h1e-11_w1e-14 exit 1: Krawczyk M = 3: K(X) in int X: False; relative margins -12.392, -8.860, -5.822, -4.415
+scan box M3x1_h1e-11_w1e-13 start 2026-11-23 14:19:40
+scan A_M_box_M3x1_h1e-11_w1e-13_stdout command: cd /Users/nathan/Source/choptuik-large-d-1079/solver/proof && nice -n 10 /Users/nathan/Source/venv-macm3-1058b/bin/python certify_M.py box 3 --centre=data/A_M_refine_M3_x1.json --use_out --h=1e-11 --w=1e-13 --out=data/A_M_box_M3x1_h1e-11_w1e-13.json --log=logs/A_M_box_M3x1_h1e-11_w1e-13.log > logs/A_M_box_M3x1_h1e-11_w1e-13_stdout.log 2>&1
+scan A_M_box_M3x2_h1e-11_w1e-13_stdout end 2026-11-23 14:21:37 exit 0: box run M = 3: steps [718, 394, 64], 120 s
+scan A_M_krawczyk_M3x2_h1e-11_w1e-13 command: cd /Users/nathan/Source/choptuik-large-d-1079/solver/proof && nice -n 10 /Users/nathan/Source/venv-macm3-1058b/bin/python certify_M.py krawczyk --box=data/A_M_box_M3x2_h1e-11_w1e-13.json > logs/A_M_krawczyk_M3x2_h1e-11_w1e-13.log 2>&1
+scan A_M_krawczyk_M3x2_h1e-11_w1e-13 end 2026-11-23 14:21:37 exit 1:    C3       in [-0.00176331953207770, -0.00176331951308588]  (radius 9.50e-12)
+scan margins M3x2_h1e-11_w1e-13 exit 1: Krawczyk M = 3: K(X) in int X: False; relative margins -0.865, -1.878, -9.575, -3.223
+scan box M3x2_h1e-11_w1e-12 start 2026-11-23 14:21:37
+scan A_M_box_M3x2_h1e-11_w1e-12_stdout command: cd /Users/nathan/Source/choptuik-large-d-1079/solver/proof && nice -n 10 /Users/nathan/Source/venv-macm3-1058b/bin/python certify_M.py box 3 --centre=data/A_M_refine_M3_x2.json --use_out --h=1e-11 --w=1e-12 --out=data/A_M_box_M3x2_h1e-11_w1e-12.json --log=logs/A_M_box_M3x2_h1e-11_w1e-12.log > logs/A_M_box_M3x2_h1e-11_w1e-12_stdout.log 2>&1
+scan A_M_box_M3x1_h1e-11_w1e-13_stdout end 2026-11-23 14:21:41 exit 0: box run M = 3: steps [726, 397, 57], 121 s
+scan A_M_krawczyk_M3x1_h1e-11_w1e-13 command: cd /Users/nathan/Source/choptuik-large-d-1079/solver/proof && nice -n 10 /Users/nathan/Source/venv-macm3-1058b/bin/python certify_M.py krawczyk --box=data/A_M_box_M3x1_h1e-11_w1e-13.json > logs/A_M_krawczyk_M3x1_h1e-11_w1e-13.log 2>&1
+scan A_M_krawczyk_M3x1_h1e-11_w1e-13 end 2026-11-23 14:21:41 exit 1:    C3       in [0.0117800438411033, 0.0117800438559083]  (radius 7.40e-12)
+scan margins M3x1_h1e-11_w1e-13 exit 1: Krawczyk M = 3: K(X) in int X: False; relative margins -13.660, -9.209, +0.302, +0.483
+scan box M3x1_h1e-11_w1e-12 start 2026-11-23 14:21:41
+scan A_M_box_M3x1_h1e-11_w1e-12_stdout command: cd /Users/nathan/Source/choptuik-large-d-1079/solver/proof && nice -n 10 /Users/nathan/Source/venv-macm3-1058b/bin/python certify_M.py box 3 --centre=data/A_M_refine_M3_x1.json --use_out --h=1e-11 --w=1e-12 --out=data/A_M_box_M3x1_h1e-11_w1e-12.json --log=logs/A_M_box_M3x1_h1e-11_w1e-12.log > logs/A_M_box_M3x1_h1e-11_w1e-12_stdout.log 2>&1
+scan A_M_box_M3x2_h1e-11_w1e-12_stdout end 2026-11-23 14:23:38 exit 0: box run M = 3: steps [718, 394, 64], 121 s
+scan A_M_krawczyk_M3x2_h1e-11_w1e-12 command: cd /Users/nathan/Source/choptuik-large-d-1079/solver/proof && nice -n 10 /Users/nathan/Source/venv-macm3-1058b/bin/python certify_M.py krawczyk --box=data/A_M_box_M3x2_h1e-11_w1e-12.json > logs/A_M_krawczyk_M3x2_h1e-11_w1e-12.log 2>&1
+scan A_M_krawczyk_M3x2_h1e-11_w1e-12 end 2026-11-23 14:23:38 exit 1:    C3       in [-0.00176331953096961, -0.00176331951419397]  (radius 8.39e-12)
+scan margins M3x2_h1e-11_w1e-12 exit 1: Krawczyk M = 3: K(X) in int X: False; relative margins -0.674, -1.512, -0.231, +0.599
+scan box M3x2_h1e-12_w1e-15 start 2026-11-23 14:23:38
+scan A_M_box_M3x2_h1e-12_w1e-15_stdout command: cd /Users/nathan/Source/choptuik-large-d-1079/solver/proof && nice -n 10 /Users/nathan/Source/venv-macm3-1058b/bin/python certify_M.py box 3 --centre=data/A_M_refine_M3_x2.json --use_out --h=1e-12 --w=1e-15 --out=data/A_M_box_M3x2_h1e-12_w1e-15.json --log=logs/A_M_box_M3x2_h1e-12_w1e-15.log > logs/A_M_box_M3x2_h1e-12_w1e-15_stdout.log 2>&1
+scan A_M_box_M3x1_h1e-11_w1e-12_stdout end 2026-11-23 14:23:42 exit 0: box run M = 3: steps [726, 397, 57], 122 s
+scan A_M_krawczyk_M3x1_h1e-11_w1e-12 command: cd /Users/nathan/Source/choptuik-large-d-1079/solver/proof && nice -n 10 /Users/nathan/Source/venv-macm3-1058b/bin/python certify_M.py krawczyk --box=data/A_M_box_M3x1_h1e-11_w1e-12.json > logs/A_M_krawczyk_M3x1_h1e-11_w1e-12.log 2>&1
+scan A_M_krawczyk_M3x1_h1e-11_w1e-12 end 2026-11-23 14:23:43 exit 1:    C3       in [0.0117800438425371, 0.0117800438544745]  (radius 5.97e-12)
+scan margins M3x1_h1e-11_w1e-12 exit 1: Krawczyk M = 3: K(X) in int X: False; relative margins -10.531, -7.344, +0.936, +0.948
+scan box M3x1_h1e-12_w1e-15 start 2026-11-23 14:23:43
+scan A_M_box_M3x1_h1e-12_w1e-15_stdout command: cd /Users/nathan/Source/choptuik-large-d-1079/solver/proof && nice -n 10 /Users/nathan/Source/venv-macm3-1058b/bin/python certify_M.py box 3 --centre=data/A_M_refine_M3_x1.json --use_out --h=1e-12 --w=1e-15 --out=data/A_M_box_M3x1_h1e-12_w1e-15.json --log=logs/A_M_box_M3x1_h1e-12_w1e-15.log > logs/A_M_box_M3x1_h1e-12_w1e-15_stdout.log 2>&1
+scan A_M_box_M3x2_h1e-12_w1e-15_stdout end 2026-11-23 14:25:40 exit 0: box run M = 3: steps [718, 394, 64], 122 s
+scan A_M_krawczyk_M3x2_h1e-12_w1e-15 command: cd /Users/nathan/Source/choptuik-large-d-1079/solver/proof && nice -n 10 /Users/nathan/Source/venv-macm3-1058b/bin/python certify_M.py krawczyk --box=data/A_M_box_M3x2_h1e-12_w1e-15.json > logs/A_M_krawczyk_M3x2_h1e-12_w1e-15.log 2>&1
+scan A_M_krawczyk_M3x2_h1e-12_w1e-15 end 2026-11-23 14:25:40 exit 1:    C3       in [-0.00176331952480218, -0.00176331952036140]  (radius 2.22e-12)
+scan margins M3x2_h1e-12_w1e-15 exit 1: Krawczyk M = 3: K(X) in int X: False; relative margins -3.460, -5.739, -275.624, -81.436
+scan box M3x2_h1e-12_w1e-14 start 2026-11-23 14:25:40
+scan A_M_box_M3x2_h1e-12_w1e-14_stdout command: cd /Users/nathan/Source/choptuik-large-d-1079/solver/proof && nice -n 10 /Users/nathan/Source/venv-macm3-1058b/bin/python certify_M.py box 3 --centre=data/A_M_refine_M3_x2.json --use_out --h=1e-12 --w=1e-14 --out=data/A_M_box_M3x2_h1e-12_w1e-14.json --log=logs/A_M_box_M3x2_h1e-12_w1e-14.log > logs/A_M_box_M3x2_h1e-12_w1e-14_stdout.log 2>&1
+scan A_M_box_M3x1_h1e-12_w1e-15_stdout end 2026-11-23 14:25:45 exit 0: box run M = 3: steps [726, 397, 57], 123 s
+scan A_M_krawczyk_M3x1_h1e-12_w1e-15 command: cd /Users/nathan/Source/choptuik-large-d-1079/solver/proof && nice -n 10 /Users/nathan/Source/venv-macm3-1058b/bin/python certify_M.py krawczyk --box=data/A_M_box_M3x1_h1e-12_w1e-15.json > logs/A_M_krawczyk_M3x1_h1e-12_w1e-15.log 2>&1
+scan A_M_krawczyk_M3x1_h1e-12_w1e-15 end 2026-11-23 14:25:46 exit 1:    C3       in [0.0117800438448041, 0.0117800438522076]  (radius 3.70e-12)
+scan margins M3x1_h1e-12_w1e-15 exit 1: Krawczyk M = 3: K(X) in int X: False; relative margins -73.275, -49.478, -39.309, -30.108
+scan box M3x1_h1e-12_w1e-14 start 2026-11-23 14:25:46
+scan A_M_box_M3x1_h1e-12_w1e-14_stdout command: cd /Users/nathan/Source/choptuik-large-d-1079/solver/proof && nice -n 10 /Users/nathan/Source/venv-macm3-1058b/bin/python certify_M.py box 3 --centre=data/A_M_refine_M3_x1.json --use_out --h=1e-12 --w=1e-14 --out=data/A_M_box_M3x1_h1e-12_w1e-14.json --log=logs/A_M_box_M3x1_h1e-12_w1e-14.log > logs/A_M_box_M3x1_h1e-12_w1e-14_stdout.log 2>&1
+scan A_M_box_M3x2_h1e-12_w1e-14_stdout end 2026-11-23 14:27:42 exit 0: box run M = 3: steps [718, 394, 64], 122 s
+scan A_M_krawczyk_M3x2_h1e-12_w1e-14 command: cd /Users/nathan/Source/choptuik-large-d-1079/solver/proof && nice -n 10 /Users/nathan/Source/venv-macm3-1058b/bin/python certify_M.py krawczyk --box=data/A_M_box_M3x2_h1e-12_w1e-14.json > logs/A_M_krawczyk_M3x2_h1e-12_w1e-14.log 2>&1
+scan A_M_krawczyk_M3x2_h1e-12_w1e-14 end 2026-11-23 14:27:42 exit 1:    C3       in [-0.00176331952492138, -0.00176331952024220]  (radius 2.34e-12)
+scan margins M3x2_h1e-12_w1e-14 exit 1: Krawczyk M = 3: K(X) in int X: False; relative margins -3.698, -6.125, -26.433, -7.171
+scan box M3x2_h1e-12_w1e-13 start 2026-11-23 14:27:42
+scan A_M_box_M3x2_h1e-12_w1e-13_stdout command: cd /Users/nathan/Source/choptuik-large-d-1079/solver/proof && nice -n 10 /Users/nathan/Source/venv-macm3-1058b/bin/python certify_M.py box 3 --centre=data/A_M_refine_M3_x2.json --use_out --h=1e-12 --w=1e-13 --out=data/A_M_box_M3x2_h1e-12_w1e-13.json --log=logs/A_M_box_M3x2_h1e-12_w1e-13.log > logs/A_M_box_M3x2_h1e-12_w1e-13_stdout.log 2>&1
+scan A_M_box_M3x1_h1e-12_w1e-14_stdout end 2026-11-23 14:27:49 exit 0: box run M = 3: steps [726, 397, 57], 123 s
+scan A_M_krawczyk_M3x1_h1e-12_w1e-14 command: cd /Users/nathan/Source/choptuik-large-d-1079/solver/proof && nice -n 10 /Users/nathan/Source/venv-macm3-1058b/bin/python certify_M.py krawczyk --box=data/A_M_box_M3x1_h1e-12_w1e-14.json > logs/A_M_krawczyk_M3x1_h1e-12_w1e-14.log 2>&1
+scan A_M_krawczyk_M3x1_h1e-12_w1e-14 end 2026-11-23 14:27:49 exit 1:    C3       in [0.0117800438448140, 0.0117800438521977]  (radius 3.69e-12)
+scan margins M3x1_h1e-12_w1e-14 exit 1: Krawczyk M = 3: K(X) in int X: False; relative margins -73.112, -49.325, -3.028, -2.109
+scan box M3x1_h1e-12_w1e-13 start 2026-11-23 14:27:49
+scan A_M_box_M3x1_h1e-12_w1e-13_stdout command: cd /Users/nathan/Source/choptuik-large-d-1079/solver/proof && nice -n 10 /Users/nathan/Source/venv-macm3-1058b/bin/python certify_M.py box 3 --centre=data/A_M_refine_M3_x1.json --use_out --h=1e-12 --w=1e-13 --out=data/A_M_box_M3x1_h1e-12_w1e-13.json --log=logs/A_M_box_M3x1_h1e-12_w1e-13.log > logs/A_M_box_M3x1_h1e-12_w1e-13_stdout.log 2>&1
+scan A_M_box_M3x2_h1e-12_w1e-13_stdout end 2026-11-23 14:29:45 exit 0: box run M = 3: steps [718, 394, 64], 122 s
+scan A_M_krawczyk_M3x2_h1e-12_w1e-13 command: cd /Users/nathan/Source/choptuik-large-d-1079/solver/proof && nice -n 10 /Users/nathan/Source/venv-macm3-1058b/bin/python certify_M.py krawczyk --box=data/A_M_box_M3x2_h1e-12_w1e-13.json > logs/A_M_krawczyk_M3x2_h1e-12_w1e-13.log 2>&1
+scan A_M_krawczyk_M3x2_h1e-12_w1e-13 end 2026-11-23 14:29:45 exit 1:    C3       in [-0.00176331952481074, -0.00176331952035284]  (radius 2.23e-12)
+scan margins M3x2_h1e-12_w1e-13 exit 1: Krawczyk M = 3: K(X) in int X: False; relative margins -3.498, -5.767, -1.708, +0.207
+scan box M3x2_h1e-12_w1e-12 start 2026-11-23 14:29:45
+scan A_M_box_M3x2_h1e-12_w1e-12_stdout command: cd /Users/nathan/Source/choptuik-large-d-1079/solver/proof && nice -n 10 /Users/nathan/Source/venv-macm3-1058b/bin/python certify_M.py box 3 --centre=data/A_M_refine_M3_x2.json --use_out --h=1e-12 --w=1e-12 --out=data/A_M_box_M3x2_h1e-12_w1e-12.json --log=logs/A_M_box_M3x2_h1e-12_w1e-12.log > logs/A_M_box_M3x2_h1e-12_w1e-12_stdout.log 2>&1
+scan A_M_box_M3x1_h1e-12_w1e-13_stdout end 2026-11-23 14:29:52 exit 0: box run M = 3: steps [726, 397, 57], 123 s
+scan A_M_krawczyk_M3x1_h1e-12_w1e-13 command: cd /Users/nathan/Source/choptuik-large-d-1079/solver/proof && nice -n 10 /Users/nathan/Source/venv-macm3-1058b/bin/python certify_M.py krawczyk --box=data/A_M_box_M3x1_h1e-12_w1e-13.json > logs/A_M_krawczyk_M3x1_h1e-12_w1e-13.log 2>&1
+scan A_M_krawczyk_M3x1_h1e-12_w1e-13 end 2026-11-23 14:29:52 exit 1:    C3       in [0.0117800438447859, 0.0117800438522258]  (radius 3.72e-12)
+scan margins M3x1_h1e-12_w1e-13 exit 1: Krawczyk M = 3: K(X) in int X: False; relative margins -73.638, -49.730, +0.596, +0.688
+scan box M3x1_h1e-12_w1e-12 start 2026-11-23 14:29:52
+scan A_M_box_M3x1_h1e-12_w1e-12_stdout command: cd /Users/nathan/Source/choptuik-large-d-1079/solver/proof && nice -n 10 /Users/nathan/Source/venv-macm3-1058b/bin/python certify_M.py box 3 --centre=data/A_M_refine_M3_x1.json --use_out --h=1e-12 --w=1e-12 --out=data/A_M_box_M3x1_h1e-12_w1e-12.json --log=logs/A_M_box_M3x1_h1e-12_w1e-12.log > logs/A_M_box_M3x1_h1e-12_w1e-12_stdout.log 2>&1
+scan A_M_box_M3x2_h1e-12_w1e-12_stdout end 2026-11-23 14:31:48 exit 0: box run M = 3: steps [718, 394, 64], 123 s
+scan A_M_krawczyk_M3x2_h1e-12_w1e-12 command: cd /Users/nathan/Source/choptuik-large-d-1079/solver/proof && nice -n 10 /Users/nathan/Source/venv-macm3-1058b/bin/python certify_M.py krawczyk --box=data/A_M_box_M3x2_h1e-12_w1e-12.json > logs/A_M_krawczyk_M3x2_h1e-12_w1e-12.log 2>&1
+scan A_M_krawczyk_M3x2_h1e-12_w1e-12 end 2026-11-23 14:31:48 exit 1:    C3       in [-0.00176331952512257, -0.00176331952004101]  (radius 2.54e-12)
+scan margins M3x2_h1e-12_w1e-12 exit 1: Krawczyk M = 3: K(X) in int X: False; relative margins -4.071, -6.760, +0.708, +0.912
+scan box M3x2_h1e-13_w1e-15 start 2026-11-23 14:31:48
+scan A_M_box_M3x2_h1e-13_w1e-15_stdout command: cd /Users/nathan/Source/choptuik-large-d-1079/solver/proof && nice -n 10 /Users/nathan/Source/venv-macm3-1058b/bin/python certify_M.py box 3 --centre=data/A_M_refine_M3_x2.json --use_out --h=1e-13 --w=1e-15 --out=data/A_M_box_M3x2_h1e-13_w1e-15.json --log=logs/A_M_box_M3x2_h1e-13_w1e-15.log > logs/A_M_box_M3x2_h1e-13_w1e-15_stdout.log 2>&1
+scan A_M_box_M3x1_h1e-12_w1e-12_stdout end 2026-11-23 14:31:56 exit 0: box run M = 3: steps [726, 397, 57], 124 s
+scan A_M_krawczyk_M3x1_h1e-12_w1e-12 command: cd /Users/nathan/Source/choptuik-large-d-1079/solver/proof && nice -n 10 /Users/nathan/Source/venv-macm3-1058b/bin/python certify_M.py krawczyk --box=data/A_M_box_M3x1_h1e-12_w1e-12.json > logs/A_M_krawczyk_M3x1_h1e-12_w1e-12.log 2>&1
+scan A_M_krawczyk_M3x1_h1e-12_w1e-12 end 2026-11-23 14:31:56 exit 1:    C3       in [0.0117800438448000, 0.0117800438522117]  (radius 3.71e-12)
+scan margins M3x1_h1e-12_w1e-12 exit 1: Krawczyk M = 3: K(X) in int X: False; relative margins -73.332, -49.543, +0.960, +0.969
+scan box M3x1_h1e-13_w1e-15 start 2026-11-23 14:31:56
+scan A_M_box_M3x1_h1e-13_w1e-15_stdout command: cd /Users/nathan/Source/choptuik-large-d-1079/solver/proof && nice -n 10 /Users/nathan/Source/venv-macm3-1058b/bin/python certify_M.py box 3 --centre=data/A_M_refine_M3_x1.json --use_out --h=1e-13 --w=1e-15 --out=data/A_M_box_M3x1_h1e-13_w1e-15.json --log=logs/A_M_box_M3x1_h1e-13_w1e-15.log > logs/A_M_box_M3x1_h1e-13_w1e-15_stdout.log 2>&1
+scan A_M_box_M3x2_h1e-13_w1e-15_stdout end 2026-11-23 14:33:50 exit 0: box run M = 3: steps [718, 394, 64], 123 s
+scan A_M_krawczyk_M3x2_h1e-13_w1e-15 command: cd /Users/nathan/Source/choptuik-large-d-1079/solver/proof && nice -n 10 /Users/nathan/Source/venv-macm3-1058b/bin/python certify_M.py krawczyk --box=data/A_M_box_M3x2_h1e-13_w1e-15.json > logs/A_M_krawczyk_M3x2_h1e-13_w1e-15.log 2>&1
+scan A_M_krawczyk_M3x2_h1e-13_w1e-15 end 2026-11-23 14:33:51 exit 1:    C3       in [-0.00176331952617747, -0.00176331951898611]  (radius 3.60e-12)
+scan margins M3x2_h1e-13_w1e-15 exit 1: Krawczyk M = 3: K(X) in int X: False; relative margins -65.970, -113.006, -373.630, -98.199
+scan box M3x2_h1e-13_w1e-14 start 2026-11-23 14:33:51
+scan A_M_box_M3x2_h1e-13_w1e-14_stdout command: cd /Users/nathan/Source/choptuik-large-d-1079/solver/proof && nice -n 10 /Users/nathan/Source/venv-macm3-1058b/bin/python certify_M.py box 3 --centre=data/A_M_refine_M3_x2.json --use_out --h=1e-13 --w=1e-14 --out=data/A_M_box_M3x2_h1e-13_w1e-14.json --log=logs/A_M_box_M3x2_h1e-13_w1e-14.log > logs/A_M_box_M3x2_h1e-13_w1e-14_stdout.log 2>&1
+scan A_M_box_M3x1_h1e-13_w1e-15_stdout end 2026-11-23 14:34:00 exit 0: box run M = 3: steps [726, 397, 57], 124 s
+scan A_M_krawczyk_M3x1_h1e-13_w1e-15 command: cd /Users/nathan/Source/choptuik-large-d-1079/solver/proof && nice -n 10 /Users/nathan/Source/venv-macm3-1058b/bin/python certify_M.py krawczyk --box=data/A_M_box_M3x1_h1e-13_w1e-15.json > logs/A_M_krawczyk_M3x1_h1e-13_w1e-15.log 2>&1
+scan A_M_krawczyk_M3x1_h1e-13_w1e-15 end 2026-11-23 14:34:00 exit 1:    C3       in [0.0117800438448370, 0.0117800438521747]  (radius 3.67e-12)
+scan margins M3x1_h1e-13_w1e-15 exit 1: Krawczyk M = 3: K(X) in int X: False; relative margins -735.647, -499.056, -39.021, -29.883
+scan box M3x1_h1e-13_w1e-14 start 2026-11-23 14:34:00
+scan A_M_box_M3x1_h1e-13_w1e-14_stdout command: cd /Users/nathan/Source/choptuik-large-d-1079/solver/proof && nice -n 10 /Users/nathan/Source/venv-macm3-1058b/bin/python certify_M.py box 3 --centre=data/A_M_refine_M3_x1.json --use_out --h=1e-13 --w=1e-14 --out=data/A_M_box_M3x1_h1e-13_w1e-14.json --log=logs/A_M_box_M3x1_h1e-13_w1e-14.log > logs/A_M_box_M3x1_h1e-13_w1e-14_stdout.log 2>&1
+scan A_M_box_M3x2_h1e-13_w1e-14_stdout end 2026-11-23 14:35:54 exit 0: box run M = 3: steps [718, 394, 64], 123 s
+scan A_M_krawczyk_M3x2_h1e-13_w1e-14 command: cd /Users/nathan/Source/choptuik-large-d-1079/solver/proof && nice -n 10 /Users/nathan/Source/venv-macm3-1058b/bin/python certify_M.py krawczyk --box=data/A_M_box_M3x2_h1e-13_w1e-14.json > logs/A_M_krawczyk_M3x2_h1e-13_w1e-14.log 2>&1
+scan A_M_krawczyk_M3x2_h1e-13_w1e-14 end 2026-11-23 14:35:54 exit 1:    C3       in [-0.00176331952617441, -0.00176331951898917]  (radius 3.59e-12)
+scan margins M3x2_h1e-13_w1e-14 exit 1: Krawczyk M = 3: K(X) in int X: False; relative margins -65.910, -112.907, -36.458, -8.920
+scan box M3x2_h1e-13_w1e-13 start 2026-11-23 14:35:54
+scan A_M_box_M3x2_h1e-13_w1e-13_stdout command: cd /Users/nathan/Source/choptuik-large-d-1079/solver/proof && nice -n 10 /Users/nathan/Source/venv-macm3-1058b/bin/python certify_M.py box 3 --centre=data/A_M_refine_M3_x2.json --use_out --h=1e-13 --w=1e-13 --out=data/A_M_box_M3x2_h1e-13_w1e-13.json --log=logs/A_M_box_M3x2_h1e-13_w1e-13.log > logs/A_M_box_M3x2_h1e-13_w1e-13_stdout.log 2>&1
+scan A_M_box_M3x1_h1e-13_w1e-14_stdout end 2026-11-23 14:36:05 exit 0: box run M = 3: steps [726, 397, 57], 124 s
+scan A_M_krawczyk_M3x1_h1e-13_w1e-14 command: cd /Users/nathan/Source/choptuik-large-d-1079/solver/proof && nice -n 10 /Users/nathan/Source/venv-macm3-1058b/bin/python certify_M.py krawczyk --box=data/A_M_box_M3x1_h1e-13_w1e-14.json > logs/A_M_krawczyk_M3x1_h1e-13_w1e-14.log 2>&1
+scan A_M_krawczyk_M3x1_h1e-13_w1e-14 end 2026-11-23 14:36:05 exit 1:    C3       in [0.0117800438448370, 0.0117800438521746]  (radius 3.67e-12)
+scan margins M3x1_h1e-13_w1e-14 exit 1: Krawczyk M = 3: K(X) in int X: False; relative margins -735.628, -499.056, -3.002, -2.088
+scan box M3x1_h1e-13_w1e-13 start 2026-11-23 14:36:05
+scan A_M_box_M3x1_h1e-13_w1e-13_stdout command: cd /Users/nathan/Source/choptuik-large-d-1079/solver/proof && nice -n 10 /Users/nathan/Source/venv-macm3-1058b/bin/python certify_M.py box 3 --centre=data/A_M_refine_M3_x1.json --use_out --h=1e-13 --w=1e-13 --out=data/A_M_box_M3x1_h1e-13_w1e-13.json --log=logs/A_M_box_M3x1_h1e-13_w1e-13.log > logs/A_M_box_M3x1_h1e-13_w1e-13_stdout.log 2>&1
+scan A_M_box_M3x2_h1e-13_w1e-13_stdout end 2026-11-23 14:37:57 exit 0: box run M = 3: steps [718, 394, 64], 123 s
+scan A_M_krawczyk_M3x2_h1e-13_w1e-13 command: cd /Users/nathan/Source/choptuik-large-d-1079/solver/proof && nice -n 10 /Users/nathan/Source/venv-macm3-1058b/bin/python certify_M.py krawczyk --box=data/A_M_box_M3x2_h1e-13_w1e-13.json > logs/A_M_krawczyk_M3x2_h1e-13_w1e-13.log 2>&1
+scan A_M_krawczyk_M3x2_h1e-13_w1e-13 end 2026-11-23 14:37:57 exit 1:    C3       in [-0.00176331952618065, -0.00176331951898293]  (radius 3.60e-12)
+scan margins M3x2_h1e-13_w1e-13 exit 1: Krawczyk M = 3: K(X) in int X: False; relative margins -66.031, -113.108, -2.747, +0.007
+scan box M3x2_h1e-13_w1e-12 start 2026-11-23 14:37:57
+scan A_M_box_M3x2_h1e-13_w1e-12_stdout command: cd /Users/nathan/Source/choptuik-large-d-1079/solver/proof && nice -n 10 /Users/nathan/Source/venv-macm3-1058b/bin/python certify_M.py box 3 --centre=data/A_M_refine_M3_x2.json --use_out --h=1e-13 --w=1e-12 --out=data/A_M_box_M3x2_h1e-13_w1e-12.json --log=logs/A_M_box_M3x2_h1e-13_w1e-12.log > logs/A_M_box_M3x2_h1e-13_w1e-12_stdout.log 2>&1
+scan A_M_box_M3x1_h1e-13_w1e-13_stdout end 2026-11-23 14:38:09 exit 0: box run M = 3: steps [726, 397, 57], 124 s
+scan A_M_krawczyk_M3x1_h1e-13_w1e-13 command: cd /Users/nathan/Source/choptuik-large-d-1079/solver/proof && nice -n 10 /Users/nathan/Source/venv-macm3-1058b/bin/python certify_M.py krawczyk --box=data/A_M_box_M3x1_h1e-13_w1e-13.json > logs/A_M_krawczyk_M3x1_h1e-13_w1e-13.log 2>&1
+scan A_M_krawczyk_M3x1_h1e-13_w1e-13 end 2026-11-23 14:38:09 exit 1:    C3       in [0.0117800438448365, 0.0117800438521752]  (radius 3.67e-12)
+scan margins M3x1_h1e-13_w1e-13 exit 1: Krawczyk M = 3: K(X) in int X: False; relative margins -735.743, -499.118, +0.600, +0.691
+scan box M3x1_h1e-13_w1e-12 start 2026-11-23 14:38:09
+scan A_M_box_M3x1_h1e-13_w1e-12_stdout command: cd /Users/nathan/Source/choptuik-large-d-1079/solver/proof && nice -n 10 /Users/nathan/Source/venv-macm3-1058b/bin/python certify_M.py box 3 --centre=data/A_M_refine_M3_x1.json --use_out --h=1e-13 --w=1e-12 --out=data/A_M_box_M3x1_h1e-13_w1e-12.json --log=logs/A_M_box_M3x1_h1e-13_w1e-12.log > logs/A_M_box_M3x1_h1e-13_w1e-12_stdout.log 2>&1
+scan A_M_box_M3x2_h1e-13_w1e-12_stdout end 2026-11-23 14:40:01 exit 0: box run M = 3: steps [718, 394, 64], 124 s
+scan A_M_krawczyk_M3x2_h1e-13_w1e-12 command: cd /Users/nathan/Source/choptuik-large-d-1079/solver/proof && nice -n 10 /Users/nathan/Source/venv-macm3-1058b/bin/python certify_M.py krawczyk --box=data/A_M_box_M3x2_h1e-13_w1e-12.json > logs/A_M_krawczyk_M3x2_h1e-13_w1e-12.log 2>&1
+scan A_M_krawczyk_M3x2_h1e-13_w1e-12 end 2026-11-23 14:40:01 exit 1:    C3       in [-0.00176331952609828, -0.00176331951906530]  (radius 3.52e-12)
+scan margins M3x2_h1e-13_w1e-12 exit 1: Krawczyk M = 3: K(X) in int X: False; relative margins -69.248, -107.264, +0.684, +0.898
+scan zero x2 done 2026-11-23 14:40:01
+scan A_M_box_M3x1_h1e-13_w1e-12_stdout end 2026-11-23 14:40:13 exit 0: box run M = 3: steps [726, 397, 57], 124 s
+scan A_M_krawczyk_M3x1_h1e-13_w1e-12 command: cd /Users/nathan/Source/choptuik-large-d-1079/solver/proof && nice -n 10 /Users/nathan/Source/venv-macm3-1058b/bin/python certify_M.py krawczyk --box=data/A_M_box_M3x1_h1e-13_w1e-12.json > logs/A_M_krawczyk_M3x1_h1e-13_w1e-12.log 2>&1
+scan A_M_krawczyk_M3x1_h1e-13_w1e-12 end 2026-11-23 14:40:13 exit 1:    C3       in [0.0117800438448339, 0.0117800438521778]  (radius 3.67e-12)
+scan margins M3x1_h1e-13_w1e-12 exit 1: Krawczyk M = 3: K(X) in int X: False; relative margins -736.255, -499.484, +0.960, +0.969
+scan zero x1 done 2026-11-23 14:40:13
+scan done 2026-11-23 14:40:13
