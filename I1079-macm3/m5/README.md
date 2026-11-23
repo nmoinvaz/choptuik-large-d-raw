@@ -50,6 +50,41 @@ x1 and x2 are the first and second excited zeros of #1079 (orientation +1), p̂ 
 | `inputs/` | the two box files, `zeros_M1.md` of I995-mac/m1b (blob 91635eb89d12), the stored M = 5 selection log |
 | `walks/`, `logs/`, `exits_1080.txt`, `memlog_1080.log` | one JSON per walk, each solve's and walk's log, exits, the sampler |
 
+## The extended-precision walks (the coordinator's rule, copied before the run)
+
+From #1080's comment 7111416293, copied verbatim here at 2026-11-23 19:20 UTC, before any walk ran. The exploratory folders (`explore/`, `explore_mp/`) are not readings; the walks below are, under this rule. His message with the order: start x1's walk now (5 processes at nice 10 beside x2's start rerun) on a0441d8b, stop x1's undamped start (176daf53), x2's walk the same way after x2's start converges, and after each located end `value_mp.py pointv <A> <WF> --M=5 --v=<last v> --r1=0.2`; report each iteration's |R|, |R|/sigma and step.
+
+> **The extended-precision M = 5 walk: rule fixed before it runs** (coordinator, 2026-11-23 19:30 UTC)
+>
+> **Code:** `feat/inner-mp` a0441d8b.
+> - `value_mp.value_v` solves r₃ = r₅ = 0 for (B₃, C₃, B₅, C₅) at 34 and 42 digits, with step halving for M > 3.
+> - `zero_mp.py A WF - OUT --M=5 --v0=...` runs Newton in (A, ω/ω∞) on R₁, by central differences, 5 values per iteration.
+> - **Validation:** at the certified M = 5 fundamental zero, `value_v` converges to |r₃|, |r₅| < 3×10⁻³³ with B₃..C₅ inside Theorem A(5)'s box (Mac, 2293 s). At the first excited zero it converges from macm3's float64 stall: |r₃| 1.9×10⁻²⁸, max|Y| 1.16 (comment 7111397278).
+>
+> **Runs:**
+> 1. **Control (dh370, 5 processes):** the walk from the fundamental's M = 3 zero, `2.726475885672135 1.0156030949093042` with v₀ = (B₃, C₃, 0, 0) = (0.1444194785, 0.0110874259, 0, 0). **It passes** when it ends "located" within 10⁻¹⁰ of Theorem A(5)'s box centre (2.71857918921174, 0.999228403206568).
+> 2. **x1 (macm3, 5 processes):** from x1's M = 3 (A, ω/ω∞) with v₀ = x1fm's solved v.
+> 3. **x2 (macm3):** the same, once x2's start solve converges.
+>
+> **Reading for each excited zero.** It persists at M = 5 when all three hold:
+> - (i) its walk ends "located" (`zero_mp`'s rule);
+> - (ii) the located point also gives |R₁| < 10³ σ at r₁ 0.2 (`value_mp.py pointv --r1=0.2` with the walk's last v), so it does not depend on the radius;
+> - (iii) its M = 3 → 5 shift is smaller than its M = 1 → 3 shift (0.140 for x1, 0.210 for x2).
+>
+> It fails when the walk diverges or stalls without being located, or the shift is larger. |F₅|/|F₃| is reported at each located zero (the fundamental's is about 0.06). A reading counts only if the control passes.
+
+How the code applies it (`run_walk_mp.sh`, `walk_report.py`): "located" is `zero_mp.py`'s own rule (exit 0: the last |R| under 1e3 sigma_mp, or the next step under 1e-13 with |R| what that step removes); (ii) is `value_mp.py pointv` at the located walk's last (A, w/w_inf) and last v with `--r1=0.2`, then |R_1| against 1e3 sigma; (iii) is the Euclidean norm in (A, w/w_inf) from the box centre to the walk's last point (`walk_report.py shift`), against 0.14035 (x1) and 0.20993 (x2). The located point is the last row's (A, w/w_inf), the centre of the last iteration, not the point after its unapplied step. The control is the coordinator's, on dh370; I do not run it, and no reading of mine counts until it passes.
+
+Commands, from `solver/inner_stokes` of the worktree \`~/Source/choptuik-large-d-1080mp2\` at a0441d8b (no tracked changes), venv \`~/Source/venv-macm3-1058b\`, nice 10, detached under \`caffeinate -is\`:
+```
+python3 zero_mp.py selftest ; python3 zero_mp.py selftest --mutate=sign        (the first lands, the second must fail)
+python3 zero_mp.py 3.446218246366727 0.347606965217407 - m5/walk_x1.jsonl --M=5 --v0=<x1fm's solved v, full digits> --procs=5 --iters=8
+python3 value_mp.py pointv <A> <WF> --M=5 --v=<last v> --r1=0.2          (only after a located end)
+```
+x1's undamped start on 176daf53 was stopped at 19:19 UTC after 63 CPU minutes with no result, by the order above. Its log is \`explore_mp/logs/pointv_x1.log\` (the command only).
+
+Files: \`run_walk_mp.sh\`, \`walk_report.py\`, \`walk_x1.jsonl\` (one row per iteration), \`logs/walk_x1.log\`, \`logs/walk_x1_table.md\`, \`logs/pointv_r0.2_x1.log\`, \`exits_walk.txt\`, \`memlog_walk.log\`.
+
 ## Results
 
 Run: 2026-11-23 17:34:10 to 2026-11-23 17:35:09 UTC under `caffeinate -is` (59 s wall; the control's walk wall 48 s); the machine was awake throughout. The sampler wrote 1 line (the run is shorter than its 60 s interval): load 1.18, 14.5 GB free or inactive at the start; the peak resident memory of the solves was not recorded. No Traceback in any log. `logs/report.md` is the driver's first report, `logs/report_final.md` the same with the start-solve table.
