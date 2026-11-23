@@ -90,3 +90,4 @@ The k_c effect on Linux (k_c 79 to k_c 87, same build): **-0.000968**. The build
 - 2026-11-23 06:58:00 to 06:58:48 UTC: round 2 and the driver's reading finished.
 - 2026-11-23 06:59:24 UTC: result written (this section).
 - 2026-11-23 06:59:41 UTC: corrected the lowest MemAvailable (19.2 GiB scan, 25.8 GiB regrid, not 21 to 22) and the ETA wording in the Result section (the first push 23f38e01 had them wrong).
+- 2026-11-23 08:51:10 UTC: `blas_config.txt` added at t5's request (OpenBLAS core type, numpy.show_config, scipy version, lscpu model of dh170, read-only, run under nice 19 beside the kc79_d20 scan): OpenBLAS 0.3.34.106.0 (scipy-openblas64, DYNAMIC_ARCH), `Core: Haswell`, numpy 2.5.4, scipy 1.18.1, Python 3.14.10, Intel Core i7-7700, OPENBLAS_CORETYPE unset.
