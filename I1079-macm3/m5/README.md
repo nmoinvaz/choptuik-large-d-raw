@@ -85,6 +85,8 @@ x1's undamped start on 176daf53 was stopped at 19:19 UTC after 63 CPU minutes wi
 
 Files: `run_walk_mp.sh`, `walk_report.py`, `walk_x1.jsonl` (one row per iteration), `logs/walk_x1.log`, `logs/walk_x1_table.md`, `logs/pointv_r0.2_x1.log`, `exits_walk.txt`, `memlog_walk.log`.
 
+**x1's walk, iteration 0 and the stop (2026-11-23).** Started 19:20:58 UTC. Row 0 landed at 23:47:09 UTC (`walk_x1.jsonl`, `logs/walk_x1_table.md`): |R_1| 3.540e5, sigma 5.17e-18, |R_1|/sigma 6.85e22, valued 5 of 5, orientation -1, step (dA, dw) = (-0.09815, -0.09679), norm 0.1378; the five points took 3.12, 3.80, 2.85, 4.44 and 3.58 h (17.8 CPU-h in all). By the coordinator's order ("report it and stop it there") the walk was then stopped with TERM at 23:47 UTC (`zero_mp` exit 143, no `pointv`, line in `exits_walk.txt`; `wait_row_stop` in the scratchpad did it). That is not a reading: the walk did not end, diverge or stall, and iteration 1 was not run.
+
 ## Results
 
 Run: 2026-11-23 17:34:10 to 2026-11-23 17:35:09 UTC under `caffeinate -is` (59 s wall; the control's walk wall 48 s); the machine was awake throughout. The sampler wrote 1 line (the run is shorter than its 60 s interval): load 1.18, 14.5 GB free or inactive at the start; the peak resident memory of the solves was not recorded. No Traceback in any log. `logs/report.md` is the driver's first report, `logs/report_final.md` the same with the start-solve table.
