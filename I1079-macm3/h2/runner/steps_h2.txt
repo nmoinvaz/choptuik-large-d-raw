@@ -1,0 +1,20 @@
+h2 pilot exc1 2026-11-23 17:09:17 start: box M3x1E2_h1e-12_w1e-13; python-flint 0.9.0 FLINT 3.6.0, Python 3.14.3; p^ = 3.4462182463667271490386733954779389341791395421154,0.34760696521740738663621806885938050845968811925454,0.80541758638529232157836211658860517241492322884730,0.011780043848505832311374493364082518021457993309432
+h2 pilot exc1 2026-11-23 17:09:17 I1079_h2_probe_exc1 command: cd /Users/nathan/Source/choptuik-large-d-1079f/solver/proof && nice -n 10 /Users/nathan/Source/venv-macm3-1058b/bin/python -u lemma6b1_cover_M.py probe --M=3 --x=<p^ of M3x1E2_h1e-12_w1e-13> --h=1e-11 --tag=_exc1  > logs/I1079_h2_probe_exc1.log 2>&1
+h2 pilot exc1 2026-11-23 17:09:17 I1079_h2_ray_exc1 command: cd /Users/nathan/Source/choptuik-large-d-1079f/solver/proof && nice -n 10 /Users/nathan/Source/venv-macm3-1058b/bin/python -u lemma6b1_cover_M.py ray --M=3 --x=<p^ of M3x1E2_h1e-12_w1e-13> --h=1e-11 --tag=_exc1 --c1 > logs/I1079_h2_ray_exc1.log 2>&1
+h2 pilot exc2 2026-11-23 17:09:17 start: box M3x2E2_h1e-12_w1e-12; python-flint 0.9.0 FLINT 3.6.0, Python 3.14.3; p^ = 3.5264730566957154968386691933035772573627933502264,0.21149798139121541465218943962051773587658863581106,0.97650854519761854166002136860612262563508481396147,-0.0017633195225817898068793573792090220370241237083214
+h2 pilot exc2 2026-11-23 17:09:17 I1079_h2_probe_exc2 command: cd /Users/nathan/Source/choptuik-large-d-1079f/solver/proof && nice -n 10 /Users/nathan/Source/venv-macm3-1058b/bin/python -u lemma6b1_cover_M.py probe --M=3 --x=<p^ of M3x2E2_h1e-12_w1e-12> --h=1e-11 --tag=_exc2  > logs/I1079_h2_probe_exc2.log 2>&1
+h2 pilot exc2 2026-11-23 17:09:17 I1079_h2_ray_exc2 command: cd /Users/nathan/Source/choptuik-large-d-1079f/solver/proof && nice -n 10 /Users/nathan/Source/venv-macm3-1058b/bin/python -u lemma6b1_cover_M.py ray --M=3 --x=<p^ of M3x2E2_h1e-12_w1e-12> --h=1e-11 --tag=_exc2 --c1 > logs/I1079_h2_ray_exc2.log 2>&1
+h2 pilot exc2 2026-11-23 17:09:37 I1079_h2_probe_exc2 end exit 0, 20 s: probe M = 3 row 11 |u| = 26.98 (axis): r = 6, n = 60: ok True, Lam 0.110, sup 5.39  [0 s]
+h2 pilot exc2 2026-11-23 17:09:37 process A (probe) done
+h2 pilot exc1 2026-11-23 17:09:37 I1079_h2_probe_exc1 end exit 0, 20 s: probe M = 3 row 11 |u| = 26.98 (axis): r = 6, n = 60: ok True, Lam 0.109, sup 4.86  [0 s]
+h2 pilot exc1 2026-11-23 17:09:37 process A (probe) done
+h2 pilot exc2 2026-11-23 17:10:12 I1079_h2_ray_exc2 end exit 0, 55 s: ray |u| 36.04 -> 26.98: 63 steps, 5 s, state set over X radius 2.75e-10
+h2 pilot exc2 2026-11-23 17:10:12 I1079_h2_row11_exc2 command: cd /Users/nathan/Source/choptuik-large-d-1079f/solver/proof && nice -n 10 /Users/nathan/Source/venv-macm3-1058b/bin/python -u lemma6b1_cover_M.py row --M=3 --x=<p^ of M3x2E2_h1e-12_w1e-12> --h=1e-11 --tag=_exc2 --j=11 > logs/I1079_h2_row11_exc2.log 2>&1
+h2 pilot exc1 2026-11-23 17:10:17 I1079_h2_ray_exc1 end exit 0, 60 s: ray |u| 36.04 -> 26.98: 75 steps, 6 s, state set over X radius 3.59e-10
+h2 pilot exc1 2026-11-23 17:10:17 I1079_h2_row11_exc1 command: cd /Users/nathan/Source/choptuik-large-d-1079f/solver/proof && nice -n 10 /Users/nathan/Source/venv-macm3-1058b/bin/python -u lemma6b1_cover_M.py row --M=3 --x=<p^ of M3x1E2_h1e-12_w1e-13> --h=1e-11 --tag=_exc1 --j=11 > logs/I1079_h2_row11_exc1.log 2>&1
+h2 pilot exc2 2026-11-23 17:11:01 I1079_h2_row11_exc2 end exit 0, 49 s: M = 3 row 11 (|u| = 26.98, r = 6, n = 50) disc 11/11: ok True, Lam 0.131, box radius 2.4e-10, sup|y - y0| 5.394, 518 Lohner steps [48 s]
+h2 pilot exc2 2026-11-23 17:11:01 process B (ray, row 11) done
+h2 pilot exc2 2026-11-23 17:11:01 pilot done
+h2 pilot exc1 2026-11-23 17:11:10 I1079_h2_row11_exc1 end exit 0, 53 s: M = 3 row 11 (|u| = 26.98, r = 6, n = 50) disc 11/11: ok True, Lam 0.130, box radius 2.0e-10, sup|y - y0| 4.86, 582 Lohner steps [54 s]
+h2 pilot exc1 2026-11-23 17:11:10 process B (ray, row 11) done
+h2 pilot exc1 2026-11-23 17:11:10 pilot done
