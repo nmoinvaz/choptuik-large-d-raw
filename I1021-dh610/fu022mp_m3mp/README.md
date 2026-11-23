@@ -41,3 +41,4 @@ Progress pushes are snapshots of a cache an argcount process is appending to, so
 
 ## Status
 - 2026-11-23 09:34:55 UTC: folder, inputs, lane and summarizer prepared before any run. The reproducibility test of `../../I1025-dh610/repro_d1975` runs beside this: up to 8 threads of it and 12 of this, 20 in all, all at nice 10.
+- 2026-11-23 10:16 UTC: **the recount stopped at once, exit 1, wall 0 s, cache unchanged (3605 lines)**, after the preflight printed "m3mp check: PASS" (10:15:57 UTC; 40 min: the two points valued in 1226 s and 2449 s). Cause: `argcount.py` line 359 at 58108b67 passes `repr(p[0])` of the walk's numpy float64 to `value_mp`, and under numpy 2 that is the string `np.float64(3.3185956)`, which mpmath cannot parse; the preflight's points are Python floats. Details in `logs/recount_failure.txt` and `logs/recount.log`, the proposed one-line change in `m3mp_float.diff` (not applied; the worktree is clean at 58108b67). Waiting for the coordinator.

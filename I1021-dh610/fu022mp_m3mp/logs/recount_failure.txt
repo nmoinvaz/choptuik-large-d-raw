@@ -1,0 +1,5 @@
+#1076 fu022mp_m3mp: the recount stopped at once (exit 1, wall 0 s, cache unchanged at 3605 lines), 2026-11-23 10:15:57 UTC, after the preflight printed "m3mp check: PASS" (10:15:57; the preflight took 40 min: its two points valued in 1226 s and 2449 s).
+The traceback is in recount.log. Cause: argcount.py line 359 (Multiplier.mp_batch at 58108b67) builds value_mp's arguments with repr(p[0]), repr(p[1]), repr(r["F3re"]), repr(r["F3im"]). A point p of the walk is a numpy float64,
+and under numpy 2 (here 2.5.4, the requirements.txt pin) repr(np.float64(3.3185956)) is the string 'np.float64(3.3185956)', which mpmath.mpf cannot parse ("ValueError: could not convert string to float: 'np.float64(3.3185956)'").
+m3mp_check.py passed because its two points are Python floats (P = [(3.3185956, 0.2250978975), (3.2248456, 1.08154321)]), whose repr is the plain number. The path through the walk's numpy points had no check.
+The proposed change (m3mp_float.diff, applies to 58108b67): repr(float(...)) for the four arguments; for a Python float it gives the same string the preflight ran on. Not applied: the worktree ~/Source/choptuik-large-d-1076 is still clean at 58108b67.

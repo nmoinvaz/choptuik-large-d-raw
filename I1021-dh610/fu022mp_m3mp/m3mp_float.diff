@@ -1,0 +1,11 @@
+--- a/solver/inner_stokes/argcount.py
++++ b/solver/inner_stokes/argcount.py
+@@ -356,7 +356,7 @@ class Multiplier:
+         args = []
+         for p in pts:
+             r = self.extra[self.key(p)]
+-            args.append(((repr(p[0]), repr(p[1]), repr(r["F3re"]), repr(r["F3im"])), kw))
++            args.append(((repr(float(p[0])), repr(float(p[1])), repr(float(r["F3re"])), repr(float(r["F3im"]))), kw))
+         if self.procs > 1:
+             if self.pool is None:
+                 import multiprocessing as mp_
