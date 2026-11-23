@@ -1,6 +1,6 @@
 # I1025-win/kc87_d19: k_c 87 at D 19, regridded from my own k_c 79 D 19 state, then a scan (winb)
 
-Written before the run, 2026-11-23 05:11:38 UTC (substituted from `date -u` when pushed). Nothing has been run for this folder yet.
+Written before the run, 2026-11-23 07:28:11 UTC (substituted from `date -u` when pushed). Nothing has been run for this folder yet.
 
 Runner: the winb session (surface-laptop-4, 4 cores, 8 threads, 32 GB), the same one that ran `../kc79_d19/` (the k_c 79 D 19 regrid and first scan), `../kc79_d19low/` (raw 40f1a01a) and `../kc79_d19gap/` (raw fee69df5). The coordinator is t5.
 
@@ -73,17 +73,50 @@ Started outside my terminal: `Win32_Process.Create` of `conhost.exe --headless c
 
 ## Status
 
-**Step 1 running since 2026-11-23 05:11:06 UTC** (the chain started through `Win32_Process.Create` of `conhost.exe --headless cmd.exe /c go_kc87d19_1025.cmd`). README first: c83d0fbd (pushed before the start).
+**Step 1 done: ACCEPTED 2026-11-23 07:24:14 UTC** (regrid 05:11:17 to 07:24:02 UTC, exit 0, wall 7965 s). **Step 2 (the scan) started by itself 07:25:25 UTC.** README first: c83d0fbd; start status 265b7c59.
 
-- **Chain** (`rows/launcher_pid_regrid.txt`: 10344): conhost --headless 10344 <- cmd 24168 <- regrid driver launcher 23684 and driver 14860 <- sampler 6216, alert-only watcher 25260, keep-awake helper 13972 (interpreter 25876), and the checks and the regrid below it. The python and powershell processes are BelowNormal.
-- **Session check** (`session_check_regrid.txt`, exit 0, taken while the source checks ran): no `claude` in any chain, no Windows Terminal / OpenConsole / wt, a headless conhost in the chain, every chain ends wininit.
-- **Before the checks:** the pins matched, the selftests of both checks exited 0 (`selftest_kc87_syscheck.txt`, `selftest_kc79_syscheck.txt`).
-- **Keep-awake:** helper 25876 set `SetThreadExecutionState(ES_CONTINUOUS | ES_SYSTEM_REQUIRED)` at 05:11:07 UTC (returned 0x80000000) and holds it until the regrid driver pid 14860 ends (`rows/regrid_keepawake.log`); the scan driver starts its own.
-- **Machine at the start:** on AC (battery status 2, charge 100 %), clock 2995 MHz of 2995 MHz max, free physical memory 23.9 GB; beside it the other project's I114 job (`convergence.py 5`, two python processes, started 04:02 UTC; the I129 pair of the gap scan is gone). Not touched.
-- **ETA** (estimates above): the source checks finish about 05:30, the regrid about 07:40 UTC (range 07:15 to 08:15), the scan about 12:00 to 14:30 UTC (most likely about 13:00).
+- **Chain** (one headless conhost, `rows/launcher_pid_regrid.txt`: 10344 <- cmd 24168 <- driver 14860 for the regrid, then driver 9840 for the scan): scan driver 9840 <- sampler 21168, alert-only watcher 26144, keep-awake helper 24384 (interpreter 15764), scanner 13660 (venv launcher) and its worker 23816. Session check `session_check_scan.txt`: exit 0, no `claude` in any chain, no Windows Terminal / OpenConsole / wt, headless conhost yes, chains end wininit.
+- **Keep-awake:** the regrid's helper held `SetThreadExecutionState(ES_CONTINUOUS | ES_SYSTEM_REQUIRED)` from 05:11:07 to 07:25:37 UTC (cleared when driver 14860 ended); the scan's helper started 07:25:25 and holds until driver 9840 ends. No standby event 506/507 since 05:00 UTC; no regrid sampler gap over 62 s (130 stamps).
+- **Machine:** AC, clock 2995 MHz of 2995 max; the other project's I114 job (`convergence.py 5`) beside the run, not touched.
+- **ETA of the scan:** 10 points at about 1500 to 2200 s each: 4.2 to 6.1 h from 07:25 UTC, about 11:40 to 13:30 UTC (the regrid cost 1.42 times k_c 79's; if points cost the same factor, 1204 to 1695 s becomes 1700 to 2400 s).
 
-Pushed 2026-11-23 05:11:38 UTC.
+Pushed 2026-11-23 07:28:11 UTC.
 
 ## Result
 
-Not yet run.
+### Step 1: the regrid (ACCEPTED)
+
+`ell_refine.py l1kc79W19m1025 79 l1kc87wind19 87 1 19.0 2.1156378446 --kappa 0.7 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma`, cwd `choptuik-i1025k79/solver/matter` (48c36355), one process, 4 threads, BelowNormal, started through `conhost.exe --headless cmd.exe /c` outside my terminal.
+
+| item | k_c 79 at D 19 (source) | k_c 87 at D 19 (result) |
+|---|---|---|
+| \|F\| | 2.8482007333e-10 | 2.9006474406e-10 |
+| F_start | 8.701e-06 | 2.9922068e-06 |
+| steps | 2976 | 3276 |
+| constraint | 7.2755e-4 | 3.9191e-4 |
+| Delta | 1.0677704363070795 | 1.0677698834525378 |
+| wall s | 5595 | 7965 (record's seconds 7960) |
+| cpu s | 9425 | 13782 |
+| peak private GB | 2.48 | 2.94 |
+
+**Delta(k_c 87) minus Delta(k_c 79) = -5.528545417021746e-07** at D 19 (relative -5.18e-7). Information, not compared: win2's D 20 pair differs by -2.97e-6.
+
+Verdict (`regrid_summary.txt`, `syscheck*.txt`):
+
+| check | wanted | got |
+|---|---|---|
+| source, k_c 79 check | exit 0 | 0 |
+| source, k_c 79 check `--mutate=F`, `--mutate=steps` | 1, 1 | 1, 1 |
+| source, k_c 87 check | exit 1 (refuses) | 1 ("the record is not k_c 87 at D 19 (kc 79, D 19.0)") |
+| result, k_c 87 check | 0 | 0 ("ACCEPTED: the record class's \|F\| with a step count that comes back"; state \|F\| 2.9006474406e-10, `freeze_from` 3276 steps) |
+| result, k_c 87 selftest (after) | 0 | 0 |
+| result, `--mutate=F` / `--mutate=steps` | 1 / 1 | 1 / 1 (state \|F\| not within 1 % of 4.351e-10; 3276 against 3277) |
+| result, k_c 79 check | 1 (refuses) | 1 ("the record is not k_c 79 at D 19 (kc 87, D 19)") |
+
+Marker `regrid_accepted.txt` (written by the driver): `ACCEPTED 2026-11-23 07:24:14 UTC`, state blob 100f63f7, record blob 4fae1621 (the local files hash to those).
+
+Memory: lowest free physical memory 21.25 to 21.48 GB, 0 alerts; peak working set 2.64 GB, peak commit 13.2 GB. Standby: none. Estimates before the run: 2 to 2.5 h (t5: 2 to 4 h); it took 2.21 h.
+
+### Step 2: the scan
+
+Running; the result is written when it ends.
