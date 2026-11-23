@@ -1,0 +1,11 @@
+# pins for the k_c 95 regrid at D 19 from my accepted k_c 87 D 19 state, written 2026-11-23 12:39:34 UTC (git hash-object --no-filters on the local bytes, which the drivers check); the inputs/ files are copies
+kc87check 6df5d9600edebeae8cc4e602025e42e79925b7d6  I1025-dh610/kc87_d195/in/kc87_syscheck_1025.py (inputs/; the check that accepted my k_c 87 regrid, raw I1025-win/kc87_d19)
+kc95check d487e628f61d1accae8e09f7d1ad438c1d787883  I1025-dh610/kc95_d195/in/kc95_syscheck_1025.py (inputs/; the version dh610 used at D 19.5; equals the k_c 87 check with 3 changed lines, kc95_syscheck_1025_dh610.diff = raw I1025-dh610/kc95_d195/kc95_syscheck_1025.diff)
+scanner   e089207a61fbd98614716abd309571cbc4888db2  I1025-mac/d18/d18_hybsign.py (inputs/)
+import    7c9d400fd0966a35ac306b5495febb4ec4efe7da  I1025-mac/d18/d185_scan_read.py (inputs/)
+reader    89309d3c8e4f758bb5f936f7d24796b594e4cbdb  I1025-dh170/lower_root/read_lower.py (inputs/)
+state     100f63f7a2f9a3e3ee3ff845bfd791f3829da1b9  I1025-win/kc87_d19/sol_l1kc87wind19_D19.0000.npy (source; also the worktree's copy solver/matter/data/)
+record    4fae16215e65c687189e911af17976785f6aaf59  I1025-win/kc87_d19/l1kc87wind19.jsonl (source; also the worktree's copy)
+marker    3d80146944abb67be68a05bb4c7be81734b192f2  I1025-win/kc87_d19/regrid_accepted.txt
+worktree  48c36355d1ba64de4e3112ed968fd6c034384551  choptuik-i1025k79 (solver code 505d8399; ell_delta.py, ell_refine.py 48c36355; ell_refine.py blob 631e5801)
+lam0      2.115637844554127 (error 4.027e-08)  ell_delta.lam0_at(19.0, *lam0_table()), used as 2.1156378446 (unused with --no-gamma; t5's value, the same as the k_c 71 to 79 and 79 to 87 regrids at D 19)

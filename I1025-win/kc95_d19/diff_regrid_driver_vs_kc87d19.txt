@@ -1,0 +1,121 @@
+--- kc87d19_regrid_driver_1025.py
++++ kc95d19_regrid_driver_1025.py
+@@ -2,2 +2,2 @@
+-"""#1025 winb, the k_c 87 regrid at D 19 (t5's order, #1025 comment of 2026-11-23 05:10 UTC): my accepted k_c 79 D 19 state (raw I1025-win/kc79_d19, tag l1kc79W19m1025) is regridded to k_c 87 with
+-  ell_refine.py l1kc79W19m1025 79 l1kc87wind19 87 1 19.0 LAM0 --kappa 0.7 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma     (LAM0 = ell_delta.lam0_at(19.0, *lam0_table())[0] = 2.1156378446, unused with --no-gamma)
++"""#1025 winb, the k_c 95 regrid at D 19 (t5's order, #1025 comment of 2026-11-23 12:45 UTC): my accepted k_c 87 D 19 state (raw I1025-win/kc87_d19 at 3b833805, tag l1kc87wind19) is regridded to k_c 95 with
++  ell_refine.py l1kc87wind19 87 l1kc95wind19 95 1 19.0 LAM0 --kappa 0.7 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma     (LAM0 = ell_delta.lam0_at(19.0, *lam0_table())[0] = 2.1156378446, unused with --no-gamma)
+@@ -5,2 +5,3 @@
+-  1. pins: dh610's kc87_syscheck_1025.py (6df5d960, raw ec9fb489:I1025-dh610/kc87_d195/in/), its kc79_syscheck_1025.py (29dce7ea, equal to the one of the D 19 regrid), d18_hybsign.py, d185_scan_read.py, read_lower.py, the k_c 79 D 19 state,
+-     record and marker, the worktree (choptuik-i1025k79 at 48c36355, solver code 505d8399, ell_refine.py 631e5801) and its copies of the source state and record;
++  1. pins: dh610's kc87_syscheck_1025.py (6df5d960) and kc95_syscheck_1025.py (d487e628, the version dh610 used at D 19.5, raw I1025-dh610/kc95_d195/in/; the k_c 87 check with the k_c test changed to 95:
++     3 changed lines, its kc95_syscheck_1025.diff), d18_hybsign.py, d185_scan_read.py, read_lower.py, the k_c 87 D 19 state, record and marker, the worktree (choptuik-i1025k79 at 48c36355, solver code 505d8399,
++     ell_refine.py 631e5801) and its copies of the source state and record;
+@@ -8 +9 @@
+-  3. the SOURCE: the k_c 79 check accepts it (exit 0) and its --mutate=F and --mutate=steps exit 1; the k_c 87 check refuses it (exit 1);
++  3. the SOURCE: the k_c 87 check accepts it (exit 0) and its --mutate=F and --mutate=steps exit 1; the k_c 95 check refuses it (exit 1);
+@@ -10,2 +11,2 @@
+-  5. ACCEPTED only if kc87_syscheck_1025.py exits 0 on the result, its selftest exits 0, --mutate=F and --mutate=steps exit 1, and kc79_syscheck_1025.py refuses the result (exit 1).
+-The ACCEPTED marker regrid_accepted.txt (with the state and record blobs) is written from this python process; the scan driver starts only after it (go_kc87d19_1025.cmd). Memory: no guard, the alert-only watcher is a separate
++  5. ACCEPTED only if kc95_syscheck_1025.py exits 0 on the result, its selftest exits 0, --mutate=F and --mutate=steps exit 1, and kc87_syscheck_1025.py refuses the result (exit 1).
++The ACCEPTED marker regrid_accepted.txt (with the state and record blobs) is written from this python process; the scan driver starts only after it (go_kc95d19_1025.cmd). Memory: no guard, the alert-only watcher is a separate
+@@ -13 +14 @@
+-usage: kc87d19_regrid_driver_1025.py [--dry]     (--dry: pins and the two selftests only, nothing written outside rows/*.dry and the .dry logs, nothing started)"""
++usage: kc95d19_regrid_driver_1025.py [--dry]     (--dry: pins and the two selftests only, nothing written outside rows/*.dry and the .dry logs, nothing started)"""
+@@ -16,2 +17,2 @@
+-S = "C:/Users/nathan/Source/kc87d19_1025"
+-OUT = S + "/I1025-win/kc87_d19"
++S = "C:/Users/nathan/Source/kc95d19_1025"
++OUT = S + "/I1025-win/kc95_d19"
+@@ -19 +20 @@
+-SRCD = "C:/Users/nathan/Source/kc79d19_1025/I1025-win/kc79_d19"          # my accepted k_c 79 D 19 state, record and marker (raw I1025-win/kc79_d19)
++SRCD = "C:/Users/nathan/Source/kc87d19_1025/I1025-win/kc87_d19"          # my accepted k_c 87 D 19 state, record and marker (raw I1025-win/kc87_d19)
+@@ -26 +27 @@
+-SRC, TAG = "l1kc79W19m1025", "l1kc87wind19"
++SRC, TAG = "l1kc87wind19", "l1kc95wind19"
+@@ -30 +31 @@
+-PINS = [(IN + "/kc87_syscheck_1025.py", "6df5d9600edebeae8cc4e602025e42e79925b7d6"), (IN + "/kc79_syscheck_1025.py", "29dce7eab9677e568566a8ba05d7073109296a69"),
++PINS = [(IN + "/kc87_syscheck_1025.py", "6df5d9600edebeae8cc4e602025e42e79925b7d6"), (IN + "/kc95_syscheck_1025.py", "d487e628f61d1accae8e09f7d1ad438c1d787883"),
+@@ -32,3 +33,3 @@
+-        (SRCSTATE, "3a3b1999e1754c9c2e138ebf4d80f33a366abf3b"), (SRCREC, "9e197e492e1d77f0305cf767141dca2c9cc96ce7"), (SRCD + "/regrid_accepted.txt", "06aff278c98e1850d9fd1b2a47d7b962f79bfa26"),
+-        (WTM + f"/data/sol_{SRC}_D19.0000.npy", "3a3b1999e1754c9c2e138ebf4d80f33a366abf3b"), (WTM + f"/data/{SRC}.jsonl", "9e197e492e1d77f0305cf767141dca2c9cc96ce7")]
+-LOG = OUT + "/kc87_regrid_w.log" + (".dry" if DRY else "")
++        (SRCSTATE, "100f63f7a2f9a3e3ee3ff845bfd791f3829da1b9"), (SRCREC, "4fae16215e65c687189e911af17976785f6aaf59"), (SRCD + "/regrid_accepted.txt", "3d80146944abb67be68a05bb4c7be81734b192f2"),
++        (WTM + f"/data/sol_{SRC}_D19.0000.npy", "100f63f7a2f9a3e3ee3ff845bfd791f3829da1b9"), (WTM + f"/data/{SRC}.jsonl", "4fae16215e65c687189e911af17976785f6aaf59")]
++LOG = OUT + "/kc95_regrid_w.log" + (".dry" if DRY else "")
+@@ -36 +37 @@
+-SY87, SY79 = IN + "/kc87_syscheck_1025.py", IN + "/kc79_syscheck_1025.py"
++SY95, SY87 = IN + "/kc95_syscheck_1025.py", IN + "/kc87_syscheck_1025.py"
+@@ -54 +55 @@
+-    sh([HC, "send", COORD, f"winb ({datetime.datetime.now(datetime.timezone.utc):%H:%M} UTC), #1025 k_c 87 regrid at D 19: {m}"])
++    sh([HC, "send", COORD, f"winb ({datetime.datetime.now(datetime.timezone.utc):%H:%M} UTC), #1025 k_c 95 regrid at D 19: {m}"])
+@@ -85 +86 @@
+-say(f"kc87d19_regrid_driver_1025.py: the k_c 87 regrid at D 19 from my k_c 79 D 19 state{' (dry run)' if DRY else ''}; checking pins")
++say(f"kc95d19_regrid_driver_1025.py: the k_c 95 regrid at D 19 from my k_c 87 D 19 state{' (dry run)' if DRY else ''}; checking pins")
+@@ -100 +101 @@
+-say(f"pins ok (the inputs of {IN}, the k_c 79 D 19 files, worktree 48c36355 with solver code = 505d8399 and ell_delta/ell_refine = 48c36355); python {PY}")
++say(f"pins ok (the inputs of {IN}, the k_c 87 D 19 files, worktree 48c36355 with solver code = 505d8399 and ell_delta/ell_refine = 48c36355); python {PY}")
+@@ -103 +104,2 @@
+-st87, st79 = sh([PY, SY87, "--selftest"], env=env), sh([PY, SY79, "--selftest"], env=env)
++st95, st87 = sh([PY, SY95, "--selftest"], env=env), sh([PY, SY87, "--selftest"], env=env)
++open(OUT + "/selftest_kc95_syscheck.txt" + sfx, "w").write(st95.stdout + st95.stderr)
+@@ -105,3 +107,2 @@
+-open(OUT + "/selftest_kc79_syscheck.txt" + sfx, "w").write(st79.stdout + st79.stderr)
+-say(f"selftests: kc87_syscheck exit {st87.returncode}, kc79_syscheck exit {st79.returncode} (0 wanted each)")
+-if st87.returncode != 0 or st79.returncode != 0:
++say(f"selftests: kc95_syscheck exit {st95.returncode}, kc87_syscheck exit {st87.returncode} (0 wanted each)")
++if st95.returncode != 0 or st87.returncode != 0:
+@@ -110 +111 @@
+-    say(f"DRY: would start ell_refine.py {SRC} 79 {TAG} 87 1 19.0 {LAM0} --kappa 0.7 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma (cwd {WTM}, 4 threads, BelowNormal, cap {CAPRG} s); nothing started")
++    say(f"DRY: would start ell_refine.py {SRC} 87 {TAG} 95 1 19.0 {LAM0} --kappa 0.7 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma (cwd {WTM}, 4 threads, BelowNormal, cap {CAPRG} s); nothing started")
+@@ -115 +116 @@
+-wat = subprocess.Popen([PY, "-u", S + "/kc87d19_watch_alert_1025.py", str(os.getpid()), "regrid"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, stdin=subprocess.DEVNULL,
++wat = subprocess.Popen([PY, "-u", S + "/kc95d19_watch_alert_1025.py", str(os.getpid()), "regrid"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, stdin=subprocess.DEVNULL,
+@@ -128 +129 @@
+-    say("kc87d19_regrid_driver_1025.py done")
++    say("kc95d19_regrid_driver_1025.py done")
+@@ -135,2 +136,2 @@
+-for name, cmd in (("source_kc79_syscheck.txt", [PY, SY79, SRCREC, SRCSTATE, "19", WTM]), ("source_kc79_syscheck_mutate_F.txt", [PY, SY79, SRCREC, SRCSTATE, "19", WTM, "--mutate=F"]),
+-                  ("source_kc79_syscheck_mutate_steps.txt", [PY, SY79, SRCREC, SRCSTATE, "19", WTM, "--mutate=steps"]), ("source_kc87_syscheck.txt", [PY, SY87, SRCREC, SRCSTATE, "19", WTM])):
++for name, cmd in (("source_kc87_syscheck.txt", [PY, SY87, SRCREC, SRCSTATE, "19", WTM]), ("source_kc87_syscheck_mutate_F.txt", [PY, SY87, SRCREC, SRCSTATE, "19", WTM, "--mutate=F"]),
++                  ("source_kc87_syscheck_mutate_steps.txt", [PY, SY87, SRCREC, SRCSTATE, "19", WTM, "--mutate=steps"]), ("source_kc95_syscheck.txt", [PY, SY95, SRCREC, SRCSTATE, "19", WTM])):
+@@ -140,2 +141,2 @@
+-want = {"source_kc79_syscheck.txt": 0, "source_kc79_syscheck_mutate_F.txt": 1, "source_kc79_syscheck_mutate_steps.txt": 1, "source_kc87_syscheck.txt": 1}
+-say(f"the source: kc79 check exit {src['source_kc79_syscheck.txt']} (0 wanted), --mutate=F {src['source_kc79_syscheck_mutate_F.txt']}, --mutate=steps {src['source_kc79_syscheck_mutate_steps.txt']} (1 wanted each), kc87 check {src['source_kc87_syscheck.txt']} (1 wanted: it refuses the source); {time.time() - t0:.0f} s")
++want = {"source_kc87_syscheck.txt": 0, "source_kc87_syscheck_mutate_F.txt": 1, "source_kc87_syscheck_mutate_steps.txt": 1, "source_kc95_syscheck.txt": 1}
++say(f"the source: kc87 check exit {src['source_kc87_syscheck.txt']} (0 wanted), --mutate=F {src['source_kc87_syscheck_mutate_F.txt']}, --mutate=steps {src['source_kc87_syscheck_mutate_steps.txt']} (1 wanted each), kc95 check {src['source_kc95_syscheck.txt']} (1 wanted: it refuses the source); {time.time() - t0:.0f} s")
+@@ -146 +147 @@
+-cmd = ["-u", "ell_refine.py", SRC, "79", TAG, "87", "1", "19.0", LAM0, "--kappa", "0.7", "--u0", "0.04", "--Ks", "30", "--tol", "1e-12", "--wait", "60", "--no-gamma"]
++cmd = ["-u", "ell_refine.py", SRC, "87", TAG, "95", "1", "19.0", LAM0, "--kappa", "0.7", "--u0", "0.04", "--Ks", "30", "--tol", "1e-12", "--wait", "60", "--no-gamma"]
+@@ -166 +167 @@
+-    a = sh([PY, SY87, rec, state, "19", WTM], env=env)
++    a = sh([PY, SY95, rec, state, "19", WTM], env=env)
+@@ -168,4 +169,4 @@
+-    s87 = sh([PY, SY87, "--selftest"], env=env)
+-    open(OUT + "/selftest_kc87_syscheck_after.txt", "w").write(s87.stdout + s87.stderr + f"exit {s87.returncode}\n")
+-    m1 = sh([PY, SY87, rec, state, "19", WTM, "--mutate=F"], env=env)
+-    m2 = sh([PY, SY87, rec, state, "19", WTM, "--mutate=steps"], env=env)
++    s95 = sh([PY, SY95, "--selftest"], env=env)
++    open(OUT + "/selftest_kc95_syscheck_after.txt", "w").write(s95.stdout + s95.stderr + f"exit {s95.returncode}\n")
++    m1 = sh([PY, SY95, rec, state, "19", WTM, "--mutate=F"], env=env)
++    m2 = sh([PY, SY95, rec, state, "19", WTM, "--mutate=steps"], env=env)
+@@ -173,4 +174,4 @@
+-    k79 = sh([PY, SY79, rec, state, "19", WTM], env=env)
+-    open(OUT + "/syscheck_kc79_on_result.txt", "w").write(k79.stdout + k79.stderr + f"exit {k79.returncode}\n")
+-    say(f"result: kc87 check exit {a.returncode} (0 wanted), its selftest {s87.returncode} (0 wanted), --mutate=F {m1.returncode}, --mutate=steps {m2.returncode} (1 wanted each), kc79 check on the result {k79.returncode} (1 wanted: it refuses); {time.time() - t0:.0f} s")
+-    if (a.returncode, s87.returncode, m1.returncode, m2.returncode, k79.returncode) == (0, 0, 1, 1, 1):
++    k87 = sh([PY, SY87, rec, state, "19", WTM], env=env)
++    open(OUT + "/syscheck_kc87_on_result.txt", "w").write(k87.stdout + k87.stderr + f"exit {k87.returncode}\n")
++    say(f"result: kc95 check exit {a.returncode} (0 wanted), its selftest {s95.returncode} (0 wanted), --mutate=F {m1.returncode}, --mutate=steps {m2.returncode} (1 wanted each), kc87 check on the result {k87.returncode} (1 wanted: it refuses); {time.time() - t0:.0f} s")
++    if (a.returncode, s95.returncode, m1.returncode, m2.returncode, k87.returncode) == (0, 0, 1, 1, 1):
+@@ -200,2 +201,2 @@
+-        f"steps {recj.get('steps')}, constraint {recj.get('constraint')}, Delta {recj.get('Delta')}; the k_c 79 source record at D 19: |F| {srcj.get('F')}, steps {srcj.get('steps')}, constraint {srcj.get('constraint')}, Delta {srcj.get('Delta')}; "
+-        f"Delta(k_c 87) minus Delta(k_c 79) = {dd}; {verdict}{(': ' + why) if why else ''}; "
++        f"steps {recj.get('steps')}, constraint {recj.get('constraint')}, Delta {recj.get('Delta')}; the k_c 87 source record at D 19: |F| {srcj.get('F')}, steps {srcj.get('steps')}, constraint {srcj.get('constraint')}, Delta {srcj.get('Delta')}; "
++        f"Delta(k_c 95) minus Delta(k_c 87) = {dd}; {verdict}{(': ' + why) if why else ''}; "
+@@ -205 +206 @@
+-hc(f"finished: {summ}. Raw I1025-win/kc87_d19 after my next push. " + ("The scan 1.380-1.580 by 0.025 plus a repeat of 1.480 starts by itself now." if verdict == "ACCEPTED" else "No scan."))
++hc(f"finished: {summ}. Raw I1025-win/kc95_d19 after my next push. " + ("The scan 1.395-1.435 and 1.530-1.550 by 0.005 plus a repeat of 1.415 (15 evaluations) starts by itself now." if verdict == "ACCEPTED" else "No scan."))
+@@ -208 +209 @@
+-say("kc87d19_regrid_driver_1025.py done")
++say("kc95d19_regrid_driver_1025.py done")

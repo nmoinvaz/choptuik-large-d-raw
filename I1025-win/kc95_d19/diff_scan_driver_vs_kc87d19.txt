@@ -1,0 +1,66 @@
+--- kc87d19_scan_driver_1025.py
++++ kc95d19_scan_driver_1025.py
+@@ -2,2 +2,2 @@
+-"""#1025 winb, the k_c 87 hybrid scan at D 19 on my regridded k_c 87 D 19 state (t5's order, #1025 comment of 2026-11-23 05:10 UTC, step 2 after ACCEPTED; the window is an argument):
+-xfkappa's d18_hybsign.py (raw I1025-mac/d18, blob e089207a, unchanged) on the accepted state sol_l1kc87wind19_D19.0000.npy and its record (both in this folder, checked against the blobs the regrid driver wrote into
++"""#1025 winb, the k_c 95 hybrid scan at D 19 on my regridded k_c 95 D 19 state (t5's order, #1025 comment of 2026-11-23 12:45 UTC, after ACCEPTED; the window is an argument):
++xfkappa's d18_hybsign.py (raw I1025-mac/d18, blob e089207a, unchanged) on the accepted state sol_l1kc95wind19_D19.0000.npy and its record (both in this folder, checked against the blobs the regrid driver wrote into
+@@ -5 +5 @@
+-BelowNormal, cap 36000 s (10 h) by the exact pid. d18_hybsign.py checks the record system first (exit 3 if the state does not come back). Starts only when regrid_accepted.txt exists (and names the state and record blobs)
++BelowNormal, cap 64800 s (18 h) by the exact pid (15 evaluations). d18_hybsign.py checks the record system first (exit 3 if the state does not come back). Starts only when regrid_accepted.txt exists (and names the state and record blobs)
+@@ -8 +8 @@
+-usage: kc87d19_scan_driver_1025.py LAMBDA_LIST [--dry [--out=DIR]]     e.g. 1.380,1.405,1.430,1.455,1.480,1.505,1.530,1.555,1.580,1.480     (--dry: runs the checks, prints the planned command, starts nothing; --out=DIR (dry only) takes the state, record and marker from DIR)"""
++usage: kc95d19_scan_driver_1025.py LAMBDA_LIST [--dry [--out=DIR]]     e.g. 1.395,1.400,1.405,1.410,1.415,1.420,1.425,1.430,1.435,1.530,1.535,1.540,1.545,1.550,1.415     (--dry: runs the checks, prints the planned command, starts nothing; --out=DIR (dry only) takes the state, record and marker from DIR)"""
+@@ -11,2 +11,2 @@
+-S = "C:/Users/nathan/Source/kc87d19_1025"
+-OUT = S + "/I1025-win/kc87_d19"
++S = "C:/Users/nathan/Source/kc95d19_1025"
++OUT = S + "/I1025-win/kc95_d19"
+@@ -21 +21 @@
+-SRC = DRYOUT or OUT          # the regridded state, record and marker (written by kc87d19_regrid_driver_1025.py)
++SRC = DRYOUT or OUT          # the regridded state, record and marker (written by kc95d19_regrid_driver_1025.py)
+@@ -24 +24 @@
+-TAG = "l1kc87wind19"
++TAG = "l1kc95wind19"
+@@ -26,2 +26,2 @@
+-SCAN, LOG = OUT + "/scan_kc87_D19_p0.jsonl", OUT + "/kc87d19_scan_w.log"
+-CAP = 36000
++SCAN, LOG = OUT + "/scan_kc95_D19_p0.jsonl", OUT + "/kc95d19_scan_w.log"
++CAP = 64800
+@@ -31 +31 @@
+-    print("usage: kc87d19_scan_driver_1025.py LAMBDA_LIST [--dry]"); sys.exit(2)
++    print("usage: kc95d19_scan_driver_1025.py LAMBDA_LIST [--dry]"); sys.exit(2)
+@@ -56 +56 @@
+-    sh([HC, "send", COORD, f"winb ({datetime.datetime.now(datetime.timezone.utc):%H:%M} UTC), #1025 k_c 87 D 19 scan (1.38-1.58): {msg}"])
++    sh([HC, "send", COORD, f"winb ({datetime.datetime.now(datetime.timezone.utc):%H:%M} UTC), #1025 k_c 95 D 19 scan (1.395-1.435 and 1.530-1.550): {msg}"])
+@@ -71 +71 @@
+-say(f"kc87d19_scan_driver_1025.py: the k_c 87 hybrid scan at D 19, window {LAMS}{' (dry run)' if DRY else ''}; checking pins")
++say(f"kc95d19_scan_driver_1025.py: the k_c 95 hybrid scan at D 19, window {LAMS}{' (dry run)' if DRY else ''}; checking pins")
+@@ -73 +73 @@
+-    refuse("regrid_accepted.txt does not exist", "not started: the k_c 87 D 19 regrid is not accepted.")
++    refuse("regrid_accepted.txt does not exist", "not started: the k_c 95 D 19 regrid is not accepted.")
+@@ -100 +100 @@
+-wat = subprocess.Popen([PY, "-u", S + "/kc87d19_watch_alert_1025.py", str(os.getpid()), "scan"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, stdin=subprocess.DEVNULL,
++wat = subprocess.Popen([PY, "-u", S + "/kc95d19_watch_alert_1025.py", str(os.getpid()), "scan"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, stdin=subprocess.DEVNULL,
+@@ -108 +108 @@
+-p = subprocess.Popen(cmd, cwd=WTM, env=env, stdout=open(OUT + "/rows/scan_kc87d19_raw.log", "w"), stderr=subprocess.STDOUT, stdin=subprocess.DEVNULL, creationflags=0x00004000 | 0x08000000)
++p = subprocess.Popen(cmd, cwd=WTM, env=env, stdout=open(OUT + "/rows/scan_kc95d19_raw.log", "w"), stderr=subprocess.STDOUT, stdin=subprocess.DEVNULL, creationflags=0x00004000 | 0x08000000)
+@@ -120,2 +120,2 @@
+-with open(OUT + "/scan_kc87_D19.log", "w") as g:
+-    for ln in open(OUT + "/rows/scan_kc87d19_raw.log", errors="replace"):
++with open(OUT + "/scan_kc95_D19.log", "w") as g:
++    for ln in open(OUT + "/rows/scan_kc95d19_raw.log", errors="replace"):
+@@ -126,2 +126,2 @@
+-    hc(f"the scan did NOT finish (exit {rc}; 3 means the state is not the record system). Points so far in scan_kc87_D19_p0.jsonl. No reading.")
+-    time.sleep(70); samp.kill(); say("kc87d19_scan_driver_1025.py done (no reading)"); sys.exit(1)
++    hc(f"the scan did NOT finish (exit {rc}; 3 means the state is not the record system). Points so far in scan_kc95_D19_p0.jsonl. No reading.")
++    time.sleep(70); samp.kill(); say("kc95d19_scan_driver_1025.py done (no reading)"); sys.exit(1)
+@@ -131 +131 @@
+-open(OUT + "/read_lower_kc87_D19.log", "w").write(txt + f"\nread_lower exit {r.returncode}\n")
++open(OUT + "/read_lower_kc95_D19.log", "w").write(txt + f"\nread_lower exit {r.returncode}\n")
+@@ -135 +135 @@
+-   + ". Raw I1025-win/kc87_d19 after my next push; no reading by me, you rule.")
++   + ". Raw I1025-win/kc95_d19 after my next push; no reading by me, you rule.")
+@@ -138 +138 @@
+-say("kc87d19_scan_driver_1025.py done")
++say("kc95d19_scan_driver_1025.py done")
