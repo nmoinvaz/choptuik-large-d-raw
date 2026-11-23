@@ -29,3 +29,33 @@ refine p x2 = 3.526473056695715,0.211497981391215,0.9765085451976188,-0.00176331
 refine x1 command: cd /Users/nathan/Source/choptuik-large-d-1079/solver/proof && nice -n 10 /Users/nathan/Source/venv-macm3-1058b/bin/python certify_M.py refine 3 --p=3.446218246366727,0.347606965217407,0.8054175863852927,0.011780043848505818 --iters=3 --tag=x1 > logs/A_M_refine_M3_x1_stdout.log 2>&1
 refine x2 command: cd /Users/nathan/Source/choptuik-large-d-1079/solver/proof && nice -n 10 /Users/nathan/Source/venv-macm3-1058b/bin/python certify_M.py refine 3 --p=3.526473056695715,0.211497981391215,0.9765085451976188,-0.0017633195225818952 --iters=3 --tag=x2 > logs/A_M_refine_M3_x2_stdout.log 2>&1
 refine start 2026-11-23 14:07:08
+refine x2 end 2026-11-23 14:07:55 exit 0
+refine x1 end 2026-11-23 14:08:00 exit 0
+refine x1 moves (exit 0, 0 = within 1e-8): moves from the zero_mp values per iteration (it, mode, dA, dwf): 0 H +0.000e+00 +0.000e+00; 1 full +1.490e-16 +3.866e-16; 2 H +1.490e-16 +3.866e-16 largest move 3.866e-16 
+refine x2 moves (exit 0, 0 = within 1e-8): moves from the zero_mp values per iteration (it, mode, dA, dwf): 0 H +0.000e+00 +0.000e+00; 1 full +4.968e-16 +4.147e-16; 2 H +4.968e-16 +4.147e-16 largest move 4.968e-16 
+refine done 2026-11-23 14:08:00
+plan x1 command: cd /Users/nathan/Source/choptuik-large-d-1079/solver/proof && nice -n 10 /Users/nathan/Source/venv-macm3-1058b/bin/python certify_M.py plan --centre=data/A_M_refine_M3_x1.json > logs/A_M_plan_M3x1.log 2>&1
+plan x1 end 2026-11-23 14:08:47 exit 0
+plan x2 command: cd /Users/nathan/Source/choptuik-large-d-1079/solver/proof && nice -n 10 /Users/nathan/Source/venv-macm3-1058b/bin/python certify_M.py plan --centre=data/A_M_refine_M3_x2.json > logs/A_M_plan_M3x2.log 2>&1
+plan x2 end 2026-11-23 14:08:47 exit 0
+box x1 command: cd /Users/nathan/Source/choptuik-large-d-1079/solver/proof && nice -n 10 /Users/nathan/Source/venv-macm3-1058b/bin/python certify_M.py box 3 --centre=data/A_M_refine_M3_x1.json --use_out --h=1e-10 --w=4e-16 --out=data/A_M_box_M3x1_1e-10.json --log=logs/A_M_box_M3x1_1e-10.log > logs/A_M_box_M3x1_1e-10_stdout.log 2>&1
+box x2 command: cd /Users/nathan/Source/choptuik-large-d-1079/solver/proof && nice -n 10 /Users/nathan/Source/venv-macm3-1058b/bin/python certify_M.py box 3 --centre=data/A_M_refine_M3_x2.json --use_out --h=1e-10 --w=4e-16 --out=data/A_M_box_M3x2_1e-10.json --log=logs/A_M_box_M3x2_1e-10.log > logs/A_M_box_M3x2_1e-10_stdout.log 2>&1
+box start 2026-11-23 14:08:47
+box x2 end 2026-11-23 14:10:44 exit 0: box run M = 3: steps [718, 394, 64], 117 s
+box x1 end 2026-11-23 14:10:46 exit 0: box run M = 3: steps [726, 397, 57], 118 s
+box done 2026-11-23 14:10:46
+verify A_M_krawczyk_M3x1_1e-10 command: cd /Users/nathan/Source/choptuik-large-d-1079/solver/proof && nice -n 10 /Users/nathan/Source/venv-macm3-1058b/bin/python certify_M.py krawczyk --box=data/A_M_box_M3x1_1e-10.json > logs/A_M_krawczyk_M3x1_1e-10.log 2>&1
+verify A_M_krawczyk_M3x1_1e-10 end 2026-11-23 14:11:21 exit 1:    C3       in [0.0117800434246785, 0.0117800442723332]  (radius 4.24e-10)
+2026-11-23 14:11:21 STOP: krawczyk x1 exit 1: the test does not pass at h 1e-10 (margins in logs/A_M_krawczyk_M3x1_1e-10.log); a smaller box needs the coordinator's word
+verify A_M_recheck_M3x1_1e-10 command: cd /Users/nathan/Source/choptuik-large-d-1079/solver/proof && nice -n 10 /Users/nathan/Source/venv-macm3-1058b/bin/python certify_M_recheck.py data/A_M_box_M3x1_1e-10.json > logs/A_M_recheck_M3x1_1e-10.log 2>&1
+verify A_M_recheck_M3x1_1e-10 end 2026-11-23 14:11:21 exit 1:    C3       in [0.01178004342467858, 0.011780044272333084]
+verify A_M_recheck_M3x1_1e-10_mutate command: cd /Users/nathan/Source/choptuik-large-d-1079/solver/proof && nice -n 10 /Users/nathan/Source/venv-macm3-1058b/bin/python certify_M_recheck.py data/A_M_box_M3x1_1e-10.json --mutate > logs/A_M_recheck_M3x1_1e-10_mutate.log 2>&1
+verify A_M_recheck_M3x1_1e-10_mutate end 2026-11-23 14:11:21 exit 1:    C3       in [-0.26653593940913465, -0.26653593940127837]
+verify A_M_krawczyk_M3x2_1e-10 command: cd /Users/nathan/Source/choptuik-large-d-1079/solver/proof && nice -n 10 /Users/nathan/Source/venv-macm3-1058b/bin/python certify_M.py krawczyk --box=data/A_M_box_M3x2_1e-10.json > logs/A_M_krawczyk_M3x2_1e-10.log 2>&1
+verify A_M_krawczyk_M3x2_1e-10 end 2026-11-23 14:11:21 exit 1:    C3       in [-0.00176332366250728, -0.00176331538265630]  (radius 4.14e-09)
+2026-11-23 14:11:21 STOP: krawczyk x2 exit 1: the test does not pass at h 1e-10 (margins in logs/A_M_krawczyk_M3x2_1e-10.log); a smaller box needs the coordinator's word
+verify A_M_recheck_M3x2_1e-10 command: cd /Users/nathan/Source/choptuik-large-d-1079/solver/proof && nice -n 10 /Users/nathan/Source/venv-macm3-1058b/bin/python certify_M_recheck.py data/A_M_box_M3x2_1e-10.json > logs/A_M_recheck_M3x2_1e-10.log 2>&1
+verify A_M_recheck_M3x2_1e-10 end 2026-11-23 14:11:21 exit 1:    C3       in [-0.0017633236625071247, -0.0017633153826564549]
+verify A_M_recheck_M3x2_1e-10_mutate command: cd /Users/nathan/Source/choptuik-large-d-1079/solver/proof && nice -n 10 /Users/nathan/Source/venv-macm3-1058b/bin/python certify_M_recheck.py data/A_M_box_M3x2_1e-10.json --mutate > logs/A_M_recheck_M3x2_1e-10_mutate.log 2>&1
+verify A_M_recheck_M3x2_1e-10_mutate end 2026-11-23 14:11:22 exit 1:    C3       in [-1.9390548207055392, -1.939054820493026]
+verify done 2026-11-23 14:11:22

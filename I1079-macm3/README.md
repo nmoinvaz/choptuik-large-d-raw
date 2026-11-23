@@ -53,3 +53,53 @@ Acceptance: for each zero, the Krawczyk test passes with every control as docume
 
 Live files are written by the scripts into `~/Source/choptuik-large-d-1079/solver/proof/{data,logs}` (new names only) and copied here at each milestone (not the `.ckpt` files): `data/`, `logs/`, `runner/` (my wrappers, launcher outputs,
 session checks), `steps.txt`. Memory and disk: alerts only to the coordinator (available memory under 2 GiB, free memory under 8%, disk under 3 GiB); nothing is stopped for memory.
+
+
+## Results (2026-11-23, 13:36 to 14:12 UTC; every step ran on macm3 in a few minutes)
+
+**Verdict: the Krawczyk test does not pass at h = 1e-10, w = 4e-16 at either zero. The obstacle is named below; nothing else was changed or run (a smaller box needs the coordinator's word).**
+
+| step | x1 (3.446218..., 0.347607...) | x2 (3.526473..., 0.211498...) |
+|---|---|---|
+| step 1: F_3 (`value_mp.py point`, valued, 1550 to 1790 s) | 0.005890021924252909 - 0.40270879319264635i | -0.0008816597612909476 - 0.4882542725988094i |
+| p = (A, w/w_inf, B3, C3) | (3.446218246366727, 0.347606965217407, 0.8054175863852927, 0.011780043848505818) | (3.526473056695715, 0.211497981391215, 0.9765085451976188, -0.0017633195225818952) |
+| step 2: checks (selftest, startcheck, crosscheck, each with its mutation) | all as required (`steps.txt`, `logs/I1079_*.log`) | same |
+| refine 3 --iters=3: \|g\| at it 0, 1, 2 | 7.06e-17, 1.66e-18, 6.09e-32 | 7.72e-18, 4.16e-18, 2.25e-32 |
+| refine: largest move of A or w/w_inf from the zero_mp values (the stop was 1e-8) | 3.9e-16 | 5.0e-16 |
+| plan: Schur complement singular values; inner block singular values; cond Dg | 7.8e-3, 3.6e-5; 1.88, 1.48; 1.2e5 | 2.0e-2, 2.7e-5; 0.105, 0.023; 7.5e3 |
+| box run (`--h=1e-10 --w=4e-16`), steps (ray, arc, real); time | 726, 397, 57; 118 s | 718, 394, 64; 117 s |
+| start data: `fixed_point_M.start_data_M` | no exception (rigorous given the lemma) | no exception |
+| derivative radius at real-leg step 50 (the fundamental's h = 1e-10 run: 2.78) | 2.51e-02 | 6.00e-03 |
+
+For Theorem A(M = 3) at the fundamental zero: Schur singular values 0.443 and 0.238, inner block 1.05e7 (twice), cond Dg 4.7e7 (`logs/A_M_plan_M3.log`).
+
+**Krawczyk test** (`certify_M.py krawczyk --box=data/A_M_box_M3x{1,2}_1e-10.json`, no `--hier`; `logs/A_M_krawczyk_M3x*_1e-10.log`), exit 1: K(X) is not in int X. Relative margins (A, w/w_inf, B3, C3; positive iff inside):
+
+| zero | A | w/w_inf | B3 | C3 | radius of g(p^) | max radius of Y Dg(X) |
+|---|---|---|---|---|---|---|
+| x1 | -80.2 | -59.0 | -6786.9 | -4688.2 | 5.4e-14 | 6.4e+01 |
+| x2 | -79.9 | -131.3 | -220056.7 | -94318.7 | 1.2e-14 | 1.0e+02 |
+
+(Theorem A(M = 3)'s fundamental zero, same box: +0.994, +0.997, +0.778, +0.778; g(p^) radius 1.7e-16; max radius of Y Dg(X) 0.23.)
+
+**Recheck** (`certify_M_recheck.py`, mpmath intervals): the same verdict and the same margins (x1 to every printed digit; x2 within 9e-3 of the 2.2e5 and 4e-3 of the 9.4e4): exit 1 each. Its `--mutate` (jump sign flipped): exit 1 each, as it must.
+**Controls**: not run: C0 (the clean run) must pass, and the test does not. **`--hier`**: not applicable (the stored solves are the fundamental zero's) and not run, as the coordinator ordered.
+
+**Where K leaves X** (`diagnose.py`, my own read-only script that repeats `krawczyk_test`'s arithmetic row by row and reproduces the margins; `logs/I1079_diagnose_M3x*_1e-10.log`): K_i = -(Y g)_i + sum_j (I - Y Dg(X))_ij X_j, in units of the half-width w_i:
+
+| zero | row | \|K_i\| / w_i | (Y g)_i radius | column A term | column w/w_inf term | columns B3, C3 terms |
+|---|---|---|---|---|---|---|
+| x1 | A | 81.2 | 0.7 | 16.8 | 63.7 | 0 |
+| x1 | w/w_inf | 60.0 | 0.5 | 12.4 | 47.1 | 0 |
+| x1 | B3 | 6787.9 | 100.0 | 1435.6 | 5252.2 | 0 |
+| x1 | C3 | 4689.2 | 77.2 | 988.6 | 3623.3 | 0 |
+| x2 | A | 80.9 | 0.1 | 18.0 | 62.8 | 0 |
+| x2 | w/w_inf | 132.3 | 0.1 | 29.5 | 102.6 | 0 |
+| x2 | B3 | 220057.7 | 750.8 | 50258.4 | 169048.1 | 0.2 |
+| x2 | C3 | 94319.7 | 314.9 | 21669.7 | 72334.9 | 0.1 |
+
+The midpoints of all terms are zero (Y is the midpoint's inverse). So, per row:
+- **Outer rows**: K leaves X through the radius of the enclosure of Y Dg(X) in the two outer columns, 17 to 64 (x1) and 18 to 103 (x2) times h, against the required below 1; the radius of (Y g) is below 1 w.
+- **Inner rows (B3, C3)**: K leaves X because the outer columns' entries of Y Dg(X) have radius 5.7e-3 and 2.1e-2 in the B3 row (x1; 0.20 and 0.68 at x2) and times h = 1e-10 they are 1400 to 5300 w (x1), 5e4 to 1.7e5 w (x2) with w = 4e-16; and the radius of g(p^) itself, 5.4e-14 (x1) and 1.2e-14 (x2), already gives (Y g) radii of 100 w and 77 w (x1), 751 w and 315 w (x2).
+
+So the obstacle is a scale mismatch of the box, not a failure of the path, the start data or a singularity: h = 1e-10 and w = 4e-16 are Theorem A(M = 3)'s, where the inner block has singular values 1e7; at these zeros the inner block is 0.02 to 1.9, the Schur complement has a singular value of 3e-5, and the enclosure radius of Dg over the box and of g(p^) (5e-14 to 1e-14) are far above what the inner width w = 4e-16 and outer width h can absorb. I have not tested any other box: whether a smaller h and a larger w pass is not known. A box run takes 2 minutes here (1 process), the test seconds.
