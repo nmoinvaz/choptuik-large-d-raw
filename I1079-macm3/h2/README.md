@@ -57,3 +57,31 @@ the state set's radius over X grows to 3.59e-10 (x1) and 2.75e-10 (x2) at |u| = 
 **`row --j=11`** (the hardest row, |u| = 26.98, r = 6, n = 50; `logs/I1079_h2_row11_exc{1,2}.log`, 54 s and 48 s): all 12 discs (0 to 11 of 11) `ok True`; Lambda 0.130 to 0.149 (x1), 0.131 to 0.145 (x2) (the fundamental's: 0.128 to 0.179); box radius at the last disc 2.0e-10 (x1), 2.4e-10 (x2) (fundamental 3.4e-05); sup|y - y0| 9.363 down to 4.86 (x1), 9.767 down to 5.394 (x2) (fundamental 7.544 down to 1.858); 582 (x1) and 518 (x2) Lohner steps (fundamental 834).
 
 **Next, as ordered** (after the coordinator's word): `rows` (the other 11 rows, two processes), `check --json` (must PASS), `c1check`, `mutate --j=11`; then the inclusion: `theorem_A_sets_M.py` gains `--cert=<box JSON> --ray=<the covering's ray.json>` for M = 3 on `feat/certify-excited` at c40fbc77 (worktree `~/Source/choptuik-large-d-1079g`; unset, unchanged): `--M=3 --cert=<that zero's box> --ray=lemma6b1_runs_M3_excN/ray.json`, and `--selftest` with the same two options (its centre mutation must fail).
+
+
+## H2 verdict (2026-11-23, rows 17:13 to 17:21, check and inclusion 17:21 to 17:23 UTC; python-flint 0.9.0, FLINT 3.6.0)
+
+**Verdict: H2 holds at both excited zeros: a complete lemma 6b1(3) covering over p^ +- 1e-11, which contains each certified box's hull, and the inclusion of the hull in the covering's box holds.** Each zero: all 12 rows (0 to 11) saved, 183 discs, every disc `ok True` (none `ok False`, none underflowed); `check --json` PASS; `c1check` True; `mutate --j=11`: 0 of 12 discs certified; inclusion HOLD, its selftest PASS.
+`rows` ran as two processes per zero (rows 0, 2, 4, 6, 8, 10 and 1, 3, 5, 7, 9: 482 s and 427 s (x1: 508 s and 427 s), x2: 482 s and 399 s), `steps_h2.txt`; the committed run folders are `lemma6b1_runs_M3_exc1/` and `_exc2/` (`ray.json` 2.3 MB, `row_00.json` to `row_11.json`), the check's json `lemma6b1_check_M3_exc{1,2}.json`.
+
+| | x1 (box M3x1E2 (1e-12, 1e-13), tag `_exc1`) | x2 (box M3x2E2 (1e-12, 1e-12), tag `_exc2`) | fundamental (A_lemmas_M 5.3, 10) |
+|---|---|---|---|
+| covering box | p^ +- 1e-11 | p^ +- 1e-11 | p^ +- 1.1e-9 |
+| `check --json` | **PASS** | **PASS** | PASS |
+| tiles glued; meeting sets (polar rectangles); links | 183; 579; 461 | 183; 579; 461 | 183; 579; 461 |
+| discs per row (rows 0 to 11) | 25 23 20 18 16 13 11 13 10 12 10 12 | the same | (183 in all) |
+| disc radius r, order n by row | 24/70 (rows 0 to 6), 16/60 (7, 8), 10/50 (9, 10), 6/50 (11) | the same | the same design |
+| max Lambda per row | 0.180 to 0.215 (largest at row 6) | 0.180 to 0.216 (row 6) | |
+| max box radius: row 0 to row 11 | 2.1e-11 to 3.6e-10 | 2.6e-11 to 2.8e-10 | row 11's last disc 3.4e-05 |
+| max sup\|y - y(c)\|: row 0 to row 11 | 0.247 to 9.36 | 0.263 to 9.77 | |
+| ray (C^1 run) | 686 steps, 59 s | 634 steps, 55 s | |
+| `c1check` (planted truth: y+ at the centre and at x +- h e_i inside the saved sets; rows 1, 6, 9, 11) | True (set radii 2.54e-11, 4.95e-11, 1.20e-10, 3.73e-10) | True (2.54e-11, 5.03e-11, 1.23e-10, 2.87e-10) | |
+| `mutate --j=11` (the wrong-sign fast term) | 0 of 12 discs certified (must be 0) | 0 of 12 (must be 0) | |
+| inclusion, `theorem_A_sets_M.py --M=3 --cert=<box> --ray=<ray.json>` (c40fbc77, worktree 1079g) | **HOLD**: the hull of the certificate's ball inside X_b, slack +8.359e-12 at B3 | **HOLD**, slack +8.278e-12 at B3 | |
+| its `--selftest` with the same options | PASS (clean holds; the centre mutation fails: "(2) X_c outside X_b") | PASS (same) | |
+
+X_b = the covering's ball: centre c = ray.json's x, radius 1e-11 as arb rounds it up (1e-11 + 1.425e-20); |p^ - c| is at most 1.5e-77 in every coordinate. X_c's hull half-widths: x1 A 1.00e-12, w/w_inf 1.00e-12, B3 1.64e-12, C3 1.63e-13; x2 A 1.00e-12, w/w_inf 1.00e-12, B3 1.72e-12, C3 1.37e-12.
+The sets are 1e3 narrower than the fundamental's (1e-11 against 1.1e-9), which is why the runs take about a minute where the fundamental's took about 30 minutes per row on the cloud (the coordinator's reading).
+
+**Status of Theorem A(3)'s hypotheses at each excited zero** (A_lemmas_M section 6): the point certificate (Krawczyk test, controls, recheck): passes; (H0) the certificate's own start-data run (the coordinator's reading; no second look); (H1) lemma S, the old sector lemma and the flat estimate over p^ +- 1e-6: pass; (H2) the 6b1 covering and the inclusion: pass (above); (H3) lemma 6a(3): rho_6a 0.01259 (x2) and 0.01365 (x1): pass. Every run named in the hypotheses passes with its controls at both zeros.
+This is a statement about the runs; the assembly of the theorem, the trusted code and the follow-on (a second implementation and an independent review, as Theorem A's) are the coordinator's.
