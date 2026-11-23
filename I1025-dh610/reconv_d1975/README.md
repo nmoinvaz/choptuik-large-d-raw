@@ -43,3 +43,55 @@ Python `~/Source/venv-i1058/bin/python` (3.14.10, numpy 2.5.4, scipy 1.18.1, mul
 
 ## Status
 - 2026-11-23 06:32:57 UTC: folder, inputs, lanes and the reading prepared before any run. The D 19.75 k_c 95 scan of `../kc95_d1975` has not ended (round 2 of two); both ell_refine units start now, so 16 + 4 = 20 threads at most until it ends.
+
+## Result (2026-11-23, read 07:57 UTC; every number below is printed by `summarize_reconv.py` into `summary.txt`, from `in/*.jsonl`, `in/*.npy` and `cond/f_*.json`)
+
+Everything ran as ordered and exited 0: the two ell_refine runs (lin 3748 s, mac 3652 s wall, side by side), the k_c 87 checks (information) on both re-converged states (ACCEPTED, and each control `--mutate=F`, `--mutate=steps` exits 1; `syscheck_*.txt`), the ell_cond control (`--mutate=plant`: exit 0, "plant check: PASS (v_min component 1.000000e-06, others max 2.4e-18, outside 2.8e-16)"), and the three ell_cond runs. No memory alert (`MEMALERT.txt` absent). **Step 4 was not run:** |dz| between linRe and macRe is 1.2693e-06, not below 1e-7 (`STEP4.txt`).
+
+Re-converged states (`in/sol_l1kc87linRe_D19.7500.npy` blob 4988a55c, `in/l1kc87linRe.jsonl` 6735329b; `in/sol_l1kc87macRe_D19.7500.npy` a81f02dc, `in/l1kc87macRe.jsonl` 19f8e9ce). The k_c 87 roots are not yet physical.
+
+```
+| state | record norm F before | norm F of the first evaluation in ell_refine (F_start) | record norm F after | steps | Delta before | Delta after | seconds |
+|---|---|---|---|---|---|---|---|
+| dh170 start -> linRe | 3.9876058940e-10 | 3.9876058940e-10 | 3.9854188111e-10 | 3124 -> 3124 | 1.086002272614 | 1.086002272507 | 3746 |
+| macm3 start -> macRe | 3.9801703237e-10 | 3.9904831991e-10 | 3.9851106831e-10 | 3124 -> 3124 | 1.086003680649 | 1.086002609309 | 3650 |
+
+| pair (A, B) | norm F(A) | norm F(B) at A's freeze | smallest 8 singular values of J(A) | norm dz | Delta entry of dz | part of dz outside the 8 | largest component along one of the 8 | norm J dz | norm F(B)-F(A) | norm J dz / norm dz |
+|---|---|---|---|---|---|---|---|---|---|---|
+| (linRe, macRe) | 3.9855e-10 | 3.9850e-10 | 2.79e-16, 3.47e-16, 4.82e-16, 5.53e-16, 6.03e-16, 6.04e-16, 6.79e-16, 6.95e-16 | 1.2693e-06 | +3.3680e-07 | 1.2693e-06 (1.000) | 2.91e-12 (2.3e-06) | 1.0542e-12 | 1.6177e-12 | 8.31e-07 |
+| (dh170 start, linRe) | 3.9858e-10 | 3.9855e-10 | 2.33e-16, 2.88e-16, 3.73e-16, 4.18e-16, 5.24e-16, 5.77e-16, 6.03e-16, 6.67e-16 | 4.0279e-10 | -1.0678e-10 | 4.0279e-10 (1.000) | 1.69e-17 (4.2e-08) | 1.1599e-12 | 1.0681e-12 | 2.88e-03 |
+| (macm3 start, macRe) | 3.9886e-10 | 3.9850e-10 | 2.93e-16, 3.09e-16, 4.06e-16, 4.38e-16, 4.91e-16, 5.06e-16, 6.56e-16, 7.29e-16 | 7.0747e-06 | -1.0713e-06 | 7.0747e-06 (1.000) | 1.66e-12 (2.3e-07) | 1.3279e-11 | 1.2899e-11 | 1.88e-06 |
+| planted control | 3.9854e-10 | 3.9861e-10 | 2.89e-16, 2.97e-16, 3.21e-16, 5.33e-16, 6.01e-16, 7.24e-16, 7.38e-16, 7.57e-16 | 1.0000e-06 | +1.1002e-12 | 2.7834e-16 (0.000) | 1.00e-06 (1.0e+00) | 9.1419e-16 | 6.6236e-13 | 9.14e-10 |
+
+smax(J) 12.191154, n 5695, condition (linRe, macRe) 4.371e+16
+
+| pair | norm dz (L2, Delta included) | Delta entry |
+|---|---|---|
+| (dh170d1975, macm3d1975) | 7.9032e-06 | +1.4080e-06 |
+| (linRe, macRe) | 1.2693e-06 | +3.3680e-07 |
+| (dh170d1975, linRe) | 4.0279e-10 | -1.0678e-10 |
+| (macm3d1975, macRe) | 7.0747e-06 | -1.0713e-06 |
+| (dh170d1975, macRe) | 1.2689e-06 | +3.3670e-07 |
+| (macm3d1975, linRe) | 7.9034e-06 | -1.4081e-06 |
+```
+
+- **|F| after:** 3.9854e-10 (linRe) and 3.9851e-10 (macRe), both above 3e-10. dh170's |F| fell by 0.055% (3.98761e-10 to 3.98542e-10). macm3's record |F| rose by 0.12% (3.98017e-10 to 3.98511e-10) and fell by 0.13% from ell_refine's own first evaluation of its state (F_start 3.99048e-10). The same state gets different |F| from different evaluations (linRe: 3.98542e-10 the record, 3.98340e-10 the k_c 87 check, 3.98546e-10 ell_cond; macm3's start state: 3.98017e-10 the record, 3.99048e-10 ell_refine's F_start, 3.98895e-10 the k_c 87 check on this machine, 3.9886e-10 ell_cond), a spread of 0.05% to 0.26%, which is as large as the changes. I did not find the cause of that spread; this is not tested here.
+- **ell_cond |F(A)| against the record (information):** not equal to 4 digits at the start states: dh170's start 3.9858e-10 against 3.9876e-10, macm3's start 3.9886e-10 against 3.9802e-10 (the k_c 87 check's value on this machine is 3.9889e-10); linRe 3.9855e-10 against 3.9854e-10.
+- **The pull:** the distance between the two start states is 7.9032e-06; after, 1.2693e-06 (6.2 times smaller). dh170's state moved 4.0e-10 (nothing); macm3's moved 7.0747e-06, nearly all of the way to dh170's. The remaining 1.27e-06 is 0.0000 along the 8 smallest right singular vectors (largest component 2.9e-12), whole outside them, in all three pairs; the planted control reads 1.000 along v_0 with the same code. The smallest singular values are 2.3e-16 to 7.6e-16 against sigma_max 12.19 (condition about 4e16): eight of them are below eps * sigma_max = 2.7e-15.
+- **Gain along dz:** |J dz| / |dz| is 8.3e-07 for (linRe, macRe), 1.9e-06 for (macm3 start, macRe) and 2.9e-03 for (dh170 start, linRe). The linearization holds for the two pairs with |F(B) - F(A)| about 1e-11 and 1e-12 (|J dz| 1.328e-11 against 1.290e-11 and 1.160e-12 against 1.068e-12); for (linRe, macRe) |J dz| is 1.054e-12 against |F(B) - F(A)| 1.618e-12. So a difference of 1.27e-06 between the two states changes |F| by about 1e-12, 0.3% of |F|: the stopping rule has no signal there. ell_refine's `--tol 1e-12` is a bar on |F| itself (`lm`: `nF < tol`), never reached at 4e-10, so each run stopped by another rule of `lm` (3 successive steps that each reduce |F| by less than half, no decrease, or the 12 + 4 Jacobian cap); ell_refine runs it quiet, so the log does not say which.
+- **Delta's share of |dz|:** 27% for (linRe, macRe), 15% for (macm3 start, macRe), 27% for (dh170 start, linRe).
+- **Not measured:** the roots. Step 4 would measure them on (linRe, macRe); it is not run (the order's bar is |dz| below 1e-7).
+
+### Predictions against outcomes (registered before the run, above)
+
+| prediction | outcome |
+|---|---|
+| F after within 5% of F before for both (80%) | yes (-0.055%; +0.12% or -0.13% by the record or by F_start) |
+| norm F stays above 3e-10 (90%) | yes, 3.985e-10 for both |
+| dz between linRe and macRe above 1e-6 in norm (80%), step 4 not run (85%) | yes (1.2693e-06), not run |
+| both ell_refine runs exit 0 (90%), 1500 to 4500 s each (65%) | yes, 3748 s and 3652 s |
+| ell_cond control passes (90%) | yes |
+| ell_cond's norm F(A) equals the record's (85%) | no (3.9858e-10 against 3.9876e-10; 3.9886e-10 against 3.9802e-10) |
+| most of dz along the few smallest right singular vectors (65%) | no: 0.000 along the 8, 1.000 outside, in all three pairs |
+
+The coordinator's reading ("more LM iterations lower |F| and pull the states together, roots within 0.002 in (1.32, 1.33); |F| above 3e-10 is the method's floor"): |F| was not lowered beyond the spread between its evaluations; the states were pulled together, 7.9e-06 to 1.27e-06, by macm3's state moving; the roots were not measured; |F| stays above 3e-10, which that reading calls the method's floor.
