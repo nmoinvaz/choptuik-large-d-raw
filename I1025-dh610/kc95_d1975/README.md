@@ -66,3 +66,41 @@ bits. The window 1.30 to 1.36 holds the root near lambda_1's line; the second ro
 - Record `l1kc95dh610d1975.jsonl` (blob 7aca695d) and state `sol_l1kc95dh610d1975_D19.7500.npy` (blob 57875891, copied to `in/`; `in_blobs_regrid.txt`): k_c 95 at D 19.75, |F| 3.9634509412e-10, F_start 3.337e-06, **3411 steps** (predicted about 3409: yes), constraint 3.967e-04 (dh170's k_c 87 state: 9.696e-04), **Delta 1.0860000558** (predicted 1.0860000329, within 3e-7: yes, it differs by 2.3e-8).
 - **Delta beside the numbers given:** dh170's k_c 87 1.0860022726 (this regrid's source): -2.2168e-6; k_c 79 1.0860054437: -5.3880e-6. At D 19.5 the same step from k_c 87 moved Delta by -2.2397e-6.
 - **Acceptance:** `kc95_syscheck_1025.py` exit 0 (the state's |F| equals the record's, `freeze_from` gives 3411 steps = the record's); selftest PASS; `--mutate=F` exit 1 (the state's |F| is not within 1% of 1.5 times the record's), `--mutate=steps` exit 1 (`freeze_from` gives 3411, the record 3412); extra control: `kc87_syscheck_1025.py` on the k_c 95 result exits 1 (the record is not k_c 87). The source check, its controls and the k_c 95 check's refusal of the k_c 87 source are in `regrid/source_*.txt` (above).
+- 06:35:48 UTC the scan ended (all four processes exit 0; `exits_kc95_scan.txt`); reading below. Round 1 ran beside `../cross_macm3_d1975` (from 05:40:05 UTC), round 2 beside it until 06:19:54 UTC and, from 06:33:38 UTC, beside the two re-convergence units of `../reconv_d1975` (load up to 17.96).
+
+## Scan result (23 Nov, 05:08:36 to 06:35:48 UTC): one robust change in 1.30 to 1.36, between 1.32 and 1.33; the repeat agrees
+
+All four processes exit 0. Walls 1:27:11 (process 0), 1:26:53 (1), 1:27:08 (2), 1:26:43 (3); peak RSS 3.14 to 3.33 GB per process (`scan/scan_p<p>.raw`, `/usr/bin/time -v`). Sampled every 30 s (`scan/sampler.log`, 174 samples): summed RSS at most 9.54 GB, MemAvailable at least 26.57 GB, load at most 17.96. The pre-run checks passed (reader selftest exit 0, `--mutate=shift` and `--mutate=round2` exit 1, `repeat_check.py` selftest exit 0), all four processes printed "the record system" (|F| 3.9645666015e-10 against the record's 3.9634509412e-10, steps 3411 = 3411). No memory alert fired (no `scan/MEMALERT.txt`, no `ALERTS.txt`).
+
+| lambda_1 | process | hybrid sign | noise signs | noise_robust | float64 sign | ln\|det\| | point sec |
+|---|---|---|---|---|---|---|---|
+| 1.30 | 0 | -1 | -1, -1 | True | +1 | -3160.0033618426 | 2461 |
+| 1.31 | 1 | -1 | -1, -1 | True | +1 | -3161.1815177930 | 2450 |
+| 1.32 | 2 | -1 | -1, -1 | True | +1 | -3162.9657080570 | 2455 |
+| 1.33 | 3 | +1 | +1, +1 | True | +1 | -3163.4034338844 | 2442 |
+| 1.33 (repeat) | 3 | +1 | +1, +1 | True | +1 | -3163.4034338844 | 2758 |
+| 1.34 | 0 | +1 | +1, +1 | True | +1 | -3162.9234086833 | 2767 |
+| 1.35 | 1 | +1 | +1, +1 | True | +1 | -3162.9564591131 | 2760 |
+| 1.36 | 2 | +1 | +1, +1 | True | +1 | -3163.1198183109 | 2770 |
+
+Reading (`read_lower.txt`, `read_lower.py` dh170's, unedited; signs as the reader prints them):
+- **Robust change:** one, between 1.320 and 1.330, `- to +` as the reader prints it, det-linear estimate **1.326077**, estimator range [1.323726, 1.326077] (a spread over interpolation choices, not an enclosure; the bracket is the grid step 0.01). No change touches a non-robust point; every point is noise-robust.
+- **Edge signs:** - at 1.30, + at 1.36.
+- **ln|det| minima without a sign change:** none (the reader). ln|det| is lowest at 1.33, beside the change; it rises to -3162.92 at 1.34 and falls again to -3163.12 at 1.36, so it is still falling at the upper edge: nothing was scanned above 1.36.
+- **Repeat of 1.33:** agrees, bit-identical (`repeat_check.py` PASS; ln -3163.403433884402 twice), on the same process as its original, as the order placed it, so it tests repeatability within a process, not another process.
+- **Float64:** its sign is +1 at every point, so it differs from the hybrid at 1.30, 1.31 and 1.32 (+ against -) and shows no change in the window; the hybrid is the reading.
+
+Beside which I report (information, not a pass rule; the coordinator's numbers), by position the root near lambda_1's line at D 19.75:
+| k_c | lambda_1 | state, machine |
+|---|---|---|
+| 79 | 1.326378 | dh170, Linux |
+| 87 | 1.325410 (in (1.32, 1.33), his round 1) | dh170, Linux, regridded from his k_c 79 state (my regrid's source) |
+| 87 | 1.338993 | macm3, macOS, regridded from the same k_c 79 state (a different state: `../cross_macm3_d1975/`) |
+| 95 | 1.326077, range [1.323726, 1.326077] | this scan, Linux, regridded from dh170's k_c 87 state |
+- The k_c 95 root is 0.000301 below dh170's k_c 79 (1.326378) and 0.000667 above his k_c 87 (1.325410), both Linux; it is 0.012916 below macm3's k_c 87 (1.338993), which is a different state, as the cross-check found. Both grids are 0.01, so differences of a few 1e-4 are below what the interpolation resolves; I do not read them as a k_c effect.
+- **Delta** (regrid, above): k_c 95 1.0860000558 beside dh170's k_c 87 1.0860022726 (-2.2168e-6) and k_c 79 1.0860054437 (-5.3880e-6).
+- No second change in 1.30 to 1.36. Nothing was scanned outside it.
+
+Predictions (written before the run): every point noise-robust (70%): yes; the repeat bit-identical (90%, same process): yes; exactly one robust change in 1.30 to 1.36 (85%): yes, lying between 1.322 and 1.345 (80%): yes (1.326077); a point 1500 to 2300 s on 4 processes alone: no, 2442 to 2461 s in round 1 and 2758 to 2770 s in round 2, both beside other jobs (above), so the prediction was for an idle machine and the point cost 7 to 20% more.
+
+These are k_c 95 roots, not yet physical.
