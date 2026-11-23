@@ -1,0 +1,18 @@
+states: 5695 entries; bit for bit equal: False; entries that differ: 5695; norm dz (L2, Delta included) 3.9965e-06; max entry 1.0620e-06 (index 5694); Delta entry of dz -1.0620e-06 (Delta np.float64(1.0860022725069214) against np.float64(1.0860012104795866))
+| record | 8 threads (linRe) | 6 threads (linRe6) |
+|---|---|---|
+| F_start | 3.987605893965491e-10 | 3.985763325036678e-10 |
+| F | 3.985418811061909e-10 | 3.9840563015752e-10 |
+| steps | 3124 | 3124 |
+| constraint | 0.0009695747261969719 | 0.0009695647123528019 |
+| Delta | 1.0860022725069214 | 1.0860012104795866 |
+| dDelta_dF | 1371278325.74109 | 1370560299.945433 |
+| lam_gauge | 0.9080204024665931 | 0.9080192983441366 |
+| seconds | 3746 | 1394 |
+ell_cond: norm dz 3.9965e-06 (computed here 3.9965e-06, relative difference 0.0e+00), norm F(A) 3.9855e-10, norm F(B) 3.9841e-10, part of dz outside the 8 smallest right singular vectors 3.9965e-06, norm J dz 1.6791e-12, norm F(B) - F(A) 2.2050e-12
+| lambda | ln of abs det, 8 threads (linRe) | ln of abs det, 6 threads (linRe6) | difference | signs (8, 6) | noise robust (8, 6) | float64 sign (8, 6) |
+|---|---|---|---|---|---|---|
+| 1.32 | -2806.030089913732 | -2807.6117255647187 | -1.582e+00 | -, - | True, True | +, + |
+| 1.33 | -2806.988601547315 | -2806.2750232906956 | +7.136e-01 | +, + | True, True | +, + |
+two-point det-linear root in (1.32, 1.33): 8 threads 1.327228, 6 threads 1.322081, move (6 minus 8) -0.005148
+reading by the rules written before the run: R2  [R0 bit for bit equal; R1 5e-11 <= norm dz <= 2e-9 and root move >= 2e-4; R2 otherwise]

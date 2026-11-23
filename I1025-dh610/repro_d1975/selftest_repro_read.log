@@ -1,0 +1,10 @@
+  bit for bit equal: read R0, wanted R0: ok
+  3e-10 apart, root moves 5e-4: read R1, wanted R1: ok
+  3e-10 apart, root moves 1e-4: read R2, wanted R2: ok
+  3e-9 apart, root moves 5e-4 (outside the band): read R2, wanted R2: ok
+  1e-11 apart, root moves 5e-4 (outside the band): read R2, wanted R2: ok
+  3e-10 apart, no root: read R2, wanted R2: ok
+  equal wins over a root move: read R0, wanted R0: ok
+  array_equal on equal arrays: True: ok
+  array_equal after a 1e-12 change: False: ok
+selftest PASS

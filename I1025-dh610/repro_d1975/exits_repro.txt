@@ -1,0 +1,13 @@
+== 2026-11-23 09:12:11 UTC repro_d1975: waiting for ref6/DONE.txt (6 h cap)
+== 2026-11-23 09:36:11 UTC repro_d1975: the 6-thread ell_refine run is done: DONE exit 0, wall 1396 s, 2026-11-23 09:35:19 UTC
+== 2026-11-23 09:36:11 UTC repro_d1975: the two states (8 threads, 6 threads): array_equal and difference: False entries differing 5695 norm 3.996537548689523e-06; blobs 4988a55c and 99f7660b
+== 2026-11-23 09:36:27 UTC repro_d1975: info: kc87_syscheck_1025.py on l1kc87linRe6: exit 0; controls --mutate=F exit 1, --mutate=steps exit 1 (1 wanted each)
+== 2026-11-23 09:36:27 UTC repro_d1975: ell_cond control: --mutate=plant on (linRe, linRe6), 8 threads
+== 2026-11-23 09:43:22 UTC repro_d1975: ell_cond control exit 0 (plant check: PASS (v_min component 1.000000e-06, others max 2.4e-18, outside 2.8e-16))
+== 2026-11-23 09:43:22 UTC repro_d1975: ell_cond (A = linRe, B = linRe6), 6 threads, and d18_hybsign.py on linRe6 at 1.32 and 1.33, 2 processes of 1 thread, nice 10, at the same time
+2026-11-23 09:51:35 UTC ell_cond lin_lin6 exit 0
+2026-11-23 10:05:03 UTC d18 1.33 exit 0
+2026-11-23 10:05:25 UTC d18 1.32 exit 0
+== 2026-11-23 10:05:25 UTC repro_d1975: d18 p0: D 19.75 k_c 87: |F| 3.9873788847e-10 (record 3.9840563016e-10), steps 3124 (record 3124): the record system
+== 2026-11-23 10:05:25 UTC repro_d1975: d18 p1: D 19.75 k_c 87: |F| 3.9873788847e-10 (record 3.9840563016e-10), steps 3124 (record 3124): the record system
+== 2026-11-23 10:05:25 UTC repro_d1975: all runs done; the reading is in summary_repro.txt; repro done
