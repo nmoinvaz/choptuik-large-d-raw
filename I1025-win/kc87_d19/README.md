@@ -1,6 +1,6 @@
 # I1025-win/kc87_d19: k_c 87 at D 19, regridded from my own k_c 79 D 19 state, then a scan (winb)
 
-Written before the run, 2026-11-23 05:10:51 UTC (substituted from `date -u` when pushed). Nothing has been run for this folder yet.
+Written before the run, 2026-11-23 05:11:38 UTC (substituted from `date -u` when pushed). Nothing has been run for this folder yet.
 
 Runner: the winb session (surface-laptop-4, 4 cores, 8 threads, 32 GB), the same one that ran `../kc79_d19/` (the k_c 79 D 19 regrid and first scan), `../kc79_d19low/` (raw 40f1a01a) and `../kc79_d19gap/` (raw fee69df5). The coordinator is t5.
 
@@ -61,7 +61,7 @@ Dry tests (`selftest_scan_dry_1025.txt`, `selftest_*_syscheck.txt.dry`, `kc87_re
 | scan | 10 points at 1500 to 2200 s: 4.2 to 6.1 h (t5: 4.6 h), peak private about 3 GB | k_c 79 at D 19: 1204 to 1695 s per point; k_c 87 is larger |
 | together | ends about 12:00 to 14:30 UTC on 2026-11-23, most likely about 13:00 | start about 05:25 UTC |
 
-The sampler (`rows/regrid_samples.csv`, `rows/scan_samples.csv`) gives the real figures. The other project's two I129 jobs share the laptop. I record the clock speed and power state at each start.
+The sampler (`rows/regrid_samples.csv`, `rows/scan_samples.csv`) gives the real figures. Another project's jobs (I114, earlier I129) share the laptop. I record the clock speed and power state at each start.
 
 ## Files made here
 
@@ -73,7 +73,16 @@ Started outside my terminal: `Win32_Process.Create` of `conhost.exe --headless c
 
 ## Status
 
-Written before the run. Pushed 2026-11-23 05:10:51 UTC.
+**Step 1 running since 2026-11-23 05:11:06 UTC** (the chain started through `Win32_Process.Create` of `conhost.exe --headless cmd.exe /c go_kc87d19_1025.cmd`). README first: c83d0fbd (pushed before the start).
+
+- **Chain** (`rows/launcher_pid_regrid.txt`: 10344): conhost --headless 10344 <- cmd 24168 <- regrid driver launcher 23684 and driver 14860 <- sampler 6216, alert-only watcher 25260, keep-awake helper 13972 (interpreter 25876), and the checks and the regrid below it. The python and powershell processes are BelowNormal.
+- **Session check** (`session_check_regrid.txt`, exit 0, taken while the source checks ran): no `claude` in any chain, no Windows Terminal / OpenConsole / wt, a headless conhost in the chain, every chain ends wininit.
+- **Before the checks:** the pins matched, the selftests of both checks exited 0 (`selftest_kc87_syscheck.txt`, `selftest_kc79_syscheck.txt`).
+- **Keep-awake:** helper 25876 set `SetThreadExecutionState(ES_CONTINUOUS | ES_SYSTEM_REQUIRED)` at 05:11:07 UTC (returned 0x80000000) and holds it until the regrid driver pid 14860 ends (`rows/regrid_keepawake.log`); the scan driver starts its own.
+- **Machine at the start:** on AC (battery status 2, charge 100 %), clock 2995 MHz of 2995 MHz max, free physical memory 23.9 GB; beside it the other project's I114 job (`convergence.py 5`, two python processes, started 04:02 UTC; the I129 pair of the gap scan is gone). Not touched.
+- **ETA** (estimates above): the source checks finish about 05:30, the regrid about 07:40 UTC (range 07:15 to 08:15), the scan about 12:00 to 14:30 UTC (most likely about 13:00).
+
+Pushed 2026-11-23 05:11:38 UTC.
 
 ## Result
 
