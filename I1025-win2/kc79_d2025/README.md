@@ -60,6 +60,46 @@ From the accepted k_c 79 state, as at D 20 (`../kc87_d20/`): `ell_refine.py l1kc
 
 The regrid and scan drivers of step 1 and 2 start outside the terminal through `../kc71_leap/cim_start.ps1 -Normal` as soon as this README is pushed and the plan is posted on #1025: the regrid driver at once, the scan driver waits for `regrid_accepted.txt`. No script sends hc; verdicts are read from `summary_kc79.txt` and `exits_kc79.txt` and reported by hand.
 
-## Result
+## Result (steps 1 and 2; step 3 running)
 
-Not yet run.
+**Step 1, the regrid: ACCEPTED** (started 06:44:13 UTC 23 Nov, exit 0 at 08:07:30 UTC, 4997 s, uncapped, 8 threads, Normal priority, root pid 46104, beside leg 3 of the leap; `regrid.log`). Source first: `kc71_syscheck.py` accepts the pinned D 20.25 state (record |F| 4.7845e-10, the state's 4.7852e-10, 2484 steps = the record's, both controls refused, `--mutate=F` and `--mutate=steps` exit 1; `source_kc71_syscheck*.txt`). Result: `kc79_syscheck_1025.py` exit 0, selftest 0, controls refused, `--mutate=F` and `--mutate=steps` exit 1 (`syscheck*.txt`).
+
+| | k_c 71 source (leg 3, D 20.25) | k_c 79 (this regrid) |
+|---|---|---|
+| \|F\| | 4.7845e-10 | 4.6133e-10 |
+| steps | 2484 | 2762 |
+| constraint | 4.401e-3 | 2.629e-3 |
+| Delta | 1.098622994386 | 1.098607275130 |
+| F_start | 4.407e-05 | 3.761e-05 |
+| seconds | 3625 (the leap step) | 4977 |
+
+Delta(k_c 79) minus Delta(k_c 71) = -1.5719e-5 (at D 20: -1.1878e-5). Files: `sol_l1kc79win2d2025_D20.2500.npy`, `l1kc79win2d2025.jsonl`, `rec_k79_D20.2500.jsonl`, `regrid_accepted.txt`.
+
+**Step 2, the scan: done** (started 08:07:58 UTC, seven processes of one thread, Normal priority; ended 09:03:16 UTC; `scan_k79d2025_p1..p7.jsonl`; exit 0 for all seven, 3280 to 3316 s, 2 evaluations each, 1629 to 1649 s a point, no cap). The system check of every process passed (|F| 4.6163579914e-10 against the record's 4.6133024092e-10, 2762 steps = the record's). **The repeat of 1.18 (P1, P2) agrees: sign +1 and ln|det| -2424.4288453048 in both, difference 0.0 (bar 1e-6); the gate passed after 1656 s.**
+
+`read_lower.py 1.12 1.24` as it prints (`read_lower_k79_D2025.txt`): 13 points in 1.120 to 1.240, none not noise robust; hybrid signs minus at 1.12 to 1.16, plus at 1.17 to 1.20, minus at 1.21 to 1.24; the float64 sign differs from the hybrid at 1.12 to 1.16 and 1.21 to 1.24 (it reads plus there; information, the hybrid is the sign used); repeated points 1.18 agree; **two robust changes: (1.160, 1.170), minus to plus, det-linear estimate 1.165140, estimator range [1.162108, 1.165140]; and (1.200, 1.210), plus to minus, det-linear estimate 1.203492, range [1.202702, 1.203492]** (spreads over estimator choices, not enclosures); changes touching a non-robust point: none; ln|det| local minima without a sign change: none; endpoint signs minus at 1.120 and at 1.240. A plus well of width 0.0384 between the two roots.
+
+**Against the order's written prediction** ("lambda_1(20.25) near 1.17, with one robust change in the window"): the root at 1.165140 is 0.0049 below 1.17, but the window has TWO robust changes, not one. By position, at D 20 the k_c 79 window 1.20 to 1.32 had one root, 1.248340 (and nothing in 1.20 to 1.24 besides it, minus below it), and k_c 87 gave 1.247484 there. Which of the two D 20.25 roots continues the D 20 root (-0.332 per unit D to 1.1651, or -0.179 per unit D to 1.2035) is not shown by two values of D; the line (-0.31 per unit D) is nearer 1.1651.
+
+<details><summary>All 14 evaluations (hybrid sign, ln abs det, noise test, float64 sign, seconds)</summary>
+
+| lambda | process | hybrid sign | ln abs det | noise (2 seeds) | float64 sign | s |
+|---|---|---|---|---|---|---|
+| 1.12 | P1 | - | -2418.3438 | -,- | + | 1647 |
+| 1.13 | P2 | - | -2419.4135 | -,- | + | 1645 |
+| 1.14 | P3 | - | -2420.5849 | -,- | + | 1629 |
+| 1.15 | P3 | - | -2421.9776 | -,- | + | 1648 |
+| 1.16 | P4 | - | -2424.2841 | -,- | + | 1630 |
+| 1.17 | P4 | + | -2424.3401 | +,+ | + | 1643 |
+| 1.18 | P1 | + | -2424.4288 | +,+ | + | 1630 |
+| 1.18 | P2 | + | -2424.4288 | +,+ | + | 1648 |
+| 1.19 | P5 | + | -2425.1494 | +,+ | + | 1640 |
+| 1.20 | P5 | + | -2426.9671 | +,+ | + | 1646 |
+| 1.21 | P6 | - | -2426.3445 | -,- | + | 1649 |
+| 1.22 | P6 | - | -2425.8712 | -,- | + | 1642 |
+| 1.23 | P7 | - | -2425.8345 | -,- | + | 1634 |
+| 1.24 | P7 | - | -2425.9621 | -,- | + | 1647 |
+
+</details>
+
+**Step 3 (k_c 87), in progress:** the source was accepted by the k_c 79 check and refused by the k_c 87 check at 08:10 UTC; the regrid started 08:10:35 UTC beside the step-2 scan (the gate measured 8 logical cores idle, the rule's minimum; `exits_kc87.txt`), root pid 40780, 8 threads, Normal priority. Its result and scan follow.
