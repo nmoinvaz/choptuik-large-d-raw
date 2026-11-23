@@ -1,0 +1,15 @@
+M 3, xi1 0.2, full selection, procs 2; start x [2.726475886, 1.015603095, 0.144419478, 0.011087426]
+level radii (approach -> polish): r_1 0.2000 -> 0.2000, r_3 0.2000 -> 0.2000
+start residuals: |r_1| 8.60e-06  |r_3| 8.75e-10
+level 3 it 0: |r_3| 3.170e-10  lam 1  x [2.726475886, 1.015603095, 0.144419478, 0.011087426]  [1 s, 7 residuals]
+   level 3 (top): stop at |r_3| 1.71e-10: a fresh Jacobian no longer halves |g|
+   level 3 solved: |r_3| 1.71e-10  (7 residuals, 1 s)  [2 s total]
+level 3 it 0: |r_3| 4.388e-11  lam 1  x [2.726475886, 1.015603095, 0.144419478, 0.011087426]  [6 s, 36 residuals]
+   level 3 (top): stop at |r_3| 4.39e-11: every trial rejected with a fresh Jacobian (noise floor)
+   level 3 solved: |r_3| 4.39e-11  (12 residuals, 3 s)  [8 s total]
+   level 1 (top): stop at |r_1| 1.58e-06: a fresh Jacobian no longer halves |g|
+   level 1 solved: |r_1| 1.58e-06  (45 residuals, 8 s)  [8 s total]
+FULL x (A, w/w_inf, B3, C3, ...) = [2.726475885921854, 1.0156030950364636, 0.14441947846771588, 0.01108742588573784]
+FULL r = [1.5703891156151808e-06, -1.625504202790792e-07, -7.670273807486704e-12, 4.320340843547369e-11]
+ZERO M 3: A 2.726475886  w/w_inf 1.015603095  (w 3.88177, Delta 1.61864)  <F^2> 3.7273  r_1 +1.5704e-06-1.6255e-07i  [8 s, 46 residuals]
+      F_3/F_1 = +0.052969+0.004067i   |.| 0.053125  arg +0.0766   r_3 4.4e-11

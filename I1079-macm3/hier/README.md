@@ -35,3 +35,32 @@ python 3.14.3, numpy 2.5.4 (`~/Source/venv-macm3-1058b`). hier.py's usage (its d
 
 Reported afterwards: hier's converged (A, w/w_inf, B3, C3) beside these, the differences (in A and w/w_inf, and in B3 and C3), hier's residual r_1 and r_3 and its residual count and seconds. A converged point more than about 1e-9 from the start in A or w/w_inf
 is reported with its distance and is not adjusted; if hier cannot start or does not converge, the message and the last lines of its log are the result.
+
+
+## Results (2026-11-23, 14:51:45 to 14:53:27 UTC; each hier run 6 to 13 s on 2 processes)
+
+**Verdict: hier does not converge to either excited zero in the sense of the prediction, and does not contradict it either. Started at each zero it accepts no step in A or w/w_inf (the outer level rejects every trial at its noise floor), and its residuals there are 3 to 4 orders above its residuals at the fundamental zero;
+started 3.6e-6 away it lands within 7e-8 (x1) and 4e-8 (x2) of the zero_mp point, so it confirms the zeros at the 1e-7 level, not at the 1e-9 level.**
+
+(1) `hier.py 3 A wf --x=B3,C3 --procs 2 --verbose=2` (the record, `hier/out/hier_plain_x{1,2}.log`) and (2) the same through `hier_driver.py` (`hier_driver_x{1,2}.log`, full precision) give the same printed lines (compared by `diff`, apart from the timings and the FULL lines): x1 `ZERO M 3: A 3.446218246 w/w_inf 0.347606965 ... r_1 +5.8509e-03-4.5483e-04i [87 residuals]`, x2 `ZERO M 3: A 3.526473057 w/w_inf 0.211497981 ... r_1 +2.1770e-02-3.3958e-02i [64 residuals]`.
+
+| run | A | w/w_inf | B3 | C3 | minus the start: A, w/w_inf | minus the start: B3, C3 | \|r_1\|; \|r_3\| (hier, xi 0.2) | residuals; time |
+|---|---|---|---|---|---|---|---|---|
+| x1, hier from the start | 3.446218246366727 | 0.347606965217407 | 0.8054175863436057 | 0.011780043792103045 | +0.00e+00, +0.00e+00 | -4.17e-11, -5.64e-11 | 5.87e-03; 9.74e-05 | 87; 8 s |
+| x2, hier from the start | 3.526473056695715 | 0.211497981391215 | 0.9765085466922837 | -0.0017633213067941044 | +0.00e+00, +0.00e+00 | +1.49e-09, -1.78e-09 | 4.03e-02; 5.60e-03 | 64; 6 s |
+| x1, hier from the start moved by (+3e-6, -2e-6) in A, w/w_inf (extra) | 3.446218177255137 | 0.3476069284002131 | 0.8054176094334068 | 0.011780043623226454 | -6.91e-08, -3.68e-08 | +2.30e-08, -2.25e-10 | 1.02e-02; 1.66e-04 | 101; 10 s |
+| x2, hier from the start moved by (+3e-6, -2e-6) (extra) | 3.526473034176512 | 0.21149802332627657 | 0.9765084792654547 | -0.00176330244769313 | -2.25e-08, +4.19e-08 | -6.59e-08, +1.71e-08 | 1.54e-01; 6.68e-02 | 158; 13 s |
+| the fundamental, hier from the certified centre (extra control) | 2.726475885921854 | 1.0156030950364636 | 0.14441947846771588 | 0.01108742588573784 | +2.91e-10, +1.79e-10 (against the certified centre) | -2.36e-12, -2.38e-12 | 1.58e-06; 4.39e-11 | 46; 8 s |
+
+The starting points are zero_mp's (A, w/w_inf) and value_mp's F_3 (B3 = -2 Im F_3, C3 = 2 Re F_3): x1 (3.446218246366727, 0.347606965217407, 0.8054175863852927, 0.011780043848505818), x2 (3.526473056695715, 0.211497981391215, 0.9765085451976188, -0.0017633195225818952).
+The certificate's refine `p_out` (numerics) equals them to 3.3e-16 and 4.4e-16 in A and w/w_inf and to 1e-17 in B3, C3, so the "minus certificate" differences equal the "minus start" ones to those digits (`FULL` values are in the logs).
+
+- **From the start (x1, x2):** A and w/w_inf come back as the start values to the last digit: every trial of the outer level was rejected with a fresh Jacobian ("noise floor": `level 1 (top): stop at |r_1| 5.87e-03` and `4.03e-02`). B3 and C3 moved by -4.2e-11, -5.6e-11 (x1) and +1.5e-9, -1.8e-9 (x2) against value_mp's. The residuals (hier's de-mixed jumps at xi 0.2) are |r_1| 5.9e-3 and 4.0e-2 and |r_3| 9.7e-5 and 5.6e-3, against 1.6e-6 and 4.4e-11 at the fundamental (control).
+  The solve counts: 87 and 64 residuals (8 s and 6 s); the level-3 solves inside the outer level stop at the noise floor too ("a fresh Jacobian no longer halves |g|", "every trial rejected with a fresh Jacobian").
+- **Why it cannot refine here:** the double-precision residual's noise floor is far above what 1e-9 in A needs. My probe (`hier_probe.py`, read-only: hier's raw residual and its 4 x 4 finite-difference Jacobian with hier's own steps; `hier/out/hier_probe_x*.log`): the raw Jacobian entries are 1e5 to 5e7; the linear Newton step from the start,
+  -J^-1 r, is (+2.7e-8, +2.8e-8) in (A, w/w_inf) at x1 with hier's steps and (+5.7e-8, +4.6e-8) with half of them, and (-9.3e-9, +2.0e-9) / (+9.5e-9, +1.0e-8) at x2, i.e. it changes with the finite-difference step by its own size and at x2 in sign. hier resolves A and w/w_inf at the 1e-8 (x2) to 6e-8 (x1) level here, not at 1e-9.
+- **From a displaced start (extra):** hier ends at (3.446218177255137, 0.3476069284002131) (x1) and (3.526473034176512, 0.21149802332627657) (x2): 6.9e-8, 3.7e-8 and 2.3e-8, 4.2e-8 from the zero_mp points, with residuals |r_1| 1.0e-2 and 0.15 and |r_3| 1.7e-4 and 6.7e-2. So a start 3.6e-6 away is brought back to within 7e-8, about 50 times closer, and no closer: the same resolution.
+- **The fundamental (extra control):** from the certified centre hier ends 2.9e-10 in A and 1.8e-10 in w/w_inf away (B3 and C3: -2.4e-12 each) with |r_1| 1.6e-6 and |r_3| 4.4e-11, so the same code, the same radii and the same procs do converge to the 1e-10 level where the zero is well-conditioned in double precision.
+
+**The prediction (before): "hier converges to each excited zero within about 1e-9 in A and wf, or names why it cannot start there": partly.** hier starts without trouble and does not move A and w/w_inf at all (so it is within 1e-9 of the start in the trivial sense); but it does so by rejecting every trial at its noise floor, with residuals 3 to 4 orders above its fundamental's, and from a displaced start
+it lands within 7e-8, not 1e-9. The independent check supports the located zeros at the 1e-7 level (A 3.4462182(5), w/w_inf 0.34760696(5); A 3.52647305(7), w/w_inf 0.2114980(0)) and cannot say more, because of hier's double-precision noise floor at these points: the same floor that kept the float64 recount at its noise level (#1021).

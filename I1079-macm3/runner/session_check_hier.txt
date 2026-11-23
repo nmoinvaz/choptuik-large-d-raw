@@ -1,0 +1,6 @@
+# session check, 2026-11-23 14:52:06 UTC: parent chain of each pid (the given ones and their descendants) up to pid 1 (pid ppid pgid sess tty command); fails if 'claude' is in a chain
+
+pid 11119: not running
+
+for comparison, this checker's own chain: 11328:/opt/homebrew/ <- 11109:/bin/zsh -c so <- 4486:claude --resum <- 4485:/Users/nathan/ <- 1392:/Users/nathan/ <- 1:/sbin/launchd ...
+claude in any chain of the run: False; tty of the pids:  (?? = no controlling terminal)

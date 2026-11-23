@@ -300,3 +300,15 @@ round3 A_M_krawczyk_pt_M3x2_1e-10 command: cd /Users/nathan/Source/choptuik-larg
 round3 A_M_krawczyk_pt_M3x2_1e-10 end 2026-11-23 14:46:39 exit 1:    C3       in [-0.00176332366172889, -0.00176331538343469]  (radius 4.14e-09)
 round3 margins M3x2_1e-10 exit 1 (extra: the 1e-10 run): Krawczyk M = 3: K(X) in int X: False; relative margins -79.911, -131.236, -220241.962, -94251.663
 round3 done 2026-11-23 14:46:39
+hier start 2026-11-23 14:51:45
+hier plain x1 command: cd /Users/nathan/Source/choptuik-large-d-1079/solver/inner_stokes && nice -n 10 /Users/nathan/Source/venv-macm3-1058b/bin/python -u hier.py 3 3.446218246366727 0.347606965217407 --x=0.8054175863852927,0.011780043848505818 --procs 2 --verbose=2 > /Users/nathan/Source/choptuik-large-d-raw-903/I1079-macm3/hier_out/hier_plain_x1.log 2>&1
+hier plain x2 command: cd /Users/nathan/Source/choptuik-large-d-1079/solver/inner_stokes && nice -n 10 /Users/nathan/Source/venv-macm3-1058b/bin/python -u hier.py 3 3.526473056695715 0.211497981391215 --x=0.9765085451976188,-0.0017633195225818952 --procs 2 --verbose=2 > /Users/nathan/Source/choptuik-large-d-raw-903/I1079-macm3/hier_out/hier_plain_x2.log 2>&1
+hier plain start 2026-11-23 14:51:45
+hier plain x2 end 2026-11-23 14:51:51 exit 0: ZERO M 3: A 3.526473057  w/w_inf 0.211497981  (w 0.80837, Delta 7.77262)  <F^2> 6.6948  r_1 +2.1770e-02-3.3958e-02i  [6 s, 64 residuals]
+hier plain x1 end 2026-11-23 14:51:54 exit 0: ZERO M 3: A 3.446218246  w/w_inf 0.347606965  (w 1.32860, Delta 4.72917)  <F^2> 6.2626  r_1 +5.8509e-03-4.5483e-04i  [8 s, 87 residuals]
+hier driver x1 command: cd /Users/nathan/Source/choptuik-large-d-1079/solver/inner_stokes && nice -n 10 /Users/nathan/Source/venv-macm3-1058b/bin/python -u /Users/nathan/Source/choptuik-large-d-raw-903/I1079-macm3/hier_driver.py 3 3.446218246366727 0.347606965217407 --x=0.8054175863852927,0.011780043848505818 --procs 2 --verbose=2 > /Users/nathan/Source/choptuik-large-d-raw-903/I1079-macm3/hier_out/hier_driver_x1.log 2>&1
+hier driver x2 command: cd /Users/nathan/Source/choptuik-large-d-1079/solver/inner_stokes && nice -n 10 /Users/nathan/Source/venv-macm3-1058b/bin/python -u /Users/nathan/Source/choptuik-large-d-raw-903/I1079-macm3/hier_driver.py 3 3.526473056695715 0.211497981391215 --x=0.9765085451976188,-0.0017633195225818952 --procs 2 --verbose=2 > /Users/nathan/Source/choptuik-large-d-raw-903/I1079-macm3/hier_out/hier_driver_x2.log 2>&1
+hier driver start 2026-11-23 14:51:54
+hier driver x2 end 2026-11-23 14:52:00 exit 0: ZERO M 3: A 3.526473057  w/w_inf 0.211497981  (w 0.80837, Delta 7.77262)  <F^2> 6.6948  r_1 +2.1770e-02-3.3958e-02i  [6 s, 64 residuals]
+hier driver x1 end 2026-11-23 14:52:03 exit 0: ZERO M 3: A 3.446218246  w/w_inf 0.347606965  (w 1.32860, Delta 4.72917)  <F^2> 6.2626  r_1 +5.8509e-03-4.5483e-04i  [8 s, 87 residuals]
+hier done 2026-11-23 14:52:03
