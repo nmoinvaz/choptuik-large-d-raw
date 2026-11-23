@@ -60,6 +60,23 @@ From the accepted k_c 79 state, as at D 20 (`../kc87_d20/`): `ell_refine.py l1kc
 
 The regrid and scan drivers of step 1 and 2 start outside the terminal through `../kc71_leap/cim_start.ps1 -Normal` as soon as this README is pushed and the plan is posted on #1025: the regrid driver at once, the scan driver waits for `regrid_accepted.txt`. No script sends hc; verdicts are read from `summary_kc79.txt` and `exits_kc79.txt` and reported by hand.
 
+## Step 3 scan: window and lists, fixed before the run (the coordinator's hc ~09:10 UTC 23 Nov, after the two robust changes of step 2)
+
+The k_c 79 scan found two robust changes (1.165140 and 1.203492), so the order's "the k_c 79 root's bracket +-0.03 by 0.005" is read as both brackets: **lambda 1.130 to 1.240 by 0.005 (23 values) plus a repeat of 1.160: 24 evaluations on 8 processes of 1 thread** (`scan87_d2025.sh`, `d18_hybsign.py` e089207a, Normal priority, caps 28800 s by the exact root pids; starts itself when `regrid87_accepted.txt` is non-empty):
+
+| process | lambda, in this order |
+|---|---|
+| P1 | 1.160, 1.130, 1.135 |
+| P2 | 1.160, 1.140, 1.145 |
+| P3 | 1.150, 1.155, 1.165 |
+| P4 | 1.170, 1.175, 1.180 |
+| P5 | 1.185, 1.190, 1.195 |
+| P6 | 1.200, 1.205, 1.210 |
+| P7 | 1.215, 1.220, 1.225 |
+| P8 | 1.230, 1.235, 1.240 |
+
+The repeat of 1.160 (P1, P2) is gated at 1e-6 (`pair2025.py`; a disagreement kills the eight scans). Read with `read_lower.py SCAN_DIR 1.13 1.24` after its selftest and both mutations. **Written before it (the coordinator's):** by position the root near lambda_1's line is 1.1651 (slope -0.33 per unit D from D 20, continuing -0.28, -0.31); the root that stays within 0.002 between k_c 79 and k_c 87 is lambda_1, and the other moves with k_c (a discretization root). Both roots are reported by position beside k_c 79's (1.165140 and 1.203492).
+
 ## Result (steps 1 and 2; step 3 running)
 
 **Step 1, the regrid: ACCEPTED** (started 06:44:13 UTC 23 Nov, exit 0 at 08:07:30 UTC, 4997 s, uncapped, 8 threads, Normal priority, root pid 46104, beside leg 3 of the leap; `regrid.log`). Source first: `kc71_syscheck.py` accepts the pinned D 20.25 state (record |F| 4.7845e-10, the state's 4.7852e-10, 2484 steps = the record's, both controls refused, `--mutate=F` and `--mutate=steps` exit 1; `source_kc71_syscheck*.txt`). Result: `kc79_syscheck_1025.py` exit 0, selftest 0, controls refused, `--mutate=F` and `--mutate=steps` exit 1 (`syscheck*.txt`).
