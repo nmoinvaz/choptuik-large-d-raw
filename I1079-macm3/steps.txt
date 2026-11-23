@@ -1,0 +1,31 @@
+step1 x1 command: cd /Users/nathan/Source/choptuik-inner-mp/solver/inner_stokes && nice -n 10 /Users/nathan/Source/venv-macm3-1058b/bin/python -u value_mp.py point 3.446218246366727 0.347606965217407 0.006042995233562286 -0.3800117921568823 > /Users/nathan/Source/choptuik-large-d-raw-903/I1079-macm3/point_x1.json 2> /Users/nathan/Source/choptuik-large-d-raw-903/I1079-macm3/point_x1.err
+step1 x2 command: cd /Users/nathan/Source/choptuik-inner-mp/solver/inner_stokes && nice -n 10 /Users/nathan/Source/venv-macm3-1058b/bin/python -u value_mp.py point 3.526473056695715 0.211497981391215 -0.0009128684534629451 -0.48753546856333585 > /Users/nathan/Source/choptuik-large-d-raw-903/I1079-macm3/point_x2.json 2> /Users/nathan/Source/choptuik-large-d-raw-903/I1079-macm3/point_x2.err
+step1 start 2026-11-23 13:36:48
+checks start 2026-11-23 13:36:48: python-flint 0.9.0 FLINT 3.6.0
+checks selftest command: cd /Users/nathan/Source/choptuik-large-d-1079/solver/proof && nice -n 10 /Users/nathan/Source/venv-macm3-1058b/bin/python certify_M_sys.py selftest > logs/I1079_selftest.log 2>&1
+checks selftest start 2026-11-23 13:36:48
+checks selftest end 2026-11-23 13:36:49 exit 0 (expected 0): SELFTEST PASS
+checks selftest_mut command: cd /Users/nathan/Source/choptuik-large-d-1079/solver/proof && nice -n 10 /Users/nathan/Source/venv-macm3-1058b/bin/python certify_M_sys.py selftest --mutate=coupling > logs/I1079_selftest_mut.log 2>&1
+checks selftest_mut start 2026-11-23 13:36:49
+checks selftest_mut end 2026-11-23 13:36:51 exit 1 (expected nonzero): SELFTEST FAIL
+checks startcheck command: cd /Users/nathan/Source/choptuik-large-d-1079/solver/proof && nice -n 10 /Users/nathan/Source/venv-macm3-1058b/bin/python certify_M.py startcheck 3 > logs/I1079_startcheck.log 2>&1
+checks startcheck start 2026-11-23 13:36:51
+checks startcheck end 2026-11-23 13:36:55 exit 0 (expected 0):    contains this file's series values: True (max difference 4.4e-76, radius 6.0e-51); derivatives: True
+checks startcheck_mut command: cd /Users/nathan/Source/choptuik-large-d-1079/solver/proof && nice -n 10 /Users/nathan/Source/venv-macm3-1058b/bin/python certify_M.py startcheck 3 --mutate > logs/I1079_startcheck_mut.log 2>&1
+checks startcheck_mut start 2026-11-23 13:36:55
+checks startcheck_mut end 2026-11-23 13:37:00 exit 1 (expected nonzero):    contains this file's series values: False (max difference 4.4e-76, radius 6.0e-51); derivatives: True
+checks crosscheck command: cd /Users/nathan/Source/choptuik-large-d-1079/solver/proof && nice -n 10 /Users/nathan/Source/venv-macm3-1058b/bin/python certify_M.py crosscheck 3 > logs/I1079_crosscheck.log 2>&1
+checks crosscheck start 2026-11-23 13:37:00
+checks crosscheck end 2026-11-23 13:37:19 exit 0 (expected 0): crosscheck M = 3: worst |difference| / max|y| 6.9e-14 -> AGREE (inner_np r0 0.0741, its series to 94 terms)
+checks crosscheck_mut command: cd /Users/nathan/Source/choptuik-large-d-1079/solver/proof && nice -n 10 /Users/nathan/Source/venv-macm3-1058b/bin/python certify_M.py crosscheck 3 --mutate > logs/I1079_crosscheck_mut.log 2>&1
+checks crosscheck_mut start 2026-11-23 13:37:19
+checks crosscheck_mut end 2026-11-23 13:37:39 exit 1 (expected nonzero): crosscheck M = 3 [mutated: inner_np at wf + 1e-6]: worst |difference| / max|y| 5.5e-06 -> DISAGREE (inner_np r0 0.0741, its series to 94 terms)
+checks done 2026-11-23 13:37:39
+step1 x2 end 2026-11-23 14:02:38 exit 0
+step1 x1 end 2026-11-23 14:06:35 exit 0
+step1 done 2026-11-23 14:06:35
+refine p x1 = 3.446218246366727,0.347606965217407,0.8054175863852927,0.011780043848505818
+refine p x2 = 3.526473056695715,0.211497981391215,0.9765085451976188,-0.0017633195225818952
+refine x1 command: cd /Users/nathan/Source/choptuik-large-d-1079/solver/proof && nice -n 10 /Users/nathan/Source/venv-macm3-1058b/bin/python certify_M.py refine 3 --p=3.446218246366727,0.347606965217407,0.8054175863852927,0.011780043848505818 --iters=3 --tag=x1 > logs/A_M_refine_M3_x1_stdout.log 2>&1
+refine x2 command: cd /Users/nathan/Source/choptuik-large-d-1079/solver/proof && nice -n 10 /Users/nathan/Source/venv-macm3-1058b/bin/python certify_M.py refine 3 --p=3.526473056695715,0.211497981391215,0.9765085451976188,-0.0017633195225818952 --iters=3 --tag=x2 > logs/A_M_refine_M3_x2_stdout.log 2>&1
+refine start 2026-11-23 14:07:08
