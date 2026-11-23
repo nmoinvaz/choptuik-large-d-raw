@@ -46,9 +46,49 @@ The regrid reaches k_c 95 and is accepted (80%; a size or array limit 10%, a che
 - 00:48:22 UTC the dry run of the regrid lane passed the pins, the diff rebuild, the selftests and the source check (see Acceptance 1); nothing started yet.
 - 00:49:32 UTC the regrid started (unit `i1025t`, 8 threads, nice 10; the source check of the real run passed again: exit 0, controls exit 1, 1, the k_c 95 check refuses the k_c 87 source). 00:51 UTC the memory guard was made alert-only as above (the running regrid was not restarted).
 - 02:01:05 UTC the regrid exited 0 (wall 4293 s) and 02:01:11 UTC it was ACCEPTED (below). My session lost the API from about 01:00 to 02:50 UTC (the coordinator's account: the home network was down; the unit kept running, the machine did not reboot), so the scan, which the order starts after the verdict, started late: 02:52:27 UTC (unit `i1025u`, `lane_kc95_scan.sh`, alert-only for memory), 10 evaluations on 4 processes of 1 thread, nice 10, pins and selftests passed (exits 0 1 1 0; the dry run at 02:52:20 UTC). The alert-only watcher (`ALERTS.txt` would list any alert) wrote none, and no `MEMALERT.txt` exists.
+- 04:50:40 UTC the scan ended (all four processes exit 0; `exits_kc95_scan.txt`); reading below. The last two points of processes 0 and 1 ran beside the D 19.75 regrid of `../kc95_d1975/` (8 threads, from 04:16:49 UTC), which another order started on this machine.
 
 ## Regrid result (23 Nov, 00:49:32 to 02:01:11 UTC): ACCEPTED
 
 `ell_refine.py` (8 threads, nice 10, unit `i1025t`) exited 0 after 4293 s (the record's own 4291 s; predicted 3500 to 4300 s); peak sampled RSS 2.70 GB, 778% CPU on average; no size or array error: `ell_refine.py` reached k_c 95 (`regrid/regrid.log`, `regrid/regrid_samples.csv`, `regrid/steps.txt`). Its log carries 24 numpy RuntimeWarnings (overflow, invalid value) from `dss_ell.py` lines 88, 211 to 219, 325 and 334 in the solver's trial evaluations (the k_c 87 regrids' logs had 25 and 21 at the same lines); the acceptance is the check below, not the log.
 - Record `l1kc95dh610d195.jsonl` (blob 37796bb9) and state `sol_l1kc95dh610d195_D19.5000.npy` (blob e5ea14bd, copied to `in/`; `in_blobs_regrid.txt`): k_c 95 at D 19.5, |F| 3.5335625278e-10, F_start 2.395e-06, 3460 steps (predicted about 3450), constraint 2.860e-04, Delta 1.0798352509 (my k_c 87 source: |F| 3.5229e-10, 3171 steps, constraint 7.311e-04, Delta 1.0798374906; k_c 95's Delta is 2.24e-06 below).
 - **Acceptance:** `kc95_syscheck_1025.py` exit 0 (the state's |F| equals the record's, `freeze_from` gives 3460 steps = the record's); `--mutate=F` exit 1 (the state's |F| is not within 1% of 1.5 times the record's), `--mutate=steps` exit 1 (`freeze_from` gives 3460, the record 3461); extra control: `kc87_syscheck_1025.py` on the k_c 95 result exit 1 ("the record is not k_c 87 at D 19.5 (kc 95, D 19.5)"). Verdict `regrid/VERDICT.txt`: ACCEPTED 02:01:11 UTC.
+
+## Scan result (23 Nov, 02:52:27 to 04:50:40 UTC): one robust change in 1.380 to 1.420, between 1.395 and 1.400; the repeat agrees
+
+All four processes exit 0. Walls 1:58:12 (process 0), 1:54:36 (1), 1:16:22 (2), 1:16:23 (3); peak RSS 3.14 to 3.30 GB per process (`scan/scan_p<p>.raw`, `/usr/bin/time -v`). Sampled every 30 s (`scan/sampler.log`, 236 samples):
+summed RSS at most 10.92 GB, MemAvailable at least 24.19 GB, load at most 11.36. The pre-run checks passed (README Acceptance): reader selftest exit 0, `--mutate=shift` and `--mutate=round2` exit 1, `repeat_check.py` selftest exit 0,
+all four processes printed "the record system" (|F| 3.5307904178e-10 against the record's 3.5335625278e-10, steps 3460 = 3460). No memory alert fired (no `scan/MEMALERT.txt`, no `ALERTS.txt`).
+
+| lambda_1 | process | hybrid sign | ln\|det\| | noise_robust | float64 sign | point sec |
+|---|---|---|---|---|---|---|
+| 1.380 | 0 | -1 | -3188.0933117654 | True | -1 | 2337 |
+| 1.385 | 1 | -1 | -3188.5694378172 | True | -1 | 2343 |
+| 1.390 | 2 | -1 | -3189.1874472696 | True | -1 | 2329 |
+| 1.395 | 3 | -1 | -3190.2085401142 | True | -1 | 2336 |
+| 1.400 | 0 | +1 | -3191.3776333577 | True | -1 | 2238 |
+| 1.400 (repeat) | 1 | +1 | -3191.3776333577 | True | -1 | 2286 |
+| 1.405 | 1 | +1 | -3189.9772787360 | True | -1 | 2244 |
+| 1.410 | 2 | +1 | -3189.5506268603 | True | -1 | 2250 |
+| 1.415 | 3 | +1 | -3189.3385984907 | True | +1 | 2245 |
+| 1.420 | 0 | +1 | -3189.2231421486 | True | +1 | 2514 |
+
+Reading (`read_lower.txt`, `read_lower.py` dh170's, unedited; signs as the reader prints them):
+- **Robust change:** one, between 1.395 and 1.400, `- to +` as the reader prints it, det-linear estimate **1.398815**, estimator range [1.398639, 1.398815] (a spread over interpolation choices, not an enclosure; the bracket is the grid step 0.005). No change touches a non-robust point; every point is noise-robust.
+- **Edge signs:** - at 1.380, + at 1.420.
+- **ln|det| minima without a sign change:** none. ln|det| is lowest at 1.400, beside the change (1.17 below 1.395 and 1.40 below 1.405); on both sides it varies smoothly (rises from -3191.38 at 1.400 to -3189.22 at 1.420, rises from -3191.38 to -3188.09 going down to 1.380).
+- **Repeat of 1.400:** agrees, bit-identical (`repeat_check.py` PASS; ln -3191.377633357704 on process 0 and on process 1, the same sign, noise signs and float64 sign). Same machine and build, so it tests repeatability, not another machine.
+- **Float64:** its sign differs from the hybrid at 1.400 (both evaluations), 1.405 and 1.410 (- against +), so float64 alone would put the change between 1.410 and 1.415; the hybrid is the reading.
+
+Beside which I report (information, not a pass rule; the coordinator's numbers), by position the root near lambda_1's line at D 19.5:
+| k_c | lambda_1 | by | machine and grid |
+|---|---|---|---|
+| 79 | 1.397565 | the coordinator's number | not mine |
+| 87 | 1.399169, range [1.398747, 1.399169] | my scan, `../kc87_d195/` | this machine, grid 0.01 |
+| 95 | 1.398815, range [1.398639, 1.398815] | this scan | this machine, grid 0.005 |
+- The k_c 95 root is 0.000354 below k_c 87's (same machine, same regrid code, the k_c 87 state is the k_c 95 state's source) and 0.001250 above k_c 79's. The two estimator ranges overlap ([1.398747, 1.398815]). The two grids differ (0.01 and 0.005), so a difference of 0.00035 is below what the interpolation resolves; I do not read it as a k_c effect. The step from k_c 87 to k_c 95 is smaller than the build alone moved lambda_1 at k_c 87 (macm3 1.396000, macOS, against my 1.399169: 0.0032, two regrids of the same state).
+- No second change in 1.380 to 1.420. Nothing was scanned outside it (k_c 71's roots at D 19.5 are 1.3715 and 1.4492, the coordinator's numbers; the window's upper edge 1.420 is below 1.4492).
+
+Predictions (written before the run): one robust change in the window within 0.002 of 1.399169 (75% given one): yes (0.000354); no second (85%): yes; a point 1800 to 2200 s: no, 2238 to 2514 s (2329 to 2343 s with four processes at once, 2238 to 2250 s in the second round; the last two points, 2286 and 2514 s, ran beside the D 19.75 regrid); the scan 1.5 to 1.8 h: no, 1:58:12 for the longest process.
+
+These are k_c 95 roots, not yet physical.
