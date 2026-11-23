@@ -4,7 +4,8 @@
 For each component i of K(X) = -Y g(0) + (I - Y Dgt(X)) X: the box half-width w_i, |mid| and radius of (Y g)_i, and for each column j the term |mid|(I - YJ)_ij w_j and the radius rad(I - YJ)_ij w_j,
 the same arithmetic as certify_M.krawczyk_test (lines 345-417), so that the sum of the pieces is |K_i|'s upper bound."""
 import sys, os, json
-sys.path.insert(0, "/Users/nathan/Source/choptuik-large-d-1079/solver/proof")
+import os
+sys.path.insert(0, os.environ.get("DIAG_PROOF", "/Users/nathan/Source/choptuik-large-d-1079/solver/proof"))
 import numpy as np
 from flint import arb, arb_mat, ctx
 import certify_M as C

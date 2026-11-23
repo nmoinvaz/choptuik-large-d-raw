@@ -1,0 +1,27 @@
+start_cover_M2: data/A_M_box_M3x1E2_h1e-12_w1e-12.json against the stored runs of lemma FP(3), rows all, mutation None  [python-flint 0.9.0, FLINT 3.6.0]
+certificate: ray 5pi/16, r0 0.0741, diag splitting, N 95 (from the centre run at p^; the run does not store it), Cauchy radius 1e-3, box h 1e-12, w ['1e-12']
+  start data:        certify_M.start_data (certify_M.py:152, 154; the hull at :298): start_data_M at the midpoints of the hull and over the hull, each with its own centre run
+  p^ - x^:           A +7.197e-01  w/w_inf -6.680e-01  B3 +6.610e-01  C3 +6.926e-04
+  hull half-widths:  A 1.000e-12  w/w_inf 1.000e-12  B3 2.541e-12  C3 1.063e-12
+  largest hull half-width about p^ 2.5410234016204868e-12, of which the run stores no value
+(a) fixed_point_M.py sha256 589e5a810bc50289, the certificate recorded 589e5a810bc50289: same file True; the lemma's ray is the path's start ray: True
+lemma run [table 3pi/8]: ray 3pi/8, r0 0.085, diag, N 72, k 40; real x^ +- 1e-6, complex x^ +- 1e-3(1 + i)
+  (a) same ray False, r0 False, splitting True, N False, Cauchy radius True
+  (b) p^ inside False (slack -7.197e-01 at A); hull inside False (slack -7.197e-01 at A); Cauchy(p^) inside False (slack -7.197e-01 at A, imaginary parts +0.0e+00); Cauchy(hull) inside False (slack -7.197e-01 at A, imaginary parts +0.0e+00) -> NOT all inside
+lemma run [table 5pi/16]: ray 5pi/16, r0 0.0741, diag, N 94, k 40; real x^ +- 1e-6, complex x^ +- 1e-3(1 + i)
+  (a) same ray True, r0 True, splitting True, N False, Cauchy radius True
+  (b) p^ inside False (slack -7.197e-01 at A); hull inside False (slack -7.197e-01 at A); Cauchy(p^) inside False (slack -7.197e-01 at A, imaginary parts +0.0e+00); Cauchy(hull) inside False (slack -7.197e-01 at A, imaginary parts +0.0e+00) -> NOT all inside
+lemma run [data 3pi/8 h=1e-9]: ray 3pi/8, r0 0.085, diag, N 72, k 40; real x^ +- 1e-9, Cauchy box x^ +- (1e-9 + 1e-3), imaginary +- 1e-3
+  (a) same ray False, r0 False, splitting True, N False, Cauchy radius True
+  (b) p^ inside False (slack -7.197e-01 at A); hull inside False (slack -7.197e-01 at A); Cauchy(p^) inside False (slack -7.197e-01 at A, imaginary parts +0.0e+00); Cauchy(hull) inside False (slack -7.197e-01 at A, imaginary parts +0.0e+00) -> NOT all inside
+lemma run [data 3pi/8 h=1e-6]: ray 3pi/8, r0 0.085, diag, N 72, k 40; real x^ +- 1e-6, Cauchy box x^ +- (1e-6 + 1e-3), imaginary +- 1e-3
+  (a) same ray False, r0 False, splitting True, N False, Cauchy radius True
+  (b) p^ inside False (slack -7.197e-01 at A); hull inside False (slack -7.197e-01 at A); Cauchy(p^) inside False (slack -7.197e-01 at A, imaginary parts +0.0e+00); Cauchy(hull) inside False (slack -7.197e-01 at A, imaginary parts +0.0e+00) -> NOT all inside
+lemma run [data 5pi/16 h=1e-9]: ray 5pi/16, r0 0.0741, diag, N 94, k 40; real x^ +- 1e-9, Cauchy box x^ +- (1e-9 + 1e-3), imaginary +- 1e-3
+  (a) same ray True, r0 True, splitting True, N False, Cauchy radius True
+  (b) p^ inside False (slack -7.197e-01 at A); hull inside False (slack -7.197e-01 at A); Cauchy(p^) inside False (slack -7.197e-01 at A, imaginary parts +0.0e+00); Cauchy(hull) inside False (slack -7.197e-01 at A, imaginary parts +0.0e+00) -> NOT all inside
+lemma run [data 5pi/16 h=1e-6]: ray 5pi/16, r0 0.0741, diag, N 94, k 40; real x^ +- 1e-6, Cauchy box x^ +- (1e-6 + 1e-3), imaginary +- 1e-3
+  (a) same ray True, r0 True, splitting True, N False, Cauchy radius True
+  (b) p^ inside False (slack -7.197e-01 at A); hull inside False (slack -7.197e-01 at A); Cauchy(p^) inside False (slack -7.197e-01 at A, imaginary parts +0.0e+00); Cauchy(hull) inside False (slack -7.197e-01 at A, imaginary parts +0.0e+00) -> NOT all inside
+(c) diag splitting on the Cauchy boxes: M W0 sup|Im w/w_inf| = 0.01147 <= 3/2: True
+START COVER M2 (data/A_M_box_M3x1E2_h1e-12_w1e-12.json, rows all, mutation None): NOT COVERED
