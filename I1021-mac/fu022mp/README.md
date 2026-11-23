@@ -21,7 +21,7 @@ argcount.py is the record's): `solver/inner_stokes/inner_mp.py` and `value_mp.py
 | 1: at the 3 best-valued float64 points of fu021's cache, the mp R_1 within the float64 sigma, v within 1e-9 | PASS: dR 1.8e-6, 6.8e-7, 3.1e-6 against sigma 3.9e-6, 5.2e-6, 7.9e-6; dv about 2e-16; sigma_mp 1.7e-24, 2.6e-25, 1.5e-24 |
 | 1, control `--mutate=conv` (drops [C S] from D's equation) | FAIL, exit 1, as it must (dR 5.7e10) |
 | 2: R_1 at (34 digits, order 40, margin 12) against (42, 50, 14) within 1e-25 relative | PASS: 7.27e-28 |
-| 2, control `--mutate=series` | run with 8 terms of the start series (`check2_series8.log`); the earlier half-terms control was vacuous (it changes the start state by 3e-34, `check1_series.log`, `check2_series.log`) and is not counted |
+| 2, control `--mutate=series` (8 terms of the start series) | FAIL, exit 1, as it must: 1.33e-6 relative (`check2_series8.log`). The earlier half-terms control was vacuous (it changes the start state by 3e-34, `check1_series.log`, `check2_series.log`) and is not counted |
 
 ## Command
 
