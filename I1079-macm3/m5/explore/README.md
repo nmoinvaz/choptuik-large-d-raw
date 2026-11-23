@@ -93,3 +93,17 @@ xi1 0.17: K_1 1.83e+15  K_3 3.12e+13  K_5 2.07e+11  (max |d r_l / d x_nu| over n
 - **At xi1 0.17** with `--floor_max` level 5 stops in all six top solves by "every trial rejected with a fresh Jacobian (noise floor)" at 6.0e-4 to 1.7e-3, and level 3 ends at 8.9e4 for the same reason.
 - **Consistency with a float64 rounding floor** (not a test of the cause): the stop residual of level 5 divided by the level's sensitivity K_5 (the table `K by level` that `--verbose=2` prints) is 1.2e-15 to 7.9e-15 at xi1 0.2 and 2.9e-15 to 8.2e-15 at 0.17, while K_5 rises from 4.8e8 to 2.1e11 and the stall from 1e-6 to 1e-3. Level 3 at 0.2: 4.56e-4 / K_3 = 1.1e-14. Level 3 at 0.17 is not a clean case, since level 5 beneath it never converged. The ulp of float64 is 1.1e-16.
 - Not run (the order ended here): `INNER_NB_RTOL=1e-13`, the integrator tolerance override `inner_nb.py` documents, would test whether the stall moves with the integrator's tolerance.
+
+### Third order, results (still exploratory)
+
+Run 2026-11-23 17:46:17 to 2026-11-23 17:46:25 UTC (8 s wall) under `caffeinate -is`, all exits 0, no Traceback. `logs/rtol_floors.txt` (from `rtol_floors.py`, the reading written before the run):
+
+| rtol | K₅ | level-5 top solves | stall min / median / max | stall / K₅ | K₃ | level-3 stall | stall / K₃ | \|r₁\| |
+|---|---|---|---|---|---|---|---|---|
+| 1e-13 | 2.34e+08 | 14 | 7.64e-07 / 2.17e-06 / 5.67e-06 | 3.3e-15 to 2.4e-14 | 4.05e+10 | 5.98e+00 | 1.5e-10 | 3.54e+05 |
+| 1e-12 (earlier run) | 4.78e+08 | 12 | 5.83e-07 / 1.91e-06 / 3.76e-06 | 1.2e-15 to 7.9e-15 | 4.14e+10 | 4.56e-04 | 1.1e-14 | 3.54e+05 |
+| 1e-11 | 2.75e+08 | 15 | 3.75e-07 / 1.85e-06 / 5.73e-06 | 1.4e-15 to 2.1e-14 | 2.64e+10 | 7.54e-05 | 2.9e-15 | 3.54e+05 |
+
+Reading by the thresholds above: **level 5 unchanged, level 3 mixed.** The medians of the level-5 stall are 2.2e-6, 1.9e-6, 1.9e-6, and the three ranges overlap, over two decades of rtol. The level-3 stall is not ordered by rtol: 6.0 at 1e-13, 4.56e-4 at 1e-12, 7.5e-5 at 1e-11. The 1e-13 run's level 3 converged more slowly (|r_3| 14.3, 9.2, 6.0 over its last three iterations) and stopped on "every trial rejected with a fresh Jacobian (noise floor)". The last level-3 iterate of the default and the 1e-11 run agree to 9 decimals in (B3, C3, B5, C5) = (0.889367331, -0.003238748, 0.294548411, 0.011810894); the 1e-13 run's differs by 6.9e-7, 1.0e-6, 2.3e-7, 2.7e-7. K itself varies by a factor 2 between the runs (K₅ 2.3e8, 4.8e8, 2.8e8).
+
+Correction: the first run of `rtol_floors.py` printed "level 3 unchanged". Its `read3` tested only one side (a stall far above the default's passed), which does not match the threshold written above (within 3x both ways). I fixed the function, added two selftest cases that fail on the one-sided version (a stall 10^4 above, and one 60x below, must read *mixed*), and reran; the thresholds are unchanged. The output file is the corrected run.

@@ -36,7 +36,8 @@ def read5(lo, mid, hi):
 
 
 def read3(lo, mid, hi):
-    if lo >= mid / 3 and hi <= mid * 3:
+    near = lambda v: mid / 3 <= v <= mid * 3
+    if near(lo) and near(hi):
         return "unchanged"
     if lo <= mid / 3 and hi >= mid * 3:
         return "scales"
@@ -46,6 +47,7 @@ def read3(lo, mid, hi):
 def selftest():
     ok = read5((1e-6, 4e-6), (1e-6, 4e-6), (1.5e-6, 5e-6)) == "unchanged" and read5((1e-7, 4e-7), (1e-6, 4e-6), (1e-5, 4e-5)) == "scales" and read5((1e-7, 4e-7), (1e-6, 4e-6), (2e-6, 5e-6)) == "mixed"
     ok &= read3(4e-4, 4.6e-4, 5e-4) == "unchanged" and read3(4e-5, 4.6e-4, 4e-3) == "scales" and read3(4e-5, 4.6e-4, 5e-4) == "mixed"
+    ok &= read3(6.0, 4.6e-4, 7.5e-5) == "mixed" and read3(4e-4, 4.6e-4, 7.5e-6) == "mixed"   # a stall far above the default's, or far below, is not "unchanged"
     print("selftest:", "PASS" if ok else "FAIL")
     return 0 if ok else 1
 
