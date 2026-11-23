@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""report_mp.py report [--dir logs] | selftest: the per-run table of #1080's extended-precision M = 5 values (exploratory).
+"""report_mp.py report [--dir logs] [--prefix pointv_] | selftest: the per-run table of #1080's extended-precision M = 5 values (exploratory).
 Each logs/pointv_NAME.log holds the JSON line value_mp.py pointv prints. r_rest = (Re r_3, Im r_3, Re r_5, Im r_5) (inner_mp.residual_demixed returns
 [Re r_1, Im r_1, Re r_3, Im r_3, ...] and value_mp keeps r[2:]), so |r3| = hypot(r_rest[0:2]) and |r5| = hypot(r_rest[2:4]). Also R_1 = re + i im, sig,
 R_1/sig, valued, ymax, calls (the two precisions), seconds, and the solved v (strings). selftest: a synthetic line gives the |r3|, |r5| computed by hand, and
@@ -25,9 +25,9 @@ def norms(d):
     return math.hypot(r[0], r[1]), math.hypot(r[2], r[3])
 
 
-def report(d):
-    for p in sorted(glob.glob(os.path.join(d, "pointv_*.log"))):
-        name = os.path.basename(p)[len("pointv_"):-4]
+def report(d, prefix="pointv_"):
+    for p in sorted(glob.glob(os.path.join(d, prefix + "*.log"))):
+        name = os.path.basename(p)[len(prefix):-4]
         r = line_of(p)
         if r is None:
             print(f"{name}: no JSON line yet (log {os.path.basename(p)})")
@@ -52,7 +52,7 @@ if __name__ == "__main__":
     if a[:1] == ["selftest"]:
         sys.exit(selftest())
     if a[:1] == ["report"]:
-        report(a[a.index("--dir") + 1] if "--dir" in a else os.path.join(HERE, "logs"))
+        report(a[a.index("--dir") + 1] if "--dir" in a else os.path.join(HERE, "logs"), a[a.index("--prefix") + 1] if "--prefix" in a else "pointv_")
         sys.exit(0)
     print(__doc__)
     sys.exit(2)
