@@ -1,6 +1,6 @@
 # I1025-win/kc79_d19low: the k_c 79 lower-root scan at D 19 (winb)
 
-Written before the run, 2026-11-22 21:09:24 UTC (substituted from `date -u` when pushed). Nothing has been run for this folder yet.
+Written before the run, 2026-11-23 02:53:58 UTC (substituted from `date -u` when pushed). Nothing has been run for this folder yet.
 
 Runner: the winb session (surface-laptop-4, 4 cores, 8 threads, 32 GB), the same one that ran `../kc79_d185/`, `../kc79_d19/` (raw commit 010273bc: D 19 regrid accepted, 8-point scan read as lambda_1 = 1.539658 at k_c 79) and `../kc79_d1925/`. The coordinator is t5.
 
@@ -66,7 +66,7 @@ Started outside my terminal: `Win32_Process.Create` of `conhost.exe --headless c
 
 ## Status
 
-**Running since 2026-11-22 21:08:04 UTC** (driver start; the scanner at 21:08:05). The D 19.25 regrid is stopped and superseded (`../kc79_d1925/`). README first: bbf7a4a0.
+**Finished 2026-11-23 02:24:20 UTC, exit 0** (started 2026-11-22 21:08:04 UTC; the scanner at 21:08:05; the driver ended 02:25:31). The D 19.25 regrid is stopped and superseded (`../kc79_d1925/`). README first: bbf7a4a0. The text below up to the Result section was written at the start of the run; the ETA in it was too early (see Result).
 
 - **First try, 21:07:26 UTC, failed before anything started.** `conhost.exe --headless cmd.exe /c start_kc79d19low_scan_1025.cmd "<window>"` lost the quotes, cmd split the window at the commas, the driver printed its usage and exited 2 (`kc79d19low_scan_first_try_stdout.log`, `rows/launcher_pid_scan_first_try.txt`). No scan file, no sampler, no helper was created. Fix: `go_kc79d19low_scan_1025.cmd` holds the call with the quoted window and is the file launched headless.
 - **Chain** (`rows/launcher_pid_scan.txt`: 24316): conhost --headless 24316 <- cmd 21256 <- driver launcher 2624 and driver 23340 <- scanner 21572 and 21304 (7 threads), watcher 21300 and 20308, sampler 8824, keep-awake helper 2768 and 24272. All python and powershell processes are BelowNormal (the cmd and the headless conhost are idle at Normal). The pairs are the venv launcher and the interpreter.
@@ -75,8 +75,80 @@ Started outside my terminal: `Win32_Process.Create` of `conhost.exe --headless c
 - **Keep-awake:** helper pid 24272 set `SetThreadExecutionState(ES_CONTINUOUS | ES_SYSTEM_REQUIRED)` at 21:08:06 UTC and holds it until the driver pid 23340 ends (`rows/scan_keepawake.log`).
 - **ETA:** 12 points at about 1333 s each (the first D 19 scan: 1320 to 1344 s) is about 16,000 s, so the scan ends about 01:35 UTC on 2026-11-23. The first point (0.92) should print about 21:30 UTC. Free memory 22.1 GB at the start, the two I129 jobs of the other project beside it.
 
-Pushed 2026-11-22 21:09:24 UTC.
+Pushed 2026-11-23 02:53:58 UTC.
 
 ## Result
 
-Not yet run.
+**No sign change at k_c 79 between lambda 0.92 and 1.32 at D 19.** All 11 points are `-` and noise-robust, float64 agrees at every point, the repeat of 1.12 agrees, there is no ln|det| minimum without a change, both edges are `-`. Together with the first D 19 scan on the same state (`../kc79_d19/`: `+` at 1.475 to 1.535), the sign goes from `-` at 1.32 to `+` at 1.475, so an odd number of changes lies in (1.32, 1.475), which no scan has covered (see Beside k_c 63 and k_c 71).
+
+### What ran
+
+| item | value |
+|---|---|
+| scanner | `d18_hybsign.py` (blob e089207a), pid 21572 (interpreter 21304), exit 0 after 18975 s, record check: `D 19.0 k_c 79: |F| 2.8482007333e-10 (record 2.8482007333e-10), steps 2976 (record 2976): the record system` |
+| reader | `read_lower.py` (blob 89309d3c), run by the driver at 02:24:21 UTC, exit 0 (`read_lower_kc79_D19low.log`); its selftest and the two `--mutate` controls gave 0, 1, 1 before the scan |
+| driver | `kc79d19low_scan_driver_1025.py` done 02:25:31 UTC, no refusal, no cap |
+| launch | `Win32_Process.Create` of `conhost.exe --headless cmd.exe /c go_kc79d19low_scan_1025.cmd` (conhost 24316 <- cmd 21256 <- driver 23340); the scan kept going through the home-network outage of about 01:00 to 02:50 UTC and the loss of my terminal's API connection |
+| keep-awake | helper 24272 held `SetThreadExecutionState(ES_CONTINUOUS | ES_SYSTEM_REQUIRED)` from 21:08:06 and cleared it at 02:25:36 UTC (returned 0x80000001), 15 minute lines in `rows/scan_keepawake.log` |
+| standby | no System event 506 or 507 after 20:58:16 UTC (the last of the D 19.25 run's), no sampler gap over 90 s in 312 samples, no reboot (last boot 2026-11-20 12:08 UTC) |
+| memory watcher | alert-only, ended with the driver: minimum free memory 20.30 GB, 0 alerts (`rows/scan_memwatch.log`) |
+
+### Reader's lines, as printed
+
+```
+points 11 in 0.920-1.320; not noise-robust: none
+hybrid signs: 0.920- 0.960- 1.000- 1.040- 1.080- 1.120- 1.160- 1.200- 1.240- 1.280- 1.320-
+float64 sign differs from the hybrid sign at: none
+repeated points: [(1.12, 'agree')]
+robust changes: 0; touching a non-robust point (not counted): none
+ln|det| local minima without a sign change: none
+endpoint signs: - at 0.920, - at 1.320
+read_lower exit 0
+```
+
+### The points (scan file `scan_kc79_D19low_p0.jsonl`, 12 lines)
+
+| lambda | hybrid sign | noise (2 seeds) | hybrid ln&#124;det&#124; | float64 sign | float64 ln&#124;det&#124; | wall s |
+|---|---|---|---|---|---|---|
+| 0.92 | - | -, - | -2519.2345057158 | - | -2519.4833367801 | 1648 |
+| 0.96 | - | -, - | -2521.8532832273 | - | -2521.9631415747 | 1616 |
+| 1.00 | - | -, - | -2524.4855991763 | - | -2524.6708126200 | 1596 |
+| 1.04 | - | -, - | -2527.1163428652 | - | -2527.3405458506 | 1665 |
+| 1.08 | - | -, - | -2529.7381951534 | - | -2529.7133252525 | 1647 |
+| 1.12 | - | -, - | -2532.3542011068 | - | -2532.5280318553 | 1641 |
+| 1.16 | - | -, - | -2534.9960232509 | - | -2534.7924185688 | 1646 |
+| 1.20 | - | -, - | -2537.7673577741 | - | -2537.5863503529 | 1649 |
+| 1.24 | - | -, - | -2540.6051667907 | - | -2540.5846846813 | 1695 |
+| 1.28 | - | -, - | -2541.4476587966 | - | -2540.9662434220 | 1455 |
+| 1.32 | - | -, - | -2541.7118424518 | - | -2541.6198458169 | 1357 |
+| 1.12 (repeat, last) | - | -, - | -2532.3542011068 | - | -2532.5280318553 | 1349 |
+
+The repeat of 1.12 matches the first 1.12 in every printed digit (sign, both noise signs, float64 sign, hybrid and float64 ln|det|).
+
+The hybrid ln|det| falls by 2.62 to 2.64 per 0.04 step from 0.92 to 1.16 (2.619, 2.632, 2.631, 2.622, 2.616, 2.642), by 2.771 and 2.838 for the next two steps, then by 0.842 (1.24 to 1.28) and 0.264 (1.28 to 1.32): it flattens at the upper edge. The first D 19 scan has hybrid ln|det| -2543.2199 at 1.475 and -2543.2765 at 1.49 (sign `+` there). I report the numbers and rule nothing; the reader found no minimum inside 0.92 to 1.32 because 1.32 is an edge.
+
+### Beside k_c 63 and k_c 71 (information, not a pass rule)
+
+| k_c | lower root at D 19 | source |
+|---|---|---|
+| 63 | 1.483 | dh370, raw a45fc80f |
+| 71 | 1.296 | dh610, raw 172112d0 |
+| 79 (this scan) | none in 0.92 to 1.32; the sign is `-` at 1.32 and `+` at 1.475 (first scan), so a change lies in (1.32, 1.475) | `../kc79_d19/` and this folder |
+
+At k_c 79 there is no change in 0.92 to 1.32, which holds k_c 71's 1.296, and none in 1.475 to 1.49 (first scan), which holds k_c 63's 1.483. The change that the two scans' signs require is inside the unscanned gap (1.32, 1.475). No scan of that gap has been run; t5 rules.
+
+### Cost
+
+| item | value |
+|---|---|
+| wall | 18975 s for 12 points (21:08:05 to 02:24:20 UTC), the estimate was about 16000 s (4.5 h) |
+| per point | 1596 to 1695 s for points 1 to 9 (mean 1645 s), then 1455, 1357 and 1349 s for the last three; the first D 19 scan on this laptop took 1320 to 1344 s per point |
+| scanner cpu | 26491.6 s (1.40 cores on average, up to 13 threads seen, 4 BLAS threads); per point 2222 to 2396 s for points 1 to 9, then 2079, 1900, 1905 s; cpu per wall second 1.35 to 1.44 at every point |
+| memory | peak private 2.456 GB, peak working set 1.678 GB; free physical memory at least 20.5 GB (sampler) |
+| laptop cpu | 14 to 78 %, mean 49.3 % (sampler, every 60 s), the other project's I129 job 17116 busy until about 22:54 UTC and a new I129 pair (18732, 24800) from 01:54 UTC |
+
+The repeat of 1.12 (last) ran 1349 s against 1641 s for the first 1.12, with the same answer to the last digit, and its scanner cpu fell the same way (1905 s against about 2300 s). So the points from 1.28 on took about 18 % less cpu and wall on this laptop for the same work. The slow stretch began with this run and ended between 01:14 and 01:39 UTC, close to the start of the network outage. I did not log the clock speed during the run, so I do not know the cause. Nothing in the answer depends on it.
+
+### Files
+
+`scan_kc79_D19low_p0.jsonl` (12 lines), `read_lower_kc79_D19low.log`, `scan_kc79_D19low.log` and `rows/scan_kc79d19low_raw.log` (the scanner's own), `kc79d19low_scan_w.log` (driver), `rows/scan_samples.csv`, `rows/scan_keepawake.log`, `rows/scan_memwatch.log`, `session_check_scan.txt` (taken at 21:08:34 UTC).
