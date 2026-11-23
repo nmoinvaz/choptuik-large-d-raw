@@ -1,60 +1,9 @@
-multiprocessing.pool.RemoteTraceback: 
-"""
-Traceback (most recent call last):
-  File "/home/nathan/.local/share/uv/python/cpython-3.14.10-linux-x86_64-gnu/lib/python3.14/multiprocessing/pool.py", line 125, in worker
-    result = (True, func(*args, **kwds))
-                    ~~~~^^^^^^^^^^^^^^^
-  File "/home/nathan/Source/choptuik-large-d-1076/solver/inner_stokes/value_mp.py", line 111, in _batch_one
-    return value_point(A, wf, f3re, f3im, **kw)
-  File "/home/nathan/Source/choptuik-large-d-1076/solver/inner_stokes/value_mp.py", line 87, in value_point
-    R, r3, v, J1, J3, info, n1 = solve(A, wf, v0, r1, dps, p, iters, chord=chord)
-                                 ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/nathan/Source/choptuik-large-d-1076/solver/inner_stokes/value_mp.py", line 55, in solve
-    r, info = res(v)
-              ~~~^^^
-  File "/home/nathan/Source/choptuik-large-d-1076/solver/inner_stokes/value_mp.py", line 40, in res
-    return IM.residual_demixed([A, wf, vv[0], vv[1]], 3, r1, p=p, margin=margin)
-           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/nathan/Source/choptuik-large-d-1076/solver/inner_stokes/inner_mp.py", line 221, in residual_demixed
-    x = [mp.mpf(v) for v in x]
-         ~~~~~~^^^
-  File "/home/nathan/Source/venv-i1058/lib/python3.14/site-packages/mpmath/ctx_mp_python.py", line 79, in __new__
-    v._mpf_ = mpf_pos(cls.mpf_convert_arg(val, prec, rounding), prec, rounding)
-                      ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
-  File "/home/nathan/Source/venv-i1058/lib/python3.14/site-packages/mpmath/ctx_mp_python.py", line 86, in mpf_convert_arg
-    if isinstance(x, basestring): return from_str(x, prec, rounding)
-                                         ~~~~~~~~^^^^^^^^^^^^^^^^^^^
-  File "/home/nathan/Source/venv-i1058/lib/python3.14/site-packages/mpmath/libmp/libmpf.py", line 1331, in from_str
-    man, exp = str_to_man_exp(x, base=10)
-               ~~~~~~~~~~~~~~^^^^^^^^^^^^
-  File "/home/nathan/Source/venv-i1058/lib/python3.14/site-packages/mpmath/libmp/libmpf.py", line 1294, in str_to_man_exp
-    float(x)
-    ~~~~~^^^
-ValueError: could not convert string to float: 'np.float64(3.3185956)'
-"""
-
-The above exception was the direct cause of the following exception:
-
-Traceback (most recent call last):
-  File "/home/nathan/Source/choptuik-large-d-1076/solver/inner_stokes/argcount.py", line 963, in <module>
-    sys.exit(main())
-             ~~~~^^
-  File "/home/nathan/Source/choptuik-large-d-1076/solver/inner_stokes/argcount.py", line 924, in main
-    res = recount(F, list(map(json.loads, open(a.recount))), dphi=a.dphi)
-  File "/home/nathan/Source/choptuik-large-d-1076/solver/inner_stokes/argcount.py", line 691, in recount
-    r = count(F, bx, 1, 1, dphi=dphi, off=(0.0, 0.0))
-  File "/home/nathan/Source/choptuik-large-d-1076/solver/inner_stokes/argcount.py", line 643, in count
-    C.prefetch([e for c in wave for e in C.cell_edges(*c[:4])])
-    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/nathan/Source/choptuik-large-d-1076/solver/inner_stokes/argcount.py", line 537, in prefetch
-    self.F.raw([x for pts, _ in act.values() for x in pts])
-    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/nathan/Source/choptuik-large-d-1076/solver/inner_stokes/argcount.py", line 395, in raw
-    self.mp_batch(mptodo)
-    ~~~~~~~~~~~~~^^^^^^^^
-  File "/home/nathan/Source/choptuik-large-d-1076/solver/inner_stokes/argcount.py", line 368, in mp_batch
-    for row in it:
-               ^^
-  File "/home/nathan/.local/share/uv/python/cpython-3.14.10-linux-x86_64-gnu/lib/python3.14/multiprocessing/pool.py", line 873, in next
-    raise value
-ValueError: could not convert string to float: 'np.float64(3.3185956)'
+  point A 3.3185956 wf 0.22500024: extended precision, |R|/sigma_mp 7.92e+18, valued, 1594 s
+  point A 3.3185956 wf 0.22495141: no value: |R| 16 within 10 sigma (19.1) or max|Y| 1.16, 70 CPU s
+  point A 3.3185956 wf 0.22504907: no value: |R| 24.2 within 10 sigma (30.9) or max|Y| 1.16, 75 CPU s
+  point A 3.3185956 wf 0.22504907: extended precision, |R|/sigma_mp 4.21e+19, valued, 822 s
+  point A 3.3185956 wf 0.22495141: extended precision, |R|/sigma_mp 3.64e+18, valued, 824 s
+  point A 3.3185956 wf 0.22497583: no value: |R| 7.41 within 10 sigma (11.6) or max|Y| 1.16, 60 CPU s
+  point A 3.3185956 wf 0.22497583: extended precision, |R|/sigma_mp 1.83e+18, valued, 1176 s
+  point A 3.3185956 wf 0.22496362: no value: |R| 9.77 within 10 sigma (12.6) or max|Y| 1.16, 88 CPU s
+  point A 3.3185956 wf 0.22498803: no value: |R| 13.6 within 10 sigma (34) or max|Y| 1.16, 138 CPU s
