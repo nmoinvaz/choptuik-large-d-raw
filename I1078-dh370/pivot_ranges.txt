@@ -1,0 +1,48 @@
+double-double unit roundoff about 2^-106 = 1.23e-32; a ratio pmin/pmax below it means the smallest pivot is under the format's floor relative to the largest
+
+scan a rows (D 3.044375, L 0.4, M' 96, hmax 0.05 plan, unpolished):
+  lam 5.140600 sign + pmin 1.188e-04 pmax 3.678e+32 pmin/pmax 3.23e-37
+  lam 5.140620 sign + pmin 1.188e-04 pmax 3.680e+32 pmin/pmax 3.23e-37
+  lam 5.140640 sign + pmin 1.188e-04 pmax 3.681e+32 pmin/pmax 3.23e-37
+  lam 5.140660 sign - pmin 1.188e-04 pmax 3.682e+32 pmin/pmax 3.23e-37
+  lam 5.140680 sign + pmin 1.188e-04 pmax 3.683e+32 pmin/pmax 3.22e-37
+  lam 5.140700 sign - pmin 1.188e-04 pmax 3.685e+32 pmin/pmax 3.22e-37
+  lam 5.140720 sign - pmin 1.188e-04 pmax 3.686e+32 pmin/pmax 3.22e-37
+  lam 5.140740 sign + pmin 1.188e-04 pmax 3.687e+32 pmin/pmax 3.22e-37
+  lam 5.140760 sign - pmin 1.188e-04 pmax 3.688e+32 pmin/pmax 3.22e-37
+  lam 5.140780 sign - pmin 1.188e-04 pmax 3.690e+32 pmin/pmax 3.22e-37
+  lam 5.140800 sign + pmin 1.188e-04 pmax 3.691e+32 pmin/pmax 3.22e-37
+  lam 5.140820 sign + pmin 1.188e-04 pmax 3.692e+32 pmin/pmax 3.22e-37
+
+#1072 M' 96, hmax 0.05 (../I1072-dh370/gamma_D3.0444_M96.log):
+  lam 5.140719788786 sign -1 pmin 1.19e-04 pmax 3.69e+32 pmin/pmax 3.2e-37
+  lam 5.140819788786 sign -1 pmin 1.19e-04 pmax 3.69e+32 pmin/pmax 3.2e-37
+  lam 5.140919788786 sign +1 pmin 1.19e-04 pmax 3.70e+32 pmin/pmax 3.2e-37
+  lam 5.140892782024 sign +1 pmin 1.19e-04 pmax 3.70e+32 pmin/pmax 3.2e-37
+  lam 5.140846587709 sign -1 pmin 1.19e-04 pmax 3.69e+32 pmin/pmax 3.2e-37
+  lam 5.140869684867 sign +1 pmin 1.19e-04 pmax 3.70e+32 pmin/pmax 3.2e-37
+  lam 5.140861234444 sign -1 pmin 1.19e-04 pmax 3.69e+32 pmin/pmax 3.2e-37
+  lam 5.140866412381 sign -1 pmin 1.19e-04 pmax 3.70e+32 pmin/pmax 3.2e-37
+  lam 5.140867320764 sign +1 pmin 1.19e-04 pmax 3.70e+32 pmin/pmax 3.2e-37
+  lam 5.140866909683 sign -1 pmin 1.19e-04 pmax 3.70e+32 pmin/pmax 3.2e-37
+  lam 5.140867284479 sign -1 pmin 1.19e-04 pmax 3.70e+32 pmin/pmax 3.2e-37
+  lam 5.140867320654 sign -1 pmin 1.19e-04 pmax 3.70e+32 pmin/pmax 3.2e-37
+  lam 5.140867320755 sign +1 pmin 1.19e-04 pmax 3.70e+32 pmin/pmax 3.2e-37
+  lam 5.140867320704 sign -1 pmin 1.19e-04 pmax 3.70e+32 pmin/pmax 3.2e-37
+  lam 5.140867320747 sign -1 pmin 1.19e-04 pmax 3.70e+32 pmin/pmax 3.2e-37
+
+#1078 M' 96, hmax 0.0015 (the stopped lam0 5.140867 run) (gamma_D3.0444_M96_hmax0.0015.log):
+  lam 5.140767320755 sign +1 pmin 1.19e-04 pmax 3.69e+32 pmin/pmax 3.2e-37
+  lam 5.140867320755 sign +1 pmin 1.19e-04 pmax 3.70e+32 pmin/pmax 3.2e-37
+  lam 5.140967320755 sign +1 pmin 1.19e-04 pmax 3.70e+32 pmin/pmax 3.2e-37
+  lam 5.139867320755 sign +1 pmin 1.19e-04 pmax 3.63e+32 pmin/pmax 3.3e-37
+
+other resolutions, first and last rows only (the logs of #1072 step 3 and #1078 step 2):
+  M' 128: lam 5.140719788786 sign +1 pmin 9.24e-05 pmax 1.48e+35 ratio 6.2e-40
+  M' 128: lam 5.140802680797 sign -1 pmin 9.24e-05 pmax 1.49e+35 ratio 6.2e-40
+  M' 160: lam 5.140702680792 sign +1 pmin 1.01e-04 pmax 7.45e+36 ratio 1.4e-41
+  M' 160: lam 5.140897587455 sign +1 pmin 1.01e-04 pmax 7.47e+36 ratio 1.4e-41
+
+D 3.15 (#1072 step 2), for contrast:
+  L 0.7 M' 128: lam 4.397684106690 sign -1 pmin 2.70e-04 pmax 1.68e+03 ratio 1.6e-07
+  L 0.7 M' 96: lam 4.397684106690 sign -1 pmin 3.85e-04 pmax 1.55e+03 ratio 2.5e-07
