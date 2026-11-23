@@ -1,0 +1,8 @@
+  (a) planted: x = l + 5e-5: read (a), wanted (a): ok
+  (b) planted: x = h + 5e-4: read (b), wanted (b): ok
+  (b) planted: x = h exactly: read (b), wanted (b): ok
+  (c) planted: x = h + 0.2: read (b), wanted (c): WRONG
+  (c) planted: x = h + 2e-3 (between the bars): read (b), wanted (c): WRONG
+  (c) planted: x = l + 3e-4 (outside (a)'s bar): read (b), wanted (c): WRONG
+  (c) planted: (b) at 1.32 only: read (b), wanted (c): WRONG
+selftest --mutate FAIL
