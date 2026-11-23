@@ -1,7 +1,7 @@
 #!/bin/bash
-# #1025 d19_lower step 2 (t5's order): hybrid sign scan of the stage's accepted state at D 19, lambda 1.400 to 1.430 and 1.530 to 1.550 at 0.005 (7 + 5 values) plus a repeat of 1.415 (13 evaluations), 4 processes of 1
-# thread at nice 10, d18_hybsign.py (e089207a, unmodified); the lists are in stage.conf (the repeat runs on another process than the first 1.415). Memory: alert only. Then read_lower.py selftest (0), its mutations
-# shift and round2 (1 each), the reader on each window (the two windows are read separately so that no change is bracketed across the gap) and repeat_check.py. Starts only after VERDICT.txt says ACCEPTED.
+# #1025 d19_lower step 2 (t5's order, revised by t5's hc before any scan): hybrid sign scan of the stage's accepted state at D 19, the lists of stage.conf (lambda 1.405 to 1.425 at 0.005 and a repeat of 1.415, and 1.535 and 1.545:
+# 8 evaluations), 4 processes of 1 thread at nice 10, d18_hybsign.py (e089207a, unmodified); the repeat runs on another process than the first 1.415. Memory: alert only. Then read_lower.py selftest (0), its mutations
+# shift and round2 (1 each), the reader on each window (read separately so that no change is bracketed across the gap) and repeat_check.py. Starts only after VERDICT.txt says ACCEPTED.
 # usage: run_scan.sh <stage> [dry]. A systemd user unit.
 {
 ROOT=/home/nathan/Source/choptuik-large-d-raw-p4/I1025-dh170/d19_lower
