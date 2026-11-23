@@ -1,0 +1,14 @@
+hyp1 M3x2E2_h1e-12_w1e-12 2026-11-23 16:54:44 start: python-flint 0.9.0 FLINT 3.6.0, python Python 3.14.3; centre p^ = 3.5264730566957154968386691933035772573627933502264,0.21149798139121541465218943962051773587658863581106,0.97650854519761854166002136860612262563508481396147,-0.0017633195225817898068793573792090220370241237083214
+hyp1 M3x1E2_h1e-12_w1e-13 2026-11-23 16:54:44 start: python-flint 0.9.0 FLINT 3.6.0, python Python 3.14.3; centre p^ = 3.4462182463667271490386733954779389341791395421154,0.34760696521740738663621806885938050845968811925454,0.80541758638529232157836211658860517241492322884730,0.011780043848505832311374493364082518021457993309432
+hyp1 M3x1E2_h1e-12_w1e-13 2026-11-23 16:54:44 command: cd /Users/nathan/Source/choptuik-large-d-1079f/solver/proof && nice -n 10 /Users/nathan/Source/venv-macm3-1058b/bin/python lemma6_sector_M.py --M=3 --rp=0.1 --k=20 --box=1e-6 --Z=0.004489 --x=<p^> --json=lemmas_M_runs/lemma6_sector_M3_M3x1E2_h1e-12_w1e-13.json > logs/I1079_sector_M3x1E2_h1e-12_w1e-13.log 2>&1
+hyp1 M3x2E2_h1e-12_w1e-12 2026-11-23 16:54:44 command: cd /Users/nathan/Source/choptuik-large-d-1079f/solver/proof && nice -n 10 /Users/nathan/Source/venv-macm3-1058b/bin/python lemma6_sector_M.py --M=3 --rp=0.1 --k=20 --box=1e-6 --Z=0.004489 --x=<p^> --json=lemmas_M_runs/lemma6_sector_M3_M3x2E2_h1e-12_w1e-12.json > logs/I1079_sector_M3x2E2_h1e-12_w1e-12.log 2>&1
+hyp1 M3x2E2_h1e-12_w1e-12 2026-11-23 16:54:45 lemma6_sector_M.py exit 0 (0 wanted): ALL CHECKS PASS (M = 3): True
+hyp1 M3x1E2_h1e-12_w1e-13 2026-11-23 16:54:45 lemma6_sector_M.py exit 0 (0 wanted): ALL CHECKS PASS (M = 3): True
+hyp1 M3x2E2_h1e-12_w1e-12 2026-11-23 16:54:45 command: ... --mutate=series (same options, no json) > logs/I1079_sector_M3x2E2_h1e-12_w1e-12_mutate_series.log
+hyp1 M3x1E2_h1e-12_w1e-13 2026-11-23 16:54:45 command: ... --mutate=series (same options, no json) > logs/I1079_sector_M3x1E2_h1e-12_w1e-13_mutate_series.log
+hyp1 M3x2E2_h1e-12_w1e-12 2026-11-23 16:54:46 --mutate=series exit 0 (nonzero wanted): MUTATION series (top harmonic's coefficient off by 1e-6): lemma S holds: False (must be False)
+hyp1 M3x1E2_h1e-12_w1e-13 2026-11-23 16:54:46 --mutate=series exit 0 (nonzero wanted): MUTATION series (top harmonic's coefficient off by 1e-6): lemma S holds: False (must be False)
+2026-11-23 16:54:46 STOP: hyp1 M3x2E2_h1e-12_w1e-12: sector run exit 0, series mutation exit 0
+2026-11-23 16:54:46 STOP: hyp1 M3x1E2_h1e-12_w1e-13: sector run exit 0, series mutation exit 0
+hyp1 M3x2E2_h1e-12_w1e-12 2026-11-23 16:54:46 h1 done
+hyp1 M3x1E2_h1e-12_w1e-13 2026-11-23 16:54:46 h1 done

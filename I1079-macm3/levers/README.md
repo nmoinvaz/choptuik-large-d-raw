@@ -104,3 +104,40 @@ Run on all four passing boxes (`CERTIFY_M_NTAY=28 CERTIFY_M_NJAC=16`; python-fli
 (its log: p^ - x^ = A +0.800, w/w_inf -0.804, B3 +0.832, C3 -0.0129 at x2), so no stored row is around them, and the script's rerun is gated on one (`if "rerun" in opts and (covered or res["around"])`, line 452): it is skipped, and the verdict is NOT COVERED. The configuration test (a) is true (same ray 5pi/16, r0 0.0741, diag splitting, N 94, Cauchy radius 1e-3; `fixed_point_M.py` sha256 589e5a810bc50289),
 and (c) holds (M W0 sup|Im w/w_inf| = 0.01147 <= 3/2). What the certificate's own run gives: its start-data call (`certify_M.start_data`, `fixed_point_M.start_data_M`) runs step (i) on its four sets and raises unless the fixed point holds on each, and it did not raise (the box JSON's `start`: eta 6.34e-72 at x2, 1.51e-72 at x1; its derivative part 2.27e-18 and 1.43e-17).
 What the script does not give at an excited zero is the second look (a rerun on a set that contains the start sets, compared with stored bounds). That needs stored lemma FP(3) rows at the excited centre (`fixed_point_M.py --table` and `--data-table` at a centre that is not `ZEROS[3]`) or a change of the script: the coordinator's decision. Nothing was changed. I stopped here, as ordered.
+
+
+## H0, H3 and H1 at the two excited zeros (2026-11-23, 16:42 to 16:55 UTC; python-flint 0.9.0, FLINT 3.6.0, Python 3.14.3; `CERTIFY_M_NTAY=28 CERTIFY_M_NJAC=16` where the scripts integrate)
+
+**Boxes used:** x2 (1e-12, 1e-12) and x1 (1e-12, 1e-13) (the coordinator's: "cite x1 at (1e-12, 1e-13), x2 at (1e-12, 1e-12) or (1e-12, 1e-13)"). Centres p^ = the boxes' `p` (50 digits, in `runner/steps_hyp.txt` and `steps_hyp1.txt`).
+
+**H0** (the coordinator's decision, 16:46 UTC): the certificate's own start-data run (A_lemmas_M section 6: "(H0) holds for every certificate that ran ... raises unless the fixed point holds"); `start_cover_M2.py` is not used (its rows are the fundamental's; the driver override is a possible later second look). The runs' `start`: rigorous True, `fixed_point_M.py` sha256 589e5a810bc50289, eta 6.34e-72 (x2) and 1.51e-72 (x1), derivative part 2.27e-18 and 1.43e-17.
+
+**H3: lemma 6a(3)** (`export6a`, then `lemma6_jump_M.py --M=3 --box=<export with x = p> --x=<p^>`; `logs/I1079_lemma6a_*`, `lemmas_M_runs/lemma6a_*.json`; the state box at xi1 = 0.3 over the certified parallelepiped: max radius 1.21e-12 (x2), 1.79e-12 (x1)):
+
+| | fundamental (stored `lemma6a_M3_cert.log`) | x2 (1e-12, 1e-12) | x1 (1e-12, 1e-13) |
+|---|---|---|---|
+| **rho_6a** | 0.04135 | **[0.01258978538 +/- 1.51e-12]** | **[0.01365237958 +/- 4.00e-12]** |
+| flat estimate Lambda (plain, on 0 < z <= 0.004489) | 0.2923 | [0.2367567658 +/- 9.5e-12] | [0.2426037795 +/- 4.4e-11] |
+| lemma S contraction (rp 0.1, k 20, over p^ +- 1e-6) | 0.8252 | 0.6782 | 0.6961 |
+| start box radius at xi1 0.3 | 3.42e-08 | 1.21e-12 | 1.80e-12 |
+| backward flow 0.3 to 0.067: steps, time; final state radius | 449, 1049 s (cloud) | 349, 152 s; 1.39e-11 | 360, 157 s; 1.41e-11 |
+| max radius of B; \|H\| entries; \|G_slow^-1\| entries | 1.99e-03; 11.6; 1.62 | 2.47e-08; 4.10; 1.43 | 4.50e-08; 5.35; 1.42 |
+
+rho_6a < 1 at both zeros: all J_D,mu(0.3) = 0 implies psi = 0 (the whole jump). Controls (documented in A_lemmas_M section 8; the script returns exit 0 when it catches them, so my wrapper's two "STOP: ... exited 0" lines per zero in `steps_hyp.txt` are artefacts of an expectation of mine, read from the logs instead):
+`--mutate=partial` (with `--load-B`): "G_slow is 9 x 11: not square, beta is not determined by the slow data; lemma 6a NOT established [MUTATION partial: failure expected]" at both; `--mutate=swap`: "backward integration failed (step size underflow at t = 0.04316 (x2) and 0.04352 (x1)): lemma 6a NOT established [MUTATION swap: failure expected]" at both (start box radius 0.66 and 0.64).
+
+**H1: lemma S(3), the old sector lemma and the flat estimate over p^ +- 1e-6** (`lemma6_sector_M.py --M=3 --rp=0.1 --k=20 --box=1e-6 --Z=0.004489 --x=<p^>` at `feat/certify-excited` 89553c6b, which gives the script `--x`; worktree `~/Source/choptuik-large-d-1079f`; `h1/`; the box X_c lies inside p^ +- 1e-6, its half-widths being below 1e-12):
+
+| | fundamental (stored `lemma6_sector_M3_rp0.1_1e-6.log`, A_lemmas_M 3.3) | x2 | x1 |
+|---|---|---|---|
+| verdict | ALL CHECKS PASS | ALL CHECKS PASS | ALL CHECKS PASS |
+| lemma S: N, k; a_eff | 53, 20; 0.2536 | 62, 20; 0.2536 | 62, 20; 0.2536 |
+| lemma S contraction | 0.8252 | **0.6782** | **0.6961** |
+| \|eta\| at \|z\| = R | 1.75e-05 | 4.75e-08 | 1.94e-07 |
+| old sector lemma (rays \|arg xi - 3pi/8\| <= 0.2, \|xi\| <= 0.1, diag) contraction | 0.5408 | **0.7008** | **0.6839** |
+| flat estimate Lambda, plain / diag | 0.2923 / 0.2199 | 0.2368 / 0.2228 | 0.2426 / 0.2223 |
+
+`--mutate=series` (a coefficient of the top harmonic's series off by a relative 1e-6): "lemma S holds: False (must be False)" at both (exit 0, the script's convention for a caught mutation).
+
+**Where the hypotheses of Theorem A(M) stand at each excited zero** (A_lemmas_M section 6): the point certificate (the Krawczyk test with its controls and recheck, above); (H0) the certificate's own start-data run, no second look; (H1) lemma S and the flat estimate (and 6b0's old sector lemma) over p^ +- 1e-6: done here, the box X_c inside; **(H2) the 6b1 covering over a box containing X_c: not done**; (H3) lemma 6a(3) from the certificate's state box: done, rho_6a 0.0126 and 0.0137.
+Nothing here asserts the theorem: H2 is open, and the trusted code and the start-value lemma are the ones A_lemmas_M and A_M name.
