@@ -1,0 +1,32 @@
+# I1078-dh370: gamma at D 3.044375 at M' 160 on the tau-mapped grid (gamma to 1e-8)
+
+Written before the runs (the build started 2026-11-23 07:37 UTC by the clock). Machine `dh370-fedora` (Fedora, i7-8700, 6 cores / 12 threads, 31 GB). Issue https://github.com/nmoinvaz/choptuik-large-d/issues/1078 (the record; its body is the order). Coordinator t5 (hc, 2026-11-23, after #1072 was reviewed and closed).
+
+## Order (issue #1078)
+
+From #1072 (raw I1072-dh370 at 12433a1d): gamma(3.044375) at L 0.4 is 0.19452215190758035 at M' 128 and 0.19451970603534682 at M' 96, a change of 2.4e-6; Delta changes only 2.3e-9 from M' 128 to 160. Decision it informs: whether the first gamma below D 3.15 is known to 1e-8 (the low-D gamma table's bar) at M' 160, or needs M' 192. Files: raw `I1078-dh370/` only; 6 threads, nice 10, `systemd-run --user` units, memory alerts only (no process is stopped or killed by a watcher).
+
+1. **Build and its checks.** Main at c016b932 in a dh370 worktree (`hp/lowD_gamma.py` and `HP_DENSE_M_MAX`, python.rs, default 128). Rebuild hp there with `hp/build.sh` after uninstalling multidouble's Python package (pip keeps the old commit), nothing else running. Then: `lowD_gamma.py --selftest` as #1072's step 3d must give the same lines as before the rebuild (the old lines: raw `I1072-dh370/selftest_gp_D3.0444_M128.txt`); then the control: with `HP_DENSE_M_MAX` unset, `mode_det` on the M' 160 state must refuse (an error naming M <= 128). Both runs are recorded.
+2. **gamma at M' 160** with `HP_DENSE_M_MAX=160`: `lowD_gamma.py gamma_D3.0444_M160.jsonl <the M' 160 L 0.4 state> --threads=6 --lam0=5.140802680792423 --xtol=1e-11` (the lam0 is #1072's M' 128 root). The state is raw `I1072-dh370/in3/tmap_lowDhm_x0.000157-0.975_D3.0444_M384_L0.4_M160_s1.9635.npz`, pinned by blob (9ccd7a9e, #1033's converged state, D 3.044375, map s0 1.9634954084936205, L 0.4). Then `accept_step3.py` (copied unchanged from I1072-dh370, blob checked below) on its record, with its selftest and its three mutations (sign, F, none_gamma, each must exit 1).
+
+## Acceptance (the issue's, fixed before the runs)
+
+- One sign change, |F| below 1e-27, and `accept_step3.py` PASS.
+- Reported beside: gamma(M' 160) - gamma(M' 128) next to the 2.4e-6 of 96 to 128. A change at or below 1e-8 shows gamma to the table's bar; above it, recommend M' 192.
+- Step 1: the selftest lines equal #1072's; the control refuses with an error naming M <= 128.
+
+## Checkout and build (recorded as they happen)
+
+- Worktree `~/Source/choptuik-large-d-1078`, detached at main c016b932 (`hp: the dense n x n limit settable by HP_DENSE_M_MAX (default 128)`, 2 files: `hp/python/hpkernel/driver.py`, `hp/src/python.rs`). `git diff 8179068d c016b932 -- hp/src hp/Cargo.toml hp/Cargo.lock hp/pyproject.toml` touches only `python.rs` (11 insertions, 6 deletions): the arithmetic is unchanged, so the selftest lines should be bit for bit the old ones.
+- A new venv, `~/Source/choptuik-large-d-1078/.venv` (Python 3.14.10 from uv's interpreter; `requirements.txt`: numpy 2.5.4, scipy 1.18.1, mpmath 1.3.0, sympy 1.14.0, python-flint 0.9.0, maturin 1.16.0), so that the old build in `~/Source/choptuik-large-d-1058b/.venv` (kernel of 8179068d, #1072's runs) stays as the comparison.
+- Build recipe: `hp/build.sh` with `CARGO_PROFILE_RELEASE_LTO=false CARGO_PROFILE_RELEASE_CODEGEN_UNITS=16`, the recipe dh370 used for #1058's build (24.28 GB RSS at the peak; AGENTS.md: the two recipes give the same bits, #600, #604), because this machine has 31 GB. Unit `i1078a`, outer `nice -n 8` plus build.sh's own `nice -n 2`, a sampler writing the largest process's RSS and MemAvailable every 15 s (a log, no action).
+
+## Cost (the issue's estimate)
+
+Build about 0.5 h. Each determinant at M' 160 takes about twice the 21 min of M' 128, about 14 of them, so about 10 h. The dense matrices are about 1.3 GB (n about 9000).
+
+## Status
+
+Written as the runs go.
+- Build (unit i1078a, 07:37:32 to 08:17:29 UTC 23 Nov, `build.log`, `build_result.txt`, `build_samples.csv`): **exit 0, wall 2397 s**; the largest process peaked at 24.29 GB RSS (rustc, in the `hpkernel` crate; the same 24.3 GB as dh370's #1058 build) and MemAvailable fell no lower than 2.78 GB (no alert). `hpkernel 0.1.0` (`isa` avx2) and `multidouble 5.1.0` (avx2, from the commit pyproject.toml names, installed fresh), `_hpkernel.so` sha256 b5098fcc5b8facc7bc322f5d682dd9e69d5bc73fa2026aa69b0b4303ee150921.
+- Step 1 plan, written before it runs (`run_step1.sh`, unit i1078b): 1c the control (HP_DENSE_M_MAX unset, `lowD_gamma.py` on the M' 160 state: exit non-zero with the kernel's error naming M <= 128, no record written); 1s the selftest `lowD_gamma.py --selftest <uniform D 3.15 M 128 state> <the D 3.044375 L 0.4 M' 128 state of #1072> --threads=6`, whose output must equal `I1072-dh370/selftest_gp_D3.0444_M128.txt` (blob 95b6ef1c) line for line (pinned inputs: M' 160 state 9ccd7a9e, M' 128 state 218460d9, uniform state df2ab378).
