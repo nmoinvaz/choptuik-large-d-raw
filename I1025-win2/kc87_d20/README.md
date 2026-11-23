@@ -73,4 +73,34 @@ Delta(k_c 87) minus Delta(k_c 79) = -2.9719e-6 (k_c 79 minus k_c 71 at D 20: -1.
 
 **Step 2, the scan** started 04:56:10 UTC (seven processes of one thread, roots 34832, 17036, 19024, 34052, 18224, 22888, 35108); the system check of every process passed (|F| 4.3349897102e-10 against the record's 4.3393255460e-10, 3082 steps = the record's). Result below when it ends.
 
-Not yet run: the scan's reading.
+**Step 2, the scan: done** (started 04:56:10 UTC, seven processes of one thread, BelowNormal; ended 06:38:21 UTC; `scan_k87d20_p1..p7.jsonl`; exit 0 for all seven: P1 6112 s, P2 6109 s, P3 6061 s, P4 6129 s, P5 6094 s with 3 evaluations each, P6 4329 s, P7 4283 s with 2; 1786 to 2195 s a point, mean 2052 s; no cap). The system check of every process passed (|F| 4.3349897102e-10 against the record's 4.3393255460e-10, 3082 steps = the record's). **The repeat of 1.25 (P1, P2) agrees: sign +1 and ln|det| -2770.5614321890 in both, difference 0.0 (bar 1e-6); the gate passed after 2215 s.**
+
+`read_lower.py 1.20 1.33` as it prints (`read_lower_k87_D20.txt`): 18 distinct points in 1.200 to 1.330 (19 evaluations), none not noise robust; hybrid signs minus at 1.20 to 1.24 and plus at 1.25 to 1.33; the float64 sign differs from the hybrid at 1.25 and 1.26 (it reads minus there; the hybrid, the sign the reading uses, plus); repeated points 1.25 agree; **one robust change in (1.240, 1.250), minus to plus (as printed), det-linear estimate 1.247484, estimator range [1.246861, 1.247484]** (a spread over estimator choices, not an enclosure); changes touching a non-robust point: none; ln|det| local minima without a sign change: none; endpoint signs minus at 1.200, plus at 1.330.
+
+**Against k_c 79 (`../kc79_d20/`, the same D 20):** Delta 1.092254283228 against 1.092257255093 (difference -2.9719e-6); the one root, 1.247484 against 1.248340 in the same bracket (1.24, 1.25): k_c 87 minus k_c 79 = -0.000856 (the estimator ranges overlap: [1.246861, 1.247484] and [1.244440, 1.248340]). **At 1.31:** the k_c 79 scan (step 0.01) had an ln|det| minimum without a sign change at 1.31 (-2455.0577 against -2454.8054 at 1.30 and -2455.0222 at 1.32). The k_c 87 scan on the 0.005 grid 1.290 to 1.330 shows none: ln|det| falls at every step (-2769.4628, -2769.5706, -2769.6933, -2769.8284, -2769.9742, -2770.1292, -2770.2923, -2770.4625, -2770.6390 at 1.290, 1.295, ..., 1.330) with the step growing from -0.1079 to -0.1765 per 0.005, so no flattening and no turn at 1.31 (the only interior ln|det| minimum of the scan is at 1.25, beside the sign change). The absolute ln|det| differs between k_c (a different discretization), so only the shape is compared.
+
+<details><summary>All 19 evaluations (hybrid sign, ln abs det, noise test, float64 sign, seconds)</summary>
+
+| lambda | process | hybrid sign | ln abs det | noise (2 seeds) | float64 sign | s |
+|---|---|---|---|---|---|---|
+| 1.200 | P1 | - | -2766.7264 | -,- | - | 2108 |
+| 1.210 | P1 | - | -2767.2360 | -,- | - | 1793 |
+| 1.220 | P2 | - | -2767.6957 | -,- | - | 2120 |
+| 1.230 | P2 | - | -2768.3370 | -,- | - | 1798 |
+| 1.240 | P3 | - | -2769.4713 | -,- | - | 2145 |
+| 1.250 | P1 | + | -2770.5614 | +,+ | - | 2195 |
+| 1.250 | P2 | + | -2770.5614 | +,+ | - | 2164 |
+| 1.260 | P3 | + | -2769.4596 | +,+ | - | 2116 |
+| 1.270 | P3 | + | -2769.2650 | +,+ | + | 1792 |
+| 1.280 | P4 | + | -2769.3051 | +,+ | + | 2158 |
+| 1.290 | P4 | + | -2769.4628 | +,+ | + | 2162 |
+| 1.295 | P4 | + | -2769.5706 | +,+ | + | 1786 |
+| 1.300 | P5 | + | -2769.6933 | +,+ | + | 2158 |
+| 1.305 | P5 | + | -2769.8284 | +,+ | + | 2123 |
+| 1.310 | P5 | + | -2769.9742 | +,+ | + | 1790 |
+| 1.315 | P6 | + | -2770.1292 | +,+ | + | 2191 |
+| 1.320 | P6 | + | -2770.2923 | +,+ | + | 2112 |
+| 1.325 | P7 | + | -2770.4625 | +,+ | + | 2156 |
+| 1.330 | P7 | + | -2770.6390 | +,+ | + | 2118 |
+
+</details>
