@@ -37,6 +37,7 @@ Win2's cadence on this leg is about 80 minutes a point (D 20.78125 pushed 15:10 
 ## Results (filled after each point)
 | D | state commit | source check | window | robust change (det-linear, bracket) | minus prediction | repeat | verdict |
 |---|---|---|---|---|---|---|---|
+| 20.84375 | 876aab69 (win2, 17:56 UTC) | ACCEPTED (controls 1 1) | 0.945 to 0.975 | 0.958120, bracket (0.955, 0.960), range [0.957532, 0.958120] | +0.000120 (prediction 0.958) | bit-identical | one change, within 0.01; scan 17:57 to 18:28 UTC |
 
 ## Status
 - 2026-11-23 16:59 UTC: folder, pilots, lane and the reading prepared before any run; units for D 20.84375, 20.875 and 20.90625 wait for their states on origin.
