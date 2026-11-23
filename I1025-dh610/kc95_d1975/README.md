@@ -101,6 +101,6 @@ Beside which I report (information, not a pass rule; the coordinator's numbers),
 - **Delta** (regrid, above): k_c 95 1.0860000558 beside dh170's k_c 87 1.0860022726 (-2.2168e-6) and k_c 79 1.0860054437 (-5.3880e-6).
 - No second change in 1.30 to 1.36. Nothing was scanned outside it.
 
-Predictions (written before the run): every point noise-robust (70%): yes; the repeat bit-identical (90%, same process): yes; exactly one robust change in 1.30 to 1.36 (85%): yes, lying between 1.322 and 1.345 (80%): yes (1.326077); a point 1500 to 2300 s on 4 processes alone: no, 2442 to 2461 s in round 1 and 2758 to 2770 s in round 2, both beside other jobs (above), so the prediction was for an idle machine and the point cost 7 to 20% more.
+Predictions (written before the run): every point noise-robust (70%): yes; the repeat bit-identical (90%, same process): yes; exactly one robust change in 1.30 to 1.36 (85%): yes, lying between 1.322 and 1.345 (80%): yes (1.326077); a point 1500 to 2300 s on 4 processes alone: no, 2442 to 2461 s in round 1 and 2758 to 2770 s in round 2, both beside other jobs (above), so the prediction was for an idle machine and the point cost 6 to 20% more than the top of the predicted range.
 
 These are k_c 95 roots, not yet physical.
