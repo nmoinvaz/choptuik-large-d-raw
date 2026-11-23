@@ -151,7 +151,7 @@ control 2: dh170's state at kappa 0.7 against kappa 0.69: 13 segments differ, 31
 
 **Machines** (the coordinator's request; this machine above in `machine_dh610.txt`). Both: Fedora 45, python 3.14.10, multidouble 5.1.0 avx2, venv from `requirements.txt` (numpy 2.5.4, scipy 1.18.1 pinned). This one: i7-12700, scipy-openblas 0.3.34.106.0, core Haswell. dh170's: i7-7700 (his folder); his OpenBLAS core type is not in his folder, the coordinator asked him; the bit-identity above does not prove the cores are the same, it shows this state's evaluation is.
 
-**Not tested:** whether a rerun of the same `ell_refine` from the same state ends at the same state (the residual's trailing digits depend on the thread count: |F| of this state is 3.9876058940e-10 at 8 threads and 3.9877716759e-10 at 1); if reruns end 1e-10 apart along such directions, the root would move by about a tenth of the 0.0018 or more at the rate above, from rounding alone.
+**Not tested:** whether a rerun of the same `ell_refine` from the same state ends at the same state. The printed |F| of this state differs between evaluation contexts (3.9876058940e-10 in his record and in the k_c 87 check on this machine, 3.9877716759e-10 in d18 on both machines, 3.9858e-10 in ell_cond at 6 threads); I did not test whether the thread count or something else in the code path is the cause. If reruns of `ell_refine` end 1e-10 apart along such directions, the root would move by about a tenth of the 0.0018 or more at the rate above, from rounding alone.
 
 ### Predictions against outcomes (registered before the run)
 
