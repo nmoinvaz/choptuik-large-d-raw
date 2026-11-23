@@ -1,3 +1,24 @@
 == 2026-11-23 13:39:23 UTC kc87_d205: pins checked (in_blobs.txt, worktrees 1025g 48c36355 and 1025f 505d8399, ell_refine.py 631e5801, ell_delta.py fde699f5, lambda_0(20.5) 2.1088217835, MemAvailable 60529656 kB, load 1.02 2.96 5.28, Python 3.14.10)
 == 2026-11-23 13:39:23 UTC kc87_d205: selftests as wanted (kc79_syscheck, kc87_syscheck, read_lower, mutate shift, mutate round2, repeat_check, kc87d205_read, mutate: 0 0 0 1 1 0 0 1)
 == 2026-11-23 13:39:23 UTC kc87_d205: dry run: nothing started
+== 2026-11-23 13:39:37 UTC kc87_d205: pins checked (in_blobs.txt, worktrees 1025g 48c36355 and 1025f 505d8399, ell_refine.py 631e5801, ell_delta.py fde699f5, lambda_0(20.5) 2.1088217835, MemAvailable 60518564 kB, load 1.01 2.86 5.21, Python 3.14.10)
+== 2026-11-23 13:39:38 UTC kc87_d205: selftests as wanted (kc79_syscheck, kc87_syscheck, read_lower, mutate shift, mutate round2, repeat_check, kc87d205_read, mutate: 0 0 0 1 1 0 0 1)
+== 2026-11-23 13:39:49 UTC kc87_d205: source check: kc79_syscheck_1025.py exit 0 (ACCEPTED: the record class's |F| with a step count that comes back); its controls --mutate=F exit 1, --mutate=steps exit 1 (1 wanted each); kc87_syscheck_1025.py on it exit 1 (1 wanted: NOT ACCEPTED: the record is not k_c 87 at D 20.5 (kc 79, D 20.5))
+== 2026-11-23 13:39:49 UTC kc87_d205: regrid starts: nice -n 10 timeout 21600 /home/nathan/Source/venv-i1058/bin/python -u ell_refine.py l1kc79dh170d205 79 l1kc87dh610d205 87 1 20.5 2.1088217835 --kappa 0.7 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma
+== 2026-11-23 14:31:05 UTC kc87_d205: ell_refine exit 0, wall 3076 s
+== 2026-11-23 14:31:10 UTC kc87_d205: acceptance: kc87_syscheck_1025.py exit 0; controls --mutate=F exit 1, --mutate=steps exit 1 (1 wanted each); kc79_syscheck_1025.py on the result exit 1 (1 wanted): controls on the same numbers: record |F| x 1.5 refused: True; record steps + 1 refused: True D 20.5 k_c 87: record |F| 4.5653303879e-10, F_start 1.369e-05, steps 3006, constraint 2.061e-03, Delta 1.105049680360, 3074 s; state |F| 4.5653303879e-10, freeze_from steps 3006 ACCEPTED: the record class's |F| with a step count that comes back 
+== 2026-11-23 14:31:10 UTC kc87_d205: regrid ACCEPTED
+== 2026-11-23 14:31:10 UTC kc87_d205: scan: lambda 1.050 to 1.120 by 0.005 and a repeat of 1.085 (16 evaluations), lists 1.085,1.050,1.075,1.100 1.055,1.080,1.105 1.085,1.060,1.110 1.065,1.090,1.115 1.070,1.095,1.120, 5 processes of 1 thread, nice 10, cap 28800 s each
+== 2026-11-23 14:58:11 UTC kc87_d205: pair check of 1.085 (repeat_check.py, first round; logs only, stops nothing): exit 0: repeat check /home/nathan/Source/choptuik-large-d-raw/I1025-dh610/kc87_d205/scan/pair_merged.jsonl: lambda [1.085]: [2] evaluations each, agree -> PASS
+2026-11-23 15:53:41 UTC scan p1 (1.055,1.080,1.105) exit 0
+2026-11-23 15:53:43 UTC scan p3 (1.065,1.090,1.115) exit 0
+2026-11-23 15:53:53 UTC scan p4 (1.070,1.095,1.120) exit 0
+2026-11-23 15:53:53 UTC scan p2 (1.085,1.060,1.110) exit 0
+2026-11-23 16:10:41 UTC scan p0 (1.085,1.050,1.075,1.100) exit 0
+== 2026-11-23 16:10:41 UTC kc87_d205: p0: D 20.5 k_c 87: |F| 4.5633006367e-10 (record 4.5653303879e-10), steps 3006 (record 3006): the record system
+== 2026-11-23 16:10:41 UTC kc87_d205: p1: D 20.5 k_c 87: |F| 4.5633006367e-10 (record 4.5653303879e-10), steps 3006 (record 3006): the record system
+== 2026-11-23 16:10:41 UTC kc87_d205: p2: D 20.5 k_c 87: |F| 4.5633006367e-10 (record 4.5653303879e-10), steps 3006 (record 3006): the record system
+== 2026-11-23 16:10:41 UTC kc87_d205: p3: D 20.5 k_c 87: |F| 4.5633006367e-10 (record 4.5653303879e-10), steps 3006 (record 3006): the record system
+== 2026-11-23 16:10:41 UTC kc87_d205: p4: D 20.5 k_c 87: |F| 4.5633006367e-10 (record 4.5653303879e-10), steps 3006 (record 3006): the record system
+16 points
+== 2026-11-23 16:10:41 UTC kc87_d205: scan done; readings in read_lower.txt and kc87d205_read.txt; kc87 done

@@ -1,0 +1,34 @@
+| record | k_c 87, this machine (regrid) | k_c 79 source, dh170's machine | k_c 87 minus k_c 79 |
+|---|---|---|---|
+| F_start | 1.3693105064583983e-05 | 4.982069370112128e-05 | -3.613e-05 |
+| F | 4.5653303879333645e-10 | 4.676373649828416e-10 | -1.110e-11 |
+| steps | 3006 | 2731 | +2.750e+02 |
+| constraint | 0.0020612233011580404 | 0.0032382272664867604 | -1.177e-03 |
+| Delta | 1.1050496803603678 | 1.1050554464777258 | -5.766e-06 |
+| seconds | 3074 | 3109 |  |
+| steps ratio | 1.1007 | | |
+
+| lambda | hybrid sign (k_c 87 mine, k_c 79 dh170) | noise signs (robust) | float64 sign | ln of abs det (k_c 87 mine, k_c 79 dh170) | seconds |
+|---|---|---|---|---|---|
+| 1.050 | -, n/a | -- (True) | - | -2690.968241, n/a | 1758 |
+| 1.055 | -, n/a | -- (True) | - | -2691.562007, n/a | 1591 |
+| 1.060 | -, - | -- (True) | - | -2692.206435, -2388.144894 | 1750 |
+| 1.065 | -, n/a | -- (True) | - | -2692.936657, n/a | 1591 |
+| 1.070 | -, n/a | -- (True) | - | -2693.844194, n/a | 1588 |
+| 1.075 | -, n/a | -- (True) | - | -2695.363886, n/a | 1623 |
+| 1.080 | +, n/a | ++ (True) | + | -2695.663317, n/a | 1735 |
+| 1.085 | +, n/a | ++ (True) | + | -2694.982883, n/a | 1584 |
+| 1.085 | +, n/a | ++ (True) | + | -2694.982883, n/a | 1589 |
+| 1.090 | +, + | ++ (True) | + | -2694.866444, -2390.575506 | 1742 |
+| 1.095 | +, n/a | ++ (True) | + | -2694.920440, n/a | 1738 |
+| 1.100 | +, n/a | ++ (True) | + | -2695.057885, n/a | 998 |
+| 1.105 | +, n/a | ++ (True) | + | -2695.244880, n/a | 1623 |
+| 1.110 | +, n/a | ++ (True) | + | -2695.464630, n/a | 1627 |
+| 1.115 | +, n/a | ++ (True) | + | -2695.707580, n/a | 1616 |
+| 1.120 | +, + | ++ (True) | + | -2695.967755, -2391.486057 | 1635 |
+
+scan points: 16 evaluations, seconds per point min 998, median 1623, max 1758, sum 25788; outside 1300 to 2100 s: [(1.1, 998)]
+
+control: the two-point root of dh170's rows at 1.06 and 1.09 is 1.087574; his reader's det-linear is 1.087574; difference -3.91e-08 (bar 1e-5): ok
+this scan's rows at 1.06 and 1.09, same formula (dh170's 0.03 grid): 1.088039; minus dh170's reader +0.000465
+this scan's reader (0.005 grid): det-linear 1.077872; minus the two-point value on the 0.03 grid -0.010167; minus dh170's reader -0.009702
