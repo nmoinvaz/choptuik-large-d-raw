@@ -1,0 +1,18 @@
+# cd /Users/nathan/Source/choptuik-large-d/solver/inner_stokes && nice -n 10 /Users/nathan/Source/venv-macm3-i1080/bin/python -u hier_nb.py 5 3.526473056696 0.211497981391 --x=0.9765085452,-0.0017633195 --fixA --schur --procs 2 --verbose=1 --xi1=0.17
+M 5, xi1 0.17, fixed (A, w), procs 2; start x [3.526473057, 0.211497981, 0.976508545, -0.00176332, 0.026652899, 0.003934666]
+level radii (approach -> polish): r_1 0.1700 -> 0.1700, r_3 0.1700 -> 0.1700, r_5 0.1700 -> 0.1700
+start residuals: |r_1| 0.00e+00  |r_3| 0.00e+00  |r_5| 4.75e+06
+   level 5 solved: |r_5| 4.75e+06  (19 residuals, 1 s)  [1 s total]
+   Jacobian K computed (4 residuals) [1 s]
+   level 5 solved: |r_5| 4.75e+06  (15 residuals, 0 s)  [1 s total]
+   level 5 solved: |r_5| 4.75e+06  (15 residuals, 0 s)  [1 s total]
+   level 5 solved: |r_5| 4.75e+06  (15 residuals, 0 s)  [1 s total]
+   level 5 solved: |r_5| 4.75e+06  (15 residuals, 0 s)  [2 s total]
+   level 5 solved: |r_5| 4.75e+06  (15 residuals, 0 s)  [2 s total]
+   level 5 solved: |r_5| 4.75e+06  (15 residuals, 0 s)  [2 s total]
+   level 5 solved: |r_5| 4.75e+06  (15 residuals, 0 s)  [2 s total]
+   level 3 solved: |r_3| 6.79e+07  (172 residuals, 2 s)  [2 s total]
+FIXED-A M 5: A 3.526473057  w/w_inf 0.211497981  (w 0.80837, Delta 7.77262)  <F^2> 6.6952  r_1 -3.1367e+11-2.4282e+11i  [2 s, 173 residuals]
+      F_3/F_1 = +0.276908-0.000500i   |.| 0.276908  arg -0.0018   r_3 6.8e+07
+      F_5/F_1 = +0.007558+0.001116i   |.| 0.007640  arg +0.1466   r_5 4.7e+06
+      (uncorrected r_1 -5.7261e+07-2.2804e+07i)

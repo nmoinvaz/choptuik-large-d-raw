@@ -1,0 +1,28 @@
+# cd /Users/nathan/Source/choptuik-large-d/solver/inner_stokes && nice -n 10 /Users/nathan/Source/venv-macm3-i1080/bin/python -u hier_nb.py 5 2.726475885672 1.015603094909 --x=0.1444194785,0.0110874259 --fixA --schur --procs 2 --verbose=1 --xi1=0.17
+M 5, xi1 0.17, fixed (A, w), procs 2; start x [2.726475886, 1.015603095, 0.144419478, 0.011087426, 0.00852798, 0.001528612]
+level radii (approach -> polish): r_1 0.1700 -> 0.1700, r_3 0.1700 -> 0.1700, r_5 0.1180 -> 0.1700
+start residuals: |r_1| 0.00e+00  |r_3| 0.00e+00  |r_5| 7.56e+03
+   level 5 solved: |r_5| 1.17e-10  (30 residuals, 1 s)  [1 s total]
+   Jacobian K computed (4 residuals) [2 s]
+   level 5 solved: |r_5| 1.17e-10  (7 residuals, 0 s)  [2 s total]
+   level 5 solved: |r_5| 2.47e-10  (24 residuals, 1 s)  [3 s total]
+level 3 it 0: |r_3| 2.361e+00  lam 1  x [2.726475886, 1.015603095, 0.146173948, 0.014242124, 0.008040355, 0.001389761]  [3 s, 104 residuals]
+   level 5 solved: |r_5| 1.54e-10  (17 residuals, 0 s)  [3 s total]
+level 3 it 1: |r_3| 3.001e-03  lam 1  x [2.726475886, 1.015603095, 0.146173209, 0.014239432, 0.008040316, 0.001389551]  [3 s, 121 residuals]
+   level 5 solved: |r_5| 3.42e-10  (16 residuals, 0 s)  [4 s total]
+level 3 it 2: |r_3| 3.118e-06  lam 1  x [2.726475886, 1.015603095, 0.146173209, 0.014239436, 0.008040316, 0.001389551]  [4 s, 137 residuals]
+   level 5 solved: |r_5| 2.74e-10  (7 residuals, 0 s)  [4 s total]
+level 3 it 3: |r_3| 6.030e-09  lam 1  x [2.726475886, 1.015603095, 0.146173209, 0.014239436, 0.008040316, 0.001389551]  [4 s, 144 residuals]
+   level 5 solved: |r_5| 1.58e-10  (7 residuals, 0 s)  [4 s total]
+   level 5 solved: |r_5| 3.44e-10  (9 residuals, 0 s)  [5 s total]
+   level 5 solved: |r_5| 5.84e-10  (6 residuals, 0 s)  [5 s total]
+   level 5 solved: |r_5| 4.78e-10  (7 residuals, 0 s)  [5 s total]
+   level 5 solved: |r_5| 4.03e-10  (5 residuals, 0 s)  [5 s total]
+   level 5 solved: |r_5| 7.15e-10  (2 residuals, 0 s)  [5 s total]
+   level 5 solved: |r_5| 3.18e-10  (12 residuals, 0 s)  [6 s total]
+   level 5 solved: |r_5| 1.99e-10  (12 residuals, 0 s)  [6 s total]
+   level 3 solved: |r_3| 6.03e-09  (242 residuals, 6 s)  [6 s total]
+FIXED-A M 5: A 2.726475886  w/w_inf 1.015603095  (w 3.88177, Delta 1.61864)  <F^2> 3.7277  r_1 +7.6316e+01+1.1329e+02i  [6 s, 243 residuals]
+      F_3/F_1 = +0.053613+0.005223i   |.| 0.053866  arg +0.0971   r_3 6.0e-09
+      F_5/F_1 = +0.002949+0.000510i   |.| 0.002993  arg +0.1711   r_5 2.7e-10
+      (uncorrected r_1 +7.6343e+01+1.1328e+02i)

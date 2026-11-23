@@ -31,4 +31,19 @@ Report per start: |r_1|, |r_3|, |r_5|, |F_5|/|F_3| (|F_ν/F_1| of the solve), an
 
 ## Results
 
-(none yet)
+Run 2026-11-23 17:40:05 to 2026-11-23 17:40:21 UTC (16 s wall) under `caffeinate -is`, load 5.50 2.73 2.55 at the start (other work on the machine), no Traceback in any log, no sampler (the run is seconds long). Exits all 0. Seven start solves, no walks. The table is `logs/report.md`.
+
+| start | xi1 | \|r1\| | \|r3\| | \|r5\| | \|F3\| | \|F5\| | \|F5\|/\|F3\| | max\|Y\| |
+|---|---|---|---|---|---|---|---|---|
+| control | 0.15 | 1.62e+02 | 1.0e-08 | 2.2e-10 | 0.0539 | 0.0030 | 0.0556 | not printed |
+| control | 0.17 | 1.37e+02 | 6.0e-09 | 2.7e-10 | 0.0539 | 0.0030 | 0.0556 | not printed |
+| x1 | 0.15 | 1.69e+09 | 1.3e+08 | 2.0e+05 | 0.2139 | 0.0653 | 0.3052 | not printed |
+| x1 | 0.17 | 7.33e+06 | 9.9e+04 | 2.7e-03 | 0.2586 | 0.0860 | 0.3328 | not printed |
+| x1 | 0.2_v2 | 7.88e+07 | 2.1e+05 | 1.9e-06 | 0.2525 | 0.0839 | 0.3321 | not printed |
+| x2 | 0.15 | 1.11e+09 | 2.0e+07 | 3.2e+06 | 0.2769 | 0.0076 | 0.0275 | not printed |
+| x2 | 0.17 | 3.97e+11 | 6.8e+07 | 4.7e+06 | 0.2769 | 0.0076 | 0.0276 | not printed |
+
+- max|Y| is not printed by `hier_nb.py` at `--verbose` 1 or 2 (the code has no such line).
+- The control's start solves converge at xi1 0.15 and 0.17 (|r_3| 1.0e-8 and 6.0e-9), as at 0.2 (2.7e-8).
+- x1 and x2 do not converge at 0.15 or 0.17. x1 at 0.17: level 5 stops at 7e-4 to 3e-3, level 3 at 9.9e4. x2: level 5 does not move from its start at 0.15 and 0.17 (|r_5| 3.2e6 and 4.8e6 before and after), level 3 ends at 2.0e7 and 6.8e7.
+- `--verbose=2` on x1 at 0.2 (`logs/start_x1_xi0.2_v2.log`, the same numbers as the verbose-1 start): level 5 ends at |r_5| 2.1e-6, 9.6e-7, 2.9e3 and 1.9e-6 in its four solves; the level-3 solve prints no iteration line and ends with "level 3 (top): stop at |r_3| 2.10e+05: a fresh Jacobian no longer halves |g|" after 142 residuals. That stop is the one `hier.py`'s `--floor_max` comment describes for M = 9 (#1007), and 2.1e5 is far above any noise floor. The log does not show the first step's trial lengths (`--verbose=3` does).
