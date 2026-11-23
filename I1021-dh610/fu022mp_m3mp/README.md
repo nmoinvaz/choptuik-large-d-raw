@@ -1,0 +1,43 @@
+# I1021-dh610/fu022mp_m3mp: the --m3mp recount of #1021's 17 unresolved leaves (fu022mp pass 3's cache, argcount at feat/inner-mp 58108b67)
+
+Machine dh610 (Fedora 45, i7-12700, 20 logical CPUs, 64 GB RAM, Linux). Issue https://github.com/nmoinvaz/choptuik-large-d/issues/1076 (#1021's guard-blocked points valued with the M = 3 inner solve in extended precision). Written 2026-11-23 09:34:55 UTC, before any run of this folder. This is numerical evidence; the counts stay on hold until the sheet check of the new points (criterion 4 of `I1021-mac/fu022mp/README.md`).
+
+## Order (coordinator t5, the #1076 comment 7096737456 and hc, 23 Nov), in part
+"One recount with `--m3mp`, which values every point the walk needs that float64 leaves without value, inside the recount. Code: `feat/inner-mp` at 58108b67 (`argcount --m3mp`, `value_mp` with chord steps, `m3mp_check.py`), in a worktree. Inputs, pinned by blob at raw 81794560: cache `I1021-macm3/fu022mp/m3/points_M3_r0.17.jsonl` (3a12c814), seed `.../points_M3_r0.2.jsonl` (a0543a5c), cells `I1021-mac/rpi5_fu021/in/cells_unresolved11.jsonl` (07a872bb), `prefix_keys.py` (32ad6e19); copy the cache and seed into `I1021-dh610/fu022mp_m3mp/m3/`. Preflight: `m3mp_check.py <the pinned cache's pass-2 state>` (raw efed06f1's `points_M3_r0.17.jsonl`) with `--procs=2`; it must exit 0 (PASS); a failure stops the run. Recount, from `solver/inner_stokes`, as a `systemd-run --user` unit, nice 10, one BLAS thread, under `timeout 24h`: `argcount.py --M=3 --recount=<cells> --r1=0.17 --r1b=0.2 --seed=<OUT>/m3/points_M3_r0.2.jsonl --m3fix --m3maxrhs=2.4e6 --m3wall=3600 --m3noisecap=1e7 --procs=12 --retry --m3mp --out=<OUT>/m3 --tag=M3_fu022mp_m3mp_r0.17` (the record's arguments, plus `--m3mp`, with `--procs` 12 for the valuing; procs changes no value). Then: `prefix_keys.py` (fu021's cache to this one) must exit 0, with every later record of an old key a valued `fu: \"mp\"` row. Report: the unresolved count and the zeros (leaf_sum, located points), the number of mp rows (valued or not), and per-point seconds. Push at the end and every 2 h. Estimate: the first level is about 61 points at ~1000-2500 s each on 12 workers, so 1.5-3.5 h; deeper levels add more."
+Memory alerts only (hc).
+
+## Pass 3 as read by the coordinator (the starting point, raw 81794560, macm3)
+17 unresolved leaves, leaf_sum 2 (a second zero of R_1 in the box A 3.41-3.66 x wf 0.21-0.31 at A 3.526538, wf 0.211482 at xi1 0.17), 61 new points guard-blocked, 5 more lost-S_3 points `--retry`d without value.
+
+## Inputs (`in_blobs.txt` lists the `git hash-object --no-filters` blobs; the lane refuses any other)
+| item | path here | blob |
+|---|---|---|
+| pass 3 cache (3605 lines) | `m3/points_M3_r0.17.jsonl` (the run appends to it) | 3a12c814 |
+| seed | `m3/points_M3_r0.2.jsonl` | a0543a5c |
+| cells | `in/cells_unresolved11.jsonl` | 07a872bb |
+| prefix_keys.py | `in/prefix_keys.py` | 32ad6e19 |
+| fu021's cache (the old side of prefix_keys; sha256 981f49fc... as `I1021-mac/fu022mp/SHA256SUMS_fu021`) | `in/fu021_points_M3_r0.17.jsonl` (raw I1021-rpi5/fu021/m3) | a4611080 |
+| the pass 2 cache for the preflight (raw efed06f1, 3468 lines) | `in/points_M3_r0.17_efed06f1.jsonl` | 7512d5e8 |
+Code: `~/Source/choptuik-large-d-1076`, detached at 58108b67 (branch feat/inner-mp), clean. Python `~/Source/venv-i1058/bin/python` (3.14.10, numpy 2.5.4, scipy 1.18.1, mpmath 1.3.0, python-flint 0.9.0).
+
+## Commands (`lane_m3mp.sh` via `start_m3mp.sh` = systemd user unit i1076a under `systemd-inhibit` with the alert-only memory log; each step stops the lane when it fails)
+1. Pins; refuses to start with less than 16 GiB available.
+2. `argcount.py --selftest` (exit 0) and `--mutate=nosplit`, `--mutate=conj`, `--mutate=norecount` (exit 1 each), as the earlier #1021 runs did.
+3. Preflight: `m3mp_check.py in/points_M3_r0.17_efed06f1.jsonl --procs=2` (its work folder under `tmp/`, not pushed): exit 0 and "m3mp check: PASS", else STOP.
+4. The recount, the order's command, 12 processes of 1 thread (OMP, OPENBLAS, MKL = 1), nice 10, timeout 24h, log `logs/recount.log`, sampler `logs/sampler.log` every minute; outputs in `m3/` (the cache is appended after each batch; count file `count_M3_fu022mp_m3mp_r0.17.json`, leaves `leaves_M3_fu022mp_m3mp_r0.17.jsonl`).
+5. `prefix_keys.py in/fu021_points_M3_r0.17.jsonl m3/points_M3_r0.17.jsonl` (exit 0 wanted) and its own control `--mutate=edit` (exit 1 wanted); then `summarize_m3mp.py` into `summary_m3mp.txt` (its selftest reads macm3's pass 3 and pass 2 count files as their comments say, and its `--mutate` must fail).
+Progress pushes are snapshots of a cache an argcount process is appending to, so a pushed cache may end inside a line; the final push is the clean one.
+
+## Acceptance (fixed before the run)
+- Selftests as wanted; preflight exit 0 with PASS (else the recount is not started and I report it); the recount exits 0 (124 is the cap; I report it); `prefix_keys.py` exits 0 and its control exits 1.
+- Reported: the unresolved count and the zeros (leaf_sum, located points at xi1 0.17 and 0.2), the mp rows (valued or not, from the cache's `valued`), the per-point seconds from the log, what each later record of an old key is (valued mp row, mp row without value, `--retry` row), and the wall.
+
+## Predictions, registered before the run (information)
+- Selftests `0 1 1 1` (95%); preflight PASS (85%), taking 10 to 35 min (60%; "about 25 min on the Mac" with 2 processes).
+- The recount exits 0 within 24 h (80%); the first level's mp points take 1000 to 2500 s each as the coordinator estimates (60%); the whole run 2 to 8 h (55%).
+- At least 70% of the mp rows are valued (60%).
+- Unresolved leaves at the end: fewer than 17 (70%), 0 (20%), more than 17 (15%). leaf_sum is 2 or more (80%); the zero at A 3.5265, wf 0.2115 is still found (80%); no more than 3 zeros (85%).
+- `prefix_keys.py` exits 0 (90%) and every later record of an old key is a valued `fu: "mp"` row (50%; the `--retry` rows of the five lost-S_3 points had no value in passes 1 to 3).
+
+## Status
+- 2026-11-23 09:34:55 UTC: folder, inputs, lane and summarizer prepared before any run. The reproducibility test of `../../I1025-dh610/repro_d1975` runs beside this: up to 8 threads of it and 12 of this, 20 in all, all at nice 10.
