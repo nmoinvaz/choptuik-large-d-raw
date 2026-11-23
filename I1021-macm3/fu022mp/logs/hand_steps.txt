@@ -5,3 +5,10 @@ start 2026-11-23 04:37:24
 end 2026-11-23 05:07:36 exit 0 (0 wanted; 124 is the cap)
 unresolved leaves (len of the unresolved list in /Users/nathan/Source/choptuik-large-d-raw-749p/I1021-macm3/fu022mp/m3/count_M3_fu022mp_pass1_r0.17.json): 17
 hand steps done 2026-11-23 05:07:36
+
+hand pass 2 (the coordinator's order after the pass 1 recount): select, value, recount, prefix_keys; start 2026-11-23 05:11:34
+select command: cd /Users/nathan/Source/choptuik-large-d-raw-749p/I1021-mac/rpi5_fu021 && PTS=$(/Users/nathan/Source/venv-macm3-1058b/bin/python select_points.py /Users/nathan/Source/choptuik-inner-mp /Users/nathan/Source/choptuik-large-d-raw-749p/I1021-macm3/fu022mp/m3/points_M3_r0.17.jsonl /Users/nathan/Source/choptuik-large-d-raw-749p/I1021-macm3/fu022mp/m3/leaves_M3_fu022mp_pass1_r0.17.jsonl /Users/nathan/Source/choptuik-large-d-raw-749p/I1021-macm3/fu022mp/rows_pass1.jsonl 2> /Users/nathan/Source/choptuik-large-d-raw-749p/I1021-macm3/fu022mp/logs/select_pass2.log)
+pass 2 select exit 0 2026-11-23 05:11:34: 12 points without value in 17 unresolved leaves; 1 already run; 11 to run
+pass 2 points: 3.3185956,0.224902585;3.52611513125,0.21279321;3.52709169375,0.21279321;3.55248231875,0.41279321;3.5529706,0.413183835;3.554923725,0.41279321;3.6398846625,0.34404321;3.6418377875,0.34404321;3.754142475,0.43154321;3.843986225,0.35029321;3.86937685,0.48779321
+pass 2 value command: cd /Users/nathan/Source/choptuik-inner-mp/solver/inner_stokes && OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 nice -n 10 /Users/nathan/Source/venv-macm3-1058b/bin/python -u value_mp.py batch /Users/nathan/Source/choptuik-large-d-raw-749p/I1021-macm3/fu022mp/m3/points_M3_r0.17.jsonl /Users/nathan/Source/choptuik-large-d-raw-749p/I1021-macm3/fu022mp/rows_pass2.jsonl --points="$PTS" --procs=6 > /Users/nathan/Source/choptuik-large-d-raw-749p/I1021-macm3/fu022mp/logs/value_pass2.log 2>&1
+pass 2 value start 2026-11-23 05:11:34 cache     3440 lines

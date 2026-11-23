@@ -1,0 +1,84 @@
+# session check, 2026-11-23 05:12:22 UTC: parent chain of each pid (the given ones and their descendants) up to pid 1 (pid ppid pgid sess tty command); fails if 'claude' is in a chain
+
+pid 22241 (/bin/bash /Users/nathan/Source/choptuik-large-d-raw-903/I107):
+   22241 ppid      1 pgid  22240 tty  ??  /bin/bash /Users/nathan/Source/choptuik-large-d-raw-903/I1076-macm3/hand_pass2.sh
+       1 ppid      0 pgid      1 tty  ??  /sbin/launchd
+  chain ends at pid 1 (/sbin/launchd), 2 processes
+
+pid 22242 (/usr/bin/caffeinate -is /bin/bash /Users/nathan/Source/chopt):
+   22242 ppid  22241 pgid  22240 tty  ??  /usr/bin/caffeinate -is /bin/bash /Users/nathan/Source/choptuik-large-d-raw-903/I1076-macm3/hand_pas
+   22241 ppid      1 pgid  22240 tty  ??  /bin/bash /Users/nathan/Source/choptuik-large-d-raw-903/I1076-macm3/hand_pass2.sh
+       1 ppid      0 pgid      1 tty  ??  /sbin/launchd
+  chain ends at pid 1 (/sbin/launchd), 3 processes
+
+pid 22259 (/bin/bash /Users/nathan/Source/choptuik-large-d-raw-903/I107):
+   22259 ppid  22241 pgid  22240 tty  ??  /bin/bash /Users/nathan/Source/choptuik-large-d-raw-903/I1076-macm3/hand_pass2.sh
+   22241 ppid      1 pgid  22240 tty  ??  /bin/bash /Users/nathan/Source/choptuik-large-d-raw-903/I1076-macm3/hand_pass2.sh
+       1 ppid      0 pgid      1 tty  ??  /sbin/launchd
+  chain ends at pid 1 (/sbin/launchd), 3 processes
+
+pid 22260 (/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.):
+   22260 ppid  22259 pgid  22240 tty  ??  /opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/Resources/Python
+   22259 ppid  22241 pgid  22240 tty  ??  /bin/bash /Users/nathan/Source/choptuik-large-d-raw-903/I1076-macm3/hand_pass2.sh
+   22241 ppid      1 pgid  22240 tty  ??  /bin/bash /Users/nathan/Source/choptuik-large-d-raw-903/I1076-macm3/hand_pass2.sh
+       1 ppid      0 pgid      1 tty  ??  /sbin/launchd
+  chain ends at pid 1 (/sbin/launchd), 4 processes
+
+pid 22261 (/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.):
+   22261 ppid  22260 pgid  22240 tty  ??  /opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/Resources/Python
+   22260 ppid  22259 pgid  22240 tty  ??  /opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/Resources/Python
+   22259 ppid  22241 pgid  22240 tty  ??  /bin/bash /Users/nathan/Source/choptuik-large-d-raw-903/I1076-macm3/hand_pass2.sh
+   22241 ppid      1 pgid  22240 tty  ??  /bin/bash /Users/nathan/Source/choptuik-large-d-raw-903/I1076-macm3/hand_pass2.sh
+       1 ppid      0 pgid      1 tty  ??  /sbin/launchd
+  chain ends at pid 1 (/sbin/launchd), 5 processes
+
+pid 22262 (/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.):
+   22262 ppid  22260 pgid  22240 tty  ??  /opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/Resources/Python
+   22260 ppid  22259 pgid  22240 tty  ??  /opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/Resources/Python
+   22259 ppid  22241 pgid  22240 tty  ??  /bin/bash /Users/nathan/Source/choptuik-large-d-raw-903/I1076-macm3/hand_pass2.sh
+   22241 ppid      1 pgid  22240 tty  ??  /bin/bash /Users/nathan/Source/choptuik-large-d-raw-903/I1076-macm3/hand_pass2.sh
+       1 ppid      0 pgid      1 tty  ??  /sbin/launchd
+  chain ends at pid 1 (/sbin/launchd), 5 processes
+
+pid 22263 (/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.):
+   22263 ppid  22260 pgid  22240 tty  ??  /opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/Resources/Python
+   22260 ppid  22259 pgid  22240 tty  ??  /opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/Resources/Python
+   22259 ppid  22241 pgid  22240 tty  ??  /bin/bash /Users/nathan/Source/choptuik-large-d-raw-903/I1076-macm3/hand_pass2.sh
+   22241 ppid      1 pgid  22240 tty  ??  /bin/bash /Users/nathan/Source/choptuik-large-d-raw-903/I1076-macm3/hand_pass2.sh
+       1 ppid      0 pgid      1 tty  ??  /sbin/launchd
+  chain ends at pid 1 (/sbin/launchd), 5 processes
+
+pid 22264 (/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.):
+   22264 ppid  22260 pgid  22240 tty  ??  /opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/Resources/Python
+   22260 ppid  22259 pgid  22240 tty  ??  /opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/Resources/Python
+   22259 ppid  22241 pgid  22240 tty  ??  /bin/bash /Users/nathan/Source/choptuik-large-d-raw-903/I1076-macm3/hand_pass2.sh
+   22241 ppid      1 pgid  22240 tty  ??  /bin/bash /Users/nathan/Source/choptuik-large-d-raw-903/I1076-macm3/hand_pass2.sh
+       1 ppid      0 pgid      1 tty  ??  /sbin/launchd
+  chain ends at pid 1 (/sbin/launchd), 5 processes
+
+pid 22265 (/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.):
+   22265 ppid  22260 pgid  22240 tty  ??  /opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/Resources/Python
+   22260 ppid  22259 pgid  22240 tty  ??  /opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/Resources/Python
+   22259 ppid  22241 pgid  22240 tty  ??  /bin/bash /Users/nathan/Source/choptuik-large-d-raw-903/I1076-macm3/hand_pass2.sh
+   22241 ppid      1 pgid  22240 tty  ??  /bin/bash /Users/nathan/Source/choptuik-large-d-raw-903/I1076-macm3/hand_pass2.sh
+       1 ppid      0 pgid      1 tty  ??  /sbin/launchd
+  chain ends at pid 1 (/sbin/launchd), 5 processes
+
+pid 22266 (/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.):
+   22266 ppid  22260 pgid  22240 tty  ??  /opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/Resources/Python
+   22260 ppid  22259 pgid  22240 tty  ??  /opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/Resources/Python
+   22259 ppid  22241 pgid  22240 tty  ??  /bin/bash /Users/nathan/Source/choptuik-large-d-raw-903/I1076-macm3/hand_pass2.sh
+   22241 ppid      1 pgid  22240 tty  ??  /bin/bash /Users/nathan/Source/choptuik-large-d-raw-903/I1076-macm3/hand_pass2.sh
+       1 ppid      0 pgid      1 tty  ??  /sbin/launchd
+  chain ends at pid 1 (/sbin/launchd), 5 processes
+
+pid 22267 (/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.):
+   22267 ppid  22260 pgid  22240 tty  ??  /opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/Resources/Python
+   22260 ppid  22259 pgid  22240 tty  ??  /opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/Resources/Python
+   22259 ppid  22241 pgid  22240 tty  ??  /bin/bash /Users/nathan/Source/choptuik-large-d-raw-903/I1076-macm3/hand_pass2.sh
+   22241 ppid      1 pgid  22240 tty  ??  /bin/bash /Users/nathan/Source/choptuik-large-d-raw-903/I1076-macm3/hand_pass2.sh
+       1 ppid      0 pgid      1 tty  ??  /sbin/launchd
+  chain ends at pid 1 (/sbin/launchd), 5 processes
+
+for comparison, this checker's own chain: 22662:/opt/homebrew/ <- 22515:/bin/zsh -c so <- 4486:claude --resum <- 4485:/Users/nathan/ <- 1392:/Users/nathan/ <- 1:/sbin/launchd ...
+claude in any chain of the run: False; tty of the pids: ?? (?? = no controlling terminal)
