@@ -1,0 +1,50 @@
+review/Exc1079MustFail.lean:18:2: error: Tactic `decide` failed for proposition
+  (let __src := M3exc1;
+      { xhat := __src.xhat, w := __src.w,
+        Yg := fun i => if i = 0 then (M3exc1.Yg 0).add (I.const (2 * M3exc1.w 0)) else M3exc1.Yg i, YJ := __src.YJ,
+        Y := __src.Y }).check =
+    true
+because its `Decidable` instance
+  instDecidableEqBool
+    (let __src := M3exc1;
+      { xhat := __src.xhat, w := __src.w,
+        Yg := fun i => if i = 0 then (M3exc1.Yg 0).add (I.const (2 * M3exc1.w 0)) else M3exc1.Yg i, YJ := __src.YJ,
+        Y := __src.Y }).check
+    true
+did not reduce to `isTrue` or `isFalse`.
+
+Reduction got stuck at the `Decidable` instance
+  match
+    (let __src := M3exc1;
+      { xhat := __src.xhat, w := __src.w,
+        Yg := fun i => if i = 0 then (M3exc1.Yg 0).add (I.const (2 * M3exc1.w 0)) else M3exc1.Yg i, YJ := __src.YJ,
+        Y := __src.Y }).check,
+    true with
+  | false, false => isTrue ⋯
+  | false, true => isFalse ⋯
+  | true, false => isFalse ⋯
+  | true, true => isTrue ⋯
+review/Exc1079MustFail.lean:20:47: error: Tactic `decide` failed for proposition
+  M3exc2Wide.check = true
+because its `Decidable` instance
+  instDecidableEqBool M3exc2Wide.check true
+did not reduce to `isTrue` or `isFalse`.
+
+Reduction got stuck at the `Decidable` instance
+  match M3exc2Wide.check, true with
+  | false, false => isTrue ⋯
+  | false, true => isFalse ⋯
+  | true, false => isFalse ⋯
+  | true, true => isTrue ⋯
+review/Exc1079MustFail.lean:22:44: error: Tactic `decide` failed for proposition
+  M3exc2.check = false
+because its `Decidable` instance
+  instDecidableEqBool M3exc2.check false
+did not reduce to `isTrue` or `isFalse`.
+
+Reduction got stuck at the `Decidable` instance
+  match M3exc2.check, false with
+  | false, false => isTrue ⋯
+  | false, true => isFalse ⋯
+  | true, false => isFalse ⋯
+  | true, true => isTrue ⋯
