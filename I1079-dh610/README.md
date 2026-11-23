@@ -37,4 +37,64 @@ Stage 1 (4 processes): `chain.sh N` (point, box, krawczyk --point, controls --po
 - No step needs a change of the code or of a parameter (85%).
 
 ## Status
-- 2026-11-23 17:33 UTC: folder, scripts, pins and criteria written before any run; commands posted on #1079 next.
+- 2026-11-23 17:34 UTC: folder, scripts, pins and criteria written before any run (raw ada1acba); commands posted on #1079 (comment 7108847808).
+- 17:34:08 UTC: stage 1 started (unit i1079dh). 17:47:30 exc2's Krawczyk test passed; 17:47:37 exc1's passed but its controls came out UNEXPECTED at C6 (STOP line); 17:48 the coordinator resolved it (the documented case) and exc1 was resumed from H1 (`chain_h1.sh`); stage 1 ended 18:05:33 (all scripts done).
+- 18:06 UTC: stage 2 (inclusion, cross-load of macm3's files) run by hand by the coordinator's order (`steps.txt` has the NOTE line; `stage2.sh`'s wait pattern never matched, a mistake of mine, so the four scripts were started directly). Nothing was stopped or changed in a finished run.
+
+## Result (all numbers from the files; `compare_macm3.py` > `compare_macm3.txt`, `compare_json.py` > `compare_json.txt`, `steps.txt`)
+
+**Every step passes on its own bounds at both zeros, and every control fires as on macm3, with one exception that the coordinator resolved: exc1's controls C6.**
+
+| step | x1 (box 1e-12, 1e-13) | x2 (box 1e-12, 1e-12) |
+|---|---|---|
+| point run (s) | 404, g_rad 1.571e-21 | 400, g_rad 6.113e-23 |
+| box run (s) | 405 | 401 |
+| `krawczyk --point` | K(X) in int X True, relative margins +0.468, +0.619, +0.997, +0.998 | True, +0.711, +0.528, +0.981, +0.992 |
+| `controls --point` | exit 1, C6 UNEXPECTED (below), the other ten as expected | exit 0, ALL AS EXPECTED |
+| `certify_M_recheck.py`; `--mutate` | exit 0; exit 1 | exit 0; exit 1 |
+| H1 `lemma6_sector_M.py` | ALL CHECKS PASS; lemma S 0.6961, old sector 0.6839; `--mutate=series` caught | PASS; 0.6782, 0.7008; caught |
+| H3 `export6a`, lemma 6a | rho_6a 1.3652e-02 (macm3 1.3652e-02, 3e-7 apart); `partial` and `swap` caught (197, 228 s) | rho_6a 1.2590e-02 (5e-7 apart); caught (173, 247 s) |
+| H2 `ray --c1`, `row --j=11`, rows (A, B) | 104, 97, 778, 743 s; 183 discs all `ok True`, `check --json` PASS, `c1check` True, `mutate --j=11` 0 of 12 | 97, 86, 732, 629 s; same |
+| inclusion `theorem_A_sets_M.py --cert --ray`; `--selftest` | HOLD, slack +8.359e-12 at B3; PASS | HOLD, slack +8.278e-12; PASS |
+| cross-load: macm3's box and point here | krawczyk exit 0, margins +0.702, +0.758, +0.997, +0.998 (macm3's own); controls exit 0 (ALL AS EXPECTED, C6 included); recheck exit 0; `--mutate` exit 1 | exit 0, +0.943, +0.945, +0.988, +0.995; controls ALL AS EXPECTED; recheck 0; `--mutate` 1 |
+
+**The unexpected control (exc1):** C6, "zero planted inside, moved by (h/2, -3h/10, w/4, ...): expected pass, got fail", relative margins -3.17e-02, +0.319, +0.747, +0.748. The clean A margin is +0.468, below 0.5, so a zero moved by h/2 in A is no longer inside X: the documented case (A_M.md 6.2; macm3 saw it at x1's (1e-12, 1e-12) box). It is not a defect of the code. The coordinator's word at 17:48 UTC: resume from H1 (H1, H3 and H2 do not depend on the margins). C0 to C5, C6b, C7, C8 as expected. Exc2: all as expected.
+
+### The discrepancy against macm3's margins (reported to the coordinator at 17:50 UTC; the diagnosis accepted by the coordinator)
+Both zeros pass the Krawczyk test here, but the first two relative margins (A and w/w_inf) are far from macm3's at the same box (the order's 1% bar; `compare_macm3.txt`: 4 margins REPORTED):
+
+| margin | x1 mine | x1 macm3 | x1 relative difference | x2 mine | x2 macm3 | x2 relative difference |
+|---|---|---|---|---|---|---|
+| A | +0.468 | +0.702 | -33% | +0.711 | +0.943 | -25% |
+| w/w_inf | +0.619 | +0.758 | -18% | +0.528 | +0.945 | -44% |
+| B3 | +0.997 | +0.997 | 0 | +0.981 | +0.988 | -0.7% |
+| C3 | +0.998 | +0.998 | 0 | +0.992 | +0.995 | -0.3% |
+
+Everything downstream agrees: rho_6a to 3e-7 and 5e-7, the lemma S, old-sector and flat estimates to the digits printed, the covering (183 tiles, 579 pieces, 461 links) and the C1 set radii to the digits printed (one 3.5e-3 at x2 row 11), the inclusion's slack to four digits. Bounds assembled from upper bounds (the slack, the radii) move with every radius and pass on their own (AGENTS.md, #111).
+
+**Reading (`compare_json.txt`, the comparison the coordinator asked for; its control recomputes krawczyk_test's margins exactly, max difference 0, and fails under `--mutate`):**
+- The box run was started the same way on both machines: `certify_M.py box 3 --centre=data/A_M_refine_M3_<T>.json --use_out --h --w` (no `--point`), the same refine file by blob; the charts `bx['C']`, the box centre p, the path and the steps ([726, 397, 57] and [718, 394, 64]) are identical. `certify_M.py` is the same file at macm3's 1addcada and at c40fbc77.
+- The orders of the Taylor expansions: the box processes had ended when asked; the header of the box log does not print them; the processes of the same chain that were alive (the H2 rows) had `CERTIFY_M_NTAY=28 CERTIFY_M_NJAC=16` (and one BLAS/OMP thread) in `/proc/<pid>/environ`; the 28 `ray` lines (step size h, radii) are identical to every printed digit on both machines, as are the `arc` lines to step 325 (x2) and to the end (x1) except the seconds.
+- The gap is in the box run's variational columns: the box Jacobian columns' max radii at x2 are [1.05e-4, 4.20e-4, 1.06e-4, 1.05e-4] here against [6.33e-5, 2.52e-4, 6.48e-5, 6.37e-5] (x1 within 2%), YJ's max radius 0.271 against 0.032 (x1 0.407 against 0.228); the (I - YJ)X term per row [2.89e-13, 4.72e-13, 1.88e-14, 7.8e-15] against [5.7e-14, 5.5e-14, 1.23e-14, 4.9e-15]. g and Y do not carry it: |Yg| midpoints are identical per row, the g radius is identical at x1 and 6.14e-23 against 7.44e-23 at x2, the point's Jacobian radii agree within 5%.
+- Where it starts: in the last leg ("real", 64 and 57 steps) the derivative radius grows by three orders (x2: 1.04e-7 to 1.05e-4 here, 7.51e-8 to 5.66e-5 for macm3), and differs from the first steps of that leg; the first differing printed number is at x2's arc step 350 (3.00e-8 against 2.99e-8). The start data's float64 entries already differ in the last digits (x1 `eta` 1.508016533037434e-72 against 1.508016533037432e-72, `eta_der` 1.4322243334663837e-17 against 1.432224333466384e-17; x2 `eta_der` 2.265122423158685e-18 against ...682e-18).
+- **Cause (the coordinator's diagnosis, accepted: no perturbation test needed):** last-digit differences of float64 quantities in the start data between the machines (macOS and Linux; AGENTS.md #111 records the same kind of difference for the integration path), amplified on the real leg by the growth of the variational radius. Both enclosures are valid; they differ in size, and the Krawczyk margins move with the box run's Jacobian enclosure.
+
+### Pass criteria (fixed before the run) and what came out
+| criterion | result |
+|---|---|
+| every step passes on its own bounds, every control fires as on macm3 | yes, except exc1's C6, the documented case, resolved by the coordinator |
+| each machine's files pass on the other | macm3's box and point pass here (both zeros, all four steps, with macm3's own margins reproduced to the digit); this machine's files (`out/data/A_M_box_M3x?E2_*.json`, `A_M_point_M3x?E2.json`) are for the Mac: the coordinator runs them |
+| margins and rho_6a may differ in late digits; above 1% in a margin is reported | rho_6a differs in the 7th digit; the A and w/w_inf margins differ by 18 to 44% at both zeros: reported, with the cause above |
+
+### Predictions scorecard (written before the run)
+| prediction | result |
+|---|---|
+| every step passes and every control fires as on macm3 (80%) | wrong in the strict reading: exc1's C6 (the other controls as expected) |
+| the cross-load of macm3's files passes (88%) | right |
+| the four margins within 1% of macm3's (85%) | wrong (A and w/w_inf 18 to 44%) |
+| rho_6a within 1% (88%); lemma S contractions within 1% (90%) | right (3e-7 to 5e-7; identical) |
+| the whole rerun 1 to 2.5 h (65%) | wrong (shorter): stage 1 took 31 min, stage 2 seconds (the 4 processes ran at nice 15 beside a leg lane that was still waiting for its first state) |
+| point and box runs 150 to 450 s each (70%) | right (400 to 405 s) |
+| no step needs a change of the code or of a parameter (85%) | right (exc1 was resumed from H1 with the same command lines) |
+
+Files: `steps.txt` (every command, exit and last line), `out/` (copies of the worktree's data, logs, lemmas_M_runs and the two coverings `lemma6b1_runs_M3_exc?_linux`), `compare_macm3.txt`, `compare_json.txt`, `in/macm3_ref/` (macm3's logs and JSONs used for the comparison, blobs in `in_blobs_macm3_ref.txt`). Python-flint 0.9.0, FLINT 3.6.0, Python 3.14.10, numpy 2.5.4 (macm3: Python 3.14.3).
