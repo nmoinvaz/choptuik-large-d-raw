@@ -1,1 +1,4 @@
 2026-11-23 17:55:06 UTC start; new kernel avx2 e62c0be4d6064aa6, old kernel b5098fcc5b8facc7; compare selftest: selftest: same PASS, bit_ulp_fails PASS, bit_sign_fails PASS...; load 1.09 1.82 2.80
+2026-11-23 18:03:56 UTC (1a) old kernel (c016b932), D 3.15 L 0.7 M' 96, four lambdas: 530 s
+2026-11-23 18:12:50 UTC (1b) new kernel unset against old, D 3.15: bit-identical check exit 0 (0 wanted), 534 s; control (B with one ulp added to the first ln|det|) exit 1 (1 wanted)
+2026-11-23 18:21:39 UTC (2) D 3.15, HP_MODE_EQUIL=1 against unset: tol check exit 0 (0 wanted), 529 s; control (C with 1e-9 added to the first ln|det|) exit 1 (1 wanted); difference -4.093e-12 difference -4.547e-13 difference -7.731e-12 difference -2.501e-12 
