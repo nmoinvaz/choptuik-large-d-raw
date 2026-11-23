@@ -1,6 +1,6 @@
 # I1025-dh610/kc79_leg/D20.9375: lambda_1 on win2's k_c 79 leg point D 20.9375 (tag l1kc79Lw1025f), window 0.910 to 0.940 around the prediction 0.9274
 
-Machine dh610 (Fedora 45, i7-12700, Linux). Issue https://github.com/nmoinvaz/choptuik-large-d/issues/1025. Parent folder `../README.md` (order, method, pins, pilots). Written 2026-11-23 22:00 UTC, before the state of this point is on origin and before any run of this folder. The k_c 79 roots are not yet physical.
+Machine dh610 (Fedora 45, i7-12700, Linux). Issue https://github.com/nmoinvaz/choptuik-large-d/issues/1025. Parent folder `../README.md` (order, method, pins, pilots). Written 2026-11-23 21:59 UTC, before the state of this point is on origin and before any run of this folder. The k_c 79 roots are not yet physical.
 
 ## Order for this point (coordinator t5, #1025 comment of "17:45", and the hc ruling for points past D 20.90625)
 lambda_1 on win2's k_c 79 leg at D 20.9375: **predicted 0.9274 +-0.01** (the previous measured root 0.938234 minus 0.0108); a 0.005 grid over +-0.015 around the prediction plus a repeat of the middle point; no change in the window: widen once by 0.015 and report.
@@ -21,4 +21,4 @@ lambda_1 on win2's k_c 79 leg at D 20.9375: **predicted 0.9274 +-0.01** (the pre
 - The state is on origin by 22:30 UTC (70%; win2's cadence 84 min, the last state 20:45:51 UTC).
 
 ## Status
-- 2026-11-23 22:00 UTC: folder and README written; the unit `i1025-leg-20_9375` waits for the state (expected about 22:10 UTC).
+- 2026-11-23 21:59 UTC: folder and README written; the unit `i1025-leg-20_9375` waits for the state (expected about 22:10 UTC).
