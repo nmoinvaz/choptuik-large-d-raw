@@ -1,0 +1,220 @@
+--- kc79d19_regrid_driver_1025.py
++++ kc87d19_regrid_driver_1025.py
+@@ -2,8 +2,12 @@
+-"""#1025 winb, the k_c 79 regrid at D 19 (t5's order, hc of 2026-11-22 ~09:41 UTC): win2's accepted k_c 71 D 19 state (from its leap, raw I1025-win2/kc71_leap, found by prep_kc79d19_find_1025.sh) is
+-regridded to k_c 79 with the same command as at D 18.5 (raw I1025-win/kc79_d185), only D, the source tag and the lambda_0 argument changed:
+-  D 18.5: ell_refine.py l1kc71Wm1025 71 l1kc79Wm1025 79 1 18.5 2.1181259879 --kappa 0.7 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma
+-  D 19:   ell_refine.py SRC 71 l1kc79W19m1025 79 1 19 2.1156378446 --kappa 0.7 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma     (SRC and the pins from kc79d19_cfg_1025.txt; lambda_0 unused with --no-gamma)
+-4 threads, BelowNormal, cap 21600 s by the exact pid. Accepted only by kc79_syscheck_1025.py (win2's kc71_syscheck rule with k_c 71 replaced by k_c 79) and its two controls (|F| x 1.5 and steps + 1
+-refused, on the same numbers and through --mutate). Before the regrid win2's own check must accept the k_c 71 source state on this machine. A refusal, a failed control or a regrid that does not
+-converge stops here with a report. THE SCAN IS NOT STARTED (t5 gives the window); kc79d19_scan_driver_1025.py takes it as an argument. Memory: no guard, the alert-only watcher is a separate process.
+-usage: kc79d19_regrid_driver_1025.py [--selftest]"""
++"""#1025 winb, the k_c 87 regrid at D 19 (t5's order, #1025 comment of 2026-11-23 05:10 UTC): my accepted k_c 79 D 19 state (raw I1025-win/kc79_d19, tag l1kc79W19m1025) is regridded to k_c 87 with
++  ell_refine.py l1kc79W19m1025 79 l1kc87wind19 87 1 19.0 LAM0 --kappa 0.7 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma     (LAM0 = ell_delta.lam0_at(19.0, *lam0_table())[0] = 2.1156378446, unused with --no-gamma)
++4 threads, BelowNormal, cap 21600 s by the exact pid, one process outside my terminal. Order of the driver (any failure stops it with an hc to t5, no regrid, exit 2 or 1):
++  1. pins: dh610's kc87_syscheck_1025.py (6df5d960, raw ec9fb489:I1025-dh610/kc87_d195/in/), its kc79_syscheck_1025.py (29dce7ea, equal to the one of the D 19 regrid), d18_hybsign.py, d185_scan_read.py, read_lower.py, the k_c 79 D 19 state,
++     record and marker, the worktree (choptuik-i1025k79 at 48c36355, solver code 505d8399, ell_refine.py 631e5801) and its copies of the source state and record;
++  2. the selftest of both checks (exit 0 each);
++  3. the SOURCE: the k_c 79 check accepts it (exit 0) and its --mutate=F and --mutate=steps exit 1; the k_c 87 check refuses it (exit 1);
++  4. the regrid;
++  5. ACCEPTED only if kc87_syscheck_1025.py exits 0 on the result, its selftest exits 0, --mutate=F and --mutate=steps exit 1, and kc79_syscheck_1025.py refuses the result (exit 1).
++The ACCEPTED marker regrid_accepted.txt (with the state and record blobs) is written from this python process; the scan driver starts only after it (go_kc87d19_1025.cmd). Memory: no guard, the alert-only watcher is a separate
++process. A keep-awake helper (SetThreadExecutionState(ES_CONTINUOUS | ES_SYSTEM_REQUIRED), power plan untouched) holds for this driver's duration.
++usage: kc87d19_regrid_driver_1025.py [--dry]     (--dry: pins and the two selftests only, nothing written outside rows/*.dry and the .dry logs, nothing started)"""
+@@ -12,2 +16,4 @@
+-S = "C:/Users/nathan/Source/kc79d19_1025"
+-OUT = S + "/I1025-win/kc79_d19"
++S = "C:/Users/nathan/Source/kc87d19_1025"
++OUT = S + "/I1025-win/kc87_d19"
++IN = S + "/inputs"
++SRCD = "C:/Users/nathan/Source/kc79d19_1025/I1025-win/kc79_d19"          # my accepted k_c 79 D 19 state, record and marker (raw I1025-win/kc79_d19)
+@@ -19,4 +25,3 @@
+-RAW = S + "/raw"
+-ST = "--selftest" in sys.argv          # the cap selftest needs no source state
+-CFG = {"SRC": "none"} if ST else dict(l.strip().split("=", 1) for l in open(S + "/kc79d19_cfg_1025.txt") if "=" in l and not l.startswith("#"))
+-SRC, TAG = CFG["SRC"], "l1kc79W19m1025"
++DRY = "--dry" in sys.argv
++SRC, TAG = "l1kc79W19m1025", "l1kc87wind19"
++SRCSTATE, SRCREC = SRCD + f"/sol_{SRC}_D19.0000.npy", SRCD + f"/{SRC}.jsonl"
+@@ -24,2 +29,6 @@
+-PINS = {} if ST else {p: b for b, p in (ln.split() for ln in open(S + "/prep_kc79d19_pins_1025.txt"))}
+-LOG = OUT + "/kc79_regrid_w.log"
++LAM0 = "2.1156378446"
++PINS = [(IN + "/kc87_syscheck_1025.py", "6df5d9600edebeae8cc4e602025e42e79925b7d6"), (IN + "/kc79_syscheck_1025.py", "29dce7eab9677e568566a8ba05d7073109296a69"),
++        (IN + "/d18_hybsign.py", "e089207a61fbd98614716abd309571cbc4888db2"), (IN + "/d185_scan_read.py", "7c9d400fd0966a35ac306b5495febb4ec4efe7da"), (IN + "/read_lower.py", "89309d3c8e4f758bb5f936f7d24796b594e4cbdb"),
++        (SRCSTATE, "3a3b1999e1754c9c2e138ebf4d80f33a366abf3b"), (SRCREC, "9e197e492e1d77f0305cf767141dca2c9cc96ce7"), (SRCD + "/regrid_accepted.txt", "06aff278c98e1850d9fd1b2a47d7b962f79bfa26"),
++        (WTM + f"/data/sol_{SRC}_D19.0000.npy", "3a3b1999e1754c9c2e138ebf4d80f33a366abf3b"), (WTM + f"/data/{SRC}.jsonl", "9e197e492e1d77f0305cf767141dca2c9cc96ce7")]
++LOG = OUT + "/kc87_regrid_w.log" + (".dry" if DRY else "")
+@@ -27 +36 @@
+-BLK = "BELOW"
++SY87, SY79 = IN + "/kc87_syscheck_1025.py", IN + "/kc79_syscheck_1025.py"
+@@ -41,0 +51,11 @@
++
++
++def hc(m):
++    sh([HC, "send", COORD, f"winb ({datetime.datetime.now(datetime.timezone.utc):%H:%M} UTC), #1025 k_c 87 regrid at D 19: {m}"])
++
++
++def stop(m, code=2):
++    say("STOP: " + m)
++    if not DRY:
++        hc("not started or stopped: " + m)
++    sys.exit(code)
+@@ -62,11 +81,0 @@
+-if "--selftest" in sys.argv:
+-    LOG = S + "/kc79_regrid_driver_selftest.log"
+-    if os.path.exists(LOG):
+-        os.remove(LOG)
+-    rc, _ = run_capped([PY, "-c", "import time; print('slow', flush=True); time.sleep(600)"], S + "/kc79_selftest_cap.log", 20, S, dict(os.environ), "cap test")
+-    time.sleep(2)
+-    left = sh(["powershell", "-NoProfile", "-Command", "(Get-CimInstance Win32_Process | Where-Object { $_.CommandLine -match 'time.sleep\\(600\\)' } | Measure-Object).Count"]).stdout.strip()
+-    ok = rc == "killed at the cap" and left == "0"
+-    say(f"selftest: {rc}; dummy processes alive afterwards {left}; {'ok' if ok else 'WRONG'}")
+-    sys.exit(0 if ok else 1)
+-
+@@ -74,5 +83,5 @@
+-open(OUT + "/rows/regrid_driver.pid", "w").write(str(os.getpid()))
+-say("kc79d19_regrid_driver_1025.py: the k_c 79 regrid at D 19; checking pins")
+-bad = 0
+-for p, b in PINS.items():
+-    g = blob(f"{RAW}/{p}")
++if not DRY:
++    open(OUT + "/rows/regrid_driver.pid", "w").write(str(os.getpid()))
++say(f"kc87d19_regrid_driver_1025.py: the k_c 87 regrid at D 19 from my k_c 79 D 19 state{' (dry run)' if DRY else ''}; checking pins")
++for p, b in PINS:
++    g = blob(p)
+@@ -80,4 +89 @@
+-        say(f"REFUSE: {p} is blob {g}, not {b}")
+-        bad = 1
+-if bad:
+-    sys.exit(2)
++        stop(f"{p} is blob {g}, not {b}")
+@@ -85 +91 @@
+-    say("REFUSE: the worktree is not at 48c36355"); sys.exit(2)
++    stop("the worktree is not at 48c36355")
+@@ -88 +94 @@
+-        say(f"REFUSE: the worktree's {files} differ from {ref[:8]}"); sys.exit(2)
++        stop(f"the worktree's {files} differ from {ref[:8]}")
+@@ -90,7 +96,16 @@
+-    say("REFUSE: ell_refine.py is not blob 631e5801"); sys.exit(2)
+-if blob(WTM + f"/data/sol_{SRC}_D19.0000.npy") != PINS[CFG["SRCSTATE"]]:
+-    say("REFUSE: the source state in the worktree is not the pinned blob " + PINS[CFG["SRCSTATE"]][:8]); sys.exit(2)
+-for f in (WTM + "/data/" + STATE_N, WTM + f"/data/{TAG}.jsonl"):
+-    if os.path.exists(f):
+-        say(f"REFUSE: {f} exists"); sys.exit(2)
+-say(f"pins ok (blobs in prep_kc79d19_pins_1025.txt; worktree 48c36355 with solver code = 505d8399 and ell_delta/ell_refine = 48c36355); python {PY}")
++    stop("ell_refine.py is not blob 631e5801")
++for f in (WTM + "/data/" + STATE_N, WTM + f"/data/{TAG}.jsonl", OUT + "/regrid_accepted.txt", OUT + "/" + STATE_N):
++    if os.path.exists(f) and not DRY:
++        stop(f"{f} exists")
++say(f"pins ok (the inputs of {IN}, the k_c 79 D 19 files, worktree 48c36355 with solver code = 505d8399 and ell_delta/ell_refine = 48c36355); python {PY}")
++env = dict(os.environ, OPENBLAS_NUM_THREADS="4", OMP_NUM_THREADS="4", MKL_NUM_THREADS="4", VECLIB_MAXIMUM_THREADS="4", RAYON_NUM_THREADS="4", PYTHONDONTWRITEBYTECODE="1", PYTHONFAULTHANDLER="1")
++sfx = ".dry" if DRY else ""
++st87, st79 = sh([PY, SY87, "--selftest"], env=env), sh([PY, SY79, "--selftest"], env=env)
++open(OUT + "/selftest_kc87_syscheck.txt" + sfx, "w").write(st87.stdout + st87.stderr)
++open(OUT + "/selftest_kc79_syscheck.txt" + sfx, "w").write(st79.stdout + st79.stderr)
++say(f"selftests: kc87_syscheck exit {st87.returncode}, kc79_syscheck exit {st79.returncode} (0 wanted each)")
++if st87.returncode != 0 or st79.returncode != 0:
++    stop("a check's selftest is not 0")
++if DRY:
++    say(f"DRY: would start ell_refine.py {SRC} 79 {TAG} 87 1 19.0 {LAM0} --kappa 0.7 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma (cwd {WTM}, 4 threads, BelowNormal, cap {CAPRG} s); nothing started")
++    sys.exit(0)
+@@ -100 +115 @@
+-wat = subprocess.Popen([PY, "-u", S + "/kc79d19_watch_alert_1025.py", str(os.getpid()), "regrid"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, stdin=subprocess.DEVNULL,
++wat = subprocess.Popen([PY, "-u", S + "/kc87d19_watch_alert_1025.py", str(os.getpid()), "regrid"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, stdin=subprocess.DEVNULL,
+@@ -102,9 +117,16 @@
+-say(f"alert-only memory watcher started as its own process, pid {wat.pid} (kills nothing; stop it by that pid only); sampler pid {samp.pid}")
+-env = dict(os.environ, OPENBLAS_NUM_THREADS="4", OMP_NUM_THREADS="4", MKL_NUM_THREADS="4", VECLIB_MAXIMUM_THREADS="4", RAYON_NUM_THREADS="4", PYTHONDONTWRITEBYTECODE="1", PYTHONFAULTHANDLER="1")
+-SY = S + "/kc79_syscheck_1025.py"
+-SY71 = RAW + "/" + CFG["SRCCHECK"]
+-
+-# controls: the check's own selftest, then win2's original check on win2's accepted k_c 71 state (must accept on this machine)
+-r = sh([PY, SY, "--selftest"], env=env)
+-open(OUT + "/selftest_syscheck79.txt", "w").write(r.stdout + r.stderr)
+-say(f"selftest of kc79_syscheck_1025.py: exit {r.returncode} (0 wanted)")
++say(f"alert-only memory watcher started as its own process, pid {wat.pid} (kills nothing); sampler pid {samp.pid}")
++kaw = subprocess.Popen([PY, "-u", S + "/keepawake_1025.py", str(os.getpid()), "regrid", str(CAPRG + 1800)], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, stdin=subprocess.DEVNULL,
++                       creationflags=0x00004000 | 0x08000000)
++say(f"keep-awake helper started as its own process, pid {kaw.pid}: SetThreadExecutionState(ES_CONTINUOUS | ES_SYSTEM_REQUIRED) until this driver (pid {os.getpid()}) ends; power plan untouched; kills nothing")
++
++
++def finish(code, m):
++    say(m)
++    hc(m)
++    time.sleep(70)          # the sampler's last line
++    samp.kill()
++    say("kc87d19_regrid_driver_1025.py done")
++    sys.exit(code)
++
++
++# step 3: the source, through both checks (the checks re-freeze the state: minutes each)
+@@ -112,9 +134,13 @@
+-r2 = sh([PY, SY71, RAW + "/" + CFG["SRCREC"], WTM + f"/data/sol_{SRC}_D19.0000.npy", "19", WTM], env=env)
+-open(OUT + "/control_kc71_syscheck.txt", "w").write(r2.stdout + r2.stderr)
+-say(f"control: win2's kc71_syscheck.py on win2's k_c 71 D 19 state: exit {r2.returncode} (0 wanted), {time.time() - t0:.0f} s")
+-if r.returncode != 0 or r2.returncode != 0:
+-    say("a control is wrong: stop, no regrid")
+-    time.sleep(70); samp.kill(); sys.exit(1)
+-
+-# part 1: the regrid
+-cmd = ["-u", "ell_refine.py", SRC, "71", TAG, "79", "1", "19", "2.1156378446", "--kappa", "0.7", "--u0", "0.04", "--Ks", "30", "--tol", "1e-12", "--wait", "60", "--no-gamma"]
++src = {}
++for name, cmd in (("source_kc79_syscheck.txt", [PY, SY79, SRCREC, SRCSTATE, "19", WTM]), ("source_kc79_syscheck_mutate_F.txt", [PY, SY79, SRCREC, SRCSTATE, "19", WTM, "--mutate=F"]),
++                  ("source_kc79_syscheck_mutate_steps.txt", [PY, SY79, SRCREC, SRCSTATE, "19", WTM, "--mutate=steps"]), ("source_kc87_syscheck.txt", [PY, SY87, SRCREC, SRCSTATE, "19", WTM])):
++    r = sh(cmd, env=env)
++    open(OUT + "/" + name, "w").write(r.stdout + r.stderr + f"exit {r.returncode}\n")
++    src[name] = r.returncode
++want = {"source_kc79_syscheck.txt": 0, "source_kc79_syscheck_mutate_F.txt": 1, "source_kc79_syscheck_mutate_steps.txt": 1, "source_kc87_syscheck.txt": 1}
++say(f"the source: kc79 check exit {src['source_kc79_syscheck.txt']} (0 wanted), --mutate=F {src['source_kc79_syscheck_mutate_F.txt']}, --mutate=steps {src['source_kc79_syscheck_mutate_steps.txt']} (1 wanted each), kc87 check {src['source_kc87_syscheck.txt']} (1 wanted: it refuses the source); {time.time() - t0:.0f} s")
++if src != want:
++    finish(1, f"the source checks are not as wanted ({src}, wanted {want}): no regrid")
++
++# step 4: the regrid
++cmd = ["-u", "ell_refine.py", SRC, "79", TAG, "87", "1", "19.0", LAM0, "--kappa", "0.7", "--u0", "0.04", "--Ks", "30", "--tol", "1e-12", "--wait", "60", "--no-gamma"]
+@@ -130,0 +157 @@
++# step 5: acceptance
+@@ -139,4 +166,6 @@
+-    a = sh([PY, SY, rec, state, "19", WTM], env=env)
+-    open(OUT + "/syscheck.txt", "w").write(a.stdout + a.stderr)
+-    m1 = sh([PY, SY, rec, state, "19", WTM, "--mutate=F"], env=env)
+-    m2 = sh([PY, SY, rec, state, "19", WTM, "--mutate=steps"], env=env)
++    a = sh([PY, SY87, rec, state, "19", WTM], env=env)
++    open(OUT + "/syscheck.txt", "w").write(a.stdout + a.stderr + f"exit {a.returncode}\n")
++    s87 = sh([PY, SY87, "--selftest"], env=env)
++    open(OUT + "/selftest_kc87_syscheck_after.txt", "w").write(s87.stdout + s87.stderr + f"exit {s87.returncode}\n")
++    m1 = sh([PY, SY87, rec, state, "19", WTM, "--mutate=F"], env=env)
++    m2 = sh([PY, SY87, rec, state, "19", WTM, "--mutate=steps"], env=env)
+@@ -144,2 +173,4 @@
+-    say(f"syscheck: exit {a.returncode} (0 wanted); controls --mutate=F exit {m1.returncode}, --mutate=steps exit {m2.returncode} (1 wanted each); {time.time() - t0:.0f} s")
+-    if a.returncode == 0 and m1.returncode == 1 and m2.returncode == 1:
++    k79 = sh([PY, SY79, rec, state, "19", WTM], env=env)
++    open(OUT + "/syscheck_kc79_on_result.txt", "w").write(k79.stdout + k79.stderr + f"exit {k79.returncode}\n")
++    say(f"result: kc87 check exit {a.returncode} (0 wanted), its selftest {s87.returncode} (0 wanted), --mutate=F {m1.returncode}, --mutate=steps {m2.returncode} (1 wanted each), kc79 check on the result {k79.returncode} (1 wanted: it refuses); {time.time() - t0:.0f} s")
++    if (a.returncode, s87.returncode, m1.returncode, m2.returncode, k79.returncode) == (0, 0, 1, 1, 1):
+@@ -149 +180,2 @@
+-        open(OUT + "/regrid_accepted.txt", "w").write(f"ACCEPTED {datetime.datetime.now(datetime.timezone.utc):%Y-%m-%d %H:%M:%S} UTC\n")
++        shutil.copy(IN + "/read_lower.py", OUT + "/read_lower.py")
++        open(OUT + "/regrid_accepted.txt", "w").write(f"ACCEPTED {datetime.datetime.now(datetime.timezone.utc):%Y-%m-%d %H:%M:%S} UTC\nstate {blob(OUT + '/' + STATE_N)}\nrecord {blob(OUT + f'/{TAG}.jsonl')}\n")
+@@ -153 +185 @@
+-# peak memory from the sampler's CSV (python processes of this driver's tree, stage regrid), the sampler has a line every 60 s and the peaks are the process counters
++# the sampler's CSV: peak memory of the regrid stage
+@@ -165,4 +197,2 @@
+-try:
+-    srcj = [json.loads(x) for x in open(RAW + "/" + CFG["SRCREC"]) if x.strip() and json.loads(x).get("D") == 19.0][-1]
+-except Exception:
+-    srcj = {}
++srcj = [json.loads(x) for x in open(SRCREC) if x.strip() and json.loads(x).get("D") == 19.0][-1]
++dd = (recj["Delta"] - srcj["Delta"]) if recj.get("Delta") is not None else None
+@@ -170 +200,2 @@
+-        f"steps {recj.get('steps')}, constraint {recj.get('constraint')}, Delta {recj.get('Delta')}; the k_c 71 source record at D 19: |F| {srcj.get('F')}, steps {srcj.get('steps')}, constraint {srcj.get('constraint')}, Delta {srcj.get('Delta')}; {verdict}{(': ' + why) if why else ''}; "
++        f"steps {recj.get('steps')}, constraint {recj.get('constraint')}, Delta {recj.get('Delta')}; the k_c 79 source record at D 19: |F| {srcj.get('F')}, steps {srcj.get('steps')}, constraint {srcj.get('constraint')}, Delta {srcj.get('Delta')}; "
++        f"Delta(k_c 87) minus Delta(k_c 79) = {dd}; {verdict}{(': ' + why) if why else ''}; "
+@@ -174,2 +205,2 @@
+-sh([HC, "send", COORD, f"winb ({datetime.datetime.now(datetime.timezone.utc):%H:%M} UTC), #1025 k_c 79 regrid at D 19 finished: {summ}. Raw I1025-win/kc79_d19 after my next push. "
+-    + ("The scan is NOT started: it waits for your window." if verdict == "ACCEPTED" else "No scan.")])
++hc(f"finished: {summ}. Raw I1025-win/kc87_d19 after my next push. " + ("The scan 1.380-1.580 by 0.025 plus a repeat of 1.480 starts by itself now." if verdict == "ACCEPTED" else "No scan."))
++time.sleep(5)
+@@ -177,2 +208 @@
+-say("scan not started: the window is the coordinator's to give (kc79d19_scan_driver_1025.py WINDOW)")
+-say("kc79d19_regrid_driver_1025.py done")
++say("kc87d19_regrid_driver_1025.py done")
