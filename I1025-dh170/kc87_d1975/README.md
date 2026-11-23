@@ -1,0 +1,51 @@
+# I1025-dh170/kc87_d1975: #1025 k_c 87 at D 19.75 on Linux, regridded from dh170's own k_c 79 state, to separate k_c from build in the 0.0126 split with macm3
+
+Machine dh170 (Fedora 45, i7-7700, 8 logical CPUs, 31 GiB RAM). Issue https://github.com/nmoinvaz/choptuik-large-d/issues/1025. Written 2026-11-23 02:57:24 UTC, before any run of this folder. Raw origin/main when the inputs were taken: 40f1a01a.
+
+## Order (the coordinator t5's #1025 comment 7090311364 and hc, 23 Nov), quoted in part
+"**Why.** At D 19.75 the root near lambda_1's line is 1.326378 at k_c 79 (dh170, Linux, raw ceee4bc8) and 1.338993 at k_c 87 (macm3, macOS, regridded from the same dh170 state, raw 03c79c79). The 0.0126 split mixes k_c and build. At D 19.5 the build alone moved lambda_1 by 0.0032 (macm3 1.396000 against dh610 1.399169, two regrids of the same state, raw ced8890b). A k_c 87 regrid of the same source on dh170 separates the two. **Written before the run.** If the split is k_c, dh170's k_c 87 root lies at 1.339 within about 0.003 of macm3's. If it is the build, it lies near 1.326. Either way the result is reported by position, beside both. [...] Step 1: pin dh170's accepted k_c 79 D 19.75 state and record (blobs f2ad34b5 and 0508163e, raw 5d0c8f74) and dh610's kc87_syscheck_1025.py (blob 6df5d960, raw ec9fb489:I1025-dh610/kc87_d195/in/). kc79_syscheck_1025.py accepts the source, both controls exit 1, and the k_c 87 check refuses the source. Then, in solver/matter: ell_refine.py l1kc79dh170d1975 79 l1kc87dh170d1975 87 1 19.75 2.1120935738 --kappa 0.7 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma (macm3's command, the tag changed). Accept only when kc87_syscheck_1025.py accepts the result (|F| at most 1e-9, freeze_from gives the record's steps, the state's |F| within 1%), its selftest exits 0, --mutate=F and --mutate=steps exit 1, and kc79_syscheck_1025.py refuses the result. Step 2, scan, only after ACCEPTED: d18_hybsign.py, unmodified, at lambda 1.30 to 1.36 at 0.01 (7 values) plus a repeat of 1.33: p0 1.30,1.34; p1 1.31,1.35; p2 1.32,1.36; p3 1.33,1.33. Every process prints the record system first. Then read_lower.py selftest (exit 0), its mutations shift and round2 (exit 1 each), and the reader. Stops: any failed check; any process that does not print the record system. On a bug, stop and report and change nothing. Memory: alert only. Report: the regrid's |F|, steps, constraint and Delta, beside macm3's k_c 87 D 19.75 regrid; every robust change by position, with lambda_1 beside 1.338993 (macm3, k_c 87) and 1.326378 (dh170, k_c 79); the repeat's bits. Estimate: regrid about 1 h (2410 s at k_c 79 on 8 threads); scan 2 rounds, about 2 to 2.5 h."
+Roots are read by position, never by sign orientation; in posts "the root near lambda_1's line" and "the second root" (t5).
+
+## Inputs (copies in `in/`; `in_blobs.txt` lists their `git hash-object --no-filters` blobs and both drivers refuse any other blob)
+| item | raw path | blob |
+|---|---|---|
+| dh170's k_c 79 D 19.75 state (accepted 23:01:54 UTC 22 Nov) | I1025-dh170/kc79_d1975/sol_l1kc79dh170d1975_D19.7500.npy at raw 5d0c8f74 | f2ad34b5 |
+| its record: D 19.75, k_c 79, |F| 4.015866885481963e-10, 2839 steps, psi-constraint 1.652e-3, Delta 1.0860054437335125 | same folder, l1kc79dh170d1975.jsonl | 0508163e |
+| dh610's k_c 87 check, and its diff against the k_c 79 check | I1025-dh610/kc87_d195/in/kc87_syscheck_1025.py and kc87_syscheck_1025.diff at raw ec9fb489 | 6df5d960, dfb42ff7 |
+| winb's k_c 79 check | I1025-win/kc79_d19/kc79_syscheck_1025.py | 29dce7ea |
+| the scanner, xfkappa's, unmodified; its change finder | I1025-mac/d18/d18_hybsign.py; d185_scan_read.py | e089207a; 7c9d400f |
+| reader (mine); `repeat_check.py` (dh610's) | I1025-dh170/lower_root/read_lower.py; I1025-dh610/kc71_d19125/in/repeat_check.py | 89309d3c; aaf598a9 |
+| for the comparison: macm3's k_c 87 D 19.75 record and reading; my k_c 79 reading | I1025-macm3/kc87_d1975/l1kc87macm3d1975.jsonl, read_lower.txt (raw 03c79c79); I1025-dh170/kc79_d1975/read_lower.txt | `in/ref_*` |
+Code: the worktree of `../kc79_d1975`, unchanged: `~/Source/choptuik-large-d-1025k79` at 48c36355 (`dss_ell.py`, `ell_ddm.py`, `ell_dd.py`, `ddnp.py` equal 505d8399's, `ell_refine.py` blob 631e5801), python `~/Source/choptuik-large-d-1058b/.venv` (3.14.10, multidouble 5.1.0, avx2). The source state and record are already in the worktree's `solver/matter/data/` under the names `ell_refine.py` reads (the output of the k_c 79 regrid); the driver checks them by blob against the pins. lambda_0(19.75) = 2.1120935738 (the same value as at k_c 79, `ell_delta.lam0_at`; `--no-gamma` does not use it).
+The k_c 87 check is the k_c 79 check with 3 lines changed (checked by the driver: 3 lines on each side, the rebuilt diff's hunks equal dh610's).
+
+## Commands (systemd user units, so no terminal owns them)
+**Regrid** (`run_regrid.sh`, unit `i1025-k87r` under `systemd-inhibit`, 8 threads, nice 10; stops at the first failure, writes `steps.txt` and `VERDICT.txt`): in `solver/matter`,
+
+    nice -n 10 timeout 21600 env OMP_NUM_THREADS=8 OPENBLAS_NUM_THREADS=8 MKL_NUM_THREADS=8 ~/Source/choptuik-large-d-1058b/.venv/bin/python -u ell_refine.py \
+      l1kc79dh170d1975 79 l1kc87dh170d1975 87 1 19.75 2.1120935738 --kappa 0.7 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma
+
+preceded by the pins, the diff of the two checks, the worktree checks, the two selftests, and the source check.
+**Scan** (`run_scan.sh`, unit `i1025-k87s`, after VERDICT ACCEPTED): 4 processes of 1 thread at nice 10, `d18_hybsign.py in/... STATE 19.75 LAMS scan/scan_D19.75_p<p>.jsonl`: p0 1.30,1.34; p1 1.31,1.35; p2 1.32,1.36; p3 1.33,1.33 (the order's split: the repeat of 1.33 runs on the same process as the first 1.33; the earlier scans put a repeat on another process), 8 evaluations. Then `read_lower.py` selftest, `shift`, `round2`, `read_lower.py scan 1.30 1.36` and `repeat_check.py`. Memory: alert only (both drivers write `alert.log` when MemAvailable is below 2 GiB, every 30 s; nothing is stopped or refused for memory).
+
+## Acceptance (the order's, fixed before the run)
+1. **Step 1, source.** `kc79_syscheck_1025.py` accepts the k_c 79 source (|F| at most 1e-9, `freeze_from` gives 2839, |F| within 1%), both controls (`--mutate=F`, `--mutate=steps`) exit 1, the k_c 87 check refuses the source (exit 1), both selftests exit 0. Otherwise no regrid.
+2. **Step 2, regrid.** `ell_refine.py` exits 0 (the cap 21600 s is a stop); `kc87_syscheck_1025.py` accepts the result, both controls exit 1, and `kc79_syscheck_1025.py` refuses the result (exit 1).
+3. **Step 3, scan.** Each process prints the record system; `read_lower.py` selftest exit 0, mutations `shift` and `round2` exit 1; the repeat of 1.33 agrees (sign, ln|det| within 1e-6, noise signs, float64 sign). A stop at any step: I report and change nothing.
+
+## Reading, fixed now (by position)
+Every robust change (both neighbouring points noise-robust) with bracket, det-linear estimate and estimator range (the spread over the interpolation choices of `d185_scan_read.changes`, not an enclosure), orientation as printed (information); the edge signs; changes touching a non-robust point listed and not counted; every ln|det| minimum without a sign change flagged; the repeat's bits. Report beside: **macm3's k_c 87 at D 19.75** (raw 03c79c79, `in/ref_*`): |F| 3.980170323712351e-10, 3124 steps, psi-constraint 9.697e-4, Delta 1.086003680648846 (regrid 1181 s on 6 threads of an M3); scan 1.26 to 1.40: two robust changes, **1.276162** [1.272785, 1.276162] (the second root) and **1.338993** [1.337945, 1.338993] (the root near lambda_1's line); and **my k_c 79 at D 19.75** (Linux): the root near lambda_1's line **1.326378** [1.324044, 1.326378], Delta 1.0860054437.
+The window 1.30 to 1.36 holds the root near lambda_1's line for both predictions; the second root (macm3: 1.276162) is below it and is not scanned here.
+
+## Predictions, registered before the runs
+The order's (written before the run by t5): k_c: this scan's root near lambda_1's line lies at 1.339 within about 0.003 of macm3's; build: near 1.326. Mine (information):
+- the source check passes with all four controls firing about 95%; the regrid exits 0 and is accepted by the k_c 87 check with both controls firing and the k_c 79 check refusing it about 85%; the regrid takes 2500 to 4500 s about 65%; its steps within 5 of macm3's 3124 about 55%; its Delta within 1e-8 of macm3's 1.086003680648846 about 55%; its |F| below 1e-9 about 95%;
+- the scan: every point noise-robust about 70%; the repeat of 1.33 bit-identical about 90% (same process); exactly one robust change in 1.30 to 1.36 about 85%;
+- where that change lies: within 0.003 of 1.339 about 40%; between 1.329 and 1.336 about 35%; within 0.003 of 1.326 about 15%; no change or two or more about 10% (the build alone moved lambda_1 by 0.0032 at D 19.5; at D 19.75 I expect more, but not the whole 0.0126);
+- the float64 sign differs from the hybrid at more than half the points about 50%; a regrid of about 1 h and a scan of 2 to 3 h about 65%; peak RSS of a scan process below 3.5 GiB about 80% (macm3's four k_c 87 scans peaked at 11.2 GB at D 19.375).
+
+## Budget
+The regrid: 8 threads at nice 10 (all of this machine). The scan: 4 processes of 1 thread at nice 10. Nothing else of mine runs; load average 0.1 at 02:56 UTC, MemAvailable 28.5 GiB.
+
+## Log
+- 2026-11-23 02:57:24 UTC: folder, inputs, drivers and the reading prepared before any run. Selftests: `kc79_syscheck_1025.py` and `kc87_syscheck_1025.py` exit 0; `read_lower.py` exit 0, `shift` and `round2` exit 1, `repeat_check.py` exit 0 (`selftest_exits_pre.txt`; the drivers run them again). Dry run of `run_regrid.sh`: the pins, the diff of the two checks and the worktree checks pass (`dry_steps_regrid.txt`).
