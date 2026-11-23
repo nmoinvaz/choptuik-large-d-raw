@@ -39,6 +39,12 @@ Guard (the coordinator's rule, adopted at ~12:30 UTC): stop the leap when (1) dD
 
 Written before the leap (the coordinator's): **resolution** if k_c 79's sigma_reg stays above leg 4's and dDelta/dD does not turn; **real** if both turn within about 0.1 in D. Both legs' sigma_reg are read with n_null and the cutoff beside them (a mode entering the regular set from below the cutoff makes sigma_reg fall without any mode falling).
 
+## Step 2: launch (written 12:31 UTC, before the leap starts)
+
+`launch_leap5.ps1` starts, outside the terminal (headless, BelowNormal, through `../kc71_leap/cim_start.ps1`): the driver `run_leap5.sh`, which waits for `regrid_accepted_D20.5000.txt` and `regrid_accepted_D20.7500.txt` (a refusal ends it), compares the worktree's seeds with the accepted copies byte for byte, re-checks both with `kc79_syscheck_1025.py` (selftest 0; accepts; `--mutate=F` and `--mutate=steps` exit 1 on the D 20.75 seed), then starts the leap with the command above (pins: `ell_leap.py` 1eb873e4, `leap_guard.py` f1fe7c7c, worktree 48c36355 with solver code 505d8399; cap 43200 s by the exact root pid with the `ell_leap.py` command-line check; copier into `states/`; files `leap5.log`, `exits_leap5.txt`, `summary_leap5.txt`, `leap5.finished`, `all5.done`); the guard `leap_guard.py --seeds rec_k79_D20.5000.jsonl rec_k79_D20.7500.jsonl` (table `leap5_points.txt`, stop file `leap5_STOP.txt`; it waits for the leap's root pid); and the alert-only samplers of leg 4's kind in `leap5/` (ended by `leap5_marker.sh`). Dry run of the driver 12:27 UTC: pins pass, command as above.
+
+Reporting (the coordinator's): every point with Delta, dDelta/dD, sigma_reg, |J+dF/dn|, h, constraint, |F| (and n_null, the cutoff and max cos_t_reg), beside leg 4's at the same D. Leg 4 (k_c 71, `../kc71_leap/`, table `leg4_points_v2.txt`) runs on as the pathfinder; the k_c 79 leg is the march past D 20.75 (k_c 71's Delta correction against k_c 79: -9.9e-6 at D 20, -2.2e-5 at D 20.5, the coordinator's).
+
 ## Result
 
 Not yet run.
