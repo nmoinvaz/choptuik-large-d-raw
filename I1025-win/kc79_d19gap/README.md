@@ -1,6 +1,6 @@
 # I1025-win/kc79_d19gap: the k_c 79 gap (1.32, 1.475) at D 19 (winb)
 
-Written before the run, 2026-11-23 02:57:47 UTC (substituted from `date -u` when pushed). Nothing has been run for this folder yet.
+Written before the run, 2026-11-23 02:59:00 UTC (substituted from `date -u` when pushed). Nothing has been run for this folder yet.
 
 Runner: the winb session (surface-laptop-4, 4 cores, 8 threads, 32 GB), the same one that ran `../kc79_d19/` (D 19 regrid and the first scan), `../kc79_d19low/` (the lower-root scan, raw commit 40f1a01a) and the earlier k_c 79 folders. The coordinator is t5.
 
@@ -62,7 +62,16 @@ Started outside my terminal: `Win32_Process.Create` of `conhost.exe --headless c
 
 ## Status
 
-Written before the run. Pushed 2026-11-23 02:57:47 UTC.
+**Running since 2026-11-23 02:58:02 UTC** (driver start 02:58:01; the scanner at 02:58:02). README first: 9b72c111 (pushed before the start).
+
+- **Chain** (`rows/launcher_pid_scan.txt`: 14112): conhost --headless 14112 <- cmd 22724 <- driver launcher 10608 and driver 3368 <- scanner 18644 and 10752 (7 threads; the launcher's own conhost child is 25248), watcher 19548, sampler 22976, keep-awake helper 23268 (and its launcher 15316). The python and powershell processes are BelowNormal.
+- **Session check** (`session_check_scan.txt`, 02:58:35 UTC, exit 0): no `claude` in any chain, no Windows Terminal / OpenConsole / wt; a headless conhost in the chain; every chain ends WmiPrvSE <- svchost <- services <- wininit. The checker is the lower-root scan's (it drops a child older than its parent: Windows reuses parent pids).
+- **Record check:** `d18_hybsign.py` printed `D 19.0 k_c 79: |F| 2.8482007333e-10 (record 2.8482007333e-10), steps 2976 (record 2976): the record system`. The reader's selftest exited 0 and its two controls 1, 1 (`selftest_read_lower_1025.txt`).
+- **Keep-awake:** helper 23268 set `SetThreadExecutionState(ES_CONTINUOUS | ES_SYSTEM_REQUIRED)` at 02:58:02 UTC (returned 0x80000000) and holds it until the driver pid 3368 ends (`rows/scan_keepawake.log`).
+- **Machine at the start:** on AC (battery status 2, charge 100 %), clock 2995 MHz of 2995 MHz max, free physical memory about 24 GB, the other project's two I129 jobs (18732, 24800, started 01:54 UTC) beside the scan, no standby event since 20:58 UTC.
+- **ETA:** 6 points at 1350 to 1700 s (t5: about 2.7 h at 1600 s): the scan ends between about 05:15 and 05:50 UTC on 2026-11-23, most likely about 05:40. The first point (1.345) should print about 03:25 UTC.
+
+Pushed 2026-11-23 02:59:00 UTC.
 
 ## Result
 
