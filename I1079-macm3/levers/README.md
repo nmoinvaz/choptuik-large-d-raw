@@ -94,7 +94,7 @@ It is recorded here, not changed; the x1 certificate to cite is the other box, (
 
 zero_mp: x2 (3.526473056695715, 0.211497981391215), x1 (3.446218246366727, 0.347606965217407); value_mp's (B3, C3): x2 (0.9765085451976188, -0.0017633195225818952), x1 (0.8054175863852927, 0.011780043848505818).
 
-**Why E1 and E3 fail** (`diagnose.py` with the point run, `logs/I1079_diagnose_pt_*`): at xi1 0.2 the outer rows' Y Dg(X) enclosure radius dominates: E3 (1e-12, 1e-13): row A 19.5 h = 5.3 h (A column) + 13.1 h (w/w_inf column) + 0.6 h + 0.6 h with the (Y g) radius 0.0 h (g radius 1.97e-28); E1 adds a (Y g) radius of 27 h and 36 h (g radius 6.5e-20 through a Schur singular value about 1e4 smaller).
+**Why E1 and E3 fail** (`diagnose.py` with the point run, `logs/I1079_diagnose_pt_*`): at xi1 0.2 the outer rows' Y Dg(X) enclosure radius dominates: E3 (1e-12, 1e-13): row A 19.5 h = 5.3 h (A column) + 13.1 h (w/w_inf column) + 0.6 h + 0.6 h with the (Y g) radius 0.0 h (g radius 1.97e-28); E1 adds a (Y g) radius of 27 h and 36 h (g radius 6.5e-20; the plan comment gives the outer signal at 0.2 as about 2e4 times smaller than at 0.3, which I did not measure here).
 At E2 (1e-11, 1e-12), the best failing box: row A 5.5 h and w/w_inf 9.2 h, both from the outer columns' Jacobian enclosure (1.2 h + 4.1 h, 2.0 h + 6.8 h), the (Y g) radius 0.0 h. The Taylor order, not xi1, is the lever: g's radius falls by 8 orders (x2) at 28/16, and the Jacobian enclosure's radius follows (max radius of Dg: 1.972e-05 at the defaults, 1.727e-09 at E2).
 
 ## H0: `start_cover_M2.py --box=<passing box> --rerun` does not apply at the excited zeros (16:38 UTC)
