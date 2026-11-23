@@ -30,3 +30,50 @@ Threads: 8 beside the leg lane (8 threads while a point is scanned) and the #107
 
 ## Status
 - 2026-11-23 18:30 UTC: folder, inputs and lane written; dry run of the source check passed (18:30:28 UTC).
+- 2026-11-23 18:31:01 UTC the regrid started (source check passed, unit i1025ak, 8 threads, nice 10); 20:05:29 UTC it exited 0; 20:05:35 UTC the k_c 95 check ACCEPTED it (both controls exit 1, the k_c 87 check refusing); the state and record are copied to this folder's root (`in_blobs_regrid.txt`).
+
+## Result (`python3 -I summarize_d19k95.py > summary.txt` prints the tables and the scorecard from the files; `--mutate` plants a Delta shift of 1e-6 and a norm F scale of 1.4 and exits 1 when the scorecard's verdicts change, which they do)
+Acceptance is by `kc95_syscheck_1025.py` (record at its own k_c, |F| at most 1e-9, state |F| within 1% of the record's, freeze_from steps equal), `--mutate=F` and `--mutate=steps` exit 1, and `kc87_syscheck_1025.py` refuses the result: `regrid/syscheck*.txt`, `regrid/steps.txt`, `regrid/VERDICT.txt`.
+
+regrid 2026-11-23 18:31:01 to 2026-11-23 20:05:29 UTC, exit 0, wall 5668 s (the record's seconds 5667); kc95 check exit 0, controls --mutate=F 1, --mutate=steps 1, kc87 check on the result 1; peak RSS (60 s samples) 2.55 GiB
+
+| record | norm F | F_start | steps | constraint | Delta | seconds |
+|---|---|---|---|---|---|---|
+| dh170 k_c 87 (the source) | 2.897762648832e-10 | 2.992207e-06 | 3276 | 3.918806e-04 | 1.06776969696562 | 4576 |
+| this regrid, k_c 95 | 2.932640526780e-10 | 1.185238e-06 | 3575 | 1.397558e-04 | 1.0677690868324767 | 5667 |
+| winb k_c 87 (Windows) | 2.900647440612e-10 | 2.992207e-06 | 3276 | 3.919128e-04 | 1.0677698834525378 | 7965 |
+| winb k_c 95 (Windows) | 2.930751034295e-10 | 1.183945e-06 | 3575 | 1.397862e-04 | 1.0677693701519553 | 10230 |
+
+Delta(k_c 95) - Delta(k_c 87): here -6.1013e-07 (dh170's k_c 87 source), winb -5.1330e-07; Delta(k_c 95) here minus winb's k_c 95 -2.8332e-07
+steps ratio k_c 95 / k_c 87: here +9.1270%, winb +9.1270%; constraint here / winb's k_c 95: -0.0218%; F_start here / winb's +0.1092%
+
+| prediction | result | verdict |
+|---|---|---|
+| regrid exit 0 (93%) | exit 0 | right |
+| wall 3000 to 4500 s (65%) | 5668 s | WRONG |
+| kc95 check accepts, controls 1 1 (90%) | exits 0 1 1 | right |
+| kc87 check refuses the result (97%) | exit 1 | right |
+| steps 3575 +- 40 (65%) | 3575 | right |
+| Delta(95) - Delta(87) = -5.13e-7 +- 1.5e-7 (60%) | -6.1013e-07 | right |
+| norm F 3e-10 to 5e-10 (80%) | 2.9326e-10 | WRONG |
+| constraint within 10% of winb's 1.39786e-4 (60%) | 1.39756e-04 (-0.022%) | right |
+| lane ends 19:20 to 19:55 UTC | 2026-11-23 20:05:29 | WRONG |
+
+The new files, for dh170 to pin by blob (`in_blobs_regrid.txt`; copies equal the solver's `data/` files, `cmp`):
+```
+545406e41043cedb1ea43f4c47e7331ec111eada sol_l1kc95dh610d19_D19.0000.npy
+6cfed1aad1633dc961d92c3e8a2bc219d3aa9dc5 l1kc95dh610d19.jsonl
+```
+Winb's reference summaries (copied from `I1025-dh170/d19_lower/k87/in/`, blobs in `in_blobs_ref.txt`):
+```
+725b42096fec80ce44bdc64a2afcce780940f72e ref_winb_kc95_d19_regrid_summary.txt  (I1025-dh170/d19_lower/k87/in/ at origin/main 982cc1789ba442b678fb6ff25e29ca4260c01152)
+514342325f5bf02b9d2e0e9301fb9fa45ba88b88 ref_winb_kc87_d19_regrid_summary.txt  (I1025-dh170/d19_lower/k87/in/ at origin/main 982cc1789ba442b678fb6ff25e29ca4260c01152)
+```
+
+- **Same step count as winb's Windows regrid** (3575, +9.127% over the k_c 87 record's 3276 on both) and the constraint within 0.022% of winb's. |F| is 2.9326e-10, below my registered floor 3e-10 by 2.2%, so that line of the scorecard is WRONG; it is the record class's value (winb's 2.9308e-10, dh170's k_c 87 2.8978e-10).
+- **Delta(k_c 95) - Delta(k_c 87) is -6.10e-7 on dh170's k_c 87 state and -5.13e-7 on winb's own pair.** Delta(k_c 95) is 2.83e-7 below winb's. The two k_c 87 sources differ in Delta (dh170's 1.06776969697, winb's 1.06776988345); I did not test why the shifts differ by 0.97e-7. The registered +-1.5e-7 around winb's -5.13e-7 held.
+- **The wall was 5668 s**, longer than my 3000 to 4500 s: this regrid ran beside the #1076 recount (2 processes) and, from 19:17 to 19:58 UTC, the D 20.875 leg scan (8 processes); for comparison, dh170's k_c 87 regrid at this D (3276 steps) took 4576 s on his machine, and this machine's k_c 95 regrid at D 19.75 (3411 steps, `../kc95_d1975/l1kc95dh610d1975.jsonl`) took 3064 s. Load as the cause of the longer wall is not tested. Peak RSS (60 s samples) 2.55 GiB.
+
+### Predictions scorecard (written before the run; the table above is from `summarize_d19k95.py`)
+Right: exit 0, the k_c 95 check accepting with controls 1 1, the k_c 87 check refusing, steps 3575 +- 40, the Delta difference, the constraint. WRONG: the wall (3000 to 4500 s), norm F (3e-10 to 5e-10: 2.9326e-10), the lane's end time (19:20 to 19:55 UTC: 20:05).
+

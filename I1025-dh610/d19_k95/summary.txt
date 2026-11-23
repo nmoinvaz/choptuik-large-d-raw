@@ -1,0 +1,23 @@
+regrid 2026-11-23 18:31:01 to 2026-11-23 20:05:29 UTC, exit 0, wall 5668 s (the record's seconds 5667); kc95 check exit 0, controls --mutate=F 1, --mutate=steps 1, kc87 check on the result 1; peak RSS (60 s samples) 2.55 GiB
+
+| record | norm F | F_start | steps | constraint | Delta | seconds |
+|---|---|---|---|---|---|---|
+| dh170 k_c 87 (the source) | 2.897762648832e-10 | 2.992207e-06 | 3276 | 3.918806e-04 | 1.06776969696562 | 4576 |
+| this regrid, k_c 95 | 2.932640526780e-10 | 1.185238e-06 | 3575 | 1.397558e-04 | 1.0677690868324767 | 5667 |
+| winb k_c 87 (Windows) | 2.900647440612e-10 | 2.992207e-06 | 3276 | 3.919128e-04 | 1.0677698834525378 | 7965 |
+| winb k_c 95 (Windows) | 2.930751034295e-10 | 1.183945e-06 | 3575 | 1.397862e-04 | 1.0677693701519553 | 10230 |
+
+Delta(k_c 95) - Delta(k_c 87): here -6.1013e-07 (dh170's k_c 87 source), winb -5.1330e-07; Delta(k_c 95) here minus winb's k_c 95 -2.8332e-07
+steps ratio k_c 95 / k_c 87: here +9.1270%, winb +9.1270%; constraint here / winb's k_c 95: -0.0218%; F_start here / winb's +0.1092%
+
+| prediction | result | verdict |
+|---|---|---|
+| regrid exit 0 (93%) | exit 0 | right |
+| wall 3000 to 4500 s (65%) | 5668 s | WRONG |
+| kc95 check accepts, controls 1 1 (90%) | exits 0 1 1 | right |
+| kc87 check refuses the result (97%) | exit 1 | right |
+| steps 3575 +- 40 (65%) | 3575 | right |
+| Delta(95) - Delta(87) = -5.13e-7 +- 1.5e-7 (60%) | -6.1013e-07 | right |
+| norm F 3e-10 to 5e-10 (80%) | 2.9326e-10 | WRONG |
+| constraint within 10% of winb's 1.39786e-4 (60%) | 1.39756e-04 (-0.022%) | right |
+| lane ends 19:20 to 19:55 UTC | 2026-11-23 20:05:29 | WRONG |
