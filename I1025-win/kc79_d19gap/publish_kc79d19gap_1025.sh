@@ -15,6 +15,8 @@ T=$(date -u '+%Y-%m-%d %H:%M:%S')
 mkdir -p "$D/rows"
 for f in "$O"/*; do [ -f "$f" ] && cp "$f" "$D/"; done
 cp "$O/rows/"* "$D/rows/" 2>/dev/null || true
+mkdir -p "$D/combined"
+cp "$O/combined/"* "$D/combined/" 2>/dev/null || true
 sed -i "s/@@T@@/$T/g" "$D/README.md"
 for f in make_d19gap_1025.py diff_scan_driver_vs_d19gap.txt diff_watcher_vs_d19gap.txt prep_kc79d19gap_pins_1025.txt kc79d19gap_scan_driver_1025.py kc79d19gap_watch_alert_1025.py sample_driver4_1025.ps1 \
          start_kc79d19gap_scan_1025.cmd go_kc79d19gap_scan_1025.cmd keepawake_1025.py session_check_1025.ps1 selftest_scan_dry_1025.txt kc79d19gap_scan_driver_stdout.log publish_kc79d19gap_1025.sh; do

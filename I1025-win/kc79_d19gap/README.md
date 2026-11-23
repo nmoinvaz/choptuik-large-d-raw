@@ -1,6 +1,6 @@
 # I1025-win/kc79_d19gap: the k_c 79 gap (1.32, 1.475) at D 19 (winb)
 
-Written before the run, 2026-11-23 02:59:00 UTC (substituted from `date -u` when pushed). Nothing has been run for this folder yet.
+Written before the run, 2026-11-23 05:05:26 UTC (substituted from `date -u` when pushed). Nothing has been run for this folder yet.
 
 Runner: the winb session (surface-laptop-4, 4 cores, 8 threads, 32 GB), the same one that ran `../kc79_d19/` (D 19 regrid and the first scan), `../kc79_d19low/` (the lower-root scan, raw commit 40f1a01a) and the earlier k_c 79 folders. The coordinator is t5.
 
@@ -62,7 +62,7 @@ Started outside my terminal: `Win32_Process.Create` of `conhost.exe --headless c
 
 ## Status
 
-**Running since 2026-11-23 02:58:02 UTC** (driver start 02:58:01; the scanner at 02:58:02). README first: 9b72c111 (pushed before the start).
+**Finished 2026-11-23 05:03:17 UTC, exit 0** (started 02:58:02 UTC; the driver ended 05:04:28; the keep-awake helper cleared its state at 05:04:32). README first: 9b72c111 (pushed before the start). The text of this section below was written at the start of the run; the ETA in it was too late (see Result).
 
 - **Chain** (`rows/launcher_pid_scan.txt`: 14112): conhost --headless 14112 <- cmd 22724 <- driver launcher 10608 and driver 3368 <- scanner 18644 and 10752 (7 threads; the launcher's own conhost child is 25248), watcher 19548, sampler 22976, keep-awake helper 23268 (and its launcher 15316). The python and powershell processes are BelowNormal.
 - **Session check** (`session_check_scan.txt`, 02:58:35 UTC, exit 0): no `claude` in any chain, no Windows Terminal / OpenConsole / wt; a headless conhost in the chain; every chain ends WmiPrvSE <- svchost <- services <- wininit. The checker is the lower-root scan's (it drops a child older than its parent: Windows reuses parent pids).
@@ -71,8 +71,90 @@ Started outside my terminal: `Win32_Process.Create` of `conhost.exe --headless c
 - **Machine at the start:** on AC (battery status 2, charge 100 %), clock 2995 MHz of 2995 MHz max, free physical memory about 24 GB, the other project's two I129 jobs (18732, 24800, started 01:54 UTC) beside the scan, no standby event since 20:58 UTC.
 - **ETA:** 6 points at 1350 to 1700 s (t5: about 2.7 h at 1600 s): the scan ends between about 05:15 and 05:50 UTC on 2026-11-23, most likely about 05:40. The first point (1.345) should print about 03:25 UTC.
 
-Pushed 2026-11-23 02:59:00 UTC.
+Pushed 2026-11-23 05:05:26 UTC.
 
 ## Result
 
-Not yet run.
+**One robust change in the gap, `-` to `+` between 1.395 and 1.420, det-linear estimate 1.410862, estimator range [1.409665, 1.410862].** The repeat of 1.395 agrees. No change touches a non-robust point, no ln|det| minimum without a change. Edge signs `-` at 1.345 and `+` at 1.445, which join the lower-root scan's `-` at 1.32 and the first scan's `+` at 1.475 without a further change. As written before the run (t5): the rising discretization root, below lambda_1 (1.539658 at D 19, k_c 79), lies in the gap. It does. I rule nothing; t5 rules by position.
+
+### What ran
+
+| item | value |
+|---|---|
+| scanner | `d18_hybsign.py` (blob e089207a), pid 18644 (interpreter 10752), exit 0 after 7515 s (02:58:02 to 05:03:17 UTC), record check: `D 19.0 k_c 79: |F| 2.8482007333e-10 (record 2.8482007333e-10), steps 2976 (record 2976): the record system` |
+| reader | `read_lower.py` (blob 89309d3c), run by the driver at 05:03:17 UTC, exit 0 (`read_lower_kc79_D19gap.log`); its selftest and the two `--mutate` controls gave 0, 1, 1 before the scan |
+| driver | `kc79d19gap_scan_driver_1025.py` done 05:04:28 UTC, no refusal, no cap |
+| launch | `Win32_Process.Create` of `conhost.exe --headless cmd.exe /c go_kc79d19gap_scan_1025.cmd` (conhost 14112 <- cmd 22724 <- driver 3368); session check exit 0 (`session_check_scan.txt`) |
+| keep-awake | helper 23268 held `SetThreadExecutionState(ES_CONTINUOUS | ES_SYSTEM_REQUIRED)` from 02:58:02 and cleared it at 05:04:32 UTC (returned 0x80000001), 15 minute lines in `rows/scan_keepawake.log` |
+| standby, memory | no System event 506 or 507 since 20:58:16 UTC the day before, no sampler gap over 90 s in 125 samples; memory watcher (alert only): minimum free memory 22.41 GB, 0 alerts |
+
+### Reader's lines, as printed
+
+```
+points 5 in 1.345-1.445; not noise-robust: none
+hybrid signs: 1.345- 1.370- 1.395- 1.420+ 1.445+
+float64 sign differs from the hybrid sign at: [(1.395, '-', '+'), (1.42, '+', '-')]
+repeated points: [(1.395, 'agree')]
+  robust change (1.395, 1.420), - to +, det-linear 1.410862, range [1.409665, 1.410862]
+robust changes: 1; touching a non-robust point (not counted): none
+ln|det| local minima without a sign change: none
+endpoint signs: - at 1.345, + at 1.445
+read_lower exit 0
+```
+
+### The points (scan file `scan_kc79_D19gap_p0.jsonl`, 6 lines)
+
+| lambda | hybrid sign | noise (2 seeds) | hybrid ln&#124;det&#124; | float64 sign | float64 ln&#124;det&#124; | wall s |
+|---|---|---|---|---|---|---|
+| 1.345 | - | -, - | -2542.1003575798 | - | -2541.9374569905 | 1247 |
+| 1.37 | - | -, - | -2542.7135378740 | - | -2542.3592468892 | 1204 |
+| 1.395 | - | -, - | -2543.8761418233 | + | -2543.7990998977 | 1250 |
+| 1.42 | + | +, + | -2544.4276221334 | - | -2544.3657431262 | 1253 |
+| 1.445 | + | +, + | -2543.4460338638 | + | -2542.8251396308 | 1269 |
+| 1.395 (repeat, last) | - | -, - | -2543.8761418233 | + | -2543.7990998977 | 1276 |
+
+The repeat of 1.395 matches the first 1.395 in every printed digit. The float64 sign disagrees with the hybrid at 1.395 and 1.42, the two points on either side of the change (the hybrid is the reading; both are noise-robust, float64 alone would give `-`, `-`, `+`, `-`, `+` over the five points, no single change). ln|det| has no dip at the change on this grid: it falls from -2542.10 at 1.345 to -2544.43 at 1.42 (lowest point) and rises to -2543.45 at 1.445.
+
+### Beside k_c 71's roots at D 19 (information, not a pass rule; t5 rules by position)
+
+| k_c | lower root | lambda_1 | source |
+|---|---|---|---|
+| 63 | 1.483 | 1.537988 | dh370, raw a45fc80f |
+| 71 | 1.296338 (+ to -, range to 1.296338) | 1.536547 | dh610, raw 172112d0 |
+| 79 | **1.410862** (- to +, range [1.409665, 1.410862]) | 1.539658 (+ to -, range to 1.539672) | `../kc79_d19gap/`, `../kc79_d19/` |
+
+Orientation labels as the reader prints them; they are not compared across k_c. By position the lower root is 0.114524 above k_c 71's and 0.072138 below k_c 63's; lambda_1 is 0.003111 above k_c 71's. No other change was found in 0.92 to 1.545 at k_c 79 (the three scans together, next section).
+
+### The three scans read together (mine, not ordered; read only)
+
+`read_lower.py` sees only the points in its folder, so a change in (1.32, 1.345) or (1.445, 1.475) would have shown here only as endpoint signs equal to the neighbor scan's. I read copies of the three scan files together (`combined/`: `scan_kc79_D19low_p0.jsonl`, the first scan renamed `scan_kc79_D19first_p0.jsonl`, and this folder's; the files unchanged; `D18_DIR` the raw `I1025-mac/d18` copy; `combined/read_lower_combined.txt`):
+
+```
+points 24 in 0.920-1.545; not noise-robust: none
+hybrid signs: 0.920- 0.960- 1.000- 1.040- 1.080- 1.120- 1.160- 1.200- 1.240- 1.280- 1.320- 1.345- 1.370- 1.395- 1.420+ 1.445+ 1.475+ 1.480+ 1.485+ 1.490+ 1.530+ 1.535+ 1.540- 1.545-
+float64 sign differs from the hybrid sign at: [(1.395, '-', '+'), (1.42, '+', '-'), (1.54, '-', '+'), (1.545, '-', '+')]
+repeated points: [(1.395, 'agree'), (1.12, 'agree')]
+  robust change (1.395, 1.420), - to +, det-linear 1.410862, range [1.409665, 1.410862]
+  robust change (1.535, 1.540), + to -, det-linear 1.539658, range [1.539658, 1.539672]
+robust changes: 2; touching a non-robust point (not counted): none
+ln|det| local minima without a sign change: none
+endpoint signs: - at 0.920, - at 1.545
+```
+
+So on the k_c 79 D 19 state, 0.92 to 1.545 holds two robust changes and no other (grid: 0.04 in 0.92 to 1.32, 0.025 in 1.345 to 1.445, 0.005 or 0.01 in 1.475 to 1.545), and the three scans' sign sequence has no inconsistency at the joints (`-` at 1.32 and 1.345, `+` at 1.445 and 1.475).
+
+### Cost
+
+| item | value |
+|---|---|
+| wall | 7515 s for 6 points (02:58:02 to 05:03:17 UTC); written before the run: 2.25 to 2.85 h (t5: about 2.7 h): it took 2.09 h |
+| per point | 1204 to 1276 s (the lower-root scan 1349 to 1695 s; the first D 19 scan 1320 to 1344 s) |
+| scanner cpu | 11228 s (1.49 cores on average, up to 13 threads seen, 4 BLAS threads); per point 1738 to 1917 s, 1.39 to 1.56 cores |
+| memory | peak private 2.454 GB, peak working set 1.677 GB; free physical memory at least 22.29 GB (sampler) |
+| laptop cpu | 11 to 68 %, mean 31.7 % (sampler, every 60 s); on AC at 100 % charge, clock 2995 MHz at the start (the clock was not logged afterwards) |
+
+Every point ran faster than any earlier point of a D 19 scan on this laptop (the first scan's 1320 to 1344 s was the fastest). I do not know the cause; the lower-root scan's slow stretch had no clock log either. Nothing in the answer depends on it.
+
+### Files
+
+`scan_kc79_D19gap_p0.jsonl` (6 lines), `read_lower_kc79_D19gap.log`, `scan_kc79_D19gap.log` and `rows/scan_kc79d19gap_raw.log` (the scanner's own), `kc79d19gap_scan_w.log` (driver), `rows/scan_samples.csv`, `rows/scan_keepawake.log`, `rows/scan_memwatch.log`, `session_check_scan.txt` (02:58:35 UTC), `combined/` (the three scan files and `read_lower_combined.txt`).
