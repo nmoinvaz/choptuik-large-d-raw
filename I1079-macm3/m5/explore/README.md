@@ -21,11 +21,15 @@ with A, w to 12 decimals and B3, C3 to 10, the same numbers and format as the wa
 
 Report per start: |r_1|, |r_3|, |r_5|, |F_5|/|F_3| (|F_ν/F_1| of the solve), and max|Y| if a log prints it (`explore_report.py report`; hier_nb.py's code has no such line, so it is expected to read "not printed"). The control is not a gate here. The reference at xi1 0.2 is `../logs/fix_*_xi0.2_01.log` (x1 |r_3| 2.1e5, x2 3.3e5, control 2.7e-8).
 
+## Second order: two probes on x1's start (`explore2.sh`, still exploratory)
+
+The coordinator's order after the first results: on x1's start solve at xi1 0.2 and at 0.17, (a) `--floor_max=1e-3` (run at `--verbose=2` so the stop reasons print; the verbose level changes no number) and (b) `--verbose=3` (prints every trial length). Logs `logs/start_x1_xi{0.2,0.17}_fm.log` and `_v3.log`, exits in `exits_explore2.txt`. Also asked: report max|Y| or |y(xi1)| if any log or hier's verbose output gives it (the coordinator's suspicion is float64's rounding floor, 1e-15 |Y|, as in #1021's guard-blocked cells). No walks.
+
 ## Files
 
 | file | content |
 |---|---|
-| `explore.sh`, `explore_report.py` | the driver, the log reader (`args`, `report`, `selftest`: its parse reproduces the main run's walk JSONs, and a log without its FIXED-A line reads as no result) |
+| `explore.sh`, `explore2.sh`, `explore_report.py` | the driver, the log reader (`args`, `report`, `selftest`: its parse reproduces the main run's walk JSONs, and a log without its FIXED-A line reads as no result) |
 | `logs/start_NAME_xiXI[_v2].log`, `exits_explore.txt` | one log per start (first line is the command), exits |
 | `logs/report.md` | the table |
 
