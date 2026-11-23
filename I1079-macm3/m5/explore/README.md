@@ -25,11 +25,17 @@ Report per start: |r_1|, |r_3|, |r_5|, |F_5|/|F_3| (|F_ν/F_1| of the solve), an
 
 The coordinator's order after the first results: on x1's start solve at xi1 0.2 and at 0.17, (a) `--floor_max=1e-3` (run at `--verbose=2` so the stop reasons print; the verbose level changes no number) and (b) `--verbose=3` (prints every trial length). Logs `logs/start_x1_xi{0.2,0.17}_fm.log` and `_v3.log`, exits in `exits_explore2.txt`. Also asked: report max|Y| or |y(xi1)| if any log or hier's verbose output gives it (the coordinator's suspicion is float64's rounding floor, 1e-15 |Y|, as in #1021's guard-blocked cells). No walks.
 
+## Third order: the integrator tolerance (`explore3.sh`, still exploratory)
+
+The coordinator's order after the second results: x1's start at xi1 0.2 with `--floor_max=1e-3` (`--verbose=2`), once with `INNER_NB_RTOL=1e-13` and once with `1e-11`, side by side. The default integrator tolerance is `rtol=1e-12`, `atol=1e-16` (`inner_nb.py` `integrate(..., rtol=1e-12, atol=1e-16)` and `jumps(rtol=1e-12)`; `inner_np.py` the same); `INNER_NB_RTOL` replaces rtol at every `integrate` call and leaves atol. The default's run is the earlier `logs/start_x1_xi0.2_fm.log` (same command, no override). Logs `logs/start_x1_xi0.2_fm_rtol{1e-13,1e-11}.log`, exits `exits_explore3.txt`, table from `rtol_floors.py`.
+
+Reading, the coordinator's, with the thresholds fixed before the run: the stall unchanged with rtol means a float64 floor (the M = 5 route then needs extended precision); a stall that scales with rtol means integrator noise. Level 5 (12 top solves per run, so a range): *unchanged* when the 1e-13 and 1e-11 stall ranges both overlap the default's; *scales* when the 1e-11 range lies wholly above the default's and the 1e-13 range wholly below it; else *mixed*. Level 3 (one stall value): *unchanged* when both are within 3x of the default's 4.56e-4; *scales* when it falls 3x or more at 1e-13 and rises 3x or more at 1e-11; else *mixed*. `rtol_floors.py selftest` runs these two functions on synthetic ranges. K is each run's own table (its finite-difference Jacobian is computed at that rtol).
+
 ## Files
 
 | file | content |
 |---|---|
-| `explore.sh`, `explore2.sh`, `explore_report.py`, `explore_probe_report.py`, `probe_floors.py` | the driver, the log reader (`args`, `report`, `selftest`: its parse reproduces the main run's walk JSONs, and a log without its FIXED-A line reads as no result) |
+| `explore.sh`, `explore2.sh`, `explore3.sh`, `explore_report.py`, `rtol_floors.py`, `explore_probe_report.py`, `probe_floors.py` | the driver, the log reader (`args`, `report`, `selftest`: its parse reproduces the main run's walk JSONs, and a log without its FIXED-A line reads as no result) |
 | `logs/start_NAME_xiXI[_v2].log`, `exits_explore.txt` | one log per start (first line is the command), exits |
 | `logs/report.md` | the table |
 
