@@ -85,3 +85,46 @@ The line for the next point: through D 20.75 and D 20.78125, slope -0.3343: lamb
 Written 2026-11-23 16:34 UTC, before the run. **Inputs** (`D20.8125/pins.txt`): state `sol_l1kc79Lw1025d_D20.812500.npy` blob 141bc9bc, record file `l1kc79Lw1025d.jsonl` blob b60b5403 (2 lines), both at raw c39988cb (win2's leap point 2: Delta 1.1132588598411506, |F| 4.670554648802493e-10, 2696 steps, constraint 4.1224e-03, 4866 s).
 **Window** (the rule: the line through the last two lambda_1 points, plus and minus 0.05): D 20.75 0.989779 and D 20.78125 0.979332 give slope -0.3343 per unit D, so lambda_1 at D 20.8125 is 0.9689; the window is 0.92 to 1.02 by 0.01 (11 values) plus a repeat of 0.97 (nearest the line, on another process than the first 0.97): 12 evaluations. **2 processes** (beside the #1079 runs, the coordinator's word), each of 1 thread.
 **Prediction** (mine, written before the run): **one robust change near 0.969, within 0.01, and no other change in 0.92 to 1.02.**
+
+
+### D 20.8125: result (scan 16:35:03 to 17:08:36 UTC, 34 min, 2 processes)
+
+**One robust change, + to -, between 0.96 and 0.97, at 0.969068 (det-linear; estimator range 0.966597 to 0.969068); no other change in 0.92 to 1.02. The prediction (one change near 0.9689, within 0.01) is met: the estimate is 0.00018 from it.**
+The slope from D 20.78125's 0.979332 is **-0.3284 per unit D** (range -0.4075 to -0.3284).
+
+Source (`D20.8125/steps.txt`): ACCEPTED at 16:35:03 UTC (`kc79_syscheck_1025.py` exit 0, |F| 4.6705546488e-10 as the record, 2696 steps; selftest 0; controls exit 1 each). The scan: 2 processes, each began with `the record system` (|F| 4.6665386001e-10, 2696 steps) and exited 0; 12 evaluations; `read_lower.py` selftest 0, `--mutate=shift` 1, `--mutate=round2` 1; the reading (exit 0):
+
+    points 11 in 0.920-1.020; not noise-robust: none
+    hybrid signs: 0.920+ 0.930+ 0.940+ 0.950+ 0.960+ 0.970- 0.980- 0.990- 1.000- 1.010- 1.020-
+    float64 sign differs from the hybrid sign at: none
+    repeated points: [(0.97, 'agree')]
+      robust change (0.960, 0.970), + to -, det-linear 0.969068, range [0.966597, 0.969068]
+    robust changes: 1; touching a non-robust point (not counted): none
+    ln|det| local minima without a sign change: none
+    endpoint signs: + at 0.920, - at 1.020
+
+| lambda | hybrid sign | float64 sign | ln\|det\| hybrid | ln\|det\| float64 |
+|---|---|---|---|---|
+| 0.92 | +1 | +1 | -2343.1049 | -2343.3576 |
+| 0.93 | +1 | +1 | -2344.0593 | -2343.9033 |
+| 0.94 | +1 | +1 | -2345.0830 | -2345.2224 |
+| 0.95 | +1 | +1 | -2346.2390 | -2346.2515 |
+| 0.96 | +1 | +1 | -2347.7498 | -2347.5286 |
+| 0.97 | -1 | -1 | -2350.0254 | -2348.0024 |
+| 0.97 | -1 | -1 | -2350.0254 | -2348.0024 |
+| 0.98 | -1 | -1 | -2348.8293 | -2349.1429 |
+| 0.99 | -1 | -1 | -2348.9258 | -2349.2613 |
+| 1.00 | -1 | -1 | -2349.2583 | -2348.8310 |
+| 1.01 | -1 | -1 | -2349.6935 | -2349.6691 |
+| 1.02 | -1 | -1 | -2350.1861 | -2350.2330 |
+
+The repeat of 0.97 agrees (ln|det| -2350.0254 in both). Memory (alert-only): the largest child RSS 2.79 GB, the lowest available memory 12.3 GiB: no alert.
+
+| D | lambda_1 (det-linear) | range | slope from the previous D |
+|---|---|---|---|
+| 20.5 | 1.0876 | | the coordinator's anchor |
+| 20.75 | 0.989779 | 0.988339 to 0.989779 | -0.3913 |
+| 20.78125 | 0.979332 | 0.977136 to 0.979332 | -0.3343 |
+| 20.8125 | 0.969068 | 0.966597 to 0.969068 | -0.3284 (-0.4075 to -0.3284) |
+
+Per the coordinator, the later k_c 79 leg points go to dh610; I stopped polling.
