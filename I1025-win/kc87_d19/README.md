@@ -1,6 +1,6 @@
 # I1025-win/kc87_d19: k_c 87 at D 19, regridded from my own k_c 79 D 19 state, then a scan (winb)
 
-Written before the run, 2026-11-23 07:28:11 UTC (substituted from `date -u` when pushed). Nothing has been run for this folder yet.
+Written before the run, 2026-11-23 12:35:51 UTC (substituted from `date -u` when pushed; nothing had been run for this folder when the order and estimates below were written; the Status and Result sections were added after the runs).
 
 Runner: the winb session (surface-laptop-4, 4 cores, 8 threads, 32 GB), the same one that ran `../kc79_d19/` (the k_c 79 D 19 regrid and first scan), `../kc79_d19low/` (raw 40f1a01a) and `../kc79_d19gap/` (raw fee69df5). The coordinator is t5.
 
@@ -73,14 +73,13 @@ Started outside my terminal: `Win32_Process.Create` of `conhost.exe --headless c
 
 ## Status
 
-**Step 1 done: ACCEPTED 2026-11-23 07:24:14 UTC** (regrid 05:11:17 to 07:24:02 UTC, exit 0, wall 7965 s). **Step 2 (the scan) started by itself 07:25:25 UTC.** README first: c83d0fbd; start status 265b7c59.
+**Both steps done.** Step 1 (regrid) ACCEPTED 2026-11-23 07:24:14 UTC; step 2 (scan) 07:25:25 to 12:34:10 UTC, exit 0, 18525 s; the chain's cmd ended 12:35:21 UTC (driver done). README first: c83d0fbd; start status 265b7c59; step 1 record 483d8d53.
 
-- **Chain** (one headless conhost, `rows/launcher_pid_regrid.txt`: 10344 <- cmd 24168 <- driver 14860 for the regrid, then driver 9840 for the scan): scan driver 9840 <- sampler 21168, alert-only watcher 26144, keep-awake helper 24384 (interpreter 15764), scanner 13660 (venv launcher) and its worker 23816. Session check `session_check_scan.txt`: exit 0, no `claude` in any chain, no Windows Terminal / OpenConsole / wt, headless conhost yes, chains end wininit.
-- **Keep-awake:** the regrid's helper held `SetThreadExecutionState(ES_CONTINUOUS | ES_SYSTEM_REQUIRED)` from 05:11:07 to 07:25:37 UTC (cleared when driver 14860 ended); the scan's helper started 07:25:25 and holds until driver 9840 ends. No standby event 506/507 since 05:00 UTC; no regrid sampler gap over 62 s (130 stamps).
+- **Chain** (one headless conhost, `rows/launcher_pid_regrid.txt`: 10344 <- cmd 24168 <- regrid driver 14860, then scan driver 9840): scan driver 9840 <- sampler 21168, alert-only watcher 26144, keep-awake helper 24384 (interpreter 15764), scanner 13660 (venv launcher) and its worker 23816. Session check `session_check_scan.txt`: exit 0, no `claude` in any chain, no Windows Terminal / OpenConsole / wt, headless conhost yes, chains end wininit.
+- **Keep-awake:** the regrid's helper held `SetThreadExecutionState(ES_CONTINUOUS | ES_SYSTEM_REQUIRED)` 05:11:07 to 07:25:37 UTC, the scan's 07:25:25 to 12:35:25 UTC (cleared with ES_CONTINUOUS when driver 9840 ended). No standby event 506/507; sampler gap at most 62 s over 305 stamps of the scan.
 - **Machine:** AC, clock 2995 MHz of 2995 max; the other project's I114 job (`convergence.py 5`) beside the run, not touched.
-- **ETA of the scan:** 10 points at about 1500 to 2200 s each: 4.2 to 6.1 h from 07:25 UTC, about 11:40 to 13:30 UTC (the regrid cost 1.42 times k_c 79's; if points cost the same factor, 1204 to 1695 s becomes 1700 to 2400 s).
 
-Pushed 2026-11-23 07:28:11 UTC.
+Pushed 2026-11-23 12:35:51 UTC.
 
 ## Result
 
@@ -119,4 +118,58 @@ Memory: lowest free physical memory 21.25 to 21.48 GB, 0 alerts; peak working se
 
 ### Step 2: the scan
 
-Running; the result is written when it ends.
+**k_c 87, D 19: two robust changes, 1.414532 (- to +, range [1.412419, 1.414532]) and 1.538986 (+ to -, range [1.538986, 1.539478]).** The repeat of 1.480 agrees. No point is noise-fragile, the float64 sign equals the hybrid sign at every point, no ln|det| minimum without a change, edge signs `-` at 1.380 and `-` at 1.580.
+
+| lambda | hybrid sign | hybrid ln\|det\| | float64 sign | wall s |
+|---|---|---|---|---|
+| 1.380 | - | -2879.0652 | - | 1863 |
+| 1.405 | - | -2880.8140 | - | 1859 |
+| 1.430 | + | -2880.3298 | + | 1859 |
+| 1.455 | + | -2879.8261 | + | 1860 |
+| 1.480 | + | -2879.8434 | + | 1845 |
+| 1.505 | + | -2880.2060 | + | 1834 |
+| 1.530 | + | -2881.4048 | + | 1849 |
+| 1.555 | - | -2880.8270 | - | 1846 |
+| 1.580 | - | -2879.8580 | - | 1851 |
+| 1.480 (repeat) | + | -2879.8434 | + | 1846 |
+
+The repeat matches in every printed digit.
+
+`read_lower.py` (89309d3c), as printed (`read_lower_kc87_D19.log`):
+
+```
+points 9 in 1.380-1.580; not noise-robust: none
+hybrid signs: 1.380- 1.405- 1.430+ 1.455+ 1.480+ 1.505+ 1.530+ 1.555- 1.580-
+float64 sign differs from the hybrid sign at: none
+repeated points: [(1.48, 'agree')]
+  robust change (1.405, 1.430), - to +, det-linear 1.414532, range [1.412419, 1.414532]
+  robust change (1.530, 1.555), + to -, det-linear 1.538986, range [1.538986, 1.539478]
+robust changes: 2; touching a non-robust point (not counted): none
+ln|det| local minima without a sign change: none
+endpoint signs: - at 1.380, - at 1.580
+read_lower exit 0
+```
+
+Beside the other k_c at D 19 (information, by position; orientation as printed, not compared across k_c):
+
+| k_c | lower root | lambda_1 |
+|---|---|---|
+| 63 | 1.483 | 1.537988 |
+| 71 | 1.296338 (+ to -) | 1.536547 |
+| 79 | 1.410862 (- to +) | 1.539658 (+ to -) |
+| 87 | **1.414532** (- to +) | **1.538986** (+ to -) |
+
+k_c 87 minus k_c 79: lower root +0.003670, lambda_1 -0.000672. Delta(k_c 87) minus Delta(k_c 79) = -5.528545e-07.
+
+**Written before the run (t5), checked:**
+
+| line | result |
+|---|---|
+| lambda_1 within 0.003 of 1.5397 | held: 1.538986 is 0.000714 below 1.5397 (the range reaches 1.539478) |
+| the lower root above 1.411, or gone from the window | held: 1.414532 (range [1.412419, 1.414532]), not gone |
+
+What ran: `d18_hybsign.py` (e089207a) on the k_c 87 D 19 state (record check passed: |F| 2.9006474406e-10, 3276 steps), one process, 4 threads, BelowNormal, started through `conhost.exe --headless cmd.exe /c` outside my terminal. Exit 0 after 18525 s (07:25:25 to 12:34:10 UTC); reader selftest and both `--mutate` controls 0, 1, 1 before the scan; reader exit 0. Scanner cpu 27169 s, peak private 2.96 GB, lowest free physical memory 21.46 GB, peak commit 13.14 GB, 0 memory alerts.
+
+Cost against what I wrote before the run: 5.15 h (estimate 4.2 to 6.1 h; t5 4.6 h); points 1834 to 1863 s (estimate 1500 to 2200 s; k_c 79 at D 19: 1204 to 1695 s). The whole chain, regrid and scan, took 05:11:06 to 12:35:21 UTC, 7.4 h (estimate 12:00 to 14:30 UTC end; it ended earlier).
+
+`read_lower.py` sees only this scan file's points, so a change just outside 1.380 to 1.580 shows only as an endpoint sign. These are k_c 87 roots, not yet physical.
