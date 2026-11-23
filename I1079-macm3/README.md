@@ -191,3 +191,52 @@ at the best box, and stop."
 3. For every box that passes: `certify_M.py controls --box=... --point=...` (the usage line gives `--point`; exit 0 iff C0 to C8 as expected). `certify_M_recheck.py` takes `--sub` and `--mutate` only and reads the box file alone, so it **has no `--point`**: for a
    passing box I run it as it is (its verdict then uses the box run's own g(p^), so it may not agree) and its `--mutate` (must fail), and I say which it is.
 4. If none passes: the binding row and quantity at the best box (largest smallest margin), by the same row-by-row breakdown as before (my read-only `diagnose.py`, with the point run's g(p^) and Y for these tests), and I stop.
+
+
+## Round 3 results (2026-11-23, 14:44:40 to 14:46:39 UTC; the point runs 116 s and 115 s, the 26 tests per zero seconds)
+
+**Verdict: no box passes with `--point` either (exit 1 for all 12 boxes per zero and for the 1e-10 runs). The point runs' g(p^) radius is the same as the box runs' (5.337e-14 and 1.188e-14): the prediction that it falls well below 5.4e-14 is not borne out, and no box near h 1e-12 passes, at either zero.
+Controls and the recheck were not run (no passing box); nothing else was changed.**
+
+| | box run's centre set | point run (`g_rad`) | max radius of Dg (point run) | steps (ray, arc, real) |
+|---|---|---|---|---|
+| x1 | 5.4e-14 | **5.337e-14** | 5.476e-05 | 726, 397, 57 |
+| x2 | 1.2e-14 | **1.188e-14** | 1.972e-05 | 718, 394, 64 |
+
+(The fundamental's centre: 1.7e-16 in the box run's log.) The p of each point run is the refine file's `p_out` strings, the same as in every box (`logs/A_M_point_M3xN.log`, `data/A_M_point_M3xN.json`).
+
+Relative margins with `krawczyk --box=... --point=data/A_M_point_M3xN.json` (A / w/w_inf / B3 / C3), `logs/A_M_krawczyk_pt_M3xN_hH_wW.log`:
+
+### x1 (with --point)
+
+| h (rows), w (columns) | 1e-15 | 1e-14 | 1e-13 | 1e-12 |
+|---|---|---|---|---|
+| 1e-11 | -9.43 / -6.14 / -60.3 / -46.1 | -12.4 / -8.86 / -5.82 / -4.42 | -13.7 / -9.21 / +0.302 / +0.483 | -10.5 / -7.34 / +0.936 / +0.948 |
+| 1e-12 | -73.3 / -49.5 / -39.3 / -30.1 | -73.1 / -49.3 / -3.03 / -2.11 | -73.6 / -49.7 / +0.596 / +0.688 | -73.3 / -49.5 / +0.96 / +0.969 |
+| 1e-13 | -736 / -499 / -39 / -29.9 | -736 / -499 / -3 / -2.09 | -736 / -499 / +0.6 / +0.691 | -736 / -499 / +0.96 / +0.969 |
+
+### x2 (with --point)
+
+| h (rows), w (columns) | 1e-15 | 1e-14 | 1e-13 | 1e-12 |
+|---|---|---|---|---|
+| 1e-11 | -1.45 / -3.18 / -1.22e+03 / -424 | -1.47 / -3.21 / -122 / -41.5 | -0.003 / -0.488 / -9.44 / -2.82 | -0.624 / -1.46 / -0.246 / +0.618 |
+| 1e-12 | -5.98 / -10.9 / -384 / -103 | -6.22 / -11.3 / -37.3 / -9.33 | -5.91 / -10.8 / -2.83 / -0.029 | -6.22 / -11.3 / +0.606 / +0.892 |
+| 1e-13 | -66 / -113 / -374 / -98.2 | -65.9 / -113 / -36.5 / -8.92 | -66 / -113 / -2.75 / +0.007 | -66 / -113 / +0.624 / +0.9 |
+
+- **x1** is unchanged from round 2 (largest relative change 1.4e-5), as it must when the point run's radius equals the box run's. At the 1e-10 runs (extra): x1 -80.247, -58.955, -6786.873, -4688.174; x2 -79.911, -131.236, -220241.962, -94251.663.
+- **x2** changes in 9 boxes, in both directions (the preconditioner Y comes from the point run's columns): e.g. (1e-11, 1e-13): -0.003 / -0.488 / -9.44 / -2.82 (round 2: -0.865 / -1.878 / -9.575 / -3.223), (1e-11, 1e-12): -0.624 / -1.458 / -0.246 / +0.618 (round 2: -0.674 / -1.512 / -0.231 / +0.599), (1e-12, 1e-12): -6.22 / -11.3 / +0.606 / +0.892 (round 2: -4.071 / -6.76 / +0.708 / +0.912).
+- **Best box per zero** (largest smallest margin): x1 (1e-11, 1e-12): -10.531 (binding row A, as in round 2); x2 (1e-11, 1e-12): -1.458 (binding row w/w_inf). The one box whose outer rows come within 0.5 is x2 at (1e-11, 1e-13): A -0.003, w/w_inf -0.488, with the inner rows failing (B3 -9.44, C3 -2.82).
+
+**Why the point run does not help: where the radius is made** (`logs/A_M_point_M3xN.log`, the state radius along the single trajectory; no box spread is in these numbers):
+
+| | ray, end | arc, end | real leg, step 25 | real leg, step 50 (of 57 / 64) | growth arc end to real step 50 | g(p^) radius |
+|---|---|---|---|---|---|---|
+| x1 | 6.15e-20 | 6.11e-20 | 3.27e-17 | 3.98e-14 | 6.5e5 | 5.337e-14 |
+| x2 | 2.51e-20 | 2.97e-20 | 2.30e-18 | 2.24e-15 | 7.5e4 | 1.188e-14 |
+
+The state radius is of order 3e-23 after 25 steps of the ray, 6e-20 at the end of the ray and of the arc (the a-priori enclosures' inflation floor, `proof/A_M.md` section 3), and the **real leg, the last 57 (x1) and 64 (x2) steps, multiplies it by 6.5e5 (x1) and 7.5e4 (x2)**; the radius of the derivative columns rises in the same leg from 4.6e-11 to 3.4e-05 (x1) and from 2.9e-11 to 3.5e-06 (x2). So the radius of g(p^) is made on the real leg, from a tiny accumulated radius, by the linearized flow's amplification (the Stokes switching, `proof/A_M.md` 6.2); a separate point run has the same radius because the radius is not box spread.
+
+**Binding row and quantity at the best boxes** (with `--point`; `logs/I1079_diagnose_pt_M3xN_hH_wW.log`; units of the half-width of the row):
+- **x1 (1e-11, 1e-12): the same as round 2**: row A 11.5 h = (Y g) radius 7.4 h (7.37e-11) + 0.8 h (A column) + 3.2 h (w/w_inf column) + 0.2 h; row w/w_inf 8.3 h = 5.0 h + 0.6 h + 2.6 h + 0.2 h; the binding quantity is the radius of (Y g(p^)) in the outer rows, g's radius 5.3e-14 amplified by the Schur complement's small singular value (3.6e-5), a floor of 7.4e-11 and 5.0e-11 that does not depend on the box.
+- **x2 (1e-11, 1e-12)**: row w/w_inf 2.46 h = (Y g) radius 1.14 h (1.14e-11) + the w/w_inf column 1.0 h + the A column 0.3 h; row A 1.62 h; row B3 1.25 w; row C3 0.38 w. At (1e-11, 1e-13) the outer rows are 1.0 h and 1.5 h (the (Y g) radius 0.7 h and 1.1 h) and the inner rows fail: B3 10.4 w = (Y g) radius 3.7 w (3.7e-13) + the outer columns 1.5 w and 5.1 w.
+- At both zeros the outer rows' floor is g(p^)'s radius, which comes from the amplification on the real leg and is not reduced by a point run. What remains untried (needs the coordinator's word): a smaller accumulated radius before the real leg (the inflation floor of the a-priori enclosures, the Taylor orders N = 20, NJ = 12, the step sizes), which are code or parameter changes in `certify_M_lohner.py`.
