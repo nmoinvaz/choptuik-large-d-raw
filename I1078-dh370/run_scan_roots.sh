@@ -18,7 +18,7 @@ stamp() { date -u '+%F %T'; }
 step() { echo "$(stamp) UTC $*" >> $OUT/steps_scan_$LABEL.txt; }
 blob() { git hash-object --no-filters "$1" | cut -c1-8; }
 cd $WT/hp || exit 9
-[ "$(git -C $WT rev-parse --short=8 HEAD)" = 552a32d9 ] && [ "$(blob $S96)" = 6a0f83d2 ] && [ "$(blob lowD_gamma.py)" = e040c8a2 ] || { step "STOP: worktree, state or lowD_gamma.py not pinned (552a32d9, 6a0f83d2, e040c8a2)"; exit 1; }
+{ [ "$(git -C $WT rev-parse --short=8 HEAD)" = 552a32d9 ] || [ "$(git -C $WT rev-parse --short=8 HEAD)" = 65ebf0c1 ]; } && [ "$(blob $S96)" = 6a0f83d2 ] && [ "$(blob lowD_gamma.py)" = e040c8a2 ] || { step "STOP: worktree, state or lowD_gamma.py not pinned (552a32d9 or 65ebf0c1, 6a0f83d2, e040c8a2: lowD_gamma.py is the same blob in both)"; exit 1; }
 step "start plan $LABEL: lowD_gamma.py $J <the M' 96 state> --threads=6 --scan=${SCAN:-5.14060,5.14100,41} $*; load $(cut -d' ' -f1-3 /proc/loadavg)"
 t0=$(date +%s)
 nice -n 10 timeout 172800 $PY -u lowD_gamma.py $J $S96 --threads=6 --scan=${SCAN:-5.14060,5.14100,41} "$@" > $OUT/scan_roots_$LABEL.log 2>&1; rc=$?
