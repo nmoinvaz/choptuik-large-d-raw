@@ -44,9 +44,46 @@ The regrid exits 0 and is accepted (85%), in 3200 to 3600 s with about 3220 step
 
 - 22:25:14 UTC the dry run of the regrid lane passed the pins, the selftests and the source check (see Acceptance 1); nothing started yet.
 - 22:26:29 UTC the regrid started (unit `i1025r`, 8 threads; the source check of the real run passed again: exit 0, controls exit 1, 1; the k_c 87 check refuses the k_c 79 source). 23:21:27 UTC ACCEPTED (below). 23:22:11 UTC the scan lane's dry run passed (pins, selftests 0 1 1 0).
+- 23:22:28 UTC the scan started (unit `i1025s`, `lane_kc87_d1925_scan.sh`): 12 evaluations on 4 processes of 1 thread, nice 10; it ended at 00:44:58 UTC (23 Nov), all four processes exit 0. Result below.
 
 ## Regrid result (22 Nov, 22:26:29 to 23:21:27 UTC): ACCEPTED
 
 `ell_refine.py` (8 threads, nice 10, unit `i1025r`) exited 0 after 3293 s (the record's own 3291 s); peak sampled RSS 2.27 GB, 773 to 777% CPU; no size or array error (`regrid/regrid.log`, `regrid/regrid_samples.csv`, `regrid/steps.txt`). Its log carries 21 numpy RuntimeWarnings (overflow, invalid value) from `dss_ell.py` lines 88, 211 to 219, 325 and 334 in the solver's trial evaluations (the D 19.5 regrid's log had 25 of the same kind at the same lines); the acceptance is the check below, not the log.
 - Record `l1kc87dh610d1925.jsonl` (blob fb0c7e77) and state `sol_l1kc87dh610d1925_D19.2500.npy` (blob 1dd46e46, copied to `in/`; `in_blobs_regrid.txt`): k_c 87 at D 19.25, |F| 3.1106067183e-10, F_start 3.943e-06, 3222 steps, constraint 5.413e-04, Delta 1.0737644588 (macm3's k_c 79 source: |F| 3.0661e-10, 2925 steps, constraint 9.574e-04, Delta 1.0737660558; k_c 87's Delta is 1.597e-06 below). The prediction was about 3220 steps and 3200 to 3600 s: 3222 steps and 3293 s.
 - **Acceptance:** `kc87_syscheck_1025.py` exit 0 (the state's |F| equals the record's, `freeze_from` gives 3222 steps = the record's); `--mutate=F` exit 1 (the state's |F| is not within 1% of 1.5 times the record's), `--mutate=steps` exit 1 (`freeze_from` gives 3222, the record 3223); extra control: `kc79_syscheck_1025.py` on the k_c 87 result exit 1 ("the record is not k_c 79 at D 19.25 (kc 87, D 19.25)"). Verdict `regrid/VERDICT.txt`: ACCEPTED 23:21:27 UTC.
+
+## Scan result (22 Nov 23:22:28 to 23 Nov 00:44:58 UTC): one robust change in 1.42 to 1.52, between 1.47 and 1.48; the repeat agrees
+
+All four processes exit 0 (`exits_kc87_d1925_scan.txt`). Walls 1:22:27 to 1:22:30 each (three points each); peak RSS 2.72 to 2.88 GB per process (`scan/scan_p<p>.raw`, `/usr/bin/time -v`). Sampled every minute (`scan/sampler.log`): summed RSS at most 7.02 GB, MemAvailable at least 24.66 GB. The pre-run checks passed (`selftest_exits.txt`: read_lower 0, `--mutate=shift` 1, `--mutate=round2` 1, repeat_check 0). The system check printed "the record system" on all four: |F| 3.1082421458e-10 against the record's 3.1106067183e-10 (relative 7.6e-4, inside the 1e-2 bar), steps 3222 = 3222. All 12 evaluations are noise-robust. A point took 1719 to 1724 s in round 1, 1622 to 1627 s in round 2 and 1597 to 1605 s in round 3 (four processes; the order's 1630 s was the D 19.5 round 2). No other machine holds this state, so there is no cross-machine control; the system check and the repeat are the controls.
+
+| lambda_1 | process | hybrid sign | ln\|det\| | noise_robust | float64 sign | point sec |
+|---|---|---|---|---|---|---|
+| 1.42 | 0 | +1 | -2851.1081469440 | True | +1 | 1722 |
+| 1.43 | 1 | +1 | -2851.5433811927 | True | +1 | 1724 |
+| 1.44 | 2 | +1 | -2852.0283515547 | True | +1 | 1719 |
+| 1.45 | 3 | +1 | -2852.6156831685 | True | +1 | 1723 |
+| 1.46 | 0 | +1 | -2853.4702591180 | True | +1 | 1624 |
+| 1.47 | 1 | +1 | -2857.4210316295 | True | -1 | 1627 |
+| 1.47 (repeat) | 3 | +1 | -2857.4210316295 | True | -1 | 1600 |
+| 1.48 | 2 | -1 | -2853.8263026720 | True | -1 | 1622 |
+| 1.49 | 3 | -1 | -2853.2599479719 | True | -1 | 1622 |
+| 1.50 | 0 | -1 | -2852.9792891766 | True | -1 | 1598 |
+| 1.51 | 1 | -1 | -2852.8092655588 | True | -1 | 1597 |
+| 1.52 | 2 | -1 | -2852.6961756911 | True | -1 | 1605 |
+
+Reading (`read_lower.txt`, `read_lower.py` dh170's, unedited; signs as the reader prints them):
+- **Robust change:** one, between 1.47 and 1.48, `+ to -` as the reader prints it, det-linear estimate **1.470267**, estimator range [1.470227, 1.470267] (a spread over interpolation choices, not an enclosure). No change touches a non-robust point.
+- **Edge signs:** + at 1.42, - at 1.52.
+- **ln|det| minima without a sign change:** none. ln|det| is lowest at 1.47, the point beside the change (3.95 below 1.46 and 3.59 below 1.48); on both sides it varies smoothly (falls from -2851.11 at 1.42 to -2853.47 at 1.46, rises from -2853.83 at 1.48 to -2852.70 at 1.52, still rising at the edge).
+- **Repeat of 1.47:** agrees, bit-identical (`repeat_check.py` PASS; ln -2857.421031629568 on process 1 and on process 3). Same machine and build, so it tests repeatability, not another machine.
+- **Float64:** its sign differs from the hybrid at 1.47 only (- against +); the hybrid is the reading.
+
+Beside which I report (information, not a pass rule; the coordinator's numbers): k_c 79 at D 19.25 has lambda_1 at 1.469975 and no other root in 1.42 to 1.52 (macm3, macOS build, raw cc30e59c); the reading predicts that k_c 87's rising root crosses lambda_1 only after D 19.31.
+- By position the k_c 87 root at 1.470267 is the root near lambda_1's line: 0.000292 above macm3's k_c 79 root at 1.469975 (at D 19.5: k_c 87 1.399169 against k_c 79 1.397565, 0.001604 above; `../kc87_d195/`).
+- k_c 71 at D 19.25 has its root near the line at 1.475019 (`../kc71_d1925/`): the k_c 87 root is 0.004752 below it.
+- No second change in 1.42 to 1.52, so no rising root of k_c 87 in this window, as predicted. Nothing was scanned below 1.42 or above 1.52 (k_c 71's rising root at D 19.25 is at 1.660715, outside).
+- Two k_c 87 points on the line, D 19.25 (1.470267) and D 19.5 (1.399169), give a slope of -0.28439 per unit D between them (two points; macm3's k_c 79 slope between D 19.125 and D 19.25 is -0.2865).
+
+Predictions (written before the run): one robust change in 1.42 to 1.52 (70%): yes; within 0.005 of 1.469975 (70% given one): yes (0.00029); no second (80%): yes; regrid accepted in 3200 to 3600 s with about 3220 steps: 3293 s, 3222 steps; a point about 1600 s: 1597 to 1724 s.
+
+These are k_c 87 roots, not yet physical.
