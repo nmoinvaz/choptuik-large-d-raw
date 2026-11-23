@@ -45,6 +45,20 @@ Written before the leap (the coordinator's): **resolution** if k_c 79's sigma_re
 
 Reporting (the coordinator's): every point with Delta, dDelta/dD, sigma_reg, |J+dF/dn|, h, constraint, |F| (and n_null, the cutoff and max cos_t_reg), beside leg 4's at the same D. Leg 4 (k_c 71, `../kc71_leap/`, table `leg4_points_v2.txt`) runs on as the pathfinder; the k_c 79 leg is the march past D 20.75 (k_c 71's Delta correction against k_c 79: -9.9e-6 at D 20, -2.2e-5 at D 20.5, the coordinator's).
 
+## The k_c 79 leap's fold watch at D 20.875 and the restart (the coordinator's ruling, hc ~19:20 UTC 23 Nov)
+
+The leap's fold watch fired after its fourth point, D 20.875 (4612 s; |F| 4.663e-10, constraint 4.316e-3, 2689 steps, Delta 1.114916069672, dDelta/dD +0.026524, guard quiet): `sigma_reg 4.103e-11 -> 1.377e-11, |J^+ dF/dn| 0.444 -> 0.422; h -> 0.015625`. It is the same artifact as leg 4's at D 20.75: n_null 72 -> 71 (a mode entered the regular set from below the cutoff 1.359e-11), the tracked modes rose (sv_reg_small [4.103e-11, 1.509e-10, 2.111e-10, 2.120e-10] -> [1.377e-11, 4.267e-11, 1.526e-10, 2.167e-10]: the old first three reappear as +4.0%, +1.1% and +2.7%), the largest cos_t_reg is 0.048, and |J^+ dF/dn| fell. For k_c 79 the mode enters at D 20.875, for k_c 71 at D 20.75. The halving cost: h 0.015625 is the leap's hmin floor (a later failed solve would stop it) and the remaining cap (6.4 h) would have reached about D 20.95.
+
+The ruling (the coordinator's, verbatim): "GO on the restart, same ruling as (b) at D 18.75: not a fold (n_null 72 -> 71 is a mode entering the regular set; tracked modes rose; |J+dF/dn| fell). Restart the k_c 79 leap at h 0.03125 from its D 20.84375 and D 20.875 states under new tag l1kc79Lw1025f, guard with --seeds = those two records, seeds re-checked by kc79_syscheck, old leap + guard killed by exact pid, fresh 12 h cap, D_end 21.5 (so it overlaps leg 6's range). Record the ruling and the restart in the README. The D 20.875 state stands as the leg point (dh610 scans it now)."
+
+The restart (`run_leap7.sh 20.84375 20.875`, headless, BelowNormal; dry run 19:15 UTC passed):
+
+```
+ell_leap.py l1kc79Lw1025f 1 79 data/sol_l1kc79Lw1025d_D20.843750.npy 20.84375 data/sol_l1kc79Lw1025d_D20.875000.npy 20.875 21.5 0.03125 --tol 1e-12 --fmax 1e-8 --cmax 1e-2 --fold
+```
+
+New tag `l1kc79Lw1025f` (own record file and states; the seeds are tag d's, blobs d4a9414b and 2f6d6b8a, record file of tag d e443a587 with 4 records, equal to the copies in `states/`), files `leap7.log`, `exits_leap7.txt`, `summary_leap7.txt`, `leap7.finished`, `all7.done`; 4 BLAS threads, cap 43200 s (12 h from the restart) by the exact root pid. The old leap (tag d, root pid 43740, worker 30648) and its guard (pid 35888) are killed by exact pid after command-line checks; the old driver (`run_leap5.sh`, pid 44404) then finishes by itself (final copy, `all5.done`), and the new driver waits for `all5.done` and refuses if the old guard had stopped the leap. The seeds are re-checked by `kc79_syscheck_1025.py` (dry run: selftest 0, D 20.84375 and D 20.875 accepted, `--mutate=F` and `--mutate=steps` exit 1). The new guard (`leap_guard.py` f1fe7c7c with `--seeds` = the two seeds' own records, which carry n_null and cos_t_reg; table `leap7_points.txt`, stop file `leap7_STOP.txt`) is the same rule as before. Tag d keeps its four points (D 20.78125, 20.8125, 20.84375, 20.875); the D 20.890625 step in flight when the restart began is discarded.
+
 ## Result
 
 Not yet run.
