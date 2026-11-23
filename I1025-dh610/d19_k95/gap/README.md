@@ -1,0 +1,27 @@
+# I1025-dh610/d19_k95/gap: the gap scan of the k_c 95 state at D 19 between 1.435 and 1.535 (closes the pair caveat of ../scan)
+
+Machine dh610 (Fedora 45, i7-12700, 20 logical CPUs, 64 GB RAM, Linux). Issue https://github.com/nmoinvaz/choptuik-large-d/issues/1025. Written 2026-11-23 23:21 UTC, before the scan of this folder. The k_c 95 roots are not yet physical. Roots are read by position, never by sign orientation; the orientation is printed as the reader prints it and not compared across D or k_c.
+
+## Order (coordinator t5, hc 2026-11-23, after the scan of `../scan`, raw 63689583), in part
+"read and ruled: D 19's lower root is a discretization root (main 479f0a7d; #1025 comment of 00:00 UTC). Yes to one gap scan only, to close the pair caveat: your k_c 95 state, d18_hybsign at 1.445, 1.465, 1.485, 1.505, 1.525 (5 points, one round, nice 10; the leg lane keeps priority), read_lower. Written before: no sign change in 1.445-1.525 and equal edge signs with 1.435 and 1.535 (all -). Not the 1.0-1.395 scan. Raw I1025-dh610/d19_k95/gap/."
+
+## Method
+- `d18_hybsign.py` (xfkappa's, blob e089207a, unmodified) at D 19.0 on this folder's accepted state and record (blobs 545406e4 and 6cfed1aa, `../in_blobs_regrid.txt`; the lane refuses any other blob and requires `../regrid/VERDICT.txt` ACCEPTED), the same files, copies of the tools (`../in_blobs_scan.txt`) and worktrees as `../scan` (scan `~/Source/choptuik-large-d-1025f` at 505d8399; checks `~/Source/choptuik-large-d-1025g` at 48c36355). Five processes of 1 thread, nice 10, one round, one value each: p0 1.445, p1 1.465, p2 1.485, p3 1.505, p4 1.525 (the lane checks the lists against the order and refuses otherwise). The order has no repeat, so none is run (`../scan` showed the repeat of 1.415 bit-identical on this build).
+- The source is checked again on the pinned copies before the scan: `kc95_syscheck_1025.py` accepts, `--mutate=F` and `--mutate=steps` exit 1, `kc87_syscheck_1025.py` refuses (exit 1); the lane stops on any other result.
+- Reading: `read_lower.py` (blob 89309d3c) on the window 1.435 to 1.535 of `scan/`, which holds the five new rows and the two edge rows (1.435 and 1.535, copied by the lane from `../scan/scan_D19.0_p3.jsonl` and `p4.jsonl` by lambda as `scan_ref_p0.jsonl` and `scan_ref_p1.jsonl`, a written copy of rows the scan already printed, not a re-evaluation). A bracket is the grid step (0.02 here between new points, 0.01 to the edges); the det-linear estimate and the estimator range are a spread over interpolation choices, not an enclosure. A pair of changes closer together than the grid is not seen by this scan: the caveat it closes is for roots at least 0.02 apart.
+- `summarize_d19k95_gap.py` prints the tables, the order's rule and the scorecard from the files (selftest exit 0, `selftest --mutate` exit 1, `--mutate` on the real files exit 1 when the control fires).
+- Unit `i1025am` (`start_d19_k95_gap.sh`, `lane_d19_k95_gap.sh`, notifier `notify_d19_k95_gap.sh`). Files: `../exits_d19k95_gap.txt`, `scan/`, `src/`, `read_lower_gap.txt`, `summary_gap.txt`. Memory: the lane refuses to start with less than 5 x 4 GB + 4 GB available; nothing is stopped or terminated for memory (Nathan's rule of 2026-11-08); the sampler only writes `../MEMALERT_gap.txt` below 4 GiB.
+
+## Acceptance (fixed before the run)
+- The lane's pins and selftests as wanted (`kc95_syscheck` selftest 0, `read_lower` 0 and mutations `shift` and `round2` 1 1); the k_c 95 check accepts, both controls exit 1, the k_c 87 check refuses; all five processes print "the record system". A control that fires or a check that fails stops the lane and I report it.
+- The order's rule, written before: **no sign change in 1.445 to 1.525 and equal edge signs with 1.435 and 1.535 (all -)** closes the pair caveat; a sign change, or a hybrid sign + at any of the five points, leaves it open and is reported by position.
+- Reported: the five hybrid signs and ln|det|, every robust change by position, non-robust points, ln|det| minima without a sign change, the float64 sign against the hybrid, seconds per point, peak RSS.
+
+## Predictions, registered before the run (mine, information)
+- The pinned copies are accepted with controls 1 1 and the k_c 87 check refusing (96%); all five processes print the record system (93%); every point noise-robust (85%).
+- **No robust change in 1.445 to 1.525 and all five hybrid signs -, equal to the edges: 88%** (one change 7%, two or more 5%); ln|det| strictly falls from 1.435 to 1.535 along the seven points (80%; in `../scan` it fell at every step from 1.395 to 1.435 and from 1.535 to 1.545 it is level at -3249.12); ln|det| at 1.525 within 0.3 of -3248.05 (60%; the value of a single zero at lambda_1 = 1.540058 beside the 1.535 point, ln|lambda - lambda_1| plus a smooth part).
+- The float64 sign agrees with the hybrid at all five points (85%; at 1.535 it differed).
+- Seconds per point 3500 to 6000 s (65%; `../scan` 3763 to 6562 s with 16 threads, now 5 + the leg lane's 8 from about 23:30 UTC, about 65 min, + the recount's 2 = 15 of 20); the lane ends by 01:30 UTC (70%); peak RSS per process below 3.6 GiB (85%; 3.07 to 3.14 GiB in `../scan`).
+
+## Status
+- 2026-11-23 23:22 UTC: README, lane and notifier written (the summarizer is written while the scan runs, before its data are read); dry run passed (23:22:29 UTC; the lane's list check refuses a wrong list, tested on a copy); the scan starts after this README is on origin.
