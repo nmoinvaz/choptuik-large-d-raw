@@ -1,1 +1,10 @@
 qd entries: 0 of 1 rates done, 1 to run
+lam 5.1408197887863025: qd entries, qd LU sign -1 ln|det| 3431.109192062 pivots 4.60e-30..1.32e+01 (control none; matrix 9528.3 s, all 9598.3 s)
+dd entries (the control): lam, sign, ln|det| (fit sign, ln|det|; |dev|)
+  5.1408197887863025   -1 3601.178103660   fit -1 3601.178103660   0.00e+00
+  worst |dev| 0.00e+00 against 1e-06: linear (consistent)
+qd entries: lam, sign, ln|det| (fit sign, ln|det|; |dev|)
+  5.1408197887863025   -1 3431.109192062   fit -1 3431.109192062   0.00e+00
+  worst |dev| 0.00e+00 against 1e-06: linear (consistent)
+the control did not fire: the double-double rows are linear, unlike #1078's; the test cannot decide
+verdict: NOT RESOLVED (quad-double rows linear; double-double rows not jagged or missing)
