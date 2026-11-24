@@ -22,3 +22,32 @@ capped_run: child pid 91730, cap 43200 s
   ax = a * ((p * p + m * m) + 2 * L * g + (n - 1) * (1 - a2)) / (2 * x)
 /Users/nathan/Source/choptuik-large-d-1025m2/solver/matter/dss_ell.py:216: RuntimeWarning: overflow encountered in multiply
   pc = n * c * (p + m) / (2 * x)
+/Users/nathan/Source/choptuik-large-d-1025m2/solver/matter/dss_ell.py:213: RuntimeWarning: overflow encountered in multiply
+  cx = c * ((n - 1) * (a2 - 1) - 2 * L * g) / x
+/Users/nathan/Source/choptuik-large-d-1025m2/solver/matter/dss_ell.py:213: RuntimeWarning: overflow encountered in divide
+  cx = c * ((n - 1) * (a2 - 1) - 2 * L * g) / x
+/Users/nathan/Source/choptuik-large-d-1025m2/solver/matter/dss_ell.py:214: RuntimeWarning: overflow encountered in divide
+  ax = a * ((p * p + m * m) + 2 * L * g + (n - 1) * (1 - a2)) / (2 * x)
+/Users/nathan/Source/choptuik-large-d-1025m2/solver/matter/dss_ell.py:217: RuntimeWarning: overflow encountered in divide
+  lt = L * c * a2 * q / x
+/Users/nathan/Source/choptuik-large-d-1025m2/solver/matter/dss_ell.py:219: RuntimeWarning: invalid value encountered in subtract
+  mx = (-self.D(m, omega) - cx * m + c * m / x - pc + lt) / (x + c)
+/Users/nathan/Source/choptuik-large-d-1025m2/solver/matter/dss_ell.py:307: RuntimeWarning: invalid value encountered in add
+  C[Kk + 1] = (Kk * C[Kk] - (n - 1) * (cs(C, A2, Kk) - C[Kk]) + 2 * L * cs(C, G, Kk)) / (Kk + 1)
+/Users/nathan/Source/choptuik-large-d-1025m2/solver/matter/dss_ell.py:325: RuntimeWarning: overflow encountered in multiply
+  aG = cs(A, Q2, Kk) + (n - 1) * (A[Kk] - cs(A, A2, Kk)) + 2 * L * cs(A, G, Kk)
+/Users/nathan/Source/choptuik-large-d-1025m2/solver/matter/dss_ell.py:334: RuntimeWarning: overflow encountered in subtract
+  rest = tau_term - zmu - cs(V, M, Kk) - cs(C, M, Kk) + 0.5 * n * cs(C, PM, Kk) - L * cs(C, H, Kk)
+/Users/nathan/Source/choptuik-large-d-1025m2/solver/matter/dss_ell.py:218: RuntimeWarning: overflow encountered in divide
+  px = (-self.D(p, omega) + cx * p - c * p / x + pc - lt) / (x - c)
+/Users/nathan/Source/choptuik-large-d-1025m2/solver/matter/dss_ell.py:218: RuntimeWarning: invalid value encountered in add
+  px = (-self.D(p, omega) + cx * p - c * p / x + pc - lt) / (x - c)
+/Users/nathan/Source/choptuik-large-d-1025m2/solver/matter/dss_ell.py:219: RuntimeWarning: overflow encountered in divide
+  mx = (-self.D(m, omega) - cx * m + c * m / x - pc + lt) / (x + c)
+/Users/nathan/Source/choptuik-large-d-1025m2/solver/matter/dss_ell.py:216: RuntimeWarning: overflow encountered in divide
+  pc = n * c * (p + m) / (2 * x)
+/Users/nathan/Source/choptuik-large-d-1025m2/solver/matter/dss_ell.py:325: RuntimeWarning: invalid value encountered in subtract
+  aG = cs(A, Q2, Kk) + (n - 1) * (A[Kk] - cs(A, A2, Kk)) + 2 * L * cs(A, G, Kk)
+/Users/nathan/Source/choptuik-large-d-1025m2/solver/matter/dss_ell.py:214: RuntimeWarning: overflow encountered in add
+  ax = a * ((p * p + m * m) + 2 * L * g + (n - 1) * (1 - a2)) / (2 * x)
+{"D": 21.3125, "l": 1, "kc": 87, "kappa": 0.7, "u0": 0.04, "Ks": 30, "Delta": 1.126630347829322, "Delta_pred": 1.1266255984433848, "F": 4.5707523488363493e-10, "F_start": 3.04536058971142e-05, "steps": 2916, "constraint": 0.004028508772344791, "dDelta_dF": 1150469865.7665, "lam_gauge": 0.9493620657969197, "h": 0.0625, "seconds": 794, "sv_J_small": [1.9886478288146638e-16, 2.28715277384102e-16, 3.178396927357447e-16, 4.509589020418477e-16], "sv_J_max": 14.1830492477111, "cos_t_v": [0.08231338592653052, 0.07318345388694696, 0.08650523429888816, 0.052271312243608876], "sv_B_min": 4.324535677074972e-17, "sv_B_max": 14.183049284411936, "tan_norm": 0.3495878294319062, "sv_fold": 3.178396927357447e-16, "cos_fold": 0.08650523429888816, "i_fold": 2, "n_null": 80, "sv_reg_small": [4.954425241735733e-11, 1.2910508311228307e-10, 2.206093254091655e-10, 2.2158292747971028e-10], "cos_t_reg": [0.05615571378041782, 0.009627430118699584, 0.003467122993834594, 0.00015576279783142998]}
