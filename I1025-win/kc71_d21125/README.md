@@ -1,6 +1,6 @@
 # I1025-win/kc71_d21125: lambda_1 at k_c 71 on leg 6's D 21.125 state, a hybrid sign scan at 0.855 to 0.885 (winb)
 
-Written before the run, 2026-11-24 02:45:48 UTC (substituted from `date -u` when pushed). No scan had been run for this folder when the order, the written lines and the estimates below were written. The dry test ran the pins, the `read_lower.py` selftests and the state check (read-only, 2 s each, outputs `*.txt.dry`); the real run repeats them first.
+Written before the run, 2026-11-24 01:45:56 UTC (the time of the README-first push, fdfc8806; later pushes keep it). No scan had been run for this folder when the order, the written lines and the estimates below were written. The dry test ran the pins, the `read_lower.py` selftests and the state check (read-only, 2 s each, outputs `*.txt.dry`); the real run repeats them first.
 
 ## Order (t5's hc of 2026-11-24, winb section; the #1025 comments 7116849518 and 7118341764 closed the k_c 95 D 19 reading)
 
@@ -76,7 +76,7 @@ Started outside my terminal: `Win32_Process.Create` of `conhost.exe --headless c
 - **Machine at the start:** on AC (battery status 2, charge 100), clock 2995 of 2995 MHz, free physical memory 23.4 GB, beside it the other project's I114 `convergence.py` jobs (python 880 and 4940), not touched.
 - **Machine over the run:** sampler (`rows/scan_samples.csv`, 56 stamps, 01:46:13 to 02:42:35) gap at most 63 s; memory watcher (alert-only): lowest free 19.46 GB, 0 alerts (sampler: 19.64 GB); laptop CPU 81 % mean, 98 % max; peak private per worker 1.81 to 1.82 GB (four workers, about 7.3 GB); keep-awake helper held 3420 s and cleared (`rows/scan_keepawake.log`); System log 01:40 to 02:50 UTC: no Kernel-Power event, only two Kernel-General id 1 events at 01:48:25 and 01:48:26 (clock writes of 0 ms, as before) and two id 24; no standby. The other project's I114 jobs were not touched.
 
-Pushed 2026-11-24 02:45:48 UTC.
+Pushed 2026-11-24 02:46:15 UTC.
 
 ## Result
 
