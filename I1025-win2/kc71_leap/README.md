@@ -209,3 +209,5 @@ New tag `l1kc71Lw1025e` (its own record file and states; the seeds are tag c's, 
 ## Queued restart of leg 6 at its cap (the coordinator's hc ~04:40 UTC 24 Nov)
 
 When leg 6 ends by its cap (07:13:13 UTC), `run_leap9.sh` restarts it from its last two states as tag l1kc71Lw1025h to D_end 21.75 (h 0.03125, a fresh 12 h cap, the same guard rule and watches); the order, the table and the conditions are in `../kc79_leap/README.md` ("Queued restarts at the caps"). The restart is recorded here when it happens.
+
+Restarted 24 Nov 07:18:11 UTC as leg 9 (tag l1kc71Lw1025h, seeds D 21.34375 and D 21.375, root pid 34332, cap 19:18:11 UTC); details in `../kc79_leap/README.md` ("Restart log").
