@@ -72,3 +72,15 @@ svd fallback: gesdd did not converge, gesvd instead
 /Users/nathan/Source/choptuik-large-d-1025m2/solver/matter/dss_ell.py:317: RuntimeWarning: overflow encountered in add
   r = tau_term - wpu + cs(V, P, Kk) + cs(C, P, Kk) - 0.5 * n * cs(C, PM, Kk) + L * cs(C, H, Kk)
 {"D": 21.96875, "l": 1, "kc": 87, "kappa": 0.7, "u0": 0.04, "Ks": 30, "Delta": 1.1447539835893297, "Delta_pred": 1.1447532369869893, "F": 4.070817956295071e-10, "F_start": 9.890001094555338e-06, "steps": 2877, "constraint": 0.006203523481294897, "dDelta_dF": 6143623983.020996, "lam_gauge": 0.964636024093768, "h": 0.03125, "seconds": 1123, "sv_J_small": [1.6019131841530106e-16, 3.7334264057382194e-16, 5.814497307354888e-16, 7.675888655291231e-16], "sv_J_max": 15.132851927268826, "cos_t_v": [0.16013172737273249, 0.10335658949736536, 0.013329414403690698, 0.011241915963702553], "sv_B_min": 1.591396642348429e-17, "sv_B_max": 15.132851945031922, "tan_norm": 0.5557818003330189, "sv_fold": 1.6019131841530106e-16, "cos_fold": 0.16013172737273249, "i_fold": 0, "n_null": 79, "sv_reg_small": [2.120834744333779e-11, 5.198967716136118e-11, 7.325510704226049e-11, 3.794158458509355e-10], "cos_t_reg": [0.061028434216140195, 0.0088668376204925, 0.060816577157363834, 0.0022974672102472732]}
+svd fallback: gesdd did not converge, gesvd instead
+Traceback (most recent call last):
+  File "/Users/nathan/Source/choptuik-large-d-1025m2/solver/matter/ell_leap.py", line 76, in <module>
+    U, sv, Vt = np.linalg.svd(J, full_matrices=False)
+                ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nathan/Source/venv-macm3-1058b/lib/python3.14/site-packages/numpy/linalg/_linalg.py", line 1840, in svd
+    u, s, vh = gufunc(a, signature=signature)
+               ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nathan/Source/venv-macm3-1058b/lib/python3.14/site-packages/numpy/linalg/_linalg.py", line 153, in _raise_linalgerror_svd_nonconvergence
+    raise LinAlgError("SVD did not converge")
+numpy.linalg.LinAlgError: SVD did not converge
+capped_run: exit 1 wall 13382 s cap_hit False
