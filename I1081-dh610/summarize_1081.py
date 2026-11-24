@@ -50,8 +50,22 @@ def selftest(mutate):
         got = parse_kraw(t)
         bad += got != want
         print(f"  parse {t[:60]!r}: {got} ({'ok' if got == want else 'WRONG'})")
+    planted = ("chain exc2 2026-11-23 17:47:30 margins M3x2E2_h1e-12_w1e-12 exit 0 (0 wanted): Krawczyk M = 3: K(X) in int X: True; relative margins +0.711, +0.528, +0.981, +0.992\n"
+               "xload exc2 2026-11-23 18:06:05 cross-load margins M3x2E2_h1e-12_w1e-12 exit 0 (0 wanted): Krawczyk M = 3: K(X) in int X: True; relative margins +0.943, +0.945, +0.988, +0.995\n")
+    want = (True, [0.711, 0.528, 0.981, 0.992])
+    got = ref79(planted, loose=mutate)
+    bad += got != want
+    print(f"  ref79 on a chain line followed by a cross-load line: {got} (expected {want}): {'ok' if got == want else 'WRONG'}")
     print("selftest" + (" --mutate" if mutate else ""), "FAIL" if bad else "PASS")
     return 1 if bad else 0
+
+
+def ref79(text, loose=False):
+    """the #1079 rerun's unperturbed margins at the second zero: the line of the chain stage (not the later cross-load line). loose=True is the control's mutation: the last line of any stage."""
+    pat = (r"margins M3x2E2_h1e-12_w1e-12 exit 0 \(0 wanted\)" if loose else r"^chain exc2 \S+ \S+ margins M3x2E2_h1e-12_w1e-12 exit 0 \(0 wanted\)") + \
+        r": Krawczyk M = 3: K\(X\) in int X: (True|False); relative margins ([+-][\d.]+(?:, [+-][\d.]+)*)"
+    m = re.findall(pat, text, re.M)
+    return (m[-1][0] == "True", [float(x) for x in m[-1][1].split(", ")]) if m else None
 
 
 def rd(path):
@@ -101,6 +115,9 @@ if __name__ == "__main__":
             if r != "U":
                 checks.append(("perturbed box differs from U", c, r, diff == "True"))
         checks.append(("point record prec/orders", c, "point", pt["prec"] == cf["prec"] and pt.get("orders") == [28, 16]))
+        if c == "b":
+            for r in RUNS:
+                checks.append(("b's box differs from a's at the same run (the 384-bit run is not a copy)", c, r, sets_hash(boxes[r]) != sets_hash(jl(f"cfg_a/box_{r}.json"))))
     print()
     pa, pc_ = jl("cfg_a/point.json"), jl("cfg_c/point.json")
     same = all(pa[k] == pc_[k] for k in ("p", "g", "steps"))
@@ -139,8 +156,7 @@ if __name__ == "__main__":
     ent = datetime.datetime.fromisoformat(re.search(r"== (\S+ \S+) UTC", en)[1]) if en else None
     mins = (ent - stt).total_seconds() / 60 if stt and ent else None
     print(f"pool: {stt or 'n/a'} to {ent or 'n/a'}" + (f" ({mins:.0f} min)" if mins else ""))
-    s79 = re.findall(r"margins M3x2E2_h1e-12_w1e-12 exit 0 \(0 wanted\): Krawczyk M = 3: K\(X\) in int X: (True|False); relative margins ([+-][\d.]+(?:, [+-][\d.]+)*)", open(os.path.join(ROOT, "..", "I1079-dh610", "steps.txt")).read())
-    k79 = (s79[-1][0] == "True", [float(x) for x in s79[-1][1].split(", ")]) if s79 else None
+    k79 = ref79(open(os.path.join(ROOT, "..", "I1079-dh610", "steps.txt")).read())
     print(f"#1079 rerun, second zero, unperturbed (c40fbc77): {k79}; this run's (a, U): {res['a']['U']}; equal to the printed digits: {k79 == res['a']['U']}")
     ok = lambda c: "right" if c else "WRONG"
     fails_a = 6 - vd["a"][1]

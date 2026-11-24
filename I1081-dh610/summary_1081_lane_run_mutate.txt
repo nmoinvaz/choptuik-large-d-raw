@@ -1,0 +1,62 @@
+| config | run | exit | K(X) in int X | relative margins | smallest | box seconds (file) | perturbed calls | sets differ from U |
+|---|---|---|---|---|---|---|---|---|
+| a | U | 0 | True | +0.711, +0.528, +0.981, +0.992 | +0.528 | 369 | none | - |
+| a | s1 | 1 | False | +0.031, -0.606, +0.979, +0.994 | -0.606 | 369 | 2352 | True |
+| a | s2 | 1 | False | -0.081, -0.774, +0.985, +0.993 | -0.774 | 369 | 2352 | True |
+| a | s3 | 1 | False | +0.311, -0.251, +0.973, +0.990 | -0.251 | 359 | 2352 | True |
+| a | s4 | 0 | True | +0.696, +0.502, +0.988, +0.994 | +0.502 | 358 | 2352 | True |
+| a | s5 | 0 | True | +0.559, +0.275, +0.981, +0.992 | +0.275 | 324 | 2352 | True |
+| a | s6 | 1 | False | +0.255, -0.240, +0.984, +0.993 | -0.240 | 319 | 2352 | True |
+| b | U | 0 | True | +0.711, +0.528, +0.981, +0.992 | +0.528 | 687 | none | - |
+| b | s1 | 1 | False | +0.031, -0.606, +0.979, +0.994 | -0.606 | 1100 | 2352 | True |
+| b | s2 | 1 | False | -0.081, -0.774, +0.985, +0.993 | -0.774 | 771 | 2352 | True |
+| b | s3 | 1 | False | +0.311, -0.251, +0.973, +0.990 | -0.251 | 1104 | 2352 | True |
+| b | s4 | 0 | True | +0.696, +0.502, +0.988, +0.994 | +0.502 | 709 | 2352 | True |
+| b | s5 | 0 | True | +0.559, +0.275, +0.981, +0.992 | +0.275 | 762 | 2352 | True |
+| b | s6 | 1 | False | +0.255, -0.240, +0.984, +0.993 | -0.240 | 942 | 2352 | True |
+| c | U | 0 | True | +0.971, +0.953, +0.998, +0.999 | +0.953 | 634 | none | - |
+| c | s1 | 0 | True | +0.903, +0.839, +0.998, +0.999 | +0.839 | 518 | 2352 | True |
+| c | s2 | 0 | True | +0.892, +0.823, +0.999, +0.999 | +0.823 | 454 | 2352 | True |
+| c | s3 | 0 | True | +0.931, +0.875, +0.997, +0.999 | +0.875 | 392 | 2352 | True |
+| c | s4 | 0 | True | +0.970, +0.950, +0.999, +0.999 | +0.950 | 387 | 2352 | True |
+| c | s5 | 0 | True | +0.951, +0.916, +0.998, +0.999 | +0.916 | 384 | 2352 | True |
+| c | s6 | 0 | True | +0.926, +0.876, +0.998, +0.999 | +0.876 | 372 | 2352 | True |
+
+| config | perturbed runs passing | smallest margin of the six perturbed runs | robust (all six pass, smallest > +0.2) | unperturbed run passes | unperturbed margins |
+|---|---|---|---|---|---|
+| a (h = w = 1e-12, PREC 256) | 2 of 6 | -0.774 | False | True | +0.711, +0.528, +0.981, +0.992 |
+| b (h = w = 1e-12, PREC 384) | 2 of 6 | -0.774 | False | True | +0.711, +0.528, +0.981, +0.992 |
+| c (h = w = 1e-13, PREC 256) | 6 of 6 | +0.823 | True | True | +0.971, +0.953, +0.998, +0.999 |
+
+acceptance checks: 67 of 67 hold; failing: none; every job exit 0: True (24 jobs)
+config a: seconds (wall, /usr/bin/time -v) point 368, box U 369, perturbed 319 to 370; peak RSS 0.06 to 0.06 GiB
+config b: seconds (wall, /usr/bin/time -v) point 716, box U 687, perturbed 709 to 1105; peak RSS 0.06 to 0.06 GiB
+config c: seconds (wall, /usr/bin/time -v) point 653, box U 634, perturbed 372 to 519; peak RSS 0.06 to 0.06 GiB
+pool: 2026-11-24 00:50:32 to 2026-11-24 01:37:27 (47 min)
+#1079 rerun, second zero, unperturbed (c40fbc77): (True, [0.943, 0.945, 0.988, 0.995]); this run's (a, U): (True, [0.711, 0.528, 0.981, 0.992]); equal to the printed digits: False
+time ratios b over a per job kind: [1.94, 1.86, 2.98, 2.09, 3.07, 1.98, 2.35, 2.96]; PREC 256 seconds 319 to 653; peak RSS over all jobs 0.06 GiB
+
+| prediction (registered before the run; right = the stated event happened) | result | verdict |
+|---|---|---|
+| every job exit 0 and the acceptance holds (88%) | exit0 True, failing checks 0 | right |
+| the perturbation acted in all 18 perturbed runs (96%) | 18 of 18 | right |
+| the 18 perturbed box files all differ from their U (96%) | 18 of 18 | right |
+| unperturbed box passes at a (90%) | True | right |
+| unperturbed box passes at b (85%) | True | right |
+| unperturbed box passes at c (90%) | True | right |
+| (a, U) margins equal the #1079 rerun's to the printed digits (85%) | False | WRONG |
+| (a) at least four of six perturbed runs fail (75%) | 4 of 6 fail | right |
+| (a) all six perturbed runs fail (25%) | 4 of 6 fail | WRONG |
+| (a) all six perturbed runs pass (5%) | 2 of 6 pass | WRONG |
+| (a) not robust (97%) | robust False | right |
+| (b) robust (25%) | 2 of 6 pass, smallest -0.774 | WRONG |
+| (c) robust (70%) | 6 of 6 pass, smallest +0.823 | right |
+| at least one of b and c robust (75%) | b False, c True | right |
+| both b and c robust (20%) | b False, c True | WRONG |
+| PREC 256 jobs each 300 to 650 s (70%) | 319 to 653 | WRONG |
+| PREC 384 jobs 1.3 to 2.5 times the PREC 256 (a) jobs of the same kind (70%) | 1.86 to 3.07 | WRONG |
+| the pool ends within 75 min of its start (70%) | 47 min | right |
+| peak RSS per job below 3 GiB (80%) | max 0.06 GiB | right |
+
+mutate: verdicts changed by the planted change, per configuration (a, b, c): [True, True, True]
+mutate: control FIRED (exit 1)

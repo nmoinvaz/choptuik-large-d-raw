@@ -45,3 +45,77 @@ Machine dh610 (Fedora 45, i7-12700, 20 logical CPUs, 64 GB RAM, Linux). Issue ht
 ## Status
 - 2026-11-24 00:47 UTC: folder and README written; scripts and the summarizer next, nothing run.
 - 2026-11-24 00:50 UTC: scripts written (`lane_1081.sh`, `job.sh`, `common.sh`, `start_1081.sh`, `notify_1081.sh`, `summarize_1081.py`). The lane's dry run passed at 00:49:21 UTC (pins, summarizer selftest 0 and `--mutate` 1; its two lines are the first of `exits_1081.txt`). The summarizer was tested on planted data in a scratch directory (test only: the real-file path, a planted missing perturbation and a planted equal box are caught, `--mutate` fires); a 3-step pilot of the perturbed box command at PREC 384 and h = w = 1e-13 ran (6.6 s per step at the start, perturbed calls 6; scratch, not a result). The unit `i1081` starts after this README is pushed.
+
+
+## Result (`summarize_1081.py` > `summary_1081.txt` prints the tables from the files; its `--mutate` exit 1 with "control FIRED", `selftest` 0, `selftest --mutate` 1)
+| config | run | exit | K(X) in int X | relative margins | smallest | box seconds (file) | perturbed calls | sets differ from U |
+|---|---|---|---|---|---|---|---|---|
+| a | U | 0 | True | +0.711, +0.528, +0.981, +0.992 | +0.528 | 369 | none | - |
+| a | s1 | 1 | False | +0.031, -0.606, +0.979, +0.994 | -0.606 | 369 | 2352 | True |
+| a | s2 | 1 | False | -0.081, -0.774, +0.985, +0.993 | -0.774 | 369 | 2352 | True |
+| a | s3 | 1 | False | +0.311, -0.251, +0.973, +0.990 | -0.251 | 359 | 2352 | True |
+| a | s4 | 0 | True | +0.696, +0.502, +0.988, +0.994 | +0.502 | 358 | 2352 | True |
+| a | s5 | 0 | True | +0.559, +0.275, +0.981, +0.992 | +0.275 | 324 | 2352 | True |
+| a | s6 | 1 | False | +0.255, -0.240, +0.984, +0.993 | -0.240 | 319 | 2352 | True |
+| b | U | 0 | True | +0.711, +0.528, +0.981, +0.992 | +0.528 | 687 | none | - |
+| b | s1 | 1 | False | +0.031, -0.606, +0.979, +0.994 | -0.606 | 1100 | 2352 | True |
+| b | s2 | 1 | False | -0.081, -0.774, +0.985, +0.993 | -0.774 | 771 | 2352 | True |
+| b | s3 | 1 | False | +0.311, -0.251, +0.973, +0.990 | -0.251 | 1104 | 2352 | True |
+| b | s4 | 0 | True | +0.696, +0.502, +0.988, +0.994 | +0.502 | 709 | 2352 | True |
+| b | s5 | 0 | True | +0.559, +0.275, +0.981, +0.992 | +0.275 | 762 | 2352 | True |
+| b | s6 | 1 | False | +0.255, -0.240, +0.984, +0.993 | -0.240 | 942 | 2352 | True |
+| c | U | 0 | True | +0.971, +0.953, +0.998, +0.999 | +0.953 | 634 | none | - |
+| c | s1 | 0 | True | +0.903, +0.839, +0.998, +0.999 | +0.839 | 518 | 2352 | True |
+| c | s2 | 0 | True | +0.892, +0.823, +0.999, +0.999 | +0.823 | 454 | 2352 | True |
+| c | s3 | 0 | True | +0.931, +0.875, +0.997, +0.999 | +0.875 | 392 | 2352 | True |
+| c | s4 | 0 | True | +0.970, +0.950, +0.999, +0.999 | +0.950 | 387 | 2352 | True |
+| c | s5 | 0 | True | +0.951, +0.916, +0.998, +0.999 | +0.916 | 384 | 2352 | True |
+| c | s6 | 0 | True | +0.926, +0.876, +0.998, +0.999 | +0.876 | 372 | 2352 | True |
+
+| config | perturbed runs passing | smallest margin of the six perturbed runs | robust (all six pass, smallest > +0.2) | unperturbed run passes | unperturbed margins |
+|---|---|---|---|---|---|
+| a (h = w = 1e-12, PREC 256) | 2 of 6 | -0.774 | False | True | +0.711, +0.528, +0.981, +0.992 |
+| b (h = w = 1e-12, PREC 384) | 2 of 6 | -0.774 | False | True | +0.711, +0.528, +0.981, +0.992 |
+| c (h = w = 1e-13, PREC 256) | 6 of 6 | +0.823 | True | True | +0.971, +0.953, +0.998, +0.999 |
+
+acceptance checks: 74 of 74 hold; failing: none; every job exit 0: True (24 jobs)
+config a: seconds (wall, /usr/bin/time -v) point 368, box U 369, perturbed 319 to 370; peak RSS 0.06 to 0.06 GiB
+config b: seconds (wall, /usr/bin/time -v) point 716, box U 687, perturbed 709 to 1105; peak RSS 0.06 to 0.06 GiB
+config c: seconds (wall, /usr/bin/time -v) point 653, box U 634, perturbed 372 to 519; peak RSS 0.06 to 0.06 GiB
+pool: 2026-11-24 00:50:32 to 2026-11-24 01:37:27 (47 min)
+#1079 rerun, second zero, unperturbed (c40fbc77): (True, [0.711, 0.528, 0.981, 0.992]); this run's (a, U): (True, [0.711, 0.528, 0.981, 0.992]); equal to the printed digits: True
+time ratios b over a per job kind: [1.94, 1.86, 2.98, 2.09, 3.07, 1.98, 2.35, 2.96]; PREC 256 seconds 319 to 653; peak RSS over all jobs 0.06 GiB
+
+- **Config c is robust by the order's criterion:** all six perturbed runs pass, smallest margin +0.823 (seed 2); unperturbed +0.971, +0.953, +0.998, +0.999. **Config a is not** (2 of 6 pass: seeds 4 and 5; seeds 1, 2, 3 and 6 fail with a margin between -0.240 and -0.774). **Config b is not** (2 of 6 pass).
+- **b equals a at every run:** the four relative margins of all seven boxes (U and seeds 1 to 6) are the same to the printed digits in a and b (compared run by run from the Krawczyk logs), although the b runs took 1.9 to 3.1 times longer, their run files record prec 384, and the 384-bit run files differ from the 256-bit ones in their `sets` at all seven runs (added check, below). The same seeds give the same frames Q (float64 from the QR of the midpoint, any PREC), so the same perturbation acts in a and b. What is measured: the margins do not move with the working precision between 256 and 384 bits, and move with the box size. The mechanism (the float64 frames) is the coordinator's reading; this folder shows the two levers, not the mechanism.
+- **Acceptance:** all jobs exit 0; `prec`, `h`, `w`, `orders` [28, 16] recorded as set in all 24 files; the perturbation acted in 18 of 18 runs (`perturbed calls: qr_pivot 2352`) and in none of the unperturbed ones; the 18 perturbed boxes differ from their U; the point files of a and c agree in p, g and steps; `certify_M.py controls` on each U exit 0, CONTROLS ALL AS EXPECTED. 74 of 74 checks hold.
+- **Time and memory:** pool 00:50:32 to 01:37:27 UTC (47 min); PREC 256 jobs 319 to 653 s, PREC 384 jobs 687 to 1105 s (a and c: the point and the unperturbed box 368 to 653 s); the sampled total RSS of the 5 processes at most 0.28 GiB (about 57 MB per process), MemAvailable at least 48.21 GiB, load median 13.08 (the leg lane's 8 and the recount's 2 beside), no alert line in `memlog_i1081.log`.
+- **A correction of my own summarizer, made after the first read:** the lane's first summary (`summary_1081_lane_run.txt`, kept) took the #1079 rerun's reference margins from the *last* matching line of `../I1079-dh610/steps.txt`, which is the cross-load stage (+0.943, +0.945, +0.988, +0.995), not the chain stage (+0.711, +0.528, +0.981, +0.992), and scored the row "(a, U) equals the #1079 rerun" WRONG. The reference is now the anchored chain line, with a selftest case and its `--mutate` (the loose pattern must fail); the row is right. One check was added after the first read: that b's box differs from a's at the same run (7 of 7 hold), which changes no verdict. Nothing else was touched; the table above is the regenerated `summary_1081.txt`.
+
+### Predictions scorecard (written before the run; "right" = the stated event happened)
+| prediction (registered before the run; right = the stated event happened) | result | verdict |
+|---|---|---|
+| every job exit 0 and the acceptance holds (88%) | exit0 True, failing checks 0 | right |
+| the perturbation acted in all 18 perturbed runs (96%) | 18 of 18 | right |
+| the 18 perturbed box files all differ from their U (96%) | 18 of 18 | right |
+| unperturbed box passes at a (90%) | True | right |
+| unperturbed box passes at b (85%) | True | right |
+| unperturbed box passes at c (90%) | True | right |
+| (a, U) margins equal the #1079 rerun's to the printed digits (85%) | True | right |
+| (a) at least four of six perturbed runs fail (75%) | 4 of 6 fail | right |
+| (a) all six perturbed runs fail (25%) | 4 of 6 fail | WRONG |
+| (a) all six perturbed runs pass (5%) | 2 of 6 pass | WRONG |
+| (a) not robust (97%) | robust False | right |
+| (b) robust (25%) | 2 of 6 pass, smallest -0.774 | WRONG |
+| (c) robust (70%) | 6 of 6 pass, smallest +0.823 | right |
+| at least one of b and c robust (75%) | b False, c True | right |
+| both b and c robust (20%) | b False, c True | WRONG |
+| PREC 256 jobs each 300 to 650 s (70%) | 319 to 653 | WRONG |
+| PREC 384 jobs 1.3 to 2.5 times the PREC 256 (a) jobs of the same kind (70%) | 1.86 to 3.07 | WRONG |
+| the pool ends within 75 min of its start (70%) | 47 min | right |
+| peak RSS per job below 3 GiB (80%) | max 0.06 GiB | right |
+
+The time predictions failed twice: the PREC 256 jobs ran 319 to 653 s (registered 300 to 650 s; the c point run took 653 s), and the PREC 384 jobs took 1.86 to 3.07 times the PREC 256 (a) jobs of the same kind (registered 1.3 to 2.5). (b) robust was registered at 25% and did not happen; (c) robust at 70% happened.
+
+## Status after the pool
+- 2026-11-24 01:39 UTC: pool and Krawczyk stage done (lane exit lines in `exits_1081.txt`), result and scorecard above. Next (t5's order, #1081 comment of 01:45 UTC): config c as the second zero's certificate of record, in `record_c/`.
