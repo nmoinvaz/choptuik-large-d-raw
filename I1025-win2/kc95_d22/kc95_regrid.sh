@@ -61,7 +61,7 @@ CMD="$PY -u ell_refine.py $SRC 87 $NEWTAG 95 1 $D $LAM0 --kappa 0.7 --u0 0.04 --
 # threads: the order starts the regrids at tag g's end (all8.done, 19:19:49 UTC at its cap); one regrid of mine at a time (4 threads each)
 log "kc95 D $D regrid waits for the tag g leap's end (all8.done) and for any other regrid of mine to end"
 until [ -e /d/choptuik-i935-raw/I1025-win2/kc79_leap/all8.done ]; do sleep 30; done
-while [ "$(powershell -NoProfile -Command "@(Get-CimInstance Win32_Process | Where-Object { \$_.CommandLine -match 'ell_refine.py l1kc87Lmacm3b' }).Count" | tr -d '\r')" != 0 ]; do sleep 30; done
+while [ "$(powershell -NoProfile -Command "@(Get-CimInstance Win32_Process | Where-Object { \$_.Name -match '^python' -and \$_.CommandLine -match 'ell_refine.py l1kc87Lmacm3b' }).Count" | tr -d '\r')" != 0 ]; do sleep 30; done
 # the coordinator's hc of 24 Nov ~17:55 UTC: "hold the k_c 95 regrids until the #1078 build on t25 ends ...; start them when committed memory is back below ~80 GB" (a wait, nothing is stopped)
 commit_gb() { powershell -NoProfile -Command "[math]::Round((Get-Counter '\\Memory\\Committed Bytes').CounterSamples[0].CookedValue/1GB,1)" | tr -d '\r'; }
 cg=$(commit_gb); held=0
