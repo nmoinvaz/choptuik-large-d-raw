@@ -17,6 +17,10 @@ def dlabel(x):
     return format(x, "g") if MUT == "g" else repr(float(x))          # repr round-trips; "g" keeps 6 digits (the mutation)
 
 
+def predict(pr, slope, step):
+    return pr + (-0.28 if MUT == "slope" else slope) * step             # t5's rule; the mutation ignores the ordered slope
+
+
 def grid(pred):
     k = pred / 0.005
     m = (int(k + 0.5) if MUT != "round" else int(k)) * 0.005          # the prediction rounded to 0.005 (the mutation truncates)
@@ -31,6 +35,11 @@ def selftest():
         m, v = grid(pred)
         good = m == want and len(v) == 6 and v[2] == m and v[5] == m
         print("planted: prediction %.4f -> m %s, grid %s: %s" % (pred, m, " ".join(v), "PASS" if good else "FAIL (wanted m %s)" % want))
+        ok = ok and good
+    for pr, sl, st, want_pred, want_m in ((0.894588, -0.28, 0.0625, 0.877088, "0.875"), (0.857606, -0.32, 0.03125, 0.847606, "0.850")):
+        pd = predict(pr, sl, st)
+        good = abs(pd - want_pred) < 1e-9 and grid(pd)[0] == want_m
+        print("planted: root %.6f, slope %g, step %g -> prediction %.6f (wanted %.6f), m %s: %s" % (pr, sl, st, pd, want_pred, grid(pd)[0], "PASS" if good else "FAIL"))
         ok = ok and good
     for x in (21.125, 21.15625, 21.0625, 21.09375, 21.1875, 20.90625):
         good = float(dlabel(x)) == x
@@ -62,7 +71,7 @@ if __name__ == "__main__":
     subj = git("log", "-1", "--format=%s (%ad)", "--date=iso", rawc).stdout.strip()
     rows = [json.loads(l) for l in git("cat-file", "blob", rawc + ":I1025-dh370/kc87_leg/%s.jsonl" % TAG).stdout.splitlines() if l.strip()]
     row = [r for r in rows if r["D"] == D][-1]
-    pred = PR + slope * (D - PD)
+    pred = predict(PR, slope, D - PD)
     m, vals = grid(pred)
     dn = dlabel(D)
     os.makedirs("%s/%s" % (L, dn), exist_ok=True)
@@ -84,11 +93,11 @@ WIN="%s %s"; REP=%s
 ## D %s (written before its check and scan, %s UTC)
 
 **Inputs** (`%s/pins.txt`): dh370's commit %s (%s): state `I1025-dh370/kc87_leg/%s` blob **%s**, record `%s.jsonl` blob **%s** (%d rows; the check and the scan pick the row of D %s: |F| %.16g, %d steps, Delta %.16g, h %g, k_c %s).
-**Prediction (t5's rule, hc 24 Nov):** the previous k_c 87 root plus slope -0.28 per unit D times the D step: %s %+g x %s = **%.4f**; one robust change within 0.005 of it.
+**Prediction (t5's rule, hcs of 24 Nov):** the previous k_c 87 root plus slope %g per unit D times the D step (slope as ordered: -0.28 up to D 21.1875, -0.32 from D 21.21875): %s %+g x %s = **%.4f**; one robust change within 0.005 of it.
 **Grid:** m = %.4f rounded to 0.005 = %s; lambda %s and a repeat of %s: 6 evaluations on 4 processes of 1 thread in two rounds (process 0 runs %s then %s, process 1 runs %s then the repeat of %s, process 2 the first %s, process 3 %s); window read `read_lower.py scan %s %s` (the interval prediction +-0.005, %.4f to %.4f, lies inside it).
 **Predictions (mine, before the run):** as D 21.0625's: the source check accepts with all controls firing and the k_c 79 check refusing about 90%%; all six noise-robust about 75%%; exactly one robust change in the window about 85%%; its det-linear estimate within 0.005 of the prediction about 75%%, within 0.002 about 40%%; edge signs unequal about 85%%; the repeat of %s bit-identical about 90%%; the float64 sign differs from the hybrid at one or more points about 55%%; scan wall 10 to 40 min about 70%%; peak RSS per process below 4.5 GB about 85%%.
 ## Log
 """ % (dn, now, dn, rawc, subj, sf, sb, TAG, rb, len(rows), dlabel(D), row["F"], row["steps"], row["Delta"], row.get("h", 0.03125), row["kc"],
-       format(PR, ".6f"), slope, "%.10g" % (D - PD), pred, pred, m, ", ".join(vals[:5]), m, vals[0], vals[4], vals[1], m, m, vals[3], vals[0], vals[4], pred - 0.005, pred + 0.005, m)
+       slope, format(PR, ".6f"), slope, "%.10g" % (D - PD), pred, pred, m, ", ".join(vals[:5]), m, vals[0], vals[4], vals[1], m, m, vals[3], vals[0], vals[4], pred - 0.005, pred + 0.005, m)
     open(L + "/README.md", "a").write(sec)
     print("D %s: commit %s, state %s, record %s, prediction %.4f, m %s, grid %s" % (dn, rawc, sb, rb, pred, m, " ".join(vals)))
