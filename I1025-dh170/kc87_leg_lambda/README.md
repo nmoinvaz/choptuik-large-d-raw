@@ -22,6 +22,25 @@ Code: the worktree of the earlier tasks, unchanged: `~/Source/choptuik-large-d-1
 1. Pin the point's state and record by blob from the commit t5 or dh370 names. 2. `run_accept.sh <D>` (unit `i1025-k87l<D>a`): selftests (0); `kc87_syscheck_1025.py` accepts (exit 0; `--mutate=F` and `--mutate=steps` exit 1); `kc79_syscheck_1025.py` refuses (exit 1); VERDICT ACCEPTED. 3. `run_scan.sh <D>` (unit `i1025-k87l<D>s`): `d18_hybsign.py` on 7 values at 0.005 over +-0.015 around m (the prediction rounded to 0.005) and a repeat of m: 8 single-thread processes at nice 10, one round; the first m is process 3, the repeat process 7. 4. `read_lower.py scan m-0.015 m+0.015`, its selftest and both mutations, `repeat_check.py`. 5. Result in this README, push, report to t5; one #1025 post per point or per batch as t5 prefers.
 **Prediction rule (t5's):** k_c 79's reading at that D (dh610; t5 relays) + 0.002; the point passes if the k_c 87 estimate (det-linear) lies within 0.005 of it. For D 21.03125 t5 gives 0.9022 from dh610's 0.900194.
 
+## D 21.03125, result (written 2026-11-24 09:11:58 UTC)
+**Source:** ACCEPTED 05:52:34 UTC (logged above). **Scan** (unit `i1025-k87l0312s`, 8 processes of 1 thread, nice 10; 05:52:41 to 09:11:16 UTC, 11915 s): exit 0 for all eight (09:06:51 to 09:11:16 UTC); all printed the record system (|F| 4.6125076374e-10 against the record's 4.6125523314e-10, 2944 steps equal); **8 of 8 noise-robust**; the repeat of 0.900 (the first on process 3, the repeat on process 7) **bit-identical** (hybrid -1, ln|det| -2620.5887406879574, float64 ln|det| -2620.3255909800496, noise [-1, -1]; `repeat_check.py` PASS); `read_lower.py` selftest exit 0, `--mutate=shift` and `--mutate=round2` exit 1; reader exit 0 (`21.03125/read_lower.txt`). Seconds per point 11637 to 11902; wall per process 3:14:09 to 3:18:34 by /usr/bin/time; peak RSS 2.04 to 2.19 GiB; lowest MemAvailable 16.6 GiB (198 samples); no memory alert (`alert.log` does not exist).
+**Hybrid signs, as printed, lambda 0.885 to 0.915:** minus at 0.885, 0.890, 0.895, 0.900; plus at 0.905, 0.910, 0.915; edge signs minus and plus. **One robust change**, none touching a non-robust point, no ln|det| minimum without a sign change:
+| root | bracket | orientation as printed | det-linear estimate | estimator range |
+|---|---|---|---|---|
+| **k_c 87, D 21.03125, dh170 (Linux), dh370's leg** | (0.900, 0.905) | - to + | **0.903342** | [0.902619, 0.903342] |
+The float64 sign differs from the hybrid at 0.900 (float64 plus, at both evaluations): 2 of the 8 evaluations, 1 of the 7 distinct points. ln|det|: 0.885 -2617.4705, 0.890 -2618.2261, 0.895 -2619.1463, 0.900 -2620.5887, 0.905 -2621.2896, 0.910 -2620.5184, 0.915 -2620.4161 (a dip at the root). The estimator range is the spread over the interpolation choices of `d185_scan_read.changes`, not an enclosure; the bracket is the 0.005 grid step.
+**Against the prediction (t5's):** 0.9022 (dh610's k_c 79 0.900194 + 0.002): the estimate is **+0.001142** above it: **within 0.005: met** (and within my 0.002). **The k_c 87 minus k_c 79 step at D 21.03125 is +0.003148** (0.903342 against dh610's 0.900194; t5's figure at D 21.0 was +0.0021).
+| prediction | result |
+|---|---|
+| t5's: the k_c 87 estimate within 0.005 of 0.9022 | **met**: +0.001142 |
+| mine: `kc87_syscheck_1025.py` accepts with all four controls firing (90%) | yes (state |F| -0.032% of the record's, `freeze_from` 2944 = 2944) |
+| every point noise-robust (70%); exactly one robust change (85%); the estimate within 0.002 of 0.9022 (40%) | yes, 8 of 8; yes; yes (+0.001142) |
+| the k_c 87 minus k_c 79 step in [0.000, 0.004] (60%) | yes: +0.003148 |
+| edge signs unequal (85%); the repeat of 0.900 bit-identical (90%) | yes; yes |
+| the float64 sign differs from the hybrid at more than half the points (30%) | no: 2 of 8 evaluations |
+| the scan 2.4 to 3.3 h (65%) | **no, just over**: 3.31 h (11915 s against my 11880 s) |
+| peak RSS of a scan process below 3.5 GiB (90%) | yes, 2.19 GiB |
+
 ## Ruling of t5 on capacity (hc, 24 Nov, recorded 2026-11-24 05:55:06 UTC; it replaces the in-order policy below from the next scan on)
 t5: "rule: after each scan take the NEWEST accepted state (skip the ones between), and from the next scan on use 6 processes: a 0.005 grid over +-0.010 around the prediction (5 points) plus a repeat of the middle, so a scan costs less than 2.8 h. Record the skips and the grid in the README before each scan. This scan continues as started."
 - **Policy:** the D 21.03125 scan (8 processes, +-0.015) continues as started. When it ends I take the newest state dh370 has pushed by then, skip the ones between, and say which were skipped here before that scan starts.
