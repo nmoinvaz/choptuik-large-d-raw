@@ -15,3 +15,4 @@ pushed bd1c47d27a
 /Users/nathan/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_leg_lambda/point87.sh: line 109: 96227 Killed: 9                  ( cd $WTM && nice -n ${NICE:-10} env OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 RAYON_NUM_THREADS=1 P4_WT_MATTER=$WTM PYTHONFAULTHANDLER=1 $PY -u $L/common/capped_run.py 28800 $PY -u $L/common/in/d18_hybsign.py $STUB $STATE $D "$mine" $OUT/scan/scan_D${D}_p$p.jsonl > $OUT/scan/scan_p$p.log 2>&1; rc=$?; echo "$(stamp) UTC proc $p (lambda $mine) exit $rc" >> $OUT/steps.txt )
 cat: /Users/nathan/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_leg_lambda/21.3125/scan/scan_D21.3125_p*.jsonl: No such file or directory
 2026-11-24 13:51:16 UTC rescan: the scan restarts with NP=4 processes
+2026-11-24 14:13:40 UTC scan exit 0
