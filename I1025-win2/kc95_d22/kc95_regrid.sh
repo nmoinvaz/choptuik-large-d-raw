@@ -64,12 +64,13 @@ until [ -e /d/choptuik-i935-raw/I1025-win2/kc79_leap/all8.done ]; do sleep 30; d
 while [ "$(powershell -NoProfile -Command "@(Get-CimInstance Win32_Process | Where-Object { \$_.Name -match '^python' -and \$_.CommandLine -match 'ell_refine.py l1kc87Lmacm3b' }).Count" | tr -d '\r')" != 0 ]; do sleep 30; done
 # the coordinator's hc of 24 Nov ~17:55 UTC: "hold the k_c 95 regrids until the #1078 build on t25 ends ...; start them when committed memory is back below ~80 GB" (a wait, nothing is stopped)
 commit_gb() { powershell -NoProfile -Command "[math]::Round((Get-Counter '\\Memory\\Committed Bytes').CounterSamples[0].CookedValue/1GB,1)" | tr -d '\r'; }
-cg=$(commit_gb); held=0
-while awk -v c="$cg" 'BEGIN { exit !(c >= 80) }'; do
-  [ $held = 0 ] && { log "kc95 D $D regrid held: committed memory $cg GB is not below 80 GB (the order's gate); waits"; held=1; }
+# 24 Nov ~19:30 UTC: "start the D 21.875 regrid now; drop the 80 GB gate" (win2's pagefile is system-managed, 197 GB free on C:, so the commit limit grows): COMMIT_GATE_GB=off skips the wait, a number replaces the 80
+cg=$(commit_gb); held=0; GATE=${COMMIT_GATE_GB:-80}
+while [ "$GATE" != off ] && awk -v c="$cg" -v g="$GATE" 'BEGIN { exit !(c >= g) }'; do
+  [ $held = 0 ] && { log "kc95 D $D regrid held: committed memory $cg GB is not below $GATE GB (the order's gate); waits"; held=1; }
   sleep 60; cg=$(commit_gb)
 done
-log "kc95 D $D regrid: the threads are free and committed memory is $cg GB (below 80), starting"
+log "kc95 D $D regrid: the threads are free, committed memory is $cg GB (gate: $GATE GB), starting"
 cd $WT/solver/matter || exit 1
 { echo "# $(date -u '+%F %T') UTC cmd: $CMD (cwd $WTM, 4 threads)"; } > $OUT/regrid.log
 s0=$(date +%s)
