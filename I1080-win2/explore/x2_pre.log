@@ -1,0 +1,39 @@
+pretune level 5 (approach, xi 0.1995): start |r_5| 8.879e+06  [0 s]
+   it 0: |r_5| 2.623e+06  lam 0.5  B,C_5 -8.122133447976e-01 2.269083610820e-01  [0 s]
+   it 1: |r_5| 2.088e+06  lam 1.0  B,C_5 -3.690840529068e-01 4.297154535029e-02  [0 s]
+   it 2: |r_5| 3.777e+05  lam 1.0  B,C_5 -4.969150701361e-01 -2.402628749836e-02  [0 s]
+   it 3: |r_5| 2.113e+05  lam 1.0  B,C_5 -5.204195943717e-01 -9.875351744923e-02  [0 s]
+   it 4: no decrease; stop at |r_5| 2.113e+05
+pretune level 5 (polish, xi 0.2000): start |r_5| 2.147e+05  [0 s]
+C:\Users\nathan\source\venv-i962\Lib\site-packages\numpy\linalg\_linalg.py:2784: RuntimeWarning: overflow encountered in dot
+  sqnorm = x.dot(x)
+   it 0: no decrease; stop at |r_5| 2.147e+05
+pretuned x [3.526473056696, 0.211497981391, 0.9765085452, -0.0017633195, -0.5204195943717096, -0.09875351744923494]
+M 5, xi1 0.2, fixed (A, w), procs 2; start x [3.526473057, 0.211497981, 0.976508545, -0.00176332, -0.520419594, -0.098753517]
+level radii (approach -> polish): r_1 0.2000 -> 0.2000, r_3 0.2000 -> 0.2000, r_5 0.1995 -> 0.2000
+start residuals: |r_1| 0.00e+00  |r_3| 0.00e+00  |r_5| 2.11e+05
+   level 5 (top): stop at |g| 2.15e+05 (noise floor)
+   level 5 solved: |r_5| 2.15e+05  (19 residuals, 1 s)  [3 s total]
+   Jacobian K computed (4 residuals) [3 s]
+   K by level, max |d r_l / d x_nu| (rows l, columns nu): nu 1  nu 3  nu 5
+     l 1: 0.00e+00  2.01e+14  1.44e+12
+     l 3: 0.00e+00  2.48e+13  9.82e+10
+     l 5: 0.00e+00  1.82e+12  1.12e+10
+   level 5 (top): stop at |g| 1.60e+05 (noise floor)
+   level 5 solved: |r_5| 1.60e+05  (12 residuals, 0 s)  [3 s total]
+level 5 it 0: |r_5| 1.480e+05  lam 0.0312  x [3.526473057, 0.211497981, 1.092628024, -0.002182661, -0.47315977, -0.604515019]  [4 s, 146 residuals]
+level 5 it 0: |r_5| 5.821e+04  lam 0.125  x [3.526473057, 0.211497981, 1.092628024, -0.002182661, -0.711383746, 0.100363246]  [5 s, 154 residuals]
+   level 5 solved: |r_5| 4.72e+04  (20 residuals, 0 s)  [5 s total]
+level 3 it 0: |r_3| 4.949e+05  lam 1  x [3.526473057, 0.211497981, 1.092628024, -0.002182661, -0.702941537, 0.220425279]  [5 s, 156 residuals]
+   level 5 solved: |r_5| 7.89e+04  (9 residuals, 0 s)  [5 s total]
+   level 5 solved: |r_5| 6.03e+04  (10 residuals, 0 s)  [5 s total]
+level 3 it 1: |r_3| 4.156e+05  lam 0.5  x [3.526473057, 0.211497981, 1.097564951, -0.00220049, -0.682475728, 0.217615053]  [6 s, 221 residuals]
+   level 5 solved: |r_5| 6.54e+04  (8 residuals, 0 s)  [6 s total]
+level 5 it 0: |r_5| 2.861e+04  lam 1  x [3.526473057, 0.211497981, 1.090297116, -0.001455285, -0.689528897, 0.256858989]  [6 s, 239 residuals]
+   level 5 solved: |r_5| 2.36e+04  (12 residuals, 0 s)  [6 s total]
+   level 3 (top): stop at |g| 4.16e+05 (noise floor)
+   level 3 solved: |r_3| 4.16e+05  (240 residuals, 4 s)  [6 s total]
+FIXED-A M 5: A 3.526473057  w/w_inf 0.211497981  (w 0.80837, Delta 7.77262)  <F^2> 7.0769  r_1 +7.6203e+06+1.5625e+07i  [6 s, 241 residuals]
+      F_3/F_1 = +0.311236-0.000624i   |.| 0.311237  arg -0.0020   r_3 4.2e+05
+      F_5/F_1 = -0.193529+0.061709i   |.| 0.203129  arg +2.8329   r_5 6.0e+04
+      (uncorrected r_1 +2.2217e+06-4.5308e+04i)

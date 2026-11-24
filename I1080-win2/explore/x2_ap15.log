@@ -1,0 +1,30 @@
+M 5, xi1 0.2, fixed (A, w), procs 2; start x [3.526473057, 0.211497981, 0.976508545, -0.00176332, 0.026652899, 0.003934666]
+level radii (approach -> polish): r_1 0.2000 -> 0.2000, r_3 0.2000 -> 0.2000, r_5 0.1500 -> 0.2000
+start residuals: |r_1| 0.00e+00  |r_3| 0.00e+00  |r_5| 3.22e+06
+level 5 it 0: |r_5| 2.246e+06  lam 0.5  x [3.526473057, 0.211497981, 0.976508545, -0.00176332, -0.792050477, 0.224332728]  [1 s, 12 residuals]
+level 5 it 1: |r_5| 1.152e+06  lam 1  x [3.526473057, 0.211497981, 0.976508545, -0.00176332, -0.429272115, 0.06988262]  [1 s, 15 residuals]
+level 5 it 2: |r_5| 2.149e+05  lam 1  x [3.526473057, 0.211497981, 0.976508545, -0.00176332, -0.523698873, -0.10734453]  [1 s, 16 residuals]
+   level 5 (top): stop at |g| 2.15e+05 (noise floor)
+   level 5 solved: |r_5| 2.15e+05  (25 residuals, 1 s)  [2 s total]
+   Jacobian K computed (4 residuals) [2 s]
+   K by level, max |d r_l / d x_nu| (rows l, columns nu): nu 1  nu 3  nu 5
+     l 1: 0.00e+00  1.12e+14  5.11e+12
+     l 3: 0.00e+00  1.57e+13  5.35e+11
+     l 5: 0.00e+00  1.91e+12  4.16e+10
+   level 5 solved: |r_5| 1.95e+05  (7 residuals, 0 s)  [2 s total]
+   level 5 solved: |r_5| 2.76e+05  (10 residuals, 0 s)  [3 s total]
+level 3 it 0: |r_3| 5.172e+05  lam 1  x [3.526473057, 0.211497981, 1.10807309, -0.002238442, -0.480455294, -0.530627993]  [3 s, 120 residuals]
+   level 5 (low): stop at |g| 2.51e+05 (noise floor)
+level 5 it 0: |r_5| 2.120e+04  lam 0.0625  x [3.526473057, 0.211497981, 1.128269789, -0.002311378, -0.471940611, -0.60159637]  [3 s, 134 residuals]
+level 5 it 1: |r_5| 1.693e+04  lam 0.25  x [3.526473057, 0.211497981, 1.128269789, -0.002311378, -0.470149575, -0.613223709]  [4 s, 139 residuals]
+level 5 it 2: |r_5| 7.131e+03  lam 1  x [3.526473057, 0.211497981, 1.128269789, -0.002311378, -0.493120771, -0.560237273]  [4 s, 142 residuals]
+   level 5 (top): stop at |g| 7.13e+03 (noise floor)
+   level 5 solved: |r_5| 7.13e+03  (24 residuals, 1 s)  [4 s total]
+level 3 it 1: |r_3| 2.052e+05  lam 1  x [3.526473057, 0.211497981, 1.128269789, -0.002311378, -0.493120771, -0.560237273]  [4 s, 188 residuals]
+   level 5 (top): stop at |g| 7.32e+03 (noise floor)
+   level 5 solved: |r_5| 7.32e+03  (11 residuals, 0 s)  [5 s total]
+   level 3 solved: |r_3| 2.05e+05  (198 residuals, 4 s)  [5 s total]
+FIXED-A M 5: A 3.526473057  w/w_inf 0.211497981  (w 0.80837, Delta 7.77262)  <F^2> 7.1331  r_1 -6.2435e+06-1.3292e+07i  [5 s, 199 residuals]
+      F_3/F_1 = +0.319951-0.000636i   |.| 0.319951  arg -0.0020   r_3 2.0e+05
+      F_5/F_1 = -0.139833-0.158866i   |.| 0.211641  arg -2.2926   r_5 7.3e+03
+      (uncorrected r_1 +9.1636e+05-8.8309e+05i)

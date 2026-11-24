@@ -1,0 +1,24 @@
+M 5, xi1 0.2, fixed (A, w), procs 2; start x [3.526473057, 0.211497981, 0.976508545, -0.00176332, 0.026652899, 0.003934666]
+level radii (approach -> polish): r_1 0.2000 -> 0.2000, r_3 0.2000 -> 0.2000, r_5 0.1995 -> 0.2000
+start residuals: |r_1| 0.00e+00  |r_3| 0.00e+00  |r_5| 8.88e+06
+level 5 it 0: |r_5| 2.623e+06  lam 0.5  x [3.526473057, 0.211497981, 0.976508545, -0.00176332, -0.812213345, 0.226908361]  [9 s, 7 residuals]
+level 5 it 1: |r_5| 2.088e+06  lam 1  x [3.526473057, 0.211497981, 0.976508545, -0.00176332, -0.369084053, 0.042971545]  [9 s, 10 residuals]
+level 5 it 2: |r_5| 3.777e+05  lam 1  x [3.526473057, 0.211497981, 0.976508545, -0.00176332, -0.49691507, -0.024026287]  [9 s, 11 residuals]
+level 5 it 3: |r_5| 2.113e+05  lam 1  x [3.526473057, 0.211497981, 0.976508545, -0.00176332, -0.520419594, -0.098753517]  [9 s, 14 residuals]
+   level 5 (low): stop at |g| 2.11e+05 (noise floor)
+   level 5 (top): stop at |g| 2.15e+05 (noise floor)
+   level 5 solved: |r_5| 2.15e+05  (24 residuals, 2 s)  [10 s total]
+   Jacobian K computed (4 residuals) [10 s]
+   K by level, max |d r_l / d x_nu| (rows l, columns nu): nu 1  nu 3  nu 5
+     l 1: 0.00e+00  2.38e+14  5.08e+12
+     l 3: 0.00e+00  2.72e+13  6.72e+11
+     l 5: 0.00e+00  1.65e+12  7.96e+10
+   level 5 (top): stop at |g| 2.15e+05 (noise floor)
+   level 5 solved: |r_5| 2.15e+05  (15 residuals, 2 s)  [13 s total]
+   level 5 (top): stop at |g| 2.04e+05 (noise floor)
+   level 5 solved: |r_5| 2.04e+05  (12 residuals, 2 s)  [16 s total]
+   level 3 solved: |r_3| 2.24e+06  (137 residuals, 7 s)  [16 s total]
+FIXED-A M 5: A 3.526473057  w/w_inf 0.211497981  (w 0.80837, Delta 7.77262)  <F^2> 7.1050  r_1 +1.1537e+07+7.4937e+07i  [16 s, 138 residuals]
+      F_3/F_1 = +0.294613-0.000564i   |.| 0.294613  arg -0.0019   r_3 2.2e+06
+      F_5/F_1 = -0.129765-0.197500i   |.| 0.236316  arg -2.1521   r_5 2.0e+05
+      (uncorrected r_1 +6.5862e+06+7.3976e+06i)
