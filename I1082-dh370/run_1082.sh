@@ -1,5 +1,5 @@
 #!/bin/bash
-# #1082 on dh370 (t5's order, comment 7130913641 headed 12:25 UTC), one chain, unit i1082a: after the k_c 87 leg ends and MemAvailable allows,
+# #1082 on dh370 (t5's order, comment 7130913641 headed 12:25 UTC), one chain, unit i1082a (restarted 13:11 UTC with the memory wait lowered from 26 to 24 GB: MemAvailable was 25.25 GB, the baseline here; the first start waited for 26): after the k_c 87 leg ends and MemAvailable allows,
 #  A. build hp from a new worktree of wip/qd-mode-1082 at a9975061 in a new venv (multidouble and hpkernel uninstalled first; hp/build.sh with the low-memory recipe); wall time, peak RSS, .so sha256;
 #  B. bit-identity: highm_check.py ref and scaled, saved with the a2607acb build (~/Source/choptuik-large-d-1078m), compared with the new build; each compare must exit 0 and its control (a mutated reference) must exit 1;
 #  C. the decisive test: mode_qd_decide.py selftest (0) and --mutate=accept_any (1), then mode_qd_decide.py OUTDIR STATE --threads=4 (exit 0 = RESOLVED).
@@ -18,10 +18,10 @@ stop() { echo "STOP $1: $2 ($(stamp) UTC)" > $OUT/STOP_1082_$1.txt; step "STOP $
 blob() { git hash-object --no-filters "$1" | cut -c1-8; }
 cd $OUT || exit 9
 [ "$(git -C $WT rev-parse --short=8 HEAD)" = a9975061 ] && [ "$(blob $S96)" = 6a0f83d2 ] && [ "$(blob $WT/hp/mode_qd_decide.py)" = ffc107bf ] && [ "$(git -C $WTO rev-parse --short=8 HEAD)" = a2607acb ] || stop 0 "a worktree or the state not pinned (a9975061, a2607acb, 6a0f83d2, mode_qd_decide.py ffc107bf)"
-step "waiting for the k_c 87 leg (LEG_DONE.txt, unit i1025leg87 inactive) and 26 GB of MemAvailable"
+step "waiting for the k_c 87 leg (LEG_DONE.txt, unit i1025leg87 inactive) and 24 GB of MemAvailable (#1078 build precedent: started at 25.2 GB available, peak RSS 24.29 GB, lowest MemAvailable 2.48 GB; swap 8 GB)"
 end=$(( $(date +%s) + 43200 ))
 while [ $(date +%s) -lt $end ]; do
-  if [ -f $LEG/LEG_DONE.txt ] && [ "$(systemctl --user is-active i1025leg87)" != active ] && [ "$(awk '/MemAvailable/ {print $2}' /proc/meminfo)" -gt 26000000 ]; then break; fi
+  if [ -f $LEG/LEG_DONE.txt ] && [ "$(systemctl --user is-active i1025leg87)" != active ] && [ "$(awk '/MemAvailable/ {print $2}' /proc/meminfo)" -gt 24000000 ]; then break; fi
   sleep 30
 done
 [ -f $LEG/LEG_DONE.txt ] || stop 0 "the leg did not end within 12 h"
