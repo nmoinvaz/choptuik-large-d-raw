@@ -98,7 +98,7 @@ date +%s > $B/leap.started; touch $B/leap.started
 log "leap87b root pid $pid"
 ( $PY $L2/in/leap_guard.py --rec $DATA/$TAG.jsonl --exits $B/exits_leg2b.txt --rootkey "leap87b root pid" --log $B/leap.log --out $B/leg_points.txt --stop $B/leg_STOP.txt --done $B/leap.finished --seeds $B/leg_seedA.jsonl $B/leg_seedB.jsonl > $B/guard.log 2>&1 ) &
 log "guard started (pid $!, shims_mac first on PATH)"
-( $PY $B/leg_watch.py --rec $DATA/$TAG.jsonl --since $B/leap.started --exits $B/exits_leg2b.txt --rootkey "leap87b root pid" --stop $B/leg_STOP.txt --done $B/leap.finished --cap 10800 > $B/watch.log 2>&1 ) &
+( $PY $L2/leg_watch.py --rec $DATA/$TAG.jsonl --since $B/leap.started --exits $B/exits_leg2b.txt --rootkey "leap87b root pid" --stop $B/leg_STOP.txt --done $B/leap.finished --cap 10800 > $B/watch.log 2>&1 ) &
 log "watchdog started (pid $!, 3 h per point)"
 nice -n 10 $L2/watch_alert_leg.sh $B "$(command -v hc)" > /dev/null 2>&1 &
 ( echo "time_utc,leap_rss_kb,scan_rss_kb,avail_GiB,free_mem_pct" > $B/mem_samples.csv
