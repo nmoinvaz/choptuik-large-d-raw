@@ -94,9 +94,16 @@ The sampler (`rows/regrid_samples.csv`, `rows/scan_samples.csv`) gives the real 
 
 ## Status
 
-Not started; the order, the predictions and the estimates above are written before the run.
+**Step 1 running since 2026-11-24 22:26:33 UTC** (the chain started 22:26:16 UTC through `Win32_Process.Create` of `conhost.exe --headless cmd.exe /c go_kc103d21125x_1025.cmd`). README first: 51dc82cb2 (pushed 22:26:00 UTC, before the start).
 
-Pushed 2026-11-24 22:26:00 UTC.
+- **Chain** (`rows/launcher_pid.txt`: 14012): conhost --headless 14012 <- cmd 24532 <- regrid driver launcher 12068 and driver 9004 <- sampler 19328, alert-only watcher 18408, keep-awake helper 23536, and the regrid process 14124 (worker 12616). The python and powershell processes are BelowNormal.
+- **Session check** (`session_check_regrid.txt`, exit 0): no `claude` in any chain of the run, no Windows Terminal / OpenConsole / wt, a headless conhost in the chain.
+- **Before the regrid** (22:26:16 to 22:26:33 UTC, 16 s): the pins matched; the selftests of the three checks exited 0; ell_delta.lam0_at(21.125) = 2.1062343410; the source checks were as ordered: the k_c 95 check exit 0 on the source, `--mutate=F` and `--mutate=steps` exit 1, the k_c 87 check exit 1 and the k_c 103 check exit 1 (they refuse the source; `source_kc*_syscheck*.txt`).
+- **Regrid:** pid 14124 started 22:26:33 UTC: `ell_refine.py l1kc95dh170f 95 l1kc103winx 103 1 21.125 2.1062343410 --kappa 0.7 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma`, cwd the worktree's `solver/matter`, 4 threads, BelowNormal, cap 21600 s by the exact pid.
+- **Machine at the start:** on AC (battery status 2, charge 100), clock 2995 MHz of 2995 MHz max, free physical memory 23.36 GB; beside it the other project's two I114 `convergence.py` jobs (started 2026-11-23 05:41 UTC), not touched.
+- **ETA** (the estimates above counted from the actual start 22:26:33 UTC, 8 min before the 22:35 the table assumed): the regrid ends about 01:20 to 01:55 UTC on 25 Nov (written 10500 to 12500 s), p1 and p3 about 03:00 to 04:00, the scan about 04:05 to 05:15 UTC. The scan starts by itself after ACCEPTED.
+
+Pushed 2026-11-24 22:27:09 UTC.
 
 ## Result
 

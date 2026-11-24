@@ -1,0 +1,8 @@
+== 2026-11-24 22:26:16 kc103d21125x_regrid_driver_1025.py: the k_c 103 regrid at D 21.125 (cross-build) from dh170's accepted k_c 95 D 21.125 state; checking pins
+== 2026-11-24 22:26:16 pins ok (the inputs of C:/Users/nathan/Source/kc103d21125x_1025/inputs, dh170's k_c 95 D 21.125 files, worktree 48c36355 with solver code = 505d8399 and ell_delta/ell_refine = 48c36355); python C:/Users/nathan/Source/venv-md510/Scripts/python.exe
+== 2026-11-24 22:26:17 selftests: kc103_syscheck exit 0, kc95_syscheck exit 0, kc87_syscheck exit 0 (0 wanted each)
+== 2026-11-24 22:26:17 ell_delta.lam0_at(21.125) = 2.1062343410, as dh170's
+== 2026-11-24 22:26:17 alert-only memory watcher started as its own process, pid 18408 (kills nothing); sampler pid 19328
+== 2026-11-24 22:26:17 keep-awake helper started as its own process, pid 23536: SetThreadExecutionState(ES_CONTINUOUS | ES_SYSTEM_REQUIRED) until this driver (pid 9004) ends; power plan untouched; kills nothing
+== 2026-11-24 22:26:33 the source: kc95 check exit 0 (0 wanted), --mutate=F 1, --mutate=steps 1 (1 wanted each), kc87 check 1 and kc103 check 1 (1 wanted each: they refuse the source); 16 s
+== 2026-11-24 22:26:33 regrid: started pid 14124: C:/Users/nathan/Source/venv-md510/Scripts/python.exe -u ell_refine.py l1kc95dh170f 95 l1kc103winx 103 1 21.125 2.1062343410 --kappa 0.7 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma > C:/Users/nathan/Source/kc103d21125x_1025/I1025-win/kc103_d21125x/rows/regrid_raw.log
