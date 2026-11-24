@@ -1,0 +1,26 @@
+### 1. fake stand-in marker, state and record (the k_c 87 D 21.0 files renamed to the k_c 95 tag): reaches 'would start'
+== 2026-11-24 11:09:37 kc95d21_scan_driver_1025.py: the k_c 95 hybrid scan at D 21.0, shares 0.900,0.910;0.905,0.920;0.910,0.925;0.915 (dry run); checking pins
+== 2026-11-24 11:09:38 read_lower.py selftest exit 0 and its two --mutate controls exit 1, 1 as wanted
+== 2026-11-24 11:09:38 DRY: would start C:/Users/nathan/Source/venv-md510/Scripts/python.exe -u C:/Users/nathan/Source/kc95d21_1025/inputs/d18_hybsign.py C:/Users/nathan/Source/kc95d21_1025/dry_stand_in/l1kc95winbg.jsonl C:/Users/nathan/Source/kc95d21_1025/dry_stand_in/sol_l1kc95winbg_D21.0000.npy 21.0 0.9,0.91 C:/Users/nathan/Source/kc95d21_1025/I1025-win/kc95_d21/scan_kc95_D21_p0.jsonl (cwd C:/Users/nathan/Source/choptuik-i1025k79/solver/matter, 1 thread, BelowNormal, cap 21600 s)
+== 2026-11-24 11:09:38 DRY: would start C:/Users/nathan/Source/venv-md510/Scripts/python.exe -u C:/Users/nathan/Source/kc95d21_1025/inputs/d18_hybsign.py C:/Users/nathan/Source/kc95d21_1025/dry_stand_in/l1kc95winbg.jsonl C:/Users/nathan/Source/kc95d21_1025/dry_stand_in/sol_l1kc95winbg_D21.0000.npy 21.0 0.905,0.92 C:/Users/nathan/Source/kc95d21_1025/I1025-win/kc95_d21/scan_kc95_D21_p1.jsonl (cwd C:/Users/nathan/Source/choptuik-i1025k79/solver/matter, 1 thread, BelowNormal, cap 21600 s)
+== 2026-11-24 11:09:38 DRY: would start C:/Users/nathan/Source/venv-md510/Scripts/python.exe -u C:/Users/nathan/Source/kc95d21_1025/inputs/d18_hybsign.py C:/Users/nathan/Source/kc95d21_1025/dry_stand_in/l1kc95winbg.jsonl C:/Users/nathan/Source/kc95d21_1025/dry_stand_in/sol_l1kc95winbg_D21.0000.npy 21.0 0.91,0.925 C:/Users/nathan/Source/kc95d21_1025/I1025-win/kc95_d21/scan_kc95_D21_p2.jsonl (cwd C:/Users/nathan/Source/choptuik-i1025k79/solver/matter, 1 thread, BelowNormal, cap 21600 s)
+== 2026-11-24 11:09:38 DRY: would start C:/Users/nathan/Source/venv-md510/Scripts/python.exe -u C:/Users/nathan/Source/kc95d21_1025/inputs/d18_hybsign.py C:/Users/nathan/Source/kc95d21_1025/dry_stand_in/l1kc95winbg.jsonl C:/Users/nathan/Source/kc95d21_1025/dry_stand_in/sol_l1kc95winbg_D21.0000.npy 21.0 0.915 C:/Users/nathan/Source/kc95d21_1025/I1025-win/kc95_d21/scan_kc95_D21_p3.jsonl (cwd C:/Users/nathan/Source/choptuik-i1025k79/solver/matter, 1 thread, BelowNormal, cap 21600 s)
+== 2026-11-24 11:09:38 DRY: reader window 0.9 0.925; nothing started
+exit 0
+### 2. missing marker (--out=empty dir)
+== 2026-11-24 11:09:38 REFUSE: regrid_accepted.txt does not exist
+== 2026-11-24 11:09:38 DRY: a real run would stop here
+### 3. marker with a wrong state blob
+== 2026-11-24 11:09:39 REFUSE: C:/Users/nathan/Source/kc95d21_1025/dry_badblob/sol_l1kc95winbg_D21.0000.npy is blob 831d5977561cab4323ace23bc5f71c05c4de926e, not 0000000000000000000000000000000000000000
+== 2026-11-24 11:09:39 DRY: a real run would stop here
+### 4. bad shares (each exit 2)
+shares '' -> exit 2
+shares '0.9' -> exit 2
+shares '0.9,0.9,0.9;0.91' -> exit 2
+shares '0.9;0.91;0.92;0.93;0.94' -> exit 2
+shares '0.9;;0.91' -> exit 2
+shares 'a,b' -> exit 2
+shares '0.9,11' -> exit 2
+### 5. --out without --dry
+REFUSE: --out=DIR is for --dry only
+exit 2
