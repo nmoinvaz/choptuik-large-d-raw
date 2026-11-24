@@ -7,7 +7,7 @@ D=/home/nathan/Source/choptuik-large-d-raw-wt613/I1087-dh370
 cd $D || exit 9
 echo "# $(date -u '+%F %T') UTC start; K, starting |F| (first 'on 0: |F|' line), seconds to that line, how it ended" >> results.txt
 for K in 293 315 330 360 420; do
-  bash $D/run_rung.sh $K p1 3600 --base_polish 1 > /dev/null 2>&1
+  BP=1 bash $D/run_rung.sh $K p1 3600 > /dev/null 2>&1
   L=$(grep -m1 -E 'on 0: \|F\| ' $D/ks${K}_p1/stdout.log)
   A=$(echo "$L" | sed -E 's/.*on 0: \|F\| ([0-9.e+-]+).*/\1/')
   S=$(sed -nE 's/.*seconds to that point ([0-9]+);.*/\1/p' $D/ks${K}_p1/rung.txt)
