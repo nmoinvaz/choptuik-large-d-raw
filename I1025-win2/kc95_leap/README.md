@@ -35,6 +35,12 @@ in `D:/choptuik-i1025k79/solver/matter`, 4 BLAS threads, BelowNormal, cap 43200 
 
 Each point is reported with the usual row: Delta, dDelta/dD, the tracked weak mode and its ratio, the mode with the largest tangent cos and that cos, the third regular value (the mode the coordinator follows) with its fall run and distance to the cutoff, the fold signature ((i), (ii)), |J+dF/dn|, h, constraint, |F|, steps, n_null, the cutoff and the seconds; beside the k_c 79 value at the same D where there is one.
 
+## Cancelled by order (the coordinator's hc ~17:25 UTC 24 Nov)
+
+The order (verbatim, point 2, first part): "CANCEL THE QUEUED k_c 95 LEAP (same reason: an h 0.0625 path; at h 0.03125 a k_c 95 leg would take ~35 h to D 21.75). Instead, from tag g's end (19:20), k_c 95 REGRIDS at chosen D from macm3's k_c 87 leg states ..." (the regrids are in `../kc95_d22/` and `../kc95_d225/`).
+
+The waiting driver `run_kc95.sh` (bash pid 24156) was killed at 17:27 UTC by exact pid after the command-line check; the leap was never started (no `l1kc95Lw1025k` record or state exists). The pinned inputs and the dry-run seed checks above stay as they are.
+
 ## Result
 
-Not yet run.
+Not run: cancelled (see above).
