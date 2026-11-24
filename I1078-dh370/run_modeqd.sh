@@ -1,6 +1,6 @@
 #!/bin/bash
-# #1078, t5's order (comment of 00:35 UTC; unit i1078x), after the lambda 8 row and the D 3.15 Jacobian control (unit i1078w), 4 threads, nice 10, beside the #1080 control: hp/mode_qd.py (main b2440b73,
-# blob a7a04964; worktree ~/Source/choptuik-large-d-1078q, python and kernel of ~/Source/choptuik-large-d-1078m: a2607acb build, multidouble's package with qd_logdet) on the D 3.044375 M' 96 state 6a0f83d2, hmax 0.05:
+# #1078, t5's order (comment of 00:35 UTC; unit i1078y: the rerun on main ba473990, whose mode_qd.py (blob d20a85fe) calls multidouble._md.qd_logdet with its control; unit i1078x stopped at the selftest on b2440b73), after the lambda 8 row and the D 3.15 Jacobian control (unit i1078w), 4 threads, nice 10, beside the #1080 control: hp/mode_qd.py (main ba473990,
+# blob d20a85fe; worktree ~/Source/choptuik-large-d-1078q, python and kernel of ~/Source/choptuik-large-d-1078m: a2607acb build, multidouble's package with qd_logdet) on the D 3.044375 M' 96 state 6a0f83d2, hmax 0.05:
 # (1) mode_qd.py selftest (PASS and its --control=update_dd control fires); (2) the pair lambda 5.140819788786 and 5.1408197887863025 (resolved = the same sign and ln|det| within 1e-6, mequil_compare.py resolved),
 # then the same pair with --control=update_dd (trailing updates in double-double: must jag, about 3 in ln|det|); (3) seconds per lambda. Log: steps_modeqd.txt. No hc from here.
 {
@@ -17,10 +17,8 @@ stamp() { date -u '+%F %T'; }
 step() { echo "$(stamp) UTC $*" >> $OUT/steps_modeqd.txt; }
 stop() { echo "STOP $1: $2 ($(stamp) UTC)" > $OUT/STOP_MODEQD_$1.txt; step "STOP $1: $2"; echo "MODEQD STOPPED at $1 $(stamp) UTC" > $OUT/MODEQD_DONE.txt; exit 1; }
 blob() { git hash-object --no-filters "$1" | cut -c1-8; }
-step "waiting for unit i1078w (the lambda 8 row and the D 3.15 Jacobian control) to end"
-while [ "$(systemctl --user is-active i1078w)" = active ]; do sleep 20; done
 cd $WTQ/hp || exit 9
-[ "$(git -C $WTQ rev-parse --short=8 HEAD)" = b2440b73 ] && [ "$(blob mode_qd.py)" = a7a04964 ] && [ "$(git -C $WTM rev-parse --short=8 HEAD)" = a2607acb ] && [ "$(blob $S96)" = 6a0f83d2 ] || stop 0 "a worktree, mode_qd.py or the state not pinned"
+[ "$(git -C $WTQ rev-parse --short=8 HEAD)" = ba473990 ] && [ "$(blob mode_qd.py)" = d20a85fe ] && [ "$(git -C $WTM rev-parse --short=8 HEAD)" = a2607acb ] && [ "$(blob $S96)" = 6a0f83d2 ] || stop 0 "a worktree, mode_qd.py or the state not pinned"
 step "start; multidouble $($PY -c 'import multidouble as m; print(m.isa(), hasattr(m, "qd_logdet"))' 2>/dev/null); load $(cut -d' ' -f1-3 /proc/loadavg)"
 # (1)
 $PY mode_qd.py selftest > $OUT/modeqd_selftest.txt 2>&1; rc=$?
