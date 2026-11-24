@@ -19,3 +19,11 @@ kcl kc95 D 21.875 regrid waits for the tag g leap's end (all8.done) and for any 
 kcl kc95 D 21.875 regrid: the threads are free, committed memory is 95.8 GB (gate: off GB), starting 2026-11-24 19:27:29 UTC
 kcl regrid95_21.8750 root pid 40944, cap 21600 s, want exit 0 2026-11-24 19:27:30 UTC
 kcl kc95 D 21.875 regrid STOPPED BY ORDER at 20:38:02 UTC (the coordinator, one-time: commit 100.7 of 101.5 GB with the #1078 build's rustc growing): driver bash 41636, 24108, 42812, 36076 killed first (no refusal written), then ell_refine.py pid 43004 (command line checked; launcher 40944 already gone); 70 min run, 7,100+ CPU s, no result written; log kept as regrid_stopped_1_by_order_2038.log; restart from the same source when committed memory is below 80 GB (the build ended)
+kcl kc95 D 21.875 regrid pins checked (kc95 check d487e628, kc87 check 6df5d960, ell_refine 631e5801, ell_delta fde699f5, worktree 48c36355 = solver code 505d8399) 2026-11-24 20:39:00 UTC
+kcl kc95 D 21.875 regrid: waits for macm3's state of D 21.875 (raw I1025-macm3/kc87_leg2/b/) 2026-11-24 20:39:01 UTC
+kcl kc95 D 21.875 regrid: fetched state sol_l1kc87Lmacm3b_D21.875000.npy blob fabc792abf27976d36e2bec4cd88b30f7e1959ba (45688 bytes) record l1kc87Lmacm3b.jsonl blob 479d21f12debe2b92401e22daaf2a46e20e89c8f (10 rows)  2026-11-24 20:39:06 UTC
+kcl kc95 D 21.875 regrid: the k_c 87 source is accepted (selftest 0; --mutate=F and --mutate=steps exit 1); state blob fabc792a 2026-11-24 20:39:10 UTC
+kcl kc95 D 21.875 regrid waits for the tag g leap's end (all8.done) and for any other regrid of mine to end 2026-11-24 20:39:11 UTC
+kcl kc95 D 21.875 regrid held: committed memory 97.4 GB is not below 80 GB (the order's gate); waits 2026-11-24 20:39:12 UTC
+kcl kc95 D 21.875 regrid: the threads are free, committed memory is 77.2 GB (gate: 80 GB), starting 2026-11-24 22:21:12 UTC
+kcl regrid95_21.8750 root pid 13596, cap 21600 s, want exit 0 2026-11-24 22:21:12 UTC
