@@ -3,7 +3,7 @@
 # usage: bash lane_leg.sh D CENTER PRED [dry]   (D the leg's D, CENTER the grid centre (the multiple of 0.005 nearest PRED), PRED the coordinator's prediction)
 #  1. pins (in_blobs.txt of this folder's in/ and of D<D>/), worktrees, selftests (kc79_syscheck, read_lower and its two mutations, repeat_check, leg_read and its mutation: 0 0 1 1 0 0 1);
 #  2. the source: kc79_syscheck_1025.py accepts the state and record at D (exit 0; --mutate=F and --mutate=steps exit 1);
-#  3. d18_hybsign.py (e089207a, unmodified) at CENTER-0.015 to CENTER+0.015 by 0.005 (7 values) plus a repeat of CENTER (8 evaluations, 8 processes of 1 thread, nice 10; p0..p6 the grid, p7 the repeat) in
+#  3. d18_hybsign.py (e089207a, unmodified) at CENTER-0.015 to CENTER+0.015 by 0.005 (7 values) plus a repeat of CENTER (8 evaluations, 8 processes of 1 thread, nice 5; p0..p6 the grid, p7 the repeat) in
 #     ~/Source/choptuik-large-d-1025f at 505d8399;
 #  4. read_lower.py (89309d3c) on the window, repeat_check.py, leg_read.py read (against PRED, bar 0.01);
 #  5. no robust change: widen once by 0.015 toward the window edge with the lower ln|det| (leg_read.py widen; three values, 3 processes), read the widened window, report. One or several changes: report as read.
@@ -57,10 +57,10 @@ say "source check: kc79_syscheck_1025.py exit $s; controls --mutate=F exit $cF, 
 export OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 RAYON_NUM_THREADS=1 P4_WT_MATTER=$WF
 IFS=, read -ra LA <<< "$LAMS"
 LISTS=("${LA[0]}" "${LA[1]}" "${LA[2]}" "${LA[3]}" "${LA[4]}" "${LA[5]}" "${LA[6]}" "$C")
-say "scan: lambda $LO to $HI by 0.005 and a repeat of $C (8 evaluations), lists ${LISTS[*]}, 8 processes of 1 thread, nice 10, cap 28800 s each"
+say "scan: lambda $LO to $HI by 0.005 and a repeat of $C (8 evaluations), lists ${LISTS[*]}, 8 processes of 1 thread, nice 5, cap 28800 s each"
 pids=()
 for j in 0 1 2 3 4 5 6 7; do
-  ( cd $WF && nice -n 10 /usr/bin/time -v timeout -s TERM 28800 $PY -u $IN/d18_hybsign.py $REC $STATE $D ${LISTS[$j]} $S/scan_D${D}_p$j.jsonl < /dev/null > $S/scan_p$j.raw 2>&1
+  ( cd $WF && nice -n 5 /usr/bin/time -v timeout -s TERM 28800 $PY -u $IN/d18_hybsign.py $REC $STATE $D ${LISTS[$j]} $S/scan_D${D}_p$j.jsonl < /dev/null > $S/scan_p$j.raw 2>&1
     echo "$(date -u '+%F %T') UTC scan p$j (${LISTS[$j]}) exit $?" >> $L ) &
   pids+=($!)
 done
@@ -93,7 +93,7 @@ if [ "$nch" = 0 ]; then
   SIDE=${W%% *}; WL=${W#* }; IFS=, read -ra WA <<< "$WL"
   pids=()
   for j in 0 1 2; do
-    ( cd $WF && nice -n 10 /usr/bin/time -v timeout -s TERM 28800 $PY -u $IN/d18_hybsign.py $REC $STATE $D ${WA[$j]} $S/scan_D${D}_pw$j.jsonl < /dev/null > $S/scan_pw$j.raw 2>&1
+    ( cd $WF && nice -n 5 /usr/bin/time -v timeout -s TERM 28800 $PY -u $IN/d18_hybsign.py $REC $STATE $D ${WA[$j]} $S/scan_D${D}_pw$j.jsonl < /dev/null > $S/scan_pw$j.raw 2>&1
       echo "$(date -u '+%F %T') UTC widen w$j (${WA[$j]}) exit $?" >> $L ) &
     pids+=($!)
   done
