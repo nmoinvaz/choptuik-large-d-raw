@@ -32,7 +32,7 @@ run krawczyk certify_M.py krawczyk --point=$PT --box=$BOX; k=$?
 judge krawczyk_exit $rc 0; note "krawczyk: $(head -n 1 $R/logs/krawczyk.log | cut -c1-200)"
 run controls certify_M.py controls --point=$PT --box=$BOX; judge controls_exit $rc 0; judge controls_all_as_expected $(grep -c 'CONTROLS ALL AS EXPECTED' $R/logs/controls.log) 1
 run recheck certify_M_recheck.py $BOX; judge recheck_exit $rc 0
-run recheck_mutate certify_M_recheck.py $BOX --mutate; judge recheck_mutate_exit $rc 1; note "recheck --mutate: control FIRED (exit $rc)" | tee -a $H
+run recheck_mutate certify_M_recheck.py $BOX --mutate; judge recheck_mutate_exit $rc 1; note "recheck --mutate: control FIRED (exit $rc)"
 [ $FAIL = 0 ] || { note "STOP: step 1 as not wanted (see judge lines)"; exit 1; }
 note "step 1 as wanted"
 # 2. H3: export6a, lemma 6a, the two mutations
@@ -42,7 +42,7 @@ import json, sys
 d = json.load(open(sys.argv[1])); d["x"] = d["p"]
 json.dump(d, open(sys.argv[2], "w"))' $B6 $B6I
 XP=$($PY -I -c 'import json, sys; print(",".join(json.load(open(sys.argv[1]))["p"]))' $BOX)
-judge centre_is_p_out "$XP" "$($PY -I -c 'import json, sys; print(",".join(json.load(open(sys.argv[1]))["p_out"]))' $F/in/A_M_refine_M3_x2E2.json)" | tee -a $H
+judge centre_is_p_out "$XP" "$($PY -I -c 'import json, sys; print(",".join(json.load(open(sys.argv[1]))["p_out"]))' $F/in/A_M_refine_M3_x2E2.json)"
 [ $FAIL = 0 ] || { note "STOP: export6a or the centre as not wanted"; exit 1; }
 run lemma6a lemma6_jump_M.py --M=3 --box=$B6I --x=$XP --json=$L6 --save-B=$B; judge lemma6a_exit $rc 0
 judge lemma6a_rho_below_1 $(grep -c 'rho_6a = .* < 1: True' $R/logs/lemma6a.log) 1; note "lemma 6a: $(grep -E 'rho_6a|lemma S' $R/logs/lemma6a.log | tr '\n' ' ' | cut -c1-300)"
