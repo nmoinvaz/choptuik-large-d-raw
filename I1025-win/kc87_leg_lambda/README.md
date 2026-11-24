@@ -1,12 +1,14 @@
 # I1025-win/kc87_leg_lambda: lambda_1 on dh370's k_c 87 leg states (tag l1kc87Ldh370), in rotation with macm3 and dh170 (winb)
 
-Machine `surface-laptop-4` (Windows 11, 4 cores, 32 GB; runner winb). Issue https://github.com/nmoinvaz/choptuik-large-d/issues/1025. Written 2026-11-24 07:30 UTC, before any run of this folder. This file is the index and the method; each state has its own folder `<D>/` with its README (written before that scan), outputs and result.
+Machine `surface-laptop-4` (Windows 11, 4 cores, 32 GB; runner winb). Issue https://github.com/nmoinvaz/choptuik-large-d/issues/1025. Written 2026-11-24 07:30 UTC, before any run of this folder; the D 21.125 part added ~09:27 UTC, before that run. This file is the index and the method; each state has its own folder `<D>/` with its README (written before that scan), outputs and result.
 
 ## Order (the coordinator t5's hc of 2026-11-24 ~07:22 UTC, the winb part, quoted)
 
 "Next task: lambda_1 on dh370's k_c 87 leg states (raw I1025-dh370/kc87_leg/, tag l1kc87Ldh370; dh370 pushes each accepted state), in rotation with macm3 and dh170: take D 21.09375 when it lands (~07:40 UTC), then each time the newest state not yet taken by them (check I1025-macm3/kc87_leg_lambda/ and I1025-dh170/kc87_leg_lambda/ on raw). Per point: pin by blob, kc87_syscheck_1025.py accept (controls exit 1, kc79 refusing), d18_hybsign 0.005 grid over +-0.015 around the prediction plus a repeat of the middle, read_lower. Prediction (README first): k_c 79's reading at that D + 0.002, within 0.005 (D 21.09375: 0.8837 from k_c 79's 0.881686). Raw I1025-win/kc87_leg_lambda/<D>/."
 
-Taken by the others so far (raw, 07:36 UTC): macm3 D 21.0625 (`I1025-macm3/kc87_leg_lambda/21.0625`, one change 0.894588), dh170 D 21.03125 (`I1025-dh170/kc87_leg_lambda/21.03125`). **t5's second hc (~07:36 UTC, quoted):** "your k_c 87 state is on raw: dh370's D 21.09375, commit 6fdda342, I1025-dh370/kc87_leg/sol_l1kc87Ldh370_D21.093750.npy blob e32cefac, record l1kc87Ldh370.jsonl blob fad4c79a. Prediction (README first): 0.8860 within 0.005 (macm3's k_c 87 0.894588 at D 21.0625 - 0.28 x 0.03125). After it macm3 takes every later point, so report and stop." So this series is one point, D 21.09375, and the prediction below is the second hc's 0.8860 (the first hc's 0.8837 is replaced).
+Taken by the others so far (raw, 07:36 UTC): macm3 D 21.0625 (`I1025-macm3/kc87_leg_lambda/21.0625`, one change 0.894588), dh170 D 21.03125 (`I1025-dh170/kc87_leg_lambda/21.03125`). **t5's second hc (~07:36 UTC, quoted):** "your k_c 87 state is on raw: dh370's D 21.09375, commit 6fdda342, I1025-dh370/kc87_leg/sol_l1kc87Ldh370_D21.093750.npy blob e32cefac, record l1kc87Ldh370.jsonl blob fad4c79a. Prediction (README first): 0.8860 within 0.005 (macm3's k_c 87 0.894588 at D 21.0625 - 0.28 x 0.03125). After it macm3 takes every later point, so report and stop." So the first point is D 21.09375 alone, and its prediction is the second hc's 0.8860 (the first hc's 0.8837 is replaced).
+
+**t5's third hc (~09:23 UTC, after the D 21.09375 reading 0.885927, quoted):** "One more point, a build check: dh370's k_c 87 state at D 21.125 (raw commit 4ab4abcb: I1025-dh370/kc87_leg/sol_l1kc87Ldh370_D21.125000.npy blob 078ab7d8, record l1kc87Ldh370.jsonl blob 8046644b), the same state macm3 read on macOS (0.877108). Same pipeline; d18_hybsign 0.865-0.890 by 0.005 plus a repeat of 0.875. Written before (README first): within 0.002 of macm3's 0.877108 (the build spread at k_c 87). Raw I1025-win/kc87_leg_lambda/21.125/. Then report and stop." So the series is two points: D 21.09375 (read) and D 21.125 (the build check).
 
 ## Method (the same for every D)
 
@@ -29,4 +31,5 @@ Taken by the others so far (raw, 07:36 UTC): macm3 D 21.0625 (`I1025-macm3/kc87_
 
 | D | dh370's commit | written before (prediction) | window | status | result |
 |---|---|---|---|---|---|
-| 21.09375 | 6fdda342 (pushed 2026-11-24 07:35:57 UTC) | one change within 0.005 of 0.8860 (t5's second hc) | 0.870 to 0.900 | README first | |
+| 21.09375 | 6fdda342 (pushed 2026-11-24 07:35:57 UTC) | one change within 0.005 of 0.8860 (t5's second hc) | 0.870 to 0.900 | scan ran 07:38 to 09:23 UTC (6300 s); the folder's README Result follows | read_lower: one robust change, - to +, det-linear 0.885927, range [0.885587, 0.885927] (reader line as printed; t5 rules) |
+| 21.125 | 4ab4abcb (pushed 2026-11-24 08:44:24 UTC) | build check: one change within 0.002 of macm3's 0.877108 (t5's third hc) | 0.865 to 0.890 | README first | |
