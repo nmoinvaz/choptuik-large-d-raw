@@ -47,3 +47,24 @@ One round of 7 (step 1) or 8 (step 2) single-thread processes at nice 10; nothin
 - 2026-11-24 01:03:44 UTC: folder, inputs, drivers and the reading prepared before any run. Selftests: `read_lower.py` exit 0, `shift` and `round2` exit 1, `repeat_check.py`, `kc71_syscheck.py` and `kc79_syscheck_1025.py` exit 0 (`s1/selftest_exits_pre.txt`; the drivers run them again). Dry run of `run_accept.sh s1`: the pins and the worktree checks pass (`s1/dry_steps_accept.txt`). The drivers are those of `d19_lower` (accept) and `kc87_d2090625` (scan), made stage-based; the scan driver was tested there.
 - 2026-11-24 01:03:58 to 01:04:03 UTC: **STEP 1 source check** (`run_accept.sh s1`, unit `i1025-k71s1a`) ACCEPTED at 01:04:03: win2's k_c 71 leg 4 record |F| 4.7028022884e-10, 2405 steps, constraint 7.321e-3, Delta 1.118296630104 (2897 s on win2); this machine's state |F| 4.7037820754e-10 (+0.021% against the record, inside the 1% bar), `freeze_from` 2405 steps = the record's; `--mutate=F` and `--mutate=steps` exit 1; the k_c 79 check refuses the state (exit 1: "the record is not k_c 79 at D 21 (kc 71, D 21.0)"); both selftests exit 0; the state and record copied to `s1/` and to the worktree's `data/` (blob checked). 01:04:10 UTC: **the step 1 scan** started as unit `i1025-k71s1s` (7 processes of 1 thread, nice 10, lambda 0.890 to 0.920 by 0.005, one point per process); all seven print the record system (|F| 4.7059833435e-10 against the record's 4.7028022884e-10, 2405 steps equal), each at about 98% CPU.
 - 2026-11-24 01:23:16 UTC: **dh610's k_c 79 reading at D 21.0 received** (t5's hc, 01:22 UTC): one robust change, bracket (0.905, 0.910), det-linear **0.909538**, estimator range [0.909234, 0.909538]. For the step 2 rule fixed above: s = (my step 1 det-linear estimate) - 0.909538, and c = 0.908 - 0.30 (D - 21.0) + s with t5's trend constant 0.908 as written. (Anchoring the trend on dh610's 0.909538 instead of 0.908 would move c by +0.0015; both are logged with the lists; the window of 0.030 covers either.) Nothing else changes.
+
+## Result of step 1 (calibration, written 2026-11-24 02:25:24 UTC)
+**Source:** ACCEPTED 01:04:03 UTC (logged above). **Scan** (unit `i1025-k71s1s`, 7 processes of 1 thread, nice 10; 01:04:10 to 02:24:45 UTC, 4835 s): exit 0 for all seven (02:21:32 to 02:24:45 UTC); all printed the record system (|F| 4.7059833435e-10 against the record's 4.7028022884e-10, 2405 steps equal); **7 of 7 noise-robust**; `read_lower.py` selftest exit 0, `--mutate=shift` and `--mutate=round2` exit 1; reader exit 0 (`s1/read_lower.txt`); no repeat (the order has none). Seconds per point 4638 to 4830 (one round of seven processes on this machine's 4 cores); wall per process 1:17:22 to 1:20:34; peak RSS 1.39 to 1.49 GiB; lowest MemAvailable 20.9 GiB (80 samples); no memory alert (`alert.log` does not exist).
+
+**Hybrid signs, as printed, lambda 0.890 to 0.920:** minus at 0.890, 0.895, 0.900; plus at 0.905, 0.910, 0.915, 0.920 (the float64 sign equals the hybrid at all 7). **One robust change**, none touching a non-robust point, no ln|det| minimum without a sign change:
+| root | bracket | orientation as printed | det-linear estimate | estimator range |
+|---|---|---|---|---|
+| **k_c 71, D 21.0, dh170 (Linux)** | (0.900, 0.905) | - to + | **0.901815** | [0.901371, 0.901815] |
+| k_c 79, D 21.0, dh610 (Linux) | (0.905, 0.910) | | **0.909538** | [0.909234, 0.909538] |
+| **s = k_c 71 minus k_c 79 at D 21.0** | different 0.005 cells | | **-0.007723** | |
+The estimator range is the spread over the interpolation choices of `d185_scan_read.changes`, not an enclosure; the bracket is the 0.005 grid step. ln|det|: 0.890 -2006.1858, 0.895 -2007.0941, 0.900 -2008.9213, 0.905 -2008.3593, 0.910 -2007.8148, 0.915 -2007.6886, 0.920 -2007.7089. **t5's written prediction (s = -0.003 +- 0.003, that is -0.006 to 0.000): not met**; s = -0.0077 is 0.0017 below the lower edge. At D 19 the step was -0.0031 (winb, Windows; t5), at D 20.5 0.00013 in the other direction (t5's figure for the k_c 71 to 79 step); the step here is larger than at both. Both estimates are from Linux builds (dh610's and mine).
+
+## Predictions against the result (step 1)
+| prediction | result |
+|---|---|
+| t5's, written before the run: s = -0.003 +- 0.003 | **not met**: -0.007723 |
+| mine: `kc71_syscheck.py` accepts with all four controls firing (90%) | yes (state |F| +0.021% of the record's, `freeze_from` 2405 = 2405) |
+| every point noise-robust (70%); exactly one robust change (85%), in (0.900, 0.905) (40%) | yes, 7 of 7; yes; yes |
+| s in [-0.006, 0.000] (55%); within 0.01 of zero (85%) | **no**; yes |
+| edge signs unequal (85%); the float64 sign differs from the hybrid at more than half the points (30%) | yes; no (0 of 7) |
+| the scan 0.7 to 1.4 h (65%); peak RSS below 2.5 GiB (85%) | yes, 1.34 h; yes, 1.49 GiB. My ETA to t5 (02:15 to 02:30 UTC) held (02:24:45) |
