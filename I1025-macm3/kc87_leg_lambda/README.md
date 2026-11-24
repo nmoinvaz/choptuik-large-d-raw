@@ -1,0 +1,35 @@
+# I1025-macm3/kc87_leg_lambda: lambda_1 on dh370's k_c 87 leg states (tag l1kc87Ldh370), alternating with dh170, no regrid
+
+Machine `macm3` (Apple M3, 8 CPUs, 24 GB, macOS 26.3.1; runner macm3b). Issue https://github.com/nmoinvaz/choptuik-large-d/issues/1025. Written 2026-11-24 07:14 UTC, before any run of this folder. Raw origin/main when the inputs were taken: 33235c8f.
+
+## Order (the coordinator t5's hc, 24 Nov, the #1025 part, quoted)
+
+"Next task after that (#1025, 6 threads): lambda_1 on dh370's k_c 87 leg states, alternating with dh170 (it cannot keep pace): start with D 21.0625 (raw commit 2b316941: I1025-dh370/kc87_leg/sol_l1kc87Ldh370_D21.062500.npy blob f9a592e5, record l1kc87Ldh370.jsonl blob 3fb006df). Pin by blob, kc87_syscheck_1025.py accept (controls exit 1, kc79 refusing), d18_hybsign at 0.880-0.900 by 0.005 plus a repeat of 0.890 (6 processes), read_lower. Written before (README): one change within 0.005 of 0.8933 (k_c 79's 0.891249 + 0.002). Raw I1025-macm3/kc87_leg_lambda/<D>/."
+
+And t5's note in dh170's README (hc, 24 Nov): "macm3 now scans dh370's k_c 87 leg too, starting with D 21.0625. After your D 21.03125 scan, take the newest accepted state that macm3 has not taken (check I1025-macm3/kc87_leg_lambda/ on raw); I coordinate if you two collide." So D 21.0625 is macm3's; dh170's D 21.03125 scan started 05:52:41 UTC (8 processes).
+
+## Method (the same for every D; `point87.sh DNAME accept|scan`, parameters in `DNAME/point.env`; inputs by `prepare87.sh DNAME`)
+
+1. Pin by blob (`git cat-file blob` from the raw commit, `git hash-object --no-filters`): the state and the record from the commit the order names; the checks and scripts of dh170's k_c 87 scans (`I1025-dh170/kc87_leg_lambda/common_in_blobs.txt`), from their original raw paths. `pins.txt` lists each.
+2. **Accept** (unit: this driver, `DNAME/steps.txt`, `VERDICT.txt`): worktree `~/Source/choptuik-large-d-1025m` at 505d8399 (`dss_ell.py`, `ell_ddm.py`, `ell_dd.py`, `ddnp.py` are the files dh170's worktree 48c36355 has), `venv-macm3-1058b` (Python 3.14.3, multidouble neon). Selftests of `kc87_syscheck_1025.py` and `kc79_syscheck_1025.py` exit 0. `kc87_syscheck_1025.py` on the state and the record at D accepts (exit 0: the record's |F| at most 1e-9, the state's |F| within 1% of the record's, `freeze_from` gives the record's step count); `--mutate=F` and `--mutate=steps` exit 1 each; `kc79_syscheck_1025.py` on the same state exits 1 (refuses it: not k_c 79). Otherwise REFUSED and nothing is scanned.
+3. **Scan**: `d18_hybsign.py` (e089207a, unmodified) at the values of `LAMP`, one process of 1 thread per value, `nice -n 10`, each under `capped_run.py 28800` by exact pid, own session under `caffeinate -is` (`launch_1070.py`), then `session_check_1025.py` on the launcher's pid. Every process must print `the record system` first. Memory (Nathan's rule of 2026-11-08, the coordinator's of 2026-11-22): nothing stops or kills a process for memory; my watcher (`DNAME/scan/watch_alert.sh`) only alerts t5 by hc when available memory is under 2 GiB, free memory under 8% or free disk under 3 GiB; the only refusal is to start the scan with less than 12 GiB available (the gate of my k_c 87 scan at D 19.75, which ran four processes). Sampler every 60 s (log only).
+4. **Read**: `read_lower.py` (89309d3c) with its selftest and both mutations (`shift`, `round2`: exit 1 each), then the reading of the window; `repeat_check.py` (aaf598a9) with its selftest and on the merged scan. Roots are read by position, never by sign orientation (t5). The estimator range is a spread over interpolation choices, not an enclosure; the bracket is the 0.005 grid step; the float64 sign is information only, the hybrid sign the verdict.
+Stop and report on any failure; change no code. Each D gets a section below, its prediction written before its check and scan.
+
+## Pins (common; `common/in/`, `pins.txt`)
+
+| item | raw path | blob |
+|---|---|---|
+| dh610's k_c 87 check | I1025-dh610/kc87_d195/in/kc87_syscheck_1025.py (raw ec9fb489) | 6df5d960 |
+| the k_c 79 check (must refuse a k_c 87 state) | I1025-win/kc79_d19/kc79_syscheck_1025.py | 29dce7ea |
+| the scanner, unmodified; its change finder | I1025-dh170/kc_break/d18_hybsign.py; I1025-mac/d18/d185_scan_read.py | e089207a; 7c9d400f |
+| reader (dh170's); repeat check (dh610's) | I1025-dh170/lower_root/read_lower.py; I1025-dh610/kc71_d19125/in/repeat_check.py | 89309d3c; aaf598a9 |
+
+## D 21.0625 (written before its check and scan)
+
+**Inputs** (`21.0625/pins.txt`): dh370's commit 2b316941 ("the accepted state and record of D 21.0625 (for dh170's scan)", 23 Nov 22:36 -0800 = 24 Nov 06:36 UTC): state `I1025-dh370/kc87_leg/sol_l1kc87Ldh370_D21.062500.npy` blob **f9a592e5**, record `l1kc87Ldh370.jsonl` blob **3fb006df** (2 rows: D 21.03125 and D 21.0625; the check and the scan pick the row of D 21.0625: |F| 4.6141632550631003e-10, 2941 steps, Delta 1.1199012231991574, h 0.03125, k_c 87). In the worktree they are `data/sol_l1kc87Ldh370_D21.062500.npy` and `data/l1kc87Ldh370_asof_D21.0625.jsonl` (the same bytes).
+**Prediction (t5's):** k_c 79's reading at this D (dh610) 0.891249 + 0.002 (the k_c 87 minus k_c 79 step at D 21.0 was +0.0021) = 0.893249; **one robust change within 0.005 of 0.8933**.
+**Grid:** m = 0.8933 rounded to 0.005 = 0.890; lambda 0.880, 0.885, 0.890, 0.895, 0.900 and a repeat of 0.890: 6 evaluations, one single-thread process each (the first 0.890 is process 2, the repeat process 5); window read `read_lower.py scan 0.880 0.900` (the interval 0.8933 +- 0.005, that is 0.8883 to 0.8983, lies inside it).
+**Predictions (mine, before the run):** `kc87_syscheck_1025.py` accepts the state on this build with all controls firing and the k_c 79 check refusing about 90%; all six evaluations noise-robust about 75%; exactly one robust change in the window about 85% (none about 8%, two or more about 7%); its det-linear estimate within 0.005 of 0.8933 about 75%, within 0.002 about 40%; edge signs unequal about 85%; the repeat of 0.890 bit-identical about 90%; the float64 sign differs from the hybrid at one or more points about 55%; scan wall 0.5 to 1.5 h about 65% (my k_c 87 D 19.75 scan took 56 min for 4 values per process); peak RSS per process below 4.5 GB about 85%.
+**Memory:** my k_c 87 scan at D 19.75 (4 processes) peaked at 4.07, 2.62, 2.52 and 2.51 GB RSS and the available memory fell from 17.6 to 10.0 GiB. Six processes at those sizes take about 16 GB. Available at 07:14 UTC: 11.5 GiB, under the 12 GiB gate; the order is 6 processes, so I report this to t5 and start the scan when the gate passes or t5 says to go on.
+## Log
