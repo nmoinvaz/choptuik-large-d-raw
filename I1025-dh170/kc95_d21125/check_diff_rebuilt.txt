@@ -1,0 +1,22 @@
+--- /home/nathan/Source/choptuik-large-d-raw-p4/I1025-dh170/kc95_d21125/in/kc87_syscheck_1025.py	2026-11-24 01:14:27.839059809 -0800
++++ /home/nathan/Source/choptuik-large-d-raw-p4/I1025-dh170/kc95_d21125/in/kc95_syscheck_1025.py	2026-11-24 01:14:27.835059771 -0800
+@@ -13,8 +13,8 @@
+ 
+ def verdict(rec, D, F_state, steps_state):
+     why = []
+-    if rec.get("kc") != 87 or rec.get("D") != D:
+-        why.append("the record is not k_c 87 at D %g (kc %s, D %s)" % (D, rec.get("kc"), rec.get("D")))
++    if rec.get("kc") != 95 or rec.get("D") != D:
++        why.append("the record is not k_c 95 at D %g (kc %s, D %s)" % (D, rec.get("kc"), rec.get("D")))
+     if not rec["F"] <= F_CLASS:
+         why.append("record |F| %.3e is above the class bar %.0e" % (rec["F"], F_CLASS))
+     if not abs(F_state - rec["F"]) <= max(1e-2 * rec["F"], 1e-13):
+@@ -25,7 +25,7 @@
+ 
+ 
+ def selftest():
+-    rec = dict(kc=87, D=18.5, F=2.9e-10, steps=3300)
++    rec = dict(kc=95, D=18.5, F=2.9e-10, steps=3300)
+     cases = [("a converged record", rec, 18.5, 2.9e-10, 3300, True),
+              ("|F| above the class bar", dict(rec, F=2e-9), 18.5, 2e-9, 3300, False),
+              ("the state's |F| 1.5 times the record's", rec, 18.5, 4.35e-10, 3300, False),
