@@ -40,3 +40,9 @@ A pin that differs, a selftest or control that does not read as written, a sourc
 
 ## Status
 - 2026-11-24 17:44 UTC: folder, drivers, inputs and README written; dry runs of both drivers (`dry21875/`, on macm3's D 21.875 state) first, then the lane for D 22.0 waits for macm3's state and tag g's end.
+- 2026-11-24 17:50 UTC: the coordinator (hc): "macm3 scans every multiple of 0.125 while its leap runs, so D 22.0 and 22.5 are both scanned; no skip. If a root has not appeared 3 h after macm3 pushed that state, tell me rather than wait the 12 h." Both lanes' drivers are running and wait (D 22.0 and D 22.5);
+  an alert watcher reports at 3 h after the fetch of macm3's state if its root is not in `roots87.txt`.
+- 2026-11-24 17:55 UTC: the coordinator (hc): "yes, hold the k_c 95 regrids until the #1078 build on t25 ends (its rustc is near its expected peak, ~35 GB); start them when committed memory is back below ~80 GB. Your tag g leap continues to its cap. Report any allocation failure at once."
+  The regrid drivers (D 22.0 and D 22.5; they were waiting for macm3's states, nothing computed) were killed by exact pid after command-line checks (the wrapper trees 22088 and 40384, then the leftover bash 45868, 34240, 41444, 34364 and fetch pythons 30364, 39700; one first
+  attempt of mine failed on a PowerShell parse error and killed nothing) and restarted with a commit gate in `kc95_regrid.sh`: after tag g's end and no other regrid of mine, it waits until committed memory (`\Memory\Committed Bytes`) is below 80 GB (a wait; nothing is stopped; the gate's threshold was tried on planted values 98.0 and 80.0
+  hold, 79.9 and 70 go). The scan drivers are unchanged (their 18.4 GB free-memory gate).

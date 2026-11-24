@@ -62,7 +62,14 @@ CMD="$PY -u ell_refine.py $SRC 87 $NEWTAG 95 1 $D $LAM0 --kappa 0.7 --u0 0.04 --
 log "kc95 D $D regrid waits for the tag g leap's end (all8.done) and for any other regrid of mine to end"
 until [ -e /d/choptuik-i935-raw/I1025-win2/kc79_leap/all8.done ]; do sleep 30; done
 while [ "$(powershell -NoProfile -Command "@(Get-CimInstance Win32_Process | Where-Object { \$_.CommandLine -match 'ell_refine.py l1kc87Lmacm3b' }).Count" | tr -d '\r')" != 0 ]; do sleep 30; done
-log "kc95 D $D regrid: the threads are free, starting"
+# the coordinator's hc of 24 Nov ~17:55 UTC: "hold the k_c 95 regrids until the #1078 build on t25 ends ...; start them when committed memory is back below ~80 GB" (a wait, nothing is stopped)
+commit_gb() { powershell -NoProfile -Command "[math]::Round((Get-Counter '\\Memory\\Committed Bytes').CounterSamples[0].CookedValue/1GB,1)" | tr -d '\r'; }
+cg=$(commit_gb); held=0
+while awk -v c="$cg" 'BEGIN { exit !(c >= 80) }'; do
+  [ $held = 0 ] && { log "kc95 D $D regrid held: committed memory $cg GB is not below 80 GB (the order's gate); waits"; held=1; }
+  sleep 60; cg=$(commit_gb)
+done
+log "kc95 D $D regrid: the threads are free and committed memory is $cg GB (below 80), starting"
 cd $WT/solver/matter || exit 1
 { echo "# $(date -u '+%F %T') UTC cmd: $CMD (cwd $WTM, 4 threads)"; } > $OUT/regrid.log
 s0=$(date +%s)
