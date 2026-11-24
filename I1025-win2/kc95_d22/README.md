@@ -1,6 +1,6 @@
 # I1025-win2/kc95_d22: macm3's k_c 87 leg state at D 22.0 regridded to k_c 95, then a hybrid sign scan around lambda_1
 
-Machine win2 (Windows 11, 20 logical CPUs, 95.5 GB RAM; runner win2, Sonnet 5.5). Issue https://github.com/nmoinvaz/choptuik-large-d/issues/1025. Written 2026-11-24 17:45 UTC, before any regrid or scan of this folder
+Machine win2 (Windows 11, 20 logical CPUs, 95.5 GB RAM; runner win2, Sonnet 5.5). Issue https://github.com/nmoinvaz/choptuik-large-d/issues/1025. Written 2026-11-24 17:44 UTC, before any regrid or scan of this folder
 (the drivers `kc95_regrid.sh` and `kc95_scan.sh` and the tools in `inputs/` are here; the dry runs are in `dry21875/`). The D 22.5 point is the same drivers in `../kc95_d225/`.
 
 ## Order (coordinator t5, hc, 24 Nov ~17:25 UTC), verbatim
@@ -39,4 +39,4 @@ Source accepted with controls 1 1; the regrid exits 0 inside 21600 s; the result
 A pin that differs, a selftest or control that does not read as written, a source not accepted, a regrid not accepted or over the cap, or a scan process that fails stops the lane and I report it.
 
 ## Status
-- 2026-11-24 17:45 UTC: folder, drivers, inputs and README written; dry runs of both drivers (`dry21875/`, on macm3's D 21.875 state) first, then the lane for D 22.0 waits for macm3's state and tag g's end.
+- 2026-11-24 17:44 UTC: folder, drivers, inputs and README written; dry runs of both drivers (`dry21875/`, on macm3's D 21.875 state) first, then the lane for D 22.0 waits for macm3's state and tag g's end.
