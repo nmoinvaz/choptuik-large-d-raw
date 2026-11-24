@@ -1,0 +1,20 @@
+1. centre exponents s = 1, 1 - n (p, m) and 1 - n (a)           PASS
+2. SSH exponent sigma = (n/2 - 1 + g)/(1 - g)                   PASS
+   residual at n = 1e3, 1e5: 0.000e+00 0.000e+00
+   residual at n = 1e3, 1e5: 2.360e-04 2.358e-06
+   residual at n = 1e3, 1e5: 1.044e-03 1.044e-05
+   residual at n = 1e3, 1e5: 1.077e-03 1.077e-05
+3. slow solution: residuals O(1/n) for any K(theta), omega      PASS
+4. eikonal root c^2/(x(x^2-c^2)); integral -ln x + (1+K)/2 ln(1-x^2) PASS
+5. free field: 2F1(l/2, (l+1)/2; (n+1)/2; x^2) solves the wave eq. PASS
+exit 0
+--mutate=1:
+1. centre exponents s = 1, 1 - n (p, m) and 1 - n (a)           FAIL
+--mutate=2:
+2. SSH exponent sigma = (n/2 - 1 + g)/(1 - g)                   FAIL
+--mutate=3:
+3. slow solution: residuals O(1/n) for any K(theta), omega      FAIL
+--mutate=4:
+4. eikonal root c^2/(x(x^2-c^2)); integral -ln x + (1+K)/2 ln(1-x^2) FAIL
+--mutate=5:
+5. free field: 2F1(l/2, (l+1)/2; (n+1)/2; x^2) solves the wave eq. FAIL
