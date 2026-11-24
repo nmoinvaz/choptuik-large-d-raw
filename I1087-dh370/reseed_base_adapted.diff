@@ -1,0 +1,40 @@
+diff --git a/hp/anm_run.py b/hp/anm_run.py
+index cc4b416e..7e34d721 100644
+--- a/hp/anm_run.py
++++ b/hp/anm_run.py
+@@ -457,6 +457,7 @@ def main():
+     # by the octo-double refinement alone first, accepted at or below --proj_o_bar (0: --tol_od)
+     opt.update(proj_start="u0", reseed_o_stop=0, proj_o=0, proj_o_bar=0.0)
+     opt.update(reseed_o_bar=0.0)        # --reseed_o_bar B: skip the corrector when the refinement ends above B
++    opt.update(reseed_base=0)           # --reseed_base 1: the base's horizon data re-seeded at --ks before its polish
+     # --arclength 1: the pseudo-arclength continuation of hp/arclength.py from this base (#842), oriented by --arc_sign
+     # (the sign of D's change), no base where the unit tangent's |t_D| < --guard, stopping below --D_min (0: never) or
+     # after the step that holds the --turns_max-th turn (2: the mirror's own turn);
+@@ -765,8 +766,25 @@ def main():
+                                       horizon_alpha=opt["horizon_alpha"], qd=bool(opt["reseed_q"]), od=opt["reseed_o"],
+                                       qd_start=opt["reseed_start"], qd_bar=opt["reseed_qd_bar"],
+                                       proj_start=opt["proj_start"], od_stop=bool(opt["reseed_o_stop"]))
+-            zh_p, zl_p, F0_p, _, conv_p, _ = correct(sp, zh, zl, opt["tol"],
+-                                                     z8_start=load_o(os.path.join(raw, opt["state"]))[0])
++            z8_base = load_o(os.path.join(raw, opt["state"]))[0]
++            if opt["reseed_base"] and opt["reseed"]:
++                # --reseed_base 1: the horizon data of the run's order from the base's own last node, before the polish
++                rs_b = Reseeder(dict(M=M, nodes=nodes, kt=kt, kc=kc, ks=ks), D, threads=opt["threads"],
++                                horizon_alpha=opt["horizon_alpha"], qd=bool(opt["reseed_q"]), od=opt["reseed_o"],
++                                qd_start=opt["reseed_start"], qd_bar=opt["reseed_qd_bar"], proj_start=opt["proj_start"],
++                                od_stop=bool(opt["reseed_o_stop"]))
++                zr_b, rsd_b = rs_b.reseed(z4_base)
++                if rsd_b["ok"]:
++                    z8_base = with_horizon(z8_base, zr_b, rs_b)
++                    zh, zl = np.asarray(zr_b[0]), np.asarray(zr_b[1])
++                    Fr = omax(PinnedO(sp.s, sp.ch, sp.cl, c8=sp.c8).residual_o(z8_base))
++                    print(f"base re-seeded at ks {ks} (--reseed_base 1), {rsd_b['seconds']} s: octo-double max|F| {Fr:.1e}"
++                          + (", refinement rung max|R| " + " -> ".join(f"{r:.2e}" for r in rs_b.last_o)
++                             if getattr(rs_b, "last_o", None) else ""), flush=True)
++                else:
++                    print(f"base re-seed at ks {ks} FAILED ({rsd_b['seconds']} s): the polish starts from the stored data",
++                          flush=True)
++            zh_p, zl_p, F0_p, _, conv_p, _ = correct(sp, zh, zl, opt["tol"], z8_start=z8_base)
+             elim["rs"] = None
+             Fs = last_q.get("od_F")
+             if conv_p or Fs is None or Fs[1] < Fs[0] or opt["base_adopt"]:
