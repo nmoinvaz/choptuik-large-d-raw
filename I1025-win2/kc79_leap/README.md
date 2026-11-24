@@ -96,6 +96,12 @@ k_c 79:
 
 In both legs the tracked weak mode rises at every step (k_c 79 x1.040 to x1.042 per 0.03125 in D); at k_c 71 its growth per step slows from x1.082 (D 20.8125) to x1.022 (D 21.0) and x1.032 (D 21.03125), still a rise. The largest tangent |cos| is at most 0.052 (k_c 71) and 0.048 (k_c 79).
 
+## The branch-point watch (the coordinator's hc ~01:40 UTC 24 Nov; report only, not a stop rule)
+
+The order (verbatim): "Add a second watch, report-only (not a stop rule), for both legs: a BRANCH-POINT watch: any tracked regular mode falling at 5 or more consecutive points with tangent |cos| below 0.1 (a singular value going to zero orthogonal to the tangent, which the fold rule cannot see). Report in each row that mode's sigma, its fall per step and its distance to the cutoff in steps at the current rate. m1 on leg 6 is the candidate (4 falls, cos 0.034, ~300 steps from the cutoff at x0.992)."
+
+`../kc71_leap/mode_tracker.py` (blob 807c2d95): the row's last-but-one column lists every tracked mode with >= 5 consecutive falls and cos < 0.1 (id, sigma, ratio to the previous sigma, number of falls, cos, and n = ln(cutoff / sigma) / ln(ratio) steps to the null cutoff 1e-12 sigma_max at that rate); the longest-fall-run column shows the same numbers for the leading candidate before it reaches 5. The guards and the fold rule are unchanged. Controls (`../kc71_leap/mode_tracker_tests/`): selftest 0 (a mode falling 0.992 per step at cos 0.03 is listed at the 5th fall and not the 4th, at 314 +- 3 steps from the cutoff 1.4e-11 from 1.75e-10; at cos 0.15 it is never listed), `--mutate=bcount` (3 falls suffice) and `--mutate=bcos` (cos ignored) exit 1, and the earlier three mutations still exit 1. Status at D 21.1875 (leg 6): m1, the third regular value, has 4 falls (x0.9975, x0.9986, x0.9907, x0.9922; 1.7872e-10 at D 21.0625 to 1.7500e-10), cos 0.034, about 322 steps from the cutoff 1.401e-11 at the last rate (about 1000 and 1850 steps at the first two rates: the fall has sped up); the 5th fall would list it. No mode of the k_c 79 leap (tags d, f) has more than 0 falls through D 21.0.
+
 ## Result
 
 Not yet run.
