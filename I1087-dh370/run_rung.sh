@@ -17,8 +17,8 @@ LINE=( --state $STATE --kfreeze 3 --held_fit data/held_fit.json --N 31 --eps 1e-
   --qd_it 40 --lam_stall 0.04 --od_junk 0 --jet_o 1 --reseed 2 --reseed_q 1 --held_o 1 --reseed_o 3 --save_pred 1 --od_accept own
   --save_jet 1 --od_strong 4 --reseed_start pred --a_rule reseed --a_scale 0.000715 --jet_tangent_from 1 --series_split 1 --a_rise 1
   --proj_start pred --reseed_o_stop 1 --od_floor_delta 1e-30 --proj_o 1 --reseed_o_bar 1e-17 --base_polish ${BP:-0} --reseed_qd_bar 1e-13
-  --steps 0 --ks $K --keep_plan 0 --save_base 1 --D_max 273.4862 )
-# extra args after the line (none used); --base_polish is set by the environment variable BP (default 0, as in the line)
+  --steps 0 --ks $K --keep_plan ${KP:-0} --save_base 1 --D_max 273.4862 )
+# extra args after the line (none used); --base_polish and --keep_plan are set by the environment variables BP (default 0, as in the line) and KP (default 0)
 CMD=( nice -n 10 $PY -u $HP/anm_run.py $RAWROOT $OUT "${LINE[@]}" "$@" )
 echo "# $(date -u '+%F %T') UTC K $K tag $TAG cap $CAP s cwd $HP: ${CMD[*]}" > $OUT/cmd.txt
 cd $HP || exit 9
