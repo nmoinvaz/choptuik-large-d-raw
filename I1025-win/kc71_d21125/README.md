@@ -1,6 +1,6 @@
 # I1025-win/kc71_d21125: lambda_1 at k_c 71 on leg 6's D 21.125 state, a hybrid sign scan at 0.855 to 0.885 (winb)
 
-Written before the run, 2026-11-24 01:45:56 UTC (substituted from `date -u` when pushed). No scan had been run for this folder when the order, the written lines and the estimates below were written. The dry test ran the pins, the `read_lower.py` selftests and the state check (read-only, 2 s each, outputs `*.txt.dry`); the real run repeats them first.
+Written before the run, 2026-11-24 01:47:10 UTC (substituted from `date -u` when pushed). No scan had been run for this folder when the order, the written lines and the estimates below were written. The dry test ran the pins, the `read_lower.py` selftests and the state check (read-only, 2 s each, outputs `*.txt.dry`); the real run repeats them first.
 
 ## Order (t5's hc of 2026-11-24, winb section; the #1025 comments 7116849518 and 7118341764 closed the k_c 95 D 19 reading)
 
@@ -68,7 +68,15 @@ Started outside my terminal: `Win32_Process.Create` of `conhost.exe --headless c
 
 ## Status
 
-Not started when this was written.
+**Running since 2026-11-24 01:46:10 UTC** (started through `Win32_Process.Create` of `conhost.exe --headless cmd.exe /c go_kc71d21125_1025.cmd`). README first: fdfc8806 (pushed before the start).
+
+- **Chain** (`rows/launcher_pid.txt`: 20416): conhost --headless 20416 <- cmd 4768 <- scan driver launcher 21232 and driver 23484 <- sampler 24080, alert-only watcher 15836, keep-awake helper 11964, and the four `d18_hybsign.py` processes p0 24208, p1 25760, p2 22900, p3 13568 (each with its worker). All BelowNormal.
+- **Session check** (`session_check_scan.txt`, exit 0): no `claude` in any chain, no Windows Terminal / OpenConsole / wt, a headless conhost in the chain.
+- **Before the scan** (01:46:11 to 01:46:17 UTC, 6 s): the pins matched; `read_lower.py` selftest 0 and its two controls 1, 1; `kc71_syscheck.py` selftest 0; the state accepted (exit 0; state |F| 4.6119732398e-10 against the record's 4.6104393584e-10, `freeze_from` 2396 steps, the record's); `--mutate=F` and `--mutate=steps` exit 1, 1 (`source_syscheck_*.txt`). All four `d18_hybsign.py` print "the record system".
+- **Machine at the start:** on AC (battery status 2, charge 100), clock 2995 of 2995 MHz, free physical memory 23.4 GB, beside it the other project's I114 `convergence.py` jobs (python 880 and 4940), not touched.
+- **ETA** (estimates above): the scan ends about 02:30 UTC (range 02:10 to 03:00).
+
+Pushed 2026-11-24 01:47:10 UTC.
 
 ## Result
 
