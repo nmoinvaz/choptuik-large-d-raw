@@ -12,7 +12,7 @@ lambda_1 on win2's k_c 79 leg at D 21.1875: **predicted 0.8514 +-0.01** (the pre
 
 ## Acceptance (fixed before the run)
 - `kc79_syscheck_1025.py` accepts the state at D 21.1875 with both controls exit 1; all 8 processes print the record system; the repeat of 0.850 agrees (`repeat_check.py`); `read_lower.py`, `leg_read.py` and `repeat_check.py` selftests as wanted. A failing control or check stops the lane and I report it.
-- Checks specific to the restart: \`fetch_point.sh\` exits 2 and the lane stops when the g record has no row for D 21.1875 with kc 79 or a blob differs from the commit's (the state's path names the tag, so a state not under tag g is never found). By hand, after the pins, I compare the g record's rows for D 21.125 and D 21.15625 (if it carries them) with tag f's by |F| and steps and report the result; that comparison does not gate the lane.
+- Checks specific to the restart: `fetch_point.sh` exits 2 and the lane stops when the g record has no row for D 21.1875 with kc 79 or a blob differs from the commit's (the state's path names the tag, so a state not under tag g is never found). By hand, after the pins, I compare the g record's rows for D 21.125 and D 21.15625 (if it carries them) with tag f's by |F| and steps and report the result; that comparison does not gate the lane.
 - Reported: every robust change by position (bracket, orientation as printed, det-linear, estimator range, a spread over interpolation choices and not an enclosure) beside the prediction 0.8514 (bar 0.01); the edge signs; the repeat; the seconds per point; the widening if it ran.
 
 ## Predictions, registered before the run (mine, information)
