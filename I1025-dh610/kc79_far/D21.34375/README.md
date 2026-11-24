@@ -1,4 +1,4 @@
-# I1025-dh610/kc79_far/D21.34375: win2's tag g leap state and tag i far scout state at D 21.34375, side by side (no lambda_1 scan)
+# I1025-dh610/kc79_far/D21.34375: win2's tag g leap state and tag i far scout state at D 21.34375, side by side, and the lambda_1 scan of the tag i state
 
 Machine dh610 (Fedora 45, i7-12700, Linux). Issue https://github.com/nmoinvaz/choptuik-large-d/issues/1025. Parent folder `../README.md` (the orders, win2's plan, the lane, the predictions for the four comparisons). Written 2026-11-24 12:03 UTC, before either state of this D may be on origin and before any run of this folder. The k_c 79 states are not yet physical.
 
@@ -56,8 +56,81 @@ extra, not ordered: L2 distance of the two state vectors (Delta entry included):
 | state distance below 1e-6 (45%); below 1e-4 (80%) (extra) | WRONG (1.6213e-05); right |
 | (unscored expectation of mine in the leg README: the tag g state on origin about 15:15 to 15:25 UTC) | WRONG: 14:48:05 UTC |
 
+## Result of the tag i scan (`i/`; `../summarize_far.py 21.34375 0.7987` on a symlink to `i/` > `i/summary_far.txt`; lane 14:40:25 to 16:03:12 UTC, the scan 14:40:41 to 16:03:12 = 82.5 min)
+| lambda | hybrid sign | noise signs (robust) | float64 sign | ln of abs det | seconds |
+|---|---|---|---|---|---|
+| 0.785 | + | ++ (True) | + | -2281.7998012892554 | 4826 |
+| 0.790 | + | ++ (True) | + | -2282.6462568113193 | 4381 |
+| 0.795 | + | ++ (True) | + | -2283.942459331604 | 4524 |
+| 0.800 | - | -- (True) | - | -2284.989168989766 | 4323 |
+| 0.800 | - | -- (True) | - | -2284.989168989766 | 4943 |
+| 0.805 | - | -- (True) | - | -2283.9894708206866 | 3556 |
+| 0.810 | - | -- (True) | + | -2283.8072895281753 | 4867 |
+| 0.815 | - | -- (True) | - | -2283.827252841434 | 4640 |
+
+scan points: 8 evaluations, seconds per point min 3556, median 4582, max 4943, sum 36060; outside 900 to 1900 s: [(0.785, 4826), (0.79, 4381), (0.795, 4524), (0.8, 4323), (0.8, 4943), (0.805, 3556), (0.81, 4867), (0.815, 4640)]
+win2's record at D 21.34375: |F| 4.4857763320637664e-10, steps 2648, constraint 0.005950969181448842, Delta 1.127507630527052, h 0.0625, seconds 4556
+float64 sign differs from the hybrid at: [0.81]
+
+```
+=== read_lower.py /home/nathan/Source/choptuik-large-d-raw/I1025-dh610/kc79_far/D21.34375/i/scan 0.785 0.815
+points 7 in 0.785-0.815; not noise-robust: none
+hybrid signs: 0.785+ 0.790+ 0.795+ 0.800- 0.805- 0.810- 0.815-
+float64 sign differs from the hybrid sign at: [(0.81, '-', '+')]
+repeated points: [(0.8, 'agree')]
+  robust change (0.795, 0.800), + to -, det-linear 0.798701, range [0.798136, 0.798701]
+robust changes: 1; touching a non-robust point (not counted): none
+ln|det| local minima without a sign change: none
+endpoint signs: + at 0.785, - at 0.815
+read_lower exit 0
+=== repeat_check.py (merged scan file)
+repeat check /home/nathan/Source/choptuik-large-d-raw/I1025-dh610/kc79_far/D21.34375/i/scan/scan_D21.34375_all.jsonl: lambda [0.8]: [2] evaluations each, agree -> PASS
+repeat_check exit 0
+```
+
+- **Source accepted** (the lane's own check on the pinned tag i state): `kc79_syscheck_1025.py` exit 0, `--mutate=F` exit 1, `--mutate=steps` exit 1; the selftests as wanted; all 8 processes printed the record system (record |F| 4.4857763321e-10, steps 2648). The state is of win2's commit 9bb1884b (14:34:00 UTC).
+- **One robust change in the window 0.785 to 0.815:** (0.795, 0.800), "+ to -", det-linear **0.798701**, estimator range [0.798136, 0.798701] (a spread over interpolation choices, not an enclosure; the bracket is the grid step 0.005); +0.000001 against the prediction 0.7987 (bar 0.01). Edge signs differ (+ at 0.785, - at 0.815). The repeat of 0.800 is bit-identical (ln|det| -2284.989168989766 in both). The float64 sign differs from the hybrid at 0.810, above the change.
+- **Both roots at D 21.34375 (`roots_pair.py 21.34375 21.3125` > `roots_pair.txt`, selftest exit 0 and its `--mutate` exit 1 with the FIRED line):**
+```
+D 21.34375, k_c 79 roots, not yet physical; orientation as the reader prints it (g: + to -, i: + to -), identified by position
+| tag | bracket | det-linear root | estimator range (spread over interpolation choices, not an enclosure) |
+|---|---|---|---|
+| g (h 0.03125) | (0.795, 0.800) | 0.798768 | [0.798216, 0.798768] |
+| i (h 0.0625) | (0.795, 0.800) | 0.798701 | [0.798136, 0.798701] |
+
+root i - root g = -0.000067; same bracket: True; the estimator ranges overlap on [0.798216, 0.798701]: True
+Delta g 1.1275035270998226, Delta i 1.127507630527052, i - g +4.103427e-06
+context: along the tag g leg D 21.3125 to 21.34375 the root moves -0.010781 for a Delta move of +8.483179e-04, slope -12.709 per unit Delta; if Delta alone moved the root, the Delta difference +4.1034e-06 would move it by -5.215e-05 (observed -6.700e-05)
+
+| lambda | ln abs det, tag g | ln abs det, tag i | i - g |
+|---|---|---|---|
+| 0.785 | -2281.791622302807 | -2281.7998012892554 | -0.008179 |
+| 0.790 | -2282.634517130593 | -2282.6462568113193 | -0.011740 |
+| 0.795 | -2283.9166492174295 | -2283.942459331604 | -0.025810 |
+| 0.800 | -2285.034941053603 | -2284.989168989766 | +0.045772 |
+| 0.805 | -2283.9991526138233 | -2283.9894708206866 | +0.009682 |
+| 0.810 | -2283.8119153279763 | -2283.8072895281753 | +0.004626 |
+| 0.815 | -2283.829836605837 | -2283.827252841434 | +0.002584 |
+```
+  The two roots are in the same bracket (0.795, 0.800); tag i's det-linear root is 0.000067 below tag g's (the sign is from the printed orientation of each: both "+ to -", by position, not compared across D or k_c), the estimator ranges overlap. The slope line is context only: it assumes Delta alone moves the root along the g leg.
+- **Seconds per point 3556 to 4943 s** (median 4582; the last tag i points at nice 8 beside the tag g scan at nice 5 and the recount, 1.69 to 1.84 GiB peak RSS per process). The load average, median over `i/scan/sampler.log` (164 samples, 14:40:51 to 16:02:51 UTC), was 18.13 over the whole scan and **18.16 over the overlap with the tag g scan** (147 samples from 14:49:14 UTC; max 28.91); MemAvailable at least 38.62 GiB. The load alert (`load_alert.sh`, alert only) did not fire.
+
+### Predictions scorecard of the tag i scan (registered before the run)
+| prediction | result |
+|---|---|
+| source accepted (91%), 8 processes with the record system (92%), the repeat agrees (92%) | right |
+| one robust change in the window (84%); within 0.01 of 0.7987 (90%) | right (+0.000001) |
+| the bracket of the tag i root equals the tag g root's (85%) | right ((0.795, 0.800) both) |
+| the det-linear roots differ by at most 1e-3 (90%), at most 3e-4 (70%), at most 1e-4 (40%) | right (6.7e-05), right, right |
+| the two estimator ranges overlap (65%) | right ([0.798216, 0.798701]) |
+| the float64 sign agrees with the hybrid at all 8 evaluations (15%) | WRONG (differs at 0.810) |
+| each scan point 1700 to 3200 s (65%) | WRONG (3556 to 4943 s) |
+| the point done, no widening, within 90 min of the lane's start (70%) | right (82.5 min) |
+| the median load over the overlap with the tag g scan below 22 (70%) | right (18.16) |
+
 ## Status
 - 2026-11-24 12:03 UTC: folder and README written.
 - 2026-11-24 14:38 UTC: third order registered above; the unit `i1025-scan-21_34375` waits for the comparison.
 - 2026-11-24 14:40 UTC: the second word (above): the tag i scan starts now (unit `i1025-scan-21_34375` restarted with NOWAIT=1).
 - 2026-11-24 14:52 UTC: the comparison is done (lane 14:49:17 to 14:51:15 UTC): result and scorecard above; the tag i scan (`i/`) runs since 14:40:41 UTC, and the tag g scan of the leg lane since 14:49:14 UTC, so the two overlap.
+- 2026-11-24 16:08 UTC: the tag i scan is done (14:40:41 to 16:03:12 UTC) and the tag g scan of the leg lane (14:49:14 to 16:06:15 UTC): both roots above (i - g = -0.000067, same bracket); reported to the coordinator.
