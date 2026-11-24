@@ -102,6 +102,23 @@ The order (verbatim): "Add a second watch, report-only (not a stop rule), for bo
 
 `../kc71_leap/mode_tracker.py` (blob 807c2d95): the row's last-but-one column lists every tracked mode with >= 5 consecutive falls and cos < 0.1 (id, sigma, ratio to the previous sigma, number of falls, cos, and n = ln(cutoff / sigma) / ln(ratio) steps to the null cutoff 1e-12 sigma_max at that rate); the longest-fall-run column shows the same numbers for the leading candidate before it reaches 5. The guards and the fold rule are unchanged. Controls (`../kc71_leap/mode_tracker_tests/`): selftest 0 (a mode falling 0.992 per step at cos 0.03 is listed at the 5th fall and not the 4th, at 314 +- 3 steps from the cutoff 1.4e-11 from 1.75e-10; at cos 0.15 it is never listed), `--mutate=bcount` (3 falls suffice) and `--mutate=bcos` (cos ignored) exit 1, and the earlier three mutations still exit 1. Status at D 21.1875 (leg 6): m1, the third regular value, has 4 falls (x0.9975, x0.9986, x0.9907, x0.9922; 1.7872e-10 at D 21.0625 to 1.7500e-10), cos 0.034, about 322 steps from the cutoff 1.401e-11 at the last rate (about 1000 and 1850 steps at the first two rates: the fall has sped up); the 5th fall would list it. No mode of the k_c 79 leap (tags d, f) has more than 0 falls through D 21.0.
 
+## Queued restarts at the caps (the coordinator's standing authorization, hc ~04:40 UTC 24 Nov)
+
+The order (verbatim): "Authorized now, so nothing idles at the caps (~07:13 leg 6, ~07:17 k_c 79): when each ends by its cap, restart it the same way as your 19:17 restart (from its last two states, a new tag, seeds re-checked by the syscheck, guard with --seeds, fresh 12 h cap by exact pid): k_c 79 to D_end 21.5, k_c 71 (leg 6's scout) to D_end 21.75; h 0.03125, the same fold rule and watches. Record each restart in the README."
+
+Two waiting drivers, headless, BelowNormal, started 04:3x UTC (dry runs 04:24 to 04:26 UTC with the then-last two records as stand-in seeds: pins pass, seeds accepted by the syscheck, controls exit 1, command printed):
+
+| | k_c 79 (`run_leap8.sh`, here) | k_c 71, leg 6's scout (`run_leap9.sh`, `../kc71_leap/`) |
+|---|---|---|
+| waits for | `all7.done` (the restarted leap's end by its cap, 07:17:20 UTC) | `all6.done` (leg 6's end by its cap, 07:13:13 UTC) |
+| restarts only if | `summary_leap7.txt` says "capped at 43200 s" and no `leap7_STOP.txt` | `summary_kcl6.txt` says "capped at 43200 s" and no `leg6_STOP.txt` |
+| seeds | the last two records of tag l1kc79Lw1025f | the last two records of tag l1kc71Lw1025e |
+| new tag | l1kc79Lw1025g | l1kc71Lw1025h |
+| command | `ell_leap.py l1kc79Lw1025g 1 79 <seed A> A <seed B> B 21.5 0.03125 --tol 1e-12 --fmax 1e-8 --cmax 1e-2 --fold` | `ell_leap.py l1kc71Lw1025h 1 71 <seed A> A <seed B> B 21.75 0.03125 --tol 1e-12 --fmax 1e-8 --cmax 1e-2 --fold` |
+| files | `leap8.log`, `exits_leap8.txt`, `summary_leap8.txt`, `leap8_points.txt`, `leap8_STOP.txt`, `all8.done` | `leap9.log`, `exits_kcl9.txt`, `summary_kcl9.txt`, `leg9_points.txt`, `leg9_STOP.txt`, `all9.done` |
+
+Each driver re-checks the two seeds against the record file and the copies in `states/` (byte for byte), with the syscheck (selftest 0, accepts, `--mutate=F` and `--mutate=steps` exit 1), writes the seeds' own records (which carry n_null and cos_t_reg) for the guard (`leap_guard.py` f1fe7c7c, `--seeds`; the same rule), starts the guard and the alert-only samplers headless, then the leap: 4 threads, cap 43200 s (fresh 12 h) by the exact root pid with the `ell_leap.py` command-line check. A leg that ends any other way (its guard's stop, the leap's own stop, reaching its D_end) is not restarted; the driver logs why and exits. Each restart is recorded below when it happens.
+
 ## Result
 
 Not yet run.
