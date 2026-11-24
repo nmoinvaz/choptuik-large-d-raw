@@ -1,0 +1,8 @@
+#!/bin/bash
+# macOS stand-in for the one PowerShell call of win2's leap_guard.py: (Get-CimInstance Win32_Process -Filter 'ProcessId=N').CommandLine
+# prints the command line of process N by exact pid (ps -ww -o command= -p N), or nothing when N is gone or a zombie (STAT Z). Same contract as dh370's /proc shim (I1025-dh370/kc87_leg/shims/powershell).
+pid=$(printf '%s ' "$@" | grep -o "ProcessId=[0-9]*" | head -1 | cut -d= -f2)
+[ -n "$pid" ] || exit 0
+st=$(ps -o stat= -p "$pid" 2>/dev/null | tr -d ' ')
+[ -n "$st" ] && [ "${st#Z}" = "$st" ] && ps -ww -o command= -p "$pid" 2>/dev/null | sed 's/ *$//'
+exit 0
