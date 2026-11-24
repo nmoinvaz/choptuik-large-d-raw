@@ -1,0 +1,47 @@
+| record | k_c 87 (regrid, this machine) | k_c 79 source (win2's leap) | k_c 87 minus k_c 79 |
+|---|---|---|---|
+| F_start | 2.288336927471666e-05 | 1.0334830553286102e-05 | +1.255e-05 |
+| F | 4.610998301576713e-10 | 4.6401788196957317e-10 | -2.918e-12 |
+| steps | 2948 | 2678 | +2.700e+02 |
+| constraint | 0.0031763514726419 | 0.004719788472577341 | -1.543e-03 |
+| Delta | 1.118229686747366 | 1.1182445857206806 | -1.490e-05 |
+| seconds | 5457 | 4610 |  |
+| steps ratio | 1.1008 | | |
+
+| lambda | hybrid sign (k_c 87 mine, k_c 79 leg) | noise signs (robust) | float64 sign | ln of abs det (k_c 87 mine, k_c 79 leg) | seconds |
+|---|---|---|---|---|---|
+| 0.895 | -, + | -- (True) | - | -2621.950113, -2323.535702 | 4528 |
+| 0.900 | -, + | -- (True) | - | -2622.742195, -2324.341619 | 3483 |
+| 0.905 | -, + | -- (True) | - | -2623.754412, -2325.484061 | 4233 |
+| 0.910 | -, - | -- (True) | + | -2625.789586, -2327.768664 | 4419 |
+| 0.910 | -, - | -- (True) | + | -2625.789586, -2327.768664 | 4527 |
+| 0.915 | +, - | ++ (True) | + | -2625.112642, -2325.979162 | 4096 |
+| 0.920 | +, - | ++ (True) | + | -2624.689784, -2325.722545 | 4845 |
+| 0.925 | +, - | ++ (True) | + | -2624.661892, -2325.715028 | 3517 |
+
+scan points: 8 evaluations, seconds per point min 3483, median 4326, max 4845, sum 33648; outside 1500 to 3500 s: [(0.895, 4528), (0.905, 4233), (0.91, 4419), (0.91, 4527), (0.915, 4096), (0.92, 4845), (0.925, 3517)]
+float64 sign differs from the hybrid at: [0.91, 0.91]; not noise-robust: none
+
+control: the two-point root of the k_c 79 leg rows at 0.905 and 0.910 is 0.905462; its reader's det-linear is 0.909538; difference -4.08e-03 (bar 1e-5): CONTROL FAILED
+this scan's reader: robust changes 1: (0.910, 0.915), - to +, det-linear 0.911685, range [0.911139, 0.911685]
+k_c 87 minus k_c 79 (0.909538): +0.002147; within 0.002: False; within 0.005: True; within 0.0005: False
+source check exits (kc79 check, controls F, steps, kc87 check): ('0', '1', '1', '1'); acceptance exits (kc87 check, controls F, steps, kc79 check): ('0', '1', '1', '1'); ell_refine ('0', '5460'); processes that printed the record system 8 of 8; pair check exit 0; lane 2.88 h
+
+| prediction (registered before the run; right = the stated event happened) | result | verdict |
+|---|---|---|
+| source accepted by the k_c 79 check (controls 1 1) and refused by the k_c 87 check (92%) | ('0', '1', '1', '1') | right |
+| regrid exit 0 (92%) | ('0', '5460') | right |
+| regrid accepted by the k_c 87 check, controls 1 1, refused by the k_c 79 check (85%) | ('0', '1', '1', '1') | right |
+| steps ratio k_c 87 / k_c 79 between 1.05 and 1.15 (60%) | 1.1008 | right |
+| regrid wall 2000 to 4500 s (60%) | 5460 | WRONG |
+| all 8 scan processes print the record system (90%) | 8 of 8 | right |
+| the repeat of 0.910 agrees (92%) | pair check exit 0 | right |
+| every point noise-robust (85%) | none | right |
+| one robust change in the window (80%) | 1 | right |
+| the change within 0.002 of 0.909538 (65%) | +0.002147 | WRONG |
+| within 0.005 (85%) | +0.002147 | right |
+| within 0.0005 (25%) | +0.002147 | WRONG |
+| float64 sign agrees with the hybrid at all 8 evaluations (55%) | [0.91, 0.91] | WRONG |
+| scan points 1500 to 3500 s each (65%) | 3483 to 4845 | WRONG |
+| the lane ends within 3.0 h of its pins line (65%) | 2.88 h | right |
+mutate: control FIRED (exit 1)
