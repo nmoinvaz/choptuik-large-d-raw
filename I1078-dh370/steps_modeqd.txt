@@ -1,1 +1,17 @@
 2026-11-24 00:19:15 UTC waiting for unit i1078w (the lambda 8 row and the D 3.15 Jacobian control) to end
+2026-11-24 00:35:55 UTC start; multidouble avx2 True; load 9.02 9.98 10.08
+2026-11-24 00:35:56 UTC (1) mode_qd.py selftest: exit 1 (0 wanted); Traceback (most recent call last):
+  File "/home/nathan/Source/choptuik-large-d-1078q/hp/mode_qd.py", line 111, in <module>
+    sys.exit(main())
+             ~~~~^^
+  File "/home/nathan/Source/choptuik-large-d-1078q/hp/mode_qd.py", line 86, in main
+    return selftest()
+  File "/home/nathan/Source/choptuik-large-d-1078q/hp/mode_qd.py", line 69, in selftest
+    q = qd_det(hi, lo, equil=False)
+  File "/home/nathan/Source/choptuik-large-d-1078q/hp/mode_qd.py", line 43, in qd_det
+    sg, la, pmin, pmax = qd_logdet(np.ascontiguousarray(Mh * f), np.ascontiguousarray(Ml * f), z, z, par=par,
+                         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                   control=control)
+                                   ^^^^^^^^^^^^^^^^
+TypeError: qd_logdet() got an unexpected keyword argument 'control'
+2026-11-24 00:35:56 UTC STOP 1: the selftest did not pass
