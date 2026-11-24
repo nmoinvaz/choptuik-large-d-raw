@@ -60,25 +60,31 @@ for l in open(LEG + "/exits_leg2%s.txt" % ("" if part == "a" else part)):
 memr = list(csv.DictReader(open(LEG + "/mem_samples.csv")))
 out = []
 P = out.append
+legout = []
+Pl = legout.append
 P("**#1025 macm3, lambda_1 on my own k_c 87 leg at D %s (@@T@@ UTC 24 Nov): one robust change, between %s and %s (%s), det-linear %.6f (estimator range [%.6f, %.6f]); %s predicted %.6f: %+.6f; the -0.33 rule beside it, %.6f: %+.6f%s; local slope %.4f per unit D.** t5's rule (previous k_c 87 root %.6f at D %s, step %s; one change within 0.005): %s. Numerical evidence." % (
     dn, br.group(1), br.group(2), orient, root, lo, hi, ("the latest-local-slope rule (%.6f)" % slope) if si is None else ("the interpolation between the roots at D %r and D %r (slope %.6f)" % (a, above[0], slope)),
     pred, root - pred, pred2, root - pred2, "" if abs(root - pred2) <= 0.005 else ", outside its 0.005 window", new, roots[a][0], dn if False else repr(a), repr(st),
     "**met** by the primary rule" + ("" if abs(root - pred2) <= 0.005 else ", **not met** by the -0.33 rule") if abs(root - pred) <= 0.005 else "**NOT met** by the primary rule"))
 if si is not None: P("\nBelow-only extrapolation (slope %.6f) beside it: %.6f, root %+.6f from it." % (sb, pred3, root - pred3))
 if legd:
-    P("\n**The leg** (kc87_leg2 part %s, raw `I1025-macm3/kc87_leg2/%s`): points accepted since the previous post.\n" % (part, "" if part == "a" else part + "/"))
-    P("| point | " + " | ".join("D %r (%s UTC, %d s)" % (d, pushed.get(d, ("", "?"))[1], legrec[d]["seconds"]) for d in legd) + " |")
-    P("|---|" + "---|" * len(legd))
-    P("| Delta | " + " | ".join("%.12f" % legrec[d]["Delta"] for d in legd) + " |")
-    P("| dDelta/dD | " + " | ".join(guard[d][2].join(["+", ""]) if not guard[d][2].startswith("-") else guard[d][2] for d in legd) + " |")
-    P("| \\|F\\|, steps | " + " | ".join("%.3e, %d" % (legrec[d]["F"], legrec[d]["steps"]) for d in legd) + " |")
-    P("| psi-constraint (bar 1e-2) | " + " | ".join("%.3e" % legrec[d]["constraint"] for d in legd) + " |")
-    P("| \\|J+dF/dn\\|, n_null | " + " | ".join("%.4f, %d" % (legrec[d]["tan_norm"], legrec[d]["n_null"]) for d in legd) + " |")
-    P("| tracker m0 (weakest regular mode), cos | " + " | ".join("%s, %.4f" % (trk[d][3].replace("m0 ", ""), legrec[d]["cos_t_reg"][0]) for d in legd) + " |")
-    P("| branch watch m1 | " + " | ".join(trk[d][7] for d in legd) + " |")
-    P("| raw commit | " + " | ".join(pushed.get(d, ("?",))[0] for d in legd) + " |")
+    Pl("\n**The leg** (kc87_leg2 part %s, raw `I1025-macm3/kc87_leg2/%s`): points accepted since the previous post.\n" % (part, "" if part == "a" else part + "/"))
+    Pl("| point | " + " | ".join("D %r (%s UTC, %d s)" % (d, pushed.get(d, ("", "?"))[1], legrec[d]["seconds"]) for d in legd) + " |")
+    Pl("|---|" + "---|" * len(legd))
+    Pl("| Delta | " + " | ".join("%.12f" % legrec[d]["Delta"] for d in legd) + " |")
+    Pl("| dDelta/dD | " + " | ".join(guard[d][2].join(["+", ""]) if not guard[d][2].startswith("-") else guard[d][2] for d in legd) + " |")
+    Pl("| \\|F\\|, steps | " + " | ".join("%.3e, %d" % (legrec[d]["F"], legrec[d]["steps"]) for d in legd) + " |")
+    Pl("| psi-constraint (bar 1e-2) | " + " | ".join("%.3e" % legrec[d]["constraint"] for d in legd) + " |")
+    Pl("| \\|J+dF/dn\\|, n_null | " + " | ".join("%.4f, %d" % (legrec[d]["tan_norm"], legrec[d]["n_null"]) for d in legd) + " |")
+    Pl("| tracker m0 (weakest regular mode), cos | " + " | ".join("%s, %.4f" % (trk[d][3].replace("m0 ", ""), legrec[d]["cos_t_reg"][0]) for d in legd) + " |")
+    Pl("| branch watch m1 | " + " | ".join(trk[d][7] for d in legd) + " |")
+    Pl("| raw commit | " + " | ".join(pushed.get(d, ("?",))[0] for d in legd) + " |")
     lm = {d: max(int(x["leap_rss_kb"]) for x in memr if x["time_utc"] >= "00:00:00") for d in legd}
-    P("\nThe guard did not stop. Peak RSS of the leap over the part so far %.2f GB (sampled each minute)." % (max(int(x["leap_rss_kb"]) for x in memr) / 2**20))
+    Pl("\nThe guard did not stop. Peak RSS of the leap over the part so far %.2f GB (sampled each minute)." % (max(int(x["leap_rss_kb"]) for x in memr) / 2**20))
+if "--only-leg" in sys.argv:
+    print("\n".join(legout)); sys.exit(0)
+if "--skip-leg" not in sys.argv:
+    out.extend(legout)
 P("\n| Step and acceptance, as ordered | Verdict |\n|---|---|")
 P("| **Source** (my leg's D %s state, raw commit %s: state `sol_%s_D%.6f.npy` %s, record `%s.jsonl` %s; `kc87_syscheck_1025.py` 6df5d960) | **ACCEPTED** %s UTC: exit %s (record \\|F\\| %s, %s steps); `--mutate=F` and `--mutate=steps` exit %s and %s; the k_c 79 check refuses the state (exit %s); both selftests exit 0 |" % (
     dn, sblob.group(2), TAG, D, sblob.group(1), TAG, rblob.group(1), accT, ms.group(1), ms.group(5), ms.group(6), ms.group(2), ms.group(3), ms.group(4)))
