@@ -53,3 +53,48 @@ The regrid: 8 threads at nice 10 (all of this machine). The scan: 4 processes of
 - **The regrid beside its k_c 79 source and the anchors** (D 19 and D 19.75): |F| **4.6024958506e-10** (source 4.6559593046e-10, ratio 0.98852; anchors 4.62e-10 to 4.74e-10); steps **2959** (source 2687, ratio 1.1012; anchors 2957 to 2958); psi-constraint **2.9443411e-3** (source 4.4147397e-3, ratio 0.6669; anchors 2.38e-3 to 2.59e-3, my window 2.2e-3 to 2.8e-3: **above it**); Delta **1.115735056886** (source 1.115746826512: k_c 87 minus k_c 79 **-1.1770e-5**; anchors -3.2e-6 to -7.4e-7, my window -3e-5 to -1e-6: inside it); F at the start 2.0782807e-5 against the source's 1.0410615e-5.
 - 2026-11-23 22:23:53 UTC: **STEP 3 scan** started as unit `i1025-k87e-s` (4 processes of 1 thread, nice 10, 8 evaluations, the lists above); all four print the record system (|F| 4.6047263741e-10 against the record's 4.6024958506e-10, 2959 steps equal).
 - 2026-11-23 22:25:04 UTC: step 2 logged (this entry).
+
+## Result (written 2026-11-24 00:59:20 UTC)
+Steps 1 and 2 as logged (ACCEPTED 21:13:40 and 22:23:39 UTC). **Step 3:** unit `i1025-k87e-s` exit 0; processes p1, p2, p3, p0 exit 0 at 00:58:23, 00:58:23, 00:58:29 and 00:58:48 UTC; all four printed the record system (|F| 4.6047263741e-10 against the record's 4.6024958506e-10, 2959 steps equal); **8 of 8 evaluations noise-robust**; the repeat of 0.940 (the first on p0, the repeat on p3) **bit-identical** (hybrid +1, ln|det| -2638.3775594132394, float64 ln|det| -2637.1088556582636, noise [1, 1]; `repeat_check.py` PASS); `read_lower.py` selftest exit 0, `--mutate=shift` and `--mutate=round2` exit 1; reader exit 0 (`read_lower.txt`). Seconds per point 4672 to 4715 in round 1 and 4576 to 4594 in round 2 (four processes side by side); wall per process 2:34:30 to 2:34:55 by /usr/bin/time, the scan 2:34:55 (9295 s; 22:23:53 to 00:58:48); peak RSS 2.58 to 2.62 GiB; lowest MemAvailable 21.2 GiB (scan, 154 samples) and 25.7 GiB (regrid); no memory alert (`alert.log` does not exist).
+
+**Hybrid signs, as printed, lambda 0.925 to 0.955:** minus at 0.925, 0.930, 0.935; plus at 0.940, 0.945, 0.950, 0.955; edge signs minus and plus. **One robust change**, none touching a non-robust point:
+| position | bracket | orientation as printed | det-linear estimate | estimator range |
+|---|---|---|---|---|
+| **the root, k_c 87, D 20.90625, dh170 (Linux)** | (0.935, 0.940) | - to + | **0.938363** | [0.937666, 0.938363] |
+The estimator range is the spread over the interpolation choices of `d185_scan_read.changes`, not an enclosure; the bracket is the 0.005 grid step. No ln|det| minimum without a sign change. ln|det|: 0.925 -2635.3268, 0.930 -2636.2348, 0.935 -2637.6580, 0.940 -2638.3776, 0.945 -2637.5823, 0.950 -2637.4654, 0.955 -2637.5345 (a dip at the root). The float64 sign differs from the hybrid at 0.940 only (float64 reads minus there, so float64 alone would put the change in (0.940, 0.945)); 2 of the 8 evaluations, 1 of the 7 distinct points.
+
+**By position at D 20.90625, beside dh610's k_c 79:**
+| | position | bracket | estimator range |
+|---|---|---|---|
+| dh610, k_c 79 (Linux) | **0.938234** | (0.935, 0.940) | [0.937636, 0.938234] |
+| dh170, k_c 87 (Linux) | **0.938363** | (0.935, 0.940) | [0.937666, 0.938363] |
+| **k_c 87 minus k_c 79** | **+0.000129** | the same 0.005 cell | |
+t5's written prediction (k_c 87 within 0.002 of k_c 79 at this D; a step above 0.004 widens lambda_1's error near D 21): **met**, +0.000129; no step above 0.004. For comparison: at D 20.5 the k_c 71 to k_c 79 step was 0.00013 (t5). Information on the build: the k_c 79 reading is dh610's, the k_c 87 reading mine, both on Linux x86-64; the two brackets are the same cell.
+
+**The regrid beside its k_c 79 source and the anchors** (D 19 and D 19.75):
+| | dh170 k_c 87 (4191 s) | source k_c 79 (win2) | anchors |
+|---|---|---|---|
+| |F| | 4.6024958506e-10 | 4.6559593046e-10 (ratio 0.98852) | 4.62e-10 to 4.74e-10 |
+| steps | 2959 | 2687 (ratio 1.1012) | 2957 to 2958 |
+| psi-constraint | 2.9443411e-3 | 4.4147397e-3 (ratio 0.6669) | 2.38e-3 to 2.59e-3 |
+| Delta | **1.115735056886** | 1.115746826512 (k_c 87 minus k_c 79 **-1.1770e-5**) | -3.2e-6 to -7.4e-7 |
+
+## Predictions against the result
+| prediction | result |
+|---|---|
+| t5's, written before the run: k_c 87 within 0.002 of k_c 79 at this D | **met**: +0.000129 (0.938363 against dh610's 0.938234) |
+| mine: the k_c 79 check accepts win2's state on Linux with all four controls firing (90%); the regrid accepted with both controls and the k_c 79 check refusing (85%) | yes (state |F| +0.084% of the record's, `freeze_from` 2687 = 2687); yes |
+| the regrid takes 4200 to 6200 s (65%) | **no**: 4191 s, 9 s under the range |
+| steps within 20 of 2957 (70%); |F| between 4.5e-10 and 4.9e-10 (80%) | yes, 2959; yes, 4.6025e-10 |
+| psi-constraint between 2.2e-3 and 2.8e-3 (70%) | **no**: 2.9443e-3 (the ratio to the source, 0.667, is above the 0.54 and 0.59 of D 19 and D 19.75) |
+| Delta k_c 87 minus k_c 79 between -3e-5 and -1e-6 (75%) | yes: -1.1770e-5 (larger than at D 19 and D 19.75, the growth I expected) |
+| every point noise-robust (70%); the repeat of 0.940 bit-identical (90%) | yes, 8 of 8; yes |
+| exactly one robust change in the window (80%) | yes |
+| its estimate within 0.002 of dh610's k_c 79 estimate (60%), within 0.004 (85%) | yes; yes |
+| edge signs unequal (80%) | yes: minus at 0.925, plus at 0.955 |
+| the float64 sign differs from the hybrid at more than half the points (40%) | no: 2 of 8 evaluations (1 of 7 distinct points) |
+| the scan 2.4 to 3.1 h (65%); peak RSS of a scan process below 3.5 GiB (90%) | yes, 2.58 h; yes, 2.62 GiB. My ETA to t5 (01:05 UTC) was 6 min after the end (00:58:48) |
+
+## Log
+- 2026-11-23 23:43 UTC: round 1 landed (0.930 to 0.945: minus, minus, plus, plus; partial reading sent to t5: the change in (0.935, 0.940), 0.938363, unchanged by round 2); 00:58:23 to 00:58:48 UTC (24 Nov): round 2 and the driver's reading finished.
+- 2026-11-24 00:59:20 UTC: result written (this section). Nothing of mine is running on dh170.
