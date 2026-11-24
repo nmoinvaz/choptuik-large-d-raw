@@ -1,0 +1,28 @@
+# I1025-win2/kc95_d21875: macm3's k_c 87 leg state at D 21.875 regridded to k_c 95, then a hybrid sign scan around lambda_1
+
+Machine win2 (Windows 11, 20 logical CPUs, 95.5 GB RAM; runner win2, Sonnet 5.5). Issue https://github.com/nmoinvaz/choptuik-large-d/issues/1025. Written 2026-11-24 18:58 UTC, before any regrid or scan of this folder.
+This is the first k_c 95 lane of `../kc95_d22/README.md` (its order, pins, drivers `kc95_regrid.sh` and `kc95_scan.sh`, tools in `../kc95_d22/inputs/`, commands, acceptance, thread and memory rules), retargeted from D 22.0 to D 21.875.
+
+## Order (coordinator t5, hc, 24 Nov ~18:50 UTC), verbatim
+"retarget your first k_c 95 regrid lane from D 22.0 to D 21.875: macm3's part b stopped at the D 22.0 step (an SVD exception, being diagnosed), so no D 22.0 state is coming soon. D 21.875 is on raw (part b, tag l1kc87Lmacm3b, h 0.03125 path) with its k_c 87 root scanned,
+0.596477 (raw I1025-macm3/kc87_leg_lambda/21.875). Same procedure and gates, folder kc95_d21875/. Hold the D 22.5 lane until I say."
+
+## What differs from `../kc95_d22/`
+- The source is macm3's D 21.875 state and record (`I1025-macm3/kc87_leg2/b/`, `sol_l1kc87Lmacm3b_D21.875000.npy`, `l1kc87Lmacm3b.jsonl`), fetched by `fetch_macm3.py` and checked against the listing's blob. The dry run of 2026-11-24 17:42 UTC
+  (`../kc95_d22/dry21875/`) read blob fabc792a for the state and cc32d832 for the record file at that time (|F| 4.1620e-10 against the record's 4.1555e-10, steps 2882 = 2882, controls refused); the lane records its own blobs in `in/fetched.txt`.
+- The scan centre uses macm3's root 0.596477 for D 21.875: macm3's own reading (`I1025-macm3/kc87_leg_lambda/21.875/read_lower.txt`: `robust change (0.595, 0.600), - to +, det-linear 0.596477, range [0.596005, 0.596477]`, scan done 17:49 UTC) and the order name it. Its row is not in
+  `roots87.txt` yet (the last rows are 21.5, 21.625, 21.75), so the scan driver takes the root from the environment (`ROOT_OVERRIDE`, logged with its source) instead of reading `roots87.txt`. Prediction 0.596477 + 0.003 = 0.5995 (bar 0.005); centre 0.600; evaluations 0.590, 0.595, 0.600, 0.605, 0.610 and the repeat of 0.600
+  (P1 0.600, 0.610 | P2 0.600 repeat, 0.590 | P3 0.595 | P4 0.605).
+- The D 22.0 and D 22.5 lane drivers (waiting for macm3's states, nothing computed) were killed at 18:54 UTC by exact pid after command-line checks. The D 22.5 lane is held until the coordinator says (`../kc95_d225/`).
+- The regrid driver waits for the tag g leap's end (all8.done, 19:19:49 UTC at its cap), for any other regrid of mine and for committed memory below 80 GB (the coordinator's gate for the #1078 build on t25; 98 GB at 18:50 UTC); the scan driver waits for 18.4 GB of free physical memory.
+
+## Commands
+    kc95_regrid.sh 21.875 l1kc95win2d21875 kc95_d21875      (python -u ell_refine.py l1kc87Lmacm3b 87 l1kc95win2d21875 95 1 21.875 2.1033016102 --kappa 0.7 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma; 4 threads, BelowNormal, cap 21600 s)
+    ROOT_OVERRIDE=0.596477 ROOT_SOURCE=macm3-read_lower.txt-and-order kc95_scan.sh 21.875 l1kc95win2d21875 kc95_d21875
+
+## Acceptance (fixed before the run)
+As in `../kc95_d22/README.md`: source accepted with controls 1 1; the regrid exits 0 inside 21600 s; the result accepted by `kc95_syscheck_1025.py` with controls 1 1 and refused by the k_c 87 check; every scan process prints "the record system"; the repeat of the centre agrees with the centre (1e-6);
+a robust sign change is reported by position with the estimator range named as a spread over estimator choices, not an enclosure; no robust change in the window is reported as read, with no widening.
+
+## Status
+- 2026-11-24 18:58 UTC: folder, README and the scan driver's root override written; the lane's two drivers start next and wait (tag g's end, commit gate).
