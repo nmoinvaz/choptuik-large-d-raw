@@ -76,6 +76,46 @@ against the prediction 0.7203: change minus prediction -0.000087; within 0.005: 
 | each scan point 1800 to 3300 s (60%) | WRONG (5106 to 6850 s) |
 | the point done within 60 min of its lane's start (60%) | WRONG (115.2 min) |
 
+## D 21.6875 (lane 21:42:14 to 22:51:43 UTC, 69.5 min; `summarize_m3.py 21.6875 0.6715` > `21.6875/summary_m3.txt`)
+| lambda | hybrid sign | noise signs (robust) | float64 sign | ln of abs det | seconds |
+|---|---|---|---|---|---|
+| 0.655 | - | -- (True) | - | -2527.0402646656753 | 3454 |
+| 0.660 | - | -- (True) | - | -2527.814389770634 | 3762 |
+| 0.665 | - | -- (True) | - | -2528.808988963985 | 3610 |
+| 0.670 | - | -- (True) | - | -2530.830471891709 | 3656 |
+| 0.670 | - | -- (True) | - | -2530.830471891709 | 4044 |
+| 0.675 | + | ++ (True) | + | -2530.128154885385 | 3851 |
+| 0.680 | + | ++ (True) | + | -2529.6883884437166 | 4098 |
+| 0.685 | + | ++ (True) | + | -2529.6429048688046 | 4098 |
+
+scan points: 8 evaluations, seconds per point min 3454, median 3806, max 4098, sum 30573; outside 1800 to 3300 s: [(0.655, 3454), (0.66, 3762), (0.665, 3610), (0.67, 3656), (0.67, 4044), (0.675, 3851), (0.68, 4098), (0.685, 4098)]
+macm3's record at D 21.6875: |F| 4.326060038554227e-10, steps 2894, constraint 0.005209523378451233, Delta 1.1369029763526168, h 0.0625, seconds 1479
+float64 sign differs from the hybrid at: []
+
+```
+hybrid signs: 0.655- 0.660- 0.665- 0.670- 0.675+ 0.680+ 0.685+
+robust changes: 1
+   change (0.670, 0.675), - to +, det-linear 0.671656, range [0.671141, 0.671656]
+against the prediction 0.6715: change minus prediction +0.000156; within 0.005: True
+```
+
+- **Source accepted** (macm3's state, commit a00d2b34, 2026-11-24 08:18:45 -08:00 = 16:18:45 UTC; macOS state, Linux check): `kc87_syscheck_1025.py` exit 0 (record |F| 4.3260600386e-10, the state's own 4.3345125465e-10 recomputed here, `freeze_from` 2894 steps = the record's), both controls exit 1, `kc79_syscheck_1025.py` on it exit 1 (refuses); selftests 0 0 0 1 1 0 0 1; all 8 processes printed the record system.
+- **One robust change in the window 0.655 to 0.685:** (0.670, 0.675), "- to +" as the reader prints it, det-linear **0.671656**, estimator range [0.671141, 0.671656] (a spread over interpolation choices, not an enclosure; the bracket is the grid step 0.005). Edge signs differ (- at 0.655, + at 0.685). No ln|det| minimum without a sign change; every point noise-robust; the float64 sign agrees with the hybrid at all 8 evaluations. The repeat of 0.670 (p3 and p7) is bit-identical (ln|det| -2530.830471891709 in both).
+- **Against the prediction 0.6715 (the coordinator's chord between macm3's 21.625 and 21.75, bar 0.005):** +0.000156, within the bar and within 0.0015; the chord's exact value is 0.671502, so the root is 0.000154 above it, on the side I expected (by 1.2e-4 from the concavity of macm3's roots). D 21.5625 sat 0.000105 below its chord: the two interpolated points fall on opposite sides, so the chord offsets are scatter of about 1.3e-4 (macm3's neighbours' own estimator ranges are 3.5e-4 to 5.5e-4 wide) and not a curvature signal.
+- **Seconds per point: 3454 to 4098 s** (median 3806). Beside it from 21:42 to 22:39 UTC: the k_c 95 scan (7 processes, nice 10; this scan was reniced from nice 8 to 15 at 21:45 UTC by the coordinator's word) and the recount; after 22:39:37 UTC the recount only. The load average, median over `21.6875/scan/sampler.log` (136 samples, 21:43:20 to 22:51:10 UTC), was 13.80 (max 18.72, min 5.67; median 7.19 after the k_c 95 scan ended), peak RSS per process 1.92 to 2.19 GiB, MemAvailable at least 42.46 GiB; the load alert did not fire.
+
+### Scorecard of D 21.6875 (registered before the run)
+| prediction | result |
+|---|---|
+| source accepted, controls 1 1, the k_c 79 check refusing it (92%); 8 processes with the record system (92%); the repeat agrees (92%) | right |
+| one robust change in the window (85%) | right |
+| the root within 0.005 of the prediction (90%); within 0.0015 (65%) | right (+0.000156); right |
+| the root above the coordinator's prediction (65%) | right (+0.000156) |
+| the bracket is (0.670, 0.675) (80%) | right |
+| the float64 sign agrees with the hybrid at all 8 evaluations (20%) | right (agrees at all 8) |
+| each scan point 1800 to 3300 s (60%) | WRONG (3454 to 4098 s) |
+| the point done within 60 min of its lane's start (60%) | WRONG (69.5 min) |
+
 ## Priority word of the coordinator (hc, 24 Nov, read at 2026-11-24 21:44 UTC), verbatim
 "Coordinator (t5): priority to the k_c 95 scan at D 21.75 (the k_c step near the crossing matters more than the in-between k_c 87 points). Let D 21.6875's scan finish, then hold the k_c 87 lane until the k_c 95 scan has read; then 21.8125 and 21.9375 as set. Your wrong-side note on 21.5625 is fine: one point inside an 8e-5 range says nothing about builds yet."
 
@@ -95,3 +135,4 @@ Verbatim: "Coordinator (t5): yes, add the k_c 87 scan of macm3's D 21.75 state o
 - 2026-11-24 21:44 UTC: the priority word (above): the hold is in place for D 21.8125 and D 21.9375; D 21.6875 runs on.
 - 2026-11-24 21:45 UTC: the coordinator's word (hc, verbatim): "Coordinator (t5): yes, renice D 21.6875's 8 processes to nice 15 by exact pid, so the k_c 95 scan gets the cores first." Done: the 8 python processes of D 21.6875's scan (pids 1820198, 1820200 to 1820206) went from nice 8 to nice 15 (`renice -n 15 -p`, verified in `ps`); the k_c 95 scan's 7 processes stay at nice 10. Nothing was stopped; the point finishes later. The hold for D 21.8125 and D 21.9375 is unchanged.
 - 2026-11-24 22:43 UTC: the coordinator's word (above): the Linux k_c 87 scan of D 21.75 is inserted after D 21.6875 and before D 21.8125 (`wait_m3.sh`, `lane_m3.sh` replaced atomically; `check` run passed).
+- 2026-11-24 22:53 UTC: D 21.6875 done (69.5 min; section above); the chain runs the inserted point D 21.75 (Linux k_c 87) since 22:51:43 UTC, then D 21.8125 and D 21.9375.
