@@ -22,5 +22,66 @@ lambda_1 on win2's k_c 79 leg at D 21.1875: **predicted 0.8514 +-0.01** (the pre
 - Each scan point takes 1400 to 2300 s (65%; the last three points 1504 to 2574 s; this scan runs beside the recount only). The point is done (no widening) within 50 min of the lane's start (65%; the last 29 min).
 - The state is on origin by 09:00 UTC (75%; win2's points take about 4500 s, the restart began 07:19:49 UTC).
 
+## Result (`summarize_leg.py 21.1875 0.8514` > `summary_leg.txt` prints the table from the files)
+| lambda | hybrid sign | noise signs (robust) | float64 sign | ln of abs det | seconds |
+|---|---|---|---|---|---|
+| 0.835 | + | ++ (True) | + | -2300.63290851637 | 1529 |
+| 0.840 | + | ++ (True) | + | -2301.3727119398804 | 1680 |
+| 0.845 | + | ++ (True) | + | -2302.317336005788 | 1709 |
+| 0.850 | + | ++ (True) | + | -2304.105352056101 | 1580 |
+| 0.850 | + | ++ (True) | + | -2304.105352056101 | 1651 |
+| 0.855 | - | -- (True) | - | -2303.7571574782423 | 1647 |
+| 0.860 | - | -- (True) | + | -2303.231453777005 | 1524 |
+| 0.865 | - | -- (True) | - | -2303.1467560334577 | 1575 |
+
+scan points: 8 evaluations, seconds per point min 1524, median 1614, max 1709, sum 12895; outside 900 to 1900 s: []
+win2's record at D 21.1875: |F| 4.578973943765308e-10, steps 2660, constraint 0.005369055634728287, Delta 1.1232751318410306, h 0.03125, seconds 4896
+float64 sign differs from the hybrid at: [0.86]
+
+```
+=== read_lower.py .../D21.1875/scan 0.835 0.865
+points 7 in 0.835-0.865; not noise-robust: none
+hybrid signs: 0.835+ 0.840+ 0.845+ 0.850+ 0.855- 0.860- 0.865-
+float64 sign differs from the hybrid sign at: [(0.86, '-', '+')]
+repeated points: [(0.85, 'agree')]
+  robust change (0.850, 0.855), + to -, det-linear 0.852069, range [0.851510, 0.852069]
+robust changes: 1; touching a non-robust point (not counted): none
+ln|det| local minima without a sign change: none
+endpoint signs: + at 0.835, - at 0.865
+read_lower exit 0
+=== repeat_check.py (merged scan file)
+repeat check .../D21.1875/scan/scan_D21.1875_all.jsonl: lambda [0.85]: [2] evaluations each, agree -> PASS
+repeat_check exit 0
+```
+
+```
+hybrid signs: 0.835+ 0.840+ 0.845+ 0.850+ 0.855- 0.860- 0.865-
+robust changes: 1
+   change (0.850, 0.855), + to -, det-linear 0.852069, range [0.851510, 0.852069]
+against the prediction 0.8514: change minus prediction +0.000669; within 0.01: True
+```
+
+- **Source accepted:** `kc79_syscheck_1025.py` exit 0 on win2's tag g state and record at D 21.1875 (record |F| 4.5789739438e-10, the state's 4.5775553374e-10, 2660 steps = the record's), `--mutate=F` exit 1, `--mutate=steps` exit 1 (`src/syscheck*.txt`). All 8 processes printed the record system (|F| 4.5787142027e-10, 2660 steps). The state is blob 9d3351f6, the record blob e5cac323, both of win2's commit 0b106614 (2026-11-24 00:44:49 -08:00 = 08:44:49 UTC, 85 min after the restart began at 07:19:49 UTC; the record's seconds 4896).
+- **The restart check by hand:** the tag g record `l1kc79Lw1025g.jsonl` holds one row, D 21.1875; it carries no rows for D 21.125 and D 21.15625, so there was nothing to compare with tag f's. The three points run continuously across the switch: |F| 4.605990614286346e-10 (D 21.125, f), 4.5897952881747886e-10 (D 21.15625, f), 4.578973943765308e-10 (D 21.1875, g); steps 2667, 2664, 2660; Delta 1.1215928048382566, 1.122433147959886, 1.1232751318410306.
+- **One robust change in the window 0.835 to 0.865:** (0.850, 0.855), "+ to -", det-linear **0.852069**, estimator range [0.851510, 0.852069] (a spread over interpolation choices, not an enclosure; the bracket is the grid step 0.005). Edge signs differ (+ at 0.835, - at 0.865). No ln|det| minimum without a sign change; every point noise-robust. The orientation is as the reader prints it.
+- **The repeat of 0.850** (p3 and p7) is bit-identical (hybrid +, ln|det| -2304.105352056101 in both; `repeat_check.py` PASS).
+- **The float64 sign differs from the hybrid at 0.860 only** (float64 + where the hybrid reads -): the float64 signs along the grid are + + + + - + -, which alone would read as three changes. The hybrid is read (one change). It differed at four evaluations at D 21.15625, two at D 21.125 and D 21.09375, three at D 21.0625.
+- **Against the prediction 0.8514 (+-0.01, the previous root 0.862190 minus 0.0108):** +0.000669, within 0.01 (and within 0.005). No widening was needed.
+- **Roots on the leg so far (det-linear, as measured):** 0.958120 (D 20.84375), 0.947951 (D 20.875), 0.938234 (D 20.90625), 0.928441 (D 20.9375), 0.918970 (D 20.96875), 0.909538 (D 21.0), 0.900194 (D 21.03125), 0.891249 (D 21.0625), 0.881686 (D 21.09375), 0.872088 (D 21.125), 0.862190 (D 21.15625), 0.852069 (D 21.1875, tag g): steps -0.010169, -0.009717, -0.009793, -0.009471, -0.009432, -0.009344, -0.008945, -0.009563, -0.009598, -0.009898 and -0.010121 per 0.03125 in D, against the order's -0.0108.
+- **Seconds per point:** 1524 to 1709 s. The load average, median over `scan/sampler.log`, was 10.06 (max 11.07; 8 processes here and the recount's 2), peak RSS per process 1.64 to 1.82 GiB (`/usr/bin/time -v`), MemAvailable at least 48.42 GiB.
+
+### Predictions scorecard (written before the run)
+| prediction | result |
+|---|---|
+| source accepted (86%), 8 processes with the record system (90%), the repeat agrees (92%) | right |
+| one robust change in the window (80%) | right |
+| within 0.01 of 0.8514 (83%); within 0.005 (70%) | right (+0.000669) |
+| the root between 0.8520 and 0.8545 (55%) | right (0.852069; the range's low end 0.851510 lies below 0.8520) |
+| the float64 sign agrees with the hybrid at all 8 evaluations (25%) | WRONG (differs at 0.860) |
+| each scan point 1400 to 2300 s (65%) | right (1524 to 1709 s) |
+| the point done, no widening, within 50 min of the lane's start (65%) | right (29 min: 08:45:54 to 09:14:49) |
+| the state on origin by 09:00 UTC (75%) | right (08:44:49 UTC, the commit time of 0b106614; 85.0 min after the restart began) |
+
 ## Status
 - 2026-11-24 07:27 UTC: folder and README written; the unit `i1025-leg-21_1875` is started next and waits for the state.
+- 2026-11-24 09:17 UTC: lane done (08:45:54 to 09:14:49 UTC): result and scorecard above, parent row added. The next point is D 21.21875 (`../D21.21875/`).
