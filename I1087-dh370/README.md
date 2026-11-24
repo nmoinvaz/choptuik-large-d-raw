@@ -26,3 +26,6 @@ From `I966-dh370/leg_args_at_pause966.txt` (the running leg's command line at th
 
 ## Status
 Written as the runs go.
+
+- 2026-11-24 22:28 UTC probe, K 293, the line as quoted (`ks293_literal/`, unit `i1087p`): exit 0 after 2 s; it printed "base polish skipped (--base_polish 0): the stored state is the base" and "|F| 1.1e+32" (the double-double residual of the stored state's first two parts, not an octo-double one) and no octo-double residual. As read from the code, the line cannot give the starting |F|. The rungs run with `--base_polish 1` instead (the only further change), where the double-double gate `|F| > --tol` (1.1e+32) sends the run into the octo-double polish, whose first Newton line is `on 0: |F| A -> B` (or `A converged`).
+- Control rule fixed before the rungs: K 293's A must print as the state's own **1.04e-38**; otherwise the chain stops after K 293 and I report.
