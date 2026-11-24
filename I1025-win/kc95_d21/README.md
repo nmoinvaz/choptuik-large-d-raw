@@ -69,7 +69,7 @@ The sampler (`rows/regrid_samples.csv`, `rows/scan_samples.csv`) gives the real 
 
 ## Status
 
-**Step 1 (regrid) finished 2026-11-24 13:41:13 UTC, ACCEPTED 13:41:25 UTC. Step 2 (scan) running since 13:42:36 UTC.** Step 1 ran from 11:11:13 UTC (the chain started 11:11:01 UTC through `Win32_Process.Create` of `conhost.exe --headless cmd.exe /c go_kc95d21_1025.cmd`). README first: 2d9cf0e93 (pushed 11:10:48 UTC, before the start).
+**Step 1 (regrid) finished 2026-11-24 13:41:13 UTC, ACCEPTED 13:41:25 UTC. Step 2 (scan) ran 13:42:36 to 15:47:06 UTC, exits 0, 0, 0, 0 (the result is below).** Step 1 ran from 11:11:13 UTC (the chain started 11:11:01 UTC through `Win32_Process.Create` of `conhost.exe --headless cmd.exe /c go_kc95d21_1025.cmd`). README first: 2d9cf0e93 (pushed 11:10:48 UTC, before the start).
 
 - **Chain** (`rows/launcher_pid.txt`: 7444): conhost --headless 7444 <- cmd 23672 <- regrid driver launcher 25580 and driver 20468 <- sampler 10612, alert-only watcher 18708, keep-awake helper 16472, and the regrid process 25680 (worker 25952). The python and powershell processes are BelowNormal.
 - **Session check** (`session_check_regrid.txt`, exit 0): no `claude` in any chain, no Windows Terminal / OpenConsole / wt, a headless conhost in the chain.
@@ -93,16 +93,76 @@ The sampler (`rows/regrid_samples.csv`, `rows/scan_samples.csv`) gives the real 
 - **Marker** `regrid_accepted.txt`: ACCEPTED 13:41:25 UTC; state blob d7a4844a76e47c015591ac9ad839dddc14a5b2ce (`sol_l1kc95winbg_D21.0000.npy`, 49848 bytes), record blob 2e8fe124f24534089f6cb29dff227db5789f8e96 (`l1kc95winbg.jsonl`).
 - **Cost against the written estimate:** wall 9000 s against the written 9000 to 12500 s (at the low edge; the D 19 one took 10230 s); peak private 3.45 GB (written about 3.5 GB; the D 19 one 3.45 GB); peak working set 3.12 GB; cpu 16430 s (D 19: 18179 s); lowest free memory 20.93 GB (13:03:50 UTC), peak commit 13.8 GB; laptop CPU mean 42 %, max 100 % (the other project's jobs beside it). 149 sampler rows, no gap above 90 s. The keep-awake helper held 9000 s.
 
-**Step 2 running since 13:42:36 UTC** (the scan driver started by itself 70 s after the marker: the regrid driver waited 65 s for the sampler's last line, wrote `regrid_summary.txt` at 13:42:30 and ended at 13:42:35):
+**Step 2 (scan) from 13:42:36 UTC** (the scan driver started by itself 70 s after the marker: the regrid driver waited 65 s for the sampler's last line, wrote `regrid_summary.txt` at 13:42:30 and ended at 13:42:35):
 
 - **Before the scan** (13:42:35 to 13:42:36 UTC): the pins from the marker matched; `read_lower.py` selftest exit 0 and its two `--mutate` controls exit 1, 1 (`selftest_read_lower_1025.txt`).
 - **Workers:** p0 pid 24852 (0.900, 0.910), p1 22696 (0.905, 0.920), p2 11508 (0.910, 0.925), p3 19620 (0.915), one thread each, BelowNormal, cap 21600 s. All four printed "the record system" first: \|F\| 4.5966801336e-10 (record 4.5952560080e-10), steps 3219 (record 3219).
 - **Chain** (same conhost 7444 and cmd 23672): scan driver launcher 26096 and driver 9188 <- sampler 20608, alert-only watcher 17352, keep-awake helper 2228 (`SetThreadExecutionState` returned 0x80000000, ok), the four workers. Session check `session_check_scan.txt`: exit 0, no `claude` in any chain of the run, no Windows Terminal / OpenConsole / wt, a headless conhost in the chain.
 - **Machine at the scan start:** free physical memory 23.28 GB, laptop CPU 88 % in the first sample, commit 10.6 GB.
-- **ETA** (estimates above, from 13:42:36 UTC): p3 (one point) ends about 14:50 to 15:00 UTC; the scan ends about 15:45 to 16:10 UTC (written 7300 to 8800 s).
+- **ETA** (estimates above, from 13:42:36 UTC): p3 (one point) ends about 14:50 to 15:00 UTC; the scan ends about 15:45 to 16:10 UTC (written 7300 to 8800 s). Observed: p3 ended 14:50:21 UTC, p1 15:46:51, p0 and p2 15:47:06 (the scan 7470 s).
 
-Pushed 2026-11-24 13:44:00 UTC.
+Pushed 2026-11-24 15:49:10 UTC.
 
 ## Result
 
-Not yet run.
+The reader's lines are in `read_lower_kc95_D21.log` (exit 0) and `scan_kc95_D21.log`, as printed:
+
+```
+points 6 in 0.900-0.925; not noise-robust: none
+hybrid signs: 0.900+ 0.905+ 0.910+ 0.915- 0.920- 0.925-
+float64 sign differs from the hybrid sign at: [(0.91, '+', '-')]
+repeated points: [(0.91, 'agree')]
+  robust change (0.910, 0.915), + to -, det-linear 0.913510, range [0.912716, 0.913510]
+robust changes: 1; touching a non-robust point (not counted): none
+ln|det| local minima without a sign change: none
+endpoint signs: + at 0.900, - at 0.925
+```
+
+**One robust change, in (0.910, 0.915), `+` to `-`, det-linear 0.913510.** The window's ends are `+` at 0.900 and `-` at 0.925. The orientation `+` to `-` is as printed; dh610's k_c 87 scan at D 21.0 printed `-` to `+` (hybrid signs 0.895- to 0.910-, 0.915+ to 0.925+). I do not say what that means; t5 rules by position.
+
+| lambda | process | hybrid sign | hybrid ln\|det\| | noise seeds | float64 sign | float64 ln\|det\| | wall s |
+|---|---|---|---|---|---|---|---|
+| 0.900 | p0 | + | -2954.852206 | +, + | + | -2954.658026 | 4052 |
+| 0.905 | p1 | + | -2955.801176 | +, + | + | -2958.142838 | 4041 |
+| 0.910 | p2 | + | -2957.247590 | +, + | - | -2956.121625 | 4055 |
+| 0.910 (repeat) | p0 | + | -2957.247590 | +, + | - | -2956.121625 | 3396 |
+| 0.915 | p3 | - | -2958.104060 | -, - | - | -2956.389080 | 4043 |
+| 0.920 | p1 | - | -2957.318654 | -, - | - | -2957.335349 | 3398 |
+| 0.925 | p2 | - | -2957.242718 | -, - | - | -2957.014463 | 3396 |
+
+The repeat of 0.910 (p0, another process) agrees with p2's to every digit printed. All 7 evaluations are noise-robust. The float64 sign differs from the hybrid sign at 0.910 only (float64 `-`, hybrid `+`); the hybrid column, which the reader uses, changes in (0.910, 0.915).
+
+The change lies 0.003510 above the grid point 0.910 and 0.001490 below 0.915 (det-linear range [0.912716, 0.913510]). The hybrid ln|det| at 0.915 is -2958.104, which is 0.856 below its value at 0.910 and 0.785 below its value at 0.920.
+
+### Against the line written before (t5's)
+
+| line | observed | |
+|---|---|---|
+| one robust change; its det-linear estimate in [0.909685, 0.913685] (within 0.002 of k_c 87's 0.911685) | one robust change, det-linear 0.913510, which is +0.001825 from dh610's 0.911685 and 0.000175 below the upper edge 0.913685 | met by position |
+| not met if none, two or more, or one outside | none of those | not triggered |
+
+By position only; t5 rules.
+
+### Beside dh610's k_c 87 reading at D 21.0 (`I1025-dh610/kc87_d21/read_lower.txt`)
+
+| item | k_c 87 (dh610) | k_c 95 (mine) |
+|---|---|---|
+| robust change, det-linear | 0.911685, range [0.911139, 0.911685] | 0.913510, range [0.912716, 0.913510] |
+| between grid points | 0.910 and 0.915 | 0.910 and 0.915 |
+| orientation as printed | - to + | + to - |
+| step k_c 87 to k_c 95 | | +0.001825 |
+
+Not evaluated: below 0.900, above 0.925. A change outside the window is not excluded; the two edge signs `+` and `-` differ, as one change needs. All 6 points are noise-robust, so a second change between two scanned points would show in the signs, and none does. Pairs of changes inside one 0.005 step are not excluded.
+
+### Cost against the estimates written before
+
+| item | written | observed |
+|---|---|---|
+| source checks | about 15 s | 12 s (11:11:01 to 11:11:13) |
+| regrid | 9000 to 12500 s, peak private about 3.5 GB | 9000 s (the low edge), peak private 3.45 GB, peak working set 3.12 GB, cpu 16430 s |
+| each scan point | about 3900 to 4400 s (four processes) | 4041 to 4055 s for the first point of each process (inside); 3396 to 3398 s for the second of the three processes that had one (below 3900, inside the 3300 to 4400 s written for the second round) |
+| the scan | 7300 to 8800 s (2.0 to 2.4 h) | 7470 s (2.08 h, inside) |
+| end of the scan | p3 about 14:50 to 15:00 UTC, the others about 15:45 to 16:10 | p3 14:50:21, the others 15:46:51 to 15:47:06 (inside) |
+| peak private | about 3.3 to 3.8 GB per worker, 13 to 15 GB for four | 3.332 to 3.336 GB for the three workers with two points (p0 3.334, p1 3.332, p2 3.336; the low edge of the range), 2.31 GB for p3's one point (below it); peak commit 19.8 GB, lowest free memory 16.46 GB (15:13:36 UTC) |
+
+Each worker used about 7312 s of cpu in 7470 s of wall (p3's 3927 s in 4065 s). The laptop CPU averaged 64 % (max 91 %, min 17 %) with the other project's I114 jobs beside the scan. The sampler had 122 rows and no gap above 90 s; the alert-only memory watcher sent no alert; the keep-awake helper held 7545 s and cleared at 15:48:21 UTC; the System event log has no power event from 13:40 to 15:50 UTC; the machine was on AC (battery status 2, charge 100 %), clock 2995 of 2995 MHz at the end.
