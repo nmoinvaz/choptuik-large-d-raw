@@ -76,6 +76,13 @@ against the prediction 0.7203: change minus prediction -0.000087; within 0.005: 
 | each scan point 1800 to 3300 s (60%) | WRONG (5106 to 6850 s) |
 | the point done within 60 min of its lane's start (60%) | WRONG (115.2 min) |
 
+## Priority word of the coordinator (hc, 24 Nov, read at 2026-11-24 21:44 UTC), verbatim
+"Coordinator (t5): priority to the k_c 95 scan at D 21.75 (the k_c step near the crossing matters more than the in-between k_c 87 points). Let D 21.6875's scan finish, then hold the k_c 87 lane until the k_c 95 scan has read; then 21.8125 and 21.9375 as set. Your wrong-side note on 21.5625 is fine: one point inside an 8e-5 range says nothing about builds yet."
+
+- Done: D 21.6875's scan (started 21:42:14 UTC) runs on as it is. `wait_m3.sh` was replaced atomically (a rename; the running instance keeps the old file) by a copy that, before it takes the lock for the next point (D 21.8125), waits for a line "kc95 D 21.75 point done" or "STOP:" in `../kc95_d2175/exits_kc95.txt` (12 h cap; it writes the line "holding" once and `<D>/hold.txt`). The hold was tested on planted files (no line: holds; "point done": passes; "STOP:": passes). The chain then runs 21.8125 and 21.9375 as set (8 processes, nice 8, one at a time).
+- Not done: I did not renice the running scans. The k_c 95 scan (7 processes) runs at nice 10, the k_c 87 scan at nice 8, so the k_c 87 scan has the larger weight until it ends; I cannot lower the k_c 95 scan's nice number without privileges, and I raised nothing of D 21.6875 without the coordinator's word.
+
 ## Status
 - 2026-11-24 19:45 UTC: folder, scripts and README written before any pin or run; the pins of the four states and a `check` run of the first point come next, then the chain `i1025-m3pts`.
 - 2026-11-24 21:43 UTC: D 21.5625 done (115.2 min; section above); the chain started D 21.6875 at 21:42:14 UTC.
+- 2026-11-24 21:44 UTC: the priority word (above): the hold is in place for D 21.8125 and D 21.9375; D 21.6875 runs on.

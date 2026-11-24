@@ -15,6 +15,15 @@ until bash $F/fetch_m3.sh $D > $F/$D/fetch.log 2>&1; do
 done
 say "state and record pinned: $(cat $F/$D/fetch.log); $(cat $F/$D/source_commit.txt | cut -c1-200)"
 bash $PUSH I1025-dh610/kc87_m3pts/$D "I1025-dh610/kc87_m3pts/$D: pins, scan starts when the lock is free" > $F/$D/push_pins.txt 2>&1
+# the coordinator's word (hc, 24 Nov, about 21:50 UTC): priority to the k_c 95 scan of ../kc95_d2175; hold this lane until that scan has read (its "point done" line) or has stopped (a STOP line)
+K95=/home/nathan/Source/choptuik-large-d-raw/I1025-dh610/kc95_d2175/exits_kc95.txt; th=$(date +%s)
+until grep -q -E "kc95_d2175: (.*kc95 D 21.75 point done|STOP: )" $K95 2>/dev/null; do
+  [ -e $F/$D/hold.txt ] || say "holding: the k_c 95 scan of D 21.75 has not read yet (the coordinator's priority order); nothing of this point starts"
+  echo "$(date -u '+%F %T') UTC holding" > $F/$D/hold.txt
+  [ $(( $(date +%s) - th )) -lt 43200 ] || { say "STOP: the hold for the k_c 95 scan ended after 12 h"; exit 1; }
+  sleep 60
+done
+[ ! -e $F/$D/hold.txt ] || say "hold ended: $(grep -E "kc95_d2175: (.*kc95 D 21.75 point done|STOP: )" $K95 | tail -n 1 | cut -c1-120)"
 exec 8> /tmp/claude-1000/kc87_m3pts.lock
 flock 8
 tm=$(date +%s)
