@@ -52,3 +52,33 @@ The regrid: 8 threads at nice 10 (all of this machine). The scan: 4 single-threa
 - **The k_c 95 regrid beside its k_c 87 source and the anchors** (dh610's D 19 and D 19.5): |F| **4.6199429159e-10** (source 4.6133966302e-10, ratio 1.00142; anchors 4.62e-10 to 4.67e-10); steps **3206** (source 2935, ratio 1.0923; anchor 3203); psi-constraint **1.8585228e-3** (source 3.5026855e-3, ratio 0.5306; anchors 1.25e-3 to 1.37e-3, my window 1.05e-3 to 1.75e-3: **above it**); Delta **1.121573196527** (source 1.121577253397: k_c 95 minus k_c 87 **-4.0569e-6**; D 19: -6.1e-7, D 19.5: -2.24e-6: the step grows with D, as the k_c 79 to 87 step did); F at the start 1.6641e-5 against the source's 1.0236e-5.
 - 2026-11-24 10:47:50 UTC: **STEP 3 scan** started as unit `i1025-k95f-s` (4 processes of 1 thread, nice 10, two rounds, the lists above); all four print the record system (|F| 4.6214685856e-10 against the record's 4.6199429159e-10, 3206 steps equal), each at about 99% CPU, MemAvailable 27.5 GiB.
 - 2026-11-24 10:49:34 UTC: step 2 logged (this entry).
+
+## Result (written 2026-11-24 14:23:36 UTC)
+Steps 1 and 2 as logged (ACCEPTED 09:15:24 and 10:47:35 UTC). **Step 3:** unit `i1025-k95f-s` exit 0; processes p3, p2, p0, p1 exit 0 at 14:22:26, 14:22:54, 14:22:56 and 14:22:58 UTC; all four printed the record system (|F| 4.6214685856e-10 against the record's 4.6199429159e-10, 3206 steps equal); **8 of 8 evaluations noise-robust**; the repeat of 0.880 (the first on process 0, the repeat on process 3) **bit-identical** (hybrid +1, ln|det| -2939.6100062414903, float64 ln|det| -2937.9774787781867, noise [1, 1]; `repeat_check.py` PASS); `read_lower.py` selftest exit 0, `--mutate=shift` and `--mutate=round2` exit 1; reader exit 0 (`read_lower.txt`). Seconds per point 6382 to 6520 (four processes side by side, two rounds); wall per process 3:34:36 to 3:35:07 by /usr/bin/time, the scan 3:35:08 (12908 s; 10:47:50 to 14:22:58); **peak RSS of a scan point 3.02 to 3.15 GiB** (3165180 to 3304676 kB); lowest MemAvailable 19.6 GiB (214 samples) and 25.6 GiB (regrid); peak RSS of the regrid (`ell_refine`) sampled 2.24 GiB; no memory alert (`alert.log` does not exist).
+
+**Hybrid signs, as printed, lambda 0.865 to 0.895:** plus at 0.865, 0.870, 0.875, 0.880; minus at 0.885, 0.890, 0.895; edge signs plus and minus. **One robust change**, none touching a non-robust point, no ln|det| minimum without a sign change:
+| root | bracket | orientation as printed | det-linear estimate | estimator range |
+|---|---|---|---|---|
+| **k_c 95, D 21.125, dh170 (Linux), regridded from dh370's k_c 87 state** | (0.880, 0.885) | + to - | **0.881040** | [0.880628, 0.881040] |
+| k_c 87, D 21.125, macm3 (macOS), the same state | (0.875, 0.880) | - to + | 0.877108 | [0.876463, 0.877108] |
+| **k_c 95 minus k_c 87** | the next 0.005 cell | | **+0.003932** | from +0.003520 to +0.004577 over the two ranges |
+The float64 sign differs from the hybrid at 0.880 only (float64 minus; 2 of the 8 evaluations, 1 of the 7 distinct points). ln|det|: 0.865 -2935.0882, 0.870 -2935.9428, 0.875 -2937.0442, 0.880 -2939.6100, 0.885 -2938.2728, 0.890 -2937.9748, 0.895 -2938.0188 (a dip at the root). The estimator range is the spread over the interpolation choices of `d185_scan_read.changes`, not an enclosure; the bracket is the 0.005 grid step. **The printed orientation is the opposite of macm3's** (k_c 87: minus then plus; k_c 95: plus then minus, with both edge signs reversed); the roots are identified by position, the window (0.865 to 0.895) holds one change on each side of the comparison, and no second change appears.
+**t5's rule, written before:** |k_c 95 - k_c 87| at most 0.002: converged; more than 0.004: not converged; between: no ruling. The estimates differ by **+0.003932**, which is **between 0.002 and 0.004: no ruling**; it is 0.00007 under the 0.004 line, and the two estimator ranges allow +0.0035 to +0.0046, so the estimate does not settle which side of 0.004 the root's step is. The k_c steps of lambda_1 at D 21.125: +0.0050 (79 to 87, t5), **+0.0039 (87 to 95)**, a ratio of 0.79; a geometric continuation would put the limit about +0.0145 beyond k_c 95 (t5's arithmetic, information, not a result of mine).
+
+**The regrid beside its k_c 87 source and the anchors** (dh610's D 19 and D 19.5): |F| 4.6199429159e-10 (ratio 1.00142), steps 3206 (3203), psi-constraint 1.8585228e-3 (ratio 0.5306; the anchors gave 1.25e-3 to 1.37e-3), Delta 1.121573196527 (k_c 95 minus k_c 87 -4.0569e-6) (details in the step 2 entry above).
+
+## Predictions against the result
+| prediction | result |
+|---|---|
+| t5's, written before the run: |k_c 95 - k_c 87| at most 0.002 = converged; more than 0.004 = not | **between**: +0.003932 (no ruling) |
+| mine: `kc87_syscheck_1025.py` accepts with all four controls firing (90%); the regrid accepted with both controls and the k_c 87 check refusing (80%) | yes (state |F| -0.037% of the record's, `freeze_from` 2935 = 2935); yes |
+| the regrid takes 4500 to 7500 s (65%); steps within 20 of 3203 (70%); |F| between 4.5e-10 and 4.8e-10 (75%) | yes, 5523 s; yes, 3206; yes, 4.62e-10 |
+| psi-constraint between 1.05e-3 and 1.75e-3 (70%) | **no**: 1.8585e-3 |
+| Delta k_c 95 minus k_c 87 between -1e-4 and -1e-6 (75%) | yes: -4.0569e-6 |
+| every point noise-robust (70%); the repeat of 0.880 bit-identical (90%); exactly one robust change (85%) | yes, 8 of 8; yes; yes |
+| |k_c 95 - k_c 87| at most 0.002 (55%), between 0.002 and 0.004 (20%), above 0.004 (25%) | **between** (the 20% case): +0.003932 |
+| edge signs unequal (85%); the float64 sign differs at more than half the points (35%) | yes; no (2 of 8) |
+| the scan 2.8 to 4.2 h (60%); peak RSS of a scan process below 4 GiB (85%) | yes, 3.59 h; yes, 3.15 GiB |
+
+## Log
+- 2026-11-24 12:36 UTC: round 1 landed (0.870 to 0.885: plus, plus, plus, minus; the partial reading sent to t5: the change in (0.880, 0.885), 0.881040, +0.003932 from macm3's k_c 87, unchanged by round 2); 14:22:26 to 14:22:58 UTC: round 2 and the driver's reading finished. 2026-11-24 14:23:36 UTC: result written (this section). The next task (k_c 103 at the same D, t5's hc) is started in `../kc103_d21125/`.
