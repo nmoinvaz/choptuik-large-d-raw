@@ -116,6 +116,54 @@ against the prediction 0.6715: change minus prediction +0.000156; within 0.005: 
 | each scan point 1800 to 3300 s (60%) | WRONG (3454 to 4098 s) |
 | the point done within 60 min of its lane's start (60%) | WRONG (69.5 min) |
 
+## D 21.75, the inserted k_c 87 scan of macm3's state on Linux (lane 22:51:47 to 23:26:23 UTC, 34.6 min; `summarize_m3.py 21.75 0.646846` > `21.75/summary_m3.txt`)
+| lambda | hybrid sign | noise signs (robust) | float64 sign | ln of abs det | seconds |
+|---|---|---|---|---|---|
+| 0.640 | - | -- (True) | - | -2520.355734086428 | 2005 |
+| 0.645 | - | -- (True) | + | -2522.2791349990484 | 2004 |
+| 0.650 | + | ++ (True) | + | -2521.7434330187434 | 2002 |
+| 0.650 | + | ++ (True) | + | -2521.7434330187434 | 2008 |
+| 0.655 | + | ++ (True) | + | -2521.2774916662775 | 1995 |
+| 0.660 | + | ++ (True) | + | -2521.224446561165 | 2038 |
+
+scan points: 6 evaluations, seconds per point min 1995, median 2004, max 2038, sum 12052; outside 1800 to 3300 s: []
+macm3's record at D 21.75: |F| 4.2699503883635535e-10, steps 2887, constraint 0.005422677724131356, Delta 1.1386389254198963, h 0.0625, seconds 785
+float64 sign differs from the hybrid at: [0.645]
+
+```
+hybrid signs: 0.640- 0.645- 0.650+ 0.655+ 0.660+
+robust changes: 1
+   change (0.645, 0.650), - to +, det-linear 0.646846, range [0.646292, 0.646846]
+against the prediction 0.646846: change minus prediction +0.000000; within 0.005: True
+```
+
+- **Source accepted** (the state `../kc95_d2175/` regridded: macm3's commit 660ad084, blob f99f513b, record blob a4fb1525): `kc87_syscheck_1025.py` exit 0 (record |F| 4.2699503884e-10, 2887 steps), both controls exit 1, `kc79_syscheck_1025.py` refuses it; selftests 0 0 0 1 1 0 0 1; all 6 processes printed the record system.
+- **One robust change in the window 0.640 to 0.660:** (0.645, 0.650), "- to +" as the reader prints it, det-linear **0.646846**, estimator range [0.646292, 0.646846] (a spread over interpolation choices, not an enclosure; the bracket is the grid step 0.005); +0.000000 against macm3's 0.646846 (printed to 6 digits). The repeat of 0.650 (p2 and p5) is bit-identical (ln|det| -2521.7434330187434 in both). The float64 sign differs from the hybrid at 0.645 (below the change), where macm3's macOS float64 differed at 0.655.
+- **The cross-build comparison (`cross_build_21_75.py` > `21.75/cross_build_21_75.txt`, selftest exit 0 and its `--mutate` exit 1 with the FIRED line; macm3's rows are the copy `21.75/macm3_scan_D21.75_1025.jsonl`, blob 5e981985, equal to origin's):**
+| lambda | ln abs det, macm3 (macOS) | ln abs det, Linux | Linux - macm3 | hybrid sign m / L | float64 sign m / L |
+|---|---|---|---|---|---|
+| 0.640 | -2520.355740923814 | -2520.355734086428 | +6.837e-06 | -1 / -1 | -1 / -1 |
+| 0.645 | -2522.2791311345154 | -2522.2791349990484 | -3.865e-06 | -1 / -1 | -1 / +1 |
+| 0.650 | -2521.743417305025 | -2521.7434330187434 | -1.571e-05 | +1 / +1 | +1 / +1 |
+| 0.655 | -2521.277476980157 | -2521.2774916662775 | -1.469e-05 | +1 / +1 | -1 / +1 |
+| 0.660 | -2521.2244377619527 | -2521.224446561165 | -8.799e-06 | +1 / +1 | +1 / +1 |
+
+hybrid sign changes: macm3 [(0.645, 0.65)], Linux [(0.645, 0.65)]; same: True
+det-linear root in (0.645, 0.65): macm3 0.6468459261, Linux 0.6468459399, Linux - macm3 +1.380e-08
+  The hybrid signs agree at all 5 grid points and the change sits in the same bracket; the ln|det| values agree to 4e-6 to 1.6e-5 (a relative 1e-9 or so of the 2520 they sit on), and the det-linear root, computed from each side's two rows, differs by +1.38e-08. **So the builds agree at this state, within the 2e-4 the coordinator asked for and within 1e-7, and the whole offset of the k_c 95 root (0.645855, `../kc95_d2175/`) below macm3's 0.646846 is the k_c step: -0.000991 (k_c 95 minus k_c 87 on Linux, 0.645855 - 0.646846), not a build effect.** The float64 signs, in contrast, do differ between the builds (macOS at 0.655, Linux at 0.645): the hybrid is what reproduces.
+- **Seconds per point: 1995 to 2038 s** (median 2004), 6 processes at nice 8 beside the recount only: the first point of this lane on the idle machine. The load average, median over `21.75/scan/sampler.log` (68 samples, 22:52:24 to 23:26:01 UTC), was 9.01 (max 10.56, min 5.56), peak RSS per process 1.99 to 2.12 GiB, MemAvailable at least 48.71 GiB.
+
+### Scorecard of the D 21.75 Linux scan (registered before the run)
+| prediction | result |
+|---|---|
+| all 6 processes print the record system (92%); the repeat agrees (92%); one robust change in the window (88%) | right |
+| the Linux root equal to macm3's 0.646846 within 2e-4 (80%); within 1e-5 (55%) | right (+1.38e-08 from the rows); right |
+| the bracket (0.645, 0.650) (88%) | right |
+| the float64 sign differs from the hybrid at 0.655 as in macm3's scan (40%) | WRONG (at 0.645; at 0.655 it agrees) |
+| the float64 sign agrees with the hybrid at all 6 evaluations (35%) | WRONG (differs at 0.645) |
+| each scan point 2400 to 3800 s (55%) | WRONG (1995 to 2038 s, faster than the bar) |
+| the point done within 75 min of its lane's start (60%) | right (34.6 min) |
+
 ## Priority word of the coordinator (hc, 24 Nov, read at 2026-11-24 21:44 UTC), verbatim
 "Coordinator (t5): priority to the k_c 95 scan at D 21.75 (the k_c step near the crossing matters more than the in-between k_c 87 points). Let D 21.6875's scan finish, then hold the k_c 87 lane until the k_c 95 scan has read; then 21.8125 and 21.9375 as set. Your wrong-side note on 21.5625 is fine: one point inside an 8e-5 range says nothing about builds yet."
 
@@ -136,3 +184,4 @@ Verbatim: "Coordinator (t5): yes, add the k_c 87 scan of macm3's D 21.75 state o
 - 2026-11-24 21:45 UTC: the coordinator's word (hc, verbatim): "Coordinator (t5): yes, renice D 21.6875's 8 processes to nice 15 by exact pid, so the k_c 95 scan gets the cores first." Done: the 8 python processes of D 21.6875's scan (pids 1820198, 1820200 to 1820206) went from nice 8 to nice 15 (`renice -n 15 -p`, verified in `ps`); the k_c 95 scan's 7 processes stay at nice 10. Nothing was stopped; the point finishes later. The hold for D 21.8125 and D 21.9375 is unchanged.
 - 2026-11-24 22:43 UTC: the coordinator's word (above): the Linux k_c 87 scan of D 21.75 is inserted after D 21.6875 and before D 21.8125 (`wait_m3.sh`, `lane_m3.sh` replaced atomically; `check` run passed).
 - 2026-11-24 22:53 UTC: D 21.6875 done (69.5 min; section above); the chain runs the inserted point D 21.75 (Linux k_c 87) since 22:51:43 UTC, then D 21.8125 and D 21.9375.
+- 2026-11-24 23:27 UTC: the inserted Linux k_c 87 scan of D 21.75 is done (34.6 min; section above): the root equals macm3's (+1.4e-8), so the -0.000991 of the k_c 95 root is the k_c step. The chain runs D 21.8125 and D 21.9375 next.
