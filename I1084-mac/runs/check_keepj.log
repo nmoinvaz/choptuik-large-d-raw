@@ -1,0 +1,20 @@
+M 3 start 0: calls [15, 4] (floor stop) vs [15, 8] (old); skips 1; repeated residuals 0 vs 0; identical
+M 3 start 1: calls [14, 4] (floor stop) vs [15, 8] (old); skips 1; repeated residuals 0 vs 1; identical
+M 3 start 2: calls [14, 5] (floor stop) vs [14, 13] (old); skips 2; repeated residuals 0 vs 0; identical
+M 3 start 3: calls [13, 3] (floor stop) vs [14, 8] (old); skips 1; repeated residuals 0 vs 2; identical
+M 5 start 0: calls [23, 3] (floor stop) vs [23, 12] (old); skips 1; repeated residuals 0 vs 1; identical
+M 5 start 1: calls [22, 3] (floor stop) vs [23, 12] (old); skips 1; repeated residuals 0 vs 2; identical
+M 5 start 2: calls [24, 5] (floor stop) vs [40, 21] (old); skips 4; repeated residuals 0 vs 0; DIFFER in J
+M 5 start 3: calls [22, 3] (floor stop) vs [22, 12] (old); skips 1; repeated residuals 0 vs 1; identical
+(A) value_v rows identical with and without the floor stop: 7 of 8: FAIL
+(B) the stop acts: 12 skipped refreshes, calls 177 against 260, 0 repeated residual calls: PASS
+(A) far-Jacobian solve: v, R, r identical with and without the floor stop: PASS
+(C) the guard refuses a skip there 2 times (skips 0): PASS
+it 0: A 3.500100000000000 wf 0.299900000000000 |R| 4.123e+02 (|R|/sigma_mp 1.78e+26), orientation +1, dx (-1.00e-04, +1.00e-04)
+it 1: A 3.499999999999800 wf 0.300000000000000 |R| 2.829e-07 (|R|/sigma_mp 8.17e+16), orientation +1, dx (+2.00e-13, -4.00e-17)
+it 2: A 3.500000000000000 wf 0.300000000000000 |R| 1.204e-32 (|R|/sigma_mp 4.28e-09), orientation +1, dx (+8.54e-39, +5.37e-41)
+it 0: A 3.500100000000000 wf 0.299900000000000 |R| 4.123e+02 (|R|/sigma_mp 1.78e+26), orientation +1, dx (-1.00e-04, +1.00e-04)
+it 1: A 3.499999999999800 wf 0.300000000000000 |R| 2.829e-07 (|R|/sigma_mp 9.47e+16), orientation +1, dx (+2.00e-13, -4.00e-17)
+it 2: A 3.500000000000000 wf 0.300000000000000 |R| 5.586e-33 (|R|/sigma_mp 2.58e-09), orientation +1, dx (-1.36e-39, +1.35e-39)
+(D) zero_mp walk, 3 rows: located point, R, outer J, step and inner J DIFFER with and without the floor stop (4 sig/valued fields differ): FAIL
+value_mp floor check (mutate=keepj): FAIL

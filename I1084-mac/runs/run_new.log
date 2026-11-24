@@ -1,0 +1,20 @@
+d598b328 value_mp: skip a Jacobian refresh at the rounding floor that cannot change the step (#1084)
+check plain 2026-11-24 17:55:32
+check plain exit 0
+check off 2026-11-24 17:55:32
+check off exit 1
+check tau-low 2026-11-24 17:55:33
+check tau-low exit 1
+check tau-high 2026-11-24 17:55:33
+check tau-high exit 0
+check keepj 2026-11-24 17:55:33
+check keepj exit 1
+zero_mp selftest exit 0
+zero_mp selftest --mutate=sign exit 1
+start new_p1 2026-11-24 17:55:34
+new_p1 exit 0
+start new_p2 2026-11-24 18:13:07
+new_p2 exit 0
+start new_p3 2026-11-24 18:24:35
+new_p3 exit 0
+start new_m5 2026-11-24 18:36:31

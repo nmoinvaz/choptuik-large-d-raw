@@ -1,0 +1,39 @@
+== p1 old
+dps 34: 19 calls, start max|r| 1.69
+dps 42: 13 calls, start max|r| 3.92e-19
+row: {"re": 0.004249758070751545, "im": 0.0009547478889884151, "sig": 1.158192284322477e-17, "info": 5.317894395685592e-28, "F3re": 0.003913687576322261, "F3im": -0.43538149679689864, "calls": [19, 13], "seconds": 892.0}
+== p1 new
+{"dps": 34, "keep_J": true, "calls": 19, "trace": [["jac", "1.69", null], ["jac", "3.376e-19", null], ["jac", "1.054e-19", null]]}
+{"dps": 42, "keep_J": false, "calls": 9, "trace": [["jac", "1.037e-27", "0.05796"], ["skip", "5.318e-28", "1.926e-10"]]}
+== p2 old
+dps 34: 19 calls, start max|r| 0.158
+  call  6: 1.581e-01 -> 1.893e-08 (1.2e-07) fresh accepted
+  call  7: 1.893e-08 -> 5.120e-15 (2.7e-07) chord accepted
+  call  8: 5.120e-15 -> 2.341e-20 (4.6e-06) chord accepted
+  call  9: 2.341e-20 -> 5.458e-20 (2.3) chord FAILED
+  call 14: 2.341e-20 -> 2.070e-20 (0.88) fresh accepted  [after a refresh: fresh step's bits != stale step's, [40.0, 2902.0] ulps apart, |dJ|/|J| 1.71e-7]
+  call 19: 2.070e-20 -> 3.520e-20 (1.7) fresh FAILED  [after a refresh: fresh step's bits = stale step's, [0.0, 0.0] ulps apart, |dJ|/|J| 3.42e-15]
+dps 42: 8 calls, start max|r| 6.91e-20
+  call  2: 6.913e-20 -> 2.645e-28 (3.8e-09) chord accepted
+  call  3: 2.645e-28 -> 2.731e-28 (1) chord FAILED
+  call  8: 2.645e-28 -> 2.731e-28 (1) fresh FAILED  [after a refresh: fresh step's bits = stale step's, [0.0, 0.0] ulps apart, |dJ|/|J| 4.95e-15]
+row: {"re": -6.684131489496169e-05, "im": 0.00015090217900293353, "sig": 1.1725445507565468e-17, "info": 2.6446738325519186e-28, "F3re": 0.0060410037303553895, "F3im": -0.37992193542143565, "calls": [19, 8], "seconds": 790.2}
+== p2 new
+{"dps": 34, "keep_J": true, "calls": 19, "trace": [["jac", "0.1581", null], ["jac", "2.341e-20", null], ["jac", "2.07e-20", null]]}
+{"dps": 42, "keep_J": false, "calls": 3, "trace": [["skip", "2.645e-28", "0.006139"]]}
+== p3 old
+dps 34: 19 calls, start max|r| 0.291
+  call  6: 2.912e-01 -> 8.471e-08 (2.9e-07) fresh accepted
+  call  7: 8.471e-08 -> 4.829e-14 (5.7e-07) chord accepted
+  call  8: 4.829e-14 -> 6.604e-20 (1.4e-06) chord accepted
+  call  9: 6.604e-20 -> 1.897e-20 (0.29) chord accepted
+  call 14: 1.897e-20 -> 1.817e-20 (0.96) fresh accepted  [after a refresh: fresh step's bits != stale step's, [19.0, 2492.0] ulps apart, |dJ|/|J| 3.72e-7]
+  call 19: 1.817e-20 -> 2.642e-20 (1.5) fresh FAILED  [after a refresh: fresh step's bits = stale step's, [0.0, 0.0] ulps apart, |dJ|/|J| 5.72e-15]
+dps 42: 8 calls, start max|r| 3.81e-20
+  call  2: 3.810e-20 -> 1.973e-28 (5.2e-09) chord accepted
+  call  3: 1.973e-28 -> 3.224e-28 (1.6) chord FAILED
+  call  8: 1.973e-28 -> 3.224e-28 (1.6) fresh FAILED  [after a refresh: fresh step's bits = stale step's, [0.0, 0.0] ulps apart, |dJ|/|J| 7.25e-15]
+row: {"re": -51.3395427618275, "im": 149.74977562273327, "sig": 5.625439711511811e-18, "info": 1.9729657099844038e-28, "F3re": 0.006040290754433997, "F3im": -0.38003144119468873, "calls": [19, 8], "seconds": 860.7}
+== p3 new
+{"dps": 34, "keep_J": true, "calls": 19, "trace": [["jac", "0.2912", null], ["jac", "1.897e-20", null], ["jac", "1.817e-20", null]]}
+{"dps": 42, "keep_J": false, "calls": 3, "trace": [["skip", "1.973e-28", "0.003967"]]}
