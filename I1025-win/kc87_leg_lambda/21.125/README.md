@@ -78,7 +78,7 @@ Started outside my terminal: `Win32_Process.Create` of `conhost.exe --headless c
 - **Machine at the start:** free physical memory 23.56 GB, commit 10.40 GB, laptop CPU 45 % (the other project's I114 `convergence.py` jobs beside the scan, not touched). Checked after the run (11:04 UTC): battery status 2, charge 100, clock 2995 of 2995 MHz; the last boot was 2026-11-20 12:08 UTC.
 - **Machine over the run:** sampler (`rows/scan_samples.csv`, 96 stamps, 09:27:07 to 11:04:14) no gap over 90 s; memory watcher (alert-only): 0 alerts (it saw 17.98 GB free at the lowest; the sampler's lowest 18.12 GB at 09:55:47); laptop CPU 64 % mean, 93 % max; peak private per worker 2.765 GB for the three workers that ran two points (working set 2.05 GB) and 1.957 GB for p3's (one point); CPU used 5595 to 5598 s per worker (p3's 3061 s); keep-awake helper held 5850 s and cleared (`rows/scan_keepawake.log`); System log 09:20 to 11:10 UTC: no event from the Kernel-Power, Power-Troubleshooter, Kernel-Boot, Kernel-General or Kernel-Processor-Power providers; no standby. The other project's jobs were not touched.
 
-Pushed 2026-11-24 11:05:14 UTC.
+Pushed 2026-11-24 11:05:45 UTC.
 
 ## Result
 

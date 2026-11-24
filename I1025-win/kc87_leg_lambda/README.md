@@ -32,4 +32,4 @@ Taken by the others so far (raw, 07:36 UTC): macm3 D 21.0625 (`I1025-macm3/kc87_
 | D | dh370's commit | written before (prediction) | window | status | result |
 |---|---|---|---|---|---|
 | 21.09375 | 6fdda342 (pushed 2026-11-24 07:35:57 UTC) | one change within 0.005 of 0.8860 (t5's second hc) | 0.870 to 0.900 | finished 09:23:16 UTC (scan 07:38:16 to 09:23:16, 6300 s, exits 0,0,0,0); raw dc563392f, #1025 comment 7127502443 | one robust change, - to +, det-linear 0.885927, range [0.885587, 0.885927] (reader line as printed; met by position, t5 rules) |
-| 21.125 | 4ab4abcb (pushed 2026-11-24 08:44:24 UTC) | build check: one change within 0.002 of macm3's 0.877108 (t5's third hc) | 0.865 to 0.890 | README first | |
+| 21.125 | 4ab4abcb (pushed 2026-11-24 08:44:24 UTC) | build check: one change within 0.002 of macm3's 0.877108 (t5's third hc) | 0.865 to 0.890 | finished 11:03:17 UTC (scan 09:27:17 to 11:03:17, 5760 s, exits 0,0,0,0); raw 9f1d5c3ec, #1025 comment 7129645338 | one robust change, - to +, det-linear 0.877108, range [0.876464, 0.877108] (reader line as printed; equal to macm3's macOS 0.877108; met by position, t5 rules) |
