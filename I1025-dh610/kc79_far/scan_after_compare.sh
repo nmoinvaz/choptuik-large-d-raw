@@ -3,13 +3,14 @@
 # window and the rule of tag g's scan there (CENTER the multiple of 0.005 nearest PRED = tag g's prediction, grid +-0.015 by 0.005 plus a repeat, widen once by 0.015, bar 0.01). Waits (cap CAP s, default 43200) for the
 # comparison of D to end (its line "states compared ... far point done" in D<D>/exits_far.txt, or CMPFILE); a STOP or refuse line there, or no end line within the cap, stops this script with nothing scanned. Then the thread
 # gate of wait_and_run.sh (budget.txt), the far lock, and lane_far.sh with FARDIR=D<D>/i (default; the env FARDIR is for the tests): the state is the one the comparison pinned (i/in, blobs in i/in_blobs.txt), the outputs are in
-# D<D>/i/ (exits_far.txt, scan/, src/, read_lower.txt, leg_read.txt). Env NOWAIT=1: do not wait for the comparison (the coordinator's second word on this order: start the scan at once).
+# D<D>/i/ (exits_far.txt, scan/, src/, read_lower.txt, leg_read.txt). Env NOWAIT=1 (NOWAIT_NOTE: the reason logged): do not wait for the comparison (the coordinator's second word on this order: start the scan at once).
 D=$1; C=$2; PRED=$3; MODE=${4:-}
 FAR=/home/nathan/Source/choptuik-large-d-raw/I1025-dh610/kc79_far; F=$FAR/D$D; I=${FARDIR:-$F/i}; CMP=${CMPFILE:-$F/exits_far.txt}; L=$I/exits_far.txt; CAP=${CAP:-43200}
 mkdir -p $I
 say() { echo "== $(date -u '+%Y-%m-%d %H:%M:%S') UTC kc79_far D $D (tag i scan): $*" | tee -a $L; }
 t0=$(date +%s)
-[ -z "${NOWAIT:-}" ] || say "NOWAIT: the comparison of D $D is not awaited (the coordinator's order of 24 Nov, hc, about 14:40 UTC: start the tag i scan now; the comparison runs when the tag g state lands)"
+NOTE="${NOWAIT_NOTE:-}"; [ -n "$NOTE" ] || NOTE="the coordinator's order of 24 Nov, hc, about 14:40 UTC: start the tag i scan now; the comparison runs when the tag g state lands"
+[ -z "${NOWAIT:-}" ] || say "NOWAIT: the comparison of D $D is not awaited ($NOTE)"
 while [ -z "${NOWAIT:-}" ]; do
   grep -q -E "kc79_far D $D: (STOP: |refuse: )" $CMP 2>/dev/null && { say "STOP: the comparison of D $D stopped or refused (see $CMP); the scan of the tag i state does not start"; exit 1; }
   grep -q -E "kc79_far D $D: states compared.*far point done" $CMP 2>/dev/null && break
