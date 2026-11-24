@@ -57,7 +57,7 @@ Written as the runs go.
 - The 1 h cap is too short at 4 threads and load 13: the strong chord alone took 1298 s, and dh610's trials took 257 to 475 s each.
 - The chain's stop file and results are in `stop_k315_cap/`. K 330, 360 and 420 did not start.
 
-## Amendment 3 (t5's hc, 2026-11-24 about 23:50 UTC; recorded before the runs)
+## Amendment 3 (t5's hc, 2026-11-24 after 23:44 UTC; recorded 23:47 UTC before the runs)
 "Yes, read A from the 'base:' line (--tol 1e40, TERM at that line, ~6 min a rung); check K 293 first (--keep_plan 1, must give 1.0e-38 to 1.1e-38). Then two readings per K of 315, 330, 360, 420 (--keep_plan 0): (i) as is, and (ii) with --reseed_base 1, which re-seeds the horizon data at K first, using the re-seed flags already in leg 15's line (--reseed, --reseed_o). Why: dh610's #1064 K 315 start of 1.36e-11 at D 261.07 is 19 orders above #1086's predicted tail (5e-30). (i) may measure the stored order-293 horizon data's mismatch at a higher order, (ii) the truncation tail itself. #1086's prediction applies to (ii); (i) is information. Record this amendment in the README before the runs."
 
 **The `base:` line** (`hp/anm_run.py` lines 743 to 752, #576): with `--tol 1e40` the double-double gate (|F| of the first two parts, 1.1e+32) passes, and the run prints `base: double-double |F| ..., octo-double max|F| X > --tol_od ...: base polish runs` before any step, X from `PinnedO(...).residual_o` of the stored state at the run's order K (2 digits). Each rung is ended by TERM to its exact pid at that line (cap 3600 s). Nothing else of leg 15's line changes (`--base_polish 1`, 4 threads, `--steps 0 --save_base 1`, `--tol 1e40` added).
@@ -73,3 +73,6 @@ Written as the runs go.
 **Controls** (script `run_1087d.sh`, unit `i1087d`)
 - **C1** K 293 (i), `--keep_plan 1`: X must read 1.0e-38 to 1.1e-38 (t5's bar); otherwise the chain stops.
 - **C2** (mine, not ordered; information, no stop): K 293 (ii), `--keep_plan 1`, with `--tol_od 1e-40` so that the polish, and with it the re-seed, runs at the state's own order (at `--tol_od 2e-34` it would be skipped, since 1.0e-38 is below it). It shows what the re-seed does to a state that is converged at its own order; a Fr far above 1.0e-38 would mean (ii) measures the re-seed's own floor as well as the tail. t5 may drop it.
+
+## C2 result (2026-11-24 23:56 UTC; `ks293_c2_ii/`, 524 s to the line, the re-seed 430.14 s)
+`base: ... octo-double max|F| 1.0e-38 > --tol_od 1e-40: base polish runs`, then `base re-seeded at ks 293 (--reseed_base 1), 430.14 s: octo-double max|F| 2.9e-28, refinement rung max|R| 1.26e-11 -> 1.22e-22 -> 1.21e-22 -> 6.29e-29 -> 9.48e-29 -> 5.16e-29`. Re-seeding the state at its own order raises max|F| from 1.0e-38 to **2.9e-28**: the re-seed's refinement ends at rung max|R| about 5e-29 and that is the floor of reading (ii). It is 29 times the predicted 1e-29 step and 580 times the 5e-30 tail, so a Fr(315) - Fr(293) of 1e-29 can be told from the floor only if the floor repeats from K to K. The chain continues as ordered; the reading of (ii) is reported against this floor.

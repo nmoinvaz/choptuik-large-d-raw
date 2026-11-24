@@ -7,3 +7,12 @@
 # 2026-11-24 22:43:48 UTC start of the rungs 315 330 360 420 with --keep_plan 0 (the K 293 control passed within a factor 2)
 2026-11-24 23:43:50 UTC K 315 keep_plan 0: A , 3600 s, ended by cap 3600 s; line: 
 2026-11-24 23:43:50 UTC K 315 printed no on 0 line: stop
+2026-11-24 23:47:57 UTC start of amendment 3: K 293 controls, then K 315 330 360 420, (i) and (ii) each, --tol 1e40
+2026-11-24 23:48:03 UTC K 293 c1_i (keep_plan 1): ended by exited after 6 s
+    base: double-double |F| 1.1e+32 <= --tol 1e+40, octo-double max|F| 1.0e-38 <= --tol_od 2e-34: base polish skipped
+2026-11-24 23:48:03 UTC CONTROL C1 K 293 (i), keep_plan 1: 1.0e-38 is within 1.0e-38 to 1.1e-38: passes
+2026-11-24 23:56:49 UTC K 293 c2_ii (keep_plan 1): ended by first line of ^base re-seed after 524 s
+    base: double-double |F| 1.1e+32 <= --tol 1e+40, octo-double max|F| 1.0e-38 > --tol_od 1e-40: base polish runs
+    base re-seeded at ks 293 (--reseed_base 1), 430.14 s: octo-double max|F| 2.9e-28, refinement rung max|R| 1.26e-11 -> 1.22e-22 -> 1.21e-22 -> 6.29e-29 -> 9.48e-29 -> 5.16e-29
+2026-11-24 23:56:57 UTC K 315 b_i (keep_plan 0): ended by first line of ^base: double-double after 6 s
+    base: double-double |F| 1.7e+33 <= --tol 1e+40, octo-double max|F| 1.1e-30 > --tol_od 2e-34: base polish runs
