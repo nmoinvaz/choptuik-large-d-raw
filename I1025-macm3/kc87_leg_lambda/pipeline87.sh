@@ -5,13 +5,14 @@
 # if ACCEPTED point87.sh scan; push. Log: <D>/pipeline.log. No hc from here.
 L=$HOME/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_leg_lambda
 D=$1; PD=$2; PR=$3
-DN=$(python3 -c "print(format(float('$D'), 'g'))")
+DN=$(python3 -c "print(repr(float('$D')))")
 mkdir -p $L/$DN
 LOG=$L/$DN/pipeline.log
 say() { echo "$(date -u '+%F %T') UTC $*" >> $LOG; }
 say "pipeline start: D $DN, previous root $PR at D $PD"
 python3 $L/newpoint87.py selftest > $L/$DN/selftest_newpoint87.txt 2>&1 || { say "STOP: newpoint87 selftest failed"; exit 1; }
 python3 $L/newpoint87.py selftest --mutate=round > $L/$DN/selftest_newpoint87_mutate_round.txt 2>&1 && { say "STOP: newpoint87 selftest --mutate=round passed (it must fail)"; exit 1; }
+python3 $L/newpoint87.py selftest --mutate=g > $L/$DN/selftest_newpoint87_mutate_g.txt 2>&1 && { say "STOP: newpoint87 selftest --mutate=g passed (it must fail)"; exit 1; }
 python3 $L/newpoint87.py $D $PD $PR >> $LOG 2>&1 || { say "STOP: newpoint87 failed"; exit 1; }
 bash $L/prepare87.sh $DN >> $LOG 2>&1 || { say "STOP: prepare87 failed (a pin mismatch)"; exit 1; }
 bash $L/push87.sh "I1025-macm3/kc87_leg_lambda: D $DN README first (rule prediction, grid, pins)" >> $LOG 2>&1; say "README pushed ($?)"
