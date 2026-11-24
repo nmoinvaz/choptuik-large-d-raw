@@ -163,6 +163,10 @@ Done at 17:27 UTC: the cap-restart waiter `run_leap11.sh` (bash pid 41496) was k
 
 The drift of its Delta from the tag g path at the same D (scout minus tag g), with everything else equal to better than 0.3% (|F|, steps, constraint, sigma_reg, |J+dF/dn|): D 21.28125 +1.10e-6, D 21.34375 +4.10e-6 (x3.72), D 21.40625 +1.23e-5 (x3.01); the scout minus leg 9 (k_c 71) difference changed by +0.60e-5, +1.05e-5, +1.31e-5 per scout step against about +0.1e-5 per 0.03125 step on tag g. The scout's singular values, cosines, constraints and slopes (reported with each point) agree with tag g's where they overlap; its Delta beyond D 21.4 is a path-dependent estimate.
 
+## The tag g leap ended at its cap (19:20 UTC 24 Nov), no restart (the coordinator's order)
+
+The second restart of the k_c 79 leap (tag `l1kc79Lw1025g`, h 0.03125, started 07:19:49 UTC) reached its 43200 s cap at 19:19:49 UTC and was killed by its root pid 26568 at 19:20:01 UTC after the command-line check (exit 1, 43214 s; the cap, not a stop rule: the guard raised none). No restart, as ordered ("tag g ends at its cap, no restart"). Nine accepted points, D 21.1875 to 21.4375 (seconds per point 4896, 4711, 4544, 4578, 4584, 2808, 4448, 4398 and 4675; steps 2660 down to 2641); the step to D 21.46875 in flight at the cap (about 25 minutes in) is discarded. The last point's blobs: state `sol_l1kc79Lw1025g_D21.437500.npy` 2b2d3b74, record file 2cce9f81 (raw efb577900). Final copies of states and records are in `states/`; `all8.done` was written at 19:22 UTC. Guard and mode-tracker readings of all points: no fold signature (rule (i) or (ii)); the third regular value 1.3052e-10 at D 21.4375 (x0.9648, 11 falls, cos 0.021, about 62 steps to the cutoff at that ratio).
+
 ## Result
 
 Not yet run.
