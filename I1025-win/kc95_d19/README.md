@@ -1,6 +1,6 @@
 # I1025-win/kc95_d19: k_c 95 at D 19, regridded from my accepted k_c 87 D 19 state, then a scan of both roots' windows (winb)
 
-Written before the run, 2026-11-23 15:38:35 UTC (substituted from `date -u` when pushed; nothing had been run for this folder when the order, the predictions and the estimates below were written; the Status and Result sections are added after the runs).
+Written before the run, 2026-11-24 01:40:24 UTC (substituted from `date -u` when pushed; nothing had been run for this folder when the order, the predictions and the estimates below were written; the Status and Result sections are added after the runs).
 
 Runner: the winb session (surface-laptop-4, 4 cores, 8 threads, 32 GB), the same one that ran `../kc79_d19/`, `../kc79_d19low/` (raw 40f1a01a), `../kc79_d19gap/` (raw fee69df5) and `../kc87_d19/` (raw 3b833805: the k_c 87 regrid and scan this run starts from). The coordinator is t5.
 
@@ -89,7 +89,9 @@ Started outside my terminal: `Win32_Process.Create` of `conhost.exe --headless c
 
 **Step 1 ended 2026-11-23 15:31:53 UTC, ACCEPTED 15:32:07 UTC. Step 2 (the scan) started by itself 2026-11-23 15:33:18 UTC**, the same headless chain (conhost 10264 <- cmd 1540 <- scan driver launcher 25760 and driver 18544 <- sampler 24408, alert-only watcher 8440, keep-awake helper 5776, `d18_hybsign.py` 21196). Session check for the scan chain (`session_check_scan.txt`, exit 0): no `claude` in any chain, no Windows Terminal / OpenConsole / wt, a headless conhost in the chain. The scan driver's own checks passed first: the `read_lower.py` selftest exit 0 and its two `--mutate` controls exit 1, 1; the marker's blobs match the files; `d18_hybsign.py` accepted the state ("D 19.0 k_c 95: |F| 2.9307510343e-10 (record 2.9307510343e-10), steps 3575 (record 3575): the record system"). First sampler rows: 4 threads, free memory 23.2 GB.
 
-Pushed 2026-11-23 15:38:35 UTC.
+**Step 2 ended 2026-11-24 01:34:04 UTC (scan exit 0, 36046 s); the driver ended 01:35:14 UTC.** Both steps are done; the Result section below has the reading. The k_c 95 state, record and marker stay here as the source for any later k_c.
+
+Pushed 2026-11-24 01:40:24 UTC.
 
 ## Result
 
@@ -128,4 +130,57 @@ Memory: lowest free physical memory 20.88 GB (sampler), 20.31 GB (watcher, to 15
 
 ### Step 2: the scan
 
-Running. The reading is written when it ends.
+**k_c 95, D 19: one robust change, 1.540245 (- to +, between 1.540 and 1.545, det-linear 1.540245, range [1.540245, 1.540246]). No sign change in 1.395 to 1.435** (nine points, all `-`, all noise-robust; k_c 87's lower root 1.414532 would sit in the middle of them). The repeat of 1.415 agrees. Edge signs `-` at 1.395 and `+` at 1.550. The float64 sign differs from the hybrid sign at 1.545 only (hybrid `+`, float64 `-`); the hybrid point is noise-robust with both seeds `+`. No ln|det| minimum without a change. Reader exit 0 (`read_lower_kc95_D19.log`).
+
+| lambda | hybrid sign | hybrid ln\|det\| | float64 sign | wall s |
+|---|---|---|---|---|
+| 1.395 | - | -3246.3117 | - | 2439 |
+| 1.400 | - | -3246.3221 | - | 2425 |
+| 1.405 | - | -3246.3351 | - | 2429 |
+| 1.410 | - | -3246.3507 | - | 2381 |
+| 1.415 | - | -3246.3689 | - | 2377 |
+| 1.420 | - | -3246.3897 | - | 2366 |
+| 1.425 | - | -3246.4130 | - | 2361 |
+| 1.430 | - | -3246.4391 | - | 2357 |
+| 1.435 | - | -3246.4680 | - | 2388 |
+| 1.530 | - | -3248.5581 | - | 2426 |
+| 1.535 | - | -3249.2202 | - | 2423 |
+| 1.540 | - | -3252.2740 | - | 2437 |
+| 1.545 | + | -3249.3066 | **-** | 2406 |
+| 1.550 | + | -3248.5833 | + | 2417 |
+| 1.415 (repeat) | - | -3246.3689 | - | 2402 |
+
+All 15 evaluations have both noise seeds equal to the hybrid sign. Not evaluated: (1.435, 1.530), above 1.550, below 1.395.
+
+By position, beside the earlier k_c at D 19:
+
+| k_c | lower root | lambda_1 |
+|---|---|---|
+| 79 | 1.410862 (- to +) | 1.539658 (+ to -) |
+| 87 | 1.414532 (- to +) | 1.538986 (+ to -) |
+| **95** | **no change in 1.395 to 1.435** | **1.540245 (- to +)** |
+
+k_c 95 minus k_c 87: the one change is +0.001259 from 1.538986 (+0.000587 from k_c 79's 1.539658). Its orientation is `- to +`; k_c 79's and k_c 87's lambda_1 are `+ to -`. The signs in 1.395 to 1.540 are all `-`; k_c 87's were `-`, `+` (1.4145 to 1.539), `-`. At k_c 87 the window's ends were `-` and `-` (an even number of changes); at k_c 95 they are `-` and `+` (an odd number). The points do not exclude a pair of changes inside the unscanned gap (1.435, 1.530) or a change above 1.550.
+
+The lines written before the run (t5's), checked by position:
+
+| written line | observed | |
+|---|---|---|
+| lower root within 0.002 of 1.4145 means it converges | no change in 1.395 to 1.435; 1.410, 1.415 and 1.420 are all `-` | not met |
+| lower root moved more than 0.004 means a discretization root | no change in the window to measure a move from; a lower root, if it exists, is outside [1.395, 1.435] (more than 0.0205 above 1.4145 or more than 0.0195 below it) | cannot be read as a move from these points; t5 rules |
+| lambda_1 within 0.002 of 1.539 | 1.540245 is +0.001245 from 1.539 | met by position; the orientation is the reverse of k_c 79's and k_c 87's |
+
+I do not say whether 1.540245 is the same root as k_c 87's lambda_1 or whether the lower root went to the gap or away: these points do not tell.
+
+Cost and health:
+
+| item | estimate | got |
+|---|---|---|
+| scan | 15 points at 1850 to 2600 s, 7.7 to 10.8 h | 36046 s (10.01 h), points 2357 to 2439 s (mean 2402 s); k_c 87's were 1834 to 1863 s |
+| peak private | about 3.3 GB | 3.53 GB (peak working set 2.50 GB, peak commit 14.0 GB) |
+| lowest free memory | | 19.73 GB (watcher), 20.36 GB (sampler); 0 alerts |
+| sampler | | 593 stamps, largest gap 63 s |
+| keep-awake | | held 36121 s, cleared (returned 0x80000001) |
+| standby | | none; the only System events in the window are clock writes by SurfaceService of 0 to -1 ms |
+
+Scan 2026-11-23 15:33:18 to 2026-11-24 01:34:04 UTC (the driver ended 01:35:14), `d18_hybsign.py` exit 0, 4 threads, BelowNormal, one process, hybsign cpu 53966 s. The whole chain ran in one headless conhost 10264 outside my terminal; every process of both stages is gone.
