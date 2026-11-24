@@ -15,3 +15,12 @@
    2 D 21.3125 k_c 87: |F| 4.5707523488e-10 (record 4.5707523488e-10), steps 2916 (record 2916): the record system
 2026-11-24 13:50:48 UTC STOP (by me): the 2-process scan of D 21.3125 (started 13:48:53) is aborted for t5's change to 4 processes; no evaluation had finished; its logs are in scan_2proc_aborted/; rerun with 4 processes (rescan87.sh)
 2026-11-24 13:51:12 UTC note: the lines '0 evaluations, 0 noise-robust' and '2 D 21.3125 k_c 87: ... the record system' above come from my abort (I killed the tree children-first; point87.sh went on to its merge for a moment before it was killed). They are not a scan result: no evaluation had finished (no row in scan_2proc_aborted/).
+2026-11-24 13:51:16 UTC scan: D 21.3125 (loadavg { 3.62 3.02 2.75 }, free memory 87%, 14.0 GiB available, disk 24Gi free)
+2026-11-24 13:51:16 UTC inputs pinned: state 2c47f756 and record b0d44d99 from raw 82d01bc4 (pins.txt); kc87_syscheck 6df5d960, kc79_syscheck 29dce7ea, d18_hybsign e089207a, read_lower 89309d3c, d185_scan_read 7c9d400f, repeat_check aaf598a9
+2026-11-24 13:51:16 UTC worktree 505d8399, clean outside solver/matter/data; Python 3.14.3, multidouble isa neon
+2026-11-24 13:51:16 UTC memory before the scan: about 14.0 GiB available (free+inactive+speculative+purgeable), 87% free by memory_pressure; 4 processes for 6 values (the k_c 87 scan of D 19.75 with 4 processes: 4.07, 2.62, 2.52, 2.51 GB peak RSS, available 17.6 down to 10.0 GiB), gate 10 GiB
+2026-11-24 13:51:16 UTC scan starts: D 21.3125, 6 values (0.805 0.810 0.815 0.820 0.825 0.815) on 4 processes of 1 thread, nice 15, round-robin (a process runs its values one after another); the first 0.815 on process 2, the repeat on process 1; state sol_l1kc87Lmacm3_D21.312500.npy 2c47f756, record b0d44d99; alert watcher on (hc: /Users/nathan/.local/bin/hc)
+2026-11-24 13:51:18 UTC proc 0 lambda 0.805,0.825: capped_run child pid 98414 (cap 28800 s)
+2026-11-24 13:51:20 UTC proc 1 lambda 0.810,0.815: capped_run child pid 98442 (cap 28800 s)
+2026-11-24 13:51:22 UTC proc 2 lambda 0.815: capped_run child pid 98453 (cap 28800 s)
+2026-11-24 13:51:24 UTC proc 3 lambda 0.820: capped_run child pid 98461 (cap 28800 s)
