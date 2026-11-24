@@ -205,3 +205,7 @@ ell_leap.py l1kc71Lw1025e 1 71 data/sol_l1kc71Lw1025c_D20.968750.npy 20.96875 da
 ```
 
 New tag `l1kc71Lw1025e` (its own record file and states; the seeds are tag c's, so nothing is overwritten), files `leap6.log`, `exits_kcl6.txt`, `summary_kcl6.txt`, `leap6.finished`, `all6.done`; 4 BLAS threads, cap 43200 s (12 h) by the exact root pid; 16 steps at about 2500 to 3900 s each (leg 4's range) may not fit 12 h, in which case the cap ends the leg and a further leg follows only on an order. The guard (`leap_guard.py`, blob f1fe7c7c, `--seeds` with leg 4's last two records, which carry n_null and cos_t_reg, so the n_null rule is live from the first point; table `leg6_points.txt`, stop file `leg6_STOP.txt`) and the samplers (`leg6/`) are started by the driver through `launch_leg6_extras.ps1` once the seeds are accepted. The rule is leg 4's: stop when dDelta/dD changes sign, or max cos_t_reg >= 0.5, or n_null rises with that cos >= 0.3.
+
+## Queued restart of leg 6 at its cap (the coordinator's hc ~04:40 UTC 24 Nov)
+
+When leg 6 ends by its cap (07:13:13 UTC), `run_leap9.sh` restarts it from its last two states as tag l1kc71Lw1025h to D_end 21.75 (h 0.03125, a fresh 12 h cap, the same guard rule and watches); the order, the table and the conditions are in `../kc79_leap/README.md` ("Queued restarts at the caps"). The restart is recorded here when it happens.
