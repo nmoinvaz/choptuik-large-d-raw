@@ -189,3 +189,6 @@ repeat_check exit 0
 
 ### Scan predictions scorecard (written before the scan; "right" = the predicted event happened)
 The table above carries the scorecard rows from `summarize_d19k95_scan.py`. The case registered at 13% (more than 0.004 away, or no change in window 1) is the one that happened.
+
+### Gap scan (t5's later order, 1.445 to 1.525)
+- Result in `gap/README.md`: no sign change in 1.435 to 1.535, all seven hybrid signs -, the pair caveat closed by t5's rule (limit: a pair closer than the grid spacing is not seen).
