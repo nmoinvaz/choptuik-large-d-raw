@@ -79,9 +79,16 @@ The sampler (`rows/regrid_samples.csv`, `rows/scan_samples.csv`) gives the real 
 
 ## Status
 
-Not started. This README is pushed before the start.
+**Step 1 running since 2026-11-24 15:54:47 UTC** (the chain started 15:54:34 UTC through `Win32_Process.Create` of `conhost.exe --headless cmd.exe /c go_kc103d21_1025.cmd`). README first: 84814983f (pushed 15:54:21 UTC, before the start).
 
-Pushed 2026-11-24 15:54:21 UTC.
+- **Chain** (`rows/launcher_pid.txt`: 23592): conhost --headless 23592 <- cmd 6172 <- regrid driver launcher 4964 and driver 26180 <- sampler 1852, alert-only watcher 24592, keep-awake helper 15056, and the regrid process 19580 (worker 10484). The python and powershell processes are BelowNormal.
+- **Session check** (`session_check_regrid.txt`, exit 0): no `claude` in any chain of the run, no Windows Terminal / OpenConsole / wt, a headless conhost in the chain.
+- **Before the regrid** (15:54:35 to 15:54:47 UTC, 12 s): the pins matched; the selftests of both checks exited 0; the source checks were as ordered: the k_c 95 check exit 0 on the source, `--mutate=F` and `--mutate=steps` exit 1, the k_c 103 check exit 1 (it refuses the source; `source_kc*_syscheck*.txt`).
+- **Regrid:** pid 19580 started 15:54:47 UTC: `ell_refine.py l1kc95winbg 95 l1kc103winbg 103 1 21.0 2.1067409501 --kappa 0.7 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma`, cwd the worktree's `solver/matter`, 4 threads, BelowNormal, cap 21600 s by the exact pid.
+- **Machine at the start:** on AC (battery status 2, charge 100), clock 2995 MHz of 2995 MHz max, free physical memory 23.08 GB; beside it the other project's I114 `convergence.py` jobs, not touched.
+- **ETA** (the estimates above counted from the actual start 15:54:47 UTC, 15 min before the 16:10 the table assumed): the regrid ends about 18:50 to 19:30 UTC (written 10500 to 13000 s), the scan about 21:15 to 22:20 UTC. The scan starts by itself after ACCEPTED.
+
+Pushed 2026-11-24 15:55:13 UTC.
 
 ## Result
 
