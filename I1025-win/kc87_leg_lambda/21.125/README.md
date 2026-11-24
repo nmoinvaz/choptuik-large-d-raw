@@ -70,9 +70,11 @@ Started outside my terminal: `Win32_Process.Create` of `conhost.exe --headless c
 
 ## Status
 
-Not started. README first.
+**Running.** Started 2026-11-24 09:27:05 UTC (`Win32_Process.Create` of `conhost.exe --headless cmd.exe /c go_kc87_1025.cmd`; conhost pid 20860, driver 12244; the four scan processes started 09:27:17 UTC: p0 13168, p1 2660, p2 5992, p3 532, each with a worker). README first: 7ce1ed471 (pushed 09:26:46 UTC, before the start). dh370 pushed the D 21.125 state at 08:44:24 UTC (commit 4ab4abcb); macm3's reading of it was accepted 08:46:30 UTC; the dry test ran at 09:26:09 UTC.
 
-Pushed 2026-11-24 09:26:46 UTC.
+At the start: the pins matched (7 blobs, worktree 48c36355); `read_lower.py` selftest 0 and controls 1, 1; both syscheck selftests 0; `kc87_syscheck_1025.py` accepted the state (exit 0; state |F| 4.6127376988e-10 against the record's 4.6133966302e-10, `freeze_from` 2935 steps = the record's); `--mutate=F` and `--mutate=steps` exit 1, 1; `kc79_syscheck_1025.py` on the state exit 1 (`source_syscheck_*.txt`). All four `d18_hybsign.py` print "the record system". All run BelowNormal; the session check (`session_check_1025.ps1 scan 20860`) exit 0: no `claude` in any chain, no Windows Terminal, a headless conhost in the chain. Machine at the start: free physical memory 23.56 GB, commit 10.40 GB, laptop CPU 45 % (the other project's I114 `convergence.py` jobs beside the scan, not touched). Keep-awake helper holding `ES_SYSTEM_REQUIRED`, alert-only memory watcher, sampler running. Estimate for the end: p3 (one point) about 10:20 UTC, the other three about 11:05 to 11:20 UTC (written range 100 to 110 min).
+
+Pushed 2026-11-24 09:27:49 UTC.
 
 ## Result
 
