@@ -9,7 +9,7 @@ args = [a for a in sys.argv[1:] if not a.startswith("--")]
 opt = {a.split("=", 1)[0]: a.split("=", 1)[1] for a in sys.argv[1:] if a.startswith("--") and "=" in a}
 D = float(args[0]); dn = repr(D)
 part = opt.get("--part", "a"); legd = [float(x) for x in opt.get("--leg", "").split(",") if x]
-LEG = L2 + ("" if part == "a" else "/" + part); TAG = {"a": "l1kc87Lmacm3", "b": "l1kc87Lmacm3b", "c": "l1kc87Lmacm3c"}[part]
+LEG = L2 + ("" if part == "a" else "/" + part); TAG = {"a": "l1kc87Lmacm3", "b": "l1kc87Lmacm3b", "b2": "l1kc87Lmacm3b2", "c": "l1kc87Lmacm3c"}[part]
 roots = {}
 for l in open(L + "/roots87.txt"):
     f = l.split()
@@ -20,6 +20,14 @@ a, b = below[-1], below[-2]
 sb = (roots[a][0] - roots[b][0]) / (a - b)
 si = (roots[above[0]][0] - roots[a][0]) / (above[0] - a) if above else None
 slope = sb if si is None else si
+# the rule the chain used when it started this point's scan (chain.log "next: D <D> (previous D .., root .., local slope S"): a point scanned in phase 1 keeps the latest-local-slope rule as its primary,
+# although roots above it exist by now; the interpolation is then scored beside it, a posteriori
+cs = None
+for l_ in open(L + "/chain.log"):
+    m_ = re.search(r"next: D %s \(previous D ([\d.]+), root ([\d.-]+), local slope ([\d.-]+)" % re.escape(dn), l_)
+    if m_: cs = float(m_.group(3))
+interp_post = si is not None and cs is not None and abs(cs - sb) < 1e-5
+if interp_post: slope = sb
 st = D - a
 pred = roots[a][0] + slope * st; pred2 = roots[a][0] - 0.33 * st; pred3 = roots[a][0] + sb * st
 new = (root - roots[a][0]) / st
@@ -63,10 +71,11 @@ P = out.append
 legout = []
 Pl = legout.append
 P("**#1025 macm3, lambda_1 on my own k_c 87 leg at D %s (@@T@@ UTC 24 Nov): one robust change, between %s and %s (%s), det-linear %.6f (estimator range [%.6f, %.6f]); %s predicted %.6f: %+.6f; the -0.33 rule beside it, %.6f: %+.6f%s; local slope %.4f per unit D.** t5's rule (previous k_c 87 root %.6f at D %s, step %s; one change within 0.005): %s. Numerical evidence." % (
-    dn, br.group(1), br.group(2), orient, root, lo, hi, ("the latest-local-slope rule (%.6f)" % slope) if si is None else ("the interpolation between the roots at D %r and D %r (slope %.6f)" % (a, above[0], slope)),
+    dn, br.group(1), br.group(2), orient, root, lo, hi, ("the latest-local-slope rule (%.6f)" % slope) if si is None or interp_post else ("the interpolation between the roots at D %r and D %r (slope %.6f)" % (a, above[0], slope)),
     pred, root - pred, pred2, root - pred2, "" if abs(root - pred2) <= 0.005 else ", outside its 0.005 window", new, roots[a][0], dn if False else repr(a), repr(st),
     "**met** by the primary rule" + ("" if abs(root - pred2) <= 0.005 else ", **not met** by the -0.33 rule") if abs(root - pred) <= 0.005 else "**NOT met** by the primary rule"))
-if si is not None: P("\nBelow-only extrapolation (slope %.6f) beside it: %.6f, root %+.6f from it." % (sb, pred3, root - pred3))
+if interp_post: P("\nInterpolation between the roots at D %r and D %r (slope %.6f; roots that did not exist when the scan started, so scored a posteriori) beside it: %.6f, root %+.6f from it." % (a, above[0], si, roots[a][0] + si * st, root - (roots[a][0] + si * st)))
+elif si is not None: P("\nBelow-only extrapolation (slope %.6f) beside it: %.6f, root %+.6f from it." % (sb, pred3, root - pred3))
 if legd:
     Pl("\n**The leg** (kc87_leg2 part %s, raw `I1025-macm3/kc87_leg2/%s`): points accepted since the previous post.\n" % (part, "" if part == "a" else part + "/"))
     Pl("| point | " + " | ".join("D %r (%s UTC, %d s)" % (d, pushed.get(d, ("", "?"))[1], legrec[d]["seconds"]) for d in legd) + " |")
@@ -78,6 +87,8 @@ if legd:
     Pl("| \\|J+dF/dn\\|, n_null | " + " | ".join("%.4f, %d" % (legrec[d]["tan_norm"], legrec[d]["n_null"]) for d in legd) + " |")
     Pl("| tracker m0 (weakest regular mode), cos | " + " | ".join("%s, %.4f" % (trk[d][3].replace("m0 ", ""), legrec[d]["cos_t_reg"][0]) for d in legd) + " |")
     Pl("| branch watch m1 | " + " | ".join(trk[d][7] for d in legd) + " |")
+    if any("delta_reg" in legrec[d] for d in legd):
+        Pl("| delta_reg of the four smallest regular modes (blob 5816d7b3) | " + " | ".join((", ".join("%.3f" % x for x in legrec[d]["delta_reg"])) if "delta_reg" in legrec[d] else "n/a (old blob)" for d in legd) + " |")
     Pl("| raw commit | " + " | ".join(pushed.get(d, ("?",))[0] for d in legd) + " |")
     lm = {d: max(int(x["leap_rss_kb"]) for x in memr if x["time_utc"] >= "00:00:00") for d in legd}
     Pl("\nThe guard did not stop. Peak RSS of the leap over the part so far %.2f GB (sampled each minute)." % (max(int(x["leap_rss_kb"]) for x in memr) / 2**20))
