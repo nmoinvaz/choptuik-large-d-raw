@@ -1,0 +1,16 @@
+== 2026-11-24 20:32:48 UTC nice -n 10 /Users/nathan/Source/venv-macm3-1058b/bin/python -u /Users/nathan/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_leg2/in/capped_run.py 43200 env OMP_NUM_THREADS=4 OPENBLAS_NUM_THREADS=4 VECLIB_MAXIMUM_THREADS=4 MKL_NUM_THREADS=4 /Users/nathan/Source/venv-macm3-1058b/bin/python -u ell_leap.py l1kc87Lmacm3b2 1 87 data/sol_l1kc87Lmacm3b_D21.937500.npy 21.9375 data/sol_l1kc87Lmacm3b_D21.968750.npy 21.96875 22.5 0.03125 --tol 1e-12 --fmax 1e-8 --cmax 1e-2 --fold (cwd /Users/nathan/Source/choptuik-large-d-1025m3/solver/matter)
+capped_run: child pid 77874, cap 43200 s
+/Users/nathan/Source/choptuik-large-d-1025m3/solver/matter/dss_ell.py:211: RuntimeWarning: overflow encountered in multiply
+  a2 = a * a
+/Users/nathan/Source/choptuik-large-d-1025m3/solver/matter/dss_ell.py:213: RuntimeWarning: invalid value encountered in subtract
+  cx = c * ((n - 1) * (a2 - 1) - 2 * L * g) / x
+/Users/nathan/Source/choptuik-large-d-1025m3/solver/matter/dss_ell.py:214: RuntimeWarning: overflow encountered in multiply
+  ax = a * ((p * p + m * m) + 2 * L * g + (n - 1) * (1 - a2)) / (2 * x)
+/Users/nathan/Source/choptuik-large-d-1025m3/solver/matter/dss_ell.py:214: RuntimeWarning: invalid value encountered in add
+  ax = a * ((p * p + m * m) + 2 * L * g + (n - 1) * (1 - a2)) / (2 * x)
+/Users/nathan/Source/choptuik-large-d-1025m3/solver/matter/dss_ell.py:216: RuntimeWarning: overflow encountered in multiply
+  pc = n * c * (p + m) / (2 * x)
+/Users/nathan/Source/choptuik-large-d-1025m3/solver/matter/dss_ell.py:218: RuntimeWarning: overflow encountered in multiply
+  px = (-self.D(p, omega) + cx * p - c * p / x + pc - lt) / (x - c)
+/Users/nathan/Source/choptuik-large-d-1025m3/solver/matter/dss_ell.py:219: RuntimeWarning: overflow encountered in multiply
+  mx = (-self.D(m, omega) - cx * m + c * m / x - pc + lt) / (x + c)
