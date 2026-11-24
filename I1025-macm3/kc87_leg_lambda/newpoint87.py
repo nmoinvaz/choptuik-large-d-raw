@@ -81,6 +81,11 @@ if __name__ == "__main__":
     m2 = grid(pred2)[0] if pred2 is not None else None
     beside = ("\n**Scored beside it (t5: keep scoring the -0.33 rule):** %s %+g x %s = **%.4f**, centre %s (%s grid as the primary's %s); one robust change within 0.005 of it is scored separately." % (
         format(PR, ".6f"), float(s2), "%.10g" % (D - PD), pred2, m2, "the same" if m2 == m else "another", m)) if pred2 is not None else ""
+    s3 = next((a.split("=", 1)[1] for a in sys.argv if a.startswith("--slope3=")), None)
+    pred3 = (PR + float(s3) * (D - PD)) if s3 is not None else None
+    m3 = grid(pred3)[0] if pred3 is not None else None
+    beside3 = ("\n**Interpolation (t5, for the points between):** the primary prediction above is the line through the bracketing roots (the root below at D %s and the nearest root above), so its residual measures the curvature. **Scored beside it:** the below-only extrapolation, %s %+g x %s = **%.4f**, centre %s (%s grid as the primary's %s)." % (
+        dlabel(PD), format(PR, ".6f"), float(s3), "%.10g" % (D - PD), pred3, m3, "the same" if m3 == m else "another", m)) if pred3 is not None else ""
     dn = dlabel(D)
     assign = "; ".join("process %d: %s" % (q, " then ".join(("the repeat " if i == 5 else "") + vals[i] for i in range(q, 6, NP))) for q in range(NP))
     wallp = "10 to 40 min about 70%" if NP >= 4 else "25 to 90 min about 65% (2 processes beside the leap's 4 threads)"
@@ -105,11 +110,11 @@ WIN="%s %s"; REP=%s
 
 **Inputs** (`%s/pins.txt`): the commit %s (%s): state `%s/%s` blob **%s**, record `%s.jsonl` blob **%s** (%d rows; the check and the scan pick the row of D %s: |F| %.16g, %d steps, Delta %.16g, h %g, k_c %s).
 **Prediction (t5's rule, hcs of 24 Nov):** the previous k_c 87 root plus slope %g per unit D times the D step (slope as ordered by t5: -0.28 up to D 21.1875, -0.32 for D 21.21875 and 21.25, and for the leg2 points from D 21.3125 on the latest measured local slope, -0.3513 at D 21.3125): %s %+g x %s = **%.4f**; one robust change within 0.005 of it.
-%s
+%s%s
 **Grid:** m = %.4f rounded to 0.005 = %s; lambda %s and a repeat of %s: 6 evaluations on %d processes of 1 thread at nice %d, round-robin (%s); window read `read_lower.py scan %s %s` (the interval prediction +-0.005, %.4f to %.4f, lies inside it).
 **Predictions (mine, before the run):** as D 21.0625's: the source check accepts with all controls firing and the k_c 79 check refusing about 90%%; all six noise-robust about 75%%; exactly one robust change in the window about 85%%; its det-linear estimate within 0.005 of the prediction about 75%%, within 0.002 about 40%%; edge signs unequal about 85%%; the repeat of %s bit-identical about 90%%; the float64 sign differs from the hybrid at one or more points about 55%%; scan wall %s; peak RSS per process below 4.5 GB about 85%%.
 ## Log
 """ % (dn, now, dn, rawc, subj, SRC, sf, sb, TAG, rb, len(rows), dlabel(D), row["F"], row["steps"], row["Delta"], row.get("h", 0.03125), row["kc"],
-       slope, format(PR, ".6f"), slope, "%.10g" % (D - PD), pred, beside, pred, m, ", ".join(vals[:5]), m, NP, NICE, assign, vals[0], vals[4], pred - 0.005, pred + 0.005, m, wallp)
+       slope, format(PR, ".6f"), slope, "%.10g" % (D - PD), pred, beside, beside3, pred, m, ", ".join(vals[:5]), m, NP, NICE, assign, vals[0], vals[4], pred - 0.005, pred + 0.005, m, wallp)
     open(L + "/README.md", "a").write(sec)
     print("D %s: commit %s, state %s, record %s, prediction %.4f, m %s, grid %s" % (dn, rawc, sb, rb, pred, m, " ".join(vals)))

@@ -8,7 +8,9 @@ Files: roots87.txt (lines "D root lo hi source"), ../kc87_leg2/pushed_points.txt
 Rule (t5, 24 Nov): for a point D, with a and b the two largest D below it that have a root (a > b; the seeds D 21.21875 and D 21.25 included): slope = (root[a] - root[b]) / (a - b) (my det-linear roots, whatever their spacing),
 prediction = root[a] + slope x (D - a); the beside rule is root[a] - 0.33 x (D - a).
 Which points: while a leap runs (part a or part b not finished; phase 1) only the pushed points on the 0.125 grid (D x 8 an integer: 21.375, 21.5, 21.625, ...), lowest first; when the leaps have ended (phase 2) every pushed point, in D order
-(t5: "the points between are scanned after part b ends, in D order"). A point is scanned only when two roots lie below it."""
+(t5: "the points between are scanned after part b ends, in D order"). A point is scanned only when two roots lie below it.
+In phase 2 (t5, 24 Nov 14:2x UTC) a point with a root above it, nearest c, is predicted by LINEAR INTERPOLATION between the bracketing roots a (below) and c: slope = (root[c] - root[a]) / (c - a), prediction root[a] + slope x (D - a); the
+below-only extrapolation (slope between the two roots below) and the -0.33 rule are scored beside it (chain_next.py slope3 D prints the below-only slope when the interpolation is the primary rule)."""
 import os, re, sys
 L = os.path.expanduser("~/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_leg_lambda")
 L2 = os.path.expanduser("~/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_leg2")
@@ -36,6 +38,14 @@ def on_grid(D):
     return abs(D * 8 - round(D * 8)) < 1e-9
 
 
+def interp_slope(roots, D, a):
+    """slope of the line through the nearest root above D (c) and the root at a; None when no root lies above D"""
+    above = sorted(x for x in roots if x > D)
+    if not above or MUT == "interp":
+        return None
+    return (roots[above[0]] - roots[a]) / (above[0] - a)
+
+
 def plan(roots, pushed, phase1=True):
     """pushed: {D: (src, tag)}; phase1: only the 0.125 grid (a leap is running). Returns ('NEXT', D, a, root[a], slope, src, tag) or ('WAIT', why)."""
     for D in sorted(pushed):
@@ -48,11 +58,20 @@ def plan(roots, pushed, phase1=True):
             return ("WAIT", "fewer than two roots below D %r" % D)
         a, b = below[-1], below[-2]
         slope = (roots[a] - roots[b]) / (a - b)
+        si = interp_slope(roots, D, a)
+        if si is not None:
+            slope = si
         if MUT == "slope":
             slope = BESIDE
         src, tag = pushed[D]
         return ("NEXT", D, a, roots[a], slope, src, tag)
     return ("WAIT", "no pushed point without a root" + (" on the 0.125 grid" if phase1 else ""))
+
+
+def below_slope(roots, D):
+    below = sorted(x for x in roots if x < D)
+    a, b = below[-1], below[-2]
+    return (roots[a] - roots[b]) / (a - b)
 
 
 def phase1_now():
@@ -103,7 +122,10 @@ def selftest():
     r = plan(roots, {k: v for k, v in pushed.items() if k != 21.625}, phase1=True)
     chk("phase 1: only off-grid points left: WAIT", r[0] == "WAIT")
     r = plan(roots, {k: v for k, v in pushed.items() if k != 21.625}, phase1=False)
-    chk("phase 2: the skipped 21.4375 in D order, the two latest roots below it (21.375, 21.3125)", r[0] == "NEXT" and r[1] == 21.4375 and r[2] == 21.375 and abs(r[4] - (0.79 - 0.8143) / 0.0625) < 1e-9)
+    chk("phase 2: the skipped 21.4375 in D order, from the root below (21.375) with the slope of the line through the bracketing roots (21.375, 21.5): the midpoint 0.77", r[0] == "NEXT" and r[1] == 21.4375 and r[2] == 21.375 and abs(r[4] - (0.75 - 0.79) / 0.125) < 1e-9 and abs(r[3] + r[4] * 0.0625 - 0.77) < 1e-9)
+    chk("phase 2: the below-only slope for the beside rule (21.375, 21.3125)", abs(below_slope(roots, 21.4375) - (0.79 - 0.8143) / 0.0625) < 1e-9)
+    r = plan({21.3125: 0.8143, 21.375: 0.79, 21.25: 0.836238, 21.21875: 0.847216}, {21.4375: ("B", "tb")}, phase1=False)
+    chk("phase 2 without a root above: the below-only slope is the primary", r[0] == "NEXT" and abs(r[4] - (0.79 - 0.8143) / 0.0625) < 1e-9)
     chk("fewer than two roots below: WAIT", plan({21.25: 0.8}, {21.3125: ("A", "ta")}, phase1=False)[0] == "WAIT")
     good = "points 5 in 0.805-0.825; not noise-robust: none\nrobust changes: 1; touching a non-robust point (not counted): none\n  robust change (0.810, 0.815), - to +, det-linear 0.8143, range [0.8130, 0.8143]\nln|det| local minima without a sign change: none\nrepeat check x: agree -> PASS\n"
     p = parse(good, "", MUT)
@@ -132,6 +154,10 @@ def main():
         else:
             fin = all(os.path.exists(f + "/LEG_DONE.txt") for _, f, _, _ in PARTS) and all(D in roots for D in pushed)
             print(("DONE" if fin else "WAIT " + r[1]))
+    elif cmd == "slope3":   # the below-only slope, when the primary of D is the interpolation (a root lies above D); else nothing
+        D = float(sys.argv[2])
+        if sum(1 for x in roots if x < D) >= 2 and interp_slope(roots, D, sorted(x for x in roots if x < D)[-1]) is not None:
+            print("%.6f" % below_slope(roots, D))
     elif cmd == "pending":   # pushed points whose scan is done (SCAN_DONE.txt) and that have no root yet, in D order
         print(" ".join(repr(D) for D in sorted(pushed) if D not in roots and os.path.exists("%s/%r/SCAN_DONE.txt" % (L, D))))
     elif cmd == "record":
@@ -145,12 +171,16 @@ def main():
             print("STOP D %s: %s" % (dn, why)); return
         below = sorted(x for x in roots if x < D)
         a, b = below[-1], below[-2]
-        slope = (roots[a] - roots[b]) / (a - b); pred = roots[a] + slope * (D - a); pred2 = roots[a] + BESIDE * (D - a)
+        slope_b = (roots[a] - roots[b]) / (a - b); si = interp_slope(roots, D, a)
+        slope = slope_b if si is None else si
+        pred = roots[a] + slope * (D - a); pred2 = roots[a] + BESIDE * (D - a); pred3 = roots[a] + slope_b * (D - a)
         new = (root - roots[a]) / (D - a)
+        rule = "Rule (local slope %.4f)" % slope if si is None else "Rule (interpolation between the roots at D %r and D %r, slope %.4f)" % (a, [x for x in sorted(roots) if x > D][0], slope)
+        extra = "" if si is None else " Below-only extrapolation (slope %.4f): %.6f, residual %+.6f." % (slope_b, pred3, root - pred3)
         with open(L + "/roots87.txt", "a") as f:
             f.write("%r %.6f %.6f %.6f macm3 bracket %.3f %.3f\n" % (D, root, lo, hi, br[0], br[1]))
-        print("OK macm3 #1025 kc87 leg2 ROOT D %s: %.6f (det-linear; estimator range %.6f-%.6f, not an enclosure), bracket (%.3f, %.3f). Rule (local slope %.4f): %.6f, residual %+.6f; beside (-0.33): %.6f, residual %+.6f. New local slope %.4f." % (
-            dn, root, lo, hi, br[0], br[1], slope, pred, root - pred, pred2, root - pred2, new))
+        print("OK macm3 #1025 kc87 leg2 ROOT D %s: %.6f (det-linear; estimator range %.6f-%.6f, not an enclosure), bracket (%.3f, %.3f). %s: %.6f, residual %+.6f;%s beside (-0.33): %.6f, residual %+.6f. Slope from the root at D %r: %.4f." % (
+            dn, root, lo, hi, br[0], br[1], rule, pred, root - pred, extra, pred2, root - pred2, a, new))
 
 
 if __name__ == "__main__":

@@ -14,7 +14,8 @@ python3 $L/newpoint87.py selftest > $L/$DN/selftest_newpoint87.txt 2>&1 || { say
 python3 $L/newpoint87.py selftest --mutate=round > $L/$DN/selftest_newpoint87_mutate_round.txt 2>&1 && { say "STOP: newpoint87 selftest --mutate=round passed (it must fail)"; exit 1; }
 python3 $L/newpoint87.py selftest --mutate=g > $L/$DN/selftest_newpoint87_mutate_g.txt 2>&1 && { say "STOP: newpoint87 selftest --mutate=g passed (it must fail)"; exit 1; }
 python3 $L/newpoint87.py selftest --mutate=slope > $L/$DN/selftest_newpoint87_mutate_slope.txt 2>&1 && { say "STOP: newpoint87 selftest --mutate=slope passed (it must fail)"; exit 1; }
-python3 $L/newpoint87.py $D $PD $PR --slope=$SL ${SL2:+--slope2=$SL2} >> $LOG 2>&1 || { say "STOP: newpoint87 failed"; exit 1; }
+SL3=${SL3:-$(python3 $L/chain_next.py slope3 $D 2>/dev/null)}      # the below-only slope, only when the primary SL is the interpolation between bracketing roots (t5, phase 2)
+python3 $L/newpoint87.py $D $PD $PR --slope=$SL ${SL2:+--slope2=$SL2} ${SL3:+--slope3=$SL3} >> $LOG 2>&1 || { say "STOP: newpoint87 failed"; exit 1; }
 bash $L/prepare87.sh $DN >> $LOG 2>&1 || { say "STOP: prepare87 failed (a pin mismatch)"; exit 1; }
 bash $L/push87.sh "I1025-macm3/kc87_leg_lambda: D $DN README first (rule prediction, grid, pins)" >> $LOG 2>&1; say "README pushed ($?)"
 bash $L/point87.sh $DN accept >> $LOG 2>&1
