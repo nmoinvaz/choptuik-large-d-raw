@@ -52,3 +52,38 @@ The regrid: 8 threads at nice 10 (all of this machine). The scan: 4 single-threa
 - **The k_c 103 regrid beside its k_c 95 source and the order's acceptance:** |F| **4.6264065251e-10** (source 4.6199429159e-10, ratio 1.00140; in the record class, at most 1e-9: yes); steps **3476** (source 3206): **ratio 1.0842** (the order: near 1.09, my band 1.07 to 1.11: yes; my 3495 +- 30: yes); psi-constraint **1.1462169e-3** (source 1.8585228e-3, ratio 0.6167; my window 0.6e-3 to 1.6e-3: yes); Delta **1.121570859155** (source 1.121573196527: k_c 103 minus k_c 95 **-2.3374e-6**, my window -5e-5 to -1e-6: yes; k_c 95 minus k_c 87 was -4.06e-6); F at the start 7.2319e-6.
 - 2026-11-24 16:28:25 UTC: **STEP 3 scan** started as unit `i1025-k103g-s` (4 processes of 1 thread, nice 10, 6 evaluations, the lists above); all four print the record system (|F| 4.6282131280e-10 against the record's 4.6264065251e-10, 3476 steps equal), each at about 99% CPU, MemAvailable 27.4 GiB.
 - 2026-11-24 16:30:12 UTC: step 2 logged (this entry).
+
+## Result (written 2026-11-24 19:52:20 UTC)
+Steps 1 and 2 as logged (ACCEPTED 14:26:15 and 16:28:10 UTC). **Step 3:** unit `i1025-k103g-s` exit 0; processes p3, p2, p1, p0 exit 0 (round 1 at 18:53:19 and about 18:53:40 UTC, round 2 at 19:51:41 and 19:51:49 UTC); all four printed the record system (|F| 4.6282131280e-10 against the record's 4.6264065251e-10, 3476 steps equal); **6 of 6 evaluations noise-robust**; the repeat of 0.885 (the first on process 0, round 1; the repeat on process 1, round 2) **bit-identical** (hybrid -1, ln|det| -3290.549209054976, float64 ln|det| -3290.4098249650633, noise [-1, -1]; `repeat_check.py` PASS); `read_lower.py` selftest exit 0, `--mutate=shift` and `--mutate=round2` exit 1; reader exit 0 (`read_lower.txt`). Seconds per point 8686 to 8717 in round 1 (four processes) and 3484 and 3503 in round 2 (two processes); scan wall 12204 s (3.39 h; 16:28:25 to 19:51:49 UTC); **peak RSS of a scan process 2.87, 2.88, 3.60 and 3.69 GiB** (`/usr/bin/time -v`), **peak RSS of the regrid 3.00 GiB** (sampled once a minute); lowest MemAvailable 20.1 GiB (203 samples, scan) and 24.9 GiB (regrid); no memory alert, no traceback, no stop condition reached.
+
+**Hybrid signs, as printed, lambda 0.875 to 0.895:** plus at 0.875, 0.880; minus at 0.885, 0.890, 0.895; edge signs plus and minus. **One robust change**, none touching a non-robust point, no ln|det| minimum without a sign change (no stop condition: the window holds a change):
+| root | bracket | orientation as printed | det-linear estimate | estimator range |
+|---|---|---|---|---|
+| **k_c 103, D 21.125, dh170 (Linux), regridded from my k_c 95 state** | (0.880, 0.885) | + to - | **0.884383** | [0.883700, 0.884383] |
+| k_c 95, D 21.125, dh170 | (0.880, 0.885) | + to - | 0.881040 | [0.880628, 0.881040] |
+| k_c 87, D 21.125, macm3 (macOS) | (0.875, 0.880) | - to + | 0.877108 | [0.876463, 0.877108] |
+The float64 sign differs from the hybrid at 0.885 (float64 plus, at both evaluations): 2 of the 6 evaluations, 1 of the 5 distinct points. ln|det|: 0.875 -3287.2635, 0.880 -3288.5882, 0.885 -3290.5492 (the dip), 0.890 -3289.2423, 0.895 -3289.1552. The estimator range is the spread over the interpolation choices of `d185_scan_read.changes`, not an enclosure; the bracket is the 0.005 grid step.
+**t5's prediction, registered before the scan:** k_c 103 root = my final k_c 95 root + 0.003 = 0.884040 (bar 0.005): the estimate is **+0.000343** from it: **met**.
+**The k_c steps of lambda_1 at D 21.125** (by position; t5's +0.0050 for 79 to 87, mine from here):
+| step | size | ratio to the previous |
+|---|---|---|
+| 79 to 87 | +0.0050 (t5) | |
+| 87 to 95 | **+0.003932** | 0.786 |
+| 95 to 103 | **+0.003343** (the two ranges allow +0.00266 to +0.00376) | 0.850 |
+The ratios do not fall. For information (my arithmetic, not a result): a geometric continuation at the last ratio 0.850 puts the remainder beyond k_c 103 at about +0.019, at the earlier ratio 0.79 at about +0.013; t5 names the competing algebraic case at about +0.04. The k_c 111 step decides further.
+
+## Predictions against the result
+| prediction | result |
+|---|---|
+| t5's: k_c 103 root = k_c 95 root + 0.003 (bar 0.005), by position | **met**: +0.000343 |
+| mine: the k_c 95 source check with all controls firing (90%); the regrid reaches k_c 103 and is accepted with both controls firing and the k_c 95 check refusing (75%) | yes; yes (3476 steps = the record's; both `--mutate` controls exit 1) |
+| the regrid takes 5500 to 9500 s (65%); steps within 30 of 3495 (65%); |F| between 4.5e-10 and 4.9e-10 (75%); psi-constraint between 0.6e-3 and 1.6e-3 (60%); Delta k_c 103 minus k_c 95 between -5e-5 and -1e-6 (70%); peak RSS of the regrid below 4 GiB (85%) | yes, 7305 s; yes, 3476; yes, 4.626e-10; yes, 1.146e-3; yes, -2.3374e-6; yes, 3.00 GiB |
+| every point noise-robust (70%); exactly one robust change (80%); the repeat bit-identical (90%) | yes, 6 of 6; yes; yes |
+| the estimate within 0.005 of 0.884040 (65%), within 0.002 (35%) | yes; yes (+0.000343) |
+| the k_c step 95 to 103 between +0.001 and +0.006 (65%); edge signs unequal (85%) | yes (+0.003343); yes |
+| the float64 sign differs from the hybrid at more than half the points (30%) | no: 2 of 6 evaluations |
+| the scan 3.0 to 4.6 h (60%); peak RSS of a scan point below 5 GiB (85%) | yes, 3.39 h; yes, 3.69 GiB |
+No miss.
+
+## Log
+- 2026-11-24 18:54 UTC: round 1 landed (0.875 to 0.890: plus, plus, minus, minus; the partial reading sent to t5: the change in (0.880, 0.885), 0.884383, unchanged by round 2); 19:51:41 to 19:51:50 UTC: round 2 and the driver's reading finished. 2026-11-24 19:52:20 UTC: result written (this section). Nothing of mine is running.
