@@ -39,3 +39,5 @@ Threads: 8 (regrid or scan) beside the k_c 79 leg lane (8 per point; the leg lan
 
 ## Status
 - 2026-11-24 01:54 UTC: folder, inputs, lane, reader and summarizer written (selftests as wanted: reader 0 and 1, summarizer 0 and 1, lane dry run 0); the unit `i1025an` starts after this README is pushed.
+- 2026-11-24 03:25 UTC: the regrid ended (exit 0, wall 5460 s) and was ACCEPTED (kc87_syscheck exit 0, both controls exit 1, kc79_syscheck refuses); the scan started 03:25:53.
+- 2026-11-24 04:14 UTC: at the coordinator's order (dh370's k_c 87 leg takes it as seed B) the state and record are copied from regrid/ to this folder's root beside a `VERDICT.txt` whose first line is `ACCEPTED`, and pushed with the scan still running (the scan files in this push are a snapshot); the summary, the scorecard and the verdict on the scan follow when the lane ends.
