@@ -72,12 +72,67 @@ Started outside my terminal: `Win32_Process.Create` of `conhost.exe --headless c
 
 ## Status
 
-**Running.** Started 2026-11-24 07:38:05 UTC (`Win32_Process.Create` of `conhost.exe --headless cmd.exe /c go_kc87_1025.cmd`; conhost pid 16500, driver 18732; the four scan processes started 07:38:16 UTC: p0 17800, p1 23308, p2 24972, p3 22448, each with a worker). README first: 859fe22af (pushed 07:37:51 UTC, before the start). dh370 pushed the D 21.09375 state at 07:35:57 UTC (commit 6fdda342); the dry test ran at 07:37:05 UTC.
+**Finished 2026-11-24 09:24:27 UTC** (the driver's last line; the scan itself 07:38:16 to 09:23:16 UTC, 6300 s, exits 0, 0, 0, 0, reader exit 0). Started 2026-11-24 07:38:05 UTC (started through `Win32_Process.Create` of `conhost.exe --headless cmd.exe /c go_kc87_1025.cmd`; the scan processes started 07:38:16). README first: 859fe22af (pushed 07:37:51 UTC, before the start). dh370 pushed the D 21.09375 state at 07:35:57 UTC (commit 6fdda342); the dry test ran at 07:37:05 UTC.
 
-At the start: the pins matched (7 blobs, worktree 48c36355); `read_lower.py` selftest 0 and controls 1, 1; both syscheck selftests 0; `kc87_syscheck_1025.py` accepted the state (exit 0; state |F| 4.6141266196e-10 against the record's 4.6133565820e-10, `freeze_from` 2939 steps = the record's); `--mutate=F` and `--mutate=steps` exit 1, 1; `kc79_syscheck_1025.py` on the state exit 1 (`source_syscheck_*.txt`). All four `d18_hybsign.py` print "the record system". All run BelowNormal; the session check (`session_check_1025.ps1 scan 16500`) exit 0: no `claude` in any chain, no Windows Terminal, a headless conhost in the chain. Machine at the start: free physical memory 23.24 GB, commit 10.53 GB, laptop CPU 49 % (the other project's I114 `convergence.py` jobs beside the scan, not touched). Keep-awake helper holding `ES_SYSTEM_REQUIRED`, alert-only memory watcher, sampler running. Estimate for the end: 08:20 to 09:20 UTC (written range 40 to 100 min).
+- **Chain** (`rows/launcher_pid.txt`: 16500): conhost --headless 16500 <- cmd 20176 <- scan driver launcher 22868 and driver 18732 <- sampler 14188, alert-only watcher 23512, keep-awake helper 15996, and the four `d18_hybsign.py` processes p0 17800, p1 23308, p2 24972, p3 22448 (each with a worker 16628, 7924, 9836, 23852). All BelowNormal.
+- **Session check** (`session_check_scan.txt`, exit 0): no `claude` in any chain, no Windows Terminal / OpenConsole / wt, a headless conhost in the chain.
+- **Before the scan** (07:38:05 to 07:38:16 UTC, 11 s): the pins matched (7 blobs, worktree 48c36355); `read_lower.py` selftest 0 and its two controls 1, 1; both syscheck selftests 0; `kc87_syscheck_1025.py` accepted the state (exit 0; state |F| 4.6141266196e-10 against the record's 4.6133565820e-10, `freeze_from` 2939 steps, the record's); `--mutate=F` and `--mutate=steps` exit 1, 1; `kc79_syscheck_1025.py` on the state exit 1 (`source_syscheck_*.txt`). All four `d18_hybsign.py` print "the record system".
+- **Machine at the start:** free physical memory 23.24 GB, commit 10.53 GB, laptop CPU 49 % (the other project's I114 `convergence.py` jobs beside the scan, not touched). Checked after the run (09:28 UTC, the next scan already running): battery status 2, charge 100, clock 2995 of 2995 MHz; the last boot was 2026-11-20 12:08 UTC.
+- **Machine over the run:** sampler (`rows/scan_samples.csv`, 104 stamps, 07:38:08 to 09:23:36) gap at most 63 s; memory watcher (alert-only): 0 alerts (it saw 16.26 GB free at the lowest; the sampler's lowest 15.74 GB at 08:51:50); laptop CPU 69 % mean, 91 % max; peak private per worker 2.764 GB (four workers, about 11.1 GB; working set 2.05 GB); each worker used 6157 to 6158 s of CPU in 6300 s; keep-awake helper held 6390 s and cleared (`rows/scan_keepawake.log`); System log 07:30 to 09:30 UTC: no event from the Kernel-Power, Power-Troubleshooter, Kernel-Boot, Kernel-General or Kernel-Processor-Power providers; no standby. The other project's jobs were not touched.
 
-Pushed 2026-11-24 07:38:47 UTC.
+Pushed 2026-11-24 09:29:39 UTC.
 
 ## Result
 
-Not yet run.
+The reader's lines are in `read_lower_kc87_D2109375.log` (exit 0) and `scan_kc87_D2109375.log`, as printed:
+
+```
+points 7 in 0.870-0.900; not noise-robust: none
+hybrid signs: 0.870- 0.875- 0.880- 0.885- 0.890+ 0.895+ 0.900+
+float64 sign differs from the hybrid sign at: [(0.88, '-', '+'), (0.885, '-', '+')]
+repeated points: [(0.885, 'agree')]
+  robust change (0.885, 0.890), - to +, det-linear 0.885927, range [0.885587, 0.885927]
+robust changes: 1; touching a non-robust point (not counted): none
+ln|det| local minima without a sign change: none
+endpoint signs: - at 0.870, + at 0.900
+```
+
+**One robust change, in (0.885, 0.890), `-` to `+`, det-linear 0.885927.** The window's ends are `-` at 0.870 and `+` at 0.900.
+
+| lambda | process | hybrid sign | hybrid ln\|det\| | noise seeds | float64 sign | float64 ln\|det\| | wall s |
+|---|---|---|---|---|---|---|---|
+| 0.870 | p0 | - | -2609.203429 | -, - | - | -2609.568023 | 3112 |
+| 0.875 | p1 | - | -2610.018155 | -, - | - | -2610.055506 | 3112 |
+| 0.880 | p2 | - | -2611.082536 | -, - | + | -2612.222534 | 3120 |
+| 0.885 | p3 | - | -2613.683028 | -, - | + | -2612.730602 | 3114 |
+| 0.885 (repeat) | p0 | - | -2613.683028 | -, - | + | -2612.730602 | 3159 |
+| 0.890 | p1 | + | -2612.202904 | +, + | + | -2611.409337 | 3167 |
+| 0.895 | p2 | + | -2611.869517 | +, + | + | -2611.778962 | 3167 |
+| 0.900 | p3 | + | -2611.872896 | +, + | + | -2611.764752 | 3167 |
+
+The repeat of 0.885 (p0, another process) agrees with p3's to every digit printed. All 8 evaluations are noise-robust. The float64 sign differs from the hybrid sign at 0.880 and 0.885: the float64 column alone (`- - + + + + +`) would put its change in (0.875, 0.880); the hybrid column, which the reader uses, puts it in (0.885, 0.890).
+
+The change lies 0.000927 above the grid point 0.885 (det-linear range [0.885587, 0.885927]). The hybrid ln|det| at 0.885 is -2613.683, which is 2.601 below its value at 0.880 and 1.480 below its value at 0.890.
+
+### Against the line written before (t5's)
+
+| line | observed | |
+|---|---|---|
+| one robust change; its det-linear estimate in [0.8810, 0.8910] (0.8860 within 0.005) | one robust change, det-linear 0.885927 (range [0.885587, 0.885927]), 0.000073 below 0.8860 | met by position |
+| not met if none, two or more, or one outside | none of those | not triggered |
+
+By position only; t5 rules. Beside the readings of the other lanes: macm3's k_c 87 at D 21.0625 was 0.894588; mine at D 21.09375 is 0.885927, a move of -0.008661 in 0.03125 of D, a slope of -0.2772 per unit D (the order used -0.28, which gives 0.885838; mine is 0.000089 above it). k_c 79's reading at D 21.09375 is 0.881686 (dh610's `I1025-dh610/kc79_leg/D21.09375`): the k_c 87 reading lies 0.004241 above it (the first hc's base, + 0.002, was 0.8837; mine is 0.002227 above that).
+
+Not evaluated: below 0.870, above 0.900. A change outside the window is not excluded; the two edge signs `-` and `+` differ, as one change needs. All 7 points are noise-robust, so a second change between two scanned points would show in the signs, and none does. Pairs of changes inside one 0.005 step are not excluded.
+
+### Cost against the estimates written before
+
+| item | written | observed |
+|---|---|---|
+| state check | 20 s | 11 s (07:38:05 to 07:38:16) |
+| each point | about 1200 to 3000 s | 3112 to 3120 s for the first point of each process, 3159 to 3167 s for the second (above the top of the range by 112 to 167 s) |
+| the scan | 2 points per process: about 40 to 100 min | 6300 s (105 min; above the top of the range by 5 min) |
+| end of the scan | 08:20 to 09:20 UTC (the start hc) | 09:23:16 UTC (3 min after the end of the range) |
+| peak private | about 1.6 to 4.1 GB per worker, 6.5 to 16 GB for the four | 2.764 GB per worker, about 11.1 GB (inside) |
+
+The laptop CPU averaged 69 %, with the other project's I114 jobs beside the scan.
