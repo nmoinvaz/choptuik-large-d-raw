@@ -14,12 +14,15 @@ A mode is "tracked" at a point when it has a predecessor. Per row: D, dDelta/dD,
 modes: id, sigma, ratio to its previous sigma), the mode with the largest tangent |cos| (id or new, sigma, cos), the longest run of
 consecutive falls with its cos, and the signature (none, (i), (ii)).
 usage: mode_tracker.py RECORDS1.jsonl [RECORDS2.jsonl ...] [--from D]   (the files in chain order; rows from D on, default all after the first)
-       mode_tracker.py --selftest [--mutate=count|cos|entry]   (exit 0 only if every planted case reads as written)"""
+       mode_tracker.py --selftest [--mutate=count|cos|entry|bcount|bcos]   (exit 0 only if every planted case reads as written)"""
 import json
+import math
 import sys
 
 FALLS = 3
 COS_BAR = 0.3
+BRANCH_FALLS = 5
+BRANCH_COS = 0.1
 
 
 def link(old_n, new_n, nold, nnew, mutate=None):
@@ -68,9 +71,23 @@ def track(recs, mutate=None):
         sig_ii = prev_slope is not None and (slope == 0.0 or (slope > 0) != (prev_slope > 0))
         sig = [s for s, on in (("(i)", bool(sig_i)), ("(ii)", sig_ii)) if on]
         longest = max((nfalls[nid[i]], i) for i in tracked)[1] if tracked else None
+        # BRANCH-POINT watch (report only, the coordinator's hc ~01:40 UTC 24 Nov): a tracked mode falling at 5 or more consecutive points with
+        # tangent |cos| < 0.1 (a singular value going to zero orthogonal to the tangent, which the fold rule cannot see); its sigma, its fall per
+        # step and its distance to the null cutoff 1e-12 sigma_max in steps at the current rate, n = ln(cutoff / sigma) / ln(ratio)
+        cut = 1e-12 * b.get("sv_J_max", 0.0)
+        bf = 3 if mutate == "bcount" else BRANCH_FALLS
+        branch = []
+        for i in tracked:
+            t = nid[i]
+            if nfalls[t] >= bf and (mutate == "bcos" or cos[i] < BRANCH_COS):
+                sg, r_ = b["sv_reg_small"][i], ratio[t]
+                n_ = math.log(cut / sg) / math.log(r_) if cut > 0 and sg > cut and r_ < 1 else None
+                branch.append((t, sg, r_, nfalls[t], cos[i], n_))
         rows.append(dict(D=b["D"], slope=slope, n_null=b["n_null"], weak=None if w is None else (nid[w], b["sv_reg_small"][w], ratio[nid[w]]),
                          big=(nid[c] if m[c] is not None else "new", b["sv_reg_small"][c], cos[c]),
-                         run=None if longest is None else (nfalls[nid[longest]], cos[longest], nid[longest], b["sv_reg_small"][longest]), sig=sig or ["none"], entered=[nid[i] for i, j in enumerate(m) if j is None]))
+                         run=None if longest is None else (nfalls[nid[longest]], cos[longest], nid[longest], b["sv_reg_small"][longest], ratio[nid[longest]],
+                                          (math.log(1e-12 * b.get("sv_J_max", 0.0) / b["sv_reg_small"][longest]) / math.log(ratio[nid[longest]])
+                                           if b.get("sv_J_max", 0.0) > 0 and ratio[nid[longest]] < 1 and b["sv_reg_small"][longest] > 1e-12 * b.get("sv_J_max", 0.0) else None)), sig=sig or ["none"], branch=branch, entered=[nid[i] for i, j in enumerate(m) if j is None]))
         ids, falls, prev_slope = nid, nfalls, slope
     return rows
 
@@ -78,13 +95,16 @@ def track(recs, mutate=None):
 def fmt(r):
     w = "-" if r["weak"] is None else "m%d %.3e (x%.3f)" % r["weak"]
     big = "%s %.3e cos %.4f" % (("m%d" % r["big"][0]) if r["big"][0] != "new" else "new", r["big"][1], r["big"][2])
-    run = "-" if r["run"] is None else "%d falls (m%d %.3e), cos %.3f" % (r["run"][0], r["run"][2], r["run"][3], r["run"][1])
+    run = "-" if r["run"] is None else "%d falls (m%d %.3e x%.4f%s), cos %.3f" % (r["run"][0], r["run"][2], r["run"][3], r["run"][4],
+                                                                              (", ~%d steps to the cutoff" % round(r["run"][5])) if (r["run"][0] > 0 and r["run"][5] is not None) else "", r["run"][1])
     ent = ("entered " + ",".join("m%d" % e for e in r["entered"])) if r["entered"] else ""
-    return "| %.8g | %+.6f | %d | %s | %s | %s | %s | %s |" % (r["D"], r["slope"], r["n_null"], w, big, run, "/".join(r["sig"]), ent)
+    br = "; ".join("m%d %.3e x%.4f, %d falls, cos %.3f, %s" % (t, sg, r_, f, c, ("~%d steps to the cutoff" % round(n_)) if n_ is not None else "no cutoff distance")
+                   for t, sg, r_, f, c, n_ in r["branch"]) or "-"
+    return "| %.8g | %+.6f | %d | %s | %s | %s | %s | %s | %s |" % (r["D"], r["slope"], r["n_null"], w, big, run, "/".join(r["sig"]), br, ent)
 
 
-def _rec(D, Delta, n_null, sv, cos):
-    return dict(D=D, Delta=Delta, n_null=n_null, sv_reg_small=sv, cos_t_reg=cos)
+def _rec(D, Delta, n_null, sv, cos, smax=14.0):
+    return dict(D=D, Delta=Delta, n_null=n_null, sv_reg_small=sv, cos_t_reg=cos, sv_J_max=smax)
 
 
 def selftest(mutate=None):
@@ -123,6 +143,24 @@ def selftest(mutate=None):
     r = track([_rec(1.0, 1.0, 63, [2 * e, 5 * e, 16 * e, 29 * e], [.01] * 4), _rec(1.03, 1.03, 64, [5.1 * e, 16.2 * e, 29.5 * e, 35 * e], [.01] * 4)], mutate)[0]
     if not (r["entered"] == [4] or len(r["entered"]) == 1) or r["weak"] is None or abs(r["weak"][2] - 5.1 / 5) > 1e-9:
         bad.append("exit: %s" % r)
+    # 7: the branch-point watch: a mode falling at 5 consecutive points with cos 0.03 is listed at the 5th and not the 4th (ratio 0.992 per step,
+    # sigma 1.75e-10 against the cutoff 1.4e-11 = 1e-12 * 14.0: n = ln(0.08) / ln(0.992) = 314 steps); with cos 0.15 it is not listed
+    def chain7(cos0):
+        out, sg = [], 1.80e-10
+        for i in range(6):
+            out.append(_rec(1 + .03 * i, 1 + .03 * i, 63, [2.4e-11, 7.5e-11, sg, 4.2e-10], [.02, .02, cos0, .05], 14.0))
+            sg *= 0.992
+        return out
+    rows = track(chain7(0.03), mutate)
+    got = [len(x["branch"]) for x in rows]
+    if got != [0, 0, 0, 0, 1]:
+        bad.append("branch watch, cos 0.03: listed at %s, want 0,0,0,0,1" % got)
+    elif abs(rows[-1]["branch"][0][5] - 314) > 3:
+        bad.append("branch watch distance %.1f steps, want 314 +- 3" % rows[-1]["branch"][0][5])
+    rows = track(chain7(0.15), mutate)
+    got = [len(x["branch"]) for x in rows]
+    if got != [0] * 5:
+        bad.append("branch watch, cos 0.15: listed at %s, want none" % got)
     for b in bad:
         print("SELFTEST FAIL:", b)
     print("selftest %s%s" % ("FAILS" if bad else "passes", " (mutate=%s)" % mutate if mutate else ""))
@@ -146,8 +184,8 @@ def main():
             seen.add(key)
             chain.append(r)
     chain.sort(key=lambda r: r["D"])
-    print("| D | dDelta/dD | n_null | tracked weak mode: sigma (x prev) | largest-cos mode: sigma, cos | longest fall run, its cos | signature | entry |")
-    print("|---|---|---|---|---|---|---|---|")
+    print("| D | dDelta/dD | n_null | tracked weak mode: sigma (x prev) | largest-cos mode: sigma, cos | longest fall run, its cos | signature | branch watch (report only) | entry |")
+    print("|---|---|---|---|---|---|---|---|---|")
     for r in track(chain):
         if start is None or r["D"] >= start - 1e-9:
             print(fmt(r))
