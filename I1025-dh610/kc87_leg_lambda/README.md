@@ -12,7 +12,7 @@ Then, when I reported that no accepted state was free at 07:28 UTC and proposed 
 | 21.03125 | 22bea94f | dh170 (scan since 05:52 UTC) |
 | 21.0625 | 2b316941 | macm3 (its README of 07:14 UTC) |
 | 21.09375 | not yet (expected about 07:40 UTC) | winb |
-| 21.125 | not yet (expected about 08:45 UTC; dh370's points take about 3900 s with 6 threads, pushed a few minutes later) | me, when it lands |
+| 21.125 | not yet (expected about 08:45 UTC; dh370's points take about 3900 s with 6 threads, pushed a few minutes later) | macm3 (released by the coordinator's change of 2026-11-24 07:36 UTC, below); not me |
 I take a state only after checking the three rotation folders on raw for it at that moment.
 
 ## Method (the same for every D; `lane_k87l.sh D CENTER PRED`)
@@ -38,3 +38,4 @@ Now: the #1076 recount 2. When this scan runs: 8. When the k_c 79 leg's D 21.187
 
 ## Status
 - 2026-11-24 07:31 UTC: folder, scripts (`fetch_k87.sh`, `lane_k87l.sh`, `wait_k87.sh`, `start_k87.sh`, `notify_k87.sh`), pins and README written and tested (`test_21.0625/`); the unit for D 21.125 is started after this README is pushed.
+- 2026-11-24 07:36 UTC: **released.** The coordinator's change (hc, quoted): "macm3 scans every k_c 87 state from D 21.125 on (17 min a scan); release D 21.125 and stop the unit i1025-k87l-21_125 before it starts. Your lane stays built in case macm3 falls behind. Your k_c 79 leg is your task; the spare threads stay free for now." The unit `i1025-k87l-21_125` was stopped by name (`systemctl --user stop`) while it was still waiting for dh370's state: it had pinned nothing and started nothing (`21.125/` holds only the waiter's `fetch.log`, its alert-only `memlog_i1025-k87l-21_125.log` and the notifier's `notify.out`); its notifier (exact pids 1671972, 1671976, 1671977) and the background waiter were stopped. No D 21.125 prediction of this README is scored: the section above stands as written and is not run. The lane (`fetch_k87.sh`, `lane_k87l.sh`, `wait_k87.sh`, `start_k87.sh`, `notify_k87.sh`, `in/`) stays built and tested; I use it only on the coordinator's word. The spare threads stay free; my threads: the #1076 recount 2, the k_c 79 leg's scan 8 when a state lands.
