@@ -91,7 +91,7 @@ if __name__ == "__main__":
     m3 = grid(pred3)[0] if pred3 is not None else None
     beside3 = ("\n**Interpolation (t5, for the points between):** the primary prediction above is the line through the bracketing roots (the root below at D %s and the nearest root above), so its residual measures the curvature. **Scored beside it:** the below-only extrapolation, %s %+g x %s = **%.4f**, centre %s (%s grid as the primary's %s)." % (
         dlabel(PD), format(PR, ".6f"), float(s3), "%.10g" % (D - PD), pred3, m3, "the same" if m3 == m else "another", m)) if pred3 is not None else ""
-    dn = dlabel(D)
+    dn = dlabel(D) + os.environ.get("DNSUFFIX", "")      # a suffix for a control scan of the same D (t5: the h 0.03125 control, folder 21.375_ctl)
     assign = "; ".join("process %d: %s" % (q, " then ".join(("the repeat " if i == 5 else "") + vals[i] for i in range(q, 6, NP))) for q in range(NP))
     wallp = "10 to 40 min about 70%" if NP >= 4 else "25 to 90 min about 65% (2 processes beside the leap's 4 threads)"
     os.makedirs("%s/%s" % (L, dn), exist_ok=True)
