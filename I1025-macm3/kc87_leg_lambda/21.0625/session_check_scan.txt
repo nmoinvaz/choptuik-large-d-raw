@@ -1,0 +1,125 @@
+# session check, 2026-11-24 07:17:27 UTC: parent chain of each pid (the given ones and their descendants) up to pid 1 (pid ppid pgid sess tty command); fails if 'claude' is in a chain
+
+pid 45334 (bash /Users/nathan/Source/choptuik-large-d-raw-903/I1025-mac):
+   45334 ppid      1 pgid  45333 tty  ??  bash /Users/nathan/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_leg_lambda/point87.sh 21.0625 sc
+       1 ppid      0 pgid      1 tty  ??  /sbin/launchd
+  chain ends at pid 1 (/sbin/launchd), 2 processes
+
+pid 45336 (caffeinate -is nice -n 10 bash /Users/nathan/Source/choptuik):
+   45336 ppid  45334 pgid  45333 tty  ??  caffeinate -is nice -n 10 bash /Users/nathan/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_leg_la
+   45334 ppid      1 pgid  45333 tty  ??  bash /Users/nathan/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_leg_lambda/point87.sh 21.0625 sc
+       1 ppid      0 pgid      1 tty  ??  /sbin/launchd
+  chain ends at pid 1 (/sbin/launchd), 3 processes
+
+pid 45410 (/bin/bash /Users/nathan/Source/choptuik-large-d-raw-903/I102):
+   45410 ppid  45334 pgid  45333 tty  ??  /bin/bash /Users/nathan/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_leg_lambda/21.0625/scan/wat
+   45334 ppid      1 pgid  45333 tty  ??  bash /Users/nathan/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_leg_lambda/point87.sh 21.0625 sc
+       1 ppid      0 pgid      1 tty  ??  /sbin/launchd
+  chain ends at pid 1 (/sbin/launchd), 3 processes
+
+pid 45418 (bash /Users/nathan/Source/choptuik-large-d-raw-903/I1025-mac):
+   45418 ppid  45334 pgid  45333 tty  ??  bash /Users/nathan/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_leg_lambda/point87.sh 21.0625 sc
+   45334 ppid      1 pgid  45333 tty  ??  bash /Users/nathan/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_leg_lambda/point87.sh 21.0625 sc
+       1 ppid      0 pgid      1 tty  ??  /sbin/launchd
+  chain ends at pid 1 (/sbin/launchd), 3 processes
+
+pid 45420 (/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.):
+   45420 ppid  45418 pgid  45333 tty  ??  /opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/Resources/Python
+   45418 ppid  45334 pgid  45333 tty  ??  bash /Users/nathan/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_leg_lambda/point87.sh 21.0625 sc
+   45334 ppid      1 pgid  45333 tty  ??  bash /Users/nathan/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_leg_lambda/point87.sh 21.0625 sc
+       1 ppid      0 pgid      1 tty  ??  /sbin/launchd
+  chain ends at pid 1 (/sbin/launchd), 4 processes
+
+pid 45421 (/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.):
+   45421 ppid  45420 pgid  45333 tty  ??  /opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/Resources/Python
+   45420 ppid  45418 pgid  45333 tty  ??  /opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/Resources/Python
+   45418 ppid  45334 pgid  45333 tty  ??  bash /Users/nathan/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_leg_lambda/point87.sh 21.0625 sc
+   45334 ppid      1 pgid  45333 tty  ??  bash /Users/nathan/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_leg_lambda/point87.sh 21.0625 sc
+       1 ppid      0 pgid      1 tty  ??  /sbin/launchd
+  chain ends at pid 1 (/sbin/launchd), 5 processes
+
+pid 45446 (bash /Users/nathan/Source/choptuik-large-d-raw-903/I1025-mac):
+   45446 ppid  45334 pgid  45333 tty  ??  bash /Users/nathan/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_leg_lambda/point87.sh 21.0625 sc
+   45334 ppid      1 pgid  45333 tty  ??  bash /Users/nathan/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_leg_lambda/point87.sh 21.0625 sc
+       1 ppid      0 pgid      1 tty  ??  /sbin/launchd
+  chain ends at pid 1 (/sbin/launchd), 3 processes
+
+pid 45448 (/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.):
+   45448 ppid  45446 pgid  45333 tty  ??  /opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/Resources/Python
+   45446 ppid  45334 pgid  45333 tty  ??  bash /Users/nathan/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_leg_lambda/point87.sh 21.0625 sc
+   45334 ppid      1 pgid  45333 tty  ??  bash /Users/nathan/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_leg_lambda/point87.sh 21.0625 sc
+       1 ppid      0 pgid      1 tty  ??  /sbin/launchd
+  chain ends at pid 1 (/sbin/launchd), 4 processes
+
+pid 45449 (/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.):
+   45449 ppid  45448 pgid  45333 tty  ??  /opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/Resources/Python
+   45448 ppid  45446 pgid  45333 tty  ??  /opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/Resources/Python
+   45446 ppid  45334 pgid  45333 tty  ??  bash /Users/nathan/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_leg_lambda/point87.sh 21.0625 sc
+   45334 ppid      1 pgid  45333 tty  ??  bash /Users/nathan/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_leg_lambda/point87.sh 21.0625 sc
+       1 ppid      0 pgid      1 tty  ??  /sbin/launchd
+  chain ends at pid 1 (/sbin/launchd), 5 processes
+
+pid 45454 (bash /Users/nathan/Source/choptuik-large-d-raw-903/I1025-mac):
+   45454 ppid  45334 pgid  45333 tty  ??  bash /Users/nathan/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_leg_lambda/point87.sh 21.0625 sc
+   45334 ppid      1 pgid  45333 tty  ??  bash /Users/nathan/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_leg_lambda/point87.sh 21.0625 sc
+       1 ppid      0 pgid      1 tty  ??  /sbin/launchd
+  chain ends at pid 1 (/sbin/launchd), 3 processes
+
+pid 45456 (/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.):
+   45456 ppid  45454 pgid  45333 tty  ??  /opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/Resources/Python
+   45454 ppid  45334 pgid  45333 tty  ??  bash /Users/nathan/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_leg_lambda/point87.sh 21.0625 sc
+   45334 ppid      1 pgid  45333 tty  ??  bash /Users/nathan/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_leg_lambda/point87.sh 21.0625 sc
+       1 ppid      0 pgid      1 tty  ??  /sbin/launchd
+  chain ends at pid 1 (/sbin/launchd), 4 processes
+
+pid 45457 (/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.):
+   45457 ppid  45456 pgid  45333 tty  ??  /opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/Resources/Python
+   45456 ppid  45454 pgid  45333 tty  ??  /opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/Resources/Python
+   45454 ppid  45334 pgid  45333 tty  ??  bash /Users/nathan/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_leg_lambda/point87.sh 21.0625 sc
+   45334 ppid      1 pgid  45333 tty  ??  bash /Users/nathan/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_leg_lambda/point87.sh 21.0625 sc
+       1 ppid      0 pgid      1 tty  ??  /sbin/launchd
+  chain ends at pid 1 (/sbin/launchd), 5 processes
+
+pid 45462 (bash /Users/nathan/Source/choptuik-large-d-raw-903/I1025-mac):
+   45462 ppid  45334 pgid  45333 tty  ??  bash /Users/nathan/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_leg_lambda/point87.sh 21.0625 sc
+   45334 ppid      1 pgid  45333 tty  ??  bash /Users/nathan/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_leg_lambda/point87.sh 21.0625 sc
+       1 ppid      0 pgid      1 tty  ??  /sbin/launchd
+  chain ends at pid 1 (/sbin/launchd), 3 processes
+
+pid 45464 (/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.):
+   45464 ppid  45462 pgid  45333 tty  ??  /opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/Resources/Python
+   45462 ppid  45334 pgid  45333 tty  ??  bash /Users/nathan/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_leg_lambda/point87.sh 21.0625 sc
+   45334 ppid      1 pgid  45333 tty  ??  bash /Users/nathan/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_leg_lambda/point87.sh 21.0625 sc
+       1 ppid      0 pgid      1 tty  ??  /sbin/launchd
+  chain ends at pid 1 (/sbin/launchd), 4 processes
+
+pid 45465 (/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.):
+   45465 ppid  45464 pgid  45333 tty  ??  /opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/Resources/Python
+   45464 ppid  45462 pgid  45333 tty  ??  /opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/Resources/Python
+   45462 ppid  45334 pgid  45333 tty  ??  bash /Users/nathan/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_leg_lambda/point87.sh 21.0625 sc
+   45334 ppid      1 pgid  45333 tty  ??  bash /Users/nathan/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_leg_lambda/point87.sh 21.0625 sc
+       1 ppid      0 pgid      1 tty  ??  /sbin/launchd
+  chain ends at pid 1 (/sbin/launchd), 5 processes
+
+pid 45470 (bash /Users/nathan/Source/choptuik-large-d-raw-903/I1025-mac):
+   45470 ppid  45334 pgid  45333 tty  ??  bash /Users/nathan/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_leg_lambda/point87.sh 21.0625 sc
+   45334 ppid      1 pgid  45333 tty  ??  bash /Users/nathan/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_leg_lambda/point87.sh 21.0625 sc
+       1 ppid      0 pgid      1 tty  ??  /sbin/launchd
+  chain ends at pid 1 (/sbin/launchd), 3 processes
+
+pid 45840 (sleep 60):
+   45840 ppid  45410 pgid  45333 tty  ??  sleep 60
+   45410 ppid  45334 pgid  45333 tty  ??  /bin/bash /Users/nathan/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_leg_lambda/21.0625/scan/wat
+   45334 ppid      1 pgid  45333 tty  ??  bash /Users/nathan/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_leg_lambda/point87.sh 21.0625 sc
+       1 ppid      0 pgid      1 tty  ??  /sbin/launchd
+  chain ends at pid 1 (/sbin/launchd), 4 processes
+
+pid 45865 (sleep 60):
+   45865 ppid  45470 pgid  45333 tty  ??  sleep 60
+   45470 ppid  45334 pgid  45333 tty  ??  bash /Users/nathan/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_leg_lambda/point87.sh 21.0625 sc
+   45334 ppid      1 pgid  45333 tty  ??  bash /Users/nathan/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_leg_lambda/point87.sh 21.0625 sc
+       1 ppid      0 pgid      1 tty  ??  /sbin/launchd
+  chain ends at pid 1 (/sbin/launchd), 4 processes
+
+for comparison, this checker's own chain: 45875:/opt/homebrew/ <- 45728:/bin/zsh -c so <- 4486:claude --resum <- 4485:/Users/nathan/ <- 1392:/Users/nathan/ <- 1:/sbin/launchd ...
+claude in any chain of the run: False; tty of the pids: ?? (?? = no controlling terminal)
