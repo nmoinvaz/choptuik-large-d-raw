@@ -1,0 +1,10 @@
+--mutate=F exit 1 (1 wanted)
+controls on the same numbers: record |F| x 1.5 refused: True; record steps + 1 refused: True
+D 21 k_c 103: record |F| 6.8685877010e-10, F_start 6.364e-06, steps 3489, constraint 1.009e-03, Delta 1.118222675031, 11270 s; state |F| 4.5790584673e-10, freeze_from steps 3489
+NOT ACCEPTED: the state's |F| 4.579058e-10 is not within 1% of the record's 6.868588e-10
+
+--mutate=steps exit 1 (1 wanted)
+controls on the same numbers: record |F| x 1.5 refused: True; record steps + 1 refused: True
+D 21 k_c 103: record |F| 4.5790584673e-10, F_start 6.364e-06, steps 3490, constraint 1.009e-03, Delta 1.118222675031, 11270 s; state |F| 4.5790584673e-10, freeze_from steps 3489
+NOT ACCEPTED: freeze_from gives 3489 steps, the record 3490
+
