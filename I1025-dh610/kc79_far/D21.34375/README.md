@@ -27,7 +27,37 @@ Verbatim: "Coordinator (t5): one change at the shared D 21.34375 only: after the
 
 - The tag i scan therefore starts now, at nice 8, beside the recount only, and the comparison runs when the tag g state lands; the registered predictions above stand unchanged. The prediction about the load median over the overlap with the tag g scan is void if the two scans do not overlap (the tag i scan needs about 32 min, the tag g state is expected 15:15 to 15:25 UTC): it is then reported as void, not scored. The scan's source check is the lane's own, on the state pinned at 14:34 UTC (`i/in_blobs.txt`).
 
+## Result of the comparison (`compare.txt`, written by `compare_states.py 21.34375`; lane 14:49:17 to 14:51:15 UTC, 118 s, with both scans' load beside it)
+```
+D 21.34375: tag g (h 0.03125) against tag i (h 0.0625); kc 79 and 79
+| quantity | tag g | tag i | i - g | i / g |
+|---|---|---|---|---|
+| Delta | 1.1275035270998226 | 1.127507630527052 | 4.103427229340539e-06 | 1.0000036393919227 |
+| |F| | 4.484968788840308e-10 | 4.4857763320637664e-10 | 8.07543223458453e-14 | 1.0001800554834335 |
+| steps | 2648 | 2648 | 0 | 1.0 |
+| psi-constraint | 0.005950886267504929 | 0.005950969181448842 | 8.291394391294477e-08 | 1.0000139330412623 |
+| h | 0.03125 | 0.0625 | 0.03125 | 2.0 |
+| seconds | 2808 | 4556 | 1748 | 1.6225071225071226 |
+extra, not ordered: L2 distance of the two state vectors (Delta entry included): 1.6212815817896247e-05 (shapes (5175,) and (5175,)); Delta entries np.float64(1.1275035270998226) and np.float64(1.127507630527052)
+```
+- **Sources:** tag g: win2 commit 451fee48 (2026-11-24 06:48:05 -08:00 = 14:48:05 UTC, **48.2 min** after the D 21.3125 g state, not the 76 to 85 min of the earlier g states: its record's seconds are 2808, against 4584 at D 21.3125); tag i: win2 commit 9bb1884b (06:34:00 -08:00 = 14:34:00 UTC, 78.6 min after the D 21.28125 i state). `kc79_syscheck_1025.py` exit 0 on both, `--mutate=F` exit 1 and `--mutate=steps` exit 1 on both (record |F| 4.4849687888e-10 and 4.4857763321e-10; the states' own |F| 4.4900336580e-10 and 4.4849861144e-10; `freeze_from` steps 2648 on both). The selftests of `compare_states.py` exit 0 and its `--mutate` exit 1 with the FIRED line.
+- **Side by side (the four ordered quantities):** Delta 1.1275035270998226 (g, h 0.03125) and 1.127507630527052 (i, h 0.0625), i - g = +4.1034e-06 (ratio 1.0000036); |F| 4.484968788840308e-10 and 4.4857763320637664e-10, ratio 1.0001801; steps 2648 and 2648 (equal); psi-constraint 0.005950886267504929 and 0.005950969181448842, i - g = +8.2914e-08 (ratio 1.0000139). The record seconds were 2808 (g) and 4556 (i). Extra, not ordered: the L2 distance of the two state vectors 1.6213e-05 (5175 entries each; the Delta entries alone differ by 4.1034e-06).
+- **Against D 21.28125:** the Delta difference grew from +1.1029e-06 to +4.1034e-06 and the constraint difference from +2.2138e-08 to +8.2914e-08 over the two h 0.0625 steps of the i path (D 21.28125 to 21.34375: g's Delta moved +1.6952e-03 and its constraint +2.3724e-04), so the path difference is 0.24% of the g move in Delta and 0.035% in the constraint; the steps are equal at both D (2652, 2648).
+
+### Predictions scorecard of the comparison (parent README, registered before the four comparisons)
+| prediction | result |
+|---|---|
+| both states accepted, controls 1 1 (90%) | right |
+| steps equal (55%); differ by at most 2 (85%) | right (2648 and 2648); right |
+| \|F\| ratio within 1 +- 0.01 (70%); within 1 +- 0.05 (90%) | right (1.0001801); right |
+| Delta entries differ by less than 1e-6 (55%) | WRONG (4.1034e-06) |
+| Delta entries differ by less than 1e-4 (85%) | right |
+| psi-constraints differ by less than 0.1% (60%) | right (ratio 1.0000139, 0.0014%) |
+| state distance below 1e-6 (45%); below 1e-4 (80%) (extra) | WRONG (1.6213e-05); right |
+| (unscored expectation of mine in the leg README: the tag g state on origin about 15:15 to 15:25 UTC) | WRONG: 14:48:05 UTC |
+
 ## Status
 - 2026-11-24 12:03 UTC: folder and README written.
 - 2026-11-24 14:38 UTC: third order registered above; the unit `i1025-scan-21_34375` waits for the comparison.
 - 2026-11-24 14:40 UTC: the second word (above): the tag i scan starts now (unit `i1025-scan-21_34375` restarted with NOWAIT=1).
+- 2026-11-24 14:52 UTC: the comparison is done (lane 14:49:17 to 14:51:15 UTC): result and scorecard above; the tag i scan (`i/`) runs since 14:40:41 UTC, and the tag g scan of the leg lane since 14:49:14 UTC, so the two overlap.
