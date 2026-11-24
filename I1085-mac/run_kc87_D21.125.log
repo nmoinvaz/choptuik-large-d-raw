@@ -1,0 +1,33 @@
+start 2026-11-24 17:23:35 UTC; code 04b0bbe6
+[      0 s] D 21.125 k_c 87: |F| 4.6066082446e-10 (record 4.6133966302e-10), steps 2935 (record 2935): the record system; state sol_l1kc87Ldh370_D21.125000.npy
+[     96 s] J built (5695 x 5695); peak RSS 2.85 GB
+[    109 s] relation: R1 |M(0)x - J[:n,:n]x|/|J x| 7.76e-11 (tol 1e-12), R2 phase row True, R3 |pred b - b|/|b| 2.02e-08 (tol 1e-06), R4 |M(0)t|/(|J||t|) 4.61e-09 (tol 1e-08), e_p.t/|t| 7.287e-03: BAD
+[    132 s] J SVD done; peak RSS 2.85 GB
+[    132 s] J's four smallest regular values 4.3273e-11, 1.3907e-10, 1.8873e-10, 1.8942e-10; the record's 4.3436e-11, 1.3943e-10, 1.8868e-10, 1.8942e-10; max relative deviation 3.7e-03 (tol 1e-03): BAD
+[    132 s] falling mode: sv_reg_small[1] = 1.3907e-10 (n_null 80, sigma_max 13.9266); its Delta component 1.37e-01
+[    360 s] pencil at lam_r 0.8771076154: mu +2.347e-04 (|Im| 0.0e+00; next |mu| 3.546e-04), lambda_1 0.877342 (bracket [0.875, 0.88]: OK); eigenvector Im/Re 0.0e+00
+[    360 s] V: |M(lam) v1| at lambda_1 -0.005, 0, +0.005: 1.069e-05, 1.659e-12, 1.069e-05 (E2: middle <= 0.05 x min: OK); slope C 2.138e-03
+[    360 s] O on J's four smallest regular modes (m1 is the falling one): m0 0.925, m1 0.351, m2 0.067, m3 0.072; weight on J's null space 0.991; raw cos(x_m, P_e v1) 0.034
+[    360 s] W_far (junk-free weight on sigma >= 100 sigma_m) 2.953e-04; rho |J (P_e v1, 0)| 5.850e-04, rho / sigma_m 4.21e+06; lambda_1 C / sigma_m 1.35e+07 (rho and C carry the eigenvector's rounding in J's large directions; information only)
+[    486 s] wrong lambda 0.827342: smallest regular sigma of M 1.553e-11 (n_null 80); O on the falling mode 0.651 (all four: 0.723, 0.651, 0.089, 0.095); |cos(y_w, v1)| 0.000; peak RSS 3.40 GB
+[    614 s] wrong lambda 0.927342: smallest regular sigma of M 1.629e-11 (n_null 81); O on the falling mode 0.723 (all four: 0.668, 0.723, 0.087, 0.091); |cos(y_w, v1)| 0.000; peak RSS 3.46 GB
+[    614 s] reading: no verdict (O 0.351, largest control 0.925, W_far 0.000295); checks BAD
+      614.62 real       622.55 user         2.86 sys
+          3710681088  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+             1325140  page reclaims
+                 471  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   1  signals received
+                 453  voluntary context switches
+               38814  involuntary context switches
+            18183269  instructions retired
+             6805285  cycles elapsed
+             1393024  peak memory footprint
+exit 1 end 2026-11-24 17:33:50 UTC

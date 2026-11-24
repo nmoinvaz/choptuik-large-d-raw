@@ -1,0 +1,36 @@
+start 2026-11-24 17:50:42 UTC; code 41f9194e
+[      0 s] D 21.125 k_c 87: |F| 4.6066082446e-10 (record 4.6133966302e-10), steps 2935 (record 2935): the record system; state sol_l1kc87Ldh370_D21.125000.npy
+[    129 s]   J mode m0: sigma 4.3273e-11, Delta component +4.843e-03, |x| 1.0000, |cos(x, t)| 9.643e-02, |M(0) x| / |x| 2.137e-03, |b| |Delta comp| / |x| 2.137e-03
+[    129 s]   J mode m1: sigma 1.3907e-10, Delta component +1.366e-01, |x| 0.9906, |cos(x, t)| 1.507e-02, |M(0) x| / |x| 6.084e-02, |b| |Delta comp| / |x| 6.084e-02
+[    129 s]   J mode m2: sigma 1.8873e-10, Delta component +7.348e-03, |x| 1.0000, |cos(x, t)| 6.778e-03, |M(0) x| / |x| 3.243e-03, |b| |Delta comp| / |x| 3.243e-03
+[    129 s]   J mode m3: sigma 1.8942e-10, Delta component +4.401e-03, |x| 1.0000, |cos(x, t)| 6.833e-03, |M(0) x| / |x| 1.942e-03, |b| |Delta comp| / |x| 1.942e-03
+[    548 s] lambda_1 0.877342; M(lambda_1)'s null space: 81 vectors; v1's weight on it 1.0000; v1c = v1 without it: |M(lam) v1c| at lambda_1 -0.005, 0, +0.005: 1.918e-04, 4.026e-07, 1.918e-04 (V-shaped)
+[    548 s]   lambda_1 mode, v1c: delta* +1.266e-02; O* on m0-m3 0.701, 0.673, 0.113, 0.134; weight on J's null space 0.990; W_far 6.436e-03; rho* 3.171e-03, rho* / sigma_m 2.28e+07
+[    712 s]   control: M(0.8273)'s smallest regular vector: delta* +1.487e-02; O* on m0-m3 0.723, 0.655, 0.089, 0.095; weight on J's null space 0.992; W_far 2.307e-02; rho* 4.708e-03, rho* / sigma_m 3.39e+07
+[    722 s]   s(0.0000) = sigma_min(M Q) over span(x_m0..x_m3, t): 4.351e-11; minimiser's |coefficients| on m0, m1, m2, m3, t (unit vectors): 0.999, 0.035, 0.001, 0.001, 0.000
+[    732 s]   s(0.8273) = sigma_min(M Q) over span(x_m0..x_m3, t): 2.257e-04; minimiser's |coefficients| on m0, m1, m2, m3, t (unit vectors): 0.003, 0.026, 0.150, 0.987, 0.050
+[    741 s]   s(0.8723) = sigma_min(M Q) over span(x_m0..x_m3, t): 2.380e-04; minimiser's |coefficients| on m0, m1, m2, m3, t (unit vectors): 0.003, 0.026, 0.150, 0.987, 0.049
+[    750 s]   s(0.8773) = sigma_min(M Q) over span(x_m0..x_m3, t): 2.394e-04; minimiser's |coefficients| on m0, m1, m2, m3, t (unit vectors): 0.003, 0.026, 0.150, 0.987, 0.049
+[    759 s]   s(0.8823) = sigma_min(M Q) over span(x_m0..x_m3, t): 2.407e-04; minimiser's |coefficients| on m0, m1, m2, m3, t (unit vectors): 0.003, 0.026, 0.150, 0.987, 0.049
+[    768 s]   s(0.9273) = sigma_min(M Q) over span(x_m0..x_m3, t): 2.530e-04; minimiser's |coefficients| on m0, m1, m2, m3, t (unit vectors): 0.003, 0.026, 0.150, 0.987, 0.048
+[    768 s] reading: O* on m1 0.673 (control 0.655), rho* / sigma_m 2.28e+07; dip of s at lambda_1: False; peak RSS 3.98 GB
+      768.53 real       766.40 user         5.56 sys
+          4276109312  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+             1363970  page reclaims
+                  28  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   1  signals received
+                 405  voluntary context switches
+              439292  involuntary context switches
+            18325688  instructions retired
+             6695480  cycles elapsed
+             1393024  peak memory footprint
+exit 0 end 2026-11-24 18:03:30 UTC
+renamed: first geom run (41f9194e) removed M(lambda_1)'s null space, which holds the lambda_1 mode; v1c lines invalid, the s(lam) lines valid

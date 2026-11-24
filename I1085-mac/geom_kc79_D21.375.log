@@ -1,0 +1,37 @@
+start 2026-11-24 18:13:31 UTC; code 8b13172a
+[      0 s] D 21.375 k_c 79: |F| 4.4609232161e-10 (record 4.4699010806e-10), steps 2646 (record 2646): the record system; state sol_l1kc79Lw1025g_D21.375000.npy
+[     94 s]   J mode m0: sigma 1.4418e-11, Delta component -7.527e-02, |x| 0.9972, |cos(x, t)| 6.629e-02, |M(0) x| / |x| 3.346e-02, |b| |Delta comp| / |x| 3.346e-02
+[     94 s]   J mode m1: sigma 6.5826e-11, Delta component -1.029e-02, |x| 0.9999, |cos(x, t)| 8.674e-02, |M(0) x| / |x| 4.560e-03, |b| |Delta comp| / |x| 4.560e-03
+[     94 s]   J mode m2: sigma 1.3872e-10, Delta component -1.377e-01, |x| 0.9905, |cos(x, t)| 3.705e-03, |M(0) x| / |x| 6.162e-02, |b| |Delta comp| / |x| 6.162e-02
+[     94 s]   J mode m3: sigma 3.3595e-10, Delta component -4.788e-03, |x| 1.0000, |cos(x, t)| 1.812e-02, |M(0) x| / |x| 2.122e-03, |b| |Delta comp| / |x| 2.122e-03
+[     94 s]   |J^-T e_Delta| = sqrt(sum (delta_i / sigma_i)^2) over sigma > n eps sigma_max: 1.0169e+09 (record dDelta_dF 1.0196e+09); the falling mode's |delta| / sigma 1.5625e+08, its share of the square 0.0236
+[    392 s] lambda_1 0.787761; M(0.7378)'s null space: 72 vectors; v1's weight on it 0.999999; v1c = v1 without it: |M(lam) v1c| at lambda_1 -0.005, 0, +0.005: 1.327e-01, 1.327e-01, 1.327e-01 (NOT V-shaped); |M(0) v1c| 1.352e-01
+[    392 s]   lambda_1 mode, v1 as computed: delta* -1.926e-04; O* on m0-m3 0.717, 0.668, 0.075, 0.158; weight on J's null space 0.980; W_far 2.711e-04; rho* 1.209e-03, rho* / sigma_m 1.84e+07
+[    392 s]   lambda_1 mode, v1c: delta* +1.618e-03; O* on m0-m3 0.130, 0.634, 0.625, 0.146; weight on J's null space 0.968; W_far 1.616e-01; rho* 3.598e-02, rho* / sigma_m 5.47e+08
+[    392 s]   control: M(0.7378)'s smallest regular vector: delta* +1.300e-02; O* on m0-m3 0.364, 0.711, 0.514, 0.258; weight on J's null space 0.992; W_far 1.723e-02; rho* 3.985e-03, rho* / sigma_m 6.05e+07
+[    399 s]   s(0.0000) = sigma_min(M Q) over span(x_m0..x_m3, t): 6.279e-11; minimiser's |coefficients| on m0, m1, m2, m3, t (unit vectors): 0.578, 0.774, 0.257, 0.001, 0.000
+[    406 s]   s(0.7378) = sigma_min(M Q) over span(x_m0..x_m3, t): 4.186e-04; minimiser's |coefficients| on m0, m1, m2, m3, t (unit vectors): 0.003, 0.004, 0.045, 0.997, 0.060
+[    413 s]   s(0.7828) = sigma_min(M Q) over span(x_m0..x_m3, t): 4.443e-04; minimiser's |coefficients| on m0, m1, m2, m3, t (unit vectors): 0.003, 0.004, 0.045, 0.997, 0.056
+[    420 s]   s(0.7878) = sigma_min(M Q) over span(x_m0..x_m3, t): 4.472e-04; minimiser's |coefficients| on m0, m1, m2, m3, t (unit vectors): 0.003, 0.004, 0.045, 0.997, 0.056
+[    427 s]   s(0.7928) = sigma_min(M Q) over span(x_m0..x_m3, t): 4.500e-04; minimiser's |coefficients| on m0, m1, m2, m3, t (unit vectors): 0.003, 0.004, 0.045, 0.997, 0.055
+[    434 s]   s(0.8378) = sigma_min(M Q) over span(x_m0..x_m3, t): 4.758e-04; minimiser's |coefficients| on m0, m1, m2, m3, t (unit vectors): 0.003, 0.004, 0.045, 0.998, 0.052
+[    434 s] reading: O* on m1 0.634 (control 0.711), rho* / sigma_m 5.47e+08; dip of s at lambda_1: False; peak RSS 3.11 GB
+      433.89 real       437.67 user         1.55 sys
+          3338600448  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              760558  page reclaims
+                  19  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   1  signals received
+                 656  voluntary context switches
+               25587  involuntary context switches
+            18082011  instructions retired
+             6610655  cycles elapsed
+             1393024  peak memory footprint
+exit 1 end 2026-11-24 18:20:45 UTC
