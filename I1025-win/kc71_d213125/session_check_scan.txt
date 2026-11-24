@@ -1,0 +1,295 @@
+﻿# session check, 2026-11-24 04:45:34 UTC: parent chain of each pid (the given ones and their descendants) up to the first parent that is not running (pid ppid session start-UTC command); fails if 'claude' is in a chain
+
+pid 23732 (conhost.exe):
+   23732 ppid  10892 sess 1 04:45:23  conhost.exe  conhost.exe --headless cmd.exe /c C:\Users\nathan\Source\kc71d213125_1025\go_kc71d213125_1025.cmd
+   10892 ppid   1424 sess 0 17:21:54  WmiPrvSE.exe  
+    1424 ppid   1264 sess 0 12:09:05  svchost.exe  
+    1264 ppid   1128 sess 0 12:09:04  services.exe  
+    1128 ppid    856 sess 0 12:09:04  wininit.exe  
+  chain ends at pid 1128 (wininit.exe), parent 856 not running or not listed, 5 processes
+
+pid 16652 (cmd.exe):
+   16652 ppid  23732 sess 1 04:45:23  cmd.exe  cmd.exe /c C:\Users\nathan\Source\kc71d213125_1025\go_kc71d213125_1025.cmd
+   23732 ppid  10892 sess 1 04:45:23  conhost.exe  conhost.exe --headless cmd.exe /c C:\Users\nathan\Source\kc71d213125_1025\go_kc71d213125_1025.cmd
+   10892 ppid   1424 sess 0 17:21:54  WmiPrvSE.exe  
+    1424 ppid   1264 sess 0 12:09:05  svchost.exe  
+    1264 ppid   1128 sess 0 12:09:04  services.exe  
+    1128 ppid    856 sess 0 12:09:04  wininit.exe  
+  chain ends at pid 1128 (wininit.exe), parent 856 not running or not listed, 6 processes
+
+pid 10496 (python.exe):
+   10496 ppid  16652 sess 1 04:45:23  python.exe  C:\Users\nathan\Source\venv-md510\Scripts\python.exe  -u C:\Users\nathan\Source\kc71d213125_1025\kc71d213125_s
+   16652 ppid  23732 sess 1 04:45:23  cmd.exe  cmd.exe /c C:\Users\nathan\Source\kc71d213125_1025\go_kc71d213125_1025.cmd
+   23732 ppid  10892 sess 1 04:45:23  conhost.exe  conhost.exe --headless cmd.exe /c C:\Users\nathan\Source\kc71d213125_1025\go_kc71d213125_1025.cmd
+   10892 ppid   1424 sess 0 17:21:54  WmiPrvSE.exe  
+    1424 ppid   1264 sess 0 12:09:05  svchost.exe  
+    1264 ppid   1128 sess 0 12:09:04  services.exe  
+    1128 ppid    856 sess 0 12:09:04  wininit.exe  
+  chain ends at pid 1128 (wininit.exe), parent 856 not running or not listed, 7 processes
+
+pid 7632 (python.exe):
+    7632 ppid  10496 sess 1 04:45:23  python.exe  C:\Users\nathan\Source\venv-md510\Scripts\python.exe  -u C:\Users\nathan\Source\kc71d213125_1025\kc71d213125_s
+   10496 ppid  16652 sess 1 04:45:23  python.exe  C:\Users\nathan\Source\venv-md510\Scripts\python.exe  -u C:\Users\nathan\Source\kc71d213125_1025\kc71d213125_s
+   16652 ppid  23732 sess 1 04:45:23  cmd.exe  cmd.exe /c C:\Users\nathan\Source\kc71d213125_1025\go_kc71d213125_1025.cmd
+   23732 ppid  10892 sess 1 04:45:23  conhost.exe  conhost.exe --headless cmd.exe /c C:\Users\nathan\Source\kc71d213125_1025\go_kc71d213125_1025.cmd
+   10892 ppid   1424 sess 0 17:21:54  WmiPrvSE.exe  
+    1424 ppid   1264 sess 0 12:09:05  svchost.exe  
+    1264 ppid   1128 sess 0 12:09:04  services.exe  
+    1128 ppid    856 sess 0 12:09:04  wininit.exe  
+  chain ends at pid 1128 (wininit.exe), parent 856 not running or not listed, 8 processes
+
+pid 600 (python.exe):
+     600 ppid   7632 sess 1 04:45:29  python.exe  C:/Users/nathan/Source/venv-md510/Scripts/python.exe -u C:/Users/nathan/Source/kc71d213125_1025/inputs/d18_hyb
+    7632 ppid  10496 sess 1 04:45:23  python.exe  C:\Users\nathan\Source\venv-md510\Scripts\python.exe  -u C:\Users\nathan\Source\kc71d213125_1025\kc71d213125_s
+   10496 ppid  16652 sess 1 04:45:23  python.exe  C:\Users\nathan\Source\venv-md510\Scripts\python.exe  -u C:\Users\nathan\Source\kc71d213125_1025\kc71d213125_s
+   16652 ppid  23732 sess 1 04:45:23  cmd.exe  cmd.exe /c C:\Users\nathan\Source\kc71d213125_1025\go_kc71d213125_1025.cmd
+   23732 ppid  10892 sess 1 04:45:23  conhost.exe  conhost.exe --headless cmd.exe /c C:\Users\nathan\Source\kc71d213125_1025\go_kc71d213125_1025.cmd
+   10892 ppid   1424 sess 0 17:21:54  WmiPrvSE.exe  
+    1424 ppid   1264 sess 0 12:09:05  svchost.exe  
+    1264 ppid   1128 sess 0 12:09:04  services.exe  
+    1128 ppid    856 sess 0 12:09:04  wininit.exe  
+  chain ends at pid 1128 (wininit.exe), parent 856 not running or not listed, 9 processes
+
+pid 24900 (python.exe):
+   24900 ppid   7632 sess 1 04:45:24  python.exe  C:/Users/nathan/Source/venv-md510/Scripts/python.exe -u C:/Users/nathan/Source/kc71d213125_1025/keepawake_1025
+    7632 ppid  10496 sess 1 04:45:23  python.exe  C:\Users\nathan\Source\venv-md510\Scripts\python.exe  -u C:\Users\nathan\Source\kc71d213125_1025\kc71d213125_s
+   10496 ppid  16652 sess 1 04:45:23  python.exe  C:\Users\nathan\Source\venv-md510\Scripts\python.exe  -u C:\Users\nathan\Source\kc71d213125_1025\kc71d213125_s
+   16652 ppid  23732 sess 1 04:45:23  cmd.exe  cmd.exe /c C:\Users\nathan\Source\kc71d213125_1025\go_kc71d213125_1025.cmd
+   23732 ppid  10892 sess 1 04:45:23  conhost.exe  conhost.exe --headless cmd.exe /c C:\Users\nathan\Source\kc71d213125_1025\go_kc71d213125_1025.cmd
+   10892 ppid   1424 sess 0 17:21:54  WmiPrvSE.exe  
+    1424 ppid   1264 sess 0 12:09:05  svchost.exe  
+    1264 ppid   1128 sess 0 12:09:04  services.exe  
+    1128 ppid    856 sess 0 12:09:04  wininit.exe  
+  chain ends at pid 1128 (wininit.exe), parent 856 not running or not listed, 9 processes
+
+pid 14304 (python.exe):
+   14304 ppid   7632 sess 1 04:45:29  python.exe  C:/Users/nathan/Source/venv-md510/Scripts/python.exe -u C:/Users/nathan/Source/kc71d213125_1025/inputs/d18_hyb
+    7632 ppid  10496 sess 1 04:45:23  python.exe  C:\Users\nathan\Source\venv-md510\Scripts\python.exe  -u C:\Users\nathan\Source\kc71d213125_1025\kc71d213125_s
+   10496 ppid  16652 sess 1 04:45:23  python.exe  C:\Users\nathan\Source\venv-md510\Scripts\python.exe  -u C:\Users\nathan\Source\kc71d213125_1025\kc71d213125_s
+   16652 ppid  23732 sess 1 04:45:23  cmd.exe  cmd.exe /c C:\Users\nathan\Source\kc71d213125_1025\go_kc71d213125_1025.cmd
+   23732 ppid  10892 sess 1 04:45:23  conhost.exe  conhost.exe --headless cmd.exe /c C:\Users\nathan\Source\kc71d213125_1025\go_kc71d213125_1025.cmd
+   10892 ppid   1424 sess 0 17:21:54  WmiPrvSE.exe  
+    1424 ppid   1264 sess 0 12:09:05  svchost.exe  
+    1264 ppid   1128 sess 0 12:09:04  services.exe  
+    1128 ppid    856 sess 0 12:09:04  wininit.exe  
+  chain ends at pid 1128 (wininit.exe), parent 856 not running or not listed, 9 processes
+
+pid 3200 (python.exe):
+    3200 ppid   7632 sess 1 04:45:29  python.exe  C:/Users/nathan/Source/venv-md510/Scripts/python.exe -u C:/Users/nathan/Source/kc71d213125_1025/inputs/d18_hyb
+    7632 ppid  10496 sess 1 04:45:23  python.exe  C:\Users\nathan\Source\venv-md510\Scripts\python.exe  -u C:\Users\nathan\Source\kc71d213125_1025\kc71d213125_s
+   10496 ppid  16652 sess 1 04:45:23  python.exe  C:\Users\nathan\Source\venv-md510\Scripts\python.exe  -u C:\Users\nathan\Source\kc71d213125_1025\kc71d213125_s
+   16652 ppid  23732 sess 1 04:45:23  cmd.exe  cmd.exe /c C:\Users\nathan\Source\kc71d213125_1025\go_kc71d213125_1025.cmd
+   23732 ppid  10892 sess 1 04:45:23  conhost.exe  conhost.exe --headless cmd.exe /c C:\Users\nathan\Source\kc71d213125_1025\go_kc71d213125_1025.cmd
+   10892 ppid   1424 sess 0 17:21:54  WmiPrvSE.exe  
+    1424 ppid   1264 sess 0 12:09:05  svchost.exe  
+    1264 ppid   1128 sess 0 12:09:04  services.exe  
+    1128 ppid    856 sess 0 12:09:04  wininit.exe  
+  chain ends at pid 1128 (wininit.exe), parent 856 not running or not listed, 9 processes
+
+pid 15968 (powershell.exe):
+   15968 ppid   7632 sess 1 04:45:24  powershell.exe  powershell -NoProfile -ExecutionPolicy Bypass -File C:/Users/nathan/Source/kc71d213125_1025/sample_driver4_102
+    7632 ppid  10496 sess 1 04:45:23  python.exe  C:\Users\nathan\Source\venv-md510\Scripts\python.exe  -u C:\Users\nathan\Source\kc71d213125_1025\kc71d213125_s
+   10496 ppid  16652 sess 1 04:45:23  python.exe  C:\Users\nathan\Source\venv-md510\Scripts\python.exe  -u C:\Users\nathan\Source\kc71d213125_1025\kc71d213125_s
+   16652 ppid  23732 sess 1 04:45:23  cmd.exe  cmd.exe /c C:\Users\nathan\Source\kc71d213125_1025\go_kc71d213125_1025.cmd
+   23732 ppid  10892 sess 1 04:45:23  conhost.exe  conhost.exe --headless cmd.exe /c C:\Users\nathan\Source\kc71d213125_1025\go_kc71d213125_1025.cmd
+   10892 ppid   1424 sess 0 17:21:54  WmiPrvSE.exe  
+    1424 ppid   1264 sess 0 12:09:05  svchost.exe  
+    1264 ppid   1128 sess 0 12:09:04  services.exe  
+    1128 ppid    856 sess 0 12:09:04  wininit.exe  
+  chain ends at pid 1128 (wininit.exe), parent 856 not running or not listed, 9 processes
+
+pid 2120 (python.exe):
+    2120 ppid   7632 sess 1 04:45:24  python.exe  C:/Users/nathan/Source/venv-md510/Scripts/python.exe -u C:/Users/nathan/Source/kc71d213125_1025/kc71d213125_wa
+    7632 ppid  10496 sess 1 04:45:23  python.exe  C:\Users\nathan\Source\venv-md510\Scripts\python.exe  -u C:\Users\nathan\Source\kc71d213125_1025\kc71d213125_s
+   10496 ppid  16652 sess 1 04:45:23  python.exe  C:\Users\nathan\Source\venv-md510\Scripts\python.exe  -u C:\Users\nathan\Source\kc71d213125_1025\kc71d213125_s
+   16652 ppid  23732 sess 1 04:45:23  cmd.exe  cmd.exe /c C:\Users\nathan\Source\kc71d213125_1025\go_kc71d213125_1025.cmd
+   23732 ppid  10892 sess 1 04:45:23  conhost.exe  conhost.exe --headless cmd.exe /c C:\Users\nathan\Source\kc71d213125_1025\go_kc71d213125_1025.cmd
+   10892 ppid   1424 sess 0 17:21:54  WmiPrvSE.exe  
+    1424 ppid   1264 sess 0 12:09:05  svchost.exe  
+    1264 ppid   1128 sess 0 12:09:04  services.exe  
+    1128 ppid    856 sess 0 12:09:04  wininit.exe  
+  chain ends at pid 1128 (wininit.exe), parent 856 not running or not listed, 9 processes
+
+pid 14928 (python.exe):
+   14928 ppid   7632 sess 1 04:45:29  python.exe  C:/Users/nathan/Source/venv-md510/Scripts/python.exe -u C:/Users/nathan/Source/kc71d213125_1025/inputs/d18_hyb
+    7632 ppid  10496 sess 1 04:45:23  python.exe  C:\Users\nathan\Source\venv-md510\Scripts\python.exe  -u C:\Users\nathan\Source\kc71d213125_1025\kc71d213125_s
+   10496 ppid  16652 sess 1 04:45:23  python.exe  C:\Users\nathan\Source\venv-md510\Scripts\python.exe  -u C:\Users\nathan\Source\kc71d213125_1025\kc71d213125_s
+   16652 ppid  23732 sess 1 04:45:23  cmd.exe  cmd.exe /c C:\Users\nathan\Source\kc71d213125_1025\go_kc71d213125_1025.cmd
+   23732 ppid  10892 sess 1 04:45:23  conhost.exe  conhost.exe --headless cmd.exe /c C:\Users\nathan\Source\kc71d213125_1025\go_kc71d213125_1025.cmd
+   10892 ppid   1424 sess 0 17:21:54  WmiPrvSE.exe  
+    1424 ppid   1264 sess 0 12:09:05  svchost.exe  
+    1264 ppid   1128 sess 0 12:09:04  services.exe  
+    1128 ppid    856 sess 0 12:09:04  wininit.exe  
+  chain ends at pid 1128 (wininit.exe), parent 856 not running or not listed, 9 processes
+
+pid 20860 (conhost.exe):
+   20860 ppid    600 sess 1 04:45:29  conhost.exe  \??\C:\WINDOWS\system32\conhost.exe 0x4
+     600 ppid   7632 sess 1 04:45:29  python.exe  C:/Users/nathan/Source/venv-md510/Scripts/python.exe -u C:/Users/nathan/Source/kc71d213125_1025/inputs/d18_hyb
+    7632 ppid  10496 sess 1 04:45:23  python.exe  C:\Users\nathan\Source\venv-md510\Scripts\python.exe  -u C:\Users\nathan\Source\kc71d213125_1025\kc71d213125_s
+   10496 ppid  16652 sess 1 04:45:23  python.exe  C:\Users\nathan\Source\venv-md510\Scripts\python.exe  -u C:\Users\nathan\Source\kc71d213125_1025\kc71d213125_s
+   16652 ppid  23732 sess 1 04:45:23  cmd.exe  cmd.exe /c C:\Users\nathan\Source\kc71d213125_1025\go_kc71d213125_1025.cmd
+   23732 ppid  10892 sess 1 04:45:23  conhost.exe  conhost.exe --headless cmd.exe /c C:\Users\nathan\Source\kc71d213125_1025\go_kc71d213125_1025.cmd
+   10892 ppid   1424 sess 0 17:21:54  WmiPrvSE.exe  
+    1424 ppid   1264 sess 0 12:09:05  svchost.exe  
+    1264 ppid   1128 sess 0 12:09:04  services.exe  
+    1128 ppid    856 sess 0 12:09:04  wininit.exe  
+  chain ends at pid 1128 (wininit.exe), parent 856 not running or not listed, 10 processes
+
+pid 25132 (python.exe):
+   25132 ppid    600 sess 1 04:45:29  python.exe  C:/Users/nathan/Source/venv-md510/Scripts/python.exe -u C:/Users/nathan/Source/kc71d213125_1025/inputs/d18_hyb
+     600 ppid   7632 sess 1 04:45:29  python.exe  C:/Users/nathan/Source/venv-md510/Scripts/python.exe -u C:/Users/nathan/Source/kc71d213125_1025/inputs/d18_hyb
+    7632 ppid  10496 sess 1 04:45:23  python.exe  C:\Users\nathan\Source\venv-md510\Scripts\python.exe  -u C:\Users\nathan\Source\kc71d213125_1025\kc71d213125_s
+   10496 ppid  16652 sess 1 04:45:23  python.exe  C:\Users\nathan\Source\venv-md510\Scripts\python.exe  -u C:\Users\nathan\Source\kc71d213125_1025\kc71d213125_s
+   16652 ppid  23732 sess 1 04:45:23  cmd.exe  cmd.exe /c C:\Users\nathan\Source\kc71d213125_1025\go_kc71d213125_1025.cmd
+   23732 ppid  10892 sess 1 04:45:23  conhost.exe  conhost.exe --headless cmd.exe /c C:\Users\nathan\Source\kc71d213125_1025\go_kc71d213125_1025.cmd
+   10892 ppid   1424 sess 0 17:21:54  WmiPrvSE.exe  
+    1424 ppid   1264 sess 0 12:09:05  svchost.exe  
+    1264 ppid   1128 sess 0 12:09:04  services.exe  
+    1128 ppid    856 sess 0 12:09:04  wininit.exe  
+  chain ends at pid 1128 (wininit.exe), parent 856 not running or not listed, 10 processes
+
+pid 19068 (conhost.exe):
+   19068 ppid  24900 sess 1 04:45:24  conhost.exe  \??\C:\WINDOWS\system32\conhost.exe 0x4
+   24900 ppid   7632 sess 1 04:45:24  python.exe  C:/Users/nathan/Source/venv-md510/Scripts/python.exe -u C:/Users/nathan/Source/kc71d213125_1025/keepawake_1025
+    7632 ppid  10496 sess 1 04:45:23  python.exe  C:\Users\nathan\Source\venv-md510\Scripts\python.exe  -u C:\Users\nathan\Source\kc71d213125_1025\kc71d213125_s
+   10496 ppid  16652 sess 1 04:45:23  python.exe  C:\Users\nathan\Source\venv-md510\Scripts\python.exe  -u C:\Users\nathan\Source\kc71d213125_1025\kc71d213125_s
+   16652 ppid  23732 sess 1 04:45:23  cmd.exe  cmd.exe /c C:\Users\nathan\Source\kc71d213125_1025\go_kc71d213125_1025.cmd
+   23732 ppid  10892 sess 1 04:45:23  conhost.exe  conhost.exe --headless cmd.exe /c C:\Users\nathan\Source\kc71d213125_1025\go_kc71d213125_1025.cmd
+   10892 ppid   1424 sess 0 17:21:54  WmiPrvSE.exe  
+    1424 ppid   1264 sess 0 12:09:05  svchost.exe  
+    1264 ppid   1128 sess 0 12:09:04  services.exe  
+    1128 ppid    856 sess 0 12:09:04  wininit.exe  
+  chain ends at pid 1128 (wininit.exe), parent 856 not running or not listed, 10 processes
+
+pid 26088 (python.exe):
+   26088 ppid  24900 sess 1 04:45:24  python.exe  C:/Users/nathan/Source/venv-md510/Scripts/python.exe -u C:/Users/nathan/Source/kc71d213125_1025/keepawake_1025
+   24900 ppid   7632 sess 1 04:45:24  python.exe  C:/Users/nathan/Source/venv-md510/Scripts/python.exe -u C:/Users/nathan/Source/kc71d213125_1025/keepawake_1025
+    7632 ppid  10496 sess 1 04:45:23  python.exe  C:\Users\nathan\Source\venv-md510\Scripts\python.exe  -u C:\Users\nathan\Source\kc71d213125_1025\kc71d213125_s
+   10496 ppid  16652 sess 1 04:45:23  python.exe  C:\Users\nathan\Source\venv-md510\Scripts\python.exe  -u C:\Users\nathan\Source\kc71d213125_1025\kc71d213125_s
+   16652 ppid  23732 sess 1 04:45:23  cmd.exe  cmd.exe /c C:\Users\nathan\Source\kc71d213125_1025\go_kc71d213125_1025.cmd
+   23732 ppid  10892 sess 1 04:45:23  conhost.exe  conhost.exe --headless cmd.exe /c C:\Users\nathan\Source\kc71d213125_1025\go_kc71d213125_1025.cmd
+   10892 ppid   1424 sess 0 17:21:54  WmiPrvSE.exe  
+    1424 ppid   1264 sess 0 12:09:05  svchost.exe  
+    1264 ppid   1128 sess 0 12:09:04  services.exe  
+    1128 ppid    856 sess 0 12:09:04  wininit.exe  
+  chain ends at pid 1128 (wininit.exe), parent 856 not running or not listed, 10 processes
+
+pid 22488 (python.exe):
+   22488 ppid  14304 sess 1 04:45:29  python.exe  C:/Users/nathan/Source/venv-md510/Scripts/python.exe -u C:/Users/nathan/Source/kc71d213125_1025/inputs/d18_hyb
+   14304 ppid   7632 sess 1 04:45:29  python.exe  C:/Users/nathan/Source/venv-md510/Scripts/python.exe -u C:/Users/nathan/Source/kc71d213125_1025/inputs/d18_hyb
+    7632 ppid  10496 sess 1 04:45:23  python.exe  C:\Users\nathan\Source\venv-md510\Scripts\python.exe  -u C:\Users\nathan\Source\kc71d213125_1025\kc71d213125_s
+   10496 ppid  16652 sess 1 04:45:23  python.exe  C:\Users\nathan\Source\venv-md510\Scripts\python.exe  -u C:\Users\nathan\Source\kc71d213125_1025\kc71d213125_s
+   16652 ppid  23732 sess 1 04:45:23  cmd.exe  cmd.exe /c C:\Users\nathan\Source\kc71d213125_1025\go_kc71d213125_1025.cmd
+   23732 ppid  10892 sess 1 04:45:23  conhost.exe  conhost.exe --headless cmd.exe /c C:\Users\nathan\Source\kc71d213125_1025\go_kc71d213125_1025.cmd
+   10892 ppid   1424 sess 0 17:21:54  WmiPrvSE.exe  
+    1424 ppid   1264 sess 0 12:09:05  svchost.exe  
+    1264 ppid   1128 sess 0 12:09:04  services.exe  
+    1128 ppid    856 sess 0 12:09:04  wininit.exe  
+  chain ends at pid 1128 (wininit.exe), parent 856 not running or not listed, 10 processes
+
+pid 26420 (conhost.exe):
+   26420 ppid  14304 sess 1 04:45:29  conhost.exe  \??\C:\WINDOWS\system32\conhost.exe 0x4
+   14304 ppid   7632 sess 1 04:45:29  python.exe  C:/Users/nathan/Source/venv-md510/Scripts/python.exe -u C:/Users/nathan/Source/kc71d213125_1025/inputs/d18_hyb
+    7632 ppid  10496 sess 1 04:45:23  python.exe  C:\Users\nathan\Source\venv-md510\Scripts\python.exe  -u C:\Users\nathan\Source\kc71d213125_1025\kc71d213125_s
+   10496 ppid  16652 sess 1 04:45:23  python.exe  C:\Users\nathan\Source\venv-md510\Scripts\python.exe  -u C:\Users\nathan\Source\kc71d213125_1025\kc71d213125_s
+   16652 ppid  23732 sess 1 04:45:23  cmd.exe  cmd.exe /c C:\Users\nathan\Source\kc71d213125_1025\go_kc71d213125_1025.cmd
+   23732 ppid  10892 sess 1 04:45:23  conhost.exe  conhost.exe --headless cmd.exe /c C:\Users\nathan\Source\kc71d213125_1025\go_kc71d213125_1025.cmd
+   10892 ppid   1424 sess 0 17:21:54  WmiPrvSE.exe  
+    1424 ppid   1264 sess 0 12:09:05  svchost.exe  
+    1264 ppid   1128 sess 0 12:09:04  services.exe  
+    1128 ppid    856 sess 0 12:09:04  wininit.exe  
+  chain ends at pid 1128 (wininit.exe), parent 856 not running or not listed, 10 processes
+
+pid 20828 (conhost.exe):
+   20828 ppid   3200 sess 1 04:45:29  conhost.exe  \??\C:\WINDOWS\system32\conhost.exe 0x4
+    3200 ppid   7632 sess 1 04:45:29  python.exe  C:/Users/nathan/Source/venv-md510/Scripts/python.exe -u C:/Users/nathan/Source/kc71d213125_1025/inputs/d18_hyb
+    7632 ppid  10496 sess 1 04:45:23  python.exe  C:\Users\nathan\Source\venv-md510\Scripts\python.exe  -u C:\Users\nathan\Source\kc71d213125_1025\kc71d213125_s
+   10496 ppid  16652 sess 1 04:45:23  python.exe  C:\Users\nathan\Source\venv-md510\Scripts\python.exe  -u C:\Users\nathan\Source\kc71d213125_1025\kc71d213125_s
+   16652 ppid  23732 sess 1 04:45:23  cmd.exe  cmd.exe /c C:\Users\nathan\Source\kc71d213125_1025\go_kc71d213125_1025.cmd
+   23732 ppid  10892 sess 1 04:45:23  conhost.exe  conhost.exe --headless cmd.exe /c C:\Users\nathan\Source\kc71d213125_1025\go_kc71d213125_1025.cmd
+   10892 ppid   1424 sess 0 17:21:54  WmiPrvSE.exe  
+    1424 ppid   1264 sess 0 12:09:05  svchost.exe  
+    1264 ppid   1128 sess 0 12:09:04  services.exe  
+    1128 ppid    856 sess 0 12:09:04  wininit.exe  
+  chain ends at pid 1128 (wininit.exe), parent 856 not running or not listed, 10 processes
+
+pid 4360 (python.exe):
+    4360 ppid   3200 sess 1 04:45:29  python.exe  C:/Users/nathan/Source/venv-md510/Scripts/python.exe -u C:/Users/nathan/Source/kc71d213125_1025/inputs/d18_hyb
+    3200 ppid   7632 sess 1 04:45:29  python.exe  C:/Users/nathan/Source/venv-md510/Scripts/python.exe -u C:/Users/nathan/Source/kc71d213125_1025/inputs/d18_hyb
+    7632 ppid  10496 sess 1 04:45:23  python.exe  C:\Users\nathan\Source\venv-md510\Scripts\python.exe  -u C:\Users\nathan\Source\kc71d213125_1025\kc71d213125_s
+   10496 ppid  16652 sess 1 04:45:23  python.exe  C:\Users\nathan\Source\venv-md510\Scripts\python.exe  -u C:\Users\nathan\Source\kc71d213125_1025\kc71d213125_s
+   16652 ppid  23732 sess 1 04:45:23  cmd.exe  cmd.exe /c C:\Users\nathan\Source\kc71d213125_1025\go_kc71d213125_1025.cmd
+   23732 ppid  10892 sess 1 04:45:23  conhost.exe  conhost.exe --headless cmd.exe /c C:\Users\nathan\Source\kc71d213125_1025\go_kc71d213125_1025.cmd
+   10892 ppid   1424 sess 0 17:21:54  WmiPrvSE.exe  
+    1424 ppid   1264 sess 0 12:09:05  svchost.exe  
+    1264 ppid   1128 sess 0 12:09:04  services.exe  
+    1128 ppid    856 sess 0 12:09:04  wininit.exe  
+  chain ends at pid 1128 (wininit.exe), parent 856 not running or not listed, 10 processes
+
+pid 23276 (conhost.exe):
+   23276 ppid  15968 sess 1 04:45:24  conhost.exe  \??\C:\WINDOWS\system32\conhost.exe 0x4
+   15968 ppid   7632 sess 1 04:45:24  powershell.exe  powershell -NoProfile -ExecutionPolicy Bypass -File C:/Users/nathan/Source/kc71d213125_1025/sample_driver4_102
+    7632 ppid  10496 sess 1 04:45:23  python.exe  C:\Users\nathan\Source\venv-md510\Scripts\python.exe  -u C:\Users\nathan\Source\kc71d213125_1025\kc71d213125_s
+   10496 ppid  16652 sess 1 04:45:23  python.exe  C:\Users\nathan\Source\venv-md510\Scripts\python.exe  -u C:\Users\nathan\Source\kc71d213125_1025\kc71d213125_s
+   16652 ppid  23732 sess 1 04:45:23  cmd.exe  cmd.exe /c C:\Users\nathan\Source\kc71d213125_1025\go_kc71d213125_1025.cmd
+   23732 ppid  10892 sess 1 04:45:23  conhost.exe  conhost.exe --headless cmd.exe /c C:\Users\nathan\Source\kc71d213125_1025\go_kc71d213125_1025.cmd
+   10892 ppid   1424 sess 0 17:21:54  WmiPrvSE.exe  
+    1424 ppid   1264 sess 0 12:09:05  svchost.exe  
+    1264 ppid   1128 sess 0 12:09:04  services.exe  
+    1128 ppid    856 sess 0 12:09:04  wininit.exe  
+  chain ends at pid 1128 (wininit.exe), parent 856 not running or not listed, 10 processes
+
+pid 21692 (conhost.exe):
+   21692 ppid   2120 sess 1 04:45:24  conhost.exe  \??\C:\WINDOWS\system32\conhost.exe 0x4
+    2120 ppid   7632 sess 1 04:45:24  python.exe  C:/Users/nathan/Source/venv-md510/Scripts/python.exe -u C:/Users/nathan/Source/kc71d213125_1025/kc71d213125_wa
+    7632 ppid  10496 sess 1 04:45:23  python.exe  C:\Users\nathan\Source\venv-md510\Scripts\python.exe  -u C:\Users\nathan\Source\kc71d213125_1025\kc71d213125_s
+   10496 ppid  16652 sess 1 04:45:23  python.exe  C:\Users\nathan\Source\venv-md510\Scripts\python.exe  -u C:\Users\nathan\Source\kc71d213125_1025\kc71d213125_s
+   16652 ppid  23732 sess 1 04:45:23  cmd.exe  cmd.exe /c C:\Users\nathan\Source\kc71d213125_1025\go_kc71d213125_1025.cmd
+   23732 ppid  10892 sess 1 04:45:23  conhost.exe  conhost.exe --headless cmd.exe /c C:\Users\nathan\Source\kc71d213125_1025\go_kc71d213125_1025.cmd
+   10892 ppid   1424 sess 0 17:21:54  WmiPrvSE.exe  
+    1424 ppid   1264 sess 0 12:09:05  svchost.exe  
+    1264 ppid   1128 sess 0 12:09:04  services.exe  
+    1128 ppid    856 sess 0 12:09:04  wininit.exe  
+  chain ends at pid 1128 (wininit.exe), parent 856 not running or not listed, 10 processes
+
+pid 21616 (python.exe):
+   21616 ppid   2120 sess 1 04:45:24  python.exe  C:/Users/nathan/Source/venv-md510/Scripts/python.exe -u C:/Users/nathan/Source/kc71d213125_1025/kc71d213125_wa
+    2120 ppid   7632 sess 1 04:45:24  python.exe  C:/Users/nathan/Source/venv-md510/Scripts/python.exe -u C:/Users/nathan/Source/kc71d213125_1025/kc71d213125_wa
+    7632 ppid  10496 sess 1 04:45:23  python.exe  C:\Users\nathan\Source\venv-md510\Scripts\python.exe  -u C:\Users\nathan\Source\kc71d213125_1025\kc71d213125_s
+   10496 ppid  16652 sess 1 04:45:23  python.exe  C:\Users\nathan\Source\venv-md510\Scripts\python.exe  -u C:\Users\nathan\Source\kc71d213125_1025\kc71d213125_s
+   16652 ppid  23732 sess 1 04:45:23  cmd.exe  cmd.exe /c C:\Users\nathan\Source\kc71d213125_1025\go_kc71d213125_1025.cmd
+   23732 ppid  10892 sess 1 04:45:23  conhost.exe  conhost.exe --headless cmd.exe /c C:\Users\nathan\Source\kc71d213125_1025\go_kc71d213125_1025.cmd
+   10892 ppid   1424 sess 0 17:21:54  WmiPrvSE.exe  
+    1424 ppid   1264 sess 0 12:09:05  svchost.exe  
+    1264 ppid   1128 sess 0 12:09:04  services.exe  
+    1128 ppid    856 sess 0 12:09:04  wininit.exe  
+  chain ends at pid 1128 (wininit.exe), parent 856 not running or not listed, 10 processes
+
+pid 2172 (python.exe):
+    2172 ppid  14928 sess 1 04:45:29  python.exe  C:/Users/nathan/Source/venv-md510/Scripts/python.exe -u C:/Users/nathan/Source/kc71d213125_1025/inputs/d18_hyb
+   14928 ppid   7632 sess 1 04:45:29  python.exe  C:/Users/nathan/Source/venv-md510/Scripts/python.exe -u C:/Users/nathan/Source/kc71d213125_1025/inputs/d18_hyb
+    7632 ppid  10496 sess 1 04:45:23  python.exe  C:\Users\nathan\Source\venv-md510\Scripts\python.exe  -u C:\Users\nathan\Source\kc71d213125_1025\kc71d213125_s
+   10496 ppid  16652 sess 1 04:45:23  python.exe  C:\Users\nathan\Source\venv-md510\Scripts\python.exe  -u C:\Users\nathan\Source\kc71d213125_1025\kc71d213125_s
+   16652 ppid  23732 sess 1 04:45:23  cmd.exe  cmd.exe /c C:\Users\nathan\Source\kc71d213125_1025\go_kc71d213125_1025.cmd
+   23732 ppid  10892 sess 1 04:45:23  conhost.exe  conhost.exe --headless cmd.exe /c C:\Users\nathan\Source\kc71d213125_1025\go_kc71d213125_1025.cmd
+   10892 ppid   1424 sess 0 17:21:54  WmiPrvSE.exe  
+    1424 ppid   1264 sess 0 12:09:05  svchost.exe  
+    1264 ppid   1128 sess 0 12:09:04  services.exe  
+    1128 ppid    856 sess 0 12:09:04  wininit.exe  
+  chain ends at pid 1128 (wininit.exe), parent 856 not running or not listed, 10 processes
+
+pid 1980 (conhost.exe):
+    1980 ppid  14928 sess 1 04:45:29  conhost.exe  \??\C:\WINDOWS\system32\conhost.exe 0x4
+   14928 ppid   7632 sess 1 04:45:29  python.exe  C:/Users/nathan/Source/venv-md510/Scripts/python.exe -u C:/Users/nathan/Source/kc71d213125_1025/inputs/d18_hyb
+    7632 ppid  10496 sess 1 04:45:23  python.exe  C:\Users\nathan\Source\venv-md510\Scripts\python.exe  -u C:\Users\nathan\Source\kc71d213125_1025\kc71d213125_s
+   10496 ppid  16652 sess 1 04:45:23  python.exe  C:\Users\nathan\Source\venv-md510\Scripts\python.exe  -u C:\Users\nathan\Source\kc71d213125_1025\kc71d213125_s
+   16652 ppid  23732 sess 1 04:45:23  cmd.exe  cmd.exe /c C:\Users\nathan\Source\kc71d213125_1025\go_kc71d213125_1025.cmd
+   23732 ppid  10892 sess 1 04:45:23  conhost.exe  conhost.exe --headless cmd.exe /c C:\Users\nathan\Source\kc71d213125_1025\go_kc71d213125_1025.cmd
+   10892 ppid   1424 sess 0 17:21:54  WmiPrvSE.exe  
+    1424 ppid   1264 sess 0 12:09:05  svchost.exe  
+    1264 ppid   1128 sess 0 12:09:04  services.exe  
+    1128 ppid    856 sess 0 12:09:04  wininit.exe  
+  chain ends at pid 1128 (wininit.exe), parent 856 not running or not listed, 10 processes
+
+for comparison, this checker's own chain: 26032:powershell.exe <- 4064:bash.exe <- 24628:bash.exe <- 10148:bash.exe <- 12316:claude.exe <- 5996:bash.exe <- 2612:bash.exe ...
+claude in any chain of the run: False; Windows Terminal / OpenConsole / wt in any chain: False; a headless conhost in a chain: True
