@@ -5,8 +5,10 @@ usage: chain_next.py next            prints NEXT D PREV_D PREV_ROOT SLOPE SRC TA
        chain_next.py record D        reads D/read_lower.txt and D/steps.txt; appends the root to roots87.txt and prints the hc line (OK ...) or STOP why
        chain_next.py selftest [--mutate=slope|changes|repeat|robust]
 Files: roots87.txt (lines "D root lo hi source"), ../kc87_leg2/pushed_points.txt (part a, tag l1kc87Lmacm3), ../kc87_leg2/b/pushed_points.txt (part b, tag l1kc87Lmacm3b).
-Rule: for the k-th point of the sequence [21.21875, 21.25, pushed points in D order]: slope = (root[k-1] - root[k-2]) / (D[k-1] - D[k-2]) (my det-linear roots), prediction = root[k-1] + slope x (D[k] - D[k-1]);
-the beside rule is root[k-1] - 0.33 x (D[k] - D[k-1]). A point is scanned only when both predecessors have roots."""
+Rule (t5, 24 Nov): for a point D, with a and b the two largest D below it that have a root (a > b; the seeds D 21.21875 and D 21.25 included): slope = (root[a] - root[b]) / (a - b) (my det-linear roots, whatever their spacing),
+prediction = root[a] + slope x (D - a); the beside rule is root[a] - 0.33 x (D - a).
+Which points: while a leap runs (part a or part b not finished; phase 1) only the pushed points on the 0.125 grid (D x 8 an integer: 21.375, 21.5, 21.625, ...), lowest first; when the leaps have ended (phase 2) every pushed point, in D order
+(t5: "the points between are scanned after part b ends, in D order"). A point is scanned only when two roots lie below it."""
 import os, re, sys
 L = os.path.expanduser("~/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_leg_lambda")
 L2 = os.path.expanduser("~/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_leg2")
@@ -30,22 +32,34 @@ def read_pushed(folder):
     return [float(x) for x in open(p).read().split()] if os.path.exists(p) else []
 
 
-def plan(roots, pushed, seeds=(21.21875, 21.25)):
-    """pushed: {D: (src, tag)}; returns ('NEXT', D, PD, PR, slope, src, tag) or ('WAIT', why)."""
-    seq = list(seeds) + sorted(pushed)
-    for k in range(2, len(seq)):
-        D = seq[k]
+def on_grid(D):
+    return abs(D * 8 - round(D * 8)) < 1e-9
+
+
+def plan(roots, pushed, phase1=True):
+    """pushed: {D: (src, tag)}; phase1: only the 0.125 grid (a leap is running). Returns ('NEXT', D, a, root[a], slope, src, tag) or ('WAIT', why)."""
+    for D in sorted(pushed):
         if D in roots:
             continue
-        a, b = seq[k - 1], seq[k - 2]
-        if a not in roots or b not in roots:
-            return ("WAIT", "the roots of D %r and D %r are not both known" % (a, b))
+        if phase1 and MUT != "all" and not on_grid(D):
+            continue
+        below = sorted(x for x in roots if x < D)
+        if len(below) < 2:
+            return ("WAIT", "fewer than two roots below D %r" % D)
+        a, b = below[-1], below[-2]
         slope = (roots[a] - roots[b]) / (a - b)
         if MUT == "slope":
             slope = BESIDE
         src, tag = pushed[D]
         return ("NEXT", D, a, roots[a], slope, src, tag)
-    return ("WAIT", "no pushed point without a root")
+    return ("WAIT", "no pushed point without a root" + (" on the 0.125 grid" if phase1 else ""))
+
+
+def phase1_now():
+    """a leap is running unless both parts have a LEG_DONE.txt, or part a is done and part b was refused (start_b.log says NOT started)"""
+    a = os.path.exists(L2 + "/LEG_DONE.txt"); b = os.path.exists(L2 + "/b/LEG_DONE.txt")
+    refused = os.path.exists(L2 + "/start_b.log") and "NOT started" in open(L2 + "/start_b.log").read()
+    return not (b or (a and refused))
 
 
 def parse(text, steps, mutate=None):
@@ -73,18 +87,24 @@ def selftest():
         print("planted:", name, "PASS" if cond else "FAIL"); ok = ok and cond
     roots = {21.21875: 0.847216, 21.25: 0.836238}
     pushed = {21.3125: ("A", "ta")}
-    r = plan(roots, pushed)
-    chk("first leg point: NEXT 21.3125, prev root 0.836238, slope -0.35130 (t5's -0.3513)", r[0] == "NEXT" and r[1] == 21.3125 and r[2] == 21.25 and abs(r[4] + 0.351296) < 1e-9 and r[3] == 0.836238)
+    r = plan(roots, pushed, phase1=False)
+    chk("phase 2, first leg point: NEXT 21.3125, prev root 0.836238, slope -0.35130 (t5's -0.3513)", r[0] == "NEXT" and r[1] == 21.3125 and r[2] == 21.25 and abs(r[4] + 0.351296) < 1e-9 and r[3] == 0.836238)
+    chk("phase 1: 21.3125 is not on the 0.125 grid, so WAIT", plan(roots, pushed, phase1=True)[0] == "WAIT")
     roots[21.3125] = 0.8143
-    pushed.update({21.375: ("A", "ta"), 21.4375: ("B", "tb")})
-    r = plan(roots, pushed)
-    chk("second point: slope from the two latest roots", r[0] == "NEXT" and r[1] == 21.375 and abs(r[4] - (0.8143 - 0.836238) / 0.0625) < 1e-9)
+    pushed.update({21.375: ("A", "ta"), 21.4375: ("B", "tb"), 21.5: ("A", "ta"), 21.5625: ("B", "tb"), 21.625: ("B", "tb")})
+    r = plan(roots, pushed, phase1=True)
+    chk("phase 1: the grid point 21.375 comes first, slope from the two latest roots", r[0] == "NEXT" and r[1] == 21.375 and abs(r[4] - (0.8143 - 0.836238) / 0.0625) < 1e-9)
     roots[21.375] = 0.79
-    r = plan(roots, pushed)
-    chk("third point: its source and tag come with it", r[0] == "NEXT" and r[1] == 21.4375 and r[5:] == ("B", "tb"))
-    roots[21.4375] = 0.77
-    chk("nothing left: WAIT", plan(roots, pushed)[0] == "WAIT")
-    chk("a missing predecessor root: WAIT", plan({21.25: 0.8}, {21.3125: ("A", "ta")})[0] == "WAIT")
+    r = plan(roots, pushed, phase1=True)
+    chk("phase 1: after 21.375 the next is 21.5 (21.4375 skipped), step 0.125 from the root of 21.375", r[0] == "NEXT" and r[1] == 21.5 and r[2] == 21.375 and abs(r[4] - (0.79 - 0.8143) / 0.0625) < 1e-9)
+    roots[21.5] = 0.75
+    r = plan(roots, pushed, phase1=True)
+    chk("phase 1: then 21.625, slope across the 0.125 spacing of the two latest roots (21.5 and 21.375)", r[0] == "NEXT" and r[1] == 21.625 and r[2] == 21.5 and abs(r[4] - (0.75 - 0.79) / 0.125) < 1e-9 and r[5:] == ("B", "tb"))
+    r = plan(roots, {k: v for k, v in pushed.items() if k != 21.625}, phase1=True)
+    chk("phase 1: only off-grid points left: WAIT", r[0] == "WAIT")
+    r = plan(roots, {k: v for k, v in pushed.items() if k != 21.625}, phase1=False)
+    chk("phase 2: the skipped 21.4375 in D order, the two latest roots below it (21.375, 21.3125)", r[0] == "NEXT" and r[1] == 21.4375 and r[2] == 21.375 and abs(r[4] - (0.79 - 0.8143) / 0.0625) < 1e-9)
+    chk("fewer than two roots below: WAIT", plan({21.25: 0.8}, {21.3125: ("A", "ta")}, phase1=False)[0] == "WAIT")
     good = "points 5 in 0.805-0.825; not noise-robust: none\nrobust changes: 1; touching a non-robust point (not counted): none\n  robust change (0.810, 0.815), - to +, det-linear 0.8143, range [0.8130, 0.8143]\nln|det| local minima without a sign change: none\nrepeat check x: agree -> PASS\n"
     p = parse(good, "", MUT)
     chk("a clean reading parses (bracket, root, range)", p[0] and p[2] == (0.81, 0.815) and p[3] == 0.8143 and p[4] == 0.813)
@@ -106,11 +126,11 @@ def main():
         for D in read_pushed(folder):
             pushed[D] = (src, tag)
     if cmd == "next":
-        r = plan(roots, pushed)
+        r = plan(roots, pushed, phase1_now())
         if r[0] == "NEXT":
             print("NEXT %r %r %.6f %.6f %s %s" % (r[1], r[2], r[3], r[4], r[5], r[6]))
         else:
-            fin = all(os.path.exists(f + "/LEG_DONE.txt") for _, f, _, _ in PARTS)
+            fin = all(os.path.exists(f + "/LEG_DONE.txt") for _, f, _, _ in PARTS) and all(D in roots for D in pushed)
             print(("DONE" if fin else "WAIT " + r[1]))
     elif cmd == "pending":   # pushed points whose scan is done (SCAN_DONE.txt) and that have no root yet, in D order
         print(" ".join(repr(D) for D in sorted(pushed) if D not in roots and os.path.exists("%s/%r/SCAN_DONE.txt" % (L, D))))
@@ -123,8 +143,8 @@ def main():
         ok, why, br, root, lo, hi = parse(text, steps, MUT)
         if not ok:
             print("STOP D %s: %s" % (dn, why)); return
-        seq = [21.21875, 21.25] + sorted(pushed)
-        k = seq.index(D); a, b = seq[k - 1], seq[k - 2]
+        below = sorted(x for x in roots if x < D)
+        a, b = below[-1], below[-2]
         slope = (roots[a] - roots[b]) / (a - b); pred = roots[a] + slope * (D - a); pred2 = roots[a] + BESIDE * (D - a)
         new = (root - roots[a]) / (D - a)
         with open(L + "/roots87.txt", "a") as f:

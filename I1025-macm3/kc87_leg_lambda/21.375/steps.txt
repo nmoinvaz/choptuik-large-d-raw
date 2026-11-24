@@ -1,0 +1,15 @@
+2026-11-24 14:20:04 UTC accept: D 21.375 (loadavg { 2.33 2.84 3.56 }, free memory 86%, 16.2 GiB available, disk 27Gi free)
+2026-11-24 14:20:04 UTC inputs pinned: state eb7d29d7 and record 0a13ede9 from raw dd0b5c9f (pins.txt); kc87_syscheck 6df5d960, kc79_syscheck 29dce7ea, d18_hybsign e089207a, read_lower 89309d3c, d185_scan_read 7c9d400f, repeat_check aaf598a9
+2026-11-24 14:20:04 UTC worktree 505d8399, clean outside solver/matter/data; Python 3.14.3, multidouble isa neon
+2026-11-24 14:20:04 UTC selftests: kc87_syscheck exit 0, kc79_syscheck exit 0 (0 wanted)
+2026-11-24 14:20:07 UTC kc87_syscheck_1025.py exit 0 (0 wanted); controls --mutate=F exit 1, --mutate=steps exit 1 (1 wanted each); kc79_syscheck_1025.py on the k_c 87 state exit 1 (1 wanted): D 21.375 k_c 87: record |F| 4.5448495692e-10, F_start 4.051e-05, steps 2910, constraint 4.213e-03, Delta 1.128325295321, 1821 s; state |F| 4.5448495692e-10, freeze_from steps 2910
+2026-11-24 14:20:07 UTC verdict: ACCEPTED 2026-11-24 14:20:07 UTC
+2026-11-24 14:20:07 UTC scan: D 21.375 (loadavg { 2.63 2.89 3.57 }, free memory 86%, 15.6 GiB available, disk 27Gi free)
+2026-11-24 14:20:07 UTC inputs pinned: state eb7d29d7 and record 0a13ede9 from raw dd0b5c9f (pins.txt); kc87_syscheck 6df5d960, kc79_syscheck 29dce7ea, d18_hybsign e089207a, read_lower 89309d3c, d185_scan_read 7c9d400f, repeat_check aaf598a9
+2026-11-24 14:20:07 UTC worktree 505d8399, clean outside solver/matter/data; Python 3.14.3, multidouble isa neon
+2026-11-24 14:20:07 UTC memory before the scan: about 15.5 GiB available (free+inactive+speculative+purgeable), 86% free by memory_pressure; 4 processes for 6 values (the k_c 87 scan of D 19.75 with 4 processes: 4.07, 2.62, 2.52, 2.51 GB peak RSS, available 17.6 down to 10.0 GiB), gate 10 GiB
+2026-11-24 14:20:07 UTC scan starts: D 21.375, 6 values (0.780 0.785 0.790 0.795 0.800 0.790) on 4 processes of 1 thread, nice 15, round-robin (a process runs its values one after another); the first 0.790 on process 2, the repeat on process 1; state sol_l1kc87Lmacm3_D21.375000.npy eb7d29d7, record 0a13ede9; alert watcher on (hc: /Users/nathan/.local/bin/hc)
+2026-11-24 14:20:09 UTC proc 0 lambda 0.780,0.800: capped_run child pid 8266 (cap 28800 s)
+2026-11-24 14:20:11 UTC proc 1 lambda 0.785,0.790: capped_run child pid 8398 (cap 28800 s)
+2026-11-24 14:20:13 UTC proc 2 lambda 0.790: capped_run child pid 8441 (cap 28800 s)
+2026-11-24 14:20:15 UTC proc 3 lambda 0.795: capped_run child pid 8539 (cap 28800 s)
