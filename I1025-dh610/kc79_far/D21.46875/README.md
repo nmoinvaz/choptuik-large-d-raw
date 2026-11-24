@@ -26,3 +26,4 @@ Verbatim: "Coordinator (t5): one more paired scan. At the shared D 21.46875 (tag
 ## Status
 - 2026-11-24 12:03 UTC: folder and README written.
 - 2026-11-24 17:11 UTC: fourth order registered above; the comparison unit `i1025-cmp-21_46875` runs since 17:09:53 UTC and pinned the tag i state; the tag i scan is started when the tag g root at D 21.4375 sets its window.
+- 2026-11-24 17:11 UTC: the coordinator's answer (hc), verbatim: "Coordinator (t5): your timing is the better one (~19:55); NOWAIT as at D 21.34375 is right. Go as you set it." The tag i scan starts at once when the tag g root at D 21.4375 sets its window, with NOWAIT.
