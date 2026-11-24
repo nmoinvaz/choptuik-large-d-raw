@@ -1,0 +1,12 @@
+== 2026-11-24 06:33:15 UTC read_lower.py selftest 
+planted: lane A grid root 1.2865 -> 1.2864536572484817; lane B grid roots 1.4954, 1.5293 -> [1.49546, 1.5292]; non-robust control robust 1 non 1; minimum beside/without: [1.505], [1.505]; repeat agree/disagree [(1.3, True)] [(1.3, False)]
+selftest passes
+selftest  exit 0 (0 wanted)
+== 2026-11-24 06:33:15 UTC read_lower.py selftest --mutate=shift
+planted: lane A grid root 1.2865 -> 1.2894536572484816; lane B grid roots 1.4954, 1.5293 -> [1.49846, 1.5322]; non-robust control robust 1 non 1; minimum beside/without: [1.505], [1.505]; repeat agree/disagree [(1.3, True)] [(1.3, False)]
+selftest FAILS (cases [False, False, True, True, True, True])
+selftest --mutate=shift exit 1 (1 wanted)
+== 2026-11-24 06:33:15 UTC read_lower.py selftest --mutate=round2
+planted: lane A grid root 1.2865 -> 1.2864536572484817; lane B grid roots 1.4954, 1.5293 -> [1.49546, 1.5292]; non-robust control robust 1 non 1; minimum beside/without: [], [1.505]; repeat agree/disagree [(1.3, True)] [(1.3, False)]
+selftest FAILS (cases [True, True, True, False, True, True])
+selftest --mutate=round2 exit 1 (1 wanted)

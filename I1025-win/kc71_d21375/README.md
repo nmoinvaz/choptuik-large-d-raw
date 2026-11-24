@@ -1,6 +1,6 @@
 # I1025-win/kc71_d21375: lambda_1 at k_c 71 on leg 6's D 21.375 state, a hybrid sign scan at 0.765 to 0.795 (winb)
 
-Written before the run, 2026-11-24 06:32:56 UTC (substituted from `date -u` when pushed). No scan had been run for this folder when the order, the written lines and the estimates below were written. The dry test ran the pins, the `read_lower.py` selftests and the state check (read-only, 2 s each, outputs `*.txt.dry`); the real run repeats them first.
+Written before the run, 2026-11-24 06:32:56 UTC (the time of the README-first push, 79c0e5fc4; later pushes keep it). No scan had been run for this folder when the order, the written lines and the estimates below were written. The dry test ran the pins, the `read_lower.py` selftests and the state check (read-only, 2 s each, outputs `*.txt.dry`); the real run repeats them first.
 
 ## Order (t5's hc of 2026-11-24 ~05:35 UTC, winb section; the D 21.3125 reading, 0.800114, is in `I1025-win/kc71_d213125` and #1025 comment 7123098606)
 
@@ -68,9 +68,11 @@ Started outside my terminal: `Win32_Process.Create` of `conhost.exe --headless c
 
 ## Status
 
-Not started. README first. win2 pushed the D 21.375 state at 2026-11-24 06:29:35 UTC (commit 9af2e828); the dry test ran at 06:32:25 UTC.
+**Running.** Started 2026-11-24 06:33:14 UTC (`Win32_Process.Create` of `conhost.exe --headless cmd.exe /c go_kc71d21375_1025.cmd`; conhost pid 26360, driver 26384; the four scan processes started 06:33:21 UTC: p0 25924, p1 15732, p2 24972, p3 1160, each with a worker child). README first: 79c0e5fc4 (pushed 06:32:56 UTC, before the start). win2 pushed the D 21.375 state at 06:29:35 UTC (commit 9af2e828); the dry test ran at 06:32:25 UTC.
 
-Pushed 2026-11-24 06:32:56 UTC.
+At the start: the pins matched; `read_lower.py` selftest 0 and controls 1, 1; `kc71_syscheck.py` selftest 0, the state ACCEPTED (exit 0), `--mutate=F` and `--mutate=steps` exit 1, 1. All four processes printed "the record system" (state |F| 4.3409965177e-10 against the record's 4.3390486020e-10, steps 2378 = 2378). All run BelowNormal; the session check (`session_check_1025.ps1 scan 26360`) exit 0: no `claude` in any chain, no Windows Terminal, a headless conhost in the chain. Machine at the start: free physical memory 23.40 GB, commit 10.74 GB, laptop CPU 73% (the other project's python jobs, not touched). Keep-awake helper holding `ES_SYSTEM_REQUIRED`, alert-only memory watcher, sampler running. Estimate for the end: 07:18 to 07:30 UTC.
+
+Pushed 2026-11-24 06:34:19 UTC.
 
 ## Result
 
