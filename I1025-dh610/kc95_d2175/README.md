@@ -60,6 +60,49 @@ The recount (unit i1076d) is 12 nominal threads (2 busy now, a serial stretch, l
 | peak sampled RSS below 3 GiB (85%) | right (2.84 GiB) |
 | the regrid done by 18:45 UTC (60%) | WRONG (19:53:52 UTC) |
 
+## Scan result (24 Nov, 19:53:56 to 22:39:37 UTC, 165.7 min; `summarize_kc95.py` > `summary_kc95.txt`)
+| lambda | hybrid sign | noise signs (robust) | float64 sign | ln of abs det | seconds |
+|---|---|---|---|---|---|
+| 0.640 | - | -- (True) | + | -2838.8940248435065 | 8219 |
+| 0.645 | - | -- (True) | - | -2841.5260114492503 | 8989 |
+| 0.650 | + | ++ (True) | + | -2839.946788918143 | 8183 |
+| 0.650 | + | ++ (True) | + | -2839.946788918143 | 9925 |
+| 0.655 | + | ++ (True) | + | -2839.5934283266092 | 8533 |
+| 0.660 | + | ++ (True) | - | -2839.5739700024424 | 7736 |
+| 0.665 | + | ++ (True) | + | -2839.6837956179284 | 8440 |
+
+scan points: 7 evaluations, seconds per point min 7736, median 8440, max 9925, sum 60025; outside 2000 to 3300 s: [(0.64, 8219), (0.645, 8989), (0.65, 8183), (0.65, 9925), (0.655, 8533), (0.66, 7736), (0.665, 8440)]
+the regridded record at D 21.75: |F| 4.3937655373792033e-10, steps 3152, constraint 0.0032139850093208574, Delta 1.1386286581052725, h None, seconds 9337
+float64 sign differs from the hybrid at: [0.64, 0.66]
+
+```
+hybrid signs: 0.640- 0.645- 0.650+ 0.655+ 0.660+ 0.665+
+robust changes: 1
+   change (0.645, 0.650), - to +, det-linear 0.645855, range [0.645557, 0.645855]
+against the prediction 0.6498: change minus prediction -0.003945; within 0.005: True
+```
+
+- **All 7 processes exit 0 and printed the record system** (|F| 4.3980274601e-10 recomputed against the record's 4.3937655374e-10, steps 3152 = the record's); the pre-run checks passed (`selftest_exits.txt` 0 0 0 1 1 0 0 1; the source check and the regrid's acceptance above). Walls 2:09:04 to 2:45:36 (`scan/scan_p<j>.raw`, `/usr/bin/time -v`).
+- **One robust change in the window 0.640 to 0.665:** (0.645, 0.650), "- to +" as the reader prints it, det-linear **0.645855**, estimator range [0.645557, 0.645855] (a spread over interpolation choices, not an enclosure; the bracket is the grid step 0.005). Edge signs differ (- at 0.640, + at 0.665). No ln|det| minimum without a sign change; every point noise-robust. The float64 sign differs from the hybrid at 0.640 (below the change) and 0.660 (above it); the hybrid is read.
+- **The repeat of 0.650** (p2 and p6, two processes) is bit-identical (hybrid +, ln|det| -2839.946788918143 in both; `repeat_check.py` PASS).
+- **Against the prediction 0.6498 (the coordinator's: macm3's k_c 87 root 0.646846 plus 0.003, bar 0.005):** -0.003945, within the bar (the root nearest 0.6468 by position is the only one in the window). **Beside macm3's k_c 87 root at the same D** (0.646846, bracket (0.645, 0.650), range [0.646292, 0.646846], a macOS scan of macm3's own k_c 87 state, `I1025-macm3/kc87_leg_lambda/21.75/`): the k_c 95 root is **0.000991 below it**, not 0.003 above; the two estimator ranges do not overlap (gap 0.000437). The comparison mixes two things: the k_c step (this state is that one regridded, the Delta shifted by -1.0267e-05) and the build (macOS scan against a Linux scan, two different scanners' windows and grids); a k_c 87 scan of the same state on this machine, which this lane does not do, would separate them.
+- **Seconds per point: 7736 to 9925 s** (median 8440): 2.5 to 3 times the 2442 to 2770 s of D 19.75's scan at 4 processes. This scan (7 processes at nice 10) ran beside the k_c 87 chain of `../kc87_m3pts/` (8 processes at nice 8, and from 21:45 UTC at nice 15 by the coordinator's word) and the recount: 15 scan processes on 20 logical CPUs. The load average, median over `scan/sampler.log` (329 samples, 19:54:06 to 22:39:07 UTC), was 16.68 (max 18.72, min 10.53), peak RSS per process 2.32 to 2.53 GiB (`/usr/bin/time -v`), MemAvailable at least 34.58 GiB; no memory alert (no `MEMALERT_scan.txt`), the load alert (alert only) did not fire.
+
+### Scan predictions scorecard (registered before the run)
+| prediction | result |
+|---|---|
+| every point noise-robust (75%) | right (7 of 7) |
+| the repeat on its own process bit-identical (85%) | right |
+| exactly one robust change in 0.640 to 0.665 (80%) | right |
+| the change within 0.005 of 0.6498 (80%); within 0.003 (55%) | right (-0.003945); WRONG |
+| above macm3's 0.646846, the 87 to 95 step positive (80%) | WRONG (0.000991 below it) |
+| the bracket (0.645, 0.650) (45%); (0.650, 0.655) (40%) | right; WRONG |
+| the float64 sign agrees with the hybrid at all 7 evaluations (20%) | WRONG (differs at 0.640 and 0.660) |
+| each scan point 2000 to 3300 s (55%) | WRONG (7736 to 9925 s) |
+| one process peak RSS 2.7 to 3.4 GiB (75%) | WRONG (2.32 to 2.53 GiB) |
+| the scan done within 100 min of its start (65%) | WRONG (165.7 min) |
+
 ## Status
 - 2026-11-24 17:17 UTC: folder, inputs (pinned: `in_blobs.txt`, `in_blobs_src.txt`, `source_commit.txt`), lane and README written before any run; `lane_kc95.sh dry` (pins and selftests) is run next, then the unit.
 - 2026-11-24 19:54 UTC: the regrid is ACCEPTED (17:18:03 to 19:53:52 UTC, 9339 s; result above, raw dc5a6edb). The scan (7 processes, nice 10) started 19:53:56 UTC beside the k_c 87 chain of `../kc87_m3pts/` (8) and the recount.
+- 2026-11-24 22:40 UTC: the scan is done (19:53:56 to 22:39:37 UTC): one robust change, bracket (0.645, 0.650), det-linear 0.645855, -0.003945 against 0.6498; result and scorecard above. This lane is finished; the k_c 87 chain of `../kc87_m3pts/` is released from its hold.
