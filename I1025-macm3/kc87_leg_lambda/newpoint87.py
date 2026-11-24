@@ -5,7 +5,7 @@ Finds the raw commit that added the state sol_l1kc87Ldh370_D<D:.6f>.npy (or take
 LAMP = a 0.005 grid over +-0.010 around m and a repeat of m, WIN, REP) and appends the README section (written before the check and scan). The prediction is t5's rule:
 the previous k_c 87 root plus slope x (D - PREV_D); m is the prediction rounded to 0.005; one robust change within 0.005 of the prediction.
 selftest: newpoint87.py selftest (the grid rule on planted numbers: it must fail with --mutate=round)"""
-import json, os, subprocess, sys, time
+import json, math, os, subprocess, sys, time
 
 RAWG = os.path.expanduser("~/Source/choptuik-large-d-raw-1076p")
 L = os.path.expanduser("~/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_leg_lambda")
@@ -23,15 +23,20 @@ def predict(pr, slope, step):
     return pr + (-0.28 if MUT == "slope" else slope) * step             # t5's rule; the mutation ignores the ordered slope
 
 
+def fmt(x):
+    r = "%.3f" % x
+    return "0.000" if r == "-0.000" else r
+
+
 def grid(pred):
     k = pred / 0.005
-    m = (int(k + 0.5) if MUT != "round" else int(k)) * 0.005          # the prediction rounded to 0.005 (the mutation truncates)
-    vals = ["%.3f" % (m + 0.005 * j) for j in (-2, -1, 0, 1, 2)]
-    return "%.3f" % m, vals + ["%.3f" % m]
+    n = math.floor(k + 0.5) if MUT != "round" else int(k)      # the prediction rounded to 0.005 (floor: right for negatives too; the mutation truncates)
+    vals = [fmt((n + j) * 0.005) for j in (-2, -1, 0, 1, 2)]
+    return fmt(n * 0.005), vals + [fmt(n * 0.005)]
 
 
 def selftest():
-    cases = [(0.8771, "0.875"), (0.8730, "0.875"), (0.8724, "0.870"), (0.8780, "0.880"), (0.8749, "0.875"), (0.8926, "0.895")]
+    cases = [(0.8771, "0.875"), (0.8730, "0.875"), (0.8724, "0.870"), (0.8780, "0.880"), (0.8749, "0.875"), (0.8926, "0.895"), (-0.0087, "-0.010"), (-0.0024, "0.000"), (0.0024, "0.000"), (-0.0026, "-0.005"), (0.0126, "0.015")]
     ok = True
     for pred, want in cases:
         m, v = grid(pred)
