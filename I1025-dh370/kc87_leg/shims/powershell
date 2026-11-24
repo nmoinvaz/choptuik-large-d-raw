@@ -1,0 +1,6 @@
+#!/bin/bash
+# Linux stand-in for the one PowerShell call of win2's leap_guard.py: (Get-CimInstance Win32_Process -Filter 'ProcessId=N').CommandLine
+# prints the command line of process N (arguments joined by spaces) from /proc, or nothing when N is gone (a zombie has an empty command line too).
+pid=$(printf '%s ' "$@" | grep -o "ProcessId=[0-9]*" | head -1 | cut -d= -f2)
+[ -n "$pid" ] && [ -r /proc/$pid/cmdline ] && tr '\0' ' ' < /proc/$pid/cmdline | sed 's/ $//'
+exit 0
