@@ -1,6 +1,6 @@
 # I1025-win2/kc95_d21875: macm3's k_c 87 leg state at D 21.875 regridded to k_c 95, then a hybrid sign scan around lambda_1
 
-Machine win2 (Windows 11, 20 logical CPUs, 95.5 GB RAM; runner win2, Sonnet 5.5). Issue https://github.com/nmoinvaz/choptuik-large-d/issues/1025. Written 2026-11-24 18:58 UTC, before any regrid or scan of this folder.
+Machine win2 (Windows 11, 20 logical CPUs, 95.5 GB RAM; runner win2, Sonnet 5.5). Issue https://github.com/nmoinvaz/choptuik-large-d/issues/1025. Written 2026-11-24 18:56 UTC, before any regrid or scan of this folder.
 This is the first k_c 95 lane of `../kc95_d22/README.md` (its order, pins, drivers `kc95_regrid.sh` and `kc95_scan.sh`, tools in `../kc95_d22/inputs/`, commands, acceptance, thread and memory rules), retargeted from D 22.0 to D 21.875.
 
 ## Order (coordinator t5, hc, 24 Nov ~18:50 UTC), verbatim
@@ -25,4 +25,5 @@ As in `../kc95_d22/README.md`: source accepted with controls 1 1; the regrid exi
 a robust sign change is reported by position with the estimator range named as a spread over estimator choices, not an enclosure; no robust change in the window is reported as read, with no widening.
 
 ## Status
-- 2026-11-24 18:58 UTC: folder, README and the scan driver's root override written; the lane's two drivers start next and wait (tag g's end, commit gate).
+- 2026-11-24 18:56 UTC: folder, README and the scan driver's root override written; the lane's two drivers start next and wait (tag g's end, commit gate).
+- 2026-11-24 18:59 UTC: both drivers running (pids in `../kc95_d22/exits_*`, started through `cim_start.ps1`). The source was fetched (state blob fabc792a, record file blob 479d21f1 with 10 rows) and accepted (selftest 0, controls 1 1); the regrid driver waits for tag g's end (all8.done), then for committed memory below 80 GB; the scan driver waits for the accepted regrid.
