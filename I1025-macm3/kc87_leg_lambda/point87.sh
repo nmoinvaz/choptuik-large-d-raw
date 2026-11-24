@@ -3,7 +3,7 @@
 # usage: bash point87.sh DNAME accept | scan | dry      (DNAME/point.env: D TAG RAWC STATEFILE STATEBLOB RECBLOB LAMP WIN REP)
 # accept: the inputs pinned by blob (prepare87.sh wrote them; checked again here), worktree 505d8399, the selftests of kc87_syscheck and kc79_syscheck (0), kc87_syscheck_1025.py on the state
 #   (0), its controls --mutate=F and --mutate=steps (1 each), kc79_syscheck_1025.py on the k_c 87 state (must refuse, 1): VERDICT.txt ACCEPTED or REFUSED. No hc from here.
-# scan: only after ACCEPTED: d18_hybsign.py (e089207a, unmodified) at the LAMP values, one process of 1 thread each, nice 10, each under capped_run.py 28800 by exact pid, own session
+# scan: only after ACCEPTED: d18_hybsign.py (e089207a, unmodified) at the LAMP values, NP processes of 1 thread (default one per value; round-robin otherwise), nice 10, each under capped_run.py 28800 by exact pid, own session
 #   under caffeinate -is; at least GATE GiB available at the start (12, as for the k_c 87 scan of D 19.75); every process must print `the record system`; resource sampler (log only) and an alert-only
 #   watcher (hc to t5 when available memory < 2 GiB, free memory < 8% or free disk < 3 GiB; it stops and kills nothing). Then read_lower.py selftest + mutations (shift, round2), read_lower.py
 #   on WIN, repeat_check.py selftest and on the merged scan. Steps go to DNAME/steps.txt.
@@ -59,9 +59,9 @@ fi
 grep -q '^ACCEPTED' $OUT/VERDICT.txt 2>/dev/null || { step "SCAN STOP: no ACCEPTED verdict"; exit 1; }
 [ -e $OUT/SCAN_DONE.txt ] || [ -z "$(ls $OUT/scan 2>/dev/null)" ] || stop "scan/ is not empty"
 [ "$(blob $STATE)" = "$STATEBLOB" ] && [ "$(blob $STUB)" = "$RECBLOB" ] || stop "the worktree's state or record differs from the pin"
-NP=${#LAMP[@]}
+NP=${NP:-${#LAMP[@]}}      # processes; LAMP values go round-robin to them (a process runs its values one after another)
 AVAIL=$(availgib)
-step "memory before the scan: about $AVAIL GiB available (free+inactive+speculative+purgeable), $(memory_pressure | tail -1 | sed 's/.*: //') free by memory_pressure; $NP processes (the k_c 87 scan of D 19.75 with 4 processes: 4.07, 2.62, 2.52, 2.51 GB peak RSS, lowest available 10.0 GiB from 17.6)"
+step "memory before the scan: about $AVAIL GiB available (free+inactive+speculative+purgeable), $(memory_pressure | tail -1 | sed 's/.*: //') free by memory_pressure; $NP processes for ${#LAMP[@]} values (the k_c 87 scan of D 19.75 with 4 processes: 4.07, 2.62, 2.52, 2.51 GB peak RSS, available 17.6 down to 10.0 GiB), gate $GATE GiB"
 python3 -c "import sys; sys.exit(0 if $AVAIL >= $GATE else 1)" || stop "less than $GATE GiB available ($AVAIL)"
 HC=$(command -v hc)
 cat > $OUT/scan/watch_alert.sh <<'WEOF'
@@ -83,10 +83,12 @@ done
 WEOF
 chmod +x $OUT/scan/watch_alert.sh
 nice -n 10 $OUT/scan/watch_alert.sh $OUT "$HC" > /dev/null 2>&1 &
-step "scan starts: D $D, $NP values (${LAMP[*]}), one process of 1 thread each, nice 10; the first $REP on process $(for ((i = 0; i < NP; i++)); do [ "${LAMP[$i]}" = "$REP" ] && { echo $i; break; }; done), the repeat on process $((NP - 1)); state $STATEFILE $(blob $STATE), record $(blob $STUB); alert watcher on (hc: ${HC:-none})"
+R1=-1; R2=-1; for ((i = 0; i < ${#LAMP[@]}; i++)); do [ "${LAMP[$i]}" = "$REP" ] && { [ $R1 -lt 0 ] && R1=$i || R2=$i; }; done
+[ $R2 -ge 0 ] && [ $((R1 % NP)) != $((R2 % NP)) ] || stop "the repeat of $REP is not on another process than the first"
+step "scan starts: D $D, ${#LAMP[@]} values (${LAMP[*]}) on $NP processes of 1 thread, nice 10, round-robin (a process runs its values one after another); the first $REP on process $((R1 % NP)), the repeat on process $((R2 % NP)); state $STATEFILE $(blob $STATE), record $(blob $STUB); alert watcher on (hc: ${HC:-none})"
 pids=()
 for ((p = 0; p < NP; p++)); do
-  mine=${LAMP[$p]}
+  mine=""; for ((i = p; i < ${#LAMP[@]}; i += NP)); do mine="$mine,${LAMP[$i]}"; done; mine=${mine#,}
   ( cd $WTM && nice -n 10 env OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 RAYON_NUM_THREADS=1 P4_WT_MATTER=$WTM PYTHONFAULTHANDLER=1 \
       $PY -u $L/common/capped_run.py 28800 $PY -u $L/common/in/d18_hybsign.py $STUB $STATE $D "$mine" $OUT/scan/scan_D${D}_p$p.jsonl > $OUT/scan/scan_p$p.log 2>&1
     rc=$?; echo "$(stamp) UTC proc $p (lambda $mine) exit $rc" >> $OUT/steps.txt ) &
