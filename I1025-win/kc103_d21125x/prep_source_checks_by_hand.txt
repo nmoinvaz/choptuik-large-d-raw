@@ -1,0 +1,52 @@
+== kc87 --selftest
+planted: a converged record: verdict True, expected True: PASS
+planted: |F| above the class bar: verdict False, expected False: PASS
+planted: the state's |F| 1.5 times the record's: verdict False, expected False: PASS
+planted: the step count off by one: verdict False, expected False: PASS
+planted: a k_c 63 record: verdict False, expected False: PASS
+planted: |F| within 1%: verdict True, expected True: PASS
+selftest: PASS
+exit 0
+== kc95 --selftest
+planted: a converged record: verdict True, expected True: PASS
+planted: |F| above the class bar: verdict False, expected False: PASS
+planted: the state's |F| 1.5 times the record's: verdict False, expected False: PASS
+planted: the step count off by one: verdict False, expected False: PASS
+planted: a k_c 63 record: verdict False, expected False: PASS
+planted: |F| within 1%: verdict True, expected True: PASS
+selftest: PASS
+exit 0
+== kc103 --selftest
+planted: a converged record: verdict True, expected True: PASS
+planted: |F| above the class bar: verdict False, expected False: PASS
+planted: the state's |F| 1.5 times the record's: verdict False, expected False: PASS
+planted: the step count off by one: verdict False, expected False: PASS
+planted: a k_c 63 record: verdict False, expected False: PASS
+planted: |F| within 1%: verdict True, expected True: PASS
+selftest: PASS
+exit 0
+== kc95 check on the source
+controls on the same numbers: record |F| x 1.5 refused: True; record steps + 1 refused: True
+D 21.125 k_c 95: record |F| 4.6199429159e-10, F_start 1.664e-05, steps 3206, constraint 1.859e-03, Delta 1.121573196527, 5520 s; state |F| 4.6229497124e-10, freeze_from steps 3206
+ACCEPTED: the record class's |F| with a step count that comes back
+exit 0
+== kc95 --mutate=F
+controls on the same numbers: record |F| x 1.5 refused: True; record steps + 1 refused: True
+D 21.125 k_c 95: record |F| 6.9299143738e-10, F_start 1.664e-05, steps 3206, constraint 1.859e-03, Delta 1.121573196527, 5520 s; state |F| 4.6229497124e-10, freeze_from steps 3206
+NOT ACCEPTED: the state's |F| 4.622950e-10 is not within 1% of the record's 6.929914e-10
+exit 1
+== kc95 --mutate=steps
+controls on the same numbers: record |F| x 1.5 refused: True; record steps + 1 refused: True
+D 21.125 k_c 95: record |F| 4.6199429159e-10, F_start 1.664e-05, steps 3207, constraint 1.859e-03, Delta 1.121573196527, 5520 s; state |F| 4.6229497124e-10, freeze_from steps 3206
+NOT ACCEPTED: freeze_from gives 3206 steps, the record 3207
+exit 1
+== kc87 check on the source
+controls on the same numbers: record |F| x 1.5 refused: True; record steps + 1 refused: True
+D 21.125 k_c 95: record |F| 4.6199429159e-10, F_start 1.664e-05, steps 3206, constraint 1.859e-03, Delta 1.121573196527, 5520 s; state |F| 4.6229497124e-10, freeze_from steps 3206
+NOT ACCEPTED: the record is not k_c 87 at D 21.125 (kc 95, D 21.125)
+exit 1
+== kc103 check on the source
+controls on the same numbers: record |F| x 1.5 refused: True; record steps + 1 refused: True
+D 21.125 k_c 95: record |F| 4.6199429159e-10, F_start 1.664e-05, steps 3206, constraint 1.859e-03, Delta 1.121573196527, 5520 s; state |F| 4.6229497124e-10, freeze_from steps 3206
+NOT ACCEPTED: the record is not k_c 103 at D 21.125 (kc 95, D 21.125)
+exit 1
