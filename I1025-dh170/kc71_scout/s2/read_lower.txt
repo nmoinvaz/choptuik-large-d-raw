@@ -1,0 +1,11 @@
+== window: read_lower.py scan 0.820 0.850
+points 7 in 0.820-0.850; not noise-robust: none
+hybrid signs: 0.820- 0.825- 0.830- 0.835+ 0.840+ 0.845+ 0.850+
+float64 sign differs from the hybrid sign at: [(0.835, '+', '-'), (0.845, '+', '-')]
+repeated points: [(0.835, 'agree')]
+  robust change (0.830, 0.835), - to +, det-linear 0.832037, range [0.831557, 0.832037]
+robust changes: 1; touching a non-robust point (not counted): none
+ln|det| local minima without a sign change: none
+endpoint signs: - at 0.820, + at 0.850
+(exit 0)
+repeat check /home/nathan/Source/choptuik-large-d-raw-p4/I1025-dh170/kc71_scout/s2/merged_D21.21875.jsonl: lambda [0.835]: [2] evaluations each, agree -> PASS

@@ -73,3 +73,32 @@ The estimator range is the spread over the interpolation choices of `d185_scan_r
 **Leg 6's newest state when step 1 ended (02:24:45 UTC): D 21.21875**, win2's commit 51f62d5a ("leg 6 state D 21.21875 (tag l1kc71Lw1025e)", 23 Nov 17:53 -0800 = 01:53 UTC), tag `l1kc71Lw1025e`: state `I1025-win2/kc71_leap/states/sol_l1kc71Lw1025e_D21.218750.npy` blob **ab4da272** (also `_last.npy`; here `s2/in/sol_l1kc71Lw1025e_D21.2188.npy`, ell_refine's `D{D:.4f}`), record `l1kc71Lw1025e.jsonl` blob **c826dedc** (7 rows, D 21.03125 to 21.21875; the D 21.21875 row: |F| 4.519145845379e-10, 2390 steps, psi-constraint 8.41924e-3, Delta 1.124176728865, F at the start 1.02624e-5, h 0.03125). The checks and scripts are those of `s1/in` (same blobs).
 **The rule applied** (fixed above): s = 0.901815 - 0.909538 = **-0.007723** (my step 1 estimate minus dh610's k_c 79 estimate at D 21.0); c = 0.908 - 0.30 (21.21875 - 21.0) + s = 0.908 - 0.065625 - 0.007723 = **0.834652**; **m = 0.835** (anchored on dh610's 0.909538 instead of 0.908, c would be 0.836190 and m the same, 0.835). **Lists:** lambda 0.820, 0.825, 0.830, 0.835, 0.840, 0.845, 0.850 and a repeat of 0.835: 8 evaluations, **one single-thread process each (8 processes, 8 threads, nice 10, one round)**; the first 0.835 is process 3, the repeat process 7; window read `read_lower.py scan 0.820 0.850`. `s2/stage.conf` has them (checked by a script against the rule). **Predictions of step 2 stand as written above** (the scout within 0.01 of c = 0.834652: about 75%, within 0.005 about 55%). The k_c step I measured, -0.0077, is larger than t5's written -0.003 +- 0.003; the shifted trend uses the measured one, as the order says.
 - 2026-11-24 02:26:11 to 02:26:16 UTC: **STEP 2 source check** (`run_accept.sh s2`, unit `i1025-k71s2a`) ACCEPTED at 02:26:16: win2's k_c 71 leg 6 record |F| 4.5191458454e-10, 2390 steps, constraint 8.419e-3, Delta 1.124176728865 (2450 s on win2); this machine's state |F| 4.5215381242e-10 (+0.053% against the record, inside the 1% bar), `freeze_from` 2390 steps = the record's; `--mutate=F` and `--mutate=steps` exit 1; the k_c 79 check refuses the state (exit 1: "the record is not k_c 79 at D 21.2188 (kc 71, D 21.21875)"); both selftests exit 0; the state and record copied to `s2/` and to the worktree's `data/` (blob checked). 02:26:23 UTC: **the step 2 scan** started as unit `i1025-k71s2s` (8 processes of 1 thread, nice 10, the lists above); all eight print the record system (|F| 4.5209699397e-10 against the record's 4.5191458454e-10, 2390 steps equal), each at about 94% CPU.
+
+## Result of step 2 (the scout point, written 2026-11-24 04:06:56 UTC)
+**Source:** ACCEPTED 02:26:16 UTC (logged above). **Scan** (unit `i1025-k71s2s`, 8 processes of 1 thread, nice 10; 02:26:23 to 04:06:27 UTC, 6004 s): exit 0 for all eight (04:05:52 to 04:06:27 UTC); all printed the record system (|F| 4.5209699397e-10 against the record's 4.5191458454e-10, 2390 steps equal); **8 of 8 noise-robust**; the repeat of 0.835 (the first on process 3, the repeat on process 7) **bit-identical** (hybrid +1, ln|det| -1984.3260648686567, float64 ln|det| -1983.248030561914, noise [1, 1]; `repeat_check.py` PASS); `read_lower.py` selftest exit 0, `--mutate=shift` and `--mutate=round2` exit 1; reader exit 0 (`s2/read_lower.txt`). Seconds per point 5963 to 5999 (eight processes on this machine's 4 cores, one round); wall per process 1:39:29 to 1:40:04; peak RSS 1.37 to 1.44 GiB; lowest MemAvailable 19.8 GiB (99 samples); no memory alert (`alert.log` does not exist).
+
+**Hybrid signs, as printed, lambda 0.820 to 0.850:** minus at 0.820, 0.825, 0.830; plus at 0.835, 0.840, 0.845, 0.850. **One robust change**, none touching a non-robust point, no ln|det| minimum without a sign change:
+| root | bracket | orientation as printed | det-linear estimate | estimator range |
+|---|---|---|---|---|
+| **k_c 71, D 21.21875, dh170 (Linux), the scout point** | (0.830, 0.835) | - to + | **0.832037** | [0.831557, 0.832037] |
+The float64 sign differs from the hybrid at 0.835 and 0.845 (float64 reads minus there; 3 of the 8 evaluations, counting the repeat). ln|det|: 0.820 -1982.0705, 0.825 -1982.9681, 0.830 -1984.7005, 0.835 -1984.3261, 0.840 -1983.7506, 0.845 -1983.6190, 0.850 -1983.6386.
+**Against the shifted trend:** c = 0.834652 (the k_c 79 trend 0.908 - 0.30 (D - 21.0), shifted by s = -0.007723). **The scout minus c is -0.002615**: inside t5's written 0.01 and inside my 0.005. Against the unshifted trend (0.842375) the scout is -0.010338 (just outside 0.01, which is why the shift matters). The measured k_c 71 slope from D 21.0 (0.901815) to D 21.21875 (0.832037) is **-0.31899 per unit D** (the trend's -0.30).
+
+## Predictions against the result (step 2)
+| prediction | result |
+|---|---|
+| t5's, written before the run: the scout point within 0.01 of the trend shifted by step 1's k_c step | **met**: -0.002615 from c = 0.834652 |
+| mine: the scout state accepted by `kc71_syscheck.py` with all four controls firing (90%) | yes (state |F| +0.053% of the record's, `freeze_from` 2390 = 2390) |
+| exactly one robust change in the window (80%); its estimate within 0.01 of c (75%), within 0.005 (55%) | yes; yes; yes (-0.002615) |
+| the repeat of 0.835 bit-identical (90%); every point noise-robust (70%) | yes; yes, 8 of 8 |
+| the scan 0.8 to 1.7 h (65%) | yes, 1.67 h (just inside; I expected 03:50 UTC and it ended 04:06:27, eight processes on four cores cost more CPU time per point than step 1's seven) |
+
+## Task summary
+| | k_c 71 (dh170, Linux) | k_c 79 (dh610, Linux) | k_c 71 minus k_c 79 |
+|---|---|---|---|
+| D 21.0 | 0.901815 (0.900, 0.905) | 0.909538 (0.905, 0.910) | **-0.007723** (t5 wrote -0.003 +- 0.003: not met) |
+| D 21.21875 | **0.832037** (0.830, 0.835) | not scanned | the trend shifted by that step puts it at 0.834652: **-0.002615** (t5 wrote within 0.01: met) |
+Information: the two Linux builds give the k_c 71 and k_c 79 roots at D 21.0; the k_c 71 root falls at -0.319 per unit D from D 21.0 to D 21.21875, a little steeper than the -0.30 of the k_c 79 trend. No raw output of this task lives outside this folder. Nothing of mine is running on dh170.
+
+## Log
+- 2026-11-24 02:26 UTC: step 2 scan started; 04:05:52 to 04:06:27 UTC: finished and read. 2026-11-24 04:06:56 UTC: result written (this section).
