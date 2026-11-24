@@ -1,6 +1,6 @@
 # I1025-win/kc71_d2125: lambda_1 at k_c 71 on leg 6's D 21.25 state, a hybrid sign scan at 0.810 to 0.840 (winb)
 
-Written before the run, 2026-11-24 02:51:20 UTC (substituted from `date -u` when pushed). No scan had been run for this folder when the order, the written lines and the estimates below were written. The dry test ran the pins, the `read_lower.py` selftests and the state check (read-only, 2 s each, outputs `*.txt.dry`); the real run repeats them first.
+Written before the run, 2026-11-24 02:51:20 UTC (the time of the README-first push, a25e7d281; later pushes keep it). No scan had been run for this folder when the order, the written lines and the estimates below were written. The dry test ran the pins, the `read_lower.py` selftests and the state check (read-only, 2 s each, outputs `*.txt.dry`); the real run repeats them first.
 
 ## Order (t5's hc of 2026-11-24, winb section; the D 21.125 reading, 0.862215, is in `I1025-win/kc71_d21125` and #1025 comment 7120469474)
 
@@ -68,9 +68,15 @@ Started outside my terminal: `Win32_Process.Create` of `conhost.exe --headless c
 
 ## Status
 
-Not started. README first.
+**Running since 2026-11-24 02:51:37 UTC** (started through `Win32_Process.Create` of `conhost.exe --headless cmd.exe /c go_kc71d2125_1025.cmd`; the scan processes started 02:51:44). README first: a25e7d281 (pushed 02:51:20 UTC, before the start). win2 pushed the D 21.25 state at 02:49:27 UTC (earlier than the ~03:00 t5 expected); the dry test ran at 02:50:43.
 
-Pushed 2026-11-24 02:51:20 UTC.
+- **Chain** (`rows/launcher_pid.txt`: 24052): conhost --headless 24052 <- cmd 8228 <- scan driver launcher 25296 and driver 11716 <- sampler 17116, alert-only watcher 20776, keep-awake helper 16536, and the four `d18_hybsign.py` processes p0 21040, p1 8312, p2 9068, p3 22248 (each with a worker). All BelowNormal.
+- **Session check** (`session_check_scan.txt`, exit 0): no `claude` in any chain, no Windows Terminal / OpenConsole / wt, a headless conhost in the chain.
+- **Before the scan** (02:51:37 to 02:51:44 UTC, 7 s): the pins matched; `read_lower.py` selftest 0 and its two controls 1, 1; `kc71_syscheck.py` selftest 0; the state accepted (exit 0; state |F| 4.4902425293e-10 against the record's 4.4883178732e-10, `freeze_from` 2388 steps, the record's); `--mutate=F` and `--mutate=steps` exit 1, 1 (`source_syscheck_*.txt`). All four `d18_hybsign.py` print "the record system".
+- **Machine at the start:** on AC (battery status 2, charge 100), clock 2995 of 2995 MHz, free physical memory 23.4 GB, beside it the other project's I114 `convergence.py` jobs (python 17024, 9968, 880), not touched.
+- **ETA** (estimates above): the scan ends about 03:55 UTC (range 03:45 to 04:05).
+
+Pushed 2026-11-24 02:52:11 UTC.
 
 ## Result
 
