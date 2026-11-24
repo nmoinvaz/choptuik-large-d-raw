@@ -41,6 +41,7 @@ All three at once would be 28 of 20. `wait_and_run.sh` therefore starts this lan
 ## Shared D: the tag g and tag i states side by side (no scan; rows added as each is done)
 | D | tag g state (win2 commit, time) | tag i state (win2 commit, time) | source checks | Delta g, i | \|F\| g, i | steps g, i | psi-constraint g, i | state distance (extra) | notes |
 |---|---|---|---|---|---|---|---|---|---|
+| 21.28125 | 6e781f4d (12:42 UTC) | 6d922950 (13:15 UTC) | both ACCEPTED (controls 1 1) | 1.1258083077444154, 1.1258094106440943 (i - g +1.1029e-06) | 4.5267187993303683e-10, 4.5269051444188447e-10 (ratio 1.0000412) | 2652, 2652 | 0.005713642093285211, 0.005713664231001841 (i - g +2.2138e-08) | 4.4057e-06 | `D21.28125/compare.txt`; Delta difference 1.1029e-06 against the registered bar 1e-6 (WRONG), state distance above 1e-6 (WRONG), the rest of the scorecard right |
 
 ## Far scan points from D 21.53125 (rows added as each point is done; roots det-linear, bracket = the grid step 0.005, orientation as the reader prints it)
 | D | state (win2 commit, time, tag i) | source check | window | root (bracket, estimator range) | against the prediction | repeat | notes |
@@ -49,3 +50,4 @@ All three at once would be 28 of 20. `wait_and_run.sh` therefore starts this lan
 ## Status
 - 2026-11-24 11:15 UTC: folder, scripts and tests written; the first point D 21.28125 (prediction 0.841733 - 0.0215 = 0.8202, centre 0.820, window 0.805 to 0.835) has its README and `tag.txt`; its unit `i1025-far-21_28125` is started next and waits for win2's state.
 - 2026-11-24 12:02 UTC: the coordinator's order of the day (above): no scan at the four shared D, side-by-side states instead; `compare_states.py`, `lane_compare.sh` and `wait_compare.sh` written and tested on a planted pair (the tag g state at D 21.21875 on both sides: all differences 0). The unit `i1025-far-21_28125` is stopped (it had pinned nothing). The unit `i1025-cmp-21_28125` waits for both states of D 21.28125; the other three D get their unit when the one before is done.
+- 2026-11-24 13:18 UTC: shared D 21.28125 done (row above; both states accepted, lane 34 s). The next D is 21.34375 (unit `i1025-cmp-21_34375` waits for both states).
