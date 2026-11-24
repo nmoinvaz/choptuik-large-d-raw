@@ -3,7 +3,7 @@
 # window and the rule of tag g's scan there (CENTER the multiple of 0.005 nearest PRED = tag g's prediction, grid +-0.015 by 0.005 plus a repeat, widen once by 0.015, bar 0.01). Waits (cap CAP s, default 43200) for the
 # comparison of D to end (its line "states compared ... far point done" in D<D>/exits_far.txt, or CMPFILE); a STOP or refuse line there, or no end line within the cap, stops this script with nothing scanned. Then the thread
 # gate of wait_and_run.sh (budget.txt), the far lock, and lane_far.sh with FARDIR=D<D>/i (default; the env FARDIR is for the tests): the state is the one the comparison pinned (i/in, blobs in i/in_blobs.txt), the outputs are in
-# D<D>/i/ (exits_far.txt, scan/, src/, read_lower.txt, leg_read.txt). Env NOWAIT=1 (NOWAIT_NOTE: the reason logged): do not wait for the comparison (the coordinator's second word on this order: start the scan at once).
+# D<D>/i/ (exits_far.txt, scan/, src/, read_lower.txt, leg_read.txt). Env BUDGET=N replaces budget.txt's limit for this scan (a scan that must stay inside 20 threads waits for the tag g lane's end). Env NOWAIT=1 (NOWAIT_NOTE: the reason logged): do not wait for the comparison (the coordinator's second word on this order: start the scan at once).
 D=$1; C=$2; PRED=$3; MODE=${4:-}
 FAR=/home/nathan/Source/choptuik-large-d-raw/I1025-dh610/kc79_far; F=$FAR/D$D; I=${FARDIR:-$F/i}; CMP=${CMPFILE:-$F/exits_far.txt}; L=$I/exits_far.txt; CAP=${CAP:-43200}
 mkdir -p $I
@@ -20,7 +20,7 @@ done
 [ -n "${NOWAIT:-}" ] || say "the comparison of D $D is done: the scan of the tag i state follows (window around $C, prediction $PRED)"
 tw=$(date +%s)
 while :; do
-  LIM=$(cat $FAR/budget.txt 2>/dev/null || echo 20); used=0
+  LIM=${BUDGET:-$(cat $FAR/budget.txt 2>/dev/null || echo 20)}; used=0
   [ "$(systemctl --user is-active i1076d)" = active ] && used=$((used + 12))
   ( flock -n 7 ) 7> /tmp/claude-1000/kc79_leg.lock || used=$((used + 8))
   [ $((used + 8)) -le $LIM ] && break
