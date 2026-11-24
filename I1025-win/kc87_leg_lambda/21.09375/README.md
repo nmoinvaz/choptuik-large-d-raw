@@ -72,9 +72,11 @@ Started outside my terminal: `Win32_Process.Create` of `conhost.exe --headless c
 
 ## Status
 
-Not started. README first. dh370 pushed the D 21.09375 state at 2026-11-24 07:35:57 UTC (commit 6fdda342); the dry test ran at 07:37:05 UTC.
+**Running.** Started 2026-11-24 07:38:05 UTC (`Win32_Process.Create` of `conhost.exe --headless cmd.exe /c go_kc87_1025.cmd`; conhost pid 16500, driver 18732; the four scan processes started 07:38:16 UTC: p0 17800, p1 23308, p2 24972, p3 22448, each with a worker). README first: 859fe22af (pushed 07:37:51 UTC, before the start). dh370 pushed the D 21.09375 state at 07:35:57 UTC (commit 6fdda342); the dry test ran at 07:37:05 UTC.
 
-Pushed 2026-11-24 07:37:51 UTC.
+At the start: the pins matched (7 blobs, worktree 48c36355); `read_lower.py` selftest 0 and controls 1, 1; both syscheck selftests 0; `kc87_syscheck_1025.py` accepted the state (exit 0; state |F| 4.6141266196e-10 against the record's 4.6133565820e-10, `freeze_from` 2939 steps = the record's); `--mutate=F` and `--mutate=steps` exit 1, 1; `kc79_syscheck_1025.py` on the state exit 1 (`source_syscheck_*.txt`). All four `d18_hybsign.py` print "the record system". All run BelowNormal; the session check (`session_check_1025.ps1 scan 16500`) exit 0: no `claude` in any chain, no Windows Terminal, a headless conhost in the chain. Machine at the start: free physical memory 23.24 GB, commit 10.53 GB, laptop CPU 49 % (the other project's I114 `convergence.py` jobs beside the scan, not touched). Keep-awake helper holding `ES_SYSTEM_REQUIRED`, alert-only memory watcher, sampler running. Estimate for the end: 08:20 to 09:20 UTC (written range 40 to 100 min).
+
+Pushed 2026-11-24 07:38:47 UTC.
 
 ## Result
 
