@@ -2,6 +2,9 @@
 # push the live folder I1025-macm3/kc87_leg2 to raw (from the clean push worktree): bash push_leg2.sh "commit message"; prints "pushed <hash>"
 L=$HOME/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_leg2
 W=$HOME/Source/choptuik-large-d-raw-1076p
+LOCK=$HOME/Source/.rawpush1076p.lock      # one push at a time into the shared push worktree (mkdir is atomic)
+n=0; until mkdir $LOCK 2>/dev/null; do n=$((n+1)); [ $n -gt 120 ] && { echo "push lock busy"; exit 1; }; sleep 2; done
+trap 'rmdir $LOCK 2>/dev/null' EXIT
 cd $W || exit 1
 git fetch -q && git merge -q --ff-only origin/main || { echo "ff-only merge failed"; exit 1; }
 mkdir -p I1025-macm3/kc87_leg2 && rsync -a --exclude 'work/' $L/ I1025-macm3/kc87_leg2/ || exit 1
