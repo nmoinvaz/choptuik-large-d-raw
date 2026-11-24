@@ -1,0 +1,45 @@
+2026-11-24 01:41:28 start: python-flint 0.9.0 FLINT 3.6.0, Python 3.14.10, worktree 9676d7c11fa61af808031839b106a4d50fa69547 clean; judge selftest 0 and --mutate 1 (0 1 wanted)
+2026-11-24 01:41:28 command krawczyk: cd /home/nathan/Source/choptuik-large-d-1081/solver/proof && nice -n 10 env CERTIFY_M_NTAY=28 CERTIFY_M_NJAC=16 CERTIFY_M_PREC=256 /home/nathan/Source/venv-i1058/bin/python certify_M.py krawczyk --point=/home/nathan/Source/choptuik-large-d-raw/I1081-dh610/record_c/A_M_point_M3x2E2.json --box=/home/nathan/Source/choptuik-large-d-raw/I1081-dh610/record_c/A_M_box_M3x2E2_h1e-13_w1e-13.json
+2026-11-24 01:41:29 end krawczyk exit 0, 1 s:    C3       in [-0.00176331952258334, -0.00176331952258024]  (radius 1.54e-15)
+2026-11-24 01:41:29 judge krawczyk_exit: got 0, wanted 0: ok
+2026-11-24 01:41:29 krawczyk: Krawczyk M = 3: K(X) in int X: True; relative margins +0.971, +0.953, +0.998, +0.999
+2026-11-24 01:41:29 command controls: cd /home/nathan/Source/choptuik-large-d-1081/solver/proof && nice -n 10 env CERTIFY_M_NTAY=28 CERTIFY_M_NJAC=16 CERTIFY_M_PREC=256 /home/nathan/Source/venv-i1058/bin/python certify_M.py controls --point=/home/nathan/Source/choptuik-large-d-raw/I1081-dh610/record_c/A_M_point_M3x2E2.json --box=/home/nathan/Source/choptuik-large-d-raw/I1081-dh610/record_c/A_M_box_M3x2E2_h1e-13_w1e-13.json
+2026-11-24 01:41:29 end controls exit 0, 0 s: CONTROLS ALL AS EXPECTED
+2026-11-24 01:41:29 judge controls_exit: got 0, wanted 0: ok
+2026-11-24 01:41:29 judge controls_all_as_expected: got 1, wanted 1: ok
+2026-11-24 01:41:29 command recheck: cd /home/nathan/Source/choptuik-large-d-1081/solver/proof && nice -n 10 env CERTIFY_M_NTAY=28 CERTIFY_M_NJAC=16 CERTIFY_M_PREC=256 /home/nathan/Source/venv-i1058/bin/python certify_M_recheck.py /home/nathan/Source/choptuik-large-d-raw/I1081-dh610/record_c/A_M_box_M3x2E2_h1e-13_w1e-13.json
+2026-11-24 01:41:29 end recheck exit 0, 0 s:    C3       in [-0.0017633195225833321, -0.0017633195225802475]
+2026-11-24 01:41:29 judge recheck_exit: got 0, wanted 0: ok
+2026-11-24 01:41:29 command recheck_mutate: cd /home/nathan/Source/choptuik-large-d-1081/solver/proof && nice -n 10 env CERTIFY_M_NTAY=28 CERTIFY_M_NJAC=16 CERTIFY_M_PREC=256 /home/nathan/Source/venv-i1058/bin/python certify_M_recheck.py /home/nathan/Source/choptuik-large-d-raw/I1081-dh610/record_c/A_M_box_M3x2E2_h1e-13_w1e-13.json --mutate
+2026-11-24 01:41:29 end recheck_mutate exit 1, 0 s:    C3       in [-1.9390548205994221, -1.9390548205994217]
+2026-11-24 01:41:29 judge recheck_mutate_exit: got 1, wanted 1: ok
+2026-11-24 01:41:29 recheck --mutate: control FIRED (exit 1)
+2026-11-24 01:41:29 step 1 as wanted
+2026-11-24 01:41:29 command export6a: cd /home/nathan/Source/choptuik-large-d-1081/solver/proof && nice -n 10 env CERTIFY_M_NTAY=28 CERTIFY_M_NJAC=16 CERTIFY_M_PREC=256 /home/nathan/Source/venv-i1058/bin/python certify_M.py export6a --box=/home/nathan/Source/choptuik-large-d-raw/I1081-dh610/record_c/A_M_box_M3x2E2_h1e-13_w1e-13.json --out=/home/nathan/Source/choptuik-large-d-raw/I1081-dh610/record_c/A_M_6a_M3x2E2_h1e-13_w1e-13.json
+2026-11-24 01:41:29 end export6a exit 0, 0 s: exported the state box at xi1 = 0.3 (max radius 1.21e-13) to /home/nathan/Source/choptuik-large-d-raw/I1081-dh610/record_c/A_M_6a_M3x2E2_h1e-13_w1e-13.json
+2026-11-24 01:41:29 judge export6a_exit: got 0, wanted 0: ok
+2026-11-24 01:41:29 judge centre_is_p_out: got 3.5264730566957154968386691933035772573627933502264,0.21149798139121541465218943962051773587658863581106,0.97650854519761854166002136860612262563508481396147,-0.0017633195225817898068793573792090220370241237083214, wanted 3.5264730566957154968386691933035772573627933502264,0.21149798139121541465218943962051773587658863581106,0.97650854519761854166002136860612262563508481396147,-0.0017633195225817898068793573792090220370241237083214: ok
+2026-11-24 01:41:29 command lemma6a: cd /home/nathan/Source/choptuik-large-d-1081/solver/proof && nice -n 10 env CERTIFY_M_NTAY=28 CERTIFY_M_NJAC=16 CERTIFY_M_PREC=256 /home/nathan/Source/venv-i1058/bin/python lemma6_jump_M.py --M=3 --box=/home/nathan/Source/choptuik-large-d-raw/I1081-dh610/record_c/A_M_6a_M3x2E2_h1e-13_w1e-13_in.json --x=3.5264730566957154968386691933035772573627933502264,0.21149798139121541465218943962051773587658863581106,0.97650854519761854166002136860612262563508481396147,-0.0017633195225817898068793573792090220370241237083214 --json=/home/nathan/Source/choptuik-large-d-raw/I1081-dh610/record_c/lemma6a_M3x2E2_h1e-13_w1e-13.json --save-B=/home/nathan/Source/choptuik-large-d-raw/I1081-dh610/record_c/lemma6a_M3x2E2_h1e-13_w1e-13_B.json
+2026-11-24 01:43:48 end lemma6a exit 0, 139 s: rho_6a = 1.259e-02 < 1: True  => all J_D,mu(0.3) = 0 implies psi = 0 (whole jump): True
+2026-11-24 01:43:48 judge lemma6a_exit: got 0, wanted 0: ok
+2026-11-24 01:43:48 judge lemma6a_rho_below_1: got 1, wanted 1: ok
+2026-11-24 01:43:48 lemma 6a: lemma S (M = 3, rp = 0.1, k = 20): contraction 0.6782; flat estimate on 0 < z <= Z = 0.004489: Lambda = 0.2368 rho_6a = 1.259e-02 < 1: True  => all J_D,mu(0.3) = 0 implies psi = 0 (whole jump): True 
+2026-11-24 01:43:48 command lemma6a_partial: cd /home/nathan/Source/choptuik-large-d-1081/solver/proof && nice -n 10 env CERTIFY_M_NTAY=28 CERTIFY_M_NJAC=16 CERTIFY_M_PREC=256 /home/nathan/Source/venv-i1058/bin/python lemma6_jump_M.py --M=3 --box=/home/nathan/Source/choptuik-large-d-raw/I1081-dh610/record_c/A_M_6a_M3x2E2_h1e-13_w1e-13_in.json --x=3.5264730566957154968386691933035772573627933502264,0.21149798139121541465218943962051773587658863581106,0.97650854519761854166002136860612262563508481396147,-0.0017633195225817898068793573792090220370241237083214 --mutate=partial --load-B=/home/nathan/Source/choptuik-large-d-raw/I1081-dh610/record_c/lemma6a_M3x2E2_h1e-13_w1e-13_B.json
+2026-11-24 01:43:48 end lemma6a_partial exit 0, 0 s: G_slow is 9 x 11: not square, beta is not determined by the slow data; lemma 6a NOT established   [MUTATION partial: failure expected]
+2026-11-24 01:43:48 judge partial_exit: got 0, wanted 0: ok
+2026-11-24 01:43:48 judge partial_caught: got 1, wanted 1: ok
+2026-11-24 01:43:48 command lemma6a_swap: cd /home/nathan/Source/choptuik-large-d-1081/solver/proof && nice -n 10 env CERTIFY_M_NTAY=28 CERTIFY_M_NJAC=16 CERTIFY_M_PREC=256 /home/nathan/Source/venv-i1058/bin/python lemma6_jump_M.py --M=3 --box=/home/nathan/Source/choptuik-large-d-raw/I1081-dh610/record_c/A_M_6a_M3x2E2_h1e-13_w1e-13_in.json --x=3.5264730566957154968386691933035772573627933502264,0.21149798139121541465218943962051773587658863581106,0.97650854519761854166002136860612262563508481396147,-0.0017633195225817898068793573792090220370241237083214 --mutate=swap
+2026-11-24 01:46:57 end lemma6a_swap exit 0, 189 s: backward integration failed (step size underflow at t = 0.04316854849457741): lemma 6a NOT established   [MUTATION swap: failure expected]
+2026-11-24 01:46:57 judge swap_exit: got 0, wanted 0: ok
+2026-11-24 01:46:57 judge swap_caught: got 1, wanted 1: ok
+2026-11-24 01:46:57 step 2 as wanted: the script returns 0 for a caught mutation; caught lines partial and swap 1 of 1 each
+2026-11-24 01:46:57 command incl: cd /home/nathan/Source/choptuik-large-d-1081/solver/proof && nice -n 10 env CERTIFY_M_NTAY=28 CERTIFY_M_NJAC=16 CERTIFY_M_PREC=256 /home/nathan/Source/venv-i1058/bin/python theorem_A_sets_M.py --M=3 --cert=/home/nathan/Source/choptuik-large-d-raw/I1081-dh610/record_c/A_M_box_M3x2E2_h1e-13_w1e-13.json --ray=/home/nathan/Source/choptuik-large-d-raw/I1081-dh610/record_c/in/ray_exc2_linux.json
+2026-11-24 01:46:58 end incl exit 0, 1 s: THEOREM A SETS (M = 3, mutation None): HOLD
+2026-11-24 01:46:58 judge incl_exit: got 0, wanted 0: ok
+2026-11-24 01:46:58 judge incl_hold: got 1, wanted 1: ok
+2026-11-24 01:46:58 command incl_selftest: cd /home/nathan/Source/choptuik-large-d-1081/solver/proof && nice -n 10 env CERTIFY_M_NTAY=28 CERTIFY_M_NJAC=16 CERTIFY_M_PREC=256 /home/nathan/Source/venv-i1058/bin/python theorem_A_sets_M.py --M=3 --cert=/home/nathan/Source/choptuik-large-d-raw/I1081-dh610/record_c/A_M_box_M3x2E2_h1e-13_w1e-13.json --ray=/home/nathan/Source/choptuik-large-d-raw/I1081-dh610/record_c/in/ray_exc2_linux.json --selftest
+2026-11-24 01:46:59 end incl_selftest exit 0, 1 s: SELFTEST (M = 3): PASS
+2026-11-24 01:46:59 judge incl_selftest_exit: got 0, wanted 0: ok
+2026-11-24 01:46:59 judge incl_selftest_pass: got 1, wanted 1: ok
+2026-11-24 01:46:59 step 3 as wanted
+2026-11-24 01:46:59 record_c done: all steps as wanted
