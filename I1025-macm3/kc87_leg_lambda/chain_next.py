@@ -3,7 +3,8 @@
 usage: chain_next.py next            prints NEXT D PREV_D PREV_ROOT SLOPE SRC TAG | WAIT why | DONE | STOP why
        chain_next.py pending         prints the pushed points that have a SCAN_DONE.txt and no root yet
        chain_next.py record D        reads D/read_lower.txt and D/steps.txt; appends the root to roots87.txt and prints the hc line (OK ...) or STOP why
-       chain_next.py selftest [--mutate=slope|changes|repeat|robust|all|interp|cross]
+       chain_next.py selftest [--mutate=slope|changes|repeat|robust|all|interp|cross|skip|legs]
+Part b2 (t5, 24 Nov 19:4x UTC: part b restarted from its D 21.9375 and 21.96875 states with the new ell_leap.py blob after the SVD exception at D 22.0): ../kc87_leg2/b2/pushed_points.txt, tag l1kc87Lmacm3b2.
 Files: roots87.txt (lines "D root lo hi source"), ../kc87_leg2/pushed_points.txt (part a, tag l1kc87Lmacm3), ../kc87_leg2/b/pushed_points.txt (part b, tag l1kc87Lmacm3b), ../kc87_leg2/c/pushed_points.txt (part c, tag l1kc87Lmacm3c).
        chain_next.py crossed         prints YES when the two largest scanned roots (by D) are both below 0 (t5: the crossing of lambda_1 = 0 is then bracketed), else NO
 Rule (t5, 24 Nov): for a point D, with a and b the two largest D below it that have a root (a > b; the seeds D 21.21875 and D 21.25 included): slope = (root[a] - root[b]) / (a - b) (my det-linear roots, whatever their spacing),
@@ -17,7 +18,9 @@ L = os.path.expanduser("~/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_leg_l
 L2 = os.path.expanduser("~/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_leg2")
 MUT = next((a.split("=", 1)[1] for a in sys.argv if a.startswith("--mutate=")), None)
 PARTS = (("a", L2, "I1025-macm3/kc87_leg2", "l1kc87Lmacm3"), ("b", L2 + "/b", "I1025-macm3/kc87_leg2/b", "l1kc87Lmacm3b"),
-         ("c", L2 + "/c", "I1025-macm3/kc87_leg2/c", "l1kc87Lmacm3c"))
+         ("b2", L2 + "/b2", "I1025-macm3/kc87_leg2/b2", "l1kc87Lmacm3b2"), ("c", L2 + "/c", "I1025-macm3/kc87_leg2/c", "l1kc87Lmacm3c"))
+# t5, 24 Nov 19:5x UTC: dh610 scans these four leg points, so they leave this chain (phase 2 keeps D 21.4375, 21.84375, 21.90625, 21.96875 and the rest)
+SKIP = (21.5625, 21.6875, 21.8125, 21.9375)
 BESIDE = -0.33
 
 
@@ -34,6 +37,11 @@ def read_roots(path):
 def read_pushed(folder):
     p = folder + "/pushed_points.txt"
     return [float(x) for x in open(p).read().split()] if os.path.exists(p) else []
+
+
+def apply_skip(pushed):
+    """the points dh610 scans (SKIP) are not mine"""
+    return dict(pushed) if MUT == "skip" else {D: v for D, v in pushed.items() if not any(abs(D - x) < 1e-9 for x in SKIP)}
 
 
 def on_grid(D):
@@ -80,12 +88,18 @@ def log_says(name, word):
     return os.path.exists(L2 + "/" + name) and word in open(L2 + "/" + name).read()
 
 
-def legs_ended():
-    """every leg has ended, or was refused or not needed (start_b.log / start_c.log say NOT started / not needed)"""
-    a = os.path.exists(L2 + "/LEG_DONE.txt")
-    b = os.path.exists(L2 + "/b/LEG_DONE.txt") or log_says("start_b.log", "NOT started")
-    c = os.path.exists(L2 + "/c/LEG_DONE.txt") or log_says("start_c.log", "NOT started") or log_says("start_c.log", "not needed")
-    return a and b and c
+def legs_ended(base=None):
+    """every leg has ended, or was refused or not needed: a, b (start_b.log NOT started), b2 (start_b2.log NOT started) and c (start_c2.log NOT started / not needed; start_c.log, which the control's
+    starter wrote while b was stopped, no longer counts: part c now follows b2)"""
+    base = base or L2
+    def says(name, word):
+        return os.path.exists(base + "/" + name) and word in open(base + "/" + name).read()
+    a = os.path.exists(base + "/LEG_DONE.txt")
+    b = os.path.exists(base + "/b/LEG_DONE.txt") or says("start_b.log", "NOT started")
+    b2 = os.path.exists(base + "/b2/LEG_DONE.txt") or says("start_b2.log", "NOT started")
+    cl = "start_c.log" if MUT == "legs" else "start_c2.log"
+    c = os.path.exists(base + "/c/LEG_DONE.txt") or says(cl, "NOT started") or says(cl, "not needed")
+    return a and b and b2 and c
 
 
 def phase1_now():
@@ -159,6 +173,22 @@ def selftest():
     neg = "points 5 in -0.020-0.000; not noise-robust: none\nrobust changes: 1; touching a non-robust point (not counted): none\n  robust change (-0.010, -0.005), - to +, det-linear -0.007100, range [-0.007800, -0.007100]\nln|det| local minima without a sign change: none\nrepeat check x: agree -> PASS\n"
     pn = parse(neg, "", MUT)
     chk("a reading with a negative root parses", pn[0] and pn[2] == (-0.01, -0.005) and pn[3] == -0.0071 and pn[4] == -0.0078)
+    pk = {21.4375: ("A", "ta"), 21.5625: ("B", "tb"), 21.84375: ("B", "tb"), 21.8125: ("B", "tb"), 21.9375: ("B", "tb"), 21.96875: ("B", "tb"), 22.0: ("B2", "tb2")}
+    ps = apply_skip(pk)
+    chk("skip: dh610's four points 21.5625, 21.6875, 21.8125, 21.9375 are dropped, the others stay", sorted(ps) == [21.4375, 21.84375, 21.96875, 22.0])
+    rk = {21.21875: 0.847216, 21.25: 0.836238, 21.3125: 0.814277, 21.375: 0.791593, 21.5: 0.744479, 21.625: 0.696157, 21.75: 0.646846, 21.875: 0.596477}
+    chk("skip: phase 2 plans 21.4375 first, then (with it scanned) 21.84375, never 21.5625", plan(rk, ps, phase1=False)[1] == 21.4375 and plan({**rk, 21.4375: 0.76}, ps, phase1=False)[1] == 21.84375)
+    import tempfile
+    with tempfile.TemporaryDirectory() as t:
+        for sub in ("b", "b2", "c"):
+            os.makedirs(t + "/" + sub)
+        open(t + "/LEG_DONE.txt", "w").write("x"); open(t + "/b/LEG_DONE.txt", "w").write("x")
+        open(t + "/start_c.log", "w").write("2026 part c NOT started: b stopped\n")      # the control's starter wrote this while b was stopped
+        chk("legs: b2 not started and part c's old NOT started line: not ended (phase 1)", not legs_ended(t))
+        open(t + "/b2/LEG_DONE.txt", "w").write("x")
+        chk("legs: b2 done, part c undecided (only the stale start_c.log line): not ended", not legs_ended(t))
+        open(t + "/start_c2.log", "w").write("part c not needed: lambda_1 not positive\n")
+        chk("legs: b2 done and part c not needed (start_c2.log): ended (phase 2)", legs_ended(t))
     print("selftest:", "PASS" if ok else "FAIL")
     return 0 if ok else 1
 
@@ -172,6 +202,7 @@ def main():
     for part, folder, src, tag in PARTS:
         for D in read_pushed(folder):
             pushed[D] = (src, tag)
+    pushed = apply_skip(pushed)
     if cmd == "next":
         r = plan(roots, pushed, phase1_now())
         if r[0] == "NEXT":
