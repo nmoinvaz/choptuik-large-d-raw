@@ -1,0 +1,17 @@
+dry run of kc71d21375_scan_driver_1025.py (2026-11-24 06:32 UTC, read-only: pins, reader selftests, the state check; no scan started), as printed:
+
+== 2026-11-24 06:32:25 kc71d21375_scan_driver_1025.py: lambda_1 at k_c 71, D 21.375, shares 0.765,0.780;0.770,0.785;0.775,0.790;0.780,0.795 (dry run); checking pins
+== 2026-11-24 06:32:25 pins matched (6 blobs, worktree 48c36355, no scan file yet)
+== 2026-11-24 06:32:26 read_lower.py selftest exit 0 and its two --mutate controls exit 1, 1 as wanted
+== 2026-11-24 06:32:26 kc71_syscheck.py selftest: exit 0 (0 s): selftest: PASS
+== 2026-11-24 06:32:28 kc71_syscheck.py state: exit 0 (2 s): ACCEPTED: the record class's |F| with a step count that comes back
+== 2026-11-24 06:32:29 kc71_syscheck.py mutate_F: exit 1 (1 s): NOT ACCEPTED: the state's |F| 4.340997e-10 is not within 1% of the record's 6.508573e-10
+== 2026-11-24 06:32:31 kc71_syscheck.py mutate_steps: exit 1 (1 s): NOT ACCEPTED: freeze_from gives 2378 steps, the record 2379
+== 2026-11-24 06:32:31 the state check passed: the state is accepted (exit 0), selftest 0, --mutate=F and --mutate=steps exit 1, 1
+== 2026-11-24 06:32:31 DRY: would start C:/Users/nathan/Source/venv-md510/Scripts/python.exe -u C:/Users/nathan/Source/kc71d21375_1025/inputs/d18_hybsign.py C:/Users/nathan/Source/kc71d21375_1025/inputs/l1kc71Lw1025e.jsonl C:/Users/nathan/Source/kc71d21375_1025/inputs/sol_l1kc71Lw1025e_D21.375000.npy 21.375 0.765,0.78 C:/Users/nathan/Source/kc71d21375_1025/I1025-win/kc71_d21375/scan_kc71_D21375_p0.jsonl (cwd C:/Users/nathan/Source/choptuik-i1025k79/solver/matter, 1 thread, BelowNormal, cap 10800 s)
+== 2026-11-24 06:32:31 DRY: would start C:/Users/nathan/Source/venv-md510/Scripts/python.exe -u C:/Users/nathan/Source/kc71d21375_1025/inputs/d18_hybsign.py C:/Users/nathan/Source/kc71d21375_1025/inputs/l1kc71Lw1025e.jsonl C:/Users/nathan/Source/kc71d21375_1025/inputs/sol_l1kc71Lw1025e_D21.375000.npy 21.375 0.77,0.785 C:/Users/nathan/Source/kc71d21375_1025/I1025-win/kc71_d21375/scan_kc71_D21375_p1.jsonl (cwd C:/Users/nathan/Source/choptuik-i1025k79/solver/matter, 1 thread, BelowNormal, cap 10800 s)
+== 2026-11-24 06:32:31 DRY: would start C:/Users/nathan/Source/venv-md510/Scripts/python.exe -u C:/Users/nathan/Source/kc71d21375_1025/inputs/d18_hybsign.py C:/Users/nathan/Source/kc71d21375_1025/inputs/l1kc71Lw1025e.jsonl C:/Users/nathan/Source/kc71d21375_1025/inputs/sol_l1kc71Lw1025e_D21.375000.npy 21.375 0.775,0.79 C:/Users/nathan/Source/kc71d21375_1025/I1025-win/kc71_d21375/scan_kc71_D21375_p2.jsonl (cwd C:/Users/nathan/Source/choptuik-i1025k79/solver/matter, 1 thread, BelowNormal, cap 10800 s)
+== 2026-11-24 06:32:31 DRY: would start C:/Users/nathan/Source/venv-md510/Scripts/python.exe -u C:/Users/nathan/Source/kc71d21375_1025/inputs/d18_hybsign.py C:/Users/nathan/Source/kc71d21375_1025/inputs/l1kc71Lw1025e.jsonl C:/Users/nathan/Source/kc71d21375_1025/inputs/sol_l1kc71Lw1025e_D21.375000.npy 21.375 0.78,0.795 C:/Users/nathan/Source/kc71d21375_1025/I1025-win/kc71_d21375/scan_kc71_D21375_p3.jsonl (cwd C:/Users/nathan/Source/choptuik-i1025k79/solver/matter, 1 thread, BelowNormal, cap 10800 s)
+== 2026-11-24 06:32:31 DRY: reader window 0.765 0.795; nothing started
+
+The refusal path (a wrong pin stops the real run with exit 2 and an hc) is the code of the D 21.125 driver, tested there with a wrong state pin; it is not repeated here.
