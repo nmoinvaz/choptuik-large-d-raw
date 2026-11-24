@@ -9,12 +9,12 @@ DN=$(python3 -c "print(repr(float('$D')))")
 mkdir -p $L/$DN
 LOG=$L/$DN/pipeline.log
 say() { echo "$(date -u '+%F %T') UTC $*" >> $LOG; }
-say "pipeline start: D $DN, previous root $PR at D $PD, slope $SL"
+say "pipeline start: D $DN, previous root $PR at D $PD, slope $SL${SL2:+, scored beside: slope $SL2}"
 python3 $L/newpoint87.py selftest > $L/$DN/selftest_newpoint87.txt 2>&1 || { say "STOP: newpoint87 selftest failed"; exit 1; }
 python3 $L/newpoint87.py selftest --mutate=round > $L/$DN/selftest_newpoint87_mutate_round.txt 2>&1 && { say "STOP: newpoint87 selftest --mutate=round passed (it must fail)"; exit 1; }
 python3 $L/newpoint87.py selftest --mutate=g > $L/$DN/selftest_newpoint87_mutate_g.txt 2>&1 && { say "STOP: newpoint87 selftest --mutate=g passed (it must fail)"; exit 1; }
 python3 $L/newpoint87.py selftest --mutate=slope > $L/$DN/selftest_newpoint87_mutate_slope.txt 2>&1 && { say "STOP: newpoint87 selftest --mutate=slope passed (it must fail)"; exit 1; }
-python3 $L/newpoint87.py $D $PD $PR --slope=$SL >> $LOG 2>&1 || { say "STOP: newpoint87 failed"; exit 1; }
+python3 $L/newpoint87.py $D $PD $PR --slope=$SL ${SL2:+--slope2=$SL2} >> $LOG 2>&1 || { say "STOP: newpoint87 failed"; exit 1; }
 bash $L/prepare87.sh $DN >> $LOG 2>&1 || { say "STOP: prepare87 failed (a pin mismatch)"; exit 1; }
 bash $L/push87.sh "I1025-macm3/kc87_leg_lambda: D $DN README first (rule prediction, grid, pins)" >> $LOG 2>&1; say "README pushed ($?)"
 bash $L/point87.sh $DN accept >> $LOG 2>&1

@@ -42,13 +42,13 @@ if [ "$MODE" = accept ]; then
     [ -e $WTM/data/$f ] || cp $src $WTM/data/$f
     [ "$(blob $WTM/data/$f)" = "$(blob $src)" ] || stop "copied $f differs"
   done
-  nice -n 10 $PY -I $L/common/in/kc87_syscheck_1025.py --selftest > $OUT/selftest_kc87_syscheck.txt 2>&1; r1=$?
-  nice -n 10 $PY -I $L/common/in/kc79_syscheck_1025.py --selftest > $OUT/selftest_kc79_syscheck.txt 2>&1; r2=$?
+  nice -n ${NICE:-10} $PY -I $L/common/in/kc87_syscheck_1025.py --selftest > $OUT/selftest_kc87_syscheck.txt 2>&1; r1=$?
+  nice -n ${NICE:-10} $PY -I $L/common/in/kc79_syscheck_1025.py --selftest > $OUT/selftest_kc79_syscheck.txt 2>&1; r2=$?
   step "selftests: kc87_syscheck exit $r1, kc79_syscheck exit $r2 (0 wanted)"; [ $r1 = 0 ] && [ $r2 = 0 ] || stop "a selftest failed"
-  nice -n 10 $PY -I $L/common/in/kc87_syscheck_1025.py $STUB $STATE $D $WTM > $OUT/syscheck.txt 2>&1; a0=$?
-  nice -n 10 $PY -I $L/common/in/kc87_syscheck_1025.py $STUB $STATE $D $WTM --mutate=F > $OUT/syscheck_mutF.txt 2>&1; a1=$?
-  nice -n 10 $PY -I $L/common/in/kc87_syscheck_1025.py $STUB $STATE $D $WTM --mutate=steps > $OUT/syscheck_mutsteps.txt 2>&1; a2=$?
-  nice -n 10 $PY -I $L/common/in/kc79_syscheck_1025.py $STUB $STATE $D $WTM > $OUT/syscheck_kc79_refuses.txt 2>&1; a3=$?
+  nice -n ${NICE:-10} $PY -I $L/common/in/kc87_syscheck_1025.py $STUB $STATE $D $WTM > $OUT/syscheck.txt 2>&1; a0=$?
+  nice -n ${NICE:-10} $PY -I $L/common/in/kc87_syscheck_1025.py $STUB $STATE $D $WTM --mutate=F > $OUT/syscheck_mutF.txt 2>&1; a1=$?
+  nice -n ${NICE:-10} $PY -I $L/common/in/kc87_syscheck_1025.py $STUB $STATE $D $WTM --mutate=steps > $OUT/syscheck_mutsteps.txt 2>&1; a2=$?
+  nice -n ${NICE:-10} $PY -I $L/common/in/kc79_syscheck_1025.py $STUB $STATE $D $WTM > $OUT/syscheck_kc79_refuses.txt 2>&1; a3=$?
   step "kc87_syscheck_1025.py exit $a0 (0 wanted); controls --mutate=F exit $a1, --mutate=steps exit $a2 (1 wanted each); kc79_syscheck_1025.py on the k_c 87 state exit $a3 (1 wanted): $(grep -E '^D ' $OUT/syscheck.txt | cut -c1-260)"
   if [ $a0 = 0 ] && [ $a1 = 1 ] && [ $a2 = 1 ] && [ $a3 = 1 ]; then echo "ACCEPTED $(stamp) UTC" > $OUT/VERDICT.txt; else echo "REFUSED: kc87_syscheck $a0, controls $a1 $a2, kc79_syscheck refuses $a3" > $OUT/VERDICT.txt; fi
   step "verdict: $(cat $OUT/VERDICT.txt)"
@@ -85,11 +85,11 @@ chmod +x $OUT/scan/watch_alert.sh
 nice -n 10 $OUT/scan/watch_alert.sh $OUT "$HC" > /dev/null 2>&1 &
 R1=-1; R2=-1; for ((i = 0; i < ${#LAMP[@]}; i++)); do [ "${LAMP[$i]}" = "$REP" ] && { [ $R1 -lt 0 ] && R1=$i || R2=$i; }; done
 [ $R2 -ge 0 ] && [ $((R1 % NP)) != $((R2 % NP)) ] || stop "the repeat of $REP is not on another process than the first"
-step "scan starts: D $D, ${#LAMP[@]} values (${LAMP[*]}) on $NP processes of 1 thread, nice 10, round-robin (a process runs its values one after another); the first $REP on process $((R1 % NP)), the repeat on process $((R2 % NP)); state $STATEFILE $(blob $STATE), record $(blob $STUB); alert watcher on (hc: ${HC:-none})"
+step "scan starts: D $D, ${#LAMP[@]} values (${LAMP[*]}) on $NP processes of 1 thread, nice ${NICE:-10}, round-robin (a process runs its values one after another); the first $REP on process $((R1 % NP)), the repeat on process $((R2 % NP)); state $STATEFILE $(blob $STATE), record $(blob $STUB); alert watcher on (hc: ${HC:-none})"
 pids=()
 for ((p = 0; p < NP; p++)); do
   mine=""; for ((i = p; i < ${#LAMP[@]}; i += NP)); do mine="$mine,${LAMP[$i]}"; done; mine=${mine#,}
-  ( cd $WTM && nice -n 10 env OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 RAYON_NUM_THREADS=1 P4_WT_MATTER=$WTM PYTHONFAULTHANDLER=1 \
+  ( cd $WTM && nice -n ${NICE:-10} env OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 RAYON_NUM_THREADS=1 P4_WT_MATTER=$WTM PYTHONFAULTHANDLER=1 \
       $PY -u $L/common/capped_run.py 28800 $PY -u $L/common/in/d18_hybsign.py $STUB $STATE $D "$mine" $OUT/scan/scan_D${D}_p$p.jsonl > $OUT/scan/scan_p$p.log 2>&1
     rc=$?; echo "$(stamp) UTC proc $p (lambda $mine) exit $rc" >> $OUT/steps.txt ) &
   pids+=($!)

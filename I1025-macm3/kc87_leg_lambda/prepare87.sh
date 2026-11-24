@@ -5,6 +5,7 @@ L=$HOME/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_leg_lambda
 RAWG=$HOME/Source/choptuik-large-d-raw-1076p
 DN=$1; OUT=$L/$DN
 . $OUT/point.env
+SRC=${SRC:-I1025-dh370/kc87_leg}      # the raw folder of the states (point.env sets it; default the dh370 leg)
 mkdir -p $OUT/in $L/common/in
 rc=0
 : > $OUT/pins.txt
@@ -23,6 +24,6 @@ pin I1025-dh170/kc_break/d18_hybsign.py e089207a $L/common/in/d18_hybsign.py $C
 pin I1025-dh170/lower_root/read_lower.py 89309d3c $L/common/in/read_lower.py $C
 pin I1025-mac/d18/d185_scan_read.py 7c9d400f $L/common/in/d185_scan_read.py $C
 pin I1025-dh610/kc71_d19125/in/repeat_check.py aaf598a9 $L/common/in/repeat_check.py $CR
-pin I1025-dh370/kc87_leg/$STATEFILE $STATEBLOB $OUT/in/$STATEFILE $RAWC
-pin I1025-dh370/kc87_leg/$TAG.jsonl $RECBLOB $OUT/in/$TAG.jsonl $RAWC
+pin $SRC/$STATEFILE $STATEBLOB $OUT/in/$STATEFILE $RAWC
+pin $SRC/$TAG.jsonl $RECBLOB $OUT/in/$TAG.jsonl $RAWC
 exit $rc
