@@ -1,1 +1,14 @@
 2026-11-24 17:46:26 UTC chain1078 start
+2026-11-24 22:26:28 UTC build.done seen, hpkernel imports
+2026-11-24 22:26:28 UTC 1_toy: pid 28016, cap 1800 s: mode_matched.py toy
+2026-11-24 22:26:36 UTC 1_toy: exit 0 (want (0,)), 8 s; toy (gap 0.002, T 10.11): matched root 5.000000000000003 (|err| 2.6645352591003757e-15), outward root 4.999090333425461 (|err| 0.0009096665745387256); identity at lam 1: signs -1 -1, ln|D_out| - ln|D_m| - sum ln det Phi_b = 8.9e-16: PASS
+2026-11-24 22:26:36 UTC 1b_toy_mutate_shift: pid 46904, cap 1800 s: mode_matched.py toy --mutate=shift
+2026-11-24 22:26:40 UTC 1b_toy_mutate_shift: exit 1 (want (1,)), 4 s; toy (gap 0.002, T 10.11, mutate shift): matched root 4.9999989864252425 (|err| 1.0135747574580023e-06), outward root 5.000571493125735 (|err| 0.0005714931257347899); identity at lam 1: signs -1 -1, ln|D_out| - ln|D_m| - sum ln det Phi_b = 1.8e-15: FAIL
+2026-11-24 22:26:40 UTC 1c_bracket_selftest: pid 42368, cap 600 s: mode_matched_bracket.py selftest
+2026-11-24 22:26:42 UTC 1c_bracket_selftest: exit 0 (want (0,)), 2 s; selftest: planted root 6.412345678901234, found 6.412345678901234, |error| 0.0e+00 (<= 1e-11), 10 evaluations, 1 sign change(s): PASS
+2026-11-24 22:26:42 UTC 1d_bracket_selftest_shift: pid 34452, cap 600 s: mode_matched_bracket.py selftest --mutate=shift
+2026-11-24 22:26:43 UTC 1d_bracket_selftest_shift: exit 1 (want (1,)), 1 s; selftest (control shift): planted root 6.412345678901234 (planted at 6.412346678901234), found 6.412346678901234, |error| 1.0e-06 (<= 1e-11), 10 evaluations, 1 sign change(s): FAIL (must FAIL)
+2026-11-24 22:26:46 UTC 2_four: pid 9592, cap 14400 s: mode_matched.py four D:\choptuik-raw-i1078\I1078-win2\four.jsonl D:\choptuik-raw-i1078\I1072-dh370\states3\tmap_tmap_tmap_lowDhm_x0.000157-0.975_D3.0444_M384_L0.4_M160_s1.9635_L0.4_M128_s1.9635_L0.4_M96_s1.9635.npz --threads=6
+2026-11-24 22:46:58 UTC 2_four: exit 0 (want (0,)), 1215 s; criterion 1 (four lam): f ['-1', '-1.00000000005', '-1.0000000001', '-1.00000000014'], line residual 4.4e-13 (<= 1e-6), smallest pivot ratio 5.2e-08 (> 1e-20): PASS
+2026-11-24 22:46:58 UTC 2_four compare: bit-identical True, within 1e-9 True
+2026-11-24 22:46:58 UTC 3_scan_m96_coarse: pid 16488, cap 46800 s: mode_matched.py det D:\choptuik-raw-i1078\I1078-win2\scan_m96.jsonl D:\choptuik-raw-i1078\I1072-dh370\states3\tmap_tmap_tmap_lowDhm_x0.000157-0.975_D3.0444_M384_L0.4_M160_s1.9635_L0.4_M128_s1.9635_L0.4_M96_s1.9635.npz 4.5 4.75 5.0 5.25 5.5 5.75 6.0 6.25 6.5 6.75 7.0 7.25 7.5 --threads=6
