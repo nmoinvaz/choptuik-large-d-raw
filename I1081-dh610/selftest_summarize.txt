@@ -1,0 +1,9 @@
+  all pass, smallest 0.5: robust True (expected True): ok
+  one run False: robust False (expected False): ok
+  all pass, smallest 0.15: robust False (expected False): ok
+  all pass, smallest exactly 0.2: robust False (expected False): ok
+  all pass, smallest 0.2001: robust True (expected True): ok
+  parse 'Krawczyk M = 3: K(X) in int X: True; relative margins +0.711': (True, [0.711, 0.528, 0.981, 0.992]) (ok)
+  parse 'Krawczyk M = 3: K(X) in int X: False; relative margins +0.25': (False, [0.251, -0.247, 0.98, 0.992]) (ok)
+  parse 'nothing here': None (ok)
+selftest PASS
