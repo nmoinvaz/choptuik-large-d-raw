@@ -11,6 +11,7 @@
 {
 set -u
 D=$1; C=$2; PRED=$3; MODE=${4:-}
+HALF=${HALF:-3}; NP=$(( 2 * HALF + 2 ))  # env HALF: grid steps each side of CENTER (default 3: 7 values, 8 processes; the Linux k_c 87 scan of D 21.75 uses 2: 5 values, 6 processes)
 RAW=/home/nathan/Source/choptuik-large-d-raw; LEG=$RAW/I1025-dh610/kc87_m3pts; F=$LEG/${FNAME:-$D}; IN=$LEG/in; DIN=$F/in; S=$F/scan; RG=$F/src
 WT=/home/nathan/Source/choptuik-large-d-1025g; WTM=$WT/solver/matter; WTF=/home/nathan/Source/choptuik-large-d-1025f; WF=$WTF/solver/matter; PY=/home/nathan/Source/venv-i1058/bin/python
 TAG=l1kc87Lmacm3b
@@ -29,9 +30,9 @@ for f in dss_ell ell_ddm ell_dd ddnp; do git -C $WT diff --quiet 505d8399 HEAD -
 [ "$(git -C $WTF rev-parse HEAD)" = 505d839940456a3d04321d75cf66cc3b5bc831c4 ] && [ -z "$(git -C $WTF status --short)" ] || { say "refuse: $WTF is not clean at 505d8399"; bad=1; }
 [ -e $S/scan_D${D}_p0.jsonl ] && [ -z "$MODE" ] && { say "refuse: $S/scan_D${D}_p0.jsonl exists"; bad=1; }
 av=$(awk '/MemAvailable/ {print $2}' /proc/meminfo)
-[ -n "$MODE" ] || [ "$av" -ge $(( 8 * 2500000 + 4000000 )) ] || { say "refuse: MemAvailable $av kB is below 8 x 2.5 GB + 4 GB"; bad=1; }
+[ -n "$MODE" ] || [ "$av" -ge $(( NP * 2500000 + 4000000 )) ] || { say "refuse: MemAvailable $av kB is below $NP x 2.5 GB + 4 GB"; bad=1; }
 [ $bad = 0 ] || exit 2
-LAMS=$($PY -c "c = $C; print(','.join(f'{round(c + 0.005 * k, 3):.3f}' for k in range(-3, 4)))"); LO=$($PY -c "print(f'{round($C - 0.015, 3):.3f}')"); HI=$($PY -c "print(f'{round($C + 0.015, 3):.3f}')")
+LAMS=$($PY -c "c = $C; print(','.join(f'{round(c + 0.005 * k, 3):.3f}' for k in range(-$HALF, $HALF + 1)))"); LO=$($PY -c "print(f'{round($C - 0.005 * $HALF, 3):.3f}')"); HI=$($PY -c "print(f'{round($C + 0.005 * $HALF, 3):.3f}')")
 say "pins checked (in_blobs.txt of in/ and $(basename $F)/, worktrees 1025g 48c36355 and 1025f 505d8399, MemAvailable $av kB, load $(cut -d' ' -f1-3 /proc/loadavg), $($PY -V 2>&1)); window $LO to $HI, grid $LAMS and a repeat of $C; prediction $PRED (bar 0.005); mode '${MODE:-run}'"
 export D18_DIR=$IN
 ( cd $IN
@@ -59,10 +60,10 @@ cp $RG/syscheck.txt $RG/ACCEPTED.txt
 # 3. the scan
 export OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 RAYON_NUM_THREADS=1 P4_WT_MATTER=$WF
 IFS=, read -ra LA <<< "$LAMS"
-LISTS=("${LA[0]}" "${LA[1]}" "${LA[2]}" "${LA[3]}" "${LA[4]}" "${LA[5]}" "${LA[6]}" "$C")
-say "scan: lambda $LO to $HI by 0.005 and a repeat of $C (8 evaluations), lists ${LISTS[*]}, 8 processes of 1 thread, nice 8, cap 28800 s each"
+LISTS=("${LA[@]}" "$C")
+say "scan: lambda $LO to $HI by 0.005 and a repeat of $C ($NP evaluations), lists ${LISTS[*]}, $NP processes of 1 thread, nice 8, cap 28800 s each"
 pids=()
-for j in 0 1 2 3 4 5 6 7; do
+for ((j = 0; j < NP; j++)); do
   ( cd $WF && nice -n 8 /usr/bin/time -v timeout -s TERM 28800 $PY -u $IN/d18_hybsign.py $REC $STATE $D ${LISTS[$j]} $S/scan_D${D}_p$j.jsonl < /dev/null > $S/scan_p$j.raw 2>&1
     echo "$(date -u '+%F %T') UTC scan p$j (${LISTS[$j]}) exit $?" >> $L ) &
   pids+=($!)
@@ -74,7 +75,7 @@ done
     sleep 30
   done ) &
 wait "${pids[@]}"
-for j in 0 1 2 3 4 5 6 7; do grep -vE 'Warning|^  [a-z]+ = |slogdet' $S/scan_p$j.raw > $S/scan_p$j.log; say "p$j: $(grep -E 'record system' $S/scan_p$j.log | head -1 | cut -c1-150)"; done
+for ((j = 0; j < NP; j++)); do grep -vE 'Warning|^  [a-z]+ = |slogdet' $S/scan_p$j.raw > $S/scan_p$j.log; say "p$j: $(grep -E 'record system' $S/scan_p$j.log | head -1 | cut -c1-150)"; done
 cat $S/scan_D${D}_p*.jsonl | $PY -I -c "
 import sys, json
 rows = sorted((json.loads(l) for l in sys.stdin if l.strip()), key=lambda r: (r['lam'], r['sec']))

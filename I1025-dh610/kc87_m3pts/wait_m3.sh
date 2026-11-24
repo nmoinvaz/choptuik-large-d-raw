@@ -4,6 +4,14 @@
 D=$1; C=$2; PRED=$3
 F=/home/nathan/Source/choptuik-large-d-raw/I1025-dh610/kc87_m3pts; PUSH=/tmp/claude-1000/-home-nathan-Source-choptuik-large-d/4ef2cfd3-77e8-4b1b-9eda-6fb9da54dcb9/scratchpad/push_folder.sh
 mkdir -p $F/$D
+# inserted by the coordinator's word (hc, 24 Nov, about 22:40 UTC): the k_c 87 scan of macm3's D 21.75 state on Linux (window 0.640 to 0.660 by 0.005 and a repeat of 0.650) runs first after D 21.6875 and before D 21.8125
+if [ "$D" = 21.8125 ] && [ ! -e $F/21.75/INSERTED_DONE ]; then
+  echo "== $(date -u '+%Y-%m-%d %H:%M:%S') UTC kc87_m3pts chain: inserted point D 21.75 (k_c 87 of macm3's state, on Linux, HALF 2) runs before D 21.8125" >> $F/exits_chain.txt
+  mkdir -p $F/21.75; HALF=2 bash $F/wait_m3.sh 21.75 0.650 0.646846; rc=$?
+  echo "== $(date -u '+%Y-%m-%d %H:%M:%S') UTC kc87_m3pts chain: inserted point D 21.75 ended with exit $rc" >> $F/exits_chain.txt
+  [ $rc = 0 ] || exit $rc
+  touch $F/21.75/INSERTED_DONE
+fi
 L=$F/$D/exits_k87l.txt
 say() { echo "== $(date -u '+%Y-%m-%d %H:%M:%S') UTC kc87_m3pts D $D: $*" | tee -a $L; }
 t0=$(date +%s)
