@@ -155,6 +155,14 @@ Timing finding (reported 11:50 UTC): seconds per point at h 0.03125 against h 0.
 
 `run_leap11.sh` (headless, BelowNormal; dry run 14:35 UTC with the scout's two points as stand-in seeds: pins pass, seeds D 21.28125 (blob ee63bdf2) and D 21.34375 (blob b7efa3d3) accepted, controls exit 1, command printed) waits for `all10.done` (the scout's end by its cap, 00:04:28 UTC 25 Nov), restarts only if `summary_leap10.txt` says "capped at 43200 s" and there is no `leap10_STOP.txt`, from the last two records of tag l1kc79Lw1025i as tag l1kc79Lw1025j to D_end 22.5 with h = the last record's h (0.0625 now; logged), the seeds re-checked by `kc79_syscheck_1025.py` (selftest, accepts, `--mutate=F` and `--mutate=steps` exit 1), the guard (`leap_guard.py` f1fe7c7c, `--seeds`; table `leap11_points.txt`, stop file `leap11_STOP.txt`) and samplers (`leap11/`) started by `launch_leap11_extras.ps1`, 4 threads, a fresh 12 h cap by the exact root pid; files `leap11.log`, `exits_leap11.txt`, `summary_leap11.txt`, `all11.done`. Any other end (a guard stop, the leap's own stop, reaching D 22.5) is not restarted. The restart is recorded here when it happens.
 
+## The far scout stopped by order, its cap restart disarmed (the coordinator's hc ~17:25 UTC 24 Nov)
+
+The order (verbatim, point 1): "STOP THE FAR SCOUT NOW by exact pid, and disarm its cap restart (run_leap11.sh). Reason for the README: its Delta drifts from tag g's along the h 0.0625 path, x3 per step (1.1e-6, 4.1e-6, 1.23e-5) with everything else equal; its D 21.46875 state is already pinned by dh610 for the last lambda_1 pair, so nothing it is computing now is needed. Keep its states and records as they are."
+
+Done at 17:27 UTC: the cap-restart waiter `run_leap11.sh` (bash pid 41496) was killed first, by exact pid after the command-line check, then the scout's leap root pid 40680 (command line `ell_leap.py l1kc79Lw1025i`; run 19382 s since 12:04:28 UTC), also by exact pid. The scout's driver `run_leap10.sh` finishes by itself (final copy, `all10.done`) and ends the guard and the samplers. Kept as they are: four accepted points at h 0.0625, D 21.28125, 21.34375, 21.40625 and 21.46875 (4059, 4556, 4461 and 4391 s; the states and `l1kc79Lw1025i.jsonl` in `states/`), the in-flight step to D 21.53125 (about 55 minutes in) is discarded. No restart.
+
+The drift of its Delta from the tag g path at the same D (scout minus tag g), with everything else equal to better than 0.3% (|F|, steps, constraint, sigma_reg, |J+dF/dn|): D 21.28125 +1.10e-6, D 21.34375 +4.10e-6 (x3.72), D 21.40625 +1.23e-5 (x3.01); the scout minus leg 9 (k_c 71) difference changed by +0.60e-5, +1.05e-5, +1.31e-5 per scout step against about +0.1e-5 per 0.03125 step on tag g. The scout's singular values, cosines, constraints and slopes (reported with each point) agree with tag g's where they overlap; its Delta beyond D 21.4 is a path-dependent estimate.
+
 ## Result
 
 Not yet run.
