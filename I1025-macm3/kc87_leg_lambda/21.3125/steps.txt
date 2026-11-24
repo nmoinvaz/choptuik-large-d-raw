@@ -1,0 +1,17 @@
+2026-11-24 13:48:47 UTC accept: D 21.3125 (loadavg { 2.38 2.19 2.43 }, free memory 87%, 13.7 GiB available, disk 24Gi free)
+2026-11-24 13:48:47 UTC inputs pinned: state 2c47f756 and record b0d44d99 from raw 82d01bc4 (pins.txt); kc87_syscheck 6df5d960, kc79_syscheck 29dce7ea, d18_hybsign e089207a, read_lower 89309d3c, d185_scan_read 7c9d400f, repeat_check aaf598a9
+2026-11-24 13:48:47 UTC worktree 505d8399, clean outside solver/matter/data; Python 3.14.3, multidouble isa neon
+2026-11-24 13:48:48 UTC selftests: kc87_syscheck exit 0, kc79_syscheck exit 0 (0 wanted)
+2026-11-24 13:48:53 UTC kc87_syscheck_1025.py exit 0 (0 wanted); controls --mutate=F exit 1, --mutate=steps exit 1 (1 wanted each); kc79_syscheck_1025.py on the k_c 87 state exit 1 (1 wanted): D 21.3125 k_c 87: record |F| 4.5707523488e-10, F_start 3.045e-05, steps 2916, constraint 4.029e-03, Delta 1.126630347829, 794 s; state |F| 4.5707523488e-10, freeze_from steps 2916
+2026-11-24 13:48:53 UTC verdict: ACCEPTED 2026-11-24 13:48:53 UTC
+2026-11-24 13:48:53 UTC scan: D 21.3125 (loadavg { 2.43 2.20 2.43 }, free memory 87%, 13.7 GiB available, disk 24Gi free)
+2026-11-24 13:48:53 UTC inputs pinned: state 2c47f756 and record b0d44d99 from raw 82d01bc4 (pins.txt); kc87_syscheck 6df5d960, kc79_syscheck 29dce7ea, d18_hybsign e089207a, read_lower 89309d3c, d185_scan_read 7c9d400f, repeat_check aaf598a9
+2026-11-24 13:48:53 UTC worktree 505d8399, clean outside solver/matter/data; Python 3.14.3, multidouble isa neon
+2026-11-24 13:48:53 UTC memory before the scan: about 13.7 GiB available (free+inactive+speculative+purgeable), 87% free by memory_pressure; 2 processes for 6 values (the k_c 87 scan of D 19.75 with 4 processes: 4.07, 2.62, 2.52, 2.51 GB peak RSS, available 17.6 down to 10.0 GiB), gate 10 GiB
+2026-11-24 13:48:53 UTC scan starts: D 21.3125, 6 values (0.805 0.810 0.815 0.820 0.825 0.815) on 2 processes of 1 thread, nice 15, round-robin (a process runs its values one after another); the first 0.815 on process 0, the repeat on process 1; state sol_l1kc87Lmacm3_D21.312500.npy 2c47f756, record b0d44d99; alert watcher on (hc: /Users/nathan/.local/bin/hc)
+2026-11-24 13:48:55 UTC proc 0 lambda 0.805,0.815,0.825: capped_run child pid 96200 (cap 28800 s)
+2026-11-24 13:48:57 UTC proc 1 lambda 0.810,0.820,0.815: capped_run child pid 96230 (cap 28800 s)
+0 evaluations, 0 noise-robust
+   2 D 21.3125 k_c 87: |F| 4.5707523488e-10 (record 4.5707523488e-10), steps 2916 (record 2916): the record system
+2026-11-24 13:50:48 UTC STOP (by me): the 2-process scan of D 21.3125 (started 13:48:53) is aborted for t5's change to 4 processes; no evaluation had finished; its logs are in scan_2proc_aborted/; rerun with 4 processes (rescan87.sh)
+2026-11-24 13:51:12 UTC note: the lines '0 evaluations, 0 noise-robust' and '2 D 21.3125 k_c 87: ... the record system' above come from my abort (I killed the tree children-first; point87.sh went on to its merge for a moment before it was killed). They are not a scan result: no evaluation had finished (no row in scan_2proc_aborted/).
