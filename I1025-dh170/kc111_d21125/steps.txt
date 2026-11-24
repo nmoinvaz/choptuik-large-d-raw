@@ -5,3 +5,7 @@
 2026-11-24 19:54:23 UTC selftests: kc103_syscheck_1025.py exit 0, kc111_syscheck_1025.py exit 0 (0 wanted)
 2026-11-24 19:54:32 UTC STEP 1 source check (kc103_syscheck_1025.py on the k_c 103 D 21.125 source): exit 0 (0 wanted); controls --mutate=F exit 1, --mutate=steps exit 1 (1 wanted each); kc111_syscheck_1025.py on the source exit 1 (1 wanted)
 2026-11-24 19:54:32 UTC STEP 2 regrid starts: nice -n 10 timeout 28800 /home/nathan/Source/choptuik-large-d-1058b/.venv/bin/python -u ell_refine.py l1kc103dh170g 103 l1kc111dh170h 111 1 21.125 2.1062343410 --kappa 0.7 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma
+2026-11-24 22:34:54 UTC regrid exit 0, wall 9622 s
+2026-11-24 22:35:05 UTC kc111_syscheck_1025.py exit 0 (0 wanted); controls --mutate=F exit 1, --mutate=steps exit 1 (1 wanted each); kc103_syscheck_1025.py on the k_c 111 result exit 1 (1 wanted)
+2026-11-24 22:35:05 UTC verdict: ACCEPTED 2026-11-24 22:35:05 UTC
+2026-11-24 22:35:21 UTC scan starts: D 21.125, 6 evaluations (window 0.880 0.900, repeat of 0.890), 4 procs x 1 thread, nice 10; state sol_l1kc111dh170h_D21.1250.npy edbb419e, record a0a52e86
