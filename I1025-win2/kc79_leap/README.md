@@ -139,6 +139,18 @@ ell_leap.py l1kc79Lw1025i 1 79 data/sol_l1kc79Lw1025g_D21.187500.npy 21.1875 dat
 
 4 threads, cap 43200 s by the exact root pid; files `leap10.log`, `exits_leap10.txt`, `summary_leap10.txt`, `all10.done`. The first predictor extrapolates over two seed differences (h 0.0625 against a seed gap of 0.03125). Seconds per point at h 0.0625 against 0.03125 are reported with each point (the k_c 79 tag g leap at h 0.03125: 4475 to 4896 s a point).
 
+## Leg 9 ended by order at D 21.484375 (the coordinator's hc ~12:00 UTC 24 Nov)
+
+The order (verbatim): "leg 9's next step is known to fail its constraint bar, so stop leg 9 now by exact pid (record it: ended by order at D 21.484375, the D 21.5 step would exceed cmax), and start the far scout at once. Your timing finding (cost per point flat in h) is noted: report the far scout's seconds per point at h 0.0625."
+
+Leg 9 (k_c 71, tag l1kc71Lw1025h) was stopped at 12:03:07 UTC: the leap root pid 34332 was killed by exact pid after the check that its command line held `ell_leap.py l1kc71Lw1025h` (the run had lasted 4 h 45 min). Four accepted points D 21.40625 to D 21.484375 (the last at h 0.015625, 3264 s, |F| 4.196e-10, psi-constraint 9.939e-3); the retry's next step, D 21.5 at h 0.015625, would have had psi-constraint about 1.0035e-2 above `--cmax 1e-2` (the D 21.5 solve at h 0.03125 had converged, |F| 4.177e-10, Delta 1.131801109, and was rejected for 1.00348e-2), and h cannot halve below `hmin`, so the leap would have stopped there. No restart. The in-flight step (about 45 minutes in) is discarded. The scout driver `run_leap10.sh`, waiting for `all9.done`, starts after the driver's final copy.
+
+Timing finding (reported 11:50 UTC): seconds per point at h 0.03125 against h 0.015625 at k_c 71: 3588, 3478, 2987 s against 3264 s, so the cost per point does not fall with the step (F_start 3.8e-6 against 1.0e-5, the same ~2370 steps).
+
+## The far scout started (12:04:28 UTC 24 Nov)
+
+`run_leap10.sh` found leg 9 ended (`all9.done` after the by-order stop at 12:03:07 UTC), compared the tag g seeds (states blobs 9d3351f6 for D 21.1875 and 5d263c46 for D 21.21875, equal to the raw copies; the two seed records equal between the worktree's record file and the raw copy: |F| 4.5790e-10 with 2660 steps and 4.5648e-10 with 2658), and `kc79_syscheck_1025.py` accepted both at 12:04:16 UTC (selftest 0; `--mutate=F` and `--mutate=steps` exit 1). The guard (`leap_guard.py` f1fe7c7c, `--seeds`; pid 7596, worker 30308; table `leap10_points.txt`, stop file `leap10_STOP.txt`) and the samplers (`leap10/`) started at 12:04:22 UTC, and the leap at 12:04:28 UTC: `ell_leap.py l1kc79Lw1025i 1 79 data/sol_l1kc79Lw1025g_D21.187500.npy 21.1875 data/sol_l1kc79Lw1025g_D21.218750.npy 21.21875 22.5 0.0625 --tol 1e-12 --fmax 1e-8 --cmax 1e-2 --fold`, root pid 40680 (worker 20128), 4 threads, BelowNormal, cap 43200 s = 00:04:28 UTC on 25 Nov by the exact root pid. A cap restart to D_end 22.5 is authorized (driver to follow in this README).
+
 ## Result
 
 Not yet run.
