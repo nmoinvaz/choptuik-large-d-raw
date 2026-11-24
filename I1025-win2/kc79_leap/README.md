@@ -125,6 +125,20 @@ Each driver re-checks the two seeds against the record file and the copies in `s
 
 **k_c 79, restarted leap (tag f) -> tag g** (`run_leap8.sh`). The restarted leap ended by its cap: the leap root pid 33464 was killed at 07:17:30 UTC (43211 s, exit 1, "capped at 43200 s"); 9 points D 20.90625 to D 21.15625 (the last in raw 11ebcd944). The waiting driver found no `leap7_STOP.txt` and the cap in `summary_leap7.txt`, and at 07:19:41 UTC took the last two records of tag l1kc79Lw1025f as seeds: D 21.125 (state blob 797c73e7) and D 21.15625 (blob ff2a8451), record file blob 2c12fa10 with 9 records, equal to the copies in `states/`; `kc79_syscheck_1025.py` accepted both at 07:19:48 UTC (selftest 0; `--mutate=F` and `--mutate=steps` exit 1; D 21.15625 |F| 4.5898e-10 with 2664 steps, D 21.125 4.6060e-10 with 2667). The guard (pid 22956, worker 34208; table `leap8_points.txt`, stop file `leap8_STOP.txt`) and the samplers (`leap8/`) started at 07:19:49 UTC, and the leap at 07:19:49 UTC: `ell_leap.py l1kc79Lw1025g 1 79 data/sol_l1kc79Lw1025f_D21.125000.npy 21.125 data/sol_l1kc79Lw1025f_D21.156250.npy 21.15625 21.5 0.03125 --tol 1e-12 --fmax 1e-8 --cmax 1e-2 --fold`, root pid 26568 (worker 41244), 4 threads, BelowNormal, fresh 12 h cap = 19:19:49 UTC; files `leap8.log`, `exits_leap8.txt`, `summary_leap8.txt`, `all8.done`.
 
+## The k_c 79 far scout (the coordinator's hc ~11:10 UTC 24 Nov), and leg 9's psi-constraint stop
+
+**Leg 9 (k_c 71, tag h)** reached the leap's psi-constraint bar: the solve at D 21.5 converged (|F| 4.177e-10, 2370 steps, Delta 1.131801109) with psi-constraint 1.00348e-2 above `--cmax 1e-2`, so it was rejected and not recorded (the constraint rose 9.469e-3, 9.655e-3, 9.843e-3, 1.0035e-2 at D 21.406 to 21.5, 5.1e-3 per unit D, crossing 1e-2 near D 21.4993); h halved to 0.015625, the hmin floor. The coordinator's ruling (verbatim): "(a): let leg 9 end where it stops (D 21.484375 by its retry), no raised bar, no restart." A stop of the leap's own is not a cap end, so no restart is queued for leg 9.
+
+The order for the freed threads (verbatim): "With its freed threads (4), start a k_c 79 FAR SCOUT ahead of the tag g leap: tag l1kc79Lw1025i, seeds the tag g records D 21.1875 and D 21.21875 (re-checked by kc79_syscheck, controls exit 1), ell_leap.py l1kc79Lw1025i 1 79 <D 21.1875 state> 21.1875 <D 21.21875 state> 21.21875 22.5 0.0625 --tol 1e-12 --fmax 1e-8 --cmax 1e-2 --fold (h 0.0625; the leap halves to 0.03125 if a step fails), the guard with --seeds, the same fold rule, tracked-mode and branch-watch reporting, 12 h cap by exact pid; a cap restart to D_end 22.5 is authorized the same way as before. Report each point with your columns, and say the seconds per point at h 0.0625 against 0.03125. The tag g leap continues to D 21.5 unchanged."
+
+`run_leap10.sh` (headless, BelowNormal; dry run 11:08 UTC passed) waits for `all9.done`, takes the tag g records at D 21.1875 and D 21.21875 (states blobs 9d3351f6 and 5d263c46, byte-equal to the raw copies; the two seed records equal between the worktree's record file and the raw copy, since the tag g leap keeps appending; |F| 4.5790e-10 with 2660 steps and 4.5648e-10 with 2658), re-checks them with `kc79_syscheck_1025.py` (selftest 0, accepts, `--mutate=F` and `--mutate=steps` exit 1), starts the guard (`leap_guard.py` f1fe7c7c, `--seeds` = those two records; table `leap10_points.txt`, stop file `leap10_STOP.txt`) and the samplers (`leap10/`), then:
+
+```
+ell_leap.py l1kc79Lw1025i 1 79 data/sol_l1kc79Lw1025g_D21.187500.npy 21.1875 data/sol_l1kc79Lw1025g_D21.218750.npy 21.21875 22.5 0.0625 --tol 1e-12 --fmax 1e-8 --cmax 1e-2 --fold
+```
+
+4 threads, cap 43200 s by the exact root pid; files `leap10.log`, `exits_leap10.txt`, `summary_leap10.txt`, `all10.done`. The first predictor extrapolates over two seed differences (h 0.0625 against a seed gap of 0.03125). Seconds per point at h 0.0625 against 0.03125 are reported with each point (the k_c 79 tag g leap at h 0.03125: 4475 to 4896 s a point).
+
 ## Result
 
 Not yet run.
