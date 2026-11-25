@@ -97,9 +97,14 @@ The sampler (`rows/source_samples.csv`, `rows/scan_samples.csv`) gives the real 
 
 ## Status
 
-**Prepared, not started** (README first). The scan starts after the k_c 103 D 21.75 chain has ended and its reading has been reported to t5.
+**Source ACCEPTED 2026-11-25 09:59:58 UTC; the scan RUNNING since 10:01:09 UTC.** README first: d81106d80 (pushed 09:55:27 UTC, before the start). The k_c 103 D 21.75 chain ended 09:58:18 UTC; its reading was posted (#1025 comment 7159071639) and pushed (df17428bc) first, as t5 ordered ("post the reading on #1025, push, then start"), and this chain was started at 09:59:44 UTC.
 
-Pushed 2026-11-25 09:55:27 UTC.
+- **Chain** (`rows/launcher_pid.txt`: 21356): `Win32_Process.Create` of `conhost.exe --headless cmd.exe /c go_kc95d22125h_1025.cmd` at 09:59:44 UTC: conhost --headless 21356 <- cmd 11964 <- source driver (pid 16800), then scan driver 13512 with its sampler 9480, alert-only watcher 6952 and keep-awake helper 17524. The python and powershell processes are BelowNormal.
+- **Source** (`kc95d22125h_source_w.log`, 09:59:45 to 09:59:58 UTC, 12 s for the checks): the pins matched; the selftests of the three checks exit 0; `ell_delta.lam0_at(22.125)` = 2.1023628304; the k_c 95 check exit 0 on the source, `--mutate=F` and `--mutate=steps` exit 1, the k_c 87 check exit 1 and the k_c 103 check exit 1 (`source_kc*_syscheck*.txt`). Marker `source_accepted.txt`: state blob 06c5082f523c3eb9f1a2669415ac6981e2f82ae2, record blob 64ecb0474d17c1bcd1e4cb0d7ec8f41eafc71580.
+- **Scan** (`kc95d22125h_scan_w.log`): the reader's selftest exit 0 and its two `--mutate` controls exit 1, 1; 4 processes of `d18_hybsign.py`, 1 thread each, BelowNormal, cap 21600 s: p0 pid 11748 (0.60 then 0.52), p1 pid 20492 (0.64 then 0.56), p2 pid 21128 (0.68 then 0.72), p3 pid 26360 (0.64, the repeat, then 0.76). All four print the record system first: \|F\| 4.0704720553e-10 (record 4.0627911135e-10), steps 3132 (record 3132). Session check `session_check_scan.txt` exit 0: no `claude` in any chain, no Windows Terminal / OpenConsole / wt, a headless conhost in the chain. Free physical memory at the start 22.68 GB.
+- **ETA** (the written 7000 to 10400 s counted from 10:01:09 UTC; central about 8200 s): the scan ends about 12:00 to 13:00 UTC (central about 12:20).
+
+Pushed 2026-11-25 10:02:03 UTC.
 
 ## Result
 
