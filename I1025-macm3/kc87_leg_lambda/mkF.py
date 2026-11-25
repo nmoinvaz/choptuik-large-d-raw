@@ -26,6 +26,16 @@ def spec(kind):
     """-> dict(D, folder, lamp, win, rep, dirs (earlier scans of the D), mwin (merged window))"""
     if kind == "a":
         return dict(D=22.875, folder="22.875_F", lamp=[0.18, 0.18, 0.17, 0.19], win=(0.17, 0.19), rep=0.18, dirs=["22.875/scan", "22.875_wide/scan"], mwin=(-0.10, 0.30))
+    if kind == "d":          # t5, hc 25 Nov ~16:50 UTC: D 22.9375 on -0.50..-0.10 by 0.04 (the lower track's position)
+        vals = [round(-0.50 + 0.04 * i, 2) for i in range(11)]
+        rep = -0.30
+        lamp = [rep, rep] + [v for v in vals if v != rep]
+        return dict(D=22.9375, folder="22.9375_low", lamp=lamp, win=(-0.50, -0.10), rep=rep, dirs=["22.9375/scan"], mwin=(-0.50, 0.30), step=0.04)
+    if kind == "e":          # t5: D 22.875 on 0.30..0.50 by 0.04
+        vals = [0.30, 0.34, 0.38, 0.42, 0.46, 0.50]
+        rep = 0.38
+        lamp = [rep, rep] + [v for v in vals if v != rep]
+        return dict(D=22.875, folder="22.875_up", lamp=lamp, win=(0.30, 0.50), rep=rep, dirs=["22.875/scan", "22.875_wide/scan", "22.875_F/scan"], mwin=(-0.10, 0.50), step=0.04)
     if kind == "c":          # t5, hc 25 Nov ~16:44 UTC: D 22.8125 up, 0.42 to 0.50 by 0.02 plus a repeat, to find F (no F up to 0.400)
         vals = [0.42, 0.44, 0.46, 0.48, 0.50]
         rep = 0.46
@@ -79,7 +89,7 @@ def register(kind, sp):
     nev = len(sp["lamp"])
     rounds = -(-nev // 4)
     assign = "; ".join("process %d: %s" % (q, ", ".join(fmt(sp["lamp"][i]) for i in range(q, nev, 4))) for q in range(4))
-    head = "\n## D %s %s scan (written before its check and scan, %s UTC)\n\n**Order** %s\n" % (dn, "F (upper root)" if kind in ("a", "b", "c") else "both roots", now(), ORDER)
+    head = "\n## D %s %s scan (written before its check and scan, %s UTC)\n\n**Order** %s\n" % (dn, "F (upper root)" if kind in ("a", "b", "c") else ("lower root" if kind == "d" else ("upper range" if kind == "e" else "both roots")), now(), ORDER)
     grid = ("**Grid:** lambda %s, the repeat %s first (twice, on processes 0 and 1); %d evaluations on 4 processes of 1 thread at nice 15 (%d rounds, about %d min; %s); window read on this scan alone `read_lower.py scan %s %s` and merged with %s "
             "(`ext23.read_merged`; the earlier readings of D %s are not replaced) on lambda %s to %s.\n") % (
         "%s to %s%s" % (fmt(lo), fmt(hi), " by 0.01" if kind == "a" else " by %.2f" % sp.get("step", 0.02)), fmt(sp["rep"]), nev, rounds, rounds * 10, assign, fmt(lo), fmt(hi),
@@ -96,6 +106,20 @@ def register(kind, sp):
                "**Why:** the merged reading of D 22.8125 (first scan 0.17-0.23, extension 0.11-0.16, F scan 0.24-0.40; `22.8125_F/read_lower_merged.txt`) has one change, L at (0.160, 0.170) '- to +', and the hybrid sign is + at every value from 0.17 to 0.40, so F is above 0.400 (t5: extend up to find it, and do not label D 22.8125 until F is found).\n"
                "**Prediction (F, the upper root):** if F falls monotonically with D, F at D 22.8125 lies between F at D 22.875 (0.162334) and F at D 22.25 (0.442516), and above 0.400 by the reading: in (0.400, 0.4425]. I expect: in the unscanned gap (0.400, 0.420) about 20%; in (0.420, 0.4425] about 25%; in (0.4425, 0.50) about 25%; above 0.50 about 25%; no change at all because F has left the real axis about 5%. If F is in (0.4, 0.4425), the F line is nearly flat (0.4425 at D 22.25, about 0.42 at D 22.8) and then falls to 0.162 within 0.0625 in D.\n" + grid +
                "**Predictions (mine, before the run):** " + common + " The merged reading has exactly two robust changes (L unchanged, F '+ to -') about 70%; one about 30% (F above 0.50 or gone).\n## Log\n")
+    elif kind in ("d", "e"):
+        hyp = ("t5's hypothesis (hc ~16:50 UTC, quoted): \"lambda_1 is the track you called L (0.4425 at 22.25, 0.2161 at 22.75, 0.1670 at 22.8125, 0.1278 at 22.875: slope -0.45 to -0.8, like F's earlier slope), and the upper root of D 22.875 (0.1623, then 0.0562 at 22.9375 and -0.0215 at 23.0) "
+               "is a NEWCOMER diving from above 0.50 (like S). Under it, lambda_1 crosses 0 between 22.875 and 22.9375 (it is below -0.10 at 22.9375). Leave every label as is until D 22.75's both-roots scan reads: one root at 0.216 in -0.10..0.50 supports it. "
+               "Then add D 22.9375 on -0.50..-0.10 by 0.04 (find the lower track's position there) and D 22.875 on 0.30..0.50 by 0.04.\"\n")
+        if kind == "d":
+            txt = (head + "**Why:** " + hyp +
+                   "The scan of D 22.9375 (-0.10 to 0.30) has one change, '+ to -' at 0.056, and the sign is + at -0.10, so an odd number of roots lies below -0.10 (the lower track, in either reading).\n"
+                   "**Prediction (the lower root at D 22.9375):** the track L (0.2161 at D 22.75, 0.1278 at D 22.875, slope -0.706 per unit D between them) would read +0.084 at D 22.9375 if it kept that slope; the signs say it is below -0.10, so it dives at least 3.65 per unit D faster between D 22.875 and 22.9375. I expect one change '- to +' in (-0.50, -0.10) about 65%, below -0.50 about 20%, no change (the + at -0.10 has another cause) about 15%.\n" + grid +
+                   "**Predictions (mine, before the run):** " + common + " The merged reading (-0.50 to 0.30) has exactly two robust changes ('- to +' in the new window, then F's/N's '+ to -' at 0.056) about 65%.\n## Log\n")
+        else:
+            txt = (head + "**Why:** " + hyp +
+                   "The scans of D 22.875 cover -0.10 to 0.30 (two changes: 0.127834 '- to +' and 0.162334 '+ to -', the sign - at 0.17 to 0.30); nothing above 0.30 is known.\n"
+                   "**Prediction:** under the newcomer reading nothing else lies in (0.30, 0.50) at D 22.875 (the newcomer came from above 0.50 and is already at 0.162): all signs - about 65%; one change '- to +' in (0.30, 0.50) (a third root, the flat F rising into the window from above) about 15%; two changes about 12%; other about 8%.\n" + grid +
+                   "**Predictions (mine, before the run):** " + common + " The merged reading (-0.10 to 0.50) keeps the two changes at 0.127834 and 0.162334 about 95%.\n## Log\n")
     elif kind == "b":
         txt = (head +
                "**Why:** the merged reading of D 22.8125 (first scan 0.17-0.23 and the extension 0.11-0.16) has one change, (0.160, 0.170) '- to +' (0.166991), and '+' at every value from 0.17 to 0.23, so by the counting of the signs the upper root F lies above 0.230 (the pair at D 22.875 is L 0.128 and F about 0.171, at D 22.9375 F is 0.056).\n"
@@ -120,6 +144,10 @@ def register(kind, sp):
                " The merged reading has exactly two robust changes ('- to +' then '+ to -') about 50%, one about 15% (the other outside -0.10 to 0.50 or the pair unresolved), none about 20% (no real root in the window: the pair has merged or left it), three or more about 15%; "
                "given two, F within 0.04 of the chord about 60% and above the chord about 65%; L at or above 0.10 about 70%.\n## Log\n")
     return txt
+
+
+def folder(kind):
+    print(spec(kind)["folder"])
 
 
 def setup(kind):
@@ -156,9 +184,12 @@ def selftest():
     chk("both: -0.10 to 0.50 by 0.02 (31 values) and the repeat 0.20 first: 32 evaluations", len(set(c["lamp"])) == 31 and len(c["lamp"]) == 32 and min(c["lamp"]) == -0.1 and max(c["lamp"]) == 0.5 and c["lamp"][:2] == [0.2, 0.2])
     cc = spec("c")
     chk("c: D 22.8125 up, 0.42 to 0.50 by 0.02 with 0.46 twice first (6 evaluations), folder 22.8125_F2, three earlier scans", cc["D"] == 22.8125 and cc["lamp"] == [0.46, 0.46, 0.42, 0.44, 0.48, 0.5] and cc["folder"] == "22.8125_F2" and len(cc["dirs"]) == 3 and cc["win"] == (0.42, 0.5))
+    dd, ee = spec("d"), spec("e")
+    chk("d: D 22.9375 on -0.50 to -0.10 by 0.04 (11 values) and -0.30 twice first: 12 evaluations, folder 22.9375_low", dd["D"] == 22.9375 and len(set(dd["lamp"])) == 11 and len(dd["lamp"]) == 12 and min(dd["lamp"]) == -0.5 and max(dd["lamp"]) == -0.1 and dd["lamp"][:2] == [-0.3, -0.3] and dd["folder"] == "22.9375_low")
+    chk("e: D 22.875 on 0.30 to 0.50 by 0.04 (6 values) and 0.38 twice first: 7 evaluations, folder 22.875_up", ee["D"] == 22.875 and sorted(set(ee["lamp"])) == [0.3, 0.34, 0.38, 0.42, 0.46, 0.5] and len(ee["lamp"]) == 7 and ee["lamp"][:2] == [0.38, 0.38] and ee["folder"] == "22.875_up")
     d4 = spec("22.5@0.04")
     chk("D@0.04: 16 values -0.10 to 0.50 by 0.04 and the repeat 0.30 first: 17 evaluations, folder 22.5_both", len(set(d4["lamp"])) == 16 and len(d4["lamp"]) == 17 and min(d4["lamp"]) == -0.1 and max(d4["lamp"]) == 0.5 and d4["lamp"][:2] == [0.3, 0.3] and d4["folder"] == "22.5_both" and d4["D"] == 22.5)
-    chk("the repeats sit on processes 0 and 1", all([i % 4 for i, x in enumerate(s["lamp"]) if x == s["rep"]] == [0, 1] for s in (a, b, c, d4, cc)))
+    chk("the repeats sit on processes 0 and 1", all([i % 4 for i, x in enumerate(s["lamp"]) if x == s["rep"]] == [0, 1] for s in (a, b, c, d4, cc, dd, ee)))
     chk("merge windows: a -0.10 to 0.30 with two earlier scans; b 0.11 to 0.40; a plain D covers -0.10 to 0.50", a["mwin"] == (-0.1, 0.3) and len(a["dirs"]) == 2 and b["mwin"] == (0.11, 0.4) and c["mwin"] == (-0.1, 0.5))
     print("selftest:", "PASS" if ok else "FAIL")
     return 0 if ok else 1
@@ -169,4 +200,4 @@ if __name__ == "__main__":
     if cmd == "selftest":
         sys.exit(selftest())
     kind = sys.argv[2]
-    {"setup": setup, "read": read}[cmd](kind)
+    {"setup": setup, "read": read, "folder": folder}[cmd](kind)

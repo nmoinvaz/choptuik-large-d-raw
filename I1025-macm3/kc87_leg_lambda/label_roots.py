@@ -6,13 +6,21 @@ A merged reading with exactly two robust changes, '- to +' (the lower root L) th
   the L line   "#L D root lo hi macm3 bracket a b (L: ...)"             (a comment: the chain does not read it)
 Any other count of changes or order: STOP (nothing written). An existing line for D (the chain's, which was L's) is replaced by the pair; it must equal L's det-linear root.
 usage: label_roots.py D READING [--roots=PATH]      prints the two lines it wrote, or STOP why
-       label_roots.py selftest [--mutate=swap|replace]
+       label_roots.py selftest [--mutate=swap|replace|freeze]
 """
 import os, re, sys, tempfile
 
 L = os.path.expanduser("~/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_leg_lambda")
 MUT = next((a.split("=", 1)[1] for a in sys.argv if a.startswith("--mutate=")), None)
 CH = re.compile(r"robust change \((-?[\d.]+), (-?[\d.]+)\), ([-+]) to ([-+]), det-linear (-?[\d.]+), range \[(-?[\d.]+), (-?[\d.]+)\]")
+
+
+def frozen(base=None):
+    """t5, hc 25 Nov ~16:50 UTC: \"Leave every label as is until D 22.75's both-roots scan reads\": while LABELS_FROZEN.txt exists nothing is written; returns its first line or None"""
+    f = (base or L) + "/LABELS_FROZEN.txt"
+    if MUT == "freeze" or not os.path.exists(f):
+        return None
+    return open(f).readline().strip() or "LABELS_FROZEN.txt exists"
 
 
 def changes(text):
@@ -95,6 +103,10 @@ def selftest():
         open(p, "w").write("22.25 0.442516 0.44 0.44 macm3 bracket 0.440 0.445\n")
         rewrite(p, 22.75, r)
         chk("no line yet for D 22.75: F line and L comment are appended", open(p).read().splitlines()[1].startswith("22.75 0.311000 ") and open(p).read().splitlines()[2].startswith("#L 22.75 "))
+    with tempfile.TemporaryDirectory() as t2:
+        chk("frozen: no LABELS_FROZEN.txt: not frozen", frozen(t2) is None)
+        open(t2 + "/LABELS_FROZEN.txt", "w").write("leave every label as is until D 22.75 reads\n")
+        chk("frozen: LABELS_FROZEN.txt present: frozen, the reason is its first line", frozen(t2) == "leave every label as is until D 22.75 reads")
     print("selftest:", "PASS" if ok else "FAIL")
     return 0 if ok else 1
 
@@ -103,6 +115,9 @@ if __name__ == "__main__":
     if sys.argv[1] == "selftest":
         sys.exit(selftest())
     D = float(sys.argv[1]); text = open(sys.argv[2]).read()
+    fr = frozen()
+    if fr:
+        print("STOP D %r: labels are frozen (%s); nothing written" % (D, fr)); sys.exit(1)
     path = next((a.split("=", 1)[1] for a in sys.argv if a.startswith("--roots=")), L + "/roots87.txt")
     lf, why = pair(text)
     if lf is None:
