@@ -1,0 +1,40 @@
+7c7
+< ROOT=/home/nathan/Source/choptuik-large-d-raw-p4/I1025-dh170/kc103_d21125
+---
+> ROOT=/home/nathan/Source/choptuik-large-d-raw-wt613/I1025-dh370/kc103_d2225
+10c10
+< WT=/home/nathan/Source/choptuik-large-d-1025k79
+---
+> WT=/home/nathan/Source/choptuik-large-d-1025
+15c15
+< export OMP_NUM_THREADS=8 OPENBLAS_NUM_THREADS=8 MKL_NUM_THREADS=8
+---
+> export OMP_NUM_THREADS=6 OPENBLAS_NUM_THREADS=6 MKL_NUM_THREADS=6
+26c26
+< [ "$(blob $IN/$SRC_CHK | cut -c1-8)" = $SRC_CHK_BLOB ] && [ "$(blob $IN/$ACC_CHK | cut -c1-8)" = $ACC_CHK_BLOB ] || stop "a check is not $SRC_CHK_BLOB / $ACC_CHK_BLOB"
+---
+> [ "$(blob $IN/$SRC_CHK | cut -c1-8)" = $SRC_CHK_BLOB ] && [ "$(blob $IN/$ACC_CHK | cut -c1-8)" = $ACC_CHK_BLOB ] && [ "$(blob $IN/$K87_CHK | cut -c1-8)" = $K87_CHK_BLOB ] || stop "a check is not $SRC_CHK_BLOB / $ACC_CHK_BLOB / $K87_CHK_BLOB"
+48c48
+< ( while sleep 30; do av=$(awk '/MemAvailable/ {print int($2/1024)}' /proc/meminfo); [ "$av" -lt 2048 ] && echo "ALERT $(stamp) UTC MemAvailable $av MiB (alert only, nothing stopped)" >> $OUT/alert.log; done ) &
+---
+> ( while sleep 30; do av=$(awk '/MemAvailable/ {print int($2/1024)}' /proc/meminfo); [ "$av" -lt 1024 ] && echo "ALERT $(stamp) UTC MemAvailable $av MiB (alert only, nothing stopped)" >> $OUT/alert.log; done ) &
+53,54c53,55
+< step "selftests: $SRC_CHK exit $r1, $ACC_CHK exit $r2 (0 wanted)"
+< [ $r1 = 0 ] && [ $r2 = 0 ] || stop "a selftest failed"
+---
+> nice -n 10 $PY -I $IN/$K87_CHK --selftest > $OUT/selftest_k87_check.txt 2>&1; r3=$?
+> step "selftests: $SRC_CHK exit $r1, $ACC_CHK exit $r2, $K87_CHK exit $r3 (0 wanted)"
+> [ $r1 = 0 ] && [ $r2 = 0 ] && [ $r3 = 0 ] || stop "a selftest failed"
+60,61c61,63
+< step "STEP 1 source check ($SRC_CHK on the k_c $SKC D $D source): exit $s0 (0 wanted); controls --mutate=F exit $s1, --mutate=steps exit $s2 (1 wanted each); $ACC_CHK on the source exit $s3 (1 wanted)"
+< [ $s0 = 0 ] && [ $s1 = 1 ] && [ $s2 = 1 ] && [ $s3 = 1 ] || stop "the source check or a control did not read as written"
+---
+> nice -n 10 $PY -I $IN/$K87_CHK $SR $SS $D $WTM > $OUT/source_k87check_refuses.txt 2>&1; s4=$?
+> step "STEP 1 source check ($SRC_CHK on the k_c $SKC D $D source): exit $s0 (0 wanted); controls --mutate=F exit $s1, --mutate=steps exit $s2 (1 wanted each); $ACC_CHK on the source exit $s3 (1 wanted); $K87_CHK on the source exit $s4 (1 wanted)"
+> [ $s0 = 0 ] && [ $s1 = 1 ] && [ $s2 = 1 ] && [ $s3 = 1 ] && [ $s4 = 1 ] || stop "the source check or a control did not read as written"
+71,72c73,74
+< CMD="nice -n 10 timeout 21600 $PY -u ell_refine.py $SRC $SKC $TAG $TKC 1 $D $LAM0 --kappa 0.7 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma"
+< echo "# $(stamp) UTC cmd (cwd $WTM, 8 threads, nice 10, cap 21600 s): $CMD" > $OUT/regrid.log
+---
+> CMD="nice -n 10 timeout 43200 $PY -u ell_refine.py $SRC $SKC $TAG $TKC 1 $D $LAM0 --kappa 0.7 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma"
+> echo "# $(stamp) UTC cmd (cwd $WTM, 6 threads, nice 10, cap 43200 s): $CMD" > $OUT/regrid.log

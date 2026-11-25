@@ -1,0 +1,12 @@
+6c6
+< ROOT=/home/nathan/Source/choptuik-large-d-raw-p4/I1025-dh170/kc103_d21125
+---
+> ROOT=/home/nathan/Source/choptuik-large-d-raw-wt613/I1025-dh370/kc103_d2225
+9c9
+< WT=/home/nathan/Source/choptuik-large-d-1025k79; WTM=$WT/solver/matter
+---
+> WT=/home/nathan/Source/choptuik-large-d-1025; WTM=$WT/solver/matter
+26c26
+< ( while sleep 30; do av=$(awk '/MemAvailable/ {print int($2/1024)}' /proc/meminfo); [ "$av" -lt 2048 ] && echo "ALERT $(stamp) UTC MemAvailable $av MiB (alert only, nothing stopped)" >> $OUT/alert.log; done ) &
+---
+> ( while sleep 30; do av=$(awk '/MemAvailable/ {print int($2/1024)}' /proc/meminfo); [ "$av" -lt 1024 ] && echo "ALERT $(stamp) UTC MemAvailable $av MiB (alert only, nothing stopped)" >> $OUT/alert.log; done ) &
