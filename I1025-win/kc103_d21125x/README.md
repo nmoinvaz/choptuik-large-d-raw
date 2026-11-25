@@ -94,16 +94,33 @@ The sampler (`rows/regrid_samples.csv`, `rows/scan_samples.csv`) gives the real 
 
 ## Status
 
-**Step 1 running since 2026-11-24 22:26:33 UTC** (the chain started 22:26:16 UTC through `Win32_Process.Create` of `conhost.exe --headless cmd.exe /c go_kc103d21125x_1025.cmd`). README first: 51dc82cb2 (pushed 22:26:00 UTC, before the start).
+**Step 1 ACCEPTED 2026-11-25 01:38:48 UTC (regrid 2026-11-24 22:26:33 to 2026-11-25 01:38:33 UTC); step 2, the scan, running since 01:39:59 UTC.** The chain started 2026-11-24 22:26:16 UTC through `Win32_Process.Create` of `conhost.exe --headless cmd.exe /c go_kc103d21125x_1025.cmd`). README first: 51dc82cb2 (pushed 22:26:00 UTC, before the start).
 
 - **Chain** (`rows/launcher_pid.txt`: 14012): conhost --headless 14012 <- cmd 24532 <- regrid driver launcher 12068 and driver 9004 <- sampler 19328, alert-only watcher 18408, keep-awake helper 23536, and the regrid process 14124 (worker 12616). The python and powershell processes are BelowNormal.
 - **Session check** (`session_check_regrid.txt`, exit 0): no `claude` in any chain of the run, no Windows Terminal / OpenConsole / wt, a headless conhost in the chain.
 - **Before the regrid** (22:26:16 to 22:26:33 UTC, 16 s): the pins matched; the selftests of the three checks exited 0; ell_delta.lam0_at(21.125) = 2.1062343410; the source checks were as ordered: the k_c 95 check exit 0 on the source, `--mutate=F` and `--mutate=steps` exit 1, the k_c 87 check exit 1 and the k_c 103 check exit 1 (they refuse the source; `source_kc*_syscheck*.txt`).
 - **Regrid:** pid 14124 started 22:26:33 UTC: `ell_refine.py l1kc95dh170f 95 l1kc103winx 103 1 21.125 2.1062343410 --kappa 0.7 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma`, cwd the worktree's `solver/matter`, 4 threads, BelowNormal, cap 21600 s by the exact pid.
 - **Machine at the start:** on AC (battery status 2, charge 100), clock 2995 MHz of 2995 MHz max, free physical memory 23.36 GB; beside it the other project's two I114 `convergence.py` jobs (started 2026-11-23 05:41 UTC), not touched.
-- **ETA** (the estimates above counted from the actual start 22:26:33 UTC, 8 min before the 22:35 the table assumed): the regrid ends about 01:20 to 01:55 UTC on 25 Nov (written 10500 to 12500 s), p1 and p3 about 03:00 to 04:00, the scan about 04:05 to 05:15 UTC. The scan starts by itself after ACCEPTED.
+- **t5's reply to the start report** (hc, 2026-11-24 ~22:28 UTC, before any scan point): "your bar for B (0.881 +- 0.0005) is right; keep both as registered. Anything between the two windows is reported as such, with its estimator range." So A = [0.883883, 0.884883] and B = [0.880500, 0.881500] stand as registered above; a det-linear estimate in the gap (0.881500 to 0.883883) or outside both is reported as lying between or outside, with its estimator range printed by the reader.
+- **Regrid result** (`regrid_summary.txt`, `kc103_regrid_w.log`, `l1kc103winx.jsonl`; exit 0, wall 11520 s, inside the written 10500 to 12500 s), beside dh170's regrid of the same source on Linux (his README `I1025-dh170/kc103_d21125`, 8 threads, nice 10):
 
-Pushed 2026-11-24 22:27:09 UTC.
+| item | k_c 103 here (Windows) | k_c 103, dh170 (Linux) | k_c 95 source (dh170's) |
+|---|---|---|---|
+| wall | 11520 s (the record's seconds 11514) | 7305 s | 5523 s (his), record 5520 |
+| record \|F\| | 4.629880696216604e-10 | 4.6264065251e-10 | 4.619942915854309e-10 |
+| F_start | 7.231902756979847e-06 | 7.2319e-06 | 1.6640686664917824e-05 |
+| steps | 3476 | 3476 | 3206 |
+| constraint | 1.1462171505647364e-03 | 1.1462169e-03 | 1.85852280482262e-03 |
+| Delta | 1.1215708693296895 | 1.121570859155 | 1.1215731965267701 |
+| cpu | 21732 s | | |
+| peak private (the largest python) | 4.01 GB (peak working set 3.64 GB) | peak RSS 3.00 GiB | |
+
+  Delta(k_c 103) minus Delta(k_c 95) = -2.3271970805982534e-06 here (dh170's: -2.3374e-6; my D 21.0: -2.1307e-06). Steps ratio 1.0842 (dh170's 1.0842; mine at D 21.0 1.0839). The step count is the same as dh170's, 3476; my Delta is 1.0e-8 above his. Wall ratio to my D 21.0 regrid 1.021 (written 0.996, from the step counts). Lowest free memory 20.25 GB (00:50:41 UTC; the watcher's minimum 20.04 GB), peak commit 14.6 GB, laptop CPU mean 40.7 % (max 91 %), 191 sampler times about 60 s apart. Nothing alerted, nothing was killed.
+- **Acceptance** (`syscheck.txt`, `syscheck_mutate.txt`, `syscheck_kc95_on_result.txt`, `selftest_kc103_syscheck_after.txt`): the k_c 103 check on the result exit 0 ("ACCEPTED: the record class's \|F\| with a step count that comes back"; state \|F\| equals the record's, `freeze_from` gives 3476 steps), its selftest exit 0, `--mutate=F` exit 1, `--mutate=steps` exit 1 (3476 against 3477), the k_c 95 check on the result exit 1 ("the record is not k_c 95 at D 21.125 (kc 103, D 21.125)"). Marker `regrid_accepted.txt`: ACCEPTED 01:38:48 UTC, state blob e09f0c5a20225421e1bc7a16ecc0747b8fc06fe7, record blob 4373e121a96e73fa13e8a19ced6734a170e5ad7b.
+- **Scan** (01:39:59 UTC, by itself after the marker; `kc103d21125x_scan_w.log`): `read_lower.py` selftest exit 0 and its two `--mutate` controls exit 1, 1; 4 processes of `d18_hybsign.py`, 1 thread each, BelowNormal: p0 pid 20880 (0.885 then 0.875), p1 pid 1356 (0.880), p2 pid 22228 (0.890 then 0.895), p3 pid 11684 (0.885, the repeat). All four print the record system first: \|F\| 4.6256049940e-10 (record 4.6298806962e-10), steps 3476 (record 3476). Scan driver 21168 under the same cmd 24532, sampler 22012, watcher 19048, keep-awake 11384. Session check `session_check_scan.txt` exit 0: no `claude` in any chain, no Windows Terminal / OpenConsole / wt, a headless conhost in the chain. Machine at the start: on AC (battery status 2, charge 100), clock 2995 of 2995 MHz, free physical memory 23.40 GB.
+- **ETA** (the estimates above counted from 01:39:59 UTC): p1 and p3 end about 03:20 to 03:45 UTC (written 6000 to 7500 s for round 1), the scan about 04:25 to 05:00 UTC (written 9800 to 12100 s).
+
+Pushed 2026-11-25 01:40:48 UTC.
 
 ## Result
 
