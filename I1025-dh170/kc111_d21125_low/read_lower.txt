@@ -1,0 +1,22 @@
+== low window: read_lower.py combined 0.840 0.870 (the new points and the parent's 0.870)
+points 5 in 0.840-0.870; not noise-robust: none
+hybrid signs: 0.840- 0.850- 0.860- 0.865- 0.870+
+float64 sign differs from the hybrid sign at: [(0.84, '-', '+'), (0.85, '-', '+'), (0.86, '-', '+'), (0.865, '-', '+')]
+repeated points: [(0.89, 'agree'), (0.86, 'agree')]
+  robust change (0.865, 0.870), - to +, det-linear 0.868491, range [0.867479, 0.868491]
+robust changes: 1; touching a non-robust point (not counted): none
+ln|det| local minima without a sign change: none
+endpoint signs: - at 0.840, + at 0.870
+(exit 0)
+
+== whole range: read_lower.py combined 0.840 0.910 (the new points and the parent's nine)
+points 13 in 0.840-0.910; not noise-robust: none
+hybrid signs: 0.840- 0.850- 0.860- 0.865- 0.870+ 0.875+ 0.880+ 0.885+ 0.890+ 0.895+ 0.900+ 0.905+ 0.910+
+float64 sign differs from the hybrid sign at: [(0.84, '-', '+'), (0.85, '-', '+'), (0.86, '-', '+'), (0.865, '-', '+'), (0.875, '+', '-'), (0.88, '+', '-')]
+repeated points: [(0.89, 'agree'), (0.86, 'agree')]
+  robust change (0.865, 0.870), - to +, det-linear 0.868491, range [0.867479, 0.868491]
+robust changes: 1; touching a non-robust point (not counted): none
+ln|det| local minima without a sign change: none
+endpoint signs: - at 0.840, + at 0.910
+(exit 0)
+repeat check /home/nathan/Source/choptuik-large-d-raw-p4/I1025-dh170/kc111_d21125_low/merged_low_D21.125.jsonl: lambda [0.86]: [2] evaluations each, agree -> PASS
