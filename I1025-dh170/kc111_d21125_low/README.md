@@ -66,7 +66,21 @@ The scan: 5 single-thread processes at nice 10 on the 4 cores (8 logical CPUs; n
 (0.870 to 0.910 are the parent's, `../kc111_d21125/`: all +; 0.870 -3636.7363.)
 
 **ln|det| beside k_c 95 and k_c 103** (the three scans' own files; the absolute level depends on the size N, so read the shape; **no k_c 103 point exists below 0.875 and no k_c 95 point below 0.865**, as t5 ruled):
-
+| lambda | k_c 95 (sign, ln\|det\|) | k_c 103 | k_c 111 (this scan and the parent's) | k_c 111 step to the next lambda |
+|---|---|---|---|---|
+| 0.840 | none | none | - -3630.8944 | -1.5322 (over 0.010) |
+| 0.850 | none | none | - -3632.4266 | -1.9122 (over 0.010) |
+| 0.860 | none | none | - -3634.3388 | -1.5584 |
+| 0.865 | + -2935.0882 | none | - -3635.8973 | -0.8390 |
+| 0.870 | + -2935.9428 | none | + -3636.7363 | +0.6557 |
+| 0.875 | + -2937.0442 | + -3287.2635 | + -3636.0805 | -0.0197 |
+| 0.880 | + -2939.6100 | + -3288.5882 | + -3636.1003 | -0.2069 |
+| 0.885 | - -2938.2728 | - -3290.5492 | + -3636.3072 | -0.2971 |
+| 0.890 | - -2937.9748 | - -3289.2423 | + -3636.6042 | -0.3506 |
+| 0.895 | - -2938.0188 | - -3289.1552 | + -3636.9548 | -0.3864 |
+| 0.900 | none | none | + -3637.3413 | -0.4123 |
+| 0.905 | none | none | + -3637.7535 | -0.4319 |
+| 0.910 | none | none | + -3638.1855 |  |
 
 - **The dip is a root.** ln|det| of the k_c 111 state falls toward 0.870 (per 0.005: -0.77 over 0.840 to 0.850, -0.96 over 0.850 to 0.860, -1.56 over 0.860 to 0.865, -0.84 over 0.865 to 0.870), has its grid minimum at 0.870 (the nearest point above the det-linear 0.868491) and rises +0.656 to 0.875; the k_c 103 scan had its minimum at the grid point nearest its root (0.885, root 0.884383) and the k_c 95 scan at 0.880 (root 0.881040). The sign is - below and + above, so the printed orientation is '- to +' against the '+ to -' of my k_c 95 and 103 roots (macm3's k_c 87 reading on macOS printed '- to +' at 0.877108).
 - **The fourth k_c step of the root by position:** 0.868491 - 0.884383 = **-0.015892** (estimator range -0.016904 to -0.015892), against +0.0050, +0.003932, +0.003343: the sign reverses and its size is 4.75 times the last step. By t5's rule it is not converged (more than 0.004). I give no ruling on whether this root is the continuation of the k_c 103 root: the orientation flipped and the position jumped, which is what t5's flip reading predicted; that identification is t5's. Nothing is known below 0.840 or between the parent's 0.870 and 0.910 beyond the signs in the parent's README.
@@ -88,3 +102,4 @@ The scan: 5 single-thread processes at nice 10 on the 4 cores (8 logical CPUs; n
 **Misses:** my ln|det| direction predictions (the first-line probabilities and the shape reasoning came out; the dip was approached from below, not from above). **Not mine to conclude:** whether the root at 0.8685 continues the k_c 103 root (t5's identification), and what lies below 0.840 or in the parent's gaps; I do not widen without t5's word.
 
 - 2026-11-25 11:24:22 UTC: scan ended 11:23:05 UTC; result written (this section); nothing of mine is running.
+- 2026-11-25 11:24:52 UTC: the push 8859d7fdc (11:24 UTC) had the Result without the ln|det| beside-table (my table generator failed its width assertion and the heredoc that wrote the README ran anyway); the table is added in the next push (`beside_table.md`, generated from the three scans' jsonl files).
