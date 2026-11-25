@@ -42,3 +42,5 @@ the command), `jump.log` and `jump_s.jsonl` (one record per Newton step), via `r
 - `L4000/`: D 4000 held at L = 20 (x_l 0.705336, a 9.995, ks 5218; guess from D 2000, 2200, 2828.4271): Delta
   1.646485793699952, -6.7e-10 from Track C; the double-double floor leaves the bound at 1.0e-12 (record written by hand).
 - `run_5657L20.sh` (on the machine): D 5656.8542 at L = 20 (out/L5657/).
+- `L5657/`: D 5656.8542 held at L = 20: the double-double floor by step 2 (|F| 4.3e-21, bound 2.7e-13), Delta
+  1.645726966571316 (the log; the state is saved when the run ends).

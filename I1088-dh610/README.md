@@ -34,3 +34,7 @@ the Mac, which pushed this folder.
 - `j2828_ladder/`: D 2828 from D 1000, 1414, 2000: the guess's horizon block 3.2e5 (bulk 1e-10), no trial in step 0;
   the ladder stopped. `run_relayout.sh`, `out/rl1000.log`: the relayout onto nodes up to 0.9 at D 1000 (not converged).
 - `ladder2.sh`: the ladder past D 2000 in steps of 1.1 in D, without the discretization report (out/j<D>_l2/).
+- `L10000/`: D 10000 held at L = 20 (x_l 0.706399, a 24.995, ks 13018, 1370 Taylor steps; solvestate from
+  I1088-mac-a/form_s/g10000L20/): the double-double floor reached by step 3 (|F| 5.0e-21, bound 2.6e-12), Delta
+  1.644930989170800 (the log; the state is saved when the run ends). Its script records the commit as 91d5bbc5 by
+  mistake: the code is 7671bd89.
