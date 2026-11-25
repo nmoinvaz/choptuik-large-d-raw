@@ -33,5 +33,24 @@ Basis: the k_c step (k_c 95 root minus macm3's k_c 87 root) was +0.0018 at D 21.
 - Scan: every point noise-robust (75%); the repeat on another process than its original bit-identical (85%); exactly one robust change in the window (80%), none (10%), two or more (10%). The change within 0.005 of 0.4663 (65%); within 0.002 (35%); below macm3's k_c 87 root (85%); the step between -0.009 and -0.003 (60%). The bracket (0.465, 0.470) (45%). The printed orientation of the k_c 95 root is "- to +" (75%; at D 21.75 and D 22.25 it is "- to +" while macm3's k_c 87 reads "- to +" and "+ to -" there). The float64 sign agrees with the hybrid at all evaluations (25%). Each scan point 1800 to 3500 s (60%; the D 22.25 points took 1851 to 2077 s on 4 processes with the quest's build beside them); the scan done within 100 min of its start (65%).
 - Timeline: the regrid done within 90 min of the lane's start (65%); the whole lane (regrid and scan) done within 3 h (60%).
 
+## Regrid result (25 Nov, 06:12:03 to 07:38:50 UTC): ACCEPTED
+`ell_refine.py` (8 threads, nice 10, raised to nice 19 by the watcher while an `i1088a-*` unit was active) exited 0 after **5196 s** (the record's own 5193 s; predicted 2800 to 4500 s: no). Mean sampled CPU 756% (85 samples, `regrid/regrid_samples.csv`); peak sampled RSS 1.86 GiB; 25 numpy RuntimeWarning lines in the log, as in the earlier regrids; no memory alert. It ran beside the D 22.375 regrid (from 06:17) and the quest's units, as the D 22.125 regrid (5222 s) did.
+- Record `l1kc95dh610d221875.jsonl` (blob a0def3b7) and state `sol_l1kc95dh610d221875_D22.1875.npy` (blob 61f208a9, copied to `in/`; `in_blobs_regrid.txt`): k_c 95 at D 22.1875, |F| 4.0205479076e-10, F_start 4.263e-05, **3132 steps** (macm3's k_c 87: 2869; ratio 1.0917, predicted about 3128), constraint 4.494e-03 (macm3's k_c 87: 7.035e-03, ratio 0.639), **Delta 1.1508992846** (macm3's k_c 87: 1.1509177741; shift **-1.849e-05**; I predicted -1.90e-05, Delta about 1.150899).
+- **Acceptance:** `kc95_syscheck_1025.py` exit 0 (the state's |F| equals the record's, `freeze_from` gives 3132 steps = the record's); `--mutate=F` exit 1, `--mutate=steps` exit 1; `kc87_syscheck_1025.py` on the k_c 95 result exits 1 (refuses). Raw `ce9f1702`.
+- **i1088a:** `i1088a-j2000m.service` was active at 07:38:54 UTC, so the scan runs on 4 processes (8 evaluations, 2 each: p0 0.455 and 0.470, p1 0.460 and 0.475, p2 0.465 and 0.480, p3 0.485 and the repeat of 0.470), reniced to nice 19 at 07:39:09 UTC by the watcher (re-armed by the continuation session at 07:15 UTC, after the account switch).
+
+### Regrid predictions scorecard (registered before the run)
+| prediction | result |
+|---|---|
+| source accepted with controls 1 1, the k_c 95 check refusing it (93%) | right |
+| regrid exits 0 and is accepted (85%) | right |
+| steps about 3128 (within 10: 60%; within 30: 90%) | right (3132) |
+| \|F\| below 1e-9 (95%) | right (4.02e-10) |
+| the Delta shift within 0.5e-5 of -1.90e-05 (60%); negative (92%) | right (-1.849e-05); right |
+| regrid wall 2800 to 4500 s (65%) | WRONG (5196 s) |
+| peak sampled RSS below 3 GiB (85%) | right (1.86 GiB) |
+| the regrid done within 90 min of the lane's start (65%) | right (86.8 min) |
+
 ## Status
 - 2026-11-25 03:06 UTC: folder, inputs (pinned: `in_blobs.txt`, `in_blobs_src.txt`, `source_commit.txt`), lane, watcher and README written before any run; `lane_kc95.sh dry` and the unit `i1025-kc95-chain22` (both lanes in turn) are started next.
+- 2026-11-25 07:40 UTC: the regrid is ACCEPTED (06:12:03 to 07:38:50 UTC, 5196 s; result above, raw ce9f1702). The scan started 07:38:54 UTC on 4 processes (an i1088a unit is active), nice 19 by the watcher.
