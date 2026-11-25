@@ -7,14 +7,14 @@
 {
 W=/home/nathan/Source/choptuik-large-d-1088a
 bash $W/update_py.sh > /dev/null
-S1=$W/out/j1000_held_mob/jump_s_D1000.0000.npz
-S2=$W/out/j1414_held_mob/jump_s_D1414.0000.npz
-S3=$W/out/j2000_held_mob2/jump_s_D2000.0000.npz
-for D in 2200 2420 2662 2928 3221 3543 3897 4287 4716 5188; do
+S1=$W/out/j1414_held_mob/jump_s_D1414.0000.npz
+S2=$W/out/j2000_held_mob2/jump_s_D2000.0000.npz
+S3=$W/out/j2200_l2/jump_s_D2200.0000.npz
+for D in 2420 2662 2928 3221 3543 3897 4287 4716 5188; do
   A=$(python3 -c "print(max(8.0, ($D - 2) / 400))")
   export HP_COMMIT=3aecf887
   $W/run_jump.sh $D 225 2 0 0 9 l2 --held 1 --it_max 12 --kc 250 --delta fit --mob $A --states_s "$S1,$S2,$S3" \
-    --tol 1e-300 --disc 0
+    --tol 1e-300 --disc 0 --res od
   grep -q "converged;" $W/out/j${D}_l2/jump.log || exit 1
   grep -q "NOT converged" $W/out/j${D}_l2/jump.log && exit 1
   S1=$S2; S2=$S3; S3=$W/out/j${D}_l2/jump_s_D${D}.0000.npz

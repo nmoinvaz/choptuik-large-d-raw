@@ -69,4 +69,11 @@ c30c2766).
 - `form_s/relayout1000/`: `form_s.py relayout` of the lean D 1000 state onto nodes 0.3 ... 0.9 (`relayout.log`, the
   re-solve's `relayout_solve.log`: not converged, Delta's gain 3.5e34 with the double-double Jacobian).
 
+- `form_s/fine1000/`, `fine1000h/`, `fine2200/`, `fine2828/`: `form_s_fine.py jump` (the fine mesh 0.7 -> 0.95, the
+  sparse Newton) on the Mac's opt-1 build of 580af314: D 1000 from the lean state (and with its held harmonics), D 2200
+  and D 2828 from the held states at 1000, 1414, 2000; `fine_dd.log`, the double-double residual's run.
+- `form_s/finedisc.py` (`finedisc_D2200.log`): the fine mesh's truncation at D 2200 (steps halved, ks + 100, kc + 30);
+  `form_s/fullcheck.py` (`fullcheck_D2200.log`): the full system (kfreeze 13) at the fine held solution.
+- `form_s/tc_1414_2200_2420.json`, `tc_run.log`: Track C at D 1414, 2200, 2420 (main's hp/track_c.py --targets).
+
 Files are added as the runs go; each log or script names its command line.
