@@ -13,9 +13,9 @@ slice 3. The note is `notes/LIT_GAPS_DSS.md` on branch `wip/lit-gaps-dss` of the
   The scratch prefix of the paths is removed. No state was changed and no solve was run.
 - `pole_mc.txt` (table), `pole_mc.jsonl` (records), `pole_mc_warnings.txt` (numpy's overflow warning from
   `hp/pole_test.py`'s ratio test, whose non-finite terms it drops): `python3 solver/lit_gaps_dss/pole_mc.py STATES...`
-  (commit f33a83e5) on the same four states, with the venv-314 hpkernel (the path is printed in the log). The horizon
+  (commit 6c556301) on the same four states, with the venv-314 hpkernel (the path is printed in the log). The horizon
   series is recomputed for horizon data moved three ways: a_h scaled (A), m_h scaled with a_h re-slaved by the
   momentum constraint (S), and m_h scaled with a_h held (S0). Each row gives the ratio-test radius and the data's
-  momentum residual at the SSH.
+  momentum residual at the SSH, and each S0 point is compared with A's radius read at the same residual.
 
 Python 3.14 (the Mac's venv-314), numpy and sympy as pinned in the main repository's requirements.txt.
