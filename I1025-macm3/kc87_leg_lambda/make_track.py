@@ -6,7 +6,7 @@ usage: make_track.py            markdown on stdout     |     make_track.py --sel
 import glob, json, os, sys
 L = os.path.expanduser("~/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_leg_lambda")
 MUT = next((a.split("=", 1)[1] for a in sys.argv if a.startswith("--mutate=")), None)
-FOLDERS = {"22.0": ["22.0"], "22.125": ["22.125", "22.125_rescan", "22.125_low", "22.125_wide"], "22.15625": ["22.15625", "22.15625_high"],
+FOLDERS = {"22.0": ["22.0"], "22.125": ["22.125", "22.125_rescan", "22.125_low", "22.125_wide", "22.125_high"], "22.15625": ["22.15625", "22.15625_high"],
            "22.1875": ["22.1875", "22.1875_low", "22.1875_mid"], "22.21875": ["22.21875_full"], "22.25": ["22.25", "22.25_low", "22.25_wide", "22.25_refine"]}
 
 def load(folder, D):
