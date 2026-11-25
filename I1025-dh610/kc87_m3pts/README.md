@@ -35,6 +35,19 @@ One point at a time: 8 processes at nice 8. Beside it: the recount (12 nominal, 
 - The float64 sign agrees with the hybrid at all 8 evaluations at a point (20% each; it differed at one point at macm3's D 21.75, and at 1 to 3 points at nearly every kc79 leg point, at none at D 21.4375).
 - Each scan point takes 1800 to 3300 s (60% each; D 21.40625's kc79 points took 2230 to 2602 s beside the regrid, D 21.4375's 3056 to 3612 s beside the regrid and a second scan; the k_c 87 states are 9% larger in steps than the k_c 79 ones, 2887 against 2642). A point is done within 60 min of its lane's start (60%). All four points are done by 23:30 UTC (55%).
 
+## Results (all points; `table_m3.py` > `results_table.txt`, selftest exit 0 and its `--mutate` exit 1 with the FIRED line; k_c 87 roots and the k_c 95 root, not yet physical)
+| point | bracket | det-linear root | estimator range (spread over interpolation choices, not an enclosure) | prediction | root - prediction | chord or extrapolation, exact | root - chord |
+|---|---|---|---|---|---|---|---|
+| k_c 87, D 21.5625 (macm3's state, Linux) | (0.720, 0.725) | 0.720213 | [0.720132, 0.720213] | 0.7203 | -0.000087 | 0.720318 | -0.000105 |
+| k_c 87, D 21.6875 (Linux) | (0.670, 0.675) | 0.671656 | [0.671141, 0.671656] | 0.6715 | +0.000156 | 0.671501 | +0.000155 |
+| k_c 87, D 21.75 (Linux; macm3's macOS reading 0.646846) | (0.645, 0.650) | 0.646846 | [0.646292, 0.646846] | 0.646846 | +0.000000 | - | - |
+| k_c 87, D 21.8125 (Linux) | (0.620, 0.625) | 0.621814 | [0.621266, 0.621814] | 0.6217 | +0.000114 | 0.621662 | +0.000152 |
+| k_c 87, D 21.9375 (Linux, extrapolated prediction) | (0.570, 0.575) | 0.570746 | [0.570481, 0.570746] | 0.5713 | -0.000554 | 0.571292 | -0.000547 |
+| k_c 95, D 21.75 (regridded, Linux; prediction 0.6498) | (0.645, 0.650) | 0.645855 | [0.645557, 0.645855] | 0.6498 | -0.003945 | - | - |
+
+- All five k_c 87 points (four of macm3's states and the inserted D 21.75): sources accepted on this build (controls 1 1, the k_c 79 check refusing them), exactly one robust change each, the repeat bit-identical at each (on its own process), the root within 0.0015 of the coordinator's prediction (4 of 4; D 21.75 is macm3's own reading). The chord offsets (root minus the exact chord) are -1.05e-04, +1.55e-04, +1.52e-04 at the interpolated points and -5.47e-04 at the extrapolated one: scatter of about 1.5e-4 between neighbours' det-linear roots and no curvature signal at the interpolated points; D 21.6875's chord is 0.6715015 exactly (printed 0.671501 in the table and 0.671502 in its section) and D 21.9375's 0.5712925 (0.571292 and 0.571293).
+- **Cross-build check (the order's second purpose):** only D 21.75 has both builds: the same state scanned on macOS (macm3) and on Linux gives the det-linear root 0.6468459261 and 0.6468459399 (+1.38e-08), the same bracket and the same hybrid signs at all 5 grid points; the ln|det| values differ by 4e-6 to 1.6e-5; the float64 signs differ (macOS at 0.655, Linux at 0.645). Its other consequence: the k_c 95 root at the same D (0.645855, `../kc95_d2175/`) lies 0.000991 below the k_c 87 root on the same build, so that offset is the k_c step.
+
 ## D 21.5625 (lane 19:47:05 to 21:42:14 UTC, 115.2 min; `summarize_m3.py 21.5625 0.7203` > `21.5625/summary_m3.txt`)
 | lambda | hybrid sign | noise signs (robust) | float64 sign | ln of abs det | seconds |
 |---|---|---|---|---|---|
@@ -204,6 +217,47 @@ against the prediction 0.6217: change minus prediction +0.000114; within 0.005: 
 | each scan point 1800 to 3300 s (60%) | right (2594 to 2820 s) |
 | the point done within 60 min of its lane's start (60%) | right (47.5 min) |
 
+## D 21.9375 (lane 00:14:02 to 01:00:16 UTC (25 Nov), 46.2 min; `summarize_m3.py 21.9375 0.5713` > `21.9375/summary_m3.txt`)
+| lambda | hybrid sign | noise signs (robust) | float64 sign | ln of abs det | seconds |
+|---|---|---|---|---|---|
+| 0.555 | - | -- (True) | - | -2493.2895833678467 | 2606 |
+| 0.560 | - | -- (True) | - | -2494.0847120543767 | 2691 |
+| 0.565 | - | -- (True) | - | -2495.1357727672416 | 2711 |
+| 0.570 | - | -- (True) | - | -2497.900147644278 | 2589 |
+| 0.570 | - | -- (True) | - | -2497.900147644278 | 2690 |
+| 0.575 | + | ++ (True) | + | -2496.158482610227 | 2731 |
+| 0.580 | + | ++ (True) | + | -2495.8151476025355 | 2651 |
+| 0.585 | + | ++ (True) | + | -2495.798036468543 | 2694 |
+
+scan points: 8 evaluations, seconds per point min 2589, median 2690, max 2731, sum 21363; outside 1800 to 3300 s: []
+macm3's record at D 21.9375: |F| 4.1000677274326013e-10, steps 2878, constraint 0.0060887434548237964, Delta 1.1438778358379849, h 0.03125, seconds 782
+float64 sign differs from the hybrid at: []
+
+```
+hybrid signs: 0.555- 0.560- 0.565- 0.570- 0.575+ 0.580+ 0.585+
+robust changes: 1
+   change (0.570, 0.575), - to +, det-linear 0.570746, range [0.570481, 0.570746]
+against the prediction 0.5713: change minus prediction -0.000554; within 0.005: True
+```
+
+- **Source accepted** (macm3's state, commit d5912632, 2026-11-24 10:12:22 -08:00 = 18:12:22 UTC; macOS state, Linux check): `kc87_syscheck_1025.py` exit 0 (record |F| 4.1000677274e-10, the state's own 4.1088005149e-10 recomputed here, `freeze_from` 2878 steps = the record's), both controls exit 1, `kc79_syscheck_1025.py` on it exit 1 (refuses); selftests 0 0 0 1 1 0 0 1; all 8 processes printed the record system.
+- **One robust change in the window 0.555 to 0.585:** (0.570, 0.575), "- to +" as the reader prints it, det-linear **0.570746**, estimator range [0.570481, 0.570746] (a spread over interpolation choices, not an enclosure; the bracket is the grid step 0.005). Edge signs differ (- at 0.555, + at 0.585). No ln|det| minimum without a sign change; every point noise-robust; the float64 sign agrees with the hybrid at all 8 evaluations. The repeat of 0.570 (p3 and p7) is bit-identical (ln|det| -2497.900147644278 in both).
+- **Against the prediction 0.5713 (the coordinator's extrapolation from macm3's 21.75 and 21.875, bar 0.005):** -0.000554, within the bar and within 0.0015. The extrapolation's exact value is 0.5712925; I had expected the next step of macm3's root curve (-0.0514 per 0.125, the steps growing by 0.00106) to put the root near 0.5708, and it is 0.570746, 5e-5 from that.
+- **Seconds per point: 2589 to 2731 s** (median 2690), 8 processes at nice 8 beside the recount only. The load average, median over `21.9375/scan/sampler.log` (91 samples, 00:14:48 to 00:59:59 UTC), was 10.03 (max 10.31, min 7.77), peak RSS per process 2.03 to 2.18 GiB, MemAvailable at least 46.52 GiB.
+
+### Scorecard of D 21.9375 (registered before the run)
+| prediction | result |
+|---|---|
+| source accepted, controls 1 1, the k_c 79 check refusing it (92%); 8 processes with the record system (92%); the repeat agrees (92%) | right |
+| one robust change in the window (85%) | right |
+| the root within 0.005 of 0.5713 (80%); within 0.0015 (40%) | right (-0.000554); right |
+| the root near 0.5708 (the next step about -0.0514) | 0.570746: 5e-5 from it |
+| the bracket (0.570, 0.575) (50%) | right |
+| the float64 sign agrees with the hybrid at all 8 evaluations (20%) | right (agrees at all 8) |
+| each scan point 1800 to 3300 s (60%) | right (2589 to 2731 s) |
+| the point done within 60 min of its lane's start (60%) | right (46.2 min) |
+| all four points done by 23:30 UTC (55%) | WRONG (the last at 01:00:16 UTC, after the priority hold for the k_c 95 scan and the inserted D 21.75 scan) |
+
 ## Priority word of the coordinator (hc, 24 Nov, read at 2026-11-24 21:44 UTC), verbatim
 "Coordinator (t5): priority to the k_c 95 scan at D 21.75 (the k_c step near the crossing matters more than the in-between k_c 87 points). Let D 21.6875's scan finish, then hold the k_c 87 lane until the k_c 95 scan has read; then 21.8125 and 21.9375 as set. Your wrong-side note on 21.5625 is fine: one point inside an 8e-5 range says nothing about builds yet."
 
@@ -226,3 +280,4 @@ Verbatim: "Coordinator (t5): yes, add the k_c 87 scan of macm3's D 21.75 state o
 - 2026-11-24 22:53 UTC: D 21.6875 done (69.5 min; section above); the chain runs the inserted point D 21.75 (Linux k_c 87) since 22:51:43 UTC, then D 21.8125 and D 21.9375.
 - 2026-11-24 23:27 UTC: the inserted Linux k_c 87 scan of D 21.75 is done (34.6 min; section above): the root equals macm3's (+1.4e-8), so the -0.000991 of the k_c 95 root is the k_c step. The chain runs D 21.8125 and D 21.9375 next.
 - 2026-11-25 00:15 UTC: D 21.8125 done (47.5 min; section above); the chain runs D 21.9375 (the last point) since 00:14:02 UTC.
+- 2026-11-25 01:01 UTC: D 21.9375 done (46.2 min; section above): all four points and the inserted D 21.75 are done (`exits_chain.txt`: "all four points done" 01:00:16 UTC). The unit `i1025-m3pts` and its notifier ended; nothing of this folder is armed. The coordinator's next order (hc, 25 Nov, about 00:17 UTC): the large-D quest #1088 is the next priority, no new l = 1 scans unless ordered, the `i1088a-*` units and the worktree `~/Source/choptuik-large-d-1088a` are left alone.
