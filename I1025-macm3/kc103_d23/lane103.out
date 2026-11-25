@@ -8,3 +8,6 @@
     echo "$(stamp),$(ps -axo rss=,pcpu=,command= | grep 'ell_refine.py' | grep -v grep | grep -v capped_run | head -1 | awk '{print $1","$2}'),$(availgib)" >> $OUT/regrid_samples.csv; av=$(availgib); python3 -c "import sys; sys.exit(0 if $av < 2 else 1)" && echo "$(stamp) UTC $av GiB available (alert only; nothing is stopped)" >> $OUT/MEMALERT.txt;
 done )
 == 2026-11-25 21:42:31 UTC kc103_d23: kc103 syscheck exit 0 (0 wanted); controls --mutate=F exit 1, --mutate=steps exit 1 (1 wanted each); kc95_syscheck on the k_c 103 result exit 1 (1 wanted): D 23 k_c 103: record |F| 3.2904549304e-10, F_start 3.655e-05, steps 3389, constraint 5.030e-03, Delta 1.174332548928, 1382 s; state |F| 3.2904549304e-10, freeze_from steps 3389
+== 2026-11-25 21:42:37 UTC kc103_d23: pushed regrid: pushed 50875d188
+== 2026-11-25 21:42:37 UTC kc103_d23: hc: macm3 #1025 kc103_d23: the k_c 103 D 23.0 regrid is ACCEPTED (k_c 103 record: D 23.0 |F| 3.2905e-10 steps 3389 psi-constraint 5.0299e-03 Delta 1.174332548928 (k_c 95 source: |F| 3.3832e-10 steps 3127 constraint 7.6695e-03 Delta 1.174346963414); Delta shift -1.4414e-05, steps ratio 1.084); regrid wall 1401 s; the scan (lambda -0.06 to 0.06 by 0.01 + repeat of 0.00, 4 procs) starts now; raw pushed 50875d188
+== 2026-11-25 21:42:43 UTC kc103_d23: scan starts (point87.sh 23.0_kc103 scan)
