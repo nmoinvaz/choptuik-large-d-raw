@@ -51,6 +51,70 @@ Basis: the k_c step (k_c 95 root minus macm3's k_c 87 root) was +0.0018 at D 21.
 | peak sampled RSS below 3 GiB (85%) | right (1.86 GiB) |
 | the regrid done within 90 min of the lane's start (65%) | right (86.8 min) |
 
+## Scan result (25 Nov, 07:38:54 to 10:02:12 UTC, 143.3 min, 4 processes; `summarize_kc95.py` > `summary_kc95.txt`)
+| lambda | hybrid sign | noise signs (robust) | float64 sign | ln of abs det | seconds |
+|---|---|---|---|---|---|
+| 0.455 | - | -- (True) | - | -2768.6441801085484 | 3310 |
+| 0.460 | - | -- (True) | + | -2770.175264469934 | 3624 |
+| 0.465 | + | ++ (True) | - | -2770.6149206298587 | 3534 |
+| 0.470 | + | ++ (True) | + | -2769.9486633570154 | 4432 |
+| 0.470 | + | ++ (True) | + | -2769.9486633570154 | 4583 |
+| 0.475 | + | ++ (True) | + | -2769.8716046010877 | 4966 |
+| 0.480 | + | ++ (True) | + | -2769.969051641245 | 4296 |
+| 0.485 | + | ++ (True) | + | -2770.151675934942 | 3701 |
+
+scan points: 8 evaluations, seconds per point min 3310, median 3998, max 4966, sum 32446; outside 1800 to 3500 s: [(0.46, 3624), (0.465, 3534), (0.47, 4432), (0.47, 4583), (0.475, 4966), (0.48, 4296), (0.485, 3701)]
+the regridded record at D 22.1875: |F| 4.020547907630559e-10, steps 3132, constraint 0.004494247385818032, Delta 1.1508992846163095, h None, seconds 5193
+float64 sign differs from the hybrid at: [0.46, 0.465]
+
+```
+hybrid signs: 0.455- 0.460- 0.465+ 0.470+ 0.475+ 0.480+ 0.485+
+robust changes: 1
+   change (0.460, 0.465), - to +, det-linear 0.463041, range [0.462294, 0.463041]
+against the prediction 0.4663: change minus prediction -0.003259; within 0.005: True
+```
+
+- **All 4 processes exit 0 and printed the record system** (|F| 4.0218165377e-10 recomputed against the record's 4.0205479076e-10, steps 3132 = the record's); the pre-run checks passed (`selftest_exits.txt` 0 0 0 1 1 0 0 1). The scan ran on 4 processes (p0 0.455 and 0.470, p1 0.460 and 0.475, p2 0.465 and 0.480, p3 0.485 and the repeat of 0.470) because `i1088a-j2000m.service` was active at the start (and `i1088a-j2000b.service` at the end); process walls 2:10:37 to 2:23:17.
+- **One robust change in the window 0.455 to 0.485:** (0.460, 0.465), **"- to +" as the reader prints it**, det-linear **0.463041**, estimator range [0.462294, 0.463041] (a spread over interpolation choices, not an enclosure; the bracket is the grid step 0.005). Edge signs differ (- at 0.455, + at 0.485). No ln|det| minimum without a sign change; every point noise-robust (8 of 8).
+- **The float64 sign differs from the hybrid at 0.460 and 0.465.** The float64 signs alone read - + - + + + + (0.455 to 0.485), which would be three changes (between 0.455 and 0.460, 0.460 and 0.465, 0.465 and 0.470); the hybrid, which the reader reads, gives one. Both noise tests agree with the hybrid at every point.
+- **The repeat of 0.470** (p0 and p3, two processes) is bit-identical (hybrid +, ln|det| -2769.9486633570154 in both; `repeat_check.py` PASS).
+- **Beside macm3's k_c 87 root at the same D** (0.473467, bracket (0.470, 0.475), range [0.472991, 0.473467], printed "+ to -"; macOS scan of its own state), this lane's k_c 95 root is:
+
+| | bracket | printed orientation | det-linear root | estimator range |
+|---|---|---|---|---|
+| macm3 k_c 87 | (0.470, 0.475) | + to - | 0.473467 | [0.472991, 0.473467] |
+| dh610 k_c 95 | (0.460, 0.465) | - to + | 0.463041 | [0.462294, 0.463041] |
+
+  The k_c 95 root is **0.010426 below** macm3's k_c 87 root, the brackets differ and the two estimator ranges do not overlap. There is no robust change in this scan near 0.4735: the hybrid sign is + at 0.465 to 0.485. The k_c step (k_c 95 minus k_c 87 root) is therefore **-0.010426** at D 22.1875, against -0.000991 (D 21.75), +0.000055 (D 22.125) and -0.008252 (D 22.25). Against my prediction 0.4663: -0.003259, inside the bar 0.005.
+- **The coordinator's question, the printed orientations side by side (as printed; not interpreted here):**
+
+| D | k_c 87 (macm3) | k_c 95 (dh610) |
+|---|---|---|
+| 21.75 | - to + | - to + |
+| 22.125 | - to + | - to + |
+| 22.1875 | + to - | - to + |
+| 22.25 | + to - | - to + |
+
+  On this grid the k_c 95 root prints "- to +" at all four D, and k_c 87's printed orientation changes between D 22.125 and D 22.1875: the two agree as printed at D 21.75 and D 22.125, and differ at D 22.1875 and D 22.25.
+- **Seconds per point: 3310 to 4966 s** (median 3998), 4 processes of 2 evaluations at nice 19 (the watcher's renice at 07:39:09 UTC, 4 pids, `i1088a_yield.txt`), beside the recount, the quest's units and the D 22.375 lane (its regrid from 06:17 to 08:21, its scan from 08:21): load median 13.73, max 28.84 (07:43, 9 samples above 22 between 07:41 and 07:45, then lower; far below the alert's hour), min 10.36 over 286 samples 07:39:04 to 10:02:11 UTC; peak RSS per process 3.00 to 3.14 GiB (`/usr/bin/time -v`); MemAvailable at least 42.17 GiB; no memory or load alert. The watcher's pattern was the fixed one, so this time the scan processes ran at nice 19 from the start.
+
+### Scan predictions scorecard (registered before the run)
+| prediction | result |
+|---|---|
+| every point noise-robust (75%) | right (8 of 8) |
+| the repeat on another process bit-identical (85%) | right |
+| exactly one robust change in the window (80%) | right |
+| the change within 0.005 of 0.4663 (65%); within 0.002 (35%) | right (-0.003259); WRONG |
+| below macm3's k_c 87 root, the step negative (85%) | right (-0.010426) |
+| the step between -0.009 and -0.003 (60%) | WRONG (-0.010426) |
+| the bracket (0.465, 0.470) (45%) | WRONG (it is (0.460, 0.465)) |
+| the printed orientation of the k_c 95 root is "- to +" (75%) | right |
+| the float64 sign agrees with the hybrid at all evaluations (25%) | WRONG (differs at 0.460 and 0.465) |
+| each scan point 1800 to 3500 s (60%) | WRONG (3310 to 4966 s; 7 of 8 outside) |
+| the scan done within 100 min of its start (65%) | WRONG (143.3 min) |
+| the whole lane done within 3 h (60%) | WRONG (230.2 min: 06:12:03 to 10:02:12 UTC) |
+
 ## Status
 - 2026-11-25 03:06 UTC: folder, inputs (pinned: `in_blobs.txt`, `in_blobs_src.txt`, `source_commit.txt`), lane, watcher and README written before any run; `lane_kc95.sh dry` and the unit `i1025-kc95-chain22` (both lanes in turn) are started next.
 - 2026-11-25 07:40 UTC: the regrid is ACCEPTED (06:12:03 to 07:38:50 UTC, 5196 s; result above, raw ce9f1702). The scan started 07:38:54 UTC on 4 processes (an i1088a unit is active), nice 19 by the watcher.
+- 2026-11-25 10:04 UTC: the scan is done (07:38:54 to 10:02:12 UTC): one robust change, bracket (0.460, 0.465) printed "- to +", det-linear 0.463041, 0.010426 below macm3's k_c 87 0.473467 (printed "+ to -"), -0.003259 against my prediction 0.4663; result and scorecard above. This lane is finished.
