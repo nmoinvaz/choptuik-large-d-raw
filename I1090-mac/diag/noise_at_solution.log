@@ -1,0 +1,15 @@
+D     200 M 6 a 0: max|U*| 4.3064e-03  max_k|U_k|/|U*| 1.9e+00  amplification all 4.5e+09  low 1.0e+10  mid 2.2e+08  high 0.0e+00
+D     200 M 6 a 1: max|U*| 4.3065e-03  max_k|U_k|/|U*| 1.9e+00  amplification all 2.7e+00  low 2.6e+00  mid 4.6e-01  high 0.0e+00
+D     200 M 6 a 2: max|U*| 4.3065e-03  max_k|U_k|/|U*| 1.9e+00  amplification all 3.0e+00  low 3.0e+00  mid 9.1e-03  high 0.0e+00
+D     200 M 6 a 3: max|U*| 4.3065e-03  max_k|U_k|/|U*| 1.9e+00  amplification all 3.2e+00  low 3.2e+00  mid 5.0e-04  high 0.0e+00
+D     400 M 6 a 0: max|U*| 3.2844e+20  max_k|U_k|/|U*| 2.1e-02  amplification all 2.7e+16  low 3.3e+16  mid 1.5e+15  high 5.6e+00
+D     400 M 6 a 1: max|U*| 1.6583e-03  max_k|U_k|/|U*| 1.9e+00  amplification all 5.6e+01  low 3.5e+00  mid 5.5e+01  high 0.0e+00
+D     400 M 6 a 2: max|U*| 1.6583e-03  max_k|U_k|/|U*| 1.9e+00  amplification all 3.9e+00  low 3.5e+00  mid 1.9e+00  high 0.0e+00
+Traceback (most recent call last):
+  File "/Users/nathan/Source/choptuik-1090/solver/inner_large_d/noise_at_solution.py", line 29, in <module>
+    f = ms.FormS(D, M, a=a, kb=150)
+  File "/Users/nathan/Source/choptuik-1090/solver/inner_large_d/mobius_s.py", line 96, in __init__
+    zs[j] = -(1 + a) * (-a) ** (j - 1) * ts ** j
+                       ~~~~~^^~~~~~~~~
+OverflowError: (34, 'Result too large')
+exit 1
