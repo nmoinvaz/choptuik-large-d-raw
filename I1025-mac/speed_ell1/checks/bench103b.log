@@ -1,0 +1,16 @@
+D 22.125 k_c 103: |F| 4.1372551829e-10 (record 4.1351140279e-10), steps 3397 (record 3397): the record system
+coef  block 1: 5.3 s
+coef  block 12: 45.7 s
+coef: 51.0 s
+grid  block 1: 6.2 s
+grid  block 12: 39.1 s
+grid: 45.3 s
+cs  block 1: 15.3 s
+cs  block 12: 123.1 s
+cs: 138.3 s
+coef against cs (time ratio 2.71):
+  block  1: max |M_fast - M_cs| / max |M_cs| = 1.426e-15 (max |M_cs| 4.983e+00) ok
+  block 12: max |M_fast - M_cs| / max |M_cs| = 2.150e-09 (max |M_cs| 1.302e+01) FAIL
+grid against cs (time ratio 3.06):
+  block  1: max |M_fast - M_cs| / max |M_cs| = 1.604e-15 (max |M_cs| 4.983e+00) ok
+  block 12: max |M_fast - M_cs| / max |M_cs| = 2.150e-09 (max |M_cs| 1.302e+01) FAIL

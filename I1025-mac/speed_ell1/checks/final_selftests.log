@@ -1,0 +1,15 @@
+ell_fastm.py selftest: exit 0 | selftest (mutate none): PASS
+ell_fastm.py selftest --mutate=nolam: exit 1 | selftest (mutate nolam): FAIL
+ell_fastm.py selftest --mutate=coef: exit 1 | selftest (mutate coef): FAIL
+d18_secant.py selftest: exit 0 | selftest (mutate none): PASS
+d18_secant.py selftest --mutate=half: exit 1 | selftest (mutate half): FAIL
+d18_secant.py selftest --mutate=norobust: exit 1 | selftest (mutate norobust): FAIL
+d18_secant.py selftest --mutate=nosigncheck: exit 1 | selftest (mutate nosigncheck): FAIL
+ell_fastdd.py selftest: exit 0 | selftest (mutate none): PASS
+ell_fastdd.py selftest --mutate=nolam: exit 1 | selftest (mutate nolam): FAIL
+ell_fastdd.py selftest --mutate=jround: exit 1 | selftest (mutate jround): FAIL
+ell_fastm.py check kc31 2.87 --mutate=nolam: exit 1
+ell_fastm.py check kc31 2.87 (jac): exit 0
+d18_secant.py selftest (after --eps): exit 0 | selftest (mutate none): PASS
+ell_fastdd.py check kc103 0.4875: exit 0
+d18_secant.py selftest (93df85cf): exit 0 | selftest (mutate none): PASS
