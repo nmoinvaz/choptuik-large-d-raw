@@ -97,15 +97,72 @@ The sampler (`rows/source_samples.csv`, `rows/scan_samples.csv`) gives the real 
 
 ## Status
 
-**Source ACCEPTED 2026-11-25 09:59:58 UTC; the scan RUNNING since 10:01:09 UTC.** README first: d81106d80 (pushed 09:55:27 UTC, before the start). The k_c 103 D 21.75 chain ended 09:58:18 UTC; its reading was posted (#1025 comment 7159071639) and pushed (df17428bc) first, as t5 ordered ("post the reading on #1025, push, then start"), and this chain was started at 09:59:44 UTC.
+**Source ACCEPTED 2026-11-25 09:59:58 UTC; the scan DONE 12:33:24 UTC (9135 s, exits 0, 0, 0, 0): no robust change in 0.52 to 0.76, every hybrid sign +. Registered outcome (B) by the reader's line "robust changes: 0".** Started 10:01:09 UTC. README first: d81106d80 (pushed 09:55:27 UTC, before the start). The k_c 103 D 21.75 chain ended 09:58:18 UTC; its reading was posted (#1025 comment 7159071639) and pushed (df17428bc) first, as t5 ordered ("post the reading on #1025, push, then start"), and this chain was started at 09:59:44 UTC.
 
 - **Chain** (`rows/launcher_pid.txt`: 21356): `Win32_Process.Create` of `conhost.exe --headless cmd.exe /c go_kc95d22125h_1025.cmd` at 09:59:44 UTC: conhost --headless 21356 <- cmd 11964 <- source driver (pid 16800), then scan driver 13512 with its sampler 9480, alert-only watcher 6952 and keep-awake helper 17524. The python and powershell processes are BelowNormal.
 - **Source** (`kc95d22125h_source_w.log`, 09:59:45 to 09:59:58 UTC, 12 s for the checks): the pins matched; the selftests of the three checks exit 0; `ell_delta.lam0_at(22.125)` = 2.1023628304; the k_c 95 check exit 0 on the source, `--mutate=F` and `--mutate=steps` exit 1, the k_c 87 check exit 1 and the k_c 103 check exit 1 (`source_kc*_syscheck*.txt`). Marker `source_accepted.txt`: state blob 06c5082f523c3eb9f1a2669415ac6981e2f82ae2, record blob 64ecb0474d17c1bcd1e4cb0d7ec8f41eafc71580.
 - **Scan** (`kc95d22125h_scan_w.log`): the reader's selftest exit 0 and its two `--mutate` controls exit 1, 1; 4 processes of `d18_hybsign.py`, 1 thread each, BelowNormal, cap 21600 s: p0 pid 11748 (0.60 then 0.52), p1 pid 20492 (0.64 then 0.56), p2 pid 21128 (0.68 then 0.72), p3 pid 26360 (0.64, the repeat, then 0.76). All four print the record system first: \|F\| 4.0704720553e-10 (record 4.0627911135e-10), steps 3132 (record 3132). Session check `session_check_scan.txt` exit 0: no `claude` in any chain, no Windows Terminal / OpenConsole / wt, a headless conhost in the chain. Free physical memory at the start 22.68 GB.
-- **ETA** (the written 7000 to 10400 s counted from 10:01:09 UTC; central about 8200 s): the scan ends about 12:00 to 13:00 UTC (central about 12:20).
+- **End** (`kc95d22125h_scan_w.log`): p2 and p3 ended exit 0 at 12:32:54 (9105 s), p0 12:33:09 (9120 s), p1 12:33:24 (9135 s); the reader ran at 12:33:24 (exit 0) and the driver hc'd t5 the reader lines; the driver ended 12:34:35, the chain (cmd 11964) with it. Sampler `rows/scan_samples.csv`: 149 samples 10:01:11 to 12:32:52, no gap over 90 s. Alert-only watcher: no alert (nothing below 1 GB free). Keep-awake: `SetThreadExecutionState` returned 0x80000000 (ok), held until the driver ended. System log: no power, sleep or boot event from 09:34 to 12:34 UTC. The other project's I114 jobs were not touched.
 
-Pushed 2026-11-25 10:02:03 UTC.
+Pushed 2026-11-25 12:35:16 UTC.
 
 ## Result
 
-Not yet run.
+Reader (`read_lower_kc95_D22125_high.log`, `read_lower.py` 89309d3c on this folder, window 0.520 to 0.760), lines as printed:
+
+```
+points 7 in 0.520-0.760; not noise-robust: none
+hybrid signs: 0.520+ 0.560+ 0.600+ 0.640+ 0.680+ 0.720+ 0.760+
+float64 sign differs from the hybrid sign at: none
+repeated points: [(0.64, 'agree')]
+robust changes: 0; touching a non-robust point (not counted): none
+ln|det| local minima without a sign change: none
+endpoint signs: + at 0.520, + at 0.760
+read_lower exit 0
+```
+
+The 8 evaluations (`scan_kc95_D22125_high_p0..p3.jsonl`; every worker first printed the record system: \|F\| 4.0704720553e-10 against the record's 4.0627911135e-10, 3132 steps = the record's):
+
+| lambda | process | hybrid sign | hybrid ln\|det\| | float64 sign | float64 ln\|det\| | noise-robust (2 seeds) | seconds |
+|---|---|---|---|---|---|---|---|
+| 0.52 | p0 | + | -2780.0280665234 | + | -2780.0667421964 | yes | 4489 |
+| 0.56 | p1 | + | -2782.6294661586 | + | -2782.6836616359 | yes | 4492 |
+| 0.60 | p0 | + | -2785.6325729932 | + | -2785.6671794663 | yes | 4615 |
+| 0.64 | p1 | + | -2788.7748751547 | + | -2788.8014151671 | yes | 4619 |
+| 0.64 (repeat) | p3 | + | -2788.7748751547 | + | -2788.8014151671 | yes | 4604 |
+| 0.68 | p2 | + | -2791.9864663072 | + | -2792.0022357577 | yes | 4604 |
+| 0.72 | p2 | + | -2795.2379979786 | + | -2795.2255438891 | yes | 4489 |
+| 0.76 | p3 | + | -2798.5141790330 | + | -2798.5428874523 | yes | 4490 |
+
+The repeat of 0.64 (p3) is bit-identical to p1's: same hybrid and float64 ln\|det\|. All 8 evaluations are noise-robust and the float64 sign equals the hybrid sign at every point.
+
+**Against the registration** (the table "Written before the scan"):
+
+| outcome as registered | printed |
+|---|---|
+| (A) exactly one robust change, `+ to -`, det-linear in [0.570, 0.670] | not met: no change printed, so no position and no orientation |
+| (B) "robust changes: 0" in 0.52 to 0.76 (every sign the same) | **met: "robust changes: 0"; every hybrid sign + at all 7 points** |
+
+By the registration this is outcome **(B)**. Not widened (as registered). Beside it, as printed in the references above and not interpreted by me:
+
+| reading | position | orientation as printed | signs in its window |
+|---|---|---|---|
+| k_c 87, D 22.125, macm3, HIGH scan (0.50 to 0.70) | (0.600, 0.620), det-linear 0.619895 | + to - | + at 0.50 to 0.60, - at 0.62 to 0.70 |
+| k_c 95, D 22.125, dh610, lambda_1 (0.475 to 0.505) | (0.490, 0.495), det-linear 0.491072 | - to + | - at 0.475 to 0.490, + at 0.495 to 0.505 |
+| k_c 95, D 22.125, this scan (0.52 to 0.76) | none | none | + at all 7 points |
+
+dh610's hybrid sign at 0.495, 0.500 and 0.505 is also +; his ln\|det\| at 0.505 is -2779.4475 and mine at 0.52 is -2780.0281. Nothing is scanned between 0.505 and 0.52 and nothing of this state above 0.76. Which of these is a k_c 87 artefact is t5's reading, not mine.
+
+**Cost against the estimates written before the run:**
+
+| item | written | measured |
+|---|---|---|
+| source checks | 60 to 120 s | 12 s (09:59:45 to 09:59:58 UTC) |
+| each scan point (4 processes, both rounds) | 3500 to 5200 s | 4489 to 4619 s (round 1 4604 to 4619, round 2 4489 to 4492) |
+| the scan | 7000 to 10400 s (central 8200) | 9135 s (10:01:09 to 12:33:24 UTC) |
+| peak private per worker | 3.0 to 3.5 GB | 3.331, 3.332, 3.334, 3.336 GB (sum 13.33 GB); working set peak about 2.49 GB |
+| cpu per worker | not written | 8942 to 8944 s |
+
+Lowest free physical memory 14.93 GB (11:47:46 UTC; 22.68 GB at the start, 23.0 GB after the end), commit up to 22.7 GB, laptop cpu 62 to 94 % (mean 70.5 %). No alert, nothing killed. Everything is inside the written ranges except the source checks, which came in under their lower end (12 s against 60 s).
+
+t5's ruling (hc after the reader lines, 2026-11-25 about 12:35 UTC): "no root of k_c 95 in 0.52-0.76 at D 22.125, where k_c 87 has S at 0.6199: S is absent at k_c 95 there (registered outcome B)."
