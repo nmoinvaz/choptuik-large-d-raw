@@ -25,7 +25,13 @@ cs = PDc = None
 for l_ in open(L + "/chain.log"):
     m_ = re.search(r"next: D %s \(previous D ([\d.]+), root ([\d.-]+), local slope ([\d.-]+)" % re.escape(dn), l_)
     if m_: PDc, PRc, cs = float(m_.group(1)), float(m_.group(2)), float(m_.group(3))
-roots = {x: v for x, v in roots_first.items() if x <= PDc} if cs is not None else dict(roots_now)
+if cs is not None:
+    roots = {x: v for x, v in roots_first.items() if x <= PDc}
+elif "--prev" in opt:     # a point started by hand with its rule's base given: --prev=PD,PR,LO,HI[,CD] (the registered previous D, its root and range, and the root above the chord used); roots between PD and D were not part of the rule
+    pv_ = [float(x) for x in opt["--prev"].split(",")]; PDm, PRm, LOm, HIm = pv_[:4]; CDm = pv_[4] if len(pv_) > 4 else D      # CD: the nearest root above that the rule used (the chord's far end)
+    roots = {x: v for x, v in roots_now.items() if x <= PDm or x >= max(CDm, D + 1e-9)}; roots[PDm] = (PRm, LOm, HIm)
+else:
+    roots = dict(roots_now)
 roots[D] = (root, lo, hi)
 below = sorted(x for x in roots if x < D); above = sorted(x for x in roots if x > D)
 a, b = below[-1], below[-2]
