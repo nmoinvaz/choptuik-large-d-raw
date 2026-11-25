@@ -15,4 +15,10 @@ c30c2766).
   kfreeze None in `probe2.log`, kfreeze 13 in `probe2_k13.log`), and the ladder and its u0 rung on that state
   (`ladtest*.py`; `run_probes.sh` reran ladtest2 to 4 into their logs).
 
+- `probes/` also: `weak_sv.py` (`weak_sv_k13.log`, the Mac's run at D 245.5586), `gauge_test.py` (the last node's c or
+  p moved by 1e-12, then the ladder: `gauge_test_c.log`, `gauge_test_p.log`), the u0 rung with the octo-double block
+  LU (`ladtest3_o.log`, `ladtest4_o.log`, `run_o.log`), and `slave_test.py` (a_h from the momentum constraint against
+  the stored one, `slave_test.log`). `run_u0.sh` was stopped when Track A in form A was stopped (its log says when);
+  `u0_tolerance.py` never ran.
+
 Files are added as the runs go; each log or script names its command line.
