@@ -37,7 +37,8 @@ def selftest():
 
 if __name__ == "__main__":
     if "--selftest" in sys.argv: sys.exit(selftest())
-    W = {"22.25": load("22.25_wide", "22.25"), "22.125": load("22.125_wide", "22.125")}
+    def merged(a, b): d = dict(a); d.update(b); return d       # the low scan (0.02 to 0.18) and the wide scan (0.20 to 0.50) of one state: no lambda in common, so neighbours are neighbours
+    W = {"22.25": merged(load("22.25_low", "22.25"), load("22.25_wide", "22.25")), "22.125": merged(load("22.125_low", "22.125"), load("22.125_wide", "22.125"))}
     F = {"22.125": ("first scan 0.485-0.505 by 0.005", load("22.125", "22.125")), "22.125 rescan": ("0.487-0.497 by 0.0025", load("22.125_rescan", "22.125")),
          "22.15625": ("0.470-0.490 by 0.005", load("22.15625", "22.15625")), "22.1875": ("0.455-0.475 by 0.005", load("22.1875", "22.1875")), "22.25": ("first scan 0.425-0.445 by 0.005", load("22.25", "22.25"))}
     P = print
@@ -49,15 +50,16 @@ if __name__ == "__main__":
     P("| scan | lambda pair | orientation | robust |\n|---|---|---|---|")
     for d in ("22.25", "22.125"):
         ch = changes(W[d])
-        P("| D %s wide (0.20-0.50 by 0.02) | %s | %s | %s |" % (d, "; ".join("(%.2f, %.2f)" % (a, b) for a, b, _, _ in ch) or "none", "; ".join(o for _, _, o, _ in ch) or "-", "; ".join(str(r) for _, _, _, r in ch) or "-"))
+        P("| D %s low + wide (0.02-0.50 by 0.02) | %s | %s | %s |" % (d, "; ".join("(%.2f, %.2f)" % (a, b) for a, b, _, _ in ch) or "none", "; ".join(o for _, _, o, _ in ch) or "-", "; ".join(str(r) for _, _, _, r in ch) or "-"))
     for k, (what, by) in F.items():
         ch = changes(by)
         P("| D %s %s | %s | %s | %s |" % (k.split()[0], what + (" (rescan)" if "rescan" in k else ""), "; ".join("(%.4f, %.4f)" % (a, b) for a, b, _, _ in ch) or "none", "; ".join(o for _, _, o, _ in ch) or "-", "; ".join(str(r) for _, _, _, r in ch) or "-"))
     P("\n**Evaluations that are not noise-robust:** " + "; ".join("D %s: %s" % (d, ", ".join("%.2f" % l for l in sorted(W[d]) if not all(r["noise_robust"] for r in W[d][l])) or "none") for d in W))
     for d in W:
-        if 0.44 in W[d] and len(W[d][0.44]) == 2:
-            a, b = W[d][0.44]; same = {k: v for k, v in a.items() if k != "sec"} == {k: v for k, v in b.items() if k != "sec"}
-            P("The repeat of 0.44 at D %s: %s (hybrid %+d, ln|det| %.10f)." % (d, "bit-identical in every field but the seconds" if same else "DIFFERENT", a["sign"], a["ln"]))
+        for rl in (0.44, 0.10):
+            if rl in W[d] and len(W[d][rl]) == 2:
+                a, b = W[d][rl]; same = {k: v for k, v in a.items() if k != "sec"} == {k: v for k, v in b.items() if k != "sec"}
+                P("The repeat of %.2f at D %s: %s (hybrid %+d, ln|det| %.10f)." % (rl, d, "bit-identical in every field but the seconds" if same else "DIFFERENT", a["sign"], a["ln"]))
     f = F["22.25"][1].get(0.44)
     if f and 0.44 in W["22.25"]:
         a = f[0]; b = W["22.25"][0.44][0]; same = {k: v for k, v in a.items() if k != "sec"} == {k: v for k, v in b.items() if k != "sec"}
