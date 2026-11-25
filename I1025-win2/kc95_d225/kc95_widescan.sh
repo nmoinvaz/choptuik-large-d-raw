@@ -49,13 +49,17 @@ until [ -s $OUT/regrid_accepted.txt ]; do [ -e $OUT/regrid_refused.txt ] && { lo
 REC=$WOUT/rec_k95_D${F4}.jsonl; ST=$WOUT/sol_${NEWTAG}_D${F4}.npy
 [ -s $OUT/rec_k95_D${F4}.jsonl ] && [ -s $OUT/sol_${NEWTAG}_D${F4}.npy ] || refuse "record or state missing"
 log "kc95 wide D $D: the regrid is accepted (state blob $(git hash-object --no-filters $OUT/sol_${NEWTAG}_D${F4}.npy | cut -c1-8), record blob $(git hash-object --no-filters $OUT/rec_k95_D${F4}.jsonl | cut -c1-8))"
+# START_NOW=1 (the coordinator's hc of 25 Nov ~07:45 UTC: "start the D 22.5 wide scan now, beside the low scan (8 threads)"): no wait for the D 22.28125 low scan and no wait for other d18_hybsign scans; the free-memory wait stays
+if [ "$START_NOW" = 1 ]; then log "kc95 wide D $D: START_NOW=1: no wait for the D 22.28125 low scan; waits for memory only"
+else
 until [ -e $LOWDONE ] || [ -e $LOWREF ]; do sleep 60; done
 log "kc95 wide D $D: the D 22.28125 low scan is over ($([ -e $LOWDONE ] && echo done || echo refused)); waits for threads and memory"
+fi
 tw=$(date +%s)
 while :; do
   n=$(powershell -NoProfile -Command "@(Get-CimInstance Win32_Process | Where-Object { \$_.CommandLine -match 'I1025-win2.*d18_hybsign.py' -and \$_.Name -match 'python' }).Count" | tr -d '\r')
   fm=$(powershell -NoProfile -Command "[int]((Get-CimInstance Win32_OperatingSystem).FreePhysicalMemory/1024)" | tr -d '\r')
-  [ "$n" = 0 ] && [ "$fm" -ge 18400 ] && break
+  { [ "$n" = 0 ] || [ "$START_NOW" = 1 ]; } && [ "$fm" -ge 18400 ] && break
   [ $(( $(date +%s) - tw )) -lt 21600 ] || refuse "the wait for threads and memory ended after 6 h ($n scans, $fm MB free)"
   sleep 60
 done

@@ -2,3 +2,12 @@ kcl kc95 wide D 22.5 pins and selftests ok (read_lower + shift + round2, repeat_
 kcl kc95 wide D 22.5 pins and selftests ok (read_lower + shift + round2, repeat_check, pair gate; each mutation exit 1); lists 0.14,-0.10,0.18,0.34,0.50 0.14,-0.06,0.22,0.38 -0.02,0.10,0.26,0.42 0.02,0.06,0.30,0.46 2026-11-25 05:53:44 UTC
 kcl kc95 wide D 22.5 waits for regrid_accepted.txt, then for the D 22.28125 low scan, then for my other d18_hybsign scans and memory 2026-11-25 05:53:44 UTC
 kcl kc95 wide D 22.5: the regrid is accepted (state blob 4bdcc567, record blob 3cdbdec1) 2026-11-25 07:40:51 UTC
+kcl kc95 wide D 22.5 waiting driver killed at 07:42:08 UTC by exact pid (42800, 37300, 49028) after command-line checks and restarted with START_NOW=1 (the coordinator: start now, beside the low scan, 8 threads)
+kcl kc95 wide D 22.5 pins and selftests ok (read_lower + shift + round2, repeat_check, pair gate; each mutation exit 1); lists 0.14,-0.10,0.18,0.34,0.50 0.14,-0.06,0.22,0.38 -0.02,0.10,0.26,0.42 0.02,0.06,0.30,0.46 2026-11-25 07:42:19 UTC
+kcl kc95 wide D 22.5 waits for regrid_accepted.txt, then for the D 22.28125 low scan, then for my other d18_hybsign scans and memory 2026-11-25 07:42:19 UTC
+kcl kc95 wide D 22.5: the regrid is accepted (state blob 4bdcc567, record blob 3cdbdec1) 2026-11-25 07:42:19 UTC
+kcl kc95 wide D 22.5: START_NOW=1: no wait for the D 22.28125 low scan; waits for memory only 2026-11-25 07:42:19 UTC
+kcl widescan95_p1 root pid 33188, cap 28800 s, want exit 0 2026-11-25 07:42:23 UTC
+kcl widescan95_p2 root pid 37440, cap 28800 s, want exit 0 2026-11-25 07:42:24 UTC
+kcl widescan95_p3 root pid 31648, cap 28800 s, want exit 0 2026-11-25 07:42:24 UTC
+kcl widescan95_p4 root pid 40364, cap 28800 s, want exit 0 2026-11-25 07:42:24 UTC
