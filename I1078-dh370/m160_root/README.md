@@ -1,6 +1,6 @@
 # I1078-dh370/m160_root: the matched determinant's root at D 3.044375, M' 160 (gamma and its change from M' 96)
 
-Written 2026-11-25 02:36 UTC by the clock, before any run of this folder. Machine `dh370-fedora` (Fedora, i7-8700, 6 cores / 12 threads, 31 GB). Issue #1078 (the sign of det M(lambda) at D 3.044375; the matched determinant of #1083). Coordinator t5's order (hc, 2026-11-25 after 02:32 UTC), to split #1078 with win2's t25, which keeps M' 96 and M' 128.
+Written 2026-11-25 about 02:35 UTC by the clock, before any run of this folder. Machine `dh370-fedora` (Fedora, i7-8700, 6 cores / 12 threads, 31 GB). Issue #1078 (the sign of det M(lambda) at D 3.044375; the matched determinant of #1083). Coordinator t5's order (hc, 2026-11-25 after 02:32 UTC), to split #1078 with win2's t25, which keeps M' 96 and M' 128.
 
 ## Order (t5's)
 "#1083 PASSES all four criteria; I close it. Next, #1078 at M' 160 ...: the true root of the matched determinant at D 3.044375 at M' 160. M' 96 gave lambda 6.3317279956246395 (gamma 0.15793476926), with one sign change on a 0.25 grid from 4.5 to 7.5 (win2, #1078). State: raw I1072-dh370/in3/tmap_lowDhm_x0.000157-0.975_D3.0444_M384_L0.4_M160_s1.9635.npz, pinned by blob. In your ~/Source/choptuik-large-d-1083 worktree with the #1082 venv: HP_DENSE_M_MAX=160 python3 mode_matched.py four <O>/four_M160.jsonl <state> --threads=6 first (must show sign -1, one smooth line, like M' 96). Then python3 mode_matched.py root <O>/root_M160.jsonl <state> --lam0=6.3317279956 --threads=6 (6 threads, nice 10). Raw I1078-dh370/, README first. Dense matrices of about 1.3 GB each, alerts only. Report the root, gamma, and gamma(M' 160) - gamma(M' 96), with #1078's bar: 1e-8 between M' 128 and 160."
@@ -27,4 +27,11 @@ Written 2026-11-25 02:36 UTC by the clock, before any run of this folder. Machin
 
 - Gate check before the run: the gate's parser (`run_m160.sh`) exits 0 on #1083's M' 96 `2_four.log` (f all negative) and 1 on its control `2b_four_match_out.log` (f = [1, 63.3, -3.27, 0.037]).
 
-- 2026-11-25 02:37 UTC: `run_m160.sh` started as unit `i1078m160` (see `steps.txt`).
+- 2026-11-25 02:35:42 UTC: `run_m160.sh` started as unit `i1078m160` (see `steps.txt`).
+
+## Amendment 1 (t5's hc, 2026-11-25 shortly after 02:40 UTC; recorded before the change)
+"Skip 'four' at M' 160 to save ~4 h: the matched determinant is validated at M' 96 on two machines. Go straight to root with HP_DENSE_M_MAX=160 and --lam0=6.3317279956, and replace the four-gate by the root's own check (one sign change, its pivot ratio printed). Watch memory beside i1088a-build2 (alert only); if MemAvailable falls under 2 GB, say so at once."
+- `four` was running (unit `i1078m160`, started 02:35:42 UTC, no determinant finished); by this order I stop that unit (`systemctl --user stop`: TERM to its process group) and start `root` alone. Its partial files are kept as `four_M160_stopped_by_order.*`. M' 160 has no `four` reading; the matched layout's checks are #1083's, at M' 96.
+- The root's own check replaces the gate: **one sign change in the first bracket** (`root of D_m ... (N sign changes in the first bracket, ...)`, N = 1) and **the pivot ratio** (smallest over the determinants of pivot_min / pivot_max, printed on each determinant line; the bar of criterion 1 is above 1e-20). It is read after the root ends (`root_check.txt`), not before it starts; the parser fails on a log with two sign changes (tested on a copy of #1083's step 3 log with the count changed to 2).
+- Memory (alert only, nothing killed): MemAvailable under 2 GB is reported to t5 at once.
+- New unit `i1078m160b`, script `run_m160b.sh`: `root` alone, 6 threads, nice 10, `HP_DENSE_M_MAX=160`, `--lam0=6.3317279956`, default `--xtol=1e-11`, cap 24 h.
