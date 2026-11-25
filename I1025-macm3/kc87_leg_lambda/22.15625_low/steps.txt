@@ -1,0 +1,16 @@
+2026-11-25 05:43:02 UTC accept: D 22.15625 (loadavg { 3.57 4.13 4.70 }, free memory 85%, 16.6 GiB available, disk 27Gi free)
+2026-11-25 05:43:03 UTC inputs pinned: state fbea9009 and record aad399c2 from raw 41e6a663 (pins.txt); kc87_syscheck 6df5d960, kc79_syscheck 29dce7ea, d18_hybsign e089207a, read_lower 89309d3c, d185_scan_read 7c9d400f, repeat_check aaf598a9
+2026-11-25 05:43:03 UTC worktree 505d8399, clean outside solver/matter/data; Python 3.14.3, multidouble isa neon
+2026-11-25 05:43:03 UTC selftests: kc87_syscheck exit 0, kc79_syscheck exit 0 (0 wanted)
+2026-11-25 05:43:08 UTC kc87_syscheck_1025.py exit 0 (0 wanted); controls --mutate=F exit 1, --mutate=steps exit 1 (1 wanted each); kc79_syscheck_1025.py on the k_c 87 state exit 1 (1 wanted): D 22.1562 k_c 87: record |F| 3.9384425462e-10, F_start 9.825e-06, steps 2870, constraint 6.914e-03, Delta 1.150033652905, 1918 s; state |F| 3.9384425462e-10, freeze_from steps 2870
+2026-11-25 05:43:08 UTC verdict: ACCEPTED 2026-11-25 05:43:08 UTC
+2026-11-25 05:43:08 UTC scan: D 22.15625 (loadavg { 3.48 4.09 4.68 }, free memory 85%, 16.9 GiB available, disk 27Gi free)
+2026-11-25 05:43:08 UTC inputs pinned: state fbea9009 and record aad399c2 from raw 41e6a663 (pins.txt); kc87_syscheck 6df5d960, kc79_syscheck 29dce7ea, d18_hybsign e089207a, read_lower 89309d3c, d185_scan_read 7c9d400f, repeat_check aaf598a9
+2026-11-25 05:43:09 UTC worktree 505d8399, clean outside solver/matter/data; Python 3.14.3, multidouble isa neon
+2026-11-25 05:43:09 UTC memory before the scan: about 16.9 GiB available (free+inactive+speculative+purgeable), 85% free by memory_pressure; 4 processes for 10 values (the k_c 87 scan of D 19.75 with 4 processes: 4.07, 2.62, 2.52, 2.51 GB peak RSS, available 17.6 down to 10.0 GiB), gate 10 GiB
+2026-11-25 05:43:09 UTC scan starts: D 22.15625, 10 values (0.10 0.10 0.02 0.04 0.06 0.08 0.12 0.14 0.16 0.18) on 4 processes of 1 thread, nice 15, round-robin (a process runs its values one after another); the first 0.10 on process 0, the repeat on process 1; state sol_l1kc87Lmacm3b2_D22.156250.npy fbea9009, record aad399c2; alert watcher on (hc: /Users/nathan/.local/bin/hc)
+2026-11-25 05:43:11 UTC proc 0 lambda 0.10,0.06,0.16: capped_run child pid 8783 (cap 28800 s)
+2026-11-25 05:43:13 UTC proc 1 lambda 0.10,0.08,0.18: capped_run child pid 8813 (cap 28800 s)
+2026-11-25 05:43:15 UTC proc 2 lambda 0.02,0.12: capped_run child pid 8821 (cap 28800 s)
+2026-11-25 05:43:17 UTC proc 3 lambda 0.04,0.14: capped_run child pid 8849 (cap 28800 s)
+2026-11-25 05:45:35 UTC ABORTED by t5's order (hc 25 Nov ~05:4x UTC: 'Stop the D 22.15625 low scan now'): processes killed by exact pid (the drivers low2_scans.sh and refine_scans.sh, the pipeline, point87.sh and the 4 scan processes); no evaluation had finished (about 2 min in); the partial files are in scan_aborted_0545/; no result from this folder
