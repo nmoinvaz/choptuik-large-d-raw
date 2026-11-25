@@ -4,3 +4,18 @@ kcl prec_k111_0.865 root pid 47300, cap 21600 s, want exit 0 2026-11-25 15:08:14
 kcl prec_k111_0.870 root pid 51028, cap 21600 s, want exit 0 2026-11-25 15:08:25 UTC
 kcl prec_k103_0.880 root pid 35892, cap 21600 s, want exit 0 2026-11-25 15:08:30 UTC
 kcl prec_k103_0.885 root pid 50760, cap 21600 s, want exit 0 2026-11-25 15:08:36 UTC
+kcl prec_k111_0.865 cap 21600 s reached, killing the tree of pid 47300 2026-11-25 21:08:23 UTC
+kcl prec_k111_0.865 exit 1 (want 0) wall 21611 s capped 1 MISMATCH 2026-11-25 21:08:24 UTC
+kcl prec_k111_0.865 exit 1 wall 21611 s capped 1 2026-11-25 21:08:24 UTC
+kcl prec_k111_0.860 root pid 49344, cap 21600 s, want exit 0 2026-11-25 21:08:25 UTC
+kcl prec_k111_0.870 cap 21600 s reached, killing the tree of pid 51028 2026-11-25 21:08:42 UTC
+kcl prec_k103_0.880 cap 21600 s reached, killing the tree of pid 35892 2026-11-25 21:08:42 UTC
+kcl prec_k103_0.880 exit 1 (want 0) wall 21614 s capped 1 MISMATCH 2026-11-25 21:08:44 UTC
+kcl prec_k111_0.870 exit 1 (want 0) wall 21619 s capped 1 MISMATCH 2026-11-25 21:08:44 UTC
+kcl prec_k103_0.880 exit 1 wall 21616 s capped 1 2026-11-25 21:08:47 UTC
+kcl prec_k111_0.870 exit 1 wall 21621 s capped 1 2026-11-25 21:08:48 UTC
+kcl prec_k111_0.875 root pid 56868, cap 21600 s, want exit 0 2026-11-25 21:08:50 UTC
+kcl prec_k103_0.885 cap 21600 s reached, killing the tree of pid 50760 2026-11-25 21:08:52 UTC
+kcl prec_k103_0.885 exit 1 (want 0) wall 21617 s capped 1 MISMATCH 2026-11-25 21:08:53 UTC
+kcl prec_k103_0.885 exit 1 wall 21618 s capped 1 2026-11-25 21:08:55 UTC
+kcl prec D 21.125: the driver and the two outer jobs (k_c 111 0.860 root 49344, 0.875 root 56868; started 21:08:25 and 21:08:50) stopped by exact pid at 21:09 UTC: the order's stop after the four 6 h caps
