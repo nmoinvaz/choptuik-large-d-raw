@@ -10,24 +10,31 @@ opt = {a.split("=", 1)[0]: a.split("=", 1)[1] for a in sys.argv[1:] if a.startsw
 D = float(args[0]); dn = repr(D)
 part = opt.get("--part", "a"); legd = [float(x) for x in opt.get("--leg", "").split(",") if x]
 LEG = L2 + ("" if part == "a" else "/" + part); TAG = {"a": "l1kc87Lmacm3", "b": "l1kc87Lmacm3b", "b2": "l1kc87Lmacm3b2", "c": "l1kc87Lmacm3c"}[part]
-roots = {}
+roots_first, roots_now = {}, {}      # roots87.txt: the first line of a D (the scan as the chain read it) and the last (a later line is a rescan)
 for l in open(L + "/roots87.txt"):
     f = l.split()
-    if len(f) >= 2 and not l.startswith("#"): roots[float(f[0])] = (float(f[1]), float(f[2]), float(f[3]))
-root, lo, hi = roots[D]
+    if len(f) >= 2 and not l.startswith("#"):
+        v = (float(f[1]), float(f[2]), float(f[3])); roots_first.setdefault(float(f[0]), v); roots_now[float(f[0])] = v
+# this point's own reading (its folder's read_lower.txt; roots87.txt can hold a later line for the same D, a rescan)
+rd0 = open("%s/%s/read_lower.txt" % (L, dn)).read()
+mr = re.search(r"det-linear (-?[\d.]+), range \[(-?[\d.]+), (-?[\d.]+)\]", rd0)
+root, lo, hi = float(mr.group(1)), float(mr.group(2)), float(mr.group(3))
+# the rule the chain used when it started this point's scan (chain.log "next: D <D> (previous D .., root .., local slope S"): a point scanned in phase 1 keeps the latest-local-slope rule as its primary, computed from the roots
+# the chain had then (the first line of each D up to the previous D); roots that exist now above it give an interpolation, scored beside it a posteriori. A point started by hand (no such line) uses the roots as they are.
+cs = PDc = None
+for l_ in open(L + "/chain.log"):
+    m_ = re.search(r"next: D %s \(previous D ([\d.]+), root ([\d.-]+), local slope ([\d.-]+)" % re.escape(dn), l_)
+    if m_: PDc, PRc, cs = float(m_.group(1)), float(m_.group(2)), float(m_.group(3))
+roots = {x: v for x, v in roots_first.items() if x <= PDc} if cs is not None else dict(roots_now)
+roots[D] = (root, lo, hi)
 below = sorted(x for x in roots if x < D); above = sorted(x for x in roots if x > D)
 a, b = below[-1], below[-2]
 sb = (roots[a][0] - roots[b][0]) / (a - b)
 si = (roots[above[0]][0] - roots[a][0]) / (above[0] - a) if above else None
 slope = sb if si is None else si
-# the rule the chain used when it started this point's scan (chain.log "next: D <D> (previous D .., root .., local slope S"): a point scanned in phase 1 keeps the latest-local-slope rule as its primary,
-# although roots above it exist by now; the interpolation is then scored beside it, a posteriori
-cs = None
-for l_ in open(L + "/chain.log"):
-    m_ = re.search(r"next: D %s \(previous D ([\d.]+), root ([\d.-]+), local slope ([\d.-]+)" % re.escape(dn), l_)
-    if m_: cs = float(m_.group(3))
-interp_post = si is not None and cs is not None and abs(cs - sb) < 1e-5
-if interp_post: slope = sb
+above_now = sorted(x for x in roots_now if x > D)
+interp_post = cs is not None and bool(above_now)
+if interp_post: ci = above_now[0]; si_post = (roots_now[ci][0] - roots[a][0]) / (ci - a)
 st = D - a
 pred = roots[a][0] + slope * st; pred2 = roots[a][0] - 0.33 * st; pred3 = roots[a][0] + sb * st
 new = (root - roots[a][0]) / st
@@ -74,7 +81,7 @@ P("**#1025 macm3, lambda_1 on my own k_c 87 leg at D %s (@@T@@ UTC 24 Nov): one 
     dn, br.group(1), br.group(2), orient, root, lo, hi, ("the latest-local-slope rule (%.6f)" % slope) if si is None or interp_post else ("the interpolation between the roots at D %r and D %r (slope %.6f)" % (a, above[0], slope)),
     pred, root - pred, pred2, root - pred2, "" if abs(root - pred2) <= 0.005 else ", outside its 0.005 window", new, roots[a][0], dn if False else repr(a), repr(st),
     "**met** by the primary rule" + ("" if abs(root - pred2) <= 0.005 else ", **not met** by the -0.33 rule") if abs(root - pred) <= 0.005 else "**NOT met** by the primary rule"))
-if interp_post: P("\nInterpolation between the roots at D %r and D %r (slope %.6f; roots that did not exist when the scan started, so scored a posteriori) beside it: %.6f, root %+.6f from it." % (a, above[0], si, roots[a][0] + si * st, root - (roots[a][0] + si * st)))
+if interp_post: P("\nInterpolation between the roots at D %r and D %r (slope %.6f; roots that did not exist when the scan started, so scored a posteriori) beside it: %.6f, root %+.6f from it." % (a, ci, si_post, roots[a][0] + si_post * st, root - (roots[a][0] + si_post * st)))
 elif si is not None: P("\nBelow-only extrapolation (slope %.6f) beside it: %.6f, root %+.6f from it." % (sb, pred3, root - pred3))
 if legd:
     Pl("\n**The leg** (kc87_leg2 part %s, raw `I1025-macm3/kc87_leg2/%s`): points accepted since the previous post.\n" % (part, "" if part == "a" else part + "/"))
