@@ -3,7 +3,7 @@
 usage: chain_next.py next            prints NEXT D PREV_D PREV_ROOT SLOPE SRC TAG | WAIT why | DONE | STOP why
        chain_next.py pending         prints the pushed points that have a SCAN_DONE.txt and no root yet
        chain_next.py record D        reads D/read_lower.txt and D/steps.txt; appends the root to roots87.txt and prints the hc line (OK ...) or STOP why
-       chain_next.py selftest [--mutate=slope|changes|repeat|robust|all|interp|cross|skip|legs]
+       chain_next.py selftest [--mutate=slope|changes|repeat|robust|all|interp|cross|skip|legs|hold]
 Part b2 (t5, 24 Nov 19:4x UTC: part b restarted from its D 21.9375 and 21.96875 states with the new ell_leap.py blob after the SVD exception at D 22.0): ../kc87_leg2/b2/pushed_points.txt, tag l1kc87Lmacm3b2.
 Files: roots87.txt (lines "D root lo hi source"), ../kc87_leg2/pushed_points.txt (part a, tag l1kc87Lmacm3), ../kc87_leg2/b/pushed_points.txt (part b, tag l1kc87Lmacm3b), ../kc87_leg2/c/pushed_points.txt (part c, tag l1kc87Lmacm3c).
        chain_next.py crossed         prints YES when the two largest scanned roots (by D) are both below 0 (t5: the crossing of lambda_1 = 0 is then bracketed), else NO
@@ -42,6 +42,14 @@ def read_pushed(folder):
 def apply_skip(pushed):
     """the points dh610 scans (SKIP) are not mine"""
     return dict(pushed) if MUT == "skip" else {D: v for D, v in pushed.items() if not any(abs(D - x) < 1e-9 for x in SKIP)}
+
+
+def hold(base=None):
+    """t5, 25 Nov 00:3x UTC: while kc87_leg_lambda/HOLD.txt exists the chain starts no new scan (its first line is the reason); a root already in roots87.txt that is under check is then not used in any new slope"""
+    f = (base or L) + "/HOLD.txt"
+    if MUT == "hold" or not os.path.exists(f):
+        return None
+    return (open(f).readline().strip() or "HOLD.txt exists")
 
 
 def on_grid(D):
@@ -189,6 +197,11 @@ def selftest():
         chk("legs: b2 done, part c undecided (only the stale start_c.log line): not ended", not legs_ended(t))
         open(t + "/start_c2.log", "w").write("part c not needed: lambda_1 not positive\n")
         chk("legs: b2 done and part c not needed (start_c2.log): ended (phase 2)", legs_ended(t))
+    import tempfile as _tf
+    with _tf.TemporaryDirectory() as t_:
+        chk("hold: no HOLD.txt: not held", hold(t_) is None)
+        open(t_ + "/HOLD.txt", "w").write("D 22.125 under check\nsecond line\n")
+        chk("hold: HOLD.txt present: held, the reason is its first line", hold(t_) == "D 22.125 under check")
     print("selftest:", "PASS" if ok else "FAIL")
     return 0 if ok else 1
 
@@ -204,6 +217,9 @@ def main():
             pushed[D] = (src, tag)
     pushed = apply_skip(pushed)
     if cmd == "next":
+        h_ = hold()
+        if h_:
+            print("WAIT hold: " + h_); return
         r = plan(roots, pushed, phase1_now())
         if r[0] == "NEXT":
             print("NEXT %r %r %.6f %.6f %s %s" % (r[1], r[2], r[3], r[4], r[5], r[6]))
