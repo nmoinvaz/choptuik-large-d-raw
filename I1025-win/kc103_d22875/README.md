@@ -100,16 +100,58 @@ The sampler (`rows/regrid_samples.csv`, `rows/scan_samples.csv`) gives the real 
 
 ## Status
 
-**Step 1, the regrid, RUNNING since 2026-11-25 19:01:12 UTC.** README first: 922c75666 (pushed 19:00:40 UTC, before the start); chain started 19:00:56 UTC through `Win32_Process.Create` of `conhost.exe --headless cmd.exe /c go_kc103d22875_1025.cmd`. The D 22.0 chain ended 18:54:48 UTC and its reading was posted (#1025 comment 7171599582) and pushed (78aa1bc90) first.
+**Step 1, the regrid, ACCEPTED 2026-11-25 21:58:38 UTC. Step 2, the scan, RUNNING since 21:59:50 UTC.** README first: 922c75666 (pushed 19:00:40 UTC, before the start); running status c84b8da4b; chain started 19:00:56 UTC through `Win32_Process.Create` of `conhost.exe --headless cmd.exe /c go_kc103d22875_1025.cmd`. The D 22.0 chain ended 18:54:48 UTC and its reading was posted (#1025 comment 7171599582) and pushed (78aa1bc90) first.
 
-- **Chain** (`rows/launcher_pid.txt`: 3284): conhost --headless 3284 <- cmd 26024 <- regrid driver launcher 22080 and driver 24316 <- sampler 24672, alert-only watcher 13376 (child 23468), keep-awake helper 26152 (child 19244), and the regrid process 25032 (worker 3724). The python and powershell processes are BelowNormal.
-- **Session check** (`session_check_regrid.txt`, exit 0): no `claude` in any chain of the run, no Windows Terminal / OpenConsole / wt, a headless conhost in the chain.
-- **Before the regrid** (19:00:56 to 19:01:12 UTC, 16 s): the pins matched; the selftests of the three checks exited 0; ell_delta.lam0_at(22.875) = 2.0996545550; the source checks were as ordered: the k_c 95 check exit 0 on the source, `--mutate=F` and `--mutate=steps` exit 1, the k_c 87 check exit 1 and the k_c 103 check exit 1 (they refuse the source; `source_kc*_syscheck*.txt`).
-- **Regrid:** pid 25032 started 19:01:12 UTC: `ell_refine.py l1kc95win2d22875 95 l1kc103win22875 103 1 22.875 2.0996545550 --kappa 0.7 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma`, cwd the worktree's `solver/matter`, 4 threads, BelowNormal, cap 43200 s by the exact pid; the driver sends t5 one hc at 21600 s (01:01 UTC on 26 Nov) if it still runs.
-- **Machine at the start:** free physical memory 22.93 GB; beside it the other project's I114 `convergence.py` jobs, not touched.
-- **ETA** (the estimates above counted from 19:01:12 UTC): the regrid ends about 20:50 to 22:15 UTC (central about 21:25); the scan then starts by itself about 71 s later and ends about 01:20 to 03:45 UTC on 26 Nov (central about 02:15).
+**Regrid (`regrid_summary.txt`, `regrid.log`, `l1kc103win22875.jsonl`):**
 
-Pushed 2026-11-25 19:01:43 UTC.
+| item | k_c 103 result | win2's k_c 95 source |
+|---|---|---|
+| run | 19:01:12 to 21:58:27 UTC, pid 25032 (worker 3724), exit 0, 10635 s wall (the record's seconds: 10632) | 5901 s (record), 20-logical-CPU machine |
+| \|F\| | 3.4634221167e-10 | 3.5210384141e-10 |
+| F_start | 3.2876e-05 | 7.5207e-05 |
+| steps | 3387 | 3126 |
+| steps ratio | 1.0835 | win2's k_c 87 to 95 at this D: 1.0923 |
+| constraint | 4.6176e-03 | 7.1136e-03 |
+| Delta | 1.1706557197960814 | 1.170668364709999 |
+| Delta(k_c 103) minus Delta(k_c 95) | -1.2645e-05 | |
+| marker `regrid_accepted.txt` | state 280515313e580cccbf14a6e0828e4eaa9b22086d, record f623d3e67b94a5ac4e38e2c55d05d3bf247e4c71 | state a14f0d50, record 5381f89d |
+
+Acceptance (`syscheck.txt`, `syscheck_mutate.txt`, `syscheck_kc95_on_result.txt`, `selftest_kc103_syscheck_after.txt`, 11 s): `kc103_syscheck_1025.py` on the result exit 0 ("ACCEPTED: the record class's \|F\| with a step count that comes back"; state \|F\| 3.4634221167e-10 equal to the record's, `freeze_from` 3387 steps = the record's), its selftest exit 0, `--mutate=F` exit 1, `--mutate=steps` exit 1, `kc95_syscheck_1025.py` on the result exit 1 ("the record is not k_c 95 at D 22.875 (kc 103, D 22.875)").
+
+My k_c 103 regrids beside this one (4 threads, same code, same recipe):
+
+| D | source | wall | steps | steps ratio | peak private |
+|---|---|---|---|---|---|
+| 21.0 | dh610's k_c 95 | 11280 s | 3489 | 1.0839 | 4.01 GB |
+| 21.125 | dh610's k_c 95 | 11520 s | 3476 | 1.0842 | 4.01 GB |
+| 21.75 | dh610's k_c 95 | 8415 s | 3417 | 1.0841 | 4.01 GB |
+| 22.0 | win2's k_c 95 | 10230 s | 3402 | 1.0838 | 4.007 GB |
+| 22.875 | win2's k_c 95 | 10635 s | 3387 | 1.0835 | 4.006 GB |
+
+**Cost against the written estimates (regrid):**
+
+| item | written | measured |
+|---|---|---|
+| source checks | about 15 to 60 s | 16 s (19:00:56 to 19:01:12; also the pins and selftests) |
+| regrid | 6500 to 11500 s, central about 8500 s | 10635 s (inside the range, above the centre; my basis was win2's 5901 s times 1.335, 7900 s: the ratio of mine to win2's is 1.80 here) |
+| steps | about 3388 (3126 times 1.0838) | 3387 |
+| cpu | about 2.0 times wall | 21420 s (2.01 times wall) |
+| peak private | 3.8 to 4.4 GB | 4.006 GB (peak working set 3.65 GB) |
+| lowest free memory | not written for the regrid | 19.31 GB at 21:34:30 UTC (22.93 GB at the start) |
+| peak commit | not written | 15.4 GB |
+| laptop cpu | not written | mean 44.1 %, max 100 % (sampler: 176 sample times, no gap over 90 s) |
+
+The memory watcher raised no alert (`rows/regrid_memwatch.log`: "minimum free memory seen 19.29 GB; 0 alert(s) sent") and the keep-awake helper held until the driver ended (last line 21:45:57 UTC, 9900 s; "pid 24316 is gone after 10740 s"); the System log shows no power event in 19:00 to 22:05 UTC. `rows/regrid_raw.log` holds 24 RuntimeWarning lines from `dss_ell.py` (overflow and invalid value in the Newton step, as at D 22.0 and 21.75); the record and the acceptance are unaffected. The 21600 s hc was not needed.
+
+**Scan, started by itself 71 s after the marker:**
+
+- **Chain** (`rows/launcher_pid.txt`: 3284): conhost --headless 3284 <- cmd 26024 <- scan driver launcher 25476 and driver 24884 <- sampler 21672, alert-only watcher 24080, keep-awake helper 3096, and the four `d18_hybsign.py` workers p0 6764 (0.10, 0.08, 0.04), p1 3988 (0.12, 0.16, 0.20), p2 15080 (0.14, 0.06), p3 11740 (0.10 repeat, 0.18), each with child processes. BelowNormal, one thread each, cap 21600 s by the exact pids.
+- **Before the scan** (21:59:49 to 21:59:50 UTC): the reader's selftest exit 0 and its two `--mutate` controls exit 1, 1 as wanted.
+- **Session check** (`session_check_scan.txt`, exit 0): no `claude` in any chain of the run, no Windows Terminal / OpenConsole / wt, a headless conhost in the chain.
+- **Machine at the start:** free physical memory 22.12 GB; the other project's I114 `convergence.py` jobs are beside it and not touched.
+- **ETA** (the estimates above counted from 21:59:50 UTC): rounds 1 and 2 end about 22:00 + 5800 to 6600 s each, i.e. round 1 about 23:36 to 23:50 UTC and round 2 about 01:12 to 01:40 UTC on 26 Nov; round 3 (p0 and p1 alone) ends about 02:30 to 03:30 UTC (central about 02:50 if the scan is 17500 s). The cap (21600 s) is at 03:59:50 UTC.
+
+Pushed 2026-11-25 22:00:42 UTC.
 
 ## Result
 
