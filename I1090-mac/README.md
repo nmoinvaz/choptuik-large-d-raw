@@ -35,7 +35,16 @@ python3 solve_cont.py S/sol_D186.66_M6_f64.json --M=6 --Ds=186.66,200,225,245.64
 python3 solve_cont.py S/sol_D400_M6_f64.json --M=6 --a=8 --Ds=400,450,500,600,800,... --out=L/f64_M6_cont --noise_as=1,32 --accept=1e-9   (crashed at D 800 on a non-finite step; driver fixed)
 python3 solve_cont.py S/sol_D600_M6_a8.json --M=6 --a=8 --Ds=600,650,700,800,900,1000,1150,1300,1600,2000,2500,3200,4000,5000,6500,8000,10000 --out=L/f64_M6_cont --noise_as=1,32 --accept=1e-9
 ```
-(S/sol_*.json are copies of the records of this folder at those D.) dd runs: `dd_M10_cont_try1/` to `dd_M10_cont_try4/` are the M 10
+(S/sol_*.json are copies of the records of this folder at those D.) Each dd M 10 run wrote into `dd_M10_cont/`, which was
+renamed `dd_M10_cont_try<k>/` when the next one started: try2 is the run with --tol=1e-22 --rounds=1 above, try3 the
+same restarted from its D-100 record with --rounds=3 --pre=ls and a denser D list, try4 that with --hb=1e-9. dd runs: `dd_M10_cont_try1/` to `dd_M10_cont_try4/` are the M 10
 continuations in D from D 100 (stopped or failed: §4 of the note), `dd_Mcont/` the M 8 solve at D 200 from the M 6 one
 (stopped: no step along the weak directions). Diagnostics in `diag/`: noise_variable, affine_orders, noise_at_solution
 (per order band and a), f64_vs_dd, cost_vs_D, trackc_at, check_mobius(_dd).
+
+Later runs: `f64_M4_cont_try1/`, `f64_M4_cont/` (M 4 from Track B's M-8 solution resampled; Newton did not converge at
+D 100, stopped); `release/` (the hold-and-release solve at D 200, M 8, stopped: the held system is worse conditioned
+than the full one); `f64_M6_cont2/` (the float64 continuation on the exact z products with a = max(8, n/400), from the
+D-624 solution: `solve_cont.py S/sol_D624_M6_a8.json --M=6 --a=8 --a_rule=400 --Ds=624,632,...,1000 --noise_as=1,32
+--accept=1e-9`). `diag/seed_test*.log`: the horizon numerics at seeds rescaled from the D-624 solution to D 10^4;
+`diag/check_mobius*_v2.log`: the checks after the exact z products.
