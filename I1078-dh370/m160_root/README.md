@@ -1,0 +1,30 @@
+# I1078-dh370/m160_root: the matched determinant's root at D 3.044375, M' 160 (gamma and its change from M' 96)
+
+Written 2026-11-25 02:36 UTC by the clock, before any run of this folder. Machine `dh370-fedora` (Fedora, i7-8700, 6 cores / 12 threads, 31 GB). Issue #1078 (the sign of det M(lambda) at D 3.044375; the matched determinant of #1083). Coordinator t5's order (hc, 2026-11-25 after 02:32 UTC), to split #1078 with win2's t25, which keeps M' 96 and M' 128.
+
+## Order (t5's)
+"#1083 PASSES all four criteria; I close it. Next, #1078 at M' 160 ...: the true root of the matched determinant at D 3.044375 at M' 160. M' 96 gave lambda 6.3317279956246395 (gamma 0.15793476926), with one sign change on a 0.25 grid from 4.5 to 7.5 (win2, #1078). State: raw I1072-dh370/in3/tmap_lowDhm_x0.000157-0.975_D3.0444_M384_L0.4_M160_s1.9635.npz, pinned by blob. In your ~/Source/choptuik-large-d-1083 worktree with the #1082 venv: HP_DENSE_M_MAX=160 python3 mode_matched.py four <O>/four_M160.jsonl <state> --threads=6 first (must show sign -1, one smooth line, like M' 96). Then python3 mode_matched.py root <O>/root_M160.jsonl <state> --lam0=6.3317279956 --threads=6 (6 threads, nice 10). Raw I1078-dh370/, README first. Dense matrices of about 1.3 GB each, alerts only. Report the root, gamma, and gamma(M' 160) - gamma(M' 96), with #1078's bar: 1e-8 between M' 128 and 160."
+
+## Pins
+- State `I1072-dh370/in3/tmap_lowDhm_x0.000157-0.975_D3.0444_M384_L0.4_M160_s1.9635.npz`, git blob **9ccd7a9e** (raw origin/main at 02:34 UTC; copied to `in/`), 361814 bytes.
+- Code: worktree `~/Source/choptuik-large-d-1083` at 7c6177e1 (wip/mode-horizon-1083), `hp/mode_matched.py` blob 3dd81b39, the same as #1083 part 2 (`../../I1083-dh370/`). Python: the #1082 venv `~/Source/choptuik-large-d-1082/.venv/bin/python` (a9975061 build). Run from the worktree's `hp/`.
+- Reference at M' 96 (t5/win2): lambda 6.3317279956246395, gamma = 1/lambda = **0.15793476925904296** (`cmd_root` writes gamma = 1/lam).
+
+## Commands (as ordered; the details I add are marked)
+1. `four`: `HP_DENSE_M_MAX=160 python mode_matched.py four $O/four_M160.jsonl <state> --threads=6`, `OMP/OPENBLAS/MKL_NUM_THREADS=6`, nice 10. Its default lambda are the four at 5.1408197887857 ... 5.1408197887866 of #1083 (criterion 1), where the M' 96 state gave f = [-1, -1.00000000005, -1.0000000001, -1.00000000014], line residual 4.4e-13, pivot ratio 5.2e-8 (`../../I1083-dh370/2_four.log`).
+2. `root`: `python mode_matched.py root $O/root_M160.jsonl <state> --lam0=6.3317279956 --threads=6`, nice 10. **Mine:** the same `HP_DENSE_M_MAX=160` in its environment (the order shows it for `four` only; `python/hpkernel/driver.py` line 33 reads it as the dense-matrix size cap, default 128, and M' 160 is above it), default `--xtol=1e-11` (the `find_lam` tolerance, 1e-11 in lambda), matched layout (`--match=valley`, the default), without `--both` (D_out is noise at this D, #1082/#1083).
+3. A systemd user unit `i1078m160` under `systemd-inhibit`, nice 10; `run_m160.sh`. Caps (mine): `four` 8 h, `root` 24 h (M' 96's determinants took about 790 s; M' 160's are expected at 4 to 5 times that). The gate between the two: `four` must exit 0 and print all four f negative (sign -1), otherwise the chain stops and I report.
+
+## Registered reading, before the runs
+- `four`: PASS as at M' 96: sign -1 at the four lambda, line residual at most 1e-6 (criterion 1), pivot ratio above 1e-20. A different sign or a line residual above 1e-6 stops the chain.
+- `root`: one sign change in the first bracket, lambda near 6.33; gamma = 1/lambda; report lambda, gamma, **gamma(160) - gamma(96)** against the M' 96 value 0.15793476925904296. #1078's bar is 1e-8 between M' 128 and M' 160 (win2 has M' 128); I do not have M' 128, so I report the 160 - 96 difference and make no statement about the bar. An error bar on lambda is `find_lam`'s `xtol` 1e-11 (a bracket tolerance, not an enclosure; a spread over plan or layout choices is not included).
+- Controls: none ordered at M' 160. The matched layout's controls (`four --match=out` must exit 1; the planted root and its two controls) were run at M' 96 in #1083 on this same code; I state that and do not claim them at M' 160.
+- Cost, before the first determinant: M' 96 took 790 s per determinant (4 threads' worth of memory-bound LU at 6 threads); M' 160 with matrices of 1.3 GB each is estimated at 3000 to 4000 s per determinant: `four` 3.5 to 4.5 h, `root` 5 to 10 determinants, 4 to 11 h. The first determinant's time replaces this.
+- Memory: about 1.3 GB per dense matrix, a few at once (estimate 6 to 10 GB peak); `i1088a-build2` (t5's subagent, a build with timeout 4 h) runs beside. Memory watchers alert only; nothing is killed.
+- Load: this job takes 6 threads, the #1080 walk d about 1.3 cores, `i1088a-*` as t5 sets; the total is above the 6 threads of the earlier arrangement. t5's order says 6 threads.
+
+## Status
+
+- Gate check before the run: the gate's parser (`run_m160.sh`) exits 0 on #1083's M' 96 `2_four.log` (f all negative) and 1 on its control `2b_four_match_out.log` (f = [1, 63.3, -3.27, 0.037]).
+
+- 2026-11-25 02:37 UTC: `run_m160.sh` started as unit `i1078m160` (see `steps.txt`).
