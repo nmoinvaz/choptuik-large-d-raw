@@ -103,7 +103,7 @@ Edge signs: - at 0.020 and - at 0.500. No ln|det| minimum without a sign change;
 | A near 0.434, bracket (0.42, 0.46) (50%) | WRONG |
 | A dived (20%) | right ((0.02, 0.06)) |
 | a B in the window (35%) | right ((0.42, 0.46), "+ to -") |
-| the float64 sign equal to the hybrid at every point (25%) | right (it is not: differs at 4 of 14); the 25% was for equality, so the prediction of equality was WRONG |
+| the float64 sign equal to the hybrid at every point (25%) | WRONG (it differs at 4 of 14) |
 | scan 4 to 9 h from its start (60%); per point 3500 to 9000 s | right (6.0 h; 5517 to 8266 s) |
 Memory: MemAvailable fell to 0.66 GB at 10:14 to 10:15 UTC (t5's `i1088a` rustc, 27 GB, beside the regrid; `alert.log`, three lines), no kill; the scan's gate passed at once. The lane ended with exit codes `regrid 0`, `scan 0` (`exits_k103.txt`).
 
