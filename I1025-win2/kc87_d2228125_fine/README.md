@@ -26,3 +26,4 @@ Source accepted with controls 1 1 and the k_c 95 check refusing it (dry run); ev
 
 ## Status
 - 2026-11-25 09:52 UTC: folder and README (the registered readings) written; the dry run passed (`dry_stdout.txt`, `exits_finescan.txt`). The driver starts next.
+- 2026-11-25 09:51 UTC: the scan started by itself (the driver run through `cim_start.ps1`): three processes, root pids 47228, 41384, 35408, caps 28800 s (17:51 UTC at the latest); about 1800 to 2500 s per evaluation: the three points ~10:25 UTC.
