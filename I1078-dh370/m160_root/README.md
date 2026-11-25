@@ -54,3 +54,21 @@ t5: "pause: SIGSTOP your M' 160 root by exact pid now, and SIGCONT it when i1088
 - 2026-11-25 08:38 UTC, fifth determinant: `lam 6.331729163701: sign +1 ln|det| 1265.906245 pivots 2.31e-09..1.58e+02 (3809.2 s)`. **The bracket is now (6.331729132884, 6.331729163701), sign -1 then +1, width 3.08e-8.** The smallest pivot ratio fell from 6.4e-7 to 1.5e-11 (the matrix is near singular near the root; bar 1e-20 holds). gamma = 1/lambda is therefore within [0.15793474012326, 0.15793474089194]. Against the other resolutions (information; these are bounds from a sign-change bracket, numerical evidence and not an enclosure, and the root is still being refined by `find_lam` to xtol 1e-11):
   - gamma(160) - gamma(128), gamma(128) = 0.15793474051505 (win2): between -3.92e-10 and +3.77e-10, inside the 1e-8 bar by a factor 25 or more.
   - gamma(160) - gamma(96), gamma(96) = 0.15793476925904296: between -2.91e-8 and -2.84e-8.
+
+## Result (2026-11-25 09:29:36 UTC; unit `i1078m160b`, exit 0, 24701 s wall including the 1845 s pause; `root_M160.log`, `root_M160.jsonl`, `root_check.txt`)
+`find_lam` ended with `root of D_m: lam 6.331729163701495 (1 sign changes in the first bracket, 6 dets)`. The six determinants (matched layout, D 3.044375, M' 160, hmax 0.05, 1770 matched steps):
+
+| lambda | sign | ln\|det\| | smallest pivot ratio | seconds |
+|---|---|---|---|---|
+| 6.331627995600 | -1 | 1285.272457 | 6.4e-7 | 5880.0 (includes the pause) |
+| 6.331727995600 | -1 | 1280.838102 | 6.4e-7 | 3945.1 |
+| 6.331827995600 | +1 | 1285.303191 | 6.4e-7 | 3952.0 |
+| 6.331729132884 | -1 | 1277.203360 | 6.4e-7 | 3936.5 |
+| 6.331729163701 | +1 | 1265.906245 | 1.5e-11 | 3809.2 |
+| 6.331729163696 | -1 | 1268.398075 | 1.8e-10 | 3149.1 |
+
+- **Root: lambda 6.331729163701495** (the upper end of the final bracket, where the sign is +1); the final bracket is (6.331729163696, 6.331729163701), width 5e-12, below `xtol` 1e-11. **gamma = 1/lambda = 0.1579347401232502** (the lower end gives 0.15793474012339; the bracket's width in gamma is 1.4e-13). This is `find_lam`'s bracket tolerance, not an enclosure, and no spread over plan or layout choices is included.
+- `root_check.sh`: one sign change in the first bracket, smallest pivot ratio 1.46e-11 (bar 1e-20): **PASS**. The first-bracket sign sequence is -1, -1, +1 at 6.33163, 6.33173, 6.33183.
+- **gamma(160) - gamma(96) = -2.9136e-8** (gamma(96) = 0.15793476925904296, lambda 6.3317279956246395); lambda(160) - lambda(96) = +1.168e-6.
+- **gamma(160) - gamma(128) = -3.918e-10** (gamma(128) = 0.15793474051505, lambda 6.331729147994, win2, from t5's hc), against #1078's bar of **1e-8 between M' 128 and 160: met, by a factor 25.5**. The step from M' 96 to 128 is -2.874e-8, so the change fell by a factor 73 from 96->128 to 128->160.
+- Controls and what was not done: no control was run at M' 160 (`four` skipped by order; the matched layout's `four --match=out`, planted root and its two controls were run at M' 96 in #1083 on the same code). gamma(128) is win2's, a different run and machine; nothing here checks its provenance.
