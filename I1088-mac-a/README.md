@@ -76,4 +76,9 @@ c30c2766).
   `form_s/fullcheck.py` (`fullcheck_D2200.log`): the full system (kfreeze 13) at the fine held solution.
 - `form_s/tc_1414_2200_2420.json`, `tc_run.log`: Track C at D 1414, 2200, 2420 (main's hp/track_c.py --targets).
 
+- `form_s/t2/`: T2, the held guess's horizon block over its other blocks at D 2828.4271 with the last node at 0.700,
+  0.703, 0.705, 0.70677, 0.709 (`form_s_lastnode.py ratio --parts 2`, double-double; the octo-double control at 0.700 is
+  I1088-dh610/out/t2/); `form_s/t2g/`: the same at x_c for D 4000 and 5657; `form_s/fine2420/`, `hyb2420/`: the fine mesh
+  at D 2420 (valid false) and the hybrid's failed guess (the series at 0.7 from the fine m_h reads 1.7e3).
+
 Files are added as the runs go; each log or script names its command line.
