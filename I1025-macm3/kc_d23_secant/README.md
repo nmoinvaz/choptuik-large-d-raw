@@ -31,3 +31,4 @@ k_c 87: `-0.040 -0.020`, pin bb32ff05,2dda16f7. k_c 95: `0.000 0.020`, pin 096f1
 
 ## Status
 - 2026-11-25 23:52 UTC: folder, README (registration), lane script and pins written; pushed first; dry runs next, then both lanes.
+- 2026-11-25 23:53 UTC: both lanes started (`secant2.sh kc87` lane pid 34087, `secant2.sh kc95` lane pid 34204; one `d18_secant.py` process each, nice 10; dry runs 23:53:02 UTC passed: pins, `d18_secant.py` selftest 0 and its mutations 1 1 1). Both print "the record system" (k_c 87: |F| 3.4968757434e-10, 2864 steps; k_c 95: state |F| 3.3713160876e-10, record 3.3831738778e-10, 3127 steps). They run beside the scan of the k_c 103 leg's D 23.0625 (2 processes); t5's order says "after" that scan and its refinement: told t5 at once (hc 23:5x UTC).
