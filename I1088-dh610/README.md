@@ -13,3 +13,6 @@ the Mac, which pushed this folder.
   `T138-win2/chain_o/`) and 245.56 (`I966-dh370/ks_chain3b/`). The build: the low-memory release recipe
   (`CARGO_PROFILE_RELEASE_LTO=false`, 16 codegen units) of wip/large-d-form-s at 38943f4f, 49 min and 25.6 GB
   (`build2_tail.log`).
+- `run_cond_ks.sh` and `out/cond_ks293.log`: the table's D 100 and 200 rows again at ks 293.
+- `j400_held/`: the form S jump to D 400 (`run_jump.sh 400 252.5 3 0 0 10 held --held 1 --it_max 8 --kc 180`), converged,
+  its state `jump_s_D400.0000.npz`.

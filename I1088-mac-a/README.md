@@ -28,4 +28,9 @@ c30c2766).
   controls after two fixes of form_s.py. `check_D20_before_horizon_q_fix.log` is the first run, before the horizon
   series' q was fixed (38943f4f). `cond_S_D50_mac.log`: form S's conditioning at D 50 on the Mac.
 
+- `form_s/j250/`: the form S jump to D 250 with the 10 weakest no-Delta directions frozen (stopped by hand, the
+  frozen subspace changed between LUs); `form_s/j250_held/`: the jump with p1's harmonics 5-13 held at the guess's
+  values, converged, its state `jump_s_D250.0000.npz` and `jump_s.jsonl` (its `jump.log` lost its later lines, the note
+  at its end says why).
+
 Files are added as the runs go; each log or script names its command line.
