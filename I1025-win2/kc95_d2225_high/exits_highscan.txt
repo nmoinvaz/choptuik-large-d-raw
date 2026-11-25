@@ -1,3 +1,19 @@
 kcl kc95 high D 22.25 pins and selftests ok (read_lower + shift + round2, repeat_check, pair gate, kc95 and kc87 checks, fetch; each mutation exit 1) 2026-11-25 10:56:46 UTC
 kcl kc95 high D 22.25 source accepted: dh610's state blob d709a8c064f0c71d98d5320eede396f48978877f, record file blob e83e529e7560e2149aeb3748dc77c447df21bfd8 (kc95 check exit 0; --mutate=F and --mutate=steps exit 1; the k_c 87 check refuses) 2026-11-25 10:56:56 UTC
 kcl kc95 high D 22.25 DRY run ended before the scan 2026-11-25 10:56:57 UTC
+kcl kc95 high D 22.25 pins and selftests ok (read_lower + shift + round2, repeat_check, pair gate, kc95 and kc87 checks, fetch; each mutation exit 1) 2026-11-25 10:57:28 UTC
+kcl kc95 high D 22.25 source accepted: dh610's state blob d709a8c064f0c71d98d5320eede396f48978877f, record file blob e83e529e7560e2149aeb3748dc77c447df21bfd8 (kc95 check exit 0; --mutate=F and --mutate=steps exit 1; the k_c 87 check refuses) 2026-11-25 10:57:37 UTC
+kcl kc95 high D 22.25 scan waits for memory only (at least 18.4 GB free; no wait for other d18_hybsign scans: the D 22.5 wide scan's last evaluation runs beside it, by order) 2026-11-25 10:57:37 UTC
+kcl highscan95_p1 root pid 14016, cap 28800 s, want exit 0 2026-11-25 10:57:38 UTC
+kcl highscan95_p2 root pid 30076, cap 28800 s, want exit 0 2026-11-25 10:57:39 UTC
+kcl highscan95_p3 root pid 21372, cap 28800 s, want exit 0 2026-11-25 10:57:39 UTC
+kcl highscan95_p4 root pid 24404, cap 28800 s, want exit 0 2026-11-25 10:57:39 UTC
+kcl highscan95_p4 exit 0 (want 0) wall 3988 s capped 0 OK 2026-11-25 12:04:06 UTC
+kcl highscan95_p4 exit 0 wall 3988 s capped 0 2026-11-25 12:04:06 UTC
+kcl highscan95_p2 exit 0 (want 0) wall 5921 s capped 0 OK 2026-11-25 12:36:19 UTC
+kcl highscan95_p2 exit 0 wall 5922 s capped 0 2026-11-25 12:36:23 UTC
+kcl highscan95_p1 exit 0 (want 0) wall 5925 s capped 0 OK 2026-11-25 12:36:23 UTC
+kcl highscan95_p1 exit 0 wall 5925 s capped 0 2026-11-25 12:36:23 UTC
+kcl highscan95_p3 exit 0 (want 0) wall 5939 s capped 0 OK 2026-11-25 12:36:37 UTC
+kcl highscan95_p3 exit 0 wall 5939 s capped 0 2026-11-25 12:36:37 UTC
+kcl kc95 high D 22.25 scan done: kc95 high D 22.25 reading: hybrid signs: 0.460+ 0.500+ 0.540+ 0.580+ 0.620+ 0.660+ 0.700+ 0.740+ 0.780+ 0.820+ float64 sign differs from the hybrid sign at: none robust changes: 0; touching a non-robust point (not counted): none  | joint:   robust change (0.430, 0.435), - to +, det-linear 0.434264,  2026-11-25 12:36:42 UTC
