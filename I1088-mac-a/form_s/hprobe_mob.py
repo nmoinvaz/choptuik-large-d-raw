@@ -55,5 +55,7 @@ for ks in kss:
         pert[o:o + M] = eps * np.abs(zs[o:o + M]) * np.random.default_rng(1).choice([-1, 1], M)
         zp = o8(od_axpy(1.0, pert, *([np.zeros(len(zs))] * 7), *z8))
         Fp = s.residual_s(list(zp), mut)
-        dF = (np.asarray(Fp[0]) + np.asarray(Fp[1]))[K * 3 * M:(K + 1) * 3 * M] - Fh
+        # the difference in octo-double (a float64 difference of the sums cannot resolve moves below |F_h| 1e-16)
+        dF = np.asarray(od_axpy(-1.0, *[np.ascontiguousarray(q) for q in F], *[np.ascontiguousarray(q) for q in Fp])[0])
+        dF = dF[K * 3 * M:(K + 1) * 3 * M]
         print(f"    m_h moved by {eps:.0e}: the horizon block moves by {np.abs(dF).max():.2e}, gain {np.abs(dF).max() / eps:.2e}", flush=True)

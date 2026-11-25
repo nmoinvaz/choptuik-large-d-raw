@@ -40,4 +40,12 @@ c30c2766).
   variable (wip/large-d-inner ee996ecc, solver/inner_large_d/mobius_s.py) at the D 400 held state and the D 1000 guess,
   and each one's gain from m_h (`mobius_gain_D400.log`, `mobius_gain_D1000.log`).
 
+- `form_s/mobcheck400/`: `form_s.py mobcheck --newton 0` at the D 400 held state (the held system's blocks with the
+  u horizon, the Moebius horizon a 8 ks 617, and the control mutate 52; `mobcheck.jsonl`) and `mobsplit.py`'s split of
+  the u-Moebius difference (`mobsplit.log`).
+- `form_s/hprobe_mob.py`: check 4, the D 1000 guess's horizon gain from m_h with the Moebius horizon
+  (`hprobe_mob_D1000.log`, the difference in octo-double; `hprobe_mob_D1000_f64diff.log`, the first run, whose float64
+  difference cannot resolve the 1e-30 move).
+- `form_s/g2000.sh`: the D 2000 guess's blocks for two fits (`g2000_A.log`, `g2000_B.log`, `g2000_*/`).
+
 Files are added as the runs go; each log or script names its command line.

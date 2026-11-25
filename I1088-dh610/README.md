@@ -19,3 +19,6 @@ the Mac, which pushed this folder.
 - `out/rel400.log`: plain Newton with h5 freed from the D 400 held state (`form_s.py release`), stopped by hand.
 - `out/rls300.log`, `out/rls300_release_ls.jsonl`: `form_s.py release_ls` from the D 300 held state (copied from
   dh370), h5 then h7 ... h13; copied while it runs, updated as it goes.
+- `out/rls300/release_ls_h13_D300.0000.npz`: D 300 with every harmonic up to 13 free (the full system), the end of
+  `release_ls` (`out/rls300.log`, `out/rls300_release_ls.jsonl`).
+- `rebuild_mob.sh`: the release build with the Moebius horizon and mobcheck at D 400, queued after the release.
