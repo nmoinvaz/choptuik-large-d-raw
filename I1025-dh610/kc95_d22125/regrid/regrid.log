@@ -1,0 +1,50 @@
+# 2026-11-25 03:07:15 UTC cmd (cwd /home/nathan/Source/choptuik-large-d-1025g/solver/matter, 8 threads, nice 10, cap 21600 s): nice -n 10 timeout 21600 /home/nathan/Source/venv-i1058/bin/python -u ell_refine.py l1kc87Lmacm3b2 87 l1kc95dh610d22125 95 1 22.125 2.1023628304 --kappa 0.7 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma
+/home/nathan/Source/choptuik-large-d-1025g/solver/matter/dss_ell.py:213: RuntimeWarning: overflow encountered in multiply
+  cx = c * ((n - 1) * (a2 - 1) - 2 * L * g) / x
+/home/nathan/Source/choptuik-large-d-1025g/solver/matter/dss_ell.py:213: RuntimeWarning: overflow encountered in divide
+  cx = c * ((n - 1) * (a2 - 1) - 2 * L * g) / x
+/home/nathan/Source/choptuik-large-d-1025g/solver/matter/dss_ell.py:214: RuntimeWarning: overflow encountered in multiply
+  ax = a * ((p * p + m * m) + 2 * L * g + (n - 1) * (1 - a2)) / (2 * x)
+/home/nathan/Source/choptuik-large-d-1025g/solver/matter/dss_ell.py:214: RuntimeWarning: overflow encountered in divide
+  ax = a * ((p * p + m * m) + 2 * L * g + (n - 1) * (1 - a2)) / (2 * x)
+/home/nathan/Source/choptuik-large-d-1025g/solver/matter/dss_ell.py:88: RuntimeWarning: invalid value encountered in matmul
+  return f @ self._Tm
+/home/nathan/Source/choptuik-large-d-1025g/solver/matter/dss_ell.py:211: RuntimeWarning: overflow encountered in multiply
+  a2 = a * a
+/home/nathan/Source/choptuik-large-d-1025g/solver/matter/dss_ell.py:213: RuntimeWarning: invalid value encountered in subtract
+  cx = c * ((n - 1) * (a2 - 1) - 2 * L * g) / x
+/home/nathan/Source/choptuik-large-d-1025g/solver/matter/dss_ell.py:214: RuntimeWarning: invalid value encountered in add
+  ax = a * ((p * p + m * m) + 2 * L * g + (n - 1) * (1 - a2)) / (2 * x)
+/home/nathan/Source/choptuik-large-d-1025g/solver/matter/dss_ell.py:216: RuntimeWarning: overflow encountered in multiply
+  pc = n * c * (p + m) / (2 * x)
+/home/nathan/Source/choptuik-large-d-1025g/solver/matter/dss_ell.py:218: RuntimeWarning: overflow encountered in multiply
+  px = (-self.D(p, omega) + cx * p - c * p / x + pc - lt) / (x - c)
+/home/nathan/Source/choptuik-large-d-1025g/solver/matter/dss_ell.py:219: RuntimeWarning: overflow encountered in multiply
+  mx = (-self.D(m, omega) - cx * m + c * m / x - pc + lt) / (x + c)
+/home/nathan/Source/choptuik-large-d-1025g/solver/matter/dss_ell.py:212: RuntimeWarning: overflow encountered in multiply
+  g = a2 * q * q
+/home/nathan/Source/choptuik-large-d-1025g/solver/matter/dss_ell.py:217: RuntimeWarning: overflow encountered in multiply
+  lt = L * c * a2 * q / x
+/home/nathan/Source/choptuik-large-d-1025g/solver/matter/dss_ell.py:218: RuntimeWarning: invalid value encountered in subtract
+  px = (-self.D(p, omega) + cx * p - c * p / x + pc - lt) / (x - c)
+/home/nathan/Source/choptuik-large-d-1025g/solver/matter/dss_ell.py:219: RuntimeWarning: invalid value encountered in add
+  mx = (-self.D(m, omega) - cx * m + c * m / x - pc + lt) / (x + c)
+/home/nathan/Source/choptuik-large-d-1025g/solver/matter/dss_ell.py:325: RuntimeWarning: overflow encountered in multiply
+  aG = cs(A, Q2, Kk) + (n - 1) * (A[Kk] - cs(A, A2, Kk)) + 2 * L * cs(A, G, Kk)
+/home/nathan/Source/choptuik-large-d-1025g/solver/matter/dss_ell.py:334: RuntimeWarning: overflow encountered in subtract
+  rest = tau_term - zmu - cs(V, M, Kk) - cs(C, M, Kk) + 0.5 * n * cs(C, PM, Kk) - L * cs(C, H, Kk)
+/home/nathan/Source/choptuik-large-d-1025g/solver/matter/dss_ell.py:217: RuntimeWarning: overflow encountered in divide
+  lt = L * c * a2 * q / x
+/home/nathan/Source/choptuik-large-d-1025g/solver/matter/dss_ell.py:218: RuntimeWarning: invalid value encountered in add
+  px = (-self.D(p, omega) + cx * p - c * p / x + pc - lt) / (x - c)
+/home/nathan/Source/choptuik-large-d-1025g/solver/matter/dss_ell.py:216: RuntimeWarning: overflow encountered in divide
+  pc = n * c * (p + m) / (2 * x)
+/home/nathan/Source/choptuik-large-d-1025g/solver/matter/dss_ell.py:218: RuntimeWarning: overflow encountered in divide
+  px = (-self.D(p, omega) + cx * p - c * p / x + pc - lt) / (x - c)
+/home/nathan/Source/choptuik-large-d-1025g/solver/matter/dss_ell.py:85: RuntimeWarning: invalid value encountered in matmul
+  return f @ self._Dm
+/home/nathan/Source/choptuik-large-d-1025g/solver/matter/dss_ell.py:325: RuntimeWarning: invalid value encountered in subtract
+  aG = cs(A, Q2, Kk) + (n - 1) * (A[Kk] - cs(A, A2, Kk)) + 2 * L * cs(A, G, Kk)
+/home/nathan/Source/choptuik-large-d-1025g/solver/matter/dss_ell.py:219: RuntimeWarning: overflow encountered in divide
+  mx = (-self.D(m, omega) - cx * m + c * m / x - pc + lt) / (x + c)
+{"D": 22.125, "l": 1, "kc": 95, "kappa": 0.7, "rk": 1, "reg": 0.0, "u0": 0.04, "Ks": 30, "src": "l1kc87Lmacm3b2", "Delta": 1.1491338668995048, "Delta_src": 1.1491514059231234, "F": 4.062791113494692e-10, "F_start": 4.045238658261682e-05, "steps": 3132, "constraint": 0.004293368242355247, "dDelta_dF": 2297532128.384958, "lam_gauge": 0.967954343960726, "seconds": 5219}
