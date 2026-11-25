@@ -1,0 +1,5 @@
+cd hp && PYTHONPATH=<site of the #1043 build> OPENBLAS_NUM_THREADS=2 nice -n 10 /Users/nathan/venv-314/bin/python -u jump.py guess \
+  ../choptuik-large-d-raw-1088a/I1088-mac-a/g250/guess_D250.npz --D 250 \
+  --states "<raw>/I903-macm3/chain_k135/anm_pin3_D*.npz,<raw>/I966-dh370/ks_chain3b/*/anm_pin3_D*.npz" \
+  --Dmin 226 --Dmax 245.64 --deg 3 --kfreeze 13 --plan_tol 1e-40 --threads 2
+(code a4df1196; the log file was created 2026-11-25 00:30:33 UTC and last written 00:34:39 UTC, file times)
