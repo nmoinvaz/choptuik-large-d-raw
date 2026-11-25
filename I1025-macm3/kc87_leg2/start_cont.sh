@@ -24,7 +24,7 @@ stopline=$(grep '^stop at D' $L2/c/leap.log | tail -1)
 python3 - "$stopline" <<'PY' || notneeded="$notneeded the leap log's last stop line is not the constraint bar ($stopline);"
 import re, sys
 m = re.search(r"stop at D ([\d.]+): \|F\| ([\d.e+-]+) \(bar ([\d.e+-]+)\), psi-constraint ([\d.e+-]+) \(bar ([\d.e+-]+)\)", sys.argv[1])
-sys.exit(0 if m and float(m.group(4)) > float(m.group(5)) and float(m.group(2)) < float(m.group(3)) else 1)
+sys.exit(0 if m and float(m.group(4)) >= float(m.group(5)) and float(m.group(2)) < float(m.group(3)) else 1)
 PY
 if [ -n "$why" ]; then tell "macm3 #1025 kc87_leg2: part c2 NOT started:$why"; exit 1; fi
 if [ -n "$notneeded" ]; then tell "macm3 #1025 kc87_leg2: part c2 not needed (part c did not stop at the constraint bar): $notneeded"; exit 0; fi
