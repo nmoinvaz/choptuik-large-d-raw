@@ -25,3 +25,5 @@ My x2 walk, 5 processes: centre 2276 s, offsets 768 to 777 s each, 1 to 1.5 h an
 ## Status
 
 Written as the run goes.
+- 2026-11-25 10:18:46 UTC: started (`steps_control_d.txt`): pins 73dcf243 1077ea0e 56bb4856 563bc062 483e9871 accepted, `zero_mp.py selftest` exit 0, `--mutate=sign` exit 1, `control_check.py selftest` exit 0; walk main pid 35324, BelowNormal, cap 86400 s. Criteria posted in comment 7159510595.
+- 2026-11-25 12:12:19 UTC, iteration 0 row (`control_walk_d.jsonl` line 1, 6813 s after the start; centre 2878.6 s, offsets 2344.8, 1643.2, 2314.8, 2290.2 s): equal to dh370's row 0 in R, sigma, J, the step and F3's 42 digits (no difference at all), so the reproduction check (bar 1e-6 relative) **passes**. R = +76.31561223482653 + 113.29510720116296 i, |R|/sigma_mp 1.81e18, orientation +1, step (-4.6015e-3, -1.4641e-2) (58% and 89% of the way to the box centre). Not located.
