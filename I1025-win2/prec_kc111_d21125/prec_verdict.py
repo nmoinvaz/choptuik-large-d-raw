@@ -3,7 +3,7 @@
 
 Reads DIR/prec_k<KC>_lam<LAM>.jsonl (one record per lambda, from d18_hybsign_prec.py) and prints, per lambda, the hybrid sign and ln|det|, the sign under noise 1e-15 / 1e-12 / 1e-10 (2 seeds), the all-double-double sign and ln|det|, the float64 sign
 and the script's reading (robust / state-limited / rounding-limited), then the control and the verdict.
-CONTROL c4 (against dh170's own hybrid rows at D 21.125, pinned in inputs/): at lambda 0.870 and 0.875 (k_c 111) and 0.880 and 0.885 (k_c 103) the hybrid sign here equals dh170's and |ln here - ln there| <= 1e-3. A sign that differs = the control FAILS, no verdict;
+CONTROL c4 (against dh170's own hybrid rows at D 21.125, pinned in inputs/): at lambda 0.860, 0.865, 0.870 and 0.875 (k_c 111; rows of dh170's raw I1025-dh170/kc111_d21125_low, merged_all, blob 10da3d2b, the same state blob edbb419e) and 0.880 and 0.885 (k_c 103) the hybrid sign here equals dh170's and |ln here - ln there| <= 1e-3. A sign that differs = the control FAILS, no verdict;
 an ln that differs by more than 1e-3 with the sign equal is printed as a platform difference of the hybrid ln (information, not a failure).
 VERDICT (registered): the points beside the roots are k_c 111 0.865, 0.870 and k_c 103 0.880, 0.885.
   'real'      : every point beside the roots that exists reads robust AND the hybrid signs change between 0.865 and 0.870 (k_c 111, when both exist) and between 0.880 and 0.885 (k_c 103, when both exist);
@@ -18,7 +18,7 @@ import sys
 
 MUT = "--mutate" in sys.argv
 BESIDE = {111: (0.865, 0.870), 103: (0.880, 0.885)}
-CTRL = {111: (0.870, 0.875), 103: (0.880, 0.885)}
+CTRL = {111: (0.860, 0.865, 0.870, 0.875), 103: (0.880, 0.885)}   # k_c 111: 0.860 and 0.865 from dh170's kc111_d21125_low (the coordinator, 25 Nov ~15:15 UTC), 0.870 and 0.875 from his kc111_d21125
 
 
 def reading(r):
@@ -80,7 +80,7 @@ def load(d):
 
 def load_ref(d):
     ref = {}
-    for kc, f in ((111, "inputs/kc111/dh170_merged_wide_D21.125.jsonl"), (103, "inputs/kc103/dh170_merged_D21.125.jsonl")):
+    for kc, f in ((111, "inputs/kc111/dh170_low_merged_all_D21.125.jsonl"), (103, "inputs/kc103/dh170_merged_D21.125.jsonl")):
         p = os.path.join(d, f)
         if os.path.exists(p):
             for l in open(p):
