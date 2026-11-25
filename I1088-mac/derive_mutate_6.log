@@ -1,0 +1,15 @@
+1. parity variables U, V in z = x^2: A, B, E1, E2 polynomial in z                 PASS
+2. S1 = cA + B, S2 = zA + cB: 2z(z - c^2) on V_z, U_z alone                       PASS
+3. x beta_x = (n-1) q - (n-1+q) beta, G = c beta / (1 - beta/(n-1))               PASS
+4. horizon: order 0 (i lam - (n/2-1+g)) P0 - (n/2) Q0 = 0; order-k operators      PASS
+5. centre series: explicit a_k, c_k, U_k, V_k solve A, B, E1, E2 to order 4       PASS
+   n   40: digits lost, w-sum 0.02, u-sum 0.02 (same function: 8.4e+04 apart)
+   n   80: digits lost, w-sum 0.09, u-sum 0.01 (same function: 1.0e+12 apart)
+   n  160: digits lost, w-sum 0.05, u-sum 0.01 (same function: 6.4e+25 apart)
+   n  320: digits lost, w-sum 0.03, u-sum 0.00 (same function: 3.9e+52 apart)
+6. free field at x 0.7: w-sum = u-sum, neither loses a digit to cancellation      FAIL
+   n   100: ln|F| at 0.7 =   -0.592, at 1/sqrt2 =  -2.6686 (kappa/2 ln 1/2 = -2.6686)
+   n  1000: ln|F| at 0.7 =   17.410, at 1/sqrt2 =  -2.6686 (kappa/2 ln 1/2 = -2.6686)
+   n 10000: ln|F| at 0.7 =  197.434, at 1/sqrt2 =  -2.6686 (kappa/2 ln 1/2 = -2.6686)
+7. ln|F(1/sqrt2)| = -(kappa/2) ln 2, independent of n; at 0.7 it grows like 0.020 n PASS
+SOME FAIL

@@ -1,0 +1,22 @@
+   dmat_even max error 2.49e-14
+1. dmat_even differentiates even fields                                   PASS
+   node x 0.30: |X_S - X_hp| / |X_hp| = 1.46e-11  (|X| 2.07e-05)
+   node x 0.40: |X_S - X_hp| / |X_hp| = 8.31e-12  (|X| 3.65e-05)
+   node x 0.50: |X_S - X_hp| / |X_hp| = 4.86e-12  (|X| 5.67e-05)
+   node x 0.60: |X_S - X_hp| / |X_hp| = 3.82e-12  (|X| 8.09e-05)
+   node x 0.70: |X_S - X_hp| / |X_hp| = 3.09e-12  (|X| 1.09e-04)
+2. momentum-constraint slaving holds at hp's nodes                        PASS
+   centre at x 0.30: U rel err 1.26e-14
+   centre at x 0.30: V rel err 4.97e-16
+   centre at x 0.30: c rel err 1.11e-16
+   horizon at x 0.70: U rel err 5.38e+16
+   horizon at x 0.70: c rel err 3.09e+13
+   V harmonic  1: horizon 1.133086e+14 node 3.482450e-01 rel diff 3.25e+14
+   V harmonic  3: horizon 7.132752e+13 node 2.011039e-02 rel diff 3.55e+15
+   V harmonic  5: horizon 2.228910e+13 node 1.272380e-03 rel diff 1.75e+16
+   V harmonic  7: horizon 4.762724e+12 node 8.452578e-05 rel diff 5.63e+16
+   horizon tail 6.8e+11, ks 541
+3. form-S centre and horizon series reproduce hp's first and last nodes   FAIL
+   centre series, orders 1..39: max |Hamiltonian residual| / |(n-1) X_k| = 4.90e-01
+4. the Hamiltonian equation holds order by order in form S's centre series FAIL
+SOME FAIL
