@@ -1,0 +1,36 @@
+# I1025-win2/kc95_d22875: macm3's k_c 87 part c state at D 22.875 regridded to k_c 95, then a scan of lambda -0.06 to 0.30 toward F
+
+Machine win2 (Windows 11, 20 logical CPUs, 95.5 GB RAM; runner win2 claude-me2, Sonnet 5.5). Issue https://github.com/nmoinvaz/choptuik-large-d/issues/1025. Written 2026-11-25 12:41 UTC, **before the regrid or the scan of this folder** (the drivers are `../kc95_d22/kc95_regrid.sh` and `../kc95_d22875/kc95_fscan.sh`; the dry run of the regrid driver on this source is in this folder).
+
+## Order (coordinator t5, hc, 25 Nov ~12:40 UTC), verbatim
+"ruling: S is a k_c 87 feature (outcome b here and at winb's D 22.125, none at D 22.3125 and 22.5); I mark S as discretization in the tables. Next for win2, two k_c 95 lanes side by side toward F's zero (k_c 87 extrapolates F = 0 near D 23.1): (1) k_c 95 at D 22.875 from macm3's part c k_c 87 state, (2) k_c 95 at D 23.0 from macm3's part c2 state (REDUCED QUALITY source, constraint 1.05e-2; say so in every table).
+Each: pin by blob, kc87 check accepts (controls 1 1), your kc95 regrid recipe (4 threads), kc95 check accepts the result; then a scan lambda -0.06 to 0.30 by 0.02 plus the repeat of 0.10, 4 procs. Register first: k_c 95's F line (0.4343 at 22.25, 0.339 at 22.5: -0.38 per unit D) gives about 0.19 at 22.875 and 0.15 at 23.0; k_c 87's F gives about 0.08 and 0.06. Raw kc95_d22875/ and kc95_d23/, README first."
+
+## Source and its quality (say so in every table)
+macm3's part c k_c 87 state at D 22.875 (raw `I1025-macm3/kc87_leg2/c/sol_l1kc87Lmacm3c_D22.875000.npy`, blob b1e4f8ca, committed 2026-11-25 02:59 -08:00) and its record (`l1kc87Lmacm3c.jsonl`, the D 22.875 row: |F| 3.613e-10, 2862 steps, psi-constraint 9.932e-3, Delta 1.170718127182, h 0.0625, 2267 s). The constraint is just under the leaps' 1e-2 bound (9.93e-3): a normal-quality source.
+Both part c and part c2 run at h 0.0625 (the earlier parts at 0.03125). Branch names: S is a k_c 87 discretization feature (the coordinator's ruling); F is lambda_1.
+
+## Registered readings (fixed before the regrid or the scan)
+Known F (lambda_1, det-linear) of k_c 95: 0.545920 (D 22.0, `../kc95_d22/`), 0.434264 (D 22.25, dh610), 0.339034 (D 22.5, `../kc95_d225/`; the bracket is (0.300, 0.340)): slope -0.381 per unit D between D 22.25 and D 22.5. The line through the last two gives **0.196 at D 22.875 and 0.149 at D 23.0** (the coordinator's about 0.19 and 0.15). The bracket of the D 22.5 point alone allows slopes from -0.38 to -0.54: bands 0.14 to 0.20 (D 22.875) and 0.09 to 0.15 (D 23.0). k_c 87's F extrapolates to about 0.08 (D 22.875) and 0.06 (D 23.0).
+- **Position of F at D 22.875 (k_c 95)**: exactly one robust change `- to +` in the window (-0.06, 0.30) (- below it and + above it, the orientation of F at D 22.0, 22.25 and 22.5); registered central value 0.19 (band 0.14 to 0.20). Classification by the bracket's midpoint: `the k_c 95 line` if within 0.04 of 0.19; `k_c 87-like` if within 0.04 of 0.08 and not the former; else `other`, listed as read. The two windows around the central values do not overlap.
+- **Nothing else**: no second change in (-0.06, 0.30) (S is a k_c 87 feature, outcome (b) at D 22.125, 22.25, 22.3125, 22.5). A second change, or a change `+ to -`, is reported as read with its ln|det| profile.
+- **No change in the window**: F is below -0.06 or above 0.30; the ends' signs say which (sign + at -0.06 means F is below it; sign - at 0.30 means above).
+- Shape: ln|det| at F as at D 22.25 (dip beside the change then a shallow maximum) is expected; read, not required.
+How the scan is read: the sign at each lambda, every robust change by bracket, orientation as `read_lower.py` prints it, det-linear estimate and estimator range (a spread over estimator choices, not an enclosure); float64 signs differing from the hybrid sign, non-robust points and ln|det| minima without a sign change are listed as printed; ln|det| and its slope against lambda in `ln_table.txt` (four decimals). If the regrid does not converge or is not accepted the lane stops there and I report it.
+
+## Inputs (pinned; the drivers refuse any other)
+| item | where | pin |
+|---|---|---|
+| macm3's k_c 87 state at D 22.875 | raw `I1025-macm3/kc87_leg2/c/` (`sol_l1kc87Lmacm3c_D22.875000.npy`), fetched by `fetch_macm3.py --path=I1025-macm3/kc87_leg2/c --tag=l1kc87Lmacm3c` through `gh api`, checked against the listing | blob b1e4f8ca |
+| its record file (6 rows at the dry run) | same folder, `l1kc87Lmacm3c.jsonl` (the file's blob changes while the leg runs; the D row is the pin) | blob 338bd7f1 at the dry run |
+Code: worktree `D:/choptuik-i1025k79` at 48c36355 (`dss_ell.py`, `ell_ddm.py`, `ell_dd.py`, `ddnp.py` equal 505d8399's), python 3.14 with multidouble 5.1.0 (`venv-md510`); the k_c 95 check (d487e628, accepts the result; controls 1 1; the k_c 87 check refuses it), the k_c 87 check (6df5d960, accepts the source; controls 1 1), `d18_hybsign.py` e089207a, `read_lower.py` 89309d3c, `d185_scan_read.py` 7c9d400f, `d18c_read.py` 1383470f, `repeat_check.py` aaf598a9, `pair2025.py` e692c61d.
+
+## Commands
+1. `SRC_TAG=l1kc87Lmacm3c SRC_PATH=I1025-macm3/kc87_leg2/c COMMIT_GATE_GB=off bash ../kc95_d22/kc95_regrid.sh 22.875 l1kc95win2d22875 kc95_d22875` (one driver through `cim_start.ps1`): pins and selftests; the source fetched by `gh api` and blob-checked, accepted by `kc87_syscheck_1025.py` (controls `--mutate=F` and `--mutate=steps` exit 1); `ell_refine.py l1kc87Lmacm3c 87 l1kc95win2d22875 95 1 22.875 2.0996545550 --kappa 0.7 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma`, 4 threads, BelowNormal, cap 21600 s by the exact root pid; accepted only by `kc95_syscheck_1025.py` (exit 0; controls `--mutate=F` and `--mutate=steps` exit 1) with the k_c 87 check refusing the result. (The last regrids of this kind took 6600 to 7900 s.)
+2. `SRC_NOTE="normal source (constraint 9.93e-3, h 0.0625)" bash ../kc95_d22875/kc95_fscan.sh 22.875 l1kc95win2d22875 kc95_d22875` (waits for the accepted regrid and 18.4 GB free memory): `d18_hybsign.py`, four processes of one thread, caps 28800 s by the exact root pids, 20 evaluations (lambda -0.06 to 0.30 by 0.02, 19 values, and the repeat of 0.10), central values first: P1 0.10, 0.14, 0.24, 0.28, 0.00 | P2 0.10 (the repeat), 0.20, 0.26, 0.30, -0.02 | P3 0.18, 0.22, 0.08, 0.04, -0.04 | P4 0.16, 0.12, 0.06, 0.02, -0.06; then `read_lower.py` over -0.06 to 0.30, `repeat_check.py`, `pair2025.py`, and the table.
+
+## Acceptance (fixed before the run)
+Source accepted with controls 1 1 (dry run); the regrid exits 0 inside 21600 s; the result accepted by `kc95_syscheck_1025.py` with controls 1 1 and refused by the k_c 87 check; every scan process prints "the record system"; the repeat of 0.10 on a second process agrees (1e-6); each robust change is reported by position and orientation with ln|det|'s shape beside it, with the source's quality note in the report. A pin that differs, a selftest or control that does not read as written, a regrid not accepted or over the cap, or a scan process that fails stops the lane and I report it.
+
+## Status
+- 2026-11-25 12:41 UTC: folder and README (the registered readings) written; the dry run of the regrid driver on this source passed (`regrid_dry_stdout.txt`, `exits_regrid.txt`); the drivers start next.
