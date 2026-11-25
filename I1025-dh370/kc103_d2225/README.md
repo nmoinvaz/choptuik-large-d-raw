@@ -54,3 +54,14 @@ How I read it, fixed here: on the 0.04 grid, "A near 0.434" is a robust '- to +'
 | Delta(103) - Delta(95) between -5e-5 and -1e-6 (65%) | right (-5.99e-6) |
 | regrid wall 4000 to 9000 s (60%) | right (7173 s) |
 | peak RSS below 4 GiB (85%) | right (2.98 GiB) |
+
+## Scan, round 1 done (13:3x to 14:00 UTC, 5 processes, 7679 to 8266 s per point)
+| lambda | hybrid sign | noise-robust | float64 sign | ln of abs det | seconds |
+|---|---|---|---|---|---|
+| 0.10 | + | True | + | -3055.0710 | 8206 |
+| 0.14 | + | True | + | -3058.4345 | 8117 |
+| 0.38 | + | True | + | -3081.7544 | 8266 |
+| 0.42 | + | True | - | -3087.4107 | 8137 |
+| 0.46 | - | True | + | -3089.4372 | 7679 |
+- Interim (information only; the reader's reading comes after the scan): between 0.42 and 0.46 the hybrid sign goes **+ to -** (both points noise-robust), where t5's A near 0.434 would show '- to +' there. No '- to +' change is seen in 0.10 to 0.46; the lower part of the window (0.02, 0.06) and 0.18 to 0.34 are not yet evaluated, and two roots inside one 0.04 interval would not be seen. The float64 sign differs from the hybrid at 0.42 and 0.46.
+- Round 2 (0.50, 0.34, 0.30, 0.26, 0.22) and round 3 (the repeat of 0.14, 0.06, 0.02, 0.18) follow, about 2.3 h each; the scan should end about 18:30 UTC.
