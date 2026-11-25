@@ -93,7 +93,7 @@ The sampler (`rows/regrid_samples.csv`, `rows/scan_samples.csv`) gives the real 
 
 ## Status
 
-**Step 1, the regrid, ACCEPTED 2026-11-25 15:31:45 UTC. Step 2, the scan, RUNNING since 15:32:56 UTC.** README first: 4bc829382 (pushed 12:40:28 UTC, before the start); running status c90ab8b1b; chain started 12:40:47 UTC through `Win32_Process.Create` of `conhost.exe --headless cmd.exe /c go_kc103d22_1025.cmd`. The D 22.125 chain ended 12:34:35 UTC and its reading was posted (#1025 comment 7162586928) and pushed (dbc9a329d) first.
+**Step 1, the regrid, ACCEPTED 2026-11-25 15:31:45 UTC. Step 2, the scan, DONE 2026-11-25 18:53:26 UTC (started 15:32:56, 12030 s, exits 0, 0, 0, 0; the chain ended 18:54:48 UTC).** The reading is in Result below. README first: 4bc829382 (pushed 12:40:28 UTC, before the start); running status c90ab8b1b; chain started 12:40:47 UTC through `Win32_Process.Create` of `conhost.exe --headless cmd.exe /c go_kc103d22_1025.cmd`. The D 22.125 chain ended 12:34:35 UTC and its reading was posted (#1025 comment 7162586928) and pushed (dbc9a329d) first.
 
 **Regrid (`regrid_summary.txt`, `regrid.log`, `l1kc103win22.jsonl`):**
 
@@ -141,10 +141,63 @@ The memory watcher raised no alert (`rows/regrid_memwatch.log`: its start line o
 - **Before the scan** (15:32:55 to 15:32:56 UTC): the reader's selftest exit 0 and its two `--mutate` controls exit 1, 1 as wanted.
 - **Session check** (`session_check_scan.txt`, exit 0): no `claude` in any chain of the run, no Windows Terminal / OpenConsole / wt, a headless conhost in the chain.
 - **Machine at the start:** free physical memory 22.55 GB; the other project's I114 `convergence.py` jobs are beside it and not touched.
-- **ETA** (the estimates above counted from 15:32:56 UTC): each point 6400 to 7800 s, so round 1 ends about 17:20 to 17:45 UTC and the scan about 19:05 to 19:55 UTC (central about 19:25, written 12800 to 15600 s, central about 14000 s). Cap 21600 s: 21:33 UTC.
+- **End:** the scan ended 18:53:26 UTC (written ETA 19:05 to 19:55 UTC, central about 19:25: it came in under it); reader lines in Result.
 
-Pushed 2026-11-25 15:34:17 UTC.
+Pushed 2026-11-25 18:55:37 UTC.
 
 ## Result
 
-Not yet run.
+Reader (`read_lower_kc103_D22.log`, `read_lower.py` 89309d3c on this folder, window 0.530 to 0.560), lines as printed:
+
+```
+points 7 in 0.530-0.560; not noise-robust: none
+hybrid signs: 0.530- 0.535- 0.540- 0.545- 0.550+ 0.555+ 0.560+
+float64 sign differs from the hybrid sign at: [(0.55, '+', '-'), (0.555, '+', '-'), (0.56, '+', '-')]
+repeated points: [(0.545, 'agree')]
+  robust change (0.545, 0.550), - to +, det-linear 0.547345, range [0.546590, 0.547345]
+robust changes: 1; touching a non-robust point (not counted): none
+ln|det| local minima without a sign change: none
+endpoint signs: - at 0.530, + at 0.560
+read_lower exit 0
+```
+
+The 8 evaluations (`scan_kc103_D22_p0..p3.jsonl`; every worker first printed the record system: \|F\| 4.2518887538e-10 against the record's 4.2507160073e-10, 3402 steps = the record's; the scan driver's exits 0, 0, 0, 0):
+
+| lambda | process | hybrid sign | hybrid ln\|det\| | float64 sign | float64 ln\|det\| | noise-robust (2 seeds) | seconds |
+|---|---|---|---|---|---|---|---|
+| 0.530 | p0 | - | -3128.9016444538 | - | -3128.3948729670 | yes | 6024 |
+| 0.535 | p1 | - | -3129.7262301511 | - | -3128.8436419508 | yes | 6027 |
+| 0.540 | p2 | - | -3130.7494823166 | - | -3130.1574540318 | yes | 5955 |
+| 0.545 | p0 | - | -3132.5583354752 | - | -3130.3302600457 | yes | 5974 |
+| 0.545 (repeat) | p3 | - | -3132.5583354752 | - | -3130.3302600457 | yes | 5980 |
+| 0.550 | p1 | + | -3132.4343417012 | - | -3131.8844582980 | yes | 5979 |
+| 0.555 | p2 | + | -3131.9680765264 | - | -3133.0315501587 | yes | 6034 |
+| 0.560 | p3 | + | -3131.9634905841 | - | -3133.1842531820 | yes | 6031 |
+
+The repeat of 0.545 (p3) is bit-identical to p0's: same hybrid and float64 ln\|det\|. All 8 evaluations are noise-robust. The float64 sign equals the hybrid sign at 0.530 to 0.545 and differs at 0.550, 0.555 and 0.560 (float64 -, hybrid +); win2's k_c 95 scan at this D differed at 0.550 only. The robust change is read from the hybrid signs.
+
+**Against the registration** (the table "Written before the scan"): registered, the det-linear estimate of the robust change in [0.541, 0.551]. Printed: one robust change, (0.545, 0.550), `- to +`, det-linear **0.547345**, range [0.546590, 0.547345]. **Met by position** (0.547345 lies in [0.541, 0.551]; 0.001425 above k_c 95's 0.545920, 0.002363 above k_c 87's 0.544982). It is the only robust change, so no choice among several arose. Beside it, as printed, not interpreted by me:
+
+| reading | bracket | det-linear | range | orientation as printed |
+|---|---|---|---|---|
+| k_c 87, D 22.0, macm3 | (0.540, 0.545) | 0.544982 | [0.544963, 0.544982] | - to + |
+| k_c 95, D 22.0, win2 | (0.545, 0.550) | 0.545920 | [0.545581, 0.545920] | - to + |
+| k_c 103, D 22.0, this scan | (0.545, 0.550) | 0.547345 | [0.546590, 0.547345] | - to + |
+
+The k_c steps at this D: +0.000938 (87 to 95) and +0.001425 (95 to 103).
+
+**Cost against the estimates written before the run:**
+
+| item | written | measured |
+|---|---|---|
+| each scan point (4 processes, both rounds) | 6400 to 7800 s | 5955 to 6034 s (round 1 5955 to 5980, round 2 6024 to 6034): below the written range |
+| the scan | 12800 to 15600 s (central about 14000 s) | 12030 s (15:32:56 to 18:53:26 UTC): below the written range |
+| peak private per worker | 3.8 to 4.2 GB | 3.963, 3.963, 3.964, 3.967 GB (sum 15.86 GB, written 15.5 to 16.5); working set peak about 2.98 GB |
+| cpu per worker | not written | 11762 to 11765 s |
+| lowest free memory | 11 to 14 GB | 13.66 GB in the sampler (17:52:21 UTC), 12.85 GB in the alert-only watcher (15 s polls); 22.55 GB at the start |
+
+Commit up to 26.45 GB, laptop cpu 14 to 97 % (mean 70.5 %), 197 sample times with no gap over 90 s. No alert, nothing killed (`rows/scan_memwatch.log`: "minimum free memory seen 12.85 GB; 0 alert(s) sent"); the keep-awake helper held until the driver ended (`rows/scan_keepawake.log`); the System log shows no power event in 12:35 to 19:00 UTC. The scan came in under the written range (the cause is unmeasured; I scaled the point time from my D 21.0 to 22.125 scans).
+
+Run summary: README first 4bc829382 (12:40:28 UTC); regrid 12:41:03 to 15:31:33 UTC (10230 s); scan 15:32:56 to 18:53:26 UTC (12030 s); chain ended 18:54:48 UTC; chain wall 6 h 14 min.
+
+t5's ruling (hc after the reader lines, 2026-11-25, read at about 18:54 UTC): "k_c 103 at D 22.0, lambda_1 (F) = 0.547345 by position (range [0.546590, 0.547345]); registered [0.541, 0.551] MET; k_c steps +0.0009 (87->95), +0.0014 (95->103)."
