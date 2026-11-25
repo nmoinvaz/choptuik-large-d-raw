@@ -1,0 +1,11 @@
+evaluations 14, noise-robust 14
+float64 sign equals the hybrid sign at 14 of 14
+repeat of 0.00 bit-identical (ln, f64_ln, sign): True
+signs by lambda: -0.06- -0.05- -0.04- -0.03- -0.02- -0.01- 0.00- 0.00- 0.01- 0.02- 0.03+ 0.04+ 0.05+ 0.06+
+ln|det| by lambda: 0.00:-2937.303 0.00:-2937.303 0.01:-2938.724 0.02:-2940.601 0.03:-2942.169 0.04:-2941.765 0.05:-2942.158 0.06:-2942.751
+memory: 248 samples, lowest available 9.4 GiB (alert below 2 GiB, alert.log exists: False), peak RSS per process GiB {'98706': 5.23, '98738': 6.35, '98746': 3.78, '98764': 3.97}
+scan wall 3996 s = 66.6 min (2026-11-25 21:42:43 to 2026-11-25 22:49:19 UTC)
+root k_c 103: bracket (0.020, 0.030), - to +, det-linear 0.028275, estimator range [0.023982, 0.028275] (a spread, not an enclosure)
+k_c 87 -0.021546, k_c 95 0.015921, k_c 103 0.028275: steps 87->95 +0.037467, 95->103 +0.012354, ratio 0.3297
+arithmetic only, not a result: room below +0.03 is 0.001725, i.e. 0.140 of the last step; a geometric tail of the observed ratio would end at 0.0344
+predictions: root in (0.016,0.060): True; in (-0.030,0.030): True; |root-0.030|<0.015: True; step positive: True; step below +0.0374: True
