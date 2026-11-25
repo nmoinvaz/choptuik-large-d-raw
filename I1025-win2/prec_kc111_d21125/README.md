@@ -43,3 +43,4 @@ Pins as above; both selftests as written; every process prints "the record syste
 
 ## Status
 - 2026-11-25 15:07 UTC: folder, README (the registered readings), driver, verdict script and inputs written; the dry run passed (`exits_prec.txt`, `selftest_exits.txt`); the driver starts next.
+- 2026-11-25 15:08 UTC: the driver started (`cim_start_low.ps1`, IDLE class): the first four jobs at 15:08:14 to 15:08:36 UTC, root pids 47300 (k_c 111, 0.865), 51028 (k_c 111, 0.870), 35892 (k_c 103, 0.880), 50760 (k_c 103, 0.885); the processes read as `Idle` in the process table; caps 21:08 UTC at the latest (6 h). The outer k_c 111 points (0.860, 0.875) start when two slots are free.
