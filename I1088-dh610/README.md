@@ -16,3 +16,6 @@ the Mac, which pushed this folder.
 - `run_cond_ks.sh` and `out/cond_ks293.log`: the table's D 100 and 200 rows again at ks 293.
 - `j400_held/`: the form S jump to D 400 (`run_jump.sh 400 252.5 3 0 0 10 held --held 1 --it_max 8 --kc 180`), converged,
   its state `jump_s_D400.0000.npz`.
+- `out/rel400.log`: plain Newton with h5 freed from the D 400 held state (`form_s.py release`), stopped by hand.
+- `out/rls300.log`, `out/rls300_release_ls.jsonl`: `form_s.py release_ls` from the D 300 held state (copied from
+  dh370), h5 then h7 ... h13; copied while it runs, updated as it goes.

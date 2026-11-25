@@ -17,3 +17,5 @@ the command), `jump.log` and `jump_s.jsonl` (one record per Newton step), via `r
 - `j300_junk10/`: D 300 with the 10 weakest no-Delta directions frozen; stopped by hand after step 0.
 - `j300_held/`: D 300 with p1's harmonics 5-13 held at the guess's values; converged, the state `jump_s_D300.0000.npz`
   (form S's layout, eight parts).
+- `j1000_held_d2/`: D 1000 (degree 2, ks 989, kc 200, Delta Track C's 1.654240854245): step 0 found no trial; stopped by
+  hand after it.
