@@ -19,3 +19,7 @@ the command), `jump.log` and `jump_s.jsonl` (one record per Newton step), via `r
   (form S's layout, eight parts).
 - `j1000_held_d2/`: D 1000 (degree 2, ks 989, kc 200, Delta Track C's 1.654240854245): step 0 found no trial; stopped by
   hand after it.
+- `mixed/`: speed probes at D 300 from the held state `j300_held/` (`mixed.py`, `run_mixed.sh`): the octo-double
+  Jacobian with 1 and 2 tangents (`tangents.log`), and the iteration with an f64 Jacobian formed once at the guess and
+  the octo-double residual (`mixed.log`) with its control, J times 1.01 (`mixed_scale101.log`).
+- `rebuild_mob.sh`: the release build of `wip/large-d-form-s` with the Moebius horizon (6244fbff).
