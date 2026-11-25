@@ -36,3 +36,6 @@ the command), `jump.log` and `jump_s.jsonl` (one record per Newton step), via `r
   and residual stopped by Delta's first-order bound, one quad-double check, the discretization report and the
   Hamiltonian check; the plan and held values of j1000_held_mob.
 - `run_zcheck.sh`: the z-recurrence check at D 1000 and the D 2000 guess (out/zcheck/zcheck.log, copied when done).
+- `L2828/`: D 2828.4271 held with the last node at L = ln F = 20 (x_l 0.704601; form_s_lastnode.py solvestate from the
+  guess in I1088-mac-a/form_s/g2828L20/): Delta 1.647558420562662, -4.8e-10 from the #1095 refit, -6.0e-10 from Track C.
+- `rls1000/`: the D 1000 release, h5 to h11 released, stopped in h13 (`release_ls_h11_D1000.0000.npz`).
