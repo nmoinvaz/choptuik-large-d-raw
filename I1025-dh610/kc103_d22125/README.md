@@ -35,5 +35,24 @@ Basis: the coordinator's 0.491 +- 0.005 (k_c 87 and k_c 95 agree to +0.0001 here
 - Scan: every point noise-robust (70%); the repeat on another process than its original bit-identical (85%); exactly one robust change in the window (75%), none (12%), two or more (13%). The change within 0.005 of 0.491, i.e. PRED met (50%); within 0.002 (20%); above 0.496 (30%); below 0.486 (10%); the step (k_c 103 minus k_c 95 root) positive (65%). The bracket (0.490, 0.495) (25%); (0.495, 0.500) (25%); (0.485, 0.490) (15%). The printed orientation of the k_c 103 root is "- to +" (85%; both earlier readings at this D print it). The float64 sign agrees with the hybrid at all evaluations (30%; it did at all 7 of my k_c 95 scan here, not at D 22.1875). Each scan point 3500 to 6500 s (60%; the D 22.1875 k_c 95 points took 3310 to 4966 s at nice 19 beside the quest's units); the scan done within 5 h of its start (60%).
 - Timeline: the regrid done within 2.5 h of the lane's start (70%); the whole lane (regrid and scan) done within 8 h (60%).
 
+## Regrid result (25 Nov, 10:09:35 to 13:40:03 UTC): ACCEPTED
+`ell_refine.py` (8 threads, nice 10, raised to nice 19 at 10:09:48 UTC by the watcher while `i1088a-j2000b.service` was active) exited 0 after **12628 s** (the record's own 12625 s; predicted 5500 to 9000 s: no). Mean sampled CPU 661% (210 samples, `regrid/regrid_samples.csv`), about 83.5k CPU-seconds against 39.6k for my k_c 95 regrid at this D (5222 s, 758%): 2.1 times the CPU work for the step from 3132 to 3397 steps, where the winb and dh170 runs saw 1.25 to 1.32 times at D 21.0 and 21.125. Peak sampled RSS 2.98 GiB; 27 numpy RuntimeWarning lines in the log, as in the earlier regrids; no memory alert. It ran beside the D 22.375 wide scan (4 processes), the recount and the quest's units.
+- Record `l1kc103dh610d22125.jsonl` (blob 1e903b8b) and state `sol_l1kc103dh610d22125_D22.1250.npy` (blob 7c8d7ad2, copied to `in/`; `in_blobs_regrid.txt`): k_c 103 at D 22.125, |F| 4.1351140279e-10, F_start 1.751e-05, **3397 steps** (my k_c 95: 3132; ratio 1.0846, predicted about 3395), constraint 2.677e-03 (k_c 95: 4.293e-03, ratio 0.624), **Delta 1.1491293754** (k_c 95: 1.1491338669; shift k_c 103 minus k_c 95 **-4.4915e-06**; the k_c 87 to 95 shift was -1.7539e-05).
+- **Acceptance:** `kc103_syscheck_1025.py` exit 0 (the state's |F| equals the record's, `freeze_from` gives 3397 steps = the record's); `--mutate=F` exit 1, `--mutate=steps` exit 1; `kc95_syscheck_1025.py` and `kc87_syscheck_1025.py` on the k_c 103 result both exit 1 (refuse). The source check and the selftests are in `exits_kc103.txt` and `regrid/source_*.txt`.
+- **Scan:** started 13:40:30 UTC on 4 processes (10 evaluations; p0 0.490, 0.480, 0.470; p1 0.495, 0.485, 0.510; p2 0.500, 0.475; p3 the repeat of 0.490, 0.505); the watcher reniced the 4 processes to nice 19 at 13:40:57 UTC (the scan runs 27 s at nice 10 first: the watcher polls every 30 s).
+
+### Regrid predictions scorecard (registered before the run)
+| prediction | result |
+|---|---|
+| source accepted with controls 1 1, refused by the k_c 87 and k_c 103 checks (93%) | right |
+| regrid exits 0 and is accepted (85%) | right |
+| steps about 3395 (within 10: 40%; within 30: 80%) | right (3397, within 10) |
+| \|F\| below 1e-9 (95%) | right (4.14e-10) |
+| Delta(103) - Delta(95) negative (85%); smaller in magnitude than 1.754e-05 (65%) | right (-4.49e-06); right |
+| regrid wall 5500 to 9000 s (65%) | WRONG (12628 s) |
+| peak sampled RSS below 3.5 GiB (75%) | right (2.98 GiB) |
+| the regrid done within 2.5 h of the lane's start (70%) | WRONG (3.52 h: 10:08:49 to 13:40:03 UTC) |
+
 ## Status
 - 2026-11-25 10:07 UTC: folder, inputs (pinned: `in_blobs.txt`, `in_blobs_src.txt`, `source_commit.txt`), lane, watcher and README written before any run; `lane_kc103.sh dry` and the unit `i1025-kc103-22_125` are started next. Beside it: the D 22.375 wide scan (4 processes), the recount `i1076d` (1), the quest's `i1088a-*` units (not mine).
+- 2026-11-25 13:42 UTC: the regrid is ACCEPTED (10:09:35 to 13:40:03 UTC, 12628 s; result above). The scan started 13:40:30 UTC on 4 processes, nice 19 by the watcher.
