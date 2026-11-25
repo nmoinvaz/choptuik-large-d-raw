@@ -52,3 +52,46 @@ Regrid: 8 threads at nice 10 (all of this machine), estimated 2.9 h (starts abou
 - 2026-11-25 13:29:35 UTC: **STEP 3 scan** started (unit `i1025-k111i-s`, 5 processes of 1 thread, nice 10, 12 evaluations in three rounds, the lists above); all five print the record system (|F| 4.5163471916e-10 against the record's 4.5168180101e-10, 3682 steps equal), about 99% CPU each, MemAvailable 26.9 GiB.
 - 2026-11-25 13:31:29 UTC: step 2 logged (this entry).
 - 2026-11-25 17:33:27 UTC: **round 1 landed (5 of 12 evaluations; PARTIAL reading, `read_lower.py` on a scratch copy of the five files, not the driver's final reading):** hybrid signs 0.640- 0.645- 0.650- 0.655+ 0.660+, all noise-robust (float64 differs from the hybrid at 0.640 and 0.650); **one robust change, bracket (0.650, 0.655), orientation '- to +' as printed, det-linear 0.654286, estimator range [0.653564, 0.654286]**; ln|det| 0.640 -3512.9750, 0.645 -3513.9352, 0.650 -3515.2734, 0.655 -3517.0658 (the grid minimum), 0.660 -3515.8594; points 13255 to 14313 s. winb's k_c 103 root at this D: (0.650, 0.655), '+ to -', det-linear 0.652671 (range [0.651834, 0.652671]); so the root by position moves **+0.001615** (from t5's 0.6527: +0.0016), inside t5's 0.005 band, **not the registered reversal** (k_c 111 below 0.6477). The sequence of the roots at this D: k_c 87 0.6468, 95 0.6459, 103 0.6527, 111 0.6543 (steps -0.0009, +0.0068, +0.0016). The scan continues as ordered (rounds 2 and 3: 0.635, 0.665, 0.630, 0.670, the repeat of 0.655, 0.675, 0.680).
+
+
+## Result (2026-11-25 22:26:15 UTC)
+**One robust change in 0.630 to 0.680: bracket (0.650, 0.655), orientation '- to +' as printed, det-linear estimate 0.654286, estimator range [0.653564, 0.654286]** (the spread over interpolation choices of `d185_scan_read.changes`, not an enclosure; the bracket is the 0.005 grid step). All 12 evaluations (11 grid points and the repeat of 0.655) are noise-robust; hybrid signs 0.630- 0.635- 0.640- 0.645- 0.650- 0.655+ 0.660+ 0.665+ 0.670+ 0.675+ 0.680+; `read_lower.py` (`read_lower.txt`): robust changes 1, none touching a non-robust point, **no ln|det| minimum without a sign change**, edge signs - at 0.630 and + at 0.680; the float64 sign differs from the hybrid at 0.640 and 0.650 (2 of the 11 points). Every process printed the record system (|F| 4.5163471916e-10, 3682 steps = the record's); `read_lower.py` selftest exit 0 and its mutations `shift` and `round2` exit 1; **the repeat of 0.655 (process 4 against process 0) is bit-identical** in every field but its wall time and process (hybrid +, ln|det| -3517.0658430995, float64 +, float64 ln|det| -3513.801447, noise [1.0, 1.0]), `repeat_check.py` PASS. `SCAN_DONE.txt` 22:24:50 UTC.
+
+**t5's prediction (the sequence reverses as at D 21.125: k_c 111 below 0.6477): NOT met.** The root of the k_c 111 state by position is +0.001615 from winb's k_c 103 root (0.652671; from t5's 0.6527: +0.0016; estimator range of the step +0.001730 to +0.001615), in the same bracket (0.650, 0.655), inside t5's 0.005 band. The roots at D 21.75: k_c 87 0.646846 (macm3, '- to +'), k_c 95 0.645855 (dh610, '- to +'), k_c 103 0.652671 (winb, '+ to -'), k_c 111 0.654286 (mine, '- to +'); steps -0.000991, +0.006816, +0.001615. By t5's rule (at most 0.002 converged) this step reads "converged", but the step before it was +0.0068, so I give no ruling on the sequence. The orientation printed here ('- to +') differs from winb's k_c 103 ('+ to -'); it is not compared across k_c (t5's ruling). The Delta sequence at this D (information): k_c 95 1.138628658105, k_c 103 1.138625793772, k_c 111 1.138623298035; steps -2.8643e-6, -2.4957e-6 (ratio 0.8713).
+
+**ln|det| beside winb's k_c 103** (her scan covers 0.635 to 0.655 only; the level depends on N, so read the shape and the step):
+| lambda | k_c 103 (winb: sign, ln\|det\|) | k_c 111 (sign, ln\|det\|) | k_c 111 step to the next lambda |
+|---|---|---|---|
+| 0.630 | none | - -3511.4034 | -0.7496 |
+| 0.635 | + -3174.4972 | - -3512.1530 | -0.8220 |
+| 0.640 | + -3175.3316 | - -3512.9750 | -0.9602 |
+| 0.645 | + -3176.3544 | - -3513.9352 | -1.3382 |
+| 0.650 | + -3178.0718 | - -3515.2734 | -1.7924 |
+| 0.655 | - -3178.2090 | + -3517.0658 | +1.2064 |
+| 0.660 | none | + -3515.8594 | +0.0852 |
+| 0.665 | none | + -3515.7742 | -0.1420 |
+| 0.670 | none | + -3515.9162 | -0.2434 |
+| 0.675 | none | + -3516.1596 | -0.3011 |
+| 0.680 | none | + -3516.4606 |  |
+
+- **Shape.** k_c 111: ln|det| falls toward the root by -0.750, -0.822, -0.960, -1.338, -1.792 per 0.005 over 0.630 to 0.655, has its grid minimum at 0.655 (the nearest point above 0.654286), rises +1.206 to 0.660 and +0.085 to 0.665, then falls slowly (-0.142, -0.243, -0.301 to 0.680). k_c 103 (winb) has its minimum at the same grid point 0.655 (root 0.652671): -0.834, -1.023, -1.717, -0.137. Both dip at the grid point nearest the root; there is no further feature in 0.660 to 0.680 and none below 0.650.
+
+**Time and memory.** Regrid 7169 s (peak RSS 3.44 GiB). Scan 13:29:35 to 22:24:50 UTC = 8.92 h: the points of rounds 1 and 2 took 13255 to 14313 s with five processes on 4 cores, the two points of round 3 only 5140 s (0.675) and 4969 s (0.680) with two processes. **Peak RSS of a scan process (time -v): 4.42 and 4.41 GiB (three points: processes 0 and 1), 4.27, 4.15 and 4.26 GiB (two points: processes 2, 3, 4)**, which grows with the points a process runs (D 21.125: 3.17 to 3.44 GiB for one point, 4.26 for two); the largest total of the five at one sample (once a minute) 15.14 GiB, lowest MemAvailable 12.6 GiB; nothing was killed on memory and there is no `alert.log`.
+
+## Predictions against the result
+| prediction | result |
+|---|---|
+| t5's: if the sequence reverses as at D 21.125, k_c 111 lands below 0.6527 by more than 0.005 (below 0.6477) | **no reversal**: the root is 0.654286, +0.0016 from 0.6527 |
+| mine: the source accepted here with all controls firing and the other two checks refusing (85%); the regrid reaches k_c 111 and is accepted with both controls firing and the k_c 103 check refusing (70%) | yes; yes (3682 steps = the record's) |
+| steps within 40 of 3678 (60%); |F| between 4.40e-10 and 4.80e-10 (80%); psi-constraint between 0.7e-3 and 1.5e-3 (60%); Delta k_c 111 minus k_c 103 between -6e-6 and -3e-7 (70%); peak RSS of the regrid below 4.5 GiB (80%) | yes, 3682; yes, 4.517e-10; yes, 1.204e-3; yes, -2.4957e-6; yes, 3.44 GiB |
+| **the regrid wall 8000 to 16000 s (65%; expected about 10500 s)** | **missed**: 7169 s |
+| every point noise-robust (70%); the repeat of 0.655 bit-identical (90%) | yes, 12 of 12; yes |
+| exactly one robust change in 0.630 to 0.680 (85%) | yes |
+| **the root below 0.6477, the reversal (40%); within 0.6477 to 0.6577 (30%); above 0.6577 (30%)** | **my most likely case (the reversal) did not happen**: within 0.6477 to 0.6577, +0.0016 from 0.6527 |
+| the float64 sign differs from the hybrid at more than half of the points (30%) | no: 2 of 11 |
+| each scan point 12500 to 17500 s (65%) | yes for rounds 1 and 2 (13255 to 14313 s); round 3's two points took about 5000 s (two processes) |
+| **the three rounds end 11.5 to 14.5 h after the scan starts** | **missed**: 8.92 h (round 3 ran two processes on 4 cores at about 5000 s per point, not five at about 14000 s) |
+| peak RSS of a scan process below 4.5 GiB (85%), and below 5.5 GiB for a three-point process (85%) | yes: 4.42 GiB at most |
+**Misses:** my regrid wall and scan wall (both faster than predicted) and the ranking of my root scenarios (the reversal was my 40% case, the 30% case happened). **Not mine to conclude:** whether the sequence of roots at D 21.75 converges in k_c (the steps -0.0010, +0.0068, +0.0016 are irregular); that is t5's. Nothing is known below 0.630 or above 0.680.
+
+- 2026-11-25 22:26:15 UTC: scan ended 22:24:50 UTC; result written (this section); nothing of mine is running.
