@@ -37,3 +37,4 @@ How I read them on the 0.04 grid, fixed here: **P** = no robust change with a br
 
 ## Status
 - 2026-11-25 17:37 UTC: folder, inputs, drivers, dry run (pins, worktree, lambda_0 pass) and this README written before any run; the unit `i1025k111` starts next.
+- 2026-11-25 17:38:10 to 17:38:24 UTC: unit `i1025k111` started. Selftests of the k_c 103, k_c 111 and k_c 95 checks exit 0 0 0. **Source check accepted:** `kc103_syscheck_1025.py` exit 0 on my state and record, `--mutate=F` and `--mutate=steps` exit 1, the k_c 111 and k_c 95 checks exit 1 on the source (`source_*.txt`). **Regrid started 17:38:24 UTC** (6 threads, nice 10, cap 43200 s), load 2.7, MemAvailable 28.0 GB.
