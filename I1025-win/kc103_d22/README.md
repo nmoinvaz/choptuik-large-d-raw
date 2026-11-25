@@ -93,9 +93,16 @@ The sampler (`rows/regrid_samples.csv`, `rows/scan_samples.csv`) gives the real 
 
 ## Status
 
-Not started when this README was written.
+**Step 1, the regrid, RUNNING since 2026-11-25 12:41:03 UTC.** README first: 4bc829382 (pushed 12:40:28 UTC, before the start); chain started 12:40:47 UTC through `Win32_Process.Create` of `conhost.exe --headless cmd.exe /c go_kc103d22_1025.cmd`. The D 22.125 chain ended 12:34:35 UTC and its reading was posted (#1025 comment 7162586928) and pushed (dbc9a329d) first.
 
-Pushed 2026-11-25 12:40:28 UTC.
+- **Chain** (`rows/launcher_pid.txt`: 20960): conhost --headless 20960 <- cmd 14280 <- regrid driver launcher 22580 and driver 6588 <- sampler 23196, alert-only watcher 3568, keep-awake helper 5600, and the regrid process 25928 (worker 15468). The python and powershell processes are BelowNormal.
+- **Session check** (`session_check_regrid.txt`, exit 0): no `claude` in any chain of the run, no Windows Terminal / OpenConsole / wt, a headless conhost in the chain.
+- **Before the regrid** (12:40:47 to 12:41:03 UTC, 16 s): the pins matched; the selftests of the three checks exited 0; ell_delta.lam0_at(22.0) = 2.1028298859; the source checks were as ordered: the k_c 95 check exit 0 on the source, `--mutate=F` and `--mutate=steps` exit 1, the k_c 87 check exit 1 and the k_c 103 check exit 1 (they refuse the source; `source_kc*_syscheck*.txt`).
+- **Regrid:** pid 25928 started 12:41:03 UTC: `ell_refine.py l1kc95win2d22 95 l1kc103win22 103 1 22.0 2.1028298859 --kappa 0.7 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma`, cwd the worktree's `solver/matter`, 4 threads, BelowNormal, cap 43200 s by the exact pid; the driver sends t5 one hc at 21600 s (18:41 UTC) if it still runs.
+- **Machine at the start:** free physical memory 22.77 GB; beside it the other project's I114 `convergence.py` jobs, not touched.
+- **ETA** (the estimates above counted from 12:41:03 UTC): the regrid ends about 14:55 to 16:30 UTC (central about 15:20); the scan then starts by itself about 71 s later and ends about 18:30 to 20:40 UTC (central about 19:15).
+
+Pushed 2026-11-25 12:41:23 UTC.
 
 ## Result
 
