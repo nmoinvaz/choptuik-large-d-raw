@@ -51,6 +51,53 @@ Basis: the k_c step (k_c 95 root minus macm3's k_c 87 root) was +0.0018 at D 21.
 | peak sampled RSS below 3 GiB (85%) | right (2.55 GiB) |
 | the regrid done within 90 min of the lane's start (65%) | right (87.3 min) |
 
+## Scan result (25 Nov, 04:34:36 to 06:11:58 UTC, 97.4 min, 4 processes; `summarize_kc95.py` > `summary_kc95.txt`)
+| lambda | hybrid sign | noise signs (robust) | float64 sign | ln of abs det | seconds |
+|---|---|---|---|---|---|
+| 0.475 | - | -- (True) | - | -2776.7462352314033 | 2899 |
+| 0.480 | - | -- (True) | - | -2777.5617367036602 | 3010 |
+| 0.485 | - | -- (True) | - | -2778.6208561421777 | 3153 |
+| 0.490 | - | -- (True) | - | -2781.0889445059865 | 2647 |
+| 0.490 | - | -- (True) | - | -2781.0889445059865 | 2653 |
+| 0.495 | + | ++ (True) | + | -2779.790931050026 | 2645 |
+| 0.500 | + | ++ (True) | + | -2779.4463875267415 | 2676 |
+| 0.505 | + | ++ (True) | + | -2779.4475332649095 | 3130 |
+
+scan points: 8 evaluations, seconds per point min 2645, median 2788, max 3153, sum 22813; outside 1800 to 3500 s: []
+the regridded record at D 22.125: |F| 4.062791113494692e-10, steps 3132, constraint 0.004293368242355247, Delta 1.1491338668995048, h None, seconds 5219
+float64 sign differs from the hybrid at: []
+
+```
+hybrid signs: 0.475- 0.480- 0.485- 0.490- 0.495+ 0.500+ 0.505+
+robust changes: 1
+   change (0.490, 0.495), - to +, det-linear 0.491072, range [0.490684, 0.491072]
+against the prediction 0.4848: change minus prediction +0.006272; within 0.005: False
+```
+
+- **All 4 processes exit 0 and printed the record system** (|F| 4.0641942309e-10 recomputed against the record's 4.0627911135e-10, steps 3132 = the record's); the pre-run checks passed (`selftest_exits.txt` 0 0 0 1 1 0 0 1). The scan ran on 4 processes (p0 0.475 and 0.490, p1 0.480 and 0.495, p2 0.485 and 0.500, p3 0.505 and the repeat of 0.490) because `i1088a-rls300.service` was active at the start (and `i1088a-buildmob.service` at the end); walls 1:32:41 to 1:37:17.
+- **One robust change in the window 0.475 to 0.505:** (0.490, 0.495), **"- to +" as the reader prints it**, det-linear **0.491072**, estimator range [0.490684, 0.491072] (a spread over interpolation choices, not an enclosure; the bracket is the grid step 0.005). Edge signs differ (- at 0.475, + at 0.505). No ln|det| minimum without a sign change; every point noise-robust; the float64 sign agrees with the hybrid at all 7 evaluations.
+- **The repeat of 0.490** (p0 and p3, two processes) is bit-identical (hybrid -, ln|det| -2781.0889445059865 in both; `repeat_check.py` PASS).
+- **Beside macm3's k_c 87 root at the same D** (0.491017, bracket (0.490, 0.495), range [0.490646, 0.491017], printed "- to +"; macOS scan of its own state): the k_c 95 root is **0.000055 above it**, the two estimator ranges overlap, and both print **"- to +"**. The k_c step (k_c 95 minus k_c 87) is therefore +0.000055 at D 22.125, against -0.000991 at D 21.75 and -0.008252 at D 22.25; the orientations as printed are "- to +" for both at D 21.75 and D 22.125, and "- to +" (k_c 95) against "+ to -" (k_c 87) at D 22.25; they are listed as printed and not interpreted here (the D 22.1875 lane follows). Against my prediction 0.4848 (macm3's root plus a quadratic fit of the earlier k_c steps): +0.006272, outside the bar 0.005.
+- **Seconds per point: 2645 to 3153 s** (median 2788), 4 processes of 2 evaluations at nice 10, beside the recount, the quest's units and, until 05:16, its two dd jobs (load median 15.84, max 19.29, min 10.02 over 194 samples 04:34:46 to 06:11:32 UTC), peak RSS per process 2.97 to 3.10 GiB (`/usr/bin/time -v`), MemAvailable at least 48.46 GiB; no memory alert.
+- **A defect of mine, recorded:** `watch_i1088a.sh` raised only the regrid to nice 19 (`i1088a_yield.txt` has the one line of 03:07:43 UTC): the pattern for the scan processes in the copy of this folder and of `../kc95_d221875/` still named the D 22.25 tag (`kc95dh610d2225`), left over from the template, so the 4 scan processes ran at nice 10, the level of the quest's units, from 04:34 to 06:12 UTC, and not at nice 19 as the coordinator's order ("the i1088a units first") and my README say. The pattern is fixed in both copies (the old file kept as `watch_i1088a_stale_pattern.sh`) and the running watcher of D 22.1875 was replaced at 06:12 UTC.
+
+### Scan predictions scorecard (registered before the run)
+| prediction | result |
+|---|---|
+| every point noise-robust (75%) | right (7 of 7) |
+| the repeat on another process bit-identical (85%) | right |
+| exactly one robust change in the window (80%) | right |
+| the change within 0.005 of 0.4848 (65%); within 0.002 (35%) | WRONG (+0.006272); WRONG |
+| below macm3's k_c 87 root, the step negative (85%) | WRONG (+0.000055) |
+| the step between -0.009 and -0.003 (60%) | WRONG |
+| the bracket (0.480, 0.485) (45%) | WRONG (it is (0.490, 0.495)) |
+| the printed orientation of the k_c 95 root is "- to +" (75%) | right |
+| the float64 sign agrees with the hybrid at all evaluations (25%) | right (agrees at all 7) |
+| each scan point 1800 to 3500 s (60%) | right (2645 to 3153 s) |
+| the scan done within 100 min of its start (65%) | right (97.4 min) |
+| the regrid done within 90 min (65%); the whole lane done within 3 h (60%) | right (87.3 min); WRONG (184.7 min: 03:07:15 to 06:11:58 UTC) |
+
 ## Status
 - 2026-11-25 03:06 UTC: folder, inputs (pinned: `in_blobs.txt`, `in_blobs_src.txt`, `source_commit.txt`), lane, watcher and README written before any run; `lane_kc95.sh dry` and the unit `i1025-kc95-chain22` (both lanes in turn) are started next.
 - 2026-11-25 04:34 UTC: the regrid is ACCEPTED (03:07:15 to 04:34:32 UTC, 5222 s; result above, raw ce4fce87). The scan started 04:34:36 UTC on 4 processes (an i1088a unit was active), nice 19 by the watcher.
+- 2026-11-25 06:13 UTC: the scan is done (04:34:36 to 06:11:58 UTC): one robust change, bracket (0.490, 0.495) printed "- to +", det-linear 0.491072, +0.000055 above macm3's k_c 87 0.491017 (same printed orientation), +0.006272 against my prediction 0.4848; result and scorecard above. This lane is finished; D 22.1875 follows (`../kc95_d221875/`).
