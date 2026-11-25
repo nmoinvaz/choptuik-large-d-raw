@@ -1,0 +1,26 @@
+# I1090-dh610: dd continuation in D of form S with the Moebius horizon variable, M 12 and 14
+
+Machine dh610 (Fedora 45, i7-12700, 20 logical CPUs, 62 GB RAM, Linux). Issue https://github.com/nmoinvaz/choptuik-large-d/issues/1090 (quest P1, the inner formulation, session t2v). Written 2026-11-25 04:16 UTC, before any run of this folder.
+
+## Order (coordinator t5, hc, read at about 04:12 UTC 25 Nov), verbatim
+"Coordinator (t5) to dh610, quest P1 (#1090), priority over your l = 1 lane (which keeps running at nice 19 under the quest units): two single-process Python jobs for the inner-formulation session t2v, nice 10, OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1. 1. Make a worktree: git -C ~/Source/choptuik-large-d fetch origin wip/large-d-inner && git -C ~/Source/choptuik-large-d worktree add ~/Source/c1090 origin/wip/large-d-inner 2. Make raw folder I1090-dh610/ with a README whose first line is '# I1090-dh610: dd continuation in D of form S with the Moebius horizon variable, M 12 and 14'; push it from a separate worktree of your raw clone. 3. From ~/Source/c1090/solver/inner_large_d, using the venv that has multidouble's Python package (venv-i1058, if it imports multidouble; else say so), start two systemd user units, i1090-m12 and i1090-m14: python3 solve_dd_cont.py <raw>/I1088-mac/Sdd_D100_M10.json --M=12 --Ds=100,110,125,150,175,200,225,245.6366177558899,263.6,300,350,400,500,600,800,1000 --out=<raw>/I1090-dh610/dd_M12_cont and the same with --M=14 --out=<raw>/I1090-dh610/dd_M14_cont Here <raw> is your raw clone; I1088-mac/Sdd_D100_M10.json must be on origin (fetch first; if it is missing, say so and wait). 4. Stop rules: the script stops itself after 3 failed refinements of one D; stop either unit at 20 h. Push the folder at each D (make_index, pull --rebase, push, from the separate worktree). 5. Tell me when both have started. t2v reads the logs from the raw repository."
+
+## What is run
+- **Code:** worktree `~/Source/c1090` at `origin/wip/large-d-inner` **6e231f5a** (2026-11-24 20:14:40 -08:00, "inner_large_d: double-double Moebius series, dd continuation, first note"). The branch had the earlier commit b8312af2 (without `solve_dd_cont.py`) when I first fetched it at 04:14 UTC and moved to 6e231f5a a minute later; the worktree was moved to it before any run. If the branch moves again the units keep running on this commit.
+- **Environment:** `~/Source/venv-i1058/bin/python3` (Python 3.14.10, numpy 2.5.4), which imports multidouble's Python package (AVX2 build): no other venv needed.
+- **Input:** `I1088-mac/Sdd_D100_M10.json` is on origin (blob **b89f4510**, commit cf57507c, 2026-11-24 18:58:04 -08:00). My raw clone is never pulled while jobs run (it would rewrite files), so the file is read from `in/Sdd_D100_M10.json`, a copy taken from origin by `git show` (same blob b89f4510, checked), not from `<raw>/I1088-mac/`.
+- **Commands** (`run_dd.sh M`, systemd user units `i1090-m12` and `i1090-m14` under `systemd-inhibit` with the alert-only memory log; each one process, `nice -n 10`, OMP/OPENBLAS/MKL threads 1, `timeout 72000` = 20 h with TERM): from `~/Source/c1090/solver/inner_large_d`, `python3 solve_dd_cont.py in/Sdd_D100_M10.json --M=12 --Ds=100,110,125,150,175,200,225,245.6366177558899,263.6,300,350,400,500,600,800,1000 --out=dd_M12_cont`, and the same with `--M=14` and `--out=dd_M14_cont`. The script writes `solve_dd_cont.log` and one `sdd_D<D>_M<M>_a1.json` per D into its `--out` folder, and stops itself after 3 failed refinements of one D.
+- **Pushing:** `push_i1090.sh` (a polling script, not a unit of the quest) pushes this folder with `scratchpad/push_folder.sh` (flock, make_index, rebase, push from the separate worktree `~/Source/choptuik-large-d-raw-push`) when a new D json appears, and when a log grew and 30 min passed since the last push, and once at the end. `pushes.txt` lists the pushes.
+- **Threads and memory:** 2 processes of 1 thread at nice 10, beside the l = 1 lane `../kc95_d22125/` (8 threads, raised to nice 19 by its watcher while a quest unit is active), the quest's `i1088a-*` units and the recount (2 busy); each job's RSS is not known beforehand (the M 10 solve at D 100 took 455 s), the memory log is alert-only.
+
+## Reported
+The two logs and jsons are what t2v reads; I report when the units started, each D's line (max|F|, Delta, seconds), a stop (3 failed refinements, the 20 h cap, a crash), and the pushes.
+
+## Predictions, registered before the runs (mine, information; I know only the M 10 timing, 455 s per D at D 100)
+- Both units start and write their first D line within 30 min (85%); the first D (100, resampled from M 10) converges to max|F| below 1e-20 for M 12 (75%) and for M 14 (65%).
+- The cost per D grows with M and with D (the series length ks grows with D): the first D takes 10 to 60 min for M 12 (60%) and 15 to 100 min for M 14 (55%).
+- By the 20 h cap: M 12 reaches D 245.6366177558899 (the 8th D) (55%) and M 14 (40%); either reaches D 1000 (M 12 20%, M 14 10%); at least one unit stops itself on 3 failed refinements before D 1000 (60%).
+- No memory alert (no MEMALERT line) during either run (85%).
+
+## Status
+- 2026-11-25 04:16 UTC: folder, README, `run_dd.sh`, `push_i1090.sh` and the pinned input written before any run; the two units and the pusher are started next.
