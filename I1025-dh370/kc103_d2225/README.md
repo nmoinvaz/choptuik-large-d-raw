@@ -55,7 +55,7 @@ How I read it, fixed here: on the 0.04 grid, "A near 0.434" is a robust '- to +'
 | regrid wall 4000 to 9000 s (60%) | right (7173 s) |
 | peak RSS below 4 GiB (85%) | right (2.98 GiB) |
 
-## Scan, round 1 done (13:3x to 14:00 UTC, 5 processes, 7679 to 8266 s per point)
+## Scan, round 1 done (11:34:42 to 13:52 UTC, 5 processes, 7679 to 8266 s per point)
 | lambda | hybrid sign | noise-robust | float64 sign | ln of abs det | seconds |
 |---|---|---|---|---|---|
 | 0.10 | + | True | + | -3055.0710 | 8206 |
