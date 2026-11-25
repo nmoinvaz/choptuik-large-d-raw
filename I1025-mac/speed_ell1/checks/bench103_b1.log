@@ -1,0 +1,21 @@
+D 22.125 k_c 103: |F| 4.1372551829e-10 (record 4.1351140279e-10), steps 3397 (record 3397): the record system
+fast  block 1: 4.7 s
+         7159 function calls in 4.680 seconds
+
+   Ordered by: internal time
+   List reduced from 51 to 8 due to restriction <8>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+      336    4.056    0.012    4.088    0.012 /Users/nathan/Source/choptuik-ell1-speed/solver/matter/ell_fastm.py:46(rhs_lin)
+        1    0.581    0.581    4.674    4.674 /Users/nathan/Source/choptuik-ell1-speed/solver/matter/ell_fastm.py:111(_rk4)
+      336    0.018    0.000    0.018    0.000 /Users/nathan/Source/choptuik-ell1-speed/solver/matter/dss_ell.py:87(trunc)
+      337    0.009    0.000    0.011    0.000 /Users/nathan/venv-1025dd/lib/python3.14/site-packages/numpy/_core/shape_base.py:378(stack)
+      336    0.004    0.000    4.093    0.012 /Users/nathan/Source/choptuik-ell1-speed/solver/matter/ell_fastm.py:116(f)
+        1    0.003    0.003    4.680    4.680 /Users/nathan/Source/choptuik-ell1-speed/solver/matter/ell_fastm.py:219(mode_matrix_fast)
+     1344    0.002    0.000    0.002    0.000 {method 'reshape' of 'numpy.ndarray' objects}
+     1685    0.002    0.000    0.002    0.000 {built-in method numpy.asanyarray}
+
+
+cs    block 1: 15.5 s
+fast 4.7 s, cs 15.5 s, ratio 3.31
+  block  1: max |M_fast - M_cs| / max |M_cs| = 1.604e-15 (max |M_cs| 4.983e+00) ok

@@ -1,0 +1,32 @@
+rhs_lin: base against DSSEll.rhs 3.82e-16 (<= 1e-13), tangents against a central difference 8.04e-09 (<= 1e-7) ok
+M at lambda 0.0:
+  block  0: max |M_fast - M_cs| / max |M_cs| = 4.690e-13 (max |M_cs| 1.000e+00) ok
+  block  1: max |M_fast - M_cs| / max |M_cs| = 1.727e-09 (max |M_cs| 8.459e+00) FAIL
+  block  2: max |M_fast - M_cs| / max |M_cs| = 3.953e-09 (max |M_cs| 1.458e+00) FAIL
+  block  3: max |M_fast - M_cs| / max |M_cs| = 3.755e-09 (max |M_cs| 1.197e+00) FAIL
+  block  4: max |M_fast - M_cs| / max |M_cs| = 2.766e-09 (max |M_cs| 1.366e+00) FAIL
+  block  5: max |M_fast - M_cs| / max |M_cs| = 9.049e-10 (max |M_cs| 1.168e+00) FAIL
+  block  6: max |M_fast - M_cs| / max |M_cs| = 1.847e-09 (max |M_cs| 1.205e+00) FAIL
+  block  7: max |M_fast - M_cs| / max |M_cs| = 1.443e-09 (max |M_cs| 1.216e+00) FAIL
+  block  8: max |M_fast - M_cs| / max |M_cs| = 3.139e-09 (max |M_cs| 1.089e+00) FAIL
+  block  9: max |M_fast - M_cs| / max |M_cs| = 6.506e-10 (max |M_cs| 1.120e+00) FAIL
+  block 10: max |M_fast - M_cs| / max |M_cs| = 2.202e-10 (max |M_cs| 1.048e+00) FAIL
+  block 11: max |M_fast - M_cs| / max |M_cs| = 1.557e-09 (max |M_cs| 1.107e+00) FAIL
+  block 12: max |M_fast - M_cs| / max |M_cs| = 4.084e-10 (max |M_cs| 1.296e+00) FAIL
+  slogdet: fast +1 -20.457624971512, complex step +1 -20.457624969244, |d ln| 2.27e-09 ok
+M at lambda 0.9:
+  block  0: max |M_fast - M_cs| / max |M_cs| = 4.909e-13 (max |M_cs| 1.000e+00) ok
+  block  1: max |M_fast - M_cs| / max |M_cs| = 1.787e-09 (max |M_cs| 4.141e+00) FAIL
+  block  2: max |M_fast - M_cs| / max |M_cs| = 2.916e-09 (max |M_cs| 1.027e+00) FAIL
+  block  3: max |M_fast - M_cs| / max |M_cs| = 2.820e-09 (max |M_cs| 1.023e+00) FAIL
+  block  4: max |M_fast - M_cs| / max |M_cs| = 2.481e-09 (max |M_cs| 1.060e+00) FAIL
+  block  5: max |M_fast - M_cs| / max |M_cs| = 8.199e-10 (max |M_cs| 1.003e+00) FAIL
+  block  6: max |M_fast - M_cs| / max |M_cs| = 1.691e-09 (max |M_cs| 1.002e+00) FAIL
+  block  7: max |M_fast - M_cs| / max |M_cs| = 1.396e-09 (max |M_cs| 1.019e+00) FAIL
+  block  8: max |M_fast - M_cs| / max |M_cs| = 2.856e-09 (max |M_cs| 1.005e+00) FAIL
+  block  9: max |M_fast - M_cs| / max |M_cs| = 6.201e-10 (max |M_cs| 1.004e+00) FAIL
+  block 10: max |M_fast - M_cs| / max |M_cs| = 2.064e-10 (max |M_cs| 1.002e+00) FAIL
+  block 11: max |M_fast - M_cs| / max |M_cs| = 1.528e-09 (max |M_cs| 1.008e+00) FAIL
+  block 12: max |M_fast - M_cs| / max |M_cs| = 4.145e-10 (max |M_cs| 1.296e+00) FAIL
+  slogdet: fast +1 -108.545407901317, complex step +1 -108.545407907689, |d ln| 6.37e-09 ok
+selftest (mutate coef): FAIL

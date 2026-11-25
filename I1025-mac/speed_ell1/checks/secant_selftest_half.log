@@ -1,0 +1,38 @@
+C1 clean: status maxev (-), bracket [0.4858036943089643, 0.4858052670962617] width 1.57e-06, lam_lin 0.4885578460551427, 12 evaluations
+    lam 0.485: sign -1 (planted -1), noise [-1.0, -1.0], dln 2.98e-12, robust True
+    lam 0.49: sign +1 (planted +1), noise [1.0, 1.0], dln 5.92e-13, robust True
+    lam 0.4858052670962617: sign -1 (planted -1), noise [-1.0, -1.0], dln 3.59e-12, robust True
+    lam 0.48540263354813085: sign -1 (planted -1), noise [-1.0, -1.0], dln 3.20e-12, robust True
+    lam 0.4856039503221963: sign -1 (planted -1), noise [-1.0, -1.0], dln 3.36e-12, robust True
+    lam 0.485704608709229: sign -1 (planted -1), noise [-1.0, -1.0], dln 3.47e-12, robust True
+    lam 0.4857549379027454: sign -1 (planted -1), noise [-1.0, -1.0], dln 3.53e-12, robust True
+    lam 0.48578010249950354: sign -1 (planted -1), noise [-1.0, -1.0], dln 3.56e-12, robust True
+    lam 0.4857926847978826: sign -1 (planted -1), noise [-1.0, -1.0], dln 3.57e-12, robust True
+    lam 0.48579897594707216: sign -1 (planted -1), noise [-1.0, -1.0], dln 3.58e-12, robust True
+    lam 0.4858021215216669: sign -1 (planted -1), noise [-1.0, -1.0], dln 3.58e-12, robust True
+    lam 0.4858036943089643: sign -1 (planted -1), noise [-1.0, -1.0], dln 3.59e-12, robust True
+  C1 NOT as written
+C2 noisy: status maxev (-), bracket [0.4858036943089643, 0.4858052670962617] width 1.57e-06, lam_lin 0.4885578460551343, 12 evaluations
+    lam 0.485: sign -1 (planted -1), noise [-1.0, -1.0], dln 2.93e-02, robust True
+    lam 0.49: sign +1 (planted +1), noise [1.0, 1.0], dln 5.92e-03, robust True
+    lam 0.4858052670962617: sign -1 (planted -1), noise [-1.0, -1.0], dln 3.53e-02, robust True
+    lam 0.48540263354813085: sign -1 (planted -1), noise [-1.0, -1.0], dln 3.15e-02, robust True
+    lam 0.4856039503221963: sign -1 (planted -1), noise [-1.0, -1.0], dln 3.31e-02, robust True
+    lam 0.485704608709229: sign -1 (planted -1), noise [-1.0, -1.0], dln 3.41e-02, robust True
+    lam 0.4857549379027454: sign -1 (planted -1), noise [-1.0, -1.0], dln 3.47e-02, robust True
+    lam 0.48578010249950354: sign -1 (planted -1), noise [-1.0, -1.0], dln 3.50e-02, robust True
+    lam 0.4857926847978826: sign -1 (planted -1), noise [-1.0, -1.0], dln 3.51e-02, robust True
+    lam 0.48579897594707216: sign -1 (planted -1), noise [-1.0, -1.0], dln 3.52e-02, robust True
+    lam 0.4858021215216669: sign -1 (planted -1), noise [-1.0, -1.0], dln 3.52e-02, robust True
+    lam 0.4858036943089643: sign -1 (planted -1), noise [-1.0, -1.0], dln 3.52e-02, robust True
+  C2 NOT as written
+  (information: C2 with --dln=inf, the sign test alone: status maxev, bracket [0.4858036943089643, 0.4858052670962617], contains r: False, 12 evaluations)
+C3 same-signed ends: status refused (the ends have the same hybrid sign), bracket [0.48831234, 0.49331234] width 5.00e-03, lam_lin 0.4881192162441131, 2 evaluations
+    lam 0.48831234: sign +1 (planted +1), noise [1.0, 1.0], dln 2.63e-12, robust True
+    lam 0.49331234: sign +1 (planted +1), noise [1.0, 1.0], dln 9.77e-14, robust True
+  C3 as written
+C4 an end in the noise: status refused (an end is not robust), bracket [0.48431234, 0.48731434] width 3.00e-03, lam_lin 0.48733415694709153, 2 evaluations
+    lam 0.48431234: sign -1 (planted -1), noise [-1.0, -1.0], dln 2.78e-02, robust True
+    lam 0.48731434: sign -1 (planted +1), noise [-1.0, 1.0], dln 1.67e+00, robust False
+  C4 as written
+selftest (mutate half): FAIL

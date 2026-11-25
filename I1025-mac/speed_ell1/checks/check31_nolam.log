@@ -1,0 +1,44 @@
+D 10.5 k_c 31: |F| 4.2644450300e-12 (record 4.2644450300e-12), steps 1748 (record 1748): the record system
+N 96, n_odd 32, n_even 31, blocks all, lambda 2.87, tangents jac, mutate nolam
+fast  block 0: 0.3 s
+fast  block 1: 0.1 s
+fast  block 2: 0.1 s
+fast  block 3: 0.2 s
+fast  block 4: 0.2 s
+fast  block 5: 0.3 s
+fast  block 6: 0.5 s
+fast  block 7: 0.5 s
+fast  block 8: 0.6 s
+fast  block 9: 0.7 s
+fast  block 10: 0.8 s
+fast  block 11: 1.1 s
+fast  block 12: 2.1 s
+cs    block 0: 0.5 s
+cs    block 1: 0.3 s
+cs    block 2: 0.6 s
+cs    block 3: 0.8 s
+cs    block 4: 1.2 s
+cs    block 5: 1.1 s
+cs    block 6: 2.0 s
+cs    block 7: 3.0 s
+cs    block 8: 2.9 s
+cs    block 9: 1.7 s
+cs    block 10: 2.6 s
+cs    block 11: 6.0 s
+cs    block 12: 5.9 s
+times: fast 7.6 s, complex step 28.7 s, ratio 3.78
+  block  0: max |M_fast - M_cs| / max |M_cs| = 1.931e-03 (max |M_cs| 9.999e-01) FAIL
+  block  1: max |M_fast - M_cs| / max |M_cs| = 8.627e-02 (max |M_cs| 3.631e+00) FAIL
+  block  2: max |M_fast - M_cs| / max |M_cs| = 1.514e-01 (max |M_cs| 2.835e+00) FAIL
+  block  3: max |M_fast - M_cs| / max |M_cs| = 1.956e-01 (max |M_cs| 2.173e+00) FAIL
+  block  4: max |M_fast - M_cs| / max |M_cs| = 2.225e-01 (max |M_cs| 2.122e+00) FAIL
+  block  5: max |M_fast - M_cs| / max |M_cs| = 2.272e-01 (max |M_cs| 2.020e+00) FAIL
+  block  6: max |M_fast - M_cs| / max |M_cs| = 3.137e-01 (max |M_cs| 2.025e+00) FAIL
+  block  7: max |M_fast - M_cs| / max |M_cs| = 3.674e-01 (max |M_cs| 1.926e+00) FAIL
+  block  8: max |M_fast - M_cs| / max |M_cs| = 4.164e-01 (max |M_cs| 2.030e+00) FAIL
+  block  9: max |M_fast - M_cs| / max |M_cs| = 4.505e-01 (max |M_cs| 2.336e+00) FAIL
+  block 10: max |M_fast - M_cs| / max |M_cs| = 4.683e-01 (max |M_cs| 2.482e+00) FAIL
+  block 11: max |M_fast - M_cs| / max |M_cs| = 1.033e+00 (max |M_cs| 1.147e+00) FAIL
+  block 12: max |M_fast - M_cs| / max |M_cs| = 1.718e+01 (max |M_cs| 2.416e+00) FAIL
+  slogdet: fast +1 -331.781442045042, complex step -1 -430.295224442264, |d ln| 9.85e+01 FAIL
+check: FAIL

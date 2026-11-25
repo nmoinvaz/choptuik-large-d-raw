@@ -1,0 +1,15 @@
+N 312 n_odd 104 n_even 103 steps 3397 {'log': 294, (0.02, 0.05): 84, (0.05, 0.1): 140, (0.1, 0.16): 135, (0.16, 0.23): 116, (0.23, 0.3): 97, (0.3, 0.4): 154, (0.4, 0.5): 168, (0.5, 0.6): 199, (0.6, 0.7): 251, (0.7, 0.8): 352, (0.8, 0.9): 605, (0.96, 0.9): 802}
+block 0: nf 207, 63.5 s (steps 294)
+block 1: nf 518, 36.1 s (steps 84)
+  block 12 ssh_series 139.3 s
+block 12: nf 311, 255.1 s (steps 802)
+DDEll init 2.9 s
+dd block 12 1130.1 s
+dd_logdet n 6734: 42.1 s
+/Users/nathan/venv-1025dd/lib/python3.14/site-packages/numpy/linalg/_linalg.py:2366: RuntimeWarning: divide by zero encountered in slogdet
+  sign, logdet = _umath_linalg.slogdet(a, signature=signature)
+/Users/nathan/venv-1025dd/lib/python3.14/site-packages/numpy/linalg/_linalg.py:2366: RuntimeWarning: overflow encountered in slogdet
+  sign, logdet = _umath_linalg.slogdet(a, signature=signature)
+/Users/nathan/venv-1025dd/lib/python3.14/site-packages/numpy/linalg/_linalg.py:2366: RuntimeWarning: invalid value encountered in slogdet
+  sign, logdet = _umath_linalg.slogdet(a, signature=signature)
+slogdet n 6734: 2.8 s
