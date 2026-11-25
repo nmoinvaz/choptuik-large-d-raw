@@ -1,0 +1,93 @@
+rhs_lin: base against DSSEll.rhs 4.30e-16 (<= 1e-13), tangents against a central difference 8.04e-09 (<= 1e-7) ok
+rhs_lin_coef against rhs_lin on parity-respecting tangents 4.46e-16, rhs_lin_jac against rhs_lin_coef 3.90e-16 (<= 1e-13) ok
+M at lambda 0.0, coef tangents:
+  block  0: max |M_fast - M_cs| / max |M_cs| = 2.998e-15 (max |M_cs| 1.000e+00) ok
+  block  1: max |M_fast - M_cs| / max |M_cs| = 8.085e-15 (max |M_cs| 8.459e+00) ok
+  block  2: max |M_fast - M_cs| / max |M_cs| = 1.325e-14 (max |M_cs| 1.458e+00) ok
+  block  3: max |M_fast - M_cs| / max |M_cs| = 8.764e-15 (max |M_cs| 1.197e+00) ok
+  block  4: max |M_fast - M_cs| / max |M_cs| = 7.637e-15 (max |M_cs| 1.366e+00) ok
+  block  5: max |M_fast - M_cs| / max |M_cs| = 7.557e-15 (max |M_cs| 1.168e+00) ok
+  block  6: max |M_fast - M_cs| / max |M_cs| = 5.067e-15 (max |M_cs| 1.205e+00) ok
+  block  7: max |M_fast - M_cs| / max |M_cs| = 5.660e-15 (max |M_cs| 1.216e+00) ok
+  block  8: max |M_fast - M_cs| / max |M_cs| = 2.651e-15 (max |M_cs| 1.089e+00) ok
+  block  9: max |M_fast - M_cs| / max |M_cs| = 3.371e-15 (max |M_cs| 1.120e+00) ok
+  block 10: max |M_fast - M_cs| / max |M_cs| = 2.753e-15 (max |M_cs| 1.048e+00) ok
+  block 11: max |M_fast - M_cs| / max |M_cs| = 3.411e-15 (max |M_cs| 1.107e+00) ok
+  block 12: max |M_fast - M_cs| / max |M_cs| = 1.200e-15 (max |M_cs| 1.296e+00) ok
+  slogdet: fast +1 -20.457624969244, complex step +1 -20.457624969244, |d ln| 6.04e-14 ok
+M at lambda 0.0, jac tangents:
+  block  0: max |M_fast - M_cs| / max |M_cs| = 2.998e-15 (max |M_cs| 1.000e+00) ok
+  block  1: max |M_fast - M_cs| / max |M_cs| = 6.930e-15 (max |M_cs| 8.459e+00) ok
+  block  2: max |M_fast - M_cs| / max |M_cs| = 1.416e-14 (max |M_cs| 1.458e+00) ok
+  block  3: max |M_fast - M_cs| / max |M_cs| = 7.512e-15 (max |M_cs| 1.197e+00) ok
+  block  4: max |M_fast - M_cs| / max |M_cs| = 8.084e-15 (max |M_cs| 1.366e+00) ok
+  block  5: max |M_fast - M_cs| / max |M_cs| = 5.263e-15 (max |M_cs| 1.168e+00) ok
+  block  6: max |M_fast - M_cs| / max |M_cs| = 6.265e-15 (max |M_cs| 1.205e+00) ok
+  block  7: max |M_fast - M_cs| / max |M_cs| = 5.203e-15 (max |M_cs| 1.216e+00) ok
+  block  8: max |M_fast - M_cs| / max |M_cs| = 3.263e-15 (max |M_cs| 1.089e+00) ok
+  block  9: max |M_fast - M_cs| / max |M_cs| = 2.776e-15 (max |M_cs| 1.120e+00) ok
+  block 10: max |M_fast - M_cs| / max |M_cs| = 2.435e-15 (max |M_cs| 1.048e+00) ok
+  block 11: max |M_fast - M_cs| / max |M_cs| = 3.712e-15 (max |M_cs| 1.107e+00) ok
+  block 12: max |M_fast - M_cs| / max |M_cs| = 1.200e-15 (max |M_cs| 1.296e+00) ok
+  slogdet: fast +1 -20.457624969244, complex step +1 -20.457624969244, |d ln| 6.04e-14 ok
+M at lambda 0.0, grid tangents:
+  block  0: max |M_fast - M_cs| / max |M_cs| = 2.396e-15 (max |M_cs| 1.000e+00) ok
+  block  1: max |M_fast - M_cs| / max |M_cs| = 4.515e-15 (max |M_cs| 8.459e+00) ok
+  block  2: max |M_fast - M_cs| / max |M_cs| = 2.969e-15 (max |M_cs| 1.458e+00) ok
+  block  3: max |M_fast - M_cs| / max |M_cs| = 1.067e-15 (max |M_cs| 1.197e+00) ok
+  block  4: max |M_fast - M_cs| / max |M_cs| = 8.125e-16 (max |M_cs| 1.366e+00) ok
+  block  5: max |M_fast - M_cs| / max |M_cs| = 5.852e-16 (max |M_cs| 1.168e+00) ok
+  block  6: max |M_fast - M_cs| / max |M_cs| = 1.060e-15 (max |M_cs| 1.205e+00) ok
+  block  7: max |M_fast - M_cs| / max |M_cs| = 9.585e-16 (max |M_cs| 1.216e+00) ok
+  block  8: max |M_fast - M_cs| / max |M_cs| = 1.223e-15 (max |M_cs| 1.089e+00) ok
+  block  9: max |M_fast - M_cs| / max |M_cs| = 6.940e-16 (max |M_cs| 1.120e+00) ok
+  block 10: max |M_fast - M_cs| / max |M_cs| = 6.353e-16 (max |M_cs| 1.048e+00) ok
+  block 11: max |M_fast - M_cs| / max |M_cs| = 9.029e-16 (max |M_cs| 1.107e+00) ok
+  block 12: max |M_fast - M_cs| / max |M_cs| = 5.141e-16 (max |M_cs| 1.296e+00) ok
+  slogdet: fast +1 -20.457624969244, complex step +1 -20.457624969244, |d ln| 1.07e-14 ok
+M at lambda 0.9, coef tangents:
+  block  0: max |M_fast - M_cs| / max |M_cs| = 1.827e-15 (max |M_cs| 1.000e+00) ok
+  block  1: max |M_fast - M_cs| / max |M_cs| = 6.543e-15 (max |M_cs| 4.141e+00) ok
+  block  2: max |M_fast - M_cs| / max |M_cs| = 6.727e-15 (max |M_cs| 1.027e+00) ok
+  block  3: max |M_fast - M_cs| / max |M_cs| = 5.048e-15 (max |M_cs| 1.023e+00) ok
+  block  4: max |M_fast - M_cs| / max |M_cs| = 4.450e-15 (max |M_cs| 1.060e+00) ok
+  block  5: max |M_fast - M_cs| / max |M_cs| = 4.926e-15 (max |M_cs| 1.003e+00) ok
+  block  6: max |M_fast - M_cs| / max |M_cs| = 3.766e-15 (max |M_cs| 1.002e+00) ok
+  block  7: max |M_fast - M_cs| / max |M_cs| = 4.140e-15 (max |M_cs| 1.019e+00) ok
+  block  8: max |M_fast - M_cs| / max |M_cs| = 1.657e-15 (max |M_cs| 1.005e+00) ok
+  block  9: max |M_fast - M_cs| / max |M_cs| = 2.680e-15 (max |M_cs| 1.004e+00) ok
+  block 10: max |M_fast - M_cs| / max |M_cs| = 2.271e-15 (max |M_cs| 1.002e+00) ok
+  block 11: max |M_fast - M_cs| / max |M_cs| = 2.863e-15 (max |M_cs| 1.008e+00) ok
+  block 12: max |M_fast - M_cs| / max |M_cs| = 1.714e-15 (max |M_cs| 1.296e+00) ok
+  slogdet: fast +1 -108.545407907689, complex step +1 -108.545407907689, |d ln| 0.00e+00 ok
+M at lambda 0.9, jac tangents:
+  block  0: max |M_fast - M_cs| / max |M_cs| = 1.827e-15 (max |M_cs| 1.000e+00) ok
+  block  1: max |M_fast - M_cs| / max |M_cs| = 6.114e-15 (max |M_cs| 4.141e+00) ok
+  block  2: max |M_fast - M_cs| / max |M_cs| = 6.687e-15 (max |M_cs| 1.027e+00) ok
+  block  3: max |M_fast - M_cs| / max |M_cs| = 4.776e-15 (max |M_cs| 1.023e+00) ok
+  block  4: max |M_fast - M_cs| / max |M_cs| = 4.136e-15 (max |M_cs| 1.060e+00) ok
+  block  5: max |M_fast - M_cs| / max |M_cs| = 4.400e-15 (max |M_cs| 1.003e+00) ok
+  block  6: max |M_fast - M_cs| / max |M_cs| = 3.987e-15 (max |M_cs| 1.002e+00) ok
+  block  7: max |M_fast - M_cs| / max |M_cs| = 4.358e-15 (max |M_cs| 1.019e+00) ok
+  block  8: max |M_fast - M_cs| / max |M_cs| = 2.099e-15 (max |M_cs| 1.005e+00) ok
+  block  9: max |M_fast - M_cs| / max |M_cs| = 3.371e-15 (max |M_cs| 1.004e+00) ok
+  block 10: max |M_fast - M_cs| / max |M_cs| = 2.105e-15 (max |M_cs| 1.002e+00) ok
+  block 11: max |M_fast - M_cs| / max |M_cs| = 2.423e-15 (max |M_cs| 1.008e+00) ok
+  block 12: max |M_fast - M_cs| / max |M_cs| = 1.714e-15 (max |M_cs| 1.296e+00) ok
+  slogdet: fast +1 -108.545407907689, complex step +1 -108.545407907689, |d ln| 2.84e-14 ok
+M at lambda 0.9, grid tangents:
+  block  0: max |M_fast - M_cs| / max |M_cs| = 2.663e-15 (max |M_cs| 1.000e+00) ok
+  block  1: max |M_fast - M_cs| / max |M_cs| = 4.156e-15 (max |M_cs| 4.141e+00) ok
+  block  2: max |M_fast - M_cs| / max |M_cs| = 2.702e-15 (max |M_cs| 1.027e+00) ok
+  block  3: max |M_fast - M_cs| / max |M_cs| = 8.684e-16 (max |M_cs| 1.023e+00) ok
+  block  4: max |M_fast - M_cs| / max |M_cs| = 7.329e-16 (max |M_cs| 1.060e+00) ok
+  block  5: max |M_fast - M_cs| / max |M_cs| = 6.642e-16 (max |M_cs| 1.003e+00) ok
+  block  6: max |M_fast - M_cs| / max |M_cs| = 7.753e-16 (max |M_cs| 1.002e+00) ok
+  block  7: max |M_fast - M_cs| / max |M_cs| = 7.627e-16 (max |M_cs| 1.019e+00) ok
+  block  8: max |M_fast - M_cs| / max |M_cs| = 1.160e-15 (max |M_cs| 1.005e+00) ok
+  block  9: max |M_fast - M_cs| / max |M_cs| = 8.013e-16 (max |M_cs| 1.004e+00) ok
+  block 10: max |M_fast - M_cs| / max |M_cs| = 4.431e-16 (max |M_cs| 1.002e+00) ok
+  block 11: max |M_fast - M_cs| / max |M_cs| = 7.709e-16 (max |M_cs| 1.008e+00) ok
+  block 12: max |M_fast - M_cs| / max |M_cs| = 6.854e-16 (max |M_cs| 1.296e+00) ok
+  slogdet: fast +1 -108.545407907690, complex step +1 -108.545407907689, |d ln| 4.26e-14 ok
+selftest (mutate none): PASS
