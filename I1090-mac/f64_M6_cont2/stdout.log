@@ -30,3 +30,45 @@ D   632.00  max|F| 7.26e-14  Delta 1.662521397156  steps 4  sv_min 2.0e-14  grip
     LS outer 3: max|F| 8.57e-14 |g| 8.65e-14 |db| 5.5e-05 lambda 0.125
     LS outer 4: max|F| 8.51e-14 |g| 8.57e-14 |db| 8.7e-06 lambda 0.015625
     LS outer 5: max|F| 8.50e-14 |g| 8.65e-14 |db| 1.2e-05 lambda 0.000976562
+    LS outer 6: max|F| 8.51e-14 |g| 8.46e-14 |db| 1.1e-04 lambda 0.015625
+    LS outer 7: max|F| 8.36e-14 |g| 8.31e-14 |db| 1.1e-05 lambda 0.0625
+    LS outer 8: max|F| 7.55e-14 |g| 7.03e-14 |db| 1.5e-05 lambda 1
+    LS outer 9: max|F| 7.65e-14 |g| 6.79e-14 |db| 5.5e-05 lambda 0.0625
+D   640.00  max|F| 7.55e-14  Delta 1.662024164424  steps 2  sv_min 2.4e-14  grip 1.4e+13  noise 3.4e+00 (a=1: 5.9e+02) (a=32: 5.1e+00)  tails 4e-98/8e-175  ks 1071  298 s
+    LS: 14 strong, 5 weak; weak sv 4.8e-08 9.2e-09 3.4e-09 2.8e-09 5.2e-10
+/Users/nathan/Source/choptuik-1090/solver/inner_large_d/mobius_s.py:141: RuntimeWarning: invalid value encountered in add
+  num = 2 * (k - 1) * V[k - 1] + om * (V[k - 1] @ self.Dt) + V[k - 1]
+/Users/nathan/Source/choptuik-1090/solver/inner_large_d/mobius_s.py:199: RuntimeWarning: invalid value encountered in add
+  deriv = 2.0 * io * (np.einsum("jm,jm->m", hc1, dU[m]) + np.einsum("jm,jm->m", hce, dV[m]))
+/Users/nathan/Source/choptuik-1090/solver/inner_large_d/mobius_s.py:228: RuntimeWarning: overflow encountered in multiply
+  Ak = -2.0 * io * Ak + om * (U[k] @ Dt) - self.cv(G, V, k)
+/Users/nathan/Source/choptuik-1090/solver/inner_large_d/mobius_s.py:185: RuntimeWarning: invalid value encountered in add
+  rhs = q[k] + (self.cv(q, X, k, 1, k) if k >= 1 else 0.0 * q[k])
+/Users/nathan/Source/choptuik-1090/solver/inner_large_d/mobius_s.py:203: RuntimeWarning: invalid value encountered in add
+  r = (deriv + om * ((U[k] + zVk) @ Dt) - self.cv(G, U, k) - self.cv(G, V, k) + zVk
+/Users/nathan/Source/choptuik-1090/solver/inner_large_d/mobius_s.py:147: RuntimeWarning: invalid value encountered in subtract
+  qs[k] = 0.5 * (cauchy(U, U, k, 1, k - 1) + cauchy(V, V, k - 1, 0, k - 1)) - cW
+    LS outer 0: max|F| 6.17e-09 |g| 2.41e-11 |db| 2.4e-03 lambda 0.0625
+/Users/nathan/Source/choptuik-1090/solver/inner_large_d/mobius_s.py:187: RuntimeWarning: divide by zero encountered in divide
+  G[k] = (-(n - 1) * self.cv(c, X, k) - (self.cv(G, X, k, 0, k - 1) if k >= 1 else 0.0)) / (1.0 + X[0])
+/Users/nathan/Source/choptuik-1090/solver/inner_large_d/mobius_s.py:203: RuntimeWarning: invalid value encountered in subtract
+  r = (deriv + om * ((U[k] + zVk) @ Dt) - self.cv(G, U, k) - self.cv(G, V, k) + zVk
+/Users/nathan/Source/choptuik-1090/solver/inner_large_d/mobius_s.py:205: RuntimeWarning: invalid value encountered in multiply
+  Lk = om * Do + np.diag(io * k * (2 * h[0] * c[1] + h[1] - e[1]) - G[0] - (n / 2 - 1))
+    LS outer 1: max|F| 2.08e-08 |g| 2.29e-11 |db| 1.4e-02 lambda 0.125
+    LS outer 2: max|F| 2.61e-08 |g| 2.20e-11 |db| 7.8e-04 lambda 0.125
+/Users/nathan/Source/choptuik-1090/solver/inner_large_d/mobius_s.py:153: RuntimeWarning: invalid value encountered in add
+  num = 2 * k * U[k] + om * (U[k] @ self.Dt)
+/Users/nathan/Source/choptuik-1090/solver/inner_large_d/mobius_s.py:153: RuntimeWarning: overflow encountered in multiply
+  num = 2 * k * U[k] + om * (U[k] @ self.Dt)
+/Users/nathan/Source/choptuik-1090/solver/inner_large_d/mobius_s.py:155: RuntimeWarning: invalid value encountered in subtract
+  num = num - np.einsum("jm,jm->m", 2 * c[1:k] * (k - j), V[k - 1:0:-1])
+    LS outer 3: max|F| 4.06e-08 |g| 2.96e-11 |db| 4.8e-03 lambda 0.000976562
+    LS outer 4: max|F| 7.25e-09 |g| 5.73e-12 |db| 8.9e-04 lambda 1
+    LS outer 5: max|F| 3.59e-09 |g| 2.90e-12 |db| 3.4e-05 lambda 1
+    LS outer 6: max|F| 3.29e-09 |g| 2.66e-12 |db| 9.3e-06 lambda 1
+    LS outer 7: max|F| 1.69e-09 |g| 1.31e-12 |db| 9.0e-05 lambda 0.25
+    LS outer 8: max|F| 5.32e-10 |g| 4.24e-13 |db| 3.0e-05 lambda 1
+    LS outer 9: max|F| 4.81e-10 |g| 3.86e-13 |db| 1.9e-05 lambda 0.5
+D   650.00  max|F| 4.81e-10  Delta 1.664915725580  steps 4  sv_min 3.0e-13  grip 4.2e+10  noise 6.3e+00 (a=1: 7.8e+02) (a=32: 7.9e+00)  tails 6e-99/9e-176  ks 1084  343 s
+    LS: 14 strong, 5 weak; weak sv 6.8e-08 4.7e-08 2.3e-08 1.4e-08 3.3e-09

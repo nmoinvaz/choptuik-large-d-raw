@@ -48,3 +48,6 @@ than the full one); `f64_M6_cont2/` (the float64 continuation on the exact z pro
 D-624 solution: `solve_cont.py S/sol_D624_M6_a8.json --M=6 --a=8 --a_rule=400 --Ds=624,632,...,1000 --noise_as=1,32
 --accept=1e-9`). `diag/seed_test*.log`: the horizon numerics at seeds rescaled from the D-624 solution to D 10^4;
 `diag/check_mobius*_v2.log`: the checks after the exact z products.
+
+`f64_M6_cont3/`: the float64 continuation restarted from D 640 with --accept=1e-10 --dDelta_max=1e-4 (D 650 of
+`f64_M6_cont2/` passed 1e-9 but lies off the branch).
