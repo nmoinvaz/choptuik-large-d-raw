@@ -32,3 +32,7 @@ the command), `jump.log` and `jump_s.jsonl` (one record per Newton step), via `r
   residual to 1e-40; Delta 1.654240853943893145 and the full system's first-order dDelta (`jump.log`, the state).
 - `after_mob_lean.sh`: D 1000 again the lean way (double-double solve, Delta-bound stop, quad-double check), queued after
   a rebuild with the z recurrence.
+- `j1000_lean/`: D 1000 held the lean way on the build with the z recurrence (ae0b5453): the double-double Jacobian
+  and residual stopped by Delta's first-order bound, one quad-double check, the discretization report and the
+  Hamiltonian check; the plan and held values of j1000_held_mob.
+- `run_zcheck.sh`: the z-recurrence check at D 1000 and the D 2000 guess (out/zcheck/zcheck.log, copied when done).

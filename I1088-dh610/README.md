@@ -25,3 +25,6 @@ the Mac, which pushed this folder.
 - `out/mobcheck400.log`: mobcheck at the D 400 held state with Newton (checks 2 and 3 of the Moebius port); the
   control's Newton ended in a panic of a trial (fixed in form_s.py 4732b6c9).
 - `after_mob2000.sh`: the D 2000 held jump with the Moebius horizon (out/j2000_held_mob/), started 07:34:56 UTC.
+- `j2000_held_mob/`: D 2000 from the chain and form-S states up to D 400: three damped steps (lam 1/4, 1/16, 1/16) left
+  max |F| at 1.13; stopped by hand.
+- `run_j1414.sh`: the stepping stone D 1414 from the form-S states at D 300, 400 and 1000 (out/j1414_held_mob/).

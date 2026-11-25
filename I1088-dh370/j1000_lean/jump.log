@@ -1,0 +1,16 @@
+  states: 50 form A, 0 form S (D )
+guess at D 1000 from 50 states, D 226.1312 .. 252.4034, degree 2 in 1/n; degree 1 differs by 7.82e-05 (unknowns), 4.55e-04 (Delta)
+  ks 1517 (the Moebius series' rule 1.5 n + 20, a = 8)
+  Taylor steps from /home/nathan/Source/choptuik-large-d-1088a/out/j1000_held_mob/jump_s_D1000.0000.npz
+  Delta from Track C's series: 1.654240854245 +- 0.00e+00; the fit's 1.654252299154
+  186 Taylor steps; the guess's max |F| per block 6.6e-08 8.4e-08 1.3e-07 2.5e-07 5.1e-07 3.1e-06 4.5e-15
+  p1's harmonics 5-13 at jump_s_D1000.0000.npz's values (kfreeze 3 with the held offset)
+  start: max |F| 3.092e-06, Delta 1.654240854245000003075460881518665701151
+  it 0: |F| 3.092e-06 -> 6.771e-10, |dz| 3.77e-06, dDelta +6.171e-08, lam 1, Delta's gain 8.85e+04, gain |F| 6.00e-05, 74.2 s (J and solves 73 s), Delta 1.654240915958237422015736915647861693066
+  it 1: |F| 6.771e-10 -> 3.397e-14, |dz| 2.72e-07, dDelta -6.199e-08, lam 1, Delta's gain 8.91e+04, gain |F| 3.03e-09, 76.1 s (J and solves 75 s), Delta 1.654240853965367984428727510101532165000
+  it 2: |F| 3.397e-14 -> 4.704e-22, |dz| 3.22e-11, dDelta -2.147e-11, lam 1, Delta's gain 8.91e+04, gain |F| 4.19e-17, 77.2 s (J and solves 76 s), Delta 1.654240853943893145434639954429156214905
+  end state: qd max |F| 4.704e-22; Delta's first-order bound gain |F| 4.19e-17 (gain 8.91e+04, the last step's Jacobian)
+  the full system (kfreeze 13) at the held solution: max |F| 1.456e-17, first-order dDelta +5.088e-10 (Delta's gain sum |dDelta/dF| 9.48e+14)
+  discretization (bars 1e-25): top harmonic 2.0e-17 relative (n3m); kc+20: |dF| 0.0e+00, gain |dF| 0.0e+00; ks+200: |dF| 8.1e-56, gain |dF| 7.2e-51; steps halved: |dF| 5.1e-37, gain |dF| 4.5e-32: over the 1e-25 bar: theta (M 32): top harmonic 2.0e-17
+  Hamiltonian code check (form A's residual in double-double, a slaved): segment blocks' max |F| 1: a 7.4e-25, p/m/c 3.0e-22; 2: a 1.5e-24, p/m/c 5.0e-22; 3: a 2.4e-24, p/m/c 7.2e-22; 4: a 3.3e-24, p/m/c 9.1e-22
+  converged; Delta 1.654240853943893145434639954429156214905; saved /home/nathan/Source/choptuik-large-d-1088a/out/j1000_lean/jump_s_D1000.0000.npz

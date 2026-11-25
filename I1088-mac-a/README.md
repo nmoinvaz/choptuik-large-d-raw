@@ -54,4 +54,11 @@ c30c2766).
   `ctl300_b30/`, `ctl300_s101/` stopped by hand after 3 steps, `ctl300_b30h/`); `form_s/segtest.py`: the Taylor plan's
   truncation seen by form S (`segtest_D300.log`).
 
+- `form_s/guess_probe.py`, `form_s/resonance.py`, `form_s/gain_f64.py`: why the D 2000 jump left the basin: guess
+  fits' horizon mismatch (`guess_probe_D2000.log`), the horizon operator's smallest singular value per D
+  (`resonance.log`), and the gain from m_h with the coefficient profile at D 1000, 1414 and 2000 (`gain_f64.log`).
+- `direct_s.jsonl` (this folder and I1088-dh370, I1088-dh610): one record per converged form-S solve for the tables;
+  `form_s/direct_backfill.py` wrote the ones before jump did (`direct_backfill.log`).
+- `form_s/zcheck.py`: the z recurrence against the Cauchy sums (run on dh370, I1088-dh370/zcheck/).
+
 Files are added as the runs go; each log or script names its command line.
