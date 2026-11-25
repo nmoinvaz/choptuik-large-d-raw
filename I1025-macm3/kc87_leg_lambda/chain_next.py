@@ -53,6 +53,17 @@ def hold(base=None):
     return (open(fs[0]).readline().strip() or os.path.basename(fs[0]) + " exists")
 
 
+def ext_waiting(D, base=None):
+    """t5, 25 Nov 14:0x UTC (a scan with no change in its window is extended at once): a point listed in EXT_ORDER.txt (one D per line, '#' lines ignored) waits for its extension check until its folder has EXT_CLEARED.txt;
+    pending skips it meanwhile, so that record does not stop the chain on a window without a change"""
+    base = base or L
+    f = base + "/EXT_ORDER.txt"
+    if MUT == "ext" or not os.path.exists(f):
+        return False
+    listed = [float(x) for l in open(f) if l.strip() and not l.startswith("#") for x in l.split()]
+    return any(abs(D - x) < 1e-9 for x in listed) and not os.path.exists("%s/%r/EXT_CLEARED.txt" % (base, D))
+
+
 def on_grid(D):
     return abs(D * 8 - round(D * 8)) < 1e-9
 
@@ -214,6 +225,15 @@ def selftest():
         chk("hold: a released (renamed) HOLD.txt does not hold", hold(t_) is None)
         open(t_ + "/HOLD_low.txt", "w").write("low scans pending\n")
         chk("hold: another HOLD*.txt (HOLD_low.txt) holds", hold(t_) == "low scans pending")
+    with _tf.TemporaryDirectory() as t2:
+        chk("ext: no EXT_ORDER.txt: not waiting", not ext_waiting(22.875, t2))
+        open(t2 + "/EXT_ORDER.txt", "w").write("# the points under the extension check\n22.875\n22.8125\n")
+        os.makedirs(t2 + "/22.875")
+        chk("ext: a listed point without EXT_CLEARED.txt waits (pending skips it)", ext_waiting(22.875, t2))
+        chk("ext: a point not listed does not wait", not ext_waiting(22.75, t2))
+        open(t2 + "/22.875/EXT_CLEARED.txt", "w").write("x")
+        chk("ext: a listed point with EXT_CLEARED.txt is pending again", not ext_waiting(22.875, t2))
+        chk("ext: the other listed point still waits", ext_waiting(22.8125, t2))
     print("selftest:", "PASS" if ok else "FAIL")
     return 0 if ok else 1
 
@@ -245,7 +265,7 @@ def main():
         if sum(1 for x in roots if x < D) >= 2 and interp_slope(roots, D, sorted(x for x in roots if x < D)[-1]) is not None:
             print("%.6f" % below_slope(roots, D))
     elif cmd == "pending":   # pushed points whose scan is done (SCAN_DONE.txt) and that have no root yet, in D order
-        print(" ".join(repr(D) for D in sorted(pushed) if D not in roots and os.path.exists("%s/%r/SCAN_DONE.txt" % (L, D))))
+        print(" ".join(repr(D) for D in sorted(pushed) if D not in roots and os.path.exists("%s/%r/SCAN_DONE.txt" % (L, D)) and not ext_waiting(D)))
     elif cmd == "record":
         D = float(sys.argv[2]); dn = repr(D)
         text = open("%s/%s/read_lower.txt" % (L, dn)).read()

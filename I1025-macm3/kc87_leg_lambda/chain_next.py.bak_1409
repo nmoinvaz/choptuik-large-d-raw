@@ -1,0 +1,273 @@
+#!/usr/bin/env python3
+"""chain_next.py: the bookkeeping of the k_c 87 leg2 scan chain (#1025 macm3; t5's rules of 24 Nov: each leg point is scanned with the latest-local-slope rule, the -0.33 rule scored beside it).
+usage: chain_next.py next            prints NEXT D PREV_D PREV_ROOT SLOPE SRC TAG | WAIT why | DONE | STOP why
+       chain_next.py pending         prints the pushed points that have a SCAN_DONE.txt and no root yet
+       chain_next.py record D        reads D/read_lower.txt and D/steps.txt; appends the root to roots87.txt and prints the hc line (OK ...) or STOP why
+       chain_next.py selftest [--mutate=slope|changes|repeat|robust|all|interp|cross|skip|legs|hold]
+Part b2 (t5, 24 Nov 19:4x UTC: part b restarted from its D 21.9375 and 21.96875 states with the new ell_leap.py blob after the SVD exception at D 22.0): ../kc87_leg2/b2/pushed_points.txt, tag l1kc87Lmacm3b2.
+Files: roots87.txt (lines "D root lo hi source"), ../kc87_leg2/pushed_points.txt (part a, tag l1kc87Lmacm3), ../kc87_leg2/b/pushed_points.txt (part b, tag l1kc87Lmacm3b), ../kc87_leg2/c/pushed_points.txt (part c, tag l1kc87Lmacm3c).
+       chain_next.py crossed         prints YES when the two largest scanned roots (by D) are both below 0 (t5: the crossing of lambda_1 = 0 is then bracketed), else NO
+Rule (t5, 24 Nov): for a point D, with a and b the two largest D below it that have a root (a > b; the seeds D 21.21875 and D 21.25 included): slope = (root[a] - root[b]) / (a - b) (my det-linear roots, whatever their spacing),
+prediction = root[a] + slope x (D - a); the beside rule is root[a] - 0.33 x (D - a).
+Which points: while a leap runs (part a or part b not finished; phase 1) only the pushed points on the 0.125 grid (D x 8 an integer: 21.375, 21.5, 21.625, ...), lowest first; when the leaps have ended (phase 2) every pushed point, in D order
+(t5: "the points between are scanned after part b ends, in D order"). A point is scanned only when two roots lie below it.
+In phase 2 (t5, 24 Nov 14:2x UTC) a point with a root above it, nearest c, is predicted by LINEAR INTERPOLATION between the bracketing roots a (below) and c: slope = (root[c] - root[a]) / (c - a), prediction root[a] + slope x (D - a); the
+below-only extrapolation (slope between the two roots below) and the -0.33 rule are scored beside it (chain_next.py slope3 D prints the below-only slope when the interpolation is the primary rule)."""
+import os, re, sys
+L = os.path.expanduser("~/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_leg_lambda")
+L2 = os.path.expanduser("~/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_leg2")
+MUT = next((a.split("=", 1)[1] for a in sys.argv if a.startswith("--mutate=")), None)
+PARTS = (("a", L2, "I1025-macm3/kc87_leg2", "l1kc87Lmacm3"), ("b", L2 + "/b", "I1025-macm3/kc87_leg2/b", "l1kc87Lmacm3b"),
+         ("b2", L2 + "/b2", "I1025-macm3/kc87_leg2/b2", "l1kc87Lmacm3b2"), ("c", L2 + "/c", "I1025-macm3/kc87_leg2/c", "l1kc87Lmacm3c"), ("c2", L2 + "/c2", "I1025-macm3/kc87_leg2/c2", "l1kc87Lmacm3c2"))
+# t5, 24 Nov 19:5x UTC: dh610 scans these four leg points, so they leave this chain (phase 2 keeps D 21.4375, 21.84375, 21.90625, 21.96875 and the rest)
+SKIP = (21.5625, 21.6875, 21.8125, 21.9375)
+BESIDE = -0.33
+
+
+def read_roots(path):
+    r = {}
+    if os.path.exists(path):
+        for l in open(path):
+            f = l.split()
+            if len(f) >= 2 and not l.startswith("#"):
+                r[float(f[0])] = float(f[1])
+    return r
+
+
+def read_pushed(folder):
+    p = folder + "/pushed_points.txt"
+    return [float(x) for x in open(p).read().split()] if os.path.exists(p) else []
+
+
+def apply_skip(pushed):
+    """the points dh610 scans (SKIP) are not mine"""
+    return dict(pushed) if MUT == "skip" else {D: v for D, v in pushed.items() if not any(abs(D - x) < 1e-9 for x in SKIP)}
+
+
+def hold(base=None):
+    """t5, 25 Nov 00:3x UTC: while kc87_leg_lambda/HOLD.txt exists the chain starts no new scan (its first line is the reason); a root already in roots87.txt that is under check is then not used in any new slope"""
+    import glob
+    fs = sorted(glob.glob((base or L) + "/HOLD*.txt"))      # HOLD.txt, HOLD_low.txt, ...: any file that ends in .txt (a released one is renamed HOLD.txt.released.<time>)
+    if MUT == "hold" or not fs:
+        return None
+    return (open(fs[0]).readline().strip() or os.path.basename(fs[0]) + " exists")
+
+
+def on_grid(D):
+    return abs(D * 8 - round(D * 8)) < 1e-9
+
+
+def interp_slope(roots, D, a):
+    """slope of the line through the nearest root above D (c) and the root at a; None when no root lies above D"""
+    above = sorted(x for x in roots if x > D)
+    if not above or MUT == "interp":
+        return None
+    return (roots[above[0]] - roots[a]) / (above[0] - a)
+
+
+def plan(roots, pushed, phase1=True):
+    """pushed: {D: (src, tag)}; phase1: only the 0.125 grid (a leap is running). Returns ('NEXT', D, a, root[a], slope, src, tag) or ('WAIT', why)."""
+    for D in sorted(pushed):
+        if D in roots:
+            continue
+        if phase1 and MUT != "all" and not on_grid(D):
+            continue
+        below = sorted(x for x in roots if x < D)
+        if len(below) < 2:
+            return ("WAIT", "fewer than two roots below D %r" % D)
+        a, b = below[-1], below[-2]
+        slope = (roots[a] - roots[b]) / (a - b)
+        si = interp_slope(roots, D, a)
+        if si is not None:
+            slope = si
+        if MUT == "slope":
+            slope = BESIDE
+        src, tag = pushed[D]
+        return ("NEXT", D, a, roots[a], slope, src, tag)
+    return ("WAIT", "no pushed point without a root" + (" on the 0.125 grid" if phase1 else ""))
+
+
+def below_slope(roots, D):
+    below = sorted(x for x in roots if x < D)
+    a, b = below[-1], below[-2]
+    return (roots[a] - roots[b]) / (a - b)
+
+
+def log_says(name, word):
+    return os.path.exists(L2 + "/" + name) and word in open(L2 + "/" + name).read()
+
+
+def legs_ended(base=None):
+    """every leg has ended, or was refused or not needed: a, b (start_b.log NOT started), b2 (start_b2.log NOT started) and c (start_c2.log NOT started / not needed; start_c.log, which the control's
+    starter wrote while b was stopped, no longer counts: part c now follows b2)"""
+    base = base or L2
+    def says(name, word):
+        return os.path.exists(base + "/" + name) and word in open(base + "/" + name).read()
+    a = os.path.exists(base + "/LEG_DONE.txt")
+    b = os.path.exists(base + "/b/LEG_DONE.txt") or says("start_b.log", "NOT started")
+    b2 = os.path.exists(base + "/b2/LEG_DONE.txt") or says("start_b2.log", "NOT started")
+    cl = "start_c.log" if MUT == "legs" else "start_c2.log"
+    c = os.path.exists(base + "/c/LEG_DONE.txt") or says(cl, "NOT started") or says(cl, "not needed")
+    # part c2 (t5, 25 Nov: part c restarted past the psi-constraint bar with --cmax 2e-2): done, or the starter (start_cont.log) says it was not needed or not started
+    c2 = os.path.exists(base + "/c2/LEG_DONE.txt") or says("start_cont.log", "NOT started") or says("start_cont.log", "not needed")
+    if MUT == "legs": c2 = True
+    return a and b and b2 and c and c2
+
+
+def phase1_now():
+    """a leap is running (or about to start) unless every leg has ended or was refused or not needed"""
+    return not legs_ended()
+
+
+def crossed(roots):
+    """t5: two consecutive scanned roots below 0 (the two largest D with a root)"""
+    ds = sorted(roots)
+    return len(ds) >= 2 and roots[ds[-1]] < 0 and roots[ds[-2]] < 0 and MUT != "cross"
+
+
+def parse(text, steps, mutate=None):
+    """-> (ok, why, bracket(a, b), root, lo, hi)"""
+    m = re.search(r"robust changes: (\d+);", text)
+    n = int(m.group(1)) if m else -1
+    if (n != 1 and mutate != "changes") or n < 1:
+        return (False, "robust changes: %d (one wanted)" % n, None, None, None, None)
+    if mutate != "robust" and not re.search(r"not noise-robust: none", text):
+        return (False, "a point is not noise-robust", None, None, None, None)
+    if mutate != "repeat" and "PASS" not in text:
+        return (False, "the repeat check did not pass", None, None, None, None)
+    if not re.search(r"local minima without a sign change: none", text):
+        return (False, "an ln|det| minimum without a sign change", None, None, None, None)
+    c = re.search(r"robust change \((-?[\d.]+), (-?[\d.]+)\), ([-+] to [-+]), det-linear (-?[\d.]+), range \[(-?[\d.]+), (-?[\d.]+)\]", text)
+    if not c:
+        return (False, "no robust change line", None, None, None, None)
+    return (True, "", (float(c.group(1)), float(c.group(2))), float(c.group(4)), float(c.group(5)), float(c.group(6)))
+
+
+def selftest():
+    ok = True
+    def chk(name, cond):
+        nonlocal ok
+        print("planted:", name, "PASS" if cond else "FAIL"); ok = ok and cond
+    roots = {21.21875: 0.847216, 21.25: 0.836238}
+    pushed = {21.3125: ("A", "ta")}
+    r = plan(roots, pushed, phase1=False)
+    chk("phase 2, first leg point: NEXT 21.3125, prev root 0.836238, slope -0.35130 (t5's -0.3513)", r[0] == "NEXT" and r[1] == 21.3125 and r[2] == 21.25 and abs(r[4] + 0.351296) < 1e-9 and r[3] == 0.836238)
+    chk("phase 1: 21.3125 is not on the 0.125 grid, so WAIT", plan(roots, pushed, phase1=True)[0] == "WAIT")
+    roots[21.3125] = 0.8143
+    pushed.update({21.375: ("A", "ta"), 21.4375: ("B", "tb"), 21.5: ("A", "ta"), 21.5625: ("B", "tb"), 21.625: ("B", "tb")})
+    r = plan(roots, pushed, phase1=True)
+    chk("phase 1: the grid point 21.375 comes first, slope from the two latest roots", r[0] == "NEXT" and r[1] == 21.375 and abs(r[4] - (0.8143 - 0.836238) / 0.0625) < 1e-9)
+    roots[21.375] = 0.79
+    r = plan(roots, pushed, phase1=True)
+    chk("phase 1: after 21.375 the next is 21.5 (21.4375 skipped), step 0.125 from the root of 21.375", r[0] == "NEXT" and r[1] == 21.5 and r[2] == 21.375 and abs(r[4] - (0.79 - 0.8143) / 0.0625) < 1e-9)
+    roots[21.5] = 0.75
+    r = plan(roots, pushed, phase1=True)
+    chk("phase 1: then 21.625, slope across the 0.125 spacing of the two latest roots (21.5 and 21.375)", r[0] == "NEXT" and r[1] == 21.625 and r[2] == 21.5 and abs(r[4] - (0.75 - 0.79) / 0.125) < 1e-9 and r[5:] == ("B", "tb"))
+    r = plan(roots, {k: v for k, v in pushed.items() if k != 21.625}, phase1=True)
+    chk("phase 1: only off-grid points left: WAIT", r[0] == "WAIT")
+    r = plan(roots, {k: v for k, v in pushed.items() if k != 21.625}, phase1=False)
+    chk("phase 2: the skipped 21.4375 in D order, from the root below (21.375) with the slope of the line through the bracketing roots (21.375, 21.5): the midpoint 0.77", r[0] == "NEXT" and r[1] == 21.4375 and r[2] == 21.375 and abs(r[4] - (0.75 - 0.79) / 0.125) < 1e-9 and abs(r[3] + r[4] * 0.0625 - 0.77) < 1e-9)
+    chk("phase 2: the below-only slope for the beside rule (21.375, 21.3125)", abs(below_slope(roots, 21.4375) - (0.79 - 0.8143) / 0.0625) < 1e-9)
+    r = plan({21.3125: 0.8143, 21.375: 0.79, 21.25: 0.836238, 21.21875: 0.847216}, {21.4375: ("B", "tb")}, phase1=False)
+    chk("phase 2 without a root above: the below-only slope is the primary", r[0] == "NEXT" and abs(r[4] - (0.79 - 0.8143) / 0.0625) < 1e-9)
+    chk("fewer than two roots below: WAIT", plan({21.25: 0.8}, {21.3125: ("A", "ta")}, phase1=False)[0] == "WAIT")
+    good = "points 5 in 0.805-0.825; not noise-robust: none\nrobust changes: 1; touching a non-robust point (not counted): none\n  robust change (0.810, 0.815), - to +, det-linear 0.8143, range [0.8130, 0.8143]\nln|det| local minima without a sign change: none\nrepeat check x: agree -> PASS\n"
+    p = parse(good, "", MUT)
+    chk("a clean reading parses (bracket, root, range)", p[0] and p[2] == (0.81, 0.815) and p[3] == 0.8143 and p[4] == 0.813)
+    chk("two robust changes: STOP", not parse(good.replace("robust changes: 1", "robust changes: 2"), "", MUT)[0])
+    chk("a non-robust point: STOP", not parse(good.replace("not noise-robust: none", "not noise-robust: [0.82]"), "", MUT)[0])
+    chk("a failed repeat: STOP", not parse(good.replace("PASS", "FAIL"), "", MUT)[0])
+    chk("a minimum without a sign change: STOP", not parse(good.replace("local minima without a sign change: none", "local minima without a sign change: [0.8]"), "", MUT)[0])
+    chk("crossing: roots 0.05, 0.01 are not crossed", not crossed({21.0: 0.1, 21.125: 0.05, 21.25: 0.01}))
+    chk("crossing: one root below 0 is not enough", not crossed({21.0: 0.1, 21.125: 0.05, 21.25: -0.01}))
+    chk("crossing: two consecutive roots below 0 bracket it", crossed({21.0: 0.1, 21.125: 0.05, 21.25: -0.01, 21.375: -0.06}))
+    chk("crossing: the two largest D count, not the two smallest", not crossed({21.0: -0.1, 21.125: -0.05, 21.25: 0.01, 21.375: 0.02}))
+    neg = "points 5 in -0.020-0.000; not noise-robust: none\nrobust changes: 1; touching a non-robust point (not counted): none\n  robust change (-0.010, -0.005), - to +, det-linear -0.007100, range [-0.007800, -0.007100]\nln|det| local minima without a sign change: none\nrepeat check x: agree -> PASS\n"
+    pn = parse(neg, "", MUT)
+    chk("a reading with a negative root parses", pn[0] and pn[2] == (-0.01, -0.005) and pn[3] == -0.0071 and pn[4] == -0.0078)
+    pk = {21.4375: ("A", "ta"), 21.5625: ("B", "tb"), 21.84375: ("B", "tb"), 21.8125: ("B", "tb"), 21.9375: ("B", "tb"), 21.96875: ("B", "tb"), 22.0: ("B2", "tb2")}
+    ps = apply_skip(pk)
+    chk("skip: dh610's four points 21.5625, 21.6875, 21.8125, 21.9375 are dropped, the others stay", sorted(ps) == [21.4375, 21.84375, 21.96875, 22.0])
+    rk = {21.21875: 0.847216, 21.25: 0.836238, 21.3125: 0.814277, 21.375: 0.791593, 21.5: 0.744479, 21.625: 0.696157, 21.75: 0.646846, 21.875: 0.596477}
+    chk("skip: phase 2 plans 21.4375 first, then (with it scanned) 21.84375, never 21.5625", plan(rk, ps, phase1=False)[1] == 21.4375 and plan({**rk, 21.4375: 0.76}, ps, phase1=False)[1] == 21.84375)
+    import tempfile
+    with tempfile.TemporaryDirectory() as t:
+        for sub in ("b", "b2", "c"):
+            os.makedirs(t + "/" + sub)
+        open(t + "/LEG_DONE.txt", "w").write("x"); open(t + "/b/LEG_DONE.txt", "w").write("x")
+        open(t + "/start_c.log", "w").write("2026 part c NOT started: b stopped\n")      # the control's starter wrote this while b was stopped
+        chk("legs: b2 not started and part c's old NOT started line: not ended (phase 1)", not legs_ended(t))
+        open(t + "/b2/LEG_DONE.txt", "w").write("x")
+        chk("legs: b2 done, part c undecided (only the stale start_c.log line): not ended", not legs_ended(t))
+        open(t + "/start_c2.log", "w").write("part c not needed: lambda_1 not positive\n")
+        chk("legs: b2 done and part c not needed (start_c2.log) but part c2 undecided (no start_cont.log): not ended", not legs_ended(t))
+        open(t + "/start_cont.log", "w").write("waiting for part c (c/LEG_DONE.txt)\n")
+        chk("legs: start_cont.log only says waiting: not ended", not legs_ended(t))
+        open(t + "/start_cont.log", "a").write("part c2 not needed: part c was not started (not needed)\n")
+        chk("legs: part c2 not needed (start_cont.log): ended (phase 2)", legs_ended(t))
+    import tempfile as _tf
+    with _tf.TemporaryDirectory() as t_:
+        chk("hold: no HOLD.txt: not held", hold(t_) is None)
+        open(t_ + "/HOLD.txt", "w").write("D 22.125 under check\nsecond line\n")
+        chk("hold: HOLD.txt present: held, the reason is its first line", hold(t_) == "D 22.125 under check")
+        os.rename(t_ + "/HOLD.txt", t_ + "/HOLD.txt.released.1")
+        chk("hold: a released (renamed) HOLD.txt does not hold", hold(t_) is None)
+        open(t_ + "/HOLD_low.txt", "w").write("low scans pending\n")
+        chk("hold: another HOLD*.txt (HOLD_low.txt) holds", hold(t_) == "low scans pending")
+    print("selftest:", "PASS" if ok else "FAIL")
+    return 0 if ok else 1
+
+
+def main():
+    cmd = sys.argv[1]
+    if cmd == "selftest":
+        sys.exit(selftest())
+    roots = read_roots(L + "/roots87.txt")
+    pushed = {}
+    for part, folder, src, tag in PARTS:
+        for D in read_pushed(folder):
+            pushed[D] = (src, tag)
+    pushed = apply_skip(pushed)
+    if cmd == "next":
+        h_ = hold()
+        if h_:
+            print("WAIT hold: " + h_); return
+        r = plan(roots, pushed, phase1_now())
+        if r[0] == "NEXT":
+            print("NEXT %r %r %.6f %.6f %s %s" % (r[1], r[2], r[3], r[4], r[5], r[6]))
+        else:
+            fin = legs_ended() and all(D in roots for D in pushed)
+            print(("DONE" if fin else "WAIT " + r[1]))
+    elif cmd == "crossed":
+        print("YES" if crossed(roots) else "NO")
+    elif cmd == "slope3":   # the below-only slope, when the primary of D is the interpolation (a root lies above D); else nothing
+        D = float(sys.argv[2])
+        if sum(1 for x in roots if x < D) >= 2 and interp_slope(roots, D, sorted(x for x in roots if x < D)[-1]) is not None:
+            print("%.6f" % below_slope(roots, D))
+    elif cmd == "pending":   # pushed points whose scan is done (SCAN_DONE.txt) and that have no root yet, in D order
+        print(" ".join(repr(D) for D in sorted(pushed) if D not in roots and os.path.exists("%s/%r/SCAN_DONE.txt" % (L, D))))
+    elif cmd == "record":
+        D = float(sys.argv[2]); dn = repr(D)
+        text = open("%s/%s/read_lower.txt" % (L, dn)).read()
+        steps = open("%s/%s/steps.txt" % (L, dn)).read()
+        if not os.path.exists("%s/%s/SCAN_DONE.txt" % (L, dn)):
+            print("STOP no SCAN_DONE.txt for D %s" % dn); return
+        ok, why, br, root, lo, hi = parse(text, steps, MUT)
+        if not ok:
+            print("STOP D %s: %s" % (dn, why)); return
+        below = sorted(x for x in roots if x < D)
+        a, b = below[-1], below[-2]
+        slope_b = (roots[a] - roots[b]) / (a - b); si = interp_slope(roots, D, a)
+        slope = slope_b if si is None else si
+        pred = roots[a] + slope * (D - a); pred2 = roots[a] + BESIDE * (D - a); pred3 = roots[a] + slope_b * (D - a)
+        new = (root - roots[a]) / (D - a)
+        rule = "Rule (local slope %.4f)" % slope if si is None else "Rule (interpolation between the roots at D %r and D %r, slope %.4f)" % (a, [x for x in sorted(roots) if x > D][0], slope)
+        extra = "" if si is None else " Below-only extrapolation (slope %.4f): %.6f, residual %+.6f." % (slope_b, pred3, root - pred3)
+        with open(L + "/roots87.txt", "a") as f:
+            f.write("%r %.6f %.6f %.6f macm3 bracket %.3f %.3f\n" % (D, root, lo, hi, br[0], br[1]))
+        print("OK macm3 #1025 kc87 leg2 ROOT D %s: %.6f (det-linear; estimator range %.6f-%.6f, not an enclosure), bracket (%.3f, %.3f). %s: %.6f, residual %+.6f;%s beside (-0.33): %.6f, residual %+.6f. Slope from the root at D %r: %.4f." % (
+            dn, root, lo, hi, br[0], br[1], rule, pred, root - pred, extra, pred2, root - pred2, a, new))
+
+
+if __name__ == "__main__":
+    main()
