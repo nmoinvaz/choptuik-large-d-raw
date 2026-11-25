@@ -32,3 +32,6 @@ Order of the work:
 - Checks: `toy` exit 0, `toy --mutate=shift` exit 1, `mode_matched_bracket.py selftest` exit 0 and `--mutate=shift` exit 1.
 - `four` at M' 96: exit 0 (line residual 4.4e-13, pivot ratio 5.2e-8), about 295 s per determinant at 6 threads; sign,
   ln|D_m|, pmin and pmax bit-identical to dh370's four.jsonl at all four rates (`four_compare.txt`).
+- Split (coordinator, 25 Nov ~00:35 UTC): dh370 takes the M' 160 root. `swap_m160.sh` (launched by `run_swap.cmd`) stops
+  chain1078.py's tree when it opens its M' 160 step (`ends_m160_w0.0002.log`, header only), and starts `chain2_h0001.py`
+  (`run_chain2.cmd`), which runs the hmax 0.001 root at M' 96 with chain1078's own `follow()`.
