@@ -31,7 +31,26 @@ Basis: k_c 87 roots at 22.125, 22.1875, 22.25: 0.491017, 0.473467, 0.442516 (ste
 - Wide scan: at least 15 of the 17 points noise-robust (70%); the repeat of 0.14 on another process bit-identical (85%). Number of robust changes in -0.10 to 0.50: exactly one, lambda_1 alone (50%); exactly two (an extra root below lambda_1) (28%); three or more (12%); none (10%). The highest change (lambda_1) lies in (0.30, 0.42) (75%): bracket (0.34, 0.38) 35%, (0.30, 0.34) 25%, (0.38, 0.42) 15%. Printed orientation of lambda_1: "- to +" (65%), "+ to -" (30%). If there are two changes, the lower one lies in (0.06, 0.18) (60%), and then lambda_1 prints "+ to -" (60%), the coordinator's picture. The float64 sign agrees with the hybrid at all 17 evaluations (25%). Each scan point 1800 to 4000 s (60%; the wide window has no reason to cost more per point than a narrow one); the scan done (p0 runs 5 evaluations) within 6 h of its start (65%).
 - Timeline: the regrid done within 3 h of the lane's start (65%).
 
+## Regrid result (25 Nov, 06:17:03 to 08:21:08 UTC): ACCEPTED
+`ell_refine.py` (8 threads, nice 10, raised to nice 19 at 06:18:05 UTC by the watcher while an `i1088a-*` unit was active) exited 0 after **7428 s** (the record's own 7425 s; predicted 4000 to 10000 s: yes). Mean sampled CPU 732% (122 samples, `regrid/regrid_samples.csv`), peak sampled RSS 2.56 GiB; 23 numpy RuntimeWarning lines in the log, as in the earlier regrids; no memory alert. It ran beside the D 22.1875 regrid (to 07:38) and the quest's units.
+- Record `l1kc95dh610d22375.jsonl` (blob 0fac3b2b) and state `sol_l1kc95dh610d22375_D22.3750.npy` (blob e5c4682a, copied to `in/`; `in_blobs_regrid.txt`): k_c 95 at D 22.375, |F| 3.8917763591e-10, F_start 4.981e-05, **3128 steps** (macm3's k_c 87: 2864; ratio 1.0922; predicted about 3122), constraint 5.134e-03 (macm3's k_c 87: 7.786e-03, ratio 0.659), **Delta 1.1562229943** (macm3's k_c 87: 1.1562474234; shift **-2.443e-05**; predicted about -2.4e-05).
+- **Acceptance:** `kc95_syscheck_1025.py` exit 0 (the state's |F| equals the record's, `freeze_from` gives 3128 steps = the record's); `--mutate=F` exit 1, `--mutate=steps` exit 1; `kc87_syscheck_1025.py` on the k_c 95 result exits 1 (refuses). Raw `d9cf426e`.
+- **Wide scan:** started 08:21:13 UTC on 4 processes as ordered (17 evaluations; p0 has 5, so about 4 to 5 times one point's cost); the watcher reniced the 4 scan processes to nice 19 at 08:21:15 UTC (`i1088a-j2000m.service` active).
+
+### Regrid predictions scorecard (registered before the run)
+| prediction | result |
+|---|---|
+| source accepted with controls 1 1, the k_c 95 check refusing it (93%) | right |
+| regrid exits 0 and is accepted (85%) | right |
+| steps about 3122 (within 10: 55%; within 30: 88%) | right (3128: within 10) |
+| \|F\| below 1e-9 (95%) | right (3.89e-10) |
+| the Delta shift negative (92%) and about -2.4e-05, within 0.6e-5 (55%) | right (-2.443e-05); right |
+| regrid wall 4000 to 10000 s (65%) | right (7428 s) |
+| peak sampled RSS below 3 GiB (85%) | right (2.56 GiB) |
+| the regrid done within 3 h of the lane's start (65%) | right (2 h 04 min) |
+
 ## Status
 - 2026-11-25 06:16 UTC: folder, pinned inputs, lane, wide reader with its planted-truth check, watcher (patterns checked) and README written before any run; the unit `i1025-kc95-22_375` is started next.
 - 06:16:55 UTC: unit `i1025-kc95-22_375` started (selftests 0 0 0 1 1 0 0 1 0 1 0 1, source accepted with controls 1 1 and the k_c 95 check refusing it, regrid started 06:17:03 UTC at nice 10).
 - 2026-11-25 06:18 UTC: a defect of mine, fixed: the watcher `watch_i1088a.sh` ended at once because `exits_kc95.txt` still held the line "STOP: in_blobs_src.txt is missing or empty" of my deliberate test of the new pin check (06:16:16 UTC), which its loop took for the lane's end; the regrid therefore ran at nice 10 until 06:18:05 UTC, when the corrected watcher (it counts only lines written after its own start; the old file kept as `watch_i1088a_stale_stop.sh`) raised it to nice 19 (`i1088a_yield.txt`; `i1088a-buildmob.service` is active). My first waiter had the same flaw and was replaced by a baseline-aware one. The same stale-line trap does not apply to `../kc95_d221875/` (no test STOP in its exits file).
+- 2026-11-25 08:22 UTC: the regrid is ACCEPTED (06:17:03 to 08:21:08 UTC, 7428 s; result above, raw d9cf426e). The wide scan started 08:21:13 UTC on 4 processes, nice 19 by the watcher.
