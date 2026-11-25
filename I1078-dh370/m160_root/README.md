@@ -43,3 +43,5 @@ t5: "pause: SIGSTOP your M' 160 root by exact pid now, and SIGCONT it when i1088
 
 ## First determinant (2026-11-25 04:33 UTC)
 `lam 6.331627995600: sign -1 ln|det| 1285.272457 pivots 1.01e-04..1.58e+02 (5880.0 s)`: the first point of `find_lam` is lam0 - 1e-4 (lam0 = 6.3317279956); sign **-1** as at M' 96 below the root, smallest pivot ratio 6.4e-7 (bar 1e-20). The 5880 s is wall time and includes the 1845 s of the pause (SIGSTOP 02:42:55 to SIGCONT 03:13:40), so about 4035 s of running: 5.1 times M' 96's 790 s, at 3.7 cores shared with t5's `form_s.py jump` and the #1080 walk d (load 11 to 13) against 6 at M' 96. The root needs at least 5 determinants (5 at M' 96's D 3.15 in #1083 step 3, 10 to 11 in `d315`): expect 6 to 12 h more.
+
+- 2026-11-25 05:39 UTC, second determinant: `lam 6.331727995600: sign -1 ln|det| 1280.838102 pivots 1.01e-04..1.58e+02 (3945.1 s)`: lam0 itself, sign -1 as the first point (lam0 - 1e-4), so no sign change yet between 6.3316 and 6.3317; the M' 160 root lies above 6.3317279956 (M' 96's is 6.3317279956246395, 2.5e-11 above lam0). 3945 s per determinant, running alone beside the walk and t5's jump job.
