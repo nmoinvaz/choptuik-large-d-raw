@@ -18,3 +18,16 @@ wip/large-d-form-s (python path in /home/nathan/Source/choptuik-large-d-1088a/py
 | qd_fresh.log | quad-double | every step | 3.1e-44 in 3 steps, 243 s | 3.7e-43 |
 | qd_scale101.log | quad-double × 1.01 (control) | every step | 3.0e-21 after 6 steps | −6.9e-23 |
 | od_chord.log | octo-double, once | no (chord) | 7.4e-43 in 9 steps, 574 s | −2.4e-38 |
+
+## Run 4: the Möbius horizon (a = 8, ks = ⌈1.5(D − 2)⌉ + 20 = 467), `run4.sh`, 07:01–07:16 UTC
+
+Same guess and held system; `mixed2.py` (updated: MOB and RPREC arguments; the end state is checked once with the
+octo-double residual). Δ − stored is against the octo-double jump's u-horizon solution; the Möbius runs agree with each
+other to 4.7e-28, so −1.82e-19 is the u sum's error in that stored Δ.
+
+| log | Jacobian / residual | steps | end max\|F\| (octo-double check) | time | Δ − stored |
+|---|---|---|---|---|---|
+| mob_qdJ_odR.log | quad-double / octo-double | 3 | 3.1e-44 | 413 s | −1.82e-19 |
+| mob_ddJ_odR.log | double-double / octo-double | 3 | 3.1e-44 | 77 s | −1.82e-19 |
+| mob_ddJ_ddR.log | double-double / double-double | 3 | 3.6e-29 (4.3e-29) | 37 s | −1.82e-19 |
+| mob_ddJ_scale101.log | double-double × 1.01 / octo-double (control) | 8 | 3.0e-25, 2.00 digits a step | 274 s | −1.82e-19 |

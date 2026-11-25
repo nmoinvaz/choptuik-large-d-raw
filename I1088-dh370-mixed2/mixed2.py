@@ -4,11 +4,14 @@ dd_solve (LU with partial pivoting in double-double) or, with SOLVE=f64, by scip
 From the rescaled guess at the state's D (mixed.py's fit, the same 50 states and degree), so the held values and the
 solution are the octo-double jump's; the end state's Delta is compared with that stored solution's.
 
-    python3 mixed2.py STATE.npz THREADS RAW DMAX DEG SOLVE SCALE STEPS TOL [JPREC] [CHORD]
+    python3 mixed2.py STATE.npz THREADS RAW DMAX DEG SOLVE SCALE STEPS TOL [JPREC] [CHORD] [MOB] [RPREC]
 
 SOLVE: dd or f64. SCALE multiplies J (the control: 1.01 must turn quadratic convergence into linear at about 1e-2).
 JPREC: the Jacobian's precision, dd (2 parts, the default), qd (4) or od (8), its leading two parts used by the solve.
 CHORD 1: the Jacobian of the first step reused at every step (one Jacobian in all).
+MOB a > 0: the horizon series in the Moebius variable (Solver.set_horizon_mobius(a)), ks = ceil(1.5 (D - 2)) + 20.
+RPREC: the residual the iteration uses, od (eight parts, the default) or dd (two parts). The end state is then checked
+once with the octo-double residual (the verifier) whatever RPREC is.
 """
 import glob, sys, time
 sys.path.insert(0, "/home/nathan/Source/choptuik-large-d-1088a/hp")
@@ -25,15 +28,21 @@ solve, scale, steps, tol = sys.argv[6], float(sys.argv[7]), int(sys.argv[8]), fl
 jprec = sys.argv[10] if len(sys.argv) > 10 else "dd"
 chord = int(sys.argv[11]) if len(sys.argv) > 11 else 0
 nparts = {"dd": 2, "qd": 4, "od": 8}[jprec]
+mob = float(sys.argv[12]) if len(sys.argv) > 12 else 0.0
+rprec = sys.argv[13] if len(sys.argv) > 13 else "od"
 z8s, meta = load_o(path)
 M, nodes = meta["M"], meta["nodes"]
 K = len(nodes)
 with mp.workdps(60):
     D = mp.mpf(meta["D_str"])
-kw = dict(kt=meta["kt"], kc=meta["kc"], ks=meta["ks"], threads=thr, segs=meta["segs"])
+ks = int(np.ceil(1.5 * (float(D) - 2.0))) + 20 if mob else meta["ks"]
+kw = dict(kt=meta["kt"], kc=meta["kc"], ks=ks, threads=thr, segs=meta["segs"])
 s3 = make_solver_s(D, M, nodes, kfreeze=3, **kw)
+if mob:
+    s3.set_horizon_mobius(mob)
 L = s3.size_s
-print(f"D {meta['D']}: form S, L {L}, ks {meta['ks']}, kc {meta['kc']}, {thr} threads; J in {jprec} "
+print(f"D {meta['D']}: form S, L {L}, ks {ks}, horizon {'Moebius a = ' + str(mob) if mob else 'u'}, residual {rprec}, "
+      f"kc {meta['kc']}, {thr} threads; J in {jprec} "
       f"{'once (chord)' if chord else 'at every step'}, solve {solve}, J scaled by {scale}", flush=True)
 paths = sorted(glob.glob(raw + "/I903-macm3/chain_k135/anm_pin3_D*.npz") + glob.glob(raw + "/I966-dh370/ks_chain3b/*/anm_pin3_D*.npz"))
 rows = []
@@ -57,7 +66,8 @@ with mp.workdps(60):
         v -= mp.mpf(f)
 g = o8(g)
 sh = HeldS(s3, M, K, held_field(g, M))
-F = sh.residual_s(list(g))
+res = (lambda z: sh.residual_s(list(z))) if rprec == "od" else (lambda z: sh.residual_s([np.ascontiguousarray(z[0]), np.ascontiguousarray(z[1])]))
+F = res(g)
 nF = float(np.abs(np.asarray(F[0]) + np.asarray(F[1])).max())
 print(f"  guess from {len(rows)} states (degree {deg}); step 0: max |F| {nF:.3e}", flush=True)
 zero = np.zeros(L)
@@ -80,13 +90,17 @@ for it in range(1, steps + 1):
     ts = time.time() - t0
     t0 = time.time()
     g = o8(od_axpy(1.0, np.ascontiguousarray(dh), np.ascontiguousarray(dl), *([zero] * 6), *g))
-    F = sh.residual_s(list(g))
+    F = res(g)
     nF1 = float(np.abs(np.asarray(F[0]) + np.asarray(F[1])).max())
     tr = time.time() - t0
     print(f"  step {it}: max |F| {nF1:.3e}, digits gained {np.log10(nF / nF1) if nF1 > 0 else float('inf'):.2f}, "
           f"|dz| {np.abs(dh).max():.2e}; J {tj:.1f} s, solve {ts:.1f} s, residual {tr:.1f} s", flush=True)
     nF = nF1
-print(f"  end: max |F| {nF:.3e} after {time.time() - t_all:.0f} s; Delta {delta_digits(g, 40)}", flush=True)
+print(f"  end: max |F| {nF:.3e} ({rprec} residual) after {time.time() - t_all:.0f} s; Delta {delta_digits(g, 40)}", flush=True)
+t0 = time.time()
+Fo = sh.residual_s(list(g))
+print(f"  verifier: the octo-double residual at the end state, max |F| {float(np.abs(np.asarray(Fo[0]) + np.asarray(Fo[1])).max()):.3e}, "
+      f"{time.time() - t0:.1f} s", flush=True)
 dD = [np.asarray(a)[-1] for a in g]
 dS = [np.asarray(a)[-1] for a in z8s]
 with mp.workdps(140):
