@@ -34,3 +34,4 @@ Source accepted with controls 1 1 (dry run); the regrid exits 0 inside 21600 s; 
 
 ## Status
 - 2026-11-25 12:41 UTC: folder and README (the registered readings) written; the dry run of the regrid driver on this source passed (`regrid_dry_stdout.txt`, `exits_regrid.txt`); the drivers start next.
+- 2026-11-25 12:42 UTC: the regrid started (the driver through `cim_start.ps1`; `COMMIT_GATE_GB=off`; root pid in `exits_regrid.txt`; cap 21600 s: 18:42 UTC at the latest; committed memory 65 GB; the other lane's regrid runs beside it: 8 threads); the scan driver (started by a first launch whose quoting of the source note failed, then again at 12:43 UTC without quotes) waits for the accepted regrid and 18.4 GB free memory; the source's quality note is in `summary_fscan.txt`. Last regrids of this kind: 6600 to 7900 s, so the exits are expected around 14:35 UTC.
