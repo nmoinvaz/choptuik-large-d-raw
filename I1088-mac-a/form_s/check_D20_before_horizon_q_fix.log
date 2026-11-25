@@ -1,0 +1,36 @@
+up2_D20.0437.npz: D 20.0437, M 32, K 8, ks 100, kfreeze None, 20 steps; form A |F| 5.79e-16; form S at the form-A state |F| 1.84e-02 (blocks 3.8e-12 5.6e-12 8.4e-12 8.2e-12 7.7e-12 2.8e-12 5.7e-13 6.5e-14 1.8e-02 3.9e-33), 0.0 s
+
+thread '<unnamed>' (90737736) panicked at src/form_s.rs:212:71:
+form S: the slaving LU of a Taylor step: "singular or non-finite pivot at column 0 (NaN)"
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+thread '<unnamed>' (90737736) panicked at src/form_s.rs:212:71:
+form S: the slaving LU of a Taylor step: "singular or non-finite pivot at column 0 (NaN)"
+
+thread '<unnamed>' (90737735) panicked at src/form_s.rs:212:71:
+form S: the slaving LU of a Taylor step: "singular or non-finite pivot at column 0 (NaN)"
+
+thread '<unnamed>' (90737736) panicked at src/form_s.rs:212:71:
+form S: the slaving LU of a Taylor step: "singular or non-finite pivot at column 0 (NaN)"
+
+thread '<unnamed>' (90737735) panicked at src/form_s.rs:212:71:
+form S: the slaving LU of a Taylor step: "singular or non-finite pivot at column 0 (NaN)"
+
+thread '<unnamed>' (90737735) panicked at src/form_s.rs:212:71:
+form S: the slaving LU of a Taylor step: "singular or non-finite pivot at column 0 (NaN)"
+
+thread '<unnamed>' (90737736) panicked at src/form_s.rs:212:71:
+form S: the slaving LU of a Taylor step: "singular or non-finite pivot at column 0 (NaN)"
+Traceback (most recent call last):
+  File "/Users/nathan/Source/choptuik-large-d/.claude/worktrees/agent-a3b9be47f38a490b5/hp/form_s.py", line 528, in <module>
+    sys.exit(main())
+             ~~~~^^
+  File "/Users/nathan/Source/choptuik-large-d/.claude/worktrees/agent-a3b9be47f38a490b5/hp/form_s.py", line 524, in main
+    return dict(check=cmd_check, cond=cmd_cond, jump=cmd_jump, planted=cmd_planted)[cmd](sys.argv[2:])
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/Users/nathan/Source/choptuik-large-d/.claude/worktrees/agent-a3b9be47f38a490b5/hp/form_s.py", line 171, in cmd_check
+    zs, conv, hist = newton_dd(s, z, float(o["tol"]), int(o["it_max"]), mutate=mut)
+                     ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nathan/Source/choptuik-large-d/.claude/worktrees/agent-a3b9be47f38a490b5/hp/form_s.py", line 98, in newton_dd
+    Ft = s.residual_s([th, tl], mutate)
+pyo3_runtime.PanicException: form S: the slaving LU of a Taylor step: "singular or non-finite pivot at column 0 (NaN)"

@@ -21,4 +21,11 @@ c30c2766).
   the stored one, `slave_test.log`). `run_u0.sh` was stopped when Track A in form A was stopped (its log says when);
   `u0_tolerance.py` never ran.
 
+- `form_s/`: form S in hp (`hp/src/form_s.rs`, branch `wip/large-d-form-s`), an opt-level-1 build of it
+  (`HP_PROFILE`-style profile dev-o1 in hp/Cargo.toml) on `PYTHONPATH`. `run_check.sh` runs `hp/form_s.py check` at D
+  16.76-27.04 (`check.log`, the form-S solutions in `states/`), its flux control (`check_flux.log`) and the planted
+  check with its control (`planted.log`, `planted_step.log`); `run_check.log` has the times and the reruns of the
+  controls after two fixes of form_s.py. `check_D20_before_horizon_q_fix.log` is the first run, before the horizon
+  series' q was fixed (38943f4f). `cond_S_D50_mac.log`: form S's conditioning at D 50 on the Mac.
+
 Files are added as the runs go; each log or script names its command line.
