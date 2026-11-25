@@ -22,5 +22,13 @@ The two logs and jsons are what t2v reads; I report when the units started, each
 - By the 20 h cap: M 12 reaches D 245.6366177558899 (the 8th D) (55%) and M 14 (40%); either reaches D 1000 (M 12 20%, M 14 10%); at least one unit stops itself on 3 failed refinements before D 1000 (60%).
 - No memory alert (no MEMALERT line) during either run (85%).
 
+## Restart with --tol=1e-24 --rounds=1 --outer=4 (coordinator t5 for t2v, hc, read at 04:18 UTC 25 Nov), verbatim
+"Coordinator (t5), from t2v for #1090: restart both units i1090-m12 and i1090-m14 with --tol=1e-24 --rounds=1 --outer=4 added to the solve_dd_cont.py commands (same everything else; record the restart and its reason in the README: with the defaults the dd split Newton stalls near 1e-24 at D 100 and wastes ~30 min a D)."
+
+- **Run 1** (started 04:16:21 UTC with the defaults, `--tol 1e-27 --rounds 2 --outer 6`) was stopped by me at about 04:19 UTC, after 3 min, still in the first D (no D line, no json); its logs are kept in `run1_aborted/` (`solve_dd_cont_M12.log`, `solve_dd_cont_M14.log`, `run_M12.txt`, `run_M14.txt`). The reason is the coordinator's: the defaults stall near 1e-24 at D 100 and waste about 30 min a D.
+- **Run 2** (the units `i1090-m12` and `i1090-m14` started again at 04:19:12 UTC): the same commands with `--tol=1e-24 --rounds=1 --outer=4` appended (`run_dd.sh` edited while no unit was running), the same code (worktree `~/Source/c1090` at 6e231f5a), the same pinned input, the same `--out` folders `dd_M12_cont` and `dd_M14_cont` (fresh logs and jsons), nice 10, one thread, the 20 h cap counted from this start (`timeout 72000`). `solve_dd_cont.py` accepts a D as converged only when max|F| < 1e-20 (the script's own bar, unchanged); the tolerance 1e-24 only ends the Newton rounds earlier.
+- **Predictions for run 2 (registered at the restart, before any D line; mine; they replace the timing predictions above):** the first D line (D 100) appears within 30 min for both units (80%) and the D 100 solution has max|F| below 1e-20 (M 12: 75%; M 14: 65%); a D takes 10 to 40 min for M 12 (55%) and 15 to 60 min for M 14 (50%); M 12 reaches D 245.6366177558899 within the 20 h (65%), M 14 (50%); either reaches D 1000 (M 12 25%, M 14 15%); at least one unit stops itself on 3 failed refinements before D 1000 (55%).
+
 ## Status
 - 2026-11-25 04:16 UTC: folder, README, `run_dd.sh`, `push_i1090.sh` and the pinned input written before any run; the two units and the pusher are started next.
+- 04:16 UTC: both units started (run 1, defaults); 2026-11-25 04:19 UTC: restart ordered (above): run 1 stopped after 3 min and archived, run 2 started 04:19:12 UTC with `--tol=1e-24 --rounds=1 --outer=4`.
