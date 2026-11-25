@@ -1,0 +1,18 @@
+=== predict_check.py (the registered test)
+lambda -0.1990 sign -1 ln|det| -2402.5099 | zero model -2402.5049 (diff -0.0050) | pole model -2389.3623 (diff -13.1476)
+lambda -0.1985 sign -1 ln|det| -2402.9950 | zero model -2402.9865 (diff -0.0085) | pole model -2388.9602 (diff -14.0348)
+lambda -0.1965 sign +1 ln|det| -2402.9352 | zero model -2402.9448 (diff +0.0096) | pole model -2389.3199 (diff -13.6152)
+not noise-robust: none | float64 sign differs from hybrid: [-0.1965]
+PRIMARY (the order's, tolerance 0.05): zero
+SECONDARY (registered with it): zero-like
+predict_check exit 0
+=== read_lower.py D:/choptuik-i935-raw/I1025-win2/kc87_d2228125_test -0.1990 -0.1965 (this scan alone)
+points 3 in -0.199--0.197; not noise-robust: none
+hybrid signs: -0.199- -0.199- -0.197+
+float64 sign differs from the hybrid sign at: [(-0.1965, '+', '-')]
+repeated points: none
+  robust change (-0.199, -0.197), - to +, det-linear -0.197530, range [-0.197613, -0.197530]
+robust changes: 1; touching a non-robust point (not counted): none
+ln|det| local minima without a sign change: none
+endpoint signs: - at -0.199, + at -0.197
+read_lower exit 0
