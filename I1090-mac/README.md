@@ -29,13 +29,13 @@ python3 check_mobius.py S S/Sdd_D100_M8.json [--mutate=Lk];  python3 check_mobiu
 (the first run used solve_cont.py as committed in b8312af2; the second the version committed in 6e231f5a, which adds
 the refinement on failure; the dd run the solve_dd_cont.py of 6e231f5a; each was started before its commit, unchanged)
 
-Restarts of the float64 continuation, appended to  (records ):
+Restarts of the float64 continuation, appended to `f64_M6_cont/` (records `sol_D<D>_M6_a<a>.json`):
 ```
 python3 solve_cont.py S/sol_D186.66_M6_f64.json --M=6 --Ds=186.66,200,225,245.64,263.6,300,350,400,500,... --out=L/f64_M6_cont --noise0=200,245.64,300,400 --accept=1e-9
 python3 solve_cont.py S/sol_D400_M6_f64.json --M=6 --a=8 --Ds=400,450,500,600,800,... --out=L/f64_M6_cont --noise_as=1,32 --accept=1e-9   (crashed at D 800 on a non-finite step; driver fixed)
 python3 solve_cont.py S/sol_D600_M6_a8.json --M=6 --a=8 --Ds=600,650,700,800,900,1000,1150,1300,1600,2000,2500,3200,4000,5000,6500,8000,10000 --out=L/f64_M6_cont --noise_as=1,32 --accept=1e-9
 ```
-(S/sol_*.json are copies of the records of this folder at those D.) dd runs:  are the M 10
-continuations in D from D 100 (stopped or failed: §4 of the note),  the M 8 solve at D 200 from the M 6 one
-(stopped: no step along the weak directions). Diagnostics in : noise_variable, affine_orders, noise_at_solution
+(S/sol_*.json are copies of the records of this folder at those D.) dd runs: `dd_M10_cont_try1/` to `dd_M10_cont_try4/` are the M 10
+continuations in D from D 100 (stopped or failed: §4 of the note), `dd_Mcont/` the M 8 solve at D 200 from the M 6 one
+(stopped: no step along the weak directions). Diagnostics in `diag/`: noise_variable, affine_orders, noise_at_solution
 (per order band and a), f64_vs_dd, cost_vs_D, trackc_at, check_mobius(_dd).
