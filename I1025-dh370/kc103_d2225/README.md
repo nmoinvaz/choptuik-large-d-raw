@@ -65,3 +65,47 @@ How I read it, fixed here: on the 0.04 grid, "A near 0.434" is a robust '- to +'
 | 0.46 | - | True | + | -3089.4372 | 7679 |
 - Interim (information only; the reader's reading comes after the scan): between 0.42 and 0.46 the hybrid sign goes **+ to -** (both points noise-robust), where t5's A near 0.434 would show '- to +' there. No '- to +' change is seen in 0.10 to 0.46; the lower part of the window (0.02, 0.06) and 0.18 to 0.34 are not yet evaluated, and two roots inside one 0.04 interval would not be seen. The float64 sign differs from the hybrid at 0.42 and 0.46.
 - Round 2 (0.50, 0.34, 0.30, 0.26, 0.22) and round 3 (the repeat of 0.14, 0.06, 0.02, 0.18) follow, about 2.3 h each; the scan should end about 18:30 UTC.
+
+## Scan result (25 Nov, 11:34:42 to 17:34:19 UTC, 21577 s = 6.0 h; 5 processes of 1 thread, nice 10; `read_lower.txt`, `merged_D22.25.jsonl`)
+All five processes printed the record system (|F| 4.0304984584e-10 against the record's 4.0298416048e-10, 3392 steps equal) and exited 0; 14 evaluations, **14 noise-robust**. `read_lower.py` selftest exit 0, mutations `shift` and `round2` exit 1; `repeat_check.py` PASS (the repeat of 0.14 on process 0 against the first on process 3: ln|det| -3058.4344963163007 in both, bit-identical).
+| lambda | hybrid sign | noise-robust | float64 sign | ln of abs det | seconds |
+|---|---|---|---|---|---|
+| 0.02 | - | True | - | -3047.8954 | 5601 |
+| 0.06 | + | True | - | -3052.5949 | 5524 |
+| 0.10 | + | True | + | -3055.0710 | 8206 |
+| 0.14 | + | True | + | -3058.4345 | 5517 (repeat) and 8117 |
+| 0.18 | + | True | + | -3062.0248 | 5519 |
+| 0.22 | + | True | + | -3065.7368 | 7761 |
+| 0.26 | + | True | + | -3069.5415 | 7907 |
+| 0.30 | + | True | + | -3073.4405 | 7679 |
+| 0.34 | + | True | - | -3077.4686 | 7958 |
+| 0.38 | + | True | + | -3081.7544 | 8266 |
+| 0.42 | + | True | - | -3087.4107 | 8137 |
+| 0.46 | - | True | + | -3089.4372 | 7679 |
+| 0.50 | - | True | - | -3092.3422 | 7913 |
+**Two robust changes in the window 0.02 to 0.50** (the reader's output, orientation as printed; the det-linear estimate and its range are a spread over interpolation choices on a 0.04 grid, **not an enclosure**; the bracket is the grid step):
+1. **(0.020, 0.060), "- to +"**, det-linear **0.059639**, range [0.059286, 0.059639].
+2. **(0.420, 0.460), "+ to -"**, det-linear **0.455342**, range [0.420281, 0.455342].
+Edge signs: - at 0.020 and - at 0.500. No ln|det| minimum without a sign change; no change touches a non-robust point. The float64 sign differs from the hybrid at 0.06, 0.34, 0.42 and 0.46 (it is not used; the hybrid is the reading, as in every earlier scan). Per-process wall 4:26:14 (p4, two points), 5:52:55 to 5:59:37 (the others), peak RSS per process 3.66 to 3.72 GiB (`/usr/bin/time -v`); the 14 points took 7679 to 8266 s in rounds 1 and 2 (5 processes) and 5517 to 5601 s in round 3 (4 processes).
+
+### Against t5's registered prediction (my reading, fixed above before the run)
+- **A near 0.434** ('- to +' with bracket (0.42, 0.46)): **not met.** The change in (0.420, 0.460) prints "+ to -".
+- **A dived** ('- to +' with bracket below 0.38, as k_c 87's 0.108): **met, and further down:** (0.020, 0.060), det-linear 0.0596 (k_c 87 at D 22.25, macm3: bracket (0.100, 0.120), 0.108387, "- to +"). The grid cannot say where in (0.02, 0.06) it lies; the estimate sits at the upper end of the bracket.
+- **B** ('+ to -' above A): **met:** (0.420, 0.460), det-linear 0.455342, "+ to -".
+- Beside, as information (by position; orientation is printed, not interpreted): the root in (0.42, 0.46) is where k_c 87's upper root (0.442516, "+ to -", macm3) and k_c 95's root (0.434264, "- to +", dh610) lie; its printed orientation equals k_c 87's and is the opposite of k_c 95's. Whether the printed orientation carries a k_c-dependent global sign was not tested here. On the 0.04 grid the k_c 95 to 103 step of that root is only bracketed: between -0.014 (0.420 against 0.434) and +0.026 (0.460). The lower root has not been scanned at k_c 95 (dh610's window was 0.430 to 0.455).
+
+### Scan predictions scorecard (mine, registered before the run)
+| prediction | result |
+|---|---|
+| every point noise-robust (70%) | right (14 of 14) |
+| the repeat on its own process bit-identical (85%) | right |
+| at least one robust change in the window (90%) | right (two) |
+| A near 0.434, bracket (0.42, 0.46) (50%) | WRONG |
+| A dived (20%) | right ((0.02, 0.06)) |
+| a B in the window (35%) | right ((0.42, 0.46), "+ to -") |
+| the float64 sign equal to the hybrid at every point (25%) | right (it is not: differs at 4 of 14); the 25% was for equality, so the prediction of equality was WRONG |
+| scan 4 to 9 h from its start (60%); per point 3500 to 9000 s | right (6.0 h; 5517 to 8266 s) |
+Memory: MemAvailable fell to 0.66 GB at 10:14 to 10:15 UTC (t5's `i1088a` rustc, 27 GB, beside the regrid; `alert.log`, three lines), no kill; the scan's gate passed at once. The lane ended with exit codes `regrid 0`, `scan 0` (`exits_k103.txt`).
+
+## Status
+- 2026-11-25 17:34 UTC: the lane is finished. Regrid ACCEPTED (11:34:31), scan done (17:34:19): two robust changes, (0.02, 0.06) "- to +" and (0.42, 0.46) "+ to -", result and scorecards above.
