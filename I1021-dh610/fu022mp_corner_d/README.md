@@ -37,5 +37,24 @@ Basis: only the 0.25 start was ever tried at this corner; the code comment in `a
 - If VALUED: the float64 row valued by the continuation with the guard passing, no mp attempt (55% of VALUED); the box then resolved with no unresolved cell (55%); its leaf sum 0 (55%), -1 or +1 (45%); at least one new zero located in the box (45%); the new points of the walk number 10 to 30 (60%); the lane done within 4 h (60%).
 - The first 4159 lines of the cache unchanged (100%); the cache grows by 1 to 3 rows if UNVALUED (85%).
 
+## Result of (d) (18:21 UTC, 25 Nov; the run 18:06:16 to 18:20:14 UTC, 838 s): UNVALUED
+The recount exited 0. **The corner (3.9123456, 0.20654321) has no value with `--m3starts=0.2,0.25`: "no value: continuation lost S3's zero after [0.25, 0.24875], 89 CPU s"** (`logs/recount.log`), the same trail as with the default order, and then the extended-precision attempt "|R|/sigma_mp 0.4, NOT valued, 748 s" (805 s in attempt 2, 745 s in attempt 4). `reading.txt`: corner reading UNVALUED (last row line 4161); the count: boundary winding nan, leaf sum 0, 1 leaf after 0 splits, 3824 points, 1 unresolved cell (the whole box), 0 zeros.
+- **What the rows say about the 0.2 start.** The float64 row is bit for bit the earlier one (|r_3| 3831151.090225316, sigma 35697.35189786909, F_3 (-0.0006877361546880503, -0.4987022104543663), trail [0.25, 0.24875], no `bound` entry); the mp row too (info 3849742.1280700336, sigma 49565439.570067756). With `starts` [0.2, 0.25] the continuation tries 0.2 first (the selftest control `--mutate=starts` shows the option is read); a start that `_accept3` does not accept without a cause leaves no `bound` entry and the loop goes on to 0.25, so the record reads as before. The float64 CPU time is 89 s against 46 s in attempts 2 and 4, which is what one more failed start before the 0.25 one costs. So the 0.2 start did not reach |r_3| below 3 times its noise from the seed F_3: **no branch to xi1 0.17 from the 0.2 start**, in the order's words. That the 0.2 start was rejected is read from the extra CPU time and the unchanged record, not from a printed cause: the log has none for a plain non-convergence.
+- **The cache:** 4161 lines, 2 appended (the float64 and the mp row of the corner, both without value); the first 4159 lines unchanged (`cmp` exit 0, the one-byte-edit control exit 1). The yield watcher raised the python and its 4 workers to nice 19 at 18:09:42 UTC when an `i1088a-*` unit became active (`i1088a_yield.txt`, 6 pids, all threads); the load in `logs/sampler.log` was 4.87 to 6.51 (13 samples, one a minute), MemAvailable at least 49 GiB, no alert.
+- **Next:** (e), tiling the box into sub-box cells, one level at a time, as the order says; its README section is written before it runs.
+
+### Scorecard of (d) (registered before the run)
+| prediction | result |
+|---|---|
+| pins pass, selftests `0 1 1 1 1`, tie check `0 1`, reader `0 1` (95%) | right |
+| (d) VALUED (35%); UNVALUED (65%) | UNVALUED: the 65% outcome |
+| if UNVALUED, "lost S3's zero after [0.25, 0.24875]" again, the 0.2 start rejected (45% of all outcomes) | right |
+| a trail that begins with 0.2 (20%); a different cause, a bound or the wall (0%) | did not happen; did not happen |
+| one extended-precision attempt, NOT valued, 700 to 900 s (75%) | right (748 s) |
+| the lane done within 30 min of its start (80%) | right (14 min: 18:06:16 to 18:20:14 UTC) |
+| 1 unresolved cell given UNVALUED (100%) | right |
+| the first 4159 lines of the cache unchanged (100%); 1 to 3 rows added if UNVALUED (85%) | right; right (+2) |
+
 ## Status
 - 2026-11-25 18:05 UTC: folder, inputs (pinned), lane, watcher and README written before any run; `lane_corner_d.sh dry` is run next, then the unit `i1076cd`. Beside it: the k_c 103 D 22.5 scan (4 processes, `../../I1025-dh610/kc103_d225/`).
+- 18:21 UTC: (d) ended UNVALUED (exit 0, 838 s; raw below). (e) level 1 is next.
