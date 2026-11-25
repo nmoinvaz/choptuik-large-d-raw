@@ -55,3 +55,20 @@ t5: "(a). Let 4c finish, then run steps 5 and 5b at --threads=4 (your script cha
 - **5_d315: exit 0, 4252 s, criterion 2 (D 3.15) PASS**: matched root D_m 4.397786345516482, outward root D_out 4.397786345516484, |diff| 1.78e-15 (bar 1e-8), one sign change each. This is the state's own plan, at 4 threads; `d315.jsonl`. Not compared bit for bit with a 6-thread run: step 3 (6 threads) ran `root --both --hmax=0.001` on a different plan.
 - **5b_identity_h0.001: IndexError at once (1 s), chain stopped by its own rule** (`attempt1_5b_missing_lams/`). My script line `identity $OUT/identity_h0.001.jsonl $S2 --hmax=0.001` left out the two lambda arguments that `cmd_identity` reads (`args[2]`, `args[3]`); the error is mine, in all of `run_1083.sh`, `run_1083b.sh`, `run_1083c.sh` and `run_1083d.sh`, and no computation had run. The pinned note gives the command (`notes/MODE_HORIZON.md` line 196): `identity $O/identity_D3.15_h0.001.jsonl $S2 4.3 4.5 --hmax=0.001 --threads=6`.
 - **Rerun, written before it:** `run_1083e.sh` (unit `i1083e`; `run_1083d.sh` without step 5, `run_1083d_used.sh` kept) runs `identity identity_h0.001.jsonl $S2 4.3 4.5 --hmax=0.001 --threads=4`, nice 10, timeout 14400. The pass rule is the subcommand's: the signs of D_out and D_m agree at both lambda, and the change of ln|D_out| - ln|D_m| between 4.3 and 4.5 equals (4.3 - 4.5) sum over the segments after the match of the Liouville integrals within a relative 1e-6 (criterion 4); exit 1 on FAIL. The earlier hmax 0.05 plan gave 4.9e-3 against 1e-6 (the cause: discrete blocks of the outer segments); the hmax 0.001 plan is what this tests.
+
+### Step 5b result and the end of part 2 (2026-11-25 02:31:49 UTC; unit i1083e, 4 threads, 2285 s)
+`criterion 4 (identity): ln|D_out| - ln|D_m| = 1359.224745008 and 1437.646826812; change -78.422081804, Liouville (lam1 - lam2) * 392.110409021 = -78.422081804, relative difference 4.2e-12 (<= 1e-6); signs agree True: PASS` (exit 0; `identity_h0.001.jsonl`, `5b_identity_h0.001.log`). On the hmax 0.001 plan (1012 outward steps) the identity holds to 4.2e-12 against the bar 1e-6, where the state's own hmax 0.05 plan gave 4.9e-3. The chain ended ("chain done", `1083_DONE.txt`); the units `i1083c`, `i1083d`, `i1083e` have ended.
+
+### Part 2 in one table (every row from `steps_1083.txt`; dh370, matched layout of `hp/mode_matched.py`, wip/mode-horizon-1083 7c6177e1 blob 3dd81b39, #1082 venv)
+| step | check | threads | seconds | verdict |
+|---|---|---|---|---|
+| 1, 1b | toy; toy `--mutate=shift` | 6 | 7, 6 | matched root error 2.7e-15 PASS; the shift control FAILS as it must (exit 1) |
+| 2 | criterion 1, four lam at D 3.044375 | 6 | 3160 | PASS: line residual 4.4e-13 (bar 1e-6), pivot ratio 5.2e-8 |
+| 2b | its control `--match=out` | 6 | 2792 | FAIL as it must (exit 1): residual 7.0e-1 |
+| 3 | `root --both --hmax=0.001`, D 3.15 | 6 | 7190 | D_m root 4.397786345516192, D_out root 4.397786345515569 (differ by 6.2e-13) |
+| 4 | criterion 3, planted root, D 3.044375 | 6 | 6327 | PASS: root 4.999999999999835, error 1.7e-13 (bar 1e-9) |
+| 4b | planted `--mutate=shift` | 6 | 5980 | FAILS as it must (exit 1): error 1.0e-6 |
+| 4c | planted `--mutate=outward` | 6 | 7353 | the control fired (exit 0): outward layout finds no clean change |
+| 5 | criterion 2, `d315` | 4 | 4252 | PASS: D_m 4.397786345516482, D_out 4.397786345516484, difference 1.8e-15 (bar 1e-8) |
+| 5b | criterion 4, identity, lam 4.3 and 4.5, hmax 0.001 | 4 | 2285 | PASS: relative difference 4.2e-12 (bar 1e-6); attempt 1 (1 s) had no lambda arguments, my error |
+Not shown: that results are independent of the thread count (steps 5 and 5b ran at 4 threads, the others at 6; step 3's roots at the hmax 0.001 plan and step 5's at the state's own plan agree to 1e-12 and are not a thread comparison).
