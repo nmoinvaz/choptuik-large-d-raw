@@ -81,4 +81,7 @@ c30c2766).
   I1088-dh610/out/t2/); `form_s/t2g/`: the same at x_c for D 4000 and 5657; `form_s/fine2420/`, `hyb2420/`: the fine mesh
   at D 2420 (valid false) and the hybrid's failed guess (the series at 0.7 from the fine m_h reads 1.7e3).
 
+- `form_s/g10000/`, `g10000L20/`, `g2828L20/`, `g4000L20/`, `g5657L20/`: guesses saved by `form_s_lastnode.py guess` for
+  the solves on dh610 and dh370 (`solvestate`): the last node at x_c (g10000) or at L = 20.
+
 Files are added as the runs go; each log or script names its command line.

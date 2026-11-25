@@ -39,3 +39,6 @@ the command), `jump.log` and `jump_s.jsonl` (one record per Newton step), via `r
 - `L2828/`: D 2828.4271 held with the last node at L = ln F = 20 (x_l 0.704601; form_s_lastnode.py solvestate from the
   guess in I1088-mac-a/form_s/g2828L20/): Delta 1.647558420562662, -4.8e-10 from the #1095 refit, -6.0e-10 from Track C.
 - `rls1000/`: the D 1000 release, h5 to h11 released, stopped in h13 (`release_ls_h11_D1000.0000.npz`).
+- `L4000/`: D 4000 held at L = 20 (x_l 0.705336, a 9.995, ks 5218; guess from D 2000, 2200, 2828.4271): Delta
+  1.646485793699952, -6.7e-10 from Track C; the double-double floor leaves the bound at 1.0e-12 (record written by hand).
+- `run_5657L20.sh` (on the machine): D 5656.8542 at L = 20 (out/L5657/).
