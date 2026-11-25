@@ -6,9 +6,9 @@
    node x 0.60: |X_S - X_hp| / |X_hp| = 1.00e+00  (|X| 4.96e-04)
    node x 0.70: |X_S - X_hp| / |X_hp| = 1.00e+00  (|X| 6.59e-04)
 2. momentum-constraint slaving holds at hp's nodes                        FAIL
-   centre at x 0.30: U rel err 1.29e-14
-   centre at x 0.30: V rel err 1.03e-15
-   centre at x 0.30: c rel err 1.11e-16
+   centre at x 0.30: U rel err 1.01e-02
+   centre at x 0.30: V rel err 6.41e-03
+   centre at x 0.30: c rel err 6.02e-03
    horizon at x 0.70: U rel err 9.16e-02
    horizon at x 0.70: c rel err 1.01e-02
    V harmonic  1: horizon 5.507473e-01 node 5.469850e-01 rel diff 6.88e-03
@@ -17,6 +17,7 @@
    V harmonic  7: horizon 1.675552e-04 node 1.843283e-04 rel diff 9.10e-02
    horizon tail 2.9e-39, ks 316
 3. form-S centre and horizon series reproduce hp's first and last nodes   FAIL
-   centre series, orders 1..39: max |Hamiltonian residual| / |(n-1) X_k| = 1.10e+00
-4. the Hamiltonian equation holds order by order in form S's centre series FAIL
+   Hamiltonian residual / |(n-1) X_k|, hp's grid (M 32), orders [1, 2, 3, 5, 8]: 1.5e+299 2.5e+298 5.4e+297 1.0e+297 1.0e+297
+   the same data resampled to M 8, orders [1, 2, 3, 5, 8]: 1.5e+299 2.4e+298 5.4e+297 6.6e+296 1.3e+296
+4. the Hamiltonian equation holds at orders 1, 2 of form S's centre series (hp's grid) FAIL
 SOME FAIL

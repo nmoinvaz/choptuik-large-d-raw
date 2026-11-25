@@ -17,6 +17,7 @@
    V harmonic  7: horizon 1.843283e-04 node 1.843283e-04 rel diff 3.38e-09
    horizon tail 2.7e-32, ks 316
 3. form-S centre and horizon series reproduce hp's first and last nodes   PASS
-   centre series, orders 1..39: max |Hamiltonian residual| / |(n-1) X_k| = 1.10e+00
-4. the Hamiltonian equation holds order by order in form S's centre series FAIL
-SOME FAIL
+   Hamiltonian residual / |(n-1) X_k|, hp's grid (M 32), orders [1, 2, 3, 5, 8]: 2.5e-15 4.6e-14 1.1e-11 2.2e-08 7.3e-06
+   the same data resampled to M 8, orders [1, 2, 3, 5, 8]: 7.7e-05 4.9e-04 4.7e-03 1.3e-01 4.8e-02
+4. the Hamiltonian equation holds at orders 1, 2 of form S's centre series (hp's grid) PASS
+ALL PASS

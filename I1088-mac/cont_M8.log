@@ -1,0 +1,29 @@
+== D 105.000000: predictor Delta 1.740434558751 (0 s)
+  f64 it 0 max|F| 2.754e-03 Delta 1.740434558751175 block 0 (0e+00) tails c 2.9e-91 h 3.6e-31  (0 s)
+  f64    step max|dy| 3.666e-03 dDelta -4.895e-05 alpha 1
+  f64 it 1 max|F| 2.776e-06 Delta 1.740385613284303 block 0 (0e+00) tails c 4.3e-88 h 3.4e-34  (3 s)
+  f64    step max|dy| 1.707e-03 dDelta -3.643e-04 alpha 1
+  f64 it 2 max|F| 1.673e-06 Delta 1.740021270416774 block 0 (0e+00) tails c 3.0e-88 h 1.0e-34  (5 s)
+  f64    step max|dy| 2.053e-03 dDelta -3.542e-05 alpha 0.5
+  f64 it 3 max|F| 8.304e-07 Delta 1.740003559516951 block 0 (0e+00) tails c 1.8e-88 h 4.0e-35  (7 s)
+  f64    step max|dy| 7.034e-04 dDelta 7.055e-05 alpha 1
+  f64 it 4 max|F| 2.707e-07 Delta 1.740074110627759 block 0 (0e+00) tails c 1.3e-88 h 3.5e-37  (10 s)
+  LS: 19 strong, 6 weak directions; weak singular values 1.83e-08 1.07e-08 5.92e-09 1.80e-09 1.14e-09 6.14e-10
+  LS outer 0: max|F| 3.841e-13 |g| 4.709e-13 |b| 0.000e+00
+      db 3.500e-01 lambda 0.00195, reduced Jacobian sv 4.59e-10 4.48e-10 1.81e-13 1.34e-13 2.96e-14 3.92e-16
+  round 0: max|F| 5.465e-13 Delta 1.7400712645342258 (184 s)
+  LS: 19 strong, 6 weak directions; weak singular values 4.59e-10 4.48e-10 1.79e-13 1.35e-13 2.91e-14 7.60e-17
+  LS outer 0: max|F| 3.816e-13 |g| 5.982e-13 |b| 0.000e+00
+      no step along the weak directions reduces |g|; kept the point
+Traceback (most recent call last):
+  File "/Users/nathan/Source/choptuik-large-d/.claude/worktrees/agent-a60275495eaeb0f7f/solver/factored/cont.py", line 85, in <module>
+    y, F, h1, S = ls_solve(f.residual, y, J, tau=float(opts.get("tau", 1e-8)), outer=1, log=lambda s: log("  " + s))
+                  ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nathan/Source/choptuik-large-d/.claude/worktrees/agent-a60275495eaeb0f7f/solver/factored/lsnewton.py", line 135, in ls_solve
+    " ".join("%.2e" % v for v in np.linalg.svd(G, compute_uv=False))))
+                                 ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nathan/venv-314/lib/python3.14/site-packages/numpy/linalg/_linalg.py", line 1850, in svd
+    s = _umath_linalg.svd(a, signature=signature)
+  File "/Users/nathan/venv-314/lib/python3.14/site-packages/numpy/linalg/_linalg.py", line 153, in _raise_linalgerror_svd_nonconvergence
+    raise LinAlgError("SVD did not converge")
+numpy.linalg.LinAlgError: SVD did not converge
