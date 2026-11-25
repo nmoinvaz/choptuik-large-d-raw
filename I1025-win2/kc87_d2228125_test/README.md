@@ -36,3 +36,4 @@ Source accepted with controls 1 1 and the k_c 95 check refusing it (dry run); ev
 ## Status
 - 2026-11-25 10:27 UTC: README (the registered prediction) and `predict_check.py` (selftest 0; `--mutate` 1) written; the driver is dry-run next, then started.
 - 2026-11-25 10:29 UTC: dry run passed (`dry_stdout.txt`, `exits_testscan.txt`, `selftest_exits.txt` = 0 1 1 0 0 1 0 0 0 1 0 1): pins and selftests, macm3's state fetched (blob 3ce8bc2e, row hash 0eb8d22e) and accepted (controls 1 1), the k_c 95 check refuses. The driver starts next.
+- 2026-11-25 10:29 UTC: the scan started by itself (the driver run through `cim_start.ps1`): three processes, root pids 40532, 37032, 29660, caps 28800 s (18:29 UTC at the latest); about 1900 s per evaluation: the three points ~11:01 UTC.
