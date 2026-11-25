@@ -1,0 +1,19 @@
+  states: 0 form A, 3 form S (D 1000, 1414, 2000)
+guess at D 2200 from 3 states, D 1000.0000 .. 2000.0000, degree 2 in 1/n; degree 1 differs by 2.95e-07 (unknowns), 2.37e-06 (Delta)
+  ks 3317 (the Moebius series' rule 1.5 n + 20, a = 8)
+  328 Taylor steps; the guess's max |F| per block 2.3e-11 2.6e-11 4.4e-11 7.2e-11 1.2e-10 2.1e-01 5.0e-18
+  p1's harmonics 5-13 at the guess's values (kfreeze 3 with the held offset)
+  start: max |F| 2.022e-01, Delta 1.648603937387518092450022777484264224768
+  it 0: |F| 2.022e-01 -> 1.011e-04, |dz| 1.73e-06, dDelta -2.304e-09, lam 1, Delta's gain 9.35e-01, gain |F| 9.46e-05, 355.5 s (J and solves 340 s), Delta 1.648603935083606939502372243299210793079
+  it 1: |F| 1.011e-04 -> 9.914e-05, |dz| 1.73e-06, dDelta -3.608e-10, lam 1, Delta's gain 1.05e+00, gain |F| 1.04e-04, 358.2 s (J and solves 339 s), Delta 1.648603934722853950679840942357919032736
+  it 2: |F| 9.914e-05 -> 4.947e-13, |dz| 2.25e-12, dDelta +7.935e-14, lam 1, Delta's gain 1.05e+00, gain |F| 5.19e-13, 374.5 s (J and solves 352 s), Delta 1.648603934722933298119350127924718514736
+  it 3: |F| 4.947e-13 -> 1.677e-13, |dz| 4.16e-13, dDelta -1.218e-16, lam 1, Delta's gain 1.05e+00, gain |F| 1.76e-13, 384.9 s (J and solves 365 s), Delta 1.648603934722933176324107770021501296459
+  it 4: |F| 1.677e-13 -> 4.130e-14, |dz| 1.84e-20, dDelta +1.841e-20, lam 1, Delta's gain 1.05e+00, gain |F| 4.33e-14, 366.4 s (J and solves 355 s), Delta 1.648603934722933176342513021852232284178
+  it 5: |F| 4.130e-14 -> 2.877e-14, |dz| 2.86e-21, dDelta -2.865e-21, lam 1, Delta's gain 1.05e+00, gain |F| 3.02e-14, 379.4 s (J and solves 365 s), Delta 1.648603934722933176339648266758683038609
+  it 6: |F| 2.877e-14 -> 2.229e-14, |dz| 2.79e-21, dDelta -2.789e-21, lam 1, Delta's gain 1.05e+00, gain |F| 2.34e-14, 385.0 s (J and solves 369 s), Delta 1.648603934722933176336859144390592317282
+  it 7: |F| 2.229e-14 -> 6.736e-15, |dz| 3.35e-21, dDelta +3.349e-21, lam 0.25, Delta's gain 1.05e+00, gain |F| 7.07e-15, 402.8 s (J and solves 352 s), Delta 1.648603934722933176337696476224820702679
+  it 8: |F| 6.736e-15 -> 6.736e-15, |dz| 3.95e-22, dDelta +3.949e-22, lam 0, Delta's gain 1.05e+00, gain |F| 7.07e-15, 423.3 s (J and solves 322 s), Delta 1.648603934722933176337696476224820702679
+  end state: qd max |F| 3.693e-14; Delta's first-order bound gain |F| 3.87e-14 (gain 1.05e+00, the last step's Jacobian)
+  the full system (kfreeze 13) at the held solution: max |F| 3.084e-08, first-order dDelta +4.643e-10 (Delta's gain sum |dDelta/dF| 3.34e+05)
+  Hamiltonian code check (form A's residual in double-double, a slaved): segment blocks' max |F| 1: a 1.8e-26, p/m/c 1.4e-23; 2: a 4.0e-26, p/m/c 2.7e-23; 3: a 7.1e-26, p/m/c 4.3e-23; 4: a 1.1e-25, p/m/c 6.0e-23
+  NOT converged; Delta 1.648603934722933176337696476224820702679; saved /home/nathan/Source/choptuik-large-d-1088a/out/j2200_l2/jump_s_D2200.0000.npz
