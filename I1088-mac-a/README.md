@@ -48,4 +48,10 @@ c30c2766).
   difference cannot resolve the 1e-30 move).
 - `form_s/g2000.sh`: the D 2000 guess's blocks for two fits (`g2000_A.log`, `g2000_B.log`, `g2000_*/`).
 
+- `form_s/mob_f64.py`: t2v's float64 Moebius sum at a state's m_h against its last node, for several a and ks; at the
+  D 2000 guess (`g2000_B/`, `mob_f64_g2000_B.log`).
+- `form_s/ctl300.sh`: the controls of the stopping rule on Delta's first-order bound at D 300 (`ctl300_b15/`,
+  `ctl300_b30/`, `ctl300_s101/` stopped by hand after 3 steps, `ctl300_b30h/`); `form_s/segtest.py`: the Taylor plan's
+  truncation seen by form S (`segtest_D300.log`).
+
 Files are added as the runs go; each log or script names its command line.

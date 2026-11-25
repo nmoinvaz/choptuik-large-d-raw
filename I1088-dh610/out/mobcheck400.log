@@ -1,0 +1,46 @@
+mobcheck at jump_s_D400.0000.npz: D 400, Delta 1.669658064097056102457783682029938530301; u ks 404, Moebius a 8 ks 617
+  u: max |F| per block 3.70e-66 2.81e-66 3.51e-66 4.16e-66 4.72e-66 1.67e-65 1.13e-132 (5 s)
+  Moebius: max |F| per block 3.70e-66 2.81e-66 3.51e-66 4.16e-66 4.72e-66 6.11e-27 1.13e-132 (23 s)
+  control: max |F| per block 3.70e-66 2.81e-66 3.51e-66 4.16e-66 4.72e-66 1.39e-02 1.13e-132 (21 s)
+  start: max |F| 6.105e-27, Delta 1.669658064097056102457783682029938530301
+  it 0: |F| 6.105e-27 -> 1.281e-38, |dz| 1.81e-19, dDelta +7.322e-20, lam 1, Delta's gain 4.11e+08, gain |F| 5.26e-30, 68.7 s (J and solves 54 s), Delta 1.669658064097056102530999281574796268287
+  it 1: |F| 1.281e-38 -> 1.432e-65, |dz| 9.61e-37, dDelta -3.198e-37, lam 1, Delta's gain 4.11e+08, gain |F| 5.88e-57, 70.0 s (J and solves 56 s), Delta 1.669658064097056102530999281574796267967
+  Newton with the Moebius horizon: converged in 2 steps, Delta 1.669658064097056102530999281574796267967, Delta_t - Delta_u +7.322e-20: FAIL against 1e-20 (150 s)
+  start: max |F| 1.394e-02, Delta 1.669658064097056102457783682029938530301
+  it 0: |F| 1.394e-02 -> 1.281e-02, |dz| 5.19e-01, dDelta +5.187e-01, lam 0.25, Delta's gain 9.55e+02, gain |F| 1.22e+01, 98.5 s (J and solves 57 s), Delta 1.799340035307008350556727532176410358300
+
+thread '<unnamed>' (1929427) panicked at src/form_s.rs:216:71:
+form S: the slaving LU of a Taylor step: "singular or non-finite pivot at column 0 (NaN)"
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+thread '<unnamed>' (1929429) panicked at src/form_s.rs:216:71:
+form S: the slaving LU of a Taylor step: "singular or non-finite pivot at column 0 (NaN)"
+
+thread '<unnamed>' (1929426) panicked at src/form_s.rs:216:71:
+form S: the slaving LU of a Taylor step: "singular or non-finite pivot at column 0 (NaN)"
+
+thread '<unnamed>' (1929432) panicked at src/form_s.rs:216:71:
+form S: the slaving LU of a Taylor step: "singular or non-finite pivot at column 0 (NaN)"
+Traceback (most recent call last):
+  File "/home/nathan/Source/choptuik-large-d-1088a/hp/form_s.py", line 1121, in <module>
+    sys.exit(main())
+             ~~~~^^
+  File "/home/nathan/Source/choptuik-large-d-1088a/hp/form_s.py", line 1116, in main
+    return dict(check=cmd_check, cond=cmd_cond, jump=cmd_jump, planted=cmd_planted, release=cmd_release,
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                release_ls=cmd_release_ls, mobcheck=cmd_mobcheck)[cmd](sys.argv[2:])
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/home/nathan/Source/choptuik-large-d-1088a/hp/form_s.py", line 1074, in cmd_mobcheck
+    zt, conv, recs = newton_o_s(sv, z8, float(o["tol"]), int(o["it_max"]), int(o["halvings"]), None, verbose=True,
+                     ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                jac=o["jac"])
+                                ^^^^^^^^^^^^^
+  File "/home/nathan/Source/choptuik-large-d-1088a/hp/form_s.py", line 616, in newton_o_s
+    Ft = s.residual_s(list(zt))
+  File "/home/nathan/Source/choptuik-large-d-1088a/hp/form_s.py", line 1108, in residual_s
+    return self.s.residual_s(z, self.mu)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/home/nathan/Source/choptuik-large-d-1088a/hp/form_s.py", line 877, in residual_s
+    return self._minus_c(self.s.residual_s(z, mutate))
+                         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+pyo3_runtime.PanicException: form S: the slaving LU of a Taylor step: "singular or non-finite pivot at column 0 (NaN)"

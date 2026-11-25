@@ -1,0 +1,16 @@
+  states: 50 form A, 0 form S (D )
+guess at D 300 from 50 states, D 226.1312 .. 252.4034, degree 3 in 1/n; degree 2 differs by 1.19e-07 (unknowns), 1.56e-07 (Delta)
+  ks 306 (the sigma rule)
+  Taylor steps from /Users/nathan/Source/choptuik-large-d-raw-1088a/I1088-dh370/j300_held/jump_s_D300.0000.npz
+  Delta from Track C's series: 1.67817101541652 +- 1.25e-10; the fit's 1.678171064827
+  78 Taylor steps; the guess's max |F| per block 9.6e-11 1.2e-10 2.2e-10 3.5e-10 5.2e-10 3.2e-09 6.5e-15
+  p1's harmonics 5-13 at jump_s_D300.0000.npz's values (kfreeze 3 with the held offset)
+  start: max |F| 3.227e-09, Delta 1.678171015416520052352664707132256000000
+  it 0: |F| 3.227e-09 -> 1.010e-17, |dz| 3.24e-09, dDelta -6.668e-12, lam 1, Delta's gain 9.62e+08, gain |F| 9.72e-09, 146.7 s (J and solves 139 s), Delta 1.678171015409852316812875440113541140290
+  it 1: |F| 1.010e-17 -> 4.733e-24, |dz| 3.61e-12, dDelta +7.662e-13, lam 1, Delta's gain 9.62e+08, gain |F| 4.55e-15, 142.4 s (J and solves 135 s), Delta 1.678171015410618491303541094720624095230
+  it 2: |F| 4.733e-24 -> 2.670e-44, |dz| 2.69e-22, dDelta +8.104e-23, lam 1, Delta's gain 9.62e+08, gain |F| 2.57e-35, 134.6 s (J and solves 128 s), Delta 1.678171015410618491303622129934705956427
+  end state: octo-double max |F| 2.670e-44; Delta's first-order bound gain |F| 2.57e-35 (gain 9.62e+08, the last step's Jacobian)
+  the full system (kfreeze 13) at the held solution: max |F| 2.322e-22, first-order dDelta +1.440e-10 (Delta's gain sum |dDelta/dF| 5.32e+19)
+  Hamiltonian code check (form A's residual in double-double, a slaved): segment blocks' max |F| 1: a 2.6e-22, p/m/c 3.0e-20; 2: a 4.1e-22, p/m/c 4.4e-20; 3: a 4.8e-22, p/m/c 4.8e-20; 4: a 4.3e-22, p/m/c 4.1e-20
+  converged; Delta 1.678171015410618491303622129934705956427; saved /Users/nathan/Source/choptuik-large-d-raw-1088a/I1088-mac-a/form_s/ctl300_b30h/jump_s_D300.0000.npz
+  Delta - Track C -5.90156e-12 (Track C's +- 1.25e-10)

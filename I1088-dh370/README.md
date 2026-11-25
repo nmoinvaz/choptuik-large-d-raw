@@ -28,3 +28,7 @@ the command), `jump.log` and `jump_s.jsonl` (one record per Newton step), via `r
   re-formed at every step in double-double (`dd.log`, control `dd_scale101.log`), f64 (`f64_fresh.log`) or quad-double
   (`qd_fresh.log`), and one octo-double Jacobian as a chord (`od_chord.log`); copied while `run3.sh` runs.
 - `after_mob.sh`: the D 1000 held jump with the Moebius horizon, queued after `rebuild_mob.sh`.
+- `j1000_held_mob/`: D 1000 held, the Moebius horizon (a 8, ks 1517, kc 200), the quad-double Jacobian, the octo-double
+  residual to 1e-40; Delta 1.654240853943893145 and the full system's first-order dDelta (`jump.log`, the state).
+- `after_mob_lean.sh`: D 1000 again the lean way (double-double solve, Delta-bound stop, quad-double check), queued after
+  a rebuild with the z recurrence.

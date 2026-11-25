@@ -22,3 +22,6 @@ the Mac, which pushed this folder.
 - `out/rls300/release_ls_h13_D300.0000.npz`: D 300 with every harmonic up to 13 free (the full system), the end of
   `release_ls` (`out/rls300.log`, `out/rls300_release_ls.jsonl`).
 - `rebuild_mob.sh`: the release build with the Moebius horizon and mobcheck at D 400, queued after the release.
+- `out/mobcheck400.log`: mobcheck at the D 400 held state with Newton (checks 2 and 3 of the Moebius port); the
+  control's Newton ended in a panic of a trial (fixed in form_s.py 4732b6c9).
+- `after_mob2000.sh`: the D 2000 held jump with the Moebius horizon (out/j2000_held_mob/), started 07:34:56 UTC.
