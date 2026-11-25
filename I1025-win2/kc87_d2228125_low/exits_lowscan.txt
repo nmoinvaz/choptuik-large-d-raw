@@ -1,3 +1,19 @@
 kcl kc87 low D 22.28125 pins and selftests ok (read_lower + shift + round2, repeat_check, pair gate, kc95 and kc87 checks, fetch; each mutation exit 1) 2026-11-25 05:47:13 UTC
 kcl kc87 low D 22.28125 source accepted: macm3's state blob 3ce8bc2e0a0e7943386ae5a2cc02c0c63a7d486f, the D row hash 0eb8d22e0ee5e4ae3f40359307c328c82b271f86, record file blob 40d927af3f3a433dda085005104ea8244c3230c6 at the fetch (kc87 check exit 0; --mutate=F and --mutate=steps exit 1; the k_c 95 check refuses) 2026-11-25 05:47:20 UTC
 kcl kc87 low D 22.28125 DRY run ended before the scan 2026-11-25 05:47:20 UTC
+kcl kc87 low D 22.28125 pins and selftests ok (read_lower + shift + round2, repeat_check, pair gate, kc95 and kc87 checks, fetch; each mutation exit 1) 2026-11-25 05:48:25 UTC
+kcl kc87 low D 22.28125 source accepted: macm3's state blob 3ce8bc2e0a0e7943386ae5a2cc02c0c63a7d486f, the D row hash 0eb8d22e0ee5e4ae3f40359307c328c82b271f86, record file blob 40d927af3f3a433dda085005104ea8244c3230c6 at the fetch (kc87 check exit 0; --mutate=F and --mutate=steps exit 1; the k_c 95 check refuses) 2026-11-25 05:48:35 UTC
+kcl kc87 low D 22.28125 scan waits for my other d18_hybsign scans to end and for memory (at least 4 x 3.6 GB + 4 GB free) 2026-11-25 05:48:35 UTC
+kcl lowscan87_p1 root pid 9624, cap 28800 s, want exit 0 2026-11-25 07:17:58 UTC
+kcl lowscan87_p2 root pid 40028, cap 28800 s, want exit 0 2026-11-25 07:17:58 UTC
+kcl lowscan87_p3 root pid 33824, cap 28800 s, want exit 0 2026-11-25 07:17:58 UTC
+kcl lowscan87_p4 root pid 43976, cap 28800 s, want exit 0 2026-11-25 07:17:59 UTC
+kcl lowscan87_p3 exit 0 (want 0) wall 3449 s capped 0 OK 2026-11-25 08:15:32 UTC
+kcl lowscan87_p3 exit 0 wall 3455 s capped 0 2026-11-25 08:15:32 UTC
+kcl lowscan87_p4 exit 0 (want 0) wall 3503 s capped 0 OK 2026-11-25 08:16:22 UTC
+kcl lowscan87_p4 exit 0 wall 3505 s capped 0 2026-11-25 08:16:23 UTC
+kcl lowscan87_p2 exit 0 (want 0) wall 5042 s capped 0 OK 2026-11-25 08:41:59 UTC
+kcl lowscan87_p2 exit 0 wall 5042 s capped 0 2026-11-25 08:41:59 UTC
+kcl lowscan87_p1 exit 0 (want 0) wall 5091 s capped 0 OK 2026-11-25 08:42:48 UTC
+kcl lowscan87_p1 exit 0 wall 5091 s capped 0 2026-11-25 08:42:48 UTC
+kcl kc87 low D 22.28125 scan done: kc87 low D 22.28125 reading: hybrid signs: -0.060+ -0.040+ -0.020+ 0.000+ 0.020+ 0.040+ 0.060+ 0.080+ 0.100+ float64 sign differs from the hybrid sign at: none robust changes: 0; touching a non-robust point (not counted): none  2026-11-25 08:42:54 UTC
