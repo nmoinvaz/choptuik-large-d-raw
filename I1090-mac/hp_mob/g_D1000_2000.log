@@ -1,0 +1,11 @@
+hp_mob_check: M 32, x_l 0.7, parts 8, start sol_D646_M6_a8.json (D 646), mutate ''
+   per field, relative to its size (c: to 1): p 5.4e-30 (|p| 5.71e-02), m 2.0e-30 (|m| 5.70e-02), c 7.9e-31 (|c| 3.36e-03)
+D 1000 n 998 a 8 (hp 8) ks 1517: |S| 1.0000e+00; C1 hp od vs dd 7.92e-31 (PASS); hp 216 s, dd 25 s
+   C2 gain from m_h: hp 5.5643e-01 (eps 1e-20), 5.5643e-01 (eps 1e-10); dd 5.5643e-01 (eps 1e-20): PASS
+   C3 dd at a and 1.25 a: 1.85e-30 (PASS)
+   per field, relative to its size (c: to 1): p 9.3e-20 (|p| 4.07e+01), m 9.4e-20 (|m| 7.15e+00), c 1.2e-20 (|c| 7.44e-02)
+D 2000 n 1998 a 8 (hp 8) ks 3017: |S| 4.0712e+01; C1 hp od vs dd 9.31e-20 (FAIL); hp 450 s, dd 34 s
+   C2 gain from m_h: hp 2.1636e+05 (eps 1e-20), 2.1636e+05 (eps 1e-10); dd 2.1654e+05 (eps 1e-20): FAIL
+   C3 dd at a and 1.25 a: 8.84e-20 (FAIL)
+all checks: FAIL
+exit 1

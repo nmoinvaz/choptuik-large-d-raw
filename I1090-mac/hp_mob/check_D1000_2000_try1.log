@@ -1,0 +1,9 @@
+hp_mob_check: M 32, x_l 0.7, parts 8, start sol_D646_M6_a8.json (D 646), mutate ''
+   per field, relative to its size (c: to 1): p 3.3e-27 (|p| 5.62e-02), m 5.8e-28 (|m| 5.63e-02), c 3.2e-31 (|c| 3.26e-03)
+D 1000 n 998 a 8 ks 1517: |S| 1.0000e+00; C1 hp od vs dd 1.86e-28 (PASS); hp 72 s, dd 8 s
+Traceback (most recent call last):
+  File "/Users/nathan/Source/choptuik-1090/solver/inner_large_d/hp_mob_check.py", line 148, in <module>
+    g_hp10 = gain(hp_sum, D, a, mh, Dl, 1e-10)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ZeroDivisionError: division by zero
+exit 1

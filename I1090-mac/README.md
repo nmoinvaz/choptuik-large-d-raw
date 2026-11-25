@@ -55,3 +55,10 @@ D-624 solution: `solve_cont.py S/sol_D624_M6_a8.json --M=6 --a=8 --a_rule=400 --
 (Delta 1.6765, the continuity check needs two points) and the run was stopped at D 680. `f64_M4_cont2/`: M 4 from the
 M-6 solution at D 100, Newton stalled at 1.45e-6, stopped. `seed_closed/`: the closed-form start at D 200, M 8.
 The float64 M-6 solutions on the branch end at D 646 (`f64_M6_cont3/`).
+
+`hp_mob/`: the independent check of hp's Moebius horizon (hp/src/form_s.rs horizon_mob, wip/large-d-form-s f53e6077,
+the Mac's opt-1 build) against this branch's double-double, `solver/inner_large_d/hp_mob_check.py` (checks and bars
+written before the runs, 4dfefe69; the harness fixes after it are in the branch's log). Inputs: m_h from this folder's
+D-646 float64 solution rescaled (`check_*`, `control_*`, `info_hpinv_D2000`) or from Track A's jump guess rebuilt by
+`make_guess.py` (`guess_mh.json`, `g_*`); Delta from Track C. `run_hpmob.sh` and `run_guess.sh` are the run scripts;
+`check_D1000_2000_try1.log` is the first run, whose gain read zero (the move was added to the float64 m_h).
