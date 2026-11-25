@@ -18,9 +18,16 @@ WT=$(cat "$S/readme_first_time.txt")
 mkdir -p "$D/rows"
 for f in "$O"/*; do [ -f "$f" ] && cp "$f" "$D/"; done
 cp "$O/rows/"* "$D/rows/" 2>/dev/null || true
+if [ -d "$O/secant" ]; then   # the secant refinement's folder: its README has its own first-publish time
+  mkdir -p "$D/secant"
+  [ -f "$S/readme_first_time_secant.txt" ] || echo "$T" > "$S/readme_first_time_secant.txt"
+  SWT=$(cat "$S/readme_first_time_secant.txt")
+  for f in "$O"/secant/*; do [ -f "$f" ] && cp "$f" "$D/secant/"; done
+  [ -f "$D/secant/README.md" ] && sed -i "s/@@WT@@/$SWT/g; s/^Pushed @@T@@ UTC\./Pushed $T UTC./" "$D/secant/README.md"
+fi
 sed -i "s/@@WT@@/$WT/g; s/^Pushed @@T@@ UTC\./Pushed $T UTC./" "$D/README.md"
 for f in make_kc103d22875_1025.py kc103_syscheck_1025_vs_kc95.diff diff_regrid_driver_vs_prev.txt kc103d22875_regrid_driver_1025.py kc103d22875_scan_driver_1025.py kc103d22875_watch_alert_1025.py sample_driver4_1025.ps1 go_kc103d22875_1025.cmd keepawake_1025.py session_check_1025.ps1 \
-         selftest_scan_dry_1025.txt kc103d22875_regrid_driver_stdout.log kc103d22875_scan_driver_stdout.log publish_kc103d22875_1025.sh prep_kc103d22875_pins_1025.txt prep_source_checks_by_hand.txt; do
+         selftest_scan_dry_1025.txt kc103d22875_regrid_driver_stdout.log kc103d22875_scan_driver_stdout.log kc103d22875_secant_driver_stdout.log kc103d22875_secant_driver_1025.py sample_driver_secant_1025.ps1 go_secant_kc103d22875_1025.cmd prep_secant_selftests_by_hand.txt selftest_secant_dry_1025.txt publish_kc103d22875_1025.sh prep_kc103d22875_pins_1025.txt prep_source_checks_by_hand.txt; do
   [ -f "$S/$f" ] && cp "$S/$f" "$D/"
 done
 bash /c/Users/nathan/Source/choptuik-i1025/push_1025.sh "$1"

@@ -1,0 +1,328 @@
+# d18_secant.py selftest by hand 2026-11-25 22:53:47 UTC, worktree choptuik-i1025secant at 6010e37b (d18_secant.py committed blob a3d90cd5), venv-md510, 1 thread; the D 22.875 scan runs beside it
+=== selftest 
+C1 clean: status tol (-), bracket [0.48731232284732323, 0.48731282284732325] width 5.00e-07, lam_lin 0.48731233999751555, 9 evaluations
+    lam 0.485: sign -1 (planted -1), noise [-1.0, -1.0], dln 2.98e-12, robust True
+    lam 0.49: sign +1 (planted +1), noise [1.0, 1.0], dln 5.90e-13, robust True
+    lam 0.4858052670962617: sign -1 (planted -1), noise [-1.0, -1.0], dln 3.59e-12, robust True
+    lam 0.48790263354813085: sign +1 (planted +1), noise [1.0, 1.0], dln 5.04e-12, robust True
+    lam 0.48701423133420435: sign -1 (planted -1), noise [-1.0, -1.0], dln 1.26e-11, robust True
+    lam 0.4872620499493009: sign -1 (planted -1), noise [-1.0, -1.0], dln 6.95e-11, robust True
+    lam 0.4873134685551821: sign +1 (planted +1), noise [1.0, 1.0], dln 3.15e-09, robust True
+    lam 0.48731232284732323: sign -1 (planted -1), noise [-1.0, -1.0], dln 2.01e-07, robust True
+    lam 0.48731282284732325: sign +1 (planted +1), noise [1.0, 1.0], dln 7.36e-09, robust True
+  C1 as written
+C2 noisy: status nonrobust (not robust at 0.48701423133420435), bracket [0.4858052670962617, 0.48790263354813085] width 2.10e-03, lam_lin 0.48701423133420435, 5 evaluations
+    lam 0.485: sign -1 (planted -1), noise [-1.0, -1.0], dln 2.93e-02, robust True
+    lam 0.49: sign +1 (planted +1), noise [1.0, 1.0], dln 5.92e-03, robust True
+    lam 0.4858052670962617: sign -1 (planted -1), noise [-1.0, -1.0], dln 3.53e-02, robust True
+    lam 0.48790263354813085: sign +1 (planted +1), noise [1.0, 1.0], dln 5.17e-02, robust True
+    lam 0.48701423133420435: sign -1 (planted -1), noise [-1.0, -1.0], dln 1.26e-01, robust False
+  C2 as written
+  (information: C2 with --dln=inf, the sign test alone: status nonrobust, bracket [0.4872620499493009, 0.48790263354813085], contains r: True, 7 evaluations)
+C3 same-signed ends: status refused (the ends have the same hybrid sign), bracket [0.48831234, 0.49331234] width 5.00e-03, lam_lin 0.4881192162441131, 2 evaluations
+    lam 0.48831234: sign +1 (planted +1), noise [1.0, 1.0], dln 2.63e-12, robust True
+    lam 0.49331234: sign +1 (planted +1), noise [1.0, 1.0], dln 9.95e-14, robust True
+  C3 as written
+C4 an end in the noise: status refused (an end is not robust), bracket [0.48431234, 0.48731434] width 3.00e-03, lam_lin 0.48733415694709153, 2 evaluations
+    lam 0.48431234: sign -1 (planted -1), noise [-1.0, -1.0], dln 2.78e-02, robust True
+    lam 0.48731434: sign -1 (planted +1), noise [-1.0, 1.0], dln 1.67e+00, robust False
+  C4 as written
+selftest (mutate none): PASS
+exit 0 (1 s; wanted 0)
+=== selftest --mutate=half
+C1 clean: status maxev (-), bracket [0.4858036943089643, 0.4858052670962617] width 1.57e-06, lam_lin 0.4885578460551427, 12 evaluations
+    lam 0.485: sign -1 (planted -1), noise [-1.0, -1.0], dln 2.98e-12, robust True
+    lam 0.49: sign +1 (planted +1), noise [1.0, 1.0], dln 5.90e-13, robust True
+    lam 0.4858052670962617: sign -1 (planted -1), noise [-1.0, -1.0], dln 3.59e-12, robust True
+    lam 0.48540263354813085: sign -1 (planted -1), noise [-1.0, -1.0], dln 3.20e-12, robust True
+    lam 0.4856039503221963: sign -1 (planted -1), noise [-1.0, -1.0], dln 3.37e-12, robust True
+    lam 0.485704608709229: sign -1 (planted -1), noise [-1.0, -1.0], dln 3.47e-12, robust True
+    lam 0.4857549379027454: sign -1 (planted -1), noise [-1.0, -1.0], dln 3.53e-12, robust True
+    lam 0.48578010249950354: sign -1 (planted -1), noise [-1.0, -1.0], dln 3.56e-12, robust True
+    lam 0.4857926847978826: sign -1 (planted -1), noise [-1.0, -1.0], dln 3.57e-12, robust True
+    lam 0.48579897594707216: sign -1 (planted -1), noise [-1.0, -1.0], dln 3.58e-12, robust True
+    lam 0.4858021215216669: sign -1 (planted -1), noise [-1.0, -1.0], dln 3.59e-12, robust True
+    lam 0.4858036943089643: sign -1 (planted -1), noise [-1.0, -1.0], dln 3.59e-12, robust True
+  C1 NOT as written
+C2 noisy: status maxev (-), bracket [0.4858036943089643, 0.4858052670962617] width 1.57e-06, lam_lin 0.4885578460551343, 12 evaluations
+    lam 0.485: sign -1 (planted -1), noise [-1.0, -1.0], dln 2.93e-02, robust True
+    lam 0.49: sign +1 (planted +1), noise [1.0, 1.0], dln 5.92e-03, robust True
+    lam 0.4858052670962617: sign -1 (planted -1), noise [-1.0, -1.0], dln 3.53e-02, robust True
+    lam 0.48540263354813085: sign -1 (planted -1), noise [-1.0, -1.0], dln 3.15e-02, robust True
+    lam 0.4856039503221963: sign -1 (planted -1), noise [-1.0, -1.0], dln 3.31e-02, robust True
+    lam 0.485704608709229: sign -1 (planted -1), noise [-1.0, -1.0], dln 3.41e-02, robust True
+    lam 0.4857549379027454: sign -1 (planted -1), noise [-1.0, -1.0], dln 3.47e-02, robust True
+    lam 0.48578010249950354: sign -1 (planted -1), noise [-1.0, -1.0], dln 3.50e-02, robust True
+    lam 0.4857926847978826: sign -1 (planted -1), noise [-1.0, -1.0], dln 3.51e-02, robust True
+    lam 0.48579897594707216: sign -1 (planted -1), noise [-1.0, -1.0], dln 3.52e-02, robust True
+    lam 0.4858021215216669: sign -1 (planted -1), noise [-1.0, -1.0], dln 3.52e-02, robust True
+    lam 0.4858036943089643: sign -1 (planted -1), noise [-1.0, -1.0], dln 3.52e-02, robust True
+  C2 NOT as written
+  (information: C2 with --dln=inf, the sign test alone: status maxev, bracket [0.4858036943089643, 0.4858052670962617], contains r: False, 12 evaluations)
+C3 same-signed ends: status refused (the ends have the same hybrid sign), bracket [0.48831234, 0.49331234] width 5.00e-03, lam_lin 0.4881192162441131, 2 evaluations
+    lam 0.48831234: sign +1 (planted +1), noise [1.0, 1.0], dln 2.63e-12, robust True
+    lam 0.49331234: sign +1 (planted +1), noise [1.0, 1.0], dln 9.95e-14, robust True
+  C3 as written
+C4 an end in the noise: status refused (an end is not robust), bracket [0.48431234, 0.48731434] width 3.00e-03, lam_lin 0.48733415694709153, 2 evaluations
+    lam 0.48431234: sign -1 (planted -1), noise [-1.0, -1.0], dln 2.78e-02, robust True
+    lam 0.48731434: sign -1 (planted +1), noise [-1.0, 1.0], dln 1.67e+00, robust False
+  C4 as written
+selftest (mutate half): FAIL
+exit 1 (0 s; wanted 1)
+=== selftest --mutate=norobust
+C1 clean: status tol (-), bracket [0.48731232284732323, 0.48731282284732325] width 5.00e-07, lam_lin 0.48731233999751555, 9 evaluations
+    lam 0.485: sign -1 (planted -1), noise [-1.0, -1.0], dln 2.98e-12, robust True
+    lam 0.49: sign +1 (planted +1), noise [1.0, 1.0], dln 5.90e-13, robust True
+    lam 0.4858052670962617: sign -1 (planted -1), noise [-1.0, -1.0], dln 3.59e-12, robust True
+    lam 0.48790263354813085: sign +1 (planted +1), noise [1.0, 1.0], dln 5.04e-12, robust True
+    lam 0.48701423133420435: sign -1 (planted -1), noise [-1.0, -1.0], dln 1.26e-11, robust True
+    lam 0.4872620499493009: sign -1 (planted -1), noise [-1.0, -1.0], dln 6.95e-11, robust True
+    lam 0.4873134685551821: sign +1 (planted +1), noise [1.0, 1.0], dln 3.15e-09, robust True
+    lam 0.48731232284732323: sign -1 (planted -1), noise [-1.0, -1.0], dln 2.01e-07, robust True
+    lam 0.48731282284732325: sign +1 (planted +1), noise [1.0, 1.0], dln 7.36e-09, robust True
+  C1 as written
+C2 noisy: status tol (-), bracket [0.48732230451511144, 0.48732280451511145] width 5.00e-07, lam_lin 0.4873223101334521, 10 evaluations
+    lam 0.485: sign -1 (planted -1), noise [-1.0, -1.0], dln 2.93e-02, robust True
+    lam 0.49: sign +1 (planted +1), noise [1.0, 1.0], dln 5.92e-03, robust True
+    lam 0.4858052670962617: sign -1 (planted -1), noise [-1.0, -1.0], dln 3.53e-02, robust True
+    lam 0.48790263354813085: sign +1 (planted +1), noise [1.0, 1.0], dln 5.17e-02, robust True
+    lam 0.48701423133420435: sign -1 (planted -1), noise [-1.0, -1.0], dln 1.26e-01, robust True
+    lam 0.4872620499493009: sign -1 (planted -1), noise [-1.0, -1.0], dln 1.05e+00, robust True
+    lam 0.4873134685551821: sign -1 (planted +1), noise [-1.0, 1.0], dln 1.59e+00, robust True
+    lam 0.4873244296307251: sign +1 (planted +1), noise [-1.0, 1.0], dln 2.75e+00, robust True
+    lam 0.48732230451511144: sign -1 (planted +1), noise [-1.0, 1.0], dln 8.71e+00, robust True
+    lam 0.48732280451511145: sign +1 (planted +1), noise [-1.0, 1.0], dln 4.22e+00, robust True
+  C2 NOT as written
+  (information: C2 with --dln=inf, the sign test alone: status tol, bracket [0.48732230451511144, 0.48732280451511145], contains r: False, 10 evaluations)
+C3 same-signed ends: status refused (the ends have the same hybrid sign), bracket [0.48831234, 0.49331234] width 5.00e-03, lam_lin 0.4881192162441131, 2 evaluations
+    lam 0.48831234: sign +1 (planted +1), noise [1.0, 1.0], dln 2.63e-12, robust True
+    lam 0.49331234: sign +1 (planted +1), noise [1.0, 1.0], dln 9.95e-14, robust True
+  C3 as written
+C4 an end in the noise: status refused (the ends have the same hybrid sign), bracket [0.48431234, 0.48731434] width 3.00e-03, lam_lin 0.48733415694709153, 2 evaluations
+    lam 0.48431234: sign -1 (planted -1), noise [-1.0, -1.0], dln 2.78e-02, robust True
+    lam 0.48731434: sign -1 (planted +1), noise [-1.0, 1.0], dln 1.67e+00, robust True
+  C4 NOT as written
+selftest (mutate norobust): FAIL
+exit 1 (1 s; wanted 1)
+=== selftest --mutate=nosigncheck
+C1 clean: status tol (-), bracket [0.48731232284732323, 0.48731282284732325] width 5.00e-07, lam_lin 0.48731233999751555, 9 evaluations
+    lam 0.485: sign -1 (planted -1), noise [-1.0, -1.0], dln 2.98e-12, robust True
+    lam 0.49: sign +1 (planted +1), noise [1.0, 1.0], dln 5.90e-13, robust True
+    lam 0.4858052670962617: sign -1 (planted -1), noise [-1.0, -1.0], dln 3.59e-12, robust True
+    lam 0.48790263354813085: sign +1 (planted +1), noise [1.0, 1.0], dln 5.04e-12, robust True
+    lam 0.48701423133420435: sign -1 (planted -1), noise [-1.0, -1.0], dln 1.26e-11, robust True
+    lam 0.4872620499493009: sign -1 (planted -1), noise [-1.0, -1.0], dln 6.95e-11, robust True
+    lam 0.4873134685551821: sign +1 (planted +1), noise [1.0, 1.0], dln 3.15e-09, robust True
+    lam 0.48731232284732323: sign -1 (planted -1), noise [-1.0, -1.0], dln 2.01e-07, robust True
+    lam 0.48731282284732325: sign +1 (planted +1), noise [1.0, 1.0], dln 7.36e-09, robust True
+  C1 as written
+C2 noisy: status nonrobust (not robust at 0.48701423133420435), bracket [0.4858052670962617, 0.48790263354813085] width 2.10e-03, lam_lin 0.48701423133420435, 5 evaluations
+    lam 0.485: sign -1 (planted -1), noise [-1.0, -1.0], dln 2.93e-02, robust True
+    lam 0.49: sign +1 (planted +1), noise [1.0, 1.0], dln 5.92e-03, robust True
+    lam 0.4858052670962617: sign -1 (planted -1), noise [-1.0, -1.0], dln 3.53e-02, robust True
+    lam 0.48790263354813085: sign +1 (planted +1), noise [1.0, 1.0], dln 5.17e-02, robust True
+    lam 0.48701423133420435: sign -1 (planted -1), noise [-1.0, -1.0], dln 1.26e-01, robust False
+  C2 as written
+  (information: C2 with --dln=inf, the sign test alone: status nonrobust, bracket [0.4872620499493009, 0.48790263354813085], contains r: True, 7 evaluations)
+C3 same-signed ends: status maxev (no bracket), bracket [0.48831234, 0.49331234] width 5.00e-03, lam_lin 0.4881192162441131, 2 evaluations
+    lam 0.48831234: sign +1 (planted +1), noise [1.0, 1.0], dln 2.63e-12, robust True
+    lam 0.49331234: sign +1 (planted +1), noise [1.0, 1.0], dln 9.95e-14, robust True
+  C3 NOT as written
+C4 an end in the noise: status refused (an end is not robust), bracket [0.48431234, 0.48731434] width 3.00e-03, lam_lin 0.48733415694709153, 2 evaluations
+    lam 0.48431234: sign -1 (planted -1), noise [-1.0, -1.0], dln 2.78e-02, robust True
+    lam 0.48731434: sign -1 (planted +1), noise [-1.0, 1.0], dln 1.67e+00, robust False
+  C4 as written
+selftest (mutate nosigncheck): FAIL
+exit 1 (1 s; wanted 1)
+
+# ell_fastm.py selftest by hand 2026-11-25 22:53:57 UTC (the float64 mode matrix the run uses; ell_fastdd is not used: --b12 stays ddm)
+=== ell_fastm selftest 
+rhs_lin: base against DSSEll.rhs 3.82e-16 (<= 1e-13), tangents against a central difference 8.04e-09 (<= 1e-7) ok
+rhs_lin_coef against rhs_lin on parity-respecting tangents 2.23e-16, rhs_lin_jac against rhs_lin_coef 4.46e-16 (<= 1e-13) ok
+M at lambda 0.0, coef tangents:
+  block  0: max |M_fast - M_cs| / max |M_cs| = 3.331e-15 (max |M_cs| 1.000e+00) ok
+  block  1: max |M_fast - M_cs| / max |M_cs| = 5.355e-15 (max |M_cs| 8.459e+00) ok
+  block  2: max |M_fast - M_cs| / max |M_cs| = 8.717e-15 (max |M_cs| 1.458e+00) ok
+  block  3: max |M_fast - M_cs| / max |M_cs| = 3.895e-15 (max |M_cs| 1.197e+00) ok
+  block  4: max |M_fast - M_cs| / max |M_cs| = 3.006e-15 (max |M_cs| 1.366e+00) ok
+  block  5: max |M_fast - M_cs| / max |M_cs| = 4.301e-15 (max |M_cs| 1.168e+00) ok
+  block  6: max |M_fast - M_cs| / max |M_cs| = 4.514e-15 (max |M_cs| 1.205e+00) ok
+  block  7: max |M_fast - M_cs| / max |M_cs| = 4.290e-15 (max |M_cs| 1.216e+00) ok
+  block  8: max |M_fast - M_cs| / max |M_cs| = 2.549e-15 (max |M_cs| 1.089e+00) ok
+  block  9: max |M_fast - M_cs| / max |M_cs| = 1.785e-15 (max |M_cs| 1.120e+00) ok
+  block 10: max |M_fast - M_cs| / max |M_cs| = 1.906e-15 (max |M_cs| 1.048e+00) ok
+  block 11: max |M_fast - M_cs| / max |M_cs| = 2.307e-15 (max |M_cs| 1.107e+00) ok
+  block 12: max |M_fast - M_cs| / max |M_cs| = 1.028e-15 (max |M_cs| 1.296e+00) ok
+  slogdet: fast +1 -20.457624969244, complex step +1 -20.457624969244, |d ln| 1.10e-13 ok
+M at lambda 0.0, jac tangents:
+  block  0: max |M_fast - M_cs| / max |M_cs| = 3.331e-15 (max |M_cs| 1.000e+00) ok
+  block  1: max |M_fast - M_cs| / max |M_cs| = 5.355e-15 (max |M_cs| 8.459e+00) ok
+  block  2: max |M_fast - M_cs| / max |M_cs| = 8.336e-15 (max |M_cs| 1.458e+00) ok
+  block  3: max |M_fast - M_cs| / max |M_cs| = 3.339e-15 (max |M_cs| 1.197e+00) ok
+  block  4: max |M_fast - M_cs| / max |M_cs| = 3.494e-15 (max |M_cs| 1.366e+00) ok
+  block  5: max |M_fast - M_cs| / max |M_cs| = 3.636e-15 (max |M_cs| 1.168e+00) ok
+  block  6: max |M_fast - M_cs| / max |M_cs| = 4.607e-15 (max |M_cs| 1.205e+00) ok
+  block  7: max |M_fast - M_cs| / max |M_cs| = 3.834e-15 (max |M_cs| 1.216e+00) ok
+  block  8: max |M_fast - M_cs| / max |M_cs| = 3.772e-15 (max |M_cs| 1.089e+00) ok
+  block  9: max |M_fast - M_cs| / max |M_cs| = 2.379e-15 (max |M_cs| 1.120e+00) ok
+  block 10: max |M_fast - M_cs| / max |M_cs| = 2.330e-15 (max |M_cs| 1.048e+00) ok
+  block 11: max |M_fast - M_cs| / max |M_cs| = 2.307e-15 (max |M_cs| 1.107e+00) ok
+  block 12: max |M_fast - M_cs| / max |M_cs| = 1.028e-15 (max |M_cs| 1.296e+00) ok
+  slogdet: fast +1 -20.457624969244, complex step +1 -20.457624969244, |d ln| 1.46e-13 ok
+M at lambda 0.0, grid tangents:
+  block  0: max |M_fast - M_cs| / max |M_cs| = 2.393e-15 (max |M_cs| 1.000e+00) ok
+  block  1: max |M_fast - M_cs| / max |M_cs| = 1.549e-15 (max |M_cs| 8.459e+00) ok
+  block  2: max |M_fast - M_cs| / max |M_cs| = 1.969e-15 (max |M_cs| 1.458e+00) ok
+  block  3: max |M_fast - M_cs| / max |M_cs| = 2.550e-15 (max |M_cs| 1.197e+00) ok
+  block  4: max |M_fast - M_cs| / max |M_cs| = 1.909e-15 (max |M_cs| 1.366e+00) ok
+  block  5: max |M_fast - M_cs| / max |M_cs| = 5.376e-16 (max |M_cs| 1.168e+00) ok
+  block  6: max |M_fast - M_cs| / max |M_cs| = 1.106e-15 (max |M_cs| 1.205e+00) ok
+  block  7: max |M_fast - M_cs| / max |M_cs| = 1.004e-15 (max |M_cs| 1.216e+00) ok
+  block  8: max |M_fast - M_cs| / max |M_cs| = 8.156e-16 (max |M_cs| 1.089e+00) ok
+  block  9: max |M_fast - M_cs| / max |M_cs| = 8.923e-16 (max |M_cs| 1.120e+00) ok
+  block 10: max |M_fast - M_cs| / max |M_cs| = 8.802e-16 (max |M_cs| 1.048e+00) ok
+  block 11: max |M_fast - M_cs| / max |M_cs| = 6.020e-16 (max |M_cs| 1.107e+00) ok
+  block 12: max |M_fast - M_cs| / max |M_cs| = 5.141e-16 (max |M_cs| 1.296e+00) ok
+  slogdet: fast +1 -20.457624969244, complex step +1 -20.457624969244, |d ln| 2.49e-14 ok
+M at lambda 0.9, coef tangents:
+  block  0: max |M_fast - M_cs| / max |M_cs| = 2.109e-15 (max |M_cs| 1.000e+00) ok
+  block  1: max |M_fast - M_cs| / max |M_cs| = 3.379e-15 (max |M_cs| 4.141e+00) ok
+  block  2: max |M_fast - M_cs| / max |M_cs| = 4.444e-15 (max |M_cs| 1.027e+00) ok
+  block  3: max |M_fast - M_cs| / max |M_cs| = 2.171e-15 (max |M_cs| 1.023e+00) ok
+  block  4: max |M_fast - M_cs| / max |M_cs| = 2.827e-15 (max |M_cs| 1.060e+00) ok
+  block  5: max |M_fast - M_cs| / max |M_cs| = 2.864e-15 (max |M_cs| 1.003e+00) ok
+  block  6: max |M_fast - M_cs| / max |M_cs| = 2.990e-15 (max |M_cs| 1.002e+00) ok
+  block  7: max |M_fast - M_cs| / max |M_cs| = 2.942e-15 (max |M_cs| 1.019e+00) ok
+  block  8: max |M_fast - M_cs| / max |M_cs| = 1.878e-15 (max |M_cs| 1.005e+00) ok
+  block  9: max |M_fast - M_cs| / max |M_cs| = 1.768e-15 (max |M_cs| 1.004e+00) ok
+  block 10: max |M_fast - M_cs| / max |M_cs| = 1.329e-15 (max |M_cs| 1.002e+00) ok
+  block 11: max |M_fast - M_cs| / max |M_cs| = 1.872e-15 (max |M_cs| 1.008e+00) ok
+  block 12: max |M_fast - M_cs| / max |M_cs| = 1.371e-15 (max |M_cs| 1.296e+00) ok
+  slogdet: fast +1 -108.545407907689, complex step +1 -108.545407907689, |d ln| 7.11e-14 ok
+M at lambda 0.9, jac tangents:
+  block  0: max |M_fast - M_cs| / max |M_cs| = 2.109e-15 (max |M_cs| 1.000e+00) ok
+  block  1: max |M_fast - M_cs| / max |M_cs| = 4.076e-15 (max |M_cs| 4.141e+00) ok
+  block  2: max |M_fast - M_cs| / max |M_cs| = 3.850e-15 (max |M_cs| 1.027e+00) ok
+  block  3: max |M_fast - M_cs| / max |M_cs| = 2.768e-15 (max |M_cs| 1.023e+00) ok
+  block  4: max |M_fast - M_cs| / max |M_cs| = 2.513e-15 (max |M_cs| 1.060e+00) ok
+  block  5: max |M_fast - M_cs| / max |M_cs| = 2.643e-15 (max |M_cs| 1.003e+00) ok
+  block  6: max |M_fast - M_cs| / max |M_cs| = 2.880e-15 (max |M_cs| 1.002e+00) ok
+  block  7: max |M_fast - M_cs| / max |M_cs| = 2.942e-15 (max |M_cs| 1.019e+00) ok
+  block  8: max |M_fast - M_cs| / max |M_cs| = 2.430e-15 (max |M_cs| 1.005e+00) ok
+  block  9: max |M_fast - M_cs| / max |M_cs| = 2.404e-15 (max |M_cs| 1.004e+00) ok
+  block 10: max |M_fast - M_cs| / max |M_cs| = 1.551e-15 (max |M_cs| 1.002e+00) ok
+  block 11: max |M_fast - M_cs| / max |M_cs| = 1.762e-15 (max |M_cs| 1.008e+00) ok
+  block 12: max |M_fast - M_cs| / max |M_cs| = 1.371e-15 (max |M_cs| 1.296e+00) ok
+  slogdet: fast +1 -108.545407907690, complex step +1 -108.545407907689, |d ln| 1.28e-13 ok
+M at lambda 0.9, grid tangents:
+  block  0: max |M_fast - M_cs| / max |M_cs| = 2.827e-15 (max |M_cs| 1.000e+00) ok
+  block  1: max |M_fast - M_cs| / max |M_cs| = 1.931e-15 (max |M_cs| 4.141e+00) ok
+  block  2: max |M_fast - M_cs| / max |M_cs| = 2.101e-15 (max |M_cs| 1.027e+00) ok
+  block  3: max |M_fast - M_cs| / max |M_cs| = 1.438e-15 (max |M_cs| 1.023e+00) ok
+  block  4: max |M_fast - M_cs| / max |M_cs| = 1.518e-15 (max |M_cs| 1.060e+00) ok
+  block  5: max |M_fast - M_cs| / max |M_cs| = 6.642e-16 (max |M_cs| 1.003e+00) ok
+  block  6: max |M_fast - M_cs| / max |M_cs| = 7.753e-16 (max |M_cs| 1.002e+00) ok
+  block  7: max |M_fast - M_cs| / max |M_cs| = 7.082e-16 (max |M_cs| 1.019e+00) ok
+  block  8: max |M_fast - M_cs| / max |M_cs| = 5.524e-16 (max |M_cs| 1.005e+00) ok
+  block  9: max |M_fast - M_cs| / max |M_cs| = 9.188e-16 (max |M_cs| 1.004e+00) ok
+  block 10: max |M_fast - M_cs| / max |M_cs| = 7.443e-16 (max |M_cs| 1.002e+00) ok
+  block 11: max |M_fast - M_cs| / max |M_cs| = 6.607e-16 (max |M_cs| 1.008e+00) ok
+  block 12: max |M_fast - M_cs| / max |M_cs| = 6.854e-16 (max |M_cs| 1.296e+00) ok
+  slogdet: fast +1 -108.545407907689, complex step +1 -108.545407907689, |d ln| 0.00e+00 ok
+selftest (mutate none): PASS
+exit 0 (204 s; wanted 0)
+=== ell_fastm selftest --mutate=nolam
+rhs_lin: base against DSSEll.rhs 3.82e-16 (<= 1e-13), tangents against a central difference 8.57e-04 (<= 1e-7) FAIL
+rhs_lin_coef against rhs_lin on parity-respecting tangents 3.34e-16, rhs_lin_jac against rhs_lin_coef 4.46e-16 (<= 1e-13) ok
+M at lambda 0.0, coef tangents:
+  block  0: max |M_fast - M_cs| / max |M_cs| = 3.331e-15 (max |M_cs| 1.000e+00) ok
+  block  1: max |M_fast - M_cs| / max |M_cs| = 5.355e-15 (max |M_cs| 8.459e+00) ok
+  block  2: max |M_fast - M_cs| / max |M_cs| = 8.717e-15 (max |M_cs| 1.458e+00) ok
+  block  3: max |M_fast - M_cs| / max |M_cs| = 3.895e-15 (max |M_cs| 1.197e+00) ok
+  block  4: max |M_fast - M_cs| / max |M_cs| = 3.006e-15 (max |M_cs| 1.366e+00) ok
+  block  5: max |M_fast - M_cs| / max |M_cs| = 4.301e-15 (max |M_cs| 1.168e+00) ok
+  block  6: max |M_fast - M_cs| / max |M_cs| = 4.514e-15 (max |M_cs| 1.205e+00) ok
+  block  7: max |M_fast - M_cs| / max |M_cs| = 4.290e-15 (max |M_cs| 1.216e+00) ok
+  block  8: max |M_fast - M_cs| / max |M_cs| = 2.549e-15 (max |M_cs| 1.089e+00) ok
+  block  9: max |M_fast - M_cs| / max |M_cs| = 1.785e-15 (max |M_cs| 1.120e+00) ok
+  block 10: max |M_fast - M_cs| / max |M_cs| = 1.906e-15 (max |M_cs| 1.048e+00) ok
+  block 11: max |M_fast - M_cs| / max |M_cs| = 2.307e-15 (max |M_cs| 1.107e+00) ok
+  block 12: max |M_fast - M_cs| / max |M_cs| = 1.028e-15 (max |M_cs| 1.296e+00) ok
+  slogdet: fast +1 -20.457624969244, complex step +1 -20.457624969244, |d ln| 1.10e-13 ok
+M at lambda 0.0, jac tangents:
+  block  0: max |M_fast - M_cs| / max |M_cs| = 3.331e-15 (max |M_cs| 1.000e+00) ok
+  block  1: max |M_fast - M_cs| / max |M_cs| = 5.355e-15 (max |M_cs| 8.459e+00) ok
+  block  2: max |M_fast - M_cs| / max |M_cs| = 8.336e-15 (max |M_cs| 1.458e+00) ok
+  block  3: max |M_fast - M_cs| / max |M_cs| = 3.339e-15 (max |M_cs| 1.197e+00) ok
+  block  4: max |M_fast - M_cs| / max |M_cs| = 3.494e-15 (max |M_cs| 1.366e+00) ok
+  block  5: max |M_fast - M_cs| / max |M_cs| = 3.636e-15 (max |M_cs| 1.168e+00) ok
+  block  6: max |M_fast - M_cs| / max |M_cs| = 4.607e-15 (max |M_cs| 1.205e+00) ok
+  block  7: max |M_fast - M_cs| / max |M_cs| = 3.834e-15 (max |M_cs| 1.216e+00) ok
+  block  8: max |M_fast - M_cs| / max |M_cs| = 3.772e-15 (max |M_cs| 1.089e+00) ok
+  block  9: max |M_fast - M_cs| / max |M_cs| = 2.379e-15 (max |M_cs| 1.120e+00) ok
+  block 10: max |M_fast - M_cs| / max |M_cs| = 2.330e-15 (max |M_cs| 1.048e+00) ok
+  block 11: max |M_fast - M_cs| / max |M_cs| = 2.307e-15 (max |M_cs| 1.107e+00) ok
+  block 12: max |M_fast - M_cs| / max |M_cs| = 1.028e-15 (max |M_cs| 1.296e+00) ok
+  slogdet: fast +1 -20.457624969244, complex step +1 -20.457624969244, |d ln| 1.46e-13 ok
+M at lambda 0.0, grid tangents:
+  block  0: max |M_fast - M_cs| / max |M_cs| = 2.393e-15 (max |M_cs| 1.000e+00) ok
+  block  1: max |M_fast - M_cs| / max |M_cs| = 1.549e-15 (max |M_cs| 8.459e+00) ok
+  block  2: max |M_fast - M_cs| / max |M_cs| = 1.969e-15 (max |M_cs| 1.458e+00) ok
+  block  3: max |M_fast - M_cs| / max |M_cs| = 2.550e-15 (max |M_cs| 1.197e+00) ok
+  block  4: max |M_fast - M_cs| / max |M_cs| = 1.909e-15 (max |M_cs| 1.366e+00) ok
+  block  5: max |M_fast - M_cs| / max |M_cs| = 5.376e-16 (max |M_cs| 1.168e+00) ok
+  block  6: max |M_fast - M_cs| / max |M_cs| = 1.106e-15 (max |M_cs| 1.205e+00) ok
+  block  7: max |M_fast - M_cs| / max |M_cs| = 1.004e-15 (max |M_cs| 1.216e+00) ok
+  block  8: max |M_fast - M_cs| / max |M_cs| = 8.156e-16 (max |M_cs| 1.089e+00) ok
+  block  9: max |M_fast - M_cs| / max |M_cs| = 8.923e-16 (max |M_cs| 1.120e+00) ok
+  block 10: max |M_fast - M_cs| / max |M_cs| = 8.802e-16 (max |M_cs| 1.048e+00) ok
+  block 11: max |M_fast - M_cs| / max |M_cs| = 6.020e-16 (max |M_cs| 1.107e+00) ok
+  block 12: max |M_fast - M_cs| / max |M_cs| = 5.141e-16 (max |M_cs| 1.296e+00) ok
+  slogdet: fast +1 -20.457624969244, complex step +1 -20.457624969244, |d ln| 2.49e-14 ok
+M at lambda 0.9, coef tangents:
+  block  0: max |M_fast - M_cs| / max |M_cs| = 1.222e-03 (max |M_cs| 1.000e+00) FAIL
+  block  1: max |M_fast - M_cs| / max |M_cs| = 1.043e+00 (max |M_cs| 4.141e+00) FAIL
+  block  2: max |M_fast - M_cs| / max |M_cs| = 8.544e-01 (max |M_cs| 1.027e+00) FAIL
+  block  3: max |M_fast - M_cs| / max |M_cs| = 5.792e-01 (max |M_cs| 1.023e+00) FAIL
+  block  4: max |M_fast - M_cs| / max |M_cs| = 5.663e-01 (max |M_cs| 1.060e+00) FAIL
+  block  5: max |M_fast - M_cs| / max |M_cs| = 3.996e-01 (max |M_cs| 1.003e+00) FAIL
+  block  6: max |M_fast - M_cs| / max |M_cs| = 4.397e-01 (max |M_cs| 1.002e+00) FAIL
+  block  7: max |M_fast - M_cs| / max |M_cs| = 3.670e-01 (max |M_cs| 1.019e+00) FAIL
+  block  8: max |M_fast - M_cs| / max |M_cs| = 2.762e-01 (max |M_cs| 1.005e+00) FAIL
+  block  9: max |M_fast - M_cs| / max |M_cs| = 2.529e-01 (max |M_cs| 1.004e+00) FAIL
+  block 10: max |M_fast - M_cs| / max |M_cs| = 2.065e-01 (max |M_cs| 1.002e+00) FAIL
+  block 11: max |M_fast - M_cs| / max |M_cs| = 2.002e-01 (max |M_cs| 1.008e+00) FAIL
+  block 12: max |M_fast - M_cs| / max |M_cs| = 1.272e-01 (max |M_cs| 1.296e+00) FAIL
+  slogdet: fast +1 -20.175703137563, complex step +1 -108.545407907689, |d ln| 8.84e+01 FAIL
+M at lambda 0.9, jac tangents:
+  block  0: max |M_fast - M_cs| / max |M_cs| = 1.222e-03 (max |M_cs| 1.000e+00) FAIL
+  block  1: max |M_fast - M_cs| / max |M_cs| = 1.043e+00 (max |M_cs| 4.141e+00) FAIL
+  block  2: max |M_fast - M_cs| / max |M_cs| = 8.544e-01 (max |M_cs| 1.027e+00) FAIL
+  block  3: max |M_fast - M_cs| / max |M_cs| = 5.792e-01 (max |M_cs| 1.023e+00) FAIL
+  block  4: max |M_fast - M_cs| / max |M_cs| = 5.663e-01 (max |M_cs| 1.060e+00) FAIL
+  block  5: max |M_fast - M_cs| / max |M_cs| = 3.996e-01 (max |M_cs| 1.003e+00) FAIL
+  block  6: max |M_fast - M_cs| / max |M_cs| = 4.397e-01 (max |M_cs| 1.002e+00) FAIL
+  block  7: max |M_fast - M_cs| / max |M_cs| = 3.670e-01 (max |M_cs| 1.019e+00) FAIL
+  block  8: max |M_fast - M_cs| / max |M_cs| = 2.762e-01 (max |M_cs| 1.005e+00) FAIL
+  block  9: max |M_fast - M_cs| / max |M_cs| = 2.529e-01 (max |M_cs| 1.004e+00) FAIL
+  block 10: max |M_fast - M_cs| / max |M_cs| = 2.065e-01 (max |M_cs| 1.002e+00) FAIL
+  block 11: max |M_fast - M_cs| / max |M_cs| = 2.002e-01 (max |M_cs| 1.008e+00) FAIL
+  block 12: max |M_fast - M_cs| / max |M_cs| = 1.272e-01 (max |M_cs| 1.296e+00) FAIL
+  slogdet: fast +1 -20.175703137563, complex step +1 -108.545407907689, |d ln| 8.84e+01 FAIL
+M at lambda 0.9, grid tangents:
+  block  0: max |M_fast - M_cs| / max |M_cs| = 1.222e-03 (max |M_cs| 1.000e+00) FAIL
+  block  1: max |M_fast - M_cs| / max |M_cs| = 1.043e+00 (max |M_cs| 4.141e+00) FAIL
+  block  2: max |M_fast - M_cs| / max |M_cs| = 8.544e-01 (max |M_cs| 1.027e+00) FAIL
+  block  3: max |M_fast - M_cs| / max |M_cs| = 5.792e-01 (max |M_cs| 1.023e+00) FAIL
+  block  4: max |M_fast - M_cs| / max |M_cs| = 5.663e-01 (max |M_cs| 1.060e+00) FAIL
+  block  5: max |M_fast - M_cs| / max |M_cs| = 3.996e-01 (max |M_cs| 1.003e+00) FAIL
+  block  6: max |M_fast - M_cs| / max |M_cs| = 4.397e-01 (max |M_cs| 1.002e+00) FAIL
+  block  7: max |M_fast - M_cs| / max |M_cs| = 3.670e-01 (max |M_cs| 1.019e+00) FAIL
+  block  8: max |M_fast - M_cs| / max |M_cs| = 2.762e-01 (max |M_cs| 1.005e+00) FAIL
+  block  9: max |M_fast - M_cs| / max |M_cs| = 2.529e-01 (max |M_cs| 1.004e+00) FAIL
+  block 10: max |M_fast - M_cs| / max |M_cs| = 2.065e-01 (max |M_cs| 1.002e+00) FAIL
+  block 11: max |M_fast - M_cs| / max |M_cs| = 2.002e-01 (max |M_cs| 1.008e+00) FAIL
+  block 12: max |M_fast - M_cs| / max |M_cs| = 1.272e-01 (max |M_cs| 1.296e+00) FAIL
+  slogdet: fast +1 -20.175703137563, complex step +1 -108.545407907689, |d ln| 8.84e+01 FAIL
+selftest (mutate nolam): FAIL
+exit 1 (201 s; wanted 1)
