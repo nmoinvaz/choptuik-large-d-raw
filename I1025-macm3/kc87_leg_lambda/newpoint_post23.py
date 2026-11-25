@@ -158,6 +158,8 @@ LAMP=(%s)
 WIN="%s %s"; REP=%s
 """ % (dn, TAG, rawc, sf, sb, rb, how, nev, NP, NICE, assign, NP, NICE, SRC, " ".join('"%s"' % v for v in lamp), win[0], win[1], m)
     open("%s/%s/point.env" % (L, dn), "w").write(env)
+    if "--env-only" in sys.argv:      # the folder and its point.env only (the pins come from prepare87.sh); the README section is written by mkF.py
+        print("D %s: part %s, commit %s, state %s, record %s: point.env written, no README section" % (dn, pname, rawc, sb, rb)); return
     nowt = time.strftime("%F %H:%M:%S", time.gmtime())
     bes = "".join("\n**Scored beside it:** %s." % t for t, v in besides)
     above = sorted(x for x in roots if x > D)
