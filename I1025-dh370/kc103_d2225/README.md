@@ -39,3 +39,18 @@ How I read it, fixed here: on the 0.04 grid, "A near 0.434" is a robust '- to +'
 ## Status
 - 2026-11-25 09:34 UTC: folder, inputs, drivers, dry run (pins, worktree and lambda_0 pass) and this README written before any run; the unit `i1025k103` starts next.
 - 2026-11-25 09:34:44 to 09:34:56 UTC: unit `i1025k103` started. Selftests of the k_c 95, k_c 103 and k_c 87 checks exit 0 0 0. **Source check accepted:** `kc95_syscheck_1025.py` exit 0 on dh610's state and record, `--mutate=F` and `--mutate=steps` exit 1, the k_c 103 check exit 1 and the k_c 87 check exit 1 on the source (`source_*.txt`). **Regrid started 09:34:56 UTC** (6 threads, nice 10, cap 43200 s), load 2.5, MemAvailable 28.3 GB.
+
+## Regrid result (25 Nov, 09:34:56 to 11:34:31 UTC): ACCEPTED
+`ell_refine.py` (6 threads, nice 10, unit `i1025k103`) exited 0 after **7173 s** (7175 s wall); mean sampled CPU 569% (118 samples, `regrid_samples.csv`), peak sampled RSS **2.98 GiB**; 27 numpy RuntimeWarning lines in the log, as in the earlier regrids. A 27 GB rustc of t5's `i1088a` ran beside it from about 10:05 (MemAvailable fell to 0.7 GB at 10:14, no kill; recovered to 24 GB by 11:15).
+- Record `l1kc103dh370d2225.jsonl` (blob 1516ffe9) and state `sol_l1kc103dh370d2225_D22.2500.npy` (blob 9b920bad): k_c 103 at D 22.25, |F| **4.0298416048e-10** (dh610's k_c 95: 3.9737761418e-10), F_start 1.944e-05, **3392 steps** (k_c 95: 3128; ratio 1.0844), constraint **2.928e-03** (k_c 95: 4.701e-03), **Delta 1.152663118278** (k_c 95: 1.1526691088; shift **-5.99e-06**).
+- **Acceptance:** `kc103_syscheck_1025.py` exit 0 (the state's |F| equals the record's, `freeze_from` gives 3392 steps = the record's); `--mutate=F` exit 1, `--mutate=steps` exit 1; `kc95_syscheck_1025.py` on the k_c 103 result exit 1 (refuses it). Source check (09:34:56): k_c 95 check exit 0, controls 1 1, the k_c 103 and k_c 87 checks refuse it. The memory gate passed at once (MemAvailable 28.5 GB); the scan started **11:34:42 UTC**, 5 processes.
+
+### Regrid predictions scorecard (mine, registered before the run)
+| prediction | result |
+|---|---|
+| source accepted, controls 1 1, k_c 103 and k_c 87 checks refuse it (90%); regrid accepted (85%) | right; right |
+| steps about 3391 (within 30: 60%) | right (3392) |
+| \|F\| below 1e-9 (90%) | right (4.03e-10) |
+| Delta(103) - Delta(95) between -5e-5 and -1e-6 (65%) | right (-5.99e-6) |
+| regrid wall 4000 to 9000 s (60%) | right (7173 s) |
+| peak RSS below 4 GiB (85%) | right (2.98 GiB) |
