@@ -2,7 +2,8 @@
 """ext23.py: the extension of a late-point scan that found no change in its window (#1025 macm3 kc87_leg_lambda).
 Order (t5, hc 25 Nov ~14:07 UTC): "if D 22.875 shows no change in 0.100-0.160, extend it at once to 0.060-0.100 by 0.01 (plus a repeat), no need to ask; the same rule for the later points
 (extend by the window's width on the side the end signs point to)".
-A lone F is the upper root of the multiplet pair (S lies below the window), so the hybrid sign is + below F and - above it: both end signs '-' put F below the window (extend down), both '+' above it (extend up).
+The direction comes from the orientation read at the nearest scanned point of the same part (same TAG in point.env; t5, hc 25 Nov ~14:43 UTC: "part c: '- to +'; part c2: '+ to -'"), not from a template:
+with the sign s_above above F in that reading, both end signs equal to s_above put F below the window (extend down), both equal to the other sign put F above it (extend up).
 usage: ext23.py need D          reads D/read_lower.txt: prints NO (one or more changes: nothing to extend), EXT LO HI SIDE (extension window), or STOP why
        ext23.py setup D LO HI   writes D_ext/point.env (the extension's grid: the new values by 0.01, the middle one twice first) and appends the README section (before any run); prints the folder name
        ext23.py merge D         D_ext must have SCAN_DONE.txt: merges both scans' evaluations, runs read_lower.py on the merged window and repeat_check.py, writes D_ext/read_lower_merged.txt,
@@ -23,8 +24,8 @@ def endpoints(text):
     return (m.group(1), float(m.group(2)), m.group(3), float(m.group(4))) if m else None
 
 
-def decide(text, D):
-    """-> ('NO',) | ('EXT', lo, hi, side) | ('STOP', why)"""
+def decide(text, D, orient):
+    """orient = (sign below F, sign above F) from the nearest scanned point of the same part, or None. -> ('NO',) | ('EXT', lo, hi, side) | ('STOP', why)"""
     m = re.search(r"robust changes: (\d+);", text)
     if not m:
         return ("STOP", "no 'robust changes' line in the reading")
@@ -36,14 +37,46 @@ def decide(text, D):
     s_lo, lo, s_hi, hi = e
     if s_lo != s_hi:
         return ("STOP", "no change but different end signs (%s at %r, %s at %r)" % (s_lo, lo, s_hi, hi))
+    if MUT == "template":
+        orient = ("+", "-")            # the earlier template: a lone F is the upper root, + below it and - above it
+    if orient is None:
+        return ("STOP", "no scanned point of the same part with one change to read the orientation from")
     w = hi - lo
     if MUT == "width":
         w = w / 2
-    down = (s_lo == "-") != (MUT == "side")
+    down = (s_lo == orient[1]) != (MUT == "side")
     if down:
         a = EXPLICIT_DOWN.get(D, round(lo - w, 3)) if MUT != "width" else round(lo - w, 3)
         return ("EXT", a, lo, "down")
     return ("EXT", hi, round(hi + w, 3), "up")
+
+
+def part_tag(folder):
+    m = re.search(r"^TAG=(\S+)", open(folder + "/point.env").read(), re.M)
+    return m.group(1) if m else None
+
+
+def reference_orientation(D, base=None):
+    """(D', (below, above), tag) of the scanned point D' != D of the same part (same TAG) nearest to D whose reading has exactly one robust change, or None; only plain D folders count"""
+    base = base or L
+    tag = part_tag("%s/%r" % (base, D))
+    best = None
+    for f in glob.glob(base + "/[0-9]*/read_lower.txt"):
+        d = os.path.dirname(f); name = os.path.basename(d)
+        try:
+            Dp = float(name)
+        except ValueError:
+            continue
+        if abs(Dp - D) < 1e-9 or not os.path.exists(d + "/SCAN_DONE.txt") or part_tag(d) != tag:
+            continue
+        t = open(f).read()
+        m = re.search(r"robust changes: (\d+);", t)
+        c = re.findall(r"robust change \((?:-?[\d.]+), (?:-?[\d.]+)\), ([-+]) to ([-+]),", t)
+        if not m or int(m.group(1)) != 1 or len(c) != 1:
+            continue
+        if best is None or abs(Dp - D) < abs(best[0] - D):
+            best = (Dp, (c[0][0], c[0][1]), tag)
+    return best
 
 
 def ext_values(lo, hi, side):
@@ -118,10 +151,11 @@ def do_setup(D, lo, hi):
         f.write('WIN="%s"; REP=%.3f\n' % (win, rep))
     first = open("%s/%s/read_lower.txt" % (L, dn)).read()
     e = endpoints(first)
+    ref = reference_orientation(D)
     sec = (
         "\n## D %s extension (written before its check and scan, %s UTC)\n\n" % (dn, now()) +
         "**Order** " + order + "\n"
-        "**Why:** the first scan of D %s (window %.3f to %.3f, `%s/read_lower.txt`) found no robust change; its end signs are %s at %.3f and %s at %.3f, so a lone F (the upper root of the multiplet pair, hybrid sign + below it and - above it) lies %s the window.\n" % (dn, e[1], e[3], dn, e[0], e[1], e[2], e[3], "below" if side == "down" else "above") +
+        "**Why:** the first scan of D %s (window %.3f to %.3f, `%s/read_lower.txt`) found no robust change; its end signs are %s at %.3f and %s at %.3f. At the nearest scanned point of the same part (D %r, tag %s) the change reads '%s to %s' (hybrid sign %s below F, %s above it), so F lies %s the window.\n" % (dn, e[1], e[3], dn, e[0], e[1], e[2], e[3], ref[0], ref[2], ref[1][0], ref[1][1], ref[1][0], ref[1][1], "below" if side == "down" else "above") +
         "**Inputs:** the same state, record and pins as D %s (`%s_ext/pins.txt`, written by prepare87.sh from point.env).\n" % (dn, dn) +
         "**Grid:** the extension window %s, by 0.01 (the endpoint %.3f is the first scan's own): lambda %s (%d values), the middle one %.3f twice first (a repeat on another process); NP=4 processes of 1 thread at nice 15. The merged reading (`ext23.py merge`) reads the first scan and this one together on lambda %.3f to %.3f; the first window's own reading is kept as `%s/read_lower_first.txt`.\n" % (
             win, lo if side == "up" else hi, ", ".join("%.3f" % x for x in vals), len(vals), rep, min(lo, e[1]), max(hi, e[3]), dn) +
@@ -159,17 +193,33 @@ def selftest():
         nonlocal ok
         print("planted:", name, "PASS" if cond else "FAIL"); ok = ok and cond
     base = "points 7 in 0.100-0.160; not noise-robust: none\nhybrid signs: ...\nrobust changes: %d; touching a non-robust point (not counted): none\nendpoint signs: %s at %s, %s at %s\n(exit 0)\n"
-    down = base % (0, "-", "0.100", "-", "0.160")
-    up = base % (0, "+", "0.100", "+", "0.160")
-    r = decide(down, 22.875)
-    chk("no change, both end signs '-': extend down; D 22.875 takes t5's own window 0.060 to 0.100", r == ("EXT", 0.06, 0.1, "down"))
-    r = decide(down, 22.8125)
-    chk("no change, both end signs '-', another point: down by the window's width (0.060): 0.040 to 0.100", r == ("EXT", 0.04, 0.1, "down"))
-    r = decide(up, 22.8125)
-    chk("no change, both end signs '+': extend up by the width: 0.160 to 0.220", r == ("EXT", 0.16, 0.22, "up"))
-    chk("one change: nothing to extend", decide(base % (1, "+", "0.100", "-", "0.160"), 22.875) == ("NO",))
-    chk("no change and different end signs: STOP", decide(base % (0, "+", "0.100", "-", "0.160"), 22.875)[0] == "STOP")
-    chk("a text without the changes line: STOP", decide("nothing", 22.875)[0] == "STOP")
+    both_minus = base % (0, "-", "0.100", "-", "0.160")
+    both_plus = base % (0, "+", "0.170", "+", "0.230")
+    C2, PC = ("+", "-"), ("-", "+")          # (sign below F, sign above F): part c2 reads '+ to -', part c reads '- to +'
+    chk("part c2 ('+ to -'), both end signs '-' (above F): extend down; D 22.875 takes t5's own window 0.060 to 0.100", decide(both_minus, 22.875, C2) == ("EXT", 0.06, 0.1, "down"))
+    chk("part c2, both '-', another point: down by the window's width (0.060): 0.040 to 0.100", decide(both_minus, 22.8125, C2) == ("EXT", 0.04, 0.1, "down"))
+    chk("part c2, both '+' (below F): extend up by the width", decide(base % (0, "+", "0.100", "+", "0.160"), 22.8125, C2) == ("EXT", 0.16, 0.22, "up"))
+    chk("part c ('- to +'), both '+' (above F), window 0.170-0.230: extend DOWN to 0.110-0.170 (t5, D 22.8125)", decide(both_plus, 22.8125, PC) == ("EXT", 0.11, 0.17, "down"))
+    chk("part c, both '-' (below F): extend up to 0.230-0.290", decide(base % (0, "-", "0.170", "-", "0.230"), 22.8125, PC) == ("EXT", 0.23, 0.29, "up"))
+    chk("one change: nothing to extend", decide(base % (1, "+", "0.100", "-", "0.160"), 22.875, PC) == ("NO",))
+    chk("no change and different end signs: STOP", decide(base % (0, "+", "0.100", "-", "0.160"), 22.875, PC)[0] == "STOP")
+    chk("a text without the changes line: STOP", decide("nothing", 22.875, PC)[0] == "STOP")
+    chk("no reference orientation: STOP, no guess", decide(both_plus, 22.8125, None)[0] == "STOP")
+    import tempfile as _t
+    with _t.TemporaryDirectory() as t:
+        def mk(name, tag, changes, orient=None, done=True):
+            os.makedirs("%s/%s" % (t, name))
+            open("%s/%s/point.env" % (t, name), "w").write("D=1\nTAG=%s\n" % tag)
+            txt = "robust changes: %d; touching\n" % changes + ("  robust change (0.120, 0.130), %s to %s, det-linear 0.1, range [0.1, 0.1]\n" % orient if orient else "")
+            open("%s/%s/read_lower.txt" % (t, name), "w").write(txt)
+            if done: open("%s/%s/SCAN_DONE.txt" % (t, name), "w").write("x")
+        mk("22.8125", "tc", 0); mk("22.875", "tc", 1, ("-", "+")); mk("22.75", "tc", 2); mk("22.9375", "tc2", 1, ("+", "-")); mk("23.0", "tc2", 1, ("+", "-"))
+        mk("22.875_ext", "tc", 1, ("+", "-")); mk("22.6875", "tc", 1, ("+", "-"), done=False)
+        r = reference_orientation(22.8125, t)
+        chk("reference: D 22.8125 (part c) reads D 22.875's '- to +' (not the c2 points, not the _ext folder, not the unfinished 22.6875, not the two-change 22.75)", r == (22.875, ("-", "+"), "tc"))
+        r = reference_orientation(22.9375, t)
+        chk("reference: D 22.9375 (part c2) reads D 23.0's '+ to -'", r == (23.0, ("+", "-"), "tc2"))
+        chk("reference: none when no other scanned point of the part has one change", reference_orientation(22.75, t) is not None and reference_orientation(22.6875, t)[0] == 22.875 and reference_orientation(23.0, t)[0] == 22.9375)
     chk("extension values down 0.060 to 0.100 by 0.01 without the endpoint 0.100", ext_values(0.06, 0.1, "down") == [0.06, 0.07, 0.08, 0.09])
     chk("extension values up 0.160 to 0.220 without the endpoint 0.160", ext_values(0.16, 0.22, "up") == [0.17, 0.18, 0.19, 0.2, 0.21, 0.22])
     m, lamp = grid([0.06, 0.07, 0.08, 0.09])
@@ -206,7 +256,8 @@ if __name__ == "__main__":
         sys.exit(selftest())
     D = float(args[0])
     if cmd == "need":
-        r = decide(open("%s/%r/read_lower.txt" % (L, D)).read(), D)
+        ref = reference_orientation(D)
+        r = decide(open("%s/%r/read_lower.txt" % (L, D)).read(), D, ref[1] if ref else None)
         print(" ".join(str(x) for x in r))
     elif cmd == "setup":
         do_setup(D, float(args[1]), float(args[2]))

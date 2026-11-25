@@ -1,9 +1,15 @@
-planted: no change, both end signs '-': extend down; D 22.875 takes t5's own window 0.060 to 0.100 PASS
-planted: no change, both end signs '-', another point: down by the window's width (0.060): 0.040 to 0.100 PASS
-planted: no change, both end signs '+': extend up by the width: 0.160 to 0.220 PASS
+planted: part c2 ('+ to -'), both end signs '-' (above F): extend down; D 22.875 takes t5's own window 0.060 to 0.100 PASS
+planted: part c2, both '-', another point: down by the window's width (0.060): 0.040 to 0.100 PASS
+planted: part c2, both '+' (below F): extend up by the width PASS
+planted: part c ('- to +'), both '+' (above F), window 0.170-0.230: extend DOWN to 0.110-0.170 (t5, D 22.8125) PASS
+planted: part c, both '-' (below F): extend up to 0.230-0.290 PASS
 planted: one change: nothing to extend PASS
 planted: no change and different end signs: STOP PASS
 planted: a text without the changes line: STOP PASS
+planted: no reference orientation: STOP, no guess PASS
+planted: reference: D 22.8125 (part c) reads D 22.875's '- to +' (not the c2 points, not the _ext folder, not the unfinished 22.6875, not the two-change 22.75) PASS
+planted: reference: D 22.9375 (part c2) reads D 23.0's '+ to -' PASS
+planted: reference: none when no other scanned point of the part has one change PASS
 planted: extension values down 0.060 to 0.100 by 0.01 without the endpoint 0.100 PASS
 planted: extension values up 0.160 to 0.220 without the endpoint 0.160 PASS
 planted: grid: the middle value (0.080) twice first, then the rest in order PASS

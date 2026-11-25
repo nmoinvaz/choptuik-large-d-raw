@@ -1,6 +1,7 @@
 #!/bin/bash
 # #1025 macm3 (t5, hc 25 Nov ~12:10 UTC, then ~14:07 UTC): the ordered scans of the late leg points from D 22.875 down, with t5's extension rule added to post23_scans.sh:
 # "if D 22.875 shows no change in 0.100-0.160, extend it at once to 0.060-0.100 by 0.01 (plus a repeat), no need to ask; the same rule for the later points (extend by the window's width on the side the end signs point to)".
+# Direction of an extension (t5, hc ~14:43 UTC): from the orientation read at the nearest scanned point of the same part (ext23.py reference_orientation), not from a template.
 # Per point: pipeline87_post23.sh (a scan already running for it is waited for), then ext23.py need: a robust change in the window -> EXT_CLEARED.txt (the chain's record loop reads the root as before);
 # none -> ext23.py setup (grid and README section first), pipeline87_rescan.sh on D_ext, ext23.py merge (the merged reading replaces D/read_lower.txt, the first one stays as read_lower_first.txt), push, EXT_CLEARED.txt.
 # chain_next.py pending skips a point listed in EXT_ORDER.txt until its EXT_CLEARED.txt exists, so the chain's record does not stop on a window without a change. After the last point the hold is released as before.
@@ -13,10 +14,10 @@ cd $L || exit 9
 have_root() { grep -q "^$1 " $L/roots87.txt; }
 stopp() { tell "macm3 #1025 post23_scans2 STOP: $*; the hold stays"; exit 1; }
 python3 ext23.py selftest > $L/selftest_ext23.txt 2>&1 || stopp "ext23.py selftest fails"
-for m in side width merge; do python3 ext23.py selftest --mutate=$m > /dev/null 2>&1 && stopp "ext23.py selftest --mutate=$m passed (it must fail)"; done
+for m in side width merge template; do python3 ext23.py selftest --mutate=$m > /dev/null 2>&1 && stopp "ext23.py selftest --mutate=$m passed (it must fail)"; done
 python3 chain_next.py selftest > /dev/null 2>&1 || stopp "chain_next.py selftest fails"
 python3 chain_next.py selftest --mutate=ext > /dev/null 2>&1 && stopp "chain_next.py selftest --mutate=ext passed (it must fail)"
-say "started: ext23 selftest exit 0, mutations side, width, merge exit 1; chain_next selftest exit 0, mutation ext exit 1"
+say "started: ext23 selftest exit 0, mutations side, width, merge, template exit 1; chain_next selftest exit 0, mutation ext exit 1"
 for D in 22.875 22.8125 22.75 22.6875 22.625 22.5625 22.5 22.375; do
   if [ -e $L/$D/SCAN_DONE.txt ]; then say "D $D already scanned: skipped"
   elif pgrep -f "pipeline87_post23.sh $D " > /dev/null; then

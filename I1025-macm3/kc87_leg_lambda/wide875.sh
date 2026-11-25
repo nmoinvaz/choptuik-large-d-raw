@@ -7,9 +7,9 @@ HC=$(command -v hc); LOG=$L/post23_scans.log
 say() { echo "$(date -u '+%F %T') UTC wide875: $*" >> $LOG; }
 tell() { say "hc: $*"; [ -n "$HC" ] && "$HC" send nathans-macbook-air-m5-3/t5 "$*" >> $LOG 2>&1; }
 cd $L || exit 9
-say "waiting for the scan of D 22.8125 to end"
-while [ ! -e $L/22.8125/SCAN_DONE.txt ] || pgrep -f "pipeline87_post23.sh 22.8125 " > /dev/null; do sleep 2; done
-say "D 22.8125's pipeline is done: starting the wide check of D 22.875"
+say "waiting for the extension scan of D 22.8125 (22.8125_ext) to end (t5, ~14:43 UTC: the extension first, then this check)"
+while [ ! -e $L/22.8125_ext/SCAN_DONE.txt ] || pgrep -f "pipeline87_rescan.sh 22.8125_ext" > /dev/null; do sleep 2; done
+say "the extension of D 22.8125 is done: starting the wide check of D 22.875"
 bash $L/pipeline87_rescan.sh 22.875_wide; say "pipeline87_rescan.sh 22.875_wide returned $?"
 [ -e $L/22.875_wide/SCAN_DONE.txt ] || { tell "macm3 #1025 wide875 STOP: the wide scan of D 22.875 did not finish (see 22.875_wide/pipeline.log, steps.txt)"; exit 1; }
 python3 - <<'PY' >> $LOG 2>&1
