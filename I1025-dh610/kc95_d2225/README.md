@@ -55,6 +55,49 @@ The coordinator's count: the recount 2 busy threads, this lane 8, the quest's i1
 | peak sampled RSS below 3 GiB (85%) | right (2.55 GiB) |
 | the regrid done by 04:30 UTC (60%) | right (01:57:42 UTC) |
 
+## Scan result (25 Nov, 01:57:46 to 03:03:37 UTC, 65.8 min, 4 processes; `summarize_kc95.py` > `summary_kc95.txt`)
+| lambda | hybrid sign | noise signs (robust) | float64 sign | ln of abs det | seconds |
+|---|---|---|---|---|---|
+| 0.430 | - | -- (True) | - | -2760.0570242926374 | 2077 |
+| 0.435 | + | ++ (True) | + | -2761.8133440277534 | 2074 |
+| 0.440 | + | ++ (True) | + | -2760.499586019766 | 1868 |
+| 0.440 | + | ++ (True) | + | -2760.499586019766 | 2069 |
+| 0.445 | + | ++ (True) | + | -2760.3324960498508 | 2075 |
+| 0.450 | + | ++ (True) | + | -2760.3943135265367 | 1862 |
+| 0.455 | + | ++ (True) | + | -2760.55813497985 | 1851 |
+
+scan points: 7 evaluations, seconds per point min 1851, median 2069, max 2077, sum 13876; outside 3000 to 5500 s: [(0.43, 2077), (0.435, 2074), (0.44, 1868), (0.44, 2069), (0.445, 2075), (0.45, 1862), (0.455, 1851)]
+the regridded record at D 22.25: |F| 3.9737761418304846e-10, steps 3128, constraint 0.004701325487496441, Delta 1.1526691087985546, h None, seconds 3203
+float64 sign differs from the hybrid at: []
+
+```
+hybrid signs: 0.430- 0.435+ 0.440+ 0.445+ 0.450+ 0.455+
+robust changes: 1
+   change (0.430, 0.435), - to +, det-linear 0.434264, range [0.434029, 0.434264]
+against the prediction 0.4415: change minus prediction -0.007236; within 0.005: False
+```
+
+- **All 4 processes exit 0 and printed the record system** (|F| 3.9770752180e-10 recomputed against the record's 3.9737761418e-10, steps 3128 = the record's); the pre-run checks passed (`selftest_exits.txt` 0 0 0 1 1 0 0 1). The scan ran on 4 processes (p0 0.430 and 0.450, p1 0.435 and 0.455, p2 0.440, p3 0.445 and the repeat of 0.440) because the quest's `i1088a-build.service` was active at the start; `watch_i1088a.sh` raised the 4 processes to nice 19 at 01:58:10 UTC (`i1088a_yield.txt`, 5 lines: a second build unit appeared later); walls 1:05:27, 1:05:42, 1:05:46 and 34:32.
+- **One robust change in the window 0.430 to 0.455:** (0.430, 0.435), **"- to +" as the reader prints it**, det-linear **0.434264**, estimator range [0.434029, 0.434264] (a spread over interpolation choices, not an enclosure; the bracket is the grid step 0.005). The change sits in the lowest grid interval of the window: one point (0.430) lies below it. Edge signs differ (- at 0.430, + at 0.455). No ln|det| minimum without a sign change; every point noise-robust; the float64 sign agrees with the hybrid at all 7 evaluations.
+- **The repeat of 0.440** (p2 and p3, two processes) is bit-identical (hybrid +, ln|det| -2760.499586019766 in both; `repeat_check.py` PASS).
+- **Against the prediction 0.4415 (the coordinator's: macm3's k_c 87 root 0.442516 minus 0.001, bar 0.005):** -0.007236, **outside the bar** (the order has no widening; the change is in the window). **Beside macm3's k_c 87 root at the same D** (0.442516, bracket (0.440, 0.445), range [0.441911, 0.442516], orientation printed "+ to -", a macOS scan of its own state): the k_c 95 root is **0.008252 below it** (D 21.75: 0.000991 below; D 21.75 showed the builds agree, so this is the k_c step), and its printed orientation is "- to +", where macm3's k_c 87 prints "+ to -" at this D (at D 21.75 both print "- to +"). The orientations are listed as the reader prints them and are not interpreted here (the coordinator's question about where they flip is asked in the next lanes, `../kc95_d22125/` and `../kc95_d221875/`).
+- **Seconds per point: 1851 to 2077 s** (median 2069), the machine quiet beside the recount and the quest's build (load median 6.28, max 10.8, min 5.04 over 131 samples 01:57:56 to 03:03:05 UTC), peak RSS per process 2.49 to 3.05 GiB (`/usr/bin/time -v`), MemAvailable at least 27.13 GiB (the build holds about 22 GB); no memory alert.
+
+### Scan predictions scorecard (registered before the run)
+| prediction | result |
+|---|---|
+| every point noise-robust (75%) | right (7 of 7) |
+| the repeat on its own process bit-identical (85%) | right |
+| exactly one robust change in 0.430 to 0.455 (80%) | right |
+| the change within 0.005 of 0.4415 (85%); within 0.002 (60%) | WRONG (-0.007236); WRONG |
+| below macm3's 0.442516, the step negative (80%) | right (-0.008252) |
+| the step between -0.003 and 0 (70%) | WRONG (-0.008252) |
+| the bracket (0.440, 0.445) (65%); (0.435, 0.440) (25%) | WRONG; WRONG (it is (0.430, 0.435)) |
+| the float64 sign agrees with the hybrid at all evaluations (20%) | right (agrees at all 7) |
+| each scan point 3000 to 5500 s (55%) | WRONG (1851 to 2077 s) |
+| the scan done within 100 min of its start (60%) | right (65.8 min) |
+
 ## Status
 - 2026-11-25 01:03 UTC: folder, inputs (pinned: `in_blobs.txt`, `in_blobs_src.txt`, `source_commit.txt`), lane, watcher and README written before any run; `lane_kc95.sh dry` is run next, then the unit and the watcher.
 - 2026-11-25 01:58 UTC: the regrid is ACCEPTED (01:04:11 to 01:57:42 UTC, 3203 s; result above, raw bf976140). An i1088a unit was active: the scan started 01:57:46 UTC on 4 processes (nice 10, reniced to 19 by the watcher at 01:58:10 UTC).
+- 2026-11-25 03:04 UTC: the scan is done (01:57:46 to 03:03:37 UTC): one robust change, bracket (0.430, 0.435) printed "- to +", det-linear 0.434264, -0.007236 against 0.4415 (outside the bar), 0.008252 below macm3's k_c 87 0.442516; result and scorecard above. This lane is finished.
