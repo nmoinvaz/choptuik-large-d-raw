@@ -1,1 +1,7 @@
 # 2026-11-25 12:41:03 UTC cmd: C:/Users/nathan/Source/venv-md510/Scripts/python.exe -u ell_refine.py l1kc95win2d22 95 l1kc103win22 103 1 22.0 2.1028298859 --kappa 0.7 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma (cwd C:/Users/nathan/Source/choptuik-i1025k79/solver/matter, 4 threads, BelowNormal, cap 43200 s)
+  aG = cs(A, Q2, Kk) + (n - 1) * (A[Kk] - cs(A, A2, Kk)) + 2 * L * cs(A, G, Kk)
+  aG = cs(A, Q2, Kk) + (n - 1) * (A[Kk] - cs(A, A2, Kk)) + 2 * L * cs(A, G, Kk)
+  C[Kk + 1] = (Kk * C[Kk] - (n - 1) * (cs(C, A2, Kk) - C[Kk]) + 2 * L * cs(C, G, Kk)) / (Kk + 1)
+  P[Kk] = self.solve_periodic(kappa + 0 * r, -r, omega)
+{"D": 22.0, "l": 1, "kc": 103, "kappa": 0.7, "rk": 1, "reg": 0.0, "u0": 0.04, "Ks": 30, "src": "l1kc95win2d22", "Delta": 1.1456135523280597, "Delta_src": 1.1456173904426914, "F": 4.2507160072657824e-10, "F_start": 1.577666833594485e-05, "steps": 3402, "constraint": 0.0024426933063668977, "dDelta_dF": 2446427252.6388335, "lam_gauge": 0.9653097576324661, "seconds": 10227}
+exit 0
