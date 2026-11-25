@@ -1,0 +1,31 @@
+  point A 3.7873456 wf 0.20654321: R 774835+3.37527e+06j, |r3| 0.00016, continuation [0.25, 0.249], 22 CPU s
+  point A 3.6623456 wf 0.20654321: R 496777+1.89784e+06j, |r3| 1e-05, continuation [0.25, 0.249], 33 CPU s
+  point A 3.6623456 wf 0.23154321: R 1.51475e+06+2.56923e+06j, |r3| 1.7e-05, continuation [0.25, 0.249], 38 CPU s
+  point A 3.7873456 wf 0.23154321: R 1.71719e+07+2.99771e+07j, |r3| 3.4e-05, continuation [0.25, 0.249], 61 CPU s
+  point A 3.7873456 wf 0.24404321: R -4.16785e+06-5.32236e+06j, |r3| 8.5e-05, continuation [0.25, 0.249], 37 CPU s
+  point A 3.7873456 wf 0.23779321: R 2.98469e+07+4.40103e+07j, |r3| 3.5e-05, continuation [0.25, 0.249], 30 CPU s
+  point A 3.7873456 wf 0.24091821: R -4.59202e+06-6.32832e+06j, |r3| 2.1e-05, continuation [0.25, 0.249], 29 CPU s
+  point A 3.7873456 wf 0.23935571: R 3.37731e+07+4.78047e+07j, |r3| 3.6e-05, continuation [0.25, 0.249], 29 CPU s
+  point A 3.7873456 wf 0.24013696: R -4.70301e+06-6.60739e+06j, |r3| 3.8e-05, continuation [0.25, 0.249], 21 CPU s
+  point A 3.7873456 wf 0.23974634: R 3.48037e+07+4.87655e+07j, |r3| 3.7e-05, continuation [0.25, 0.249], 35 CPU s
+  point A 3.7873456 wf 0.23994165: R -4.73109e+06-6.67904e+06j, |r3| 3.1e-05, continuation [0.25, 0.249], 24 CPU s
+  point A 3.7873456 wf 0.23984399: R 3.50644e+07+4.90064e+07j, |r3| 3.7e-05, continuation [0.25, 0.249], 27 CPU s
+  point A 3.7873456 wf 0.23989282: R -4.73813e+06-6.69707e+06j, |r3| 0.0001, continuation [0.25, 0.249], 33 CPU s
+  point A 3.7873456 wf 0.23986841: R 3.51298e+07+4.90666e+07j, |r3| 0.00013, continuation [0.25, 0.249], 35 CPU s
+  point A 3.7873456 wf 0.23988061: R -4.73989e+06-6.70159e+06j, |r3| 3.4e-05, continuation [0.25, 0.249], 21 CPU s
+  point A 3.7873456 wf 0.23987451: R -4.74077e+06-6.70385e+06j, |r3| 4.5e-06, continuation [0.25, 0.249], 26 CPU s
+  point A 3.9123456 wf 0.25654321: R -3.36605e+07-3.30918e+07j, |r3| 2.1e-05, continuation [0.25, 0.249], 36 CPU s
+  point A 3.9123456 wf 0.20654321: R 1.60497e+07+8.30336e+07j, |r3| 5.3e-05, continuation [0.25, 0.249], 58 CPU s
+/home/nathan/Source/choptuik-large-d-1076b/solver/inner_stokes/inner_np.py:223: RuntimeWarning: overflow encountered in exp
+  q = np.fft.fft(Jth * np.exp(-Pi)) / NTH
+/home/nathan/Source/choptuik-large-d-1076b/solver/inner_stokes/inner_np.py:223: RuntimeWarning: invalid value encountered in multiply
+  q = np.fft.fft(Jth * np.exp(-Pi)) / NTH
+/home/nathan/Source/venv-i1058/lib/python3.14/site-packages/numpy/fft/_pocketfft.py:101: RuntimeWarning: invalid value encountered in fft
+  return ufunc(a, fct, axes=[(axis,), (), (axis,)], out=out)
+/home/nathan/Source/choptuik-large-d-1076b/solver/inner_stokes/inner_np.py:224: RuntimeWarning: overflow encountered in scalar power
+  sc = np.exp(1 / (2 * r1 * r1)) * r1 ** (-2 * F2mean(Fh))
+/home/nathan/Source/choptuik-large-d-1076b/solver/inner_stokes/inner_np.py:227: RuntimeWarning: invalid value encountered in scalar divide
+  z = q[nu % NTH] * r1 ** (2j * nu * w) * sc / (2 * np.pi * abs(Kp(1j * nu * w)))
+  point A 3.9123456 wf 0.23154321: no value: continuation lost S3's zero after [], 75 CPU s
+  point A 3.9123456 wf 0.23154321: extended precision, |R|/sigma_mp 0.766, NOT valued, 2031 s
+M = 3 at xi1 0.249, recount of 2 unresolved cells of /home/nathan/Source/choptuik-large-d-raw/I1021-dh610/fu022mp_corner_r249/in/cells_sw_se.jsonl, plant None: boundary winding nan, sum over leaves 0, 2 leaves after 0 splits, 230 points, 2 unresolved cells, 2608 s
