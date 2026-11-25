@@ -23,3 +23,8 @@ the command), `jump.log` and `jump_s.jsonl` (one record per Newton step), via `r
   Jacobian with 1 and 2 tangents (`tangents.log`), and the iteration with an f64 Jacobian formed once at the guess and
   the octo-double residual (`mixed.log`) with its control, J times 1.01 (`mixed_scale101.log`).
 - `rebuild_mob.sh`: the release build of `wip/large-d-form-s` with the Moebius horizon (6244fbff).
+- `mixed2/`: the coordinator's run on this machine (from /home/nathan/Source/t5-mixed2/, `mixed2.py`, `run.sh`,
+  `run3.sh`): Newton on the held system at D 300 from the guess with the octo-double residual and the Jacobian
+  re-formed at every step in double-double (`dd.log`, control `dd_scale101.log`), f64 (`f64_fresh.log`) or quad-double
+  (`qd_fresh.log`), and one octo-double Jacobian as a chord (`od_chord.log`); copied while `run3.sh` runs.
+- `after_mob.sh`: the D 1000 held jump with the Moebius horizon, queued after `rebuild_mob.sh`.
