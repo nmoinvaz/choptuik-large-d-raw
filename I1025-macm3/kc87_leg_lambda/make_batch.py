@@ -11,6 +11,25 @@ def part_of(D):   # the leg part that holds the point: a to D 21.5, b to D 21.96
     return "a" if D <= 21.5 + 1e-9 else "b" if D <= 21.96875 + 1e-9 else "b2" if D <= 22.5 + 1e-9 else "c"
 part = opt.get("--part", "auto")
 preds = dict(x.split("=", 1) for x in opt.get("--pred", "").split(";") if "=" in x)
+prevs = dict(x.split("=", 1) for x in opt.get("--prev", "").split(";") if "=" in x)       # --prev="D=PD,PR,LO,HI,CD;...": the registered rule base of a point started by hand (make_post.py --prev)
+rescans = dict(x.split("=", 1) for x in opt.get("--rescan", "").split(";") if "=" in x)    # --rescan="D=FOLDER": a rescan of that point's state, appended under its section
+import json
+def rescan_block(D, folder):
+    L = os.path.expanduser("~/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_leg_lambda")
+    rows = [json.loads(x) for x in open("%s/%s/scan/scan_D%s_1025.jsonl" % (L, folder, D))]
+    rd = open("%s/%s/read_lower.txt" % (L, folder)).read()
+    mm = re.search(r"robust change \(([\d.-]+), ([\d.-]+)\), ([-+] to [-+]), det-linear ([\d.-]+), range \[([\d.-]+), ([\d.-]+)\]", rd)
+    by = {}
+    for r in rows: by.setdefault(round(r["lam"], 4), []).append(r)
+    lines = ["**Rescan of D %s** (`kc87_leg_lambda/%s/`, same state and record, t5's order): lambda %s, hybrid signs as printed, one robust change between the positions below (read_lower prints three decimals; positions from the jsonl).\n" % (D, folder, ", ".join("%g" % x for x in sorted(by))),
+             "| lambda | hybrid sign | ln\\|det\\| | float64 sign |", "|---|---|---|---|"]
+    for lam in sorted(by):
+        r = by[lam][0]
+        lines.append("| %g%s | %+d | %.4f | %+d |" % (lam, " (two evaluations)" if len(by[lam]) > 1 else "", r["sign"], r["ln"], r["f64_sign"]))
+    ks = sorted(by); ch = [(a, b) for a, b in zip(ks, ks[1:]) if by[a][0]["sign"] != by[b][0]["sign"]]
+    lines.append("\nPosition of the change: between %s (%s); det-linear **%s**, estimator range [%s, %s] (a spread over interpolation choices, not an enclosure); repeat %s; %d of %d noise-robust." % (
+        " and ".join("%g" % x for x in ch[0]), mm.group(3), mm.group(4), mm.group(5), mm.group(6), "PASS" if "-> PASS" in rd else "FAIL", sum(r["noise_robust"] for r in rows), len(rows)))
+    return "\n".join(lines)
 def run(extra):
     return subprocess.run([sys.executable, HERE + "/make_post.py"] + extra, capture_output=True, text=True, check=True).stdout
 roots = {}
@@ -19,7 +38,8 @@ for l in open(HERE + "/roots87.txt"):
     if len(f) >= 2 and not l.startswith("#"): roots[float(f[0])] = float(f[1])
 secs = []; rows = []
 for D in Ds:
-    t = run([repr(D), "--part=" + (part_of(D) if part == "auto" else part), "--skip-leg", "--pred=" + preds.get(repr(D), "(not scored)")])
+    t = run([repr(D), "--part=" + (part_of(D) if part == "auto" else part), "--skip-leg", "--pred=" + preds.get(repr(D), "(not scored)")] + (["--prev=" + prevs[repr(D)]] if repr(D) in prevs else []))
+    if repr(D) in rescans: t = t + "\n\n" + rescan_block(D, rescans[repr(D)])
     h = t.split("\n\n")[0]
     m = re.search(r"det-linear ([\d.-]+) \(estimator range \[([\d.-]+), ([\d.-]+)\]\); (.*?) predicted ([\d.-]+): ([+-][\d.]+); the -0\.33 rule beside it, ([\d.-]+): ([+-][\d.]+)(, outside its 0.005 window)?; local slope ([\d.-]+)", h)
     br = re.search(r"between ([\d.-]+) and ([\d.-]+) \(([^)]*)\)", h)
@@ -39,3 +59,6 @@ if opt.get("--leg"):
 if "--note" in opt: print("\n" + opt["--note"])
 print("\nEach point below carries its own tables.\n")
 print("\n\n".join(secs))
+if "--wide" in sys.argv:
+    print("\n\n### The wide scans, side by side\n")
+    print(subprocess.run([sys.executable, HERE + "/make_wide.py"], capture_output=True, text=True, check=True).stdout)

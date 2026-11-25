@@ -46,10 +46,11 @@ def apply_skip(pushed):
 
 def hold(base=None):
     """t5, 25 Nov 00:3x UTC: while kc87_leg_lambda/HOLD.txt exists the chain starts no new scan (its first line is the reason); a root already in roots87.txt that is under check is then not used in any new slope"""
-    f = (base or L) + "/HOLD.txt"
-    if MUT == "hold" or not os.path.exists(f):
+    import glob
+    fs = sorted(glob.glob((base or L) + "/HOLD*.txt"))      # HOLD.txt, HOLD_low.txt, ...: any file that ends in .txt (a released one is renamed HOLD.txt.released.<time>)
+    if MUT == "hold" or not fs:
         return None
-    return (open(f).readline().strip() or "HOLD.txt exists")
+    return (open(fs[0]).readline().strip() or os.path.basename(fs[0]) + " exists")
 
 
 def on_grid(D):
@@ -202,6 +203,10 @@ def selftest():
         chk("hold: no HOLD.txt: not held", hold(t_) is None)
         open(t_ + "/HOLD.txt", "w").write("D 22.125 under check\nsecond line\n")
         chk("hold: HOLD.txt present: held, the reason is its first line", hold(t_) == "D 22.125 under check")
+        os.rename(t_ + "/HOLD.txt", t_ + "/HOLD.txt.released.1")
+        chk("hold: a released (renamed) HOLD.txt does not hold", hold(t_) is None)
+        open(t_ + "/HOLD_low.txt", "w").write("low scans pending\n")
+        chk("hold: another HOLD*.txt (HOLD_low.txt) holds", hold(t_) == "low scans pending")
     print("selftest:", "PASS" if ok else "FAIL")
     return 0 if ok else 1
 
