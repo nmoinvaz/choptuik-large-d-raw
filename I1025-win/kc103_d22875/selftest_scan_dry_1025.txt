@@ -1,0 +1,62 @@
+### 0. regrid driver --dry
+== 2026-11-25 18:58:54 kc103d22875_regrid_driver_1025.py: the k_c 103 regrid at D 22.875 from win2's accepted k_c 95 D 22.875 state (dry run); checking pins
+== 2026-11-25 18:58:54 pins ok (the inputs of C:/Users/nathan/Source/kc103d22875_1025/inputs, win2's k_c 95 D 22.875 files, worktree 48c36355 with solver code = 505d8399 and ell_delta/ell_refine = 48c36355); python C:/Users/nathan/Source/venv-md510/Scripts/python.exe
+== 2026-11-25 18:58:54 selftests: kc103_syscheck exit 0, kc95_syscheck exit 0, kc87_syscheck exit 0 (0 wanted each)
+== 2026-11-25 18:58:55 ell_delta.lam0_at(22.875) = 2.0996545550, as win2's
+== 2026-11-25 18:58:55 DRY: would start ell_refine.py l1kc95win2d22875 95 l1kc103win22875 103 1 22.875 2.0996545550 --kappa 0.7 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma (cwd C:/Users/nathan/Source/choptuik-i1025k79/solver/matter, 4 threads, BelowNormal, cap 43200 s); nothing started
+exit 0
+### 1. fake stand-in marker, state and record (win2's k_c 95 D 22.875 files renamed to the k_c 103 tag): reaches 'would start'
+== 2026-11-25 18:58:55 kc103d22875_scan_driver_1025.py: the k_c 103 hybrid scan at D 22.875, shares 0.10,0.08,0.04;0.12,0.16,0.20;0.14,0.06;0.10,0.18 (dry run); checking pins
+== 2026-11-25 18:58:55 read_lower.py selftest exit 0 and its two --mutate controls exit 1, 1 as wanted
+== 2026-11-25 18:58:55 DRY: would start C:/Users/nathan/Source/venv-md510/Scripts/python.exe -u C:/Users/nathan/Source/kc103d22875_1025/inputs/d18_hybsign.py C:/Users/nathan/Source/kc103d22875_1025/dry_stand_in/l1kc103win22875.jsonl C:/Users/nathan/Source/kc103d22875_1025/dry_stand_in/sol_l1kc103win22875_D22.8750.npy 22.875 0.1,0.08,0.04 C:/Users/nathan/Source/kc103d22875_1025/I1025-win/kc103_d22875/scan_kc103_D22875_p0.jsonl (cwd C:/Users/nathan/Source/choptuik-i1025k79/solver/matter, 1 thread, BelowNormal, cap 21600 s)
+== 2026-11-25 18:58:55 DRY: would start C:/Users/nathan/Source/venv-md510/Scripts/python.exe -u C:/Users/nathan/Source/kc103d22875_1025/inputs/d18_hybsign.py C:/Users/nathan/Source/kc103d22875_1025/dry_stand_in/l1kc103win22875.jsonl C:/Users/nathan/Source/kc103d22875_1025/dry_stand_in/sol_l1kc103win22875_D22.8750.npy 22.875 0.12,0.16,0.2 C:/Users/nathan/Source/kc103d22875_1025/I1025-win/kc103_d22875/scan_kc103_D22875_p1.jsonl (cwd C:/Users/nathan/Source/choptuik-i1025k79/solver/matter, 1 thread, BelowNormal, cap 21600 s)
+== 2026-11-25 18:58:55 DRY: would start C:/Users/nathan/Source/venv-md510/Scripts/python.exe -u C:/Users/nathan/Source/kc103d22875_1025/inputs/d18_hybsign.py C:/Users/nathan/Source/kc103d22875_1025/dry_stand_in/l1kc103win22875.jsonl C:/Users/nathan/Source/kc103d22875_1025/dry_stand_in/sol_l1kc103win22875_D22.8750.npy 22.875 0.14,0.06 C:/Users/nathan/Source/kc103d22875_1025/I1025-win/kc103_d22875/scan_kc103_D22875_p2.jsonl (cwd C:/Users/nathan/Source/choptuik-i1025k79/solver/matter, 1 thread, BelowNormal, cap 21600 s)
+== 2026-11-25 18:58:55 DRY: would start C:/Users/nathan/Source/venv-md510/Scripts/python.exe -u C:/Users/nathan/Source/kc103d22875_1025/inputs/d18_hybsign.py C:/Users/nathan/Source/kc103d22875_1025/dry_stand_in/l1kc103win22875.jsonl C:/Users/nathan/Source/kc103d22875_1025/dry_stand_in/sol_l1kc103win22875_D22.8750.npy 22.875 0.1,0.18 C:/Users/nathan/Source/kc103d22875_1025/I1025-win/kc103_d22875/scan_kc103_D22875_p3.jsonl (cwd C:/Users/nathan/Source/choptuik-i1025k79/solver/matter, 1 thread, BelowNormal, cap 21600 s)
+== 2026-11-25 18:58:55 DRY: reader window 0.04 0.2; nothing started
+exit 0
+### 2. missing marker (--out=empty dir)
+== 2026-11-25 18:58:56 kc103d22875_scan_driver_1025.py: the k_c 103 hybrid scan at D 22.875, shares 0.10,0.08,0.04;0.12,0.16,0.20;0.14,0.06;0.10,0.18 (dry run); checking pins
+== 2026-11-25 18:58:56 REFUSE: regrid_accepted.txt does not exist
+== 2026-11-25 18:58:56 DRY: a real run would stop here
+== 2026-11-25 18:58:56 read_lower.py selftest exit 0 and its two --mutate controls exit 1, 1 as wanted
+== 2026-11-25 18:58:56 DRY: would start C:/Users/nathan/Source/venv-md510/Scripts/python.exe -u C:/Users/nathan/Source/kc103d22875_1025/inputs/d18_hybsign.py C:/Users/nathan/Source/kc103d22875_1025/dry_empty/l1kc103win22875.jsonl C:/Users/nathan/Source/kc103d22875_1025/dry_empty/sol_l1kc103win22875_D22.8750.npy 22.875 0.1,0.08,0.04 C:/Users/nathan/Source/kc103d22875_1025/I1025-win/kc103_d22875/scan_kc103_D22875_p0.jsonl (cwd C:/Users/nathan/Source/choptuik-i1025k79/solver/matter, 1 thread, BelowNormal, cap 21600 s)
+== 2026-11-25 18:58:56 DRY: would start C:/Users/nathan/Source/venv-md510/Scripts/python.exe -u C:/Users/nathan/Source/kc103d22875_1025/inputs/d18_hybsign.py C:/Users/nathan/Source/kc103d22875_1025/dry_empty/l1kc103win22875.jsonl C:/Users/nathan/Source/kc103d22875_1025/dry_empty/sol_l1kc103win22875_D22.8750.npy 22.875 0.12,0.16,0.2 C:/Users/nathan/Source/kc103d22875_1025/I1025-win/kc103_d22875/scan_kc103_D22875_p1.jsonl (cwd C:/Users/nathan/Source/choptuik-i1025k79/solver/matter, 1 thread, BelowNormal, cap 21600 s)
+== 2026-11-25 18:58:56 DRY: would start C:/Users/nathan/Source/venv-md510/Scripts/python.exe -u C:/Users/nathan/Source/kc103d22875_1025/inputs/d18_hybsign.py C:/Users/nathan/Source/kc103d22875_1025/dry_empty/l1kc103win22875.jsonl C:/Users/nathan/Source/kc103d22875_1025/dry_empty/sol_l1kc103win22875_D22.8750.npy 22.875 0.14,0.06 C:/Users/nathan/Source/kc103d22875_1025/I1025-win/kc103_d22875/scan_kc103_D22875_p2.jsonl (cwd C:/Users/nathan/Source/choptuik-i1025k79/solver/matter, 1 thread, BelowNormal, cap 21600 s)
+== 2026-11-25 18:58:56 DRY: would start C:/Users/nathan/Source/venv-md510/Scripts/python.exe -u C:/Users/nathan/Source/kc103d22875_1025/inputs/d18_hybsign.py C:/Users/nathan/Source/kc103d22875_1025/dry_empty/l1kc103win22875.jsonl C:/Users/nathan/Source/kc103d22875_1025/dry_empty/sol_l1kc103win22875_D22.8750.npy 22.875 0.1,0.18 C:/Users/nathan/Source/kc103d22875_1025/I1025-win/kc103_d22875/scan_kc103_D22875_p3.jsonl (cwd C:/Users/nathan/Source/choptuik-i1025k79/solver/matter, 1 thread, BelowNormal, cap 21600 s)
+== 2026-11-25 18:58:56 DRY: reader window 0.04 0.2; nothing started
+exit 0
+### 3. marker with a wrong state blob
+== 2026-11-25 18:58:56 kc103d22875_scan_driver_1025.py: the k_c 103 hybrid scan at D 22.875, shares 0.10,0.08,0.04;0.12,0.16,0.20;0.14,0.06;0.10,0.18 (dry run); checking pins
+== 2026-11-25 18:58:56 REFUSE: C:/Users/nathan/Source/kc103d22875_1025/dry_badblob/sol_l1kc103win22875_D22.8750.npy is blob a14f0d50edb575e85387851a61cb2324c1983317, not 0000000000000000000000000000000000000000
+== 2026-11-25 18:58:56 DRY: a real run would stop here
+== 2026-11-25 18:58:57 read_lower.py selftest exit 0 and its two --mutate controls exit 1, 1 as wanted
+== 2026-11-25 18:58:57 DRY: would start C:/Users/nathan/Source/venv-md510/Scripts/python.exe -u C:/Users/nathan/Source/kc103d22875_1025/inputs/d18_hybsign.py C:/Users/nathan/Source/kc103d22875_1025/dry_badblob/l1kc103win22875.jsonl C:/Users/nathan/Source/kc103d22875_1025/dry_badblob/sol_l1kc103win22875_D22.8750.npy 22.875 0.1,0.08,0.04 C:/Users/nathan/Source/kc103d22875_1025/I1025-win/kc103_d22875/scan_kc103_D22875_p0.jsonl (cwd C:/Users/nathan/Source/choptuik-i1025k79/solver/matter, 1 thread, BelowNormal, cap 21600 s)
+== 2026-11-25 18:58:57 DRY: would start C:/Users/nathan/Source/venv-md510/Scripts/python.exe -u C:/Users/nathan/Source/kc103d22875_1025/inputs/d18_hybsign.py C:/Users/nathan/Source/kc103d22875_1025/dry_badblob/l1kc103win22875.jsonl C:/Users/nathan/Source/kc103d22875_1025/dry_badblob/sol_l1kc103win22875_D22.8750.npy 22.875 0.12,0.16,0.2 C:/Users/nathan/Source/kc103d22875_1025/I1025-win/kc103_d22875/scan_kc103_D22875_p1.jsonl (cwd C:/Users/nathan/Source/choptuik-i1025k79/solver/matter, 1 thread, BelowNormal, cap 21600 s)
+== 2026-11-25 18:58:57 DRY: would start C:/Users/nathan/Source/venv-md510/Scripts/python.exe -u C:/Users/nathan/Source/kc103d22875_1025/inputs/d18_hybsign.py C:/Users/nathan/Source/kc103d22875_1025/dry_badblob/l1kc103win22875.jsonl C:/Users/nathan/Source/kc103d22875_1025/dry_badblob/sol_l1kc103win22875_D22.8750.npy 22.875 0.14,0.06 C:/Users/nathan/Source/kc103d22875_1025/I1025-win/kc103_d22875/scan_kc103_D22875_p2.jsonl (cwd C:/Users/nathan/Source/choptuik-i1025k79/solver/matter, 1 thread, BelowNormal, cap 21600 s)
+== 2026-11-25 18:58:57 DRY: would start C:/Users/nathan/Source/venv-md510/Scripts/python.exe -u C:/Users/nathan/Source/kc103d22875_1025/inputs/d18_hybsign.py C:/Users/nathan/Source/kc103d22875_1025/dry_badblob/l1kc103win22875.jsonl C:/Users/nathan/Source/kc103d22875_1025/dry_badblob/sol_l1kc103win22875_D22.8750.npy 22.875 0.1,0.18 C:/Users/nathan/Source/kc103d22875_1025/I1025-win/kc103_d22875/scan_kc103_D22875_p3.jsonl (cwd C:/Users/nathan/Source/choptuik-i1025k79/solver/matter, 1 thread, BelowNormal, cap 21600 s)
+== 2026-11-25 18:58:57 DRY: reader window 0.04 0.2; nothing started
+exit 0
+### 4. bad shares '0.5'
+REFUSE: wanted 1 to 4 non-empty shares, at least two distinct values in (0, 10), none more than twice: 0.5
+exit 2
+### 4. bad shares '0.5;0.5;0.5'
+REFUSE: wanted 1 to 4 non-empty shares, at least two distinct values in (0, 10), none more than twice: 0.5;0.5;0.5
+exit 2
+### 4. bad shares '0.5,0.5,0.5;0.6'
+REFUSE: wanted 1 to 4 non-empty shares, at least two distinct values in (0, 10), none more than twice: 0.5,0.5,0.5;0.6
+exit 2
+### 4. bad shares 'a,b'
+REFUSE: the shares are not semicolon-separated comma-separated lists of numbers: a,b
+exit 2
+### 4. bad shares '0.5;0.6;0.7;0.8;0.9'
+REFUSE: wanted 1 to 4 non-empty shares, at least two distinct values in (0, 10), none more than twice: 0.5;0.6;0.7;0.8;0.9
+exit 2
+### 4. bad shares '0.5;;0.6'
+REFUSE: the shares are not semicolon-separated comma-separated lists of numbers: 0.5;;0.6
+exit 2
+### 4. bad shares '0.5,0.6;0.0'
+REFUSE: wanted 1 to 4 non-empty shares, at least two distinct values in (0, 10), none more than twice: 0.5,0.6;0.0
+exit 2
+### 5. --out without --dry
+REFUSE: --out=DIR is for --dry only
+exit 2
