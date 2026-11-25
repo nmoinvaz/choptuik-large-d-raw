@@ -27,3 +27,4 @@ Pins as above; both selftests and the guard's as written; the leap's every row p
 
 ## Status
 - 2026-11-25 20:07 UTC: folder, README (the registered readings), driver, launcher, inputs written; the dry run passed (`dry_stdout.txt`, `exits_leg.txt`); the leap starts next.
+- 2026-11-25 20:07 UTC: **the leap started** (`run_kc95leg.sh` through `cim_start.ps1`): root pid 48812 (worker 54220, 8 threads, BelowNormal), cap 43200 s (08:07 UTC 26 Nov at the latest); the guard (`leap_guard.py` f1fe7c7c, `--seeds`) and the samplers run (`leg_points.txt`, `leg/`). `ell_leap.py` did not refuse at k_c 95 at the start (the worker computes: 203 CPU s in 90 s). Seeds, pins and checks in `exits_leg.txt`. The first point D 23.0625 is expected in about 1 to 2 h.
