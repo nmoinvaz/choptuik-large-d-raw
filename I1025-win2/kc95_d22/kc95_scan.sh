@@ -51,15 +51,15 @@ REC=$WOUT/rec_k95_D${F4}.jsonl; ST=$WOUT/sol_${NEWTAG}_D${F4}.npy
 log "kc95 D $D scan: the regrid is accepted; waits for macm3's k_c 87 root at D $D (roots87.txt)"
 tw=$(date +%s)
 if [ -n "$ROOT_OVERRIDE" ]; then
-  # a root the coordinator named, from macm3's own reading (env ROOT_OVERRIDE and ROOT_SOURCE); roots87.txt is not read
+  # a root the coordinator named, from macm3's own reading (env ROOT_OVERRIDE and ROOT_SOURCE); roots87.txt is not read; CENTRE_OFFSET (default 0.003) is the offset of the prediction from the root (D 22.0 of part b2: 0.0005)
   echo "$D $ROOT_OVERRIDE $ROOT_OVERRIDE $ROOT_OVERRIDE override: ${ROOT_SOURCE:-not stated}" > $OUT/roots87.txt
-  out=$("$PY" -I $IN/centre.py $WOUT/roots87.txt $D); c=$?
+  out=$("$PY" -I $IN/centre.py $WOUT/roots87.txt $D ${CENTRE_OFFSET:+--offset=$CENTRE_OFFSET}); c=$?
   [ $c = 0 ] || { log "kc95 D $D scan STOP: centre.py exit $c on the override root"; exit 1; }
   log "kc95 D $D scan: root override $ROOT_OVERRIDE (${ROOT_SOURCE:-not stated}); roots87.txt not read"
 else
 while :; do
   gh api -H "Accept: application/vnd.github.raw" repos/nmoinvaz/choptuik-large-d-raw/contents/I1025-macm3/kc87_leg_lambda/roots87.txt > $OUT/roots87.txt 2> $OUT/roots87.err
-  out=$("$PY" -I $IN/centre.py $WOUT/roots87.txt $D); c=$?
+  out=$("$PY" -I $IN/centre.py $WOUT/roots87.txt $D ${CENTRE_OFFSET:+--offset=$CENTRE_OFFSET}); c=$?
   [ $c = 0 ] && break
   [ $c = 3 ] && { log "kc95 D $D scan STOP: roots87.txt has differing rows for D"; exit 1; }
   [ $(( $(date +%s) - tw )) -lt 43200 ] || { log "kc95 D $D scan STOP: no k_c 87 root for D $D after 12 h"; exit 1; }

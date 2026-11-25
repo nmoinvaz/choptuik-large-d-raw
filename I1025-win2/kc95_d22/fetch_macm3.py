@@ -3,6 +3,7 @@
 pushed the state of D and a record row for D, then download both (through `gh api`, the raw contents) and verify each against the blob sha the
 listing gives. Writes OUTDIR/sol_l1kc87Lmacm3b_D{D:.4f}.npy (the name ell_refine reads), OUTDIR/l1kc87Lmacm3b.jsonl (the record file as pushed)
 and OUTDIR/fetched.txt (D, blobs, commit time, the record row). Exit 0 when fetched, 1 on a blob mismatch, 2 on timeout.
+options: --path=RAWFOLDER --tag=TAG (default I1025-macm3/kc87_leg2/b, l1kc87Lmacm3b)
 usage of the self test: fetch_macm3.py --selftest [--mutate]   (the blob function against git hash-object, the row finder on planted rows; --mutate must exit 1)"""
 import base64
 import hashlib
@@ -56,9 +57,16 @@ def selftest():
 
 
 def main():
+    global PATH, TAG
     a = sys.argv[1:]
     if "--selftest" in a:
         sys.exit(selftest())
+    for x in a:   # --path=RAWFOLDER --tag=TAG name another leg of macm3's (part b2: I1025-macm3/kc87_leg2/b2, l1kc87Lmacm3b2)
+        if x.startswith("--path="):
+            PATH = x[len("--path="):]
+        if x.startswith("--tag="):
+            TAG = x[len("--tag="):]
+    a = [x for x in a if not x.startswith("--path=") and not x.startswith("--tag=")]
     D, out = float(a[0]), a[1]
     poll = float(a[a.index("--poll") + 1]) if "--poll" in a else 60.0
     maxh = float(a[a.index("--max-hours") + 1]) if "--max-hours" in a else 24.0

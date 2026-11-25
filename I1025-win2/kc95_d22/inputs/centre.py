@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""centre.py ROOTS87.txt D | --selftest [--mutate]: the scan centre of the k_c 95 regrid lanes (#1025 kc95_d22, kc95_d225; the coordinator's hc of 2026-11-24 ~17:25 UTC):
+"""centre.py ROOTS87.txt D [--offset=X] | --selftest [--mutate]: the scan centre of the k_c 95 regrid lanes (#1025 kc95_d22, kc95_d225; the coordinator's hc of 2026-11-24 ~17:25 UTC):
 lambda = (macm3's k_c 87 root at that D + 0.003) rounded to 0.005, scanned +-0.01 by 0.005, plus a repeat of the centre; the prediction is root + 0.003 (bar 0.005).
 ROOTS87.txt is macm3's I1025-macm3/kc87_leg_lambda/roots87.txt (rows `D root lo hi source ...`, `#` comments). Prints `PRED CENTRE ROOT` (PRED to 4 decimals, CENTRE to 3), exit 0;
 exit 2 when the file has no row for D (the root is not published yet); exit 3 when it has two rows for D that differ.
@@ -7,7 +7,11 @@ exit 2 when the file has no row for D (the root is not published yet); exit 3 wh
 --mutate adds 0.03 to the offset, which the planted cases must then catch (exit 1)."""
 import sys
 
-OFFSET = 0.003 + (0.03 if "--mutate" in sys.argv else 0.0)
+OFFSET = 0.003   # --offset=X replaces it (D 22.0, part b2: the coordinator's prediction is root + 0.0005)
+for _x in sys.argv[1:]:
+    if _x.startswith("--offset="):
+        OFFSET = float(_x[len("--offset="):])
+MUT = 0.03 if "--mutate" in sys.argv else 0.0   # the selftest's mutation: a wrong offset the planted cases must catch
 
 
 def read_root(text, D):
@@ -28,8 +32,8 @@ def read_root(text, D):
     return rows[-1]
 
 
-def centre(root):
-    pred = root + OFFSET
+def centre(root, offset=None):
+    pred = root + (OFFSET if offset is None else offset) + MUT
     return pred, round(round(pred / 0.005) * 0.005, 3)
 
 
@@ -55,6 +59,12 @@ def selftest():
         bad.append("differing duplicate rows not refused")
     except ValueError:
         pass
+    p, c = centre(0.544982, 0.0005)   # D 22.0 of part b2: prediction root + 0.0005 = 0.545482, centre 0.545
+    if abs(p - 0.545482) > 1e-9 or c != 0.545:
+        bad.append("offset 0.0005 on 0.544982: pred %r centre %r" % (p, c))
+    p, c = centre(0.544982)   # the default offset 0.003 gives 0.547982 -> 0.550: the offset is used
+    if c != 0.550:
+        bad.append("default offset on 0.544982: centre %r" % c)
     for b in bad:
         print("SELFTEST FAIL:", b)
     print("selftest %s" % ("FAILS" if bad else "passes"))

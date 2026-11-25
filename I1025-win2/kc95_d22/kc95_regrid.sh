@@ -17,7 +17,8 @@ EX=$OUT/exits_regrid.txt; SUM=$OUT/summary_regrid.txt
 INP=$BASE/kc95_leap/inputs
 PY=C:/Users/nathan/Source/venv-md510/Scripts/python.exe
 WT=/d/choptuik-i1025k79; WTM=D:/choptuik-i1025k79/solver/matter; DATA=$WT/solver/matter/data
-SRC=l1kc87Lmacm3b; F4=$(printf "%.4f" $D)
+# SRC_TAG and SRC_PATH name another leg of macm3's (part b2: SRC_TAG=l1kc87Lmacm3b2 SRC_PATH=I1025-macm3/kc87_leg2/b2); default part b
+SRC=${SRC_TAG:-l1kc87Lmacm3b}; SRC_PATH=${SRC_PATH:-I1025-macm3/kc87_leg2/b}; F4=$(printf "%.4f" $D)
 export OPENBLAS_NUM_THREADS=4 OMP_NUM_THREADS=4 MKL_NUM_THREADS=4 RAYON_NUM_THREADS=4 PYTHONDONTWRITEBYTECODE=1 PYTHONFAULTHANDLER=1
 mkdir -p $OUT/in
 refuse() { log "kc95 D $D regrid STOP: $*"; echo "kc95 D $D regrid STOP: $*" >> $SUM; echo "$*" > $OUT/regrid_refused.txt; exit ${2:-1}; }
@@ -37,8 +38,8 @@ cd $OUT
 "$PY" -I $INP/kc95_syscheck_1025.py --selftest > selftest_kc95_syscheck.txt 2>&1 || refuse "kc95_syscheck_1025.py --selftest did not exit 0"
 "$PY" -I $BASE/kc95_d22/fetch_macm3.py --selftest > selftest_fetch.txt 2>&1 || refuse "fetch_macm3.py --selftest did not exit 0"
 "$PY" -I $BASE/kc95_d22/fetch_macm3.py --selftest --mutate > /dev/null 2>&1; [ $? = 1 ] || refuse "fetch_macm3.py --selftest --mutate did not exit 1"
-log "kc95 D $D regrid: waits for macm3's state of D $D (raw I1025-macm3/kc87_leg2/b/)"
-"$PY" -I $BASE/kc95_d22/fetch_macm3.py $D $WOUT/in > fetch.log 2>&1; fr=$?
+log "kc95 D $D regrid: waits for macm3's state of D $D (raw $SRC_PATH/, tag $SRC)"
+"$PY" -I $BASE/kc95_d22/fetch_macm3.py $D $WOUT/in --path=$SRC_PATH --tag=$SRC > fetch.log 2>&1; fr=$?
 [ $fr = 0 ] || refuse "fetch_macm3.py exit $fr (see fetch.log)"
 log "kc95 D $D regrid: fetched $(grep -E '^(state|record)' $OUT/in/fetched.txt | tr '\n' ' ' | cut -c1-260)"
 STS=$OUT/in/sol_${SRC}_D${F4}.npy; RECS=$OUT/in/${SRC}.jsonl
