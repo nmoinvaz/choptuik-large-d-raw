@@ -76,3 +76,22 @@ Written as the runs go.
 
 ## C2 result (2026-11-24 23:56 UTC; `ks293_c2_ii/`, 524 s to the line, the re-seed 430.14 s)
 `base: ... octo-double max|F| 1.0e-38 > --tol_od 1e-40: base polish runs`, then `base re-seeded at ks 293 (--reseed_base 1), 430.14 s: octo-double max|F| 2.9e-28, refinement rung max|R| 1.26e-11 -> 1.22e-22 -> 1.21e-22 -> 6.29e-29 -> 9.48e-29 -> 5.16e-29`. Re-seeding the state at its own order raises max|F| from 1.0e-38 to **2.9e-28**: the re-seed's refinement ends at rung max|R| about 5e-29 and that is the floor of reading (ii). It is 29 times the predicted 1e-29 step and 580 times the 5e-30 tail, so a Fr(315) - Fr(293) of 1e-29 can be told from the floor only if the floor repeats from K to K. The chain continues as ordered; the reading of (ii) is reported against this floor.
+
+## Stopped by order, and what exists (t5's hc, 2026-11-25 00:06 UTC)
+t5: "Stop #1087's T2 after the rung now running (no new rungs; record it in the README as stopped by order, with whatever readings exist). Let #1083 finish. Then your freed threads go to the quest's jump test, whose driver I am writing; commands follow." The rung then running was K 315 (ii). To keep it intact I replaced `run_rung.sh` by a stub with an atomic `mv` at 00:06:13 (the running rung held the old file; the original is `run_rung_used.sh`); the chain's later rungs, K 330, 360 and 420, (i) and (ii), ended at once as "not run, stopped by order" (`results.txt`, 00:06:30 UTC), and unit `i1087d` ended with "done". Nothing was killed.
+
+### Readings (`results.txt`; 2 digits; 4 threads; the `base:` line and the re-seed line)
+| K | plan | (i) `base:` octo-double max\|F\| | (ii) after `--reseed_base 1` | seconds to the line |
+|---|---|---|---|---|
+| 293, control C1 | stored (keep_plan 1) | 1.0e-38 (passes, bar 1.0e-38 to 1.1e-38) | | 6 |
+| 293, control C2 (own order, `--tol_od 1e-40`) | stored | 1.0e-38 | 2.9e-28 (rung max\|R\| 1.26e-11 -> 5.16e-29, 430 s) | 524 |
+| 315 | planned again (keep_plan 0) | **1.1e-30** (in both runs: the (ii) run's own `base:` line agrees) | **1.1e-11** (rung max\|R\| 1.26e-11 -> 4.85e-13 -> 1.75e-12, 497.62 s) | 6 (i), 571 (ii) |
+| 330, 360, 420 | | not run | not run | |
+
+Earlier, same state: K 293 with the plan made again, `on 0: |F| 3.61e-36` (337 s); K 315 with the recipe's own line (`on 0: |F| A -> B` line), no A before the 3600 s cap, the residual after its first full step 3.21e+14.
+
+### What these show, and what they do not
+- (i): the stored order-293 state evaluated at order 315 has max|F| **1.1e-30**, against 1.0e-38 at 293 (3.6e-36 with the plan made again): a rise of 1.1e-30. That is below the registered "about 1e-29" and above the 1e-31 bar of "flat from 293". The registered prediction names (ii); t5 reads (i) as information.
+- (ii): the re-seed at K 315 ends at **1.1e-11**, the size of dh610's #1064 start of 1.36e-11 (another state, D 261.07). Its refinement did not converge (rung max|R| 1.26e-11 -> 4.85e-13 -> 1.75e-12, rising at the last step), where at K 293 the same refinement ends at 5.2e-29 after five steps. So (ii) at K 315 jumps to dh610's value and does not stay near its 293 value (2.9e-28); the cause, a non-converging rung refinement or a truncation tail, is not separated by these two numbers.
+- Only K 315 was measured; flatness for K at or above 330 was not tested. Both K 315 readings are at one state, D 263.5987.
+- (ii) used a hand-made port of 276aa1cd (worktree `~/Source/choptuik-large-d-1087`, `reseed_base_adapted.diff`, blob 7e34d721). t5 accepted it for this test; code changes go to t5 first.
