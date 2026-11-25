@@ -8,6 +8,7 @@ KC=/d/choptuik-i935-raw/I1025-win2/kc71_leap
 . $KC/lib_kcl.sh
 BASE=/d/choptuik-i935-raw/I1025-win2
 D=$1; NEWTAG=$2; SUB=$3
+SRC_NOTE=${SRC_NOTE//_/ }   # the note comes with underscores for spaces (the launcher cannot carry quotes)
 [ -n "$D" ] && [ -n "$NEWTAG" ] && [ -n "$SUB" ] || { echo "usage: kc95_fscan.sh D NEWTAG SUBFOLDER"; exit 2; }
 OUT=$BASE/$SUB; WOUT=D:/choptuik-i935-raw/I1025-win2/$SUB
 EX=$OUT/exits_fscan.txt; SUM=$OUT/summary_fscan.txt
