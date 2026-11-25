@@ -31,3 +31,6 @@ the Mac, which pushed this folder.
 - `j1414_held_mob/`, `j2000_held_mob2/`: the stepping stone D 1414 (from D 300, 400, 1000) and D 2000 (from D 400,
   1000, 1414), held, the Moebius horizon a 8, the lean defaults; `ladder.sh`: D 2828 to 10000 in steps of about
   sqrt(2) in n (out/j<D>_ladder/).
+- `j2828_ladder/`: D 2828 from D 1000, 1414, 2000: the guess's horizon block 3.2e5 (bulk 1e-10), no trial in step 0;
+  the ladder stopped. `run_relayout.sh`, `out/rl1000.log`: the relayout onto nodes up to 0.9 at D 1000 (not converged).
+- `ladder2.sh`: the ladder past D 2000 in steps of 1.1 in D, without the discretization report (out/j<D>_l2/).

@@ -64,4 +64,9 @@ c30c2766).
 - `form_s/zcheck_815287c6_D1000.log`: the z-recurrence check at D 1000 on the Mac's opt-1 build of 815287c6 (the
   Moebius constants in the lane's precision).
 
+- `form_s/gain_x.py`: the horizon sum's gain from m_h against the point it is summed at (x 0.7, 0.8, 0.9, 0.95) at the
+  D 2000 solution and the D 2828 guess, and where its coefficients fall below 1e-50 and 1e-70 (`gain_x.log`).
+- `form_s/relayout1000/`: `form_s.py relayout` of the lean D 1000 state onto nodes 0.3 ... 0.9 (`relayout.log`, the
+  re-solve's `relayout_solve.log`: not converged, Delta's gain 3.5e34 with the double-double Jacobian).
+
 Files are added as the runs go; each log or script names its command line.
