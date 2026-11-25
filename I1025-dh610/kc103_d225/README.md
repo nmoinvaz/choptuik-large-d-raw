@@ -51,7 +51,62 @@ Basis: the coordinator's 0.32 +- 0.04 for a converged lambda_1; win2's k_c 95 ro
 | peak sampled RSS below 3.5 GiB (80%) | right (2.98 GiB) |
 | the regrid done within 4.5 h of the lane's start (60%) | right (2.97 h: 14:05:59 to 17:04:21 UTC) |
 
+## Scan result (25 Nov, 17:04:26 to 20:18:48 UTC, 194.4 min, 4 processes; `summarize_kc103.py` > `summary_kc103.txt`)
+| lambda | hybrid sign | noise signs (robust) | float64 sign | ln of abs det | seconds |
+|---|---|---|---|---|---|
+| 0.260 | + | ++ (True) | + | -3032.33284849965 | 2638 |
+| 0.280 | + | ++ (True) | + | -3034.782497259668 | 2649 |
+| 0.300 | + | ++ (True) | + | -3037.9754392479367 | 3856 |
+| 0.320 | - | -- (True) | - | -3039.3971209626507 | 3991 |
+| 0.340 | - | -- (True) | - | -3040.342183713146 | 3954 |
+| 0.340 | - | -- (True) | - | -3040.342183713146 | 4070 |
+| 0.360 | - | -- (True) | - | -3041.768464173321 | 2646 |
+| 0.380 | - | -- (True) | - | -3043.3529469840873 | 2666 |
+| 0.400 | - | -- (True) | - | -3045.0174571780476 | 4217 |
+| 0.420 | - | -- (True) | - | -3046.730566299375 | 5013 |
+
+scan points: 10 evaluations, seconds per point min 2638, median 3905, max 5013, sum 35700; outside 3500 to 6500 s: [(0.26, 2638), (0.28, 2649), (0.36, 2646), (0.38, 2666)]
+the regridded record at D 22.5: |F| 3.828169182320854e-10, steps 3390, constraint 0.003535552513596091, Delta 1.15978761861507, h None, seconds 10666
+float64 sign differs from the hybrid at: []
+
+```
+hybrid signs: 0.260+ 0.280+ 0.300+ 0.320- 0.340- 0.360- 0.380- 0.400- 0.420-
+robust changes: 1
+   change (0.300, 0.320), + to -, det-linear 0.316112, range [0.301766, 0.316112]
+against the prediction 0.32: change minus prediction -0.003888; within 0.04: True
+```
+
+- **All 4 processes exit 0 and printed the record system** (|F| 3.8281691823e-10 against the record's, steps 3390 = the record's); the pre-run checks passed (`selftest_exits.txt` 0 0 0 0 1 1 0 0 1). The scan ran on 4 processes (p0 0.34, 0.36, 0.40; p1 0.32, 0.28, 0.42; p2 0.30, 0.38; p3 the repeat of 0.34 and 0.26); process walls 1:48:47 (p2), 1:51:53 (p3), 3:00:22 (p0), 3:14:22 (p1).
+- **One robust change in the window 0.26 to 0.42:** (0.300, 0.320), **"+ to -" as the reader prints it**, det-linear **0.316112**, estimator range [0.301766, 0.316112] (a spread over interpolation choices, not an enclosure; the bracket is the grid step 0.02). Edge signs differ (+ at 0.26, - at 0.42). No ln|det| minimum without a sign change; every point noise-robust (10 of 10); the float64 sign equals the hybrid at all 10.
+- **The repeat of 0.34** (p0 and p3, two processes) is bit-identical (hybrid -, ln|det| -3040.342183713146 in both; `repeat_check.py` PASS).
+- **Beside win2's k_c 95 reading at this D** (`I1025-win2/kc95_d225/read_lower.txt`, scan -0.10 to 0.50 by 0.04, 16 points, one robust change, float64 sign equal to the hybrid everywhere), as printed:
+
+| | grid | bracket | printed orientation | det-linear root | estimator range |
+|---|---|---|---|---|---|
+| win2 k_c 95 | 0.04 | (0.300, 0.340) | - to + | 0.339034 | [0.300860, 0.339034] |
+| dh610 k_c 103 | 0.02 | (0.300, 0.320) | + to - | 0.316112 | [0.301766, 0.316112] |
+
+  The k_c step (k_c 103 minus k_c 95 root) is **-0.022922** between the det-linear roots. The k_c 103 bracket (0.300, 0.320) lies inside win2's (0.300, 0.340) and the two estimator ranges overlap on [0.301766, 0.316112], so the grids leave the step between -0.04 and +0.02 (bracket-limited; its sign is not fixed by the signs at the shared grid points, as it was at D 22.125). The k_c 95 root is above 0.30 and below 0.34; the k_c 103 root is above 0.30 and below 0.32. **The printed orientations differ at this D** ("- to +" for k_c 95, "+ to -" for k_c 103), and so do the hybrid signs at all five grid points the two scans share: 0.26, 0.30, 0.34, 0.38, 0.42 read - - + + + for win2's k_c 95 and + + - - - for this k_c 103. I list this as printed and do not interpret it. The printed orientations at D 22.125 (all three "- to +") and the k_c steps at D 22.125 (-0.001176) are in `../kc103_d22125/`.
+- **Seconds per point: 2638 to 5013 s** (median 3905), 4 processes of 1 thread at nice 19 (the watcher's renice at 17:04:49 UTC of the 4 pids, `i1088a_yield.txt`; from 17:44 UTC the per-thread watcher, the processes being 1-thread), beside my k_c 103 D 22.125 scan until 17:17 UTC, the recount until 17:55 UTC, then the #1076 one-box recounts, and the quest's units: 1-minute load median 13.52, max 20.52, min 4.35 over 387 samples 17:04:36 to 20:18:20 UTC (none above 22; `load_alert.out` empty, no alert); peak RSS per process 3.55 to 3.67 GiB (`/usr/bin/time -v`); MemAvailable at least 47.2 GiB; no memory alert.
+
+### Scan predictions scorecard (registered before the run)
+| prediction | result |
+|---|---|
+| every point noise-robust (70%) | right (10 of 10) |
+| the repeat on another process bit-identical (85%) | right |
+| exactly one robust change in the window (70%) | right |
+| PRED met, the det-linear root in [0.28, 0.36] (60%) | right (0.316112, -0.003888 from 0.32) |
+| inside win2's k_c 95 bracket (0.30, 0.34) (40%) | right |
+| above 0.34 (30%); below 0.28 (10%) | WRONG; WRONG |
+| the bracket (0.32, 0.34) (20%); (0.30, 0.32) (20%); (0.34, 0.36) (15%); (0.28, 0.30) (12%) | WRONG; right; WRONG; WRONG |
+| the printed orientation of the k_c 103 root is "- to +" (85%) | WRONG (printed "+ to -") |
+| the float64 sign agrees with the hybrid at all 10 evaluations (35%) | right |
+| each scan point 3500 to 6500 s (60%) | WRONG (2638 to 5013 s; 4 of 10 below 3500 s) |
+| the scan done within 5 h of its start (60%) | right (3.24 h) |
+| the whole lane (regrid and scan) done within 9 h (55%) | right (6.21 h: 14:05:59 to 20:18:52 UTC) |
+
 ## Status
 - 2026-11-25 14:05 UTC: folder, inputs (pinned: `in_blobs.txt`, `in_blobs_src.txt`, `source_commit.txt`), lane, watcher and README written before any run; `lane_kc103.sh dry` and the unit `i1025-kc103-22_5` are started next. Beside it: my k_c 103 D 22.125 scan (4 processes), the recount `i1076d` (1), the quest's `i1088a-*` units (not mine).
 - 2026-11-25 17:05 UTC: regrid ACCEPTED (10669 s, 3390 steps, |F| 3.83e-10, Delta shift -8.24e-06 vs win2's k_c 95); the scan runs on 4 processes since 17:04:26 UTC. Scan result and scorecard are written when the last point is done.
 - 2026-11-25 17:46 UTC, amendment (the coordinator's hc, dh370's finding: on Linux nice is per thread, `renice -p PID` moves only the main thread): this lane's `watch_i1088a.sh` raised nice on the main thread only. The regrid (8 threads, 14:06 to 17:04 UTC) therefore ran with its main thread at 19 and, by dh370's 4-thread test (19 10 10 10, reproduced here on a dummy), its worker threads at 10; I did not list its threads while it ran (the process is gone), so that is inferred from the mechanism, not observed. The scan's 4 processes are 1 thread each (`ps -L`: NLWP 1), so their nice 19 was right. Fix: `renice_threads.sh [--mutate] PID` (renices every tid below 19 by exact tid, prints the nice values before and after, exits 1 if a thread is left below 19; tested on 4-thread dummies at nice 10: plain `renice -p` gave 19 10 10 10, `--mutate` exit 1 with [19 10 10 10], the fix exit 0 with [19 19 19 19], the 1-thread scan pid exit 0) and `watch_i1088a.sh` now calls it for every matching pid whenever a thread is below 19 (the old script is kept as `watch_i1088a.sh.old_main_thread_only`; the new one started 17:44 UTC, the old one, pid 2018674, stopped by exact pid). Before and after for the running lane (17:44 UTC): scan pids 2056520 to 2056523, 1 thread each, nice 19 before and after. The recount (12 processes of 1 thread, nice 10 as ordered, not under the yield watcher) is unchanged.
+- 2026-11-25 20:20 UTC: scan done (17:04:26 to 20:18:48 UTC). One robust change (0.300, 0.320), "+ to -" as printed, det-linear 0.316112; win2's k_c 95 reads "- to +" at 0.339034 (bracket (0.300, 0.340)); k_c 103 minus k_c 95 root -0.022922, bracket-limited. Scan result and both scorecards above.
