@@ -1,0 +1,45 @@
+# I1025-win2/prec_kc111_d21125: precision check of the hybrid determinant's sign beside the k_c 111 and k_c 103 roots at D 21.125
+
+Machine win2 (Windows 11, 20 logical CPUs, 95.5 GB RAM; runner win2 claude-me2, Sonnet 5.5). Issue https://github.com/nmoinvaz/choptuik-large-d/issues/1025. Written 2026-11-25 15:07 UTC, **before the first run of this folder** (the driver `prec_run.sh`, the verdict script `prec_verdict.py` with its selftest and mutation, and the dry run, which stops before the runs, are here).
+
+## Order (coordinator t5, hc, 25 Nov ~15:00 UTC), verbatim
+"a precision check on win2's free threads, beside your two k_c 95 lanes (do not slow them; nice/BelowNormal, 4 processes at most). Nathan approved it on the condition that it does not take from the large-D work, which does not run on win2.
+Code: wip/ell1-highD at 18566122, solver/matter/d18_hybsign_prec.py (blob a3a1368c; the same set-up as d18_hybsign.py). Pin it by blob. Run its selftest (exit 0) and --selftest --mutate=class (exit 1) first.
+What it does at each lambda: the hybrid sign, as before; the sign under relative noise of 1e-15, 1e-12 and 1e-10 on blocks 0-11 (2 seeds each); 1e-12 and 1e-10 bracket the converged state's own error, |F| about 4e-10; the sign with every block in double-double. Each record carries a reading: robust, state-limited, rounding-limited.
+Runs, one process per lambda: (1) dh170's k_c 111 state at D 21.125 (raw I1025-dh170/kc111_d21125, its stub record and state, pinned by blob): lambda 0.860, 0.865, 0.870, 0.875 (k_c 111's root 0.8685 is in (0.865, 0.870)). (2) dh170's k_c 103 state at D 21.125 (raw I1025-dh170/kc103_d21125): lambda 0.880, 0.885 (root 0.8844).
+Register first, in the README: if the k_c drift is numerical, the signs beside the roots read state-limited or rounding-limited, and the roots are not resolved at the 0.005 grid; if it is real, every point reads robust. Report each lambda's line as it lands, then the verdict. The all-double-double matrix may take several times a hybrid point; report the first point's time and stop if one lambda passes 6 h.
+Raw I1025-win2/prec_kc111_d21125/, README first."
+
+## What the script does (read, not recalled; `inputs/d18_hybsign_prec.py`, blob a3a1368c, fetched through `gh api` at commit 18566122 of wip/ell1-highD and checked against the contents API's blob a3a1368ce3f32c395438458fb6955004c31c10dc)
+Per lambda: `S.mode_matrix(z, l)` in float64 (blocks 0-11), `E.mode_matrix(z, l, only=[12])` in double-double (block 12), the hybrid matrix H, Hl; `md.dd_logdet(H, Hl)` gives the hybrid sign and ln|det| (d18_hybsign.py's); then for each noise amplitude (1e-15, 1e-12, 1e-10) and two seeds `dd_logdet(H + a * noise * mask * H, Hl)` (noise on blocks 0-11 only); then, with `--alldd=1` (the default), `E.mode_matrix(z, l)` with every block in double-double and its `dd_logdet`. Reading per lambda (`classify`): `state-limited` if a noise amplitude >= 1e-12 flips the hybrid sign; `rounding-limited` if the all-double-double sign differs from the hybrid sign; `robust` if neither (both can hold: `state-limited,rounding-limited`). First line of each process: the record-system check against the stub record (|F| within 1% and steps equal; exit 3 if not). Its selftest has 5 planted records; `--mutate=class` makes it fail. Cost: 7 `dd_logdet` per lambda against 3 for d18_hybsign.py (1e-15 noise only), and the all-double-double matrix build (13 blocks in double-double against 1) on top: several times a hybrid point.
+
+## Inputs (pinned by `git hash-object --no-filters`; `inputs/blobs.txt`; the driver refuses any other blob)
+| item | where | blob |
+|---|---|---|
+| the script | `inputs/d18_hybsign_prec.py` (wip/ell1-highD at 18566122, `solver/matter/d18_hybsign_prec.py`) | a3a1368c |
+| dh170's k_c 111 state at D 21.125 (stub: its record) | raw `I1025-dh170/kc111_d21125/sol_l1kc111dh170h_D21.1250.npy` and `l1kc111dh170h.jsonl` (D 21.125, k_c 111, \|F\| 4.634281e-10, 3742 steps, psi-constraint 6.196e-4, Delta 1.121569570593, 9620 s) | edbb419e; a0a52e86 |
+| dh170's k_c 103 state at D 21.125 (stub: its record) | raw `I1025-dh170/kc103_d21125/sol_l1kc103dh170g_D21.1250.npy` and `l1kc103dh170g.jsonl` (D 21.125, k_c 103, \|F\| 4.626407e-10, 3476 steps, psi-constraint 1.146e-3, Delta 1.121570859155, 7303 s); the same blobs as dh170's k_c 111 regrid source | ad9b1dc8; ac60dbfc |
+| dh170's own hybrid rows (reference for the control c4) | raw `I1025-dh170/kc111_d21125/merged_wide_D21.125.jsonl` (lambda 0.870 to 0.910) and `kc103_d21125/merged_D21.125.jsonl` (0.875 to 0.895) | 4bba3f4c; 15feca49 |
+Code: worktree `D:/choptuik-i1025k79` at 48c36355 (`dss_ell.py`, `ell_ddm.py`, `ell_dd.py`, `ddnp.py` equal 505d8399's: dh170's worktree for these states), python 3.14 with multidouble 5.1.0 (`venv-md510`), `P4_WT_MATTER` = that worktree's `solver/matter`.
+
+## Registered readings (fixed before the first run; the order's two, made exact)
+Points beside the roots: **k_c 111: lambda 0.865 and 0.870** (root 0.8685 by the order); **k_c 103: lambda 0.880 and 0.885** (root 0.8844). Outer points (information): k_c 111 0.860 and 0.875.
+- **(N) The k_c drift is numerical**: at least one point beside a root reads `state-limited` (a noise amplitude >= 1e-12 flips the sign) or `rounding-limited` (the all-double-double sign differs from the hybrid's); the roots are then not resolved at the 0.005 grid.
+- **(R) The drift is real**: every point beside the roots reads `robust` (no noise amplitude flips the sign, the all-double-double sign equals the hybrid sign), and the hybrid signs change between 0.865 and 0.870 at k_c 111 and between 0.880 and 0.885 at k_c 103.
+- Otherwise `undecided`, listed as read (a point missing or capped, robust without the sign change, a mixed result).
+`prec_verdict.py` computes it from the records (selftest with six planted sets; `--mutate` makes `numerical` impossible and exits 1 on them). **Control c4**, against dh170's own hybrid rows at the lambdas the files share (k_c 111 0.870 and 0.875, k_c 103 0.880 and 0.885): the hybrid sign here equals dh170's (a difference = the control FAILS, no verdict) and the hybrid ln|det| agrees to 1e-3 (a larger difference with the sign equal is printed as a platform difference of the hybrid ln, information). Note on the pinned reference: dh170's k_c 111 rows start at 0.870 (+ at 0.870 to 0.910, no robust change in that window) and the root 0.8685 comes from the order, not from a file pinned here; 0.860 and 0.865 have no earlier row: they are new.
+Each lambda's line (the script's own: hybrid sign and ln|det|, noise signs, all-double-double sign and ln|det|, float64 sign, reading, seconds) is reported as it lands, with the first point's time.
+
+## Commands (`prec_run.sh`, one driver started through `cim_start_low.ps1`: a copy of `cim_start.ps1` whose child runs at the IDLE class, `/low`, so that the two k_c 95 lanes keep their BelowNormal advantage: "do not slow them")
+1. Pins (blobs above, worktree 48c36355, solver files equal 505d8399), `d18_hybsign_prec.py --selftest` exit 0 and `--selftest --mutate=class` exit 1 (done in the dry run, 15:07 UTC; `selftest_exits.txt` = 0 1).
+2. Six jobs, one process of one thread per lambda (`OMP/OPENBLAS/MKL/RAYON_NUM_THREADS=1`), cap 21600 s (6 h) each by the exact root pid (`crun`; a capped job is a stop and is reported), at most 4 at once. **Order, my choice within the order's "4 processes at most": the four points that straddle the two roots first** (k_c 111 0.865, 0.870; k_c 103 0.880, 0.885), then the outer k_c 111 points (0.860, 0.875) as slots free up; the order lists the four k_c 111 points first, which would delay the k_c 103 pair behind a possible 6 h cap.
+3. After the last job: `prec_verdict.py` (the table, control c4, the verdict) into `verdict.txt` and `summary_prec.txt`.
+
+## Time and priority (stated before the run)
+dh170's hybrid points took 11,225 to 19,702 s at k_c 111 (single process) and 3,484 to 8,717 s at k_c 103 (his scans). This script does about 7 `dd_logdet` per lambda against 3 and builds the all-double-double matrix: expect several times that, so **a k_c 111 point may well exceed 6 h at the IDLE class beside the other jobs; the 6 h cap is then the stop the order asks for**, and the verdict reads `undecided` with that point missing. Memory per process is expected near 2 to 4 GB (the k_c 111 hybrid scan of dh170 held 0.77 GB; the all-double-double matrix and the noise copies add several matrices); alert-only watch, nothing is stopped for memory.
+
+## Acceptance (fixed before the run)
+Pins as above; both selftests as written; every process prints "the record system"; the control c4 passes (signs equal); the verdict is the one `prec_verdict.py` prints, whatever it is, with every lambda's line and its time reported. A pin that differs, a selftest that does not read as written, or a process that prints `NOT the record system` (exit 3) stops that job and I report it.
+
+## Status
+- 2026-11-25 15:07 UTC: folder, README (the registered readings), driver, verdict script and inputs written; the dry run passed (`exits_prec.txt`, `selftest_exits.txt`); the driver starts next.

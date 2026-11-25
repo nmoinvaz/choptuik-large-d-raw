@@ -1,0 +1,4 @@
+selftest: {'sign': 1.0, 'noise': {'1e-15': [1.0, 1.0], '1e-10': [1.0, -1.0]}, 'alldd_sign': 1.0} -> robust, want state-limited
+selftest: {'sign': 1.0, 'noise': {'1e-15': [1.0, 1.0], '1e-10': [1.0, 1.0]}, 'alldd_sign': -1.0} -> robust, want rounding-limited
+selftest: {'sign': -1.0, 'noise': {'1e-15': [-1.0, -1.0], '1e-12': [1.0, -1.0]}, 'alldd_sign': 1.0} -> robust, want state-limited,rounding-limited
+selftest: 2 of 5 planted records classified as written
