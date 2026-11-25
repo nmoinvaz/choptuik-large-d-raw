@@ -10,14 +10,14 @@ function Step($s) { Add-Content -Path "$R\steps_ii.txt" -Value ("{0} UTC {1}" -f
 $head = (& git -C 'D:\choptuik-i1080x2' rev-parse --short=8 HEAD)
 if ($head -ne '10a5854f') { Step "STOP: HEAD $head, not 10a5854f"; exit 9 }
 foreach ($f in 'ii_x2_r02.jsonl', 'ii_ctl_row6_r02.jsonl') { if (Test-Path "$R\$f") { Step "STOP: $f exists"; exit 9 } }
-$py = @"
+$code = @"
 import json, sys
 rows = [json.loads(l) for l in open(r'$R\walk_x2.jsonl') if l.strip()]
 for name, it in (('x2', 7), ('ctl', 6)):
     r = [q for q in rows if q['it'] == it][0]
     print(name, repr(r['A']), repr(r['wf']), ','.join(r['F3']))
 "@
-$lines = & $PY -c $py
+$lines = & $PY -c $code
 Step "inputs: $($lines -join ' | ')"
 $procs = @()
 foreach ($ln in $lines) {
