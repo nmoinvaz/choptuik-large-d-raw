@@ -35,3 +35,12 @@ Order of the work:
 - Split (coordinator, 25 Nov ~00:35 UTC): dh370 takes the M' 160 root. `swap_m160.sh` (launched by `run_swap.cmd`) stops
   chain1078.py's tree when it opens its M' 160 step (`ends_m160_w0.0002.log`, header only), and starts `chain2_h0001.py`
   (`run_chain2.cmd`), which runs the hmax 0.001 root at M' 96 with chain1078's own `follow()`.
+- M' 96 (hmax 0.05): 37-point scan 4.5..7.5, one sign change (6.3 -, 6.4 +); bracket root lambda 6.3317279956246395,
+  gamma 0.15793476925904 (`4_root_m96_6.25_6.50.jsonl`, PASS).
+- M' 128 (state 218460d9): lambda 6.331729147993894, gamma 0.15793474051505 (`root_m128.jsonl`, PASS);
+  gamma(128) - gamma(96) = -2.874e-8.
+- M' 160: dh370's (coordinator's split); `ends_m160_w0.0002.log` is the header of the step stopped at its start.
+- M' 96 at hmax 0.001 (1815 matched steps against 1266): lambda 6.3317279956246395, the same double as hmax 0.05
+  (`root_m96_h0.001.jsonl`, PASS). At the two rates both searches evaluated, ln|D_m| differs by 3.4e-13 and 9.1e-13 while
+  the LU's largest pivot moves from 4032 to 139 (the matrices differ); the root moves by less than the final bracket, 5e-12.
+- Nothing of this task runs on win2 after 04:31 UTC 25 Nov.
