@@ -51,3 +51,7 @@ D-624 solution: `solve_cont.py S/sol_D624_M6_a8.json --M=6 --a=8 --a_rule=400 --
 
 `f64_M6_cont3/`: the float64 continuation restarted from D 640 with --accept=1e-10 --dDelta_max=1e-4 (D 650 of
 `f64_M6_cont2/` passed 1e-9 but lies off the branch).
+`f64_M6_cont4/`: from D 646 with --accept=1e-10 --dDelta_max=5e-3 and coarser steps; D 660 was taken off the branch
+(Delta 1.6765, the continuity check needs two points) and the run was stopped at D 680. `f64_M4_cont2/`: M 4 from the
+M-6 solution at D 100, Newton stalled at 1.45e-6, stopped. `seed_closed/`: the closed-form start at D 200, M 8.
+The float64 M-6 solutions on the branch end at D 646 (`f64_M6_cont3/`).

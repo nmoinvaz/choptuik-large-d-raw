@@ -1,0 +1,11 @@
+# 2026-11-25 06:19 UTC  M 4  a 8  kb 150  tol 5.0e-15  start sol_D100_M6_f64.json (D 100, M 6)
+    LS: 11 strong, 2 weak; weak sv 3.8e-07 1.1e-07
+/Users/nathan/Source/choptuik-1090/solver/inner_large_d/mobius_s.py:228: RuntimeWarning: overflow encountered in multiply
+  Ak = -2.0 * io * Ak + om * (U[k] @ Dt) - self.cv(G, V, k)
+/Users/nathan/Source/choptuik-1090/solver/inner_large_d/mobius_s.py:185: RuntimeWarning: invalid value encountered in add
+  rhs = q[k] + (self.cv(q, X, k, 1, k) if k >= 1 else 0.0 * q[k])
+/Users/nathan/Source/choptuik-1090/solver/inner_large_d/mobius_s.py:203: RuntimeWarning: invalid value encountered in add
+  r = (deriv + om * ((U[k] + zVk) @ Dt) - self.cv(G, U, k) - self.cv(G, V, k) + zVk
+    LS outer 0: non-finite reduced Jacobian; kept the best point
+D   100.00  max|F| 1.45e-06  Delta 1.748033430240  steps 5  sv_min 1.1e-07  grip 4.0e+06  noise 3.1e+00 (a=1: 2.6e+00)  tails 8e-35/6e-98  ks 316  12 s
+not converged at D 100 after 0 refinements; stop
