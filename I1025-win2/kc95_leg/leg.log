@@ -1,1 +1,51 @@
 # 2026-11-25 20:07:07 UTC cmd: C:/Users/nathan/Source/venv-md510/Scripts/python.exe -u ell_leap.py l1kc95Lw1025m 1 95 data/sol_l1kc95win2d22875_D22.8750.npy 22.875 data/sol_l1kc95win2d23_D23.0000.npy 23.0 23.25 0.0625 --tol 1e-12 --fmax 1e-8 --cmax 2e-2 --fold (cwd D:/choptuik-i1025k95leg/solver/matter, 8 threads)
+D:\choptuik-i1025k95leg\solver\matter\dss_ell.py:218: RuntimeWarning: overflow encountered in multiply
+  px = (-self.D(p, omega) + cx * p - c * p / x + pc - lt) / (x - c)
+D:\choptuik-i1025k95leg\solver\matter\dss_ell.py:219: RuntimeWarning: overflow encountered in multiply
+  mx = (-self.D(m, omega) - cx * m + c * m / x - pc + lt) / (x + c)
+D:\choptuik-i1025k95leg\solver\matter\dss_ell.py:88: RuntimeWarning: invalid value encountered in matmul
+  return f @ self._Tm
+D:\choptuik-i1025k95leg\solver\matter\dss_ell.py:211: RuntimeWarning: overflow encountered in multiply
+  a2 = a * a
+D:\choptuik-i1025k95leg\solver\matter\dss_ell.py:213: RuntimeWarning: invalid value encountered in subtract
+  cx = c * ((n - 1) * (a2 - 1) - 2 * L * g) / x
+D:\choptuik-i1025k95leg\solver\matter\dss_ell.py:214: RuntimeWarning: overflow encountered in multiply
+  ax = a * ((p * p + m * m) + 2 * L * g + (n - 1) * (1 - a2)) / (2 * x)
+D:\choptuik-i1025k95leg\solver\matter\dss_ell.py:214: RuntimeWarning: invalid value encountered in add
+  ax = a * ((p * p + m * m) + 2 * L * g + (n - 1) * (1 - a2)) / (2 * x)
+D:\choptuik-i1025k95leg\solver\matter\dss_ell.py:216: RuntimeWarning: overflow encountered in multiply
+  pc = n * c * (p + m) / (2 * x)
+D:\choptuik-i1025k95leg\solver\matter\dss_ell.py:212: RuntimeWarning: overflow encountered in multiply
+  g = a2 * q * q
+D:\choptuik-i1025k95leg\solver\matter\dss_ell.py:213: RuntimeWarning: overflow encountered in multiply
+  cx = c * ((n - 1) * (a2 - 1) - 2 * L * g) / x
+D:\choptuik-i1025k95leg\solver\matter\dss_ell.py:217: RuntimeWarning: overflow encountered in multiply
+  lt = L * c * a2 * q / x
+D:\choptuik-i1025k95leg\solver\matter\dss_ell.py:218: RuntimeWarning: invalid value encountered in add
+  px = (-self.D(p, omega) + cx * p - c * p / x + pc - lt) / (x - c)
+D:\choptuik-i1025k95leg\solver\matter\dss_ell.py:218: RuntimeWarning: invalid value encountered in subtract
+  px = (-self.D(p, omega) + cx * p - c * p / x + pc - lt) / (x - c)
+D:\choptuik-i1025k95leg\solver\matter\dss_ell.py:219: RuntimeWarning: invalid value encountered in subtract
+  mx = (-self.D(m, omega) - cx * m + c * m / x - pc + lt) / (x + c)
+D:\choptuik-i1025k95leg\solver\matter\dss_ell.py:216: RuntimeWarning: overflow encountered in divide
+  pc = n * c * (p + m) / (2 * x)
+D:\choptuik-i1025k95leg\solver\matter\dss_ell.py:218: RuntimeWarning: overflow encountered in divide
+  px = (-self.D(p, omega) + cx * p - c * p / x + pc - lt) / (x - c)
+D:\choptuik-i1025k95leg\solver\matter\dss_ell.py:219: RuntimeWarning: overflow encountered in divide
+  mx = (-self.D(m, omega) - cx * m + c * m / x - pc + lt) / (x + c)
+D:\choptuik-i1025k95leg\solver\matter\dss_ell.py:219: RuntimeWarning: invalid value encountered in add
+  mx = (-self.D(m, omega) - cx * m + c * m / x - pc + lt) / (x + c)
+D:\choptuik-i1025k95leg\solver\matter\dss_ell.py:217: RuntimeWarning: overflow encountered in divide
+  lt = L * c * a2 * q / x
+D:\choptuik-i1025k95leg\solver\matter\dss_ell.py:213: RuntimeWarning: overflow encountered in divide
+  cx = c * ((n - 1) * (a2 - 1) - 2 * L * g) / x
+D:\choptuik-i1025k95leg\solver\matter\dss_ell.py:214: RuntimeWarning: overflow encountered in divide
+  ax = a * ((p * p + m * m) + 2 * L * g + (n - 1) * (1 - a2)) / (2 * x)
+D:\choptuik-i1025k95leg\solver\matter\dss_ell.py:325: RuntimeWarning: overflow encountered in multiply
+  aG = cs(A, Q2, Kk) + (n - 1) * (A[Kk] - cs(A, A2, Kk)) + 2 * L * cs(A, G, Kk)
+D:\choptuik-i1025k95leg\solver\matter\dss_ell.py:334: RuntimeWarning: overflow encountered in subtract
+  rest = tau_term - zmu - cs(V, M, Kk) - cs(C, M, Kk) + 0.5 * n * cs(C, PM, Kk) - L * cs(C, H, Kk)
+D:\choptuik-i1025k95leg\solver\matter\dss_ell.py:214: RuntimeWarning: overflow encountered in add
+  ax = a * ((p * p + m * m) + 2 * L * g + (n - 1) * (1 - a2)) / (2 * x)
+{"D": 23.0625, "l": 1, "kc": 95, "kappa": 0.7, "u0": 0.04, "Ks": 30, "Delta": 1.1761958027003285, "Delta_pred": 1.1761862627655193, "F": 3.2984086387377183e-10, "F_start": 5.769094003062941e-05, "steps": 3129, "constraint": 0.007956774693793358, "dDelta_dF": 971290788.2312022, "lam_gauge": 0.984488383924382, "h": 0.0625, "seconds": 9960, "sv_J_small": [1.8266920924368724e-16, 4.857217521122847e-16, 8.995302933328511e-16, 9.892744925592882e-16], "sv_J_max": 16.960669292588264, "cos_t_v": [0.1817739540480515, 0.09046998135934962, 0.16305615063373494, 0.016606009233130613], "sv_B_min": 2.1284359582093498e-17, "sv_B_max": 16.96066929498639, "tan_norm": 1.0191000081466868, "sv_fold": 1.8266920924368724e-16, "cos_fold": 0.1817739540480515, "i_fold": 0, "n_null": 87, "sv_reg_small": [2.594060529123868e-11, 8.449769779543891e-11, 1.7113881690021118e-10, 6.985134274754599e-10], "cos_t_reg": [0.23996838353992916, 0.09119980883230819, 0.59968421483259, 0.2605622237115092], "delta_reg": [0.0211155936839682, 0.007151726050922182, 0.029462709892353164, 0.31918312487508427]}
+exit 1
