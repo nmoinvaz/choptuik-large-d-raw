@@ -1,0 +1,7 @@
+2026-11-25 09:34:44 UTC start: k_c 95 -> 103 at D 22.25 (load 2.51 4.65 7.00, MemAvailable 28302 MiB)
+2026-11-25 09:34:44 UTC inputs pinned (in_blobs.txt: 9 files; source state d709a8c0, record e83e529e, kc95_syscheck_1025.py d487e628, kc103_syscheck_1025.py 3ab58d16)
+2026-11-25 09:34:44 UTC kc103_syscheck_1025.py = kc95_syscheck_1025.py with 3 lines changed (check_diff_rebuilt.txt)
+2026-11-25 09:34:45 UTC worktree 48c36355: dss_ell, ell_ddm, ell_dd, ddnp equal 505d8399; ell_refine.py 631e5801, ell_delta.py fde699f5; ell_delta.lam0_at(22.25) = 2.1019003706; Python 3.14.10, multidouble avx2
+2026-11-25 09:34:45 UTC selftests: kc95_syscheck_1025.py exit 0, kc103_syscheck_1025.py exit 0, kc87_syscheck_1025.py exit 0 (0 wanted)
+2026-11-25 09:34:56 UTC STEP 1 source check (kc95_syscheck_1025.py on the k_c 95 D 22.25 source): exit 0 (0 wanted); controls --mutate=F exit 1, --mutate=steps exit 1 (1 wanted each); kc103_syscheck_1025.py on the source exit 1 (1 wanted); kc87_syscheck_1025.py on the source exit 1 (1 wanted)
+2026-11-25 09:34:56 UTC STEP 2 regrid starts: nice -n 10 timeout 43200 /home/nathan/Source/choptuik-large-d-1058b/.venv/bin/python -u ell_refine.py l1kc95dh610d2225 95 l1kc103dh370d2225 103 1 22.25 2.1019003706 --kappa 0.7 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma

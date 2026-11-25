@@ -38,3 +38,4 @@ How I read it, fixed here: on the 0.04 grid, "A near 0.434" is a robust '- to +'
 
 ## Status
 - 2026-11-25 09:34 UTC: folder, inputs, drivers, dry run (pins, worktree and lambda_0 pass) and this README written before any run; the unit `i1025k103` starts next.
+- 2026-11-25 09:34:44 to 09:34:56 UTC: unit `i1025k103` started. Selftests of the k_c 95, k_c 103 and k_c 87 checks exit 0 0 0. **Source check accepted:** `kc95_syscheck_1025.py` exit 0 on dh610's state and record, `--mutate=F` and `--mutate=steps` exit 1, the k_c 103 check exit 1 and the k_c 87 check exit 1 on the source (`source_*.txt`). **Regrid started 09:34:56 UTC** (6 threads, nice 10, cap 43200 s), load 2.5, MemAvailable 28.3 GB.
