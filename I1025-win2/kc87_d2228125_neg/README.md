@@ -27,3 +27,4 @@ Source accepted with controls 1 1 and the k_c 95 check refusing it (dry run); ev
 ## Status
 - 2026-11-25 08:46 UTC: folder and README (the registered readings) written before the driver is run.
 - 2026-11-25 08:47 UTC: dry run passed (`dry_stdout.txt`, `exits_negscan.txt`): pins and selftests (each mutation exit 1), macm3's state fetched (state blob 3ce8bc2e, the D row hash 0eb8d22e, record file blob 40d927af), accepted by `kc87_syscheck_1025.py` (controls 1 1), refused by the k_c 95 check; plan `scan_plan.txt`. The driver starts next.
+- 2026-11-25 08:47 UTC: the scan started by itself (the driver run through `cim_start.ps1`): four processes, root pids 9248, 5492, 43896, 40744, caps 28800 s (16:47 UTC at the latest), beside the D 22.5 wide scan (8 threads of mine). About 1600 to 2500 s per evaluation: the first round ~09:25, the whole scan ~10:30 UTC.
