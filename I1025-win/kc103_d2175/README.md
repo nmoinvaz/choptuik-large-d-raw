@@ -94,9 +94,16 @@ The sampler (`rows/regrid_samples.csv`, `rows/scan_samples.csv`) gives the real 
 
 ## Status
 
-Not started; the order, the prediction and the estimates above are written before the run.
+**Step 1 running since 2026-11-25 04:36:28 UTC** (the chain started 04:36:11 UTC through `Win32_Process.Create` of `conhost.exe --headless cmd.exe /c go_kc103d2175_1025.cmd`). README first: 00815e29b (pushed 04:35:59 UTC, before the start).
 
-Pushed 2026-11-25 04:35:59 UTC.
+- **Chain** (`rows/launcher_pid.txt`: 8672): conhost --headless 8672 <- cmd 18848 <- regrid driver launcher 3772 and driver 7672 <- sampler 18396, alert-only watcher 3800, keep-awake helper 16680, and the regrid process 18616 (worker 22920). The python and powershell processes are BelowNormal.
+- **Session check** (`session_check_regrid.txt`, exit 0): no `claude` in any chain of the run, no Windows Terminal / OpenConsole / wt, a headless conhost in the chain.
+- **Before the regrid** (04:36:11 to 04:36:28 UTC, 16 s): the pins matched; the selftests of the three checks exited 0; ell_delta.lam0_at(21.75) = 2.1037780803; the source checks were as ordered: the k_c 95 check exit 0 on the source, `--mutate=F` and `--mutate=steps` exit 1, the k_c 87 check exit 1 and the k_c 103 check exit 1 (they refuse the source; `source_kc*_syscheck*.txt`).
+- **Regrid:** pid 18616 started 04:36:28 UTC: `ell_refine.py l1kc95dh610d2175 95 l1kc103win2175 103 1 21.75 2.1037780803 --kappa 0.7 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma`, cwd the worktree's `solver/matter`, 4 threads, BelowNormal, cap 43200 s by the exact pid; the driver sends t5 one hc at 21600 s (10:36 UTC) if it still runs.
+- **Machine at the start:** on AC (battery status 2, charge 100), clock 2995 MHz of 2995 MHz max, free physical memory 23.32 GB; beside it the other project's two I114 `convergence.py` jobs (started 2026-11-23 05:41 UTC), not touched.
+- **ETA** (the estimates above counted from the actual start 04:36:28 UTC, 14 min before the 04:50 the table assumed): the regrid ends about 08:50 to 12:40 UTC (written 15000 to 29000 s; central about 09:55), the scan about 11:25 to 16:05 UTC (central about 12:50). The scan starts by itself after ACCEPTED.
+
+Pushed 2026-11-25 04:36:46 UTC.
 
 ## Result
 
