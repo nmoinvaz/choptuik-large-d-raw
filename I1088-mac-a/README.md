@@ -33,4 +33,7 @@ c30c2766).
   values, converged, its state `jump_s_D250.0000.npz` and `jump_s.jsonl` (its `jump.log` lost its later lines, the note
   at its end says why).
 
+- `form_s/hprobe.py`: the horizon block of form S at the rescaled guesses of D 400 and 1000 and its gain from m_h
+  (`hprobe_D400.log`, `hprobe_D1000.log`; the Mac's opt-1 build; the guess's Delta is the fit's here).
+
 Files are added as the runs go; each log or script names its command line.
