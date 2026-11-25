@@ -59,7 +59,7 @@ until [ -n "$ST" ]; do
   for n in $LEG/states/sol_${TAG}_D$(printf "%.6f" $D).npy $LEG/states/sol_${TAG}_D$(printf "%.4f" $D).npy; do
     [ -e $n ] && "$PY" -I -c "
 import json, sys
-rows = [json.loads(l) for l in open('$LEG/states/$TAG.jsonl') if l.strip()]
+rows = [json.loads(l) for l in open('$WLEG/states/$TAG.jsonl') if l.strip()]
 sys.exit(0 if any(abs(r['D'] - $D) < 1e-9 for r in rows) else 1)" 2>/dev/null && { ST=$WLEG/states/$(basename $n); break; }
   done
   [ -e $LEG/STOP_scans.txt ] && refuse "STOP_scans.txt exists"
