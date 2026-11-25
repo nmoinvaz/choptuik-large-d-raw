@@ -9,6 +9,7 @@ Writes <D>/point.env and appends the README section (predictions registered befo
  two roots above D (c1 < c2): the line through them, extended down to D; one root above: the line through it and the largest root below (t5's interpolation rule for points between);
  none above: the line through the two largest roots below (the chain's rule). Scored beside it: the interpolation (when two roots lie above) and the below-only line."""
 import json, math, os, subprocess, sys, time
+import ext23
 
 RAWG = os.path.expanduser("~/Source/choptuik-large-d-raw-1076p")
 L = os.path.expanduser("~/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_leg_lambda")
@@ -160,6 +161,8 @@ WIN="%s %s"; REP=%s
     nowt = time.strftime("%F %H:%M:%S", time.gmtime())
     bes = "".join("\n**Scored beside it:** %s." % t for t, v in besides)
     above = sorted(x for x in roots if x > D)
+    ref = ext23.reference_orientation(D)      # t5, 25 Nov ~14:43 UTC: the orientation comes from the nearest scanned point of the same part, not from a constant
+    ori = ("'%s to %s' about 90%% (given one; read at D %r, the nearest scanned point of the same part)" % (ref[1][0], ref[1][1], ref[0])) if ref else "not predicted (no scanned point of the same part with one change)"
     sec = """
 ## D %s (part %s; written before its check and scan, %s UTC)
 
@@ -167,10 +170,10 @@ WIN="%s %s"; REP=%s
 **Inputs** (`%s/pins.txt`): the commit %s (%s): state `%s/%s` blob **%s**, record `%s.jsonl` blob **%s** (%d rows; the check and the scan pick the row of D %s: |F| %.16g, %d steps, Delta %.16g, h %g, k_c %s, psi-constraint %.3e).%s
 **Prediction of F (lambda_1 of the leg), primary:** %s: **%.4f**. F is the flat branch; S (the steep one) lies far below -0.1 here (win2: S at D 22.28125 is -0.1976, falling), so one root of F is expected in the window.%s
 **Grid:** %s; window read `read_lower.py scan %s %s`; %d evaluations on %d processes of 1 thread at nice %d, round-robin (%s).
-**Predictions (mine, before the run):** the source check accepts with all controls firing and the k_c 79 check refusing about 90%%; the repeat of %s bit-identical about 90%%; all %d noise-robust about 80%%; exactly one robust change in the window about 80%% (none about 12%%: F outside the window; two or more about 8%%); its orientation '+ to -' about 90%% (given one: past the F/S crossing at D 22.1714 F is the upper root and S lies below the window); its det-linear estimate within 0.01 of the primary prediction about 50%%, within 0.03 about 80%%; F positive at this D about %d%%; no ln|det| minimum without a sign change about 85%%; the float64 sign equals the hybrid at every evaluation about 60%%; scan wall %s about 70%%; no memory alert about 90%%.
+**Predictions (mine, before the run):** the source check accepts with all controls firing and the k_c 79 check refusing about 90%%; the repeat of %s bit-identical about 90%%; all %d noise-robust about 80%%; exactly one robust change in the window about 80%% (none about 12%%: F outside the window; two or more about 8%%); its orientation %s; its det-linear estimate within 0.01 of the primary prediction about 50%%, within 0.03 about 80%%; F positive at this D about %d%%; no ln|det| minimum without a sign change about 85%%; the float64 sign equals the hybrid at every evaluation about 60%%; scan wall %s about 70%%; no memory alert about 90%%.
 ## Log
 """ % (dn, pname, nowt, dn, rawc, subj, SRC, sf, sb, TAG, rb, len(rows), dn, row["F"], row["steps"], row["Delta"], row.get("h", 0.0625), row["kc"], row["constraint"], quality_note(row["constraint"]),
-       rule, pred, bes, how, win[0], win[1], nev, NP, NICE, assign, m, nev, 85 if D < 23.0 else 80, "22 to 110 min" if nev > 12 else "15 to 50 min")
+       rule, pred, bes, how, win[0], win[1], nev, NP, NICE, assign, m, nev, ori, 85 if D < 23.0 else 80, "22 to 110 min" if nev > 12 else "15 to 50 min")
     open(L + "/README.md", "a").write(sec)
     print("D %s: part %s, commit %s, state %s, record %s, primary prediction %.4f, m %s, grid %s" % (dn, pname, rawc, sb, rb, pred, m, " ".join(lamp)))
 

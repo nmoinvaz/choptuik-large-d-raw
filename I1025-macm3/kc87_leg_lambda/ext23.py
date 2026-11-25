@@ -160,9 +160,9 @@ def do_setup(D, lo, hi):
         "**Grid:** the extension window %s, by 0.01 (the endpoint %.3f is the first scan's own): lambda %s (%d values), the middle one %.3f twice first (a repeat on another process); NP=4 processes of 1 thread at nice 15. The merged reading (`ext23.py merge`) reads the first scan and this one together on lambda %.3f to %.3f; the first window's own reading is kept as `%s/read_lower_first.txt`.\n" % (
             win, lo if side == "up" else hi, ", ".join("%.3f" % x for x in vals), len(vals), rep, min(lo, e[1]), max(hi, e[3]), dn) +
         "**Predictions (mine, before the run):** the source check accepts with all controls firing and the k_c 79 check refusing about 90%%; the repeat of %.3f bit-identical about 90%%; all %d noise-robust about 80%%; "
-        "exactly one robust change in the merged window about 85%% (none about 10%%: F outside it again, the chain then stops; two or more about 5%%); its orientation '+ to -' about 90%% (given one); "
+        "exactly one robust change in the merged window about 85%% (none about 10%%: F outside it again, the chain then stops; two or more about 5%%); its orientation '%s to %s' about 90%% (given one; read at D %r, the nearest scanned point of the same part); "
         "it lies in the extension window %s about 85%% (given one); no ln|det| minimum without a sign change about 85%%; the float64 sign equals the hybrid at every evaluation about 60%%; scan wall 15 to 60 min about 70%%; no memory alert about 90%%.\n"
-        % (rep, len(lamp), win) +
+        % (rep, len(lamp), ref[1][0], ref[1][1], ref[0], win) +
         "## Log\n")
     open(L + "/README.md", "a").write(sec)
     print(dn + "_ext")
