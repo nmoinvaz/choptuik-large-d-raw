@@ -1,6 +1,6 @@
 # I1025-win2/kc95_d2225_low: low-lambda hybrid sign scan of dh610's k_c 95 state at D 22.25
 
-Machine win2 (Windows 11, 20 logical CPUs, 95.5 GB RAM; runner win2, Sonnet 5.5). Issue https://github.com/nmoinvaz/choptuik-large-d/issues/1025. Written 2026-11-25 04:40 UTC, before the scan of this folder (the driver `kc95_lowscan.sh` and its dry run, which stopped before the scan, are here).
+Machine win2 (Windows 11, 20 logical CPUs, 95.5 GB RAM; runner win2, Sonnet 5.5). Issue https://github.com/nmoinvaz/choptuik-large-d/issues/1025. Written 2026-11-25 04:33 UTC, before the scan of this folder (the driver `kc95_lowscan.sh` and its dry run, which stopped before the scan, are here).
 
 ## Order (coordinator t5, hc, 25 Nov ~04:30 UTC), verbatim
 "next after your D 22.0 reading (~05:01): a low-lambda scan of dh610's k_c 95 state at D 22.25 (raw I1025-dh610/kc95_d2225, tag l1kc95dh610d2225; pin by blob; kc95 check accepts it, controls 1 1). Scan lambda 0.02 to 0.18 by 0.02 plus the repeat of 0.10, and 0.20 to 0.40 by 0.04, 4 procs.
@@ -28,4 +28,4 @@ Source accepted with controls 1 1 and the k_c 87 check refusing it (done in the 
 float64 signs that differ from the hybrid sign, non-robust points and ln|det| local minima without a sign change are listed as the reader prints them. No widening or extra points beyond the order. A pin that differs, a selftest or control that does not read as written, or a scan process that fails stops the lane and I report it.
 
 ## Status
-- 2026-11-25 04:40 UTC: folder, driver and README written; the dry run (`dry_stdout.txt`, `exits_lowscan.txt`) accepted dh610's state (blob d709a8c0, record file blob e83e529e; controls 1 1; the k_c 87 check refuses) and stopped before the scan. The driver starts next and waits for the D 22.0 scan's four processes to end (~05:01 UTC).
+- 2026-11-25 04:33 UTC: folder, driver and README written; the dry run (`dry_stdout.txt`, `exits_lowscan.txt`) accepted dh610's state (blob d709a8c0, record file blob e83e529e; controls 1 1; the k_c 87 check refuses) and stopped before the scan. The driver starts next and waits for the D 22.0 scan's four processes to end (~05:01 UTC).
