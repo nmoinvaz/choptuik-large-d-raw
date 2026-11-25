@@ -150,19 +150,14 @@ def register(kind, sp):
         a_ = max([x for x in f if x < D] or [None], key=lambda x: -1 if x is None else x)
         c_ = min([x for x in f if x > D] or [None], key=lambda x: 9e9 if x is None else x)
         chord = f[a_] + (f[c_] - f[a_]) * (D - a_) / (c_ - a_) if a_ is not None and c_ is not None else None
-        lpts = sorted(l)
-        lline = (l[lpts[0]] + (l[lpts[-1]] - l[lpts[0]]) / (lpts[-1] - lpts[0]) * (D - lpts[0])) if len(lpts) >= 2 else None
-        pf = ("F near its line: the chord between the F roots at D %r (%.6f) and D %r (%.6f) gives **%.4f** at D %r (the curve is concave, so F lies at or above the chord)." % (a_, f[a_], c_, f[c_], chord, D)) if chord is not None else "F: no F roots on both sides (no line)."
-        lo_ = sorted(x for x in lonly_set() if x > D and (c_ is None or x < c_))
-        if lo_ and chord is not None:
-            pf += (" **The chord is a poor guide here:** F at D %r is not known (that line of roots87.txt is L's; the merged reading has F above 0.400, the extension 0.42-0.50 is scanned first); if F falls with D, F at D %r lies in (0.400, %.4f], above the chord (which I expect about 55%%)." % (lo_[0], D, f[a_]))
-        pl = ("**L unknown:** the lower roots L at D %s (%s) give a line that reads %.4f at D %r; it is a guess, not a prediction I trust." % (" and ".join(repr(x) for x in lpts), ", ".join("%.6f" % l[x] for x in lpts), lline, D)) if lline is not None else "**L unknown.**"
+        pf = ("lambda_1 (the F lines of roots87.txt) near its line: the chord between its roots at D %r (%.6f) and D %r (%.6f) gives **%.4f** at D %r (lambda_1 is concave in D, so it lies at or above the chord)." % (a_, f[a_], c_, f[c_], chord, D)) if chord is not None else "lambda_1: no roots on both sides (no line)."
         txt = (head +
-               "**Why:** the two roots of the pair, L (lower, '- to +') and F (upper, '+ to -', lambda_1), are in the window together at D 22.875 (0.128 and 0.162); the narrow windows built from the lower-root line saw only L, so the points below D 22.8125 are scanned on -0.10 to 0.50 (the step is in the grid line below).\n"
-               "**Prediction:** " + pf + " " + pl + " If L and F approach each other as D falls (L is 0.035 below F at D 22.875), a gap below the grid step shows as no change or one change.\n" + grid +
-               "**Predictions (mine, before the run):** " + common.replace("all %d noise-robust about %d%%" % (nev, 70), "all %d noise-robust about 70%%" % nev) +
-               " The merged reading has exactly two robust changes ('- to +' then '+ to -') about 50%, one about 15% (the other outside -0.10 to 0.50 or the pair unresolved), none about 20% (no real root in the window: the pair has merged or left it), three or more about 15%; "
-               "given two, F within 0.04 of the chord about 60% and above the chord about 65%; L at or above 0.10 about 70%.\n## Log\n")
+               "**Why:** reading B (t5's ruling, hc ~18:50 UTC, quoted): \"lambda_1 runs 0.4425 (22.25), 0.216 (22.75), 0.167 (22.8125), 0.128 (22.875), 0.056 (22.9375), -0.0215 (23.0), slopes -0.45, -0.78, -0.62, -1.15, -1.24, smooth. The newcomer runs >0.50 (22.8125), 0.162 (22.875), -0.226 (22.9375), slopes < -5.4 and -6.2, a steady fast dive like S.\" "
+               "At D 22.75 the both-roots scan (-0.10 to 0.50) has one change only, lambda_1 at 0.216; the newcomer is above 0.50 there. D %r lies below D 22.75, where the newcomer is higher still, so one change is expected in -0.10 to 0.50.\n" % D +
+               "**Prediction (lambda_1, the F line):** " + pf + " The newcomer: above 0.50, outside the window.\n" + grid +
+               "**Predictions (mine, before the run):** " + common +
+               " The merged reading has exactly one robust change, '- to +' (lambda_1), about 75%; none about 8% (lambda_1 outside -0.10 to 0.50 or unresolved); two or more about 12% (the newcomer or S inside the window: I cannot place S below -0.10, the sign at -0.10 would then change); other about 5%. "
+               "Given one change: within 0.04 of the chord about 70%, above the chord about 70%.\n## Log\n")
     return txt
 
 
