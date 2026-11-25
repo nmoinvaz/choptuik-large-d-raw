@@ -2,13 +2,17 @@
 """make_batch.py D1,D2,D3 [--part=b] [--leg=L1,L2,...] [--pred="D1=text;D2=text;D3=text"] [--note="..."] > post.md
 One #1025 comment for several scanned points (t5, 24 Nov: one comment per 3 scanned points with all tables): a summary table of the roots and residuals, the leg rows of all points accepted since the last post (one table),
 then each point's full section from make_post.py (headline, source, scan, reader and repeat, reading tables, residuals, local slope and track, time and memory, predictions). @@T@@ in the first line is replaced by the caller. Read-only."""
-import os, re, subprocess, sys
+import json, os, re, subprocess, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 args = [a for a in sys.argv[1:] if not a.startswith("--")]
 opt = {a.split("=", 1)[0]: a.split("=", 1)[1] for a in sys.argv[1:] if a.startswith("--") and "=" in a}
 Ds = [float(x) for x in args[0].split(",")]
-def part_of(D):   # the leg part that holds the point: a to D 21.5, b to D 21.96875 (part b stopped there), b2 to D 22.5, c after
-    return "a" if D <= 21.5 + 1e-9 else "b" if D <= 21.96875 + 1e-9 else "b2" if D <= 22.5 + 1e-9 else "c"
+def part_of(D):   # the leg part that holds the point: the one whose pushed_points.txt lists it (a: kc87_leg2/, b, b2, c, c2: their folders)
+    L2_ = os.path.expanduser("~/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_leg2")
+    for pt, fol in (("c2", "/c2"), ("c", "/c"), ("b2", "/b2"), ("b", "/b"), ("a", "")):
+        f = L2_ + fol + "/pushed_points.txt"
+        if os.path.exists(f) and any(abs(float(x) - D) < 1e-9 for x in open(f).read().split()): return pt
+    raise SystemExit("D %r is in no part's pushed_points.txt" % D)
 part = opt.get("--part", "auto")
 preds = dict(x.split("=", 1) for x in opt.get("--pred", "").split(";") if "=" in x)
 prevs = dict(x.split("=", 1) for x in opt.get("--prev", "").split(";") if "=" in x)       # --prev="D=PD,PR,LO,HI,CD;...": the registered rule base of a point started by hand (make_post.py --prev)
@@ -47,9 +51,12 @@ for D in Ds:
     secs.append("### D %r\n\n%s" % (D, t.replace(" (@@T@@ UTC 24 Nov)", "")))
 head = "**#1025 macm3, lambda_1 on my own k_c 87 leg, D %s (@@T@@ UTC 24 Nov): %d scanned points in one comment (t5's order).**" % (", ".join(repr(d) for d in Ds), len(Ds))
 print(head)
-print("\n| D | bracket | det-linear root | primary rule: prediction, residual | -0.33 rule: prediction, residual | local slope |\n|---|---|---|---|---|---|")
+print("\n| D | bracket | det-linear root | primary rule: prediction, residual | -0.33 rule: prediction, residual | local slope | psi-constraint |\n|---|---|---|---|---|---|---|")
 for D, m, br in rows:
-    print("| %r | (%s, %s) | **%s** | %s, %s | %s, %s%s | %s |" % (D, br.group(1), br.group(2), m.group(1), m.group(5), m.group(6), m.group(7), m.group(8), " (outside 0.005)" if m.group(9) else "", m.group(10)))
+    pt_ = part_of(D) if part == "auto" else part
+    cr_ = [json.loads(x) for x in open(os.path.expanduser("~/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_leg2/%s%s.jsonl" % ("" if pt_ == "a" else pt_ + "/", {"a": "l1kc87Lmacm3", "b": "l1kc87Lmacm3b", "b2": "l1kc87Lmacm3b2", "c": "l1kc87Lmacm3c", "c2": "l1kc87Lmacm3c2"}[pt_]))) if x.strip()]
+    con_ = [r for r in cr_ if r["D"] == D][-1]["constraint"]
+    print("| %r | (%s, %s) | **%s** | %s, %s | %s, %s%s | %s | %.2e%s |" % (D, br.group(1), br.group(2), m.group(1), m.group(5), m.group(6), m.group(7), m.group(8), " (outside 0.005)" if m.group(9) else "", m.group(10), con_, "" if con_ <= 1e-2 else " **reduced quality**"))
 if opt.get("--leg"):
     legs = [float(x) for x in opt["--leg"].split(",") if x]
     for pt in dict.fromkeys(part_of(d) if part == "auto" else part for d in legs):   # one leg table per part, in order
@@ -59,6 +66,13 @@ if opt.get("--leg"):
 if "--note" in opt: print("\n" + opt["--note"])
 print("\nEach point below carries its own tables.\n")
 print("\n\n".join(secs))
+if "--delta-rows" in sys.argv:
+    print("\n\n### Weak modes of the leg's rows (t5: delta_reg and sigma of the remaining weak modes in every row; n_null changes shown; psi-constraint above 1e-2 flagged reduced quality)\n")
+    for pt_, tag_ in (("b2", "l1kc87Lmacm3b2"), ("c", "l1kc87Lmacm3c"), ("c2", "l1kc87Lmacm3c2")):
+        f_ = os.path.expanduser("~/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_leg2/%s/%s.jsonl" % (pt_, tag_))
+        if os.path.exists(f_):
+            print("**Part %s** (`kc87_leg2/%s/`):\n" % (pt_, pt_))
+            print(subprocess.run([sys.executable, os.path.expanduser("~/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_leg2/delta_rows.py"), f_], capture_output=True, text=True, check=True).stdout)
 if "--wide" in sys.argv:
     print("\n\n### The wide scans, side by side\n")
     print(subprocess.run([sys.executable, HERE + "/make_wide.py"], capture_output=True, text=True, check=True).stdout)

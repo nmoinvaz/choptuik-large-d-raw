@@ -9,7 +9,7 @@ args = [a for a in sys.argv[1:] if not a.startswith("--")]
 opt = {a.split("=", 1)[0]: a.split("=", 1)[1] for a in sys.argv[1:] if a.startswith("--") and "=" in a}
 D = float(args[0]); dn = repr(D)
 part = opt.get("--part", "a"); legd = [float(x) for x in opt.get("--leg", "").split(",") if x]
-LEG = L2 + ("" if part == "a" else "/" + part); TAG = {"a": "l1kc87Lmacm3", "b": "l1kc87Lmacm3b", "b2": "l1kc87Lmacm3b2", "c": "l1kc87Lmacm3c"}[part]
+LEG = L2 + ("" if part == "a" else "/" + part); TAG = {"a": "l1kc87Lmacm3", "b": "l1kc87Lmacm3b", "b2": "l1kc87Lmacm3b2", "c": "l1kc87Lmacm3c", "c2": "l1kc87Lmacm3c2"}[part]
 roots_first, roots_now = {}, {}      # roots87.txt: the first line of a D (the scan as the chain read it) and the last (a later line is a rescan)
 for l in open(L + "/roots87.txt"):
     f = l.split()
@@ -96,7 +96,7 @@ if legd:
     Pl("| Delta | " + " | ".join("%.12f" % legrec[d]["Delta"] for d in legd) + " |")
     Pl("| dDelta/dD | " + " | ".join(guard[d][2].join(["+", ""]) if not guard[d][2].startswith("-") else guard[d][2] for d in legd) + " |")
     Pl("| \\|F\\|, steps | " + " | ".join("%.3e, %d" % (legrec[d]["F"], legrec[d]["steps"]) for d in legd) + " |")
-    Pl("| psi-constraint (bar 1e-2) | " + " | ".join("%.3e" % legrec[d]["constraint"] for d in legd) + " |")
+    Pl("| psi-constraint (bar 1e-2; part c2: 2e-2) | " + " | ".join("%.3e%s" % (legrec[d]["constraint"], "" if legrec[d]["constraint"] <= 1e-2 else " **REDUCED QUALITY (above 1e-2)**") for d in legd) + " |")
     Pl("| \\|J+dF/dn\\|, n_null | " + " | ".join("%.4f, %d" % (legrec[d]["tan_norm"], legrec[d]["n_null"]) for d in legd) + " |")
     Pl("| tracker m0 (weakest regular mode), cos | " + " | ".join("%s, %.4f" % (trk[d][3].replace("m0 ", ""), legrec[d]["cos_t_reg"][0]) for d in legd) + " |")
     Pl("| branch watch m1 | " + " | ".join(trk[d][7] for d in legd) + " |")

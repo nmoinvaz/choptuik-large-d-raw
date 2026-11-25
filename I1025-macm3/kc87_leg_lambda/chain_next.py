@@ -18,7 +18,7 @@ L = os.path.expanduser("~/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_leg_l
 L2 = os.path.expanduser("~/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_leg2")
 MUT = next((a.split("=", 1)[1] for a in sys.argv if a.startswith("--mutate=")), None)
 PARTS = (("a", L2, "I1025-macm3/kc87_leg2", "l1kc87Lmacm3"), ("b", L2 + "/b", "I1025-macm3/kc87_leg2/b", "l1kc87Lmacm3b"),
-         ("b2", L2 + "/b2", "I1025-macm3/kc87_leg2/b2", "l1kc87Lmacm3b2"), ("c", L2 + "/c", "I1025-macm3/kc87_leg2/c", "l1kc87Lmacm3c"))
+         ("b2", L2 + "/b2", "I1025-macm3/kc87_leg2/b2", "l1kc87Lmacm3b2"), ("c", L2 + "/c", "I1025-macm3/kc87_leg2/c", "l1kc87Lmacm3c"), ("c2", L2 + "/c2", "I1025-macm3/kc87_leg2/c2", "l1kc87Lmacm3c2"))
 # t5, 24 Nov 19:5x UTC: dh610 scans these four leg points, so they leave this chain (phase 2 keeps D 21.4375, 21.84375, 21.90625, 21.96875 and the rest)
 SKIP = (21.5625, 21.6875, 21.8125, 21.9375)
 BESIDE = -0.33
@@ -108,7 +108,10 @@ def legs_ended(base=None):
     b2 = os.path.exists(base + "/b2/LEG_DONE.txt") or says("start_b2.log", "NOT started")
     cl = "start_c.log" if MUT == "legs" else "start_c2.log"
     c = os.path.exists(base + "/c/LEG_DONE.txt") or says(cl, "NOT started") or says(cl, "not needed")
-    return a and b and b2 and c
+    # part c2 (t5, 25 Nov: part c restarted past the psi-constraint bar with --cmax 2e-2): done, or the starter (start_cont.log) says it was not needed or not started
+    c2 = os.path.exists(base + "/c2/LEG_DONE.txt") or says("start_cont.log", "NOT started") or says("start_cont.log", "not needed")
+    if MUT == "legs": c2 = True
+    return a and b and b2 and c and c2
 
 
 def phase1_now():
@@ -197,7 +200,11 @@ def selftest():
         open(t + "/b2/LEG_DONE.txt", "w").write("x")
         chk("legs: b2 done, part c undecided (only the stale start_c.log line): not ended", not legs_ended(t))
         open(t + "/start_c2.log", "w").write("part c not needed: lambda_1 not positive\n")
-        chk("legs: b2 done and part c not needed (start_c2.log): ended (phase 2)", legs_ended(t))
+        chk("legs: b2 done and part c not needed (start_c2.log) but part c2 undecided (no start_cont.log): not ended", not legs_ended(t))
+        open(t + "/start_cont.log", "w").write("waiting for part c (c/LEG_DONE.txt)\n")
+        chk("legs: start_cont.log only says waiting: not ended", not legs_ended(t))
+        open(t + "/start_cont.log", "a").write("part c2 not needed: part c was not started (not needed)\n")
+        chk("legs: part c2 not needed (start_cont.log): ended (phase 2)", legs_ended(t))
     import tempfile as _tf
     with _tf.TemporaryDirectory() as t_:
         chk("hold: no HOLD.txt: not held", hold(t_) is None)

@@ -23,6 +23,11 @@ def predict(pr, slope, step):
     return pr + (-0.28 if MUT == "slope" else slope) * step             # t5's rule; the mutation ignores the ordered slope
 
 
+def quality_note(c):
+    """t5, 25 Nov: a row with psi-constraint above 1e-2 is reduced quality (part c2 runs with --cmax 2e-2)"""
+    return "" if (MUT == "flag" or c <= 1e-2) else " **REDUCED QUALITY: psi-constraint %.3e is above 1e-2 (t5, 25 Nov: part c2 runs with --cmax 2e-2; the goal there is to locate lambda_1 = 0 approximately, not to quote digits).**" % c
+
+
 def fmt(x):
     r = "%.3f" % x
     return "0.000" if r == "-0.000" else r
@@ -52,6 +57,10 @@ def selftest():
     for x in (21.125, 21.15625, 21.0625, 21.09375, 21.1875, 20.90625):
         good = float(dlabel(x)) == x
         print("planted: D %r -> label %s, float(label) == D: %s" % (x, dlabel(x), "PASS" if good else "FAIL"))
+        ok = ok and good
+    for c, want in ((9.9e-3, ""), (1.0e-2, ""), (1.2e-2, "REDUCED QUALITY")):
+        good = (want in quality_note(c)) and (bool(want) == bool(quality_note(c)))
+        print("planted: psi-constraint %.3e -> %r: %s" % (c, quality_note(c)[:40], "PASS" if good else "FAIL"))
         ok = ok and good
     print("selftest:", "PASS" if ok else "FAIL")
     return 0 if ok else 1
@@ -113,13 +122,13 @@ WIN="%s %s"; REP=%s
     sec = """
 ## D %s (written before its check and scan, %s UTC)
 
-**Inputs** (`%s/pins.txt`): the commit %s (%s): state `%s/%s` blob **%s**, record `%s.jsonl` blob **%s** (%d rows; the check and the scan pick the row of D %s: |F| %.16g, %d steps, Delta %.16g, h %g, k_c %s).
+**Inputs** (`%s/pins.txt`): the commit %s (%s): state `%s/%s` blob **%s**, record `%s.jsonl` blob **%s** (%d rows; the check and the scan pick the row of D %s: |F| %.16g, %d steps, Delta %.16g, h %g, k_c %s, psi-constraint %.3e).%s
 **Prediction (t5's rule, hcs of 24 Nov):** the previous k_c 87 root plus slope %g per unit D times the D step (slope as ordered by t5: -0.28 up to D 21.1875, -0.32 for D 21.21875 and 21.25, and for the leg2 points from D 21.3125 on the latest measured local slope, -0.3513 at D 21.3125): %s %+g x %s = **%.4f**; one robust change within 0.005 of it.
 %s%s
 **Grid:** m = %.4f rounded to 0.005 = %s; lambda %s and a repeat of %s: 6 evaluations on %d processes of 1 thread at nice %d, round-robin (%s); window read `read_lower.py scan %s %s` (the interval prediction +-0.005, %.4f to %.4f, lies inside it).
 **Predictions (mine, before the run):** as D 21.0625's: the source check accepts with all controls firing and the k_c 79 check refusing about 90%%; all six noise-robust about 75%%; exactly one robust change in the window about 85%%; its det-linear estimate within 0.005 of the prediction about 75%%, within 0.002 about 40%%; edge signs unequal about 85%%; the repeat of %s bit-identical about 90%%; the float64 sign differs from the hybrid at one or more points about 55%%; scan wall %s; peak RSS per process below 4.5 GB about 85%%.
 ## Log
-""" % (dn, now, dn, rawc, subj, SRC, sf, sb, TAG, rb, len(rows), dlabel(D), row["F"], row["steps"], row["Delta"], row.get("h", 0.03125), row["kc"],
+""" % (dn, now, dn, rawc, subj, SRC, sf, sb, TAG, rb, len(rows), dlabel(D), row["F"], row["steps"], row["Delta"], row.get("h", 0.03125), row["kc"], row["constraint"], quality_note(row["constraint"]),
        slope, format(PR, ".6f"), slope, "%.10g" % (D - PD), pred, beside, beside3, pred, m, ", ".join(vals[:5]), m, NP, NICE, assign, vals[0], vals[4], pred - 0.005, pred + 0.005, m, wallp)
     open(L + "/README.md", "a").write(sec)
     print("D %s: commit %s, state %s, record %s, prediction %.4f, m %s, grid %s" % (dn, rawc, sb, rb, pred, m, " ".join(vals)))
