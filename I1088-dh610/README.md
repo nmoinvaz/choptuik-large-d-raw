@@ -28,3 +28,6 @@ the Mac, which pushed this folder.
 - `j2000_held_mob/`: D 2000 from the chain and form-S states up to D 400: three damped steps (lam 1/4, 1/16, 1/16) left
   max |F| at 1.13; stopped by hand.
 - `run_j1414.sh`: the stepping stone D 1414 from the form-S states at D 300, 400 and 1000 (out/j1414_held_mob/).
+- `j1414_held_mob/`, `j2000_held_mob2/`: the stepping stone D 1414 (from D 300, 400, 1000) and D 2000 (from D 400,
+  1000, 1414), held, the Moebius horizon a 8, the lean defaults; `ladder.sh`: D 2828 to 10000 in steps of about
+  sqrt(2) in n (out/j<D>_ladder/).

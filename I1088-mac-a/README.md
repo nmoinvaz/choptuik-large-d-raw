@@ -61,4 +61,7 @@ c30c2766).
   `form_s/direct_backfill.py` wrote the ones before jump did (`direct_backfill.log`).
 - `form_s/zcheck.py`: the z recurrence against the Cauchy sums (run on dh370, I1088-dh370/zcheck/).
 
+- `form_s/zcheck_815287c6_D1000.log`: the z-recurrence check at D 1000 on the Mac's opt-1 build of 815287c6 (the
+  Moebius constants in the lane's precision).
+
 Files are added as the runs go; each log or script names its command line.

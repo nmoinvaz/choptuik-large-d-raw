@@ -1,0 +1,15 @@
+  states: 0 form A, 3 form S (D 400, 1000, 1414)
+guess at D 2000 from 3 states, D 400.0000 .. 1414.0000, degree 2 in 1/n; degree 1 differs by 3.95e-06 (unknowns), 3.10e-05 (Delta)
+  ks 3017 (the Moebius series' rule 1.5 n + 20, a = 8)
+  Delta from Track C's series: 1.649074313886 +- 0.00e+00; the fit's 1.649074392875
+  308 Taylor steps; the guess's max |F| per block 7.5e-10 7.9e-10 1.3e-09 2.1e-09 3.5e-09 1.8e-01 7.3e-18
+  p1's harmonics 5-13 at the guess's values (kfreeze 3 with the held offset)
+  start: max |F| 1.790e-01, Delta 1.649074313886000009432564183953218162060
+  it 0: |F| 1.790e-01 -> 1.979e-06, |dz| 1.51e-06, dDelta -2.736e-10, lam 1, Delta's gain 1.08e+00, gain |F| 2.13e-06, 268.1 s (J and solves 262 s), Delta 1.649074313612395479029734271082515281369
+  it 1: |F| 1.979e-06 -> 1.573e-06, |dz| 1.51e-06, dDelta -2.446e-10, lam 1, Delta's gain 1.12e+00, gain |F| 1.76e-06, 270.7 s (J and solves 262 s), Delta 1.649074313367757980982345909300610549167
+  it 2: |F| 1.573e-06 -> 7.709e-16, |dz| 2.25e-13, dDelta +1.923e-15, lam 1, Delta's gain 1.12e+00, gain |F| 8.64e-16, 296.2 s (J and solves 286 s), Delta 1.649074313367759903665586417552907079847
+  end state: qd max |F| 2.382e-16; Delta's first-order bound gain |F| 2.67e-16 (gain 1.12e+00, the last step's Jacobian)
+  the full system (kfreeze 13) at the held solution: max |F| 8.367e-10, first-order dDelta +5.092e-10 (Delta's gain sum |dDelta/dF| 1.32e+07)
+  discretization (bars 1e-25): top harmonic 8.9e-18 relative (n4m); kc+20: |dF| 0.0e+00, gain |dF| 0.0e+00; ks+200: |dF| 3.2e-44, gain |dF| 3.5e-44; steps halved: |dF| 5.6e-38, gain |dF| 6.3e-38: over the 1e-25 bar: theta (M 32): top harmonic 8.9e-18
+  Hamiltonian code check (form A's residual in double-double, a slaved): segment blocks' max |F| 1: a 2.8e-26, p/m/c 2.0e-23; 2: a 6.0e-26, p/m/c 3.8e-23; 3: a 1.1e-25, p/m/c 6.0e-23; 4: a 1.6e-25, p/m/c 8.3e-23
+  converged; Delta 1.649074313367759903665586417552907079847; saved /home/nathan/Source/choptuik-large-d-1088a/out/j2000_held_mob2/jump_s_D2000.0000.npz
