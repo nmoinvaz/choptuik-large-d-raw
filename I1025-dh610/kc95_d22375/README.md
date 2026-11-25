@@ -49,8 +49,70 @@ Basis: k_c 87 roots at 22.125, 22.1875, 22.25: 0.491017, 0.473467, 0.442516 (ste
 | peak sampled RSS below 3 GiB (85%) | right (2.56 GiB) |
 | the regrid done within 3 h of the lane's start (65%) | right (2 h 04 min) |
 
+## Scan result (25 Nov, 08:21:13 to 14:00:57 UTC, 339.7 min, 4 processes; `summarize_kc95.py` > `summary_kc95.txt`)
+| lambda | hybrid sign | noise signs (robust) | float64 sign | ln of abs det | seconds |
+|---|---|---|---|---|---|
+| -0.100 | - | -- (True) | - | -2694.985353299071 | 5075 |
+| -0.060 | - | -- (True) | - | -2698.555449560897 | 4298 |
+| -0.020 | - | -- (True) | - | -2702.1361321958307 | 5042 |
+| 0.020 | - | -- (True) | - | -2705.7289713217633 | 4578 |
+| 0.060 | - | -- (True) | - | -2709.336206474374 | 3696 |
+| 0.100 | - | -- (True) | - | -2712.961084059618 | 3780 |
+| 0.140 | - | -- (True) | - | -2716.6084667883365 | 2670 |
+| 0.140 | - | -- (True) | - | -2716.6084667883365 | 3839 |
+| 0.180 | - | -- (True) | - | -2720.2860159051315 | 3911 |
+| 0.220 | - | -- (True) | - | -2724.006745418366 | 3937 |
+| 0.260 | - | -- (True) | - | -2727.795405917757 | 3636 |
+| 0.300 | - | -- (True) | - | -2731.7086636828326 | 3626 |
+| 0.340 | - | -- (True) | - | -2735.934694992649 | 3578 |
+| 0.380 | + | ++ (True) | + | -2742.0397329270227 | 4997 |
+| 0.420 | + | ++ (True) | + | -2742.7916978825333 | 4483 |
+| 0.460 | + | ++ (True) | + | -2745.6283504717035 | 4838 |
+| 0.500 | + | ++ (True) | + | -2748.7305673886635 | 4767 |
+
+scan points: 17 evaluations, seconds per point min 2670, median 3937, max 5075, sum 70751; outside 1800 to 4000 s: [(-0.1, 5075), (-0.06, 4298), (-0.02, 5042), (0.02, 4578), (0.38, 4997), (0.42, 4483), (0.46, 4838), (0.5, 4767)]
+the regridded record at D 22.375: |F| 3.891776359084224e-10, steps 3128, constraint 0.005134074026698804, Delta 1.1562229943027866, h None, seconds 7425
+float64 sign differs from the hybrid at: []
+
+```
+=== read_lower.py /home/nathan/Source/choptuik-large-d-raw/I1025-dh610/kc95_d22375/scan -0.10 0.50
+points 16 in -0.100-0.500; not noise-robust: none
+hybrid signs: -0.100- -0.060- -0.020- 0.020- 0.060- 0.100- 0.140- 0.180- 0.220- 0.260- 0.300- 0.340- 0.380+ 0.420+ 0.460+ 0.500+
+float64 sign differs from the hybrid sign at: none
+repeated points: [(0.14, 'agree')]
+  robust change (0.340, 0.380), - to +, det-linear 0.379911, range [0.341204, 0.379911]
+robust changes: 1; touching a non-robust point (not counted): none
+ln|det| local minima without a sign change: none
+endpoint signs: - at -0.100, + at 0.500
+read_lower exit 0
+=== repeat_check.py (merged scan file)
+repeat check /home/nathan/Source/choptuik-large-d-raw/I1025-dh610/kc95_d22375/scan/scan_D22.375_all.jsonl: lambda [0.14]: [2] evaluations each, agree -> PASS
+repeat_check exit 0
+```
+
+- **All 4 processes exit 0 and printed the record system** (|F| 3.8933831162e-10 recomputed against the record's 3.8917763591e-10, steps 3128 = the record's); the pre-run checks passed (`selftest_exits.txt` 0 0 0 1 1 0 0 1 0 1 0 1, as the lane wanted). The scan ran on 4 processes (p0 -0.10, 0.06, 0.22, 0.38, then the repeat of 0.14; p1 -0.06, 0.10, 0.26, 0.42; p2 -0.02, 0.14, 0.30, 0.46; p3 0.02, 0.18, 0.34, 0.50) at nice 19 (the watcher's renice at 08:21:15 UTC, 4 pids, `i1088a_yield.txt`); process walls 4:30:06 (p1), 4:40:44 (p3), 4:49:13 (p2), 5:39:43 (p0).
+- **One robust change in the window -0.10 to 0.50:** (0.340, 0.380), **"- to +" as the reader prints it**, det-linear **0.379911**, estimator range [0.341204, 0.379911] (a spread over interpolation choices, not an enclosure; the bracket is the grid step 0.04, and the range fills the bracket, so the position inside it is not fixed by this scan). Edge signs differ (- at -0.10, + at 0.50). **No other change:** the hybrid sign is "-" at every point from -0.10 to 0.34 (in particular at 0.06, 0.10, 0.14 and 0.18, where k_c 87 has its extra root at D 22.25) and "+" at 0.38, 0.42, 0.46 and 0.50. No ln|det| minimum without a sign change; every point noise-robust (17 of 17); the float64 sign agrees with the hybrid at all 17.
+- **The repeat of 0.14** (p2 and p0, two processes) is bit-identical (hybrid -, ln|det| -2716.6084667883365 in both; `repeat_check.py` PASS).
+- **ln|det| (hybrid) along the grid:** the differences per 0.04 step are -3.57, -3.58, -3.59, -3.61, -3.62, -3.65 (to 0.14), -3.68, -3.72, -3.79 (to 0.26), -3.91 (0.26 to 0.30), -4.23 (0.30 to 0.34), **-6.11 (0.34 to 0.38, the bracket of the change)**, -0.75 (0.38 to 0.42), -2.84, -3.10. Printed as read; not interpreted here.
+- **k_c 95 roots along D (det-linear; brackets as read; not corrected for the grid):** D 22.0 0.545920 (win2), D 22.25 0.434264 (mine, bracket (0.430, 0.435)), **D 22.375 0.379911 (mine, bracket (0.34, 0.38))**, D 22.5 0.339034 (win2, bracket (0.30, 0.34)). All four print "- to +". The coordinator's reason for this lane: macm3's k_c 87 has an extra root near 0.11 at D 22.25 that k_c 95 lacks there; **at D 22.375 k_c 95 shows no root near 0.11 either** (hybrid "-" at 0.06 to 0.18). macm3 has no k_c 87 reading at D 22.375 yet, so there is no k_c 87 root to put beside this one.
+- **Seconds per point: 2670 to 5075 s** (median 3937), 4 processes at nice 19 beside the recount, the quest's units, my D 22.1875 scan (to 10:02), my k_c 103 D 22.125 regrid (from 10:09, 8 threads) and its scan (from 13:40): the points of the first round (-0.10, -0.06, -0.02, 0.02) took 4298 to 5075 s, the later ones 3578 to 4997 s, and the last one (p0's repeat of 0.14, from 13:16 to 14:00 UTC, beside only my k_c 103 scan, the recount and the quest's units) 2670 s. Load (1-minute, 677 samples 08:21 to 14:00 UTC): median 17.35, max 27.0, min 10.3; above 22 in 11 episodes of 30 s to 24 min (the longest 12:30 to 12:54 UTC), never for an hour (`load_alert.sh` silent, `load_alert.out` empty); peak RSS per process 3.04 to 3.10 GiB (`/usr/bin/time -v`); MemAvailable at least 42.48 GiB; no memory alert.
+
+### Scan predictions scorecard (registered before the run)
+| prediction | result |
+|---|---|
+| at least 15 of the 17 points noise-robust (70%) | right (17 of 17) |
+| the repeat of 0.14 on another process bit-identical (85%) | right |
+| exactly one robust change, lambda_1 alone (50%); exactly two (28%); three or more (12%); none (10%) | right (one) |
+| the highest change in (0.30, 0.42) (75%): bracket (0.34, 0.38) 35%, (0.30, 0.34) 25%, (0.38, 0.42) 15% | right; right (bracket (0.340, 0.380)) |
+| the printed orientation of lambda_1 "- to +" (65%), "+ to -" (30%) | right ("- to +") |
+| if two changes: the lower in (0.06, 0.18) (60%), lambda_1 "+ to -" (60%) | not tested (one change) |
+| the float64 sign agrees with the hybrid at all 17 evaluations (25%) | right (agrees at all 17) |
+| each scan point 1800 to 4000 s (60%) | WRONG (2670 to 5075 s; 8 of 17 outside) |
+| the scan done within 6 h of its start (65%) | right (5.66 h) |
+
 ## Status
 - 2026-11-25 06:16 UTC: folder, pinned inputs, lane, wide reader with its planted-truth check, watcher (patterns checked) and README written before any run; the unit `i1025-kc95-22_375` is started next.
 - 06:16:55 UTC: unit `i1025-kc95-22_375` started (selftests 0 0 0 1 1 0 0 1 0 1 0 1, source accepted with controls 1 1 and the k_c 95 check refusing it, regrid started 06:17:03 UTC at nice 10).
 - 2026-11-25 06:18 UTC: a defect of mine, fixed: the watcher `watch_i1088a.sh` ended at once because `exits_kc95.txt` still held the line "STOP: in_blobs_src.txt is missing or empty" of my deliberate test of the new pin check (06:16:16 UTC), which its loop took for the lane's end; the regrid therefore ran at nice 10 until 06:18:05 UTC, when the corrected watcher (it counts only lines written after its own start; the old file kept as `watch_i1088a_stale_stop.sh`) raised it to nice 19 (`i1088a_yield.txt`; `i1088a-buildmob.service` is active). My first waiter had the same flaw and was replaced by a baseline-aware one. The same stale-line trap does not apply to `../kc95_d221875/` (no test STOP in its exits file).
 - 2026-11-25 08:22 UTC: the regrid is ACCEPTED (06:17:03 to 08:21:08 UTC, 7428 s; result above, raw d9cf426e). The wide scan started 08:21:13 UTC on 4 processes, nice 19 by the watcher.
+- 2026-11-25 14:10 UTC: the scan is done (08:21:13 to 14:00:57 UTC): one robust change in -0.10 to 0.50, bracket (0.340, 0.380) printed "- to +", det-linear 0.379911; no change near 0.11; result and scorecard above. This lane is finished.
