@@ -36,4 +36,8 @@ c30c2766).
 - `form_s/hprobe.py`: the horizon block of form S at the rescaled guesses of D 400 and 1000 and its gain from m_h
   (`hprobe_D400.log`, `hprobe_D1000.log`; the Mac's opt-1 build; the guess's Delta is the fit's here).
 
+- `form_s/mobius_gain.py`: hp's horizon sum (u variable, octo-double) against t2v's float64 recurrence in the Moebius
+  variable (wip/large-d-inner ee996ecc, solver/inner_large_d/mobius_s.py) at the D 400 held state and the D 1000 guess,
+  and each one's gain from m_h (`mobius_gain_D400.log`, `mobius_gain_D1000.log`).
+
 Files are added as the runs go; each log or script names its command line.
