@@ -7,6 +7,9 @@ Issue: https://github.com/nmoinvaz/choptuik-large-d/issues/1088
 The runs ran in `~/Source/choptuik-large-d-1088a/` (the branch fetched as a tarball); their files were copied here from
 the Mac, which pushed this folder.
 
-- `run_val.sh`: the validation and the conditioning table (its logs: `check.log`, `check_flux.log`, `planted.log`,
-  `planted_step.log`, `cond.log`), on the M = 32 full-system states of hp/data/states (D 16.76 to 27.04, and 50.01)
-  and the chain states at D 100 and 200 (`T138-win2/`) and 245.56 (`I966-dh370/ks_chain3b/`).
+- `run_val.sh`: the validation and the conditioning table (its logs in `out/`: `check.log`, `check_flux.log`,
+  `planted.log`, `planted_step.log`, `cond.log`, and the unit's journal), on the M = 32 full-system states of
+  hp/data/states (D 16.76 to 27.04, and 50.01) and the chain states at D 100 and 200 (`T138-win2/chain/`,
+  `T138-win2/chain_o/`) and 245.56 (`I966-dh370/ks_chain3b/`). The build: the low-memory release recipe
+  (`CARGO_PROFILE_RELEASE_LTO=false`, 16 codegen units) of wip/large-d-form-s at 38943f4f, 49 min and 25.6 GB
+  (`build2_tail.log`).
