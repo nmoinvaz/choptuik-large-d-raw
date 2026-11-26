@@ -1,0 +1,22 @@
+release_ls from D300_full_mob8,ks=600.npz: D 300, Delta 1.678171015400871567732214178493592019810, od residual
+    h13 outer 0 (qd Jacobian) starts 10:44:37 UTC
+    h13 outer 0: target |F| 7.99e-31, harmonic-13 step 8.87e-12 (338 s)
+    h13 outer 0 trial lam 1: inner floor in 4 steps (|F| 2.80e-33), target |F| 2.80e-33 against 7.99e-31 (1649 s)
+  h13 outer 0: target |F| 7.99e-31 -> 2.80e-33, harmonic-13 step 8.87e-12 (full step's dDelta -2.87e-18), lam 1, Delta 1.678171015400871564866526157611293257379 (1648.6 s)
+    h13 outer 1 (qd Jacobian) starts 11:12:06 UTC, predicted end 11:39 UTC (1649 s, the last qd outer step)
+    h13 outer 1: target |F| 2.80e-33, harmonic-13 step 1.36e-12 (426 s)
+    h13 outer 1 trial lam 1: inner converged in 5 steps (|F| 2.12e-56), target |F| 2.27e-43 against 2.80e-33 (2612 s)
+  h13 outer 1: target |F| 2.80e-33 -> 2.27e-43, harmonic-13 step 1.36e-12 (full step's dDelta -5.97e-19), lam 1, Delta 1.678171015400871564269572624716747779635 (2611.8 s)
+    h13 outer 2 (qd Jacobian) starts 11:55:38 UTC, predicted end 12:39 UTC (2612 s, the last qd outer step)
+    h13 outer 2: target |F| 2.27e-43, harmonic-13 step 3.84e-13 (186 s)
+    h13 outer 2 trial lam 1: inner converged in 4 steps (|F| 2.99e-51), target |F| 6.10e-44 against 2.27e-43 (864 s)
+  h13 outer 2: target |F| 2.27e-43 -> 6.10e-44, harmonic-13 step 3.84e-13 (full step's dDelta +2.78e-19), lam 1, Delta 1.678171015400871564547436793693795551372 (863.5 s)
+  h13: outer floor stop, the step cut 3.72x (< 10x); harmonic 13 continues with Jacobian mode qq
+    h13 outer 3 (qq Jacobian) starts 12:10:01 UTC
+    h13 outer 3: target |F| 6.10e-44, harmonic-13 step 1.26e-13 (124 s)
+    h13 outer 3 trial lam 1: inner converged in 2 steps (|F| 6.85e-56), target |F| 6.85e-56 against 6.10e-44 (336 s)
+  h13 outer 3: target |F| 6.10e-44 -> 6.85e-56, harmonic-13 step 1.26e-13 (full step's dDelta +5.27e-20), lam 1, Delta 1.678171015400871564600114080597544509015 (336.3 s)
+    h13 outer 4 (qq Jacobian) starts 12:15:38 UTC, predicted end 12:21 UTC (336 s, the last qq outer step)
+    h13 outer 4: target |F| 6.85e-56, harmonic-13 step 4.13e-31 (92 s)
+  h13 outer 4: target |F| 6.85e-56, harmonic-13 step 4.13e-31: released
+  the full system: qd check max |F| 6.85e-56; held -> full dDelta unknown (no held Delta); h13's change -3.132e-18
