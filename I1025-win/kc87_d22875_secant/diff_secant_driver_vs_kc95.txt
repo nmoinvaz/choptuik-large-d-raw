@@ -1,0 +1,111 @@
+--- kc95d22875s_secant_driver_1025.py
++++ kc87d22875s_secant_driver_1025.py
+@@ -1,21 +1,22 @@
+ #!/usr/bin/env python3
+-"""#1025 winb, the secant refinement of the k_c 95 root at D 22.875 (t5's order, hc of 2026-11-26 ~06:35 UTC, after the k_c 103 D 22.875 ruling): xfkappa's d18_secant.py (branch wip/ell1-speed at 6010e37b,
+-committed blob a3d90cd5; Brent's method on the hybrid sign) on win2's accepted k_c 95 state sol_l1kc95win2d22875_D22.8750.npy (raw I1025-win2/kc95_d22875, blob a14f0d50) and its record l1kc95win2d22875.jsonl
+-(blob 5381f89d; copies in in/), between LO HI (arguments: win2's robust bracket (0.10, 0.12)):
++"""#1025 winb, the secant refinement of the k_c 87 root at D 22.875 (t5's order, hc of 2026-11-26 ~08:59 UTC, after the k_c 95 D 22.875 ruling): xfkappa's d18_secant.py (branch wip/ell1-speed at 6010e37b,
++committed blob a3d90cd5, my copy of the k_c 103 and k_c 95 lanes; the branch tip 92b9bf53 has another d18_secant.py blob, eb1396ad, that adds a scan command) on macm3's k_c 87 leg state
++sol_l1kc87Lmacm3c_D22.875000.npy (raw I1025-macm3/kc87_leg_lambda/22.875/in, blob b1e4f8ca) and its record l1kc87Lmacm3c.jsonl (blob 338bd7f1, six rows, the D 22.875 row last; copies in in/),
++between LO HI (arguments: the scan's bracket (0.12, 0.13)):
+   RAYON_NUM_THREADS=1 d18_secant.py run STUB STATE 22.875 LO HI secant.jsonl --tol=1e-5 --maxev=10 --pin=STATEBLOB,STUBBLOB     one process, BelowNormal, 1 thread (OMP/OPENBLAS/MKL 1 too)
+ Order of the driver (any failure stops it with an hc to t5, nothing started, exit 2):
+   1. pins: d18_secant.py, ell_fastm.py, ell_ddm.py, dss_ell.py, ell_dd.py, ddnp.py in the worktree choptuik-i1025secant (HEAD 6010e37b); the three checks (kc87 6df5d960, kc95 d487e628, kc103 3ab58d16); the state and the record;
+   2. d18_secant.py selftest exit 0 and its three controls --mutate=half, norobust, nosigncheck exit 1 each; the selftests of the three checks exit 0;
+-  3. the ACCEPTANCE of the state: kc95_syscheck_1025.py accepts the record and state (exit 0), its --mutate=F and --mutate=steps exit 1 each, and the k_c 87 and k_c 103 checks refuse them (exit 1 each);
++  3. the ACCEPTANCE of the state: kc87_syscheck_1025.py accepts the record and state (exit 0), its --mutate=F and --mutate=steps exit 1 each, and the k_c 95 and k_c 103 checks refuse them (exit 1 each);
+   4. the run, killed by the exact pid (taskkill /PID /T /F) if it passes 28800 s (8 h; t5: stop and report on any step over 8 h), one hc to t5 at 14400 s if it is still running.
+-The tool's exits: 0 tol reached, 4 maxev or a non-robust interior point (the bracket is valid), 2 refused (ends not robust or with equal signs: t5's "signs at 0.10 and 0.12 that do not differ"), 3 pin differs or
++The tool's exits: 0 tol reached, 4 maxev or a non-robust interior point (the bracket is valid), 2 refused (ends not robust or with equal signs: t5's "signs at 0.12 and 0.13 that do not differ"), 3 pin differs or
+ not the record system. Its own records (one per evaluation, then a root record) are appended to secant.jsonl; the log is secant.log. A sampler (60 s), an alert-only memory watcher and a keep-awake helper run
+ beside it, as in my other drivers; nothing kills on memory.
+-usage: kc95d22875s_secant_driver_1025.py LO HI [--dry]     (--dry: pins, selftests, acceptance checks, prints the command, starts nothing)"""
++usage: kc87d22875s_secant_driver_1025.py LO HI [--dry]     (--dry: pins, selftests, acceptance checks, prints the command, starts nothing)"""
+ import datetime, json, os, subprocess, sys, time
+ 
+ S = os.path.dirname(os.path.abspath(__file__)).replace("\\", "/")
+-OUT = S + "/I1025-win/kc95_d22875_secant"
++OUT = S + "/I1025-win/kc87_d22875_secant"
+ SEC = OUT
+ IN = S + "/inputs"
+ WTS = "C:/Users/nathan/Source/choptuik-i1025secant"
+@@ -26,7 +27,7 @@
+ DRY = "--dry" in sys.argv
+ args = [a for a in sys.argv[1:] if not a.startswith("--")]
+ if len(args) != 2:
+-    print("usage: kc95d22875s_secant_driver_1025.py LO HI [--dry]"); sys.exit(2)
++    print("usage: kc87d22875s_secant_driver_1025.py LO HI [--dry]"); sys.exit(2)
+ try:
+     LO, HI = float(args[0]), float(args[1])
+ except ValueError:
+@@ -34,8 +35,8 @@
+ if not 0.0 < LO < HI < 10.0:
+     print("REFUSE: wanted 0 < LO < HI < 10:", LO, HI); sys.exit(2)
+ D = "22.875"
+-STATE, STUB = OUT + "/in/sol_l1kc95win2d22875_D22.8750.npy", OUT + "/in/l1kc95win2d22875.jsonl"
+-B_STATE, B_STUB = "a14f0d50edb575e85387851a61cb2324c1983317", "5381f89d5fe4f81a113295cdde8eb6358de937e8"
++STATE, STUB = OUT + "/in/sol_l1kc87Lmacm3c_D22.875000.npy", OUT + "/in/l1kc87Lmacm3c.jsonl"
++B_STATE, B_STUB = "b1e4f8cad92d4384f3c2e2dffe15cd2b801251dd", "338bd7f1afa55d6afd80f03051402b855e198a3f"
+ PINS = [(WTM + "/d18_secant.py", "a3d90cd5ab9986f4670bdd81e3e2e3f3678bfe49", True), (WTM + "/ell_fastm.py", "93f963f6102f48e35c56c9eace25e1afd03b6ea2", True),
+         (WTM + "/ell_ddm.py", "86578feeab868691778019b79771aef727510a76", True), (WTM + "/dss_ell.py", "5d28c19e17efa6b0103cb81d650891706605532d", True),
+         (WTM + "/ell_dd.py", "7e58fcbc2288eca8f8f1ebfc36f7250a328b0c4e", True), (WTM + "/ddnp.py", "9b1fb195d0fa95d5dd7abd1083ac9b36fef04869", True),
+@@ -60,7 +61,7 @@
+ 
+ 
+ def hc(m):
+-    sh([HC, "send", COORD, f"winb ({now():%H:%M} UTC), #1025 k_c 95 D {D} secant refinement ({LO:g}-{HI:g}): {m}"])
++    sh([HC, "send", COORD, f"winb ({now():%H:%M} UTC), #1025 k_c 87 D {D} secant refinement ({LO:g}-{HI:g}): {m}"])
+ 
+ 
+ def refuse(m):
+@@ -74,7 +75,7 @@
+ 
+ os.makedirs(SEC, exist_ok=True)
+ os.makedirs(OUT + "/rows", exist_ok=True)
+-say(f"kc95d22875s_secant_driver_1025.py: the secant refinement of the k_c 95 root at D {D}, bracket ({LO!r}, {HI!r}){' (dry run)' if DRY else ''}; checking pins")
++say(f"kc87d22875s_secant_driver_1025.py: the secant refinement of the k_c 87 root at D {D}, bracket ({LO!r}, {HI!r}){' (dry run)' if DRY else ''}; checking pins")
+ if sh(["git", "-C", WTS, "rev-parse", "HEAD"]).stdout.strip() != "6010e37b30f92688dd5c659e383c6d0c8d14b6da":
+     refuse("the secant worktree is not at 6010e37b")
+ for p, b, filt in PINS:
+@@ -100,18 +101,18 @@
+ if st != {95: 0, 87: 0, 103: 0}:
+     refuse(f"the selftests of the k_c 95, 87 and 103 checks gave exits {st}, wanted 0 each")
+ else:
+-    say("selftests: kc95_syscheck exit 0, kc87_syscheck exit 0, kc103_syscheck exit 0 (0 wanted each)")
++    say("selftests: kc87_syscheck exit 0, kc95_syscheck exit 0, kc103_syscheck exit 0 (0 wanted each)")
+ t0 = time.time()
+ src = {}
+-for name, cmdl in (("source_kc95_syscheck.txt", [PY, IN + "/kc95_syscheck_1025.py", STUB, STATE, D, WTM]), ("source_kc95_syscheck_mutate_F.txt", [PY, IN + "/kc95_syscheck_1025.py", STUB, STATE, D, WTM, "--mutate=F"]),
+-                   ("source_kc95_syscheck_mutate_steps.txt", [PY, IN + "/kc95_syscheck_1025.py", STUB, STATE, D, WTM, "--mutate=steps"]), ("source_kc87_syscheck.txt", [PY, IN + "/kc87_syscheck_1025.py", STUB, STATE, D, WTM]),
++for name, cmdl in (("source_kc87_syscheck.txt", [PY, IN + "/kc87_syscheck_1025.py", STUB, STATE, D, WTM]), ("source_kc87_syscheck_mutate_F.txt", [PY, IN + "/kc87_syscheck_1025.py", STUB, STATE, D, WTM, "--mutate=F"]),
++                   ("source_kc87_syscheck_mutate_steps.txt", [PY, IN + "/kc87_syscheck_1025.py", STUB, STATE, D, WTM, "--mutate=steps"]), ("source_kc95_syscheck.txt", [PY, IN + "/kc95_syscheck_1025.py", STUB, STATE, D, WTM]),
+                    ("source_kc103_syscheck.txt", [PY, IN + "/kc103_syscheck_1025.py", STUB, STATE, D, WTM])):
+     r = sh(cmdl, env=env)
+     open(SEC + "/" + name + (".dry" if DRY else ""), "w").write(r.stdout + r.stderr + f"exit {r.returncode}\n")
+     src[name] = r.returncode
+-want = {"source_kc95_syscheck.txt": 0, "source_kc95_syscheck_mutate_F.txt": 1, "source_kc95_syscheck_mutate_steps.txt": 1, "source_kc87_syscheck.txt": 1, "source_kc103_syscheck.txt": 1}
+-say(f"the state: kc95 check exit {src['source_kc95_syscheck.txt']} (0 wanted: it accepts), --mutate=F {src['source_kc95_syscheck_mutate_F.txt']}, --mutate=steps {src['source_kc95_syscheck_mutate_steps.txt']} (1 wanted each), "
+-    f"kc87 check {src['source_kc87_syscheck.txt']} and kc103 check {src['source_kc103_syscheck.txt']} (1 wanted each: they refuse it); {time.time() - t0:.0f} s")
++want = {"source_kc87_syscheck.txt": 0, "source_kc87_syscheck_mutate_F.txt": 1, "source_kc87_syscheck_mutate_steps.txt": 1, "source_kc95_syscheck.txt": 1, "source_kc103_syscheck.txt": 1}
++say(f"the state: kc87 check exit {src['source_kc87_syscheck.txt']} (0 wanted: it accepts), --mutate=F {src['source_kc87_syscheck_mutate_F.txt']}, --mutate=steps {src['source_kc87_syscheck_mutate_steps.txt']} (1 wanted each), "
++    f"kc95 check {src['source_kc95_syscheck.txt']} and kc103 check {src['source_kc103_syscheck.txt']} (1 wanted each: they refuse it); {time.time() - t0:.0f} s")
+ if src != want:
+     refuse(f"the state is not accepted as wanted ({src}, wanted {want})")
+ cmd = [PY, "-u", WTM + "/d18_secant.py", "run", STUB, STATE, D, f"{LO:g}", f"{HI:g}", SEC + "/secant.jsonl", "--tol=1e-5", "--maxev=10", f"--pin={B_STATE},{B_STUB}"]
+@@ -123,7 +124,7 @@
+ open(SEC + "/secant_driver.pid", "w").write(str(os.getpid()))
+ samp = subprocess.Popen(["powershell", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", S + "/sample_driver_secant_1025.ps1", "-Drv", str(os.getpid()), "-Out", OUT + "/rows/secant_samples.csv", "-Interval", "60"],
+                         stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, creationflags=0x00004000 | 0x08000000)
+-wat = subprocess.Popen([PY, "-u", S + "/kc95d22875s_watch_alert_1025.py", str(os.getpid()), "secant"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, stdin=subprocess.DEVNULL,
++wat = subprocess.Popen([PY, "-u", S + "/kc87d22875s_watch_alert_1025.py", str(os.getpid()), "secant"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, stdin=subprocess.DEVNULL,
+                        creationflags=0x00004000 | 0x08000000)
+ say(f"alert-only memory watcher started as its own process, pid {wat.pid} (kills nothing); sampler pid {samp.pid}")
+ kaw = subprocess.Popen([PY, "-u", S + "/keepawake_1025.py", str(os.getpid()), "secant", str(CAP + 1800)], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, stdin=subprocess.DEVNULL,
+@@ -179,5 +180,5 @@
+ hc(f"the refinement ended, {summ}. Lines as printed: " + " | ".join(lines) + ". Raw I1025-win/kc103_d22875/secant after my next push; no reading by me, you rule.")
+ time.sleep(5)
+ samp.kill()
+-say("kc95d22875s_secant_driver_1025.py done")
++say("kc87d22875s_secant_driver_1025.py done")
+ sys.exit(0 if rc == 0 else 1)
