@@ -1,0 +1,27 @@
+(1) the regrids at D 23.0625
+  k_c 111: wall 2102 s, peak RSS 4.781 GiB, steps 3656, steps ratio 1.078, constraint ratio 0.694, Delta shift -6.4617e-06
+  k_c 119: wall 2663 s, peak RSS 5.619 GiB, steps 3916, steps ratio 1.071, constraint ratio 0.623, Delta shift -1.3753e-06
+  k_c 127: wall 2853 s, peak RSS 7.513 GiB, steps 4180, steps ratio 1.067, constraint ratio 0.686, Delta shift -1.8781e-06
+  k_c 135: wall 4124 s, peak RSS 7.423 GiB, steps 4442, steps ratio 1.063, constraint ratio 0.678, Delta shift -3.7646e-06
+  leg point k_c 127 at D 23.125 (the source): steps 4182, constraint 1.654e-03, Delta 1.178026593320 (kc127_leg/states/l1kc127Lmacm3.jsonl)
+  steps of the regrid result by the ratios 1.078 1.071 1.067 1.063 (last four): 4182 x 1.063 = 4445.5; x 1.060 = 4432.9; x 1.057 = 4420.4
+(2) roots at D 23.0 and D 23.0625 by k_c
+  k_c 95: D 23.0 +0.00870734, D 23.0625 -0.05862410, slope -1.07730
+  k_c 103: D 23.0 +0.02650535, D 23.0625 -0.02851243, slope -0.88028
+  k_c 111: D 23.0 +0.03556371, D 23.0625 -0.01247909, slope -0.76868
+  k_c 119: D 23.0 +0.04106103, D 23.0625 -0.00351666, slope -0.71324
+  step k_c 95->103: at D 23.0 +0.017798, at D 23.0625 +0.030112, ratio 1.692
+  step k_c 103->111: at D 23.0 +0.009058, at D 23.0625 +0.016033, ratio 1.770
+  step k_c 111->119: at D 23.0 +0.005497, at D 23.0625 +0.008962, ratio 1.630
+(3) k_c 127 roots: D 23.0625 +0.00364182, D 23.125 -0.04190846 (slope -0.72880); k_c 135 root at D 23.0625 +0.00965400 (PROVISIONAL: the scan's det-linear root (read_lower.txt)); shift 127->135 at D 23.0625: +0.006012
+    shifts 119->127 at D 23.0625: +0.007158 (k_c 119 -0.00351666, k_c 127 +0.00364182)
+  (a/b) shift at D 23.125 = 1.00 x +0.006012: k_c 135 root at D 23.125 = -0.035896
+  (a/b) shift at D 23.125 = 1.15 x +0.006012: k_c 135 root at D 23.125 = -0.034994
+  (a/b) shift at D 23.125 = 1.30 x +0.006012: k_c 135 root at D 23.125 = -0.034093
+  (a/b) shift at D 23.125 = 1.50 x +0.006012: k_c 135 root at D 23.125 = -0.032890
+  (a/b) shift at D 23.125 = 1.70 x +0.006012: k_c 135 root at D 23.125 = -0.031688
+  (c) slope magnitude of k_c 135 over D 23.0625 to 23.125 = 0.6600: root = -0.031596 (shift +0.010312, growth 1.715)
+  (c) slope magnitude of k_c 135 over D 23.0625 to 23.125 = 0.6800: root = -0.032846 (shift +0.009062, growth 1.507)
+  (c) slope magnitude of k_c 135 over D 23.0625 to 23.125 = 0.7000: root = -0.034096 (shift +0.007812, growth 1.299)
+  (c) slope magnitude of k_c 135 over D 23.0625 to 23.125 = 0.7200: root = -0.035346 (shift +0.006562, growth 1.092)
+  (c) slope magnitude of k_c 135 over D 23.0625 to 23.125 = 0.7288: root = -0.035896 (shift +0.006012, growth 1.000)

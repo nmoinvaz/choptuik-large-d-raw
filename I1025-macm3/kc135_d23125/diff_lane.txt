@@ -1,0 +1,69 @@
+2,7c2,6
+< # #1025 macm3 kc135_d230625 (t5's order, hc 26 Nov 18:08 UTC by t5's clock): k_c 135 at D 23.0625 from my accepted k_c 127 state there (raw I1025-macm3/kc127_d230625/in: state blob 7aae10c6, record blob 85a685f1; copies in in/).
+< # Derived from lane127.sh by the one-step shift of the resolutions (111 -> 119, 119 -> 127, 127 -> 135 everywhere) and the changes listed in README.md: the source check is the k_c 127 check (898ebefa; accepts, controls exit 1 1, the k_c 119 (fc6e0dd6) and k_c 135 (b353d466)
+< # checks refuse), ell_refine.py 631e5801 "l1kc127macm3d230625 127 l1kc135macm3d230625 135 1 23.0625 2.0990016035 --kappa 0.7 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma" (6 threads, nice 10, capped_run.py 28800 s), the k_c 135 check (raw I1025-mac/checks at 576050bfc,
+< # blob b353d466) on the result (exit 0, controls 1 1, the k_c 127 check refuses), the NEW scanner (d18_secant.py scan, wip/ell1-speed 92b9bf53, blob eb1396ad; selftest and the three mutations logged first) at lambda 0.000, 0.005, 0.010, 0.015 plus a repeat of 0.010 on 2
+< # processes (kc87_leg_lambda/pointnew.sh, folder kc87_leg_lambda/23.0625_kc135/; k_c 135 needs more memory than k_c 127's 7.5 GiB regrid peak: watched, alert only), then d18_secant.py run (92b9bf53, --tol=1e-5 --maxev=10, one process) on the one robust bracket, summarize_point.py (the
+< # 3-decimal copy, README). Stops (hc to t5): a source or result not accepted, an exception (an array limit at k_c 135 included), no robust change or more than one, a step over 8 h, a secant exit other than 0 or 4. usage: bash lane135.sh [dry|check]
+---
+> # #1025 macm3 kc135_d23125 (t5's order, hc 26 Nov 20:09 UTC by t5's clock): k_c 135 at D 23.125 by a regrid from my accepted k_c 127 leg state there (raw I1025-macm3/kc127_leg/states: state blob e1dccb3c, record blob 58d3b080; copies in in/).
+> # Derived from lane135.sh (kc135_d230625) by explicit replacements, listed in README.md and read in diff_lane.txt: the names (source l1kc127Lmacm3, tag l1kc135macm3d23125), D 23.0625 -> 23.125, lambda_0 2.0987860107 (the same ell_delta call that gives t5's 2.0990016035 at D 23.0625), the blobs, the folder.
+> # Steps as in kc135_d230625: pins, selftests, the new scanner's selftest and its three mutations, the source check (the k_c 127 check accepts the leg state, controls exit 1 1, the k_c 119 and k_c 135 checks refuse), a wait for no other scan, regrid or secant and 8 GiB, the regrid (ell_refine.py 631e5801, 6 threads, nice 10, capped_run.py 28800 s),
+> # the k_c 135 check on the result (exit 0, controls 1 1, the k_c 127 check refuses), the NEW scanner (d18_secant.py scan, 92b9bf53, blob eb1396ad) on the lambda plan of scan_plan.env (2 processes; kc87_leg_lambda/pointnew.sh, folder kc87_leg_lambda/23.125_kc135/), d18_secant.py run (--tol=1e-5 --maxev=10) on the one robust bracket,
+> # summarize_point.py (the 3-decimal copy, 62c57e1a). Stops (hc to t5): a source or result not accepted (the regrid included), an exception (an array limit included), no robust change or more than one, a step over 8 h, a secant exit other than 0 or 4. usage: bash lane_d23125.sh [dry|check]
+11c10
+< F=$HOME/Source/choptuik-large-d-raw-903/I1025-macm3/kc135_d230625; IN=$F/in; OUT=$F/regrid; C=$F/checks
+---
+> F=$HOME/Source/choptuik-large-d-raw-903/I1025-macm3/kc135_d23125; IN=$F/in; OUT=$F/regrid; C=$F/checks
+17c16
+< SRC=l1kc127macm3d230625; TAG=l1kc135macm3d230625; D=23.0625; DT=D23.0625; SRCFILE=sol_${SRC}_D23.0625.npy; LAM0=2.0990016035; DN=23.0625_kc135; SCAN=$L/$DN; SEC=$F/secant
+---
+> SRC=l1kc127Lmacm3; TAG=l1kc135macm3d23125; D=23.125; DT=D23.1250; SRCFILE=sol_${SRC}_D23.1250.npy; LAM0=2.0987860107; DN=23.125_kc135; SCAN=$L/$DN; SEC=$F/secant
+20c19
+< say() { echo "== $(stamp) UTC kc135_d230625: $*" | tee -a $LOG; }
+---
+> say() { echo "== $(stamp) UTC kc135_d23125: $*" | tee -a $LOG; }
+22c21
+< stop() { echo "REFUSED: $*" > $OUT/VERDICT.txt; tell "macm3 #1025 kc135_d230625 STOP: $*"; exit 1; }
+---
+> stop() { echo "REFUSED: $*" > $OUT/VERDICT.txt; tell "macm3 #1025 kc135_d23125 STOP: $*"; exit 1; }
+79c78
+< [ "$(blob $WTM/data/sol_${SRC}_$DT.npy | cut -c1-8)" = 7aae10c6 ] || stop "copied source state blob differs"
+---
+> [ "$(blob $WTM/data/sol_${SRC}_$DT.npy | cut -c1-8)" = e1dccb3c ] || stop "copied source state blob differs"
+109,110c108,109
+< RP=$(bash $F/push135.sh "kc135_d230625: k_c 135 D 23.0625 regrid accepted (state, record, checks)" 2>&1 | tail -1); say "pushed regrid: $RP"
+< tell "macm3 #1025 kc135_d230625: the k_c 135 D 23.0625 regrid is ACCEPTED ($(cat $OUT/regrid_summary.txt)); regrid wall $(( $(date +%s) - t0 )) s; the scan ($(grep -c . $F/scan_plan.env) lines of plan, see scan_plan.env) starts now; raw $RP"
+---
+> RP=$(bash $F/push_d23125.sh "kc135_d23125: k_c 135 D 23.125 regrid accepted (state, record, checks)" 2>&1 | tail -1); say "pushed regrid: $RP"
+> tell "macm3 #1025 kc135_d23125: the k_c 135 D 23.125 regrid is ACCEPTED ($(cat $OUT/regrid_summary.txt)); regrid wall $(( $(date +%s) - t0 )) s; the scan ($(grep -c . $F/scan_plan.env) lines of plan, see scan_plan.env) starts now; raw $RP"
+113c112
+< git -C $RAWG cat-file -e $RAWC:I1025-macm3/kc135_d230625/in/$TAG.jsonl 2>/dev/null || stop "the pushed commit $RAWC does not hold the regrid record"
+---
+> git -C $RAWG cat-file -e $RAWC:I1025-macm3/kc135_d23125/in/$TAG.jsonl 2>/dev/null || stop "the pushed commit $RAWC does not hold the regrid record"
+122c121
+< SRC=I1025-macm3/kc135_d230625/in
+---
+> SRC=I1025-macm3/kc135_d23125/in
+128,129c127,128
+< echo "$(stamp) UTC accept (lane135.sh): kc135_syscheck_1025.py exit $c0 (0 wanted); controls exit $c1 $c2 (1 wanted); kc127_syscheck on the result exit $c3 (1 wanted): $(grep -E '^D ' $OUT/syscheck.txt | cut -c1-260)" >> $SCAN/steps.txt
+< bash $L/push87.sh "kc87_leg_lambda: D $DN pins and verdict (kc135 regrid of D 23.0625)" > /dev/null 2>&1
+---
+> echo "$(stamp) UTC accept (lane_d23125.sh): kc135_syscheck_1025.py exit $c0 (0 wanted); controls exit $c1 $c2 (1 wanted); kc127_syscheck on the result exit $c3 (1 wanted): $(grep -E '^D ' $OUT/syscheck.txt | cut -c1-260)" >> $SCAN/steps.txt
+> bash $L/push87.sh "kc87_leg_lambda: D $DN pins and verdict (kc135 regrid of D 23.125)" > /dev/null 2>&1
+145,146c144,145
+< tell "macm3 #1025 kc135_d230625: the k_c 135 D 23.0625 scan is read: $(grep -E '^hybrid signs|^robust changes|change \(|^endpoint' $SCAN/read_lower.txt | tr '\n' ';' | cut -c1-900) (raw kc87_leg_lambda/$DN/)"
+< [ "$nch" = 1 ] && [ "$nrb" = 1 ] || { tell "macm3 #1025 kc135_d230625: the scan reads $nrb robust changes (one wanted): no secant refinement; reported, the window is not widened without your word"; exit 0; }
+---
+> tell "macm3 #1025 kc135_d23125: the k_c 135 D 23.125 scan is read: $(grep -E '^hybrid signs|^robust changes|change \(|^endpoint' $SCAN/read_lower.txt | tr '\n' ';' | cut -c1-900) (raw kc87_leg_lambda/$DN/)"
+> [ "$nch" = 1 ] && [ "$nrb" = 1 ] || { tell "macm3 #1025 kc135_d23125: the scan reads $nrb robust changes (one wanted): no secant refinement; reported, the window is not widened without your word"; exit 0; }
+156c155
+< ( while kill -0 $sp 2>/dev/null; do for p in $(pgrep -f "d18_secant.py run.*kc135_d230625/secant"); do echo "$(stamp),$p,$(ps -o rss= -p $p | tr -d ' '),$(ps -o pcpu= -p $p | tr -d ' '),$(availgib)" >> $SEC/samples.csv; done; sleep 60; done ) &
+---
+> ( while kill -0 $sp 2>/dev/null; do for p in $(pgrep -f "d18_secant.py run.*kc135_d23125/secant"); do echo "$(stamp),$p,$(ps -o rss= -p $p | tr -d ' '),$(ps -o pcpu= -p $p | tr -d ' '),$(availgib)" >> $SEC/samples.csv; done; sleep 60; done ) &
+161,162c160,161
+< bash $F/push135.sh "kc135_d230625: D 23.0625 scanned and its root refined (secant)" > /dev/null 2>&1
+< tell "macm3 #1025 kc135_d230625 done: $(grep -E '^(scan:|secant: status|secant root)' $F/point_summary.txt | tr '\n' ';' | cut -c1-1400) (raw kc135_d230625/ and kc87_leg_lambda/$DN/)"
+---
+> bash $F/push_d23125.sh "kc135_d23125: D 23.125 scanned and its root refined (secant)" > /dev/null 2>&1
+> tell "macm3 #1025 kc135_d23125 done: $(grep -E '^(scan:|secant: status|secant root)' $F/point_summary.txt | tr '\n' ';' | cut -c1-1400) (raw kc135_d23125/ and kc87_leg_lambda/$DN/)"
