@@ -87,3 +87,42 @@ How I read them on the 0.04 grid, fixed here: **P** = no robust change with a br
 | 0.26 | + | True | + | -3397.9169 | 9468 |
 | 0.30 | + | True | + | -3402.3220 | 9925 |
 - Interim (information; the reader's reading comes after the scan): with round 1, the hybrid sign is **+ at every evaluated lambda from 0.02 to 0.30 (8 values, all noise-robust)**, + at 0.42 and - at 0.46: no sign change in (0.02, 0.30), and the change in (0.42, 0.46) is "+ to -". Round 3 (0.34, 0.38, 0.50, the repeat of 0.14, and **0.01**) is running and should end about 06:30 to 07:00 UTC. Against the registration: P is consistent so far; what can still decide against it is the sign at 0.01 (a change in (0.01, 0.02) means S persisted and moved) and a change in 0.30 to 0.42 from 0.34 and 0.38.
+
+## Scan result (25 Nov 21:12:25 to 26 Nov 05:48:48 UTC = 8.6 h; 5 processes at nice 19 from the start; `read_lower.txt`, `merged_D22.25.jsonl`)
+All five processes printed the record system (|F| 4.0647893555e-10 against the record's 4.0650557270e-10, 3657 steps equal) and exited 0; 15 evaluations, **15 noise-robust**. `read_lower.py` selftest exit 0, mutations `shift` and `round2` exit 1; `repeat_check.py` PASS (the repeat of 0.14 on process 3 against the first on process 0: ln|det| -3384.9783764089902 in both, bit-identical).
+| lambda | hybrid sign | noise-robust | float64 sign | ln of abs det | seconds |
+|---|---|---|---|---|---|
+| 0.01 | + | True | + | -3371.1766 | 7982 |
+| 0.02 | + | True | + | -3372.2335 | 13145 |
+| 0.06 | + | True | + | -3376.4680 | 12742 |
+| 0.10 | + | True | + | -3380.7154 | 12988 |
+| 0.14 | + | True | + | -3384.9784 | 7973 (repeat) and 10304 |
+| 0.18 | + | True | + | -3389.2611 | 9989 |
+| 0.22 | + | True | + | -3393.5702 | 10094 |
+| 0.26 | + | True | + | -3397.9169 | 9468 |
+| 0.30 | + | True | + | -3402.3220 | 9925 |
+| 0.34 | + | True | + | -3406.8321 | 7915 |
+| 0.38 | + | True | + | -3411.5865 | 7814 |
+| 0.42 | + | True | - | -3417.8304 | 12712 |
+| 0.46 | - | True | - | -3420.0932 | 13390 |
+| 0.50 | - | True | - | -3423.4337 | 7890 |
+**One robust change in the window 0.01 to 0.50** (the reader's output, orientation as printed; the det-linear estimate and its range are a spread over interpolation choices on a coarse grid, **not an enclosure**; the bracket is the grid step): **(0.420, 0.460), "+ to -", det-linear 0.456230, range [0.420156, 0.456230]**. Edge signs + at 0.010 and - at 0.500; no ln|det| minimum without a sign change; no change touches a non-robust point. The float64 sign differs from the hybrid at 0.42 only (not used). Peak RSS per process 4.29 to 4.43 GiB (`/usr/bin/time -v`); per-process wall 8:31:56 to 8:36:23; points 12712 to 13390 s in round 1, 9468 to 10304 s in round 2 (after walk d was stopped at 01:57), 7814 to 7982 s in round 3.
+
+### Against t5's registered P and S (my reading, fixed above before the run)
+- **P (parity): no robust change inside (0.01, 0.30) and one with bracket (0.42, 0.46): met on the evaluated points.** The hybrid sign is the same (+) at all 12 evaluated lambda from 0.01 to 0.38 and at 0.42, so there is no change in (0.01, 0.42); the one change is (0.420, 0.460).
+- **S (a change with bracket (0.02, 0.06), or one in (0.01, 0.02), plus F): not met.** The sign at 0.01 equals the sign at 0.02, and 0.02 equals 0.06; S as at k_c 103 ((0.02, 0.06), "- to +") is absent, and S has not "persisted and moved" into (0.01, 0.02).
+- **Not decided by the scan: P against an S root below 0.01** (lambda in (-0.03, 0.01), out of reach of the evaluated points). Per t5's ruling, lambda -0.03 now runs as its own job (below).
+- **The printed orientation of F** by k_c at D 22.25, as the reader prints it (information, not interpreted): k_c 87 "+ to -" (macm3), k_c 95 "- to +" (dh610), k_c 103 "+ to -", **k_c 111 "+ to -"**. The pairing I registered (F "- to +" if P, "+ to -" if S) is **WRONG**: F prints "+ to -" at k_c 111 with S absent. The det-linear estimate of F at k_c 111, 0.456230, equals that of k_c 103 (0.455342) within the crude estimator (the two brackets are the same).
+
+### Scan predictions scorecard (mine, registered before the run)
+| prediction | result |
+|---|---|
+| every point noise-robust (70%); the repeat bit-identical (85%) | right (15 of 15); right |
+| P 55%, S 20%, neither 25% | P on the evaluated points (undecided against an S root below 0.01, pending -0.03) |
+| F printed "- to +" 60% if P, "+ to -" 60% if S | WRONG: "+ to -" with S absent |
+| the float64 sign differs from the hybrid at some point (85%) | right (at 0.42) |
+| scan 6 to 10 h from its start (60%) | right (8.6 h) |
+| points about 10000 to 11000 s on 5 processes | partly: 7814 to 13390 s (13000 s in round 1 at nice 19 beside two other jobs, 8000 s in round 3) |
+
+## lambda -0.03 (t5's ruling, condition met)
+The condition written above is met: **no robust change in (0.01, 0.30), and equal hybrid signs at 0.01 and 0.02** (both +). So **lambda -0.03 runs now as its own job on the accepted state** (`run_neg003.sh`, unit `i1025k111n`): `d18_hybsign.py` (e089207a, unmodified) on state 7fc75ef8 and record 06dc9d92, 1 process of 1 thread, nice 10 (the yield rule follows it: `i1025k111ny`), output `scan/scan_D22.25_pneg003.jsonl`; then `read_lower.py scan -0.03 0.50` (`read_lower_neg003.txt`). **Registered reading:** the hybrid sign at -0.03 against the sign at 0.01 (+): **a different sign means a robust change in (-0.03, 0.01), S persisted and moved (t5's rule: not parity)**; the same sign leaves "no root in (-0.03, 0.50 up to F)", P stands, and a root below -0.03 stays outside what was measured. If the point is not noise-robust the reader's rule applies and I report it as such. Estimate (mine): 1 point alone, 4000 to 8000 s (the k_c 111 points took 7814 to 7982 s on 4 to 5 processes).
