@@ -1,0 +1,11 @@
+# 2026-11-26 12:41:11 UTC cmd (cwd /home/nathan/Source/choptuik-large-d-1025s/solver/matter, 1 process, nice 10, cap 54000 s; 1 robust change(s) in the scan, the one nearest 0.12 refined): nice -n 10 timeout 54000 /home/nathan/Source/venv-i1058/bin/python -u d18_secant.py run /home/nathan/Source/choptuik-large-d-raw/I1025-dh610/kc111_d22875/in/l1kc111dh610d22875.jsonl /home/nathan/Source/choptuik-large-d-raw/I1025-dh610/kc111_d22875/in/sol_l1kc111dh610d22875_D22.8750.npy 22.875 0.100 0.120 /home/nathan/Source/choptuik-large-d-raw/I1025-dh610/kc111_d22875/secant/secant.jsonl --tol=1e-5 --maxev=10 --pin=a8fe443e8a478a39f03019e1fdbb118be91b5755,5233ffe8518d6ed97e7f1cc3e174ee2acd81c0d4
+pins: state a8fe443e8a478a39f03019e1fdbb118be91b5755 (wanted a8fe443e8a478a39f03019e1fdbb118be91b5755), stub 5233ffe8518d6ed97e7f1cc3e174ee2acd81c0d4 (wanted 5233ffe8518d6ed97e7f1cc3e174ee2acd81c0d4)
+D 22.875 k_c 111: |F| 3.4240750153e-10 (record 3.4195094060e-10), steps 3651 (record 3651): the record system
+bracket (0.1, 0.12), tol 1e-05, maxev 10, mode matrix fast (jac), block 12 ddm, noise 1e-15, dln <= 0.1, sol_l1kc111dh610d22875_D22.8750.npy
+  lam 0.1 (lo): hybrid -1 ln|det| -3287.6165207781, noise [-1.0, -1.0] dln 2.83e-06, robust True; float64 -1 -3287.6192489125 (1254 s [166, 1079, 9])
+  lam 0.12 (hi): hybrid +1 ln|det| -3292.2779207683, noise [1.0, 1.0] dln 3.45e-05, robust True; float64 +1 -3292.2640764217 (1455 s [194, 1251, 10])
+  lam 0.11981270615529314 (interior): hybrid +1 ln|det| -3292.4080904911, noise [1.0, 1.0] dln 4.01e-05, robust True; float64 +1 -3291.6168663537 (1897 s [180, 1697, 20])
+  lam 0.11847656777181861 (interior): hybrid -1 ln|det| -3294.1808287595, noise [-1.0, -1.0] dln 2.73e-04, robust True; float64 +1 -3295.2691729613 (2558 s [485, 2053, 19])
+  lam 0.11867057790965485 (interior): hybrid +1 ln|det| -3296.2838495510, noise [1.0, 1.0] dln 2.19e-03, robust True; float64 +1 -3292.7812743624 (2778 s [321, 2435, 22])
+  lam 0.11864946891544469 (interior): hybrid +1 ln|det| -3300.3201865701, noise [1.0, 1.0] dln 1.33e-01, robust False; float64 +1 -3292.3254016297 (2063 s [333, 1704, 26])
+root: status nonrobust (not robust at 0.11864946891544469), bracket [0.11847656777181861, 0.11867057790965485] width 1.940e-04, signs [-1.0, 1.0], det-linear 0.11864946891544469, Brent 0.11867057790965485, 6 evaluations, 12005 s
