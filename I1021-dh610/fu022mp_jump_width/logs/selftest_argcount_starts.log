@@ -1,0 +1,5 @@
+selftest --mutate=starts: planted [(1.2, 2.2, 1), (2.54, 0.777, 1), (3.4, 0.36, -1), (3.45, 0.37, 1)]; found [(1.2, 2.2, 1), (2.54, 0.777, 1), (3.4, 0.36, -1), (3.45, 0.37, 1)]; boundary winding 2.000; points 1815: PASS
+selftest recount: 6 cells unresolved by the hole, 0 after the recount; found [(1.2, 2.2, 1), (2.54, 0.777, 1), (3.4, 0.36, -1), (3.45, 0.37, 1)]: PASS
+selftest M = 3 acceptance --mutate=starts: trail [0.2, 0.19, 0.18, 0.17], stops [[0.25, 'noise3 1.8e+10 above the cap 1e+07']], end |v - v*| 2.6e-10: PASS
+selftest M = 3 start order 0.2, 0.25: starts evaluated [0.25, 0.2], trail [0.2, 0.19, 0.18, 0.17], stops [[0.25, 'noise3 1.8e+10 above the cap 1e+07']], end |v - v*| 2.6e-10: FAIL
+selftest M = 3 acceptance at noise3 990: trail [0.2, 0.19, 0.18, 0.17], stops [[0.25, 'noise3 1.8e+10 above the cap 1e+07']], end |v - v*| 0: PASS
