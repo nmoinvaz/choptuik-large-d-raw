@@ -78,9 +78,15 @@ The sampler (`rows/secant_samples.csv`, 60 s) gives the real figures.
 
 ## Status
 
-Not started: this README is pushed first; the chain starts right after the push.
+**RUNNING since 2026-11-26 06:16:24 UTC.** README first 42a0098c0 (pushed 06:15:54 UTC, before the start); chain started 06:16:08 UTC through `Win32_Process.Create` of `conhost.exe --headless cmd.exe /c go_kc95d22875s_1025.cmd`. The k_c 103 secant was pushed (a83c9a635) and posted (#1025 comment 7184197506) first.
 
-Pushed 2026-11-26 06:15:54 UTC.
+- **Chain** (`rows/launcher_pid.txt`: 23044): conhost --headless 23044 <- cmd 21404 <- driver launcher 18480 and driver 9368 <- `d18_secant.py` pid 17656, sampler 11200, alert-only watcher 17424, keep-awake helper 25284. BelowNormal, one thread, killed by the exact pid at 28800 s, one hc at 14400 s if it still runs.
+- **Session check** (`session_check_secant.txt`, exit 0): no `claude` in any chain of the run, no Windows Terminal / OpenConsole / wt, a headless conhost in the chain.
+- **Before the run** (06:16:08 to 06:16:24 UTC, 16 s): the driver's pins matched; `d18_secant.py selftest` exit 0 and its three controls exit 1, 1, 1; the selftests of the three checks exit 0; the state was accepted as ordered: `kc95_syscheck_1025.py` exit 0, `--mutate=F` and `--mutate=steps` exit 1, the k_c 87 and k_c 103 checks exit 1 (they refuse it) (`source_kc*_syscheck*.txt`). The tool printed its pin lines and "the record system" (\|F\| 3.5250023129e-10 against the record's 3.5210384141e-10, 3126 steps = the record's).
+- **Machine at the start:** the other project's I114 `convergence.py` jobs run beside it, not touched.
+- **ETA** (the estimates above counted from 06:16:24 UTC): about 6 evaluations at 900 to 1500 s each, so the refinement ends about 07:55 to 10:40 UTC (central about 08:30 UTC).
+
+Pushed 2026-11-26 06:16:42 UTC.
 
 ## Result
 
