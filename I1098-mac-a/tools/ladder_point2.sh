@@ -68,6 +68,11 @@ nice -n 10 timeout 4h $PY -u form_s.py release_ls $R $O/rls13 --harm 13 --kmax 1
 echo "rls h13 rc $? $(date -u +%H:%M:%S)" >> $O/run.log
 R=$O/rls13/release_ls_h13_D$DF.npz
 [ -s $R ] || exit 4
+# STOP_AFTER=rls13: the point ends after its M 32 stages, its h13 state left for a tail elsewhere (ladder_tail.sh mob)
+if [ "${STOP_AFTER:-}" = "rls13" ]; then
+  echo "stopped after rls13 (STOP_AFTER) $(date -u +%H:%M:%S)" >> $O/run.log
+  exit 0
+fi
 HT=$H
 if [ "$MT" != "32" ]; then
   PYTHONPATH=$SITE:$HP $PY $TOOLS/resample_m.py $R $O/tail/h13_M$MT.npz $MT > $O/tail/resample.log 2>&1 || exit 5
