@@ -88,6 +88,14 @@ c30c2766).
   command line is in `guess.log`'s README entry: `form_s_lastnode.py guess OUT --D 2000 --states_s <those three>
   --xl 0.7035589258590665 --mob 8 --ks 2618 --threads 2` (96b6ddc9).
 - `form_s/time_res/`: the held residual's time in double-, quad- and octo-double on the D 2000 guess (`time_res.py
-  <guess> 2,4,8 2`, 2 threads on the Mac): 2.2 s, 25.5 s, 255 s (`D2000.log`).
+  <guess> 2,4,8 2`, 2 threads on the Mac): 2.2 s, 25.5 s, 255 s (`D2000.log`); one double-double Newton step (`time_jac.py
+  <state> 2618,1400 2`) at the D 2000 solution: 96 s at ks 2618, 60 s at ks 1400, the same step (`jac_D2000.log`).
+- `form_s/check2000/`: `form_s_lastnode.py checkstate` on I1088-dh610/L2000's solve (90945ced): the octo-double check,
+  the discretization tails and the Hamiltonian check (`checkstate.log`); the ks controls (`--ks 400, 800, 1050, 1150,
+  1400 --check qd --ham 0`, `checkstate_ks*_control.log`): the fast mode enters the Moebius series at order n/2, so
+  below it the residual reads 2.7e-19 and ks + 200 changes nothing; at 1050 and 1150 ks + 200 fires (2.7e-19, 3.1e-22);
+  from 1400 the residual is the solve's 1.13e-24.
+- `form_s/L4000q/`: D 4000's quad-double stage from I1088-dh370/L4000's state (`solvestate --ladder qd --it_max 2`,
+  90945ced, 2 threads), the octo-double check, the tails, the Hamiltonian check.
 
 Files are added as the runs go; each log or script names its command line.
