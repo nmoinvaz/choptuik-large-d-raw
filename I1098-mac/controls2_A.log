@@ -1,0 +1,14 @@
+controls on T1, ladder A, sigma 1e-23, seeds 21-30; F 3.03; leave-one-out bar 10.0
+  unmutated: 9 of 10 quoted; |err| / (F E0) max 0.50; leave-one-out |z| max 4.77 (false alarms 0)
+  shift (D 1000 by +30 sigma): fired (no quote, D 1000 dropped, or leave-one-out) in 10 of 10 (none, none, none, none, none, none, none, none, none, none); passed and |err| > F E in 0
+  tight (E / 10): coverage fails in 6 of 9
+  shift scan: D 1000 by +3 sigma: no quote 1, leave-one-out fires 0, point dropped 0, passed and |err| > F E 0 (of 10)
+  shift scan: D 1000 by +5 sigma: no quote 3, leave-one-out fires 0, point dropped 0, passed and |err| > F E 0 (of 10)
+  shift scan: D 1000 by +10 sigma: no quote 10, leave-one-out fires 0, point dropped 0, passed and |err| > F E 0 (of 10)
+  shift scan: D 1000 by +20 sigma: no quote 10, leave-one-out fires 0, point dropped 0, passed and |err| > F E 0 (of 10)
+  shift scan: D 250 by +3 sigma: no quote 1, leave-one-out fires 0, point dropped 0, passed and |err| > F E 0 (of 10)
+  shift scan: D 250 by +5 sigma: no quote 1, leave-one-out fires 0, point dropped 0, passed and |err| > F E 0 (of 10)
+  shift scan: D 250 by +10 sigma: no quote 1, leave-one-out fires 0, point dropped 0, passed and |err| > F E 0 (of 10)
+  shift scan: D 250 by +20 sigma: no quote 1, leave-one-out fires 0, point dropped 0, passed and |err| > F E 0 (of 10)
+controls in this process (shift, tight): FIRE; lowdeg and var run as separate processes (--mutate=lowdeg, --mutate=var)
+exit 0

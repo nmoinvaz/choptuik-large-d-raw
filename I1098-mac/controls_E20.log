@@ -1,0 +1,14 @@
+controls on T1, ladder E20, sigma 1e-23, seeds 21-30; F 2.96
+  unmutated: 10 of 10 quoted; |err| / (F E0) max 0.58
+  shift (D 1000 by +30 sigma): no quote (or D 1000 dropped) in 0 of 10; quoted but |err| > F E in 0
+  tight (E / 10): coverage fails in 6 of 10
+  shift scan: D 1000 by +3 sigma: no quote 0, point dropped 0, kept and |err| > F E 0 (of 10)
+  shift scan: D 1000 by +5 sigma: no quote 0, point dropped 0, kept and |err| > F E 0 (of 10)
+  shift scan: D 1000 by +10 sigma: no quote 0, point dropped 0, kept and |err| > F E 0 (of 10)
+  shift scan: D 1000 by +20 sigma: no quote 0, point dropped 0, kept and |err| > F E 0 (of 10)
+  shift scan: D 250 by +3 sigma: no quote 0, point dropped 1, kept and |err| > F E 0 (of 10)
+  shift scan: D 250 by +5 sigma: no quote 0, point dropped 1, kept and |err| > F E 0 (of 10)
+  shift scan: D 250 by +10 sigma: no quote 0, point dropped 1, kept and |err| > F E 0 (of 10)
+  shift scan: D 250 by +20 sigma: no quote 0, point dropped 0, kept and |err| > F E 0 (of 10)
+controls in this process (shift, tight): DID NOT FIRE; lowdeg and var run as separate processes (--mutate=lowdeg, --mutate=var)
+exit 1
