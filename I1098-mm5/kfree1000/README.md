@@ -30,3 +30,18 @@ held at zero in the full system of record (harmonics 1-13 free); this run releas
 | Hamiltonian check | the final record's a rows. D 300's reads 1.06e-20 against 2.8e-22 for its h13 record; the D 1000 h13 record reads 7.8e-25. Reported either way |
 
 Delta's change per harmonic is computed by `diff_delta.py` on the log's digits (mpmath), never by hand.
+
+## Stopped (2026-11-26 08:55:25 UTC)
+
+Stopped by hand, with SIGTERM to the `timeout` pid 16875 (python 16876), after 48 min, on the coordinator's order: h15 outer 0
+with the quad-double Jacobian took about 920 s per inner trial (D 300: 65 s; the serial octo-double residual scales as ks^2,
+1517 against 306), and neither trial flagged a floor, so the halving would have run up to 6 tries (about 1.5 h) before
+the "qq" Jacobian, which released every harmonic at D 300. The projection for all nine harmonics was about 15 h, over the 8 h
+timeout. No outer step was accepted: `rls.log` holds only
+
+    h15 outer 0 (qd Jacobian) starts 08:07:01 UTC
+    h15 outer 0: target |F| 1.27e-42, harmonic-15 step 1.10e-10 (204 s)
+    h15 outer 0 trial lam 1: inner NOT converged in 3 steps (|F| 1.71e-38), target |F| 1.71e-38 against 1.27e-42 (1160 s)
+    h15 outer 0 trial lam 0.5: inner NOT converged in 3 steps (|F| 2.08e-38), target |F| 2.08e-38 against 1.27e-42 (2082 s)
+
+The run continues in `../kfree1000qq/` from the same input state with `--jac_by 15:qq,...,31:qq`. This folder keeps the log.
