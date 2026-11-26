@@ -80,3 +80,18 @@ Input: `tail/release_ls_h21_D1291.0000.npz` (fastmul6, 478e9d86; blob 466911b99a
 - Stop rules as amended: stop and report when a qq inner solve does not converge, when a harmonic's line search fails at every trial, or when an outer step is 3x its harmonic's first (a qq floor at the first outer step after a resample is logged; here the state is not resampled).
 - When D 1549's h13 lands, the chain's D 1549 tail starts beside this run (a brief overload is fine). When the chain later reaches its own step 4 (`tail_fm7/`, kmax 31), that one is stopped by pid as a duplicate, unless the coordinator says otherwise.
 - Reported: the shift, pushed at the end.
+
+### Result of the early fastmul7 cross-check (`tail_fm7_early/`; 2026-11-26 23:34:48 - 23:47:05 UTC, 737 s)
+
+By script from `tail_fm7_early/rls.log`, `release_ls.jsonl`, `direct_s.jsonl` and `tail/release_ls.jsonl` (fastmul6). The log ends with the full-system line and `direct_s.jsonl` exists; the exit code was not recorded (my launcher did not wrap the process).
+
+| harmonic | fastmul7 (d40a9c62) | fastmul6 (478e9d86), same state | difference | wall (fastmul7) |
+|---|---|---|---|---|
+| h23 | released at outer 0, no step; F 1.869180e-52; pending dDelta +2.160983e-27; harmonic step 3.713566e-15 | F 1.869180e-52; +2.160983e-27; 3.713566e-15 | pending -1.53e-36; F ratio 1 + 9.05e-8 | 362 s |
+| h25 | released at outer 0, no step; F 1.869180e-52; pending +2.796311e-27; harmonic step 8.414473e-15 | F 1.869180e-52; +2.796311e-27; 8.414475e-15 | pending -2.28e-34 | 364 s |
+
+- **No step was taken at h23 or h25 on fastmul7**, so the state, and its Delta, are unchanged: **fastmul7's Delta after h23 and after h25 is 1.651913434024554227271949663301812275378, equal to the fastmul6 tail's state after h21 and to its final, to every digit of the 60-digit sums (difference 0.0).**
+- **The kernel cross-check:** the shift of Delta is 0 (no applied step), against the bar of 1e-25: met. What the two kernels do show is their residual and pending step on the same state: F 1.869180e-52 on both (ratio 1.00000009, an absolute difference of about 1.7e-59, the order of fastmul6's Moebius split offset),
+  and the pending dDelta of h23 and h25 differing by -1.53e-36 and -2.28e-34 (relative 7e-10 and 8e-8), far below the release bar 1e-25. The fastmul7 od solve and qd check at h25: max |F| 1.86918e-52 and 1.86918e-52 (fastmul6: 1.86918e-52); Hamiltonian check at the four nodes at most: p 3.0e-32, m 3.0e-32, a 2.5e-32, c 1.1e-30.
+- State `tail_fm7_early/release_ls_h25_D1291.0000.npz`, blob 6ffdf15474f55dac06f17dfd7dafcce9672ce207; the record's commit field reads d40a9c62 and the kernel fastmul7-site.
+- **Bars:** h23 and h25 released with no step: met. The kernel cross-check below 1e-25: met (shift 0, pending difference at most 2.3e-34). When the chain reaches its step 4 (`tail_fm7/`, kmax 31), it is stopped by pid as a duplicate.
