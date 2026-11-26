@@ -29,3 +29,16 @@ with exit codes in `exit_codes.txt`:
   - With the truncation below the floor, the kernel's Moebius values agree with mpmath to 9.7e-129. The old split's
     control still reads 1.7e-60. So fastmul7 removes the 1.7e-60 offset and leaves no other term above 1e-128 here.
 - The relaxed_build_check of mm5's list is not among these checks.
+- **The standing check of the Moebius horizon, for this and later builds** (`split300_mpmob.log`, `mpmob_test.sh full`):
+  horizon_mp_check.py from wip/large-d-form-s 5b31dedf, with `--mp_mob 1`. It writes horizon_mob's recursion again in
+  mpmath (150 digits, the kernel's matrices read exactly, exact solves). Its comparison of record is the kernel's
+  Moebius sum against mpmath's at the same a and ks, the arithmetic alone. The truncation is a separate line that does
+  not gate. At D 300's u h21 state, a 8, ks 800:
+  - the arithmetic: 9.744e-129 (p, m, c: 8.4e-129, 9.74e-129, 1.92e-130), bar 1e-100: PASS, exit 0;
+  - the truncation (mpmath's Moebius sum against its converged u sum): 4.647e-70, the same figure the first split check
+    read, so that figure was all truncation;
+  - the controls against mpmath's Moebius sum: m_h + 1e-30 reads 4.62e-28, and the old split (--ctl_mutate 57) reads
+    1.7e-60, above its bar of 1e-80;
+  - the mpmath Moebius sum to ks 800 took 606 s, and the whole check about 35 min.
+  - `mpmob_test_60.log` is the short test of the same code at ks 60 (the arithmetic 9.74e-129, the truncation 1.27e-8),
+    run first.
