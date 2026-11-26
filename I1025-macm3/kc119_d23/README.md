@@ -35,3 +35,4 @@ Reading: every robust change by position with det-linear estimate and estimator 
 
 ## Status
 - 2026-11-26 05:52 UTC: folder, README (registration), lane and pins written; pushed first; dry run next, then the lane.
+- 2026-11-26 05:52 UTC: dry run passed at 05:52:29 UTC (pins, the diff of the checks, selftests `0 0 0 0 1 1 0`, source check: kc111 exit 0, controls 1 1, kc103 and kc119 refuse). Lane started (`lane119.sh`, lane pid 86038, `launch_1070.py` under `caffeinate -is`); the regrid starts when no other run of mine is active and 8 GiB are available.
