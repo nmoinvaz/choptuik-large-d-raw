@@ -25,6 +25,11 @@ Files: `build.log`, `mem_samples.log`, `check.log`, `recip300.log`, `recip1000.l
 
 ## D 2231, if every check passes
 
-`HP=$HOME/Source/choptuik-fastmul7/hp SITE=$HOME/Source/fastmul7-site KSBAR=1e-70 bash tools/ladder_point2_651b.sh 2231 250 6 <ladder>/D2231 <ladder>/inputs/D2000_base6_h13.npz <ladder>/inputs/S1000_D1000_base6_h13.npz 48 31`, detached, 6 threads, from the ladder folder.
+`EXTRA="--inner_chord 0" HP=$HOME/Source/choptuik-fastmul7/hp SITE=$HOME/Source/fastmul7-site KSBAR=1e-70 bash tools/ladder_point2_651b.sh 2231 250 6 <ladder>/D2231 <ladder>/inputs/D2000_base6_h13.npz <ladder>/inputs/S1000_D1000_base6_h13.npz 48 31`, detached, 6 threads, from the ladder folder.
 `tools/ladder_point2_651b.sh` (raw 12a4068d `I1098-mac-a/tools/ladder_point2.sh`, blob 651bb75f4ee290156c16fb6c6c3ef4bd788d224d, verified; it takes the commit from HP's HEAD) and the D 2000 input `../ladder/inputs/D2000_base6_h13.npz`
 (raw `I1098-dh610/fix6/D2000_base6/release_ls_h13_D2000.0000.npz`, blob b897ba43adb46653785b362d2ae6a2f712fdd8db, verified against raw). Its README (`../ladder/D2231/README.md`) carries the bars (D 1291's: the jump converges and the ks gate passes, h5..h13 each released, the tail falls) and the amended stop rule.
+
+### Amendment (2026-11-26 20:08 UTC, coordinator's order): inner_chord 0
+
+fastmul7's Python d40a9c62 also defaults to `inner_chord 1`, which floored D 747's h13 qq inner solve (`../ladder/D747/README.md`); D 2231 therefore starts with `EXTRA="--inner_chord 0"` in front (the script, blob 651bb75f, takes the commit from HP's HEAD, so no `--commit`).
+Every later ladder point on this machine also gets `--inner_chord 0` unless the coordinator says otherwise.
