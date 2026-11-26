@@ -32,5 +32,22 @@ https://github.com/nmoinvaz/choptuik-large-d/issues/1098
   - The h5-h11 stage keeps its chord steps (tol 1e-36). The h13 inner system re-solves every unknown below harmonic 13
     to 1e-48, so that state serves only as the starting point.
 - `ladder/D896/`: the run folder (dh370's out/ladder/D896), copied here and pushed at each stage's end by
-  `push_ladder.sh` (unit i1088a-push896) from a sparse worktree of dh370's raw clone. The run itself writes outside
-  this repository (--allow_unraw); later points write into their raw folder directly.
+  `push_ladder.sh` from a sparse worktree of dh370's raw clone (unit i1088a-push896 until 20:36 UTC, then
+  i1088a-push370, which also takes D519x). The run itself writes outside this repository (--allow_unraw); later points
+  write into their raw folder directly.
+- **D 519 machine check** (`ladder/d519x_370.sh`, unit i1088a-d519x370, started 20:36 UTC, 5 threads). It moved here
+  from dh170's queue on the coordinator's order. It runs D 519's Moebius M 32 tail (ladder_tail.sh mob, ks 1196,
+  kmax 23) from mm5's h13 state, chord-free (--inner_chord 0), to compare with mm5's tail
+  (I1098-mm5/ladder/D519/tail_mob).
+  - It writes into `ladder/D519x/` of a second sparse worktree of dh370's raw clone
+    (~/Source/choptuik-large-d-raw-1088a-live, never pulled while a run writes there), without --allow_unraw.
+    i1088a-push370 copies it into the push worktree.
+  - What differs: the machine (dh370's i7-8700 against mm5's M5 Pro) and the kernel's build (dh610's Skylake wheel of
+    e1cd7a84 against mm5's native build). The Python is f398e829 against 478e9d86. With --inner_chord 0 their
+    release_ls takes the same path: their form_s.py differ only in the chord option and a rewritten floor test with
+    the same logic.
+  - What the two runs share: the kernel source (d368a0c0's Rust), the input state
+    (I1098-mm5/ladder/D519/rls/release_ls_h13_D519.0000.npz, blob b5a40765, written to `ladder/inputs/` by the job and
+    checked by its blob), ladder_tail.sh (sha256 12055ac1..., the version before the inner_chord and k* changes), and
+    its settings.
+  - So a difference measures the machine and the build together.

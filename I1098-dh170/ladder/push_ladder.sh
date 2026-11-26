@@ -3,7 +3,7 @@
 # once and then whenever a folder's run.log or its set of state files changes (a stage's end), every 2 min, until UNIT
 # ends, then once more; each push's commit is logged to ~/Source/choptuik-large-d-1088a/out/ladder/push.log
 #
-#     push_ladder.sh UNIT SRC:REL [SRC:REL ...]
+#     push_ladder.sh UNIT[,UNIT...] SRC:REL [SRC:REL ...]   (until every UNIT has ended)
 {
 UNIT=$1; shift
 WT=$HOME/Source/choptuik-large-d-raw-1088a
@@ -38,7 +38,7 @@ push() {
 last=""
 while true; do
   act=0
-  systemctl --user is-active --quiet $UNIT && act=1
+  for u in $(echo $UNIT | tr ',' ' '); do systemctl --user is-active --quiet $u && act=1; done
   cur=$(sig "$@")
   if [ "$cur" != "$last" ] || [ $act = 0 ]; then
     l=""

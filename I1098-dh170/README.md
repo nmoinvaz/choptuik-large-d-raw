@@ -43,6 +43,10 @@ https://github.com/nmoinvaz/choptuik-large-d/issues/1098
   - It waits for D 1549's h5-h11 release to end and stops i1088a-ladder1549b. It moves the half-begun rls13/ to
     rls13_<UTC time> and runs h13 at M 32 with --inner_chord 0 and --commit f398e829 (I1098-mac-a/tools/
     ladder_from_h11.sh, blob 780ba729, STOP_AFTER=rls13). Then it runs the D 519 check with --inner_chord 0.
+  - **The D 519 check moved to dh370** at 20:36 UTC (I1098-dh370, unit i1088a-d519x370), on the coordinator's order.
+    Its input here was renamed to `inputs/moved_to_dh370_D519_rls_h13.npz`, so restart1549c.sh's D 519 step ends at
+    once with ladder_tail.sh's usage exit (rc 1) and writes nothing. The notes above on what the check differs in and
+    shares apply to dh370's run, with dh370's i7-8700 as the machine.
   - The h5-h11 stage keeps its chord steps (tol 1e-36). The h13 inner system re-solves every unknown below harmonic 13
     to 1e-48, so that state serves only as the starting point.
 - `ladder/D1549/` and `ladder/D519x/`: the run folders (dh170's out/ladder), copied here and pushed at each stage's end
