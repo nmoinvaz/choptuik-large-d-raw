@@ -49,3 +49,10 @@ the Mac, which pushed this folder.
 - `L10000q/`: the restart's first dd step (1.2e-8 -> 1.9e-16 in 5775 s on the loaded machine), stopped by
   `chord_switch.sh` at 01:42:50 UTC with its state saved (`lastnode_D10000.0000_step0.npz`); continued as out/L10000c
   (one more dd step, then chord steps with the quad-double residual, 7bf304b1).
+- `rls1000h13/`: the D 1000 h13 release with the double-double Jacobian, stopped by hand in outer step 0 (`run.log`):
+  the inner held solve stopped at its floor 6.6e-33, above the target residual 9.7e-36, so every trial is rejected.
+- `rls1000h13q/`: the same with the quad-double Jacobian (`run_rls1000h13q.sh`, afcf9b0d): outer step 0 9.7e-36 ->
+  6.0e-40 (inner solve 4 steps to 2.0e-53), step 1 -> 5.4e-43, step 2 released. The full system's record
+  (`direct_s.jsonl`): Delta 1.654240854145891739, -9.91e-11 from Track C (+- 7.8e-10), quad-double check 5.4e-43,
+  Hamiltonian check a rows up to 7.8e-25. Its held_to_full_dDelta, +3.74e-14, is the h11 -> full change, since this run
+  started from the h11 state; held -> full is +2.020e-10 (against I1088-dh370's held D 1000 record).
