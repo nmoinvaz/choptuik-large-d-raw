@@ -59,12 +59,12 @@ if [ "$KSG" != "$KS" ]; then
   J=$O/jump/jump_ks$KSG.npz
 fi
 nice -n 10 timeout 6h $PY -u form_s.py release_ls $J $O/rls --harm 5,7,9,11 --kmax 13 --jac qd --res od --tol 1e-36 \
-  --tol_h 1e-30 --ddelta 1 --threads $T --outer 8 --commit $COMMIT $EXTRA > $O/rls/rls.log 2>&1
+  --tol_h 1e-30 --ddelta 1 --threads $T --outer 8 --inner_chord $IC --commit $COMMIT $EXTRA > $O/rls/rls.log 2>&1
 echo "rls h5-h11 rc $? $(date -u +%H:%M:%S)" >> $O/run.log
 R=$O/rls/release_ls_h11_D$DF.npz
 [ -s $R ] || exit 3
 nice -n 10 timeout 4h $PY -u form_s.py release_ls $R $O/rls13 --harm 13 --kmax 13 --jac qd --res od --tol 1e-48 \
-  --tol_h 1e-44 --ddelta 1e-25 --threads $T --outer 8 --commit $COMMIT $EXTRA > $O/rls13/rls.log 2>&1
+  --tol_h 1e-44 --ddelta 1e-25 --threads $T --outer 8 --inner_chord $IC --commit $COMMIT $EXTRA > $O/rls13/rls.log 2>&1
 echo "rls h13 rc $? $(date -u +%H:%M:%S)" >> $O/run.log
 R=$O/rls13/release_ls_h13_D$DF.npz
 [ -s $R ] || exit 4
@@ -80,7 +80,7 @@ if [ "$MT" != "32" ]; then
   HT=13,$H
 fi
 nice -n 10 timeout 10h $PY -u form_s.py release_ls $R $O/tail --harm $HT --kmax $KMAX --jac_by $JB --res od --tol 1e-48 \
-  --tol_h 1e-44 --ddelta 1e-25 --threads $T --outer 8 --commit $COMMIT $EXTRA > $O/tail/rls.log 2>&1
+  --tol_h 1e-44 --ddelta 1e-25 --threads $T --outer 8 --inner_chord $IC --commit $COMMIT $EXTRA > $O/tail/rls.log 2>&1
 echo "tail rc $? $(date -u +%H:%M:%S)" >> $O/run.log
 date -u "+end %Y-%m-%d %H:%M:%S UTC" >> $O/run.log
 exit
