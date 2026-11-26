@@ -1,0 +1,23 @@
+  states: 0 form A, 2 form S (D 300, 1000)
+guess at D 432 from 2 states, D 300.0000 .. 1000.0000, degree 1 in 1/n; degree 0 differs by 1.37e-04 (unknowns), 1.49e-03 (Delta)
+  114 Taylor steps; the guess's max |F| per block 4.5e-07 5.9e-07 1.2e-06 2.4e-06 4.4e-06 1.2e-05 7.8e-17
+  p1's harmonics 5-13 at the guess's values (kfreeze 3 with the held offset)
+  ladder stage 0: dd residual, at most 12 steps
+  start: max |F| 1.231e-05, Delta 1.667697713995269781506181061558891087770
+  it 0 starts 16:10:25 UTC
+  it 0: |F| 1.231e-05 -> 2.546e-08, |dz| 2.47e-04, dDelta +3.028e-05, lam 1, Delta's gain 1.94e+08, gain |F| 4.95e+00, 4.7 s (J and solves 5 s), Delta 1.667727993207346547908433171092654719768
+  it 1 starts 16:10:30 UTC, predicted end 16:10 UTC (5 s)
+  it 1: |F| 2.546e-08 -> 2.462e-08, |dz| 2.48e-04, dDelta +3.589e-05, lam 1, Delta's gain 2.94e+08, gain |F| 7.24e+00, 4.8 s (J and solves 5 s), Delta 1.667763887843443162614283619742159620555
+  it 2 starts 16:10:35 UTC, predicted end 16:10 UTC (5 s)
+  it 2: |F| 2.462e-08 -> 1.534e-11, |dz| 6.19e-06, dDelta -2.565e-06, lam 1, Delta's gain 2.93e+08, gain |F| 4.49e-03, 5.0 s (J and solves 5 s), Delta 1.667761323131858891340219034088616401882
+  it 3 starts 16:10:40 UTC, predicted end 16:10 UTC (5 s)
+  it 3: |F| 1.534e-11 -> 7.900e-14, |dz| 4.46e-07, dDelta -1.092e-08, lam 1, Delta's gain 2.92e+08, gain |F| 2.31e-05, 5.2 s (J and solves 5 s), Delta 1.667761312215979119964722280496679618718
+  it 4 starts 16:10:45 UTC, predicted end 16:10 UTC (5 s)
+  it 4: |F| 7.900e-14 -> 1.721e-22, |dz| 2.08e-11, dDelta +8.686e-12, lam 1, Delta's gain 2.92e+08, gain |F| 5.03e-14, 5.3 s (J and solves 5 s), Delta 1.667761312224664714742663852091290862982
+  it 5 starts 16:10:50 UTC, predicted end 16:10 UTC (5 s)
+  it 5: |F| 1.721e-22 -> 7.955e-30, |dz| 4.88e-18, dDelta -4.126e-19, lam 1, Delta's gain 2.92e+08, gain |F| 2.33e-21, 5.3 s (J and solves 5 s), Delta 1.667761312224664714330111348230222792723
+  end state: qd max |F| 5.047e-30; Delta's first-order bound gain |F| 1.48e-21 (gain 2.92e+08, the last step's Jacobian)
+  the full system (kfreeze 13) at the held solution: max |F| 3.286e-19, first-order dDelta -1.915e-08 (Delta's gain sum |dDelta/dF| 3.26e+16)
+  discretization (bars 1e-25): top harmonic 1.6e-17 relative (n3m); kc+20: |dF| 0.0e+00, gain |dF| 0.0e+00; ks+200: |dF| 5.8e-59, gain |dF| 1.7e-50; steps halved: |dF| 3.7e-63, gain |dF| 1.1e-54: over the 1e-25 bar: theta (M 32): top harmonic 1.6e-17
+  Hamiltonian code check (form A's residual in double-double, a slaved): segment blocks' max |F| 1: a 1.5e-23, p/m/c 2.3e-21; 2: a 2.8e-23, p/m/c 4.0e-21; 3: a 4.0e-23, p/m/c 5.3e-21; 4: a 4.5e-23, p/m/c 5.7e-21
+  converged; Delta 1.667761312224664714330111348230222792723; saved /Users/nathan/Source/choptuik-large-d-raw/I1098-mm5/ladder/D432/jump/jump_s_D432.0000.npz
