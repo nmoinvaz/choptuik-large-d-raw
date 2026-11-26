@@ -1,0 +1,15 @@
+  ladder stage 0: dd residual, at most 8 steps
+  start: max |F| 1.000e-02, Delta 0.01000000000000000020816681711721685132943
+  it 0 starts 02:47:56 UTC
+  it 0: |F| 1.000e-02 -> 1.600e-20, |dz| 1.00e-02, dDelta -1.000e-02, lam 1, Delta's gain 1.00e+08, gain |F| 1.60e-12, 0.0 s (J and solves 0 s), Delta 0.0
+  it 1 starts 02:47:56 UTC
+  it 1: |F| 1.600e-20 -> 3.200e-21, |dz| 1.60e-20, dDelta -1.600e-20, lam 1, Delta's gain 1.00e+08, gain |F| 3.20e-13, 0.0 s (J and solves 0 s), Delta -1.599999999999999852059923564634194234768e-20
+  floor stop (dd residual): the step cut max |F| by 5.00x (< 10x); floor 3.200e-21, Delta's first-order bound 3.20e-13
+  ladder stage 1: qd residual, at most 2 steps, chord steps with the last Jacobian
+  start: max |F| 1.600e-20, Delta -1.599999999999999852059923564634194234768e-20
+  it 0 (chord) starts 02:47:56 UTC
+  it 0 (chord): |F| 1.600e-20 -> 8.000e-21, |dz| 8.00e-21, dDelta +8.000e-21, lam 1, Delta's gain 1.00e+08, gain |F| 8.00e-13, 0.0 s (J and solves 0 s), Delta -7.999999999999999260299617823170971173839e-21
+  chord step cut max |F| by 2.00x: the next step forms the Jacobian again
+  it 1 starts 02:47:56 UTC
+  it 1: |F| 8.000e-21 -> 6.554e-41, |dz| 8.00e-21, dDelta +8.000e-21, lam 1, Delta's gain 1.00e+08, gain |F| 6.55e-33, 0.0 s (J and solves 0 s), Delta 0.0
+dd steps 2 (floor True), qd steps 2 (chord [True, False], reform [True, False]), Jacobians formed 3, converged True: PASS (stale J, mutate none)

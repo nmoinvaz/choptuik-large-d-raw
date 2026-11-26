@@ -25,3 +25,23 @@ Python: uv's 3.14 in `~/venv-314`, from requirements.txt. Rust: stable by rustup
   shows them.
 - Files here: `build.log` (the build's output with `/usr/bin/time -l`), `build_time.txt`, `mem_samples.log`
   (resident memory of the build's processes every 20 s), `uninstall.log`, and the selftests' logs.
+
+## Results (2026-11-26 02:48 UTC)
+
+| check | exit | result | against the expectation |
+|---|---|---|---|
+| build | 0 | 02:26:51 to 02:47:32 UTC, **1240.7 s (20.7 min)** wall (`/usr/bin/time -l`: 1231 s user, 27.6 s sys); peak resident **24.81 GB (23.1 GiB)** by `/usr/bin/time -l`, 23.98 GB in the 20 s samples (02:35:12 UTC); last line `hpkernel neon multidouble neon` | shorter than the expected 31 min; memory as expected |
+| import | 0 | `/Users/nathan/venv-314/lib/python3.14/site-packages/hpkernel/__init__.py` (`import_path.txt`) | as expected |
+| floor stop | 0 | `dd steps 2 (floor True), qd steps 1 (chord [True], reform [False]), Jacobians formed 2, converged True: PASS` | as expected |
+| floor stop, `--mutate=nofloor` | 1 | `dd steps 8 (floor False) ... FAIL` | as expected: the control fires |
+| floor stop, `--stale` | 0 | `dd steps 2, qd steps 2 (chord [True, False], reform [True, False]), Jacobians formed 3: PASS` | as expected |
+| `form_s.py check` up2_D20.0437 | 0 | converged in 3 steps; Delta_S 2.1111402926144795056; Delta_S - Delta_A **-2.03e-17**; - delta_all -6.81e-17 | as expected, and every printed digit equals dh610's `out/check.log` (the iterations' \|F\|, \|dz\| and dDelta too) |
+| the same, `--mutate flux` | 0 | form S at the form-A state \|F\| **1.73e-02** (clean 8.39e-12); Newton's proposed step has \|dz\| 5.95e+06 and dDelta +2.958e-02, every trial is rejected (lam 0), so `NOT converged` and Delta_S - Delta_A prints **0.0** | the control fires on the residual and the proposed dDelta, like dh610's `out/check_flux.log`. It does **not** move the printed Delta: no step is accepted. 35 panic lines (`form_s.rs:226`, "the slaving LU of a Taylor step: singular or non-finite pivot at column 0 (NaN)") come from rejected trials, and the process still exits 0 |
+
+- The dd selftests and the check use the stored state `hp/data/states/up2_D20.0437.npz` of the code repository
+  (M 32, K 8, ks 100). No double-double state of the raw repository was needed.
+- The build is of 1ccd32ab (wip/large-d-form-s, 2026-11-26 02:20 UTC head at the time) on Rust 1.100.0 with multidouble
+  5.1.0, multishoot 4.1.0 and multisolver 0.2.2 from crates.io, and multidouble's Python package at 8c4360ac. Versions of
+  everything are in `versions.txt`.
+- Not run: `highm_check.py ref`, `scaled` and `jets` (the stored-reference bit checks), which the order did not ask for.
+- Exit codes: `selftest_exit_codes.txt`. Logs: `build.log`, `floor_stop*.log`, `form_s_check*.log`.
