@@ -83,5 +83,11 @@ c30c2766).
 
 - `form_s/g10000/`, `g10000L20/`, `g2828L20/`, `g4000L20/`, `g5657L20/`: guesses saved by `form_s_lastnode.py guess` for
   the solves on dh610 and dh370 (`solvestate`): the last node at x_c (g10000) or at L = 20.
+- `form_s/g2000L20/`: the D 2000 guess at L = 20 (x_l 0.703559, a 8, ks 2618) from the held states at D 1000
+  (I1088-dh370/j1000_lean), 1414 (I1088-dh610/j1414_held_mob) and 2200 (I1088-dh610/j2200_l2), degree 2 in 1/n; the
+  command line is in `guess.log`'s README entry: `form_s_lastnode.py guess OUT --D 2000 --states_s <those three>
+  --xl 0.7035589258590665 --mob 8 --ks 2618 --threads 2` (96b6ddc9).
+- `form_s/time_res/`: the held residual's time in double-, quad- and octo-double on the D 2000 guess (`time_res.py
+  <guess> 2,4,8 2`, 2 threads on the Mac): 2.2 s, 25.5 s, 255 s (`D2000.log`).
 
 Files are added as the runs go; each log or script names its command line.

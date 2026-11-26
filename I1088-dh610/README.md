@@ -41,3 +41,8 @@ the Mac, which pushed this folder.
 - `L10000q/`: D 10000 again from the same guess at f5eb570f, on the precision ladder: 2 double-double steps, then up
   to 2 with the quad-double residual (double-double Jacobian), to Delta's bound 1e-15; a floor stop (a step cutting
   max |F| by less than 10x) ends each stage; every step's state is saved; the octo-double check (`run_10000q.sh`).
+- `rls1000h13/`: the D 1000 release of harmonic 13 from I1088-dh370/rls1000/release_ls_h11_D1000.0000.npz, to the
+  full system and its direct_s record, at 96b6ddc9 with each trial printed and each accepted step saved
+  (`run_rls1000h13.sh`).
+- `L2000/`: D 2000 held at L = 20 from I1088-mac-a/form_s/g2000L20/ on the precision ladder (`run_2000L20.sh`), the
+  start of the D 2000 release.
