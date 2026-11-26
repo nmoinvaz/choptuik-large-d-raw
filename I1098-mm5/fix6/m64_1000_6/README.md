@@ -23,3 +23,10 @@ qq Jacobians, od residual, tol 1e-48, tol_h 1e-44, --ddelta 1e-25, 6 threads, `t
 - Expected time 1-2 h (the old run took 590 s per M 64 outer step on 9 threads).
 
 Reported: both shifts (by script from the logs' digits), the final Delta, each stage's time; pushed at the end.
+
+## h23 done (snapshot pushed 2026-11-26 18:52 UTC; the run goes on to h25..h31)
+
+By script from `rls.log` (the digits of its Delta lines): resampled to M 64 at 18:28:43 UTC; **h23 outer 0** (883.4 s) re-converges every lower harmonic at M 64: trial lam 1 converged in 1 step (|F| 6.29e-50), Delta **1.654240854145891716456558423843881922324**,
+which is tail6b's after h23 (1.654240854145891716456558423843881519051) **+ 4.03273e-34**: `err_xcheck_M` at kfree 23, applied. **h23 outer 1** (about 424 s): harmonic step 6.85e-15, pending dDelta **+1.35e-27**, released (below --ddelta, not applied); tail6b's own h23 pending at M 48 was +2.43e-27.
+Bar (both shifts below 1e-25, so M 48 suffices for D <= 1000): met at kfree 23. The old fastmul4 shift was +7.0e-22. No stall, no outer step above 3x its harmonic's first.
+Files here: `h23_M64.npz` (the resampled input), `release_ls_h23_D1000.0000_step.npz` and `release_ls_h23_D1000.0000.npz` (the h23 states), `release_ls.jsonl`, `rls.log`, `run.log`, `resample.log` (snapshots; the live files continue with h25).
