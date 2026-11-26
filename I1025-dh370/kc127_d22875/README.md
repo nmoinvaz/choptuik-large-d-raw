@@ -69,3 +69,11 @@ Source accepted with controls 1 1, refused by the k_c 127 and k_c 111 checks; re
 | Delta shift between -3e-6 and -2e-7 (70%) | right (-1.81e-6) |
 | regrid wall 14000 to 26000 s (60%); the cap 28800 s exceeded (10%) | right (16413 s); not exceeded |
 | peak RSS of the regrid below 5.5 GiB (85%) | right (4.47 GiB) |
+
+## Scan, round 1 done (17:32:54 to 18:48 UTC, 3 processes at nice 19, `d18_secant.py scan`, fast matrix, 4517 to 4545 s per point)
+| lambda | hybrid sign | noise-robust | dln | float64 sign | ln of abs det | seconds |
+|---|---|---|---|---|---|---|
+| 0.11 | + | True | 5.53e-06 | + | -3929.6509 | 4545 |
+| 0.12 | - | True | 3.23e-05 | + | -3932.7033 | 4538 |
+| 0.13 | - | True | 3.22e-06 | - | -3931.7175 | 4517 |
+- Interim (information; the reader's reading comes after the scan; round 2, lambda 0.10 and the repeat of 0.12, is running): the hybrid sign goes **+ to -** between 0.11 and 0.12, so a robust change in **(0.11, 0.12)** (printed "+ to -"), inside t5's registered band 0.113 to 0.125 (the bracket holds [0.113, 0.120)); no change between 0.12 and 0.13. **The float64 sign at 0.12 (+) differs from the hybrid's (-)**, and dln there (3.2e-5) is the largest of the three: 0.12 is the point nearest the root. Per point 4517 to 4545 s on 3 processes, below my 6500 to 11000 s.
