@@ -12,3 +12,7 @@ https://github.com/nmoinvaz/choptuik-large-d/issues/1098
   instructions in it, which the i7-8700 lacks.
 - The D 2828 release on the old kernel (I1088-dh370's rls2828) was stopped at 16:50 UTC on the coordinator's order.
   Its h5, h7 and h9-step states are kept on dh370 in out/rls2828/.
+- `fastmul6_sky/`: dh610's Skylake cross-build of fastmul6 (e1cd7a84; wheel sha256 9c4d41e9..., no GFNI; its AVX-512
+  code sits only in multidouble's runtime-dispatched SIMD backend), installed into site_sky with the Python of f398e829
+  by `install_sky.sh`. All six checks exit 0 with the same figures as dh610's and mm5's builds. The ladder point D 896
+  (ladder_point2.sh, kc 200, M 48 tail, kmax 23, KSBAR 1e-64, 6 threads) started after the checks, at 18:58 UTC.
