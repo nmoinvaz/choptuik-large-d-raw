@@ -1,0 +1,13 @@
+2026-11-26 13:36:35 UTC start: k_c 111 -> 119 at D 22.25 (load 0.05 0.36 1.04, MemAvailable 28115 MiB)
+2026-11-26 13:36:35 UTC inputs pinned (in_blobs.txt: 9 files; source state 7fc75ef8, record 06dc9d92, kc111_syscheck_1025.py 85aeb312, kc119_syscheck_1025.py fc6e0dd6)
+2026-11-26 13:36:35 UTC kc119_syscheck_1025.py = kc111_syscheck_1025.py with k_c 111 -> 119 in 3 lines and one header comment line (check_diff_rebuilt.txt)
+2026-11-26 13:36:35 UTC worktree 48c36355: dss_ell, ell_ddm, ell_dd, ddnp equal 505d8399; ell_refine.py 631e5801, ell_delta.py fde699f5; ell_delta.lam0_at(22.25) = 2.1019003706; Python 3.14.10, multidouble avx2
+2026-11-26 13:36:35 UTC selftests: kc111_syscheck_1025.py exit 0, kc119_syscheck_1025.py exit 0, kc103_syscheck_1025.py exit 0 (0 wanted)
+2026-11-26 13:36:48 UTC STEP 1 source check (kc111_syscheck_1025.py on the k_c 111 D 22.25 source): exit 0 (0 wanted); controls --mutate=F exit 1, --mutate=steps exit 1 (1 wanted each); kc119_syscheck_1025.py on the source exit 1 (1 wanted); kc103_syscheck_1025.py on the source exit 1 (1 wanted)
+2026-11-26 13:36:48 UTC STEP 2 regrid starts: nice -n 10 timeout 43200 /home/nathan/Source/choptuik-large-d-1058b/.venv/bin/python -u ell_refine.py l1kc111dh370d2225 111 l1kc119dh170d2225 119 1 22.25 2.1019003706 --kappa 0.7 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma
+2026-11-26 16:52:57 UTC regrid exit 0, wall 11769 s
+2026-11-26 16:53:10 UTC kc119_syscheck_1025.py exit 0 (0 wanted); controls --mutate=F exit 1, --mutate=steps exit 1 (1 wanted each); kc111_syscheck_1025.py on the k_c 119 result exit 1 (1 wanted)
+2026-11-26 16:53:10 UTC verdict: ACCEPTED 2026-11-26 16:53:10 UTC
+2026-11-26 16:53:10 UTC scan gate passed: MemAvailable 28169 MiB (waited 0 s)
+2026-11-26 16:53:11 UTC d18_secant.py (92b9bf53, blob eb1396ad) selftest exit 0 (0 wanted); --mutate=half exit 1, norobust exit 1, nosigncheck exit 1 (1 wanted each)
+2026-11-26 16:53:11 UTC scan starts: D 22.25, 10 evaluations (window -0.04 0.12, repeat of 0.04), 3 procs x 1 thread, nice 10; state sol_l1kc119dh170d2225_D22.2500.npy ecfe82b1, record 1ae7129b; --pin=ecfe82b1,1ae7129b
