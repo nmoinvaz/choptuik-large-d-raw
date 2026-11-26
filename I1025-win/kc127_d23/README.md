@@ -178,8 +178,58 @@ t5's ruling (hc 2026-11-26 19:45 UTC, quoted): "the reader printed exactly one r
 - **Registered test** (t5's, unchanged): `lam_lin` of the last `root` record lies in [0.0414, 0.0474] (the root +0.0444 +- 0.003). The scan's estimator range [0.042772, 0.048098] is information beside it (as in my earlier secants), not the test.
 - **ETA** (new basis: about 5900 s per interior evaluation on one process): the run has about 5 interior evaluations (the k_c 103, 95, 87 runs took 6, 9, 7 evaluations including the two ends, so 4, 7, 5 interior), so about 24000 to 41000 s (6.7 to 11.4 h), central about 30000 s (8.3 h), against the cap of 43200 s (12 h); the ends are reused, so the maximum of 10 evaluations means 8 interior ones, 47000 s, beyond the cap: if the run reaches the cap it is killed by the exact pid and reported, with the evaluations it made in `secant/secant.jsonl`.
 
-Pushed 2026-11-26 19:49:37 UTC.
+Pushed 2026-11-26 19:51:11 UTC.
 
 ## Result
 
-Not yet run.
+### Steps 1 to 3 (source, regrid, acceptance)
+
+In the Status above (regrid table, acceptance, cost): the regrid took 10230 s, 4179 steps (ratio 1.0677), \|F\| 3.1939646372e-10, psi-constraint 1.4638e-03, Delta 1.174322923416 (shift -2.0452e-06 against the k_c 119 source); the k_c 127 check accepted it with both controls exit 1 and the k_c 119 check refused it.
+
+### Step 4a, the scan (the new scanner, `d18_secant.py scan` at 92b9bf53)
+
+Reader (`read_lower_kc127_D23.log`, `read_lower.py` 89309d3c on this folder, window 0.030 to 0.060), lines as printed:
+
+```
+points 4 in 0.030-0.060; not noise-robust: none
+hybrid signs: 0.030+ 0.040+ 0.050- 0.060-
+float64 sign differs from the hybrid sign at: none
+repeated points: [(0.04, 'agree')]
+  robust change (0.040, 0.050), + to -, det-linear 0.048098, range [0.042772, 0.048098]
+robust changes: 1; touching a non-robust point (not counted): none
+ln|det| local minima without a sign change: none
+endpoint signs: + at 0.030, - at 0.060
+read_lower exit 0
+```
+
+The 5 evaluations (`scan_kc127_D23_p0.jsonl`, `scan_kc127_D23_p1.jsonl`; both workers first printed the record system: \|F\| 3.1982167639e-10 against the record's 3.1939646372e-10, 4179 steps = the record's; the scan driver's exits 0, 0; `sec_parts` = float64 matrix, double-double block 12, the `dd_logdet` calls):
+
+| lambda | process, round | hybrid sign | hybrid ln\|det\| | float64 sign | float64 ln\|det\| | noise-robust | dln | seconds | parts (s) |
+|---|---|---|---|---|---|---|---|---|---|
+| 0.04 | p0, 1 | + | -3899.6939560577 | + | -3899.2189886976 | yes | 2.01e-06 | 7889 | 605, 7261, 23 |
+| 0.05 | p1, 1 | - | -3901.1429077703 | - | -3901.6936730494 | yes | 2.52e-06 | 7898 | 605, 7270, 23 |
+| 0.03 | p0, 2 | + | -3897.5191930612 | + | -3897.3628688200 | yes | 1.00e-06 | 8055 | 612, 7421, 22 |
+| 0.04 (repeat) | p1, 2 | + | -3899.6939560577 | + | -3899.2189886976 | yes | 2.01e-06 | 8051 | 613, 7416, 22 |
+| 0.06 | p0, 3 (alone) | - | -3901.1021686045 | - | -3901.3314753770 | yes | 1.53e-06 | 5914 | 445, 5450, 18 |
+
+The repeat of 0.04 (p1) is bit-identical to p0's: the same hybrid and float64 ln\|det\|. All 5 evaluations are noise-robust, and the float64 sign equals the hybrid sign at every point.
+
+**Against the order and the registration:** the order stops on none or more than one robust change; the reader printed **exactly one**: (0.040, 0.050), `+ to -`, det-linear 0.048098, range [0.042772, 0.048098]. t5 (hc 19:45 UTC): "ACCEPTED as the bracket ... The registered test stands: the det-linear root of the final bracket lies in [0.0414, 0.0474]. The scan's det-linear estimate 0.048098 is not that test." The bracket (0.04, 0.05) is the one the registered root +0.0444 predicts. Orientation is information as printed and not interpreted by me. macm3's k_c 119 scan at this D read (0.040, 0.060) by his grid.
+
+**Cost against the estimates written before the scan:**
+
+| item | written | measured |
+|---|---|---|
+| each evaluation, two processes (rounds 1 and 2) | about 2200 to 4500 s, central about 3000 s | 7889 to 8055 s: **above** the written range (1.8 to 3.6 times) |
+| the evaluation alone (round 3) | not separated (the same range) | 5914 s: above the written range |
+| of which | not written | block 12 (`ell_ddm`) 5450 to 7421 s (92 %), the float64 matrix 445 to 613 s, `dd_logdet` calls 18 to 23 s |
+| the scan (3 rounds) | about 6600 to 13500 s, central about 9000 s | 21885 s (13:39:57 to 19:44:42 UTC): **above**, about half of the cap of 43200 s |
+| peak private per process | about 4 to 8 GB (t5: 8 GB) | 4.327 and 4.323 GB (peak working set about 3.28 GB): the lower end |
+| cpu per worker | not written | 21610 s (p0), 15759 s (p1): 0.99 of the wall |
+| lowest free memory | about 12 to 15 GB (whole stage) | 16.90 GB at 13:58:16 UTC in the sampler, 16.81 GB in the alert-only watcher |
+
+My basis (my k_c 103 secant evaluation, 1408 s, times about 2 for the step growth) was 2 times too low for the single-process evaluation (5914 s) and the two-process evaluations ran another 1.35 times slower (about 8000 s). Commit up to 19.3 GB, laptop cpu 19 to 79 % (mean 43.1 %), 360 sample times with no gap over 90 s, the other project's I114 `convergence.py` jobs beside it, not touched. No alert, nothing killed (`rows/scan_memwatch.log`: "minimum free memory seen 16.81 GB; 0 alert(s) sent"); the keep-awake helper held until the driver ended (`rows/scan_keepawake.log`); the System log shows no power event in 13:35 to 19:50 UTC.
+
+### Step 4b, the secant
+
+Not yet run (it started 19:50:17 UTC; see the Status).
