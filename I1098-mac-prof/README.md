@@ -12,3 +12,12 @@ f06d04d5b98e1df5b8040c263ea50d5e882f60f7 (raw 0c237b561); D 4000, a 9.995, ks 52
 ⌈1.1 (n/2)/(1 − t_l)⌉ + 200 is 2602 here.
 
 - `prof.jsonl`, `prof.log`: one line per measurement (4 threads).
+
+## The Jacobian check (step 3), written 2026-11-26 09:30 UTC before the run
+
+`form_s_relaxed.py jaccheck` (wip/large-d-fastmul2) on the dev-o1 build of that branch, at the D 2000 state of
+`I1096-mac/README.md` (ks 2618): the Jacobian's horizon rows in the columns of m_h points 0, 15, 31 and of Delta (4
+column tasks, each the horizon series in Du, Qu or Ou lanes), in double-, quad- and octo-double, relaxed against term
+by term, relative to max |J| of those columns. Bars: octo-double |J_relaxed − J_naive| <= 1e-110; double- and
+quad-double the same 1e-28 and 1e-58, or |J_relaxed − J_od| <= 2 |J_naive − J_od| (amendment 1 of I1096-mac). Control:
+relaxed with the first square of c U left out (mutate 56) must miss both. Output `jaccheck.jsonl`, `jaccheck.log`.
