@@ -1,7 +1,7 @@
 #!/bin/bash
 # #1098 ladder, version 2: one full direct solve at D on fastmul6 (d368a0c0's kernel; 478e9d86's Python or later), the
-# Moebius horizon a = max(8, n/400) with ks = ceil(1.5 (D - 2)) + 20, raised by 200 until the jump's ks + 200 residual
-# change is at most KSBAR (1e-64), and the tail to kmax 23 by default:
+# Moebius horizon a = max(8, n/400) with ks = ceil(1.5 (D - 2)) + 20, raised by 200 until the octo-double residual
+# changes by at most KSBAR (1e-64) at ks + 200 (ks_gate.py), and the tail to kmax 23 by default:
 #   1. jump at M 32: the held solve (p1's harmonics 5-13 held at the guess) from a degree-1 fit in 1/n to two full
 #      fastmul6 states SA and SB, the double-double solve and a quad-double check;
 #   2. release h5..h11 to tol 1e-36 (their inner solves are re-converged by every later release), then h13 to 1e-48
@@ -32,25 +32,25 @@ mkdir -p $O/jump $O/rls $O/rls13 $O/tail
   date -u "+start %Y-%m-%d %H:%M:%S UTC"
   echo "D $D, ks $KS, kc $KC, a $A, tail M $MT, kmax $KMAX, threads $T"
 } > $O/run.log
-# the Moebius series' order: the jump's discretization report gives the residual's change at ks + 200; above KSBAR
-# (1e-64: the gain at kfree 23 is about 1e39 at D 300, so the horizon's truncation leaves at most about 1e-25 in
-# Delta there) ks grows by 200 and the jump runs again, at most 4 times. D 250 at ks 392 read 1.6e-36 and moved Delta
-# by -2.5e-17 against u; D 300 at ks 600 (1.2e-53 in F) turned the tail at h23 by -3.9e-22, and ks 800 (6.8e-64) did not.
-# KMAX 31 needs KSBAR about 1e-70 (the gain at kfree 31 is 1.5e47 at D 300)
-KSBAR=${KSBAR:-1e-64}
-for try in 1 2 3 4; do
-  nice -n 10 timeout 3h $PY -u form_s.py jump $O/jump --D $D --states_s "$SA,$SB" --deg 1 --held 1 --mob $A --ks $KS \
-    --kc $KC --delta fit --tol 1e-300 --it_max 12 --threads $T --commit 478e9d86 $EXTRA > $O/jump/jump.log 2>&1
-  echo "jump ks $KS rc $? $(date -u +%H:%M:%S)" >> $O/run.log
-  DKS=$(grep -oE "ks\+200: \|dF\| [0-9.e+-]+" $O/jump/jump.log | tail -1 | awk '{print $3}')
-  echo "jump ks $KS: ks+200 |dF| $DKS (bar $KSBAR)" >> $O/run.log
-  $PY -c "import sys; sys.exit(0 if float('${DKS:-inf}') <= float('$KSBAR') else 1)" && break
-  cp $O/jump/jump.log $O/jump/jump_ks$KS.log
-  KS=$((KS + 200))
-done
-$PY -c "import sys; sys.exit(0 if float('${DKS:-inf}') <= float('$KSBAR') else 1)" || exit 6
+nice -n 10 timeout 3h $PY -u form_s.py jump $O/jump --D $D --states_s "$SA,$SB" --deg 1 --held 1 --mob $A --ks $KS \
+  --kc $KC --delta fit --tol 1e-300 --it_max 12 --threads $T --commit 478e9d86 $EXTRA > $O/jump/jump.log 2>&1
+echo "jump ks $KS rc $? $(date -u +%H:%M:%S)" >> $O/run.log
 J=$O/jump/jump_s_D$DF.npz
 grep -q "^  converged" $O/jump/jump.log && [ -s $J ] || exit 2
+# the Moebius series' order (ks_gate.py): the octo-double residual's change at the jump's state when the series runs to
+# ks + 200, ks raised by 200 until it is at most KSBAR (1e-64: the gain at kfree 23 is about 1e39 at D 300, so the
+# truncation leaves at most about 1e-25 in Delta; KMAX 31 needs about 1e-70, the gain at kfree 31 being 1.5e47 there).
+# D 250 at ks 392 moved Delta by -2.5e-17 against u, D 300 at ks 600 turned the tail at h23 by -3.9e-22 and ks 800 did
+# not. The jump's own ks+200 |dF| is a quad-double residual's and floors near 1e-45 at D 1291, so it cannot gate this
+KSBAR=${KSBAR:-1e-64}
+$PY -u $HP/ks_gate.py $J --bar $KSBAR --threads $T > $O/jump/ks_gate.log 2>&1
+KSG=$(grep -oE "^gate [0-9]+" $O/jump/ks_gate.log | awk '{print $2}')
+echo "ks gate (bar $KSBAR): ${KSG:-none} ($(tail -2 $O/jump/ks_gate.log | head -1))" >> $O/run.log
+[ -n "$KSG" ] || exit 6
+if [ "$KSG" != "$KS" ]; then
+  PYTHONPATH=$SITE:$HP $PY $TOOLS/variant_state.py $HP $J $O/jump/jump_ks$KSG.npz ks=$KSG >> $O/run.log 2>&1 || exit 6
+  J=$O/jump/jump_ks$KSG.npz
+fi
 nice -n 10 timeout 6h $PY -u form_s.py release_ls $J $O/rls --harm 5,7,9,11 --kmax 13 --jac qd --res od --tol 1e-36 \
   --tol_h 1e-30 --ddelta 1 --threads $T --outer 8 --commit 478e9d86 $EXTRA > $O/rls/rls.log 2>&1
 echo "rls h5-h11 rc $? $(date -u +%H:%M:%S)" >> $O/run.log
