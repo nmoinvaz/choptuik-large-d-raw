@@ -49,4 +49,4 @@ Last lines of `rls.log`:
     h15 outer 0: target |F| 2.17e-44 -> 5.00e-53, harmonic-15 step 1.51e-10 (full step's dDelta -1.64e-17), lam 1, Delta 1.649074313745289309244922315146592930935 (905.8 s)
     h15 outer 1 (qq Jacobian) starts 14:26:32 UTC, predicted end 14:41 UTC (906 s, the last qq outer step)
 
-The h13 value (-8.118e-22) is therefore mostly the dd-stored d/dtheta matrices' term plus the M shift, not separated; no h17-h25 values exist for this kernel at D 2000.
+By the jump agent's estimate the h13 value (-8.118e-22) is largely the dd-stored d/dtheta matrices' term (likely about 1e-20 at D 2000) plus the M shift; the two were not separated (M32_base was dropped). No h17-h25 values exist for this kernel at D 2000.
