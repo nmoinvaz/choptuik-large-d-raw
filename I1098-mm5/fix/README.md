@@ -31,3 +31,22 @@ line is `hpkernel.__file__` (must be under fastmul5-site), the inputs are the co
 
 Wave 1 (about 30-60 min): D300_u_base, D300_u_steps2, D300_mob_base. Wave 2 (about 1-2 h): D1000_base, D1000_steps2, D1000_M48. D1000_M48 uses the same command; `fix_reruns.sh`'s header
 mentions `--harm 13,15,...,23 --kmax 31` for M 48, but the order's common command (`--harm 13 --kmax 13`, "M 32 -> 48 at kfree 13") is followed.
+
+## Wave 1 results (2026-11-26 13:39 UTC)
+
+Ran 13:29:53-13:38:49 UTC, all three rc 0 (`<name>/run.log`), the log's first line `hpkernel /Users/nathan/Source/fastmul5-site/hpkernel/__init__.py HP_HORIZON_RELAXED 1 HP_EXACT_RECIP 1`. m48_2000 (on fastmul4) was
+stopped by the queue at 13:29:53 (`queue.txt`). Numbers by script from the logs' digits (mpmath, 60 digits).
+
+| run | h13's change (the log's line) | outer steps (times) | qd check max \|F\| |
+|---|---|---|---|
+| D300_u_base | **+1.288e-19** (Delta 1.67817101540087156786106196598861494537) | +1.0593e-19 (186.5 s), +2.2922e-20 (103.5 s), outer 2 released | 7.85e-53 |
+| D300_u_steps2 | **+1.288e-19** | +1.0593e-19 (290.6 s), +2.2922e-20 (192.7 s), outer 2 released | 7.71e-53 |
+| D300_mob_base | **+1.321e-19** (Delta 1.67817101540087156786429537827966960245) | +1.0869e-19 (212.5 s), +2.3394e-20 (128.0 s), outer 2 released | 1.08e-57 |
+
+| difference | value | bar | verdict |
+|---|---|---|---|
+| D300_u_steps2 - D300_u_base | **0.0** (equal to every printed digit) | below 1e-23 (it was 5e-20) | **met** |
+| D300_mob_base - D300_u_base | **+3.23341e-21** | below 1e-23 | **not met** (323x over) |
+| D300_u_base's own change (predicted about -3.1e-18, the dd-1/k error of the u D 300 record) | **+1.288e-19** | | **disagrees**: opposite sign, 24x smaller |
+
+Wave 2 (D1000_base, D1000_steps2, D1000_M48) started 13:38:49 UTC. `F_D300_base_mm5.npz` is `dump_residual.py`'s od residual of D300_u_base.npz on fastmul5 (max |F| 7.991459e-31).
