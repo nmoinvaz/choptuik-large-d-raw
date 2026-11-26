@@ -19,3 +19,19 @@ Stages (`run.log`, each log and state in its folder): `jump/` (the held solve at
 - h5..h13 are each released, and the tail falls.
 - Stop and report when a qq inner solve does not converge, when a harmonic's line search fails at every trial (D 432's u tail), or when an outer step is 3x its harmonic's first. A qd inner floor that hands over to qq is logged, not stopped (amended 2026-11-26 19:01 UTC, coordinator's order; the order first read: any inner solve that does not converge).
 - Reported: the final Delta, each stage's time and the ks used.
+
+## The D 1291 chain on fastmul7 (coordinator's order, 2026-11-26 21:30 UTC)
+
+`tools3/d1291_then_1549_mm5.sh` (raw 42e99e7d4 `I1098-mac-a/tools/mm5/d1291_then_1549_mm5.sh`, blob 6893d73ff6f623685fc872d2e68a6a41775345af, verified), detached, started now; it runs `tools3/tools3_check.sh` first (7 "ok", `tools3/check2.log`) and exports fastmul7 (`~/Source/choptuik-fastmul7` at d40a9c62, `~/Source/fastmul7-site`), `INNER_CHORD=0`. Each step after the one before, on 6 threads:
+
+0. waits for this folder's `run.log` to read "end " (the fastmul6 M 48 tail to kmax 31, started 19:51 UTC, expected about 01:00 UTC), at most 8 h;
+1. **D 1291's k* stage** (`tools3/kstar_stage.sh`, kfree 15) on `tail/`, into `kstar/` (expected to end about 01:50);
+2. **D 1549's M 48 tail to kmax 31** with its k* stage (`../D1549/README.md`), from dh170's chord-free h13 once dh170's `run.log` in raw origin/main reads "rls h13 rc 0" (a fetch every 10 min, at most 12 h; without it this step is skipped with a log line), expected to end about 11:00-12:30;
+3. **the fastmul7 cross-check of this tail**: h23..h31 released again from the fastmul6 h21 state (`tail/release_ls_h21_D1291.0000.npz`, ks 2354, M 48) with the same options, so that only the kernel differs (fastmul6's 1.7e-60 Moebius split offset), into `tail_fm7/`, expected to end about 15:00-16:30.
+
+### Bars, written before the start (as for D 1291 and D 622, with the amended stop rules)
+
+- Step 1: the k* bound (gain x F at kfree 15) is reported before and after (`kstar/kstar.json`); re-converged when it exceeds 1e-27.
+- Step 3: h23..h31 are each released with a pending dDelta at most about 1e-26, no turn; the difference of its final Delta against the fastmul6 tail's final is recorded and reported (no bar was set for it).
+- Stop rules: stop and report when a qq inner solve does not converge, when a harmonic's line search fails at every trial, or when an outer step is 3x its harmonic's first. A qd inner floor that hands over to qq is logged, not stopped. A qq floor at h13 outer 0 right after an M resample is logged; a floor above 1e-48 at any later outer step stops the run.
+- Reported at each stage's end; times from `date -u`.
