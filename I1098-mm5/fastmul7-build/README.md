@@ -80,3 +80,10 @@ PASS: Moebius against mpmath 9.74e-129 (bar 1e-100), the control 4.62e-28 (must 
 ```
 
 **PASS**: 9.742e-129 against the bar 1e-100 (dh610: 9.74e-129), both controls above their bars. The u lines are as at ks 800 (kernel u against mpmath 8.772e-120, u truncation 9.718e-108). **fastmul7 is verified**: all seven checks pass (the ks 800 run's FAIL above is the truncation at ks 800).
+
+## The standing check: horizon_mp_check_v2 with --mp_mob 1 (2026-11-26 21:50 UTC, coordinator's order)
+
+`hp/horizon_mp_check_v2.py` (from `wip/large-d-form-s` 5b31dedf, blob 131ff6e73b6752ab9237504d3fdd32a956d3560e, saved beside the check in `~/Source/choptuik-fastmul7/hp`) on the D 300 u h21 state (blob 3f609c95495bc61f8ff0b7443fa93b2b497aae61, verified),
+`--ks_mp 1100 --ks_mob 800 --mp_mob 1 --bar 1e-100 --ctl_mutate 57 --ctl_bar 1e-80`, HP_EXACT_RECIP=1 HP_EXACT_DMAT=1 HP_HORIZON_RELAXED=1 OPENBLAS_NUM_THREADS=1, fastmul7-site, one process at nice 10, started 21:50:39 UTC. Log `split300_mpmob.log`, `split300_mpmob.exit`.
+**Exit 0, PASS.** The comparison of record is now the kernel's Moebius sum against mpmath's Moebius sum at the same a and ks, **9.744e-129** (p, m, c: 8.4e-129, 9.74e-129, 1.92e-130; the arithmetic; bar 1e-100); the Moebius truncation, 4.647e-70 (mpmath's Moebius against its converged u sum, 391 s), does not gate. Controls: 4.619e-28 (m_h + 1e-30) and 1.7e-60 (mutate 57, the old split; bar 1e-80), both above their bars. As expected.
+The check is the standing one from now on on this machine.
