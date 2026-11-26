@@ -1,3 +1,13 @@
 pins: state a14f0d50edb575e85387851a61cb2324c1983317 (wanted a14f0d50edb575e85387851a61cb2324c1983317), stub 5381f89d5fe4f81a113295cdde8eb6358de937e8 (wanted 5381f89d5fe4f81a113295cdde8eb6358de937e8)
 D 22.875 k_c 95: |F| 3.5250023129e-10 (record 3.5210384141e-10), steps 3126 (record 3126): the record system
 bracket (0.1, 0.12), tol 1e-05, maxev 10, mode matrix fast (jac), block 12 ddm, noise 1e-15, dln <= 0.1, sol_l1kc95win2d22875_D22.8750.npy
+  lam 0.1 (lo): hybrid +1 ln|det| -2661.5070993901, noise [1.0, 1.0] dln 1.07e-06, robust True; float64 +1 -2660.5821559241 (1079 s [164, 905, 10])
+  lam 0.12 (hi): hybrid -1 ln|det| -2663.8470057306, noise [-1.0, -1.0] dln 2.52e-06, robust True; float64 +1 -2662.8996697942 (1088 s [162, 916, 9])
+  lam 0.11824257157304068 (interior): hybrid -1 ln|det| -2664.0386848392, noise [-1.0, -1.0] dln 3.49e-06, robust True; float64 +1 -2662.7760354580 (1068 s [160, 899, 9])
+  lam 0.11053744496727427 (interior): hybrid +1 ln|det| -2663.7822909115, noise [1.0, 1.0] dln 4.83e-06, robust True; float64 +1 -2661.9345322091 (1084 s [160, 914, 9])
+  lam 0.11488120726854567 (interior): hybrid -1 ln|det| -2665.1441777046, noise [-1.0, -1.0] dln 1.36e-05, robust True; float64 +1 -2662.3171743652 (1081 s [160, 911, 9])
+  lam 0.11355698727076302 (interior): hybrid +1 ln|det| -2666.9168205960, noise [1.0, 1.0] dln 8.86e-05, robust True; float64 +1 -2661.7235974538 (1067 s [160, 897, 9])
+  lam 0.11374928251034458 (interior): hybrid -1 ln|det| -2669.3074640666, noise [-1.0, -1.0] dln 9.54e-04, robust True; float64 +1 -2662.3285808539 (1066 s [160, 896, 9])
+  lam 0.1137331510613552 (interior): hybrid -1 ln|det| -2673.5688764429, noise [-1.0, -1.0] dln 7.01e-02, robust True; float64 +1 -2662.2372328574 (1073 s [166, 898, 9])
+  lam 0.1137281510613552 (interior): hybrid +1 ln|det| -2670.5353761773, noise [1.0, 1.0] dln 3.26e-03, robust True; float64 +1 -2662.2614039124 (1071 s [160, 902, 10])
+root: status tol (-), bracket [0.1137281510613552, 0.1137331510613552] width 5.000e-06, signs [1.0, -1.0], det-linear 0.1137329213854384, Brent 0.1137331510613552, 9 evaluations, 9678 s
