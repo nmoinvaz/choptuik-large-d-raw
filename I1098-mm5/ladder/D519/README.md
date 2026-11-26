@@ -31,3 +31,23 @@ the jump's ks+200 residual change was 2.8e-59 (ks 796) at the jump's ks, and eac
 - The tail falls as at D 300: h15 about **-7e-17**, h21 about **1e-23**. h23 is released with a pending dDelta of about **1e-26 or less**, and there is **no turn**.
 - Stop and report on any inner solve that does not converge, or an outer step 3x its harmonic's first.
 - Reported: the final Delta, each stage's time and the ks used.
+
+### Result of the Moebius tail (ks 1196; : rc 0, start 18:03:11, end 18:25:06 UTC, 1315 s)
+
+By script from  and . Stage wall times are the gaps between the logged start times:
+
+| stage | change in Delta | wall |
+|---|---|---|
+| h13 (re-converge, ks 1196) | none, pending -2.54e-29, released at outer 0 | 61 s |
+| h15 | -3.7424e-17 (outer 1 pending +6.76e-32) | 390 s |
+| h17 | -2.0975e-19 (outer 1 pending -1.25e-35) | 319 s |
+| h19 | +5.9792e-22 (outer 1 pending -1.01e-32) | 251 s |
+| h21 | +6.9188e-24 (outer 1 pending -8.99e-31) | 238 s |
+| h23 | none, pending **+1.86e-27**, released at outer 0 (harmonic step 1.93e-14) | 55 s |
+
+Total since the Moebius h13 state -3.76336e-17. **Final Delta (the state's  summed at 60 digits): 1.663780871388325109994156946730624660369** (the h23 pending +1.86e-27 is not in it); ks 1196, a 8, M 32, kc 180.
+State , blob 2ef0b5012752211978a1ad73469421c33ba019a2; od solve max |F| 4.43430e-55, qd check 4.43430e-55; Hamiltonian check at the four nodes: p at most 1.3e-22, m 1.4e-22, a 2.7e-23, c 4.7e-21.
+No inner solve failed, no outer step above 3x its harmonic's first, every trial converged at lam 1 ().
+
+**Bars:** the tail falls (h15 -3.7424e-17, then -2.10e-19, +5.98e-22, +6.92e-24: h21 is the bar's about 1e-23; h15 is D 519's, not the bar's "about -7e-17" of D 300) met;
+h23 released with pending dDelta +1.86e-27, at most 1e-26 met, no turn met.
