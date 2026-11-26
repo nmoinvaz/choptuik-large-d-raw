@@ -1,0 +1,39 @@
+Thu, Nov 26, 2026 10:44:12 AM
+== kc111 --selftest
+planted: |F| within 1%: verdict True, expected True: PASS
+selftest: PASS
+exit 0
+== kc119 --selftest
+planted: |F| within 1%: verdict True, expected True: PASS
+selftest: PASS
+exit 0
+== kc127 --selftest
+planted: |F| within 1%: verdict True, expected True: PASS
+selftest: PASS
+exit 0
+== kc119 check on the source
+controls on the same numbers: record |F| x 1.5 refused: True; record steps + 1 refused: True
+D 23 k_c 119: record |F| 3.2079513798e-10, F_start 1.251e-05, steps 3914, constraint 2.139e-03, Delta 1.174324968657, 2273 s; state |F| 3.2218487937e-10, freeze_from steps 3914
+ACCEPTED: the record class's |F| with a step count that comes back
+exit 0
+== kc119 --mutate=F
+controls on the same numbers: record |F| x 1.5 refused: True; record steps + 1 refused: True
+D 23 k_c 119: record |F| 4.8119270697e-10, F_start 1.251e-05, steps 3914, constraint 2.139e-03, Delta 1.174324968657, 2273 s; state |F| 3.2218487937e-10, freeze_from steps 3914
+NOT ACCEPTED: the state's |F| 3.221849e-10 is not within 1% of the record's 4.811927e-10
+exit 1
+== kc119 --mutate=steps
+controls on the same numbers: record |F| x 1.5 refused: True; record steps + 1 refused: True
+D 23 k_c 119: record |F| 3.2079513798e-10, F_start 1.251e-05, steps 3915, constraint 2.139e-03, Delta 1.174324968657, 2273 s; state |F| 3.2218487937e-10, freeze_from steps 3914
+NOT ACCEPTED: freeze_from gives 3914 steps, the record 3915
+exit 1
+== kc111 check on the source
+controls on the same numbers: record |F| x 1.5 refused: True; record steps + 1 refused: True
+D 23 k_c 119: record |F| 3.2079513798e-10, F_start 1.251e-05, steps 3914, constraint 2.139e-03, Delta 1.174324968657, 2273 s; state |F| 3.2218487937e-10, freeze_from steps 3914
+NOT ACCEPTED: the record is not k_c 111 at D 23 (kc 119, D 23.0)
+exit 1
+== kc127 check on the source
+controls on the same numbers: record |F| x 1.5 refused: True; record steps + 1 refused: True
+D 23 k_c 119: record |F| 3.2079513798e-10, F_start 1.251e-05, steps 3914, constraint 2.139e-03, Delta 1.174324968657, 2273 s; state |F| 3.2218487937e-10, freeze_from steps 3914
+NOT ACCEPTED: the record is not k_c 127 at D 23 (kc 119, D 23.0)
+exit 1
+Thu, Nov 26, 2026 10:44:32 AM
