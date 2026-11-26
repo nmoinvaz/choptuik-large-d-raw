@@ -48,3 +48,6 @@ the command), `jump.log` and `jump_s.jsonl` (one record per Newton step), via `r
 - `L5657q/`: D 5656.8542 again from the same guess at f5eb570f, on the precision ladder: 2 double-double steps, then
   up to 2 with the quad-double residual (double-double Jacobian), to Delta's bound 1e-15; a floor stop ends each
   stage; every step's state is saved; the octo-double check (`run_5657q.sh`).
+- `L5657q/`: the restart's first dd step (1.7e-9 -> 3.1e-18 in 3622 s, `lastnode.log`), stopped by `chord_switch.sh` at
+  01:09:47 UTC with its state saved (`lastnode_D5656.8542_step0.npz`); continued on dh370 as out/L5657c (one more dd
+  step, then chord steps with the quad-double residual, 7bf304b1).
