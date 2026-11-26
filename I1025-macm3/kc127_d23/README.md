@@ -20,3 +20,4 @@ Code as `kc127_d230625/` (regrid worktree `-1025m2` at 48c36355; scanner and sec
 
 ## Status
 - 2026-11-26 15:26 UTC: folder, README (registration), lane and pins written; pushed first; dry run next, then the lane.
+- 2026-11-26 15:26 UTC: dry run passed at 15:26:18 UTC (pins, the diff of the checks, selftests `0 0 0 0 1 1 0`, the new scanner (eb1396ad): selftest 0, mutations 1 1 1, source check: kc119 exit 0, controls 1 1, kc111 and kc127 refuse). Lane started (`lane127a.sh`, lane pid 38939); the regrid starts when no other run of mine is active.
