@@ -1,0 +1,19 @@
+  states: 0 form A, 2 form S (D 300, 1000)
+guess at D 622 from 2 states, D 300.0000 .. 1000.0000, degree 1 in 1/n; degree 0 differs by 4.40e-04 (unknowns), 5.75e-03 (Delta)
+  139 Taylor steps; the guess's max |F| per block 2.9e-07 3.8e-07 8.0e-07 1.6e-06 2.9e-06 7.9e-06 6.6e-17
+  p1's harmonics 5-13 at the guess's values (kfreeze 3 with the held offset)
+  ladder stage 0: dd residual, at most 12 steps
+  start: max |F| 7.996e-06, Delta 1.660451888902587214147388294804841279984
+  it 0 starts 18:28:10 UTC
+  it 0: |F| 7.996e-06 -> 1.448e-10, |dz| 5.10e-05, dDelta +5.102e-05, lam 1, Delta's gain 2.83e+07, gain |F| 4.10e-03, 7.5 s (J and solves 7 s), Delta 1.660502906379778163982386021203767573711
+  it 1 starts 18:28:17 UTC, predicted end 18:28 UTC (8 s)
+  it 1: |F| 1.448e-10 -> 5.676e-11, |dz| 1.15e-05, dDelta -1.076e-06, lam 1, Delta's gain 2.77e+07, gain |F| 1.57e-03, 8.1 s (J and solves 8 s), Delta 1.660501830044983027238865283302696405634
+  it 2 starts 18:28:25 UTC, predicted end 18:28 UTC (8 s)
+  it 2: |F| 5.676e-11 -> 5.954e-18, |dz| 3.72e-09, dDelta -1.835e-09, lam 1, Delta's gain 2.76e+07, gain |F| 1.65e-10, 7.5 s (J and solves 7 s), Delta 1.660501828209616411051860579721126841434
+  it 3 starts 18:28:33 UTC, predicted end 18:28 UTC (8 s)
+  it 3: |F| 5.954e-18 -> 4.785e-28, |dz| 3.34e-14, dDelta -8.238e-15, lam 1, Delta's gain 2.76e+07, gain |F| 1.32e-20, 7.9 s (J and solves 8 s), Delta 1.660501828209608173503366183993855895773
+  end state: qd max |F| 4.785e-28; Delta's first-order bound gain |F| 1.32e-20 (gain 2.76e+07, the last step's Jacobian)
+  the full system (kfreeze 13) at the held solution: max |F| 2.477e-18, first-order dDelta -1.095e-08 (Delta's gain sum |dDelta/dF| 3.45e+16)
+  discretization (bars 1e-25): top harmonic 6.6e-18 relative (n3m); kc+20: |dF| 0.0e+00, gain |dF| 0.0e+00; ks+200: |dF| 0.0e+00, gain |dF| 0.0e+00; steps halved: |dF| 4.3e-63, gain |dF| 1.2e-55: over the 1e-25 bar: theta (M 32): top harmonic 6.6e-18
+  Hamiltonian code check (form A's residual in double-double, a slaved): segment blocks' max |F| 1: a 1.9e-24, p/m/c 4.3e-22; 2: a 3.8e-24, p/m/c 7.7e-22; 3: a 6.0e-24, p/m/c 1.1e-21; 4: a 7.7e-24, p/m/c 1.3e-21
+  converged; Delta 1.660501828209608173503366183993855895773; saved /Users/nathan/Source/choptuik-large-d-raw/I1098-mm5/ladder/D622/jump/jump_s_D622.0000.npz

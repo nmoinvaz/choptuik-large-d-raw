@@ -1,0 +1,19 @@
+release_ls from release_ls_h11_D622.0000.npz: D 622, Delta 1.660501812395454851293247295843711013392, od residual
+    h13 outer 0 (qd Jacobian) starts 18:55:54 UTC
+    h13 outer 0: target |F| 1.99e-37, harmonic-13 step 4.48e-10 (66 s)
+    h13 outer 0 trial lam 1: inner NOT converged in 3 steps (|F| 2.16e-40), target |F| 2.16e-40 against 1.99e-37 (280 s)
+  h13 outer 0: target |F| 1.99e-37 -> 1.99e-37, harmonic-13 step 4.48e-10 (full step's dDelta -3.48e-16), lam 0, Delta 1.660501812395454851293247295843711013392 (280.3 s)
+  h13: the qd inner solve floored above the target residual 1.99e-37; harmonic 13 continues with Jacobian mode qq
+    h13 outer 1 (qq Jacobian) starts 19:00:35 UTC
+    h13 outer 1: target |F| 1.99e-37, harmonic-13 step 4.52e-10 (63 s)
+    h13 outer 1 trial lam 1: inner converged in 4 steps (|F| 1.02e-77), target |F| 7.00e-49 against 1.99e-37 (318 s)
+  h13 outer 1: target |F| 1.99e-37 -> 7.00e-49, harmonic-13 step 4.52e-10 (full step's dDelta -3.67e-16), lam 1, Delta 1.660501812395454483969245335109864099654 (317.9 s)
+    h13 outer 2 (qq Jacobian) starts 19:05:53 UTC, predicted end 19:11 UTC (318 s, the last qq outer step)
+    h13 outer 2: target |F| 7.00e-49, harmonic-13 step 4.53e-19 (64 s)
+    h13 outer 2: target |F| 7.00e-49 is below --tol, but the step's dDelta +3.86e-25 is above --ddelta 1e-25: the step is taken
+    h13 outer 2 trial lam 1: inner converged in 2 steps (|F| 4.43e-77), target |F| 2.80e-71 against 7.00e-49 (203 s)
+  h13 outer 2: target |F| 7.00e-49 -> 2.80e-71, harmonic-13 step 4.53e-19 (full step's dDelta +3.86e-25), lam 1, Delta 1.660501812395454483969245721020726822130 (203.3 s)
+    h13 outer 3 (qq Jacobian) starts 19:09:16 UTC, predicted end 19:12 UTC (203 s, the last qq outer step)
+    h13 outer 3: target |F| 2.80e-71, harmonic-13 step 1.44e-41 (61 s)
+  h13 outer 3: target |F| 2.80e-71, harmonic-13 step 1.44e-41, the step's dDelta +5.86e-48: released
+  the full system: qd check max |F| 5.24e-63; held -> full dDelta -1.581e-08; h13's change -3.673e-16
