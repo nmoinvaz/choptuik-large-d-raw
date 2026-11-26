@@ -17,6 +17,10 @@ HP=${HP:-$HOME/Source/choptuik-fastmul6/hp}
 SITE=${SITE:-$HOME/Source/fastmul6-site}
 PY=${PY:-$HOME/venv-314/bin/python}
 EXTRA=${EXTRA:-}
+# the inner held solves take Newton steps with a fresh Jacobian (INNER_CHORD 0, the path of D 432-622). With chord
+# steps (form_s.py's default from e1cd7a84) D 747's h13 qq inner solve stopped at 1.75e-45 after 10 steps against
+# tol 1e-48, where the chord-free solves of D 519 and 622 reached about 1e-77 in 4
+IC=${INNER_CHORD:-0}
 # the Python commit each record names: COMMIT, else HP's git HEAD (a tarball install has none, so set COMMIT there)
 COMMIT=${COMMIT:-$(git -C $HP rev-parse --short=8 HEAD 2>/dev/null || echo unknown)}
 TOOLS=$(cd "$(dirname "$0")" && pwd)
@@ -32,7 +36,7 @@ JB=$($PY -c "print(','.join(f'{k}:qq' for k in range(13, $KMAX + 1, 2)))")
 mkdir -p $O/jump $O/rls $O/rls13 $O/tail
 {
   date -u "+start %Y-%m-%d %H:%M:%S UTC"
-  echo "D $D, ks $KS, kc $KC, a $A, tail M $MT, kmax $KMAX, threads $T, Python commit $COMMIT"
+  echo "D $D, ks $KS, kc $KC, a $A, tail M $MT, kmax $KMAX, threads $T, Python commit $COMMIT, inner_chord $IC"
 } > $O/run.log
 J=$O/jump/jump_s_D$DF.npz
 if grep -q "^  converged" $O/jump/jump.log 2>/dev/null && [ -s $J ]; then
