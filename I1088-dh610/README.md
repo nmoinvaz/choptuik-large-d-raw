@@ -46,3 +46,6 @@ the Mac, which pushed this folder.
   (`run_rls1000h13.sh`).
 - `L2000/`: D 2000 held at L = 20 from I1088-mac-a/form_s/g2000L20/ on the precision ladder (`run_2000L20.sh`), the
   start of the D 2000 release.
+- `L10000q/`: the restart's first dd step (1.2e-8 -> 1.9e-16 in 5775 s on the loaded machine), stopped by
+  `chord_switch.sh` at 01:42:50 UTC with its state saved (`lastnode_D10000.0000_step0.npz`); continued as out/L10000c
+  (one more dd step, then chord steps with the quad-double residual, 7bf304b1).
