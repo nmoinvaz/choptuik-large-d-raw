@@ -60,3 +60,26 @@ t5: "the scanner changes for every scan that has not started. A scan already run
 "macm3 now runs k_c 119 at D 23.0625 from its own k_c 111 state, regrid about 40 min there. Your lane at the same point becomes the Linux cross-check: same source state, same command, a different build. Run it to the end of the scan and its reading as planned. No secant is needed unless the two scans disagree on the bracket. It keeps yielding to i1088a units."
 - Nothing changes in the lane: regrid, acceptance, scan with `d18_secant.py scan` in rounds of at most 3 processes, reading, then the push of the accepted state and record with their blobs and the post on #1025. **The comparison with macm3's scan** (his state, record and reading, when pushed) is by position: the bracket of the one robust change, the signs at -0.04, -0.02, 0.00, 0.02 and 0.04, the steps, |F| and psi-constraint of the regridded record, and the Delta; I compare them as printed and report any difference, a sign difference first. The two regrids start from the same source state (blob 871f58c2), so a difference in the record's steps, |F| or constraint is a difference of the build, not of the input. Both scans use `d18_secant.py scan` (macm3 on a Mac, mine at 92b9bf53 here), so a difference in ln|det| of the fast float64 blocks (4.5e-4, t5) is expected between builds only if the float64 libraries differ.
 - The yield rule has fired for this lane at 07:21:43 UTC (an `i1088a` unit became active: the regrid's 11 threads and its `timeout` wrapper to nice 19; `i1088a_yield.txt`). The regrid is 2 h 24 min in at 08:19 UTC.
+
+## Regrid result (26 Nov, 05:55:21 to 09:36:18 UTC): ACCEPTED
+`ell_refine.py` (6 threads, nice 10; the yield rule put it at nice 19 from 07:21:43 UTC while an `i1088a` unit was active) exited 0 after **13257 s** (the record's 13255 s); mean sampled CPU 586% (219 samples, `regrid_samples.csv`), peak sampled RSS **3.95 GiB**; 25 numpy RuntimeWarning lines in the log, as in the earlier regrids; MemAvailable stayed above 24 GB, no alert, no array limit at k_c 119.
+- Record `l1kc119dh370d230625.jsonl` (blob **d63c21b6**) and state `sol_l1kc119dh370d230625_D23.0625.npy` (blob **8c0f4474**): k_c 119 at D 23.0625, beside the source (macm3's k_c 111, the same D):
+| | source k_c 111 | result k_c 119 | ratio or shift |
+|---|---|---|---|
+| steps | 3656 | **3916** | ratio 1.0711 |
+| \|F\| | 3.1385588850e-10 | **3.1250462879e-10** | 0.9957 |
+| F_start | 2.4897e-05 | 1.3163e-05 | |
+| psi-constraint | 3.6419e-03 | **2.2703e-03** | ratio 0.6234 |
+| Delta | 1.1761745446 | **1.1761728452** | shift -1.6994e-06 |
+- **Acceptance:** `kc119_syscheck_1025.py` exit 0 (the state's |F| equals the record's, `freeze_from` gives 3916 steps = the record's); `--mutate=F` exit 1, `--mutate=steps` exit 1; `kc111_syscheck_1025.py` on the k_c 119 result exit 1 (refuses it). Source check (05:55:21): k_c 111 check exit 0, controls 1 1, the k_c 119 and k_c 103 checks refuse it. The memory gate passed at once (MemAvailable 28.1 GB); the selftest of `d18_secant.py` repeated at the scan start: exits 0 1 1 1. The scan started **09:36:36 UTC**, 3 processes (round 1: -0.02, 0.00, 0.02).
+
+### Regrid predictions scorecard (mine, registered before the run)
+| prediction | result |
+|---|---|
+| source accepted, controls 1 1, refused by the k_c 119 and k_c 103 checks (92%); regrid accepted (85%) | right; right |
+| steps about 3941 (within 30: 55%; within 100: 90%) | right (3916: 25 off) |
+| \|F\| below 1e-9 (92%); between 2.5e-10 and 4.5e-10 (70%) | right; right (3.13e-10) |
+| psi-constraint about 2.4e-3, within (1.8e-3, 3.2e-3) (65%) | right (2.27e-3) |
+| Delta shift between -1e-5 and -5e-7 (70%) | right (-1.70e-6) |
+| regrid wall 11000 to 21000 s (60%) | right (13257 s) |
+| peak RSS of the regrid below 5 GiB (85%) | right (3.95 GiB) |
