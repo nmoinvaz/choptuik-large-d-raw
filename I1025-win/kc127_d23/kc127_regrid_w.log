@@ -1,0 +1,8 @@
+== 2026-11-26 10:47:36 kc127d23_regrid_driver_1025.py: the k_c 127 regrid at D 23.0 from macm3's accepted k_c 119 D 23.0 state; checking pins
+== 2026-11-26 10:47:36 pins ok (the inputs of C:/Users/nathan/Source/kc127d23_1025/inputs, macm3's k_c 119 D 23.0 files, worktree 48c36355 with solver code = 505d8399 and ell_delta/ell_refine = 48c36355); python C:/Users/nathan/Source/venv-md510/Scripts/python.exe
+== 2026-11-26 10:47:36 selftests: kc127_syscheck exit 0, kc119_syscheck exit 0, kc111_syscheck exit 0 (0 wanted each)
+== 2026-11-26 10:47:37 ell_delta.lam0_at(23.0) = 2.0992182200, as macm3's
+== 2026-11-26 10:47:37 alert-only memory watcher started as its own process, pid 4720 (kills nothing); sampler pid 25192
+== 2026-11-26 10:47:37 keep-awake helper started as its own process, pid 26264: SetThreadExecutionState(ES_CONTINUOUS | ES_SYSTEM_REQUIRED) until this driver (pid 26384) ends; power plan untouched; kills nothing
+== 2026-11-26 10:47:57 the source: kc119 check exit 0 (0 wanted), --mutate=F 1, --mutate=steps 1 (1 wanted each), kc111 check 1 and kc127 check 1 (1 wanted each: they refuse the source); 21 s
+== 2026-11-26 10:47:57 regrid: started pid 1652: C:/Users/nathan/Source/venv-md510/Scripts/python.exe -u ell_refine.py l1kc119macm3d23 119 l1kc127wind23 127 1 23.0 2.0992182200 --kappa 0.7 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma > C:/Users/nathan/Source/kc127d23_1025/I1025-win/kc127_d23/rows/regrid_raw.log

@@ -103,9 +103,16 @@ The samplers (`rows/regrid_samples.csv`, `rows/scan_samples.csv`, `rows/secant_s
 
 ## Status
 
-Not started: this README is pushed first; the chain starts right after the push.
+**Step 1, the source, PASSED 2026-11-26 10:47:57 UTC. Steps 2 and 3, the regrid, RUNNING since 10:47:57 UTC.** README first 1d35e042f (pushed 10:47:19 UTC, before the start); chain started 10:47:36 UTC through `Win32_Process.Create` of `conhost.exe --headless cmd.exe /c go_kc127d23_1025.cmd`. The k_c 87 D 22.875 secant was pushed (557ea8ee3) and posted (#1025 comment 7189716601) first.
 
-Pushed 2026-11-26 10:47:19 UTC.
+- **Chain** (`rows/launcher_pid.txt`: 24572): conhost --headless 24572 <- cmd 4428 <- regrid driver launcher 18668 and driver 26384 <- sampler 25192, alert-only watcher 4720, keep-awake helper 26264, and the regrid process 1652 (worker 14396). The python and powershell processes are BelowNormal.
+- **Session check** (`session_check_regrid.txt`, exit 0): no `claude` in any chain of the run, no Windows Terminal / OpenConsole / wt, a headless conhost in the chain.
+- **Step 1, the source** (10:47:36 to 10:47:57 UTC, 21 s): the pins matched; the selftests of the three checks exited 0; ell_delta.lam0_at(23.0) = 2.0992182200; the source checks were as ordered: the k_c 119 check exit 0 on the source, `--mutate=F` and `--mutate=steps` exit 1, the k_c 111 check exit 1 and the k_c 127 check exit 1 (they refuse the source; `source_kc*_syscheck*.txt`).
+- **Step 2, the regrid:** pid 1652 started 10:47:57 UTC: `ell_refine.py l1kc119macm3d23 119 l1kc127wind23 127 1 23.0 2.0992182200 --kappa 0.7 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma`, cwd the worktree's `solver/matter`, 4 threads, BelowNormal, cap 43200 s by the exact pid; the driver sends t5 one hc at 21600 s (16:48 UTC) if it still runs.
+- **Machine at the start:** the other project's I114 `convergence.py` jobs run beside it, not touched.
+- **ETA** (the estimates above counted from 10:47:57 UTC): the regrid ends about 14:40 to 20:50 UTC (central about 17:10 UTC); the scan then starts by itself about 71 s later.
+
+Pushed 2026-11-26 10:48:19 UTC.
 
 ## Result
 
