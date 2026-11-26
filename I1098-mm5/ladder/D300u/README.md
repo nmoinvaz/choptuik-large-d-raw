@@ -19,3 +19,19 @@ Note, from the logs when this was written: 1.678171015400871495985642658114 is t
 will differ from that number by more than 1e-23. The comparison below is made against the Moebius tail's final value as well, both quoted.
 
 Reported: each harmonic's change and the final Delta against both numbers (by script from the logs' digits).
+
+## Results (2026-11-26 17:08 UTC): D300u ended 17:07 UTC
+
+`tail/rls.log`, by script from the log's digits. h15 -7.1514e-17 (277.7 s), h17 -3.6311e-19 (217.9 s), h19 +1.6278e-21 (228.9 s), h21 +1.5418e-23 (172.7 s) (the Moebius run: -7.1514e-17, -3.6311e-19, +1.6278e-21, +1.4486e-23);
+**h23, h25, h27, h29 released at outer 0 with pending dDelta -1.19e-26, -1.24e-26, -1.33e-26, -1.58e-27** (no turn, no floor; the Moebius M 32 run's h23 had -3.89e-22 and an inner floor 1.36e-42); h31: step -3.0805e-26 (1188 s), then released
+(pending -8.10e-26). Total -7.18754e-17. **Final Delta 1.678171015400871495985658036082857343308.**
+
+| comparison | difference | bar |
+|---|---|---|
+| minus the Moebius tail's value after h19 (the bar's number, 1.678171015400871495985642658114) | +1.5378e-23 | within 1e-23: no (that number lacks h21's +1.4486e-23) |
+| minus the Moebius tail as stopped, after h21 (1.678171015400871495985657143659770710284) | **+8.9242e-25** | within 1e-23: **yes** |
+| minus the old kfree300 tail (1.678171015400871524283476784) | **-2.8298e-17** | near it: **no** |
+
+Verdict (the bars as written): the final Delta is not near the old tail's value, so the horizons do not differ at high harmonics; it lies 8.9e-25 from the Moebius tail's value at the point where that run was stopped (h21), within 1e-23, and
+1.54e-23 from the number the bar quotes, which was the Moebius value after h19, before h21's +1.45e-23 step. Moebius (a 8, ks 600) and u (ks 506) agree to 9e-25 through h21 on fastmul6, and the old kernel's total (-4.34487e-17) differs from both by 2.83e-17:
+the old tail's gap is the old kernel's (dd 1/k and the dd-stored d/dtheta matrices), not the horizon's. The u horizon has no turn at h23-h31 at M 32.
