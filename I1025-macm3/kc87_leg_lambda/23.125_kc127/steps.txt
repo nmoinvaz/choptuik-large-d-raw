@@ -1,1 +1,17 @@
 2026-11-26 16:17:42 UTC accept (legpoint127.sh): kc127 exit 0, controls 1 1, kc119 1, kc111 1
+2026-11-26 16:17:46 UTC scan: D 23.125 (loadavg { 1.62 1.92 1.94 }, free memory 86%, 15.7 GiB available, disk 35Gi free)
+2026-11-26 16:17:46 UTC inputs pinned: state e1dccb3c and record 58d3b080 from raw 9a6827edf (pins.txt); the scanner d18_secant.py eb1396ad (worktree 92b9bf53); kc87_syscheck 6df5d960, kc79_syscheck 29dce7ea, read_lower 89309d3c, d185_scan_read 7c9d400f, repeat_check aaf598a9
+2026-11-26 16:17:47 UTC worktree 92b9bf53 (dss_ell, ell_ddm, ell_dd, ddnp equal 505d8399's), clean outside solver/matter/data; Python 3.14.3, multidouble isa neon
+2026-11-26 16:17:47 UTC memory before the scan: about 15.7 GiB available (free+inactive+speculative+purgeable), 86% free by memory_pressure; 2 processes for 6 values (the k_c 87 scan of D 19.75 with 4 processes: 4.07, 2.62, 2.52, 2.51 GB peak RSS, available 17.6 down to 10.0 GiB), gate 10 GiB
+2026-11-26 16:17:47 UTC scan starts: D 23.125, 6 values (-0.04 -0.04 -0.03 -0.05 -0.02 -0.06) on 2 processes of 1 thread, nice 15, round-robin (a process runs its values one after another); the first -0.04 on process 0, the repeat on process 1; state sol_l1kc127Lmacm3_D23.125000.npy e1dccb3c, record 58d3b080; alert watcher on (hc: /Users/nathan/.local/bin/hc)
+2026-11-26 16:17:49 UTC proc 0 lambda -0.04,-0.03,-0.02: capped_run child pid 47500 (cap 28800 s)
+2026-11-26 16:17:51 UTC proc 1 lambda -0.04,-0.05,-0.06: capped_run child pid 47531 (cap 28800 s)
+2026-11-26 16:56:09 UTC proc 0 (lambda -0.04,-0.03,-0.02) exit 0
+2026-11-26 16:56:11 UTC proc 1 (lambda -0.04,-0.05,-0.06) exit 0
+6 evaluations, 6 noise-robust
+   2 D 23.125 k_c 127: |F| 2.9774808995e-10 (record 2.9774808995e-10), steps 4182 (record 4182): the record system
+2026-11-26 16:56:11 UTC read_lower selftest exit 0 (0 wanted); mutations shift exit 1, round2 exit 1 (1 wanted each)
+2026-11-26 16:56:11 UTC read_lower.py read the window (reading in read_lower.txt)
+2026-11-26 16:56:11 UTC repeat_check selftest exit 0 (0 wanted)
+2026-11-26 16:56:11 UTC repeat_check.py on the merged scan exit 0 (0 agree, 1 disagree, 2 no repeat)
+2026-11-26 16:56:11 UTC scan done
