@@ -17,5 +17,5 @@ Stages (`run.log`, each log and state in its folder): `jump/` (the held solve at
 
 - The jump converges, and the ks it settled on is logged.
 - h5..h13 are each released, and the tail falls.
-- Stop and report on any inner solve that does not converge, or an outer step 3x its harmonic's first.
+- Stop and report when a qq inner solve does not converge, when a harmonic's line search fails at every trial (D 432's u tail), or when an outer step is 3x its harmonic's first. A qd inner floor that hands over to qq is logged, not stopped (amended 2026-11-26 19:01 UTC, coordinator's order; the order first read: any inner solve that does not converge).
 - Reported: the final Delta, each stage's time and the ks used.

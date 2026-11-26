@@ -17,7 +17,7 @@ Stages (`run.log`, each log and state in its folder): `jump/`, `rls/` (h5..h11 t
 
 - The jump converges and the ks gate passes (the ks it settled on is logged). h5..h13 are each released.
 - The tail falls from h15 by about 1e2 or more per harmonic, h21's change is at most about 1e-23, and h23 is released with a pending dDelta at most about 1e-26: no turn.
-- Stop and report on any inner solve that does not converge, or an outer step 3x its harmonic's first.
+- Stop and report when a qq inner solve does not converge, when a harmonic's line search fails at every trial (D 432's u tail), or when an outer step is 3x its harmonic's first. A qd inner floor that hands over to qq is logged, not stopped (amended 2026-11-26 19:01 UTC, coordinator's order; the order first read: any inner solve that does not converge).
 - Reported: the final Delta, each stage's time, the ks used; each point is pushed at its end. Times from `date -u`.
 
 ## Stopped 15 s after the start (2026-11-26 18:27:45 UTC, coordinator's amendment)
