@@ -31,3 +31,7 @@ D 2000's tail showed the harmonics past 21 no longer matter (h21 +2.07e-24, h23 
 4. **Exception: if h23's release takes a step (pending dDelta above 1e-25), or |c21/c19| (h21's change over h19's) is above 0.05, the run is not killed: h27 runs, and it is reported.**
 
 Reported: h21, h23 and h25's changes or pendings, and the k* result. The final Delta of this point is the state at h25 (the h27..h31 harmonics are zero, as in a kmax-25 run).
+
+### The kmax rule as a check at h23 (2026-11-26 22:23 UTC, coordinator's order)
+
+At h23's release, `python3 tools3/kmax_rule.py D2231/tail/release_ls.jsonl` (blob 196f12a553edce9651fef58ef90353f3c7fb49b4, checked on D 747, D 622 and D 360m48: exit 0; with a strict `--rmax` and on a log cut before h23 it exits 2 and 1) is run as a check. D 2231's plan stays: **stop after h25 either way**, as the first point above D 2000. A non-zero verdict at h23 is reported.
