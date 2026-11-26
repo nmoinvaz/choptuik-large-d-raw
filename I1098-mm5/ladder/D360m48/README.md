@@ -22,3 +22,8 @@ Detached, 6 threads, from the ladder folder; Python 478e9d86 (HP's HEAD, the com
 - The tail falls as at D 432 (h15 -4.5351e-17, h17 -2.4908e-19, h19 +8.0779e-22, h21 +8.8627e-24, h23 pending +2.24e-28), with no turn at h23.
 - Stop and report when a qq inner solve does not converge, when a harmonic's line search fails at every trial, or when an outer step is 3x its harmonic's first. A qd inner floor that hands over to qq is logged, not stopped.
 - Reported: both shifts (the h13 re-converge and the final against dh610's M 32), pushed at the end. Times from `date -u`.
+
+### Refinement of the stop rule for resampled states (2026-11-26 21:09 UTC, coordinator's order)
+
+A qq inner floor at h13 outer 0 right after an M resample (the first large correction, as at D300m48: floor 9.90e-31 against 2.68e-17, then outer 1 converged to 2.11e-64) is logged, not stopped. **A floor above 1e-48 at any later outer step stops the run.**
+Here: h13 outer 0 (21:02:22 UTC): trial lam 1 "inner floor in 2 steps (|F| 1.99e-31), target |F| 1.99e-31 against 1.05e-17 (381 s)", the step accepted (full-step dDelta -1.77e-20); logged, run left going. The refinement applies to the later points too (the ladder README).

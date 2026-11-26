@@ -52,3 +52,7 @@ Two more points on the Moebius horizon, `tools/ladder_point2.sh` with KSBAR 1e-6
 ## Rule for the later points (2026-11-26 20:08 UTC, coordinator's order)
 
 Every ladder point started on this machine from now on runs with `--inner_chord 0` (through `EXTRA`), unless the coordinator says otherwise: the Python of f398e829 and d40a9c62 defaults to `inner_chord 1`, whose chord steps floored D 747's h13 qq inner solve at 1.75e-45 (`D747/README.md`). It is written in each point's README.
+
+## Stop rule for resampled states (2026-11-26 21:09 UTC, coordinator's order)
+
+A qq inner floor at h13 outer 0 right after an M resample (the first large correction, as at D300m48 and D360m48) is logged, not stopped. A floor above 1e-48 at any later outer step stops the run. The rest of the amended rule stands (a qq inner solve that does not converge, a line search failing at every trial, an outer step 3x its harmonic's first).
