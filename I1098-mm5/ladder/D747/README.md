@@ -22,5 +22,5 @@ Stages (`run.log`, each log and state in its folder): `jump/`, `rls/` (h5..h11 t
 
 ## Stopped 15 s after the start (2026-11-26 18:27:45 UTC, coordinator's amendment)
 
-Started 18:27:30 UTC together with D 622 ( 49404), and stopped at 18:27:45 UTC by SIGTERM to the wrapper 49404 and the timeout 49434 (python 49437) on the coordinator's amendment (my launch crossed it): "start D 622 as sent, but NOT D 747. Its 6 threads take the M 64 rerun at D 1000 instead. D 747 goes back to the queue."
-It was in its first jump, ks 1138, with no result; the partial files are in . The bars above stand for the later run.
+Started 18:27:30 UTC together with D 622 (wrapper pid 49404), and stopped at 18:27:45 UTC by SIGTERM to the wrapper 49404 and the timeout 49434 (python 49437) on the coordinator's amendment, which my launch crossed: "start D 622 as sent, but NOT D 747. Its 6 threads take the M 64 rerun at D 1000 instead. D 747 goes back to the queue."
+It was in its first jump, ks 1138, with no result; the partial files are in `attempt0_stopped_18_27/`. The bars above stand for the later run.
