@@ -30,3 +30,16 @@ step 3x past the first one's time, the 4 h timeout. Expect about 1-2 h.
         --jac_by 23:qq,25:qq,27:qq --res od --tol 1e-48 --tol_h 1e-44 --threads 9 --outer 6 --commit f50707a8 > rls.log
 
 Delta's change per harmonic is computed by `diff_delta.py` on the log's digits (mpmath), never by hand.
+
+## Stopped (2026-11-26 12:17:45 UTC) with h23 not released at M 64
+
+Stopped by hand, with SIGTERM to the `timeout` pid 24957 (python 24958), after 35 min 40 s, on the coordinator's order. Started 11:42:03 UTC by the queue
+script (`queue.txt`: input blob 2f100cd0b5f271ea82227b7701ab75b78a786b46, resample exit 0, first log line `hpkernel /Users/nathan/Source/fastmul4-site/hpkernel/__init__.py
+HP_HORIZON_RELAXED 1`).
+
+- **The M 48 -> 64 shift at D 1000 is +7.01281e-22** (script on the log's digits: Delta after h23 outer 0, 1.654240854145891722526809527864182415828, minus the M 48
+  h23 Delta 1.654240854145891722526108246523219277594), after h23 outer 0 (harmonic-23 step 8.76e-18, target |F| 1.38e-21 -> 6.31e-30, the inner solve at its floor in 2 steps at 6.31e-30,
+  590.0 s). That lies between the bar's 1e-22 (M 48 suffices) and 1e-20 (M 80 next).
+- **h23 is not released at M 64.** Outer 1 (harmonic-23 step 2.11e-14, target |F| 6.31e-30): the inner solve stalls near 1.2e-31 to 1.4e-31 whatever lam is
+  (lam 1: 'NOT converged in 3 steps (|F| 1.17e-31)', 846 s; lam 0.5: 'NOT converged in 3 steps (|F| 1.39e-31)', 1483 s), unlike M 32's floor, which fell as lam^4. Each trial took about 640 s.
+  h25 and h27 were not reached. The exit code of the killed run is not meaningful.
