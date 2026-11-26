@@ -55,3 +55,44 @@ Acceptance: about 1 to 5 min (starts at once). Scan: 3 single-thread processes a
 - 2026-11-26 06:46:37 UTC: step logged (this entry).
 - 2026-11-26 09:48:43 UTC: **round 1 landed (3 of 8 evaluations; PARTIAL reading, `read_lower.py` on a scratch copy of the three files, not the driver's final reading):** hybrid signs **-0.08 +, 0.08 -, 0.10 -**, all noise-robust, the float64 sign equals the hybrid at all three; ln|det| -0.08 -3564.1702, 0.08 -3582.5805, 0.10 -3584.3264; points 9236 to 9278 s (three processes); peak RSS so far 2.56 to 2.77 GiB (still growing). **No robust change in the low window (one point so far) and none in the high window (0.08, 0.10 both -).** The sign differs between -0.08 (+) and 0.08 (-), across the unscanned gap that holds macm3's threshold root near +0.040 (a sign difference across the gap, not a located root; its printed orientation here is '+ to -', not compared across states). Pending: 0.12, -0.10, -0.06 (round 2), -0.04 and the repeat of -0.06 (round 3). `yield.log` is empty (no i1088a unit has been active).
 - 2026-11-26 11:51:45 UTC: **round 2 landed (6 of 8 evaluations; PARTIAL, from the driver's files, no reader run on the whole):** hybrid signs **-0.10 +, -0.08 +, -0.06 + | 0.08 -, 0.10 -, 0.12 -**, all six noise-robust, the float64 sign equals the hybrid at all six; ln|det| -0.10 -3561.8584, -0.08 -3564.1702, -0.06 -3566.5098, 0.08 -3582.5805, 0.10 -3584.3264, 0.12 -3586.1948 (falling by -2.31 to -2.34 per 0.02 below and -1.75, -1.87 per 0.02 above: smooth, no dip); points 9112 to 9278 s. **No robust change in the low window so far (three + points) and none in the high window (three - points).** The sign changes once across the unscanned gap (-0.06 +, 0.08 -). Pending: -0.04 and the repeat of -0.06 (round 3, two processes, expected end about 13:40 UTC). `yield.log` is empty.
+
+
+## Result (2026-11-26 13:26:43 UTC)
+**No robust change in either scanned window of the k_c 119 state at D 23.0, and no second root in -0.10 to 0.12.** `read_lower.py` (`read_lower.txt`, three reads): **low window -0.10 to -0.04: hybrid signs -0.10+ -0.08+ -0.06+ -0.04+, robust changes 0; high window 0.08 to 0.12: 0.08- 0.10- 0.12-, robust changes 0**; all 8 evaluations (7 grid points and the repeat of -0.06) are noise-robust, the float64 sign equals the hybrid at all of them, no ln|det| minimum without a sign change in either window; every process printed the record system (|F| 3.2180583182e-10, 3914 steps = the record's); `read_lower.py` selftest exit 0 and its mutations `shift` and `round2` exit 1; **the repeat of -0.06 (process 2 against process 1) is bit-identical** in every field but its wall time and process (hybrid +, ln|det| -3566.5098298916, float64 +, noise [1.0, 1.0]), `repeat_check.py` PASS. `SCAN_DONE.txt` 13:24:50 UTC.
+**The whole-window read of my 8 points** brackets the unscanned gap: robust change (-0.040, 0.080), '+ to -', det-linear 0.080000, range [-0.037578, 0.080000]: **a sign difference across the 0.12-wide gap, not a located root** (the det-linear estimate sits at the edge because a straight line through two ln|det| values 0.12 apart says nothing about the position). The gap holds macm3's threshold root.
+**With macm3's points** (his scan, `I1025-macm3/kc87_leg_lambda/23.0_kc119/scan/`, raw origin/main 0f2e34391, blobs ecc16185 and ebcec073 in `macm3_blobs.txt`, copies in `macm3_scan/`; his 6 evaluations: -0.02, 0.00, 0.02, 0.04 twice, 0.06; his reading in `macm3_scan/macm3_read_lower.txt`) the 12 points of -0.10 to 0.12 read (`read_lower_with_macm3.txt`, `combined/`): hybrid signs -0.10+ -0.08+ -0.06+ -0.04+ -0.02+ 0.00+ 0.02+ 0.04+ 0.06- 0.08- 0.10- 0.12-; **one robust change, bracket (0.040, 0.060), '+ to -', det-linear 0.046539, estimator range [0.040232, 0.046539]** (macm3's point 0.04 has float64 -, hybrid +; both his repeat of 0.04 and my repeat of -0.06 agree); no second root at the 0.02 grid of -0.10 to 0.12, no ln|det| minimum without a sign change.
+
+| lambda | hybrid sign | ln\|det\| (hybrid) | float64 sign | point wall (s) |
+|---|---|---|---|---|
+| -0.10 | + | -3561.8584 | + | 9142 |
+| -0.08 | + | -3564.1702 | + | 9278 |
+| -0.06 | + | -3566.5098 | + | 5605 |
+| -0.06 | + | -3566.5098 | + | 9112 |
+| -0.04 | + | -3568.8895 | + | 5606 |
+| +0.08 | - | -3582.5805 | - | 9254 |
+| +0.10 | - | -3584.3264 | - | 9236 |
+| +0.12 | - | -3586.1948 | - | 9155 |
+
+| lambda | -0.10 | -0.08 | -0.06 | -0.04 | -0.02 | +0.00 | +0.02 | +0.04 | +0.06 | +0.08 | +0.10 | +0.12 |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| hybrid sign | + | + | + | + | + | + | + | + | - | - | - | - |
+| ln\|det\| | -3561.86 | -3564.17 | -3566.51 | -3568.89 | -3571.33 | -3573.89 | -3576.72 | -3581.86 | -3581.14 | -3582.58 | -3584.33 | -3586.19 |
+| scan | mine | mine | mine | mine | macm3's | macm3's | macm3's | macm3's | macm3's | mine | mine | mine |
+
+ln|det| per 0.02 (the 12 points): -2.312, -2.340, -2.380, -2.443, -2.556, -2.827, -5.148, +0.722, -1.439, -1.746, -1.868: it falls smoothly, then falls by -5.148 into 0.04 and rises +0.722 at 0.06 (the dip at the root, as at the other k_c), then falls again; no other feature. This root is the threshold root macm3 is refining; its position here is his scan's, 0.046539 (range 0.040232 to 0.046539), +0.0073 from my k_c 111 scan estimate (0.039279; macm3's secant on k_c 111: 0.0355). I give no ruling on k_c convergence (t5's).
+
+**Time and memory.** The scan 06:44:27 to 13:24:50 UTC = 6.67 h (process walls 6:40:21, 6:39:50, 5:06:37): the six points of rounds 1 and 2 took 9112 to 9278 s (three processes on 4 cores), round 3's two points 5605 and 5606 s (two processes). **Peak RSS of a scan process (time -v): 5.09, 5.10 and 5.03 GiB** (macm3's estimate was 7 GiB); the largest total of the three at one sample (once a minute) 12.28 GiB, lowest MemAvailable 15.3 GiB; nothing was killed on memory and there is no `alert.log`. **Yield rule:** no `i1088a` unit was active at any 20 s check, so `yield.log` was never written and no process was reniced (the watcher was tested before the run with a dummy unit).
+
+## Predictions against the result
+| prediction | result |
+|---|---|
+| t5's: no robust change in these 7 values (60%); if one, most likely in (0.06, 0.10) or below -0.06 | **met**: none in the low window (4 points) or the high window (3 points); the only change in the whole read is the threshold root, located by macm3's scan in (0.040, 0.060) |
+| mine: the state accepted here with all controls firing and the k_c 111 check refusing (85%); the four check runs under 5 min (80%) | yes (steps 3914 = the record's); yes, 12 s |
+| every point noise-robust (65%); no robust change in the 7 distinct values (55%); the repeat of -0.06 bit-identical (90%) | yes, 8 of 8; yes; yes |
+| the hybrid signs at -0.04 and 0.08 differ (85%) | yes: + and - |
+| the float64 sign differs from the hybrid at more than half of the points (30%) | no: at none of my 8 (and at macm3's 0.04, in both of his evaluations of it) |
+| each scan point 8000 to 13000 s with three processes (60%); the three rounds end 6 to 9.5 h after the start (65%) | yes (9112 to 9278 s; round 3 faster with two processes, 5605 s); yes, 6.67 h |
+| peak RSS of a scan process 4.5 to 7.5 GiB (70%); lowest MemAvailable above 6 GiB (85%) | yes, 5.03 to 5.10 GiB; yes, 15.3 GiB |
+No miss. **Not known:** anything outside -0.10 to 0.12, and any structure finer than the 0.02 grid between the points (a close pair of roots would show as a ln|det| dip; none is flagged).
+
+- 2026-11-26 13:26:43 UTC: scan ended 13:24:50 UTC; result written (this section); the yield watcher unit is stopped; nothing of mine is running.

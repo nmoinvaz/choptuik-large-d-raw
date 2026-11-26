@@ -1,0 +1,31 @@
+== low window: read_lower.py scan -0.10 -0.04
+points 4 in -0.100--0.040; not noise-robust: none
+hybrid signs: -0.100+ -0.080+ -0.060+ -0.040+
+float64 sign differs from the hybrid sign at: none
+repeated points: [(-0.06, 'agree')]
+robust changes: 0; touching a non-robust point (not counted): none
+ln|det| local minima without a sign change: none
+endpoint signs: + at -0.100, + at -0.040
+(exit 0)
+
+== high window: read_lower.py scan 0.08 0.12
+points 3 in 0.080-0.120; not noise-robust: none
+hybrid signs: 0.080- 0.100- 0.120-
+float64 sign differs from the hybrid sign at: none
+repeated points: [(-0.06, 'agree')]
+robust changes: 0; touching a non-robust point (not counted): none
+ln|det| local minima without a sign change: none
+endpoint signs: - at 0.080, - at 0.120
+(exit 0)
+
+== whole window: read_lower.py scan -0.10 0.12 (brackets the unscanned gap (-0.04, 0.08): a sign difference across it is not a located root)
+points 7 in -0.100-0.120; not noise-robust: none
+hybrid signs: -0.100+ -0.080+ -0.060+ -0.040+ 0.080- 0.100- 0.120-
+float64 sign differs from the hybrid sign at: none
+repeated points: [(-0.06, 'agree')]
+  robust change (-0.040, 0.080), + to -, det-linear 0.080000, range [-0.037578, 0.080000]
+robust changes: 1; touching a non-robust point (not counted): none
+ln|det| local minima without a sign change: none
+endpoint signs: + at -0.100, - at 0.120
+(exit 0)
+repeat check /home/nathan/Source/choptuik-large-d-raw-p4/I1025-dh170/kc119_d23_wide/merged_D23.0.jsonl: lambda [-0.06]: [2] evaluations each, agree -> PASS
