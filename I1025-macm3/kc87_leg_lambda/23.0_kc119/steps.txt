@@ -1,1 +1,17 @@
 2026-11-26 06:30:53 UTC accept (lane119.sh): kc119_syscheck_1025.py exit 0 (0 wanted); controls exit 1 1 (1 wanted); kc111_syscheck on the result exit 1 (1 wanted): D 23 k_c 119: record |F| 3.2079513798e-10, F_start 1.251e-05, steps 3914, constraint 2.139e-03, Delta 1.174324968657, 2273 s; state |F| 3.2079513798e-10, freeze_from steps 3914
+2026-11-26 06:30:57 UTC scan: D 23.0 (loadavg { 2.69 2.41 2.12 }, free memory 86%, 16.6 GiB available, disk 35Gi free)
+2026-11-26 06:30:57 UTC inputs pinned: state 2771cf87 and record 158e3086 from raw 856e47d72 (pins.txt); kc87_syscheck 6df5d960, kc79_syscheck 29dce7ea, d18_hybsign e089207a, read_lower 89309d3c, d185_scan_read 7c9d400f, repeat_check aaf598a9
+2026-11-26 06:30:58 UTC worktree 505d8399, clean outside solver/matter/data; Python 3.14.3, multidouble isa neon
+2026-11-26 06:30:58 UTC memory before the scan: about 16.6 GiB available (free+inactive+speculative+purgeable), 86% free by memory_pressure; 2 processes for 6 values (the k_c 87 scan of D 19.75 with 4 processes: 4.07, 2.62, 2.52, 2.51 GB peak RSS, available 17.6 down to 10.0 GiB), gate 10 GiB
+2026-11-26 06:30:58 UTC scan starts: D 23.0, 6 values (0.04 0.04 0.02 0.06 0.00 -0.02) on 2 processes of 1 thread, nice 15, round-robin (a process runs its values one after another); the first 0.04 on process 0, the repeat on process 1; state sol_l1kc119macm3d23_D23.0000.npy 2771cf87, record 158e3086; alert watcher on (hc: /Users/nathan/.local/bin/hc)
+2026-11-26 06:31:00 UTC proc 0 lambda 0.04,0.02,0.00: capped_run child pid 89134 (cap 28800 s)
+2026-11-26 06:31:02 UTC proc 1 lambda 0.04,0.06,-0.02: capped_run child pid 89253 (cap 28800 s)
+2026-11-26 07:21:10 UTC proc 0 (lambda 0.04,0.02,0.00) exit 0
+2026-11-26 07:21:33 UTC proc 1 (lambda 0.04,0.06,-0.02) exit 0
+6 evaluations, 6 noise-robust
+   2 D 23.0 k_c 119: |F| 3.2079513798e-10 (record 3.2079513798e-10), steps 3914 (record 3914): the record system
+2026-11-26 07:21:33 UTC read_lower selftest exit 0 (0 wanted); mutations shift exit 1, round2 exit 1 (1 wanted each)
+2026-11-26 07:21:33 UTC read_lower.py read the window (reading in read_lower.txt)
+2026-11-26 07:21:33 UTC repeat_check selftest exit 0 (0 wanted)
+2026-11-26 07:21:33 UTC repeat_check.py on the merged scan exit 0 (0 agree, 1 disagree, 2 no repeat)
+2026-11-26 07:21:33 UTC scan done
