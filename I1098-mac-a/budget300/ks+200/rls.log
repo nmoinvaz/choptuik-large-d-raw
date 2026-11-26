@@ -1,0 +1,18 @@
+release_ls from D300_full_ks+200.npz: D 300, Delta 1.678171015400871567732214178493592019810, od residual
+    h13 outer 0 (qd Jacobian) starts 08:44:19 UTC
+    h13 outer 0: target |F| 3.18e-43, harmonic-13 step 7.63e-17 (243 s)
+    h13 outer 0 trial lam 1: inner converged in 3 steps (|F| 6.45e-53), target |F| 6.62e-48 against 3.18e-43 (977 s)
+  h13 outer 0: target |F| 3.18e-43 -> 6.62e-48, harmonic-13 step 7.63e-17 (full step's dDelta -1.73e-23), lam 1, Delta 1.678171015400871567732196873098023328369 (976.7 s)
+    h13 outer 1 (qd Jacobian) starts 09:00:36 UTC, predicted end 09:16 UTC (977 s, the last qd outer step)
+    h13 outer 1: target |F| 6.62e-48, harmonic-13 step 1.65e-17 (215 s)
+    h13 outer 1 trial lam 1: inner converged in 3 steps (|F| 8.15e-55), target |F| 3.60e-48 against 6.62e-48 (979 s)
+  h13 outer 1: target |F| 6.62e-48 -> 3.60e-48, harmonic-13 step 1.65e-17 (full step's dDelta -1.42e-23), lam 1, Delta 1.678171015400871567732182713068899195207 (978.8 s)
+  h13: outer floor stop, the step cut 1.84x (< 10x); harmonic 13 continues with Jacobian mode qq
+    h13 outer 2 (qq Jacobian) starts 09:16:55 UTC
+    h13 outer 2: target |F| 3.60e-48, harmonic-13 step 6.52e-18 (188 s)
+    h13 outer 2 trial lam 1: inner converged in 2 steps (|F| 7.16e-69), target |F| 8.18e-69 against 3.60e-48 (588 s)
+  h13 outer 2: target |F| 3.60e-48 -> 8.18e-69, harmonic-13 step 6.52e-18 (full step's dDelta +5.19e-24), lam 1, Delta 1.678171015400871567732187898927306763821 (588.5 s)
+    h13 outer 3 (qq Jacobian) starts 09:26:43 UTC, predicted end 09:36 UTC (588 s, the last qq outer step)
+    h13 outer 3: target |F| 8.18e-69, harmonic-13 step 3.25e-39 (220 s)
+  h13 outer 3: target |F| 8.18e-69, harmonic-13 step 3.25e-39: released
+  the full system: qd check max |F| 2.25e-53; held -> full dDelta unknown (no held Delta); h13's change -2.628e-23
