@@ -18,3 +18,16 @@ The line search failed at every trial (no step taken, `tail_u/rls.log`), after t
 h15 outer 0 (harmonic step 6.91e-10): lam 1 not converged in 3 steps (|F| 7.88e-39, 554 s), lam 0.5 (9.50e-39, 4 steps, 1117 s), lam 0.25 (1.02e-39, 5 steps, 1927 s), against the target 1.32e-44 (the residual before the step).
 **Coordinator's reading:** #1088 found that the u series loses digits above about D 300, which the Moebius horizon fixed; D 250 and D 300 were just inside u's range, and these failing line searches fit that. Not tested here.
 Kept: `rls/` (the Moebius h5..h13 states; `rls/release_ls_h13_D519.0000.npz` is the input of the next tail) and `tail_u/` (the u-prepared start state and the states of the stages that ended). **No tail Delta for this point from this run.**
+
+## Tail in mode mob: the Moebius horizon at a larger ks (coordinator's order, 2026-11-26 18:03 UTC)
+
+`tools/ladder_tail.sh mob 519 rls/release_ls_h13_D519.0000.npz tail_mob 6` (new `tools/ladder_tail.sh`, raw a9ed0f2f `I1098-mac-a/tools/ladder_tail.sh`, blob 677d4e580122e242f04ff878575df14db758c8d6, verified; the earlier u version is kept as `tools/ladder_tail_v1_2f1c0156.sh`),
+with `variant_state.py` and `resample_m.py` beside it (blobs 19b05a5a, 4de5c317, verified). The Moebius horizon a 8 at M 32 with **ks = ceil(1.5 (D - 2)) + 420 = 1196** (the script's value; the coordinator's order said 1067 for D 432, the script gives 1065 = 645 + 420; D 519: 1196, as ordered),
+the h13 state re-converged and h15..h23 released (kmax 23, qq, od, tol 1e-48, tol_h 1e-44, --ddelta 1e-25, 6 threads, fastmul6, Python 478e9d86). Why: the u series loses digits above about D 300 (#1090), where the u tails of D 432 and D 519 failed their line searches (above);
+the jump's ks+200 residual change was 2.8e-59 (ks 796) at the jump's ks, and each step of 200 in ks cuts it by about 1e10.
+
+### Bars, written before the run (coordinator's order)
+
+- The tail falls as at D 300: h15 about **-7e-17**, h21 about **1e-23**. h23 is released with a pending dDelta of about **1e-26 or less**, and there is **no turn**.
+- Stop and report on any inner solve that does not converge, or an outer step 3x its harmonic's first.
+- Reported: the final Delta, each stage's time and the ks used.

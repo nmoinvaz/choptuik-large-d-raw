@@ -40,3 +40,7 @@ D 432 17:12:50 UTC (`mode.txt`), D 519 when its rls stage ends (its watcher read
 
 Both u tails had failing line searches (D 432 at h17 after 37 min, D 519 at h15 after 40 min; `D432/README.md`, `D519/README.md`). Coordinator's reading: the u series loses digits above about D 300, and D 250 and D 300 were just inside u's range. D 250's u tail is the only completed u tail of the band (`D250/README.md`).
 D300m48 was stopped at 17:58:38 UTC (`D300m48/README.md`). Next: the Moebius horizon at a larger ks, from each point's `rls/release_ls_h13_D<D>.0000.npz`, on the jump agent's command.
+
+## New tails and D 1291 (2026-11-26 18:03 UTC, coordinator's order)
+
+D 432 and D 519: the Moebius horizon at ks 1065 and 1196 (`tools/ladder_tail.sh mob`, `D432/README.md`, `D519/README.md`). D 1291: `tools/ladder_point2.sh` with KSBAR 1e-70 (`D1291/README.md`). 6 threads each; bars in each README.
