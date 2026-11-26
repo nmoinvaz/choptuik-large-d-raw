@@ -33,3 +33,36 @@ Files: `build.log`, `mem_samples.log`, `check.log`, `recip300.log`, `recip1000.l
 
 fastmul7's Python d40a9c62 also defaults to `inner_chord 1`, which floored D 747's h13 qq inner solve (`../ladder/D747/README.md`); D 2231 therefore starts with `EXTRA="--inner_chord 0"` in front (the script, blob 651bb75f, takes the commit from HP's HEAD, so no `--commit`).
 Every later ladder point on this machine also gets `--inner_chord 0` unless the coordinator says otherwise.
+
+## Results (2026-11-26 21:01 UTC)
+
+Build 20:14:37-20:48:32 UTC, maturin exit 0, **2035.12 s real (33.9 min; cargo: 33m 53s)**, peak resident **20,647,624,704 B = 20.65 GB** (`time -l`; max sample 19.59 GB at 20:17:57), swap 0.00M in all 102 samples (`mem_samples.log`), with D 747 and D 1291 running beside it.
+hpkernel: `/Users/nathan/Source/fastmul7-site/hpkernel/__init__.py`; the checks ran 20:48:32-20:59:58 UTC. Exit codes (`exit_codes.txt`): build, zipfile, cp, relaxed_build_check, recip_check D 300 and D 1000, dmat_check D 300 and D 1000, taylor_mp_check D 300 (remainders on and off): all 0; **horizon_mp_check: exit 1 (FAIL)**.
+Lines exactly as printed:
+
+| check | line | verdict |
+|---|---|---|
+| 1. relaxed_build_check (D2000 file, blob 392276089bb4a24974e8359adad661a2a0bb72ba) | `D 2000 ks 2618: qd max\|F\| 2.08e-04; \|F_relaxed - F_naive\| 4.50e-57 (<= 1e-50), control \|F_mut56 - F_naive\| 3.69e-05 (> 1e-40); 14.5 s naive, 3.0 s relaxed: PASS` and `M 64: size_s 1153, horizon block 192 values, finite True: PASS` | PASS |
+| 2. recip_check D 300 | `the two kinds of reciprocals differ at this state by 7.991e-31; step-plan change 0.00e+00 (bar 1e-44) against the control's 1.72e-36 (must exceed 1e-40): PASS` | PASS |
+| 2. recip_check D 1000 | `the two kinds of reciprocals differ at this state by 1.056e-31; step-plan change 0.00e+00 (bar 1e-44) against the control's 5.06e-37 (must exceed 1e-40): PASS` | PASS |
+| 3. dmat_check D 300 | `the remainders move F by 4.92e-35; against -(F(D_dd - S c) - F)/S, S = 65536: 2.564e-40 (5.21e-6 of it); the control (2c) 4.92e-35 (1.0)` / `PASS: the two mechanisms agree to 5.21e-6 (bar 1e-3); the control is off by 1.0 (must exceed the bar)` | PASS |
+| 3. dmat_check D 1000 (dh610's D1000_base) | `the remainders move F by 2.141e-34; against ...: 5.815e-40 (2.72e-6 of it); the control (2c) 2.141e-34 (1.0)` / `PASS: the two mechanisms agree to 2.72e-6 (bar 1e-3); the control is off by 1.0 (must exceed the bar)` | PASS |
+| 4. taylor_mp_check D 300, remainders on | `HP_EXACT_RECIP=1: max \|kernel - mpmath\| 1.096e-124 over 96 values` / `HP_EXACT_RECIP=0: ... 2.356e-31` / `the matrices on both sides: hi + lo + c (the remainders applied)` / `PASS: lane-precision reciprocals 1.1e-124 (bar 1e-60), the control 2.36e-31 (must exceed 1e-40)` | **PASS** (this version of the check applies the remainders on both sides; fastmul6's failed with 3.81e-28) |
+| 4b. taylor_mp_check D 300, HP_EXACT_DMAT=0 | `HP_EXACT_RECIP=1: max \|kernel - mpmath\| 1.24e-124 over 96 values` / `the matrices on both sides: hi + lo` / `PASS: lane-precision reciprocals 1.24e-124 (bar 1e-60), the control 2.36e-31 (must exceed 1e-40)` | PASS |
+| 5. horizon_mp_check (`../ladder/D300u/tail/release_ls_h21_D300.0000.npz --ks_mp 1100 --ks_mob 800 --bar 1e-100 --ctl_mutate 57 --ctl_bar 1e-80`) | see below | **FAIL** |
+
+**horizon_mp_check, exactly as printed:**
+
+```
+mpmath u series to order 1100 at u/sigma = 1.2 (sigma 0.25): last ten terms at most 3.37e-215
+kernel u (ks 506) against mpmath at ks 506: 8.772e-120 (the u recurrence's arithmetic)
+mpmath at ks 506 against ks 1100: 9.718e-108 (u's truncation)
+kernel u (ks 506) against mpmath converged: 9.718e-108 (p, m, c: 9.72e-108, 3.98e-108, 6.58e-111)
+kernel Moebius (a 8, ks 800) against mpmath converged: 4.647e-70 (p, m, c: 9.7e-71, 1.7e-70, 4.65e-70)
+control (m_h + 1e-30 in the kernel only): 4.619e-28
+control (mutate 57, the old split): 1.7e-60 (must exceed 1e-80)
+  FAIL: Moebius against mpmath 4.65e-70 (bar 1e-100), the control 4.62e-28 (must exceed it), the split control 1.7e-60 (must exceed 1e-80); 5 nodes, x_l 0.7
+```
+
+The Moebius values sit 4.647e-70 from mpmath's converged u sum (bar 1e-100); both controls fire (4.62e-28, and the old split 1.7e-60 against its bar 1e-80), as the coordinator expected from dh610's run (4.65e-70, the same digits).
+**D 2231 is not started** (the coordinator's order: if horizon_mp_check fails the same way, wait for the word that follows dh610's ks scan, expected about 21:15-21:30 UTC). Not tested here: that 4.65e-70 is the Moebius series' own truncation at ks 800 against the reference summed to order 1100.
