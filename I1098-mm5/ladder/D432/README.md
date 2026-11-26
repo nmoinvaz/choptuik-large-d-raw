@@ -32,3 +32,23 @@ the jump's ks+200 residual change was 5.8e-59 (ks 665) at the jump's ks, and eac
 - The tail falls as at D 300: h15 about **-7e-17**, h21 about **1e-23**. h23 is released with a pending dDelta of about **1e-26 or less**, and there is **no turn**.
 - Stop and report on any inner solve that does not converge, or an outer step 3x its harmonic's first.
 - Reported: the final Delta, each stage's time and the ks used.
+
+### Result of the Moebius tail (ks 1065; `tail_mob/run.log`: rc 0, start 18:03:11, end 18:22:48 UTC, 1177 s)
+
+By script from `tail_mob/rls.log` and `direct_s.jsonl`. Stage wall times are the gaps between the logged start times:
+
+| stage | change in Delta | wall |
+|---|---|---|
+| h13 (re-converge, ks 1065) | none, pending -2.55e-29, released at outer 0 | 54 s |
+| h15 | -4.5351e-17 (outer 1 pending +7.85e-32) | 342 s |
+| h17 | -2.4908e-19 (outer 1 pending -2.16e-35) | 282 s |
+| h19 | +8.0779e-22 (outer 1 pending -1.73e-33) | 223 s |
+| h21 | +8.8627e-24 (outer 1 pending +4.04e-31) | 220 s |
+| h23 | none, pending **+2.24e-28**, released at outer 0 (harmonic step 2.93e-14) | 55 s |
+
+Total since the Moebius h13 state -4.55993e-17. **Final Delta (the state's `Delta_parts` summed at 60 digits): 1.667761292229811143167435579666094676554** (the h23 pending +2.24e-28 is not in it); ks 1065, a 8, M 32, kc 180.
+State `tail_mob/release_ls_h23_D432.0000.npz`, blob ab66e6241d497e02aab14c06aeeeeaec715e91c7; od solve max |F| 1.69999e-54, qd check 1.69999e-54; Hamiltonian check at the four nodes: p at most 2.7e-22, m 2.8e-22, a 6.4e-23, c 9.4e-21.
+No inner solve failed, no outer step above 3x its harmonic's first, no line-search trial below lam 1 (`tail_mob/rls.log`).
+
+**Bars:** the tail falls (h15 -4.5351e-17, then -2.49e-19, +8.08e-22, +8.86e-24: h21 is the bar's about 1e-23; h15 is not the bar's "about -7e-17", which is D 300's value, and equals the failed u tail's h15, -4.5351e-17, and h17's pending -2.49e-19 equals the u tail's) met;
+h23 released with pending dDelta +2.24e-28, at most 1e-26 (D 300's u: -1.19e-26) met, no turn met. The Moebius ks 1065 horizon's h13-h17 steps are the u tail's, whose line search failed at h17: not investigated here.
