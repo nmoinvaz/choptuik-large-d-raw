@@ -50,6 +50,21 @@ def merged_table(folders):
         out.append("| `%s` | %s (%s evaluations) | %s | %s | %s | %s |" % (f, hd.group(3).replace(" + ", ", "), hd.group(2), hd.group(1).replace(" ", " to "), pts, fmt_changes(ch), pat))
     return "\n".join(out)
 
+
+def parse_sec(path):
+    """-> dict from a secant summary (summarize_secant.py or summarize_point.py) or None"""
+    if not os.path.exists(path):
+        return None
+    t = txt(path)
+    m = re.search(r"status (\S+) \((.*?)\), tol (\S+), evaluations (\d+) \(the two ends included\), run wall (\d+) s", t)
+    b = re.search(r"root bracket \[(\S+), (\S+)\], width (\S+), signs", t)
+    r = re.search(r"det-linear root (\S+?);|det-linear inside the final bracket\) (\S+?);", t) or re.search(r"root \(det-linear inside the final bracket\) (\S+?);", t)
+    root = re.search(r"(?:det-linear root|\(det-linear inside the final bracket\)) (-?[\d.]+)", t).group(1)
+    sr = re.search(r"scan reading: (?:bracket \((\S+), (\S+)\), )?det-linear (\S+), estimator range \[(\S+), (\S+)\]", t)
+    ins = re.search(r"root inside the (?:scan's )?estimator range[^:]*: (True|False)", t)
+    return dict(status=m.group(1), why=m.group(2), nev=int(m.group(4)), wall=int(m.group(5)), lo=float(b.group(1)), hi=float(b.group(2)), width=float(b.group(3)), root=float(root),
+                dl=float(sr.group(3)), rlo=float(sr.group(4)), rhi=float(sr.group(5)), inside=ins.group(1) if ins else "?", text=t)
+
 def roots():
     F, N = {}, {}
     for l in open(HERE + "/roots87.txt"):
@@ -72,7 +87,6 @@ def main():
     c2stop = open(R + "kc87_leg2/c2/leg_STOP.txt").readline().strip()
     # k_c 103
     sc = txt(R + "kc103_d23/score_scan.txt")
-    sec = txt(R + "kc103_d23/secant/secant_summary.txt") if os.path.exists(R + "kc103_d23/secant/secant_summary.txt") else None
     leg = sorted(glob.glob(R + "kc103_leg/ready_D*.txt"))
     P = []
     P.append("**#1025 macm3, k_c 87 scans of D 22.5 to 23.0 (two roots, the newcomer, reading B), part c2's stop, and k_c 103 at D 23.0: regrid, scan, secant refinement; the k_c 103 leg has started (@@T@@).** One comment for the scans since the 12:00 UTC post (7161793986), as ordered (t5, hc ~23:05 UTC: \"Post on #1025 after the secant reading\"). Positions are the reader's printed brackets with the det-linear estimate; the estimator range is a spread over interpolation choices, not an enclosure; the printed orientation is the sign order in that state, and the sign convention differs between states (freeze orientation), so only the places of changes are compared across states.")
@@ -103,10 +117,26 @@ def main():
     m = re.search(r"root k_c 103: bracket \((\S+), (\S+)\), (\S+ to \S+), det-linear (\S+), estimator range \[(\S+), (\S+)\]", sc)
     P.append("**lambda_1 at D 23.0 by k_c** (k_c 87: my scan `23.0`; k_c 95: win2's, ruled by t5, comment 7173193613; k_c 103: this scan):\n\n| k_c | root | bracket and estimator range |\n|---|---|---|\n| 87 | **%s** | (-0.040, -0.020), range [-0.035344, -0.021546] |\n| 95 | **0.015921** | win2: (0.000, 0.020), range [0.002668, 0.015921] |\n| 103 | **%s** (scan, det-linear) | (%s, %s), range [%s, %s] |\n" % ("%.6f" % F[23.0][0], m.group(4), m.group(1), m.group(2), m.group(5), m.group(6)))
     P.append("**Scan (14 evaluations, 4 processes, 66.6 min; `score_scan.py`):**\n```\n" + sc.strip() + "\n```")
-    if sec:
-        P.append("\n**Secant refinement of the bracket (0.020, 0.030)** (`d18_secant.py` a3d90cd5 of wip/ell1-speed 6010e37b, controls as in SPEED_ELL1.md: selftest exit 0, `half`, `norobust`, `nosigncheck` exit 1 each; `--tol=1e-5 --maxev=10`, one process; venv-macm3-1058b stands in for `venv-1025dd`, which is not on this machine, t5 accepted it):\n```\n" + sec.strip() + "\n```")
+    S103 = parse_sec(R + "kc103_d23/secant/secant_summary.txt")
+    S87 = parse_sec(R + "kc_d23_secant/kc87/secant_summary.txt"); S95 = parse_sec(R + "kc_d23_secant/kc95/secant_summary.txt")
+    if S103:
+        P.append("\n**Secant refinement of the k_c 103 bracket (0.020, 0.030)** (`d18_secant.py` a3d90cd5 of wip/ell1-speed 6010e37b, controls as in SPEED_ELL1.md: selftest exit 0, `half`, `norobust`, `nosigncheck` exit 1 each; `--tol=1e-5 --maxev=10`, one process; venv-macm3-1058b stands in for `venv-1025dd`, which is not on this machine, t5 accepted it):\n```\n" + S103["text"].strip() + "\n```")
     else:
-        P.append("\n**Secant refinement of the bracket (0.020, 0.030):** not finished at the time of writing.")
+        P.append("\n**Secant refinement of the k_c 103 bracket (0.020, 0.030):** not finished at the time of writing.")
+    rows3 = []
+    for kc, S_, sc_name in ((87, S87, "my scan `23.0`"), (95, S95, "win2's scan"), (103, S103, "this lane's scan")):
+        if S_:
+            rows3.append((kc, S_, sc_name))
+    if len(rows3) == 3:
+        T3 = ["| k_c | scan det-linear | scan estimator range (a spread) | secant root (det-linear in the final bracket) | final bracket (width) | evaluations, wall | inside the range |", "|---|---|---|---|---|---|---|"]
+        for kc, S_, nm in rows3:
+            T3.append("| %d | %.6f | [%.6f, %.6f] | **%.8f** | [%.8f, %.8f] (%.1e) | %d, %d s | %s |" % (kc, S_["dl"], S_["rlo"], S_["rhi"], S_["root"], S_["lo"], S_["hi"], S_["width"], S_["nev"], S_["wall"], S_["inside"]))
+        st1 = rows3[1][1]["root"] - rows3[0][1]["root"]; st2 = rows3[2][1]["root"] - rows3[1][1]["root"]
+        P.append("\n### lambda_1 at D 23.0 at three k_c (the three-k_c table, t5's order)\n\nSame tool (`d18_secant.py` a3d90cd5), `--tol=1e-5 --maxev=10`, one process per case, pinned by blob (README `kc_d23_secant/`, registered first, raw df6eaf448; k_c 103 in `kc103_d23/`). k_c 87 is my part c2 state (**REDUCED QUALITY**, psi-constraint 1.0496e-2); k_c 95 is win2's accepted state (source lineage reduced quality, k_c 95 constraint 7.67e-3); k_c 103 is my regrid of it (5.03e-3).\n\n" + "\n".join(T3) + "\n\nRefined steps in k_c: 87 to 95 %+.6f, 95 to 103 %+.6f (ratio %.3f); the unrefined det-linear numbers gave %+.6f and %+.6f (ratio %.3f). Arithmetic only, not a result: a geometric tail with the refined ratio would end at %.4f (t5's register: a converged lambda_1 between -0.03 and +0.03)." % (st1, st2, st2 / st1, rows3[1][1]["dl"] - rows3[0][1]["dl"], rows3[2][1]["dl"] - rows3[1][1]["dl"], (rows3[2][1]["dl"] - rows3[1][1]["dl"]) / (rows3[1][1]["dl"] - rows3[0][1]["dl"]), rows3[2][1]["root"] + st2 * (st2 / st1) / (1 - st2 / st1)))
+        for kc, S_, nm in rows3[:2]:
+            P.append("\n**Secant refinement at k_c %d, D 23.0:**\n```\n%s\n```" % (kc, S_["text"].strip()))
+    else:
+        P.append("\n### lambda_1 at D 23.0 at three k_c\n\nThe refinements at k_c 87 and k_c 95 (t5's order) have not both finished at the time of writing.")
     P.append("\n### The k_c 103 leg (t5's order, step 2)\n")
     P.append("Raw `I1025-macm3/kc103_leg/` (README with the registration first, raw 817384bb7). `ell_leap.py` (5816d7b3, worktree edf49057) at k_c 103 from winb's accepted D 22.875 state (raw `I1025-win/kc103_d22875`, blob 28051531) and my D 23.0 state (845e92a5), h 0.0625, to D 23.125, `--tol 1e-12 --fmax 1e-8 --cmax 2e-2 --fold`, guard `leap_guard.py` f1fe7c7c unchanged. Both seeds accepted by the k_c 103 check (controls 1 1) and refused by the k_c 95 and k_c 87 checks. **Started 2026-11-25 23:05:27 UTC** beside the secant run (t5's order). " + (("Points ready: " + ", ".join(os.path.basename(p)[len("ready_D"):-4] for p in leg) + ".") if leg else "No point yet at the time of writing (the first point D 23.0625 is expected in 2000 to 6000 s of the leap, registered).") + " If the guard stops the leg at its first point, that point is scanned (-0.10 to 0.02 by 0.02) and the leg ends there (t5).")
     P.append("\n### Registrations and scoring\nEvery scan's registration (grid, repeat, reading, weights) was written in `kc87_leg_lambda/README.md` before the scan and its log entry scores it; the k_c 103 lane's registration and scoring are in `kc103_d23/README.md` (all met except the regrid wall). The orientation registrations listed in (3) above were wrong; every other registered position or count that the READMEs score is scored there.\n\nChain held (`HOLD_low2.txt`, `HOLD_refine.txt`, `scan_chain.sh` pid 99672); nothing else is running for this issue except the secant refinement and the leap.")

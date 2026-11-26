@@ -1,1 +1,17 @@
 2026-11-25 23:40:19 UTC accept (legpoint103.sh): kc103 exit 0, controls 1 1, kc95 1, kc87 1
+2026-11-25 23:40:24 UTC scan: D 23.0625 (loadavg { 2.79 3.04 3.05 }, free memory 86%, 15.1 GiB available, disk 35Gi free)
+2026-11-25 23:40:24 UTC inputs pinned: state aa7b61a6 and record 3cd84ab0 from raw ff8456227 (pins.txt); kc87_syscheck 6df5d960, kc79_syscheck 29dce7ea, d18_hybsign e089207a, read_lower 89309d3c, d185_scan_read 7c9d400f, repeat_check aaf598a9
+2026-11-25 23:40:24 UTC worktree 505d8399, clean outside solver/matter/data; Python 3.14.3, multidouble isa neon
+2026-11-25 23:40:24 UTC memory before the scan: about 15.1 GiB available (free+inactive+speculative+purgeable), 86% free by memory_pressure; 2 processes for 8 values (the k_c 87 scan of D 19.75 with 4 processes: 4.07, 2.62, 2.52, 2.51 GB peak RSS, available 17.6 down to 10.0 GiB), gate 10 GiB
+2026-11-25 23:40:24 UTC scan starts: D 23.0625, 8 values (-0.04 -0.04 -0.06 -0.02 -0.08 0.00 -0.10 0.02) on 2 processes of 1 thread, nice 15, round-robin (a process runs its values one after another); the first -0.04 on process 0, the repeat on process 1; state sol_l1kc103Lmacm3_D23.062500.npy aa7b61a6, record 3cd84ab0; alert watcher on (hc: /Users/nathan/.local/bin/hc)
+2026-11-25 23:40:26 UTC proc 0 lambda -0.04,-0.06,-0.08,-0.10: capped_run child pid 28417 (cap 28800 s)
+2026-11-25 23:40:28 UTC proc 1 lambda -0.04,-0.02,0.00,0.02: capped_run child pid 28464 (cap 28800 s)
+2026-11-26 00:45:19 UTC proc 1 (lambda -0.04,-0.02,0.00,0.02) exit 0
+2026-11-26 00:45:27 UTC proc 0 (lambda -0.04,-0.06,-0.08,-0.10) exit 0
+8 evaluations, 8 noise-robust
+   2 D 23.0625 k_c 103: |F| 3.2018141804e-10 (record 3.2018141804e-10), steps 3390 (record 3390): the record system
+2026-11-26 00:45:27 UTC read_lower selftest exit 0 (0 wanted); mutations shift exit 1, round2 exit 1 (1 wanted each)
+2026-11-26 00:45:27 UTC read_lower.py read the window (reading in read_lower.txt)
+2026-11-26 00:45:27 UTC repeat_check selftest exit 0 (0 wanted)
+2026-11-26 00:45:27 UTC repeat_check.py on the merged scan exit 0 (0 agree, 1 disagree, 2 no repeat)
+2026-11-26 00:45:27 UTC scan done
