@@ -101,6 +101,17 @@ c30c2766).
   and 10000 (form_s/ks_scan/D10000_converged_step.npz, after its chord step: 6.4e-25), degree 2 in 1/n
   (`form_s_lastnode.py guess OUT --D 50000 --states_s <those three> --xl 0.706965340034678 --mob 124.995 --ks 27918
   --threads 2`, 4f5eaf69, 311 s); horizon block 5.8e-11, the others 2.3e-12 to 1.5e-11 (`guess.log`).
+- `form_s/D100000_checks/`: the checks before D 100000 (bars written 07:16 UTC on 2026-11-26, before any of them ran).
+  (1) Exponent range (`magcheck.py`, the dev-o1 kernel of fe24493a, whose horizon_mob under Ctx::mutate 55 prints each
+  stored series' smallest nonzero and largest |hi part|): at the D 100000 guess (formula ks 55419, a 249.995), every
+  nonzero magnitude of every series and of the node data in [1e-280, 1e280], nothing not finite. Controls, each of
+  which must fire: the state scaled by 1e250 (the high bar or the not-finite count), and ks 4 x 55419 (the low bar or
+  the series' zero counts). First run at the D 2000 solution (`magcheck_D2000.log`): magnitudes 8.8e-129 to 1.0, the
+  residual's 7.0e-25 as the solve's (the hook changes no bit). (2) The dd ks scan of the guess (`ks_scan.py`): ks
+  50300 and 51500 (past n/2 = 49999, before the fast mode's peak at 50198 / (1 - ...) ~ 50198: at least one must differ
+  from the reference by more than 1e-25, the control), 55419 and 60000 within 1e-25 of the reference ks 80000 in
+  every row. (3) After D 50000 converges, its qd ks check of record as D 10000's: ks 27918 and 30000 within 1e-25 of
+  ks 40000, the control ks 25300 must exceed it.
 - `form_s/ks_scan/`: the held residual against the horizon order ks (`ks_scan.py STATE KS,...,KSREF PARTS THREADS`, Mac, 2
   threads). D 10000 at its first dd step's state (I1088-dh610/L10000q), double-double (`D10000_step0_dd.log`): ks 4900
   and 5100 differ from ks 13018 by 2.7e-17 (the fast mode, which enters at order n/2 = 4999, not yet summed), 5300 by
