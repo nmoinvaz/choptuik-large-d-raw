@@ -1,0 +1,14 @@
+scan: 5 evaluations, 5 noise-robust; robust changes 1: (0.110, 0.120) + to - det-linear 0.119211 range [0.114090, 0.119211]
+signs by lambda: 0.10+ 0.11+ 0.12- 0.12- 0.13-
+float64 sign equals the hybrid sign at 3 of 5
+repeat of 0.12 bit-identical (ln, f64_ln, sign): True
+ln|det| by lambda: 0.10:-3605.431 0.11:-3607.331 0.12:-3609.788 0.12:-3609.788 0.13:-3609.095
+secant: status tol (-), tol 1e-05, evaluations 7 (the two ends included), run wall 3403 s
+secant root bracket [0.11797019, 0.11797519], width 5.000e-06, signs [1.0, -1.0], robust [True, True]; det-linear root 0.11797426; Brent's last point 0.11797519
+scan reading: bracket (0.110, 0.120), det-linear 0.119211, estimator range [0.114090, 0.119211]
+secant root inside the scan's estimator range: True; whole final bracket inside: True; root below the scan's det-linear: True
+end lambda 0.11: secant ln -3607.330679 sign +1, scan ln -3607.330679 sign +1, |d ln| 0.000e+00
+end lambda 0.12: secant ln -3609.788395 sign -1, scan ln -3609.788395 sign -1, |d ln| 0.000e+00
+evals: 0.11000000 +1 ln -3607.330679 dln 2.65e-06 robust True 487 s; 0.12000000 -1 ln -3609.788395 dln 6.97e-06 robust True 486 s; 0.11921124 -1 ln -3610.195889 dln 1.19e-05 robust True 485 s; 0.11772778 +1 ln -3611.647672 dln 6.38e-05 robust True 486 s; 0.11800924 -1 ln -3613.630974 dln 4.44e-04 robust True 486 s; 0.11797519 -1 ln -3617.253925 dln 1.69e-02 robust True 486 s; 0.11797019 +1 ln -3615.777369 dln 3.81e-03 robust True 487 s
+dln largest 1.685e-02, mean seconds per evaluation 486
+secant memory: 113 samples, lowest available 12.3 GiB, peak RSS 4.59 GiB
