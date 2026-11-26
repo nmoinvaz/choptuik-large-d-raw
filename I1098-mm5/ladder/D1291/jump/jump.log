@@ -1,0 +1,17 @@
+  states: 0 form A, 2 form S (D 300, 1000)
+guess at D 1291 from 2 states, D 300.0000 .. 1000.0000, degree 1 in 1/n; degree 0 differs by 7.56e-04 (unknowns), 1.43e-02 (Delta)
+  225 Taylor steps; the guess's max |F| per block 1.1e-07 1.5e-07 3.1e-07 5.9e-07 1.1e-06 1.6e-04 4.2e-17
+  p1's harmonics 5-13 at the guess's values (kfreeze 3 with the held offset)
+  ladder stage 0: dd residual, at most 12 steps
+  start: max |F| 1.519e-04, Delta 1.651940980795886693144325363391544669867
+  it 0 starts 18:07:35 UTC
+  it 0: |F| 1.519e-04 -> 2.728e-07, |dz| 2.70e-05, dDelta -2.703e-05, lam 1, Delta's gain 8.11e+02, gain |F| 2.21e-04, 32.9 s (J and solves 32 s), Delta 1.651913946366478568998948832905746007933
+  it 1 starts 18:08:08 UTC, predicted end 18:08 UTC (33 s)
+  it 1: |F| 2.728e-07 -> 3.529e-12, |dz| 6.33e-07, dDelta -5.213e-07, lam 1, Delta's gain 7.08e+02, gain |F| 2.50e-09, 33.7 s (J and solves 33 s), Delta 1.651913425109553410186014729620821658462
+  it 2 starts 18:08:42 UTC, predicted end 18:09 UTC (34 s)
+  it 2: |F| 3.529e-12 -> 1.933e-19, |dz| 1.55e-10, dDelta +1.174e-10, lam 1, Delta's gain 7.07e+02, gain |F| 1.37e-16, 32.0 s (J and solves 31 s), Delta 1.651913425226958092726605139787996750193
+  end state: qd max |F| 1.933e-19; Delta's first-order bound gain |F| 1.37e-16 (gain 7.07e+02, the last step's Jacobian)
+  the full system (kfreeze 13) at the held solution: max |F| 4.746e-14, first-order dDelta +8.524e-09 (Delta's gain sum |dDelta/dF| 1.26e+11)
+  discretization (bars 1e-25): top harmonic 1.5e-18 relative (n4m); kc+20: |dF| 0.0e+00, gain |dF| 0.0e+00; ks+200: |dF| 0.0e+00, gain |dF| 0.0e+00; steps halved: |dF| 3.2e-59, gain |dF| 2.2e-56: over the 1e-25 bar: theta (M 32): top harmonic 1.5e-18
+  Hamiltonian code check (form A's residual in double-double, a slaved): segment blocks' max |F| 1: a 4.2e-26, p/m/c 1.7e-21; 2: a 9.0e-26, p/m/c 2.1e-21; 3: a 1.6e-25, p/m/c 2.6e-21; 4: a 2.4e-25, p/m/c 3.0e-21
+  converged; Delta 1.651913425226958092726605139787996750193; saved /Users/nathan/Source/choptuik-large-d-raw/I1098-mm5/ladder/D1291/jump/jump_s_D1291.0000.npz

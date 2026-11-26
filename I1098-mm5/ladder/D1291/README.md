@@ -35,3 +35,30 @@ Stages (`run.log`, each log and state in its folder): `jump/` (the held solve at
 - Step 3: h23..h31 are each released with a pending dDelta at most about 1e-26, no turn; the difference of its final Delta against the fastmul6 tail's final is recorded and reported (no bar was set for it).
 - Stop rules: stop and report when a qq inner solve does not converge, when a harmonic's line search fails at every trial, or when an outer step is 3x its harmonic's first. A qd inner floor that hands over to qq is logged, not stopped. A qq floor at h13 outer 0 right after an M resample is logged; a floor above 1e-48 at any later outer step stops the run.
 - Reported at each stage's end; times from `date -u`.
+
+## Result of the tail (the run ended 2026-11-26 22:28:17 UTC, rc 0; 18:03:11 - 22:28:17, 15906 s)
+
+By script from `run.log`, `*/rls.log`, `*/release_ls.jsonl` and `tail/direct_s.jsonl`. (The run used `tools/ladder_point2.sh`, blob da887d71, on Python 478e9d86, kernel fastmul6, `inner_chord` not yet in play: the records say 478e9d86.)
+
+- **ks used: 2354** (a 8, kc 220, M 32 stages at ks 2354 and the M 48 tail). The jump loop: ks 1954 (ks+200 |dF| 1.2e-45, qd floor), ks 2154 (1.8e-45), ks 2354 (exact 0.0); converged, Delta 1.651913425226958092726605139787996750193. The octo-double gate by hand, `ksgate/README.md`: ks 2354 -> 2554 **5.29e-71**, ks 2554 -> 2754 **7.44e-74** (bar 1e-70).
+- **Stages (wall):** jump loop 413 s (three jumps); rls h5..h11 4307 s (18:10:05 - 19:21:51); rls13 (h13, M 32) 1755 s (-> 19:51:06; qd Jacobian converged at outer 0 and 1, the qd floor of the smaller points did not occur here; h13's change +2.109e-16); tail (M 48) 9431 s (-> 22:28:17).
+- **Tail** (`tail/rls.log`, h13 re-converged on M 48, then h15..h31; per-harmonic wall in brackets):
+
+| harmonic | change in Delta | pending dDelta at release | wall |
+|---|---|---|---|
+| h13 (M 32 -> 48 re-converge) | **-2.8438e-26** | +3.46e-29 (outer 1) | 1395 s |
+| h15 | -1.9486e-17 | +3.45e-32 | 1621 s |
+| h17 | -1.1002e-19 | -1.90e-36 | 1655 s |
+| h19 | +2.1139e-22 | -3.26e-36 | 1458 s |
+| h21 | +2.7555e-24 | +2.66e-31 | 1446 s |
+| h23 | none | **+2.16e-27** | 371 s |
+| h25 | none | +2.80e-27 | 358 s |
+| h27 | none | +1.84e-27 | 349 s |
+| h29 | none | +2.34e-27 | 378 s |
+| h31 | none | -1.36e-26 | 398 s |
+
+- **Final Delta (the state's `Delta_parts` summed at 60 digits): 1.651913434024554227271949663301812275378** (the pendings of h23-h31 not in it); total -1.95954e-17 from the M 48 start. State `tail/release_ls_h31_D1291.0000.npz`, blob 1afc0d7fcd494a515d342dd8655d456dbcfa66fd; od solve max |F| 1.86918e-52, qd check 1.86918e-52;
+  Hamiltonian check at the four nodes at most: p 3.0e-32, m 3.0e-32, a 2.5e-32, c 1.1e-30.
+- **Bars:** the jump converged and the ks gate passed (ks 2354: 5.29e-71 and 7.44e-74 against 1e-70): yes; h5..h13 each released: yes; the tail falls from h15 by about 1e2 or more per harmonic: h15/h17 = 177, h17/h19 = 520, h19/h21 = 77 (D 622: 176, 391, 83); h21's change 2.76e-24 (at most about 1e-23): met;
+  h23..h29 released with pending +2.16e-27 to +2.80e-27 and no step, h31 with -1.36e-26: no turn. The h13 M 32 -> 48 re-converge: -2.84e-26 (below 1e-25). No qq inner solve failed, no line-search trial below lam 1, no outer step above 3x its harmonic's first.
+- The k* stage (`kstar/`, step 1 of the chain above) started 22:28:22 UTC; its result follows in its own section.
