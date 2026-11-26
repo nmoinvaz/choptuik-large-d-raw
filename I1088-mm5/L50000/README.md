@@ -50,3 +50,38 @@ Predicted times (the coordinator's):
 
 A step more than 50% past its predicted end is reported with the log's last lines. The folder is pushed at each step.
 The Delta - Track C differences below come from `diff_trackc.py` (copied from L20000) on the log's digits, never by hand.
+
+## Results (2026-11-26 13:16 UTC)
+
+The solve: started 06:36:14 UTC, stopped by hand at 13:04:45 UTC (SIGTERM to the `timeout` pid 14770, python 14771) once chord step 1 met the bound, on the coordinator's order; the
+end checks were run by `form_s_lastnode.py checkstate` (checked_by "checkstate") on the saved step state, on the relaxed kernel. Delta - Track C below is by script
+(`diff_trackc.py`, mpmath) from the digits.
+
+| step | max \|F\| | \|dz\| | dDelta | gain | gain x \|F\| (the bound) | time | Delta - Track C |
+|---|---|---|---|---|---|---|---|
+| guess | 7.854e-12 (dd) | | | | | | |
+| dd 0 (fresh J) | 7.854e-12 -> 5.694e-21 | 1.49e-10 | -1.493e-10 | 2.12e11 | 1.21e-9 | 6421.6 s | -8.1731e-10 |
+| dd 1 (fresh J) | 5.694e-21 -> 5.097e-22 (11.2x, the 2-step cap) | 6.11e-13 | -6.112e-13 | 2.14e11 | 1.09e-10 | 6522.1 s | -8.1792e-10 |
+| qd chord 0 (last dd J) | 1.572e-21 (the qd residual of the dd state; start 55 min) -> 1.617e-24 (972x) | 1.59e-14 | +1.590e-14 | 2.14e11 | 3.46e-13 | 3177.2 s | -8.179e-10 |
+| qd chord 1 | 1.617e-24 -> 1.674e-27 (966x) | 9.47e-18 | -9.466e-18 | 2.14e11 | **3.58e-16** | 3166.3 s | **-8.179e-10** |
+
+- Delta: **1.644101238847922219139403432362086469533**; Delta - Track C (1.64410123966582504 +- 1.82e-9, Track C's own error estimate; a held solve against a series fit, not an enclosure): **-8.17903e-10**.
+- The saved step state `lastnode_D50000.0000_step.npz` (step_it 1, qd, step_F 1.674253245297557e-27; gain 213815129674.55933) is the record's state.
+
+End checks (checkstate, 13:04:48-13:15 UTC; `checkstate.log`; `hpkernel` `~/Source/fastmul4-site` (relaxed kernel, kernel recorded in `direct_s.jsonl`), code `~/Source/choptuik-check` = a3888ffe + 9bcfe8ba):
+
+| check | value | bar | verdict |
+|---|---|---|---|
+| octo-double max \|F\| | 1.674e-27 (191 s; the qd value) | | OK |
+| Delta's first-order bound (gain 2.14e11) | 3.58e-16 | 1e-15 | **OK** |
+| kc + 20 | \|dF\| 0, gain \|dF\| 0 | gain \|dF\| <= 1e-15 | OK |
+| ks + 200 | \|dF\| 3.3e-57, gain \|dF\| 7.1e-46 | gain \|dF\| <= 1e-15 | OK |
+| halved Taylor steps | \|dF\| 3.9e-40, gain \|dF\| 8.4e-29 | gain \|dF\| <= 1e-15 | OK |
+| Hamiltonian code check | a rows up to 3.3e-31 | | OK |
+| top theta harmonic (M 32), relative | 3.6e-19 (field mh) | | a size at M 32, not a residual change (D 1000's M 48 test: harmonics beyond h17 move by up to 1e-19) |
+
+- ks 27918 (about 1.4 n at n = 49998... at n/2 = 24999 the fast mode enters the horizon series; ks 27918 is 1.12 n/2): the `ks + 200` tail changes max \|F\| by 3.3e-57 only.
+- The record (`direct_s.jsonl`, checked_by "checkstate", commit 9bcfe8ba, kernel fastmul4) is for the **held** system (harmonics 5-13 at the guess's values), as the earlier L = 20 solves.
+- The kernel was the 1ccd32ab build for the solve (dd and qd residuals, the old reciprocals in dd) and fastmul4 (relaxed horizon) for the end checks; the 1e-15 bound holds at this gain either way (coordinator).
+- The stop of the solve was by hand after chord step 1's line, so the process never ran its own od check: the exit code of the solve is not meaningful.
+- Files: `lastnode.log`, `lastnode_solvestate.jsonl`, `direct_s.jsonl`, `checkstate.log`, `lastnode_checkstate.jsonl`, `lastnode_D50000.0000_step.npz`, `lastnode_D50000.0000_J.npz`, `guess_D50000.0000.npz`, `inputs/`.
