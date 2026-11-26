@@ -103,19 +103,57 @@ The samplers (`rows/regrid_samples.csv`, `rows/scan_samples.csv`, `rows/secant_s
 
 ## Status
 
-**Step 1, the source, PASSED 2026-11-26 10:47:57 UTC. Steps 2 and 3, the regrid, RUNNING since 10:47:57 UTC.** README first 1d35e042f (pushed 10:47:19 UTC, before the start); chain started 10:47:36 UTC through `Win32_Process.Create` of `conhost.exe --headless cmd.exe /c go_kc127d23_1025.cmd`. The k_c 87 D 22.875 secant was pushed (557ea8ee3) and posted (#1025 comment 7189716601) first.
+**Step 1, the source, PASSED 2026-11-26 10:47:57 UTC. Steps 2 and 3, the regrid, ACCEPTED 2026-11-26 13:38:44 UTC. Step 4a, the scan, RUNNING since 13:39:57 UTC.**** README first 1d35e042f (pushed 10:47:19 UTC, before the start); chain started 10:47:36 UTC through `Win32_Process.Create` of `conhost.exe --headless cmd.exe /c go_kc127d23_1025.cmd`. The k_c 87 D 22.875 secant was pushed (557ea8ee3) and posted (#1025 comment 7189716601) first.
 
 - **Chain** (`rows/launcher_pid.txt`: 24572): conhost --headless 24572 <- cmd 4428 <- regrid driver launcher 18668 and driver 26384 <- sampler 25192, alert-only watcher 4720, keep-awake helper 26264, and the regrid process 1652 (worker 14396). The python and powershell processes are BelowNormal.
 - **Session check** (`session_check_regrid.txt`, exit 0): no `claude` in any chain of the run, no Windows Terminal / OpenConsole / wt, a headless conhost in the chain.
 - **Step 1, the source** (10:47:36 to 10:47:57 UTC, 21 s): the pins matched; the selftests of the three checks exited 0; ell_delta.lam0_at(23.0) = 2.0992182200; the source checks were as ordered: the k_c 119 check exit 0 on the source, `--mutate=F` and `--mutate=steps` exit 1, the k_c 111 check exit 1 and the k_c 127 check exit 1 (they refuse the source; `source_kc*_syscheck*.txt`).
-- **Step 2, the regrid:** pid 1652 started 10:47:57 UTC: `ell_refine.py l1kc119macm3d23 119 l1kc127wind23 127 1 23.0 2.0992182200 --kappa 0.7 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma`, cwd the worktree's `solver/matter`, 4 threads, BelowNormal, cap 43200 s by the exact pid; the driver sends t5 one hc at 21600 s (16:48 UTC) if it still runs.
+- **Step 2, the regrid:** pid 1652 ran 10:47:57 to 13:38:28 UTC (exit 0, 10230 s): `ell_refine.py l1kc119macm3d23 119 l1kc127wind23 127 1 23.0 2.0992182200 --kappa 0.7 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma`, cwd the worktree's `solver/matter`, 4 threads, BelowNormal, cap 43200 s by the exact pid; the driver sends t5 one hc at 21600 s (16:48 UTC) if it still runs.
 - **Machine at the start:** the other project's I114 `convergence.py` jobs run beside it, not touched.
 - **Sampler incident (10:47 to 10:49 UTC), no effect on the run:** the regrid driver as run (`kc127d23_regrid_driver_1025.py`, unchanged since its start) starts its sampler from `sample_driver4_1025.ps1`, a file that is not in this stage (my make script copied the sampler as `sample_driver_kc127_1025.ps1`); the driver's sampler therefore never started. I started the same sampler by hand at 10:49:13 UTC through `Win32_Process.Create` of a headless console (no `claude` in its chain): `sample_driver_kc127_1025.ps1 -Drv 26384 -Out rows/regrid_samples.csv -Interval 60`, watching the driver's process tree exactly as the driver's own sampler would have, so `rows/regrid_samples.csv` starts at 10:49:15 UTC (the first 80 s of the regrid are not sampled; peaks come later). The scan and refinement drivers (`kc127d23_scan_driver_1025.py`, `kc127d23_secant_driver_1025.py`) point at `sample_driver_kc127_1025.ps1` and were dry-run before the regrid ended (`selftest_scan_dry_1025.txt`).
 - **The scan and secant drivers** (`make_kc127d23_part2_1025.py`, `diff_scan_driver_vs_kc103.txt`, `diff_secant_driver_vs_kc87.txt`) were written while the regrid runs and are pushed before they are used. The scan driver's dry run on stand-ins reaches "would start" for two processes (`d18_secant.py scan ... --pin=...`, exit 0), logs the new tool's selftest (exit 0) and its three mutations (exit 1 each), and refuses a missing marker, a wrong blob, five bad share lists (more than two shares included) and `--out` without `--dry`; the secant driver compiles and was dry-run before the state exists (it refused as it must: no marker, no state).
 - **Stale text in two earlier hc messages:** the final hc of my k_c 95 and k_c 87 secant drivers named the folder `I1025-win/kc103_d22875/secant` (a leftover string of the driver I copied them from); the right folders are `I1025-win/kc95_d22875_secant` (75a10de70) and `I1025-win/kc87_d22875_secant` (557ea8ee3), as in my later messages and in the #1025 comments. The drivers of this lane carry the right folder.
-- **ETA** (the estimates above counted from 10:47:57 UTC): the regrid ends about 14:40 to 20:50 UTC (central about 17:10 UTC); the scan then starts by itself about 71 s later.
+- **End of the regrid:** 13:38:28 UTC, the acceptance 13:38:44 UTC, the scan started by itself 13:39:57 UTC (written ETA for the regrid about 14:40 to 20:50 UTC, central about 17:10 UTC: it ended well before that, and below t5's 3 to 5 h as well: 2.84 h).
 
-Pushed 2026-11-26 10:53:00 UTC.
+**Regrid (`regrid_summary.txt`, `regrid.log`, `l1kc127wind23.jsonl`):**
+
+| item | k_c 127 result | macm3's k_c 119 source |
+|---|---|---|
+| run | 10:47:57 to 13:38:28 UTC, pid 1652 (worker 14396), exit 0, 10230 s wall (the record's seconds: 10215) | 2273 s (record), Mac, 6 threads |
+| \|F\| | 3.1939646372e-10 | 3.2079513798e-10 |
+| F_start | 8.2571e-06 | 1.2513e-05 |
+| steps | 4179 | 3914 |
+| steps ratio | **1.0677** | macm3's earlier ratios at D 23.0: 1.0838 (k_c 95 to 103), 1.0779 (103 to 111), 1.071 (111 to 119) |
+| psi-constraint | 1.4638e-03 (ratio 0.684) | 2.1389e-03 |
+| Delta | 1.174322923415951 | 1.1743249686574218 |
+| Delta(k_c 127) minus Delta(k_c 119) | -2.0452e-06 | |
+| marker `regrid_accepted.txt` | state 7a1b150c96c12059c81c10927fdf00245a45a88e, record 2b15504f2bcc90f0e9b5b4049fb22ab44ee3c186 | state 2771cf87, record 158e3086 |
+
+Acceptance (step 3; `syscheck.txt`, `syscheck_mutate.txt`, `syscheck_kc119_on_result.txt`, `selftest_kc127_syscheck_after.txt`, 17 s): `kc127_syscheck_1025.py` on the result exit 0 ("ACCEPTED: the record class's \|F\| with a step count that comes back"; state \|F\| 3.1939646372e-10 equal to the record's, `freeze_from` 4179 steps = the record's), its selftest exit 0, `--mutate=F` exit 1 (state \|F\| 3.193965e-10 against 4.790947e-10), `--mutate=steps` exit 1, `kc119_syscheck_1025.py` on the result exit 1 ("the record is not k_c 119 at D 23 (kc 127, D 23.0)").
+
+**Cost against the written estimates (regrid):**
+
+| item | written | measured |
+|---|---|---|
+| source checks | about 30 to 90 s | 21 s (10:47:36 to 10:47:57 UTC, with the pins and selftests) |
+| regrid | about 14000 to 36000 s, central about 23000 s (t5: 3 to 5 h) | 10230 s (2.84 h): **below** my range and just below t5's |
+| steps of the result | about 4100 to 4300 | 4179 |
+| cpu | about 2 times wall | 21700 s (2.12 times wall) |
+| peak private | about 6 to 8 GB | 5.93 GB (peak working set 5.48 GB): just below |
+| lowest free memory | about 12 to 15 GB (whole stage) | 18.17 GB at 12:11:33 UTC in the sampler, 17.88 GB in the alert-only watcher |
+| peak commit | not written | 17.4 GB |
+| laptop cpu | not written | mean 44.4 %, max 66 % (sampler: 168 sample times from 10:49:15 UTC, no gap over 90 s) |
+
+My basis was my k_c 103 regrid at D 22.875 (10635 s) against macm3's k_c 103 at D 23.0 (1391 s), a factor 7.6; for the k_c 119 to 127 pair the factor is 4.5 (10230 s against his k_c 119's 2273 s), so the step from k_c 103 to 127 cost me 0.96 times the k_c 103 regrid and macm3 1.6 times his. The memory watcher raised no alert (`rows/regrid_memwatch.log`: "minimum free memory seen 17.88 GB; 0 alert(s) sent"), the keep-awake helper held until the driver ended (`rows/regrid_keepawake.log`), the System log shows no power event in 10:40 to 13:45 UTC, and `rows/regrid_raw.log` holds 24 RuntimeWarning lines from `dss_ell.py` (the Newton step's overflow and invalid-value lines, as in my earlier regrids). The 21600 s hc was not needed.
+
+**Step 4a, the scan, started by itself 71 s after the marker (13:39:57 UTC):**
+
+- **Chain:** the same console (`rows/launcher_pid.txt`: 24572, cmd 4428) <- scan driver launcher 3380 and driver 19932 <- sampler 25864, alert-only watcher 2900 (child 25336), keep-awake helper 15400 (child 10672), and the two `d18_secant.py scan` workers p0 18756 (0.04, 0.03, 0.06) and p1 21332 (0.05, 0.04), each with one child process (16228, 9112). BelowNormal, one thread each, cap 43200 s by the exact pids.
+- **Before the scan** (13:39:55 to 13:39:57 UTC): the pins matched (the tool by committed blob eb1396ad, the state and record by the marker's blobs); `d18_secant.py selftest` exit 0 and `--mutate=half`, `norobust`, `nosigncheck` exit 1, 1, 1 (logged in `selftest_d18_secant.txt`); the reader's selftest exit 0 and its two controls exit 1, 1.
+- **Session check** (`session_check_scan.txt`, exit 0): no `claude` in any chain of the run, no Windows Terminal / OpenConsole / wt, a headless conhost in the chain.
+- **ETA** (the estimates above counted from 13:39:57 UTC): each evaluation about 2200 to 4500 s on two processes, so round 1 ends about 14:20 to 15:15 UTC, round 2 about 15:00 to 16:30 UTC and round 3 (0.06, alone) about 15:30 to 17:30 UTC. The refinement follows when I have read the reader's lines.
+
+Pushed 2026-11-26 13:41:00 UTC.
 
 ## Result
 
