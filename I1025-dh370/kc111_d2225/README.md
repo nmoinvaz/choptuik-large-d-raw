@@ -77,3 +77,13 @@ How I read them on the 0.04 grid, fixed here: **P** = no robust change with a br
 | 0.42 | + | True | - | -3417.8304 | 12712 |
 | 0.46 | - | True | - | -3420.093 | 13390 |
 - Interim (information; the reader's reading comes after the scan): the hybrid signs are **equal (+) at 0.02, 0.06 and 0.10**, so there is **no sign change in (0.02, 0.10)**: S as at k_c 103 ((0.02, 0.06), "- to +") is absent there. There is **a "+ to -" change in (0.42, 0.46)** (F by position; the printed orientation equals that of k_c 87 and 103 at this D, not k_c 95's "- to +"). P against S is **not yet decided**: a root in (0.01, 0.02) shows only at lambda 0.01 (round 3, process 4), and the points 0.14 to 0.38 and 0.50 are still to come. Per point 12712 to 13390 s (3.5 to 3.7 h at nice 19 beside t5's `i1088a` job and t2t's); rounds 2 and 3 should end about 04:40 and 08:00 UTC.
+
+## Scan, round 2 done (about 00:55 to 03:45 UTC, 5 processes at nice 19, 9468 to 10304 s per point; walk d had been stopped at 01:57)
+| lambda | hybrid sign | noise-robust | float64 sign | ln of abs det | seconds |
+|---|---|---|---|---|---|
+| 0.14 | + | True | + | -3384.9784 | 10304 |
+| 0.18 | + | True | + | -3389.2610 | 9989 |
+| 0.22 | + | True | + | -3393.5702 | 10094 |
+| 0.26 | + | True | + | -3397.9169 | 9468 |
+| 0.30 | + | True | + | -3402.3220 | 9925 |
+- Interim (information; the reader's reading comes after the scan): with round 1, the hybrid sign is **+ at every evaluated lambda from 0.02 to 0.30 (8 values, all noise-robust)**, + at 0.42 and - at 0.46: no sign change in (0.02, 0.30), and the change in (0.42, 0.46) is "+ to -". Round 3 (0.34, 0.38, 0.50, the repeat of 0.14, and **0.01**) is running and should end about 06:30 to 07:00 UTC. Against the registration: P is consistent so far; what can still decide against it is the sign at 0.01 (a change in (0.01, 0.02) means S persisted and moved) and a change in 0.30 to 0.42 from 0.34 and 0.38.
