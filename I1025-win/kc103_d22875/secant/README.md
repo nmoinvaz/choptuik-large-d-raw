@@ -69,9 +69,25 @@ The sampler (`rows/secant_samples.csv`, 60 s) gives the real figures.
 
 ## Status
 
-Not started. Waits for the D 22.875 scan to end; LO, HI, R_LO and R_HI are filled in here from the reader's lines before the start.
+The D 22.875 scan ended 2026-11-26 03:46:50 UTC (20821 s, exits 0, 0, 0, 0; its Result is in the README above). The reader's lines as printed (`read_lower_kc103_D22875.log`):
 
-Pushed 2026-11-25 23:03:51 UTC.
+```
+points 9 in 0.040-0.200; not noise-robust: none
+hybrid signs: 0.040- 0.060- 0.080- 0.100- 0.120+ 0.140+ 0.160+ 0.180+ 0.200+
+float64 sign differs from the hybrid sign at: none
+repeated points: [(0.1, 'agree')]
+  robust change (0.100, 0.120), - to +, det-linear 0.119801, range [0.103345, 0.119801]
+robust changes: 1; touching a non-robust point (not counted): none
+ln|det| local minima without a sign change: none
+endpoint signs: - at 0.040, + at 0.200
+read_lower exit 0
+```
+
+One robust change, so no choice among several arose. t5's ruling on the scan (hc read about 03:47 UTC, quoted): "k_c 103 at D 22.875, lambda_1 (F) by position in (0.100, 0.120), det-linear 0.119801; registered 0.10-0.13 MET; no second root in 0.04-0.20 ... Go ahead with the queued secant refinement on that bracket (0.100, 0.120)."
+
+**Filled in before the start: LO = 0.100, HI = 0.120, R_LO = 0.103345, R_HI = 0.119801.** The registration above reads: the refined `lam_lin` lies in [0.103345, 0.119801]. Note that the reader's det-linear estimate 0.119801 is the upper end of its own range.
+
+Pushed 2026-11-26 03:47:45 UTC.
 
 ## Result
 
