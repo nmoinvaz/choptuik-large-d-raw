@@ -67,3 +67,13 @@ How I read them on the 0.04 grid, fixed here: **P** = no robust change with a br
 | Delta(111) - Delta(103) between -2e-5 and -1e-7 (65%) | right (-2.87e-6) |
 | regrid wall 8000 to 14000 s (60%) | right (12820 s; slower than my 9500 s point estimate because the nice-19 yield beside t5's job began at 18:01) |
 | peak RSS below 4.5 GiB (80%) | right (3.46 GiB) |
+
+## Scan, round 1 done (21:12:25 to about 00:55 UTC, 5 processes at nice 19, 12712 to 13390 s per point)
+| lambda | hybrid sign | noise-robust | float64 sign | ln of abs det | seconds |
+|---|---|---|---|---|---|
+| 0.02 | + | True | + | -3372.2335 | 13145 |
+| 0.06 | + | True | + | -3376.4680 | 12742 |
+| 0.10 | + | True | + | -3380.7154 | 12988 |
+| 0.42 | + | True | - | -3417.8304 | 12712 |
+| 0.46 | - | True | - | -3420.093 | 13390 |
+- Interim (information; the reader's reading comes after the scan): the hybrid signs are **equal (+) at 0.02, 0.06 and 0.10**, so there is **no sign change in (0.02, 0.10)**: S as at k_c 103 ((0.02, 0.06), "- to +") is absent there. There is **a "+ to -" change in (0.42, 0.46)** (F by position; the printed orientation equals that of k_c 87 and 103 at this D, not k_c 95's "- to +"). P against S is **not yet decided**: a root in (0.01, 0.02) shows only at lambda 0.01 (round 3, process 4), and the points 0.14 to 0.38 and 0.50 are still to come. Per point 12712 to 13390 s (3.5 to 3.7 h at nice 19 beside t5's `i1088a` job and t2t's); rounds 2 and 3 should end about 04:40 and 08:00 UTC.
