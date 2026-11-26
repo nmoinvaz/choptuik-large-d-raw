@@ -18,6 +18,8 @@ HP=${HP:-$HOME/Source/choptuik-fastmul6/hp}
 SITE=${SITE:-$HOME/Source/fastmul6-site}
 PY=${PY:-$HOME/venv-314/bin/python}
 EXTRA=${EXTRA:-}
+# the Python commit each record names: COMMIT, else HP's git HEAD (a tarball install has none, so set COMMIT there)
+COMMIT=${COMMIT:-$(git -C $HP rev-parse --short=8 HEAD 2>/dev/null || echo unknown)}
 TOOLS=$(cd "$(dirname "$0")" && pwd)
 [ -s "$S" ] && [ -n "$T" ] || { echo "usage: ladder_tail.sh u|mob|mob48 D STATE OUT THREADS"; exit 1; }
 mkdir -p $O
@@ -46,7 +48,7 @@ KMAX=${KMAX:-23}
 JB=$($PY -c "print(','.join(f'{k}:qq' for k in range(13, $KMAX + 1, 2)))")
 HT=$($PY -c "print(','.join(str(k) for k in range(13, $KMAX + 1, 2)))")
 nice -n 10 timeout 10h $PY -u form_s.py release_ls $O/start.npz $O --harm $HT --kmax $KMAX \
-  --jac_by $JB --res od --tol 1e-48 --tol_h 1e-44 --ddelta 1e-25 --threads $T --outer 8 --commit 478e9d86 $EXTRA \
+  --jac_by $JB --res od --tol 1e-48 --tol_h 1e-44 --ddelta 1e-25 --threads $T --outer 8 --commit $COMMIT $EXTRA \
   > $O/rls.log 2>&1
 echo "rc $?" >> $O/run.log
 date -u "+end %Y-%m-%d %H:%M:%S UTC" >> $O/run.log

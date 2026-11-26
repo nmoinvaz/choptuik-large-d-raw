@@ -17,6 +17,8 @@ HP=${HP:-$HOME/Source/choptuik-fastmul6/hp}
 SITE=${SITE:-$HOME/Source/fastmul6-site}
 PY=${PY:-$HOME/venv-314/bin/python}
 EXTRA=${EXTRA:-}
+# the Python commit each record names: COMMIT, else HP's git HEAD (a tarball install has none, so set COMMIT there)
+COMMIT=${COMMIT:-$(git -C $HP rev-parse --short=8 HEAD 2>/dev/null || echo unknown)}
 TOOLS=$(cd "$(dirname "$0")" && pwd)
 [ -d "$O" ] && [ -s "$SA" ] && [ -s "$SB" ] || { echo "usage: ladder_point2.sh D KC THREADS OUT SA SB [MT] [KMAX]"; exit 1; }
 cd $HP || exit 1
@@ -30,7 +32,7 @@ JB=$($PY -c "print(','.join(f'{k}:qq' for k in range(13, $KMAX + 1, 2)))")
 mkdir -p $O/jump $O/rls $O/rls13 $O/tail
 {
   date -u "+start %Y-%m-%d %H:%M:%S UTC"
-  echo "D $D, ks $KS, kc $KC, a $A, tail M $MT, kmax $KMAX, threads $T"
+  echo "D $D, ks $KS, kc $KC, a $A, tail M $MT, kmax $KMAX, threads $T, Python commit $COMMIT"
 } > $O/run.log
 J=$O/jump/jump_s_D$DF.npz
 if grep -q "^  converged" $O/jump/jump.log 2>/dev/null && [ -s $J ]; then
@@ -38,7 +40,7 @@ if grep -q "^  converged" $O/jump/jump.log 2>/dev/null && [ -s $J ]; then
   echo "jump kept from the earlier run ($(date -u +%H:%M:%S))" >> $O/run.log
 else
   nice -n 10 timeout 3h $PY -u form_s.py jump $O/jump --D $D --states_s "$SA,$SB" --deg 1 --held 1 --mob $A --ks $KS \
-    --kc $KC --delta fit --tol 1e-300 --it_max 12 --threads $T --commit 478e9d86 $EXTRA > $O/jump/jump.log 2>&1
+    --kc $KC --delta fit --tol 1e-300 --it_max 12 --threads $T --commit $COMMIT $EXTRA > $O/jump/jump.log 2>&1
   echo "jump ks $KS rc $? $(date -u +%H:%M:%S)" >> $O/run.log
 fi
 grep -q "^  converged" $O/jump/jump.log && [ -s $J ] || exit 2
@@ -57,12 +59,12 @@ if [ "$KSG" != "$KS" ]; then
   J=$O/jump/jump_ks$KSG.npz
 fi
 nice -n 10 timeout 6h $PY -u form_s.py release_ls $J $O/rls --harm 5,7,9,11 --kmax 13 --jac qd --res od --tol 1e-36 \
-  --tol_h 1e-30 --ddelta 1 --threads $T --outer 8 --commit 478e9d86 $EXTRA > $O/rls/rls.log 2>&1
+  --tol_h 1e-30 --ddelta 1 --threads $T --outer 8 --commit $COMMIT $EXTRA > $O/rls/rls.log 2>&1
 echo "rls h5-h11 rc $? $(date -u +%H:%M:%S)" >> $O/run.log
 R=$O/rls/release_ls_h11_D$DF.npz
 [ -s $R ] || exit 3
 nice -n 10 timeout 4h $PY -u form_s.py release_ls $R $O/rls13 --harm 13 --kmax 13 --jac qd --res od --tol 1e-48 \
-  --tol_h 1e-44 --ddelta 1e-25 --threads $T --outer 8 --commit 478e9d86 $EXTRA > $O/rls13/rls.log 2>&1
+  --tol_h 1e-44 --ddelta 1e-25 --threads $T --outer 8 --commit $COMMIT $EXTRA > $O/rls13/rls.log 2>&1
 echo "rls h13 rc $? $(date -u +%H:%M:%S)" >> $O/run.log
 R=$O/rls13/release_ls_h13_D$DF.npz
 [ -s $R ] || exit 4
@@ -73,7 +75,7 @@ if [ "$MT" != "32" ]; then
   HT=13,$H
 fi
 nice -n 10 timeout 10h $PY -u form_s.py release_ls $R $O/tail --harm $HT --kmax $KMAX --jac_by $JB --res od --tol 1e-48 \
-  --tol_h 1e-44 --ddelta 1e-25 --threads $T --outer 8 --commit 478e9d86 $EXTRA > $O/tail/rls.log 2>&1
+  --tol_h 1e-44 --ddelta 1e-25 --threads $T --outer 8 --commit $COMMIT $EXTRA > $O/tail/rls.log 2>&1
 echo "tail rc $? $(date -u +%H:%M:%S)" >> $O/run.log
 date -u "+end %Y-%m-%d %H:%M:%S UTC" >> $O/run.log
 exit
