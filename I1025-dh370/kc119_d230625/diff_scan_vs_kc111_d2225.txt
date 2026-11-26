@@ -1,0 +1,18 @@
+2,4c2,4
+< # #1025 kc111_d2225 step 3 (t5's order): hybrid sign scan of the accepted k_c 111 state at D 22.25, lambda 0.02 to 0.50 by 0.04 (13 values) and a repeat of 0.14 (14 evaluations), d18_hybsign.py (e089207a,
+< # unmodified), 5 single-thread processes at nice 10 (the lists of stage.conf: three rounds of 5, 5 and 4). Memory: alert only. Then read_lower.py selftest (0), its mutations shift and round2 (1 each), the
+< # reader on the window and repeat_check.py. Starts only after VERDICT.txt says ACCEPTED. usage: run_scan.sh [dry]. A systemd user unit (lane_k111.sh).
+---
+> # #1025 kc119_d230625 step 4 (t5's order and its change of 06:14 UTC): hybrid sign scan of the accepted k_c 119 state at D 23.0625, lambda -0.04 to 0.04 by 0.02 (5 values, no repeat), d18_hybsign.py (e089207a,
+> # unmodified), in rounds of at most 3 single-thread processes at nice 10 (3 then 2; the lists of stage.conf). Memory: alert only. Then read_lower.py selftest (0), its mutations shift and round2 (1 each) and the
+> # reader on the window. Starts only after VERDICT.txt says ACCEPTED. usage: run_scan.sh [dry]. A systemd user unit (lane_k119.sh).
+6c6
+< ROOT=/home/nathan/Source/choptuik-large-d-raw-wt613/I1025-dh370/kc111_d2225
+---
+> ROOT=/home/nathan/Source/choptuik-large-d-raw-wt613/I1025-dh370/kc119_d230625
+30c30
+< step "scan starts: D $D, $NEVAL evaluations (window $WIN1, repeat of $REP), $NP procs x 1 thread, nice 10; state sol_${TAG}_${DT}.npy $(blob $STATE | cut -c1-8), record $(blob $STUB | cut -c1-8)"
+---
+> step "scan starts: D $D, $NEVAL evaluations (window $WIN1, no repeat), $NP procs x 1 thread, nice 10; state sol_${TAG}_${DT}.npy $(blob $STATE | cut -c1-8), record $(blob $STUB | cut -c1-8)"
+55d54
+< $PY -I repeat_check.py $OUT/merged_D${D}.jsonl >> $OUT/read_lower.txt 2>&1; step "repeat_check.py exit $?"
