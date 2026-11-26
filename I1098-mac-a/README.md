@@ -29,3 +29,7 @@ Machine: the Mac (macOS, M-series laptop, 2 threads at nice 10). Issue: https://
   |F| 5.4e-43 is a first-order bound of 1.8e-20.
 - `budget.py`, `extrap_state.py`, `heldsolve.py`: the direct full-system Newton (it stalls, the full system being
   near-singular along the free top harmonic), the guess by 1/n, the held solve step by step.
+- `tools/variant_state.py`, `tools/horizon300.sh`: the variant-state tool, with the hp directory as its first argument
+  so that it runs on any machine, and the D 300 horizon runs on the fastmul5 kernel (f350aa62). The runs are u
+  ks + 200 and ks + 400; Moebius ks 800; a 16 and a 4, each at ks 600 and ks 800; and Moebius with the relaxed products
+  off. Each starts from one of mm5's wave-1 states (I1098-mm5/fix).
