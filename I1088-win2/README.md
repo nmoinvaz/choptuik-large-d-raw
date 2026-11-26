@@ -7,4 +7,4 @@ Build for these runs: hp from origin/wip/large-d-form-s, built on win2 in `D:\ch
 | folder | holds |
 |---|---|
 | `L8000/` | D 8000 held at L = 20, direct solve (the coordinator's order of 26 Nov): prepared and queued on win2, **cancelled 02:52 UTC, the solve moved to the Mac mini**; holds the README, the pinned guess, the driver and the gate script, no run |
-| `L20000/` | D 20000 held at L = 20, direct solve on win2 (the coordinator's order of 26 Nov): prepared (pinned guess, driver, gate), **starts only on the coordinator's word A or B** after the hp build and its form-S selftests |
+| `L20000/` | D 20000 held at L = 20, direct solve (the coordinator's order of 26 Nov): prepared on win2 (pinned guess, driver, gate), **moved to the Mac mini at 03:38 UTC, never started here**; holds the README, the pinned guess, the driver and the gate script, no run |
