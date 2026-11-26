@@ -5,3 +5,13 @@
 == 2026-11-26 03:48:13 alert-only memory watcher started as its own process, pid 26468 (kills nothing); sampler pid 8760
 == 2026-11-26 03:48:13 keep-awake helper started as its own process, pid 14000: SetThreadExecutionState(ES_CONTINUOUS | ES_SYSTEM_REQUIRED) until this driver (pid 22356) ends; power plan untouched; kills nothing
 == 2026-11-26 03:48:13 secant: started pid 26284: d18_secant.py run C:/Users/nathan/Source/kc103d22875_1025/I1025-win/kc103_d22875/l1kc103win22875.jsonl C:/Users/nathan/Source/kc103d22875_1025/I1025-win/kc103_d22875/sol_l1kc103win22875_D22.8750.npy 22.875 0.1 0.12 C:/Users/nathan/Source/kc103d22875_1025/I1025-win/kc103_d22875/secant/secant.jsonl --tol=1e-5 --maxev=10 --pin=...
+== 2026-11-26 06:09:13 secant: pid 26284 ended with exit 4 after 8460 s
+== 2026-11-26 06:09:13 eval 0 (lo) lam 0.1: hybrid -1 ln|det| -2965.9784571345 dln 1.53e-06 robust True, float64 -1, 1448 s [243, 1193, 11]
+== 2026-11-26 06:09:13 eval 1 (hi) lam 0.12: hybrid +1 ln|det| -2970.5765841836 dln 2.32e-05 robust True, float64 -1, 1406 s [214, 1181, 11]
+== 2026-11-26 06:09:13 eval 2 (interior) lam 0.11980059454885056: hybrid +1 ln|det| -2970.7278530030 dln 2.75e-05 robust True, float64 -1, 1388 s [211, 1165, 12]
+== 2026-11-26 06:09:13 eval 3 (interior) lam 0.11859004508680802: hybrid -1 ln|det| -2972.6738073373 dln 2.15e-04 robust True, float64 -1, 1406 s [216, 1179, 12]
+== 2026-11-26 06:09:13 eval 4 (interior) lam 0.11874135791936333: hybrid +1 ln|det| -2974.9203032342 dln 2.00e-03 robust True, float64 -1, 1405 s [214, 1180, 11]
+== 2026-11-26 06:09:13 eval 5 (interior) lam 0.11872688452152928: hybrid +1 ln|det| -2979.3182432457 dln 1.51e-01 robust False, float64 -1, 1397 s [214, 1171, 12]
+== 2026-11-26 06:09:13 root: status nonrobust (not robust at 0.11872688452152928), bracket [0.11859004508680802, 0.11874135791936333] width 1.513e-04, signs [-1.0, 1.0], det-linear 0.11872688452152928, Brent 0.11874135791936333, 6 evaluations, 8450 s
+== 2026-11-26 06:10:23 exit 4, wall 8460 s; peak private 2.91 GB, peak working set 2.21 GB, lowest free memory 20.84 GB, peak commit 13.9 GB, cpu 8328 s (278 samples)
+== 2026-11-26 06:10:29 kc103d22875_secant_driver_1025.py done
