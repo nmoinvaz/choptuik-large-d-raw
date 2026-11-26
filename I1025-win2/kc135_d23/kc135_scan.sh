@@ -62,14 +62,8 @@ SB=$(sed 's/.*state blob \([0-9a-f]*\).*/\1/' $OUT/regrid_accepted.txt); RB=$(se
 chk $OUT/sol_${NEW}_D23.0000.npy $SB "the accepted k_c 135 state"; chk $OUT/${NEW}.jsonl $RB "the accepted k_c 135 record"
 [ $bad = 0 ] || refuse "the accepted state or record changed since the acceptance"
 REC=$WOUT/${NEW}.jsonl; ST=$WOUT/sol_${NEW}_D23.0000.npy
-log "kc135 scan: state $SB, record $RB; waits for 45 GB of free RAM"
-tw=$(date +%s)
-while :; do
-  fm=$(powershell -NoProfile -Command "[int]((Get-CimInstance Win32_OperatingSystem).FreePhysicalMemory/1024)" | tr -d '\r')
-  [ "$fm" -ge 46000 ] && break
-  [ $(( $(date +%s) - tw )) -lt 21600 ] || refuse "the wait for memory ended after 6 h ($fm MB free)"
-  sleep 60
-done
+log "kc135 scan: state $SB, record $RB; the four processes start one after another, 240 s apart, each when 14 GB of RAM is free (a k_c 127 process needs about 8 GB, winb; this machine has about 38 GB free with nothing running, so the first version's 46 GB gate could never open)"
+freemb() { powershell -NoProfile -Command "[int]((Get-CimInstance Win32_OperatingSystem).FreePhysicalMemory/1024)" | tr -d '\r'; }
 LISTS=("0.04,0.045" "0.045" "0.05" "0.055")
 echo "lists: ${LISTS[*]}" > $OUT/scan_plan.txt
 cd $SWT/solver/matter || exit 1
@@ -83,7 +77,18 @@ scan() {  # N LAMS
   echo "scan_D${D}_p$N: exit $rc, $w s$([ "$CAPPED" = 1 ] && echo ", capped at $CAP s"), $n points" >> $SUM
   log "kc135scan_p$N exit $rc wall $w s capped $CAPPED"
 }
-for i in 1 2 3 4; do scan $i ${LISTS[$((i-1))]} & eval "q$i=\$!"; done
+for i in 1 2 3 4; do
+  tw=$(date +%s)
+  while :; do
+    fm=$(freemb); [ "$fm" -ge 14000 ] && break
+    [ $(( $(date +%s) - tw )) -lt 21600 ] || refuse "the wait for memory before process $i ended after 6 h ($fm MB free)"
+    sleep 60
+  done
+  log "kc135 scan: starting process $i (list ${LISTS[$((i-1))]}) with $(freemb) MB of free RAM"
+  scan $i ${LISTS[$((i-1))]} & eval "q$i=\$!"
+  [ $i = 4 ] || sleep 240
+done
+log "kc135 scan: all four processes started; free RAM $(freemb) MB"
 wait $q1 $q2 $q3 $q4
 cd $SC
 for i in 1 2 3 4; do grep -E 'record system' scan_D${D}_p$i.log | head -1 | cut -c1-200 >> $SUM; done
