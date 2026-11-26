@@ -56,3 +56,12 @@ the Mac, which pushed this folder.
   (`direct_s.jsonl`): Delta 1.654240854145891739, -9.91e-11 from Track C (+- 7.8e-10), quad-double check 5.4e-43,
   Hamiltonian check a rows up to 7.8e-25. Its held_to_full_dDelta, +3.74e-14, is the h11 -> full change, since this run
   started from the h11 state; held -> full is +2.020e-10 (against I1088-dh370's held D 1000 record).
+- `rls2000/`, `rls2000b/`, `rls2000c/`, `rls2000d/`: the D 2000 release at L = 20 from `L2000/`'s held solve, in four
+  runs (the qd residual throughout). rls2000: h5 released, h7 outer 0-1 (4 threads; `run_rls2000.sh`), moved to 10
+  threads (`rls2000_switch.sh`). rls2000b: h7, h9 released; h11 with the dd Jacobian stopped by hand, its inner solve
+  at the floor 2.7e-28 above the target 4.8e-33. rls2000c (`--jac_by 11:qd,13:qd`): h11 released (+8.5e-14); h13's
+  inner solves with the qd Jacobian solved in dd floored at 7.6e-34 to 1.9e-37 above the target 2.5e-37, stopped by
+  hand. rls2000d (`--jac_by 13:qq`, the qd Jacobian solved in qd, 51a8e3be): h13 outer 0 2.5e-37 -> 6.9e-49, released
+  at outer 1. The full system's record (`rls2000d/direct_s.jsonl`): Delta 1.649074313745289326, the octo-double check
+  6.9e-49, the Hamiltonian check a rows up to 3.4e-26, held -> full +3.834e-10 (from --held_delta, L2000's Delta);
+  -1.41e-10 from Track C (+- 1.2e-9), -5.6e-13 from the corrected refit's prediction 1.64907431374585 +- 1.50e-11.

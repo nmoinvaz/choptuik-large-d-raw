@@ -53,3 +53,6 @@ the command), `jump.log` and `jump_s.jsonl` (one record per Newton step), via `r
   step, then chord steps with the quad-double residual, 7bf304b1).
 - `L5657c/`: `lastnode_D5656.8542_step_chord0.npz`, D 5657's state after its quad-double chord step (5.8e-20 ->
   2.9e-26 in 859 s, bound 1.8e-18); the run's checks continue on dh370 (out/L5657c).
+- `L5657c/` (end): the checks after the chord step: the octo-double check 2.9e-26, bound 1.8e-18, the tails (ks + 200,
+  kc + 20: 0; halved steps 3.8e-38; theta's top harmonic 3.2e-18), the Hamiltonian check 2.2e-27; Delta
+  1.645726966571311486, -7.12e-10 from Track C (+- 1.59e-9); the record `direct_s.jsonl`; 15365 s in all.
