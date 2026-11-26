@@ -36,5 +36,8 @@ the Mac, which pushed this folder.
 - `ladder2.sh`: the ladder past D 2000 in steps of 1.1 in D, without the discretization report (out/j<D>_l2/).
 - `L10000/`: D 10000 held at L = 20 (x_l 0.706399, a 24.995, ks 13018, 1370 Taylor steps; solvestate from
   I1088-mac-a/form_s/g10000L20/): the double-double floor reached by step 3 (|F| 5.0e-21, bound 2.6e-12), Delta
-  1.644930989170800 (the log; the state is saved when the run ends). Its script records the commit as 91d5bbc5 by
-  mistake: the code is 7671bd89.
+  1.644930989170800 (the log). Its script records the commit as 91d5bbc5 by mistake: the code is 7671bd89. Stopped
+  at 00:02 UTC on 2026-11-26 during it 4 (the log's count), at the floor, so its state was not saved (the loop saved only at the end).
+- `L10000q/`: D 10000 again from the same guess at f5eb570f, on the precision ladder: 2 double-double steps, then up
+  to 2 with the quad-double residual (double-double Jacobian), to Delta's bound 1e-15; a floor stop (a step cutting
+  max |F| by less than 10x) ends each stage; every step's state is saved; the octo-double check (`run_10000q.sh`).

@@ -43,4 +43,8 @@ the command), `jump.log` and `jump_s.jsonl` (one record per Newton step), via `r
   1.646485793699952, -6.7e-10 from Track C; the double-double floor leaves the bound at 1.0e-12 (record written by hand).
 - `run_5657L20.sh` (on the machine): D 5656.8542 at L = 20 (out/L5657/).
 - `L5657/`: D 5656.8542 held at L = 20: the double-double floor by step 2 (|F| 4.3e-21, bound 2.7e-13), Delta
-  1.645726966571316 (the log; the state is saved when the run ends).
+  1.645726966571316 (the log). Stopped at 00:02 UTC on 2026-11-26 during it 3 (the log's count), at the floor, so its state was not
+  saved (the loop saved only at the end).
+- `L5657q/`: D 5656.8542 again from the same guess at f5eb570f, on the precision ladder: 2 double-double steps, then
+  up to 2 with the quad-double residual (double-double Jacobian), to Delta's bound 1e-15; a floor stop ends each
+  stage; every step's state is saved; the octo-double check (`run_5657q.sh`).
