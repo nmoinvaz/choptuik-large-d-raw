@@ -63,3 +63,25 @@ EXTRA="--commit f398e829 --inner_chord 0" HP=$HOME/Source/choptuik-fastmul6-f398
 ```
 
 Same bars and amended stop rule. If h13's qq inner solve floors again with inner_chord 0, stop and report: then the chord is not the cause.
+
+## Result of attempt 2 (chord-free; the run ended 2026-11-26 21:59:43 UTC, rc 0; 20:03:54 - 21:59:43, 6949 s)
+
+By script from `run.log`, `*/rls.log`, `*/release_ls.jsonl` and `tail/direct_s.jsonl`.
+
+- **ks used: 1338** (a 8, kc 200; jump at ks 1138, then the ks gate: ks 1138 -> 1338 1.88e-55, ks 1338 -> 1538 **8.56e-66**, bar 1e-64, run twice with the same answer). The jump (attempt 1, kept): converged in 51 s, Delta 1.657732676359274001166439440199387827209.
+- **Stages (wall, attempt 2):** rls h5..h11 1772 s (20:03:54 - 20:33:26, with the gate rerun), rls13 (h13, M 32) 710 s (-> 20:45:16; the qd floor handed over to qq as logged, qq outer 1 converged in 4 steps to 2.47e-81, outer 2 released), tail (M 48) 4466 s (-> 21:59:43). Attempt 1's stages (`attempt1_chord_floor/`) are the chord run that was stopped.
+- **Tail** (`tail/rls.log`, h13 re-converged on M 48, then h15..h23; per-harmonic wall in brackets):
+
+| harmonic | change in Delta | pending dDelta at release | wall |
+|---|---|---|---|
+| h13 (M 32 -> 48 re-converge) | -7.5837e-27 | -5.87e-27 (outer 1) | 860 s |
+| h15 | -2.7304e-17 | +4.94e-32 | 951 s |
+| h17 | -1.5552e-19 | +3.65e-35 | 947 s |
+| h19 | +3.6263e-22 | -7.75e-36 | 763 s |
+| h21 | +4.5127e-24 | +9.11e-30 | 755 s |
+| h23 | none | **+2.80e-27** (harmonic step 9.32e-15), released at outer 0 | 190 s |
+
+- **Final Delta (the state's `Delta_parts` summed at 60 digits): 1.657732666134966730388307255889821772778** (h23's pending not in it); total -2.74596e-17 from the M 48 start. State `tail/release_ls_h23_D747.0000.npz`, blob a64b0964a30817dc91505ca28bf3d7c84299107e; od solve max |F| 2.41647e-53, qd check 2.41647e-53;
+  Hamiltonian check at the four nodes at most: p 4.1e-32, m 4.0e-32, a 3.7e-32, c 1.7e-30. The recorded commit field reads f398e829 (EXTRA `--commit f398e829`).
+- **Bars:** the jump converged and the ks gate passed (ks 1338): yes; h5..h13 each released: yes; the tail falls from h15 by about 1e2 or more per harmonic: h15/h17 = 176, h17/h19 = 429, h19/h21 = 80 (D 622: 176, 391, 83); **h21's change 4.51e-24 (at most about 1e-23): met; h23 released with pending +2.80e-27 (at most about 1e-26), no turn: met.**
+  No qq inner solve failed in the tail, no line-search trial below lam 1, no outer step above 3x its harmonic's first; the h13 M 32 -> 48 re-converge moved Delta by -7.58e-27 (below 1e-25).
