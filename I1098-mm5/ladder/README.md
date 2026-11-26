@@ -35,3 +35,8 @@ ks = ceil(1.7 (D - 2)): 422, 731, 879) or **mob48** (the Moebius horizon at M 48
 D 250, D 432 and D 519 all take mode **u** (the u horizon at M 32, ks = ceil(1.7 (D - 2)): 422, 731, 879). Reason: at D 300, u at M 32 is clean through h31 (D300u: no turn at h23, pending dDelta about 1e-26 at h23-h29) and agrees with the Moebius M 32 tail through h21 to 8.9e-25,
 while the Moebius M 32 tail turns at h23 (pending -3.89e-22, inner floor 1.36e-42); waiting 30-40 minutes with 8 threads idle for D300m48 (the Moebius M 48 check, which keeps running) costs more than the uniformity of the band. Started: D 250 16:59:57 UTC (the coordinator's direct order),
 D 432 17:12:50 UTC (`mode.txt`), D 519 when its rls stage ends (its watcher reads `mode.txt`).
+
+## u tails of D 432 and D 519 stopped (2026-11-26 18:00:04 UTC, coordinator's order)
+
+Both u tails had failing line searches (D 432 at h17 after 37 min, D 519 at h15 after 40 min; `D432/README.md`, `D519/README.md`). Coordinator's reading: the u series loses digits above about D 300, and D 250 and D 300 were just inside u's range. D 250's u tail is the only completed u tail of the band (`D250/README.md`).
+D300m48 was stopped at 17:58:38 UTC (`D300m48/README.md`). Next: the Moebius horizon at a larger ks, from each point's `rls/release_ls_h13_D<D>.0000.npz`, on the jump agent's command.

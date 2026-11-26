@@ -11,3 +11,11 @@ Part of `../`. D 432: ks 665, kc 180 (Moebius a 8, M 32) for the jump and the h5
 `tools/ladder_tail.sh u 432 rls/release_ls_h13_D432.0000.npz tail_u 4`: the u horizon at M 32 with ks = ceil(1.7 (D - 2)) = **731** (`mob0,ks=731`: kt 36, kc 180, 114 Taylor steps), h13 re-converged, then h15..h31 (kmax 31, qq, od, tol 1e-48, --ddelta 1e-25, 4 threads),
 started 17:12:50 UTC. **Why u:** as for D 250 (`../D250/README.md`): at D 300 the u horizon at M 32 is clean through h31 (no turn at h23, pending dDelta about 1e-26) and agrees with the Moebius tail through h21 to 8.9e-25 (`../D300u/README.md`);
 the coordinator preferred starting at once to waiting 30-40 minutes with 8 threads idle for the Moebius M 48 verdict. The whole 250-519 band is u at M 32 with ks = ceil(1.7 (D - 2)).
+
+## The u tail stopped (2026-11-26 18:00:04 UTC, coordinator's order)
+
+Stopped by SIGTERM to the exact pids (timeout 44729, python 44730): `tail_u/run.log` rc 143, end 18:00:04 UTC. Done before the stop: h13 (no step, pending dDelta -2.55e-29) and h15 (-4.5351e-17, 444.0 s, lam 1); Delta at the stop 1.667761292229811143415696681893357440648 (the state after h15). h17 outer 0 had run since 17:23:05 UTC (37 min).
+The line search failed at every trial (no step taken, `tail_u/rls.log`), after the u horizon at ks 731 and h13 re-converged:
+h17 outer 0 (harmonic step 6.84e-11, the step's dDelta -2.49e-19): lam 1 not converged in 4 steps (|F| 3.55e-45, 508 s), lam 0.5 (3.31e-46, 818 s), lam 0.25 (9.01e-47, 1252 s), lam 0.125 (5.57e-47, 1742 s), lam 0.0625 (6.09e-48 in 3 steps, 2082 s), against the target 1e-48.
+**Coordinator's reading:** #1088 found that the u series loses digits above about D 300, which the Moebius horizon fixed; D 250 and D 300 were just inside u's range, and these failing line searches fit that. Not tested here.
+Kept: `rls/` (the Moebius h5..h13 states; `rls/release_ls_h13_D432.0000.npz` is the input of the next tail) and `tail_u/` (the u-prepared start state and the states of the stages that ended). **No tail Delta for this point from this run.**

@@ -10,3 +10,11 @@ Part of `../`. D 519: ks 796, kc 180 (Moebius a 8, M 32) for the jump and the h5
 
 `tools/ladder_tail.sh u 519 rls/release_ls_h13_D519.0000.npz tail_u 4`: the u horizon at M 32 with ks = ceil(1.7 (D - 2)) = **879** (`mob0,ks=879`: kt 36, kc 180, 126 Taylor steps), h13 re-converged, then h15..h31 (kmax 31, qq, od, tol 1e-48, --ddelta 1e-25, 4 threads).
 **Why u:** as for D 250 and D 432 (`../README.md`, `../D250/README.md`): u at M 32 is clean at D 300 through h31 and agrees with the Moebius tail through h21 to 8.9e-25 (`../D300u/README.md`); the whole 250-519 band is u at M 32.
+
+## The u tail stopped (2026-11-26 18:00:04 UTC, coordinator's order)
+
+Stopped by SIGTERM to the exact pids (timeout 45259, python 45260): `tail_u/run.log` rc 143, end 18:00:04 UTC. Done before the stop: h13 (no step, pending dDelta -2.54e-29); Delta at the stop 1.663780871388325147627787775846586161411 (the start). h15 outer 0 had run since 17:19:50 UTC (40 min).
+The line search failed at every trial (no step taken, `tail_u/rls.log`), after the u horizon at ks 879 and h13 re-converged:
+h15 outer 0 (harmonic step 6.91e-10): lam 1 not converged in 3 steps (|F| 7.88e-39, 554 s), lam 0.5 (9.50e-39, 4 steps, 1117 s), lam 0.25 (1.02e-39, 5 steps, 1927 s), against the target 1.32e-44 (the residual before the step).
+**Coordinator's reading:** #1088 found that the u series loses digits above about D 300, which the Moebius horizon fixed; D 250 and D 300 were just inside u's range, and these failing line searches fit that. Not tested here.
+Kept: `rls/` (the Moebius h5..h13 states; `rls/release_ls_h13_D519.0000.npz` is the input of the next tail) and `tail_u/` (the u-prepared start state and the states of the stages that ended). **No tail Delta for this point from this run.**
