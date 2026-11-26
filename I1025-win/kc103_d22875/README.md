@@ -100,7 +100,7 @@ The sampler (`rows/regrid_samples.csv`, `rows/scan_samples.csv`) gives the real 
 
 ## Status
 
-**Step 1, the regrid, ACCEPTED 2026-11-25 21:58:38 UTC. Step 2, the scan, RUNNING since 21:59:50 UTC.** README first: 922c75666 (pushed 19:00:40 UTC, before the start); running status c84b8da4b; chain started 19:00:56 UTC through `Win32_Process.Create` of `conhost.exe --headless cmd.exe /c go_kc103d22875_1025.cmd`. The D 22.0 chain ended 18:54:48 UTC and its reading was posted (#1025 comment 7171599582) and pushed (78aa1bc90) first.
+**Step 1, the regrid, ACCEPTED 2026-11-25 21:58:38 UTC. Step 2, the scan, DONE 2026-11-26 03:46:50 UTC (started 21:59:50, 20821 s, exits 0, 0, 0, 0; the chain ended 03:48:05 UTC).** The reading is in Result below. The secant refinement of the root started 03:48:13 UTC (`secant/`, its own README). README first: 922c75666 (pushed 19:00:40 UTC, before the start); running status c84b8da4b; chain started 19:00:56 UTC through `Win32_Process.Create` of `conhost.exe --headless cmd.exe /c go_kc103d22875_1025.cmd`. The D 22.0 chain ended 18:54:48 UTC and its reading was posted (#1025 comment 7171599582) and pushed (78aa1bc90) first.
 
 **Regrid (`regrid_summary.txt`, `regrid.log`, `l1kc103win22875.jsonl`):**
 
@@ -149,10 +149,64 @@ The memory watcher raised no alert (`rows/regrid_memwatch.log`: "minimum free me
 - **Before the scan** (21:59:49 to 21:59:50 UTC): the reader's selftest exit 0 and its two `--mutate` controls exit 1, 1 as wanted.
 - **Session check** (`session_check_scan.txt`, exit 0): no `claude` in any chain of the run, no Windows Terminal / OpenConsole / wt, a headless conhost in the chain.
 - **Machine at the start:** free physical memory 22.12 GB; the other project's I114 `convergence.py` jobs are beside it and not touched.
-- **ETA** (the estimates above counted from 21:59:50 UTC): rounds 1 and 2 end about 22:00 + 5800 to 6600 s each, i.e. round 1 about 23:36 to 23:50 UTC and round 2 about 01:12 to 01:40 UTC on 26 Nov; round 3 (p0 and p1 alone) ends about 02:30 to 03:30 UTC (central about 02:50 if the scan is 17500 s). The cap (21600 s) is at 03:59:50 UTC.
+- **End:** the scan ended 03:46:50 UTC (written ETA about 01:20 to 03:45 UTC, central about 02:15: it came in 1 to 2 minutes past the upper end and 779 s inside its cap); reader lines in Result.
 
-Pushed 2026-11-26 03:47:45 UTC.
+Pushed 2026-11-26 03:49:42 UTC.
 
 ## Result
 
-Not yet run.
+Reader (`read_lower_kc103_D22875.log`, `read_lower.py` 89309d3c on this folder, window 0.040 to 0.200), lines as printed:
+
+```
+points 9 in 0.040-0.200; not noise-robust: none
+hybrid signs: 0.040- 0.060- 0.080- 0.100- 0.120+ 0.140+ 0.160+ 0.180+ 0.200+
+float64 sign differs from the hybrid sign at: none
+repeated points: [(0.1, 'agree')]
+  robust change (0.100, 0.120), - to +, det-linear 0.119801, range [0.103345, 0.119801]
+robust changes: 1; touching a non-robust point (not counted): none
+ln|det| local minima without a sign change: none
+endpoint signs: - at 0.040, + at 0.200
+read_lower exit 0
+```
+
+The 10 evaluations (`scan_kc103_D22875_p0..p3.jsonl`; every worker first printed the record system: \|F\| 3.4630896969e-10 against the record's 3.4634221167e-10, 3387 steps = the record's; the scan driver's exits 0, 0, 0, 0). Source quality as said above: constraint 7.114e-03 (k_c 95 source), 4.618e-03 (this k_c 103 state).
+
+| lambda | process | hybrid sign | hybrid ln\|det\| | float64 sign | float64 ln\|det\| | noise-robust (2 seeds) | seconds |
+|---|---|---|---|---|---|---|---|
+| 0.04 | p0 (round 3) | - | -2958.8211687077 | - | -2958.8469572543 | yes | 4433 |
+| 0.06 | p2 (round 2) | - | -2961.0200804811 | - | -2960.9710526170 | yes | 8208 |
+| 0.08 | p0 (round 2) | - | -2963.3435030002 | - | -2963.3124143217 | yes | 8213 |
+| 0.10 | p0 (round 1) | - | -2965.9784565466 | - | -2965.8396194327 | yes | 8153 |
+| 0.10 (repeat) | p3 (round 1) | - | -2965.9784565466 | - | -2965.8396194327 | yes | 8171 |
+| 0.12 | p1 (round 1) | + | -2970.5766920529 | + | -2969.5443838089 | yes | 8172 |
+| 0.14 | p2 (round 1) | + | -2969.6720641035 | + | -2969.5881525267 | yes | 8175 |
+| 0.16 | p1 (round 2) | + | -2970.9222343133 | + | -2970.8142420917 | yes | 8208 |
+| 0.18 | p3 (round 2) | + | -2972.4418032965 | + | -2972.6509282725 | yes | 8219 |
+| 0.20 | p1 (round 3) | + | -2974.0759244266 | + | -2973.9804787766 | yes | 4427 |
+
+The repeat of 0.10 (p3) is bit-identical to p0's: same hybrid and float64 ln\|det\|. All 10 evaluations are noise-robust, and the float64 sign equals the hybrid sign at every point.
+
+**Against the registration** (the table "Written before the scan", t5's): registered, a robust change with det-linear estimate in [0.10, 0.13]; the second-root clause reports any further robust change as printed. Printed: **one** robust change, (0.100, 0.120), `- to +`, det-linear **0.119801**, range [0.103345, 0.119801]. **Met by position** (0.119801 lies in [0.10, 0.13]; 0.0098 above 0.11, the middle of k_c 95's bracket (0.10, 0.12); the reader's count is "robust changes: 1": no second robust change in 0.04 to 0.20, no non-robust point touching a change, no ln\|det\| minimum without a sign change). Beside it, as t5 relays it and win2's README states it, not interpreted by me:
+
+| reading at D 22.875 | by position | orientation as printed |
+|---|---|---|
+| k_c 87, macm3 (as t5 relays) | lambda_1 0.128; a second root at 0.162 | not given to me |
+| k_c 95, win2 (README at 16:25 UTC) | one change in (0.10, 0.12) | + to - (round 1) |
+| k_c 103, this scan | one change in (0.100, 0.120), det-linear 0.119801, range [0.103345, 0.119801] | - to + |
+
+t5's ruling on the scan (hc, read at about 03:47 UTC on 26 Nov, quoted): "k_c 103 at D 22.875, lambda_1 (F) by position in (0.100, 0.120), det-linear 0.119801; registered 0.10-0.13 MET; no second root in 0.04-0.20 (k_c 87 had the newcomer at 0.162; at k_c 103 none in this window). Go ahead with the queued secant refinement on that bracket (0.100, 0.120)." The refinement is in `secant/` (its own README).
+
+**Cost against the estimates written before the run (scan):**
+
+| item | written | measured |
+|---|---|---|
+| each scan point in rounds 1 and 2 (four processes) | 5800 to 6600 s | 8153 to 8219 s: **above** the written range (1.24 to 1.40 times) |
+| the round 3 points (two processes) | 4500 to 6600 s | 4427 and 4433 s (just below the range's lower end) |
+| the scan | 16100 to 19800 s, central about 17500 s | 20821 s (21:59:50 to 03:46:50 UTC): **above** the written range, 779 s inside the 21600 s cap |
+| peak private per worker | 3.8 to 4.2 GB (sum 15.5 to 16.5 GB in rounds 1 and 2) | 3.965, 3.968, 3.968, 3.969 GB (sum 15.87 GB); working set peak about 2.98 GB |
+| cpu per worker | not written | 20293 and 20294 s (p0, p1), 15942 and 15946 s (p2, p3) against walls of 20821 and 16395 s: cpu/wall 0.97 to 0.99 |
+| lowest free memory | 11 to 14 GB | 13.87 GB in the sampler (01:11:29 UTC), 12.39 GB in the alert-only watcher (15 s polls); 22.12 GB at the start |
+
+Commit up to 26.34 GB, laptop cpu 36 to 100 % (mean 68.9 %), 339 sample times with no gap over 65 s (the gap test across midnight). No alert, nothing killed (`rows/scan_memwatch.log`: "minimum free memory seen 12.39 GB; 0 alert(s) sent"); the keep-awake helper held until the driver ended (`rows/scan_keepawake.log`); the System log shows no power event in 21:55 UTC to 03:55 UTC. The point times were 1.24 to 1.40 times my written figure and 1.37 times the D 22.0 scan's (5955 to 6034 s for 3402 steps); the workers' cpu seconds rose by the same factor (cpu/wall 0.97 to 0.99, so not a stall), and the other project's I114 `convergence.py` jobs ran beside the whole scan; the cause is unmeasured. The written range came from the D 22.0 figure.
+
+Run summary: README first 922c75666 (19:00:40 UTC); regrid 19:01:12 to 21:58:27 UTC (10635 s); scan 21:59:50 to 03:46:50 UTC (20821 s); chain ended 03:48:05 UTC; chain wall 8 h 47 min.

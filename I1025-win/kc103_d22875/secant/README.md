@@ -87,7 +87,7 @@ One robust change, so no choice among several arose. t5's ruling on the scan (hc
 
 **Filled in before the start: LO = 0.100, HI = 0.120, R_LO = 0.103345, R_HI = 0.119801.** The registration above reads: the refined `lam_lin` lies in [0.103345, 0.119801]. Note that the reader's det-linear estimate 0.119801 is the upper end of its own range.
 
-Pushed 2026-11-26 03:47:45 UTC.
+Pushed 2026-11-26 03:49:42 UTC.
 
 ## Result
 
