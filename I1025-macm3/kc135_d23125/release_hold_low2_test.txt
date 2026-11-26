@@ -1,0 +1,8 @@
+# sandbox tests of release_hold_low2.sh (fake exits file, fake HOLD file, fake hc; 2026-11-26 20:43:08 UTC): release only on the secant line with no scan process and enough memory; held on: lane ended without a secant, memory short (MINAVAIL 999), scan processes present at the check; chain report when python processes with d18_hybsign.py appear after the release
+case fakes present at the check (must hold): files HOLD_low2.txt 
+   HC: send nathans-macbook-air-m5-3/t5 macm3 #1025 (release watcher, 2026-11-26 20:40:39 UTC): the D 23.125 secant started, but HOLD_low2 NOT released: 2 scan processes still run, 13.6 GiB available (wanted 0 and at least 0). Held; your word.
+case fakes appear after the release (must release and report 2 processes): files HOLD_low2.txt.released.1795725720 
+   HC: send nathans-macbook-air-m5-3/t5 macm3 #1025 (release watcher, 2026-11-26 20:42:00 UTC by date -u): HOLD_low2 RELEASED (renamed to HOLD_low2.txt.released.1795725720) as ordered: the D 23.125 k_c 135 scan has ended and only its 1-process secant runs; 13.6 GiB available at the release. The chain's report follows when its scan starts.
+   HC: send nathans-macbook-air-m5-3/t5 macm3 #1025 (release watcher, 2026-11-26 20:42:32 UTC): the chain's scan has started: 2 scan processes (d18_hybsign), RSS sum 0.00 GiB, nice 5 ; my secant RSS 4.57 GiB; 12.8 GiB available; 2026-11-26 20:40:00 UTC next: D 22.75 (test line)
+
+[exited with code 0]
