@@ -1,0 +1,88 @@
+multidouble feat/series-mullow a7ef2bc, cargo test --release --features mutate --test series -- --nocapture --test-threads 1, 2026-11-26 07:22 UTC
+
+running 9 tests
+test digits_exact ... digits DV: worst 0.00e0, control 2.81e14
+digits QV: worst 0.00e0, control 2.81e14
+digits OV: worst 5.00e-1, control 2.81e14
+ok
+test mullow_edges ... edges 2 (mutate 0): 0.0e0 0.0e0 true true 0.0e0 0.0e0 true true true true
+edges 2 (mutate 2): 0.0e0 0.0e0 false false 0.0e0 0.0e0 true true true false
+edges 2 (mutate 4): 0.0e0 0.0e0 true true 0.0e0 0.0e0 true false true true
+edges 2 (mutate 5): 0.0e0 0.0e0 true true 0.0e0 0.0e0 true true false false
+edges 4 (mutate 0): 0.0e0 0.0e0 true true 0.0e0 0.0e0 true true true true
+edges 4 (mutate 2): 0.0e0 0.0e0 false false 0.0e0 0.0e0 true true true false
+edges 4 (mutate 4): 0.0e0 0.0e0 true true 0.0e0 0.0e0 true false true true
+edges 4 (mutate 5): 0.0e0 0.0e0 true true 0.0e0 0.0e0 true true false false
+edges 8 (mutate 0): 0.0e0 0.0e0 true true 0.0e0 0.0e0 true true true true
+edges 8 (mutate 1): 0.0e0 0.0e0 true true 0.0e0 0.0e0 true true true true
+edges 8 (mutate 2): 0.0e0 0.0e0 false false 0.0e0 0.0e0 true true true false
+edges 8 (mutate 4): 0.0e0 0.0e0 true true 0.0e0 0.0e0 true false true true
+edges 8 (mutate 5): 0.0e0 0.0e0 true true 0.0e0 0.0e0 true true false false
+ok
+test mullow_empty ... ok
+test mullow_planted_dv ... DV flat  128: blocks  1x1  pairs   1 digits 14 max_frac 1.8e-5 rel|a||b| 5.31e-33 (naive 6.11e-31) rel|c| 6.60e-33 differ 1024 | controls 1.3e-32 1.0e0 9.9e-1 PASS
+DV holes 128: blocks  1x1  pairs   1 digits 14 max_frac 1.1e-5 rel|a||b| 1.49e-32 (naive 2.36e-31) rel|c| 1.49e-32 differ  889 | controls 1.8e-32 1.0e0 1.0e0 PASS
+DV ramp  128: blocks  2x9  pairs  10 digits 16 max_frac 5.7e-6 rel|a||b| 9.32e-33 (naive 5.62e-32) rel|c| 1.82e-32 differ 1024 | controls 1.0e0 1.0e0 1.0e0 PASS
+DV bumpy 128: blocks 12x8  pairs  51 digits 16 max_frac 3.8e-6 rel|a||b| 4.37e-32 (naive 1.30e-31) rel|c| 1.84e-31 differ 1024 | controls 1.0e0 1.0e0 1.0e0 PASS
+DV ints  128: blocks  1x1  pairs   1 digits  8 max_frac 1.2e-6 rel|a||b| 0.00e0 (naive 0.00e0) rel|c| 0.00e0 differ    0 | controls 0.0e0 1.0e0 9.6e-1 PASS
+DV flat  251: blocks  1x2  pairs   2 digits 16 max_frac 2.3e-5 rel|a||b| 1.42e-32 (naive 1.11e-30) rel|c| 5.47e-31 differ 2008 | controls 1.3e-17 1.0e0 1.0e0 PASS
+DV holes 251: blocks  1x2  pairs   2 digits 16 max_frac 1.6e-5 rel|a||b| 2.41e-32 (naive 9.00e-31) rel|c| 3.41e-32 differ 1750 | controls 3.1e-18 1.0e0 1.0e0 PASS
+DV ramp  251: blocks  6x6  pairs  14 digits 16 max_frac 1.1e-5 rel|a||b| 4.51e-32 (naive 5.28e-32) rel|c| 4.54e-32 differ 2008 | controls 1.0e0 1.0e0 1.0e0 PASS
+DV bumpy 251: blocks 13x9  pairs  54 digits 16 max_frac 6.2e-6 rel|a||b| 2.99e-32 (naive 1.79e-31) rel|c| 1.12e-30 differ 2008 | controls 1.0e0 1.0e0 1.0e0 PASS
+DV ints  251: blocks  1x1  pairs   1 digits  8 max_frac 1.8e-6 rel|a||b| 0.00e0 (naive 0.00e0) rel|c| 0.00e0 differ    0 | controls 0.0e0 1.0e0 9.3e-1 PASS
+DV flat  512: blocks  4x3  pairs   6 digits 16 max_frac 2.4e-5 rel|a||b| 2.22e-32 (naive 2.25e-30) rel|c| 5.82e-32 differ 4096 | controls 9.9e-1 1.0e0 1.0e0 PASS
+DV holes 512: blocks  4x3  pairs   6 digits 16 max_frac 2.2e-5 rel|a||b| 2.55e-32 (naive 1.08e-30) rel|c| 6.20e-32 differ 3577 | controls 1.0e0 1.0e0 1.0e0 PASS
+DV ramp  512: blocks  6x6  pairs  14 digits 16 max_frac 1.6e-5 rel|a||b| 1.94e-32 (naive 4.57e-32) rel|c| 2.62e-32 differ 4096 | controls 1.0e0 1.0e0 1.0e0 PASS
+DV bumpy 512: blocks 14x8  pairs  54 digits 16 max_frac 1.1e-5 rel|a||b| 2.79e-32 (naive 9.42e-31) rel|c| 9.80e-30 differ 4096 | controls 1.0e0 1.0e0 1.0e0 PASS
+DV ints  512: blocks  1x1  pairs   1 digits  8 max_frac 4.1e-6 rel|a||b| 0.00e0 (naive 0.00e0) rel|c| 0.00e0 differ    0 | controls 0.0e0 1.0e0 9.7e-1 PASS
+DV NaN controls: output inf, input max_frac inf rel inf: fired true
+ok
+test mullow_planted_ov ... OV flat  128: blocks  1x1  pairs   1 digits 32 max_frac 3.6e-5 rel|a||b| 4.01e-128 (naive 0.00e0) rel|c| 4.53e-128 differ 1024 | controls 4.0e-128 1.0e0 9.9e-1 PASS
+OV holes 128: blocks  1x1  pairs   1 digits 32 max_frac 2.5e-5 rel|a||b| 4.10e-128 (naive 0.00e0) rel|c| 4.48e-128 differ  888 | controls 4.1e-128 1.0e0 1.0e0 PASS
+OV ramp  128: blocks  2x9  pairs  10 digits 36 max_frac 1.5e-5 rel|a||b| 4.26e-128 (naive 0.00e0) rel|c| 1.09e-127 differ 1024 | controls 1.2e-23 1.0e0 1.0e0 PASS
+OV bumpy 128: blocks 12x8  pairs  51 digits 36 max_frac 8.6e-6 rel|a||b| 4.21e-128 (naive 0.00e0) rel|c| 7.33e-127 differ 1024 | controls 1.4e-24 1.0e0 1.0e0 PASS
+OV ints  128: blocks  1x1  pairs   1 digits 28 max_frac 1.2e-6 rel|a||b| 0.00e0 (naive 0.00e0) rel|c| 0.00e0 differ    0 | controls 0.0e0 1.0e0 9.6e-1 PASS
+OV flat  251: blocks  1x2  pairs   2 digits 36 max_frac 5.9e-5 rel|a||b| 4.55e-128 (naive 0.00e0) rel|c| 1.79e-127 differ 2008 | controls 7.0e-114 1.0e0 1.0e0 PASS
+OV holes 251: blocks  1x2  pairs   2 digits 36 max_frac 3.7e-5 rel|a||b| 4.39e-128 (naive 0.00e0) rel|c| 8.05e-128 differ 1749 | controls 4.0e-114 1.0e0 1.0e0 PASS
+OV ramp  251: blocks  6x4  pairs  12 digits 36 max_frac 3.4e-5 rel|a||b| 4.53e-128 (naive 0.00e0) rel|c| 5.70e-128 differ 2008 | controls 7.2e-24 1.0e0 1.0e0 PASS
+OV bumpy 251: blocks 13x9  pairs  54 digits 36 max_frac 1.5e-5 rel|a||b| 4.35e-128 (naive 0.00e0) rel|c| 3.37e-126 differ 2008 | controls 5.3e-25 1.0e0 1.0e0 PASS
+OV ints  251: blocks  1x1  pairs   1 digits 28 max_frac 1.8e-6 rel|a||b| 0.00e0 (naive 0.00e0) rel|c| 0.00e0 differ    0 | controls 0.0e0 1.0e0 9.3e-1 PASS
+OV flat  512: blocks  2x3  pairs   4 digits 36 max_frac 6.7e-5 rel|a||b| 4.12e-128 (naive 0.00e0) rel|c| 5.89e-127 differ 4095 | controls 7.3e-83 1.0e0 1.0e0 PASS
+OV holes 512: blocks  2x3  pairs   4 digits 36 max_frac 5.3e-5 rel|a||b| 4.32e-128 (naive 0.00e0) rel|c| 2.12e-127 differ 3575 | controls 1.6e-81 1.0e0 1.0e0 PASS
+OV ramp  512: blocks  6x6  pairs  14 digits 36 max_frac 5.1e-5 rel|a||b| 4.33e-128 (naive 0.00e0) rel|c| 4.30e-127 differ 4095 | controls 6.6e-24 1.0e0 1.0e0 PASS
+OV bumpy 512: blocks 14x8  pairs  54 digits 36 max_frac 2.7e-5 rel|a||b| 4.52e-128 (naive 0.00e0) rel|c| 2.78e-125 differ 4096 | controls 9.6e-25 1.0e0 1.0e0 PASS
+OV ints  512: blocks  1x1  pairs   1 digits 28 max_frac 4.1e-6 rel|a||b| 0.00e0 (naive 0.00e0) rel|c| 0.00e0 differ    0 | controls 0.0e0 1.0e0 9.7e-1 PASS
+OV NaN controls: output inf, input max_frac inf rel inf: fired true
+ok
+test mullow_planted_qv ... QV flat  128: blocks  1x1  pairs   1 digits 20 max_frac 2.3e-5 rel|a||b| 1.67e-65 (naive 1.40e-63) rel|c| 1.86e-65 differ 1024 | controls 6.3e-62 1.0e0 9.9e-1 PASS
+QV holes 128: blocks  1x1  pairs   1 digits 20 max_frac 1.7e-5 rel|a||b| 1.57e-65 (naive 1.16e-63) rel|c| 1.59e-65 differ  889 | controls 4.7e-61 1.0e0 1.0e0 PASS
+QV ramp  128: blocks  2x9  pairs  10 digits 22 max_frac 9.5e-6 rel|a||b| 1.74e-65 (naive 5.26e-64) rel|c| 1.86e-65 differ 1024 | controls 1.0e0 1.0e0 1.0e0 PASS
+QV bumpy 128: blocks 12x8  pairs  51 digits 22 max_frac 5.7e-6 rel|a||b| 1.72e-65 (naive 4.26e-64) rel|c| 1.72e-65 differ 1024 | controls 1.0e0 1.0e0 1.0e0 PASS
+QV ints  128: blocks  1x1  pairs   1 digits 16 max_frac 9.6e-7 rel|a||b| 0.00e0 (naive 0.00e0) rel|c| 0.00e0 differ    0 | controls 0.0e0 1.0e0 9.6e-1 PASS
+QV flat  251: blocks  1x2  pairs   2 digits 22 max_frac 3.2e-5 rel|a||b| 1.51e-65 (naive 3.65e-63) rel|c| 1.77e-65 differ 2008 | controls 1.2e-46 1.0e0 1.0e0 PASS
+QV holes 251: blocks  1x2  pairs   2 digits 22 max_frac 2.7e-5 rel|a||b| 1.54e-65 (naive 2.45e-63) rel|c| 1.74e-65 differ 1750 | controls 2.2e-46 1.0e0 1.0e0 PASS
+QV ramp  251: blocks  6x6  pairs  14 digits 22 max_frac 1.8e-5 rel|a||b| 1.71e-65 (naive 4.59e-64) rel|c| 1.79e-65 differ 2008 | controls 1.0e0 1.0e0 1.0e0 PASS
+QV bumpy 251: blocks 13x9  pairs  54 digits 22 max_frac 1.1e-5 rel|a||b| 1.67e-65 (naive 6.41e-64) rel|c| 1.74e-65 differ 2008 | controls 1.0e0 1.0e0 1.0e0 PASS
+QV ints  251: blocks  1x1  pairs   1 digits 16 max_frac 1.6e-6 rel|a||b| 0.00e0 (naive 0.00e0) rel|c| 0.00e0 differ    0 | controls 0.0e0 1.0e0 9.3e-1 PASS
+QV flat  512: blocks  4x3  pairs   6 digits 22 max_frac 4.1e-5 rel|a||b| 1.48e-65 (naive 6.10e-63) rel|c| 1.74e-65 differ 4096 | controls 9.2e-16 1.0e0 1.0e0 PASS
+QV holes 512: blocks  4x3  pairs   6 digits 22 max_frac 3.1e-5 rel|a||b| 1.59e-65 (naive 4.04e-63) rel|c| 2.45e-65 differ 3577 | controls 1.4e-14 1.0e0 1.0e0 PASS
+QV ramp  512: blocks  6x6  pairs  14 digits 22 max_frac 3.1e-5 rel|a||b| 1.76e-65 (naive 5.03e-64) rel|c| 1.81e-65 differ 4096 | controls 1.0e0 1.0e0 1.0e0 PASS
+QV bumpy 512: blocks 14x8  pairs  54 digits 22 max_frac 1.6e-5 rel|a||b| 1.60e-65 (naive 1.14e-63) rel|c| 1.82e-65 differ 4096 | controls 1.0e0 1.0e0 1.0e0 PASS
+QV ints  512: blocks  1x1  pairs   1 digits 16 max_frac 4.3e-6 rel|a||b| 0.00e0 (naive 0.00e0) rel|c| 0.00e0 differ    0 | controls 0.0e0 1.0e0 9.7e-1 PASS
+QV NaN controls: output inf, input max_frac inf rel inf: fired true
+ok
+test relaxed_accuracy_against_naive ... relaxed accuracy DV (squares from 16, n 700): 5.46e-32, control 1.04e-8 (bound 1e-28)
+relaxed accuracy QV (squares from 16, n 700): 1.45e-64, control 1.04e-8 (bound 1e-58)
+relaxed accuracy OV (squares from 16, n 700): 1.14e-135, control 1.04e-8 (bound 1e-118)
+ok
+test relaxed_planted_exact ... relaxed exact n 300, squares from [4, 4, 4, 4]: DV QV OV Du [true, true, true, true]
+  control, the first square dropped: [false, false, false, false] (must be all false)
+relaxed exact n 300, squares from [16, 16, 16, 16]: DV QV OV Du [true, true, true, true]
+  control, the first square dropped: [false, false, false, false] (must be all false)
+relaxed exact n 2100, squares from [512, 64, 16, 512]: DV QV OV Du [true, true, true, true]
+  control, the first square dropped: [false, false, false, false] (must be all false)
+ok
+test relaxed_without_squares_is_cs_range ... ok
+
+test result: ok. 9 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 45.10s
+
