@@ -43,5 +43,14 @@ Basis: macm3's k_c 127 regrid (4180 steps from 3916, ratio 1.067; \|F\| 3.1113e-
 ## Budget
 Regrid 6 threads (nice 10 raised to 19 by the watcher), then the scan's 4 single-thread processes: at most 6 threads at a time, inside my 20-thread limit; the quest's units keep what they need and go first (the watcher). Memory: the regrid up to about 7.5 GiB, each scan worker about 4 to 6.5 GiB (the gate waits for 4 x 6.8 GB + 4 GB); nothing is stopped or terminated for memory (alert files only).
 
+## Amendment 1: stopped by order, no result
+t5 (hc, read at 2026-11-26 18:09 UTC): stop the k_c 135 D 23.0625 lane (unit `i1025-kc135-230625`) by exact pid now, because macm3 runs the same point about 5x faster and the lane sits at nice 19 on this loaded box. This runner has no new #1025 lane for now; dh610's cores go to #1098.
+- Stopped by TERM on exact pids at 18:09:28 UTC (clock read before and after): the lane 2328575 and its two subshells 2329014 and 2329017 first, then the `timeout` and python of the regrid (2329018, 2329019), the memory log 2328578, the yield watcher 2328555 and the notifier 2328556 with its tail children. `kill` reported no such process for 2329018, 2329019 and 2328578, so they had exited between the first TERM and the second (the cause was not checked). All pids were gone at 18:09:34 UTC and the unit read inactive.
+- The regrid ran 7383 s (16:06:25 to 18:09:28 UTC) of the registered 16000 to 32000 s. It wrote no state, no record and no acceptance check: `regrid/regrid.log` holds the command line and dss_ell overflow warnings (last written at 17:19 UTC; the log prints no step count before the end), so nothing here says how far it got. No scan started.
+- Sampled RSS, 122 one-minute samples: peak 3.89 GiB (at 17:17 UTC), 2.56 GiB at the last sample (18:08 UTC), 11 threads. The yield watcher put every thread at nice 19 at 16:06:52 UTC (`i1088a_yield.txt`) because an `i1088a-*` unit was active; the python read nice 19 at the stop.
+- Not scored: the regrid, scan and lane predictions above (acceptance, steps, |F|, constraint, Delta shift, wall, RSS, scan roots, lane time). The run did not reach the events they name, and a stopped run scores neither right nor wrong. t5's registered +0.008 +- 0.004 is untouched here; macm3's run of the same point answers it.
+- Nothing in this folder is an input for another lane. The lane files, pins and `in/` stay as run, for the record.
+
 ## Status
 - 2026-11-26 16:05 UTC: folder, inputs (pinned), lane (stage files), watcher and README written before any run; `lane_kc135.sh dry` passed (pins, worktrees, lambda_0, the 13 selftests and controls as wanted); the unit `i1025-kc135-230625` starts next with the source check.
+- 2026-11-26 18:09 UTC: stopped by t5's order (Amendment 1); no result, no state, no record, no scan. Unit inactive.
