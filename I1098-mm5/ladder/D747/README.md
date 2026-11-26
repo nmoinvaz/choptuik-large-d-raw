@@ -40,3 +40,12 @@ Bars: as above (the jump converges and the ks gate passes, h5..h13 each released
 
 Two differences from D 622 and D 1291, noted before the run: (1) `form_s.py` at f398e829 differs from 478e9d86 in `release_ls`: the inner held solves chord-step with a kept Jacobian by default (`--inner_chord 1`, commit e1cd7a84; it reforms the Jacobian after any slow chord step; 4 more inner steps allowed), so its converged states agree with 478e9d86's to the tolerance, not bit for bit;
 (2) the script passes `--commit 478e9d86`, so the commit field in this run's records reads 478e9d86 while the Python is f398e829.
+
+### Amendment (2026-11-26 19:12 UTC, coordinator's order): the commit label and inner_chord
+
+The command is started with `EXTRA="--commit f398e829"` in front: the script appends `$EXTRA` after its own `--commit 478e9d86`, and `form_s.py`'s `opts()` keeps the last value of a repeated option (checked: `opts(["--commit","478e9d86","--commit","f398e829"], ...)` returns f398e829 on f398e829's `hp/form_s.py`), so this run's records say f398e829.
+The `inner_chord 1` default is accepted (it converges to the same tolerance, 1e-48; the dh370 and dh170 points run it too).
+
+```
+EXTRA="--commit f398e829" HP=$HOME/Source/choptuik-fastmul6-f398/hp KSBAR=1e-64 bash tools/ladder_point2_8e67.sh 747 200 6 <ladder>/D747 <ladder>/inputs/S300_D300_mob6_h13.npz <ladder>/inputs/S1000_D1000_base6_h13.npz 48 23
+```
