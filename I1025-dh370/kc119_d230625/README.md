@@ -83,3 +83,11 @@ t5: "the scanner changes for every scan that has not started. A scan already run
 | Delta shift between -1e-5 and -5e-7 (70%) | right (-1.70e-6) |
 | regrid wall 11000 to 21000 s (60%) | right (13257 s) |
 | peak RSS of the regrid below 5 GiB (85%) | right (3.95 GiB) |
+
+## Scan, round 1 done (09:36:36 to 11:35 UTC, 3 processes at nice 10, `d18_secant.py scan`, fast matrix, 6797 to 7101 s per point)
+| lambda | hybrid sign | noise-robust | dln | float64 sign | ln of abs det | seconds |
+|---|---|---|---|---|---|---|
+| -0.02 | + | True | 2.72e-06 | + | -3562.4185 | 6797 |
+| 0.00 | - | True | | - | -3566.1592 | 7101 |
+| 0.02 | - | True | 7.81e-07 | - | -3566.3849 | 6836 |
+- Interim (information; the reader's reading comes after the scan; round 2, lambda -0.04 and 0.04, is running): the hybrid sign goes **+ to -** between -0.02 and 0.00, so a robust change in **(-0.02, 0.00)** (printed "+ to -"), inside t5's registered root -0.004 +- 0.005 (-0.009 to 0.001); no change between 0.00 and 0.02. The float64 sign equals the hybrid at all three. Per point 6797 to 7101 s on 3 processes, inside my 5000 to 9000 s.
