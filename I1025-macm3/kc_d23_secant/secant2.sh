@@ -13,8 +13,9 @@ D=23.0
 case $NAME in
   kc87) STUB=l1kc87Lmacm3c2.jsonl; STATE=sol_l1kc87Lmacm3c2_D23.000000.npy; PIN=bb32ff05,2dda16f7; LO=-0.040; HI=-0.020;;
   kc95) STUB=l1kc95win2d23.jsonl; STATE=sol_l1kc95win2d23_D23.0000.npy; PIN=096f1cc0,e3fff23f; LO=0.000; HI=0.020;;
+  kc87b) STUB=l1kc87Lmacm3c2_asof_D22.9375.jsonl; STATE=sol_l1kc87Lmacm3c2_D22.937500.npy; PIN=5d759685,e854c38e; LO=0.040; HI=0.060; D=22.9375;;
   kc95L) STUB=l1kc95Lw1025m.jsonl; STATE=sol_l1kc95Lw1025m_D23.062500.npy; PIN=696bd814,a54f6896; LO=-0.060; HI=-0.040; D=23.0625;;
-  *) echo "kc87, kc95 or kc95L"; exit 9;;
+  *) echo "kc87, kc95, kc95L or kc87b"; exit 9;;
 esac
 HC=$(command -v hc); LOG=$K/exits_$NAME.txt
 stamp() { date -u '+%F %T'; }
@@ -38,12 +39,14 @@ ex="$(nice -n 10 $PY d18_secant.py selftest > $C/d18_secant_selftest.txt 2>&1; e
 for m in half norobust nosigncheck; do nice -n 10 $PY d18_secant.py selftest --mutate=$m > $C/d18_secant_selftest_$m.txt 2>&1; ex="$ex $?"; done
 [ "$ex" = "0 1 1 1" ] || stop "d18_secant selftest exits '$ex' (wanted '0 1 1 1': selftest, half, norobust, nosigncheck)"
 say "selftest as wanted: d18_secant exit 0, mutations half norobust nosigncheck exit 1 1 1 (ell_fastm and ell_fastdd selftests and controls: kc103_d23/secant/checks, same blobs)"
-if [ "$NAME" = kc95L ]; then   # win2's accepted leg state at D 23.0625: the k_c 95 check accepts it (controls 1 1), the k_c 87 and k_c 103 checks refuse it
-  A="nice -n 10 $PY -I $IN/kc95_syscheck_1025.py $IN/$STUB $IN/$STATE $D $WTM"
-  $A > $C/accept_kc95.txt 2>&1; a0=$?; $A --mutate=F > $C/accept_kc95_mutF.txt 2>&1; a1=$?; $A --mutate=steps > $C/accept_kc95_mutsteps.txt 2>&1; a2=$?
-  nice -n 10 $PY -I $IN/kc87_syscheck_1025.py $IN/$STUB $IN/$STATE $D $WTM > $C/accept_kc87_refuses.txt 2>&1; a3=$?
-  nice -n 10 $PY -I $IN/kc103_syscheck_1025.py $IN/$STUB $IN/$STATE $D $WTM > $C/accept_kc103_refuses.txt 2>&1; a4=$?
-  say "acceptance of the state: kc95_syscheck exit $a0 (0 wanted), controls --mutate=F $a1 and --mutate=steps $a2 (1 wanted each), kc87_syscheck $a3 and kc103_syscheck $a4 on it (1 wanted each): $(grep -E '^D ' $C/accept_kc95.txt | cut -c1-260)"
+case $NAME in kc95L) POS=kc95; NEGS="kc87 kc103";; kc87b) POS=kc87; NEGS="kc95 kc103";; *) POS="";; esac
+if [ -n "$POS" ]; then   # a state taken from another run (win2's leg state; my part c2 state at D 22.9375): the $POS check accepts it (controls 1 1), the other two checks refuse it
+  A="nice -n 10 $PY -I $IN/${POS}_syscheck_1025.py $IN/$STUB $IN/$STATE $D $WTM"
+  $A > $C/accept_$POS.txt 2>&1; a0=$?; $A --mutate=F > $C/accept_${POS}_mutF.txt 2>&1; a1=$?; $A --mutate=steps > $C/accept_${POS}_mutsteps.txt 2>&1; a2=$?
+  set -- $NEGS; N1=$1; N2=$2
+  nice -n 10 $PY -I $IN/${N1}_syscheck_1025.py $IN/$STUB $IN/$STATE $D $WTM > $C/accept_${N1}_refuses.txt 2>&1; a3=$?
+  nice -n 10 $PY -I $IN/${N2}_syscheck_1025.py $IN/$STUB $IN/$STATE $D $WTM > $C/accept_${N2}_refuses.txt 2>&1; a4=$?
+  say "acceptance of the state: ${POS}_syscheck exit $a0 (0 wanted), controls --mutate=F $a1 and --mutate=steps $a2 (1 wanted each), ${N1}_syscheck $a3 and ${N2}_syscheck $a4 on it (1 wanted each): $(grep -E '^D ' $C/accept_$POS.txt | cut -c1-260)"
   [ "$a0 $a1 $a2 $a3 $a4" = "0 1 1 1 1" ] || stop "the state is not accepted as written (exits $a0 $a1 $a2 $a3 $a4; wanted 0 1 1 1 1)"
 fi
 [ "$MODE" = dry ] && { say "dry run ends here"; exit 0; }

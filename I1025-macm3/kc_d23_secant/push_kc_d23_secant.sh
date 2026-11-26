@@ -8,7 +8,7 @@ trap 'rmdir $LOCK 2>/dev/null' EXIT
 cd $W || exit 1
 git fetch -q && git merge -q --ff-only origin/main || { echo "ff-only merge failed"; exit 1; }
 mkdir -p I1025-macm3/kc_d23_secant && rsync -a --exclude "work/" $L/ I1025-macm3/kc_d23_secant/ || exit 1
-python3 make_index.py > /dev/null && git add I1025-macm3/kc_d23_secant INDEX.md && git commit -q -m "$1" || { echo "commit failed or nothing to commit"; exit 1; }
+python3 make_index.py > /dev/null; git add I1025-macm3/kc_d23_secant INDEX.md && git commit -q -m "$1" || { echo "commit failed or nothing to commit"; exit 1; }
 for i in 1 2 3; do
   git pull -q --rebase origin main && git push -q origin HEAD:main && { echo "pushed $(git log -1 --format=%h)"; exit 0; }
   sleep 5
