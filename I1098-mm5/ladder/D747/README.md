@@ -49,3 +49,17 @@ The `inner_chord 1` default is accepted (it converges to the same tolerance, 1e-
 ```
 EXTRA="--commit f398e829" HP=$HOME/Source/choptuik-fastmul6-f398/hp KSBAR=1e-64 bash tools/ladder_point2_8e67.sh 747 200 6 <ladder>/D747 <ladder>/inputs/S300_D300_mob6_h13.npz <ladder>/inputs/S1000_D1000_base6_h13.npz 48 23
 ```
+
+## Attempt 1 stopped (2026-11-26 20:02:38 UTC) and attempt 2, chord-free (coordinator's order, 20:03 UTC)
+
+**Attempt 1** (started 19:20:08 UTC, `attempt1_chord_floor/`: its `rls/`, `rls13/`, `run.log`, `driver.log`, `ks_gate.log`; Python f398e829 with the `inner_chord 1` default): the jump at ks 1138 converged (51 s) and the ks gate chose ks 1338 (1138 -> 1338: 1.88e-55; 1338 -> 1538: 8.56e-66, bar 1e-64); rls h5..h11 rc 0 at 19:46:02 (25 min).
+At **h13** (rls13) outer 0 (qd Jacobian) floored (|F| 1.79e-39 against 1.72e-39) and handed over to qq (logged, as agreed). Outer 1 (qq, 19:52:18): the trial at lam 1 **floored in 10 steps at |F| 1.75e-45, against the tol 1e-48** (the step was accepted, full-step dDelta -2.40e-16, residual 1.72e-39 -> 1.75e-45).
+A qq inner solve that does not converge is a stop of the amended rule: D 747 was stopped by exact pid (wrapper 51580, timeout 52430, python 52431) at 20:02:38 UTC, 25 s into outer 2. D 432, D 519 and D 622 on 478e9d86 (no chord) reached 1.78e-76 (D 432) at that stage.
+
+**Attempt 2** differs from attempt 1 only in `--inner_chord 0` (every inner solve chord-free, as on 478e9d86; f398e829 `form_s.py` line 1370 chords only when inner_chord is "1"): `jump/` kept (the converged ks 1138 jump; the script's "jump kept from the earlier run"), the ks gate run again (expect 1338 with 8.56e-66), then rls h5..h11, rls13 and the tail:
+
+```
+EXTRA="--commit f398e829 --inner_chord 0" HP=$HOME/Source/choptuik-fastmul6-f398/hp KSBAR=1e-64 bash tools/ladder_point2_8e67.sh 747 200 6 <ladder>/D747 <ladder>/inputs/S300_D300_mob6_h13.npz <ladder>/inputs/S1000_D1000_base6_h13.npz 48 23
+```
+
+Same bars and amended stop rule. If h13's qq inner solve floors again with inner_chord 0, stop and report: then the chord is not the cause.
