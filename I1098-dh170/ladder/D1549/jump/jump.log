@@ -1,0 +1,19 @@
+  states: 0 form A, 2 form S (D 300, 1000)
+guess at D 1549 from 2 states, D 300.0000 .. 1000.0000, degree 1 in 1/n; degree 0 differs by 7.54e-04 (unknowns), 1.56e-02 (Delta)
+  261 Taylor steps; the guess's max |F| per block 1.7e-07 2.2e-07 4.6e-07 8.9e-07 1.7e-06 2.1e-02 1.2e-17
+  p1's harmonics 5-13 at the guess's values (kfreeze 3 with the held offset)
+  ladder stage 0: dd residual, at most 12 steps
+  start: max |F| 2.119e-02, Delta 1.650625541336179669116290824604220688343
+  it 0 starts 19:00:43 UTC
+  it 0: |F| 2.119e-02 -> 6.233e-05, |dz| 4.58e-05, dDelta -4.576e-05, lam 1, Delta's gain 9.66e+00, gain |F| 6.02e-04, 493.0 s (J and solves 486 s), Delta 1.650579778119267505560292491392314652866
+  it 1 starts 19:08:56 UTC, predicted end 19:17 UTC (493 s)
+  it 1: |F| 6.233e-05 -> 1.822e-09, |dz| 1.13e-06, dDelta +2.286e-07, lam 1, Delta's gain 8.84e+00, gain |F| 1.61e-08, 460.8 s (J and solves 454 s), Delta 1.650580006722273531105843747791144888582
+  it 2 starts 19:16:37 UTC, predicted end 19:24 UTC (461 s)
+  it 2: |F| 1.822e-09 -> 1.095e-15, |dz| 1.17e-09, dDelta -7.944e-10, lam 1, Delta's gain 8.83e+00, gain |F| 9.67e-15, 467.1 s (J and solves 460 s), Delta 1.650580005927826407732926204578955103122
+  it 3 starts 19:24:24 UTC, predicted end 19:32 UTC (467 s)
+  it 3: |F| 1.095e-15 -> 4.397e-24, |dz| 6.98e-17, dDelta +3.426e-17, lam 1, Delta's gain 8.83e+00, gain |F| 3.88e-23, 465.1 s (J and solves 458 s), Delta 1.650580005927826441994122158748356819303
+  end state: qd max |F| 7.153e-24; Delta's first-order bound gain |F| 6.32e-23 (gain 8.83e+00, the last step's Jacobian)
+  the full system (kfreeze 13) at the held solution: max |F| 6.646e-12, first-order dDelta +1.502e-08 (Delta's gain sum |dDelta/dF| 1.17e+09)
+  discretization (bars 1e-25): top harmonic 1.0e-18 relative (n4m); kc+20: |dF| 0.0e+00, gain |dF| 0.0e+00; ks+200: |dF| 2.1e-41, gain |dF| 1.8e-40; steps halved: |dF| 7.3e-63, gain |dF| 6.4e-62: over the 1e-25 bar: theta (M 32): top harmonic 1.0e-18
+  Hamiltonian code check (form A's residual in double-double, a slaved): segment blocks' max |F| 1: a 1.6e-26, p/m/c 8.5e-24; 2: a 3.5e-26, p/m/c 1.7e-23; 3: a 6.3e-26, p/m/c 2.7e-23; 4: a 9.8e-26, p/m/c 3.8e-23
+  converged; Delta 1.650580005927826441994122158748356819303; saved /home/nathan/Source/choptuik-large-d-1088a/out/ladder/D1549/jump/jump_s_D1549.0000.npz
