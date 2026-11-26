@@ -49,3 +49,5 @@ zero-step ratio 0.88: zero of k_c 135 23.07624, root at D 23.0625 by the k_c 127
 
 ## Status
 - 2026-11-26 18:12 UTC: folder, README (registration), lane and pins written; next: pushed first, then the dry run (pins, selftests, the source check), then the lane.
+- 2026-11-26 18:12 UTC: **dry run passed (18:12:38 to 18:12:44 UTC; `exits_kc135.txt`, `checks/`): pins; the diff of the k_c 127 and k_c 135 checks is the header comment line and three lines changed from 127 to 135 (8 changed lines); selftests 0 0 0 0 1 1 0 (kc119, kc127, kc135 checks, read_lower, its shift and round2 mutations, repeat_check); the new scanner's selftest 0 and its mutations half, norobust, nosigncheck 1 1 1; the source check: the k_c 127 check accepts my D 23.0625 state (exit 0; record |F| 3.0829e-10, 4180 steps, constraint 1.557e-3, Delta 1.176171291295), controls `--mutate=F` and `--mutate=steps` exit 1 1, the k_c 119 and k_c 135 checks refuse it (1 1).** Machine at the start: load 1.33, 15.5 GiB available, nothing else running. The lane starts next (`lane135.sh`, full mode).
+
