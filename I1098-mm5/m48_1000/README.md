@@ -38,3 +38,20 @@ roughly 15 min; about 1.5 h in all.
 
 The queue script waits for kfree1000od's python (pid 21327) to exit, then runs both. Delta's change per harmonic is computed by `diff_delta.py`
 on the log's digits (mpmath), never by hand.
+
+## Results (2026-11-26 11:48 UTC)
+
+Started 10:47:43 UTC, ended 11:42:02 UTC (54 min; `queue.txt`: resample exit 0, release_ls exit 0). The log's first line shows the kernel: `hpkernel /Users/nathan/Source/fastmul3-site/hpkernel/__init__.py HP_HORIZON_RELAXED 1` (fastmul3's build; form S at M 48 is in it). All numbers below are by script from the logs' digits (mpmath, 50 digits); the M 32 values are from `../kfree1000od/` (h19, h21; od).
+
+| harmonic | M 48: outer steps, change in Delta (time) | M 32 (od) | M 48 / M 32 |
+|---|---|---|---|
+| h17 (shift M 32 -> 48, from the M 32 h17 state) | outer 0 -1.9684e-25 (347 s), outer 1 +1.3884e-19 (452 s), outer 2 -1.7856e-22 (324 s), outer 3 released; total **+1.38661e-19** | (the M 32 state itself) | |
+| h19 | outer 0 +1.2092e-19 (537 s), outer 1 released | +1.13137e-20 | 10.7 |
+| h21 | outer 0 -3.4847e-21 (645 s), outer 1 released | +1.43289e-20 (the stall) | -0.24 |
+| h23 | outer 0 -1.5134e-21 (534 s): **the inner solve converged** (|F| 8.56e-49); outer 1 released | floor: the inner solve stopped at 1.71e-40 against 2.77e-46 | |
+
+- Delta after h23 at M 48: 1.654240854145891722526108246523219277594. Delta after h21, M 48 minus M 32: +2.3046e-19.
+- Against the bar (the jump agent's): h21 and h23 fall below 1e-20 at M 48 (h21 -3.5e-21, h23 -1.5e-21) and the h17 shift is 1.4e-19, above 1e-20: the case in which M 32 drives the stall.
+  h19 at M 48 is +1.2e-19, larger than at M 32, which neither case of the bar expected.
+- The h23 inner stall is the system's at M 32 (the same floor in od and qd), and it disappears at M 48.
+- Files: `rls.log`, `release_ls.jsonl`, `release_ls_h<k>_D1000.0000.npz` (the state after each harmonic), `h17_M48.npz`, `resample.log`, `queue.txt`, `diff_delta.py`.
