@@ -32,10 +32,15 @@ mkdir -p $O/jump $O/rls $O/rls13 $O/tail
   date -u "+start %Y-%m-%d %H:%M:%S UTC"
   echo "D $D, ks $KS, kc $KC, a $A, tail M $MT, kmax $KMAX, threads $T"
 } > $O/run.log
-nice -n 10 timeout 3h $PY -u form_s.py jump $O/jump --D $D --states_s "$SA,$SB" --deg 1 --held 1 --mob $A --ks $KS \
-  --kc $KC --delta fit --tol 1e-300 --it_max 12 --threads $T --commit 478e9d86 $EXTRA > $O/jump/jump.log 2>&1
-echo "jump ks $KS rc $? $(date -u +%H:%M:%S)" >> $O/run.log
 J=$O/jump/jump_s_D$DF.npz
+if grep -q "^  converged" $O/jump/jump.log 2>/dev/null && [ -s $J ]; then
+  # a restart: the converged jump of an earlier run in OUT is kept
+  echo "jump kept from the earlier run ($(date -u +%H:%M:%S))" >> $O/run.log
+else
+  nice -n 10 timeout 3h $PY -u form_s.py jump $O/jump --D $D --states_s "$SA,$SB" --deg 1 --held 1 --mob $A --ks $KS \
+    --kc $KC --delta fit --tol 1e-300 --it_max 12 --threads $T --commit 478e9d86 $EXTRA > $O/jump/jump.log 2>&1
+  echo "jump ks $KS rc $? $(date -u +%H:%M:%S)" >> $O/run.log
+fi
 grep -q "^  converged" $O/jump/jump.log && [ -s $J ] || exit 2
 # the Moebius series' order (ks_gate.py): the octo-double residual's change at the jump's state when the series runs to
 # ks + 200, ks raised by 200 until it is at most KSBAR (1e-64: the gain at kfree 23 is about 1e39 at D 300, so the
@@ -44,7 +49,7 @@ grep -q "^  converged" $O/jump/jump.log && [ -s $J ] || exit 2
 # not. The jump's own ks+200 |dF| is a quad-double residual's and floors near 1e-45 at D 1291, so it cannot gate this
 KSBAR=${KSBAR:-1e-64}
 $PY -u $HP/ks_gate.py $J --bar $KSBAR --threads $T > $O/jump/ks_gate.log 2>&1
-KSG=$(grep -oE "^gate [0-9]+" $O/jump/ks_gate.log | awk '{print $2}')
+KSG=$(grep -oE "^gate ks [0-9]+" $O/jump/ks_gate.log | awk '{print $3}')
 echo "ks gate (bar $KSBAR): ${KSG:-none} ($(tail -2 $O/jump/ks_gate.log | head -1))" >> $O/run.log
 [ -n "$KSG" ] || exit 6
 if [ "$KSG" != "$KS" ]; then
