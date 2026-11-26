@@ -34,3 +34,22 @@ order 612; its last ten terms are at most 3.5e-71. The kernel's values come from
 - The kernel's Moebius values are 1.0e-40 off mpmath's converged sum, the same with the relaxed products on or off.
   p, m and c read 9.97e-41, 8.77e-41 and 4.70e-41.
 - The control moves m_h's low part by 1e-30 in the kernel only. It reads 4.6e-28.
+
+## The horizon values with every sum exact (`horizon300_v3.log`, `horizon300_split.log`)
+
+`horizon300_v3.log` runs mpmath's u series to order 900; its last ten terms are at most 8.4e-103.
+
+- The kernel's u sum matches mpmath's partial sums to 4.8e-120 at every ks. Against the converged sum it is off by
+  its truncation: 2.6e-35 at ks 306, 8.5e-54 at 406, 5.3e-64 at 506 and 3.7e-86 at 706.
+- The kernel's Moebius values are off mpmath's u series by the same 9.97e-41, 8.77e-41 and 4.70e-41 (p, m, c) at every
+  a and ks tried: a 4, 6, 8 and 16, ks 600 to 1200. That is a fixed offset between the two formulations.
+
+`horizon300_split.log` gives mpmath's u series horizon_mob's split B_0 = 1 + X, with (omega D_e + kappa) X = q_0.
+That equals the direct solve of B_0 only when D_e 1 = 0. The double-double D_e meets this to its row sums, at most
+3.4e-41 at M 32, 48 and 64.
+
+- **With the split, the kernel's Moebius values match mpmath to 6.8e-64** (a 4 at ks 600, a 8 at ks 800). a 8 at ks
+  600 is off by 1.21e-53, its truncation, the same 1.21e-53 that horizon300's variants removed.
+- The kernel's u then differs from the split series by 9.97e-41.
+- **So the u-against-Moebius gap in the horizon values comes from the double-double D_e's row sums,** which the two
+  formulations use differently. With fastmul6's remainders (D + c) the row sums fall to the remainder's rounding.

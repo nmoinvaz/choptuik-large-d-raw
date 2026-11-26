@@ -1,0 +1,10 @@
+mpmath u series to order 500 at u/sigma = 1.2 (sigma 0.25): last ten terms at most 2.34e-65
+kernel u (ks 306) against mpmath at ks 306: 9.973e-41 (the u recurrence's arithmetic)
+mpmath at ks 306 against ks 500: 2.592e-35 (u's truncation)
+kernel u (ks 306) against mpmath converged: 2.592e-35 (p, m, c: 2.59e-35, 6.36e-36, 1.02e-38)
+  kernel Moebius a 4, ks 600 against mpmath converged: p, m, c 6.78e-64, 5.02e-65, 1.27e-64
+  kernel Moebius a 8, ks 800 against mpmath converged: p, m, c 6.78e-64, 5.02e-65, 1.27e-64
+kernel Moebius (a 8, ks 600) against mpmath converged: 1.209e-53 (p, m, c: 2.12e-54, 4.07e-54, 1.21e-53)
+control (m_h + 1e-30 in the kernel only): 4.619e-28
+  PASS: Moebius against mpmath 1.21e-53 (bar 1e-40), the control 4.62e-28 (must exceed it); 5 nodes, x_l 0.7
+rc 0
