@@ -29,3 +29,4 @@ The checks read each script's own pass/fail text and exit code; I report both, w
 
 ## Status
 - 2026-11-26 01:05 UTC: folder, README, `run_formsq_build.sh` and `commit_watch.ps1` written; the sampler and the gated driver start next.
+- 2026-11-26 01:08 UTC: the coordinator's order (hc ~01:06 UTC): "the quest comes first: stop the two precision-check processes now by exact pid ... which should lift the headroom over your 38 GB gate, and let the build start by itself under the gate. Don't use NOGATE, and don't touch drivers or reboot. If the gate still does not open within 15 min, report the headroom and I'll decide on the low-memory recipe." Done 01:07 UTC (see `../prec_k103_cheap/README.md`): the headroom is **31.8 GB**, 6.2 GB under the gate; the driver (started 01:05:15 UTC) keeps checking every 60 s. Report to the coordinator due 01:22 UTC if it is still closed.
