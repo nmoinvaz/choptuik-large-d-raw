@@ -96,6 +96,9 @@ c30c2766).
   below it the residual reads 2.7e-19 and ks + 200 changes nothing; at 1050 and 1150 ks + 200 fires (2.7e-19, 3.1e-22);
   from 1400 the residual is the solve's 1.13e-24.
 - `form_s/L4000q/`: D 4000's quad-double stage from I1088-dh370/L4000's state (`solvestate --ladder qd --it_max 2`,
-  90945ced, 2 threads), the octo-double check, the tails, the Hamiltonian check.
+  90945ced, 2 threads, 35 min): one step 6.0e-20 -> 7.6e-26, bound 1.3e-18, the octo-double check 7.6e-26, the tails
+  (ks + 200, kc + 20: 0; halved steps 5.9e-38; theta's top harmonic 4.2e-18), the Hamiltonian check 9.3e-27; Delta
+  1.646485793699952, -6.66e-10 from Track C. Its record's method "lastnode at x_c" is the lastnode layout's old label
+  (the same in I1088-dh370/L2828 and I1088-dh610/L2000): x_l is the record's xl, at L = 20 (4f5eaf69 labels it).
 
 Files are added as the runs go; each log or script names its command line.
