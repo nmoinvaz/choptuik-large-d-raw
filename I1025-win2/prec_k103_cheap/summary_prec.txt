@@ -1,0 +1,9 @@
+prec k_c 103 lambda 0.880: exit 0, 2861 s
+prec k_c 103 lambda 0.885: exit 0, 2856 s
+k_c 103 lambda 0.880: hybrid +1 ln -3288.588130 | noise {'1e-12': [1, 1], '1e-10': [1, 1]} | all-dd n/a ln n/a | float64 +1 | reading robust | 2848 s
+k_c 103 lambda 0.885: hybrid -1 ln -3290.549395 | noise {'1e-12': [-1, -1], '1e-10': [-1, 1]} | all-dd n/a ln n/a | float64 +1 | reading state-limited | 2842 s
+c4 at k_c 103 lambda 0.880: sign and ln agree with dh170's row (diff 3.8e-05)
+c4 at k_c 103 lambda 0.885: sign and ln agree with dh170's row (diff -1.9e-04)
+points: 2
+VERDICT: numerical (not robust beside a root: k_c 103 lambda 0.885 state-limited)
+prec_verdict exit 0
