@@ -9,7 +9,7 @@ EXTRA="--inner_chord 0" HP=$HOME/Source/choptuik-fastmul7/hp SITE=$HOME/Source/f
 ```
 
 `tools/ladder_point2_651b.sh` (raw 12a4068d `I1098-mac-a/tools/ladder_point2.sh`, blob 651bb75f4ee290156c16fb6c6c3ef4bd788d224d, verified; it takes the commit from HP's HEAD, d40a9c62). Inputs: D 2000's fastmul6 base h13 (`../inputs/D2000_base6_h13.npz`, blob b897ba43adb46653785b362d2ae6a2f712fdd8db, equal to raw's) and D 1000's (`S1000_D1000_base6_h13.npz`, blob 48db1b6c).
-kc 250, the Moebius horizon a = max(8, (D - 2)/400) = 8, start **ks = ceil(1.5 (D - 2)) + 20 = 3354**, raised by 200 until the ks gate (the octo-double `ks_gate.py`) change is at most KSBAR = 1e-70. fastmul7 = fastmul6 plus the Moebius split fix (c21ba40d); the Python at d40a9c62 defaults to `inner_chord 1`, which floored D 747's h13 qq inner solve, so every inner solve here is chord-free (`EXTRA="--inner_chord 0"`).
+kc 250, the Moebius horizon a = max(8, (D - 2)/400) = 8, start **ks = ceil(1.5 (D - 2)) + 20 = 3364**, raised by 200 until the ks gate (the octo-double `ks_gate.py`) change is at most KSBAR = 1e-70. fastmul7 = fastmul6 plus the Moebius split fix (c21ba40d); the Python at d40a9c62 defaults to `inner_chord 1`, which floored D 747's h13 qq inner solve, so every inner solve here is chord-free (`EXTRA="--inner_chord 0"`).
 Stages (`run.log`): `jump/`, `rls/` (h5..h11), `rls13/` (h13), `tail/` (the h13 state resampled to M 48, h13 re-converged, then h15..h31).
 
 **The fastmul7 check outcome** (`../../fastmul7-build/README.md`): `horizon_mp_check.py` (D 300 u h21 state, bar 1e-100, controls 1e-80): at `--ks_mob 800` **FAIL**, Moebius against mpmath 4.647e-70, the series' own truncation at ks 800 (not arithmetic: dh610's scan falls by about 1e16 per 200 orders, raw ae3500937);
