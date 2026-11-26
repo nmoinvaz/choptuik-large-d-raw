@@ -52,3 +52,10 @@ First attempt (relative `inputs` path, the script `cd`s into hp/ first): all job
 | D1000_M48_6 minus D1000_base6 against fastmul5's -8.40e-25 | **-2.12819e-26** (the two start states differ by -8.40061e-25; the remainders add +1.212e-24 at M 32 and +2.031e-24 at M 48) | the M 32 -> 48 shift at kfree 13 on fastmul6 is 39x smaller than fastmul5's |
 
 The tail (D1000_M48_tail6, h15..h31 from D1000_M48_6's state, 16 threads, 12 h cap) started 15:17:52 UTC; its table follows.
+
+## D1000_M48_tail6 stopped (2026-11-26 15:39:51 UTC) and rerun as D1000_M48_tail6b
+
+Stopped by hand, with SIGTERM to the `timeout` pid 37374 (python 37375; `D1000_M48_tail6/run.log`: rc 143) at h29 outer 0, on the coordinator's order: h19-h27 were released at outer 0 **by the residual criterion
+alone** (target |F| 1.9e-54 to 2.4e-54 at tol 1e-48) with no step taken, while the pending Newton steps' first-order dDelta was +2.644e-22 (h19), +2.678e-22 (h21, h23) (h25, h27 in `release_ls.jsonl`), so the numbers past h17 are
+not usable. The release now also requires the pending step's |dDelta| <= --ddelta (default 1e-25; wip/large-d-fastmul6 dcd93f55); `../fix6/D1000_M48_tail6b/` reruns h19-h31 from this run's h17 state
+(`D1000_M48_tail6/release_ls_h17_D1000.0000.npz`, blob 6a79f7dd862e9a4b8f7dc74cfbd9d49cb5a59964). What this run gave that stands: h15 -2.24025e-17 and h17 -1.27399e-19 at M 48 (both stepped and released by their step size).
