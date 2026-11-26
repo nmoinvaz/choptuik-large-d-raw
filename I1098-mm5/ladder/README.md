@@ -44,3 +44,7 @@ D300m48 was stopped at 17:58:38 UTC (`D300m48/README.md`). Next: the Moebius hor
 ## New tails and D 1291 (2026-11-26 18:03 UTC, coordinator's order)
 
 D 432 and D 519: the Moebius horizon at ks 1065 and 1196 (`tools/ladder_tail.sh mob`, `D432/README.md`, `D519/README.md`). D 1291: `tools/ladder_point2.sh` with KSBAR 1e-70 (`D1291/README.md`). 6 threads each; bars in each README.
+
+## D 622 and D 747 (2026-11-26 18:27 UTC, coordinator's order)
+
+Two more points on the Moebius horizon, `tools/ladder_point2.sh` with KSBAR 1e-64, M 48 tail to h23, 6 threads each (`D622/README.md`, `D747/README.md`).
