@@ -1,0 +1,15 @@
+capped_run: child pid 42014, cap 18000 s
+pins: state aa7b61a622de438557b2845e34d53e83acc0e48e (wanted aa7b61a6), stub 3cd84ab0e9487cc8c467c3781782e0016a711e7c (wanted 3cd84ab0)
+D 23.0625 k_c 103: |F| 3.2018141804e-10 (record 3.2018141804e-10), steps 3390 (record 3390): the record system
+bracket (-0.04, -0.02), tol 1e-05, maxev 10, mode matrix fast (jac), block 12 ddm, noise 1e-15, dln <= 0.1, sol_l1kc103Lmacm3_D23.062500.npy
+  lam -0.04 (lo): hybrid -1 ln|det| -2925.7501033233, noise [-1.0, -1.0] dln 5.11e-06, robust True; float64 -1 -2925.6970316696 (391 s [50, 336, 5])
+  lam -0.02 (hi): hybrid +1 ln|det| -2927.9440590772, noise [1.0, 1.0] dln 6.38e-06, robust True; float64 +1 -2927.8144575245 (318 s [26, 286, 5])
+  lam -0.02200589158031922 (interior): hybrid +1 ln|det| -2928.0227575055, noise [1.0, 1.0] dln 8.42e-06, robust True; float64 +1 -2927.7041977059 (318 s [26, 286, 5])
+  lam -0.03100294579015961 (interior): hybrid -1 ln|det| -2928.1308728089, noise [-1.0, -1.0] dln 2.28e-05, robust True; float64 +1 -2929.0021783821 (317 s [26, 285, 5])
+  lam -0.02674736189758608 (interior): hybrid +1 ln|det| -2928.8782415481, noise [1.0, 1.0] dln 3.16e-05, robust True; float64 +1 -2928.4793147689 (316 s [26, 285, 5])
+  lam -0.028115084897554956 (interior): hybrid +1 ln|det| -2930.2398188675, noise [1.0, 1.0] dln 1.41e-04, robust True; float64 +1 -2927.4260426110 (316 s [26, 285, 5])
+  lam -0.028535329359851116 (interior): hybrid -1 ln|det| -2933.0532842193, noise [-1.0, -1.0] dln 2.46e-03, robust True; float64 +1 -2929.1312401770 (317 s [26, 286, 5])
+  lam -0.028511543163491318 (interior): hybrid +1 ln|det| -2936.3088905385, noise [1.0, 1.0] dln 6.15e-02, robust True; float64 +1 -2927.3185435848 (317 s [26, 285, 5])
+  lam -0.02851654316349132 (interior): hybrid -1 ln|det| -2934.7768920974, noise [-1.0, -1.0] dln 1.38e-02, robust True; float64 +1 -2928.5837544371 (317 s [26, 286, 5])
+root: status tol (-), bracket [-0.02851654316349132, -0.028511543163491318] width 5.000e-06, signs [-1.0, 1.0], det-linear -0.028512431670882056, Brent -0.028511543163491318, 9 evaluations, 2927 s
+capped_run: exit 0 wall 2933 s cap_hit False
