@@ -1,6 +1,7 @@
 #!/bin/bash
 # #1098 ladder, version 2: one full direct solve at D on fastmul6 (d368a0c0's kernel; 478e9d86's Python or later), the
-# Moebius horizon a = max(8, n/400) with ks = ceil(1.5 (D - 2)) + 20:
+# Moebius horizon a = max(8, n/400) with ks = ceil(1.5 (D - 2)) + 20, raised by 200 until the jump's ks + 200 residual
+# change is at most 1e-50:
 #   1. jump at M 32: the held solve (p1's harmonics 5-13 held at the guess) from a degree-1 fit in 1/n to two full
 #      fastmul6 states SA and SB, the double-double solve and a quad-double check;
 #   2. release h5..h11 to tol 1e-36 (their inner solves are re-converged by every later release), then h13 to 1e-48
@@ -31,9 +32,21 @@ mkdir -p $O/jump $O/rls $O/rls13 $O/tail
   date -u "+start %Y-%m-%d %H:%M:%S UTC"
   echo "D $D, ks $KS, kc $KC, a $A, tail M $MT, kmax $KMAX, threads $T"
 } > $O/run.log
-nice -n 10 timeout 3h $PY -u form_s.py jump $O/jump --D $D --states_s "$SA,$SB" --deg 1 --held 1 --mob $A --ks $KS \
-  --kc $KC --delta fit --tol 1e-300 --it_max 12 --threads $T --commit 478e9d86 $EXTRA > $O/jump/jump.log 2>&1
-echo "jump rc $? $(date -u +%H:%M:%S)" >> $O/run.log
+# the Moebius series' order: the jump's discretization report gives the residual's change at ks + 200; above KSBAR
+# (1e-50, so that the full system's gain of up to about 1e25 leaves at most 1e-25 in Delta) ks grows by 200 and the
+# jump runs again, at most 4 times (D 250 at ks 392: 1.6e-36, and Delta moved by -2.5e-17 against u)
+KSBAR=${KSBAR:-1e-50}
+for try in 1 2 3 4; do
+  nice -n 10 timeout 3h $PY -u form_s.py jump $O/jump --D $D --states_s "$SA,$SB" --deg 1 --held 1 --mob $A --ks $KS \
+    --kc $KC --delta fit --tol 1e-300 --it_max 12 --threads $T --commit 478e9d86 $EXTRA > $O/jump/jump.log 2>&1
+  echo "jump ks $KS rc $? $(date -u +%H:%M:%S)" >> $O/run.log
+  DKS=$(grep -oE "ks\+200: \|dF\| [0-9.e+-]+" $O/jump/jump.log | tail -1 | awk '{print $3}')
+  echo "jump ks $KS: ks+200 |dF| $DKS (bar $KSBAR)" >> $O/run.log
+  $PY -c "import sys; sys.exit(0 if float('${DKS:-inf}') <= float('$KSBAR') else 1)" && break
+  cp $O/jump/jump.log $O/jump/jump_ks$KS.log
+  KS=$((KS + 200))
+done
+$PY -c "import sys; sys.exit(0 if float('${DKS:-inf}') <= float('$KSBAR') else 1)" || exit 6
 J=$O/jump/jump_s_D$DF.npz
 grep -q "^  converged" $O/jump/jump.log && [ -s $J ] || exit 2
 nice -n 10 timeout 6h $PY -u form_s.py release_ls $J $O/rls --harm 5,7,9,11 --kmax 13 --jac qd --res od --tol 1e-36 \
