@@ -1,3 +1,11 @@
 pins: state b1e4f8cad92d4384f3c2e2dffe15cd2b801251dd (wanted b1e4f8cad92d4384f3c2e2dffe15cd2b801251dd), stub 338bd7f1afa55d6afd80f03051402b855e198a3f (wanted 338bd7f1afa55d6afd80f03051402b855e198a3f)
 D 22.875 k_c 87: |F| 3.6170124824e-10 (record 3.6129015293e-10), steps 2862 (record 2862): the record system
 bracket (0.12, 0.13), tol 1e-05, maxev 10, mode matrix fast (jac), block 12 ddm, noise 1e-15, dln <= 0.1, sol_l1kc87Lmacm3c_D22.875000.npy
+  lam 0.12 (lo): hybrid -1 ln|det| -2367.0389114543, noise [-1.0, -1.0] dln 1.48e-05, robust True; float64 +1 -2366.8800024174 (821 s [120, 693, 8])
+  lam 0.13 (hi): hybrid +1 ln|det| -2368.3252332583, noise [1.0, 1.0] dln 3.25e-05, robust True; float64 -1 -2368.1044708386 (802 s [116, 678, 8])
+  lam 0.12783523965676838 (interior): hybrid +1 ln|det| -2368.7725270255, noise [1.0, 1.0] dln 5.70e-05, robust True; float64 +1 -2367.3114266881 (798 s [114, 676, 8])
+  lam 0.1245736549027933 (interior): hybrid -1 ln|det| -2369.1946001470, noise [-1.0, -1.0] dln 1.03e-04, robust True; float64 -1 -2369.5430386096 (813 s [115, 690, 8])
+  lam 0.12586531023116446 (interior): hybrid +1 ln|det| -2370.7300207544, noise [1.0, 1.0] dln 4.47e-04, robust True; float64 -1 -2366.1546326310 (806 s [115, 683, 8])
+  lam 0.12563642636231498 (interior): hybrid +1 ln|det| -2372.9761909830, noise [1.0, 1.0] dln 4.28e-03, robust True; float64 -1 -2366.8166122971 (798 s [117, 673, 8])
+  lam 0.12560994758002614 (interior): hybrid -1 ln|det| -2378.9938517505, noise [-1.0, -1.0] dln 1.01e+00, robust False; float64 -1 -2366.6981363606 (795 s [116, 671, 8])
+root: status nonrobust (not robust at 0.12560994758002614), bracket [0.1245736549027933, 0.12563642636231498] width 1.063e-03, signs [-1.0, 1.0], det-linear 0.12561274913193088, Brent 0.12563642636231498, 7 evaluations, 5634 s

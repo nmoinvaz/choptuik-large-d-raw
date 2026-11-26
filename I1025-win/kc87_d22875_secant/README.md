@@ -80,16 +80,77 @@ The sampler (`rows/secant_samples.csv`, 60 s) gives the real figures.
 
 ## Status
 
-**RUNNING since 2026-11-26 09:04:24 UTC.** README first c152b76c5 (pushed 09:03:54 UTC, before the start); chain started 09:04:10 UTC through `Win32_Process.Create` of `conhost.exe --headless cmd.exe /c go_kc87d22875s_1025.cmd`. The k_c 95 secant was pushed (75a10de70) and posted (#1025 comment 7187315219) first.
+**ENDED 2026-11-26 10:38:39 UTC (exit 4, status nonrobust; started 09:04:24 UTC, 5655 s); the chain ended 10:39:54 UTC; Result below.** README first c152b76c5 (pushed 09:03:54 UTC, before the start); chain started 09:04:10 UTC through `Win32_Process.Create` of `conhost.exe --headless cmd.exe /c go_kc87d22875s_1025.cmd`. The k_c 95 secant was pushed (75a10de70) and posted (#1025 comment 7187315219) first.
 
 - **Chain** (`rows/launcher_pid.txt`: 20604): conhost --headless 20604 <- cmd 22580 <- driver launcher 24264 and driver 26304 <- `d18_secant.py` pid 21832 (one child process 8296), sampler 6800, alert-only watcher 25548, keep-awake helper 9560. BelowNormal, one thread, killed by the exact pid at 28800 s, one hc at 14400 s if it still runs.
 - **Session check** (`session_check_secant.txt`, exit 0): no `claude` in any chain of the run, no Windows Terminal / OpenConsole / wt, a headless conhost in the chain.
 - **Before the run** (09:04:10 to 09:04:24 UTC, 14 s): the driver's pins matched; `d18_secant.py selftest` exit 0 and its three controls exit 1, 1, 1; the selftests of the three checks exit 0; the state was accepted as ordered: `kc87_syscheck_1025.py` exit 0, `--mutate=F` and `--mutate=steps` exit 1, the k_c 95 and k_c 103 checks exit 1 (they refuse it) (`source_kc*_syscheck*.txt`). The tool printed its pin lines and "the record system" (\|F\| 3.6170124824e-10 against the record's 3.6129015293e-10, 2862 steps = the record's).
 - **Machine at the start:** the other project's I114 `convergence.py` jobs run beside it, not touched.
-- **ETA** (the estimates above counted from 09:04:24 UTC): about 7 evaluations at 700 to 1000 s each, so the refinement ends about 10:20 to 11:50 UTC (central about 10:45 UTC).
+- **End:** the process ended 10:38:39 UTC with exit 4 after 7 evaluations (written: about 7 evaluations, ending about 10:20 to 11:50 UTC, central about 10:45).
 
-Pushed 2026-11-26 09:04:41 UTC.
+Pushed 2026-11-26 10:41:49 UTC.
 
 ## Result
 
-Not yet run.
+The tool's lines (`secant.log`), as printed (`d18_secant.py run`, default `--mm=fast` (basis jac), `--b12=ddm`, `--tol=1e-5 --maxev=10`, pins matched, "the record system" first):
+
+```
+pins: state b1e4f8cad92d4384f3c2e2dffe15cd2b801251dd (wanted b1e4f8cad92d4384f3c2e2dffe15cd2b801251dd), stub 338bd7f1afa55d6afd80f03051402b855e198a3f (wanted 338bd7f1afa55d6afd80f03051402b855e198a3f)
+D 22.875 k_c 87: |F| 3.6170124824e-10 (record 3.6129015293e-10), steps 2862 (record 2862): the record system
+bracket (0.12, 0.13), tol 1e-05, maxev 10, mode matrix fast (jac), block 12 ddm, noise 1e-15, dln <= 0.1, sol_l1kc87Lmacm3c_D22.875000.npy
+  lam 0.12 (lo): hybrid -1 ln|det| -2367.0389114543, noise [-1.0, -1.0] dln 1.48e-05, robust True; float64 +1 -2366.8800024174 (821 s [120, 693, 8])
+  lam 0.13 (hi): hybrid +1 ln|det| -2368.3252332583, noise [1.0, 1.0] dln 3.25e-05, robust True; float64 -1 -2368.1044708386 (802 s [116, 678, 8])
+  lam 0.12783523965676838 (interior): hybrid +1 ln|det| -2368.7725270255, noise [1.0, 1.0] dln 5.70e-05, robust True; float64 +1 -2367.3114266881 (798 s [114, 676, 8])
+  lam 0.1245736549027933 (interior): hybrid -1 ln|det| -2369.1946001470, noise [-1.0, -1.0] dln 1.03e-04, robust True; float64 -1 -2369.5430386096 (813 s [115, 690, 8])
+  lam 0.12586531023116446 (interior): hybrid +1 ln|det| -2370.7300207544, noise [1.0, 1.0] dln 4.47e-04, robust True; float64 -1 -2366.1546326310 (806 s [115, 683, 8])
+  lam 0.12563642636231498 (interior): hybrid +1 ln|det| -2372.9761909830, noise [1.0, 1.0] dln 4.28e-03, robust True; float64 -1 -2366.8166122971 (798 s [117, 673, 8])
+  lam 0.12560994758002614 (interior): hybrid -1 ln|det| -2378.9938517505, noise [-1.0, -1.0] dln 1.01e+00, robust False; float64 -1 -2366.6981363606 (795 s [116, 671, 8])
+root: status nonrobust (not robust at 0.12560994758002614), bracket [0.1245736549027933, 0.12563642636231498] width 1.063e-03, signs [-1.0, 1.0], det-linear 0.12561274913193088, Brent 0.12563642636231498, 7 evaluations, 5634 s
+```
+
+Exit **4** (the run stopped at a non-robust interior point; the bracket is valid). The driver's lines (`secant_driver_w.log`): the process ended with exit 4 after 5655 s (09:04:24 to 10:38:39 UTC); peak private 2.14 GB, peak working set 1.63 GB, lowest free memory 20.96 GB, peak commit 13.4 GB, cpu 5551 s (186 samples).
+
+**The evaluations** (`secant.jsonl`; each seconds figure is the evaluation's wall, with `sec_parts` = float64 matrix, double-double block 12, the `dd_logdet` calls with the noise test):
+
+| # | role | lambda | hybrid sign | hybrid ln\|det\| | dln | robust | float64 sign | seconds | parts (s) |
+|---|---|---|---|---|---|---|---|---|---|
+| 0 | lo | 0.12 | - | -2367.0389114543 | 1.48e-05 | yes | + | 821 | 120, 693, 8 |
+| 1 | hi | 0.13 | + | -2368.3252332583 | 3.25e-05 | yes | - | 802 | 116, 678, 8 |
+| 2 | interior | 0.12783523965676838 | + | -2368.7725270255 | 5.70e-05 | yes | + | 798 | 114, 676, 8 |
+| 3 | interior | 0.1245736549027933 | - | -2369.1946001470 | 1.03e-04 | yes | - | 813 | 115, 690, 8 |
+| 4 | interior | 0.12586531023116446 | + | -2370.7300207544 | 4.47e-04 | yes | - | 806 | 115, 683, 8 |
+| 5 | interior | 0.12563642636231498 | + | -2372.9761909830 | 4.28e-03 | yes | - | 798 | 117, 673, 8 |
+| 6 | interior | 0.12560994758002614 | - | -2378.9938517505 | 1.01e+00 | **no** (dln > 0.1) | - | 795 | 116, 671, 8 |
+
+Evaluation 6 has both noise signs equal to its sign (-, -), so `d18_hybsign.py`'s own test would call it noise-robust; the tool's `dln <= 0.1` test (the largest change of ln\|det\| under the 1e-15 noise) does not (1.01), and the tool stops there as written. dln rises as the root is approached (1.5e-5, 3.3e-5, 5.7e-5, 1.0e-4, 4.5e-4, 4.3e-3, 1.01) while ln\|det\| falls from -2367.04 to -2378.99. The float64 sign differs from the hybrid sign at evaluations 0, 1, 4 and 5 (lambda 0.12, 0.13, 0.12586531, 0.12563643).
+
+**Final bracket and root:** the last valid bracket is [0.1245736549027933, 0.12563642636231498], width 1.063e-03 (the tolerance 1e-5 was **not** reached), signs - and +, both ends robust. The det-linear root inside it is **0.125613** (0.12561274913193088); Brent's last point is 0.12563642636231498, the bracket's upper end. The non-robust evaluation 6 (hybrid sign -) lies at 0.12560995, inside the bracket and 2.6e-05 below its upper end; it is not counted in the bracket.
+
+**Against the registration** (t5's prediction: the root is 0.124 +- 0.003, i.e. `lam_lin` in [0.121, 0.127]): `lam_lin` 0.1256127 lies inside it: **met**. The whole final bracket [0.1245737, 0.1256364] also lies inside. As information: the root lies inside macm3's estimator range [0.123345, 0.127834] and 0.002221 below his det-linear estimate 0.127834. Evaluation 2, at 0.127835240, is the first Brent step (the det-linear root of the two ends; it equals macm3's estimate 0.127834 to six digits): its hybrid sign is +, so the root lies below it. Not reached: the tolerance 1e-5, because evaluation 6 was not robust; I did not rerun with other options (`--dln`, `--eps`) and did not widen, as registered.
+
+**Beside macm3's scan records of the same state at the two shared ends** (`I1025-macm3/kc87_leg_lambda/22.875/scan/scan_D22.875_1025.jsonl` at e9eb278df: `d18_hybsign.py` with the complex-step float64 matrix; this tool uses the fast float64 matrix, the same double-double block 12 and sign code):
+
+| lambda | hybrid sign, macm3 / tool | hybrid ln\|det\|, macm3 | hybrid ln\|det\|, tool | difference (tool minus macm3) | float64 sign, macm3 / tool |
+|---|---|---|---|---|---|
+| 0.12 | - / - | -2367.0391584105 | -2367.0389114543 | +2.47e-04 | - / + |
+| 0.13 | + / + | -2368.3249853488 | -2368.3252332583 | -2.48e-04 | + / - |
+
+The hybrid signs agree at both ends; macm3's repeat of 0.13 is bit-identical to his first record. The float64 sign differs between the two codes at both ends. The two codes' hybrid ln\|det\| differ by about 2.5e-04 at these ends (1.1e-04 at 0.12 in the k_c 103 lane and 3.2e-05 at 0.12 in the k_c 95 lane). I do not interpret the numbers beyond `SPEED_ELL1.md`'s statement that the float64 block 12 is wrong and the hybrid replaces it; t5 rules.
+
+**t5's ruling** (hc, 2026-11-26 10:40 UTC, quoted): "Ruling on k_c 87 at D 22.875: exit 4 with a non-robust interior point (0.12560995, dln 1.01) stands as the ROBUST BRACKET [0.12457365, 0.12563643], det-linear 0.12561275 inside it. My registered 0.124 +- 0.003 is MET. With D 22.9375 and 23.0, a quadratic puts k_c 87's zero at D 22.97890, against 22.97893 from the straight line. Push the folder and post on #1025 with the eval lines as printed."
+
+**Cost against the estimates written before the run:**
+
+| item | written | measured |
+|---|---|---|
+| source checks and selftests in the driver | about 15 to 30 s | 14 s (09:04:10 to 09:04:24 UTC) |
+| each evaluation | about 700 to 1000 s, central about 800 s | 795 to 821 s (mean 805 s) |
+| float64 matrix, block 12, `dd_logdet` calls per evaluation | not written | 114 to 120 s, 671 to 693 s, 8 s |
+| evaluations | about 7 (at most 10) | 7 (the two ends and five interior points), stopped by a non-robust point |
+| the refinement | about 4200 to 9500 s, central about 5600 s | 5655 s (09:04:24 to 10:38:39 UTC) |
+| peak private | about 2.1 to 2.6 GB | 2.14 GB (peak working set 1.63 GB) |
+| lowest free memory | about 20 GB | 20.96 GB in the sampler (09:07:28 UTC), 20.72 GB in the alert-only watcher |
+
+An evaluation took 805 s here against 1075 s at k_c 95 and 1408 s at k_c 103 (0.75 times the k_c 95 figure, inside the 0.7 to 0.9 I wrote). Laptop cpu 22 to 51 % (mean 29.0 %), 94 sample times with no gap over 90 s, the other project's I114 `convergence.py` jobs beside it, not touched. No alert, nothing killed (`rows/secant_memwatch.log`: "minimum free memory seen 20.72 GB; 0 alert(s) sent"); the keep-awake helper held until the driver ended (`rows/secant_keepawake.log`); the System log shows no power event in 09:00 to 10:50 UTC. The 14400 s hc was not needed.
+
+Raw: `secant.jsonl` (seven `eval` records and the `root` record), `secant.log`, `secant_summary.txt`, `secant_driver_w.log`, `source_kc*_syscheck*.txt`, `selftest_*.txt`, `session_check_secant.txt`.
