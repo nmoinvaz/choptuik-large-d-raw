@@ -1,6 +1,6 @@
 # I1088-win2/L20000: D 20000 held at L = 20, direct solve (#1088)
 
-Machine win2 (Windows 11, Core Ultra 7 265K, 20 logical CPUs, 95.5 GB RAM; runner win2 claude-me2, Sonnet 5.5). Issue https://github.com/nmoinvaz/choptuik-large-d/issues/1088. Written 2026-11-26 02:58 UTC, **before the run**. **The run starts only on the coordinator's word "A" or "B".**
+Machine win2 (Windows 11, Core Ultra 7 265K, 20 logical CPUs, 95.5 GB RAM; runner win2 claude-me2, Sonnet 5.5). Issue https://github.com/nmoinvaz/choptuik-large-d/issues/1088. Written 2026-11-26 02:56 UTC, **before the run**. **The run starts only on the coordinator's word "A" or "B".**
 
 ## Order (coordinator t5, hc, 26 Nov ~02:55 UTC), verbatim
 "#1088, win2's solve is D 2x10^4. Prepare it now; START ONLY ON MY WORD "A" or "B" (expected ~04:00 UTC, after the D 10^4 ks check).
@@ -35,4 +35,4 @@ The driver refuses unless (1) the guess is blob 1f63b72b, (2) `checks_gate.py` i
 - Times from a clock (`date -u`), never guessed; the memory of the solve is small (J is 577 x 577); the commit headroom matters only while the build runs.
 
 ## Status
-- 2026-11-26 02:58 UTC: folder, README, driver and the pinned guess written; the driver passes its dry run. Nothing computes. Waiting for the build (compiling) and its selftests, then for the coordinator's "A" or "B".
+- 2026-11-26 02:56 UTC: folder, README, driver and the pinned guess written; the driver passes its dry run. Nothing computes. Waiting for the build (compiling) and its selftests, then for the coordinator's "A" or "B".
