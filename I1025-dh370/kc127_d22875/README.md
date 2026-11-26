@@ -41,3 +41,4 @@ Source accepted with controls 1 1, refused by the k_c 127 and k_c 111 checks; re
 
 ## Status
 - 2026-11-26 12:58 UTC: folder, inputs, drivers, dry run (pins, worktree, lambda_0 pass) and this README written before any run; the units `i1025k127` and `i1025k127y` start next.
+- 2026-11-26 12:58:39 to 12:59:07 UTC: unit `i1025k127` started. Selftests of the k_c 119, k_c 127 and k_c 111 checks exit 0 0 0. **Source check accepted:** `kc119_syscheck_1025.py` exit 0 on macm3's state and record, `--mutate=F` and `--mutate=steps` exit 1, the k_c 127 and k_c 111 checks exit 1 on the source (`source_*.txt`). **Regrid started 12:59:07 UTC** (6 threads, cap 28800 s), load 6.2, MemAvailable 27.8 GB; the yield rule (unit `i1025k127y`) had put it at nice 19 by 12:59:24, `i1088a-rls2828` being active.
