@@ -77,3 +77,29 @@ Source accepted with controls 1 1, refused by the k_c 127 and k_c 111 checks; re
 | 0.12 | - | True | 3.23e-05 | + | -3932.7033 | 4538 |
 | 0.13 | - | True | 3.22e-06 | - | -3931.7175 | 4517 |
 - Interim (information; the reader's reading comes after the scan; round 2, lambda 0.10 and the repeat of 0.12, is running): the hybrid sign goes **+ to -** between 0.11 and 0.12, so a robust change in **(0.11, 0.12)** (printed "+ to -"), inside t5's registered band 0.113 to 0.125 (the bracket holds [0.113, 0.120)); no change between 0.12 and 0.13. **The float64 sign at 0.12 (+) differs from the hybrid's (-)**, and dln there (3.2e-5) is the largest of the three: 0.12 is the point nearest the root. Per point 4517 to 4545 s on 3 processes, below my 6500 to 11000 s.
+
+## Scan result (26 Nov 17:32:54 to 20:04:44 UTC = 2.5 h; 3 processes at nice 19 (the yield rule) from the start, `d18_secant.py scan` 92b9bf53; `read_lower.txt`, `merged_D22.875.jsonl`)
+All three processes printed the pin check and the record system (|F| 3.3794351179e-10 against the record's 3.3793040957e-10, 4177 steps equal) and exited 0; 5 evaluations, **5 noise-robust**. `read_lower.py` selftest exit 0, mutations `shift` and `round2` exit 1; `repeat_check.py` PASS (the repeat of 0.12 on process 1 against the first on process 0: ln|det| -3932.7032808031 in both, dln 3.23e-05 in both, bit-identical).
+| lambda | hybrid sign | noise-robust | dln | float64 sign | ln of abs det | seconds |
+|---|---|---|---|---|---|---|
+| 0.10 | + | True | 2.83e-06 | + | -3927.7192 | 4493 |
+| 0.11 | + | True | 5.53e-06 | + | -3929.6509 | 4545 |
+| 0.12 | - | True | 3.23e-05 | + | -3932.7033 | 4538 and 4556 (repeat) |
+| 0.13 | - | True | 3.22e-06 | - | -3931.7175 | 4517 |
+**One robust change in the window 0.10 to 0.13** (the reader's output, orientation as printed; a spread over interpolation choices, **not an enclosure**; the bracket is the grid step): **(0.110, 0.120), "+ to -", det-linear 0.119549, range [0.113991, 0.119549].** Edge signs + at 0.100 and - at 0.130; no ln|det| minimum without a sign change; no change touches a non-robust point. The float64 sign differs from the hybrid at 0.12 only (in both evaluations). Per-process wall 1:15:25, 2:30:39 and 2:31:48; peak RSS per scan process 4.14 to 4.40 GiB (`/usr/bin/time -v`: 4341908, 4439728, 4616496 kB); MemAvailable stayed above 19 GB, no alert.
+
+### Against t5's registered root 0.119 +- 0.006 (the band 0.113 to 0.125)
+My scan's bracket (0.11, 0.12) holds the band's lower part [0.113, 0.120), and its det-linear estimate **0.119549 and the whole estimator range [0.113991, 0.119549] lie inside the band**; t5's references at this D: 0.1187 (k_c 103), 0.1198 (det-linear, k_c 111), 0.1180 (k_c 119). The scan places the root only to a bracket of 0.01 and the det-linear value is crude, so this is a reading of the scan, not the root: **macm3's secant on the bracket (0.11, 0.12) of the accepted state decides** (t5's ruling; no secant on dh370).
+
+### Scan predictions scorecard (mine, registered before the run)
+| prediction | result |
+|---|---|
+| all five noise-robust (65%) | right (5 of 5) |
+| exactly one robust change in the window (82%) | right |
+| its bracket (0.11, 0.12) (50%) | right |
+| the repeat of 0.12 bit-identical (88%) | right |
+| the float64 sign equals the hybrid at all 5 (40%) | WRONG (it differs at 0.12) |
+| per point 6500 to 11000 s on 3 processes (60%); the scan 3.5 to 6 h from its start | WRONG (4493 to 4556 s; 2.5 h) |
+
+## Status
+- 2026-11-26 20:04 UTC: the lane is finished (the secant is macm3's, t5's rulings of 13:00 and 18:49 UTC). Regrid ACCEPTED (17:32:54), scan done (20:04:44): one robust change, bracket (0.11, 0.12) "+ to -". Accepted state `sol_l1kc127dh370d22875_D22.8750.npy` **43bbf313ccf8243a51b3e7878f091fcb3f8c2c9f** and record `l1kc127dh370d22875.jsonl` **574229bc95ef755cb1bc5128329c091e62b0e34a** are in this folder in raw.
