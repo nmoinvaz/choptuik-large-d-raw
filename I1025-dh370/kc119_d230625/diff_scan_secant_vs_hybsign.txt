@@ -1,0 +1,25 @@
+2,3c2,3
+< # #1025 kc119_d230625 step 4 (t5's order and its change of 06:14 UTC): hybrid sign scan of the accepted k_c 119 state at D 23.0625, lambda -0.04 to 0.04 by 0.02 (5 values, no repeat), d18_hybsign.py (e089207a,
+< # unmodified), in rounds of at most 3 single-thread processes at nice 10 (3 then 2; the lists of stage.conf). Memory: alert only. Then read_lower.py selftest (0), its mutations shift and round2 (1 each) and the
+---
+> # #1025 kc119_d230625 step 4 (t5's order, its change of 06:14 UTC and its scanner change of 07:05 UTC): hybrid sign scan of the accepted k_c 119 state at D 23.0625, lambda -0.04 to 0.04 by 0.02 (5 values, no repeat), d18_secant.py scan
+> # (wip/ell1-speed 92b9bf53, blob eb1396ad; run_scan_hybsign.sh is the d18_hybsign.py version it replaces), in rounds of at most 3 single-thread processes at nice 10 (3 then 2; the lists of stage.conf). Memory: alert only. Then read_lower.py selftest (0), its mutations shift and round2 (1 each) and the
+22a23,25
+> WTV=/home/nathan/Source/choptuik-large-d-1025v; WTVM=$WTV/solver/matter
+> [ "$(git -C $WTV rev-parse --short=8 HEAD)" = 92b9bf53 ] && [ "$(blob $WTVM/d18_secant.py | cut -c1-8)" = eb1396ad ] || { step "SCAN STOP: the scanner worktree is not 92b9bf53 or d18_secant.py is not eb1396ad"; exit 1; }
+> SB=$(blob $STATE | cut -c1-8); RB=$(blob $STUB | cut -c1-8)
+25a29,36
+> ( cd $WTVM && export P4_WT_MATTER=$WTVM OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1
+>   nice -n 10 $PY -I d18_secant.py selftest > $OUT/selftest_secant_scan.txt 2>&1; echo $? > $OUT/.e0
+>   nice -n 10 $PY -I d18_secant.py selftest --mutate=half > $OUT/selftest_secant_scan_half.txt 2>&1; echo $? > $OUT/.e1
+>   nice -n 10 $PY -I d18_secant.py selftest --mutate=norobust > $OUT/selftest_secant_scan_norobust.txt 2>&1; echo $? > $OUT/.e2
+>   nice -n 10 $PY -I d18_secant.py selftest --mutate=nosigncheck > $OUT/selftest_secant_scan_nosigncheck.txt 2>&1; echo $? > $OUT/.e3 )
+> e0=$(cat $OUT/.e0); e1=$(cat $OUT/.e1); e2=$(cat $OUT/.e2); e3=$(cat $OUT/.e3); rm -f $OUT/.e0 $OUT/.e1 $OUT/.e2 $OUT/.e3
+> step "d18_secant.py (92b9bf53, eb1396ad) selftest exit $e0 (0 wanted); mutations half exit $e1, norobust exit $e2, nosigncheck exit $e3 (1 wanted each)"
+> [ $e0 = 0 ] && [ $e1 = 1 ] && [ $e2 = 1 ] && [ $e3 = 1 ] || { step "SCAN STOP: a selftest or a mutation of d18_secant.py did not read as written"; exit 1; }
+34,35c45,46
+<   ( cd $WTM && nice -n 10 env OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 RAYON_NUM_THREADS=1 P4_WT_MATTER=$WTM \
+<       /usr/bin/time -v $PY -u $IN/d18_hybsign.py $STUB $STATE $D "$mine" $SCAN/scan_D${D}_p$p.jsonl > $SCAN/scan_p$p.raw 2>&1
+---
+>   ( cd $WTVM && nice -n 10 env OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 RAYON_NUM_THREADS=1 P4_WT_MATTER=$WTVM \
+>       /usr/bin/time -v $PY -u $WTVM/d18_secant.py scan $STUB $STATE $D "$mine" $SCAN/scan_D${D}_p$p.jsonl --pin=$SB,$RB > $SCAN/scan_p$p.raw 2>&1

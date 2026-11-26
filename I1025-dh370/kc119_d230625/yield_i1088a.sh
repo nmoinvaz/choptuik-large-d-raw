@@ -4,7 +4,7 @@
 # scan's pythons (d18_hybsign.py ... l1kc111dh370d2225). It only raises, stops and kills nothing, and ends when the lane's unit i1025k111 has ended. One line per change in i1088a_yield.txt.
 # Env for the test only: YIELD_FAKE_ACTIVE=1 treats an i1088a unit as active, YIELD_PATTERN replaces the process pattern, YIELD_LOG the log, YIELD_UNIT the unit to follow.
 F=/home/nathan/Source/choptuik-large-d-raw-wt613/I1025-dh370/kc119_d230625
-PAT=${YIELD_PATTERN:-"ell_refine.py l1kc111macm3d230625|d18_hybsign.py .*l1kc119dh370d230625"}
+PAT=${YIELD_PATTERN:-"ell_refine.py l1kc111macm3d230625|d18_(hybsign|secant).py .*l1kc119dh370d230625"}
 LOG=${YIELD_LOG:-$F/i1088a_yield.txt}
 UNIT=${YIELD_UNIT:-i1025k119}
 POLL=${YIELD_POLL:-30}
