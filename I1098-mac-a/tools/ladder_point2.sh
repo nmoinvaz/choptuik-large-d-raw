@@ -86,6 +86,9 @@ fi
 nice -n 10 timeout 10h $PY -u form_s.py release_ls $R $O/tail --harm $HT --kmax $KMAX --jac_by $JB --res od --tol 1e-48 \
   --tol_h 1e-44 --ddelta 1e-25 --threads $T --outer 8 --inner_chord $IC --commit $COMMIT $EXTRA > $O/tail/rls.log 2>&1
 echo "tail rc $? $(date -u +%H:%M:%S)" >> $O/run.log
+# the k* stage (kstar_stage.sh beside this script): the bound at kfree KSTAR (15) re-converged when gain x F > 1e-27
+HP=$HP SITE=$SITE PY=$PY EXTRA="$EXTRA" INNER_CHORD=$IC COMMIT=$COMMIT bash $TOOLS/kstar_stage.sh $O/tail $O/kstar $T
+echo "kstar rc $? $(date -u +%H:%M:%S)" >> $O/run.log
 date -u "+end %Y-%m-%d %H:%M:%S UTC" >> $O/run.log
 exit
 }
