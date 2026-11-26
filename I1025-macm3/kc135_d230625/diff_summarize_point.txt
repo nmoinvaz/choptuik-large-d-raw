@@ -1,0 +1,18 @@
+2c2
+< """summarize_point.py SCANDIR SECDIR: the numbers of one new point of the k_c 103 leg from the files: the scan (SCANDIR/scan/scan_D*_1025.jsonl, SCANDIR/read_lower.txt) and its secant refinement (SECDIR/secant.jsonl,
+---
+> """summarize_point.py SCANDIR SECDIR: the numbers of one point (lambda printed to 3 decimals: the k_c 135 scan steps by 0.005; each repeated lambda is listed once) from the files: the scan (SCANDIR/scan/scan_D*_1025.jsonl, SCANDIR/read_lower.txt) and its secant refinement (SECDIR/secant.jsonl,
+14c14
+< print("signs by lambda: " + " ".join("%.2f%s" % (r["lam"], "+" if r["sign"] > 0 else "-") for r in sorted(scan, key=lambda r: r["lam"])))
+---
+> print("signs by lambda: " + " ".join("%.3f%s" % (r["lam"], "+" if r["sign"] > 0 else "-") for r in sorted(scan, key=lambda r: r["lam"])))
+19,20c19,20
+<     if len(rs) > 1: print("repeat of %.2f bit-identical (ln, f64_ln, sign): %s" % (lam, all(x["ln"] == rs[0]["ln"] and x["f64_ln"] == rs[0]["f64_ln"] and x["sign"] == rs[0]["sign"] for x in rs)))
+< print("ln|det| by lambda: " + " ".join("%.2f:%.3f" % (r["lam"], r["ln"]) for r in sorted(scan, key=lambda r: r["lam"]) if r["lam"] not in (-0.04,) or r is rep[round(r["lam"], 6)][0]))
+---
+>     if len(rs) > 1: print("repeat of %.3f bit-identical (ln, f64_ln, sign): %s" % (lam, all(x["ln"] == rs[0]["ln"] and x["f64_ln"] == rs[0]["f64_ln"] and x["sign"] == rs[0]["sign"] for x in rs)))
+> print("ln|det| by lambda: " + " ".join("%.3f:%.3f" % (r["lam"], r["ln"]) for r in sorted(scan, key=lambda r: r["lam"]) if r is rep[round(r["lam"], 6)][0]))
+36c36
+<     if s: print("end lambda %.2f: secant ln %.6f sign %+d, scan ln %.6f sign %+d, |d ln| %.3e" % (r["lam"], r["ln"], r["sign"], s["ln"], s["sign"], abs(r["ln"] - s["ln"])))
+---
+>     if s: print("end lambda %.3f: secant ln %.6f sign %+d, scan ln %.6f sign %+d, |d ln| %.3e" % (r["lam"], r["ln"], r["sign"], s["ln"], s["sign"], abs(r["ln"] - s["ln"])))
