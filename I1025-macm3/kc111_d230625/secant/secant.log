@@ -1,0 +1,13 @@
+capped_run: child pid 72982, cap 18000 s
+pins: state 871f58c2e89a5164cf9071ad8bccf91e05f495cd (wanted 871f58c2), stub 2944860880c6d8b5fa192aecfa065dfe9e812375 (wanted 29448608)
+D 23.0625 k_c 111: |F| 3.1385588850e-10 (record 3.1385588850e-10), steps 3656 (record 3656): the record system
+bracket (-0.02, -0.01), tol 1e-05, maxev 10, mode matrix fast (jac), block 12 ddm, noise 1e-15, dln <= 0.1, sol_l1kc111macm3d230625_D23.0625.npy
+  lam -0.02 (lo): hybrid -1 ln|det| -3246.6787056974, noise [-1.0, -1.0] dln 9.39e-06, robust True; float64 -1 -3246.4378178706 (391 s [33, 353, 6])
+  lam -0.01 (hi): hybrid +1 ln|det| -3248.8016459832, noise [1.0, 1.0] dln 2.75e-05, robust True; float64 +1 -3247.5560258367 (392 s [33, 353, 6])
+  lam -0.011068870596819302 (interior): hybrid +1 ln|det| -3249.2574993037, noise [1.0, 1.0] dln 4.86e-05, robust True; float64 -1 -3250.1845935764 (391 s [32, 352, 6])
+  lam -0.012789157686699557 (interior): hybrid -1 ln|det| -3250.5979051865, noise [-1.0, -1.0] dln 2.22e-04, robust True; float64 -1 -3250.9870382973 (392 s [32, 353, 6])
+  lam -0.012432295622795377 (interior): hybrid +1 ln|det| -3252.5250269164, noise [1.0, 1.0] dln 1.47e-03, robust True; float64 +1 -3247.6976422125 (391 s [32, 353, 6])
+  lam -0.0124776419080654 (interior): hybrid +1 ln|det| -3256.0032807956, noise [1.0, 1.0] dln 4.91e-02, robust True; float64 -1 -3252.1394834482 (391 s [32, 353, 6])
+  lam -0.0124826419080654 (interior): hybrid -1 ln|det| -3255.1040143411, noise [-1.0, -1.0] dln 1.93e-02, robust True; float64 -1 -3248.2435970327 (421 s [33, 381, 7])
+root: status tol (-), bracket [-0.0124826419080654, -0.0124776419080654] width 5.000e-06, signs [-1.0, 1.0], det-linear -0.012479087914387937, Brent -0.0124776419080654, 7 evaluations, 2770 s
+capped_run: exit 0 wall 2783 s cap_hit False
