@@ -26,3 +26,19 @@ first one's time. If an inner solve stalls as at M 64, report at its second fail
         --jac_by 13:qq,15:qq,17:qq,19:qq,21:qq,23:qq,25:qq --res od --tol 1e-48 --tol_h 1e-44 --threads 9 --outer 6 --commit f50707a8 > rls.log
 
 Delta's change per harmonic is computed by `diff_delta.py` on the log's digits (mpmath), never by hand.
+
+## Stopped (2026-11-26 13:29:53 UTC) with h13-h17 released, h19 in progress
+
+Stopped by the fix queue (`../fix/queue.txt`) with SIGTERM to the `timeout` pid 26436 (python 26437) when the fastmul5 reciprocal checks passed and wave 1 of the reruns started: the threads were
+short (wave 1's 9 + this run's 9 + the D 50000 checkstate and the build), and this run is on fastmul4, a double-double 1/k measurement (the coordinator's order). Started
+12:18:22 UTC; h19 outer 0's trial (lam 1) was running (its harmonic-19 step was 2.48e-10, target |F| 2.76e-46). h19 outer 0 was not completed.
+
+Changes in Delta (script from the log's digits, `diff_delta.py`-style; M 32 -> 48 at D 2000, qq Jacobian, od residual, fastmul4 kernel with the relaxed horizon and double-double reciprocals):
+
+| harmonic | outer steps (times) | change in Delta |
+|---|---|---|
+| h13 (shift M 32 -> 48, from the M 32 h13 state) | outer 0 -5.2095e-26 (830.2 s), outer 1 +6.874e-24 (623.6 s), outer 2 released (204 s) | **+6.82191e-24** |
+| h15 | outer 0 -1.869e-17 (857.2 s), outer 1 released (215 s) | **-1.86895e-17** |
+| h17 | outer 0 -6.5853e-19 (891.6 s), outer 1 released (199 s) | **-6.5853e-19** |
+
+No inner solve stalled (3, 2, 3 and 3 inner steps, all converged). Delta after h17: see the log's h17 outer 0 line. h19-h25 were not measured on this run.
