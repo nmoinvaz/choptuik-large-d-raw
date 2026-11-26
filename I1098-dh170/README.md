@@ -49,6 +49,21 @@ https://github.com/nmoinvaz/choptuik-large-d/issues/1098
     shares apply to dh370's run, with dh370's i7-8700 as the machine.
   - The h5-h11 stage keeps its chord steps (tol 1e-36). The h13 inner system re-solves every unknown below harmonic 13
     to 1e-48, so that state serves only as the starting point.
-- `ladder/D1549/` and `ladder/D519x/`: the run folders (dh170's out/ladder), copied here and pushed at each stage's end
-  by `push_ladder.sh` (unit i1088a-push1549) from a sparse worktree of dh170's raw clone. The runs themselves write
-  outside this repository (--allow_unraw); later points write into their raw folder directly.
+- `ladder/D1549/`: the run folder (dh170's out/ladder/D1549), copied here and pushed at each stage's end by
+  `push_ladder.sh` from a sparse worktree of dh170's raw clone (unit i1088a-push1549 until 20:39 UTC, then
+  i1088a-push170, which also takes D2828). The run itself writes outside this repository (--allow_unraw). The D 519
+  check moved to dh370, so `ladder/D519x/` is not made here.
+- **D 2828's M 32 stages** (`ladder/d2828_170.sh`, unit i1088a-d2828m32, queued at 20:39 UTC on the coordinator's
+  order). It waits for i1088a-r1549c to end, about 01:30-02:00 UTC, and needs D 1549's h13 to have ended rc 0.
+  - It runs ladder_point2.sh (I1098-mac-a/tools, blob 8802fb26, chord-free) through rls13 only (STOP_AFTER=rls13):
+    kc 250, KSBAR 1e-70, 6 threads. The M 48 tail to kmax 31 runs on fastmul7 elsewhere, from the h13 state here.
+  - The jump fits in 1/n to D 1549's h13 (this machine's rls13 state) and D 2000's fastmul6 base h13
+    (I1098-dh610/fix6/D2000_base6/release_ls_h13_D2000.0000.npz, blob b897ba43). The job copies both into
+    `ladder/inputs/` and checks the second by its blob.
+  - It writes into `ladder/D2828/` of a second sparse worktree of dh170's raw clone
+    (~/Source/choptuik-large-d-raw-1088a-live, never pulled while a run writes there), without --allow_unraw.
+    i1088a-push170 copies it into the push worktree.
+  - **Kernels.** The M 32 stages run on fastmul6 (the Skylake wheel of e1cd7a84, d368a0c0's Rust, Python f398e829),
+    the tail on fastmul7. This is acceptable for the same reason as the chord h5-h11 stages. The tail's h13 re-converge
+    at M 48 re-solves every unknown, so the earlier stages are only a start. fastmul6's 1.7e-60 Moebius split offset
+    times the kfree-13 gain is far below 1e-25.
