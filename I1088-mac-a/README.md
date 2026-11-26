@@ -91,6 +91,11 @@ c30c2766).
   states at D 2828 (I1088-dh370/L2828), 4000 (form_s/L4000q) and 5657 (I1088-dh370/L5657q, after its first dd step),
   degree 2 in 1/n (`form_s_lastnode.py guess OUT --D 8000 --states_s <those three> --xl 0.7062221251334241 --mob 19.995
   --ks 10418 --threads 2`, 4f5eaf69); horizon block 7.1e-11, the other blocks 3e-12 to 2e-11 (`guess.log`).
+- `form_s/g20000L20/`: the D 20000 guess at L = 20 (x_l 0.706753, a 49.995, 2659 Taylor steps; meta ks 11416, the
+  formula value, which solvestate's --ks overrides) from the L = 20 states at D 4000 (form_s/L4000q), 5657
+  (I1088-dh370/L5657c, after its chord step: 2.9e-26) and 10000 (I1088-dh610/L10000q, after its first dd step),
+  degree 2 in 1/n (`form_s_lastnode.py guess OUT --D 20000 --states_s <those three> --xl 0.7067531041047617 --mob
+  49.995 --ks 11416 --threads 2`, 4f5eaf69); horizon block 4.0e-11, the others 1.6e-12 to 1.0e-11 (`guess.log`).
 - `form_s/ks_scan/`: the held residual against the horizon order ks (`ks_scan.py STATE KS,...,KSREF PARTS THREADS`, Mac, 2
   threads). D 10000 at its first dd step's state (I1088-dh610/L10000q), double-double (`D10000_step0_dd.log`): ks 4900
   and 5100 differ from ks 13018 by 2.7e-17 (the fast mode, which enters at order n/2 = 4999, not yet summed), 5300 by
