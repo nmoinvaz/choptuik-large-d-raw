@@ -16,3 +16,9 @@ https://github.com/nmoinvaz/choptuik-large-d/issues/1098
   code sits only in multidouble's runtime-dispatched SIMD backend), installed into site_sky with the Python of f398e829
   by `install_sky.sh`. All six checks exit 0 with the same figures as dh610's and mm5's builds. The ladder point D 896
   (ladder_point2.sh, kc 200, M 48 tail, kmax 23, KSBAR 1e-64, 6 threads) started after the checks, at 18:58 UTC.
+- **The D 896 run's commit field:** ladder_point2.sh (blob ed177006 for the first try, 8e6779cf for the restart at 19:05
+  UTC after the ks-gate parse fix) passes a hard-coded --commit 478e9d86. The Python it runs is f398e829's (hp_y from
+  that commit's archive), and its kernel is the Skylake wheel of e1cd7a84 (d368a0c0's Rust). So its records name
+  478e9d86 where they mean f398e829. f398e829 also makes the inner held solves take chord steps by default
+  (--inner_chord 1, e1cd7a84). The points converge to the same 1e-48 tolerance as D 432-1291, though not to the same
+  bits. The ladder record will give f398e829.
