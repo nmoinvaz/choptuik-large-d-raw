@@ -1,0 +1,31 @@
+# I1025-win2/hp_form_s_build: the release build of hp from origin/wip/large-d-form-s on win2 and its form-S selftests
+
+Machine win2 (Windows 11, Core Ultra 7 265K, 20 logical CPUs, 95.5 GB RAM, commit limit 101.5 GB; runner win2 claude-me2, Sonnet 5.5). Issue: none of its own (an order of the coordinator t5 inside the #1025 lane; the branch's work is #1088 by its docstrings). Written 2026-11-26 01:05 UTC, **before the build starts**.
+
+## Order (coordinator t5, hc, 26 Nov ~00:59 UTC), item (1), verbatim
+"QUEST: a release build of hp from origin/wip/large-d-form-s (its head at build time) in a new worktree: uninstall multidouble's Python package first, then hp/build.sh, fat LTO, its own venv; log peak memory and time (expect ~150 min, 29-31 GB on an idle machine); then run its form-S selftests (form_s.py check on any stored state, floor_stop_check.py, and its --mutate=nofloor must fail). Report when done; the quest's subagent will use win2 for a larger-D jump."
+Item (2) of the same message, the k_c 103 precision check, runs beside it (`../prec_k103_cheap/`). "Both BelowNormal; keep commit-charge alerts on."
+
+## Set-up (done 01:00 to 01:05 UTC)
+| item | value |
+|---|---|
+| worktree | `D:\choptuik-formsq` (detached, from the shared .git of `D:\choptuik-large-d`), at origin/wip/large-d-form-s ab2446b8 when made; the driver re-fetches and checks out the branch's head when the build starts, and `build.times` records the commit |
+| venv | `C:\Users\nathan\Source\venv-formsq`: python 3.14.10 (`python -m venv` of the Python314 install, as venv-md510) + `pip install -r requirements.txt` of the worktree (numpy 2.5.4, scipy 1.18.1, mpmath 1.3.0, sympy 1.14.0, python-flint 0.9.0, maturin 1.16.0); neither multidouble nor hpkernel was in it |
+| toolchain | rustc 1.96.0, cargo 1.96.0 (as #1078's build) |
+| build | `hp/build.sh`: `RUSTFLAGS="-C target-cpu=native" maturin build --profile release` (hp/Cargo.toml: fat LTO, codegen-units 1), then the wheel, then multidouble's Python package at the commit `hp/pyproject.toml` names (8c4360ac, 5.1.0), `CARGO_BUILD_JOBS=6`, BelowNormal (`kc71_leap/cim_start.ps1`) |
+| first step | `pip uninstall -y multidouble hpkernel` in venv-formsq (the order's "uninstall multidouble's Python package first"; `pip_uninstall.log`); `build.sh` reinstalls the package from the pinned commit at its end |
+| raw folder | this one; build.log, build.times, commit.log (the sampler), alerts.txt, the selftests' logs |
+
+## The commit-charge gate (stated before the start)
+A fat build peaks at about 36 GB private memory in its LTO stage (#1078: 36.1 GB working set; #935: 34.7 GB), and the commit charge, not free RAM, is the limit (#1078 reached 100.7 of 101.5 GB). At 01:00 UTC on 26 Nov the commit charge was **69.2 GB of 101.5 GB (headroom 32.3 GB)**, of which the kernel pools held 46.9 GB (non-paged 28.4 GB, paged 18.5 GB) and all processes only 16.8 GB (private bytes), and none of the processes is a build. So the build **waits** until the headroom reaches 38 GB (`GATE_GB`, checked every 60 s by `run_formsq_build.sh`, logged to `build.times`), and then starts by itself. The sampler `commit_watch.ps1` (every 30 s, alert-only, nothing is killed) logs the commit charge and the build's and the precision jobs' memory to `commit.log`, with the peak working set and private sum of the build, and writes `alerts.txt` lines when the headroom is under 8 GB. The coordinator can lower the gate or start the build by hand (`NOGATE=1`), or cancel by creating `build.cancel`.
+
+## What is reported (peak memory and time of the build)
+Start and end times from the clock (`build.times`), peak working set and peak private sum of cargo, rustc, maturin and the linker (`commit.log`'s last fields), peak commit charge and the lowest headroom over the build, the build's exit code, and `hpkernel.isa()` and `multidouble.isa()` from the last line of `build.log`.
+
+## Selftests after the build (fixed before the run; `run_formsq_checks.sh`, from `D:\choptuik-formsq\hp`, venv-formsq, BelowNormal)
+1. `floor_stop_check.py` (exit 0), `floor_stop_check.py --stale` (exit 0), `floor_stop_check.py --mutate=nofloor` (**must exit non-zero**: its docstring says the dd stage then runs to its cap at the floor and the check fails). The first two use no kernel; the third is the control.
+2. `form_s.py check STATE.npz` on a stored converged form-A state (double-double): Newton in double-double on form S to `--tol`, prints Delta_S - Delta_A and Delta_S against `hp/data/delta_all.csv` at the state's D. The state is chosen from the raw-data repository's smallest converged dd states, named in the log before the run. Control: `--mutate flux` (form_s.rs `FS_MUT_FLUX`) must move Delta (the check's own docstring).
+The checks read each script's own pass/fail text and exit code; I report both, whatever they are. A check that has only been seen to pass is untested: the two controls (`--mutate=nofloor`, `--mutate flux`) must fire.
+
+## Status
+- 2026-11-26 01:05 UTC: folder, README, `run_formsq_build.sh` and `commit_watch.ps1` written; the sampler and the gated driver start next.
