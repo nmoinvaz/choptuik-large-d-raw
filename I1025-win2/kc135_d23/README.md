@@ -1,0 +1,44 @@
+# I1025-win2/kc135_d23: k_c 135 at D 23.0, regridded from winb's k_c 127 state, then the new scanner and the secant refinement of lambda_1's root (win2)
+
+Machine win2 (Windows 11, Core Ultra 7 265K, 20 logical CPUs, 95.5 GB RAM; runner win2 claude-me2, Sonnet 5.5). Issue https://github.com/nmoinvaz/choptuik-large-d/issues/1025. Written 2026-11-26 14:18 UTC, **before the regrid, the scan and the refinement ran** (read-only so far: the pins and the dry run of the regrid driver).
+
+## Order (coordinator t5, hc 2026-11-26 14:14 UTC, the lane part), verbatim
+"Next lane, the seventh resolution of the threshold: k_c 135 at D 23.0, from winb's k_c 127 state there. The roots at D 23.0 so far: k_c 87 -0.025404, 95 +0.008707, 103 +0.026506, 111 +0.035564, 119 +0.041061 (steps +0.034112, +0.017798, +0.009058, +0.005497), and k_c 127 from winb's scan (running).
+- Inputs, pinned by blob: raw I1025-win/kc127_d23/sol_l1kc127wind23_D23.0000.npy (7a1b150c) and l1kc127wind23.jsonl (eea03461). The source check is raw I1025-mac/checks/kc127_syscheck_1025.py (898ebefa); the acceptance check is kc135_syscheck_1025.py at raw 576050bfc (b353d466), the kc111 check with 111 -> 135 plus one header line.
+- Folder raw I1025-win2/kc135_d23/, README registration first.
+- Source: the kc127 check exits 0, controls 1 1, the kc119 and kc135 checks refuse.
+- Regrid (Normal priority is fine on your 20 cores; cap 43200 s): ell_refine.py l1kc127wind23 127 l1kc135win2d23 135 1 23.0 2.0992182200 --kappa 0.7 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma
+- Result: the kc135 check exits 0, controls 1 1, the kc127 check refuses. Report steps, |F|, constraint and Delta beside the source's.
+- Scan with the new scanner, d18_secant.py scan at wip/ell1-speed 92b9bf53 (blob eb1396ad; selftest 0 and its three mutations 1 first), at lambda 0.04, 0.045, 0.05, 0.055 plus a repeat of 0.045, up to 4 processes. Then the secant (same tool, run, --tol=1e-5 --maxev=10) on the robust bracket.
+- Stop and report on: not accepted, an exception (an array limit at k_c 135 included), no robust change or more than one, or any step over 12 h.
+- My registered prediction: the root at D 23.0 is k_c 127's plus a step of about 0.6x the last one. Until winb's k_c 127 secant lands, take 0.047 +- 0.004.
+- Post on #1025 at each step's end."
+
+## Registered before the run
+**PREDICTION (t5's): the root of lambda_1 at k_c 135 and D 23.0 is k_c 127's root plus about 0.6 times the last step; until winb's k_c 127 secant lands: +0.047 +- 0.004.** (winb's k_c 127 scan started 13:39:57 UTC and had not landed at 14:16 UTC; t5's own prediction for k_c 127 is +0.0444 +- 0.003, so the k_c 119 to 127 step is registered as about +0.0033 and the k_c 127 to 135 step as about 0.6 times that.)
+For the scan (lambda 0.04, 0.045, 0.05, 0.055, and a repeat of 0.045 on another process): **exactly one robust change** is expected; the bracket by 0.047 is **(0.045, 0.050)**; a bracket (0.040, 0.045) or (0.050, 0.055) would be reported as a miss of the central bracket (still inside the registered band 0.043 to 0.051), and a change outside (0.040, 0.055), no robust change, or more than one robust change is a stop. Orientation is read by position inside this scan's own points only (the coordinator's rule). The reader's det-linear estimate and its range (a spread over estimator choices, not an enclosure) are quoted as printed; the secant's final bracket (a bracket of robust signs, width <= 1e-5, or `maxev`/`nonrobust` as the tool reports) is quoted as printed.
+My own estimates (not predictions of the order): the regrid took 10,215 s at k_c 127 on winb's laptop with 4 threads at BelowNormal (his README), the k_c 119 one 2,273 s on the Mac; at k_c 135, Normal priority and **8 threads** on this machine I expect **3 to 4 h** (I do not know how the regrid scales with threads: if it is slower than 12 h the cap at 43,200 s is a stop). The scan: one evaluation of the new scanner took 15 to 25 min at k_c 103 on the Mac (SPEED_ELL1.md); at k_c 135 on one thread here expect **40 to 90 min** per evaluation, so 4 processes in parallel, then the repeat, 2 to 3 h in all. These are guesses to be compared with what happens.
+
+## Set-up
+| item | value |
+|---|---|
+| source state | raw `I1025-win/kc127_d23/sol_l1kc127wind23_D23.0000.npy` (winb), 66,488 bytes, **blob 7a1b150c** (`inputs/src/`) |
+| source record | raw `I1025-win/kc127_d23/l1kc127wind23.jsonl`, 373 bytes, **blob eea03461**: k_c 127, D 23.0, kappa 0.7, u0 0.04, Ks 30, \|F\| 3.1939646371906106e-10, F_start 8.257107016499218e-06, **steps 4179**, **constraint 1.4638405006769056e-3**, **Delta 1.174322923415951**, 10,215 s, src `l1kc119macm3d23` |
+| checks (raw `I1025-mac/checks/`; each 4,821 bytes, the same text with the k_c numbers changed) | `kc119_syscheck_1025.py` fc6e0dd6, `kc127_syscheck_1025.py` **898ebefa** (source check, raw origin/main), `kc135_syscheck_1025.py` **b353d466** (acceptance check, raw 576050bfc = the same blob on origin/main) |
+| regrid code | worktree `D:\choptuik-i1025k79` at 48c36355 (`ell_refine.py` 631e5801, `ell_delta.py` fde699f5, `dss_ell.py` 5d28c19e, `ell_ddm.py` 86578fee, `ell_dd.py` 7e58fcbc, `ddnp.py` 9b1fb195: the code of winb's k_c 127 and my k_c 95 regrids) |
+| scan and secant code | worktree `D:\choptuik-i1025secant92` (new, detached) at **92b9bf53** (wip/ell1-speed): `d18_secant.py` **eb1396ad**, `ell_fastm.py` 93f963f6, and the same blobs of `dss_ell.py`, `ell_ddm.py`, `ell_dd.py`, `ddnp.py`, `ell_refine.py`, `ell_delta.py` as the regrid worktree |
+| readers | `read_lower.py` 89309d3c, `d185_scan_read.py` 7c9d400f, `repeat_check.py` aaf598a9, `pair2025.py` e692c61d (my `kc95_d22/inputs/`, the earlier lanes' readers) |
+| lambda_0 | 2.0992182200 (`ell_delta.lam0_at(23.0, *ell_delta.lam0_table())[0]` in the regrid worktree; unused with `--no-gamma`; the driver checks that it prints the order's string) |
+| python | `venv-md510` (python 3.14, multidouble 5.1.0) |
+
+## The run
+1. **Step 1, source:** `kc127_syscheck_1025.py` (selftest 0) exits 0 on the source, its `--mutate=F` and `--mutate=steps` exit 1, the kc119 and kc135 checks (selftests 0) exit 1 on it. A failure here is a stop.
+2. **Step 2, regrid** (`kc135_regrid.sh`): the order's command in one process (`crun`, cap 43,200 s by the exact root pid, no retry), `OPENBLAS/OMP/MKL/RAYON_NUM_THREADS=8`, Normal priority (`cim_start.ps1 -Normal`), cwd the regrid worktree's `solver/matter`; the source state is copied into its `data/` under the name `ell_refine` reads (`sol_l1kc127wind23_D23.0000.npy`), blob-checked.
+3. **Step 3, acceptance:** `kc135_syscheck_1025.py` (selftest 0) exits 0 on the result, `--mutate=F` and `--mutate=steps` exit 1, the kc127 check exits 1 on it. Reported beside the source's: steps and their ratio, \|F\|, constraint, Delta (and the seconds).
+4. **Step 4, scan** (`kc135_scan.sh`): `d18_secant.py selftest` (exit 0) and its three mutations `half`, `norobust`, `nosigncheck` (exit 1 each) first, the readers' selftests, then four processes of one thread, lists `0.04 | 0.045 | 0.05 | 0.055` and then the repeat of 0.045 on the first process to finish (`d18_secant.py scan STUB STATE 23.0 LAMS OUT.jsonl --pin=STATEBLOB,STUBBLOB`, the fast float64 matrix, ell_ddm's block 12, the 1e-15 noise test on blocks 0-11 with 2 seeds, dln bar 0.1; the scanner checks the record system first, exit 3 if not), cap 43,200 s each by the exact pid; then `read_lower.py` over 0.04 to 0.055 and `repeat_check.py`.
+5. **Step 5, the secant** (by hand, only if the reader prints exactly one robust change): `d18_secant.py run STUB STATE 23.0 LO HI secant/secant.jsonl --tol=1e-5 --maxev=10 --pin=...` on the robust bracket, one process, one thread.
+6. **Stops** (the order's): not accepted, an exception (an array limit at k_c 135 included), no robust change or more than one, any step over 12 h. At each stop I report; I post on #1025 at the end of each step (regrid with its acceptance, scan, refinement).
+
+## Status
+- 2026-11-26 14:18 UTC: folder, README, inputs (pinned), worktree D:\choptuik-i1025secant92 at 92b9bf53 made, drivers written; the step 1 to 3 driver starts after its dry run and the plan post.
+- 2026-11-26 14:18 UTC: dry run of `kc135_regrid.sh` passed (13 s): pins, the selftests of the three checks, **the source check accepts the k_c 127 state** (record |F| 3.1939646372e-10, the state's |F| 3.1946803364e-10 on this machine, freeze_from steps 4179 = the record's; controls on the same numbers refused; `--mutate=F` and `--mutate=steps` exit 1; the kc119 and kc135 checks refuse it), lambda_0 prints 2.0992182200, the command is the order's. The regrid starts next (8 threads, Normal, cap 43,200 s).
