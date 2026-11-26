@@ -64,3 +64,51 @@ Regrid: 8 threads at nice 10 (all of this machine), estimated 1.5 to 2.5 h (star
 - 2026-11-26 01:07:46 UTC: step 2 logged (this entry).
 - 2026-11-26 01:08:31 UTC: t5's hc with the refined secant values (k_c 87 -0.025404, k_c 95 0.00871, k_c 103 0.026505; next step predicts k_c 111 near +0.036) entered beside the registration; the scan (started 01:05:54 UTC) has no point yet.
 - 2026-11-26 04:50:13 UTC: **round 1 landed (5 of 8 evaluations; PARTIAL reading, `read_lower.py` on a scratch copy of the five files, not the driver's final reading):** hybrid signs -0.04- -0.02- 0.00- 0.02- 0.04+, all noise-robust, the float64 sign equals the hybrid at all five; **one robust change, bracket (0.020, 0.040), orientation '- to +' as printed, det-linear 0.039279, estimator range [0.022586, 0.039279]** (the range is wide because the grid step is 0.02); ln|det| -0.04 -3251.8825, -0.02 -3254.2212, 0.00 -3256.6986, 0.02 -3259.5563, 0.04 -3262.8428 (falling; no dip at the grid points); points 12617 to 13420 s. **Against both registrations:** the root of the k_c 111 state by position is **+0.011004 from macm3's 0.028275** (range -0.005689 to +0.011004) and **+0.012774 from the refined 0.026505** (range -0.003919 to +0.012774); both inside the 0.02 bands (0.0083 to 0.0483 and 0.0065 to 0.0465), the whole estimator range too; **+0.003479 from t5's refined prediction +0.036** (0.0358; range -0.013214 to +0.003479). The scan continues (round 2: 0.06, -0.06, the repeat of 0.00).
+
+
+## Result (2026-11-26 06:39:32 UTC)
+**One robust change in -0.06 to 0.06: bracket (0.020, 0.040), orientation '- to +' as printed, det-linear estimate 0.039279, estimator range [0.022586, 0.039279]** (the spread over interpolation choices of `d185_scan_read.changes`, not an enclosure; the bracket is the 0.02 grid step, so the range is wide). All 8 evaluations (7 grid points and the repeat of 0.00) are noise-robust; hybrid signs -0.06- -0.04- -0.02- 0.00- 0.02- 0.04+ 0.06+; `read_lower.py` (`read_lower.txt`): robust changes 1, none touching a non-robust point, **no ln|det| minimum without a sign change**, edge signs - at -0.06 and + at 0.06; the float64 sign equals the hybrid at all 7 grid points. Every process printed the record system (|F| 3.2520729473e-10, 3653 steps = the record's); `read_lower.py` selftest exit 0 and its mutations `shift` and `round2` exit 1; **the repeat of 0.00 (process 2 against process 0) is bit-identical** in every field but its wall time and process (hybrid -, ln|det| -3256.6986102659, float64 -, noise [-1.0, -1.0]), `repeat_check.py` PASS. `SCAN_DONE.txt` 06:38:42 UTC.
+
+| lambda | hybrid sign | ln\|det\| (hybrid) | float64 sign | point wall (s) |
+|---|---|---|---|---|
+| -0.06 | - | -3249.6166 | - | 6617 |
+| -0.04 | - | -3251.8825 | - | 12995 |
+| -0.02 | - | -3254.2212 | - | 12617 |
+| +0.00 | - | -3256.6986 | - | 12821 |
+| +0.00 | - | -3256.6986 | - | 6989 |
+| +0.02 | - | -3259.5563 | - | 13333 |
+| +0.04 | + | -3262.8428 | + | 13420 |
+| +0.06 | + | -3263.1682 | + | 7020 |
+
+**Read against both registrations** (t5: "beside, not replacing"; the grid step 0.02 limits the position, so each number carries the estimator range):
+| | registration (the order; macm3's det-linear) | refined (secant, t5's hc) |
+|---|---|---|
+| k_c 87 / 95 / 103 | -0.0215 / +0.0159 / +0.028275 | -0.025404 / +0.00871 / +0.026505 |
+| k_c 111 root (this scan) | +0.039279 (range 0.022586 to 0.039279) | +0.039279 (range 0.022586 to 0.039279) |
+| steps 87 to 95, 95 to 103, 103 to 111 | +0.0375, +0.0124, +0.0110 (the last, range -0.0057 to +0.0110) | +0.0341, +0.0178, +0.0128 (the last, range -0.0039 to +0.0128) |
+| ratios of successive steps | 0.33, 0.89 | 0.52, 0.72 |
+| t5's convergence band (k_c 103 +- 0.02) | 0.0083 to 0.0483: the estimate **inside**, the whole range **inside** | 0.0065 to 0.0465: the estimate **inside**, the whole range **inside** |
+| t5's next-step prediction +0.036 (0.026505 + 0.0178 x 0.52 = 0.0358) | | the estimate is +0.0035 from it; +0.036 lies in the bracket and in the range |
+The root is inside t5's 0.02 band under both readings. The refined steps shrink (+0.0341, +0.0178, +0.0128) but more slowly than the ratio 0.52 predicted (0.72 for the last); the steps are not resolved to better than about 0.01 at this grid. I give no ruling on convergence in k_c (t5's).
+
+**ln|det|** (hybrid): falls at every grid point, by -2.266, -2.339, -2.477, -2.858, -3.286, -0.325 per 0.02 from -0.06 to 0.06: the root lies between 0.02 and 0.04, and no grid point sits in its dip (0.04 is already above it), so there is no minimum to read; this is not a missing feature (the earlier scans' dips were at grid points of 0.005 steps).
+
+**Time and memory.** Regrid 9353 s (peak RSS 3.45 GiB, lowest MemAvailable 24.1 GiB). Scan 01:05:54 to 06:38:42 UTC = 5.55 h: the five round 1 points took 12617 to 13420 s (five processes on 4 cores), round 2's three points (three processes) 6617 to 7020 s; **peak RSS of a scan process (time -v): 4.24 (0.00 then 0.06), 4.21 (0.02 then -0.06), 3.75 (-0.02 then the repeat of 0.00), 3.20 (0.04) and 3.38 GiB (-0.04)**; the largest total of the five at one sample (once a minute) 12.21 GiB, lowest MemAvailable 15.4 GiB; nothing was killed on memory and there is no `alert.log`.
+
+## Predictions against the result
+| prediction | result |
+|---|---|
+| t5's: a converged lambda_1 lies within about 0.02 of macm3's k_c 103 (0.028275) | **yes**: 0.039279, +0.0110 from it (whole range inside the band); likewise for the refined 0.026505 (+0.0128) |
+| t5's refined next-step prediction near +0.036 | the estimate +0.0035 above it; +0.036 inside the estimator range |
+| mine: the source accepted here with all controls firing and both other checks refusing (85%); the regrid reaches k_c 111 and is accepted with both controls firing and the k_c 103 check refusing (70%) | yes; yes (3653 steps = the record's) |
+| steps within 40 of 3652 (60%); |F| between 3.2e-10 and 3.6e-10 (80%); psi-constraint between 2.0e-3 and 4.5e-3 (60%); Delta k_c 111 minus k_c 103 between -3e-5 and -2e-6 (70%); peak RSS of the regrid below 4.5 GiB (80%) | yes, 3653; yes, 3.256e-10; yes, 3.484e-3 (my 2.7e-3 to 3.0e-3 expectation was a little low); yes, -5.9984e-6; yes, 3.45 GiB |
+| **the regrid wall 3500 to 9000 s (65%)** | **missed**: 9353 s |
+| every point noise-robust (70%); the repeat of 0.00 bit-identical (90%) | yes, 8 of 8; yes |
+| exactly one robust change in -0.06 to 0.06 (70%) | yes |
+| **the k_c 111 root within 0.02 of macm3's k_c 103 root (45%); farther than 0.02 (35%); no root in the window (20%)** | **the 45% case**: within 0.02 (+0.011) |
+| the float64 sign differs from the hybrid at more than half of the points (35%) | no: at none |
+| each scan point 11000 to 17000 s with five processes (65%); the two-round scan 4.5 to 7 h (65%) | yes (round 1: 12617 to 13420 s); yes, 5.55 h |
+| peak RSS of a scan process below 5 GiB (85%) | yes: 4.24 GiB at most |
+**Missed:** the regrid wall (9353 s against 3500 to 9000 s: I scaled the fall with D too far). **Not mine to conclude:** whether the root sequence converges in k_c (the steps are decreasing by ratios 0.33 to 0.72); macm3's secant refinement of this root, from my accepted state, is under way. Nothing is known above 0.06 or below -0.06.
+
+- 2026-11-26 06:39:32 UTC: scan ended 06:38:42 UTC; result written (this section); nothing of mine is running.
