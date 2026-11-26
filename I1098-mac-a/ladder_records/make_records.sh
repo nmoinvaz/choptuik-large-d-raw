@@ -1,7 +1,7 @@
 #!/bin/bash
 # #1098: every ladder record in this folder, written again from its point's files by hp/ladder_record.py (wip/large-d-form-s
-# or fastmul6, the version that counts a run of harmonics released at once as one pending term). Each point's
-# direct_s.jsonl is replaced, not appended to, so the exporter sees one record per D.
+# b6d71c35 or later: it counts a run of harmonics released at once as one pending term and reads the k* stage's
+# kstar.json). Each point's direct_s.jsonl is replaced, not appended to, so the exporter sees one record per D.
 #
 #     make_records.sh HP_DIR    (PYTHONPATH must give an hpkernel with form S, for form_s.py's import)
 {
@@ -36,9 +36,9 @@ rec 519 $L/D519/release_ls_h23_D519.0000.npz $L/D519/direct_s.jsonl $L/D519/tail
   --kstar 15 --gain 1.9745e28 \
   --note "D 519 ladder point on mm5, fastmul6 (d368a0c0 kernel, Python 478e9d86): the jump (Moebius ks 796) and h5-h13 (ladder_point.sh), then the Moebius tail at M 32, ks 1196, kmax 23 (ladder_tail.sh mob). No u check exists (the u tail stalled at h15). The Moebius values carry $F. Gains from gainq.py on the final state (dh610): kfreeze 15 1.97e28, 17 4.08e31"
 rec 622 $L/D622/release_ls_h23_D622.0000.npz $L/D622/direct_s.jsonl $L/D622/tail_release_ls.jsonl --start $L/D622/start.npz \
-  --kstar 15 --gain 1.0508e28 \
-  --xcheck "M|4.579e-26|the h13 re-converge at M 48 from the M 32 h13 state resampled (Delta kept) moved Delta by +4.579e-26, the M 32 to 48 shift at kfree 13 as measured. Its own pending h13 dDelta at release (-4.562e-26, in err_tail) nearly cancels it: their sum is +1.7e-28 (I1098-mm5/ladder/D622/tail)" \
-  --note "D 622 ladder point on mm5, fastmul6 (d368a0c0 kernel, Python 478e9d86, no inner chord steps): ladder_point2.sh (blob da887d71), the jump at ks 950 and then 1150 by the jump's own ks+200 figure, confirmed by ks_gate.py (octo-double residual change 2.96e-74 at ks 1350, bar 1e-64, I1098-mm5/ladder/D622/ksgate); h5-h11 and h13 at M 32; h13 resampled to M 48 and re-converged, then the tail h15..h23 (kmax 23, qq, od, tol 1e-48, ddelta 1e-25). h15 was released at the kfree-15 system's |F| 3.41e-51 (its inner solve stopped just below tol 1e-48), so err_resid is large; I1098-dh610/reconv622 re-converges that system to tighten it. The Moebius values carry $F. Gain from gainq.py at kfreeze 15 on the final state (dh610: 1.0508e28 in quad-double, 6.09e23 in double-double)"
+  --kstar 15 --gain 1.0508e28 --kstar_json $L/D622/kstar.json \
+  --xcheck "M|4.579e-26|the h13 re-converge at M 48 from the M 32 h13 state resampled (Delta kept) moved Delta by +4.579e-26, the M 32 to 48 shift at kfree 13 as measured. Its own pending h13 dDelta at release (-4.562e-26, in err_tail) nearly cancels it: their sum is +1.7e-28 (I1098-mm5/ladder/D622/tail). err_sum counts both, a conservative double count" \
+  --note "D 622 ladder point on mm5, fastmul6 (d368a0c0 kernel, Python 478e9d86, no inner chord steps): ladder_point2.sh (blob da887d71), the jump at ks 950 and then 1150 by the jump's own ks+200 figure, confirmed by ks_gate.py (octo-double residual change 2.96e-74 at ks 1350, bar 1e-64, I1098-mm5/ladder/D622/ksgate); h5-h11 and h13 at M 32; h13 resampled to M 48 and re-converged, then the tail h15..h23 (kmax 23, qq, od, tol 1e-48, ddelta 1e-25). h15 was released at the kfree-15 system's |F| 3.41e-51 (its inner solve stopped just below tol 1e-48), a bound of 3.6e-23; the k* stage (I1098-dh610/reconv622, release_ls --harm 15 --kmax 15, qq, od, tol 1e-62, on dh610) re-converged that system to |F| 6.79e-77, moving Delta by +5.80e-32 (kstar.json, kstar_release_ls.jsonl, kstar_start_h15.npz). The Moebius values carry $F. Gain from gainq.py at kfreeze 15 on the final state (dh610: 1.0508e28 in quad-double, 6.09e23 in double-double)"
 rec 1000 $L/D1000/release_ls_h31_D1000.0000.npz $L/D1000/direct_s.jsonl $L/D1000/m48_6_release_ls.jsonl $L/D1000/tail6_release_ls.jsonl \
   $L/D1000/tail6b_release_ls.jsonl --start $L/D1000/start_D1000_M48_fastmul5.npz --kstar 17 --gain 5.2732e29 \
   --xcheck "M|4.03e-34|M 48 against M 64 at kfree 31 on fastmul6: tail6b's state after h23 resampled to M 64 and released through h31 (I1098-mm5/fix6/m64_1000_6, raw 324d53fa2, state blob 59fdd0ab). The shift is +4.03e-34 at kfree 23 and at kfree 31. Earlier, the M 32 to 48 shift at kfree 13 was -2.1e-26 (D1000_M48_6 against D1000_base6)" \
