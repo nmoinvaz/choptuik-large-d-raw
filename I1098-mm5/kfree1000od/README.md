@@ -33,3 +33,24 @@ the comparison of h19's and h21's changes in od against the qd ones decides the 
 | Delta's change | reported per harmonic, in od, with the qd ones beside them |
 
 Delta's change per harmonic is computed by `diff_delta.py` on the log's digits (mpmath), never by hand.
+
+## Stopped (2026-11-26 10:47:40 UTC) with h19 and h21 released, h23 floored
+
+Stopped by hand, with SIGTERM to the `timeout` pid 21326 (python 21327), after 14 min 46 s, on the coordinator's order, so the queued
+`../m48_1000/` test starts: h23's inner floor is the same in od as in qd, so it belongs to the M 32 system and more trials would not settle it.
+
+| harmonic | outer steps (times) | change in Delta, od (diff script) | the qd run's change |
+|---|---|---|---|
+| h19 | 2 (240.2 s, 43 s: released) | +1.13137e-20 | +1.13137e-20 (od - qd 1.0e-39) |
+| h21 | 2 (222.1 s, 44 s: released) | +1.43289e-20 | +1.43289e-20 (od - qd 6.0e-39) |
+| h23 | outer 0, no step accepted | | no step accepted |
+
+Delta after h21 is identical in od and qd to 32 digits (1.6542408541458917222971626962757). h23's lines, od against qd:
+
+    od: h23 outer 0: target |F| 2.77e-46, harmonic-23 step 1.35e-09 (43 s)
+    od: trial lam 1:   inner floor in 3 steps (|F| 1.71e-40), target |F| 1.71e-40 against 2.77e-46 (176 s)
+    od: trial lam 0.5: inner floor in 3 steps (|F| 1.08e-41), target |F| 1.08e-41 against 2.77e-46 (310 s)
+    qd: trial lam 1:   inner floor in 3 steps (|F| 1.71e-40) (613 s);  lam 0.5: 1.08e-41 (1013 s)
+
+The floor falls 16x per halving (lam^4) in both. An od trial took about 130 s on the relaxed kernel against about 400 s for a qd trial on the old
+one. The exit code of the killed run is not meaningful.
