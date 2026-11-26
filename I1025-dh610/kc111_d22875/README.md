@@ -54,7 +54,73 @@ Regrid 8 threads (nice 10 raised to 19 by the watcher), then the scan's 4 single
 - Each scan point 1800 to 5000 s with four processes (65%) (replaces 3500 to 8000 s); the scan, two rounds, 2 to 3.5 h (60%) (replaces 3 to 5 h).
 - The lane in all, from the v2 start at 07:09:35 UTC: regrid 3 to 5 h, scan 2 to 3.5 h, secant 4 to 16 h, done 9 to 25 h after the start (60%) (replaces the 14 to 26 h from 05:32).
 
+## Result (lane v2 `lane_kc111b.sh`, 26 Nov 07:09:35 to 16:01:25 UTC, 8 h 52 min; the exits are in `exits_kc111.txt`, the v1 stop in `v1/`)
+**k_c 111 at D 22.875: lambda_1 has one robust change in (0.100, 0.120) on the 0.02 grid (det-linear 0.119813), and the secant's final bracket is [0.11847657, 0.11867058] (exit 4, a non-robust interior point at the det-linear root 0.11864947 of that bracket). t5's ruling (hc, 26 Nov 16:01 UTC): "exit 4 with a non-robust interior point stands as the ROBUST BRACKET [0.11847657, 0.11867058], det-linear 0.11864947 inside."**
+- **Source and regrid:** winb's k_c 103 state accepted here (|F| 3.4623040525e-10 against the record's 3.4634221167e-10, 3387 steps, controls 1 1, the k_c 95 and k_c 111 checks refuse it). Regrid 07:09:43 to 10:25:30 UTC (`ell_refine.py`, 8 threads, nice 10 raised to 19 by the watcher), exit 0, wall **11747 s** (record 11744); accepted 10:26:10 UTC (`kc111_syscheck_1025.py` exit 0, controls 1 1, the k_c 103 and k_c 95 checks refuse it; raw 33c6c6fb). k_c 111 record: |F| 3.4195094060e-10, F_start 2.140e-05, **3651 steps** (source 3387, ratio 1.0779), psi-constraint **3.181e-03** (4.6176e-03, ratio 0.689), Delta 1.170650517783 (k_c 103: 1.170655719796, shift **-5.202e-06**). Peak sampled RSS **3.447 GiB** (195 samples). State blob a8fe443e, record blob 5233ffe8.
+- **Scan** (`d18_secant.py scan`, blob eb1396ad, fast float64 matrix, `mm` "fast-jac", 4 processes, 10:26:14 to 12:41:05 UTC = 2 h 15 min; the four exits of the tool's selftest and controls were 0 1 1 1):
+
+| lambda | hybrid sign | ln\|det\| | dln | robust | float64 sign | seconds |
+|---|---|---|---|---|---|---|
+| 0.06 | - | -3282.398733 | 1.0e-06 | yes | - | 1946 |
+| 0.08 | - | -3284.851672 | 2.0e-06 | yes | - | 2033 |
+| 0.10 | - | -3287.616521 | 3.0e-06 | yes | - | 6072 |
+| 0.12 | + | -3292.277921 | 3.4e-05 | yes | + | 5916 |
+| 0.12 (repeat, another process) | + | -3292.277921 | 3.4e-05 | yes | + | 5928 |
+| 0.14 | + | -3291.554294 | 2.0e-06 | yes | + | 6158 |
+
+```
+hybrid signs: 0.060- 0.080- 0.100- 0.120+ 0.140+ ; float64 sign differs from the hybrid sign at: none ; repeated points: [(0.12, 'agree')]
+robust change (0.100, 0.120), - to +, det-linear 0.119813, range [0.102880, 0.119813]; robust changes: 1
+against the prediction 0.12: change minus prediction -0.000187; within 0.02: True ; repeat_check PASS
+```
+The repeat of 0.12 is bit-identical (ln, float64 ln and the noise members' ln). Beside it: winb's k_c 103 scan at this D, det-linear 0.119801 (bracket (0.100, 0.120), range [0.103345, 0.119801]): the k_c 111 estimate is +0.000012 from it by the two scans' det-linear values (bracket-limited by the 0.02 grid); win2's k_c 95, det-linear 0.118242. Printed orientation "- to +" (as k_c 103's), not interpreted.
+- **Secant** (`d18_secant.py run`, blob eb1396ad, 0.100 to 0.120, `--tol=1e-5 --maxev=10`, one process, 12:41:11 to 16:01:20 UTC, wall 12009 s, peak RSS 3.24 GiB):
+
+| lambda | hybrid sign | ln\|det\| | dln | robust | float64 sign | seconds (matrix, block 12, dd_logdet) |
+|---|---|---|---|---|---|---|
+| 0.10000000 (end) | - | -3287.616521 | 2.8e-06 | yes | - | 1254 (166, 1079, 9) |
+| 0.12000000 (end) | + | -3292.277921 | 3.4e-05 | yes | + | 1455 (194, 1251, 10) |
+| 0.11981271 | + | -3292.408090 | 4.0e-05 | yes | + | 1897 (180, 1697, 20) |
+| 0.11847657 | - | -3294.180829 | 2.7e-04 | yes | **+** | 2558 (485, 2053, 19) |
+| 0.11867058 | + | -3296.283850 | 2.2e-03 | yes | + | 2778 (321, 2435, 22) |
+| 0.11864947 | + | -3300.320187 | **0.1326** | **no** | + | 2063 (333, 1704, 26) |
+
+Root record: status nonrobust ("not robust at 0.11864946891544469"), bracket [0.11847656777181861, 0.11867057790965485], width 1.940e-04, signs [-1, +1], both ends robust, **det-linear root `lam_lin` 0.11864947** (inside the bracket), Brent's last point 0.11867058, 6 evaluations (the two ends included), 12005 s. dln grows toward the root as 1/distance: dln times the distance from `lam_lin` is 4.7e-08 at 0.11847657 and 4.6e-08 at 0.11867058, so (taking `lam_lin` as the root) dln would reach the bar 0.1 at about 4.7e-07 from it. The float64 sign is + at 0.11847657, where the hybrid sign is - (1.7e-04 below `lam_lin`). The refined root lies inside the scan's estimator range [0.102880, 0.119813], as does the whole final bracket.
+- **t5's reading with the D 23.0 and 23.0625 values** (t5's arithmetic, not mine): "With D 23.0 (0.03556371) and 23.0625 (-0.01247904), a quadratic puts k_c 111's zero at D 23.04680. The five k_c now read 22.97890, 23.00863, 23.03095, 23.04680, 23.05777: steps +0.02972, +0.02233, +0.01584, +0.01097, ratios 0.751, 0.710, 0.693." (zero D of lambda_1 by k_c 87, 95, 103, 111, 119.)
+- **Costs and checks:** whole lane 8 h 52 min (regrid 3.26 h; scan 2.25 h; secant 3.34 h, 2001 s per evaluation on average, 1254 to 2778 s); peak RSS regrid 3.447 GiB, scan processes 3.28 to 3.45 GiB, secant 3.24 GiB; the yield watcher set nice 19 on every thread while the i1088a units were active (6 lines in `i1088a_yield.txt`, nothing stopped). The push of the regrid at 10:26 was rejected (a race) and redone at 10:4x; the push script now retries.
+
+## Scorecard (the predictions above and Amendment 1; "right" = the stated event happened)
+| prediction | registered | result |
+|---|---|---|
+| pins and selftests as wanted, source accepted with controls 1 1 and refused by the two other checks | 88% | right |
+| regrid reaches k_c 111 and is accepted with both controls firing | 85% | right |
+| steps 3650 +- 40 | 60% | right (3651) |
+| \|F\| between 3.1e-10 and 3.7e-10; below 1e-9 | 70%; 95% | right (3.4195e-10) |
+| psi-constraint between 2.2e-3 and 3.6e-3 | 65% | right (3.181e-3) |
+| Delta(111) - Delta(103) negative; smaller in magnitude than 1.2645e-5 | 85%; 75% | right (-5.202e-6) |
+| regrid wall 11000 to 18000 s | 65% | right (11747 s, 747 s inside the lower edge) |
+| peak sampled RSS below 3.8 GiB | 80% | right (3.447) |
+| scan: every point noise-robust; float64 sign equal to the hybrid at all six | 70%; 70% | right; right |
+| repeat of 0.12 bit-identical | 90% (85% in the amendment) | right |
+| exactly one robust change in 0.06 to 0.14 | 75% | right |
+| its det-linear estimate within 0.02 of 0.12; bracket (0.10, 0.12) | 55%; 45% | right (0.119813); right |
+| k_c 111 minus k_c 103 step within +-0.02 | 70% | right (+0.000012) |
+| every evaluation robust under the new scanner's test | 70% | right |
+| the `mm` field "fast" in all six | 97% | wrong as written: the field reads "fast-jac" (the fast matrix, basis jac); the tool's root record says "fast" |
+| each scan point 1800 to 5000 s | 65% | wrong (1946 and 2033 s; four points 5916 to 6158 s) |
+| the scan within 2 to 3.5 h | 60% | right (2 h 15 min) |
+| secant selftest and three controls as wanted | 95% | right (0 1 1 1) |
+| secant status tol, width at most 1e-5 | 70% | wrong (width 1.94e-4) |
+| a non-robust interior point stops it | 12% | happened |
+| 7 +- 2 evaluations | 65% | right (6) |
+| `lam_lin` inside the scan's estimator range | 75% | right (0.118649 in [0.102880, 0.119813]) |
+| time per evaluation 2000 to 6000 s | 60% | right on the mean (2001 s); wrong for 3 of the 6 (1254, 1455, 1897 s) |
+| the whole refinement 4 to 16 h | 60% | wrong (3.34 h) |
+| secant peak memory below 6 GB | 80% | right (3.24 GiB) |
+| the lane done 9 to 25 h after the v2 start | 60% | wrong (8 h 52 min, 8 min short) |
+
 ## Status
 - 2026-11-26 05:31 UTC: folder, inputs (pinned), lane, watcher and README written before any run; `lane_kc111.sh dry` passed (pins, worktrees, lambda_0, the 13 selftests and controls as wanted); the unit `i1025-kc111-22875` starts next with the source check.
 - 2026-11-26 07:07:17 UTC: lane v1 stopped by me (regrid 1 h 35 min in; my first statement "13 min" was wrong and is corrected by hc); 07:09:35 UTC: lane v2 started (Amendment 1); 2026-11-26 07:10 UTC: Amendment 1 written and pushed before the scan starts.
 - 2026-11-26 10:26 to 2026-11-26 10:43 UTC: the regrid was ACCEPTED at 10:26:10 UTC (state a8fe443e, record 5233ffe8; raw 33c6c6fb, pushed on the coordinator's request); the scan stage started 10:26:14 UTC. The lane's own push at 10:26 was rejected ("fetch first": another pusher in between) and its exit 1 was not noticed. On the coordinator's ruling the push script (`push_folder.sh`, in the session scratchpad, not in raw) now tries a rejected push up to 3 times (fetch, start again from origin/main, copy the folder, commit, push; tested on a local bare remote: rejected once then accepted in 2 attempts; always rejected: 3 attempts, logged to `push_failures.log`, hc to the coordinator, exit 1) and `stage_secant.sh` (not yet started) logs a push that still fails in `exits_kc111.txt`. The running scan stage is unchanged.
+- 2026-11-26 16:07 UTC: lane v2 ended 16:01:25 UTC (scan done 12:41:05, secant exit 4 at 16:01:20); Result and Scorecard written above from the files; t5's ruling of 16:01 UTC entered; pushed; posted on #1025 (see the issue).
