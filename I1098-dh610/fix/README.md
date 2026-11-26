@@ -39,3 +39,11 @@ Each rls.log ends with "h13's change", Delta's change from the state the run sta
   **The step term is gone at D 1000.** It was -7.6e-23 with the double-double reciprocals.
 - `after_dmat1000.sh`: the D 2000 pair from I1088-dh610/rls2000d's state. `after_tail.sh`: D 1000's M 48 tail
   continued, h25..h37 with kmax 37. `rebuild_y.sh`: the fastmul6 build into site_y, with its checks.
+- `D2000_dmat12/`, `D2000_dmat16/`: the same pair from I1088-dh610/rls2000d's state (M 32, Moebius a 8, ks 2618). Both
+  hit dmat.sh's 1 h cap in outer 1 (rc 124), so only outer 0 is complete. Its two-scale estimate of the term is
+  (Delta_16 - Delta_12)/(2^16 - 2^12) = **+2.68e-23**, and the implied double-double 1/k part is +5.21e-21. These are
+  unconverged estimates: the pending harmonic-13 steps were 9.0e-14 and 3.0e-16.
+- `D1000_M48_tail/`: wave 2's M 48 tail on fastmul5, stopped at 15:52 UTC in h19 outer 0. h15 -2.239e-17; h17 was
+  released. h19's step on fastmul5 was 4.3e-4 at a target residual of 5.3e-46; on fastmul6 (I1098-mm5/fix6) it was
+  1.3e-12. The double-double matrices make the near-null top harmonics ill-defined, so this tail and the queued tail2
+  were stopped, and the tail is taken from fastmul6.
