@@ -36,3 +36,23 @@ The final record's end check is in octo-double (release_ls: `chk = "od" if res =
 | Hamiltonian check | the final record's a rows. D 300's reads 1.06e-20 against 2.8e-22 for its h13 record; the D 1000 h13 record reads 7.8e-25 |
 
 Delta's change per harmonic is computed by `diff_delta.py` on the log's digits (mpmath), never by hand.
+
+## Stopped (2026-11-26 10:25:55 UTC) with h15-h21 released
+
+Stopped by hand, with SIGTERM to the `timeout` pid 17833 (python 17834), after 1 h 28 min, on the coordinator's order: h23's
+inner solves floor in the quad-double residual near 1e-40 (lam 1: 1.71e-40, lam 0.5: 1.08e-41, falling as lam^4), above h23's
+target of 2.77e-46, so smaller steps do not help. h25-h31 were not reached. The run continues from the h21 state in
+`../kfree1000od/` (octo-double residual on the relaxed-horizon kernel).
+
+| harmonic | outer steps (times) | change in Delta (diff_delta.py) |
+|---|---|---|
+| h15 | 2 (909.0 s, 173 s: released) | -2.183e-17 |
+| h17 | 2 (896.9 s, 175 s: released) | +5.1157e-18 |
+| h19 | 2 (914.8 s, 178 s: released) | +1.1314e-20 |
+| h21 | 2 (834.5 s, 162 s: released) | +1.4329e-20 |
+| total through h21 | | -1.6689e-17 |
+| h23 | outer 0 with no step accepted: trials lam 1 and 0.5 floored (613 s, 1013 s) | |
+
+Delta of the input (the D 1000 state with harmonics 1-13 free): 1.654240854145891738985793904266682194993. After h21 (the state
+`release_ls_h21_D1000.0000.npz`, git blob 2f0ff2b2d4d7b6a15ece1b77ea6b9bb627da3625): see the h21 line of `rls.log`. The
+Jacobian was qq throughout (jac_by), the residual qd, the end check not reached.
