@@ -13,3 +13,25 @@ stopped at 16:59:14 UTC by exact pid (timeout 43085, python 43086; `run.log`: `t
 h13 re-converged, then h15..h31 (kmax 31, qq, od, tol 1e-48, --ddelta 1e-25, Python 478e9d86, 4 threads), started 16:59:57 UTC.
 **Why u:** at D 300 the u horizon at M 32 (ks 506) shows no turn at h23 (pending dDelta -1.19e-26; h25 -1.24e-26, h27 -1.33e-26, h29 -1.58e-27) where the Moebius M 32 run's h23 had a pending dDelta of -3.89e-22 and an inner floor of 1.36e-42,
 and the u tail agrees with the Moebius tail through h21 to 9.2323e-25 (D300u: h21 +1.5418e-23, Moebius +1.4486e-23). So the result stands whichever mode D 432 and D 519 get. (The D 300 M 48 Moebius tail, the other candidate, had not reached h23.)
+
+## Result of the u tail (2026-11-26 17:28 UTC, `tail_u/run.log`: rc 0, start 16:59:57, end 17:28:09, 1692 s)
+
+By script from `tail_u/rls.log` and `release_ls.jsonl`. Stage wall times are the gaps between the logged start times (h13 includes the u-prepared state's re-convergence at outers 0-2):
+
+| stage | change in Delta | wall |
+|---|---|---|
+| h13 (re-converge on the u horizon) | -2.4606e-17 (o0), -7.7819e-25 (o1), then pending -2.26e-47 | 483 s |
+| h15 | -9.3336e-17 | 289 s |
+| h17 | -4.4259e-19 | 246 s |
+| h19 | +2.4370e-21 | 245 s |
+| h21 | +2.0893e-23 | 197 s |
+| h23 | none, pending -2.98e-26 | 47 s |
+| h25 | none, pending -3.05e-26 | 47 s |
+| h27 | none, pending -3.05e-26 | 45 s |
+| h29 | none, pending -3.07e-26 | 48 s |
+| h31 | none, pending -1.37e-26 | 45 s |
+
+h23-h31 were released at outer 0 by the residual with the pending dDelta below --ddelta 1e-25 (no step taken, no turn, no floor). The five pending shifts sum to -1.352e-25, not in the state's Delta.
+
+Total since the Moebius h13 state: -1.18382e-16. **Final Delta (the state's `Delta_parts` summed at 60 digits, `tail_u/direct_s.jsonl`): 1.6849552059415603649964497491180504272** (Moebius M 32 after h13: 1.684955205941560483378678483556634985116).
+State `tail_u/release_ls_h31_D250.0000.npz`, blob 32b250942a9b58563646604ac65528860891cd7a. The full system's qd check: max |F| 1.87e-52 (od solve 1.8687435872027878e-52); the Hamiltonian check at the four nodes: 2.3e-21 (p), 2.5e-21 (m), 8.3e-22 (a), 9.2e-20 (c) at node 1, all below 1.1e-19.
