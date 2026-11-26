@@ -1,0 +1,59 @@
+# I1021-dh610/fu022mp_sheet_design: design of a recount that follows one sheet of S_3's roots by continuation (#1076); a design, nothing was run for it
+
+Machine dh610. Issue https://github.com/nmoinvaz/choptuik-large-d/issues/1076. Written 2026-11-26 00:01 UTC (the clock). Answer to the coordinator's question (hc, 25 Nov, 23:58 UTC), verbatim: "the count must use one continuous sheet, so next I want a design, not a run. Can the recount follow a sheet by continuation along the boundary (the seed from the previous boundary point, never the nearest stored root), and count each sheet's zeros separately where both exist? Give the code change it needs (if any), its cost, and its controls. I'll decide after reading it."
+
+## Short answer
+Yes, for every cell whose boundary stays on one sheet; **no change to `argcount.py`** (it stays at 20ad2589 and its checks): a driver `sheetcount.py` subclasses `Multiplier` (the seed rule, an acceptance test) and `Counter` (the bisection rule) and runs the unchanged `recount`/`count`. About 150 lines, one new file. **But the map suggests the boundary of the whole lower half cannot be lifted to one sheet:** it needs two passes through a fold, where a sheet ends. Getting through a fold needs pseudo-arclength continuation, a second, larger piece (section 5). I would build the first piece, which also shows by itself whether the second is needed.
+
+## 1. What the data say about the sheets (`../fu022mp_jump_map/`, `../fu022mp_corner_r249/`, xi1 0.249)
+S_3 = 0 has two real equations in the two real unknowns v (F_3) at each (A, wf); its solutions form a surface over the (A, wf) plane, and R (the multiplier, r_1 at the root) is a complex function on it. Where the surface folds over the plane there are two roots. Found so far: two roots at the same point along A = 3.7873456, wf 0.21904 to 0.25654 (the L root, F_3 about -0.02 to -0.065 - 0.49 i, and the R root, about 0 to +0.018 - 0.50 to -0.54 i); one root elsewhere; points with no root reached (a singular or unconverged inner solve) at (3.7248456, 0.20654321), (3.9123456, 0.21904321) and (3.9123456, 0.23154321). The recount's nearest-stored-root seed rule moves from one root to the other along the edge: that is the jump and its unresolved cells.
+
+```
+ wf 0.25654  +-----------+-----------+-----------+-----------+   R root everywhere on this row; the L root also at A = 3.7873
+             |  R only   |  R only   | R and L   |  R only   |  R only
+ wf 0.24404  |           |           | (strip)   |           |
+ wf 0.23154  |           |           | two roots |           |  east edge: no value at wf 0.21904 and 0.23154
+ wf 0.21904  |  R only   |  R only   | two roots |  L-type   |  (3.9123: none)
+ wf 0.20654  +--R only---+--no value-+--L-type---+--L-type---+--L-type--    south edge: R-type at A 3.6623, no value at 3.7248, L-type from 3.7873
+            A 3.6623    3.7248      3.7873      3.8498      3.9123
+```
+(Reading of `reading.txt`, resolution 0.0625 in A and 0.0125 in wf; the width of the strip is being measured in `../fu022mp_jump_width/`. "L-type" and "R-type" for single-root points are my labels by closeness of F_3 to the two roots found at A = 3.7873456, not tested.) The loop around the lower half is R-type along its west and north sides and L-type along its south side and the southern part of its east side, and the two changes of type fall in the no-value stretches (south edge near A 3.7248, east edge between wf 0.21904 and 0.23154). That is what a boundary lifted through two folds looks like. It is a reading of the map, not shown.
+
+## 2. The first piece: follow a sheet where the boundary stays on it
+Each sheet is a separate pass of the count with its own `Multiplier` and cache (as the map's L and R passes):
+1. **Seed rule (subclass of `Multiplier`, `seed` only):** the F_3 of the nearest valued point of *this sheet's own cache*, or of an anchor given to the pass; never the 0.2 file's seeds, never another pass's points. `seed` has one call site (`Multiplier.raw`, line 410), so nothing else changes.
+2. **Continuity bisection (subclass of `Counter`, `prefetch`, put in place by `argcount.Counter = SheetCounter` in the driver; `count` looks the name up at call time):** an edge piece is bisected also while the F_3 of its two ends differ by more than DELTA (0.01; the two roots at the gap differ by 0.048, the smooth steps along a sheet are 0.0005 to 0.03 per 0.0125), down to hmin 1e-5 as now; the midpoint's seed is the mean F_3 of the two ends (the previous boundary point and the next one), set through a `hint` dictionary that `seed` reads first. A piece that stays above DELTA at hmin is an unresolved edge on this sheet: "sheet break", as the unresolved pieces of the recount now.
+3. **Acceptance (in `store`):** a solved point whose F_3 is farther than 0.5 |F_3(end 1) - F_3(end 2)| + 1e-3 from its seed is stored without value: it did not stay on the sheet.
+4. **Closure:** the four edges of a cell all resolved by 2 mean the lifted boundary is a closed loop on the sheet (the corners' roots are connected by checked continuations). A cell with a broken edge is unresolved on this sheet.
+5. **Anchors:** the sheet is named by an F_3 at a corner (file, one line per point, produced by the map's forced solves). To say which sheet is the *continuous one from the known solution*, a chain of anchors can be followed by the same rule from the known zero (A 2.7265, wf 1.0156) over a coarse path (about 30 points, spacing 0.05, 1 to 2 CPU h): then the sheet is defined by continuation and not by the labels L and R.
+6. **Counting:** `recount(F_sheet, cells)` unchanged. A cell resolved on a sheet gives that sheet's winding and zeros (located by `locate_many` with the sheet's own seeds). Where both sheets resolve over the same cell, each sheet's count is reported on its own. The winding along a closed lifted boundary counts the zeros of R on the part of the solution surface above the cell, each signed by the orientation of the projection, so on a sheet that is a graph over the cell it is that sheet's zero count; if a fold lies inside the cell the count includes the zeros on the folded part with the opposite sign. The sheet pass does not by itself show that the sheet is a graph over the interior.
+7. **Output:** a table of cells by sheets (resolved or the broken edge, winding, leaf sum, zeros with positions); no sum over sheets.
+
+## 3. Cost (estimates; basis in brackets)
+| item | solves | CPU | wall on 4 processes |
+|---|---|---|---|
+| new file, selftests, planted two-sheet case | none real | 5 min | one session of mine |
+| repeat at the map's six two-root points (each sheet pass reproduces L and R, 1e-4) | 12 | 10 min | 3 min |
+| the chain from the known zero to the box | about 30 | 1 to 2 h | 20 to 30 min |
+| NW as control on the R sheet (must read winding 0, no zero, as at 0.17 and 0.249) | 200 to 350 | 3 to 6 h | 1 to 1.5 h |
+| SW and SE on each sheet where their loops close | 600 to 1600 | 7 to 25 h | 2 to 6 h |
+Basis: 40 to 60 CPU s per float64 solve in the map and the recount, 211 points for NW at 0.249, 20 more for the lower quarters; the continuity bisection adds points where F_3 is steep (the R root near wf 0.21904: 0.03 per 0.0125). The yield watcher at nice 19 stretches the wall time when the quest runs. SE's east edge (no value from any seed at wf 0.21904 and 0.23154) stays unresolved on every sheet until those points get a value: this piece does not change that (hold (b)).
+
+## 4. Controls (each must be able to fail)
+1. **Planted two-sheet function** (an analytic S_3 with a pleat and R with known zeros on each sheet, like `argcount.py`'s `Analytic`): the nearest-seed rule must show the artifact (a jump, an unresolved edge) and the sheet rule must return the planted zeros per sheet. Mutations, each making the selftest exit 1: `--mutate=nearest` (the old seed rule), `--mutate=nocontinuity` (DELTA infinite), `--mutate=noaccept`, `--mutate=sheetmix` (a pass seeded from the other sheet's cache).
+2. **A planted loop that does not close** (around a branch point): flagged unresolved.
+3. **Real data, repeat:** at the map's six two-root locations the L pass and the R pass return the map's L and R roots within 1e-4; a mismatch stops the lane.
+4. **Real data, null control:** NW on the R sheet reads resolved, winding 0, no zero (as the recount at 0.17 and at 0.249); FIRES stops the work.
+5. **Path independence:** a loop followed from two different corners, or in the opposite direction, gives the same F_3 at every common point within 1e-4.
+6. **Extended precision, sample:** the inner solve of `value_mp.py` at 34 digits, started from the sheet's F_3 at 5 boundary points, converges to the same root within 1e-9 (it shares the equations, not the double-precision Newton).
+7. **xi1 check:** a located zero is found again at 0.17 by the continuation in xi1 from the same sheet (the recount's r1b step), on the same sheet.
+Not independent of the machinery under test: the equations (`residual_demixed`) are shared by all of these; only the precision and the Newton differ in 6.
+
+## 5. The second piece: through a fold (only if the first piece shows loops that do not close)
+Pseudo-arclength continuation along each boundary edge: unknowns (v, t) with the two equations r_3 = 0 and a tangent constraint, the Jacobian in v from `_refine3` and the derivative in t by differences. It follows the lift through a fold where the plain Newton at a fixed point is singular (the no-value points) and turns round there, so the box boundary lifts to one closed loop on the surface and the winding of R along it counts the zeros of R on the surface above the box, with the orientation sign. About 150 lines more, at 1.5 to 2 times the cost per boundary point (two more residual evaluations per Newton step), controls: a planted fold with known zeros on both sheets and the sign, `--mutate=fixedparam` (Newton at fixed t must fail at the fold), the sign of det J_3 flipping at each fold crossing, path independence. It also would value the no-value points next to folds without extended precision.
+
+## 6. What this does not decide
+Which sheet is wanted is physics, not code: the anchor chain in 2.5 defines "the sheet continuous from the known solution", which is my proposal; it does not show that the zeros wanted lie on it. Whether the two roots exist at xi1 0.17 and 0.2 is untested (the recount at 0.17 used the same nearest-seed rule, and it had only three points on the shared edge, so a jump there would not show). The assumption that the zero set does not depend on xi1 is used as before (sheet identity across xi1 by the continuation from the 0.25 start).
+
+## Proposed order if approved
+(1) the file, selftests and planted cases; (2) the repeat at the six points and the chain from the known zero; (3) NW on the R sheet as the control; (4) the lower quarters on the sheets where loops close, with the cells that do not close listed; (5) the second piece only if (4) lists cells that need it. Each step registered first, reported with a raw commit, and nothing started before the coordinator's go.
