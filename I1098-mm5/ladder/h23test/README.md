@@ -10,7 +10,7 @@ Inputs (both verified by `git hash-object`): the M 32 h21 states `../D300/tail/r
 Six h23-only releases (`release_ls --harm 23 --kmax 31 --jac_by 23:qq --res od --tol 1e-48 --tol_h 1e-44 --ddelta 1e-25 --threads 3 --outer 8`, fastmul6, Python 478e9d86):
 mob_ks800, mob_ks1000 (Moebius a 8), mob_a4, mob_a6 (ks 800) from the Moebius state; u_ks706, u_ks906 from the u state.
 
-## Bar, written before the run (2026-11-26 coordinator's order, 18:0x UTC)
+## Bar, written before the run (2026-11-26 17:44 UTC, coordinator's order)
 
 - **The prediction holds** if Moebius at ks 800 and at ks 1000 gives an h23 change near u's (about 1e-26, no turn), and u at 706 and 906 stays near u at 506 (pending dDelta about -1.2e-26).
 - **The prediction is wrong** if Moebius at ks 800 and ks 1000 still shows about -3.9e-22.
