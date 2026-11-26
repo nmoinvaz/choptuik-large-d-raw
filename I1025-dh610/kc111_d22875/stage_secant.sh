@@ -28,4 +28,5 @@ for l in open('$SEC/secant.jsonl'):
     print({k: r[k] for k in r if k not in ('noise_ln',)})" > $SEC/secant_summary.txt 2>&1
 say "secant: $(grep -F "'kind': 'root'" $SEC/secant_summary.txt | cut -c1-600)"
 bash $PUSH I1025-dh610/kc111_d22875 "I1025-dh610/kc111_d22875: secant refinement of the D 22.875 root" > $F/push_final.txt 2>&1
+grep -qE '^push exit 0|nothing to commit' $F/push_final.txt || say "the push of the secant result FAILED after 3 attempts (push_final.txt, push_failures.log in the old scratchpad): to be pushed by hand"
 exit 0
