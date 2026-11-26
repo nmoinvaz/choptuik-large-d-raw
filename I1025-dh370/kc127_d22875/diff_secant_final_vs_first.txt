@@ -1,0 +1,26 @@
+3,4c3,4
+< # kc111_d230625 secant: --tol=1e-5 --maxev=10 --pin=<state blob>,<record blob>, ONE process of 1 thread, nice 10, cap 28800 s. Refuses unless read_lower.txt says "robust changes: 1" and the
+< # bracket given equals that change's bracket. First d18_secant.py selftest (exit 0) and its three mutations (exit 1 each). A systemd user unit (i1025k127s). usage: run_secant.sh LO HI
+---
+> # kc111_d230625 secant, with --ends (t5's order of 20:06 UTC 26 Nov: the secant on dh370, cap 43200 s): --tol=1e-5 --maxev=10 --ends=secant/ends_0.11_0.12.jsonl --pin=<state blob>,<record blob>, ONE process of 1 thread, nice 19, cap 43200 s. Refuses unless read_lower.txt says "robust changes: 1" and the
+> # bracket given equals that change's bracket and the ends file is blob a1008d37 (the scan's records of 0.11 and 0.12, copied verbatim). First d18_secant.py selftest (exit 0) and its three mutations (exit 1 each). A systemd user unit (i1025k127s). usage: run_secant.sh LO HI (as the reader prints them: 0.110 0.120)
+20c20,22
+< step "secant: selftest, then bracket ($LO, $HI), --tol=1e-5 --maxev=10 --pin=$SB,$RB, 1 process x 1 thread, nice 10, cap 28800 s"
+---
+> ENDS=$OUT/secant/ends_0.11_0.12.jsonl
+> [ "$(blob $ENDS)" = a1008d37 ] && [ "$SB" = 43bbf313 ] && [ "$RB" = 574229bc ] || { step "SECANT STOP: the ends file, the state or the record is not the pinned blob (a1008d37, 43bbf313, 574229bc)"; exit 1; }
+> step "secant: selftest, then bracket ($LO, $HI), --tol=1e-5 --maxev=10 --ends=$ENDS --pin=$SB,$RB, 1 process x 1 thread, nice 19, cap 43200 s"
+23,26c25,28
+< nice -n 10 $PY -I d18_secant.py selftest > $OUT/secant/selftest.txt 2>&1; e0=$?
+< nice -n 10 $PY -I d18_secant.py selftest --mutate=half > $OUT/secant/selftest_half.txt 2>&1; e1=$?
+< nice -n 10 $PY -I d18_secant.py selftest --mutate=norobust > $OUT/secant/selftest_norobust.txt 2>&1; e2=$?
+< nice -n 10 $PY -I d18_secant.py selftest --mutate=nosigncheck > $OUT/secant/selftest_nosigncheck.txt 2>&1; e3=$?
+---
+> nice -n 19 $PY -I d18_secant.py selftest > $OUT/secant/selftest.txt 2>&1; e0=$?
+> nice -n 19 $PY -I d18_secant.py selftest --mutate=half > $OUT/secant/selftest_half.txt 2>&1; e1=$?
+> nice -n 19 $PY -I d18_secant.py selftest --mutate=norobust > $OUT/secant/selftest_norobust.txt 2>&1; e2=$?
+> nice -n 19 $PY -I d18_secant.py selftest --mutate=nosigncheck > $OUT/secant/selftest_nosigncheck.txt 2>&1; e3=$?
+30c32
+< nice -n 10 timeout 28800 /usr/bin/time -v $PY -u d18_secant.py run $STUB $STATE $D $LO $HI $OUT/secant/secant.jsonl --tol=1e-5 --maxev=10 --pin=$SB,$RB > $OUT/secant/secant.log 2>&1; rc=$?
+---
+> nice -n 19 timeout 43200 /usr/bin/time -v $PY -u d18_secant.py run $STUB $STATE $D $LO $HI $OUT/secant/secant.jsonl --tol=1e-5 --maxev=10 --ends=$ENDS --pin=$SB,$RB > $OUT/secant/secant.log 2>&1; rc=$?
