@@ -41,3 +41,10 @@
   mx = (-self.D(m, omega) - cx * m + c * m / x - pc + lt) / (x + c)
 /home/nathan/Source/choptuik-large-d-1025k79/solver/matter/dss_ell.py:325: RuntimeWarning: overflow encountered in multiply
   aG = cs(A, Q2, Kk) + (n - 1) * (A[Kk] - cs(A, A2, Kk)) + 2 * L * cs(A, G, Kk)
+/home/nathan/Source/choptuik-large-d-1025k79/solver/matter/dss_ell.py:218: RuntimeWarning: invalid value encountered in add
+  px = (-self.D(p, omega) + cx * p - c * p / x + pc - lt) / (x - c)
+/home/nathan/Source/choptuik-large-d-1025k79/solver/matter/dss_ell.py:217: RuntimeWarning: overflow encountered in divide
+  lt = L * c * a2 * q / x
+/home/nathan/Source/choptuik-large-d-1025k79/solver/matter/dss_ell.py:85: RuntimeWarning: invalid value encountered in matmul
+  return f @ self._Dm
+{"D": 23.0, "l": 1, "kc": 111, "kappa": 0.7, "rk": 1, "reg": 0.0, "u0": 0.04, "Ks": 30, "src": "l1kc103macm3d23", "Delta": 1.1743265504807439, "Delta_src": 1.1743325489283696, "F": 3.2560591234672014e-10, "F_start": 2.3686692301624695e-05, "steps": 3653, "constraint": 0.0034835008100024397, "dDelta_dF": 892060419.8136541, "lam_gauge": 0.9835826236116376, "seconds": 9351}
