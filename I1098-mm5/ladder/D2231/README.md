@@ -20,3 +20,14 @@ at `--ks_mob 1600` **PASS**, 9.742e-129 against the bar 1e-100, the old-split co
 - The jump converges and the ks gate passes (log the ks it settles on). h5..h13 are each released, and the tail falls from h15 by about 1e2 or more per harmonic, h21's change at most about 1e-23.
 - Stop rules: stop and report when a qq inner solve does not converge, when a harmonic's line search fails at every trial, or when an outer step is 3x its harmonic's first. A qd inner floor that hands over to qq is logged, not stopped. A qq floor at h13 outer 0 right after an M resample is logged; a floor above 1e-48 at any later outer step stops the run.
 - Reported: the final Delta, each stage's time, the ks used. Times from `date -u`.
+
+## The tail stops after h25, not h31 (2026-11-26 22:20 UTC, coordinator's change)
+
+D 2000's tail showed the harmonics past 21 no longer matter (h21 +2.07e-24, h23 released with no step, pending +1.74e-27). So D 2231's tail stops after h25:
+
+1. D 2231 runs as started: its tail is one `release_ls` at kmax 31 (`ladder_point2_651b.sh`, blob 651bb75f, `timeout 10h`); the higher harmonics stay at zero until released, so h23 and h25 come out as they would in a kmax-25 run.
+2. When `tail/rls.log` shows the "released" line of harmonic 25, and `release_ls_h25_D2231.0000.npz` exists, only that `release_ls` python is killed, by exact pid. The script then writes "tail rc 143" and ends (it has no k* stage in this version).
+3. Then the k* stage by hand, detached, 6 threads, from the ladder folder: `HP=$HOME/Source/choptuik-fastmul7/hp SITE=$HOME/Source/fastmul7-site INNER_CHORD=0 COMMIT=d40a9c62 bash tools3/kstar_stage.sh <ladder>/D2231/tail <ladder>/D2231/kstar 6` (`kstar_stage.sh` blob 6d29dfc0225a2eff0be932cb849e656c190a0b6e, verified in tools3).
+4. **Exception: if h23's release takes a step (pending dDelta above 1e-25), or |c21/c19| (h21's change over h19's) is above 0.05, the run is not killed: h27 runs, and it is reported.**
+
+Reported: h21, h23 and h25's changes or pendings, and the k* result. The final Delta of this point is the state at h25 (the h27..h31 harmonics are zero, as in a kmax-25 run).
