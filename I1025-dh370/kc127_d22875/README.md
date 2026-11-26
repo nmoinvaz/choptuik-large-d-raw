@@ -46,3 +46,26 @@ Source accepted with controls 1 1, refused by the k_c 127 and k_c 111 checks; re
 ## Amendment 1: the secant moves to macm3 (t5's hc, 2026-11-26 shortly after 12:59 UTC; logged 13:01 UTC by dh370's clock, the regrid being under way)
 "good catch. As with k_c 119, the secant moves to macm3 (about 480 s an evaluation, against 1.5-3 h here). Your lane ends after the scan and its reading. Then push the accepted k_c 127 state and record, give their blobs and the bracket in your #1025 post, and I hand macm3 the secant. No --ends needed."
 - My lane ends after the scan and its reading. Item 5 of the Commands section, `run_secant.sh` (kept in the folder, unused by me) and my secant predictions above are **void** (not scored here). After the reading I push the accepted state and record (they are in this folder in raw), give their blobs and the bracket in my post on #1025, and macm3 runs `d18_secant.py` on it. The 8 h cap stays per step.
+
+## Regrid result (26 Nov, 12:59:07 to 17:32:40 UTC): ACCEPTED
+`ell_refine.py` (6 threads, nice 10; at nice 19 throughout by the yield rule, `i1088a-rls2828` being active) exited 0 after **16413 s** (the record's 16411 s); mean sampled CPU 582% (272 samples, `regrid_samples.csv`), peak sampled RSS **4.47 GiB**; 26 numpy RuntimeWarning lines in the log, as in the earlier regrids; MemAvailable stayed above 24 GB, no alert, no array limit at k_c 127.
+- Record `l1kc127dh370d22875.jsonl` (blob **574229bc95ef755cb1bc5128329c091e62b0e34a**) and state `sol_l1kc127dh370d22875_D22.8750.npy` (blob **43bbf313ccf8243a51b3e7878f091fcb3f8c2c9f**): k_c 127 at D 22.875, beside the source (macm3's k_c 119, the same D):
+| | source k_c 119 | result k_c 127 | ratio or shift |
+|---|---|---|---|
+| steps | 3912 | **4177** | ratio 1.0677 |
+| \|F\| | 3.3918465288e-10 | **3.3793040957e-10** | 0.9963 |
+| F_start | 1.1287e-05 | 7.429e-06 | |
+| psi-constraint | 1.9119e-03 | **1.2898e-03** | ratio 0.6746 |
+| Delta | 1.1706493726 | **1.1706475652** | shift -1.8074e-06 |
+- **Acceptance:** `kc127_syscheck_1025.py` exit 0 (the state's |F| equals the record's, `freeze_from` gives 4177 steps = the record's); `--mutate=F` exit 1, `--mutate=steps` exit 1; `kc119_syscheck_1025.py` on the k_c 127 result exit 1 (refuses it). Source check (12:59:07): k_c 119 check exit 0, controls 1 1, the k_c 127 and k_c 111 checks refuse it. The memory gate passed at once (MemAvailable 28.4 GB); the `d18_secant.py` selftest exits repeated at the scan start: 0 1 1 1. The scan started **17:32:54 UTC**, 3 processes (round 1: 0.12, 0.11, 0.13).
+
+### Regrid predictions scorecard (mine, registered before the run)
+| prediction | result |
+|---|---|
+| source accepted, controls 1 1, refused by the k_c 127 and k_c 111 checks (92%); regrid accepted (85%) | right; right |
+| steps about 4166 (within 40: 55%; within 100: 90%) | right (4177: 11 off) |
+| \|F\| below 1e-9 (92%); between 2.5e-10 and 4.5e-10 (70%) | right; right (3.38e-10) |
+| psi-constraint about 1.15e-3, within (0.9e-3, 1.5e-3) (60%) | right (1.29e-3) |
+| Delta shift between -3e-6 and -2e-7 (70%) | right (-1.81e-6) |
+| regrid wall 14000 to 26000 s (60%); the cap 28800 s exceeded (10%) | right (16413 s); not exceeded |
+| peak RSS of the regrid below 5.5 GiB (85%) | right (4.47 GiB) |

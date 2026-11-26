@@ -5,3 +5,9 @@
 2026-11-26 12:58:40 UTC selftests: kc119_syscheck_1025.py exit 0, kc127_syscheck_1025.py exit 0, kc111_syscheck_1025.py exit 0 (0 wanted)
 2026-11-26 12:59:07 UTC STEP 1 source check (kc119_syscheck_1025.py on the k_c 119 D 22.875 source): exit 0 (0 wanted); controls --mutate=F exit 1, --mutate=steps exit 1 (1 wanted each); kc127_syscheck_1025.py on the source exit 1 (1 wanted); kc111_syscheck_1025.py on the source exit 1 (1 wanted)
 2026-11-26 12:59:07 UTC STEP 2 regrid starts: nice -n 10 timeout 28800 /home/nathan/Source/choptuik-large-d-1058b/.venv/bin/python -u ell_refine.py l1kc119macm3d22875 119 l1kc127dh370d22875 127 1 22.875 2.0996545550 --kappa 0.7 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma
+2026-11-26 17:32:40 UTC regrid exit 0, wall 16413 s
+2026-11-26 17:32:54 UTC kc127_syscheck_1025.py exit 0 (0 wanted); controls --mutate=F exit 1, --mutate=steps exit 1 (1 wanted each); kc119_syscheck_1025.py on the k_c 127 result exit 1 (1 wanted)
+2026-11-26 17:32:54 UTC verdict: ACCEPTED 2026-11-26 17:32:54 UTC
+2026-11-26 17:32:54 UTC scan gate passed: MemAvailable 28383 MiB (waited 0 s)
+2026-11-26 17:32:54 UTC d18_secant.py (92b9bf53, eb1396ad) selftest exit 0 (0 wanted); mutations half exit 1, norobust exit 1, nosigncheck exit 1 (1 wanted each)
+2026-11-26 17:32:54 UTC scan starts: D 22.875, 5 evaluations (window 0.10 0.13, repeat of 0.12), 3 procs x 1 thread, nice 10; state sol_l1kc127dh370d22875_D22.8750.npy 43bbf313, record 574229bc
