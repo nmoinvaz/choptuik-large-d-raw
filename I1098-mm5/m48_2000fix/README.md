@@ -25,3 +25,9 @@ an inner solve that stalls as at M 64 is reported at its second failed trial.
         --jac_by 13:qq,15:qq,17:qq,19:qq,21:qq,23:qq,25:qq --res od --tol 1e-48 --tol_h 1e-44 --threads 9 --outer 6 --commit f350aa62 > rls.log
 
 Delta's change per harmonic is computed by `diff_delta.py` on the log's digits (mpmath), never by hand.
+
+## M32_base (queued 2026-11-26 13:51 UTC, after `../horizon300/` ends; coordinator's order (b))
+
+To separate D 2000's dd-1/k error from this run's M shift: the M 32 base state itself re-solved on fastmul5, same input (`input/release_ls_h13_D2000.0000.npz`, blob b26c20a9), into `M32_base/`:
+`HP_EXACT_RECIP=1 HP_HORIZON_RELAXED=1 PYTHONPATH=~/Source/fastmul5-site OPENBLAS_NUM_THREADS=1 nice -n 10 timeout 3h python -u form_s.py release_ls input/release_ls_h13_D2000.0000.npz M32_base --harm 13 --kmax 13 --jac_by 13:qq --res od --tol 1e-48 --tol_h 1e-44 --threads 9 --outer 8 --commit f350aa62`.
+**Bar:** its "h13's change" is D 2000's dd-1/k error at M 32. The true M 32 -> 48 shift is this run's h13 change minus it. Expect 30-80 min. Stop rules: an exception, the floor stop, or an outer step 3x the first one's time.
