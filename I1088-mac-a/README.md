@@ -100,7 +100,10 @@ c30c2766).
   threads). D 10000 at its first dd step's state (I1088-dh610/L10000q), double-double (`D10000_step0_dd.log`): ks 4900
   and 5100 differ from ks 13018 by 2.7e-17 (the fast mode, which enters at order n/2 = 4999, not yet summed), 5300 by
   3.2e-29, 5600 and up by 0; one residual takes 12.7 s at ks 6000 against 85.8 s at 13018. A pre-check: the check of
-  record is in quad-double at the converged state.
+  record is in quad-double at the converged state. D 20000's guess, double-double (`D20000_guess_dd.log`): ks 10100
+  differs from 26018 by 3.5e-16, 10400 and up by 0; 41 s at ks 11416 against 282 s at 26018. Bars of the check of
+  record at D 10000 (written 02:55 UTC, before it): quad-double residuals of the converged state at ks 5912, 6000 and
+  7000 within 1e-25 of ks 13018's in every row; the control ks 5100 must exceed 1e-25.
 - `form_s/time_res/`: the held residual's time in double-, quad- and octo-double on the D 2000 guess (`time_res.py
   <guess> 2,4,8 2`, 2 threads on the Mac): 2.2 s, 25.5 s, 255 s (`D2000.log`); one double-double Newton step (`time_jac.py
   <state> 2618,1400 2`) at the D 2000 solution: 96 s at ks 2618, 60 s at ks 1400, the same step (`jac_D2000.log`).
