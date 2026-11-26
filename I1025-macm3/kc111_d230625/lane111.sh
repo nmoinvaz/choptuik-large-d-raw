@@ -1,0 +1,157 @@
+#!/bin/bash
+# #1025 macm3 kc111_d230625 (t5's order, hc 26 Nov ~02:13 UTC): k_c 111 at D 23.0625 from my accepted k_c 103 state there (raw I1025-macm3/kc103_leg/states, commit ff8456227: state blob aa7b61a6, record blob 3cd84ab0), by
+# dh170's k_c 111 regrid recipe (raw I1025-dh170/kc111_d23/run_regrid.sh: ell_refine.py 631e5801, "--kappa 0.7 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma", lambda_0 from ell_delta.lam0_at), 6 threads, nice 10, cap 21600 s
+# by capped_run.py; accepted only by kc111_syscheck_1025.py (85aeb312: exit 0, controls --mutate=F and --mutate=steps exit 1, the k_c 103 check refusing the result); source check first (the k_c 103 check accepts the source with
+# controls 1 1, the k_c 95 and k_c 111 checks refuse it). Then a hybrid sign scan of the plan in scan_plan.env (read when the scan starts; default lambda -0.08 to -0.02 by 0.01 plus a repeat of -0.05, 8 evaluations on 4 processes of
+# one thread at nice 15; kc87_leg_lambda/point87.sh machinery, folder kc87_leg_lambda/23.0625_kc111/), read by read_lower.py and repeat_check.py; with exactly one robust change its bracket goes to d18_secant.py (worktree
+# ~/Source/choptuik-large-d-1025s at 6010e37b, --tol=1e-5 --maxev=10, --pin=state blob,record blob, one process, nice 10; folder secant/), summarize_point.py prints the numbers. No robust change in the window: reported, the window is
+# not widened without t5's word. Stops (hc to t5): a pin, selftest or control that does not read as written, a regrid not accepted, a scan without SCAN_DONE.txt, a secant exit other than 0 or 4. usage: bash lane111.sh [dry|check]
+{
+set -u
+MODE=${1:-}
+F=$HOME/Source/choptuik-large-d-raw-903/I1025-macm3/kc111_d230625; IN=$F/in; OUT=$F/regrid; C=$F/checks
+L=$HOME/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_leg_lambda
+WT=$HOME/Source/choptuik-large-d-1025m2; WTM=$WT/solver/matter
+WT5=$HOME/Source/choptuik-large-d-1025m; WTM5=$WT5/solver/matter
+WTS=$HOME/Source/choptuik-large-d-1025s/solver/matter
+PY=$HOME/Source/venv-macm3-1058b/bin/python; RAWG=$HOME/Source/choptuik-large-d-raw-1076p
+SRC=l1kc103Lmacm3; TAG=l1kc111macm3d230625; D=23.0625; DT=D23.0625; SRCFILE=sol_${SRC}_D23.062500.npy; LAM0=2.0990016035; DN=23.0625_kc111; SCAN=$L/$DN; SEC=$F/secant
+HC=$(command -v hc); LOG=$F/exits_kc111.txt
+stamp() { date -u '+%F %T'; }
+say() { echo "== $(stamp) UTC kc111_d230625: $*" | tee -a $LOG; }
+tell() { say "hc: $*"; [ -n "$HC" ] && "$HC" send nathans-macbook-air-m5-3/t5 "$*" >> $LOG 2>&1; }
+stop() { echo "REFUSED: $*" > $OUT/VERDICT.txt; tell "macm3 #1025 kc111_d230625 STOP: $*"; exit 1; }
+blob() { git hash-object --no-filters "$1"; }
+availgib() { vm_stat | awk -v ps=$(sysctl -n hw.pagesize) '/Pages free/ {f=$3} /Pages inactive/ {i=$3} /Pages speculative/ {s=$3} /Pages purgeable/ {p=$3} END {printf "%.1f", (f+i+s+p)*ps/2^30}'; }
+mkdir -p $OUT $C
+export PYTHONDONTWRITEBYTECODE=1
+say "start (mode ${MODE:-full}; load $(sysctl -n vm.loadavg), $(availgib) GiB available)"
+# 1. pins
+while read bb f; do case "$bb" in "#"*) continue;; esac
+  p=$F/$f; [ -f $p ] && [ "$(blob $p | cut -c1-8)" = "$bb" ] || stop "$p missing or not blob $bb"; done < $F/in_blobs.txt
+diff -u $IN/kc103_syscheck_1025.py $IN/kc111_syscheck_1025.py | tail -n +3 > $OUT/diff_rebuilt.txt
+[ "$(grep -c '^[-+][^-+]' $OUT/diff_rebuilt.txt)" = 6 ] || stop "the diff of the k_c 103 and k_c 111 checks is not three changed lines"
+[ "$(git -C $WT rev-parse --short=8 HEAD)" = 48c36355 ] || stop "worktree $WT not at 48c36355"
+for f in dss_ell ell_ddm ell_dd ddnp; do git -C $WT diff --quiet 505d8399 HEAD -- solver/matter/$f.py || stop "$f.py differs from 505d8399"; done
+[ "$(blob $WTM/ell_refine.py | cut -c1-8)" = 631e5801 ] && [ "$(blob $WTM/ell_delta.py | cut -c1-8)" = fde699f5 ] || stop "ell_refine.py or ell_delta.py is not 631e5801 / fde699f5"
+[ -z "$(git -C $WT status --short solver | grep -v 'solver/matter/data/')" ] || stop "worktree solver/ has changes"
+[ "$(git -C $WT5 rev-parse --short=8 HEAD)" = 505d8399 ] && [ -z "$(git -C $WT5 status --short solver | grep -v 'solver/matter/data/')" ] || stop "the scan worktree $WT5 is not clean at 505d8399"
+[ "$(git -C ${WTS%/solver/matter} rev-parse --short=8 HEAD)" = 6010e37b ] && [ "$(blob $WTS/d18_secant.py | cut -c1-8)" = a3d90cd5 ] || stop "the secant worktree is not at 6010e37b with d18_secant.py a3d90cd5"
+[ "$MODE" != dry ] && [ "$MODE" != check ] && { [ -e $WTM/data/$TAG.jsonl ] && stop "$WTM/data/$TAG.jsonl exists"; [ -e $WTM/data/sol_${TAG}_$DT.npy ] && stop "the result state exists in $WTM/data"; }
+L0=$($PY -c "import sys; sys.path.insert(0, '$WTM'); import ell_delta; print('%.10f' % ell_delta.lam0_at($D, *ell_delta.lam0_table())[0])")
+python3 -c "import sys; sys.exit(0 if abs(float('$L0') - float('$LAM0')) < 1e-10 else 1)" || stop "lambda_0($D) reads $L0, not $LAM0"
+say "pins checked (in_blobs.txt; the diff of the k_c 103 and k_c 111 checks: 3 changed lines), worktrees $WT 48c36355 (dss_ell, ell_ddm, ell_dd, ddnp equal 505d8399; ell_refine.py 631e5801, ell_delta.py fde699f5), $WT5 505d8399 and the secant worktree 6010e37b clean; lambda_0($D) $L0; $($PY -V 2>&1), multidouble $($PY -c 'import multidouble as m; print(m.isa())')"
+# 2. selftests
+export D18_DIR=$IN OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1
+( cd $IN
+  nice -n 10 $PY -I kc95_syscheck_1025.py --selftest > $C/selftest_kc95_syscheck.txt 2>&1; a0=$?
+  nice -n 10 $PY -I kc103_syscheck_1025.py --selftest > $C/selftest_kc103_syscheck.txt 2>&1; a1=$?
+  nice -n 10 $PY -I kc111_syscheck_1025.py --selftest > $C/selftest_kc111_syscheck.txt 2>&1; a2=$?
+  $PY -W ignore read_lower.py selftest > $C/selftest_read_lower.txt 2>&1; r0=$?
+  $PY -W ignore read_lower.py selftest --mutate=shift > $C/selftest_read_lower_shift.txt 2>&1; r1=$?
+  $PY -W ignore read_lower.py selftest --mutate=round2 > $C/selftest_read_lower_round2.txt 2>&1; r2=$?
+  $PY repeat_check.py selftest > $C/selftest_repeat_check.txt 2>&1; r3=$?
+  echo "$a0 $a1 $a2 $r0 $r1 $r2 $r3" > $C/selftest_exits.txt )
+[ "$(cat $C/selftest_exits.txt)" = "0 0 0 0 1 1 0" ] || stop "the selftests did not behave ($(cat $C/selftest_exits.txt); wanted 0 0 0 0 1 1 0: kc95_syscheck, kc103_syscheck, kc111_syscheck, read_lower, mutate shift, mutate round2, repeat_check)"
+say "selftests as wanted (0 0 0 0 1 1 0)"
+# 3. the source: the k_c 103 check accepts it with controls 1 1; the k_c 95 and k_c 111 checks refuse it
+STATE=$IN/$SRCFILE; REC=$IN/$SRC.jsonl
+C103="nice -n 10 $PY -I $IN/kc103_syscheck_1025.py $REC $STATE $D $WTM"
+$C103 > $OUT/source_syscheck.txt 2>&1; s0=$?; $C103 --mutate=F > $OUT/source_syscheck_mutF.txt 2>&1; s1=$?; $C103 --mutate=steps > $OUT/source_syscheck_mutsteps.txt 2>&1; s2=$?
+nice -n 10 $PY -I $IN/kc95_syscheck_1025.py $REC $STATE $D $WTM > $OUT/source_kc95check_refuses.txt 2>&1; s3=$?
+nice -n 10 $PY -I $IN/kc111_syscheck_1025.py $REC $STATE $D $WTM > $OUT/source_kc111check_refuses.txt 2>&1; s4=$?
+say "source check (my k_c 103 state at D $D): kc103_syscheck exit $s0 (0 wanted); controls --mutate=F exit $s1, --mutate=steps exit $s2 (1 wanted each); kc95_syscheck on the source exit $s3, kc111_syscheck on the source exit $s4 (1 wanted each): $(grep -E '^D ' $OUT/source_syscheck.txt | cut -c1-300)"
+[ $s0 = 0 ] && [ $s1 = 1 ] && [ $s2 = 1 ] && [ $s3 = 1 ] && [ $s4 = 1 ] || stop "the source check or a control did not read as written"
+[ "$MODE" = dry ] && { say "dry run: pins, selftests and the source check passed; nothing started"; exit 0; }
+[ "$MODE" = check ] && { say "check run: nothing regridded"; exit 0; }
+# 4. wait for no other scan or regrid, then for memory
+while pgrep -f 'd18_hybsign|ell_refine|d18_secant.py run' > /dev/null; do sleep 30; done
+while python3 -c "import sys; sys.exit(0 if $(availgib) >= 8 else 1)"; [ $? != 0 ]; do sleep 60; done
+# 5. the regrid (only the state is copied into the worktree's data, under the name ell_refine reads)
+cp $STATE $WTM/data/sol_${SRC}_$DT.npy
+[ "$(blob $WTM/data/sol_${SRC}_$DT.npy | cut -c1-8)" = aa7b61a6 ] || stop "copied source state blob differs"
+CMD="nice -n 10 $PY -u $IN/capped_run.py 21600 env OMP_NUM_THREADS=6 OPENBLAS_NUM_THREADS=6 VECLIB_MAXIMUM_THREADS=6 MKL_NUM_THREADS=6 $PY -u ell_refine.py $SRC 103 $TAG 111 1 $D $LAM0 --kappa 0.7 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma"
+echo "# $(stamp) UTC cmd (cwd $WTM): $CMD" > $OUT/regrid.log
+say "regrid starts: $CMD"
+echo "time_utc,rss_kB,pcpu,avail_GiB" > $OUT/regrid_samples.csv
+( while sleep 60; do
+    echo "$(stamp),$(ps -axo rss=,pcpu=,command= | grep 'ell_refine.py' | grep -v grep | grep -v capped_run | head -1 | awk '{print $1","$2}'),$(availgib)" >> $OUT/regrid_samples.csv
+    av=$(availgib); python3 -c "import sys; sys.exit(0 if $av < 2 else 1)" && echo "$(stamp) UTC $av GiB available (alert only; nothing is stopped)" >> $OUT/MEMALERT.txt
+  done ) &
+SAMP=$!
+t0=$(date +%s)
+( cd $WTM && $CMD >> $OUT/regrid.log 2>&1 ); rc=$?
+kill $SAMP 2>/dev/null
+say "regrid exit $rc, wall $(( $(date +%s) - t0 )) s"
+[ $rc = 0 ] || stop "the regrid exit $rc (0 wanted; 124 is the cap of 6 h)"
+[ -s $WTM/data/$TAG.jsonl ] && [ -s $WTM/data/sol_${TAG}_$DT.npy ] || stop "the regrid wrote no record or state"
+cp $WTM/data/$TAG.jsonl $IN/ ; cp $WTM/data/sol_${TAG}_$DT.npy $IN/
+C111="nice -n 10 $PY -I $IN/kc111_syscheck_1025.py $IN/$TAG.jsonl $IN/sol_${TAG}_$DT.npy $D $WTM"
+$C111 > $OUT/syscheck.txt 2>&1; c0=$?; $C111 --mutate=F > $OUT/syscheck_mutF.txt 2>&1; c1=$?; $C111 --mutate=steps > $OUT/syscheck_mutsteps.txt 2>&1; c2=$?
+nice -n 10 $PY -I $IN/kc103_syscheck_1025.py $IN/$TAG.jsonl $IN/sol_${TAG}_$DT.npy $D $WTM > $OUT/syscheck_kc103check_refuses.txt 2>&1; c3=$?
+say "kc111 syscheck exit $c0 (0 wanted); controls --mutate=F exit $c1, --mutate=steps exit $c2 (1 wanted each); kc103_syscheck on the k_c 111 result exit $c3 (1 wanted): $(grep -E '^D ' $OUT/syscheck.txt | cut -c1-300)"
+[ $c0 = 0 ] && [ $c1 = 1 ] && [ $c2 = 1 ] && [ $c3 = 1 ] || stop "the regrid result is not accepted (syscheck $c0, controls $c1 $c2, kc103 check on the result $c3)"
+echo "ACCEPTED $(stamp) UTC" > $OUT/VERDICT.txt
+{ echo "$(blob $IN/sol_${TAG}_$DT.npy | cut -c1-8) sol_${TAG}_$DT.npy"; echo "$(blob $IN/$TAG.jsonl | cut -c1-8) $TAG.jsonl"; } > $F/in_blobs_regrid.txt
+python3 - $IN/$TAG.jsonl $IN/$SRC.jsonl $D <<'PY' > $OUT/regrid_summary.txt
+import json, sys
+rec = [json.loads(l) for l in open(sys.argv[1]) if l.strip()][-1]; src = [json.loads(l) for l in open(sys.argv[2]) if l.strip() and json.loads(l)["D"] == float(sys.argv[3])][-1]
+print("k_c 111 record: D %r |F| %.4e steps %d psi-constraint %.4e Delta %.12f (k_c 103 source: |F| %.4e steps %d constraint %.4e Delta %.12f); Delta shift %+.4e, steps ratio %.3f, constraint ratio %.3f" % (
+    rec["D"], rec["F"], rec["steps"], rec["constraint"], rec["Delta"], src["F"], src["steps"], src["constraint"], src["Delta"], rec["Delta"] - src["Delta"], rec["steps"] / src["steps"], rec["constraint"] / src["constraint"]))
+PY
+RP=$(bash $F/push111.sh "kc111_d230625: k_c 111 D 23.0625 regrid accepted (state, record, checks)" 2>&1 | tail -1); say "pushed regrid: $RP"
+tell "macm3 #1025 kc111_d230625: the k_c 111 D 23.0625 regrid is ACCEPTED ($(cat $OUT/regrid_summary.txt)); regrid wall $(( $(date +%s) - t0 )) s; the scan ($(grep -c . $F/scan_plan.env) lines of plan, see scan_plan.env) starts now; raw $RP"
+# 6. the scan folder (pins from the pushed commit), the lock, then point87.sh scan
+RAWC=$(echo "$RP" | awk '{print $2}')
+git -C $RAWG cat-file -e $RAWC:I1025-macm3/kc111_d230625/in/$TAG.jsonl 2>/dev/null || stop "the pushed commit $RAWC does not hold the regrid record"
+mkdir -p $SCAN
+{ cat <<PENV
+D=$D
+TAG=$TAG
+RAWC=$RAWC
+STATEFILE=sol_${TAG}_$DT.npy
+STATEBLOB=$(blob $IN/sol_${TAG}_$DT.npy | cut -c1-8)
+RECBLOB=$(blob $IN/$TAG.jsonl | cut -c1-8)
+SRC=I1025-macm3/kc111_d230625/in
+PENV
+  cat $F/scan_plan.env; } > $SCAN/point.env
+bash $L/prepare87.sh $DN > $SCAN/prepare.log 2>&1 || stop "prepare87.sh: a pin mismatch (see $SCAN/prepare.log)"
+for f in sol_${TAG}_$DT.npy; do cp $SCAN/in/$f $WTM5/data/$f; done; cp $SCAN/in/$TAG.jsonl $WTM5/data/${TAG}_asof_D$D.jsonl
+echo "ACCEPTED $(stamp) UTC (the k_c 111 regrid check of the lane, $OUT/syscheck.txt; controls and the k_c 103 refusal in $OUT)" > $SCAN/VERDICT.txt
+echo "$(stamp) UTC accept (lane111.sh): kc111_syscheck_1025.py exit $c0 (0 wanted); controls exit $c1 $c2 (1 wanted); kc103_syscheck on the result exit $c3 (1 wanted): $(grep -E '^D ' $OUT/syscheck.txt | cut -c1-260)" >> $SCAN/steps.txt
+bash $L/push87.sh "kc87_leg_lambda: D $DN pins and verdict (kc111 regrid of D 23.0625)" > /dev/null 2>&1
+LOCK=$L/.scan.lock; n=0
+until mkdir $LOCK 2>/dev/null; do
+  p=$(cat $LOCK.pid 2>/dev/null)
+  if [ -n "$p" ] && ! kill -0 $p 2>/dev/null; then mv $LOCK $LOCK.stale.$(date +%s); mv $LOCK.pid $LOCK.pid.stale.$(date +%s); continue; fi
+  n=$((n+1)); [ $n -gt 2700 ] && stop "the scan lock stayed busy for 15 h"; sleep 20
+done
+echo $$ > $LOCK.pid
+say "scan starts (point87.sh $DN scan)"
+bash $L/point87.sh $DN scan >> $SCAN/pipeline.log 2>&1; sc=$?
+rmdir $LOCK 2>/dev/null; mv $LOCK.pid $LOCK.pid.done 2>/dev/null
+say "scan exit $sc"
+[ -e $SCAN/SCAN_DONE.txt ] || stop "the scan did not finish (no SCAN_DONE.txt; see $SCAN/steps.txt)"
+bash $L/push87.sh "kc87_leg_lambda: D $DN (k_c 111) scan done" > /dev/null 2>&1
+nch=$(grep -c 'robust change (' $SCAN/read_lower.txt); nrb=$(grep -o 'robust changes: [0-9]*' $SCAN/read_lower.txt | head -1 | grep -o '[0-9]*')
+say "reading: $(grep -E '^hybrid signs|^robust changes|change \(|^endpoint|^repeated|^float64' $SCAN/read_lower.txt | tr '\n' ' ' | cut -c1-900)"
+tell "macm3 #1025 kc111_d230625: the k_c 111 D 23.0625 scan is read: $(grep -E '^hybrid signs|^robust changes|change \(|^endpoint' $SCAN/read_lower.txt | tr '\n' ';' | cut -c1-900) (raw kc87_leg_lambda/$DN/)"
+[ "$nch" = 1 ] && [ "$nrb" = 1 ] || { tell "macm3 #1025 kc111_d230625: the scan reads $nrb robust changes (one wanted): no secant refinement; reported, the window is not widened without your word"; exit 0; }
+# 7. the secant refinement of the one robust change
+BR=$(grep 'robust change (' $SCAN/read_lower.txt | sed -E 's/.*robust change \((-?[0-9.]+), (-?[0-9.]+)\).*/\1 \2/')
+LO=${BR% *}; HI=${BR#* }
+S_STATE=$SCAN/in/sol_${TAG}_$DT.npy; S_REC=$SCAN/in/$TAG.jsonl; SB=$(blob $S_STATE | cut -c1-8); TB=$(blob $S_REC | cut -c1-8)
+mkdir -p $SEC; [ -e $SEC/secant.jsonl ] && stop "$SEC/secant.jsonl exists"
+say "secant starts: d18_secant.py run $S_REC $S_STATE $D $LO $HI secant.jsonl --tol=1e-5 --maxev=10 --pin=$SB,$TB"
+echo "time_utc,pid,rss_kB,pcpu,avail_GiB" > $SEC/samples.csv
+( cd $WTS && env RAYON_NUM_THREADS=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 nice -n 10 $PY -u $IN/capped_run.py 18000 $PY -u $WTS/d18_secant.py run $S_REC $S_STATE $D $LO $HI $SEC/secant.jsonl --tol=1e-5 --maxev=10 --pin=$SB,$TB > $SEC/secant.log 2>&1; echo $? > $SEC/exit.txt ) &
+sp=$!
+( while kill -0 $sp 2>/dev/null; do for p in $(pgrep -f "d18_secant.py run.*kc111_d230625/secant"); do echo "$(stamp),$p,$(ps -o rss= -p $p | tr -d ' '),$(ps -o pcpu= -p $p | tr -d ' '),$(availgib)" >> $SEC/samples.csv; done; sleep 60; done ) &
+wait $sp; se=$(cat $SEC/exit.txt)
+say "secant exit $se"
+[ "$se" = 0 ] || [ "$se" = 4 ] || stop "d18_secant.py exit $se (0 tol reached, 4 maxev or non-robust interior point; 2 refused, 3 pin or record system): see $SEC/secant.log"
+$PY $F/summarize_point.py $SCAN $SEC > $F/point_summary.txt 2>&1
+bash $F/push111.sh "kc111_d230625: D 23.0625 scanned and its root refined (secant)" > /dev/null 2>&1
+tell "macm3 #1025 kc111_d230625 done: $(grep -E '^(scan:|secant: status|secant root)' $F/point_summary.txt | tr '\n' ';' | cut -c1-1400) (raw kc111_d230625/ and kc87_leg_lambda/$DN/)"
+exit 0
+}
