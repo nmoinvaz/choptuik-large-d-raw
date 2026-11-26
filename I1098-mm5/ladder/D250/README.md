@@ -35,3 +35,8 @@ h23-h31 were released at outer 0 by the residual with the pending dDelta below -
 
 Total since the Moebius h13 state: -1.18382e-16. **Final Delta (the state's `Delta_parts` summed at 60 digits, `tail_u/direct_s.jsonl`): 1.6849552059415603649964497491180504272** (Moebius M 32 after h13: 1.684955205941560483378678483556634985116).
 State `tail_u/release_ls_h31_D250.0000.npz`, blob 32b250942a9b58563646604ac65528860891cd7a. The full system's qd check: max |F| 1.87e-52 (od solve 1.8687435872027878e-52); the Hamiltonian check at the four nodes: 2.3e-21 (p), 2.5e-21 (m), 8.3e-22 (a), 9.2e-20 (c) at node 1, all below 1.1e-19.
+
+### Discrepancy noted (2026-11-26 17:50 UTC)
+
+Re-converging h13 on the u horizon moved D 250 by -2.4606e-17 (residual 1.56e-36 before the step, 271 s) but D 432 and D 519 by nothing (residual 1.12e-53 and 1.65e-53, below --tol; pending dDelta -2.55e-29 and -2.54e-29, no step).
+The Moebius states' ks go to the u ks by +30 at D 250 (392 -> 422), +66 at D 432 (665 -> 731). Cause not known; not investigated (D 250's h13 shift is 27% of its tail's total -1.18382e-16, so the D 250 tail's Delta is not comparable to the other two at the 1e-17 level without it).
