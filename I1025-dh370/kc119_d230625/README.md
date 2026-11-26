@@ -91,3 +91,42 @@ t5: "the scanner changes for every scan that has not started. A scan already run
 | 0.00 | - | True | | - | -3566.1592 | 7101 |
 | 0.02 | - | True | 7.81e-07 | - | -3566.3849 | 6836 |
 - Interim (information; the reader's reading comes after the scan; round 2, lambda -0.04 and 0.04, is running): the hybrid sign goes **+ to -** between -0.02 and 0.00, so a robust change in **(-0.02, 0.00)** (printed "+ to -"), inside t5's registered root -0.004 +- 0.005 (-0.009 to 0.001); no change between 0.00 and 0.02. The float64 sign equals the hybrid at all three. Per point 6797 to 7101 s on 3 processes, inside my 5000 to 9000 s.
+
+## Scan result (26 Nov 09:36:36 to 12:54:27 UTC = 3.3 h; 3 processes at nice 10 (nice 19 whenever an `i1088a` unit was active), `d18_secant.py scan` 92b9bf53; `read_lower.txt`, `merged_D23.0625.jsonl`)
+All three processes printed the pin check and the record system (|F| 3.1250000885e-10 against the record's 3.1250462879e-10, 3916 steps equal) and exited 0; 5 evaluations, **5 noise-robust**. `read_lower.py` selftest exit 0, mutations `shift` and `round2` exit 1. No repeat in the order.
+| lambda | hybrid sign | noise-robust | dln | float64 sign | ln of abs det | seconds |
+|---|---|---|---|---|---|---|
+| -0.04 | + | True | 1.58e-06 | + | -3559.4732 | 4992 |
+| -0.02 | + | True | 2.72e-06 | + | -3562.4185 | 6797 |
+| 0.00 | - | True | 9.40e-06 | - | -3566.1592 | 7101 |
+| 0.02 | - | True | 7.81e-07 | - | -3566.3849 | 6836 |
+| 0.04 | - | True | 2.76e-07 | - | -3567.9221 | 4761 |
+**One robust change in the window -0.04 to 0.04** (the reader's output, orientation as printed; a spread over interpolation choices, **not an enclosure**; the bracket is the grid step): **(-0.020, 0.000), "+ to -", det-linear -0.000464, range [-0.017653, -0.000464].** Edge signs + at -0.040 and - at 0.040; no ln|det| minimum without a sign change; no change touches a non-robust point; the float64 sign equals the hybrid at all 5. Per-process wall 1:54:04, 3:16:37 and 3:17:50; peak RSS per scan process 3.74 to 3.97 GiB (`/usr/bin/time -v`: 3925488, 4074424, 4160808 kB; macm3's estimate was 7 GiB, his old-scanner processes 6.54 GiB, his new-scanner ones 3.87 GiB); lowest MemAvailable during the scan about 19.9 GB, no alert.
+
+### The Linux cross-check against macm3's k_c 119 at D 23.0625 (his folder `I1025-macm3/kc119_d230625/`, raw 0e9f3daf2, read after my scan ended; same source state 871f58c2, same command, a Mac build)
+| | macm3 (Mac) | dh370 (Linux) |
+|---|---|---|
+| regrid steps / ratio to the source's 3656 | 3916 / 1.071 | **3916** / 1.0711 |
+| record \|F\| | 3.1113e-10 | 3.1250e-10 |
+| psi-constraint | 2.2703e-03 | **2.2703e-03** (2.270257e-03) |
+| Delta | 1.176173169384 (shift -1.3753e-06) | 1.176172845220 (shift -1.6994e-06) |
+| regrid wall | 2663 s (his Mac) | 13257 s |
+| scan hybrid signs at -0.04, -0.02, 0.00, 0.02 | + + - - | **+ + - -** (and - at 0.04) |
+| float64 sign equals the hybrid | 5 of 5 | 4 of 4 shared points (5 of 5) |
+| robust change | (-0.020, 0.000) "+ to -", det-linear -0.000483, range [-0.017664, -0.000483] | **(-0.020, 0.000) "+ to -"**, det-linear -0.000464, range [-0.017653, -0.000464] |
+| ln\|det\| at -0.04 / -0.02 / 0.00 / 0.02 | -3559.501 / -3562.450 / -3566.150 / -3566.404 | -3559.4732 / -3562.4185 / -3566.1592 / -3566.3849 |
+- **The two scans agree on the bracket, and every sign at the four shared lambda is the same.** The steps and the psi-constraint agree; the records differ in |F| (0.44%: 3.1113e-10 against 3.1250e-10), in Delta (3.24e-7: the shift -1.375e-6 against -1.699e-6) and the determinants' ln|det| by 0.0096 to 0.0315 at the four shared lambda, which is a difference of the two regridded states (each accepted at the record class |F| 3e-10, so a build-dependent end of the Newton iteration), not of the scanner: both scans use the same `d18_secant.py scan` 92b9bf53. By t5's rule ("no secant is needed unless the two scans disagree on the bracket") **no secant is run here.** macm3's secant of his state, `d18_secant.py run` eb1396ad, gave the root **-0.00351666**, final bracket [-0.00351815, -0.00351315], tol reached; I did not run it on my state.
+- **Against t5's registered root -0.004 +- 0.005 (-0.009 to 0.001):** my scan's bracket (-0.02, 0.00) contains it and the det-linear estimate -0.000464 is inside the band; the sharper test is macm3's secant, -0.003517, inside the band (his, not mine).
+
+### Scan predictions scorecard (mine, registered before the run; the 3-process list of t5's change of 06:14 UTC)
+| prediction | result |
+|---|---|
+| all five noise-robust (65%) | right (5 of 5) |
+| exactly one robust change in the window (82%) | right |
+| its bracket (-0.02, 0.00) (70%) | right |
+| per point 8000 to 16000 s on 3 processes (60%); after the scanner change, 5000 to 9000 s (55%) | the first WRONG; the second right for 3 of 5 points (6797, 6836, 7101 s; 4992 and 4761 s on fewer processes were just below) |
+| the scan 4 to 8 h from its start (60%); after the scanner change, 2 to 4 h | the first WRONG; the second right (3.3 h) |
+| the float64 sign differs from the hybrid at some point (70%) | WRONG (it equals the hybrid at all 5) |
+
+## Status
+- 2026-11-26 12:54 UTC: the lane is finished. Regrid ACCEPTED (09:36:35), scan done (12:54:27): one robust change, bracket (-0.02, 0.00) "+ to -"; agrees with macm3's. Accepted state `sol_l1kc119dh370d230625_D23.0625.npy` **8c0f447433bd00e6f48f3af2345fcfa360c3bed7** and record `l1kc119dh370d230625.jsonl` **d63c21b67b3db97c6cb0a295291c7d1f78ad45ea** are in this folder in raw.
