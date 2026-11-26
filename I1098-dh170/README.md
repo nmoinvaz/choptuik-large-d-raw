@@ -27,10 +27,24 @@ https://github.com/nmoinvaz/choptuik-large-d/issues/1098
 - **D 519 machine check** (`ladder/after1549.sh`, unit i1088a-d519x). It starts when D 1549's unit ends. It runs D 519's
   Moebius M 32 tail (ladder_tail.sh mob, ks 1196, kmax 23, 6 threads) from mm5's h13 state, to compare with mm5's tail
   (I1098-mm5/ladder/D519/tail_mob).
-  - What differs: the machine (dh170's i7-7700 against mm5's M5 Pro), the kernel's build (the Skylake wheel of
-    e1cd7a84 against mm5's native build), and the Python (f398e829 with inner chord steps on, against 478e9d86 with them
-    off).
+  - What differs: the machine (dh170's i7-7700 against mm5's M5 Pro) and the kernel's build (the Skylake wheel of
+    e1cd7a84 against mm5's native build). The Python is f398e829 against 478e9d86. With --inner_chord 0 (below) their
+    release_ls takes the same path: their form_s.py differ only in the chord option and a rewritten floor test with
+    the same logic.
   - What the two runs share: the kernel source (d368a0c0's Rust), the input state
     (I1098-mm5/ladder/D519/rls/release_ls_h13_D519.0000.npz, blob b5a40765, the same blob as `inputs/D519_rls_h13.npz`
     here), ladder_tail.sh (sha256 12055ac1..., I1098-mac-a/tools), and its settings.
-  - So a difference measures machine, build and Python together. A match to the tolerance does not separate them.
+  - So a difference measures the machine and the build together.
+- **h13 chord-free, and the D 519 check too.** mm5's D 747 on f398e829 stopped at h13 outer 1. Its qq inner solve with
+  chord steps reached 1.75e-45 in 10 steps against tol 1e-48, where the chord-free solves of D 519 and 622 reached about
+  1e-77 in 4.
+  - Unit i1088a-d519x was stopped before it ran anything. `ladder/restart1549c.sh` (unit i1088a-r1549c, started 20:06
+    UTC) takes both jobs.
+  - It waits for D 1549's h5-h11 release to end and stops i1088a-ladder1549b. It moves the half-begun rls13/ to
+    rls13_<UTC time> and runs h13 at M 32 with --inner_chord 0 and --commit f398e829 (I1098-mac-a/tools/
+    ladder_from_h11.sh, blob 780ba729, STOP_AFTER=rls13). Then it runs the D 519 check with --inner_chord 0.
+  - The h5-h11 stage keeps its chord steps (tol 1e-36). The h13 inner system re-solves every unknown below harmonic 13
+    to 1e-48, so that state serves only as the starting point.
+- `ladder/D1549/` and `ladder/D519x/`: the run folders (dh170's out/ladder), copied here and pushed at each stage's end
+  by `push_ladder.sh` (unit i1088a-push1549) from a sparse worktree of dh170's raw clone. The runs themselves write
+  outside this repository (--allow_unraw); later points write into their raw folder directly.

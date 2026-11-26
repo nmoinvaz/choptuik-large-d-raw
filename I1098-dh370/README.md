@@ -22,3 +22,15 @@ https://github.com/nmoinvaz/choptuik-large-d/issues/1098
   478e9d86 where they mean f398e829. f398e829 also makes the inner held solves take chord steps by default
   (--inner_chord 1, e1cd7a84). The points converge to the same 1e-48 tolerance as D 432-1291, though not to the same
   bits. The ladder record will give f398e829.
+- **h13 and the tail chord-free.** mm5's D 747 on f398e829 stopped at h13 outer 1. Its qq inner solve with chord steps
+  reached 1.75e-45 in 10 steps against tol 1e-48, where the chord-free solves of D 519 and 622 reached about 1e-77 in 4.
+  - `ladder/restart896c.sh` (unit i1088a-r896c, started 20:06 UTC) waits for D 896's h5-h11 release to end and stops
+    i1088a-ladder896b. It moves the half-begun rls13/ to rls13_<UTC time> and runs h13 and the M 48 tail (kmax 23) with
+    --inner_chord 0 and --commit f398e829 (I1098-mac-a/tools/ladder_from_h11.sh, blob 780ba729).
+  - With --inner_chord 0, f398e829's release_ls takes the same path as 478e9d86's: their form_s.py differ only in the
+    chord option and a rewritten floor test with the same logic.
+  - The h5-h11 stage keeps its chord steps (tol 1e-36). The h13 inner system re-solves every unknown below harmonic 13
+    to 1e-48, so that state serves only as the starting point.
+- `ladder/D896/`: the run folder (dh370's out/ladder/D896), copied here and pushed at each stage's end by
+  `push_ladder.sh` (unit i1088a-push896) from a sparse worktree of dh370's raw clone. The run itself writes outside
+  this repository (--allow_unraw); later points write into their raw folder directly.
