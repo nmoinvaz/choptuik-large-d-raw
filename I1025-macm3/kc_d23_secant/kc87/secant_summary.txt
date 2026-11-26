@@ -1,0 +1,14 @@
+scan: 22 evaluations, 22 noise-robust; robust changes 1: (-0.040, -0.020) + to - det-linear -0.021546 range [-0.035344, -0.021546]
+signs by lambda: -0.10+ -0.08+ -0.06+ -0.04+ -0.02- 0.00- 0.02- 0.04- 0.06- 0.08- 0.10- 0.10- 0.12- 0.14- 0.16- 0.18- 0.20- 0.22- 0.24- 0.26- 0.28- 0.30-
+float64 sign equals the hybrid sign at 22 of 22
+repeat of 0.10 bit-identical (ln, f64_ln, sign): True
+ln|det| by lambda: -0.10:-2331.335 -0.08:-2333.128 -0.06:-2335.066 -0.04:-2337.413 -0.02:-2339.893 0.00:-2339.833 0.02:-2340.742 0.04:-2341.868 0.06:-2343.094 0.08:-2344.377 0.10:-2345.699 0.10:-2345.699 0.12:-2347.048 0.14:-2348.417 0.16:-2349.803 0.18:-2351.201 0.20:-2352.610 0.22:-2354.028 0.24:-2355.454 0.26:-2356.887 0.28:-2358.326 0.30:-2359.770
+secant: status tol (-), tol 1e-05, evaluations 8 (the two ends included), run wall 3212 s
+secant root bracket [-0.02540491, -0.02539991], width 5.000e-06, signs [1.0, -1.0], robust [True, True]; det-linear root -0.02540417; Brent's last point -0.02540491
+scan reading: bracket (-0.040, -0.020), det-linear -0.021546, estimator range [-0.035344, -0.021546]
+secant root inside the scan's estimator range: True; whole final bracket inside: True; root below the scan's det-linear: True
+end lambda -0.04: secant ln -2337.413233 sign +1, scan ln -2337.413236 sign +1, |d ln| 2.472e-06
+end lambda -0.02: secant ln -2339.892814 sign -1, scan ln -2339.892813 sign -1, |d ln| 4.553e-07
+evals: -0.04000000 +1 ln -2337.413233 dln 2.39e-07 robust True 408 s; -0.02000000 -1 ln -2339.892814 dln 1.73e-06 robust True 411 s; -0.02154604 -1 ln -2340.114861 dln 2.30e-06 robust True 403 s; -0.02737327 +1 ln -2340.354341 dln 3.45e-06 robust True 407 s; -0.02480688 -1 ln -2341.738014 dln 1.27e-05 robust True 407 s; -0.02532123 -1 ln -2343.674286 dln 8.98e-05 robust True 397 s; -0.02540491 +1 ln -2348.386187 dln 1.01e-02 robust True 405 s; -0.02539991 -1 ln -2346.630034 dln 1.73e-03 robust True 375 s
+dln largest 1.007e-02, mean seconds per evaluation 402
+secant memory: 107 samples, lowest available 10.4 GiB, peak RSS 2.86 GiB
