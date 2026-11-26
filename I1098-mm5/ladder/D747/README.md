@@ -24,3 +24,19 @@ Stages (`run.log`, each log and state in its folder): `jump/`, `rls/` (h5..h11 t
 
 Started 18:27:30 UTC together with D 622 (wrapper pid 49404), and stopped at 18:27:45 UTC by SIGTERM to the wrapper 49404 and the timeout 49434 (python 49437) on the coordinator's amendment, which my launch crossed: "start D 622 as sent, but NOT D 747. Its 6 threads take the M 64 rerun at D 1000 instead. D 747 goes back to the queue."
 It was in its first jump, ks 1138, with no result; the partial files are in `attempt0_stopped_18_27/`. The bars above stand for the later run.
+
+## Setup for the restart (2026-11-26 19:10 UTC, coordinator's change of 19:06)
+
+D 747 runs the fixed `tools/ladder_point2_8e67.sh` (raw a54aa2266 `I1098-mac-a/tools/ladder_point2.sh`, **blob 8e6779cf1cfedafc8050e2d237c94b771c877e18**, verified; D 622 and D 1291 still run `tools/ladder_point2.sh`, blob da887d71, untouched) with the Python of **fastmul6 f398e829** from a second worktree `~/Source/choptuik-fastmul6-f398` (detached; `~/Source/choptuik-fastmul6` stays at 478e9d86 for the running jobs), kernel `~/Source/fastmul6-site`:
+
+```
+HP=$HOME/Source/choptuik-fastmul6-f398/hp KSBAR=1e-64 bash tools/ladder_point2_8e67.sh 747 200 6 <ladder>/D747 <ladder>/inputs/S300_D300_mob6_h13.npz <ladder>/inputs/S1000_D1000_base6_h13.npz 48 23
+```
+
+It gates ks on the octo-double `ks_gate.py` (bar 1e-64, from the jump state, steps of 200), so no separate gate is run; `run.log` must show "ks gate (bar 1e-64): N (...)", and an exit 6 (no ks meets the bar) is a stop to report.
+The stopped first attempt is in `attempt0_stopped_18_27/`; OUT holds no old jump.
+**Amended stop rule** (coordinator's order, 2026-11-26 19:01 UTC): stop and report when a qq inner solve does not converge, when a harmonic's line search fails at every trial (D 432's u tail), or when an outer step is 3x its harmonic's first. A qd inner floor that hands over to qq is logged, not stopped.
+Bars: as above (the jump converges and the ks gate passes, h5..h13 each released, the tail falls from h15 by about 1e2 or more per harmonic, h21's change at most about 1e-23, h23 released with a pending dDelta at most about 1e-26, no turn).
+
+Two differences from D 622 and D 1291, noted before the run: (1) `form_s.py` at f398e829 differs from 478e9d86 in `release_ls`: the inner held solves chord-step with a kept Jacobian by default (`--inner_chord 1`, commit e1cd7a84; it reforms the Jacobian after any slow chord step; 4 more inner steps allowed), so its converged states agree with 478e9d86's to the tolerance, not bit for bit;
+(2) the script passes `--commit 478e9d86`, so the commit field in this run's records reads 478e9d86 while the Python is f398e829.
