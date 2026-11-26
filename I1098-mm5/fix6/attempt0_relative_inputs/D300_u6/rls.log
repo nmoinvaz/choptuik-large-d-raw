@@ -1,0 +1,20 @@
+Traceback (most recent call last):
+  File "/Users/nathan/Source/choptuik-fastmul6/hp/form_s.py", line 1785, in <module>
+    sys.exit(main())
+             ~~~~^^
+  File "/Users/nathan/Source/choptuik-fastmul6/hp/form_s.py", line 1779, in main
+    return dict(check=cmd_check, cond=cmd_cond, jump=cmd_jump, planted=cmd_planted, release=cmd_release,
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                release_ls=cmd_release_ls, release_joint=cmd_release_joint, mobcheck=cmd_mobcheck,
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                relayout=cmd_relayout)[cmd](sys.argv[2:])
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/Users/nathan/Source/choptuik-fastmul6/hp/form_s.py", line 1274, in cmd_release_ls
+    z8, meta = load_o(path)
+               ~~~~~~^^^^^^
+  File "/Users/nathan/Source/choptuik-fastmul6/hp/octo_corrector.py", line 114, in load_o
+    d = np.load(path)
+  File "/Users/nathan/venv-314/lib/python3.14/site-packages/numpy/lib/_npyio_impl.py", line 454, in load
+    fid = stack.enter_context(open(os.fspath(file), "rb"))
+                              ~~~~^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'inputs/D300_full_base.npz'

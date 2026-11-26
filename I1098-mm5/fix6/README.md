@@ -29,3 +29,26 @@ Stop rules: an exception, the floor stop, or an outer step 3x its harmonic's fir
 `bash tools/fix6_mm5.sh inputs <this folder>`, detached, nice 10: first the two taylor_mp_check runs; then together on 16 threads D300_u6 and D300_mob6 (3 threads each, 1 h cap), D1000_base6 (4, 3 h) and D1000_M48_6 (6, 3 h), all
 `release_ls --harm 13 --kmax 13 --jac_by 13:qq --outer 8`; then D1000_M48_tail6 from D1000_M48_6's state (`--harm 15,...,31 --kmax 31`, qq for each, 16 threads, 12 h cap). The script logs no kernel path, so each run's `rls.log` starts without a
 `hpkernel` line; the kernel is the `PYTHONPATH=~/Source/fastmul6-site` one set in the script (checked: `fastmul6-site/hpkernel/__init__.py`).
+
+## Results so far (2026-11-26 15:18 UTC)
+
+First attempt (relative `inputs` path, the script `cd`s into hp/ first): all jobs failed at once, kept in `attempt0_relative_inputs/` with a NOTE. Second attempt 15:04:11 UTC with absolute paths, the script unchanged (blob 9c3af9c8), driver pid 36629. Differences by script from the logs' digits (mpmath).
+
+**Check 1, taylor_mp_check at D 300 (exit 0 both):** HP_EXACT_DMAT=1: `max |kernel - mpmath| 1.096e-124 over 96 values`, control (HP_EXACT_RECIP=0) `2.356e-31`, `the matrices on both sides: hi + lo + c (the remainders applied)`,
+`PASS: lane-precision reciprocals 1.1e-124 (bar 1e-60), the control 2.36e-31 (must exceed 1e-40)`; HP_EXACT_DMAT=0: `1.24e-124` and `2.356e-31`, `the matrices on both sides: hi + lo`, `PASS ... 1.24e-124 (bar 1e-60), the control 2.36e-31`.
+
+| run | change in Delta (log's "h13's change") | steps | Delta |
+|---|---|---|---|
+| D300_u6 | +1.2884779e-19 (+1.288e-19) | o0 +1.0593e-19 (289.5 s), o1 +2.2922e-20 (181.1 s), released | 1.678171015400871567861061965988636601014 |
+| D300_mob6 | +1.2884018e-19 (+1.288e-19) | o0 +1.0592e-19 (316.6 s), o1 +2.2922e-20 (192.7 s), released | 1.678171015400871567861054353749636973374 |
+| D1000_base6 | +1.212211e-24 (+1.212e-24) | o0 +1.21221e-24 (404.6 s), outer 1 released (step 1.66e-25) | 1.654240854145891738986195293587439721842 |
+| D1000_M48_6 | +2.0309904e-24 (+2.031e-24) | o0 +2.03099e-24 (645.9 s), outer 1 released (step 1.86e-25) | 1.654240854145891738986195272305515987672 |
+
+| bar | observed | verdict |
+|---|---|---|
+| D300_mob6 - D300_u6 below 1e-23 (fastmul5: +3.23341e-21) | **-7.61224e-24** | **met** (the row-sum reading holds; the remaining value equals horizon300's u_ks+200 change, -7.6122e-24, to the digits shown) |
+| D300_u6's change +1.288e-19 (+ about 2e-32); D300_mob6's +1.289e-19 | +1.28848e-19; +1.28840e-19 | u6 as expected; mob6 reads +1.288e-19 (the expected +1.289e-19 is 7.6e-24 higher) |
+| D1000_base6's change +1.212e-24 within 1% | +1.212211e-24 (ratio 1.00017) | **met** |
+| D1000_M48_6 minus D1000_base6 against fastmul5's -8.40e-25 | **-2.12819e-26** (the two start states differ by -8.40061e-25; the remainders add +1.212e-24 at M 32 and +2.031e-24 at M 48) | the M 32 -> 48 shift at kfree 13 on fastmul6 is 39x smaller than fastmul5's |
+
+The tail (D1000_M48_tail6, h15..h31 from D1000_M48_6's state, 16 threads, 12 h cap) started 15:17:52 UTC; its table follows.

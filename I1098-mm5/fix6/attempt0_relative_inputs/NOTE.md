@@ -1,0 +1,2 @@
+First attempt, 2026-11-26 15:03:36 UTC: `bash tools/fix6_mm5.sh inputs <this folder>` as ordered. The script `cd`s into fastmul6's hp/ before it reads the inputs, so the relative IN_DIR `inputs` was not found:
+both taylor_mp_check runs and all four release_ls runs ended at once with FileNotFoundError (rc 1, 0 s). No result. The second attempt (the folder above) passes IN_DIR and OUT_DIR as absolute paths; the script is unchanged (blob 9c3af9c8).
