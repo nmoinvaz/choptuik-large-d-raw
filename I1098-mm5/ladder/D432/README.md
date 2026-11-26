@@ -1,0 +1,13 @@
+# I1098-mm5/ladder/D432: D 432 full direct solve, recipe v1, then the tail in mode u (#1098)
+
+Part of `../`. D 432: ks 665, kc 180 (Moebius a 8, M 32) for the jump and the h5..h13 release (`jump/`, `rls/`; `run.log`); the v1 tail was stopped at 17:12:17 UTC by exact pid (timeout 44616, python 44617; `tail rc 143`) by the tail-switch watcher.
+
+- jump: converged, 45 s; Delta 1.667761312224664714330111348230222792723 (qd |F| 5.047e-30, bound 1.48e-21).
+- rls (h5..h13, `rls rc 0` at 17:12:16, 61 min): h5 -2.0261e-8, h7 +2.613e-10, h9 +4.4345e-12, h11 -4.7534e-14, h13 -4.4882e-16, each released (pending dDelta -4.06e-44, +4.80e-45, -6.84e-40, +5.29e-29, -2.55e-29);
+  Delta after h13 (full, h1-13, M 32 Moebius): **1.667761292229811188766750111575809044951**.
+
+## Tail mode: u (chosen 2026-11-26 17:13 UTC, coordinator's order, written to `../mode.txt`)
+
+`tools/ladder_tail.sh u 432 rls/release_ls_h13_D432.0000.npz tail_u 4`: the u horizon at M 32 with ks = ceil(1.7 (D - 2)) = **731** (`mob0,ks=731`: kt 36, kc 180, 114 Taylor steps), h13 re-converged, then h15..h31 (kmax 31, qq, od, tol 1e-48, --ddelta 1e-25, 4 threads),
+started 17:12:50 UTC. **Why u:** as for D 250 (`../D250/README.md`): at D 300 the u horizon at M 32 is clean through h31 (no turn at h23, pending dDelta about 1e-26) and agrees with the Moebius tail through h21 to 8.9e-25 (`../D300u/README.md`);
+the coordinator preferred starting at once to waiting 30-40 minutes with 8 threads idle for the Moebius M 48 verdict. The whole 250-519 band is u at M 32 with ks = ceil(1.7 (D - 2)).
