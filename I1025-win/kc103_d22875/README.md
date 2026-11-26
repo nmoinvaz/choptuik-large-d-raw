@@ -151,7 +151,7 @@ The memory watcher raised no alert (`rows/regrid_memwatch.log`: "minimum free me
 - **Machine at the start:** free physical memory 22.12 GB; the other project's I114 `convergence.py` jobs are beside it and not touched.
 - **End:** the scan ended 03:46:50 UTC (written ETA about 01:20 to 03:45 UTC, central about 02:15: it came in 1 to 2 minutes past the upper end and 779 s inside its cap); reader lines in Result.
 
-Pushed 2026-11-26 03:49:42 UTC.
+Pushed 2026-11-26 03:50:51 UTC.
 
 ## Result
 

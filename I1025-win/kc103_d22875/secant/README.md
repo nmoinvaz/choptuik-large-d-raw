@@ -87,7 +87,15 @@ One robust change, so no choice among several arose. t5's ruling on the scan (hc
 
 **Filled in before the start: LO = 0.100, HI = 0.120, R_LO = 0.103345, R_HI = 0.119801.** The registration above reads: the refined `lam_lin` lies in [0.103345, 0.119801]. Note that the reader's det-linear estimate 0.119801 is the upper end of its own range.
 
-Pushed 2026-11-26 03:49:42 UTC.
+**RUNNING since 2026-11-26 03:48:13 UTC.** README first def76f61e (23:03:51 UTC on 25 Nov), bracket and range filled in 894559cbb (03:47:53 UTC), before the start; the scan's Result is in the README above (raw 76a13bbe2).
+
+- **Chain** (`launcher_pid.txt`: 12340): conhost --headless 12340 <- cmd 18084 <- driver launcher 20852 and driver 22356 <- `d18_secant.py` pid 26284 (one child process 25016), sampler 8760, alert-only watcher 26468, keep-awake helper 14000. BelowNormal, one thread, cap 54000 s by the exact pid, one hc to t5 at 21600 s if it still runs.
+- **Session check** (`session_check_secant.txt`, exit 0): no `claude` in any chain of the run, no Windows Terminal / OpenConsole / wt, a headless conhost in the chain.
+- **Before the run** (03:48:12 to 03:48:13 UTC): the driver's pins matched (worktree 6010e37b, `d18_secant.py` a3d90cd5, `ell_fastm.py` 93f963f6, the solver files, the state 28051531 and the record f623d3e6); `d18_secant.py selftest` exit 0 and its three controls exit 1, 1, 1; the bracket check on the scan's records passed (hybrid sign - at 0.1, + at 0.12, both noise-robust). The tool printed its own pin lines and "the record system" (\|F\| 3.4630896969e-10 against the record's 3.4634221167e-10, 3387 steps = the record's).
+- **Machine at the start:** the other project's I114 `convergence.py` jobs run beside it, not touched.
+- **ETA** (the estimates above counted from 03:48:13 UTC): about 7 evaluations at 2000 to 5000 s each, so the refinement ends about 07:00 to 18:00 UTC (central about 10:00 UTC). The D 22.875 scan's points ran 1.24 to 1.40 times my written figure, so I expect the upper side.
+
+Pushed 2026-11-26 03:50:51 UTC.
 
 ## Result
 
