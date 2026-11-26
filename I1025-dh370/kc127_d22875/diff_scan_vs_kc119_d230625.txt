@@ -1,0 +1,14 @@
+2c2
+< # #1025 kc119_d230625 step 4 (t5's order, its change of 06:14 UTC and its scanner change of 07:05 UTC): hybrid sign scan of the accepted k_c 119 state at D 23.0625, lambda -0.04 to 0.04 by 0.02 (5 values, no repeat), d18_secant.py scan
+---
+> # #1025 kc127_d22875 step 4 (t5's order of 26 Nov 12:56 UTC, with the new scanner): hybrid sign scan of the accepted k_c 119 state at D 23.0625, lambda 0.10, 0.11, 0.12, 0.13 and a repeat of 0.12 (5 evaluations), d18_secant.py scan
+6c6
+< ROOT=/home/nathan/Source/choptuik-large-d-raw-wt613/I1025-dh370/kc119_d230625
+---
+> ROOT=/home/nathan/Source/choptuik-large-d-raw-wt613/I1025-dh370/kc127_d22875
+41c41
+< step "scan starts: D $D, $NEVAL evaluations (window $WIN1, no repeat), $NP procs x 1 thread, nice 10; state sol_${TAG}_${DT}.npy $(blob $STATE | cut -c1-8), record $(blob $STUB | cut -c1-8)"
+---
+> step "scan starts: D $D, $NEVAL evaluations (window $WIN1, repeat of $REP), $NP procs x 1 thread, nice 10; state sol_${TAG}_${DT}.npy $(blob $STATE | cut -c1-8), record $(blob $STUB | cut -c1-8)"
+65a66
+> $PY -I repeat_check.py $OUT/merged_D${D}.jsonl >> $OUT/read_lower.txt 2>&1; step "repeat_check.py exit $?"
