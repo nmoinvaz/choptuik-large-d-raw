@@ -2,16 +2,17 @@
 """#1025 winb, the secant refinement of the k_c 127 root at D 23.0 (t5's order, hc of 2026-11-26 ~10:40 UTC, step 4b): xfkappa's d18_secant.py run (branch wip/ell1-speed at 92b9bf53, committed blob eb1396ad; Brent's method on the hybrid sign;
 worktree choptuik-i1025secant92) on my accepted k_c 127 state sol_l1kc127wind23_D23.0000.npy and its record l1kc127wind23.jsonl (both in this folder; the blobs are the ones in regrid_accepted.txt), between LO HI (arguments: the robust bracket
 the scan's reader printed):
-  RAYON_NUM_THREADS=1 d18_secant.py run STUB STATE 23.0 LO HI secant/secant.jsonl --tol=1e-5 --maxev=10 --pin=STATEBLOB,STUBBLOB     one process, BelowNormal, 1 thread (OMP/OPENBLAS/MKL 1 too)
+  RAYON_NUM_THREADS=1 d18_secant.py run STUB STATE 23.0 LO HI secant/secant.jsonl --tol=1e-5 --maxev=10 --pin=STATEBLOB,STUBBLOB --ends=scan_kc127_D23_ends.jsonl     one process, BelowNormal, 1 thread (OMP/OPENBLAS/MKL 1 too)
 Order of the driver (any failure stops it with an hc to t5, nothing started, exit 2):
   1. pins: d18_secant.py, ell_fastm.py, ell_ddm.py, dss_ell.py, ell_dd.py, ddnp.py in the worktree (HEAD 92b9bf53); the three checks (kc111 85aeb312, kc119 fc6e0dd6, kc127 898ebefa); the state and the record against the marker's blobs;
   2. d18_secant.py selftest exit 0 and its three controls --mutate=half, norobust, nosigncheck exit 1 each; the selftests of the three checks exit 0;
   3. the ACCEPTANCE of the state: kc127_syscheck_1025.py accepts the record and state (exit 0), its --mutate=F and --mutate=steps exit 1 each, and the k_c 119 and k_c 111 checks refuse them (exit 1 each);
+  3b. the ends: scan_kc127_D23_ends.jsonl (blob 62584ab6) is two lines, each verbatim a line of the scan files (p0 line 1, lambda LO, and p1 line 1, lambda HI): t5's --ends, the two end evaluations are not repeated;
   4. the run, killed by the exact pid (taskkill /PID /T /F) if it passes 43200 s (12 h; t5: stop and report on any step over 12 h), one hc to t5 at 21600 s if it is still running.
 The tool's exits: 0 tol reached, 4 maxev or a non-robust interior point (the bracket is valid), 2 refused (ends not robust or with equal signs), 3 pin differs or not the record system. Its own records (one per evaluation, then a root
 record) are appended to secant/secant.jsonl; the log is secant/secant.log. A sampler (60 s), an alert-only memory watcher and a keep-awake helper run beside it, as in my other drivers; nothing kills on memory.
 usage: kc127d23_secant_driver_1025.py LO HI [--dry]     (--dry: pins, selftests, acceptance checks, prints the command, starts nothing)"""
-import datetime, json, os, subprocess, sys, time
+import datetime, glob, json, os, subprocess, sys, time
 
 S = os.path.dirname(os.path.abspath(__file__)).replace("\\", "/")
 OUT = S + "/I1025-win/kc127_d23"
@@ -36,11 +37,13 @@ D = "23.0"
 STATE, STUB = OUT + "/sol_l1kc127wind23_D23.0000.npy", OUT + "/l1kc127wind23.jsonl"
 _mk = open(OUT + "/regrid_accepted.txt").read().split() if os.path.exists(OUT + "/regrid_accepted.txt") else []
 B_STATE, B_STUB = (_mk[5], _mk[7]) if len(_mk) > 7 and _mk[0] == "ACCEPTED" else ("0" * 40, "0" * 40)
+ENDS = OUT + "/scan_kc127_D23_ends.jsonl"     # t5's order (hc 19:46 UTC): --ends, the two end records of the scan, verbatim (p0 line 1 lambda 0.04, p1 line 1 lambda 0.05)
+B_ENDS = "62584ab6a5153a1a9267454bb9f570fc474a7d0a"
 PINS = [(WTM + "/d18_secant.py", "eb1396ad39d9236ae983064da5702164947e0948", True), (WTM + "/ell_fastm.py", "93f963f6102f48e35c56c9eace25e1afd03b6ea2", True),
         (WTM + "/ell_ddm.py", "86578feeab868691778019b79771aef727510a76", True), (WTM + "/dss_ell.py", "5d28c19e17efa6b0103cb81d650891706605532d", True),
         (WTM + "/ell_dd.py", "7e58fcbc2288eca8f8f1ebfc36f7250a328b0c4e", True), (WTM + "/ddnp.py", "9b1fb195d0fa95d5dd7abd1083ac9b36fef04869", True),
         (IN + "/kc127_syscheck_1025.py", "898ebefa65a99e639110e018808c85506a7f5719", False), (IN + "/kc119_syscheck_1025.py", "fc6e0dd6fbdf6bcf8fb6a2bf9274e404e3caa7ad", False),
-        (IN + "/kc111_syscheck_1025.py", "85aeb31275aa9fd3edb786c74d91e69390a1dc75", False), (STATE, B_STATE, False), (STUB, B_STUB, False)]
+        (IN + "/kc111_syscheck_1025.py", "85aeb31275aa9fd3edb786c74d91e69390a1dc75", False), (STATE, B_STATE, False), (STUB, B_STUB, False), (ENDS, B_ENDS, False)]
 CAP, NOTIFY = 43200, 21600
 LOG = SEC + "/secant_driver_w.log" + (".dry" if DRY else "")
 
@@ -81,6 +84,10 @@ for p, b, filt in PINS:
     g = sh(["git", "hash-object"] + ([] if filt else ["--no-filters"]) + [p]).stdout.strip()
     if g != b:
         refuse(f"{p} is blob {g}, not {b}")
+_ends = open(ENDS, "rb").read().decode("utf-8").splitlines(keepends=True) if os.path.exists(ENDS) else []
+_scan = set(l for f in glob.glob(OUT + "/scan_kc127_D23_p*.jsonl") for l in open(f, "rb").read().decode("utf-8").splitlines(keepends=True))
+if len(_ends) != 2 or any(l not in _scan for l in _ends) or [json.loads(l)["lam"] for l in _ends] != [LO, HI]:
+    refuse("the --ends file is not the scan records at LO and HI (two lines, each verbatim a line of scan_kc127_D23_p*.jsonl)")
 say(f"pins ok (worktree 92b9bf53, d18_secant.py eb1396ad, ell_fastm.py 93f963f6, the solver files equal to my regrids', the three checks, the marker's state {B_STATE[:8]}, record {B_STUB[:8]})")
 env = dict(os.environ, RAYON_NUM_THREADS="1", OMP_NUM_THREADS="1", OPENBLAS_NUM_THREADS="1", MKL_NUM_THREADS="1", VECLIB_MAXIMUM_THREADS="1", PYTHONDONTWRITEBYTECODE="1")
 ex = []
@@ -114,7 +121,7 @@ say(f"the state: kc127 check exit {src['source_kc127_syscheck.txt']} (0 wanted: 
     f"kc119 check {src['source_kc119_syscheck.txt']} and kc111 check {src['source_kc111_syscheck.txt']} (1 wanted each: they refuse it); {time.time() - t0:.0f} s")
 if src != want:
     refuse(f"the state is not accepted as wanted ({src}, wanted {want})")
-cmd = [PY, "-u", WTM + "/d18_secant.py", "run", STUB, STATE, D, f"{LO:g}", f"{HI:g}", SEC + "/secant.jsonl", "--tol=1e-5", "--maxev=10", f"--pin={B_STATE},{B_STUB}"]
+cmd = [PY, "-u", WTM + "/d18_secant.py", "run", STUB, STATE, D, f"{LO:g}", f"{HI:g}", SEC + "/secant.jsonl", "--tol=1e-5", "--maxev=10", f"--pin={B_STATE},{B_STUB}", f"--ends={ENDS}"]
 if DRY:
     say("DRY: would start " + " ".join(cmd) + f" > {SEC}/secant.log (cwd {WTM}, 1 thread, BelowNormal, cap {CAP} s, hc at {NOTIFY} s); nothing started")
     sys.exit(0)

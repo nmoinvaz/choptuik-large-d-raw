@@ -103,7 +103,7 @@ The samplers (`rows/regrid_samples.csv`, `rows/scan_samples.csv`, `rows/secant_s
 
 ## Status
 
-**Step 1, the source, PASSED 2026-11-26 10:47:57 UTC. Steps 2 and 3, the regrid, ACCEPTED 2026-11-26 13:38:44 UTC. Step 4a, the scan, RUNNING since 13:39:57 UTC.**** README first 1d35e042f (pushed 10:47:19 UTC, before the start); chain started 10:47:36 UTC through `Win32_Process.Create` of `conhost.exe --headless cmd.exe /c go_kc127d23_1025.cmd`. The k_c 87 D 22.875 secant was pushed (557ea8ee3) and posted (#1025 comment 7189716601) first.
+**Step 1, the source, PASSED 2026-11-26 10:47:57 UTC. Steps 2 and 3, the regrid, ACCEPTED 2026-11-26 13:38:44 UTC. Step 4a, the scan, DONE 19:44:42 UTC (started 13:39:57, 21885 s, exits 0, 0). Step 4b, the secant, started by me after t5's go-ahead (see the last block of this Status).** README first 1d35e042f (pushed 10:47:19 UTC, before the start); chain started 10:47:36 UTC through `Win32_Process.Create` of `conhost.exe --headless cmd.exe /c go_kc127d23_1025.cmd`. The k_c 87 D 22.875 secant was pushed (557ea8ee3) and posted (#1025 comment 7189716601) first.
 
 - **Chain** (`rows/launcher_pid.txt`: 24572): conhost --headless 24572 <- cmd 4428 <- regrid driver launcher 18668 and driver 26384 <- sampler 25192, alert-only watcher 4720, keep-awake helper 26264, and the regrid process 1652 (worker 14396). The python and powershell processes are BelowNormal.
 - **Session check** (`session_check_regrid.txt`, exit 0): no `claude` in any chain of the run, no Windows Terminal / OpenConsole / wt, a headless conhost in the chain.
@@ -153,7 +153,32 @@ My basis was my k_c 103 regrid at D 22.875 (10635 s) against macm3's k_c 103 at 
 - **Session check** (`session_check_scan.txt`, exit 0): no `claude` in any chain of the run, no Windows Terminal / OpenConsole / wt, a headless conhost in the chain.
 - **ETA** (the estimates above counted from 13:39:57 UTC): each evaluation about 2200 to 4500 s on two processes, so round 1 ends about 14:20 to 15:15 UTC, round 2 about 15:00 to 16:30 UTC and round 3 (0.06, alone) about 15:30 to 17:30 UTC. The refinement follows when I have read the reader's lines.
 
-Pushed 2026-11-26 13:41:00 UTC.
+
+**Step 4a, the scan, ENDED 2026-11-26 19:44:42 UTC (21885 s, exits 0, 0; the chain ended 19:46:01 UTC)** (`read_lower_kc127_D23.log`, `kc127d23_scan_w.log`, `scan_kc127_D23.log`, `scan_kc127_D23_p0.jsonl`, `scan_kc127_D23_p1.jsonl`). The reader's lines as printed:
+
+```
+points 4 in 0.030-0.060; not noise-robust: none
+hybrid signs: 0.030+ 0.040+ 0.050- 0.060-
+float64 sign differs from the hybrid sign at: none
+repeated points: [(0.04, 'agree')]
+  robust change (0.040, 0.050), + to -, det-linear 0.048098, range [0.042772, 0.048098]
+robust changes: 1; touching a non-robust point (not counted): none
+ln|det| local minima without a sign change: none
+endpoint signs: + at 0.030, - at 0.060
+read_lower exit 0
+```
+
+t5's ruling (hc 2026-11-26 19:45 UTC, quoted): "the reader printed exactly one robust change, (0.040, 0.050), + to -, with the repeat of 0.04 agreeing and no float64 disagreement. ACCEPTED as the bracket. Launch step 4b, the secant, on LO 0.040 HI 0.050 as your README states (d18_secant.py run at 92b9bf53, --tol=1e-5 --maxev=10, one process, BelowNormal, cap 43200 s), after pushing the scan files. The registered test stands: the det-linear root of the final bracket lies in [0.0414, 0.0474]. The scan's det-linear estimate 0.048098 is not that test. Report at the secant's end." The scan's full Result (table, cost) is in the Result below.
+
+**Step 4b, the secant: LO 0.040, HI 0.050, with `--ends` (t5's second order, hc 2026-11-26 19:46 UTC, quoted): "yes, use --ends. The ends 0.04 and 0.05 come from the same code (92b9bf53, blob eb1396ad), the same accepted state, and this machine, with dln 2.0e-06 and 2.5e-06, so evaluating them again buys nothing and puts the cap at risk. Pass the scan records that hold them in the form d18_secant.py's usage takes (both p0 and p1 if it takes a list; 0.04 from p0's first record, 0.05 from p1's). Keep the cap at 43200 s. Name the --ends source records and their blobs in the README before the launch."** The cost that prompted my question: the scan's evaluations took 7889 to 8055 s on two processes and 5914 s alone (of which block 12 7261 to 7421 s, the float64 matrix 605 to 613 s), so one single-process evaluation costs about 5900 s and the cap of 43200 s fits 7.3 of them; the ordered command without `--ends` would have repeated the two end evaluations (about 3.3 h).
+
+- **`--ends` takes one file** (`--ends=SCAN.jsonl`; the usage of `d18_secant.py run`), not a list, and picks the record of each end by D, k_c, lambda (to 1e-12) and state file name. Neither scan file holds both ends (p0: 0.04, 0.03, 0.06; p1: 0.05, 0.04), so I made one file, `scan_kc127_D23_ends.jsonl` (810 bytes, **blob 62584ab6a5153a1a9267454bb9f570fc474a7d0a**), of two lines copied byte for byte: line 1 of `scan_kc127_D23_p0.jsonl` (lambda 0.04, hybrid sign +1, ln\|det\| -3899.693956057693, noise [1.0, 1.0], dln 2.013e-06, noise-robust, float64 +1; the line's blob 513913c1a87dd6059d7fdda85630facdc80b7f1e) and line 1 of `scan_kc127_D23_p1.jsonl` (lambda 0.05, hybrid sign -1, ln\|det\| -3901.1429077702746, noise [-1.0, -1.0], dln 2.524e-06, noise-robust, float64 -1; the line's blob ea3a10d3a602d3ad093ad91e687562f342943f4e). The sources are the scan files `scan_kc127_D23_p0.jsonl` (**blob 930a8687543179380b74df28e143bbdcb0511b30**, 1216 bytes, 3 lines) and `scan_kc127_D23_p1.jsonl` (**blob 421d78c2dba3ef5509223154fab936c69fc50511**, 810 bytes, 2 lines) as they stand at the end of the scan (`git hash-object --no-filters`); the driver checks the ends file's blob and that both its lines are, verbatim, lines of the scan files, with lambda LO and HI.
+- **Effect of `--ends`** (`SPEED_ELL1.md`): the two end records are taken from the file instead of evaluated; their `dln` is unknown to the tool (None) and their robustness is the scan's `noise_robust` flag (both true); the evaluation count includes them (`--maxev=10` counts the two ends); the interior evaluations are the tool's own, with the `dln <= 0.1` test. The two end values are bit for bit what the tool would compute (the scan used the same `RealEval` of the same blob).
+- **Command** (the driver `kc127d23_secant_driver_1025.py 0.040 0.050`, dry-run on the real files at 19:48 UTC, `selftest_scan_dry_1025.txt`): `d18_secant.py run l1kc127wind23.jsonl sol_l1kc127wind23_D23.0000.npy 23.0 0.04 0.05 secant/secant.jsonl --tol=1e-5 --maxev=10 --pin=7a1b150c...,2b15504f... --ends=scan_kc127_D23_ends.jsonl`, tool `d18_secant.py` eb1396ad at 92b9bf53, one process, 1 thread, BelowNormal, cap 43200 s by the exact pid (hc at 21600 s). The driver repeats the pins, `d18_secant.py` selftest (0) and mutations (1, 1, 1), the three checks' selftests, and the acceptance of the state (k_c 127 check exit 0, controls 1 1, k_c 119 and k_c 111 checks refuse; 22 s in the dry run).
+- **Registered test** (t5's, unchanged): `lam_lin` of the last `root` record lies in [0.0414, 0.0474] (the root +0.0444 +- 0.003). The scan's estimator range [0.042772, 0.048098] is information beside it (as in my earlier secants), not the test.
+- **ETA** (new basis: about 5900 s per interior evaluation on one process): the run has about 5 interior evaluations (the k_c 103, 95, 87 runs took 6, 9, 7 evaluations including the two ends, so 4, 7, 5 interior), so about 24000 to 41000 s (6.7 to 11.4 h), central about 30000 s (8.3 h), against the cap of 43200 s (12 h); the ends are reused, so the maximum of 10 evaluations means 8 interior ones, 47000 s, beyond the cap: if the run reaches the cap it is killed by the exact pid and reported, with the evaluations it made in `secant/secant.jsonl`.
+
+Pushed 2026-11-26 19:49:37 UTC.
 
 ## Result
 

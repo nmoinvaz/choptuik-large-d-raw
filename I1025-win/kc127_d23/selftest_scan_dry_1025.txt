@@ -61,3 +61,30 @@ exit 2
 == 2026-11-26 10:52:13 DRY: would start C:/Users/nathan/Source/venv-md510/Scripts/python.exe -u C:/Users/nathan/Source/choptuik-i1025secant92/solver/matter/d18_secant.py scan C:/Users/nathan/Source/kc127d23_1025/dry_badblob/l1kc127wind23.jsonl C:/Users/nathan/
 == 2026-11-26 10:52:13 DRY: reader window 0.03 0.06; nothing started
 exit 0
+### 7. the real files, bracket (0.040, 0.050), --dry (19:46:02 UTC)
+== 2026-11-26 19:46:02 kc127d23_secant_driver_1025.py: the secant refinement of the k_c 127 root at D 23.0, bracket (0.04, 0.05) (dry run); checking pins
+== 2026-11-26 19:46:02 pins ok (worktree 92b9bf53, d18_secant.py eb1396ad, ell_fastm.py 93f963f6, the solver files equal to my regrids', the three checks, the marker's state 7a1b150c, record 2b15504f)
+== 2026-11-26 19:46:03 d18_secant.py selftest exit 0 and its three controls (half, norobust, nosigncheck) exit 1, 1, 1 as wanted
+== 2026-11-26 19:46:03 selftests: kc127_syscheck exit 0, kc119_syscheck exit 0, kc111_syscheck exit 0 (0 wanted each)
+== 2026-11-26 19:46:25 the state: kc127 check exit 0 (0 wanted: it accepts), --mutate=F 1, --mutate=steps 1 (1 wanted each), kc119 check 1 and kc111 check 1 (1 wanted each: they refuse it); 21 s
+== 2026-11-26 19:46:25 DRY: would start C:/Users/nathan/Source/venv-md510/Scripts/python.exe -u C:/Users/nathan/Source/choptuik-i1025secant92/solver/matter/d18_secant.py run C:/Users/nathan/Source/kc127d23_1025/I1025-win/kc127_d23/l1kc127wind23.jsonl C:/Users/nathan/Source/kc127d23_1025/I1025-win/kc127_d23/sol_l1kc127wind23_D23.0000.npy 23.0 0.04 0.05 C:/Users/nathan/Source/kc127d23_1025/I1025-win/kc127_d23/secant/secant.jsonl --tol=1e-5 --maxev=10 --pin=7a1b150c96c12059c81c10927fdf00245a45a88e,2b15504f2bcc90f0e9b5b4049fb22ab44ee3c186 > C:/Users/nathan/Source/kc127d23_1025/I1025-win/kc127_d23/secant/secant.log (cwd C:/Users/nathan/Source/choptuik-i1025secant92/solver/matter, 1 thread, BelowNormal, cap 43200 s, hc at 21600 s); nothing started
+exit 0
+### 8. the real files with --ends, bracket (0.040, 0.050), --dry (19:47:03 UTC)
+== 2026-11-26 19:47:03 kc127d23_secant_driver_1025.py: the secant refinement of the k_c 127 root at D 23.0, bracket (0.04, 0.05) (dry run); checking pins
+== 2026-11-26 19:47:03 pins ok (worktree 92b9bf53, d18_secant.py eb1396ad, ell_fastm.py 93f963f6, the solver files equal to my regrids', the three checks, the marker's state 7a1b150c, record 2b15504f)
+== 2026-11-26 19:47:04 d18_secant.py selftest exit 0 and its three controls (half, norobust, nosigncheck) exit 1, 1, 1 as wanted
+== 2026-11-26 19:47:04 selftests: kc127_syscheck exit 0, kc119_syscheck exit 0, kc111_syscheck exit 0 (0 wanted each)
+== 2026-11-26 19:47:26 the state: kc127 check exit 0 (0 wanted: it accepts), --mutate=F 1, --mutate=steps 1 (1 wanted each), kc119 check 1 and kc111 check 1 (1 wanted each: they refuse it); 22 s
+== 2026-11-26 19:47:26 DRY: would start C:/Users/nathan/Source/venv-md510/Scripts/python.exe -u C:/Users/nathan/Source/choptuik-i1025secant92/solver/matter/d18_secant.py run C:/Users/nathan/Source/kc127d23_1025/I1025-win/kc127_d23/l1kc127wind23.jsonl C:/Users/nathan/Source/kc127d23_1025/I1025-win/kc127_d23/sol_l1kc127wind23_D23.0000.npy 23.0 0.04 0.05 C:/Users/nathan/Source/kc127d23_1025/I1025-win/kc127_d23/secant/secant.jsonl --tol=1e-5 --maxev=10 --pin=7a1b150c96c12059c81c10927fdf00245a45a88e,2b15504f2bcc90f0e9b5b4049fb22ab44ee3c186 > C:/Users/nathan/Source/kc127d23_1025/I1025-win/kc127_d23/secant/secant.log (cwd C:/Users/nathan/Source/choptuik-i1025secant92/solver/matter, 1 thread, BelowNormal, cap 43200 s, hc at 21600 s); nothing started
+exit 0
+### 8. the real files with --ends (scan_kc127_D23_ends.jsonl, blob 62584ab6), bracket (0.040, 0.050), --dry (19:48:16 UTC)
+== 2026-11-26 19:48:16 kc127d23_secant_driver_1025.py: the secant refinement of the k_c 127 root at D 23.0, bracket (0.04, 0.05) (dry run); checking pins
+== 2026-11-26 19:48:16 pins ok (worktree 92b9bf53, d18_secant.py eb1396ad, ell_fastm.py 93f963f6, the solver files equal to my regrids', the three checks, the marker's state 7a1b150c, record 2b15504f)
+== 2026-11-26 19:48:17 d18_secant.py selftest exit 0 and its three controls (half, norobust, nosigncheck) exit 1, 1, 1 as wanted
+== 2026-11-26 19:48:17 selftests: kc127_syscheck exit 0, kc119_syscheck exit 0, kc111_syscheck exit 0 (0 wanted each)
+== 2026-11-26 19:48:39 the state: kc127 check exit 0 (0 wanted: it accepts), --mutate=F 1, --mutate=steps 1 (1 wanted each), kc119 check 1 and kc111 check 1 (1 wanted each: they refuse it); 22 s
+== 2026-11-26 19:48:39 DRY: would start C:/Users/nathan/Source/venv-md510/Scripts/python.exe -u C:/Users/nathan/Source/choptuik-i1025secant92/solver/matter/d18_secant.py run C:/Users/nathan/Source/kc127d23_1025/I1025-win/kc127_d23/l1kc127wind23.jsonl C:/Users/nathan/Source/kc127d23_1025/I1025-win/kc127_d23/sol_l1kc127wind23_D23.0000.npy 23.0 0.04 0.05 C:/Users/nathan/Source/kc127d23_1025/I1025-win/kc127_d23/secant/secant.jsonl --tol=1e-5 --maxev=10 --pin=7a1b150c96c12059c81c10927fdf00245a45a88e,2b15504f2bcc90f0e9b5b4049fb22ab44ee3c186 --ends=C:/Users/nathan/Source/kc127d23_1025/I1025-win/kc127_d23/scan_kc127_D23_ends.jsonl > C:/Users/nathan/Source/kc127d23_1025/I1025-win/kc127_d23/secant/secant.log (cwd C:/Users/nathan/Source/choptuik-i1025secant92/solver/matter, 1 thread, BelowNormal, cap 43200 s, hc at 21600 s); nothing started
+exit 0
+### 9. a bracket that is not in the ends file (0.03, 0.05) must be refused in --dry
+== 2026-11-26 19:48:40 REFUSE: the --ends file is not the scan records at LO and HI (two lines, each verbatim a line of scan_kc127_D23_p*.jsonl)
+== 2026-11-26 19:49:01 DRY: would start C:/Users/nathan/Source/venv-md510/Scripts/python.exe -u C:/Users/nathan/Source/choptuik-i1025secant92/solver/matter/d18_secant.py run C:/Users/nathan/Source/kc1
