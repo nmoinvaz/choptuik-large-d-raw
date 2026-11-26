@@ -23,3 +23,9 @@ Each stage's log and states are in `<D>/<stage>/`; `<D>/run.log` records each st
 - The tail's changes fall: h15 near **-4.8e-17**, then about 10x per harmonic.
 - Stop and report on: any jump rc != 0, a harmonic not released, or an outer step more than 3x its harmonic's first.
 - Reported: each point's final Delta and each stage's time, and D 300's tail changes (by script from the logs' digits).
+
+## Tail switch (started 2026-11-26 17:00 UTC)
+
+`tools/ladder_tail.sh` (blob 2f1c0156d6d224f3672ce0287a5099c77afc1a56, raw e4222e00; with `variant_state.py` 19b05a5a and `resample_m.py` 4de5c317 beside it) replaces the v1 tail (the Moebius M 32 horizon, whose h23 turns) at each point: mode **u** (the u horizon at M 32,
+ks = ceil(1.7 (D - 2)): 422, 731, 879) or **mob48** (the Moebius horizon at M 48), each re-converging h13 and then h15..h31. Per point a watcher waits for `rls rc 0` in run.log, stops the v1 tail by exact pid, then waits for `mode.txt` (or the coordinator's direct order);
+`<D>/switch.txt` records it. D 250: mode u, started 16:59:57 UTC (D250/README.md). D 432 and D 519: the mode is written to `mode.txt` once D300m48's h23..h29 verdict (M 48 Moebius clean or not) is in.
