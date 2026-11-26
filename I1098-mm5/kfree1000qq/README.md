@@ -30,3 +30,15 @@ inner trials took about 920 s each at D 1000 and floored at D 300 for every harm
 | Hamiltonian check | the final record's a rows. D 300's reads 1.06e-20 against 2.8e-22 for its h13 record; the D 1000 h13 record reads 7.8e-25 |
 
 Delta's change per harmonic is computed by `diff_delta.py` on the log's digits (mpmath), never by hand.
+
+## Stopped (2026-11-26 08:56:52 UTC)
+
+Stopped by hand, with SIGTERM to the `timeout` pid 17634 (python 17635), 54 s after it started, on the coordinator's order: the
+serial octo-double residual is the time sink at D 1000 (about 920 s per inner trial), and the jump agent advises the release
+residual in quad-double (its floor sits far below the 1e-48 tolerance) with the end check in octo-double. No outer step
+finished: `rls.log` holds only
+
+    release_ls from release_ls_h13_D1000.0000.npz: D 1000, Delta 1.654240854145891738985793904266682194993, od residual
+        h15 outer 0 (qq Jacobian) starts 08:55:56 UTC
+
+The run continues in `../kfree1000qd/` from the same input state with `--res qd`, at the branch head 0706d878.
