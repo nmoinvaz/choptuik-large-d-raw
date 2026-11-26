@@ -50,3 +50,10 @@ stopped by the queue at 13:29:53 (`queue.txt`). Numbers by script from the logs'
 | D300_u_base's own change (predicted about -3.1e-18, the dd-1/k error of the u D 300 record) | **+1.288e-19** | | **disagrees**: opposite sign, 24x smaller |
 
 Wave 2 (D1000_base, D1000_steps2, D1000_M48) started 13:38:49 UTC. `F_D300_base_mm5.npz` is `dump_residual.py`'s od residual of D300_u_base.npz on fastmul5 (max |F| 7.991459e-31).
+
+## Wave 2 dropped (2026-11-26 13:39:38 UTC)
+
+On the coordinator's order (dh610 runs wave 2 on its own fastmul5 build, which passed both recip_checks with the same digits; the `dump_residual` outputs of the two builds agree bit for bit:
+0 of 4616 parts differ between this machine's NEON build and its x86_64 Linux build), wave 2 was stopped 49 s after it started: SIGTERM to the three `timeout` pids 30824, 30825 and 30826,
+all rc 143 (`<name>/run.log`). D1000_base, D1000_steps2 and D1000_M48 produced only their first log lines (`h13 outer 0 (qq Jacobian) starts 13:38:49 UTC`); no result from them is quoted.
+The D 1000 comparison, and the D 1000 M 48 tail (h15-h23), are dh610's.
