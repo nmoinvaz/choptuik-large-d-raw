@@ -62,3 +62,21 @@ By script from `run.log`, `*/rls.log`, `*/release_ls.jsonl` and `tail/direct_s.j
 - **Bars:** the jump converged and the ks gate passed (ks 2354: 5.29e-71 and 7.44e-74 against 1e-70): yes; h5..h13 each released: yes; the tail falls from h15 by about 1e2 or more per harmonic: h15/h17 = 177, h17/h19 = 520, h19/h21 = 77 (D 622: 176, 391, 83); h21's change 2.76e-24 (at most about 1e-23): met;
   h23..h29 released with pending +2.16e-27 to +2.80e-27 and no step, h31 with -1.36e-26: no turn. The h13 M 32 -> 48 re-converge: -2.84e-26 (below 1e-25). No qq inner solve failed, no line-search trial below lam 1, no outer step above 3x its harmonic's first.
 - The k* stage (`kstar/`, step 1 of the chain above) started 22:28:22 UTC; its result follows in its own section.
+
+## The fastmul7 cross-check, run early by hand and cut to kmax 25 (coordinator's order, 2026-11-26 23:34 UTC)
+
+The chain's last step (step 3 above, `tail_fm7/`: h23..h31 released again on fastmul7 from the fastmul6 h21 state) is run early on the 6 chain threads, which are idle until D 1549's h13 lands, and cut to kmax 25 under the kmax rule. In `tail_fm7_early/`, detached, 6 threads, from `~/Source/choptuik-fastmul7/hp` (d40a9c62, kernel `~/Source/fastmul7-site`):
+
+```
+HP_EXACT_RECIP=1 HP_EXACT_DMAT=1 HP_HORIZON_RELAXED=1 OPENBLAS_NUM_THREADS=1 PYTHONPATH=~/Source/fastmul7-site nice -n 10 timeout 6h python -u form_s.py release_ls <ladder>/D1291/tail/release_ls_h21_D1291.0000.npz <ladder>/D1291/tail_fm7_early --harm 23,25 --kmax 25 --jac_by 23:qq,25:qq --res od --tol 1e-48 --tol_h 1e-44 --ddelta 1e-25 --threads 6 --outer 8 --inner_chord 0 --commit d40a9c62
+```
+
+Input: `tail/release_ls_h21_D1291.0000.npz` (fastmul6, 478e9d86; blob 466911b99aa339476ca7674b7447c69489d41ed4; D 1291, M 48, kc 220, ks 2354, a 8), whose Delta is **1.651913434024554227271949663301812275378** (the tail's value after h21, which h23-h31 left unchanged).
+
+### Bars, written before the start (coordinator's order)
+
+- **h23's re-converge on fastmul7** gives Delta against the fastmul6 tail's state after h21 (1.651913434024554227271949663301812275378): that difference is D 1291's **kernel cross-check, wanted below 1e-25**.
+- **h23 and h25 are released with no step** (pending dDelta at most the release bar 1e-25).
+- Stop rules as amended: stop and report when a qq inner solve does not converge, when a harmonic's line search fails at every trial, or when an outer step is 3x its harmonic's first (a qq floor at the first outer step after a resample is logged; here the state is not resampled).
+- When D 1549's h13 lands, the chain's D 1549 tail starts beside this run (a brief overload is fine). When the chain later reaches its own step 4 (`tail_fm7/`, kmax 31), that one is stopped by pid as a duplicate, unless the coordinator says otherwise.
+- Reported: the shift, pushed at the end.
