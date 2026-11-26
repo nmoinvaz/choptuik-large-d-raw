@@ -27,3 +27,4 @@ Code: regrid worktree `~/Source/choptuik-large-d-1025m2` at 48c36355 (`ell_refin
 
 ## Status
 - 2026-11-26 08:21 UTC: folder, README (registration), lane and pins written; pushed first; dry run next, then the lane.
+- 2026-11-26 08:22 UTC: dry run passed at 08:21:59 UTC (pins, the diff of the checks, selftests `0 0 0 0 1 1 0`, **the new scanner d18_secant.py (blob eb1396ad, worktree 92b9bf53): selftest exit 0, `--mutate=half` exit 1, `--mutate=norobust` exit 1, `--mutate=nosigncheck` exit 1**, source check: kc111 exit 0, controls 1 1, kc103 and kc119 refuse). Lane started (`lane119b.sh`, lane pid 126, `launch_1070.py` under `caffeinate -is`); the regrid starts when no other run of mine is active.
