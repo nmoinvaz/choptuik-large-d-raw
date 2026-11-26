@@ -6,4 +6,4 @@ Build for these runs: hp from origin/wip/large-d-form-s, built on win2 in `D:\ch
 
 | folder | holds |
 |---|---|
-| `L8000/` | D 8000 held at L = 20, direct solve of the macOS runner's guess (`form_s_lastnode.py solvestate`), the coordinator's order of 26 Nov |
+| `L8000/` | D 8000 held at L = 20, direct solve (the coordinator's order of 26 Nov): prepared and queued on win2, **cancelled 02:52 UTC, the solve moved to the Mac mini**; holds the README, the pinned guess, the driver and the gate script, no run |
