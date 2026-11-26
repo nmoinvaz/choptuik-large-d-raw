@@ -66,3 +66,17 @@ control (mutate 57, the old split): 1.7e-60 (must exceed 1e-80)
 
 The Moebius values sit 4.647e-70 from mpmath's converged u sum (bar 1e-100); both controls fire (4.62e-28, and the old split 1.7e-60 against its bar 1e-80), as the coordinator expected from dh610's run (4.65e-70, the same digits).
 **D 2231 is not started** (the coordinator's order: if horizon_mp_check fails the same way, wait for the word that follows dh610's ks scan, expected about 21:15-21:30 UTC). Not tested here: that 4.65e-70 is the Moebius series' own truncation at ks 800 against the reference summed to order 1100.
+
+## horizon_mp_check at ks 1600 (2026-11-26 21:12 UTC, coordinator's order after dh610's scan, raw ae3500937)
+
+dh610's scan (`I1098-dh610/fastmul7_build/split300_scan.log`): at a 8 the gap to mpmath falls by about 1e16 per 200 orders (4.65e-70 at ks 800, 1.86e-86, 8.77e-103, 4.31e-119, 9.74e-129 at ks 1600), a 4 agrees (9.96e-129): the 4.65e-70 of the build's check was the Moebius series' truncation at ks 800, not arithmetic.
+The same check on this build with `--ks_mob 1600` in place of 800 (`horizon_mp_ks1600.log`, started 21:09:26 UTC, one process beside the running jobs):
+
+```
+kernel Moebius (a 8, ks 1600) against mpmath converged: 9.742e-129 (p, m, c: 8.4e-129, 9.74e-129, 1.93e-130)
+control (m_h + 1e-30 in the kernel only): 4.619e-28
+control (mutate 57, the old split): 1.7e-60 (must exceed 1e-80)
+PASS: Moebius against mpmath 9.74e-129 (bar 1e-100), the control 4.62e-28 (must exceed it), the split control 1.7e-60 (must exceed 1e-80); 5 nodes, x_l 0.7
+```
+
+**PASS**: 9.742e-129 against the bar 1e-100 (dh610: 9.74e-129), both controls above their bars. The u lines are as at ks 800 (kernel u against mpmath 8.772e-120, u truncation 9.718e-108). **fastmul7 is verified**: all seven checks pass (the ks 800 run's FAIL above is the truncation at ks 800).

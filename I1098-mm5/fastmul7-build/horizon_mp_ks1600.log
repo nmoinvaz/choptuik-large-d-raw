@@ -1,0 +1,9 @@
+start 2026-11-26 21:09:26 UTC
+mpmath u series to order 1100 at u/sigma = 1.2 (sigma 0.25): last ten terms at most 3.37e-215
+kernel u (ks 506) against mpmath at ks 506: 8.772e-120 (the u recurrence's arithmetic)
+mpmath at ks 506 against ks 1100: 9.718e-108 (u's truncation)
+kernel u (ks 506) against mpmath converged: 9.718e-108 (p, m, c: 9.72e-108, 3.98e-108, 6.58e-111)
+kernel Moebius (a 8, ks 1600) against mpmath converged: 9.742e-129 (p, m, c: 8.4e-129, 9.74e-129, 1.93e-130)
+control (m_h + 1e-30 in the kernel only): 4.619e-28
+control (mutate 57, the old split): 1.7e-60 (must exceed 1e-80)
+  PASS: Moebius against mpmath 9.74e-129 (bar 1e-100), the control 4.62e-28 (must exceed it), the split control 1.7e-60 (must exceed 1e-80); 5 nodes, x_l 0.7
