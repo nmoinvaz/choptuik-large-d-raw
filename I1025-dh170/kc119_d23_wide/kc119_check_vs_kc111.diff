@@ -1,0 +1,28 @@
+--- /home/nathan/Source/choptuik-large-d-raw-p4/I1025-dh170/kc119_d23_wide/in/kc111_syscheck_1025.py	2026-11-25 22:42:49.901634906 -0800
++++ /home/nathan/Source/choptuik-large-d-raw-p4/I1025-dh170/kc119_d23_wide/in/kc119_syscheck_1025.py	2026-11-25 22:41:56.843137364 -0800
+@@ -1,4 +1,5 @@
+ #!/usr/bin/env python3
++# kc119_syscheck_1025.py: kc111_syscheck_1025.py (raw I1025-macm3/kc_d23_secant/in) with k_c 111 -> 119, nothing else changed
+ """kc79_syscheck.py REC.jsonl STATE.npy D WTM [--mutate=F|steps] | --selftest: the acceptance check of the regridded k_c 79 state (#1025 kc79_d185, the coordinator's hc of 2026-11-21 ~23:05 UTC): "accept it only at the record class's |F|
+ (about 3e-10) with a converged step count". Accepted when (1) the record's |F| is at most 1e-9 (the record class: 2.1e-10 to 2.8e-10 in the k_c 55, 63 and 79 records at D 16.5 to 18.5) and the record is k_c 79 at the given D, and
+ (2) the saved state reproduces its record the way d18_hybsign.py checks it before every scan: S.freeze_from(z, kappa) gives the record's step count and |F| of the state agrees with the record's within 1% (a step count that does not
+@@ -13,8 +14,8 @@
+ 
+ def verdict(rec, D, F_state, steps_state):
+     why = []
+-    if rec.get("kc") != 111 or rec.get("D") != D:
+-        why.append("the record is not k_c 111 at D %g (kc %s, D %s)" % (D, rec.get("kc"), rec.get("D")))
++    if rec.get("kc") != 119 or rec.get("D") != D:
++        why.append("the record is not k_c 119 at D %g (kc %s, D %s)" % (D, rec.get("kc"), rec.get("D")))
+     if not rec["F"] <= F_CLASS:
+         why.append("record |F| %.3e is above the class bar %.0e" % (rec["F"], F_CLASS))
+     if not abs(F_state - rec["F"]) <= max(1e-2 * rec["F"], 1e-13):
+@@ -25,7 +26,7 @@
+ 
+ 
+ def selftest():
+-    rec = dict(kc=111, D=18.5, F=2.9e-10, steps=3300)
++    rec = dict(kc=119, D=18.5, F=2.9e-10, steps=3300)
+     cases = [("a converged record", rec, 18.5, 2.9e-10, 3300, True),
+              ("|F| above the class bar", dict(rec, F=2e-9), 18.5, 2e-9, 3300, False),
+              ("the state's |F| 1.5 times the record's", rec, 18.5, 4.35e-10, 3300, False),
