@@ -132,3 +132,13 @@ The pilot in the order, "when it prints its steps": `ell_refine.py` prints one J
 - 2026-11-27 07:25 UTC: bars, pins, gates and scripts written and pushed (raw e3364429) before any R1 evaluation.
 - 2026-11-27 07:25:36 UTC: R1 started (unit `i1101r1`, python pid 2984071 under `timeout`, nice 10, 11 threads of the process, OMP/OPENBLAS/MKL/RAYON = 6). Steps: the first `freeze_from` gives 5847 (in 5734-5968); the record's final count follows at the end.
 - 2026-11-27 07:27 UTC: all threads of the unit raised to nice 19 on t5's order (see Notes); the scan will run at 19.
+
+## R1 result: stopped by the coordinator, unfinished (2026-11-27 09:21:13 UTC)
+t5 stopped R1 at 09:21:13 UTC (hc: D 5555 on #1098 hit its 6 h stage limit at 09:16 and is restarted; it needs the cores). `systemctl --user stop i1101r1` exited 0, the unit is inactive, and `ps` shows no python, `timeout`, `time` or script of R1 left. R1 ran 07:25:36 to 09:21:13 UTC (1 h 55 min 37 s wall, 11 h 8 min CPU, 5.4 GB memory peak, from the journal; nice 19 on every thread from 07:27), about a fifth of its estimated 8 to 14 h.
+- **Nothing to read:** `ell_refine.py` writes its state and record only at its end, so there is no R1 state, record, step count or |F|, and the root scan did not run. Bars 1 to 5 are not evaluated (neither met nor failed); they stand unchanged for a rerun.
+- **Partial log kept:** `R1/R1.log` (3688 bytes: numpy `RuntimeWarning` lines, "overflow encountered" and "invalid value encountered", from `dss_ell.py` lines 85 to 334, last written 09:16 UTC; I did not compare it with R0's log, which I do not have) and `R1/steps.txt`.
+- **Parked by t5:** R1 reruns elsewhere only if R2's root (dh170, about 12:00 UTC) says the step error is real. The inputs, scripts (`R1/run_R1.sh`, `gate_R1.py`, `results_R1.py`) and gates in this folder carry over; the worktree's `solver/matter/data/` still holds the two input copies (7a1b150c, eea03461) and no R1 output.
+- **Predictions scorecard:** not scored (the run did not end); the only one with a measurement: R1 had used 1.93 h of the 8 to 14 h I registered, with no way to read progress from the process.
+
+## Status
+- 2026-11-27 09:21 UTC: R1 stopped by the coordinator, unfinished; nothing started in its place.
