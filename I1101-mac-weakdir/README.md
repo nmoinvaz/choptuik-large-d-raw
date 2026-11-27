@@ -79,7 +79,7 @@ and said so. Cap per re-solve 4 h.
 Predictions (mine, before the runs): bar 1 passes for all four (85%); the control within 3e-4 (60%); readable (70%);
 p >= 3.5 (40%), p <= 2.8 (35%), mixed (25%).
 
-## Task A results so far (2026-11-27 22:25 UTC by the clock)
+## Task A results so far (2026-11-27 22:20 UTC by the clock)
 
 Code `i1101_weakdir.py` at 1d018e31 of `wip/i1101-weakdir` (blob ed6003c1). Logs in `A/`: `jac/` (J of src and U40,
 87 s each; J and the SVD, 104 MB each, are not stored: `jac` and `svd` rebuild them), `report_src.log`/`.json` (the
@@ -98,3 +98,16 @@ report on src's SVD, with planted states), `report_src_swap.*` (its `--mutate=sw
   1e-6 bar: FAIL, with 4.6e-5 of the generator's node-state norm above k_c (cut by the layout). Single plants of 1e-3
   along v52, v53: FAIL the 1% bar (11% and 6%). Pairs +-eps (added after that failure): v53 0.63% PASS; v52 5.0% at
   1e-3 and 1.3% at 3e-3 FAIL, falling as 1/eps (the noise of U^T F); control `--mutate=swap` FAIL as it must.
+
+## Task A: roots along the valley (written before the runs, 2026-11-27 22:22 UTC by the clock)
+
+Runs, one at a time beside task B (`d18_secant.py run` of f56f91d2, block 12 ddm, 1 thread, tol 1e-7, maxev 20, pins):
+U40 on (2.238, 2.252) (also task B's scanner control, bar 2), then the valley states w10 (t = 0.1, Delta +6.05e-3)
+on (2.246, 2.266) and w001 (t = 0.001, Delta +6.05e-5) on (2.238, 2.256); the brackets follow the float64 sign
+changes of `locate2.log`. A refused bracket is widened once by 0.01 on the side the signs give, and said so.
+
+Reading, with the root scatter of U40, U40b, U40c (range 1.7e-4, #1105 step 1c) as the yardstick:
+- |root(w10) - root(U40)| >= 1e-3: the root moves along the valley by more than 5x the scatter, so a stored state's
+  root carries where the solver path left it along the pair, not only the system.
+- <= 3e-4: the root is insensitive along the valley at the scatter level.
+- between: reported as measured. w001 gives the slope near U40 (linear in t if the root is smooth along it).
