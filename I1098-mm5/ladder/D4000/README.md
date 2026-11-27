@@ -38,3 +38,7 @@ Then, into `tail/` (the last act writes "job rc N" to `tail/job.log`), on fastmu
 - The tail falls from h15 by about 1e2 or more per harmonic, h21's change at most about 1e-23, h23 released with a pending dDelta at most about 1e-26 and no step: no turn. The kmax rule at the end (exit 0).
 - Stop rules (amended): stop and report when a qq inner solve does not converge, when a harmonic's line search fails at every trial, or when an outer step is 3x its harmonic's first. A qd inner floor that hands over to qq is logged, not stopped. A qq floor at h13 outer 0 right after an M resample is logged; a floor above 1e-48 at any later outer step stops the run.
 - Reported: the gated ks, h13's re-converge, the final Delta, each stage's time, the k* stage and the kmax rule's output. Times from `date -u`.
+
+### The fastmul7 `hp/ks_gate.py` replaced at 2026-11-27 06:31:39 UTC (D 8000's setup, coordinator's order)
+
+`d8000_mm5.sh` installed `ks_gate.py` of wip/large-d-form-s 3b3bfc60 (blob a91c7363c93ccb2355ea5b72a29f0f9c600cf4b7, adds `--down` and `--ks0`) over `~/Source/choptuik-fastmul7/hp/ks_gate.py` (d40a9c62's) at 06:31:39 UTC (`../D8000/setup.log`). The tail's upward gate (`ks_gate.py ... --bar 1e-70 --step 100 --tries 6`) runs this version when the M 32 job ends: the diff of the two versions adds only the downward gate and `--ks0`, the upward path is unchanged. The records of the tail then say HP's HEAD d40a9c62 with this one file newer.
