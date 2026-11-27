@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""merge_kmm.py OUTDIR SRC1 SRC2 [--mutate=dup|steps] : merges the scans of the same state at --kappa_mm=0.25 (kc87_leg_lambda/<SRC>/scan/scan_D23.0_1025.jsonl) into OUTDIR/scan/scan_D23.0_1025.jsonl, sorted by lambda, for read_lower.py.
+"""merge_kmm.py OUTDIR SRC1 SRC2 [--mutate=dup|steps] : merges the scans of the same state at --kappa_mm=0.25 (kc87_leg_lambda/<SRC>/scan/scan_D23.0_1025.jsonl) into OUTDIR/scan/scan_D23.0_1025.jsonl and, under the name read_lower.py reads (scan_*_p*.jsonl), OUTDIR/scan/scan_D23.0_p0.jsonl, sorted by lambda.
 Refuses (exit 1) when a source's scan_p0.log lacks the line 'kappa_mm 0.25: ... N steps' with N in 11400 to 12000, when the records name different states, or when a lambda occurs twice.
 --mutate=dup copies the first source's first record into the second source (a duplicate lambda: must exit 1), --mutate=steps reads the steps of the first log as 5847 (must exit 1)."""
 import json, os, re, sys
@@ -23,4 +23,6 @@ if len(states) != 1: print("the records name %d states: %s" % (len(states), stat
 rows.sort(key=lambda x: x["lam"])
 os.makedirs(L + out + "/scan", exist_ok=True)
 open(L + out + "/scan/scan_D23.0_1025.jsonl", "w").write("".join(json.dumps(x) + "\n" for x in rows))
-print("merged %d records into %s/scan/scan_D23.0_1025.jsonl: lambda %s, one state %s" % (len(rows), out, ", ".join("%.3f" % x for x in sorted(lams)), next(iter(states))))
+# read_lower.py reads scan_*_p*.jsonl (the per-process files), not the merged scan_D*_1025.jsonl: the merged records go there too (the cause of the first reading of K4w, "points 0")
+open(L + out + "/scan/scan_D23.0_p0.jsonl", "w").write("".join(json.dumps(x) + "\n" for x in rows))
+print("merged %d records into %s/scan/scan_D23.0_1025.jsonl and scan_D23.0_p0.jsonl: lambda %s, one state %s" % (len(rows), out, ", ".join("%.3f" % x for x in sorted(lams)), next(iter(states))))
