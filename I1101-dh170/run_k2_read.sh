@@ -1,6 +1,6 @@
 #!/bin/bash
 # #1101 Test K extension, after t5's order of 17:4x UTC 27 Nov ("let the four scan points finish for the record, but do NOT run its secant"): the read-only stages of run_scan_k2.sh,
-# run by hand when the four scans have ended (the driver was frozen with SIGSTOP at 17:44:45 UTC so that its secant stage cannot start, and is stopped after this script).
+# run by hand when the four scans have ended (the driver was frozen with SIGSTOP at 17:44:45 UTC so that its secant stage cannot start; its unit is stopped before this script, t5's order).
 # Writes read_lower_k2.txt and results_k2.md (the eight points); no secant; DONE_k2.txt. Stops at the first failure (STOP_k2r.txt).
 {
 OUT=/home/nathan/Source/choptuik-large-d-raw-p4/I1101-dh170
