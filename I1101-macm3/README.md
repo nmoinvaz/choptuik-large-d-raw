@@ -1,0 +1,31 @@
+# I1101-macm3: R1, winb's k_c 127 D 23.0 state re-solved at kappa 0.5 (the step error of lambda_1), its scan and secant
+
+Machine: macm3 (Apple M3, 8 cores, 24 GB; runner macm3b; session me2 953e9688). Issue: https://github.com/nmoinvaz/choptuik-large-d/issues/1101 (the record is t5's newest #1101 comment, 7220957360, 2026-11-27 14:34 UTC). Order: t5, hc 2026-11-27 14:34 UTC.
+
+## t5's order and bars (verbatim, symbols in ASCII, written before the run)
+
+hc, 14:34 UTC: "R2 showed the RK step error of lambda_1 at kappa 0.7 is large: the root moves from 0.046 to 0.10-0.13 when the steps double. Your k_c 87 chain runs at kappa 0.7, so hold it now (a HOLD file; let a running point finish only if it is past half). Then R1: re-solve winb's k_c 127 D 23.0 state (raw I1025-win/kc127_d23/, blobs 7a1b150c and eea03461, blob-checked) at kappa 0.5 in your 48c36355 worktree (check ell_refine.py 631e5801 and dss_ell.py 5d28c19e): 'ell_refine.py l1kc127wind23 127 l1kc127k050m3 127 1 23.0 2.0992182200 --kappa 0.5 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma', with your lanes' threads, cap and pins. Bars: |F| <= 5e-10 and steps 5851 +- 2%. Then scan at lambda 0.070, 0.085, 0.100, 0.115, 0.130 on the Rust block and run the secant at tol 5e-5 on the robust change. If none brackets, scan 0.055 and 0.150, then report. New folder I1101-macm3/, README with the bars first. Report at R1's start (pilot), its end, and the root."
+
+#1101 comment 7220957360, the bars: "|F| <= 5e-10 and steps 5851 +- 2%. With delta_1 = root(R1) - 0.045968 and delta_2 from R2's secant, r = delta_1/(delta_2 - delta_1). kappa^4 predicts 3.74, and r in [3.0, 4.6] confirms kappa^4. Otherwise the order p from (0.7^p - 0.5^p)/(0.5^p - 0.35^p) = r is reported. Under kappa^4 with R2's bracket, R1's root lies near 0.09-0.115. If no pair brackets in 0.070-0.130: 0.055 and 0.150 next, then report."
+
+The steps bar is 5734 to 5968 (5851 +- 2%); 5851 is winb's 4179 steps at kappa 0.7 times 1.4 (arithmetic from the source record, not a result). The lane stops and reports when |F| or the steps miss their bar.
+
+## What the lane does (`lane_r1.sh`, made by `mk_r1.py` from `kc143_d23125x/lane_d23125x.sh`; the unified diff is `diff_lane_r1.txt`)
+
+- Pins (blobs in `in_blobs.txt`), the worktree 48c36355 (ell_refine.py 631e5801, dss_ell.py 5d28c19e, ell_delta.py fde699f5), the scanner worktree d4b6b6ce (d18_secant.py 9706e506, ell_b12rs.py a1fff74f, ellrs sha256 d2221460d02c), selftests with their failing mutations, lambda_0(23.0) = 2.0992182200.
+- The source check: winb's state (7a1b150c) and record (eea03461) against my k_c 127 check: exit 0, controls `--mutate=F` and `--mutate=steps` exit 1, the k_c 135 and k_c 143 checks refuse it. The dry run read: record |F| 3.1940e-10, steps 4179, Delta 1.174322923416 (kappa 0.7, 10215 s); state |F| 3.2000e-10, freeze_from steps 4179 (`dry_run_exits.txt`).
+- The regrid, exactly t5's line with my lanes' threads (6), nice 10 and cap 28800 s: `ell_refine.py l1kc127wind23 127 l1kc127k050m3 127 1 23.0 2.0992182200 --kappa 0.5 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma`. An hc to t5 at its start (the pilot report) and at its end.
+- The result check: the k_c 127 check accepts (controls 1 1, the k_c 135 and k_c 143 checks refuse), then t5's bars.
+- The scan (Rust block 12, 4 threads, 2 processes, scanner 9706e506): lambda 0.070, 0.085, 0.100, 0.115, 0.130 plus a repeat of 0.070 on the other process (the lane's repeat check refuses a plan without one), window (0.070, 0.130) (`scan_plan.env`). Exactly one robust change: the secant at tol 5e-5, maxev 10, one process. No robust change: the extension scan of 0.055 and 0.150 with the window's two ends 0.070 and 0.130 recomputed and a repeat of 0.055 (`scan_plan_ext.env`), then an hc and the lane ends (t5: "then report"; no secant without his word). More than one robust change or a non-robust point: STOP and hc.
+- The k_c 87 chain: held by `kc87_leg_lambda/HOLD_kappa05.txt` (placed 14:34:55 UTC); its running point (D 22.375, started 14:19:35 UTC, past half) finished at 14:36:11 UTC. The chain is released only by t5's word.
+
+## Registration (written 14:4x UTC before the regrid starts; my forecasts, scored item by item as registered)
+
+- **Regrid:** accepted by the k_c 127 check (exit 0, controls 1 1, the k_c 135 and k_c 143 checks refuse the result) 92%; no exception, no array limit 90%; |F| <= 5e-10 92%; **steps in 5851 +- 2% 60%** (within 5%: 85%); psi-constraint below 1e-2 99%; |Delta - 1.174322923416| below 1e-5 85%; wall in (2700, 4800) s 60% (my k_c 127 D 23.125 regrid: 4182 steps in 2373 s, 0.57 s per step, so about 3300 s at 5851 steps); peak RSS in (5.5, 7.5) GiB 60% (the k_c 143 regrid peaked at 8.64 GiB); no memory alert (available below 2 GiB) 92%.
+- **Scan:** exactly one robust change in (0.070, 0.130) 75%; the pair: (0.070, 0.085) 7%, **(0.085, 0.100) 25%, (0.100, 0.115) 29%**, (0.115, 0.130) 14%, none 22%, more than one 3%; all 6 evaluations noise-robust 80%; the repeat of 0.070 bit-identical 88%; the float64 sign equal to the hybrid sign at all 6: 25%; seconds per evaluation in (250, 400) at all 6 60%; scan wall 11 to 24 min 60%; peak RSS per scan process in (4.0, 6.0) GiB 65%.
+- **Secant** (tol 5e-5, Rust, one process; scored only if it runs): exit 0 55%, exit 4 40%, other 5%; per evaluation in (150, 240) s at all of them 60%; run wall 15 to 45 min 60%; peak RSS in (5.5, 8.0) GiB 60%.
+- **The root:** above R0's 0.045968 97%; in t5's "near 0.09-0.115" 60%; in (0.0886, 0.1122) (his kappa^4 band from R2's bracket) 50%; r (t5's ratio, from R2's secant when it exists) in [3.0, 4.6]: not scorable by me until R2's root is posted.
+- **The lane** (launch to the secant exit line): 90 to 180 min 60% (regrid about 55 min, scan about 16, secant about 25, stages and pushes about 8).
+
+## Status log
+- 2026-11-27 14:41 UTC: **hold and lane preparation.** t5's hc 14:34 UTC read at 14:34:46; `HOLD_kappa05.txt` placed 14:34:55 UTC (the chain driver stays alive and waits: chain_next.py prints WAIT hold). The running point D 22.375 (pipeline87.sh started 14:19:35 UTC, past half) finished at 14:36:11 UTC. Pins and the lane were built by mk_r1.py, the dry run passed at 14:40:51 UTC (dry_run_exits.txt), the README bars and registration written before the regrid.
