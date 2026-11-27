@@ -31,6 +31,7 @@ R2's secant (#1101, unit `i1101r2w`, 1 thread, nice 10) runs on. The re-solve ta
 | re-solve driver `run_resolve1104.sh` (unit `i1104resolve`) | this folder | 8c5a1be8 |
 | re-root driver `run_reroot1104.sh` (unit `i1104reroot`, nice 19) | this folder | 50425177 |
 | reader `results_1104.py` (selftest exit 0; `--mutate=sign`, `bar`, `ref`, `last` exit 1; `selftests/selftest_results_1104*.txt`) | this folder | a1dd91ba |
+| kappa 0.5 scan driver `run_scan1104.sh` (unit `i1104scan050`, launched by hand after the re-solve passes) | this folder | b8352614 |
 | scan readers | `in/read_lower.py`, `in/d185_scan_read.py` (the #1101 copies) | 89309d3c, 7c9d400f |
 
 ## Commands
@@ -58,6 +59,7 @@ R2's secant (#1101, unit `i1101r2w`, 1 thread, nice 10) runs on. The re-solve ta
 ## Status
 - 2026-11-27 19:37 UTC: bars, reading rule, pins, commands and predictions written before any run. Not started.
 - 2026-11-27 19:39 UTC: unit `i1104resolve` (`run_resolve1104.sh`, 8c5a1be8) started 19:37:51 UTC (pins ok, python pid 2322724, nice 10, 3 threads). Reader and re-root driver written; the re-root starts next.
+- 2026-11-27 19:40 UTC: unit `i1104reroot` (`run_reroot1104.sh`, 50425177) started 19:39:37 UTC (selftests 0/1/1/1 and 0, mutations fail; nice 19, 1 thread per scan); at 19:39:59 both scans print the record system (|F| 2.9978e-10 against the record's 2.9775e-10, steps 4182 = 4182). `run_scan1104.sh` written for the kappa 0.5 state (pushed before use).
 
 ## Order, verbatim
 

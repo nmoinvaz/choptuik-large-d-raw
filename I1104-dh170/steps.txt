@@ -1,2 +1,7 @@
 2026-11-27 19:37:51 UTC [resolve] pins ok: regrid worktree 48c36355 (ell_refine.py 631e5801, dss_ell.py 5d28c19e = equal 505d8399 for ell_ddm, ell_dd, ddnp), start state e1dccb3c, record 58d3b080 (copied into data/)
 2026-11-27 19:37:51 UTC [resolve] re-solve starts: nice -n 10 timeout 57600 /home/nathan/Source/choptuik-large-d-1058b/.venv/bin/python -u ell_refine.py l1kc127Lmacm3 127 l1kc127k050dh170d23125 127 1 23.125 2.0992182200 --kappa 0.5 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma
+2026-11-27 19:39:38 UTC [reroot] pins ok: scanner worktree f56f91d2 (d18_secant.py 2f3ee874, ell_b12rs.py a1fff74f), source e1dccb3c / 58d3b080, read_lower.py 89309d3c, results_1104.py a1dd91ba; lambdas -0.045,-0.040, nice 19
+2026-11-27 19:39:39 UTC [reroot] d18_secant.py selftest exit 0 (0 wanted); mutations half exit 1, norobust exit 1, nosigncheck exit 1 (1 wanted each)
+2026-11-27 19:39:39 UTC [reroot] results_1104.py selftest ok=1 (1 wanted); mutations sign and bar both fail=2 (2 wanted)
+2026-11-27 19:39:39 UTC [reroot] scan starts: D 23.125, lambda -0.045,-0.040, one process per lambda, 1 thread each, nice 19, --b12=rust --b12_threads=1
+2026-11-27 19:39:59 UTC [reroot] record-system lines: 0 NOT, 2 of 2 ok: D 23.125 k_c 127: |F| 2.9978288801e-10 (record 2.9774808995e-10), steps 4182 (record 4182): the record system

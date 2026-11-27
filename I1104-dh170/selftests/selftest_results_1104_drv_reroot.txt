@@ -1,0 +1,20 @@
+pass planted delta/delta(23.0) = 1.0: equal
+pass planted delta/delta(23.0) = 0.95: equal
+pass planted delta/delta(23.0) = 1.09: equal
+pass planted delta/delta(23.0) = 0.91: equal
+pass planted delta/delta(23.0) = 0.8: not
+pass planted delta/delta(23.0) = 1.3: not
+pass planted delta/delta(23.0) = 0.0: not
+pass planted delta/delta(23.0) = -1.0: not
+pass planted delta/delta(23.0) = 0.9: between
+pass planted delta/delta(23.0) = 1.1: between
+pass a 1e-3 bracket on ratio 1.095 straddles 1.10: between
+pass planted scans and secants at ratio 1: formed, equal
+pass the pairs are (-0.045, -0.04) and (-0.005, 0.01)
+pass a kappa 0.5 secant root outside the scan's pair: not read
+pass the kappa 0.7 record not tol: not read
+pass same-signed ends: not read
+pass no root in the kappa 0.7 scan: no change
+pass two changes: the lowest-lambda pair is the bracket
+pass a non-robust point makes no change at its pair
+selftest: all cases read as written
