@@ -36,3 +36,22 @@ Machine `dh370-fedora` (Fedora, i7-8700, 6 cores / 12 threads, 31 GB), session c
 - **k_c 31 check** (`check in/l1kc31r1025.jsonl in/sol_l1kc31r1025_D10.5000.npy 10.5 2.87 --threads=4 --controls=1`, exit **0**, 110 s): N 96, 15010 entries, 384 horizon steps; **lambda 2.87, block (4 threads): 15010 of 15010 entries bit for bit; max |d|/|entry| 0.000e+00, max |d|/max|block| 0.000e+00 (bar 1e-28 per entry): PASS; Rust 9.86 s, DDEll 77.7 s, ratio 7.9.** Control nolam: **0 of 15010** bit for bit (max |d|/|entry| 1.410e+03): FAIL, as a control must; control harm: **0 of 15010** (2.736e+03): FAIL, as a control must; "check: PASS".
 - **Against the registration:** build first try (85%) right, 63 s (1 to 6 min) right; selftest exits (92%) right; 15010 of 15010 on Linux (88%) right; both controls FAIL (95%) right. Rust 9.86 s against DDEll's 77.7 s on this machine (the order said "about a minute" for DDEll: 78 s).
 - **Step 3** (`run_kc127.sh`, unit `i1102b`) started 05:53:22 UTC.
+
+## k_c 127 bit for bit (27 Nov 05:53:22 to 07:13:07 UTC; unit `i1102b`; one process, nice 19, DDEll one thread, Rust `--threads=4`, `lu=scipy`, OPENBLAS_NUM_THREADS=1; `check_kc127.log`, `check_kc127.jsonl` blob 1c92e58d)
+winb's accepted k_c 127 state at D 23.0 (blob 7a1b150c, record eea03461), lambda 0.046. The state reproduces its record (|F| 3.1987864632e-10 against the record's 3.1939646372e-10, 4179 steps equal). N 384, n_odd 128, n_even 127, nf 383, horizon steps 940, Ks 30, u0 0.04; operators 5.9 s; ellrs avx2, products dgemm.
+- **`check` exit 0: lambda 0.046, block (4 threads): 244354 of 244354 entries bit for bit; max |d|/|entry| 0.000e+00, max |d|/max|block| 0.000e+00 (bar 1e-28 per entry): PASS; Rust 678.17 s, DDEll 4091.5 s, ratio 6.0** ("check: PASS"). The record: `same` 244354, `n` 244354, `rel_entry` 0.0, `rel_max` 0.0.
+- **Wall times:** DDEll's block **4091.5 s** (1.14 h, one thread), Rust's block **678.2 s** (4 threads: 0.19 h); the whole process 4785 s (1:19:45 by `/usr/bin/time -v`: user 6198 s, system 307 s, 135% CPU); **peak RSS 2.41 GiB** (2526768 kB).
+- No control was run at k_c 127 (the order's controls are the k_c 31 gate's: nolam and harm each 0 of 15010 bit for bit).
+
+### Against the registration
+| prediction | result |
+|---|---|
+| k_c 127: every entry bit for bit (85%) | right: 244354 of 244354 |
+| entry count 2.3e5 to 3.0e5 | right (244354) |
+| DDEll wall 5000 to 9000 s (60%; t5: 1.5 to 2 h) | WRONG, faster: 4091.5 s |
+| Rust wall 300 to 1500 s (50%); ratio 5 to 25 | right: 678.2 s, ratio 6.0 |
+| peak RSS 4 to 9 GiB (60%) | WRONG, lower: 2.41 GiB |
+| build 1 to 6 min; selftest, k_c 31 gate, both controls | right (63 s; 0 1 1; 15010 of 15010; both FAIL) |
+
+## Status
+- 2026-11-27 07:13 UTC: done. Gates passed on Linux (avx2, matrixmultiply); the k_c 127 block 12 at lambda 0.046 is bit for bit DDEll's, 244354 of 244354 entries; DDEll 4091.5 s, Rust 678.2 s (4 threads).
