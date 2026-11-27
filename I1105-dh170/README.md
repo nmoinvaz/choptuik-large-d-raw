@@ -592,3 +592,63 @@ Then `d18_secant.py run RECORD STATE D LO HI root_<TAG>.jsonl --tol=1e-7 --maxev
 > t5: step 1d accepted as mixed, and your recommendations are good. Order: nothing beside R2w; it keeps all 4 cores. When R2w and its secant end, #1105 step 1e: (1) r165b, a re-solve at D 16.5 from r165's own state (same ell_refine line with source tag l1kc55r165), rooted on 2.138-2.172. It tests whether a re-solve of a re-solve stays put: |root(r165b) - root(r165)| <= 3e-4 means re-solved states are reproducible here, and a larger value means the re-solve scatter at D 16.5 is itself of order 1e-3. (2) D 15.5 (990ccde2): re-solve (r155) and root both it and the continuation state, as at D 15 and 16.5, bracket from its record lambda plus 1.4e-3 +- 0.012. Bars and README section first, as before. Report R2w's result the moment it is read, before starting step 1e.
 
 > t5: R2's bracket (0.100, 0.130) already decides its bar, so the secant no longer needs the machine to itself. Start #1105 step 1e now, beside it (r165b and r155, 2 threads each; c155's root when one re-solve ends). The secant keeps running; report its root when it ends.
+
+## Result (27 Nov 14:35 to 15:42:49 UTC; units `i1105r165b`, `i1105r155`, `i1105c155`; re-solves 2 threads, roots 1 thread, nice 10, beside the R2 secant (1 thread); `results_1e.md`, `root_*.jsonl`, `root_*.log`, `resolve_*.log`, `l1kc55r165b.jsonl`, `l1kc55r155.jsonl`, `sol_l1kc55r165b_D16.5000.npy`, `sol_l1kc55r155_D15.5000.npy`, `steps_1e.txt`; written 2026-11-27 15:45 UTC by the clock)
+| re-solve | from | D | \|F\| | source \|F\| | steps | source steps | Delta | Delta change | psi-constraint | re-solve s |
+|---|---|---|---|---|---|---|---|---|---|---|
+| r165b | r165 | 16.5 | 2.0080e-10 | 2.0094e-10 | 2481 | 2481 | 1.0117784460020298 | -5.305e-11 | 3.8592e-04 | 1480 |
+| r155 | continuation c155 | 15.5 | 2.1665e-10 | 2.1655e-10 | 2647 | 2647 | 0.9924204768837295 | -1.456e-07 | 9.1557e-05 | 2322 |
+
+Both re-solves reproduce the source's `|F|` and step count. No first-run bracket was refused, so no run was widened.
+
+Roots (`d18_secant.py run`, Rust block 12, `--tol=1e-7 --maxev=20`; r165 is step 1d's widened run, for T):
+
+| D | state | role | status | final bracket | width | root (lam_lin) | evals | seconds |
+|---|---|---|---|---|---|---|---|---|
+| 16.5 | r165 | re-solve (step 1d, widened run) | tol | (2.1459391706439113, 2.1459392206439114) | 5.00e-08 | 2.145939216 | 12 | step 1d |
+| 16.5 | r165b | re-solve of r165 | nonrobust | (2.1455491275663663, 2.1455572694142955) | 8.14e-06 | 2.145549303 | 11 | 2277 |
+| 15.5 | c155 | continuation | tol | (2.3365769908015386, 2.3365770408015387) | 5.00e-08 | 2.336577038 | 10 | 2239 |
+| 15.5 | r155 | re-solve | nonrobust | (2.336051290700417, 2.336092582233774) | 4.13e-05 | 2.336051462 | 9 | 1698 |
+
+r165b and r155 stopped at status `nonrobust`: the probe at `lam_lin` landed in the `ln|det|` dip with dln 0.193 (r165b, at 2.1455493) and 0.394 (r155, at 2.3360515), above the 0.1 limit. Both final brackets have robust ends of opposite sign and are read by the written rule on the bracket, not as `tol` roots.
+
+**T** (`read_1105e.py`, selftest exit 0, `--mutate=bar` and `--mutate=sign` exit 1, `selftest_read_1105e*.txt`): T = root(r165b) - root(r165) = -3.8991e-04 by `lam_lin`, range from the brackets -3.9009e-04 .. -3.8190e-04.
+
+**Offsets** (re-solve minus continuation), with the earlier steps':
+| D | offset = root(re-solve) - root(continuation) | range from the brackets | re-solve's Delta change | source psi-constraint | from |
+|---|---|---|---|---|---|
+| 15.0 | -5.2640e-04 | -5.2645e-04 .. -5.2635e-04 | -4.261e-07 | 4.356e-05 | step 1d (r150, c150) |
+| 15.5 | -5.2558e-04 | -5.2575e-04 .. -4.8441e-04 | -1.456e-07 | 9.158e-05 | this step (r155, c155) |
+| 16.0 | +8.59e-4 (U40; U40b +7.5e-4, U40c +9.2e-4) | no bracket ranges formed | -8.701e-08 | 1.846e-04 | steps 1b, 1c |
+| 16.5 | +3.2521e-03 | +2.9509e-03 .. +3.2531e-03 | -2.703e-07 | 3.840e-04 | step 1d (r165, c165w nonrobust) |
+
+**Verdict by t5's bar: |T| = 3.90e-04 (range -3.9009e-04 .. -3.8190e-04, entirely below -3e-4): the bar fires, and T is above 3e-4 and below 1e-3. A re-solve of a re-solve at D 16.5 moves the root by 1.3 times the bar's 3e-4, not by 1e-3 or more.** The reader's line says "of order 1e-3 or more"; the measured size is 3.9e-04. Reported as measured. D 15.5 has no bar.
+
+Beyond the bars (mine, not rules):
+- The two re-solved D 16.5 states differ by 3.9e-04; r165 sits +3.25e-03 above the continuation state's robust bracket (range +2.95e-03 .. +3.25e-03), 8.3 times |T|. At D 16 (step 1c) the three re-solves span 1.7e-4 and sit +7.5e-4 to +9.2e-4 above the source's root. So at D 16 and D 16.5 re-solved states agree with each other better than with the continuation state, by about 4 to 8 times.
+- r165b's Delta equals r165's to 5.3e-11 while its root moved -3.9e-04: Delta does not track the root's move.
+- offset(D 15.5) = -5.2558e-04 and offset(D 15.0) = -5.2640e-04: equal to 8.2e-07 (0.16%), with both brackets 5e-8 to 4e-5 wide. The four offsets (-5.26e-4, -5.26e-4, +8.6e-4, +3.25e-3) are flat from D 15 to D 15.5 and rise after; step 1d's "rise with D" was drawn from three of them.
+- The offsets do not follow the re-solve's Delta change (-4.3e-07, -1.5e-07, -8.7e-08, -2.7e-07), and the source psi-constraint rises (4.4e-05, 9.2e-05, 1.8e-04, 3.8e-04) while the offset is flat then rising: no proportionality.
+- One re-solve per D at 15, 15.5 and 16.5 for the offsets, three at D 16.
+
+| item | prediction | result |
+|---|---|---|
+| \|F\| <= 1e-8 after each re-solve | 92% each | right: r165b 2.008e-10, r155 2.167e-10 |
+| r165b: \|T\| <= 3e-4 | 45% | WRONG: T = -3.90e-04 |
+| r165b: \|T\| between 3e-4 and 1e-3 | 25% | right: 3.90e-04 |
+| r165b: \|T\| 1e-3 or more | 30% | no |
+| r165b first-run bracket (2.138-2.172) holds | 85% | right: root 2.145549 |
+| r155 and c155 first-run bracket (2.3282-2.3522) holds | 60% each | right for both: r155 2.336051, c155 2.336577, no widening needed |
+| offset(15.5) in -5e-4 .. +1e-3 | 55% | no by lam_lin (-5.2558e-04); the range -5.2575e-04 .. -4.8441e-04 straddles -5e-4 |
+| offset(15.5) above +1e-3 | 25% | no |
+| offset(15.5) below -5e-4 | 20% | by lam_lin yes, by the range a straddle: -5.2558e-04, not clean |
+| re-solve wall 0.5 to 1.0 h | 60% | half right: r155 2322 s (0.65 h); r165b 1480 s (0.41 h) is faster than 0.5 h |
+| root wall 1000 to 2000 s | 60% | one of three: r155 1698 s; c155 2239 s and r165b 2277 s are above (by 12% and 14%) |
+
+**Recommended next tasks (for t5 to choose):**
+1. **D 15.5 re-solve of a re-solve (r155b)**, rooted on 2.3282-2.3522, about 40 min plus 30 min: tests at D 15.5 what r165b tested at D 16.5, where the offset (-5.26e-04) equals D 15's (-5.26e-04) to 8e-07.
+2. **One more D**, one re-solve and the continuation root: D 14.5 (the record's lowest point) for whether the flat -5.3e-4 continues below D 15, or D 17.0 for whether the offset keeps rising past +3.25e-3. The D 14.5 state is in the raw repository (`I1025-mac/out/sol_l1kc55Fb1025_D14.5000.npy`, blob d9238215); I found no k_c 55 state at D 17 (`I1025-mac/out` and `I1025-win2b/st` end at D 16.5), so D 17 needs a continuation first.
+3. Only after those: what the offset means for #1025, whose roots are continuation-state roots.
+
+## Status
+- 2026-11-27 15:45 UTC: step 1e done (14:35:49 to 15:42:49 UTC); T = -3.90e-04 (bar 3e-4: fires, below 1e-3), offset(15.5) = -5.26e-04; posted on #1105, `running` label removed, issue left open for t5.
