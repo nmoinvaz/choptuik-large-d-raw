@@ -28,3 +28,4 @@ Reference data: `kc143_d230625/reg_kc143_output.txt` (as in that README), and th
 
 ## Status
 - 2026-11-27 01:50 UTC: folder, README (first registration entry), lane `lane_d23125.sh`, pins and a provisional scan plan written; dry run passed (01:44 UTC); the lane starts when `kc143_d230625`'s secant ends, after the second entry.
+- 2026-11-27 01:51 UTC: **t5's ruling (hc 01:51 UTC by his clock) replaces the chain paragraph of the registration above:** the k_c 87 chain stays held through both k_c 143 secants too (no release at this lane's secant start); it is released for good when this lane ends (rename of `HOLD_kc143.txt`, report to t5), or between lanes only if both regrids and secants of a D are done and the next regrid is not about to start (not the case here: this lane starts when the D 23.0625 secant ends). The release watcher of `kc143_d230625` is stopped.
