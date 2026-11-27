@@ -1,7 +1,8 @@
 #!/bin/bash
 # #1098 on mm5 (coordinator, 2026-11-27): D 3214's full point by recipe v2's amendment 2 (ladder_new.sh), moved here from
 # win2's queue (win2 is unreachable since its 10:25 UTC reboot and needs its fastmul7 build first) into the 6 threads
-# D 2828 freed. x_l 0.7058552 (the L = 20 node of D 5656.8542, the largest source, as the recipe sets it; L 11.4 here),
+# D 2828 freed. x_l 0.7058552367160431, the largest source's own fifth node (the L = 20 node of D 4000 sqrt 2; from
+# D rounded to 5656.8542 it would be 1.1e-11 inside that node, which form_s_lastnode.py refuses; L 11.4 here),
 # the guess deg 2 in 1/n from
 # #1088's lastnode states at D 2828.4271, 4000 and 5656.8542 (blobs 52f878b7, f06d04d5, 127bbb58), which bracket
 # D 3214, the jump from it (a 8.03, kc 250), then ladder_point2.sh (blob e0cf5880) with the downward gate from 1.2 n,
@@ -42,7 +43,7 @@ echo "tools5 from raw $TC, inputs and ks_gate.py (3b3bfc60) checked by blob $(da
 bash $T/hold_timeouts.sh $O 57600 $O/hold_timeouts.log &
 export HP SITE=$HOME/Source/fastmul7-site PY=$HOME/venv-314/bin/python KSBAR=1e-64 INNER_CHORD=0 EXTRA=
 bash $T/ladder_new.sh 3214 250 6 $O $I/lastnode_D2828.4271.npz,$I/lastnode_D4000.0000.npz,$I/lastnode_D5656.8542.npz \
-  0.7058552367050799 48 23
+  0.7058552367160431 48 23
 rc=$?
 echo "job rc $rc $(date -u +%H:%M:%S)" >> $O/run.log
 exit $rc
