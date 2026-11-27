@@ -3,3 +3,14 @@ pins: state 0124dbd2cc25c949d374dbc722159b712c86598b (wanted 0124dbd2), stub 944
 D 23.0 k_c 127: |F| 3.1188220361e-10 (record 3.1188220361e-10), steps 5847 (record 5847): the record system
 bracket (0.085, 0.1), tol 5e-05, maxev 10, mode matrix fast (jac), block 12 rust, noise 1e-15, dln <= 0.1, sol_l1kc127k050m3_D23.0000.npy
 block 12 by ellrs (neon, products dgemm, 4 threads)
+  lam 0.085 (lo): hybrid +1 ln|det| -4054.1235811352, noise [1.0, 1.0] dln 6.63e-06, robust True; float64 +1 -4053.2387047619 (231 s [75, 152, 5])
+  lam 0.1 (hi): hybrid -1 ln|det| -4056.5340964187, noise [-1.0, -1.0] dln 3.21e-05, robust True; float64 +1 -4054.7231288464 (229 s [73, 152, 5])
+  lam 0.09876438459885663 (interior): hybrid -1 ln|det| -4056.6772078294, noise [-1.0, -1.0] dln 4.06e-05, robust True; float64 -1 -4056.0195810378 (229 s [74, 151, 5])
+  lam 0.09131321455187598 (interior): hybrid +1 ln|det| -4055.8420632812, noise [1.0, 1.0] dln 2.86e-05, robust True; float64 +1 -4052.7389633328 (228 s [73, 151, 5])
+  lam 0.09650997064071543 (interior): hybrid -1 ln|det| -4057.3360197973, noise [-1.0, -1.0] dln 9.21e-05, robust True; float64 +1 -4054.8980784394 (229 s [74, 151, 5])
+  lam 0.09453557382720951 (interior): hybrid +1 ln|det| -4058.2678609696, noise [1.0, 1.0] dln 2.67e-04, robust True; float64 +1 -4053.6683715800 (229 s [74, 151, 5])
+  lam 0.09509344227263448 (interior): hybrid -1 ln|det| -4060.0363736098, noise [-1.0, -1.0] dln 1.51e-03, robust True; float64 +1 -4053.1460252443 (229 s [73, 151, 5])
+  lam 0.09501214555779215 (interior): hybrid -1 ln|det| -4062.9833218188, noise [-1.0, -1.0] dln 2.85e-02, robust True; float64 +1 -4053.7590951086 (228 s [73, 151, 5])
+  lam 0.09498714555779215 (interior): hybrid +1 ln|det| -4061.4552662079, noise [1.0, 1.0] dln 6.30e-03, robust True; float64 +1 -4053.2730877600 (228 s [73, 151, 5])
+root: status tol (-), bracket [0.09498714555779215, 0.09501214555779215] width 2.500e-05, signs [1.0, -1.0], det-linear 0.0950076885990106, Brent 0.09501214555779215, 9 evaluations, 2062 s
+capped_run: exit 0 wall 2072 s cap_hit False
