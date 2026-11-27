@@ -541,3 +541,51 @@ Beyond the bars (mine, not rules): the three offsets rise with D, the D 16.5 one
 
 ## Status
 - 2026-11-27 12:48 UTC: step 1d done; offsets -5.26e-4 (D 15) and +3.25e-3 (D 16.5), bars: mixed; posted on #1105, `running` label removed, issue left open for t5.
+
+
+# Step 1e: do re-solved states stay put (r165b), and the offset at D 15.5 (r155, c155)
+
+Written 2026-11-27 12:52 UTC by the clock, before any run of step 1e (bars, pins, drivers, reader and predictions first; t5's order is quoted at the end). Folder `step1e/`. Issue #1105; coordinator t5. t5's order: nothing runs beside R2w (#1101's widened scan and its secant, which keep all 4 cores); step 1e starts when R2w and its secant end, and R2w's result is reported before step 1e starts.
+
+## Bars (t5's, fixed before the run; each can fail)
+- **(1) r165b**, a re-solve at D 16.5 from r165's own state (same `ell_refine.py` line with source tag `l1kc55r165`), rooted on 2.138-2.172: **|root(r165b) - root(r165)| <= 3e-4** means re-solved states are reproducible here; a larger value means the re-solve scatter at D 16.5 is itself of order 1e-3.
+- **(2) D 15.5 (990ccde2)**: re-solve (r155) and root both it and the continuation state (c155), as at D 15 and 16.5, bracket from the record's lambda plus 1.4e-3 +- 0.012. No bar is given for the offset; it is reported as measured beside the offsets of D 15, D 16 and D 16.5.
+- A re-solve whose |F| exceeds 1e-8 is not rooted.
+**Reading rule (mine, stated before the run):** T = root(r165b) - root(r165) is read on the robust final brackets [a, b] (r165b) and [c, d] (r165, step 1d's widened run): its range [a - d, b - c] within +-3e-4 reads as reproducible, entirely outside as scatter, otherwise it straddles the bar and is reported as such with `lam_lin`'s difference beside it. The D 15.5 bracket is 2.340188 +- 0.012 = (2.328188, 2.352188), rounded outward to **2.3282-2.3522** for r155 and c155 alike. A run refused for same-signed ends is repeated once with the bracket widened by 0.01 on the side the signs give (both +: the low end falls; both -: the high end rises), as t5 accepted at D 16.5, and that is said; a second refusal stops that root and is reported. Roots are estimator values at the bracket's width, not rigorous enclosures; a root run that ends `nonrobust` with robust opposite-signed ends is read on its bracket, as in step 1d.
+
+## Pins (by blob; the drivers refuse any other)
+| what | where | blob |
+|---|---|---|
+| D 15.5 continuation state (c155; start of r155) | raw `I1025-mac/out/sol_l1kc55Fb1025_D15.5000.npy` (also `I1025-win2b/st/`), copy in `step1e/in/` and the regrid worktree's `data/`; record |F| 2.1655e-10, 2647 steps, Delta 0.9924206225233535, lambda (float64) 2.338788248005964 | 990ccde2 |
+| record (D 15.5) | `l1kc55Fb1025.jsonl` (u0 0.04, Ks 30, kappa 0.7, k_c 55; same file as step 1d) | 5be40af4 |
+| r165 (start of r165b) | step 1d's re-solve of D 16.5: `step1e/in/sol_l1kc55r165_D16.5000.npy` (equal to the regrid worktree's `data/`); record |F| 2.0094e-10, 2481 steps, Delta 1.0117784460550832 | cb69ffc3 |
+| record of r165 | `step1e/in/l1kc55r165.jsonl` | 61a375ff |
+| re-solve | worktree `~/Source/choptuik-large-d-1025k79` at 48c36355 (dss_ell, ell_ddm, ell_dd, ddnp equal 505d8399's), `ell_refine.py` | 631e5801 |
+| root | worktree `~/Source/choptuik-large-d-1102` at d4b6b6ce, `d18_secant.py` (`--b12=rust`), ellrs in `~/Source/ellrs-site-1102`, venv `~/Source/choptuik-large-d-1058b/.venv` | 9706e506 |
+| drivers | `step1e/run_resolve1e.sh`, `step1e/run_root1e.sh`, reader `step1e/read_1105e.py` (selftest exit 0, `--mutate=bar` and `--mutate=sign` exit 1) | c66aa2e1, 67b514d5, 5ca1d145 |
+
+## Commands (units `i1105r165b` and `i1105r155` run `step1e/run_resolve1e.sh`; unit `i1105c155` runs `step1e/run_root1e.sh`; steps in `steps_1e.txt`)
+From `solver/matter` of the regrid worktree, 2 threads each, `nice -n 10 timeout 7200`:
+```
+R165B python -u ell_refine.py l1kc55r165 55 l1kc55r165b 55 1 16.5 2.159124821824751 --kappa 0.7 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma
+R155  python -u ell_refine.py l1kc55Fb1025 55 l1kc55r155 55 1 15.5 2.338788248005964 --kappa 0.7 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma
+```
+Then `d18_secant.py run RECORD STATE D LO HI root_<TAG>.jsonl --tol=1e-7 --maxev=20 --b12=rust --b12_threads=1 --pin=<state blob>,<record blob>` from the #1102 worktree, 1 thread, nice 10, `PYTHONPATH=SITE`: r165b on 2.138-2.172, r155 and c155 on 2.3282-2.3522. The two re-solves run together (4 busy threads); c155's root starts when one re-solve has ended, so no more than 4 threads are busy.
+
+## Predictions (mine, registered before the run; information, not pass rules)
+| item | prediction (mine, registered before the run; information, not pass rules) |
+|---|---|
+| \|F\| <= 1e-8 after each re-solve | 92% each |
+| r165b: \|T\| <= 3e-4 (reproducible) | 45%; between 3e-4 and 1e-3: 25%; 1e-3 or more: 30% (the first re-solve moved the root 3.25e-3 with \|F\| unchanged at 2.0e-10, so the re-solve's \|F\| floor leaves a soft direction, and a second re-solve may move along it again) |
+| r165b first run bracket holds (2.138-2.172) | 85% |
+| r155 and c155 first-run bracket (2.3282-2.3522) holds | 60% each (at D 16.5 both roots lay 4e-3 to 1e-2 below the bracket's range of 2.148-2.172, at D 15 both held) |
+| offset(15.5) = root(r155) - root(c155) | between the D 15 and D 16 offsets, -5e-4 to +1e-3: 55%; above +1e-3: 25%; below -5e-4: 20% |
+| re-solve wall (2 threads each, 4 busy threads on 4 cores, nothing else) | 0.5 to 1.0 h: 60% |
+| root wall (1 thread) | 1000 to 2000 s: 60% |
+
+## Status
+- 2026-11-27 12:52 UTC: inputs staged and blob-checked, drivers, reader (planted selftest), bars, reading rule and predictions written before any step 1e run. Waiting for R2w (#1101) to end and to be reported.
+
+## Order, verbatim
+
+> t5: step 1d accepted as mixed, and your recommendations are good. Order: nothing beside R2w; it keeps all 4 cores. When R2w and its secant end, #1105 step 1e: (1) r165b, a re-solve at D 16.5 from r165's own state (same ell_refine line with source tag l1kc55r165), rooted on 2.138-2.172. It tests whether a re-solve of a re-solve stays put: |root(r165b) - root(r165)| <= 3e-4 means re-solved states are reproducible here, and a larger value means the re-solve scatter at D 16.5 is itself of order 1e-3. (2) D 15.5 (990ccde2): re-solve (r155) and root both it and the continuation state, as at D 15 and 16.5, bracket from its record lambda plus 1.4e-3 +- 0.012. Bars and README section first, as before. Report R2w's result the moment it is read, before starting step 1e.
