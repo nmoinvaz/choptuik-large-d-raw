@@ -1,0 +1,129 @@
+--- /Users/nathan/Source/choptuik-large-d-raw-903/I1101-macm3/lane_kmm.sh	2026-11-27 08:32:56
++++ /Users/nathan/Source/choptuik-large-d-raw-903/I1101-macm3/lane_kmm2.sh	2026-11-27 09:09:52
+@@ -1,9 +1,8 @@
+ #!/bin/bash
+-# #1101 macm3 K4 (t5's order, hc 27 Nov 16:3x UTC and #1101 comment 7223316450): the fourth kappa point WITHOUT a re-solve: R1's state and record (tag l1kc127k050m3, kappa 0.5, blobs 0124dbd2 and 944a8179, raw commit 614a47d78)
+-# scanned with d18_secant.py --kappa_mm=0.25 --b12=rust (worktree choptuik-large-d-kmm at f56f91d2, branch wip/ell1-kappa-mm, d18_secant.py 2f3ee874; ellrs from ~/Source/ellrs-site-1102m3 unchanged) at lambda 0.100, 0.115, 0.130, 0.145,
+-# then the secant at tol 5e-5 on the robust change. The control first: one point (lambda 0.100) with --kappa_mm=0.5, whose ln|det| must equal the R1 scan's at 0.100 bit for bit. The printed 'kappa_mm 0.25 ... steps' line is checked (about 11700).
+-# The root is reported against 0.111 (kappa^4), 0.120 (kappa^3) and 0.133 (kappa^2). One process (4 block-12 threads) for the scan: the steps double, and two processes at once would need about twice the memory of R1's scan (3.9 and 4.4 GiB each).
+-# Stops (hc to t5): a pin or selftest that does not read as wanted, the control not bit-identical, the kappa_mm steps line outside 11400 to 12000, an exception, more than one robust change, a step over 8 h, a secant exit other than 0 or 4. usage: bash lane_kmm.sh [dry]
++# #1101 macm3 K4w (t5's order, hc 27 Nov 17:1x UTC, after the K4 scan read all - at 0.100 to 0.145): the SAME state (R1's, l1kc127k050m3, blobs 0124dbd2 and 944a8179) with --kappa_mm=0.25 (worktree choptuik-large-d-kmm f56f91d2, d18_secant.py 2f3ee874,
++# ellrs unchanged) at lambda 0.070 and 0.085 (below) and 0.160 and 0.180 (above), one process of 4 Rust threads; the scan of 0.100 to 0.145 and the kappa_mm 0.5 control (bit for bit) of lane_kmm.sh stand. The eight signs are read on the merged scan (merge_kmm.py,
++# window (0.070, 0.180)); the secant at tol 5e-5 on the first (lowest-lambda) robust change, kappa_mm 0.25; no robust change: an hc with the eight signs and the lane ends. A second robust change is named in the hc, not run.
++# Stops (hc to t5): a pin or selftest that does not read as wanted, the kappa_mm steps line outside 11400 to 12000, the merge refused, an exception, a step over 8 h, a secant exit other than 0 or 4. usage: bash lane_kmm2.sh [dry]
+ {
+ set -u
+ MODE=${1:-}
+@@ -14,12 +13,12 @@
+ SITE=$HOME/Source/ellrs-site-1102m3
+ PY=$HOME/Source/venv-macm3-1058b/bin/python; RAWG=$HOME/Source/choptuik-large-d-raw-1076p
+ TAG=l1kc127k050m3; D=23.0; DT=D23.0000; STATEFILE=sol_${TAG}_$DT.npy; RAWC=614a47d78
+-DNC=23.0_r1k050_kmm050ctl; DNM=23.0_r1k050_kmm025; SCANC=$L/$DNC; SCANM=$L/$DNM; SEC=$K/secant
+-HC=$(command -v hc); LOG=$K/exits_kmm.txt
++DNM=23.0_r1k050_kmm025; DNW=23.0_r1k050_kmm025w; DNG=23.0_r1k050_kmm025m; SCANW=$L/$DNW; SCANG=$L/$DNG; SEC=$K/secant
++HC=$(command -v hc); LOG=$K/exits_kmm_w.txt
+ stamp() { date -u '+%F %T'; }
+-say() { echo "== $(stamp) UTC I1101 K4: $*" | tee -a $LOG; }
++say() { echo "== $(stamp) UTC I1101 K4w: $*" | tee -a $LOG; }
+ tell() { say "hc: $*"; [ -n "$HC" ] && "$HC" send nathans-macbook-air-m5-3/t5 "$*" >> $LOG 2>&1; }
+-stop() { tell "macm3 #1101 K4 STOP: $*"; exit 1; }
++stop() { tell "macm3 #1101 K4w STOP: $*"; exit 1; }
+ blob() { git hash-object --no-filters "$1"; }
+ availgib() { vm_stat | awk -v ps=$(sysctl -n hw.pagesize) '/Pages free/ {f=$3} /Pages inactive/ {i=$3} /Pages speculative/ {s=$3} /Pages purgeable/ {p=$3} END {printf "%.1f", (f+i+s+p)*ps/2^30}'; }
+ mkdir -p $K
+@@ -78,42 +77,47 @@
+   echo "ACCEPTED $(stamp) UTC (R1's state and record, accepted by the lane of I1101 R1 at 15:32:49 UTC and again by kc127_syscheck in the kappa_mm worktree: $C/r1_state_syscheck.txt)" > $SC/VERDICT.txt
+   echo "$(stamp) UTC accept (lane_kmm.sh): R1's state $SB and record $TB, kc127_syscheck exit $s0 (0 wanted), controls $s1 $s2 (1 wanted each)" >> $SC/steps.txt
+ }
+-# 4. the control: kappa_mm 0.5 at lambda 0.100, bit for bit against the R1 scan
+-prep_folder $DNC 0.5 '"0.100"' "0.100 0.100"
+-say "control starts: kappa_mm 0.5 (R1's own kappa) at lambda 0.100, 1 process, 4 Rust threads (pointkmm.sh $DNC scan)"
+-bash $F/pointkmm.sh $DNC scan >> $SCANC/pipeline.log 2>&1; cs=$?
+-say "control scan exit $cs"
+-[ -e $SCANC/SCAN_DONE.txt ] || stop "the control scan did not finish (no SCAN_DONE.txt; see $SCANC/steps.txt)"
+-$PY $F/control_compare_kmm.py > $K/control_compare.txt 2>&1; cc=$?
+-$PY $F/control_compare_kmm.py --mutate=ln > $K/control_compare_mut_ln.txt 2>&1; m1=$?; $PY $F/control_compare_kmm.py --mutate=field > $K/control_compare_mut_field.txt 2>&1; m2=$?
+-say "control read: exit $cc (0 = bit for bit): $(tr '\n' ' ' < $K/control_compare.txt | cut -c1-900); kappa_mm line: $(grep -h '^kappa_mm' $SCANC/scan/scan_p0.log | cut -c1-260); its controls --mutate=ln exit $m1, --mutate=field exit $m2 (1 wanted each)"
+-[ $m1 = 1 ] && [ $m2 = 1 ] || stop "the control comparison's own mutations did not fail ($m1 $m2)"
+-[ $cc = 0 ] || stop "the kappa_mm 0.5 control is NOT bit for bit the R1 scan at lambda 0.100: $(tr '\n' ' ' < $K/control_compare.txt | cut -c1-700)"
+-bash $L/push87.sh "kc87_leg_lambda: D $DNC (I1101 K4 control, kappa_mm 0.5) done" > /dev/null 2>&1
+-bash $F/push_i1101.sh "I1101-macm3: K4 control read (kappa_mm 0.5, bit for bit)" > /dev/null 2>&1
+-# 5. the scan at kappa_mm 0.25
+-prep_folder $DNM 0.25 '"0.100" "0.115" "0.130" "0.145"' "0.100 0.145"
+-say "scan starts: kappa_mm 0.25 at lambda 0.100 0.115 0.130 0.145, 1 process, 4 Rust threads (pointkmm.sh $DNM scan)"
+-tell "macm3 #1101 K4 START: the kappa_mm 0.5 control at lambda 0.100 is BIT FOR BIT the R1 scan ($(tr '\n' ' ' < $K/control_compare.txt | cut -c1-420)); the scan with --kappa_mm=0.25 at lambda 0.100, 0.115, 0.130, 0.145 starts now (scanner worktree f56f91d2, d18_secant.py 2f3ee874, 1 process of 4 Rust threads), then the secant at tol 5e-5; the steps line follows"
+-bash $F/pointkmm.sh $DNM scan >> $SCANM/pipeline.log 2>&1 &
++# 4. the scan of the same state at kappa_mm 0.25, lambda 0.070 0.085 0.160 0.180
++[ -s $L/$DNM/scan/scan_D23.0_1025.jsonl ] && [ -s $K/control_compare.txt ] || stop "the K4 scan or its control comparison is missing"
++prep_folder $DNW 0.25 '"0.070" "0.085" "0.160" "0.180"' "0.070 0.180"
++say "scan starts: kappa_mm 0.25 at lambda 0.070 0.085 0.160 0.180, 1 process, 4 Rust threads (pointkmm.sh $DNW scan); the control of K4 (kappa_mm 0.5, bit for bit, kmm025/control_compare.txt) stands"
++tell "macm3 #1101 K4w START: the widening starts now: the same state with --kappa_mm=0.25 at lambda 0.070, 0.085, 0.160, 0.180 (1 process of 4 Rust threads, about 30 min), then the eight signs on the merged scan and the secant at tol 5e-5 on the first robust change"
++bash $F/pointkmm.sh $DNW scan >> $SCANW/pipeline.log 2>&1 &
+ sp=$!
+-n=0; until grep -q '^kappa_mm' $SCANM/scan/scan_p0.log 2>/dev/null; do n=$((n+1)); [ $n -gt 120 ] && break; kill -0 $sp 2>/dev/null || break; sleep 5; done
+-KL=$(grep -h '^kappa_mm' $SCANM/scan/scan_p0.log 2>/dev/null | head -1); say "scan's line: $KL"
++n=0; until grep -q '^kappa_mm' $SCANW/scan/scan_p0.log 2>/dev/null; do n=$((n+1)); [ $n -gt 120 ] && break; kill -0 $sp 2>/dev/null || break; sleep 5; done
++KL=$(grep -h '^kappa_mm' $SCANW/scan/scan_p0.log 2>/dev/null | head -1); say "scan's line: $KL"
+ KS=$(echo "$KL" | sed -E 's/.*, ([0-9]+) steps \(the record.*/\1/')
+-if ! python3 -c "import sys; sys.exit(0 if 11400 <= int('$KS') <= 12000 else 1)" 2>/dev/null; then pkill -f "d18_secant.py scan.*$DNM" 2>/dev/null; wait $sp; stop "the kappa_mm 0.25 steps line does not read about 11700 (11400 to 12000): '$KL'"; fi
+-tell "macm3 #1101 K4: the scan's printed line: $KL (steps $KS, about 11700 wanted, 11400 to 12000 accepted)"
++if ! python3 -c "import sys; sys.exit(0 if 11400 <= int('$KS') <= 12000 else 1)" 2>/dev/null; then pkill -f "d18_secant.py scan.*$DNW" 2>/dev/null; wait $sp; stop "the kappa_mm 0.25 steps line does not read about 11700 (11400 to 12000): '$KL'"; fi
+ wait $sp
+ say "scan exit $?"
+-[ -e $SCANM/SCAN_DONE.txt ] || stop "the scan did not finish (no SCAN_DONE.txt; see $SCANM/steps.txt)"
+-bash $L/push87.sh "kc87_leg_lambda: D $DNM (I1101 K4, kappa_mm 0.25) scan done" > /dev/null 2>&1
+-nch=$(grep -c 'robust change (' $SCANM/read_lower.txt); nrb=$(grep -o 'robust changes: [0-9]*' $SCANM/read_lower.txt | head -1 | grep -o '[0-9]*')
+-say "reading: $(grep -E '^hybrid signs|^robust changes|change \(|^endpoint|^repeated|^float64' $SCANM/read_lower.txt | tr '\n' ' ' | cut -c1-900)"
+-tell "macm3 #1101 K4: the kappa_mm 0.25 scan is read: $(grep -E '^hybrid signs|^robust changes|change \(|^endpoint' $SCANM/read_lower.txt | tr '\n' ';' | cut -c1-900) (raw kc87_leg_lambda/$DNM/)"
+-[ "$nch" = 1 ] && [ "$nrb" = 1 ] || stop "the kappa_mm 0.25 scan reads $nrb robust changes in 0.100-0.145 (one wanted): no secant; reported (no extension was ordered)"
+-# 6. the secant at kappa_mm 0.25 on the one robust change
+-BR=$(grep 'robust change (' $SCANM/read_lower.txt | sed -E 's/.*robust change \((-?[0-9.]+), (-?[0-9.]+)\).*/\1 \2/')
++[ -e $SCANW/SCAN_DONE.txt ] || stop "the scan did not finish (no SCAN_DONE.txt; see $SCANW/steps.txt)"
++bash $L/push87.sh "kc87_leg_lambda: D $DNW (I1101 K4w, kappa_mm 0.25, lambda 0.070 0.085 0.160 0.180) scan done" > /dev/null 2>&1
++# the merged scan of the eight lambda and its reading (merge_kmm.py with its two failing mutations)
++$PY $F/merge_kmm.py $DNG $DNM $DNW > $K/merge_kmm.txt 2>&1; mg=$?; $PY $F/merge_kmm.py ${DNG}_mut $DNM $DNW --mutate=dup > /dev/null 2>&1; m1=$?; $PY $F/merge_kmm.py ${DNG}_mut $DNM $DNW --mutate=steps > /dev/null 2>&1; m2=$?
++say "merge exit $mg (0 wanted), its mutations dup exit $m1, steps exit $m2 (1 wanted each): $(tail -1 $K/merge_kmm.txt | cut -c1-300)"
++[ $mg = 0 ] && [ $m1 = 1 ] && [ $m2 = 1 ] || stop "the merge of the two scans or its controls did not read as wanted ($mg $m1 $m2)"
++mv $L/${DNG}_mut $L/${DNG}_mut.removed.$(date +%s) 2>/dev/null
++cd $L/common/in
++$PY -I read_lower.py selftest > $SCANG/selftest_read_lower.txt 2>&1; e0=$?
++$PY -I read_lower.py selftest --mutate=shift > $SCANG/selftest_read_lower_shift.txt 2>&1; e1=$?
++$PY -I read_lower.py selftest --mutate=round2 > $SCANG/selftest_read_lower_round2.txt 2>&1; e2=$?
++say "read_lower selftest exit $e0 (0 wanted); mutations shift exit $e1, round2 exit $e2 (1 wanted each)"
++[ $e0 = 0 ] && [ $e1 = 1 ] && [ $e2 = 1 ] || stop "read_lower's selftest or its mutations did not read as wanted ($e0 $e1 $e2)"
++{ echo "== window: read_lower.py scan 0.070 0.180 (merged: $DNM and $DNW)"; $PY -I read_lower.py $SCANG/scan 0.070 0.180; echo "(exit $?)"; } > $SCANG/read_lower.txt 2>&1
++cd $F
++cp $SCANG/read_lower.txt $K/read_lower_merged.txt
++SIGNS=$(grep -h '^hybrid signs' $SCANG/read_lower.txt | head -1)
++nch=$(grep -c 'robust change (' $SCANG/read_lower.txt); nrb=$(grep -o 'robust changes: [0-9]*' $SCANG/read_lower.txt | head -1 | grep -o '[0-9]*')
++say "reading: $(grep -E '^hybrid signs|^robust changes|change \(|^endpoint|^float64|not noise-robust' $SCANG/read_lower.txt | tr '\n' ' ' | cut -c1-1200)"
++bash $F/push_i1101.sh "I1101-macm3: K4w scan (0.070 0.085 0.160 0.180) read, merged with K4's" > /dev/null 2>&1
++bash $L/push87.sh "kc87_leg_lambda: D $DNG (I1101 K4w merged reading)" > /dev/null 2>&1
++tell "macm3 #1101 K4w: the eight signs at --kappa_mm=0.25 (merged scan, lambda 0.070 to 0.180): $(grep -E '^hybrid signs|^robust changes|change \(|^endpoint|not noise-robust' $SCANG/read_lower.txt | tr '\n' ';' | cut -c1-1100) (raw kc87_leg_lambda/$DNG/)"
++if [ "$nch" = 0 ]; then tell "macm3 #1101 K4w: no robust change in 0.070 to 0.180 at --kappa_mm=0.25 ($SIGNS): no secant; the lane ends and waits for your word"; exit 0; fi
++# 5. the secant on the FIRST (lowest-lambda) robust change
++BR=$(grep 'robust change (' $SCANG/read_lower.txt | head -1 | sed -E 's/.*robust change \((-?[0-9.]+), (-?[0-9.]+)\).*/\1 \2/')
+ LO=${BR% *}; HI=${BR#* }
+-S_STATE=$SCANM/in/$STATEFILE; S_REC=$SCANM/in/$TAG.jsonl
++[ "$nch" = 1 ] || tell "macm3 #1101 K4w: $nch robust changes in 0.070 to 0.180; the secant runs on the first (lowest lambda, bracket $LO $HI), the others are not run"
++S_STATE=$SCANW/in/$STATEFILE; S_REC=$SCANW/in/$TAG.jsonl
+ mkdir -p $SEC; [ -e $SEC/secant.jsonl ] && stop "$SEC/secant.jsonl exists"
+ say "secant starts: d18_secant.py run $S_REC $S_STATE $D $LO $HI secant.jsonl --tol=5e-5 --maxev=10 --pin=$SB,$TB --b12=rust --b12_threads=4 --kappa_mm=0.25"
+ echo "time_utc,pid,rss_kB,pcpu,avail_GiB" > $SEC/samples.csv
+@@ -123,12 +127,12 @@
+ wait $sp; se=$(cat $SEC/exit.txt)
+ say "secant exit $se"
+ [ "$se" = 0 ] || [ "$se" = 4 ] || stop "d18_secant.py exit $se (0 tol reached, 4 maxev or non-robust interior point; 2 refused, 3 pin or record system): see $SEC/secant.log"
+-$PY $F/summarize_point.py $SCANM $SEC > $K/point_summary.txt 2>&1
+-bash $F/push_i1101.sh "I1101-macm3: K4 scanned at kappa_mm 0.25 and its root refined (secant)" > /dev/null 2>&1
+-RT=$(grep -o 'det-linear root [0-9.-]*' $K/point_summary.txt | head -1 | awk '{print $3}')
++$PY $F/summarize_point.py $SCANG $SEC > $K/point_summary_w.txt 2>&1
++bash $F/push_i1101.sh "I1101-macm3: K4w secant at kappa_mm 0.25 done" > /dev/null 2>&1
++RT=$(grep -o 'det-linear root [0-9.-]*' $K/point_summary_w.txt | head -1 | awk '{print $3}')
+ CMPR=$(python3 -c "
+ r = float('$RT'); h = [('0.111 (kappa^4)', 0.111), ('0.120 (kappa^3)', 0.120), ('0.133 (kappa^2)', 0.133)]
+ print('root %.8f: minus 0.111 %+.5f, minus 0.120 %+.5f, minus 0.133 %+.5f; nearest %s' % (r, r - 0.111, r - 0.120, r - 0.133, min(h, key=lambda t: abs(r - t[1]))[0]))")
+-tell "macm3 #1101 K4 done: $CMPR; $(grep -E '^(scan:|secant: status|secant root)' $K/point_summary.txt | tr '\n' ';' | cut -c1-1200) (raw I1101-macm3/kmm025/ and kc87_leg_lambda/$DNM/)"
++tell "macm3 #1101 K4w done ($(grep -h "^hybrid signs" $SCANG/read_lower.txt | head -1)): $CMPR; $(grep -E '^(scan:|secant: status|secant root)' $K/point_summary_w.txt | tr '\n' ';' | cut -c1-1200) (raw I1101-macm3/kmm025/ and kc87_leg_lambda/$DNW/)"
+ exit 0
+ }

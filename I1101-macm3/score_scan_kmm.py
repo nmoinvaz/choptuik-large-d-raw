@@ -106,7 +106,7 @@ def main():
     hy = " ".join("%+.3f%s" % (r["lam"], "+" if r["sign"] > 0 else "-") for r in sc)
     out = ["**the K4 scan (kappa_mm 0.25), scored** (read_lower.txt, scan/scan_D23.0_1025.jsonl, scan_samples.csv, exits_kmm.txt; `score_scan_kmm.py`, controls `--controls`: pair, count, seconds, wall and RSS mutations that must flip their items either way): scan %s to %s UTC (%.1f min), exit %d, 1 process of 4 Rust threads, %d evaluations. Hybrid signs %s; %s."
            % (d["t0"], d["t1"], x["wall"] / 60.0, d["ecode"], len(sc), hy,
-              ("**robust change (%.3f, %.3f), %s to %s, det-linear %.6f, estimator range [%.6f, %.6f] (an estimator range, not an enclosure; the root is read from the secant)**" % br) if br else "**%d robust changes in the window (0.070, 0.130)**" % d["nrob"])]
+              ("**robust change (%.3f, %.3f), %s to %s, det-linear %.6f, estimator range [%.6f, %.6f] (an estimator range, not an enclosure; the root is read from the secant)**" % br) if br else "**%d robust changes in the window (0.100, 0.145)**" % d["nrob"])]
     out.append("Scoring, HIT = the registered event occurred: " + "; ".join("HIT " + fmt(i) for i in H) + ". " + ("; ".join("MISS " + fmt(i) for i in M) + ". " if M else "") + "(%d items: %d HIT, %d MISS; the three pair items, the no-change item and the more-than-one item are registered alternatives of one event, so the ones that read MISS are the events that did not occur.)" % (len(L), len(H), len(M)))
     txt = "\n".join(out); print(txt)
     if "--write" in sys.argv and not mut:
