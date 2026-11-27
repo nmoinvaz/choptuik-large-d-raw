@@ -26,4 +26,4 @@ All three re-solves exited 0 within the cap (2301 to 2477 s) with |F| below 1e-8
 | root wall 1 to 3 h per state (50%) | WRONG, shorter: 1050 to 1338 s |
 
 ## Status
-- 2026-11-27 09:45 UTC: step 1b done. T5 +7.79e-6; T3 not formed by the written rule, bounded to -1.95e-3..-1.93e-3; the control (re-solve at u0 0.04 against the source) moved the root by +8.6e-4, so the solve scatter is the limit. Posted on #1105.
+- 2026-11-27 09:32 UTC: step 1b done. T5 +7.79e-6; T3 not formed by the written rule, bounded to -1.95e-3..-1.93e-3; the control (re-solve at u0 0.04 against the source) moved the root by +8.6e-4, so the solve scatter is the limit. Posted on #1105.
