@@ -35,3 +35,26 @@ Reported: h21, h23 and h25's changes or pendings, and the k* result. The final D
 ### The kmax rule as a check at h23 (2026-11-26 22:23 UTC, coordinator's order)
 
 At h23's release, `python3 tools3/kmax_rule.py D2231/tail/release_ls.jsonl` (blob 196f12a553edce9651fef58ef90353f3c7fb49b4, checked on D 747, D 622 and D 360m48: exit 0; with a strict `--rmax` and on a log cut before h23 it exits 2 and 1) is run as a check. D 2231's plan stays: **stop after h25 either way**, as the first point above D 2000. A non-zero verdict at h23 is reported.
+
+## Result of the tail, stopped after h25 (2026-11-27 05:18:46 UTC; 2026-11-26 21:59:58 - 2026-11-27 05:18:46, 26328 s)
+
+By script from `run.log`, `*/rls.log`, `*/release_ls.jsonl`. The tail ran with the `kmax_rule.py` check at h23 (exit 0: c19 +1.496e-22, c21 +1.956e-24, r 0.0131 against the bar 0.05, h23 no step, pending +1.66e-27: kmax 23 suffices) and, as planned, **was stopped after h25**: when h25's "released" line appeared and `tail/release_ls_h25_D2231.0000.npz` existed (blob 121006d8c888f28827c95ee7d270dff6f08b531c),
+only the tail's `release_ls` python was killed by exact pid (62720, 05:18:46 UTC), the script wrote "tail rc 143" and ended. Neither exception applied (h23 took no step, r far below 0.05). There is no `direct_s.jsonl` for the tail (the run was cut before its end-of-run record): the final Delta below is the last accepted step's Delta in `tail/release_ls.jsonl`.
+
+- **ks used: 3364** (a 8, kc 250; the jump at ks 3364, converged in 351 s, Delta 1.648538566101591674746681352075236344965, kc+20 and ks+200 |dF| 0.0; the octo-double ks gate: ks 3364 -> 3564 **1.0e-72**, bar 1e-70, the start ks stands).
+- **Stages (wall):** jump 351 s; rls h5..h11 5570 s (22:06:17 - 23:39:07, after the gate); rls13 (h13, M 32) 3615 s (-> 00:39:22; h13's change +9.083e-18, qd check max |F| 2.08e-51, released at outer 3, pending +4.69e-29); tail (M 48) 16764 s (-> 05:18:46, with four jobs running at once, 24 threads on 18 cores).
+- **Tail** (h13 re-converged on M 48, then h15..h25; per-harmonic wall in brackets):
+
+| harmonic | change in Delta | pending dDelta at release | wall |
+|---|---|---|---|
+| h13 (M 32 -> 48 re-converge) | **-3.7827e-26** | +4.79e-29 (outer 1) | 2686 s |
+| h15 | -1.5717e-17 | +2.87e-32 | 3311 s |
+| h17 | -8.6768e-20 | -3.70e-36 | 3281 s |
+| h19 | +1.4962e-22 | -3.44e-36 | 2599 s |
+| h21 | +1.9565e-24 | +2.17e-31 | 3222 s |
+| h23 | none | **+1.66e-27** (harmonic step 1.81e-15), released at outer 0 | 815 s |
+| h25 | none | +2.23e-27 (harmonic step 3.04e-15), released at outer 0 | 819 s |
+
+- **Delta of D 2231 (the state at h25; h23 and h25 took no step): 1.648538566537369952331889184791940765214** (40 digits as logged; the pendings of h23 and h25 not in it); total -1.58033e-17 from the M 48 start. State `tail/release_ls_h25_D2231.0000.npz`; the stages' last Deltas: rls 1.648538566537369959052323794159006582003, rls13 1.648538566537369968135193157112081431594.
+- **Bars:** the jump converged and the ks gate passed (ks 3364): yes; h5..h13 each released: yes; the tail falls from h15 by about 1e2 or more per harmonic: h15/h17 = 181, h17/h19 = 580, h19/h21 = 76 (D 1291: 177, 520, 77); **h21's change 1.96e-24 (at most about 1e-23): met; h23 released with pending +1.66e-27, no step: met;** the h13 M 32 -> 48 re-converge -3.78e-26 (below 1e-25): met.
+  No qq inner solve failed in the tail, no line-search trial below lam 1, no outer step above 3x its harmonic's first.
