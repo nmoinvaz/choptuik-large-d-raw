@@ -14,3 +14,21 @@
 2026-11-27 02:08:22 UTC proc 2 (lambda 0.00,0.08,-0.04) exit 0
 2026-11-27 02:10:58 UTC proc 1 (lambda 0.04,-0.02,0.12) exit 0
 2026-11-27 02:12:56 UTC EXT STOP: the scan has not finished (no SCAN_DONE.txt)
+2026-11-27 02:13:37 UTC ext_after_scan.sh waits for SCAN_DONE.txt
+2026-11-27 04:00:05 UTC proc 0 (lambda 0.02,0.06,0.10,0.04) exit 0
+10 evaluations 10 noise-robust
+      3 D 22.25 k_c 119: |F| 4.0887449975e-10 (record 4.0892919493e-10), steps 3918 (record 3918): the record system
+      1 	Elapsed (wall clock) time (h:mm:ss or m:ss): 11:06:54
+      1 	Elapsed (wall clock) time (h:mm:ss or m:ss): 9:15:10
+      1 	Elapsed (wall clock) time (h:mm:ss or m:ss): 9:17:47
+      1 	Maximum resident set size (kbytes): 4054968
+      1 	Maximum resident set size (kbytes): 4111140
+      1 	Maximum resident set size (kbytes): 4146280
+2026-11-27 04:00:06 UTC read_lower selftest exit 0 (0 wanted); mutations shift exit 1, round2 exit 1 (1 wanted each)
+2026-11-27 04:00:06 UTC read_lower.py read the window (reading in read_lower.txt)
+2026-11-27 04:00:06 UTC repeat_check.py exit 0
+2026-11-27 04:00:06 UTC scan done
+2026-11-27 04:00:38 UTC SCAN_DONE.txt exists: starting run_scan_ext.sh
+2026-11-27 04:00:38 UTC extension gate passed: MemAvailable 27461 MiB (waited 0 s)
+2026-11-27 04:00:39 UTC EXTENSION: d18_secant.py (92b9bf53, blob eb1396ad) selftest exit 0 (0 wanted); --mutate=half exit 1, norobust exit 1, nosigncheck exit 1 (1 wanted each)
+2026-11-27 04:00:39 UTC EXTENSION scan starts: D 22.25, 3 evaluations (lambda -0.06 -0.08 -0.10, window -0.10 -0.04), 3 procs x 1 thread, nice 19; state sol_l1kc119dh170d2225_D22.2500.npy ecfe82b1, record 1ae7129b; --pin=ecfe82b1,1ae7129b
