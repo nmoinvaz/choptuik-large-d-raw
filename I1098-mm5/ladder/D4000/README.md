@@ -66,3 +66,25 @@ By script from `run.log`, `jump/jump.log`, `*/rls.log` and `*/release_ls.jsonl`.
 
 `ladder_point2.sh` runs h5-h11 under `timeout 6h` and h13 under `timeout 4h`, the tail under `timeout 10h`; D 8000 needs about 9.8 h and 5.8 h for its two stages (D 5555 on dh370 was killed this way at 09:16). `tools3/hold_timeouts.sh` (raw 6267c60b4 `I1098-mac-a/tools/hold_timeouts.sh`, blob b9a711cad555836b1887162281073b955c42ce21, verified and read) was started for `D4000/tail` (`bash tools3/hold_timeouts.sh <ladder>/D4000/tail 57600 <ladder>/D4000/tail/hold_timeouts.log`, detached): it stops (SIGSTOP) each `timeout` process whose command names `D4000/tail/`, continues it when its child exits, and ends a child still running 57600 s (16 h) after its timeout was stopped.
 First stop: the tail's `timeout 10h` (started 07:14 UTC) `timeout` pid **90867** stopped at 09:34:45 UTC (child 90868; `hold_timeouts.log`; ps shows the timeout in state T, the child running). Later stages' timeouts of this OUT are caught by its 60-s loop.
+
+## Result of the M 48 tail (the tail ended 2026-11-27 13:56:20 UTC, rc 0; 07:14:55 - 13:56:20, 24085 s)
+
+By script from `tail/job.log`, `tail/rls.log`, `tail/release_ls.jsonl` and `tail/direct_s.jsonl`.
+
+- **The gated ks at the M 48 start: 4717** (`tail/gate/ks_gate.log`: 4717 -> 4817, octo-double change **9.31e-98**, bar 1e-70; a 9.995, kc 260, M 48, fastmul7, chord-free).
+- **Tail** (h13 re-converged on M 48, then h15..h23; per-harmonic wall in brackets):
+
+| harmonic | change in Delta | pending dDelta at release | wall |
+|---|---|---|---|
+| h13 (M 32 -> 48 re-converge) | **-4.301e-26** | -2.71e-35 (outer 1) | 4924 s |
+| h15 | -1.3672e-17 | +2.66e-32 | 5029 s |
+| h17 | -7.3752e-20 | +1.11e-34 | 5038 s |
+| h19 | +1.1956e-22 | +1.29e-32 | 4057 s |
+| h21 | +1.541e-24 | +2.38e-31 | 4037 s |
+| h23 | none | **+1.32e-27** (harmonic step 1.00e-15), released at outer 0 | 999 s |
+
+- **Final Delta of the tail (the state's `Delta_parts` summed at 60 digits): 1.646485794200099300903871150089939408625** (h23's pending not in it); total -1.37455e-17 from the M 48 start. State `tail/release_ls_h23_D4000.0000.npz`, blob e5fddc61f0e6782dafc9ad05fd2cc6c6e0553a9d; od solve max |F| 6.18344e-52, qd check 1.73172e-49 (the quad-double floor at this D);
+  Hamiltonian check at the four nodes at most: p 4.8e-32, m 4.7e-32, a 3.1e-32, c 2.1e-30. The record's commit field reads d40a9c62.
+- **The kmax rule** (`tools3/kmax_rule.py`, blob 196f12a5; run 13:55:57 UTC): `c19 +1.196e-22, c21 +1.541e-24, r 0.0129 (bar 0.05), the geometric remainder past h21 2.01e-26 (err_tail's, information); h23: 0 steps, pending +1.32e-27: kmax 23 suffices`, **exit 0** (the h25 extension is not taken).
+- **Bars:** the ks gate at the M 48 start passes at 4717: yes; the h13 re-converge about 1e-25 or less: -4.30e-26, met; the tail falls from h15 by about 1e2 or more per harmonic: h15/h17 = 185, h17/h19 = 617, h19/h21 = 78 (D 2828: 183, 598, 77); h21's change 1.54e-24 (at most about 1e-23): met;
+  h23 released with pending +1.32e-27 and no step, no turn: met; the kmax rule exit 0: met. No qq inner solve failed, no line-search trial below lam 1, no floor, no outer step above 3x its harmonic's first.
