@@ -135,3 +135,27 @@ Threads: 3 beside `i1088a-d622x` (6 threads, python at nice 19, which has priori
 > 
 > R2's own bars for Δ stand as amended on 01:46 UTC. The scan runs on whichever machine is free when R2 ends.
 > 
+
+## Control result (27 Nov 07:25:17 to 07:50:46 UTC = 1529 s; unit `i1101c`; 2 processes, 1 thread each, nice 10; `results_ctl.md`, `read_lower_ctl.txt`, `scan_ctl/`, `scan_ctl_p0.raw`, `scan_ctl_p1.raw`)
+Both processes printed the pin check and `D 23.0 k_c 127: |F| 3.1911792672e-10 (record 3.1949266444e-10), steps 4179 (record 4179): the record system`, then `block 12 by ellrs (avx2, products dgemm, 1 threads)`, and exited 0; peak RSS 4.51 GiB (4733032 kB) and 4.51 GiB (4734076 kB). The selftests before the scan: `d18_secant.py` exit 0 and its mutations `half`, `norobust`, `nosigncheck` exit 1 each; `read_lower.py` exit 0 and `shift`, `round2` exit 1 each; `results_1101.py` selftest exit 0 and `shift`, `signs`, `e16` exit 1 each (`selftests/`).
+
+| bar | wanted | result | |
+|---|---|---|---|
+| signs | + at 0.045, then - at 0.050 | +, - | PASS |
+| robust | both points | both (noise signs equal the hybrid sign; dln 1.54e-05 and 2.50e-06) | PASS |
+| ln\|det\| at 0.045 | within 1e-4 of -3902.5303054577 | -3902.5303054577 (difference +4.1e-12 from the rounded reference; equal to dh370's double) | PASS |
+| ln\|det\| at 0.050 | within 1e-4 of -3901.1035170558 | -3901.1035170558 (difference -4.8e-11 from the rounded reference; equal to dh370's double) | PASS |
+| det-linear root | within 1e-5 of 0.045967998 | 0.045967998 (difference -9.2e-11) | PASS |
+| on the Rust block 12 | `b12` field `rust` | `rust` at both points | PASS |
+**The control passes every bar** (`results_1101.py control` exit 0). Beyond the bars: all numeric fields of both records (`sign`, `ln`, `noise`, `noise_ln`, `dln`, `f64_sign`, `f64_ln`) equal dh370's records of state B (ddm block 12, machine dh370) bit for bit, so the Rust block 12 on one thread here gives the stored Python block's bits on another machine of the same instruction set (avx2). `read_lower.py`: one robust change (0.045, 0.050), + to -, det-linear 0.045968, range [0.045968, 0.045968] (two points: the range is of the interpolation choices, not an enclosure). The float64 sign differs from the hybrid sign at 0.045, as in dh370's.
+
+| prediction | result |
+|---|---|
+| build exit 0 at the first try (85%), 1 to 5 min | right: 47 s |
+| selftest 0, mutations 1 1 (92%); k_c 31 15010 of 15010 (90%); both controls FAIL (95%) | right |
+| control: + then -, both robust (90%) | right |
+| control: ln\|det\| within 1e-4 (85%); within 1e-9, the same bits (55%) | right, and more: every numeric field is bit for bit dh370's |
+| control: root within 1e-5 (88%); within 1e-8 (55%) | right: -9.2e-11 |
+| control wall 2400 to 4800 s per point | WRONG, faster: 1521 s and 1515 s per point (float64 blocks 413 s, Rust block 12 1074 s, logdet 34 s and 28 s on one thread), the two in parallel 1529 s in all (dh370's ddm points took 6818 s and 6678 s, 4.5 times as long) |
+## Status
+- 2026-11-27 07:55 UTC: gates and control done; R2's scan waits for `I1101-win2/R2/` on the raw origin (expected about 11:30 UTC). Each point costs about 1520 s on one thread, so R2's four points take about 26 min when run in parallel.
