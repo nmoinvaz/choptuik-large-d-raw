@@ -198,3 +198,32 @@ What the four points do and do not say (mine, outside the bars):
 
 ## Status
 - 2026-11-27 12:15 UTC: R2's scan done (6650 s): hybrid sign + at 0.045, 0.050, 0.060, 0.070, all robust; no pair brackets: reported to t5, waiting for t5's order (nothing widened).
+
+## R2 widened scan (t5's order, comment 7218045186, 27 Nov 12:16 UTC by t5's clock; this section written 2026-11-27 12:20 UTC by the clock, before the scan starts)
+**Bars and reading (t5's, fixed before the run; each can fail).** R2's state, the same pins and scanner, Rust block, 1 thread each: lambda 0.085, 0.100, 0.130 (above) and 0.035 (below), 4 processes, nice 10.
+- The first robust sign change found gives the bracket. Then `d18_secant.py run` on it at tol 5e-5, and delta = root - 0.045968, E_root = delta x 16/15, read against this issue's bars (|E_root| >= 3e-3 real, <= 1e-3 refutes #1103's inference, between mixed).
+- No robust change in [0.035, 0.130]: reported as measured, and then the next points are 0.025 and 0.17 (not started by me; I report and wait).
+- For information (t5): R2's Delta equals the source's to 1.1e-11, so a root shift of order 0.02 would sit in the step error of the mode matrix's own integration (its blocks are integrated with the state's step map), not in the state.
+- My additions, written before the run: "the first robust change" is read over the eight points of `scan_r2/` (0.045, 0.050, 0.060, 0.070) and `scan_r2w/` (0.035, 0.085, 0.100, 0.130) together, neighbouring points only, both ends noise-robust with dln <= 0.1, and where there are several the lowest-lambda one gives the bracket and the others are listed (t5 decides what follows). The secant record is read only if its status is `tol`, both ends robust with opposite signs, and its bracket lies inside the scan's pair; root = `lam_lin`. The secant evaluates its two ends again (about two points of cost); it runs on 1 thread as the scan does. No other lambda is run.
+- The control's orientation (+ below the root) is not assumed by the reading; it only sorts my predictions.
+
+**Pins.**
+| what | where | blob |
+|---|---|---|
+| R2 state and record | unchanged (R2 pins above): `in/sol_l1kc127k035w2_D23.0000.npy`, `in/l1kc127k035w2.jsonl` | 25ba3a91, 9111bfca |
+| scanner, block 12 driver, worktree | `d18_secant.py`, `ell_b12rs.py`, `~/Source/choptuik-large-d-1102` at d4b6b6ce (unchanged) | 9706e506, a1fff74f |
+| reader | `read_lower.py`, `d185_scan_read.py` (unchanged) | 89309d3c, 7c9d400f |
+| reading script | `results_1101.py` with the new mode `r2w` (the version before is `selftests/results_1101_before_r2w.py`; `r2` and `control` unchanged) | 0ee6b8bf |
+| driver | `run_scan_w.sh` (the scan, then the secant if a bracket is found) | 4a762140 |
+Sequence: the unit `i1101r2w` runs `run_scan_w.sh`: pins, wait for step 1d's four roots of #1105 to end (`DONE_c150`, `DONE_c165w`, `DONE_r150`, `DONE_r165w`; a `STOP_` counts as ended) and refuse to start if one of the four was refused (`HOLD_r2w.txt`), the `results_1101.py` selftest (0) and its mutations `shift`, `signs`, `e16`, `last` (1 each; `selftests/selftest_results_w*.txt`), the scan (4 processes), `read_lower.py` on `scan_r2all/` (the eight points), `results_1101.py r2w scan_r2 scan_r2w` (exit 2 none, 3 a bracket), then if 3 the secant `d18_secant.py run RECORD STATE 23.0 LO HI secant_r2w.jsonl --tol=5e-5 --maxev=20 --b12=rust --b12_threads=1 --pin=25ba3a91,9111bfca`, then `results_1101.py r2w ... --secant=secant_r2w.jsonl` (exit 0 formed, 4 not read). Steps and exits in `steps.txt`.
+
+| item | prediction (mine, registered before the run; information, not pass rules) |
+|---|---|
+| first robust change in [0.035, 0.130] | none: 45%; (0.100, 0.130): 25%; (0.085, 0.100): 12%; (0.070, 0.085): 8%; (0.035, 0.045): 7%; two or more changes: 8% (inside the above, counted by the lowest) |
+| a pole fit, for information | ln\|det\| = a + b lambda + ln\|lambda0 - lambda\| on the four R2 points (1 degree of freedom) has its best fits at lambda0 near 0.12 (rms 8e-4 in ln) and near 0.00 (1.5e-3); every far root fits to 1e-2. It does not locate a root |
+| given a change: the bar | |E_root| >= 3e-3 (real): 97%, because a root above 0.070 has E_root > 0.0256 and one in (0.035, 0.045) has |E_root| between 1.0e-3 and 1.2e-2 |
+| all four new points robust | 80% |
+| wall | scan: 4 processes alone, 1800 to 3000 s per point (the control's 1521 s was 2 processes); secant: 2 end points and 3 to 6 interior points of 1500 to 2500 s each, 2 to 4 h in all |
+
+## Status
+- 2026-11-27 12:20 UTC: widened scan prepared and pinned; waits for step 1d's roots (c150, r150, r165w, c165w running; c165's first run and r165's were refused, same-signed ends, and both were rerun on 2.138 to 2.172).
