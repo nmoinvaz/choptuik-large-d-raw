@@ -2,3 +2,10 @@ capped_run: child pid 59311, cap 18000 s
 pins: state a62d6f776478fc209db3554788ab50858ec20646 (wanted a62d6f77), stub 548aa8b4b36a5a838e911be5544618d2902c5fce (wanted 548aa8b4)
 D 23.0625 k_c 143: |F| 3.0496607476e-10 (record 3.0496607476e-10), steps 4706 (record 4706): the record system
 bracket (0.015, 0.02), tol 1e-05, maxev 10, mode matrix fast (jac), block 12 ddm, noise 1e-15, dln <= 0.1, sol_l1kc143macm3d230625_D23.0625.npy
+  lam 0.015 (lo): hybrid +1 ln|det| -4509.7400097146, noise [1.0, 1.0] dln 7.50e-04, robust True; float64 -1 -4504.4180271056 (1029 s [87, 931, 12])
+  lam 0.02 (hi): hybrid -1 ln|det| -4506.8473917247, noise [-1.0, -1.0] dln 2.04e-05, robust True; float64 -1 -4504.6319899367 (845 s [88, 746, 12])
+  lam 0.015262598454723868 (interior): hybrid -1 ln|det| -4509.8885757561, noise [-1.0, -1.0] dln 8.39e-04, robust True; float64 -1 -4504.2381690979 (841 s [84, 745, 12])
+  lam 0.015141034630630856 (interior): hybrid -1 ln|det| -4513.8674747425, noise [-1.0, -1.0] dln 4.67e-02, robust True; float64 -1 -4505.9797083524 (841 s [84, 745, 12])
+  lam 0.015136034630630856 (interior): hybrid +1 ln|det| -4513.7030162934, noise [1.0, 1.0] dln 3.80e-02, robust True; float64 -1 -4503.5514882377 (844 s [85, 747, 12])
+root: status tol (-), bracket [0.015136034630630856, 0.015141034630630856] width 5.000e-06, signs [1.0, -1.0], det-linear 0.015138739741604628, Brent 0.015141034630630856, 5 evaluations, 4400 s
+capped_run: exit 0 wall 4414 s cap_hit False
