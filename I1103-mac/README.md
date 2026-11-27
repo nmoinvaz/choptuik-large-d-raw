@@ -111,3 +111,11 @@ states of spectrum/'s table. `planted.log`: the flat-centre Bessel gain fit reco
 - `kc8seq.log`, `bands.log`: the k_c + 8 embedding and the x1.07 RK change along k_c 87-135 (D 23.0) and 119-143
   (D 23.0625), in norm and by harmonic band.
 - `u0_probe.log`: the horizon start u0 (0.01-0.08) with Ks 30/45, horizon steps x1/x2 and N 408/544/816.
+
+## extrap/ (option 3)
+Code commit 16bd94c3. `i1103_extrap.py`: planted sequences (geo, rk4, geo+rk4 truths, sigma 1.75e-4) and fits of the real
+roots (D 23.0, 23.0625) and zeros D_c(k_c) (`extrap.log`); control `--mutate=noRK` fails (`planted.log`).
+`i1103_twovar.py`: the two-variable truth at the measured rates (rho 0.35, 0.5; RK ~ k_c^-4) fitted to the real zeros,
+and what the k_c-only geometric extrapolation gives against it (`twovar.log`); control `--mutate=zeroB` (B = 0, geo
+unbiased, `twovar_zeroB.log`). Roots from raw I1025-macm3/kc*_d23*/point_summary.txt, I1025-win/kc127_d23 and
+I1025-win2/kc135_d23/secant/secant.log; zeros as listed in #1103's brief. Spreads are MC spreads at the assumed scatter.

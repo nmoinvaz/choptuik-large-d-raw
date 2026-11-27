@@ -1,0 +1,19 @@
+rho 0.35: fit to the real zeros D_c* 23.09813, a 1639, b -0.07852 (rms/sigma 3.12); RK part at k_c 135: -0.02364, truncation part: +0.000033
+   geo     : median 23.09394, MC spread 0.00076, bias against D_c* -0.00419
+   last    : median 23.07452, MC spread 0.00026, bias against D_c* -0.02360
+   geo+rk4 : median 23.09820, MC spread 0.00077, bias against D_c* +0.00008
+rho 0.5: fit to the real zeros D_c* 23.10138, a 63.11, b -0.08934 (rms/sigma 2.31); RK part at k_c 135: -0.02690, truncation part: +0.000525
+   geo     : median 23.09507, MC spread 0.00075, bias against D_c* -0.00632
+   last    : median 23.07500, MC spread 0.00028, bias against D_c* -0.02639
+   geo+rk4 : median 23.10131, MC spread 0.00144, bias against D_c* -0.00008
+
+two-variable fit within 2 spreads of the truth: pass; k_c-only geo biased (over 2 spreads) in at least one case: True
+real zeros, geo      k_c >= 87: D_inf 23.09568 chi2/dof 10.36 theta -2.69 0.749
+real zeros, geo      k_c >= 103: D_inf 23.10838 chi2/dof 5.22 theta -1.23 0.806
+real zeros, geo+rk4  k_c >= 87: D_inf 23.11036 chi2/dof 6.75 theta 18.6 0.621 -0.135
+real zeros, geo+rk4  k_c >= 103: D_inf 23.14991 chi2/dof 1.54 theta 34.9 0.693 -0.482
+real zeros, rk4      k_c >= 87: D_inf 23.09236 chi2/dof 95.55 theta -0.0666
+real zeros, rk4      k_c >= 103: D_inf 23.09707 chi2/dof 30.14 theta -0.0755
+real zeros, alg      k_c >= 87: D_inf 23.11455 chi2/dof 5.38 theta -0.0915 2.83
+real zeros, alg      k_c >= 103: D_inf 23.13173 chi2/dof 4.24 theta -0.107 2.17
+exit 0

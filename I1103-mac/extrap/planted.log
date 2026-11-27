@@ -1,0 +1,8 @@
+== --mutate=''
+planted: each true model within 2 of its spreads of the truth -> pass; control, geo fitted to geo+rk4 data misses by 2.6 spreads -> pass (it fails as it must)
+planted tests: PASS
+exit 0
+== --mutate='noRK'
+planted: each true model within 2 of its spreads of the truth -> FAIL; control, geo fitted to geo+rk4 data misses by 2.6 spreads -> pass (it fails as it must)
+planted tests: FAIL
+exit 0
