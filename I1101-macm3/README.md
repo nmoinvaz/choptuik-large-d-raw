@@ -95,3 +95,4 @@ The secant of K4w was stopped by pid at 17:44:51 UTC (see above). t5's reading (
 - **Secant** (scored only if it runs): exit 0 55%, exit 4 40%; per evaluation in (330, 560) s 60%; run wall 40 to 100 min 60%; peak RSS in (6.0, 10.0) GiB 55%.
 - **The root** (its nearest of t5's three; consistent re-solves rise monotonically with finer kappa so far): **nearest 0.133 (kappa^2), root above 0.1265, 40%**; nearest 0.120 (kappa^3), root in (0.1155, 0.1265), 33%; nearest 0.111 (kappa^4), root in (0.105, 0.1155), 17%; none of the three (below 0.105 or above 0.14) 10%; above R1's 0.09500769 98%; above R2's secant root (when it is known) 85%.
 - **The lane** (launch to the secant exit line): 190 to 320 min 55% (regrid about 100 min, scan about 30, secant about 70, stages and pushes about 10).
+- 2026-11-27 17:49 UTC: hc to t5 at 17:49 UTC: the K4w secant stopped by pid (17:44:51), R3 started 17:48:37 UTC (pilot hc sent by the lane).
