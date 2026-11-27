@@ -108,3 +108,8 @@ block 12 by ellrs (avx2, products dgemm, 1 threads)
 	Maximum resident set size (kbytes): 4734140
 2026-11-27 17:31:28 UTC [k] results_1101k.py scan exit 2 (2 no robust change, 3 a bracket, results_k.md)
 2026-11-27 17:31:28 UTC [k] done: no robust change, no secant (report and wait)
+2026-11-27 17:35:52 UTC [k2] pins ok: worktree f56f91d2 (d18_secant.py 2f3ee874, ell_b12rs.py a1fff74f), state B 90d3e655 / d1a3a641, read_lower.py 89309d3c, results_1101k.py c31a27c3; kappa_mm 0.35; lambdas 0.040,0.055,0.070,0.150 (files p4..)
+2026-11-27 17:35:53 UTC [k2] d18_secant.py selftest exit 0 (0 wanted); mutations half exit 1, norobust exit 1, nosigncheck exit 1 (1 wanted each)
+2026-11-27 17:35:53 UTC [k2] results_1101k.py selftest ok=1 (1 wanted); mutations ref and bar both fail=2 (2 wanted)
+2026-11-27 17:35:53 UTC [k2] scan starts: D 23.0, lambda 0.040,0.055,0.070,0.150, one process per lambda, 1 thread each, nice 10, --b12=rust --b12_threads=1 --kappa_mm=0.35
+2026-11-27 17:36:13 UTC [k2] kappa_mm step-count check exit 0 (0 wanted): - PASS: scan_k2_p4.raw: kappa_mm 0.35: 8351 steps (record kappa 0.7: 4179); wanted 8351 +- 2%

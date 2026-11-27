@@ -376,6 +376,7 @@ The same state B with `--kappa_mm=0.35`, Rust block, at lambda 0.070, 0.055, 0.0
 
 ## Status
 - 2026-11-27 17:35 UTC: bars, reading rule, pins, driver and predictions written before any run of the extension. Not started.
+- 2026-11-27 17:35:53 UTC: unit `i1101k2` started (`run_scan_k2.sh`, 969cf894). Selftests 0/1/1/1 and 0 with both reader mutations failing; the four scans (lambda 0.040, 0.055, 0.070, 0.150; files p4..p7; nice 10, 1 thread each, beside R2's secant) started 17:35:53 UTC; at 17:36:13 all four print `kappa_mm 0.35: ... 8351 steps (the record's kappa 0.7: 4179)` and the record system (|F| 3.1912e-10 against 3.1949e-10, 4179 steps), `steps_check_k2.txt` PASS.
 
 ## Order, verbatim
 
