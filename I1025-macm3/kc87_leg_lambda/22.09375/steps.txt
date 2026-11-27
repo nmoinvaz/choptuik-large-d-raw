@@ -1,0 +1,26 @@
+2026-11-27 01:13:25 UTC accept: D 22.09375 (loadavg { 3.86 4.04 4.47 }, free memory 85%, 15.0 GiB available, disk 35Gi free)
+2026-11-27 01:13:25 UTC inputs pinned: state 50282f80 and record 3135470b from raw 01087f15 (pins.txt); kc87_syscheck 6df5d960, kc79_syscheck 29dce7ea, d18_hybsign e089207a, read_lower 89309d3c, d185_scan_read 7c9d400f, repeat_check aaf598a9
+2026-11-27 01:13:25 UTC worktree 505d8399, clean outside solver/matter/data; Python 3.14.3, multidouble isa neon
+2026-11-27 01:13:25 UTC selftests: kc87_syscheck exit 0, kc79_syscheck exit 0 (0 wanted)
+2026-11-27 01:13:28 UTC kc87_syscheck_1025.py exit 0 (0 wanted); controls --mutate=F exit 1, --mutate=steps exit 1 (1 wanted each); kc79_syscheck_1025.py on the k_c 87 state exit 1 (1 wanted): D 22.0938 k_c 87: record |F| 3.9779705736e-10, F_start 9.851e-06, steps 2872, constraint 6.673e-03, Delta 1.148269693039, 1731 s; state |F| 3.9779705736e-10, freeze_from steps 2872
+2026-11-27 01:13:28 UTC verdict: ACCEPTED 2026-11-27 01:13:28 UTC
+2026-11-27 01:13:28 UTC scan: D 22.09375 (loadavg { 3.88 4.04 4.47 }, free memory 85%, 14.9 GiB available, disk 35Gi free)
+2026-11-27 01:13:28 UTC inputs pinned: state 50282f80 and record 3135470b from raw 01087f15 (pins.txt); kc87_syscheck 6df5d960, kc79_syscheck 29dce7ea, d18_hybsign e089207a, read_lower 89309d3c, d185_scan_read 7c9d400f, repeat_check aaf598a9
+2026-11-27 01:13:28 UTC worktree 505d8399, clean outside solver/matter/data; Python 3.14.3, multidouble isa neon
+2026-11-27 01:13:28 UTC memory before the scan: about 15.0 GiB available (free+inactive+speculative+purgeable), 85% free by memory_pressure; 4 processes for 6 values (the k_c 87 scan of D 19.75 with 4 processes: 4.07, 2.62, 2.52, 2.51 GB peak RSS, available 17.6 down to 10.0 GiB), gate 10 GiB
+2026-11-27 01:13:28 UTC scan starts: D 22.09375, 6 values (0.495 0.500 0.505 0.510 0.515 0.505) on 4 processes of 1 thread, nice 15, round-robin (a process runs its values one after another); the first 0.505 on process 2, the repeat on process 1; state sol_l1kc87Lmacm3b2_D22.093750.npy 50282f80, record 3135470b; alert watcher on (hc: /Users/nathan/.local/bin/hc)
+2026-11-27 01:13:30 UTC proc 0 lambda 0.495,0.515: capped_run child pid 25496 (cap 28800 s)
+2026-11-27 01:13:32 UTC proc 1 lambda 0.500,0.505: capped_run child pid 25555 (cap 28800 s)
+2026-11-27 01:13:34 UTC proc 2 lambda 0.505: capped_run child pid 25569 (cap 28800 s)
+2026-11-27 01:13:36 UTC proc 3 lambda 0.510: capped_run child pid 25577 (cap 28800 s)
+2026-11-27 01:27:03 UTC proc 2 (lambda 0.505) exit 0
+2026-11-27 01:27:05 UTC proc 3 (lambda 0.510) exit 0
+2026-11-27 01:34:49 UTC proc 0 (lambda 0.495,0.515) exit 0
+2026-11-27 01:34:51 UTC proc 1 (lambda 0.500,0.505) exit 0
+6 evaluations, 6 noise-robust
+   4 D 22.09375 k_c 87: |F| 3.9779705736e-10 (record 3.9779705736e-10), steps 2872 (record 2872): the record system
+2026-11-27 01:34:51 UTC read_lower selftest exit 0 (0 wanted); mutations shift exit 1, round2 exit 1 (1 wanted each)
+2026-11-27 01:34:51 UTC read_lower.py read the window (reading in read_lower.txt)
+2026-11-27 01:34:51 UTC repeat_check selftest exit 0 (0 wanted)
+2026-11-27 01:34:51 UTC repeat_check.py on the merged scan exit 0 (0 agree, 1 disagree, 2 no repeat)
+2026-11-27 01:34:51 UTC scan done
