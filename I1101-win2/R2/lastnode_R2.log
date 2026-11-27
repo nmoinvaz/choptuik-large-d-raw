@@ -37,3 +37,11 @@ D:\choptuik-i1025k79\solver\matter\dss_ell.py:85: RuntimeWarning: invalid value 
   return f @ self._Dm
 D:\choptuik-i1025k79\solver\matter\dss_ell.py:325: RuntimeWarning: invalid value encountered in subtract
   aG = cs(A, Q2, Kk) + (n - 1) * (A[Kk] - cs(A, A2, Kk)) + 2 * L * cs(A, G, Kk)
+D:\choptuik-i1025k79\solver\matter\dss_ell.py:214: RuntimeWarning: overflow encountered in divide
+  ax = a * ((p * p + m * m) + 2 * L * g + (n - 1) * (1 - a2)) / (2 * x)
+D:\choptuik-i1025k79\solver\matter\dss_ell.py:218: RuntimeWarning: invalid value encountered in add
+  px = (-self.D(p, omega) + cx * p - c * p / x + pc - lt) / (x - c)
+D:\choptuik-i1025k79\solver\matter\dss_ell.py:219: RuntimeWarning: invalid value encountered in subtract
+  mx = (-self.D(m, omega) - cx * m + c * m / x - pc + lt) / (x + c)
+D:\choptuik-i1025k79\solver\matter\dss_ell.py:85: RuntimeWarning: overflow encountered in matmul
+  return f @ self._Dm
