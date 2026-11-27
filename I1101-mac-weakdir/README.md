@@ -129,3 +129,5 @@ segment has 1356 steps), so the queue would take about 8 h. For the roots not ye
 w001): block 12 `--b12=fast` (ell_fastdd, the same double-double block to 4e-25 per d18_secant's docstring) and 2 BLAS
 threads; tol 1e-6 for K50, K25, K70, w10 and w001 (the order bar reads differences of 3e-3 and up), 1e-7 for U40 (the
 scanner control, bar 2). K35's root keeps its settings. Bars unchanged.
+Further amendment, 22:31 UTC by the clock: K35's ddm root was stopped after its first evaluation (kept as
+`B/root_l1kc55k035m_ddm_stopped.*`) and restarted with the amended settings (fast block 12, 2 threads, tol 1e-6).
