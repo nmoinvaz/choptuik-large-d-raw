@@ -1,0 +1,18 @@
+== --mutate=''
+planted strip: d 0.01 -> 0.00989 (rms 0.09) -> pass
+planted closing point, D_c 23.08, nu 0.5: D0 23.088 nu 0.5103028243987605 -> pass
+planted closing point, none near D_c (linear, zero at 26.1): D0 25.466 nu 0.8298822134791692 -> pass
+planted tests: PASS
+exit 0
+== --mutate='flipD'
+planted strip: d 0.01 -> 0.00989 (rms 0.09) -> pass
+planted closing point, D_c 23.08, nu 0.5: D0 nan nu None -> FAIL
+planted closing point, none near D_c (linear, zero at 26.1): D0 nan nu None -> FAIL
+planted tests: FAIL
+exit 1
+== --mutate='nowin'
+planted strip: d 0.01 -> 0.00685 (rms 2.22) -> FAIL
+planted closing point, D_c 23.08, nu 0.5: D0 23.088 nu 0.5103028243987605 -> pass
+planted closing point, none near D_c (linear, zero at 26.1): D0 25.466 nu 0.8298822134791692 -> pass
+planted tests: FAIL
+exit 1
