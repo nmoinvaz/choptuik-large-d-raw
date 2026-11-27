@@ -251,3 +251,53 @@ Sequence: the unit `i1101r2w` runs `run_scan_w.sh`: pins, wait for step 1d's fou
 > - For information: R2's Δ equals the source's to 1.1e-11. So a root shift of order 0.02 would sit in the step error of
 >   the mode matrix's own integration (its blocks are integrated with the state's step map), not in the state.
 > 
+
+
+# Test K: is the step error in the mode matrix alone? (state B with --kappa_mm=0.35)
+
+Written 2026-11-27 15:56 UTC by the clock, before any run of Test K (bars, reading rule, pins, driver, reader with its planted selftest and predictions first; t5's order is quoted at the end). Folder `I1101-dh170/`; files `run_scan_k.sh`, `results_1101k.py`, `scan_k/`, `scan_k_p*.raw`, `ctl_k31/`, `secant_k.jsonl`, `steps_check_k.txt`, `read_lower_k.txt`, `results_k.md`, `results_k_secant.md`. Issue #1101; coordinator t5. t5's order (the hc after step 1e, and comment 7222591656): beside R2's secant, scan state B with `--kappa_mm=0.35 --b12=rust --b12_threads=1` at lambda 0.085, 0.100, 0.115, 0.130, 4 processes, nice 10; check the `kappa_mm 0.35 ... steps` line (about 8351); then `run` at tol 5e-5 on the robust change and compare with R2's secant root.
+
+## Bars (t5's, fixed before the run; each can fail)
+r2 is the root of R2's own secant (`secant_r2w.jsonl`, d18_secant.py run, tol 5e-5, the det-linear root `lam_lin`).
+- **|root - r2| <= 3e-3** (the path scatter between two states at k_c 143 was 2.2e-3): the state's kappa does not matter, the step error is the mode matrix's; then #1104 uses `--kappa_mm` on the stored states, without re-solves.
+- **|root - r2| >= 1e-2**: the state's kappa matters too.
+- **Between**: reported as measured.
+- The step-count line: about 8351 (R2's record steps at kappa 0.35).
+
+**Reading rule (mine, stated before the run):** a root is read only from a `d18_secant.py run` ending with status `tol`, both bracket ends robust with opposite hybrid signs, inside the scan's bracket (the same rule for R2's record). The difference is read on the ranges [a - d, b - c] of the final brackets [a, b] (Test K) and [c, d] (R2): the whole range inside +-3e-3 reads as the first bar, the whole range at 1e-2 or more in size as the second, anything else (a range that straddles a bar included) as between. `lam_lin`'s difference is printed beside it. The step-count line must be 8351 +- 2% (mine; the scans are killed otherwise and the cause is looked for). The scan's bracket is the first robust change (lowest lambda, the others listed). If no pair brackets in 0.085-0.130: reported as measured, nothing widened by me (t5's order names no further points). `--ends` hands the scan's two end records to `run` (bit-identical evaluations: R2's secant re-evaluated 0.100 to the same ln|det|, -4219.6804690495), which saves two evaluations; this is my choice beyond the order. Estimator values at the width of the final bracket, not rigorous enclosures.
+
+## Pins (by blob; the driver refuses any other)
+| what | where | blob |
+|---|---|---|
+| scanner with `--kappa_mm` | worktree `~/Source/choptuik-large-d-1101k` at `wip/ell1-kappa-mm` f56f91d2 (d4b6b6ce plus 16 lines of `d18_secant.py`), `solver/matter/d18_secant.py` | 2f3ee874 |
+| Rust block 12 | `ell_b12rs.py` (unchanged from d4b6b6ce), ellrs in `~/Source/ellrs-site-1102` (avx2 matrixmultiply), venv `~/Source/choptuik-large-d-1058b/.venv` | a1fff74f |
+| state B (R0's re-solve at kappa 0.7, k_c 127, D 23.0) | raw `I1101-win2/R0/sol_l1kc127k070w2_D23.0000.npy`, copy in `in/` (the control's) | 90d3e655 |
+| record of state B | `I1101-win2/R0/l1kc127k070w2.jsonl`, copy in `in/` | d1a3a641 |
+| k_c 31 controls | `in/sol_l1kc31r1025_D10.5000.npy`, `in/l1kc31r1025.jsonl` (the gate's) | f07a8984, e5a87ec5 |
+| reader of the scans | `read_lower.py`, `d185_scan_read.py` (the control's) | 89309d3c, 7c9d400f |
+| reader of Test K | `results_1101k.py` (selftest exit 0, `--mutate=ref`, `--mutate=bar`, `--mutate=last` exit 1; `selftests/selftest_results_1101k*.txt`) | c31a27c3 |
+| driver | `run_scan_k.sh` | bf5c1c83 |
+
+## Commands (unit `i1101k` runs `run_scan_k.sh`; steps in `steps.txt`, tag `[k]`)
+1. `d18_secant.py selftest` (exit 0) and its mutations `half`, `norobust`, `nosigncheck` (exit 1 each) in the new worktree; `results_1101k.py selftest` and its mutations.
+2. The k_c 31 controls (t5's test on this machine and build): `d18_secant.py scan in/l1kc31r1025.jsonl in/sol_l1kc31r1025_D10.5000.npy 10.5 2.87 OUT --b12=rust --b12_threads=1` plain, with `--kappa_mm=0.7` (the record's kappa: ln|det| and sign bit for bit equal to the plain scan) and with `--kappa_mm=0.35` (ln|det| moves by more than 1e-3; t5 saw +0.695 on its lambda). Three processes, 1 thread each, nice 10.
+3. The scan: `d18_secant.py scan in/l1kc127k070w2.jsonl in/sol_l1kc127k070w2_D23.0000.npy 23.0 L scan_k/scan_D23.0_p<i>.jsonl --b12=rust --b12_threads=1 --kappa_mm=0.35 --pin=90d3e655,d1a3a641` for L in 0.085, 0.100, 0.115, 0.130, one process each, 1 thread, nice 10, `PYTHONPATH=SITE`. Its raw output must print `kappa_mm 0.35: ... 8351 +- 2% steps` and the record system (|F| and steps equal to the record's).
+4. `read_lower.py scan_k 0.085 0.130` and `results_1101k.py scan scan_k`.
+5. `d18_secant.py run RECORD STATE 23.0 LO HI secant_k.jsonl --tol=5e-5 --maxev=20 --b12=rust --b12_threads=1 --kappa_mm=0.35 --ends=scan_kall.jsonl --pin=90d3e655,d1a3a641` on the first robust change; then `results_1101k.py scan scan_k --secant=secant_k.jsonl --r2=secant_r2w.jsonl` (needs R2's secant to have ended with status `tol`).
+
+## Predictions (mine, registered before the run; information, not pass rules)
+| item | prediction |
+|---|---|
+| the `kappa_mm 0.35` step count within 2% of 8351 | 90% |
+| k_c 31 control: kappa_mm 0.7 bit for bit equal to plain | 90% (t5 saw it); kappa_mm 0.35 moves ln\|det\| by more than 1e-3: 97% |
+| the scan has a robust change in 0.085-0.130 | 65% (no change 35%; R2's own bracket (0.100, 0.130) with det-linear 0.129367 and estimator range 0.1025-0.1294 puts state B's root near R2's if t5's reading holds, which can sit just above 0.130) |
+| given a root: \|root - r2\| <= 3e-3 (whole range) | 40%; between 3e-3 and 1e-2 or straddling: 30%; 1e-2 or more: 30% (state B's kappa 0.7 solve and R2's kappa 0.35 solve are different discrete solutions, and the determinant amplifies state differences exponentially, so the 2.2e-3 scatter between two k_c 143 states is the scale to compare with) |
+| scan wall per point (4 processes beside R2's secant, 5 busy threads on 4 cores) | 4400 to 6000 s: 60% |
+| secant wall (about 9 evaluations, no end evaluations) | 4 to 6 h: 60% |
+
+## Status
+- 2026-11-27 15:56 UTC: bars, reading rule, pins, driver, reader (planted selftest, three mutations) written before any run of Test K. Not started.
+
+## Order, verbatim
+
+> t5: step 1e accepted: re-solves agree 4-8x better with each other than with the stored states, and the offset is flat at D 15-15.5 then rises. #1105's u0 question is answered and the offsets are recorded. Its next steps wait, because #1101 matters more now. New order, #1101 Test K (my newest #1101 comment is the record), beside R2's secant: a worktree of wip/ell1-kappa-mm at f56f91d2 (d18_secant.py blob 2f3ee874; the same ellrs SITE ~/Source/ellrs-site-1102 works, ell_b12rs.py is unchanged). Scan state B (I1101-win2/R0/, blobs 90d3e655 and d1a3a641) with --kappa_mm=0.35 --b12=rust --b12_threads=1 at lambda 0.085, 0.100, 0.115, 0.130, 4 processes, nice 10. Check the 'kappa_mm 0.35 ... steps' line, which should be about 8351. Then 'run' at tol 5e-5 on the robust change, and compare with R2's secant root against the bars: within 3e-3 means the mode matrix alone; 1e-2 or more means the state matters too.

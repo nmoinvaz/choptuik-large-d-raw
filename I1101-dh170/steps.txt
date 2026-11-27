@@ -48,3 +48,29 @@ block 12 by ellrs (avx2, products dgemm, 1 threads)
 2026-11-27 12:12:18 UTC [r2] results_1101.py r2 exit 2 (results_r2.md)
 2026-11-27 12:12:18 UTC [r2] done
 2026-11-27 12:20:59 UTC [r2w] pins ok: state 25ba3a91 record 9111bfca; d18_secant.py 9706e506, ell_b12rs.py a1fff74f at d4b6b6ce; read_lower.py 89309d3c; results_1101.py 0ee6b8bf; lambdas 0.085,0.100,0.130,0.035; waiting for step 1d's four roots
+2026-11-27 12:46:59 UTC [r2w] step 1d's four roots ended (c150 DONE 2026-11-27 12:45:36 UTC, root exit 0;c165w DONE 2026-11-27 12:45:02 UTC, root exit 4;r150 DONE 2026-11-27 12:30:29 UTC, re-solve exit 0, root exi;r165w DONE 2026-11-27 12:46:57 UTC, root exit 0;)
+2026-11-27 12:46:59 UTC [r2w] results_1101.py selftest exits (plain, shift, signs, e16, last): 0 1 1 1 1 (0 1 1 1 1 wanted)
+2026-11-27 12:46:59 UTC [r2w] scan starts: D 23.0, lambda 0.085,0.100,0.130,0.035, one process per lambda, 1 thread each, nice 10, --b12=rust --b12_threads=1
+2026-11-27 14:00:56 UTC [r2w] lambda 0.100 exit 0
+2026-11-27 14:00:57 UTC [r2w] lambda 0.085 exit 0
+2026-11-27 14:01:04 UTC [r2w] lambda 0.130 exit 0
+2026-11-27 14:01:09 UTC [r2w] lambda 0.035 exit 0
+2026-11-27 14:01:09 UTC [r2w] scan done: 4450 s
+D 23.0 k_c 127: |F| 3.1258555149e-10 (record 3.1242366894e-10), steps 8351 (record 8351): the record system
+block 12 by ellrs (avx2, products dgemm, 1 threads)
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 1:13:57
+	Maximum resident set size (kbytes): 4734352
+D 23.0 k_c 127: |F| 3.1258555149e-10 (record 3.1242366894e-10), steps 8351 (record 8351): the record system
+block 12 by ellrs (avx2, products dgemm, 1 threads)
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 1:13:57
+	Maximum resident set size (kbytes): 4734476
+D 23.0 k_c 127: |F| 3.1258555149e-10 (record 3.1242366894e-10), steps 8351 (record 8351): the record system
+block 12 by ellrs (avx2, products dgemm, 1 threads)
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 1:14:04
+	Maximum resident set size (kbytes): 4734668
+D 23.0 k_c 127: |F| 3.1258555149e-10 (record 3.1242366894e-10), steps 8351 (record 8351): the record system
+block 12 by ellrs (avx2, products dgemm, 1 threads)
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 1:14:09
+	Maximum resident set size (kbytes): 4732932
+2026-11-27 14:01:09 UTC [r2w] results_1101.py r2w exit 3 (results_r2w.md; 2 no robust change, 3 a bracket and no secant yet)
+2026-11-27 14:01:09 UTC [r2w] secant starts: d18_secant.py run in/l1kc127k035w2.jsonl in/sol_l1kc127k035w2_D23.0000.npy 23.0 0.1 0.13 secant_r2w.jsonl --tol=5e-5 --maxev=20 --b12=rust --b12_threads=1 --pin=25ba3a91,9111bfca

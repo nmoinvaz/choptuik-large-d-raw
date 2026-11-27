@@ -1,0 +1,29 @@
+pass control passes on dh370's numbers
+pass control root = 0.045967998 to 1e-8
+pass control fails with ln|det| off by 2e-4
+pass control fails with equal signs
+pass control fails when a record is not the Rust block
+pass planted root 0.0462 recovered
+pass R2 verdict at planted delta 0.0006: fails
+FAIL R2 verdict at planted delta 0.00095: mixed
+pass R2 verdict at planted delta 0.002: mixed
+FAIL R2 verdict at planted delta 0.0029: real
+pass R2 verdict at planted delta 0.004: real
+pass root 0.065: the 0.060/0.070 pair is used and recovered
+pass no sign change: no pair brackets
+pass a non-robust point is not used
+pass r2w planted root 0.04: the bracket is (0.035, 0.045), status nosecant
+pass r2w planted root 0.075: the bracket is (0.07, 0.085), status nosecant
+pass r2w planted root 0.0925: the bracket is (0.085, 0.1), status nosecant
+pass r2w planted root 0.115: the bracket is (0.1, 0.13), status nosecant
+pass r2w planted no root in the window: nochange, reported as measured
+pass r2w two changes: the lowest-lambda change is the bracket, both reported
+pass r2w a non-robust end gives no change
+pass r2w secant root at delta +0.03: real, status formed
+FAIL r2w secant root at delta -0.00285: real, status formed
+FAIL r2w secant root at delta -0.00095: mixed, status formed
+pass r2w secant root at delta -0.0008: fails, status formed
+pass r2w a secant record with status maxev is not read
+pass r2w a secant record with a non-robust end is not read
+pass r2w a secant bracket outside the scan's pair is not read
+selftest: FAIL R2 verdict at planted delta 0.00095: mixed; R2 verdict at planted delta 0.0029: real; r2w secant root at delta -0.00285: real, status formed; r2w secant root at delta -0.00095: mixed, status formed
