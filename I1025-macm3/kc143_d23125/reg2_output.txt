@@ -1,0 +1,33 @@
+(1) r1 = lambda_1(k_c 143, D 23.0625) = +0.01513874 (bracket [0.01513603, 0.01514103]); k_c 135 root there +0.00939087, shift 135 -> 143 +0.00574787; D 23.125: k_c 127 -0.04190846, k_c 135 -0.03629764, shift 127 -> 135 +0.005611 (ratio to the D 23.0625 shift 127 -> 135 0.9760)
+(2) by the slope magnitude s over D 23.0625 to 23.125 (k_c 127 0.72880, k_c 135 0.73102): root(23.125) = r1 - 0.0625 s; zero by the line = 23.0625 + r1 / s
+   s 0.7310: root(23.125) -0.030549, zero 23.08321, step from the k_c 135 zero +0.00786
+   s 0.7320: root(23.125) -0.030611, zero 23.08318, step from the k_c 135 zero +0.00783
+   s 0.7330: root(23.125) -0.030674, zero 23.08315, step from the k_c 135 zero +0.00780
+   s 0.7340: root(23.125) -0.030736, zero 23.08312, step from the k_c 135 zero +0.00777
+   s 0.7360: root(23.125) -0.030861, zero 23.08307, step from the k_c 135 zero +0.00772
+   s 0.7380: root(23.125) -0.030986, zero 23.08301, step from the k_c 135 zero +0.00766
+   s 0.7200: root(23.125) -0.029861, zero 23.08353, step from the k_c 135 zero +0.00818
+   s 0.7420: root(23.125) -0.031236, zero 23.08290, step from the k_c 135 zero +0.00755
+    by the shift route (the D 23.125 shift 135 -> 143 = g x the D 23.0625 shift of +0.005748; g 0.976 was the growth at 127 -> 135):
+   g 0.900: root(23.125) -0.031125, slope magnitude 0.74021, zero 23.08295
+   g 0.940: root(23.125) -0.030895, slope magnitude 0.73653, zero 23.08305
+   g 0.976: root(23.125) -0.030688, slope magnitude 0.73322, zero 23.08315
+   g 1.000: root(23.125) -0.030550, slope magnitude 0.73102, zero 23.08321
+   g 1.050: root(23.125) -0.030262, slope magnitude 0.72642, zero 23.08334
+   g 1.080: root(23.125) -0.030090, slope magnitude 0.72366, zero 23.08342
+   g 0.880: root(23.125) -0.031240, slope magnitude 0.74205, zero 23.08290
+   slope magnitude in (0.7310, 0.7360) <=> root in (-0.030861, -0.030549) <=> zero in (23.08307, 23.08321)
+   slope magnitude in (0.7209, 0.7421) <=> root in (-0.031243, -0.029918) <=> zero in (23.08290, 23.08350)
+   t5's root -0.0319 +- 0.003 and the zero 23.0816 +- 0.003 (zero of his two roots by the line: 23.08261)
+(3) scan window (-0.040, -0.035, -0.030, -0.025, -0.020 plus a repeat of -0.030): the read bracket for a root x is the pair of grid points around x
+   root -0.0310: bracket [(-0.035, -0.03)], distance to the nearest grid point 0.0010
+   root -0.0306: bracket [(-0.035, -0.03)], distance to the nearest grid point 0.0006
+   root -0.0307: bracket [(-0.035, -0.03)], distance to the nearest grid point 0.0007
+   root -0.0309: bracket [(-0.035, -0.03)], distance to the nearest grid point 0.0009
+   root -0.0300: bracket [], distance to the nearest grid point 0.0000
+   root -0.0297: bracket [(-0.03, -0.025)], distance to the nearest grid point 0.0003
+   root -0.0314: bracket [(-0.035, -0.03)], distance to the nearest grid point 0.0014
+(4) regrid forecasts for D 23.125 at k_c 143 from the D 23.0625 ratios (k_c 143 / k_c 135 at D 23.0625; the k_c 143 regrid: wall 5175 s, peak RSS 9.079 GiB, steps 4706, constraint ratio 0.617, Delta shift -9.0249e-06):
+   wall ratio 5175/4124 = 1.2548 -> 4485 s; peak RSS ratio 9.079/7.423 = 1.2231 -> 8.083 GiB; steps 4445 x 1.0594 = 4709; constraint 1.1211e-03 x 0.6174 = 6.9217e-04; Delta shift -2.5188e-06 x (9.0249e-06/3.7646e-06 = 2.397) = -6.0383e-06
+(5) Rust timings (rust_b12/e2e, k_c 143, D 23.0625, lambda 0.015, 4 threads beside the secant): 344 s = 125 float64 + 211 block 12 + 9 dd_logdet, peak RSS 6.437 GiB; stored Python 1199 s; the scan of lane A 1191 to 1202 s (2 processes), the secant 841 to 1029 s
+    the scan: 3 rounds of 2 evaluations: block 12 with 8 threads at once on 8 cores (4 P + 4 E): block 12 x 1.0 to 1.6 -> evaluation 345 to 472 s, scan 17.2 to 23.6 min; the secant, 1 process: 5 or 6 evaluations of 290 to 400 s -> 24 to 40 min
