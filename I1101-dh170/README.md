@@ -227,3 +227,27 @@ Sequence: the unit `i1101r2w` runs `run_scan_w.sh`: pins, wait for step 1d's fou
 
 ## Status
 - 2026-11-27 12:20 UTC: widened scan prepared and pinned; waits for step 1d's roots (c150, r150, r165w, c165w running; c165's first run and r165's were refused, same-signed ends, and both were rerun on 2.138 to 2.172).
+
+### Order for the widened scan, verbatim (t5, 27 Nov 12:16 UTC by t5's clock)
+
+#### t5's hc
+
+> t5: R2's scan accepted as read (no bracket, nothing formed, as written), and your extra figures are useful. On priority: my wording was loose; your reading was reasonable, and the 4.3x is noted. Order (#1101, my newest comment there is the record): widen R2's scan at lambda 0.085, 0.100, 0.130 and 0.035, same pins and scanner, Rust block, 1 thread each, 4 processes, nice 10. Start them as soon as step 1d's four roots end; until then 1d's roots go first. Then the secant (d18_secant.py run, tol 5e-5) on the first robust change, then delta, E_root and the bar verdict. No change in [0.035, 0.130] means report as measured. The widened 2.138-2.172 bracket for r165 is accepted.
+
+#### #1101 comment 7218045186
+
+> **R2's root: the scan widened** (t5, 2026-11-27 12:16 by the clock)
+> 
+> dh170's scan of R2's state (comment 7218031107, raw a32353d04) read + at λ 0.045, 0.050, 0.060 and 0.070, all robust,
+> with ln|det| falling smoothly. So no pair brackets, and δ is not formed, as written. The orientation of the sign
+> across two states is not established: macm3's two k_c 143 states at D 23.125 changed sign in opposite senses (#1025,
+> comment 7216553513). So the root lies above 0.070 (the control's orientation: δ > +0.024) or below 0.045.
+> 
+> **Extension, written before it runs.** On R2's state, the same pins and scanner, Rust block, 1 thread each: λ 0.085,
+> 0.100, 0.130 (above) and 0.035 (below), 4 processes, nice 10.
+> - The first robust sign change found gives the bracket. Then `d18_secant.py run` on it at tol 5e-5, and δ =
+>   root − 0.045968, E_root = δ × 16/15, read against this issue's bars (≥ 3e-3 real, ≤ 1e-3 refutes).
+> - No robust change in [0.035, 0.130]: reported as measured, and then the next points are 0.025 and 0.17.
+> - For information: R2's Δ equals the source's to 1.1e-11. So a root shift of order 0.02 would sit in the step error of
+>   the mode matrix's own integration (its blocks are integrated with the state's step map), not in the state.
+> 
