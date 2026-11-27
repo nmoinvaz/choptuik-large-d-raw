@@ -1,0 +1,26 @@
+== 2026-11-27 05:53:07 gate_i1102_driver_1025.py (dry) : the Windows gate of the Rust block 12 (#1102); worktree C:/Users/nathan/Source/choptuik-i1102
+== 2026-11-27 05:53:07 pins ok: worktree HEAD d4b6b6ce, the ellrs tree 47ce5fb8, ell_b12rs.py a1fff74f, ell_ddm.py, ddnp.py, ell_fastm.py, dss_ell.py; the k_c 31 state f07a8984 and stub e5a87ec5
+== 2026-11-27 05:53:07 cargo: exit 0: cargo 1.95.0 (f2d3ce0bd 2026-03-21)
+== 2026-11-27 05:53:07 rustc: exit 0: rustc 1.95.0 (59807616e 2026-04-14) | host: x86_64-pc-windows-msvc | release: 1.95.0
+== 2026-11-27 05:53:08 maturin: exit 0: maturin 1.16.0
+== 2026-11-27 05:53:08 python: exit 0: 3.14.10 numpy 2.5.4 scipy 1.18.1
+== 2026-11-27 05:53:08 scanner venv C:/Users/nathan/Source/venv-md510: pip freeze before, 7 lines (venv_freeze_before.txt)
+== 2026-11-27 05:53:08 dry run ends here: nothing built
+== 2026-11-27 05:53:31 gate_i1102_driver_1025.py : the Windows gate of the Rust block 12 (#1102); worktree C:/Users/nathan/Source/choptuik-i1102
+== 2026-11-27 05:53:31 pins ok: worktree HEAD d4b6b6ce, the ellrs tree 47ce5fb8, ell_b12rs.py a1fff74f, ell_ddm.py, ddnp.py, ell_fastm.py, dss_ell.py; the k_c 31 state f07a8984 and stub e5a87ec5
+== 2026-11-27 05:53:31 cargo: exit 0: cargo 1.95.0 (f2d3ce0bd 2026-03-21)
+== 2026-11-27 05:53:31 rustc: exit 0: rustc 1.95.0 (59807616e 2026-04-14) | host: x86_64-pc-windows-msvc | release: 1.95.0
+== 2026-11-27 05:53:31 maturin: exit 0: maturin 1.16.0
+== 2026-11-27 05:53:32 python: exit 0: 3.14.10 numpy 2.5.4 scipy 1.18.1
+== 2026-11-27 05:53:32 scanner venv C:/Users/nathan/Source/venv-md510: pip freeze before, 7 lines (venv_freeze_before.txt)
+== 2026-11-27 05:53:32 keep-awake helper started as its own process, pid 21956: SetThreadExecutionState(ES_CONTINUOUS | ES_SYSTEM_REQUIRED) until this driver (pid 21388) ends; power plan untouched; kills nothing
+== 2026-11-27 05:53:32 build: ellrs/build.sh SITE  (maturin build --release, RUSTFLAGS=-C target-cpu=native, pip install --target SITE; cap 3600 s)
+== 2026-11-27 05:54:58 build: exit 0, 86 s; last lines: [notice] A new release of pip is available: 26.2.2 -> 26.3 | [notice] To update, run: python.exe -m pip install --upgrade pip | ellrs avx512 matrixmultiply C:\Users\nathan\Source\i1102_1025\site\ellrs\__init__.py
+== 2026-11-27 05:54:58 scanner venv untouched: pip freeze after equals before: True; ellrs in the venv alone: None
+== 2026-11-27 05:55:12 selftest: exit 0 (wanted 0), 13 s; 13 lines; last: selftest (mutate none): PASS
+== 2026-11-27 05:55:25 selftest --mutate=nolam: exit 1 (wanted 1), 13 s; 13 lines; last: selftest (mutate nolam): FAIL
+== 2026-11-27 05:55:38 selftest --mutate=harm: exit 1 (wanted 1), 13 s; 13 lines; last: selftest (mutate harm): FAIL
+== 2026-11-27 05:56:48 check k_c 31 D 10.5 lambda 2.87 --threads=4 --controls=1: exit 0 (wanted 0), 70 s; 6 lines; last: check: PASS
+== 2026-11-27 05:56:48 the check printed '15010 of 15010': True
+== 2026-11-27 05:56:48 ALL GATES AS WANTED
+== 2026-11-27 05:56:48 gate_i1102_driver_1025.py done

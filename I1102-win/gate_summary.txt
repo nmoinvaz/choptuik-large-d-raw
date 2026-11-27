@@ -1,0 +1,8 @@
+step, exit, wanted, wall s
+build.sh SITE, 0, 0, 86
+selftest, 0, 0, 13
+selftest --mutate=nolam, 1, 1, 13
+selftest --mutate=harm, 1, 1, 13
+check k_c 31 D 10.5 lambda 2.87 --threads=4 --controls=1, 0, 0, 70
+15010 of 15010 printed: True
+all as wanted: True
