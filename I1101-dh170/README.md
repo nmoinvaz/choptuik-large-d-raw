@@ -297,6 +297,7 @@ r2 is the root of R2's own secant (`secant_r2w.jsonl`, d18_secant.py run, tol 5e
 
 ## Status
 - 2026-11-27 15:56 UTC: bars, reading rule, pins, driver, reader (planted selftest, three mutations) written before any run of Test K. Not started.
+- 2026-11-27 15:56:57 UTC: unit `i1101k` started (`run_scan_k.sh`, bf5c1c83). Selftests 0/1/1/1 and 0 with both reader mutations failing; k_c 31 controls (15:57:43): plain and `--kappa_mm=0.7` ln|det| -430.2952244423991 bit for bit equal, `--kappa_mm=0.35` -429.60035787499453 (shift +0.6949, as t5's +0.695); the four scans started 15:57:43 UTC (nice 10, 1 thread each, beside R2's secant: 5 busy threads), all four print `kappa_mm 0.35: ... 8351 steps (the record's kappa 0.7: 4179)` and the record system (|F| 3.1912e-10 against the record's 3.1949e-10, 4179 steps) at 15:58 UTC, `steps_check_k.txt` PASS.
 
 ## Order, verbatim
 

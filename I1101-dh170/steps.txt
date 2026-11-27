@@ -74,3 +74,10 @@ block 12 by ellrs (avx2, products dgemm, 1 threads)
 	Maximum resident set size (kbytes): 4732932
 2026-11-27 14:01:09 UTC [r2w] results_1101.py r2w exit 3 (results_r2w.md; 2 no robust change, 3 a bracket and no secant yet)
 2026-11-27 14:01:09 UTC [r2w] secant starts: d18_secant.py run in/l1kc127k035w2.jsonl in/sol_l1kc127k035w2_D23.0000.npy 23.0 0.1 0.13 secant_r2w.jsonl --tol=5e-5 --maxev=20 --b12=rust --b12_threads=1 --pin=25ba3a91,9111bfca
+2026-11-27 15:56:57 UTC [k] pins ok: worktree f56f91d2 (d18_secant.py 2f3ee874, ell_b12rs.py a1fff74f), state B 90d3e655 / d1a3a641, read_lower.py 89309d3c, results_1101k.py c31a27c3; kappa_mm 0.35; lambdas 0.085,0.100,0.115,0.130
+2026-11-27 15:56:58 UTC [k] d18_secant.py selftest exit 0 (0 wanted); mutations half exit 1, norobust exit 1, nosigncheck exit 1 (1 wanted each)
+2026-11-27 15:56:58 UTC [k] results_1101k.py selftest ok=1 (1 wanted); mutations ref and bar both fail=2 (2 wanted)
+2026-11-27 15:57:43 UTC [k] k_c 31 controls done: 45 s
+2026-11-27 15:57:43 UTC [k] k_c 31 controls: plain -430.2952244423991 sign -1; kappa_mm 0.7 -430.2952244423991 sign -1 (bit for bit True); kappa_mm 0.35 -429.60035787499453 sign -1 (ln shift +0.6949)
+2026-11-27 15:57:43 UTC [k] scan starts: D 23.0, lambda 0.085,0.100,0.115,0.130, one process per lambda, 1 thread each, nice 10, --b12=rust --b12_threads=1 --kappa_mm=0.35
+2026-11-27 15:58:03 UTC [k] kappa_mm step-count check exit 0 (0 wanted): - PASS: scan_k_p0.raw: kappa_mm 0.35: 8351 steps (record kappa 0.7: 4179); wanted 8351 +- 2%
