@@ -339,3 +339,44 @@ R2's ln|det| and K's at the lambdas both have (K's mode matrix on kappa 0.35 ste
 
 ## Status after the scan
 - 2026-11-27 17:34 UTC: Test K's scan done (about 5300 s per point, 17:31 UTC): hybrid sign - at 0.085, 0.100, 0.115, 0.130, all robust; no robust change, so no secant: reported to t5, waiting for t5's order (nothing widened). R2's secant is still running (bracket (0.1, 0.129367)).
+
+# Test K extension: state B with --kappa_mm=0.35 at lambda 0.040, 0.055, 0.070 and 0.150
+
+Written 2026-11-27 17:35 UTC by the clock, before any run of the extension (reading rule, pins, driver, predictions first; t5's order is quoted at the end). Files `run_scan_k2.sh`, `scan_k/scan_D23.0_p4..p7.jsonl` (beside p0..p3), `scan_k2_p4..p7.raw`, `steps_check_k2.txt`, `read_lower_k2.txt`, `results_k2.md`, `secant_k.jsonl`, `secant_k.log`, `results_k2_secant.md`. Issue #1101; coordinator t5. The first four points (0.085 to 0.130) were all hybrid -, robust, no change (comment 7224555330).
+
+## What t5 ordered
+The same state B with `--kappa_mm=0.35`, Rust block, at lambda 0.070, 0.055, 0.040 (below) and 0.150 (above, in case the orientation flipped), 4 processes beside R2's secant (which keeps its thread: 5 busy threads on 4 cores, as in the first scan). Then `run` at tol 5e-5 on the first robust change, and report the eight signs and the root against R2's bracket (0.100, 0.130). t5: "If the root is below 0.085, the bar reads 'the state's kappa matters' (more than 1e-2 from R2)."
+
+## Reading rule (unchanged from Test K; the same reader blob c31a27c3 reads all eight points)
+- The bracket is the first robust change among the eight points (lowest lambda; the others are listed). A change needs both points noise-robust and robust (dln <= 0.1) with opposite hybrid signs.
+- The root is read only from a `run` ending `tol`, both ends robust and of opposite signs, inside the scan's pair; the difference from R2's secant root is read on the ranges [a - d, b - c] of the final brackets (the bars 3e-3 and 1e-2 are t5's, fixed in the first section; R2's own secant must have ended with status `tol`, else its robust bracket bounds the difference outside the rule).
+- Step count: each new scan must print `kappa_mm 0.35: ... 8351 +- 2% steps` and the record system (the scans are killed otherwise).
+- No robust change in [0.040, 0.150]: reported as measured, nothing widened by me. If R2's secant ends first, its record is read as it stands.
+- The k_c 31 controls are not repeated (same pinned worktree and blobs as the first scan, whose controls passed).
+
+## Pins (as the first scan, plus the driver)
+| what | blob |
+|---|---|
+| worktree `~/Source/choptuik-large-d-1101k` at f56f91d2, `d18_secant.py` | 2f3ee874 |
+| `ell_b12rs.py`, ellrs in `~/Source/ellrs-site-1102`, venv `~/Source/choptuik-large-d-1058b/.venv` | a1fff74f |
+| state B and its record (`in/`) | 90d3e655, d1a3a641 |
+| `read_lower.py`, `d185_scan_read.py`, `results_1101k.py` | 89309d3c, 7c9d400f, c31a27c3 |
+| driver `run_scan_k2.sh` (unit `i1101k2`) | 969cf894 |
+
+## Predictions (mine, registered before the run; information, not pass rules)
+| item | prediction |
+|---|---|
+| the `kappa_mm 0.35` step count within 2% of 8351 at all four | 90% |
+| the first robust change is in (0.070, 0.085) | 30%; in (0.055, 0.070) 25%; in (0.040, 0.055) 20% |
+| no robust change in 0.040-0.150 | 15% (a change at (0.130, 0.150) 4%; two changes, or a non-robust end that blocks the pair, 6%) |
+| sign at 0.040 is + | 80% (state B's own root, kappa 0.7, is 0.045968 with + below it) |
+| given a root: reads as the state's kappa matters (1e-2 or more from R2) | 90% (R2 is above 0.100, K below 0.085 if the orientation holds); between 3e-3 and 1e-2 or straddling: 8%; within 3e-3: 2% |
+| scan wall per point (5 busy threads on 4 cores, as the first scan) | 4400 to 6200 s: 70% (first scan 4991 to 5599 s) |
+| secant wall (about 8 evaluations with the two end records, 1 thread, R2's secant beside it) | 3 to 6 h: 60% |
+
+## Status
+- 2026-11-27 17:35 UTC: bars, reading rule, pins, driver and predictions written before any run of the extension. Not started.
+
+## Order, verbatim
+
+> t5: Test K's scan read (all - at 0.085-0.130, nothing formed, as written). Extend it now, 4 processes (R2's secant keeps its thread): the same state B with --kappa_mm=0.35, Rust block, at lambda 0.070, 0.055, 0.040 (below) and 0.150 (above, in case the orientation flipped). Then run the secant (tol 5e-5) on the first robust change, and report the eight signs and the root against R2's bracket (0.100, 0.130). If the root is below 0.085, the bar reads 'the state's kappa matters' (more than 1e-2 from R2).
