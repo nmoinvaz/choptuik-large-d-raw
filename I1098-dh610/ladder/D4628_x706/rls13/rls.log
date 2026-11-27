@@ -1,2 +1,19 @@
 release_ls from release_ls_h11_D4628.0000.npz: D 4628, Delta 1.646134271596924972503675555928858800341, od residual
     h13 outer 0 (qd Jacobian) starts 07:08:15 UTC
+    h13 outer 0: target |F| 4.28e-38, harmonic-13 step 1.13e-08 (512 s)
+    h13 outer 0 trial lam 1: inner NOT converged in 3 steps (|F| 7.14e-35), target |F| 7.14e-35 against 4.28e-38 (4217 s)
+  h13 outer 0: target |F| 4.28e-38 -> 4.28e-38, harmonic-13 step 1.13e-08 (full step's dDelta +7.60e-14), lam 0, Delta 1.646134271596924972503675555928858800341 (4217.1 s)
+  h13: the qd inner solve floored above the target residual 4.28e-38; harmonic 13 continues with Jacobian mode qq
+    h13 outer 1 (qq Jacobian) starts 08:18:32 UTC
+    h13 outer 1: target |F| 4.28e-38, harmonic-13 step 1.29e-08 (977 s)
+    h13 outer 1 trial lam 1: inner converged in 4 steps (|F| 5.56e-51), target |F| 5.71e-50 against 4.28e-38 (4744 s)
+  h13 outer 1: target |F| 4.28e-38 -> 5.71e-50, harmonic-13 step 1.29e-08 (full step's dDelta +7.36e-14), lam 1, Delta 1.646134271596998614568048293291022754100 (4744.3 s)
+    h13 outer 2 (qq Jacobian) starts 09:37:36 UTC, predicted end 10:56 UTC (4744 s, the last qq outer step)
+    h13 outer 2: target |F| 5.71e-50, harmonic-13 step 6.20e-16 (1005 s)
+    h13 outer 2: target |F| 5.71e-50 is below --tol, but the step's dDelta +2.41e-24 is above --ddelta 1e-25: the step is taken
+    h13 outer 2 trial lam 1: inner converged in 2 steps (|F| 2.37e-64), target |F| 2.37e-64 against 5.71e-50 (2697 s)
+  h13 outer 2: target |F| 5.71e-50 -> 2.37e-64, harmonic-13 step 6.20e-16 (full step's dDelta +2.41e-24), lam 1, Delta 1.646134271596998614568050705024980192275 (2696.8 s)
+    h13 outer 3 (qq Jacobian) starts 10:22:33 UTC, predicted end 11:07 UTC (2697 s, the last qq outer step)
+    h13 outer 3: target |F| 2.37e-64, harmonic-13 step 2.62e-34 (1164 s)
+  h13 outer 3: target |F| 2.37e-64, harmonic-13 step 2.62e-34, the step's dDelta +7.74e-40: released
+  the full system: qd check max |F| 2.93e-59; held -> full dDelta +5.176e-10; h13's change +7.364e-14
