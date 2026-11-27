@@ -1,0 +1,12 @@
+k_c 143 roots: D 23.0625 +0.01513874 [0.01513603, 0.01514103]; D 23.125 -0.02449537 [-0.02500000, -0.02447143]
+k_c 135 roots: D 23.0625 +0.00939087; D 23.125 -0.03629764.  k_c 127 roots: D 23.0625 +0.00364182; D 23.125 -0.04190846
+slope per unit D: k_c 143 -0.63415, k_c 135 -0.73102, k_c 127 -0.72880
+zero by the line through the two roots: k_c 143 D 23.08637, k_c 135 D 23.07535, k_c 127 D 23.06750; steps 127 -> 135 +0.00785, 135 -> 143 +0.01103 (ratio 1.4047)
+zero over the four bracket-end combinations: 23.08607 to 23.08639 (the D 23.125 bracket is 5.3e-4 wide, the D 23.0625 one 5e-6; brackets are not enclosures of the zero)
+shifts of the root with k_c: D 23.0625 127 -> 135 +0.005749, 135 -> 143 +0.005748 (ratio 0.9998); D 23.125 127 -> 135 +0.005611, 135 -> 143 +0.011802 (ratio 2.1035)
+registered (second entry) root -0.03069 by the shift route (g 0.976): read -0.02449537, read minus it +0.006192; t5's -0.0319 +- 0.003: read minus -0.0319 = +0.007405, inside his band False
+registered slope magnitude above k_c 135's 0.73102 (75%): read 0.63415, False; in (0.7310, 0.7360) (60%): False
+registered zero, first entry in (23.0795, 23.0830) (65%): read 23.08637, False; its step +0.0063 +- 0.0010: read +0.01103, False
+registered zero, second entry in (23.0829, 23.0835) (80%): False; in (23.0830, 23.0833) (60%): False; step in (+0.0075, +0.0082) (80%): False; step at least 0.9 of the last step +0.00785 (95%): True
+t5's zero 23.0816 +- 0.003 (his band (23.0786, 23.0846)): read 23.08637, False; read above his central: True (+0.00477)
+sign change between the two D and the zero between them: True
