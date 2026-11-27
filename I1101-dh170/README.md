@@ -159,3 +159,14 @@ Both processes printed the pin check and `D 23.0 k_c 127: |F| 3.1911792672e-10 (
 | control wall 2400 to 4800 s per point | WRONG, faster: 1521 s and 1515 s per point (float64 blocks 413 s, Rust block 12 1074 s, logdet 34 s and 28 s on one thread), the two in parallel 1529 s in all (dh370's ddm points took 6818 s and 6678 s, 4.5 times as long) |
 ## Status
 - 2026-11-27 07:55 UTC: gates and control done; R2's scan waits for `I1101-win2/R2/` on the raw origin (expected about 11:30 UTC). Each point costs about 1520 s on one thread, so R2's four points take about 26 min when run in parallel.
+
+## R2 pins (written 2026-11-27 10:21 UTC by the clock, before R2's scan starts)
+`I1101-win2/R2/` reached the raw origin at 10:20:42 UTC (commit 1c02fde6c, "R2 (kappa 0.35) ended"). Copies in `in/` (names `sol_l1kc127k035w2_D23.0000.npy`, `l1kc127k035w2.jsonl`; the `in/R2_*` files are the same bytes with the raw names kept). The driver refuses any other blob.
+| what | blob |
+|---|---|
+| R2 state `sol_l1kc127k035w2_D23.0000.npy` | **25ba3a91** |
+| R2 record `l1kc127k035w2.jsonl` (kappa 0.35, u0 0.04, Ks 30, k_c 127, |F| 3.1242366894e-10, F_start 2.158e-09, **8351 steps**, Delta 1.1743229234047416, psi-constraint 1.463841e-03, 30786 s) | **9111bfca** |
+| win2's syscheck of it (`R2_syscheck_kc127.txt`, exit 0, "ACCEPTED: the record class's |F| with a step count that comes back") | 6a2ad865 |
+Facts from the record, not read into: steps 8351 are in the 8358 +- 2% window; Delta_R2 - Delta_source (1.174322923415951) = -1.1e-11 and Delta_R2 - Delta_R0 (1.1743225027439044) = +4.2e-7.
+Command: `run_scan.sh r2 in/sol_l1kc127k035w2_D23.0000.npy in/l1kc127k035w2.jsonl 25ba3a91 9111bfca 0.045,0.050,0.060,0.070` (unit `i1101r2`): 4 processes, 1 thread each, nice 10, `--b12=rust --b12_threads=1`, the bars above unchanged. It runs beside none of step 1c's jobs (all ended); expected about 26 to 30 minutes (control points took 1521 s and 1515 s).
+Prediction registered above (R2, which pair brackets: 0.045/0.050 30%, 0.050/0.060 20%, 0.060/0.070 30%, none 20%; E_root >= 3e-3 40%, <= 1e-3 30%, between 30%). Add: `|F|` of the state reproduces the record (record system) 95%; all four points robust 75%.
