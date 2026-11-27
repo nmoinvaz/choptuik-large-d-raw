@@ -11,3 +11,9 @@ Coordinator (t5), Mac, 2026-11-27 14:19 UTC. Issue https://github.com/nmoinvaz/c
   at F = 3.
 - `planted15.log` / `.json`: `ladder_fit.py planted --ladders=X $(cat ladder_args.txt) --sigmas=1e-25 --seeds=20`
   (the real D list and sigma ratios err_sum/1e-25), exit 0: F = 1.59.
+- `pade_real.py` / `pade_real15.log` (2026-11-27 19:54 UTC): a second estimator, ladder_pade.py's rational fits [L/M]
+  in 1/(D-2) through ladder_fit.select, on the same 15 records, M = 1, 2, 3. recs_rat stores each value as a float of
+  P(0) - lim, so lim is a reference near Delta_inf (16 digits; a 12-digit one gives the same result): the value is lim + d.
+  All three M: Delta_inf = 1.643893745125357513722871 (h 2e-24 to 1.4e-23, s 5.6e-24 to 1.1e-23), 1.7e-23 below the
+  polynomial rule's 1.643893745125357513722888. Shared with the polynomial rule: the records and the selection rule;
+  different: the fitted form.
