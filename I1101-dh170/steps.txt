@@ -81,3 +81,30 @@ block 12 by ellrs (avx2, products dgemm, 1 threads)
 2026-11-27 15:57:43 UTC [k] k_c 31 controls: plain -430.2952244423991 sign -1; kappa_mm 0.7 -430.2952244423991 sign -1 (bit for bit True); kappa_mm 0.35 -429.60035787499453 sign -1 (ln shift +0.6949)
 2026-11-27 15:57:43 UTC [k] scan starts: D 23.0, lambda 0.085,0.100,0.115,0.130, one process per lambda, 1 thread each, nice 10, --b12=rust --b12_threads=1 --kappa_mm=0.35
 2026-11-27 15:58:03 UTC [k] kappa_mm step-count check exit 0 (0 wanted): - PASS: scan_k_p0.raw: kappa_mm 0.35: 8351 steps (record kappa 0.7: 4179); wanted 8351 +- 2%
+2026-11-27 17:21:12 UTC [k] lambda 0.100 exit 0
+2026-11-27 17:25:05 UTC [k] lambda 0.130 exit 0
+2026-11-27 17:27:30 UTC [k] lambda 0.085 exit 0
+2026-11-27 17:31:27 UTC [k] lambda 0.115 exit 0
+2026-11-27 17:31:27 UTC [k] scan done: 5624 s
+D 23.0 k_c 127: |F| 3.1911792672e-10 (record 3.1949266444e-10), steps 4179 (record 4179): the record system
+kappa_mm 0.35: the mode matrix on the steps of kappa 0.35, 8351 steps (the record's kappa 0.7: 4179); the state and its record system are unchanged
+block 12 by ellrs (avx2, products dgemm, 1 threads)
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 1:29:46
+	Maximum resident set size (kbytes): 4734112
+D 23.0 k_c 127: |F| 3.1911792672e-10 (record 3.1949266444e-10), steps 4179 (record 4179): the record system
+kappa_mm 0.35: the mode matrix on the steps of kappa 0.35, 8351 steps (the record's kappa 0.7: 4179); the state and its record system are unchanged
+block 12 by ellrs (avx2, products dgemm, 1 threads)
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 1:23:28
+	Maximum resident set size (kbytes): 4733696
+D 23.0 k_c 127: |F| 3.1911792672e-10 (record 3.1949266444e-10), steps 4179 (record 4179): the record system
+kappa_mm 0.35: the mode matrix on the steps of kappa 0.35, 8351 steps (the record's kappa 0.7: 4179); the state and its record system are unchanged
+block 12 by ellrs (avx2, products dgemm, 1 threads)
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 1:33:44
+	Maximum resident set size (kbytes): 4733520
+D 23.0 k_c 127: |F| 3.1911792672e-10 (record 3.1949266444e-10), steps 4179 (record 4179): the record system
+kappa_mm 0.35: the mode matrix on the steps of kappa 0.35, 8351 steps (the record's kappa 0.7: 4179); the state and its record system are unchanged
+block 12 by ellrs (avx2, products dgemm, 1 threads)
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 1:27:21
+	Maximum resident set size (kbytes): 4734140
+2026-11-27 17:31:28 UTC [k] results_1101k.py scan exit 2 (2 no robust change, 3 a bracket, results_k.md)
+2026-11-27 17:31:28 UTC [k] done: no robust change, no secant (report and wait)

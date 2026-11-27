@@ -302,3 +302,40 @@ r2 is the root of R2's own secant (`secant_r2w.jsonl`, d18_secant.py run, tol 5e
 ## Order, verbatim
 
 > t5: step 1e accepted: re-solves agree 4-8x better with each other than with the stored states, and the offset is flat at D 15-15.5 then rises. #1105's u0 question is answered and the offsets are recorded. Its next steps wait, because #1101 matters more now. New order, #1101 Test K (my newest #1101 comment is the record), beside R2's secant: a worktree of wip/ell1-kappa-mm at f56f91d2 (d18_secant.py blob 2f3ee874; the same ellrs SITE ~/Source/ellrs-site-1102 works, ell_b12rs.py is unchanged). Scan state B (I1101-win2/R0/, blobs 90d3e655 and d1a3a641) with --kappa_mm=0.35 --b12=rust --b12_threads=1 at lambda 0.085, 0.100, 0.115, 0.130, 4 processes, nice 10. Check the 'kappa_mm 0.35 ... steps' line, which should be about 8351. Then 'run' at tol 5e-5 on the robust change, and compare with R2's secant root against the bars: within 3e-3 means the mode matrix alone; 1e-2 or more means the state matters too.
+
+## Test K scan result (15:57:43 to about 17:31 UTC; unit `i1101k`; 4 processes, 1 thread each, nice 10, `--kappa_mm=0.35 --b12=rust --b12_threads=1`; `results_k.md`, `read_lower_k.txt`, `scan_k/`, `scan_k_p0.raw` to `scan_k_p3.raw`; written 2026-11-27 17:34 UTC by the clock)
+All four processes printed the pin check, `kappa_mm 0.35: ... 8351 steps (the record's kappa 0.7: 4179)`, the record system (`|F| 3.1911792672e-10 (record 3.1949266444e-10), steps 4179 (record 4179)`) and `block 12 by ellrs (avx2, products dgemm, 1 threads)`, and exited 0.
+
+| lambda | hybrid sign | noise signs | robust | dln | float64 sign | ln\|det\| | seconds (float64 blocks, Rust block 12, logdet) |
+|---|---|---|---|---|---|---|---|
+| 0.085 | - | - - | True | 1.16e-05 | + | -4220.2872608844 | 5369 (1741, 3604, 24) |
+| 0.100 | - | - - | True | 1.20e-05 | + | -4221.2864886242 | 4991 (1517, 3418, 56) |
+| 0.115 | - | - - | True | 1.94e-05 | + | -4222.6749825989 | 5599 (1652, 3926, 20) |
+| 0.130 | - | - - | True | 2.45e-05 | + | -4224.2162780980 | 5226 (1599, 3594, 33) |
+
+**No robust change in 0.085-0.130: report and wait** (`results_1101k.py scan` exit 2; `read_lower.py`: 0 robust changes, endpoint signs - and -, no ln|det| local minimum, float64 alone has the opposite sign (+) at all four, which the earlier scans showed too). Nothing widened by me, no secant: the reading rule needs a robust change. The bars are not applied (no root).
+
+What the four points do and do not say (mine, outside the bars; the estimators are values at the scanned lambdas, not enclosures):
+- `ln|det|` falls smoothly, by 67, 93 and 103 per unit lambda over the three intervals, with no dip.
+- Assuming the orientation (sign + below the root, - above it: measured at state B's own root, + at 0.045 and - at 0.050 in the control, and at R2's bracket, + at 0.100 and - at 0.130; assumed for K) and a single sign change: state B's root with the mode matrix at kappa 0.35 lies **below 0.085**. R2's secant (`secant_r2w.jsonl`, as of 2026-11-27 17:34 UTC) has + at 0.1 and - at 0.129367 (its third evaluation, the interior point), so r2 lies in (0.1, 0.129367) and **|root - r2| > 0.015**, above the 1e-2 bar: the state's kappa matters too. This is an inference from signs under the stated assumptions, not a measured root; the scan below 0.085 would measure it.
+- Against t5's R1 (kappa 0.5 state and steps, root 0.09500769, comment 7223316450): if the step error were the mode matrix's alone, the root would depend on the mode matrix's steps only, and with the root rising monotonically as they are refined (0.046 at 0.7, 0.09500769 at 0.5) the 0.35 root on state B would be at or above R1's. It lies below 0.085 < 0.09500769 under the assumptions above. In shifts from state B's own root 0.045967998: R2's is more than 0.054, Test K's is less than 0.039 (and negative if K's root lies below 0.045967998).
+- Alternatives not excluded by four minus signs: an even number of sign changes inside the scanned range (spacing 0.015 would miss two close ones), or the root above 0.130 with the opposite orientation.
+
+R2's ln|det| and K's at the lambdas both have (K's mode matrix on kappa 0.35 steps, R2's solved at kappa 0.35):
+
+| lambda | K: sign, ln\|det\| | R2: sign, ln\|det\| | K - R2 in ln\|det\| |
+|---|---|---|---|
+| 0.100 | - -4221.286489 | + -4219.680469 | -1.6060 |
+| 0.130 | - -4224.216278 | - -4223.517447 | -0.6988 |
+
+| prediction | result |
+|---|---|
+| the `kappa_mm 0.35` step count within 2% of 8351 (90%) | right: 8351 on all four (`steps_check_k.txt` PASS), with the record system reproduced (|F| 3.1912e-10 against 3.1949e-10, 4179 steps) |
+| k_c 31 control: 0.7 bit for bit equal to plain (90%); 0.35 moves ln\|det\| by more than 1e-3 (97%) | right: -430.2952244423991 for both, and +0.6949 at 0.35 |
+| the scan has a robust change in 0.085-0.130 (65%; no change 35%) | WRONG: no change; the registered 35% outcome happened (all four hybrid signs -, all robust) |
+| given a root: within 3e-3 of r2 (40%), between (30%), 1e-2 or more (30%) | not formed: no root. The inference below (outside the bars) puts the difference above 1e-2 if its assumptions hold |
+| scan wall per point 4400 to 6000 s (60%) | right: 4991 to 5599 s (5 busy threads on 4 cores, as registered) |
+| secant wall 4 to 6 h (60%) | not run (no bracket) |
+
+## Status after the scan
+- 2026-11-27 17:34 UTC: Test K's scan done (about 5300 s per point, 17:31 UTC): hybrid sign - at 0.085, 0.100, 0.115, 0.130, all robust; no robust change, so no secant: reported to t5, waiting for t5's order (nothing widened). R2's secant is still running (bracket (0.1, 0.129367)).
