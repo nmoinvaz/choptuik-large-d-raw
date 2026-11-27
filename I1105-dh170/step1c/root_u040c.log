@@ -1,0 +1,37 @@
+pins: state 898360c023f8e73ef7777e00cf5a1639c526c695 (wanted 898360c0), stub 4a9c918239eafdce75657260f1d7127dee7075ad (wanted 4a9c9182)
+D 16.0 k_c 55: |F| 1.7842747507e-10 (record 1.7840905763e-10), steps 2565 (record 2565): the record system
+bracket (2.238, 2.25), tol 1e-07, maxev 20, mode matrix fast (jac), block 12 rust, noise 1e-15, dln <= 0.1, sol_l1kc55u040c_D16.0000.npy
+block 12 by ellrs (avx2, products dgemm, 1 threads)
+  lam 2.238 (lo): hybrid -1 ln|det| -1573.8058546425, noise [-1.0, -1.0] dln 2.33e-07, robust True; float64 -1 -1573.8877435794 (120 s [29, 89, 3])
+  lam 2.25 (hi): hybrid +1 ln|det| -1572.9446695040, noise [1.0, 1.0] dln 2.32e-07, robust True; float64 +1 -1572.7875121425 (121 s [29, 89, 3])
+  lam 2.241565101548935 (interior): hybrid -1 ln|det| -1574.1713397589, noise [-1.0, -1.0] dln 2.35e-07, robust True; float64 -1 -1574.3798801733 (120 s [28, 89, 3])
+  lam 2.2457825507744675 (interior): hybrid +1 ln|det| -1575.1771921543, noise [1.0, 1.0] dln 2.26e-07, robust True; float64 +1 -1574.5321139452 (119 s [28, 89, 3])
+  lam 2.24465315022929 (interior): hybrid -1 ln|det| -1576.2609053735, noise [-1.0, -1.0] dln 2.53e-07, robust True; float64 +1 -1576.0079423249 (120 s [28, 89, 3])
+  lam 2.2449386671683254 (interior): hybrid -1 ln|det| -1578.7727655828, noise [-1.0, -1.0] dln 8.05e-07, robust True; float64 +1 -1575.4216450820 (121 s [29, 90, 3])
+  lam 2.2449631987851335 (interior): hybrid +1 ln|det| -1584.4079198512, noise [1.0, 1.0] dln 2.00e-04, robust True; float64 +1 -1575.3783298563 (119 s [28, 88, 3])
+  lam 2.2449631115157227 (interior): hybrid +1 ln|det| -1589.1585826415, noise [1.0, 1.0] dln 2.35e-02, robust True; float64 +1 -1575.3900565448 (119 s [29, 88, 3])
+  lam 2.2449630615157226 (interior): hybrid -1 ln|det| -1584.9596753817, noise [-1.0, -1.0] dln 3.48e-04, robust True; float64 +1 -1575.3859553739 (119 s [28, 89, 2])
+root: status tol (-), bracket [2.2449630615157226, 2.2449631115157227] width 5.000e-08, signs [-1.0, 1.0], det-linear 2.2449631107762253, Brent 2.2449631115157227, 9 evaluations, 1079 s
+	Command being timed: "/home/nathan/Source/choptuik-large-d-1058b/.venv/bin/python -u d18_secant.py run /home/nathan/Source/choptuik-large-d-raw-p4/I1105-dh170/step1c/l1kc55u040c.jsonl /home/nathan/Source/choptuik-large-d-raw-p4/I1105-dh170/step1c/sol_l1kc55u040c_D16.0000.npy 16 2.238 2.250 /home/nathan/Source/choptuik-large-d-raw-p4/I1105-dh170/step1c/root_u040c.jsonl --tol=1e-7 --maxev=20 --b12=rust --b12_threads=1 --pin=898360c0,4a9c9182"
+	User time (seconds): 1068.70
+	System time (seconds): 4.51
+	Percent of CPU this job got: 99%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 18:01.46
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 971856
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 2210339
+	Voluntary context switches: 5915
+	Involuntary context switches: 17122
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 288
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

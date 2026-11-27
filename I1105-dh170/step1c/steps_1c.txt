@@ -1,0 +1,16 @@
+2026-11-27 09:35:24 UTC [u040b] pins ok: regrid worktree 48c36355 (ell_refine.py 631e5801, dss_ell equal 505d8399), start l1kc55u030 state 939aca10 record 46b7ea52, scanner worktree d4b6b6ce (d18_secant.py 9706e506)
+2026-11-27 09:35:24 UTC [u040b] re-solve starts: nice -n 10 timeout 7200 /home/nathan/Source/choptuik-large-d-1058b/.venv/bin/python -u ell_refine.py l1kc55u030 55 l1kc55u040b 55 1 16 2.2426280416106374 --kappa 0.7 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma
+2026-11-27 09:35:24 UTC [u040c] pins ok: regrid worktree 48c36355 (ell_refine.py 631e5801, dss_ell equal 505d8399), start l1kc55u050 state 85c1d8f3 record 91d66dd0, scanner worktree d4b6b6ce (d18_secant.py 9706e506)
+2026-11-27 09:35:24 UTC [u040c] re-solve starts: nice -n 10 timeout 7200 /home/nathan/Source/choptuik-large-d-1058b/.venv/bin/python -u ell_refine.py l1kc55u050 55 l1kc55u040c 55 1 16 2.2426280416106374 --kappa 0.7 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma
+2026-11-27 10:01:01 UTC [u040b] re-solve exit 0, wall 1537 s (0 wanted; 124 is the cap)
+2026-11-27 10:01:01 UTC [u040b] record: {"u0":0.04,"F":1.7854362129730732E-10,"F_start":3.2488001117285754E-10,"steps":2565,"Delta":1.0017134698358978,"constraint":0.00018479843573204996,"seconds":1535}; state 78af2111, record 15d999a9
+2026-11-27 10:01:01 UTC [u040b] d18_secant.py selftest exit 0 (0 wanted)
+2026-11-27 10:01:01 UTC [u040b] root starts: d18_secant.py run l1kc55u040b 16 2.238 2.250 --tol=1e-7 --maxev=20 --b12=rust --b12_threads=1 --pin=78af2111,15d999a9
+2026-11-27 10:01:13 UTC [u040c] re-solve exit 0, wall 1549 s (0 wanted; 124 is the cap)
+2026-11-27 10:01:13 UTC [u040c] record: {"u0":0.04,"F":1.7840905763429794E-10,"F_start":1.8332256922333344E-10,"steps":2565,"Delta":1.0017132114199223,"constraint":0.0001848257023822606,"seconds":1546}; state 898360c0, record 4a9c9182
+2026-11-27 10:01:13 UTC [u040c] d18_secant.py selftest exit 0 (0 wanted)
+2026-11-27 10:01:13 UTC [u040c] root starts: d18_secant.py run l1kc55u040c 16 2.238 2.250 --tol=1e-7 --maxev=20 --b12=rust --b12_threads=1 --pin=898360c0,4a9c9182
+2026-11-27 10:19:01 UTC [u040b] root exit 0 (0: tol reached; 4: maxev or non-robust interior; 2: refused; 3: not the record system), 1080 s; {"status":"tol","bracket":[2.2447948479244313,2.2447948979244314],"width":5.000000014021566E-8,"signs":[-1.0,1.0],"robust":[true,true],"lam_lin":2.24479484848835,"lam_brent":2.2447948479244313,"n_eval":9}
+2026-11-27 10:19:01 UTC [u040b] done
+2026-11-27 10:19:14 UTC [u040c] root exit 0 (0: tol reached; 4: maxev or non-robust interior; 2: refused; 3: not the record system), 1081 s; {"status":"tol","bracket":[2.2449630615157226,2.2449631115157227],"width":5.000000014021566E-8,"signs":[-1.0,1.0],"robust":[true,true],"lam_lin":2.2449631107762253,"lam_brent":2.2449631115157227,"n_eval":9}
+2026-11-27 10:19:14 UTC [u040c] done
