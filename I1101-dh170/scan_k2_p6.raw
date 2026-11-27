@@ -3,3 +3,27 @@ D 23.0 k_c 127: |F| 3.1911792672e-10 (record 3.1949266444e-10), steps 4179 (reco
 kappa_mm 0.35: the mode matrix on the steps of kappa 0.35, 8351 steps (the record's kappa 0.7: 4179); the state and its record system are unchanged
 block 12 by ellrs (avx2, products dgemm, 1 threads)
 scan of 1 lambda, mode matrix fast (jac), block 12 rust, noise 1e-15, sol_l1kc127k070w2_D23.0000.npy
+  lam 0.07: hybrid +1 ln|det| -4219.7620966375 (noise 1e-15 on blocks 0-11: [1.0, 1.0]); float64 +1 -4213.8989912114 (5552 s [1632, 3890, 30]); dln 1.43e-04, mode matrix fast-jac
+	Command being timed: "/home/nathan/Source/choptuik-large-d-1058b/.venv/bin/python -u /home/nathan/Source/choptuik-large-d-1101k/solver/matter/d18_secant.py scan /home/nathan/Source/choptuik-large-d-raw-p4/I1101-dh170/in/l1kc127k070w2.jsonl /home/nathan/Source/choptuik-large-d-raw-p4/I1101-dh170/in/sol_l1kc127k070w2_D23.0000.npy 23.0 0.070 /home/nathan/Source/choptuik-large-d-raw-p4/I1101-dh170/scan_k/scan_D23.0_p6.jsonl --b12=rust --b12_threads=1 --kappa_mm=0.35 --pin=90d3e655,d1a3a641"
+	User time (seconds): 5522.24
+	System time (seconds): 6.90
+	Percent of CPU this job got: 99%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 1:32:49
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 4733976
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 1802223
+	Voluntary context switches: 1570
+	Involuntary context switches: 37662
+	Swaps: 0
+	File system inputs: 88
+	File system outputs: 152
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

@@ -388,6 +388,47 @@ The same state B with `--kappa_mm=0.35`, Rust block, at lambda 0.070, 0.055, 0.0
 - The four scans (lambda 0.040, 0.055, 0.070, 0.150; unit `i1101k2`, started 17:35:53) run on. The driver `run_scan_k2.sh` would start `run` on the first robust change after them, so its main process (pid 2307228, waiting for the scans) was frozen with SIGSTOP at 17:44:45 UTC; the scans are its children and run on (checked by `ps`: four python processes in state R). Killing the driver would end the unit and, with the systemd default `KillMode=control-group`, the scans; hence the freeze.
 - After the four scans ended, `run_k2_read.sh` (the driver's read-only stages: record-system lines into `steps.txt`, `read_lower.py scan_k 0.040 0.150` into `read_lower_k2.txt`, `results_1101k.py scan scan_k` into `results_k2.md`; no secant) is run by hand, and then the frozen driver's unit is stopped. The reading rule and the predictions of the section above stand for the signs; the secant predictions ("given a root", "secant wall") are void: no secant, no root, so the bars are not applied to this extension.
 
-### Order of the last steps (t5's third message, 17:5x UTC 27 Nov: "once the four scans have ended and written their records, end the stopped driver (kill -9 its pid, or systemctl --user stop the unit), so no stopped process is left. Then do the read-only reading. Note it in the README.")
+### Order of the last steps (t5's third message, 17:4x UTC 27 Nov: "once the four scans have ended and written their records, end the stopped driver (kill -9 its pid, or systemctl --user stop the unit), so no stopped process is left. Then do the read-only reading. Note it in the README.")
 1. When all four scans have exited (four `[k2] lambda ... exit` lines in `steps.txt`), a watcher checks that no scan process of p4..p7 is left, then runs `systemctl --user stop i1101k2.service` (ends the frozen driver pid 2307228 and its `systemd-inhibit` wrapper; the scans have ended, so `KillMode=control-group` kills nothing else) and checks with `ps` that no process of `run_scan_k2.sh` is left.
 2. Then `run_k2_read.sh` (now blob 399f0746; its header comment changed to say the unit is stopped before it) runs the read-only stages. The times of both steps are in `steps.txt` (tags `k2s` and `k2r`) and in the status line below.
+
+## Test K extension result (scans 17:35:53 to 19:10:33 UTC; unit `i1101k2`; lambda 0.040, 0.055, 0.070, 0.150, files p4..p7; 4 processes, 1 thread each, nice 10, `--kappa_mm=0.35 --b12=rust --b12_threads=1`; `results_k2.md`, `read_lower_k2.txt`, `scan_k2_p4.raw` to `scan_k2_p7.raw`; written 2026-11-27 19:11 UTC by the clock)
+All four processes printed the pin check, `kappa_mm 0.35: ... 8351 steps (the record's kappa 0.7: 4179)`, the record system (`|F| 3.1911792672e-10 (record 3.1949266444e-10), steps 4179 (record 4179)`) and `block 12 by ellrs (avx2, products dgemm, 1 threads)`, and exited 0 at 19:05:30 (lambda 0.040), 19:08:34 (lambda 0.055), 19:08:43 (lambda 0.070), 19:10:33 (lambda 0.150) UTC.
+
+| lambda | scan | hybrid sign | noise signs | robust | dln | float64 sign | ln\|det\| | seconds (float64 blocks, Rust block 12, logdet) |
+|---|---|---|---|---|---|---|---|---|
+| 0.040 | extension | + | + + | True | 3.21e-05 | + | -4213.8355983987 | 5354 (1633, 3662, 59) |
+| 0.055 | extension | + | + + | True | 4.30e-05 | + | -4216.2320148322 | 5542 (1590, 3919, 33) |
+| 0.070 | extension | + | + + | True | 1.43e-04 | + | -4219.7620966375 | 5552 (1632, 3890, 30) |
+| 0.085 | first | - | - - | True | 1.16e-05 | + | -4220.2872608844 | 5369 (1741, 3604, 24) |
+| 0.100 | first | - | - - | True | 1.20e-05 | + | -4221.2864886242 | 4991 (1517, 3418, 56) |
+| 0.115 | first | - | - - | True | 1.94e-05 | + | -4222.6749825989 | 5599 (1652, 3926, 20) |
+| 0.130 | first | - | - - | True | 2.45e-05 | + | -4224.2162780980 | 5226 (1599, 3594, 33) |
+| 0.150 | extension | - | - - | True | 3.07e-05 | - | -4226.4083914770 | 5657 (1802, 3835, 19) |
+
+**The eight signs: + + + - - - - - (0.040 to 0.150). One robust change, (0.070, 0.085), + to -** (`results_1101k.py scan` exit 3, `read_lower.py`: 1 robust change, 0 non-robust points, endpoint signs + at 0.040 and - at 0.150, no ln|det| local minimum; det-linear 0.079425, estimator range [0.070915, 0.079425] at the width of the pair). The orientation did not flip (nothing above 0.130 changes). Float64 alone has the opposite sign at 0.085 to 0.130 (the earlier scans showed that too).
+
+**No secant** (t5's order, 17:45 UTC: "a mode matrix at kappa 0.35 about a kappa 0.7 state is not a valid root"), so no root of K is read and the bars are not applied. The brackets alone (estimators at the scanned lambdas, not enclosures; arithmetic by `append_k2_result.py`):
+
+|  | root's bracket | shift from state B's own root 0.045968 (bracket ends) | source |
+|---|---|---|---|
+| state B, kappa 0.7 (R0, control) | 0.045967998 | 0 | dh370, control passed (`results_ctl.md`) |
+| K: state B, mode matrix at kappa 0.35 | (0.07, 0.085), det-linear 0.079425 | +0.0240 .. +0.0390 | this scan (`read_lower_k2.txt`), no secant |
+| R2: kappa 0.35 re-solve | (0.114683, 0.129367) after 4 evaluations | +0.0687 .. +0.0834 | R2's secant, still running |
+| R1: kappa 0.5 re-solve (t5, macm3) | 0.09500769 | +0.0490 | t5's comment 7223316450 |
+
+- K's bracket (0.070, 0.085) against R2's (0.114683, 0.129367): root(K) - root(R2) lies in [-0.0594, -0.0297], the whole range above 1e-2 in size, as t5 wrote for a root below 0.085 ("the state's kappa matters"). Outside the reading rule (no secant record), the same range as the reading rule would take it.
+- The mode matrix's part of R2's shift: K moved by +0.024 to +0.039 from state B's own root, R2 by +0.069 to +0.083: the ratio is 0.29 to 0.57 from the brackets. The rest, +0.030 to +0.059, is the state's.
+
+| prediction | result |
+|---|---|
+| the `kappa_mm 0.35` step count within 2% of 8351 at all four (90%) | right: 8351 on all four (`steps_check_k2.txt` PASS), the record system reproduced (|F| 3.1912e-10 against 3.1949e-10, 4179 steps) |
+| the first robust change is in (0.070, 0.085): 30%; (0.055, 0.070): 25%; (0.040, 0.055): 20% | (0.070, 0.085) happened: the most likely of the three buckets, 30%; its hybrid sign pattern is + + + - - - - - |
+| no robust change in 0.040-0.150 (15%) | right: one change |
+| the sign at 0.040 is + (80%) | right |
+| given a root: reads as the state's kappa matters (90%) | void: no secant (t5's order). By the brackets alone the range is [-0.0594, -0.0297], whole range above 1e-2 in size: the same reading, outside the reading rule |
+| scan wall per point 4400 to 6200 s (70%) | right: 5354 to 5657 s (5 busy threads on 4 cores, as registered) |
+| secant wall 3 to 6 h (60%) | void: not run |
+
+## Status after the extension
+- 19:10:33 UTC: the four scans ended (exit 0 each, last at lambda 0.150); 19:10:36 UTC: `systemctl --user stop i1101k2.service` ended the frozen driver and its `systemd-inhibit` (no scan was running; `ps`: 0 processes of `run_scan_k2.sh` left, unit inactive; steps.txt tag `k2s`); 19:10:36 UTC: `run_k2_read.sh` (399f0746) read the eight points, exit 3 (a bracket), no secant (tag `k2r`). Reported to t5; R2's secant runs on (4 evaluations, bracket (0.114683, 0.129367)).
