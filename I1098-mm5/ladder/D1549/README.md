@@ -49,3 +49,7 @@ By script from `tail/run.log`, `tail/rls.log` and `tail/release_ls.jsonl`.
 - **Delta of D 1549 (the state at h23; h23 took no step): 1.650580020480835511811831563687484386494** (40 digits as logged; h23's pending not in it); total -1.80352e-17 from the M 48 start. Wall (the machine at 18-24 threads on 18 cores): tail 14371 s.
 - **Bars:** the h13 re-converge at M 48 about 1e-25 or less: -3.23e-26, met; the tail falls from h15 by about 1e2 or more per harmonic: h15/h17 = 178, h17/h19 = 544, h19/h21 = 76 (D 1291: 177, 520, 77); h21's change 2.42e-24 (at most about 1e-23): met; h23 released with pending +1.98e-27 and no step, no turn: met; the kmax rule exit 0: met.
   No qq inner solve failed, no line-search trial below lam 1, no outer step above 3x its harmonic's first, no floor.
+
+### The k* stage (`tail/kstar/`, the chain's `ladder_tail.sh` ran it on the h23 state; 08:05:00 - 08:14:51 UTC, 591 s; `kstar_stage.sh` blob 6d29dfc0225a2eff0be932cb849e656c190a0b6e, fastmul7, chord-free)
+
+kfree 15 at the h23 state: gain 2.703635e+22, F before 1.57819e-53, **bound before 4.26685e-31** (gain x F), below 1e-27: **no re-converge** (reconv false). The chain then ended its D 1549 step ("D 1549 tail rc 0 08:14:51").

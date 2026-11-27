@@ -95,3 +95,7 @@ By script from `tail_fm7_early/rls.log`, `release_ls.jsonl`, `direct_s.jsonl` an
   and the pending dDelta of h23 and h25 differing by -1.53e-36 and -2.28e-34 (relative 7e-10 and 8e-8), far below the release bar 1e-25. The fastmul7 od solve and qd check at h25: max |F| 1.86918e-52 and 1.86918e-52 (fastmul6: 1.86918e-52); Hamiltonian check at the four nodes at most: p 3.0e-32, m 3.0e-32, a 2.5e-32, c 1.1e-30.
 - State `tail_fm7_early/release_ls_h25_D1291.0000.npz`, blob 6ffdf15474f55dac06f17dfd7dafcce9672ce207; the record's commit field reads d40a9c62 and the kernel fastmul7-site.
 - **Bars:** h23 and h25 released with no step: met. The kernel cross-check below 1e-25: met (shift 0, pending difference at most 2.3e-34). When the chain reaches its step 4 (`tail_fm7/`, kmax 31), it is stopped by pid as a duplicate.
+
+### The chain's step 4 (`tail_fm7/`, kmax 31) stopped as a duplicate (2026-11-27 08:15:19 UTC, coordinator's order)
+
+The early cross-check (`tail_fm7_early/`, h23 and h25 on fastmul7) replaced it. The chain reached its step 4 at 08:14:51 UTC (after D 1549's tail and k* stage ended: D 1549 tail rc 0 08:14:51) and started `tail_fm7/` (h23..h31 from the fastmul6 h21 state); I stopped its `release_ls` python by exact pid (96470) at 08:15:19 UTC, 28 s in: `tail_fm7/run.log` reads "rc 143 08:15:19", `tail_fm7/rls.log` holds its first lines only, no result. The chain script ended with it (`chain.log`).

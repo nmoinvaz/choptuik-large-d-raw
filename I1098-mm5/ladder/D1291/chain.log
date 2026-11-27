@@ -1,1 +1,5 @@
 D 1291's tail ended; its k* stage starts 22:28:22
+D 1549's h13: blob 014ac56f84b516d4348aefb2ada7d4048ce633c6; its tail starts 04:05:29
+/Users/nathan/Source/choptuik-large-d-raw/I1098-mm5/ladder/tools3/ladder_tail.sh: line 63: 75483 Terminated: 15          nice -n 10 timeout 10h $PY -u form_s.py release_ls $O/start.npz $O --harm $HT --kmax $KMAX --jac_by $JB --res od --tol 1e-48 --tol_h 1e-44 --ddelta 1e-25 --threads $T --outer 8 --inner_chord $IC --commit $COMMIT $EXTRA > $O/rls.log 2>&1
+D 1549 tail rc 0 08:14:51
+/Users/nathan/Source/choptuik-large-d-raw/I1098-mm5/ladder/tools3/d1291_then_1549_mm5.sh: line 49: 96469 Terminated: 15          nice -n 10 timeout 10h $PY -u form_s.py release_ls $L/D1291/tail/release_ls_h21_D1291.0000.npz $O --harm 23,25,27,29,31 --kmax 31 --jac_by 23:qq,25:qq,27:qq,29:qq,31:qq --res od --tol 1e-48 --tol_h 1e-44 --ddelta 1e-25 --threads 6 --outer 8 --inner_chord 0 --commit $(git -C $HP rev-parse --short=8 HEAD) > $O/rls.log 2>&1
