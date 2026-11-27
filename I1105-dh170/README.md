@@ -491,3 +491,53 @@ Then each of the four states: `d18_secant.py run RECORD STATE D LO HI root_<TAG>
 > 
 > R2's root scan (#1101) keeps priority when R2 lands.
 > 
+
+## Result (27 Nov 10:33:42 to 12:46:57 UTC; units `i1105r150`, `i1105r165`, `i1105c150`, `i1105c165`, `i1105r165w`, `i1105c165w`; re-solves 2 threads, roots 1 thread, nice 10; `results_1d.md`, `root_*.jsonl`, `root_*.log`, `resolve_*.log`, `l1kc55r150.jsonl`, `l1kc55r165.jsonl`, `sol_l1kc55r150_D15.0000.npy`, `sol_l1kc55r165_D16.5000.npy`, `steps_1d.txt`; written 2026-11-27 12:48 UTC by the clock)
+| D | re-solve | \|F\| | source \|F\| | steps | source steps | Delta | source Delta | Delta change | psi-constraint | source psi-constraint | re-solve s |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| 15.0 | r150 | 2.3789e-10 | 2.3783e-10 | 2719 | 2719 | 0.9841302706798702 | 0.9841306967650356 | -4.261e-07 | 4.3203e-05 | 4.3564e-05 | 4408 |
+| 16.5 | r165 | 2.0094e-10 | 2.0080e-10 | 2481 | 2481 | 1.0117784460550832 | 1.0117787163237064 | -2.703e-07 | 3.8592e-04 | 3.8401e-04 | 4133 |
+
+The re-solves reproduce the sources' `|F|` and step counts; Delta moves by -4.3e-7 (D 15) and -2.7e-7 (D 16.5).
+
+First runs of the roots at D 16.5 were refused (same-signed ends, 2.148 to 2.172, `lam_lin` extrapolated to 2.14751 and 2.14779, not read); both were rerun on 2.138 to 2.172, the widening by 0.01 on the low side that the signs give (t5 accepted it for r165, comment 7218045186 and the hc). Roots (`d18_secant.py run`, Rust block 12, `--tol=1e-7 --maxev=20`):
+
+| D | state | role | run | status | final bracket | width | root (lam_lin) | evals | seconds |
+|---|---|---|---|---|---|---|---|---|---|
+| 15.0 | c150 | continuation | first run | tol | (2.4204038816471365, 2.4204039316471366) | 5.00e-08 | 2.420403918 | 11 | 1992 |
+| 15.0 | r150 | re-solve | first run | tol | (2.41987748586599, 2.4198775358659903) | 5.00e-08 | 2.419877523 | 11 | 2598 |
+| 16.5 | c165 | continuation | first run | refused | (2.148, 2.172) | 2.40e-02 | - | 2 | 385 |
+| 16.5 | c165 | continuation | widened to 2.138-2.172 | nonrobust | (2.1426861165828943, 2.1429882363912793) | 3.02e-04 | 2.142687164 | 9 | 1524 |
+| 16.5 | r165 | re-solve | first run | refused | (2.148, 2.172) | 2.40e-02 | - | 2 | 589 |
+| 16.5 | r165 | re-solve | widened to 2.138-2.172 | tol | (2.1459391706439113, 2.1459392206439114) | 5.00e-08 | 2.145939216 | 12 | 2006 |
+
+c165w stopped at status `nonrobust` (an interior point at 2.1426872 had dln 0.186 against the 0.1 limit, next to a deep `ln|det|` dip), with robust ends (2.1426861, 2.1429882) of opposite sign: read by the written rule on its bracket, not as a `tol` root.
+
+**Offsets** (`read_1105d.py`, selftest exit 0 and `--mutate=sign` exit 1, `selftest_read_1105d*.txt`; it prefers `root_*w.jsonl` where the first run was refused):
+| D | offset = root(re-solve) - root(continuation) | range from the brackets | re-solve's Delta change | source psi-constraint |
+|---|---|---|---|---|
+| 15.0 | -5.2640e-04 | -5.2645e-04 .. -5.2635e-04 | -4.261e-07 | 4.356e-05 |
+| 16.0 (step 1b, 1c) | +8.59e-4 (U40; U40b +7.5e-4, U40c +9.2e-4) | re-solve U40 against the continuation state's root 2.2440424 (step 1b's added control); no bracket ranges formed here | -8.7e-8 (U40) | 1.846e-4 |
+| 16.5 | +3.2521e-03 | +2.9509e-03 .. +3.2531e-03 | -2.703e-07 | 3.840e-04 |
+
+**Verdict by t5's bars: mixed: both offsets are above 5e-4 in size, but D 15's is negative and D 16's is positive, so the 'both above 5e-4 with D 16's sign' bar fails; neither is below 2e-4, so the 'one-off' bar fails.** Reported as measured.
+
+Beyond the bars (mine, not rules): the three offsets rise with D, the D 16.5 one (3.25e-3) is 19 times the 1.7e-4 re-solve scatter of step 1c, and the D 15 one (5.3e-4) is 3 times it. They do not follow Delta's change (-4.3e-7, -8.7e-8 at D 16, -2.7e-7). The psi-constraint of the sources rises with D as the offsets do (4.4e-5, 1.8e-4, 3.8e-4), but offset over constraint is -12, +4.7 and +8.5, so no proportionality. Three points, one re-solve at D 15 and D 16.5 each.
+
+| item | prediction | result |
+|---|---|---|
+| \|F\| <= 1e-8 after each re-solve | 90% each | right: r150 2.379e-10, r165 2.009e-10 |
+| the brackets hold | 85% each | WRONG at D 16.5 for both: c165 and r165 were refused (2.148-2.172, both ends +); right at D 15 for both. After the widening both bracketed (c165w ended `nonrobust` with a robust 3.0e-4 bracket) |
+| offsets both above 5e-4 and positive | 40% | no |
+| offsets both below 2e-4 | 20% | no |
+| offsets mixed | 40% | right: -5.3e-4 and +3.25e-3 |
+| re-solve wall 0.4 to 0.9 h (2 threads, beside R2's scan) | 60% | WRONG, slower: 4408 s and 4133 s (1.15 to 1.22 h), with 8 busy threads on 4 cores |
+| root wall 1000 to 1500 s (1 thread) | 60% | WRONG for all four, slower: c150 1992, r150 2598, r165w 2006 s; c165w 1524 s, only just above; each beside other jobs |
+
+**Recommended next tasks (for t5 to choose):**
+1. **A second re-solve of D 16.5** from another start (as step 1c did at D 16, two re-solves from the neighbours' states), rooted on 2.138 to 2.172 (the bracket that now holds): is +3.25e-3 reproduced to within the 1.7e-4 scatter? About 1.2 h for two re-solves at 2 threads and 35 min for the roots.
+2. **D 15.5 and D 17.0** (one re-solve each, same recipe, brackets from the three offsets): where offset(D) crosses zero and whether it keeps rising. The three offsets are monotone in D (-5.3e-4, +8.6e-4, +3.25e-3) but each rests on one or three re-solves.
+3. Only after 1 and 2: what the offset is for a root used in #1025, since the continuation root at D 16.5 differs from the re-solve's by 3.3e-3, 3.3 times the "order 1e-3" the bars name.
+
+## Status
+- 2026-11-27 12:48 UTC: step 1d done; offsets -5.26e-4 (D 15) and +3.25e-3 (D 16.5), bars: mixed; posted on #1105, `running` label removed, issue left open for t5.

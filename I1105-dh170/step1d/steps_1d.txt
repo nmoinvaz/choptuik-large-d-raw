@@ -1,0 +1,26 @@
+2026-11-27 10:33:42 UTC [c150] pins ok: continuation state ad055605 (D 15), record 5be40af4; waiting for R2's scan (DONE_r2.txt or STOP_r2.txt in /home/nathan/Source/choptuik-large-d-raw-p4/I1101-dh170)
+2026-11-27 10:33:42 UTC [r150] pins ok: regrid worktree 48c36355 (ell_refine.py 631e5801, dss_ell equal 505d8399), start state ad055605 (D 15), record 5be40af4, scanner worktree d4b6b6ce (d18_secant.py 9706e506)
+2026-11-27 10:33:42 UTC [c165] pins ok: continuation state 557bfff0 (D 16.5), record 5be40af4; waiting for R2's scan (DONE_r2.txt or STOP_r2.txt in /home/nathan/Source/choptuik-large-d-raw-p4/I1101-dh170)
+2026-11-27 10:33:42 UTC [r150] re-solve starts: nice -n 10 timeout 7200 /home/nathan/Source/choptuik-large-d-1058b/.venv/bin/python -u ell_refine.py l1kc55Fb1025 55 l1kc55r150 55 1 15 2.4210057702375516 --kappa 0.7 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma
+2026-11-27 10:33:43 UTC [r165] pins ok: regrid worktree 48c36355 (ell_refine.py 631e5801, dss_ell equal 505d8399), start state 557bfff0 (D 16.5), record 5be40af4, scanner worktree d4b6b6ce (d18_secant.py 9706e506)
+2026-11-27 10:33:43 UTC [r165] re-solve starts: nice -n 10 timeout 7200 /home/nathan/Source/choptuik-large-d-1058b/.venv/bin/python -u ell_refine.py l1kc55Fb1025 55 l1kc55r165 55 1 16.5 2.159124821824751 --kappa 0.7 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma
+2026-11-27 11:42:36 UTC [r165] re-solve exit 0, wall 4133 s (0 wanted; 124 is the cap)
+2026-11-27 11:42:37 UTC [r165] record: {"D":16.5,"u0":0.04,"F":2.0093516243694047E-10,"F_start":2.0098999933429577E-10,"steps":2481,"Delta":1.0117784460550832,"Delta_src":1.0117787163237064,"constraint":0.0003859232530434813,"seconds":4131}; state cb69ffc3, record 61a375ff
+2026-11-27 11:42:37 UTC [r165] d18_secant.py selftest exit 0 (0 wanted)
+2026-11-27 11:42:37 UTC [r165] root starts: d18_secant.py run l1kc55r165 16.5 2.148 2.172 --tol=1e-7 --maxev=20 --b12=rust --b12_threads=1 --pin=cb69ffc3,61a375ff
+2026-11-27 11:47:10 UTC [r150] re-solve exit 0, wall 4408 s (0 wanted; 124 is the cap)
+2026-11-27 11:47:10 UTC [r150] record: {"D":15.0,"u0":0.04,"F":2.3788544238379075E-10,"F_start":2.3797390680248837E-10,"steps":2719,"Delta":0.9841302706798702,"Delta_src":0.9841306967650356,"constraint":0.00004320320151213721,"seconds":4405}; state 7a335eac, record 4bf1d237
+2026-11-27 11:47:11 UTC [r150] d18_secant.py selftest exit 0 (0 wanted)
+2026-11-27 11:47:11 UTC [r150] root starts: d18_secant.py run l1kc55r150 15 2.410 2.435 --tol=1e-7 --maxev=20 --b12=rust --b12_threads=1 --pin=7a335eac,4bf1d237
+2026-11-27 11:52:26 UTC [r165] root exit 2 (0: tol reached; 4: maxev or non-robust interior; 2: refused; 3: not the record system), 589 s; {"status":"refused","bracket":[2.148,2.172],"width":0.02400000000000002,"signs":[1.0,1.0],"robust":[true,true],"lam_lin":2.147790103948632,"lam_brent":null,"n_eval":2}
+2026-11-27 11:52:26 UTC [r165] done
+2026-11-27 12:12:24 UTC [c150] R2's scan ended (r2 DONE 2026-11-27 12:12:18 UTC, results exit 2); root starts
+2026-11-27 12:12:24 UTC [c165] R2's scan ended (r2 DONE 2026-11-27 12:12:18 UTC, results exit 2); root starts
+2026-11-27 12:13:31 UTC [r165w] the first run on ([2.148,2.172]) was refused (same-signed ends); root starts on (2.138, 2.172): d18_secant.py run r165 16.5 2.138 2.172 --tol=1e-7 --maxev=20 --b12=rust --b12_threads=1 --pin=cb69ffc3,61a375ff
+2026-11-27 12:18:49 UTC [c165] root exit 2 (0: tol reached; 4: maxev or non-robust interior; 2: refused; 3: not the record system), 385 s; {"status":"refused","bracket":[2.148,2.172],"width":0.02400000000000002,"signs":[1.0,1.0],"robust":[true,true],"lam_lin":2.147513620721377,"lam_brent":null,"n_eval":2}
+2026-11-27 12:19:38 UTC [c165w] the first run on ([2.148,2.172]) was refused (same-signed ends); root starts on (2.138, 2.172): d18_secant.py run c165 16.5 2.138 2.172 --tol=1e-7 --maxev=20 --b12=rust --b12_threads=1 --pin=557bfff0,5be40af4
+2026-11-27 12:30:29 UTC [r150] root exit 0 (0: tol reached; 4: maxev or non-robust interior; 2: refused; 3: not the record system), 2598 s; {"status":"tol","bracket":[2.41987748586599,2.4198775358659903],"width":5.000000014021566E-8,"signs":[-1.0,1.0],"robust":[true,true],"lam_lin":2.4198775230025005,"lam_brent":2.4198775358659903,"n_eval":11}
+2026-11-27 12:30:29 UTC [r150] done
+2026-11-27 12:45:02 UTC [c165w] root exit 4, 1524 s; {"status":"nonrobust","bracket":[2.1426861165828943,2.1429882363912793],"width":0.0003021198083850152,"signs":[-1.0,1.0],"robust":[true,true],"lam_lin":2.142687163939642,"lam_brent":2.1426861165828943,"n_eval":9}
+2026-11-27 12:45:36 UTC [c150] root exit 0 (0: tol reached; 4: maxev or non-robust interior; 2: refused; 3: not the record system), 1992 s; {"status":"tol","bracket":[2.4204038816471365,2.4204039316471366],"width":5.000000014021566E-8,"signs":[-1.0,1.0],"robust":[true,true],"lam_lin":2.4204039184433355,"lam_brent":2.4204039316471366,"n_eval":11}
+2026-11-27 12:46:57 UTC [r165w] root exit 0, 2006 s; {"status":"tol","bracket":[2.1459391706439113,2.1459392206439114],"width":5.000000014021566E-8,"signs":[-1.0,1.0],"robust":[true,true],"lam_lin":2.1459392157564134,"lam_brent":2.1459392206439114,"n_eval":12}
