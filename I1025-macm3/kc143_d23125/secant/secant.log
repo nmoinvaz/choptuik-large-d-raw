@@ -3,3 +3,10 @@ pins: state a668c1c5c95e5490ba1fc4ebc509f1178edeab82 (wanted a668c1c5), stub 364
 D 23.125 k_c 143: |F| 2.9379920066e-10 (record 2.9379920066e-10), steps 4708 (record 4708): the record system
 bracket (-0.025, -0.02), tol 5e-05, maxev 10, mode matrix fast (jac), block 12 rust, noise 1e-15, dln <= 0.1, sol_l1kc143macm3d23125_D23.1250.npy
 block 12 by ellrs (neon, products dgemm, 4 threads)
+  lam -0.025 (lo): hybrid +1 ln|det| -4491.7147670427, noise [1.0, 1.0] dln 1.93e-04, robust True; float64 +1 -4488.6199865063 (264 s [86, 171, 6])
+  lam -0.02 (hi): hybrid -1 ln|det| -4490.1857526779, noise [-1.0, -1.0] dln 2.10e-05, robust True; float64 -1 -4490.2534177712 (262 s [86, 170, 6])
+  lam -0.024109310291235704 (interior): hybrid -1 ln|det| -4492.0929792011, noise [-1.0, -1.0] dln 2.49e-04, robust True; float64 -1 -4488.6886781843 (261 s [86, 169, 6])
+  lam -0.02447142747369693 (interior): hybrid -1 ln|det| -4494.7631390076, noise [-1.0, -1.0] dln 3.79e-03, robust True; float64 -1 -4488.3175556425 (264 s [85, 172, 6])
+  lam -0.02449714615870593 (interior): hybrid +1 ln|det| -4499.9752127934, noise [1.0, 1.0] dln 5.29e-01, robust False; float64 -1 -4488.8802508387 (262 s [85, 170, 6])
+root: status nonrobust (not robust at -0.02449714615870593), bracket [-0.025, -0.02447142747369693] width 5.286e-04, signs [1.0, -1.0], det-linear -0.02449536536714187, Brent -0.02447142747369693, 5 evaluations, 1313 s
+capped_run: exit 4 wall 1321 s cap_hit False
