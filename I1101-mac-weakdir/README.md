@@ -152,3 +152,22 @@ less than 2x). Reading: not reachable this way; and a state 0.03 above U40 in De
 Bar 1 passes for all four. K35's root (`B/root_l1kc55k035m.*`, fast block, 2 threads, tol 1e-6): status nonrobust
 (its 8th point, at 2.2489674, has dln 0.43), robust bracket [2.2489585, 2.2496560] with opposite signs, det-linear
 2.2489667.
+
+## Task B: which segments move the root (written before the runs, 2026-11-27 23:29 UTC by the clock)
+
+Seen before writing this (`A/coords_all.log`, `B/root_*`): K50, K35 and K25 keep U40's four weak coordinates to 1e-10
+(they differ from U40 in the strong band only), K70 moved along the pair (c53 +8.3e-7 from U40's). The roots so far
+are U40 2.2449017 (dh170), K50 2.24189 (bracket [2.24188, 2.24208]) and K35 2.24897 ([2.24896, 2.24966]): not
+monotonic in kappa.
+
+Queue `q3.sh`, after K70's root, 2 threads: `segerr` on U40 (each segment refined alone, kappa 0.7 down to 0.04375,
+its block's mismatch change and local order, and U_w^T of the change); then chord re-solves of U40 (`chord`, strong
+band of src's SVD) on four maps, each rooted (`root`, fast block 12, tol 1e-5, bracket (2.238, 2.252)): every segment
+at kappa 0.35 (`all`), blocks 0-5 (x < 0.3, `inner`), 6-9 (0.3-0.7, `middle`), 10-12 (0.7 to the horizon, `outer`),
+the others at 0.7.
+
+Bars:
+1. Control: |root(all) - root(K35)| <= 3e-4 (the chord re-solve stands in for ell_refine's LM). Otherwise the group
+   roots are reported but not attributed.
+2. Additivity: |sum of the three group shifts - shift(all)| <= 0.3 |shift(all)| + 3e-4 (shift = root - root(U40 here)).
+3. A group whose shift is at least half of shift(all), with the same sign, is named as carrying it.
