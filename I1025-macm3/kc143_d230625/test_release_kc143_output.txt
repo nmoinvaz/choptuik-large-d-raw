@@ -1,0 +1,8 @@
+case 1 ok (lane gone: held, hc says NOT released)
+case 2 ok (a scan process runs: held)
+case 3 ok (memory short: held)
+case 4 ok (released, 2 chain processes reported, re-held at the secant exit)
+--- fake hc log of case 4
+HC: send nathans-macbook-air-m5-3/t5 macm3 #1025 (release watcher, 2026-11-27 01:49:05 UTC by date -u): HOLD_kc143 RELEASED (renamed to HOLD_kc143.txt.released.1795744145) as before: the kc143_sandbox scan has ended and only its 1-process secant runs; 13.9 GiB
+HC: send nathans-macbook-air-m5-3/t5 macm3 #1025 (release watcher, 2026-11-27 01:49:07 UTC): the chain's scan has started: 2 scan processes (d18_hybsign), RSS sum 0.03 GiB, nice 0 ; my secant RSS 0.00 GiB; 13.8 GiB available; 2026-11-27 00:00:00 UTC next: D 99
+HC: send nathans-macbook-air-m5-3/t5 macm3 #1025 (release watcher, 2026-11-27 01:49:07 UTC): the kc143_sandbox secant has ended; the chain is held again (HOLD_kc143b.txt) for the D 23.125 lane; 2 chain scan processes run now and finish their point.
