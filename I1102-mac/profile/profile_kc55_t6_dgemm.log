@@ -1,0 +1,7 @@
+D 18.125 k_c 55: |F| 2.7637952785e-10 (record 2.7637952785e-10), steps 2209 (record 2209): the record system
+k_c 55: N 168, n_odd 56, n_even 55, nf 167, horizon steps 600; ellrs threads 6, lu scipy
+one evaluation: 12.14 s wall = series 1.66 s + RK4 10.48 s
+  series CPU: Ozaki slicing 0.09 s, f64 products 0.89 s (2.22e+10 madd), level sums 0.04 s, f64 LU (factor + solves) 0.09 s
+  RK4 CPU (chunks summed) 61.54 s: Ozaki slicing 6.05 s, f64 products 30.75 s (6.99e+11 madd, 22.73 Gmadd/s per thread), level sums 3.80 s, elementwise double-double and copies 20.94 s
+  per RK4 stage (2400 stages): wall 4.4 ms; CPU 25.6 ms = products 12.8 + slicing 2.5 + level sums 1.6 + elementwise 8.7 ms
+  DDEll.rhs, one stage in Python on the same shapes: 50 ms (best of 2)

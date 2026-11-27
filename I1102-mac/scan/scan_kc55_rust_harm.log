@@ -1,0 +1,28 @@
+== 2026-11-27 04:16 k_c 55 b12 rust --mutate=harm (the control of check 2)
+pins: state 88ccda5c9bc80f95905fa1bf1180bd31b9193ac5 (wanted 88ccda5c), stub 0fb77df8281d634e6ecf2d3b2038e3706df3c960 (wanted 0fb77df8)
+D 18.125 k_c 55: |F| 2.7637952785e-10 (record 2.7637952785e-10), steps 2209 (record 2209): the record system
+block 12 by ellrs (neon, products dgemm, 6 threads)
+scan of 3 lambda, mode matrix fast (jac), block 12 rust, noise 1e-15, sol_l1kc55F1025_D18.125000.npy
+/Users/nathan/venv-1025dd/lib/python3.14/site-packages/numpy/linalg/_linalg.py:2366: RuntimeWarning: divide by zero encountered in slogdet
+  sign, logdet = _umath_linalg.slogdet(a, signature=signature)
+/Users/nathan/venv-1025dd/lib/python3.14/site-packages/numpy/linalg/_linalg.py:2366: RuntimeWarning: overflow encountered in slogdet
+  sign, logdet = _umath_linalg.slogdet(a, signature=signature)
+/Users/nathan/venv-1025dd/lib/python3.14/site-packages/numpy/linalg/_linalg.py:2366: RuntimeWarning: invalid value encountered in slogdet
+  sign, logdet = _umath_linalg.slogdet(a, signature=signature)
+Traceback (most recent call last):
+  File "/Users/nathan/Source/choptuik-ell1-rust/solver/matter/d18_secant.py", line 452, in <module>
+    scancmd(sys.argv[2:])
+    ~~~~~~~^^^^^^^^^^^^^^
+  File "/Users/nathan/Source/choptuik-ell1-rust/solver/matter/d18_secant.py", line 378, in scancmd
+    r = dict(E(lam), role="scan")
+             ~^^^^^
+  File "/Users/nathan/Source/choptuik-ell1-rust/solver/matter/d18_secant.py", line 150, in __call__
+    r = hybrid_eval(H, Hl, self.mask, self.dln_max, self.eps)
+  File "/Users/nathan/Source/choptuik-ell1-rust/solver/matter/d18_secant.py", line 89, in hybrid_eval
+    s, ld = md.dd_logdet(H, Hl, True)[:2]
+            ~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/nathan/venv-1025dd/lib/python3.14/site-packages/multidouble/__init__.py", line 188, in dd_logdet
+    return _md.dd_logdet(_f64(ah, "ah"), _f64(al, "al"), bool(par))
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: singular or non-finite pivot at column 3474 (0)
+exit 1

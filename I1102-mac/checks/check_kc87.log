@@ -1,0 +1,9 @@
+== 2026-11-27 03:37 k_c 87
+D 21.0625 k_c 87: |F| 4.6068029609e-10 (record 4.6141632551e-10), steps 2941 (record 2941): the record system
+N 264, n_odd 88, n_even 87, nf 263, horizon steps 733, Ks 30, u0 0.04; operators 1.3 s; ellrs neon, products dgemm, threads [6, 1], lu scipy, mutate none, controls nolam, harm
+lambda 0.895, block (6 threads): 115194 of 115194 entries bit for bit; max |d|/|entry| 0.000e+00, max |d|/max|block| 0.000e+00 (bar 1e-28 per entry): PASS; Rust 57.14 s, DDEll 539.0 s, ratio 9.4
+lambda 0.895, block (1 threads): 115194 of 115194 entries bit for bit; max |d|/|entry| 0.000e+00, max |d|/max|block| 0.000e+00 (bar 1e-28 per entry): PASS; Rust 104.57 s, DDEll 539.0 s, ratio 5.2
+lambda 0.895, control nolam (6 threads): 0 of 115194 entries bit for bit; max |d|/|entry| 1.517e+04, max |d|/max|block| 1.286e-01 (bar 1e-28 per entry): FAIL, as a control must; Rust 57.86 s, DDEll 539.0 s, ratio 9.3
+lambda 0.895, control harm (6 threads): 0 of 115194 entries bit for bit; max |d|/|entry| 2.899e+05, max |d|/max|block| 1.449e-01 (bar 1e-28 per entry): FAIL, as a control must; Rust 56.26 s, DDEll 539.0 s, ratio 9.6
+check: PASS
+exit 0 2026-11-27 03:51

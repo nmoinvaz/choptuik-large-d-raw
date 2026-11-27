@@ -1,0 +1,18 @@
+== k_c 55
+lambda 1.77: sign +1 / +1, ln|det| -1617.4273560115168 / -1617.4273560115168 (difference 0.0e+00), noise [1.0, 1.0] / [1.0, 1.0], robust True / True; every field equal; seconds 25 [9, 15, 1] / 152 [9, 142, 1]
+lambda 1.7733: sign +1 / +1, ln|det| -1625.3107066411376 / -1625.3107066411376 (difference 0.0e+00), noise [1.0, 1.0] / [1.0, 1.0], robust True / True; every field equal; seconds 29 [11, 16, 2] / 155 [7, 147, 1]
+lambda 1.78: sign -1 / -1, ln|det| -1616.5555849665152 / -1616.5555849665152 (difference 0.0e+00), noise [-1.0, -1.0] / [-1.0, -1.0], robust True / True; every field equal; seconds 28 [11, 16, 1] / 165 [8, 156, 1]
+check 2: PASS
+exit 0
+== k_c 87
+lambda 0.89: sign -1 / -1, ln|det| -2615.7473993842464 / -2615.7473993842464 (difference 0.0e+00), noise [-1.0, -1.0] / [-1.0, -1.0], robust True / True; every field equal; seconds 88 [34, 51, 3] / 672 [71, 598, 4]
+lambda 0.8946: sign +1 / +1, ln|det| -2619.2001674536173 / -2619.2001674536173 (difference 0.0e+00), noise [1.0, 1.0] / [1.0, 1.0], robust True / True; every field equal; seconds 86 [30, 52, 4] / 558 [33, 521, 3]
+lambda 0.9: sign +1 / +1, ln|det| -2616.362249143023 / -2616.362249143023 (difference 0.0e+00), noise [1.0, 1.0] / [1.0, 1.0], robust True / True; every field equal; seconds 109 [39, 57, 13] / 516 [37, 476, 3]
+check 2: PASS
+exit 0
+== k_c 55, --b12=rust --mutate=nolam against the default (the control: must FAIL)
+lambda 1.77: sign -1 / +1, ln|det| -1483.5759991605737 / -1617.4273560115168 (difference 1.3e+02), noise [-1.0, -1.0] / [1.0, 1.0], robust True / True; every field NOT equal; seconds 22 [8, 13, 1] / 152 [9, 142, 1]
+lambda 1.7733: sign -1 / +1, ln|det| -1483.5169300581124 / -1625.3107066411376 (difference 1.4e+02), noise [-1.0, -1.0] / [1.0, 1.0], robust True / True; every field NOT equal; seconds 24 [9, 13, 1] / 155 [7, 147, 1]
+lambda 1.78: sign -1 / -1, ln|det| -1483.3972794645456 / -1616.5555849665152 (difference 1.3e+02), noise [-1.0, -1.0] / [-1.0, -1.0], robust True / True; every field NOT equal; seconds 22 [8, 13, 1] / 165 [8, 156, 1]
+check 2: FAIL
+exit 1
