@@ -1,0 +1,234 @@
+--- /Users/nathan/Source/choptuik-large-d-raw-903/I1101-macm3/lane_r1.sh	2026-11-27 06:40:15
++++ /Users/nathan/Source/choptuik-large-d-raw-903/I1101-macm3/lane_r3.sh	2026-11-27 09:47:17
+@@ -1,25 +1,25 @@
+ #!/bin/bash
+-# RUST BLOCK 12 (t5, hc 04:23 UTC 27 Nov 2026, #1102): the scan (pointnew_rs.sh) and the secant of this lane run with --b12=rust --b12_threads=4 (ellrs in ~/Source/ellrs-site-1102m3, worktree 1102m3 at d4b6b6ce, d18_secant.py 9706e506); changes read in rust_b12/diff_lane_rs.txt and the README.
+-# #1101 macm3 R1 (t5's order, hc 27 Nov 14:34 UTC and #1101 comment 7220957360): winb's k_c 127 state at D 23.0 (raw I1025-win/kc127_d23/, state 7a1b150c, record eea03461, copies in in/) RE-SOLVED AT KAPPA 0.5, tag l1kc127k050m3,
+-# in the 48c36355 worktree (ell_refine.py 631e5801, dss_ell.py 5d28c19e): the step error of lambda_1 against kappa 0.7 (R0 root 0.045968) and R2's 0.35. Derived from kc143_d23125x/lane_d23125x.sh by mk_r1.py (diff_lane_r1.txt): the source and
+-# destination tags, k_c 127 to 127, kappa 0.5, D 23.0, the source check (the k_c 127 check accepts winb's state, controls exit 1 1, the k_c 135 and k_c 143 checks refuse it), the bars (|F| <= 5e-10, steps 5851 +- 2%, STOP when not met),
+-# the scan of lambda 0.070, 0.085, 0.100, 0.115, 0.130 plus a repeat of 0.070 (scan_plan.env), the extension to 0.055 and 0.150 when the window reads no robust change (scan_plan_ext.env; then a report, no secant), and an hc at the regrid's start.
+-# Stops (hc to t5): a source or result not accepted, a bar not met, an exception (an array limit included), more than one robust change, a step over 8 h, a secant exit other than 0 or 4. usage: bash lane_r1.sh [dry|check]
++# RUST BLOCK 12 (t5, hc 04:23 UTC 27 Nov 2026, #1102): the scan (pointr3.sh) and the secant of this lane run with --b12=rust --b12_threads=4 (ellrs in ~/Source/ellrs-site-1102m3, worktree 1102m3 at d4b6b6ce, d18_secant.py 9706e506); changes read in rust_b12/diff_lane_rs.txt and the README.
++# #1101 macm3 R3 (t5's order, hc 27 Nov 17:4x UTC and #1101 comment 7224728711): a RE-SOLVE AT KAPPA 0.25 from R1's state (l1kc127k050m3: kappa 0.5, 5847 steps, blobs 0124dbd2 and 944a8179), tag l1kc127k025m3, in the 48c36355 worktree
++# (ell_refine.py 631e5801, dss_ell.py 5d28c19e): the fourth consistent kappa point (R0 0.7: 0.045968, R1 0.5: 0.09500769, R2 0.35: in (0.100, 0.129367)). Derived from lane_r1.sh by mk_r3.py (diff_lane_r3.txt): tags, kappa 0.25, bars |F| <= 5e-10 and
++# steps 11700 +- 2% (11466 to 11934, STOP when not met), the scan of lambda 0.100, 0.115, 0.130, 0.145 with the result's own steps (pointr3.sh = pointr3.sh with the repeat optional and one process; no --kappa_mm; scanner d18_secant.py 9706e506), the secant at tol 5e-5
++# on the change; no change: the scan of 0.085 and 0.160, merged with the first scan (merge_scans.py) and read as one (6 points required), then the secant on the change; the root against 0.111 (kappa^4), 0.120 (kappa^3), 0.133 (kappa^2). An hc at the regrid's start and end.
++# Stops (hc to t5): a source or result not accepted, a bar not met, an exception (an array limit included), a reading of fewer points than evaluations, more than one robust change, a step over 8 h, a secant exit other than 0 or 4. usage: bash lane_r3.sh [dry|check]
+ {
+ set -u
+ MODE=${1:-}
+-F=$HOME/Source/choptuik-large-d-raw-903/I1101-macm3; IN=$F/in; OUT=$F/regrid; C=$F/checks
++F=$HOME/Source/choptuik-large-d-raw-903/I1101-macm3; IN=$F/in; K=$F/r3; OUT=$K/regrid; C=$K/checks
+ L=$HOME/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_leg_lambda
+ WT=$HOME/Source/choptuik-large-d-1025m2; WTM=$WT/solver/matter
+ WT5=$HOME/Source/choptuik-large-d-1025m; WTM5=$WT5/solver/matter
+ WTS=$HOME/Source/choptuik-large-d-1102m3/solver/matter; SITE=$HOME/Source/ellrs-site-1102m3   # Rust block 12 (t5, hc 04:23 UTC 27 Nov, #1102): the scanner worktree is the branch's
+ PY=$HOME/Source/venv-macm3-1058b/bin/python; RAWG=$HOME/Source/choptuik-large-d-raw-1076p
+-SRC=l1kc127wind23; TAG=l1kc127k050m3; D=23.0; DT=D23.0000; SRCFILE=sol_${SRC}_D23.0000.npy; LAM0=2.0992182200; DN=23.0_r1k050; DNX=23.0_r1k050_ext; SCAN=$L/$DN; SCANX=$L/$DNX; SEC=$F/secant
+-HC=$(command -v hc); LOG=$F/exits_r1.txt
++SRC=l1kc127k050m3; TAG=l1kc127k025m3; D=23.0; DT=D23.0000; SRCFILE=sol_${SRC}_D23.0000.npy; LAM0=2.0992182200; DN=23.0_r3k025; DNX=23.0_r3k025_ext; DNG=23.0_r3k025_m; SCAN=$L/$DN; SCANX=$L/$DNX; SCANG=$L/$DNG; SEC=$K/secant
++HC=$(command -v hc); LOG=$K/exits_r3.txt
+ stamp() { date -u '+%F %T'; }
+-say() { echo "== $(stamp) UTC I1101 R1: $*" | tee -a $LOG; }
++say() { echo "== $(stamp) UTC I1101 R3: $*" | tee -a $LOG; }
+ tell() { say "hc: $*"; [ -n "$HC" ] && "$HC" send nathans-macbook-air-m5-3/t5 "$*" >> $LOG 2>&1; }
+-stop() { echo "REFUSED: $*" > $OUT/VERDICT.txt; tell "macm3 #1101 R1 STOP: $*"; exit 1; }
++stop() { echo "REFUSED: $*" > $OUT/VERDICT.txt; tell "macm3 #1101 R3 STOP: $*"; exit 1; }
+ blob() { git hash-object --no-filters "$1"; }
+ availgib() { vm_stat | awk -v ps=$(sysctl -n hw.pagesize) '/Pages free/ {f=$3} /Pages inactive/ {i=$3} /Pages speculative/ {s=$3} /Pages purgeable/ {p=$3} END {printf "%.1f", (f+i+s+p)*ps/2^30}'; }
+ mkdir -p $OUT $C
+@@ -27,7 +27,7 @@
+ say "start (mode ${MODE:-full}; load $(sysctl -n vm.loadavg), $(availgib) GiB available)"
+ # 1. pins
+ while read bb f; do case "$bb" in "#"*) continue;; esac
+-  p=$F/$f; [ -f $p ] && [ "$(blob $p | cut -c1-8)" = "$bb" ] || stop "$p missing or not blob $bb"; done < $F/in_blobs.txt
++  p=$F/$f; [ -f $p ] && [ "$(blob $p | cut -c1-8)" = "$bb" ] || stop "$p missing or not blob $bb"; done < $K/in_blobs.txt
+ diff -u $IN/kc135_syscheck_1025.py $IN/kc143_syscheck_1025.py | tail -n +3 > $OUT/diff_rebuilt.txt
+ [ "$(grep -c '^[-+][^-+]' $OUT/diff_rebuilt.txt)" = 8 ] && [ "$(grep -c '^-[^-].*135' $OUT/diff_rebuilt.txt)" = 4 ] && [ "$(grep -c '^+[^+].*143' $OUT/diff_rebuilt.txt)" = 4 ] || stop "the diff of the k_c 135 and k_c 143 checks is not a header comment line and three lines changed from 135 to 143"
+ [ "$(git -C $WT rev-parse --short=8 HEAD)" = 48c36355 ] || stop "worktree $WT not at 48c36355"
+@@ -70,7 +70,7 @@
+ $C127S > $OUT/source_syscheck.txt 2>&1; s0=$?; $C127S --mutate=F > $OUT/source_syscheck_mutF.txt 2>&1; s1=$?; $C127S --mutate=steps > $OUT/source_syscheck_mutsteps.txt 2>&1; s2=$?
+ nice -n 10 $PY -I $IN/kc135_syscheck_1025.py $REC $STATE $D $WTM > $OUT/source_kc135check_refuses.txt 2>&1; s3=$?
+ nice -n 10 $PY -I $IN/kc143_syscheck_1025.py $REC $STATE $D $WTM > $OUT/source_kc143check_refuses.txt 2>&1; s4=$?
+-say "source check (winb's k_c 127 state at D $D, I1025-win/kc127_d23, kappa 0.7): kc127_syscheck exit $s0 (0 wanted); controls --mutate=F exit $s1, --mutate=steps exit $s2 (1 wanted each); kc135_syscheck on the source exit $s3, kc143_syscheck on the source exit $s4 (1 wanted each): $(grep -E '^D ' $OUT/source_syscheck.txt | cut -c1-300)"
++say "source check (R1's k_c 127 state at D $D, I1101 R1, kappa 0.5): kc127_syscheck exit $s0 (0 wanted); controls --mutate=F exit $s1, --mutate=steps exit $s2 (1 wanted each); kc135_syscheck on the source exit $s3, kc143_syscheck on the source exit $s4 (1 wanted each): $(grep -E '^D ' $OUT/source_syscheck.txt | cut -c1-300)"
+ [ $s0 = 0 ] && [ $s1 = 1 ] && [ $s2 = 1 ] && [ $s3 = 1 ] && [ $s4 = 1 ] || stop "the source check or a control did not read as written"
+ [ "$MODE" = dry ] && { say "dry run: pins, selftests and the source check passed; nothing started"; exit 0; }
+ [ "$MODE" = check ] && { say "check run: nothing regridded"; exit 0; }
+@@ -78,13 +78,13 @@
+ while pgrep -f 'd18_hybsign|ell_refine|d18_secant.py run' > /dev/null; do sleep 30; done
+ while python3 -c "import sys; sys.exit(0 if $(availgib) >= 8 else 1)"; [ $? != 0 ]; do sleep 60; done
+ # 5. the regrid (only the state is copied into the worktree's data, under the name ell_refine reads)
+-cp $STATE $WTM/data/sol_${SRC}_$DT.npy
+-[ "$(blob $WTM/data/sol_${SRC}_$DT.npy | cut -c1-8)" = 7a1b150c ] || stop "copied source state blob differs"
+-[ "$(blob $REC | cut -c1-8)" = eea03461 ] || stop "the source record blob differs"
+-CMD="nice -n 10 $PY -u $IN/capped_run.py 28800 env OMP_NUM_THREADS=6 OPENBLAS_NUM_THREADS=6 VECLIB_MAXIMUM_THREADS=6 MKL_NUM_THREADS=6 $PY -u ell_refine.py $SRC 127 $TAG 127 1 $D $LAM0 --kappa 0.5 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma"
++[ -e $WTM/data/sol_${SRC}_$DT.npy ] && [ "$(blob $WTM/data/sol_${SRC}_$DT.npy | cut -c1-8)" = 0124dbd2 ] || cp $STATE $WTM/data/sol_${SRC}_$DT.npy
++[ "$(blob $WTM/data/sol_${SRC}_$DT.npy | cut -c1-8)" = 0124dbd2 ] || stop "copied source state blob differs"
++[ "$(blob $REC | cut -c1-8)" = 944a8179 ] || stop "the source record blob differs"
++CMD="nice -n 10 $PY -u $IN/capped_run.py 28800 env OMP_NUM_THREADS=6 OPENBLAS_NUM_THREADS=6 VECLIB_MAXIMUM_THREADS=6 MKL_NUM_THREADS=6 $PY -u ell_refine.py $SRC 127 $TAG 127 1 $D $LAM0 --kappa 0.25 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma"
+ echo "# $(stamp) UTC cmd (cwd $WTM): $CMD" > $OUT/regrid.log
+ say "regrid starts: $CMD"
+-tell "macm3 #1101 R1 START (pilot): winb's k_c 127 D 23.0 state (7a1b150c, record eea03461: |F| 3.19e-10, steps 4179 at kappa 0.7) accepted by the k_c 127 check (controls 1 1, the k_c 135 and k_c 143 checks refuse it); the pins, selftests and the new scanner's selftests as wanted; regrid at kappa 0.5 starts now: $(echo $CMD | sed 's/.*ell_refine.py/ell_refine.py/'); bars |F| <= 5e-10 and steps 5851 +- 2%, 6 threads, cap 28800 s, load $(sysctl -n vm.loadavg), $(availgib) GiB available"
++tell "macm3 #1101 R3 START (pilot): R1's k_c 127 D 23.0 state (0124dbd2, record 944a8179: |F| 3.12e-10, steps 5847 at kappa 0.5) accepted by the k_c 127 check (controls 1 1, the k_c 135 and k_c 143 checks refuse it); the pins and selftests as wanted; regrid at kappa 0.25 starts now: $(echo $CMD | sed 's/.*ell_refine.py/ell_refine.py/'); bars |F| <= 5e-10 and steps 11700 +- 2%, 6 threads, cap 28800 s, load $(sysctl -n vm.loadavg), $(availgib) GiB available"
+ echo "time_utc,rss_kB,pcpu,avail_GiB" > $OUT/regrid_samples.csv
+ ( while sleep 60; do
+     echo "$(stamp),$(ps -axo rss=,pcpu=,command= | grep 'ell_refine.py' | grep -v grep | grep -v capped_run | head -1 | awk '{print $1","$2}'),$(availgib)" >> $OUT/regrid_samples.csv
+@@ -104,26 +104,26 @@
+ nice -n 10 $PY -I $IN/kc143_syscheck_1025.py $IN/$TAG.jsonl $IN/sol_${TAG}_$DT.npy $D $WTM > $OUT/syscheck_kc143check_refuses.txt 2>&1; c4=$?
+ say "kc127 syscheck exit $c0 (0 wanted); controls --mutate=F exit $c1, --mutate=steps exit $c2 (1 wanted each); kc135_syscheck on the result exit $c3, kc143_syscheck on the result exit $c4 (1 wanted each): $(grep -E '^D ' $OUT/syscheck.txt | cut -c1-300)"
+ [ $c0 = 0 ] && [ $c1 = 1 ] && [ $c2 = 1 ] && [ $c3 = 1 ] && [ $c4 = 1 ] || stop "the regrid result is not accepted (syscheck $c0, controls $c1 $c2, kc135 check on the result $c3, kc143 check on the result $c4)"
+-# t5's bars: |F| <= 5e-10 and steps 5851 +- 2% (5734 to 5968)
++# t5's bars: |F| <= 5e-10 and steps 11700 +- 2% (5734 to 5968)
+ python3 - $IN/$TAG.jsonl $D <<'PY' > $OUT/bars.txt; bars=$?
+ import json, sys
+ rec = [json.loads(l) for l in open(sys.argv[1]) if l.strip() and json.loads(l)["D"] == float(sys.argv[2])][-1]
+-okF = rec["F"] <= 5e-10; okS = 5851 * 0.98 <= rec["steps"] <= 5851 * 1.02
+-print("bars: |F| %.4e <= 5e-10: %s; steps %d in [%.1f, %.1f] (5851 +- 2%%, %+.2f%%): %s" % (rec["F"], okF, rec["steps"], 5851 * 0.98, 5851 * 1.02, 100.0 * (rec["steps"] / 5851.0 - 1), okS))
++okF = rec["F"] <= 5e-10; okS = 11700 * 0.98 <= rec["steps"] <= 11700 * 1.02
++print("bars: |F| %.4e <= 5e-10: %s; steps %d in [%.1f, %.1f] (11700 +- 2%%, %+.2f%%): %s" % (rec["F"], okF, rec["steps"], 11700 * 0.98, 11700 * 1.02, 100.0 * (rec["steps"] / 11700.0 - 1), okS))
+ sys.exit(0 if okF and okS else 1)
+ PY
+ say "$(cat $OUT/bars.txt)"
+ [ $bars = 0 ] || stop "a bar of t5's is not met: $(cat $OUT/bars.txt)"
+ echo "ACCEPTED $(stamp) UTC" > $OUT/VERDICT.txt
+-{ echo "$(blob $IN/sol_${TAG}_$DT.npy | cut -c1-8) sol_${TAG}_$DT.npy"; echo "$(blob $IN/$TAG.jsonl | cut -c1-8) $TAG.jsonl"; } > $F/in_blobs_regrid.txt
++{ echo "$(blob $IN/sol_${TAG}_$DT.npy | cut -c1-8) sol_${TAG}_$DT.npy"; echo "$(blob $IN/$TAG.jsonl | cut -c1-8) $TAG.jsonl"; } > $K/in_blobs_regrid.txt
+ python3 - $IN/$TAG.jsonl $IN/$SRC.jsonl $D <<'PY' > $OUT/regrid_summary.txt
+ import json, sys
+ rec = [json.loads(l) for l in open(sys.argv[1]) if l.strip()][-1]; src = [json.loads(l) for l in open(sys.argv[2]) if l.strip() and json.loads(l)["D"] == float(sys.argv[3])][-1]
+-print("kappa 0.5 record: D %r |F| %.4e steps %d psi-constraint %.4e Delta %.12f (winb kappa 0.7 source: |F| %.4e steps %d constraint %.4e Delta %.12f); Delta shift %+.4e, steps ratio %.3f, constraint ratio %.3f" % (
++print("kappa 0.25 record: D %r |F| %.4e steps %d psi-constraint %.4e Delta %.12f (R1 kappa 0.5 source: |F| %.4e steps %d constraint %.4e Delta %.12f); Delta shift %+.4e, steps ratio %.3f, constraint ratio %.3f" % (
+     rec["D"], rec["F"], rec["steps"], rec["constraint"], rec["Delta"], src["F"], src["steps"], src["constraint"], src["Delta"], rec["Delta"] - src["Delta"], rec["steps"] / src["steps"], rec["constraint"] / src["constraint"]))
+ PY
+-RP=$(bash $F/push_i1101.sh "I1101-macm3: R1 regrid accepted (state, record, checks)" 2>&1 | tail -1); say "pushed regrid: $RP"
+-tell "macm3 #1101 R1 regrid END: ACCEPTED ($(cat $OUT/regrid_summary.txt)); $(cat $OUT/bars.txt); regrid wall $(( $(date +%s) - t0 )) s; the scan of lambda 0.070 0.085 0.100 0.115 0.130 (+ the repeat of 0.070) starts now; raw $RP"
++RP=$(bash $F/push_i1101.sh "I1101-macm3: R3 regrid accepted (state, record, checks)" 2>&1 | tail -1); say "pushed regrid: $RP"
++tell "macm3 #1101 R3 regrid END: ACCEPTED ($(cat $OUT/regrid_summary.txt)); $(cat $OUT/bars.txt); regrid wall $(( $(date +%s) - t0 )) s; the scan of lambda 0.100 0.115 0.130 0.145 (own steps, 1 process) starts now; raw $RP"
+ # 6. the scan folder (pins from the pushed commit), the lock, then point87.sh scan
+ RAWC=$(echo "$RP" | awk '{print $2}')
+ git -C $RAWG cat-file -e $RAWC:I1101-macm3/in/$TAG.jsonl 2>/dev/null || stop "the pushed commit $RAWC does not hold the regrid record"
+@@ -137,12 +137,12 @@
+ RECBLOB=$(blob $IN/$TAG.jsonl | cut -c1-8)
+ SRC=I1101-macm3/in
+ PENV
+-  cat $F/scan_plan.env; } > $SCAN/point.env
++  cat $K/scan_plan.env; } > $SCAN/point.env
+ bash $L/prepare87.sh $DN > $SCAN/prepare.log 2>&1 || stop "prepare87.sh: a pin mismatch (see $SCAN/prepare.log)"
+ for f in sol_${TAG}_$DT.npy; do cp $SCAN/in/$f $WTM5/data/$f; done; cp $SCAN/in/$TAG.jsonl $WTM5/data/${TAG}_asof_D$D.jsonl
+-echo "ACCEPTED $(stamp) UTC (the k_c 127 check of the lane on the kappa 0.5 result, $OUT/syscheck.txt; controls and the k_c 135 and k_c 143 refusals in $OUT; t5's bars $OUT/bars.txt)" > $SCAN/VERDICT.txt
+-echo "$(stamp) UTC accept (lane_r1.sh): kc127_syscheck_1025.py exit $c0 (0 wanted); controls exit $c1 $c2 (1 wanted); kc135 and kc143 checks on the result exit $c3 $c4 (1 wanted each): $(grep -E '^D ' $OUT/syscheck.txt | cut -c1-260)" >> $SCAN/steps.txt
+-bash $L/push87.sh "kc87_leg_lambda: D $DN pins and verdict (I1101 R1, kappa 0.5)" > /dev/null 2>&1
++echo "ACCEPTED $(stamp) UTC (the k_c 127 check of the lane on the kappa 0.25 result, $OUT/syscheck.txt; controls and the k_c 135 and k_c 143 refusals in $OUT; t5's bars $OUT/bars.txt)" > $SCAN/VERDICT.txt
++echo "$(stamp) UTC accept (lane_r3.sh): kc127_syscheck_1025.py exit $c0 (0 wanted); controls exit $c1 $c2 (1 wanted); kc135 and kc143 checks on the result exit $c3 $c4 (1 wanted each): $(grep -E '^D ' $OUT/syscheck.txt | cut -c1-260)" >> $SCAN/steps.txt
++bash $L/push87.sh "kc87_leg_lambda: D $DN pins and verdict (I1101 R3, kappa 0.25)" > /dev/null 2>&1
+ LOCK=$L/.scan.lock; n=0
+ until mkdir $LOCK 2>/dev/null; do
+   p=$(cat $LOCK.pid 2>/dev/null)
+@@ -150,18 +150,19 @@
+   n=$((n+1)); [ $n -gt 2700 ] && stop "the scan lock stayed busy for 15 h"; sleep 20
+ done
+ echo $$ > $LOCK.pid
+-say "scan starts (pointnew_rs.sh $DN scan: the scanner d18_secant.py scan with --b12=rust --b12_threads=4)"
+-bash $L/pointnew_rs.sh $DN scan >> $SCAN/pipeline.log 2>&1; sc=$?
++say "scan starts (pointr3.sh $DN scan: the scanner d18_secant.py scan with --b12=rust --b12_threads=4)"
++bash $F/pointr3.sh $DN scan >> $SCAN/pipeline.log 2>&1; sc=$?
+ rmdir $LOCK 2>/dev/null; mv $LOCK.pid $LOCK.pid.done 2>/dev/null
+ say "scan exit $sc"
+ [ -e $SCAN/SCAN_DONE.txt ] || stop "the scan did not finish (no SCAN_DONE.txt; see $SCAN/steps.txt)"
+-bash $L/push87.sh "kc87_leg_lambda: D $DN (I1101 R1) scan done" > /dev/null 2>&1
++bash $L/push87.sh "kc87_leg_lambda: D $DN (I1101 R3) scan done" > /dev/null 2>&1
+ nch=$(grep -c 'robust change (' $SCAN/read_lower.txt); nrb=$(grep -o 'robust changes: [0-9]*' $SCAN/read_lower.txt | head -1 | grep -o '[0-9]*')
+ say "reading: $(grep -E '^hybrid signs|^robust changes|change \(|^endpoint|^repeated|^float64' $SCAN/read_lower.txt | tr '\n' ' ' | cut -c1-900)"
+-tell "macm3 #1101 R1: the scan is read: $(grep -E '^hybrid signs|^robust changes|change \(|^endpoint' $SCAN/read_lower.txt | tr '\n' ';' | cut -c1-900) (raw kc87_leg_lambda/$DN/)"
++tell "macm3 #1101 R3: the scan is read: $(grep -E '^hybrid signs|^robust changes|change \(|^endpoint' $SCAN/read_lower.txt | tr '\n' ';' | cut -c1-900) (raw kc87_leg_lambda/$DN/)"
++RL=$SCAN/read_lower.txt; SUMD=$SCAN
+ if [ "$nch" = 0 ] && [ "$nrb" = 0 ]; then
+-  # t5's order: no pair brackets in 0.070-0.130: scan 0.055 and 0.150 next, then report (no secant)
+-  tell "macm3 #1101 R1: the scan reads 0 robust changes in 0.070-0.130: the extension scan of 0.055 and 0.150 starts now (your order), then a report; no secant unless you say"
++  # t5's order: none: widen to 0.085 and 0.160, merged with the first scan for one reading, then the secant on the change
++  tell "macm3 #1101 R3: the scan reads 0 robust changes in 0.100-0.145 ($(grep -h '^hybrid signs' $SCAN/read_lower.txt | head -1)): the scan of 0.085 and 0.160 starts now (your order), merged with it for one reading of 6 points, then the secant on the change"
+   mkdir -p $SCANX
+ { cat <<PENV
+ D=$D
+@@ -172,12 +173,12 @@
+ RECBLOB=$(blob $IN/$TAG.jsonl | cut -c1-8)
+ SRC=I1101-macm3/in
+ PENV
+-  cat $F/scan_plan_ext.env; } > $SCANX/point.env
++  cat $K/scan_plan_ext.env; } > $SCANX/point.env
+ bash $L/prepare87.sh $DNX > $SCANX/prepare.log 2>&1 || stop "prepare87.sh: a pin mismatch (see $SCANX/prepare.log)"
+ for f in sol_${TAG}_$DT.npy; do cp $SCANX/in/$f $WTM5/data/$f; done; cp $SCANX/in/$TAG.jsonl $WTM5/data/${TAG}_asof_D$D.jsonl
+-echo "ACCEPTED $(stamp) UTC (the k_c 127 check of the lane on the kappa 0.5 result, $OUT/syscheck.txt; controls and the k_c 135 and k_c 143 refusals in $OUT; t5's bars $OUT/bars.txt)" > $SCANX/VERDICT.txt
+-echo "$(stamp) UTC accept (lane_r1.sh): kc127_syscheck_1025.py exit $c0 (0 wanted); controls exit $c1 $c2 (1 wanted); kc135 and kc143 checks on the result exit $c3 $c4 (1 wanted each): $(grep -E '^D ' $OUT/syscheck.txt | cut -c1-260)" >> $SCANX/steps.txt
+-bash $L/push87.sh "kc87_leg_lambda: D $DNX pins and verdict (I1101 R1 extension)" > /dev/null 2>&1
++echo "ACCEPTED $(stamp) UTC (the k_c 127 check of the lane on the kappa 0.25 result, $OUT/syscheck.txt; controls and the k_c 135 and k_c 143 refusals in $OUT; t5's bars $OUT/bars.txt)" > $SCANX/VERDICT.txt
++echo "$(stamp) UTC accept (lane_r3.sh): kc127_syscheck_1025.py exit $c0 (0 wanted); controls exit $c1 $c2 (1 wanted); kc135 and kc143 checks on the result exit $c3 $c4 (1 wanted each): $(grep -E '^D ' $OUT/syscheck.txt | cut -c1-260)" >> $SCANX/steps.txt
++bash $L/push87.sh "kc87_leg_lambda: D $DNX pins and verdict (I1101 R3 extension)" > /dev/null 2>&1
+ LOCK=$L/.scan.lock; n=0
+ until mkdir $LOCK 2>/dev/null; do
+   p=$(cat $LOCK.pid 2>/dev/null)
+@@ -185,20 +186,33 @@
+   n=$((n+1)); [ $n -gt 2700 ] && stop "the scan lock stayed busy for 15 h"; sleep 20
+ done
+ echo $$ > $LOCK.pid
+-say "extension scan starts (pointnew_rs.sh $DNX scan: the scanner d18_secant.py scan with --b12=rust --b12_threads=4)"
+-bash $L/pointnew_rs.sh $DNX scan >> $SCANX/pipeline.log 2>&1; sc=$?
++say "extension scan starts (pointr3.sh $DNX scan: the scanner d18_secant.py scan with --b12=rust --b12_threads=4)"
++bash $F/pointr3.sh $DNX scan >> $SCANX/pipeline.log 2>&1; sc=$?
+ rmdir $LOCK 2>/dev/null; mv $LOCK.pid $LOCK.pid.done 2>/dev/null
+ say "extension scan exit $sc"
+ [ -e $SCANX/SCAN_DONE.txt ] || stop "the scan did not finish (no SCAN_DONE.txt; see $SCANX/steps.txt)"
+-bash $L/push87.sh "kc87_leg_lambda: D $DNX (I1101 R1 extension) scan done" > /dev/null 2>&1
+-  nchx=$(grep -c 'robust change (' $SCANX/read_lower.txt); nrbx=$(grep -o 'robust changes: [0-9]*' $SCANX/read_lower.txt | head -1 | grep -o '[0-9]*')
+-  say "extension reading: $(grep -E '^hybrid signs|^robust changes|change \(|^endpoint|^repeated|^float64' $SCANX/read_lower.txt | tr '\n' ' ' | cut -c1-900)"
+-  tell "macm3 #1101 R1 EXTENSION done (0.055 and 0.150 with 0.070, 0.130 and a repeat of 0.055): $(grep -E '^hybrid signs|^robust changes|change \(|^endpoint' $SCANX/read_lower.txt | tr '\n' ';' | cut -c1-900); the secant is not run without your word (raw I1101-macm3/ and kc87_leg_lambda/$DNX/)"
+-  exit 0
++bash $L/push87.sh "kc87_leg_lambda: D $DNX (I1101 R3 extension) scan done" > /dev/null 2>&1
++    $PY $F/merge_scans.py $DNG $DN $DNX > $K/merge_scans.txt 2>&1; mg=$?
++  m1=1; m2=1; m3=1; $PY $F/merge_scans.py ${DNG}_mut $DN $DNX --mutate=dup > /dev/null 2>&1; m1=$?; $PY $F/merge_scans.py ${DNG}_mut $DN $DNX --mutate=state > /dev/null 2>&1; m2=$?; $PY $F/merge_scans.py ${DNG}_mut $DN $DNX --mutate=log > /dev/null 2>&1; m3=$?
++  say "merge exit $mg (0 wanted), its mutations dup exit $m1, state exit $m2, log exit $m3 (1 wanted each): $(tail -1 $K/merge_scans.txt | cut -c1-300)"
++  [ $mg = 0 ] && [ $m1 = 1 ] && [ $m2 = 1 ] && [ $m3 = 1 ] || stop "the merge of the two scans or its controls did not read as wanted ($mg $m1 $m2 $m3)"
++  mv $L/${DNG}_mut $L/${DNG}_mut.removed.$(date +%s) 2>/dev/null
++  ( cd $L/common/in
++    { echo "== window: read_lower.py scan 0.085 0.160 (merged: $DN and $DNX)"; $PY -I read_lower.py $SCANG/scan 0.085 0.160; echo "(exit $?)"; } > $SCANG/read_lower.txt 2>&1 )
++  cp $SCANG/read_lower.txt $K/read_lower_merged.txt
++  NPTS=$(grep -h '^points ' $SCANG/read_lower.txt | head -1 | grep -o '^points [0-9]*' | grep -o '[0-9]*$')
++  [ "${NPTS:-0}" = 6 ] || stop "READ FAILURE, not a result: read_lower.py read ${NPTS:-0} points of the 6 evaluations ($(grep -h '^points ' $SCANG/read_lower.txt | head -1))"
++  nch=$(grep -c 'robust change (' $SCANG/read_lower.txt); nrb=$(grep -o 'robust changes: [0-9]*' $SCANG/read_lower.txt | head -1 | grep -o '[0-9]*')
++  say "merged reading ($NPTS points): $(grep -E '^hybrid signs|^robust changes|change \(|^endpoint|^float64|not noise-robust' $SCANG/read_lower.txt | tr '\n' ' ' | cut -c1-1000)"
++  bash $F/push_i1101.sh "I1101-macm3: R3 widened scan merged and read (6 points)" > /dev/null 2>&1
++  bash $L/push87.sh "kc87_leg_lambda: D $DNG (I1101 R3 merged reading, 6 points)" > /dev/null 2>&1
++  tell "macm3 #1101 R3: the merged reading of the six lambda (0.085 to 0.160, own steps, $NPTS points read): $(grep -E '^hybrid signs|^robust changes|change \(|^endpoint|not noise-robust' $SCANG/read_lower.txt | tr '\n' ';' | cut -c1-1000) (raw kc87_leg_lambda/$DNG/)"
++  if [ "$nch" = 0 ] && [ "$nrb" = 0 ]; then tell "macm3 #1101 R3: no robust change in 0.085 to 0.160 with all 6 points read: no secant; the lane ends and waits for your word"; exit 0; fi
++  RL=$SCANG/read_lower.txt; SUMD=$SCANG
+ fi
+-[ "$nch" = 1 ] && [ "$nrb" = 1 ] || { tell "macm3 #1101 R1 STOP: the scan reads $nrb robust changes in 0.070-0.130 (one wanted; none goes to the extension): no secant; reported"; exit 1; }
++[ "$nch" = 1 ] && [ "$nrb" = 1 ] || { tell "macm3 #1101 R3 STOP: the reading has $nrb robust changes (one wanted): no secant; reported"; exit 1; }
+ # 7. the secant refinement of the one robust change
+-BR=$(grep 'robust change (' $SCAN/read_lower.txt | sed -E 's/.*robust change \((-?[0-9.]+), (-?[0-9.]+)\).*/\1 \2/')
++BR=$(grep 'robust change (' $RL | sed -E 's/.*robust change \((-?[0-9.]+), (-?[0-9.]+)\).*/\1 \2/')
+ LO=${BR% *}; HI=${BR#* }
+ S_STATE=$SCAN/in/sol_${TAG}_$DT.npy; S_REC=$SCAN/in/$TAG.jsonl; SB=$(blob $S_STATE | cut -c1-8); TB=$(blob $S_REC | cut -c1-8)
+ mkdir -p $SEC; [ -e $SEC/secant.jsonl ] && stop "$SEC/secant.jsonl exists"
+@@ -206,12 +220,16 @@
+ echo "time_utc,pid,rss_kB,pcpu,avail_GiB" > $SEC/samples.csv
+ ( cd $WTS && env PYTHONPATH=$SITE OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 nice -n 10 $PY -u $IN/capped_run.py 18000 $PY -u $WTS/d18_secant.py run $S_REC $S_STATE $D $LO $HI $SEC/secant.jsonl --tol=5e-5 --maxev=10 --pin=$SB,$TB --b12=rust --b12_threads=4 > $SEC/secant.log 2>&1; echo $? > $SEC/exit.txt ) &
+ sp=$!
+-( while kill -0 $sp 2>/dev/null; do for p in $(pgrep -f "d18_secant.py run.*I1101-macm3/secant"); do echo "$(stamp),$p,$(ps -o rss= -p $p | tr -d ' '),$(ps -o pcpu= -p $p | tr -d ' '),$(availgib)" >> $SEC/samples.csv; done; sleep 60; done ) &
++( while kill -0 $sp 2>/dev/null; do for p in $(pgrep -f "d18_secant.py run.*I1101-macm3/r3/secant"); do echo "$(stamp),$p,$(ps -o rss= -p $p | tr -d ' '),$(ps -o pcpu= -p $p | tr -d ' '),$(availgib)" >> $SEC/samples.csv; done; sleep 60; done ) &
+ wait $sp; se=$(cat $SEC/exit.txt)
+ say "secant exit $se"
+ [ "$se" = 0 ] || [ "$se" = 4 ] || stop "d18_secant.py exit $se (0 tol reached, 4 maxev or non-robust interior point; 2 refused, 3 pin or record system): see $SEC/secant.log"
+-$PY $F/summarize_point.py $SCAN $SEC > $F/point_summary.txt 2>&1
+-bash $F/push_i1101.sh "I1101-macm3: R1 scanned and its root refined (secant)" > /dev/null 2>&1
+-tell "macm3 #1101 R1 done: $(grep -E '^(scan:|secant: status|secant root)' $F/point_summary.txt | tr '\n' ';' | cut -c1-1400) (raw I1101-macm3/ and kc87_leg_lambda/$DN/)"
++$PY $F/summarize_point.py $SUMD $SEC > $K/point_summary.txt 2>&1
++bash $F/push_i1101.sh "I1101-macm3: R3 scanned and its root refined (secant)" > /dev/null 2>&1
++RT=$(grep -o 'det-linear root [0-9.-]*' $K/point_summary.txt | head -1 | awk '{print $3}')
++CMPR=$(python3 -c "
++r = float('$RT'); h = [('0.111 (kappa^4)', 0.111), ('0.120 (kappa^3)', 0.120), ('0.133 (kappa^2)', 0.133)]
++print('root %.8f: minus 0.111 %+.5f, minus 0.120 %+.5f, minus 0.133 %+.5f; nearest %s' % (r, r - 0.111, r - 0.120, r - 0.133, min(h, key=lambda t: abs(r - t[1]))[0]))")
++tell "macm3 #1101 R3 done: $CMPR; $(grep -E '^(scan:|secant: status|secant root)' $K/point_summary.txt | tr '\n' ';' | cut -c1-1200) (raw I1101-macm3/r3/ and kc87_leg_lambda/$DN/)"
+ exit 0
+ }
