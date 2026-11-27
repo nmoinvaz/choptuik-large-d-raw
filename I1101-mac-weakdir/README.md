@@ -78,3 +78,23 @@ and said so. Cap per re-solve 4 h.
 
 Predictions (mine, before the runs): bar 1 passes for all four (85%); the control within 3e-4 (60%); readable (70%);
 p >= 3.5 (40%), p <= 2.8 (35%), mixed (25%).
+
+## Task A results so far (2026-11-27 22:25 UTC by the clock)
+
+Code `i1101_weakdir.py` at 1d018e31 of `wip/i1101-weakdir` (blob ed6003c1). Logs in `A/`: `jac/` (J of src and U40,
+87 s each; J and the SVD, 104 MB each, are not stored: `jac` and `svd` rebuild them), `report_src.log`/`.json` (the
+report on src's SVD, with planted states), `report_src_swap.*` (its `--mutate=swap` control), `planted*.log`,
+`floor_u40.log`, `valley_u40_refreeze.log` (the states `valley/sol_w*_D16.0000.npy` and their stubs, record-consistent),
+`valley_u40.log` (a first run without re-frozen steps; its `sol_v*` states do not rebuild as their own record system),
+`locate*.log` (float64 determinant signs).
+
+- Spectrum of J at src: 52 values below 2.5e-12 s_max (the null band); a pair at 1.50e-10 and 4.67e-10 (v52, v53); a
+  pair at 1.316e-7 and 1.321e-7 (v54, v55); then 4.40e-4 and up.
+- U40 - src, U40b - src, U40c - src lie in the four weak vectors to 0.9999994 or more.
+- |F| 1.785e-10 at every state is 1.785e-10 in the weak band (null 5.6e-12, strong 4e-13 to 9e-13); on the pair
+  U_w^T F = (+1.116e-10, -1.392e-10) at all four states, with rounding noise 1e-14 to 5e-14.
+- Checks: planted projection PASS (control `--mutate=basis` FAIL as it must). Tau translation: |J_mis g|/(s_max |g|)
+  5.9e-11 (control 9.7e-3). Gauge h = 1: 2.6e-8 (control 2.2e-3); h = cos, sin 2 w tau: 2.3e-6, 2.5e-6 against the
+  1e-6 bar: FAIL, with 4.6e-5 of the generator's node-state norm above k_c (cut by the layout). Single plants of 1e-3
+  along v52, v53: FAIL the 1% bar (11% and 6%). Pairs +-eps (added after that failure): v53 0.63% PASS; v52 5.0% at
+  1e-3 and 1.3% at 3e-3 FAIL, falling as 1/eps (the noise of U^T F); control `--mutate=swap` FAIL as it must.
