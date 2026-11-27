@@ -76,3 +76,46 @@ Regrid: 6 threads at nice 10, about 4 h (starts at once, ends about 17:45 UTC). 
 - 2026-11-27 04:00:06 UTC: **THE ORIGINAL SCAN ENDED** (the driver's final reading, `read_lower.txt`, `SCAN_DONE.txt`): **robust changes 0** in -0.04 to 0.12; hybrid signs -0.04+ -0.02+ 0.00+ 0.02+ 0.04+ 0.06+ 0.08+ 0.10+ 0.12+ (nine contiguous + points), all 10 evaluations noise-robust, the float64 sign equals the hybrid at all nine, no ln|det| minimum without a sign change, endpoint signs + and +; **the repeat of 0.04 (process 0, alone) is bit-identical to the first (process 1)** in every field but its wall time and its section times (hybrid +, ln|det| -3697.2570616761, float64 +, float64 ln|det| -3697.2490665723, noise [1.0, 1.0]; 6686 s against 6994 s), `repeat_check.py` PASS; `read_lower.py` selftest exit 0 and its mutations exit 1; the scanner's four selftest exits 0 1 1 1 (16:53:11 UTC, blob eb1396ad). **The scan step took 11.1 h** (16:53:11 UTC to 04:00:06 UTC; t5's cap 16 h, ruled 22:22 UTC); points: round 1 (nice 10, no contention) 6940, 6994, 6999 s; rounds 2 and 3 (nice 19, three to five i1088a units, load 8.7 to 10.3) 13006 to 13406 s (1.87 to 1.92 times); the repeat of 0.04 (nice 19, alone) 6686 s. **Peak RSS of a scan process (time -v): 3.87 (process 0, four points), 3.92 and 3.95 GiB** (the k_c 119 scan of `../kc119_d23_wide`, old scanner: 5.03 to 5.10 GiB); the largest total of the three at one sample 8.96 GiB, lowest MemAvailable 16.7 GiB; nothing killed on memory, no `alert.log`; the yield rule fired once, 18:54:52 UTC (`i1088a_yield.txt`, 6 lines), and the lane's processes stayed at nice 19.
 - 2026-11-27 04:00:38 to 04:00:39 UTC: **THE EXTENSION STARTED BY ITSELF** (`ext_after_scan.sh`, unit `i1025-k119e`, the moment `SCAN_DONE.txt` appeared): the memory gate passed at once (MemAvailable 27461 MiB), **the scanner's four selftest exits again 0 1 1 1** (`selftest_secant*_ext.txt`, blob eb1396ad), then 3 processes at nice 19 with `--pin=ecfe82b1,1ae7129b`: p0 -0.06, p1 -0.08, p2 -0.10; checked at 04:00:40 UTC: 3 pythons at nice 19, one thread each. Expected 3.5 to 5 h (about 07:30 to 09:30 UTC), its step cap 10 h from 04:00:39 UTC (14:00:39 UTC).
 - 2026-11-27 04:01:33 UTC: this entry.
+
+
+## Result (2026-11-27 07:11:09 UTC)
+**No robust change at k_c 119, D 22.25, in -0.10 to 0.12: the twelve grid points -0.10, -0.08, ..., 0.12 (a contiguous 0.02 grid) are all hybrid +.** The original scan -0.04 to 0.12 (nine points and the repeat of 0.04; the driver's reading, `read_lower.txt`) and the extension -0.10, -0.08, -0.06 (`read_lower_ext.txt`: the extension window -0.10 to -0.04 with the original -0.04, and the whole -0.10 to 0.12): **robust changes 0 in all three reads**, all 13 evaluations noise-robust (the new scanner's `dln` 4.3e-7 to 6.7e-7, bar 0.1), the float64 sign equals the hybrid at all of them, no ln|det| minimum without a sign change, endpoint signs + and +; **the repeat of 0.04 is bit-identical** (hybrid +, ln|det| -3697.2570616761, float64 +, noise [1.0, 1.0]) in every field but its wall time and section times; `repeat_check.py` PASS on the original and on all of it; `read_lower.py` selftest exit 0 and its mutations exit 1 (twice); the scanner's four selftest exits 0 1 1 1, twice (16:53:11 UTC 26 Nov and 04:00:39 UTC 27 Nov, blob eb1396ad, commit 92b9bf53).
+
+| lambda | hybrid sign | ln\|det\| (hybrid) | float64 sign | point wall (s) | run |
+|---|---|---|---|---|---|
+| -0.10 | + | -3681.6191 | + | 11319 | extension (nice 19) |
+| -0.08 | + | -3683.8463 | + | 11319 | extension (nice 19) |
+| -0.06 | + | -3686.0757 | + | 11348 | extension (nice 19) |
+| -0.04 | + | -3688.3073 | + | 13263 | scan |
+| -0.02 | + | -3690.5411 | + | 13058 | scan |
+| +0.00 | + | -3692.7773 | + | 6999 | scan |
+| +0.02 | + | -3695.0159 | + | 6940 | scan |
+| +0.04 | + | -3697.2571 | + | 6686 | scan |
+| +0.04 | + | -3697.2571 | + | 6994 | scan |
+| +0.06 | + | -3699.5009 | + | 13006 | scan |
+| +0.08 | + | -3701.7476 | + | 13040 | scan |
+| +0.10 | + | -3703.9975 | + | 13372 | scan |
+| +0.12 | + | -3706.2508 | + | 13406 | scan |
+
+- **ln|det| over the twelve points** per 0.02: -2.227, -2.229, -2.232, -2.234, -2.236, -2.239, -2.241, -2.244, -2.247, -2.250, -2.253: smooth, no dip toward a zero anywhere in -0.10 to 0.12.
+- **Pattern P (t5): not borne out at k_c 119, D 22.25 in -0.10 to 0.12 at the 0.02 grid.** t5's context: S at this D sat at 0.1084 (k_c 87) and 0.0596 (k_c 103), about 0.049 down per 16 in k_c, so a linear continuation puts it near 0.011 at k_c 119, inside the window; the nine points of -0.04 to 0.12 are all + and so are the three below (the extension, ordered to test a faster drop). The F root at this D (k_c 111: 0.456) lies outside, as registered. What this does not show: anything outside -0.10 to 0.12, or structure finer than the 0.02 grid (a close pair of roots would show as a ln|det| dip; none is flagged).
+
+**The regrid beside its k_c 111 source (dh370's):** |F| 4.0892919493e-10 (source 4.0650557270e-10, ratio 1.00596), steps 3918 (3657, ratio 1.0714), psi-constraint 1.1560e-3 (1.9238e-3, ratio 0.6009), Delta 1.152659245519 (k_c 119 minus k_c 111 -1.0062e-6 after -2.8666e-6, ratio 0.3510); wall 11769 s, peak RSS 3.94 GiB.
+
+**Time, memory and the yield rule.** The lane 13:36:35 UTC 26 Nov to 07:10:09 UTC 27 Nov (17.6 h): the regrid 3.27 h; the scan step 16:53:11 to 04:00:06 UTC = 11.1 h (t5 raised its cap from 10 h to 16 h at 22:22 UTC because of the yield rule); the extension step 04:00:39 to 07:10:09 UTC = 3.16 h. **Points:** round 1 (nice 10, no contention) 6940 to 6999 s; rounds 2 and 3 (nice 19 behind three to five `i1088a` units, load 8.7 to 10.3) 13006 to 13406 s, 1.87 to 1.92 times; the repeat of 0.04 (nice 19, alone) 6686 s; the extension (nice 19, three processes, two `i1088a` units) 11319 to 11348 s. **Peak RSS of a scan process (time -v): 3.87 to 3.95 GiB (the scan), 3.65 to 3.92 GiB (the extension)**, against 5.03 to 5.10 GiB for the old scanner at k_c 119 (`../kc119_d23_wide`); the largest total of the three at one sample 8.96 GiB, lowest MemAvailable 16.7 GiB; nothing killed on memory, no `alert.log`. **The yield rule fired once**, at 18:54:52 UTC 26 Nov (`i1088a_yield.txt`, 6 lines: every thread of the six processes to nice 19 when `i1088a-sky.service` became active); the extension started at nice 19 as ordered.
+
+## Predictions against the result
+| prediction | result |
+|---|---|
+| t5's: if P holds, exactly one robust change in (-0.04, 0.12), most likely in (0.00, 0.06); the F root outside | **not borne out**: none in the nine points (and none in the extension) |
+| t5's extension registration: if S exists at k_c 119, exactly one robust change in (-0.10, -0.04) 40%, none 60% | **none** (-0.10, -0.08, -0.06, -0.04 all +) |
+| mine: the source accepted with all controls firing and both other checks refusing (90%); the regrid accepted with both controls firing and the k_c 111 check refusing (75%) | yes; yes (3918 steps = the record's) |
+| the regrid wall 10000 to 20000 s (65%); steps within 40 of 3918 (60%); |F| between 3.8e-10 and 4.3e-10 (75%); psi-constraint between 0.8e-3 and 1.6e-3 (60%); Delta k_c 119 minus k_c 111 between -4e-6 and -3e-7 (70%); peak RSS of the regrid below 5 GiB (75%) | yes, 11769 s; yes, 3918 exactly; yes, 4.089e-10; yes, 1.156e-3; yes, -1.0062e-6; yes, 3.94 GiB |
+| P holds (one robust change in -0.04 to 0.12) 55%; none 38%; two or more 7% | **none** (the 38% case) |
+| every point noise-robust (65%); the repeat of 0.04 bit-identical (90%); the float64 sign differs from the hybrid at more than half of the points (25%) | yes, 13 of 13; yes; no (at none) |
+| each scan point 4000 to 8000 s with three processes (60%); the four rounds 4.5 to 7.5 h (60%) | **round 1 yes (6940 to 6999 s), rounds 2 and 3 no (13006 to 13406 s at nice 19 under the i1088a load)**; **no: 11.1 h** (the yield rule, not the scanner: nice 10 without contention gave 1.32 times the old scanner's speed) |
+| peak RSS of a scan process below 6.5 GiB (80%); lowest MemAvailable above 6 GiB (85%) | yes, 3.95 GiB at most; yes, 16.7 GiB |
+| mine, the extension: exactly one robust change in (-0.10, -0.04) 20%, none 75%, two or more 5%; every point robust 70%; each point 11000 to 16000 s 60%; the extension ends 3.5 to 5 h after its start | **none (the 75% case)**; yes, 3 of 3; yes, 11319 to 11348 s; **no: 3.16 h** (faster: the load fell to two i1088a units) |
+**Misses:** my P probability (55% for a change; it was the 38% case), the scan wall (11.1 h against 4.5 to 7.5 h: the i1088a yield, which t5 ruled outranks #1025, put every point at nice 19 and 1.9 times slower), and the extension's wall (3.16 h against 3.5 to 5 h). **Not mine to conclude:** what S does between k_c 103 and 119 beyond this grid; the regrid and the scan do not say.
+
+- 2026-11-27 07:11:09 UTC: the extension ended 07:10:09 UTC; result written (this section); the lane's units have ended; nothing of mine is running.
