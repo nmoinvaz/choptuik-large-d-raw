@@ -292,3 +292,80 @@ All three re-solves exited 0 within the cap (2301 to 2477 s) with |F| below 1e-8
 
 ## Status
 - 2026-11-27 09:32 UTC: step 1b done. T5 +7.79e-6; T3 not formed by the written rule, bounded to -1.95e-3..-1.93e-3; the control (re-solve at u0 0.04 against the source) moved the root by +8.6e-4, so the solve scatter is the limit. Posted on #1105.
+
+# Step 1c: is the root at u0 0.04 one number? (two more re-solves at u0 0.04, from U30's and U50's states)
+
+Written 2026-11-27 09:35 UTC by the clock, before any run of step 1c (the pins, the driver, the bars and the predictions came first; t5's comment is quoted at the end of this section). Folder `step1c/`. Issue #1105; coordinator t5. Follows step 1b, where a re-solve at the record's own u0 (U40) moved the root +8.6e-4 from the source record, and U40 and U50 agreed to 7.8e-6.
+
+## Bars and reading (t5's, fixed before the run; each can fail)
+r40 = 2.2449017 (U40; its det-linear root is 2.2449017148, bracket width 5.0e-8).
+- **Both roots within 1e-4 of r40:** the u0 0.04 system has one root, the source state was off, and ELL.md's -8.1e-4 compared against a state that was not the system's solution.
+- **Either more than 5e-4 from r40:** the root carries a solve scatter of order 1e-3 at k_c 55, D 16. Then no u0 effect below that is readable from single solves, and the scatter becomes this issue's finding.
+- **Otherwise (neither beyond 5e-4, at least one beyond 1e-4):** mixed, reported as measured.
+- Each run's |F|, steps and Delta are reported, with Delta's difference from U40 (1.0017134267209413) and from the source (1.0017135137307174). A re-solve whose |F| exceeds 1e-8 is not rooted.
+- A root is read only from a `d18_secant.py run` that ends with status `tol`, both bracket ends robust and of opposite hybrid signs; the root is `lam_lin`. If a run ends otherwise, its robust final bracket is reported and bounds the difference from r40 (as for U30 in step 1b); that bound is outside this rule and is labelled so. Estimator values at the width of the final bracket, not rigorous enclosures.
+
+## Pins (by blob; the driver refuses any other)
+| what | where | blob |
+|---|---|---|
+| start of U40b | U30's state `sol_l1kc55u030_D16.0000.npy` and record `l1kc55u030.jsonl` (re-solve at u0 0.03, |F| 2.5624e-10; in the regrid worktree's `data/` and `step1b/`) | 939aca10, 46b7ea52 |
+| start of U40c | U50's state `sol_l1kc55u050_D16.0000.npy` and record `l1kc55u050.jsonl` (re-solve at u0 0.05, |F| 1.8882e-10) | 85c1d8f3, 91d66dd0 |
+| re-solve | worktree `~/Source/choptuik-large-d-1025k79` at 48c36355 (dss_ell, ell_ddm, ell_dd, ddnp equal 505d8399's), `ell_refine.py` | 631e5801 |
+| root | worktree `~/Source/choptuik-large-d-1102` at d4b6b6ce, `d18_secant.py` 9706e506 (`--b12=rust`), ellrs in `~/Source/ellrs-site-1102` | |
+| python | `~/Source/choptuik-large-d-1058b/.venv` | |
+
+## Commands (`step1c/run_step1c.sh TAG SRC SRCSTATEBLOB SRCRECBLOB`, units `i1105u040b` and `i1105u040c` under systemd-inhibit, started together; steps in `steps_1c.txt`)
+From `solver/matter` of the regrid worktree, 2 threads each (OMP, OPENBLAS, MKL = 2), `nice -n 10 timeout 7200` (cap 2 h on the python pid, no retry):
+```
+U40b  python -u ell_refine.py l1kc55u030 55 l1kc55u040b 55 1 16 2.2426280416106374 --kappa 0.7 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma
+U40c  python -u ell_refine.py l1kc55u050 55 l1kc55u040c 55 1 16 2.2426280416106374 --kappa 0.7 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma
+```
+Then, if |F| <= 1e-8, as in step 1b: `d18_secant.py run RECORD STATE 16 2.238 2.250 root_<TAG>.jsonl --tol=1e-7 --maxev=20 --b12=rust --b12_threads=1 --pin=<state blob>,<record blob>` from the #1102 worktree, 1 thread, nice 10, `PYTHONPATH=SITE`. `read_1105c.py` (written while the runs go; planted selftest, `--mutate=ref` must fail it) forms the two differences from r40 and reads the bars. R2's scan (#1101) starts at once when `I1101-win2/R2/` lands and shares the machine (4 + 4 threads on 8 logical CPUs).
+
+## Predictions (mine, registered before the run; information, not pass rules)
+| item | prediction |
+|---|---|
+| |F| <= 1e-8 after each re-solve | 90% each |
+| steps | 2565 for both (the freeze rule at u0 0.04; U40 had 2565): 90% |
+| roots: both within 1e-4 of r40 | 45% (U40 and U50 agree to 7.8e-6; the source looks like the outlier) |
+| roots: either beyond 5e-4 | 35% |
+| roots: mixed | 20% |
+| Delta of U40b, U40c against U40 | within 1e-7: 50% (U40 moved from the source by -8.7e-8) |
+| re-solve wall (2 threads, nice 10, two runs) | 0.3 to 0.8 h: 60% (step 1b: 0.64 to 0.69 h with three runs) |
+| root wall (1 thread) | 1000 to 1400 s: 60% (step 1b: 1050 to 1338 s) |
+
+## Status
+- 2026-11-27 09:35 UTC: pins, bars, driver and predictions written before any step 1c run; the two units start next.
+
+## Order, verbatim
+
+### t5's hc (after step 1b was accepted)
+> t5: step 1b and the time fixes accepted. Your control was the decisive one. Next, until R2 lands: #1105 step 1c, comment 7214814455 (the record). Two re-solves at u0 0.04 from U30's and U50's states (U40b, U40c: the two ell_refine lines in the comment), 2 threads each, nice 10, cap 2 h each, then root each as U40 (bracket 2.238-2.250, --tol=1e-7). Report both roots against r40 = 2.2449017 and the bars: both within 1e-4 means one root; either beyond 5e-4 means a solve scatter of order 1e-3. Also each run's |F|, steps and Delta, against U40 and the source. Raw: a new section of I1105-dh170/README.md first. R2's scan keeps priority.
+
+### #1105 comment 7214814455
+
+> **Step 1c on dh170: is the root at u0 0.04 one number?** (t5, 2026-11-27 09:33 by the clock)
+> 
+> Step 1b (comment 7214799663, raw `I1105-dh170/` 8af386938) found that a re-solve at the record's own u0 0.04 moved the
+> root by +8.6e-4 from the source record (|F| 1.785e-10 → 1.785e-10, Δ −8.7e-8, steps equal), with the scanner checked
+> against P4's root. U40 and U50 agree to 7.8e-6. So either the source state is the outlier and the u0 0.04 system has one
+> root (2.24490), or two solutions at the same |F| differ along a direction that moves λ₁ by about 1e-3.
+> 
+> **Runs.** Two more re-solves at u0 0.04 from different starts, same worktree, code and settings as U40:
+> 
+> ```
+> U40b  python ell_refine.py l1kc55u030 55 l1kc55u040b 55 1 16 2.2426280416106374 --kappa 0.7 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma
+> U40c  python ell_refine.py l1kc55u050 55 l1kc55u040c 55 1 16 2.2426280416106374 --kappa 0.7 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma
+> ```
+> 
+> 2 threads each, nice 10, cap 2 h each. Each is rooted as U40 was, with the bracket 2.238–2.250 and `--tol=1e-7`.
+> 
+> **Reading, written before the runs.** Let r40 = 2.2449017 (U40).
+> - Both within 1e-4 of r40: the u0 0.04 system has one root, the source state was off, and ELL.md's −8.1e-4 compared
+>   against a state that was not the system's solution.
+> - Either more than 5e-4 from r40: the root carries a solve scatter of order 1e-3 at k_c 55, D 16. Then no u0 effect
+>   below that is readable from single solves, and the scatter becomes this issue's finding.
+> - Also reported: each run's |F|, steps, Δ, and Δ's difference from U40 and from the source.
+> 
+> R2's root scan (#1101) has priority when R2 lands.
+> 
