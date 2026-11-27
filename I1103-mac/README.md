@@ -101,3 +101,13 @@ Inputs:
 | `sol_l1kc135win2d23_D23.0000.npy` | raw `I1025-win2/kc135_d23/sol_l1kc135win2d23_D23.0000.npy` | cd134e2c |
 | `sol_l1kc135macm3d230625_D23.0625.npy` | raw `I1025-macm3/kc143_d230625/in/sol_l1kc135macm3d230625_D23.0625.npy` | a6253940 |
 | `sol_l1kc135macm3d23125_D23.1250.npy` | raw `I1025-macm3/kc135_d23125/in/sol_l1kc135macm3d23125_D23.1250.npy` | ac01e477 |
+
+## split/ (what one k_c rung changes; residual only, no solves)
+Code commit a9d9ad11 (`i1103_split.py`, `i1103_bands.py` = `bands.py` here; `kc8seq.py`). Inputs: the D 23.0 and 23.0625
+states of spectrum/'s table. `planted.log`: the flat-centre Bessel gain fit recovers c 0.6 (control `--mutate=nuoff` fails).
+- `split_kc135_d23.log`: at k_c 135, D 23.0 (|F| 3.19e-10), the residual change of RK steps x2 and x1.07, Ks 45, u0 0.02,
+  the k_c + 8 embedding (tail of products past k_c) and N + 25%, per block; the gain of q_k at x = 0.02 against the
+  flat-centre Bessel curve.
+- `kc8seq.log`, `bands.log`: the k_c + 8 embedding and the x1.07 RK change along k_c 87-135 (D 23.0) and 119-143
+  (D 23.0625), in norm and by harmonic band.
+- `u0_probe.log`: the horizon start u0 (0.01-0.08) with Ks 30/45, horizon steps x1/x2 and N 408/544/816.
