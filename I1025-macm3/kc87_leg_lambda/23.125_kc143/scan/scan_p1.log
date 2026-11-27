@@ -1,0 +1,9 @@
+capped_run: child pid 1986, cap 28800 s
+pins: state a668c1c5c95e5490ba1fc4ebc509f1178edeab82 (wanted a668c1c5), stub 3643c26c6d5a083844bd4e67fdd41f3b4cde8dd4 (wanted 3643c26c)
+D 23.125 k_c 143: |F| 2.9379920066e-10 (record 2.9379920066e-10), steps 4708 (record 4708): the record system
+block 12 by ellrs (neon, products dgemm, 4 threads)
+scan of 3 lambda, mode matrix fast (jac), block 12 rust, noise 1e-15, sol_l1kc143macm3d23125_D23.1250.npy
+  lam -0.03: hybrid +1 ln|det| -4488.6606494627 (noise 1e-15 on blocks 0-11: [1.0, 1.0]); float64 -1 -4488.7998947342 (468 s [151, 308, 9]); dln 1.81e-05, mode matrix fast-jac
+  lam -0.035: hybrid +1 ln|det| -4487.3525762525 (noise 1e-15 on blocks 0-11: [1.0, 1.0]); float64 -1 -4487.2792766903 (473 s [155, 310, 8]); dln 9.76e-06, mode matrix fast-jac
+  lam -0.02: hybrid -1 ln|det| -4490.1857526779 (noise 1e-15 on blocks 0-11: [-1.0, -1.0]); float64 -1 -4490.2534177712 (468 s [158, 304, 6]); dln 2.10e-05, mode matrix fast-jac
+capped_run: exit 0 wall 1421 s cap_hit False
