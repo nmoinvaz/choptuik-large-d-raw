@@ -1,0 +1,11 @@
+2026-11-27 07:22:31 UTC gates pins ok: worktree d4b6b6ce clean, d18_secant.py 9706e506, ell_b12rs.py a1fff74f, k_c 31 state f07a8984 record e5a87ec5
+2026-11-27 07:22:31 UTC build starts: ellrs/build.sh /home/nathan/Source/ellrs-site-1102 (cargo 1.99.1, maturin 1.16.0, python 3.14.10)
+2026-11-27 07:23:18 UTC build exit 0, 47 s; ellrs avx2 matrixmultiply /home/nathan/Source/ellrs-site-1102/ellrs/__init__.py
+2026-11-27 07:23:18 UTC import: ellrs avx2 matrixmultiply /home/nathan/Source/ellrs-site-1102/ellrs/__init__.py
+2026-11-27 07:23:49 UTC ell_b12rs selftest exit 0 (0 wanted); --mutate=nolam exit 1, --mutate=harm exit 1 (1 wanted each)
+2026-11-27 07:25:01 UTC k_c 31 check exit 0 (0 wanted), 72 s; lambda 2.87, block (2 threads): 15010 of 15010 entries bit for bit; max |d|/|entry| 0.000e+00, max |d|/max|block| 0.000e+00 (bar 1e-28 per entry): PASS; Rust 7.70 s, DDEll 46.9 s, ratio 6.1|lambda 2.87, control nolam (2 threads): 0 of 15010 entries bit for bit; max |d|/|entry| 1.410e+03, max |d|/max|block| 2.697e-01 (bar 1e-28 per entry): FAIL, as a control must; Rust 8.57 s, DDEll 46.9 s, ratio 5
+2026-11-27 07:25:01 UTC gates done
+2026-11-27 07:25:16 UTC [ctl] pins ok: state 90d3e655 record d1a3a641; d18_secant.py 9706e506, ell_b12rs.py a1fff74f at d4b6b6ce; read_lower.py 89309d3c; lambdas 0.045,0.050
+2026-11-27 07:25:17 UTC [ctl] d18_secant.py selftest exit 0 (0 wanted); mutations half exit 1, norobust exit 1, nosigncheck exit 1 (1 wanted each)
+2026-11-27 07:25:17 UTC [ctl] read_lower selftest exit 0 (0 wanted); mutations shift exit 1, round2 exit 1 (1 wanted each)
+2026-11-27 07:25:17 UTC [ctl] scan starts: D 23.0, lambda 0.045,0.050, one process per lambda, 1 thread each, nice 10, --b12=rust --b12_threads=1
