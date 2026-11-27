@@ -153,7 +153,7 @@ Bar 1 passes for all four. K35's root (`B/root_l1kc55k035m.*`, fast block, 2 thr
 (its 8th point, at 2.2489674, has dln 0.43), robust bracket [2.2489585, 2.2496560] with opposite signs, det-linear
 2.2489667.
 
-## Task B: which segments move the root (written before the runs, 2026-11-27 23:29 UTC by the clock)
+## Task B: which segments move the root (written before the runs, 2026-11-27 23:26 UTC by the clock)
 
 Seen before writing this (`A/coords_all.log`, `B/root_*`): K50, K35 and K25 keep U40's four weak coordinates to 1e-10
 (they differ from U40 in the strong band only), K70 moved along the pair (c53 +8.3e-7 from U40's). The roots so far
