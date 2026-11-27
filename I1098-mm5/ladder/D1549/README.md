@@ -28,3 +28,24 @@ kmax 23 is now the recipe (D 2000's h23 needed no step; posted on #1098), and D 
 3. Reported: h19, h21 and h23's changes or pendings, the rule's output, and the k* result.
 
 Checked before use (every check must be able to fail): on the finished tails of D 747, D 622 and D 360m48 it exits 0 (r 0.0124, 0.0121, 0.0103; h23 pending +2.80e-27, +2.37e-27, -3.47e-27, no step); with `--rmax 0.001` on D 747's log it exits 2 ("extend to h25"); on D 747's log cut before h23 it exits 1 ("not yet").
+
+## Result of the tail, cut at h23 by the kmax rule (2026-11-27 08:05:00 UTC; 04:05:29 - 08:05:00, 14371 s)
+
+By script from `tail/run.log`, `tail/rls.log` and `tail/release_ls.jsonl`.
+
+- **h13 input:** dh170's chord-free h13 state (blob 014ac56f84b516d4348aefb2ada7d4048ce633c6, verified by the chain), the Moebius horizon a 8 at **ks 2941** (dh170's octo-double gate), M 32 resampled to M 48, fastmul7 (d40a9c62), chord-free, 6 threads, KMAX 31 in the chain.
+- **The kmax rule at h23** (`tools3/kmax_rule.py`, blob 196f12a5; run 08:04:53 UTC): `c19 +1.850e-22, c21 +2.422e-24, r 0.0131 (bar 0.05), the geometric remainder past h21 3.21e-26 (err_tail's, information); h23: 0 steps, pending +1.98e-27: kmax 23 suffices`, **exit 0**. As written before the run, the tail's `release_ls` python was then killed by exact pid
+  (75484, 08:05:00 UTC, 25 s into h25 outer 0; the h23 state `tail/release_ls_h23_D1549.0000.npz` existed, blob 6d4ba9cc1665567c7f0abe35cf7336b4dcc9201e); `ladder_tail.sh` wrote "rc 143" and went on to the k* stage (`tail/kstar/`, started 08:05:00). There is no `direct_s.jsonl` (the tail was cut before its end record): the Delta below is the last accepted step's Delta in `tail/release_ls.jsonl`.
+
+| harmonic | change in Delta | pending dDelta at release | wall |
+|---|---|---|---|
+| h13 (M 32 -> 48 re-converge) | **-3.2257e-26** | -4.34e-32 (outer 1) | 2568 s |
+| h15 | -1.7935e-17 | +3.28e-32 | 3114 s |
+| h17 | -1.0057e-19 | -1.63e-36 | 3068 s |
+| h19 | +1.8496e-22 | +4.82e-36 | 2550 s |
+| h21 | +2.4217e-24 | -1.65e-31 | 2496 s |
+| h23 | none | **+1.98e-27** (harmonic step 2.87e-15), released at outer 0 | 547 s |
+
+- **Delta of D 1549 (the state at h23; h23 took no step): 1.650580020480835511811831563687484386494** (40 digits as logged; h23's pending not in it); total -1.80352e-17 from the M 48 start. Wall (the machine at 18-24 threads on 18 cores): tail 14371 s.
+- **Bars:** the h13 re-converge at M 48 about 1e-25 or less: -3.23e-26, met; the tail falls from h15 by about 1e2 or more per harmonic: h15/h17 = 178, h17/h19 = 544, h19/h21 = 76 (D 1291: 177, 520, 77); h21's change 2.42e-24 (at most about 1e-23): met; h23 released with pending +1.98e-27 and no step, no turn: met; the kmax rule exit 0: met.
+  No qq inner solve failed, no line-search trial below lam 1, no outer step above 3x its harmonic's first, no floor.
