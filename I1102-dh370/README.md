@@ -28,3 +28,11 @@ Machine `dh370-fedora` (Fedora, i7-8700, 6 cores / 12 threads, 31 GB), session c
 
 ## Status
 - 2026-11-27 05:48 UTC: worktree, pins, inputs and this README written before the build; the build starts next.
+
+## Build and gates (27 Nov 05:49:09 to 05:52:57 UTC; unit `i1102a`; `build.log`, `selftest*.log`, `check_kc31.log`, `check_kc31.jsonl`, `steps.txt`)
+- **What was missing:** `maturin` was not on PATH (it was in the scanner venv's `bin/`: used from there, nothing installed); `cargo`/`rustc` 1.99.1 and crates.io were there. Nothing else was missing. maturin 1.16.0, python 3.14.10.
+- **Build:** `ellrs/build.sh ~/Source/ellrs-site-1102` exit 0 in **63 s**; `import ellrs` from the SITE folder prints **`ellrs avx2 matrixmultiply /home/nathan/Source/ellrs-site-1102/ellrs/__init__.py`** (isa avx2; the Ozaki products from matrixmultiply). The scanner venv itself was not modified (pip's `--target` SITE; pip reported only "a new release of pip is available").
+- **Selftest:** `ell_b12rs.py selftest` exit **0**; `--mutate=nolam` exit **1**; `--mutate=harm` exit **1** (05:51:07 UTC), as wanted.
+- **k_c 31 check** (`check in/l1kc31r1025.jsonl in/sol_l1kc31r1025_D10.5000.npy 10.5 2.87 --threads=4 --controls=1`, exit **0**, 110 s): N 96, 15010 entries, 384 horizon steps; **lambda 2.87, block (4 threads): 15010 of 15010 entries bit for bit; max |d|/|entry| 0.000e+00, max |d|/max|block| 0.000e+00 (bar 1e-28 per entry): PASS; Rust 9.86 s, DDEll 77.7 s, ratio 7.9.** Control nolam: **0 of 15010** bit for bit (max |d|/|entry| 1.410e+03): FAIL, as a control must; control harm: **0 of 15010** (2.736e+03): FAIL, as a control must; "check: PASS".
+- **Against the registration:** build first try (85%) right, 63 s (1 to 6 min) right; selftest exits (92%) right; 15010 of 15010 on Linux (88%) right; both controls FAIL (95%) right. Rust 9.86 s against DDEll's 77.7 s on this machine (the order said "about a minute" for DDEll: 78 s).
+- **Step 3** (`run_kc127.sh`, unit `i1102b`) started 05:53:22 UTC.
