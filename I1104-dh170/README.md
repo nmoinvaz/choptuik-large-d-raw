@@ -29,6 +29,8 @@ R2's secant (#1101, unit `i1101r2w`, 1 thread, nice 10) runs on. The re-solve ta
 | scanner worktree | `~/Source/choptuik-large-d-1101k` at f56f91d2, `solver/matter/d18_secant.py` (no `--kappa_mm`: the plain scan) | 2f3ee874 |
 | Rust block 12 | `ell_b12rs.py`, ellrs in `~/Source/ellrs-site-1102`, venv `~/Source/choptuik-large-d-1058b/.venv` | a1fff74f |
 | re-solve driver `run_resolve1104.sh` (unit `i1104resolve`) | this folder | 8c5a1be8 |
+| re-root driver `run_reroot1104.sh` (unit `i1104reroot`, nice 19) | this folder | 50425177 |
+| reader `results_1104.py` (selftest exit 0; `--mutate=sign`, `bar`, `ref`, `last` exit 1; `selftests/selftest_results_1104*.txt`) | this folder | a1dd91ba |
 | scan readers | `in/read_lower.py`, `in/d185_scan_read.py` (the #1101 copies) | 89309d3c, 7c9d400f |
 
 ## Commands
@@ -55,7 +57,9 @@ R2's secant (#1101, unit `i1101r2w`, 1 thread, nice 10) runs on. The re-solve ta
 
 ## Status
 - 2026-11-27 19:37 UTC: bars, reading rule, pins, commands and predictions written before any run. Not started.
+- 2026-11-27 19:39 UTC: unit `i1104resolve` (`run_resolve1104.sh`, 8c5a1be8) started 19:37:51 UTC (pins ok, python pid 2322724, nice 10, 3 threads). Reader and re-root driver written; the re-root starts next.
 
 ## Order, verbatim
 
 > t5 19:34 UTC: Test K's extension accepted, and the driver cleanup is fine. New task beside R2's secant: #1104's second run (my newest #1104 comment is the record; read #1104's body first). Re-solve macm3's k_c 127 D 23.125 state (raw I1025-macm3/kc127_leg/states/: sol_l1kc127Lmacm3_D23.1250.npy blob e1dccb3c, record l1kc127Lmacm3.jsonl blob 58d3b080) at kappa 0.5 in your 1025k79 worktree (48c36355): 'ell_refine.py l1kc127Lmacm3 127 l1kc127k050dh170d23125 127 1 23.125 2.0992182200 --kappa 0.5 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma', 3 threads, nice 10, cap 57600 s. Bars: |F| <= 5e-10, steps 5855 +- 2%. Meanwhile, re-root the kappa 0.7 source on the Rust block at lambda -0.045 and -0.040, plus the secant. After the re-solve: scan -0.020, -0.005, +0.010, +0.025 and the secant at tol 5e-5; widen to -0.035 and +0.040 if none. New raw folder I1104-dh170/, README with the bars first. R2's secant keeps priority.
+
