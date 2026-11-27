@@ -1,1 +1,17 @@
 2026-11-27 15:32:56 UTC accept (lane_r1.sh): kc127_syscheck_1025.py exit 0 (0 wanted); controls exit 1 1 (1 wanted); kc135 and kc143 checks on the result exit 1 1 (1 wanted each): D 23 k_c 127: record |F| 3.1188220361e-10, F_start 1.725e-09, steps 5847, constraint 1.464e-03, Delta 1.174322923354, 3035 s; state |F| 3.1188220361e-10, freeze_from steps 5847
+2026-11-27 15:33:01 UTC scan: D 23.0 (loadavg { 2.36 2.12 2.09 }, free memory 86%, 16.2 GiB available, disk 34Gi free)
+2026-11-27 15:33:01 UTC inputs pinned: state 0124dbd2 and record 944a8179 from raw 614a47d78 (pins.txt); the scanner d18_secant.py 9706e506 with ell_b12rs.py a1fff74f and ellrs (sha256 d2221460d02c) from /Users/nathan/Source/ellrs-site-1102m3 (worktree d4b6b6ce, branch wip/ell1-rust-b12); kc87_syscheck 6df5d960, kc79_syscheck 29dce7ea, read_lower 89309d3c, d185_scan_read 7c9d400f, repeat_check aaf598a9
+2026-11-27 15:33:01 UTC worktree d4b6b6ce (dss_ell, ell_ddm, ell_dd, ddnp equal 505d8399's), clean outside solver/matter/data; Python 3.14.3, multidouble isa neon
+2026-11-27 15:33:01 UTC memory before the scan: about 16.2 GiB available (free+inactive+speculative+purgeable), 86% free by memory_pressure; 2 processes for 6 values (the k_c 87 scan of D 19.75 with 4 processes: 4.07, 2.62, 2.52, 2.51 GB peak RSS, available 17.6 down to 10.0 GiB), gate 10 GiB
+2026-11-27 15:33:01 UTC scan starts: D 23.0, 6 values (0.070 0.070 0.085 0.115 0.100 0.130) on 2 processes of 1 float64 thread and 4 block-12 threads (--b12=rust), nice 15, round-robin (a process runs its values one after another); the first 0.070 on process 0, the repeat on process 1; state sol_l1kc127k050m3_D23.0000.npy 0124dbd2, record 944a8179; alert watcher on (hc: /Users/nathan/.local/bin/hc)
+2026-11-27 15:33:03 UTC proc 0 lambda 0.070,0.085,0.100: capped_run child pid 89294 (cap 28800 s)
+2026-11-27 15:33:05 UTC proc 1 lambda 0.070,0.115,0.130: capped_run child pid 89402 (cap 28800 s)
+2026-11-27 15:53:23 UTC proc 0 (lambda 0.070,0.085,0.100) exit 0
+2026-11-27 15:53:25 UTC proc 1 (lambda 0.070,0.115,0.130) exit 0
+6 evaluations, 6 noise-robust
+   2 D 23.0 k_c 127: |F| 3.1188220361e-10 (record 3.1188220361e-10), steps 5847 (record 5847): the record system
+2026-11-27 15:53:25 UTC read_lower selftest exit 0 (0 wanted); mutations shift exit 1, round2 exit 1 (1 wanted each)
+2026-11-27 15:53:25 UTC read_lower.py read the window (reading in read_lower.txt)
+2026-11-27 15:53:25 UTC repeat_check selftest exit 0 (0 wanted)
+2026-11-27 15:53:25 UTC repeat_check.py on the merged scan exit 0 (0 agree, 1 disagree, 2 no repeat)
+2026-11-27 15:53:25 UTC scan done
