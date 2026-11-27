@@ -22,3 +22,8 @@ the jump from it (`form_s.py jump`, degree 0, held, the Moebius horizon a = max(
 - The downward ks gate passes the bar 1e-64: log the ks it settles on (and its octo-double change). h5..h13 are each released.
 - Stop rules (amended): stop and report when a qq inner solve does not converge, when a harmonic's line search fails at every trial, or when an outer step is 3x its harmonic's first. A qd inner floor that hands over to qq is logged, not stopped.
 - Pilot: report the guess's max |F|, the jump's time, the gated ks and h5 outer 0's time. Times from `date -u`.
+
+## Dropped (2026-11-26 02:37 UTC, coordinator's order)
+
+The queued D 6666 is dropped on this machine: **D 6666 moved to dh610, started 02:36:42 UTC.** The waiting `tools3/d6666_mm5.sh` (it was only polling for D 2828's "job rc"; no tools4, no setup, no output beyond this README and `driver.log`) was stopped by exact pid (bash 63250, its `sleep 600` 68448) at 02:37 UTC.
+Nothing was installed: `~/Source/choptuik-fastmul7/hp/ks_gate.py` is still the one of d40a9c62. The bars above are not run here.

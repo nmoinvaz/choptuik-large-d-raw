@@ -21,3 +21,20 @@ Settings: fastmul7 (Python `~/Source/choptuik-fastmul7` at d40a9c62, kernel `~/S
 - h5..h13 are each released.
 - Stop rules: stop and report when a qq inner solve does not converge, when a harmonic's line search fails at every trial, or when an outer step is 3x its harmonic's first. A qd inner floor that hands over to qq is logged, not stopped. A qq floor at h13 outer 0 right after an M resample is logged; a floor above 1e-48 at any later outer step stops the run.
 - Pilot: report the jump's time, the gated ks and h5 outer 0's time. ETA 6-8 h (14 h worst case). Times from `date -u`.
+
+## D 4000's M 48 tail (coordinator's order, 2026-11-27 02:38 UTC; armed now, it waits for the M 32 job)
+
+`tools3/d4000tail_mm5.sh` (raw 1d67f29d4 `I1098-mac-a/tools/mm5/d4000tail_mm5.sh`, blob 426becc2c62b85aabdd02ff8f81aceda46bef1e9, equal to raw's, verified and read), detached from the ladder folder, `WAIT_H=8` by default. It checks `tools3/` `ladder_tail.sh` (322f0995), `kmax_rule.py` (196f12a5) and `kstar_stage.sh` (6d29dfc0) by blob, then waits for "job rc 0" in `run.log` and the rls13 h13 state (`rls13/release_ls_h13_D4000.0000.npz`; at most 8 h, so the M 32 job's ETA, about 06:30-07:00 UTC from the pace so far, fits).
+Then, into `tail/` (the last act writes "job rc N" to `tail/job.log`), on fastmul7 (d40a9c62), chord-free, 6 threads:
+
+1. **The ks:** dh610's downward gate put D 4000 at ks 4717 (raw `I1098-dh610/ksdown`: 4717 -> 4817 changes the octo-double residual by 5.01e-75 at the M 32 jump state, 4617 -> 4717 by 2.92e-52). That gate was measured on the jump state, so it is checked on the tail's own start: rls13's h13 state resampled to M 48 and set to ks 4717 (a 9.995), then the **upward gate** (`ks_gate.py`, steps of 100, bar 1e-70, the bar D 4000 was run to) from 4717; the tail takes the ks it gates at.
+2. `ladder_tail.sh mob` (MT 48 at that ks, h13 re-converged and h15..h23 released, kmax 23, qq, od, tol 1e-48, tol_h 1e-44, ddelta 1e-25), then the k* stage.
+3. `kmax_rule.py` on the tail's `release_ls.jsonl`: exit 0, kmax 23 suffices; exit 2, the h25 extension (`release_ls` from the h23 state, `--harm 25 --kmax 25`, qq, od) and the k* stage again into `tail/kstar25`. A second "extend" is logged, not run.
+
+### Bars, written before the run (as D 2828's tail, plus the gate at the M 48 start)
+
+- **The ks gate at the M 48 start passes, or steps up** (log the ks it gates at and its octo-double change).
+- The h13 re-converge at M 48 moves Delta by about 1e-25 or less (D 300 +7.3e-26, D 360 +4.8e-26, D 622 +4.6e-26, D 1291 -2.8e-26, D 2231 -3.8e-26).
+- The tail falls from h15 by about 1e2 or more per harmonic, h21's change at most about 1e-23, h23 released with a pending dDelta at most about 1e-26 and no step: no turn. The kmax rule at the end (exit 0).
+- Stop rules (amended): stop and report when a qq inner solve does not converge, when a harmonic's line search fails at every trial, or when an outer step is 3x its harmonic's first. A qd inner floor that hands over to qq is logged, not stopped. A qq floor at h13 outer 0 right after an M resample is logged; a floor above 1e-48 at any later outer step stops the run.
+- Reported: the gated ks, h13's re-converge, the final Delta, each stage's time, the k* stage and the kmax rule's output. Times from `date -u`.
