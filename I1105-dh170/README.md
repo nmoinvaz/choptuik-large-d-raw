@@ -145,3 +145,120 @@ The sweep ran 935 s (peak RSS 176 MiB), the control 18 s. `read_1105.py` selftes
 
 ## Status
 - 2026-11-27 08:05 UTC: step 1 done: both bars met; the N rule is not settled because the N 1088 reference is itself 4.98e-6; the horizon RK is not a cause (1.5%); the u0 dependence is about u0^-9 on the low side. Posted on #1105.
+
+# Step 1b: does the record's u0 0.04 carry a lambda bias? (k_c 55, D 16, re-solves at u0 0.03, 0.04, 0.05 and their roots)
+
+Written 2026-11-27 2026-11-27 08:11 UTC by the clock, before any run of step 1b (the inputs, the pins, the drivers and the bars came first; the order is quoted at the end of this section). Folder `step1b/`. Issue #1105; coordinator t5.
+
+## Bars (t5's, fixed before the run; each can fail)
+T3 = root(U30) - root(U40) and T5 = root(U50) - root(U40), both against the re-solve at u0 0.04 in the same code. The solve scatter here is about 1e-5 (the Ks 45 re-solve moved the root by 1.0e-5).
+- **|T3| <= 1e-4:** the lambda shift falls with u0 at least as fast as u0^-9.7 (which predicts -1.5e-5). Then the record's u0 0.04 carries no u0 bias above about 1e-4/16, and ELL.md's -8.1e-4 is the u0 0.02 run's own.
+- **|T3| >= 3e-4:** the bias is smooth in u0 (a linear law gives about -4e-4), so u0 0.04 is biased too, and the issue becomes a correction.
+- **Between:** mixed, reported as measured. **T5** is reported against the prediction |T5| <= 1e-4.
+- Each run's |F| and steps are reported. **A re-solve whose |F| exceeds 1e-8 is not rooted**, and that is reported.
+- A root is read only from a `d18_secant.py run` that ends with status `tol`, both bracket ends robust and of opposite hybrid signs; anything else is reported as it is and T is not formed from it. The root is `lam_lin` (det-linear inside the final bracket, width at most 1e-7); `lam_brent` is printed beside it. Both are estimator values at the width of the final bracket, not rigorous enclosures.
+- For information, not a bar: root(U40) against P4's re-root of the record at u0 0.04, 2.2440428096; the u0 0.02 root 2.2432296517 (T1 = -8.13e-4, raw `I1025-mac/u0resolve_note.log`); t5's hypothesis (an error at the series start carried to the last node by the homogeneous solution u^mu, mu about 9.7) predicts T3 about -1.5e-5 and T5 about +9e-7.
+
+## Pins (by blob; the driver refuses any other)
+| what | where | blob |
+|---|---|---|
+| source state | raw `I1025-mac/out/sol_l1kc55Fb1025_D16.0000.npy` (copies in `step1b/in/` and the regrid worktree's `solver/matter/data/`) | 94c8b048 |
+| source record | `l1kc55Fb1025.jsonl` (D 16: |F| 1.7853e-10, 2565 steps, u0 0.04, Ks 30, kappa 0.7, Delta 1.0017135137307174, lambda 2.2426280416106374) | 5be40af4 |
+| re-solve | worktree `~/Source/choptuik-large-d-1025k79` at 48c36355 (dss_ell, ell_ddm, ell_dd, ddnp equal 505d8399's), `ell_refine.py` | 631e5801 |
+| root | worktree `~/Source/choptuik-large-d-1102` at d4b6b6ce, `d18_secant.py` 9706e506 (`--b12=rust`), ellrs in `~/Source/ellrs-site-1102` | |
+| python | `~/Source/choptuik-large-d-1058b/.venv` | |
+
+## Commands (`step1b/run_step1b.sh TAG U0`, units `i1105u30`, `i1105u40`, `i1105u50` under systemd-inhibit, started together; steps in `steps_1b.txt`)
+From `solver/matter` of the regrid worktree, 2 threads each (OMP, OPENBLAS, MKL = 2), `nice -n 10 timeout 10800` (cap 3 h on the python pid, no retry):
+```
+U30  python -u ell_refine.py l1kc55Fb1025 55 l1kc55u030 55 1 16 2.2426280416106374 --kappa 0.7 --u0 0.03 --Ks 30 --tol 1e-12 --wait 60 --no-gamma
+U40  python -u ell_refine.py l1kc55Fb1025 55 l1kc55u040 55 1 16 2.2426280416106374 --kappa 0.7 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma
+U50  python -u ell_refine.py l1kc55Fb1025 55 l1kc55u050 55 1 16 2.2426280416106374 --kappa 0.7 --u0 0.05 --Ks 30 --tol 1e-12 --wait 60 --no-gamma
+```
+Then, if |F| <= 1e-8, from the #1102 worktree's `solver/matter`, 1 thread, nice 10, `PYTHONPATH=SITE`: `d18_secant.py run RECORD STATE 16 2.238 2.250 root_<TAG>.jsonl --tol=1e-7 --maxev=20 --b12=rust --b12_threads=1 --pin=<state blob>,<record blob>` (`--maxev=20` raised from the default 12 so that the width 1e-7 is reached; t5's order gave no value). `d18_secant.py` takes u0, Ks, kappa and the steps from the record. `read_1105b.py` (written while the runs go; planted selftest, `--mutate=ref` must fail it) forms T3 and T5 and reads them against the bars above.
+Priority: R2's scan (#1101, 4 processes, 1 thread each) starts at once when `I1101-win2/R2/` lands, and shares the machine with these runs (6 threads of re-solves + up to 4 of scan on 8 logical CPUs; all at nice 10).
+
+## Predictions (mine, registered before the run; information, not pass rules)
+| item | prediction |
+|---|---|
+| |F| <= 1e-8 after the re-solve | U40 90%, U30 90%, U50 85% (the u0 0.02 re-solve at k_c 55 stopped at 1.0e-9) |
+| root(U40) against 2.2440428096 | within 1e-4: 85% (the re-solve scatter is about 1e-5) |
+| T3 | \|T3\| <= 1e-4: 55%; >= 3e-4: 20%; between: 25% |
+| T5 | \|T5\| <= 1e-4: 65% |
+| re-solve wall (2 threads, nice 10, beside the other two) | 0.5 to 2 h: 60% (the Mac's u0 0.02 LM took 1781 s) |
+| root wall (1 thread; 12 to 20 evaluations) | 1 to 3 h per state: 50% |
+
+## Status
+- 2026-11-27 08:11 UTC: inputs staged and blob-checked, driver, bars and predictions written before any step 1b run; the three units start next.
+
+## Order, verbatim
+
+### t5's hc (27 Nov, after step 1 was accepted)
+> t5: #1105 step 1 accepted (your table, and the machine difference is explained on #1105: comment 7213176945, Mac runs in raw I1105-mac). Next, #1105 step 1b, comment 7213197061 (the record): re-solve the k_c 55 D 16 state (raw I1025-mac/out/sol_l1kc55Fb1025_D16.0000.npy blob 94c8b048, record l1kc55Fb1025.jsonl blob 5be40af4, blob-checked into ~/Source/choptuik-large-d-1025k79/solver/matter/data/) at u0 0.03, 0.04 and 0.05 with the three ell_refine.py lines of the comment, together, 2 threads each, nice 10, systemd units, cap 3 h each. Then root each with d18_secant.py run (worktree -1102, --b12=rust if run takes it) on the bracket 2.238-2.250, --tol=1e-7. Report T3 = root(U30) - root(U40) and T5 = root(U50) - root(U40) against the bars in the comment (|T3| <= 1e-4 or >= 3e-4). A re-solve with |F| > 1e-8 is not rooted. Raw: a new section in I1105-dh170/README.md first. R2's scan (#1101) has priority when I1101-win2/R2/ lands: start it at once and let these runs share the machine.
+
+### #1105 comment 7213197061
+
+> **Step 1b on dh170: does the record's u0 0.04 carry a λ bias?** (t5, 2026-11-27 08:08 UTC by the clock)
+> 
+> At k_c 55, D 16, a re-solve at u0 0.02 moved the root by −8.13e-4 (raw `I1025-mac/u0resolve_note.log`, 2026-11-20)
+> and stopped at |F| 1.0e-9, five times the u0 0.04 record's 1.79e-10. This step re-solves the same state at u0 0.03,
+> 0.04 and 0.05 and roots each one.
+> 
+> **Inputs.** Raw `I1025-mac/out/`: state `sol_l1kc55Fb1025_D16.0000.npy` (blob 94c8b048), record `l1kc55Fb1025.jsonl`
+> (5be40af4), blob-checked into the regrid worktree's `solver/matter/data/` (dh170: `~/Source/choptuik-large-d-1025k79`,
+> 48c36355, `ell_refine.py` 631e5801).
+> 
+> ```
+> U30  python ell_refine.py l1kc55Fb1025 55 l1kc55u030 55 1 16 2.2426280416106374 --kappa 0.7 --u0 0.03 --Ks 30 --tol 1e-12 --wait 60 --no-gamma
+> U40  python ell_refine.py l1kc55Fb1025 55 l1kc55u040 55 1 16 2.2426280416106374 --kappa 0.7 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma
+> U50  python ell_refine.py l1kc55Fb1025 55 l1kc55u050 55 1 16 2.2426280416106374 --kappa 0.7 --u0 0.05 --Ks 30 --tol 1e-12 --wait 60 --no-gamma
+> ```
+> 
+> The three together, 2 threads each, nice 10, a cap of 3 h each. Then for each state, `d18_secant.py run` (the #1102
+> worktree `~/Source/choptuik-large-d-1102`, d4b6b6ce; `--b12=rust` if `run` takes it, otherwise the default block) on
+> the bracket 2.238–2.250, `--tol=1e-7`, with its sign and robustness checks. The u0 0.02 root was 2.2432297 and the u0
+> 0.04 one 2.2440428.
+> 
+> **Bars, written before the run.** T3 = root(U30) − root(U40) and T5 = root(U50) − root(U40), both against the re-solve
+> at u0 0.04 in the same code. The solve scatter here is about 1e-5 (the Ks 45 re-solve moved the root by 1.0e-5).
+> - **|T3| ≤ 1e-4:** the λ shift falls with u0 at least as fast as u0⁻⁹·⁷ (which predicts −1.5e-5). Then the record's
+>   u0 0.04 carries no u0 bias above about 1e-4/16, and ELL.md's −8.1e-4 is the u0 0.02 run's own.
+> - **|T3| ≥ 3e-4:** the bias is smooth in u0 (a linear law gives about −4e-4), so u0 0.04 is biased too, and this
+>   issue becomes a correction.
+> - **Between:** mixed, reported as measured. T5 is reported against the prediction |T5| ≤ 1e-4.
+> 
+> Each run's |F| and steps are reported. A re-solve whose |F| exceeds 1e-8 is not rooted, and that is reported.
+> Raw folder `I1105-dh170/`, a new README section first. Estimate about 2 h; R2's root scan (#1101) has priority when
+> R2 lands.
+> 
+
+### #1105 comment 7213176945 (the reading that motivates it)
+
+> **Reading of step 1, and two checks on the Mac** (t5, 2026-11-27 08:07 UTC, the post's own time; raw `I1105-mac/`, c5bbf8574).
+> 
+> dh170's sweep (comment 7213077426, raw `I1105-dh170/` b508c982b) gives dF_last ∝ u0⁻⁹ on the low side (slopes −8.7 to
+> −9.0). On the high side, u0 0.05–0.06 has slope +29.9, which is the series cut at Ks 30. The low-side slope is close to
+> the horizon's homogeneous exponent, Re μ ≈ 9.7 (#1103's closing summary, item 6).
+> 
+> Two checks on the Mac, same code (5b1e38e8) and state (cd134e2c):
+> 
+> | quantity | dh170 (Linux, OpenBLAS) | Mac (Accelerate) |
+> |---|---|---|
+> | dF_last, u0 0.02, N 408 | 1.725e-8 | 2.018e-8 (#1103's 2.0e-8 was also the Mac's) |
+> | dF_last, u0 0.02, N 544 | 1.698e-8 | 1.628e-8 |
+> | hz2 against u0 0.02 | 1.5% change | 13% change, with its harmonic bands rearranged |
+> | state × (1 + 1e-16 g), seeds 1–4, dF_last at u0 0.02 | — | 2.020, 1.846, 2.036, 2.021e-8 (2.018e-8 without) |
+> 
+> - **The size is systematic, about 2e-8.** Its last 10–15% is round-off: it differs between machines and moves under
+>   1e-16 noise. So the "disagreement with #1103" is the machine, and #1103's N dependence (2.0, 1.6, 1.4e-8) is partly
+>   this jitter.
+> - **Reading, a hypothesis:** an error e at the series start, roughly independent of u0, is carried to the last node
+>   by the homogeneous solution u^μ. It grows by (u_node/u0)^μ, so as u0⁻⁹·⁷. Then the record's u0 0.04 carries about
+>   2^−9.7 ≈ 1/830 of the u0 0.02 effect, about 2e-11 in F, below |F| 3.2e-10. Under the same scaling, ELL.md's
+>   −8.1×10⁻⁴ in λ at u0 0.02 (k_c 55, D 16) would be about 1e-6 at u0 0.04.
+> - **What would refute it:** the λ shift from u0 0.04 → 0.03 at k_c 55, D 16 is predicted at about −1.5e-5 (the
+>   scaling (0.03⁻⁹·⁷ − 0.04⁻⁹·⁷)/(0.02⁻⁹·⁷ − 0.04⁻⁹·⁷) ≈ 0.019 times −8.1e-4). A shift near −8e-4 means u0 0.04 is biased
+>   too. That is a re-solve and a root, filed as the next step when a machine frees.
+> - **Not explained:** the reference at N 1088 has a last block of 4.98e-6 (2.2e-10 at N 408/544). The series or segment
+>   does something wrong on that grid; it does not touch the record (N 408).
+> 
