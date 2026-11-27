@@ -103,7 +103,7 @@ The samplers (`rows/regrid_samples.csv`, `rows/scan_samples.csv`, `rows/secant_s
 
 ## Status
 
-**Step 1, the source, PASSED 2026-11-26 10:47:57 UTC. Steps 2 and 3, the regrid, ACCEPTED 2026-11-26 13:38:44 UTC. Step 4a, the scan, DONE 19:44:42 UTC (started 13:39:57, 21885 s, exits 0, 0). Step 4b, the secant, started by me after t5's go-ahead (see the last block of this Status).** README first 1d35e042f (pushed 10:47:19 UTC, before the start); chain started 10:47:36 UTC through `Win32_Process.Create` of `conhost.exe --headless cmd.exe /c go_kc127d23_1025.cmd`. The k_c 87 D 22.875 secant was pushed (557ea8ee3) and posted (#1025 comment 7189716601) first.
+**Step 1, the source, PASSED 2026-11-26 10:47:57 UTC. Steps 2 and 3, the regrid, ACCEPTED 2026-11-26 13:38:44 UTC. Step 4a, the scan, DONE 19:44:42 UTC (started 13:39:57, 21885 s, exits 0, 0). Step 4b, the secant, DONE 05:45:48 UTC (started 19:50:17 UTC after t5's go-ahead, tool 35705 s, exit 0, status tol; t5's ruling hc 05:47 UTC: ACCEPTED, registered test MET).** README first 1d35e042f (pushed 10:47:19 UTC, before the start); chain started 10:47:36 UTC through `Win32_Process.Create` of `conhost.exe --headless cmd.exe /c go_kc127d23_1025.cmd`. The k_c 87 D 22.875 secant was pushed (557ea8ee3) and posted (#1025 comment 7189716601) first.
 
 - **Chain** (`rows/launcher_pid.txt`: 24572): conhost --headless 24572 <- cmd 4428 <- regrid driver launcher 18668 and driver 26384 <- sampler 25192, alert-only watcher 4720, keep-awake helper 26264, and the regrid process 1652 (worker 14396). The python and powershell processes are BelowNormal.
 - **Session check** (`session_check_regrid.txt`, exit 0): no `claude` in any chain of the run, no Windows Terminal / OpenConsole / wt, a headless conhost in the chain.
@@ -178,7 +178,10 @@ t5's ruling (hc 2026-11-26 19:45 UTC, quoted): "the reader printed exactly one r
 - **Registered test** (t5's, unchanged): `lam_lin` of the last `root` record lies in [0.0414, 0.0474] (the root +0.0444 +- 0.003). The scan's estimator range [0.042772, 0.048098] is information beside it (as in my earlier secants), not the test.
 - **ETA** (new basis: about 5900 s per interior evaluation on one process): the run has about 5 interior evaluations (the k_c 103, 95, 87 runs took 6, 9, 7 evaluations including the two ends, so 4, 7, 5 interior), so about 24000 to 41000 s (6.7 to 11.4 h), central about 30000 s (8.3 h), against the cap of 43200 s (12 h); the ends are reused, so the maximum of 10 evaluations means 8 interior ones, 47000 s, beyond the cap: if the run reaches the cap it is killed by the exact pid and reported, with the evaluations it made in `secant/secant.jsonl`.
 
-Pushed 2026-11-26 19:51:11 UTC.
+
+**Step 4b, the secant, ENDED 2026-11-27 05:45:48 UTC (exit 0, status tol; the driver ended 05:47:03 UTC)** (`secant/secant.log`, `secant/secant.jsonl`, `secant/secant_summary.txt`, `secant/secant_driver_w.log`). Final bracket [0.04571021101093808, 0.045715211010938075], width 5.000e-06, signs [+1, -1], det-linear 0.04571075737356731, 8 evaluations, 35705 s. t5's ruling (hc 2026-11-27 05:47 UTC, quoted): "ACCEPTED. It ended on tol with both ends robust: bracket [0.04571021, 0.04571521], det-linear root 0.04571076. Registered test (lam_lin in [0.0414, 0.0474]): MET. ... Push the secant folder and post the point on #1025 with the bracket." The full Result (log as printed, table, cost) is in the Result below.
+
+Pushed 2026-11-27 05:49:02 UTC.
 
 ## Result
 
@@ -230,6 +233,65 @@ The repeat of 0.04 (p1) is bit-identical to p0's: the same hybrid and float64 ln
 
 My basis (my k_c 103 secant evaluation, 1408 s, times about 2 for the step growth) was 2 times too low for the single-process evaluation (5914 s) and the two-process evaluations ran another 1.35 times slower (about 8000 s). Commit up to 19.3 GB, laptop cpu 19 to 79 % (mean 43.1 %), 360 sample times with no gap over 90 s, the other project's I114 `convergence.py` jobs beside it, not touched. No alert, nothing killed (`rows/scan_memwatch.log`: "minimum free memory seen 16.81 GB; 0 alert(s) sent"); the keep-awake helper held until the driver ended (`rows/scan_keepawake.log`); the System log shows no power event in 13:35 to 19:50 UTC.
 
-### Step 4b, the secant
+### Step 4b, the secant (`d18_secant.py run` at 92b9bf53, blob eb1396ad, with `--ends`)
 
-Not yet run (it started 19:50:17 UTC; see the Status).
+**Exit 0, status tol: bracket [0.04571021101093808, 0.045715211010938075], width 5.000e-06, signs [+1, -1] (+ to -, as in the scan), det-linear root 0.04571075737356731, Brent 0.04571021101093808, 8 evaluations (the two reused ends and 6 interior), 35705 s (19:50:17 to 05:45:48 UTC on 26/27 Nov; tool wall 35731 s).** Both ends of the final bracket are noise-robust. t5's ruling (hc 2026-11-27 05:47 UTC): "ACCEPTED. It ended on tol with both ends robust ... Registered test (lam_lin in [0.0414, 0.0474]): MET."
+
+`secant/secant.log` as printed (`secant_summary.txt` has the same lines):
+
+```
+pins: state 7a1b150c96c12059c81c10927fdf00245a45a88e (wanted 7a1b150c96c12059c81c10927fdf00245a45a88e), stub 2b15504f2bcc90f0e9b5b4049fb22ab44ee3c186 (wanted 2b15504f2bcc90f0e9b5b4049fb22ab44ee3c186)
+D 23.0 k_c 127: |F| 3.1982167639e-10 (record 3.1939646372e-10), steps 4179 (record 4179): the record system
+bracket (0.04, 0.05), tol 1e-05, maxev 10, mode matrix fast (jac), block 12 ddm, noise 1e-15, dln <= 0.1, sol_l1kc127wind23_D23.0000.npy
+  lam 0.04 (lo): hybrid +1 ln|det| -3899.6939560577, noise [1.0, 1.0] dln None, robust True; float64 +1 -3899.2189886976 (7889 s [605, 7261, 23])
+  lam 0.05 (hi): hybrid -1 ln|det| -3901.1429077703, noise [-1.0, -1.0] dln None, robust True; float64 -1 -3901.6936730494 (7898 s [605, 7270, 23])
+  lam 0.048098370491031404 (interior): hybrid -1 ln|det| -3901.5076224031, noise [-1.0, -1.0] dln 3.67e-06, robust True; float64 +1 -3902.8636544458 (5947 s [445, 5484, 18])
+  lam 0.044383264130743054 (interior): hybrid +1 ln|det| -3901.6626593731, noise [1.0, 1.0] dln 7.15e-06, robust True; float64 +1 -3900.7844263309 (5915 s [441, 5455, 18])
+  lam 0.04609711033788501 (interior): hybrid -1 ln|det| -3903.0962502932, noise [-1.0, -1.0] dln 2.25e-05, robust True; float64 +1 -3900.9099188084 (5933 s [444, 5470, 18])
+  lam 0.04576712674253238 (interior): hybrid -1 ln|det| -3904.9826318194, noise [-1.0, -1.0] dln 1.57e-04, robust True; float64 +1 -3900.7282402548 (5976 s [449, 5508, 18])
+  lam 0.04571021101093808 (interior): hybrid +1 ln|det| -3909.6125593467, noise [1.0, 1.0] dln 1.61e-02, robust True; float64 -1 -3906.7412513253 (5917 s [444, 5455, 18])
+  lam 0.045715211010938075 (interior): hybrid -1 ln|det| -3907.5143658301, noise [-1.0, -1.0] dln 1.99e-03, robust True; float64 +1 -3901.1058170717 (6017 s [444, 5555, 18])
+root: status tol (-), bracket [0.04571021101093808, 0.045715211010938075] width 5.000e-06, signs [1.0, -1.0], det-linear 0.04571075737356731, Brent 0.04571021101093808, 8 evaluations, 35705 s
+```
+
+| # | lambda | role | hybrid sign | hybrid ln&#124;det&#124; | float64 sign | dln | seconds | parts (s) | bracket after |
+|---|---|---|---|---|---|---|---|---|---|
+| 0 | 0.04 | lo (reused from the scan) | + | -3899.6939560577 | + | none (reused) | 7889 (scan) | 605, 7261, 23 | |
+| 1 | 0.05 | hi (reused from the scan) | - | -3901.1429077703 | - | none (reused) | 7898 (scan) | 605, 7270, 23 | [0.04, 0.05] |
+| 2 | 0.048098370491 | interior | - | -3901.5076224031 | + | 3.67e-06 | 5947 | 445, 5484, 18 | [0.04, 0.048098] |
+| 3 | 0.044383264131 | interior | + | -3901.6626593731 | + | 7.15e-06 | 5915 | 441, 5455, 18 | [0.044383, 0.048098] |
+| 4 | 0.046097110338 | interior | - | -3903.0962502932 | + | 2.25e-05 | 5933 | 444, 5470, 18 | [0.044383, 0.046097] |
+| 5 | 0.045767126743 | interior | - | -3904.9826318194 | + | 1.57e-04 | 5976 | 449, 5508, 18 | [0.044383, 0.045767] |
+| 6 | 0.045710211011 | interior | + | -3909.6125593467 | - | 1.61e-02 | 5917 | 444, 5455, 18 | [0.045710, 0.045767] |
+| 7 | 0.045715211011 | interior | - | -3907.5143658301 | + | 1.99e-03 | 6017 | 444, 5555, 18 | [0.045710, 0.045715] |
+
+All six interior evaluations are noise-robust (both noise signs equal the hybrid sign, dln at most 1.61e-02 against the limit 0.1); no step was refused, no exception, no stop condition of the order was reached. The first interior point, 0.048098370491, equals the scan's det-linear estimate to the 6 digits the reader printed (0.048098); it is the tool's first point on this bracket.
+
+**The registered test (t5's, unchanged):**
+
+| item | value |
+|---|---|
+| registered root at D 23.0 | +0.0444 +- 0.003, i.e. lam_lin in [0.0414, 0.0474] |
+| `lam_lin` (det-linear root of the final bracket) | 0.04571075737 |
+| offset from the registered centre | +0.001311 (0.44 of the half-width 0.003) |
+| inside [0.0414, 0.0474] | **yes: MET** (t5: MET) |
+| whole final bracket [0.04571021, 0.04571521] inside | yes |
+| scan estimator range [0.042772, 0.048098] (information, not the test) | `lam_lin` inside; the scan's det-linear 0.048098 moved by -0.002387 |
+
+t5 (hc 05:47 UTC), quoted: "With the roots at D 23.0625 and 23.125, the quadratic puts k_c 127's zero at D 23.06768; with D 22.875 added, the cubic gives 23.06767." I did not compute these.
+
+Float64 sign, as printed (it is not part of the tool's robust test, which uses the hybrid noise signs and dln): the float64 sign differs from the hybrid sign at 5 of the 8 records (interior points 0.048098, 0.046097, 0.045767, 0.045710 and 0.045715; it agrees at 0.044383 and at both ends). In my earlier secants, by the same printed column: k_c 103 D 22.875, 4 of 6 records; k_c 95 D 22.875, 5 of 9; k_c 87 D 22.875, 4 of 7. Orientation (+ to -) is information as printed; I do not interpret it.
+
+**Cost against the estimates written before the run:**
+
+| item | written | measured |
+|---|---|---|
+| each interior evaluation (one process) | about 5900 s | 5915 to 6017 s (mean 5951 s): within 2 % |
+| interior evaluations | about 5 (k_c 103, 95, 87 took 4, 7, 5) | 6 |
+| the run | 24000 to 41000 s, central 30000 s | 35705 s: inside the range, above the central value; 83 % of the cap of 43200 s |
+| of an evaluation | not written | block 12 (`ell_ddm`) 5455 to 5555 s (92 %), float64 matrix 441 to 449 s, `dd_logdet` calls 18 s |
+| peak private memory | about 4 to 8 GB | 4.329 GB (peak working set 3.287 GB), peak commit 15.8 GB |
+| cpu | not written | 35292 s (0.99 of the wall) |
+| lowest free memory | about 12 to 15 GB | 19.13 GB (sampler, 00:47:04 UTC), 19.12 GB (alert-only watcher) |
+
+The tool's `--ends` saved the two end evaluations (about 15800 s, from the scan's 7889 and 7898 s; about 11800 s at the single-process cost of 5900 s each). Laptop cpu 13 to 56 % (mean 31.2 %), 588 sample times with no gap over 90 s (the sampler script's 50610 s "gap" is the midnight wrap of its sorted time strings), the other project's I114 `convergence.py` jobs beside it, not touched. No alert, nothing killed (`rows/secant_memwatch.log`: "minimum free memory seen 19.12 GB; 0 alert(s) sent"); the keep-awake helper held until the driver ended (35821 s, cleared with ES_CONTINUOUS; `rows/secant_keepawake.log`); the System log (Kernel-Power, Power-Troubleshooter, Kernel-Boot) shows no event in 19:45 UTC 26 Nov to 06:00 UTC 27 Nov. The hc at 21600 s was sent (5 records at that time).
