@@ -1,0 +1,36 @@
+1a2
+> # pointnew_rs.sh: pointnew.sh with block 12 in Rust (t5, hc 04:23 UTC 27 Nov, #1102): worktree 1102m3 at d4b6b6ce (d18_secant.py 9706e506, ell_b12rs.py a1fff74f), ellrs from ~/Source/ellrs-site-1102m3, the scan command with --b12=rust --b12_threads=$B12T (default 4) and without RAYON_NUM_THREADS=1. Made by kc143_d23125/mk_rs.py from pointnew.sh (asserted replacements); the comments below are pointnew.sh's.
+11c12
+< WT=$HOME/Source/choptuik-large-d-1025s2; WTM=$WT/solver/matter; WTB=$HOME/Source/choptuik-large-d-1025m
+---
+> WT=$HOME/Source/choptuik-large-d-1102m3; WTM=$WT/solver/matter; SITE=$HOME/Source/ellrs-site-1102m3; B12T=${B12T:-4}; WTB=$HOME/Source/choptuik-large-d-1025m
+14c15
+< export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 P4_WT_MATTER=$WTM PYTHONFAULTHANDLER=1
+---
+> export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 P4_WT_MATTER=$WTM PYTHONPATH=$SITE PYTHONFAULTHANDLER=1
+25c26,28
+< [ "$(blob $WTM/d18_secant.py)" = eb1396ad ] || stop "d18_secant.py of the worktree is not blob eb1396ad"
+---
+> [ "$(blob $WTM/d18_secant.py)" = 9706e506 ] || stop "d18_secant.py of the worktree is not blob 9706e506"
+> [ "$(blob $WTM/ell_b12rs.py)" = a1fff74f ] || stop "ell_b12rs.py of the worktree is not blob a1fff74f"
+> [ "$(shasum -a 256 $SITE/ellrs/ellrs.cpython-314-darwin.so | cut -c1-12)" = d2221460d02c ] || stop "the ellrs module in $SITE is not the one gated (sha256 d2221460d02c)"
+28,29c31,32
+< step "inputs pinned: state $STATEBLOB and record $RECBLOB from raw $RAWC (pins.txt); the scanner d18_secant.py eb1396ad (worktree 92b9bf53); kc87_syscheck 6df5d960, kc79_syscheck 29dce7ea, read_lower 89309d3c, d185_scan_read 7c9d400f, repeat_check aaf598a9"
+< [ "$(git -C $WT rev-parse HEAD | cut -c1-8)" = 92b9bf53 ] || stop "worktree not at 92b9bf53"
+---
+> step "inputs pinned: state $STATEBLOB and record $RECBLOB from raw $RAWC (pins.txt); the scanner d18_secant.py 9706e506 with ell_b12rs.py a1fff74f and ellrs (sha256 d2221460d02c) from $SITE (worktree d4b6b6ce, branch wip/ell1-rust-b12); kc87_syscheck 6df5d960, kc79_syscheck 29dce7ea, read_lower 89309d3c, d185_scan_read 7c9d400f, repeat_check aaf598a9"
+> [ "$(git -C $WT rev-parse HEAD | cut -c1-8)" = d4b6b6ce ] || stop "worktree not at d4b6b6ce"
+32c35
+< step "worktree 92b9bf53 (dss_ell, ell_ddm, ell_dd, ddnp equal 505d8399's), clean outside solver/matter/data; $($PY -V 2>&1), multidouble isa $($PY -c 'import multidouble as m; print(m.isa())')"
+---
+> step "worktree d4b6b6ce (dss_ell, ell_ddm, ell_dd, ddnp equal 505d8399's), clean outside solver/matter/data; $($PY -V 2>&1), multidouble isa $($PY -c 'import multidouble as m; print(m.isa())')"
+66c69
+< step "scan starts: D $D, ${#LAMP[@]} values (${LAMP[*]}) on $NP processes of 1 thread, nice ${NICE:-10}, round-robin (a process runs its values one after another); the first $REP on process $((R1 % NP)), the repeat on process $((R2 % NP)); state $STATEFILE $(blob $STATE), record $(blob $STUB); alert watcher on (hc: ${HC:-none})"
+---
+> step "scan starts: D $D, ${#LAMP[@]} values (${LAMP[*]}) on $NP processes of 1 float64 thread and $B12T block-12 threads (--b12=rust), nice ${NICE:-10}, round-robin (a process runs its values one after another); the first $REP on process $((R1 % NP)), the repeat on process $((R2 % NP)); state $STATEFILE $(blob $STATE), record $(blob $STUB); alert watcher on (hc: ${HC:-none})"
+70,71c73,74
+<   ( cd $WTM && nice -n ${NICE:-10} env OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 RAYON_NUM_THREADS=1 PYTHONFAULTHANDLER=1 \
+<       $PY -u $L/common/capped_run.py 28800 $PY -u $WTM/d18_secant.py scan $STUB $STATE $D "$mine" $OUT/scan/scan_D${D}_p$p.jsonl --pin=$STATEBLOB,$RECBLOB > $OUT/scan/scan_p$p.log 2>&1
+---
+>   ( cd $WTM && nice -n ${NICE:-10} env OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 PYTHONFAULTHANDLER=1 \
+>       $PY -u $L/common/capped_run.py 28800 $PY -u $WTM/d18_secant.py scan $STUB $STATE $D "$mine" $OUT/scan/scan_D${D}_p$p.jsonl --pin=$STATEBLOB,$RECBLOB --b12=rust --b12_threads=$B12T > $OUT/scan/scan_p$p.log 2>&1

@@ -1,0 +1,42 @@
+1a2
+> # RUST BLOCK 12 (t5, hc 04:23 UTC 27 Nov 2026, #1102): the scan (pointnew_rs.sh) and the secant of this lane run with --b12=rust --b12_threads=4 (ellrs in ~/Source/ellrs-site-1102m3, worktree 1102m3 at d4b6b6ce, d18_secant.py 9706e506); changes read in rust_b12/diff_lane_rs.txt and the README.
+15c16
+< WTS=$HOME/Source/choptuik-large-d-1025s2/solver/matter
+---
+> WTS=$HOME/Source/choptuik-large-d-1102m3/solver/matter; SITE=$HOME/Source/ellrs-site-1102m3   # Rust block 12 (t5, hc 04:23 UTC 27 Nov, #1102): the scanner worktree is the branch's
+38c39,41
+< [ "$(git -C ${WTS%/solver/matter} rev-parse --short=8 HEAD)" = 92b9bf53 ] && [ "$(blob $WTS/d18_secant.py | cut -c1-8)" = eb1396ad ] || stop "the scanner worktree is not at 92b9bf53 with d18_secant.py eb1396ad"
+---
+> [ "$(git -C ${WTS%/solver/matter} rev-parse --short=8 HEAD)" = d4b6b6ce ] && [ "$(blob $WTS/d18_secant.py | cut -c1-8)" = 9706e506 ] || stop "the scanner worktree is not at d4b6b6ce with d18_secant.py 9706e506"
+> [ "$(blob $WTS/ell_b12rs.py | cut -c1-8)" = a1fff74f ] && [ -z "$(git -C ${WTS%/solver/matter} status --short solver)" ] || stop "ell_b12rs.py is not a1fff74f or the scanner worktree is not clean"
+> [ "$(shasum -a 256 $SITE/ellrs/ellrs.cpython-314-darwin.so | cut -c1-12)" = d2221460d02c ] || stop "the ellrs module in $SITE is not the one gated (sha256 d2221460d02c)"
+43c46
+< say "pins checked (in_blobs.txt; the diff of the k_c 135 and k_c 143 checks: a header comment line and 3 lines changed from 135 to 143), worktrees $WT 48c36355 (dss_ell, ell_ddm, ell_dd, ddnp equal 505d8399; ell_refine.py 631e5801, ell_delta.py fde699f5), $WT5 505d8399 and the scanner worktree 92b9bf53 (d18_secant.py eb1396ad) clean; lambda_0($D) $L0; $($PY -V 2>&1), multidouble $($PY -c 'import multidouble as m; print(m.isa())')"
+---
+> say "pins checked (in_blobs.txt; the diff of the k_c 135 and k_c 143 checks: a header comment line and 3 lines changed from 135 to 143), worktrees $WT 48c36355 (dss_ell, ell_ddm, ell_dd, ddnp equal 505d8399; ell_refine.py 631e5801, ell_delta.py fde699f5), $WT5 505d8399 and the scanner worktree d4b6b6ce (d18_secant.py 9706e506, ell_b12rs.py a1fff74f, ellrs sha256 d2221460d02c in $SITE) clean; lambda_0($D) $L0; $($PY -V 2>&1), multidouble $($PY -c 'import multidouble as m; print(m.isa())')"
+58c61
+< ( cd $WTS && export RAYON_NUM_THREADS=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1
+---
+> ( cd $WTS && export PYTHONPATH=$SITE RAYON_NUM_THREADS=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1
+60a64
+>   for m in "" nolam harm; do nice -n 10 $PY ell_b12rs.py selftest ${m:+--mutate=$m} > $C/b12rs_selftest${m:+_$m}.txt 2>&1; nx="$nx $?"; done
+62,63c66,67
+< [ "$(cat $C/newscan_exits.txt)" = "0 1 1 1" ] || stop "the new scanner's selftest exits '$(cat $C/newscan_exits.txt)' (wanted '0 1 1 1': selftest, half, norobust, nosigncheck)"
+< say "new scanner d18_secant.py (blob $(blob $WTS/d18_secant.py | cut -c1-8), worktree 92b9bf53): selftest exit 0, --mutate=half exit 1, --mutate=norobust exit 1, --mutate=nosigncheck exit 1 (logged before the scan, as t5 ordered)"
+---
+> [ "$(cat $C/newscan_exits.txt)" = "0 1 1 1 0 1 1" ] || stop "the new scanner's and ell_b12rs's selftest exits '$(cat $C/newscan_exits.txt)' (wanted '0 1 1 1 0 1 1': selftest, half, norobust, nosigncheck, ell_b12rs selftest, nolam, harm)"
+> say "new scanner d18_secant.py (blob $(blob $WTS/d18_secant.py | cut -c1-8), worktree d4b6b6ce): selftest exit 0, --mutate=half exit 1, --mutate=norobust exit 1, --mutate=nosigncheck exit 1; ell_b12rs.py selftest exit 0, --mutate=nolam exit 1, --mutate=harm exit 1 (logged before the scan, as t5 ordered)"
+137,138c141,142
+< say "scan starts (pointnew.sh $DN scan: the new scanner d18_secant.py scan)"
+< bash $L/pointnew.sh $DN scan >> $SCAN/pipeline.log 2>&1; sc=$?
+---
+> say "scan starts (pointnew_rs.sh $DN scan: the scanner d18_secant.py scan with --b12=rust --b12_threads=4)"
+> bash $L/pointnew_rs.sh $DN scan >> $SCAN/pipeline.log 2>&1; sc=$?
+152c156
+< say "secant starts: d18_secant.py run $S_REC $S_STATE $D $LO $HI secant.jsonl --tol=1e-5 --maxev=10 --pin=$SB,$TB"
+---
+> say "secant starts: d18_secant.py run $S_REC $S_STATE $D $LO $HI secant.jsonl --tol=1e-5 --maxev=10 --pin=$SB,$TB --b12=rust --b12_threads=4"
+154c158
+< ( cd $WTS && env RAYON_NUM_THREADS=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 nice -n 10 $PY -u $IN/capped_run.py 18000 $PY -u $WTS/d18_secant.py run $S_REC $S_STATE $D $LO $HI $SEC/secant.jsonl --tol=1e-5 --maxev=10 --pin=$SB,$TB > $SEC/secant.log 2>&1; echo $? > $SEC/exit.txt ) &
+---
+> ( cd $WTS && env PYTHONPATH=$SITE OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 nice -n 10 $PY -u $IN/capped_run.py 18000 $PY -u $WTS/d18_secant.py run $S_REC $S_STATE $D $LO $HI $SEC/secant.jsonl --tol=1e-5 --maxev=10 --pin=$SB,$TB --b12=rust --b12_threads=4 > $SEC/secant.log 2>&1; echo $? > $SEC/exit.txt ) &

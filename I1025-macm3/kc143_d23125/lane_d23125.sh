@@ -1,4 +1,5 @@
 #!/bin/bash
+# RUST BLOCK 12 (t5, hc 04:23 UTC 27 Nov 2026, #1102): the scan (pointnew_rs.sh) and the secant of this lane run with --b12=rust --b12_threads=4 (ellrs in ~/Source/ellrs-site-1102m3, worktree 1102m3 at d4b6b6ce, d18_secant.py 9706e506); changes read in rust_b12/diff_lane_rs.txt and the README.
 # #1025 macm3 kc143_d23125 (t5's order, hc 27 Nov 01:38 UTC by t5's clock): k_c 143 at D 23.125 by a regrid from my accepted k_c 135 state there (raw I1025-macm3/kc135_d23125/in: state blob ac01e477, record blob f22d1e21; copies in in/).
 # Derived from kc135_d23125/lane_d23125.sh by the one-rung shift of the resolutions (119 -> 127, 127 -> 135, 135 -> 143 in the check names and labels) and the explicit replacements of mk_lanes143.py, read in diff_lane.txt.
 # Steps: pins, selftests, the new scanner's selftest and its three mutations, the source check (the k_c 135 check accepts the state, controls exit 1 1, the k_c 127 and k_c 143 checks refuse), a wait for no other scan, regrid or secant and
@@ -12,7 +13,7 @@ F=$HOME/Source/choptuik-large-d-raw-903/I1025-macm3/kc143_d23125; IN=$F/in; OUT=
 L=$HOME/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_leg_lambda
 WT=$HOME/Source/choptuik-large-d-1025m2; WTM=$WT/solver/matter
 WT5=$HOME/Source/choptuik-large-d-1025m; WTM5=$WT5/solver/matter
-WTS=$HOME/Source/choptuik-large-d-1025s2/solver/matter
+WTS=$HOME/Source/choptuik-large-d-1102m3/solver/matter; SITE=$HOME/Source/ellrs-site-1102m3   # Rust block 12 (t5, hc 04:23 UTC 27 Nov, #1102): the scanner worktree is the branch's
 PY=$HOME/Source/venv-macm3-1058b/bin/python; RAWG=$HOME/Source/choptuik-large-d-raw-1076p
 SRC=l1kc135macm3d23125; TAG=l1kc143macm3d23125; D=23.125; DT=D23.1250; SRCFILE=sol_${SRC}_D23.1250.npy; LAM0=2.0987860107; DN=23.125_kc143; SCAN=$L/$DN; SEC=$F/secant
 HC=$(command -v hc); LOG=$F/exits_kc143.txt
@@ -35,12 +36,14 @@ for f in dss_ell ell_ddm ell_dd ddnp; do git -C $WT diff --quiet 505d8399 HEAD -
 [ "$(blob $WTM/ell_refine.py | cut -c1-8)" = 631e5801 ] && [ "$(blob $WTM/ell_delta.py | cut -c1-8)" = fde699f5 ] || stop "ell_refine.py or ell_delta.py is not 631e5801 / fde699f5"
 [ -z "$(git -C $WT status --short solver | grep -v 'solver/matter/data/')" ] || stop "worktree solver/ has changes"
 [ "$(git -C $WT5 rev-parse --short=8 HEAD)" = 505d8399 ] && [ -z "$(git -C $WT5 status --short solver | grep -v 'solver/matter/data/')" ] || stop "the scan worktree $WT5 is not clean at 505d8399"
-[ "$(git -C ${WTS%/solver/matter} rev-parse --short=8 HEAD)" = 92b9bf53 ] && [ "$(blob $WTS/d18_secant.py | cut -c1-8)" = eb1396ad ] || stop "the scanner worktree is not at 92b9bf53 with d18_secant.py eb1396ad"
+[ "$(git -C ${WTS%/solver/matter} rev-parse --short=8 HEAD)" = d4b6b6ce ] && [ "$(blob $WTS/d18_secant.py | cut -c1-8)" = 9706e506 ] || stop "the scanner worktree is not at d4b6b6ce with d18_secant.py 9706e506"
+[ "$(blob $WTS/ell_b12rs.py | cut -c1-8)" = a1fff74f ] && [ -z "$(git -C ${WTS%/solver/matter} status --short solver)" ] || stop "ell_b12rs.py is not a1fff74f or the scanner worktree is not clean"
+[ "$(shasum -a 256 $SITE/ellrs/ellrs.cpython-314-darwin.so | cut -c1-12)" = d2221460d02c ] || stop "the ellrs module in $SITE is not the one gated (sha256 d2221460d02c)"
 for f in dss_ell ell_ddm ell_dd ddnp; do [ "$(blob $WTS/$f.py | cut -c1-8)" = "$(blob $WTM5/$f.py | cut -c1-8)" ] || stop "$f.py of the scanner worktree differs from the scan worktree's (505d8399)"; done
 [ "$MODE" != dry ] && [ "$MODE" != check ] && { [ -e $WTM/data/$TAG.jsonl ] && stop "$WTM/data/$TAG.jsonl exists"; [ -e $WTM/data/sol_${TAG}_$DT.npy ] && stop "the result state exists in $WTM/data"; }
 L0=$($PY -c "import sys; sys.path.insert(0, '$WTM'); import ell_delta; print('%.10f' % ell_delta.lam0_at($D, *ell_delta.lam0_table())[0])")
 python3 -c "import sys; sys.exit(0 if abs(float('$L0') - float('$LAM0')) < 1e-10 else 1)" || stop "lambda_0($D) reads $L0, not $LAM0"
-say "pins checked (in_blobs.txt; the diff of the k_c 135 and k_c 143 checks: a header comment line and 3 lines changed from 135 to 143), worktrees $WT 48c36355 (dss_ell, ell_ddm, ell_dd, ddnp equal 505d8399; ell_refine.py 631e5801, ell_delta.py fde699f5), $WT5 505d8399 and the scanner worktree 92b9bf53 (d18_secant.py eb1396ad) clean; lambda_0($D) $L0; $($PY -V 2>&1), multidouble $($PY -c 'import multidouble as m; print(m.isa())')"
+say "pins checked (in_blobs.txt; the diff of the k_c 135 and k_c 143 checks: a header comment line and 3 lines changed from 135 to 143), worktrees $WT 48c36355 (dss_ell, ell_ddm, ell_dd, ddnp equal 505d8399; ell_refine.py 631e5801, ell_delta.py fde699f5), $WT5 505d8399 and the scanner worktree d4b6b6ce (d18_secant.py 9706e506, ell_b12rs.py a1fff74f, ellrs sha256 d2221460d02c in $SITE) clean; lambda_0($D) $L0; $($PY -V 2>&1), multidouble $($PY -c 'import multidouble as m; print(m.isa())')"
 # 2. selftests
 export D18_DIR=$IN OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1
 ( cd $IN
@@ -55,12 +58,13 @@ export D18_DIR=$IN OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1
 [ "$(cat $C/selftest_exits.txt)" = "0 0 0 0 1 1 0" ] || stop "the selftests did not behave ($(cat $C/selftest_exits.txt); wanted 0 0 0 0 1 1 0: kc127_syscheck, kc135_syscheck, kc143_syscheck, read_lower, mutate shift, mutate round2, repeat_check)"
 say "selftests as wanted (0 0 0 0 1 1 0)"
 # 2b. the new scanner (t5's order): selftest exit 0, --mutate=half|norobust|nosigncheck exit 1 each, logged
-( cd $WTS && export RAYON_NUM_THREADS=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1
+( cd $WTS && export PYTHONPATH=$SITE RAYON_NUM_THREADS=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1
   nice -n 10 $PY d18_secant.py selftest > $C/newscan_selftest.txt 2>&1; n0=$?; nx="$n0"
   for m in half norobust nosigncheck; do nice -n 10 $PY d18_secant.py selftest --mutate=$m > $C/newscan_selftest_$m.txt 2>&1; nx="$nx $?"; done
+  for m in "" nolam harm; do nice -n 10 $PY ell_b12rs.py selftest ${m:+--mutate=$m} > $C/b12rs_selftest${m:+_$m}.txt 2>&1; nx="$nx $?"; done
   echo "$nx" > $C/newscan_exits.txt )
-[ "$(cat $C/newscan_exits.txt)" = "0 1 1 1" ] || stop "the new scanner's selftest exits '$(cat $C/newscan_exits.txt)' (wanted '0 1 1 1': selftest, half, norobust, nosigncheck)"
-say "new scanner d18_secant.py (blob $(blob $WTS/d18_secant.py | cut -c1-8), worktree 92b9bf53): selftest exit 0, --mutate=half exit 1, --mutate=norobust exit 1, --mutate=nosigncheck exit 1 (logged before the scan, as t5 ordered)"
+[ "$(cat $C/newscan_exits.txt)" = "0 1 1 1 0 1 1" ] || stop "the new scanner's and ell_b12rs's selftest exits '$(cat $C/newscan_exits.txt)' (wanted '0 1 1 1 0 1 1': selftest, half, norobust, nosigncheck, ell_b12rs selftest, nolam, harm)"
+say "new scanner d18_secant.py (blob $(blob $WTS/d18_secant.py | cut -c1-8), worktree d4b6b6ce): selftest exit 0, --mutate=half exit 1, --mutate=norobust exit 1, --mutate=nosigncheck exit 1; ell_b12rs.py selftest exit 0, --mutate=nolam exit 1, --mutate=harm exit 1 (logged before the scan, as t5 ordered)"
 # 3. the source: the k_c 135 check accepts it with controls 1 1; the k_c 127 and k_c 143 checks refuse it
 STATE=$IN/$SRCFILE; REC=$IN/$SRC.jsonl
 C135S="nice -n 10 $PY -I $IN/kc135_syscheck_1025.py $REC $STATE $D $WTM"
@@ -134,8 +138,8 @@ until mkdir $LOCK 2>/dev/null; do
   n=$((n+1)); [ $n -gt 2700 ] && stop "the scan lock stayed busy for 15 h"; sleep 20
 done
 echo $$ > $LOCK.pid
-say "scan starts (pointnew.sh $DN scan: the new scanner d18_secant.py scan)"
-bash $L/pointnew.sh $DN scan >> $SCAN/pipeline.log 2>&1; sc=$?
+say "scan starts (pointnew_rs.sh $DN scan: the scanner d18_secant.py scan with --b12=rust --b12_threads=4)"
+bash $L/pointnew_rs.sh $DN scan >> $SCAN/pipeline.log 2>&1; sc=$?
 rmdir $LOCK 2>/dev/null; mv $LOCK.pid $LOCK.pid.done 2>/dev/null
 say "scan exit $sc"
 [ -e $SCAN/SCAN_DONE.txt ] || stop "the scan did not finish (no SCAN_DONE.txt; see $SCAN/steps.txt)"
@@ -149,9 +153,9 @@ BR=$(grep 'robust change (' $SCAN/read_lower.txt | sed -E 's/.*robust change \((
 LO=${BR% *}; HI=${BR#* }
 S_STATE=$SCAN/in/sol_${TAG}_$DT.npy; S_REC=$SCAN/in/$TAG.jsonl; SB=$(blob $S_STATE | cut -c1-8); TB=$(blob $S_REC | cut -c1-8)
 mkdir -p $SEC; [ -e $SEC/secant.jsonl ] && stop "$SEC/secant.jsonl exists"
-say "secant starts: d18_secant.py run $S_REC $S_STATE $D $LO $HI secant.jsonl --tol=1e-5 --maxev=10 --pin=$SB,$TB"
+say "secant starts: d18_secant.py run $S_REC $S_STATE $D $LO $HI secant.jsonl --tol=1e-5 --maxev=10 --pin=$SB,$TB --b12=rust --b12_threads=4"
 echo "time_utc,pid,rss_kB,pcpu,avail_GiB" > $SEC/samples.csv
-( cd $WTS && env RAYON_NUM_THREADS=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 nice -n 10 $PY -u $IN/capped_run.py 18000 $PY -u $WTS/d18_secant.py run $S_REC $S_STATE $D $LO $HI $SEC/secant.jsonl --tol=1e-5 --maxev=10 --pin=$SB,$TB > $SEC/secant.log 2>&1; echo $? > $SEC/exit.txt ) &
+( cd $WTS && env PYTHONPATH=$SITE OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 nice -n 10 $PY -u $IN/capped_run.py 18000 $PY -u $WTS/d18_secant.py run $S_REC $S_STATE $D $LO $HI $SEC/secant.jsonl --tol=1e-5 --maxev=10 --pin=$SB,$TB --b12=rust --b12_threads=4 > $SEC/secant.log 2>&1; echo $? > $SEC/exit.txt ) &
 sp=$!
 ( while kill -0 $sp 2>/dev/null; do for p in $(pgrep -f "d18_secant.py run.*kc143_d23125/secant"); do echo "$(stamp),$p,$(ps -o rss= -p $p | tr -d ' '),$(ps -o pcpu= -p $p | tr -d ' '),$(availgib)" >> $SEC/samples.csv; done; sleep 60; done ) &
 wait $sp; se=$(cat $SEC/exit.txt)
