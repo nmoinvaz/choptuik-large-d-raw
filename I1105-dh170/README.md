@@ -144,7 +144,7 @@ The sweep ran 935 s (peak RSS 176 MiB), the control 18 s. `read_1105.py` selftes
 | wall 0.5 to 2.5 h (t5: under 1 h); peak RSS under 6 GiB (70%) | wall WRONG, shorter: 935 s + 18 s; RSS right: 176 MiB |
 
 ## Status
-- 2026-11-27 08:05 UTC: step 1 done: both bars met; the N rule is not settled because the N 1088 reference is itself 4.98e-6; the horizon RK is not a cause (1.5%); the u0 dependence is about u0^-9 on the low side. Posted on #1105.
+- 2026-11-27 08:02 UTC: step 1 done: both bars met; the N rule is not settled because the N 1088 reference is itself 4.98e-6; the horizon RK is not a cause (1.5%); the u0 dependence is about u0^-9 on the low side. Posted on #1105.
 
 # Step 1b: does the record's u0 0.04 carry a lambda bias? (k_c 55, D 16, re-solves at u0 0.03, 0.04, 0.05 and their roots)
 
