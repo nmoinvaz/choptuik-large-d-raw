@@ -35,7 +35,7 @@ BASES = {
     "sqrt2, sqrt3, pi": ["sqrt2", "sqrt3", "pi"],
     "pi, pi2, ln2, z3, gam": ["pi", "pi2", "ln2", "z3", "gam"],
 }
-F = {"x": lambda x: x, "x^2": lambda x: x * x, "1/x": lambda x: 1 / x, "exp(x)": mp.exp, "log(x)": mp.log,
+F = {"x": lambda x: x, "x^2": lambda x: x * x, "1/x": lambda x: 1 / x, "exp(x)": mp.exp, "log|x|": lambda x: mp.log(abs(x)),
      "x/pi": lambda x: x / mp.pi, "x*pi": lambda x: x * mp.pi, "exp(x/2)": lambda x: mp.exp(x / 2)}
 found = []
 print(f"value {mp.nstr(val, 30)}, bar {mp.nstr(bar, 3)}, digits P {P:.1f}")
@@ -47,7 +47,7 @@ for fname, f in F.items():
         if H < 2:
             continue
         rel = mp.pslq(v, tol=mp.mpf(10) * bar / abs(val), maxcoeff=H, maxsteps=10 ** 6)
-        if rel:
+        if rel and sum(1 for c in rel if c) >= 2:
             resid = mp.fsum(c * t for c, t in zip(rel, v))
             found.append((fname, bname, rel, resid))
             print(f"  RELATION {fname} on 1, {bname}: {rel} (height {max(abs(c) for c in rel)}, bound {H}), residual "

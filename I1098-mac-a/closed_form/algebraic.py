@@ -29,7 +29,7 @@ for d in range(2, 9):
         print(f"  degree {d}: height bound below 2, skipped")
         continue
     rel = mp.pslq([val ** k for k in range(d + 1)], tol=mp.mpf(10) * bar / abs(val), maxcoeff=H, maxsteps=10 ** 6)
-    if rel:
+    if rel and sum(1 for c in rel if c) >= 2:     # one nonzero term is no relation
         found.append((d, rel))
         print(f"  degree {d}: RELATION {rel} (height {max(abs(c) for c in rel)}, bound {H})")
     else:

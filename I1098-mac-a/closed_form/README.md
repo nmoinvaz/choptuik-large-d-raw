@@ -14,3 +14,9 @@ Value 1.643893745125357513722888 +- 6.3e-23 (I1098-mac-a/fit15, provisional: its
   `--planted` (the real root of 2x^3 - 3x^2 - 2x - 1 plus 0.37 bar) is recovered at d = 3, height 3 (`algplanted.log`);
   `--random` gives none (`algrandom.log`). Result (`alg.log`): no polynomial; heights ruled out up to 3e6 (d 2),
   4e4 (3), 3e3 (4), 544 (5), 159 (6), 63 (7), 30 (8).
+- (2026-11-27 21:25 UTC) Both scripts reject a relation with fewer than two nonzero coefficients: at a2's 14 digits
+  and |a2|^8 near 3e13, PSLQ returned [1, 0, ..., 0], which only says the constant term is below the precision.
+  closed_form.py takes log|x| (a2 < 0). Rerun with both fixes (`coeffs/`; c_ the constants search, g_ the algebraic
+  one; each with its planted and random controls, all exit 0): Delta_inf, and the Taylor coefficients a1 =
+  10.37528562845395538737 (+-1.6e-17) and a2 = -49.168737490066284 (+-2.5e-13) of I1098-mac-a/singularities: no
+  relation, no polynomial.

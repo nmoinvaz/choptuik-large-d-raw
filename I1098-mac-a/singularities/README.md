@@ -15,3 +15,8 @@ and every |residual| <= 4 sigma; the poles of each accepted fit's denominator, c
   D 245.14 +1.95e-12, 200 -1.65e-12, 150 +4.6e-13, 100 +2.2e-13 (chain_fit rows, err 1e-12 to 4e-11); D 67.0 +1.32e-14,
   50.0 +1.3e-12, 40.0 +2.66e-11, 30.0 +1.04e-9, 25.1 +9.14e-9 (dd rows, err 1e-16 to 2e-15). Each is inside the fits'
   own range there (2e-11 at D 67, 1.5e-5 at D 25).
+- (2026-11-27 21:25 UTC) `--taylor=6` (`taylor_real.log`): a0 1.643893745125357513722871 (range 6e-22), a1
+  10.37528562845395538737 (1.6e-17), a2 -49.168737490066284 (2.5e-13), a3 399.18546066508068 (3.2e-9), a4 -4369.1118138
+  (4e-5). `domb_sykes.py` on them is NOT used: on planted T1 (a pole at e -0.077, exponent -1) it reads e0 -0.054 to
+  -0.064 with positive exponents (`taylor_T1.log`), and on T3 its ratios are erratic. So the singularity's type is
+  not determined; its position is the Pade estimate above.

@@ -134,6 +134,13 @@ for M in range(1, 6):
         print(f"  [{L}/{M}] chi2 {f['chi2']:.2f} (dof {dof}), poles in e: "
               + ", ".join(f"{p.real:+.4f}{p.imag:+.4f}i" for p in sorted(f["poles"], key=abs)))
 print(f"{len(acc)} accepted fits")
+# --taylor=K: the Taylor coefficients a_0..a_K of every accepted fit at e = 0 (median and range)
+if "taylor" in args:
+    K = int(args["taylor"])
+    cs = [mp.taylor(f["ev"], 0, K) for _, _, f in acc]
+    for k in range(K + 1):
+        v = sorted(c[k] for c in cs)
+        print(f"  a_{k}: median {mp.nstr(v[len(v) // 2], 25)}, range {mp.nstr(v[-1] - v[0], 3)} over {len(v)} fits")
 # --predict=D1,D2,...: every accepted fit's value there (median and range), against --compare=delta_all.csv rows
 if "predict" in args:
     import csv
