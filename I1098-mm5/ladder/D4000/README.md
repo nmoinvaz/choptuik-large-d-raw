@@ -61,3 +61,8 @@ By script from `run.log`, `jump/jump.log`, `*/rls.log` and `*/release_ls.jsonl`.
 - **Delta after h13 (M 32): 1.646485794200099314649352330795089174085** (rls13's last logged Delta); h13's change +6.0075e-17; the full system's qd check max |F| 1.34e-46 (the quad-double floor at this D; the od residual at h13's release 6.17e-49).
 - **Bars:** the jump converges and its kc+20 line is below its bar: met. The ks gate passes at 6017 (2.0e-89): met. h5..h13 each released: met. No stop rule hit.
 - The M 48 tail script (`tools3/d4000tail_mm5.sh`) started 07:13:31 UTC on this state; its gate and tail results are in `tail/` and the section above.
+
+### The time limits held (2026-11-27 09:34:45 UTC, coordinator's order)
+
+`ladder_point2.sh` runs h5-h11 under `timeout 6h` and h13 under `timeout 4h`, the tail under `timeout 10h`; D 8000 needs about 9.8 h and 5.8 h for its two stages (D 5555 on dh370 was killed this way at 09:16). `tools3/hold_timeouts.sh` (raw 6267c60b4 `I1098-mac-a/tools/hold_timeouts.sh`, blob b9a711cad555836b1887162281073b955c42ce21, verified and read) was started for `D4000/tail` (`bash tools3/hold_timeouts.sh <ladder>/D4000/tail 57600 <ladder>/D4000/tail/hold_timeouts.log`, detached): it stops (SIGSTOP) each `timeout` process whose command names `D4000/tail/`, continues it when its child exits, and ends a child still running 57600 s (16 h) after its timeout was stopped.
+First stop: the tail's `timeout 10h` (started 07:14 UTC) `timeout` pid **90867** stopped at 09:34:45 UTC (child 90868; `hold_timeouts.log`; ps shows the timeout in state T, the child running). Later stages' timeouts of this OUT are caught by its 60-s loop.

@@ -21,3 +21,8 @@ then `ladder_point2.sh` with the downward gate (`--down 1 --step 100 --ks0 9600`
 - The downward ks gate passes the bar 1e-64: log the ks it settles on (**expect about 1.09 n, 8700**) and its octo-double change. h5..h13 are each released.
 - Stop rules (amended): stop and report when a qq inner solve does not converge, when a harmonic's line search fails at every trial, or when an outer step is 3x its harmonic's first. A qd inner floor that hands over to qq is logged, not stopped.
 - Pilot: report the guess's max |F|, the jump's time, the gated ks and h5 outer 0's time. Times from `date -u`.
+
+### The time limits held (2026-11-27 09:34:45 UTC, coordinator's order)
+
+`ladder_point2.sh` runs h5-h11 under `timeout 6h` and h13 under `timeout 4h`, the tail under `timeout 10h`; D 8000 needs about 9.8 h and 5.8 h for its two stages (D 5555 on dh370 was killed this way at 09:16). `tools3/hold_timeouts.sh` (raw 6267c60b4 `I1098-mac-a/tools/hold_timeouts.sh`, blob b9a711cad555836b1887162281073b955c42ce21, verified and read) was started for `D8000` (`bash tools3/hold_timeouts.sh <ladder>/D8000 57600 <ladder>/D8000/hold_timeouts.log`, detached): it stops (SIGSTOP) each `timeout` process whose command names `D8000/`, continues it when its child exits, and ends a child still running 57600 s (16 h) after its timeout was stopped.
+First stop: the rls h5..h11 stage's `timeout 6h` (started 08:04 UTC) `timeout` pid **95515** stopped at 09:34:45 UTC (child 95516; `hold_timeouts.log`; ps shows the timeout in state T, the child running). Later stages' timeouts of this OUT are caught by its 60-s loop.
