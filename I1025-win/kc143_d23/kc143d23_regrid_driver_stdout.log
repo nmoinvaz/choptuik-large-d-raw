@@ -1,0 +1,13 @@
+== 2026-11-27 06:07:38 kc143d23_regrid_driver_1025.py: the k_c 143 regrid at D 23.0 from win2's accepted k_c 135 D 23.0 state; checking pins
+== 2026-11-27 06:07:38 pins ok (the inputs of C:/Users/nathan/Source/kc143d23_1025/inputs, win2's k_c 135 D 23.0 files, worktree 48c36355 with solver code = 505d8399 and ell_delta/ell_refine = 48c36355); python C:/Users/nathan/Source/venv-md510/Scripts/python.exe
+== 2026-11-27 06:07:39 selftests: kc143_syscheck exit 0, kc135_syscheck exit 0, kc127_syscheck exit 0 (0 wanted each)
+== 2026-11-27 06:07:39 ell_delta.lam0_at(23.0) = 2.0992182200, as t5's order
+== 2026-11-27 06:07:39 alert-only memory watcher started as its own process, pid 19548 (kills nothing); sampler pid 15056
+== 2026-11-27 06:07:39 keep-awake helper started as its own process, pid 1864: SetThreadExecutionState(ES_CONTINUOUS | ES_SYSTEM_REQUIRED) until this driver (pid 2420) ends; power plan untouched; kills nothing
+== 2026-11-27 06:08:07 the source: kc135 check exit 0 (0 wanted), --mutate=F 1, --mutate=steps 1 (1 wanted each), kc127 check 1 and kc143 check 1 (1 wanted each: they refuse the source); 28 s
+== 2026-11-27 06:08:07 regrid: started pid 1364: C:/Users/nathan/Source/venv-md510/Scripts/python.exe -u ell_refine.py l1kc135win2d23 135 l1kc143winbd23 143 1 23.0 2.0992182200 --kappa 0.7 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma > C:/Users/nathan/Source/kc143d23_1025/I1025-win/kc143_d23/rows/regrid_raw.log
+== 2026-11-27 12:08:07 regrid: still running at 21600 s (pid 1364); cap 43200 s; hc to t5 as ordered
+== 2026-11-27 14:54:22 regrid: pid 1364 ended with exit 0 after 31576 s
+== 2026-11-27 14:54:49 result: kc143 check exit 0 (0 wanted), its selftest 0 (0 wanted), --mutate=F 1, --mutate=steps 1 (1 wanted each), kc135 check on the result 1 (1 wanted: it refuses); 27 s
+== 2026-11-27 14:55:54 regrid 2026-11-27 06:08:07 to 14:54:22 UTC, exit 0, wall 31576 s (record's seconds 31559); record: |F| 3.1672972784891065e-10, F_start 3.086036210347967e-06, steps 4705, constraint 0.0006113106423317232, Delta 1.174309794771696; the k_c 135 source record at D 23.0: |F| 3.1834404599371294e-10, steps 4441, constraint 0.0009915118203933646, Delta 1.1743190138598711; Delta(k_c 143) minus Delta(k_c 135) = -9.219088175083101e-06; steps ratio 1.0594460707047961 (references at D 23.0: k_c 119 to 127 3914 to 4179 = 1.0677 (mine), k_c 127 to 135 4179 to 4441 = 1.0627 (win2's)); ACCEPTED; peak working set 6.91 GB, peak private 7.44 GB (the largest python of the tree, 1034 samples), lowest free memory 16.14 GB, peak commit 19.3 GB, cpu 69498 s
+== 2026-11-27 14:55:59 kc143d23_regrid_driver_1025.py done

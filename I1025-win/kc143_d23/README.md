@@ -70,10 +70,87 @@ Dry tests before the scan driver runs (it starts hours after the regrid): the sc
 
 ## Status
 
-README first. Not started when this was written.
+**Steps 1 to 4a are done; step 4b (the secant) starts right after this push** (the Result below gets its numbers when it ends).
 
-Pushed 2026-11-27 06:07:23 UTC.
+- **Regrid ACCEPTED** (marker `regrid_accepted.txt`, 2026-11-27 14:54:49 UTC): 06:08:07 to 14:54:22 UTC, exit 0, wall 31576 s (the record's `seconds` 31559), **4705 steps** (the source's 4441: ratio 1.0594), \|F\| 3.1672972784891065e-10, constraint 6.113106423317232e-4, Delta 1.174309794771696 (the source's minus 9.219e-06). State blob **866c434b**, record blob **88f0be8b**. The k_c 143 check exits 0, its selftest 0, `--mutate=F` and `--mutate=steps` exit 1, the k_c 135 check refuses the result (exit 1).
+- **Scan done** (14:56:48 to 16:28:03 UTC, exits 0, 0, 5475 s): **exactly one robust change, (0.050, 0.055), - to +**, all four evaluations noise-robust, the repeat of 0.055 agrees (bit for bit). **t5's ruling (hc 2026-11-27 16:28 UTC, quoted):** "the k_c 143 D 23.0 scan is accepted: one robust change (0.050, 0.055), all points robust, the repeat agrees. Run the secant on that bracket at tol 5e-5 on the Rust block, as your lane plans, and post the root on #1025. Label it a kappa 0.7 root: #1101 found that the RK step error moves lambda_1 by about +0.06 at k_c 127, D 23.0 between kappa 0.7 and 0.35 (comment 7220945175). So this root is data for #1104's fit in both k_c and kappa, not a threshold. Push the scan files with it."
+- **The label (t5's):** the root this lane finds is a **kappa 0.7 root**. By #1101 (comment 7220945175) the RK step error moves lambda_1 by about +0.06 at k_c 127, D 23.0 between kappa 0.7 and 0.35, so the root is data for #1104's fit in both k_c and kappa, **not a threshold**. I post it so and do not read it as one.
+- **Three slips, no effect on the numbers:** (1) the waiter on the regrid hit its own 8.3 h poll cap at 14:32:56 UTC with the regrid still running (30300 s); I re-armed it at 14:33 UTC and the regrid and the chain were not touched. (2) My start hc was stamped 06:10 UTC but sent at about 06:08 (I typed the time by hand); disclosed to t5 by hc at 14:56 UTC. The stamps now come from `date -u`. (3) My first ends file, made with `sed -n`, lost the CRs of the scan's CR LF lines (808 bytes); the secant driver's verbatim-line check refused it in its dry run (16:31 UTC), before anything was started. I rebuilt the file as a binary copy (810 bytes, blob 64f040dc), moved the wrong one to my trash folder and recomputed the line blobs below with the CRs.
+
+Pushed 2026-11-27 16:34:24 UTC.
 
 ## Result
 
-Not yet run.
+### Steps 1 to 3 (source, regrid, acceptance)
+
+| | k_c 143 (this regrid) | k_c 135 source (win2) |
+|---|---|---|
+| steps (`freeze_from`) | **4705** | 4441 |
+| steps ratio | **1.0594** (k_c 119 to 127: 1.0677, k_c 127 to 135: 1.0627) | |
+| \|F\| | 3.1672972784891065e-10 | 3.1834404599371294e-10 |
+| F_start | 3.086036210347967e-06 | 4.870300630763123e-06 |
+| psi-constraint | 6.113106423317232e-4 | 9.915118203933646e-4 |
+| Delta | 1.174309794771696 | 1.1743190138598711 |
+| Delta shift | -9.219088175083101e-06 | |
+| dDelta_dF, lam_gauge | 150.60697160085763, 0.9835822408706213 | |
+| seconds | 31559 (wall 31576: 06:08:07 to 14:54:22 UTC; 4 threads, BelowNormal) | 20050 (20 cores, 8 threads) |
+
+The result files: state `sol_l1kc143winbd23_D23.0000.npy` (74808 bytes, **blob 866c434b**), record `l1kc143winbd23.jsonl` (374 bytes, **blob 88f0be8b**). Acceptance (`syscheck.txt`, `syscheck_mutate.txt`, `syscheck_kc135_on_result.txt`, `selftest_kc143_syscheck_after.txt`): the k_c 143 check **exit 0** (record \|F\| 3.1672972785e-10 = the state's, `freeze_from` 4705 steps = the record's), its selftest 6 of 6 planted cases PASS (exit 0), `--mutate=F` exit 1 ("the state's \|F\| 3.167297e-10 is not within 1% of the record's 4.750946e-10"), `--mutate=steps` exit 1 ("freeze_from gives 4705 steps, the record 4706"), the k_c 135 check on the result **exit 1** ("the record is not k_c 135 at D 23 (kc 143, D 23.0)"). The raw log has only `RuntimeWarning`s of `dss_ell.py` overflow in the first trial steps, as the k_c 127 regrid's log had; the final JSON line equals the record.
+
+Against my estimates (written before the run): steps about 4700 (4670 to 4720, ratio about 1.058): **4705, 1.0594, inside**; constraint about 0.68 times the source's (6.7e-4): **6.113e-4 = 0.617 times**; time 14000 to 43200 s, central 24000 s: **31576 s, inside the range, 1.3 times the central**, 73 % of the cap (the one-in-five risk of the cap did not occur); memory 7 to 9 GB: **peak private 7.44 GB, working set 6.91 GB**, lowest free memory 16.14 GB (sampler), 16.22 GB (alert-only watcher; 0 alerts), peak commit 19.29 GB, laptop cpu mean 46.5 % (max 82 %), 520 sample times with no gap over 90 s, cpu 69498 s (the worker; 2.2 of 4 threads busy on average). The driver logged its hc at 21600 s (12:08 UTC). The waiter slip is in the Status.
+
+### Step 4a, the scan (`d18_secant.py scan` at d4b6b6ce, blob 9706e506, `--b12=rust --b12_threads=2`)
+
+Pins and selftests before the start (`selftest_d18_secant.txt`, `selftest_ell_b12rs.txt`, 14:56 UTC): the tool's selftest exit 0 and its mutations `half`, `norobust`, `nosigncheck` exit 1, 1, 1; `ell_b12rs.py` selftest exit 0, `--mutate=nolam` and `--mutate=harm` exit 1, 1 (ellrs from `i1102_1025/site`). Both workers printed the record system: \|F\| 3.1649259892e-10 against the record's 3.1672972785e-10, 4705 steps = the record's; "block 12 by ellrs (avx512, products dgemm, 2 threads)".
+
+Reader (`read_lower_kc143_D23.log`, `read_lower.py` 89309d3c on this folder, window 0.05 to 0.06), lines as printed:
+
+```
+points 3 in 0.050-0.060; not noise-robust: none
+hybrid signs: 0.050- 0.055+ 0.060+
+float64 sign differs from the hybrid sign at: [(0.05, '-', '+')]
+repeated points: [(0.055, 'agree')]
+  robust change (0.050, 0.055), - to +, det-linear 0.054264, range [0.053941, 0.054264]
+robust changes: 1; touching a non-robust point (not counted): none
+ln|det| local minima without a sign change: none
+endpoint signs: - at 0.050, + at 0.060
+read_lower exit 0
+```
+
+The 4 evaluations (`scan_kc143_D23_p0.jsonl` 2 lines, `scan_kc143_D23_p1.jsonl` 2 lines; `sec_parts` = float64 matrix, Rust block 12, the `dd_logdet` calls):
+
+| lambda | process, round | hybrid sign | hybrid ln\|det\| | float64 sign | float64 ln\|det\| | noise-robust | dln | seconds | parts (s) |
+|---|---|---|---|---|---|---|---|---|---|
+| 0.055 | p0, 1 | + | -4524.5732411972 | + | -4521.0689344955 | yes | 9.25e-05 | 2617 | 935, 1652, 30 |
+| 0.060 | p1, 1 | + | -4523.6452954831 | + | -4523.3191267923 | yes | 1.70e-05 | 2616 | 934, 1652, 30 |
+| 0.050 | p0, 2 | - | -4522.8159827054 | + | -4520.6672742203 | yes | 3.39e-05 | 2821 | 989, 1797, 35 |
+| 0.055 (repeat) | p1, 2 | + | -4524.5732411972 | + | -4521.0689344955 | yes | 9.25e-05 | 2823 | 988, 1799, 35 |
+
+The repeat of 0.055 (p1) equals p0's record in every field except `sec` and `sec_parts` (hybrid and float64 ln\|det\|, noise signs and values, dln: bit for bit). The float64 sign differs from the hybrid sign at 0.050 (float64 +, hybrid -), as the reader prints; it is not part of the tool's robust test. The orientation printed is - at 0.050 and + at 0.055 (my k_c 127 scan at this D printed + to -); I report it as printed and do not interpret it.
+
+**Against the order and the registration:** the order stops on none or more than one robust change: **exactly one**, (0.050, 0.055), which is the central bracket the prediction +0.0529 gave (the bracket by 0.0529 was registered as (0.050, 0.055)). The scan's det-linear estimate 0.054264 lies inside [0.0499, 0.0559]; the registered test is on the secant's final bracket, not on the scan.
+
+**Cost against the estimates written before the scan:**
+
+| item | written | measured |
+|---|---|---|
+| each evaluation, two processes | 1000 to 2800 s, central 1400 s | 2616 to 2823 s: at the top of the range (2823 s is 23 s above the written 2800 s) |
+| of which the Rust block 12 on 2 threads | 350 to 1800 s, central 700 s | 1652 to 1799 s: inside, at the top |
+| of which the float64 matrix | about 650 s | 934 to 989 s (above; two processes at once) |
+| `dd_logdet` | about 30 s | 30 to 35 s |
+| the scan (2 rounds) | 2000 to 6000 s, central 2800 s | 5475 s: inside, at the top (14:56:48 to 16:28:03 UTC) |
+| peak private per process | 5 to 9 GB | 5.515 and 5.514 GB (peak working set 4.18 GB): the lower end |
+| cpu per worker | not written | 8624 s (p0), 8628 s (p1): 1.58 of the wall (2 Rust threads each) |
+| lowest free memory | 10 to 15 GB (whole stage) | 15.18 GB (sampler, 15:40:41 UTC), 13.69 GB (alert-only watcher; 0 alerts) |
+
+For scale (not a comparison of the same size): my k_c 127 scan with the Python block 12 (`ell_ddm`, two processes) took 7261 to 7421 s for block 12 per evaluation and 7889 to 8055 s per evaluation; here the Rust block 12 at k_c 143 took 1652 to 1799 s and the evaluation 2616 to 2823 s. Laptop cpu mean 60.7 % (max 99 %), commit up to 22.63 GB, 91 sample times with no gap over 90 s, the other project's `convergence.py` jobs beside it, not touched. No alert, nothing killed; the keep-awake helper held until the driver ended (5550 s, cleared with ES_CONTINUOUS). t5 ruled by hc at 16:28 UTC (the Status).
+
+### Step 4b, the ends file and the secant
+
+The two end records are taken from the scan (`--ends`, one file, the tool's usage): `scan_kc143_D23_ends.jsonl` (810 bytes, **blob 64f040dc1d16ff34adea0342dde1a6407c347930**), two lines copied byte for byte (binary copy, each with its CR LF) from `scan_kc143_D23_p0.jsonl`: line 1 = p0's line 2 (**lambda 0.050**, hybrid sign -1, ln\|det\| -4522.8159827053505, noise [-1.0, -1.0], dln 3.39e-05, noise-robust, float64 +1; the line's blob f361803ce2e6e9262a2ca67905458c10c9af1e0c) and line 2 = p0's line 1 (**lambda 0.055**, hybrid sign +1, ln\|det\| -4524.573241197172, noise [1.0, 1.0], dln 9.25e-05, noise-robust, float64 +1; the line's blob 1009d810059c4c1506abed7ad3ef44e83d352b39). Of the two 0.055 records I took p0's (the first one evaluated); p1's (line blob 271c7c24ca976c7ab0f3cef71a729cc4086159b5) is equal except `sec` and `sec_parts`. The sources, as they stand at the end of the scan (`git hash-object --no-filters`): `scan_kc143_D23_p0.jsonl` (**blob 189df253fbf08ce3454e10c017fd4c6679acada5**, 810 bytes, 2 lines) and `scan_kc143_D23_p1.jsonl` (**blob beb28434284dad8422384791c6ca9b1a81cc66ec**, 806 bytes, 2 lines). The secant driver checks the ends file's blob and that both its lines are, verbatim, lines of the scan files, with lambda LO 0.05 and HI 0.055.
+
+Command (`kc143d23_secant_driver_1025.py 0.050 0.055 --ends-blob=64f040dc1d16ff34adea0342dde1a6407c347930`, started by `go_secant_kc143d23_1025.cmd`): `d18_secant.py run l1kc143winbd23.jsonl sol_l1kc143winbd23_D23.0000.npy 23.0 0.05 0.055 secant/secant.jsonl --tol=5e-5 --maxev=10 --pin=866c434b...,88f0be8b... --ends=scan_kc143_D23_ends.jsonl --b12=rust --b12_threads=4`, tool `d18_secant.py` 9706e506 at d4b6b6ce, one process, BelowNormal, `PYTHONPATH` the ellrs site, cap 43200 s by the exact pid, hc at 21600 s (the plan of the Run section, step 5). Dry-run tests of the driver on a stand-in stage: `selftest_secant_dry_1025.txt`.
+
+**Estimates, restated from the scan's measured numbers (not predictions of the order):** one single-process evaluation on 4 Rust threads, about 1000 to 1500 s (the scan's 2 threads and two processes gave 2616 to 2823 s); the bracket 0.005 wide to tol 5e-5 is about 4 to 6 interior evaluations: **about 4000 to 9000 s**, against the cap of 43200 s.
+
+Not yet run (see the Status; the secant starts after this push).

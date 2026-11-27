@@ -19,8 +19,9 @@ mkdir -p "$D/rows" "$D/secant"
 for f in "$O"/*; do [ -f "$f" ] && cp "$f" "$D/"; done
 cp "$O/rows/"* "$D/rows/" 2>/dev/null || true
 cp "$O/secant/"* "$D/secant/" 2>/dev/null || true
+if [ -d "$O/dry_rust_vs_ddm_kc31" ]; then mkdir -p "$D/dry_rust_vs_ddm_kc31"; cp "$O/dry_rust_vs_ddm_kc31/"* "$D/dry_rust_vs_ddm_kc31/"; fi
 sed -i "s/@@WT@@/$WT/g; s/^Pushed @@T@@ UTC\./Pushed $T UTC./" "$D/README.md"
-for f in make_kc143d23_1025.py diff_regrid_driver_vs_kc127.txt diff_scan_driver_vs_kc127.txt diff_secant_driver_vs_kc127.txt kc143d23_regrid_driver_1025.py kc143d23_scan_driver_1025.py kc143d23_secant_driver_1025.py kc143d23_watch_alert_1025.py sample_driver_kc143_1025.ps1 go_kc143d23_1025.cmd go_secant_kc143d23_1025.cmd keepawake_1025.py session_check_1025.ps1 prep_kc143d23_pins_1025.txt selftest_scan_dry_1025.txt kc143d23_regrid_driver_stdout.log kc143d23_scan_driver_stdout.log kc143d23_secant_driver_stdout.log publish_kc143d23_1025.sh; do
+for f in make_kc143d23_1025.py diff_regrid_driver_vs_kc127.txt diff_scan_driver_vs_kc127.txt diff_secant_driver_vs_kc127.txt kc143d23_regrid_driver_1025.py kc143d23_scan_driver_1025.py kc143d23_secant_driver_1025.py kc143d23_watch_alert_1025.py sample_driver_kc143_1025.ps1 go_kc143d23_1025.cmd go_secant_kc143d23_1025.cmd keepawake_1025.py session_check_1025.ps1 prep_kc143d23_pins_1025.txt selftest_scan_dry_1025.txt selftest_secant_dry_1025.txt dry_tests_scan_1025.sh dry_test_secant_1025.sh dry_rust_scan_kc31_1025.sh compare_dry_rust_kc31.py prep_source_checks_by_hand.sh prep_source_checks_by_hand.txt kc143d23_regrid_driver_stdout.log kc143d23_scan_driver_stdout.log kc143d23_secant_driver_stdout.log publish_kc143d23_1025.sh; do
   [ -f "$S/$f" ] && cp "$S/$f" "$D/"
 done
 bash /c/Users/nathan/Source/choptuik-i1025/push_1025.sh "$1"

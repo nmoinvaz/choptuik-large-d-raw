@@ -1,0 +1,8 @@
+# 2026-11-27 06:08:07 UTC cmd: C:/Users/nathan/Source/venv-md510/Scripts/python.exe -u ell_refine.py l1kc135win2d23 135 l1kc143winbd23 143 1 23.0 2.0992182200 --kappa 0.7 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma (cwd C:/Users/nathan/Source/choptuik-i1025k79/solver/matter, 4 threads, BelowNormal, cap 43200 s)
+  P[Kk] = self.solve_periodic(kappa + 0 * r, -r, omega)
+  aG = cs(A, Q2, Kk) + (n - 1) * (A[Kk] - cs(A, A2, Kk)) + 2 * L * cs(A, G, Kk)
+  C[Kk + 1] = (Kk * C[Kk] - (n - 1) * (cs(C, A2, Kk) - C[Kk]) + 2 * L * cs(C, G, Kk)) / (Kk + 1)
+  C[Kk + 1] = (Kk * C[Kk] - (n - 1) * (cs(C, A2, Kk) - C[Kk]) + 2 * L * cs(C, G, Kk)) / (Kk + 1)
+  aG = cs(A, Q2, Kk) + (n - 1) * (A[Kk] - cs(A, A2, Kk)) + 2 * L * cs(A, G, Kk)
+{"D": 23.0, "l": 1, "kc": 143, "kappa": 0.7, "rk": 1, "reg": 0.0, "u0": 0.04, "Ks": 30, "src": "l1kc135win2d23", "Delta": 1.174309794771696, "Delta_src": 1.1743190138598711, "F": 3.1672972784891065e-10, "F_start": 3.086036210347967e-06, "steps": 4705, "constraint": 0.0006113106423317232, "dDelta_dF": 150.60697160085763, "lam_gauge": 0.9835822408706213, "seconds": 31559}
+exit 0

@@ -1,0 +1,38 @@
+# 2026-11-27 06:09:36 UTC dry tests of kc143d23_scan_driver_1025.py (stand-ins: win2's k_c 135 files under the k_c 143 names)
+== test 1: good stand-in, shares 0.055,0.050;0.060,0.055: exit 0 (wanted 0), 58 s
+== 2026-11-27 06:09:37 kc143d23_scan_driver_1025.py: the k_c 143 hybrid scan at D 23.0, shares 0.055,0.050;0.060,0.055 (dry run); checking pins
+== 2026-11-27 06:09:38 d18_secant.py (d4b6b6ce, blob 9706e506) selftest exit 0 and its three mutations half, norobust, nosigncheck exit 1, 1, 1 as wanted
+== 2026-11-27 06:10:33 ell_b12rs.py selftest exit 0 and its controls --mutate=nolam, --mutate=harm exit 1, 1 as wanted (ellrs from C:/Users/nathan/Source/i1102_1025/site)
+== 2026-11-27 06:10:34 read_lower.py selftest exit 0 and its two --mutate controls exit 1, 1 as wanted
+== 2026-11-27 06:10:34 DRY: would start C:/Users/nathan/Source/venv-md510/Scripts/python.exe -u C:/Users/nathan/Source/choptuik-i1102/solver/matter/d18_secant.py scan C:/Users/nathan/Source/kc143d23_1025/dry_stand_in/l1kc143winbd23.jsonl C:/Users/nathan/Source/kc143d23_1025/dry_stand_in/sol_l1kc143winbd23_D23.0000.npy 23.0 0.055
+== 2026-11-27 06:10:34 DRY: would start C:/Users/nathan/Source/venv-md510/Scripts/python.exe -u C:/Users/nathan/Source/choptuik-i1102/solver/matter/d18_secant.py scan C:/Users/nathan/Source/kc143d23_1025/dry_stand_in/l1kc143winbd23.jsonl C:/Users/nathan/Source/kc143d23_1025/dry_stand_in/sol_l1kc143winbd23_D23.0000.npy 23.0 0.06,
+== 2026-11-27 06:10:34 DRY: reader window 0.05 0.06; nothing started
+== test 2: no marker (dry: logs REFUSE, continues, starts nothing): exit 0 (wanted 0), 56 s
+== 2026-11-27 06:10:34 kc143d23_scan_driver_1025.py: the k_c 143 hybrid scan at D 23.0, shares 0.055,0.050;0.060,0.055 (dry run); checking pins
+== 2026-11-27 06:10:34 REFUSE: regrid_accepted.txt does not exist
+== 2026-11-27 06:10:34 DRY: a real run would stop here
+== 2026-11-27 06:10:35 d18_secant.py (d4b6b6ce, blob 9706e506) selftest exit 0 and its three mutations half, norobust, nosigncheck exit 1, 1, 1 as wanted
+== 2026-11-27 06:11:30 ell_b12rs.py selftest exit 0 and its controls --mutate=nolam, --mutate=harm exit 1, 1 as wanted (ellrs from C:/Users/nathan/Source/i1102_1025/site)
+== 2026-11-27 06:11:30 read_lower.py selftest exit 0 and its two --mutate controls exit 1, 1 as wanted
+== 2026-11-27 06:11:30 DRY: would start C:/Users/nathan/Source/venv-md510/Scripts/python.exe -u C:/Users/nathan/Source/choptuik-i1102/solver/matter/d18_secant.py scan C:/Users/nathan/Source/kc143d23_1025/dry_empty/l1kc143winbd23.jsonl C:/Users/nathan/Source/kc143d23_1025/dry_empty/sol_l1kc143winbd23_D23.0000.npy 23.0 0.055,0.05 
+== 2026-11-27 06:11:30 DRY: would start C:/Users/nathan/Source/venv-md510/Scripts/python.exe -u C:/Users/nathan/Source/choptuik-i1102/solver/matter/d18_secant.py scan C:/Users/nathan/Source/kc143d23_1025/dry_empty/l1kc143winbd23.jsonl C:/Users/nathan/Source/kc143d23_1025/dry_empty/sol_l1kc143winbd23_D23.0000.npy 23.0 0.06,0.055 
+== 2026-11-27 06:11:30 DRY: reader window 0.05 0.06; nothing started
+== test 3: wrong state blob in the marker (dry: logs REFUSE): exit 0 (wanted 0), 57 s
+== 2026-11-27 06:11:31 kc143d23_scan_driver_1025.py: the k_c 143 hybrid scan at D 23.0, shares 0.055,0.050;0.060,0.055 (dry run); checking pins
+== 2026-11-27 06:11:31 REFUSE: C:/Users/nathan/Source/kc143d23_1025/dry_badblob/sol_l1kc143winbd23_D23.0000.npy is blob cd134e2cc283fd5beb2e5beb6ad2e1f1353efe1d, not 0000000000000000000000000000000000000000
+== 2026-11-27 06:11:31 DRY: a real run would stop here
+== 2026-11-27 06:11:32 d18_secant.py (d4b6b6ce, blob 9706e506) selftest exit 0 and its three mutations half, norobust, nosigncheck exit 1, 1, 1 as wanted
+== 2026-11-27 06:12:27 ell_b12rs.py selftest exit 0 and its controls --mutate=nolam, --mutate=harm exit 1, 1 as wanted (ellrs from C:/Users/nathan/Source/i1102_1025/site)
+== 2026-11-27 06:12:28 read_lower.py selftest exit 0 and its two --mutate controls exit 1, 1 as wanted
+== 2026-11-27 06:12:28 DRY: would start C:/Users/nathan/Source/venv-md510/Scripts/python.exe -u C:/Users/nathan/Source/choptuik-i1102/solver/matter/d18_secant.py scan C:/Users/nathan/Source/kc143d23_1025/dry_badblob/l1kc143winbd23.jsonl C:/Users/nathan/Source/kc143d23_1025/dry_badblob/sol_l1kc143winbd23_D23.0000.npy 23.0 0.055,0
+== 2026-11-27 06:12:28 DRY: would start C:/Users/nathan/Source/venv-md510/Scripts/python.exe -u C:/Users/nathan/Source/choptuik-i1102/solver/matter/d18_secant.py scan C:/Users/nathan/Source/kc143d23_1025/dry_badblob/l1kc143winbd23.jsonl C:/Users/nathan/Source/kc143d23_1025/dry_badblob/sol_l1kc143winbd23_D23.0000.npy 23.0 0.06,0.
+== 2026-11-27 06:12:28 DRY: reader window 0.05 0.06; nothing started
+== test 4: one value only (refused): exit 2 (wanted 2), 0 s
+REFUSE: wanted 1 to 2 non-empty shares, at least two distinct values in (0, 10), none more than twice: 0.055
+== test 5: three shares (refused: at most two processes): exit 2 (wanted 2), 0 s
+REFUSE: wanted 1 to 2 non-empty shares, at least two distinct values in (0, 10), none more than twice: 0.05;0.055;0.06
+== test 6: a value three times (refused): exit 2 (wanted 2), 1 s
+REFUSE: wanted 1 to 2 non-empty shares, at least two distinct values in (0, 10), none more than twice: 0.055,0.055,0.055;0.06
+== test 7: --out without --dry (refused): exit 2 (wanted 2), 0 s
+REFUSE: --out=DIR is for --dry only
+# 2026-11-27 06:12:29 UTC end

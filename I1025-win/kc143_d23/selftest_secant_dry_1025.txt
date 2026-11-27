@@ -1,0 +1,35 @@
+# 2026-11-27 06:16:06 UTC dry tests of kc143d23_secant_driver_1025.py on dry_secant_stage (stand-in files)
+== test 1: good stand-in, LO HI 0.04 0.05, ends blob right (the acceptance runs must refuse the stand-in; the dry run goes on): exit 0 (wanted 0), 99 s
+== 2026-11-27 06:16:06 kc143d23_secant_driver_1025.py: the secant refinement of the k_c 143 root at D 23.0, bracket (0.04, 0.05) (dry run); checking pins
+== 2026-11-27 06:16:07 pins ok (worktree d4b6b6ce, d18_secant.py 9706e506, ell_b12rs.py a1fff74f, the ellrs site files, ell_fastm.py 93f963f6, the solver files equal to my regrids', the three checks, the marker's state cd134e2c, record bc295fbc)
+== 2026-11-27 06:16:09 d18_secant.py selftest exit 0 and its three controls (half, norobust, nosigncheck) exit 1, 1, 1 as wanted
+== 2026-11-27 06:16:09 selftests: kc143_syscheck exit 0, kc135_syscheck exit 0, kc127_syscheck exit 0 (0 wanted each)
+== 2026-11-27 06:17:45 the state: kc143 check exit 1 (0 wanted: it accepts), --mutate=F 1, --mutate=steps 1 (1 wanted each), kc135 check 0 and kc127 check 1 (1 wanted each: they refuse it); 96 s
+== 2026-11-27 06:17:45 REFUSE: the state is not accepted as wanted ({'source_kc143_syscheck.txt': 1, 'source_kc143_syscheck_mutate_F.txt': 1, 'source_kc143_syscheck_mutate_steps.txt': 1, 'source_kc135_syscheck.txt': 0, 'source_kc127_syscheck.txt': 1}, wanted {'source_kc143_syscheck.txt': 0, 'source_kc143_syscheck_mutate_F.txt': 1, 'source_kc143_syscheck_mutate_steps.txt': 1, 'source_kc135_syscheck.txt': 1, 'source_kc
+== 2026-11-27 06:17:45 DRY: a real run would stop here
+== 2026-11-27 06:17:45 DRY: would start C:/Users/nathan/Source/venv-md510/Scripts/python.exe -u C:/Users/nathan/Source/choptuik-i1102/solver/matter/d18_secant.py run C:/Users/nathan/Source/kc143d23_1025/dry_secant_stage/I1025-win/kc143_d23/l1kc143winbd23.jsonl C:/Users/nathan/Source/kc143d23_1025/dry_secant_stage/I1025-win/kc143_d23/sol_l1kc143winbd23_D23.0000.npy 23.0 0.04 0.05 C:/Users/nathan/Source/kc143d23_1025/d
+== test 2: no --ends-blob (usage): exit 2 (wanted 2), 0 s
+usage: kc143d23_secant_driver_1025.py LO HI --ends-blob=BLOB [--dry]
+== test 3: wrong ends blob (dry: logs REFUSE): exit 0 (wanted 0), 140 s
+== 2026-11-27 06:17:46 kc143d23_secant_driver_1025.py: the secant refinement of the k_c 143 root at D 23.0, bracket (0.04, 0.05) (dry run); checking pins
+== 2026-11-27 06:17:47 REFUSE: C:/Users/nathan/Source/kc143d23_1025/dry_secant_stage/I1025-win/kc143_d23/scan_kc143_D23_ends.jsonl is blob 62584ab6a5153a1a9267454bb9f570fc474a7d0a, not 0000000000000000000000000000000000000000
+== 2026-11-27 06:17:47 DRY: a real run would stop here
+== 2026-11-27 06:17:47 pins ok (worktree d4b6b6ce, d18_secant.py 9706e506, ell_b12rs.py a1fff74f, the ellrs site files, ell_fastm.py 93f963f6, the solver files equal to my regrids', the three checks, the marker's state cd134e2c, record bc295fbc)
+== 2026-11-27 06:17:49 d18_secant.py selftest exit 0 and its three controls (half, norobust, nosigncheck) exit 1, 1, 1 as wanted
+== 2026-11-27 06:17:50 selftests: kc143_syscheck exit 0, kc135_syscheck exit 0, kc127_syscheck exit 0 (0 wanted each)
+== 2026-11-27 06:20:06 the state: kc143 check exit 1 (0 wanted: it accepts), --mutate=F 1, --mutate=steps 1 (1 wanted each), kc135 check 0 and kc127 check 1 (1 wanted each: they refuse it); 137 s
+== 2026-11-27 06:20:06 REFUSE: the state is not accepted as wanted ({'source_kc143_syscheck.txt': 1, 'source_kc143_syscheck_mutate_F.txt': 1, 'source_kc143_syscheck_mutate_steps.txt': 1, 'source_kc135_syscheck.txt': 0, 'source_kc127_syscheck.txt': 1}, wanted {'source_kc143_syscheck.txt': 0, 'source_kc143_syscheck_mutate_F.txt': 1, 'source_kc143_syscheck_mutate_steps.txt': 1, 'source_kc135_syscheck.txt': 1, 'source_kc
+== 2026-11-27 06:20:06 DRY: a real run would stop here
+== 2026-11-27 06:20:06 DRY: would start C:/Users/nathan/Source/venv-md510/Scripts/python.exe -u C:/Users/nathan/Source/choptuik-i1102/solver/matter/d18_secant.py run C:/Users/nathan/Source/kc143d23_1025/dry_secant_stage/I1025-win/kc143_d23/l1kc143winbd23.jsonl C:/Users/nathan/Source/kc143d23_1025/dry_secant_stage/I1025-win/kc143_d23/sol_l1kc143winbd23_D23.0000.npy 23.0 0.04 0.05 C:/Users/nathan/Source/kc143d23_1025/d
+== test 4: LO HI not the ends' lambda (dry: logs REFUSE): exit 0 (wanted 0), 79 s
+== 2026-11-27 06:20:07 kc143d23_secant_driver_1025.py: the secant refinement of the k_c 143 root at D 23.0, bracket (0.045, 0.055) (dry run); checking pins
+== 2026-11-27 06:20:08 REFUSE: the --ends file is not the scan records at LO and HI (two lines, each verbatim a line of scan_kc143_D23_p*.jsonl)
+== 2026-11-27 06:20:08 DRY: a real run would stop here
+== 2026-11-27 06:20:08 pins ok (worktree d4b6b6ce, d18_secant.py 9706e506, ell_b12rs.py a1fff74f, the ellrs site files, ell_fastm.py 93f963f6, the solver files equal to my regrids', the three checks, the marker's state cd134e2c, record bc295fbc)
+== 2026-11-27 06:20:10 d18_secant.py selftest exit 0 and its three controls (half, norobust, nosigncheck) exit 1, 1, 1 as wanted
+== 2026-11-27 06:20:10 selftests: kc143_syscheck exit 0, kc135_syscheck exit 0, kc127_syscheck exit 0 (0 wanted each)
+== 2026-11-27 06:21:26 the state: kc143 check exit 1 (0 wanted: it accepts), --mutate=F 1, --mutate=steps 1 (1 wanted each), kc135 check 0 and kc127 check 1 (1 wanted each: they refuse it); 76 s
+== 2026-11-27 06:21:26 REFUSE: the state is not accepted as wanted ({'source_kc143_syscheck.txt': 1, 'source_kc143_syscheck_mutate_F.txt': 1, 'source_kc143_syscheck_mutate_steps.txt': 1, 'source_kc135_syscheck.txt': 0, 'source_kc127_syscheck.txt': 1}, wanted {'source_kc143_syscheck.txt': 0, 'source_kc143_syscheck_mutate_F.txt': 1, 'source_kc143_syscheck_mutate_steps.txt': 1, 'source_kc135_syscheck.txt': 1, 'source_kc
+== 2026-11-27 06:21:26 DRY: a real run would stop here
+== 2026-11-27 06:21:26 DRY: would start C:/Users/nathan/Source/venv-md510/Scripts/python.exe -u C:/Users/nathan/Source/choptuik-i1102/solver/matter/d18_secant.py run C:/Users/nathan/Source/kc143d23_1025/dry_secant_stage/I1025-win/kc143_d23/l1kc143winbd23.jsonl C:/Users/nathan/Source/kc143d23_1025/dry_secant_stage/I1025-win/kc143_d23/sol_l1kc143winbd23_D23.0000.npy 23.0 0.045 0.055 C:/Users/nathan/Source/kc143d23_1025
+# 2026-11-27 06:21:26 UTC end

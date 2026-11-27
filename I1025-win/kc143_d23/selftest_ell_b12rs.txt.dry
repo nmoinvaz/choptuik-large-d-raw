@@ -1,0 +1,135 @@
+== 2026-11-27 06:09:57 UTC ell_b12rs.py (blob a1fff74f) selftest 
+Ozaki bodd (dgemm): 432 of 432 entries bit for bit ok
+Ozaki bodd (matrixmultiply): 432 of 432 entries bit for bit ok
+Ozaki beven (dgemm): 432 of 432 entries bit for bit ok
+Ozaki beven (matrixmultiply): 432 of 432 entries bit for bit ok
+Ozaki sodd (dgemm): 144 of 144 entries bit for bit ok
+Ozaki sodd (matrixmultiply): 144 of 144 entries bit for bit ok
+Ozaki seven (dgemm): 135 of 135 entries bit for bit ok
+Ozaki seven (matrixmultiply): 135 of 135 entries bit for bit ok
+Ozaki dm (dgemm): 432 of 432 entries bit for bit ok
+Ozaki dm (matrixmultiply): 432 of 432 entries bit for bit ok
+block 12 at lambda 0.0: 3666 of 3666 entries bit for bit, max |d|/|entry| 0.00e+00 ok
+block 12 at lambda 0.9: 3666 of 3666 entries bit for bit, max |d|/|entry| 0.00e+00 ok
+selftest (mutate none): PASS
+exit 0 (0 wanted)
+== 2026-11-27 06:10:16 UTC ell_b12rs.py (blob a1fff74f) selftest --mutate=nolam
+Ozaki bodd (dgemm): 432 of 432 entries bit for bit ok
+Ozaki bodd (matrixmultiply): 432 of 432 entries bit for bit ok
+Ozaki beven (dgemm): 432 of 432 entries bit for bit ok
+Ozaki beven (matrixmultiply): 432 of 432 entries bit for bit ok
+Ozaki sodd (dgemm): 144 of 144 entries bit for bit ok
+Ozaki sodd (matrixmultiply): 144 of 144 entries bit for bit ok
+Ozaki seven (dgemm): 135 of 135 entries bit for bit ok
+Ozaki seven (matrixmultiply): 135 of 135 entries bit for bit ok
+Ozaki dm (dgemm): 432 of 432 entries bit for bit ok
+Ozaki dm (matrixmultiply): 432 of 432 entries bit for bit ok
+block 12 at lambda 0.0: 3666 of 3666 entries bit for bit, max |d|/|entry| 0.00e+00 ok
+block 12 at lambda 0.9: 0 of 3666 entries bit for bit, max |d|/|entry| 1.79e+03 FAIL
+selftest (mutate nolam): FAIL
+exit 1 (1 wanted)
+== 2026-11-27 06:10:33 UTC ell_b12rs.py (blob a1fff74f) selftest --mutate=harm
+Ozaki bodd (dgemm): 0 of 432 entries bit for bit FAIL
+Ozaki bodd (matrixmultiply): 0 of 432 entries bit for bit FAIL
+Ozaki beven (dgemm): 432 of 432 entries bit for bit ok
+Ozaki beven (matrixmultiply): 432 of 432 entries bit for bit ok
+Ozaki sodd (dgemm): 126 of 144 entries bit for bit FAIL
+Ozaki sodd (matrixmultiply): 126 of 144 entries bit for bit FAIL
+Ozaki seven (dgemm): 135 of 135 entries bit for bit ok
+Ozaki seven (matrixmultiply): 135 of 135 entries bit for bit ok
+Ozaki dm (dgemm): 432 of 432 entries bit for bit ok
+Ozaki dm (matrixmultiply): 432 of 432 entries bit for bit ok
+block 12 at lambda 0.0: 0 of 3666 entries bit for bit, max |d|/|entry| 1.32e+01 FAIL
+block 12 at lambda 0.9: 0 of 3666 entries bit for bit, max |d|/|entry| 6.92e+00 FAIL
+selftest (mutate harm): FAIL
+exit 1 (1 wanted)
+== 2026-11-27 06:10:54 UTC ell_b12rs.py (blob a1fff74f) selftest 
+Ozaki bodd (dgemm): 432 of 432 entries bit for bit ok
+Ozaki bodd (matrixmultiply): 432 of 432 entries bit for bit ok
+Ozaki beven (dgemm): 432 of 432 entries bit for bit ok
+Ozaki beven (matrixmultiply): 432 of 432 entries bit for bit ok
+Ozaki sodd (dgemm): 144 of 144 entries bit for bit ok
+Ozaki sodd (matrixmultiply): 144 of 144 entries bit for bit ok
+Ozaki seven (dgemm): 135 of 135 entries bit for bit ok
+Ozaki seven (matrixmultiply): 135 of 135 entries bit for bit ok
+Ozaki dm (dgemm): 432 of 432 entries bit for bit ok
+Ozaki dm (matrixmultiply): 432 of 432 entries bit for bit ok
+block 12 at lambda 0.0: 3666 of 3666 entries bit for bit, max |d|/|entry| 0.00e+00 ok
+block 12 at lambda 0.9: 3666 of 3666 entries bit for bit, max |d|/|entry| 0.00e+00 ok
+selftest (mutate none): PASS
+exit 0 (0 wanted)
+== 2026-11-27 06:11:12 UTC ell_b12rs.py (blob a1fff74f) selftest --mutate=nolam
+Ozaki bodd (dgemm): 432 of 432 entries bit for bit ok
+Ozaki bodd (matrixmultiply): 432 of 432 entries bit for bit ok
+Ozaki beven (dgemm): 432 of 432 entries bit for bit ok
+Ozaki beven (matrixmultiply): 432 of 432 entries bit for bit ok
+Ozaki sodd (dgemm): 144 of 144 entries bit for bit ok
+Ozaki sodd (matrixmultiply): 144 of 144 entries bit for bit ok
+Ozaki seven (dgemm): 135 of 135 entries bit for bit ok
+Ozaki seven (matrixmultiply): 135 of 135 entries bit for bit ok
+Ozaki dm (dgemm): 432 of 432 entries bit for bit ok
+Ozaki dm (matrixmultiply): 432 of 432 entries bit for bit ok
+block 12 at lambda 0.0: 3666 of 3666 entries bit for bit, max |d|/|entry| 0.00e+00 ok
+block 12 at lambda 0.9: 0 of 3666 entries bit for bit, max |d|/|entry| 1.79e+03 FAIL
+selftest (mutate nolam): FAIL
+exit 1 (1 wanted)
+== 2026-11-27 06:11:30 UTC ell_b12rs.py (blob a1fff74f) selftest --mutate=harm
+Ozaki bodd (dgemm): 0 of 432 entries bit for bit FAIL
+Ozaki bodd (matrixmultiply): 0 of 432 entries bit for bit FAIL
+Ozaki beven (dgemm): 432 of 432 entries bit for bit ok
+Ozaki beven (matrixmultiply): 432 of 432 entries bit for bit ok
+Ozaki sodd (dgemm): 126 of 144 entries bit for bit FAIL
+Ozaki sodd (matrixmultiply): 126 of 144 entries bit for bit FAIL
+Ozaki seven (dgemm): 135 of 135 entries bit for bit ok
+Ozaki seven (matrixmultiply): 135 of 135 entries bit for bit ok
+Ozaki dm (dgemm): 432 of 432 entries bit for bit ok
+Ozaki dm (matrixmultiply): 432 of 432 entries bit for bit ok
+block 12 at lambda 0.0: 0 of 3666 entries bit for bit, max |d|/|entry| 1.32e+01 FAIL
+block 12 at lambda 0.9: 0 of 3666 entries bit for bit, max |d|/|entry| 6.92e+00 FAIL
+selftest (mutate harm): FAIL
+exit 1 (1 wanted)
+== 2026-11-27 06:11:51 UTC ell_b12rs.py (blob a1fff74f) selftest 
+Ozaki bodd (dgemm): 432 of 432 entries bit for bit ok
+Ozaki bodd (matrixmultiply): 432 of 432 entries bit for bit ok
+Ozaki beven (dgemm): 432 of 432 entries bit for bit ok
+Ozaki beven (matrixmultiply): 432 of 432 entries bit for bit ok
+Ozaki sodd (dgemm): 144 of 144 entries bit for bit ok
+Ozaki sodd (matrixmultiply): 144 of 144 entries bit for bit ok
+Ozaki seven (dgemm): 135 of 135 entries bit for bit ok
+Ozaki seven (matrixmultiply): 135 of 135 entries bit for bit ok
+Ozaki dm (dgemm): 432 of 432 entries bit for bit ok
+Ozaki dm (matrixmultiply): 432 of 432 entries bit for bit ok
+block 12 at lambda 0.0: 3666 of 3666 entries bit for bit, max |d|/|entry| 0.00e+00 ok
+block 12 at lambda 0.9: 3666 of 3666 entries bit for bit, max |d|/|entry| 0.00e+00 ok
+selftest (mutate none): PASS
+exit 0 (0 wanted)
+== 2026-11-27 06:12:09 UTC ell_b12rs.py (blob a1fff74f) selftest --mutate=nolam
+Ozaki bodd (dgemm): 432 of 432 entries bit for bit ok
+Ozaki bodd (matrixmultiply): 432 of 432 entries bit for bit ok
+Ozaki beven (dgemm): 432 of 432 entries bit for bit ok
+Ozaki beven (matrixmultiply): 432 of 432 entries bit for bit ok
+Ozaki sodd (dgemm): 144 of 144 entries bit for bit ok
+Ozaki sodd (matrixmultiply): 144 of 144 entries bit for bit ok
+Ozaki seven (dgemm): 135 of 135 entries bit for bit ok
+Ozaki seven (matrixmultiply): 135 of 135 entries bit for bit ok
+Ozaki dm (dgemm): 432 of 432 entries bit for bit ok
+Ozaki dm (matrixmultiply): 432 of 432 entries bit for bit ok
+block 12 at lambda 0.0: 3666 of 3666 entries bit for bit, max |d|/|entry| 0.00e+00 ok
+block 12 at lambda 0.9: 0 of 3666 entries bit for bit, max |d|/|entry| 1.79e+03 FAIL
+selftest (mutate nolam): FAIL
+exit 1 (1 wanted)
+== 2026-11-27 06:12:27 UTC ell_b12rs.py (blob a1fff74f) selftest --mutate=harm
+Ozaki bodd (dgemm): 0 of 432 entries bit for bit FAIL
+Ozaki bodd (matrixmultiply): 0 of 432 entries bit for bit FAIL
+Ozaki beven (dgemm): 432 of 432 entries bit for bit ok
+Ozaki beven (matrixmultiply): 432 of 432 entries bit for bit ok
+Ozaki sodd (dgemm): 126 of 144 entries bit for bit FAIL
+Ozaki sodd (matrixmultiply): 126 of 144 entries bit for bit FAIL
+Ozaki seven (dgemm): 135 of 135 entries bit for bit ok
+Ozaki seven (matrixmultiply): 135 of 135 entries bit for bit ok
+Ozaki dm (dgemm): 432 of 432 entries bit for bit ok
+Ozaki dm (matrixmultiply): 432 of 432 entries bit for bit ok
+block 12 at lambda 0.0: 0 of 3666 entries bit for bit, max |d|/|entry| 1.32e+01 FAIL
+block 12 at lambda 0.9: 0 of 3666 entries bit for bit, max |d|/|entry| 6.92e+00 FAIL
+selftest (mutate harm): FAIL
+exit 1 (1 wanted)
