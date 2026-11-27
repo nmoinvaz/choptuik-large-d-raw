@@ -54,7 +54,8 @@ grep -q "^  converged" $O/jump/jump.log && [ -s $J ] || exit 2
 # D 250 at ks 392 moved Delta by -2.5e-17 against u, D 300 at ks 600 turned the tail at h23 by -3.9e-22 and ks 800 did
 # not. The jump's own ks+200 |dF| is a quad-double residual's and floors near 1e-45 at D 1291, so it cannot gate this
 KSBAR=${KSBAR:-1e-64}
-$PY -u $HP/ks_gate.py $J --bar $KSBAR --threads $T > $O/jump/ks_gate.log 2>&1
+# KSGATE_EXTRA: more ks_gate.py options, as "--down 1 --step 100" (the downward gate, wip/large-d-form-s 3b3bfc60)
+$PY -u $HP/ks_gate.py $J --bar $KSBAR --threads $T ${KSGATE_EXTRA:-} > $O/jump/ks_gate.log 2>&1
 KSG=$(grep -oE "^gate ks [0-9]+" $O/jump/ks_gate.log | awk '{print $3}')
 echo "ks gate (bar $KSBAR): ${KSG:-none} ($(tail -2 $O/jump/ks_gate.log | head -1))" >> $O/run.log
 [ -n "$KSG" ] || exit 6
