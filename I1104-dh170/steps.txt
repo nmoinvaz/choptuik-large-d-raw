@@ -5,3 +5,17 @@
 2026-11-27 19:39:39 UTC [reroot] results_1104.py selftest ok=1 (1 wanted); mutations sign and bar both fail=2 (2 wanted)
 2026-11-27 19:39:39 UTC [reroot] scan starts: D 23.125, lambda -0.045,-0.040, one process per lambda, 1 thread each, nice 19, --b12=rust --b12_threads=1
 2026-11-27 19:39:59 UTC [reroot] record-system lines: 0 NOT, 2 of 2 ok: D 23.125 k_c 127: |F| 2.9978288801e-10 (record 2.9774808995e-10), steps 4182 (record 4182): the record system
+2026-11-27 20:07:51 UTC [resolve] alive: pid 2322724 RSS 597400 kB CPU  280% elapsed 1800 s
+2026-11-27 20:22:39 UTC [reroot] lambda -0.040 exit 0
+2026-11-27 20:22:41 UTC [reroot] lambda -0.045 exit 0
+2026-11-27 20:22:41 UTC [reroot] scan done: 2582 s
+D 23.125 k_c 127: |F| 2.9978288801e-10 (record 2.9774808995e-10), steps 4182 (record 4182): the record system
+block 12 by ellrs (avx2, products dgemm, 1 threads)
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 43:02.05
+	Maximum resident set size (kbytes): 4734096
+D 23.125 k_c 127: |F| 2.9978288801e-10 (record 2.9774808995e-10), steps 4182 (record 4182): the record system
+block 12 by ellrs (avx2, products dgemm, 1 threads)
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 43:00.38
+	Maximum resident set size (kbytes): 4734788
+2026-11-27 20:22:41 UTC [reroot] results_1104.py scan exit 0 (0 a bracket, 2 no robust change), results_070.md
+2026-11-27 20:22:41 UTC [reroot] secant starts: d18_secant.py run in/l1kc127Lmacm3.jsonl in/sol_l1kc127Lmacm3_D23.1250.npy 23.125 -0.045 -0.04 secant_070.jsonl --tol=5e-5 --maxev=20 --b12=rust --b12_threads=1 --ends=scan_070_all.jsonl --pin=e1dccb3c,58d3b080

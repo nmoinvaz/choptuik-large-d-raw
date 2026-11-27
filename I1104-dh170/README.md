@@ -60,6 +60,7 @@ R2's secant (#1101, unit `i1101r2w`, 1 thread, nice 10) runs on. The re-solve ta
 - 2026-11-27 19:37 UTC: bars, reading rule, pins, commands and predictions written before any run. Not started.
 - 2026-11-27 19:39 UTC: unit `i1104resolve` (`run_resolve1104.sh`, 8c5a1be8) started 19:37:51 UTC (pins ok, python pid 2322724, nice 10, 3 threads). Reader and re-root driver written; the re-root starts next.
 - 2026-11-27 19:40 UTC: unit `i1104reroot` (`run_reroot1104.sh`, 50425177) started 19:39:37 UTC (selftests 0/1/1/1 and 0, mutations fail; nice 19, 1 thread per scan); at 19:39:59 both scans print the record system (|F| 2.9978e-10 against the record's 2.9775e-10, steps 4182 = 4182). `run_scan1104.sh` written for the kappa 0.5 state (pushed before use).
+- 2026-11-27 20:22 UTC: kappa 0.7 re-root scans done (19:39:37 to 20:22:41 UTC, 2567 s and 2557 s per point at nice 19): hybrid sign + at -0.045 and - at -0.040, both noise-robust and robust (dln 5.05e-06, 1.05e-05); `read_lower.py`: one robust change (-0.045, -0.040), det-linear -0.041286 (macm3's -0.0419: +6.1e-4); `results_1104.py scan` exit 0; the secant started 20:22:41 UTC (`--ends`, nice 19). The re-solve is alive at 1800 s (RSS 0.60 GB, CPU 280%). R2's secant: 5 evaluations, bracket (0.114683, 0.123441).
 
 ## Order, verbatim
 
