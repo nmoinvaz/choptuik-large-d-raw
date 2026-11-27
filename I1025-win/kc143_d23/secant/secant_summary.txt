@@ -1,0 +1,8 @@
+eval 0 (lo) lam 0.05: hybrid -1 ln|det| -4522.8159827054 dln None robust True, float64 +1, 2821 s [989, 1797, 35]
+eval 1 (hi) lam 0.055: hybrid +1 ln|det| -4524.5732411972 dln None robust True, float64 +1, 2617 s [935, 1652, 30]
+eval 2 (interior) lam 0.05426432986539566: hybrid +1 ln|det| -4525.3469863477 dln 2.24e-04 robust True, float64 +1, 1572 s [690, 858, 25]
+eval 3 (interior) lam 0.05368083891504927: hybrid -1 ln|det| -4527.5196558536 dln 2.15e-03 robust True, float64 +1, 1576 s [693, 858, 24]
+eval 4 (interior) lam 0.05374049022461712: hybrid +1 ln|det| -4530.1504701711 dln 3.00e-02 robust True, float64 +1, 1574 s [694, 856, 24]
+eval 5 (interior) lam 0.05371549022461712: hybrid -1 ln|det| -4528.5014363123 dln 5.69e-03 robust True, float64 +1, 1601 s [694, 883, 24]
+root: status tol (-), bracket [0.05371549022461712, 0.05374049022461712] width 2.500e-05, signs [-1.0, 1.0], det-linear 0.0537364592353902, Brent 0.05374049022461712, 6 evaluations, 6324 s
+exit 0, wall 6345 s; peak private 5.60 GB, peak working set 4.21 GB, lowest free memory 18.14 GB, peak commit 16.4 GB, cpu 15908 s (208 samples)

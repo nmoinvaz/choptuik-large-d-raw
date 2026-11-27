@@ -70,7 +70,7 @@ Dry tests before the scan driver runs (it starts hours after the regrid): the sc
 
 ## Status
 
-**Steps 1 to 4a are done; step 4b (the secant) STARTED 2026-11-27 16:35:58 UTC** (the push of 16:34 UTC, raw 94bdff053, named the ends before the start): chain `conhost.exe --headless` 19968 <- cmd 13104 <- driver 18208 / 25248, tool pid 10620; bracket (0.050, 0.055), `--tol=5e-5 --maxev=10`, `--ends`, `--b12=rust --b12_threads=4`, cap 43200 s (kill 2026-11-28 04:35:58 UTC), hc at 21600 s; the session check shows no `claude` in any chain (`session_check_secant.txt`); sampler, alert-only watcher and keep-awake helper beside it. The Result below gets its numbers when it ends.
+**The lane is done (steps 1 to 4b).** The secant ended **2026-11-27 18:21:43 UTC** (exit 0, status tol; started 16:35:58 UTC, tool 6324 s, driver wall 6345 s): final bracket [0.05371549022461712, 0.05374049022461712], width 2.5e-05, signs [-1, +1], **det-linear root 0.0537364592353902**, 6 evaluations (the two reused ends and 4 interior), all noise-robust. **Registered test (lam_lin in [0.0499, 0.0559]): MET.** **t5's ruling (hc 2026-11-27 18:23 UTC, quoted):** "the k_c 143 D 23.0 root 0.0537365 is accepted; post it on #1025 as a kappa 0.7 root." The secant started at 16:35:58 UTC from the push of 16:34 UTC (raw 94bdff053), which named the ends before the start; its chain was `conhost.exe --headless` 19968 <- cmd 13104 <- driver 18208 / 25248, tool pid 10620, bracket (0.050, 0.055), `--tol=5e-5 --maxev=10`, `--ends`, `--b12=rust --b12_threads=4`, cap 43200 s; the session check shows no `claude` in any chain (`session_check_secant.txt`). The post on #1025 follows this push (kappa 0.7 root, as t5 ordered).
 
 - **Regrid ACCEPTED** (marker `regrid_accepted.txt`, 2026-11-27 14:54:49 UTC): 06:08:07 to 14:54:22 UTC, exit 0, wall 31576 s (the record's `seconds` 31559), **4705 steps** (the source's 4441: ratio 1.0594), \|F\| 3.1672972784891065e-10, constraint 6.113106423317232e-4, Delta 1.174309794771696 (the source's minus 9.219e-06). State blob **866c434b**, record blob **88f0be8b**. The k_c 143 check exits 0, its selftest 0, `--mutate=F` and `--mutate=steps` exit 1, the k_c 135 check refuses the result (exit 1).
 - **Scan done** (14:56:48 to 16:28:03 UTC, exits 0, 0, 5475 s): **exactly one robust change, (0.050, 0.055), - to +**, all four evaluations noise-robust, the repeat of 0.055 agrees (bit for bit). **t5's ruling (hc 2026-11-27 16:28 UTC, quoted):** "the k_c 143 D 23.0 scan is accepted: one robust change (0.050, 0.055), all points robust, the repeat agrees. Run the secant on that bracket at tol 5e-5 on the Rust block, as your lane plans, and post the root on #1025. Label it a kappa 0.7 root: #1101 found that the RK step error moves lambda_1 by about +0.06 at k_c 127, D 23.0 between kappa 0.7 and 0.35 (comment 7220945175). So this root is data for #1104's fit in both k_c and kappa, not a threshold. Push the scan files with it."
@@ -78,7 +78,7 @@ Dry tests before the scan driver runs (it starts hours after the regrid): the sc
 - **The label (t5's):** the root this lane finds is a **kappa 0.7 root**. By #1101 (comment 7220945175) the RK step error moves lambda_1 by about +0.06 at k_c 127, D 23.0 between kappa 0.7 and 0.35, so the root is data for #1104's fit in both k_c and kappa, **not a threshold**. I post it so and do not read it as one.
 - **Three slips, no effect on the numbers:** (1) the waiter on the regrid hit its own 8.3 h poll cap at 14:32:56 UTC with the regrid still running (30300 s); I re-armed it at 14:33 UTC and the regrid and the chain were not touched. (2) My start hc was stamped 06:10 UTC but sent at about 06:08 (I typed the time by hand); disclosed to t5 by hc at 14:56 UTC. The stamps now come from `date -u`. (3) My first ends file, made with `sed -n`, lost the CRs of the scan's CR LF lines (808 bytes); the secant driver's verbatim-line check refused it in its dry run (16:31 UTC), before anything was started. I rebuilt the file as a binary copy (810 bytes, blob 64f040dc), moved the wrong one to my trash folder and recomputed the line blobs below with the CRs.
 
-Pushed 2026-11-27 16:36:41 UTC.
+Pushed 2026-11-27 18:24:59 UTC.
 
 ## Result
 
@@ -154,4 +154,64 @@ Command (`kc143d23_secant_driver_1025.py 0.050 0.055 --ends-blob=64f040dc1d16ff3
 
 **Estimates, restated from the scan's measured numbers (not predictions of the order):** one single-process evaluation on 4 Rust threads, about 1000 to 1500 s (the scan's 2 threads and two processes gave 2616 to 2823 s); the bracket 0.005 wide to tol 5e-5 is about 4 to 6 interior evaluations: **about 4000 to 9000 s**, against the cap of 43200 s.
 
-Not yet run (see the Status; the secant starts after this push).
+**Result of the secant (`d18_secant.py run` at d4b6b6ce, blob 9706e506, `--ends`, `--b12=rust --b12_threads=4`).** Exit 0, status tol: bracket [0.05371549022461712, 0.05374049022461712], width 2.500e-05, signs [-1, +1] (- to +, as in the scan), **det-linear root 0.0537364592353902**, Brent 0.05374049022461712, 6 evaluations (the two reused ends and 4 interior), 6324 s (16:35:58 to 18:21:43 UTC; driver wall 6345 s). Both ends of the final bracket are noise-robust. t5's ruling (hc 2026-11-27 18:23 UTC, quoted): "the k_c 143 D 23.0 root 0.0537365 is accepted; post it on #1025 as a kappa 0.7 root."
+
+`secant/secant.log` as printed (`secant_summary.txt` has the same lines):
+
+```
+pins: state 866c434bc1ae8854e12de9024b0ff859a7764800 (wanted 866c434bc1ae8854e12de9024b0ff859a7764800), stub 88f0be8bd3a329cadd3a4209614f1295bed61c6e (wanted 88f0be8bd3a329cadd3a4209614f1295bed61c6e)
+D 23.0 k_c 143: |F| 3.1649259892e-10 (record 3.1672972785e-10), steps 4705 (record 4705): the record system
+bracket (0.05, 0.055), tol 5e-05, maxev 10, mode matrix fast (jac), block 12 rust, noise 1e-15, dln <= 0.1, sol_l1kc143winbd23_D23.0000.npy
+block 12 by ellrs (avx512, products dgemm, 4 threads)
+  lam 0.05 (lo): hybrid -1 ln|det| -4522.8159827054, noise [-1.0, -1.0] dln None, robust True; float64 +1 -4520.6672742203 (2821 s [989, 1797, 35])
+  lam 0.055 (hi): hybrid +1 ln|det| -4524.5732411972, noise [1.0, 1.0] dln None, robust True; float64 +1 -4521.0689344955 (2617 s [935, 1652, 30])
+  lam 0.05426432986539566 (interior): hybrid +1 ln|det| -4525.3469863477, noise [1.0, 1.0] dln 2.24e-04, robust True; float64 +1 -4521.8082573258 (1572 s [690, 858, 25])
+  lam 0.05368083891504927 (interior): hybrid -1 ln|det| -4527.5196558536, noise [-1.0, -1.0] dln 2.15e-03, robust True; float64 +1 -4521.6266574643 (1576 s [693, 858, 24])
+  lam 0.05374049022461712 (interior): hybrid +1 ln|det| -4530.1504701711, noise [1.0, 1.0] dln 3.00e-02, robust True; float64 +1 -4521.4777671711 (1574 s [694, 856, 24])
+  lam 0.05371549022461712 (interior): hybrid -1 ln|det| -4528.5014363123, noise [-1.0, -1.0] dln 5.69e-03, robust True; float64 +1 -4521.9188274545 (1601 s [694, 883, 24])
+root: status tol (-), bracket [0.05371549022461712, 0.05374049022461712] width 2.500e-05, signs [-1.0, 1.0], det-linear 0.0537364592353902, Brent 0.05374049022461712, 6 evaluations, 6324 s
+```
+
+| # | lambda | role | hybrid sign | hybrid ln&#124;det&#124; | float64 sign | dln | seconds | parts (s) | bracket after |
+|---|---|---|---|---|---|---|---|---|---|
+| 0 | 0.05 | lo (reused from the scan) | - | -4522.8159827054 | + | none (reused) | 2821 (scan) | 989, 1797, 35 | |
+| 1 | 0.055 | hi (reused from the scan) | + | -4524.5732411972 | + | none (reused) | 2617 (scan) | 935, 1652, 30 | [0.05, 0.055] |
+| 2 | 0.054264329865 | interior | + | -4525.3469863477 | + | 2.24e-04 | 1572 | 690, 858, 25 | [0.05, 0.054264] |
+| 3 | 0.053680838915 | interior | - | -4527.5196558536 | + | 2.15e-03 | 1576 | 693, 858, 24 | [0.053681, 0.054264] |
+| 4 | 0.053740490225 | interior | + | -4530.1504701711 | + | 3.00e-02 | 1574 | 694, 856, 24 | [0.053681, 0.053740] |
+| 5 | 0.053715490225 | interior | - | -4528.5014363123 | + | 5.69e-03 | 1601 | 694, 883, 24 | [0.053715, 0.053740] |
+
+All four interior evaluations are noise-robust (both noise signs equal the hybrid sign, dln at most 3.00e-02 against the limit 0.1); no step was refused, no exception, no stop condition of the order was reached. The first interior point, 0.054264329865, equals the scan's det-linear estimate to the 6 digits the reader printed (0.054264); it is the tool's first point on this bracket.
+
+**The label (t5's):** this is a **kappa 0.7 root** of lambda_1 at k_c 143 and D 23.0. By #1101 (comment 7220945175) the RK step error moves lambda_1 by about +0.06 at k_c 127, D 23.0 between kappa 0.7 and 0.35. The root is data for #1104's fit in both k_c and kappa, **not a threshold** (t5).
+
+**The registered test (t5's, unchanged):**
+
+| item | value |
+|---|---|
+| registered root at D 23.0 | +0.0529 +- 0.003, i.e. lam_lin in [0.0499, 0.0559] |
+| `lam_lin` (det-linear root of the final bracket) | 0.0537364592 |
+| offset from the registered centre | +0.000836 (0.28 of the half-width 0.003) |
+| inside [0.0499, 0.0559] | **yes: MET** |
+| whole final bracket [0.053715, 0.053740] inside | yes |
+| scan estimator range [0.053941, 0.054264] (information, not the test) | `lam_lin` is below it by 0.000204; the scan's det-linear 0.054264 moved by -0.000528 |
+
+Roots at D 23.0 as t5's order lists them and this lane: k_c 119 +0.041061, 127 +0.045711 (mine), 135 about +0.0496 (win2), **143 +0.0537365**. I do not interpret the steps.
+
+Float64 sign, as printed (it is not part of the tool's robust test, which uses the hybrid noise signs and dln): the float64 sign is + at all 6 records and differs from the hybrid sign at 3 of them (0.05, 0.053681, 0.053715). Orientation (- to +) is information as printed; I do not interpret it.
+
+**Cost against the estimates written before the run:**
+
+| item | written | measured |
+|---|---|---|
+| each interior evaluation (one process, 4 Rust threads) | about 1100 s (800 to 2000 s); restated from the scan 1000 to 1500 s | 1572 to 1601 s (mean 1581 s): inside the first range, 5 to 7 % above the restated one |
+| interior evaluations | about 4 (3 to 6) | 4 |
+| the run | 2400 to 12000 s, central 4400 s | 6324 s: inside the range, 1.4 times the central value; 15 % of the cap of 43200 s |
+| of an evaluation | not written | float64 matrix 690 to 694 s (44 %), Rust block 12 on 4 threads 856 to 883 s (54 to 55 %), `dd_logdet` calls 24 to 25 s |
+| peak private memory | not written for the secant (scan 5 to 9 GB) | 5.602 GB (peak working set 4.208 GB), peak commit 16.42 GB |
+| cpu | not written | 15908 s (2.5 of the wall) |
+| lowest free memory | not written | 18.14 GB (sampler, 17:02:30 UTC), 18.09 GB (alert-only watcher; 0 alerts) |
+
+For scale: the scan's evaluations (two processes at once, 2 Rust threads each) took 2616 to 2823 s with block 12 at 1652 to 1799 s and the float64 matrix at 934 to 989 s; one process on 4 threads took 1572 to 1601 s with block 12 at 856 to 883 s and the matrix at 690 to 694 s. The tool's `--ends` saved the two end evaluations (about 3200 s at the single-process cost, 5438 s at the scan's). Laptop cpu mean 50.7 % (min 14, max 96), 105 sample times with no gap over 90 s. No alert, nothing killed (`rows/secant_memwatch.log`: "minimum free memory seen 18.09 GB; 0 alert(s) sent"); the keep-awake helper held until the driver ended (6435 s, cleared with ES_CONTINUOUS; `rows/secant_keepawake.log`); the System log (Kernel-Power, Power-Troubleshooter, Kernel-Boot) shows no event in 15:54 to 18:24 UTC. The hc at 21600 s did not apply (the run took 6345 s).
+
+**Lane summary:** regrid 31576 s (4705 steps), scan 5475 s (one robust change (0.050, 0.055)), secant 6345 s (root 0.0537365): the three steps sum to 43396 s (12.05 h); the wall clock from the first check (06:07:38 UTC) to the end of the last driver (18:22:58 UTC) is 44120 s (12.3 h), the rest being the drivers' checks and my 6 minutes between the scan and the secant (ends file, push, dry run). No step over 12 h, no exception, no stop condition.

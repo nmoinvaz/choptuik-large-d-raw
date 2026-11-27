@@ -4,3 +4,8 @@ bracket (0.05, 0.055), tol 5e-05, maxev 10, mode matrix fast (jac), block 12 rus
 block 12 by ellrs (avx512, products dgemm, 4 threads)
   lam 0.05 (lo): hybrid -1 ln|det| -4522.8159827054, noise [-1.0, -1.0] dln None, robust True; float64 +1 -4520.6672742203 (2821 s [989, 1797, 35])
   lam 0.055 (hi): hybrid +1 ln|det| -4524.5732411972, noise [1.0, 1.0] dln None, robust True; float64 +1 -4521.0689344955 (2617 s [935, 1652, 30])
+  lam 0.05426432986539566 (interior): hybrid +1 ln|det| -4525.3469863477, noise [1.0, 1.0] dln 2.24e-04, robust True; float64 +1 -4521.8082573258 (1572 s [690, 858, 25])
+  lam 0.05368083891504927 (interior): hybrid -1 ln|det| -4527.5196558536, noise [-1.0, -1.0] dln 2.15e-03, robust True; float64 +1 -4521.6266574643 (1576 s [693, 858, 24])
+  lam 0.05374049022461712 (interior): hybrid +1 ln|det| -4530.1504701711, noise [1.0, 1.0] dln 3.00e-02, robust True; float64 +1 -4521.4777671711 (1574 s [694, 856, 24])
+  lam 0.05371549022461712 (interior): hybrid -1 ln|det| -4528.5014363123, noise [-1.0, -1.0] dln 5.69e-03, robust True; float64 +1 -4521.9188274545 (1601 s [694, 883, 24])
+root: status tol (-), bracket [0.05371549022461712, 0.05374049022461712] width 2.500e-05, signs [-1.0, 1.0], det-linear 0.0537364592353902, Brent 0.05374049022461712, 6 evaluations, 6324 s
