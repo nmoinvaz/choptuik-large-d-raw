@@ -1,0 +1,10 @@
+reference (k_c 143 at D 23.125 via k_c 135): Delta 1.178015433613, lam_gauge 0.985365101148, |F| 2.9380e-10, steps 4708, constraint 6.9305e-04, F_start 3.473e-06, 5843 s; root -0.02449537, robust bracket [-0.02500000, -0.02447143]
+k_c 135 (the chain's middle): Delta 1.178024074501, lam_gauge 0.985364924274, |F| 2.9625e-10, steps 4445, constraint 1.1211e-03, 3565 s
+source (k_c 127 at D 23.125): Delta 1.178026593320, lam_gauge 0.985364885050, |F| 2.9775e-10, steps 4182, constraint 1.6537e-03, F_start 3.844e-05, 2373 s
+Delta shifts at D 23.125: 127 -> 135 -2.5188e-06, 135 -> 143 -8.6409e-06, 127 -> 143 by the chain -1.1160e-05; lam_gauge: 127 -> 135 +3.922e-08, 135 -> 143 +1.769e-07, 127 -> 143 by the chain +2.161e-07
+steps ratio to the source by the chain: 1.1258; constraint ratio: 0.4191
+t5's bars as intervals of the new root: reproduced (within 1e-3) (-0.025495, -0.023495); between (1e-3 to 3e-3) (-0.027495, -0.025495) and (-0.023495, -0.021495); path-dependent (3e-3 or more) below -0.027495 or above -0.021495
+the scan's window (-0.030, -0.020): root below -0.030 reads as no robust change (-0.0055 below the reference root); above -0.020 as none too; the reference root is 0.0055 from the lower end and 0.0045 from the upper end
+sensitivity of the root to Delta from #1101's two figures (root scatter 1.75e-4, Delta scatter 4.2e-7): 417 per unit Delta (order of magnitude only); a Delta difference of 1e-6 would move the root by 4.2e-04, of 4e-7 by 1.7e-04; a root move of 3e-3 needs a Delta difference of 7.2e-06
+t5's Delta bar: a difference above 1e-6 from 1.178015433613 means a different state (Delta outside (1.178014433613, 1.178016433613))
+wall references: k_c 127 -> 135 regrid at D 23.125 3574 s (F_start 5.416e-06), k_c 135 -> 143 5856 s (F_start 3.473e-06); k_c 127 source: 2373 s (F_start 3.844e-05)
