@@ -170,3 +170,31 @@ Both processes printed the pin check and `D 23.0 k_c 127: |F| 3.1911792672e-10 (
 Facts from the record, not read into: steps 8351 are in the 8358 +- 2% window; Delta_R2 - Delta_source (1.174322923415951) = -1.1e-11 and Delta_R2 - Delta_R0 (1.1743225027439044) = +4.2e-7.
 Command: `run_scan.sh r2 in/sol_l1kc127k035w2_D23.0000.npy in/l1kc127k035w2.jsonl 25ba3a91 9111bfca 0.045,0.050,0.060,0.070` (unit `i1101r2`): 4 processes, 1 thread each, nice 10, `--b12=rust --b12_threads=1`, the bars above unchanged. It runs beside none of step 1c's jobs (all ended); expected about 26 to 30 minutes (control points took 1521 s and 1515 s).
 Prediction registered above (R2, which pair brackets: 0.045/0.050 30%, 0.050/0.060 20%, 0.060/0.070 30%, none 20%; E_root >= 3e-3 40%, <= 1e-3 30%, between 30%). Add: `|F|` of the state reproduces the record (record system) 95%; all four points robust 75%.
+
+## R2 result (27 Nov 10:21:28 to 12:12:18 UTC = 6650 s; unit `i1101r2`; 4 processes, 1 thread each, nice 10; `results_r2.md`, `read_lower_r2.txt`, `scan_r2/`, `scan_r2_p0.raw` to `scan_r2_p3.raw`; written 2026-11-27 12:15 UTC by the clock)
+All four processes printed the pin check, `D 23.0 k_c 127: |F| 3.1258555149e-10 (record 3.1242366894e-10), steps 8351 (record 8351): the record system` and `block 12 by ellrs (avx2, products dgemm, 1 threads)`, and exited 0; peak RSS 4.51 to 4.64 GiB (4733404 to 4863912 kB). The selftests ran in the control's step; `results_1101.py r2` exit 2 (no pair brackets).
+
+| lambda | hybrid sign | noise signs | robust | dln | float64 sign | ln\|det\| | seconds (float64 blocks, Rust block 12, logdet) |
+|---|---|---|---|---|---|---|---|
+| 0.045 | + | + + | True | 1.35e-05 | - | -4211.9503431400 | 6625 (1741, 4865, 19) |
+| 0.050 | + | + + | True | 1.35e-05 | + | -4212.5955870798 | 6600 (1752, 4823, 25) |
+| 0.060 | + | + + | True | 1.37e-05 | - | -4213.9037243145 | 6493 (1782, 4648, 63) |
+| 0.070 | + | + + | True | 1.38e-05 | - | -4215.2427588991 | 6534 (1748, 4751, 36) |
+
+**No pair brackets: report and wait** (`results_1101.py r2` exit 2; nothing widened, no extra lambda). Hybrid sign is + at all four points, all noise-robust; `read_lower.py`: 0 robust changes in 0.045 to 0.070, endpoint signs + and +, no `ln|det|` local minimum without a sign change, no repeated point. The float64 sign differs from the hybrid sign at 0.045, 0.060 and 0.070, as it did at 0.045 in the control. Bars not applied: delta, E_root and the verdict are not formed.
+
+What the four points do and do not say (mine, outside the bars):
+- `ln|det|` falls smoothly with lambda, by 129, 131 and 134 per unit lambda over the three intervals, with no dip. In the control `ln|det|` changed by +1.4268 between 0.045 and 0.050 (its root lies 9.7e-4 above 0.045 and 4.0e-3 below 0.050, and ln(0.00403/0.00097) = 1.43). A root 3e-3 above 0.070 would steepen the 0.060 to 0.070 slope by about 150 per unit lambda (-ln(0.013/0.003)/0.01 is -147); it steepens by 3. A root within about 3e-3 of 0.070, or of 0.045, would show as a dip; none does.
+- Assuming the control's orientation (the sign is + below the root and - above it) and a single sign change: the root lies above 0.070, delta > +0.024032, E_root > +0.0256, which is above #1103's estimate of +0.02. This is an assumption, not a reading under the bars: the orientation of the hybrid sign across two different states is not established, and an even number of roots in the window would also give four equal signs.
+- With the other orientation the root lies below 0.045: delta < -0.000968, |E_root| > 1.03e-03, so the bar's "<= 1e-3" case fails either way for a single sign change, but 3e-3 is not decided there.
+
+| prediction | result |
+|---|---|
+| R2, which pair brackets: none (20%; 0.045/0.050 30%, 0.050/0.060 20%, 0.060/0.070 30%) | none: the registered 20% outcome happened; the three pairs (30%, 20%, 30%) did not bracket |
+| R2, E_root >= 3e-3 (40%), <= 1e-3 (30%), between (30%) | not formed: no pair brackets |
+| R2 reproduces its record's system, `|F|` and steps (95%) | right: all four processes print `|F| 3.1258555149e-10 (record 3.1242366894e-10), steps 8351 (record 8351): the record system` |
+| all four points robust (75%) | right: noise signs equal the hybrid sign at all four, dln 1.35e-05 to 1.38e-05 |
+| R2 wall 3000 to 4800 s per point on a free machine; the pins section said 26 to 30 min in all | WRONG, slower: 6493 to 6625 s per point, 6650 s in all (1 h 51 min), 4.3 to 4.4 times the control's 1521 s per point at the same k_c. The machine was not free: step 1d (#1105) started two re-solves of 2 threads each at 10:33:42 UTC, 12 min after this scan, and they ran to 11:42 and 11:47 UTC; a root run of step 1d ran beside the scan to its end. The cause of the 4.3 times is not separated by these runs (4 processes against the control's 2 is the other difference) |
+
+## Status
+- 2026-11-27 12:15 UTC: R2's scan done (6650 s): hybrid sign + at 0.045, 0.050, 0.060, 0.070, all robust; no pair brackets: reported to t5, waiting for t5's order (nothing widened).
