@@ -1,0 +1,12 @@
+7c7
+< # (exit 0, controls 1 1, the k_c 135 check refuses), the NEW scanner (d18_secant.py scan, 92b9bf53, blob eb1396ad) on the lambda plan of scan_plan.env (2 processes), the one-change rule, the secant 
+---
+> # (exit 0, controls 1 1, the k_c 135 check refuses), the NEW scanner (d18_secant.py scan, 92b9bf53, blob eb1396ad) on the lambda plan of scan_plan.env (2 processes), the one-change rule, the secant 
+156c156
+< say "secant starts: d18_secant.py run $S_REC $S_STATE $D $LO $HI secant.jsonl --tol=1e-5 --maxev=10 --pin=$SB,$TB --b12=rust --b12_threads=4"
+---
+> say "secant starts: d18_secant.py run $S_REC $S_STATE $D $LO $HI secant.jsonl --tol=5e-5 --maxev=10 --pin=$SB,$TB --b12=rust --b12_threads=4"
+158c158
+< ( cd $WTS && env PYTHONPATH=$SITE OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 nice -n 10 $PY -u $IN/capped_run.py 18000 $PY -u $WTS/d18_secant.py run $S_REC $S_STATE $D $LO $HI
+---
+> ( cd $WTS && env PYTHONPATH=$SITE OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 nice -n 10 $PY -u $IN/capped_run.py 18000 $PY -u $WTS/d18_secant.py run $S_REC $S_STATE $D $LO $HI

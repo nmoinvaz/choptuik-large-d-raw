@@ -4,7 +4,7 @@
 # Derived from kc135_d23125/lane_d23125.sh by the one-rung shift of the resolutions (119 -> 127, 127 -> 135, 135 -> 143 in the check names and labels) and the explicit replacements of mk_lanes143.py, read in diff_lane.txt.
 # Steps: pins, selftests, the new scanner's selftest and its three mutations, the source check (the k_c 135 check accepts the state, controls exit 1 1, the k_c 127 and k_c 143 checks refuse), a wait for no other scan, regrid or secant and
 # for 8 GiB available, the regrid ell_refine.py (631e5801, worktree 1025m2 at 48c36355) "l1kc135macm3d23125 135 l1kc143macm3d23125 143 1 23.125 2.0987860107 --kappa 0.7 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma", the k_c 143 check (blob e15b0ee2, raw 5370db0e3) on the result
-# (exit 0, controls 1 1, the k_c 135 check refuses), the NEW scanner (d18_secant.py scan, 92b9bf53, blob eb1396ad) on the lambda plan of scan_plan.env (2 processes), the one-change rule, the secant (tol 1e-5, maxev 10, one process),
+# (exit 0, controls 1 1, the k_c 135 check refuses), the NEW scanner (d18_secant.py scan, 92b9bf53, blob eb1396ad) on the lambda plan of scan_plan.env (2 processes), the one-change rule, the secant (tol 5e-5, maxev 10, one process),
 # summarize_point.py (the 3-decimal copy, 62c57e1a). Stops (hc to t5): a source or result not accepted (the regrid included), an exception (an array limit included), no robust change or more than one, a step over 8 h, a secant exit other than 0 or 4. usage: bash lane_d23125.sh [dry|check]
 {
 set -u
@@ -153,9 +153,9 @@ BR=$(grep 'robust change (' $SCAN/read_lower.txt | sed -E 's/.*robust change \((
 LO=${BR% *}; HI=${BR#* }
 S_STATE=$SCAN/in/sol_${TAG}_$DT.npy; S_REC=$SCAN/in/$TAG.jsonl; SB=$(blob $S_STATE | cut -c1-8); TB=$(blob $S_REC | cut -c1-8)
 mkdir -p $SEC; [ -e $SEC/secant.jsonl ] && stop "$SEC/secant.jsonl exists"
-say "secant starts: d18_secant.py run $S_REC $S_STATE $D $LO $HI secant.jsonl --tol=1e-5 --maxev=10 --pin=$SB,$TB --b12=rust --b12_threads=4"
+say "secant starts: d18_secant.py run $S_REC $S_STATE $D $LO $HI secant.jsonl --tol=5e-5 --maxev=10 --pin=$SB,$TB --b12=rust --b12_threads=4"
 echo "time_utc,pid,rss_kB,pcpu,avail_GiB" > $SEC/samples.csv
-( cd $WTS && env PYTHONPATH=$SITE OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 nice -n 10 $PY -u $IN/capped_run.py 18000 $PY -u $WTS/d18_secant.py run $S_REC $S_STATE $D $LO $HI $SEC/secant.jsonl --tol=1e-5 --maxev=10 --pin=$SB,$TB --b12=rust --b12_threads=4 > $SEC/secant.log 2>&1; echo $? > $SEC/exit.txt ) &
+( cd $WTS && env PYTHONPATH=$SITE OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 nice -n 10 $PY -u $IN/capped_run.py 18000 $PY -u $WTS/d18_secant.py run $S_REC $S_STATE $D $LO $HI $SEC/secant.jsonl --tol=5e-5 --maxev=10 --pin=$SB,$TB --b12=rust --b12_threads=4 > $SEC/secant.log 2>&1; echo $? > $SEC/exit.txt ) &
 sp=$!
 ( while kill -0 $sp 2>/dev/null; do for p in $(pgrep -f "d18_secant.py run.*kc143_d23125/secant"); do echo "$(stamp),$p,$(ps -o rss= -p $p | tr -d ' '),$(ps -o pcpu= -p $p | tr -d ' '),$(availgib)" >> $SEC/samples.csv; done; sleep 60; done ) &
 wait $sp; se=$(cat $SEC/exit.txt)
