@@ -402,3 +402,92 @@ Both re-solves exited 0 within the cap with |F| below 1e-8, so both were rooted;
 
 ## Status
 - 10:20 UTC: step 1c done. The three u0 0.04 re-solves have roots within 1.7e-4 of each other; the source record's root is 7.5e-4 to 9.2e-4 below all three. Posted on #1105.
+
+# Step 1d: is the continuation-vs-re-solve root offset systematic? (k_c 55, D 15.0 and D 16.5)
+
+Written 2026-11-27 10:33 UTC by the clock, before any run of step 1d (inputs, pins, drivers, bars and predictions first; t5's comment is quoted at the end of this section). Folder `step1d/`. Issue #1105; coordinator t5. R2's root scan (#1101, `I1101-dh170/`, 4 processes, started 10:21:28 UTC) has priority: the re-solves run beside it (2 + 2 threads, 4 + 4 on 8 logical CPUs), and the two roots of the continuation states wait for R2's scan to end.
+
+## Bars (t5's, fixed before the run; each can fail)
+offset(D) = root(re-solve) - root(continuation state); at D 16 it is +8.6e-4 (U40 against the source: +8.59e-4; U40b +7.5e-4, U40c +9.2e-4).
+- **Both new offsets above 5e-4 with the sign of D 16's (positive):** the continuation offset is systematic; #1025's roots from continuation legs carry an offset of order 1e-3, and a re-solve before rooting becomes part of the recipe.
+- **Both below 2e-4 in size:** D 16's was a one-off.
+- **Otherwise:** mixed, reported as measured.
+- Also reported: each re-solve's |F|, steps, Delta, and Delta's change from its source. A re-solve whose |F| exceeds 1e-8 is not rooted.
+- Brackets 2.410-2.435 (D 15) and 2.148-2.172 (D 16.5), `--tol=1e-7`. If one does not bracket (the run is refused for same-signed ends), it is widened by 0.01 on the side the signs give, and that is said.
+**Reading rule (mine, stated before the run):** each root has the robust final bracket of its `d18_secant.py run`, [a, b] for the re-solve and [c, d] for the continuation state; offset lies in [a - d, b - c] (the `lam_lin` difference is printed beside it). The verdict by the bars is taken on those ranges: "above 5e-4" when the lower end of both ranges exceeds 5e-4, "below 2e-4" when both ranges lie within +-2e-4, otherwise mixed. A range that straddles a bar is reported as such, with the `lam_lin` reading beside it. Roots are estimator values at the bracket's width, not rigorous enclosures; the solve scatter of one re-solve is about 1e-4 (step 1c), so a single re-solve per D leaves an offset uncertain by about that.
+
+## Pins (by blob; the drivers refuse any other)
+| what | where | blob |
+|---|---|---|
+| continuation state D 15.0 | raw `I1025-mac/out/sol_l1kc55Fb1025_D15.0000.npy` (copies in `step1d/in/` and the regrid worktree's `data/`); record |F| 2.3783e-10, 2719 steps, Delta 0.9841306967650356, lambda (float64) 2.4210057702375516 | ad055605 |
+| continuation state D 16.5 | `sol_l1kc55Fb1025_D16.5000.npy`; record |F| 2.0080e-10, 2481 steps, Delta 1.0117787163237064, lambda 2.159124821824751 | 557bfff0 |
+| record (both D) | `l1kc55Fb1025.jsonl` (u0 0.04, Ks 30, kappa 0.7, k_c 55) | 5be40af4 |
+| re-solve | worktree `~/Source/choptuik-large-d-1025k79` at 48c36355 (dss_ell, ell_ddm, ell_dd, ddnp equal 505d8399's), `ell_refine.py` | 631e5801 |
+| root | worktree `~/Source/choptuik-large-d-1102` at d4b6b6ce, `d18_secant.py` 9706e506 (`--b12=rust`), ellrs in `~/Source/ellrs-site-1102` | |
+| python | `~/Source/choptuik-large-d-1058b/.venv` | |
+
+## Commands (units `i1105r150` and `i1105r165` run `step1d/run_resolve1d.sh`; units `i1105c150` and `i1105c165` run `step1d/run_root_cont1d.sh`; steps in `steps_1d.txt`)
+From `solver/matter` of the regrid worktree, 2 threads each (OMP, OPENBLAS, MKL = 2), `nice -n 10 timeout 7200` (cap 2 h on the python pid, no retry):
+```
+R150  python -u ell_refine.py l1kc55Fb1025 55 l1kc55r150 55 1 15 2.4210057702375516 --kappa 0.7 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma
+R165  python -u ell_refine.py l1kc55Fb1025 55 l1kc55r165 55 1 16.5 2.159124821824751 --kappa 0.7 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma
+```
+Then each of the four states: `d18_secant.py run RECORD STATE D LO HI root_<TAG>.jsonl --tol=1e-7 --maxev=20 --b12=rust --b12_threads=1 --pin=<state blob>,<record blob>` from the #1102 worktree, 1 thread, nice 10, `PYTHONPATH=SITE` (c150, c165 = the continuation states with record 5be40af4; r150, r165 = the re-solves with their own records). `read_1105d.py` (written while the runs go; planted selftest, `--mutate=sign` must fail it) forms the two offsets and reads the bars.
+
+## Predictions (mine, registered before the run; information, not pass rules)
+| item | prediction |
+|---|---|
+| \|F\| <= 1e-8 after each re-solve | 90% each |
+| the brackets hold (both ends robust, opposite signs) | 85% each |
+| offsets: both above 5e-4 and positive | 40% |
+| offsets: both below 2e-4 | 20% |
+| offsets: mixed | 40% (the re-solve scatter is about 1e-4, so a single re-solve per D blurs the 2e-4 bar) |
+| re-solve wall (2 threads, beside R2's scan) | 0.4 to 0.9 h: 60% |
+| root wall (1 thread) | 1000 to 1500 s: 60% |
+
+## Status
+- 2026-11-27 10:33 UTC: inputs staged and blob-checked, drivers, bars, reading rule and predictions written before any step 1d run; the units start next.
+
+## Order, verbatim
+
+### t5's hc
+> t5: step 1c accepted. Your reading (the source is the outlier; scatter about 1e-4) is right. Next, until R2 lands: #1105 step 1d, the newest t5 comment on #1105 (the record). Your recommended task 2: re-solve the k_c 55 continuation states at D 15.0 (ad055605) and D 16.5 (557bfff0) of record 5be40af4 at u0 0.04 (R150, R165: the two ell_refine lines in the comment), 2 threads each, nice 10, cap 2 h. Then root all four states (both continuation states and both re-solves), Rust block, --tol=1e-7, brackets 2.410-2.435 (D 15) and 2.148-2.172 (D 16.5). Report offset(D) = root(re-solve) - root(continuation) against the bars: both above 5e-4 with D 16's sign means systematic; both below 2e-4 means a one-off. Raw: a new README section first. R2's scan keeps priority.
+
+### #1105 comment 7215807172
+
+> **Reading of step 1c, and step 1d on dh170** (t5, 2026-11-27 10:22 by the clock)
+> 
+> **Step 1c** (comment 7215774252, raw `I1105-dh170/` b139e4667): three re-solves at u0 0.04 from different starts have
+> roots spanning 1.68e-4 (sd 8.5e-5). The source record lies 7.5e-4 to 9.2e-4 below all three. So the source state is the
+> outlier. The re-solve scatter is about 1e-4. T5 (u0 0.05) lies inside it, and T3 (u0 0.03, −1.8e-3 to −2.0e-3) is 11×
+> it.
+> - **This issue's question is answered:** the record setting u0 0.04 carries no u0 bias above about 1e-4 at k_c 55,
+>   D 16, since 0.05 agrees with it within the scatter. Below 0.04 the root moves by about 2e-3. ELL.md's −8.1e-4 came
+>   mostly from comparing against the outlier source.
+> - **What it raises:** the source came from a continuation in D (`l1kc55Fb1025`). A stored state can sit about 9e-4 off
+>   in λ₁ from the re-solves of its own system, at the same |F| (1.785e-10) and with Δ within 1e-7. If continuation states
+>   are offset systematically, #1025's leg roots carry it.
+> 
+> **Step 1d: is the offset systematic?** (dh170's recommended task 2.) Same record (`I1025-mac/out/l1kc55Fb1025.jsonl`,
+> 5be40af4), two more continuation states: D 15.0 (`sol_l1kc55Fb1025_D15.0000.npy`, ad055605; record λ 2.4210057702375516)
+> and D 16.5 (`sol_l1kc55Fb1025_D16.5000.npy`, 557bfff0; record λ 2.159124821824751).
+> 
+> ```
+> R150  python ell_refine.py l1kc55Fb1025 55 l1kc55r150 55 1 15 2.4210057702375516 --kappa 0.7 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma
+> R165  python ell_refine.py l1kc55Fb1025 55 l1kc55r165 55 1 16.5 2.159124821824751 --kappa 0.7 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma
+> ```
+> 
+> 2 threads each, nice 10, cap 2 h each. Then root all four states (both continuation states and both re-solves) with
+> `d18_secant.py run` (Rust block), `--tol=1e-7`. Brackets: 2.410–2.435 at D 15 and 2.148–2.172 at D 16.5. The hybrid
+> root sat 1.4e-3 above the record's float64 λ at D 16, so these brackets should hold; if one does not bracket, widen it
+> by 0.01 on the side the signs give and say so.
+> 
+> **Bars, written before the runs.** offset(D) = root(re-solve) − root(continuation state); at D 16 it is +8.6e-4.
+> - Both new offsets above 5e-4 with the sign of D 16's: the continuation offset is systematic. Then #1025's roots from
+>   continuation legs carry an offset of order 1e-3, and a re-solve before rooting becomes part of the recipe.
+> - Both below 2e-4 in size: D 16's was a one-off.
+> - Otherwise: mixed, reported as measured.
+> - Also reported: each re-solve's |F|, steps, Δ, and Δ's change from its source.
+> 
+> R2's root scan (#1101) keeps priority when R2 lands.
+> 
