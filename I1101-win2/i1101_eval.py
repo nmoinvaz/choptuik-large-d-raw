@@ -51,6 +51,40 @@ def reading(E):
     return "mixed (4e-7 < |E| < 2e-6: the follow-on runs)"
 
 
+def reading_r2(E):
+    """the coordinator's amended bar (hc 01:44 UTC, 27 Nov), after R0 failed its control: Delta carries a solve-path scatter of about 4e-7, so the step error is read as REAL only if |E| >= 2e-6 (5x the
+    scatter); |E| <= 4e-7 is INCONCLUSIVE (not 'k_c truncation dominates'); between: below the amended bar, above the 4e-7 line. --mutate lowers the real threshold to 2e-7 (the selftest must then fail)."""
+    a = abs(E)
+    thr = 2e-7 if MUT else 2e-6
+    if a >= thr:
+        return "REAL: the step error is read as real (|E| >= 2e-6, 5x the 4e-7 scatter)"
+    if a <= 4e-7:
+        return "INCONCLUSIVE (|E| <= 4e-7, inside the solve-path scatter; not 'k_c truncation dominates')"
+    return "NOT READ AS REAL (4e-7 < |E| < 2e-6: below the amended bar of 2e-6, above the 4e-7 line)"
+
+
+def report_r2(rs):
+    lines, ok_all = [], True
+    lines.append("%-4s %-6s %-7s %-12s %-14s %-22s %-8s" % ("run", "kappa", "steps", "|F|", "constraint", "Delta", "seconds"))
+    for k in ("R0", "R2"):
+        if k in rs:
+            r = rs[k]
+            lines.append("%-4s %-6s %-7d %-12.5e %-14.6e %-22.12f %-8s" % (k, KAPPA[k], r["steps"], r["F"], r["constraint"], r["Delta"], r.get("seconds")))
+    lines.append("source (k_c 127, kappa 0.7, winb): steps 4179, |F| 3.1939646e-10, constraint 1.4638405e-3, Delta %.15f" % D_SRC)
+    if "R0" in rs:
+        lines.append("bar 1 (R0 control, on record): %s" % ("PASS" if bar1(rs["R0"])[0] else "FAIL, as on record (|Delta_R0 - source| %.3e)" % abs(rs["R0"]["Delta"] - D_SRC)))
+    if "R2" in rs:
+        ok, w = bar2("R2", rs["R2"])
+        ok_all = ok_all and ok
+        lines.append("bar 2 (R2): %s (%s)" % ("PASS" if ok else "FAIL", w))
+    if "R0" in rs and "R2" in rs:
+        d07, d035 = rs["R0"]["Delta"], rs["R2"]["Delta"]
+        E = (d07 - d035) * 16.0 / 15.0
+        lines.append("amended bar 4: E = (D0.7 - D0.35) x 16/15 = %.4e (the coordinator's (Delta_R2 - Delta_R0) x 16/15 = %.4e: the same size, the opposite sign); |E| = %.4e: %s" % (E, -E, abs(E), reading_r2(E)))
+        lines.append("r is not formed (R1 is skipped); constraints against the source's 1.4638e-3: R0 %.4e, R2 %.4e; the 127 to 135 change is -3.9096e-6" % (rs["R0"]["constraint"], rs["R2"]["constraint"]))
+    return ok_all, lines
+
+
 def last(path):
     rows = [json.loads(l) for l in open(path) if l.strip()]
     return rows[-1] if rows else None
@@ -120,6 +154,12 @@ def selftest():
     for val, want in ((3e-6, "step"), (-3e-6, "step"), (1e-7, "k_c"), (1e-6, "mixed")):
         if not reading(val).startswith(want):
             bad.append("E %r read %r, wanted %s" % (val, reading(val), want))
+    for val, want in ((3e-6, "REAL"), (-2.5e-6, "REAL"), (1.0e-6, "NOT READ AS REAL"), (3e-7, "INCONCLUSIVE"), (-4e-7, "INCONCLUSIVE")):
+        if not reading_r2(val).startswith(want):
+            bad.append("amended reading of E %r is %r, wanted %s" % (val, reading_r2(val), want))
+    ok_r2, lines_r2 = report_r2({"R0": good, "R2": dict(good, steps=8358, Delta=D_SRC + 3e-6)})
+    if not ok_r2 or not any("REAL:" in l for l in lines_r2):
+        bad.append("report_r2 on a planted R2 with |E| 3.2e-6 did not read REAL")
     for b in bad:
         print("SELFTEST FAIL:", b)
     print("selftest %s" % ("FAILS" if bad else "passes"))
@@ -138,7 +178,7 @@ def main():
         ok, w = bar1(rs["R0"])
         print("bar 1 (R0 control): %s (%s)" % ("PASS" if ok else "FAIL", w))
         return 0 if ok else 1
-    ok, lines = report(rs)
+    ok, lines = (report_r2 if "--r2" in sys.argv else report)(rs)
     print("\n".join(lines))
     return 0 if ok else 1
 
