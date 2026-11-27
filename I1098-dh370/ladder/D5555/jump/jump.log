@@ -1,2 +1,20 @@
   states: 0 form A, 1 form S (D 5555)
 guess at D 5555 from 1 states, D 5555.0000 .. 5555.0000, degree 0 in 1/n; degree -1 differs by 0.00e+00 (unknowns), 0.00e+00 (Delta)
+  770 Taylor steps; the guess's max |F| per block 3.0e-14 3.6e-14 6.4e-14 1.1e-13 1.9e-13 7.5e-13 2.9e-18
+  p1's harmonics 5-13 at the guess's values (kfreeze 3 with the held offset)
+  ladder stage 0: dd residual, at most 12 steps
+  start: max |F| 7.533e-13, Delta 1.645760563269018872389892749197315424681
+  it 0 starts 01:41:25 UTC
+  it 0: |F| 7.533e-13 -> 5.918e-23, |dz| 4.95e-12, dDelta -4.954e-12, lam 1, Delta's gain 2.61e+10, gain |F| 1.55e-12, 1504.1 s (J and solves 1489 s), Delta 1.645760563264064651450463990051239049839
+  it 1 starts 02:06:29 UTC, predicted end 02:31 UTC (1504 s)
+  it 1: |F| 5.918e-23 -> 2.901e-23, |dz| 1.89e-15, dDelta +1.888e-15, lam 1, Delta's gain 2.61e+10, gain |F| 7.58e-13, 1477.2 s (J and solves 1457 s), Delta 1.645760563264066539806137425005579547646
+  floor stop (dd residual): the step cut max |F| by 2.04x (< 10x); floor 2.901e-23, Delta's first-order bound 7.58e-13
+  ladder stage 1: qd residual, at most 2 steps, chord steps with the last Jacobian
+  start: max |F| 1.117e-22, Delta 1.645760563264066539806137425005579547646
+  it 0 (chord) starts 02:31:36 UTC
+  it 0 (chord): |F| 1.117e-22 -> 1.269e-28, |dz| 3.57e-15, dDelta -3.572e-15, lam 1, Delta's gain 2.61e+10, gain |F| 3.31e-18, 29.5 s (J and solves 0 s), Delta 1.645760563264062967731733157035133500370
+  end state: od max |F| 1.269e-28; Delta's first-order bound gain |F| 3.31e-18 (gain 2.61e+10, the last step's Jacobian)
+  the full system (kfreeze 13) at the held solution: max |F| 1.067e-22, first-order dDelta +5.669e-10 (Delta's gain sum |dDelta/dF| 8.32e+18)
+  discretization (bars 1e-25): top harmonic 3.2e-18 relative (mh); kc+20: |dF| 6.1e-57, gain |dF| 1.6e-46; ks+200: |dF| 6.1e-57, gain |dF| 1.6e-46; steps halved: |dF| 6.1e-57, gain |dF| 1.6e-46: over the 1e-25 bar: theta (M 32): top harmonic 3.2e-18
+  Hamiltonian code check (form A's residual in double-double, a slaved): segment blocks' max |F| 1: a 3.1e-28, p/m/c 6.0e-25; 2: a 7.1e-28, p/m/c 1.2e-24; 3: a 1.4e-27, p/m/c 2.0e-24; 4: a 2.4e-27, p/m/c 3.3e-24
+  converged; Delta 1.645760563264062967731733157035133500370; saved /home/nathan/Source/choptuik-large-d-raw-1088a-live/I1098-dh370/ladder/D5555/jump/jump_s_D5555.0000.npz
