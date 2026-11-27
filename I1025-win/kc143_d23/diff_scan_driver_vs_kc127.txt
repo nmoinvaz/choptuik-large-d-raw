@@ -1,0 +1,141 @@
+2,10c2,12
+< """#1025 winb, the k_c 127 scan at D 23.0 (t5's order, hc of 2026-11-26 ~10:40 UTC, step 4a; the shares are an argument): the NEW scanner, d18_secant.py scan (branch wip/ell1-speed at 92b9bf53, committed blob eb1396ad,
+< worktree choptuik-i1025secant92), on my regridded k_c 127 state sol_l1kc127wind23_D23.0000.npy and its record (both in this folder, checked against the blobs the regrid driver wrote into regrid_accepted.txt), at the lambda shares
+< LISTS (semicolon-separated, one share per process, AT MOST TWO (t5: a k_c 127 process may need 8 GB); a value may appear twice: the repeat), the 1e-15 noise test on blocks 0-11 (2 seeds) and the float64 sign, ONE thread each,
+< BelowNormal, cap 43200 s by the exact pids. Before the scan the tool's own selftest (exit 0 wanted) and its three mutations half, norobust, nosigncheck (exit 1 wanted each) are run and logged (selftest_d18_secant.txt), and read_lower.py's
+< selftest and its two --mutate controls (exit 0, 1, 1). d18_secant.py scan checks the pins and the record system first (exit 3 if not) and appends one JSON line per lambda (d18_hybsign.py's fields plus dln, robust, sec_parts, role scan) to its
+< own file scan_kc127_D23_p<i>.jsonl. Starts only when regrid_accepted.txt exists (and names the state and record blobs) and no scan file exists. Memory: no guard, the alert-only watcher is its own process. A keep-awake helper holds
+< SetThreadExecutionState(ES_CONTINUOUS | ES_SYSTEM_REQUIRED) for this driver's duration. Then dh170's read_lower.py (raw I1025-dh170/lower_root, blob 89309d3c, three-decimal keys) on the folder, and an hc to the coordinator t5 with every line it
+< printed. The refinement (d18_secant.py run) is NOT chained here: I read the reader's lines first (t5's stop: no robust change or more than one) and start it by hand.
+< usage: kc127d23_scan_driver_1025.py LISTS [--dry [--out=DIR]]     e.g. "0.04,0.03,0.06;0.05,0.04"     (--dry: runs the checks, prints the planned commands, starts nothing; --out=DIR (dry only) takes the
+---
+> """#1025 winb, the k_c 143 scan at D 23.0 with the RUST block 12 (t5's order, hc of 2026-11-27 05:59 UTC; the shares are an argument): d18_secant.py scan (branch wip/ell1-rust-b12 at d4b6b6ce, committed blob 9706e506,
+> worktree choptuik-i1102) with --b12=rust --b12_threads=2 (ellrs from my #1102 build in i1102_1025/site, on PYTHONPATH, pinned by blob; OPENBLAS_NUM_THREADS=1), on my regridded k_c 143 state
+> sol_l1kc143winbd23_D23.0000.npy and its record (both in this folder, checked against the blobs the regrid driver wrote into regrid_accepted.txt), at the lambda shares LISTS (semicolon-separated, one share per process,
+> AT MOST TWO processes (t5); a value may appear twice: the repeat), the 1e-15 noise test on blocks 0-11 (2 seeds) and the float64 sign, 2 Rust threads per process, BelowNormal, cap 43200 s by the exact pids.
+> Before the scan the tool's own selftest (exit 0 wanted) and its three mutations half, norobust, nosigncheck (exit 1 wanted each), and ell_b12rs.py's selftest with --mutate=nolam and --mutate=harm (exit 0, 1, 1) are run and
+> logged (selftest_d18_secant.txt, selftest_ell_b12rs.txt), and read_lower.py's selftest and its two --mutate controls (exit 0, 1, 1). d18_secant.py scan checks the pins and the record system first (exit 3 if not) and appends one
+> JSON line per lambda (d18_hybsign.py's fields plus dln, robust, sec_parts, b12, role scan) to its own file scan_kc143_D23_p<i>.jsonl. Starts only when regrid_accepted.txt exists (and names the state and record blobs) and no scan
+> file exists. Memory: no guard, the alert-only watcher is its own process. A keep-awake helper holds SetThreadExecutionState(ES_CONTINUOUS | ES_SYSTEM_REQUIRED) for this driver's duration. Then dh170's read_lower.py (raw
+> I1025-dh170/lower_root, blob 89309d3c, three-decimal keys) on the folder, and an hc to the coordinator t5 with every line it printed. The refinement (d18_secant.py run) is NOT chained here: I read the reader's lines first
+> (t5's stop: no robust change or more than one), push the scan files and start it by hand.
+> usage: kc143d23_scan_driver_1025.py LISTS [--dry [--out=DIR]]     e.g. "0.055,0.050;0.060,0.055"     (--dry: runs the checks, prints the planned commands, starts nothing; --out=DIR (dry only) takes the
+15c17
+< OUT = S + "/I1025-win/kc127_d23"
+---
+> OUT = S + "/I1025-win/kc143_d23"
+19c21,22
+< WT = "C:/Users/nathan/Source/choptuik-i1025secant92"
+---
+> WT = "C:/Users/nathan/Source/choptuik-i1102"
+> SITE = "C:/Users/nathan/Source/i1102_1025/site"          # ellrs (my #1102 build, cp314, avx512), on PYTHONPATH
+25c28
+< SRC = DRYOUT or OUT          # the regridded state, record and marker (written by kc127d23_regrid_driver_1025.py)
+---
+> SRC = DRYOUT or OUT          # the regridded state, record and marker (written by kc143d23_regrid_driver_1025.py)
+28c31
+< TAG = "l1kc127wind23"
+---
+> TAG = "l1kc143winbd23"
+30c33
+< LOG = OUT + "/kc127d23_scan_w.log"
+---
+> LOG = OUT + "/kc143d23_scan_w.log"
+31a35
+> B12RS_BLOB = "a1fff74ff07c20bdee50d210c8b8fb1753fcf5ef"
+35c39
+<     print("usage: kc127d23_scan_driver_1025.py LISTS [--dry [--out=DIR]]"); sys.exit(2)
+---
+>     print("usage: kc143d23_scan_driver_1025.py LISTS [--dry [--out=DIR]]"); sys.exit(2)
+46c50
+< PINS = [(SCANNER, "eb1396ad39d9236ae983064da5702164947e0948"), (READER, "89309d3c8e4f758bb5f936f7d24796b594e4cbdb"), (RAWM + "/d185_scan_read.py", "7c9d400fd0966a35ac306b5495febb4ec4efe7da")]
+---
+> PINS = [(SCANNER, "9706e506111357e5e6a3f1bccd60154ac3d17cbc"), (WTM + "/ell_b12rs.py", "a1fff74ff07c20bdee50d210c8b8fb1753fcf5ef"), (SITE + "/ellrs/ellrs.cp314-win_amd64.pyd", "ddd5a08281f4aa325bd8564f08f9f2c3cebba33d"), (SITE + "/ellrs/__init__.py", "76c7cfbc8fdfe90adb0debb60ac2d4754974cb1d"), (READER, "89309d3c8e4f758bb5f936f7d24796b594e4cbdb"), (RAWM + "/d185_scan_read.py", "7c9d400fd0966a35ac306b5495febb4ec4efe7da")]
+64c68
+<     sh([HC, "send", COORD, f"winb ({now():%H:%M} UTC), #1025 k_c 127 D {DS} scan ({LO}-{HI}): {msg}"])
+---
+>     sh([HC, "send", COORD, f"winb ({now():%H:%M} UTC), #1025 k_c 143 D {DS} scan ({LO}-{HI}): {msg}"])
+79c83
+< say(f"kc127d23_scan_driver_1025.py: the k_c 127 hybrid scan at D {DS}, shares {args[0]}{' (dry run)' if DRY else ''}; checking pins")
+---
+> say(f"kc143d23_scan_driver_1025.py: the k_c 143 hybrid scan at D {DS}, shares {args[0]}{' (dry run)' if DRY else ''}; checking pins")
+82c86
+<     refuse("regrid_accepted.txt does not exist", "not started: the k_c 127 D 23.0 regrid is not accepted.")
+---
+>     refuse("regrid_accepted.txt does not exist", "not started: the k_c 143 D 23.0 regrid is not accepted.")
+90c94
+<     got = sh(["git", "hash-object"] + ([] if fn == SCANNER else ["--no-filters"]) + [fn]).stdout.strip()
+---
+>     got = sh(["git", "hash-object"] + ([] if fn in (SCANNER, WTM + "/ell_b12rs.py") else ["--no-filters"]) + [fn]).stdout.strip()
+94,96c98,100
+< SCANF = [OUT + f"/scan_kc127_D23_p{i}.jsonl" for i in range(len(SH))]
+< if head != "92b9bf533ff371247be642c47e067a9042cabed1" or any(os.path.exists(f) for f in SCANF):
+<     refuse(f"worktree at {head[:8]}, not 92b9bf53, or a scan file exists", "not started: worktree or scan file check failed.")
+---
+> SCANF = [OUT + f"/scan_kc143_D23_p{i}.jsonl" for i in range(len(SH))]
+> if head != "d4b6b6cea24f518d38cac17877c9a0da813b05f4" or any(os.path.exists(f) for f in SCANF):
+>     refuse(f"worktree at {head[:8]}, not d4b6b6ce, or a scan file exists", "not started: worktree or scan file check failed.")
+102c106
+<     open(OUT + "/selftest_d18_secant.txt" + (".dry" if DRY else ""), "a").write(f"== {now():%Y-%m-%d %H:%M:%S} UTC d18_secant.py (92b9bf53, blob eb1396ad) selftest {mut}\n" + r1.stdout + r1.stderr + f"exit {r1.returncode} ({0 if not mut else 1} wanted)\n")
+---
+>     open(OUT + "/selftest_d18_secant.txt" + (".dry" if DRY else ""), "a").write(f"== {now():%Y-%m-%d %H:%M:%S} UTC d18_secant.py (d4b6b6ce, blob 9706e506) selftest {mut}\n" + r1.stdout + r1.stderr + f"exit {r1.returncode} ({0 if not mut else 1} wanted)\n")
+106c110,120
+<     say("d18_secant.py (92b9bf53, blob eb1396ad) selftest exit 0 and its three mutations half, norobust, nosigncheck exit 1, 1, 1 as wanted")
+---
+>     say("d18_secant.py (d4b6b6ce, blob 9706e506) selftest exit 0 and its three mutations half, norobust, nosigncheck exit 1, 1, 1 as wanted")
+> senv = dict(os.environ, PYTHONPATH=SITE, OPENBLAS_NUM_THREADS="1", VECLIB_MAXIMUM_THREADS="1", PYTHONDONTWRITEBYTECODE="1")
+> exr = []
+> for mut in ("", "--mutate=nolam", "--mutate=harm"):
+>     rr = sh([PY, "-u", WTM + "/ell_b12rs.py", "selftest"] + ([mut] if mut else []), cwd=WTM, env=senv)
+>     exr.append(rr.returncode)
+>     open(OUT + "/selftest_ell_b12rs.txt" + (".dry" if DRY else ""), "a").write(f"== {now():%Y-%m-%d %H:%M:%S} UTC ell_b12rs.py (blob {B12RS_BLOB[:8]}) selftest {mut}\n" + rr.stdout + rr.stderr + f"exit {rr.returncode} ({0 if not mut else 1} wanted)\n")
+> if exr != [0, 1, 1]:
+>     refuse(f"ell_b12rs.py selftest and its controls nolam, harm gave exits {exr}, wanted [0, 1, 1]", f"not started: ell_b12rs.py selftest/controls exits {exr}, wanted [0, 1, 1].")
+> else:
+>     say("ell_b12rs.py selftest exit 0 and its controls --mutate=nolam, --mutate=harm exit 1, 1 as wanted (ellrs from " + SITE + ")")
+117c131
+< cmds = [[PY, "-u", SCANNER, "scan", REC, STATE, DS, ",".join(f"{v:g}" for v in sh_), SCANF[i], PINARG] for i, sh_ in enumerate(SH)]
+---
+> cmds = [[PY, "-u", SCANNER, "scan", REC, STATE, DS, ",".join(f"{v:g}" for v in sh_), SCANF[i], PINARG, "--b12=rust", "--b12_threads=2"] for i, sh_ in enumerate(SH)]
+120c134
+<         say("DRY: would start " + " ".join(c) + f" (cwd {WTM}, 1 thread, BelowNormal, cap {CAP} s)")
+---
+>         say("DRY: would start " + " ".join(c) + f" (cwd {WTM}, ellrs 2 threads, BelowNormal, cap {CAP} s, PYTHONPATH {SITE})")
+122c136
+< samp = subprocess.Popen(["powershell", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", S + "/sample_driver_kc127_1025.ps1", "-Drv", str(os.getpid()), "-Out", OUT + "/rows/scan_samples.csv", "-Interval", "60"],
+---
+> samp = subprocess.Popen(["powershell", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", S + "/sample_driver_kc143_1025.ps1", "-Drv", str(os.getpid()), "-Out", OUT + "/rows/scan_samples.csv", "-Interval", "60"],
+124c138
+< wat = subprocess.Popen([PY, "-u", S + "/kc127d23_watch_alert_1025.py", str(os.getpid()), "scan"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, stdin=subprocess.DEVNULL,
+---
+> wat = subprocess.Popen([PY, "-u", S + "/kc143d23_watch_alert_1025.py", str(os.getpid()), "scan"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, stdin=subprocess.DEVNULL,
+130c144
+< env = dict(os.environ, OPENBLAS_NUM_THREADS="1", OMP_NUM_THREADS="1", MKL_NUM_THREADS="1", VECLIB_MAXIMUM_THREADS="1", RAYON_NUM_THREADS="1", PYTHONDONTWRITEBYTECODE="1", P4_WT_MATTER=WTM)
+---
+> env = dict(os.environ, OPENBLAS_NUM_THREADS="1", OMP_NUM_THREADS="1", MKL_NUM_THREADS="1", VECLIB_MAXIMUM_THREADS="1", RAYON_NUM_THREADS="1", PYTHONDONTWRITEBYTECODE="1", P4_WT_MATTER=WTM, PYTHONPATH=SITE)
+135c149
+<     say(f"scan p{i}: started pid {p.pid}: d18_secant.py scan {REC} {STATE} {DS} {c[7]} {SCANF[i]} {PINARG}")
+---
+>     say(f"scan p{i}: started pid {p.pid}: d18_secant.py scan {REC} {STATE} {DS} {c[7]} {SCANF[i]} {PINARG} --b12=rust --b12_threads=2")
+152c166
+< with open(OUT + "/scan_kc127_D23.log", "w") as g:
+---
+> with open(OUT + "/scan_kc143_D23.log", "w") as g:
+160,161c174,175
+<     hc(f"the scan did NOT finish (exits {rc}; 3 means the state is not the record system). Points so far in scan_kc127_D23_p*.jsonl. No reading.")
+<     time.sleep(70); samp.kill(); say("kc127d23_scan_driver_1025.py done (no reading)"); sys.exit(1)
+---
+>     hc(f"the scan did NOT finish (exits {rc}; 3 means the state is not the record system). Points so far in scan_kc143_D23_p*.jsonl. No reading.")
+>     time.sleep(70); samp.kill(); say("kc143d23_scan_driver_1025.py done (no reading)"); sys.exit(1)
+165c179
+< open(OUT + "/read_lower_kc127_D23.log", "w").write(txt + f"\nread_lower exit {r.returncode}\n")
+---
+> open(OUT + "/read_lower_kc143_D23.log", "w").write(txt + f"\nread_lower exit {r.returncode}\n")
+169c183
+<    + ". Raw I1025-win/kc127_d23 after my next push; no reading by me, you rule.")
+---
+>    + ". Raw I1025-win/kc143_d23 after my next push; no reading by me, you rule.")
+172c186
+< say("kc127d23_scan_driver_1025.py done")
+---
+> say("kc143d23_scan_driver_1025.py done")

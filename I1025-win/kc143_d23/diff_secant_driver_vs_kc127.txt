@@ -1,0 +1,146 @@
+2,7c2,9
+< """#1025 winb, the secant refinement of the k_c 127 root at D 23.0 (t5's order, hc of 2026-11-26 ~10:40 UTC, step 4b): xfkappa's d18_secant.py run (branch wip/ell1-speed at 92b9bf53, committed blob eb1396ad; Brent's method on the hybrid sign;
+< worktree choptuik-i1025secant92) on my accepted k_c 127 state sol_l1kc127wind23_D23.0000.npy and its record l1kc127wind23.jsonl (both in this folder; the blobs are the ones in regrid_accepted.txt), between LO HI (arguments: the robust bracket
+< the scan's reader printed):
+<   RAYON_NUM_THREADS=1 d18_secant.py run STUB STATE 23.0 LO HI secant/secant.jsonl --tol=1e-5 --maxev=10 --pin=STATEBLOB,STUBBLOB --ends=scan_kc127_D23_ends.jsonl     one process, BelowNormal, 1 thread (OMP/OPENBLAS/MKL 1 too)
+< Order of the driver (any failure stops it with an hc to t5, nothing started, exit 2):
+<   1. pins: d18_secant.py, ell_fastm.py, ell_ddm.py, dss_ell.py, ell_dd.py, ddnp.py in the worktree (HEAD 92b9bf53); the three checks (kc111 85aeb312, kc119 fc6e0dd6, kc127 898ebefa); the state and the record against the marker's blobs;
+---
+> """#1025 winb, the secant refinement of the k_c 143 root at D 23.0 with the Rust block 12 (t5's order, hc of 2026-11-27 05:59 UTC, step 3 of the lane): d18_secant.py run (branch wip/ell1-rust-b12 at d4b6b6ce, committed
+> blob 9706e506, worktree choptuik-i1102; Brent's method on the signed hybrid determinant) with --b12=rust --b12_threads=4 (ellrs from my #1102 build, i1102_1025/site, on PYTHONPATH, pinned by blob; OPENBLAS_NUM_THREADS=1) on my
+> accepted k_c 143 state sol_l1kc143winbd23_D23.0000.npy and its record l1kc143winbd23.jsonl (both in this folder; the blobs are the ones in regrid_accepted.txt), between LO HI (arguments: the robust bracket the scan's reader
+> printed), with the scan's two end records (--ends, verbatim lines of scan_kc143_D23_p*.jsonl; t5: "Reuse the scan's ends"):
+>   RAYON_NUM_THREADS=1 d18_secant.py run STUB STATE 23.0 LO HI secant/secant.jsonl --tol=5e-5 --maxev=10 --pin=STATEBLOB,STUBBLOB --ends=scan_kc143_D23_ends.jsonl --b12=rust --b12_threads=4     one process, BelowNormal
+> (--tol=5e-5 is t5's, not 1e-5: #1101's dh370 test measured a root scatter of 1.75e-4 between two solves of one state). Order of the driver (any failure stops it with an hc to t5, nothing started, exit 2):
+>   1. pins: d18_secant.py (blob 9706e506), ell_b12rs.py, the ellrs files of the site, ell_fastm.py, ell_ddm.py, dss_ell.py, ell_dd.py, ddnp.py in the worktree (HEAD d4b6b6ce); the three checks (kc127 898ebefa, kc135 b353d466, kc143 e15b0ee2); the state and
+>      the record against the blobs of regrid_accepted.txt; the ends file (blob from --ends-blob=) and its two lines verbatim in the scan files;
+9,10c11,12
+<   3. the ACCEPTANCE of the state: kc127_syscheck_1025.py accepts the record and state (exit 0), its --mutate=F and --mutate=steps exit 1 each, and the k_c 119 and k_c 111 checks refuse them (exit 1 each);
+<   3b. the ends: scan_kc127_D23_ends.jsonl (blob 62584ab6) is two lines, each verbatim a line of the scan files (p0 line 1, lambda LO, and p1 line 1, lambda HI): t5's --ends, the two end evaluations are not repeated;
+---
+>   3. the ACCEPTANCE of the state: kc143_syscheck_1025.py accepts the record and state (exit 0), its --mutate=F and --mutate=steps exit 1 each, and the k_c 135 and k_c 127 checks refuse them (exit 1 each);
+>   3b. the ends: scan_kc143_D23_ends.jsonl is two lines, each verbatim a line of the scan files at lambda LO and HI;
+12c14
+< The tool's exits: 0 tol reached, 4 maxev or a non-robust interior point (the bracket is valid), 2 refused (ends not robust or with equal signs), 3 pin differs or not the record system. Its own records (one per evaluation, then a root
+---
+> The tool's exits: 0 tol reached, 4 maxev or a non-robust interior point (the bracket is valid), 2 refused (ends not robust or with equal signs), 3 pin differs or not the record system. Its own records (one per evaluation
+14c16
+< usage: kc127d23_secant_driver_1025.py LO HI [--dry]     (--dry: pins, selftests, acceptance checks, prints the command, starts nothing)"""
+---
+> usage: kc143d23_secant_driver_1025.py LO HI --ends-blob=BLOB [--dry]     (--dry: pins, selftests, acceptance checks, prints the command, starts nothing)"""
+18c20
+< OUT = S + "/I1025-win/kc127_d23"
+---
+> OUT = S + "/I1025-win/kc143_d23"
+21c23,24
+< WTS = "C:/Users/nathan/Source/choptuik-i1025secant92"
+---
+> WTS = "C:/Users/nathan/Source/choptuik-i1102"
+> SITE = "C:/Users/nathan/Source/i1102_1025/site"          # ellrs (my #1102 build, cp314, avx512), on PYTHONPATH
+28,29c31,33
+< if len(args) != 2:
+<     print("usage: kc127d23_secant_driver_1025.py LO HI [--dry]"); sys.exit(2)
+---
+> ENDSBLOB = next((a.split("=", 1)[1] for a in sys.argv if a.startswith("--ends-blob=")), "")
+> if len(args) != 2 or len(ENDSBLOB) != 40:
+>     print("usage: kc143d23_secant_driver_1025.py LO HI --ends-blob=BLOB [--dry]"); sys.exit(2)
+37c41
+< STATE, STUB = OUT + "/sol_l1kc127wind23_D23.0000.npy", OUT + "/l1kc127wind23.jsonl"
+---
+> STATE, STUB = OUT + "/sol_l1kc143winbd23_D23.0000.npy", OUT + "/l1kc143winbd23.jsonl"
+40,42c44,46
+< ENDS = OUT + "/scan_kc127_D23_ends.jsonl"     # t5's order (hc 19:46 UTC): --ends, the two end records of the scan, verbatim (p0 line 1 lambda 0.04, p1 line 1 lambda 0.05)
+< B_ENDS = "62584ab6a5153a1a9267454bb9f570fc474a7d0a"
+< PINS = [(WTM + "/d18_secant.py", "eb1396ad39d9236ae983064da5702164947e0948", True), (WTM + "/ell_fastm.py", "93f963f6102f48e35c56c9eace25e1afd03b6ea2", True),
+---
+> ENDS = OUT + "/scan_kc143_D23_ends.jsonl"     # t5's order (hc 05:59 UTC): --ends, "Reuse the scan's ends": the two end records of the scan, verbatim lines of the scan files
+> B_ENDS = ENDSBLOB
+> PINS = [(WTM + "/d18_secant.py", "9706e506111357e5e6a3f1bccd60154ac3d17cbc", True), (WTM + "/ell_b12rs.py", "a1fff74ff07c20bdee50d210c8b8fb1753fcf5ef", True), (SITE + "/ellrs/ellrs.cp314-win_amd64.pyd", "ddd5a08281f4aa325bd8564f08f9f2c3cebba33d", False), (SITE + "/ellrs/__init__.py", "76c7cfbc8fdfe90adb0debb60ac2d4754974cb1d", False), (WTM + "/ell_fastm.py", "93f963f6102f48e35c56c9eace25e1afd03b6ea2", True),
+45,46c49,50
+<         (IN + "/kc127_syscheck_1025.py", "898ebefa65a99e639110e018808c85506a7f5719", False), (IN + "/kc119_syscheck_1025.py", "fc6e0dd6fbdf6bcf8fb6a2bf9274e404e3caa7ad", False),
+<         (IN + "/kc111_syscheck_1025.py", "85aeb31275aa9fd3edb786c74d91e69390a1dc75", False), (STATE, B_STATE, False), (STUB, B_STUB, False), (ENDS, B_ENDS, False)]
+---
+>         (IN + "/kc143_syscheck_1025.py", "e15b0ee2b0b1f9e48a914b6e3e75f4fec48251f4", False), (IN + "/kc135_syscheck_1025.py", "b353d46696d2c90eb413fb071becb3e9aa8f976a", False),
+>         (IN + "/kc127_syscheck_1025.py", "898ebefa65a99e639110e018808c85506a7f5719", False), (STATE, B_STATE, False), (STUB, B_STUB, False), (ENDS, B_ENDS, False)]
+66c70
+<     sh([HC, "send", COORD, f"winb ({now():%H:%M} UTC), #1025 k_c 127 D {D} secant refinement ({LO:g}-{HI:g}): {m}"])
+---
+>     sh([HC, "send", COORD, f"winb ({now():%H:%M} UTC), #1025 k_c 143 D {D} secant refinement ({LO:g}-{HI:g}): {m}"])
+80,82c84,86
+< say(f"kc127d23_secant_driver_1025.py: the secant refinement of the k_c 127 root at D {D}, bracket ({LO!r}, {HI!r}){' (dry run)' if DRY else ''}; checking pins")
+< if sh(["git", "-C", WTS, "rev-parse", "HEAD"]).stdout.strip() != "92b9bf533ff371247be642c47e067a9042cabed1":
+<     refuse("the secant worktree is not at 92b9bf53")
+---
+> say(f"kc143d23_secant_driver_1025.py: the secant refinement of the k_c 143 root at D {D}, bracket ({LO!r}, {HI!r}){' (dry run)' if DRY else ''}; checking pins")
+> if sh(["git", "-C", WTS, "rev-parse", "HEAD"]).stdout.strip() != "d4b6b6cea24f518d38cac17877c9a0da813b05f4":
+>     refuse("the secant worktree is not at d4b6b6ce")
+88c92
+< _scan = set(l for f in glob.glob(OUT + "/scan_kc127_D23_p*.jsonl") for l in open(f, "rb").read().decode("utf-8").splitlines(keepends=True))
+---
+> _scan = set(l for f in glob.glob(OUT + "/scan_kc143_D23_p*.jsonl") for l in open(f, "rb").read().decode("utf-8").splitlines(keepends=True))
+90,92c94,96
+<     refuse("the --ends file is not the scan records at LO and HI (two lines, each verbatim a line of scan_kc127_D23_p*.jsonl)")
+< say(f"pins ok (worktree 92b9bf53, d18_secant.py eb1396ad, ell_fastm.py 93f963f6, the solver files equal to my regrids', the three checks, the marker's state {B_STATE[:8]}, record {B_STUB[:8]})")
+< env = dict(os.environ, RAYON_NUM_THREADS="1", OMP_NUM_THREADS="1", OPENBLAS_NUM_THREADS="1", MKL_NUM_THREADS="1", VECLIB_MAXIMUM_THREADS="1", PYTHONDONTWRITEBYTECODE="1")
+---
+>     refuse("the --ends file is not the scan records at LO and HI (two lines, each verbatim a line of scan_kc143_D23_p*.jsonl)")
+> say(f"pins ok (worktree d4b6b6ce, d18_secant.py 9706e506, ell_b12rs.py a1fff74f, the ellrs site files, ell_fastm.py 93f963f6, the solver files equal to my regrids', the three checks, the marker's state {B_STATE[:8]}, record {B_STUB[:8]})")
+> env = dict(os.environ, RAYON_NUM_THREADS="1", OMP_NUM_THREADS="1", OPENBLAS_NUM_THREADS="1", MKL_NUM_THREADS="1", VECLIB_MAXIMUM_THREADS="1", PYTHONDONTWRITEBYTECODE="1", PYTHONPATH=SITE)
+103c107
+< for k in (127, 119, 111):
+---
+> for k in (143, 135, 127):
+107,108c111,112
+< if st != {127: 0, 119: 0, 111: 0}:
+<     refuse(f"the selftests of the k_c 127, 119 and 111 checks gave exits {st}, wanted 0 each")
+---
+> if st != {143: 0, 135: 0, 127: 0}:
+>     refuse(f"the selftests of the k_c 143, 135 and 127 checks gave exits {st}, wanted 0 each")
+110c114
+<     say("selftests: kc127_syscheck exit 0, kc119_syscheck exit 0, kc111_syscheck exit 0 (0 wanted each)")
+---
+>     say("selftests: kc143_syscheck exit 0, kc135_syscheck exit 0, kc127_syscheck exit 0 (0 wanted each)")
+113,115c117,119
+< for name, cmdl in (("source_kc127_syscheck.txt", [PY, IN + "/kc127_syscheck_1025.py", STUB, STATE, D, WTM]), ("source_kc127_syscheck_mutate_F.txt", [PY, IN + "/kc127_syscheck_1025.py", STUB, STATE, D, WTM, "--mutate=F"]),
+<                    ("source_kc127_syscheck_mutate_steps.txt", [PY, IN + "/kc127_syscheck_1025.py", STUB, STATE, D, WTM, "--mutate=steps"]), ("source_kc119_syscheck.txt", [PY, IN + "/kc119_syscheck_1025.py", STUB, STATE, D, WTM]),
+<                    ("source_kc111_syscheck.txt", [PY, IN + "/kc111_syscheck_1025.py", STUB, STATE, D, WTM])):
+---
+> for name, cmdl in (("source_kc143_syscheck.txt", [PY, IN + "/kc143_syscheck_1025.py", STUB, STATE, D, WTM]), ("source_kc143_syscheck_mutate_F.txt", [PY, IN + "/kc143_syscheck_1025.py", STUB, STATE, D, WTM, "--mutate=F"]),
+>                    ("source_kc143_syscheck_mutate_steps.txt", [PY, IN + "/kc143_syscheck_1025.py", STUB, STATE, D, WTM, "--mutate=steps"]), ("source_kc135_syscheck.txt", [PY, IN + "/kc135_syscheck_1025.py", STUB, STATE, D, WTM]),
+>                    ("source_kc127_syscheck.txt", [PY, IN + "/kc127_syscheck_1025.py", STUB, STATE, D, WTM])):
+119,121c123,125
+< want = {"source_kc127_syscheck.txt": 0, "source_kc127_syscheck_mutate_F.txt": 1, "source_kc127_syscheck_mutate_steps.txt": 1, "source_kc119_syscheck.txt": 1, "source_kc111_syscheck.txt": 1}
+< say(f"the state: kc127 check exit {src['source_kc127_syscheck.txt']} (0 wanted: it accepts), --mutate=F {src['source_kc127_syscheck_mutate_F.txt']}, --mutate=steps {src['source_kc127_syscheck_mutate_steps.txt']} (1 wanted each), "
+<     f"kc119 check {src['source_kc119_syscheck.txt']} and kc111 check {src['source_kc111_syscheck.txt']} (1 wanted each: they refuse it); {time.time() - t0:.0f} s")
+---
+> want = {"source_kc143_syscheck.txt": 0, "source_kc143_syscheck_mutate_F.txt": 1, "source_kc143_syscheck_mutate_steps.txt": 1, "source_kc135_syscheck.txt": 1, "source_kc127_syscheck.txt": 1}
+> say(f"the state: kc143 check exit {src['source_kc143_syscheck.txt']} (0 wanted: it accepts), --mutate=F {src['source_kc143_syscheck_mutate_F.txt']}, --mutate=steps {src['source_kc143_syscheck_mutate_steps.txt']} (1 wanted each), "
+>     f"kc135 check {src['source_kc135_syscheck.txt']} and kc127 check {src['source_kc127_syscheck.txt']} (1 wanted each: they refuse it); {time.time() - t0:.0f} s")
+124c128
+< cmd = [PY, "-u", WTM + "/d18_secant.py", "run", STUB, STATE, D, f"{LO:g}", f"{HI:g}", SEC + "/secant.jsonl", "--tol=1e-5", "--maxev=10", f"--pin={B_STATE},{B_STUB}", f"--ends={ENDS}"]
+---
+> cmd = [PY, "-u", WTM + "/d18_secant.py", "run", STUB, STATE, D, f"{LO:g}", f"{HI:g}", SEC + "/secant.jsonl", "--tol=5e-5", "--maxev=10", f"--pin={B_STATE},{B_STUB}", f"--ends={ENDS}", "--b12=rust", "--b12_threads=4"]
+126c130
+<     say("DRY: would start " + " ".join(cmd) + f" > {SEC}/secant.log (cwd {WTM}, 1 thread, BelowNormal, cap {CAP} s, hc at {NOTIFY} s); nothing started")
+---
+>     say("DRY: would start " + " ".join(cmd) + f" > {SEC}/secant.log (cwd {WTM}, ellrs 4 threads, BelowNormal, cap {CAP} s, hc at {NOTIFY} s, PYTHONPATH {SITE}); nothing started")
+131c135
+< samp = subprocess.Popen(["powershell", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", S + "/sample_driver_kc127_1025.ps1", "-Drv", str(os.getpid()), "-Out", OUT + "/rows/secant_samples.csv", "-Interval", "60"],
+---
+> samp = subprocess.Popen(["powershell", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", S + "/sample_driver_kc143_1025.ps1", "-Drv", str(os.getpid()), "-Out", OUT + "/rows/secant_samples.csv", "-Interval", "60"],
+133c137
+< wat = subprocess.Popen([PY, "-u", S + "/kc127d23_watch_alert_1025.py", str(os.getpid()), "secant"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, stdin=subprocess.DEVNULL,
+---
+> wat = subprocess.Popen([PY, "-u", S + "/kc143d23_watch_alert_1025.py", str(os.getpid()), "secant"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, stdin=subprocess.DEVNULL,
+140c144
+< say(f"secant: started pid {p.pid}: d18_secant.py run {STUB} {STATE} {D} {LO:g} {HI:g} {SEC}/secant.jsonl --tol=1e-5 --maxev=10 --pin=...")
+---
+> say(f"secant: started pid {p.pid}: d18_secant.py run {STUB} {STATE} {D} {LO:g} {HI:g} {SEC}/secant.jsonl --tol=5e-5 --maxev=10 --pin=... --ends={ENDS} --b12=rust --b12_threads=4")
+186c190
+< hc(f"the refinement ended, {summ}. Lines as printed: " + " | ".join(lines) + ". Raw I1025-win/kc127_d23/secant after my next push; no reading by me, you rule.")
+---
+> hc(f"the refinement ended, {summ}. Lines as printed: " + " | ".join(lines) + ". Raw I1025-win/kc143_d23/secant after my next push; no reading by me, you rule.")
+189c193
+< say("kc127d23_secant_driver_1025.py done")
+---
+> say("kc143d23_secant_driver_1025.py done")

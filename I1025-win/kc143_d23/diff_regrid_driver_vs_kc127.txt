@@ -1,0 +1,162 @@
+2,6c2,6
+< """#1025 winb, the k_c 127 regrid at D 23.0 (t5's order, hc of 2026-11-26 ~10:40 UTC, after the k_c 87 D 23.0 ruling): macm3's accepted k_c 119 state at D 23.0 (raw I1025-macm3/kc119_d23: in/sol_l1kc119macm3d23_D23.0000.npy
+< blob 2771cf87, in/l1kc119macm3d23.jsonl blob 158e3086) is regridded on this Windows machine to k_c 127 with
+<   ell_refine.py l1kc119macm3d23 119 l1kc127wind23 127 1 23.0 2.0992182200 --kappa 0.7 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma     (2.0992182200 is lambda_0(23.0), unused with --no-gamma; checked below)
+< exactly as my k_c 103 regrids (same worktree choptuik-i1025k79 at 48c36355, venv, 4 threads, BelowNormal; macm3's k_c 119 regrid used the same ell_refine.py 631e5801), only the source tag, the D and the target tag changed.
+< The cap is 43200 s (t5: "killed at 43200 s") by the exact pid, with one hc to t5 at 21600 s (6 h) if it is still running; nothing is stopped at 6 h.
+---
+> """#1025 winb, the k_c 143 regrid at D 23.0 (t5's order, hc of 2026-11-27 05:59 UTC): win2's accepted k_c 135 state at D 23.0 (raw I1025-win2/kc135_d23: sol_l1kc135win2d23_D23.0000.npy blob cd134e2c,
+> l1kc135win2d23.jsonl blob bc295fbc) is regridded on this Windows machine to k_c 143 with
+>   ell_refine.py l1kc135win2d23 135 l1kc143winbd23 143 1 23.0 2.0992182200 --kappa 0.7 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma     (2.0992182200 is lambda_0(23.0), unused with --no-gamma; checked below)
+> with the code of my k_c 127 regrid (same worktree choptuik-i1025k79 at 48c36355, ell_refine.py 631e5801, venv, 4 threads, BelowNormal), only the source tag, the target tag and the k_c numbers changed.
+> The cap is 43200 s (t5) by the exact pid, with one hc to t5 at 21600 s (6 h) if it is still running; nothing is stopped at 6 h.
+8,9c8,9
+<   1. pins: kc111_syscheck_1025.py (85aeb312, macm3's copy), kc119_syscheck_1025.py (fc6e0dd6) and kc127_syscheck_1025.py (898ebefa, raw I1025-mac/checks at d1baa986c: the k_c 111 check with 111 -> 127 and a header line),
+<      d18_hybsign.py, d185_scan_read.py, read_lower.py, macm3's k_c 119 D 23.0 state and record (inputs/ and the worktree's copies), the worktree (choptuik-i1025k79 at 48c36355, solver code 505d8399, ell_refine.py 631e5801);
+---
+>   1. pins: kc127_syscheck_1025.py (898ebefa), kc135_syscheck_1025.py (b353d466) and kc143_syscheck_1025.py (e15b0ee2, raw 5370db0e3 I1025-mac/checks), d18_hybsign.py, d185_scan_read.py, read_lower.py,
+>      win2's k_c 135 D 23.0 state and record (inputs/ and the worktree's copies in solver/matter/data/), the worktree (choptuik-i1025k79 at 48c36355, solver code 505d8399, ell_refine.py 631e5801);
+11,14c11,14
+<   3. the SOURCE (step 1 of t5's order): the k_c 119 check accepts it (exit 0) and its --mutate=F and --mutate=steps exit 1; the k_c 111 check and the k_c 127 check refuse it (exit 1 each);
+<   4. the regrid (step 2);
+<   5. ACCEPTED (step 3) only if kc127_syscheck_1025.py exits 0 on the result, its selftest exits 0, --mutate=F and --mutate=steps exit 1, and kc119_syscheck_1025.py refuses the result (exit 1).
+< The ACCEPTED marker regrid_accepted.txt (with the state and record blobs) is written from this python process; the scan driver starts only after it (go_kc127d23_1025.cmd). Memory: no guard, the alert-only
+---
+>   3. the SOURCE (step 1 of t5's order): the k_c 135 check accepts it (exit 0) and its --mutate=F and --mutate=steps exit 1; the k_c 127 and k_c 143 checks refuse it (exit 1 each);
+>   4. the regrid (step 1 of the lane);
+>   5. ACCEPTED only if kc143_syscheck_1025.py exits 0 on the result, its selftest exits 0, --mutate=F and --mutate=steps exit 1, and kc135_syscheck_1025.py refuses the result (exit 1).
+> The ACCEPTED marker regrid_accepted.txt (with the state and record blobs) is written from this python process; the scan driver starts only after it (go_kc143d23_1025.cmd). Memory: no guard, the alert-only
+16c16
+< usage: kc127d23_regrid_driver_1025.py [--dry]     (--dry: pins, the three selftests and lambda_0 only, nothing written outside rows/*.dry and the .dry logs, nothing started)"""
+---
+> usage: kc143d23_regrid_driver_1025.py [--dry]     (--dry: pins, the three selftests and lambda_0 only, nothing written outside rows/*.dry and the .dry logs, nothing started)"""
+19,20c19,20
+< S = "C:/Users/nathan/Source/kc127d23_1025"
+< OUT = S + "/I1025-win/kc127_d23"
+---
+> S = "C:/Users/nathan/Source/kc143d23_1025"
+> OUT = S + "/I1025-win/kc143_d23"
+22c22
+< SRCD = IN          # macm3's accepted k_c 119 D 23.0 state and record (raw I1025-macm3/kc119_d23; copies in inputs/)
+---
+> SRCD = IN          # win2's accepted k_c 135 D 23.0 state and record (raw I1025-win2/kc135_d23; copies in inputs/)
+29c29
+< SRC, TAG = "l1kc119macm3d23", "l1kc127wind23"
+---
+> SRC, TAG = "l1kc135win2d23", "l1kc143winbd23"
+33,35c33,35
+< B_STATE, B_REC = "2771cf87ee8ca5c9ac32d5289397eace6bc1924b", "158e30868886465e4226a45de8975a5693852049"
+< PINS = [(IN + "/kc111_syscheck_1025.py", "85aeb31275aa9fd3edb786c74d91e69390a1dc75"), (IN + "/kc119_syscheck_1025.py", "fc6e0dd6fbdf6bcf8fb6a2bf9274e404e3caa7ad"),
+<         (IN + "/kc127_syscheck_1025.py", "898ebefa65a99e639110e018808c85506a7f5719"),
+---
+> B_STATE, B_REC = "cd134e2cc283fd5beb2e5beb6ad2e1f1353efe1d", "bc295fbcc4a90adaf224128d0160ce02ce68a0f7"
+> PINS = [(IN + "/kc127_syscheck_1025.py", "898ebefa65a99e639110e018808c85506a7f5719"), (IN + "/kc135_syscheck_1025.py", "b353d46696d2c90eb413fb071becb3e9aa8f976a"),
+>         (IN + "/kc143_syscheck_1025.py", "e15b0ee2b0b1f9e48a914b6e3e75f4fec48251f4"),
+39c39
+< LOG = OUT + "/kc127_regrid_w.log" + (".dry" if DRY else "")
+---
+> LOG = OUT + "/kc143_regrid_w.log" + (".dry" if DRY else "")
+41c41
+< SY127, SY119, SY111 = IN + "/kc127_syscheck_1025.py", IN + "/kc119_syscheck_1025.py", IN + "/kc111_syscheck_1025.py"
+---
+> SY143, SY135, SY127 = IN + "/kc143_syscheck_1025.py", IN + "/kc135_syscheck_1025.py", IN + "/kc127_syscheck_1025.py"
+59c59
+<     sh([HC, "send", COORD, f"winb ({datetime.datetime.now(datetime.timezone.utc):%H:%M} UTC), #1025 k_c 127 regrid at D 23.0 (from macm3's k_c 119 state): {m}"])
+---
+>     sh([HC, "send", COORD, f"winb ({datetime.datetime.now(datetime.timezone.utc):%H:%M} UTC), #1025 k_c 143 regrid at D 23.0 (from win2's k_c 135 state): {m}"])
+95c95
+< say(f"kc127d23_regrid_driver_1025.py: the k_c 127 regrid at D 23.0 from macm3's accepted k_c 119 D 23.0 state{' (dry run)' if DRY else ''}; checking pins")
+---
+> say(f"kc143d23_regrid_driver_1025.py: the k_c 143 regrid at D 23.0 from win2's accepted k_c 135 D 23.0 state{' (dry run)' if DRY else ''}; checking pins")
+110c110
+< say(f"pins ok (the inputs of {IN}, macm3's k_c 119 D 23.0 files, worktree 48c36355 with solver code = 505d8399 and ell_delta/ell_refine = 48c36355); python {PY}")
+---
+> say(f"pins ok (the inputs of {IN}, win2's k_c 135 D 23.0 files, worktree 48c36355 with solver code = 505d8399 and ell_delta/ell_refine = 48c36355); python {PY}")
+113c113,115
+< st127, st119, st111 = sh([PY, SY127, "--selftest"], env=env), sh([PY, SY119, "--selftest"], env=env), sh([PY, SY111, "--selftest"], env=env)
+---
+> st143, st135, st127 = sh([PY, SY143, "--selftest"], env=env), sh([PY, SY135, "--selftest"], env=env), sh([PY, SY127, "--selftest"], env=env)
+> open(OUT + "/selftest_kc143_syscheck.txt" + sfx, "w").write(st143.stdout + st143.stderr)
+> open(OUT + "/selftest_kc135_syscheck.txt" + sfx, "w").write(st135.stdout + st135.stderr)
+115,118c117,118
+< open(OUT + "/selftest_kc119_syscheck.txt" + sfx, "w").write(st119.stdout + st119.stderr)
+< open(OUT + "/selftest_kc111_syscheck.txt" + sfx, "w").write(st111.stdout + st111.stderr)
+< say(f"selftests: kc127_syscheck exit {st127.returncode}, kc119_syscheck exit {st119.returncode}, kc111_syscheck exit {st111.returncode} (0 wanted each)")
+< if st127.returncode != 0 or st119.returncode != 0 or st111.returncode != 0:
+---
+> say(f"selftests: kc143_syscheck exit {st143.returncode}, kc135_syscheck exit {st135.returncode}, kc127_syscheck exit {st127.returncode} (0 wanted each)")
+> if st143.returncode != 0 or st135.returncode != 0 or st127.returncode != 0:
+123c123
+< say(f"ell_delta.lam0_at(23.0) = {LAM0}, as macm3's")
+---
+> say(f"ell_delta.lam0_at(23.0) = {LAM0}, as t5's order")
+125c125
+<     say(f"DRY: would start ell_refine.py {SRC} 119 {TAG} 127 1 23.0 {LAM0} --kappa 0.7 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma (cwd {WTM}, 4 threads, BelowNormal, cap {CAPRG} s); nothing started")
+---
+>     say(f"DRY: would start ell_refine.py {SRC} 135 {TAG} 143 1 23.0 {LAM0} --kappa 0.7 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma (cwd {WTM}, 4 threads, BelowNormal, cap {CAPRG} s); nothing started")
+128c128
+< samp = subprocess.Popen(["powershell", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", S + "/sample_driver4_1025.ps1", "-Drv", str(os.getpid()), "-Out", OUT + "/rows/regrid_samples.csv", "-Interval", "60"],
+---
+> samp = subprocess.Popen(["powershell", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", S + "/sample_driver_kc143_1025.ps1", "-Drv", str(os.getpid()), "-Out", OUT + "/rows/regrid_samples.csv", "-Interval", "60"],
+130c130
+< wat = subprocess.Popen([PY, "-u", S + "/kc127d23_watch_alert_1025.py", str(os.getpid()), "regrid"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, stdin=subprocess.DEVNULL,
+---
+> wat = subprocess.Popen([PY, "-u", S + "/kc143d23_watch_alert_1025.py", str(os.getpid()), "regrid"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, stdin=subprocess.DEVNULL,
+143c143
+<     say("kc127d23_regrid_driver_1025.py done")
+---
+>     say("kc143d23_regrid_driver_1025.py done")
+150,151c150,151
+< for name, cmd in (("source_kc119_syscheck.txt", [PY, SY119, SRCREC, SRCSTATE, "23.0", WTM]), ("source_kc119_syscheck_mutate_F.txt", [PY, SY119, SRCREC, SRCSTATE, "23.0", WTM, "--mutate=F"]),
+<                   ("source_kc119_syscheck_mutate_steps.txt", [PY, SY119, SRCREC, SRCSTATE, "23.0", WTM, "--mutate=steps"]), ("source_kc111_syscheck.txt", [PY, SY111, SRCREC, SRCSTATE, "23.0", WTM]), ("source_kc127_syscheck.txt", [PY, SY127, SRCREC, SRCSTATE, "23.0", WTM])):
+---
+> for name, cmd in (("source_kc135_syscheck.txt", [PY, SY135, SRCREC, SRCSTATE, "23.0", WTM]), ("source_kc135_syscheck_mutate_F.txt", [PY, SY135, SRCREC, SRCSTATE, "23.0", WTM, "--mutate=F"]),
+>                   ("source_kc135_syscheck_mutate_steps.txt", [PY, SY135, SRCREC, SRCSTATE, "23.0", WTM, "--mutate=steps"]), ("source_kc127_syscheck.txt", [PY, SY127, SRCREC, SRCSTATE, "23.0", WTM]), ("source_kc143_syscheck.txt", [PY, SY143, SRCREC, SRCSTATE, "23.0", WTM])):
+155,156c155,156
+< want = {"source_kc119_syscheck.txt": 0, "source_kc119_syscheck_mutate_F.txt": 1, "source_kc119_syscheck_mutate_steps.txt": 1, "source_kc111_syscheck.txt": 1, "source_kc127_syscheck.txt": 1}
+< say(f"the source: kc119 check exit {src['source_kc119_syscheck.txt']} (0 wanted), --mutate=F {src['source_kc119_syscheck_mutate_F.txt']}, --mutate=steps {src['source_kc119_syscheck_mutate_steps.txt']} (1 wanted each), kc111 check {src['source_kc111_syscheck.txt']} and kc127 check {src['source_kc127_syscheck.txt']} (1 wanted each: they refuse the source); {time.time() - t0:.0f} s")
+---
+> want = {"source_kc135_syscheck.txt": 0, "source_kc135_syscheck_mutate_F.txt": 1, "source_kc135_syscheck_mutate_steps.txt": 1, "source_kc127_syscheck.txt": 1, "source_kc143_syscheck.txt": 1}
+> say(f"the source: kc135 check exit {src['source_kc135_syscheck.txt']} (0 wanted), --mutate=F {src['source_kc135_syscheck_mutate_F.txt']}, --mutate=steps {src['source_kc135_syscheck_mutate_steps.txt']} (1 wanted each), kc127 check {src['source_kc127_syscheck.txt']} and kc143 check {src['source_kc143_syscheck.txt']} (1 wanted each: they refuse the source); {time.time() - t0:.0f} s")
+161c161
+< cmd = ["-u", "ell_refine.py", SRC, "119", TAG, "127", "1", "23.0", LAM0, "--kappa", "0.7", "--u0", "0.04", "--Ks", "30", "--tol", "1e-12", "--wait", "60", "--no-gamma"]
+---
+> cmd = ["-u", "ell_refine.py", SRC, "135", TAG, "143", "1", "23.0", LAM0, "--kappa", "0.7", "--u0", "0.04", "--Ks", "30", "--tol", "1e-12", "--wait", "60", "--no-gamma"]
+181c181
+<     a = sh([PY, SY127, rec, state, "23.0", WTM], env=env)
+---
+>     a = sh([PY, SY143, rec, state, "23.0", WTM], env=env)
+183,186c183,186
+<     s127 = sh([PY, SY127, "--selftest"], env=env)
+<     open(OUT + "/selftest_kc127_syscheck_after.txt", "w").write(s127.stdout + s127.stderr + f"exit {s127.returncode}\n")
+<     m1 = sh([PY, SY127, rec, state, "23.0", WTM, "--mutate=F"], env=env)
+<     m2 = sh([PY, SY127, rec, state, "23.0", WTM, "--mutate=steps"], env=env)
+---
+>     s143 = sh([PY, SY143, "--selftest"], env=env)
+>     open(OUT + "/selftest_kc143_syscheck_after.txt", "w").write(s143.stdout + s143.stderr + f"exit {s143.returncode}\n")
+>     m1 = sh([PY, SY143, rec, state, "23.0", WTM, "--mutate=F"], env=env)
+>     m2 = sh([PY, SY143, rec, state, "23.0", WTM, "--mutate=steps"], env=env)
+188,191c188,191
+<     k119 = sh([PY, SY119, rec, state, "23.0", WTM], env=env)
+<     open(OUT + "/syscheck_kc119_on_result.txt", "w").write(k119.stdout + k119.stderr + f"exit {k119.returncode}\n")
+<     say(f"result: kc127 check exit {a.returncode} (0 wanted), its selftest {s127.returncode} (0 wanted), --mutate=F {m1.returncode}, --mutate=steps {m2.returncode} (1 wanted each), kc119 check on the result {k119.returncode} (1 wanted: it refuses); {time.time() - t0:.0f} s")
+<     if (a.returncode, s127.returncode, m1.returncode, m2.returncode, k119.returncode) == (0, 0, 1, 1, 1):
+---
+>     k135 = sh([PY, SY135, rec, state, "23.0", WTM], env=env)
+>     open(OUT + "/syscheck_kc135_on_result.txt", "w").write(k135.stdout + k135.stderr + f"exit {k135.returncode}\n")
+>     say(f"result: kc143 check exit {a.returncode} (0 wanted), its selftest {s143.returncode} (0 wanted), --mutate=F {m1.returncode}, --mutate=steps {m2.returncode} (1 wanted each), kc135 check on the result {k135.returncode} (1 wanted: it refuses); {time.time() - t0:.0f} s")
+>     if (a.returncode, s143.returncode, m1.returncode, m2.returncode, k135.returncode) == (0, 0, 1, 1, 1):
+216,217c216,217
+<         f"steps {recj.get('steps')}, constraint {recj.get('constraint')}, Delta {recj.get('Delta')}; the k_c 119 source record at D 23.0: |F| {srcj.get('F')}, steps {srcj.get('steps')}, constraint {srcj.get('constraint')}, Delta {srcj.get('Delta')}; "
+<         f"Delta(k_c 127) minus Delta(k_c 119) = {dd}; steps ratio {sratio} (macm3's references at D 23.0: k_c 95 to 103 1.0838, 103 to 111 1.0779, 111 to 119 3653 to 3914 = 1.071; mine k_c 95 to 103 at D 23.0: 3126 to 3387 = 1.0835); {verdict}{(': ' + why) if why else ''}; "
+---
+>         f"steps {recj.get('steps')}, constraint {recj.get('constraint')}, Delta {recj.get('Delta')}; the k_c 135 source record at D 23.0: |F| {srcj.get('F')}, steps {srcj.get('steps')}, constraint {srcj.get('constraint')}, Delta {srcj.get('Delta')}; "
+>         f"Delta(k_c 143) minus Delta(k_c 135) = {dd}; steps ratio {sratio} (references at D 23.0: k_c 119 to 127 3914 to 4179 = 1.0677 (mine), k_c 127 to 135 4179 to 4441 = 1.0627 (win2's)); {verdict}{(': ' + why) if why else ''}; "
+221c221
+< hc(f"finished: {summ}. Raw I1025-win/kc127_d23 after my next push. " + ("The scan (d18_secant.py scan, lambda 0.03 0.04 0.05 0.06 plus a repeat of 0.04, 5 evaluations, 2 processes) starts by itself now." if verdict == "ACCEPTED" else "No scan."))
+---
+> hc(f"finished: {summ}. Raw I1025-win/kc143_d23 after my next push. " + ("The scan (d18_secant.py scan with the Rust block, --b12=rust --b12_threads=2, lambda 0.050 0.055 0.060 plus a repeat of 0.055, 4 evaluations, 2 processes) starts by itself now." if verdict == "ACCEPTED" else "No scan."))
+224c224
+< say("kc127d23_regrid_driver_1025.py done")
+---
+> say("kc143d23_regrid_driver_1025.py done")
