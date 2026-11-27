@@ -1,0 +1,17 @@
+== window: read_lower.py scan 0.070 0.180 (merged: 23.0_r1k050_kmm025 and 23.0_r1k050_kmm025w)
+points 0 in 0.070-0.180; not noise-robust: none
+hybrid signs: 
+float64 sign differs from the hybrid sign at: none
+repeated points: none
+Traceback (most recent call last):
+  File "/Users/nathan/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_leg_lambda/common/in/read_lower.py", line 106, in <module>
+    read(load(sorted(glob.glob(os.path.join(d, "scan_*_p*.jsonl")))), lo, hi)
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nathan/Source/choptuik-large-d-raw-903/I1025-macm3/kc87_leg_lambda/common/in/read_lower.py", line 55, in read
+    rob, non = rd.changes(W)
+               ~~~~~~~~~~^^^
+  File "/Users/nathan/Source/choptuik-large-d-raw-903/I1101-macm3/in/d185_scan_read.py", line 20, in changes
+    x = np.array([r["lam"] for r in S]); ref = max(r["ln"] for r in S)
+                                               ~~~^^^^^^^^^^^^^^^^^^^^
+ValueError: max() iterable argument is empty
+(exit 1)
