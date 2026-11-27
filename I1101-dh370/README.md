@@ -60,7 +60,7 @@ Both processes printed the pin check and the record system (A: |F| 3.1987864632e
 
 # R1 (kappa 0.5) on dh370: the order of the step error, from the root
 
-Machine `dh370-fedora`, session claude-me2, coordinator t5. Issue https://github.com/nmoinvaz/choptuik-large-d/issues/1101, comment 7212257601 (R1 on dh370; its bars below, verbatim) and 7211909730 (R2's root scan, which goes to dh170). Written 2026-11-27 07:26 UTC by the clock, **before R1 starts**. Files: `R1/` (script `run_R1.sh`, unit `i1101r1`, `R1/steps.txt`).
+Machine `dh370-fedora`, session claude-me2, coordinator t5. Issue https://github.com/nmoinvaz/choptuik-large-d/issues/1101, comment 7212257601 (R1 on dh370; its bars below, verbatim) and 7211909730 (R2's root scan, which goes to dh170). Written 2026-11-27 07:25 UTC by the clock (the stamp first pushed, 07:26, was a guess), **before R1 starts**: this README section went to raw as e3364429 and R1 started at 07:25:36 (`R1/steps.txt`). Files: `R1/` (script `run_R1.sh`, unit `i1101r1`, `R1/steps.txt`).
 
 ## Order (t5's hc, 2026-11-27 ~07:19 UTC, the task part, verbatim)
 "1. R1: in your scan worktree ~/Source/choptuik-large-d-1025v (92b9bf53; check ell_refine.py blob 631e5801 and dss_ell.py 5d28c19e), with winb's k_c 127 state and record (raw I1025-win/kc127_d23/, blobs 7a1b150c and eea03461) copied into solver/matter/data/ under their own names and blob-checked, from solver/matter: python ell_refine.py l1kc127wind23 127 l1kc127k050dh370 127 1 23.0 2.0992182200 --kappa 0.5 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma. Python ~/Source/choptuik-large-d-1058b/.venv. 6 threads (OMP, OPENBLAS, MKL, RAYON = 6) beside D 5555's unit i1088a-d5555b (never touch it), nice 10, a systemd user unit, cap 57600 s on the exact pid, no retry. Pilot: when it prints its steps, they must be 5851 +- 2% (5734-5968); otherwise stop it and report.
@@ -129,4 +129,5 @@ The pilot in the order, "when it prints its steps": `ell_refine.py` prints one J
 | r in [3.0, 4.6] once delta_2 is in and \|delta_2\| >= 3e-3 | 45% |
 
 ## Status
-- 2026-11-27 07:26 UTC: bars, pins, gates and scripts written before any R1 evaluation; R1 starts next (unit `i1101r1`).
+- 2026-11-27 07:25 UTC: bars, pins, gates and scripts written and pushed (raw e3364429) before any R1 evaluation.
+- 2026-11-27 07:25:36 UTC: R1 started (unit `i1101r1`, python pid 2984071 under `timeout`, nice 10, 11 threads of the process, OMP/OPENBLAS/MKL/RAYON = 6). Steps: the first `freeze_from` gives 5847 (in 5734-5968); the record's final count follows at the end.
