@@ -57,3 +57,76 @@ Both processes printed the pin check and the record system (A: |F| 3.1987864632e
 
 ## Status
 - 2026-11-27 05:45 UTC: done. The scatter is 1.75e-04 (between t5's 1e-4 and 1e-3); records pushed; the table is posted on #1101.
+
+# R1 (kappa 0.5) on dh370: the order of the step error, from the root
+
+Machine `dh370-fedora`, session claude-me2, coordinator t5. Issue https://github.com/nmoinvaz/choptuik-large-d/issues/1101, comment 7212257601 (R1 on dh370; its bars below, verbatim) and 7211909730 (R2's root scan, which goes to dh170). Written 2026-11-27 07:26 UTC by the clock, **before R1 starts**. Files: `R1/` (script `run_R1.sh`, unit `i1101r1`, `R1/steps.txt`).
+
+## Order (t5's hc, 2026-11-27 ~07:19 UTC, the task part, verbatim)
+"1. R1: in your scan worktree ~/Source/choptuik-large-d-1025v (92b9bf53; check ell_refine.py blob 631e5801 and dss_ell.py 5d28c19e), with winb's k_c 127 state and record (raw I1025-win/kc127_d23/, blobs 7a1b150c and eea03461) copied into solver/matter/data/ under their own names and blob-checked, from solver/matter: python ell_refine.py l1kc127wind23 127 l1kc127k050dh370 127 1 23.0 2.0992182200 --kappa 0.5 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma. Python ~/Source/choptuik-large-d-1058b/.venv. 6 threads (OMP, OPENBLAS, MKL, RAYON = 6) beside D 5555's unit i1088a-d5555b (never touch it), nice 10, a systemd user unit, cap 57600 s on the exact pid, no retry. Pilot: when it prints its steps, they must be 5851 +- 2% (5734-5968); otherwise stop it and report.
+2. When R1 ends: bar 1 (|F| <= 5e-10, steps in range), its record, log and state into I1101-dh370/R1/ and pushed.
+3. Root scan of R1's state with your #1102 build: worktree ~/Source/choptuik-large-d-1102 (d4b6b6ce), PYTHONPATH=~/Source/ellrs-site-1102, d18_secant.py scan --b12=rust --b12_threads=1 at lambda 0.045, 0.050, 0.060, 0.070, 4 processes, 1 thread each, nice 10, --pin of R1's state and record blobs, with the reader and robustness test of your I1101-dh370 scatter run.
+4. Reading per comment 7212257601: delta_1 = root(R1) - 0.045967998 from the bracketing pair; with delta_2 from dh170's R2 scan when it is posted, r = delta_1/(delta_2 - delta_1) and its bar (kappa^4 predicts 3.74; [3.0, 4.6] confirms). Report delta_1 at once even if delta_2 is not in yet.
+Raw: a new section in I1101-dh370/README.md with these bars, written and pushed before R1 starts. No code changes. Report to me when R1 starts (with its steps), when it ends, and when the scan ends; post on #1101 at each."
+
+## Bars (comment 7212257601, verbatim; written by t5 before the run)
+> **Bars, written before the run.**
+> 1. R1 converges: |F| ≤ 5e-10, steps 5851 ± 2% (5734–5968).
+> 2. Δ_R1 is reported beside Δ_R0 = 1.174322502744 and Δ_R2. r for Δ is formed only if |Δ_R1 − Δ_R2| ≥ 2e-6.
+> 3. δ₁ = root(R1) − root(B) and δ₂ = root(R2) − root(B), with root(B) = 0.045967998 (`I1101-dh370/`), each from the
+>    bracketing pair (the 0.045/0.050 pair if it brackets).
+> 4. If |δ₂| ≥ 3e-3 (R2's bar: the step error is real): r = δ₁/(δ₂ − δ₁). κ⁴ predicts 3.74. r in [3.0, 4.6] (about 3σ
+>    at the scatter) confirms κ⁴; outside it, the measured order p, from (0.7ᵖ − 0.5ᵖ)/(0.5ᵖ − 0.35ᵖ) = r, is reported.
+> 5. If |δ₂| ≤ 1e-3, |δ₁| ≤ 1e-3 is expected, and a larger δ₁ is a discrepancy to report.
+> 
+
+The bars are t5's; mine are the gates and predictions below.
+
+## Inputs and pins (all blob-checked; `R1/inputs/` holds copies, the worktree's `solver/matter/data/` the same files)
+| what | blob | where |
+|---|---|---|
+| winb's k_c 127 D 23.0 state (kappa 0.7, 4179 steps, Delta 1.174322923415951) | **7a1b150c** | `inputs/A/` = raw `I1025-win/kc127_d23/sol_l1kc127wind23_D23.0000.npy` (the copy made for the scatter run) |
+| its record | **eea03461** | `inputs/A/l1kc127wind23.jsonl` |
+| scan worktree `~/Source/choptuik-large-d-1025v` | **92b9bf53**; `ell_refine.py` **631e5801**, `dss_ell.py` **5d28c19e** | R1 (`ell_refine.py`) |
+| Rust worktree `~/Source/choptuik-large-d-1102` (wip/ell1-rust-b12, bd424726 is an ancestor) | **d4b6b6ce**; `d18_secant.py` **9706e506**, `ell_b12rs.py` **a1fff74f**, `ellrs/build.sh` **e6254c9b**; the build `~/Source/ellrs-site-1102` (`ellrs avx2`) | the scan |
+| reader and its change finder | `in/read_lower.py` **89309d3c**, `in/d185_scan_read.py` **7c9d400f** | the scatter run's (this folder) |
+| state B's root, the reference | root(B) = **0.045967998** (this README, the scatter run; det-linear from B's (0.045, 0.050) pair) | |
+Python `~/Source/choptuik-large-d-1058b/.venv` (3.14.10, multidouble 5.1.0 avx2). R1's own output names (`sol_l1kc127k050dh370_D23.0000.npy`, `l1kc127k050dh370.jsonl`) did not exist before the start.
+
+## Commands (`R1/run_R1.sh`, unit `i1101r1` under systemd-inhibit; each step stamped in `R1/steps.txt`; stops at the first failure with `R1/STOP.txt`)
+1. R1, from `solver/matter` of the scan worktree: `nice -n 10 /usr/bin/time -v timeout -k 120 57600 python -u ell_refine.py l1kc127wind23 127 l1kc127k050dh370 127 1 23.0 2.0992182200 --kappa 0.5 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma > R1/R1.log`, `OMP/OPENBLAS/MKL/RAYON_NUM_THREADS=6`. `timeout` signals its child, the python pid; no retry.
+2. When it exits: copy record, state and log into `R1/`; bar 1 by `R1/gate_R1.py` (D 23.0, k_c 127, kappa 0.5, |F| <= 5e-10, steps 5734 to 5968); push the folder to raw (`push_1101.sh`) **whatever the gate says**; the scan runs only if the gate passes.
+3. Selftests of the 1102 build on its first use: `d18_secant.py selftest` (0) and `--mutate=half|norobust|nosigncheck` (1 each), `ell_b12rs.py selftest` (0) and `--mutate=nolam|harm` (1 each), `read_lower.py selftest` (0) and `--mutate=shift|round2` (1 each).
+4. The scan: `d18_secant.py scan R1/l1kc127k050dh370.jsonl R1/sol_l1kc127k050dh370_D23.0000.npy 23.0 <lambda> R1/scan/scan_D23.0_p<i>.jsonl --b12=rust --b12_threads=1 --pin=<state blob>,<record blob>`, `P4_WT_MATTER=<1102>/solver/matter`, `PYTHONPATH=~/Source/ellrs-site-1102`, one process per lambda (0.045, 0.050, 0.060, 0.070), 1 thread each (OMP, OPENBLAS, MKL, VECLIB, RAYON = 1), nice 10. Robust = both noise signs equal the hybrid sign and dln <= 0.1 (the scatter run's test).
+5. Reading: `read_lower.py R1/scan 0.045 0.070` and `R1/results_R1.py` (`R1/results_R1.md`): the table, the bracketing pair (the (0.045, 0.050) one if it brackets, else the robust sign change; several: all listed, none chosen), root(R1) det-linear from it, delta_1 = root(R1) - 0.045967998, Delta_R1 beside Delta_R0 = 1.1743225027439044 (win2's R0, record d1a3a641, = state B), and, when given (`--delta2=`, `--root2=`, `--dR2=`), bars 2 and 4 (r, and the order p from (0.7^p - 0.5^p)/(0.5^p - 0.35^p) = r).
+
+## Gates run before the start (all in `R1/pre/`, `R1/steps_check.txt`)
+| check | result |
+|---|---|
+| step counts from `freeze_from` on the state (`steps_check.py`: ell_refine's first freeze, same constructor) at kappa 0.7 / 0.5 / 0.35 and a 0.6 control | **4179** (the record's) / **5847** (in 5734-5968; 5851 is 4179 x 0.7/0.5 rounded) / 8351 (R2: 8190-8525) / 4871 (the control, outside the R1 range, as it must be) |
+| `d18_secant.py selftest` (9706e506) and `--mutate=half`, `norobust`, `nosigncheck` | exit 0, 1, 1, 1 |
+| `ell_b12rs.py selftest`, `--mutate=nolam`, `--mutate=harm` | exit 0, 1, 1 (block 12 at lambda 0.9: 3666 of 3666 entries bit for bit) |
+| `read_lower.py selftest`, `--mutate=shift`, `--mutate=round2` | exit 0, 1, 1 |
+| a scan command with a wrong state pin (`--pin=deadbeef,...`, `--b12=rust --b12_threads=1`) | refused, exit 3 (the command line parses and the pin gate fires) |
+| `gate_R1.py` on the kappa 0.7 records A and B; on a planted passing record; with `--mutate=f|steps` | exit 1, 1; 0; 1, 1 |
+| `results_R1.py selftest` (planted root 0.061 read as 0.060996; planted kappa^4 deltas read r 3.7394 and p 4.000; planted cubic read p 3.000) and `--mutate=r|pair` | exit 0; 1, 1 |
+The pilot in the order, "when it prints its steps": `ell_refine.py` prints one JSON line, with the steps, only when it ends; the first `freeze_from` is checked above (5847), and bar 1 holds the final count (R0's steps did not move in its re-solve: 4179 before and after).
+
+## Notes and conflicts named
+- **Nice:** t5's standing yield rule (my compute at nice 19 while an `i1088a-*` unit runs) and this order's "nice 10 beside D 5555" differ. I follow the order (nice 10, no yield script) and say so; nice can only be raised afterwards, not lowered. D 5555 (nice 10, 6 threads) is not touched.
+- **Reading bias:** root(B) is the det-linear value of the (0.045, 0.050) pair, which may sit above the true root (the scatter run's caveat). If root(R1) comes from another pair, delta_1 carries the difference of the two windows' estimator biases, which I did not measure. I give delta_1 as the order says and report the pair; the estimator range of the reader (`read_lower_R1.txt`) is given beside it.
+- Raw output is never written outside this folder, except `ell_refine.py`'s own `solver/matter/data/` files, which are copied here at the end and pushed (R1 writes its state only at its end).
+
+## Predictions (mine, registered before R1 starts; information, not pass rules)
+| prediction | probability |
+|---|---|
+| R1 converges (bar 1: \|F\| <= 5e-10, steps in 5734-5968) | 85% (steps 97%; \|F\| near the floor of R0's 3.2e-10, 12% it lands above 5e-10) |
+| R1 wall time (6 threads, nice 10, beside D 5555's 6 threads on 6 cores / 12 threads; R0 took 4.6 h on win2 with 4179 steps) | 8 to 14 h, median 10 h (60%); under 8 h: 20%; t5's 6-8 h holds only if D 5555 is in a serial phase |
+| root(R1) bracketed by one robust pair | 85% (the pairs (0.050, 0.060) and (0.060, 0.070) are the likely ones: 45% together; (0.045, 0.050): 15%; above 0.070: 5%) |
+| delta_1 >= 3e-3 / between 1e-3 and 3e-3 / <= 1e-3 | 55% / 20% / 25% (#1103's inference gives about 0.015) |
+| all four scan points robust (dln <= 0.1) | 80% (a point within 1e-3 of the root can carry dln up to 0.3) |
+| scan wall time (4 processes, 1 thread, Rust block 12) | 1.0 to 2.0 h (60%); the Rust block was 678 s on 4 threads at lambda 0.046 and kappa 0.7, and R1 has 1.4x the steps |
+| r in [3.0, 4.6] once delta_2 is in and \|delta_2\| >= 3e-3 | 45% |
+
+## Status
+- 2026-11-27 07:26 UTC: bars, pins, gates and scripts written before any R1 evaluation; R1 starts next (unit `i1101r1`).
