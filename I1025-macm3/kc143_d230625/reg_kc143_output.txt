@@ -1,0 +1,32 @@
+(1) regrids
+  k_c 111 D 23.0625: wall 2102 s, peak RSS 4.781 GiB, steps 3656, steps ratio 1.078, constraint ratio 0.694, Delta shift -6.4617e-06, constraint 3.6419e-03
+  k_c 119 D 23.0625: wall 2663 s, peak RSS 5.619 GiB, steps 3916, steps ratio 1.071, constraint ratio 0.623, Delta shift -1.3753e-06, constraint 2.2703e-03
+  k_c 127 D 23.0625: wall 2853 s, peak RSS 7.513 GiB, steps 4180, steps ratio 1.067, constraint ratio 0.686, Delta shift -1.8781e-06, constraint 1.5567e-03
+  k_c 135 D 23.0625: wall 4124 s, peak RSS 7.423 GiB, steps 4442, steps ratio 1.063, constraint ratio 0.678, Delta shift -3.7646e-06, constraint 1.0549e-03
+  k_c 135 D 23.125: wall 3574 s, peak RSS 6.609 GiB, steps 4445, steps ratio 1.063, constraint ratio 0.678, Delta shift -2.5188e-06, constraint 1.1211e-03
+(2) roots
+  D 23.0625 roots: 95 -0.05862410, 103 -0.02851243, 111 -0.01247909, 119 -0.00351666, 127 +0.00364182, 135 +0.00939087
+  steps in k_c: +0.030112, +0.016033, +0.008962, +0.007158, +0.005749; ratios 0.5325, 0.5590, 0.7987, 0.8031
+  D 23.125 roots: 127 -0.04190846, 135 -0.03629764; shift 127->135 +0.005611 (D 23.0625: +0.005749), growth 0.9760
+  slopes over 23.0625-23.125: 127 -0.72880, 135 -0.73102 (rise of the size 0.00221)
+  zeros by the line: 127 23.06750, 135 23.07535, step +0.00785; earlier zero steps +0.02915 +0.02203 +0.01616 +0.01130 +0.00993 +0.00785 (ratios .7556 .7334 .6997 .8782 .7907)
+(3) scan and secant times
+  scan k_c 135 D 23.0625: 5 evaluations, seconds [711, 962, 963, 969, 970]
+  scan k_c 135 D 23.125: 6 evaluations, seconds [970, 971, 972, 972, 973, 975]
+  scan k_c 127 D 23.125: 6 evaluations, seconds [754, 755, 762, 763, 775, 777]
+  secant k_c 127 D 23.0625: evaluation seconds [580, 580, 582, 582, 581, 582, 581], run wall 4070 s, peak RSS 5.11 GiB
+  secant k_c 127 D 23.125: evaluation seconds [582, 581, 581, 580, 581, 580, 581], run wall 4066 s, peak RSS 4.22 GiB
+  secant k_c 135 D 23.0625: evaluation seconds [717, 714, 714, 714, 714], run wall 3573 s, peak RSS 5.62 GiB
+  secant k_c 135 D 23.125: evaluation seconds [1468, 1657, 1592, 1588, 1542, 1499], run wall 9346 s, peak RSS 5.36 GiB
+(4) scenarios for the k_c 143 roots: shift = ratio x the last shift (D 23.0625: +0.005749; D 23.125: +0.005611 x growth g of the shift with D, 0.976 at 127 -> 135)
+  ratio 0.60: root(23.0625) +0.012840, root(23.125) -0.032931, slope -0.73234, zero by the line 23.08003
+  ratio 0.70: root(23.0625) +0.013415, root(23.125) -0.032370, slope -0.73256, zero by the line 23.08081
+  ratio 0.75: root(23.0625) +0.013703, root(23.125) -0.032090, slope -0.73267, zero by the line 23.08120
+  ratio 0.80: root(23.0625) +0.013990, root(23.125) -0.031809, slope -0.73279, zero by the line 23.08159
+  ratio 0.85: root(23.0625) +0.014278, root(23.125) -0.031528, slope -0.73290, zero by the line 23.08198
+  ratio 0.90: root(23.0625) +0.014565, root(23.125) -0.031248, slope -0.73301, zero by the line 23.08237
+  ratio 1.00: root(23.0625) +0.015140, root(23.125) -0.030687, slope -0.73323, zero by the line 23.08315
+  ratio 0.80, growth 0.900 (D 23.125 shift = 0.80 x 0.005749 x g): root(23.125) -0.032158, zero by the line 23.08145
+  ratio 0.80, growth 0.976 (D 23.125 shift = 0.80 x 0.005749 x g): root(23.125) -0.031809, zero by the line 23.08159
+  ratio 0.80, growth 1.050 (D 23.125 shift = 0.80 x 0.005749 x g): root(23.125) -0.031468, zero by the line 23.08173
+  t5's: root(23.0625) +0.0139 +- 0.003, root(23.125) -0.0319 +- 0.003: zero by the line 23.08147 (slope -0.73280)
