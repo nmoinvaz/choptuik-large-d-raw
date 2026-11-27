@@ -4,3 +4,31 @@ bracket (-0.045, -0.04), tol 5e-05, maxev 20, mode matrix fast (jac), block 12 r
 block 12 by ellrs (avx2, products dgemm, 1 threads)
   lam -0.045 (lo): hybrid +1 ln|det| -3869.2008669854, noise [1.0, 1.0] dln None, robust True; float64 +1 -3869.9633980685 (2567 s [752, 1777, 38])
   lam -0.04 (hi): hybrid -1 ln|det| -3870.2615682064, noise [-1.0, -1.0] dln None, robust True; float64 -1 -3870.2758810549 (2557 s [809, 1710, 38])
+  lam -0.04128587736632503 (interior): hybrid -1 ln|det| -3871.2330994084, noise [-1.0, -1.0] dln 3.04e-05, robust True; float64 -1 -3870.9900661956 (1946 s [618, 1283, 46])
+  lam -0.04197826756828158 (interior): hybrid +1 ln|det| -3873.3399206658, noise [1.0, 1.0] dln 2.62e-04, robust True; float64 +1 -3871.1093749106 (1958 s [588, 1336, 35])
+  lam -0.0419031878235283 (interior): hybrid -1 ln|det| -3875.9530571741, noise [-1.0, -1.0] dln 3.55e-03, robust True; float64 -1 -3871.0928258642 (1998 s [611, 1351, 36])
+  lam -0.0419281878235283 (interior): hybrid +1 ln|det| -3874.6080237874, noise [1.0, 1.0] dln 9.28e-04, robust True; float64 +1 -3870.8853399494 (2332 s [768, 1529, 36])
+root: status tol (-), bracket [-0.0419281878235283, -0.0419031878235283] width 2.500e-05, signs [1.0, -1.0], det-linear -0.041908354911991116, Brent -0.0419031878235283, 6 evaluations, 8235 s
+	Command being timed: "/home/nathan/Source/choptuik-large-d-1058b/.venv/bin/python -u /home/nathan/Source/choptuik-large-d-1101k/solver/matter/d18_secant.py run /home/nathan/Source/choptuik-large-d-raw-p4/I1104-dh170/in/l1kc127Lmacm3.jsonl /home/nathan/Source/choptuik-large-d-raw-p4/I1104-dh170/in/sol_l1kc127Lmacm3_D23.1250.npy 23.125 -0.045 -0.04 /home/nathan/Source/choptuik-large-d-raw-p4/I1104-dh170/secant_070.jsonl --tol=5e-5 --maxev=20 --b12=rust --b12_threads=1 --ends=/home/nathan/Source/choptuik-large-d-raw-p4/I1104-dh170/scan_070_all.jsonl --pin=e1dccb3c,58d3b080"
+	User time (seconds): 8168.36
+	System time (seconds): 21.60
+	Percent of CPU this job got: 99%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:17:27
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 4802164
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 5467572
+	Voluntary context switches: 6147
+	Involuntary context switches: 54154
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 208
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
