@@ -131,3 +131,24 @@ threads; tol 1e-6 for K50, K25, K70, w10 and w001 (the order bar reads differenc
 scanner control, bar 2). K35's root keeps its settings. Bars unchanged.
 Further amendment, 22:31 UTC by the clock: K35's ddm root was stopped after its first evaluation (kept as
 `B/root_l1kc55k035m_ddm_stopped.*`) and restarted with the amended settings (fast block 12, 2 threads, tol 1e-6).
+
+## Results so far, 2026-11-27 23:17 UTC by the clock
+
+**Pinning test (`A/ne_u40.log`, state `A/ne/sol_ne1_D16.0000.npy`).** One outer step from U40: the full Gauss-Newton
+step on the pair diverges in the chord steps (|F| 1.7e-6); half of it gives |F| 1.155e-10 with Delta 1.032106 (+0.0304
+from U40), its own 2603-step map. At that state the pair is weaker (s/s_max 3.3e-10, 7.5e-11) and the next
+Gauss-Newton step is larger (|dz| 0.147, dDelta +0.095). The run stopped by its rule (|U_w^T F| 1.785e-10 -> 1.150e-10,
+less than 2x). Reading: not reachable this way; and a state 0.03 above U40 in Delta has a lower |F|.
+
+**Task B re-solves** (`B/`, from U40, `ell_refine.py` 631e5801, 2 threads):
+
+| run | kappa | steps | \|F\| | Delta | Delta - U40 | constraint | lam_gauge | s | state blob |
+|---|---|---|---|---|---|---|---|---|---|
+| K70 | 0.7 | 2565 | 1.7833e-10 | 1.001713404637 | -2.21e-8 | 1.84828e-4 | 0.83497762 | 770 | f3b84ff6 |
+| K50 | 0.5 | 3590 | 1.8650e-10 | 1.001713422184 | -4.54e-9 | 1.84390e-4 | 0.83497782 | 762 | 2e3aa01c |
+| K35 | 0.35 | 5124 | 1.8869e-10 | 1.001713421050 | -5.67e-9 | 1.84270e-4 | 0.83497783 | 1432 | 9a05efa5 |
+| K25 | 0.25 | 7173 | 1.8936e-10 | 1.001713420785 | -5.94e-9 | 1.84241e-4 | 0.83497783 | 2183 | 80dce58c |
+
+Bar 1 passes for all four. K35's root (`B/root_l1kc55k035m.*`, fast block, 2 threads, tol 1e-6): status nonrobust
+(its 8th point, at 2.2489674, has dln 0.43), robust bracket [2.2489585, 2.2496560] with opposite signs, det-linear
+2.2489667.
