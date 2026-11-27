@@ -1,0 +1,36 @@
+pins: state 85c1d8f303907a82c540e8b31f5ba9add5169e84 (wanted 85c1d8f3), stub 91d66dd018661587638111a4a36b8f6cc237e826 (wanted 91d66dd0)
+D 16.0 k_c 55: |F| 1.8882582733e-10 (record 1.8882179937e-10), steps 2400 (record 2400): the record system
+bracket (2.238, 2.25), tol 1e-07, maxev 20, mode matrix fast (jac), block 12 rust, noise 1e-15, dln <= 0.1, sol_l1kc55u050_D16.0000.npy
+block 12 by ellrs (avx2, products dgemm, 1 threads)
+  lam 2.238 (lo): hybrid -1 ln|det| -1587.7848053670, noise [-1.0, -1.0] dln 2.20e-07, robust True; float64 -1 -1587.9310886746 (154 s [56, 94, 5])
+  lam 2.25 (hi): hybrid +1 ln|det| -1586.7256479856, noise [1.0, 1.0] dln 2.63e-07, robust True; float64 +1 -1586.5643421533 (126 s [38, 84, 4])
+  lam 2.2410896461576884 (interior): hybrid -1 ln|det| -1588.0269482835, noise [-1.0, -1.0] dln 2.19e-07, robust True; float64 -1 -1588.3053431970 (126 s [38, 85, 3])
+  lam 2.245544823078844 (interior): hybrid +1 ln|det| -1589.3143189596, noise [1.0, 1.0] dln 3.37e-07, robust True; float64 +1 -1588.4252113272 (131 s [37, 90, 3])
+  lam 2.2445811764028734 (interior): hybrid -1 ln|det| -1590.0840778474, noise [-1.0, -1.0] dln 1.88e-07, robust True; float64 +1 -1589.5043626354 (127 s [34, 90, 4])
+  lam 2.2448862007051726 (interior): hybrid -1 ln|det| -1592.6947396501, noise [-1.0, -1.0] dln 3.96e-06, robust True; float64 +1 -1589.0551214309 (126 s [36, 86, 4])
+  lam 2.2449095972613335 (interior): hybrid +1 ln|det| -1598.2311941536, noise [1.0, 1.0] dln 1.03e-03, robust True; float64 +1 -1589.0213561267 (129 s [38, 87, 4])
+  lam 2.244909505429695 (interior): hybrid -1 ln|det| -1602.8393223618, noise [-1.0, -1.0] dln 9.86e-02, robust True; float64 +1 -1589.0225512581 (126 s [36, 86, 4])
+root: status tol (-), bracket [2.244909505429695, 2.2449095972613335] width 9.183e-08, signs [-1.0, 1.0], det-linear 2.24490950633626, Brent 2.244909505429695, 8 evaluations, 1046 s
+	Command being timed: "/home/nathan/Source/choptuik-large-d-1058b/.venv/bin/python -u d18_secant.py run /home/nathan/Source/choptuik-large-d-raw-p4/I1105-dh170/step1b/l1kc55u050.jsonl /home/nathan/Source/choptuik-large-d-raw-p4/I1105-dh170/step1b/sol_l1kc55u050_D16.0000.npy 16 2.238 2.250 /home/nathan/Source/choptuik-large-d-raw-p4/I1105-dh170/step1b/root_u050.jsonl --tol=1e-7 --maxev=20 --b12=rust --b12_threads=1 --pin=85c1d8f3,91d66dd0"
+	User time (seconds): 1034.39
+	System time (seconds): 5.58
+	Percent of CPU this job got: 99%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 17:29.91
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 989592
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 1959032
+	Voluntary context switches: 5259
+	Involuntary context switches: 8993
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 264
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

@@ -1,0 +1,13 @@
+pass planted T3 -1.50e-05: <= 1e-4
+pass planted T3 -9.90e-05: <= 1e-4
+pass planted T3 -2.00e-04: between
+pass planted T3 -3.01e-04: >= 3e-4
+pass planted T3 -4.00e-04: >= 3e-4
+pass planted T3 +1.20e-04: between
+pass planted T5 +2e-4: not as predicted
+pass a state without a root: T3 not formed
+pass no U40 root: nothing formed
+pass |F| 2e-8: not rooted
+pass status maxev: not read
+pass status tol with both robust: read
+selftest: all cases read as written

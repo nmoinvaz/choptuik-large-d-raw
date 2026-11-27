@@ -1,0 +1,26 @@
+2026-11-27 08:11:55 UTC [u030] pins ok: regrid worktree 48c36355 (ell_refine.py 631e5801, dss_ell equal 505d8399), source state 94c8b048 record 5be40af4, scanner worktree d4b6b6ce (d18_secant.py 9706e506); u0 0.03
+2026-11-27 08:11:55 UTC [u030] re-solve starts: nice -n 10 timeout 10800 /home/nathan/Source/choptuik-large-d-1058b/.venv/bin/python -u ell_refine.py l1kc55Fb1025 55 l1kc55u030 55 1 16 2.2426280416106374 --kappa 0.7 --u0 0.03 --Ks 30 --tol 1e-12 --wait 60 --no-gamma
+2026-11-27 08:11:55 UTC [u040] pins ok: regrid worktree 48c36355 (ell_refine.py 631e5801, dss_ell equal 505d8399), source state 94c8b048 record 5be40af4, scanner worktree d4b6b6ce (d18_secant.py 9706e506); u0 0.04
+2026-11-27 08:11:55 UTC [u040] re-solve starts: nice -n 10 timeout 10800 /home/nathan/Source/choptuik-large-d-1058b/.venv/bin/python -u ell_refine.py l1kc55Fb1025 55 l1kc55u040 55 1 16 2.2426280416106374 --kappa 0.7 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma
+2026-11-27 08:11:55 UTC [u050] pins ok: regrid worktree 48c36355 (ell_refine.py 631e5801, dss_ell equal 505d8399), source state 94c8b048 record 5be40af4, scanner worktree d4b6b6ce (d18_secant.py 9706e506); u0 0.05
+2026-11-27 08:11:55 UTC [u050] re-solve starts: nice -n 10 timeout 10800 /home/nathan/Source/choptuik-large-d-1058b/.venv/bin/python -u ell_refine.py l1kc55Fb1025 55 l1kc55u050 55 1 16 2.2426280416106374 --kappa 0.7 --u0 0.05 --Ks 30 --tol 1e-12 --wait 60 --no-gamma
+2026-11-27 08:50:19 UTC [u050] re-solve exit 0, wall 2304 s (0 wanted; 124 is the cap)
+2026-11-27 08:50:19 UTC [u050] record: {"u0":0.05,"F":1.888217993682712E-10,"F_start":1.9353503620730657E-10,"steps":2400,"Delta":1.0017132544654048,"constraint":0.00018482095429946037,"seconds":2301}; state 85c1d8f3, record 91d66dd0
+2026-11-27 08:50:19 UTC [u050] d18_secant.py selftest exit 0 (0 wanted)
+2026-11-27 08:50:19 UTC [u050] root starts: d18_secant.py run l1kc55u050 16 2.238 2.250 --tol=1e-7 --maxev=20 --b12=rust --b12_threads=1 --pin=85c1d8f3,91d66dd0
+2026-11-27 08:51:12 UTC [u040] re-solve exit 0, wall 2357 s (0 wanted; 124 is the cap)
+2026-11-27 08:51:12 UTC [u040] record: {"u0":0.04,"F":1.7851041998005574E-10,"F_start":1.785121754644191E-10,"steps":2565,"Delta":1.0017134267209413,"constraint":0.0001848253281852984,"seconds":2354}; state 491eb1e4, record 12a42fc8
+2026-11-27 08:51:12 UTC [u040] d18_secant.py selftest exit 0 (0 wanted)
+2026-11-27 08:51:12 UTC [u040] root starts: d18_secant.py run l1kc55u040 16 2.238 2.250 --tol=1e-7 --maxev=20 --b12=rust --b12_threads=1 --pin=491eb1e4,12a42fc8
+2026-11-27 08:53:12 UTC [u030] re-solve exit 0, wall 2477 s (0 wanted; 124 is the cap)
+2026-11-27 08:53:12 UTC [u030] record: {"u0":0.03,"F":2.562437918667336E-10,"F_start":3.7277104599787946E-10,"steps":2778,"Delta":1.001713513723048,"constraint":0.00018459971924812948,"seconds":2474}; state 939aca10, record 46b7ea52
+2026-11-27 08:53:12 UTC [u030] d18_secant.py selftest exit 0 (0 wanted)
+2026-11-27 08:53:12 UTC [u030] root starts: d18_secant.py run l1kc55u030 16 2.238 2.250 --tol=1e-7 --maxev=20 --b12=rust --b12_threads=1 --pin=939aca10,46b7ea52
+2026-11-27 09:07:49 UTC [u050] root exit 0 (0: tol reached; 4: maxev or non-robust interior; 2: refused; 3: not the record system), 1050 s; {"status":"tol","bracket":[2.244909505429695,2.2449095972613335],"width":9.183163873771605E-8,"signs":[-1.0,1.0],"robust":[true,true],"lam_lin":2.24490950633626,"lam_brent":2.244909505429695,"n_eval":8}
+2026-11-27 09:07:49 UTC [u050] done
+2026-11-27 09:13:03 UTC [u040] root exit 0 (0: tol reached; 4: maxev or non-robust interior; 2: refused; 3: not the record system), 1311 s; {"status":"tol","bracket":[2.2449017139438805,2.2449017639438806],"width":5.000000014021566E-8,"signs":[-1.0,1.0],"robust":[true,true],"lam_lin":2.2449017148462262,"lam_brent":2.2449017139438805,"n_eval":9}
+2026-11-27 09:13:03 UTC [u040] done
+2026-11-27 09:15:30 UTC [u030] root exit 4 (0: tol reached; 4: maxev or non-robust interior; 2: refused; 3: not the record system), 1338 s; {"status":"nonrobust","bracket":[2.2429536198572086,2.2429752385895823],"width":0.00002161873237360723,"signs":[-1.0,1.0],"robust":[true,true],"lam_lin":2.242975179639226,"lam_brent":2.2429752385895823,"n_eval":8}
+2026-11-27 09:15:30 UTC [u030] done
+2026-11-27 09:16:48 UTC [src] ADDED control starts (not ordered): d18_secant.py run in/l1kc55Fb1025.jsonl in/sol_l1kc55Fb1025_D16.0000.npy 16 2.238 2.250 --tol=1e-7 --maxev=20 --b12=rust --b12_threads=1 --pin=94c8b048,5be40af4
+2026-11-27 09:30:53 UTC [src] source root exit 4, 845 s; {"status":"nonrobust","bracket":[2.2440423617666516,2.244131961194197],"width":0.00008959942754538375,"signs":[-1.0,1.0],"robust":[true,true],"lam_lin":2.244042419973036,"lam_brent":2.2440423617666516,"n_eval":9}
