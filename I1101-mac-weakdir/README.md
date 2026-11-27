@@ -121,3 +121,11 @@ band; at most 6 outer steps; stops when one cuts |U_w^T F| by less than 2x). Rea
   solving; its Delta is reported against U40's.
 - the run stops with |U_w^T F| >= 5e-11: not reachable this way (the valley bends away), reported as measured.
 - between: reported as measured.
+
+## Amendment, 2026-11-27 22:30 UTC by the clock (before the runs it changes)
+
+K35's root (started 22:20 with block 12 ddm, 1 thread) takes 571 s per evaluation (528 s in block 12; the horizon
+segment has 1356 steps), so the queue would take about 8 h. For the roots not yet started (U40, K50, K25, K70, w10,
+w001): block 12 `--b12=fast` (ell_fastdd, the same double-double block to 4e-25 per d18_secant's docstring) and 2 BLAS
+threads; tol 1e-6 for K50, K25, K70, w10 and w001 (the order bar reads differences of 3e-3 and up), 1e-7 for U40 (the
+scanner control, bar 2). K35's root keeps its settings. Bars unchanged.
