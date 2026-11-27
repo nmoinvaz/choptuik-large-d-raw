@@ -43,3 +43,25 @@ First stop: the rls h5..h11 stage's `timeout 6h` (started about 08:05 UTC) `time
 - The tail falls from h15 by about 1e2 or more per harmonic, h21's change at most about 1e-23, h23 released with a pending dDelta at most about 1e-26 and no step: no turn. The kmax rule at the end (exit 0).
 - Stop rules (amended): stop and report when a qq inner solve does not converge, when a harmonic's line search fails at every trial, or when an outer step is 3x its harmonic's first. A qd inner floor that hands over to qq is logged, not stopped. A qq floor at h13 outer 0 right after an M resample is logged; a floor above 1e-48 at any later outer step stops the run.
 - Reported: the gated ks, h13's re-converge, the final Delta, each stage's time, the k* stage and the kmax rule's output. Times from `date -u`.
+
+## Result of the M 32 stages (the job ended 2026-11-27 17:58:12 UTC, "job rc 0"; 06:31:39 - 17:58:12, 41193 s = 11 h 27 min)
+
+By script from `run.log`, `pre.log`, `jump/jump.log`, `*/rls.log`, `*/release_ls.jsonl` and `hold_timeouts.log`.
+
+- **The guess:** max |F| per block (double-double) 8.2e-17, 1.0e-16, 9.6e-17, 9.7e-17, 1.1e-16, 5.3e-17, 5.2e-18 (12 s, 1085 Taylor steps, x_l 0.7062221251334241, L 20.000 by script).
+- **The jump** (rc 0, 07:54:04): **4856 s** (06:33:08 - 07:54:04): the dd stage 5 iterations of about 735 s (the 5th rejected at |F| 1.977e-22, lam 0, the floor), then 1 qd chord step 1.350e-20 -> 1.812e-26 in 20 s; Delta 1.645190211705390837094174007454207108275; end state od max |F| 1.812e-26; kc+20, ks+200 and steps-halved |dF| all 3.7e-55 (the quad-double check's floor), below the bar 1e-25.
+- **The downward ks gate** from ks0 9600 (07:54:04 - 08:05:43, 699 s): **gated ks 8600** (1.075 n; 8600 -> 8700 2.59e-68 met, 8500 -> 8600 2.84e-53 over the bar; the control: Delta + 1e-40 at ks 8600 changes the residual by 1.62e-45, must exceed 1e-64: fires).
+- **Stages (wall):** rls h5..h11 **25493 s** (08:05:43 - 15:10:36, 7 h 5 min, past the stage's `timeout 6h`: the held timeout, `rc 124` logged, the h11 state present); rls13 (h13) **10055 s** (15:10:37 - 17:58:12, 2 h 48 min, inside its `timeout 4h`, which was held anyway).
+
+| harmonic | change in Delta (outers) | pending dDelta at release | outer walls (s) |
+|---|---|---|---|
+| h5 | +4.5166e-10 (o0), -3.6406e-17 | +5.10e-32 (outer 2) | 3760, 2725 |
+| h7 | +1.4083e-10 (o0), +1.7742e-18 | +2.88e-33 (outer 2) | 3594, 2716 |
+| h9 | -2.6891e-11 (o0), +3.6285e-18 | +6.36e-30 (outer 2) | 4452, 2649 |
+| h11 | +4.307e-14 (o0) | +3.93e-20 (outer 1) | 2285 |
+| h13 | **+1.5829e-14** (o1; o0 the qd outer floored with no step; o2 -2.4916e-22) | +1.42e-41 (outer 3) | 3206, 3787, 2273 |
+
+- **Delta after h13 (M 32, ks 8600): 1.645190212271047273404497925102653469013** (rls13's last logged Delta); the full system's qd check max |F| 9.93e-56; h13's change +1.583e-14. State `rls13/release_ls_h13_D8000.0000.npz`, blob a40d23db09012cc452651921a81b81e392ae9ee7.
+- **Bars:** the jump converges and its kc+20 line is below its bar: met; the downward ks gate passes at 8600: met (expected about 8700: 1.075 n instead of 1.09 n); h5..h13 each released: met. h13 outer 0 (qd) floored above its target (|F| 1.64e-35 against 5.71e-38) and handed to qq (logged); qq outer 1 converged in 4 steps (|F| 2.79e-59); no stop rule hit.
+- **The hold on its timeouts:** `hold_timeouts.log`: the 6h rls stage's timeout 95515 stopped 09:34:45, its child ended 15:10:36 (the continued timeout exited 124, which the script only logged); the 4h rls13 timeout 51072 stopped 15:11:06, the child ended 17:58:12; the instance ended itself on the "job rc" line at 17:58:13.
+- The M 48 tail script (`tools3/d8000tail_mm5.sh`, armed 15:14:03) starts on this state: its gate, tail and k* stage are the next sections.
