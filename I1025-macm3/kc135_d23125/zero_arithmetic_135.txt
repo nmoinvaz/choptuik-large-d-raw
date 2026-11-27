@@ -1,0 +1,11 @@
+k_c 135 roots: D 23.0625 +0.00939087 [0.00937845, 0.00965440]; D 23.125 -0.03629764 [-0.03629955, -0.03629455]
+k_c 127 roots: D 23.0625 +0.00364182; D 23.125 -0.04190846
+slope per unit D: k_c 135 -0.73102, k_c 127 -0.72880
+zero by the line through the two roots: k_c 135 D 23.07535, k_c 127 D 23.06750, step +0.00785
+zero over the four bracket-end combinations: 23.07533 to 23.07563
+k_c 127-to-135 shift of the root: D 23.0625 +0.005749, D 23.125 +0.005611, growth factor 0.9760
+registered root (mine): -0.034359 +- 0.001875, interval (-0.036234, -0.032484); read -0.03629764, difference from the centre -0.001939, from the nearer end -6.35e-05, inside False
+t5's rule alone (the k_c 127 root at D 23.125 plus the shift at D 23.0625): -0.036159; read minus it -0.000138; t5's quoted -0.0362: read minus it -0.000098
+registered slope magnitude below k_c 127's 0.72880 (75%): read 0.73102, False
+registered zero in (23.0745, 23.0770) (65%): read 23.07535, True; the register's arithmetic examples 23.07539 (slope 0.7288), 23.07592 (0.70), 23.07652 (0.67); t5's quoted 23.0754-23.0765: read -0.00005 from its lower end
+sign change between the two D and the zero between them: True
