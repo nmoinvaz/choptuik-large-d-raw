@@ -88,3 +88,8 @@ By script from `tail/job.log`, `tail/rls.log`, `tail/release_ls.jsonl` and `tail
 - **The kmax rule** (`tools3/kmax_rule.py`, blob 196f12a5; run 13:55:57 UTC): `c19 +1.196e-22, c21 +1.541e-24, r 0.0129 (bar 0.05), the geometric remainder past h21 2.01e-26 (err_tail's, information); h23: 0 steps, pending +1.32e-27: kmax 23 suffices`, **exit 0** (the h25 extension is not taken).
 - **Bars:** the ks gate at the M 48 start passes at 4717: yes; the h13 re-converge about 1e-25 or less: -4.30e-26, met; the tail falls from h15 by about 1e2 or more per harmonic: h15/h17 = 185, h17/h19 = 617, h19/h21 = 78 (D 2828: 183, 598, 77); h21's change 1.54e-24 (at most about 1e-23): met;
   h23 released with pending +1.32e-27 and no step, no turn: met; the kmax rule exit 0: met. No qq inner solve failed, no line-search trial below lam 1, no floor, no outer step above 3x its harmonic's first.
+
+### The k* stage (`tail/kstar/`, 13:56:33 - 14:12:26 UTC, 953 s; `kstar_stage.sh` by the tail script, fastmul7, chord-free) and the end of the job
+
+kfree 15 at the h23 state: gain 2.758607e+20, F before 2.77863e-50, **bound before 7.66515e-30** (gain x F), below 1e-27: **no re-converge** (reconv false). `tail/job.log`: "tail rc 0 14:12:26", "kmax_rule rc 0" (the rule's line as above), **"job rc 0 14:12:26"**. D 4000's M 32 stages 22:18:19 - 07:13:27 (32108 s) plus the tail 07:13:31 - 14:12:26 (25135 s with the gate and the k* stage): 16 h in all.
+The held timeout of the tail (`tail/hold_timeouts.log`: stopped 09:34:45, child ended 13:56:20, timeout continued) is done; its `hold_timeouts.sh` instance (pid 4174) was ended at 14:13 UTC.
