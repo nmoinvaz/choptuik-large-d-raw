@@ -111,3 +111,13 @@ Reading, with the root scatter of U40, U40b, U40c (range 1.7e-4, #1105 step 1c) 
   root carries where the solver path left it along the pair, not only the system.
 - <= 3e-4: the root is insensitive along the valley at the scatter level.
 - between: reported as measured. w001 gives the slope near U40 (linear in t if the root is smooth along it).
+
+## Task A: can the pair be pinned? (written before the run)
+
+Before U40's root in the same queue: `i1101_weakdir.py ne` from U40 (nonlinear elimination: per outer step a fresh J
+and SVD, the Gauss-Newton step on the pair at fractions 1 to 1/8 with re-frozen RK steps and chord steps on the strong
+band; at most 6 outer steps; stops when one cuts |U_w^T F| by less than 2x). Reading:
+- |U_w^T F| <= 1e-12 with |F| <= 1.5e-11: the discrete zero along the pair is reachable, so the pair can be pinned by
+  solving; its Delta is reported against U40's.
+- the run stops with |U_w^T F| >= 5e-11: not reachable this way (the valley bends away), reported as measured.
+- between: reported as measured.
