@@ -32,3 +32,28 @@ Scanner: `solver/matter/d18_secant.py` of wip/ell1-speed at **92b9bf53**, blob *
 
 ## Status
 - 2026-11-27 01:59 UTC: folder, inputs, scripts, pins and bars written before any evaluation; the unit `i1101a` starts next.
+
+## Result (27 Nov 01:59:42 to 05:45:17 UTC = 13535 s = 3.76 h; unit `i1101a`; 2 processes, 1 thread each, nice 19; `results.md`, `read_lower_A.txt`, `read_lower_B.txt`, `scan_A/`, `scan_B/`)
+Both processes printed the pin check and the record system (A: |F| 3.1987864632e-10 against the record's 3.1939646372e-10; B: 3.1911792672e-10 against 3.1949266444e-10; 4179 steps each) and exited 0; the selftest exits (secant 0 1 1 1, reader 0 1 1) are in `steps.txt`; peak RSS 4.46 GiB (A: 4674432 kB) and 4.28 GiB (B: 4488060 kB).
+| state | lambda | hybrid sign | noise-robust | robust (dln <= 0.1) | dln | float64 sign | ln of abs det | seconds |
+|---|---|---|---|---|---|---|---|---|
+| A | 0.045 | + | True | True | 1.30e-05 | + | -3902.3590984513 | 7186 |
+| A | 0.050 | - | True | True | 2.52e-06 | - | -3901.1429061235 | 6305 |
+| B | 0.045 | + | True | True | 1.54e-05 | - | -3902.5303054577 | 6818 |
+| B | 0.050 | - | True | True | 2.50e-06 | - | -3901.1035170558 | 6678 |
+- **The four points are noise-robust and robust** (the first bar: met). Both states have the hybrid sign + at 0.045 and - at 0.050, so the points bracket a root in each. The float64 sign differs from the hybrid at B's 0.045 only (not used).
+- **Det-linear root from the two points** (my formula in `results.py`, equal to the reader's, 0.046143 and 0.045968): **A 0.046143036**, **B 0.045967998**. **Root scatter root_B - root_A = -1.750e-04** (|.| 1.75e-04).
+- **|Delta_B - Delta_A| from the records = 4.2067e-07** (Delta_A 1.174322923415951, Delta_B 1.1743225027439044; B is the lower, by the same sign as the root).
+- **Read against t5's bars:** below 1e-4: no; above 1e-3: no; **between 1e-4 and 1e-3, which t5's two statements do not decide.** As numbers: the scatter is 3.2% of the last k_c step of the root (+0.0055 at 111 to 119 at D 23.0) and 5.8% of the next step as registered (+0.003 at 119 to 127). The ratio of the root's scatter to Delta's is +416 per unit of Delta; the k_c step 119 to 127 carried a Delta change of -2.05e-6 with a root step of about +0.003 (t5's registered value for it; the measured one is not at hand here), a ratio of about -1.5e3 of the opposite sign: arithmetic on those numbers, which does not say whether the two are related.
+- **Caveats:** the root of each state is the det-linear value of two points 0.005 apart (a crude estimator: the actual root at k_c 127 and D 23.0 is below 0.0461, winb's scan gave + at 0.04 and - at 0.05 and his secant refined it); its bias cancels to first order in the difference, not exactly. One re-solve (B) of one state (A): this is one measurement of the scatter, not a distribution.
+
+### Predictions scorecard (mine, registered before the run)
+| prediction | result |
+|---|---|
+| hybrid signs + at 0.045 and - at 0.050 for both states (80%) | right |
+| all four evaluations robust (85%) | right (dln 2.5e-06 to 1.5e-05) |
+| scatter below 1e-4 (30%); between 1e-4 and 1e-3 (50%); above 1e-3 (20%) | the middle one: 1.75e-04 |
+| 2.5 to 3.5 h (t5's ETA 2.5 to 3 h) | WRONG: 3.76 h (each evaluation 6305 to 7186 s on one process at nice 19, against my 4500 to 6500 s) |
+
+## Status
+- 2026-11-27 05:45 UTC: done. The scatter is 1.75e-04 (between t5's 1e-4 and 1e-3); records pushed; the table is posted on #1101.
