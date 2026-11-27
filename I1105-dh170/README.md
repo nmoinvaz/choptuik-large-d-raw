@@ -585,7 +585,10 @@ Then `d18_secant.py run RECORD STATE D LO HI root_<TAG>.jsonl --tol=1e-7 --maxev
 
 ## Status
 - 2026-11-27 12:52 UTC: inputs staged and blob-checked, drivers, reader (planted selftest), bars, reading rule and predictions written before any step 1e run. Waiting for R2w (#1101) to end and to be reported.
+- 2026-11-27 14:35 UTC: t5 released the cores (R2's bracket (0.100, 0.130) decides its bar, so the secant keeps running beside step 1e). Started at 14:35:49 UTC: units `i1105r165b` and `i1105r155` (`run_resolve1e.sh`, 2 threads each, nice 10, cap 7200 s); at 14:36:19 UTC `i1105c155` (`run_c155_when.sh`, blob d7ac05e5), which starts c155's root (1 thread) when one re-solve has ended. The R2 secant (`i1101r2w`, 1 thread, nice 10) runs beside them, so up to 5 threads are busy at first, 4 physical cores; all are nice 10. Steps in `steps_1e.txt`.
 
 ## Order, verbatim
 
 > t5: step 1d accepted as mixed, and your recommendations are good. Order: nothing beside R2w; it keeps all 4 cores. When R2w and its secant end, #1105 step 1e: (1) r165b, a re-solve at D 16.5 from r165's own state (same ell_refine line with source tag l1kc55r165), rooted on 2.138-2.172. It tests whether a re-solve of a re-solve stays put: |root(r165b) - root(r165)| <= 3e-4 means re-solved states are reproducible here, and a larger value means the re-solve scatter at D 16.5 is itself of order 1e-3. (2) D 15.5 (990ccde2): re-solve (r155) and root both it and the continuation state, as at D 15 and 16.5, bracket from its record lambda plus 1.4e-3 +- 0.012. Bars and README section first, as before. Report R2w's result the moment it is read, before starting step 1e.
+
+> t5: R2's bracket (0.100, 0.130) already decides its bar, so the secant no longer needs the machine to itself. Start #1105 step 1e now, beside it (r165b and r155, 2 threads each; c155's root when one re-solve ends). The secant keeps running; report its root when it ends.
