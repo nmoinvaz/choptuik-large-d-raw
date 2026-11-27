@@ -68,9 +68,9 @@ Stop rules (t5's, as in my k_c 143 lane): stop and report on not accepted, an ex
 
 ## Status
 
-README first. Not started when this was written.
+**The re-solve STARTED 2026-11-27 18:32:46 UTC** (the README-first push of 18:31:55 UTC, raw 2b737f70d; #1104 start comment 7225606945). The source checks passed as wanted (k_c 143 check exit 0, `--mutate=F` and `--mutate=steps` 1 1, k_c 135 and k_c 127 checks 1 1, the gate on the kappa 0.7 source 1). `ell_refine.py` pid 10740 under the chain `conhost.exe --headless` 25160 <- cmd 19616 <- driver 21416 / 16568; cap 64800 s (kill 2026-11-28 12:32:46 UTC), hc at 21600 s; the session check shows no `claude` in any chain (`session_check_regrid.txt`). Sampler, alert-only watcher and keep-awake helper beside it. The scan and secant drivers were built (`make_k050d23_1104_part2.py`, derived from my k_c 143 drivers) and dry-tested while it runs, 18:35 to 18:50 UTC: the scan driver on stand-ins (my kappa 0.7 files under the kappa 0.5 names) in 9 tests, all as wanted (`selftest_scan_dry_1104.txt`: good run, no marker, wrong blob and an existing scan file each logged as REFUSE in the dry run, one value / three shares / a value three times / `--out` without `--dry` exit 2, and the widening round `0.065;0.140 --first=2 --window=0.065,0.14` planning files p2, p3 and the reader window 0.065 0.14); the secant driver on a stand-in stage in 4 tests, all as wanted (`selftest_secant_dry_1104.txt`: the kappa 0.5 gate refuses the kappa 0.7 stand-in, a wrong ends blob and a wrong LO HI are refused, a missing `--ends-blob` exits 2). The first run of test 4 of the scan driver did not log the refusal for an existing scan file (the check looked in the real folder, not in the stand-in); I made it look in the folder the state comes from (the same folder in a real run) and reran all nine tests.
 
-Pushed 2026-11-27 18:31:55 UTC.
+Pushed 2026-11-27 18:50:22 UTC.
 
 ## Result
 

@@ -1,0 +1,8 @@
+== 2026-11-27 18:32:10 k050d23_regrid_driver_1104.py: the kappa 0.5 re-solve of my k_c 143 D 23.0 state; checking pins
+== 2026-11-27 18:32:11 pins ok (the inputs of C:/Users/nathan/Source/k050d23_1104/inputs, my k_c 143 D 23.0 kappa 0.7 files, the gate, worktree 48c36355 with solver code = 505d8399 and ell_delta/ell_refine = 48c36355); python C:/Users/nathan/Source/venv-md510/Scripts/python.exe
+== 2026-11-27 18:32:11 selftests: kc143_syscheck exit 0, kc135_syscheck exit 0, kc127_syscheck exit 0 (0 wanted each)
+== 2026-11-27 18:32:11 ell_delta.lam0_at(23.0) = 2.0992182200, as t5's order
+== 2026-11-27 18:32:11 alert-only memory watcher started as its own process, pid 13116 (kills nothing); sampler pid 22196
+== 2026-11-27 18:32:11 keep-awake helper started as its own process, pid 26088: SetThreadExecutionState(ES_CONTINUOUS | ES_SYSTEM_REQUIRED) until this driver (pid 16568) ends; power plan untouched; kills nothing
+== 2026-11-27 18:32:46 the source: kc143 check exit 0 (0 wanted), --mutate=F 1, --mutate=steps 1 (1 wanted each), kc135 check 1, kc127 check 1 and the kappa 0.5 gate 1 (1 wanted each: they refuse the source); 35 s
+== 2026-11-27 18:32:46 re-solve: started pid 10740: C:/Users/nathan/Source/venv-md510/Scripts/python.exe -u ell_refine.py l1kc143winbd23 143 l1kc143winbk050d23 143 1 23.0 2.0992182200 --kappa 0.5 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma > C:/Users/nathan/Source/k050d23_1104/I1104-win/rows/regrid_raw.log
