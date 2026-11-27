@@ -42,3 +42,22 @@ Then, into `tail/` (the last act writes "job rc N" to `tail/job.log`), on fastmu
 ### The fastmul7 `hp/ks_gate.py` replaced at 2026-11-27 06:31:39 UTC (D 8000's setup, coordinator's order)
 
 `d8000_mm5.sh` installed `ks_gate.py` of wip/large-d-form-s 3b3bfc60 (blob a91c7363c93ccb2355ea5b72a29f0f9c600cf4b7, adds `--down` and `--ks0`) over `~/Source/choptuik-fastmul7/hp/ks_gate.py` (d40a9c62's) at 06:31:39 UTC (`../D8000/setup.log`). The tail's upward gate (`ks_gate.py ... --bar 1e-70 --step 100 --tries 6`) runs this version when the M 32 job ends: the diff of the two versions adds only the downward gate and `--ks0`, the upward path is unchanged. The records of the tail then say HP's HEAD d40a9c62 with this one file newer.
+
+## Result of the M 32 stages (the job ended 2026-11-27 07:13:27 UTC, "job rc 0"; 2026-11-26 22:18:19 - 07:13:27, 32108 s)
+
+By script from `run.log`, `jump/jump.log`, `*/rls.log` and `*/release_ls.jsonl`.
+
+- **ks used: 6017** (a 9.995, kc 260, the start ks, by the octo-double gate from the start ks (the version of d40a9c62): ks 6017 -> 6217 octo-double change **2.0e-89**, bar 1e-70). The jump converged in **1292 s** (22:18:19 - 22:39:51; guess from D 1000 and D 2000, degree 1; the double-double stage floored at 3.206e-13 after 5 iterations and handed to the quad-double stage, as designed), Delta 1.646485791335516559835686890768024038029; its kc+20 line |dF| 1.7e-46 (ks+200 and steps halved the same value: the quad-double check's floor), below the bar 1e-25.
+- **Stages (wall):** jump 1292 s; rls h5..h11 19371 s (22:40:37 - 04:03:28); rls13 (h13) 11399 s (04:03:28 - 07:13:27). Every harmonic released; no qd floor, no failed inner solve, no outer step above its harmonic's first (the steps fall by orders of magnitude from outer to outer).
+
+| harmonic | change in Delta (outers) | pending dDelta at release | outer walls (s) |
+|---|---|---|---|
+| h5 | +2.8957e-9 (o0) then -2.4843e-16, +1.2422e-29 | +2.55e-53 (outer 3) | 2053, 1605, 1220 |
+| h7 | -3.0447e-11 (o0), +8.4596e-20 | -1.24e-36 (outer 2) | 2429, 1862 |
+| h9 | -6.4932e-13 (o0), -5.3388e-23 | -3.11e-37 (outer 2) | 2412, 1808 |
+| h11 | +4.9143e-15 (o0), -1.5632e-24 | -1.53e-33 (outer 2) | 1823, 1773 |
+| h13 | **+6.0075e-17** (o0), +6.3353e-24, -8.6407e-27, -6.9803e-32 | -4.04e-36 (outer 4) | 3789, 3002, 2213, 1603 |
+
+- **Delta after h13 (M 32): 1.646485794200099314649352330795089174085** (rls13's last logged Delta); h13's change +6.0075e-17; the full system's qd check max |F| 1.34e-46 (the quad-double floor at this D; the od residual at h13's release 6.17e-49).
+- **Bars:** the jump converges and its kc+20 line is below its bar: met. The ks gate passes at 6017 (2.0e-89): met. h5..h13 each released: met. No stop rule hit.
+- The M 48 tail script (`tools3/d4000tail_mm5.sh`) started 07:13:31 UTC on this state; its gate and tail results are in `tail/` and the section above.
