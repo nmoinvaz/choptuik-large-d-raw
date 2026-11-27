@@ -1,0 +1,30 @@
+sol_l1kc135win2d23_D23.0000.npy: D 23.0, k_c 135, N 408, |F| 3.1822e-10, last block 2.2489e-10, steps 4441 (horizon 999)
+  N   408 u0 0.040 h_steps   1000: |F| 3.182e-10 last 2.249e-10 dF_last 0.000e+00 bands 0.0e+00 0.0e+00 0.0e+00 0.0e+00 (4 s)
+  hz2: u0 0.02 h_steps 3510: last 1.696e-08 dF_last 1.696e-08 bands 8.7e-10 3.3e-10 2.0e-10 1.7e-08
+  Ks45: u0 0.02 h_steps 1755: last 1.707e-08 dF_last 1.709e-08 bands 1.6e-08 3.2e-10 1.9e-10 5.4e-09
+sanity (u0 0.04 at N 408 reproduces the record system's residual bit for bit): FAIL
+wrote /home/nathan/Source/choptuik-large-d-raw-p4/I1105-dh170/u0_kc135_d23_mut.json
+Command exited with non-zero status 1
+	Command being timed: "/home/nathan/Source/choptuik-large-d-1058b/.venv/bin/python -I -u i1105_u0.py /home/nathan/Source/choptuik-large-d-raw-p4/I1105-dh170/in/sol_l1kc135win2d23_D23.0000.npy 23.0 135 /home/nathan/Source/choptuik-large-d-raw-p4/I1105-dh170/u0_kc135_d23_mut.json --u0=0.04 --N=408 --mutate=steps"
+	User time (seconds): 18.46
+	System time (seconds): 0.18
+	Percent of CPU this job got: 99%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:18.73
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 72340
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 137750
+	Voluntary context switches: 1
+	Involuntary context switches: 283
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 144
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 1

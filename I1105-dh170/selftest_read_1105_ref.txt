@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "/home/nathan/Source/choptuik-large-d-raw-p4/I1105-dh170/read_1105.py", line 167, in <module>
+    sys.exit(selftest() if args[0] == "selftest" else main(args[0]))
+             ~~~~~~~~^^
+  File "/home/nathan/Source/choptuik-large-d-raw-p4/I1105-dh170/read_1105.py", line 126, in selftest
+    got, rms = fit_b(pts)
+               ~~~~~^^^^^
+  File "/home/nathan/Source/choptuik-large-d-raw-p4/I1105-dh170/read_1105.py", line 39, in fit_b
+    return best[0], math.sqrt(best[1] / len(pts))
+           ~~~~^^^
+TypeError: 'NoneType' object is not subscriptable

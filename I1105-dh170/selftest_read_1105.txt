@@ -1,0 +1,10 @@
+pass planted p = 0.5: (b) recovers p to 1e-2 (got 0.500, rms 0.0e+00)
+pass planted p = 4.5: (b) recovers p to 1e-2 (got 4.500, rms 0.0e+00)
+pass planted p = 30.0: (b) recovers p to 1e-2 (got 30.000, rms 0.0e+00)
+pass p = 30: the neighbour slope 0.02-0.03 is about 0, not 30
+pass p = 30: the neighbour slope 0.05-0.06 is far above 4
+pass planted N change 10%: reads 'below 20%'
+pass planted hz2 change 5%: reads 'below 10%'
+pass planted N change 30%: reads '20% or more'
+pass planted hz2 change 20%: reads '10% or more'
+selftest: all cases read as written
