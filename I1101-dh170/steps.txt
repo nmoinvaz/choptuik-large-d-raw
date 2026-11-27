@@ -113,3 +113,4 @@ block 12 by ellrs (avx2, products dgemm, 1 threads)
 2026-11-27 17:35:53 UTC [k2] results_1101k.py selftest ok=1 (1 wanted); mutations ref and bar both fail=2 (2 wanted)
 2026-11-27 17:35:53 UTC [k2] scan starts: D 23.0, lambda 0.040,0.055,0.070,0.150, one process per lambda, 1 thread each, nice 10, --b12=rust --b12_threads=1 --kappa_mm=0.35
 2026-11-27 17:36:13 UTC [k2] kappa_mm step-count check exit 0 (0 wanted): - PASS: scan_k2_p4.raw: kappa_mm 0.35: 8351 steps (record kappa 0.7: 4179); wanted 8351 +- 2%
+2026-11-27 17:45:02 UTC [k2] t5's order (hc): the four scans finish, the secant is NOT run; the driver run_scan_k2.sh (pid 2307228) was frozen with SIGSTOP at 17:44:45 UTC while it waits for the scans, so its secant stage cannot start; the scans (children) run on; run_k2_read.sh does the read-only stages after them and the unit is then stopped
