@@ -1,0 +1,32 @@
+== --mutate=''
+planted fit, geometric beta 0.05: verdict geometric beta 0.0500 rms 0.116/0.808 -> pass
+planted fit, algebraic p 3.5: verdict algebraic p 3.550 rms 0.523/0.098 -> pass
+planted fit, mixed k^6 exp(-0.1 k): a 5.87 beta 0.0987 rms 0.140 -> pass
+planted local band: k_loc at the pulse 549, median elsewhere 62 -> pass
+planted map: uniform K 1184, mapped K 194 at L 0.149 (s0 0.7) -> pass
+planted tests: PASS
+exit 0
+== --mutate='swapfit'
+planted fit, geometric beta 0.05: verdict algebraic beta 5.5726 rms 0.808/0.116 -> FAIL
+planted fit, algebraic p 3.5: verdict geometric p 0.030 rms 0.098/0.523 -> FAIL
+planted fit, mixed k^6 exp(-0.1 k): a 0.10 beta 5.8694 rms 0.140 -> FAIL
+planted local band: k_loc at the pulse 549, median elsewhere 62 -> pass
+planted map: uniform K 1184, mapped K 194 at L 0.149 (s0 0.7) -> pass
+planted tests: FAIL
+exit 1
+== --mutate='nowindow'
+planted fit, geometric beta 0.05: verdict geometric beta 0.0500 rms 0.116/0.808 -> pass
+planted fit, algebraic p 3.5: verdict algebraic p 3.550 rms 0.523/0.098 -> pass
+planted fit, mixed k^6 exp(-0.1 k): a 5.87 beta 0.0987 rms 0.140 -> pass
+planted local band: k_loc at the pulse 445, median elsewhere 445 -> FAIL
+planted map: uniform K 1184, mapped K 194 at L 0.149 (s0 0.7) -> pass
+planted tests: FAIL
+exit 1
+== --mutate='nomap'
+planted fit, geometric beta 0.05: verdict geometric beta 0.0500 rms 0.116/0.808 -> pass
+planted fit, algebraic p 3.5: verdict algebraic p 3.550 rms 0.523/0.098 -> pass
+planted fit, mixed k^6 exp(-0.1 k): a 5.87 beta 0.0987 rms 0.140 -> pass
+planted local band: k_loc at the pulse 549, median elsewhere 62 -> pass
+planted map: uniform K 1184, mapped K 1184 at L 1.000 (s0 None) -> FAIL
+planted tests: FAIL
+exit 1
