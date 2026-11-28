@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""#1104 winb, the secant refinement of the kappa 0.5 root at k_c 143, D 23.0 with the Rust block 12 (t5's order, hc of 2026-11-27 18:23 UTC and #1104 comment 7225436553: the secant at tol 5e-5 on the change): d18_secant.py run (branch
+"""#1104 winb, the secant refinement of the kappa 0.5 root at k_c 143, D 23.0 with the Rust block 12 (t5's order, hc of 2026-11-28 08:37 UTC, changed by t5's hc of 08:39 UTC: the secant at tol 1e-5, maxev 12, --b12_threads=4, one process, cap 28800 s written into I1104-win/cap_seconds.txt (the 08:37 order said tol 1e-6, 2 threads, timeout 14400 s), on the scan's robust change (0.095, 0.110), the scan's two records as --ends): d18_secant.py run (branch
 wip/ell1-rust-b12 at d4b6b6ce, committed blob 9706e506, worktree choptuik-i1102; Brent's method on the signed hybrid determinant) with --b12=rust --b12_threads=4 (ellrs from my #1102 build, i1102_1025/site, on PYTHONPATH, pinned
 by blob; OPENBLAS_NUM_THREADS=1) on my accepted re-solved state sol_l1kc143winbk050d23_D23.0000.npy and its record l1kc143winbk050d23.jsonl (both in this folder; the blobs are the ones in regrid_accepted.txt), between LO HI
 (arguments: the robust bracket the scan's reader printed), with the scan's two end records (--ends, verbatim lines of scan_k050_D23_p*.jsonl):
-  RAYON_NUM_THREADS=1 d18_secant.py run STUB STATE 23.0 LO HI secant/secant.jsonl --tol=5e-5 --maxev=10 --pin=STATEBLOB,STUBBLOB --ends=scan_k050_D23_ends.jsonl --b12=rust --b12_threads=4     one process, BelowNormal
+  RAYON_NUM_THREADS=1 d18_secant.py run STUB STATE 23.0 LO HI secant/secant.jsonl --tol=1e-5 --maxev=12 --pin=STATEBLOB,STUBBLOB --ends=scan_k050_D23_ends.jsonl --b12=rust --b12_threads=4     one process, BelowNormal
 Order of the driver (any failure stops it with an hc to t5, nothing started, exit 2):
   1. pins: d18_secant.py (blob 9706e506), ell_b12rs.py, the ellrs files of the site, ell_fastm.py, ell_ddm.py, dss_ell.py, ell_dd.py, ddnp.py in the worktree (HEAD d4b6b6ce); the three checks and the gate (kc143 e15b0ee2,
      kc135 b353d466, kc127 898ebefa, gate_k050_1104.py d145145e); the state and the record against the blobs of regrid_accepted.txt; the ends file (blob from --ends-blob=) and its two lines verbatim in the scan files;
@@ -11,7 +11,7 @@ Order of the driver (any failure stops it with an hc to t5, nothing started, exi
   3. the ACCEPTANCE of the state: the kappa 0.5 gate exits 0 (its --mutate=f and --mutate=steps exit 1) and kc143_syscheck_1025.py accepts the record and state (exit 0), its --mutate=F and --mutate=steps exit 1 each, and the
      k_c 135 and k_c 127 checks refuse them (exit 1 each);
   3b. the ends: scan_k050_D23_ends.jsonl is two lines, each verbatim a line of the scan files at lambda LO and HI;
-  4. the run, killed by the exact pid (taskkill /PID /T /F) if it passes 43200 s (12 h; t5: stop and report on any step over 12 h), one hc to t5 at 21600 s if it is still running.
+  4. the run, killed by the exact pid (taskkill /PID /T /F) if it passes the cap (14400 s in the driver; I1104-win/cap_seconds.txt, 28800 by t5's 08:39 UTC hc, overrides it at every poll), one hc to t5 at 7200 s if it is still running.
 The tool's exits: 0 tol reached, 4 maxev or a non-robust interior point (the bracket is valid), 2 refused (ends not robust or with equal signs), 3 pin differs or not the record system. Its own records (one per evaluation
 record) are appended to secant/secant.jsonl; the log is secant/secant.log. A sampler (60 s), an alert-only memory watcher and a keep-awake helper run beside it, as in my other drivers; nothing kills on memory.
 usage: k050d23_secant_driver_1104.py LO HI --ends-blob=BLOB [--dry]     (--dry: pins, selftests, acceptance checks, prints the command, starts nothing)"""
@@ -50,7 +50,8 @@ PINS = [(WTM + "/d18_secant.py", "9706e506111357e5e6a3f1bccd60154ac3d17cbc", Tru
         (WTM + "/ell_dd.py", "7e58fcbc2288eca8f8f1ebfc36f7250a328b0c4e", True), (WTM + "/ddnp.py", "9b1fb195d0fa95d5dd7abd1083ac9b36fef04869", True),
         (IN + "/kc143_syscheck_1025.py", "e15b0ee2b0b1f9e48a914b6e3e75f4fec48251f4", False), (IN + "/kc135_syscheck_1025.py", "b353d46696d2c90eb413fb071becb3e9aa8f976a", False),
         (IN + "/kc127_syscheck_1025.py", "898ebefa65a99e639110e018808c85506a7f5719", False), (GATE, "d145145e22bf511011ca9ee2ecd8a14e2ce124e4", False), (STATE, B_STATE, False), (STUB, B_STUB, False), (ENDS, B_ENDS, False)]
-CAP, NOTIFY = 43200, 21600
+CAP0, NOTIFY = 14400, 7200
+CAP = CAP0
 LOG = SEC + "/secant_driver_w.log" + (".dry" if DRY else "")
 
 
@@ -128,7 +129,7 @@ say(f"the state: kc143 check exit {src['source_kc143_syscheck.txt']} (0 wanted: 
     f"kc135 check {src['source_kc135_syscheck.txt']} and kc127 check {src['source_kc127_syscheck.txt']} (1 wanted each: they refuse it), the kappa 0.5 gate {src['source_gate.txt']} (0 wanted) and its --mutate=f {src['source_gate_mutate_f.txt']}, --mutate=steps {src['source_gate_mutate_steps.txt']} (1 wanted each); {time.time() - t0:.0f} s")
 if src != want:
     refuse(f"the state is not accepted as wanted ({src}, wanted {want})")
-cmd = [PY, "-u", WTM + "/d18_secant.py", "run", STUB, STATE, D, f"{LO:g}", f"{HI:g}", SEC + "/secant.jsonl", "--tol=5e-5", "--maxev=10", f"--pin={B_STATE},{B_STUB}", f"--ends={ENDS}", "--b12=rust", "--b12_threads=4"]
+cmd = [PY, "-u", WTM + "/d18_secant.py", "run", STUB, STATE, D, f"{LO:g}", f"{HI:g}", SEC + "/secant.jsonl", "--tol=1e-5", "--maxev=12", f"--pin={B_STATE},{B_STUB}", f"--ends={ENDS}", "--b12=rust", "--b12_threads=4"]
 if DRY:
     say("DRY: would start " + " ".join(cmd) + f" > {SEC}/secant.log (cwd {WTM}, ellrs 4 threads, BelowNormal, cap {CAP} s, hc at {NOTIFY} s, PYTHONPATH {SITE}); nothing started")
     sys.exit(0)
@@ -144,7 +145,7 @@ kaw = subprocess.Popen([PY, "-u", S + "/keepawake_1104.py", str(os.getpid()), "s
                        creationflags=0x00004000 | 0x08000000)
 say(f"keep-awake helper started as its own process, pid {kaw.pid}: SetThreadExecutionState(ES_CONTINUOUS | ES_SYSTEM_REQUIRED) until this driver (pid {os.getpid()}) ends; power plan untouched; kills nothing")
 p = subprocess.Popen(cmd, cwd=WTM, env=env, stdout=open(SEC + "/secant.log", "w"), stderr=subprocess.STDOUT, stdin=subprocess.DEVNULL, creationflags=0x00004000 | 0x08000000)
-say(f"secant: started pid {p.pid}: d18_secant.py run {STUB} {STATE} {D} {LO:g} {HI:g} {SEC}/secant.jsonl --tol=5e-5 --maxev=10 --pin=... --ends={ENDS} --b12=rust --b12_threads=4")
+say(f"secant: started pid {p.pid}: d18_secant.py run {STUB} {STATE} {D} {LO:g} {HI:g} {SEC}/secant.jsonl --tol=1e-5 --maxev=12 --pin=... --ends={ENDS} --b12=rust --b12_threads=4; cap {CAP} s")
 t0, notified, rc = time.time(), False, None
 while rc is None:
     rc = p.poll()
@@ -154,7 +155,15 @@ while rc is None:
         notified = True
         n = sum(1 for _ in open(SEC + "/secant.jsonl")) if os.path.exists(SEC + "/secant.jsonl") else 0
         say(f"secant: still running at {NOTIFY} s (pid {p.pid}), {n} record(s) in secant.jsonl; cap {CAP} s; hc to t5")
-        hc(f"the refinement (pid {p.pid}) is still running after {NOTIFY} s (6 h), {n} evaluation record(s) so far; it is killed by the exact pid at {CAP} s (12 h, your stop).")
+        hc(f"the refinement (pid {p.pid}) is still running after {NOTIFY} s (2 h), {n} evaluation record(s) so far; it is killed by the exact pid at {CAP} s (your timeout; I1104-win/cap_seconds.txt overrides it).")
+    if os.path.exists(OUT + "/cap_seconds.txt"):
+        try:
+            new = int(open(OUT + "/cap_seconds.txt").read().split()[0])
+            if new != CAP:
+                say(f"secant: cap changed from {CAP} s to {new} s by cap_seconds.txt")
+                CAP = new
+        except Exception as e:
+            say(f"secant: cap_seconds.txt unreadable ({e}); cap stays {CAP} s")
     if time.time() - t0 > CAP:
         r = sh(["taskkill", "/PID", str(p.pid), "/T", "/F"])
         say(f"secant: CAP {CAP} s: killed pid {p.pid} (and its children) by exact pid: {r.stdout.strip()} {r.stderr.strip()}")

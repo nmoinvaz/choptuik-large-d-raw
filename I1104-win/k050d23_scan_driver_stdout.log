@@ -1,0 +1,20 @@
+== 2026-11-28 06:59:57 k050d23_scan_driver_1104.py: the kappa 0.5 k_c 143 hybrid scan at D 23.0, shares 0.095,0.080;0.110,0.125, first 0, reader window 0.08 0.125; checking pins
+== 2026-11-28 06:59:59 d18_secant.py (d4b6b6ce, blob 9706e506) selftest exit 0 and its three mutations half, norobust, nosigncheck exit 1, 1, 1 as wanted
+== 2026-11-28 07:00:52 ell_b12rs.py selftest exit 0 and its controls --mutate=nolam, --mutate=harm exit 1, 1 as wanted (ellrs from C:/Users/nathan/Source/i1102_1025/site)
+== 2026-11-28 07:00:53 read_lower.py selftest exit 0 and its two --mutate controls exit 1, 1 as wanted
+== 2026-11-28 07:00:53 alert-only memory watcher started as its own process, pid 9688 (kills nothing); sampler pid 26452
+== 2026-11-28 07:00:53 keep-awake helper started as its own process, pid 25052: SetThreadExecutionState(ES_CONTINUOUS | ES_SYSTEM_REQUIRED) until this driver (pid 23588) ends; power plan untouched; kills nothing
+== 2026-11-28 07:00:53 scan p0: started pid 12484: d18_secant.py scan C:/Users/nathan/Source/k050d23_1104/I1104-win/l1kc143winbk050d23.jsonl C:/Users/nathan/Source/k050d23_1104/I1104-win/sol_l1kc143winbk050d23_D23.0000.npy 23.0 0.095,0.08 C:/Users/nathan/Source/k050d23_1104/I1104-win/scan_k050_D23_p0.jsonl --pin=856ce129f556747dd53cfde973edc48388a2423f,8c05d1a9ed5a0ded7ad0d2b61606e2a2c39ff4fd --b12=rust --b12_threads=2
+== 2026-11-28 07:00:53 scan p1: started pid 21820: d18_secant.py scan C:/Users/nathan/Source/k050d23_1104/I1104-win/l1kc143winbk050d23.jsonl C:/Users/nathan/Source/k050d23_1104/I1104-win/sol_l1kc143winbk050d23_D23.0000.npy 23.0 0.11,0.125 C:/Users/nathan/Source/k050d23_1104/I1104-win/scan_k050_D23_p1.jsonl --pin=856ce129f556747dd53cfde973edc48388a2423f,8c05d1a9ed5a0ded7ad0d2b61606e2a2c39ff4fd --b12=rust --b12_threads=2
+== 2026-11-28 08:36:38 scan p0: pid 12484 ended with exit 0 after 5745 s
+== 2026-11-28 08:36:38 scan p1: pid 21820 ended with exit 0 after 5745 s
+== 2026-11-28 08:36:38 all scan processes ended after 5745 s, exits [0, 0]
+== 2026-11-28 08:36:38 points 4 in 0.080-0.125; not noise-robust: none
+== 2026-11-28 08:36:38 hybrid signs: 0.080- 0.095- 0.110+ 0.125+
+== 2026-11-28 08:36:38 float64 sign differs from the hybrid sign at: [(0.08, '-', '+'), (0.095, '-', '+'), (0.11, '+', '-'), (0.125, '+', '-')]
+== 2026-11-28 08:36:38 repeated points: none
+== 2026-11-28 08:36:38   robust change (0.095, 0.110), - to +, det-linear 0.098957, range [0.095177, 0.098957]
+== 2026-11-28 08:36:38 robust changes: 1; touching a non-robust point (not counted): none
+== 2026-11-28 08:36:38 ln|det| local minima without a sign change: none
+== 2026-11-28 08:36:38 endpoint signs: - at 0.080, + at 0.125
+== 2026-11-28 08:37:48 k050d23_scan_driver_1104.py done

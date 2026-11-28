@@ -1,0 +1,20 @@
+gate on the result: exit 0 (0 wanted)
+|F| 3.127433e-10, steps 6582, Delta 1.1743097644977076, kappa 0.5, kc 143, D 23.0: D=ok kc=ok kappa=ok F=ok steps=ok
+
+--mutate=f exit 1 (1 wanted)
+|F| 6.000000e-10, steps 6582, Delta 1.1743097644977076, kappa 0.5, kc 143, D 23.0: D=ok kc=ok kappa=ok F=FAIL steps=ok
+
+--mutate=steps exit 1 (1 wanted)
+|F| 3.127433e-10, steps 6454, Delta 1.1743097644977076, kappa 0.5, kc 143, D 23.0: D=ok kc=ok kappa=ok F=ok steps=FAIL
+
+selftest exit 0 (0 wanted)
+planted: a record at the bars' centre: verdict True, expected True: PASS
+planted: |F| 6e-10: verdict False, expected False: PASS
+planted: steps 6454: verdict False, expected False: PASS
+planted: steps 6455: verdict True, expected True: PASS
+planted: steps 6719: verdict True, expected True: PASS
+planted: steps 6720: verdict False, expected False: PASS
+planted: kappa 0.7 with 4705 steps: verdict False, expected False: PASS
+planted: k_c 127: verdict False, expected False: PASS
+planted: D 22.875: verdict False, expected False: PASS
+selftest: PASS

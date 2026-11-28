@@ -10,9 +10,15 @@ Written before the run, 2026-11-27 18:31:55 UTC (the time of the README-first pu
 
 **t5's hc of 2026-11-27 ~18:27 UTC (after my estimate of about 44000 s against the cap of 43200 s, and my question):** "cap 64800 s (18 h). Your estimate is right, and a kill at 12 h would waste the run. Your reading of the reports is right too: a #1104 comment at the start and one at the root." So: the re-solve's cap is **64800 s**; I post one comment on #1104 when the re-solve starts and one at the root.
 
+**t5's hc of 2026-11-28 08:37 UTC (the scan accepted; the secant order):** "#1104 k_c 143 kappa 0.5 scan accepted: one robust change (0.095, 0.110). Ruling: refine it before any reading (a two-point det-linear estimate was 3.8e-4 off at R0, #1109 stage 1c2). Run the secant: python d18_secant.py run <record> <state> 23.0 0.095 0.110 secant_k050.jsonl --tol=1e-6 --maxev=12 --b12=rust --b12_threads=2 --ends=<the scan's records of 0.095 and 0.110> --pin=<state,record blobs>, one process, nice as before, timeout 14400. Report status, final bracket, the det-linear root inside it, evaluations and seconds; push raw I1104-win and post the table as a file I can post (or post it yourself if gh works there)."
+
+**t5's hc of 2026-11-28 08:39 UTC (after my cost estimate: about 2450 s an evaluation on 2 threads, 5 evaluations in 14400 s):** "thanks for the cost read. Change: --b12_threads=4 and tol 1e-5 (the kappa shifts are about 0.05 and the scatter about 1e-3, so 1e-5 is ample; 5 to 6 evaluations), and write 28800 into I1104-win/cap_seconds.txt. Count the threads against your budget with the negative-mass jobs there; if 4 does not fit, keep 2 with the same tol and cap. Everything else as ordered."
+
+**The secant as it runs (the 08:39 order replaces the 08:37 one and the plan below):** `d18_secant.py run` on my record and state between 0.095 and 0.110, `--tol=1e-5 --maxev=12 --b12=rust --b12_threads=4`, `--ends` the scan's two records at 0.095 and 0.110 (`scan_k050_D23_ends.jsonl`, 818 B, a binary copy of the scan's lines, blob 944e5150), `--pin` the state and record blobs (856ce129, 8c05d1a9), one process, BelowNormal, **cap 28800 s** (`cap_seconds.txt` holds 28800; the driver's own default is 14400 and the file overrides it at every poll, every change logged). The records go to `secant/secant.jsonl` (t5's file name `secant_k050.jsonl` is a path of the command; the folder here is `secant/`). The scan's det-linear estimate 0.098957 is not read: t5 ruled "refine it before any reading". **Threads against the budget** (4 to 6 threads at BelowNormal, my notes): 4 fit. A negative-mass job (`convergence.py 6`, I114-win, not mine) runs here (laptop 32 % CPU at 08:39 UTC, 21 GB free memory); the scan ran 2 x 2 Rust threads of mine beside it at a laptop mean of 60.0 % (max 80 %, lowest free memory 12.83 GB) with no alert. **Differences from the plan and the bars below:** tol 1e-5 (the bars say 5e-5), maxev 12 (10), 4 threads, cap 28800 s (the stop rule below says 43200 s for the secant); t5 ordered all of them.
+
 Why a re-solve: #1101 comment 7224728711 (Test K and K4): finer mode-matrix steps on a fixed state (`--kappa_mm`) mix two discretizations and give no valid root; "each kappa point needs a re-solve at that kappa, then its root".
 
-Stop rules (t5's, as in my k_c 143 lane): stop and report on not accepted, an exception (an array limit included), more than one robust change, or any step over its cap (the re-solve: 64800 s; the scan and the secant: 43200 s each). The no-robust-change case is not a stop here: t5 ordered the widening to 0.065 and 0.140.
+Stop rules (t5's, as in my k_c 143 lane): stop and report on not accepted, an exception (an array limit included), more than one robust change, or any step over its cap (the re-solve: 64800 s; the scan and the secant: 43200 s each; the secant: 28800 s by t5's hc of 2026-11-28 08:39 UTC). The no-robust-change case is not a stop here: t5 ordered the widening to 0.065 and 0.140.
 
 ## Registered before the run (t5's bars, my estimates)
 
@@ -36,6 +42,7 @@ Stop rules (t5's, as in my k_c 143 lane): stop and report on not accepted, an ex
 - **Memory:** the kappa 0.7 regrid peaked at 7.44 GB private; if it grows with the steps, about 8 to 10.5 GB. The scan processes were 5.5 GB each at 4705 steps: about 7 to 8 GB each at 6582 steps; the two together stay under 17 GB of 32 GB.
 - **Scan:** one evaluation on two processes at once took 2616 to 2823 s at 4705 steps; times 1.4: **about 3700 to 4000 s**; two rounds: **7500 to 8500 s (2.1 to 2.4 h)**, plus about 3800 s if the widening is needed (0.065 and 0.140 in parallel).
 - **Secant:** one evaluation on one process and 4 Rust threads took 1572 to 1601 s at 4705 steps; times 1.4: about 2200 s. A bracket 0.015 wide to a width under 5e-5 needs about 6 interior evaluations (4 to 9): **13000 s (3.7 h), 9000 to 20000 s**.
+- **Secant at t5's 08:37/08:39 settings (written 2026-11-28 08:41 UTC, before the launch):** at kappa 0.5 the scan's evaluations were 2853 to 2856 s with the matrix at 1150 to 1158 s and block 12 at 1667 to 1675 s on 2 threads (two processes at once); the kappa 0.7 secant on one process and 4 threads took 1572 to 1601 s (matrix 690 to 694 s, block 12 856 to 883 s). Scaling the matrix by the scan's kappa ratio (1.20) and keeping the block: **about 1750 s an evaluation (1600 to 2000 s) on 4 threads**; t5 expects 5 to 6 interior evaluations: **8800 to 10500 s (2.4 to 2.9 h)**, 5 to 9 evaluations 8000 to 17000 s, 12 evaluations 21000 s; all under the cap of 28800 s. On 2 threads I wrote 2450 s an evaluation (2200 to 2900 s; the hc of 08:38 UTC).
 - **The whole run:** about **18 h**, range 14 to 27 h (t5's estimate: 12 h plus 3 h). Almost all of it is the re-solve.
 
 ## The source (mine)
@@ -70,8 +77,28 @@ Stop rules (t5's, as in my k_c 143 lane): stop and report on not accepted, an ex
 
 **The re-solve STARTED 2026-11-27 18:32:46 UTC** (the README-first push of 18:31:55 UTC, raw 2b737f70d; #1104 start comment 7225606945). The source checks passed as wanted (k_c 143 check exit 0, `--mutate=F` and `--mutate=steps` 1 1, k_c 135 and k_c 127 checks 1 1, the gate on the kappa 0.7 source 1). `ell_refine.py` pid 10740 under the chain `conhost.exe --headless` 25160 <- cmd 19616 <- driver 21416 / 16568; cap 64800 s (kill 2026-11-28 12:32:46 UTC), hc at 21600 s; the session check shows no `claude` in any chain (`session_check_regrid.txt`). Sampler, alert-only watcher and keep-awake helper beside it. The scan and secant drivers were built (`make_k050d23_1104_part2.py`, derived from my k_c 143 drivers) and dry-tested while it runs, 18:35 to 18:50 UTC: the scan driver on stand-ins (my kappa 0.7 files under the kappa 0.5 names) in 9 tests, all as wanted (`selftest_scan_dry_1104.txt`: good run, no marker, wrong blob and an existing scan file each logged as REFUSE in the dry run, one value / three shares / a value three times / `--out` without `--dry` exit 2, and the widening round `0.065;0.140 --first=2 --window=0.065,0.14` planning files p2, p3 and the reader window 0.065 0.14); the secant driver on a stand-in stage in 4 tests, all as wanted (`selftest_secant_dry_1104.txt`: the kappa 0.5 gate refuses the kappa 0.7 stand-in, a wrong ends blob and a wrong LO HI are refused, a missing `--ends-blob` exits 2). The first run of test 4 of the scan driver did not log the refusal for an existing scan file (the check looked in the real folder, not in the stand-in); I made it look in the folder the state comes from (the same folder in a real run) and reran all nine tests.
 
-Pushed 2026-11-27 18:50:22 UTC.
+**The re-solve is done, the scan is done, the secant is next (2026-11-28 08:41 UTC).** Re-solve 2026-11-27 18:32:46 to 2026-11-28 06:58:03 UTC, exit 0, 44717 s; ACCEPTED 06:58:47 UTC (marker `regrid_accepted.txt`; state blob 856ce129, record blob 8c05d1a9): the k_c 143 check exit 0, its controls 1 1, the k_c 135 check refuses (1), the gate exit 0 and its `--mutate=f` and `--mutate=steps` exit 1 1 (files `syscheck*.txt`, `gate.txt`, `regrid_summary.txt`). Scan 07:00:53 to 08:36:38 UTC (driver done 08:37:48), exits 0, 0, 5745 s, one robust change (0.095, 0.110), t5 accepted it 08:37 UTC. The secant starts after this push; the dry run of the driver on these real files passed at 08:41 UTC (`secant_dry_real_1104.txt`, exit 0).
+
+Pushed 2026-11-28 08:42:21 UTC.
 
 ## Result
 
-Not yet run.
+**Re-solve** (`ell_refine.py l1kc143winbd23 143 l1kc143winbk050d23 143 1 23.0 2.0992182200 --kappa 0.5 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma`, 4 threads, BelowNormal, cap 64800 s; the hc at 21600 s went out at 00:32 UTC): exit 0, 44717 s (12.4 h; my written 44200 s, range 30000 to 64800 s). As printed (`regrid_summary.txt`): record (kappa 0.5): |F| 3.1274325972598344e-10, F_start 1.0862747675244939e-09, steps 6582, constraint 0.0006113097815493973, Delta 1.1743097644977076; the kappa 0.7 source record at D 23.0: |F| 3.1672972784891065e-10, steps 4705, constraint 0.0006113106423317232, Delta 1.174309794771696; Delta(kappa 0.5) minus Delta(kappa 0.7) = -3.027398842725404e-08; steps ratio 1.3989373007438894. Peak working set 6.91 GB, peak private 7.44 GB, lowest free memory 15.45 GB, peak commit 20.0 GB, cpu 94463 s. Bars: |F| 3.127e-10 <= 5e-10 and steps 6582 in 6455 to 6719: met (gate exit 0).
+
+**Scan** (`d18_secant.py scan ... --b12=rust --b12_threads=2`, two processes, lambda 0.095, 0.08 and 0.11, 0.125; 07:00:53 to 08:36:38 UTC, exits 0, 0, 5745 s; my written 7500 to 8500 s: 23 % below). Each evaluation 2853 to 2856 s (matrix 1150 to 1158 s, block 12 1667 to 1675 s, `dd_logdet` 29 s), against 2616 to 2823 s at kappa 0.7 (4705 steps): 1.01 to 1.09 of it, not the 1.4 I wrote. Peak private 5.51 GB each, laptop CPU mean 60.0 % (16 to 80), lowest free memory 12.83 GB (sampler) and 13.22 GB (alert-only watcher, 0 alerts). The reader (`read_lower.py`, `read_lower_k050_D23.log`), lines as printed:
+
+```
+points 4 in 0.080-0.125; not noise-robust: none
+hybrid signs: 0.080- 0.095- 0.110+ 0.125+
+float64 sign differs from the hybrid sign at: [(0.08, '-', '+'), (0.095, '-', '+'), (0.11, '+', '-'), (0.125, '+', '-')]
+repeated points: none
+  robust change (0.095, 0.110), - to +, det-linear 0.098957, range [0.095177, 0.098957]
+robust changes: 1; touching a non-robust point (not counted): none
+ln|det| local minima without a sign change: none
+endpoint signs: - at 0.080, + at 0.125
+read_lower exit 0
+```
+
+All four points are noise-robust (dln 3.64e-05 at 0.095, 8.18e-06 at 0.08, 5.62e-06 at 0.11, 6.42e-06 at 0.125). Exactly one robust change, so no widening. The float64 sign differs from the hybrid sign at all four points, as printed; I do not interpret it. t5 ruled (hc 08:37 UTC): refine before any reading.
+
+**Secant:** not yet run (see the Status).

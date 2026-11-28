@@ -1,0 +1,14 @@
+== p0
+pins: state 856ce129f556747dd53cfde973edc48388a2423f (wanted 856ce129f556747dd53cfde973edc48388a2423f), stub 8c05d1a9ed5a0ded7ad0d2b61606e2a2c39ff4fd (wanted 8c05d1a9ed5a0ded7ad0d2b61606e2a2c39ff4fd)
+D 23.0 k_c 143: |F| 3.1265975054e-10 (record 3.1274325973e-10), steps 6582 (record 6582): the record system
+block 12 by ellrs (avx512, products dgemm, 2 threads)
+scan of 2 lambda, mode matrix fast (jac), block 12 rust, noise 1e-15, sol_l1kc143winbk050d23_D23.0000.npy
+  lam 0.095: hybrid -1 ln|det| -4693.8981185427 (noise 1e-15 on blocks 0-11: [-1.0, -1.0]); float64 +1 -4686.7014493683 (2853 s [1150, 1675, 29]); dln 3.64e-05, mode matrix fast-jac
+  lam 0.08: hybrid -1 ln|det| -4688.7698871562 (noise 1e-15 on blocks 0-11: [-1.0, -1.0]); float64 +1 -4691.7678328687 (2856 s [1158, 1669, 29]); dln 8.18e-06, mode matrix fast-jac
+== p1
+pins: state 856ce129f556747dd53cfde973edc48388a2423f (wanted 856ce129f556747dd53cfde973edc48388a2423f), stub 8c05d1a9ed5a0ded7ad0d2b61606e2a2c39ff4fd (wanted 8c05d1a9ed5a0ded7ad0d2b61606e2a2c39ff4fd)
+D 23.0 k_c 143: |F| 3.1265975054e-10 (record 3.1274325973e-10), steps 6582 (record 6582): the record system
+block 12 by ellrs (avx512, products dgemm, 2 threads)
+scan of 2 lambda, mode matrix fast (jac), block 12 rust, noise 1e-15, sol_l1kc143winbk050d23_D23.0000.npy
+  lam 0.11: hybrid +1 ln|det| -4692.8719342642 (noise 1e-15 on blocks 0-11: [1.0, 1.0]); float64 -1 -4692.4924832751 (2853 s [1151, 1673, 29]); dln 5.62e-06, mode matrix fast-jac
+  lam 0.125: hybrid +1 ln|det| -4694.1595712020 (noise 1e-15 on blocks 0-11: [1.0, 1.0]); float64 -1 -4693.1837253346 (2854 s [1158, 1667, 29]); dln 6.42e-06, mode matrix fast-jac
