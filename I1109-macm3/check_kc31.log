@@ -1,0 +1,6 @@
+D 10.5 k_c 31: |F| 4.2605960442e-12 (record 4.2644450300e-12), steps 1748 (record 1748): the record system
+N 96, n_odd 32, n_even 31, nf 95, horizon steps 384, Ks 30, u0 0.04; operators 0.2 s; ellrs neon, products dgemm, threads [2], lu scipy, mutate none, controls nolam, harm
+lambda 2.87, block (2 threads): 15010 of 15010 entries bit for bit; max |d|/|entry| 0.000e+00, max |d|/max|block| 0.000e+00 (bar 1e-28 per entry): PASS; Rust 2.27 s, DDEll 22.5 s, ratio 9.9
+lambda 2.87, control nolam (2 threads): 0 of 15010 entries bit for bit; max |d|/|entry| 1.410e+03, max |d|/max|block| 2.697e-01 (bar 1e-28 per entry): FAIL, as a control must; Rust 2.24 s, DDEll 22.5 s, ratio 10.1
+lambda 2.87, control harm (2 threads): 0 of 15010 entries bit for bit; max |d|/|entry| 2.736e+03, max |d|/max|block| 4.142e-01 (bar 1e-28 per entry): FAIL, as a control must; Rust 2.27 s, DDEll 22.5 s, ratio 9.9
+check: PASS
