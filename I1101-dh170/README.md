@@ -432,3 +432,63 @@ All four processes printed the pin check, `kappa_mm 0.35: ... 8351 steps (the re
 
 ## Status after the extension
 - 19:10:33 UTC: the four scans ended (exit 0 each, last at lambda 0.150); 19:10:36 UTC: `systemctl --user stop i1101k2.service` ended the frozen driver and its `systemd-inhibit` (no scan was running; `ps`: 0 processes of `run_scan_k2.sh` left, unit inactive; steps.txt tag `k2s`); 19:10:36 UTC: `run_k2_read.sh` (399f0746) read the eight points, exit 3 (a bracket), no secant (tag `k2r`). Reported to t5; R2's secant runs on (4 evaluations, bracket (0.114683, 0.129367)).
+
+## R2 widened scan and secant result (scan 12:46:59 to 14:01:09 UTC, secant 14:01:09 UTC 27 Nov to 00:42:36 UTC 28 Nov; unit `i1101r2w`, `run_scan_w.sh`; 1 thread per process, nice 10, `--b12=rust --b12_threads=1`; `results_r2w.md`, `results_r2w_secant.md`, `read_lower_r2w.txt`, `secant_r2w.jsonl`, `secant_r2w.log`, `scan_r2/`, `scan_r2w/`, `scan_r2all/`; written 2026-11-28 00:45 UTC by the clock)
+All processes printed the pin check and the record system, and exited 0. The scan read the eight points (the four of `scan_r2/` and the four of `scan_r2w/`) with `read_lower.py`: 1 robust change, (0.100, 0.130), + to -, no non-robust point, no ln|det| local minimum; the secant ran on it (`--pin=25ba3a91,9111bfca`).
+
+| lambda | from | hybrid sign | noise signs | robust | dln | float64 sign | ln\|det\| | seconds (float64 blocks, Rust block 12, logdet) |
+|---|---|---|---|---|---|---|---|---|
+| 0.035 | widened scan | + | + + | True | 1.33e-05 | - | -4210.6738318039 | 4423 (1285, 3118, 20) |
+| 0.045 | first scan | + | + + | True | 1.35e-05 | - | -4211.9503431400 | 6625 (1741, 4865, 19) |
+| 0.050 | first scan | + | + + | True | 1.35e-05 | + | -4212.5955870798 | 6600 (1752, 4823, 25) |
+| 0.060 | first scan | + | + + | True | 1.37e-05 | - | -4213.9037243145 | 6493 (1782, 4648, 63) |
+| 0.070 | first scan | + | + + | True | 1.38e-05 | - | -4215.2427588991 | 6534 (1748, 4751, 36) |
+| 0.085 | widened scan | + | + + | True | 1.39e-05 | - | -4217.3438843690 | 4411 (1262, 3121, 29) |
+| 0.100 | widened scan | + | + + | True | 1.35e-05 | - | -4219.6804690495 | 4410 (1265, 3114, 31) |
+| 0.130 | widened scan | - | - - | True | 2.03e-05 | - | -4223.5174465975 | 4418 (1275, 3114, 29) |
+
+**The secant** (`d18_secant.py run` 0.1 0.13, tol 5e-5, `maxev 20`; status `tol`, exit 0, 10 evaluations, 38487 s; both bracket ends robust with opposite hybrid signs, inside the scan's pair; the reading rule of the section above is met):
+
+| # | lambda | role | hybrid sign | noise signs | dln | ln\|det\| | seconds | x the first (2351 s, alone) | ended about (UTC, start 14:01:09 + cumulative seconds) |
+|---|---|---|---|---|---|---|---|---|---|
+| 1 | 0.1000000000 | end | + | + + | 1.35e-05 | -4219.6804690495 | 2351 | 1.00 | 14:40 |
+| 2 | 0.1300000000 | end | - | - - | 2.03e-05 | -4223.5174465975 | 3954 | 1.68 | 15:46 |
+| 3 | 0.1293668891 | interior | - | - - | 2.09e-05 | -4223.4978332022 | 4819 | 2.05 | 17:06 |
+| 4 | 0.1146834446 | interior | + | + + | 3.65e-05 | -4223.1071772153 | 4597 | 1.96 | 18:23 |
+| 5 | 0.1234412471 | interior | - | - - | 3.41e-05 | -4223.5351830764 | 3933 | 1.67 | 19:28 |
+| 6 | 0.1190623458 | interior | - | - - | 1.25e-04 | -4224.5431816817 | 4024 | 1.71 | 20:35 |
+| 7 | 0.1172068478 | interior | + | + + | 2.25e-04 | -4225.0237888553 | 4441 | 1.89 | 21:49 |
+| 8 | 0.1179158498 | interior | - | - - | 1.59e-03 | -4227.0200769929 | 3797 | 1.62 | 22:53 |
+| 9 | 0.1178310580 | interior | - | - - | 2.33e-02 | -4229.7102288258 | 3291 | 1.40 | 23:47 |
+| 10 | 0.1178060580 | interior | + | + + | 7.74e-03 | -4228.5899539305 | 3267 | 1.39 | 00:42 |
+
+**Root and bar.** Final bracket (0.117806058, 0.117831058), width 2.50e-05, signs + and -, both ends robust (dln 7.74e-03 at the + end, 2.33e-02 at the - end, under 0.1); det-linear root (`lam_lin`) **0.117824909**.
+- delta = root - 0.045968 = **+0.071857** (the bracket gives +0.071838 to +0.071863).
+- E_root = delta x 16/15 = **+0.076647** (bracket +0.076627 to +0.076654).
+- Bar (t5's): |E_root| >= 3e-3 is real, <= 1e-3 refutes #1103's inference, between is mixed. **|E_root| >= 3e-3: the step error is real** (`results_1101.py r2w --secant` exit 0, `results_r2w_secant.md`). The estimator values are at the width of the final bracket, not rigorous enclosures.
+
+**The three roots and Test K side by side** (arithmetic on the numbers above and on the scan pair of `read_lower_k2.txt`; not a fit):
+
+|  | kappa of the state (and of the mode matrix) | steps | root | shift from state B's own root 0.045968 |
+|---|---|---|---|---|
+| state B (R0, control) | 0.7 | 4179 | 0.045967998 | 0 |
+| R1 (t5, macm3) | 0.5 | 5847 | 0.09500769 | +0.04904 |
+| R2 (this secant) | 0.35 | 8351 | 0.117824909 (bracket 0.117806 to 0.117831) | +0.07186 |
+| Test K: state B, mode matrix at 0.35 (scan pair only, no secant) | 0.7 state, 0.35 mode matrix | 4179 (state), 8351 (mode matrix) | in (0.07, 0.085) | +0.0240 .. +0.0390 |
+
+- Shift per added step: 2.94e-05 from 4179 to 5847 steps, 9.11e-06 from 5847 to 8351 steps. The shift grows with the refinement and by less than the steps do; three points, so no extrapolation is made here.
+- Test K's scan pair puts the mode matrix's part of R2's shift at 0.33 to 0.54; the state's part is the rest, 0.46 to 0.67. This uses K's pair, not a K root (no secant, t5's order).
+
+**Load and the priority rule.** The first evaluation took 2351 s alone. Evaluations 2, 3, 4, 5, 6, 7, 8 took more than 1.5 times that (3526 s), up to 4819 s (the third). What ran beside R2's secant, by the clock: Test K's four scans 15:57 to 17:31 UTC, its extension's four scans 17:35 to 19:10, the #1104 re-solve (3 threads, nice 10) from 19:37, the #1104 kappa 0.7 re-root (1 thread, nice 19) 19:39 to 22:40. Evaluation 2 (about 14:41 to 15:46) ran before them, and I did not record here what else was busy then. I did not throttle: the extra jobs ran at nice 19 or were the registered 4 to 5 busy threads, and 4600 s beside five busy threads was the time I had registered for the loaded case (#1104 README, Resources). Evaluations 9 and 10 ran with only the re-solve (3 threads) beside R2 and took 3291 and 3267 s (1.39 times the first).
+
+| prediction | result |
+|---|---|
+| no robust change in [0.035, 0.130]: 45%; (0.100, 0.130): 25%; (0.085, 0.100): 12%; (0.070, 0.085): 8%; (0.035, 0.045): 7% | (0.100, 0.130) happened (the 25% case, the second most likely): + at 0.035 to 0.100, - at 0.130, all eight robust; the secant root 0.117825 is inside it |
+| pole fit (for information): best fit at lambda0 near 0.12, rms 8e-4 in ln | the root is 0.1178, near the first of the two registered fits (it does not locate a root, as registered) |
+| given a change: |E_root| >= 3e-3 (97%) | right: E_root = +0.07665, 26 times the bar |
+| all four new points robust (80%) | right: 0.035, 0.085, 0.100, 0.130 all robust (dln 1.33e-05 to 2.03e-05) |
+| scan wall: 1800 to 3000 s per point | WRONG: 4410 to 4423 s per point (4450 s for the four, 12:46:59 to 14:01:09 UTC); the cause was not looked for |
+| secant wall: 2 end points and 3 to 6 interior points of 1500 to 2500 s each, 2 to 4 h in all | WRONG: 2 ends and 8 interior points (10 evaluations), 2351 to 4819 s each, 38487 s = 10.7 h in all |
+
+## Status after R2's secant
+- 00:42:36 UTC 28 Nov: R2's secant ended (status `tol`, exit 0, 10 evaluations, 38487 s): root 0.117824909, delta +0.071857, E_root +0.076647, the step error is real; reported to t5 by hc (00:4x UTC). #1101 is not closed and keeps its `running` label (t5 decides).
