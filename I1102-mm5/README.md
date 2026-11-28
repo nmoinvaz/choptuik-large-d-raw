@@ -53,3 +53,7 @@ python ell_fastm.py jaccheck REC STATE 23.0 --out=I1102-mm5/jac127.json > I1102-
 ```
 
 It builds both Jacobians (the solver's `DSSEll.jacobian` and `jacobian_fast`; about 0.6 GB each) and compares them: the residual equal; per block the state columns within 1e-8 and the Delta column within 1e-12 relative (1e-8 in the horizon block); the phase row equal; exit 0 only on PASS (exit 1 is a result, not a reason to rerun; exit 3 not the record system). Reported: the exit, the times line and block 12's line. The two files are pushed here. Driver: `run_jac127.sh`, log `jac127_run.log`.
+
+## The k_c 127 Jacobian check is dropped (coordinator's order of 04:04 UTC, noted 2026-11-28 04:05 UTC)
+
+dh610 (back at full speed) runs the k_c 127 `jaccheck` with the Rust block; the check queued above on this machine was never started. Its driver (`run_jac127.sh`, waiting for part A's `job rc`) was stopped at 04:05 UTC (`jac127_run.log`). No `jac127.log` or `jac127.json` exists here. The detached worktree `~/Source/choptuik-jac127` (693a4d79) stays unused.
