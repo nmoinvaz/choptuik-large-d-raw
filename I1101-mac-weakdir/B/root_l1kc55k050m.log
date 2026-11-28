@@ -1,0 +1,16 @@
+pins: state 2e3aa01cfc4b3b8b5c9492599908f2e0edb69614 (wanted 2e3aa01c), stub 34a8885ec18fa60e1ef407248622d74667cd78f1 (wanted 34a8885e)
+D 16.0 k_c 55: |F| 1.8650282028e-10 (record 1.8650282028e-10), steps 3590 (record 3590): the record system
+bracket (2.238, 2.252), tol 1e-06, maxev 20, mode matrix fast (jac), block 12 fast, noise 1e-15, dln <= 0.1, sol_l1kc55k050m_D16.0000.npy
+/Users/nathan/venv-1025dd/lib/python3.14/site-packages/numpy/linalg/_linalg.py:2366: RuntimeWarning: divide by zero encountered in slogdet
+  sign, logdet = _umath_linalg.slogdet(a, signature=signature)
+/Users/nathan/venv-1025dd/lib/python3.14/site-packages/numpy/linalg/_linalg.py:2366: RuntimeWarning: overflow encountered in slogdet
+  sign, logdet = _umath_linalg.slogdet(a, signature=signature)
+/Users/nathan/venv-1025dd/lib/python3.14/site-packages/numpy/linalg/_linalg.py:2366: RuntimeWarning: invalid value encountered in slogdet
+  sign, logdet = _umath_linalg.slogdet(a, signature=signature)
+  lam 2.238 (lo): hybrid -1 ln|det| -1588.5614874976, noise [-1.0, -1.0] dln 8.04e-06, robust True; float64 +1 -1585.3843045509 (186 s [21, 162, 3])
+  lam 2.252 (hi): hybrid +1 ln|det| -1587.0470078496, noise [1.0, 1.0] dln 5.55e-06, robust True; float64 +1 -1584.0679017010 (184 s [20, 162, 2])
+  lam 2.2405238620146033 (interior): hybrid -1 ln|det| -1589.4720461879, noise [-1.0, -1.0] dln 1.56e-05, robust True; float64 +1 -1585.1271796174 (179 s [21, 156, 2])
+  lam 2.242084538732212 (interior): hybrid +1 ln|det| -1591.3674309453, noise [1.0, 1.0] dln 1.03e-04, robust True; float64 +1 -1584.9682631683 (187 s [20, 164, 2])
+  lam 2.2418806648466116 (interior): hybrid -1 ln|det| -1594.0415720717, noise [-1.0, -1.0] dln 1.48e-03, robust True; float64 +1 -1584.9890453003 (182 s [22, 158, 2])
+  lam 2.2418938180930894 (interior): hybrid -1 ln|det| -1598.7422615238, noise [-1.0, -1.0] dln 1.51e-01, robust False; float64 +1 -1584.9870483682 (174 s [18, 154, 2])
+root: status nonrobust (not robust at 2.2418938180930894), bracket [2.2418806648466116, 2.242084538732212] width 2.039e-04, signs [-1.0, 1.0], det-linear 2.2418938180930894, Brent 2.2418806648466116, 6 evaluations, 1091 s

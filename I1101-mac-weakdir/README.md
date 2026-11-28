@@ -171,3 +171,18 @@ Bars:
    roots are reported but not attributed.
 2. Additivity: |sum of the three group shifts - shift(all)| <= 0.3 |shift(all)| + 3e-4 (shift = root - root(U40 here)).
 3. A group whose shift is at least half of shift(all), with the same sign, is named as carrying it.
+
+## Roots so far, and one more (written 2026-11-28 00:09 UTC by the clock)
+
+| state | role | root (det-linear) | status | root - root(U40 here) |
+|---|---|---|---|---|
+| U40 | scanner control (bar 2: within 1e-6 of dh170's 2.2449017148) | 2.2449011058 | tol 1e-7 | 0 (-6.1e-7 against dh170: bar 2 passes) |
+| w001 | valley t = 0.001, Delta +6.05e-5, \|F\| 1.785e-10 | 2.2450806634 | tol 1e-6 | +1.796e-4 |
+| w10 | valley t = 0.1, Delta +6.05e-3, \|F\| 1.622e-10 | 2.2585867830 | tol 1e-6 | +1.3686e-2 |
+| K50 | kappa 0.5 | 2.2418938 (bracket 2.2418807-2.2420845) | nonrobust | -3.0e-3 |
+| K35 | kappa 0.35 | 2.2489667 (bracket 2.2489585-2.2496560) | nonrobust | +4.07e-3 |
+| K25 | kappa 0.25 | 2.2429520 | tol 1e-6 | -1.95e-3 |
+
+Valley reading (rules above): |root(w10) - root(U40)| = 1.37e-2 >= 1e-3, so the root moves along the pair by 80 times
+the 1.7e-4 re-solve scatter. Added now, before it runs (`q4.sh`, after K70's root): the root of the pinning test's
+state ne1 (Delta +0.0304, \|F\| 1.155e-10, its own 2603-step map) on (2.24, 2.40), tol 1e-5, reported as measured.
