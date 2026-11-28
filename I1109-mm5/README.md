@@ -320,3 +320,26 @@ python d18_secant.py scan REC STATE 23.0 0.045,0.05 c2/scan_r0_rust.jsonl --b12=
 ```
 
 Reading (dh170's own bars, `results_ctl.md`): the hybrid signs +1 then -1; ln|det| at both lambda within 1e-4 of dh170's (-3902.5303054577, -3901.1035170558); the two-point det-linear root within 1e-5 of 0.045967998. All three hold: this machine reproduces dh170's evaluations, the refined root 0.04559 and the estimate 0.045968 are the same function read two ways, and the bar 2 of stage 1c compared unlike estimators. Any miss: reported as is, with the per-lambda differences (and then the machine is the open suspect).
+
+## Results of stage 1c2 (A, B, and the check at dh170's two lambdas) (2026-11-28 04:01 UTC)
+
+By script (`c2/scan_compare.py`, output `c2/scan_compare.txt`; the logs and records are in `c2/`). Code: the `~/Source/choptuik-ellrs` worktree at 44ef3c82 (`ell_fastdd.py` blob 237ebfdd, `d18_secant.py` 9706e506), ellrs `neon accelerate`; inputs R0's state and record (90d3e655, d1a3a641).
+
+**A (ell_fastdd's check at lambda 0.0458; 1141 s, exit 0): PASS.** Block 12 by `ell_fastdd` against DDEll's: max |difference| / max |block| **3.748e-25** (bar 1e-20); fast 373.4 s against DDEll 678.6 s (ratio 1.82). Hybrid determinant with the two blocks: sign -1 and ln|det| -3903.667496301956 in both, |d ln| 0 (bar 1e-8). So `ell_fastdd` is accurate at k_c 127 on R0.
+
+**B (`--b12=rust`, bracket (0.0440, 0.0470), tol 1e-6, 1396 s, exit 0): status `tol`**, final bracket [0.04559155115141893, 0.04559205115141893] (width 5.0e-7, both ends robust, signs +1 and -1), det-linear root **0.045591718868347245**, 6 evaluations, 1393 s (164 to 313 s each, against 430 to 560 s with `--b12=fast`). The stage 1c control (`--b12=fast`, Brent, 12 evaluations, stopped nonrobust) had 0.045592888, 1.17e-6 above B's. `--b12=fast` and `--b12=rust` agree on the root to the fast run's unresolved bracket.
+
+**Per-lambda comparison with dh170's control records** (`I1101-dh170/scan_ctl/`, `b12` rust, the same code path; this machine's scan at its two lambdas, `d18_secant.py scan`, 2 evaluations, 301 s and 224 s):
+
+| lambda | hybrid sign (here / dh170) | ln\|det\| here | ln\|det\| dh170 | difference | dln (here / dh170) | float64 sign | float64 ln\|det\| (here / dh170) | difference |
+|---|---|---|---|---|---|---|---|---|
+| 0.045 | +1 / +1 | -3902.5303655122 | -3902.5303054577 | -6.005e-05 | 1.541e-05 / 1.541e-05 | -1 / -1 | -3902.148577 / -3903.701388 | +1.5528 |
+| 0.05 | -1 / -1 | -3901.1035089866 | -3901.1035170558 | +8.069e-06 | 2.499e-06 / 2.499e-06 | -1 / -1 | -3902.097919 / -3901.008713 | -1.0892 |
+
+Two-point det-linear root of the two points (f = sign x exp(ln|det| - ref), ref the larger ln|det|): **here 0.045967944732670844**, from dh170's records 0.04596799790849594; here - 0.045967998 = **-5.327e-08** (bar 1e-5: PASS). The hybrid reproduces dh170's evaluations (signs equal, ln|det| within 6.0e-05 and 8.1e-06, bar 1e-4, dln equal to four digits); the float64 ln|det| of the whole matrix does not (differences +1.55 and -1.09), and neither enters the hybrid sign or the roots.
+
+**What this says, by the numbers above:**
+
+- dh170's 0.045967998 is the det-linear root of the **two points 0.045 and 0.050** (reproduced here to 5.3e-08 from this machine's own evaluations), not a refined root. The refined root of the same R0 system, with ellrs's bit-for-bit DDEll block 12, is **0.0455917** (bracket width 5e-7), **3.76e-04 below** the two-point estimate. So stage 1c's bar 2 compared a Brent-refined root with a two-point estimate; the machine and `ell_fastdd` reproduce dh170's evaluations and are not the cause of the 3.75e-04.
+- The coordinator's reading rows: A passes and B gives 0.0455917 (row 2's "0.045593" within 1.2e-6), but the per-lambda comparison row 2 asks for shows the machine reproducing dh170's records, so the difference is the estimator, not the machine. Row 1 (ell_fastdd inaccurate at k_c 127) does not hold: A passes.
+- dh170's R2 value 0.117824909 (`I1101-dh170/secant_r2w.jsonl`, status tol) is the det-linear root inside a final bracket of width 2.5e-05 (10 evaluations), a refined root, not a two-point estimate; R0's 0.045967998 is. Stage 1c's roots w01 and w10 (stopped) and #1110's root, if read against 0.045967998 or against R2's, compare unlike estimators unless the same estimator is used on both sides.
