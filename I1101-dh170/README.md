@@ -492,3 +492,68 @@ All processes printed the pin check and the record system, and exited 0. The sca
 
 ## Status after R2's secant
 - 00:42:36 UTC 28 Nov: R2's secant ended (status `tol`, exit 0, 10 evaluations, 38487 s): root 0.117824909, delta +0.071857, E_root +0.076647, the step error is real; reported to t5 by hc (00:4x UTC). #1101 is not closed and keeps its `running` label (t5 decides).
+
+# R3: the kappa 0.25 point (R1's state re-solved at kappa 0.25 on mm5; the root on dh170)
+
+Written 2026-11-28 00:58 UTC by the clock, before any R3 run (bars, reading rule, memory rule, pins, driver and predictions first; t5's order is quoted at the end). Machine dh170 (i7-7700, 4 physical cores, 31 GB; Linux), issue https://github.com/nmoinvaz/choptuik-large-d/issues/1101, coordinator t5. t5's order: the hc of 28 Nov about 00:50 UTC and comment 7231154979 ("R3 also on mm5"). Files of this section: `run_scan_r3.sh`, `results_r3.py`, `scan_admit.sh`, `selftests/dryrun_r3.sh`, `pins_r3.txt`, `in/sol_l1kc127k025mm5_D23.0000.npy`, `in/l1kc127k025mm5.jsonl`, `scan_r3/`, `scan_r3_p*.raw`, `read_lower_r3.txt`, `results_r3.md`, `secant_r3.jsonl`, `secant_r3.log`, `results_r3_secant.md`, `DONE_r3.txt` / `STOP_r3.txt`; steps and exits in `steps.txt`, tag `[r3]`.
+
+## What R3 is
+mm5 re-solves R1's state (raw `I1101-macm3/in/`: `sol_l1kc127k050m3_D23.0000.npy` 0124dbd2, `l1kc127k050m3.jsonl` 944a8179) at kappa 0.25 (`ell_refine.py l1kc127k050m3 127 l1kc127k025mm5 127 1 23.0 2.0992182200 --kappa 0.25 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma`, 6 threads, nice 10, cap 43200 s; worktree at 48c36355). Its state and record go to `I1101-mm5/` (expected about 03:00 to 06:00 UTC 28 Nov). This is the fourth consistent point (kappa 0.7, 0.5, 0.35, 0.25) and the test of t5's single power: through R0 (0.045968), R1 (0.09500769) and R2 (0.117824909) the power p = 2.39 gives the root 0.1272 at kappa 0.25 (and 0.1348 at kappa 0). macm3 started its own R3 at 17:48 UTC 27 Nov and has been unreachable since about 20:00; if it returns, the two are a reproducibility check (t5).
+
+## Bars and reading (t5's, fixed before the run; each can fail)
+1. **The state** (mm5's re-solve): |F| <= 5e-10 and steps 11700 +- 2% (11466 to 11934). Otherwise the state is not scanned, the driver writes `STOP_r3.txt`, and I report (no cause looked for without t5's order).
+2. **The scan:** on the Rust block 12 (`d18_secant.py scan --b12=rust --b12_threads=1`), 1 thread per process, nice 10, at lambda 0.115, 0.125, 0.135, 0.145, beside #1104's re-solve; widen to 0.105 and 0.155 if no robust change; nothing further.
+3. **The root:** `d18_secant.py run` at tol 5e-5 on the robust change. Reading: **the root against 0.1272; within 2e-3 the model stands** (the root scatter is about 1e-3 at this size), **otherwise a second term is needed** (t5: then a fourth kappa point is next).
+
+**Reading rule (mine, stated before the run).** A root is read only from a `d18_secant.py run` ending with status `tol`, both bracket ends robust (noise signs equal the hybrid sign, dln <= 0.1) with opposite hybrid signs, and inside the scan's pair; root = `lam_lin` (the det-linear root inside the final bracket). "Stands" needs `lam_lin` and the whole final bracket inside [0.1252, 0.1292]; "a second term is needed" needs `lam_lin` and the whole bracket outside it; a bracket that reaches the edge of the band is "reported as measured". With several robust changes the lowest-lambda one gets the secant and the others are listed. The estimator values are at the width of the final bracket, not rigorous enclosures. R2's root 0.117824909 and R1's 0.09500769 are taken as measured (t5's comments).
+
+## Memory rule (new; the machine would run out of memory otherwise)
+One scanner process (`d18_secant.py scan` or `run`) held 4733032 kB (Test K) and 4862620 kB (R2's secant) at peak; the machine has 32735432 kB, about 4 GiB of other use, and the #1104 re-solve holds up to 2.7 GB. So at most **4 scanner processes at once while `ell_refine.py` runs, 5 otherwise**, counted over the whole machine (`scan_admit.sh`, `bg_admit`, one flock so two drivers cannot both see a free slot). R3's four scans beside the re-solve are 4. If #1104's kappa 0.5 scan (4 processes) and R3's scan are due together, the second waits for free slots, and I tell t5. Nothing else of my runs changes: the #1104 driver gets the same rule before it can start (its pin below is updated then).
+
+## Pins (by blob, `git hash-object --no-filters`; the driver refuses any other)
+| what | where | blob |
+|---|---|---|
+| R3 state and record | raw `I1101-mm5/`, copied to `in/`; blobs written to `pins_r3.txt` and `steps.txt` when both land (unchanged for 2 min) | at landing |
+| scanner worktree | `~/Source/choptuik-large-d-1102` at d4b6b6ce, `solver/matter/d18_secant.py` (as R2) | 9706e506 |
+| block 12 driver, ellrs, venv | `ell_b12rs.py` in the worktree; ellrs in `~/Source/ellrs-site-1102`; `~/Source/choptuik-large-d-1058b/.venv` | a1fff74f |
+| scan readers | `in/read_lower.py`, `in/d185_scan_read.py` (the #1101 copies) | 89309d3c, 7c9d400f |
+| reader of R3 (selftest exit 0; mutations `tol`, `pred`, `last`, `sign` exit 1; `selftests/selftest_results_r3*.txt`) | `results_r3.py` | 50c83985 |
+| admission library | `scan_admit.sh` | e61f8891 |
+| driver | `run_scan_r3.sh` (unit `i1101r3`), dry-run test `selftests/dryrun_r3.sh` with a fake scanner (planted roots 0.1272, 0.1075, 0.3; a bad \|F\| and a bad step count stop it) | c060c215, b3e41c15 |
+
+The scanner is the one of R2 (9706e506 at d4b6b6ce); the kappa_mm worktree's d18_secant.py (2f3ee874) differs from it only by the `--kappa_mm` option, which these runs do not use (`git diff d4b6b6ce f56f91d2 -- solver/matter/d18_secant.py`: the `kappa_mm` function and its two calls). `--ends` takes the two end records from the scan, which saves two evaluations of the secant.
+
+## Driver (`run_scan_r3.sh`, unit `i1101r3`, started now; it waits for the files)
+1. Static pins, the `results_r3.py` selftest and mutations (0 1 1 1 1), the `d18_secant.py` selftest and mutations (0 1 1 1).
+2. Waits: a `git fetch` of the raw push worktree every 5 min (the worktree is only fetched, never checked out here), until `sol_l1kc127k025mm5_D23.0000.npy` and `l1kc127k025mm5.jsonl` are each present once under `I1101-mm5/` of `origin/main` with unchanged blobs for 2 min; copies them to `in/`; writes the blobs to `pins_r3.txt`; checks the record: |F| <= 5e-10, steps in [11466, 11934], kappa 0.25, k_c 127, D 23, l 1.
+3. Scan: four processes (`scan_r3/scan_D23.0_p0..3.jsonl`, `scan_r3_p*.raw`); each prints the record system (|F| and steps equal to the record's), else the group is killed (`STOP`); then `read_lower.py` and `results_r3.py scan` (exit 0 a bracket, 2 none); on 2, the two widened points (p4, p5) and the reading again; none again: `DONE_r3.txt` "no robust change in 0.105 .. 0.155" and no secant.
+4. Secant on the first robust change at tol 5e-5, `--maxev=20`, `--ends=scan_r3_all.jsonl`, `--pin` the two blobs; then `results_r3.py read` into `results_r3_secant.md` (exit 0 formed, 4 the record is not read).
+
+## Predictions (mine, registered before the run; information, not pass rules)
+| item | prediction |
+|---|---|
+| R3's state and record land on `I1101-mm5/` by 06:00 UTC 28 Nov | 55% (t5: about 03:00 to 06:00) |
+| mm5's re-solve passes its bars (\|F\| <= 5e-10, steps 11700 +- 2%) | 85% |
+| the four points show one robust change | 80% (in (0.125, 0.135): 55%; (0.115, 0.125): 20%; (0.135, 0.145): 5%); none, widening needed: 20% |
+| the root within 2e-3 of 0.1272 (the single power stands) | 35%; below 0.1252: 45% (with two terms of the kappa series the local order falls toward the leading one, so the error at 0.25 is larger than the single power gives); above 0.1292: 20% |
+| scan wall per point (4 processes beside the re-solve's 3 threads) | 5500 to 9000 s: 60% (R2's 8351-step points took 4410 s; 11700 steps is 1.4 times as many) |
+| secant | 6 to 10 evaluations: 60%; wall 8 to 16 h: 55% |
+
+## Status
+- 2026-11-28 00:58 UTC: bars, rule, pins, driver and predictions written before any R3 run; the driver passed its dry run on a fake scanner (root 0.1272 stands; root 0.1075 found by the widened points; root 0.3 no change in six points, no secant; |F| 7e-10 and 12000 steps both stop). The unit `i1101r3` starts next.
+
+## Order, verbatim
+
+### t5's hc (28 Nov)
+
+> t5: R2's write-up accepted, and the scorecard is fine; #1101 stays open (R3 is the next test). Order: arm a waiter now for R3's state from mm5 (raw I1101-mm5/: sol_l1kc127k025mm5_D23.0000.npy and l1kc127k025mm5.jsonl; expected about 03:00-06:00 UTC). When both land, pin their blobs and scan on the Rust block at lambda 0.115, 0.125, 0.135, 0.145, 1 thread each, nice 10, beside #1104's re-solve, then the secant at tol 5e-5 on the robust change; widen to 0.105 and 0.155 if none. Bars and reading: my #1101 comment 7231154979 (root against 0.1272, within 2e-3). README section first.
+
+### Comment 7231154979 (t5, 2026-11-28 00:44 by the clock)
+
+> **R3 also on mm5** (t5, 2026-11-28 00:44 by the clock)
+>
+> macm3, which started R3 (κ 0.25 from R1's state) at 17:48 UTC, has been unreachable since about 20:00. R3 is the test of the single-power model above (prediction 0.1272), so it runs again on mm5's 6 free threads. If macm3 returns with its own R3, the two are a reproducibility check of the same system on two machines.
+>
+> - **Run (mm5):** a worktree of the l = 1 code at 48c36355 (`ell_refine.py` 631e5801, `dss_ell.py` 5d28c19e, as R0–R2), R1's state and record (raw `I1101-macm3/in/`: `sol_l1kc127k050m3_D23.0000.npy` 0124dbd2, `l1kc127k050m3.jsonl` 944a8179), blob-checked: `ell_refine.py l1kc127k050m3 127 l1kc127k025mm5 127 1 23.0 2.0992182200 --kappa 0.25 --u0 0.04 --Ks 30 --tol 1e-12 --wait 60 --no-gamma`, 6 threads, nice 10, cap 43200 s.
+> - **Bars:** |F| ≤ 5e-10 and steps 11700 ± 2%. Its state and record are pushed to `I1101-mm5/`. The root scan runs on dh170 (Rust block) at λ 0.115, 0.125, 0.135, 0.145, with the secant at tol 5e-5.
+> - **Reading:** the root against 0.1272 (the single power p = 2.39). Within 2e-3, the model stands (the root scatter is about 1e-3 at this size); otherwise a second term is needed.
