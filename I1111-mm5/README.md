@@ -25,3 +25,26 @@ Stop rule (the order): a run that prints other than **5124 RK4 steps** is stoppe
 5. Anything else is reported as is. For reference (the issue): the float64 ln|det| of K35 at lambda 2.238 is -1590.66295 by `mode_matrix_fast` and -1589.20688 by `DSSEll.mode_matrix`.
 
 Reported: each run's double-double ln|det|, its spread over the five variants, the signs, the float64 ln|det|, the seconds, and the verdicts of bars 1-4. Posted on #1111, pushed here, reported to the coordinator. Estimate (the issue): about 1 h per run, three in parallel.
+
+## Results of stage 1 (2026-11-28 01:31:02 - 01:46:24 UTC; the three runs took 895, 906 and 922 s by wall clock, not the estimated hour)
+
+By script (`verdicts.py`, from `ddet_*.jsonl` and `ddet_*.log`; its output is `verdicts.txt`). Each run printed `kappa 0.35: 5124 RK4 steps`: the stop rule did not fire. Code: `ell_ddm.py` at 49664990, blob 64c4337f. ln|det| is the first of the five LU variants'; "spread" is max - min over the five; the sign column is the five variants' signs.
+
+| run | steps | signs (5) | dd ln\|det\| | spread (5 variants) | float64 sign, ln\|det\| | dd M build, 5 LU (s) |
+|---|---|---|---|---|---|---|
+| `ddet_k35` (K35 state) | 5124 | - - - - - | **-1591.0715814485** | 3.18e-12 | +, -1589.2068814813 | 756, 62.7 |
+| `ddet_all` (chord-all state) | 5124 | - - - - - | **-1591.8836378416** | 1.59e-12 | -, -1590.7514192244 | 765, 65.1 |
+| `ddet_k35_hionly` (control, `--mutate=hionly`) | 5124 | + + + + + | **-1595.6589355650** | 1.16e-02 | +, -1589.2068814813 | 786, 64.8 |
+
+Verdicts (the bars as written before the runs):
+
+1. **PASS.** All three runs print 5124 RK4 steps, and the five LU variants of each agree in sign.
+2. **PASS (the control fails as it must).** `hionly` differs from `ddet_k35` by 4.587354, against spreads of 1.16e-2 (its own variants) and 3.18e-12 (`ddet_k35`'s); its sign flips from -1 to +1.
+3. **FAIL.** |ln|det|(K35) - ln|det|(chord-all)| = **0.812056393124** in double-double, not within 0.1. The two states' double-double determinants differ by as much as the issue's 0.81: float64 blocks 0-11 do not cause that sensitivity.
+4. **PASS.** The difference 0.812056 is within **0.254%** of 0.81 (bar 10%): the sensitivity is the discrete operator's.
+
+Other, reported as is:
+
+- The float64 `ln|det|` (DSSEll.mode_matrix's, the second reference of the issue: -1589.20688 for K35; reproduced to the digit) is off the double-double one by +1.864700 (K35) and +1.132219 (chord-all); the float64 difference of the two states, +1.544538, is 1.90 times the double-double one.
+- **The float64 sign of K35 is +1; the double-double sign is -1** at all five variants. The chord-all state's float64 and double-double signs agree (-1).
+- The `hionly` control's five variants spread over 1.16e-2 (they differ in the fourth decimal and by 0.012), where the unmutated runs agree to 3e-12.

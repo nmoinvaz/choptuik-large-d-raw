@@ -1,0 +1,10 @@
+run     steps  signs(5)          ln|det| dd (variant 0)  spread max-min   float64 sign, ln|det|        M build s  5 LU s  total s
+k35     5124  -----  -1591.0715814485  3.18e-12  + -1589.2068814813  756  62.7  818.7
+all     5124  -----  -1591.8836378416  1.59e-12  - -1590.7514192244  765  65.1  830.1
+hionly  5124  +++++  -1595.6589355650  1.16e-02  + -1589.2068814813  786  64.8  850.8
+bar 1 (5124 steps; five variants agree in sign, each run): PASS
+bar 2 (hionly control: |hionly - k35| 4.587354 > spreads 1.16e-02 (hionly), 3.18e-12 (k35); signs -1 -> +1): PASS
+bar 3 (|k35 - all| 0.812056393124 <= 0.1): FAIL
+bar 4 (|diff - 0.81| 0.002056 = 0.254% of 0.81, bar 10%): PASS
+float64 minus dd: k35 +1.864700, all +1.132219; float64 difference k35 - all +1.544538
+float64 sign vs dd sign: k35 +1 vs -1, all -1 vs -1
