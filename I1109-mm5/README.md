@@ -36,7 +36,7 @@ Reported, a table per D: s/s_max of the two weakest non-null vectors, U_w^T F, |
 - **If D 7 passes:** D 16, then 14.5, 15, 15.5, 16.5, as written above (bars 2 and 3 unchanged).
 - **The gauge check's exit 1 is known, not one of #1109's bars:** `report` exits 1 when the gauge generator at h = sin 2 w tau reads |J g|/(s_max |g|) above 1e-6 (the first control: 2.150e-06); it is a known failure reported in #1105 (comment 7229260535: 2.3e-6 and 2.5e-6 at D 16, from the generator's part above k_c). It is noted in the table of each state and the runs go on.
 
-## Results of stage 1 (2026-11-28 01:21 - 01:28 UTC, 7 states, each state's four commands under timeout 3600, 2 threads, nice 10)
+## Results of stage 1 (2026-11-28 01:17 - 01:28 UTC, 7 states, each state's four commands under timeout 3600, 2 threads, nice 10)
 
 By script (`table.py`, from each state's `report_*.log`, `valley_*.log` and `run_*.log`; the table is `table.md`). The code: `i1101_weakdir.py` at db7f9c60. Every state rebuilt as "the record system" (|F| and steps equal the record's, jac's `--pin` with the full state and record blobs).
 The jac and svd npz files (34-209 MB each, 2.5 GB in all) stay on the machine; their logs, the `rep_*.json` and the table are pushed.
