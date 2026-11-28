@@ -35,3 +35,29 @@ Reported, a table per D: s/s_max of the two weakest non-null vectors, U_w^T F, |
   The same four commands, with `--pin=b62fac557136485d34216e1cdd5f31bcf70fcf88,21f83e6b2f33320c61381d611ee9e4f0a8177bfd`.
 - **If D 7 passes:** D 16, then 14.5, 15, 15.5, 16.5, as written above (bars 2 and 3 unchanged).
 - **The gauge check's exit 1 is known, not one of #1109's bars:** `report` exits 1 when the gauge generator at h = sin 2 w tau reads |J g|/(s_max |g|) above 1e-6 (the first control: 2.150e-06); it is a known failure reported in #1105 (comment 7229260535: 2.3e-6 and 2.5e-6 at D 16, from the generator's part above k_c). It is noted in the table of each state and the runs go on.
+
+## Results of stage 1 (2026-11-28 01:21 - 01:28 UTC, 7 states, each state's four commands under timeout 3600, 2 threads, nice 10)
+
+By script (`table.py`, from each state's `report_*.log`, `valley_*.log` and `run_*.log`; the table is `table.md`). The code: `i1101_weakdir.py` at db7f9c60. Every state rebuilt as "the record system" (|F| and steps equal the record's, jac's `--pin` with the full state and record blobs).
+The jac and svd npz files (34-209 MB each, 2.5 GB in all) stay on the machine; their logs, the `rep_*.json` and the table are pushed.
+
+| D | k_c | s/s_max, two weakest non-null | U_w^T F (two) | |F| | Gauss-Newton dDelta (full step) | GN \|dz\| | seconds | gauge generator at 2 w tau |
+|---|---|---|---|---|---|---|---|---|
+| 7.0 (control) | 31 | 1.396e-10, 1.396e-10 | +4.5459e-18, -1.7568e-17 | 7.8890e-15 | **-7.9596e-18** | 4.3802e-08 | 15 | cos 1.724e-08 ok, sin 3.948e-08 ok |
+| 10.5 (first control) | 31 | 2.098e-11, 2.098e-11 | +2.5269e-14, -2.8222e-14 | 4.2644e-12 | **-3.5212e-08** | 8.3941e-04 | 15 | cos 8.831e-07 ok, sin 2.150e-06 FAIL |
+| 14.5 | 55 | 1.113e-10, 9.085e-10 | +1.2465e-10, +1.8403e-10 | 2.2397e-10 | **-1.2432e-01** | 1.7116e-01 | 66 | cos 1.628e-07 ok, sin 4.183e-07 ok |
+| 15.0 | 55 | 2.921e-11, 7.186e-10 | -8.5369e-11, +2.0732e-10 | 2.3783e-10 | **+2.8808e-01** | 4.1334e-01 | 53 | cos 4.287e-07 ok, sin 8.925e-07 ok |
+| 15.5 | 55 | 9.740e-11, 5.233e-10 | -1.2424e-10, +1.7677e-10 | 2.1655e-10 | **+1.2088e-01** | 1.7402e-01 | 47 | cos 1.099e-06 FAIL, sin 1.713e-06 FAIL |
+| 16.0 | 55 | 1.502e-10, 4.671e-10 | +1.1152e-10, -1.3924e-10 | 1.7853e-10 | **+6.0441e-02** | 9.9041e-02 | 61 | cos 2.271e-06 FAIL, sin 2.499e-06 FAIL |
+| 16.5 | 55 | 1.592e-10, 4.705e-10 | -8.3988e-11, -1.8200e-10 | 2.0080e-10 | **+3.4416e-02** | 7.6172e-02 | 43 | cos 4.165e-06 FAIL, sin 3.039e-06 FAIL |
+
+(The two weakest non-null vectors are the first two of the weak band: indices 0 and 1 at D 7.0 (no null band), 20 and 21 at D 10.5, 52 and 53 at k_c 55. The tau-translation generator's check is ok at every state: 7.4e-15, 6.5e-11, 1.6e-11, 1.7e-11, 2.1e-11, 5.9e-11, 1.5e-10; its control and the planted check pass at every state.)
+
+## Acceptance, stage 1
+
+1. **Control: PASSES at D 7.0.** The Gauss-Newton |dDelta| is **7.96e-18** (<= 1e-8; the full step, valley's line "Gauss-Newton step |dz| 4.3802e-08, dDelta -7.9596e-18"; 16 weak vectors below 1e-8). The first control, D 10.5, failed it (3.52e-8; it is past the onset of the weak selection, ELL.md section 6, and is kept as the scan's first point).
+2. **D 16 reproduces #1105: PASSES.** U_w^T F (+1.1152e-10, -1.3924e-10) against (+1.116e-10, -1.392e-10): 0.07% and 0.03% apart (<= 1%); the pair's s/s_max 1.502e-10 and 4.671e-10 (the issue's 1.5e-10 and 4.7e-10); |F| 1.7853243545e-10, steps 2565, equal to the record's.
+3. **The first D at which |dDelta| > 1e-6:** all five k_c 55 states are above it, by 4 to 5 orders and more: |dDelta| 1.24e-1 (D 14.5), 2.88e-1 (15.0), 1.21e-1 (15.5), 6.04e-2 (16.0), 3.44e-2 (16.5): so the lowest D scanned, **D 14.5**, is the first, and the onset in the k_c 55 family lies below it (not resolved). The two k_c 31 controls are below 1e-6 (D 7.0: 7.96e-18; D 10.5: 3.52e-8); the onset lies between D 10.5 (k_c 31) and D 14.5 (k_c 55), and the two k_c differ, so this scan does not locate it at one k_c.
+   Along the k_c 55 states |dDelta| is not monotone in D (sign -, +, +, +, +; 0.124, 0.288, 0.121, 0.060, 0.034); the pair's s/s_max stays within 2.9e-11 to 9.1e-10 at every k_c 55 state, and its U_w^T F is 1e-10 to 2e-10, with |F| 1.8e-10 to 2.4e-10.
+
+**The gauge check's exit 1 at h = 2 w tau** (the report's exit code is 1 at D 10.5, 15.5, 16.0 and 16.5, 0 at D 7.0, 14.5 and 15.0) is the known failure reported in #1105 (comment 7229260535: 2.3e-6 and 2.5e-6 at D 16, from the generator's part above k_c; here 2.271e-6 and 2.499e-6 at D 16.0), not one of #1109's bars.
