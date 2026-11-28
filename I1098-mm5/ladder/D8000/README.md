@@ -87,3 +87,11 @@ By script from `tail/job.log`, `tail/rls.log`, `tail/release_ls.jsonl` and `tail
 - **The kmax rule** (`tools3/kmax_rule.py`, blob 196f12a5, 00:06 UTC): `c19 +1.032e-22, c21 +1.310e-24, r 0.0127 (bar 0.05), the geometric remainder past h21 1.68e-26 (err_tail's, information); h23: 0 steps, pending +1.16e-27: kmax 23 suffices`, **exit 0** (no h25 extension).
 - **Bars:** the gate at the M 48 start passes at 8600: met; the h13 re-converge about 1e-25 or less: -4.61e-26, met; the tail falls from h15 by about 1e2 or more per harmonic: h15/h17 = 189, h17/h19 = 640, h19/h21 = 79: met; h21's change 1.31e-24 (at most about 1e-23): met; h23 released with pending +1.16e-27 (at most about 1e-26) and no step, no turn: met; the kmax rule exit 0: met.
   No qq inner solve failed, no line-search trial below lam 1, no floor, no outer step above 3x its harmonic's first. The k* stage started at 00:06:53 (12 threads): its section follows.
+
+### The k* stage (`tail/kstar/`, 00:06:53 - 01:26:55 UTC, 4802 s; `kstar_stage.sh` by the tail script, fastmul7, chord-free, 12 threads) and the end of the point
+
+kfree 15 at the h23 state: gain **2.46139e+30** (the gain solve 910 s), F before 2.99470e-54, **bound before 7.37112e-24** (gain x F), above 1e-27, so **re-converged** (the h15 state, qq, od, tol 1e-62: outer 0 inner converged in 2 steps, |F| 9.14e-93, 2867.5 s, step dDelta +2.59e-32;
+outer 1 released with pending -4.50e-53, 968 s for its Newton step): **F after 9.38068e-81; the k* system's Delta moved +2.5889e-32 (from 1.645190212271047260933714217206060026254 to ...085915265); bound after 2.5889e-32.** The full system's qd check 5.70e-56, h13's change +2.589e-32.
+`tail/job.log`: "tail rc 0 01:26:55", "kmax_rule rc 0" (the rule's line above), **"job rc 0 01:26:55"**. D 8000's Delta stands at 1.64519021227104726086785096266598692601 (the tail's state at h23; the k* bound after 2.59e-32).
+**The whole point:** M 32 stages 06:31:39 - 17:58:12 (41193 s) and the M 48 tail script 17:59:04 - 01:26:55 (27471 s, 12 threads: gate 86 s, tail 21978 s, k* 4802 s): 18 h 55 min (68116 s) from the guess to the end; this was the last stage of the ladder's last point.
+The held timeout of the tail (`tail/hold_timeouts.log`: timeout 72007 stopped, its child ended 01:26:55, the timeout continued) is done; the hold instance ended itself on the "job rc" line at 01:27:25.
