@@ -88,3 +88,77 @@ The inputs (all read from `origin/main`, written to `in/`, each blob checked aga
 | k47_D14.5 | 47 | 14.5 | `I1025-mac/out/l1kc47F1025.jsonl` 6ca9d422 | `I1025-mac/out/sol_l1kc47F1025_D14.5000.npy` 05c15737 |
 | k47_D15.0 | 47 | 15.0 | `I1025-mac/out/l1kc47F1025.jsonl` 6ca9d422 | `I1025-mac/out/sol_l1kc47F1025_D15.0000.npy` abfc6128 |
 | k47_D16.0 | 47 | 16.0 | `I1025-mac/out/l1kc47F1025.jsonl` 6ca9d422 | `I1025-mac/out/sol_l1kc47F1025_D16.0000.npy` b7059fab |
+
+## Results of stage 1b (2026-11-28 01:34:58 - 01:41:37 UTC, 18 states in 6.6 min: 10-39 s each at k_c 31 and 47; each state's four commands as in stage 1)
+
+By script (`table_1b.py`, from each state's `report_*.log`, `valley_*.log` and `run_*.log`; the tables are `table_1b.md`). **No state was skipped:** every `jac` printed "the record system" (|F| and steps equal to the record's) with the pin of its state and record blobs. The k_c 31 family joins stage 1's D 7.0 and D 10.5, the k_c 55 family is stage 1's five states.
+The jac and svd npz files stay on the machine (not pushed); the logs, the `rep_*.json` and the tables are pushed.
+
+**The onset, per family** (the first D with the full Gauss-Newton |dDelta| > 1e-6):
+
+| k_c | last D below 1e-6 | first D above 1e-6 | note |
+|---|---|---|---|
+| 31 | 10.5 (3.5212e-08) | **11.0 (1.2610e-06)** | D 7.0 7.96e-18, D 8.0 1.34e-15, D 9.0 5.35e-13 below |
+| 47 | 10.5 (4.8801e-08) | **11.0 (1.6907e-06)** | the lowest k_c 47 D is 10.5 |
+| 55 | none (the lowest scanned is D 14.5) | 14.5 (1.2432e-01) | the onset below D 14.5 is not resolved in this family |
+
+**Both families whose scans reach the onset put it between D 10.5 and D 11.0** (the scan step is 0.5; a log-linear interpolation of the two bracketing points gives the 1e-6 crossing at D 10.97 for k_c 31 and D 10.93 for k_c 47, `onset_calc.py`). The onset is the same to the scan's resolution in the two families.
+
+Comparisons at common D, by script (`onset_calc.py` on `table_1b.md`):
+
+- k_c 47 against k_c 31, six common D: |dDelta| ratio 1.386 (D 10.5), 1.341 (11.0), 1.324 (11.5), 1.213 (12.0), 1.180 (13.5), 1.185 (14.0). The k_c 47 value is 18% to 39% larger, and the gap narrows with D. Same sign at all six.
+- k_c 55 against k_c 47: D 14.5 -1.2432e-01 and -1.2159e-01 (2.2% apart), D 16.0 +6.0441e-02 and +5.8732e-02 (2.9% apart). **At D 15.0 they differ by a factor 3.93** (+2.8808e-01 and +7.3309e-02), where the k_c 47 state's weak pair is at s/s_max 1.021e-11 and 2.733e-11, 11 and 15 times below the first value at D 14.5 (1.140e-10) and at D 16.0 (1.550e-10).
+- Growth of |dDelta| in D (orders of magnitude per unit D between consecutive scanned D): k_c 31 2.2 (D 7-8), 2.6 (8-9), 3.2 (9-10.5), 3.1 (10.5-11), 1.4 (11-11.5), 3.3 (11.5-12), 1.7 (12-12.5), 1.1 (12.5-13), 0.6 (13-13.5), 0.7 (13.5-14); k_c 47 the same from 3.1 at D 10.5-11 down to 0.75 at D 13.5-14. The growth slows beyond D 12, and |dDelta| is 3.45e-2 at D 14 (k_c 31), 4.09e-2 (k_c 47).
+- Sign: the k_c 31 and k_c 47 values are positive at D 11 to 12 and negative at D 13.5 and 14 (k_c 31: D 12.5 and 13.0 negative too); k_c 47 and k_c 55 change sign between D 14.5 (negative) and D 15.0 (positive), k_c 47 staying positive at D 16.
+
+The records differ along the k_c 31 family (D 7 to 9 from `I810-mac`, D 10.5 to 12 from the `r1025` run, D 12.5 to 14 from the `L1025` run; the k_c 47 family: `r1025` D 10.5 to 12, `L1025` D 13.5 and 14, `F1025` D 14.5 to 16), so a change of trend at a record boundary (D 12 to 12.5 at k_c 31) is not separated here from the dependence on D.
+
+**Gauge check, exit 1 of `report`** (the known failure at h = sin 2 w tau of #1105, not one of #1109's bars): k_c 31 at D 10.5, 11.0, 11.5, 13.0, 13.5, 14.0; k_c 47 at D 15.0 and 16.0; none at the other states.
+
+## Tables of stage 1b (by script, `table_1b.py`; the same text is `table_1b.md`)
+
+**k_c 31**
+
+| D | s/s_max, two weakest non-null | U_w^T F (two) | \|F\| | Gauss-Newton dDelta (full step) | seconds | report exit |
+|---|---|---|---|---|---|---|
+| 7.0 | 1.396e-10, 1.396e-10 (idx 0, 1) | +4.5459e-18, -1.7568e-17 | 7.8890e-15 | **-7.9596e-18** | 15 | 0 |
+| 8.0 | 2.393e-11, 2.393e-11 (idx 2, 3) | -1.9050e-15, -1.7623e-15 | 1.8358e-14 | **+1.3431e-15** | 14 | 0 |
+| 9.0 | 1.997e-11, 1.997e-11 (idx 8, 9) | +7.2982e-16, -7.9595e-16 | 3.8128e-15 | **+5.3518e-13** | 11 | 0 |
+| 10.5 | 2.098e-11, 2.098e-11 (idx 20, 21) | +2.5269e-14, -2.8222e-14 | 4.2644e-12 | **-3.5212e-08** | 15 | 1 |
+| 11.0 | 2.221e-11, 2.221e-11 (idx 22, 23) | -2.1539e-13, -1.0416e-13 | 1.2600e-11 | **+1.2610e-06** | 12 | 1 |
+| 11.5 | 3.795e-11, 3.817e-11 (idx 24, 25) | +4.0238e-13, +1.3563e-12 | 1.8229e-11 | **+6.4140e-06** | 10 | 1 |
+| 12.0 | 1.568e-11, 1.572e-11 (idx 24, 25) | -1.5472e-12, -1.1675e-12 | 2.5343e-11 | **+2.9802e-04** | 11 | 0 |
+| 12.5 | 6.148e-11, 6.931e-11 (idx 26, 27) | +2.3122e-13, -6.1226e-12 | 1.0949e-10 | **-2.0760e-03** | 10 | 0 |
+| 13.0 | 3.014e-11, 3.382e-11 (idx 26, 27) | +6.6164e-13, -7.7540e-12 | 1.9302e-10 | **-7.0114e-03** | 10 | 1 |
+| 13.5 | 1.454e-11, 1.737e-11 (idx 26, 27) | -9.2143e-12, -8.3872e-12 | 2.3726e-10 | **-1.4698e-02** | 10 | 1 |
+| 14.0 | 1.083e-11, 3.989e-10 (idx 27, 28) | -4.7458e-12, -1.2641e-10 | 2.4183e-10 | **-3.4504e-02** | 11 | 1 |
+
+first D with |dDelta| > 1e-6 in the k_c 31 family: 11.0
+
+**k_c 47**
+
+| D | s/s_max, two weakest non-null | U_w^T F (two) | \|F\| | Gauss-Newton dDelta (full step) | seconds | report exit |
+|---|---|---|---|---|---|---|
+| 10.5 | 2.097e-11, 2.098e-11 (idx 36, 37) | -3.2468e-14, +3.5903e-14 | 3.7735e-12 | **-4.8801e-08** | 32 | 0 |
+| 11.0 | 2.221e-11, 2.221e-11 (idx 38, 39) | -3.0705e-13, +2.2626e-14 | 1.6353e-11 | **+1.6907e-06** | 34 | 0 |
+| 11.5 | 3.802e-11, 3.821e-11 (idx 40, 41) | -5.4365e-13, -1.7610e-12 | 2.2723e-11 | **+8.4950e-06** | 31 | 0 |
+| 12.0 | 1.572e-11, 1.576e-11 (idx 40, 41) | +2.5311e-12, +2.5942e-13 | 3.0696e-11 | **+3.6150e-04** | 39 | 0 |
+| 13.5 | 1.380e-11, 1.759e-11 (idx 42, 43) | +6.9591e-12, -4.3176e-12 | 2.4963e-10 | **-1.7340e-02** | 33 | 0 |
+| 14.0 | 3.987e-10, 1.124e-09 (idx 44, 45) | +1.4982e-10, +1.8309e-10 | 2.3689e-10 | **-4.0904e-02** | 35 | 0 |
+| 14.5 | 1.140e-10, 9.067e-10 (idx 44, 45) | +1.2474e-10, +1.8843e-10 | 2.2788e-10 | **-1.2159e-01** | 34 | 0 |
+| 15.0 | 1.021e-11, 2.733e-11 (idx 43, 44) | -7.9930e-11, +7.8457e-11 | 2.4268e-10 | **+7.3309e-02** | 32 | 1 |
+| 16.0 | 1.550e-10, 4.722e-10 (idx 44, 45) | -1.1052e-10, +1.2749e-10 | 1.6893e-10 | **+5.8732e-02** | 30 | 1 |
+
+first D with |dDelta| > 1e-6 in the k_c 47 family: 11.0
+
+**k_c 55**
+
+| D | s/s_max, two weakest non-null | U_w^T F (two) | \|F\| | Gauss-Newton dDelta (full step) | seconds | report exit |
+|---|---|---|---|---|---|---|
+| 14.5 | 1.113e-10, 9.085e-10 (idx 52, 53) | +1.2465e-10, +1.8403e-10 | 2.2397e-10 | **-1.2432e-01** | 66 | 0 |
+| 15.0 | 2.921e-11, 7.186e-10 (idx 52, 53) | -8.5369e-11, +2.0732e-10 | 2.3783e-10 | **+2.8808e-01** | 53 | 0 |
+| 15.5 | 9.740e-11, 5.233e-10 (idx 52, 53) | -1.2424e-10, +1.7677e-10 | 2.1655e-10 | **+1.2088e-01** | 47 | 1 |
+| 16.0 | 1.502e-10, 4.671e-10 (idx 52, 53) | +1.1152e-10, -1.3924e-10 | 1.7853e-10 | **+6.0441e-02** | 61 | 1 |
+| 16.5 | 1.592e-10, 4.705e-10 (idx 52, 53) | -8.3988e-11, -1.8200e-10 | 2.0080e-10 | **+3.4416e-02** | 43 | 1 |
+
+first D with |dDelta| > 1e-6 in the k_c 55 family: 14.5
