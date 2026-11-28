@@ -29,3 +29,17 @@ Reported: the build line and the four check exits, in one line. The logs are in 
 ## Notes written before the run
 
 - `i1101_weakdir.py root` (8709abbd) reads only `--tol`, `--maxev`, `--dln` and `--b12`, and builds `RealEval` without a thread count, so `--b12_threads=2` is ignored there and the rust block would use rayon's default pool. The root step of step 4 is therefore run with `RAYON_NUM_THREADS=2` as well, and the threads `ellrs` reports are checked in its log.
+
+## Results (2026-11-28 03:31 UTC)
+
+The build and the four checks of the order, all as required (logs `build.log`, `selftest.log`, `selftest_nolam.log`, `selftest_harm.log`, `check.log`, `checks.txt`; `run_checks.sh`):
+
+| step | result |
+|---|---|
+| build (`ellrs/build.sh`, 03:30:24 UTC, about 11 s of compiling) | `ellrs neon accelerate` (isa neon, products by Accelerate's dgemm), installed into `~/venv-314` |
+| `selftest` | exit 0 (3666 of 3666 entries bit for bit at lambda 0 and 0.9) |
+| `selftest --mutate=nolam` | exit 1 (as required) |
+| `selftest --mutate=harm` | exit 1 (as required) |
+| `check` (k_c 31, D 10.5, lambda 2.87, 2 threads, `--controls=1`) | exit 0: the record system (|F| 4.2644450300e-12, 1748 steps, equal to the record's), **15010 of 15010 entries bit for bit**, both controls FAIL (nolam 0 of 15010, harm 0 of 15010), Rust 1.64 s against DDEll 16.2 s (ratio 9.9) |
+
+One line: `ellrs neon accelerate`; exits 0, 1, 1, 0.
