@@ -202,3 +202,12 @@ Next (`detline`, before it runs): ln|det| at lambda 2.238 along z(t) = z_K35 + t
 t = 0, 0.1, 0.25, 0.5, 0.75, 0.9, 1 and the hybrid at t = 0, 0.5, 1. Reading: monotone in t with the hybrid's t = 0.5
 value between its ends means a smooth, real sensitivity of det M to a 2e-10 move; neighbour differences larger than
 the end-to-end change mean the determinant is not a smooth function of the state at this size (rounding).
+
+**detline result** (`B/seg/detline.log`): float64 ln|det| along the 1.95e-10 segment is -1590.66, -1590.45, -1589.69,
+-1588.77, -1589.56, -1590.38, -1595.75 at t = 0, 0.1, 0.25, 0.5, 0.75, 0.9, 1, with the sign flipping three times:
+not smooth (the float64 determinant). The hybrid is -1591.0717, -1591.3977, -1591.8858 at t = 0, 0.5, 1: monotone,
+so the hybrid determinant moves smoothly by 0.81 over a 2e-10 move.
+
+Next (`detparts`, written before it runs, 00:42 UTC by the clock): the hybrid ln|det| at 2.238 for K35 plus each band's
+part of (chord-all - K35) alone (null 5.6e-13, weak 1.95e-10, strong about 7e-12). Reading: the band whose part alone
+gives at least half of the 0.81 is named as the one that moves det M.

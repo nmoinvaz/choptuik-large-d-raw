@@ -1,0 +1,18 @@
+D 16.0 k_c 55: |F| 1.8869021271e-10 (record 1.8869021271e-10), steps 5124 (record 5124): the record system
+|z_B - z_A| 1.9535e-10, lambda 2.238
+  t 0: float64 sign +1 ln|det| -1590.662950; |F| 1.8869e-10 (21 s)
+  t 0.1: float64 sign +1 ln|det| -1590.452929; |F| 1.8895e-10 (21 s)
+  t 0.25: float64 sign +1 ln|det| -1589.694691; |F| 1.8897e-10 (21 s)
+  t 0.5: float64 sign -1 ln|det| -1588.769505; |F| 1.8897e-10 (22 s)
+  t 0.75: float64 sign +1 ln|det| -1589.563571; |F| 1.8916e-10 (21 s)
+  t 0.9: float64 sign -1 ln|det| -1590.376162; |F| 1.8896e-10 (21 s)
+  t 1: float64 sign +1 ln|det| -1595.753126; |F| 1.8887e-10 (24 s)
+/Users/nathan/venv-1025dd/lib/python3.14/site-packages/numpy/linalg/_linalg.py:2366: RuntimeWarning: divide by zero encountered in slogdet
+  sign, logdet = _umath_linalg.slogdet(a, signature=signature)
+/Users/nathan/venv-1025dd/lib/python3.14/site-packages/numpy/linalg/_linalg.py:2366: RuntimeWarning: overflow encountered in slogdet
+  sign, logdet = _umath_linalg.slogdet(a, signature=signature)
+/Users/nathan/venv-1025dd/lib/python3.14/site-packages/numpy/linalg/_linalg.py:2366: RuntimeWarning: invalid value encountered in slogdet
+  sign, logdet = _umath_linalg.slogdet(a, signature=signature)
+  t 0: hybrid sign -1 ln|det| -1591.0716659377 dln 1.04e-06 robust True; float64 +1 -1590.662950 (221 s)
+  t 0.5: hybrid sign -1 ln|det| -1591.3976812811 dln 1.19e-06 robust True; float64 -1 -1588.769505 (227 s)
+  t 1: hybrid sign -1 ln|det| -1591.8857762928 dln 1.89e-06 robust True; float64 +1 -1595.753126 (220 s)
