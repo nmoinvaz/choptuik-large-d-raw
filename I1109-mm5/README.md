@@ -61,3 +61,30 @@ The jac and svd npz files (34-209 MB each, 2.5 GB in all) stay on the machine; t
    Along the k_c 55 states |dDelta| is not monotone in D (sign -, +, +, +, +; 0.124, 0.288, 0.121, 0.060, 0.034); the pair's s/s_max stays within 2.9e-11 to 9.1e-10 at every k_c 55 state, and its U_w^T F is 1e-10 to 2e-10, with |F| 1.8e-10 to 2.4e-10.
 
 **The gauge check's exit 1 at h = 2 w tau** (the report's exit code is 1 at D 10.5, 15.5, 16.0 and 16.5, 0 at D 7.0, 14.5 and 15.0) is the known failure reported in #1105 (comment 7229260535: 2.3e-6 and 2.5e-6 at D 16, from the generator's part above k_c; here 2.271e-6 and 2.499e-6 at D 16.0), not one of #1109's bars.
+
+## Amendment: stage 1b (2026-11-28 01:34 UTC, coordinator's order after #1109's stage 1 table; written before the runs)
+
+Stage 1b puts the onset of the weak selection in **one k_c family each**, instead of between k_c 31 and 55: the same four commands per state (`run_state.sh`'s sequence: jac with `--pin`, svd, report, valley `--ts=1e-3`, each under `timeout 3600`, 2 threads, nice 10), the same push rule, beside #1101 R3 and #1111 stage 1 (3 threads). A state whose `jac` does not print "the record system" (or exits non-zero) is **skipped and logged**, and the scan goes on (no stop).
+Reported per state: k_c, D, the two weakest non-null s/s_max, U_w^T F, |F|, the full Gauss-Newton dDelta, seconds; and per family the first D with |dDelta| > 1e-6 (bar 3's measure: the full step). Posted on #1109, pushed, reported to the coordinator. The jac and svd npz files stay on the machine.
+The inputs (all read from `origin/main`, written to `in/`, each blob checked against the order's prefix: 0 mismatches; `list_1b.tsv` is the list the driver reads), in this order:
+
+| tag | k_c | D | record (raw path, blob prefix) | state (raw path, blob prefix) |
+|---|---|---|---|---|
+| k31_D8.0 | 31 | 8.0 | `I810-mac/out/l1kc31s810.jsonl` 21f83e6b | `I810-mac/out/sol_l1kc31s810_D8.0000.npy` 1607d324 |
+| k31_D9.0 | 31 | 9.0 | `I810-mac/out/l1kc31s810.jsonl` 21f83e6b | `I810-mac/out/sol_l1kc31s810_D9.0000.npy` 6cf9c62e |
+| k31_D11.0 | 31 | 11.0 | `I1025-mac/out/l1kc31r1025.jsonl` e5a87ec5 | `I1025-mac/out/sol_l1kc31r1025_D11.0000.npy` f3190aa8 |
+| k31_D11.5 | 31 | 11.5 | `I1025-mac/out/l1kc31r1025.jsonl` e5a87ec5 | `I1025-mac/out/sol_l1kc31r1025_D11.5000.npy` 0dd6388f |
+| k31_D12.0 | 31 | 12.0 | `I1025-mac/out/l1kc31r1025.jsonl` e5a87ec5 | `I1025-mac/out/sol_l1kc31r1025_D12.0000.npy` e6a1cd54 |
+| k31_D12.5 | 31 | 12.5 | `I1025-mac/out/l1kc31L1025.jsonl` 2f251d0e | `I1025-mac/out/sol_l1kc31L1025_D12.5000.npy` c7fa42ba |
+| k31_D13.0 | 31 | 13.0 | `I1025-mac/out/l1kc31L1025.jsonl` 2f251d0e | `I1025-mac/out/sol_l1kc31L1025_D13.0000.npy` cc9fcaae |
+| k31_D13.5 | 31 | 13.5 | `I1025-mac/out/l1kc31L1025.jsonl` 2f251d0e | `I1025-mac/out/sol_l1kc31L1025_D13.5000.npy` 63b8d7d9 |
+| k31_D14.0 | 31 | 14.0 | `I1025-mac/out/l1kc31L1025.jsonl` 2f251d0e | `I1025-mac/out/sol_l1kc31L1025_D14.0000.npy` 19785b0b |
+| k47_D10.5 | 47 | 10.5 | `I1025-mac/out/l1kc47r1025.jsonl` 9237f140 | `I1025-mac/out/sol_l1kc47r1025_D10.5000.npy` 31379cc6 |
+| k47_D11.0 | 47 | 11.0 | `I1025-mac/out/l1kc47r1025.jsonl` 9237f140 | `I1025-mac/out/sol_l1kc47r1025_D11.0000.npy` 8a01271a |
+| k47_D11.5 | 47 | 11.5 | `I1025-mac/out/l1kc47r1025.jsonl` 9237f140 | `I1025-mac/out/sol_l1kc47r1025_D11.5000.npy` 4090cd96 |
+| k47_D12.0 | 47 | 12.0 | `I1025-mac/out/l1kc47r1025.jsonl` 9237f140 | `I1025-mac/out/sol_l1kc47r1025_D12.0000.npy` 034efc9e |
+| k47_D13.5 | 47 | 13.5 | `I1025-mac/out/l1kc47L1025.jsonl` fd96857d | `I1025-mac/out/sol_l1kc47L1025_D13.5000.npy` f581080e |
+| k47_D14.0 | 47 | 14.0 | `I1025-mac/out/l1kc47L1025.jsonl` fd96857d | `I1025-mac/out/sol_l1kc47L1025_D14.0000.npy` 56cc0051 |
+| k47_D14.5 | 47 | 14.5 | `I1025-mac/out/l1kc47F1025.jsonl` 6ca9d422 | `I1025-mac/out/sol_l1kc47F1025_D14.5000.npy` 05c15737 |
+| k47_D15.0 | 47 | 15.0 | `I1025-mac/out/l1kc47F1025.jsonl` 6ca9d422 | `I1025-mac/out/sol_l1kc47F1025_D15.0000.npy` abfc6128 |
+| k47_D16.0 | 47 | 16.0 | `I1025-mac/out/l1kc47F1025.jsonl` 6ca9d422 | `I1025-mac/out/sol_l1kc47F1025_D16.0000.npy` b7059fab |
