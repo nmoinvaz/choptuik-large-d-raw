@@ -1,0 +1,14 @@
+2026-11-28 08:01:33 UTC start ne_root bracket 0.0396709 0.0476709 pid 23443
+capped_run: child pid 23457, cap 14400 s
+D 23.0 k_c 127: |F| 3.1512818584e-10 (record 3.1512818584e-10), steps 4183 (record 4183): the record system
+bracket (0.0396709, 0.0476709), tol 1e-06, maxev 20, mode matrix fast (jac), block 12 rust, noise 1e-15, dln <= 0.1, sol_ne1_D23.0000.npy
+block 12 by ellrs (neon, products dgemm, 2 threads)
+  lam 0.0396709 (lo): hybrid +1 ln|det| -3903.0953294383, noise [1.0, 1.0] dln 1.36e-05, robust True; float64 +1 -3902.4117356942 (338 s [101, 227, 9])
+  lam 0.0476709 (hi): hybrid -1 ln|det| -3901.5935567749, noise [-1.0, -1.0] dln 1.82e-06, robust True; float64 -1 -3902.4309890993 (322 s [100, 215, 7])
+  lam 0.04112819028938678 (interior): hybrid -1 ln|det| -3903.0376315779, noise [-1.0, -1.0] dln 1.03e-05, robust True; float64 -1 -3901.5929963898 (321 s [92, 220, 9])
+  lam 0.04037853034139323 (interior): hybrid -1 ln|det| -3905.5315222757, noise [-1.0, -1.0] dln 1.40e-04, robust True; float64 +1 -3902.6968527088 (336 s [101, 226, 9])
+  lam 0.04032159856405092 (interior): hybrid -1 ln|det| -3908.1502694455, noise [-1.0, -1.0] dln 1.93e-03, robust True; float64 +1 -3903.0293402285 (333 s [97, 227, 8])
+  lam 0.04031715064433497 (interior): hybrid +1 ln|det| -3914.6616909675, noise [1.0, 1.0] dln 2.54e+00, robust False; float64 +1 -3904.2429894781 (272 s [88, 176, 8])
+root: status nonrobust (not robust at 0.04031715064433497), bracket [0.0396709, 0.04032159856405092] width 6.507e-04, signs [1.0, -1.0], det-linear 0.04031747487157126, Brent 0.04032159856405092, 6 evaluations, 1922 s
+capped_run: exit 4 wall 1932 s cap_hit False
+2026-11-28 08:33:45 UTC end ne_root exit=4

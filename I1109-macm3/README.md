@@ -50,3 +50,25 @@ Bars (written before the runs):
 - 2026-11-28 07:31:51 UTC w10 ended exit 4 (nonrobust, 7 evaluations, 3858 s); 07:35:21 UTC w01 ended exit 4 (nonrobust, 8 evaluations, 4067 s). No exit 2, no bracket widened.
   Roots and shifts: roots_summary.txt (python3 roots_summary.py; --selftest passes). RSS sample 9 min in: 2.8 to 3.0 GiB per process; 532 to 625 s per evaluation with three at once.
 - Files: r0/w01/w10 .jsonl (records), .out (stdout), .exit (exit code), selftest*.log, check_kc31.log, run_case.sh, wait_r0.sh, common/, roots_summary.py/.txt, make_post.py, post_started.md, post_result.md.
+
+## Stage 1e: nonlinear elimination at k_c 127, D 23.0 (t5's order, 2026-11-28 07:38 UTC; written 2026-11-28 07:39 UTC before the run)
+
+The linear estimate says R0's discrete zero along its weak vector lies at dDelta -0.0196 and would move lambda_1 by about -0.015.
+Test it with #1105's nonlinear elimination at k_c 127, D 23.0 (at D 16 it found the zero receding). Same worktree (693a4d79), venv, budget (6 threads, nice 10).
+1. OPENBLAS_NUM_THREADS=6 VECLIB_MAXIMUM_THREADS=6, detached (common/launch_1070.py), 21600 s cap (common/capped_run.py), run_ne.sh:
+   python i1101_weakdir.py ne <R0 jsonl> <R0 npy> 23.0 <this folder>/ne/ --outer=6
+   (fresh J and SVD per outer step, Gauss-Newton step on the weak vector at fractions 1 to 1/8, re-frozen steps and chord steps on the strong band;
+   stops when an outer step cuts |U_w^T F| by less than 2x; every iterate saved with a stub record.)
+2. Then the root of the last saved iterate (Rust block 12, RAYON_NUM_THREADS=2, 14400 s cap):
+   python d18_secant.py run <iterate jsonl> <iterate npy> 23.0 LO HI ne_root.jsonl --tol=1e-6 --maxev=20 --b12=rust --b12_threads=2
+   with (LO, HI) = (0.0455917 + 0.785 dDelta) -+ 0.004, dDelta of that iterate against R0 (the linear slope), widened once by 2x on exit 2.
+Bars (the order's, written before the run): report per outer step |U_w^T F|, Delta, dDelta from R0, |F|, steps, seconds. Reading:
+(a) |U_w^T F| falls at least 2x per step to <= 1e-12: the zero is reachable; its root is the k_c 127 root at the discrete zero; compare root - 0.0455917 with -0.785 x dDelta.
+(b) it stops (the elimination's rule): the zero recedes, as at D 16; report the last iterate's root as the root along the valley at that dDelta.
+Either way, post via files, bundle, report to t5.
+- 2026-11-28 07:39:05-08:00:46 UTC stage 1e step 1 (ne.out, ne/): exit 0, 1301 s, stopped by the elimination's rule at outer 1 (|U_w^T F| 1.0453e-10 -> 1.0420e-10, less than 2x): reading (b).
+  Saved iterate ne/sol_ne1_D23.0000.{npy,jsonl} (fraction 0.125 taken, |F| 3.1513e-10, 4183 steps). dDelta from R0 = -2.4468301010811544e-3 (z[-1] of the two npy files).
+- 2026-11-28 08:01 UTC step 2: bracket centre 0.0455917 + 0.785 dDelta = 0.043670938370651294, LO 0.0396709, HI 0.0476709 (+-0.004, rounded to 7 decimals); run_case.sh ne_root LO HI <ne jsonl> <ne npy> (same flags as r0), records ne_root.jsonl.
+- 2026-11-28 08:01:33-08:33:45 UTC step 2 (ne_root.out, ne_root.jsonl): exit 4 (nonrobust last point, dln 2.54), 6 evaluations, 1922 s, det-linear root 0.04031747487157126,
+  robust bracket [0.0396709, 0.04032159856405092]; root - 0.0455917 = -5.2742e-3 against +0.785 dDelta = -1.9208e-3 (the order's text has -0.785 dDelta: sign noted in post_1e.md). Reading (b).
+- 2026-11-28 08:35 UTC files added: ne.out, ne/ (sol_ne1_D23.0000.{npy,jsonl}), ne.exit, ne_root.{out,jsonl,exit}, run_ne.sh, ne_summary.py (--selftest passes) and ne_summary.txt, make_post_1e.py, post_1e.md.

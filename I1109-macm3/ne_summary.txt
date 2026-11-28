@@ -1,0 +1,12 @@
+| outer | |U_w^T F| | Delta | dDelta from R0 | |F| | steps | J and SVD s | Gauss-Newton dDelta | fraction taken |
+|---|---|---|---|---|---|---|---|---|
+| 0 | 1.0453e-10 | 1.174322502744 | +0.000000e+00 | 3.1959e-10 | 4179 | 498 | -1.9581e-02 | - |
+| 1 | 1.0420e-10 | 1.171875672643 | -2.446830e-03 | 3.1513e-10 | 4183 | 737 | -1.9686e-02 | 0.125 |
+
+Trial fractions (chord |F| first to last; |U_w^T F| and Delta after the chord steps):
+- outer 0 fraction 1.0: chord 2.56e-04 .. min 1.11e-09 .. 6.20e-08 -> 1.4258e-07; |U_w^T F| 2.8063e-11; dDelta -1.953535e-02; steps 4228
+- outer 0 fraction 0.5: chord 6.37e-05 .. min 3.03e-10 .. 3.12e-10 -> 3.1871e-10; |U_w^T F| 5.4430e-11; dDelta -9.778637e-03; steps 4201
+- outer 0 fraction 0.25: chord 1.59e-05 .. min 3.11e-10 .. 7.29e-10 -> 1.3057e-09; |U_w^T F| 7.9518e-11; dDelta -4.892191e-03; steps 4190
+- outer 0 fraction 0.125: chord 3.97e-06 .. min 3.14e-10 .. 3.14e-10 -> 3.1513e-10; |U_w^T F| 9.2043e-11; dDelta -2.446830e-03; steps 4183
+
+|U_w^T F| ratios outer k / outer k+1: 1.003; stop line: True; reading: (b)
