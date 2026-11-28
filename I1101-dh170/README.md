@@ -519,7 +519,7 @@ One scanner process (`d18_secant.py scan` or `run`) held 4733032 kB (Test K) and
 | scan readers | `in/read_lower.py`, `in/d185_scan_read.py` (the #1101 copies) | 89309d3c, 7c9d400f |
 | reader of R3 (selftest exit 0; mutations `tol`, `pred`, `last`, `sign` exit 1; `selftests/selftest_results_r3*.txt`) | `results_r3.py` | 50c83985 |
 | admission library | `scan_admit.sh` | e61f8891 |
-| driver | `run_scan_r3.sh` (unit `i1101r3`), dry-run test `selftests/dryrun_r3.sh` with a fake scanner (planted roots 0.1272, 0.1075, 0.3; a bad \|F\| and a bad step count stop it) | c060c215, b3e41c15 |
+| driver | `run_scan_r3.sh` (unit `i1101r3`), dry-run test `selftests/dryrun_r3.sh` with a fake scanner (planted roots 0.1272, 0.1075, 0.3; a bad \|F\| and a bad step count stop it) | a6c95f11 (c060c215 before t5's priority order, never run), b3e41c15 |
 
 The scanner is the one of R2 (9706e506 at d4b6b6ce); the kappa_mm worktree's d18_secant.py (2f3ee874) differs from it only by the `--kappa_mm` option, which these runs do not use (`git diff d4b6b6ce f56f91d2 -- solver/matter/d18_secant.py`: the `kappa_mm` function and its two calls). `--ends` takes the two end records from the scan, which saves two evaluations of the secant.
 
@@ -541,6 +541,7 @@ The scanner is the one of R2 (9706e506 at d4b6b6ce); the kappa_mm worktree's d18
 
 ## Status
 - 2026-11-28 00:58 UTC: bars, rule, pins, driver and predictions written before any R3 run; the driver passed its dry run on a fake scanner (root 0.1272 stands; root 0.1075 found by the widened points; root 0.3 no change in six points, no secant; |F| 7e-10 and 12000 steps both stop). The unit `i1101r3` starts next.
+- 2026-11-28 01:06 UTC: t5 accepted the memory rule and ordered: if R3's scan and #1104's kappa 0.5 scan come due together, **R3's goes first** (it tests the single power #1104's extrapolation uses). `run_scan_r3.sh` holds `/tmp/dh170_prio_r3` while it starts its scan processes (c060c215 -> a6c95f11, before any run), `run_scan1104.sh` (I1104-dh170, b7b13f0c) starts none while the file exists and unit `i1101r3` is active; a scan already running is not stopped (so if #1104's scan is already running when R3 lands, R3 waits for slots). Unit `i1101r3` restarted 01:01 UTC with the new driver (waiting, nothing landed yet).
 
 ## Order, verbatim
 

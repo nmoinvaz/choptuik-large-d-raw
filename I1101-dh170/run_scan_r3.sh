@@ -4,6 +4,7 @@
 # pins their blobs (pins_r3.txt), checks the re-solve's bars on the record (|F| <= 5e-10, steps 11700 +- 2%, kappa 0.25, kc 127, D 23), then d18_secant.py scan on the Rust block 12 at
 # lambda 0.115, 0.125, 0.135, 0.145 (one process each, 1 thread, nice 10; at most 4 scanner processes at once on the machine, scan_admit.sh), widening to 0.105 and 0.155 if no robust
 # change (nothing further), then d18_secant.py run at tol 5e-5 on the first robust change (--ends = the scan's records), then results_r3.py read (the root against 0.1272 +- 2e-3).
+# Priority (t5): while this driver starts its scan processes it holds /tmp/dh170_prio_r3, and run_scan1104.sh waits for it to go before starting any of its own.
 # usage: run_scan_r3.sh        Stops at the first failure (STOP_r3.txt); DONE_r3.txt when it ends. Steps and exits in steps.txt, tag [r3].
 # Environment overrides (OUT WTM SITE PY RAWC REMOTE DRY) are only for the dry-run test with a fake scanner (selftests/dryrun_r3.sh); DRY skips the pins of the real worktree.
 {
@@ -21,7 +22,8 @@ LIBB=e61f8891          # scan_admit.sh blob
 stamp() { date -u '+%F %T'; }
 step() { echo "$(stamp) UTC [$TAG] $*" >> $OUT/steps.txt; }
 blob() { git hash-object --no-filters "$1" | cut -c1-8; }
-stop() { step "STOP: $*"; echo "STOP $(stamp) UTC: $*" > $OUT/STOP_$TAG.txt; exit 1; }
+PRIO=/tmp/dh170_prio_r3   # exists while R3's scan processes are being started: #1104's scan driver waits for it to go (t5: R3's scan goes first)
+stop() { rm -f $PRIO; step "STOP: $*"; echo "STOP $(stamp) UTC: $*" > $OUT/STOP_$TAG.txt; exit 1; }
 cd $OUT || exit 9
 if [ -z "$DRY" ]; then
   [ "$(git -C $WTM rev-parse --short=8 HEAD)" = d4b6b6ce ] && [ -z "$(git -C $WTM status --short . | head -1)" ] || stop "the scanner worktree is not d4b6b6ce or not clean"
@@ -83,11 +85,13 @@ one_scan() {   # one_scan LAM I
 scan() {   # scan LAMS I0: one process per lambda, admitted by the memory rule; record-system check; waits for all
   local LAMS=$1 I0=$2 i=$2 n=0 pids=() ts=() L j k now
   step "scan starts: D $D, lambda $LAMS, files p$I0.., one process per lambda, 1 thread each, nice $NI, --b12=rust --b12_threads=1, at most $MAXP scanner processes at once"
+  touch $PRIO
   for L in ${LAMS//,/ }; do
     bg_admit one_scan $L $i
     pids+=($ADMIT_PID); ts+=($(date +%s)); step "lambda $L (p$i) started, pid $ADMIT_PID, after waiting ${ADMIT_WAITED}s for a slot"
     i=$((i+1)); n=$((n+1))
   done
+  rm -f $PRIO
   while true; do   # each started process prints the record system within 2400 s or the group is killed
     k=0; now=$(date +%s)
     for j in $(seq 0 $((n-1))); do
