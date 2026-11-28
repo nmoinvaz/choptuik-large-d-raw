@@ -32,3 +32,7 @@ Inputs were read with `git cat-file blob` from `origin/main` (93f80a38f) of the 
 
 - `gh` on this machine reports `The token in default is invalid` (account nmoinvaz), so comments and labels on the issues cannot be posted until it is renewed; reads through the public API and git over SSH work. The results are written here and in the report to the coordinator meanwhile.
 - The negative-mass project's four single-thread units (`nm-i246-rec-l0..l3`, nice 10) run on this machine, so with the task's "count their threads against the budget" the budget beside t5's 12 threads is 4, not 8. Step 1 uses 4 threads as ordered.
+
+## Step 2 result (2026-11-28 04:14 UTC)
+
+`run_step2.sh` (unit `i1102-step2`; `exits_1102.txt` has each exit and clock): build exit 0 (68 s; `ellrs avx2 matrixmultiply`), selftest 0, `--mutate=nolam` 1, `--mutate=harm` 1, k_c 31 check 0 (15010 of 15010 bit for bit, both controls FAIL). Logs `build.log`, `selftest*.log`, `check.log`; the post is `post_1102_step2.md`. `ellrs` was installed into `~/Source/venv-i1058` (the only change to that venv).
