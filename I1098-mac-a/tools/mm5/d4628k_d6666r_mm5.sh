@@ -9,7 +9,8 @@
 #      ladder_tail.sh's options (--harm 15,...,23, qq, od, tol 1e-48, tol_h 1e-44, ddelta 1e-25, outer 8, chord-free)
 #      into D6666m/tail, then the k* stage there. The record joins dh610's release_ls.jsonl (h13, h15 outer 0) and this
 #      one's.
-# A and B run at once. Each input is copied from raw origin and its blob checked first. Stop rules: release_ls under
+# PYTHONPATH=$SITE on B's release_ls was missing in blob 20038ad9 (mm5 set it in the environment of the run that
+# started 03:39:12 UTC, so that run is on fastmul7-site). A and B run at once. Each input is copied from raw origin and its blob checked first. Stop rules: release_ls under
 # timeout 16h (B), the k* stage's own 3 h limit on its re-converge; "job rc N" ends each part's run.log.
 #
 #     d4628k_d6666r_mm5.sh A|B      (detached, one process per part)
@@ -47,7 +48,7 @@ elif [ "$P" = B ]; then
   get $S/D6666/tail/release_ls_h15_D6666.0000_step.npz a89b97885355fffd9dc103412e2493324d029655 $O/dh610/release_ls_h15_D6666.0000_step.npz
   date -u "+start %Y-%m-%d %H:%M:%S UTC, D 6666 tail resumed from dh610's h15 step state (part B), commit $COMMIT" > $O/run.log
   cd $HP || exit 1
-  nice -n 10 timeout 16h $PY -u form_s.py release_ls $O/dh610/release_ls_h15_D6666.0000_step.npz $O --harm 15,17,19,21,23 \
+  PYTHONPATH=$SITE nice -n 10 timeout 16h $PY -u form_s.py release_ls $O/dh610/release_ls_h15_D6666.0000_step.npz $O --harm 15,17,19,21,23 \
     --kmax 23 --jac_by 15:qq,17:qq,19:qq,21:qq,23:qq --res od --tol 1e-48 --tol_h 1e-44 --ddelta 1e-25 --threads 10 \
     --outer 8 --inner_chord 0 --commit $COMMIT > $O/rls.log 2>&1
   r=$?
