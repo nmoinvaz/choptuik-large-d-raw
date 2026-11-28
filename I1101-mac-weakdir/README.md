@@ -211,3 +211,20 @@ so the hybrid determinant moves smoothly by 0.81 over a 2e-10 move.
 Next (`detparts`, written before it runs, 00:42 UTC by the clock): the hybrid ln|det| at 2.238 for K35 plus each band's
 part of (chord-all - K35) alone (null 5.6e-13, weak 1.95e-10, strong about 7e-12). Reading: the band whose part alone
 gives at least half of the 0.81 is named as the one that moves det M.
+
+## Results, 2026-11-28 01:06 UTC by the clock
+
+**Band test** (`B/seg/detparts.log`): at lambda 2.238, K35 gives hybrid ln|det| -1591.07167, and chord-all -1591.88578.
+Adding only the null part (5.6e-13) of their difference gives -1591.07196; only the weak part (1.95e-10), -1591.07100;
+only the strong part (6.8e-12), -1591.88301. **The strong part carries the whole change.** It is p, m and psi at the
+inner nodes (x = 0.05: 39%, 0.1: 14%, 0.16: 12%), harmonics 5-31 (k 19, 21, 7, 9 lead; `B/seg/strong_part.log`).
+K35 - U40's own strong part (3.3e-7) is p and m at x = 0.02 (77%) and the centre datum, at the same harmonics.
+
+**ne1's root** (`A/root_ne1.*`): 2.3086229683 (tol 1e-5), +6.37e-2 from U40's, at Delta +0.0304 and |F| 1.155e-10.
+
+**Segment errors** (`B/seg/segerr_u40.log`): every segment's residual RK error has local order 4.0 to 4.3 down to its
+floor (log segment 3.1e-7 at kappa 0.7, orders 4.27, 4.20, 4.15, 4.11; the 0.02-0.3 segments 3.2e-8 to 1.9e-10,
+4.0-4.1). The orders fall below 3 only where the error reaches 1e-14 (rounding) in the 0.4-0.9 segments, and in the
+horizon segment, whose error (4.3e-11 at 0.7) stops at about 2.4e-12 below kappa 0.35 (orders 3.67, 2.85, 1.51, 0.13).
+By bar 5 as written the horizon segment is named (2.85 < 3), with that caveat: a floor, not a lower RK order. It is
+also the only segment with a weak-pair component of its error (1.3e-11 at 0.7).
