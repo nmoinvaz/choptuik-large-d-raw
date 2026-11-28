@@ -1,0 +1,20 @@
+== 2026-11-28 08:42:38 k050d23_secant_driver_1104.py: the secant refinement of the kappa 0.5 root at k_c 143, D 23.0, bracket (0.095, 0.11); checking pins
+== 2026-11-28 08:42:39 pins ok (worktree d4b6b6ce, d18_secant.py 9706e506, ell_b12rs.py a1fff74f, the ellrs site files, ell_fastm.py 93f963f6, the solver files equal to my regrids', the three checks and the gate, the marker's state 856ce129, record 8c05d1a9)
+== 2026-11-28 08:42:40 d18_secant.py selftest exit 0 and its three controls (half, norobust, nosigncheck) exit 1, 1, 1 as wanted
+== 2026-11-28 08:42:40 selftests: kc143_syscheck exit 0, kc135_syscheck exit 0, kc127_syscheck exit 0 (0 wanted each)
+== 2026-11-28 08:43:35 the state: kc143 check exit 0 (0 wanted: it accepts), --mutate=F 1, --mutate=steps 1 (1 wanted each), kc135 check 1 and kc127 check 1 (1 wanted each: they refuse it), the kappa 0.5 gate 0 (0 wanted) and its --mutate=f 1, --mutate=steps 1 (1 wanted each); 55 s
+== 2026-11-28 08:43:35 alert-only memory watcher started as its own process, pid 5520 (kills nothing); sampler pid 19132
+== 2026-11-28 08:43:35 keep-awake helper started as its own process, pid 11352: SetThreadExecutionState(ES_CONTINUOUS | ES_SYSTEM_REQUIRED) until this driver (pid 17776) ends; power plan untouched; kills nothing
+== 2026-11-28 08:43:35 secant: started pid 9008: d18_secant.py run C:/Users/nathan/Source/k050d23_1104/I1104-win/l1kc143winbk050d23.jsonl C:/Users/nathan/Source/k050d23_1104/I1104-win/sol_l1kc143winbk050d23_D23.0000.npy 23.0 0.095 0.11 C:/Users/nathan/Source/k050d23_1104/I1104-win/secant/secant.jsonl --tol=1e-5 --maxev=12 --pin=... --ends=C:/Users/nathan/Source/k050d23_1104/I1104-win/scan_k050_D23_ends.jsonl --b12=rust --b12_threads=4; cap 14400 s
+== 2026-11-28 08:43:35 secant: cap changed from 14400 s to 28800 s by cap_seconds.txt
+== 2026-11-28 10:43:35 secant: still running at 7200 s (pid 9008), 5 record(s) in secant.jsonl; cap 28800 s; hc to t5
+== 2026-11-28 10:52:21 secant: pid 9008 ended with exit 4 after 7726 s
+== 2026-11-28 10:52:21 eval 0 (lo) lam 0.095: hybrid -1 ln|det| -4693.8981185427 dln None robust True, float64 +1, 2853 s [1150, 1675, 29]
+== 2026-11-28 10:52:21 eval 1 (hi) lam 0.11: hybrid +1 ln|det| -4692.8719342642 dln None robust True, float64 -1, 2853 s [1151, 1673, 29]
+== 2026-11-28 10:52:21 eval 2 (interior) lam 0.0989573679472922: hybrid +1 ln|det| -4692.8731780855 dln 7.70e-07 robust True, float64 -1, 1929 s [1063, 840, 27]
+== 2026-11-28 10:52:21 eval 3 (interior) lam 0.09604500702556346: hybrid +1 ln|det| -4694.7051374162 dln 5.03e-05 robust True, float64 -1, 1921 s [1056, 838, 27]
+== 2026-11-28 10:52:21 eval 4 (interior) lam 0.09572259506339031: hybrid +1 ln|det| -4697.0689241238 dln 6.29e-04 robust True, float64 -1, 1919 s [1052, 840, 27]
+== 2026-11-28 10:52:21 eval 5 (interior) lam 0.09569046743437838: hybrid -1 ln|det| -4702.5418439241 dln 1.42e-01 robust False, float64 +1, 1917 s [1051, 839, 27]
+== 2026-11-28 10:52:21 root: status nonrobust (not robust at 0.09569046743437838), bracket [0.095, 0.09572259506339031] width 7.226e-04, signs [-1.0, 1.0], det-linear 0.09569348946703232, Brent 0.09572259506339031, 6 evaluations, 7688 s
+== 2026-11-28 10:53:31 exit 4, wall 7726 s; peak private 5.60 GB, peak working set 4.21 GB, lowest free memory 16.91 GB, peak commit 17.4 GB, cpu 16827 s (254 samples)
+== 2026-11-28 10:53:36 k050d23_secant_driver_1104.py done
