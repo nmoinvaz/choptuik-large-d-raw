@@ -24,6 +24,8 @@ S = root - REF
 pred = SLOPE * dD
 lo0, hi0 = 0.0455917 + pred - 0.004, 0.0455917 + pred + 0.004
 b = x["bracket"]
+X10_DD = -1.956e-3   # the order: w10 moved Delta by this along R0's weak vector
+X10_S = load(d, "w10")[1][-1]["lam_lin"] - REF
 rk = reading(outs, stop)
 f1 = {fr["f"]: fr for fr in outs[0]["fracs"]}
 print(f"#1109 stage 1e on macm3: nonlinear elimination at k_c 127, D 23.0 from R0, runner t5-macm3, {when}. Raw: `I1109-macm3/` (`ne/`, `ne_root.*`), raw-data commit {commit}.\n")
@@ -59,11 +61,12 @@ print(f"| dDelta of the iterate from R0 | {dD:+.10e} |")
 print(f"| root - 0.0455917 | {S:+.6e}; robust range {b[0] - REF:+.4e} to {b[1] - REF:+.4e} |")
 print(f"| linear estimate {SLOPE} x dDelta | {pred:+.6e} |")
 print(f"| root shift / dDelta | {S / dD:.3f} (w01 0.7868, w10 0.7838; robust range {(b[0] - REF) / dD:.2f} to {(b[1] - REF) / dD:.2f}) |")
+print(f"| w10 for comparison (t = 0.1, 4182 steps) | dDelta {X10_DD:+.3e}, root - 0.0455917 {X10_S:+.4e}, ratio {X10_S / X10_DD:.3f}; here {dD / X10_DD:.2f}x the dDelta, {S / X10_S:.2f}x the shift |")
 print("\n### Failed or disagrees\n")
 print(f"- The order's comparison reads \"root - 0.0455917 with -0.785 x dDelta\"; the bracket formula and the w01/w10 ratios (+0.787, +0.784) have the other sign, which I used: +0.785 x dDelta = {pred:+.4e}. With the order's sign the figure would be {-pred:+.4e}, opposite to the root shift {S:+.4e}.")
-print(f"- The iterate differs from R0 in more than Delta (|dz| {dz:.3e} against |dDelta| {abs(dD):.3e}: the chord steps on the strong band and the re-frozen RK steps, 4183 against 4179); w01 and w10 moved along R0's weak vector. The two sets of shifts are not like for like; I did not separate the parts.")
+print(f"- |dz| {dz:.4e} and |dDelta| {abs(dD):.4e} give dDelta / |dz| = {abs(dD) / dz:.4f}; the weak vector at index 125 has Delta share 0.497 in mm5's report (comment 7232733432), sqrt 0.705: the displacement is mostly along that vector (I did not project it; no SVD was saved). w10 is mm5's valley state at t = 0.1 ({X10_DD:+.3e}, 4182 steps) and the iterate here is the elimination's t = 0.125 step ({dD:+.3e}, 4183 steps): both are Gauss-Newton moves along the weak vector followed by chord steps on the strong band (I did not compare the two codes' details). dDelta grew {dD / X10_DD:.2f}x and the root shift {S / X10_S:.2f}x (w10 {X10_S:+.4e}, here {S:+.4e}). I do not explain it.")
 print("- Exit 4: the last det-linear point (lambda 0.04031715064433497, dln 2.54) was not robust; its hybrid sign +1 is not trusted. Taken at face value the root lies in [0.04031715064433497, 0.04032159856405092].")
 print("- The float64 sign is +1 at 0.04037853 and 0.0403216 where the hybrid sign is -1 (as for w01 and r0); the hybrid sign is the one used.")
 print("- Nothing was pushed or posted from this Mac.")
 print("\n### Recommended tasks\n")
-print(f"- **Roots of the fraction 0.5 and 0.25 iterates (dDelta {f1['0.5']['Delta'] - outs[0]['Delta']:+.3e}, {f1['0.25']['Delta'] - outs[0]['Delta']:+.3e}).** What: `i1101_weakdir.py valley --save` at those fractions (the `ne` run saves only the taken one), then `d18_secant.py run` on each. Why: the root shift over dDelta is 0.78 for pure weak-vector moves and {S / dD:.2f} for the 0.125 iterate; the two further points show whether it grows with dDelta or with the chord corrections. Acceptance: roots with exit 0 or 4, shift / dDelta at each, compared with 0.785 and {S / dD:.2f}. Depends on: R0's `jac` and `svd` files (mm5's stay on its machine, #1109 comment 7232733432; here `jac` takes about 500 s).")
+print(f"- **Root versus t along the valley: t = 0.1 (control), 0.11, 0.125.** What: `i1101_weakdir.py valley --ts=0.1,0.11,0.125 --refreeze=1 --save=...` on R0's `jac` and `svd`, then `d18_secant.py run` on each saved state. Why: w10 (t = 0.1) has root shift / dDelta 0.78 and the 0.125 iterate {S / dD:.2f}, a {S / X10_S:.1f}x larger shift for a {dD / X10_DD:.2f}x larger dDelta; the middle point shows where it changes. Acceptance: the t = 0.1 root lies in w10's robust bracket [0.0439440, 0.0440614] (it must, if the valley reproduces w10; otherwise the states differ and the comparison is withdrawn); the three roots, each with exit 0 or 4, give shift / dDelta. Depends on: R0's `jac` and `svd` files (mm5's stay on its machine, #1109 comment 7232733432; here `jac` takes about 500 s).")
