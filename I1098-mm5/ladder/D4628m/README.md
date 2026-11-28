@@ -15,3 +15,7 @@ Inputs, copied from raw origin by the script and blob-checked there (all from `I
 dh610 finished the tail to h23 and took the gain (1.186286e33, bound 8.8e-19, so a re-converge), and was stopped one hour into the re-converge. This run starts that re-converge again.
 
 Stop rules (the script's): the k* stage's own 3 h limit on its re-converge; a "job rc" other than 0 ends the part, which is reported and not rerun. Reported: the k* line and the gain within 20 min, then the end (`kstar.json`). This folder is pushed at the end.
+
+## Part A paused by the coordinator's order (noted 2026-11-28 04:38 UTC)
+
+At 04:37 UTC the coordinator reported Nathan's order: every run on dh170, dh370 and mm5 is paused (SIGSTOP on mm5; nothing is resumed, restarted or rerun until told). Part A's re-converge (`form_s.py release_ls`, pid 40710, started 04:06:44 UTC; its last log line `h15 outer 0: target |F| 7.44e-52, harmonic-15 step 1.64e-25 (1530 s)`) is stopped (state T), with its `timeout 3h` (pid 40709) held by the hold guard (`hold_timeouts.log`, pid 40934), so the pause does not end the job. A paused run is not a failure. Nothing was changed.

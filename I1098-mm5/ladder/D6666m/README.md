@@ -19,3 +19,7 @@ Inputs, copied from raw origin by the script and blob-checked there (all from `I
 | `release_ls_h15_D6666.0000_step.npz` | a89b97885355fffd9dc103412e2493324d029655 |
 
 Stop rules (the script's): `release_ls` under `timeout 16h`; the k* stage's own 3 h limit on its re-converge; a "job rc" other than 0 ends the part, which is reported and not rerun. Reported: release_ls's first lines and h15 outer 1's start within 20 min, then each harmonic's lines as they come. This folder is pushed at the end.
+
+## Part B ended by the coordinator's pause, not by a failure (noted 2026-11-28 04:38 UTC)
+
+At 04:37 UTC the coordinator reported Nathan's order: every run on dh170, dh370 and mm5 is paused (SIGSTOP on mm5; do not resume, restart or rerun anything until told). Part B's `timeout 16h` was not held, so it ended when its child stopped: `run.log` has `rls h15-h23 rc 1 04:36:51` and `job rc 3 04:36:51` (the script's "no h23 state" line), and no process of part B is left. The cause is the pause (the coordinator's statement; B's last log line, `h17 outer 0 ... the step is taken`, is from 04:13 UTC, with the h17 inner solve then running). **Nothing was rerun.** What B finished is kept: h15 released at 03:57:14 UTC (`release_ls.jsonl`: `h15 outer 0`, dDelta_full +1.05e-30, released by residual and dDelta; state `release_ls_h15_D6666.0000.npz`), and h17's outer 0 step (Jacobian 973 s, step 3.59e-12) was not completed or recorded. B resumes from h17 later, on the coordinator's order.
