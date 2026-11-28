@@ -283,3 +283,26 @@ Reported as is, from `roots_summary.txt`:
 - dln grows as lambda nears the hybrid root: 1.23e-05 (0.0448443), 5.22e-05 (0.0457597), 6.26e-04 (0.0456058), 2.76e-01 (0.0455917); about 8.8e-09 / |lambda - 0.045592| (an observation of the three numbers, not a fit).
 - w01: the hybrid sign is -1 at 0.0454903 and above, +1 at 0.0441387 and below; its float64 sign is +1 up to 0.05 and -1 at 0.2. w10: hybrid and float64 signs agree at every evaluation (+1 up to 0.0421002, -1 from 0.0467766).
 - The records' code: `d18_secant.py` blob eb1396ad and `i1101_weakdir.py` 8709abbd (the worktree at 49664990); `--b12=fast` (ell_fastdd's block 12, the order's choice), `mode_matrix_fast` for blocks 0-11, float64, Accelerate BLAS on macOS.
+
+## Amendment: stage 1c2, where does the R0 control's root 0.045593 against 0.045968 come from (2026-11-28 03:31 UTC, coordinator's order of 03:30 UTC; written before any run)
+
+Folder `c2/`. Stage 1c's control root (R0, `--b12=fast`, ell_fastdd's block 12 and `mode_matrix_fast`, Accelerate BLAS on this machine) is 0.0455929, 3.75e-4 below dh170's 0.045967998 (bar 2 failed, above). The coordinator's two suspects: (1) `ell_fastdd` at k_c 127 (at k_c 55 the fast block 12 matched dh170's root to 6e-7, #1105), (2) the machine (Accelerate against OpenBLAS). #1102's ellrs checks passed first (`I1102-mm5/`: build `ellrs neon accelerate`, exits 0, 1, 1, 0, 15010 of 15010 entries bit for bit).
+
+**Code:** worktree `~/Source/choptuik-ellrs` at 44ef3c82 (detached), from `solver/matter`: `ell_fastdd.py` blob 237ebfdd, `ell_ddm.py` 64c4337f, `ell_fastm.py` 93f963f6, `d18_secant.py` 9706e506 (with `--b12=rust`), `i1101_weakdir.py` 8709abbd; `~/venv-314/bin/python`, ellrs installed there. Inputs: R0's state and record in `c/in/` (blobs 90d3e655 and d1a3a641, as in stage 1c). Both runs at once, `OPENBLAS_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 RAYON_NUM_THREADS=2`, `nice -n 10`, `timeout 14400` each, logs and records in `c2/`.
+
+```
+A. python ell_fastdd.py check REC STATE 23.0 0.0458 --hybrid=1
+B. python d18_secant.py run REC STATE 23.0 0.0440 0.0470 c2/root_r0_rust.jsonl --tol=1e-6 --maxev=20 --b12=rust --b12_threads=2 --pin=90d3e655,d1a3a641
+```
+
+A: block 12 by ell_fastdd against DDEll's (max |difference| / max |block| <= 1e-20), and the hybrid determinant against ell_ddm's (the same sign, ln|det| within 1e-8). B: the control's root with `--b12=rust` (ellrs, bit for bit DDEll's block 12), bracket (0.0440, 0.0470) as ordered (no widening ordered; a refusal is reported as is).
+
+**Reading (the coordinator's, written before the runs):**
+
+| A | B | reading |
+|---|---|---|
+| fails | root within 1e-5 of 0.045968 | ell_fastdd is inaccurate at k_c 127, and every `--b12=fast` root at k_c >= 103 is suspect |
+| passes | root 0.045593 | the machine: then B's float64 sign and ln\|det\| per lambda are compared with dh170's `I1101-dh170` control records |
+| anything else | | reported as is |
+
+Posted on #1109, pushed here, reported to the coordinator.
