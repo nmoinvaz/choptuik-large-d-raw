@@ -18,3 +18,17 @@ python ell_refine.py l1kc127k050m3 127 l1kc127k025mm5 127 1 23.0 2.0992182200 --
 - **|F| <= 5e-10** at the end.
 - **steps 11700 +- 2%** (11466 to 11934).
 - Reported: the start (with any import error at once) and the end; the state and the record pushed here, with this README.
+
+## Result (ended 2026-11-28 02:39:19 UTC; started 00:45:09: 6850 s by the wall clock, the record's `seconds` 6840; the 12 h cap was not reached)
+
+By script from `l1kc127k025mm5.jsonl` (the record `ell_refine.py` wrote; blob 19848ea0f839ae23f36232d3adeb198eb6d6efb2) and its state `sol_l1kc127k025mm5_D23.0000.npy` (blob a6360ccccef12a7ba5fc7daafdfd3ad11a7b04bd), both copied here with the run's log `r3_run.log`:
+
+| quantity | value | bar | verdict |
+|---|---|---|---|
+| \|F\| | **3.0997299661e-10** | <= 5e-10 | PASS |
+| steps | **11687** (-0.111% of 11700) | 11466 to 11934 | PASS |
+| Delta | 1.174322923351034 | (reported) | |
+| kappa | 0.25 | | |
+| constraint | 1.4638400868e-03 | (reported) | |
+
+Start |F| of the run (`F_start`) 6.2196868426e-10. The log holds the start line, 18 `RuntimeWarning` lines of `dss_ell.py` (overflow and invalid value in the series sums at lines 211-219, 307 and 325, from the line search's trial steps; the run continued and ended with a finite record) and the final record line; no import error.
