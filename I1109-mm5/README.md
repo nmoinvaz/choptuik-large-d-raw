@@ -218,3 +218,49 @@ python3 i1101_weakdir.py valley d/jac_X.npz d/svd_X.npz REC STATE 23.0 --ts=1e-3
 ```
 
 **Bars:** each `jac` prints the record system (otherwise that state is skipped, and said so). Reported per state, beside R0's stage 1c line (one weak vector at s/s_max 4.25e-11, U_w^T F -1.0446e-10, |F| 3.1940e-10, full Gauss-Newton dDelta -1.9568e-02, 510 s): the weak band's s/s_max below 1e-8 and just above it, U_w^T F, |F|, the full Gauss-Newton dDelta (valley's line), seconds. The gauge check's exit 1 of `report` is not a bar (known: #1105; and the h = cos 0 control at k_c 127). Posted on #1109 with stage 1c's results when both are in, pushed here, reported to the coordinator.
+
+## Results of stage 1c (jac, svd, report, valley; the roots are still running) and stage 1d (2026-11-28 03:00 UTC)
+
+By script (`d/table_d.py`, from each state's `rep_*.json` and `valley_*.log`; the same text is `d/table_d.md`). Stage 1c's R0 ran 01:47:03 - 01:55:33 UTC (jac 442 s, svd 41 s, report 5 s, valley 22 s; total 510 s); stage 1d's two states ran 02:39:06 - 02:51:23 (k_c 135, 737 s) and - 02:58:22 UTC (R2, 1156 s, jac 1076 s). All three `jac` printed the record system (steps equal to the record's; |F| on this machine against the record's: R0 3.1940e-10 against 3.1949e-10, k_c 135 3.1881e-10 against 3.1834e-10, R2 3.1233e-10 against 3.1242e-10). The jac and svd npz stay on the machine. In each table the weak band is the report's (s/s_max in [1e-11, 1e-5)); "below 1e-8" is the set valley takes its Gauss-Newton step on; U_w^T F is in the report's order (index from the smallest singular value; valley prints the vectors below 1e-8 in the reverse order).
+
+| state | k_c | kappa | steps | \|F\| | weak below 1e-8 (s/s_max) | U_w^T F on them | weak above 1e-8 | U_w^T F on them | \|F\| weak part | full GN dDelta | GN \|dz\| | s |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| r0 | 127 | 0.7 | 4179 | 3.1940e-10 | idx 125 4.254e-11 | -1.0446e-10 | idx 126 2.690e-08, idx 127 2.691e-08 | -2.775e-13, +7.502e-14 | 1.045e-10 | **-1.9568e-02** | 2.7768e-02 | 510 |
+| kc135 | 135 | 0.7 | 4441 | 3.1881e-10 | idx 134 4.031e-09, idx 135 4.032e-09 | +8.5432e-14, +1.1319e-15 | idx 136 9.135e-06 | +1.041e-15 | 8.545e-14 | **-9.1231e-12** | 4.1761e-08 | 737 |
+| r2 | 127 | 0.35 | 8351 | 3.1233e-10 | idx 125 2.362e-11 | +9.6448e-11 | idx 126 1.511e-08, idx 127 1.512e-08 | +2.223e-12, -6.833e-13 | 9.648e-11 | **-1.8064e-02** | 2.5565e-02 | 1156 |
+
+Field names as the report prints them (the unknown's part: d, c0, the node fields p m c q, mS aS qS, Delta). Weak vector composition (right: field shares and Delta's share, the two largest nodes, tau-harmonic bands [k 0], [1-3], [4-7], [8-15], [16-31], [32-] (HBANDS of i1101_weakdir.py), the three largest harmonics; left: the two largest blocks, fields, harmonics):
+
+| state | idx | s/s_max | U_w^T F | right: fields (three largest), Delta share | right: nodes | right: tau-harmonic bands | right: top harmonics | left: blocks; fields; harmonics |
+|---|---|---|---|---|---|---|---|---|
+| r0 | 125 | 4.254e-11 | -1.0446e-10 | Delta 0.497, p 0.187, m 0.186; Delta 0.497 | x4 0.0587, x5 0.0585 | 0.0375 0.189 0.213 0.0493 0.0136 0.0005 | 5 0.13, 1 0.115, 7 0.0812 | 11 0.5, 12 0.5; q 0.655, p 0.165; k 1 0.981, 2 0.017 |
+| r0 | 126 | 2.690e-08 | -2.7750e-13 | d 1; Delta 0 | centre 1 | 0 0 0 0 0 1 | 127 0.808, 125 0.0687, 119 0.0334 | 11 0.344, 12 0.344; m 0.726, q 0.231; k 127 0.961, 125 0.0383 |
+| r0 | 127 | 2.691e-08 | +7.5018e-14 | d 1; Delta 0 | centre 1 | 0 0 0 0 0 1 | 127 0.808, 125 0.0686, 119 0.0332 | 11 0.344, 12 0.344; m 0.726, q 0.231; k 127 0.961, 125 0.0383 |
+| kc135 | 134 | 4.031e-09 | +8.5432e-14 | d 1; Delta 0 | centre 1 | 0 0 0 0 0 1 | 135 0.809, 133 0.0684, 127 0.0327 | 11 0.347, 12 0.347; m 0.72, q 0.23; k 135 0.962, 133 0.0363 |
+| kc135 | 135 | 4.032e-09 | +1.1319e-15 | d 1; Delta 0 | centre 1 | 0 0 0 0 0 1 | 135 0.809, 133 0.0683, 127 0.0326 | 11 0.347, 12 0.347; m 0.72, q 0.23; k 135 0.962, 133 0.0363 |
+| kc135 | 136 | 9.135e-06 | +1.0414e-15 | d 0.424, p 0.237, m 0.216; Delta 0 | centre 0.436, x11 0.088 | 0.0032 0.478 0.0806 0.392 0.0435 0.0023 | 1 0.327, 3 0.146, 13 0.134 | 0 0.802, 1 0.126; q 0.971, a 0.0164; k 1 0.969, 6 0.0063 |
+| r2 | 125 | 2.362e-11 | +9.6448e-11 | Delta 0.499, m 0.186, p 0.185; Delta 0.499 | x4 0.059, x5 0.0588 | 0.0367 0.186 0.215 0.0496 0.0137 0.0005 | 5 0.131, 1 0.111, 7 0.0816 | 11 0.5, 12 0.5; q 0.656, p 0.165; k 1 0.981, 2 0.0164 |
+| r2 | 126 | 1.511e-08 | +2.2226e-12 | d 1; Delta 0 | centre 1 | 0 0 0 0 0 1 | 127 0.808, 125 0.0687, 119 0.0334 | 11 0.339, 12 0.339; m 0.751, q 0.236; k 127 0.962, 125 0.0374 |
+| r2 | 127 | 1.512e-08 | -6.8328e-13 | d 1; Delta 0 | centre 1 | 0 0 0 0 0 1 | 127 0.808, 125 0.0686, 119 0.0332 | 11 0.339, 12 0.339; m 0.751, q 0.236; k 127 0.962, 125 0.0374 |
+
+Controls (the check passes when its value is small; a control must read >= 1e-3, else it did not fire):
+- r0: tau generator 2.249e-10, tau control 2.758e-03 (fired); cos(0 w tau) 2.252e-10; cos(2 w tau) 3.999e-07; sin(2 w tau) 4.798e-07; cos(0 w tau) control 1.150e-04 (DID NOT FIRE)
+- kc135: tau generator 1.658e-11, tau control 4.806e-04 (DID NOT FIRE); cos(0 w tau) 1.677e-11; cos(2 w tau) 4.231e-08; sin(2 w tau) 4.764e-08; cos(0 w tau) control 2.003e-05 (DID NOT FIRE)
+- r2: tau generator 1.245e-10, tau control 1.527e-03 (fired); cos(0 w tau) 1.245e-10; cos(2 w tau) 2.214e-07; sin(2 w tau) 2.656e-07; cos(0 w tau) control 6.366e-05 (DID NOT FIRE)
+
+**Reading, by script from the table's digits:**
+
+- R2 (kappa 0.35) against R0 (kappa 0.7), both k_c 127, D 23.0: the same structure. The vector at idx 125 has Delta's share 0.499 and 0.497, its left vector sits in blocks 11 and 12 (0.5 each) in tau-harmonic k = 1 (0.981 in both). Its s/s_max is 2.362e-11 against 4.254e-11, its U_w^T F +9.6448e-11 against -1.0446e-10, and the **full Gauss-Newton dDelta -1.8064e-02 against -1.9568e-02 (R2/R0 = 0.923, 7.7% smaller)**. The pair above the cut (idx 126 and 127, pure `d`, harmonic 127) is at 1.511e-08 against 2.690e-08.
+- **k_c 135 (kappa 0.7) has no such vector.** Its weak band is a pair at s/s_max 4.031e-09 and 4.032e-09 (pure `d`, harmonics 135 and 133, left vector in blocks 11 and 12) and a third vector at 9.135e-06 with no Delta share (d 0.424, p 0.237, m 0.216; left vector in block 0, harmonic 1). The pair's U_w^T F is +8.5432e-14 and +1.1319e-15, and the **full Gauss-Newton dDelta is -9.1231e-12**: 4.7e-10 of R0's. R0's -1.96e-2 does not hold across k_c: the Delta-bearing weak vector of k_c 127 is not in k_c 135's weak band.
+- Dropping from k_c 127 to k_c 135 changes the weak band's U_w^T F by three orders (1.0e-10 to 8.5e-14), |F|'s weak part 1.045e-10 to 8.545e-14 of |F| 3.19e-10 (R0) and 3.19e-10 (k_c 135).
+
+**Controls that did not fire** (a control must read >= 1e-3; the real checks, below it, pass at all three states: tau generator, h = cos 0, cos 2 w tau and sin 2 w tau all <= 1e-6). Not #1109 bars; they bear only on the gauge check, not on J, the SVD or the Gauss-Newton step (the coordinator's reading):
+
+| state | control | value | needs |
+|---|---|---|---|
+| R0 (k_c 127, kappa 0.7) | h = cos 0 | 1.150e-04 | >= 1e-3 |
+| k_c 135 (kappa 0.7) | tau generator | 4.806e-04 | >= 1e-3 |
+| k_c 135 (kappa 0.7) | h = cos 0 | 2.003e-05 | >= 1e-3 |
+| R2 (k_c 127, kappa 0.35) | h = cos 0 | 6.366e-05 | >= 1e-3 |
+
+The tau generator's control fired at R0 (2.758e-03) and at R2 (1.527e-03). The report's exit code is 1 at all three states (these controls).
