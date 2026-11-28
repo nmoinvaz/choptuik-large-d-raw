@@ -5,3 +5,11 @@ D 23.0 k_c 127: |F| 3.1959136189e-10 (record 3.1949266444e-10), steps 4179 (reco
 bracket (0.044, 0.047), tol 1e-06, maxev 20, mode matrix fast (jac), block 12 rust, noise 1e-15, dln <= 0.1, sol_l1kc127k070w2_D23.0000.npy
 block 12 by ellrs (neon, products dgemm, 2 threads)
   lam 0.044 (lo): hybrid +1 ln|det| -3901.4245383670, noise [1.0, 1.0] dln 6.02e-06, robust True; float64 +1 -3900.3325536703 (532 s [157, 362, 13])
+  lam 0.047 (hi): hybrid -1 ln|det| -3901.8958084449, noise [-1.0, -1.0] dln 5.81e-06, robust True; float64 +1 -3900.8686030757 (625 s [210, 404, 12])
+  lam 0.045847052968168205 (interior): hybrid -1 ln|det| -3903.4692444140, noise [-1.0, -1.0] dln 3.42e-05, robust True; float64 +1 -3901.0014676937 (577 s [178, 387, 12])
+  lam 0.04558004240440045 (interior): hybrid +1 ln|det| -3906.5215562431, noise [1.0, 1.0] dln 7.56e-04, robust True; float64 +1 -3900.7122801187 (583 s [186, 385, 12])
+  lam 0.045592089325629484 (interior): hybrid -1 ln|det| -3909.9676029452, noise [-1.0, -1.0] dln 2.40e-02, robust True; float64 +1 -3900.8773796861 (575 s [186, 377, 11])
+  lam 0.045591589325629484 (interior): hybrid +1 ln|det| -3911.0168720716, noise [1.0, 1.0] dln 6.55e-02, robust True; float64 +1 -3900.8052640892 (543 s [178, 354, 12])
+root: status tol (-), bracket [0.045591589325629484, 0.045592089325629484] width 5.000e-07, signs [1.0, -1.0], det-linear 0.04559171900836614, Brent 0.045591589325629484, 6 evaluations, 3435 s
+capped_run: exit 0 wall 3442 s cap_hit False
+2026-11-28 07:24:50 UTC end r0 exit=0

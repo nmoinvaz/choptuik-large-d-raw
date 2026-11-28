@@ -8,6 +8,7 @@ import json, os, sys, tempfile
 REF = 0.0455917189     # mm5's refined root of R0 (#1109 comment 7233613794, stage 1c2 B, --b12=rust)
 BAR1 = 1e-5
 NAMES = ("r0", "w01", "w10")
+DELTA = {"w01": -1.957e-4, "w10": -1.956e-3}   # Delta shift of each state along R0's weak vector (the order's numbers, for reading only)
 
 
 def load(d, n):
@@ -41,7 +42,12 @@ def report(d, out=print):
         out(f"bar 1: r0 lam_lin - {REF} = {dd:+.4e}; |d| <= {BAR1:g}: {'PASS' if ok else 'FAIL'}")
         for n in ("w01", "w10"):
             if roots[n] is not None:
-                out(f"{n}: lam_lin {roots[n]!r}; {n} - r0 = {roots[n] - roots['r0']:+.6e}")
+                sh = roots[n] - roots["r0"]
+                ev, fin, _ = load(d, n)
+                lo, hi = fin[-1]["bracket"]
+                out(f"{n}: lam_lin {roots[n]!r}; {n} - r0 = {sh:+.6e}; final bracket [{lo!r}, {hi!r}] gives {n} - r0 in "
+                    f"[{lo - roots['r0']:+.4e}, {hi - roots['r0']:+.4e}]; Delta moved {DELTA[n]:+.3e} along R0's weak vector, "
+                    f"root shift / Delta shift = {sh / DELTA[n]:.4f} (bracket {(lo - roots['r0']) / DELTA[n]:.3f} to {(hi - roots['r0']) / DELTA[n]:.3f})")
     return ok
 
 

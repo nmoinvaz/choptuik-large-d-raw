@@ -1,0 +1,27 @@
+r0: exit 0; 6 evaluations; robust bracket [0.045591589325629484, 0.045592089325629484] width 5.0000e-07; status tol (), lam_lin 0.04559171900836614, 3435 s
+     0.044                    hybrid +1 f64 +1 dln  6.02e-06 robust True 532 s
+     0.04558004240440045      hybrid +1 f64 +1 dln  7.56e-04 robust True 583 s
+     0.045591589325629484     hybrid +1 f64 +1 dln  6.55e-02 robust True 543 s
+     0.045592089325629484     hybrid -1 f64 +1 dln  2.40e-02 robust True 575 s
+     0.045847052968168205     hybrid -1 f64 +1 dln  3.42e-05 robust True 577 s
+     0.047                    hybrid -1 f64 +1 dln  5.81e-06 robust True 625 s
+w01: exit 4; 8 evaluations; robust bracket [0.04543682118453806, 0.04551080985916185] width 7.3989e-05; status nonrobust (not robust at 0.045437741323263336), lam_lin 0.045437741323263336, 4067 s
+     0.04                     hybrid +1 f64 +1 dln  2.07e-06 robust True 531 s
+     0.04394636449886087      hybrid +1 f64 +1 dln  6.39e-06 robust True 543 s
+     0.04543682118453806      hybrid +1 f64 +1 dln  9.66e-03 robust True 457 s
+     0.045437741323263336     hybrid -1 f64 +1 dln  3.03e-01 robust False 297 s
+     0.04551080985916185      hybrid -1 f64 +1 dln  1.21e-04 robust True 523 s
+     0.04588650575739605      hybrid -1 f64 +1 dln  1.93e-05 robust True 540 s
+     0.0479221690466289       hybrid -1 f64 +1 dln  3.49e-06 robust True 561 s
+     0.05                     hybrid -1 f64 +1 dln  2.39e-06 robust True 616 s
+w10: exit 4; 7 evaluations; robust bracket [0.0439440084375612, 0.044061381734647125] width 1.1737e-04; status nonrobust (not robust at 0.044058691651310954), lam_lin 0.044058691651310954, 3858 s
+     0.035                    hybrid +1 f64 +1 dln  1.34e-06 robust True 532 s
+     0.0439440084375612       hybrid +1 f64 -1 dln  7.87e-05 robust True 584 s
+     0.044058691651310954     hybrid +1 f64 -1 dln  5.68e-01 robust False 423 s
+     0.044061381734647125     hybrid -1 f64 -1 dln  3.30e-03 robust True 544 s
+     0.044260916043785035     hybrid -1 f64 -1 dln  4.41e-05 robust True 575 s
+     0.05288801687512241      hybrid -1 f64 -1 dln  1.70e-06 robust True 576 s
+     0.055                    hybrid -1 f64 -1 dln  1.57e-06 robust True 625 s
+bar 1: r0 lam_lin - 0.0455917189 = +1.0837e-10; |d| <= 1e-05: PASS
+w01: lam_lin 0.045437741323263336; w01 - r0 = -1.539777e-04; final bracket [0.04543682118453806, 0.04551080985916185] gives w01 - r0 in [-1.5490e-04, -8.0909e-05]; Delta moved -1.957e-04 along R0's weak vector, root shift / Delta shift = 0.7868 (bracket 0.792 to 0.413)
+w10: lam_lin 0.044058691651310954; w10 - r0 = -1.533027e-03; final bracket [0.0439440084375612, 0.044061381734647125] gives w10 - r0 in [-1.6477e-03, -1.5303e-03]; Delta moved -1.956e-03 along R0's weak vector, root shift / Delta shift = 0.7838 (bracket 0.842 to 0.782)

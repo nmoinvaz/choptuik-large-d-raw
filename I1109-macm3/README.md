@@ -46,3 +46,7 @@ Bars (written before the runs):
   (caffeinate -is nice -n 10, common/capped_run.py 14400 s, RAYON_NUM_THREADS=2): r0 (0.0440, 0.0470, --pin=90d3e655,d1a3a641, pins matched),
   w01 (0.0400, 0.0500), w10 (0.0350, 0.0550). Records r0.jsonl, w01.jsonl, w10.jsonl, stdout r0.out, w01.out, w10.out, exit codes r0.exit, w01.exit, w10.exit.
   All three print the record system at start: |F| 3.1959e-10 / 3.1878e-10 / 3.1673e-10, steps 4179 / 4179 / 4182.
+- 2026-11-28 07:24:50 UTC r0 ended exit 0 (status tol, 6 evaluations, 3435 s): bracket [0.045591589325629484, 0.045592089325629484], det-linear root 0.04559171900836614; bar 1 PASS (+1.0837e-10 from 0.0455917189).
+- 2026-11-28 07:31:51 UTC w10 ended exit 4 (nonrobust, 7 evaluations, 3858 s); 07:35:21 UTC w01 ended exit 4 (nonrobust, 8 evaluations, 4067 s). No exit 2, no bracket widened.
+  Roots and shifts: roots_summary.txt (python3 roots_summary.py; --selftest passes). RSS sample 9 min in: 2.8 to 3.0 GiB per process; 532 to 625 s per evaluation with three at once.
+- Files: r0/w01/w10 .jsonl (records), .out (stdout), .exit (exit code), selftest*.log, check_kc31.log, run_case.sh, wait_r0.sh, common/, roots_summary.py/.txt, make_post.py, post_started.md, post_result.md.
