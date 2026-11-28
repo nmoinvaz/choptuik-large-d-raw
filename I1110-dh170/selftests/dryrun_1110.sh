@@ -1,8 +1,10 @@
 #!/bin/bash
 # Dry run of run_1110.sh with a fake i1101_weakdir.py (the real units of systemd-run are used, with the prefix i1110t), DRY=1 (no pins of the worktree), a fake R3 folder, MAXP=2 and
 # fake scanner processes (processes whose command line matches the admission pattern). usage: dryrun_1110.sh SCENARIO
-#   ok       all bars pass; R3's fake steps.txt gets its "[r3] secant starts" line after 15 s (the root must wait for it) and two other scanner processes run 2 to 62 s with MAXP=2 (the root must wait
+#   ok       all bars pass; R3 has landed (pins_r3.txt) and its fake steps.txt gets its "[r3] secant starts" line after 15 s (the root must wait for it) and two other scanner processes run 2 to 62 s with MAXP=2 (the root must wait
 #            for a slot); the root is formed at delta 0
+#   nor3     R3 has not landed: the root starts at once (two other scanner processes with MAXP=2 still make it wait for a slot)
+#   resume   the previous driver's jac unit is still running (a fake unit i1110t-jac that ends after 10 s with "Exit status: 0"): the driver waits for it and goes on
 #   cap      as ok without the waits; the root fake runs long and the root's timeout CAP=20 s ends it (exit 124): partial bracket read
 #   widen    (0.10, 0.13) refused, the widened (0.05, 0.16) forms a root at 0.08
 #   bar1     the kappa 0.35 chord state has 8350 steps: STOP        bar1f  its |F| is 7e-10: STOP       bar2  the control gives 8351 steps: STOP        jac3  jac exits 3: STOP
@@ -53,7 +55,11 @@ EOS
 chmod +x $T/fakescan.sh
 X="FAKE_R=0.1178"; MAXP=2
 case $SC in
-  ok) ( sleep 15; echo "2026-11-28 00:00:00 UTC [r3] secant starts: fake" >> $T/r3/steps.txt ) & ( sleep 2; $T/fakescan.sh 60 other1 ) & ( sleep 2; $T/fakescan.sh 60 other2 ) & export FAKE_EV=6 FAKE_N=8 ;;
+  nor3) ( sleep 2; $T/fakescan.sh 20 other1 ) & ( sleep 2; $T/fakescan.sh 20 other2 ) & export FAKE_EV=2 FAKE_N=3 ;;
+  resume) touch $T/r3/DONE_r3.txt
+          printf '#!/bin/bash\nsleep 10\necho "{\\"out\\": \\"x\\"}"\nprintf "\\tExit status: 0\\n"\necho x > %s/out/jac_r0.npz\n' $T > $T/fakejac.sh; chmod +x $T/fakejac.sh
+          systemd-run --user --unit=i1110t-jac --collect -p StandardOutput=append:$T/out/jac_r0.log $T/fakejac.sh > /dev/null 2>&1; export FAKE_EV=2 FAKE_N=3 ;;
+  ok) touch $T/r3/pins_r3.txt; ( sleep 15; echo "2026-11-28 00:00:00 UTC [r3] secant starts: fake" >> $T/r3/steps.txt ) & ( sleep 2; $T/fakescan.sh 60 other1 ) & ( sleep 2; $T/fakescan.sh 60 other2 ) & export FAKE_EV=6 FAKE_N=8 ;;
   cap) touch $T/r3/DONE_r3.txt; export FAKE_EV=6 FAKE_N=40 CAP=20 ;;
   widen) touch $T/r3/DONE_r3.txt; export FAKE_R=0.2 FAKE_R_WIDE=0.08 FAKE_EV=2 FAKE_N=4 ;;
   bar1) export FAKE_STEPS35=8350 ;;

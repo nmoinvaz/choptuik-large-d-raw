@@ -4,9 +4,9 @@
 #   jac   R0's J (exit 3: not the record system: STOP)        svd  its SVD          chord kappa=0.35 -> bar 1 (8351 steps, |F| <= 5e-10: else STOP)
 #   ctl   chord kappa=0.34 -> bar 2 (a count other than 8351: else STOP)             coords  |z_chord - z_R2| by R0's bands
 #   root  d18_secant's Brent on the chord state's own map at (0.10, 0.13), tol 1e-6, --b12=fast; widened once to (0.05, 0.16) if refused (no bracket); cap 14400 s (timeout)
-# R3 (#1101, I1101-dh170) keeps priority: the root does not start until R3's scan group has finished (R3 has started its secant, or is done or stopped, or its unit is not running): a stopped
-# process keeps its memory, so the memory rule would hold R3's fourth scan back behind #1104's secant and the root. The root counts as a scanner process of the memory rule (scan_admit.sh, via
-# the marker argument --note="d18_secant.py scan root1110"). Then results_1110.py reads the maps and the root records (results_1110_maps.md, results_1110.md) and DONE_1110.txt is written.
+# R3 (#1101, I1101-dh170) keeps priority (t5): the root starts as soon as the chord bars pass, beside #1104's secant, unless R3 has landed and its scan group has not finished; then the
+# root waits for it (R3 started on mm5 00:45 UTC; t5 expects it at 10:00 to 13:00 UTC at the earliest, after the root's cap). The root counts as a scanner process of the memory rule
+# (scan_admit.sh, via the marker argument --note="d18_secant.py scan root1110"). Then results_1110.py reads the maps and the root records (results_1110_maps.md, results_1110.md) and DONE_1110.txt is written.
 # usage: run_1110.sh          Stops at the first failure (STOP_1110.txt). Environment overrides (OUT WT WTM PY R3 UP DRY YTICK CAP) are only for the dry-run test (selftests/dryrun_1110.sh).
 {
 : "${OUT:=/home/nathan/Source/choptuik-large-d-raw-p4/I1110-dh170}"
@@ -43,6 +43,11 @@ step "results_1110.py selftest exits (plain, bar7, bar2, ref, count, sign):$e (0
 [ "$e" = " 0 1 1 1 1 1" ] || stop "a results_1110.py selftest or mutation did not read as written"
 unit() {   # unit NAME TIMEOUT LOG CMD...: one systemd-run unit; waits; returns the command's exit status
   local name=$1 to=$2 log=$3 v fe=(); shift 3
+  if systemctl --user is-active --quiet $name; then      # started by the previous driver (v1, stopped 02:4x UTC): wait for it, its exit status is in the log
+    step "$name is already running (started by the previous driver): waiting for it"
+    while systemctl --user is-active --quiet $name; do sleep 15; done
+    return $(grep -h 'Exit status:' $OUT/$log | tail -1 | awk '{print $NF}' | grep -E '^[0-9]+$' || echo 1)
+  fi
   for v in ${!FAKE_@}; do fe+=(-E "$v=${!v}"); done      # the dry-run test's fake-scanner switches (none in a real run)
   systemd-run --user --wait --collect --unit=$name --working-directory=$WTM \
     -p StandardOutput=append:$OUT/$log -p StandardError=append:$OUT/$log "${fe[@]}" \
@@ -83,17 +88,17 @@ run_step $UP-coords 3600 coords.log $PY -u i1101_weakdir.py coords $OUT/svd_r0.n
 [ $rc = 0 ] || stop "coords exit $rc"
 grep -hE '^(weak vectors|chord035)' coords.log > coords_chord035.txt; step "coords: $(grep -h '^chord035' coords.log | cut -c1-300)"
 # ---- 6. the root: R3's scan first (it starts only after R3's scan group has finished, see the header); memory rule; t5's cap of 14400 s
-r3_pending() {   # R3's scan group has not finished: R3 not landed, or landed and scanning (a 'secant starts' or 'done' line of R3, or its DONE/STOP file, ends it)
+r3_pending() {   # R3 has landed (its pins file exists) and its scan group has not finished: R3's scan goes first and the root waits (t5, 02:34 UTC)
+  [ -f $R3/pins_r3.txt ] || return 1                  # not landed: the root runs (t5: R3's state lands about 10:00 to 13:00 UTC at the earliest, after the root's cap)
   [ -f $R3/DONE_r3.txt ] && return 1; [ -f $R3/STOP_r3.txt ] && return 1
   grep -q '\[r3\] \(secant starts\|done\)' $R3/steps.txt 2>/dev/null && return 1
-  [ -n "$DRY" ] || systemctl --user is-active --quiet i1101r3 || return 1     # no R3 unit: nothing will land
   return 0
 }
 root_run() {   # root_run LO HI JSONL LOG UNIT
   local rpid
-  if r3_pending; then step "root $5 waits: R3's scan (#1101, unit i1101r3) has not finished (not landed, or its four scans run); t5: R3 keeps priority"; fi
+  if r3_pending; then step "root $5 waits: R3 has landed and its scans have not finished; t5: R3 keeps priority"; fi
   while r3_pending; do sleep ${YTICK}; done
-  step "root $5 ($1, $2) starts: R3's scan group is over; memory rule (at most $(maxp) scanner processes, $(nscan) running)"
+  step "root $5 ($1, $2) starts: R3 has not landed, or its scan group is over; memory rule (at most $(maxp) scanner processes, $(nscan) running)"
   bg_admit run_step $5 $CAP $4 $PY -u i1101_weakdir.py root $OUT/sol_chord035_D23.0000.npy $1 $2 $3 --tol=1e-6 --b12=fast "--note=d18_secant.py scan root1110"
   rpid=$ADMIT_PID
   wait $rpid; rc=$?
