@@ -33,3 +33,11 @@
   mx = (-self.D(m, omega) - cx * m + c * m / x - pc + lt) / (x + c)
 /home/nathan/Source/choptuik-large-d-1025k79/solver/matter/dss_ell.py:217: RuntimeWarning: overflow encountered in divide
   lt = L * c * a2 * q / x
+/home/nathan/Source/choptuik-large-d-1025k79/solver/matter/dss_ell.py:213: RuntimeWarning: overflow encountered in divide
+  cx = c * ((n - 1) * (a2 - 1) - 2 * L * g) / x
+/home/nathan/Source/choptuik-large-d-1025k79/solver/matter/dss_ell.py:214: RuntimeWarning: overflow encountered in divide
+  ax = a * ((p * p + m * m) + 2 * L * g + (n - 1) * (1 - a2)) / (2 * x)
+/home/nathan/Source/choptuik-large-d-1025k79/solver/matter/dss_ell.py:218: RuntimeWarning: invalid value encountered in add
+  px = (-self.D(p, omega) + cx * p - c * p / x + pc - lt) / (x - c)
+/home/nathan/Source/choptuik-large-d-1025k79/solver/matter/dss_ell.py:219: RuntimeWarning: overflow encountered in divide
+  mx = (-self.D(m, omega) - cx * m + c * m / x - pc + lt) / (x + c)
