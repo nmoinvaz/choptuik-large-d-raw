@@ -196,3 +196,25 @@ python3 d18_secant.py run c/sol_w10_D23.0000.jsonl c/sol_w10_D23.0000.npy 23.0 -
 4. Reading, for information: dh170's kappa-0.7 roots give d lambda_1 / dD = (-0.0419082 - 0.045968)/0.125 = -0.703 per unit D, so a root shift r moves the k_c 127 zero by about r/0.703 in D.
 
 The gauge check's exit 1 of `report` is the known failure of #1105, not a bar. Posted on #1109, pushed here (logs, JSON, the saved sol_w01 and sol_w10 states and their stubs if under 90 MB; no jac or svd npz), reported to the coordinator.
+
+## Amendment: stage 1d, the Gauss-Newton step at two more threshold states (2026-11-28 02:38 UTC, coordinator's order of 02:38 UTC; written before any run)
+
+Folder `d/`. Purpose: to see whether stage 1c's full Gauss-Newton dDelta of -1.96e-2 (R0, k_c 127, kappa 0.7, one weak vector at s/s_max 4.25e-11) holds across k_c and kappa. jac, svd, report and valley only, no roots. Worktree `~/Source/choptuik-1109` at 49664990 (`i1101_weakdir.py` blob 8709abbd), `~/venv-314/bin/python`, from `solver/matter`, 2 threads per process (OPENBLAS/OMP/VECLIB = 2), `nice -n 10`, both states at once, each command under `timeout 7200`. Stage 1c's roots and #1101 R3 keep priority. R2's J has 8351 steps, so about twice R0's jac time (442 s) is expected. The jac and svd npz stay on the machine.
+
+**Inputs** (`origin/main`, written to `d/in/`, blob-checked against the order's prefixes: 0 mismatches):
+
+| tag | k_c | D | kappa | state (raw path, blob) | record (raw path, blob) | record steps, \|F\| |
+|---|---|---|---|---|---|---|
+| kc135 | 135 | 23.0 | 0.7 | `I1025-win2/kc135_d23/sol_l1kc135win2d23_D23.0000.npy` cd134e2c | `I1025-win2/kc135_d23/l1kc135win2d23.jsonl` bc295fbc | 4441, 3.1834404599e-10 |
+| r2 | 127 | 23.0 | 0.35 (R2) | `I1101-dh170/in/sol_l1kc127k035w2_D23.0000.npy` 25ba3a91 | `I1101-dh170/in/l1kc127k035w2.jsonl` 9111bfca | 8351, 3.1242366894e-10 |
+
+**Commands** (X = the tag; REC, STATE the `d/in/` files):
+
+```
+python3 i1101_weakdir.py jac REC STATE 23.0 d/jac_X.npz --pin=STATEBLOB,RECBLOB
+python3 i1101_weakdir.py svd d/jac_X.npz d/svd_X.npz
+python3 i1101_weakdir.py report d/jac_X.npz d/svd_X.npz 23.0 X=REC:STATE --out=d/rep_X.json
+python3 i1101_weakdir.py valley d/jac_X.npz d/svd_X.npz REC STATE 23.0 --ts=1e-3
+```
+
+**Bars:** each `jac` prints the record system (otherwise that state is skipped, and said so). Reported per state, beside R0's stage 1c line (one weak vector at s/s_max 4.25e-11, U_w^T F -1.0446e-10, |F| 3.1940e-10, full Gauss-Newton dDelta -1.9568e-02, 510 s): the weak band's s/s_max below 1e-8 and just above it, U_w^T F, |F|, the full Gauss-Newton dDelta (valley's line), seconds. The gauge check's exit 1 of `report` is not a bar (known: #1105; and the h = cos 0 control at k_c 127). Posted on #1109 with stage 1c's results when both are in, pushed here, reported to the coordinator.
