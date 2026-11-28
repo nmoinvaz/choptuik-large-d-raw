@@ -79,7 +79,9 @@ Stop rules (t5's, as in my k_c 143 lane): stop and report on not accepted, an ex
 
 **The lane is done (2026-11-28 10:54 UTC).** Re-solve 2026-11-27 18:32:46 to 2026-11-28 06:58:03 UTC, exit 0, 44717 s, ACCEPTED 06:58:47 UTC (state blob 856ce129, record blob 8c05d1a9; |F| 3.127e-10, steps 6582). Scan 07:00:53 to 08:36:38 UTC, exits 0, 0, 5745 s, one robust change (0.095, 0.110). Secant 08:43:35 to 10:52:21 UTC (tool pid 9008 under cmd 18712 / conhost 9716, driver 17776 / 13856; the session check shows no `claude` in any chain, `session_check_secant.txt`), **exit 4, status nonrobust: robust bracket [0.095, 0.0957226], det-linear root 0.0956935**, 6 evaluations, 7688 s. **t5's ruling (hc 10:53 UTC):** the root is about 0.09570 (robust bracket [0.095, 0.0957226], the non-robust 0.0956905 puts it in [0.0956905, 0.0957226]); posted on #1104 by t5 (comment 7238194210). No further kappa points: #1104 waits for #1111 stage 2. Nothing of mine runs on the laptop now.
 
-Pushed 2026-11-28 10:55:23 UTC.
+**Blobs here and in raw.** The text files made on this laptop have CR LF; raw stores them with LF, so the raw blobs differ from the local ones named above (the `.npy` state is the same, 856ce129): record `l1kc143winbk050d23.jsonl` local 8c05d1a9, raw eb328251; `scan_k050_D23_p0.jsonl` local 01711e61, raw 754abc3d; `scan_k050_D23_p1.jsonl` local 0137c9eb, raw 3877b40a; `scan_k050_D23_ends.jsonl` local 944e5150 (818 B, the two scan lines as a binary copy), raw fabfb7cb. The pins in the drivers and the `--pin` of the tool are the local blobs.
+
+Pushed 2026-11-28 10:55:52 UTC.
 
 ## Result
 
