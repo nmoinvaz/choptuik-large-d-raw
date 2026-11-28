@@ -264,3 +264,22 @@ Controls (the check passes when its value is small; a control must read >= 1e-3,
 | R2 (k_c 127, kappa 0.35) | h = cos 0 | 6.366e-05 | >= 1e-3 |
 
 The tau generator's control fired at R0 (2.758e-03) and at R2 (1.527e-03). The report's exit code is 1 at all three states (these controls).
+
+## Results of stage 1c's roots: the control fails bar 2, the other two roots stopped by the gate (2026-11-28 03:29 UTC)
+
+By script (`c/roots_summary.py`; its output is `c/roots_summary.txt`, with every evaluation). The three roots ran 01:55:33 - 03:28:18 UTC (`c/run_c.log`), `--tol=1e-6 --maxev=20 --b12=fast`, brackets as ordered (no bracket was refused, no widening). The control, `root_r0`, ended at 03:28:18 (5565 s, 12 evaluations); the gate then stopped `root_w01` and `root_w10` (SIGTERM, rc 143; 11 evaluations each, no root record), as bar 2 says.
+
+| root | state | evaluations | status | det-linear root | final robust bracket |
+|---|---|---|---|---|---|
+| r0 (control) | R0 | 12 | **nonrobust** (not robust at 0.04559167577503611, dln 0.276 > 0.1) | **0.045592888377014425** | [0.04484430241611344, 0.04560583793715152], width 7.6154e-04 |
+| w01 | `sol_w01` (t 1e-2, 4179 steps) | 11, stopped | no root record | | [0.04413872351675394, 0.045490313638722434], width 1.3516e-03 (the robust sign-change bracket of the records so far) |
+| w10 | `sol_w10` (t 1e-1, 4182 steps) | 11, stopped | no root record | | [0.0421002183739478, 0.04677662180360061], width 4.6764e-03 |
+
+**Bar 2 (control: root(R0) within 1e-5 of dh170's 0.045967998): FAIL.** The control's det-linear root is 0.0455929, **3.7511e-04 below** dh170's value, and dh170's value is outside the final robust bracket (the hybrid sign is -1 at 0.04560583793715152 and at every larger lambda evaluated, up to 0.1). Bar 3's reading (the roots' shifts and the verdict against #1109's bounds) is not made: with the control failing the order stops it.
+
+Reported as is, from `roots_summary.txt`:
+
+- The hybrid sign of R0 is monotone: +1 at 0, 0.025, 0.0415, 0.0448443 and 0.0455917 (the last not robust), -1 from 0.0456058 on. The float64 sign is not: +1, +1, +1, **-1** at 0.0448443, +1 at 0.0455917, 0.0456058 and 0.0457597, -1 from 0.0474178 on. The two disagree at 0.0448443, 0.0456058 and 0.0457597 (the hybrid is -1 where the float64 is +1 at the last two); dh170's 0.045968 lies between 0.0457597 and 0.0474178, where this machine's float64 sign changes, not where its hybrid sign does.
+- dln grows as lambda nears the hybrid root: 1.23e-05 (0.0448443), 5.22e-05 (0.0457597), 6.26e-04 (0.0456058), 2.76e-01 (0.0455917); about 8.8e-09 / |lambda - 0.045592| (an observation of the three numbers, not a fit).
+- w01: the hybrid sign is -1 at 0.0454903 and above, +1 at 0.0441387 and below; its float64 sign is +1 up to 0.05 and -1 at 0.2. w10: hybrid and float64 signs agree at every evaluation (+1 up to 0.0421002, -1 from 0.0467766).
+- The records' code: `d18_secant.py` blob eb1396ad and `i1101_weakdir.py` 8709abbd (the worktree at 49664990); `--b12=fast` (ell_fastdd's block 12, the order's choice), `mode_matrix_fast` for blocks 0-11, float64, Accelerate BLAS on macOS.
