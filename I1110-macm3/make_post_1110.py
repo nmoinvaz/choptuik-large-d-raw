@@ -90,8 +90,9 @@ def main():
           "; all exit 0. R0's record system was reproduced (|F| 3.1959e-10 against 3.1949e-10, 4179 steps). The jac and svd npz stay on the machine (`~/Source/I1110-macm3-local/`). "
           "The root runs: " + "; ".join(f"{n} exit {recs[n][2]}, {recs[n][1]['sec']} s" for n in names) + ".")
     print("\n### Differs from the order or the issue\n")
-    print("- The issue's root command says `--b12=fast`; the order says `--b12=rust --b12_threads=2`, which I ran (`rust` is bit for bit DDEll's in #1102's check; `fast` is the issue's).")
+    print("- The issue's root command says `--b12=fast`; the order says `--b12=rust --b12_threads=2`, which I ran (`rust` is bit for bit DDEll's in #1102's k_c 31 check, rerun here with 15010 of 15010 entries; not checked bit for bit at k_c 127).")
     print("- Extra command: `coords` with R2's state as base, for the issue's \"state difference |z_chord - z_R2| by band\" (the order's `coords` has R0 as base).")
+    print(f"- For reading only: the chord root {root:.6f} is {abs(root - 0.1272):.1e} from the single-power prediction 0.1272 that the issue says R3 (kappa 0.25, mm5) tests; I draw no conclusion from it.")
     print("- Nothing was pushed or posted from this Mac.")
 
 
