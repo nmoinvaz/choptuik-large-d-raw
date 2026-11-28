@@ -26,3 +26,11 @@ Order: the control (D 10.5) first, then D 16, then D 14.5, 15, 15.5, 16.5. The `
 3. Report the first D at which |dDelta| > **1e-6**, or say that all five are above or below it.
 
 Reported, a table per D: s/s_max of the two weakest non-null vectors, U_w^T F, |F|, the Gauss-Newton dDelta, seconds; and the first D with |dDelta| > 1e-6. Posted on #1109, pushed, reported to the coordinator. Estimate: about 2 min of J and SVD per state, 6 states, under 1 h.
+
+## Amendment (2026-11-28 01:21 UTC, coordinator's reply to the first control; written before any further run)
+
+- **The first control stopped at bar 1:** D 10.5 (k_c 31, state f07a8984, record e5a87ec5), run 01:17:07-01:17:22 UTC, 15 s: valley's line "Gauss-Newton step |dz| 8.3941e-04, dDelta -3.5212e-08": the full Gauss-Newton |dDelta| is **3.52e-8 > 1e-8** (the measure is the full step, not the t = 1e-3 line, whose dDelta is -3.4515e-11). The coordinator's error: ELL.md section 6 puts the onset of the weak selection at D about 9 (|dDelta/dF| 1.0e5 at D 8.15, x5 per unit D), so D 10.5 is past it and is not a pinned state.
+  **Its numbers are kept as the scan's first point (D 10.5, k_c 31: |dDelta| 3.52e-8)**; its logs are , , , , , . Weak vectors below 1e-8: 8, the two weakest at s/s_max 2.10e-11 with U_w^T F +2.5269e-14 and -2.8222e-14, |F| 4.2644e-12.
+- **The new control, the same bar (|dDelta| <= 1e-8; if it fails too: stop and report, the bar does not move):** D 7.0,  (blob **b62fac557136485d34216e1cdd5f31bcf70fcf88**) and its record  (**21f83e6b2f33320c61381d611ee9e4f0a8177bfd**), both read from  and blob-checked into ; record |F| 7.9e-15, steps 1859. The same four commands, .
+- **If D 7 passes:** D 16, then 14.5, 15, 15.5, 16.5, as written above (bars 2 and 3 unchanged).
+- **The gauge check's exit 1 is known, not one of #1109's bars:** `report` exits 1 when the gauge generator at h = sin 2 w tau reads |J g|/(s_max |g|) above 1e-6 (the control at D 10.5: 2.150e-06); it is a known failure reported in #1105 (comment 7229260535: 2.3e-6 and 2.5e-6 at D 16, from the generator's part above k_c). It is noted in the table of each state and the runs go on.
