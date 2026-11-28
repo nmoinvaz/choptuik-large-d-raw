@@ -1,0 +1,63 @@
+# real dry run (pins, blob checks, selftests with controls), 2026-11-28 11:03-11:04 UTC
+== 2026-11-28 11:03:17 w127_1111_driver.py (dry run): which band of the R2 to chord035 difference moves det M, k_c 127, D 23.0, lambda 0.122; checking pins
+== 2026-11-28 11:03:17 pins ok: worktree 0ee1d95d, i1101_weakdir.py 472e820d, d18_secant.py 9706e506, ell_b12rs.py a1fff74f, ell_fastm.py 3431e32e, ell_ddm.py 64c4337f, the other solver files, my ellrs build, R2 state 25ba3a91, R2 record 9111bfca, chord035 state 205b6a90, its map.json 3bed6d4d
+== 2026-11-28 11:03:17 the chord035 map has R2's step count: 8351 steps (record 8351), k_c 127, D 23.0; its |F| 3.1190e-10 (R2's record 3.1242e-10)
+== 2026-11-28 11:04:10 d18_secant.py selftest exit 0 and its controls half, norobust, nosigncheck exit 1, 1, 1; ell_b12rs.py selftest exit 0 and its controls nolam, harm exit 1, 1, as wanted (ellrs from C:/Users/nathan/Source/i1102_1025/site)
+== 2026-11-28 11:04:10 DRY: would run jac: C:/Users/nathan/Source/venv-md510/Scripts/python.exe -u C:/Users/nathan/Source/choptuik-i1111/solver/matter/i1101_weakdir.py jac C:/Users/nathan/Source/k127d23_1111/inputs/r2_record.jsonl C:/Users/nathan/Source/k127d23_1111/inputs/r2_state.npy 23.0 C:/Users/nathan/Source/I1111-local/jac_r2.npz --pin=25ba3a91,9111bfca (cwd C:/Users/nathan/Source/choptuik-i
+== 2026-11-28 11:04:10 DRY: would run svd: C:/Users/nathan/Source/venv-md510/Scripts/python.exe -u C:/Users/nathan/Source/choptuik-i1111/solver/matter/i1101_weakdir.py svd C:/Users/nathan/Source/I1111-local/jac_r2.npz C:/Users/nathan/Source/I1111-local/svd_r2.npz (cwd C:/Users/nathan/Source/choptuik-i1111/solver/matter; caps {'jac': 14400, 'svd': 7200, 'detparts': 28800})
+== 2026-11-28 11:04:10 DRY: would run detparts: C:/Users/nathan/Source/venv-md510/Scripts/python.exe -u C:/Users/nathan/Source/choptuik-i1111/solver/matter/i1101_weakdir.py detparts C:/Users/nathan/Source/I1111-local/svd_r2.npz C:/Users/nathan/Source/k127d23_1111/inputs/r2_record.jsonl C:/Users/nathan/Source/k127d23_1111/inputs/r2_state.npy C:/Users/nathan/Source/k127d23_1111/inputs/chord035_state
+== 2026-11-28 11:04:10 DRY: would run planted: C:/Users/nathan/Source/venv-md510/Scripts/python.exe -u C:/Users/nathan/Source/choptuik-i1111/solver/matter/i1101_weakdir.py planted C:/Users/nathan/Source/I1111-local/svd_r2.npz (cwd C:/Users/nathan/Source/choptuik-i1111/solver/matter; caps {'jac': 14400, 'svd': 7200, 'detparts': 28800})
+== 2026-11-28 11:04:10 DRY: would run planted_basis: C:/Users/nathan/Source/venv-md510/Scripts/python.exe -u C:/Users/nathan/Source/choptuik-i1111/solver/matter/i1101_weakdir.py planted C:/Users/nathan/Source/I1111-local/svd_r2.npz --mutate=basis (cwd C:/Users/nathan/Source/choptuik-i1111/solver/matter; caps {'jac': 14400, 'svd': 7200, 'detparts': 28800})
+== 2026-11-28 11:04:10 DRY: would run coords: C:/Users/nathan/Source/venv-md510/Scripts/python.exe -u C:/Users/nathan/Source/choptuik-i1111/solver/matter/i1101_weakdir.py coords C:/Users/nathan/Source/I1111-local/svd_r2.npz C:/Users/nathan/Source/k127d23_1111/inputs/r2_state.npy chord035=C:/Users/nathan/Source/k127d23_1111/inputs/chord035_state.npy (cwd C:/Users/nathan/Source/choptuik-i1111/solver
+== 2026-11-28 11:04:10 DRY: nothing started
+exit 0
+
+# fake-mode test K1111_FAKE=ok (stand-ins for the steps; hc not sent), exit shown last
+== 2026-11-28 11:04:44 w127_1111_driver.py (FAKE=ok): which band of the R2 to chord035 difference moves det M, k_c 127, D 23.0, lambda 0.122; checking pins
+== 2026-11-28 11:04:44 jac: started pid 25680: C:/Users/nathan/Source/venv-md510/Scripts/python.exe -c import json; print('D 23.0 k_c 127: |F| 3.1242e-10 (record 3.1242e-10), steps 8351 (record 8351): the record system'); open(r'C:/Users/nathan/Source/k127d23_1111/fake_ok/loc/jac_r2.npz','wb').write(b'x'); print(json.dumps(dict(out='jac_r2.npz', F=3.1e-10, J_shape=[8300, 8300], seconds=12.5, steps
+== 2026-11-28 11:04:44 jac: pid 25680 ended with exit 0 after 0 s
+== 2026-11-28 11:04:44 jac accepted: exit 0, 0 s, J [8300, 8300], |F| 3.1000e-10, steps 8351; the tool's own line (seconds 12.5); the record system
+== 2026-11-28 11:04:44 hc (not sent in a dry or fake run): winb (11:04 UTC), #1111 k_c 127 D 23.0 lambda 0.122 (R2 against chord035 on R2's map): jac done (exit 0, 0 s, J 8300 x 8300, |F| 3.1000e-10, steps 8351, the record system); svd starts now.
+== 2026-11-28 11:04:44 svd: started pid 21332: C:/Users/nathan/Source/venv-md510/Scripts/python.exe -c import numpy as np; s = np.concatenate([np.logspace(0, -4, 8000), np.logspace(-6, -9, 200), np.logspace(-12, -14, 100)]); np.savez(r'C:/Users/nathan/Source/k127d23_1111/fake_ok/loc/svd_r2.npz', s=s, U=np.zeros(1), Vt=np.zeros(1)); print('svd (8300, 8300): 1.0 s, s_max 1.000000e+00, s_min 1.000e-1
+== 2026-11-28 11:04:45 svd: pid 21332 ended with exit 0 after 0 s
+== 2026-11-28 11:04:45 planted: exit 0
+== 2026-11-28 11:04:45 planted_basis: exit 1
+== 2026-11-28 11:04:45 coords: exit 0
+== 2026-11-28 11:04:45 svd accepted: exit 0, 0 s, s_max 1.000000e+00, s_min 1.000e-14; planted exit 0 and its --mutate=basis control exit 1; bands null 100, weak 200, strong 8000 of 8300 (s/s_max cuts 1e-11 and 1e-5; weakest non-null 1.000e-09)
+== 2026-11-28 11:04:45 hc (not sent in a dry or fake run): winb (11:04 UTC), #1111 k_c 127 D 23.0 lambda 0.122 (R2 against chord035 on R2's map): svd done (exit 0, 0 s; null 100, weak 200, strong 8000 of 8300 (s/s_max cuts 1e-11 and 1e-5; weakest non-null 1.000e-09); the tool's planted check passes and its --mutate=basis control fails as wanted); detparts starts now.
+== 2026-11-28 11:04:45 detparts: started pid 4088: C:/Users/nathan/Source/venv-md510/Scripts/python.exe -c print('record system fake'); print('  part null: |P dz| 2.342e-07'); print('  part weak: |P dz| 9.865e-07'); print('  part strong: |P dz| 1.370e-08'); print('  A: hybrid sign +1 ln|det| -1590.0000000000 dln 1.00e-05 robust True; |F| 3.1e-10 (1.0 s)'); print('  A + P_null: hybrid sign +1 ln|de
+== 2026-11-28 11:04:45 detparts: pid 4088 ended with exit 0 after 0 s
+== 2026-11-28 11:04:45 detparts accepted: exit 0, 0 s; |dz| 1.0140e-06, parts null 0.2310, weak 0.972880, strong 1.351e-02 of it
+== 2026-11-28 11:04:45 A              sign +1  ln|det| -1590.0000000000  dln 1.00e-05  robust True  |F| 3.1000e-10  1 s  ln - ln(A) +0.000000
+== 2026-11-28 11:04:45 A + P_null     sign +1  ln|det| -1590.5000000000  dln 1.00e-05  robust True  |F| 3.1000e-10  1 s  ln - ln(A) -0.500000
+== 2026-11-28 11:04:45 A + P_weak     sign -1  ln|det| -1593.2000000000  dln 1.00e-05  robust True  |F| 3.1000e-10  1 s  ln - ln(A) -3.200000
+== 2026-11-28 11:04:45 A + P_strong   sign +1  ln|det| -1590.0000000000  dln 1.00e-05  robust True  |F| 3.1000e-10  1 s  ln - ln(A) +0.000000
+== 2026-11-28 11:04:45 B              sign -1  ln|det| -1593.1000000000  dln 1.00e-05  robust True  |F| 3.1000e-10  1 s  ln - ln(A) -3.100000
+== 2026-11-28 11:04:45 reading rule: no single part reproduces B (sign and ln|det| within 0.1)
+== 2026-11-28 11:04:45 hc (not sent in a dry or fake run): winb (11:04 UTC), #1111 k_c 127 D 23.0 lambda 0.122 (R2 against chord035 on R2's map): detparts done (exit 0, 0 s; jac 0 s, svd 0 s, detparts 0 s, total 1 s). |z_B - z_A| 1.0140e-06: null 0.231, weak 0.97288, strong 1.4e-02 of it. Table: A              sign +1  ln|det| -1590.0000000000  dln 1.00e-05  robust True  |F| 3.1000e-10  1 s  ln - 
+== 2026-11-28 11:04:45 w127_1111_driver.py done
+
+# fake-mode test K1111_FAKE=jacfail (stand-ins for the steps; hc not sent), exit shown last
+== 2026-11-28 11:04:26 w127_1111_driver.py (FAKE=jacfail): which band of the R2 to chord035 difference moves det M, k_c 127, D 23.0, lambda 0.122; checking pins
+== 2026-11-28 11:04:26 jac: started pid 2584: C:/Users/nathan/Source/venv-md510/Scripts/python.exe -c print('pin differs: state 00000000'); import sys; sys.exit(3) > C:/Users/nathan/Source/k127d23_1111/fake_jacfail/out/jac_r2.log
+== 2026-11-28 11:04:27 jac: pid 2584 ended with exit 3 after 0 s
+== 2026-11-28 11:04:27 STOP: jac ended with exit 3 after 0 s (the tool exits 3 if the system is not the record system or a pin differs): pin differs: state 00000000
+== 2026-11-28 11:04:27 hc (not sent in a dry or fake run): winb (11:04 UTC), #1111 k_c 127 D 23.0 lambda 0.122 (R2 against chord035 on R2's map): stopped: jac ended with exit 3 after 0 s (the tool exits 3 if the system is not the record system or a pin differs): pin differs: state 00000000
+
+# fake-mode test K1111_FAKE=badparts (stand-ins for the steps; hc not sent), exit shown last
+== 2026-11-28 11:04:45 w127_1111_driver.py (FAKE=badparts): which band of the R2 to chord035 difference moves det M, k_c 127, D 23.0, lambda 0.122; checking pins
+== 2026-11-28 11:04:45 jac: started pid 4128: C:/Users/nathan/Source/venv-md510/Scripts/python.exe -c import json; print('D 23.0 k_c 127: |F| 3.1242e-10 (record 3.1242e-10), steps 8351 (record 8351): the record system'); open(r'C:/Users/nathan/Source/k127d23_1111/fake_badparts/loc/jac_r2.npz','wb').write(b'x'); print(json.dumps(dict(out='jac_r2.npz', F=3.1e-10, J_shape=[8300, 8300], seconds=12.5, 
+== 2026-11-28 11:04:46 jac: pid 4128 ended with exit 0 after 0 s
+== 2026-11-28 11:04:46 jac accepted: exit 0, 0 s, J [8300, 8300], |F| 3.1000e-10, steps 8351; the tool's own line (seconds 12.5); the record system
+== 2026-11-28 11:04:46 hc (not sent in a dry or fake run): winb (11:04 UTC), #1111 k_c 127 D 23.0 lambda 0.122 (R2 against chord035 on R2's map): jac done (exit 0, 0 s, J 8300 x 8300, |F| 3.1000e-10, steps 8351, the record system); svd starts now.
+== 2026-11-28 11:04:46 svd: started pid 18772: C:/Users/nathan/Source/venv-md510/Scripts/python.exe -c import numpy as np; s = np.concatenate([np.logspace(0, -4, 8000), np.logspace(-6, -9, 200), np.logspace(-12, -14, 100)]); np.savez(r'C:/Users/nathan/Source/k127d23_1111/fake_badparts/loc/svd_r2.npz', s=s, U=np.zeros(1), Vt=np.zeros(1)); print('svd (8300, 8300): 1.0 s, s_max 1.000000e+00, s_min 1.
+== 2026-11-28 11:04:46 svd: pid 18772 ended with exit 0 after 0 s
+== 2026-11-28 11:04:46 planted: exit 0
+== 2026-11-28 11:04:46 planted_basis: exit 1
+== 2026-11-28 11:04:46 coords: exit 0
+== 2026-11-28 11:04:46 svd accepted: exit 0, 0 s, s_max 1.000000e+00, s_min 1.000e-14; planted exit 0 and its --mutate=basis control exit 1; bands null 100, weak 200, strong 8000 of 8300 (s/s_max cuts 1e-11 and 1e-5; weakest non-null 1.000e-09)
+== 2026-11-28 11:04:46 hc (not sent in a dry or fake run): winb (11:04 UTC), #1111 k_c 127 D 23.0 lambda 0.122 (R2 against chord035 on R2's map): svd done (exit 0, 0 s; null 100, weak 200, strong 8000 of 8300 (s/s_max cuts 1e-11 and 1e-5; weakest non-null 1.000e-09); the tool's planted check passes and its --mutate=basis control fails as wanted); detparts starts now.
+== 2026-11-28 11:04:46 detparts: started pid 18596: C:/Users/nathan/Source/venv-md510/Scripts/python.exe -c print('record system fake'); print('  part null: |P dz| 2.342e-07'); print('  part weak: |P dz| 5.070e-07'); print('  part strong: |P dz| 1.370e-08'); print('  A: hybrid sign +1 ln|det| -1590.0000000000 dln 1.00e-05 robust True; |F| 3.1e-10 (1.0 s)'); print('  A + P_null: hybrid sign +1 ln|d
+== 2026-11-28 11:04:46 detparts: pid 18596 ended with exit 0 after 0 s
+== 2026-11-28 11:04:46 STOP: the three parts' norms do not add up to |z_B - z_A| 1.014000e-06: sqrt(sum of squares) 5.586469e-07, relative 4.49e-01
+== 2026-11-28 11:04:46 hc (not sent in a dry or fake run): winb (11:04 UTC), #1111 k_c 127 D 23.0 lambda 0.122 (R2 against chord035 on R2's map): stopped: the three parts' norms do not add up to |z_B - z_A| 1.014000e-06: sqrt(sum of squares) 5.586469e-07, relative 4.49e-01
