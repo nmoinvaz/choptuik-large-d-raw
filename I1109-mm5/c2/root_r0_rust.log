@@ -1,0 +1,15 @@
+pins: state 90d3e6556817066dadb8ac8988f8b6661473a66e (wanted 90d3e655), stub d1a3a641ab9c9e53c2cc76e0170b1956e266346a (wanted d1a3a641)
+D 23.0 k_c 127: |F| 3.1939910519e-10 (record 3.1949266444e-10), steps 4179 (record 4179): the record system
+bracket (0.044, 0.047), tol 1e-06, maxev 20, mode matrix fast (jac), block 12 rust, noise 1e-15, dln <= 0.1, sol_l1kc127k070w2_D23.0000.npy
+block 12 by ellrs (neon, products dgemm, 2 threads)
+/Users/nathan/venv-314/lib/python3.14/site-packages/numpy/linalg/_linalg.py:2366: RuntimeWarning: divide by zero encountered in slogdet
+  sign, logdet = _umath_linalg.slogdet(a, signature=signature)
+/Users/nathan/venv-314/lib/python3.14/site-packages/numpy/linalg/_linalg.py:2366: RuntimeWarning: overflow encountered in slogdet
+  sign, logdet = _umath_linalg.slogdet(a, signature=signature)
+/Users/nathan/venv-314/lib/python3.14/site-packages/numpy/linalg/_linalg.py:2366: RuntimeWarning: invalid value encountered in slogdet
+  sign, logdet = _umath_linalg.slogdet(a, signature=signature)
+  lam 0.044 (lo): hybrid +1 ln|det| -3901.4245348782, noise [1.0, 1.0] dln 6.02e-06, robust True; float64 +1 -3901.1780279626 (176 s [65, 105, 6])
+  lam 0.047 (hi): hybrid -1 ln|det| -3901.8958136726, noise [-1.0, -1.0] dln 5.81e-06, robust True; float64 -1 -3905.4990565933 (164 s [51, 107, 6])
+  lam 0.04584705915552363 (interior): hybrid -1 ln|det| -3903.4692553209, noise [-1.0, -1.0] dln 3.42e-05, robust True; float64 +1 -3901.5799923304 (197 s [57, 132, 7])
+  lam 0.04558005149726448 (interior): hybrid +1 ln|det| -3906.5256724253, noise [1.0, 1.0] dln 7.59e-04, robust True; float64 +1 -3902.3341142286 (284 s [126, 151, 7])
+  lam 0.04559205115141893 (interior): hybrid -1 ln|det| -3910.0733307061, noise [-1.0, -1.0] dln 2.67e-02, robust True; float64 +1 -3900.7428816875 (313 s [128, 177, 7])

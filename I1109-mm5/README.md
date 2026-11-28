@@ -306,3 +306,17 @@ A: block 12 by ell_fastdd against DDEll's (max |difference| / max |block| <= 1e-
 | anything else | | reported as is |
 
 Posted on #1109, pushed here, reported to the coordinator.
+
+## Amendment: stage 1c2, a check on what the 0.045967998 is (2026-11-28 03:51 UTC; written before the run)
+
+Check A of stage 1c2 PASSED (03:50 UTC; `c2/fastdd_check_r0.log`): block 12 by `ell_fastdd` against DDEll's at lambda 0.0458, max |difference| / max |block| **3.748e-25** (bar 1e-20); the hybrid determinant with the two blocks: sign -1 and ln|det| -3903.667496301956 in both, |d ln| 0 (bar 1e-8). B (`--b12=rust`) is still running; its evaluations so far: hybrid +1 at 0.04558005 (robust) and -1 at 0.04559205 (dln 2.67e-02, robust), and -1 at 0.045847 and 0.047: the root with ellrs's bit-for-bit DDEll block is in (0.04558005, 0.04559205), as the `--b12=fast` root (0.0455929) was.
+
+**What dh170's 0.045967998 is** (`I1101-dh170/scan_ctl/scan_D23.0_p0.jsonl`, `p1.jsonl` and `results_ctl.md`, read here, copies in `c2/dh170/`): its scan of R0 has two points, lambda 0.045 (hybrid +1, ln|det| -3902.5303054577, float64 sign -1) and 0.050 (hybrid -1, ln|det| -3901.1035170558), `b12` rust, and "det-linear root within 1e-05 of 0.045967998: 0.045967998". With f = sign x exp(ln|det| - ref), ref the larger ln|det| (d18_secant's definition), the linear interpolation between those two points is 0.045 + 0.005 x 0.2400 / 1.2400 = 0.045968 (to be computed by script below). So 0.045967998 is a two-point det-linear estimate on the bracket (0.045, 0.050), not a Brent-refined root, and bar 2 as written compared my refined root with that estimate.
+
+**The check (written before the run):** this machine's hybrid at dh170's two lambdas, 0.045 and 0.050, with the same code path as its record (`d18_secant.py scan`, `--b12=rust`, mode matrix fast-jac, `--pin=90d3e655,d1a3a641`), from `~/Source/choptuik-ellrs/solver/matter`, `OPENBLAS_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 RAYON_NUM_THREADS=2`, `nice -n 10`, `timeout 14400`, into `c2/scan_r0_rust.jsonl`:
+
+```
+python d18_secant.py scan REC STATE 23.0 0.045,0.05 c2/scan_r0_rust.jsonl --b12=rust --b12_threads=2 --pin=90d3e655,d1a3a641
+```
+
+Reading (dh170's own bars, `results_ctl.md`): the hybrid signs +1 then -1; ln|det| at both lambda within 1e-4 of dh170's (-3902.5303054577, -3901.1035170558); the two-point det-linear root within 1e-5 of 0.045967998. All three hold: this machine reproduces dh170's evaluations, the refined root 0.04559 and the estimate 0.045968 are the same function read two ways, and the bar 2 of stage 1c compared unlike estimators. Any miss: reported as is, with the per-lambda differences (and then the machine is the open suspect).
