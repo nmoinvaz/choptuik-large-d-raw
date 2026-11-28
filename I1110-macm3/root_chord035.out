@@ -1,0 +1,15 @@
+2026-11-28 08:51:15 UTC start root_chord035 bracket 0.10 0.13 pid 29487
+capped_run: child pid 29503, cap 14400 s
+sol_chord035_D23.0000.npy: map kappa=0.35, 8351 steps, |F| 3.1190034891e-10 (saved 3.1190034891e-10): the saved system (d18_secant from /Users/nathan/Source/choptuik-ell1fast/solver/matter)
+block 12 by ellrs (neon, products dgemm, 2 threads)
+block 12 rust, tol 1e-6, bracket (0.1, 0.13)
+  lam 0.1 (lo): hybrid +1 ln|det| -4221.2093045694, noise [1.0, 1.0] dln 5.25e-05, robust True; float64 +1 (364 s)
+  lam 0.13 (hi): hybrid -1 ln|det| -4227.3105125111, noise [-1.0, -1.0] dln 3.07e-04, robust True; float64 +1 (366 s)
+  lam 0.12993294540997055 (interior): hybrid -1 ln|det| -4227.3302901348, noise [-1.0, -1.0] dln 3.17e-04, robust True; float64 +1 (373 s)
+  lam 0.12658329196233783 (interior): hybrid +1 ln|det| -4227.7679712252, noise [1.0, 1.0] dln 8.29e-04, robust True; float64 -1 (367 s)
+  lam 0.12789733976465664 (interior): hybrid -1 ln|det| -4229.1042526458, noise [-1.0, -1.0] dln 2.58e-03, robust True; float64 +1 (421 s)
+  lam 0.12762385718900449 (interior): hybrid -1 ln|det| -4231.1996722190, noise [-1.0, -1.0] dln 2.21e-02, robust True; float64 +1 (504 s)
+  lam 0.12758669589887048 (interior): hybrid +1 ln|det| -4235.7200969475, noise [1.0, -1.0] dln 1.10e+00, robust False; float64 -1 (547 s)
+root: status nonrobust (not robust at 0.12758669589887048), bracket [0.12658329196233783, 0.12762385718900449] width 1.041e-03, signs [1.0, -1.0], det-linear 0.12759126742940735, 7 evaluations, 2942 s
+capped_run: exit 4 wall 2953 s cap_hit False
+2026-11-28 09:40:28 UTC end root_chord035 exit=4

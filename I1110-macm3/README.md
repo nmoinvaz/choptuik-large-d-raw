@@ -34,3 +34,11 @@ Then, RAYON_NUM_THREADS=2 OPENBLAS_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1, 14400
 
 ## Log
 - 2026-11-28 08:39 UTC: README written before the runs.
+- 2026-11-28 08:39:30-08:50:41 UTC steps 1 to 6 (run_1110.sh, exits_1110.txt, logs jac_r0.log svd_r0.log chord035.log chord034.log coords_r0.log coords_r2.log; jac 521 s, svd 110 s, chords 10 s each): all exit 0.
+  Bar 1 PASS: chord035 map has 8351 steps (R2's 8351) and |F| 3.1190e-10 (<= 5e-10). Bar 2 PASS (the control fired): kappa=0.34 gives 8595 steps, not 8351 (|F| 3.1262e-10).
+  coords against R0: |dz| 2.1416e-09, dDelta -2.0277e-11, fractions null 1.87e-08, weak 0, strong 1. coords against R2's state (extra command 6): |z_chord - z_R2| 1.0140e-06, dDelta -4.2068e-07, null 0.231, weak 0.972860, strong 6.55e-05.
+- 2026-11-28 08:51 UTC step 7 started: run_root.sh 0.10 0.13 root_chord035 (D18_DIR as above), launched by common/launch_1070.py; output root_chord035.jsonl, root_chord035.out, exit root_chord035.exit.
+- 2026-11-28 08:51:15-09:40:28 UTC step 7 (root_chord035.out, root_chord035.jsonl): exit 4 (status nonrobust: the last point 0.12758669589887048 has dln 1.10, noise signs split), 7 evaluations, 2942 s;
+  (0.10, 0.13) bracketed, no widening. Det-linear root 0.12759126742940735, robust bracket [0.12658329196233783, 0.12762385718900449] (width 1.041e-3).
+  delta = root - 0.117824909 = +9.7664e-3 (robust bracket +8.759e-3 to +9.799e-3): >= 7e-3, the scatter hides R0-R2's order (bar 3).
+- 2026-11-28 09:41 UTC files: post_1110.md (make_post_1110.py, --selftest passes, --mutate=swap fails), run_root.sh.
