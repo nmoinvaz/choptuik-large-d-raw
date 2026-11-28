@@ -47,4 +47,4 @@ Other, reported as is:
 
 - The float64 `ln|det|` (DSSEll.mode_matrix's, the second reference of the issue: -1589.20688 for K35; reproduced to the digit) is off the double-double one by +1.864700 (K35) and +1.132219 (chord-all); the float64 difference of the two states, +1.544538, is 1.90 times the double-double one.
 - **The float64 sign of K35 is +1; the double-double sign is -1** at all five variants. The chord-all state's float64 and double-double signs agree (-1).
-- The `hionly` control's five variants spread over 1.16e-2 (they differ in the fourth decimal and by 0.012), where the unmutated runs agree to 3e-12.
+- The `hionly` control's five variants spread over 1.16e-2 (its variants' ln|det| differ at the 1e-4 to 1e-2 level), where the unmutated runs agree to 3e-12.
