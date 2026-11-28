@@ -162,3 +162,37 @@ first D with |dDelta| > 1e-6 in the k_c 47 family: 11.0
 | 16.5 | 1.592e-10, 4.705e-10 (idx 52, 53) | -8.3988e-11, -1.8200e-10 | 2.0080e-10 | **+3.4416e-02** | 43 | 1 |
 
 first D with |dDelta| > 1e-6 in the k_c 55 family: 14.5
+
+## Amendment: stage 1c, the pair at the threshold, k_c 127, D 23.0 (2026-11-28 01:46 UTC, coordinator's order of 01:45 UTC with its 01:46 correction; written before any run)
+
+Folder `c/`. Worktree `~/Source/choptuik-1109` at 49664990 (`i1101_weakdir.py` blob 8709abbd, `d18_secant.py` blob eb1396ad), `~/venv-314/bin/python`, run from `solver/matter`, 2 threads per process (OPENBLAS/OMP/VECLIB = 2), `nice -n 10`; #1111's three runs and #1101 R3 keep priority. J at k_c 127 is about 8350 unknowns (0.6 GB; the SVD about 2 GB): the jac and svd npz stay on the machine, none pushed.
+
+**Input** (R0, `origin/main`, written to `c/in/` and blob-checked: 90d3e6556817066dadb8ac8988f8b6661473a66e and d1a3a641ab9c9e53c2cc76e0170b1956e266346a, as ordered): state `I1101-dh170/in/sol_l1kc127k070w2_D23.0000.npy`, record `I1101-dh170/in/l1kc127k070w2.jsonl` (kappa 0.7, u0 0.04, Ks 30, |F| 3.1949266444e-10, 4179 steps, Delta 1.1743225027439044).
+
+**Commands** (REC, STATE are the two `c/in/` files; `c/` paths below are in this folder):
+
+```
+python3 i1101_weakdir.py jac REC STATE 23.0 c/jac_r0.npz --pin=90d3e655,d1a3a641          (timeout 7200)
+python3 i1101_weakdir.py svd c/jac_r0.npz c/svd_r0.npz                                      (timeout 3600)
+python3 i1101_weakdir.py report c/jac_r0.npz c/svd_r0.npz 23.0 r0=REC:STATE --out=c/rep_r0.json   (timeout 3600, mine)
+python3 i1101_weakdir.py valley c/jac_r0.npz c/svd_r0.npz REC STATE 23.0 --ts=1e-3,1e-2,1e-1 --save=1e-2:c/sol_w01_D23.0000.npy,1e-1:c/sol_w10_D23.0000.npy --refreeze=1   (timeout 7200, mine)
+```
+
+then three roots at once, 2 threads each, timeout 14400 each (the order's 01:46 correction: `i1101_weakdir.py root` takes only chord states, since it reads STATE.map.json; `d18_secant.py run` instead, as #1105 did; valley --save writes sol_X.npy and its stub sol_X.jsonl):
+
+```
+python3 d18_secant.py run REC STATE 23.0 0.0 0.1 c/root_r0.jsonl --tol=1e-6 --maxev=20 --b12=fast --pin=90d3e655,d1a3a641      (the control)
+python3 d18_secant.py run c/sol_w01_D23.0000.jsonl c/sol_w01_D23.0000.npy 23.0 -0.1 0.2 c/root_w01.jsonl --tol=1e-6 --maxev=20 --b12=fast
+python3 d18_secant.py run c/sol_w10_D23.0000.jsonl c/sol_w10_D23.0000.npy 23.0 -0.3 0.4 c/root_w10.jsonl --tol=1e-6 --maxev=20 --b12=fast
+```
+
+`run` is refused (exit 2) unless both ends are robust with opposite signs: then the bracket is widened once, by 2x each way about its centre (half-width doubled: r0 (-0.05, 0.15), w01 (-0.25, 0.35), w10 (-0.65, 0.75)), appended to the same output file, and said so in the report. A second refusal is reported, not widened again.
+
+**Bars** (the order's, written before the runs):
+
+1. `jac` prints the record system (|F| and steps equal to the record's, pin of both blobs); otherwise stop and report.
+2. **Control:** the det-linear root of R0 (`lam_lin` of `root_r0.jsonl`'s last record) is within **1e-5** of **0.045967998** (dh170's); otherwise stop the other two roots and report.
+3. Reported: the full Gauss-Newton dDelta at D 23 (valley's line at t = 0), each saved state's dDelta, |F| and root, and root - root(R0).
+4. Reading, for information: dh170's kappa-0.7 roots give d lambda_1 / dD = (-0.0419082 - 0.045968)/0.125 = -0.703 per unit D, so a root shift r moves the k_c 127 zero by about r/0.703 in D.
+
+The gauge check's exit 1 of `report` is the known failure of #1105, not a bar. Posted on #1109, pushed here (logs, JSON, the saved sol_w01 and sol_w10 states and their stubs if under 90 MB; no jac or svd npz), reported to the coordinator.
