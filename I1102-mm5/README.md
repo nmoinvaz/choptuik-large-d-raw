@@ -43,3 +43,13 @@ The build and the four checks of the order, all as required (logs `build.log`, `
 | `check` (k_c 31, D 10.5, lambda 2.87, 2 threads, `--controls=1`) | exit 0: the record system (|F| 4.2644450300e-12, 1748 steps, equal to the record's), **15010 of 15010 entries bit for bit**, both controls FAIL (nolam 0 of 15010, harm 0 of 15010), Rust 1.64 s against DDEll 16.2 s (ratio 9.9) |
 
 One line: `ellrs neon accelerate`; exits 0, 1, 1, 0.
+
+## Amendment: the fast solver Jacobian at k_c 127 (2026-11-28 03:43 UTC, coordinator's order of 03:43 UTC; written before the run)
+
+One check of the new fast solver Jacobian (`ell_fastm.jacobian_fast`, #1102) at k_c 127, queued for when part A of the ladder (D 4628's k* stage, `I1098-mm5/ladder/D4628m/tail/run.log`) ends and frees its 4 threads: the run starts when that log has a `job rc` line. Code: `wip/i1101-weakdir` at **693a4d79** (detached worktree `~/Source/choptuik-jac127`; `ell_fastm.py` blob 3431e32e, `i1101_weakdir.py` c1ecc1e7, `dss_ell.py` 5d28c19e), `~/venv-314/bin/python`, from `solver/matter`, `OPENBLAS_NUM_THREADS=4 VECLIB_MAXIMUM_THREADS=4`, `nice -n 10`, `timeout 7200`. Inputs: R0's state and record, the blob-checked copies in `I1109-mm5/c/in/` (90d3e655, d1a3a641).
+
+```
+python ell_fastm.py jaccheck REC STATE 23.0 --out=I1102-mm5/jac127.json > I1102-mm5/jac127.log 2>&1
+```
+
+It builds both Jacobians (the solver's `DSSEll.jacobian` and `jacobian_fast`; about 0.6 GB each) and compares them: the residual equal; per block the state columns within 1e-8 and the Delta column within 1e-12 relative (1e-8 in the horizon block); the phase row equal; exit 0 only on PASS (exit 1 is a result, not a reason to rerun; exit 3 not the record system). Reported: the exit, the times line and block 12's line. The two files are pushed here. Driver: `run_jac127.sh`, log `jac127_run.log`.
