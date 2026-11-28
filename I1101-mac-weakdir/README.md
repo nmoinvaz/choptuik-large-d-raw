@@ -186,3 +186,19 @@ Bars:
 Valley reading (rules above): |root(w10) - root(U40)| = 1.37e-2 >= 1e-3, so the root moves along the pair by 80 times
 the 1.7e-4 re-solve scatter. Added now, before it runs (`q4.sh`, after K70's root): the root of the pinning test's
 state ne1 (Delta +0.0304, \|F\| 1.155e-10, its own 2603-step map) on (2.24, 2.40), tol 1e-5, reported as measured.
+
+## Task B: the control of the segment test fails; the determinant between two states (written 2026-11-28 00:28 UTC by the clock)
+
+K70's root is 2.2449475821 (tol): bar 2 passes (+4.6e-5 from U40 here). The order (`B/order_k55.log`): |root(K25) -
+root(K70)| = 2.0e-3 < 3e-3, **not readable** (bar 3); the four roots are not monotonic in kappa (the fit's rms 2.7e-3
+equals the spread; both three-point ratios are negative).
+
+The segment test's control: chord-all (U40 re-solved by chord steps on K35's 5124-step map; the same map as K35's)
+differs from K35's state by 1.95e-10 (in the weak band), yet its root was bracketed in (2.24160, 2.24560), at least
+3.4e-3 from K35's 2.24897. **Bar 1 fails**, so the group roots are not attributed; q3 was stopped (`B/run_seg.log`).
+At lambda 2.238 the two states' float64 ln|det| differ by 5.1 and their hybrid ln|det| by 0.81.
+
+Next (`detline`, before it runs): ln|det| at lambda 2.238 along z(t) = z_K35 + t (z_chordall - z_K35), float64 at
+t = 0, 0.1, 0.25, 0.5, 0.75, 0.9, 1 and the hybrid at t = 0, 0.5, 1. Reading: monotone in t with the hybrid's t = 0.5
+value between its ends means a smooth, real sensitivity of det M to a 2e-10 move; neighbour differences larger than
+the end-to-end change mean the determinant is not a smooth function of the state at this size (rounding).
